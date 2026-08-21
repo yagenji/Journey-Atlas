@@ -45,13 +45,29 @@ function renderCountry(data) {
 function renderMapBase(fragment, mapData) {
   if (!mapData.svg) return;
   const mapArt = fragment.querySelector('#country-map-art');
+  const placeholder = mapArt.querySelector('.map-placeholder');
+  const grid = mapArt.querySelector('.map-grid');
   const image = document.createElement('img');
   image.className = 'map-base';
-  image.src = mapData.svg;
   image.alt = '';
+  image.decoding = 'async';
+
+  image.addEventListener('load', () => {
+    placeholder.hidden = true;
+    grid.hidden = true;
+    mapArt.classList.add('has-map');
+  });
+
+  image.addEventListener('error', () => {
+    image.remove();
+    placeholder.hidden = false;
+    grid.hidden = false;
+    const message = placeholder.querySelector('span');
+    if (message) message.textContent = '地図を読み込めませんでした';
+  });
+
+  image.src = mapData.svg;
   mapArt.prepend(image);
-  mapArt.querySelector('.map-placeholder').hidden = true;
-  mapArt.querySelector('.map-grid').hidden = true;
 }
 
 function setBackground(element, image) {
@@ -67,6 +83,7 @@ function projectPoint(coordinates, bounds) {
   if (!coordinates || !bounds) return null;
   const longitudeRange = bounds.east - bounds.west;
   const latitudeRange = bounds.north - bounds.south;
+  if (longitudeRange <= 0 || latitudeRange <= 0) return null;
   return {
     x: ((coordinates.longitude - bounds.west) / longitudeRange) * 100,
     y: ((bounds.north - coordinates.latitude) / latitudeRange) * 100
