@@ -99,9 +99,55 @@ def validate_country(path: Path) -> list[str]:
     return errors
 
 
-def main() -> int:
-    paths = [Path(arg) for arg in sys.argv[1:]] if len(sys.argv) > 1 else sorted(COUNTRY_DIR.glob("*.json"))
+def country_paths_from_registry() -> tuple[list[Path], list[str]]:
     errors: list[str] = []
+    registry = COUNTRY_DIR / "index.json"
+    if not registry.exists():
+        return sorted(path for path in COUNTRY_DIR.glob("*.json") if path.name != "index.json"), errors
+
+    try:
+        registry_data = json.loads(registry.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return [], [f"index.json: JSONを読み込めません: {exc}"]
+
+    entries = registry_data.get("countries")
+    if not isinstance(entries, list):
+        return [], ["index.json: countries は配列である必要があります"]
+
+    paths: list[Path] = []
+    seen: set[str] = set()
+    for index, entry in enumerate(entries, 1):
+        slug = entry.get("slug") if isinstance(entry, dict) else None
+        if not slug:
+            errors.append(f"index.json: country {index} に slug がありません")
+            continue
+        if slug in seen:
+            errors.append(f"index.json: slug '{slug}' が重複しています")
+            continue
+        seen.add(slug)
+        path = COUNTRY_DIR / f"{slug}.json"
+        if not path.exists():
+            errors.append(f"index.json: '{slug}.json' がありません")
+            continue
+        paths.append(path)
+
+    unregistered = sorted(
+        path.name for path in COUNTRY_DIR.glob("*.json")
+        if path.name != "index.json" and path.stem not in seen
+    )
+    if unregistered:
+        errors.append(f"index.json: 未登録の国ファイルがあります: {', '.join(unregistered)}")
+
+    return paths, errors
+
+
+def main() -> int:
+    if len(sys.argv) > 1:
+        paths = [Path(arg) for arg in sys.argv[1:]]
+        errors: list[str] = []
+    else:
+        paths, errors = country_paths_from_registry()
+
     for path in paths:
         errors.extend(validate_country(path))
 
