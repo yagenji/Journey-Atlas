@@ -39,7 +39,14 @@ function renderCountry(data) {
   app.replaceChildren(fragment);
   document.title = `${data.nameEn} — JOURNEY ATLAS`;
   initWishButton(data.slug);
-  setActiveScene(data.scenes[0]?.id);
+
+  const requestedScene = getSceneFromHash(data.scenes) || data.scenes[0]?.id;
+  setActiveScene(requestedScene, false);
+
+  window.addEventListener('hashchange', () => {
+    const sceneId = getSceneFromHash(data.scenes);
+    if (sceneId) setActiveScene(sceneId, true);
+  });
 }
 
 function renderMapBase(fragment, mapData) {
@@ -84,9 +91,11 @@ function projectPoint(coordinates, bounds) {
   const longitudeRange = bounds.east - bounds.west;
   const latitudeRange = bounds.north - bounds.south;
   if (longitudeRange <= 0 || latitudeRange <= 0) return null;
+  const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100;
+  const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100;
   return {
-    x: ((coordinates.longitude - bounds.west) / longitudeRange) * 100,
-    y: ((bounds.north - coordinates.latitude) / latitudeRange) * 100
+    x: Math.max(0, Math.min(100, x)),
+    y: Math.max(0, Math.min(100, y))
   };
 }
 
@@ -112,6 +121,7 @@ function renderScenes(fragment, scenes, bounds) {
     const card = document.createElement('article');
     card.className = 'scene-card';
     card.dataset.scene = scene.id;
+    card.id = `scene-${scene.id}`;
     card.tabIndex = 0;
     card.setAttribute('aria-label', `${number} ${scene.name}`);
     card.innerHTML = `
@@ -131,31 +141,52 @@ function renderScenes(fragment, scenes, bounds) {
       marker.dataset.scene = scene.id;
       marker.style.left = `${point.x}%`;
       marker.style.top = `${point.y}%`;
-      marker.setAttribute('aria-label', `${number} ${scene.name}を強調`);
+      marker.setAttribute('aria-label', `${number} ${scene.name}を見る`);
       marker.setAttribute('aria-pressed', 'false');
       marker.innerHTML = `<b>${number}</b><span>${scene.mapLabel}</span>`;
-      bindSceneActivation(marker, scene.id);
+      bindSceneActivation(marker, scene.id, true);
       markers.append(marker);
     }
 
-    bindSceneActivation(card, scene.id);
+    bindSceneActivation(card, scene.id, false);
     cards.append(card);
   });
 }
 
-function bindSceneActivation(element, id) {
-  ['mouseenter', 'focus', 'click'].forEach((eventName) => {
-    element.addEventListener(eventName, () => setActiveScene(id));
+function bindSceneActivation(element, id, scrollOnClick) {
+  element.addEventListener('mouseenter', () => setActiveScene(id, false));
+  element.addEventListener('focus', () => setActiveScene(id, false));
+  element.addEventListener('click', () => {
+    setActiveScene(id, scrollOnClick);
+    history.replaceState(null, '', `#${id}`);
+  });
+
+  element.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setActiveScene(id, scrollOnClick);
+      history.replaceState(null, '', `#${id}`);
+    }
   });
 }
 
-function setActiveScene(id) {
+function setActiveScene(id, shouldScroll = false) {
   if (!id) return;
   document.querySelectorAll('[data-scene]').forEach((element) => {
     const active = element.dataset.scene === id;
     element.classList.toggle('is-active', active);
     if (element.matches('button')) element.setAttribute('aria-pressed', String(active));
   });
+
+  if (shouldScroll) {
+    const card = document.querySelector(`.scene-card[data-scene="${id}"]`);
+    card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function getSceneFromHash(scenes) {
+  const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+  return scenes.some((scene) => scene.id === hash) ? hash : null;
 }
 
 function renderEncounters(fragment, items) {
