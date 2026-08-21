@@ -3,53 +3,138 @@
   "nameEn": "ICELAND",
   "nameJa": "アイスランド",
   "region": "NORTH ATLANTIC / 64°N",
-  "introduction": "氷河の青、苔むす溶岩台地、地中から立ちのぼる湯気。大地が生まれ続ける島では、静けささえも風景になる。",
-  "heroCaption": "氷と火が、ひとつの島に息づく。",
-  "heroImage": "",
-  "encounterIntro": "目に映る絶景だけではなく、土地の時間や暮らしの温度も旅の記憶に。",
+  "hero": {
+    "lead": "火山、氷河、滝、黒い海岸線。\n野を走らせるたびに、\n地球の表情が変わっていく島。",
+    "image": ""
+  },
+  "map": {
+    "bounds": {
+      "north": 66.7,
+      "south": 63.2,
+      "west": -24.8,
+      "east": -13.3
+    },
+    "svg": "",
+    "route": null
+  },
   "scenes": [
-    { "id": "waterfall", "name": "スコゥガフォスの水煙", "description": "轟音とともに落ちる水。その足元で、光が小さな虹をつくる。", "image": "" },
-    { "id": "glacier", "name": "ヨークルスアゥルロゥンの氷", "description": "長い時間を閉じ込めた青い氷が、静かな湖を漂う。", "image": "" },
-    { "id": "black-beach", "name": "レイニスフィヤラの黒い海岸", "description": "漆黒の砂浜へ寄せる白波。風と海が描く、研ぎ澄まされた風景。", "image": "" },
-    { "id": "geothermal", "name": "地熱地帯の息づかい", "description": "赤茶けた大地と白い蒸気。足元に、この星の熱を感じる。", "image": "" },
-    { "id": "aurora", "name": "冬空を渡るオーロラ", "description": "夜の静寂に現れ、形を変えながら空をほどいていく光。", "image": "" },
-    { "id": "highlands", "name": "ハイランドの原野", "description": "色を重ねた山と無人の道。島の奥に残る、手つかずの余白。", "image": "" },
-    { "id": "church", "name": "ヴィークの小さな教会", "description": "海辺の町を見守る白壁と赤い屋根。曇り空にもよく似合う。", "image": "" },
-    { "id": "hot-spring", "name": "風の中の温泉", "description": "冷たい空気に頬をさらし、湯に身を沈める。旅の速度がゆるむ時間。", "image": "" }
+    {
+      "id": "skogafoss",
+      "name": "スコゥガフォス",
+      "nameLocal": "Skógafoss",
+      "mapLabel": "Skógafoss",
+      "description": "大地から真っ直ぐ落ちる巨大な滝。人の背丈をはるかに超える迫力が魅力。",
+      "coordinates": { "latitude": 63.5321, "longitude": -19.5114 },
+      "image": ""
+    },
+    {
+      "id": "jokulsarlon",
+      "name": "ヨークルスアゥルロゥン",
+      "nameLocal": "Jökulsárlón",
+      "mapLabel": "Jökulsárlón",
+      "description": "氷河から崩れた氷が静かに浮かぶ氷河湖。青、白、黒が織り成す幻想的な世界。",
+      "coordinates": { "latitude": 64.0484, "longitude": -16.179 },
+      "image": ""
+    },
+    {
+      "id": "reynisfjara",
+      "name": "レイニスフィヤラ",
+      "nameLocal": "Reynisfjara",
+      "mapLabel": "Reynisfjara",
+      "description": "黒い砂浜と玄武岩の柱状節理。アイスランドらしい荒々しさが凝縮された海岸。",
+      "coordinates": { "latitude": 63.4044, "longitude": -19.0716 },
+      "image": ""
+    },
+    {
+      "id": "thingvellir",
+      "name": "シンクヴェトリル",
+      "nameLocal": "Þingvellir",
+      "mapLabel": "Þingvellir",
+      "description": "大地が裂けたような地形の中を歩く。地球のダイナミズムを間近に感じる場所。",
+      "coordinates": { "latitude": 64.2559, "longitude": -21.129 },
+      "image": ""
+    },
+    {
+      "id": "geysir",
+      "name": "ゲイシール地熱地帯",
+      "nameLocal": "Geysir",
+      "mapLabel": "Geysir",
+      "description": "間欠泉が噴き上がる大地。地中の熱が目の前で動く、黄金圏の景色。",
+      "coordinates": { "latitude": 64.3104, "longitude": -20.3024 },
+      "image": ""
+    },
+    {
+      "id": "myvatn",
+      "name": "ミーヴァトン",
+      "nameLocal": "Mývatn",
+      "mapLabel": "Mývatn",
+      "description": "火山活動が生み出した湖。溶岩地形、地熱地帯が広がる北部の景観。",
+      "coordinates": { "latitude": 65.6039, "longitude": -17.0 },
+      "image": ""
+    },
+    {
+      "id": "kirkjufell",
+      "name": "キルキュフェットル",
+      "nameLocal": "Kirkjufell",
+      "mapLabel": "Kirkjufell",
+      "description": "スナイフェルスネス半島に立つ独特な山。海と滝を合わせた景観が印象に残る。",
+      "coordinates": { "latitude": 64.9417, "longitude": -23.3069 },
+      "image": ""
+    },
+    {
+      "id": "landmannalaugar",
+      "name": "ランドマンナロイガル",
+      "nameLocal": "Landmannalaugar",
+      "mapLabel": "Landmannalaugar",
+      "description": "色の層を重ねた溶岩台地と山々。内陸の高地に広がる特別なフィールド。",
+      "coordinates": { "latitude": 63.983, "longitude": -19.067 },
+      "image": ""
+    }
   ],
   "encounters": [
-    { "symbol": "≈", "title": "大地の熱", "text": "湯気の向こうに、火山の島の日常が見える。" },
-    { "symbol": "◇", "title": "アイスランド馬", "text": "小柄で穏やかな馬たちが、広い草原に佇む。" },
-    { "symbol": "◌", "title": "長い薄明", "text": "夏は夜まで明るく、冬は淡い光をゆっくり味わう。" },
-    { "symbol": "⌁", "title": "北の食卓", "text": "魚、羊、乳製品。土地の恵みを素朴な皿で。" }
+    { "symbol": "△", "title": "火山" },
+    { "symbol": "♢", "title": "氷河" },
+    { "symbol": "≋", "title": "滝" },
+    { "symbol": "▥", "title": "黒砂海岸" },
+    { "symbol": "♨", "title": "地熱" },
+    { "symbol": "◉", "title": "温泉" },
+    { "symbol": "⌁", "title": "オーロラ" },
+    { "symbol": "▱", "title": "ロードトリップ" }
   ],
   "seasons": [
-    { "months": "JUN — AUG", "title": "夏｜遠くまで走る", "text": "日が長く、郊外へのドライブやハイキングを楽しみやすい季節。緑とルピナスが大地を彩る。" },
-    { "months": "SEP — MAR", "title": "秋から冬｜夜空を待つ", "text": "暗い夜が戻り、オーロラを待つ時間が始まる。天候と道路状況を確かめながら、余裕ある計画を。" },
-    { "months": "APR — MAY", "title": "春｜季節の境目へ", "text": "冬の名残と明るさが同居する頃。移ろう天候ごと、島の表情を受け取る。" }
+    { "symbol": "☼", "months": "6〜8月", "color": "#9aa34f", "text": "長い日照時間を生かして、郊外へのドライブやハイキングを楽しむ。" },
+    { "symbol": "♧", "months": "9〜10月", "color": "#b97845", "text": "白夜が終わり、オーロラとロードトリップの両方を楽しめる頃。" },
+    { "symbol": "❄", "months": "11〜3月", "color": "#6b91a6", "text": "冬景色とオーロラ。道路・天候の変化を見込んだ計画を。" },
+    { "symbol": "♧", "months": "4〜5月", "color": "#71956b", "text": "冬から夏へ変わる移行期。静かな自然を味わう。" }
   ],
+  "transport": {
+    "symbol": "▱",
+    "title": "ROAD TRIP",
+    "distance": "1,322",
+    "text": "リングロードを軸に巡る旅。道路状況と天候を確かめ、日程には余白を。"
+  },
   "personas": [
-    "壮大な自然の中で、静かに深呼吸したい人",
-    "予定を詰め込まず、道の途中も楽しめる人",
-    "雨や風さえ、その土地の表情として味わえる人",
-    "都市よりも、地球そのものに出会いたい人"
+    { "symbol": "△", "title": "景色のために旅する人", "text": "移りゆく自然風景や壮大な景色を心から楽しむ人。" },
+    { "symbol": "▱", "title": "ロードトリップが好きな人", "text": "移動そのものが特別になる旅をしたい人。" },
+    { "symbol": "◎", "title": "写真を撮る人", "text": "天候や光で変わる景色を切り取りたい人。" },
+    { "symbol": "♧", "title": "歩くことが好きな人", "text": "高原、氷河、火山地帯を自分の足で巡りたい人。" },
+    { "symbol": "♜", "title": "静かな場所が好きな人", "text": "都市を離れ、広い自然の中で過ごしたい人。" }
   ],
   "facts": [
-    { "label": "首都", "value": "レイキャヴィーク" },
-    { "label": "言語", "value": "アイスランド語" },
-    { "label": "通貨", "value": "アイスランド・クローナ（ISK）" },
-    { "label": "時差", "value": "日本より9時間遅れ（通年）" },
-    { "label": "フライト", "value": "日本から乗り継ぎでおよそ17時間〜" },
-    { "label": "旅の目安", "value": "5〜8日で南部と首都周辺をゆったり" }
+    { "symbol": "◎", "label": "地域", "value": "北ヨーロッパ／北大西洋" },
+    { "symbol": "▥", "label": "首都", "value": "レイキャヴィーク" },
+    { "symbol": "♙", "label": "人口", "value": "約40万人" },
+    { "symbol": "◯", "label": "言語", "value": "アイスランド語" },
+    { "symbol": "＄", "label": "通貨", "value": "アイスランド・クローナ（ISK）" }
   ],
   "tips": [
-    { "title": "天気は一日の中で変わる", "text": "防水・防風の上着と重ね着を。晴れていても、次の風景では雨ということがある。" },
-    { "title": "自然のルールを優先する", "text": "波、氷河、火山地帯には固有の危険がある。現地の規制や警告から外れない。" },
-    { "title": "移動には余白を残す", "text": "冬季や地方では道路状況が変わりやすい。距離だけで時間を決めず、最新情報を確認する。" }
+    { "symbol": "☼", "title": "昼と夜が大きく変わる", "text": "夏は白夜で明るく、冬は日照時間が短い。時期に合わせて旅のリズムを組み立てる。" },
+    { "symbol": "≋", "title": "道路は旅の一部", "text": "リングロードでも天候と季節で状況が変わる。最新情報を確かめる。" },
+    { "symbol": "△", "title": "火山と氷河が隣り合う", "text": "立入規制や警告を優先し、自然の変化を前提に行動する。" }
   ],
   "relatedCountries": [
-    { "nameEn": "NORWAY", "nameJa": "ノルウェー", "reason": "フィヨルドと北の光を追う", "image": "" },
-    { "nameEn": "FAROE ISLANDS", "nameJa": "フェロー諸島", "reason": "海風が渡る孤島の風景へ", "image": "" },
-    { "nameEn": "NEW ZEALAND", "nameJa": "ニュージーランド", "reason": "地球の輪郭を感じる道へ", "image": "" }
+    { "nameEn": "NORWAY", "nameJa": "ノルウェー", "reason": "フィヨルドと山岳風景", "image": "" },
+    { "nameEn": "NEW ZEALAND", "nameJa": "ニュージーランド", "reason": "氷河、火山、ロードトリップ", "image": "" },
+    { "nameEn": "CHILE", "nameJa": "チリ", "reason": "砂漠から氷河まで、長い旅", "image": "" }
   ]
 }
