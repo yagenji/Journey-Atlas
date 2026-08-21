@@ -213,7 +213,7 @@ font-feature-settings: "palt";
 | Hero日本語国名 | Zen Kaku Gothic New | 26px（スマートフォン22px） | 500 | 1.5 | 0 |
 | Hero導入文 | Shippori Mincho | 18px | 400 | 1.9 | 0.02em |
 | 主要セクション見出し | Zen Kaku Gothic New | 23px | 600 | 1.55 | 0.02em |
-| 景色カード見出し | Zen Kaku Gothic New | 15px | 500 | 1.55 | normal |
+| 景色カード見出し | Zen Kaku Gothic New | 15px | 400 | 1.55 | normal |
 | 景色カード本文 | Zen Kaku Gothic New | 13px | 400 | 1.75 | normal |
 | 通常情報本文 | Zen Kaku Gothic New | 14〜16px | 400 | 1.7〜1.85 | normal |
 | 英語地名・メタ | Spline Sans Mono | 11〜12px | 400〜500 | 1.5〜1.7 | 要素別 |
@@ -269,7 +269,11 @@ font-feature-settings: "palt";
 - PCでは2列×4段を基本とする。
 - 各カードは番号、画像、日本語名、現地語・英語名、短い説明で構成する。
 - PCでは画像と文章を横方向に配置する。
+- 画像とテキストの比率は約35:65とし、本文の1行あたりの文字数を確保する。
 - スマートフォンでは1列にする。
+- 日本語名には`word-break: keep-all`を基本適用し、原則1〜2行に収める。
+- 長い固有名詞は、国別JSONの任意`nameBreaks`から生成する`wbr`を優先改行位置として使用する。
+- `nameBreaks`は`name`の文字位置を配列で保持し、表示名そのものは重複させない。
 - 説明文を収めるために13px未満へ縮小しない。
 - 文章量またはカード高を調整する。
 

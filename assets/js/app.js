@@ -73,6 +73,19 @@ function projectPoint(coordinates, bounds) {
   };
 }
 
+function renderSceneName(element, name, preferredBreaks = []) {
+  const characters = Array.from(name);
+  const breaks = Array.isArray(preferredBreaks) ? preferredBreaks : [];
+  const breakPositions = new Set(
+    breaks.filter((position) => Number.isInteger(position) && position > 0 && position < characters.length)
+  );
+
+  characters.forEach((character, index) => {
+    if (breakPositions.has(index)) element.append(document.createElement('wbr'));
+    element.append(document.createTextNode(character));
+  });
+}
+
 function renderScenes(fragment, scenes, bounds) {
   const cards = fragment.querySelector('#scene-cards');
   const markers = fragment.querySelector('#map-markers');
@@ -88,8 +101,9 @@ function renderScenes(fragment, scenes, bounds) {
       <div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div>
       <div class="scene-copy">
         <strong>${number}</strong>
-        <div><h3>${scene.name}</h3><small>${scene.nameLocal}</small><p>${scene.description}</p></div>
+        <div><h3></h3><small>${scene.nameLocal}</small><p>${scene.description}</p></div>
       </div>`;
+    renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
     setBackground(card.querySelector('.scene-image'), scene.image);
 
     const point = projectPoint(scene.coordinates, bounds);
