@@ -1,0 +1,26 @@
+name: Validate country data
+
+on:
+  push:
+    paths:
+      - 'data/countries/**'
+      - 'scripts/validate_country.py'
+      - '.github/workflows/validate-country-data.yml'
+  pull_request:
+    paths:
+      - 'data/countries/**'
+      - 'scripts/validate_country.py'
+      - '.github/workflows/validate-country-data.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate country JSON
+        run: python3 scripts/validate_country.py
