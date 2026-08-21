@@ -210,7 +210,7 @@ font-feature-settings: "palt";
 |---|---|---:|---:|---:|---:|
 | ブランドロゴ | Hanken Grotesk | 18px | 700 | inherit | 0.25em |
 | Hero英語国名 | Hanken Grotesk | 72〜100px | 700 | 1.0 | 0.14em |
-| Hero日本語国名 | Zen Kaku Gothic New | 30px | 600 | 1.5 | 0.02em |
+| Hero日本語国名 | Zen Kaku Gothic New | 26px（スマートフォン22px） | 500 | 1.5 | 0 |
 | Hero導入文 | Shippori Mincho | 18px | 400 | 1.9 | 0.02em |
 | 主要セクション見出し | Zen Kaku Gothic New | 23px | 600 | 1.55 | 0.02em |
 | 景色カード見出し | Zen Kaku Gothic New | 15px | 500 | 1.55 | normal |
