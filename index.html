@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="静かな余白と景色から、次の旅先に出会う。JOURNEY ATLASのアイスランド編。">
+  <title>ICELAND — JOURNEY ATLAS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="JOURNEY ATLAS ホーム">
+      <span>JOURNEY</span><span>ATLAS</span>
+    </a>
+    <p class="header-note">A quiet atlas for your next journey</p>
+  </header>
+
+  <main id="app" aria-live="polite">
+    <div class="loading">旅のページをひらいています…</div>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand brand--footer" href="./"><span>JOURNEY</span><span>ATLAS</span></a>
+    <p>まだ知らない景色へ。</p>
+    <small>© JOURNEY ATLAS</small>
+  </footer>
+
+  <template id="country-template">
+    <article>
+      <section class="intro wrap">
+        <p class="eyebrow" data-field="region"></p>
+        <h1><span data-field="nameEn"></span><small data-field="nameJa"></small></h1>
+        <p class="lead" data-field="introduction"></p>
+        <div class="scroll-cue" aria-hidden="true"><span></span>SCROLL TO EXPLORE</div>
+      </section>
+
+      <section class="hero-media media-placeholder" data-image-field="heroImage" aria-label="メインビジュアル">
+        <span class="placeholder-kicker">HERO ILLUSTRATION</span>
+        <p data-field="heroCaption"></p>
+      </section>
+
+      <section class="scenes section wrap" id="scenes">
+        <header class="section-heading">
+          <p class="eyebrow">SCENES TO REMEMBER</p>
+          <h2><span data-field="nameJa"></span>で見たい<br><em data-field="sceneCount"></em>つの景色</h2>
+          <p>番号に触れて、風景をたどる。</p>
+        </header>
+        <div class="scene-layout">
+          <div class="map-panel">
+            <div class="map-title"><span>MAP OF</span><b data-field="nameEn"></b></div>
+            <div id="country-map-art" class="map-slot" aria-label="地図SVG差し替え領域">
+              <div class="map-placeholder"><span>ACCURATE MAP SVG</span><small>正確な地図データを準備中</small></div>
+              <div class="map-markers" id="map-markers"></div>
+            </div>
+            <p class="map-note">※ 番号は現在、地理的位置を示さない仮配置です。</p>
+          </div>
+          <div class="scene-cards" id="scene-cards"></div>
+        </div>
+      </section>
+
+      <section class="encounters section section--tint">
+        <div class="wrap">
+          <header class="section-heading section-heading--row">
+            <div><p class="eyebrow">ENCOUNTERS</p><h2><span data-field="nameJa"></span>で<br>出会えるもの</h2></div>
+            <p data-field="encounterIntro"></p>
+          </header>
+          <div class="encounter-grid" id="encounters"></div>
+        </div>
+      </section>
+
+      <section class="travel section wrap split-section">
+        <header class="section-heading"><p class="eyebrow">WHEN TO GO</p><h2>旅するなら</h2></header>
+        <div class="season-list" id="seasons"></div>
+      </section>
+
+      <section class="for-you section section--dark">
+        <div class="wrap narrow">
+          <p class="eyebrow">THIS PLACE MAY BE FOR YOU</p>
+          <h2>こんな人に</h2>
+          <div class="persona-list" id="personas"></div>
+        </div>
+      </section>
+
+      <section class="facts section wrap split-section">
+        <header class="section-heading"><p class="eyebrow">ESSENTIALS</p><h2>基本情報</h2></header>
+        <dl class="fact-grid" id="facts"></dl>
+      </section>
+
+      <section class="tips section wrap">
+        <header class="section-heading"><p class="eyebrow">BEFORE YOU GO</p><h2>知っておきたいこと</h2></header>
+        <div class="tip-grid" id="tips"></div>
+      </section>
+
+      <section class="related section section--tint">
+        <div class="wrap">
+          <header class="section-heading"><p class="eyebrow">NEXT JOURNEY</p><h2><span data-field="nameJa"></span>が<br>気になったなら</h2></header>
+          <div class="related-grid" id="related"></div>
+        </div>
+      </section>
+
+      <section class="wish section wrap narrow">
+        <p class="eyebrow">SAVE THIS FEELING</p>
+        <h2>いつか、この景色の中へ。</h2>
+        <button class="wish-button" id="wish-button" type="button"><span>この国に行きたい</span><b aria-hidden="true">＋</b></button>
+        <p class="wish-status" id="wish-status" role="status"></p>
+      </section>
+    </article>
+  </template>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
+
