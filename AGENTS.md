@@ -118,12 +118,16 @@ docs/DESIGN_SPEC.md
 
 ## 8. JOURNEY LENSと共通のフォント体系
 
-次の4書体を役割別に使用する。
+次の5書体を役割別に使用する。
 
-- Hanken Grotesk：英字ロゴ、英字見出し、英字UI
+- Hanken Grotesk：ブランドロゴ、大きな英字見出し
+- Newsreader：英語のセリフ体、補助的なエディトリアル表現
 - Shippori Mincho：日本語見出し、Hero導入文、情緒的なコピー、CTA
 - Zen Kaku Gothic New：通常本文、景色カード、旅行情報、UI
-- Spline Sans Mono：地域、座標、英語地名、番号、メタ情報
+- Spline Sans Mono：地域、番号、月、座標、メタ情報
+
+- CSSでは`--serif`をNewsreader、`--mincho`をShippori Minchoとして分離する。
+- 本文には`-webkit-font-smoothing: antialiased`と`font-feature-settings: "palt"`を適用する。
 
 文字サイズの原則：
 

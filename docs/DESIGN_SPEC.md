@@ -162,22 +162,31 @@ Country Page
 
 ## 7. フォント体系
 
-JOURNEY LENSと次の4書体を共通使用する。
+JOURNEY LENSと次の5書体を共通使用する。
 
 | 役割 | Font | 主な用途 |
 |---|---|---|
-| Display | Hanken Grotesk | 英字ロゴ、英字国名、英字見出し、英字UI |
-| Serif | Shippori Mincho | 日本語見出し、Hero導入文、情緒的コピー、CTA |
+| Display | Hanken Grotesk | ブランドロゴ、大きな英字見出し（英字国名など） |
+| Serif | Newsreader | 英語のセリフ体、補助的なエディトリアル表現 |
+| Mincho | Shippori Mincho | 日本語見出し、Hero導入文、情緒的コピー、CTA |
 | Body | Zen Kaku Gothic New | 通常本文、景色カード、旅行情報、UI |
-| Meta | Spline Sans Mono | 地域、座標、英語地名、番号、メタ情報 |
+| Meta | Spline Sans Mono | 地域、番号、月、座標、メタ情報 |
 
 CSS変数：
 
 ```css
 --display: "Hanken Grotesk", sans-serif;
---serif: "Shippori Mincho", "Yu Mincho", serif;
+--serif: "Newsreader", "Times New Roman", serif;
+--mincho: "Shippori Mincho", "Yu Mincho", serif;
 --body: "Zen Kaku Gothic New", "Hanken Grotesk", system-ui, sans-serif;
 --meta: "Spline Sans Mono", ui-monospace, monospace;
+```
+
+本文には、JOURNEY LENSと同じ文字レンダリング指定を適用する。
+
+```css
+-webkit-font-smoothing: antialiased;
+font-feature-settings: "palt";
 ```
 
 ## 8. タイポグラフィ
