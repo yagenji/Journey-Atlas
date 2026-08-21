@@ -214,7 +214,7 @@ function renderRelated(fragment, countries) {
   countries.forEach((country) => {
     const article = document.createElement('article');
     article.className = 'related-card';
-    article.innerHTML = `<div class="related-image media-slot"><span>FUTURE ARTWORK</span><div><h3>${country.nameEn}</h3><b>${country.nameJa}</b><p>${country.reason}</p></div></div>`;
+    article.innerHTML = `<div class="related-image media-slot"><div><h3>${country.nameEn}</h3><b>${country.nameJa}</b><p>${country.reason}</p></div></div>`;
     setBackground(article.querySelector('.related-image'), country.image);
     container.append(article);
   });
