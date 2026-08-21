@@ -41,14 +41,14 @@ button { border-radius: 0; }
 .hero-copy { height: 516px; padding-top: 42px; position: relative; z-index: 2; pointer-events: none; }
 .region { margin: 0 0 17px; font-family: var(--meta); font-size: 12px; font-weight: 500; letter-spacing: .18em; }
 .hero h1 { margin: 0; font: 700 clamp(72px, 7vw, 100px)/1 var(--display); letter-spacing: .14em; }
-.country-ja { margin: 18px 0 0; font: 600 30px/1.5 var(--mincho); letter-spacing: .02em; }
+.country-ja { margin: 18px 0 0; font: 600 30px/1.5 var(--body); letter-spacing: .02em; }
 .hero-lead { width: 320px; margin: 28px 0 0; white-space: pre-line; font: 400 18px/1.9 var(--mincho); letter-spacing: .02em; }
 
 .atlas-body { margin-top: -2px; position: relative; z-index: 2; }
 .atlas-panel { display: grid; grid-template-columns: 1.05fr 1fr; border: 1px solid var(--line); border-radius: 16px; background: rgba(251,248,240,.97); box-shadow: 0 12px 45px rgba(38,52,55,.07); }
 .map-column, .scenes-column { padding: 28px; }
 .map-column { border-right: 1px solid var(--line); }
-.panel-title, .scenes-heading h2, .info-section h2, .journey-footer h2 { margin: 0; color: var(--navy); font: 600 23px/1.55 var(--mincho); letter-spacing: .02em; }
+.panel-title, .scenes-heading h2, .info-section h2, .journey-footer h2 { margin: 0; color: var(--navy); font: 600 23px/1.55 var(--body); letter-spacing: .02em; }
 .panel-title span { margin-right: 8px; font-size: 11px; }
 .map-frame { margin-top: 18px; }
 .map-art { aspect-ratio: 1.35; position: relative; overflow: hidden; border: 1px solid #e2dccc; background: #e7efec; }
@@ -69,10 +69,10 @@ button { border-radius: 0; }
 .map-disclaimer { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 
 .encounter-strip { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
-.encounter-strip h3 { margin: 0 0 13px; font: 500 16px/1.6 var(--mincho); letter-spacing: .02em; }
+.encounter-strip h3 { margin: 0 0 13px; font: 500 16px/1.6 var(--body); letter-spacing: .02em; }
 .encounter-list { display: grid; grid-template-columns: repeat(8, 1fr); }
 .encounter-list article { text-align: center; }
-.encounter-list span { height: 33px; display: grid; place-items: center; font: 400 26px/1 var(--mincho); }
+.encounter-list span { height: 33px; display: grid; place-items: center; font: 400 26px/1 var(--body); }
 .encounter-list b { display: block; margin-top: 5px; font-size: 12px; font-weight: 400; white-space: nowrap; }
 
 .scenes-heading { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
@@ -110,12 +110,12 @@ button { border-radius: 0; }
 .transport > b small { display: block; }
 
 .persona-list article, .tip-list article { display: grid; grid-template-columns: 34px 1fr; gap: 9px; margin-top: 14px; }
-.persona-list span, .tip-list span { font: 400 25px/1 var(--mincho); }
+.persona-list span, .tip-list span { font: 400 25px/1 var(--body); }
 .persona-list h3, .tip-list h3 { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.55; }
 .persona-list p, .tip-list p { margin: 3px 0 0; color: #3e4950; font-size: 14px; line-height: 1.7; }
 .fact-list { display: grid; gap: 8px; margin: 14px 0 0; }
 .fact-list > div { min-height: 52px; display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; padding: 8px; border: 1px solid #e5dfd2; border-radius: 8px; }
-.fact-list > div > span { font: 400 22px/1 var(--mincho); }
+.fact-list > div > span { font: 400 22px/1 var(--body); }
 .fact-list dt { color: var(--muted); font-family: var(--meta); font-size: 11px; }
 .fact-list dd { margin: 2px 0 0; font-size: 14px; font-weight: 500; line-height: 1.6; }
 
@@ -143,7 +143,7 @@ button { border-radius: 0; }
 .brand--footer { font-size: 14px; }
 .brand--footer .brand-compass { width: 32px; height: 32px; font-size: 19px; }
 .site-footer small { color: var(--muted); font-family: var(--meta); font-size: 11px; }
-.loading, .error { min-height: 75vh; display: grid; place-content: center; text-align: center; font-family: var(--mincho); }
+.loading, .error { min-height: 75vh; display: grid; place-content: center; text-align: center; font-family: var(--body); }
 
 @media (max-width: 1100px) {
   .hero-art { left: 18%; }

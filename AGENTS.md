@@ -122,11 +122,12 @@ docs/DESIGN_SPEC.md
 
 - Hanken Grotesk：ブランドロゴ、大きな英字見出し
 - Newsreader：英語のセリフ体、補助的なエディトリアル表現
-- Shippori Mincho：日本語見出し、Hero導入文、情緒的なコピー、CTA
-- Zen Kaku Gothic New：通常本文、景色カード、旅行情報、UI
+- Shippori Mincho：Hero導入文など、情緒を出したい短い日本語コピー。必要な場合のみCTA
+- Zen Kaku Gothic New：日本語国名、日本語見出し、景色カード、通常本文、旅行情報、UI
 - Spline Sans Mono：地域、番号、月、座標、メタ情報
 
 - CSSでは`--serif`をNewsreader、`--mincho`をShippori Minchoとして分離する。
+- 日本語見出しは原則としてZen Kaku Gothic Newを使用し、Shippori Minchoを広範囲に使わない。
 - 本文には`-webkit-font-smoothing: antialiased`と`font-feature-settings: "palt"`を適用する。
 
 文字サイズの原則：

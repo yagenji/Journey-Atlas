@@ -168,8 +168,8 @@ JOURNEY LENSと次の5書体を共通使用する。
 |---|---|---|
 | Display | Hanken Grotesk | ブランドロゴ、大きな英字見出し（英字国名など） |
 | Serif | Newsreader | 英語のセリフ体、補助的なエディトリアル表現 |
-| Mincho | Shippori Mincho | 日本語見出し、Hero導入文、情緒的コピー、CTA |
-| Body | Zen Kaku Gothic New | 通常本文、景色カード、旅行情報、UI |
+| Mincho | Shippori Mincho | Hero導入文など情緒を出したい短い日本語コピー、必要な場合のみCTA |
+| Body | Zen Kaku Gothic New | 日本語国名、日本語見出し、景色カード、通常本文、旅行情報、UI |
 | Meta | Spline Sans Mono | 地域、番号、月、座標、メタ情報 |
 
 CSS変数：
@@ -199,6 +199,8 @@ font-feature-settings: "palt";
 - メタ情報、英語地名など補助情報：11〜12pxまで使用できる。
 - 重要な導入文：16〜20pxを基本とする。
 - 本文ウェイトは400、カード見出しは500、主要見出しは600を基本とする。
+- 日本語見出しは原則としてZen Kaku Gothic Newを使用する。
+- Shippori MinchoはHero導入文などの短い情緒的表現に限定し、カタカナ表記や情報見出しへ広範囲に適用しない。
 - 太字を多用しない。
 - 文字を小さくして情報を詰め込まない。
 
@@ -208,9 +210,9 @@ font-feature-settings: "palt";
 |---|---|---:|---:|---:|---:|
 | ブランドロゴ | Hanken Grotesk | 18px | 700 | inherit | 0.25em |
 | Hero英語国名 | Hanken Grotesk | 72〜100px | 700 | 1.0 | 0.14em |
-| Hero日本語国名 | Shippori Mincho | 30px | 600 | 1.5 | 0.02em |
+| Hero日本語国名 | Zen Kaku Gothic New | 30px | 600 | 1.5 | 0.02em |
 | Hero導入文 | Shippori Mincho | 18px | 400 | 1.9 | 0.02em |
-| 主要セクション見出し | Shippori Mincho | 23px | 600 | 1.55 | 0.02em |
+| 主要セクション見出し | Zen Kaku Gothic New | 23px | 600 | 1.55 | 0.02em |
 | 景色カード見出し | Zen Kaku Gothic New | 15px | 500 | 1.55 | normal |
 | 景色カード本文 | Zen Kaku Gothic New | 13px | 400 | 1.75 | normal |
 | 通常情報本文 | Zen Kaku Gothic New | 14〜16px | 400 | 1.7〜1.85 | normal |
