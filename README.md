@@ -7,6 +7,8 @@
 - Heroイラスト
 - 緯度・経度に基づく8地点のマーカー
 - Skógafoss / Jökulsárlón / Reynisfjara / Þingvellir / Geysir / Mývatn / Kirkjufell / Landmannalaugar の8景
+- 地図の番号から対応する景色へ移動できるナビゲーション
+- URLハッシュによる景色の直接参照（例: `#skogafoss`）
 - 季節、移動、基本情報、旅の相性、注意点
 - ブラウザ内に保存する「この国に行きたい」機能
 
@@ -21,13 +23,16 @@
 │   └── images/iceland/
 ├── data/
 │   └── countries/
+│       ├── index.json        # 国一覧のレジストリ
 │       └── iceland.json
 ├── docs/
 │   └── ICELAND_ART_BRIEF.md
+├── scripts/
+│   └── validate_country.py   # 国データの整合性チェック
 └── README.md
 ```
 
-国を追加するときは `data/countries/` に同じ形式のJSONを追加し、URLの `?country=ファイル名` で表示できます。例: `?country=iceland`。
+国を追加するときは `data/countries/` に同じ形式のJSONを追加し、`data/countries/index.json` に国を登録します。URLの `?country=ファイル名` で表示できます。例: `?country=iceland`。
 
 ## ローカルで確認する
 
@@ -40,6 +45,16 @@ python3 -m http.server 8000
 ブラウザで <http://localhost:8000/> を開きます。Icelandを明示する場合は <http://localhost:8000/?country=iceland> です。
 
 外部ライブラリ、ビルド処理、パッケージのインストールは不要です。
+
+## データ検証
+
+国データを編集・追加した後は、標準Pythonだけで整合性を確認できます。
+
+```bash
+python3 scripts/validate_country.py
+```
+
+必須キー、重複ID、緯度・経度、地図境界、画像指定などを確認します。Icelandは現在8景構成として検証します。
 
 ## 地図と出典
 
