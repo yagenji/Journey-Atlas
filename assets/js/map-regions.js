@@ -1,397 +1,47 @@
 (() => {
-  const root = document.querySelector('.map-explorer');
-  if (!root) return;
-
-  const $ = (s) => root.querySelector(s);
-  const tabs = [...root.querySelectorAll('[data-map-tab]')];
-  const tabBar = $('.map-region-tabs');
-  const mapWrap = $('.atlas-map-wrap');
-  const kicker = $('#map-region-kicker');
-  const title = $('#map-region-title');
-  const copy = $('#map-region-copy');
-  const count = $('#map-region-count');
-  const preview = $('#map-region-list');
-  const status = $('#map-country-status');
-  const headingCopy = $('.map-heading p');
-  const NS = 'http://www.w3.org/2000/svg';
-
-  const WORLD = [0, -18, 2000, 1055];
-  const MAP_LIMITS = [-120, -40, 2360, 1110];
-  const REGION_VIEW = {
-    world: WORLD,
-    asia: [1010, 70, 930, 650],
-    europe: [790, 95, 570, 405],
-    africa: [790, 300, 610, 650],
-    'north-america': [0, 55, 925, 665],
-    'south-america': [365, 430, 540, 590],
-    oceania: [1335, 440, 665, 555],
-    antarctica: [310, 900, 1380, 145]
-  };
-  const SUB_VIEW = {
-    'northern-europe': [835, 105, 390, 285],
-    'western-europe': [915, 185, 255, 205],
-    'southern-europe': [895, 245, 350, 205],
-    'eastern-europe': [1010, 175, 400, 285],
-    'central-america': [250, 360, 300, 250],
-    caribbean: [430, 370, 275, 215],
-    'australia-new-zealand': [1535, 555, 440, 345],
-    melanesia: [1570, 455, 390, 305],
-    micronesia: [1665, 400, 350, 185],
-    polynesia: [1885, 525, 355, 175]
-  };
-  const COLORS = {
-    asia: ['#9eb79c', '#c6cfaa'], europe: ['#ccb078', '#dfcda6'], africa: ['#c78f69', '#dfb48d'],
-    'north-america': ['#9fbec5', '#c4d4d1'], 'south-america': ['#9eb47c', '#c8d1a3'],
-    oceania: ['#78aaa8', '#aad0c7'], antarctica: ['#d7e7e9', '#f3f6f1']
-  };
-
-  const FALLBACK = {
-    FM: [1878, 463], KI: [1962, 494], MH: [1950, 461], NR: [1928, 503], PW: [1748, 459],
-    CK: [2112, 618], NU: [2057, 606], WS: [2044, 578], TO: [2028, 619], TV: [1991, 548]
-  };
-  const POLY_WRAP = { WS: 2000, TO: 2000, CK: 2000, NU: 2000 };
-
-  const ANTARCTICA_PATH = 'M356.2 1011.1 L423.1 1014.6 L432.7 1011.3 L426.8 1007.6 L452.7 1009.1 L451.2 1001.4 L458.6 999.5 L477.3 1000.3 L490.3 995.6 L515.8 994.4 L512.9 989.3 L582.0 994.0 L596.1 999.0 L599.9 996.4 L619.8 998.2 L614.1 995.4 L616.5 993.8 L607.2 990.9 L613.6 991.1 L603.5 988.6 L598.4 984.2 L614.0 981.5 L687.5 992.1 L690.1 987.7 L703.6 989.4 L694.8 987.7 L693.6 984.4 L722.8 988.6 L718.0 984.3 L705.5 982.1 L711.8 979.3 L710.3 977.0 L698.5 978.2 L706.7 975.4 L697.1 972.3 L707.7 974.2 L707.2 969.7 L712.4 970.8 L709.0 967.2 L714.7 966.3 L727.1 973.1 L723.2 969.6 L729.7 968.8 L728.6 963.5 L721.3 957.1 L726.5 958.7 L724.0 954.9 L727.8 955.2 L726.0 952.3 L732.5 949.3 L730.7 946.2 L734.2 947.0 L740.0 940.8 L753.7 936.2 L756.9 938.4 L750.8 939.1 L750.6 943.6 L743.0 944.7 L749.7 947.4 L738.4 947.8 L751.5 955.9 L752.7 969.6 L769.0 985.3 L768.9 997.0 L825.5 1010.9 L871.9 1013.0 L878.3 1008.7 L902.0 1003.0 L897.5 1000.7 L905.8 998.4 L902.8 993.3 L916.5 994.2 L926.0 986.3 L949.7 983.0 L951.9 979.4 L965.3 975.4 L986.4 975.0 L1000.0 970.5 L1001.1 973.3 L1016.1 974.1 L1051.0 973.1 L1059.5 969.9 L1097.9 974.5 L1136.3 965.6 L1148.5 971.0 L1153.2 968.9 L1149.3 971.2 L1154.9 973.0 L1161.3 966.6 L1191.2 958.4 L1198.9 960.0 L1203.6 955.9 L1209.7 958.0 L1209.8 953.3 L1225.0 950.6 L1232.2 951.6 L1237.6 954.4 L1235.1 957.1 L1243.0 959.2 L1285.1 960.8 L1285.2 965.9 L1295.0 965.6 L1298.8 969.2 L1295.0 971.4 L1298.4 971.4 L1358.2 953.1 L1370.6 956.1 L1391.2 955.0 L1406.9 945.9 L1410.3 950.0 L1424.2 948.1 L1428.7 950.9 L1433.8 946.7 L1436.4 949.0 L1433.9 951.3 L1449.6 956.6 L1474.0 950.2 L1475.7 954.0 L1485.8 956.9 L1526.0 952.8 L1531.8 957.1 L1543.8 952.1 L1562.4 951.4 L1596.3 958.1 L1606.2 955.1 L1596.7 959.6 L1601.2 964.0 L1626.7 963.7 L1628.1 967.2 L1641.6 970.1 L1640.7 974.3 L1660.7 975.8 L1665.7 981.3 L1669.2 979.3 L1667.4 982.1 L1646.7 990.2 L1606.0 998.9 L1615.9 1000.0 L1603.3 1000.1 L1589.0 1007.1 L1586.0 1012.3 L1603.0 1008.0 L1643.9 1011.1 L1644 1035 L356 1035 Z';
-
-  let regions = [], destinations = [], destByIso = new Map(), regionByIso = new Map(), subByIso = new Map(), subById = new Map();
-  let primary = new Map(), interactive = new Map(), nav = new Map(), fallbackPins = new Map(), wrapped = new Map();
-  let svgMap = null, tooltip = null, focusPin = null, subBar = null, zoomControls = null;
-  let activeRegion = 'world', activeSub = null, selected = null, hovered = null, frame = null, dragging = null;
-
-  const S = (tag, attrs = {}) => {
-    const n = document.createElementNS(NS, tag);
-    Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v)));
-    return n;
-  };
-  const region = (id) => regions.find(r => r.id === id);
-  const countries = (codes = []) => {
-    const set = new Set(codes);
-    return destinations.filter(c => set.has(c.iso2)).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'));
-  };
-
-  function buildLookup() {
-    regions.forEach(r => {
-      (r.iso2 || []).forEach(i => regionByIso.set(i, r.id));
-      (r.subregions || []).forEach(s => {
-        subById.set(s.id, { ...s, regionId: r.id });
-        (s.iso2 || []).forEach(i => subByIso.set(i, s.id));
-      });
-    });
-  }
-
-  function ensureSubBar() {
-    if (subBar || !tabBar) return;
-    subBar = document.createElement('div');
-    subBar.className = 'map-subregion-tabs';
-    subBar.setAttribute('aria-label', '小地域まで拡大');
-    tabBar.insertAdjacentElement('afterend', subBar);
-  }
-  function renderSubTabs(r) {
-    ensureSubBar();
-    const items = r?.subregions || [];
-    if (!items.length) { subBar.hidden = true; subBar.replaceChildren(); return; }
-    subBar.hidden = false;
-    subBar.innerHTML = '<span class="map-subregion-tabs__guide">さらに拡大</span>' + items.map(s => `<button type="button" data-map-subregion="${s.id}" class="${activeSub === s.id ? 'is-active' : ''}" aria-pressed="${activeSub === s.id}">${s.label}</button>`).join('');
-    subBar.querySelectorAll('[data-map-subregion]').forEach(b => b.addEventListener('click', () => setSub(b.dataset.mapSubregion)));
-  }
-
-  function prompt(text) {
-    nav = new Map();
-    preview.className = 'map-country-preview';
-    preview.innerHTML = `<div class="map-country-preview__empty"><span class="map-country-preview__marker">＋</span><div><strong>地域を選択</strong><p>${text}</p></div></div>`;
-  }
-  function countryNav(codes, picked = null) {
-    nav = new Map();
-    const items = countries(codes);
-    const summary = picked ? `<div class="map-country-nav__selected"><span class="map-country-nav__selected-flag">${picked.flag}</span><div class="map-country-nav__selected-names"><strong>${picked.nameJa}</strong><span>${picked.nameEn}</span></div>${picked.atlasPublished && picked.href ? `<a class="map-country-nav__selected-link" href="${picked.href}">見る ›</a>` : '<span class="map-country-nav__selected-waiting">COMING SOON</span>'}</div>` : '';
-    preview.className = 'map-country-nav';
-    preview.innerHTML = `<div class="map-country-nav__wrap">${summary}<div class="map-country-nav__guide"><strong>国・地域</strong><span>国名と地図が連動します</span></div><div class="map-country-nav__list">${items.map(c => `<button type="button" class="map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}" data-country-nav="${c.iso2}" aria-pressed="${picked?.iso2 === c.iso2}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></button>`).join('')}</div></div>`;
-    preview.querySelectorAll('[data-country-nav]').forEach(b => {
-      nav.set(b.dataset.countryNav, b);
-      b.addEventListener('pointerenter', () => hover(b.dataset.countryNav, true));
-      b.addEventListener('pointerleave', () => hover(b.dataset.countryNav, false));
-      b.addEventListener('focus', () => hover(b.dataset.countryNav, true));
-      b.addEventListener('blur', () => hover(b.dataset.countryNav, false));
-      b.addEventListener('click', () => selectIso(b.dataset.countryNav));
-    });
-  }
-
-  function renderWorld() {
-    kicker.textContent = 'WORLD'; title.textContent = '世界';
-    copy.textContent = '地域を選ぶか、＋/−で地図を拡大できます。拡大すると小さな国の形も見つけやすくなります。';
-    count.textContent = `${destinations.length || 199} DESTINATIONS`; status.textContent = '';
-    prompt('上の大地域から見たい場所を選ぶか、地図を直接拡大してください。'); renderSubTabs(null);
-  }
-  function renderRegion(r, picked = null) {
-    kicker.textContent = r.labelEn; title.textContent = r.label;
-    copy.textContent = (r.subregions || []).length ? '小地域へさらに寄れます。＋/−でも自由に拡大でき、国名と地図は連動します。' : '＋/−で自由に拡大できます。国名と地図は連動しています。';
-    count.textContent = `${countries(r.iso2).length} DESTINATIONS`; status.textContent = picked ? `${picked.nameJa}を選択中` : '';
-    countryNav(r.iso2, picked); renderSubTabs(r);
-  }
-  function renderSub(s, picked = null) {
-    const r = region(s.regionId); kicker.textContent = `${r?.labelEn || ''} / ${s.labelEn}`; title.textContent = s.label;
-    copy.textContent = '国を選びやすい倍率まで拡大しています。さらに＋/−で寄れます。国名に触れると地図上の位置が📍で反応します。';
-    count.textContent = `${countries(s.iso2).length} DESTINATIONS`; status.textContent = picked ? `${picked.nameJa}を選択中` : '';
-    countryNav(s.iso2, picked); renderSubTabs(r);
-  }
-
-  function setTabs(id) {
-    tabs.forEach(b => { const on = b.dataset.mapTab === id; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', String(on)); });
-  }
-  function view() { return svgMap ? svgMap.getAttribute('viewBox').trim().split(/\s+/).map(Number) : WORLD.slice(); }
-  function clampView(v) {
-    let [x, y, w, h] = v;
-    const ratio = h / w;
-    if (w < 46) { w = 46; h = w * ratio; }
-    if (w > 2200) { w = 2200; h = w * ratio; }
-    const [minX, minY, maxX, maxY] = MAP_LIMITS;
-    x = Math.min(maxX - Math.min(w, maxX - minX), Math.max(minX, x));
-    y = Math.min(maxY - Math.min(h, maxY - minY), Math.max(minY, y));
-    return [x, y, w, h];
-  }
-  function applyView(v) {
-    if (!svgMap) return;
-    svgMap.setAttribute('viewBox', clampView(v).join(' '));
-    updateFocusPin();
-    updateFallbackPins();
-  }
-  function animate(target, d = 420) {
-    if (!svgMap) return;
-    if (frame) cancelAnimationFrame(frame);
-    target = clampView(target);
-    const from = view(), start = performance.now(), ease = t => 1 - Math.pow(1 - t, 3);
-    const tick = now => {
-      const p = Math.min(1, (now - start) / d), e = ease(p);
-      applyView(from.map((v, i) => v + (target[i] - v) * e));
-      if (p < 1) frame = requestAnimationFrame(tick); else frame = null;
-    };
-    frame = requestAnimationFrame(tick);
-  }
-  function contextView() {
-    if (activeSub && SUB_VIEW[activeSub]) return SUB_VIEW[activeSub];
-    return REGION_VIEW[activeRegion] || WORLD;
-  }
-  function zoomAt(factor, cx = null, cy = null, motion = false) {
-    const v = view();
-    const nx = cx == null ? v[0] + v[2] / 2 : cx;
-    const ny = cy == null ? v[1] + v[3] / 2 : cy;
-    const nw = v[2] * factor, nh = v[3] * factor;
-    const target = [nx - (nx - v[0]) * factor, ny - (ny - v[1]) * factor, nw, nh];
-    motion ? animate(target, 180) : applyView(target);
-  }
-  function svgPoint(clientX, clientY) {
-    if (!svgMap?.getScreenCTM) return null;
-    const matrix = svgMap.getScreenCTM(); if (!matrix) return null;
-    const p = svgMap.createSVGPoint(); p.x = clientX; p.y = clientY;
-    return p.matrixTransform(matrix.inverse());
-  }
-
-  const elems = iso => interactive.get(iso) || [];
-  function clearSelected() { if (selected) elems(selected).forEach(e => e.classList.remove('is-selected')); selected = null; }
-  function markSelected(iso) { clearSelected(); selected = iso; elems(iso).forEach(e => e.classList.add('is-selected')); updateFocusPin(); }
-  function focus(codes = null) {
-    const set = codes ? new Set(codes) : null;
-    primary.forEach((e, iso) => { e.classList.toggle('is-muted', !!(set && !set.has(iso))); e.classList.toggle('is-in-focus', !!(set && set.has(iso))); });
-    interactive.forEach((arr, iso) => arr.filter(e => e.classList.contains('country-shape--wrapped')).forEach(e => { e.classList.toggle('is-muted', !!(set && !set.has(iso))); e.classList.toggle('is-in-focus', !!(set && set.has(iso))); }));
-    updateFallbackPins();
-  }
-  function positionFor(iso) {
-    if (activeSub === 'polynesia' && FALLBACK[iso]) return FALLBACK[iso];
-    const e = activeSub === 'polynesia' && wrapped.get(iso) ? wrapped.get(iso) : primary.get(iso);
-    if (e) {
-      const b = e.getBBox();
-      const dx = e.classList.contains('country-shape--wrapped') ? (POLY_WRAP[iso] || 0) : 0;
-      return [b.x + b.width / 2 + dx, b.y + b.height / 2];
-    }
-    return FALLBACK[iso] || null;
-  }
-  function bounds(codes) {
-    const points = (codes || []).map(positionFor).filter(Boolean);
-    const shapes = (codes || []).map(iso => primary.get(iso)).filter(Boolean).map(e => e.getBBox());
-    const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
-    shapes.forEach(b => { xs.push(b.x, b.x + b.width); ys.push(b.y, b.y + b.height); });
-    if (!xs.length) return null;
-    const l = Math.min(...xs), t = Math.min(...ys), r = Math.max(...xs), bt = Math.max(...ys);
-    let w = r - l, h = bt - t; const px = Math.max(w * .1, 14), py = Math.max(h * .13, 12);
-    w = Math.max(w + px * 2, 100); h = Math.max(h + py * 2, 76);
-    return [(l + r) / 2 - w / 2, (t + bt) / 2 - h / 2, w, h];
-  }
-
-  function setRegion(id, { motion = true } = {}) {
-    activeRegion = id; activeSub = null; root.dataset.activeRegion = id; delete root.dataset.activeSubregion;
-    clearSelected(); hovered = null; hideFocusPin(); setTabs(id);
-    const v = REGION_VIEW[id] || WORLD; motion ? animate(v) : applyView(v);
-    if (id === 'world') { focus(); renderWorld(); return; }
-    const r = region(id); if (!r) return; focus(r.iso2); renderRegion(r);
-  }
-  function setSub(id) {
-    const s = subById.get(id); if (!s) return;
-    activeRegion = s.regionId; activeSub = id; root.dataset.activeRegion = activeRegion; root.dataset.activeSubregion = id;
-    clearSelected(); hovered = null; hideFocusPin(); setTabs(activeRegion); focus(s.iso2); renderSub(s);
-    const v = SUB_VIEW[id] || bounds(s.iso2); if (v) animate(v, 430);
-  }
-  function zoomCountry(c) {
-    const pos = positionFor(c.iso2); if (!pos) return;
-    if (c.iso2 === 'AQ') { animate(REGION_VIEW.antarctica, 390); return; }
-    const p = primary.get(c.iso2);
-    if (p) {
-      const b = p.getBBox(), dx = activeSub === 'polynesia' && POLY_WRAP[c.iso2] ? POLY_WRAP[c.iso2] : 0;
-      const w = Math.max(b.width * 3.3, 58), h = Math.max(b.height * 3.3, 44);
-      animate([b.x + dx + b.width / 2 - w / 2, b.y + b.height / 2 - h / 2, w, h], 360);
-    } else {
-      animate([pos[0] - 40, pos[1] - 30, 80, 60], 360);
-    }
-  }
-  function selectIso(iso) { const c = destByIso.get(iso); if (c && positionFor(iso)) selectCountry(c); }
-  function selectCountry(c) {
-    const rid = regionByIso.get(c.iso2) || 'world', sid = subByIso.get(c.iso2) || null;
-    activeRegion = rid; activeSub = sid; root.dataset.activeRegion = rid;
-    if (sid) root.dataset.activeSubregion = sid; else delete root.dataset.activeSubregion;
-    setTabs(rid); const r = region(rid); renderSubTabs(r); focus(sid ? subById.get(sid)?.iso2 : r?.iso2);
-    markSelected(c.iso2); hovered = null;
-    if (sid) renderSub(subById.get(sid), c); else renderRegion(r, c);
-    zoomCountry(c);
-  }
-
-  function posTip(ev) {
-    if (!tooltip || !mapWrap) return;
-    const r = mapWrap.getBoundingClientRect();
-    tooltip.style.transform = `translate(${Math.min(r.width - 142, Math.max(12, ev.clientX - r.left + 12))}px, ${Math.min(r.height - 54, Math.max(12, ev.clientY - r.top + 12))}px)`;
-  }
-  function updateFocusPin() {
-    if (!focusPin) return;
-    const iso = hovered || selected; if (!iso) return hideFocusPin();
-    const p = positionFor(iso); if (!p) return hideFocusPin();
-    const v = view(), size = Math.max(16, Math.min(38, v[2] * .028));
-    focusPin.setAttribute('x', p[0]); focusPin.setAttribute('y', p[1] - size * .18); focusPin.setAttribute('font-size', size); focusPin.hidden = false;
-  }
-  function hideFocusPin() { if (focusPin) focusPin.hidden = true; }
-  function hover(iso, on) {
-    elems(iso).forEach(e => e.classList.toggle('is-hovered', on)); nav.get(iso)?.classList.toggle('is-hovered', on);
-    if (on) hovered = iso; else if (hovered === iso) hovered = null;
-    updateFocusPin();
-  }
-
-  function gradient(defs, id, colors) {
-    const g = S('linearGradient', { id, x1: '0%', y1: '0%', x2: '100%', y2: '100%' });
-    g.append(S('stop', { offset: '0%', 'stop-color': colors[0] }), S('stop', { offset: '100%', 'stop-color': colors[1] })); defs.append(g);
-  }
-  function addInteractive(iso, e) { if (!interactive.has(iso)) interactive.set(iso, []); interactive.get(iso).push(e); }
-  function bind(e, c, tip = true) {
-    addInteractive(c.iso2, e); e.dataset.iso = c.iso2; e.setAttribute('tabindex', '0'); e.setAttribute('role', 'button'); e.setAttribute('aria-label', `${c.nameJa}を選ぶ`);
-    e.addEventListener('pointerenter', ev => { hover(c.iso2, true); if (tip && tooltip) { tooltip.innerHTML = `<strong>${c.nameJa}</strong><span>${c.nameEn}</span>`; tooltip.hidden = false; posTip(ev); } });
-    e.addEventListener('pointermove', ev => { if (tip) posTip(ev); });
-    e.addEventListener('pointerleave', () => { hover(c.iso2, false); if (tip && tooltip) tooltip.hidden = true; });
-    e.addEventListener('focus', () => hover(c.iso2, true)); e.addEventListener('blur', () => hover(c.iso2, false));
-    e.addEventListener('click', () => selectCountry(c));
-    e.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); selectCountry(c); } });
-  }
-  function createFallbackPin(c, xy, layer) {
-    const pin = S('text', { x: xy[0], y: xy[1], class: 'country-fallback-pin', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
-    pin.textContent = '📍'; pin.hidden = true; bind(pin, c, false); layer.append(pin); fallbackPins.set(c.iso2, pin);
-  }
-  function updateFallbackPins() {
-    if (!svgMap) return;
-    const width = view()[2];
-    fallbackPins.forEach((pin, iso) => {
-      const sid = subByIso.get(iso), inContext = activeSub && sid === activeSub;
-      const show = inContext && width <= 430;
-      pin.hidden = !show;
-      if (show) {
-        const size = Math.max(10, Math.min(22, width * .036));
-        pin.setAttribute('font-size', size);
-      }
-    });
-  }
-
-  function installZoomControls() {
-    zoomControls = document.createElement('div'); zoomControls.className = 'map-zoom-controls'; zoomControls.setAttribute('aria-label', '地図の拡大縮小');
-    zoomControls.innerHTML = '<button type="button" data-map-zoom="in" aria-label="地図を拡大">＋</button><button type="button" data-map-zoom="out" aria-label="地図を縮小">−</button><button type="button" data-map-zoom="reset" aria-label="地図表示を戻す">↺</button>';
-    zoomControls.querySelector('[data-map-zoom="in"]').addEventListener('click', () => zoomAt(.72, null, null, true));
-    zoomControls.querySelector('[data-map-zoom="out"]').addEventListener('click', () => zoomAt(1.38, null, null, true));
-    zoomControls.querySelector('[data-map-zoom="reset"]').addEventListener('click', () => animate(contextView(), 260));
-    mapWrap.append(zoomControls);
-  }
-  function installMapGestures() {
-    svgMap.addEventListener('wheel', ev => {
-      ev.preventDefault();
-      const p = svgPoint(ev.clientX, ev.clientY), factor = ev.deltaY < 0 ? .82 : 1.2;
-      zoomAt(factor, p?.x, p?.y, false);
-    }, { passive: false });
-    svgMap.addEventListener('pointerdown', ev => {
-      if (ev.pointerType === 'touch' || ev.target.closest?.('.is-destination')) return;
-      dragging = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, view: view() };
-      svgMap.setPointerCapture?.(ev.pointerId); svgMap.classList.add('is-dragging');
-    });
-    svgMap.addEventListener('pointermove', ev => {
-      if (!dragging || dragging.id !== ev.pointerId) return;
-      const rect = svgMap.getBoundingClientRect(), dx = ev.clientX - dragging.x, dy = ev.clientY - dragging.y, v = dragging.view;
-      applyView([v[0] - dx / rect.width * v[2], v[1] - dy / rect.height * v[3], v[2], v[3]]);
-    });
-    const end = ev => { if (dragging && dragging.id === ev.pointerId) { dragging = null; svgMap.classList.remove('is-dragging'); } };
-    svgMap.addEventListener('pointerup', end); svgMap.addEventListener('pointercancel', end);
-  }
-
-  function buildMap(shapes) {
-    primary = new Map(); interactive = new Map(); wrapped = new Map(); fallbackPins = new Map(); mapWrap.classList.add('country-map-wrap');
-    const map = S('svg', { class: 'atlas-country-map', viewBox: WORLD.join(' '), role: 'img', 'aria-label': '拡大・移動しながら国を選べるイラスト世界地図', preserveAspectRatio: 'xMidYMid meet' }), defs = S('defs');
-    const ocean = S('linearGradient', { id: 'atlas-ocean', x1: '0%', y1: '0%', x2: '0%', y2: '100%' });
-    ocean.append(S('stop', { offset: '0%', 'stop-color': '#e8f4f2' }), S('stop', { offset: '58%', 'stop-color': '#eef6f1' }), S('stop', { offset: '100%', 'stop-color': '#f4f0e4' })); defs.append(ocean);
-    Object.entries(COLORS).forEach(([id, c]) => gradient(defs, `land-${id}`, c));
-    const grid = S('pattern', { id: 'atlas-grid', width: 125, height: 125, patternUnits: 'userSpaceOnUse' });
-    grid.append(S('path', { d: 'M 125 0 L 0 0 0 125', fill: 'none', stroke: '#6f9295', 'stroke-opacity': '.11', 'stroke-width': 1 })); defs.append(grid);
-    const paper = S('filter', { id: 'atlas-paper', x: '-5%', y: '-5%', width: '110%', height: '110%' });
-    paper.append(S('feTurbulence', { type: 'fractalNoise', baseFrequency: '.018', numOctaves: 3, seed: 9, result: 'noise' }), S('feColorMatrix', { in: 'noise', type: 'matrix', values: '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .10 0', result: 'texture' }), S('feBlend', { in: 'SourceGraphic', in2: 'texture', mode: 'multiply' })); defs.append(paper); map.append(defs);
-
-    map.append(
-      S('rect', { class: 'country-map-ocean', x: -120, y: -40, width: 2480, height: 1150, rx: 28, fill: 'url(#atlas-ocean)' }),
-      S('ellipse', { class: 'country-map-wash country-map-wash--one', cx: 360, cy: 310, rx: 360, ry: 205 }),
-      S('ellipse', { class: 'country-map-wash country-map-wash--two', cx: 1510, cy: 310, rx: 420, ry: 225 }),
-      S('ellipse', { class: 'country-map-wash country-map-wash--three', cx: 1130, cy: 770, rx: 360, ry: 180 }),
-      S('rect', { class: 'country-map-grid', x: -120, y: -40, width: 2480, height: 1150, fill: 'url(#atlas-grid)' }),
-      S('rect', { class: 'country-map-paper', x: -120, y: -40, width: 2480, height: 1150, filter: 'url(#atlas-paper)' })
-    );
-
-    const ice = S('g', { class: 'country-map-ice-layer', 'aria-hidden': 'true' }), land = S('g', { class: 'country-map-layer' }), wrappedLayer = S('g', { class: 'country-map-wrapped-layer' }), fallbackLayer = S('g', { class: 'country-map-fallback-layer' }), overlay = S('g', { class: 'country-map-overlay-layer' });
-    shapes.forEach(({ id, shape }) => {
-      const iso = String(id || '').toUpperCase(); if (iso === 'AQ') return;
-      const c = destByIso.get(iso), p = S('path', { d: shape }); p.dataset.iso = iso;
-      if (!c) { p.classList.add('country-shape', 'is-outside-atlas'); land.append(p); return; }
-      const rid = regionByIso.get(iso) || 'world', tone = Math.abs(iso.charCodeAt(0) + iso.charCodeAt(1)) % 4;
-      p.classList.add('country-shape', 'is-destination', `tone-${tone}`); p.dataset.region = rid; p.style.fill = `url(#land-${rid})`;
-      const t = S('title'); t.textContent = `${c.nameJa} / ${c.nameEn}`; p.append(t); bind(p, c); primary.set(iso, p); land.append(p);
-      if (POLY_WRAP[iso]) {
-        const clone = S('path', { d: shape, transform: `translate(${POLY_WRAP[iso]} 0)` });
-        clone.classList.add('country-shape', 'country-shape--wrapped', 'is-destination', `tone-${tone}`); clone.dataset.region = rid; clone.style.fill = `url(#land-${rid})`; bind(clone, c); wrapped.set(iso, clone); wrappedLayer.append(clone);
-      }
-    });
-
-    const aq = destByIso.get('AQ');
-    if (aq) {
-      const glow = S('path', { d: ANTARCTICA_PATH, class: 'antarctica-glow' }); ice.append(glow);
-      const p = S('path', { d: ANTARCTICA_PATH }); p.classList.add('country-shape', 'country-shape--antarctica', 'is-destination', 'tone-2'); p.dataset.region = 'antarctica'; p.style.fill = 'url(#land-antarctica)'; bind(p, aq); primary.set('AQ', p); land.append(p);
-    }
-
-    destinations.forEach(c => { if (!primary.has(c.iso2) && FALLBACK[c.iso2]) createFallbackPin(c, FALLBACK[c.iso2], fallbackLayer); });
-    map.append(ice, land, wrappedLayer, fallbackLayer, overlay); mapWrap.replaceChildren(map); svgMap = map;
-    focusPin = S('text', { class: 'country-focus-pin', x: 0, y: 0, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'aria-hidden': 'true' }); focusPin.textContent = '📍'; focusPin.hidden = true; overlay.append(focusPin);
-    tooltip = document.createElement('div'); tooltip.className = 'map-tooltip'; tooltip.hidden = true;
-    const hint = document.createElement('p'); hint.className = 'map-hint'; hint.textContent = '＋/−・ホイールで拡大 ／ ドラッグで移動';
-    mapWrap.append(tooltip, hint); installZoomControls(); installMapGestures(); root.classList.add('has-country-map'); updateFallbackPins();
-    const unresolved = destinations.filter(c => !primary.has(c.iso2) && !FALLBACK[c.iso2]);
-    if (unresolved.length) console.warn('[JOURNEY ATLAS map] unresolved map locations:', unresolved.map(c => c.iso2));
-  }
-
-  tabs.forEach(b => b.addEventListener('click', () => setRegion(b.dataset.mapTab)));
-  if (headingCopy) headingCopy.textContent = '世界から地域へ寄りながら、地図を自由に拡大・移動して次の旅先を見つけよう。';
-  Promise.all([
-    import('https://cdn.jsdelivr.net/npm/world-map-country-shapes@1.0.0/index.js').then(m => m.default || []),
-    fetch('data/region-taxonomy.json?v=20260822-2318').then(r => { if (!r.ok) throw new Error('Region taxonomy not found'); return r.json(); }),
-    fetch('data/atlas-destinations.json?v=20260822-2252').then(r => { if (!r.ok) throw new Error('Destination registry not found'); return r.json(); })
-  ]).then(([shapes, regionData, destinationData]) => {
-    regions = regionData.regions || []; destinations = destinationData.destinations || []; destByIso = new Map(destinations.map(c => [c.iso2, c]));
-    buildLookup(); buildMap(shapes); setRegion('world', { motion: false });
-  }).catch(err => {
-    console.error('[JOURNEY ATLAS map]', err); copy.textContent = '地図データを読み込めませんでした。'; count.textContent = ''; status.textContent = '再読み込みしてください。';
-  });
+const root=document.querySelector('.map-explorer');if(!root)return;
+const q=s=>root.querySelector(s), tabs=[...root.querySelectorAll('[data-map-tab]')], bar=q('.map-region-tabs'), wrap=q('.atlas-map-wrap'), kicker=q('#map-region-kicker'), title=q('#map-region-title'), copy=q('#map-region-copy'), count=q('#map-region-count'), list=q('#map-region-list'), status=q('#map-country-status'), head=q('.map-heading p');
+const NS='http://www.w3.org/2000/svg', WORLD=[0,0,1000,507.209], RATIO=WORLD[3]/WORLD[2], MINW=4.5;
+const MAP='https://cdn.jsdelivr.net/gh/raphaellepuschitz/SVG-World-Map@master/src/world-states.svg';
+const ANT='https://cdn.jsdelivr.net/gh/amcharts/ammap3@master/ammap/maps/svg/worldWithAntarcticaLow.svg';
+const COLORS={asia:'#a9bea4',europe:'#d2b98a',africa:'#d19a75','north-america':'#abc5c9','south-america':'#aabb83',oceania:'#7fb4b0',antarctica:'#dcecef'};
+let regions=[],dest=[],byIso=new Map(),regIso=new Map(),subIso=new Map(),subs=new Map(),groups=new Map(),wrapGroups=new Map(),nav=new Map(),svg,tip,pin,subbar,activeR='world',activeS=null,selected=null,anim=null,drag=null;
+function S(t,a={}){const n=document.createElementNS(NS,t);for(const[k,v]of Object.entries(a))n.setAttribute(k,v);return n}
+function region(id){return regions.find(r=>r.id===id)}
+function countries(codes=[]){const s=new Set(codes);return dest.filter(c=>s.has(c.iso2)).sort((a,b)=>a.nameJa.localeCompare(b.nameJa,'ja'))}
+function lookup(){regions.forEach(r=>{(r.iso2||[]).forEach(i=>regIso.set(i,r.id));(r.subregions||[]).forEach(s=>{subs.set(s.id,{...s,regionId:r.id});(s.iso2||[]).forEach(i=>subIso.set(i,s.id))})})}
+function ensureSub(){if(subbar)return;subbar=document.createElement('div');subbar.className='map-subregion-tabs';bar.after(subbar)}
+function renderSub(r){ensureSub();const a=r?.subregions||[];subbar.hidden=!a.length;subbar.innerHTML=a.length?'<span class="map-subregion-tabs__guide">さらに拡大</span>'+a.map(s=>`<button type="button" data-s="${s.id}" class="${activeS===s.id?'is-active':''}">${s.label}</button>`).join(''):'';subbar.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>setSub(b.dataset.s))}
+function right(codes,picked){nav=new Map();const a=countries(codes);list.className='map-country-nav';list.innerHTML=`<div class="map-country-nav__wrap">${picked?`<div class="map-country-nav__selected"><span class="map-country-nav__selected-flag">${picked.flag}</span><div class="map-country-nav__selected-names"><strong>${picked.nameJa}</strong><span>${picked.nameEn}</span></div>${picked.atlasPublished&&picked.href?`<a class="map-country-nav__selected-link" href="${picked.href}">見る ›</a>`:'<span class="map-country-nav__selected-waiting">COMING SOON</span>'}</div>`:''}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c=>`<button type="button" data-n="${c.iso2}" class="map-country-nav__item ${picked?.iso2===c.iso2?'is-selected':''}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></button>`).join('')}</div></div>`;list.querySelectorAll('[data-n]').forEach(b=>{nav.set(b.dataset.n,b);b.onmouseenter=()=>hover(b.dataset.n,1);b.onmouseleave=()=>hover(b.dataset.n,0);b.onfocus=()=>hover(b.dataset.n,1);b.onblur=()=>hover(b.dataset.n,0);b.onclick=()=>select(b.dataset.n)})}
+function worldPanel(){kicker.textContent='WORLD';title.textContent='世界';copy.textContent='地域を選ぶか、− / ＋やホイールで地図を拡大できます。小さな島も、拡大すると実際の形が見えます。';count.textContent=`${dest.length||199} DESTINATIONS`;status.textContent='';list.className='map-country-preview';list.innerHTML='<div class="map-country-preview__empty"><span class="map-country-preview__marker">⌖</span><div><strong>地域を選択</strong><p>地域を選ぶか、地図を直接拡大してください。</p></div></div>';renderSub(null)}
+function panel(r,s=null,p=null){const codes=s?s.iso2:r.iso2;kicker.textContent=s?`${r.labelEn} / ${s.labelEn}`:r.labelEn;title.textContent=s?s.label:r.label;copy.textContent='地図は − / ＋・ホイール・ドラッグで自由に操作できます。小さな国や島は、さらに拡大すると国土そのものが見えます。';count.textContent=`${countries(codes).length} DESTINATIONS`;status.textContent=p?`${p.nameJa}を選択中`:'';right(codes,p);renderSub(r)}
+function setTabs(id){tabs.forEach(b=>{const on=b.dataset.mapTab===id;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',on)})}
+function view(){return svg?svg.getAttribute('viewBox').split(/\s+/).map(Number):WORLD.slice()}
+function clamp(v){let[x,y,w]=v;w=Math.max(MINW,Math.min(1000,w));const h=w*RATIO;x=Math.max(-20,Math.min(1020-w,x));y=Math.max(-10,Math.min(517.209-h,y));return[x,y,w,h]}
+function apply(v){if(!svg)return;svg.setAttribute('viewBox',clamp(v).join(' '));requestAnimationFrame(placePin)}
+function animate(to,d=350){if(!svg)return;if(anim)cancelAnimationFrame(anim);const from=view(),T=clamp(to),st=performance.now();function tick(n){const p=Math.min(1,(n-st)/d),e=1-(1-p)**3;svg.setAttribute('viewBox',from.map((x,i)=>x+(T[i]-x)*e).join(' '));placePin();if(p<1)anim=requestAnimationFrame(tick)}anim=requestAnimationFrame(tick)}
+function zoom(f,cx,cy){const v=view(),x=cx??v[0]+v[2]/2,y=cy??v[1]+v[3]/2,w=Math.max(MINW,Math.min(1000,v[2]*f)),h=w*RATIO,rx=(x-v[0])/v[2],ry=(y-v[1])/v[3];apply([x-rx*w,y-ry*h,w,h])}
+function point(x,y){const p=svg.createSVGPoint();p.x=x;p.y=y;const m=svg.getScreenCTM()?.inverse();return m?p.matrixTransform(m):null}
+function grp(iso){return activeS==='polynesia'&&wrapGroups.has(iso)?wrapGroups.get(iso):groups.get(iso)}
+function bbox(g){if(g.dataset.bbox){const a=g.dataset.bbox.split(',').map(Number);return{x:a[0],y:a[1],width:a[2],height:a[3]}}const b=g.getBBox(),dx=+(g.dataset.dx||0);return{x:b.x+dx,y:b.y,width:b.width,height:b.height}}
+function fit(codes,p=.15,min=45){const bs=codes.map(grp).filter(Boolean).map(bbox);if(!bs.length)return WORLD;const l=Math.min(...bs.map(b=>b.x)),t=Math.min(...bs.map(b=>b.y)),r=Math.max(...bs.map(b=>b.x+b.width)),bt=Math.max(...bs.map(b=>b.y+b.height));let w=Math.max((r-l)*(1+2*p),min),h=Math.max((bt-t)*(1+2*p),w*RATIO);w=Math.max(w,h/RATIO);return clamp([(l+r-w)/2,(t+bt-w*RATIO)/2,w,w*RATIO])}
+function focus(codes){const s=codes?new Set(codes):null;groups.forEach((g,iso)=>{g.classList.toggle('is-muted',!!(s&&!s.has(iso)));g.classList.toggle('is-in-focus',!!(s&&s.has(iso)))});wrapGroups.forEach((g,iso)=>{g.classList.toggle('is-muted',!!(s&&!s.has(iso)));g.classList.toggle('is-in-focus',!!(s&&s.has(iso)))});}
+function clear(){if(selected){groups.get(selected)?.classList.remove('is-selected');wrapGroups.get(selected)?.classList.remove('is-selected')}selected=null;if(pin)pin.hidden=true}
+function setRegion(id,motion=true){activeR=id;activeS=null;root.dataset.activeRegion=id;delete root.dataset.activeSubregion;clear();setTabs(id);if(id==='world'){focus();motion?animate(WORLD):apply(WORLD);worldPanel();return}const r=region(id);if(!r)return;focus(r.iso2);const v=id==='oceania'?[720,150,280,142]:fit(r.iso2,.1,105);motion?animate(v):apply(v);panel(r)}
+function setSub(id){const s=subs.get(id);if(!s)return;activeR=s.regionId;activeS=id;root.dataset.activeRegion=activeR;root.dataset.activeSubregion=id;clear();setTabs(activeR);focus(s.iso2);panel(region(activeR),s);animate(fit(s.iso2,.18,30),420)}
+function select(iso){const c=byIso.get(iso),g=grp(iso);if(!c||!g)return;const rid=regIso.get(iso),sid=subIso.get(iso);activeR=rid;activeS=sid||null;root.dataset.activeRegion=rid;if(sid)root.dataset.activeSubregion=sid;else delete root.dataset.activeSubregion;setTabs(rid);focus(sid?subs.get(sid).iso2:region(rid).iso2);clear();selected=iso;groups.get(iso)?.classList.add('is-selected');wrapGroups.get(iso)?.classList.add('is-selected');panel(region(rid),sid?subs.get(sid):null,c);const b=bbox(g),w=Math.max(Math.max(b.width,b.height/RATIO)*3.2,9),h=w*RATIO;animate([b.x+b.width/2-w/2,b.y+b.height/2-h/2,w,h],340);requestAnimationFrame(placePin)}
+function hover(iso,on){groups.get(iso)?.classList.toggle('is-hovered',!!on);wrapGroups.get(iso)?.classList.toggle('is-hovered',!!on);nav.get(iso)?.classList.toggle('is-hovered',!!on)}
+function bind(g,c){g.tabIndex=0;g.setAttribute('role','button');g.setAttribute('aria-label',`${c.nameJa}を選ぶ`);g.onpointerenter=e=>{hover(c.iso2,1);tip.innerHTML=`<strong>${c.nameJa}</strong><span>${c.nameEn}</span>`;tip.hidden=false;moveTip(e)};g.onpointermove=moveTip;g.onpointerleave=()=>{hover(c.iso2,0);tip.hidden=true};g.onclick=e=>{e.stopPropagation();select(c.iso2)};g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(c.iso2)}}}
+function moveTip(e){const r=wrap.getBoundingClientRect();tip.style.transform=`translate(${Math.min(r.width-145,Math.max(12,e.clientX-r.left+12))}px,${Math.min(r.height-55,Math.max(12,e.clientY-r.top+12))}px)`}
+function clean(src,iso,c){const g=document.importNode(src,true);g.removeAttribute('id');g.querySelectorAll('text,title,desc,defs,style,[fill-opacity="0"],[opacity="0"]').forEach(n=>n.remove());g.querySelectorAll('[id]').forEach(n=>{if((n.id||'').endsWith('_'))n.remove();else n.removeAttribute('id')});const parts=[...g.querySelectorAll('path,polygon,polyline,circle,ellipse,rect')];if(!parts.length)return null;g.querySelectorAll('*').forEach(n=>{['fill','stroke','stroke-width','stroke-miterlimit','style','class'].forEach(a=>n.removeAttribute(a))});g.classList.add('ja-country');g.dataset.iso=iso;if(!c){g.classList.add('is-outside');return g}g.classList.add('is-destination');g.dataset.region=regIso.get(iso)||'world';g.style.setProperty('--fill',COLORS[g.dataset.region]||'#cbd4cf');bind(g,c);return g}
+function wrapPoly(){const s=subs.get('polynesia');if(!s)return;(s.iso2||[]).forEach(iso=>{const b=groups.get(iso);if(!b)return;const bb=b.getBBox();if(bb.x+bb.width/2>100)return;const c=b.cloneNode(true);c.dataset.dx='1000';c.setAttribute('transform','translate(1000 0)');c.classList.add('ja-wrap');bind(c,byIso.get(iso));wrapGroups.set(iso,c);svg.querySelector('.ja-wrap-layer').append(c)})}
+function controls(){const z=document.createElement('div');z.className='map-zoom-controls ja-controls';z.innerHTML='<button type="button" data-z="in" aria-label="拡大">＋</button><button type="button" data-z="out" aria-label="縮小">−</button><button type="button" data-z="reset" aria-label="表示を戻す">↺</button>';z.querySelector('[data-z="out"]').onclick=()=>zoom(1.45);z.querySelector('[data-z="in"]').onclick=()=>zoom(.69);z.querySelector('[data-z="reset"]').onclick=()=>animate(activeS?fit(subs.get(activeS).iso2,.18,30):activeR==='world'?WORLD:activeR==='oceania'?[720,150,280,142]:fit(region(activeR).iso2,.1,105),250);wrap.append(z)}
+function gestures(){svg.onwheel=e=>{e.preventDefault();const p=point(e.clientX,e.clientY);zoom(e.deltaY<0?.8:1.23,p?.x,p?.y)};svg.onpointerdown=e=>{if(e.pointerType==='touch'||e.target.closest?.('.is-destination'))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,v:view()};svg.setPointerCapture?.(e.pointerId);svg.classList.add('is-dragging')};svg.onpointermove=e=>{if(!drag||drag.id!==e.pointerId)return;const r=svg.getBoundingClientRect(),dx=e.clientX-drag.x,dy=e.clientY-drag.y,v=drag.v;apply([v[0]-dx/r.width*v[2],v[1]-dy/r.height*v[3],v[2],v[3]])};const end=e=>{if(drag&&drag.id===e.pointerId){drag=null;svg.classList.remove('is-dragging')}};svg.onpointerup=end;svg.onpointercancel=end}
+function placePin(){if(!pin||!selected||!svg){if(pin)pin.hidden=true;return}const g=grp(selected);if(!g){pin.hidden=true;return}const b=bbox(g),p=svg.createSVGPoint();p.x=b.x+b.width/2;p.y=b.y+b.height/2;const m=svg.getScreenCTM();if(!m)return;const s=p.matrixTransform(m),r=wrap.getBoundingClientRect();pin.style.left=`${s.x-r.left}px`;pin.style.top=`${s.y-r.top}px`;pin.hidden=false}
+function style(){const s=document.createElement('style');s.textContent=`#map .ja-country>*{fill:var(--fill,#d7dfda)!important;stroke:#fffaf1!important;stroke-width:.5!important;vector-effect:non-scaling-stroke}#map .ja-country.is-outside>*{fill:#dfe7e3!important;opacity:.25}#map .ja-country.is-muted{opacity:.12}#map .ja-country.is-destination{cursor:pointer;outline:none}#map .ja-country.is-destination:hover>*,#map .ja-country.is-hovered>*,#map .ja-country:focus>*{fill:#e7c585!important;opacity:1}#map .ja-country.is-selected>*{fill:#e0aa59!important;stroke:#173b5d!important;stroke-width:1.5!important}#map .ja-wrap{display:none}#map[data-active-subregion="polynesia"] .ja-wrap{display:block}.ja-controls{position:absolute!important;left:22px!important;top:20px!important;z-index:20!important;display:grid!important;grid-template-columns:36px 36px 36px!important;width:108px!important;height:34px!important;overflow:hidden!important;border:1px solid rgba(34,66,82,.18)!important;border-radius:10px!important;background:#fffdf8!important;box-shadow:0 4px 14px #29465e22!important}.ja-controls button{display:grid!important;place-items:center!important;width:36px!important;height:34px!important;min-width:36px!important;margin:0!important;padding:0!important;border:0!important;border-right:1px solid #29465e1c!important;border-radius:0!important;background:transparent!important;color:#29465e!important;font:600 17px/1 sans-serif!important;visibility:visible!important;opacity:1!important}.ja-controls button:last-child{border-right:0!important;font-size:14px!important}.map-selection-pin{position:absolute;z-index:21;width:22px;height:27px;font-size:21px;line-height:1;transform:translate(-50%,-92%);pointer-events:none;user-select:none}.map-selection-pin[hidden]{display:none!important}.country-fallback-pin,.country-focus-pin{display:none!important}`;document.head.append(s)}
+function build(mapText,antText){const doc=new DOMParser().parseFromString(mapText,'image/svg+xml'), map=S('svg',{class:'atlas-country-map',viewBox:WORLD.join(' '),role:'img','aria-label':'拡大すると小さな島まで見える世界地図',preserveAspectRatio:'xMidYMid meet'});map.append(S('rect',{x:-20,y:-10,width:1040,height:530,fill:'#edf6f3',class:'country-map-ocean'}));const land=S('g',{class:'country-map-layer'}), wl=S('g',{class:'ja-wrap-layer'});map.append(land,wl);wrap.replaceChildren(map);svg=map;[...doc.querySelectorAll('svg > g[id]')].filter(g=>/^[A-Z]{2}$/.test(g.id)).forEach(src=>{const iso=src.id,c=byIso.get(iso),g=clean(src,iso,c);if(!g)return;land.append(g);if(c)groups.set(iso,g)});
+if(!groups.has('AQ')){const ad=new DOMParser().parseFromString(antText,'image/svg+xml'),ap=ad.querySelector('#AQ');if(ap){const g=S('g',{class:'ja-country is-destination'}),p=document.importNode(ap,true);p.removeAttribute('id');p.removeAttribute('class');p.removeAttribute('fill');p.removeAttribute('stroke');g.append(p);g.dataset.iso='AQ';g.dataset.region='antarctica';g.style.setProperty('--fill',COLORS.antarctica);land.append(g);const bb=g.getBBox(),tw=270,th=75,scale=Math.min(tw/bb.width,th/bb.height),ww=bb.width*scale,hh=bb.height*scale,tx=500-(bb.x+bb.width/2)*scale,ty=463-(bb.y+bb.height/2)*scale;g.setAttribute('transform',`translate(${tx} ${ty}) scale(${scale})`);g.dataset.bbox=`${500-ww/2},${463-hh/2},${ww},${hh}`;groups.set('AQ',g);bind(g,byIso.get('AQ'))}}
+wrapPoly();tip=document.createElement('div');tip.className='map-tooltip';tip.hidden=true;pin=document.createElement('span');pin.className='map-selection-pin';pin.textContent='📍';pin.hidden=true;const h=document.createElement('p');h.className='map-hint';h.textContent='− / ＋ で拡大縮小 ・ ホイールでズーム ・ ドラッグで移動';wrap.append(tip,pin,h);style();controls();gestures();root.classList.add('has-country-map')}
+tabs.forEach(b=>b.onclick=()=>setRegion(b.dataset.mapTab));if(head)head.textContent='世界から地域へ寄りながら、地図を自由に拡大・移動して次の旅先を見つけよう。';window.addEventListener('resize',()=>requestAnimationFrame(placePin));
+Promise.all([fetch(MAP).then(r=>r.text()),fetch(ANT).then(r=>r.text()),fetch('data/region-taxonomy.json?v=20260823-0030').then(r=>r.json()),fetch('data/atlas-destinations.json?v=20260822-2252').then(r=>r.json())]).then(([m,a,rd,dd])=>{regions=rd.regions||[];dest=dd.destinations||[];byIso=new Map(dest.map(c=>[c.iso2,c]));lookup();build(m,a);setRegion('world',false)}).catch(e=>{console.error('[JOURNEY ATLAS map]',e);copy.textContent='地図データを読み込めませんでした。'});
 })();
