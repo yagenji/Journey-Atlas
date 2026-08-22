@@ -190,22 +190,56 @@
   height:220px;
   margin:0;
 }
+.theme-panel{min-height:330px}
 .theme-panel .theme-icons{
   grid-column:2;
   grid-row:1 / span 2;
   margin:0;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:9px;
+  gap:10px;
 }
 .theme-icons button{
-  min-height:76px;
-  padding:10px 7px;
+  min-height:132px;
+  padding:12px 8px 10px;
+  border:1px solid rgba(28,67,92,.10);
+  border-radius:12px;
+  background:#fffdfa;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
 }
-.theme-icons span{font-size:21px}
+.theme-icons button:hover{
+  transform:translateY(-2px);
+  border-color:rgba(28,67,92,.24);
+  box-shadow:0 7px 18px rgba(33,67,86,.08);
+}
+.theme-icons button>span{
+  display:flex;
+  width:66px;
+  height:66px;
+  margin:0 auto 6px;
+  align-items:center;
+  justify-content:center;
+  font-size:0;
+}
+.theme-illustration{
+  display:block;
+  width:66px;
+  height:66px;
+  overflow:visible;
+}
 .theme-icons b{
-  margin-top:6px;
-  font-size:9.5px;
+  display:block;
+  margin-top:3px;
+  font-size:10px;
   line-height:1.4;
+  color:#173b5d;
+}
+.theme-icons small{
+  display:block;
+  margin-top:4px;
+  font-size:8.5px;
+  line-height:1.4;
+  color:#667787;
+  font-weight:500;
 }
 
 /* ============================================================
@@ -366,6 +400,9 @@
   .top-hero{grid-template-columns:minmax(405px,.44fr) minmax(0,.56fr);gap:20px}
   .hero-copy h1{font-size:38px}
   .detail-panel{grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr);column-gap:28px}
+  .theme-panel .theme-icons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .theme-panel{min-height:590px}
+  .theme-icons button{min-height:126px}
   .lens-world{grid-template-columns:minmax(240px,.42fr) minmax(0,.58fr);padding:22px}
   .lens-rail{grid-auto-columns:minmax(72px,1fr)}
   .about-note{grid-template-columns:220px minmax(0,1fr);gap:30px}
@@ -401,7 +438,12 @@
 
   .detail-panel{display:block;min-height:0;padding:20px 18px}
   .map-panel .mini-map{height:190px;margin-top:16px}
-  .theme-panel .theme-icons{margin-top:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .theme-panel{min-height:0}
+  .theme-panel .theme-icons{margin-top:18px;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .theme-icons button{min-height:124px;padding:10px 6px}
+  .theme-icons button>span,.theme-illustration{width:58px;height:58px}
+  .theme-icons b{font-size:10px}
+  .theme-icons small{font-size:8px}
   .detail-panel .detail-link{margin-top:14px}
 
   .lens-world{
