@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1186 841" role="img" aria-label="Illustrated map of Iceland">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf0e9"/>
+      <stop offset="1" stop-color="#dce8e6"/>
+    </linearGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="5" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+      <feComponentTransfer in="grey" result="faded"><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="faded" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <rect width="1186" height="841" fill="url(#sea)"/>
+  <g opacity=".32" filter="url(#soft)">
+    <ellipse cx="340" cy="250" rx="220" ry="115" fill="#d5e5d2"/>
+    <ellipse cx="790" cy="510" rx="260" ry="130" fill="#cddfd5"/>
+    <ellipse cx="580" cy="340" rx="190" ry="120" fill="#f0e8cf"/>
+  </g>
+
+  <g filter="url(#paper)">
+    <image x="48" y="36" width="1090" height="770" opacity=".78" preserveAspectRatio="xMidYMid meet"
+      href="https://upload.wikimedia.org/wikipedia/commons/e/ea/Iceland_location_map.svg"
+      xlink:href="https://upload.wikimedia.org/wikipedia/commons/e/ea/Iceland_location_map.svg"/>
+  </g>
+
+  <!-- soft illustrated landscape marks: decorative, not additional location data -->
+  <g opacity=".74" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(466 218)">
+      <path d="M0 42 28 0 54 42Z" fill="#708b75" opacity=".58"/>
+      <path d="M35 42 70 10 101 42Z" fill="#8da08b" opacity=".48"/>
+      <path d="M20 42 43 17 62 42Z" fill="#f5f3e8" opacity=".78"/>
+    </g>
+    <g transform="translate(680 260) scale(.86)">
+      <path d="M0 46 33 3 66 46Z" fill="#6f8975" opacity=".58"/>
+      <path d="M44 46 80 8 112 46Z" fill="#91a28f" opacity=".47"/>
+    </g>
+    <g transform="translate(745 495)">
+      <ellipse cx="0" cy="0" rx="74" ry="38" fill="#edf5f5" opacity=".9"/>
+      <path d="M-54 3c24-12 43-14 64-2 20 11 34 8 54-2" fill="none" stroke="#b8d3dc" stroke-width="7" opacity=".8"/>
+      <path d="M-40 15c22-8 39-8 58 1 16 7 29 5 42-1" fill="none" stroke="#d0e4e8" stroke-width="5"/>
+    </g>
+    <g transform="translate(360 600)">
+      <path d="M0 0c18 12 18 32 0 44" fill="none" stroke="#f8fbfb" stroke-width="9"/>
+      <path d="M15 0c13 12 13 32 0 44" fill="none" stroke="#dbeff1" stroke-width="5"/>
+      <ellipse cx="8" cy="48" rx="30" ry="8" fill="#b6d5db" opacity=".65"/>
+    </g>
+    <g transform="translate(522 532)">
+      <circle cx="0" cy="0" r="13" fill="#d7c89b" opacity=".8"/>
+      <path d="M-4-15c-12-18 9-27 0-43M7-12c18-18-7-31 4-46" fill="none" stroke="#f7f1dd" stroke-width="7" opacity=".8"/>
+    </g>
+    <g transform="translate(285 390)">
+      <path d="M0 34 24 0 48 34Z" fill="#879987" opacity=".55"/>
+      <path d="M40 34 70 7 96 34Z" fill="#6e8572" opacity=".5"/>
+    </g>
+  </g>
+
+  <g fill="#274a58" opacity=".58" font-family="Georgia,serif" font-size="16" font-style="italic">
+    <text x="78" y="786">Illustrated atlas map</text>
+  </g>
+</svg>
