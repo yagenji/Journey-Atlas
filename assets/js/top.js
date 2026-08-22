@@ -21,27 +21,49 @@ let destinations = [];
 let heroSources = [];
 let heroIndex = 0;
 let heroTimer;
+let themeSets = {
+  earth:['iceland','antarctica','bolivia','namibia','new-zealand','nepal'],
+  city:['japan','italy','morocco','cuba','uzbekistan','mexico'],
+  history:['egypt','peru','italy','cambodia','india','jordan'],
+  life:['india','morocco','vietnam','mexico','ethiopia','mongolia'],
+  wildlife:['kenya','tanzania','botswana','south-africa','australia','costa-rica'],
+  sea:['maldives','belize','philippines','seychelles','fiji','palau'],
+  food:['japan','italy','mexico','thailand','vietnam','turkiye'],
+  road:['tajikistan','kyrgyzstan','argentina','chile','lesotho','iceland']
+};
 
 const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);
-const featuredOrder = ['iceland','antarctica','turkey','italy','maldives','peru','kenya'];
+const featuredOrder = ['iceland','antarctica','turkiye','italy','maldives','peru','kenya'];
 const featuredArt = {
   antarctica:{x:'0%',y:'0%'},
-  turkey:{x:'50%',y:'0%'},
+  turkiye:{x:'50%',y:'0%'},
   italy:{x:'100%',y:'0%'},
   maldives:{x:'0%',y:'100%'},
   peru:{x:'50%',y:'100%'},
   kenya:{x:'100%',y:'100%'}
 };
-const themeSets = {
-  nature:['iceland','antarctica','bolivia','namibia','new-zealand','nepal'],
-  city:['japan','italy','morocco','cuba','uzbekistan','mexico'],
-  culture:['india','uzbekistan','mexico','peru','morocco','japan'],
-  heritage:['peru','italy','cambodia','india','mexico','uzbekistan'],
-  wildlife:['kenya','tanzania','botswana','south-africa','australia','costa-rica'],
-  beach:['belize','cuba','australia','thailand','philippines','maldives'],
-  road:['tajikistan','kyrgyzstan','argentina','chile','lesotho','iceland'],
-  food:['japan','italy','mexico','thailand','vietnam','turkey']
-};
+
+fetch('data/theme-taxonomy.json')
+  .then((response)=>{if(!response.ok) throw new Error('Theme taxonomy not found');return response.json();})
+  .then(({themes=[]})=>{
+    if(themes.length){
+      themeSets=Object.fromEntries(themes.map((theme)=>[theme.id,theme.examples||[]]));
+      const buttons=[...document.querySelectorAll('.theme-icons button')];
+      themes.forEach((theme,index)=>{
+        const button=buttons[index];
+        if(!button)return;
+        button.dataset.theme=theme.id;
+        const label=button.querySelector('b');
+        if(label)label.textContent=theme.label;
+        button.title=theme.definition;
+      });
+    }
+    const entryCopy=document.querySelector('.explore-card--theme p');
+    if(entryCopy)entryCopy.textContent='行きたい理由から、世界を選ぶ';
+    const detailCopy=document.querySelector('.theme-panel .detail-heading p');
+    if(detailCopy)detailCopy.textContent='その国へ行きたくなる理由から、旅先を探す。';
+  })
+  .catch(()=>{});
 
 Promise.all(heroFiles.map(async(file)=>{
   const response = await fetch(file);
