@@ -16,82 +16,82 @@
     <a class="wordmark" href="./">JOURNEY ATLAS</a>
     <nav aria-label="トップページメニュー">
       <a href="#countries">国を探す</a>
-      <a href="#explore">テーマから探す</a>
-      <a href="#explore">地図から探す</a>
+      <a href="#themes">テーマから探す</a>
+      <a href="#map">地図から探す</a>
       <a href="#about">はじめての方へ</a>
     </nav>
     <button class="wish-link" id="wish-link" type="button" aria-controls="all-countries-panel">♡ <span>行ってみたいリスト</span></button>
   </header>
 
   <main>
-    <section class="top-hero shell">
+    <section class="top-hero shell" aria-label="JOURNEY ATLASのメインビジュアル">
       <div class="hero-copy">
         <h1>次に行きたい世界を、<br>見つける。</h1>
         <p class="lead">息をのむ景色、心に残る出会い、<br>まだ知らない物語が、きっとどこかにある。</p>
         <a class="primary" href="#explore"><span class="primary-mark" aria-hidden="true">↗</span><span>旅のヒントを探す</span><b>›</b></a>
       </div>
 
-      <div class="hero-visual" aria-label="南極の山、海、ペンギン、クジラ、氷山を描いた水彩コラージュ">
-        <img src="assets/images/top/hero-world-collage.svg" alt="南極の山、海、ペンギン、クジラ、氷山を描いた水彩イラスト">
+      <div class="hero-visual" id="hero-visual">
+        <img id="hero-image" src="assets/images/top/hero-world-collage.svg" alt="世界の景色を組み合わせた水彩イラスト">
+        <div class="hero-controls" aria-label="メインビジュアルを切り替える">
+          <button type="button" data-hero="0" class="is-active" aria-label="ビジュアル1"></button>
+          <button type="button" data-hero="1" aria-label="ビジュアル2"></button>
+          <button type="button" data-hero="2" aria-label="ビジュアル3"></button>
+          <button type="button" data-hero="3" aria-label="ビジュアル4"></button>
+          <button type="button" data-hero="4" aria-label="ビジュアル5"></button>
+        </div>
       </div>
     </section>
 
     <section class="explore shell" id="explore" aria-label="世界の探し方">
-      <article class="explore-card explore-card--map">
-        <div class="explore-card__art"></div>
-        <div class="explore-card__copy"><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p><span>›</span></div>
-      </article>
-      <article class="explore-card explore-card--theme">
-        <div class="explore-card__art"></div>
-        <div class="explore-card__copy"><h2>テーマから探す</h2><p>自然、街並み、文化、絶景…テーマで旅を選ぶ</p><span>›</span></div>
-      </article>
-      <a class="explore-card explore-card--country" href="#countries">
-        <div class="explore-card__art"></div>
-        <div class="explore-card__copy"><h2>国を探す</h2><p>199の国・地域から、旅のインスピレーションを得る</p><span>›</span></div>
-      </a>
+      <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art"></div><div class="explore-card__copy"><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p><span>›</span></div></a>
+      <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art"></div><div class="explore-card__copy"><h2>テーマから探す</h2><p>自然、街並み、文化、絶景…テーマから世界を見る</p><span>›</span></div></a>
+      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art"></div><div class="explore-card__copy"><h2>国を探す</h2><p>199の国・地域から、旅のインスピレーションを得る</p><span>›</span></div></a>
+    </section>
+
+    <section class="lens-world shell" id="lens-world" aria-label="JOURNEY LENSで見る世界">
+      <div class="section-head compact-head"><div><p class="section-kicker">JOURNEY LENS</p><h2>JOURNEY LENSで見る世界</h2><p>写真と物語がある国から、世界に出会う。</p></div><a class="section-link" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENSへ <span>›</span></a></div>
+      <div class="lens-rail">
+        <a class="lens-card" href="country.html?country=iceland"><div class="lens-card__art"><img src="assets/images/iceland/skogafoss.svg" alt="アイスランドの滝"></div><div class="lens-card__body"><span>🇮🇸</span><div><h3>Iceland</h3><p>氷と火の島。自然がつくる絶景の数々</p></div></div></a>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--antarctica"></div><div class="lens-card__body"><span>🌐</span><div><h3>Antarctica</h3><p>静寂と壮大な自然が広がる世界</p></div></div></article>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--bolivia"></div><div class="lens-card__body"><span>🇧🇴</span><div><h3>Bolivia</h3><p>ウユニの鏡張りが心を解き放つ</p></div></div></article>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--botswana"></div><div class="lens-card__body"><span>🇧🇼</span><div><h3>Botswana</h3><p>大自然と野生動物の楽園</p></div></div></article>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--zambia"></div><div class="lens-card__body"><span>🇿🇲</span><div><h3>Zambia</h3><p>大地を揺らす滝の轟き</p></div></div></article>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--peru"></div><div class="lens-card__body"><span>🇵🇪</span><div><h3>Peru</h3><p>古代の遺跡が語るアンデスの世界</p></div></div></article>
+        <article class="lens-card"><div class="lens-card__art lens-art lens-art--cuba"></div><div class="lens-card__body"><span>🇨🇺</span><div><h3>Cuba</h3><p>音楽と色彩があふれる島国</p></div></div></article>
+      </div>
     </section>
 
     <section class="countries shell" id="countries">
-      <div class="section-head">
-        <div>
-          <p class="section-kicker">EXPLORE THE WORLD</p>
-          <h2>199の国・地域から探す</h2>
-          <p>すべての国・地域を最初から同じカード設計で並べています。ATLAS公開済みのページだけ開きます。</p>
-        </div>
-        <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">すべての国・地域を見る <span>›</span></button>
-      </div>
-
-      <div class="rail-wrap">
-        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
-        <div class="country-rail" id="country-rail" aria-label="199の国・地域"></div>
-        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
-      </div>
+      <div class="section-head"><div><p class="section-kicker">EXPLORE THE WORLD</p><h2>国から探す</h2><p>199の国・地域を最初から同じレイアウトに置いています。公開済みページだけ開きます。</p></div><button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">すべての国・地域を見る <span>›</span></button></div>
+      <div class="rail-wrap"><button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button><div class="country-rail" id="country-rail" aria-label="199の国・地域"></div><button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button></div>
       <div class="rail-meta"><span id="country-count">199 DESTINATIONS</span><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="all-countries-panel" id="all-countries-panel" hidden><div class="all-countries-panel__head"><div><strong>すべての国・地域</strong><p>英語名・日本語名で検索できます。</p></div><label class="country-search"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国・地域を検索" autocomplete="off"></label></div><div class="country-grid" id="country-grid"></div><p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p></div>
+    </section>
 
-      <div class="all-countries-panel" id="all-countries-panel" hidden>
-        <div class="all-countries-panel__head">
-          <div><strong>すべての国・地域</strong><p>英語名・日本語名で検索できます。</p></div>
-          <label class="country-search"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国・地域を検索" autocomplete="off"></label>
-        </div>
-        <div class="country-grid" id="country-grid"></div>
-        <p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
+    <section class="map-explorer shell" id="map">
+      <div class="section-head"><div><p class="section-kicker">EXPLORE BY MAP</p><h2>地図から探す</h2><p>地理の近さや遠さから、まだ知らない国を見つける。</p></div></div>
+      <div class="map-card"><div class="map-canvas" aria-label="世界地図"><img src="assets/images/top/world-map-watercolor.svg" alt="水彩で描いた世界地図"><button style="--x:46%;--y:23%" data-country-focus="iceland">Iceland</button><button style="--x:84%;--y:44%" data-country-focus="japan">Japan</button><button style="--x:57%;--y:56%" data-country-focus="kenya">Kenya</button><button style="--x:28%;--y:69%" data-country-focus="brazil">Brazil</button><button style="--x:68%;--y:48%" data-country-focus="india">India</button><button style="--x:87%;--y:72%" data-country-focus="australia">Australia</button></div><div class="map-copy"><strong>位置関係から、旅先を見つける。</strong><p>国名だけでなく、海の向こう、山脈の先、隣り合う国々から世界を見ていく入口です。</p><span>地図上の国名を押すと、199の一覧でその国を表示します。</span></div></div>
+    </section>
+
+    <section class="theme-explorer shell" id="themes">
+      <div class="section-head"><div><p class="section-kicker">EXPLORE BY THEME</p><h2>テーマから探す</h2><p>地域を隔てず、惹かれる景色や体験から世界を見る。</p></div></div>
+      <div class="theme-grid">
+        <article class="theme-card"><img src="assets/images/iceland/skogafoss.svg" alt="滝"><div><small>NATURE</small><h3>圧倒される自然</h3><p>滝、氷河、砂漠、森。地球のスケールに出会う。</p></div></article>
+        <article class="theme-card"><img src="assets/images/tajikistan/dushanbe.svg" alt="街"><div><small>CITY</small><h3>街を歩く</h3><p>歴史都市から現代都市まで、暮らしの表情を見る。</p></div></article>
+        <article class="theme-card"><img src="assets/images/tajikistan/navruz-palace.svg" alt="建築"><div><small>CULTURE</small><h3>文化と建築</h3><p>建物、信仰、食、祭り。土地に積み重なった時間へ。</p></div></article>
+        <article class="theme-card"><img src="assets/images/antarctica/orcas.svg" alt="野生動物"><div><small>WILDLIFE</small><h3>野生と出会う</h3><p>海、草原、森。生きものが主役になる場所へ。</p></div></article>
+        <article class="theme-card"><img src="assets/images/tajikistan/wakhan-corridor.svg" alt="道"><div><small>ROAD</small><h3>道を旅する</h3><p>目的地だけでなく、移動そのものが記憶になる旅。</p></div></article>
+        <article class="theme-card"><img src="assets/images/tajikistan/karakul-lake.svg" alt="水辺"><div><small>WATER</small><h3>海・湖・島</h3><p>青の濃さ、岸辺の風景、水のある世界をたどる。</p></div></article>
       </div>
     </section>
 
-    <a class="lens-strip shell" id="about" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">
-      <div class="lens-strip__mark" aria-hidden="true">▣</div>
-      <div><strong>JOURNEY LENSで見る世界</strong><p>旅の記録を、写真と物語で。</p></div>
-      <div class="lens-strip__copy">JOURNEY LENSで公開している国の物語を、写真とともに楽しめます。</div>
-      <span class="lens-strip__arrow">JOURNEY LENSへ ›</span>
-    </a>
+    <section class="about-block shell" id="about"><p class="section-kicker">ABOUT</p><div><h2>世界を覚えるためではなく、<br>行きたい世界を見つけるために。</h2><p>JOURNEY ATLASは、199の国・地域を一国一ページで見せるビジュアル図鑑です。数字や知識より先に、景色、地図、文化、道、生きものから「ここへ行ってみたい」をつくります。</p></div></section>
+
+    <a class="lens-strip shell" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer"><div class="lens-strip__mark" aria-hidden="true">◎</div><div><strong>JOURNEY LENSで見る世界</strong><p>旅の記録を、写真と物語で。</p></div><div class="lens-strip__copy">実際に旅した世界は、JOURNEY LENSで写真と物語とともに。</div><span class="lens-strip__arrow">JOURNEY LENSへ ›</span></a>
   </main>
 
   <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
-
-  <footer class="top-footer shell">
-    <a class="wordmark" href="./">JOURNEY ATLAS</a>
-    <p>Find the world you want to see.</p>
-    <small>2026</small>
-  </footer>
+  <footer class="top-footer shell"><a class="wordmark" href="./">JOURNEY ATLAS</a><p>Find the world you want to see.</p><small>2026</small></footer>
 </body>
 </html>
