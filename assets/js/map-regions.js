@@ -185,8 +185,8 @@
     const aq=destByIso.get('AQ');if(aq&&!primary.has('AQ')){ice.append(S('path',{d:AQ_D,class:'antarctica-glow'}));const p=S('path',{d:AQ_D});p.classList.add('country-shape','is-destination','tone-2','country-shape--fallback-antarctica');p.dataset.region='antarctica';p.style.fill='url(#land-antarctica)';bind(p,aq);land.append(p);primary.set('AQ',p);}
     destinations.forEach(c=>{if(primary.has(c.iso2)||!FALLBACK[c.iso2])return;const m=marker(c,FALLBACK[c.iso2],marks,'country-marker--fallback');primary.set(c.iso2,m);});
     Object.entries(POLY_WRAP).forEach(([iso,xy])=>{const c=destByIso.get(iso);if(!c)return;const m=marker(c,xy,marks,'country-marker--wrapped');wrapped.set(iso,m);});
-    map.append(ice,land,marks,hits,over);tinyHits(hits);ring=S('circle',{class:'country-focus-ring',cx:0,cy:0,r:8});ring.hidden=true;over.append(ring);
-    tooltip=document.createElement('div');tooltip.className='map-tooltip';tooltip.hidden=true;const hint=document.createElement('p');hint.className='map-hint';hint.textContent='地図と国名は連動しています';mapWrap.replaceChildren(map,tooltip,hint);svgMap=map;root.classList.add('has-country-map');
+    map.append(ice,land,marks,hits,over);mapWrap.replaceChildren(map);svgMap=map;tinyHits(hits);ring=S('circle',{class:'country-focus-ring',cx:0,cy:0,r:8});ring.hidden=true;over.append(ring);
+    tooltip=document.createElement('div');tooltip.className='map-tooltip';tooltip.hidden=true;const hint=document.createElement('p');hint.className='map-hint';hint.textContent='地図と国名は連動しています';mapWrap.append(tooltip,hint);root.classList.add('has-country-map');
     const unresolved=destinations.filter(c=>!primary.has(c.iso2));if(unresolved.length)console.warn('[JOURNEY ATLAS map] unresolved map locations:',unresolved.map(c=>c.iso2));
   }
 
