@@ -20,7 +20,7 @@
       <a href="#explore">地図から探す</a>
       <a href="#about">はじめての方へ</a>
     </nav>
-    <a class="wish-link" href="#countries" aria-label="行ってみたい国を見る">♡ <span>行ってみたいリスト</span></a>
+    <button class="wish-link" id="wish-link" type="button" aria-controls="all-countries-panel">♡ <span>行ってみたいリスト</span></button>
   </header>
 
   <main>
@@ -28,15 +28,11 @@
       <div class="hero-copy">
         <h1>次に行きたい世界を、<br>見つける。</h1>
         <p class="lead">息をのむ景色、心に残る出会い、<br>まだ知らない物語が、きっとどこかにある。</p>
-        <a class="primary" href="#explore"><span aria-hidden="true">◈</span> 旅のヒントを探す <b>›</b></a>
+        <a class="primary" href="#explore"><span class="primary-mark" aria-hidden="true">↗</span><span>旅のヒントを探す</span><b>›</b></a>
       </div>
 
-      <div class="hero-collage" aria-label="世界の景色を集めた水彩イラスト">
-        <a class="hero-panel hero-panel--main" href="country.html?country=iceland" aria-label="アイスランドを見る"><span>ICELAND</span></a>
-        <div class="hero-panel hero-panel--whale" aria-hidden="true"></div>
-        <div class="hero-panel hero-panel--ice" aria-hidden="true"></div>
-        <div class="hero-panel hero-panel--channel" aria-hidden="true"></div>
-        <div class="hero-panel hero-panel--coast" aria-hidden="true"></div>
+      <div class="hero-visual" aria-label="南極の山、海、ペンギン、クジラ、氷山を描いた水彩コラージュ">
+        <img src="assets/images/top/hero-world-collage.svg" alt="南極の山、海、ペンギン、クジラ、氷山を描いた水彩イラスト">
       </div>
     </section>
 
@@ -60,24 +56,37 @@
         <div>
           <p class="section-kicker">EXPLORE THE WORLD</p>
           <h2>199の国・地域から探す</h2>
-          <p>最初から199を同じレイアウトに置き、ATLAS公開済みの国だけリンクします。</p>
+          <p>すべての国・地域を最初から同じカード設計で並べています。ATLAS公開済みのページだけ開きます。</p>
         </div>
-        <div class="rail-tools">
-          <span id="country-count">199 DESTINATIONS</span>
-          <button type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
-          <button type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
-        </div>
+        <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">すべての国・地域を見る <span>›</span></button>
       </div>
-      <div class="country-rail" id="country-rail" aria-label="199の国・地域"></div>
-      <div class="rail-note"><span>●</span> ATLAS公開済み　<small>JOURNEY LENS公開済みの国・地域から優先して制作します。</small></div>
+
+      <div class="rail-wrap">
+        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
+        <div class="country-rail" id="country-rail" aria-label="199の国・地域"></div>
+        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
+      </div>
+      <div class="rail-meta"><span id="country-count">199 DESTINATIONS</span><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+      <div class="all-countries-panel" id="all-countries-panel" hidden>
+        <div class="all-countries-panel__head">
+          <div><strong>すべての国・地域</strong><p>英語名・日本語名で検索できます。</p></div>
+          <label class="country-search"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国・地域を検索" autocomplete="off"></label>
+        </div>
+        <div class="country-grid" id="country-grid"></div>
+        <p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
+      </div>
     </section>
 
-    <section class="lens-strip shell" id="about">
-      <div class="lens-strip__mark" aria-hidden="true">◎</div>
-      <div><strong>JOURNEY LENSで見る世界</strong><p>写真と物語で、旅の記録をたどる。</p></div>
+    <a class="lens-strip shell" id="about" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">
+      <div class="lens-strip__mark" aria-hidden="true">▣</div>
+      <div><strong>JOURNEY LENSで見る世界</strong><p>旅の記録を、写真と物語で。</p></div>
       <div class="lens-strip__copy">JOURNEY LENSで公開している国の物語を、写真とともに楽しめます。</div>
-    </section>
+      <span class="lens-strip__arrow">JOURNEY LENSへ ›</span>
+    </a>
   </main>
+
+  <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
 
   <footer class="top-footer shell">
     <a class="wordmark" href="./">JOURNEY ATLAS</a>
