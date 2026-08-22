@@ -44,7 +44,7 @@ const featuredArt = {
   kenya:{x:'100%',y:'100%'}
 };
 
-fetch('assets/images/top/theme-approved-sprite.webp.b64?v=20260822-2118')
+fetch('assets/images/top/theme-approved-sprite.webp.b64?v=20260822-2134')
   .then((response)=>{if(!response.ok) throw new Error('Theme artwork missing');return response.text();})
   .then((encoded)=>{
     const source=encoded.trim();
