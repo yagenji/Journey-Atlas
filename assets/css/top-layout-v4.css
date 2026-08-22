@@ -36,18 +36,20 @@
 
 /* Hero */
 .top-hero{
-  grid-template-columns:.33fr .67fr;
+  grid-template-columns:.39fr .61fr;
   gap:28px;
   min-height:372px;
   padding:10px 0 18px;
 }
 .hero-copy{
+  min-width:0;
   padding:18px 0 26px 10px;
 }
 .hero-copy h1{
-  font-size:clamp(40px,3.85vw,61px);
+  font-size:clamp(40px,3.2vw,52px);
   line-height:1.22;
   letter-spacing:.01em;
+  white-space:nowrap;
 }
 .hero-copy .lead{
   max-width:31em;
@@ -353,7 +355,8 @@
 
 @media(max-width:1050px){
   .top-header nav{gap:18px;font-size:12px}
-  .top-hero{grid-template-columns:.36fr .64fr;gap:20px}
+  .top-hero{grid-template-columns:.42fr .58fr;gap:20px}
+  .hero-copy h1{font-size:clamp(34px,4vw,42px)}
   .detail-panel{grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr);column-gap:28px}
   .lens-world{grid-template-columns:minmax(230px,.42fr) minmax(0,.58fr)}
   .lens-rail{grid-auto-columns:minmax(72px,1fr)}
@@ -368,7 +371,7 @@
 
   .top-hero{display:block;min-height:0;padding:14px 0 14px}
   .hero-copy{padding:10px 0 20px}
-  .hero-copy h1{font-size:clamp(35px,10vw,46px);line-height:1.25}
+  .hero-copy h1{font-size:clamp(32px,9vw,42px);line-height:1.25;white-space:nowrap}
   .hero-copy .lead{font-size:13.5px;line-height:1.85;margin-top:17px}
   .hero-visual{padding-bottom:22px}
 
