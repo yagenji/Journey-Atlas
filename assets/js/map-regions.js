@@ -79,6 +79,7 @@
 
   function setRegion(id){
     active=id;
+    root.dataset.activeRegion=id;
     tabs.forEach((button)=>{
       const selected=button.dataset.mapTab===id;
       button.classList.toggle('is-active',selected);
