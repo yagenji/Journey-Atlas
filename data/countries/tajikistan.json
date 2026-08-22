@@ -1,0 +1,77 @@
+{
+  "slug": "tajikistan",
+  "nameEn": "TAJIKISTAN",
+  "nameJa": "タジキスタン",
+  "region": "CENTRAL ASIA / PAMIR",
+  "hero": {
+    "lead": "首都を離れ、国境の川をたどり、\n木の消える高原へ。\n道の先ほど、大地が大きくなる国。",
+    "image": "assets/images/tajikistan/wakhan-corridor.svg"
+  },
+  "map": {
+    "bounds": { "north": 41.2, "south": 36.5, "west": 67.3, "east": 75.2 },
+    "svg": "assets/images/tajikistan/map-illustrated.svg",
+    "route": null,
+    "source": "Illustrated Pamir Highway map: JOURNEY ATLAS; scene placement based on JOURNEY LENS story coordinates and route references"
+  },
+  "scenes": [
+    { "id": "dushanbe", "name": "ドゥシャンベ", "nameLocal": "Dushanbe", "mapLabel": "Dushanbe", "description": "Pamirへ入る前の首都。大きな公共建築と広い通りに、旧ソ連の重さと新しい華やかさが重なる。", "coordinates": { "latitude": 38.5358, "longitude": 68.7791 }, "image": "assets/images/tajikistan/dushanbe.svg" },
+    { "id": "navruz-palace", "name": "ナヴルズ宮殿", "nameLocal": "Navruz Palace", "mapLabel": "Navruz Palace", "description": "無骨な街の外観から一転して、内部には細密で華やかな装飾が広がる。都市の別の表情を見せる場所。", "coordinates": { "latitude": 38.579, "longitude": 68.783 }, "image": "assets/images/tajikistan/navruz-palace.svg" },
+    { "id": "panj-river", "name": "パンジ川 / ワハーン回廊", "nameBreaks": [4], "nameLocal": "Panj River / Wakhan Corridor", "mapLabel": "Wakhan", "description": "川の向こうはアフガニスタン。集落と岩山を横目に、国境沿いのPamir Highwayを進んでいく。", "coordinates": { "latitude": 37.2, "longitude": 71.4 }, "image": "assets/images/tajikistan/wakhan-corridor.svg" },
+    { "id": "yamchun-fort", "name": "ヤムチュン要塞", "nameLocal": "Yamchun Fort", "mapLabel": "Yamchun Fort", "description": "乾いた山腹に残る古い要塞。高台から見るWakhanの谷とPanj Riverが、国境の大きさを感じさせる。", "coordinates": { "latitude": 36.96, "longitude": 71.39 }, "image": "assets/images/tajikistan/yamchun-fort.svg" },
+    { "id": "engels-peak", "name": "エンゲルス峰", "nameLocal": "Engels Peak", "mapLabel": "Engels Peak", "description": "谷の奥に立つ鋭い雪峰。乾いた岩肌の向こうに白い山が現れ、Wakhanの景色を一段大きくする。", "coordinates": { "latitude": 37.0, "longitude": 72.58 }, "image": "assets/images/tajikistan/engels-peak.svg" },
+    { "id": "sashil-kul", "name": "サシル・クル", "nameLocal": "Sashil Kul", "mapLabel": "Sashil Kul", "description": "木々が消えたPamir Plateauに広がる湖。荒い岩と水面、広すぎる空だけが長く続く。", "coordinates": { "latitude": 38.2, "longitude": 72.0 }, "image": "assets/images/tajikistan/sashil-kul.svg" },
+    { "id": "ak-baital-pass", "name": "アク・バイタル峠", "nameBreaks": [5], "nameLocal": "Ak-Baital Pass", "mapLabel": "Ak-Baital Pass", "description": "標高4,600m級の高地を越えるPamir Highway。道そのものが景色になり、空気の薄さまで旅の一部になる。", "coordinates": { "latitude": 38.55, "longitude": 73.48 }, "image": "assets/images/tajikistan/ak-baital-pass.svg" },
+    { "id": "karakul-lake", "name": "カラクル湖", "nameLocal": "Karakul Lake", "mapLabel": "Karakul Lake", "description": "深い青の湖、茶色い大地、雪をまとい始めた山。キルギス国境に近い高地で、静けさが強く残る。", "coordinates": { "latitude": 39.0597, "longitude": 73.3681 }, "image": "assets/images/tajikistan/karakul-lake.svg" }
+  ],
+  "encounters": [
+    { "symbol": "▱", "title": "Pamir Highway" },
+    { "symbol": "△", "title": "高峰" },
+    { "symbol": "≈", "title": "国境の川" },
+    { "symbol": "◉", "title": "高原湖" },
+    { "symbol": "▥", "title": "要塞" },
+    { "symbol": "♜", "title": "旧ソ連建築" },
+    { "symbol": "♨", "title": "ホームステイ" },
+    { "symbol": "♙", "title": "ヤク" }
+  ],
+  "seasons": [
+    { "symbol": "♧", "months": "4〜5月", "color": "#7f9b73", "text": "低地は穏やかになる一方、高地では雪や路面状況を確認しながら旅を組み立てる時期。" },
+    { "symbol": "☼", "months": "6〜8月", "color": "#b49a5e", "text": "Pamir Highwayを走りやすい季節。高地でも朝晩は冷えるため、防寒は必要。" },
+    { "symbol": "♧", "months": "9〜10月", "color": "#b4794f", "text": "乾いた山の色が深くなる頃。標高4,000mを超える場所では冬の寒さが早く始まる。" },
+    { "symbol": "❄", "months": "11〜3月", "color": "#718b9c", "text": "高地は厳冬期。峠や道路の状況次第で移動が難しくなるため、一般的な周遊には向きにくい。" }
+  ],
+  "transport": {
+    "symbol": "▱",
+    "title": "PAMIR HIGHWAY",
+    "distance": "",
+    "text": "長距離の陸路移動が旅の中心。高地、未舗装区間、国境地帯を含むため、車両と日程には余裕を持たせる。"
+  },
+  "personas": [
+    { "symbol": "△", "title": "山岳風景のために旅する人", "text": "雪峰、乾いた谷、高原湖を長い移動の中で追いかけたい人。" },
+    { "symbol": "▱", "title": "ロードトリップが好きな人", "text": "目的地だけではなく、Pamir Highwayを進む時間そのものを楽しめる人。" },
+    { "symbol": "◎", "title": "まだ知られていない景色を見たい人", "text": "観光客の少ない場所で、静かな大地を自分の目で確かめたい人。" },
+    { "symbol": "♨", "title": "土地の暮らしに触れたい人", "text": "ホームステイや小さな集落を通じて、高地の生活を感じたい人。" },
+    { "symbol": "◌", "title": "不便さも旅として楽しめる人", "text": "通信や設備が限られる環境を、遠くへ来た感覚として受け止められる人。" }
+  ],
+  "facts": [
+    { "symbol": "◎", "label": "地域", "value": "中央アジア" },
+    { "symbol": "▥", "label": "首都", "value": "ドゥシャンベ" },
+    { "symbol": "♙", "label": "人口", "value": "約1,000万人" },
+    { "symbol": "◯", "label": "言語", "value": "タジク語" },
+    { "symbol": "＄", "label": "通貨", "value": "ソモニ（TJS）" }
+  ],
+  "tips": [
+    { "symbol": "△", "title": "標高への順応を急がない", "text": "Pamirでは4,000mを超える区間が続く。移動速度と休息を含めて余裕のある日程にする。" },
+    { "symbol": "▱", "title": "道路状況を前提に組み立てる", "text": "距離だけで所要時間を考えず、未舗装区間や峠、天候による遅れを見込む。" },
+    { "symbol": "◌", "title": "通信が切れる場所がある", "text": "高原では電波が入らない区間もある。連絡、地図、支払いをオフライン前提でも準備する。" }
+  ],
+  "relatedCountries": [
+    { "nameEn": "KYRGYZSTAN", "nameJa": "キルギス", "flag": "🇰🇬", "reason": "Pamirの高地から、そのまま天山山脈と草原のロードトリップへつなげたいなら。", "image": "" },
+    { "nameEn": "UZBEKISTAN", "nameJa": "ウズベキスタン", "flag": "🇺🇿", "reason": "山岳の旅から、サマルカンドやブハラの建築と都市文化へ景色を切り替えたいなら。", "image": "" },
+    { "nameEn": "AFGHANISTAN", "nameJa": "アフガニスタン", "flag": "🇦🇫", "reason": "Wakhanで川の向こうに見えていた山地と村の世界を、地理としてさらに知りたいなら。", "image": "" }
+  ],
+  "updatedAt": "2026-08-22",
+  "sources": {
+    "journeyLens": "JOURNEY LENS: Dushanbe / Wakhan Corridor / Pamir Plateau / Karakul Lake stories",
+    "map": "JOURNEY ATLAS illustrated Pamir route map; exact sub-location coordinates remain prototype-level"
+  }
+}
