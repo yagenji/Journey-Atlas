@@ -1,0 +1,77 @@
+{
+  "slug": "antarctica",
+  "nameEn": "ANTARCTICA",
+  "nameJa": "南極",
+  "region": "ANTARCTIC PENINSULA / 64–65°S",
+  "hero": {
+    "lead": "氷、海、岩山、そして野生動物。\n白一色ではない南極の風景を、\n海峡の奥へ進みながら見つけていく。",
+    "image": "assets/images/antarctica/lemaire-channel.svg"
+  },
+  "map": {
+    "bounds": { "north": -63.4, "south": -65.5, "west": -65.2, "east": -60.6 },
+    "svg": "assets/images/antarctica/map-illustrated.svg",
+    "route": null,
+    "source": "Illustrated route map: JOURNEY ATLAS; place coordinates based on JOURNEY LENS voyage records and Antarctic gazetteer references"
+  },
+  "scenes": [
+    { "id": "hydrurga-rocks", "name": "ハイドルルガ・ロックス", "nameBreaks": [6], "nameLocal": "Hydrurga Rocks", "mapLabel": "Hydrurga Rocks", "description": "Drake Passageを越えて最初に雪を踏んだ場所。岩場を行き来するヒゲペンギンが、南極での最初の風景になった。", "coordinates": { "latitude": -64.12, "longitude": -61.33 }, "image": "assets/images/antarctica/hydrurga-rocks.svg" },
+    { "id": "portal-point", "name": "ポータル・ポイント", "nameBreaks": [4], "nameLocal": "Portal Point", "mapLabel": "Portal Point", "description": "南極大陸そのものへ初めて足を置く。丘の先には氷山の浮かぶ湾と、遠くを進むクジラの背が見えた。", "coordinates": { "latitude": -64.5, "longitude": -61.7667 }, "image": "assets/images/antarctica/portal-point.svg" },
+    { "id": "flandres-bay", "name": "フランドル湾", "nameLocal": "Flandres Bay", "mapLabel": "Flandres Bay", "description": "雪と霧の静かな海にザトウクジラが浮かぶ。白く霞む視界の中で、水面だけが大きく動いた。", "coordinates": { "latitude": -65.05, "longitude": -63.09 }, "image": "assets/images/antarctica/flandres-bay.svg" },
+    { "id": "lemaire-channel", "name": "ルメール海峡", "nameLocal": "Lemaire Channel", "mapLabel": "Lemaire Channel", "description": "両側から氷河と岩山が迫る狭い海峡。氷の間を船が進み、南極半島らしい巨大なスケールが立ち上がる。", "coordinates": { "latitude": -65.0667, "longitude": -63.95 }, "image": "assets/images/antarctica/lemaire-channel.svg" },
+    { "id": "orcas", "name": "船に並ぶシャチ", "nameLocal": "Orcas", "mapLabel": "Orcas", "description": "氷で予定が変わった日の海に、シャチの群れが現れた。数頭が船首近くを泳ぎ、黒と白の背が水面を横切った。", "coordinates": { "latitude": -65.0, "longitude": -63.75 }, "image": "assets/images/antarctica/orcas.svg" },
+    { "id": "neumayer-channel", "name": "ノイマイヤー海峡", "nameBreaks": [6], "nameLocal": "Neumayer Channel", "mapLabel": "Neumayer Channel", "description": "夕方に光が戻ると、氷と山の輪郭が一気に鮮明になった。予定通りにいかない一日の最後に現れた景色。", "coordinates": { "latitude": -64.7833, "longitude": -63.45 }, "image": "assets/images/antarctica/neumayer-channel.svg" },
+    { "id": "graham-passage", "name": "グラハム海峡", "nameLocal": "Graham Passage", "mapLabel": "Graham Passage", "description": "大きな氷山の上に、一羽の若いエンペラーペンギン。群れではなく一羽だけ立つ姿が、広い海の中で強く残った。", "coordinates": { "latitude": -64.4, "longitude": -61.5167 }, "image": "assets/images/antarctica/graham-passage.svg" },
+    { "id": "palaver-point", "name": "パラヴァー・ポイント", "nameBreaks": [5], "nameLocal": "Palaver Point", "mapLabel": "Palaver Point", "description": "最後の上陸地。雪の斜面を登るとヒゲペンギンの営巣地が広がり、旅の終わりとともに視界も開けていった。", "coordinates": { "latitude": -64.15, "longitude": -61.7667 }, "image": "assets/images/antarctica/palaver-point.svg" }
+  ],
+  "encounters": [
+    { "symbol": "◇", "title": "氷山" },
+    { "symbol": "♢", "title": "氷河" },
+    { "symbol": "♙", "title": "ペンギン" },
+    { "symbol": "⌁", "title": "クジラ" },
+    { "symbol": "◒", "title": "アザラシ" },
+    { "symbol": "◐", "title": "シャチ" },
+    { "symbol": "≈", "title": "海峡" },
+    { "symbol": "▱", "title": "ゾディアック" }
+  ],
+  "seasons": [
+    { "symbol": "◌", "months": "11〜12月", "color": "#88aeba", "text": "南極半島の夏の始まり。雪と氷がまだ多く、繁殖期のペンギンの姿も見え始める。" },
+    { "symbol": "☼", "months": "1〜2月", "color": "#8fa8a0", "text": "比較的長い日照の中で上陸やゾディアック航行を組みやすい時期。野生動物の活動も多い。" },
+    { "symbol": "≈", "months": "3月", "color": "#748d9a", "text": "夏の終わり。日が短くなり始め、海氷や天候の変化をより強く感じる季節。" },
+    { "symbol": "❄", "months": "4〜10月", "color": "#60798a", "text": "冬季。一般的な観光クルーズは大きく限られ、極夜や海氷の影響が強くなる。" }
+  ],
+  "transport": {
+    "symbol": "▱",
+    "title": "EXPEDITION CRUISE",
+    "distance": "",
+    "text": "南極半島では船が旅の基点。上陸地や航路は、氷・風・波の状況によって日々変わる。"
+  },
+  "personas": [
+    { "symbol": "◇", "title": "圧倒的な自然を見たい人", "text": "人のスケールを越える氷、海、山の風景に身を置きたい人。" },
+    { "symbol": "♙", "title": "野生動物が好きな人", "text": "ペンギン、クジラ、アザラシ、シャチを自然の風景の中で見たい人。" },
+    { "symbol": "◎", "title": "写真を撮る人", "text": "白だけではない氷の青、岩、海、動物の色を追いかけたい人。" },
+    { "symbol": "≈", "title": "予定外も旅として楽しめる人", "text": "天候や氷で変わる計画そのものを、南極の一部として受け止められる人。" },
+    { "symbol": "◌", "title": "静かな場所が好きな人", "text": "音の少ない海と雪原の中で、長く景色を眺めていたい人。" }
+  ],
+  "facts": [
+    { "symbol": "◎", "label": "地域", "value": "南極大陸／南極半島" },
+    { "symbol": "▥", "label": "首都", "value": "なし" },
+    { "symbol": "♙", "label": "常住人口", "value": "0人（研究者などが季節滞在）" },
+    { "symbol": "◯", "label": "言語", "value": "共通の公用語なし" },
+    { "symbol": "＄", "label": "通貨", "value": "共通通貨なし" }
+  ],
+  "tips": [
+    { "symbol": "≈", "title": "予定は氷と天候で変わる", "text": "上陸地、航路、時間は安全を優先して変更される。予定変更も前提に旅を組み立てる。" },
+    { "symbol": "♙", "title": "野生動物との距離を守る", "text": "動物の進路を塞がず、ガイドや上陸時のルールを優先する。" },
+    { "symbol": "❄", "title": "装備よりレイヤリング", "text": "風、雪、日差しが短時間で変わる。防水と防風を軸に、脱ぎ着できる服装が扱いやすい。" }
+  ],
+  "relatedCountries": [
+    { "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "南極への玄関口と、パタゴニアの氷河地形を続けて見たいなら。", "image": "" },
+    { "nameEn": "ARGENTINA", "nameJa": "アルゼンチン", "flag": "🇦🇷", "reason": "ウシュアイアから海を越え、南端の風景とつなげて旅したいなら。", "image": "" },
+    { "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、海、火山地形を、北の島で別の表情として見たいなら。", "image": "" }
+  ],
+  "updatedAt": "2026-08-22",
+  "sources": {
+    "journeyLens": "JOURNEY LENS: Hydrurga Rocks / Flandres Bay / Lemaire Channel / Palaver Point stories",
+    "map": "JOURNEY ATLAS illustrated route map based on Antarctic Peninsula voyage coordinates"
+  }
+}
