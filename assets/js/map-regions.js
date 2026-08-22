@@ -27,7 +27,11 @@
   };
 
   const REGION_OVERVIEW = {
-    europe: { padding: 0.0, min: 72 },
+    europe: {
+      codes: ['IS','IE','GB','PT','ES','FR','BE','NL','LU','DE','DK','NO','SE','FI','EE','LV','LT','PL','CZ','SK','AT','CH','LI','IT','SI','HR','BA','RS','ME','XK','AL','MK','GR','BG','RO','MD','UA','BY','HU','MC','SM','VA','AD','MT','CY'],
+      padding: 0.02,
+      min: 72
+    },
     'north-america': {
       codes: ['CA', 'US', 'MX', 'BZ', 'GT', 'HN', 'SV', 'NI', 'CR', 'PA'],
       padding: 0.025,
@@ -42,7 +46,7 @@
   const SUB_OVERVIEW = {
     'western-europe': { padding: 0.035, min: 34 },
     'southern-europe': { padding: 0.035, min: 50 },
-    'eastern-europe': { padding: 0.035, min: 60 },
+    'eastern-europe': { codes: ['BY', 'BG', 'CZ', 'HU', 'MD', 'PL', 'RO', 'SK', 'UA'], padding: 0.03, min: 58 },
     'northern-north-america': { padding: 0.025, min: 172 },
     micronesia: { view: [845, 198, 155, 78.617] }
   };
