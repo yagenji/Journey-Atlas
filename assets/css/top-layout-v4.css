@@ -163,15 +163,12 @@
   padding:26px 28px;
 }
 .detail-panel .detail-heading{
+  display:block;
   grid-column:1;
   grid-row:1;
   align-self:end;
 }
-.detail-heading>span{
-  width:36px;
-  height:36px;
-  font-size:18px;
-}
+.detail-heading>span{display:none}
 .detail-heading p{max-width:28em}
 .detail-panel .detail-link{
   grid-column:1;
