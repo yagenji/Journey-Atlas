@@ -1,14 +1,10 @@
-/* JOURNEY ATLAS visual refinements — 2026-08-21 */
+/* JOURNEY ATLAS visual refinements — 2026-08-22 */
 
 /* Wordmark: the atlas name stands alone without a leading symbol. */
-.brand {
-  gap: 0;
-}
+.brand { gap: 0; }
 
 /* Favor a bright, inviting illustrated-atlas mood over a dark photographic one. */
-.hero-art.has-image {
-  background-position: 58% center;
-}
+.hero-art.has-image { background-position: 58% center; }
 .hero-art.has-image::before {
   content: "";
   position: absolute;
@@ -27,56 +23,42 @@
   border-color: #d6d0c1;
   box-shadow: inset 0 0 35px rgba(74,95,78,.06);
 }
-.map-base {
-  object-fit: cover;
-}
-.map-art.has-map .map-base {
-  opacity: .98;
-}
+.map-base { object-fit: cover; }
+.map-art.has-map .map-base { opacity: .98; }
 
-/* Related countries stay light until their own atlas pages are completed. */
-.related-wrap {
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-.related-grid {
+/* Related countries: compact editorial references, not image cards. */
+.related-wrap { padding-top: 14px; padding-bottom: 14px; }
+.related-grid { gap: 10px; }
+.related-card { min-width: 0; }
+.related-country {
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
   gap: 10px;
-}
-.related-card {
-  min-width: 0;
-}
-.related-image {
-  min-height: 64px;
-  aspect-ratio: auto;
-  display: flex;
   align-items: center;
-  padding: 9px 12px;
+  padding: 10px 12px;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.32) !important;
-  box-shadow: none;
+  border-radius: 9px;
+  background: rgba(255,255,255,.32);
 }
-.related-image::before,
-.related-image::after {
-  display: none !important;
-}
-.related-image > div {
-  position: static;
-  color: var(--navy-deep);
-  text-shadow: none;
-}
-.related-image h3 {
+.related-flag { font-size: 27px; line-height: 1; }
+.related-copy { min-width: 0; }
+.related-copy h3 {
   margin: 0;
   font: 600 13px/1.35 var(--display);
   letter-spacing: .05em;
 }
-.related-image b {
+.related-copy b {
   display: block;
   margin-top: 1px;
   font-size: 12px;
   font-weight: 500;
 }
-.related-image p {
-  display: none;
+.related-copy p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 /* Keep temporary symbol icons quiet until the final line-icon set is installed. */
@@ -85,24 +67,12 @@
 .tip-list span,
 .fact-list > div > span,
 .season-symbol,
-.transport > span {
-  opacity: .68;
-}
+.transport > span { opacity: .68; }
 
 @media (max-width: 700px) {
-  .related-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-  }
-  .related-image {
-    min-height: 60px;
-    padding: 8px;
-  }
-  .related-image h3 {
-    font-size: 11px;
-    letter-spacing: .02em;
-  }
-  .related-image b {
-    font-size: 10px;
-  }
+  .related-grid { grid-template-columns: 1fr; gap: 7px; }
+  .related-country { min-height: 72px; grid-template-columns: 38px 1fr; padding: 9px 10px; }
+  .related-flag { font-size: 24px; }
+  .related-copy h3 { font-size: 12px; letter-spacing: .03em; }
+  .related-copy b, .related-copy p { font-size: 11px; }
 }
