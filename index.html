@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="assets/css/top-preview.css">
   <link rel="stylesheet" href="assets/css/top-layout-v3.css">
   <link rel="stylesheet" href="assets/css/top-layout-v4.css?v=20260822-2134">
-  <link rel="stylesheet" href="assets/css/map-regions.css?v=20260822-2218">
+  <link rel="stylesheet" href="assets/css/map-regions.css?v=20260822-2258">
   <script src="assets/js/top.js?v=20260822-2134" defer></script>
-  <script src="assets/js/map-regions.js?v=20260822-2218" defer></script>
+  <script src="assets/js/map-regions.js?v=20260822-2258" defer></script>
 </head>
 <body>
   <header class="top-header shell">
@@ -77,7 +77,7 @@
 
     <section class="explore-detail shell" aria-label="地図とテーマから世界を探す">
       <article class="detail-panel map-panel map-explorer" id="map">
-        <div class="detail-heading map-heading"><div><h2>地図から探す</h2><p>地域で拡大しながら、地図上の国を直接選択。国名一覧ではなく、場所から次の旅先を見つけよう。</p></div></div>
+        <div class="detail-heading map-heading"><div><h2>地図から探す</h2><p>世界から地域へ寄りながら、最後は地図上の国そのものを選択。場所から次の旅先を見つけよう。</p></div></div>
 
         <div class="map-region-tabs" aria-label="地域から探す">
           <button type="button" class="is-active" data-map-tab="world" aria-pressed="true">世界</button>
@@ -85,7 +85,7 @@
           <button type="button" data-map-tab="europe" aria-pressed="false">ヨーロッパ</button>
           <button type="button" data-map-tab="africa" aria-pressed="false">アフリカ</button>
           <button type="button" data-map-tab="north-america" aria-pressed="false">北米</button>
-          <button type="button" data-map-tab="latin-america" aria-pressed="false">中南米・カリブ</button>
+          <button type="button" data-map-tab="south-america" aria-pressed="false">南米</button>
           <button type="button" data-map-tab="oceania" aria-pressed="false">オセアニア</button>
           <button type="button" data-map-tab="antarctica" aria-pressed="false">南極</button>
         </div>
@@ -98,14 +98,14 @@
               <g class="atlas-region" data-map-shape="north-america" tabindex="0" role="button" aria-label="北米を選ぶ" aria-pressed="false">
                 <path d="M62 91C104 55 171 43 236 55l45 22 39 5 21 24-25 20-13 30-34 7-13 27-36 5-15-23-28-4-18-20-37-9-31-17-29-19z"/>
                 <path d="M277 156l27 8 20 17-14 12-22-6-18-15z"/>
+                <path d="M299 178l28 9 19 18-14 12-22-5-17-14-15-5z"/>
+                <circle cx="356" cy="194" r="4"/><circle cx="369" cy="199" r="3"/><circle cx="382" cy="204" r="2.5"/>
                 <text class="atlas-map-label" x="185" y="117">北米</text>
               </g>
 
-              <g class="atlas-region" data-map-shape="latin-america" tabindex="0" role="button" aria-label="中南米・カリブを選ぶ" aria-pressed="false">
-                <path d="M299 178l28 9 19 18-14 12-22-5-17-14-15-5z"/>
+              <g class="atlas-region" data-map-shape="south-america" tabindex="0" role="button" aria-label="南米を選ぶ" aria-pressed="false">
                 <path d="M318 207l34 13 24 29-5 48-22 45-21 17-19-27 2-37-18-30-4-31z"/>
-                <circle cx="356" cy="194" r="4"/><circle cx="369" cy="199" r="3"/><circle cx="382" cy="204" r="2.5"/>
-                <text class="atlas-map-label" x="335" y="279">中南米</text>
+                <text class="atlas-map-label" x="335" y="279">南米</text>
               </g>
 
               <g class="atlas-region" data-map-shape="europe" tabindex="0" role="button" aria-label="ヨーロッパを選ぶ" aria-pressed="false">
@@ -137,7 +137,7 @@
                 <text class="atlas-map-label" x="470" y="347">南極</text>
               </g>
             </svg>
-            <p class="map-hint">地図または地域名を選択</p>
+            <p class="map-hint">世界 → 大地域 → 小地域 → 地図上の国</p>
           </div>
 
           <aside class="map-region-panel" aria-live="polite">
