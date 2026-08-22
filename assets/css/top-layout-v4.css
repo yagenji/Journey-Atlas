@@ -1,6 +1,101 @@
-/* Final top-page ordering and JOURNEY LENS-style colophon structure */
-.hero-copy{padding-bottom:26px}
-.hero-copy .lead{margin-bottom:0}
+/* ============================================================
+   JOURNEY ATLAS — top page final rhythm / typography pass
+   ============================================================ */
+
+:root{
+  --top-section-title:20px;
+  --top-card-title:16px;
+  --top-body:11.5px;
+  --top-small:10px;
+  --top-radius:14px;
+}
+
+/* Header */
+.top-header{
+  min-height:78px;
+  grid-template-columns:auto 1fr;
+  gap:36px;
+}
+.brand-block{gap:5px}
+.wordmark{
+  font-size:clamp(23px,1.75vw,29px);
+  line-height:1;
+  letter-spacing:.23em;
+}
+.brand-block small{
+  font-size:9.5px;
+  line-height:1.35;
+  letter-spacing:.04em;
+}
+.top-header nav{
+  justify-content:flex-end;
+  gap:clamp(22px,2.5vw,40px);
+  font-size:12.5px;
+  line-height:1;
+}
+
+/* Hero */
+.top-hero{
+  grid-template-columns:.33fr .67fr;
+  gap:28px;
+  min-height:372px;
+  padding:10px 0 18px;
+}
+.hero-copy{
+  padding:18px 0 26px 10px;
+}
+.hero-copy h1{
+  font-size:clamp(40px,3.85vw,61px);
+  line-height:1.22;
+  letter-spacing:.01em;
+}
+.hero-copy .lead{
+  max-width:31em;
+  margin:21px 0 0;
+  font-size:clamp(14px,1.05vw,16.5px);
+  line-height:1.9;
+  letter-spacing:.01em;
+  color:#304354;
+}
+.hero-visual{padding:2px 0 26px}
+.hero-controls{bottom:5px}
+
+/* Three entry cards directly below the hero */
+.explore{
+  gap:16px;
+  padding:14px 28px 36px;
+}
+.explore-card{
+  border-radius:11px;
+}
+.explore-card__art{height:118px}
+.explore-card__copy{
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  min-height:84px;
+  padding:12px 15px 13px;
+}
+.explore-icon{
+  width:38px;
+  height:38px;
+  font-size:20px;
+}
+.explore-card__copy h2{
+  margin:0;
+  font-size:var(--top-card-title);
+  line-height:1.35;
+  font-weight:700;
+}
+.explore-card__copy p{
+  margin:5px 0 0;
+  font-size:var(--top-body);
+  line-height:1.55;
+  color:#435466;
+}
+.explore-card__copy>b{
+  font-size:23px;
+  line-height:1;
+}
 
 /* ============================================================
    Discovery sections — one visual language for Country / Map / Theme
@@ -8,93 +103,106 @@
 .countries,
 .detail-panel{
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:var(--top-radius);
   background:#fff;
   box-shadow:0 1px 6px rgba(11,44,87,.035);
 }
 
 .countries{
-  margin-top:18px;
-  padding:24px 26px 22px;
+  margin-top:4px;
+  padding:26px 28px 24px;
 }
-
 .countries .section-head,
 .detail-heading{
   margin:0;
   padding:0;
 }
-
-.countries .section-head h2,
-.detail-heading h2{
-  margin:0;
-  font-size:19px;
-  line-height:1.3;
-  font-weight:700;
-}
-
-.countries .section-head p,
-.detail-heading p{
-  margin:5px 0 0;
-  font-size:11px;
-  line-height:1.7;
-  color:#526274;
-}
-
 .countries .section-head{
   align-items:center;
   padding-bottom:18px;
 }
-
-.countries .rail-wrap{
-  margin-top:0;
+.countries .section-head h2,
+.detail-heading h2{
+  margin:0;
+  font-size:var(--top-section-title);
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:0;
 }
-
-.countries .alphabet{
-  padding-top:8px;
+.countries .section-head p,
+.detail-heading p{
+  margin:6px 0 0;
+  font-size:var(--top-body);
+  line-height:1.65;
+  color:#526274;
 }
+.all-countries-toggle,
+.section-link{
+  font-size:11px;
+  line-height:1.4;
+}
+.countries .rail-wrap{margin-top:0}
+.countries .rail-meta{margin-top:3px}
+.countries .alphabet{padding-top:9px}
+.country-card h3{font-size:12.5px;line-height:1.25}
+.country-card p{font-size:10.5px;line-height:1.4}
 
 .explore-detail{
   display:grid;
   grid-template-columns:1fr;
-  gap:18px;
-  padding:18px 0 34px;
+  gap:20px;
+  padding:22px 0 34px;
 }
-
 .detail-panel{
-  min-height:248px;
+  min-height:252px;
   display:grid;
-  grid-template-columns:minmax(230px,.38fr) minmax(0,.62fr);
+  grid-template-columns:minmax(240px,.34fr) minmax(0,.66fr);
   grid-template-rows:auto auto;
-  column-gap:34px;
+  column-gap:42px;
   align-items:center;
-  padding:24px 26px;
+  padding:26px 28px;
 }
-
 .detail-panel .detail-heading{
   grid-column:1;
   grid-row:1;
   align-self:end;
 }
-
+.detail-heading>span{
+  width:36px;
+  height:36px;
+  font-size:18px;
+}
+.detail-heading p{max-width:28em}
 .detail-panel .detail-link{
   grid-column:1;
   grid-row:2;
   align-self:start;
-  margin-top:14px;
+  margin-top:15px;
+  font-size:11.5px;
+  line-height:1.4;
 }
-
 .map-panel .mini-map{
   grid-column:2;
   grid-row:1 / span 2;
   height:220px;
   margin:0;
 }
-
 .theme-panel .theme-icons{
   grid-column:2;
   grid-row:1 / span 2;
   margin:0;
   grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+}
+.theme-icons button{
+  min-height:76px;
+  padding:10px 7px;
+}
+.theme-icons span{font-size:21px}
+.theme-icons b{
+  margin-top:6px;
+  font-size:9.5px;
+  line-height:1.4;
 }
 
 /* ============================================================
@@ -102,66 +210,60 @@
    ============================================================ */
 .lens-world{
   margin-top:0;
-  margin-bottom:26px;
-  padding:16px 18px;
+  margin-bottom:24px;
+  padding:17px 20px;
   display:grid;
-  grid-template-columns:minmax(245px,.38fr) minmax(0,.62fr);
-  gap:22px;
+  grid-template-columns:minmax(260px,.38fr) minmax(0,.62fr);
+  gap:24px;
   align-items:center;
   border:0;
   border-radius:14px;
   background:#f8f3e8;
   box-shadow:none;
 }
-
 .lens-world .section-head{
   display:block;
   margin:0;
   padding:0;
 }
-
 .lens-head h2{
   margin:0;
   font-size:18px;
   line-height:1.35;
+  letter-spacing:0;
 }
-
 .lens-head p{
   margin:6px 0 0;
-  max-width:34em;
-  font-size:10px;
+  max-width:35em;
+  font-size:10.5px;
   line-height:1.6;
   color:#525e68;
 }
-
 .lens-head .section-link{
   display:inline-flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
   margin-top:12px;
   padding:7px 12px;
   border:1px solid rgba(11,44,87,.55);
   border-radius:5px;
   background:#fff;
-  font-size:10px;
+  font-size:10.5px;
   font-weight:700;
 }
-
 .lens-head .section-link span{
   margin-left:2px;
   font-size:15px;
 }
-
 .lens-rail{
   display:grid;
   grid-auto-flow:column;
-  grid-auto-columns:minmax(76px,1fr);
+  grid-auto-columns:minmax(78px,1fr);
   gap:7px;
   overflow:hidden;
   padding:0;
   align-items:stretch;
 }
-
 .lens-card{
   min-width:0;
   border:0;
@@ -170,49 +272,57 @@
   background:transparent;
   overflow:hidden;
 }
-
 .lens-card:nth-child(n+7){display:none}
-
 .lens-card__art{
   height:92px;
   border-radius:5px;
   overflow:hidden;
   background:#e8eef0;
 }
-
 .lens-card__art img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
-
 .lens-card__body{display:none}
 
 /* About follows JOURNEY LENS */
 .about-note{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:34px;
+  align-items:start;
   margin-top:0;
-  padding:30px 4px 38px;
+  padding:30px 4px 40px;
   border-top:1px solid var(--line);
+}
+.about-note strong{
+  font-size:13px;
+  line-height:1.5;
+}
+.about-note p{
+  max-width:760px;
+  margin:0;
+  font:500 12px/1.85 var(--jp);
+  color:#405364;
 }
 
 /* JOURNEY LENS-like colophon structure, ATLAS palette */
 .atlas-colophon{
   background:var(--paper);
   color:var(--ink);
-  padding:clamp(40px,7vh,72px) clamp(18px,5vw,80px);
+  padding:clamp(38px,6vh,62px) clamp(18px,5vw,80px);
   border-top:1px solid var(--line);
 }
-
 .atlas-colophon .colophon-grid{
   max-width:1240px;
   margin:0 auto;
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  gap:30px;
+  gap:34px;
   flex-wrap:wrap;
 }
-
 .atlas-colophon .mark{
   font-family:var(--sans);
   font-weight:700;
@@ -220,42 +330,65 @@
   text-transform:uppercase;
   font-size:.95rem;
 }
-
 .atlas-colophon .mark-tag{
   display:block;
-  margin-top:10px;
+  margin-top:9px;
   font-family:var(--jp);
   font-weight:400;
   letter-spacing:.04em;
   text-transform:none;
-  font-size:.86rem;
+  font-size:.84rem;
+  line-height:1.6;
   color:#657485;
 }
-
 .atlas-colophon .meta{
   font-family:var(--sans);
   font-size:.66rem;
-  letter-spacing:.08em;
-  line-height:2;
+  letter-spacing:.07em;
+  line-height:1.95;
   color:#667483;
   text-align:right;
 }
-
 .atlas-colophon .meta-note{opacity:.68}
 .atlas-colophon .meta-links{display:inline-flex;gap:22px;justify-content:flex-end}
 .atlas-colophon a{color:inherit}
 .atlas-colophon a:hover{color:var(--ink)}
 
 @media(max-width:1050px){
-  .detail-panel{grid-template-columns:minmax(210px,.4fr) minmax(0,.6fr)}
-  .lens-world{grid-template-columns:minmax(220px,.42fr) minmax(0,.58fr)}
+  .top-header nav{gap:18px;font-size:12px}
+  .top-hero{grid-template-columns:.36fr .64fr;gap:20px}
+  .detail-panel{grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr);column-gap:28px}
+  .lens-world{grid-template-columns:minmax(230px,.42fr) minmax(0,.58fr)}
   .lens-rail{grid-auto-columns:minmax(72px,1fr)}
 }
 
 @media(max-width:760px){
-  .countries{padding:18px 16px 16px}
-  .detail-panel{display:block;min-height:0;padding:18px}
-  .map-panel .mini-map{height:190px;margin-top:14px}
+  .shell{width:min(100% - 28px,1460px)}
+  .top-header{min-height:68px;grid-template-columns:1fr auto}
+  .top-header nav a{display:none}
+  .top-header nav a:first-child{display:block}
+  .brand-block small{display:none}
+
+  .top-hero{display:block;min-height:0;padding:14px 0 14px}
+  .hero-copy{padding:10px 0 20px}
+  .hero-copy h1{font-size:clamp(35px,10vw,46px);line-height:1.25}
+  .hero-copy .lead{font-size:13.5px;line-height:1.85;margin-top:17px}
+  .hero-visual{padding-bottom:22px}
+
+  .explore{grid-template-columns:1fr;padding:10px 0 28px;gap:12px}
+  .explore-card{display:grid;grid-template-columns:36% 64%}
+  .explore-card__art{height:100%;min-height:108px}
+  .explore-card__copy{min-height:108px;padding:12px}
+  .explore-card__copy h2{font-size:15px}
+  .explore-card__copy p{font-size:11px}
+
+  .countries{padding:20px 16px 18px}
+  .countries .section-head{align-items:flex-start;gap:16px;padding-bottom:16px}
+  .countries .section-head h2,.detail-heading h2{font-size:18px}
+  .countries .section-head p,.detail-heading p{font-size:11px}
+
+  .detail-panel{display:block;min-height:0;padding:20px 18px}
+  .map-panel .mini-map{height:190px;margin-top:16px}
   .theme-panel .theme-icons{margin-top:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .detail-panel .detail-link{margin-top:14px}
 
@@ -271,6 +404,9 @@
   }
   .lens-card:nth-child(n+7){display:block}
   .lens-card__art{height:88px}
+
+  .about-note{grid-template-columns:1fr;gap:8px;padding:24px 0 32px}
+  .about-note p{font-size:11.5px}
 
   .atlas-colophon .meta{text-align:left}
   .atlas-colophon .meta-links{justify-content:flex-start}
