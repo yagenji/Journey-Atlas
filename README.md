@@ -1,67 +1,36 @@
 # JOURNEY ATLAS
 
-静かな余白と実景に寄せたイラストで「この国へ行ってみたい」という気持ちをつくる、大人向けのビジュアル・トラベルアトラスです。現在は Iceland の1ページを収録しています。
+「この国へ行ってみたい」という気持ちをつくる、大人向けのビジュアル・トラベルアトラスです。明るく美しい水彩・ガッシュ調のイラスト、イラスト地図、旅の見どころを一国一ページでまとめます。
 
-## 現在のIcelandページ
+## 現在のプロトタイプ
 
-- Heroイラスト
-- 緯度・経度に基づく8地点のマーカー
-- Skógafoss / Jökulsárlón / Reynisfjara / Þingvellir / Geysir / Mývatn / Kirkjufell / Landmannalaugar の8景
-- 地図の番号から対応する景色へ移動できるナビゲーション
-- URLハッシュによる景色の直接参照（例: `#skogafoss`）
-- 季節、移動、基本情報、旅の相性、注意点
-- ブラウザ内に保存する「この国に行きたい」機能
+- ICELAND / アイスランド
+- ANTARCTICA / 南極
+- TAJIKISTAN / タジキスタン
 
-## ディレクトリ構成
+トップページから各国ページへ遷移できます。国ページは `country.html?country=<slug>` の形式です。
 
-```text
-.
-├── index.html
-├── assets/
-│   ├── css/style.css
-│   ├── js/app.js
-│   └── images/iceland/
-├── data/
-│   └── countries/
-│       ├── index.json        # 国一覧のレジストリ
-│       └── iceland.json
-├── docs/
-│   └── ICELAND_ART_BRIEF.md
-├── scripts/
-│   └── validate_country.py   # 国データの整合性チェック
-└── README.md
-```
+## 公開
 
-国を追加するときは `data/countries/` に同じ形式のJSONを追加し、`data/countries/index.json` に国を登録します。URLの `?country=ファイル名` で表示できます。例: `?country=iceland`。
+GitHub PagesをGitHub Actionsから自動デプロイします。
 
-## ローカルで確認する
+- Top: `https://yagenji.github.io/Journey-Atlas/`
+- Iceland: `https://yagenji.github.io/Journey-Atlas/country.html?country=iceland`
+- Antarctica: `https://yagenji.github.io/Journey-Atlas/country.html?country=antarctica`
+- Tajikistan: `https://yagenji.github.io/Journey-Atlas/country.html?country=tajikistan`
 
-JSONを読み込むため、ファイルを直接開かずローカルサーバーを起動してください。
+`.github/workflows/deploy-pages.yml` が `main` へのpushごとに公開します。
 
-```bash
-python3 -m http.server 8000
-```
+## 制作方針
 
-ブラウザで <http://localhost:8000/> を開きます。Icelandを明示する場合は <http://localhost:8000/?country=iceland> です。
+JOURNEY LENSで公開済みの国・地域を優先して制作します。全体対象は、日本が国家承認する外国195か国＋日本＋台湾＋北朝鮮＋南極の計199ページです。
 
-外部ライブラリ、ビルド処理、パッケージのインストールは不要です。
+画像は写真の代用品ではなく、実景の特徴を守りながら「美しい・行きたくなる」と感じる旅図鑑イラストを目指します。地図も位置関係を大きく崩さず、イラストだからできる視覚表現を取り入れます。
 
 ## データ検証
-
-国データを編集・追加した後は、標準Pythonだけで整合性を確認できます。
 
 ```bash
 python3 scripts/validate_country.py
 ```
 
-必須キー、重複ID、緯度・経度、地図境界、画像指定などを確認します。Icelandは現在8景構成として検証します。
-
-## 地図と出典
-
-Icelandの地図は Wikimedia Commons の `Iceland location map.svg`（NordNordWest / CC BY-SA 3.0）を使用しています。地理的境界は N 66.8° / S 63.1° / W 25° / E 13° で、地点マーカーは各景色の緯度・経度から配置します。道路や推測ルートは描画しません。
-
-人口など更新可能性のある基本情報は `data/countries/iceland.json` 内に出典メモを保持します。
-
-## 画像方針
-
-Heroと景色カードは、実景の地形・水・海岸線・植生・人工物との一致を優先します。観光ポスター的な誇張、実景にない山・道路・建物・オーロラなどの追加は避けます。詳細は `docs/ICELAND_ART_BRIEF.md` を参照してください。
+国データは `data/countries/`、国一覧は `data/countries/index.json` で管理します。
