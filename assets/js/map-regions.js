@@ -18,6 +18,8 @@
   const WORLD = [0, 0, 1000, 507.209];
   const RATIO = WORLD[3] / WORLD[2];
   const MINW = 4.5;
+  const MAP_MIN_X = -80;
+  const MAP_MAX_X = 1120;
   const MAP = 'https://cdn.jsdelivr.net/gh/raphaellepuschitz/SVG-World-Map@master/src/world-states.svg';
   const ANT = 'https://cdn.jsdelivr.net/gh/amcharts/ammap3@master/ammap/maps/svg/worldWithAntarcticaLow.svg';
   const COLORS = {
@@ -29,26 +31,23 @@
   const REGION_OVERVIEW = {
     europe: {
       codes: ['IS','IE','GB','PT','ES','FR','BE','NL','LU','DE','DK','NO','SE','FI','EE','LV','LT','PL','CZ','SK','AT','CH','LI','IT','SI','HR','BA','RS','ME','XK','AL','MK','GR','BG','RO','MD','UA','BY','HU','MC','SM','VA','AD','MT','CY'],
-      padding: 0.02,
-      min: 72
+      padding: 0.02, min: 72, scale: 0.94, shiftX: 0.075
     },
     'north-america': {
       codes: ['CA', 'US', 'MX', 'BZ', 'GT', 'HN', 'SV', 'NI', 'CR', 'PA'],
-      padding: 0.025,
-      min: 185
+      padding: 0.015, min: 175, scale: 0.82
     },
     oceania: {
       codes: ['AU', 'NZ', 'PG', 'FJ', 'SB', 'VU'],
-      padding: 0.055,
-      min: 205
+      padding: 0.045, min: 195
     }
   };
   const SUB_OVERVIEW = {
-    'western-europe': { padding: 0.035, min: 34 },
+    'western-europe': { padding: 0.02, min: 30, scale: 0.76 },
     'southern-europe': { padding: 0.035, min: 50 },
-    'eastern-europe': { codes: ['BY', 'BG', 'CZ', 'HU', 'MD', 'PL', 'RO', 'SK', 'UA'], padding: 0.03, min: 58 },
-    'northern-north-america': { padding: 0.025, min: 172 },
-    micronesia: { view: [845, 198, 155, 78.617] }
+    'eastern-europe': { codes: ['BY','BG','CZ','HU','MD','PL','RO','SK','UA'], padding: 0.03, min: 58 },
+    'northern-north-america': { padding: 0.012, min: 160, scale: 0.80 },
+    micronesia: { view: [835, 185, 215, 109.05] }
   };
 
   let regions = [], dest = [];
@@ -76,6 +75,7 @@
       });
     });
   }
+
   function ensureSub() {
     if (subbar) return;
     subbar = document.createElement('div');
@@ -148,7 +148,7 @@
     let [x, y, w] = v;
     w = Math.max(MINW, Math.min(1000, w));
     const h = w * RATIO;
-    x = Math.max(-20, Math.min(1020 - w, x));
+    x = Math.max(MAP_MIN_X, Math.min(MAP_MAX_X - w, x));
     y = Math.max(-10, Math.min(517.209 - h, y));
     return [x, y, w, h];
   }
@@ -205,19 +205,29 @@
     w = Math.max(w, h / RATIO);
     return clamp([(l + r - w) / 2, (t + bt - w * RATIO) / 2, w, w * RATIO]);
   }
+  function tune(v, cfg) {
+    if (!cfg || (!cfg.scale && !cfg.shiftX && !cfg.shiftY)) return v;
+    const scale = cfg.scale ?? 1;
+    const shiftX = cfg.shiftX ?? 0;
+    const shiftY = cfg.shiftY ?? 0;
+    const cx = v[0] + v[2] / 2 + v[2] * shiftX;
+    const cy = v[1] + v[3] / 2 + v[3] * shiftY;
+    const w = v[2] * scale, h = w * RATIO;
+    return clamp([cx - w / 2, cy - h / 2, w, h]);
+  }
   function regionOverview(id) {
     const r = region(id);
     if (!r) return WORLD;
     const cfg = REGION_OVERVIEW[id];
     const codes = cfg?.codes || r.iso2;
-    return fit(codes, cfg?.padding ?? .07, cfg?.min ?? 95);
+    return tune(fit(codes, cfg?.padding ?? .07, cfg?.min ?? 95), cfg);
   }
   function subOverview(id) {
     const s = subs.get(id);
     if (!s) return regionOverview(activeR);
     const cfg = SUB_OVERVIEW[id];
     if (cfg?.view) return clamp(cfg.view);
-    return fit(cfg?.codes || s.iso2, cfg?.padding ?? .08, cfg?.min ?? 26);
+    return tune(fit(cfg?.codes || s.iso2, cfg?.padding ?? .08, cfg?.min ?? 26), cfg);
   }
   function currentOverview() {
     if (activeR === 'world') return WORLD;
@@ -245,9 +255,7 @@
   function deselect() {
     clear();
     if (activeR === 'world') {
-      worldPanel();
-      animate(WORLD, 260);
-      return;
+      worldPanel(); animate(WORLD, 260); return;
     }
     const r = region(activeR), s = activeS ? subs.get(activeS) : null;
     panel(r, s, null);
@@ -301,6 +309,7 @@
     nav.get(iso)?.classList.toggle('is-hovered', !!on);
   }
   function bind(g, c) {
+    if (!c) return;
     g.tabIndex = 0;
     g.setAttribute('role', 'button');
     g.setAttribute('aria-label', `${c.nameJa}を選ぶ`);
@@ -341,22 +350,64 @@
     bind(g, c);
     return g;
   }
+
+  function geometryBoxes(g) {
+    const out = [];
+    g.querySelectorAll('path,polygon,polyline,circle,ellipse,rect').forEach(el => {
+      try {
+        const b = el.getBBox();
+        if (Number.isFinite(b.x) && Number.isFinite(b.y) && b.width >= 0 && b.height >= 0) out.push({ el, b });
+      } catch (_) {}
+    });
+    return out;
+  }
+  function unionBoxes(boxes) {
+    if (!boxes.length) return null;
+    const l = Math.min(...boxes.map(b => b.x)), t = Math.min(...boxes.map(b => b.y));
+    const r = Math.max(...boxes.map(b => b.x + b.width)), bt = Math.max(...boxes.map(b => b.y + b.height));
+    return { x: l, y: t, width: r - l, height: bt - t };
+  }
+  function normalizedDatelineBBox(g) {
+    const boxes = geometryBoxes(g).map(({ b }) => {
+      const cx = b.x + b.width / 2;
+      return { x: cx < 250 ? b.x + 1000 : b.x, y: b.y, width: b.width, height: b.height };
+    });
+    return unionBoxes(boxes);
+  }
+  function makeDatelineClone(iso, source) {
+    const boxes = geometryBoxes(source);
+    const left = boxes.filter(({ b }) => b.x + b.width / 2 < 250);
+    if (!left.length) return null;
+    const c = S('g', { class: 'ja-country is-destination ja-wrap' });
+    c.dataset.iso = iso;
+    c.dataset.region = regIso.get(iso) || 'oceania';
+    c.style.setProperty('--fill', COLORS[c.dataset.region] || '#cbd4cf');
+    left.forEach(({ el }) => {
+      const shell = S('g', { transform: 'translate(1000 0)' });
+      shell.append(el.cloneNode(true));
+      c.append(shell);
+    });
+    const nb = normalizedDatelineBBox(source);
+    if (nb) c.dataset.bbox = `${nb.x},${nb.y},${nb.width},${nb.height}`;
+    bind(c, byIso.get(iso));
+    return c;
+  }
   function wrapDateline() {
     const ids = new Set([...(subs.get('polynesia')?.iso2 || []), ...(subs.get('micronesia')?.iso2 || [])]);
     ids.forEach(iso => {
       const b = groups.get(iso);
       if (!b) return;
       const bb = b.getBBox();
-      if (bb.x + bb.width / 2 > 100) return;
-      const c = b.cloneNode(true);
-      c.dataset.dx = '1000';
-      c.setAttribute('transform', 'translate(1000 0)');
-      c.classList.add('ja-wrap');
-      bind(c, byIso.get(iso));
+      const spansDateline = bb.width > 400;
+      const sitsAtLeftEdge = bb.x + bb.width / 2 < 100;
+      if (!spansDateline && !sitsAtLeftEdge) return;
+      const c = makeDatelineClone(iso, b);
+      if (!c) return;
       wrapGroups.set(iso, c);
       svg.querySelector('.ja-wrap-layer').append(c);
     });
   }
+
   function controls() {
     const z = document.createElement('div');
     z.className = 'map-zoom-controls ja-controls';
@@ -432,7 +483,7 @@
       class: 'atlas-country-map', viewBox: WORLD.join(' '), role: 'img',
       'aria-label': '拡大すると小さな島まで見える世界地図', preserveAspectRatio: 'xMidYMid meet'
     });
-    map.append(S('rect', { x: -20, y: -10, width: 1040, height: 530, fill: '#edf6f3', class: 'country-map-ocean' }));
+    map.append(S('rect', { x: MAP_MIN_X, y: -10, width: MAP_MAX_X - MAP_MIN_X, height: 530, fill: '#edf6f3', class: 'country-map-ocean' }));
     const land = S('g', { class: 'country-map-layer' }), wl = S('g', { class: 'ja-wrap-layer' });
     map.append(land, wl); wrap.replaceChildren(map); svg = map;
 
