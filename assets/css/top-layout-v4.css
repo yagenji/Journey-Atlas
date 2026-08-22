@@ -36,7 +36,7 @@
 
 /* Hero */
 .top-hero{
-  grid-template-columns:.39fr .61fr;
+  grid-template-columns:minmax(470px,.42fr) minmax(0,.58fr);
   gap:28px;
   min-height:372px;
   padding:10px 0 18px;
@@ -46,9 +46,13 @@
   padding:18px 0 26px 10px;
 }
 .hero-copy h1{
-  font-size:clamp(40px,3.2vw,52px);
+  margin:0;
+  font-size:clamp(38px,3vw,48px);
   line-height:1.22;
   letter-spacing:.01em;
+}
+.hero-title span{
+  display:block;
   white-space:nowrap;
 }
 .hero-copy .lead{
@@ -355,8 +359,8 @@
 
 @media(max-width:1050px){
   .top-header nav{gap:18px;font-size:12px}
-  .top-hero{grid-template-columns:.42fr .58fr;gap:20px}
-  .hero-copy h1{font-size:clamp(34px,4vw,42px)}
+  .top-hero{grid-template-columns:minmax(405px,.44fr) minmax(0,.56fr);gap:20px}
+  .hero-copy h1{font-size:38px}
   .detail-panel{grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr);column-gap:28px}
   .lens-world{grid-template-columns:minmax(230px,.42fr) minmax(0,.58fr)}
   .lens-rail{grid-auto-columns:minmax(72px,1fr)}
@@ -371,7 +375,8 @@
 
   .top-hero{display:block;min-height:0;padding:14px 0 14px}
   .hero-copy{padding:10px 0 20px}
-  .hero-copy h1{font-size:clamp(32px,9vw,42px);line-height:1.25;white-space:nowrap}
+  .hero-copy h1{font-size:clamp(29px,8.1vw,38px);line-height:1.25}
+  .hero-title span{white-space:nowrap}
   .hero-copy .lead{font-size:13.5px;line-height:1.85;margin-top:17px}
   .hero-visual{padding-bottom:22px}
 
