@@ -212,12 +212,13 @@
    JOURNEY LENS — compact horizontal strip from approved mockup
    ============================================================ */
 .lens-world{
+  min-height:188px;
   margin-top:0;
-  margin-bottom:24px;
-  padding:17px 20px;
+  margin-bottom:28px;
+  padding:25px 24px;
   display:grid;
-  grid-template-columns:minmax(260px,.38fr) minmax(0,.62fr);
-  gap:24px;
+  grid-template-columns:minmax(280px,.38fr) minmax(0,.62fr);
+  gap:30px;
   align-items:center;
   border:0;
   border-radius:14px;
@@ -236,18 +237,18 @@
   letter-spacing:0;
 }
 .lens-head p{
-  margin:6px 0 0;
+  margin:8px 0 0;
   max-width:35em;
   font-size:10.5px;
-  line-height:1.6;
+  line-height:1.7;
   color:#525e68;
 }
 .lens-head .section-link{
   display:inline-flex;
   align-items:center;
   gap:9px;
-  margin-top:12px;
-  padding:7px 12px;
+  margin-top:16px;
+  padding:8px 13px;
   border:1px solid rgba(11,44,87,.55);
   border-radius:5px;
   background:#fff;
@@ -262,7 +263,7 @@
   display:grid;
   grid-auto-flow:column;
   grid-auto-columns:minmax(78px,1fr);
-  gap:7px;
+  gap:8px;
   overflow:hidden;
   padding:0;
   align-items:stretch;
@@ -277,7 +278,7 @@
 }
 .lens-card:nth-child(n+7){display:none}
 .lens-card__art{
-  height:92px;
+  height:108px;
   border-radius:5px;
   overflow:hidden;
   background:#e8eef0;
@@ -292,11 +293,11 @@
 /* About follows JOURNEY LENS */
 .about-note{
   display:grid;
-  grid-template-columns:220px minmax(0,1fr);
-  gap:34px;
+  grid-template-columns:260px minmax(0,1fr);
+  gap:42px;
   align-items:start;
   margin-top:0;
-  padding:30px 4px 40px;
+  padding:36px 4px 44px;
   border-top:1px solid var(--line);
 }
 .about-note strong{
@@ -306,11 +307,12 @@
   letter-spacing:0;
 }
 .about-note p{
-  max-width:760px;
+  max-width:1080px;
   margin:1px 0 0;
   font:500 12px/1.85 var(--jp);
   color:#405364;
 }
+.about-note p span{display:block}
 
 /* JOURNEY LENS-like colophon structure, ATLAS palette */
 .atlas-colophon{
@@ -364,8 +366,11 @@
   .top-hero{grid-template-columns:minmax(405px,.44fr) minmax(0,.56fr);gap:20px}
   .hero-copy h1{font-size:38px}
   .detail-panel{grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr);column-gap:28px}
-  .lens-world{grid-template-columns:minmax(230px,.42fr) minmax(0,.58fr)}
+  .lens-world{grid-template-columns:minmax(240px,.42fr) minmax(0,.58fr);padding:22px}
   .lens-rail{grid-auto-columns:minmax(72px,1fr)}
+  .about-note{grid-template-columns:220px minmax(0,1fr);gap:30px}
+  .about-note p span{display:inline}
+  .about-note p span+span:before{content:" ";}
 }
 
 @media(max-width:760px){
@@ -400,9 +405,10 @@
   .detail-panel .detail-link{margin-top:14px}
 
   .lens-world{
+    min-height:0;
     grid-template-columns:1fr;
-    gap:14px;
-    padding:16px;
+    gap:16px;
+    padding:20px 16px;
   }
   .lens-rail{
     overflow-x:auto;
@@ -410,10 +416,12 @@
     justify-content:start;
   }
   .lens-card:nth-child(n+7){display:block}
-  .lens-card__art{height:88px}
+  .lens-card__art{height:96px}
 
-  .about-note{grid-template-columns:1fr;gap:10px;padding:24px 0 32px}
-  .about-note p{font-size:11.5px}
+  .about-note{grid-template-columns:1fr;gap:10px;padding:28px 0 34px}
+  .about-note p{font-size:11.5px;max-width:none}
+  .about-note p span{display:inline}
+  .about-note p span+span:before{content:" ";}
 
   .atlas-colophon .meta{text-align:left}
   .atlas-colophon .meta-links{justify-content:flex-start}
