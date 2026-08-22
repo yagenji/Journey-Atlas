@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff1f5"/><stop offset="1" stop-color="#f8f1df"/></linearGradient>
+    <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#81c8d7"/><stop offset="1" stop-color="#d5ede7"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.35"/></filter>
+  </defs>
+
+  <symbol id="earth" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="url(#sky)"/>
+    <path d="M12 75L34 44l11 14 18-31 19 27 9-10 18 31z" fill="#7ca2ad" opacity=".9"/>
+    <path d="M30 50l4-6 5 7m20-18 4-6 6 8" fill="none" stroke="#f8fbf9" stroke-width="4" stroke-linecap="round"/>
+    <path d="M9 83c20-9 37-8 51-2 17 7 30 7 51-2v25H9z" fill="#7dc0c5"/>
+    <path d="M15 87c18-6 34-5 46 0 17 6 30 5 44-1" fill="none" stroke="#eef8f5" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+    <path d="M18 79l9-25 7 25zm8-9l-11 12m23-3 8-23 6 23z" fill="#456f5d" opacity=".95"/>
+  </symbol>
+
+  <symbol id="city" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="url(#sky)"/>
+    <path d="M12 91h96v14H12z" fill="#7bb8c8"/>
+    <path d="M20 83V48h20v35zm26 0V33h28v50zm35 0V50h20v33z" fill="#e8b97a" stroke="#9e6844" stroke-width="2"/>
+    <path d="M46 43c3-14 22-14 26 0" fill="#bf694d"/>
+    <path d="M57 31v-8m-4 0h8" stroke="#5c625c" stroke-width="2.5" stroke-linecap="round"/>
+    <g fill="#527a89"><rect x="25" y="56" width="5" height="8" rx="1"/><rect x="32" y="56" width="5" height="8" rx="1"/><rect x="52" y="51" width="6" height="9" rx="1"/><rect x="63" y="51" width="6" height="9" rx="1"/><rect x="86" y="58" width="5" height="8" rx="1"/></g>
+    <path d="M14 93c15-6 27-4 39 1 16 6 31 6 52-1" fill="none" stroke="#eef8f5" stroke-width="3" opacity=".9"/>
+  </symbol>
+
+  <symbol id="history" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="#f4dfbd"/>
+    <path d="M22 45h76l-10-12H34z" fill="#a9673e"/>
+    <path d="M28 46h64v9H28z" fill="#c77b4b"/>
+    <g fill="#d99b67" stroke="#9a5d3c" stroke-width="2"><path d="M31 55h10v34H31z"/><path d="M47 55h10v34H47z"/><path d="M63 55h10v34H63z"/><path d="M79 55h10v34H79z"/></g>
+    <path d="M23 90h74v9H23z" fill="#b56e45"/>
+    <path d="M18 101c14-4 28-5 41-2 18 4 31 4 45-1" fill="none" stroke="#d8b082" stroke-width="4" stroke-linecap="round"/>
+    <path d="M33 33l27-15 27 15" fill="#d79a64" stroke="#9a5d3c" stroke-width="2"/>
+  </symbol>
+
+  <symbol id="life" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="#f5ead2"/>
+    <path d="M15 38c14 10 28 1 43 9s28-2 47 7" fill="none" stroke="#b7574f" stroke-width="3"/>
+    <path d="M23 37l8 12 8-11zm25 8 8 12 8-11zm27 2 8 12 8-11z" fill="#d98f45"/>
+    <path d="M19 83h82v17H19z" fill="#cf9b61"/>
+    <path d="M27 82l9-25 9 25zm21 0 10-31 10 31zm25 0 8-23 9 23z" fill="#ba6b45"/>
+    <g fill="#e6c759"><ellipse cx="36" cy="78" rx="7" ry="3"/><ellipse cx="59" cy="77" rx="8" ry="3"/><ellipse cx="82" cy="78" rx="7" ry="3"/></g>
+    <path d="M16 100c20-5 35-4 47 0 15 4 29 4 42 0" fill="none" stroke="#9b7152" stroke-width="3" opacity=".55"/>
+  </symbol>
+
+  <symbol id="wildlife" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="#f0dfad"/>
+    <path d="M18 88h85v18H18z" fill="#d6bf6c"/>
+    <path d="M22 77c13-30 35-41 54-34 16 6 24 21 26 34" fill="#799462" opacity=".8"/>
+    <path d="M30 49c10-19 19-22 25-20-4 8-5 15-4 21m-19 2c-12-7-18-7-23-4 7 7 14 11 22 13" fill="#52725a"/>
+    <path d="M43 87c-7-8-6-23 0-31 10-13 29-13 39 0 7 9 8 23 2 32-4 7-11 10-20 10-9 0-16-4-21-11z" fill="#8a705b"/>
+    <path d="M82 62c13 0 18 9 15 16-2 5-8 7-12 5m-32-6v22m21-22v22" fill="none" stroke="#6d584a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M46 57c-6-7-10-12-16-13 0 8 4 14 11 17m40-4c7-7 11-12 17-13 0 8-4 14-11 17" fill="#8a705b"/>
+  </symbol>
+
+  <symbol id="sea" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="url(#sky)"/>
+    <path d="M7 76c16-7 31-8 47-2 20 8 35 6 59-4v37H7z" fill="url(#seaGrad)"/>
+    <path d="M11 82c17-5 32-4 46 1 17 6 34 4 50-2m-90 12c16-5 30-4 44 1 19 6 33 5 43 1" fill="none" stroke="#eef9f6" stroke-width="3" opacity=".9"/>
+    <path d="M49 72c4-20 18-32 35-29 15 2 25 12 29 29z" fill="#6e9b67"/>
+    <path d="M78 55c7-14 14-21 23-25m-20 25c-5-14-10-20-17-25m18 25c8-8 16-12 24-12" stroke="#4d7957" stroke-width="4" stroke-linecap="round"/>
+    <path d="M82 55v18" stroke="#8b684d" stroke-width="4"/>
+    <path d="M55 70h56" stroke="#e7d6a5" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="food" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="#f5dfb7"/>
+    <ellipse cx="60" cy="71" rx="38" ry="29" fill="#485d62"/>
+    <ellipse cx="60" cy="65" rx="34" ry="24" fill="#d97b42"/>
+    <g fill="#6a9b57"><ellipse cx="44" cy="58" rx="7" ry="4"/><ellipse cx="70" cy="68" rx="6" ry="4"/><ellipse cx="79" cy="54" rx="5" ry="3"/></g>
+    <g fill="#f0c968"><circle cx="57" cy="57" r="4"/><circle cx="48" cy="70" r="4"/><circle cx="69" cy="59" r="3.5"/></g>
+    <path d="M77 29c13 2 20 7 24 16-10-1-18-5-23-12m-4 12c5-14 12-22 22-25" fill="none" stroke="#557c50" stroke-width="4" stroke-linecap="round"/>
+    <path d="M92 43l10-8" stroke="#ad4b40" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="road" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="url(#sky)"/>
+    <path d="M11 70l25-29 12 13 18-27 17 22 10-9 16 30z" fill="#7fa3a8"/>
+    <path d="M9 86c22-10 37-11 52-5 18 7 33 7 50-2v27H9z" fill="#799567"/>
+    <path d="M55 110c-4-18-2-30 7-38 8-7 10-16 6-27 12 12 17 25 10 38-6 11-8 19-6 27z" fill="#e4d8b1"/>
+    <path d="M63 104c-2-13 0-22 6-29 5-6 7-13 5-20" fill="none" stroke="#f8f5df" stroke-width="3" stroke-linecap="round"/>
+    <rect x="40" y="78" width="22" height="13" rx="4" fill="#556a70"/>
+    <circle cx="45" cy="92" r="4" fill="#39474a"/><circle cx="58" cy="92" r="4" fill="#39474a"/>
+  </symbol>
+</svg>
