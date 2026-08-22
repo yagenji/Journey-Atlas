@@ -1,55 +1,89 @@
 {
   "updatedAt": "2026-08-22",
-  "rule": "Each of the 199 JOURNEY ATLAS destinations belongs to exactly one top-level travel region.",
+  "rule": "Each of the 199 JOURNEY ATLAS destinations belongs to exactly one top-level region. Subregions are spatial navigation aids; the final destination is always selected by clicking the country shape on the map.",
+  "classificationNote": "Top level is fixed to Asia / Europe / Africa / North America / South America / Oceania / Antarctica. North America includes Northern North America, Central America and the Caribbean. South America is independent.",
   "regions": [
     {
       "id": "asia",
       "label": "アジア",
       "labelEn": "ASIA",
-      "description": "東アジアから東南アジア、南アジア、中央アジア、中東まで。風景と文化の幅広さをめぐる。",
-      "iso2": ["AF","AM","AZ","BH","BD","BT","BN","KH","CN","GE","IN","ID","IR","IQ","IL","JP","JO","KZ","KW","KG","LA","LB","MY","MV","MN","MM","NP","KP","OM","PK","PH","QA","SA","SG","KR","LK","SY","TW","TJ","TH","TL","TR","TM","AE","UZ","VN","YE"]
+      "description": "東アジアから中東まで。小地域へ寄りながら、地図の位置関係から旅先を探す。",
+      "iso2": ["AF","AM","AZ","BH","BD","BT","BN","KH","CN","GE","IN","ID","IR","IQ","IL","JP","JO","KZ","KW","KG","LA","LB","MY","MV","MN","MM","NP","KP","OM","PK","PH","QA","SA","SG","KR","LK","SY","TW","TJ","TH","TL","TR","TM","AE","UZ","VN","YE"],
+      "subregions": [
+        {"id":"east-asia","label":"東アジア","labelEn":"EAST ASIA","iso2":["CN","JP","KP","KR","MN","TW"]},
+        {"id":"southeast-asia","label":"東南アジア","labelEn":"SOUTHEAST ASIA","iso2":["BN","KH","ID","LA","MY","MM","PH","SG","TH","TL","VN"]},
+        {"id":"south-asia","label":"南アジア","labelEn":"SOUTH ASIA","iso2":["AF","BD","BT","IN","MV","NP","PK","LK"]},
+        {"id":"central-asia","label":"中央アジア","labelEn":"CENTRAL ASIA","iso2":["KZ","KG","TJ","TM","UZ"]},
+        {"id":"west-asia","label":"西アジア・中東","labelEn":"WEST ASIA / MIDDLE EAST","iso2":["AM","AZ","BH","GE","IR","IQ","IL","JO","KW","LB","OM","QA","SA","SY","TR","AE","YE"]}
+      ]
     },
     {
       "id": "europe",
       "label": "ヨーロッパ",
       "labelEn": "EUROPE",
-      "description": "街並み、建築、歴史、自然が近い距離に重なる地域。国境を越えながら旅を広げる。",
-      "iso2": ["AL","AD","AT","BY","BE","BA","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","XK","LV","LI","LT","LU","MT","MD","MC","ME","NL","MK","NO","PL","PT","RO","RU","SM","RS","SK","SI","ES","SE","CH","UA","GB","VA"]
+      "description": "国が密集する地域は小地域まで拡大し、国境と位置関係から次の旅先を見つける。",
+      "iso2": ["AL","AD","AT","BY","BE","BA","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","XK","LV","LI","LT","LU","MT","MD","MC","ME","NL","MK","NO","PL","PT","RO","RU","SM","RS","SK","SI","ES","SE","CH","UA","GB","VA"],
+      "subregions": [
+        {"id":"northern-europe","label":"北ヨーロッパ","labelEn":"NORTHERN EUROPE","iso2":["DK","EE","FI","IS","IE","LV","LT","NO","SE","GB"]},
+        {"id":"western-europe","label":"西ヨーロッパ","labelEn":"WESTERN EUROPE","iso2":["AT","BE","FR","DE","LI","LU","MC","NL","CH"]},
+        {"id":"southern-europe","label":"南ヨーロッパ","labelEn":"SOUTHERN EUROPE","iso2":["AL","AD","BA","HR","CY","GR","IT","XK","MT","ME","MK","PT","SM","RS","SI","ES","VA"]},
+        {"id":"eastern-europe","label":"東ヨーロッパ","labelEn":"EASTERN EUROPE","iso2":["BY","BG","CZ","HU","MD","PL","RO","RU","SK","UA"]}
+      ]
     },
     {
       "id": "africa",
       "label": "アフリカ",
       "labelEn": "AFRICA",
-      "description": "大地、野生、海、砂漠、都市、人々の暮らし。スケールの大きな世界に出会う。",
-      "iso2": ["DZ","AO","BJ","BW","BF","BI","CV","CM","CF","TD","KM","CG","CD","CI","DJ","EG","GQ","ER","SZ","ET","GA","GM","GH","GN","GW","KE","LS","LR","LY","MG","MW","ML","MR","MU","MA","MZ","NA","NE","NG","RW","ST","SN","SC","SL","SO","ZA","SS","SD","TZ","TG","TN","UG","ZM","ZW"]
+      "description": "大陸全体から小地域へ。広い大地の中で、国どうしの位置関係を見ながら探す。",
+      "iso2": ["DZ","AO","BJ","BW","BF","BI","CV","CM","CF","TD","KM","CG","CD","CI","DJ","EG","GQ","ER","SZ","ET","GA","GM","GH","GN","GW","KE","LS","LR","LY","MG","MW","ML","MR","MU","MA","MZ","NA","NE","NG","RW","ST","SN","SC","SL","SO","ZA","SS","SD","TZ","TG","TN","UG","ZM","ZW"],
+      "subregions": [
+        {"id":"north-africa","label":"北アフリカ","labelEn":"NORTH AFRICA","iso2":["DZ","EG","LY","MA","SD","TN"]},
+        {"id":"west-africa","label":"西アフリカ","labelEn":"WEST AFRICA","iso2":["BJ","BF","CV","CI","GM","GH","GN","GW","LR","ML","MR","NE","NG","SN","SL","TG"]},
+        {"id":"central-africa","label":"中部アフリカ","labelEn":"CENTRAL AFRICA","iso2":["AO","CM","CF","TD","CG","CD","GQ","GA","ST"]},
+        {"id":"east-africa","label":"東アフリカ","labelEn":"EAST AFRICA","iso2":["BI","KM","DJ","ER","ET","KE","MG","MW","MU","MZ","RW","SC","SO","SS","TZ","UG","ZM","ZW"]},
+        {"id":"southern-africa","label":"南部アフリカ","labelEn":"SOUTHERN AFRICA","iso2":["BW","SZ","LS","NA","ZA"]}
+      ]
     },
     {
       "id": "north-america",
       "label": "北米",
       "labelEn": "NORTH AMERICA",
-      "description": "広大な自然と大都市を行き来する旅。カナダとアメリカを地図からたどる。",
-      "iso2": ["CA","US"]
+      "description": "北アメリカ、中央アメリカ、カリブをひとつの大地域として、必要な場所まで拡大して探す。",
+      "iso2": ["CA","US","MX","BZ","CR","SV","GT","HN","NI","PA","AG","BS","BB","CU","DM","DO","GD","HT","JM","KN","LC","VC","TT"],
+      "subregions": [
+        {"id":"northern-north-america","label":"北アメリカ","labelEn":"NORTHERN NORTH AMERICA","iso2":["CA","US","MX"]},
+        {"id":"central-america","label":"中央アメリカ","labelEn":"CENTRAL AMERICA","iso2":["BZ","CR","SV","GT","HN","NI","PA"]},
+        {"id":"caribbean","label":"カリブ","labelEn":"CARIBBEAN","iso2":["AG","BS","BB","CU","DM","DO","GD","HT","JM","KN","LC","VC","TT"]}
+      ]
     },
     {
-      "id": "latin-america",
-      "label": "中南米・カリブ",
-      "labelEn": "LATIN AMERICA & CARIBBEAN",
-      "description": "山岳、熱帯、海、色彩豊かな街と文化が交差する地域。",
-      "iso2": ["AG","AR","BS","BB","BZ","BO","BR","CL","CO","CR","CU","DM","DO","EC","SV","GD","GT","GY","HT","HN","JM","MX","NI","PA","PY","PE","KN","LC","VC","SR","TT","UY","VE"]
+      "id": "south-america",
+      "label": "南米",
+      "labelEn": "SOUTH AMERICA",
+      "description": "縦に長い大陸を大きく表示し、地図上の国の形から直接選ぶ。",
+      "iso2": ["AR","BO","BR","CL","CO","EC","GY","PY","PE","SR","UY","VE"],
+      "subregions": []
     },
     {
       "id": "oceania",
       "label": "オセアニア",
       "labelEn": "OCEANIA",
-      "description": "オーストラリア、ニュージーランド、太平洋の島々。海と大地をめぐる。",
-      "iso2": ["AU","FJ","KI","MH","FM","NR","NZ","PW","PG","WS","SB","TO","TV","VU","CK","NU"]
+      "description": "オーストラリアとニュージーランド、太平洋の島々を小地域まで拡大して探す。",
+      "iso2": ["AU","FJ","KI","MH","FM","NR","NZ","PW","PG","WS","SB","TO","TV","VU","CK","NU"],
+      "subregions": [
+        {"id":"australia-new-zealand","label":"オーストラリア・ニュージーランド","labelEn":"AUSTRALIA / NEW ZEALAND","iso2":["AU","NZ"]},
+        {"id":"melanesia","label":"メラネシア","labelEn":"MELANESIA","iso2":["FJ","PG","SB","VU"]},
+        {"id":"micronesia","label":"ミクロネシア","labelEn":"MICRONESIA","iso2":["FM","KI","MH","NR","PW"]},
+        {"id":"polynesia","label":"ポリネシア","labelEn":"POLYNESIA","iso2":["CK","NU","WS","TO","TV"]}
+      ]
     },
     {
       "id": "antarctica",
       "label": "南極",
       "labelEn": "ANTARCTICA",
-      "description": "国境のない氷の大陸。世界の最南端を、ひとつの旅先として見る。",
-      "iso2": ["AQ"]
+      "description": "氷の大陸をひとつの旅先として大きく表示し、その形から直接選ぶ。",
+      "iso2": ["AQ"],
+      "subregions": []
     }
   ]
 }
