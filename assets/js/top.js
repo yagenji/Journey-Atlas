@@ -16,6 +16,7 @@ const heroButtons = [...document.querySelectorAll('[data-hero]')];
 const heroStepButtons = [...document.querySelectorAll('[data-hero-step]')];
 const alphabetHost = document.querySelector('#alphabet-buttons');
 const alphabetButtons = () => [...document.querySelectorAll('[data-letter]')];
+const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
 
 let destinations = [];
 let heroSources = [];
@@ -43,6 +44,17 @@ const featuredArt = {
   kenya:{x:'100%',y:'100%'}
 };
 
+fetch('assets/images/top/theme-approved-sprite.webp.b64')
+  .then((response)=>{if(!response.ok) throw new Error('Theme artwork missing');return response.text();})
+  .then((encoded)=>{
+    const image=`url("data:image/webp;base64,${encoded.trim()}")`;
+    themeArtElements.forEach((art,index)=>{
+      art.style.backgroundImage=image;
+      art.style.backgroundPosition=`${index*(100/7)}% 50%`;
+    });
+  })
+  .catch(()=>{});
+
 fetch('data/theme-taxonomy.json')
   .then((response)=>{if(!response.ok) throw new Error('Theme taxonomy not found');return response.json();})
   .then(({themes=[]})=>{
@@ -61,7 +73,7 @@ fetch('data/theme-taxonomy.json')
     const entryCopy=document.querySelector('.explore-card--theme p');
     if(entryCopy)entryCopy.textContent='行きたい理由から、世界を選ぶ';
     const detailCopy=document.querySelector('.theme-panel .detail-heading p');
-    if(detailCopy)detailCopy.textContent='その国へ行きたくなる理由から、旅先を探す。';
+    if(detailCopy)detailCopy.textContent='あなたが惹かれるのは、どんな旅？ 199の国・地域を、8つのテーマから見つけてみよう。';
   })
   .catch(()=>{});
 
