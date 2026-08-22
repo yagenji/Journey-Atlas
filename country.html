@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。">
+  <title>JOURNEY ATLAS — Country</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/atlas-overrides.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <div class="loading">旅のページをひらいています…</div>
+  </main>
+
+  <template id="country-template">
+    <article class="country-page">
+      <section class="hero">
+        <header class="site-header page-shell">
+          <a class="brand" href="./" aria-label="JOURNEY ATLAS ホーム">JOURNEY ATLAS</a>
+          <nav class="utility-nav" aria-label="サイトメニュー">
+            <a href="./"><span aria-hidden="true">⌂</span><small>トップ</small></a>
+            <button type="button"><span aria-hidden="true">◎</span><small>国を探す</small></button>
+            <button type="button"><span aria-hidden="true">☰</span><small>メニュー</small></button>
+          </nav>
+        </header>
+        <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="国の風景">
+          <div class="art-placeholder"><span>HERO ARTWORK</span><small>実景をもとにしたイラスト</small></div>
+        </div>
+        <div class="hero-copy page-shell">
+          <p class="region" data-field="region"></p>
+          <h1 data-field="nameEn"></h1>
+          <p class="country-ja" data-field="nameJa"></p>
+          <p class="hero-lead" data-field="hero.lead"></p>
+        </div>
+      </section>
+
+      <div class="atlas-body page-shell">
+        <section class="atlas-panel" aria-labelledby="atlas-title">
+          <div class="map-column">
+            <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
+            <div class="map-frame">
+              <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
+                <div class="map-grid" aria-hidden="true"></div>
+                <div class="map-placeholder"><b>MAP</b><span>地図を読み込んでいます</span></div>
+                <div class="map-markers" id="map-markers"></div>
+              </div>
+              <p class="map-disclaimer">国土形状と地点位置を保ちながら、景観をイラストで表現しています。</p>
+              <p class="map-disclaimer" data-field="map.source"></p>
+            </div>
+            <div class="encounter-strip">
+              <h3><span data-field="nameJa"></span>で出会えるもの</h3>
+              <div class="encounter-list" id="encounters"></div>
+            </div>
+          </div>
+
+          <div class="scenes-column">
+            <div class="scenes-heading">
+              <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
+              <p>番号に触れて、位置関係をたどる。</p>
+            </div>
+            <div class="scene-grid" id="scene-cards"></div>
+          </div>
+        </section>
+
+        <section class="travel-grid" aria-label="旅の情報">
+          <section class="info-section info-seasons"><h2>旅するなら</h2><p class="section-label">季節</p><div class="season-list" id="seasons"></div><div class="transport" id="transport"></div></section>
+          <section class="info-section"><h2>こんな人に</h2><div class="persona-list" id="personas"></div></section>
+          <section class="info-section"><h2>基本情報</h2><dl class="fact-list" id="facts"></dl></section>
+          <section class="info-section"><h2>知っておきたいこと</h2><div class="tip-list" id="tips"></div></section>
+        </section>
+
+        <section class="journey-footer" aria-labelledby="next-title">
+          <div class="related-wrap"><h2 id="next-title"><span data-field="nameJa"></span>が気になったなら</h2><div class="related-grid" id="related"></div></div>
+          <div class="wish-wrap"><button class="wish-button" id="wish-button" type="button"><span class="wish-icon" aria-hidden="true">♡</span><strong>この国に行きたい</strong><small>行きたい国リストに保存します</small></button><p class="wish-status" id="wish-status" role="status"></p></div>
+        </section>
+      </div>
+
+      <footer class="site-footer page-shell"><a class="brand brand--footer" href="./">JOURNEY ATLAS</a><small>© JOURNEY ATLAS</small></footer>
+    </article>
+  </template>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
