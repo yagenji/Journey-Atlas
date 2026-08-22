@@ -5,16 +5,17 @@
   const RATIO = 507.209 / 1000;
   const FRAMES = {
     region: {
-      europe: [405, 42, 305, 305 * RATIO],
-      'north-america': [0, 10, 430, 430 * RATIO]
+      europe: [405, 14, 305, 305 * RATIO],
+      'north-america': [-20, 4, 405, 405 * RATIO]
     },
     subregion: {
-      'western-europe': [460, 82, 125, 125 * RATIO],
-      'northern-north-america': [0, 15, 390, 390 * RATIO]
+      'western-europe': [455, 76, 145, 145 * RATIO],
+      'northern-north-america': [-10, 2, 350, 350 * RATIO]
     }
   };
 
   let raf = null;
+  let settleTimer = null;
 
   function map() {
     return root.querySelector('.atlas-country-map');
@@ -24,7 +25,7 @@
     return svg.getAttribute('viewBox').trim().split(/\s+/).map(Number);
   }
 
-  function animateTo(target, duration = 360) {
+  function animateTo(target, duration = 240) {
     const svg = map();
     if (!svg || !target) return;
     if (raf) cancelAnimationFrame(raf);
@@ -50,27 +51,30 @@
     return FRAMES.region[region] || null;
   }
 
+  function settle(frame, delay) {
+    if (!frame) return;
+    if (settleTimer) clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => animateTo(frame, 220), delay);
+  }
+
   root.addEventListener('click', event => {
     const target = event.target.closest('button');
     if (!target) return;
 
     if (target.matches('[data-map-tab]')) {
       const frame = FRAMES.region[target.dataset.mapTab];
-      if (frame) animateTo(frame, 380);
+      if (frame) settle(frame, 390);
       return;
     }
 
     if (target.matches('[data-s]')) {
       const frame = FRAMES.subregion[target.dataset.s];
-      if (frame) animateTo(frame, 400);
+      if (frame) settle(frame, 455);
       return;
     }
 
     if (target.matches('[data-clear-selection], [data-z="reset"]')) {
-      requestAnimationFrame(() => {
-        const frame = activeFrame();
-        if (frame) animateTo(frame, 320);
-      });
+      requestAnimationFrame(() => settle(activeFrame(), 40));
     }
   });
 })();
