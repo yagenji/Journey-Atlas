@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/top-preview.css">
+  <link rel="stylesheet" href="assets/css/top-layout-v3.css">
   <script src="assets/js/top.js" defer></script>
 </head>
 <body>
@@ -18,12 +19,12 @@
       <small>世界を知れば、旅はもっと自由になる。</small>
     </a>
     <nav aria-label="トップページメニュー">
+      <a href="#countries">国から探す</a>
       <a href="#map">地図から探す</a>
       <a href="#themes">テーマから探す</a>
-      <a href="#countries">国から探す</a>
-      <a href="#about">はじめての方へ</a>
+      <a href="#lens-world">JOURNEY LENS</a>
+      <a href="#about">About</a>
     </nav>
-    <button class="wish-link" id="wish-link" type="button" aria-controls="all-countries-panel">♡ <span>行ってみたいリスト</span></button>
   </header>
 
   <main>
@@ -49,9 +50,9 @@
     </section>
 
     <section class="explore shell" id="explore" aria-label="世界の探し方">
+      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art"></div><div class="explore-card__copy"><span class="explore-icon" aria-hidden="true">⌕</span><div><h2>国から探す</h2><p>199の国・地域から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art"></div><div class="explore-card__copy"><span class="explore-icon" aria-hidden="true">⌖</span><div><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art"></div><div class="explore-card__copy"><span class="explore-icon" aria-hidden="true">✣</span><div><h2>テーマから探す</h2><p>自然、街並み、文化、絶景…テーマから旅を選ぶ</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art"></div><div class="explore-card__copy"><span class="explore-icon" aria-hidden="true">⌕</span><div><h2>国から探す</h2><p>199の国・地域から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
     </section>
 
     <section class="countries shell" id="countries">
@@ -118,6 +119,9 @@
   </main>
 
   <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
-  <footer class="top-footer shell"><div class="footer-links"><a href="#about">このサイトについて</a></div><small>© JOURNEY ATLAS</small></footer>
+  <footer class="top-footer shell">
+    <div class="footer-links"><a href="#about">About</a><a href="#lens-world">JOURNEY LENS</a></div>
+    <a class="footer-brand" href="./">JOURNEY ATLAS</a>
+  </footer>
 </body>
 </html>
