@@ -10,9 +10,53 @@ const empty = document.querySelector('#country-empty');
 const wishButton = document.querySelector('#wish-link');
 const toast = document.querySelector('#top-toast');
 const dots = [...document.querySelectorAll('.rail-dots i')];
+const heroImage = document.querySelector('#hero-image');
+const heroVisual = document.querySelector('#hero-visual');
+const heroButtons = [...document.querySelectorAll('[data-hero]')];
 
 let destinations = [];
-let allPanelMode = 'all';
+let heroSources = [];
+let heroIndex = 0;
+let heroTimer;
+
+const heroFiles = [1, 2, 3, 4, 5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);
+
+Promise.all(heroFiles.map(async (file) => {
+  const response = await fetch(file);
+  if (!response.ok) throw new Error(`Hero source missing: ${file}`);
+  return `data:image/webp;base64,${(await response.text()).trim()}`;
+})).then((sources) => {
+  heroSources = sources;
+  setHero(0, false);
+  startHeroRotation();
+}).catch(() => {
+  heroSources = [];
+});
+
+function setHero(index, animate = true) {
+  if (!heroImage || heroSources.length === 0) return;
+  heroIndex = (index + heroSources.length) % heroSources.length;
+  if (animate) heroVisual?.classList.add('is-changing');
+  window.setTimeout(() => {
+    heroImage.src = heroSources[heroIndex];
+    heroButtons.forEach((button, i) => button.classList.toggle('is-active', i === heroIndex));
+    heroImage.onload = () => heroVisual?.classList.remove('is-changing');
+  }, animate ? 160 : 0);
+}
+
+function startHeroRotation() {
+  window.clearInterval(heroTimer);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  heroTimer = window.setInterval(() => setHero(heroIndex + 1), 9000);
+}
+
+heroButtons.forEach((button) => button.addEventListener('click', () => {
+  setHero(Number(button.dataset.hero));
+  startHeroRotation();
+}));
+heroVisual?.addEventListener('mouseenter', () => window.clearInterval(heroTimer));
+heroVisual?.addEventListener('mouseleave', startHeroRotation);
+document.addEventListener('visibilitychange', () => document.hidden ? window.clearInterval(heroTimer) : startHeroRotation());
 
 fetch('data/atlas-destinations.json')
   .then((response) => {
@@ -63,12 +107,7 @@ function createCard(country, index, compact = false) {
 
   const body = document.createElement('div');
   body.className = 'country-card__body';
-  body.innerHTML = `
-    <h3>${country.nameEn}</h3>
-    <p>${country.nameJa}</p>
-    ${!compact && country.journeyLensPublished ? '<small class="country-card__lens">JOURNEY LENS</small>' : ''}
-    ${country.atlasPublished ? '<span class="country-card__open" aria-hidden="true">›</span>' : ''}`;
-
+  body.innerHTML = `<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${!compact && country.journeyLensPublished ? '<small class="country-card__lens">JOURNEY LENS</small>' : ''}${country.atlasPublished ? '<span class="country-card__open" aria-hidden="true">›</span>' : ''}`;
   card.append(art, body);
   return card;
 }
@@ -76,7 +115,7 @@ function createCard(country, index, compact = false) {
 function renderRail(items) {
   if (!rail) return;
   const fragment = document.createDocumentFragment();
-  items.forEach((country, index) => fragment.append(createCard(country, index, false)));
+  items.forEach((country, index) => fragment.append(createCard(country, index)));
   rail.replaceChildren(fragment);
   updateDots();
 }
@@ -91,8 +130,7 @@ function renderGrid(items) {
 
 function scrollRail(direction) {
   if (!rail) return;
-  const distance = Math.max(460, rail.clientWidth * 0.82) * direction;
-  rail.scrollBy({ left: distance, behavior: 'smooth' });
+  rail.scrollBy({ left: Math.max(460, rail.clientWidth * .82) * direction, behavior: 'smooth' });
 }
 
 function updateDots() {
@@ -100,32 +138,35 @@ function updateDots() {
   const max = rail.scrollWidth - rail.clientWidth;
   const ratio = max > 0 ? rail.scrollLeft / max : 0;
   const index = Math.min(dots.length - 1, Math.round(ratio * (dots.length - 1)));
-  dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === index));
+  dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
 }
 
-function setAllPanel(open, mode = 'all') {
+function setAllPanel(open, reset = true) {
   if (!allPanel || !toggleAll) return;
   allPanel.hidden = !open;
   toggleAll.setAttribute('aria-expanded', String(open));
   toggleAll.firstChild.textContent = open ? '一覧を閉じる ' : 'すべての国・地域を見る ';
-  allPanelMode = mode;
-  if (open) {
-    if (mode === 'all') {
-      if (searchInput) searchInput.value = '';
-      renderGrid(destinations);
-    }
-    allPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (open && reset) {
+    if (searchInput) searchInput.value = '';
+    renderGrid(destinations);
   }
+  if (open) allPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
+function focusCountry(slug) {
+  const country = destinations.find((item) => item.slug === slug);
+  if (!country) return;
+  setAllPanel(true, false);
+  if (searchInput) searchInput.value = country.nameJa;
+  renderGrid([country]);
+}
+
+document.querySelectorAll('[data-country-focus]').forEach((button) => button.addEventListener('click', () => focusCountry(button.dataset.countryFocus)));
 
 function getWishedSlugs() {
   try {
-    return destinations
-      .filter((country) => localStorage.getItem(`journey-atlas:wish:${country.slug}`) === 'true')
-      .map((country) => country.slug);
-  } catch {
-    return [];
-  }
+    return destinations.filter((country) => localStorage.getItem(`journey-atlas:wish:${country.slug}`) === 'true').map((country) => country.slug);
+  } catch { return []; }
 }
 
 let toastTimer;
@@ -140,30 +181,19 @@ function showToast(message) {
 prev?.addEventListener('click', () => scrollRail(-1));
 next?.addEventListener('click', () => scrollRail(1));
 rail?.addEventListener('scroll', () => window.requestAnimationFrame(updateDots), { passive: true });
-
-toggleAll?.addEventListener('click', () => {
-  const isOpen = allPanel && !allPanel.hidden;
-  setAllPanel(!isOpen, 'all');
-});
-
+toggleAll?.addEventListener('click', () => setAllPanel(Boolean(allPanel?.hidden)));
 searchInput?.addEventListener('input', () => {
-  allPanelMode = 'all';
   const query = searchInput.value.trim().toLowerCase();
-  if (!query) {
-    renderGrid(destinations);
-    return;
-  }
-  renderGrid(destinations.filter((country) => `${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query)));
+  renderGrid(query ? destinations.filter((country) => `${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query)) : destinations);
 });
-
 wishButton?.addEventListener('click', () => {
   const wished = getWishedSlugs();
   if (wished.length === 0) {
-    showToast('行ってみたい国はまだ保存されていません。国ページの「この国に行きたい」から追加できます。');
+    showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');
     return;
   }
+  setAllPanel(true, false);
   if (searchInput) searchInput.value = '';
   renderGrid(destinations.filter((country) => wished.includes(country.slug)));
-  setAllPanel(true, 'wish');
   showToast(`${wished.length}件の行ってみたい国を表示しています。`);
 });
