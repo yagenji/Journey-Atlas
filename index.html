@@ -3,119 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="景色と地図から、次の旅先に出会う。JOURNEY ATLASのアイスランド編。">
-  <title>ICELAND — JOURNEY ATLAS</title>
+  <meta name="description" content="景色と地図から、次に行きたい世界を見つける。JOURNEY ATLAS。">
+  <title>JOURNEY ATLAS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/atlas-overrides.css">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/top-preview.css">
 </head>
 <body>
-  <main id="app" aria-live="polite">
-    <div class="loading">旅のページをひらいています…</div>
-  </main>
+  <header class="top-header shell">
+    <a class="wordmark" href="./">JOURNEY ATLAS</a>
+    <nav aria-label="トップページメニュー">
+      <a href="#discover">景色から探す</a>
+      <a href="#countries">国から探す</a>
+      <a class="country-link" href="country.html?country=iceland">ICELAND</a>
+    </nav>
+  </header>
 
-  <template id="country-template">
-    <article class="country-page">
-      <section class="hero">
-        <header class="site-header page-shell">
-          <a class="brand" href="./" aria-label="JOURNEY ATLAS ホーム">JOURNEY ATLAS</a>
-          <nav class="utility-nav" aria-label="サイトメニュー">
-            <button type="button"><span aria-hidden="true">⌕</span><small>検索</small></button>
-            <button type="button"><span aria-hidden="true">◎</span><small>国を探す</small></button>
-            <button type="button"><span aria-hidden="true">☰</span><small>メニュー</small></button>
-          </nav>
-        </header>
-        <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="アイスランドの風景">
-          <div class="art-placeholder"><span>HERO ARTWORK</span><small>実景に忠実なイラストを配置</small></div>
+  <main>
+    <section class="top-hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">A VISUAL ATLAS FOR THE NEXT JOURNEY</p>
+        <h1>次に行きたい世界を、<br>見つける。</h1>
+        <p class="lead">景色を眺め、地図をたどり、まだ知らない国へ。<br>旅先を決める前の、世界をひらく図鑑。</p>
+        <div class="hero-actions">
+          <a class="primary" href="country.html?country=iceland">アイスランドを見る</a>
+          <a class="text-link" href="#discover">景色から探す →</a>
         </div>
-        <div class="hero-copy page-shell">
-          <p class="region" data-field="region"></p>
-          <h1 data-field="nameEn"></h1>
-          <p class="country-ja" data-field="nameJa"></p>
-          <p class="hero-lead" data-field="hero.lead"></p>
-        </div>
-      </section>
-
-      <div class="atlas-body page-shell">
-        <section class="atlas-panel" aria-labelledby="atlas-title">
-          <div class="map-column">
-            <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
-            <div class="map-frame">
-              <div class="map-art" id="country-map-art" role="group" aria-label="アイスランドの8地点">
-                <div class="map-grid" aria-hidden="true"></div>
-                <div class="map-placeholder">
-                  <b>MAP</b>
-                  <span>国土データを読み込んでいます</span>
-                </div>
-                <div class="map-markers" id="map-markers"></div>
-              </div>
-              <p class="map-disclaimer">国土形状と地点位置を保ちながら、景観をイラストで表現しています。</p>
-              <p class="map-disclaimer" data-field="map.source"></p>
-            </div>
-            <div class="encounter-strip">
-              <h3><span data-field="nameJa"></span>で出会えるもの</h3>
-              <div class="encounter-list" id="encounters"></div>
-            </div>
-          </div>
-
-          <div class="scenes-column">
-            <div class="scenes-heading">
-              <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
-              <p>番号に触れて、位置関係をたどる。</p>
-            </div>
-            <div class="scene-grid" id="scene-cards"></div>
-          </div>
-        </section>
-
-        <section class="travel-grid" aria-label="旅の情報">
-          <section class="info-section info-seasons">
-            <h2>旅するなら</h2>
-            <p class="section-label">季節</p>
-            <div class="season-list" id="seasons"></div>
-            <div class="transport" id="transport"></div>
-          </section>
-
-          <section class="info-section">
-            <h2>こんな人に</h2>
-            <div class="persona-list" id="personas"></div>
-          </section>
-
-          <section class="info-section">
-            <h2>基本情報</h2>
-            <dl class="fact-list" id="facts"></dl>
-          </section>
-
-          <section class="info-section">
-            <h2>知っておきたいこと</h2>
-            <div class="tip-list" id="tips"></div>
-          </section>
-        </section>
-
-        <section class="journey-footer" aria-labelledby="next-title">
-          <div class="related-wrap">
-            <h2 id="next-title"><span data-field="nameJa"></span>が気になったなら</h2>
-            <div class="related-grid" id="related"></div>
-          </div>
-          <div class="wish-wrap">
-            <button class="wish-button" id="wish-button" type="button">
-              <span class="wish-icon" aria-hidden="true">♡</span>
-              <strong>この国に行きたい</strong>
-              <small>行きたい国リストに保存します</small>
-            </button>
-            <p class="wish-status" id="wish-status" role="status"></p>
-          </div>
-        </section>
+        <p class="edition-note">JOURNEY LENSで公開している国から、順次追加していきます。</p>
       </div>
 
-      <footer class="site-footer page-shell">
-        <a class="brand brand--footer" href="./">JOURNEY ATLAS</a>
-        <small>© JOURNEY ATLAS</small>
-      </footer>
-    </article>
-  </template>
+      <div class="hero-canvas" aria-label="アイスランドの景色を組み合わせたイラスト">
+        <a class="hero-tile hero-tile--waterfall" href="country.html?country=iceland#skogafoss"><span>WATERFALL</span></a>
+        <a class="hero-tile hero-tile--ice" href="country.html?country=iceland#jokulsarlon"><span>ICE</span></a>
+        <a class="hero-tile hero-tile--coast" href="country.html?country=iceland#reynisfjara"><span>COAST</span></a>
+        <div class="hero-stamp"><small>FIRST EDITION</small><strong>ICELAND</strong><span>64°N</span></div>
+      </div>
+    </section>
 
-  <script src="assets/js/app.js" defer></script>
+    <section class="manifesto shell" aria-label="JOURNEY ATLASについて">
+      <p class="section-kicker">JOURNEY ATLAS</p>
+      <div class="manifesto-grid">
+        <h2>国名を覚えるためではなく、<br>「ここへ行きたい」を見つけるために。</h2>
+        <p>大きな景色、道の先にある地形、季節で変わる光。国をデータだけで並べず、まずは視覚から世界に出会う。JOURNEY ATLASは、旅の入口になる一国一ページのビジュアル図鑑です。</p>
+      </div>
+    </section>
+
+    <section class="discover shell" id="discover">
+      <div class="section-head">
+        <div><p class="section-kicker">DISCOVER BY SCENERY</p><h2>景色から、国に出会う。</h2></div>
+        <p>今はIcelandの景色で構成。国が増えるほど、ここに世界が広がっていきます。</p>
+      </div>
+
+      <div class="scenery-grid">
+        <a class="scenery-card scenery-card--wide" href="country.html?country=iceland#skogafoss"><img src="assets/images/iceland/skogafoss.svg" alt="スコゥガフォスのイラスト"><div><small>01 / ICELAND</small><h3>大地を落ちる水</h3><p>Skógafoss</p></div></a>
+        <a class="scenery-card" href="country.html?country=iceland#jokulsarlon"><img src="assets/images/iceland/jokulsarlon.svg" alt="ヨークルスアゥルロゥンのイラスト"><div><small>02 / ICELAND</small><h3>漂う氷の静けさ</h3><p>Jökulsárlón</p></div></a>
+        <a class="scenery-card" href="country.html?country=iceland#landmannalaugar"><img src="assets/images/iceland/landmannalaugar.svg" alt="ランドマンナロイガルのイラスト"><div><small>03 / ICELAND</small><h3>色を重ねた高地</h3><p>Landmannalaugar</p></div></a>
+        <a class="scenery-card scenery-card--long" href="country.html?country=iceland#reynisfjara"><img src="assets/images/iceland/reynisfjara.svg" alt="レイニスフィヤラのイラスト"><div><small>04 / ICELAND</small><h3>黒い海岸線</h3><p>Reynisfjara</p></div></a>
+      </div>
+    </section>
+
+    <section class="atlas-window shell" aria-label="旅の地図紹介">
+      <div class="atlas-copy">
+        <p class="section-kicker">EXPLORE ON THE MAP</p>
+        <h2>地図も、景色の一部に。</h2>
+        <p>場所を確認するだけの地図ではなく、山、氷、滝、海岸を眺めながら次の場所へ視線を移す。国ページでは、位置関係を保ちながらイラストだからできる地図表現を目指します。</p>
+        <a href="country.html?country=iceland">Icelandの旅の地図を見る →</a>
+      </div>
+      <div class="atlas-illustration" aria-hidden="true"><div class="map-shape"><span class="map-mark map-mark--1">1</span><span class="map-mark map-mark--2">2</span><span class="map-mark map-mark--3">3</span><span class="map-mark map-mark--4">4</span><i class="mountain mountain--1"></i><i class="mountain mountain--2"></i><i class="glacier"></i><i class="waterfall"></i></div><p>ILLUSTRATED MAP / CONCEPT</p></div>
+    </section>
+
+    <section class="countries shell" id="countries">
+      <div class="section-head countries-head">
+        <div><p class="section-kicker">COUNTRIES</p><h2>世界を、ひとつずつ。</h2></div>
+        <p>作成はJOURNEY LENSで現在公開している国から優先します。</p>
+      </div>
+      <div class="country-stage">
+        <a class="country-feature" href="country.html?country=iceland"><img src="assets/images/iceland/kirkjufell.svg" alt="アイスランドの山と滝のイラスト"><div class="country-feature-copy"><small>NOW OPEN · 01</small><h3>ICELAND</h3><p>アイスランド</p><span>火山、氷河、滝、黒い海岸線。地球の表情が次々と変わる島へ。</span></div></a>
+        <div class="country-next"><p>COMING NEXT</p><h3>JOURNEY LENS<br>公開国から順次。</h3><span>素材と物語がすでにある国から、ATLASの世界を広げていきます。</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="top-footer shell"><a class="wordmark" href="./">JOURNEY ATLAS</a><p>Find the world you want to see.</p><small>2026</small></footer>
 </body>
 </html>
