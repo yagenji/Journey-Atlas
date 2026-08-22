@@ -44,10 +44,12 @@ const featuredArt = {
   kenya:{x:'100%',y:'100%'}
 };
 
-fetch('assets/images/top/theme-approved-sprite.webp.b64')
+fetch('assets/images/top/theme-approved-sprite.webp.b64?v=20260822-2118')
   .then((response)=>{if(!response.ok) throw new Error('Theme artwork missing');return response.text();})
   .then((encoded)=>{
-    const image=`url("data:image/webp;base64,${encoded.trim()}")`;
+    const source=encoded.trim();
+    if(source.length<10000) throw new Error('Theme artwork incomplete');
+    const image=`url("data:image/webp;base64,${source}")`;
     themeArtElements.forEach((art,index)=>{
       art.style.backgroundImage=image;
       art.style.backgroundPosition=`${index*(100/7)}% 50%`;
