@@ -1,58 +1,120 @@
-/* JOURNEY ATLAS — regional map explorer */
+/* JOURNEY ATLAS — regional map explorer / editorial atlas pass */
 .map-panel.map-explorer{
   display:block;
   min-height:0;
-  padding:28px;
+  padding:30px 30px 32px;
+  background:linear-gradient(180deg,#fffdf9 0%,#fff 100%);
 }
 .map-explorer .map-heading{
   display:block;
   margin:0;
 }
-.map-explorer .map-heading p{max-width:640px}
+.map-explorer .map-heading::before{
+  content:'EXPLORE BY MAP';
+  display:block;
+  margin-bottom:7px;
+  color:#8b7457;
+  font:700 9px/1.2 var(--sans);
+  letter-spacing:.18em;
+}
+.map-explorer .map-heading p{max-width:680px}
+
 .map-region-tabs{
   display:flex;
   flex-wrap:wrap;
-  gap:7px;
-  margin:20px 0 18px;
+  gap:8px;
+  margin:21px 0 20px;
 }
 .map-region-tabs button{
-  padding:7px 12px;
-  border:1px solid rgba(25,62,87,.14);
+  position:relative;
+  padding:8px 14px;
+  border:1px solid rgba(25,62,87,.13);
   border-radius:999px;
-  background:#fff;
-  color:#42586b;
-  font:600 10.5px/1.2 var(--sans);
+  background:#fffdfa;
+  color:#405466;
+  box-shadow:0 1px 4px rgba(28,58,74,.035);
+  font:600 10.5px/1.2 var(--jp);
   cursor:pointer;
-  transition:background .16s ease,border-color .16s ease,color .16s ease;
+  transition:transform .16s ease,background .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease;
 }
-.map-region-tabs button:hover,
+.map-region-tabs button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(25,62,87,.28);
+  box-shadow:0 4px 10px rgba(28,58,74,.07);
+}
 .map-region-tabs button.is-active{
-  border-color:#244d6e;
-  background:#244d6e;
+  border-color:#234866;
+  background:#234866;
   color:#fff;
+  box-shadow:none;
 }
+.map-region-tabs button[data-map-tab='asia'].is-active{background:#718f7a;border-color:#718f7a}
+.map-region-tabs button[data-map-tab='europe'].is-active{background:#b99060;border-color:#b99060}
+.map-region-tabs button[data-map-tab='africa'].is-active{background:#b47b54;border-color:#b47b54}
+.map-region-tabs button[data-map-tab='north-america'].is-active{background:#6f8da0;border-color:#6f8da0}
+.map-region-tabs button[data-map-tab='latin-america'].is-active{background:#8a9a68;border-color:#8a9a68}
+.map-region-tabs button[data-map-tab='oceania'].is-active{background:#5d9a9a;border-color:#5d9a9a}
+.map-region-tabs button[data-map-tab='antarctica'].is-active{background:#7899aa;border-color:#7899aa}
+
 .map-explorer-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.65fr) minmax(260px,.72fr);
-  gap:22px;
+  grid-template-columns:minmax(0,1.7fr) minmax(280px,.72fr);
+  gap:24px;
   align-items:stretch;
 }
 .atlas-map-wrap{
   position:relative;
-  min-height:330px;
-  padding:14px 16px 10px;
+  min-height:360px;
+  padding:17px 20px 13px;
   overflow:hidden;
-  border:1px solid rgba(28,67,92,.09);
-  border-radius:14px;
-  background:#f2f8f8;
+  border:1px solid rgba(31,63,82,.11);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 13% 22%,rgba(255,255,255,.95) 0 2%,transparent 18%),
+    radial-gradient(circle at 82% 18%,rgba(255,255,255,.72) 0 1%,transparent 19%),
+    linear-gradient(180deg,#eaf5f5 0%,#eff7f5 58%,#f7f4e9 100%);
+  box-shadow:inset 0 0 0 7px rgba(255,255,255,.48),0 8px 24px rgba(37,67,79,.055);
+}
+.atlas-map-wrap::before{
+  content:'';
+  position:absolute;
+  inset:15px;
+  z-index:0;
+  border-radius:12px;
+  background-image:
+    linear-gradient(rgba(70,103,112,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,103,112,.055) 1px,transparent 1px);
+  background-size:12.5% 25%;
+  pointer-events:none;
+}
+.atlas-map-wrap::after{
+  content:'N\A✦';
+  white-space:pre;
+  position:absolute;
+  top:24px;
+  right:28px;
+  z-index:2;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  color:#536e78;
+  text-align:center;
+  font:700 9px/1.02 var(--sans);
+  letter-spacing:.08em;
+  opacity:.68;
+  pointer-events:none;
 }
 .atlas-map{
+  position:relative;
+  z-index:1;
   display:block;
   width:100%;
   height:auto;
-  min-height:285px;
+  min-height:310px;
+  filter:drop-shadow(0 5px 7px rgba(47,74,75,.08));
 }
-.atlas-map .ocean{fill:#edf6f6}
+.atlas-map .ocean{fill:transparent}
 .atlas-region{
   outline:none;
   cursor:pointer;
@@ -60,109 +122,170 @@
 .atlas-region path,
 .atlas-region ellipse,
 .atlas-region circle{
-  fill:#d7e2d8;
-  stroke:#fff;
-  stroke-width:2.1;
-  transition:fill .18s ease,filter .18s ease;
+  stroke:#f9f7ef;
+  stroke-width:2.7;
+  transition:fill .18s ease,filter .18s ease,transform .18s ease,stroke .18s ease;
 }
+.atlas-region[data-map-shape='north-america'] path{fill:#b9cdd0}
+.atlas-region[data-map-shape='latin-america'] path,
+.atlas-region[data-map-shape='latin-america'] circle{fill:#b7c997}
+.atlas-region[data-map-shape='europe'] path{fill:#d5b985}
+.atlas-region[data-map-shape='africa'] path{fill:#d3a078}
+.atlas-region[data-map-shape='asia'] path{fill:#a9bea2}
+.atlas-region[data-map-shape='oceania'] path,
+.atlas-region[data-map-shape='oceania'] ellipse,
+.atlas-region[data-map-shape='oceania'] circle{fill:#91c0bd}
+.atlas-region[data-map-shape='antarctica'] path{fill:#c9dde2}
 .atlas-region:hover path,
 .atlas-region:hover ellipse,
 .atlas-region:hover circle,
 .atlas-region:focus path,
 .atlas-region:focus ellipse,
 .atlas-region:focus circle{
-  fill:#c7d9ca;
-  filter:drop-shadow(0 2px 3px rgba(38,74,82,.08));
+  filter:brightness(.97) saturate(1.06) drop-shadow(0 3px 4px rgba(38,74,82,.10));
+  stroke:#fffaf0;
 }
 .atlas-region.is-active path,
 .atlas-region.is-active ellipse,
 .atlas-region.is-active circle{
-  fill:#d6b77b;
+  fill:#e0b66f;
+  stroke:#fff8e9;
+  filter:drop-shadow(0 4px 5px rgba(86,66,35,.14));
 }
 .atlas-map-label{
-  fill:#506678;
-  font:600 11px/1 var(--jp);
+  fill:#27475e;
+  font:600 12px/1 var(--jp);
   text-anchor:middle;
   pointer-events:none;
+  paint-order:stroke;
+  stroke:rgba(255,255,255,.72);
+  stroke-width:3px;
+  stroke-linejoin:round;
 }
-.atlas-region.is-active .atlas-map-label{fill:#183b5c}
+.atlas-region.is-active .atlas-map-label{fill:#173b5d;font-weight:700}
 .map-hint{
   position:absolute;
-  left:16px;
-  bottom:10px;
+  left:24px;
+  bottom:14px;
+  z-index:2;
   margin:0;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.76);
+  color:#667983;
   font-size:9.5px;
   line-height:1.4;
-  color:#72818e;
+  backdrop-filter:blur(4px);
 }
+
 .map-region-panel{
+  --map-accent:#234866;
+  position:relative;
   min-width:0;
-  padding:20px 18px;
-  border:1px solid rgba(28,67,92,.09);
-  border-radius:14px;
-  background:#fbfaf6;
+  padding:23px 20px 20px;
+  overflow:hidden;
+  border:1px solid rgba(28,67,92,.10);
+  border-radius:18px;
+  background:linear-gradient(180deg,#fffbf1 0%,#fff 100%);
+  box-shadow:0 8px 24px rgba(37,67,79,.05);
 }
+.map-region-panel::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:4px;
+  background:var(--map-accent);
+}
+.map-explorer[data-active-region='asia'] .map-region-panel{--map-accent:#718f7a}
+.map-explorer[data-active-region='europe'] .map-region-panel{--map-accent:#b99060}
+.map-explorer[data-active-region='africa'] .map-region-panel{--map-accent:#b47b54}
+.map-explorer[data-active-region='north-america'] .map-region-panel{--map-accent:#6f8da0}
+.map-explorer[data-active-region='latin-america'] .map-region-panel{--map-accent:#8a9a68}
+.map-explorer[data-active-region='oceania'] .map-region-panel{--map-accent:#5d9a9a}
+.map-explorer[data-active-region='antarctica'] .map-region-panel{--map-accent:#7899aa}
 .map-region-kicker{
   display:block;
-  color:#7f8b92;
+  color:var(--map-accent);
   font:700 9px/1.2 var(--sans);
-  letter-spacing:.16em;
+  letter-spacing:.17em;
 }
 .map-region-panel h3{
-  margin:7px 0 0;
+  margin:8px 0 0;
   color:#173b5d;
-  font-size:20px;
+  font-size:22px;
   line-height:1.3;
 }
 .map-region-panel>p{
-  margin:8px 0 0;
-  color:#5e6c78;
+  margin:9px 0 0;
+  color:#586a76;
   font-size:10.5px;
-  line-height:1.65;
+  line-height:1.72;
 }
 .map-region-count{
   display:inline-flex;
-  margin-top:12px;
-  padding:5px 8px;
+  margin-top:13px;
+  padding:5px 9px;
   border-radius:999px;
-  background:#eef3ef;
-  color:#50635a;
+  background:color-mix(in srgb,var(--map-accent) 12%,white);
+  color:color-mix(in srgb,var(--map-accent) 82%,#173b5d);
   font:700 9px/1.2 var(--sans);
-  letter-spacing:.05em;
+  letter-spacing:.06em;
 }
 .map-region-list{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:7px;
-  max-height:220px;
-  margin-top:14px;
+  max-height:224px;
+  margin-top:15px;
   overflow:auto;
-  padding-right:2px;
+  padding:1px 2px 1px 0;
 }
 .map-region-list button,
 .map-region-list a{
   min-width:0;
   padding:8px 9px;
   border:1px solid rgba(28,67,92,.10);
-  border-radius:8px;
-  background:#fff;
+  border-radius:9px;
+  background:rgba(255,255,255,.92);
   color:#29465e;
   text-align:left;
   text-decoration:none;
   font:600 9.5px/1.35 var(--jp);
   cursor:pointer;
+  transition:transform .14s ease,border-color .14s ease,background .14s ease;
 }
 .map-region-list button:hover,
 .map-region-list a:hover{
-  border-color:rgba(28,67,92,.28);
-  background:#f7faf9;
+  transform:translateY(-1px);
+  border-color:color-mix(in srgb,var(--map-accent) 45%,transparent);
+  background:#fff;
 }
 .map-region-list .map-region-choice{
+  position:relative;
   display:grid;
   grid-template-columns:1fr auto;
   align-items:center;
   gap:6px;
+  padding-left:13px;
 }
+.map-region-list .map-region-choice::before{
+  content:'';
+  position:absolute;
+  left:6px;
+  top:8px;
+  bottom:8px;
+  width:3px;
+  border-radius:999px;
+  background:#9aac9e;
+}
+.map-region-list .map-region-choice[data-region-choice='europe']::before{background:#c4a06f}
+.map-region-list .map-region-choice[data-region-choice='africa']::before{background:#c38c68}
+.map-region-list .map-region-choice[data-region-choice='north-america']::before{background:#7f9cab}
+.map-region-list .map-region-choice[data-region-choice='latin-america']::before{background:#9aaa79}
+.map-region-list .map-region-choice[data-region-choice='oceania']::before{background:#6fa5a4}
+.map-region-list .map-region-choice[data-region-choice='antarctica']::before{background:#8eabb9}
 .map-region-list .map-region-choice b{
   font-size:9.5px;
   line-height:1.35;
@@ -175,35 +298,40 @@
   content:'›';
   float:right;
   margin-left:5px;
+  color:var(--map-accent);
   font-size:13px;
   line-height:1;
 }
 .map-country-status{
   min-height:17px;
-  margin-top:10px !important;
+  margin-top:11px !important;
   color:#8a6c47 !important;
   font-size:9.5px !important;
 }
+
 @media(max-width:1050px){
-  .map-explorer-grid{grid-template-columns:minmax(0,1.35fr) minmax(240px,.75fr)}
-  .atlas-map-wrap{min-height:300px}
-  .atlas-map{min-height:260px}
+  .map-explorer-grid{grid-template-columns:minmax(0,1.35fr) minmax(250px,.75fr)}
+  .atlas-map-wrap{min-height:325px}
+  .atlas-map{min-height:275px}
 }
 @media(max-width:760px){
-  .map-panel.map-explorer{padding:20px 16px}
+  .map-panel.map-explorer{padding:21px 16px 22px}
+  .map-explorer .map-heading::before{margin-bottom:6px}
   .map-region-tabs{
     flex-wrap:nowrap;
     overflow-x:auto;
-    margin:16px -2px 14px;
-    padding:0 2px 4px;
+    margin:17px -2px 15px;
+    padding:0 2px 5px;
   }
   .map-region-tabs button{flex:0 0 auto}
-  .map-explorer-grid{grid-template-columns:1fr;gap:12px}
-  .atlas-map-wrap{min-height:230px;padding:10px 8px 8px}
-  .atlas-map{min-height:205px}
-  .atlas-map-label{font-size:9px}
-  .map-hint{left:10px;bottom:7px;font-size:8.5px}
-  .map-region-panel{padding:16px 14px}
-  .map-region-panel h3{font-size:18px}
+  .map-explorer-grid{grid-template-columns:1fr;gap:13px}
+  .atlas-map-wrap{min-height:242px;padding:10px 8px 9px;border-radius:14px}
+  .atlas-map-wrap::before{inset:9px}
+  .atlas-map-wrap::after{top:15px;right:18px}
+  .atlas-map{min-height:218px}
+  .atlas-map-label{font-size:9.5px;stroke-width:2.2px}
+  .map-hint{left:13px;bottom:9px;font-size:8.5px}
+  .map-region-panel{padding:19px 15px 16px;border-radius:14px}
+  .map-region-panel h3{font-size:19px}
   .map-region-list{max-height:210px}
 }
