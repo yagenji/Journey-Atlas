@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/top-preview.css">
   <link rel="stylesheet" href="assets/css/top-layout-v3.css">
+  <link rel="stylesheet" href="assets/css/top-layout-v4.css">
   <script src="assets/js/top.js" defer></script>
 </head>
 <body>
@@ -32,7 +33,6 @@
       <div class="hero-copy">
         <h1>次に行きたい世界を、<br>見つける。</h1>
         <p class="lead">まだ知らない景色、心に残る出会い、<br>世界199の国・地域から、旅のきっかけを見つけよう。</p>
-        <a class="primary" href="#explore"><span class="primary-mark" aria-hidden="true">↗</span><span>旅のヒントを探す</span><b>›</b></a>
       </div>
 
       <div class="hero-visual" id="hero-visual">
@@ -96,11 +96,6 @@
       </article>
     </section>
 
-    <section class="about-note shell" id="about">
-      <strong>JOURNEY ATLASとは</strong>
-      <p>国名や数字を覚えるためではなく、景色、地図、文化、生きものから「ここへ行ってみたい」を見つけるための世界図鑑です。199の国・地域を、一国一ページで紹介していきます。</p>
-    </section>
-
     <section class="lens-world shell" id="lens-world" aria-label="JOURNEY LENSで見る世界">
       <div class="section-head lens-head">
         <div><h2>JOURNEY LENSで見る世界</h2><p>実際に旅した場所は、写真と物語で。JOURNEY ATLASの世界をもう少し深くたどる。</p></div>
@@ -116,12 +111,20 @@
         <a class="lens-card" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer"><div class="lens-card__art lens-art lens-art--cuba"></div><div class="lens-card__body"><span>🇨🇺</span><div><h3>Cuba</h3><p>キューバ</p></div></div></a>
       </div>
     </section>
+
+    <section class="about-note shell" id="about">
+      <strong>JOURNEY ATLASとは</strong>
+      <p>国名や数字を覚えるためではなく、景色、地図、文化、生きものから「ここへ行ってみたい」を見つけるための世界図鑑です。199の国・地域を、一国一ページで紹介していきます。</p>
+    </section>
   </main>
 
   <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
-  <footer class="top-footer shell">
-    <div class="footer-links"><a href="#about">About</a><a href="#lens-world">JOURNEY LENS</a></div>
-    <a class="footer-brand" href="./">JOURNEY ATLAS</a>
+
+  <footer class="atlas-colophon">
+    <div class="colophon-grid">
+      <div class="mark">JOURNEY ATLAS<span class="mark-tag">次に行きたい世界を、見つける。</span></div>
+      <div class="meta">世界199の国・地域を、イラストと地図で。<br>© 2026 Makoto Yagenji · 無断使用・転載を禁じます<br><span class="meta-note">旅先を見つけるためのビジュアル図鑑です。</span><br><span class="meta-links"><a href="#about">About</a><a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a></span></div>
+    </div>
   </footer>
 </body>
 </html>
