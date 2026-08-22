@@ -287,9 +287,13 @@
     animate(subOverview(id), 420);
   }
   function select(iso) {
-    const c = byIso.get(iso), g = grp(iso);
-    if (!c || !g) return;
+    const c = byIso.get(iso);
+    if (!c) return;
     const rid = regIso.get(iso), sid = subIso.get(iso);
+    const g = ((sid === 'polynesia' || sid === 'micronesia') && wrapGroups.has(iso))
+      ? wrapGroups.get(iso)
+      : groups.get(iso);
+    if (!g) return;
     activeR = rid; activeS = sid || null;
     root.dataset.activeRegion = rid;
     if (sid) root.dataset.activeSubregion = sid; else delete root.dataset.activeSubregion;
