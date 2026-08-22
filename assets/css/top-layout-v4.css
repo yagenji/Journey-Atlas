@@ -1,0 +1,21 @@
+/* Final top-page ordering and Journey Lens-style colophon */
+.hero-copy{padding-bottom:26px}
+.hero-copy .lead{margin-bottom:0}
+
+.lens-world{padding-bottom:34px}
+.about-note{margin-top:0;padding:30px 4px 38px;border-top:1px solid var(--line)}
+
+.atlas-colophon{background:#0E100B;color:#ECE6D6;padding:clamp(40px,7vh,72px) clamp(18px,5vw,80px);border-top:1px solid #343829}
+.atlas-colophon .colophon-grid{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.atlas-colophon .mark{font-family:var(--sans);font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:.95rem}
+.atlas-colophon .mark-tag{display:block;margin-top:10px;font-family:var(--jp);font-weight:400;letter-spacing:.04em;text-transform:none;font-size:.86rem;color:#9DA08B}
+.atlas-colophon .meta{font-family:var(--sans);font-size:.66rem;letter-spacing:.08em;line-height:2;color:#9DA08B;text-align:right}
+.atlas-colophon .meta-note{opacity:.58}
+.atlas-colophon .meta-links{display:inline-flex;gap:22px;justify-content:flex-end}
+.atlas-colophon a{color:inherit}
+.atlas-colophon a:hover{color:#ECE6D6}
+
+@media(max-width:640px){
+  .atlas-colophon .meta{text-align:left}
+  .atlas-colophon .meta-links{justify-content:flex-start}
+}
