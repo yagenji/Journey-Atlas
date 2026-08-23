@@ -1,6 +1,6 @@
 # Iceland Page QA
 
-最終更新：2026-08-21
+最終更新：2026-08-23
 
 Icelandページを、公開前に「実景との一致」「データ整合」「操作性」「レスポンシブ」「将来の国追加」の5観点で確認するための台帳。
 
@@ -8,22 +8,23 @@ Icelandページを、公開前に「実景との一致」「データ整合」�
 
 | 対象 | 現状 | 最終確認ポイント |
 | --- | --- | --- |
-| Hero | 仮実装済み | Iceland全体の代表景観として採用するか。Mývatn単独をHeroに固定するかは最終判断が必要。 |
-| Skógafoss | 実装済み | 滝幅、崖形状、滝壺、人物尺度。 |
-| Jökulsárlón | 実装済み | 氷河湖と奥の氷河の連続性、氷塊の色。 |
-| Reynisfjara | 実装済み | 柱状節理、黒砂、Reynisdrangarの位置関係。 |
-| Þingvellir | 実装済み | 裂け目地形を誇張していないこと。 |
-| Geysir | 実装済み | 間欠泉の噴出を火山噴火のようにしていないこと。 |
-| Mývatn | 実装済み | 湖、火山地形、島・丘の比率。 |
-| Kirkjufell | 実装済み | 山の輪郭とKirkjufellsfossの位置関係。 |
-| Landmannalaugar | 実装済み | 流紋岩の色を虹色に誇張していないこと。 |
+| Hero | 構造実装済み / visual差し替え待ち | **Stokksnes / Vestrahornの実景を基準にした専用Hero**へ差し替える。 |
+| Skógafoss | 構造実装済み / visual差し替え待ち | 滝幅、崖形状、滝壺、人物尺度。 |
+| Jökulsárlón | 構造実装済み / visual差し替え待ち | 氷河湖と奥の氷河の連続性、氷塊の色。 |
+| Reynisfjara | 構造実装済み / visual差し替え待ち | 柱状節理、黒砂、Reynisdrangarの位置関係。 |
+| Þingvellir | 構造実装済み / visual差し替え待ち | 裂け目地形を誇張していないこと。 |
+| Geysir | 構造実装済み / visual差し替え待ち | 間欠泉の噴出を火山噴火のようにしていないこと。 |
+| Mývatn | 構造実装済み / visual差し替え待ち | 湖、火山地形、島・丘の比率。 |
+| Kirkjufell | 構造実装済み / visual差し替え待ち | 山の輪郭とKirkjufellsfossの位置関係。 |
+| Landmannalaugar | 構造実装済み / visual差し替え待ち | 流紋岩の色を虹色に誇張していないこと。 |
 
 ### 現時点の評価
 
-- 8景は同一の低彩度・水彩／ガッシュ調で統一されている。
-- 場所の識別性は概ね確保されている。
-- 最終版では、絵の美しさより地形一致を優先する。
-- Heroだけは「Iceland全体の顔」として、単一名所のMývatnを使い続けるかがデザイン判断になる。
+- ページ構造・地図連動・情報設計はテンプレート候補として成立している。
+- 既存SVGは旧スタイルのため、最終production artworkとしては扱わない。
+- 最終画像はJOURNEY ATLAS固定基準の **photo 60 / illustration 40** を使う。
+- 画像はすべて実在する特定景観を基準にし、写真そのものには見せない。
+- JOURNEY LENSの実写写真と一目で差が分かることを確認する。
 
 ## 2. データ整合
 
@@ -47,6 +48,8 @@ Icelandページを、公開前に「実景との一致」「データ整合」�
 - [x] キーボードのEnter / Spaceでも景色を選択可能。
 - [x] 「この国に行きたい」はlocalStorageに保存。
 - [x] 地図画像が読み込めない場合のフォールバックあり。
+- [x] Header utility navigationを実リンク化し、dead controlを解消。
+- [x] PAGE NOT FOUNDからトップへ戻る導線を明確化。
 
 ## 4. レスポンシブ
 
@@ -56,12 +59,18 @@ Icelandページを、公開前に「実景との一致」「データ整合」�
 - [x] スマホでは地図ラベルを隠し、番号を優先。
 - [ ] 実機iPhoneで最終目視確認。
 
-## 5. 公開前に残す判断
+## 5. 確定した判断
 
-技術・データ側で先に進められる項目は完了させる。ユーザー判断を必要とするのは次の3点。
+1. **Hero**：Mývatnの再利用ではなく、Stokksnes / Vestrahornを基準にした専用Heroを制作する。
+2. **アートスタイル**：旧水彩／ガッシュ調ではなく、写真60 / 絵40のpainterly realismを最終基準とする。
+3. **関連国**：Norway / New Zealand / Chileは、各国ページ制作前でも画像なしで成立する現在の構造を維持する。画像完成はIceland公開のblockerにしない。
 
-1. **HeroをMývatnのまま確定するか、Iceland専用Heroを別途作るか。**
-2. **8景の現在の水彩／ガッシュ調を最終スタイルとして固定するか。**
-3. **関連国（Norway / New Zealand / Chile）をIcelandページ完成時点で画像付きにするか、国ページ実装時まで画像なしにするか。**
+## 6. 公開前に残る作業
 
-この3点の判断前までは、構造・データ・操作性の改善を優先して進める。
+1. Hero production illustrationの差し替え。
+2. 8 scene production illustrationsの差し替え。
+3. illustration差し替え後のcrop / readability QA。
+4. 実機iPhone最終目視。
+5. country JSON validationの再実行。
+
+この5点が完了したらIceland構造をcountry-page templateとしてlockする。
