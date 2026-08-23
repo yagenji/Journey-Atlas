@@ -16,26 +16,26 @@ JOURNEY LENSは実際に訪れた場所を写真と物語で追体験するサ�
 
 ### 基本比率
 
-- 写真の実在感：60%
-- 絵としての表現：40%
+- 写真の実在感：45%
+- 絵としての表現：55%
 
 ### 基本表現
 
-- semi-realistic / painterly editorial landscape illustration
-- 実在感のある風景イラスト。写真そのものには見せない。
-- 写真に近い構図、光、遠近感、地形の説得力を保つ。
-- 一方で、細部を整理し、面と筆致のまとまりを明確に残す。
-- 空、雲、山、岩、植生、水、建物の面処理に、軽いペインタリーな筆の表情を残す。
+- bright semi-realistic editorial travel illustration
+- 実在感のある風景を基準にしながら、一目でイラストと分かる。
+- 写真に近い地形・光・遠近感を保ちつつ、細部を整理し、色面と筆致を明確に残す。
+- 空、雲、山、岩、植生、水、建物に適度な描画感を出す。
 - 輪郭線で漫画的に描くのではなく、色面・光・陰影・筆致で形をつくる。
-- デジタルペイントまたは油彩的な質感は許容するが、厚塗りや荒々しい筆致を主役にしない。
-- 水彩のにじみ、ぼやけ、紙の白抜けが強く見える表現にはしない。
-- 「一瞬写真に見える」よりも「実在感の高い上質な絵」と分かることを優先する。
+- 明るく開けた印象を基本とする。曇天や重い空だけが続く画面構成にはしない。
+- 水彩のにじみ、薄いウォッシュ、紙の白抜けが強い表現にはしない。
+- 厚塗り油彩のような重さ、荒々しいインパスト、過度な絵画作品感にも寄せない。
+- 「写真の加工」にも「水彩画」にも見えない、JOURNEY ATLAS独自のエディトリアルイラストを目指す。
 
 ## 3. JOURNEY LENSとの差別化
 
 ### JOURNEY ATLAS
 
-- 絵
+- イラスト
 - 世界を見つける入口
 - その国・地域を象徴する一場面を編集して見せる
 - ノイズや細部を整理して、場所の個性を一枚に凝縮する
@@ -48,7 +48,7 @@ JOURNEY LENSは実際に訪れた場所を写真と物語で追体験するサ�
 - 現地で見た一瞬をそのまま残す
 - 写真と文章で追体験と余韻をつくる
 
-ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差が一目で分かること。
+ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目で分かること。
 
 ## 4. リアリティ
 
@@ -63,11 +63,10 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 
 残すべき絵画性：
 
-- 写真特有の微細なノイズや超細密テクスチャを減らす。
+- 写真特有の微細ノイズや超細密テクスチャを減らす。
 - 主役への視線誘導を実景写真より明確にする。
 - 背景の細部を簡略化し、前景・中景・遠景の面を整理する。
 - 色を自然な範囲で編集し、カードサイズでも場所の個性が伝わるようにする。
-- 空気遠近を少し強め、奥行きを読みやすくする。
 - 筆致を完全には消さず、特に空・雲・山肌・水面・植生に適度な描画感を残す。
 
 避けるもの：
@@ -75,46 +74,42 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 - photorealistic / hyperreal / hyper-detailed
 - ストック写真風
 - DSLR写真そのものに見える出力
-- 過度なシャープネス
 - HDR、強い局所コントラスト
 - CG・3Dレンダー感
 - レンズボケを強調した写真演出
-- 映画ポスターのような劇的すぎる照明
 - 水彩画として明確に見えるにじみ・ウォッシュ
+- 厚塗り油彩・インパストを主役にした重い画面
 - 子ども向け図鑑のような単純化
 
 ## 6. 構図
 
-### Country card
+### Country card / scene
 
-現在のトップページのcountry cardは約16:10（166 × 104）で表示される。
-
-- 制作基準比率：16:10
+- 制作基準比率：16:10の横長
 - 推奨マスター：1600 × 1000相当
 - 主要被写体は中央60〜70%の安全領域に置く。
 - 上下左右約10%がトリミングされても成立する構図にする。
 - 小さいカードでも認識できる強い主役または地形のシルエットを持たせる。
 - 主役を画面端に寄せすぎない。
-- 1枚の中に見せ場を詰め込みすぎず、視線が自然に一方向へ流れる構図にする。
+- 1枚の中に見せ場を詰め込みすぎない。
 
 ### カメラ感
 
 - 基本は自然な35〜50mm相当の視野。
 - 広い地形では24〜35mm相当まで許容する。
 - 極端な超広角、魚眼、圧縮された超望遠表現を避ける。
-- 環礁など地理構造そのものが魅力の場合のみ、穏やかな俯瞰・低高度空撮風を許容する。
 - 写真レンズの存在を感じさせすぎない。
 
 ## 7. 光と色
 
-- 自然光を基本とする。
-- 朝、夕方、曇天、霧、青の時間など、その場所に適した光を選ぶ。
-- 毎国を夕焼けにしない。
-- 彩度は実景を基準にするが、絵として色面の調和を少し強める。
+- 明るい自然光を基本とする。
+- 青空、薄曇り、朝夕、霧など場所に合った光を使い分けるが、全件が曇天・灰色にならないよう管理する。
+- 絵だからこそ、実景の説得力を壊さない範囲で明度と色面を少し持ち上げる。
+- 青空は爽やかにするが、毎回同じ青・同じ雲にはしない。
 - 海や湖を不自然な蛍光ブルーにしない。
-- 緑を過度に鮮やかにしない。
-- 空だけを劇的にして場所の特徴を弱めない。
-- 全201枚で同じ青空・同じ黄金色の夕景が続かないよう管理する。
+- 緑を過度にネオン化しない。
+- 毎国を夕焼けにしない。
+- 201枚全体で晴れ・薄曇り・朝夕・季節感を分散する。
 
 ## 8. 人物・動物
 
@@ -139,8 +134,6 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 - Fuji + torii + sushi + shinkansen
 - lion + giraffe + Maasai + flag
 
-これは「国の名物コラージュ」になり、JOURNEY ATLASの世界観から外れる。
-
 ## 10. 全201枚でのバリエーション
 
 同じ種類の絵が続かないよう、全体で以下を意図的に分散させる。
@@ -152,8 +145,6 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 - wildlife — 野生動物
 - sea — 海・島・環礁
 - road — 道・移動の風景
-
-テーマはイラストの構図管理用であり、サイトの8テーマ分類と必ずしも1対1で一致させる必要はない。
 
 ## 11. 画像内禁止事項
 
@@ -169,24 +160,18 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 
 ## 12. 生成用共通プロンプト骨格
 
-各国のscene briefの前後に以下の考え方を適用する。
-
-> A semi-realistic painterly editorial travel illustration, approximately 60% photographic realism and 40% visible illustration. Accurate geography, architecture, vegetation and natural lighting, but clearly rendered as a refined painting rather than a photograph. Simplified micro-detail, organized color shapes, subtle visible brushwork in sky, clouds, terrain, foliage and water, natural atmospheric depth, one coherent scene, no collage, no text, no flags, no logos, no watermark, no photorealistic stock-photo look, no hyper-detail, no HDR, no strong lens effects, no cartoon outlines, no watercolor wash, no 3D-render look. 16:10 horizontal composition, central crop-safe focal area.
-
-各国固有部分では、scene / light / landscape-specific restrictionsだけを追加する。
+> A bright semi-realistic editorial travel illustration, approximately 45% photographic realism and 55% visible illustration. Accurate real-world geography, architecture, vegetation and natural lighting, with clearly organized color shapes and visible painterly brushwork. Bright open daylight or location-appropriate luminous light, crisp readable landforms, natural atmospheric depth, one coherent real scene, horizontal 16:10 composition. Clearly illustrated at first glance, but not watercolor, not heavy gouache, not thick impasto, not a photo filter. No collage, no text, no flags, no logos, no watermark, no photorealistic stock-photo look, no HDR, no strong lens effects, no cartoon outlines, no 3D-render look.
 
 ## 13. QA
-
-生成後は最低限、以下を確認する。
 
 1. 実在する場所・景観として成立しているか。
 2. 国・地域を取り違えていないか。
 3. 地形・建物の形が大きく崩れていないか。
 4. 実景にない要素を足していないか。
-5. 見た瞬間に完全な写真と思われないか。
-6. 逆に子ども向け・水彩・漫画的な絵になっていないか。
-7. 適度な筆致と面の整理が見えるか。
-8. HDR・彩度・夕焼けが過剰でないか。
+5. 一目でイラストと分かるか。
+6. 水彩・厚塗り・漫画・写真加工のどれかに偏りすぎていないか。
+7. 明るさは十分か。曇天が連続していないか。
+8. 適度な筆致と面の整理が見えるか。
 9. 16:10カードに縮小しても主役を認識できるか。
 10. 前後の国・地域と構図・色・題材が単調に重複していないか。
 11. 文字・ロゴ・透かしが入っていないか。
@@ -194,12 +179,10 @@ ATLASの絵が写真に見える場合はNGとする。LENSとの視覚的な差
 
 ## 14. Production rule
 
-スタイルはpilot試作で承認済み。以降はこの基準をlockする。
-
-制作順：
+この基準はIceland最終ベンチマークで承認済みとしてlockする。
 
 1. 全201件のscene briefを実景確認する。
-2. 20件程度のbatchで生成する。
+2. controlled batchで生成する。
 3. batchごとにQAする。
 4. 問題がある画像のみ再生成する。
 5. approved画像のみサイトへ実装する。
