@@ -1,5 +1,6 @@
 (() => {
   const ATLAS_TOTAL = 201;
+  const ASSET_VERSION = '20260823-1630';
   const ADDITIONS = [
     {
       order: 200,
@@ -42,6 +43,11 @@
   window.fetch = async (...args) => {
     const request = args[0];
     const target = typeof request === 'string' ? request : (request?.url || '');
+
+    if (target.includes('assets/images/top/explore-entry-sprite.webp.b64')) {
+      const freshTarget = `${target.split('?')[0]}?v=${ASSET_VERSION}`;
+      return nativeFetch(freshTarget, args[1]);
+    }
 
     if (target.includes('data/atlas-destinations.json')) {
       const response = await nativeFetch(...args);
