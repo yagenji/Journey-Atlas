@@ -1,6 +1,6 @@
 (() => {
   const ATLAS_TOTAL = 201;
-  const ASSET_VERSION = '20260823-1630';
+  const ASSET_VERSION = '20260823-1655';
   const ADDITIONS = [
     {
       order: 200,
@@ -99,7 +99,21 @@
     return nativeFetch(...args);
   };
 
-  const aboutHtml = '<span>JOURNEY ATLASは、国連加盟193か国と、日本が国家承認している国のうち国連未加盟のバチカン、コソボ、クック諸島、ニウエを基本対象にしています。さらに、旅行先として独立して探せるよう、台湾・香港・マカオ・南極を加え、計201の国・地域を掲載します。</span><span>香港とマカオは中国の特別行政区です。台湾・香港・マカオ・南極を独立ページとして扱うのは、旅行先としての探しやすさを目的としたJOURNEY ATLAS独自の編集上の区分であり、国家承認に関する立場を示すものではありません。国連加盟国を基準にするため、日本が国家承認していない北朝鮮も含まれます。</span>';
+  const aboutMarkup = `
+    <div class="about-note__label">
+      <span class="section-kicker">ABOUT</span>
+      <strong>JOURNEY ATLAS</strong>
+    </div>
+    <div class="about-note__content">
+      <p class="about-note__lead">JOURNEY ATLASは、次に行きたい世界と出会うための旅のビジュアル図鑑です。</p>
+      <p>旅の計画を完成させるための情報サイトではなく、まだ知らない国や地域への入口をつくることを目的にしています。国・地図・テーマから世界をたどり、景色、街、歴史、暮らし、野生、海、食、道をきっかけに、「ここへ行ってみたい」と思える場所を見つける。実際に訪れた場所は、JOURNEY LENSの写真と物語へつながります。</p>
+      <p class="about-note__definition"><b>掲載範囲について</b> 国連加盟193か国と、日本が国家承認している国のうち国連未加盟のバチカン、コソボ、クック諸島、ニウエを基本対象とし、旅行先として独立して探せるよう台湾・香港・マカオ・南極を加えた計201の国・地域を掲載します。香港とマカオは中国の特別行政区です。台湾・香港・マカオ・南極を独立して扱うのは、旅行先としての探しやすさを目的とするJOURNEY ATLAS独自の編集上の区分であり、国家承認に関する立場を示すものではありません。国連加盟国を基準にするため、日本が国家承認していない北朝鮮も含まれます。</p>
+    </div>`;
+
+  const footerMarkup = `
+    © 2026 Makoto Yagenji · 無断使用・転載を禁じます<br>
+    <span class="meta-note">イラストとことばは、実在する場所・景色・文化をもとに編集したJOURNEY ATLASのコンテンツです。</span><br>
+    <span class="meta-links"><a href="https://journey.yagenji.com/privacy/" target="_blank" rel="noopener noreferrer">プライバシー</a><a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">連絡</a></span>`;
 
   function applyScopeCopy() {
     const heroLead = document.querySelector('.hero-copy .lead');
@@ -127,11 +141,16 @@
 
     document.querySelectorAll('.explore-icon').forEach(icon => icon.remove());
 
-    const about = document.querySelector('#about.about-note p');
-    if (about && about.innerHTML !== aboutHtml) about.innerHTML = aboutHtml;
+    const lensHead = document.querySelector('.lens-head > div');
+    if (lensHead && !lensHead.querySelector('.section-kicker')) {
+      lensHead.insertAdjacentHTML('afterbegin', '<span class="section-kicker lens-kicker">EXPLORE BY PHOTO</span>');
+    }
+
+    const about = document.querySelector('#about.about-note');
+    if (about && !about.querySelector('.about-note__content')) about.innerHTML = aboutMarkup;
 
     const footer = document.querySelector('.atlas-colophon .meta');
-    if (footer?.innerHTML.includes('199の国・地域')) footer.innerHTML = footer.innerHTML.replace('199の国・地域', '201の国・地域');
+    if (footer && footer.innerHTML.trim() !== footerMarkup.trim()) footer.innerHTML = footerMarkup;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
