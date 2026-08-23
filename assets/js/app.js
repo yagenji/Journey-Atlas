@@ -10,7 +10,7 @@ fetch(`data/countries/${safeSlug}.json`)
   })
   .then(renderCountry)
   .catch(() => {
-    app.innerHTML = '<div class="error"><p>PAGE NOT FOUND</p><h1>旅のページを見つけられませんでした。</h1><a href="./">Icelandへ戻る</a></div>';
+    app.innerHTML = '<div class="error"><p>PAGE NOT FOUND</p><h1>旅のページを見つけられませんでした。</h1><a href="./">トップへ戻る</a></div>';
   });
 
 function getValue(source, path) {
