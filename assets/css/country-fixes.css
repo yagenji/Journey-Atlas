@@ -1,0 +1,22 @@
+.utility-nav a{
+  min-width:56px;
+  padding:5px;
+  display:block;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  font-family:var(--body);
+  text-align:center;
+  text-decoration:none;
+}
+.utility-nav a>span{
+  display:block;
+  font-size:27px;
+  line-height:1;
+}
+.utility-nav a:hover{opacity:.68}
+.utility-nav a:focus-visible{
+  outline:2px solid var(--navy);
+  outline-offset:4px;
+}
