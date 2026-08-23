@@ -87,6 +87,37 @@ Not:
 
 ## Current application
 
+### Top page — LOCKED 2026-08-23
+The top page is now the production baseline. Do not start another visual redesign cycle.
+
+Locked order:
+1. Header
+2. Hero
+3. Three discovery entrances
+4. Country search
+5. Map search
+6. Theme search
+7. JOURNEY LENS
+8. About
+9. Footer
+
+Locked Hero copy:
+- `次に行きたい世界を、`
+- `見つける。`
+- `まだ知らない景色、心に残る出会い。`
+- `文化や人々の暮らし。`
+- `199の国・地域を、イラストとともに`
+- `めぐる世界図鑑です。`
+
+The 199 destination registry is part of the top page from the beginning, but completion of 199 final illustrations is **not** a release blocker for the top page. Missing destination art may use the existing neutral fallback and be replaced progressively as approved illustrations are completed.
+
+From this point, top-page work is limited to:
+- clear bugs;
+- broken links or controls;
+- accessibility fixes;
+- responsive defects;
+- replacement of fallback art with approved production art.
+
 ### Theme section
 The approved visual direction is the illustrated eight-theme set:
 - 地球の風景
@@ -110,8 +141,32 @@ The approved motifs are:
 
 Implementation must use these motifs and the same illustrated/editorial visual language rather than replacing them with abstract symbols.
 
-### Map section
-Before implementation, first create the actual map asset/UI specification that will be used in production. Once approved, implement that same map structure: **World → Region → Country**.
+### Map section — LOCKED BASELINE
+Use the current production interaction and framing as the baseline. Future changes must be bug fixes or explicit user requests.
+
+Interaction hierarchy:
+**World → Region → optional Subregion → Country**
+
+Country geometry remains the primary spatial target. The right-side country list may support hover/selection and accessibility, but must not replace the map itself as the core discovery experience.
+
+Do not reintroduce a second framing script. Map framing belongs in `assets/js/map-regions.js` only.
+
+### Country / destination illustrations — LOCKED STYLE
+JOURNEY ATLAS artwork must be visibly different from JOURNEY LENS photography.
+
+Production target:
+- approximately **photo 60 / illustration 40**;
+- real, named landscapes or places;
+- real geography / architecture / vegetation relationships;
+- painterly simplification that is clearly visible on inspection;
+- no photoreal stock-photo look;
+- no watercolor wash or child-oriented picture-book look;
+- no landmark collage;
+- no text, flags, labels, frames, UI, or watermarks inside the image.
+
+One destination = one coherent real-world scene for country-card artwork.
+
+Country-page scene artwork follows the same visual language. A country page may contain multiple scene illustrations, but every individual scene must still represent one real place rather than a synthetic collage.
 
 ---
 
