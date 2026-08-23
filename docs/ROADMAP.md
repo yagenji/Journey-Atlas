@@ -31,19 +31,23 @@ The destination scope is **201 destinations**:
 
 ## Immediate priority
 
-1. Produce and lock the 5 top Hero visuals in the JOURNEY ATLAS visual style.
-2. Produce all 201 destination-card illustrations, in controlled batches with geographic and color-balance QA.
-3. In parallel, finish Iceland only far enough to validate the reusable country-page template and how production illustrations behave inside a real country page.
+1. Finish Iceland as the reference country page using the newly locked ATLAS illustration direction.
+2. Produce and lock the 5 top Hero visuals in the same JOURNEY ATLAS visual style.
+3. Produce all 201 destination-card illustrations, in controlled batches with geographic and color-balance QA.
 4. Lock the Iceland page structure as the reusable country-page template.
 5. When the Hero set and 201-card visual system are stable, begin country-page production from the JOURNEY LENS published set.
 
 ## Top visual production sequence
 
-### Phase A — Hero benchmark
+### Phase A — Iceland benchmark
 
-Create 5 real-place Hero visuals first. These become the benchmark for light, painterly realism, crop quality and overall ATLAS identity.
+Finish Iceland first. The page already has its information architecture, map interaction and content structure; replace legacy visual assets with production illustrations and use the completed page as the reference for every later country page.
 
-### Phase B — destination cards
+### Phase B — Hero benchmark
+
+Create 5 real-place Hero visuals. These become the benchmark for light, editorial painting, crop quality and overall ATLAS identity.
+
+### Phase C — destination cards
 
 Produce 201 destination illustrations in batches. Every batch must preserve:
 
@@ -52,11 +56,7 @@ Produce 201 destination illustrations in batches. Every batch must preserve:
 - light / time-of-day variety;
 - strong distinction between neighboring cards;
 - real-place accuracy;
-- consistent painterly realism.
-
-### Phase C — Iceland validation
-
-Use Iceland to test the same visual system at country-page scale. Do not wait for all 201 cards before validating Iceland, but do not expand to many country pages yet.
+- consistent editorial painting language.
 
 ## First country-page production batch after Iceland
 
@@ -73,14 +73,17 @@ After that: India, Saudi Arabia, Oman, Cuba, Guatemala, Costa Rica, Bolivia, Arg
 ## Visual rules already decided
 
 - Adult visual travel atlas, not a conventional travel-information site.
-- JOURNEY ATLAS and JOURNEY LENS must look clearly different: ATLAS = illustration; LENS = photography and personal travel stories.
-- Destination illustration target is approximately **photo 60 / illustration 40**.
+- JOURNEY ATLAS must not feel like an illustrated version of JOURNEY LENS.
+- JOURNEY LENS = photography, personal travel memory and narrative. JOURNEY ATLAS = illustrated world discovery, comparison and exploration.
+- Destination illustration target is now approximately **photo 45 / illustration 55**: real-world plausibility remains essential, but the image should clearly read as an illustration at first glance.
 - Every illustration is based on a real named landscape or place.
 - Real geography, architecture, vegetation, coastlines, and landmark relationships take priority over decorative invention.
-- Painterly simplification should remain visible so the image does not read as stock photography.
+- Visible brushwork, simplified color planes and editorial composition should remain apparent; do not chase photographic micro-detail.
+- Avoid stock-photo lighting, HDR, lens effects, excessive cinematic drama and travel-poster gloss.
 - No landmark collage, no text, no flags, no UI, no watermark inside illustrations.
 - One destination = one coherent real scene.
 - Country maps may use illustration-only visual treatment while broadly preserving geography and place relationships.
+- ATLAS copy is concise and atlas-like. It should help users discover where they may want to go, rather than reproduce the personal essay voice of JOURNEY LENS.
 - JOURNEY ATLAS wordmark has no leading symbol.
 - Related countries: small flag + English/Japanese country name + one short reason.
 - Do not require a dedicated Hero/image asset for every related country before that country page exists.
@@ -114,7 +117,7 @@ The top visual system is ready for country-page expansion when all of the follow
 - 201 destination-card illustrations exist and pass basic real-place / crop / style QA;
 - cards remain readable on desktop and mobile;
 - geographic and color variety across the set is acceptable;
-- the ATLAS illustration identity is clearly distinct from JOURNEY LENS photography.
+- the ATLAS illustration identity is clearly distinct from JOURNEY LENS photography and does not invite a direct visual comparison with it.
 
 ## Definition of done — country page template
 
