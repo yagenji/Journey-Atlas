@@ -31,7 +31,7 @@ The destination scope is **201 destinations**:
 
 ## Immediate priority
 
-1. Finish Iceland as the reference country page using the newly locked ATLAS illustration direction.
+1. Finish Iceland as the reference country page using the locked ATLAS illustration direction.
 2. Produce and lock the 5 top Hero visuals in the same JOURNEY ATLAS visual style.
 3. Produce all 201 destination-card illustrations, in controlled batches with geographic and color-balance QA.
 4. Lock the Iceland page structure as the reusable country-page template.
@@ -75,10 +75,12 @@ After that: India, Saudi Arabia, Oman, Cuba, Guatemala, Costa Rica, Bolivia, Arg
 - Adult visual travel atlas, not a conventional travel-information site.
 - JOURNEY ATLAS must not feel like an illustrated version of JOURNEY LENS.
 - JOURNEY LENS = photography, personal travel memory and narrative. JOURNEY ATLAS = illustrated world discovery, comparison and exploration.
-- Destination illustration target is now approximately **photo 45 / illustration 55**: real-world plausibility remains essential, but the image should clearly read as an illustration at first glance.
+- Destination illustration target is approximately **photo 60 / illustration 40**.
+- The approved target is the restrained illustrated look: real-world light, geography and atmosphere remain strong, while brushwork and simplified color planes make it clearly an illustration on inspection.
+- Do **not** push further toward watercolor, loose wash, heavy gouache, thick impasto or overt painterly abstraction. The stronger painterly/watercolor batch is not the target.
 - Every illustration is based on a real named landscape or place.
 - Real geography, architecture, vegetation, coastlines, and landmark relationships take priority over decorative invention.
-- Visible brushwork, simplified color planes and editorial composition should remain apparent; do not chase photographic micro-detail.
+- Keep edges and forms readable. Avoid photographic micro-detail, but also avoid blurred, washed-out or overly soft painting.
 - Avoid stock-photo lighting, HDR, lens effects, excessive cinematic drama and travel-poster gloss.
 - No landmark collage, no text, no flags, no UI, no watermark inside illustrations.
 - One destination = one coherent real scene.
