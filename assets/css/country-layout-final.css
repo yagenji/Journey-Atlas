@@ -1,53 +1,70 @@
 /* JOURNEY ATLAS country-page final layout refinements — 2026-08-24 */
 
 /*
-  Desktop reference layout:
-  - map stays visible on the left
-  - scene list becomes a single readable editorial column on the right
-  - each scene keeps title on top, then image + description beneath
-  This avoids the narrow Japanese text measure created by two scene cards per row.
+  The map and scene list are independent editorial panels.
+  This prevents the shorter map column from inheriting the full height of the scene list.
 */
 .atlas-panel{
-  grid-template-columns:minmax(390px,.88fr) minmax(0,1.12fr)!important;
+  display:grid!important;
+  grid-template-columns:minmax(360px,.92fr) minmax(0,1.18fr)!important;
+  gap:14px!important;
   align-items:start!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.map-column,
+.scenes-column{
+  align-self:start!important;
+  border:1px solid var(--line)!important;
+  border-radius:16px!important;
+  background:rgba(251,248,240,.97)!important;
+  box-shadow:0 8px 28px rgba(38,52,55,.055)!important;
 }
 
 .map-column{
-  align-self:start!important;
   position:sticky;
   top:18px;
+  border-right:1px solid var(--line)!important;
 }
 
 .scenes-column{
-  align-self:start!important;
-  padding:24px;
+  padding:22px!important;
 }
 
 .scenes-heading{
-  margin-bottom:12px;
+  margin-bottom:12px!important;
 }
 
+/*
+  Two compact scene cards per row on wide screens.
+  Each card reads vertically: title -> image -> copy.
+  This keeps Japanese line length comfortable without leaving a large empty area beside the image.
+*/
 .scene-grid{
-  display:grid;
-  grid-template-columns:1fr!important;
-  gap:12px;
-  align-items:start;
-  grid-auto-rows:max-content;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:start!important;
+  grid-auto-rows:max-content!important;
 }
 
 .scene-card{
   min-height:0!important;
   height:auto!important;
   display:grid!important;
-  grid-template-columns:30px minmax(230px,40%) minmax(0,1fr)!important;
+  grid-template-columns:30px minmax(0,1fr)!important;
   grid-template-areas:
-    "number name name"
-    "number local local"
-    "image image description"!important;
-  column-gap:12px!important;
+    "number name"
+    "number local"
+    "image image"
+    "description description"!important;
+  column-gap:8px!important;
   row-gap:0!important;
   align-items:start!important;
-  padding:11px!important;
+  padding:10px!important;
   overflow:hidden!important;
 }
 
@@ -56,8 +73,8 @@
   width:100%!important;
   min-height:0!important;
   height:auto!important;
-  aspect-ratio:16 / 10!important;
-  margin-top:9px!important;
+  aspect-ratio:16 / 9!important;
+  margin-top:8px!important;
   align-self:start!important;
   border-radius:8px!important;
   overflow:hidden!important;
@@ -70,7 +87,7 @@
   display:none!important;
 }
 
-/* Flatten the legacy copy wrappers so the card can form one editorial grid. */
+/* Flatten legacy wrappers so the scene card can use one clean grid. */
 .scene-copy,
 .scene-copy>div{
   display:contents!important;
@@ -80,7 +97,7 @@
   grid-area:number;
   margin:0!important;
   color:var(--navy);
-  font-size:19px!important;
+  font-size:18px!important;
   line-height:1.35!important;
   align-self:start;
 }
@@ -88,7 +105,7 @@
 .scene-copy h3{
   grid-area:name;
   margin:0!important;
-  font-size:15px!important;
+  font-size:14.5px!important;
   line-height:1.45!important;
   word-break:normal!important;
   overflow-wrap:anywhere!important;
@@ -105,20 +122,18 @@
 
 .scene-copy p{
   grid-area:description;
-  margin:9px 4px 0 2px!important;
-  align-self:start;
-  max-width:38em;
-  font-size:13px!important;
-  line-height:1.7!important;
+  margin:8px 1px 1px!important;
+  max-width:none!important;
+  font-size:12.5px!important;
+  line-height:1.65!important;
 }
 
 @media(max-width:1180px){
   .atlas-panel{
-    grid-template-columns:minmax(340px,.82fr) minmax(0,1.18fr)!important;
+    grid-template-columns:minmax(330px,.88fr) minmax(0,1.12fr)!important;
   }
-  .scene-card{
-    grid-template-columns:28px minmax(190px,38%) minmax(0,1fr)!important;
-    column-gap:10px!important;
+  .scene-grid{
+    grid-template-columns:1fr!important;
   }
 }
 
@@ -128,27 +143,25 @@
   }
   .map-column{
     position:static;
-    border-right:0!important;
-    border-bottom:1px solid var(--line);
+  }
+  .scene-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
   }
 }
 
-@media(max-width:620px){
+@media(max-width:650px){
   .scenes-column{
-    padding:18px;
+    padding:17px!important;
+  }
+  .scene-grid{
+    grid-template-columns:1fr!important;
   }
   .scene-card{
     grid-template-columns:26px minmax(0,1fr)!important;
-    grid-template-areas:
-      "number name"
-      "number local"
-      "image image"
-      "description description"!important;
     padding:9px!important;
   }
   .scene-image{
     aspect-ratio:16 / 9!important;
-    margin-top:8px!important;
   }
   .scene-copy>strong{
     font-size:18px!important;
@@ -157,8 +170,6 @@
     font-size:14px!important;
   }
   .scene-copy p{
-    max-width:none;
-    margin-top:8px!important;
     font-size:12.5px!important;
   }
 }
