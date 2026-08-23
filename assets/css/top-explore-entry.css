@@ -1,0 +1,33 @@
+/* Approved three-entry visual treatment — 2026-08-23 */
+.explore-card__art{
+  height:186px;
+  background-image:none;
+  background-color:#eef3f0;
+  background-repeat:no-repeat;
+  background-size:300% 100%;
+  filter:contrast(1.02) saturate(.98);
+}
+.explore-card--country .explore-card__art{background-position:0 50%}
+.explore-card--map .explore-card__art{background-position:50% 50%}
+.explore-card--theme .explore-card__art{background-position:100% 50%}
+.explore-card__copy{
+  min-height:92px;
+  padding:14px 16px 15px;
+}
+.explore-card{
+  border-radius:13px;
+  overflow:hidden;
+}
+
+@media(max-width:1050px){
+  .explore-card__art{height:160px}
+}
+
+@media(max-width:760px){
+  .explore-card__art{
+    height:100%;
+    min-height:126px;
+    background-size:300% 100%;
+  }
+  .explore-card__copy{min-height:126px}
+}
