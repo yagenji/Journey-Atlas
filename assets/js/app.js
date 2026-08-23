@@ -49,6 +49,17 @@ function renderCountry(data) {
   });
 }
 
+function resolveImageSource(source) {
+  if (!source) return Promise.reject(new Error('Image source missing'));
+  if (!source.endsWith('.b64')) return Promise.resolve(source);
+  return fetch(`${source}?v=20260824-0145`)
+    .then((response) => {
+      if (!response.ok) throw new Error('Encoded image missing');
+      return response.text();
+    })
+    .then((encoded) => `data:image/webp;base64,${encoded.trim()}`);
+}
+
 function renderMapBase(fragment, mapData) {
   if (!mapData.svg) return;
   const mapArt = fragment.querySelector('#country-map-art');
@@ -73,17 +84,23 @@ function renderMapBase(fragment, mapData) {
     if (message) message.textContent = '地図を読み込めませんでした';
   });
 
-  image.src = mapData.svg;
+  resolveImageSource(mapData.svg)
+    .then((source) => { image.src = source; })
+    .catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
 }
 
 function setBackground(element, image) {
   if (!element || !image) return;
-  element.style.backgroundImage = `url("${image}")`;
-  element.classList.add('has-image');
-  element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => {
-    placeholder.hidden = true;
-  });
+  resolveImageSource(image)
+    .then((source) => {
+      element.style.backgroundImage = `url("${source}")`;
+      element.classList.add('has-image');
+      element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => {
+        placeholder.hidden = true;
+      });
+    })
+    .catch(() => {});
 }
 
 function projectPoint(coordinates, bounds) {
