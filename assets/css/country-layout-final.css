@@ -11,32 +11,30 @@
 .scene-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
+  gap:12px;
   align-items:start;
   grid-auto-rows:max-content;
 }
 
 /*
   Scene card hierarchy:
-  1) number + place name
-  2) wide landscape image
-  3) description
-  This avoids the narrow vertical text column that made the cards feel stretched.
+  1) number + place name across the top
+  2) wide image and description side-by-side beneath it
+  This keeps the text readable without making the scene column much taller than the map.
 */
 .scene-card{
   min-height:0!important;
   height:auto!important;
   display:grid!important;
-  grid-template-columns:30px minmax(0,1fr)!important;
+  grid-template-columns:30px minmax(155px,44%) minmax(0,1fr)!important;
   grid-template-areas:
-    "number name"
-    "number local"
-    "image image"
-    "description description"!important;
-  column-gap:8px!important;
+    "number name name"
+    "number local local"
+    "image image description"!important;
+  column-gap:9px!important;
   row-gap:0!important;
   align-items:start!important;
-  padding:11px!important;
+  padding:10px!important;
   overflow:hidden!important;
 }
 
@@ -45,7 +43,7 @@
   width:100%!important;
   min-height:0!important;
   height:auto!important;
-  aspect-ratio:16 / 9!important;
+  aspect-ratio:16 / 10!important;
   margin-top:9px!important;
   align-self:start!important;
   border-radius:8px!important;
@@ -59,7 +57,7 @@
   display:none!important;
 }
 
-/* Flatten the old wrapper so title, image and description can form one clean card. */
+/* Flatten the legacy copy wrappers so the card can use one compact editorial grid. */
 .scene-copy,
 .scene-copy>div{
   display:contents!important;
@@ -94,29 +92,48 @@
 
 .scene-copy p{
   grid-area:description;
-  margin:9px 2px 1px!important;
+  margin:9px 2px 0 2px!important;
+  align-self:start;
   font-size:12.5px!important;
   line-height:1.65!important;
 }
 
-@media(max-width:1100px){
+/* Keep the two major atlas columns visually balanced instead of stretching the map card. */
+.atlas-panel{
+  align-items:start;
+}
+
+.map-column,
+.scenes-column{
+  align-self:start;
+}
+
+@media(max-width:1240px){
   .scene-grid{
     grid-template-columns:1fr;
+  }
+  .scene-card{
+    grid-template-columns:30px minmax(190px,42%) minmax(0,1fr)!important;
   }
 }
 
 @media(max-width:820px){
-  .scene-grid{
-    grid-template-columns:1fr;
+  .scene-card{
+    grid-template-columns:28px minmax(160px,42%) minmax(0,1fr)!important;
   }
 }
 
-@media(max-width:560px){
+@media(max-width:620px){
   .scenes-column{
     padding:18px;
   }
   .scene-card{
     grid-template-columns:26px minmax(0,1fr)!important;
+    grid-template-areas:
+      "number name"
+      "number local"
+      "image image"
+      "description description"!important;
     padding:9px!important;
   }
   .scene-image{
@@ -130,6 +147,7 @@
     font-size:14px!important;
   }
   .scene-copy p{
+    margin-top:8px!important;
     font-size:12px!important;
   }
 }
