@@ -89,7 +89,7 @@ Promise.all(heroFiles.map(async(file)=>{
   applyHeroDerivedArt();
   if(destinations.length){renderRail(destinations);renderGrid(destinations);}
   startHeroRotation();
-}).catch(()=>{heroSources=[];});
+}).catch(()=>{heroSources=[];applyHeroDerivedArt();});
 
 function setHero(index,animate=true){
   if(!heroImage || heroSources.length===0) return;
@@ -107,11 +107,41 @@ function startHeroRotation(){
   heroTimer=window.setInterval(()=>setHero(heroIndex+1),9000);
 }
 function applyHeroDerivedArt(){
-  if(!heroSources[0]) return;
-  const themeArt=document.querySelector('.explore-card--theme .explore-card__art');
-  const countryArt=document.querySelector('.explore-card--country .explore-card__art');
-  if(themeArt){themeArt.style.backgroundImage=`url("${heroSources[0]}")`;themeArt.style.backgroundPosition='52% 18%';}
-  if(countryArt){countryArt.style.backgroundImage=`url("${heroSources[0]}")`;countryArt.style.backgroundPosition='78% 82%';}
+  const cards=[
+    document.querySelector('.explore-card--country .explore-card__art'),
+    document.querySelector('.explore-card--map .explore-card__art'),
+    document.querySelector('.explore-card--theme .explore-card__art')
+  ];
+  const positions=['0% 50%','50% 50%','100% 50%'];
+
+  if(!document.querySelector('#explore-entry-style')){
+    const style=document.createElement('style');
+    style.id='explore-entry-style';
+    style.textContent=`
+      .explore-card__art{height:186px;background-image:none;background-color:#eef3f0;background-repeat:no-repeat;background-size:300% 100%;filter:contrast(1.02) saturate(.98)}
+      .explore-card__copy{min-height:92px;padding:14px 16px 15px}
+      .explore-card{border-radius:13px;overflow:hidden}
+      @media(max-width:1050px){.explore-card__art{height:160px}}
+      @media(max-width:760px){.explore-card__art{height:100%;min-height:126px;background-size:300% 100%}.explore-card__copy{min-height:126px}}
+    `;
+    document.head.append(style);
+  }
+
+  fetch('assets/images/top/explore-entry-sprite.webp.b64?v=20260823-1202')
+    .then((response)=>{if(!response.ok) throw new Error('Explore entry artwork missing');return response.text();})
+    .then((encoded)=>{
+      const source=encoded.trim();
+      if(source.length<10000) throw new Error('Explore entry artwork incomplete');
+      const image=`url("data:image/webp;base64,${source}")`;
+      cards.forEach((art,index)=>{
+        if(!art)return;
+        art.style.backgroundImage=image;
+        art.style.backgroundSize='300% 100%';
+        art.style.backgroundPosition=positions[index];
+        art.style.backgroundRepeat='no-repeat';
+      });
+    })
+    .catch(()=>{});
 }
 heroButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(Number(button.dataset.hero));startHeroRotation();}));
 heroStepButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(heroIndex+Number(button.dataset.heroStep));startHeroRotation();}));
