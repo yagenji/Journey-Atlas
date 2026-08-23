@@ -113,7 +113,7 @@
   const footerMarkup = `
     © 2026 Makoto Yagenji · 無断使用・転載を禁じます<br>
     <span class="meta-note">イラストとことばは、実在する場所・景色・文化をもとに編集したJOURNEY ATLASのコンテンツです。</span><br>
-    <span class="meta-links"><a href="https://journey.yagenji.com/privacy/" target="_blank" rel="noopener noreferrer">プライバシー</a><a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">連絡</a></span>`;
+    <span class="meta-links"><a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">連絡</a></span>`;
 
   function applyScopeCopy() {
     const heroLead = document.querySelector('.hero-copy .lead');
