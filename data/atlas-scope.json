@@ -1,25 +1,32 @@
 {
-  "updatedAt": "2026-08-22",
-  "definition": "日本政府（外務省）が国家として承認している外国195か国に日本を加えた196か国を基本対象とし、台湾・北朝鮮・南極を追加する",
+  "updatedAt": "2026-08-23",
+  "definition": "国連加盟193か国と、日本が国家承認している国のうち国連未加盟のバチカン、コソボ、クック諸島、ニウエを基本対象とし、旅行先として独立して探せるよう台湾・香港・マカオ・南極を追加する",
   "counts": {
-    "statesRecognizedByJapanExcludingJapan": 195,
-    "japan": 1,
-    "recognizedStatesIncludingJapan": 196,
+    "unMemberStates": 193,
+    "japanRecognizedNonUnStates": 4,
+    "baseUnion": 197,
     "taiwan": 1,
-    "northKorea": 1,
+    "hongKong": 1,
+    "macao": 1,
     "antarctica": 1,
-    "totalAtlasPages": 199
+    "totalAtlasPages": 201
   },
   "specialCases": {
-    "kosovo": "日本が国家承認している195か国に含まれるため追加扱いにしない",
-    "taiwan": "日本は国家承認していないが、JOURNEY ATLASでは独立ページとして含める",
-    "northKorea": "日本は国家承認していないが、JOURNEY ATLASでは独立ページとして含める",
-    "antarctica": "国家ではないが、JOURNEY ATLASでは独立ページとして含める"
+    "vaticanKosovoCookIslandsNiue": "日本が国家承認しているが国連には加盟していないため、国連加盟193か国に追加する",
+    "northKorea": "日本は国家承認していないが国連加盟国であるため、基本対象に含まれる",
+    "taiwan": "国連加盟国でも日本の国家承認国でもないが、旅行先として独立して探せるようJOURNEY ATLASでは独立ページとして扱う",
+    "hongKong": "中国の特別行政区。旅行先として独立して探せるようJOURNEY ATLASでは独立ページとして扱う",
+    "macao": "中国の特別行政区。旅行先として独立して探せるようJOURNEY ATLASでは独立ページとして扱う",
+    "antarctica": "国家ではないが、独立した旅行先としてJOURNEY ATLASでは独立ページとして扱う"
   },
+  "editorialPolicy": "台湾・香港・マカオ・南極を独立ページとして扱うことは、旅行先としての探しやすさを目的としたJOURNEY ATLAS独自の編集上の区分であり、国家承認に関する立場を示すものではない。",
   "productionPriority": [
     "JOURNEY LENSで現在公開済みの国・地域を優先",
     "ANTARCTICAはIcelandに続く制作対象として進行",
-    "未制作対象は199ページの母数から順次追加"
+    "未制作対象は201ページの母数から順次追加"
   ],
-  "source": "Ministry of Foreign Affairs of Japan: 世界と日本のデータを見る（2026-01-05時点）"
+  "sources": [
+    "United Nations: 193 Member States",
+    "Ministry of Foreign Affairs of Japan: Japan recognizes Vatican City, Kosovo, Cook Islands and Niue; North Korea is a UN member not recognized by Japan"
+  ]
 }
