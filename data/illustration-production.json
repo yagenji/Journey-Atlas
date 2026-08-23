@@ -3,16 +3,34 @@
   "total": 201,
   "style": "real-world scene, painterly realism, photo 60 / illustration 40",
   "libraryFolder": "/JOURNEY-ATLAS/illustrations",
-  "batchSize": 10,
-  "completed": [],
-  "nextOrder": 1,
+  "batchSize": 20,
   "status": "in_progress",
+  "phase": "hero_benchmark_and_destination_cards",
+  "hero": {
+    "total": 5,
+    "brief": "docs/HERO_ART_BRIEF.md",
+    "completed": [],
+    "status": "planned"
+  },
+  "destinations": {
+    "completed": [],
+    "nextOrder": 1,
+    "status": "in_progress"
+  },
+  "workflow": [
+    "Produce the 5 Hero benchmark visuals first or in parallel with the first destination batch",
+    "Produce destination cards in batches of up to 20",
+    "Run real-place, crop, style, regional-balance and color-balance QA after every batch",
+    "Use Iceland in parallel only as the reference country-page validation target",
+    "Do not mass-produce other country pages until the top visual system and Iceland template are stable"
+  ],
   "rules": [
     "One destination per image",
     "Use a real named landscape or place",
     "Keep geography and landmark relationships plausible and recognizable",
-    "16:10 horizontal composition",
+    "16:10 horizontal composition for destination cards",
     "No text, labels, flags, frames, UI, posters, grids or collages",
-    "JOURNEY LENS differentiation: clearly painterly, not photographic"
+    "JOURNEY LENS differentiation: clearly painterly, not photographic",
+    "Routine scene selection, crop tuning and QA proceed without user approval"
   ]
 }
