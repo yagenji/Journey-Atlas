@@ -1,0 +1,39 @@
+/* JOURNEY ATLAS — 201-destination scope + bilingual discovery labels */
+
+/* The entry illustrations already explain the action visually; keep the copy quieter by removing the old circular glyphs. */
+.explore-card__copy{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:14px!important;
+  padding-left:18px!important;
+  padding-right:18px!important;
+}
+.explore-card__copy>div{min-width:0}
+.explore-icon{display:none!important}
+
+.explore-card__kicker,
+.section-kicker{
+  display:block;
+  margin:0 0 5px;
+  color:#8b7457;
+  font:700 8.5px/1.2 var(--sans);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.explore-card__kicker{margin-bottom:6px}
+.explore-card__copy h2{margin-top:0}
+
+.countries .section-head>div,
+.theme-panel .theme-heading>div{min-width:0}
+.countries .section-kicker,
+.theme-panel .section-kicker{margin-bottom:7px}
+
+/* Keep the expanded scope explanation readable as two editorial paragraphs. */
+#about.about-note p span{display:block!important}
+#about.about-note p span+span{margin-top:11px}
+
+@media(max-width:760px){
+  .explore-card__copy{padding:12px 14px!important}
+  .explore-card__kicker{font-size:7.8px;letter-spacing:.15em}
+  .section-kicker{font-size:8px}
+  #about.about-note p span+span{margin-top:9px}
+}
