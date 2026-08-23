@@ -52,12 +52,16 @@ function renderCountry(data) {
 function resolveImageSource(source) {
   if (!source) return Promise.reject(new Error('Image source missing'));
   if (!source.endsWith('.b64')) return Promise.resolve(source);
-  return fetch(`${source}?v=20260824-0145`)
+  return fetch(`${source}?v=20260824-0208`)
     .then((response) => {
       if (!response.ok) throw new Error('Encoded image missing');
       return response.text();
     })
-    .then((encoded) => `data:image/webp;base64,${encoded.trim()}`);
+    .then((encoded) => {
+      const clean = encoded.trim();
+      if (!clean.startsWith('UklGR')) throw new Error('Encoded image is not WebP');
+      return `data:image/webp;base64,${clean}`;
+    });
 }
 
 function renderMapBase(fragment, mapData) {
