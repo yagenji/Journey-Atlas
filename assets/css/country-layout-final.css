@@ -1,5 +1,10 @@
 /* JOURNEY ATLAS country-page final layout refinements — 2026-08-24 */
 
+/* Give the hero a clean visual ending before the atlas panels begin. */
+.atlas-body{
+  margin-top:24px!important;
+}
+
 /*
   The map and scene list are independent editorial panels.
   This prevents the shorter map column from inheriting the full height of the scene list.
@@ -41,7 +46,6 @@
 /*
   Two compact scene cards per row on wide screens.
   Each card reads vertically: title -> image -> copy.
-  This keeps Japanese line length comfortable without leaving a large empty area beside the image.
 */
 .scene-grid{
   display:grid!important;
@@ -82,12 +86,10 @@
   background-position:center!important;
 }
 
-/* Scene number appears only once, beside the place name. */
 .scene-image>b{
   display:none!important;
 }
 
-/* Flatten legacy wrappers so the scene card can use one clean grid. */
 .scene-copy,
 .scene-copy>div{
   display:contents!important;
@@ -138,6 +140,9 @@
 }
 
 @media(max-width:900px){
+  .atlas-body{
+    margin-top:18px!important;
+  }
   .atlas-panel{
     grid-template-columns:1fr!important;
   }
@@ -150,6 +155,9 @@
 }
 
 @media(max-width:650px){
+  .atlas-body{
+    margin-top:14px!important;
+  }
   .scenes-column{
     padding:17px!important;
   }
