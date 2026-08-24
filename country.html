@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/country-layout-final.css?v=20260824-0146">
   <link rel="stylesheet" href="assets/css/country-atlas-depth.css?v=20260824-1125">
   <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1205">
-  <link rel="stylesheet" href="assets/css/country-refine.css?v=20260824-1220">
+  <link rel="stylesheet" href="assets/css/country-refine.css?v=20260824-1228">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -44,7 +44,10 @@
 
       <div class="atlas-body page-shell">
         <section class="country-facts-strip" aria-labelledby="country-facts-title">
-          <div class="country-facts-strip__head"><h2 id="country-facts-title">基本情報</h2><span>COUNTRY PROFILE</span></div>
+          <div class="country-facts-strip__head">
+            <span class="section-kicker-en">COUNTRY PROFILE</span>
+            <h2 id="country-facts-title">基本情報</h2>
+          </div>
           <dl class="fact-list" id="facts"></dl>
         </section>
 
@@ -52,7 +55,7 @@
           <div class="map-column">
             <div class="panel-title-wrap">
               <span class="section-kicker-en">TRAVEL MAP</span>
-              <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
+              <h2 class="panel-title" id="atlas-title">旅の地図</h2>
             </div>
             <div class="map-frame">
               <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
@@ -74,7 +77,7 @@
                 <span class="section-kicker-en">SCENERY</span>
                 <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
               </div>
-              <p>番号に触れて、位置関係をたどる。</p>
+              <p>南岸から時計回りに、最後は内陸高地へ。</p>
             </div>
             <div class="scene-grid" id="scene-cards"></div>
           </div>
@@ -119,7 +122,8 @@
     </article>
   </template>
   <script src="assets/js/app.js?v=20260824-0208" defer></script>
-  <script src="assets/js/iceland-map-calibration.js?v=20260824-1125" defer></script>
+  <script src="assets/js/country-hero-map.js?v=20260824-1228" defer></script>
+  <script src="assets/js/iceland-map-calibration.js?v=20260824-1228" defer></script>
   <script src="assets/js/country-atlas-depth.js?v=20260824-1220" defer></script>
 </body>
 </html>
