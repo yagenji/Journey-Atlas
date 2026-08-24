@@ -59,11 +59,10 @@ Explanatory text that describes how to use the layout belongs in `country.html`,
 Current shared copy includes:
 
 - scenery intro: `その国らしさが見えてくる、8つの景色。`
-- map guide: numbered map markers correspond to the scenic entries shown beside the map
 - map legend: numbered circles identify scenery and the diamond identifies the Hero image location; the legend sits below the map rather than in the editorial heading
 
 Do not add a country name to the shared scenery intro. Country-specific meaning belongs in the eight scene descriptions themselves.
-The Travel Map and Scenery heading blocks use the same vertical rhythm so their content begins on the same baseline.
+Keep the Travel Map heading concise; do not add explanatory guide copy beside it unless the shared layout changes globally.
 
 ## Shared site header
 
