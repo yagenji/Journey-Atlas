@@ -43,6 +43,19 @@ Each country JSON uses `schemaVersion: 2` and should contain:
 - `updatedAt`
 - `sources`
 
+Reusable information items may include an optional `icon` key. The value must reference a symbol in `assets/icons/atlas-icons.svg`.
+
+## Typography hierarchy
+
+Japanese titles at the same section level use the same treatment:
+
+- section title: 22px, Zen Kaku Gothic New, weight 600
+- nested subsection title: 17px
+- card title: 14–15px
+- English kicker / metadata label: 9–11px
+
+Do not create country-specific heading sizes.
+
 ## Information design
 
 ### Common basic facts
@@ -133,11 +146,24 @@ Country pages store wishes locally using:
 The top page exposes a “行ってみたい国” filter.
 No login is required.
 
-## Symbols and icons
+## Icons
 
-Avoid ambiguous Unicode symbols as decoration.
-Text labels, typography, spacing, and the established map-marker system should carry the hierarchy.
-Only use an icon when it has a consistent system-wide meaning.
+Use the shared SVG sprite at `assets/icons/atlas-icons.svg`.
+Icons are a navigation and scanning aid, not decoration.
+
+Rules:
+
+- one-color line style
+- shared 24×24 viewBox
+- consistent stroke weight
+- normal display size around 16–18px
+- use `currentColor` so the template controls tone
+- prefer semantic reuse across countries
+- add a new symbol to the shared sprite only when the meaning will recur
+- optional country JSON `icon` values may choose an existing shared symbol
+
+Do not use ambiguous Unicode symbols such as △, ♢, ♧, ♜ or ▱ as substitutes for icons.
+Emoji flags remain acceptable where a flag is specifically intended.
 
 ## Release gate for every country
 
@@ -153,9 +179,10 @@ Before publishing a new country:
 8. Atlas extras are present where appropriate.
 9. No country-specific runtime JS/CSS override is required.
 10. Related countries never produce broken links.
-11. Desktop and mobile layouts are visually checked.
-12. GitHub `main` state is verified before public Pages review.
-13. Public page is visually reviewed only after all earlier gates pass.
+11. Shared section-title hierarchy and icon styling remain intact.
+12. Desktop and mobile layouts are visually checked.
+13. GitHub `main` state is verified before public Pages review.
+14. Public page is visually reviewed only after all earlier gates pass.
 
 ## Reference country
 
