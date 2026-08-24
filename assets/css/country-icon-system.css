@@ -1,0 +1,151 @@
+/* JOURNEY ATLAS — shared heading scale + icon system */
+
+/* Same-level Japanese section titles use one scale and one typeface. */
+.country-facts-strip__head h2,
+.signature-facts__head h2,
+.panel-title,
+.scenes-heading h2,
+.atlas-extras h2,
+.info-section h2,
+.journey-footer h2{
+  margin-top:0!important;
+  color:#12365c!important;
+  font-family:"Zen Kaku Gothic New",sans-serif!important;
+  font-size:22px!important;
+  line-height:1.42!important;
+  font-weight:600!important;
+  letter-spacing:.01em!important;
+}
+
+/* Nested headings remain a step smaller to preserve hierarchy. */
+.encounter-strip h3{
+  font-family:"Zen Kaku Gothic New",sans-serif!important;
+  font-size:17px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+}
+
+.ui-icon{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  display:block;
+  color:#617786;
+  overflow:visible;
+}
+.ui-icon--small{
+  width:13px;
+  height:13px;
+  flex-basis:13px;
+}
+
+/* COUNTRY PROFILE */
+.country-facts-strip .fact-list>div{
+  display:grid!important;
+  grid-template-columns:22px minmax(0,1fr)!important;
+  align-content:start!important;
+  align-items:start!important;
+  column-gap:8px!important;
+}
+.country-facts-strip .fact-list>div>.ui-icon{
+  display:block!important;
+  margin-top:1px;
+  color:#6c8190;
+}
+.country-facts-strip .fact-list>div>div{min-width:0;}
+
+/* SIGNATURE FACTS */
+.signature-fact__label{
+  min-height:18px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+}
+.signature-fact__label .ui-icon{
+  width:15px;
+  height:15px;
+  flex-basis:15px;
+  color:#8a6b55;
+}
+.signature-fact__label span{
+  font-family:var(--meta);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.08em;
+}
+
+/* ENCOUNTERS */
+.encounter-list article{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:6px!important;
+  border-radius:8px!important;
+}
+.encounter-list article .ui-icon{
+  width:16px;
+  height:16px;
+  flex-basis:16px;
+  color:#8a6b55;
+}
+
+/* BEYOND THE SCENERY */
+.atlas-extra__theme{
+  display:flex!important;
+  align-items:center;
+  gap:6px;
+}
+.atlas-extra__theme .ui-icon{color:#8a6b55;}
+
+/* TRAVEL INFO */
+.season-list article{
+  display:grid!important;
+  grid-template-columns:24px minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:10px!important;
+}
+.season-list article>.ui-icon{
+  margin-top:2px;
+  color:var(--season-color);
+}
+.season-list article>div{min-width:0;}
+.season-list article b{
+  display:block;
+  margin-bottom:2px;
+  color:var(--season-color)!important;
+  font-size:11px!important;
+}
+
+.transport{
+  grid-template-columns:26px minmax(0,1fr) auto!important;
+  align-items:start!important;
+  column-gap:10px!important;
+}
+.transport>.ui-icon{
+  margin-top:4px;
+  color:#8a6b55;
+}
+
+.persona-list article,
+.tip-list article{
+  display:grid!important;
+  grid-template-columns:24px minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:10px!important;
+}
+.persona-list article>.ui-icon,
+.tip-list article>.ui-icon{
+  margin-top:2px;
+  color:#6c8190;
+}
+.persona-list article>div,
+.tip-list article>div{min-width:0;}
+
+@media(max-width:760px){
+  .country-facts-strip .fact-list>div{
+    grid-template-columns:20px minmax(0,1fr)!important;
+    column-gap:7px!important;
+  }
+  .ui-icon{width:17px;height:17px;flex-basis:17px;}
+}
