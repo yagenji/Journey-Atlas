@@ -2,7 +2,7 @@
   const params = new URLSearchParams(window.location.search);
   if ((params.get('country') || 'iceland') !== 'iceland') return;
 
-  const version = '20260824-1948';
+  const version = '20260824-2012';
   const parts = Array.from(
     { length: 10 },
     (_, index) =>
