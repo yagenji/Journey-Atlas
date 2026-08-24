@@ -2,7 +2,7 @@ const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
 const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260825-0006';
+const DATA_VERSION = '20260825-0038';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
@@ -68,6 +68,7 @@ function renderCountry(data, registry) {
   renderEncounters(fragment, data.encounters);
   renderSignatureFacts(fragment, data.signatureFacts);
   renderAtlasExtras(fragment, data.atlasExtras);
+  renderTravelTrivia(fragment, data.travelTrivia);
   renderSeasons(fragment, data.seasons);
   renderTransport(fragment, data.transport);
   renderPersonas(fragment, data.personas);
@@ -310,6 +311,22 @@ function renderAtlasExtras(fragment, items = []) {
     const article = document.createElement('article');
     article.className = 'atlas-extra';
     article.innerHTML = `<span class="atlas-extra__theme">${iconSvg(item.icon || themeIcons[item.themeEn] || 'compass', 'ui-icon ui-icon--small')}${escapeHtml(item.themeEn)} / ${escapeHtml(item.themeJa)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p>${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}`;
+    grid.append(article);
+  });
+  section.hidden = false;
+}
+
+function renderTravelTrivia(fragment, items = []) {
+  const section = fragment.querySelector('#travel-trivia-section');
+  const grid = fragment.querySelector('#travel-trivia-grid');
+  if (!section || !grid || !items.length) {
+    if (section) section.hidden = true;
+    return;
+  }
+  items.slice(0, 6).forEach((item) => {
+    const article = document.createElement('article');
+    article.className = 'travel-trivia__item';
+    article.innerHTML = `<div class="travel-trivia__meta">${iconSvg(item.icon || 'spark')}<span>${escapeHtml(item.categoryEn || 'TRIVIA')} / ${escapeHtml(item.categoryJa || '')}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p>`;
     grid.append(article);
   });
   section.hidden = false;
