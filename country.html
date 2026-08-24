@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/country-fixes.css?v=20260823-2315">
   <link rel="stylesheet" href="assets/css/country-layout-final.css?v=20260824-0146">
   <link rel="stylesheet" href="assets/css/country-atlas-depth.css?v=20260824-1125">
+  <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1138">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -30,9 +31,8 @@
             <a href="./#themes"><span aria-hidden="true">✣</span><small>テーマ</small></a>
           </nav>
         </header>
-        <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="国の風景">
-          <div class="art-placeholder"><span>HERO ARTWORK</span><small>実景をもとにしたイラスト</small></div>
-        </div>
+        <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="国の風景"></div>
+        <p class="hero-location"><span>HERO LOCATION</span><strong data-field="hero.location"></strong></p>
         <div class="hero-copy page-shell">
           <p class="region" data-field="region"></p>
           <h1 data-field="nameEn"></h1>
@@ -42,13 +42,18 @@
       </section>
 
       <div class="atlas-body page-shell">
+        <section class="country-facts-strip" aria-labelledby="country-facts-title">
+          <div class="country-facts-strip__head"><h2 id="country-facts-title">基本情報</h2><span>COUNTRY PROFILE</span></div>
+          <dl class="fact-list" id="facts"></dl>
+        </section>
+
         <section class="atlas-panel" aria-labelledby="atlas-title">
           <div class="map-column">
             <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
             <div class="map-frame">
               <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
                 <div class="map-grid" aria-hidden="true"></div>
-                <div class="map-placeholder"><b>MAP</b><span>地図を読み込んでいます</span></div>
+                <div class="map-placeholder" aria-hidden="true"></div>
                 <div class="map-markers" id="map-markers"></div>
               </div>
               <p class="map-disclaimer">国土形状と地点位置を保ちながら、景観をイラストで表現しています。</p>
@@ -72,7 +77,6 @@
         <section class="travel-grid" aria-label="旅の情報">
           <section class="info-section info-seasons"><h2>旅するなら</h2><p class="section-label">季節</p><div class="season-list" id="seasons"></div><div class="transport" id="transport"></div></section>
           <section class="info-section"><h2>こんな人に</h2><div class="persona-list" id="personas"></div></section>
-          <section class="info-section"><h2>基本情報</h2><dl class="fact-list" id="facts"></dl></section>
           <section class="info-section"><h2>知っておきたいこと</h2><div class="tip-list" id="tips"></div></section>
         </section>
 
@@ -82,7 +86,12 @@
         </section>
       </div>
 
-      <footer class="site-footer page-shell"><a class="brand brand--footer" href="./">JOURNEY ATLAS</a><small>© JOURNEY ATLAS</small></footer>
+      <footer class="atlas-colophon">
+        <div class="colophon-grid">
+          <div class="mark">JOURNEY ATLAS<span class="mark-tag">次に行きたい世界を、見つける。</span></div>
+          <div class="meta">201の国・地域を、イラストと地図でめぐる。<br>© 2026 Makoto Yagenji · 無断使用・転載を禁じます<br><span class="meta-note">行きたい場所との出会いから、旅を始める。</span><br><span class="meta-links"><a href="./#about">About</a><a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a></span></div>
+        </div>
+      </footer>
     </article>
   </template>
   <script src="assets/js/app.js?v=20260824-0208" defer></script>
