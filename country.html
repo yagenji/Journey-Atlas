@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="assets/css/country-template-v2.css?v=20260824-2315">
   <link rel="stylesheet" href="assets/css/country-icon-system.css?v=20260825-0152">
   <link rel="stylesheet" href="assets/css/country-trivia.css?v=20260825-0152">
-  <link rel="stylesheet" href="assets/css/site-unify.css?v=20260825-0210">
+  <link rel="stylesheet" href="assets/css/site-unify.css?v=20260825-0220">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-2315">
 </head>
 <body>
@@ -78,10 +78,6 @@
               </div>
               <div class="map-guide-wrap">
                 <p class="map-guide">地図の番号は右側の景色と対応する。番号をたどりながら、見どころの位置関係をつかむ。</p>
-                <div class="map-legend" aria-label="地図記号の説明">
-                  <span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>
-                  <span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>
-                </div>
               </div>
             </div>
             <div class="map-frame">
@@ -90,6 +86,10 @@
                 <div class="map-placeholder" aria-hidden="true"></div>
                 <div class="map-markers" id="map-markers"></div>
               </div>
+            </div>
+            <div class="map-legend map-legend--below" aria-label="地図記号の説明">
+              <span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>
+              <span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>
             </div>
             <div class="encounter-strip">
               <span class="section-kicker-en">ENCOUNTERS</span>
@@ -104,7 +104,7 @@
                 <span class="section-kicker-en">SCENERY</span>
                 <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
               </div>
-              <p class="scenes-intro">その国らしさが見えてくる、8つの景色を選んだ。</p>
+              <p class="scenes-intro">その国らしさが見えてくる、8つの景色。</p>
             </div>
             <div class="scene-grid" id="scene-cards"></div>
           </div>
