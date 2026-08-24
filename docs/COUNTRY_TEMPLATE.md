@@ -40,6 +40,7 @@ Each country JSON uses `schemaVersion: 2` and should contain:
 - `scenes`: exactly 8 benchmark scenic entries
 - `encounters`
 - `atlasExtras`
+- `travelTrivia`
 - `seasons`
 - `transport`
 - `personas`
@@ -112,6 +113,35 @@ Use the shared JOURNEY ATLAS theme vocabulary where relevant, such as:
 - ROAD
 
 The purpose is breadth without turning the page into a conventional travel guide.
+
+### Travel Trivia
+
+`travelTrivia` contains small pieces of knowledge that make the actual trip more enjoyable.
+Use 4–6 items per country; the shared renderer displays up to 6.
+
+Each item should contain:
+
+- `categoryEn`: short reusable category label
+- `categoryJa`: Japanese category label
+- `title`: one concise, memorable fact
+- `text`: why it matters to a traveler or what they can notice/do locally
+- `icon`: shared icon id
+- `sourceKey`: key in the country-level `sources` object
+
+Recommended reusable categories include:
+
+- CUSTOMS / 習慣
+- ETIQUETTE / マナー
+- LANGUAGE / 言葉
+- NAMES / 人名
+- FOOD / 食
+- EVERYDAY / 日常
+- LOCAL TIP / 現地のコツ
+- TRANSPORT / 移動
+
+Selection rule: prefer facts that change what a visitor notices, tries, says, orders, or understands on location.
+Avoid generic trivia, unsupported superlatives, myths, facts that are mainly clickbait, or claims likely to go stale quickly.
+Every item must have a credible source recorded through `sourceKey`.
 
 ## Asset rules
 
@@ -192,12 +222,14 @@ Before publishing a new country:
 7. Common facts are present.
 8. Three useful signature facts are sourced.
 9. Atlas extras are present where appropriate.
-10. No country-specific runtime JS/CSS override is required.
-11. Related countries never produce broken links.
-12. Shared section-title hierarchy and icon styling remain intact.
-13. Desktop and mobile layouts are visually checked.
-14. GitHub `main` state is verified before public Pages review.
-15. Public page is visually reviewed only after all earlier gates pass.
+10. Travel trivia contains 4–6 traveler-relevant, sourced items.
+11. Every trivia `sourceKey` resolves to an entry in `sources`.
+12. No country-specific runtime JS/CSS override is required.
+13. Related countries never produce broken links.
+14. Shared section-title hierarchy and icon styling remain intact.
+15. Desktop and mobile layouts are visually checked.
+16. GitHub `main` state is verified before public Pages review.
+17. Public page is visually reviewed only after all earlier gates pass.
 
 ## Reference country
 
