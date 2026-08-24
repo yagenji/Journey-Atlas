@@ -1,0 +1,60 @@
+(() => {
+  const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
+  const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
+
+  function insertSection(data) {
+    const items = Array.isArray(data.atlasExtras) ? data.atlasExtras : [];
+    if (!items.length) return;
+    const atlasPanel = document.querySelector('.atlas-panel');
+    if (!atlasPanel || document.querySelector('.atlas-extras')) return;
+
+    const section = document.createElement('section');
+    section.className = 'atlas-extras';
+    section.setAttribute('aria-labelledby', 'atlas-extras-title');
+    section.innerHTML = `
+      <div class="atlas-extras__head">
+        <div>
+          <p class="atlas-extras__kicker">BEYOND THE SCENERY</p>
+          <h2 id="atlas-extras-title">景色の先で出会うもの</h2>
+        </div>
+        <p class="atlas-extras__intro">景色だけでは見えない、その国の街、暮らし、歴史、野生、食、そして道。JOURNEY ATLASの8つのテーマから、もう一歩だけ国を知る。</p>
+      </div>
+      <div class="atlas-extras__grid"></div>`;
+
+    const grid = section.querySelector('.atlas-extras__grid');
+    items.forEach((item) => {
+      const article = document.createElement('article');
+      article.className = 'atlas-extra';
+      article.innerHTML = `
+        <span class="atlas-extra__theme">${item.themeEn || ''} / ${item.themeJa || ''}</span>
+        <h3>${item.title || ''}</h3>
+        <p>${item.text || ''}</p>`;
+      grid.append(article);
+    });
+
+    atlasPanel.insertAdjacentElement('afterend', section);
+  }
+
+  function waitForAtlas(data) {
+    if (document.querySelector('.atlas-panel')) {
+      insertSection(data);
+      return;
+    }
+    const app = document.querySelector('#app');
+    if (!app) return;
+    const observer = new MutationObserver(() => {
+      if (!document.querySelector('.atlas-panel')) return;
+      observer.disconnect();
+      insertSection(data);
+    });
+    observer.observe(app, { childList: true, subtree: true });
+  }
+
+  fetch(`data/countries/${safeSlug}.json?v=20260824-1125`)
+    .then((response) => {
+      if (!response.ok) throw new Error('Country data not found');
+      return response.json();
+    })
+    .then(waitForAtlas)
+    .catch(() => {});
+})();
