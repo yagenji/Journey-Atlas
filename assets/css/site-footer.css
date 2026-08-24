@@ -48,27 +48,27 @@
 /* Old colophon must never compete with the shared footer. */
 .atlas-colophon{display:none!important;}
 
-/* Iceland v2 illustrations. The unique Skogafoss scene identifies the Iceland page. */
+/* Iceland v2 illustrations. SVG wrappers are used because they deploy reliably on GitHub Pages. */
 body:has(.scene-card[data-scene="skogafoss"]) .hero-art{
-  background-image:url("../images/iceland/v2/hero-seljalandsfoss.webp")!important;
+  background-image:url("../images/iceland/v2/hero-seljalandsfoss.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="skogafoss"] .scene-image{
-  background-image:url("../images/iceland/v2/skogafoss.webp")!important;
+  background-image:url("../images/iceland/v2/skogafoss.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="jokulsarlon"] .scene-image{
-  background-image:url("../images/iceland/v2/jokulsarlon.webp")!important;
+  background-image:url("../images/iceland/v2/jokulsarlon.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="studlagil"] .scene-image{
-  background-image:url("../images/iceland/v2/studlagil.webp")!important;
+  background-image:url("../images/iceland/v2/studlagil.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="myvatn"] .scene-image{
-  background-image:url("../images/iceland/v2/myvatn.webp")!important;
+  background-image:url("../images/iceland/v2/myvatn.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="kirkjufell"] .scene-image{
-  background-image:url("../images/iceland/v2/kirkjufell.webp")!important;
+  background-image:url("../images/iceland/v2/kirkjufell.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="thingvellir"] .scene-image{
-  background-image:url("../images/iceland/v2/thingvellir.webp")!important;
+  background-image:url("../images/iceland/v2/thingvellir.svg")!important;
 }
 body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="geysir"] .scene-image{
   background-image:url("../images/iceland/v2/geysir.svg")!important;
