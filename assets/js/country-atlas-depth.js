@@ -17,7 +17,7 @@
           <p class="atlas-extras__kicker">BEYOND THE SCENERY</p>
           <h2 id="atlas-extras-title">景色の先で出会うもの</h2>
         </div>
-        <p class="atlas-extras__intro">景色だけでは見えない、その国の街、暮らし、歴史、野生、食、そして道。JOURNEY ATLASの8つのテーマから、もう一歩だけ国を知る。</p>
+        <p class="atlas-extras__intro">8つのテーマのうち、景色8選で強く扱う「地球の風景」「海の世界へ」を除く6テーマから、街・歴史・暮らし・野生・食・道をたどる。</p>
       </div>
       <div class="atlas-extras__grid"></div>`;
 
@@ -50,7 +50,7 @@
     observer.observe(app, { childList: true, subtree: true });
   }
 
-  fetch(`data/countries/${safeSlug}.json?v=20260824-1125`)
+  fetch(`data/countries/${safeSlug}.json?v=20260824-1205`)
     .then((response) => {
       if (!response.ok) throw new Error('Country data not found');
       return response.json();
