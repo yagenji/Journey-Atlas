@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。">
   <title>JOURNEY ATLAS — Country</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +17,7 @@
   <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1205">
   <link rel="stylesheet" href="assets/css/country-refine.css?v=20260824-1228">
   <link rel="stylesheet" href="assets/css/country-template-v2.css?v=20260824-2315">
-  <link rel="stylesheet" href="assets/css/country-icon-system.css?v=20260825-0027">
+  <link rel="stylesheet" href="assets/css/country-icon-system.css?v=20260825-0128">
   <link rel="stylesheet" href="assets/css/country-trivia.css?v=20260825-0038">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-2315">
 </head>
@@ -68,6 +69,7 @@
             <div class="panel-title-wrap">
               <span class="section-kicker-en">TRAVEL MAP</span>
               <h2 class="panel-title" id="atlas-title">旅の地図</h2>
+              <p class="map-guide">地図の番号は右側の景色と対応しています。番号をたどりながら、見どころの位置関係をつかめます。</p>
             </div>
             <div class="map-frame">
               <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
@@ -88,8 +90,8 @@
               <div class="scenes-title-wrap">
                 <span class="section-kicker-en">SCENERY</span>
                 <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
+                <p class="scenes-intro">見どころはほかにも多い。その中から、その国らしさが伝わる8つを選んだ。</p>
               </div>
-              <p data-field="sceneryIntro"></p>
             </div>
             <div class="scene-grid" id="scene-cards"></div>
           </div>
