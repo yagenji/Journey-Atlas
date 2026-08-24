@@ -1,0 +1,157 @@
+/* JOURNEY ATLAS — reusable country template v2
+   Data-first layout. No country-specific asset overrides belong here. */
+
+.signature-facts{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  gap:22px;
+  margin:12px 0 14px;
+  padding:18px 22px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(251,248,240,.88);
+}
+.signature-facts[hidden]{display:none;}
+.signature-facts__head h2{
+  margin:2px 0 0;
+  color:var(--navy);
+  font:600 18px/1.5 var(--body);
+}
+.signature-facts__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.signature-facts__grid article{
+  min-width:0;
+  padding:11px 14px 12px;
+  border-left:1px solid rgba(18,54,92,.16);
+}
+.signature-facts__grid span{
+  display:block;
+  color:var(--muted);
+  font-family:var(--meta);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.08em;
+}
+.signature-facts__grid strong{
+  display:block;
+  margin-top:3px;
+  color:var(--navy-deep);
+  font:500 clamp(19px,2vw,25px)/1.35 var(--display);
+  letter-spacing:.01em;
+}
+.signature-facts__grid p{
+  margin:5px 0 0;
+  color:#4b555b;
+  font-size:11.5px;
+  line-height:1.65;
+}
+
+/* Ambiguous decorative symbols are intentionally omitted in v2. */
+.fact-list > div{
+  grid-template-columns:1fr!important;
+  gap:0!important;
+}
+.persona-list article,
+.tip-list article{
+  grid-template-columns:1fr!important;
+  gap:0!important;
+}
+.season-list article{
+  grid-template-columns:64px 1fr!important;
+  gap:10px;
+}
+.season-list article > b{
+  color:var(--season-color);
+  font-size:11px;
+}
+.transport{
+  grid-template-columns:1fr auto!important;
+}
+
+.encounter-list{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:7px;
+}
+.encounter-list article{
+  min-width:0;
+  padding:6px 5px;
+  border:1px solid rgba(18,54,92,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.26);
+}
+.encounter-list b{
+  margin:0!important;
+  color:var(--navy-deep);
+  font-size:10.5px!important;
+  font-weight:500!important;
+  line-height:1.3;
+  white-space:normal!important;
+}
+
+.atlas-extra ul{
+  margin:10px 0 0;
+  padding:9px 0 0 17px;
+  border-top:1px solid rgba(18,54,92,.09);
+  color:#596269;
+  font-size:11.5px;
+  line-height:1.65;
+}
+.atlas-extra li + li{margin-top:3px;}
+
+.map-hero-marker{
+  width:13px;
+  height:13px;
+  position:absolute;
+  z-index:3;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.map-hero-marker span{
+  width:8px;
+  height:8px;
+  display:block;
+  position:absolute;
+  left:50%;
+  top:50%;
+  border:2px solid #b66e4d;
+  background:#fbf8f0;
+  transform:translate(-50%,-50%) rotate(45deg);
+  box-shadow:0 1px 3px rgba(9,42,75,.16);
+}
+
+.related-card{
+  color:inherit;
+  text-decoration:none;
+}
+.related-card.is-open{cursor:pointer;}
+.related-card.is-open:hover .related-country,
+.related-card.is-open:focus-visible .related-country{
+  border-color:#a86545;
+  box-shadow:0 5px 16px rgba(70,66,52,.09);
+}
+.related-card:focus-visible{outline:2px solid var(--navy);outline-offset:3px;}
+.related-status{
+  display:block;
+  margin-top:7px;
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.08em;
+}
+.related-card.is-coming .related-status{color:#8d9397;}
+
+@media(max-width:900px){
+  .signature-facts{grid-template-columns:1fr;gap:12px;}
+  .signature-facts__grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:620px){
+  .signature-facts{padding:16px;}
+  .signature-facts__grid{grid-template-columns:1fr;gap:0;}
+  .signature-facts__grid article{padding:10px 0;border-left:0;border-top:1px solid rgba(18,54,92,.12);}
+  .encounter-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .season-list article{grid-template-columns:58px 1fr!important;}
+}
