@@ -1,70 +1,61 @@
-/* JOURNEY ATLAS — exact top-page footer treatment */
-.atlas-colophon{
-  margin-top:0!important;
-  background:#fffdf9!important;
-  color:#0b2c57!important;
-  padding:clamp(38px,6vh,62px) clamp(18px,5vw,80px)!important;
-  border-top:1px solid rgba(11,44,87,.13)!important;
+/* JOURNEY ATLAS — shared minimal footer */
+.atlas-footer{
+  margin-top:0;
+  border-top:1px solid rgba(11,44,87,.12);
+  background:#fffdf9;
+  color:#0b2c57;
 }
-.atlas-colophon .colophon-grid{
-  max-width:1240px!important;
-  margin:0 auto!important;
-  display:flex!important;
-  justify-content:space-between!important;
-  align-items:flex-end!important;
-  gap:34px!important;
-  flex-wrap:wrap!important;
+.atlas-footer__inner{
+  width:min(100% - 56px,1240px);
+  min-height:72px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
 }
-.atlas-colophon .mark{
-  color:#0b2c57!important;
-  font-family:"Hanken Grotesk",sans-serif!important;
-  font-weight:700!important;
-  letter-spacing:.3em!important;
-  text-transform:uppercase!important;
-  font-size:.95rem!important;
+.atlas-footer__nav{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:clamp(20px,2.5vw,36px);
 }
-.atlas-colophon .mark-tag{
-  display:block!important;
-  margin-top:9px!important;
-  font-family:"Shippori Mincho",serif!important;
-  font-weight:400!important;
-  letter-spacing:.04em!important;
-  text-transform:none!important;
-  font-size:.84rem!important;
-  line-height:1.6!important;
-  color:#657485!important;
+.atlas-footer a,
+.atlas-footer__copyright{
+  font-family:"Hanken Grotesk","Zen Kaku Gothic New",sans-serif;
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:.02em;
+  color:#0b2c57;
 }
-.atlas-colophon .meta{
-  max-width:650px!important;
-  font-family:"Hanken Grotesk",sans-serif!important;
-  font-size:.66rem!important;
-  letter-spacing:.07em!important;
-  line-height:1.95!important;
-  color:#667483!important;
-  text-align:right!important;
+.atlas-footer a{
+  text-decoration:none;
 }
-.atlas-colophon .meta-note{
-  font-family:"Shippori Mincho",serif!important;
-  letter-spacing:.01em!important;
-  opacity:.75!important;
+.atlas-footer a:hover,
+.atlas-footer a:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
-.atlas-colophon .meta-links{
-  display:inline-flex!important;
-  margin-top:2px!important;
-  gap:20px!important;
-  justify-content:flex-end!important;
+.atlas-footer__copyright{
+  margin-left:auto;
+  white-space:nowrap;
 }
-.atlas-colophon .meta-links a{
-  color:inherit!important;
-  text-decoration:underline!important;
-  text-decoration-thickness:1px!important;
-  text-underline-offset:3px!important;
-  text-decoration-color:rgba(64,83,100,.28)!important;
-}
-.atlas-colophon a:hover{color:#0b2c57!important;}
+
+/* Disable legacy colophon styling if stale markup is ever cached. */
+.atlas-colophon{display:none!important;}
 
 @media(max-width:760px){
-  .atlas-colophon .colophon-grid{display:block!important;}
-  .atlas-colophon .meta{margin-top:24px!important;text-align:left!important;}
-  .atlas-colophon .meta-links{justify-content:flex-start!important;}
+  .atlas-footer__inner{
+    width:min(100% - 36px,1240px);
+    min-height:0;
+    padding:22px 0;
+    display:block;
+  }
+  .atlas-footer__nav{
+    gap:14px 22px;
+  }
+  .atlas-footer__copyright{
+    display:block;
+    margin-top:18px;
+  }
 }
