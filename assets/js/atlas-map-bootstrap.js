@@ -1,6 +1,6 @@
 (() => {
   const configs = window.JOURNEY_ATLAS_MAP_CONFIGS || {};
-  const version = '20260824-2115';
+  const version = '20260824-2122';
   const nativeFetch = window.fetch.bind(window);
 
   window.fetch = async (input, init = {}) => {
