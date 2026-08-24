@@ -17,6 +17,7 @@ const heroStepButtons = [...document.querySelectorAll('[data-hero-step]')];
 const alphabetHost = document.querySelector('#alphabet-buttons');
 const alphabetButtons = () => [...document.querySelectorAll('[data-letter]')];
 const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
+const ATLAS_TOTAL = 201;
 
 let destinations = [];
 let heroSources = [];
@@ -75,7 +76,7 @@ fetch('data/theme-taxonomy.json')
     const entryCopy=document.querySelector('.explore-card--theme p');
     if(entryCopy)entryCopy.textContent='行きたい理由から、世界を選ぶ';
     const detailCopy=document.querySelector('.theme-panel .detail-heading p');
-    if(detailCopy)detailCopy.textContent='あなたが惹かれるのは、どんな旅？ 199の国・地域を、8つのテーマから見つけてみよう。';
+    if(detailCopy)detailCopy.textContent=`あなたが惹かれるのは、どんな旅？ ${ATLAS_TOTAL}の国・地域を、8つのテーマから見つけてみよう。`;
   })
   .catch(()=>{});
 
@@ -157,11 +158,14 @@ if(alphabetHost){
   });
 }
 
-fetch('data/atlas-destinations.json')
-  .then((response)=>{if(!response.ok) throw new Error('Destination registry not found');return response.json();})
-  .then(({destinations:items=[],count:total})=>{
+Promise.all([
+  fetch('data/atlas-destinations.json').then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();}),
+  fetch('data/atlas-destinations-editorial.json').then((response)=>{if(!response.ok) throw new Error('Editorial destination registry not found');return response.json();})
+])
+  .then(([core, editorial])=>{
+    const items=[...(core.destinations||[]),...(editorial.destinations||[])];
     destinations=sortForDisplay(items);
-    if(count) count.textContent=`${total||destinations.length} DESTINATIONS`;
+    if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);renderGrid(destinations);
   })
   .catch(()=>{if(rail) rail.innerHTML='<p class="country-load-error">国一覧を読み込めませんでした。</p>';});
