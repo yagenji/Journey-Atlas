@@ -2,6 +2,7 @@
   const params = new URLSearchParams(window.location.search);
   if ((params.get('country') || 'iceland') !== 'iceland') return;
 
+  const mapSource = 'assets/images/iceland/map-minimal.svg?v=20260824-2035';
   const positions = {
     skogafoss: { x: 46.1, y: 65.1 },
     jokulsarlon: { x: 71.6, y: 59.2 },
@@ -13,6 +14,15 @@
     landmannalaugar: { x: 49.5, y: 60.0 }
   };
   const heroPosition = { x: 42.7, y: 64.2 };
+
+  function applyMapSource() {
+    const image = document.querySelector('#country-map-art .map-base');
+    if (!image) return false;
+    if (image.dataset.minimalMap === 'true') return true;
+    image.dataset.minimalMap = 'true';
+    image.src = mapSource;
+    return true;
+  }
 
   function calibrateScenes() {
     const markers = document.querySelectorAll('#map-markers .map-marker[data-scene]');
@@ -35,7 +45,7 @@
   }
 
   function calibrateAll() {
-    return calibrateScenes() && calibrateHero();
+    return applyMapSource() && calibrateScenes() && calibrateHero();
   }
 
   if (calibrateAll()) return;
