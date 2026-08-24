@@ -20,7 +20,6 @@ Each country JSON uses `schemaVersion: 2` and should contain:
 - `nameEn`
 - `nameJa`
 - `region`
-- `sceneryIntro`: short country-specific orientation copy above the 8 scenes
 - `capital`
   - `nameEn`
   - `nameJa`
@@ -52,6 +51,17 @@ Each country JSON uses `schemaVersion: 2` and should contain:
 - `sources`
 
 Reusable information items may include an optional `icon` key. The value must reference a symbol in `assets/icons/atlas-icons.svg`.
+
+## Shared template copy
+
+Explanatory text that describes how to use the layout belongs in `country.html`, not in each country JSON.
+
+Current shared copy includes:
+
+- scenery intro: `見どころはほかにも多い。その中から、その国らしさが伝わる8つを選んだ。`
+- map guide: numbered map markers correspond to the scenic entries shown beside the map
+
+Do not add a country name to the shared scenery intro. Country-specific meaning belongs in the eight scene descriptions themselves.
 
 ## Typography hierarchy
 
@@ -111,8 +121,7 @@ Write as an atlas, not a tourism advertisement.
 Prefer concrete geography, geology, history, scale, material, or observable characteristics.
 Avoid generic promotional phrases such as “breathtaking,” “magical,” or “must-see.”
 
-The `sceneryIntro` should frame the eight selections, not describe their route order unless that order itself matters.
-A useful pattern is: there are many more places to see, and these eight were selected because they communicate the country's character particularly well.
+The shared scenery intro frames the eight selections for every country. Do not create a country-specific replacement unless the page structure itself changes globally.
 
 ### Beyond the Scenery
 
