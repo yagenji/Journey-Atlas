@@ -146,29 +146,26 @@ html{scroll-padding-top:96px!important;}
 }
 
 /* ---------- COUNTRY MAP / SCENERY EDITORIAL HEADS ---------- */
-.panel-title-wrap,
+.panel-title-wrap{
+  display:block!important;
+  min-height:0!important;
+  margin-bottom:18px!important;
+}
 .scenes-heading{
   display:grid!important;
   grid-template-columns:minmax(0,1fr) minmax(250px,44%)!important;
-  align-items:start!important;
+  align-items:end!important;
   gap:26px!important;
-  min-height:84px!important;
+  min-height:0!important;
   margin-bottom:18px!important;
 }
 .panel-title-copy,
 .scenes-title-wrap{min-width:0;}
-.map-guide-wrap,
 .scenes-intro{
   justify-self:end;
   width:100%;
   max-width:520px!important;
-  margin:0!important;
-  padding-top:25px!important;
-}
-.map-guide{
-  max-width:none!important;
-  margin:0!important;
-  text-align:left!important;
+  margin:0 0 2px!important;
 }
 .map-legend--below{
   justify-content:flex-end!important;
@@ -206,11 +203,9 @@ html{scroll-padding-top:96px!important;}
     display:block!important;
     min-height:0!important;
   }
-  .map-guide-wrap,
   .scenes-intro{
     max-width:none!important;
     margin-top:8px!important;
-    padding-top:0!important;
   }
   .map-legend--below{
     justify-content:flex-start!important;
