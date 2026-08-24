@@ -17,8 +17,8 @@
   <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1205">
   <link rel="stylesheet" href="assets/css/country-refine.css?v=20260824-1228">
   <link rel="stylesheet" href="assets/css/country-template-v2.css?v=20260824-2315">
-  <link rel="stylesheet" href="assets/css/country-icon-system.css?v=20260825-0128">
-  <link rel="stylesheet" href="assets/css/country-trivia.css?v=20260825-0038">
+  <link rel="stylesheet" href="assets/css/country-icon-system.css?v=20260825-0152">
+  <link rel="stylesheet" href="assets/css/country-trivia.css?v=20260825-0152">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-2315">
 </head>
 <body>
@@ -27,16 +27,17 @@
   </main>
 
   <template id="country-template">
+    <header class="site-header page-shell">
+      <a class="brand" href="./" aria-label="JOURNEY ATLAS ホーム">JOURNEY ATLAS</a>
+      <nav class="utility-nav" aria-label="サイトメニュー">
+        <a href="./"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#home"></use></svg><small>トップ</small></a>
+        <a href="./#countries"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#globe"></use></svg><small>国を探す</small></a>
+        <a href="./#themes"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#compass"></use></svg><small>テーマ</small></a>
+      </nav>
+    </header>
+
     <article class="country-page">
       <section class="hero">
-        <header class="site-header page-shell">
-          <a class="brand" href="./" aria-label="JOURNEY ATLAS ホーム">JOURNEY ATLAS</a>
-          <nav class="utility-nav" aria-label="サイトメニュー">
-            <a href="./"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#home"></use></svg><small>トップ</small></a>
-            <a href="./#countries"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#globe"></use></svg><small>国を探す</small></a>
-            <a href="./#themes"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#compass"></use></svg><small>テーマ</small></a>
-          </nav>
-        </header>
         <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="国の風景"></div>
         <p class="hero-location"><strong data-field="hero.location"></strong></p>
         <div class="hero-copy page-shell">
@@ -69,7 +70,11 @@
             <div class="panel-title-wrap">
               <span class="section-kicker-en">TRAVEL MAP</span>
               <h2 class="panel-title" id="atlas-title">旅の地図</h2>
-              <p class="map-guide">地図の番号は右側の景色と対応しています。番号をたどりながら、見どころの位置関係をつかめます。</p>
+              <p class="map-guide">地図の番号は右側の景色と対応する。番号をたどりながら、見どころの位置関係をつかむ。</p>
+              <div class="map-legend" aria-label="地図記号の説明">
+                <span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>
+                <span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>
+              </div>
             </div>
             <div class="map-frame">
               <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
@@ -90,8 +95,8 @@
               <div class="scenes-title-wrap">
                 <span class="section-kicker-en">SCENERY</span>
                 <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
-                <p class="scenes-intro">見どころはほかにも多い。その中から、その国らしさが伝わる8つを選んだ。</p>
               </div>
+              <p class="scenes-intro">見どころはほかにも多い。その中から、その国らしさが伝わる8つを選んだ。</p>
             </div>
             <div class="scene-grid" id="scene-cards"></div>
           </div>
@@ -114,7 +119,7 @@
               <span class="travel-trivia__kicker">TRAVEL TRIVIA</span>
               <h2 id="travel-trivia-title">知っていると旅が少し楽しくなること</h2>
             </div>
-            <p class="travel-trivia__intro">現地で見つけたり、試したり、人に話したくなる小さな知識。</p>
+            <p class="travel-trivia__intro">現地で見つけたり、試したり、人に話したくなる小さな知識を集めた。</p>
           </div>
           <div class="travel-trivia__grid" id="travel-trivia-grid"></div>
         </section>
