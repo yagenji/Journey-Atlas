@@ -2,6 +2,15 @@
   const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
   const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
 
+  function escapeHtml(value = '') {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
   function insertSection(data) {
     const items = Array.isArray(data.atlasExtras) ? data.atlasExtras : [];
     if (!items.length) return;
@@ -23,12 +32,14 @@
 
     const grid = section.querySelector('.atlas-extras__grid');
     items.forEach((item) => {
+      const points = Array.isArray(item.points) ? item.points.filter(Boolean) : [];
       const article = document.createElement('article');
       article.className = 'atlas-extra';
       article.innerHTML = `
-        <span class="atlas-extra__theme">${item.themeEn || ''} / ${item.themeJa || ''}</span>
-        <h3>${item.title || ''}</h3>
-        <p>${item.text || ''}</p>`;
+        <span class="atlas-extra__theme">${escapeHtml(item.themeEn)} / ${escapeHtml(item.themeJa)}</span>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.text)}</p>
+        ${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}`;
       grid.append(article);
     });
 
@@ -50,7 +61,7 @@
     observer.observe(app, { childList: true, subtree: true });
   }
 
-  fetch(`data/countries/${safeSlug}.json?v=20260824-1205`)
+  fetch(`data/countries/${safeSlug}.json?v=20260824-1220`)
     .then((response) => {
       if (!response.ok) throw new Error('Country data not found');
       return response.json();
