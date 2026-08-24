@@ -20,6 +20,13 @@ Each country JSON uses `schemaVersion: 2` and should contain:
 - `nameEn`
 - `nameJa`
 - `region`
+- `sceneryIntro`: short country-specific orientation copy above the 8 scenes
+- `capital`
+  - `nameEn`
+  - `nameJa`
+  - `coordinates`
+  - optional `labelPosition`
+  - optional `mapOffset`
 - `hero`
   - `lead`
   - `image`
@@ -127,6 +134,13 @@ Do not override map source or bounds at runtime.
 Map geometry must come from geographic data, not AI generation or manually guessed country silhouettes.
 For the map design rules, see `docs/MAP_SYSTEM.md`.
 
+### Capital marker
+
+Every country page should show the capital on the travel map using the shared `capital` object.
+The marker is deliberately quieter than numbered scenic markers and is not a scene.
+Use geographic coordinates and, only when necessary for legibility, `labelPosition` or a small visual `mapOffset`.
+Do not hand-position a capital independently of its coordinates.
+
 ## Related countries
 
 Each related entry must include a `slug`.
@@ -172,17 +186,18 @@ Before publishing a new country:
 1. JSON parses successfully and uses `schemaVersion: 2`.
 2. Hero asset/manifest exists and fully reconstructs.
 3. Map SVG exists, is structurally complete, and matches its bounds.
-4. Exactly 8 scene assets exist.
-5. All scene coordinates project inside the intended map area.
-6. Common facts are present.
-7. Three useful signature facts are sourced.
-8. Atlas extras are present where appropriate.
-9. No country-specific runtime JS/CSS override is required.
-10. Related countries never produce broken links.
-11. Shared section-title hierarchy and icon styling remain intact.
-12. Desktop and mobile layouts are visually checked.
-13. GitHub `main` state is verified before public Pages review.
-14. Public page is visually reviewed only after all earlier gates pass.
+4. Capital coordinates project inside the intended map area.
+5. Exactly 8 scene assets exist.
+6. All scene coordinates project inside the intended map area.
+7. Common facts are present.
+8. Three useful signature facts are sourced.
+9. Atlas extras are present where appropriate.
+10. No country-specific runtime JS/CSS override is required.
+11. Related countries never produce broken links.
+12. Shared section-title hierarchy and icon styling remain intact.
+13. Desktop and mobile layouts are visually checked.
+14. GitHub `main` state is verified before public Pages review.
+15. Public page is visually reviewed only after all earlier gates pass.
 
 ## Reference country
 
