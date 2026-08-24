@@ -75,13 +75,13 @@ After that: India, Saudi Arabia, Oman, Cuba, Guatemala, Costa Rica, Bolivia, Arg
 - Adult visual travel atlas, not a conventional travel-information site.
 - JOURNEY ATLAS must not feel like an illustrated version of JOURNEY LENS.
 - JOURNEY LENS = photography, personal travel memory and narrative. JOURNEY ATLAS = illustrated world discovery, comparison and exploration.
-- Destination illustration target is approximately **photo 60 / illustration 40**.
-- The approved target is the restrained illustrated look: real-world light, geography and atmosphere remain strong, while brushwork and simplified color planes make it clearly an illustration on inspection.
-- Do **not** push further toward watercolor, loose wash, heavy gouache, thick impasto or overt painterly abstraction. The stronger painterly/watercolor batch is not the target.
+- Destination illustration target is approximately **photo 45 / illustration 55**.
+- The approved target is the bright semi-realistic editorial illustration look: real-world light, geography and atmosphere remain strong, while organized color planes and visible brushwork make it clearly illustrated at first glance.
+- Do **not** push toward photoreal stock-photo/HDR/lens treatment, watercolor wash, loose pale painting, heavy gouache, thick impasto or overt painterly abstraction.
 - Every illustration is based on a real named landscape or place.
 - Real geography, architecture, vegetation, coastlines, and landmark relationships take priority over decorative invention.
 - Keep edges and forms readable. Avoid photographic micro-detail, but also avoid blurred, washed-out or overly soft painting.
-- Avoid stock-photo lighting, HDR, lens effects, excessive cinematic drama and travel-poster gloss.
+- Bright open natural light is the baseline, while sky, weather and time of day should vary across the full set.
 - No landmark collage, no text, no flags, no UI, no watermark inside illustrations.
 - One destination = one coherent real scene.
 - Country maps may use illustration-only visual treatment while broadly preserving geography and place relationships.
