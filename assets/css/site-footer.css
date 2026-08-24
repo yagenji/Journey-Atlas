@@ -29,9 +29,7 @@
   letter-spacing:.02em;
   color:#0b2c57;
 }
-.atlas-footer a{
-  text-decoration:none;
-}
+.atlas-footer a{text-decoration:none;}
 .atlas-footer a:hover,
 .atlas-footer a:focus-visible{
   text-decoration:underline;
@@ -41,41 +39,10 @@
   margin-left:auto;
   white-space:nowrap;
 }
-.atlas-footer__nav .is-static{
-  cursor:default;
-}
+.atlas-footer__nav .is-static{cursor:default;}
 
 /* Old colophon must never compete with the shared footer. */
 .atlas-colophon{display:none!important;}
-
-/* Iceland fallback illustrations. The v3 hero loader overrides the hero with the approved high-res image. */
-body:has(.scene-card[data-scene="skogafoss"]) .hero-art{
-  background-image:url("../images/iceland/v2/hero-seljalandsfoss.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="skogafoss"] .scene-image{
-  background-image:url("../images/iceland/v2/skogafoss.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="jokulsarlon"] .scene-image{
-  background-image:url("../images/iceland/v2/jokulsarlon.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="studlagil"] .scene-image{
-  background-image:url("../images/iceland/v2/studlagil.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="myvatn"] .scene-image{
-  background-image:url("../images/iceland/v2/myvatn.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="kirkjufell"] .scene-image{
-  background-image:url("../images/iceland/v2/kirkjufell.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="thingvellir"] .scene-image{
-  background-image:url("../images/iceland/v2/thingvellir.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="geysir"] .scene-image{
-  background-image:url("../images/iceland/v2/geysir.svg")!important;
-}
-body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="landmannalaugar"] .scene-image{
-  background-image:url("../images/iceland/v2/landmannalaugar.svg")!important;
-}
 
 @media(max-width:760px){
   .atlas-footer__inner{
@@ -84,9 +51,7 @@ body:has(.scene-card[data-scene="skogafoss"]) .scene-card[data-scene="landmannal
     padding:22px 0;
     display:block;
   }
-  .atlas-footer__nav{
-    gap:14px 22px;
-  }
+  .atlas-footer__nav{gap:14px 22px;}
   .atlas-footer__copyright{
     display:block;
     margin-top:18px;
