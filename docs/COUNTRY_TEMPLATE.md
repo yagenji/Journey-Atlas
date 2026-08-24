@@ -58,10 +58,17 @@ Explanatory text that describes how to use the layout belongs in `country.html`,
 
 Current shared copy includes:
 
-- scenery intro: `見どころはほかにも多い。その中から、その国らしさが伝わる8つを選んだ。`
+- scenery intro: `その国らしさが見えてくる、8つの景色を選んだ。`
 - map guide: numbered map markers correspond to the scenic entries shown beside the map
+- map legend: numbered circles identify scenery and the diamond identifies the Hero image location
 
 Do not add a country name to the shared scenery intro. Country-specific meaning belongs in the eight scene descriptions themselves.
+
+## Shared site header
+
+Top and country pages use the same JOURNEY ATLAS header scale and brand treatment.
+Do not create a second country-only wordmark size, menu scale, or permanent menu enclosure.
+The shared header remains visible while scrolling and is defined by the shared site stylesheet.
 
 ## Typography hierarchy
 
@@ -262,9 +269,10 @@ Before publishing a new country:
 13. No country-specific runtime JS/CSS override is required.
 14. Related countries never produce broken links.
 15. Shared section-title hierarchy and icon styling remain intact.
-16. Desktop and mobile layouts are visually checked.
-17. GitHub `main` state is verified before public Pages review.
-18. Public page is visually reviewed only after all earlier gates pass.
+16. Shared top/country header treatment remains intact.
+17. Desktop and mobile layouts are visually checked.
+18. GitHub `main` state is verified before public Pages review.
+19. Public page is visually reviewed only after all earlier gates pass.
 
 ## Reference country
 
