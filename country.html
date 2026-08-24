@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="assets/css/atlas-overrides.css">
   <link rel="stylesheet" href="assets/css/country-fixes.css?v=20260823-2315">
   <link rel="stylesheet" href="assets/css/country-layout-final.css?v=20260824-0146">
-  <link rel="stylesheet" href="assets/css/country-atlas-depth.css?v=20260824-1125">
+  <link rel="stylesheet" href="assets/css/country-atlas-depth.css?v=20260824-2315">
   <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1205">
   <link rel="stylesheet" href="assets/css/country-refine.css?v=20260824-1228">
-  <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-2014">
-  <link rel="stylesheet" href="assets/css/atlas-map-theme.css?v=20260824-2251">
+  <link rel="stylesheet" href="assets/css/country-template-v2.css?v=20260824-2315">
+  <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-2315">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -53,6 +53,14 @@
           <dl class="fact-list" id="facts"></dl>
         </section>
 
+        <section class="signature-facts" id="signature-facts-section" aria-labelledby="signature-facts-title" hidden>
+          <div class="signature-facts__head">
+            <span class="section-kicker-en">SIGNATURE FACTS</span>
+            <h2 id="signature-facts-title">この国を知る数字</h2>
+          </div>
+          <div class="signature-facts__grid" id="signature-facts"></div>
+        </section>
+
         <section class="atlas-panel" aria-labelledby="atlas-title">
           <div class="map-column">
             <div class="panel-title-wrap">
@@ -83,6 +91,17 @@
             </div>
             <div class="scene-grid" id="scene-cards"></div>
           </div>
+        </section>
+
+        <section class="atlas-extras" id="atlas-extras-section" aria-labelledby="atlas-extras-title" hidden>
+          <div class="atlas-extras__head">
+            <div>
+              <p class="atlas-extras__kicker">BEYOND THE SCENERY</p>
+              <h2 id="atlas-extras-title">景色の向こうへ</h2>
+            </div>
+            <p class="atlas-extras__intro">街、歴史、暮らし、野生、食、道。景色だけでは見えない、この国の輪郭をたどる。</p>
+          </div>
+          <div class="atlas-extras__grid" id="atlas-extras-grid"></div>
         </section>
 
         <section class="travel-grid" aria-label="旅の情報">
@@ -129,28 +148,6 @@
     </div>
   </footer>
 
-  <script>
-    (() => {
-      const nativeFetch = window.fetch.bind(window);
-      window.fetch = (input, init = {}) => {
-        const url = typeof input === 'string' ? input : input?.url;
-        if (typeof url === 'string' && url.includes('data/countries/')) {
-          const separator = url.includes('?') ? '&' : '?';
-          const freshUrl = `${url}${separator}refresh=20260824-2122`;
-          if (typeof input === 'string') {
-            return nativeFetch(freshUrl, { ...init, cache: 'no-store' });
-          }
-          return nativeFetch(new Request(freshUrl, input), { ...init, cache: 'no-store' });
-        }
-        return nativeFetch(input, init);
-      };
-    })();
-  </script>
-  <script src="assets/js/atlas-map-configs.js?v=20260824-2152" defer></script>
-  <script src="assets/js/atlas-map-bootstrap.js?v=20260824-2122" defer></script>
-  <script src="assets/js/app.js?v=20260824-1738" defer></script>
-  <script src="assets/js/iceland-hero-v3.js?v=20260824-2012" defer></script>
-  <script src="assets/js/country-hero-map.js?v=20260824-1247" defer></script>
-  <script src="assets/js/country-atlas-depth.js?v=20260824-1228" defer></script>
+  <script src="assets/js/app.js?v=20260824-2315" defer></script>
 </body>
 </html>
