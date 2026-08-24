@@ -1,0 +1,72 @@
+/* JOURNEY ATLAS — country footer matched to the top-page legal treatment */
+.atlas-colophon.atlas-colophon--legal{
+  margin-top:42px!important;
+  padding:30px clamp(28px,3.4vw,52px) 42px!important;
+  border-top:0!important;
+  background:#fffdf9!important;
+  color:#748293!important;
+}
+.atlas-legal-footer__inner{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+.atlas-legal-footer__copyright{
+  margin:0;
+  font-family:"Hanken Grotesk",sans-serif;
+  font-size:12px;
+  line-height:1.6;
+  letter-spacing:.07em;
+  text-align:right;
+  color:#647588;
+}
+.atlas-legal-footer__bottom{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:28px;
+  margin-top:10px;
+}
+.atlas-legal-footer__note{
+  margin:0;
+  font-family:"Shippori Mincho",serif;
+  font-size:12px;
+  font-weight:400;
+  line-height:1.8;
+  letter-spacing:.015em;
+  color:#8793a1;
+}
+.atlas-legal-footer__contact{
+  flex:0 0 auto;
+  color:#66788a!important;
+  font-family:"Shippori Mincho",serif;
+  font-size:13px;
+  line-height:1.5;
+  text-decoration:underline!important;
+  text-decoration-thickness:1px!important;
+  text-underline-offset:4px!important;
+  text-decoration-color:rgba(102,120,138,.42)!important;
+}
+.atlas-legal-footer__contact:hover{color:#0b2c57!important;}
+
+@media(max-width:700px){
+  .atlas-colophon.atlas-colophon--legal{
+    padding:26px 18px 34px!important;
+  }
+  .atlas-legal-footer__copyright{
+    font-size:10px;
+    text-align:left;
+  }
+  .atlas-legal-footer__bottom{
+    display:block;
+    margin-top:10px;
+  }
+  .atlas-legal-footer__note{
+    font-size:10.5px;
+  }
+  .atlas-legal-footer__contact{
+    display:inline-block;
+    margin-top:12px;
+    font-size:12px;
+  }
+}
