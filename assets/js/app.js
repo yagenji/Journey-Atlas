@@ -3,7 +3,7 @@ const countryTemplate = document.querySelector('#country-template');
 const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
 
-fetch(`data/countries/${safeSlug}.json`)
+fetch(`data/countries/${safeSlug}.json?v=20260824-1228`)
   .then((response) => {
     if (!response.ok) throw new Error('Country data not found');
     return response.json();
