@@ -1,4 +1,12 @@
-/* JOURNEY ATLAS — canonical 199-destination scope + discovery labels */
+/* JOURNEY ATLAS — canonical 201-destination scope + shared visual language */
+
+:root{
+  --paper:#f7f3e9;
+  --soft:#fbf8f0;
+  --line:#d8d0c0;
+  --jp-ui:"Zen Kaku Gothic New","Hanken Grotesk",sans-serif;
+}
+body{background:var(--paper);}
 
 .explore-card__copy{
   grid-template-columns:minmax(0,1fr) auto!important;
@@ -20,6 +28,36 @@
 }
 .explore-card__kicker{margin-bottom:6px}
 .explore-card__copy h2{margin-top:0}
+
+/* Keep the top hero editorial, while shared UI typography follows country pages. */
+.explore-card__copy h2,
+.explore-card__copy p,
+.section-head h2,
+.section-head p,
+.detail-heading h2,
+.detail-heading p,
+.theme-icons b,
+.theme-icons small,
+.all-countries-panel__head strong,
+.all-countries-panel__head p,
+.country-card p,
+.lens-card p,
+.top-header nav{
+  font-family:var(--jp-ui)!important;
+}
+
+.explore-card,
+.country-card,
+.detail-panel,
+.theme-icons button,
+.lens-card,
+.all-countries-panel{
+  border-color:var(--line)!important;
+  background:var(--soft)!important;
+}
+.explore-card{border-radius:13px!important;}
+.detail-panel,.all-countries-panel{border-radius:14px!important;}
+.country-card,.lens-card,.theme-icons button{border-radius:9px!important;}
 
 .countries .section-head>div,
 .theme-panel .theme-heading>div{min-width:0}
@@ -67,14 +105,14 @@
 }
 #about.about-note .about-note__lead + p{
   margin-top:12px;
-  font:500 12.5px/1.9 var(--jp);
+  font:500 12.5px/1.9 var(--jp-ui);
   color:#405364;
 }
 #about.about-note .about-note__definition{
   margin-top:18px;
   padding-top:0;
   border-top:0;
-  font:500 9.5px/1.8 var(--jp);
+  font:500 9.5px/1.8 var(--jp-ui);
   color:#7a858c;
 }
 #about.about-note .about-note__definition b{
