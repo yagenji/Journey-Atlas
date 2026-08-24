@@ -113,7 +113,7 @@
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
     copy.textContent = '地域を選ぶか、− / ＋やホイールで地図を拡大できます。小さな島も、拡大すると実際の形が見えます。';
-    count.textContent = `${dest.length || 199} DESTINATIONS`;
+    count.textContent = `${dest.length || 201} DESTINATIONS`;
     status.textContent = '';
     list.className = 'map-country-preview';
     list.innerHTML = '<div class="map-country-preview__empty"><span class="map-country-preview__marker">⌖</span><div><strong>地域を選択</strong><p>地域を選ぶか、地図を直接拡大してください。</p></div></div>';
@@ -285,19 +285,27 @@
     const c = byIso.get(iso);
     if (!c) return;
     const rid = regIso.get(iso), sid = subIso.get(iso);
+    const r = region(rid), s = sid ? subs.get(sid) : null;
+    if (!r) return;
     const g = ((sid === 'polynesia' || sid === 'micronesia') && wrapGroups.has(iso))
       ? wrapGroups.get(iso)
       : groups.get(iso);
-    if (!g) return;
+
     activeR = rid; activeS = sid || null;
     root.dataset.activeRegion = rid;
     if (sid) root.dataset.activeSubregion = sid; else delete root.dataset.activeSubregion;
     setTabs(rid);
-    focus(sid ? subs.get(sid).iso2 : region(rid).iso2);
+    focus(s ? s.iso2 : r.iso2);
     clear(); selected = iso;
+    panel(r, s, c);
+
+    if (!g) {
+      animate(s ? subOverview(sid) : regionOverview(rid), 280);
+      return;
+    }
+
     groups.get(iso)?.classList.add('is-selected');
     wrapGroups.get(iso)?.classList.add('is-selected');
-    panel(region(rid), sid ? subs.get(sid) : null, c);
     const b = bbox(g), w = Math.max(Math.max(b.width, b.height / RATIO) * 3.2, 9), h = w * RATIO;
     animate([b.x + b.width / 2 - w / 2, b.y + b.height / 2 - h / 2, w, h], 340);
     requestAnimationFrame(placePin);
@@ -525,10 +533,11 @@
     fetch(MAP).then(r => r.text()),
     fetch(ANT).then(r => r.text()),
     fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
-    fetch('data/atlas-destinations.json?v=20260822-2252').then(r => r.json())
-  ]).then(([m, a, rd, dd]) => {
+    fetch('data/atlas-destinations.json?v=20260825-0128').then(r => r.json()),
+    fetch('data/atlas-destinations-editorial.json?v=20260825-0128').then(r => r.json())
+  ]).then(([m, a, rd, core, editorial]) => {
     regions = rd.regions || [];
-    dest = dd.destinations || [];
+    dest = [...(core.destinations || []), ...(editorial.destinations || [])];
     byIso = new Map(dest.map(c => [c.iso2, c]));
     lookup(); build(m, a); setRegion('world', false);
   }).catch(e => {
