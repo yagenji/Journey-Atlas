@@ -1,0 +1,65 @@
+/* JOURNEY ATLAS — shared site footer */
+.atlas-footer{
+  margin-top:0;
+  border-top:1px solid rgba(11,44,87,.12);
+  background:#fffdf9;
+  color:#0b2c57;
+}
+.atlas-footer__inner{
+  width:min(100% - 56px,1240px);
+  min-height:72px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+.atlas-footer__nav{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:clamp(20px,2.5vw,36px);
+}
+.atlas-footer a,
+.atlas-footer__nav span,
+.atlas-footer__copyright{
+  font-family:"Hanken Grotesk","Zen Kaku Gothic New",sans-serif;
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:.02em;
+  color:#0b2c57;
+}
+.atlas-footer a{
+  text-decoration:none;
+}
+.atlas-footer a:hover,
+.atlas-footer a:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.atlas-footer__copyright{
+  margin-left:auto;
+  white-space:nowrap;
+}
+.atlas-footer__nav .is-static{
+  cursor:default;
+}
+
+/* Old colophon must never compete with the shared footer. */
+.atlas-colophon{display:none!important;}
+
+@media(max-width:760px){
+  .atlas-footer__inner{
+    width:min(100% - 36px,1240px);
+    min-height:0;
+    padding:22px 0;
+    display:block;
+  }
+  .atlas-footer__nav{
+    gap:14px 22px;
+  }
+  .atlas-footer__copyright{
+    display:block;
+    margin-top:18px;
+  }
+}
