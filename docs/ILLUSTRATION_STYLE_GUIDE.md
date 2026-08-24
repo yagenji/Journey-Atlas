@@ -1,6 +1,6 @@
 # JOURNEY ATLAS Illustration Style Guide
 
-最終更新：2026-08-23
+最終更新：2026-08-24
 
 この文書は、JOURNEY ATLASで使用する国・地域イラストの共通制作基準である。201の国・地域を並べたときに一つの世界観として成立し、JOURNEY LENSの実写写真と明確に差別化されることを最優先する。
 
@@ -14,22 +14,32 @@ JOURNEY LENSは実際に訪れた場所を写真と物語で追体験するサ�
 
 ## 2. 固定スタイル
 
-### 基本比率
-
-- 写真の実在感：45%
-- 絵としての表現：55%
-
 ### 基本表現
 
-- bright semi-realistic editorial travel illustration
-- 実在感のある風景を基準にしながら、一目でイラストと分かる。
-- 写真に近い地形・光・遠近感を保ちつつ、細部を整理し、色面と筆致を明確に残す。
-- 空、雲、山、岩、植生、水、建物に適度な描画感を出す。
-- 輪郭線で漫画的に描くのではなく、色面・光・陰影・筆致で形をつくる。
-- 明るく開けた印象を基本とする。曇天や重い空だけが続く画面構成にはしない。
-- 水彩のにじみ、薄いウォッシュ、紙の白抜けが強い表現にはしない。
-- 厚塗り油彩のような重さ、荒々しいインパスト、過度な絵画作品感にも寄せない。
-- 「写真の加工」にも「水彩画」にも見えない、JOURNEY ATLAS独自のエディトリアルイラストを目指す。
+- clean editorial watercolor travel illustration
+- 大人向けの上品な旅行図鑑イラストとして、一目でイラストと分かる。
+- 実在する地形・建築・植生・光・遠近感は高い精度で保つ。
+- 水彩の透明感、柔らかな色の重なり、自然な階調は残す。
+- 水彩紙の繊維、強い紙目、粒子感、granulationはほぼ見えないレベルまで抑える。
+- 小さな筆跡、dry brush、stippling、荒いwashを画面全体に出さない。
+- 筆致は空、水、遠景、大きな色面にごく弱く残す程度とする。
+- 山稜、崖、建物、滝、岩、海岸線など場所を識別する主形状は明瞭に描く。
+- 写真の微細ノイズや超細密テクスチャを再現しない。
+- 厚塗り油彩、重いガッシュ、インパスト、キャンバス地には寄せない。
+- 生成AI特有の過剰なmicro-detail、過剰sharp、HDR感、意味のない描き込みを避ける。
+- 明るく自然な光、低〜中彩度、落ち着いた色調を基本とする。
+- 写真的な構図・空間の説得力は利用するが、描画処理は明確にイラストとする。
+
+### 表現バランス
+
+- 地理・実景の正確性：高い
+- 写真的な表面再現：低〜中
+- イラストとしての整理：高い
+- 紙・画材テクスチャ：極低
+- 可視筆致：低
+- 主形状の輪郭明瞭度：中〜高
+
+リアルさを落とすために粗く描くのではない。実景の情報を整理し、不要な表面ノイズを減らすことで「図鑑として読みやすい絵」にする。
 
 ## 3. JOURNEY LENSとの差別化
 
@@ -67,7 +77,7 @@ ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目
 - 主役への視線誘導を実景写真より明確にする。
 - 背景の細部を簡略化し、前景・中景・遠景の面を整理する。
 - 色を自然な範囲で編集し、カードサイズでも場所の個性が伝わるようにする。
-- 筆致を完全には消さず、特に空・雲・山肌・水面・植生に適度な描画感を残す。
+- 水彩らしさは色の透明感と階調で表現し、紙目や荒い筆跡には依存しない。
 
 避けるもの：
 
@@ -77,21 +87,33 @@ ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目
 - HDR、強い局所コントラスト
 - CG・3Dレンダー感
 - レンズボケを強調した写真演出
-- 水彩画として明確に見えるにじみ・ウォッシュ
-- 厚塗り油彩・インパストを主役にした重い画面
+- visible paper grain / fibrous watercolor paper / rough tooth
+- strong granulation / dry-brush texture / stippling
+- loose rough wash / bleeding edges across the whole image
+- heavy gouache / oil painting / impasto / canvas texture
+- over-sharpened AI micro-detail
 - 子ども向け図鑑のような単純化
 
-## 6. 構図
+## 6. 構図と解像度
 
 ### Country card / scene
 
 - 制作基準比率：16:10の横長
-- 推奨マスター：1600 × 1000相当
+- マスター：1600 × 1000以上
+- Web配信用画像も原則960 × 600以上を維持し、320 × 200を原画として使用しない。
 - 主要被写体は中央60〜70%の安全領域に置く。
 - 上下左右約10%がトリミングされても成立する構図にする。
 - 小さいカードでも認識できる強い主役または地形のシルエットを持たせる。
 - 主役を画面端に寄せすぎない。
 - 1枚の中に見せ場を詰め込みすぎない。
+
+### Hero
+
+- 制作基準比率：16:9
+- マスター：2560 × 1440を基準とする。
+- Web配信用画像は1920 × 1080以上を基本とし、480 × 270を原画として使用しない。
+- 国名・導入文が重なる側に十分な静かな余白をつくる。
+- 主要被写体はHero内でトリミングされても失われない安全位置に置く。
 
 ### カメラ感
 
@@ -160,7 +182,7 @@ ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目
 
 ## 12. 生成用共通プロンプト骨格
 
-> A bright semi-realistic editorial travel illustration, approximately 45% photographic realism and 55% visible illustration. Accurate real-world geography, architecture, vegetation and natural lighting, with clearly organized color shapes and visible painterly brushwork. Bright open daylight or location-appropriate luminous light, crisp readable landforms, natural atmospheric depth, one coherent real scene, horizontal 16:10 composition. Clearly illustrated at first glance, but not watercolor, not heavy gouache, not thick impasto, not a photo filter. No collage, no text, no flags, no logos, no watermark, no photorealistic stock-photo look, no HDR, no strong lens effects, no cartoon outlines, no 3D-render look.
+> A refined clean editorial watercolor travel illustration for an adult travel atlas. Accurate real-world geography, architecture, vegetation and natural lighting. Preserve the transparent luminosity and gentle tonal layering of watercolor, but render on a smooth matte surface with almost no visible paper grain, fibers, granulation or rough tooth. Use only subtle broad brush character in sky, water and distant atmospheric areas; avoid visible small brush strokes, dry brush, stippling and loose bleeding edges. Keep the key landforms, cliffs, buildings, waterfalls and silhouettes crisp and clearly readable, with controlled natural detail and clean atmospheric depth. Clearly illustrated at first glance, not photorealistic, not a photo filter, not hyper-detailed. Natural restrained color, luminous location-appropriate light, one coherent real scene. No collage, no text, no flags, no logos, no watermark, no HDR, no strong lens effects, no cartoon outlines, no 3D render, no heavy gouache, no oil painting, no impasto, no canvas texture, no over-sharpened AI micro-detail.
 
 ## 13. QA
 
@@ -169,22 +191,27 @@ ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目
 3. 地形・建物の形が大きく崩れていないか。
 4. 実景にない要素を足していないか。
 5. 一目でイラストと分かるか。
-6. 水彩・厚塗り・漫画・写真加工のどれかに偏りすぎていないか。
-7. 明るさは十分か。曇天が連続していないか。
-8. 適度な筆致と面の整理が見えるか。
-9. 16:10カードに縮小しても主役を認識できるか。
-10. 前後の国・地域と構図・色・題材が単調に重複していないか。
-11. 文字・ロゴ・透かしが入っていないか。
-12. JOURNEY LENSの実写写真と明確に違う見え方になっているか。
+6. 水彩の透明感はあるが、紙目・粒子・荒い筆致が前に出ていないか。
+7. 山稜、建築、滝、海岸線など主要形状が明瞭か。
+8. 写真・油彩・重いガッシュ・CG・漫画のどれかに偏りすぎていないか。
+9. 生成AI特有の過剰な微細描写や不自然なsharpnessがないか。
+10. 明るさと色は自然か。
+11. Heroまたは16:10カードへ縮小しても主役を認識できるか。
+12. 前後の国・地域と構図・色・題材が単調に重複していないか。
+13. 文字・ロゴ・透かしが入っていないか。
+14. JOURNEY LENSの実写写真と明確に違う見え方になっているか。
+15. Web用画像が必要以上に低解像度化されていないか。
 
 ## 14. Production rule
 
-この基準はIceland最終ベンチマークで承認済みとしてlockする。
+Icelandを新スタイルの最終ベンチマークとして再制作し、Heroと8景のQA完了後にlockする。
 
-1. 全201件のscene briefを実景確認する。
-2. controlled batchで生成する。
-3. batchごとにQAする。
-4. 問題がある画像のみ再生成する。
-5. approved画像のみサイトへ実装する。
+1. IcelandのHeroと8景を一枚ずつ生成・確認する。
+2. 対象地点の実景を生成前に確認する。
+3. 1枚ごとにstyle、real-place、crop、clarityをQAする。
+4. 承認されたIcelandを新しい基準としてlockする。
+5. その後、他国をcontrolled batchで制作する。
+6. 問題がある画像のみ再生成する。
+7. approved画像のみサイトへ実装する。
 
-Approved画像は、明示的な変更指示がない限り再生成しない。
+旧Iceland画像は新スタイルの承認素材として扱わない。
