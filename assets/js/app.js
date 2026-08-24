@@ -2,7 +2,8 @@ const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
 const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260824-2315';
+const DATA_VERSION = '20260824-2352';
+const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
   .then((response) => {
@@ -33,18 +34,36 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#039;');
 }
 
+const ICON_ALIASES = new Map([
+  ['地域', 'globe'], ['首都', 'landmark'], ['人口', 'users'], ['面積', 'map'], ['言語', 'language'], ['主な宗教', 'culture'], ['通貨', 'coin'],
+  ['人口密度', 'users'], ['氷河', 'ice'], ['再生可能電力', 'energy'],
+  ['火山', 'volcano'], ['滝', 'waterfall'], ['黒砂海岸', 'shore'], ['地熱', 'geothermal'], ['温泉', 'hot-spring'], ['オーロラ', 'aurora'], ['ロードトリップ', 'road'],
+  ['景色のために旅する人', 'landscape'], ['ロードトリップが好きな人', 'road'], ['写真を撮る人', 'camera'], ['歩くことが好きな人', 'hike'], ['静かな場所が好きな人', 'quiet'],
+  ['昼と夜が大きく変わる', 'sun'], ['道路は旅の一部', 'road'], ['火山と氷河が隣り合う', 'volcano']
+]);
+
+function iconName(item, fallback = 'compass') {
+  if (item?.icon) return item.icon;
+  return ICON_ALIASES.get(item?.label) || ICON_ALIASES.get(item?.title) || fallback;
+}
+
+function iconSvg(name, className = 'ui-icon') {
+  const safeName = /^[a-z0-9-]+$/.test(name || '') ? name : 'compass';
+  return `<svg class="${className}" aria-hidden="true" viewBox="0 0 24 24"><use href="${ICON_SPRITE}#${safeName}"></use></svg>`;
+}
+
 function renderCountry(data, registry) {
   const fragment = countryTemplate.content.cloneNode(true);
   fragment.querySelectorAll('[data-field]').forEach((element) => {
     const key = element.dataset.field;
-    const value = key === 'sceneCount' ? data.scenes.length : getValue(data, key);
+    const value = key === 'sceneCount' ? (data.scenes || []).length : getValue(data, key);
     element.textContent = value ?? '';
   });
 
-  setBackground(fragment.querySelector('[data-image-field="hero.image"]'), data.hero.image);
+  setBackground(fragment.querySelector('[data-image-field="hero.image"]'), data.hero?.image);
   renderMapBase(fragment, data.map);
-  renderScenes(fragment, data.scenes, data.map.bounds);
-  renderHeroMarker(fragment, data.hero, data.map.bounds);
+  renderScenes(fragment, data.scenes, data.map?.bounds);
+  renderHeroMarker(fragment, data.hero, data.map?.bounds);
   renderEncounters(fragment, data.encounters);
   renderSignatureFacts(fragment, data.signatureFacts);
   renderAtlasExtras(fragment, data.atlasExtras);
@@ -59,18 +78,18 @@ function renderCountry(data, registry) {
   document.title = `${data.nameEn} — JOURNEY ATLAS`;
   initWishButton(data.slug);
 
-  const requestedScene = getSceneFromHash(data.scenes) || data.scenes[0]?.id;
+  const scenes = data.scenes || [];
+  const requestedScene = getSceneFromHash(scenes) || scenes[0]?.id;
   setActiveScene(requestedScene, false);
 
   window.addEventListener('hashchange', () => {
-    const sceneId = getSceneFromHash(data.scenes);
+    const sceneId = getSceneFromHash(scenes);
     if (sceneId) setActiveScene(sceneId, true);
   });
 }
 
 function resolveImageSource(source) {
   if (!source || typeof source !== 'string') return Promise.reject(new Error('Image source missing'));
-
   if (source.endsWith('.parts.json')) {
     return fetch(`${source}?v=${DATA_VERSION}`, { cache: 'no-store' })
       .then((response) => {
@@ -88,14 +107,11 @@ function resolveImageSource(source) {
             })
         )).then((chunks) => {
           const encoded = chunks.join('').replace(/\s+/g, '');
-          if (manifest.signature && !encoded.startsWith(manifest.signature)) {
-            throw new Error('Encoded image signature mismatch');
-          }
+          if (manifest.signature && !encoded.startsWith(manifest.signature)) throw new Error('Encoded image signature mismatch');
           return `data:${manifest.mime || 'image/webp'};base64,${encoded}`;
         });
       });
   }
-
   if (!source.endsWith('.b64')) return Promise.resolve(source);
   return fetch(`${source}?v=${DATA_VERSION}`, { cache: 'no-store' })
     .then((response) => {
@@ -118,24 +134,17 @@ function renderMapBase(fragment, mapData) {
   image.className = 'map-base';
   image.alt = '';
   image.decoding = 'async';
-
   image.addEventListener('load', () => {
     placeholder.hidden = true;
     grid.hidden = true;
     mapArt.classList.add('has-map');
   });
-
   image.addEventListener('error', () => {
     image.remove();
     placeholder.hidden = false;
     grid.hidden = false;
-    const message = placeholder.querySelector('span');
-    if (message) message.textContent = '地図を読み込めませんでした';
   });
-
-  resolveImageSource(mapData.svg)
-    .then((resolvedSource) => { image.src = resolvedSource; })
-    .catch(() => image.dispatchEvent(new Event('error')));
+  resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
 }
 
@@ -145,9 +154,7 @@ function setBackground(element, image) {
     .then((resolvedSource) => {
       element.style.backgroundImage = `url("${resolvedSource}")`;
       element.classList.add('has-image');
-      element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => {
-        placeholder.hidden = true;
-      });
+      element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => { placeholder.hidden = true; });
     })
     .catch(() => {});
 }
@@ -159,19 +166,12 @@ function projectPoint(coordinates, bounds, offset = {}) {
   if (longitudeRange <= 0 || latitudeRange <= 0) return null;
   const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100 + (Number(offset.x) || 0);
   const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100 + (Number(offset.y) || 0);
-  return {
-    x: Math.max(0, Math.min(100, x)),
-    y: Math.max(0, Math.min(100, y))
-  };
+  return { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) };
 }
 
 function renderSceneName(element, name, preferredBreaks = []) {
-  const characters = Array.from(name);
-  const breaks = Array.isArray(preferredBreaks) ? preferredBreaks : [];
-  const breakPositions = new Set(
-    breaks.filter((position) => Number.isInteger(position) && position > 0 && position < characters.length)
-  );
-
+  const characters = Array.from(name || '');
+  const breakPositions = new Set((Array.isArray(preferredBreaks) ? preferredBreaks : []).filter((position) => Number.isInteger(position) && position > 0 && position < characters.length));
   characters.forEach((character, index) => {
     if (breakPositions.has(index)) element.append(document.createElement('wbr'));
     element.append(document.createTextNode(character));
@@ -181,7 +181,6 @@ function renderSceneName(element, name, preferredBreaks = []) {
 function renderScenes(fragment, scenes = [], bounds) {
   const cards = fragment.querySelector('#scene-cards');
   const markers = fragment.querySelector('#map-markers');
-
   scenes.forEach((scene, index) => {
     const number = String(index + 1);
     const card = document.createElement('article');
@@ -190,15 +189,9 @@ function renderScenes(fragment, scenes = [], bounds) {
     card.id = `scene-${scene.id}`;
     card.tabIndex = 0;
     card.setAttribute('aria-label', `${number} ${scene.name}`);
-    card.innerHTML = `
-      <div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div>
-      <div class="scene-copy">
-        <strong>${number}</strong>
-        <div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div>
-      </div>`;
+    card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
     setBackground(card.querySelector('.scene-image'), scene.image);
-
     const point = projectPoint(scene.coordinates, bounds, scene.mapOffset);
     if (point) {
       const marker = document.createElement('button');
@@ -214,7 +207,6 @@ function renderScenes(fragment, scenes = [], bounds) {
       bindSceneActivation(marker, scene.id, true);
       markers.append(marker);
     }
-
     bindSceneActivation(card, scene.id, false);
     cards.append(card);
   });
@@ -241,7 +233,6 @@ function bindSceneActivation(element, id, scrollOnClick) {
     setActiveScene(id, scrollOnClick);
     history.replaceState(null, '', `#${id}`);
   });
-
   element.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -258,14 +249,10 @@ function setActiveScene(id, shouldScroll = false) {
     element.classList.toggle('is-active', active);
     if (element.matches('button')) element.setAttribute('aria-pressed', String(active));
   });
-
-  if (shouldScroll) {
-    const card = document.querySelector(`.scene-card[data-scene="${id}"]`);
-    card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+  if (shouldScroll) document.querySelector(`.scene-card[data-scene="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function getSceneFromHash(scenes) {
+function getSceneFromHash(scenes = []) {
   const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
   return scenes.some((scene) => scene.id === hash) ? hash : null;
 }
@@ -274,7 +261,7 @@ function renderEncounters(fragment, items = []) {
   const container = fragment.querySelector('#encounters');
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.innerHTML = `<b>${escapeHtml(item.title)}</b>`;
+    article.innerHTML = `${iconSvg(iconName(item, 'compass'))}<b>${escapeHtml(item.title)}</b>`;
     container.append(article);
   });
 }
@@ -288,7 +275,7 @@ function renderSignatureFacts(fragment, items = []) {
   }
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.innerHTML = `<span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.value)}</strong><p>${escapeHtml(item.note || '')}</p>`;
+    article.innerHTML = `<div class="signature-fact__label">${iconSvg(iconName(item, 'spark'))}<span>${escapeHtml(item.label)}</span></div><strong>${escapeHtml(item.value)}</strong><p>${escapeHtml(item.note || '')}</p>`;
     container.append(article);
   });
   section.hidden = false;
@@ -301,16 +288,12 @@ function renderAtlasExtras(fragment, items = []) {
     if (section) section.hidden = true;
     return;
   }
-
+  const themeIcons = { CITY: 'city', HISTORY: 'history', LIFE: 'home', WILDLIFE: 'wildlife', FOOD: 'food', ROAD: 'road', SEA: 'sea', EARTH: 'landscape' };
   items.forEach((item) => {
     const points = Array.isArray(item.points) ? item.points.filter(Boolean) : [];
     const article = document.createElement('article');
     article.className = 'atlas-extra';
-    article.innerHTML = `
-      <span class="atlas-extra__theme">${escapeHtml(item.themeEn)} / ${escapeHtml(item.themeJa)}</span>
-      <h3>${escapeHtml(item.title)}</h3>
-      <p>${escapeHtml(item.text)}</p>
-      ${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}`;
+    article.innerHTML = `<span class="atlas-extra__theme">${iconSvg(item.icon || themeIcons[item.themeEn] || 'compass', 'ui-icon ui-icon--small')}${escapeHtml(item.themeEn)} / ${escapeHtml(item.themeJa)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p>${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}`;
     grid.append(article);
   });
   section.hidden = false;
@@ -318,24 +301,25 @@ function renderAtlasExtras(fragment, items = []) {
 
 function renderSeasons(fragment, items = []) {
   const container = fragment.querySelector('#seasons');
-  items.forEach((item) => {
+  const defaults = ['sun', 'aurora', 'snow', 'leaf'];
+  items.forEach((item, index) => {
     const article = document.createElement('article');
     article.style.setProperty('--season-color', item.color || '#75824e');
-    article.innerHTML = `<b>${escapeHtml(item.months)}</b><p>${escapeHtml(item.text)}</p>`;
+    article.innerHTML = `${iconSvg(item.icon || defaults[index] || 'calendar')}<div><b>${escapeHtml(item.months)}</b><p>${escapeHtml(item.text)}</p></div>`;
     container.append(article);
   });
 }
 
 function renderTransport(fragment, item = {}) {
   const container = fragment.querySelector('#transport');
-  container.innerHTML = `<div><small>移動</small><h3>${escapeHtml(item.title || '')}</h3><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
+  container.innerHTML = `${iconSvg(item.icon || 'road')}<div><small>移動</small><h3>${escapeHtml(item.title || '')}</h3><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
 }
 
 function renderPersonas(fragment, items = []) {
   const container = fragment.querySelector('#personas');
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.innerHTML = `<div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div>`;
+    article.innerHTML = `${iconSvg(iconName(item, 'traveler'))}<div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div>`;
     container.append(article);
   });
 }
@@ -344,7 +328,7 @@ function renderFacts(fragment, facts = []) {
   const container = fragment.querySelector('#facts');
   facts.forEach((fact) => {
     const group = document.createElement('div');
-    group.innerHTML = `<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`;
+    group.innerHTML = `${iconSvg(iconName(fact, 'info'))}<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`;
     container.append(group);
   });
 }
@@ -353,18 +337,14 @@ function renderTips(fragment, tips = []) {
   const container = fragment.querySelector('#tips');
   tips.forEach((tip) => {
     const article = document.createElement('article');
-    article.innerHTML = `<div><h3>${escapeHtml(tip.title)}</h3><p>${escapeHtml(tip.text)}</p></div>`;
+    article.innerHTML = `${iconSvg(iconName(tip, 'note'))}<div><h3>${escapeHtml(tip.title)}</h3><p>${escapeHtml(tip.text)}</p></div>`;
     container.append(article);
   });
 }
 
 function renderRelated(fragment, countries = [], registry = []) {
   const container = fragment.querySelector('#related');
-  const published = new Map(
-    registry.filter((item) => item?.slug && item?.atlasPublished && item?.href)
-      .map((item) => [item.slug, item])
-  );
-
+  const published = new Map(registry.filter((item) => item?.slug && item?.atlasPublished && item?.href).map((item) => [item.slug, item]));
   countries.forEach((country) => {
     const destination = published.get(country.slug);
     const article = document.createElement(destination ? 'a' : 'article');
@@ -373,16 +353,7 @@ function renderRelated(fragment, countries = [], registry = []) {
       article.href = destination.href;
       article.setAttribute('aria-label', `${country.nameJa}のJOURNEY ATLASを見る`);
     }
-    article.innerHTML = `
-      <div class="related-country">
-        <span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span>
-        <div class="related-copy">
-          <h3>${escapeHtml(country.nameEn)}</h3>
-          <b>${escapeHtml(country.nameJa)}</b>
-          <p>${escapeHtml(country.reason)}</p>
-          <small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small>
-        </div>
-      </div>`;
+    article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
     container.append(article);
   });
 }
@@ -393,13 +364,7 @@ function initWishButton(countrySlug) {
   if (!button) return;
   const storageKey = `journey-atlas:wish:${countrySlug}`;
   let wished = false;
-
-  try {
-    wished = localStorage.getItem(storageKey) === 'true';
-  } catch {
-    status.textContent = 'このブラウザでは保存機能を利用できません。';
-  }
-
+  try { wished = localStorage.getItem(storageKey) === 'true'; } catch { if (status) status.textContent = 'このブラウザでは保存機能を利用できません。'; }
   const update = () => {
     button.classList.toggle('is-saved', wished);
     button.querySelector('.wish-icon').textContent = wished ? '♥' : '♡';
@@ -407,15 +372,14 @@ function initWishButton(countrySlug) {
     button.setAttribute('aria-pressed', String(wished));
   };
   update();
-
   button.addEventListener('click', () => {
     wished = !wished;
     try {
       localStorage.setItem(storageKey, String(wished));
-      status.textContent = wished ? 'この端末に保存しました。' : '保存を解除しました。';
+      if (status) status.textContent = wished ? 'この端末に保存しました。' : '保存を解除しました。';
     } catch {
       wished = !wished;
-      status.textContent = 'このブラウザでは保存機能を利用できません。';
+      if (status) status.textContent = 'このブラウザでは保存機能を利用できません。';
     }
     update();
   });
