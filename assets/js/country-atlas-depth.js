@@ -61,7 +61,7 @@
     observer.observe(app, { childList: true, subtree: true });
   }
 
-  fetch(`data/countries/${safeSlug}.json?v=20260824-1220`)
+  fetch(`data/countries/${safeSlug}.json?v=20260824-1228`)
     .then((response) => {
       if (!response.ok) throw new Error('Country data not found');
       return response.json();
