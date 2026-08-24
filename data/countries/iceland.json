@@ -28,12 +28,36 @@
     { "symbol": "△", "title": "火山" }, { "symbol": "♢", "title": "氷河" }, { "symbol": "≋", "title": "滝" }, { "symbol": "▥", "title": "黒砂海岸" }, { "symbol": "♨", "title": "地熱" }, { "symbol": "◉", "title": "温泉" }, { "symbol": "⌁", "title": "オーロラ" }, { "symbol": "▱", "title": "ロードトリップ" }
   ],
   "atlasExtras": [
-    { "themeEn": "CITY", "themeJa": "街を歩く", "title": "レイキャヴィーク", "text": "海沿いに広がる小さな首都。カラフルな家、カフェ、音楽、デザインが日常の距離にある。" },
-    { "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "サガと入植の記憶", "text": "ヴァイキング時代の入植から続く物語文化。シンクヴェトリルの議会史とともに、国の成り立ちをたどる。" },
-    { "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "地熱と温泉文化", "text": "暖房からプールまで、地中の熱が暮らしに溶け込む。温泉は観光地だけでなく、日常の社交場でもある。" },
-    { "themeEn": "WILDLIFE", "themeJa": "野生に会う", "title": "クジラとパフィン", "text": "北の海ではクジラ、海岸では季節になるとパフィン。火山島の周囲に豊かな海の生態系が広がる。" },
-    { "themeEn": "FOOD", "themeJa": "食をめぐる", "title": "地熱パンと海の食", "text": "地熱で焼くライ麦パン、魚介、羊肉。厳しい自然の中で育った食文化に出会う。" },
-    { "themeEn": "ROAD", "themeJa": "道の先へ", "title": "リングロード", "text": "島を一周する国道1号。滝、氷河、溶岩原、海岸が次々と現れ、移動そのものが旅になる。" }
+    {
+      "themeEn": "CITY", "themeJa": "街を歩く", "title": "レイキャヴィーク",
+      "text": "海沿いに広がる小さな首都。カラフルな家、カフェ、音楽、デザインが、自然とは違うアイスランドの表情を見せる。",
+      "points": ["ハットルグリムス教会やハルパを歩いて巡る", "港周辺にはカフェやレストランが集まる"]
+    },
+    {
+      "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "サガと入植の記憶",
+      "text": "9世紀末から始まった入植と、語り継がれたサガ。自然の景色だけでなく、人がこの島に根づいた歴史を知ると旅の見え方が変わる。",
+      "points": ["930年、シンクヴェトリルにアルシングが成立", "中世のサガ文学は現在も国の文化を形づくる"]
+    },
+    {
+      "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "地熱と温泉文化",
+      "text": "地中の熱は観光資源だけではない。暖房や給湯、公共プールまで、地熱エネルギーが毎日の暮らしに溶け込んでいる。",
+      "points": ["町ごとに公共の温水プールが身近にある", "地熱は住宅暖房や温室栽培にも使われる"]
+    },
+    {
+      "themeEn": "WILDLIFE", "themeJa": "野生に会う", "title": "クジラとパフィン",
+      "text": "火山島を囲む北大西洋には豊かな生態系が広がる。季節と場所を選べば、海の生きものとの出会いも旅の大きな目的になる。",
+      "points": ["北部フーサヴィークはホエールウォッチングの拠点", "春から夏は海岸や島でパフィンを観察できる"]
+    },
+    {
+      "themeEn": "FOOD", "themeJa": "食をめぐる", "title": "地熱パンと海の食",
+      "text": "魚介、羊肉、乳製品に加え、地熱を利用した調理もこの島ならでは。風景と同じ自然条件が、そのまま食文化につながっている。",
+      "points": ["地熱で焼くライ麦パン、ルーグブロイズ", "タラやサーモンなど北大西洋の魚介も身近"]
+    },
+    {
+      "themeEn": "ROAD", "themeJa": "道の先へ", "title": "リングロード",
+      "text": "島を一周する国道1号を走ると、滝、氷河、溶岩原、海岸、町が次々と入れ替わる。アイスランドでは移動そのものが旅になる。",
+      "points": ["主要景勝地をつなぐ旅の骨格になる道", "高地のFロードは季節・車種・道路状況の確認が必要"]
+    }
   ],
   "seasons": [
     { "symbol": "☼", "months": "6〜8月", "color": "#9aa34f", "text": "長い日照時間を生かして、郊外へのドライブやハイキングを楽しむ。" },
@@ -41,7 +65,7 @@
     { "symbol": "❄", "months": "11〜3月", "color": "#6b91a6", "text": "冬景色とオーロラ。道路・天候の変化を見込んだ計画を。" },
     { "symbol": "♧", "months": "4〜5月", "color": "#71956b", "text": "冬から夏へ変わる移行期。静かな自然を味わう。" }
   ],
-  "transport": { "symbol": "▱", "title": "ROAD TRIP", "distance": "1,322", "text": "リングロードを軸に巡る旅。道路状況と天候を確かめ、日程には余白を。" },
+  "transport": { "symbol": "▱", "title": "ROAD TRIP", "text": "リングロードを軸に巡る旅。道路状況と天候を確かめ、日程には余白を。" },
   "personas": [
     { "symbol": "△", "title": "景色のために旅する人", "text": "移りゆく自然風景や壮大な景色を心から楽しむ人。" },
     { "symbol": "▱", "title": "ロードトリップが好きな人", "text": "移動そのものが特別になる旅をしたい人。" },
@@ -50,15 +74,18 @@
     { "symbol": "♜", "title": "静かな場所が好きな人", "text": "都市を離れ、広い自然の中で過ごしたい人。" }
   ],
   "facts": [
-    { "symbol": "◎", "label": "地域", "value": "北ヨーロッパ／北大西洋" },
+    { "symbol": "◎", "label": "地域", "value": "北ヨーロッパ" },
     { "symbol": "▥", "label": "首都", "value": "レイキャヴィーク" },
-    { "symbol": "♙", "label": "人口", "value": "約39.7万人（2026年6月末）" },
-    { "symbol": "□", "label": "面積", "value": "約10.3万 km²（日本の約27%）" },
+    { "symbol": "♙", "label": "人口", "value": "約39.7万人" },
+    { "symbol": "□", "label": "面積", "value": "約103,000 km²（日本の約27%）" },
     { "symbol": "◯", "label": "言語", "value": "アイスランド語" },
+    { "symbol": "◇", "label": "主な宗教", "value": "キリスト教（福音ルーテル派が中心）" },
     { "symbol": "＄", "label": "通貨", "value": "アイスランド・クローナ（ISK）" }
   ],
   "tips": [
-    { "symbol": "☼", "title": "昼と夜が大きく変わる", "text": "夏は白夜で明るく、冬は日照時間が短い。時期に合わせて旅のリズムを組み立てる。" }, { "symbol": "≋", "title": "道路は旅の一部", "text": "リングロードでも天候と季節で状況が変わる。最新情報を確かめる。" }, { "symbol": "△", "title": "火山と氷河が隣り合う", "text": "立入規制や警告を優先し、自然の変化を前提に行動する。" }
+    { "symbol": "☼", "title": "昼と夜が大きく変わる", "text": "夏は白夜で明るく、冬は日照時間が短い。時期に合わせて旅のリズムを組み立てる。" },
+    { "symbol": "≋", "title": "道路は旅の一部", "text": "リングロードでも天候と季節で状況が変わる。最新情報を確かめる。" },
+    { "symbol": "△", "title": "火山と氷河が隣り合う", "text": "立入規制や警告を優先し、自然の変化を前提に行動する。" }
   ],
   "relatedCountries": [
     { "nameEn": "NORWAY", "nameJa": "ノルウェー", "flag": "🇳🇴", "reason": "フィヨルドと山岳風景を、さらに深く追いかけたいなら。", "image": "" },
@@ -66,5 +93,10 @@
     { "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "砂漠から氷河まで、大地の変化をひとつの国で辿りたいなら。", "image": "" }
   ],
   "updatedAt": "2026-08-24",
-  "sources": { "map": "Coastline base: GSHHS; illustrated treatment: JOURNEY ATLAS", "population": "Statistics Iceland, population at end of Q2 2026: 396,500", "area": "Iceland total area: approximately 103,000 km²" }
+  "sources": {
+    "map": "Coastline base: GSHHS; illustrated treatment: JOURNEY ATLAS",
+    "population": "Statistics Iceland, population at end of Q2 2026: 396,500",
+    "area": "Iceland total area: approximately 103,000 km²",
+    "religion": "Constitution of Iceland: Evangelical Lutheran Church is the State Church"
+  }
 }
