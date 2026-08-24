@@ -1,0 +1,191 @@
+/* JOURNEY ATLAS — country page structural polish */
+
+/* Hero location: make the illustrated place searchable without competing with the title. */
+.hero-location{
+  position:absolute;
+  right:clamp(20px,4vw,56px);
+  bottom:18px;
+  z-index:4;
+  max-width:min(520px,58vw);
+  margin:0;
+  padding:7px 10px 8px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:7px;
+  background:rgba(8,28,44,.58);
+  color:#fff;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:.02em;
+  text-align:right;
+}
+.hero-location span{
+  display:block;
+  margin-bottom:2px;
+  font-family:var(--meta);
+  font-size:8.5px;
+  letter-spacing:.16em;
+  opacity:.76;
+}
+.hero-location strong{font-weight:500;}
+
+/* No visible loading / production-note copy inside artwork. */
+.hero-art .art-placeholder,
+.map-placeholder{
+  display:none!important;
+}
+
+/* Basic facts belong before the map and scenery, not inside detailed travel advice. */
+.country-facts-strip{
+  margin:0 0 14px;
+  padding:15px 18px 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(251,248,240,.97);
+  box-shadow:0 5px 18px rgba(38,52,55,.035);
+}
+.country-facts-strip__head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:10px;
+}
+.country-facts-strip__head h2{
+  margin:0;
+  color:var(--navy);
+  font-size:15px;
+  line-height:1.4;
+  font-weight:600;
+}
+.country-facts-strip__head span{
+  font-family:var(--meta);
+  font-size:9px;
+  letter-spacing:.14em;
+  color:var(--muted);
+}
+.country-facts-strip .fact-list{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:0!important;
+  margin:0!important;
+}
+.country-facts-strip .fact-list>div{
+  min-height:0!important;
+  display:block!important;
+  padding:2px 14px 3px!important;
+  border:0!important;
+  border-left:1px solid #e4ddcf!important;
+  border-radius:0!important;
+}
+.country-facts-strip .fact-list>div:first-child{border-left:0!important;}
+.country-facts-strip .fact-list>div>span{display:none!important;}
+.country-facts-strip .fact-list dt{
+  margin:0 0 3px;
+  color:var(--muted);
+  font-family:var(--meta);
+  font-size:9px;
+  line-height:1.35;
+  letter-spacing:.06em;
+}
+.country-facts-strip .fact-list dd{
+  margin:0!important;
+  color:var(--navy-deep);
+  font-size:12px!important;
+  font-weight:500!important;
+  line-height:1.55!important;
+}
+
+/* Map is for spatial relationship: numbers only. The matching names live in the scenery cards. */
+.map-marker span{display:none!important;}
+.map-marker b{
+  width:27px!important;
+  height:27px!important;
+  font-size:11px!important;
+}
+
+/* Detailed information now has three editorial columns. */
+.travel-grid{
+  grid-template-columns:1.28fr .92fr 1.08fr!important;
+}
+.travel-grid .info-section:last-child{border-right:0!important;}
+
+/* Match the top-page JOURNEY ATLAS colophon. */
+.atlas-colophon{
+  margin-top:38px;
+  padding:clamp(38px,6vh,62px) clamp(18px,5vw,80px);
+  border-top:1px solid var(--line);
+  background:var(--paper);
+  color:var(--navy-deep);
+}
+.atlas-colophon .colophon-grid{
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:34px;
+  flex-wrap:wrap;
+}
+.atlas-colophon .mark{
+  color:var(--navy);
+  font-family:var(--display);
+  font-size:.95rem;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+.atlas-colophon .mark-tag{
+  display:block;
+  margin-top:9px;
+  color:#657485;
+  font-family:var(--body);
+  font-size:.84rem;
+  font-weight:400;
+  line-height:1.6;
+  letter-spacing:.04em;
+  text-transform:none;
+}
+.atlas-colophon .meta{
+  color:#667483;
+  font-family:var(--display);
+  font-size:.66rem;
+  line-height:1.95;
+  letter-spacing:.07em;
+  text-align:right;
+}
+.atlas-colophon .meta-note{opacity:.68;}
+.atlas-colophon .meta-links{
+  display:inline-flex;
+  gap:22px;
+  justify-content:flex-end;
+}
+.atlas-colophon a{color:inherit;}
+.atlas-colophon a:hover{color:var(--navy-deep);}
+
+@media(max-width:1050px){
+  .country-facts-strip .fact-list{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:12px;}
+  .country-facts-strip .fact-list>div:nth-child(4){border-left:0!important;}
+  .travel-grid{grid-template-columns:1fr 1fr!important;}
+  .travel-grid .info-section:first-child{grid-column:1/-1;}
+}
+
+@media(max-width:700px){
+  .hero-location{
+    right:14px;
+    bottom:12px;
+    max-width:calc(100% - 28px);
+    font-size:9.5px;
+  }
+  .country-facts-strip{padding:14px 12px 15px;}
+  .country-facts-strip__head{margin-bottom:12px;}
+  .country-facts-strip .fact-list{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:12px;}
+  .country-facts-strip .fact-list>div:nth-child(odd){border-left:0!important;}
+  .country-facts-strip .fact-list>div:nth-child(4){border-left:1px solid #e4ddcf!important;}
+  .travel-grid{grid-template-columns:1fr!important;}
+  .travel-grid .info-section{border-right:0!important;border-bottom:1px solid var(--line);}
+  .atlas-colophon .colophon-grid{display:block;}
+  .atlas-colophon .meta{margin-top:24px;text-align:left;}
+  .atlas-colophon .meta-links{justify-content:flex-start;}
+}
