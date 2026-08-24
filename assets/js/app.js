@@ -2,7 +2,7 @@ const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
 const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260824-2352';
+const DATA_VERSION = '20260825-0006';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
@@ -62,6 +62,7 @@ function renderCountry(data, registry) {
 
   setBackground(fragment.querySelector('[data-image-field="hero.image"]'), data.hero?.image);
   renderMapBase(fragment, data.map);
+  renderCapitalMarker(fragment, data.capital, data.map?.bounds);
   renderScenes(fragment, data.scenes, data.map?.bounds);
   renderHeroMarker(fragment, data.hero, data.map?.bounds);
   renderEncounters(fragment, data.encounters);
@@ -167,6 +168,21 @@ function projectPoint(coordinates, bounds, offset = {}) {
   const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100 + (Number(offset.x) || 0);
   const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100 + (Number(offset.y) || 0);
   return { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) };
+}
+
+function renderCapitalMarker(fragment, capital, bounds) {
+  const markers = fragment.querySelector('#map-markers');
+  const point = projectPoint(capital?.coordinates, bounds, capital?.mapOffset);
+  if (!markers || !point) return;
+  const marker = document.createElement('div');
+  marker.className = 'map-capital-marker';
+  marker.style.left = `${point.x}%`;
+  marker.style.top = `${point.y}%`;
+  marker.dataset.labelPosition = capital.labelPosition || 'right';
+  marker.setAttribute('role', 'img');
+  marker.setAttribute('aria-label', `首都: ${capital.nameJa || capital.nameEn || ''}`);
+  marker.innerHTML = `<i aria-hidden="true"></i><span>${escapeHtml(capital.nameJa || capital.nameEn || '')}</span>`;
+  markers.append(marker);
 }
 
 function renderSceneName(element, name, preferredBreaks = []) {
