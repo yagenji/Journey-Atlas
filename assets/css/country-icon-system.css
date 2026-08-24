@@ -195,6 +195,26 @@
 }
 .signature-facts__grid strong{margin-top:4px!important;}
 
+/* ---------- MAP / SCENERY GUIDANCE ---------- */
+.panel-title-wrap,
+.scenes-title-wrap{min-width:0;}
+.map-guide,
+.scenes-intro{
+  margin:5px 0 0!important;
+  max-width:520px;
+  color:#6a747c!important;
+  font-family:"Zen Kaku Gothic New",sans-serif!important;
+  font-size:11.5px!important;
+  line-height:1.7!important;
+  font-weight:400!important;
+  letter-spacing:.01em!important;
+}
+.scenes-heading{
+  display:block!important;
+  margin-bottom:18px!important;
+}
+.scenes-heading .scenes-title-wrap{display:block!important;}
+
 /* ---------- MAP CAPITAL ---------- */
 .map-capital-marker{
   position:absolute;
@@ -332,5 +352,6 @@
   .signature-facts__grid article:first-child{border-top:0!important;}
   .ui-icon{width:17px;height:17px;flex-basis:17px;}
   .map-capital-marker span{font-size:8.5px;}
+  .map-guide,.scenes-intro{font-size:11px!important;}
   .journey-footer{margin-bottom:28px!important;}
 }
