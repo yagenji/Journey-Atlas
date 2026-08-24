@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/country-fixes.css?v=20260823-2315">
   <link rel="stylesheet" href="assets/css/country-layout-final.css?v=20260824-0146">
   <link rel="stylesheet" href="assets/css/country-atlas-depth.css?v=20260824-1125">
-  <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1138">
+  <link rel="stylesheet" href="assets/css/country-polish.css?v=20260824-1205">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -32,7 +32,7 @@
           </nav>
         </header>
         <div class="hero-art media-slot" data-image-field="hero.image" role="img" aria-label="国の風景"></div>
-        <p class="hero-location"><span>HERO LOCATION</span><strong data-field="hero.location"></strong></p>
+        <p class="hero-location"><strong data-field="hero.location"></strong></p>
         <div class="hero-copy page-shell">
           <p class="region" data-field="region"></p>
           <h1 data-field="nameEn"></h1>
@@ -49,7 +49,10 @@
 
         <section class="atlas-panel" aria-labelledby="atlas-title">
           <div class="map-column">
-            <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
+            <div class="panel-title-wrap">
+              <span class="section-kicker-en">TRAVEL MAP</span>
+              <h2 class="panel-title" id="atlas-title"><span aria-hidden="true">●</span>旅の地図</h2>
+            </div>
             <div class="map-frame">
               <div class="map-art" id="country-map-art" role="group" aria-label="旅の地図">
                 <div class="map-grid" aria-hidden="true"></div>
@@ -60,6 +63,7 @@
               <p class="map-disclaimer" data-field="map.source"></p>
             </div>
             <div class="encounter-strip">
+              <span class="section-kicker-en">ENCOUNTERS</span>
               <h3><span data-field="nameJa"></span>で出会えるもの</h3>
               <div class="encounter-list" id="encounters"></div>
             </div>
@@ -67,7 +71,10 @@
 
           <div class="scenes-column">
             <div class="scenes-heading">
-              <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
+              <div class="scenes-title-wrap">
+                <span class="section-kicker-en">SCENERY</span>
+                <h2>この国で見たい景色 <b data-field="sceneCount"></b>選</h2>
+              </div>
               <p>番号に触れて、位置関係をたどる。</p>
             </div>
             <div class="scene-grid" id="scene-cards"></div>
@@ -75,13 +82,31 @@
         </section>
 
         <section class="travel-grid" aria-label="旅の情報">
-          <section class="info-section info-seasons"><h2>旅するなら</h2><p class="section-label">季節</p><div class="season-list" id="seasons"></div><div class="transport" id="transport"></div></section>
-          <section class="info-section"><h2>こんな人に</h2><div class="persona-list" id="personas"></div></section>
-          <section class="info-section"><h2>知っておきたいこと</h2><div class="tip-list" id="tips"></div></section>
+          <section class="info-section info-seasons">
+            <span class="section-kicker-en">WHEN TO GO</span>
+            <h2>旅するなら</h2>
+            <p class="section-label">季節</p>
+            <div class="season-list" id="seasons"></div>
+            <div class="transport" id="transport"></div>
+          </section>
+          <section class="info-section">
+            <span class="section-kicker-en">FOR WHOM</span>
+            <h2>こんな人に</h2>
+            <div class="persona-list" id="personas"></div>
+          </section>
+          <section class="info-section">
+            <span class="section-kicker-en">TRAVEL NOTES</span>
+            <h2>知っておきたいこと</h2>
+            <div class="tip-list" id="tips"></div>
+          </section>
         </section>
 
         <section class="journey-footer" aria-labelledby="next-title">
-          <div class="related-wrap"><h2 id="next-title"><span data-field="nameJa"></span>が気になったなら</h2><div class="related-grid" id="related"></div></div>
+          <div class="related-wrap">
+            <span class="section-kicker-en">NEXT DESTINATIONS</span>
+            <h2 id="next-title"><span data-field="nameJa"></span>が気になったなら</h2>
+            <div class="related-grid" id="related"></div>
+          </div>
           <div class="wish-wrap"><button class="wish-button" id="wish-button" type="button"><span class="wish-icon" aria-hidden="true">♡</span><strong>この国に行きたい</strong><small>行きたい国リストに保存します</small></button><p class="wish-status" id="wish-status" role="status"></p></div>
         </section>
       </div>
@@ -96,6 +121,6 @@
   </template>
   <script src="assets/js/app.js?v=20260824-0208" defer></script>
   <script src="assets/js/iceland-map-calibration.js?v=20260824-1125" defer></script>
-  <script src="assets/js/country-atlas-depth.js?v=20260824-1125" defer></script>
+  <script src="assets/js/country-atlas-depth.js?v=20260824-1205" defer></script>
 </body>
 </html>
