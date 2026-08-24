@@ -46,6 +46,7 @@
 /*
   Two compact scene cards per row on wide screens.
   Each card reads vertically: title -> image -> copy.
+  Production scene art is presented at the locked 16:10 ratio.
 */
 .scene-grid{
   display:grid!important;
@@ -77,7 +78,7 @@
   width:100%!important;
   min-height:0!important;
   height:auto!important;
-  aspect-ratio:16 / 9!important;
+  aspect-ratio:16 / 10!important;
   margin-top:8px!important;
   align-self:start!important;
   border-radius:8px!important;
@@ -169,7 +170,7 @@
     padding:9px!important;
   }
   .scene-image{
-    aspect-ratio:16 / 9!important;
+    aspect-ratio:16 / 10!important;
   }
   .scene-copy>strong{
     font-size:18px!important;
