@@ -80,6 +80,17 @@ Keep a stable shared set so countries remain comparable:
 
 The common facts are not replaced by country-specific information.
 
+#### Population display rule
+
+Population is a visual-atlas comparison value, not a statistical dashboard.
+Use a readable rounded figure in the visible page and keep the precise source figure in `sources`.
+
+- Do not show thousand-level precision in the normal display.
+- Prefer a rounded Japanese unit such as `約40万人` rather than `約39.7万人`.
+- For larger populations, choose an equally readable `万人` or `億人` expression rather than unnecessary precision.
+- Exceptions are allowed for very small countries/territories when rounding would materially distort scale.
+- A country-specific exception must be intentional, not accidental source precision leaking into the UI.
+
 ### Signature facts
 
 Add 3 country-specific facts under `signatureFacts`.
@@ -99,6 +110,9 @@ Avoid trivia that is difficult to verify, rapidly becomes stale, or does not hel
 Write as an atlas, not a tourism advertisement.
 Prefer concrete geography, geology, history, scale, material, or observable characteristics.
 Avoid generic promotional phrases such as “breathtaking,” “magical,” or “must-see.”
+
+The `sceneryIntro` should frame the eight selections, not describe their route order unless that order itself matters.
+A useful pattern is: there are many more places to see, and these eight were selected because they communicate the country's character particularly well.
 
 ### Beyond the Scenery
 
@@ -142,6 +156,8 @@ Recommended reusable categories include:
 Selection rule: prefer facts that change what a visitor notices, tries, says, orders, or understands on location.
 Avoid generic trivia, unsupported superlatives, myths, facts that are mainly clickbait, or claims likely to go stale quickly.
 Every item must have a credible source recorded through `sourceKey`.
+
+**No-overlap rule:** travel trivia must add a new layer of information. Before selecting an item, check it against `signatureFacts`, `atlasExtras`, `tips`, scene descriptions, and the hero copy. Do not repeat the same fact in a different card just because it is interesting.
 
 ## Asset rules
 
@@ -187,8 +203,17 @@ Country pages store wishes locally using:
 
 `journey-atlas:wish:{slug}`
 
-The top page exposes a “行ってみたい国” filter.
+The top page exposes a “行ってみたい国” control that filters the destination list to saved countries.
 No login is required.
+
+Operational limits are explicit:
+
+- saved data belongs to the current browser/profile only
+- it does not sync across devices
+- clearing site data/private-browsing storage can remove it
+- do not imply cloud/account persistence until an account backend exists
+
+This local-first model is acceptable for the current static-site architecture and avoids collecting personal information.
 
 ## Icons
 
@@ -219,17 +244,18 @@ Before publishing a new country:
 4. Capital coordinates project inside the intended map area.
 5. Exactly 8 scene assets exist.
 6. All scene coordinates project inside the intended map area.
-7. Common facts are present.
+7. Common facts are present and population follows the display-rounding rule.
 8. Three useful signature facts are sourced.
 9. Atlas extras are present where appropriate.
 10. Travel trivia contains 4–6 traveler-relevant, sourced items.
 11. Every trivia `sourceKey` resolves to an entry in `sources`.
-12. No country-specific runtime JS/CSS override is required.
-13. Related countries never produce broken links.
-14. Shared section-title hierarchy and icon styling remain intact.
-15. Desktop and mobile layouts are visually checked.
-16. GitHub `main` state is verified before public Pages review.
-17. Public page is visually reviewed only after all earlier gates pass.
+12. Travel trivia does not duplicate `atlasExtras`, signature facts, tips, hero copy, or scene copy.
+13. No country-specific runtime JS/CSS override is required.
+14. Related countries never produce broken links.
+15. Shared section-title hierarchy and icon styling remain intact.
+16. Desktop and mobile layouts are visually checked.
+17. GitHub `main` state is verified before public Pages review.
+18. Public page is visually reviewed only after all earlier gates pass.
 
 ## Reference country
 
