@@ -48,6 +48,36 @@
 /* Old colophon must never compete with the shared footer. */
 .atlas-colophon{display:none!important;}
 
+/* Iceland v2 illustration preview.
+   The page is identified by its Skogafoss scene so other countries are unaffected. */
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .hero-art{
+  background-image:url("../images/iceland/v2/hero-seljalandsfoss.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="skogafoss"] .scene-image{
+  background-image:url("../images/iceland/v2/skogafoss.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="jokulsarlon"] .scene-image{
+  background-image:url("../images/iceland/v2/jokulsarlon.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="studlagil"] .scene-image{
+  background-image:url("../images/iceland/v2/studlagil.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="myvatn"] .scene-image{
+  background-image:url("../images/iceland/v2/myvatn.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="kirkjufell"] .scene-image{
+  background-image:url("../images/iceland/v2/kirkjufell.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="thingvellir"] .scene-image{
+  background-image:url("../images/iceland/v2/thingvellir.webp")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="geysir"] .scene-image{
+  background-image:url("../images/iceland/v2/geysir.svg")!important;
+}
+body:has(.scene-card[data-scene="skogafoss"] .scene-image[style*="skogafoss.webp"]) .scene-card[data-scene="landmannalaugar"] .scene-image{
+  background-image:url("../images/iceland/v2/landmannalaugar.svg")!important;
+}
+
 @media(max-width:760px){
   .atlas-footer__inner{
     width:min(100% - 36px,1240px);
