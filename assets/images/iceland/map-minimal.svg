@@ -1,25 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1186 841" role="img" aria-label="Minimal map of Iceland">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 567 402" role="img" aria-label="Map of Iceland">
   <defs>
-    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#dcecef"/>
-      <stop offset="1" stop-color="#d3e5e7"/>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dbecee"/>
+      <stop offset="1" stop-color="#d6e8ea"/>
     </linearGradient>
-    <filter id="paper">
-      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="5" result="noise"/>
-      <feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
-      <feComponentTransfer in="grey" result="faded"><feFuncA type="table" tableValues="0 .028"/></feComponentTransfer>
-      <feBlend in="SourceGraphic" in2="faded" mode="multiply"/>
-    </filter>
   </defs>
-
-  <rect width="1186" height="841" fill="url(#sea)"/>
-
-  <g filter="url(#paper)">
-    <image x="48" y="36" width="1090" height="770" opacity=".78" preserveAspectRatio="xMidYMid meet"
-      href="https://upload.wikimedia.org/wikipedia/commons/e/ea/Iceland_location_map.svg"
-      xlink:href="https://upload.wikimedia.org/wikipedia/commons/e/ea/Iceland_location_map.svg"/>
-
-    <!-- Remove the baked-in country label from the source map. -->
-    <rect x="494" y="381" width="205" height="64" rx="18" fill="#d0c495"/>
-  </g>
+  <rect width="567" height="402" fill="url(#sea)"/>
+  <path d="M 550 193 L 545 189 L 545 184 L 543 182 L 544 172 L 539 172 L 533 168 L 517 167 L 507 161 L 502 161 L 495 156 L 495 152 L 497 150 L 494 147 L 487 148 L 483 146 L 480 143 L 481 136 L 485 132 L 488 131 L 481 131 L 474 136 L 464 137 L 458 141 L 447 137 L 444 134 L 443 130 L 440 130 L 434 127 L 431 124 L 425 124 L 419 126 L 418 133 L 406 137 L 397 137 L 390 141 L 385 140 L 380 135 L 369 134 L 365 137 L 360 137 L 355 134 L 344 135 L 340 139 L 331 140 L 324 137 L 315 137 L 310 141 L 305 141 L 299 145 L 294 143 L 292 139 L 286 138 L 279 140 L 277 143 L 271 143 L 269 145 L 263 145 L 257 148 L 249 145 L 239 145 L 232 148 L 222 148 L 217 144 L 217 140 L 213 139 L 212 137 L 205 138 L 200 141 L 198 145 L 195 145 L 193 148 L 190 149 L 189 153 L 185 155 L 178 156 L 176 160 L 172 159 L 169 156 L 165 155 L 164 151 L 160 149 L 159 145 L 155 143 L 154 140 L 149 138 L 144 137 L 140 134 L 132 133 L 128 130 L 123 129 L 120 127 L 112 126 L 107 125 L 100 125 L 96 126 L 91 130 L 83 131 L 77 136 L 72 138 L 69 142 L 63 142 L 59 146 L 51 146 L 47 149 L 40 149 L 36 153 L 27 155 L 23 158 L 21 164 L 27 165 L 33 164 L 39 160 L 45 159 L 49 155 L 54 155 L 58 151 L 65 151 L 69 148 L 75 147 L 81 145 L 87 146 L 91 149 L 98 149 L 102 151 L 108 152 L 113 155 L 119 155 L 125 159 L 131 161 L 135 165 L 136 170 L 133 174 L 128 177 L 123 179 L 119 182 L 113 184 L 111 188 L 112 193 L 116 195 L 119 199 L 124 201 L 129 205 L 134 207 L 136 212 L 136 219 L 133 222 L 128 224 L 123 227 L 117 228 L 112 231 L 108 235 L 105 241 L 106 247 L 113 248 L 119 247 L 125 249 L 132 249 L 139 246 L 146 245 L 153 243 L 159 240 L 166 240 L 171 243 L 177 245 L 182 245 L 188 248 L 194 248 L 200 253 L 206 254 L 212 258 L 218 259 L 224 263 L 231 263 L 236 267 L 242 268 L 248 268 L 253 271 L 260 271 L 265 274 L 271 276 L 276 276 L 278 269 L 277 262 L 273 258 L 270 254 L 270 249 L 273 245 L 278 243 L 282 241 L 287 240 L 291 241 L 294 245 L 295 249 L 294 254 L 290 258 L 287 261 L 287 267 L 289 273 L 295 276 L 302 276 L 309 275 L 315 273 L 321 272 L 328 268 L 334 267 L 340 264 L 346 264 L 352 261 L 359 259 L 365 255 L 373 255 L 379 252 L 385 250 L 391 248 L 398 248 L 403 246 L 407 242 L 409 238 L 408 233 L 405 230 L 400 227 L 397 224 L 396 219 L 397 214 L 401 211 L 405 207 L 409 203 L 414 201 L 421 200 L 428 200 L 435 201 L 442 203 L 447 205 L 449 210 L 449 216 L 446 222 L 442 225 L 438 229 L 438 234 L 441 237 L 447 238 L 453 237 L 458 234 L 465 233 L 471 229 L 477 227 L 482 222 L 489 221 L 495 216 L 501 214 L 506 211 L 513 210 L 519 206 L 525 205 L 532 201 L 539 200 L 545 197 Z" fill="#d8cc9a" stroke="#54727c" stroke-width="1.15" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>
