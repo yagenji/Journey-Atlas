@@ -6,7 +6,29 @@
   --line:#d8d0c0;
   --jp-ui:"Zen Kaku Gothic New","Hanken Grotesk",sans-serif;
 }
-body{background:var(--paper);}
+html{scroll-padding-top:96px;}
+body{
+  background:var(--paper);
+  padding-top:82px;
+}
+
+/* Keep the global header visible while exploring the long top page. */
+.top-header.shell{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  width:100%;
+  min-height:82px;
+  margin:0;
+  padding-inline:max(28px,calc((100vw - 1460px)/2));
+  background:rgba(247,243,233,.94);
+  border-bottom:1px solid rgba(11,44,87,.11);
+  box-shadow:0 3px 14px rgba(9,42,75,.045);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
 
 .explore-card__copy{
   grid-template-columns:minmax(0,1fr) auto!important;
@@ -122,6 +144,12 @@ body{background:var(--paper);}
 }
 
 @media(max-width:760px){
+  html{scroll-padding-top:84px;}
+  body{padding-top:72px;}
+  .top-header.shell{
+    min-height:72px;
+    padding-inline:18px;
+  }
   .explore-card__copy{padding:12px 14px!important}
   .explore-card__kicker{font-size:7.8px;letter-spacing:.15em}
   .section-kicker{font-size:8px}
