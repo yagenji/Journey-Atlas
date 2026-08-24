@@ -1,5 +1,7 @@
 /* JOURNEY ATLAS — shared heading scale + icon system */
 
+html{scroll-padding-top:108px;}
+
 /* Same-level Japanese section titles use one scale and one typeface. */
 .country-facts-strip__head h2,
 .signature-facts__head h2,
@@ -37,8 +39,26 @@
 }
 .ui-icon--small{width:13px;height:13px;flex-basis:13px;}
 
-/* ---------- HEADER ---------- */
-.site-header{z-index:6!important;}
+/* ---------- FIXED COUNTRY HEADER ---------- */
+.site-header.page-shell{
+  position:fixed!important;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100!important;
+  width:100%!important;
+  height:94px!important;
+  margin:0!important;
+  padding-inline:max(28px,calc((100vw - 1440px)/2));
+  background:rgba(247,243,233,.93);
+  border-bottom:1px solid rgba(18,54,92,.11);
+  box-shadow:0 3px 14px rgba(9,42,75,.045);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+/* The header used to occupy this space inside the hero. Keep the hero geometry unchanged. */
+.hero{padding-top:94px!important;}
+
 .utility-nav{
   display:flex!important;
   align-items:center;
@@ -195,25 +215,79 @@
 }
 .signature-facts__grid strong{margin-top:4px!important;}
 
-/* ---------- MAP / SCENERY GUIDANCE ---------- */
+/* ---------- SHARED EDITORIAL GUIDANCE ---------- */
 .panel-title-wrap,
 .scenes-title-wrap{min-width:0;}
 .map-guide,
-.scenes-intro{
-  margin:5px 0 0!important;
-  max-width:520px;
-  color:#6a747c!important;
+.scenes-intro,
+.atlas-extras__intro,
+.travel-trivia__intro{
+  color:#66717a!important;
   font-family:"Zen Kaku Gothic New",sans-serif!important;
   font-size:11.5px!important;
   line-height:1.7!important;
   font-weight:400!important;
   letter-spacing:.01em!important;
 }
+.map-guide{
+  max-width:560px;
+  margin:5px 0 0!important;
+}
 .scenes-heading{
-  display:block!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(250px,44%);
+  align-items:end!important;
+  gap:26px;
   margin-bottom:18px!important;
 }
 .scenes-heading .scenes-title-wrap{display:block!important;}
+.scenes-intro{
+  justify-self:end;
+  max-width:520px!important;
+  margin:0 0 2px!important;
+  text-align:left!important;
+}
+
+/* Map marker legend: number = scenery, diamond = hero image location. */
+.map-legend{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  margin:8px 0 0;
+  color:#66717a;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:9.5px;
+  line-height:1.4;
+}
+.map-legend>span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.map-legend__scene{
+  width:17px;
+  height:17px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#12365c;
+  color:#fff;
+  font-family:var(--meta);
+  font-size:8px;
+  font-style:normal;
+  line-height:1;
+}
+.map-legend__hero{
+  width:8px;
+  height:8px;
+  display:block;
+  border:2px solid #b66e4d;
+  background:#fbf8f0;
+  transform:rotate(45deg);
+  box-shadow:0 1px 2px rgba(9,42,75,.12);
+}
 
 /* ---------- MAP CAPITAL ---------- */
 .map-capital-marker{
@@ -327,6 +401,12 @@
 }
 
 @media(max-width:760px){
+  html{scroll-padding-top:88px;}
+  .site-header.page-shell{
+    height:76px!important;
+    padding-inline:18px;
+  }
+  .hero{padding-top:76px!important;}
   .utility-nav{gap:2px!important;padding:4px!important;}
   .utility-nav a{min-width:48px;padding:5px 5px 6px;}
   .utility-nav small{font-size:9px!important;}
@@ -352,6 +432,14 @@
   .signature-facts__grid article:first-child{border-top:0!important;}
   .ui-icon{width:17px;height:17px;flex-basis:17px;}
   .map-capital-marker span{font-size:8.5px;}
-  .map-guide,.scenes-intro{font-size:11px!important;}
+  .map-guide,.scenes-intro,.atlas-extras__intro,.travel-trivia__intro{font-size:11px!important;}
+  .scenes-heading{
+    display:block!important;
+  }
+  .scenes-intro{
+    max-width:none!important;
+    margin-top:8px!important;
+  }
+  .map-legend{gap:7px 13px;font-size:9px;}
   .journey-footer{margin-bottom:28px!important;}
 }
