@@ -2,13 +2,20 @@ const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
 const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
+const DATA_VERSION = '20260824-2315';
 
-fetch(`data/countries/${safeSlug}.json?v=20260824-1228`)
+const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
   .then((response) => {
     if (!response.ok) throw new Error('Country data not found');
     return response.json();
-  })
-  .then(renderCountry)
+  });
+
+const registryRequest = fetch(`data/atlas-destinations.json?v=${DATA_VERSION}`, { cache: 'no-store' })
+  .then((response) => response.ok ? response.json() : { destinations: [] })
+  .catch(() => ({ destinations: [] }));
+
+Promise.all([countryRequest, registryRequest])
+  .then(([data, registry]) => renderCountry(data, registry.destinations || []))
   .catch(() => {
     app.innerHTML = '<div class="error"><p>PAGE NOT FOUND</p><h1>旅のページを見つけられませんでした。</h1><a href="./">トップへ戻る</a></div>';
   });
@@ -17,7 +24,16 @@ function getValue(source, path) {
   return path.split('.').reduce((value, key) => value?.[key], source);
 }
 
-function renderCountry(data) {
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function renderCountry(data, registry) {
   const fragment = countryTemplate.content.cloneNode(true);
   fragment.querySelectorAll('[data-field]').forEach((element) => {
     const key = element.dataset.field;
@@ -28,13 +44,16 @@ function renderCountry(data) {
   setBackground(fragment.querySelector('[data-image-field="hero.image"]'), data.hero.image);
   renderMapBase(fragment, data.map);
   renderScenes(fragment, data.scenes, data.map.bounds);
+  renderHeroMarker(fragment, data.hero, data.map.bounds);
   renderEncounters(fragment, data.encounters);
+  renderSignatureFacts(fragment, data.signatureFacts);
+  renderAtlasExtras(fragment, data.atlasExtras);
   renderSeasons(fragment, data.seasons);
   renderTransport(fragment, data.transport);
   renderPersonas(fragment, data.personas);
   renderFacts(fragment, data.facts);
   renderTips(fragment, data.tips);
-  renderRelated(fragment, data.relatedCountries);
+  renderRelated(fragment, data.relatedCountries, registry);
 
   app.replaceChildren(fragment);
   document.title = `${data.nameEn} — JOURNEY ATLAS`;
@@ -50,9 +69,35 @@ function renderCountry(data) {
 }
 
 function resolveImageSource(source) {
-  if (!source) return Promise.reject(new Error('Image source missing'));
+  if (!source || typeof source !== 'string') return Promise.reject(new Error('Image source missing'));
+
+  if (source.endsWith('.parts.json')) {
+    return fetch(`${source}?v=${DATA_VERSION}`, { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error('Image manifest missing');
+        return response.json();
+      })
+      .then((manifest) => {
+        const parts = Array.isArray(manifest.parts) ? manifest.parts : [];
+        if (!parts.length) throw new Error('Image manifest has no parts');
+        return Promise.all(parts.map((part) =>
+          fetch(`${part}${part.includes('?') ? '&' : '?'}v=${manifest.version || DATA_VERSION}`, { cache: 'no-store' })
+            .then((response) => {
+              if (!response.ok) throw new Error(`Image part missing: ${part}`);
+              return response.text();
+            })
+        )).then((chunks) => {
+          const encoded = chunks.join('').replace(/\s+/g, '');
+          if (manifest.signature && !encoded.startsWith(manifest.signature)) {
+            throw new Error('Encoded image signature mismatch');
+          }
+          return `data:${manifest.mime || 'image/webp'};base64,${encoded}`;
+        });
+      });
+  }
+
   if (!source.endsWith('.b64')) return Promise.resolve(source);
-  return fetch(`${source}?v=20260824-0208`)
+  return fetch(`${source}?v=${DATA_VERSION}`, { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Encoded image missing');
       return response.text();
@@ -65,7 +110,7 @@ function resolveImageSource(source) {
 }
 
 function renderMapBase(fragment, mapData) {
-  if (!mapData.svg) return;
+  if (!mapData?.svg) return;
   const mapArt = fragment.querySelector('#country-map-art');
   const placeholder = mapArt.querySelector('.map-placeholder');
   const grid = mapArt.querySelector('.map-grid');
@@ -89,7 +134,7 @@ function renderMapBase(fragment, mapData) {
   });
 
   resolveImageSource(mapData.svg)
-    .then((source) => { image.src = source; })
+    .then((resolvedSource) => { image.src = resolvedSource; })
     .catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
 }
@@ -97,8 +142,8 @@ function renderMapBase(fragment, mapData) {
 function setBackground(element, image) {
   if (!element || !image) return;
   resolveImageSource(image)
-    .then((source) => {
-      element.style.backgroundImage = `url("${source}")`;
+    .then((resolvedSource) => {
+      element.style.backgroundImage = `url("${resolvedSource}")`;
       element.classList.add('has-image');
       element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => {
         placeholder.hidden = true;
@@ -107,13 +152,13 @@ function setBackground(element, image) {
     .catch(() => {});
 }
 
-function projectPoint(coordinates, bounds) {
+function projectPoint(coordinates, bounds, offset = {}) {
   if (!coordinates || !bounds) return null;
   const longitudeRange = bounds.east - bounds.west;
   const latitudeRange = bounds.north - bounds.south;
   if (longitudeRange <= 0 || latitudeRange <= 0) return null;
-  const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100;
-  const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100;
+  const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100 + (Number(offset.x) || 0);
+  const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100 + (Number(offset.y) || 0);
   return {
     x: Math.max(0, Math.min(100, x)),
     y: Math.max(0, Math.min(100, y))
@@ -133,7 +178,7 @@ function renderSceneName(element, name, preferredBreaks = []) {
   });
 }
 
-function renderScenes(fragment, scenes, bounds) {
+function renderScenes(fragment, scenes = [], bounds) {
   const cards = fragment.querySelector('#scene-cards');
   const markers = fragment.querySelector('#map-markers');
 
@@ -149,12 +194,12 @@ function renderScenes(fragment, scenes, bounds) {
       <div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div>
       <div class="scene-copy">
         <strong>${number}</strong>
-        <div><h3></h3><small>${scene.nameLocal}</small><p>${scene.description}</p></div>
+        <div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div>
       </div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
     setBackground(card.querySelector('.scene-image'), scene.image);
 
-    const point = projectPoint(scene.coordinates, bounds);
+    const point = projectPoint(scene.coordinates, bounds, scene.mapOffset);
     if (point) {
       const marker = document.createElement('button');
       marker.type = 'button';
@@ -164,7 +209,8 @@ function renderScenes(fragment, scenes, bounds) {
       marker.style.top = `${point.y}%`;
       marker.setAttribute('aria-label', `${number} ${scene.name}を見る`);
       marker.setAttribute('aria-pressed', 'false');
-      marker.innerHTML = `<b>${number}</b><span>${scene.mapLabel}</span>`;
+      if (scene.labelPosition) marker.dataset.labelPosition = scene.labelPosition;
+      marker.innerHTML = `<b>${number}</b><span>${escapeHtml(scene.mapLabel)}</span>`;
       bindSceneActivation(marker, scene.id, true);
       markers.append(marker);
     }
@@ -172,6 +218,20 @@ function renderScenes(fragment, scenes, bounds) {
     bindSceneActivation(card, scene.id, false);
     cards.append(card);
   });
+}
+
+function renderHeroMarker(fragment, hero, bounds) {
+  const markers = fragment.querySelector('#map-markers');
+  const point = projectPoint(hero?.coordinates, bounds, hero?.mapOffset);
+  if (!markers || !point) return;
+  const marker = document.createElement('div');
+  marker.className = 'map-hero-marker';
+  marker.style.left = `${point.x}%`;
+  marker.style.top = `${point.y}%`;
+  marker.setAttribute('role', 'img');
+  marker.setAttribute('aria-label', `代表画像の場所: ${hero.location || ''}`);
+  marker.innerHTML = '<span aria-hidden="true"></span>';
+  markers.append(marker);
 }
 
 function bindSceneActivation(element, id, scrollOnClick) {
@@ -210,69 +270,117 @@ function getSceneFromHash(scenes) {
   return scenes.some((scene) => scene.id === hash) ? hash : null;
 }
 
-function renderEncounters(fragment, items) {
+function renderEncounters(fragment, items = []) {
   const container = fragment.querySelector('#encounters');
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.innerHTML = `<span aria-hidden="true">${item.symbol}</span><b>${item.title}</b>`;
+    article.innerHTML = `<b>${escapeHtml(item.title)}</b>`;
     container.append(article);
   });
 }
 
-function renderSeasons(fragment, items) {
+function renderSignatureFacts(fragment, items = []) {
+  const section = fragment.querySelector('#signature-facts-section');
+  const container = fragment.querySelector('#signature-facts');
+  if (!section || !container || !items.length) {
+    if (section) section.hidden = true;
+    return;
+  }
+  items.forEach((item) => {
+    const article = document.createElement('article');
+    article.innerHTML = `<span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.value)}</strong><p>${escapeHtml(item.note || '')}</p>`;
+    container.append(article);
+  });
+  section.hidden = false;
+}
+
+function renderAtlasExtras(fragment, items = []) {
+  const section = fragment.querySelector('#atlas-extras-section');
+  const grid = fragment.querySelector('#atlas-extras-grid');
+  if (!section || !grid || !items.length) {
+    if (section) section.hidden = true;
+    return;
+  }
+
+  items.forEach((item) => {
+    const points = Array.isArray(item.points) ? item.points.filter(Boolean) : [];
+    const article = document.createElement('article');
+    article.className = 'atlas-extra';
+    article.innerHTML = `
+      <span class="atlas-extra__theme">${escapeHtml(item.themeEn)} / ${escapeHtml(item.themeJa)}</span>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p>${escapeHtml(item.text)}</p>
+      ${points.length ? `<ul>${points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}`;
+    grid.append(article);
+  });
+  section.hidden = false;
+}
+
+function renderSeasons(fragment, items = []) {
   const container = fragment.querySelector('#seasons');
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.style.setProperty('--season-color', item.color);
-    article.innerHTML = `<span class="season-symbol" aria-hidden="true">${item.symbol}</span><b>${item.months}</b><p>${item.text}</p>`;
+    article.style.setProperty('--season-color', item.color || '#75824e');
+    article.innerHTML = `<b>${escapeHtml(item.months)}</b><p>${escapeHtml(item.text)}</p>`;
     container.append(article);
   });
 }
 
-function renderTransport(fragment, item) {
+function renderTransport(fragment, item = {}) {
   const container = fragment.querySelector('#transport');
-  container.innerHTML = `<span aria-hidden="true">${item.symbol}</span><div><small>移動</small><h3>${item.title}</h3><p>${item.text}</p></div>${item.distance ? `<b>${item.distance}<small>km</small></b>` : ''}`;
+  container.innerHTML = `<div><small>移動</small><h3>${escapeHtml(item.title || '')}</h3><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
 }
 
-function renderPersonas(fragment, items) {
+function renderPersonas(fragment, items = []) {
   const container = fragment.querySelector('#personas');
   items.forEach((item) => {
     const article = document.createElement('article');
-    article.innerHTML = `<span aria-hidden="true">${item.symbol}</span><div><h3>${item.title}</h3><p>${item.text}</p></div>`;
+    article.innerHTML = `<div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div>`;
     container.append(article);
   });
 }
 
-function renderFacts(fragment, facts) {
+function renderFacts(fragment, facts = []) {
   const container = fragment.querySelector('#facts');
   facts.forEach((fact) => {
     const group = document.createElement('div');
-    group.innerHTML = `<span aria-hidden="true">${fact.symbol}</span><div><dt>${fact.label}</dt><dd>${fact.value}</dd></div>`;
+    group.innerHTML = `<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`;
     container.append(group);
   });
 }
 
-function renderTips(fragment, tips) {
+function renderTips(fragment, tips = []) {
   const container = fragment.querySelector('#tips');
   tips.forEach((tip) => {
     const article = document.createElement('article');
-    article.innerHTML = `<span aria-hidden="true">${tip.symbol}</span><div><h3>${tip.title}</h3><p>${tip.text}</p></div>`;
+    article.innerHTML = `<div><h3>${escapeHtml(tip.title)}</h3><p>${escapeHtml(tip.text)}</p></div>`;
     container.append(article);
   });
 }
 
-function renderRelated(fragment, countries) {
+function renderRelated(fragment, countries = [], registry = []) {
   const container = fragment.querySelector('#related');
+  const published = new Map(
+    registry.filter((item) => item?.slug && item?.atlasPublished && item?.href)
+      .map((item) => [item.slug, item])
+  );
+
   countries.forEach((country) => {
-    const article = document.createElement('article');
-    article.className = 'related-card';
+    const destination = published.get(country.slug);
+    const article = document.createElement(destination ? 'a' : 'article');
+    article.className = `related-card${destination ? ' is-open' : ' is-coming'}`;
+    if (destination) {
+      article.href = destination.href;
+      article.setAttribute('aria-label', `${country.nameJa}のJOURNEY ATLASを見る`);
+    }
     article.innerHTML = `
       <div class="related-country">
         <span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span>
         <div class="related-copy">
-          <h3>${country.nameEn}</h3>
-          <b>${country.nameJa}</b>
-          <p>${country.reason}</p>
+          <h3>${escapeHtml(country.nameEn)}</h3>
+          <b>${escapeHtml(country.nameJa)}</b>
+          <p>${escapeHtml(country.reason)}</p>
+          <small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small>
         </div>
       </div>`;
     container.append(article);
@@ -282,8 +390,15 @@ function renderRelated(fragment, countries) {
 function initWishButton(countrySlug) {
   const button = document.querySelector('#wish-button');
   const status = document.querySelector('#wish-status');
+  if (!button) return;
   const storageKey = `journey-atlas:wish:${countrySlug}`;
-  let wished = localStorage.getItem(storageKey) === 'true';
+  let wished = false;
+
+  try {
+    wished = localStorage.getItem(storageKey) === 'true';
+  } catch {
+    status.textContent = 'このブラウザでは保存機能を利用できません。';
+  }
 
   const update = () => {
     button.classList.toggle('is-saved', wished);
@@ -295,8 +410,13 @@ function initWishButton(countrySlug) {
 
   button.addEventListener('click', () => {
     wished = !wished;
-    localStorage.setItem(storageKey, String(wished));
-    status.textContent = wished ? 'この端末に保存しました。' : '保存を解除しました。';
+    try {
+      localStorage.setItem(storageKey, String(wished));
+      status.textContent = wished ? 'この端末に保存しました。' : '保存を解除しました。';
+    } catch {
+      wished = !wished;
+      status.textContent = 'このブラウザでは保存機能を利用できません。';
+    }
     update();
   });
 }
