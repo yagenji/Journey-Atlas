@@ -60,12 +60,11 @@ TOP_CSS_LINKS = [
     '<link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">',
 ]
 
-TOP_ENCODED_ASSETS = [
-    *(f"assets/images/top/hero-set-{index}.webp.b64" for index in range(1, 6)),
+TOP_HERO_ENCODED_ASSETS = [f"assets/images/top/hero-set-{index}.webp.b64" for index in range(1, 6)]
+TOP_REQUIRED_ENCODED_ASSETS = [
     "assets/images/top/theme-approved-sprite.webp.b64",
     "assets/images/top/explore-entry-sprite.webp.b64",
 ]
-
 BASE64_CHARS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=")
 
 
@@ -97,6 +96,8 @@ def decode_legacy_base64(raw: str, source: str) -> bytes:
             raise ValueError(f"Malformed data URI: {source}")
         raw = raw.split(",", 1)[1]
     encoded = "".join(ch for ch in raw if ch in BASE64_CHARS)
+    if len(encoded.rstrip("=")) % 4 == 1:
+        raise ValueError(f"Truncated base64 payload: {source}")
     encoded += "=" * (-len(encoded) % 4)
     binary = base64.b64decode(encoded, validate=False)
     if source.endswith(".webp.b64"):
@@ -187,24 +188,36 @@ def replace_block(text: str, start: str, end: str, replacement: str) -> str:
 
 
 def prepare_top_assets_and_js() -> None:
-    for source in TOP_ENCODED_ASSETS:
+    valid_hero_sources = ["assets/images/top/hero-world-collage.svg"]
+    for source in TOP_HERO_ENCODED_ASSETS:
         if not (ROOT / source).exists():
-            raise FileNotFoundError(f"Top encoded asset missing: {source}")
+            print(f"Skipping missing legacy top hero: {source}")
+            continue
+        try:
+            valid_hero_sources.append(materialize_encoded_asset(source))
+        except (ValueError, base64.binascii.Error) as exc:
+            print(f"Skipping invalid legacy top hero: {source} ({exc})")
+
+    for source in TOP_REQUIRED_ENCODED_ASSETS:
+        if not (ROOT / source).exists():
+            raise FileNotFoundError(f"Required top encoded asset missing: {source}")
         materialize_encoded_asset(source)
+
+    if not valid_hero_sources:
+        raise ValueError("No valid top Hero source remains")
 
     path = ROOT / "assets/js/top.js"
     script = path.read_text(encoding="utf-8")
-    script = script.replace(
-        "const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);",
-        "const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp`);",
-        1,
-    )
+    source_line = "const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);"
+    if source_line not in script:
+        raise ValueError("top.js Hero source marker missing")
+    script = script.replace(source_line, f"const heroFiles = {json.dumps(valid_hero_sources, ensure_ascii=False)};", 1)
 
     script = replace_block(
         script,
         "Promise.all(heroFiles.map(async(file)=>{",
         "}).catch(()=>{heroSources=[];applyHeroDerivedArt();});",
-        "heroSources=heroFiles;\nsetHero(0,false);\napplyHeroDerivedArt();\nif(destinations.length){renderRail(destinations);renderGrid(destinations);}\nstartHeroRotation();",
+        "heroSources=heroFiles;\nheroButtons.forEach((button,index)=>{button.hidden=index>=heroSources.length;});\nsetHero(0,false);\napplyHeroDerivedArt();\nif(destinations.length){renderRail(destinations);renderGrid(destinations);}\nstartHeroRotation();",
     )
 
     script = replace_block(
