@@ -1,9 +1,12 @@
 const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
-const slug = new URLSearchParams(window.location.search).get('country') || 'iceland';
+const embeddedSlug = document.documentElement.dataset.country;
+const querySlug = new URLSearchParams(window.location.search).get('country');
+const slug = embeddedSlug || querySlug || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260825-0038';
+const DATA_VERSION = '20260825-1027';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
+const SITE_ORIGIN = 'https://yagenji.github.io/Journey-Atlas/';
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
   .then((response) => {
@@ -42,6 +45,18 @@ const ICON_ALIASES = new Map([
   ['昼と夜が大きく変わる', 'sun'], ['道路は旅の一部', 'road'], ['火山と氷河が隣り合う', 'volcano']
 ]);
 
+const backgroundObserver = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        const source = entry.target.dataset.lazyBackground;
+        delete entry.target.dataset.lazyBackground;
+        if (source) applyBackground(entry.target, source);
+      });
+    }, { rootMargin: '700px 0px' })
+  : null;
+
 function iconName(item, fallback = 'compass') {
   if (item?.icon) return item.icon;
   return ICON_ALIASES.get(item?.label) || ICON_ALIASES.get(item?.title) || fallback;
@@ -77,7 +92,7 @@ function renderCountry(data, registry) {
   renderRelated(fragment, data.relatedCountries, registry);
 
   app.replaceChildren(fragment);
-  document.title = `${data.nameEn} — JOURNEY ATLAS`;
+  updatePageMetadata(data);
   initWishButton(data.slug);
 
   const scenes = data.scenes || [];
@@ -88,6 +103,29 @@ function renderCountry(data, registry) {
     const sceneId = getSceneFromHash(scenes);
     if (sceneId) setActiveScene(sceneId, true);
   });
+}
+
+function setMeta(selector, value, attribute = 'content') {
+  const element = document.querySelector(selector);
+  if (element && value) element.setAttribute(attribute, value);
+}
+
+function updatePageMetadata(data) {
+  const title = `${data.nameJa} | ${data.nameEn} — JOURNEY ATLAS`;
+  const description = data.seo?.description || data.hero?.lead || `${data.nameJa}を景色と地図からめぐるJOURNEY ATLAS。`;
+  const canonical = `${SITE_ORIGIN}countries/${data.slug}/`;
+  const heroImage = data.seo?.ogImage || data.hero?.image;
+  const absoluteImage = heroImage && !heroImage.endsWith('.parts.json') && !heroImage.endsWith('.b64')
+    ? new URL(heroImage, SITE_ORIGIN).href
+    : `${SITE_ORIGIN}assets/icons/favicon.svg`;
+
+  document.title = title;
+  setMeta('#meta-description', description);
+  setMeta('#canonical-link', canonical, 'href');
+  setMeta('#og-title', title);
+  setMeta('#og-description', description);
+  setMeta('#og-url', canonical);
+  setMeta('#og-image', absoluteImage);
 }
 
 function resolveImageSource(source) {
@@ -136,6 +174,8 @@ function renderMapBase(fragment, mapData) {
   image.className = 'map-base';
   image.alt = '';
   image.decoding = 'async';
+  image.loading = 'lazy';
+  image.fetchPriority = 'low';
   image.addEventListener('load', () => {
     placeholder.hidden = true;
     grid.hidden = true;
@@ -150,8 +190,7 @@ function renderMapBase(fragment, mapData) {
   mapArt.prepend(image);
 }
 
-function setBackground(element, image) {
-  if (!element || !image) return;
+function applyBackground(element, image) {
   resolveImageSource(image)
     .then((resolvedSource) => {
       element.style.backgroundImage = `url("${resolvedSource}")`;
@@ -159,6 +198,16 @@ function setBackground(element, image) {
       element.querySelectorAll('.art-placeholder, .scene-placeholder').forEach((placeholder) => { placeholder.hidden = true; });
     })
     .catch(() => {});
+}
+
+function setBackground(element, image, options = {}) {
+  if (!element || !image) return;
+  if (options.lazy && backgroundObserver) {
+    element.dataset.lazyBackground = image;
+    backgroundObserver.observe(element);
+    return;
+  }
+  applyBackground(element, image);
 }
 
 function projectPoint(coordinates, bounds, offset = {}) {
@@ -208,7 +257,7 @@ function renderScenes(fragment, scenes = [], bounds) {
     card.setAttribute('aria-label', `${number} ${scene.name}`);
     card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
-    setBackground(card.querySelector('.scene-image'), scene.image);
+    setBackground(card.querySelector('.scene-image'), scene.image, { lazy: true });
     const point = projectPoint(scene.coordinates, bounds, scene.mapOffset);
     if (point) {
       const marker = document.createElement('button');
@@ -409,7 +458,7 @@ function initWishButton(countrySlug) {
     wished = !wished;
     try {
       localStorage.setItem(storageKey, String(wished));
-      if (status) status.textContent = wished ? 'この端末に保存しました。' : '保存を解除しました。';
+      if (status) status.textContent = wished ? 'このブラウザに保存しました。' : '保存を解除しました。';
     } catch {
       wished = !wished;
       if (status) status.textContent = 'このブラウザでは保存機能を利用できません。';
