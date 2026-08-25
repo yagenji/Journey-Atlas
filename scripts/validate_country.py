@@ -171,8 +171,8 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
             fail(errors, f"{path.name}: atlasExtras が空です")
 
         trivia = data.get("travelTrivia") if isinstance(data.get("travelTrivia"), list) else []
-        if not 4 <= len(trivia) <= 6:
-            fail(errors, f"{path.name}: travelTrivia は4〜6件必要です")
+        if len(trivia) != 5:
+            fail(errors, f"{path.name}: travelTrivia はレイアウト仕様上5件必要です")
         sources = data.get("sources") if isinstance(data.get("sources"), dict) else {}
         seen_trivia_titles: set[str] = set()
         for index, item in enumerate(trivia, 1):
