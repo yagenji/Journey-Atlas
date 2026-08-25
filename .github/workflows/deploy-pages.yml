@@ -23,12 +23,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate source
+        run: |
+          python -m py_compile scripts/build_site.py scripts/validate_country.py
+          node --check assets/js/app.js
+          python scripts/validate_country.py --published
+
+      - name: Build production site
+        run: python scripts/build_site.py
+
+      - name: Validate production build
+        run: |
+          python scripts/validate_country.py --published
+          test -f assets/css/country.css
+          test -f assets/css/top.css
+          test -f countries/iceland/index.html
+          test -f sitemap.xml
+          test -f robots.txt
+          grep -q 'data-country="iceland"' countries/iceland/index.html
+          grep -q 'assets/images/iceland/v3/hero.webp' data/countries/iceland.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
