@@ -196,15 +196,15 @@
 .transport>b{display:none!important;}
 
 /* ---------- LOWER TRAVEL INFO ---------- */
-/* TRAVEL THEMES already explain who this destination suits. Keep this area practical. */
+/* Keep FOR WHOM as a concise decision aid: three representative traveler types. */
 .travel-grid{
-  grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr)!important;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,.86fr) minmax(0,.94fr)!important;
 }
 .travel-grid>.info-section:nth-child(2){
-  display:none!important;
+  display:block!important;
 }
-.travel-grid>.info-section:first-child{
-  border-right:1px solid var(--line)!important;
+.persona-list article:nth-child(n+4){
+  display:none!important;
 }
 .travel-grid>.info-section:last-child{
   border-right:0!important;
@@ -266,6 +266,12 @@
 @media(max-width:1180px){
   .country-facts-strip .fact-list{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
   .country-facts-strip .fact-list>div:nth-child(5){border-left:0!important;}
+  .travel-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .travel-grid>.info-section:nth-child(2){border-right:0!important;}
+  .travel-grid>.info-section:nth-child(3){
+    grid-column:1/-1;
+    border-top:1px solid var(--line)!important;
+  }
 }
 
 @media(max-width:760px){
@@ -284,8 +290,11 @@
   .atlas-colophon .meta-links{justify-content:flex-start!important;}
   .map-hero-marker::after{display:none;}
   .travel-grid{grid-template-columns:1fr!important;}
-  .travel-grid>.info-section:first-child{
+  .travel-grid>.info-section{
+    grid-column:auto!important;
     border-right:0!important;
-    border-bottom:1px solid var(--line)!important;
+  }
+  .travel-grid>.info-section+ .info-section{
+    border-top:1px solid var(--line)!important;
   }
 }
