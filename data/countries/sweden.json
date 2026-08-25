@@ -11,27 +11,28 @@
     "nameEn": "Stockholm",
     "nameJa": "ストックホルム",
     "coordinates": {"latitude": 59.3293, "longitude": 18.0686},
-    "labelPosition": "left"
+    "labelPosition": "left",
+    "mapOffset": {"x": -1.0, "y": 1.2}
   },
   "hero": {
     "lead": "森と湖のあいだに町があり、その先に群島が続く。南の海岸から北極圏まで、水と森の距離が近い国。",
-    "image": "assets/images/sweden/hero-stockholm-archipelago.webp",
+    "image": "assets/images/sweden/v1/hero-fixed.b64",
     "location": "Grinda / グリンダ（ストックホルム群島）",
     "coordinates": {"latitude": 59.411, "longitude": 18.557},
-    "mapOffset": {"x": 0, "y": 0}
+    "mapOffset": {"x": 2.0, "y": 0.8}
   },
   "map": {
-    "bounds": {"north": 69.3, "south": 55.1, "west": 10.5, "east": 24.5},
+    "bounds": {"north": 69.5, "south": 54.8, "west": -5.0, "east": 40.0},
     "svg": "assets/images/sweden/map-atlas.svg",
     "route": null,
     "source": "Country outline based on public geographic data; illustrated treatment: JOURNEY ATLAS"
   },
   "scenes": [
-    {"id":"gamla-stan","name":"ガムラ・スタン","nameLocal":"Gamla Stan","mapLabel":"Gamla Stan","description":"島の上に広がるストックホルム旧市街。石畳の路地と黄土色や赤茶の建物が、水辺の首都に中世からの層を残す。","coordinates":{"latitude":59.325,"longitude":18.071},"image":"assets/images/sweden/gamla-stan.webp"},
-    {"id":"lapporten","name":"ラップポルテン","nameLocal":"Lapporten / Abisko","mapLabel":"Lapporten","description":"アビスコ近郊の山並みに開くU字谷。北極圏の広い空とツンドラ、湖が重なり、スウェーデン北部を象徴する眺めになる。","coordinates":{"latitude":68.289,"longitude":18.59},"image":"assets/images/sweden/lapporten.webp"},
-    {"id":"high-coast","name":"ハイ・コースト","nameLocal":"Höga Kusten","mapLabel":"Höga Kusten","description":"ボスニア湾に山と森が迫る世界遺産の海岸。氷河期後の隆起がつくった高低差のある海岸線を、島と湾が刻む。","coordinates":{"latitude":63.11,"longitude":18.49},"image":"assets/images/sweden/high-coast.webp"},
-    {"id":"siljan","name":"シリアン湖 / ダーラナ","nameLocal":"Siljan / Dalarna","mapLabel":"Siljan","description":"湖畔の丘に赤い木造家屋が点在するダーラナ地方。森、農村、夏至祭の風景に、よく知られた“スウェーデンらしさ”が凝縮される。","coordinates":{"latitude":60.817,"longitude":14.996},"image":"assets/images/sweden/siljan-dalarna.webp"},
-    {"id":"visby","name":"ヴィスビー","nameLocal":"Visby / Gotland","mapLabel":"Visby","description":"バルト海のゴットランド島に残る中世都市。城壁、塔、教会跡と石畳の道が、かつてのハンザ交易都市の輪郭を今に伝える。","coordinates":{"latitude":57.6348,"longitude":18.2948},"image":"assets/images/sweden/visby.webp"},
+    {"id":"gamla-stan","name":"ガムラ・スタン","nameLocal":"Gamla Stan","mapLabel":"Gamla Stan","description":"島の上に広がるストックホルム旧市街。石畳の路地と黄土色や赤茶の建物が、水辺の首都に中世からの層を残す。","coordinates":{"latitude":59.325,"longitude":18.071},"mapOffset":{"x":0,"y":-1.8},"image":"assets/images/sweden/v1/gamla-stan-fixed.b64"},
+    {"id":"lapporten","name":"ラップポルテン","nameLocal":"Lapporten / Abisko","mapLabel":"Lapporten","description":"アビスコ近郊の山並みに開くU字谷。北極圏の広い空とツンドラ、湖が重なり、スウェーデン北部を象徴する眺めになる。","coordinates":{"latitude":68.289,"longitude":18.59},"image":"assets/images/sweden/v1/lapporten-fixed.b64"},
+    {"id":"high-coast","name":"ハイ・コースト","nameLocal":"Höga Kusten","mapLabel":"Höga Kusten","description":"ボスニア湾に山と森が迫る世界遺産の海岸。氷河期後の隆起がつくった高低差のある海岸線を、島と湾が刻む。","coordinates":{"latitude":63.11,"longitude":18.49},"image":"assets/images/sweden/v1/high-coast-fixed.b64"},
+    {"id":"siljan","name":"シリアン湖 / ダーラナ","nameLocal":"Siljan / Dalarna","mapLabel":"Siljan","description":"湖畔の丘に赤い木造家屋が点在するダーラナ地方。森、農村、夏至祭の風景に、よく知られた“スウェーデンらしさ”が凝縮される。","coordinates":{"latitude":60.817,"longitude":14.996},"image":"assets/images/sweden/v1/siljan-dalarna-fixed.b64"},
+    {"id":"visby","name":"ヴィスビー","nameLocal":"Visby / Gotland","mapLabel":"Visby","description":"バルト海のゴットランド島に残る中世都市。城壁、塔、教会跡と石畳の道が、かつてのハンザ交易都市の輪郭を今に伝える。","coordinates":{"latitude":57.6348,"longitude":18.2948},"image":"assets/images/sweden/v1/visby-fixed.b64"},
     {"id":"langhammars","name":"ラングハンマルス / フォーレ島","nameLocal":"Langhammars / Fårö","mapLabel":"Fårö","description":"風と波が石灰岩を削って残した奇岩群“ラウク”。低い海岸と荒々しい岩の造形が、ゴットランド北方の島に独特の景観をつくる。","coordinates":{"latitude":57.987,"longitude":19.318},"image":"assets/images/sweden/langhammars-faro.webp"},
     {"id":"smogen","name":"スモーゲン","nameLocal":"Smögen / Bohuslän","mapLabel":"Smögen","description":"滑らかな花崗岩の海岸に、赤や白のボートハウスが並ぶ西海岸の漁村。海と暮らしの距離が近いボーフスレーンらしい風景。","coordinates":{"latitude":58.355,"longitude":11.224},"image":"assets/images/sweden/smogen.webp"},
     {"id":"gota-canal","name":"イェータ運河","nameLocal":"Göta Canal / Berg Locks","mapLabel":"Göta Canal","description":"湖と湖をつなぎながら国を横切る19世紀の運河。ベルイの連続閘門では、水位を変えながら船が段差を進む様子を間近に見られる。","coordinates":{"latitude":58.485,"longitude":15.529},"image":"assets/images/sweden/gota-canal.webp"}
