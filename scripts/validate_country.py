@@ -11,7 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
-ATLAS_REGISTRY = ROOT / "data" / "atlas-destinations.json"
+REGISTRY_PATHS = [
+    ROOT / "data" / "atlas-destinations.json",
+    ROOT / "data" / "atlas-destinations-editorial.json",
+]
 
 REQUIRED_TOP_LEVEL = {
     "slug", "nameEn", "nameJa", "region", "hero", "map", "scenes",
@@ -216,14 +219,38 @@ def country_paths_from_index() -> tuple[list[Path], list[str]]:
     return paths, errors
 
 
-def published_paths() -> tuple[list[Path], list[str]]:
-    try:
-        registry = json.loads(ATLAS_REGISTRY.read_text(encoding="utf-8"))
-    except Exception as exc:
-        return [], [f"atlas-destinations.json: 読み込めません: {exc}"]
-    paths: list[Path] = []
+def load_destination_scope() -> tuple[list[dict], list[str]]:
+    items: list[dict] = []
     errors: list[str] = []
-    for item in registry.get("destinations", []):
+    seen: set[str] = set()
+    for registry_path in REGISTRY_PATHS:
+        if not registry_path.exists():
+            errors.append(f"destination registry がありません: {registry_path.name}")
+            continue
+        try:
+            registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            errors.append(f"{registry_path.name}: 読み込めません: {exc}")
+            continue
+        for item in registry.get("destinations", []):
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if not slug:
+                errors.append(f"{registry_path.name}: slugのないdestinationがあります")
+                continue
+            if slug in seen:
+                errors.append(f"destination slug '{slug}' がregistry間で重複しています")
+                continue
+            seen.add(slug)
+            items.append(item)
+    if len(items) != 201:
+        errors.append(f"destination scope は201件必要ですが {len(items)} 件です")
+    return items, errors
+
+
+def published_paths() -> tuple[list[Path], list[str]]:
+    items, errors = load_destination_scope()
+    paths: list[Path] = []
+    for item in items:
         if not item.get("atlasPublished"):
             continue
         slug = item.get("slug")
@@ -257,7 +284,7 @@ def main() -> int:
         return 1
 
     mode = "published strict" if strict else "standard"
-    print(f"Validation passed ({mode}): {len(paths)} country file(s)")
+    print(f"Validation passed ({mode}): {len(paths)} country file(s); 201-destination scope is consistent")
     return 0
 
 
