@@ -198,7 +198,7 @@
 /* ---------- LOWER TRAVEL INFO ---------- */
 /* Keep FOR WHOM as a concise decision aid: three representative traveler types. */
 .travel-grid{
-  grid-template-columns:minmax(0,1.2fr) minmax(0,.86fr) minmax(0,.94fr)!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
 }
 .travel-grid>.info-section:nth-child(2){
   display:block!important;
