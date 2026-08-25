@@ -3,13 +3,24 @@
 
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PRODUCTION_URL = "https://atlas.yagenji.com/"
+SITE_CONFIG_PATH = ROOT / "data/site.json"
+FALLBACK_PREVIEW_URL = "https://yagenji.github.io/Journey-Atlas/"
+
+
+def default_site_url() -> str:
+    """Use the current canonical site until Cloudflare receives an explicit URL."""
+    if SITE_CONFIG_PATH.exists():
+        configured = json.loads(SITE_CONFIG_PATH.read_text(encoding="utf-8")).get("baseUrl")
+        if configured:
+            return configured.rstrip("/") + "/"
+    return FALLBACK_PREVIEW_URL
 
 
 def run(*args: str, env: dict[str, str]) -> None:
@@ -19,7 +30,9 @@ def run(*args: str, env: dict[str, str]) -> None:
 
 def main() -> int:
     env = os.environ.copy()
-    env.setdefault("JOURNEY_ATLAS_SITE_URL", DEFAULT_PRODUCTION_URL)
+    # Initial Cloudflare previews need no custom-domain setup. When the final
+    # domain is connected, set JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/.
+    env.setdefault("JOURNEY_ATLAS_SITE_URL", default_site_url())
 
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/build_site.py", env=env)
