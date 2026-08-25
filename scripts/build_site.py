@@ -11,7 +11,19 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE_URL = os.environ.get("JOURNEY_ATLAS_SITE_URL", "https://yagenji.github.io/Journey-Atlas/").rstrip("/") + "/"
+SITE_CONFIG_PATH = ROOT / "data/site.json"
+CORE_REGISTRY_PATH = ROOT / "data/atlas-destinations.json"
+EDITORIAL_REGISTRY_PATH = ROOT / "data/atlas-destinations-editorial.json"
+
+
+def site_url() -> str:
+    configured = "https://yagenji.github.io/Journey-Atlas/"
+    if SITE_CONFIG_PATH.exists():
+        configured = json.loads(SITE_CONFIG_PATH.read_text(encoding="utf-8")).get("baseUrl", configured)
+    return os.environ.get("JOURNEY_ATLAS_SITE_URL", configured).rstrip("/") + "/"
+
+
+SITE_URL = site_url()
 
 COUNTRY_CSS_SOURCES = [
     "assets/css/style.css",
@@ -46,6 +58,12 @@ TOP_CSS_LINKS = [
     '<link rel="stylesheet" href="assets/css/top-scope.css?v=20260825-0152">',
     '<link rel="stylesheet" href="assets/css/site-unify.css?v=20260825-0210">',
     '<link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">',
+]
+
+TOP_ENCODED_ASSETS = [
+    *(f"assets/images/top/hero-set-{index}.webp.b64" for index in range(1, 6)),
+    "assets/images/top/theme-approved-sprite.webp.b64",
+    "assets/images/top/explore-entry-sprite.webp.b64",
 ]
 
 
@@ -108,18 +126,97 @@ def rewrite_encoded_assets(value):
     return value
 
 
-def load_registry() -> dict:
-    return json.loads((ROOT / "data/atlas-destinations.json").read_text(encoding="utf-8"))
+def load_registries() -> list[tuple[Path, dict]]:
+    registries: list[tuple[Path, dict]] = []
+    for path in (CORE_REGISTRY_PATH, EDITORIAL_REGISTRY_PATH):
+        if not path.exists():
+            continue
+        registries.append((path, json.loads(path.read_text(encoding="utf-8"))))
+    return registries
 
 
-def published_destinations(registry: dict) -> list[dict]:
-    return [item for item in registry.get("destinations", []) if item.get("atlasPublished")]
+def all_destinations(registries: list[tuple[Path, dict]]) -> list[dict]:
+    items: list[dict] = []
+    seen: set[str] = set()
+    for _path, registry in registries:
+        for item in registry.get("destinations", []):
+            slug = item.get("slug")
+            if not slug:
+                raise ValueError("Destination without slug")
+            if slug in seen:
+                raise ValueError(f"Duplicate destination slug across registries: {slug}")
+            seen.add(slug)
+            items.append(item)
+    return items
+
+
+def published_destinations(registries: list[tuple[Path, dict]]) -> list[dict]:
+    return [item for item in all_destinations(registries) if item.get("atlasPublished")]
 
 
 def set_tag(text: str, old: str, new: str) -> str:
     if old not in text:
         raise ValueError(f"Template marker missing: {old}")
     return text.replace(old, new, 1)
+
+
+def replace_block(text: str, start: str, end: str, replacement: str) -> str:
+    start_index = text.find(start)
+    if start_index < 0:
+        raise ValueError(f"JavaScript build marker missing: {start}")
+    end_index = text.find(end, start_index)
+    if end_index < 0:
+        raise ValueError(f"JavaScript build end marker missing: {end}")
+    return text[:start_index] + replacement + text[end_index + len(end):]
+
+
+def prepare_top_assets_and_js() -> None:
+    for source in TOP_ENCODED_ASSETS:
+        if not (ROOT / source).exists():
+            raise FileNotFoundError(f"Top encoded asset missing: {source}")
+        materialize_encoded_asset(source)
+
+    path = ROOT / "assets/js/top.js"
+    script = path.read_text(encoding="utf-8")
+    script = script.replace(
+        "const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);",
+        "const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp`);",
+        1,
+    )
+
+    script = replace_block(
+        script,
+        "Promise.all(heroFiles.map(async(file)=>{",
+        "}).catch(()=>{heroSources=[];applyHeroDerivedArt();});",
+        "heroSources=heroFiles;\nsetHero(0,false);\napplyHeroDerivedArt();\nif(destinations.length){renderRail(destinations);renderGrid(destinations);}\nstartHeroRotation();",
+    )
+
+    script = replace_block(
+        script,
+        "fetch('assets/images/top/theme-approved-sprite.webp.b64?v=20260822-2134')",
+        ".catch(()=>{});",
+        "{\n  const image='url(\"assets/images/top/theme-approved-sprite.webp\")';\n  themeArtElements.forEach((art,index)=>{\n    art.style.backgroundImage=image;\n    art.style.backgroundPosition=`${index*(100/7)}% 50%`;\n  });\n}",
+    )
+
+    script = replace_block(
+        script,
+        "  fetch('assets/images/top/explore-entry-sprite.webp.b64?v=20260823-1202')",
+        "    .catch(()=>{});",
+        "  {\n    const image='url(\"assets/images/top/explore-entry-sprite.webp\")';\n    cards.forEach((art,index)=>{\n      if(!art)return;\n      art.style.backgroundImage=image;\n      art.style.backgroundSize='300% 100%';\n      art.style.backgroundPosition=positions[index];\n      art.style.backgroundRepeat='no-repeat';\n    });\n  }",
+    )
+    path.write_text(script, encoding="utf-8")
+
+
+def prepare_app_js() -> None:
+    path = ROOT / "assets/js/app.js"
+    script = path.read_text(encoding="utf-8")
+    old = "const SITE_ORIGIN = 'https://yagenji.github.io/Journey-Atlas/';"
+    new = f"const SITE_ORIGIN = '{SITE_URL}';"
+    if old in script:
+        script = script.replace(old, new, 1)
+    elif "const SITE_ORIGIN =" not in script:
+        raise ValueError("app.js SITE_ORIGIN marker missing")
+    path.write_text(script, encoding="utf-8")
 
 
 def prepare_top_page() -> None:
@@ -133,10 +230,14 @@ def prepare_top_page() -> None:
 
     canonical = SITE_URL
     if 'rel="canonical"' not in page:
-        page = page.replace('  <title>JOURNEY ATLAS</title>\n', f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="201の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/hero-world-collage.svg")}">\n  <meta name="twitter:card" content="summary_large_image">\n', 1)
+        page = page.replace(
+            '  <title>JOURNEY ATLAS</title>\n',
+            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="201の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/hero-world-collage.svg")}">\n  <meta name="twitter:card" content="summary_large_image">\n',
+            1,
+        )
 
     page = page.replace('<img id="hero-image" ', '<img id="hero-image" fetchpriority="high" ', 1)
-    page = page.replace('class="lens-card__art"><img ', 'class="lens-card__art"><img loading="lazy" decoding="async" ', 1)
+    page = page.replace('<div class="lens-card__art"><img ', '<div class="lens-card__art"><img loading="lazy" decoding="async" ')
     path.write_text(page, encoding="utf-8")
 
 
@@ -144,7 +245,11 @@ def prepare_generic_country_page() -> None:
     path = ROOT / "country.html"
     page = path.read_text(encoding="utf-8")
     if 'name="robots"' not in page:
-        page = page.replace('  <meta name="description" id="meta-description"', '  <meta name="robots" content="noindex,follow">\n  <meta name="description" id="meta-description"', 1)
+        page = page.replace(
+            '  <meta name="description" id="meta-description"',
+            '  <meta name="robots" content="noindex,follow">\n  <meta name="description" id="meta-description"',
+            1,
+        )
     path.write_text(page, encoding="utf-8")
 
 
@@ -183,11 +288,12 @@ def generate_country_page(destination: dict) -> str:
     return canonical
 
 
-def rewrite_published_hrefs(registry: dict) -> None:
-    for item in registry.get("destinations", []):
-        if item.get("atlasPublished") and item.get("slug"):
-            item["href"] = f"countries/{item['slug']}/"
-    (ROOT / "data/atlas-destinations.json").write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+def rewrite_published_hrefs(registries: list[tuple[Path, dict]]) -> None:
+    for path, registry in registries:
+        for item in registry.get("destinations", []):
+            if item.get("atlasPublished") and item.get("slug"):
+                item["href"] = f"countries/{item['slug']}/"
+        path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def generate_sitemap(country_urls: list[str]) -> None:
@@ -201,14 +307,18 @@ def generate_sitemap(country_urls: list[str]) -> None:
 def main() -> int:
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
+    prepare_top_assets_and_js()
+    prepare_app_js()
     prepare_top_page()
     prepare_generic_country_page()
-    registry = load_registry()
-    destinations = published_destinations(registry)
+    registries = load_registries()
+    if len(all_destinations(registries)) != 201:
+        raise ValueError(f"Expected 201 destinations, found {len(all_destinations(registries))}")
+    destinations = published_destinations(registries)
     urls = [generate_country_page(item) for item in destinations]
-    rewrite_published_hrefs(registry)
+    rewrite_published_hrefs(registries)
     generate_sitemap(urls)
-    print(f"Built CSS bundles and {len(urls)} static country page(s).")
+    print(f"Built CSS bundles, direct top media, and {len(urls)} static country page(s) from 201 destinations.")
     return 0
 
 
