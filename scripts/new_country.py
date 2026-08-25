@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-COUNTRY_DIR = ROOT / "data/countries"
+COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
     ROOT / "data" / "atlas-destinations-editorial.json",
@@ -35,6 +35,28 @@ def blank_scene(index: int, slug: str) -> dict:
         "coordinates": {"latitude": None, "longitude": None},
         "image": f"assets/images/{slug}/scene-{index}.webp",
     }
+
+
+def blank_extra() -> dict:
+    return {
+        "themeEn": "",
+        "themeJa": "",
+        "title": "",
+        "text": "",
+        "points": ["", ""],
+    }
+
+
+def blank_persona() -> dict:
+    return {"title": "", "text": ""}
+
+
+def blank_tip() -> dict:
+    return {"title": "", "text": ""}
+
+
+def blank_related() -> dict:
+    return {"slug": "", "nameEn": "", "nameJa": "", "flag": "", "reason": ""}
 
 
 def scaffold(destination: dict) -> dict:
@@ -65,7 +87,7 @@ def scaffold(destination: dict) -> dict:
         },
         "scenes": [blank_scene(index, slug) for index in range(1, 9)],
         "encounters": [{"title": ""} for _ in range(8)],
-        "atlasExtras": [],
+        "atlasExtras": [blank_extra() for _ in range(6)],
         "travelTrivia": [
             {"categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
             for _ in range(5)
@@ -75,7 +97,7 @@ def scaffold(destination: dict) -> dict:
             for _ in range(4)
         ],
         "transport": {"title": "", "text": ""},
-        "personas": [],
+        "personas": [blank_persona() for _ in range(3)],
         "facts": [
             {"label": "地域", "value": ""},
             {"label": "首都", "value": ""},
@@ -89,8 +111,8 @@ def scaffold(destination: dict) -> dict:
             {"label": "", "value": "", "note": ""}
             for _ in range(3)
         ],
-        "tips": [],
-        "relatedCountries": [],
+        "tips": [blank_tip() for _ in range(3)],
+        "relatedCountries": [blank_related() for _ in range(3)],
         "updatedAt": date.today().isoformat(),
         "sources": {},
     }
