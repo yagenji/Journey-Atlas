@@ -162,13 +162,17 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         if re.search(r"\d+\.\d+", str(population)):
             fail(errors, f"{path.name}: 人口表示に小数精度を使わないでください: {population}")
 
+        encounters = data.get("encounters") if isinstance(data.get("encounters"), list) else []
+        if len(encounters) != 8:
+            fail(errors, f"{path.name}: encounters はレイアウト仕様上8件必要です")
+
         signature = data.get("signatureFacts") if isinstance(data.get("signatureFacts"), list) else []
         if len(signature) != 3:
             fail(errors, f"{path.name}: signatureFacts は3件必要です")
 
         extras = data.get("atlasExtras") if isinstance(data.get("atlasExtras"), list) else []
-        if not extras:
-            fail(errors, f"{path.name}: atlasExtras が空です")
+        if len(extras) != 6:
+            fail(errors, f"{path.name}: atlasExtras はレイアウト仕様上6件必要です")
 
         trivia = data.get("travelTrivia") if isinstance(data.get("travelTrivia"), list) else []
         if len(trivia) != 5:
@@ -191,7 +195,21 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
             if title:
                 seen_trivia_titles.add(title)
 
+        seasons = data.get("seasons") if isinstance(data.get("seasons"), list) else []
+        if len(seasons) != 4:
+            fail(errors, f"{path.name}: seasons はレイアウト仕様上4件必要です")
+
+        personas = data.get("personas") if isinstance(data.get("personas"), list) else []
+        if len(personas) < 3:
+            fail(errors, f"{path.name}: personas は少なくとも3件必要です（表示は先頭3件）")
+
+        tips = data.get("tips") if isinstance(data.get("tips"), list) else []
+        if len(tips) != 3:
+            fail(errors, f"{path.name}: tips はレイアウト仕様上3件必要です")
+
         related = data.get("relatedCountries") if isinstance(data.get("relatedCountries"), list) else []
+        if len(related) != 3:
+            fail(errors, f"{path.name}: relatedCountries はレイアウト仕様上3件必要です")
         related_slugs = [item.get("slug") for item in related if isinstance(item, dict)]
         if len(related_slugs) != len(set(related_slugs)):
             fail(errors, f"{path.name}: relatedCountries slug が重複しています")
