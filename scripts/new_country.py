@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data/countries"
 REGISTRY_PATHS = [
-    ROOT / "data/atlas-destinations.json",
-    ROOT / "data/atlas-destinations-editorial.json",
+    ROOT / "data" / "atlas-destinations.json",
+    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 
 
@@ -68,7 +68,7 @@ def scaffold(destination: dict) -> dict:
         "atlasExtras": [],
         "travelTrivia": [
             {"categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
-            for _ in range(4)
+            for _ in range(5)
         ],
         "seasons": [
             {"months": "", "color": "", "text": ""}
