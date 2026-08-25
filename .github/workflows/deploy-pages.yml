@@ -26,7 +26,7 @@ jobs:
 
       - name: Validate source
         run: |
-          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/new_country.py
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           python scripts/validate_country.py --published
@@ -65,3 +65,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  cloudflare-package-check:
+    name: Validate Cloudflare production package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build clean Cloudflare package
+        env:
+          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+        run: |
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/package_site.py scripts/build_cloudflare.py
+          python scripts/build_cloudflare.py
+
+      - name: Validate packaged output
+        run: |
+          test -f dist/index.html
+          test -f dist/sitemap.xml
+          test -f dist/robots.txt
+          test -f dist/_headers
+          test -f dist/countries/iceland/index.html
+          test -f dist/data/countries/iceland.json
+          test ! -e dist/country.html
+          test ! -d dist/scripts
+          test ! -d dist/.github
+          grep -q 'https://atlas.yagenji.com/' dist/sitemap.xml
+          grep -q 'https://atlas.yagenji.com/countries/iceland/' dist/countries/iceland/index.html
+          if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then echo 'encoded source files leaked into dist'; exit 1; fi
