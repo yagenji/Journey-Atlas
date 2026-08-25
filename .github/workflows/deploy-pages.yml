@@ -42,8 +42,7 @@ jobs:
           test -f assets/css/country.css
           test -f assets/css/top.css
           test -f assets/images/iceland/v3/hero.webp
-          test -f assets/images/top/hero-set-1.webp
-          test -f assets/images/top/hero-set-5.webp
+          test -f assets/images/top/hero-world-collage.svg
           test -f assets/images/top/theme-approved-sprite.webp
           test -f assets/images/top/explore-entry-sprite.webp
           test -f countries/iceland/index.html
@@ -52,6 +51,7 @@ jobs:
           grep -q 'data-country="iceland"' countries/iceland/index.html
           grep -q 'assets/images/iceland/v3/hero.webp' data/countries/iceland.json
           grep -q 'countries/iceland/' data/atlas-destinations.json
+          grep -q 'hero-world-collage.svg' assets/js/top.js
           if grep -q '\.b64' assets/js/top.js; then echo 'top.js still contains runtime base64 media'; exit 1; fi
 
       - name: Setup Pages
