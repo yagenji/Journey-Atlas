@@ -12,14 +12,23 @@ A country page must be rendered through one path only:
 Do not add country-specific JavaScript or country-specific CSS asset overrides to make a page work.
 Country differences belong in the country JSON and country asset folder.
 
+Production deployment adds one deterministic build step:
+
+`source → validate published country data → build production assets → validate build → deploy`
+
+The production build is `scripts/build_site.py` and is executed automatically by GitHub Actions.
+
 ## Required data structure
 
-Each country JSON uses `schemaVersion: 2` and should contain:
+Each published country JSON uses `schemaVersion: 2` and contains:
 
 - `slug`
 - `nameEn`
 - `nameJa`
 - `region`
+- `seo`
+  - `description`
+  - optional `ogImage`
 - `capital`
   - `nameEn`
   - `nameJa`
@@ -69,6 +78,7 @@ Keep the Travel Map heading concise; do not add explanatory guide copy beside it
 Top and country pages use the same JOURNEY ATLAS header scale and brand treatment.
 Do not create a second country-only wordmark size, menu scale, or permanent menu enclosure.
 The shared header remains visible while scrolling and is defined by the shared site stylesheet.
+Country-page navigation stays intentionally minimal: the top page and JOURNEY LENS are the primary exits.
 
 ## Typography hierarchy
 
@@ -110,7 +120,7 @@ Use a readable rounded figure in the visible page and keep the precise source fi
 
 ### Signature facts
 
-Add 3 country-specific facts under `signatureFacts`.
+Add exactly 3 country-specific facts under `signatureFacts`.
 They should reveal something distinctive that a generic country profile does not.
 Prefer a clear number or concise measurable fact.
 
@@ -179,14 +189,17 @@ Every item must have a credible source recorded through `sourceKey`.
 
 ### Hero
 
-Preferred delivery is a direct high-resolution WebP/AVIF asset.
+Preferred source delivery is a direct high-resolution WebP/AVIF asset.
 If repository/tooling limits require chunked base64 delivery, use a generic `.parts.json` manifest.
-The shared renderer resolves the manifest; do not create a country-specific loader.
+The source renderer can resolve the manifest as a fallback, but **production deployment must reconstruct it into a normal image file** through `scripts/build_site.py`.
+Do not create a country-specific image loader.
 
 ### Scenic images
 
 Use direct image or SVG-wrapper paths from the country JSON.
 Do not override image paths in shared CSS.
+Scene media is lazy-loaded by the shared renderer using `IntersectionObserver`; Hero remains eager.
+Do not add country-specific eager-loading logic.
 
 ### Map
 
@@ -202,6 +215,42 @@ Every country page should show the capital on the travel map using the shared `c
 The marker is deliberately quieter than numbered scenic markers and is not a scene.
 Use geographic coordinates and, only when necessary for legibility, `labelPosition` or a small visual `mapOffset`.
 Do not hand-position a capital independently of its coordinates.
+
+## CSS architecture
+
+Country-page source styles remain separated by responsibility, but the browser should not load the legacy files one by one.
+
+- source entrypoint: `assets/css/country.css`
+- top-page entrypoint: `assets/css/top.css`
+- production build concatenates the declared source files into one country bundle and one top bundle
+- source order is defined only in `scripts/build_site.py`
+- `country.html` loads only `country.css`
+- generated production `index.html` loads only `top.css`
+
+Do not add a new stylesheet link directly to `country.html`.
+If a reusable style component is added, register it in the build source list and keep its responsibility clear.
+
+## Static published URLs and SEO
+
+Published countries are generated as static entry pages:
+
+`/countries/{slug}/`
+
+The query-string page remains as a compatibility/fallback route, but it is not the canonical search-index URL.
+
+For every published country, the build generates or sets:
+
+- static HTML entry page
+- country-specific `<title>`
+- `meta description`
+- canonical URL
+- Open Graph title / description / URL / image
+- `twitter:card`
+- `sitemap.xml`
+- `robots.txt`
+
+`data/atlas-destinations.json` is rewritten in the deployment artifact so published country links point to the static URL.
+The source JSON should include a concise `seo.description`; `seo.ogImage` is optional and Hero is the default.
 
 ## Related countries
 
@@ -229,6 +278,7 @@ Operational limits are explicit:
 - clearing site data/private-browsing storage can remove it
 - do not imply cloud/account persistence until an account backend exists
 
+The country-page button explicitly says that the value is saved in the current browser.
 This local-first model is acceptable for the current static-site architecture and avoids collecting personal information.
 
 ## Icons
@@ -250,31 +300,58 @@ Rules:
 Do not use ambiguous Unicode symbols such as △, ♢, ♧, ♜ or ▱ as substitutes for icons.
 Emoji flags remain acceptable where a flag is specifically intended.
 
+## Automated validation
+
+Published country pages are checked by:
+
+`python scripts/validate_country.py --published`
+
+The strict validator checks at least:
+
+- `schemaVersion: 2`
+- required template keys
+- Hero / map / scene assets exist
+- encoded Hero manifests fully reconstruct
+- Hero, capital, and all scene coordinates sit inside map bounds
+- exactly 8 scenes
+- exact common-fact set and order
+- rounded population display (no accidental decimal precision)
+- exactly 3 signature facts
+- non-empty atlas extras
+- 4–6 travel trivia entries
+- every trivia `sourceKey` exists in `sources`
+- duplicate trivia / related-country identifiers
+
+Both source validation and production-build validation must pass before Pages deploys.
+
 ## Release gate for every country
 
 Before publishing a new country:
 
 1. JSON parses successfully and uses `schemaVersion: 2`.
-2. Hero asset/manifest exists and fully reconstructs.
-3. Map SVG exists, is structurally complete, and matches its bounds.
-4. Capital coordinates project inside the intended map area.
-5. Exactly 8 scene assets exist.
-6. All scene coordinates project inside the intended map area.
-7. Common facts are present and population follows the display-rounding rule.
-8. Three useful signature facts are sourced.
-9. Atlas extras are present where appropriate.
-10. Travel trivia contains 4–6 traveler-relevant, sourced items.
-11. Every trivia `sourceKey` resolves to an entry in `sources`.
-12. Travel trivia does not duplicate `atlasExtras`, signature facts, tips, hero copy, or scene copy.
-13. No country-specific runtime JS/CSS override is required.
-14. Related countries never produce broken links.
-15. Shared section-title hierarchy and icon styling remain intact.
-16. Shared top/country header treatment remains intact.
-17. Desktop and mobile layouts are visually checked.
-18. GitHub `main` state is verified before public Pages review.
-19. Public page is visually reviewed only after all earlier gates pass.
+2. `seo.description` is written.
+3. Hero asset/manifest exists and fully reconstructs.
+4. Map SVG exists, is structurally complete, and matches its bounds.
+5. Capital coordinates project inside the intended map area.
+6. Exactly 8 scene assets exist.
+7. All scene coordinates project inside the intended map area.
+8. Common facts are present and population follows the display-rounding rule.
+9. Three useful signature facts are sourced.
+10. Atlas extras are present where appropriate.
+11. Travel trivia contains 4–6 traveler-relevant, sourced items.
+12. Every trivia `sourceKey` resolves to an entry in `sources`.
+13. Travel trivia does not duplicate `atlasExtras`, signature facts, tips, hero copy, or scene copy.
+14. No country-specific runtime JS/CSS override is required.
+15. Related countries never produce broken links.
+16. Shared section-title hierarchy and icon styling remain intact.
+17. Shared top/country header treatment remains intact.
+18. `python scripts/validate_country.py --published` passes.
+19. Production build creates the direct Hero asset, CSS bundles, static country page, sitemap, and robots file.
+20. Desktop and mobile layouts are visually checked.
+21. GitHub Pages deployment workflow succeeds.
+22. Public page is visually reviewed after deployment.
 
 ## Reference country
 
-`data/countries/iceland.json` is the current benchmark for schema, page structure, and content depth.
+`data/countries/iceland.json` is the current benchmark for schema, page structure, content depth, and production metadata.
 New countries should follow the same data contract rather than copying Iceland-specific implementation details.
