@@ -195,6 +195,21 @@
 }
 .transport>b{display:none!important;}
 
+/* ---------- LOWER TRAVEL INFO ---------- */
+/* TRAVEL THEMES already explain who this destination suits. Keep this area practical. */
+.travel-grid{
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr)!important;
+}
+.travel-grid>.info-section:nth-child(2){
+  display:none!important;
+}
+.travel-grid>.info-section:first-child{
+  border-right:1px solid var(--line)!important;
+}
+.travel-grid>.info-section:last-child{
+  border-right:0!important;
+}
+
 /* ---------- FOOTER: exact top-page visual language ---------- */
 .atlas-colophon{
   margin-top:38px!important;
@@ -268,4 +283,9 @@
   .atlas-colophon .meta{margin-top:24px!important;text-align:left!important;}
   .atlas-colophon .meta-links{justify-content:flex-start!important;}
   .map-hero-marker::after{display:none;}
+  .travel-grid{grid-template-columns:1fr!important;}
+  .travel-grid>.info-section:first-child{
+    border-right:0!important;
+    border-bottom:1px solid var(--line)!important;
+  }
 }
