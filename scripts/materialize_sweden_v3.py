@@ -29,30 +29,6 @@ def materialize(output: str, parts: list[str]) -> None:
     print(f"materialized {output}: {len(binary)} bytes")
 
 
-def map_text_labels(text: str) -> list[str]:
-    labels = []
-    for match in re.findall(r"<text[^>]*>(.*?)</text>", text, flags=re.S):
-        clean = re.sub(r"<[^>]+>", "", match)
-        clean = " ".join(clean.split())
-        if clean:
-            labels.append(clean)
-    return labels
-
-
-def fix_map_label() -> None:
-    map_path = ROOT / "assets/images/sweden/map-atlas.svg"
-    text = map_path.read_text(encoding="utf-8")
-    if "Fårö" in text:
-        return
-    for old in ("Langhammars", "Faro"):
-        if old in text:
-            map_path.write_text(text.replace(old, "Fårö"), encoding="utf-8")
-            print(f"updated Sweden map label: {old} -> Fårö")
-            return
-    print("Sweden map text labels:", map_text_labels(text))
-    raise ValueError("Could not locate the Fårö/Langhammars label in Sweden map")
-
-
 def main() -> int:
     outputs = {
         "assets/images/sweden/v3/hero.webp": ["assets/images/sweden/v3/hero.b64"],
@@ -79,7 +55,6 @@ def main() -> int:
         if scene["id"] in replacements:
             scene["image"] = replacements[scene["id"]]
     country_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    fix_map_label()
     return 0
 
 
