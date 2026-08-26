@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repair repository transport markers in Sweden sources and materialize production WebP files."""
+"""Repair Sweden source transport artifacts and materialize production artwork."""
 
 from __future__ import annotations
 
@@ -29,6 +29,19 @@ def materialize(output: str, parts: list[str]) -> None:
     print(f"materialized {output}: {len(binary)} bytes")
 
 
+def fix_map_label() -> None:
+    map_path = ROOT / "assets/images/sweden/map-atlas.svg"
+    text = map_path.read_text(encoding="utf-8")
+    if "Fårö" in text:
+        return
+    for old in ("Langhammars", "Faro"):
+        if old in text:
+            map_path.write_text(text.replace(old, "Fårö"), encoding="utf-8")
+            print(f"updated Sweden map label: {old} -> Fårö")
+            return
+    raise ValueError("Could not locate the Fårö/Langhammars label in Sweden map")
+
+
 def main() -> int:
     outputs = {
         "assets/images/sweden/v3/hero.webp": ["assets/images/sweden/v3/hero.b64"],
@@ -55,6 +68,7 @@ def main() -> int:
         if scene["id"] in replacements:
             scene["image"] = replacements[scene["id"]]
     country_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    fix_map_label()
     return 0
 
 
