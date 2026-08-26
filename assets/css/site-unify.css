@@ -13,7 +13,7 @@
 /* ---------- GLOBAL HEADER LANGUAGE ---------- */
 .top-header.shell,
 .site-header.page-shell{
-  position:absolute!important;
+  position:fixed!important;
   inset:0 0 auto 0!important;
   z-index:100!important;
   width:100%!important;
@@ -35,8 +35,6 @@
 
 .top-header.shell.is-scroll-sticky,
 .site-header.page-shell.is-scroll-sticky{
-  position:fixed!important;
-  inset:0 0 auto 0!important;
   background:rgba(247,243,233,.96)!important;
   border-bottom:1px solid rgba(11,44,87,.11)!important;
   box-shadow:0 3px 14px rgba(9,42,75,.045)!important;
@@ -178,6 +176,7 @@ html{scroll-padding-top:96px!important;}
   color:var(--ja-navy)!important;
 }
 
+/* Country discovery should use the same paper panel as map/theme discovery. */
 .countries{
   background:var(--ja-soft)!important;
   border-color:var(--ja-line)!important;
@@ -189,8 +188,17 @@ html{scroll-padding-top:96px!important;}
   min-height:0!important;
   margin-bottom:18px!important;
 }
-.map-art{aspect-ratio:1200 / 760!important;}
-.map-base{width:100%!important;height:100%!important;object-fit:contain!important;}
+
+/* The SVGs are generated on a 1200 × 760 canvas. Match that ratio so the
+   map image and coordinate marker layer share exactly the same geometry. */
+.map-art{
+  aspect-ratio:1200 / 760!important;
+}
+.map-base{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+}
 
 .scenes-heading,
 .atlas-extras__head,
@@ -222,7 +230,11 @@ html{scroll-padding-top:96px!important;}
   text-align:right!important;
 }
 .scenes-intro{white-space:nowrap;}
-.map-legend--below{justify-content:flex-end!important;margin:10px 2px 0!important;}
+
+.map-legend--below{
+  justify-content:flex-end!important;
+  margin:10px 2px 0!important;
+}
 
 @media(max-width:1000px){
   .scenes-heading,
@@ -245,18 +257,35 @@ html{scroll-padding-top:96px!important;}
     gap:18px!important;
   }
   .wordmark,
-  .country-brand__wordmark{font-size:clamp(19px,5.8vw,23px)!important;}
+  .country-brand__wordmark{
+    font-size:clamp(19px,5.8vw,23px)!important;
+  }
   .brand-block small,
   .country-brand small{display:none!important;}
   .top-header nav,
-  .utility-nav{gap:14px!important;font-size:11px!important;}
+  .utility-nav{
+    gap:14px!important;
+    font-size:11px!important;
+  }
   .utility-nav a{font-size:11px!important;}
-  .country-theme-context{margin-top:16px;display:block;}
-  .country-theme-context__label{display:block;padding-top:0;margin-bottom:6px;}
+
+  .country-theme-context{
+    margin-top:16px;
+    display:block;
+  }
+  .country-theme-context__label{
+    display:block;
+    padding-top:0;
+    margin-bottom:6px;
+  }
+
   .panel-title-wrap,
   .scenes-heading,
   .atlas-extras__head,
-  .travel-trivia__head{display:block!important;min-height:0!important;}
+  .travel-trivia__head{
+    display:block!important;
+    min-height:0!important;
+  }
   .scenes-intro,
   .atlas-extras__intro,
   .travel-trivia__intro{
@@ -266,5 +295,8 @@ html{scroll-padding-top:96px!important;}
     text-align:left!important;
     white-space:normal;
   }
-  .map-legend--below{justify-content:flex-start!important;margin-top:8px!important;}
+  .map-legend--below{
+    justify-content:flex-start!important;
+    margin-top:8px!important;
+  }
 }
