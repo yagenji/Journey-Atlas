@@ -26,8 +26,13 @@ def main() -> int:
             return 0
         raise RuntimeError("No Sweden Hero transport parts found")
 
-    encoded = "".join(part.read_text(encoding="ascii").strip() for part in parts)
-    payload = base64.b64decode(encoded, validate=True)
+    encoded = "".join("".join(part.read_text(encoding="ascii").split()) for part in parts)
+    # Transport chunks may omit terminal Base64 padding; restore only the padding bytes.
+    encoded += "=" * (-len(encoded) % 4)
+    payload = base64.b64decode(encoded, validate=False)
+    if len(payload) < 12 or payload[:4] != b"RIFF" or payload[8:12] != b"WEBP":
+        raise RuntimeError("Decoded approved Hero is not a valid WebP payload")
+
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_bytes(payload)
 
