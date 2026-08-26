@@ -14,7 +14,6 @@ EXPECTED_SCENES = {
     "visby", "langhammars", "smogen", "gota-canal",
 }
 MAP_PALETTE = {"#eef2ef", "#e4eceb", "#dce7e7", "#e2dbad", "#d4cc9b", "#c8bf8a"}
-MAP_LABELS = {"Stockholm", "Gamla Stan", "Lapporten", "Höga Kusten", "Siljan", "Visby", "Fårö", "Smögen", "Göta Canal"}
 
 
 def require(ok: bool, message: str) -> None:
@@ -47,8 +46,6 @@ def check_map(relative: str) -> None:
     require('aria-label="Map of Sweden"' in text, "Sweden map aria-label missing")
     for color in MAP_PALETTE:
         require(color in text, f"Sweden map palette mismatch: {color}")
-    for label in MAP_LABELS:
-        require(label in text, f"Sweden map label missing: {label}")
     for reference in ("assets/images/iceland/map-atlas-v2.svg", "assets/images/norway/map-atlas-v1.svg"):
         ref = (ROOT / reference).read_text(encoding="utf-8")
         require('viewBox="0 0 1200 760"' in ref, f"Reference map canvas changed: {reference}")
@@ -63,7 +60,18 @@ def main() -> int:
     require(len(scenes) == 8, f"Expected 8 scenes, found {len(scenes)}")
     require({scene.get("id") for scene in scenes} == EXPECTED_SCENES, "Unexpected Sweden scene set")
 
-    artworks = [data["hero"]["image"], *[scene["image"] for scene in scenes]]
+    for scene in scenes:
+        coords = scene.get("coordinates") or {}
+        require(scene.get("mapLabel"), f"Missing dynamic map label: {scene.get('id')}")
+        require(isinstance(coords.get("latitude"), (int, float)), f"Missing map latitude: {scene.get('id')}")
+        require(isinstance(coords.get("longitude"), (int, float)), f"Missing map longitude: {scene.get('id')}")
+
+    capital = data.get("capital") or {}
+    hero = data.get("hero") or {}
+    require(capital.get("nameEn") and capital.get("coordinates"), "Capital map marker data missing")
+    require(hero.get("coordinates") and hero.get("location"), "Hero map marker data missing")
+
+    artworks = [hero["image"], *[scene["image"] for scene in scenes]]
     require(len(set(artworks)) == 9, "Hero and 8 scene artwork paths must be unique")
     for artwork in artworks:
         require(artwork.startswith("assets/images/sweden/v3/"), f"Non-v3 artwork referenced: {artwork}")
@@ -87,7 +95,7 @@ def main() -> int:
     require("assets/images/sweden/v2/" not in serialized, "v2 artwork leaked into sweden.json")
     require(".b64" not in serialized and ".parts.json" not in serialized, "Encoded source leaked into production references")
 
-    print("Sweden production QA passed: Hero + 8 scenes, detailed master map, v3-only production refs, unpublished state.")
+    print("Sweden production QA passed: Hero + 8 scenes, master map, dynamic point labels, v3-only production refs, unpublished state.")
     return 0
 
 
