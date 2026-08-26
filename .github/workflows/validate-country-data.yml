@@ -6,14 +6,18 @@ on:
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'assets/images/sweden/**'
       - 'scripts/validate_country.py'
+      - 'scripts/qa_sweden.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'assets/images/sweden/**'
       - 'scripts/validate_country.py'
+      - 'scripts/qa_sweden.py'
       - '.github/workflows/validate-country-data.yml'
 
 jobs:
@@ -28,3 +32,5 @@ jobs:
           python-version: '3.12'
       - name: Validate published country JSON and 201-destination scope
         run: python3 scripts/validate_country.py --published
+      - name: Validate Sweden v3 build while unpublished
+        run: python3 scripts/qa_sweden.py
