@@ -1,0 +1,1 @@
+Temporary transfer staging for approved Sweden v6 assets. Removed after materialization.
