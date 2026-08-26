@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import base64
+import binascii
 import json
 from pathlib import Path
 
@@ -29,6 +30,7 @@ MAP_PALETTE = {
     "#d4cc9b",
     "#c8bf8a",
 }
+BASE64_CHARS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=")
 
 
 def require(condition: bool, message: str) -> None:
@@ -43,13 +45,28 @@ def decode_manifest(relative_path: str) -> None:
     parts = manifest.get("parts") or []
     require(parts, f"Manifest has no parts: {relative_path}")
 
-    encoded = "".join((ROOT / part).read_text(encoding="utf-8").strip() for part in parts)
-    encoded = "".join(encoded.split())
+    chunks = []
+    invalid_by_part: list[str] = []
+    for part in parts:
+        raw = (ROOT / part).read_text(encoding="utf-8").strip().lstrip("\ufeff")
+        invalid = sorted({ch for ch in raw if not ch.isspace() and ch not in BASE64_CHARS})
+        if invalid:
+            invalid_by_part.append(f"{part}: {invalid!r}")
+        chunks.append(raw)
+    require(not invalid_by_part, f"Non-base64 characters in {relative_path}: {'; '.join(invalid_by_part)}")
+
+    encoded = "".join("".join(chunks).split())
     signature = manifest.get("signature")
     if signature:
         require(encoded.startswith(signature), f"Signature mismatch: {relative_path}")
 
-    binary = base64.b64decode(encoded, validate=True)
+    try:
+        binary = base64.b64decode(encoded, validate=True)
+    except binascii.Error as exc:
+        raise AssertionError(
+            f"Invalid base64 in {relative_path}: {exc}; normalized length={len(encoded)}, mod4={len(encoded) % 4}"
+        ) from exc
+
     if manifest.get("mime") == "image/webp":
         require(len(binary) >= 12, f"Decoded WebP too small: {relative_path}")
         require(binary[:4] == b"RIFF" and binary[8:12] == b"WEBP", f"Invalid WebP: {relative_path}")
