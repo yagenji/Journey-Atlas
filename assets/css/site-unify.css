@@ -13,8 +13,8 @@
 /* ---------- GLOBAL HEADER LANGUAGE ---------- */
 .top-header.shell,
 .site-header.page-shell{
-  position:fixed!important;
-  inset:0 0 auto 0!important;
+  position:sticky!important;
+  top:0!important;
   z-index:100!important;
   width:100%!important;
   height:var(--ja-header-height)!important;
@@ -32,8 +32,6 @@
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
 }
-body:has(.top-header){padding-top:var(--ja-header-height)!important;}
-.site-header.page-shell + .country-page .hero{padding-top:var(--ja-header-height)!important;}
 html{scroll-padding-top:96px!important;}
 
 .wordmark,
@@ -248,8 +246,6 @@ html{scroll-padding-top:96px!important;}
     padding-inline:18px!important;
     gap:18px!important;
   }
-  body:has(.top-header){padding-top:var(--ja-header-mobile)!important;}
-  .site-header.page-shell + .country-page .hero{padding-top:var(--ja-header-mobile)!important;}
   .wordmark,
   .country-brand__wordmark{
     font-size:clamp(19px,5.8vw,23px)!important;
