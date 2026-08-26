@@ -14,7 +14,7 @@
 .top-header.shell,
 .site-header.page-shell{
   position:sticky!important;
-  top:0!important;
+  top:calc(-1 * var(--ja-header-height))!important;
   z-index:100!important;
   width:100%!important;
   height:var(--ja-header-height)!important;
@@ -32,6 +32,29 @@
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
 }
+
+/*
+  JOURNEY LENS-style header behavior:
+  the header belongs to the normal document flow at first, scrolls out with
+  the opening content, then returns and stays at the top after the first
+  header-height of scrolling. This avoids the "fixed from first paint" feel.
+*/
+@supports (animation-timeline: scroll()) {
+  .top-header.shell,
+  .site-header.page-shell{
+    animation-name:ja-header-reveal;
+    animation-duration:1ms;
+    animation-fill-mode:both;
+    animation-timing-function:linear;
+    animation-timeline:scroll(root block);
+    animation-range:var(--ja-header-height) calc(var(--ja-header-height) + 18px);
+  }
+  @keyframes ja-header-reveal{
+    from{transform:translateY(0)}
+    to{transform:translateY(var(--ja-header-height))}
+  }
+}
+
 html{scroll-padding-top:96px!important;}
 
 .wordmark,
