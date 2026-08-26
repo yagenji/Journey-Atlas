@@ -1,6 +1,8 @@
 (() => {
   const HEADER_SELECTOR = '.top-header, .site-header';
   const HERO_SELECTOR = '.top-hero, .country-page .hero';
+  const HERO_COPY_SELECTOR = '.top-hero .hero-copy, .country-page .hero-copy';
+  const BRAND_SELECTOR = '.brand-block, .country-brand';
 
   function getThreshold(header) {
     const hero = document.querySelector(HERO_SELECTOR);
@@ -8,8 +10,8 @@
     return Math.max(header.offsetHeight, hero.offsetTop + hero.offsetHeight - header.offsetHeight);
   }
 
-  function getCountryHeroTextBounds() {
-    const copy = document.querySelector('.country-page .hero-copy');
+  function getHeroTextBounds() {
+    const copy = document.querySelector(HERO_COPY_SELECTOR);
     if (!copy) return null;
 
     const nodes = Array.from(copy.children).filter((node) => {
@@ -26,9 +28,9 @@
   }
 
   function syncBrandCollision(header) {
-    const hero = document.querySelector('.country-page .hero');
-    const brand = header.querySelector('.country-brand');
-    const textBounds = getCountryHeroTextBounds();
+    const hero = document.querySelector(HERO_SELECTOR);
+    const brand = header.querySelector(BRAND_SELECTOR);
+    const textBounds = getHeroTextBounds();
     if (!hero || !brand || !textBounds) return;
 
     const heroRect = hero.getBoundingClientRect();
