@@ -6,9 +6,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY = ROOT / "data/countries/sweden.json"
 REGISTRY = ROOT / "data/atlas-destinations.json"
+CREDITS = ROOT / "data/sweden-image-credits.json"
 EXPECTED_SCENES = {
     "gamla-stan", "lapporten", "high-coast", "siljan",
     "visby", "langhammars", "smogen", "gota-canal",
@@ -24,18 +27,18 @@ def require(ok: bool, message: str) -> None:
 def check_webp(relative: str) -> None:
     path = ROOT / relative
     require(path.exists(), f"Missing WebP: {relative}")
-    data = path.read_bytes()
-    require(len(data) >= 12, f"WebP too small: {relative}")
-    require(data[:4] == b"RIFF" and data[8:12] == b"WEBP", f"Invalid WebP: {relative}")
-
-
-def check_svg(relative: str) -> None:
-    path = ROOT / relative
-    require(path.exists(), f"Missing SVG: {relative}")
-    text = path.read_text(encoding="utf-8")
-    require('viewBox="0 0 1200 800"' in text, f"Scene canvas must be 1200x800: {relative}")
-    require('role="img"' in text and "aria-label=" in text, f"Accessibility metadata missing: {relative}")
-    require("feTurbulence" in text, f"Watercolor/paper texture missing: {relative}")
+    raw = path.read_bytes()
+    require(len(raw) >= 12, f"WebP too small: {relative}")
+    require(raw[:4] == b"RIFF" and raw[8:12] == b"WEBP", f"Invalid WebP signature: {relative}")
+    declared_size = int.from_bytes(raw[4:8], "little") + 8
+    require(declared_size == len(raw), f"Truncated WebP: {relative}; declared={declared_size}, actual={len(raw)}")
+    try:
+        with Image.open(path) as image:
+            image.load()
+            require(image.format == "WEBP", f"Unexpected image format: {relative} / {image.format}")
+            require(image.size == (1200, 800), f"Wrong Sweden artwork size: {relative} / {image.size}")
+    except Exception as exc:
+        raise AssertionError(f"WebP decode failed: {relative}: {exc}") from exc
 
 
 def check_map(relative: str) -> None:
@@ -51,6 +54,19 @@ def check_map(relative: str) -> None:
         require('viewBox="0 0 1200 760"' in ref, f"Reference map canvas changed: {reference}")
         for color in MAP_PALETTE:
             require(color in ref, f"Reference map palette changed: {reference} / {color}")
+
+
+def check_credits(artworks: list[str]) -> None:
+    require(CREDITS.exists(), "Sweden image credit metadata missing")
+    credits = json.loads(CREDITS.read_text(encoding="utf-8"))
+    items = credits.get("assets") or []
+    require(len(items) == 9, f"Expected 9 Sweden image credit records, found {len(items)}")
+    credited = {item.get("output") for item in items}
+    require(set(artworks) == credited, "Sweden artwork references and credit metadata do not match")
+    for item in items:
+        require(item.get("sourcePage"), f"Missing source page in credits: {item.get('key')}")
+        require(item.get("author"), f"Missing author in credits: {item.get('key')}")
+        require(item.get("license"), f"Missing license in credits: {item.get('key')}")
 
 
 def main() -> int:
@@ -74,14 +90,11 @@ def main() -> int:
     artworks = [hero["image"], *[scene["image"] for scene in scenes]]
     require(len(set(artworks)) == 9, "Hero and 8 scene artwork paths must be unique")
     for artwork in artworks:
-        require(artwork.startswith("assets/images/sweden/v3/"), f"Non-v3 artwork referenced: {artwork}")
-        if artwork.endswith(".webp"):
-            check_webp(artwork)
-        elif artwork.endswith(".svg"):
-            check_svg(artwork)
-        else:
-            raise AssertionError(f"Production artwork must be WebP or SVG: {artwork}")
+        require(artwork.startswith("assets/images/sweden/v4/"), f"Non-v4 artwork referenced: {artwork}")
+        require(artwork.endswith(".webp"), f"Sweden v4 production artwork must be WebP: {artwork}")
+        check_webp(artwork)
 
+    check_credits(artworks)
     check_map(data["map"]["svg"])
 
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -93,9 +106,10 @@ def main() -> int:
     serialized = json.dumps(data, ensure_ascii=False)
     require("assets/images/sweden/v1/" not in serialized, "v1 artwork leaked into sweden.json")
     require("assets/images/sweden/v2/" not in serialized, "v2 artwork leaked into sweden.json")
+    require("assets/images/sweden/v3/" not in serialized, "v3 artwork leaked into Sweden production references")
     require(".b64" not in serialized and ".parts.json" not in serialized, "Encoded source leaked into production references")
 
-    print("Sweden production QA passed: Hero + 8 scenes, master map, dynamic point labels, v3-only production refs, unpublished state.")
+    print("Sweden production QA passed: 1 Hero + 8 v4 WebP scenes decode at 1200x800, master map, credits, unpublished state.")
     return 0
 
 
