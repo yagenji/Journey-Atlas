@@ -44,6 +44,11 @@
 
 html{scroll-padding-top:96px!important;}
 
+/* Keep country identity clear of the persistent transparent header. */
+.country-page .hero-copy{
+  padding-top:calc(var(--ja-header-height) + 38px)!important;
+}
+
 .wordmark,
 .country-brand__wordmark{
   display:block;
@@ -255,6 +260,9 @@ html{scroll-padding-top:96px!important;}
     min-height:var(--ja-header-mobile)!important;
     padding-inline:18px!important;
     gap:18px!important;
+  }
+  .country-page .hero-copy{
+    padding-top:calc(var(--ja-header-mobile) + 24px)!important;
   }
   .wordmark,
   .country-brand__wordmark{
