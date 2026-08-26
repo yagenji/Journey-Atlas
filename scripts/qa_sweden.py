@@ -13,29 +13,29 @@ COUNTRY_PATH = ROOT / "data/countries/sweden.json"
 REGISTRY_PATH = ROOT / "data/atlas-destinations.json"
 
 EXPECTED_SCENES = {
-    "gamla-stan",
-    "lapporten",
-    "high-coast",
-    "siljan",
-    "visby",
-    "langhammars",
-    "smogen",
-    "gota-canal",
+    "gamla-stan", "lapporten", "high-coast", "siljan",
+    "visby", "langhammars", "smogen", "gota-canal",
 }
-MAP_PALETTE = {
-    "#eef2ef",
-    "#e4eceb",
-    "#dce7e7",
-    "#e2dbad",
-    "#d4cc9b",
-    "#c8bf8a",
-}
+MAP_PALETTE = {"#eef2ef", "#e4eceb", "#dce7e7", "#e2dbad", "#d4cc9b", "#c8bf8a"}
 BASE64_CHARS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=")
 
 
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def invalid_context(raw: str) -> list[str]:
+    hits: list[str] = []
+    for index, ch in enumerate(raw):
+        if ch.isspace() or ch in BASE64_CHARS:
+            continue
+        start = max(0, index - 28)
+        end = min(len(raw), index + 29)
+        hits.append(f"index={index} char={ch!r} context={raw[start:end]!r}")
+        if len(hits) >= 8:
+            break
+    return hits
 
 
 def decode_manifest(relative_path: str) -> None:
@@ -49,9 +49,9 @@ def decode_manifest(relative_path: str) -> None:
     invalid_by_part: list[str] = []
     for part in parts:
         raw = (ROOT / part).read_text(encoding="utf-8").strip().lstrip("\ufeff")
-        invalid = sorted({ch for ch in raw if not ch.isspace() and ch not in BASE64_CHARS})
-        if invalid:
-            invalid_by_part.append(f"{part}: {invalid!r}")
+        contexts = invalid_context(raw)
+        if contexts:
+            invalid_by_part.append(f"{part}: {' | '.join(contexts)}")
         chunks.append(raw)
     require(not invalid_by_part, f"Non-base64 characters in {relative_path}: {'; '.join(invalid_by_part)}")
 
@@ -112,7 +112,6 @@ def main() -> int:
         image = scene.get("image", "")
         require(image.startswith("assets/images/sweden/v3/"), f"Legacy Sweden scene artwork referenced: {scene.get('id')}")
         artwork_paths.append(image)
-
     require(len(set(artwork_paths)) == 9, "Hero and scene artwork paths must be unique")
 
     for artwork in artwork_paths:
