@@ -1,11 +1,17 @@
 (() => {
-  const SELECTOR = '.top-header, .site-header';
+  const HEADER_SELECTOR = '.top-header, .site-header';
+  const HERO_SELECTOR = '.top-hero, .country-page .hero';
+
+  function getThreshold(header) {
+    const hero = document.querySelector(HERO_SELECTOR);
+    if (!hero) return Math.max(1, header.offsetHeight);
+    return Math.max(header.offsetHeight, hero.offsetTop + hero.offsetHeight - header.offsetHeight);
+  }
 
   function syncHeader() {
-    const header = document.querySelector(SELECTOR);
+    const header = document.querySelector(HEADER_SELECTOR);
     if (!header) return;
-    const threshold = Math.max(1, header.offsetHeight);
-    header.classList.toggle('is-scroll-sticky', window.scrollY > threshold);
+    header.classList.toggle('is-scroll-sticky', window.scrollY >= getThreshold(header));
   }
 
   function initHeader() {
