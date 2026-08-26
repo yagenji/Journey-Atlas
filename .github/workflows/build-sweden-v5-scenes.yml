@@ -33,7 +33,12 @@ jobs:
           echo "scene=$SCENE" >> "$GITHUB_OUTPUT"
           echo "Building Sweden scenery: $SCENE"
       - name: Build one v5 illustrated scene
-        run: python3 scripts/build_sweden_v5_scenes.py --scene "${{ steps.target.outputs.scene }}"
+        run: |
+          if [ "${{ steps.target.outputs.scene }}" = "gota-canal" ]; then
+            python3 scripts/rebuild_sweden_gota_modern.py
+          else
+            python3 scripts/build_sweden_v5_scenes.py --scene "${{ steps.target.outputs.scene }}"
+          fi
       - name: Validate one v5 illustrated scene
         run: python3 scripts/qa_sweden_scene.py "${{ steps.target.outputs.scene }}"
       - name: Commit one Sweden v5 scene
