@@ -8,9 +8,17 @@
     return Math.max(header.offsetHeight, hero.offsetTop + hero.offsetHeight - header.offsetHeight);
   }
 
+  function syncCountryHeroSafeArea(header) {
+    const heroCopy = document.querySelector('.country-page .hero-copy');
+    if (!heroCopy) return;
+    heroCopy.style.setProperty('padding-top', '42px', 'important');
+    heroCopy.style.setProperty('top', `${header.offsetHeight}px`, 'important');
+  }
+
   function syncHeader() {
     const header = document.querySelector(HEADER_SELECTOR);
     if (!header) return;
+    syncCountryHeroSafeArea(header);
     header.classList.toggle('is-scroll-sticky', window.scrollY >= getThreshold(header));
   }
 
