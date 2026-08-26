@@ -5,15 +5,16 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MARKER = "[... ELLIPSIZATION ...]"
+TRANSPORT_MARKER = re.compile(r"\[\.\.\.[^\]]*\.\.\.\]")
 
 
 def read_encoded(path: str) -> str:
     raw = (ROOT / path).read_text(encoding="utf-8").strip().lstrip("\ufeff")
-    raw = raw.replace(MARKER, "")
+    raw = TRANSPORT_MARKER.sub("", raw)
     return "".join(raw.split())
 
 
