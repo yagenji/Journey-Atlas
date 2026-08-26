@@ -1,0 +1,68 @@
+name: Materialize approved Sweden v6 artwork
+
+on:
+  push:
+    branches: ["sweden-v3-build"]
+    paths:
+      - 'data/sweden-v6-transfer-ready.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Sweden build branch
+        uses: actions/checkout@v4
+        with:
+          ref: sweden-v3-build
+      - name: Skip when transfer is not ready
+        id: ready
+        run: |
+          if [ -f data/sweden-v6-transfer-ready.txt ]; then
+            echo "value=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Set up Python
+        if: steps.ready.outputs.value == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image QA dependency
+        if: steps.ready.outputs.value == 'true'
+        run: python3 -m pip install --disable-pip-version-check pillow
+      - name: Materialize and verify approved artwork
+        if: steps.ready.outputs.value == 'true'
+        run: python3 scripts/materialize_sweden_v6.py
+      - name: Verify final production references
+        if: steps.ready.outputs.value == 'true'
+        run: |
+          test -f assets/images/sweden/v6/hero-grinda.webp
+          test -f assets/images/sweden/v6/gamla-stan.webp
+          test -f assets/images/sweden/v6/lapporten.webp
+          test -f assets/images/sweden/v6/high-coast.webp
+          test -f assets/images/sweden/v6/siljan-dalarna.webp
+          test -f assets/images/sweden/v6/visby.webp
+          test -f assets/images/sweden/v6/langhammars-faro.webp
+          test -f assets/images/sweden/v6/smogen.webp
+          test -f assets/images/sweden/v6/gota-canal.webp
+          test ! -d assets/images/sweden/v6-transfer
+          test ! -f data/sweden-v6-transfer-ready.txt
+          test ! -f assets/images/sweden/v6-test.txt
+          grep -q 'assets/images/sweden/v6/hero-grinda.webp' data/countries/sweden.json
+          if grep -Eq 'assets/images/sweden/v[1-5]/' data/countries/sweden.json; then echo 'Old Sweden image reference remains'; exit 1; fi
+      - name: Commit Sweden v6 production candidate
+        if: steps.ready.outputs.value == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/images/sweden/v6 assets/images/sweden/v6-transfer assets/images/sweden/v6-test.txt data/sweden-v6-transfer-ready.txt data/countries/sweden.json
+          if git diff --cached --quiet; then
+            echo "No Sweden v6 changes"
+            exit 0
+          fi
+          git commit -m "build: connect approved Sweden v6 artwork"
+          git push origin HEAD:sweden-v3-build
