@@ -33,14 +33,14 @@ MIN_SOURCE_W = 1200
 MIN_SOURCE_H = 700
 
 ASSETS = [
-    {"key":"gamla-stan","query":"\"Gamla Stan\" Stockholm waterfront","preferred":["gamla","stan","stockholm","waterfront"],"output":"gamla-stan.webp"},
-    {"key":"lapporten","query":"Lapporten Abisko Sweden landscape","preferred":["lapporten","abisko"],"output":"lapporten.webp"},
-    {"key":"high-coast","query":"\"Höga Kusten\" Sweden landscape","preferred":["höga","kusten","high coast"],"output":"high-coast.webp"},
-    {"key":"siljan","query":"Siljan Dalarna Sweden lake red houses","preferred":["siljan","dalarna"],"output":"siljan-dalarna.webp"},
-    {"key":"visby","query":"Visby city wall Gotland Sweden","preferred":["visby","gotland","wall"],"output":"visby.webp"},
-    {"key":"langhammars","query":"Langhammars Fårö rauk Sweden","preferred":["langhammars","fårö","faro","rauk"],"output":"langhammars-faro.webp"},
-    {"key":"smogen","query":"Smögen Bohuslän harbor boathouses Sweden","preferred":["smögen","smogen","boathouse","harbor"],"output":"smogen.webp"},
-    {"key":"gota-canal","query":"Göta Canal Berg Locks Sweden","preferred":["göta","gota","berg","locks","canal"],"output":"gota-canal.webp"},
+    {"key":"gamla-stan","queries":["\"Gamla Stan\" Stockholm waterfront","Gamla Stan Stockholm Sweden"],"preferred":["gamla","stan","stockholm","waterfront"],"output":"gamla-stan.webp"},
+    {"key":"lapporten","queries":["Lapporten Abisko Sweden landscape","Lapporten Abisko"],"preferred":["lapporten","abisko"],"output":"lapporten.webp"},
+    {"key":"high-coast","queries":["\"Höga Kusten\" Sweden landscape","High Coast Sweden landscape"],"preferred":["höga","kusten","high coast"],"output":"high-coast.webp"},
+    {"key":"siljan","queries":["Siljan Lake Dalarna Sweden","Siljan Dalarna Sweden lake","Siljan Sweden landscape"],"preferred":["siljan","dalarna"],"output":"siljan-dalarna.webp"},
+    {"key":"visby","queries":["Visby city wall Gotland Sweden","Visby Gotland Sweden wall"],"preferred":["visby","gotland","wall"],"output":"visby.webp"},
+    {"key":"langhammars","queries":["Langhammars Fårö rauk Sweden","Langhammars Faro Sweden"],"preferred":["langhammars","fårö","faro","rauk"],"output":"langhammars-faro.webp"},
+    {"key":"smogen","queries":["Smögen Bohuslän harbor boathouses Sweden","Smögen Sweden harbor","Smogen Sweden harbor"],"preferred":["smögen","smogen","boathouse","harbor"],"output":"smogen.webp"},
+    {"key":"gota-canal","queries":["Göta Canal Berg Locks Sweden","Bergs slussar Göta kanal","Gota Canal Berg Locks Sweden"],"preferred":["göta","gota","berg","locks","canal","sluss"],"output":"gota-canal.webp"},
 ]
 
 ALLOWED_LICENSE_TOKENS = ("cc by","cc-by","cc by-sa","cc-by-sa","cc0","public domain","pd-")
@@ -77,10 +77,10 @@ def license_allowed(meta: dict[str, Any]) -> bool:
     return any(token in combined for token in ALLOWED_LICENSE_TOKENS)
 
 
-def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
+def search_one(query: str, asset: dict[str, Any]) -> list[dict[str, Any]]:
     data = api_get({
         "action":"query","format":"json","generator":"search","gsrnamespace":6,
-        "gsrsearch":asset["query"],"gsrlimit":24,"prop":"imageinfo",
+        "gsrsearch":query,"gsrlimit":24,"prop":"imageinfo",
         "iiprop":"url|size|mime|extmetadata","iiurlwidth":2000,"redirects":1,
     })
     pages = list((data.get("query",{}).get("pages",{}) or {}).values())
@@ -108,9 +108,21 @@ def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
         candidates.append({
             "score":score,"title":title,"width":width,"height":height,
             "url":info.get("thumburl") or info.get("url"),"originalUrl":info.get("url"),
-            "descriptionUrl":info.get("descriptionurl"),"meta":meta,
+            "descriptionUrl":info.get("descriptionurl"),"meta":meta,"selectionQuery":query,
         })
-    return sorted(candidates, key=lambda x:x["score"], reverse=True)
+    return candidates
+
+
+def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
+    merged: dict[str, dict[str, Any]] = {}
+    for query in asset["queries"]:
+        for item in search_one(query, asset):
+            key = item["title"]
+            if key not in merged or item["score"] > merged[key]["score"]:
+                merged[key] = item
+        if merged:
+            break
+    return sorted(merged.values(), key=lambda x:x["score"], reverse=True)
 
 
 def crop_3x2(image: Image.Image) -> Image.Image:
@@ -125,11 +137,7 @@ def crop_3x2(image: Image.Image) -> Image.Image:
 
 
 def editorial_watercolor(image: Image.Image) -> Image.Image:
-    """Convert photographic reference into clean illustrated watercolor-like artwork.
-
-    The treatment intentionally removes photographic microtexture, compresses local
-    color detail, keeps major geometry readable, and avoids visible paper grain.
-    """
+    """Convert photographic reference into clean illustrated watercolor-like artwork."""
     image = crop_3x2(image)
     image = ImageEnhance.Color(image).enhance(0.84)
     image = ImageEnhance.Contrast(image).enhance(0.91)
@@ -144,7 +152,7 @@ def editorial_watercolor(image: Image.Image) -> Image.Image:
     quant = quant.filter(ImageFilter.GaussianBlur(0.35))
     image = Image.blend(image, quant, 0.52)
 
-    # Add restrained structural definition without cartoon outlines.
+    # Restrained structural definition, deliberately weaker than cartoon line art.
     gray = ImageOps.grayscale(image)
     edges = gray.filter(ImageFilter.FIND_EDGES)
     edges = ImageOps.autocontrast(edges).filter(ImageFilter.GaussianBlur(0.55))
@@ -152,7 +160,7 @@ def editorial_watercolor(image: Image.Image) -> Image.Image:
     ink = ImageOps.colorize(edges, black=(246,244,237), white=(55,66,67))
     image = Image.blend(image, ImageChops.multiply(image, ink), 0.09)
 
-    # Soft luminous matte wash: no paper texture/granulation.
+    # Luminous matte wash; explicitly no paper grain or photographic sharpening.
     wash = Image.new("RGB", image.size, (244,242,234))
     image = Image.blend(image, wash, 0.075)
     image = ImageEnhance.Sharpness(image).enhance(0.82)
@@ -167,7 +175,7 @@ def credit_record(asset: dict[str, Any], chosen: dict[str, Any]) -> dict[str, An
         "originalUrl":chosen["originalUrl"],"author":clean_html(metadata_value(meta,"Artist")),
         "credit":clean_html(metadata_value(meta,"Credit")),"license":clean_html(metadata_value(meta,"LicenseShortName")),
         "licenseUrl":metadata_value(meta,"LicenseUrl"),"usageTerms":clean_html(metadata_value(meta,"UsageTerms")),
-        "sourceDimensions":[chosen["width"],chosen["height"]],"selectionQuery":asset["query"],
+        "sourceDimensions":[chosen["width"],chosen["height"]],"selectionQuery":chosen["selectionQuery"],
         "treatment":"Strong clean editorial watercolor abstraction; source used as real-world geographic reference",
     }
 
