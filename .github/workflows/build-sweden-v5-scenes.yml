@@ -1,0 +1,41 @@
+name: Build Sweden v5 scenes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/build_sweden_v5_scenes.py'
+      - '.github/workflows/build-sweden-v5-scenes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Sweden build branch
+        uses: actions/checkout@v4
+        with:
+          ref: sweden-v3-build
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image dependency
+        run: python3 -m pip install --disable-pip-version-check pillow
+      - name: Build v5 illustrated scenes
+        run: python3 scripts/build_sweden_v5_scenes.py
+      - name: Verify Sweden production candidate
+        run: python3 scripts/qa_sweden_production.py
+      - name: Commit Sweden v5 scene artwork
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/sweden/v5 data/countries/sweden.json data/sweden-v5-image-credits.json
+          if git diff --cached --quiet; then
+            echo "No Sweden v5 changes"
+            exit 0
+          fi
+          git commit -m "build: add Sweden v5 illustrated scenes"
+          git push origin HEAD:sweden-v3-build
