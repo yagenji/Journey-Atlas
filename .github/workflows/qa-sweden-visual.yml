@@ -1,0 +1,38 @@
+name: QA Sweden v5 visual contact sheet
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["sweden-v3-build"]
+    paths:
+      - '.github/workflows/qa-sweden-visual.yml'
+      - 'scripts/make_sweden_qa_contact_sheet.py'
+
+permissions:
+  contents: read
+
+tasks: {}
+
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Sweden build branch
+        uses: actions/checkout@v4
+        with:
+          ref: sweden-v3-build
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check pillow
+      - name: Build contact sheet
+        run: python3 scripts/make_sweden_qa_contact_sheet.py
+      - name: Upload contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: sweden-v5-visual-qa
+          path: qa-output/sweden-v5-scenes.jpg
+          if-no-files-found: error
+          retention-days: 3
