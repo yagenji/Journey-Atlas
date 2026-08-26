@@ -13,8 +13,8 @@
 /* ---------- GLOBAL HEADER LANGUAGE ---------- */
 .top-header.shell,
 .site-header.page-shell{
-  position:sticky!important;
-  top:calc(-1 * var(--ja-header-height))!important;
+  position:relative!important;
+  top:auto!important;
   z-index:100!important;
   width:100%!important;
   height:var(--ja-header-height)!important;
@@ -33,26 +33,11 @@
   -webkit-backdrop-filter:blur(10px);
 }
 
-/*
-  JOURNEY LENS-style header behavior:
-  the header belongs to the normal document flow at first, scrolls out with
-  the opening content, then returns and stays at the top after the first
-  header-height of scrolling. This avoids the "fixed from first paint" feel.
-*/
-@supports (animation-timeline: scroll()) {
-  .top-header.shell,
-  .site-header.page-shell{
-    animation-name:ja-header-reveal;
-    animation-duration:1ms;
-    animation-fill-mode:both;
-    animation-timing-function:linear;
-    animation-timeline:scroll(root block);
-    animation-range:var(--ja-header-height) calc(var(--ja-header-height) + 18px);
-  }
-  @keyframes ja-header-reveal{
-    from{transform:translateY(0)}
-    to{transform:translateY(var(--ja-header-height))}
-  }
+.top-header.shell.is-scroll-sticky,
+.site-header.page-shell.is-scroll-sticky{
+  position:sticky!important;
+  top:0!important;
+  z-index:100!important;
 }
 
 html{scroll-padding-top:96px!important;}
@@ -189,7 +174,6 @@ html{scroll-padding-top:96px!important;}
   color:var(--ja-navy)!important;
 }
 
-/* Country discovery should use the same paper panel as map/theme discovery. */
 .countries{
   background:var(--ja-soft)!important;
   border-color:var(--ja-line)!important;
@@ -202,8 +186,6 @@ html{scroll-padding-top:96px!important;}
   margin-bottom:18px!important;
 }
 
-/* The SVGs are generated on a 1200 × 760 canvas. Match that ratio so the
-   map image and coordinate marker layer share exactly the same geometry. */
 .map-art{
   aspect-ratio:1200 / 760!important;
 }
