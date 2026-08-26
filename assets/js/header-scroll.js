@@ -8,18 +8,29 @@
     return Math.max(header.offsetHeight, hero.offsetTop + hero.offsetHeight - header.offsetHeight);
   }
 
-  function syncCountryHeroSafeArea(header) {
-    const heroCopy = document.querySelector('.country-page .hero-copy');
-    if (!heroCopy) return;
-    heroCopy.style.setProperty('padding-top', '42px', 'important');
-    heroCopy.style.setProperty('top', `${header.offsetHeight}px`, 'important');
+  function syncBrandCollision(header) {
+    const hero = document.querySelector('.country-page .hero');
+    const title = document.querySelector('.country-page .hero h1');
+    const brand = header.querySelector('.country-brand');
+    if (!hero || !title || !brand) return;
+
+    const heroRect = hero.getBoundingClientRect();
+    const titleRect = title.getBoundingClientRect();
+    const sticky = window.scrollY >= getThreshold(header);
+    const inHero = heroRect.bottom > header.offsetHeight;
+    const colliding = !sticky && inHero && titleRect.top < header.offsetHeight + 14 && titleRect.bottom > 0;
+
+    brand.style.transition = 'opacity .16s ease, visibility .16s ease';
+    brand.style.opacity = colliding ? '0' : '1';
+    brand.style.visibility = colliding ? 'hidden' : 'visible';
+    brand.style.pointerEvents = colliding ? 'none' : 'auto';
   }
 
   function syncHeader() {
     const header = document.querySelector(HEADER_SELECTOR);
     if (!header) return;
-    syncCountryHeroSafeArea(header);
     header.classList.toggle('is-scroll-sticky', window.scrollY >= getThreshold(header));
+    syncBrandCollision(header);
   }
 
   function initHeader() {
