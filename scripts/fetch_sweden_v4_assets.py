@@ -35,23 +35,79 @@ MIN_SOURCE_W = 1200
 MIN_SOURCE_H = 700
 
 ASSETS = [
-    {"key": "hero", "query": "Grinda Stockholm archipelago Sweden", "preferred": ["grinda", "stockholm", "archipelago"], "output": "hero-grinda.webp"},
-    {"key": "gamla-stan", "query": "\"Gamla Stan\" Stockholm waterfront", "preferred": ["gamla", "stan", "stockholm"], "output": "gamla-stan.webp"},
-    {"key": "lapporten", "query": "Lapporten Abisko Sweden landscape", "preferred": ["lapporten", "abisko"], "output": "lapporten.webp"},
-    {"key": "high-coast", "query": "\"Höga Kusten\" Sweden landscape", "preferred": ["höga", "kusten", "high coast"], "output": "high-coast.webp"},
-    {"key": "siljan", "query": "Siljan Dalarna Sweden lake", "preferred": ["siljan", "dalarna"], "output": "siljan-dalarna.webp"},
-    {"key": "visby", "query": "Visby city wall Gotland Sweden", "preferred": ["visby", "gotland", "wall"], "output": "visby.webp"},
-    {"key": "langhammars", "query": "Langhammars Fårö rauk Sweden", "preferred": ["langhammars", "fårö", "faro", "rauk"], "output": "langhammars-faro.webp"},
-    {"key": "smogen", "query": "Smögen harbor Sweden boathouses", "preferred": ["smögen", "smogen", "harbor", "boathouse"], "output": "smogen.webp"},
-    {"key": "gota-canal", "query": "\"Göta Canal\" Sweden", "preferred": ["göta", "gota", "canal"], "output": "gota-canal.webp"},
+    {
+        "key": "hero",
+        "query": 'Grinda Stockholm archipelago Sweden',
+        "preferred": ["grinda", "stockholm", "archipelago"],
+        "output": "hero-grinda.webp",
+    },
+    {
+        "key": "gamla-stan",
+        "query": '"Gamla Stan" Stockholm waterfront',
+        "preferred": ["gamla", "stan", "stockholm"],
+        "output": "gamla-stan.webp",
+    },
+    {
+        "key": "lapporten",
+        "query": 'Lapporten Abisko Sweden landscape',
+        "preferred": ["lapporten", "abisko"],
+        "output": "lapporten.webp",
+    },
+    {
+        "key": "high-coast",
+        "query": '"Höga Kusten" Sweden landscape',
+        "preferred": ["höga", "kusten", "high coast"],
+        "output": "high-coast.webp",
+    },
+    {
+        "key": "siljan",
+        "query": 'Siljan Dalarna Sweden lake',
+        "preferred": ["siljan", "dalarna"],
+        "output": "siljan-dalarna.webp",
+    },
+    {
+        "key": "visby",
+        "query": 'Visby city wall Gotland Sweden',
+        "preferred": ["visby", "gotland", "wall"],
+        "output": "visby.webp",
+    },
+    {
+        "key": "langhammars",
+        "query": 'Langhammars Fårö rauk Sweden',
+        "preferred": ["langhammars", "fårö", "faro", "rauk"],
+        "output": "langhammars-faro.webp",
+    },
+    {
+        "key": "smogen",
+        "query": 'Smögen',
+        "preferred": ["smögen", "smogen", "harbor", "boathouse"],
+        "output": "smogen.webp",
+    },
+    {
+        "key": "gota-canal",
+        "query": 'Göta kanal Sweden',
+        "preferred": ["göta", "gota", "canal"],
+        "output": "gota-canal.webp",
+    },
 ]
 
-ALLOWED_LICENSE_TOKENS = ("cc by", "cc-by", "cc by-sa", "cc-by-sa", "cc0", "public domain", "pd-")
+ALLOWED_LICENSE_TOKENS = (
+    "cc by",
+    "cc-by",
+    "cc by-sa",
+    "cc-by-sa",
+    "cc0",
+    "public domain",
+    "pd-",
+)
 
 
 def api_get(params: dict[str, Any]) -> dict[str, Any]:
     query = urllib.parse.urlencode(params)
-    req = urllib.request.Request(f"{COMMONS_API}?{query}", headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    req = urllib.request.Request(
+        f"{COMMONS_API}?{query}",
+        headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
+    )
     with urllib.request.urlopen(req, timeout=45) as response:
         return json.load(response)
 
@@ -85,11 +141,20 @@ def license_allowed(meta: dict[str, Any]) -> bool:
 
 
 def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
-    data = api_get({
-        "action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
-        "gsrsearch": asset["query"], "gsrlimit": 20, "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata", "iiurlwidth": 1800, "redirects": 1,
-    })
+    data = api_get(
+        {
+            "action": "query",
+            "format": "json",
+            "generator": "search",
+            "gsrnamespace": 6,
+            "gsrsearch": asset["query"],
+            "gsrlimit": 20,
+            "prop": "imageinfo",
+            "iiprop": "url|size|mime|extmetadata",
+            "iiurlwidth": 1800,
+            "redirects": 1,
+        }
+    )
     pages = list((data.get("query", {}).get("pages", {}) or {}).values())
     candidates: list[dict[str, Any]] = []
     for rank, page in enumerate(pages):
@@ -107,6 +172,7 @@ def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
             continue
         if not license_allowed(meta):
             continue
+
         title = str(page.get("title") or "")
         title_lower = title.lower()
         preferred_hits = sum(1 for token in asset["preferred"] if token.lower() in title_lower)
@@ -114,11 +180,20 @@ def search_candidates(asset: dict[str, Any]) -> list[dict[str, Any]]:
         landscape_bonus = 2.0 if 1.2 <= aspect <= 2.2 else (0.5 if aspect > 1.0 else -1.0)
         resolution_bonus = min(3.0, math.log2(max(1, width * height) / 1_000_000 + 1))
         score = preferred_hits * 3.0 + landscape_bonus + resolution_bonus - rank * 0.08
-        candidates.append({
-            "score": score, "rank": rank, "title": title, "width": width, "height": height,
-            "url": info.get("thumburl") or info.get("url"), "originalUrl": info.get("url"),
-            "descriptionUrl": info.get("descriptionurl"), "meta": meta,
-        })
+
+        candidates.append(
+            {
+                "score": score,
+                "rank": rank,
+                "title": title,
+                "width": width,
+                "height": height,
+                "url": info.get("thumburl") or info.get("url"),
+                "originalUrl": info.get("url"),
+                "descriptionUrl": info.get("descriptionurl"),
+                "meta": meta,
+            }
+        )
     candidates.sort(key=lambda item: item["score"], reverse=True)
     return candidates
 
@@ -140,6 +215,7 @@ def center_crop_3x2(image: Image.Image) -> Image.Image:
 
 
 def atlas_treatment(image: Image.Image, seed: int) -> Image.Image:
+    """Keep the source recognizably photographic; add only subtle watercolor softness."""
     image = center_crop_3x2(image)
     image = ImageEnhance.Color(image).enhance(0.91)
     image = ImageEnhance.Contrast(image).enhance(0.97)
@@ -159,14 +235,18 @@ def atlas_treatment(image: Image.Image, seed: int) -> Image.Image:
 def credit_record(asset: dict[str, Any], chosen: dict[str, Any]) -> dict[str, Any]:
     meta = chosen["meta"]
     return {
-        "key": asset["key"], "output": f"assets/images/sweden/v4/{asset['output']}",
-        "commonsTitle": chosen["title"], "sourcePage": chosen["descriptionUrl"],
-        "originalUrl": chosen["originalUrl"], "author": clean_html(metadata_value(meta, "Artist")),
+        "key": asset["key"],
+        "output": f"assets/images/sweden/v4/{asset['output']}",
+        "commonsTitle": chosen["title"],
+        "sourcePage": chosen["descriptionUrl"],
+        "originalUrl": chosen["originalUrl"],
+        "author": clean_html(metadata_value(meta, "Artist")),
         "credit": clean_html(metadata_value(meta, "Credit")),
         "license": clean_html(metadata_value(meta, "LicenseShortName")),
         "licenseUrl": metadata_value(meta, "LicenseUrl"),
         "usageTerms": clean_html(metadata_value(meta, "UsageTerms")),
-        "sourceDimensions": [chosen["width"], chosen["height"]], "selectionQuery": asset["query"],
+        "sourceDimensions": [chosen["width"], chosen["height"]],
+        "selectionQuery": asset["query"],
     }
 
 
@@ -186,23 +266,31 @@ def update_country_json() -> None:
     for scene in data.get("scenes", []):
         if scene.get("id") in replacements:
             scene["image"] = replacements[scene["id"]]
-    COUNTRY_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    COUNTRY_PATH.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     credits: list[dict[str, Any]] = []
+
     for index, asset in enumerate(ASSETS):
         print(f"[{index + 1}/{len(ASSETS)}] {asset['key']}: searching Commons")
         candidates = search_candidates(asset)
         if not candidates:
             raise RuntimeError(f"No license-compatible high-resolution Commons image found for {asset['key']}")
+
         errors: list[str] = []
         chosen = None
         rendered = None
         for candidate in candidates[:8]:
             try:
-                print(f"  trying {candidate['title']} ({candidate['width']}x{candidate['height']}, score={candidate['score']:.2f})")
+                print(
+                    f"  trying {candidate['title']} "
+                    f"({candidate['width']}x{candidate['height']}, score={candidate['score']:.2f})"
+                )
                 payload = download(candidate["url"])
                 with Image.open(BytesIO(payload)) as source:
                     source.load()
@@ -211,22 +299,38 @@ def main() -> int:
                 break
             except Exception as exc:
                 errors.append(f"{candidate['title']}: {exc}")
+
         if chosen is None or rendered is None:
-            raise RuntimeError(f"Could not render a Commons source for {asset['key']}: " + " | ".join(errors))
+            raise RuntimeError(
+                f"Could not render a Commons source for {asset['key']}: " + " | ".join(errors)
+            )
+
         output_path = OUT_DIR / asset["output"]
         rendered.save(output_path, "WEBP", quality=86, method=6)
         with Image.open(output_path) as verify:
             verify.load()
             if verify.size != (TARGET_W, TARGET_H):
                 raise RuntimeError(f"Unexpected output size for {output_path}: {verify.size}")
+
         size = output_path.stat().st_size
+        if size < 20_000:
+            print(f"  warning: {output_path.name} is compact ({size} bytes) but decoded successfully")
         print(f"  saved {output_path.relative_to(ROOT)} ({size} bytes)")
         credits.append(credit_record(asset, chosen))
-    CREDITS_PATH.write_text(json.dumps({
-        "country": "sweden",
-        "treatment": "JOURNEY ATLAS subtle watercolor treatment applied to license-compatible Wikimedia Commons photographs",
-        "assets": credits,
-    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    CREDITS_PATH.write_text(
+        json.dumps(
+            {
+                "country": "sweden",
+                "treatment": "JOURNEY ATLAS subtle watercolor treatment applied to license-compatible Wikimedia Commons photographs",
+                "assets": credits,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     update_country_json()
     print("Sweden v4 scenery build complete.")
     return 0
