@@ -27,10 +27,12 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check pillow
       - name: Build contact sheet
         run: python3 scripts/make_sweden_qa_contact_sheet.py
-      - name: Upload contact sheet
+      - name: Upload visual QA bundle
         uses: actions/upload-artifact@v4
         with:
           name: sweden-v5-visual-qa
-          path: qa-output/sweden-v5-scenes.jpg
+          path: |
+            qa-output/sweden-v5-scenes.jpg
+            assets/images/sweden/v5/*.webp
           if-no-files-found: error
           retention-days: 3
