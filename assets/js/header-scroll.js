@@ -8,17 +8,34 @@
     return Math.max(header.offsetHeight, hero.offsetTop + hero.offsetHeight - header.offsetHeight);
   }
 
+  function getCountryHeroTextBounds() {
+    const copy = document.querySelector('.country-page .hero-copy');
+    if (!copy) return null;
+
+    const nodes = Array.from(copy.children).filter((node) => {
+      const style = window.getComputedStyle(node);
+      return !node.hidden && style.display !== 'none' && style.visibility !== 'hidden';
+    });
+    if (!nodes.length) return null;
+
+    const rects = nodes.map((node) => node.getBoundingClientRect());
+    return {
+      top: Math.min(...rects.map((rect) => rect.top)),
+      bottom: Math.max(...rects.map((rect) => rect.bottom))
+    };
+  }
+
   function syncBrandCollision(header) {
     const hero = document.querySelector('.country-page .hero');
-    const title = document.querySelector('.country-page .hero h1');
     const brand = header.querySelector('.country-brand');
-    if (!hero || !title || !brand) return;
+    const textBounds = getCountryHeroTextBounds();
+    if (!hero || !brand || !textBounds) return;
 
     const heroRect = hero.getBoundingClientRect();
-    const titleRect = title.getBoundingClientRect();
     const sticky = window.scrollY >= getThreshold(header);
     const inHero = heroRect.bottom > header.offsetHeight;
-    const colliding = !sticky && inHero && titleRect.top < header.offsetHeight + 14 && titleRect.bottom > 0;
+    const collisionZoneBottom = header.offsetHeight + 14;
+    const colliding = !sticky && inHero && textBounds.top < collisionZoneBottom && textBounds.bottom > 0;
 
     brand.style.transition = 'opacity .16s ease, visibility .16s ease';
     brand.style.opacity = colliding ? '0' : '1';
