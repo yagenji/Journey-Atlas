@@ -11,7 +11,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY = ROOT / "data/countries/sweden.json"
 REGISTRY = ROOT / "data/atlas-destinations.json"
-CREDITS = ROOT / "data/sweden-image-credits.json"
+CREDITS = ROOT / "data/sweden-v5-image-credits.json"
 EXPECTED_SCENES = {
     "gamla-stan", "lapporten", "high-coast", "siljan",
     "visby", "langhammars", "smogen", "gota-canal",
@@ -56,17 +56,18 @@ def check_map(relative: str) -> None:
             require(color in ref, f"Reference map palette changed: {reference} / {color}")
 
 
-def check_credits(artworks: list[str]) -> None:
-    require(CREDITS.exists(), "Sweden image credit metadata missing")
+def check_scene_credits(scene_artworks: list[str]) -> None:
+    require(CREDITS.exists(), "Sweden v5 image credit metadata missing")
     credits = json.loads(CREDITS.read_text(encoding="utf-8"))
     items = credits.get("assets") or []
-    require(len(items) == 9, f"Expected 9 Sweden image credit records, found {len(items)}")
+    require(len(items) == 8, f"Expected 8 Sweden v5 scene credit records, found {len(items)}")
     credited = {item.get("output") for item in items}
-    require(set(artworks) == credited, "Sweden artwork references and credit metadata do not match")
+    require(set(scene_artworks) == credited, "Sweden v5 scene references and credit metadata do not match")
     for item in items:
         require(item.get("sourcePage"), f"Missing source page in credits: {item.get('key')}")
         require(item.get("author"), f"Missing author in credits: {item.get('key')}")
         require(item.get("license"), f"Missing license in credits: {item.get('key')}")
+        require("watercolor" in str(item.get("treatment", "")).lower(), f"Treatment metadata missing: {item.get('key')}")
 
 
 def main() -> int:
@@ -87,14 +88,17 @@ def main() -> int:
     require(capital.get("nameEn") and capital.get("coordinates"), "Capital map marker data missing")
     require(hero.get("coordinates") and hero.get("location"), "Hero map marker data missing")
 
-    artworks = [hero["image"], *[scene["image"] for scene in scenes]]
+    hero_artwork = hero["image"]
+    scene_artworks = [scene["image"] for scene in scenes]
+    artworks = [hero_artwork, *scene_artworks]
     require(len(set(artworks)) == 9, "Hero and 8 scene artwork paths must be unique")
+    require(hero_artwork == "assets/images/sweden/v5/hero-grinda.webp", "Approved Grinda Hero is not connected")
     for artwork in artworks:
-        require(artwork.startswith("assets/images/sweden/v4/"), f"Non-v4 artwork referenced: {artwork}")
-        require(artwork.endswith(".webp"), f"Sweden v4 production artwork must be WebP: {artwork}")
+        require(artwork.startswith("assets/images/sweden/v5/"), f"Non-v5 production artwork referenced: {artwork}")
+        require(artwork.endswith(".webp"), f"Sweden v5 production artwork must be WebP: {artwork}")
         check_webp(artwork)
 
-    check_credits(artworks)
+    check_scene_credits(scene_artworks)
     check_map(data["map"]["svg"])
 
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -104,12 +108,11 @@ def main() -> int:
     require(sweden.get("href") == "", "Unpublished Sweden must not have a public href")
 
     serialized = json.dumps(data, ensure_ascii=False)
-    require("assets/images/sweden/v1/" not in serialized, "v1 artwork leaked into sweden.json")
-    require("assets/images/sweden/v2/" not in serialized, "v2 artwork leaked into sweden.json")
-    require("assets/images/sweden/v3/" not in serialized, "v3 artwork leaked into Sweden production references")
+    for old in ("/v1/", "/v2/", "/v3/", "/v4/"):
+        require(f"assets/images/sweden{old}" not in serialized, f"Old Sweden artwork leaked into production JSON: {old}")
     require(".b64" not in serialized and ".parts.json" not in serialized, "Encoded source leaked into production references")
 
-    print("Sweden production QA passed: 1 Hero + 8 v4 WebP scenes decode at 1200x800, master map, credits, unpublished state.")
+    print("Sweden production QA passed: approved Hero + 8 v5 WebP scenes decode at 1200x800, 1200x760 master map, credits, unpublished state.")
     return 0
 
 
