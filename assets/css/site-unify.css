@@ -315,3 +315,38 @@ html{scroll-padding-top:96px!important;}
   content:none!important;
   display:none!important;
 }
+
+
+/* Compact persistent header on small phones without clipping either navigation item. */
+@media(max-width:480px){
+  .site-header.page-shell{
+    padding-inline:14px!important;
+    gap:10px!important;
+  }
+  .country-brand__wordmark{
+    font-size:18px!important;
+    letter-spacing:.18em!important;
+  }
+  .utility-nav{
+    gap:10px!important;
+  }
+  .utility-nav a{
+    font-size:10px!important;
+  }
+}
+@media(max-width:340px){
+  .site-header.page-shell{
+    padding-inline:10px!important;
+    gap:7px!important;
+  }
+  .country-brand__wordmark{
+    font-size:16px!important;
+    letter-spacing:.14em!important;
+  }
+  .utility-nav{
+    gap:7px!important;
+  }
+  .utility-nav a{
+    font-size:9px!important;
+  }
+}
