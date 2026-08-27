@@ -10,21 +10,35 @@
   "capital": {
     "nameEn": "Oslo",
     "nameJa": "オスロ",
-    "coordinates": {"latitude": 59.9139, "longitude": 10.7522},
+    "coordinates": {
+      "latitude": 59.9139,
+      "longitude": 10.7522
+    },
     "labelPosition": "right"
   },
   "hero": {
     "lead": "深いフィヨルド、切り立つ山、海へ落ちる滝。海岸をたどるたびに、陸と水の境界が入り組んでいく国。",
     "image": "assets/images/norway/v1/hero-geirangerfjord.parts.json",
     "location": "Ørnesvingen / オルネスヴィンゲン（ガイランゲルフィヨルド）",
-    "coordinates": {"latitude": 62.111, "longitude": 7.207},
-    "mapOffset": {"x": 0, "y": 0}
+    "coordinates": {
+      "latitude": 62.111,
+      "longitude": 7.207
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
   },
   "map": {
-    "bounds": {"north": 71.7, "south": 57.2, "west": 3.5, "east": 32.0},
-    "svg": "assets/images/norway/map-atlas-v1.svg",
+    "bounds": {
+      "north": 71.7,
+      "south": 57.2,
+      "west": 3.5,
+      "east": 32
+    },
+    "svg": "assets/images/norway/map-atlas-v2.svg",
     "route": null,
-    "source": "Mainland coastline: GSHHS; national border: Basemap country boundary; illustrated treatment: JOURNEY ATLAS"
+    "source": "Country geometry: Natural Earth 1:10m admin-0; illustrated treatment: JOURNEY ATLAS"
   },
   "scenes": [
     {
@@ -33,7 +47,10 @@
       "nameLocal": "Nærøyfjord",
       "mapLabel": "Nærøyfjord",
       "description": "ソグネフィヨルドの支流で、全長約17km。最狭部は約250mまで狭まり、急峻な山腹と小さな農場が水面へ迫る世界遺産のフィヨルド。",
-      "coordinates": {"latitude": 60.9436, "longitude": 6.9314},
+      "coordinates": {
+        "latitude": 60.9436,
+        "longitude": 6.9314
+      },
       "image": "assets/images/norway/v1/naeroyfjord.parts.json"
     },
     {
@@ -42,7 +59,10 @@
       "nameLocal": "Preikestolen",
       "mapLabel": "Preikestolen",
       "description": "リセフィヨルドの水面から604m上に切り立つ岩の台地。平らな岩棚の先から、細長いフィヨルドと対岸の山地を見下ろす。",
-      "coordinates": {"latitude": 58.9867, "longitude": 6.1875},
+      "coordinates": {
+        "latitude": 58.9867,
+        "longitude": 6.1875
+      },
       "image": "assets/images/norway/v1/preikestolen.parts.json"
     },
     {
@@ -51,7 +71,10 @@
       "nameLocal": "Trolltunga",
       "mapLabel": "Trolltunga",
       "description": "リングエダール湖から約700m上に張り出す岩棚。氷期の氷河が削った高地に、青い湖と裸岩の地形が広がる。",
-      "coordinates": {"latitude": 60.133, "longitude": 6.754},
+      "coordinates": {
+        "latitude": 60.133,
+        "longitude": 6.754
+      },
       "image": "assets/images/norway/v1/trolltunga.parts.json"
     },
     {
@@ -60,17 +83,25 @@
       "nameLocal": "Bryggen",
       "mapLabel": "Bryggen",
       "description": "ベルゲン港に並ぶ木造倉庫群。ハンザ同盟の交易拠点として栄え、1702年の大火後も古い区画と工法を引き継いで再建された。",
-      "coordinates": {"latitude": 60.3971, "longitude": 5.3244},
+      "coordinates": {
+        "latitude": 60.3971,
+        "longitude": 5.3244
+      },
       "image": "assets/images/norway/v1/bryggen.parts.json"
     },
     {
       "id": "atlantic-road",
       "name": "アトランティック・オーシャン・ロード",
-      "nameBreaks": [9],
+      "nameBreaks": [
+        9
+      ],
       "nameLocal": "Atlanterhavsvegen",
       "mapLabel": "Atlantic Road",
       "description": "小島と岩礁を橋でつなぎ、大西洋の海面近くを走る景観道路。橋と道路が海の上を折れ曲がるように連なり、天候で表情を大きく変える。",
-      "coordinates": {"latitude": 63.0167, "longitude": 7.354},
+      "coordinates": {
+        "latitude": 63.0167,
+        "longitude": 7.354
+      },
       "image": "assets/images/norway/v1/atlantic-road.parts.json"
     },
     {
@@ -79,7 +110,10 @@
       "nameLocal": "Vøringsfossen",
       "mapLabel": "Vøringsfossen",
       "description": "ハルダンゲルヴィッダ高原からモーボダーレン峡谷へ182m落ちる大瀑布。峡谷をまたぐ歩道橋と複数の展望台から、滝と深い谷を立体的に望む。",
-      "coordinates": {"latitude": 60.42669, "longitude": 7.251631},
+      "coordinates": {
+        "latitude": 60.42669,
+        "longitude": 7.251631
+      },
       "image": "assets/images/norway/v1/voringsfossen.parts.json"
     },
     {
@@ -88,7 +122,10 @@
       "nameLocal": "Reine / Lofoten",
       "mapLabel": "Reine",
       "description": "ロフォーテン諸島の小さな漁村。橋と道路で結ばれた島々に漁師小屋が並び、レイネフィヨルドの背後から急峻な山が立ち上がる。",
-      "coordinates": {"latitude": 67.9325, "longitude": 13.0896},
+      "coordinates": {
+        "latitude": 67.9325,
+        "longitude": 13.0896
+      },
       "image": "assets/images/norway/v1/reine.parts.json"
     },
     {
@@ -97,19 +134,46 @@
       "nameLocal": "Nordkapp / North Cape",
       "mapLabel": "Nordkapp",
       "description": "北極圏のはるか北、海へ落ちる高さ307mの岬。夏は真夜中の太陽の季節が続き、水平線の先に北の海だけが広がる。",
-      "coordinates": {"latitude": 71.1725, "longitude": 25.7841},
+      "coordinates": {
+        "latitude": 71.1725,
+        "longitude": 25.7841
+      },
       "image": "assets/images/norway/v1/north-cape.parts.json"
     }
   ],
   "encounters": [
-    {"title": "フィヨルド", "icon": "sea"},
-    {"title": "山岳", "icon": "landscape"},
-    {"title": "氷河", "icon": "ice"},
-    {"title": "滝", "icon": "waterfall"},
-    {"title": "漁村", "icon": "home"},
-    {"title": "海岸道路", "icon": "road"},
-    {"title": "オーロラ", "icon": "aurora"},
-    {"title": "白夜", "icon": "sun"}
+    {
+      "title": "フィヨルド",
+      "icon": "sea"
+    },
+    {
+      "title": "山岳",
+      "icon": "landscape"
+    },
+    {
+      "title": "氷河",
+      "icon": "ice"
+    },
+    {
+      "title": "滝",
+      "icon": "waterfall"
+    },
+    {
+      "title": "漁村",
+      "icon": "home"
+    },
+    {
+      "title": "海岸道路",
+      "icon": "road"
+    },
+    {
+      "title": "オーロラ",
+      "icon": "aurora"
+    },
+    {
+      "title": "白夜",
+      "icon": "sun"
+    }
   ],
   "atlasExtras": [
     {
@@ -117,21 +181,30 @@
       "themeJa": "街を歩く",
       "title": "オスロ",
       "text": "フィヨルドの奥に広がる首都。港湾地区の再開発、現代建築、美術館の一方で、森や島へ公共交通でつながる距離感がこの街らしい。",
-      "points": ["オペラハウスから海沿いを歩く", "ムンク美術館や国立美術館で北欧の表現に触れる"]
+      "points": [
+        "オペラハウスから海沿いを歩く",
+        "ムンク美術館や国立美術館で北欧の表現に触れる"
+      ]
     },
     {
       "themeEn": "HISTORY",
       "themeJa": "時をたどる",
       "title": "海と交易の歴史",
       "text": "ヴァイキング時代の航海から、干しダラを運んだ中世の交易まで、長い海岸線はノルウェーの歴史を形づくってきた。",
-      "points": ["ベルゲンのブリッゲンはハンザ交易の記憶を残す", "北部の漁業と沿岸航路は現在の町にもつながる"]
+      "points": [
+        "ベルゲンのブリッゲンはハンザ交易の記憶を残す",
+        "北部の漁業と沿岸航路は現在の町にもつながる"
+      ]
     },
     {
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
       "title": "フリルフツリフ",
       "text": "森、山、海で過ごす時間を日常に取り込む「friluftsliv」。休日のハイキングや山小屋文化に、自然との距離の近さが表れる。",
-      "points": ["都市からも森や水辺へ出やすい", "山小屋をつないで歩く旅も身近な選択肢"]
+      "points": [
+        "都市からも森や水辺へ出やすい",
+        "山小屋をつないで歩く旅も身近な選択肢"
+      ]
     },
     {
       "themeEn": "CULTURE",
@@ -139,21 +212,30 @@
       "title": "サーミの現在",
       "icon": "culture",
       "text": "ノルウェー北部には、先住民族サーミの言語や暮らしが息づく。カラショークとカウトケイノでは、トナカイ牧畜やドゥオジ（工芸）だけでなく、議会、劇場、現代アートなど現在進行形の文化に触れられる。",
-      "points": ["カラショークには1989年に開設されたサーミ議会がある", "カウトケイノでは工芸や現代アート、サーミ国立劇場に触れられる"]
+      "points": [
+        "カラショークには1989年に開設されたサーミ議会がある",
+        "カウトケイノでは工芸や現代アート、サーミ国立劇場に触れられる"
+      ]
     },
     {
       "themeEn": "FOOD",
       "themeJa": "食をめぐる",
       "title": "海の食とストックフィッシュ",
       "text": "サーモンやタラなどの魚介は、長い海岸線と直結した食文化。ロフォーテンでは冬に獲れたタラを風で乾燥させるストックフィッシュの景色も残る。",
-      "points": ["沿岸の町では魚介のスープや干しダラに出会う", "地域ごとの乳製品や保存食も旅の味になる"]
+      "points": [
+        "沿岸の町では魚介のスープや干しダラに出会う",
+        "地域ごとの乳製品や保存食も旅の味になる"
+      ]
     },
     {
       "themeEn": "ROAD",
       "themeJa": "道の先へ",
       "title": "道路とフェリーでつなぐ",
       "text": "フィヨルドと島が入り組むため、道は橋、トンネル、フェリーを組み合わせて続く。目的地への移動そのものが景観体験になる。",
-      "points": ["18のナショナル・シーニック・ルートが各地にある", "フェリーの待ち時間も含めて旅程を組む"]
+      "points": [
+        "18のナショナル・シーニック・ルートが各地にある",
+        "フェリーの待ち時間も含めて旅程を組む"
+      ]
     }
   ],
   "travelTrivia": [
@@ -199,45 +281,139 @@
     }
   ],
   "seasons": [
-    {"months": "6〜8月", "color": "#9aa34f", "text": "長い日照時間を生かし、フィヨルド、山歩き、景観道路を巡る。北部では白夜の季節。"},
-    {"months": "9〜10月", "color": "#b97845", "text": "山と森が秋色へ変わる頃。北部では夜が戻り、オーロラの機会も増える。"},
-    {"months": "11〜3月", "color": "#6b91a6", "text": "北部のオーロラと雪景色。山岳道路やハイキングは冬季条件を前提に計画する。"},
-    {"months": "4〜5月", "color": "#71956b", "text": "雪解けで滝の水量が増える移行期。高地ではまだ冬の条件が残る。"}
+    {
+      "months": "6〜8月",
+      "color": "#9aa34f",
+      "text": "長い日照時間を生かし、フィヨルド、山歩き、景観道路を巡る。北部では白夜の季節。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b97845",
+      "text": "山と森が秋色へ変わる頃。北部では夜が戻り、オーロラの機会も増える。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#6b91a6",
+      "text": "北部のオーロラと雪景色。山岳道路やハイキングは冬季条件を前提に計画する。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#71956b",
+      "text": "雪解けで滝の水量が増える移行期。高地ではまだ冬の条件が残る。"
+    }
   ],
   "transport": {
     "title": "ROAD / FERRY / RAIL",
     "text": "南北に長く、フィヨルドも多い。道路、フェリー、鉄道、国内線を組み合わせ、距離より所要時間で旅程を考える。"
   },
   "personas": [
-    {"title": "フィヨルドと山を歩きたい人", "text": "水面から立ち上がる山や高地の岩場を、自分の足で確かめたい人。"},
-    {"title": "ロードトリップが好きな人", "text": "橋、トンネル、フェリーまで含めて移動を楽しみたい人。"},
-    {"title": "北極圏の光を見たい人", "text": "白夜やオーロラなど、季節で変わる光を旅の目的にしたい人。"},
-    {"title": "海辺の町が好きな人", "text": "漁村や港町をたどり、自然と暮らしが接する風景を見たい人。"},
-    {"title": "写真を撮る人", "text": "天候と光で大きく変わるフィヨルドや海岸の表情を残したい人。"}
+    {
+      "title": "フィヨルドと山を歩きたい人",
+      "text": "水面から立ち上がる山や高地の岩場を、自分の足で確かめたい人。"
+    },
+    {
+      "title": "ロードトリップが好きな人",
+      "text": "橋、トンネル、フェリーまで含めて移動を楽しみたい人。"
+    },
+    {
+      "title": "北極圏の光を見たい人",
+      "text": "白夜やオーロラなど、季節で変わる光を旅の目的にしたい人。"
+    },
+    {
+      "title": "海辺の町が好きな人",
+      "text": "漁村や港町をたどり、自然と暮らしが接する風景を見たい人。"
+    },
+    {
+      "title": "写真を撮る人",
+      "text": "天候と光で大きく変わるフィヨルドや海岸の表情を残したい人。"
+    }
   ],
   "facts": [
-    {"label": "地域", "value": "北ヨーロッパ"},
-    {"label": "首都", "value": "オスロ"},
-    {"label": "人口", "value": "約560万人"},
-    {"label": "面積", "value": "約324,000 km²（本土・日本の約86%）"},
-    {"label": "言語", "value": "ノルウェー語（ブークモール／ニーノシュク）、サーミ諸語"},
-    {"label": "主な宗教", "value": "キリスト教（ノルウェー国教会が最大）"},
-    {"label": "通貨", "value": "ノルウェー・クローネ（NOK）"}
+    {
+      "label": "地域",
+      "value": "北ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "オスロ"
+    },
+    {
+      "label": "人口",
+      "value": "約560万人"
+    },
+    {
+      "label": "面積",
+      "value": "約324,000 km²（本土・日本の約86%）"
+    },
+    {
+      "label": "言語",
+      "value": "ノルウェー語（ブークモール／ニーノシュク）、サーミ諸語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（ノルウェー国教会が最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ノルウェー・クローネ（NOK）"
+    }
   ],
   "signatureFacts": [
-    {"label": "海岸線", "value": "10万 km超", "note": "島、岩礁、小島を含めると、海岸線は10万kmを超える。", "icon": "sea"},
-    {"label": "水力発電", "value": "約90%", "note": "2025年の発電量の約9割を水力が占める。", "icon": "energy"},
-    {"label": "市街地・建設地", "value": "本土の1.8%", "note": "本土の大部分は森林、山地、湿地などの非市街地で占められる。", "icon": "city"}
+    {
+      "label": "海岸線",
+      "value": "10万 km超",
+      "note": "島、岩礁、小島を含めると、海岸線は10万kmを超える。",
+      "icon": "sea"
+    },
+    {
+      "label": "水力発電",
+      "value": "約90%",
+      "note": "2025年の発電量の約9割を水力が占める。",
+      "icon": "energy"
+    },
+    {
+      "label": "市街地・建設地",
+      "value": "本土の1.8%",
+      "note": "本土の大部分は森林、山地、湿地などの非市街地で占められる。",
+      "icon": "city"
+    }
   ],
   "tips": [
-    {"title": "山の天候は急に変わる", "text": "晴れていても高地では風、雨、低温が急に来る。出発前に天気と現地の安全情報を確認する。"},
-    {"title": "距離より時間で考える", "text": "フィヨルド沿いでは道路が迂回し、フェリー待ちも入る。地図上の距離だけで日程を詰めない。"},
-    {"title": "季節で開く道が変わる", "text": "高地の景観道路や登山道には冬季閉鎖がある。目的地だけでなく移動経路の季節条件も確認する。"}
+    {
+      "title": "山の天候は急に変わる",
+      "text": "晴れていても高地では風、雨、低温が急に来る。出発前に天気と現地の安全情報を確認する。"
+    },
+    {
+      "title": "距離より時間で考える",
+      "text": "フィヨルド沿いでは道路が迂回し、フェリー待ちも入る。地図上の距離だけで日程を詰めない。"
+    },
+    {
+      "title": "季節で開く道が変わる",
+      "text": "高地の景観道路や登山道には冬季閉鎖がある。目的地だけでなく移動経路の季節条件も確認する。"
+    }
   ],
   "relatedCountries": [
-    {"slug": "iceland", "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、滝、火山島のロードトリップへつなげたいなら。"},
-    {"slug": "sweden", "nameEn": "SWEDEN", "nameJa": "スウェーデン", "flag": "🇸🇪", "reason": "北欧の森と都市文化を、より穏やかな地形の中で辿りたいなら。"},
-    {"slug": "new-zealand", "nameEn": "NEW ZEALAND", "nameJa": "ニュージーランド", "flag": "🇳🇿", "reason": "フィヨルドと山岳、長距離ドライブを南半球でも追いかけたいなら。"}
+    {
+      "slug": "iceland",
+      "nameEn": "ICELAND",
+      "nameJa": "アイスランド",
+      "flag": "🇮🇸",
+      "reason": "氷河、滝、火山島のロードトリップへつなげたいなら。"
+    },
+    {
+      "slug": "sweden",
+      "nameEn": "SWEDEN",
+      "nameJa": "スウェーデン",
+      "flag": "🇸🇪",
+      "reason": "北欧の森と都市文化を、より穏やかな地形の中で辿りたいなら。"
+    },
+    {
+      "slug": "new-zealand",
+      "nameEn": "NEW ZEALAND",
+      "nameJa": "ニュージーランド",
+      "flag": "🇳🇿",
+      "reason": "フィヨルドと山岳、長距離ドライブを南半球でも追いかけたいなら。"
+    }
   ],
   "updatedAt": "2026-08-25",
   "sources": {
