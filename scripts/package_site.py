@@ -2,8 +2,9 @@
 """Package the built JOURNEY ATLAS site into a clean static deploy directory.
 
 Run scripts/build_site.py first. This packager intentionally excludes authoring
-files, encoded source chunks, the generic draft country route, and unpublished
-country JSON. Only atlasPublished=true country pages are shipped.
+files, encoded source chunks, and the generic draft country route. Mature
+schemaVersion=2 country pages are shipped for direct noindex review, while
+atlasPublished=true still controls discovery, indexing and sitemap inclusion.
 """
 
 from __future__ import annotations
@@ -41,6 +42,25 @@ def published_slugs() -> list[str]:
     return slugs
 
 
+def reviewable_slugs() -> list[str]:
+    slugs: list[str] = []
+    seen: set[str] = set()
+    for path in REGISTRY_PATHS:
+        registry = json.loads(path.read_text(encoding="utf-8"))
+        for item in registry.get("destinations", []):
+            slug = item.get("slug")
+            if not slug or slug in seen:
+                continue
+            country_path = COUNTRY_DIR / f"{slug}.json"
+            if not country_path.exists():
+                continue
+            data = json.loads(country_path.read_text(encoding="utf-8"))
+            if data.get("schemaVersion") == 2:
+                seen.add(slug)
+                slugs.append(slug)
+    return slugs
+
+
 def ignore_asset_sources(_directory: str, names: list[str]) -> set[str]:
     ignored: set[str] = set()
     for name in names:
@@ -61,7 +81,8 @@ def package_data(slugs: list[str]) -> None:
     target = DIST / "data"
     target.mkdir(parents=True, exist_ok=True)
 
-    # Top-page taxonomies and registries are runtime data. Draft country bodies are not.
+    # Top-page taxonomies and registries are runtime data. Reviewable country
+    # bodies are included so direct noindex Country Page URLs work before publish.
     for source in DATA_DIR.iterdir():
         if source.name == "countries":
             continue
@@ -72,7 +93,7 @@ def package_data(slugs: list[str]) -> None:
     for slug in slugs:
         source = COUNTRY_DIR / f"{slug}.json"
         if not source.exists():
-            raise FileNotFoundError(f"Published country JSON missing: {source}")
+            raise FileNotFoundError(f"Reviewable country JSON missing: {source}")
         shutil.copy2(source, countries_target / source.name)
 
 
@@ -80,7 +101,7 @@ def package_country_pages(slugs: list[str]) -> None:
     for slug in slugs:
         source = ROOT / "countries" / slug
         if not (source / "index.html").exists():
-            raise FileNotFoundError(f"Published static country page missing: {source / 'index.html'}")
+            raise FileNotFoundError(f"Reviewable static country page missing: {source / 'index.html'}")
         shutil.copytree(source, DIST / "countries" / slug)
 
 
@@ -117,7 +138,8 @@ def validate_package(slugs: list[str]) -> None:
 
 
 def main() -> int:
-    slugs = published_slugs()
+    published = published_slugs()
+    slugs = reviewable_slugs()
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
@@ -137,7 +159,8 @@ def main() -> int:
     file_count = sum(1 for path in DIST.rglob("*") if path.is_file())
     size_bytes = sum(path.stat().st_size for path in DIST.rglob("*") if path.is_file())
     print(
-        f"Packaged {len(slugs)} published country page(s) into dist/: "
+        f"Packaged {len(slugs)} reviewable country page(s) "
+        f"({len(published)} published) into dist/: "
         f"{file_count} files, {size_bytes / (1024 * 1024):.1f} MiB."
     )
     return 0
