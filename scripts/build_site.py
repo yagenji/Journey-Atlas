@@ -171,6 +171,27 @@ def published_destinations(registries: list[tuple[Path, dict]]) -> list[dict]:
     return [item for item in all_destinations(registries) if item.get("atlasPublished")]
 
 
+def reviewable_destinations(registries: list[tuple[Path, dict]]) -> list[dict]:
+    """Return mature country pages that may be reviewed by direct URL.
+
+    atlasPublished controls discovery/indexing. schemaVersion=2 marks a country
+    as using the current production Country Template and therefore safe to
+    render as a noindex review page before publication.
+    """
+    items: list[dict] = []
+    for item in all_destinations(registries):
+        slug = item.get("slug")
+        if not slug:
+            continue
+        path = ROOT / f"data/countries/{slug}.json"
+        if not path.exists():
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if data.get("schemaVersion") == 2:
+            items.append(item)
+    return items
+
+
 def set_tag(text: str, old: str, new: str) -> str:
     if old not in text:
         raise ValueError(f"Template marker missing: {old}")
@@ -282,7 +303,7 @@ def prepare_generic_country_page() -> None:
     path.write_text(page, encoding="utf-8")
 
 
-def generate_country_page(destination: dict) -> str:
+def generate_country_page(destination: dict, *, published: bool) -> str:
     slug = destination["slug"]
     data_path = ROOT / f"data/countries/{slug}.json"
     if not data_path.exists():
@@ -309,7 +330,8 @@ def generate_country_page(destination: dict) -> str:
     page = set_tag(page, 'content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。"', f'content="{html.escape(description, quote=True)}"')
     page = set_tag(page, 'content="https://yagenji.github.io/Journey-Atlas/country.html"', f'content="{html.escape(canonical, quote=True)}"')
     page = set_tag(page, 'content="https://yagenji.github.io/Journey-Atlas/assets/icons/favicon.svg"', f'content="{html.escape(og_image, quote=True)}"')
-    page = page.replace('<meta name="robots" content="noindex,follow">', '<meta name="robots" content="index,follow">', 1)
+    if published:
+        page = page.replace('<meta name="robots" content="noindex,follow">', '<meta name="robots" content="index,follow">', 1)
 
     output = ROOT / "countries" / slug / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -344,11 +366,20 @@ def main() -> int:
     scope = all_destinations(registries)
     if len(scope) != 201:
         raise ValueError(f"Expected 201 destinations, found {len(scope)}")
-    destinations = published_destinations(registries)
-    urls = [generate_country_page(item) for item in destinations]
+    published = published_destinations(registries)
+    published_slugs = {item["slug"] for item in published}
+    reviewable = reviewable_destinations(registries)
+    urls: list[str] = []
+    for item in reviewable:
+        canonical = generate_country_page(item, published=item["slug"] in published_slugs)
+        if item["slug"] in published_slugs:
+            urls.append(canonical)
     rewrite_published_hrefs(registries)
     generate_sitemap(urls)
-    print(f"Built CSS bundles, direct top media, and {len(urls)} static country page(s) from 201 destinations.")
+    print(
+        f"Built CSS bundles, direct top media, {len(reviewable)} reviewable country page(s), "
+        f"and {len(urls)} published country page(s) from 201 destinations."
+    )
     return 0
 
 
