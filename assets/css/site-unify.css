@@ -25,16 +25,29 @@
   align-items:center!important;
   justify-content:space-between!important;
   gap:36px!important;
-  background:rgba(247,243,233,.94)!important;
+  background:transparent!important;
   border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  transition:background-color .22s ease,border-color .22s ease,box-shadow .22s ease,backdrop-filter .22s ease;
+}
+
+.top-header.shell.is-scroll-sticky,
+.site-header.page-shell.is-scroll-sticky{
+  background:rgba(247,243,233,.96)!important;
   border-bottom:1px solid rgba(11,44,87,.11)!important;
   box-shadow:0 3px 14px rgba(9,42,75,.045)!important;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
 }
-body:has(.top-header){padding-top:var(--ja-header-height)!important;}
-.site-header.page-shell + .country-page .hero{padding-top:var(--ja-header-height)!important;}
+
 html{scroll-padding-top:96px!important;}
+
+/* Keep country identity clear of the persistent transparent header. */
+.country-page .hero-copy{
+  padding-top:calc(var(--ja-header-height) + 38px)!important;
+}
 
 .wordmark,
 .country-brand__wordmark{
@@ -248,8 +261,9 @@ html{scroll-padding-top:96px!important;}
     padding-inline:18px!important;
     gap:18px!important;
   }
-  body:has(.top-header){padding-top:var(--ja-header-mobile)!important;}
-  .site-header.page-shell + .country-page .hero{padding-top:var(--ja-header-mobile)!important;}
+  .country-page .hero-copy{
+    padding-top:calc(var(--ja-header-mobile) + 24px)!important;
+  }
   .wordmark,
   .country-brand__wordmark{
     font-size:clamp(19px,5.8vw,23px)!important;

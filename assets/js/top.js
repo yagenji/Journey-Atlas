@@ -19,6 +19,16 @@ const alphabetButtons = () => [...document.querySelectorAll('[data-letter]')];
 const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
 const ATLAS_TOTAL = 201;
 
+function syncScrollHeader() {
+  const header = document.querySelector('.top-header');
+  if (!header) return;
+  const threshold = header.offsetHeight;
+  header.classList.toggle('is-scroll-sticky', window.scrollY > threshold);
+}
+window.addEventListener('scroll', syncScrollHeader, { passive: true });
+window.addEventListener('resize', syncScrollHeader);
+syncScrollHeader();
+
 let destinations = [];
 let heroSources = [];
 let heroIndex = 0;
