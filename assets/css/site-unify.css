@@ -308,3 +308,10 @@ html{scroll-padding-top:96px!important;}
     margin-top:8px!important;
   }
 }
+
+/* Real country maps fully cover the decorative placeholder washes. */
+.map-art.has-map::before,
+.map-art.has-map::after{
+  content:none!important;
+  display:none!important;
+}
