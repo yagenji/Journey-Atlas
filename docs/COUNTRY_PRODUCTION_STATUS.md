@@ -27,7 +27,7 @@ Current state:
 - Visual QA identified the blocking issue: current Estonia Hero + 8 scene assets are photographic source images, while JOURNEY ATLAS requires recognizable real places rendered with restrained watercolor treatment.
 - This visual mismatch is material when Estonia is compared directly with Iceland / Norway.
 - Existing main review page is preserved while visual remediation is performed on estonia-v2-visual.
-- A first image-generation attempt did not produce a usable Estonia Hero and was rejected; it was not committed or connected to production.
+- Two consecutive Estonia Hero generation attempts did not produce a usable standalone Hero; both returned page-level mockups instead of the requested single landscape. Both were rejected and neither was committed or connected to production.\n- Per production rules, the Estonia Hero generation series is now RESET before the next attempt.
 
 Remaining:
 - Regenerate the Estonia Hero first, one image at a time, to the Iceland / Norway visual standard.
@@ -41,7 +41,7 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Produce a replacement Tallinn Old Town Hero based on the Kohtuotsa viewpoint.
+- RESET the Estonia Hero generation series, then produce a replacement Tallinn Old Town Hero as a standalone landscape asset only (not a page mockup), based on the Kohtuotsa viewpoint.
 - Required visual: recognizable Tallinn Lower Town red roofs and Gothic spires, Gulf of Finland / harbour in the distance, wide composition, realistic geography and architecture, quiet restrained watercolor softness, no poster treatment, no text, no invented buildings.
 - Do not proceed to Scene 1 until this Hero passes visual review.
 
