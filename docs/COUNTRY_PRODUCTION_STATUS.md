@@ -1,64 +1,98 @@
 # COUNTRY PRODUCTION STATUS
 
 Country: Estonia
-Status: QA
+Status: COMPLETE
 
 Branch: main
-Latest commit: d8fec5fffb6128935795d1a30a0f60b6d84529a2
+Latest publication commit: 18c5f995be62a1a115ed084f462c7d65dfd3fe15
 
-Completed:
-- Country content, review route, map, taxonomy, profile, signature facts, encounters, travel information and related destinations implemented.
-- Hero + 8 scene visuals APPROVED.
+Publication:
+- User explicitly approved formal publication.
+- atlasPublished:true.
+- Canonical country href: countries/estonia/.
+- Production robots: index,follow.
+- Estonia included in sitemap.xml.
+- Estonia enabled as a normal clickable Country destination.
+- Journey Lens publication state remains unchanged.
+
+CONTENT:
+- Country content complete in data/countries/estonia.json.
+- Hero, 8 scenes, Profile, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes and Related Destinations complete.
+- TRAVEL THEMES taxonomy: 街を歩く / 時をたどる / 暮らしに出会う.
+- Sources verified 2026-08-28.
+
+VISUAL:
+- Hero / Tallinn Old Town: APPROVED.
+- Scene 1 / Viru Bog: APPROVED.
+- Scene 2 / Soomaa National Park: APPROVED.
+- Scene 3 / Panga Cliff: APPROVED.
+- Scene 4 / Kaali Meteorite Crater: APPROVED.
+- Scene 5 / Narva Castle: APPROVED.
+- Scene 6 / Suur Taevaskoda: APPROVED after final visual-accuracy correction.
+- Scene 7 / Kõpu Lighthouse: APPROVED after final visual-accuracy correction.
+- Scene 8 / Suur Munamägi: APPROVED.
 - Final visual direction: photographic realism 60% / watercolor treatment 40%, Iceland reference.
-- All 9 final assets use cache-safe location-based *-atlas.webp paths.
-- All 9 assets verified as complete WebP files at exactly 1200 x 800.
-- Scene 6 / Suur Taevaskoda corrected and APPROVED.
-- Scene 7 / Kõpu Lighthouse corrected and APPROVED.
-- Estonia JSON validation passed.
-- Cloudflare review package validation passed.
-- PR #10 merged to main.
-- Main deploy run 33180125808 completed successfully: source validation, production build, production-build validation, Pages upload/deploy, Cloudflare package build and package validation all PASS.
-- Latest deployment artifact downloaded and rendered in a controlled browser harness using the deployed files.
-- Desktop 1440px, Tablet 768px and Mobile 375px checked against the Iceland / Norway template.
-- Hero dimensions/layout match Iceland / Norway at all three breakpoints.
-- Scene-grid behavior matches Iceland / Norway: 2 columns desktop/tablet, 1 column mobile.
-- All 8 scene cards render and all 9 final visual assets lazy-load successfully on desktop/tablet/mobile.
-- No horizontal overflow at 1440 / 768 / 375.
-- Heading hierarchy has no skipped levels.
-- No duplicate IDs.
-- No unlabeled links or buttons.
-- Map has 8 keyboard-focusable scene-marker buttons with aria-labels; Enter navigation to the related scene works.
-- Hero map location has an aria-label.
-- No page script errors or failed local production-asset requests in the controlled deployed-artifact browser QA.
-- Photo credits remain hidden because displayed visuals are generated assets, not the removed photographic source set.
-- robots: noindex,follow confirmed.
-- canonical: https://atlas.yagenji.com/countries/estonia/ confirmed.
-- Estonia remains absent from sitemap.
-- atlasPublished:false confirmed.
-- User confirmed that the canonical production URL now displays the replaced generated images.
+- Detailed map: assets/images/estonia/map-atlas-v2.svg, 1200 x 760.
 
-Visual QA:
-- PASS Hero / Tallinn Old Town
-- PASS Scene 1 / Viru Bog
-- PASS Scene 2 / Soomaa National Park
-- PASS Scene 3 / Panga Cliff
-- PASS Scene 4 / Kaali Meteorite Crater
-- PASS Scene 5 / Narva Castle
-- PASS Scene 6 / Suur Taevaskoda (corrected)
-- PASS Scene 7 / Kõpu Lighthouse (corrected)
-- PASS Scene 8 / Suur Munamägi
-- PASS Map / layout / series consistency
+ASSET QA:
+- 9/9 final visual assets are WebP.
+- 9/9 decode completely.
+- 9/9 are exactly 1200 x 800.
+- Final production asset names use cache-safe location-based *-atlas.webp paths.
+- Obsolete photographic source assets and PHOTO_SOURCES metadata removed from production.
+- Image review cache policy uses must-revalidate.
 
-Current state:
-- Estonia has no remaining identified QA blockers.
-- Review Deployment is complete.
-- Formal publication has NOT been performed.
+TECHNICAL QA:
+- Estonia strict country validation: PASS.
+- 201-destination scope validation: PASS.
+- Country page generation: PASS.
+- Cloudflare production package build: PASS.
+- Cloudflare packaged-output validation: PASS.
+- GitHub Pages production build: PASS.
+- Source validation: PASS.
+- Production-build validation: PASS.
+- Pages upload/deploy: PASS.
+- Latest formal-publication deploy run: 33182463419.
+- Published deployment artifact independently inspected.
 
-Remaining:
-- User final review/approval of the canonical Country Page.
-- After explicit approval only: atlasPublished:true, normal discovery link, index, sitemap inclusion, deploy and production QA.
+PUBLISHED ARTIFACT QA:
+- /countries/estonia/index.html exists.
+- /data/countries/estonia.json exists.
+- robots meta = index,follow.
+- canonical = https://atlas.yagenji.com/countries/estonia/.
+- sitemap contains https://atlas.yagenji.com/countries/estonia/.
+- runtime registry has atlasPublished:true.
+- runtime registry href = countries/estonia/.
+- top-page renderer creates an active <a> Country card when atlasPublished && href are present.
+- all 8 scene entries are present.
+- Hero + all 8 referenced visual files are present in the deployed artifact.
+- all 9 deployed visual files decode as 1200 x 800 WebP.
+- Published Atlas countries are now Iceland / Denmark / Estonia / Finland / Norway / Sweden.
+
+RESPONSIVE / ACCESSIBILITY QA:
+- Desktop 1440px: PASS.
+- Tablet 768px: PASS.
+- Mobile 375px: PASS.
+- No material horizontal overflow.
+- Hero layout/crop consistent with Iceland / Norway template.
+- Scene grid: 2 columns desktop/tablet, 1 column mobile.
+- Heading hierarchy: PASS.
+- Duplicate IDs: none.
+- Unlabeled links/buttons: none.
+- Map scene markers are keyboard-focusable buttons with aria-labels.
+- Enter navigation from markers: PASS.
+- No page script errors or failed local production-asset requests in deployed-artifact browser QA.
+
+Final state:
+- Estonia satisfies the JOURNEY ATLAS Definition of Done.
+- Review Deployment completed.
+- User approval received.
+- Formal publication completed.
+- Production QA completed.
+- No identified blocking issues remain.
+
+Canonical URL:
+- https://atlas.yagenji.com/countries/estonia/
 
 Next action:
-- Review https://atlas.yagenji.com/countries/estonia/.
-- If approved, proceed to formal publication.
-- Until then keep atlasPublished:false.
+- None for Estonia unless a post-publication issue is reported.
