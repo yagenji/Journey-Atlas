@@ -1,7 +1,7 @@
 # COUNTRY PRODUCTION STATUS
 
 Country: Estonia
-Status: GENERATING
+Status: QA
 
 Branch: estonia-v2-visual
 Latest commit: branch head (GitHub)
@@ -23,33 +23,27 @@ Completed:
 - Estonia page structure and responsive layout are consistent with the current Iceland / Norway Country Page template.
 
 Current state:
-- Page structure, content, map, taxonomy connection, review route, noindex state and responsive structure are substantially complete.
-- Visual production is the only blocking workstream.
-- The final Estonia image direction is locked to photographic realism 60% / watercolor treatment 40%, using Iceland as the visual reference.
-- Hero / Tallinn Old Town has been explicitly approved in chat, but the approved generated binary has not yet been committed to GitHub.
-- Scene 1 / Viru Bog has been explicitly approved in chat, but the approved generated binary has not yet been committed to GitHub.
-- Scene 2 / Soomaa National Park has been explicitly approved in chat after visual review, but the approved generated binary has not yet been committed to GitHub.
-- Current GitHub production image paths still point to the earlier photographic source set for Hero + all 8 scenes.
-- Scene 3 / Panga Cliff is the next visual to produce. Multiple incorrect generations (UI mockups, Tallinn, or wetland imagery) were rejected and are not production assets.
+- Page structure, content, map, taxonomy connection, review route, noindex state and responsive structure are complete for review.
+- Hero + all 8 scene images are APPROVED.
+- Approved final binaries are now committed to assets/images/estonia/approved/ as 1200 x 800 WebP files.
+- Automated workflow verified full WebP decode, exact 1200 x 800 dimensions for all 9 images, and Estonia country JSON validation.
+- Temporary ZIP and temporary apply workflow were removed after successful materialization.
+- Branch diff against main is limited to the 9 Estonia final image replacements plus this status file.
+- Final image contact-sheet review confirms a coherent Estonia set using the locked photographic realism 60% / watercolor 40% direction, with Iceland as the visual reference.
 
 Remaining:
-- Regenerate the Estonia Hero first, one image at a time, to the Iceland / Norway visual standard.
-- Obtain visual approval for the Hero before replacing the production Hero.
-- Regenerate and approve all 8 scene images one by one.
-- Replace only approved final assets in production paths.
-- Remove superseded photographic production assets / photo credits after generated final assets are connected.
-- Re-run image QA and JSON validation.
-- Re-run desktop / tablet / mobile browser QA and accessibility checks on the completed visual set.
-- Deploy the review version to the canonical Country URL and perform final production-page visual QA.
-- Keep atlasPublished:false until explicit publication approval.
+- Merge the review-ready Estonia visual update to main while keeping atlasPublished:false.
+- Confirm deployment workflow build / validation / package / deploy success.
+- Review the canonical production URL https://atlas.yagenji.com/countries/estonia/.
+- Check Hero crop, all 8 scenes, map, long labels, photo credits, desktop/tablet/mobile layout, console errors and accessibility on the deployed page.
+- Apply any review fixes on the same canonical URL.
+- Keep noindex,follow / sitemap exclusion / non-linking until explicit publication approval.
+- Change atlasPublished:true only after explicit user approval.
 
 Next action:
-- Preserve and commit the approved Hero + 8 scene binaries to the Estonia production asset paths.
-- Convert/crop only as needed to the final 1200 x 800 WebP implementation format without altering the approved visual content.
-- Replace the current photographic source assets under assets/images/estonia/approved/.
-- Update/remove obsolete PHOTO_SOURCES references if no longer needed.
-- Re-run image decode/dimension QA, JSON validation, desktop/tablet/mobile browser QA, accessibility QA, and final review deployment.
-- Keep atlasPublished:false until explicit publication approval.
+- Merge estonia-v2-visual to main for REVIEW DEPLOYMENT.
+- Keep atlasPublished:false.
+- After deploy succeeds, QA the canonical Estonia URL and record the result here.
 
 Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
