@@ -44,7 +44,14 @@ let themeSets = {
   road:['tajikistan','kyrgyzstan','argentina','chile','lesotho','iceland']
 };
 
-const heroFiles = [1,2,3,4,5].map((n) => `assets/images/top/hero-set-${n}.webp.b64`);
+const heroFiles = [
+  'assets/images/top/hero-world-collage.svg',
+  'assets/images/top/hero-set-1.webp',
+  'assets/images/top/hero-set-2.webp',
+  'assets/images/top/hero-set-3.webp',
+  'assets/images/top/hero-set-4.webp',
+  'assets/images/top/hero-set-5.webp'
+];
 const featuredOrder = ['iceland','antarctica','turkiye','italy','maldives','peru','kenya'];
 const featuredArt = {
   antarctica:{x:'0%',y:'0%'},
@@ -55,18 +62,13 @@ const featuredArt = {
   kenya:{x:'100%',y:'100%'}
 };
 
-fetch('assets/images/top/theme-approved-sprite.webp.b64?v=20260822-2134')
-  .then((response)=>{if(!response.ok) throw new Error('Theme artwork missing');return response.text();})
-  .then((encoded)=>{
-    const source=encoded.trim();
-    if(source.length<10000) throw new Error('Theme artwork incomplete');
-    const image=`url("data:image/webp;base64,${source}")`;
-    themeArtElements.forEach((art,index)=>{
-      art.style.backgroundImage=image;
-      art.style.backgroundPosition=`${index*(100/7)}% 50%`;
-    });
-  })
-  .catch(()=>{});
+{
+  const image='url("assets/images/top/theme-approved-sprite.webp")';
+  themeArtElements.forEach((art,index)=>{
+    art.style.backgroundImage=image;
+    art.style.backgroundPosition=`${index*(100/7)}% 50%`;
+  });
+}
 
 fetch('data/theme-taxonomy.json')
   .then((response)=>{if(!response.ok) throw new Error('Theme taxonomy not found');return response.json();})
@@ -90,17 +92,12 @@ fetch('data/theme-taxonomy.json')
   })
   .catch(()=>{});
 
-Promise.all(heroFiles.map(async(file)=>{
-  const response = await fetch(file);
-  if(!response.ok) throw new Error(`Hero source missing: ${file}`);
-  return `data:image/webp;base64,${(await response.text()).trim()}`;
-})).then((sources)=>{
-  heroSources=sources;
-  setHero(0,false);
-  applyHeroDerivedArt();
-  if(destinations.length){renderRail(destinations);renderGrid(destinations);}
-  startHeroRotation();
-}).catch(()=>{heroSources=[];applyHeroDerivedArt();});
+heroSources=heroFiles;
+heroButtons.forEach((button,index)=>{button.hidden=index>=heroSources.length;});
+setHero(0,false);
+applyHeroDerivedArt();
+if(destinations.length){renderRail(destinations);renderGrid(destinations);}
+startHeroRotation();
 
 function setHero(index,animate=true){
   if(!heroImage || heroSources.length===0) return;
@@ -138,21 +135,16 @@ function applyHeroDerivedArt(){
     document.head.append(style);
   }
 
-  fetch('assets/images/top/explore-entry-sprite.webp.b64?v=20260823-1202')
-    .then((response)=>{if(!response.ok) throw new Error('Explore entry artwork missing');return response.text();})
-    .then((encoded)=>{
-      const source=encoded.trim();
-      if(source.length<10000) throw new Error('Explore entry artwork incomplete');
-      const image=`url("data:image/webp;base64,${source}")`;
-      cards.forEach((art,index)=>{
-        if(!art)return;
-        art.style.backgroundImage=image;
-        art.style.backgroundSize='300% 100%';
-        art.style.backgroundPosition=positions[index];
-        art.style.backgroundRepeat='no-repeat';
-      });
-    })
-    .catch(()=>{});
+  {
+    const image='url("assets/images/top/explore-entry-sprite.webp")';
+    cards.forEach((art,index)=>{
+      if(!art)return;
+      art.style.backgroundImage=image;
+      art.style.backgroundSize='300% 100%';
+      art.style.backgroundPosition=positions[index];
+      art.style.backgroundRepeat='no-repeat';
+    });
+  }
 }
 heroButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(Number(button.dataset.hero));startHeroRotation();}));
 heroStepButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(heroIndex+Number(button.dataset.heroStep));startHeroRotation();}));
