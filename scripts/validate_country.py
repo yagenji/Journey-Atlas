@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import base64
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -26,6 +27,12 @@ STRICT_REQUIRED = {
     "signatureFacts", "updatedAt", "sources",
 }
 COMMON_FACT_LABELS = ["地域", "首都", "人口", "面積", "言語", "主な宗教", "通貨"]
+
+MAP_WIDTH = 1200
+MAP_HEIGHT = 760
+MAX_MARKER_OFFSET_PERCENT = 5.0
+MARKER_EDGE_MARGIN = {"scene": 15.0, "hero": 12.0, "capital": 10.0}
+
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -92,6 +99,103 @@ def validate_coordinates(errors: list[str], owner: str, coordinates: object, bou
             fail(errors, f"{owner}: 座標が map.bounds の外です")
 
 
+def marker_min_distance(kind_a: str, kind_b: str) -> float:
+    kinds = {kind_a, kind_b}
+    if kind_a == kind_b == "scene":
+        return 25.0
+    if kinds == {"scene", "hero"}:
+        return 22.0
+    if kinds == {"scene", "capital"}:
+        return 20.0
+    if kinds == {"hero", "capital"}:
+        return 16.0
+    return 0.0
+
+
+def marker_offset(errors: list[str], owner: str, value: object) -> tuple[float, float]:
+    if value is None:
+        return 0.0, 0.0
+    if not isinstance(value, dict):
+        fail(errors, f"{owner}: mapOffset は object で指定してください")
+        return 0.0, 0.0
+    x = value.get("x", 0)
+    y = value.get("y", 0)
+    if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+        fail(errors, f"{owner}: mapOffset.x / y は数値で指定してください")
+        return 0.0, 0.0
+    if math.hypot(float(x), float(y)) > MAX_MARKER_OFFSET_PERCENT:
+        fail(
+            errors,
+            f"{owner}: mapOffset が大きすぎます（最大 {MAX_MARKER_OFFSET_PERCENT:.1f}%）: x={x}, y={y}",
+        )
+    return float(x), float(y)
+
+
+def project_marker(
+    coordinates: object,
+    bounds: tuple[object, object, object, object],
+    offset: tuple[float, float],
+) -> tuple[float, float] | None:
+    if not isinstance(coordinates, dict):
+        return None
+    lat = coordinates.get("latitude")
+    lon = coordinates.get("longitude")
+    north, south, west, east = bounds
+    if not all(isinstance(value, (int, float)) for value in (lat, lon, north, south, west, east)):
+        return None
+    x = ((lon - west) / (east - west)) * MAP_WIDTH + offset[0] / 100 * MAP_WIDTH
+    y = ((north - lat) / (north - south)) * MAP_HEIGHT + offset[1] / 100 * MAP_HEIGHT
+    return x, y
+
+
+def validate_map_markers(
+    errors: list[str],
+    filename: str,
+    data: dict,
+    bounds: tuple[object, object, object, object],
+) -> None:
+    markers: list[tuple[str, str, float, float]] = []
+
+    capital = data.get("capital") if isinstance(data.get("capital"), dict) else {}
+    capital_offset = marker_offset(errors, f"{filename}: capital", capital.get("mapOffset"))
+    capital_point = project_marker(capital.get("coordinates"), bounds, capital_offset)
+    if capital_point:
+        markers.append(("capital", "capital", *capital_point))
+
+    hero = data.get("hero") if isinstance(data.get("hero"), dict) else {}
+    hero_offset = marker_offset(errors, f"{filename}: hero", hero.get("mapOffset"))
+    hero_point = project_marker(hero.get("coordinates"), bounds, hero_offset)
+    if hero_point:
+        markers.append(("hero", "hero", *hero_point))
+
+    scenes = data.get("scenes") if isinstance(data.get("scenes"), list) else []
+    for index, scene in enumerate(scenes, 1):
+        if not isinstance(scene, dict):
+            continue
+        offset = marker_offset(errors, f"{filename}: scene {index}", scene.get("mapOffset"))
+        point = project_marker(scene.get("coordinates"), bounds, offset)
+        if point:
+            markers.append(("scene", f"scene {index}", *point))
+
+    for kind, label, x, y in markers:
+        margin = MARKER_EDGE_MARGIN[kind]
+        if x < margin or x > MAP_WIDTH - margin or y < margin or y > MAP_HEIGHT - margin:
+            fail(errors, f"{filename}: {label} marker が map canvas の端に近すぎます")
+
+    for index, first in enumerate(markers):
+        for second in markers[index + 1 :]:
+            minimum = marker_min_distance(first[0], second[0])
+            if not minimum:
+                continue
+            distance = math.hypot(first[2] - second[2], first[3] - second[3])
+            if distance < minimum:
+                fail(
+                    errors,
+                    f"{filename}: map marker collision: {first[1]} / {second[1]} "
+                    f"({distance:.1f}px < {minimum:.1f}px)。座標は維持し mapOffset で最小補正してください",
+                )
+
+
 def validate_country(path: Path, strict: bool = False) -> list[str]:
     errors: list[str] = []
     try:
@@ -152,6 +256,8 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
                 fail(errors, f"{prefix}: '{key}' がありません")
         validate_coordinates(errors, prefix, scene.get("coordinates"), bounds)
         validate_asset(errors, prefix, scene.get("image"))
+
+    validate_map_markers(errors, path.name, data, bounds)
 
     if strict:
         facts = data.get("facts") if isinstance(data.get("facts"), list) else []
