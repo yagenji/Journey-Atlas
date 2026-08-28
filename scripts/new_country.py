@@ -81,9 +81,11 @@ def scaffold(destination: dict) -> dict:
         },
         "map": {
             "bounds": {"north": None, "south": None, "west": None, "east": None},
-            "svg": f"assets/images/{slug}/map-atlas.svg",
+            "svg": f"assets/images/{slug}/map-atlas-v2.svg",
             "route": None,
             "source": "",
+            "qualityProfile": "atlas-v2",
+            "markerQaVersion": 1,
         },
         "scenes": [blank_scene(index, slug) for index in range(1, 9)],
         "encounters": [{"title": ""} for _ in range(8)],
@@ -134,7 +136,7 @@ def main() -> int:
 
     output.write_text(json.dumps(scaffold(destination), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
-    print("Next: fill content/assets, run strict validation, then set atlasPublished=true only when release-ready.")
+    print("Next: fill content/assets, build atlas-v2 map, run strict + marker QA, then set atlasPublished=true only when release-ready.")
     return 0
 
 
