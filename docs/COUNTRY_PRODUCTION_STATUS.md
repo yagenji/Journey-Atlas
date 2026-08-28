@@ -3,8 +3,8 @@
 Country: Estonia
 Status: QA
 
-Branch: main
-Latest commit: 11e8aeaba8b66daf1e05fbd916c232a485258837
+Branch: estonia-v4-visual-qa
+Latest commit: c87ff39448f72c7d1bf5c2d52780107fa2c3c4a3
 
 Completed:
 - Estonia country content implemented in data/countries/estonia.json.
@@ -66,3 +66,62 @@ Review deployment:
 - deploy run: 33176689650
 - PR: #8
 - publication state: atlasPublished:false
+
+
+FINAL VISUAL QA — BLOCKERS FOUND
+- PASS: Hero / Tallinn Old Town
+- PASS: Scene 1 / Viru Bog
+- PASS: Scene 2 / Soomaa National Park
+- PASS: Scene 3 / Panga Cliff
+- PASS: Scene 4 / Kaali Meteorite Crater
+- PASS: Scene 5 / Narva Castle
+- FAIL: Scene 6 / Suur Taevaskoda — generated image contains an exaggerated/invented large sandstone arch that is not characteristic of the named Suur Taevaskoda outcrop. Real visual reference: a high red-beige sandstone wall along the Ahja River, forested above.
+- FAIL: Scene 7 / Kõpu Lighthouse — generated image depicts a generic cylindrical coastal lighthouse beside keeper houses. Real Kõpu Lighthouse is a massive historic square/tapered stone lighthouse standing inland on the forested high point of Hiiumaa.
+- PASS: Scene 8 / Suur Munamägi
+
+Technical QA:
+- PASS: 9 final image files decode as WebP at 1200 x 800.
+- PASS: Estonia JSON validation.
+- PASS: review route, canonical, noindex, atlasPublished:false.
+- PASS: build and deploy workflows.
+- PASS: map base and marker coordinates are within configured Estonia bounds.
+- PASS: theme taxonomy assignment.
+- PASS: production package includes Estonia review page and current assets.
+
+Next action:
+- Regenerate Scene 7 / Kõpu Lighthouse first, one image only, photographic realism 60% / watercolor 40%, using accurate architecture and inland forest setting.
+- After approval, regenerate Scene 6 / Suur Taevaskoda.
+- Replace only those two assets, rerun QA, and review the same canonical URL.
+
+
+VISUAL QA CORRECTIONS — APPROVAL UPDATE
+- Scene 7 / Kõpu Lighthouse: APPROVED after regeneration. Corrected to an inland, forested high-point setting with a massive historic stone lighthouse form.
+- Scene 6 / Suur Taevaskoda: APPROVED after regeneration. Corrected to an Ahja River sandstone-wall landscape without the exaggerated natural arch.
+- Both approved corrections have been prepared locally as final 1200 x 800 WebP files:
+  - kopu-lighthouse-atlas.webp
+  - suur-taevaskoda-atlas.webp
+- Both files decode successfully as WebP at exactly 1200 x 800.
+
+Next action:
+- Replace the two matching files on branch estonia-v4-visual-qa under assets/images/estonia/approved/.
+- Re-run image QA, Estonia JSON validation, Cloudflare package validation and canonical-page review.
+- Keep atlasPublished:false.
+
+
+FINAL CORRECTION QA
+- Scene 7 / Kõpu Lighthouse: APPROVED replacement uploaded and verified.
+- Scene 6 / Suur Taevaskoda: APPROVED replacement uploaded and verified.
+- Replacement files exactly match the approved 1200 x 800 WebP outputs.
+- Full Estonia image QA passed: 9/9 WebP files, complete decode, exact 1200 x 800.
+- Estonia country JSON validation passed.
+- Cloudflare review package build passed.
+- Packaged Estonia review page contains both corrected assets.
+- noindex,follow confirmed in packaged Estonia page.
+- Estonia remains absent from sitemap.
+- Temporary QA workflow removed after successful run.
+
+Next action:
+- Merge estonia-v4-visual-qa to main.
+- Deploy review update.
+- Run post-deploy browser QA on the canonical Estonia URL.
+- Keep atlasPublished:false.
