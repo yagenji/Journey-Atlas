@@ -4,7 +4,9 @@ from __future__ import annotations
 import io
 import json
 import urllib.parse
+import urllib.error
 import urllib.request
+import time
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -81,12 +83,25 @@ SOURCES = [
 
 def download(filename: str) -> bytes:
     url = "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="")
-    req = urllib.request.Request(url, headers={"User-Agent": "Journey-Atlas/1.0 (Estonia asset build)"})
-    with urllib.request.urlopen(req, timeout=120) as response:
-        raw = response.read()
-        if len(raw) < 20_000:
-            raise RuntimeError(f"Downloaded file too small for {filename}: {len(raw)} bytes")
-        return raw
+    headers = {"User-Agent": "Journey-Atlas/1.0 (contact: github.com/yagenji/Journey-Atlas)"}
+    last_error = None
+    for attempt in range(6):
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=120) as response:
+                raw = response.read()
+            if len(raw) < 20_000:
+                raise RuntimeError(f"Downloaded file too small for {filename}: {len(raw)} bytes")
+            time.sleep(2.5)
+            return raw
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            if exc.code != 429 or attempt == 5:
+                raise
+            wait = 4 * (attempt + 1)
+            print(f"Wikimedia rate-limited {filename}; retrying in {wait}s")
+            time.sleep(wait)
+    raise RuntimeError(f"Download failed for {filename}: {last_error}")
 
 def materialize(item: dict) -> None:
     raw = download(item["file"])
