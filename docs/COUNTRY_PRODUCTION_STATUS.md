@@ -112,7 +112,11 @@ PLANNED COPY DIRECTION:
 
 Current state:
 - PHASE 1 complete.
-- PHASE 2 — VISUAL PRODUCTION begins now.
+- PHASE 2 — VISUAL PRODUCTION started.
+- Latvia Hero generation attempted twice.
+- Both attempts were REJECTED because the image generator returned editorial / Country Page UI layouts rather than a standalone landscape asset.
+- No rejected output has been committed or connected to production.
+- Per JOURNEY ATLAS rule, the Latvia Hero generation series is now reset before the next attempt.
 - No Latvia production page or Country JSON will be implemented until Hero + all 8 scenes pass the VISUAL COMPLETE GATE.
 
 Remaining:
@@ -122,4 +126,7 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Latvia Hero / Riga skyline across the Daugava as a standalone implementation-ready image.
+- Restart Latvia Hero as a fresh standalone landscape-generation series.
+- Subject only: Riga historic skyline across the Daugava from the left bank.
+- Absolutely no text, UI, map, card, flag, infographic or page layout.
+- Photographic realism 60% / watercolor 40%, Iceland reference.
