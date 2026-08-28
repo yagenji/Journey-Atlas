@@ -35,6 +35,7 @@ COUNTRY_CSS_SOURCES = [
     "assets/css/country-template-v2.css",
     "assets/css/country-icon-system.css",
     "assets/css/country-trivia.css",
+    "assets/css/photo-credits.css",
     "assets/css/site-unify.css",
     "assets/css/site-footer.css",
 ]

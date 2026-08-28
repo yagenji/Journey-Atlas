@@ -1,0 +1,37 @@
+name: Materialize Estonia assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - estonia-v1-build
+    paths:
+      - scripts/materialize_estonia_assets.py
+      - .github/workflows/materialize-estonia-assets.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: estonia-v1-build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python3 scripts/materialize_estonia_assets.py
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/estonia/approved
+          if git diff --cached --quiet; then
+            echo "No asset changes"
+          else
+            git commit -m "build: materialize Estonia Hero and 8 scenes"
+            git push origin HEAD:estonia-v1-build
+          fi
