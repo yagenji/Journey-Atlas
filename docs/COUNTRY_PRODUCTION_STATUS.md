@@ -44,10 +44,10 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Resume Scene 4 / Kaali Meteorite Crater from a fresh image-generation context.
-- Use Kaali source reference: circular wooded crater rim with small dark green pond; no sea, no coastline, no cliffs.
-- Visual treatment remains photographic realism 60% / watercolor 40%, Iceland reference.
-- Do not advance to Scene 5 until a correct Kaali standalone image is produced and approved.
+- Generate Scene 8 / Suur Munamägi as a standalone implementation-ready 3:2 landscape image.
+- Required subject: Suur Munamägi / Haanja Upland, southern Estonia; gentle forested rolling hills and lakes seen from an elevated viewpoint, emphasizing Estonia's highest point without exaggerating it into alpine terrain. No dramatic mountains, no city, no text, no UI.
+- Visual treatment: photographic realism 60% / watercolor 40%, Iceland reference.
+- After visual approval, preserve the approved binary for production replacement.
 
 Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
@@ -62,8 +62,8 @@ Visual approval checklist (chat approval; final binaries not yet committed):
 - Scene 4 / Kaali Meteorite Crater: BLOCKED - generation repeatedly returns Panga Cliff
 - Scene 5 / Narva Castle: PENDING
 - Scene 6 / Suur Taevaskoda: PENDING
-- Scene 7 / Kõpu Lighthouse: PENDING
-- Scene 8 / Suur Munamägi: PENDING
+- Scene 7 / Kõpu Lighthouse: APPROVED
+- Scene 8 / Suur Munamägi: NEXT TO GENERATE
 
 Visual ratio locked for Estonia final set:
 - Photographic realism: 60%
