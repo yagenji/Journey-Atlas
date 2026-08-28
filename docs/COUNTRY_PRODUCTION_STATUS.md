@@ -3,8 +3,8 @@
 Country: Estonia
 Status: QA
 
-Branch: main
-Latest commit: 58f0d3ae41283beed818724d34137b59068b0d9a
+Branch: estonia-v3-cachefix
+Latest commit: 7acf83c670062702659b6742d8b4fc1e3adaa5f2
 
 Completed:
 - Estonia country content implemented in data/countries/estonia.json.
@@ -28,22 +28,27 @@ Completed:
 - Final image contact-sheet QA confirms coherent visual treatment across Hero + 8 scenes.
 
 Current state:
-- Estonia is review-deployed on main with the approved final visual set.
-- Visual production and implementation are complete.
-- Technical build/package/deploy QA is complete.
-- Because the current execution environment blocks browser navigation to external/local pages, post-deploy visual browser QA of the updated Hero crop and responsive page could not be re-run here.
-- The final production-page visual review must therefore be completed on the canonical review URL.
+- Root cause of the deployed-photo symptom identified: Estonia final generated images had replaced the old photographs under identical asset URLs while production image assets were cacheable for 24 hours.
+- GitHub main and the GitHub Pages deploy artifact already contained the approved generated images, but existing browser/CDN cache could continue serving the old photo bytes.
+- A clean cache-safe fix is prepared on estonia-v3-cachefix.
+- The 9 approved generated assets now use new location-based final paths ending in -atlas.webp.
+- Estonia JSON now references only the new -atlas.webp paths.
+- Old photographic asset filenames and PHOTO_SOURCES.json have been removed from the Estonia approved production folder on this branch.
+- Runtime photoCredits and the obsolete photoAssets source entry have been removed because those credits no longer describe the displayed generated visuals.
+- Common Cloudflare image caching is changed to max-age=0, must-revalidate so future Country review image replacements do not remain stale for 24 hours.
+- CSS, JS and icons retain their existing one-day cache policy.
 
 Remaining:
-- Review https://atlas.yagenji.com/countries/estonia/ on the actual deployed page.
-- Confirm Hero crop, all 8 scenes, map, long labels, photo-credit presentation, desktop/tablet/mobile layout and general Iceland / Norway series consistency.
-- Apply any review fixes on the same canonical URL if needed.
-- Keep atlasPublished:false until explicit publication approval.
-- After explicit approval only: change atlasPublished:true, enable normal discovery/indexing/sitemap and run production QA.
+- Validate all 9 renamed WebP assets at 1200 x 800 with complete decode.
+- Validate Estonia country JSON and the Cloudflare review package.
+- Merge estonia-v3-cachefix to main.
+- Confirm Cloudflare/GitHub deployment success.
+- Re-check https://atlas.yagenji.com/countries/estonia/ and confirm the new generated visual URLs are loaded.
+- Keep atlasPublished:false.
 
 Next action:
-- Canonical URL review on https://atlas.yagenji.com/countries/estonia/.
-- If no visual corrections are required, await explicit user approval before formal publication.
+- Run cache-fix QA, merge to main, and review the canonical Estonia URL.
+- Do not publish; atlasPublished:false remains mandatory.
 
 Visual approval checklist:
 - Hero / Tallinn Old Town: APPROVED
