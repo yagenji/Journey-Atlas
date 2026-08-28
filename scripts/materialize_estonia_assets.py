@@ -82,11 +82,11 @@ SOURCES = [
     },
     {
         "output": "suur-munamagi.webp",
-        "file": "Suur Munamagi Tower.jpg",
-        "source": "https://commons.wikimedia.org/wiki/File:Suur_Munamagi_Tower.jpg",
-        "author": "Marcus Vegas",
-        "license": "CC BY-SA 2.0",
-        "centering": [0.50, 0.48],
+        "file": "View from the Suur Munamägi observation tower 1.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:View_from_the_Suur_Munam%C3%A4gi_observation_tower_1.jpg",
+        "author": "Reosarevok",
+        "license": "CC BY-SA 4.0",
+        "centering": [0.50, 0.50],
     },
 ]
 def download(filename: str) -> bytes:
