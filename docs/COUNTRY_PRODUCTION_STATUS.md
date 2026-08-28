@@ -44,10 +44,10 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 4 / Kaali Meteorite Crater as a standalone implementation-ready 3:2 landscape image.
-- Required subject: Kaali main meteorite crater on Saaremaa, near-circular wooded crater rim surrounding a dark still pond, modest scale, believable Estonian vegetation, no fantasy exaggeration, no text, no UI.
-- Visual treatment: photographic realism 60% / watercolor 40%, Iceland reference.
-- After visual approval, preserve the approved binary for later production replacement.
+- Resume Scene 4 / Kaali Meteorite Crater from a fresh image-generation context.
+- Use Kaali source reference: circular wooded crater rim with small dark green pond; no sea, no coastline, no cliffs.
+- Visual treatment remains photographic realism 60% / watercolor 40%, Iceland reference.
+- Do not advance to Scene 5 until a correct Kaali standalone image is produced and approved.
 
 Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
@@ -59,7 +59,7 @@ Visual approval checklist (chat approval; final binaries not yet committed):
 - Scene 1 / Viru Bog: APPROVED
 - Scene 2 / Soomaa National Park: APPROVED
 - Scene 3 / Panga Cliff: APPROVED
-- Scene 4 / Kaali Meteorite Crater: NEXT TO GENERATE
+- Scene 4 / Kaali Meteorite Crater: BLOCKED - generation repeatedly returns Panga Cliff
 - Scene 5 / Narva Castle: PENDING
 - Scene 6 / Suur Taevaskoda: PENDING
 - Scene 7 / Kõpu Lighthouse: PENDING
@@ -74,3 +74,8 @@ Image generation issue:
 - Several generation attempts returned UI/page mockups or the wrong landscape instead of a standalone implementation-ready image.
 - All such outputs are REJECTED and must not be committed or connected to production.
 - Scene 3 / Panga Cliff remains the next generation target.
+
+Current image-generation blocker:
+- Multiple fresh attempts for Scene 4 / Kaali Meteorite Crater incorrectly reproduced Scene 3 / Panga Cliff despite explicit negative constraints and reference-image guidance.
+- All incorrect outputs are REJECTED and not production assets.
+- Scene 4 must be restarted from a fresh image-generation context to avoid contaminating the visual sequence.
