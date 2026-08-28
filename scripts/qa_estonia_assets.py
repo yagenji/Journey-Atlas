@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# source-refresh: upgraded Estonia set
+# source-refresh: final Estonia set
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps
 
