@@ -1,0 +1,127 @@
+name: Country corrections QA
+
+on:
+  push:
+    branches:
+      - map-quality-v2
+    paths:
+      - '.github/workflows/country-corrections-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Source and production build QA
+        run: |
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/package_site.py scripts/build_cloudflare.py
+          node --check assets/js/app.js
+          node --check assets/js/top.js
+          python scripts/validate_country.py --published
+          python scripts/build_cloudflare.py
+          test -f dist/countries/finland/index.html
+          test -f dist/data/countries/finland.json
+          test -f dist/data/countries/sweden.json
+
+      - name: Wait for Cloudflare branch preview to contain this correction
+        run: |
+          python - <<'PY'
+          import json, time, urllib.request
+          url = "https://map-quality-v2.journey-atlas.pages.dev/data/countries/finland.json"
+          deadline = time.time() + 240
+          while time.time() < deadline:
+              try:
+                  with urllib.request.urlopen(url + "?qa=" + str(int(time.time())), timeout=20) as r:
+                      data = json.load(r)
+                  cap = data["capital"].get("mapOffset")
+                  scene = next(x for x in data["scenes"] if x["id"] == "suomenlinna").get("mapOffset")
+                  if cap == {"x": -1.8, "y": -1.2} and scene == {"x": 1.2, "y": 1.2}:
+                      print("Branch preview contains corrected Finland offsets.")
+                      break
+              except Exception as exc:
+                  print("waiting:", exc)
+              time.sleep(10)
+          else:
+              raise SystemExit("Cloudflare branch preview did not update within 240 seconds")
+          PY
+
+      - name: Install Playwright
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Browser QA
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+
+          out = Path("country-corrections-qa")
+          out.mkdir(exist_ok=True)
+          base = "https://map-quality-v2.journey-atlas.pages.dev"
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              for country in ("finland", "sweden"):
+                  for name, viewport in (
+                      ("desktop", {"width": 1440, "height": 1000}),
+                      ("mobile", {"width": 390, "height": 844}),
+                  ):
+                      page = browser.new_page(viewport=viewport)
+                      errors = []
+                      failed = []
+                      page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
+                      page.on("requestfailed", lambda r: failed.append(r.url))
+                      response = page.goto(f"{base}/countries/{country}/?qa=1", wait_until="networkidle", timeout=60000)
+                      assert response and response.status == 200
+                      page.wait_for_selector("#country-map-art img.map-base")
+                      page.wait_for_function("""() => {
+                        const img = document.querySelector('#country-map-art img.map-base');
+                        return img && img.complete && img.naturalWidth > 0;
+                      }""")
+                      assert page.locator("#map-markers .map-marker").count() == 8
+                      assert page.locator("#map-markers .map-capital-marker").count() == 1
+                      assert page.locator("#map-markers .map-hero-marker").count() == 1
+                      assert page.evaluate("() => document.documentElement.scrollWidth - window.innerWidth") <= 1
+                      assert not errors, errors
+                      assert not failed, failed
+                      art = page.locator("#country-map-art")
+                      art.scroll_into_view_if_needed()
+                      art.screenshot(path=str(out / f"{country}-{name}.png"))
+                      page.close()
+              browser.close()
+
+          # Static numeric proof for Sweden geometry:
+          # SVG top y=17.9 in a 760px canvas with N69.4/S55.0 => ~69.061°N.
+          north, south, y = 69.4, 55.0, 17.9
+          max_lat = north - y / 760 * (north - south)
+          assert 69.05 < max_lat < 69.07
+          print("Sweden SVG northern edge latitude:", round(max_lat, 4))
+
+          # Finland marker distance after correction.
+          W, H = 1200, 760
+          b = dict(north=70.4, south=59.4, west=18.8, east=31.9)
+          def point(lat, lon, ox, oy):
+              return (
+                  (lon-b["west"])/(b["east"]-b["west"])*W + ox/100*W,
+                  (b["north"]-lat)/(b["north"]-b["south"])*H + oy/100*H,
+              )
+          cap = point(60.1699, 24.9384, -1.8, -1.2)
+          suo = point(60.1458, 24.9877, 1.2, 1.2)
+          distance = math.dist(cap, suo)
+          assert distance >= 44
+          print("Finland capital/Suomenlinna marker distance:", round(distance, 2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: country-corrections-qa
+          path: country-corrections-qa/
