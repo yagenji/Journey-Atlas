@@ -49,3 +49,19 @@ Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
 - previous Estonia branch: estonia-v1-build @ 3d68e8357b6c440039d3b0d6afc3e1ee1e32e8a0
 - estonia-v1-build has no file differences from main; main is two merge/status commits ahead.
+
+Visual approval checklist (chat approval; final binaries not yet committed):
+- Hero / Tallinn Old Town: APPROVED
+- Scene 1 / Viru Bog: APPROVED
+- Scene 2 / Soomaa National Park: APPROVED
+- Scene 3 / Panga Cliff: NEXT TO GENERATE
+- Scene 4 / Kaali Meteorite Crater: PENDING
+- Scene 5 / Narva Castle: PENDING
+- Scene 6 / Suur Taevaskoda: PENDING
+- Scene 7 / Kõpu Lighthouse: PENDING
+- Scene 8 / Suur Munamägi: PENDING
+
+Visual ratio locked for Estonia final set:
+- Photographic realism: 60%
+- Watercolor treatment: 40%
+- Reference standard: Iceland
