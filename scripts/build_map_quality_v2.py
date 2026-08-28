@@ -13,6 +13,7 @@ from shapely.ops import unary_union
 WIDTH = 1200
 HEIGHT = 760
 STYLE_VERSION = "journey-atlas-map-v1"
+QUALITY_PROFILE = "atlas-v2"
 
 CONFIGS = {
     "SWE": {
@@ -76,9 +77,10 @@ def polygon_path(polygon: Polygon, bounds: tuple[float, float, float, float]) ->
 
 
 def render_svg(name: str, polygons: list[Polygon], source_url: str, adm: str) -> str:
-    land_d = " ".join(polygon_path(polygon, CONFIGS["SWE"]["bounds"] if name == "Sweden" else CONFIGS["FIN"]["bounds"]) for polygon in polygons)
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of {name}" data-map-style="{STYLE_VERSION}">
-<metadata>geoBoundaries gbOpen {adm} geometry (CC BY 4.0), country-unioned for display: {source_url}</metadata>
+    bounds = CONFIGS["SWE"]["bounds"] if name == "Sweden" else CONFIGS["FIN"]["bounds"]
+    land_d = " ".join(polygon_path(polygon, bounds) for polygon in polygons)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of {name}" data-map-style="{STYLE_VERSION}" data-map-quality="{QUALITY_PROFILE}">
+<metadata>geoBoundaries gbOpen {adm} geometry, country-unioned for display: {source_url}</metadata>
 <defs>
   <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
   <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
@@ -105,7 +107,7 @@ def main() -> None:
         if not geometries:
             raise RuntimeError(f"No geometry produced for {iso}")
 
-        merged = unary_union(geometries) if config["dissolve"] else unary_union(geometries)
+        merged = unary_union(geometries)
         # Preserve islands and coastline character; remove only detail well below one display pixel.
         merged = merged.simplify(0.0008 if iso == "SWE" else 0.0006, preserve_topology=True)
         polygons = sorted(polygons_from_geometry(merged), key=lambda geom: geom.area, reverse=True)
