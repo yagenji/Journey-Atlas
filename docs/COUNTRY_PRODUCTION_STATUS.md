@@ -92,3 +92,17 @@ Next action:
 - Regenerate Scene 7 / Kõpu Lighthouse first, one image only, photographic realism 60% / watercolor 40%, using accurate architecture and inland forest setting.
 - After approval, regenerate Scene 6 / Suur Taevaskoda.
 - Replace only those two assets, rerun QA, and review the same canonical URL.
+
+
+VISUAL QA CORRECTIONS — APPROVAL UPDATE
+- Scene 7 / Kõpu Lighthouse: APPROVED after regeneration. Corrected to an inland, forested high-point setting with a massive historic stone lighthouse form.
+- Scene 6 / Suur Taevaskoda: APPROVED after regeneration. Corrected to an Ahja River sandstone-wall landscape without the exaggerated natural arch.
+- Both approved corrections have been prepared locally as final 1200 x 800 WebP files:
+  - kopu-lighthouse-atlas.webp
+  - suur-taevaskoda-atlas.webp
+- Both files decode successfully as WebP at exactly 1200 x 800.
+
+Next action:
+- Replace the two matching files on branch estonia-v4-visual-qa under assets/images/estonia/approved/.
+- Re-run image QA, Estonia JSON validation, Cloudflare package validation and canonical-page review.
+- Keep atlasPublished:false.
