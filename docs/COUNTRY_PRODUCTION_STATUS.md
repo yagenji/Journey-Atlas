@@ -53,7 +53,7 @@ Reference state:
 Visual approval checklist (chat approval; final binaries not yet committed):
 - Hero / Tallinn Old Town: APPROVED
 - Scene 1 / Viru Bog: APPROVED
-- Scene 2 / Soomaa National Park: APPROVED
+- Scene 2 / Soomaa National Park: PENDING
 - Scene 3 / Panga Cliff: NEXT TO GENERATE
 - Scene 4 / Kaali Meteorite Crater: PENDING
 - Scene 5 / Narva Castle: PENDING
@@ -65,3 +65,8 @@ Visual ratio locked for Estonia final set:
 - Photographic realism: 60%
 - Watercolor treatment: 40%
 - Reference standard: Iceland
+
+Image generation issue:
+- Repeated attempts for Scene 2 returned UI/page mockups instead of a standalone implementation-ready landscape image.
+- These outputs are REJECTED and must not be committed or connected to production.
+- Scene 2 remains PENDING until a clean standalone image is generated.
