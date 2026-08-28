@@ -4,9 +4,9 @@ const embeddedSlug = document.documentElement.dataset.country;
 const querySlug = new URLSearchParams(window.location.search).get('country');
 const slug = embeddedSlug || querySlug || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260825-1027';
+const DATA_VERSION = '20260828-estonia-review';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
-const SITE_ORIGIN = 'https://yagenji.github.io/Journey-Atlas/';
+const SITE_ORIGIN = 'https://atlas.yagenji.com/';
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
   .then((response) => {
