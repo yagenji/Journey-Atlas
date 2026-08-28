@@ -3,54 +3,49 @@
 Country: Estonia
 Status: QA
 
-Branch: estonia-v2-visual
-Latest commit: branch head (GitHub)
-Previous verified status commit: 0b99e2c5f7054eef2129f30b8310516f32bc5019
+Branch: main
+Latest commit: 58f0d3ae41283beed818724d34137b59068b0d9a
 
 Completed:
 - Estonia country content implemented in data/countries/estonia.json.
 - Estonia review route implemented at countries/estonia/index.html.
 - Detailed map implemented at assets/images/estonia/map-atlas-v2.svg with a 1200 x 760 viewBox.
-- Hero + 8 scene assets are present as 1200 x 800 WebP files.
-- Automated image decode/format/dimension QA passed for all 9 WebP assets.
-- Country data validation passed.
-- TRAVEL THEMES taxonomy assigns Estonia to: 街を歩く / 時をたどる / 暮らしに出会う.
-- atlasPublished:false remains in data/atlas-destinations.json.
-- Review page remains noindex,follow and excluded from normal discovery.
-- Latest main deployment at cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8 completed successfully.
-- The deployed GitHub Pages artifact from that main commit was downloaded and rendered for desktop, tablet and mobile QA.
-- Structural/browser QA found no console errors, no missing page sections, all 8 scene cards present, and no material horizontal overflow.
-- Estonia page structure and responsive layout are consistent with the current Iceland / Norway Country Page template.
+- Hero + 8 scene visuals explicitly APPROVED.
+- Final visual direction locked to photographic realism 60% / watercolor treatment 40%, using Iceland as reference.
+- Approved Hero + 8 scene binaries committed to assets/images/estonia/approved/ as 1200 x 800 WebP.
+- Full WebP decode and exact 1200 x 800 dimensions verified for all 9 final images.
+- Estonia country JSON validation passed.
+- Temporary ZIP and temporary materialization workflow removed after successful asset replacement.
+- PR #8 merged to main for REVIEW DEPLOYMENT.
+- Deploy JOURNEY ATLAS to GitHub Pages workflow succeeded on main commit 58f0d3ae41283beed818724d34137b59068b0d9a.
+- Source validation, production build, production-build validation, Pages setup, site upload and Pages deployment all succeeded.
+- Cloudflare production package build and package validation also succeeded.
+- Deployed GitHub Pages artifact was downloaded and verified to contain the 9 new Estonia WebP assets at 1200 x 800.
+- atlasPublished:false remains unchanged.
+- Estonia remains noindex,follow, sitemap-excluded and not linked from normal published-country discovery.
+- TRAVEL THEMES taxonomy remains: 街を歩く / 時をたどる / 暮らしに出会う.
+- Previous structural browser QA confirmed no console errors, all 8 scene cards, no material horizontal overflow, and Iceland / Norway template consistency before the final image replacement.
+- Final image contact-sheet QA confirms coherent visual treatment across Hero + 8 scenes.
 
 Current state:
-- Page structure, content, map, taxonomy connection, review route, noindex state and responsive structure are complete for review.
-- Hero + all 8 scene images are APPROVED.
-- Approved final binaries are now committed to assets/images/estonia/approved/ as 1200 x 800 WebP files.
-- Automated workflow verified full WebP decode, exact 1200 x 800 dimensions for all 9 images, and Estonia country JSON validation.
-- Temporary ZIP and temporary apply workflow were removed after successful materialization.
-- Branch diff against main is limited to the 9 Estonia final image replacements plus this status file.
-- Final image contact-sheet review confirms a coherent Estonia set using the locked photographic realism 60% / watercolor 40% direction, with Iceland as the visual reference.
+- Estonia is review-deployed on main with the approved final visual set.
+- Visual production and implementation are complete.
+- Technical build/package/deploy QA is complete.
+- Because the current execution environment blocks browser navigation to external/local pages, post-deploy visual browser QA of the updated Hero crop and responsive page could not be re-run here.
+- The final production-page visual review must therefore be completed on the canonical review URL.
 
 Remaining:
-- Merge the review-ready Estonia visual update to main while keeping atlasPublished:false.
-- Confirm deployment workflow build / validation / package / deploy success.
-- Review the canonical production URL https://atlas.yagenji.com/countries/estonia/.
-- Check Hero crop, all 8 scenes, map, long labels, photo credits, desktop/tablet/mobile layout, console errors and accessibility on the deployed page.
-- Apply any review fixes on the same canonical URL.
-- Keep noindex,follow / sitemap exclusion / non-linking until explicit publication approval.
-- Change atlasPublished:true only after explicit user approval.
+- Review https://atlas.yagenji.com/countries/estonia/ on the actual deployed page.
+- Confirm Hero crop, all 8 scenes, map, long labels, photo-credit presentation, desktop/tablet/mobile layout and general Iceland / Norway series consistency.
+- Apply any review fixes on the same canonical URL if needed.
+- Keep atlasPublished:false until explicit publication approval.
+- After explicit approval only: change atlasPublished:true, enable normal discovery/indexing/sitemap and run production QA.
 
 Next action:
-- Merge estonia-v2-visual to main for REVIEW DEPLOYMENT.
-- Keep atlasPublished:false.
-- After deploy succeeds, QA the canonical Estonia URL and record the result here.
+- Canonical URL review on https://atlas.yagenji.com/countries/estonia/.
+- If no visual corrections are required, await explicit user approval before formal publication.
 
-Reference state:
-- main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
-- previous Estonia branch: estonia-v1-build @ 3d68e8357b6c440039d3b0d6afc3e1ee1e32e8a0
-- estonia-v1-build has no file differences from main; main is two merge/status commits ahead.
-
-Visual approval checklist (chat approval; final binaries not yet committed):
+Visual approval checklist:
 - Hero / Tallinn Old Town: APPROVED
 - Scene 1 / Viru Bog: APPROVED
 - Scene 2 / Soomaa National Park: APPROVED
@@ -61,17 +56,8 @@ Visual approval checklist (chat approval; final binaries not yet committed):
 - Scene 7 / Kõpu Lighthouse: APPROVED
 - Scene 8 / Suur Munamägi: APPROVED
 
-Visual ratio locked for Estonia final set:
-- Photographic realism: 60%
-- Watercolor treatment: 40%
-- Reference standard: Iceland
-
-Image generation issue:
-- Several generation attempts returned UI/page mockups or the wrong landscape instead of a standalone implementation-ready image.
-- All such outputs are REJECTED and must not be committed or connected to production.
-- Scene 3 / Panga Cliff remains the next generation target.
-
-Visual production completion:
-- Hero + all 8 Estonia scene images have been explicitly approved in chat.
-- Final visual direction is photographic realism 60% / watercolor treatment 40%, using Iceland as reference.
-- Approved generated binaries still need to be preserved and committed into GitHub production paths before visual implementation is complete.
+Review deployment:
+- main commit: 58f0d3ae41283beed818724d34137b59068b0d9a
+- deploy run: 33176689650
+- PR: #8
+- publication state: atlasPublished:false
