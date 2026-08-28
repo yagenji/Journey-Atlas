@@ -1,0 +1,35 @@
+name: Runtime map QA
+
+on:
+  push:
+    branches:
+      - map-quality-v2
+    paths:
+      - 'scripts/runtime_map_qa.py'
+      - '.github/workflows/runtime-map-qa.yml'
+  workflow_dispatch:
+
+jobs:
+  runtime-map-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Run branch and production map QA
+        run: python3 scripts/runtime_map_qa.py
+      - name: Upload runtime QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-map-qa
+          path: runtime-map-qa/
