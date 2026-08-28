@@ -6,14 +6,18 @@ on:
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'assets/images/**/map-atlas*.svg'
       - 'scripts/validate_country.py'
+      - 'scripts/qa_map_markers.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'assets/images/**/map-atlas*.svg'
       - 'scripts/validate_country.py'
+      - 'scripts/qa_map_markers.py'
       - '.github/workflows/validate-country-data.yml'
 
 jobs:
@@ -28,3 +32,5 @@ jobs:
           python-version: '3.12'
       - name: Validate published country JSON and 201-destination scope
         run: python3 scripts/validate_country.py --published
+      - name: Validate atlas-v2 map marker spacing
+        run: python3 scripts/qa_map_markers.py --published
