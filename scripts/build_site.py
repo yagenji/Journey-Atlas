@@ -310,8 +310,6 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
         raise FileNotFoundError(f"Published country data missing: {data_path}")
 
     data = json.loads(data_path.read_text(encoding="utf-8"))
-    data = rewrite_encoded_assets(data)
-    data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     template = (ROOT / "country.html").read_text(encoding="utf-8")
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
