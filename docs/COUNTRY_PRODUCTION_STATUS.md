@@ -4,7 +4,7 @@ Country: Estonia
 Status: QA
 
 Branch: estonia-v4-visual-qa
-Latest commit: pending visual-QA correction commit
+Latest commit: c87ff39448f72c7d1bf5c2d52780107fa2c3c4a3
 
 Completed:
 - Estonia country content implemented in data/countries/estonia.json.
@@ -105,4 +105,23 @@ VISUAL QA CORRECTIONS — APPROVAL UPDATE
 Next action:
 - Replace the two matching files on branch estonia-v4-visual-qa under assets/images/estonia/approved/.
 - Re-run image QA, Estonia JSON validation, Cloudflare package validation and canonical-page review.
+- Keep atlasPublished:false.
+
+
+FINAL CORRECTION QA
+- Scene 7 / Kõpu Lighthouse: APPROVED replacement uploaded and verified.
+- Scene 6 / Suur Taevaskoda: APPROVED replacement uploaded and verified.
+- Replacement files exactly match the approved 1200 x 800 WebP outputs.
+- Full Estonia image QA passed: 9/9 WebP files, complete decode, exact 1200 x 800.
+- Estonia country JSON validation passed.
+- Cloudflare review package build passed.
+- Packaged Estonia review page contains both corrected assets.
+- noindex,follow confirmed in packaged Estonia page.
+- Estonia remains absent from sitemap.
+- Temporary QA workflow removed after successful run.
+
+Next action:
+- Merge estonia-v4-visual-qa to main.
+- Deploy review update.
+- Run post-deploy browser QA on the canonical Estonia URL.
 - Keep atlasPublished:false.
