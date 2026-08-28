@@ -90,6 +90,7 @@ function renderCountry(data, registry) {
   renderFacts(fragment, data.facts);
   renderTips(fragment, data.tips);
   renderRelated(fragment, data.relatedCountries, registry);
+  renderPhotoCredits(fragment, data.photoCredits);
 
   app.replaceChildren(fragment);
   updatePageMetadata(data);
@@ -438,6 +439,25 @@ function renderRelated(fragment, countries = [], registry = []) {
     article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
     container.append(article);
   });
+}
+
+function renderPhotoCredits(fragment, items = []) {
+  const section = fragment.querySelector('#photo-credits');
+  const list = fragment.querySelector('#photo-credit-list');
+  if (!section || !list || !Array.isArray(items) || !items.length) return;
+  items.forEach((item) => {
+    const li = document.createElement('li');
+    const label = escapeHtml(item.label || 'Photo');
+    const author = escapeHtml(item.author || '');
+    const license = escapeHtml(item.license || '');
+    if (item.url) {
+      li.innerHTML = `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${label}</a><span>${author}${author && license ? ' / ' : ''}${license}</span>`;
+    } else {
+      li.innerHTML = `<span>${label}${author ? ` — ${author}` : ''}${license ? ` / ${license}` : ''}</span>`;
+    }
+    list.append(li);
+  });
+  section.hidden = false;
 }
 
 function initWishButton(countrySlug) {
