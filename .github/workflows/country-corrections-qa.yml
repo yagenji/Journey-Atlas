@@ -33,7 +33,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, time, urllib.request
-          url = "https://map-quality-v2.journey-atlas.pages.dev/data/countries/finland.json"
+          url = "https://0c01a5ac.journey-atlas.pages.dev/data/countries/finland.json"
           deadline = time.time() + 240
           while time.time() < deadline:
               try:
@@ -65,7 +65,7 @@ jobs:
 
           out = Path("country-corrections-qa")
           out.mkdir(exist_ok=True)
-          base = "https://map-quality-v2.journey-atlas.pages.dev"
+          base = "https://0c01a5ac.journey-atlas.pages.dev"
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
