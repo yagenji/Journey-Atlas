@@ -76,8 +76,7 @@ def polygon_path(polygon: Polygon, bounds: tuple[float, float, float, float]) ->
     return " ".join(ring for ring in rings if ring)
 
 
-def render_svg(name: str, polygons: list[Polygon], source_url: str, adm: str) -> str:
-    bounds = CONFIGS["SWE"]["bounds"] if name == "Sweden" else CONFIGS["FIN"]["bounds"]
+def render_svg(name: str, polygons: list[Polygon], source_url: str, adm: str, bounds) -> str:
     land_d = " ".join(polygon_path(polygon, bounds) for polygon in polygons)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of {name}" data-map-style="{STYLE_VERSION}" data-map-quality="{QUALITY_PROFILE}">
 <metadata>geoBoundaries gbOpen {adm} geometry, country-unioned for display: {source_url}</metadata>
@@ -90,6 +89,24 @@ def render_svg(name: str, polygons: list[Polygon], source_url: str, adm: str) ->
 <ellipse cx="220" cy="130" rx="300" ry="125" fill="#fbf7ec" opacity=".34"/><ellipse cx="1000" cy="650" rx="330" ry="155" fill="#d5e4e2" opacity=".35"/>
 <path d="{land_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
 </svg>'''
+
+
+def update_country_config(config: dict, metadata: dict) -> None:
+    path = Path("data/countries") / f"{config['slug']}.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    west, south, east, north = config["bounds"]
+    data["map"]["bounds"] = {"north": north, "south": south, "west": west, "east": east}
+    data["map"]["svg"] = str(config["output"])
+    license_name = metadata.get("boundaryLicense") or "see upstream"
+    build_date = metadata.get("buildDate") or "unknown"
+    detail = "dissolved" if config["dissolve"] else "simplified"
+    data["map"]["source"] = (
+        f"geoBoundaries gbOpen {config['name']} {config['adm']} {detail} "
+        f"(build {build_date}; {license_name}); illustrated treatment: JOURNEY ATLAS"
+    )
+    data["map"]["qualityProfile"] = QUALITY_PROFILE
+    data["map"]["markerQaVersion"] = 1
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -114,9 +131,10 @@ def main() -> None:
         if not polygons:
             raise RuntimeError(f"No polygon geometry produced for {iso}")
 
-        svg = render_svg(config["name"], polygons, source_url, config["adm"])
+        svg = render_svg(config["name"], polygons, source_url, config["adm"], config["bounds"])
         config["output"].parent.mkdir(parents=True, exist_ok=True)
         config["output"].write_text(svg, encoding="utf-8")
+        update_country_config(config, metadata)
 
         point_count = sum(len(polygon.exterior.coords) + sum(len(interior.coords) for interior in polygon.interiors) for polygon in polygons)
         metadata_out[config["slug"]] = {
