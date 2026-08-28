@@ -82,7 +82,7 @@ SOURCES = [
 ]
 
 def download(filename: str) -> bytes:
-    url = "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="")
+    url = "https://commons.wikimedia.org/wiki/Special:Redirect/file/" + urllib.parse.quote(filename, safe="") + "?width=1600"
     headers = {"User-Agent": "Journey-Atlas/1.0 (contact: github.com/yagenji/Journey-Atlas)"}
     last_error = None
     for attempt in range(6):
@@ -92,13 +92,13 @@ def download(filename: str) -> bytes:
                 raw = response.read()
             if len(raw) < 20_000:
                 raise RuntimeError(f"Downloaded file too small for {filename}: {len(raw)} bytes")
-            time.sleep(2.5)
+            time.sleep(5.0)
             return raw
         except urllib.error.HTTPError as exc:
             last_error = exc
             if exc.code != 429 or attempt == 5:
                 raise
-            wait = 4 * (attempt + 1)
+            wait = 8 * (attempt + 1)
             print(f"Wikimedia rate-limited {filename}; retrying in {wait}s")
             time.sleep(wait)
     raise RuntimeError(f"Download failed for {filename}: {last_error}")
