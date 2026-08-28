@@ -31,7 +31,7 @@ COMMON_FACT_LABELS = ["地域", "首都", "人口", "面積", "言語", "主な�
 MAP_WIDTH = 1200
 MAP_HEIGHT = 760
 MAX_MARKER_OFFSET_PERCENT = 5.0
-MARKER_EDGE_MARGIN = {"scene": 15.0, "hero": 12.0, "capital": 10.0}
+MARKER_EDGE_MARGIN = {"scene": 18.0, "hero": 18.0, "capital": 18.0}
 
 
 
@@ -102,13 +102,13 @@ def validate_coordinates(errors: list[str], owner: str, coordinates: object, bou
 def marker_min_distance(kind_a: str, kind_b: str) -> float:
     kinds = {kind_a, kind_b}
     if kind_a == kind_b == "scene":
-        return 25.0
+        return 40.0
     if kinds == {"scene", "hero"}:
-        return 22.0
+        return 36.0
     if kinds == {"scene", "capital"}:
-        return 20.0
+        return 44.0
     if kinds == {"hero", "capital"}:
-        return 16.0
+        return 28.0
     return 0.0
 
 

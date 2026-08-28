@@ -57,13 +57,13 @@
 `scripts/validate_country.py` は1200×760へ投影した最終表示位置を検査する。
 
 最小中心間距離:
-- Scene / Scene: 25px
-- Scene / Hero: 22px
-- Scene / Capital: 20px
-- Hero / Capital: 16px
+- Scene / Scene: 40px
+- Scene / Hero: 36px
+- Scene / Capital: 44px
+- Hero / Capital: 28px
 
 これを下回る場合はvalidation failureとし、公開しない。
-また、markerはcanvas端から種類ごとの安全余白を確保する。
+marker中心はcanvas端から18px以上離す。
 
 ### 補正の順序
 1. まずboundsが不必要に広すぎないか確認する。
@@ -72,7 +72,7 @@
 4. Capitalはmarkerを大きく動かす前に `labelPosition` を検討する。
 5. Hero / Capitalを動かす場合も、複数markerへ小さく分散させる。
 6. `mapOffset` のベクトルは5%以内。通常は2.5%以内を目標とする。
-7. 40px未満の近接ペアは、validationを通っていても目視QA対象とする。
+7. Validation通過後も、首都ラベル・Hero・番号の見え方を1200×760 PNGと実ページで目視確認する。
 
 補正後も「実際の地域を指している」と認識できる範囲を超えてはならない。
 
