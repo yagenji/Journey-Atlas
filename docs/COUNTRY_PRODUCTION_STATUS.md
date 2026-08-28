@@ -44,10 +44,12 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 8 / Suur Munamägi as a standalone implementation-ready 3:2 landscape image.
-- Required subject: Suur Munamägi / Haanja Upland, southern Estonia; gentle forested rolling hills and lakes seen from an elevated viewpoint, emphasizing Estonia's highest point without exaggerating it into alpine terrain. No dramatic mountains, no city, no text, no UI.
-- Visual treatment: photographic realism 60% / watercolor 40%, Iceland reference.
-- After visual approval, preserve the approved binary for production replacement.
+- Preserve and commit the approved Hero + 8 scene binaries to the Estonia production asset paths.
+- Convert/crop only as needed to the final 1200 x 800 WebP implementation format without altering the approved visual content.
+- Replace the current photographic source assets under assets/images/estonia/approved/.
+- Update/remove obsolete PHOTO_SOURCES references if no longer needed.
+- Re-run image decode/dimension QA, JSON validation, desktop/tablet/mobile browser QA, accessibility QA, and final review deployment.
+- Keep atlasPublished:false until explicit publication approval.
 
 Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
@@ -59,11 +61,11 @@ Visual approval checklist (chat approval; final binaries not yet committed):
 - Scene 1 / Viru Bog: APPROVED
 - Scene 2 / Soomaa National Park: APPROVED
 - Scene 3 / Panga Cliff: APPROVED
-- Scene 4 / Kaali Meteorite Crater: BLOCKED - generation repeatedly returns Panga Cliff
-- Scene 5 / Narva Castle: PENDING
-- Scene 6 / Suur Taevaskoda: PENDING
+- Scene 4 / Kaali Meteorite Crater: APPROVED
+- Scene 5 / Narva Castle: APPROVED
+- Scene 6 / Suur Taevaskoda: APPROVED
 - Scene 7 / Kõpu Lighthouse: APPROVED
-- Scene 8 / Suur Munamägi: NEXT TO GENERATE
+- Scene 8 / Suur Munamägi: APPROVED
 
 Visual ratio locked for Estonia final set:
 - Photographic realism: 60%
@@ -75,7 +77,7 @@ Image generation issue:
 - All such outputs are REJECTED and must not be committed or connected to production.
 - Scene 3 / Panga Cliff remains the next generation target.
 
-Current image-generation blocker:
-- Multiple fresh attempts for Scene 4 / Kaali Meteorite Crater incorrectly reproduced Scene 3 / Panga Cliff despite explicit negative constraints and reference-image guidance.
-- All incorrect outputs are REJECTED and not production assets.
-- Scene 4 must be restarted from a fresh image-generation context to avoid contaminating the visual sequence.
+Visual production completion:
+- Hero + all 8 Estonia scene images have been explicitly approved in chat.
+- Final visual direction is photographic realism 60% / watercolor treatment 40%, using Iceland as reference.
+- Approved generated binaries still need to be preserved and committed into GitHub production paths before visual implementation is complete.
