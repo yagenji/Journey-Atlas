@@ -24,7 +24,7 @@ REQUIRED_TOP_LEVEL = {
 }
 STRICT_REQUIRED = {
     "schemaVersion", "seo", "capital", "atlasExtras", "travelTrivia",
-    "signatureFacts", "updatedAt", "sources",
+    "signatureFacts", "updatedAt", "sourcesVerifiedAt", "sourceDates", "sources",
 }
 COMMON_FACT_LABELS = ["地域", "首都", "人口", "面積", "言語", "主な宗教", "通貨"]
 
@@ -284,6 +284,23 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         if len(trivia) != 5:
             fail(errors, f"{path.name}: travelTrivia はレイアウト仕様上5件必要です")
         sources = data.get("sources") if isinstance(data.get("sources"), dict) else {}
+        sources_verified_at = data.get("sourcesVerifiedAt")
+        if not isinstance(sources_verified_at, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", sources_verified_at):
+            fail(errors, f"{path.name}: sourcesVerifiedAt は YYYY-MM-DD で指定してください")
+
+        source_dates = data.get("sourceDates") if isinstance(data.get("sourceDates"), dict) else {}
+        if "population" not in source_dates:
+            fail(errors, f"{path.name}: 変動値の人口には sourceDates.population が必要です")
+        period_pattern = re.compile(r"\d{4}(?:-(?:Q[1-4]|\d{2}(?:-\d{2})?))?")
+        for source_key, period in source_dates.items():
+            if source_key not in sources:
+                fail(errors, f"{path.name}: sourceDates の '{source_key}' が sources にありません")
+            if not isinstance(period, str) or not period_pattern.fullmatch(period):
+                fail(
+                    errors,
+                    f"{path.name}: sourceDates.{source_key} は YYYY / YYYY-MM / YYYY-MM-DD / YYYY-Qn で指定してください",
+                )
+
         seen_trivia_titles: set[str] = set()
         for index, item in enumerate(trivia, 1):
             if not isinstance(item, dict):
