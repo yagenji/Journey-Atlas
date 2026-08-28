@@ -117,8 +117,17 @@ def write_cloudflare_headers() -> None:
 /data/*
   Cache-Control: public, max-age=300, must-revalidate
 
-/assets/*
+/assets/css/*
   Cache-Control: public, max-age=86400
+
+/assets/js/*
+  Cache-Control: public, max-age=86400
+
+/assets/icons/*
+  Cache-Control: public, max-age=86400
+
+/assets/images/*
+  Cache-Control: public, max-age=0, must-revalidate
 """
     (DIST / "_headers").write_text(headers, encoding="utf-8")
 
