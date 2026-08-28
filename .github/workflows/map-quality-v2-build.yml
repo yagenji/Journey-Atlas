@@ -1,0 +1,150 @@
+name: Build Sweden Finland map quality v2
+
+on:
+  push:
+    branches: [map-quality-v2]
+    paths:
+      - ".github/workflows/map-quality-v2-build.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: map-quality-v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install shapely cairosvg pillow
+      - name: Generate detailed maps
+        run: |
+          python - <<'PY'
+          import json, math, urllib.request
+          from pathlib import Path
+          from shapely.geometry import shape, Polygon, MultiPolygon
+          from shapely.ops import unary_union
+          import cairosvg
+          from PIL import Image, ImageDraw
+
+          WIDTH, HEIGHT = 1200, 760
+          configs = {
+              "SWE": {
+                  "slug": "sweden",
+                  "name": "Sweden",
+                  "bounds": (10.2, 55.0, 24.9, 69.4),
+                  "output": "assets/images/sweden/map-atlas-v2.svg",
+              },
+              "FIN": {
+                  "slug": "finland",
+                  "name": "Finland",
+                  "bounds": (18.8, 59.4, 31.9, 70.4),
+                  "output": "assets/images/finland/map-atlas-v2.svg",
+              },
+          }
+
+          def project(lon, lat, bounds):
+              west, south, east, north = bounds
+              return (
+                  (lon - west) / (east - west) * WIDTH,
+                  (north - lat) / (north - south) * HEIGHT,
+              )
+
+          def polygons(geom):
+              if isinstance(geom, Polygon):
+                  return [geom]
+              if isinstance(geom, MultiPolygon):
+                  return list(geom.geoms)
+              return []
+
+          def ring_path(coords, bounds):
+              pts = []
+              last = None
+              for lon, lat in coords:
+                  x, y = project(lon, lat, bounds)
+                  p = (round(x, 1), round(y, 1))
+                  if p != last:
+                      pts.append(p)
+                      last = p
+              if len(pts) < 3:
+                  return ""
+              return "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + " Z"
+
+          def polygon_path(poly, bounds):
+              parts = [ring_path(poly.exterior.coords, bounds)]
+              parts += [ring_path(ring.coords, bounds) for ring in poly.interiors]
+              return " ".join(p for p in parts if p)
+
+          previews = []
+          metadata_out = {}
+          for iso, cfg in configs.items():
+              api = f"https://www.geoboundaries.org/api/current/gbOpen/{iso}/ADM1/"
+              with urllib.request.urlopen(api) as r:
+                  meta = json.load(r)
+              source_url = meta["gjDownloadURL"]
+              with urllib.request.urlopen(source_url) as r:
+                  geo = json.load(r)
+              merged = unary_union([shape(f["geometry"]) for f in geo["features"]])
+              # Keep coastline/island detail while removing sub-pixel noise.
+              merged = merged.simplify(0.0015, preserve_topology=True)
+              pieces = sorted(polygons(merged), key=lambda g: g.area, reverse=True)
+              land_d = " ".join(polygon_path(p, cfg["bounds"]) for p in pieces)
+
+              svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of {cfg["name"]}" data-map-style="journey-atlas-map-v1">
+<metadata>geoBoundaries gbOpen ADM1 dissolved; {source_url}</metadata>
+<defs>
+  <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
+  <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+</defs>
+<rect width="1200" height="760" fill="url(#sea)"/>
+<ellipse cx="220" cy="130" rx="300" ry="125" fill="#fbf7ec" opacity=".34"/><ellipse cx="1000" cy="650" rx="330" ry="155" fill="#d5e4e2" opacity=".35"/>
+<path d="{land_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
+</svg>'''
+              out = Path(cfg["output"])
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_text(svg, encoding="utf-8")
+              png = Path(f"/tmp/{cfg['slug']}-map-v2.png")
+              cairosvg.svg2png(bytestring=svg.encode(), write_to=str(png), output_width=1200, output_height=760)
+              previews.append((cfg["slug"], png))
+              metadata_out[cfg["slug"]] = {
+                  "api": api,
+                  "source": source_url,
+                  "boundaryLicense": meta.get("boundaryLicense"),
+                  "boundarySource": meta.get("boundarySource"),
+                  "buildDate": meta.get("buildDate"),
+                  "pieces": len(pieces),
+                  "bytes": len(svg.encode()),
+              }
+              print(cfg["slug"], metadata_out[cfg["slug"]])
+
+          # Contact sheet for visual QA.
+          sheet = Image.new("RGB", (1200, 1600), "white")
+          draw = ImageDraw.Draw(sheet)
+          y = 0
+          for slug, png in previews:
+              im = Image.open(png).convert("RGB")
+              draw.text((10, y + 8), slug.upper(), fill="black")
+              sheet.paste(im.resize((1200, 760)), (0, y + 40))
+              y += 800
+          sheet.save("/tmp/map-quality-v2-contact-sheet.png")
+          Path("/tmp/map-quality-v2-metadata.json").write_text(json.dumps(metadata_out, indent=2), encoding="utf-8")
+          PY
+      - name: Commit generated map assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/sweden/map-atlas-v2.svg assets/images/finland/map-atlas-v2.svg
+          git commit -m "build: generate Sweden Finland detailed maps"
+          git push origin HEAD:map-quality-v2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: map-quality-v2-qa
+          path: |
+            /tmp/map-quality-v2-contact-sheet.png
+            /tmp/sweden-map-v2.png
+            /tmp/finland-map-v2.png
+            /tmp/map-quality-v2-metadata.json
