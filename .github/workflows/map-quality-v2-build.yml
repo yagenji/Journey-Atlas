@@ -50,11 +50,15 @@ jobs:
               y += 800
           sheet.save(qa / 'contact-sheet.png')
           PY
-      - name: Commit generated maps
+      - name: Commit generated maps and country config
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/images/sweden/map-atlas-v2.svg assets/images/finland/map-atlas-v2.svg
+          git add \
+            assets/images/sweden/map-atlas-v2.svg \
+            assets/images/finland/map-atlas-v2.svg \
+            data/countries/sweden.json \
+            data/countries/finland.json
           git diff --cached --quiet && exit 0
           git commit -m 'build: generate detailed Sweden Finland maps [skip ci]'
           git push origin HEAD:map-quality-v2
