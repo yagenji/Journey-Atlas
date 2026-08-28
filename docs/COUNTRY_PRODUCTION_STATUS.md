@@ -44,8 +44,8 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 3 / Panga Cliff as a standalone implementation-ready 3:2 landscape image.
-- Required subject: Panga Cliff / Saaremaa, layered limestone-dolomite sea cliff, flat grassy cliff-top, Baltic Sea, no city, no castle, no boardwalk, no wetland, no text, no UI.
+- Generate Scene 4 / Kaali Meteorite Crater as a standalone implementation-ready 3:2 landscape image.
+- Required subject: Kaali main meteorite crater on Saaremaa, near-circular wooded crater rim surrounding a dark still pond, modest scale, believable Estonian vegetation, no fantasy exaggeration, no text, no UI.
 - Visual treatment: photographic realism 60% / watercolor 40%, Iceland reference.
 - After visual approval, preserve the approved binary for later production replacement.
 
@@ -58,8 +58,8 @@ Visual approval checklist (chat approval; final binaries not yet committed):
 - Hero / Tallinn Old Town: APPROVED
 - Scene 1 / Viru Bog: APPROVED
 - Scene 2 / Soomaa National Park: APPROVED
-- Scene 3 / Panga Cliff: NEXT TO GENERATE
-- Scene 4 / Kaali Meteorite Crater: PENDING
+- Scene 3 / Panga Cliff: APPROVED
+- Scene 4 / Kaali Meteorite Crater: NEXT TO GENERATE
 - Scene 5 / Narva Castle: PENDING
 - Scene 6 / Suur Taevaskoda: PENDING
 - Scene 7 / Kõpu Lighthouse: PENDING
