@@ -1,0 +1,30 @@
+name: QA Estonia images
+
+on:
+  push:
+    branches:
+      - estonia-v1-build
+    paths:
+      - .github/workflows/qa-estonia-images.yml
+      - scripts/qa_estonia_assets.py
+      - assets/images/estonia/approved/**
+      - data/countries/estonia.json
+  workflow_dispatch:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: estonia-v1-build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python3 scripts/qa_estonia_assets.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: estonia-image-qa
+          path: .qa/estonia-contact-sheet.jpg
+          retention-days: 3
