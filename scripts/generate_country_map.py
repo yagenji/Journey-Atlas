@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a JOURNEY ATLAS country-map SVG from high-quality geographic data."""
+"""Generate an atlas-v2 JOURNEY ATLAS country-map SVG from high-quality geographic data."""
 
 from __future__ import annotations
 
@@ -15,6 +15,12 @@ from shapely.ops import unary_union
 WIDTH = 1200
 HEIGHT = 760
 STYLE_VERSION = "journey-atlas-map-v1"
+QUALITY_PROFILE = "atlas-v2"
+DEFAULT_SIMPLIFY = {
+    "geoboundaries": 0.0008,
+    "gshhs": 0.0010,
+    "natural-earth": 0.0030,
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -40,14 +46,17 @@ def parse_args() -> argparse.Namespace:
         "--admin-level",
         default="ADM0",
         choices=("ADM0", "ADM1", "ADM2", "ADM3"),
-        help="geoBoundaries level. ADM1 may be dissolved when ADM0 coastline detail is insufficient.",
+        help="geoBoundaries level. Use ADM1 dissolved only when ADM0 loses coastline/island detail.",
     )
     parser.add_argument("--resolution", default="i", choices=("c", "l", "i", "h", "f"))
     parser.add_argument(
         "--simplify",
         type=float,
-        default=0.003,
-        help="Geometry simplification tolerance in degrees. Keep <=0.003 for production unless QA proves otherwise.",
+        default=None,
+        help=(
+            "Geometry simplification tolerance in degrees. When omitted, atlas-v2 uses a source-aware default "
+            "(geoBoundaries 0.0008, GSHHS 0.0010, Natural Earth 0.0030)."
+        ),
     )
     parser.add_argument("--include-lakes", action="store_true", help="Render major lakes when they improve readability")
     parser.add_argument("--max-bytes", type=int, default=0, help="Fail if generated SVG exceeds this size; 0 disables")
@@ -120,22 +129,27 @@ def load_natural_earth(dataset: str, country_name: str) -> tuple[list[Polygon], 
     return land, lakes, f"Natural Earth 1:10m | {dataset}"
 
 
+def fetch_json(url: str) -> dict:
+    request = urllib.request.Request(url, headers={"User-Agent": "Journey-Atlas-map-builder/1.0"})
+    with urllib.request.urlopen(request, timeout=120) as response:
+        return json.load(response)
+
+
 def load_geoboundaries(iso: str, admin_level: str) -> tuple[list[Polygon], list[Polygon], str]:
     api_url = f"https://www.geoboundaries.org/api/current/gbOpen/{iso.upper()}/{admin_level}/"
-    with urllib.request.urlopen(api_url) as response:
-        metadata = json.load(response)
+    metadata = fetch_json(api_url)
 
     source_url = metadata.get("gjDownloadURL")
     if not source_url:
         raise ValueError(f"geoBoundaries API returned no gjDownloadURL: {api_url}")
 
-    with urllib.request.urlopen(source_url) as response:
-        geojson = json.load(response)
-
-    geometries = [shape(feature["geometry"]) for feature in geojson.get("features", [])]
+    geojson = fetch_json(source_url)
+    geometries = [shape(feature["geometry"]) for feature in geojson.get("features", []) if feature.get("geometry")]
     if not geometries:
         raise ValueError(f"geoBoundaries dataset contains no features: {source_url}")
 
+    # ADM1/ADM2 inputs are intentionally dissolved here: the page map is a country outline,
+    # while subdivision geometry can preserve islands/coastline that a coarse ADM0 source loses.
     geometry = unary_union(geometries)
     land = polygons_from_geometry(geometry)
     lakes: list[Polygon] = []
@@ -145,7 +159,8 @@ def load_geoboundaries(iso: str, admin_level: str) -> tuple[list[Polygon], list[
     source_note = (
         f"geoBoundaries gbOpen {admin_level} dissolved | {source_url} | "
         f"source={metadata.get('boundarySource', 'unknown')} | "
-        f"license={metadata.get('boundaryLicense', 'see upstream')}"
+        f"license={metadata.get('boundaryLicense', 'see upstream')} | "
+        f"build={metadata.get('buildDate', 'unknown')}"
     )
     return land, lakes, source_note
 
@@ -160,7 +175,7 @@ def project(lon: float, lat: float, bounds: tuple[float, float, float, float]) -
 def ring_path(coords, bounds: tuple[float, float, float, float]) -> str:
     points: list[tuple[float, float]] = []
     previous = None
-    for lon, lat in coords:
+    for lon, lat, *_ in coords:
         x, y = project(lon, lat, bounds)
         point = (round(x, 1), round(y, 1))
         if point != previous:
@@ -206,7 +221,7 @@ def render_svg(
             for geometry in major_lakes
         )
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}" data-map-quality="{QUALITY_PROFILE}">
 <metadata>{escape(source_note)}</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
@@ -224,6 +239,10 @@ def main() -> None:
     args = parse_args()
     west, south, east, north = args.bounds
     bounds = (west, south, east, north)
+    simplify = DEFAULT_SIMPLIFY[args.source] if args.simplify is None else args.simplify
+
+    if simplify < 0:
+        raise ValueError("--simplify must be >= 0")
 
     if args.source == "gshhs":
         land, lakes, source_note = load_gshhs(bounds, args.resolution)
@@ -241,7 +260,7 @@ def main() -> None:
         land,
         lakes,
         bounds,
-        args.simplify,
+        simplify,
         args.include_lakes,
         map_name,
         source_note,
@@ -256,7 +275,7 @@ def main() -> None:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(svg, encoding="utf-8")
-    print(f"Wrote {output} ({STYLE_VERSION}, {byte_size} bytes)")
+    print(f"Wrote {output} ({STYLE_VERSION}, {QUALITY_PROFILE}, simplify={simplify}, {byte_size} bytes)")
     print(f"Source: {source_note}")
 
 
