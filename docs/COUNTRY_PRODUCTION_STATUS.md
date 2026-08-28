@@ -23,11 +23,14 @@ Completed:
 - Estonia page structure and responsive layout are consistent with the current Iceland / Norway Country Page template.
 
 Current state:
-- The page implementation itself is substantially complete.
-- Visual QA identified the blocking issue: current Estonia Hero + 8 scene assets are photographic source images, while JOURNEY ATLAS requires recognizable real places rendered with restrained watercolor treatment.
-- This visual mismatch is material when Estonia is compared directly with Iceland / Norway.
-- Existing main review page is preserved while visual remediation is performed on estonia-v2-visual.
-- Two consecutive Estonia Hero generation attempts did not produce a usable standalone Hero; both returned page-level mockups instead of the requested single landscape. Both were rejected and neither was committed or connected to production.\n- Per production rules, the Estonia Hero generation series is now RESET before the next attempt.
+- Page structure, content, map, taxonomy connection, review route, noindex state and responsive structure are substantially complete.
+- Visual production is the only blocking workstream.
+- The final Estonia image direction is locked to photographic realism 60% / watercolor treatment 40%, using Iceland as the visual reference.
+- Hero / Tallinn Old Town has been explicitly approved in chat, but the approved generated binary has not yet been committed to GitHub.
+- Scene 1 / Viru Bog has been explicitly approved in chat, but the approved generated binary has not yet been committed to GitHub.
+- Scene 2 / Soomaa National Park has been explicitly approved in chat after visual review, but the approved generated binary has not yet been committed to GitHub.
+- Current GitHub production image paths still point to the earlier photographic source set for Hero + all 8 scenes.
+- Scene 3 / Panga Cliff is the next visual to produce. Multiple incorrect generations (UI mockups, Tallinn, or wetland imagery) were rejected and are not production assets.
 
 Remaining:
 - Regenerate the Estonia Hero first, one image at a time, to the Iceland / Norway visual standard.
@@ -41,9 +44,10 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- RESET the Estonia Hero generation series, then produce a replacement Tallinn Old Town Hero as a standalone landscape asset only (not a page mockup), based on the Kohtuotsa viewpoint.
-- Required visual: recognizable Tallinn Lower Town red roofs and Gothic spires, Gulf of Finland / harbour in the distance, wide composition, realistic geography and architecture, quiet restrained watercolor softness, no poster treatment, no text, no invented buildings.
-- Do not proceed to Scene 1 until this Hero passes visual review.
+- Generate Scene 3 / Panga Cliff as a standalone implementation-ready 3:2 landscape image.
+- Required subject: Panga Cliff / Saaremaa, layered limestone-dolomite sea cliff, flat grassy cliff-top, Baltic Sea, no city, no castle, no boardwalk, no wetland, no text, no UI.
+- Visual treatment: photographic realism 60% / watercolor 40%, Iceland reference.
+- After visual approval, preserve the approved binary for later production replacement.
 
 Reference state:
 - main: cc7a17f7e20fb2667b8a8b0e8c7c9a2def9cd6e8
@@ -53,7 +57,7 @@ Reference state:
 Visual approval checklist (chat approval; final binaries not yet committed):
 - Hero / Tallinn Old Town: APPROVED
 - Scene 1 / Viru Bog: APPROVED
-- Scene 2 / Soomaa National Park: PENDING
+- Scene 2 / Soomaa National Park: APPROVED
 - Scene 3 / Panga Cliff: NEXT TO GENERATE
 - Scene 4 / Kaali Meteorite Crater: PENDING
 - Scene 5 / Narva Castle: PENDING
@@ -67,6 +71,6 @@ Visual ratio locked for Estonia final set:
 - Reference standard: Iceland
 
 Image generation issue:
-- Repeated attempts for Scene 2 returned UI/page mockups instead of a standalone implementation-ready landscape image.
-- These outputs are REJECTED and must not be committed or connected to production.
-- Scene 2 remains PENDING until a clean standalone image is generated.
+- Several generation attempts returned UI/page mockups or the wrong landscape instead of a standalone implementation-ready image.
+- All such outputs are REJECTED and must not be committed or connected to production.
+- Scene 3 / Panga Cliff remains the next generation target.
