@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Build high-detail Sweden/Finland JOURNEY ATLAS maps from geoBoundaries gbOpen ADM0."""
+"""Build high-detail Sweden/Finland JOURNEY ATLAS maps from geoBoundaries gbOpen."""
 
 from __future__ import annotations
 
 import json
 import urllib.request
 from pathlib import Path
+
+from shapely.geometry import shape, Polygon, MultiPolygon
+from shapely.ops import unary_union
 
 WIDTH = 1200
 HEIGHT = 760
@@ -17,19 +20,23 @@ CONFIGS = {
         "name": "Sweden",
         "bounds": (10.2, 55.0, 24.9, 69.4),
         "output": Path("assets/images/sweden/map-atlas-v2.svg"),
+        "adm": "ADM1",
+        "dissolve": True,
     },
     "FIN": {
         "slug": "finland",
         "name": "Finland",
         "bounds": (18.8, 59.4, 31.9, 70.4),
         "output": Path("assets/images/finland/map-atlas-v2.svg"),
+        "adm": "ADM0",
+        "dissolve": False,
     },
 }
 
 
 def fetch_json(url: str) -> dict:
     request = urllib.request.Request(url, headers={"User-Agent": "Journey-Atlas-map-builder/1.0"})
-    with urllib.request.urlopen(request, timeout=90) as response:
+    with urllib.request.urlopen(request, timeout=120) as response:
         return json.load(response)
 
 
@@ -40,10 +47,10 @@ def project(lon: float, lat: float, bounds: tuple[float, float, float, float]) -
     return x, y
 
 
-def ring_path(ring: list[list[float]], bounds: tuple[float, float, float, float]) -> str:
+def ring_path(coords, bounds: tuple[float, float, float, float]) -> str:
     points: list[tuple[float, float]] = []
     last = None
-    for lon, lat, *_ in ring:
+    for lon, lat, *_ in coords:
         x, y = project(lon, lat, bounds)
         point = (round(x, 1), round(y, 1))
         if point != last:
@@ -54,23 +61,24 @@ def ring_path(ring: list[list[float]], bounds: tuple[float, float, float, float]
     return "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in points) + " Z"
 
 
-def geometry_paths(geometry: dict, bounds: tuple[float, float, float, float]) -> list[str]:
-    geometry_type = geometry.get("type")
-    coordinates = geometry.get("coordinates") or []
-    polygons = [coordinates] if geometry_type == "Polygon" else coordinates if geometry_type == "MultiPolygon" else []
-    paths: list[str] = []
-    for polygon in polygons:
-        rings = [ring_path(ring, bounds) for ring in polygon]
-        path = " ".join(ring for ring in rings if ring)
-        if path:
-            paths.append(path)
-    return paths
+def polygons_from_geometry(geometry) -> list[Polygon]:
+    if isinstance(geometry, Polygon):
+        return [geometry]
+    if isinstance(geometry, MultiPolygon):
+        return list(geometry.geoms)
+    return []
 
 
-def render_svg(name: str, paths: list[str], source_url: str) -> str:
-    land_d = " ".join(paths)
+def polygon_path(polygon: Polygon, bounds: tuple[float, float, float, float]) -> str:
+    rings = [ring_path(polygon.exterior.coords, bounds)]
+    rings.extend(ring_path(interior.coords, bounds) for interior in polygon.interiors)
+    return " ".join(ring for ring in rings if ring)
+
+
+def render_svg(name: str, polygons: list[Polygon], source_url: str, adm: str) -> str:
+    land_d = " ".join(polygon_path(polygon, CONFIGS["SWE"]["bounds"] if name == "Sweden" else CONFIGS["FIN"]["bounds"]) for polygon in polygons)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of {name}" data-map-style="{STYLE_VERSION}">
-<metadata>geoBoundaries gbOpen ADM0 simplified geometry (CC BY 4.0): {source_url}</metadata>
+<metadata>geoBoundaries gbOpen {adm} geometry (CC BY 4.0), country-unioned for display: {source_url}</metadata>
 <defs>
   <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
   <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
@@ -88,26 +96,27 @@ def main() -> None:
     metadata_out = {}
 
     for iso, config in CONFIGS.items():
-        api_url = f"https://www.geoboundaries.org/api/current/gbOpen/{iso}/ADM0/"
+        api_url = f"https://www.geoboundaries.org/api/current/gbOpen/{iso}/{config['adm']}/"
         metadata = fetch_json(api_url)
-        source_url = metadata["simplifiedGeometryGeoJSON"]
+        source_url = metadata["gjDownloadURL"] if config["dissolve"] else metadata["simplifiedGeometryGeoJSON"]
         geojson = fetch_json(source_url)
 
-        paths: list[str] = []
-        point_count = 0
-        for feature in geojson.get("features", []):
-            geometry = feature.get("geometry") or {}
-            paths.extend(geometry_paths(geometry, config["bounds"]))
-            coords = geometry.get("coordinates") or []
-            point_count += len(json.dumps(coords))  # stable relative complexity signal for QA metadata
-
-        if not paths:
+        geometries = [shape(feature["geometry"]) for feature in geojson.get("features", []) if feature.get("geometry")]
+        if not geometries:
             raise RuntimeError(f"No geometry produced for {iso}")
 
-        svg = render_svg(config["name"], paths, source_url)
+        merged = unary_union(geometries) if config["dissolve"] else unary_union(geometries)
+        # Preserve islands and coastline character; remove only detail well below one display pixel.
+        merged = merged.simplify(0.0008 if iso == "SWE" else 0.0006, preserve_topology=True)
+        polygons = sorted(polygons_from_geometry(merged), key=lambda geom: geom.area, reverse=True)
+        if not polygons:
+            raise RuntimeError(f"No polygon geometry produced for {iso}")
+
+        svg = render_svg(config["name"], polygons, source_url, config["adm"])
         config["output"].parent.mkdir(parents=True, exist_ok=True)
         config["output"].write_text(svg, encoding="utf-8")
 
+        point_count = sum(len(polygon.exterior.coords) + sum(len(interior.coords) for interior in polygon.interiors) for polygon in polygons)
         metadata_out[config["slug"]] = {
             "api": api_url,
             "source": source_url,
@@ -115,9 +124,10 @@ def main() -> None:
             "boundarySource": metadata.get("boundarySource"),
             "buildDate": metadata.get("buildDate"),
             "bounds": config["bounds"],
-            "pathCount": len(paths),
+            "adm": config["adm"],
+            "polygonCount": len(polygons),
+            "pointCount": point_count,
             "svgBytes": len(svg.encode("utf-8")),
-            "geometryComplexity": point_count,
         }
         print(config["slug"], metadata_out[config["slug"]])
 
