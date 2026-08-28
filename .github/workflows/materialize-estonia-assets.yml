@@ -2,6 +2,12 @@ name: Materialize Estonia assets
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - estonia-v1-build
+    paths:
+      - scripts/materialize_estonia_assets.py
+      - .github/workflows/materialize-estonia-assets.yml
 
 permissions:
   contents: write
