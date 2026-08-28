@@ -57,6 +57,8 @@ Each published country JSON uses `schemaVersion: 2` and contains:
 - `tips`
 - `relatedCountries`
 - `updatedAt`
+- `sourcesVerifiedAt`
+- `sourceDates`
 - `sources`
 
 Reusable information items may include an optional `icon` key. The value must reference a symbol in `assets/icons/atlas-icons.svg`.
@@ -117,6 +119,30 @@ Use a readable rounded figure in the visible page and keep the precise source fi
 - For larger populations, choose an equally readable `万人` or `億人` expression rather than unnecessary precision.
 - Exceptions are allowed for very small countries/territories when rounding would materially distort scale.
 - A country-specific exception must be intentional, not accidental source precision leaking into the UI.
+
+#### Source date / provenance rule
+
+`updatedAt` is the country JSON content-update date. It is **not** a substitute for the statistical reference period.
+
+For published countries:
+
+- `sourcesVerifiedAt` records the last source audit date as `YYYY-MM-DD`.
+- `sourceDates` maps a source key to the period represented by that value.
+- Population is always treated as time-sensitive and must have `sourceDates.population`.
+- Other values that can change over time — for example religion share, annual energy mix, annual land-use share, membership counts, or other current statistics — must also record their reference period when known.
+- Accepted period forms are `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, and `YYYY-Qn`.
+- Use the **data reference period**, not merely the date on which the webpage was accessed.
+- If the data period cannot be established from the source, do not invent one; keep the source citation and resolve the period before relying on the value as a current statistic.
+
+Example:
+
+```json
+"sourcesVerifiedAt": "2026-08-28",
+"sourceDates": {
+  "population": "2026-Q2",
+  "hydropower": "2025"
+}
+```
 
 ### Signature facts
 
@@ -315,6 +341,7 @@ The strict validator checks at least:
 - Hero, capital, and all scene coordinates sit inside map bounds
 - exactly 8 scenes
 - exact common-fact set and order
+- `sourcesVerifiedAt` and source-period metadata for time-sensitive statistics
 - rounded population display (no accidental decimal precision)
 - exactly 3 signature facts
 - non-empty atlas extras

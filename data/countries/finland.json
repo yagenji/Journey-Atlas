@@ -11,7 +11,8 @@
     "nameEn": "Helsinki",
     "nameJa": "ヘルシンキ",
     "coordinates": {"latitude": 60.1699, "longitude": 24.9384},
-    "labelPosition": "left"
+    "labelPosition": "left",
+    "mapOffset": {"x": -1.8, "y": -1.2}
   },
   "hero": {
     "lead": "森の向こうに湖がひらき、その先にも島と森が続く。水辺と北の光が、暮らしのすぐそばにある国。",
@@ -34,7 +35,7 @@
     {"id":"pallas-yllastunturi","name":"パッラス・ユッラストゥントゥリ","nameLocal":"Pallas–Yllästunturi","mapLabel":"Pallas","description":"ラップランド西部には、氷河に削られた丸みのあるfellが連なる。森林限界を越えると低い植生と広い空が続き、秋にはruskaの色が地表を覆う。","coordinates":{"latitude":68.05,"longitude":24.05},"image":"assets/images/finland/pallas-yllastunturi.webp"},
     {"id":"kilpisjarvi-saana","name":"キルピスヤルヴィ / サーナ","nameLocal":"Kilpisjärvi / Saana","mapLabel":"Saana","description":"フィンランド北西端では、Kilpisjärviの水面の向こうにSaanaの山体が立ち上がる。国内でも特に標高差が大きく、北欧山地へ続く地形の変化がはっきり現れる。","coordinates":{"latitude":69.043,"longitude":20.856},"image":"assets/images/finland/kilpisjarvi-saana.webp"},
     {"id":"riisitunturi","name":"リーシトゥントゥリ","nameLocal":"Riisitunturi","mapLabel":"Riisitunturi","description":"冬には湿った雪がトウヒの枝に重なり、樹木が白い塊のような姿になる。丘陵の上から北方林を見渡すと、冬が景観そのものをつくり変えることが分かる。","coordinates":{"latitude":66.215,"longitude":28.497},"image":"assets/images/finland/riisitunturi.webp"},
-    {"id":"suomenlinna","name":"スオメンリンナ","nameLocal":"Suomenlinna / Helsinki","mapLabel":"Suomenlinna","description":"ヘルシンキ沖の島々に石造の要塞と草地が広がる。海峡を船が行き交い、首都のすぐ外側に群島と軍事史が重なるフィンランド南岸の景観がある。","coordinates":{"latitude":60.1458,"longitude":24.9877},"mapOffset":{"x":4.0,"y":1.5},"labelPosition":"right","image":"assets/images/finland/suomenlinna.webp"}
+    {"id":"suomenlinna","name":"スオメンリンナ","nameLocal":"Suomenlinna / Helsinki","mapLabel":"Suomenlinna","description":"ヘルシンキ沖の島々に石造の要塞と草地が広がる。海峡を船が行き交い、首都のすぐ外側に群島と軍事史が重なるフィンランド南岸の景観がある。","coordinates":{"latitude":60.1458,"longitude":24.9877},"mapOffset":{"x":1.2,"y":1.2},"labelPosition":"right","image":"assets/images/finland/suomenlinna.webp"}
   ],
   "encounters": [
     {"title":"湖","icon":"landscape"},{"title":"森","icon":"landscape"},{"title":"サウナ","icon":"hot-spring"},{"title":"群島","icon":"sea"},{"title":"木造の町","icon":"home"},{"title":"白夜","icon":"sun"},{"title":"雪の森","icon":"snow"},{"title":"北極圏","icon":"compass"}
@@ -76,7 +77,7 @@
     {"label":"通貨","value":"ユーロ（EUR）"}
   ],
   "signatureFacts": [
-    {"label":"湖","value":"約16.8万","note":"大小の湖が国土に点在し、湖沼地方では水と森が連続する景観をつくる。","icon":"map"},
+    {"label":"湖","value":"約16.8万","note":"面積500㎡以上の湖が約16.8万あり、湖沼地方では水と森が連続する景観をつくる。","icon":"map"},
     {"label":"森林","value":"約75%","note":"国土の約4分の3を森林が覆い、都市の外だけでなく日常の景観にも深く入り込んでいる。","icon":"landscape"},
     {"label":"サウナ","value":"約320万","note":"家庭、コテージ、公共施設まで広く存在し、サウナはフィンランドの日常文化の一部になっている。","icon":"hot-spring"}
   ],
@@ -91,18 +92,25 @@
     {"slug":"estonia","nameEn":"ESTONIA","nameJa":"エストニア","flag":"🇪🇪","reason":"バルト海を渡り、木造の町と森・湿地の景観を続けて見たいなら。"}
   ],
   "updatedAt": "2026-08-28",
+  "sourcesVerifiedAt": "2026-08-28",
+  "sourceDates": {
+    "population": "2026-07-31",
+    "area": "2026-01-01",
+    "religion": "2025",
+    "lakes": "2026"
+  },
   "sources": {
     "population":"Statistics Finland: preliminary population 5,655,296 at end of July 2026",
     "area":"Statistics Finland, Finland in Figures 2026: total area 338,493 km² on 1 January 2026",
     "languages":"Finlex, Constitution of Finland section 17: Finnish and Swedish are the national languages",
     "religion":"Statistics Finland, Population structure 2025: Evangelical Lutheran Church members were 61% of the population",
-    "lakes":"Statistics Finland, Finland in Figures 2026: approximately 168,000 lakes",
+    "lakes":"Statistics Finland, Finland in Figures 2026: approximately 168,000 lakes with an area of 500 m² or more",
     "forest":"Metsähallitus: forests cover approximately 75% of Finland's land area",
     "sauna":"Finnish Heritage Agency: approximately 3.2 million saunas; sauna culture inscribed on UNESCO Representative List in 2020",
     "everymansRights":"Ministry of the Environment, Finland: Everyman's rights",
     "mokki":"Visit Finland: Finnish cottage culture and more than half a million cottages",
     "salmiakki":"This is Finland: salmiakki in Finnish food culture",
     "midsummer":"This is Finland / Visit Finland: Juhannus midsummer traditions",
-    "map":"Natural Earth / GSHHS public geographic data; illustrated treatment: JOURNEY ATLAS"
+    "map":"geoBoundaries gbOpen FIN ADM1 dissolved, build Dec 12 2023, ODbL 1.0; illustrated treatment: JOURNEY ATLAS"
   }
 }
