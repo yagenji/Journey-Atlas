@@ -1,10 +1,10 @@
 # COUNTRY PRODUCTION STATUS
 
 Country: Latvia
-Status: GENERATING
+Status: PUBLISHED
 
-Branch: latvia-v1-content
-Latest commit: 63bd6ca83282f770c00bc3bf03652d604a436262
+Branch: main
+Latest publication commit: fa2cb8b87c1c4ce29161c4dc1b0035f2e8074f22
 
 Completed:
 - GitHub main state checked before production start.
@@ -217,6 +217,162 @@ FINAL QA CHECKPOINT — 2026-08-29:
 - PERFORMANCE CONCERN — the 9 PNG raster assets total about 27.8 MiB; optimize final publication assets only after visual replacements are settled.
 - ACCESSIBILITY NOTE — scene cards are keyboard-focusable and keyboard-operable but use an interactive <article> without an explicit button role; this is a shared Country Template issue, not Latvia-specific, and should be handled in common UI work rather than with Latvia-specific markup.
 - Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
+
+
+VISUAL REPLACEMENT APPROVAL — 2026-08-29:
+- Scene 6 / Cēsis Medieval Castle replacement approved by user.
+- Approved replacement source prepared as cesis-medieval-castle.png (1536×1024 PNG).
+- Scene 8 / Daugavpils Fortress replacement approved by user.
+- Approved replacement source prepared as daugavpils-fortress.png (1536×1024 PNG).
+- User remains responsible for manually replacing the two raster files in assets/images/latvia/approved/.
+- Do not change atlasPublished yet.
+- Next action after user materializes the two approved replacements in GitHub: verify blob replacement, rerun full visual/technical QA on the production review URL, then determine whether Latvia can leave QA-BLOCKED.
+
+
+REPLACEMENT MATERIALIZATION + RE-QA — 2026-08-29:
+- User replaced Scene 6 and Scene 8 in main under assets/images/latvia/approved/.
+- Git blob verification passed against the approved local source files:
+  - cesis-medieval-castle.png -> blob a143afc962ec202be2fe6d000df43cf381b3acd1, 3,434,322 bytes.
+  - daugavpils-fortress.png -> blob e659e6f33c6c48a189aad605d44032a1ac181382, 2,968,095 bytes.
+- Latest Pages deploy for the replacement commit cf48e77c113775a133fde53d67fb1558b3666323 completed successfully.
+- Scene 6 subject-fidelity blocker resolved: the replacement visibly reads as Cēsis Medieval Castle, including the red-roofed round tower, adjacent round tower, ruined stone walls and castle-park setting consistent with official Cēsis / Latvia tourism references.
+- Scene 8 subject-fidelity blocker resolved: the replacement visibly reads as Daugavpils Fortress, with bastion earthworks, brick / stone fortifications, moat / bridge and military-town buildings consistent with official Daugavpils / Latvia tourism references.
+- Hero + 8-scene contact-sheet review now reads as one coherent photo-leaning watercolor series; no remaining place-mismatch blocker.
+- Latest deployed artifact QA:
+  - Hero + 8 scenes all exist and fully decode.
+  - Scene 6 and Scene 8 are both 1536×1024 PNG.
+  - Map v3 parses correctly at 1200×760 and contains no ellipse artifacts.
+  - Latvia remains absent from sitemap.
+  - atlasPublished:false, href empty and noindex,follow remain intact.
+  - Theme taxonomy remains earth / city / history.
+- Non-blocking publication-prep notes:
+  - Scene 5 source remains 1586×992 while the other 8 raster sources are 1536×1024.
+  - The nine PNGs total about 28.3 MB; final web optimization can be done only after review approval so the approved visuals are not altered prematurely.
+  - Shared Country Template accessibility note for interactive scene-card semantics remains a common-system issue, not Latvia-specific.
+- Result: Latvia leaves QA-BLOCKED and moves to REVIEW-READY.
+- Next action: user reviews https://atlas.yagenji.com/countries/latvia/ on the production review URL. Keep atlasPublished:false until explicit publication approval.
+
+
+PUBLICATION COMPLETE — 2026-08-29:
+- User explicitly approved final publication after review.
+- Final publication assets are Hero + 8 approved scenes normalized to 1200×800 WebP; superseded PNG copies were removed from assets/images/latvia/approved/.
+- Scene 5 / Rundāle Palace was center-cropped to the common 3:2 source ratio before 1200×800 export; no new visual content was generated.
+- All 9 WebP files fully decode at 1200×800 in the exact deployed artifact.
+- Total Hero + 8-scene payload is 2,069,920 bytes (about 2.0 MiB), reduced from about 28.3 MB of PNG source assets.
+- Country JSON paths now reference only the final WebP assets.
+- atlasPublished:true.
+- Official href: countries/latvia/.
+- Registry hero image: assets/images/latvia/approved/hero-riga.webp.
+- Production build output has robots index,follow and canonical https://atlas.yagenji.com/countries/latvia/.
+- Production sitemap includes https://atlas.yagenji.com/countries/latvia/.
+- Normal top-page discovery is enabled through the published destination registry.
+- Map remains assets/images/latvia/map-atlas-v3.svg, valid 1200×760, with no ellipse artifacts.
+- TRAVEL THEMES remain earth / city / history.
+- Scene 6 Cēsis and Scene 8 Daugavpils replacement fidelity blockers remain resolved.
+- Strict published-country validation passed before merge and again on main.
+- Main publication deploy run 33252231536 passed source validation, production build, production-build validation, Cloudflare package validation, artifact upload, and Pages deployment.
+- Exact deployed artifact QA passed for publication metadata, sitemap inclusion, asset existence, full image decode, dimensions, map parse, and final asset cleanup.
+- Responsive layout had already passed Desktop / Tablet / Mobile QA before publication; publication changed only image asset format/normalization and publication metadata, not shared layout/CSS/JS.
+- Result: Latvia is formally PUBLISHED.
+
+---
+
+Country: Lithuania
+Status: REVIEW
+Current Phase: PHASE 7 — REVIEW
+Branch: main review deployment from lithuania-v1-content
+Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
+Review URL: https://atlas.yagenji.com/countries/lithuania/
+
+Hero: APPROVED — Vilnius Historic Centre from Subačius Panoramic Viewpoint
+Hero file: assets/images/lithuania/approved/hero-vilnius.png
+Scene 1: APPROVED — Curonian Spit / Parnidis Dune
+Scene 2: APPROVED — Trakai Island Castle
+Scene 3: APPROVED — Hill of Crosses
+Scene 4: APPROVED — Kaunas Modernism / Central Post Office and Laisvės Avenue
+Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
+Scene 6: APPROVED — Kernavė Archaeological Site
+Scene 7: APPROVED — Čepkeliai Marsh
+Scene 8: APPROVED — Vilnius Old Town street / Užupis edge
+
+Visual:
+- VISUAL COMPLETE GATE passed.
+- Wrong-subject / duplicate / contaminated generations are excluded.
+- 9 approved PNGs exist in the exact deployed artifact and fully decode.
+- Hero + Scenes 1–4 and 6–8: 1536×1024.
+- Scene 5: 1535×1024; retained as approved source with a non-blocking 1px width-consistency note.
+
+Map:
+- IMPLEMENTED — assets/images/lithuania/map-atlas-v1.svg
+- 1200×760 / journey-atlas-map-v1
+- Natural Earth 1:10m Admin 0 Countries ISO geometry.
+- No ellipse artifacts.
+- Marker offsets <= 5%.
+- Coordinate-based marker spacing passes validator minimum thresholds.
+- Actual-page marker visual review remains part of user review.
+
+Country JSON:
+- IMPLEMENTED — data/countries/lithuania.json
+- schemaVersion 2.
+- Structural strict-preflight passed: 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Source keys and sourceDates preflight passed.
+- Asset paths have zero missing files in the deployed artifact.
+
+Themes:
+- earth / city / history.
+- data/theme-taxonomy.json remains the Single Source of Truth.
+- Deployed taxonomy matches the Country content.
+
+Publication state:
+- atlasPublished:false.
+- Registry href empty.
+- Registry image empty.
+- Country route robots: noindex,follow.
+- Lithuania absent from production sitemap.
+- Normal top-page publication link remains disabled.
+- Formal publication has NOT occurred.
+
+CI / DEPLOY QA:
+- Review PR #17 validation run 33260677929: SUCCESS.
+- Main review deployment run 33260703148: SUCCESS.
+- Deploy job:
+  - Checkout: success
+  - Validate source: success
+  - Build production site: success
+  - Validate production build: success
+  - Setup Pages: success
+  - Upload site: success
+  - Deploy to GitHub Pages: success
+- Cloudflare production package job:
+  - Checkout: success
+  - Build clean Cloudflare package: success
+  - Validate packaged output: success
+- Exact deployed Pages artifact ID 9717164181 inspected.
+- Deployed artifact checks:
+  - Lithuania route exists.
+  - Country JSON exists.
+  - Hero + 8 scene assets exist and fully decode.
+  - Map parses at 1200×760.
+  - noindex,follow is present.
+  - canonical is https://atlas.yagenji.com/countries/lithuania/.
+  - Lithuania is absent from sitemap.
+  - atlasPublished:false / href empty / registry image empty.
+  - Themes are exactly earth / city / history.
+  - No Latvia residue in Lithuania route HTML.
+
+Browser / responsive QA:
+- Automated local Chromium rendering of the deployed artifact was blocked by the execution environment with ERR_BLOCKED_BY_ADMINISTRATOR.
+- Do not claim Desktop / Tablet / Mobile visual QA complete on that basis.
+- Source/artifact structural QA is complete; actual rendered review now proceeds at the production review URL.
+- Shared interactive scene-card semantics remain a common Country Template accessibility concern and must not be patched Lithuania-only.
+
+Last Action:
+- Review deployment to main completed successfully and exact deployed artifact QA passed without publication-state violations.
+
+Next Action:
+- User reviews https://atlas.yagenji.com/countries/lithuania/ on the actual production URL, including Desktop/Mobile visual appearance, Hero crop and Map marker/label readability.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Do not set atlasPublished:true until explicit user publication approval.
 
 
 ---
