@@ -224,7 +224,7 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 6 next)
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 7 next)
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -233,7 +233,7 @@ Scene 2 Diamond Hill / Connemara: APPROVED
 Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: APPROVED
 Scene 5 Sceilg Mhichíl: APPROVED
-Scene 6 Rock of Cashel: USER-APPROVED OUTPUT / SUBJECT-FIDELITY BLOCKED
+Scene 6 Rock of Cashel: APPROVED
 Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
@@ -241,9 +241,8 @@ Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
 - Scene 3 had repeated context-contamination failures; final Burren output was approved.
 - Scene 4 initial attempt duplicated Burren; final Killarney output was approved.
-- Scene 6 latest output depicts a coastal mining-engine-house landscape rather than Rock of Cashel.
-- User approval is retained as feedback, but Scene 6 is blocked by subject-fidelity QA.
-- Rejected Scene 6 output remains excluded from production.
+- Scene 6 initial outputs depicted coastal mining scenery; final Rock of Cashel output now matches the inland medieval complex and is approved.
+- Rejected outputs remain excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -283,12 +282,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User approved the latest Scene 6 output.
-- Visual QA rejected it for subject fidelity: it is not Rock of Cashel.
-- Scene 6 remains blocked; no advancement to Scene 7.
+- Scene 6 / Rock of Cashel passed subject-fidelity QA and was user-approved.
+- Production sequence advances to Scene 7.
 
 Next Action:
-- Regenerate Scene 6 only: Rock of Cashel.
-- Required cues: elevated limestone outcrop in County Tipperary; clustered medieval ecclesiastical complex with round tower, roofless Gothic cathedral, chapel and enclosing stone walls; broad green agricultural fields below; inland setting with no sea, no lighthouse, no mining chimney.
-- View from lower field / town approach, restrained early-autumn light.
-- Do not generate Scene 7 until Scene 6 passes subject-fidelity QA and user approval.
+- Generate Scene 7 only: Glendalough / Monastic City and Upper Valley.
+- Required cues: identifiable round tower and early medieval stone ruins at ground level, wooded glacial valley behind, restrained late-autumn palette, no fantasy reconstruction.
+- Do not generate Scene 8 until Scene 7 passes subject-fidelity QA and user approval.
