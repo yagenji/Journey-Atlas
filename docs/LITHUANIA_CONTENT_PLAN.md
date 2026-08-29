@@ -142,8 +142,11 @@ Updated: 2026-08-29
 ### Beyond the Scenery
 1. CITY / 街を歩く — 「ヴィリニュスは路地と丘でできている」
    - Old Town, Užupis, Vilnelė and viewpoints are close enough to connect on foot.
-2. HISTORY / 時をたどる — 「大公国から20世紀までを同じ旅で見る」
-   - Kernavė and Trakai show state formation; Vilnius and Kaunas reveal later political layers.
+2. HISTORY / 時をたどる — 「カウナスで“命のビザ”の記憶をたどる」
+   - 1939〜1940年、日本の外交官・杉原千畝はカウナスの日本副領事として勤務した。1940年7〜8月、ナチスの迫害やソ連支配から逃れようとした主にユダヤ系の難民へ日本通過ビザを発給し、多くの人々の脱出を助けた。
+   - 日本外務省によれば現存するビザ発給リストは2,140名分で、家族単位の渡航や未記載分もあるため、実際に救われた人は数千人規模と考えられている。
+   - 当時の日本領事館だった建物は現在「杉原記念館（Sugihara House）」として公開され、カウナスの戦間期と第二次世界大戦期をつなぐ場所になっている。
+   - 1984年、杉原はヤド・ヴァシェムから「諸国民の中の正義の人」に認定された。
 3. LIFE / 暮らしに出会う — 「歌が大人数の共同体になる」
    - Lithuanian Song and Dance Celebration is part of UNESCO-recognised Baltic song and dance celebrations.
 4. CULTURE / 文化に触れる — 「十字架は建造物ではなく、続いている技術」
@@ -156,8 +159,8 @@ Updated: 2026-08-29
 ### Travel Trivia
 1. LANGUAGE / 言葉 — 「Ačiūは“ありがとう”」
    - Lithuanian is the state language; include simple phrases Labas / Ačiū / Prašau.
-2. HERITAGE / 文化 — 「世界遺産は5件」
-   - All five are cultural properties, even when Curonian Spit is experienced primarily as a natural landscape.
+2. HISTORY / 歴史 — 「1940年、カウナスで発給された“命のビザ”」
+   - 杉原千畝はカウナスの日本副領事として、1940年7〜8月に日本通過ビザを発給した。現在の杉原記念館は、当時の日本領事館として使われた建物にある。
 3. TRADITION / 伝統 — 「十字架は今も増え続ける」
    - Hill of Crosses remains an active pilgrimage site where visitors leave crosses and rosaries.
 4. FOREST / 森 — 「秋はキノコ採りが日常のレジャーになる」
@@ -218,6 +221,9 @@ Rationale:
 - Lithuania Travel: Curonian Spit, Hill of Crosses, Aukštaitija / Ladakalnis, Kernavė, Kaunas Modernism, Čepkeliai and Dzūkija.
 - Go Vilnius: Subačius Panoramic Viewpoint and Vilnius viewpoints.
 - European Central Bank: Lithuania uses the euro.
+- Ministry of Foreign Affairs of Japan: Chiune Sugihara served in Kaunas and issued the “Visas for Life” in July–August 1940; the surviving list contains 2,140 names and the actual number of lives saved is thought to be in the thousands.
+- Yad Vashem: Chiune Sugihara was recognized as Righteous Among the Nations on 4 October 1984.
+- Sugihara House Museum: the current museum building housed the Japanese Consulate in Lithuania from November 1939 to August 1940.
 
 ## GATE
 PHASE 1 complete.
