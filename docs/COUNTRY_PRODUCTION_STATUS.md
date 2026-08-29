@@ -239,7 +239,7 @@ Scenes:
 1. Seven Sisters / Cuckmere Haven — APPROVED
 2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
 3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
-4. Glen Coe / Three Sisters — PENDING
+4. Glen Coe / Three Sisters — APPROVED
 5. Eryri / Llyn Llydaw — PENDING
 6. Caernarfon Castle / River Seiont — PENDING
 7. Giant’s Causeway / Grand Causeway — PENDING
@@ -300,10 +300,13 @@ Last Action:
 - Final Scene 3 was explicitly approved by the user.
 - Subject-fidelity check passed: Calton Hill foreground monument, Edinburgh Castle, Old Town skyline and city context are identifiable.
 
+Last Action:
+- Scene 4 Glen Coe / Three Sisters generated in a fresh series and explicitly approved by the user.
+- Subject-fidelity check passed: steep Highland glen, Three Sisters massif and valley road context are clearly present without prior-scene contamination.
+
 Next Action:
-- Start a fresh Scene 4-only generation series for Glen Coe / Three Sisters.
-- Use no prior Hadrian’s Wall / city / bridge context.
-- Do not generate Scene 5 until the user explicitly approves a correct Scene 4.
+- Generate Scene 5 only: Eryri / Llyn Llydaw.
+- Do not generate Scene 6 until the user explicitly approves Scene 5.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
