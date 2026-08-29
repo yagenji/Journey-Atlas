@@ -217,3 +217,74 @@ FINAL QA CHECKPOINT — 2026-08-29:
 - PERFORMANCE CONCERN — the 9 PNG raster assets total about 27.8 MiB; optimize final publication assets only after visual replacements are settled.
 - ACCESSIBILITY NOTE — scene cards are keyboard-focusable and keyboard-operable but use an interactive <article> without an explicit button role; this is a shared Country Template issue, not Latvia-specific, and should be handled in common UI work rather than with Latvia-specific markup.
 - Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
+
+
+---
+
+## UNITED KINGDOM
+
+Country: United Kingdom
+Slug: united-kingdom
+Current Phase: PHASE 2 — VISUAL PRODUCTION
+Status: READY-FOR-VISUAL
+
+Branch: united-kingdom-v1-content
+Content Plan: docs/UNITED_KINGDOM_CONTENT_PLAN.md
+
+Hero:
+- Place: Palace of Westminster / Elizabeth Tower from Albert Embankment / Lambeth riverside
+- Status: PENDING GENERATION
+
+Scenes:
+1. Seven Sisters / Cuckmere Haven — PENDING
+2. Hadrian’s Wall / Steel Rigg and Crag Lough — PENDING
+3. Edinburgh / Calton Hill to Old Town — PENDING
+4. Glen Coe / Three Sisters — PENDING
+5. Eryri / Llyn Llydaw — PENDING
+6. Caernarfon Castle / River Seiont — PENDING
+7. Giant’s Causeway / Grand Causeway — PENDING
+8. Silent Valley / Mourne Mountains — PENDING
+
+Visual issues:
+- None yet. No image has been generated or approved.
+
+Map:
+- NOT STARTED
+- Must be created only after VISUAL COMPLETE GATE.
+
+Country JSON:
+- NOT CREATED
+- Must not be created before VISUAL COMPLETE GATE.
+
+Themes:
+- ASSIGNED in data/theme-taxonomy.json on working branch
+- earth / 地球の風景
+- city / 街を歩く
+- history / 時をたどる
+
+QA:
+- NOT STARTED
+
+Review URL:
+- NOT DEPLOYED
+
+atlasPublished:
+- NOT YET CREATED
+- Must be false when Country JSON is implemented.
+- Must remain false until explicit user publication approval.
+
+Completed:
+- GitHub main and existing status checked before production start.
+- No pre-existing United Kingdom Country JSON, dedicated Country Page, map, approved image assets, or UK-specific work branch found.
+- No existing United Kingdom assignment found in theme taxonomy.
+- Working branch united-kingdom-v1-content created.
+- PHASE 1 — CONTENT DESIGN completed.
+- Hero, 8 scenes, geographic distribution, viewpoints, seasons, compositions, Hero lead, scene descriptions, Country Profile, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes, Related destinations and TRAVEL THEMES locked.
+- High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
+
+Last Action:
+- Marked United Kingdom READY-FOR-VISUAL and assigned earth / city / history in the theme taxonomy.
+
+Next Action:
+- Generate HERO only.
+- Do not generate Scene 1 until the user explicitly approves the Hero.
