@@ -224,10 +224,10 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Hero next)
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 1 next)
 Branch: ireland-v1-content
 
-Hero: PENDING
+Hero: APPROVED
 Scene 1 Glenveagh National Park: PENDING
 Scene 2 Diamond Hill / Connemara: PENDING
 Scene 3 Burren / Mullaghmore: PENDING
@@ -238,7 +238,7 @@ Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
-- None yet. Visual production has not started.
+- None on approved Hero.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -278,10 +278,9 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Created ireland-v1-content from main.
-- Added Ireland theme assignments to taxonomy.
-- Completed PHASE 1 and recorded READY-FOR-VISUAL.
+- Hero / Cliffs of Moher generated and user-approved.
+- Hero subject and composition accepted for the Ireland visual sequence.
 
 Next Action:
-- Generate Hero only: Cliffs of Moher / County Clare.
-- Do not generate Scene 1 until user approves Hero.
+- Generate Scene 1 only: Glenveagh National Park / Lough Veagh and Glenveagh Castle.
+- Do not generate Scene 2 until user approves Scene 1.
