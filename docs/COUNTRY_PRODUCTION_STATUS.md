@@ -225,7 +225,7 @@ FINAL QA CHECKPOINT — 2026-08-29:
 
 Country: United Kingdom
 Slug: united-kingdom
-Current Phase: PHASE 2 — VISUAL PRODUCTION
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE
 Status: READY-FOR-VISUAL
 
 Branch: united-kingdom-v1-content
@@ -327,3 +327,38 @@ Generation guardrail added by user:
 - Before showing any generated image, compare the dominant subject, terrain, composition and key motifs against the immediately preceding approved/rejected Scene outputs.
 - If the new output still carries the previous Scene's defining motifs (for example Hadrian’s Wall stone wall / upland ridge / lake context appearing in Edinburgh Scene 3), reject it internally and reset the scene generation context instead of presenting it to the user.
 - Prioritize real-place subject fidelity over merely producing another image.
+
+
+VISUAL COMPLETE GATE — 2026-08-30:
+- Result: PASS
+- Hero + Scenes 1–8 all explicitly approved by the user.
+- Subject-fidelity review passed for all 9 final visuals.
+- No obvious duplicate-scene contamination remains in the selected final set.
+- No visible text, map, table, UI or infographic elements remain in the selected final set.
+- Overall visual language is acceptable for the JOURNEY ATLAS Iceland / Norway benchmark: recognizable real-place structure, restrained color, and painterly treatment without fantasy reconstruction.
+- Minor style variance remains: Scene 2 is somewhat more photographic and Scenes 7–8 somewhat more watercolor-textured, but the set remains coherent enough to proceed without regeneration.
+- No visual blocker remains.
+
+OFFICIAL APPROVED FILENAMES:
+- hero-westminster-thames.png
+- seven-sisters-cuckmere-haven.png
+- hadrians-wall-crag-lough.png
+- edinburgh-calton-hill.png
+- glen-coe-three-sisters.png
+- eryri-llyn-llydaw.png
+- caernarfon-castle.png
+- giants-causeway.png
+- silent-valley-mourne-mountains.png
+
+TARGET ASSET DIRECTORY:
+- assets/images/united-kingdom/approved/
+
+Implementation gate:
+- Do not start Country JSON / production page wiring until the 9 approved raster files are manually materialized in GitHub and existence is verified there.
+
+Last Action:
+- VISUAL COMPLETE GATE passed and official filenames fixed.
+
+Next Action:
+- User manually uploads the 9 approved raster assets to assets/images/united-kingdom/approved/ using the official filenames above.
+- Assistant then verifies all 9 files in GitHub, checks decode/dimensions, and proceeds to PHASE 4 implementation.
