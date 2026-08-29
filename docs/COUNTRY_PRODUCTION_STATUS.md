@@ -233,7 +233,7 @@ Content Plan: docs/UNITED_KINGDOM_CONTENT_PLAN.md
 
 Hero:
 - Place: Palace of Westminster / Elizabeth Tower from Albert Embankment / Lambeth riverside
-- Status: PENDING GENERATION
+- Status: APPROVED
 
 Scenes:
 1. Seven Sisters / Cuckmere Haven — PENDING
@@ -283,8 +283,9 @@ Completed:
 - High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
 
 Last Action:
-- Marked United Kingdom READY-FOR-VISUAL and assigned earth / city / history in the theme taxonomy.
+- Hero generated and explicitly approved by the user.
+- Hero subject-fidelity check passed: Palace of Westminster / Elizabeth Tower / River Thames remain clearly identifiable and consistent with the locked Hero concept.
 
 Next Action:
-- Generate HERO only.
-- Do not generate Scene 1 until the user explicitly approves the Hero.
+- Generate Scene 1 only: Seven Sisters / Cuckmere Haven.
+- Do not generate Scene 2 until the user explicitly approves Scene 1.
