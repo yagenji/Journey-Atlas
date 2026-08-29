@@ -224,7 +224,7 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE / VISUAL-BLOCKED
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE
 Branch: ireland-v1-content
 
 Hero: USER-APPROVED / STYLE-REGEN REQUIRED
@@ -238,13 +238,9 @@ Scene 7 Glendalough: APPROVED
 Scene 8 Brú na Bóinne / Newgrange: APPROVED
 
 Visual issues:
-- Final cross-set review completed for Hero + Scenes 1–8.
-- Real-location subject set is broadly valid after the earlier subject-fidelity fixes.
-- BLOCKER: Hero, Scene 1 and Scene 2 are substantially more photographic than Scenes 3–8.
-- Scenes 3–8 form a coherent watercolor travel-atlas set; Hero / Scene 1 / Scene 2 do not match that rendering language.
-- Iceland / Norway series-consistency gate therefore does not pass.
-- Hero, Scene 1 and Scene 2 must be regenerated in the same clean watercolor language while preserving the approved locations and compositions.
-- Rejected / superseded outputs remain excluded from production.
+- Earlier rejected attempts for Scenes 2, 3, 4, 6 and 7 remain excluded from production.
+- Final approved set now contains Hero + Scenes 1–8.
+- Visual Complete Gate is required before implementation; final cross-image consistency and subject-fidelity review has not yet been completed.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -284,13 +280,13 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Ran the VISUAL COMPLETE GATE across all nine approved visuals.
-- Subject diversity and geographic distribution pass.
-- Cross-set style consistency fails on Hero / Scene 1 / Scene 2.
-- Marked Ireland VISUAL-BLOCKED pending style regeneration of those three visuals.
+- Scene 7 / Glendalough passed subject-fidelity review and was user-approved.
+- Scene 8 / Brú na Bóinne / Newgrange was generated and user-approved.
+- Hero + all 8 scenes now have approved candidates.
 
 Next Action:
-- Regenerate Hero only: Cliffs of Moher, preserving the approved viewpoint and composition but matching the watercolor language of Scenes 3–8.
-- After user approval, regenerate Scene 1, then Scene 2, one at a time.
-- Re-run the full Visual Complete Gate after all three replacements are approved.
-- Do not begin implementation until the gate passes.
+- Run PHASE 3 — VISUAL COMPLETE GATE across Hero + all 8 approved scenes.
+- Check each image against the locked real-world location definition.
+- Check cross-image watercolor consistency against Iceland / Norway.
+- If all 9 pass, specify final production filenames for user upload and proceed toward implementation.
+- If any image fails, mark VISUAL-BLOCKED and regenerate only the affected scene.
