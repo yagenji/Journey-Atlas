@@ -278,98 +278,98 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: QA
-Current Phase: PHASE 5 — QA
-Branch: lithuania-v1-content
+Status: REVIEW
+Current Phase: PHASE 7 — REVIEW
+Branch: main review deployment from lithuania-v1-content
+Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
+Review URL: https://atlas.yagenji.com/countries/lithuania/
 
 Hero: APPROVED — Vilnius Historic Centre from Subačius Panoramic Viewpoint
-Hero file name: hero-vilnius.png
+Hero file: assets/images/lithuania/approved/hero-vilnius.png
 Scene 1: APPROVED — Curonian Spit / Parnidis Dune
-Scene 1 file name: curonian-spit-parnidis-dune.png
 Scene 2: APPROVED — Trakai Island Castle
-Scene 2 file name: trakai-island-castle.png
 Scene 3: APPROVED — Hill of Crosses
-Scene 3 file name: hill-of-crosses.png
 Scene 4: APPROVED — Kaunas Modernism / Central Post Office and Laisvės Avenue
-Scene 4 file name: kaunas-modernism-central-post-office.png
 Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
-Scene 5 file name: aukstaitija-ladakalnis.png
 Scene 6: APPROVED — Kernavė Archaeological Site
-Scene 6 file name: kernave-archaeological-site.png
 Scene 7: APPROVED — Čepkeliai Marsh
-Scene 7 file name: cepkeliai-marsh.png
 Scene 8: APPROVED — Vilnius Old Town street / Užupis edge
-Scene 8 file name: vilnius-uzupis.png
 
-Visual issues:
-- No blocking visual issue remains in the approved final set.
-- All wrong-subject, duplicate and context-contaminated generations remain rejected and excluded.
-- Scene 5 source is 1535×1024; all other approved rasters are 1536×1024. Shared crop can handle this, but keep as a dimension-consistency note for final QA.
-
-Raster assets:
-- assets/images/lithuania/approved/ contains exactly the 9 approved PNG assets.
-- GitHub byte sizes match the locally decoded approved originals.
-- All 9 approved PNGs fully decode.
-- .gitkeep removed; no ZIP or placeholder retained in production asset folder.
+Visual:
+- VISUAL COMPLETE GATE passed.
+- Wrong-subject / duplicate / contaminated generations are excluded.
+- 9 approved PNGs exist in the exact deployed artifact and fully decode.
+- Hero + Scenes 1–4 and 6–8: 1536×1024.
+- Scene 5: 1535×1024; retained as approved source with a non-blocking 1px width-consistency note.
 
 Map:
 - IMPLEMENTED — assets/images/lithuania/map-atlas-v1.svg
-- Config: data/maps/lithuania.json
-- Canvas: 1200×760
-- Projection: equirectangular
-- Geometry: Natural Earth 1:10m Admin 0 Countries ISO
-- Bounds: W 20.55 / E 27.15 / S 53.65 / N 56.65
-- Marker offsets remain <=5% and calculated marker spacing passes validator thresholds.
-- No decorative ellipse artifacts.
+- 1200×760 / journey-atlas-map-v1
+- Natural Earth 1:10m Admin 0 Countries ISO geometry.
+- No ellipse artifacts.
+- Marker offsets <= 5%.
+- Coordinate-based marker spacing passes validator minimum thresholds.
+- Actual-page marker visual review remains part of user review.
 
 Country JSON:
 - IMPLEMENTED — data/countries/lithuania.json
-- schemaVersion 2
-- 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
-- Required sourceKey references and sourceDates structure preflight passed.
+- schemaVersion 2.
+- Structural strict-preflight passed: 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Source keys and sourceDates preflight passed.
+- Asset paths have zero missing files in the deployed artifact.
 
 Themes:
-- earth / city / history
-- data/theme-taxonomy.json is the Single Source of Truth.
-- Lithuania is assigned to exactly these three themes.
-
-Review route:
-- IMPLEMENTED — countries/lithuania/index.html
-- Canonical: https://atlas.yagenji.com/countries/lithuania/
-- robots: noindex,follow
-- OG image: approved Hero
-- No Latvia residue found in the route template.
+- earth / city / history.
+- data/theme-taxonomy.json remains the Single Source of Truth.
+- Deployed taxonomy matches the Country content.
 
 Publication state:
-- atlasPublished:false in data/atlas-destinations.json
-- href remains empty
-- registry image remains empty
-- sitemap/top-page publication links must remain disabled.
+- atlasPublished:false.
+- Registry href empty.
+- Registry image empty.
+- Country route robots: noindex,follow.
+- Lithuania absent from production sitemap.
+- Normal top-page publication link remains disabled.
+- Formal publication has NOT occurred.
 
-QA completed on branch:
-- Country JSON structural strict-preflight: PASS
-- Theme assignment: PASS
-- Asset paths / filenames: PASS
-- Raster decode: PASS
-- Raster dimensions: PASS with Scene 5 1px-width consistency note
-- Map SVG structure / viewBox: PASS
-- Map marker spacing calculation: PASS
-- noindex / canonical / OG metadata: PASS
-- No publication-state violation: PASS
+CI / DEPLOY QA:
+- Review PR #17 validation run 33260677929: SUCCESS.
+- Main review deployment run 33260703148: SUCCESS.
+- Deploy job:
+  - Checkout: success
+  - Validate source: success
+  - Build production site: success
+  - Validate production build: success
+  - Setup Pages: success
+  - Upload site: success
+  - Deploy to GitHub Pages: success
+- Cloudflare production package job:
+  - Checkout: success
+  - Build clean Cloudflare package: success
+  - Validate packaged output: success
+- Exact deployed Pages artifact ID 9717164181 inspected.
+- Deployed artifact checks:
+  - Lithuania route exists.
+  - Country JSON exists.
+  - Hero + 8 scene assets exist and fully decode.
+  - Map parses at 1200×760.
+  - noindex,follow is present.
+  - canonical is https://atlas.yagenji.com/countries/lithuania/.
+  - Lithuania is absent from sitemap.
+  - atlasPublished:false / href empty / registry image empty.
+  - Themes are exactly earth / city / history.
+  - No Latvia residue in Lithuania route HTML.
 
-QA remaining:
-- CI / production build validation
-- Review deployment to main
-- Actual production URL QA
-- Desktop / Tablet / Mobile
-- Hero crop
-- horizontal overflow
-- JavaScript / Console errors
-- keyboard / heading / contrast / alt-aria review in the deployed page
-- Map marker visual review on the actual page
+Browser / responsive QA:
+- Automated local Chromium rendering of the deployed artifact was blocked by the execution environment with ERR_BLOCKED_BY_ADMINISTRATOR.
+- Do not claim Desktop / Tablet / Mobile visual QA complete on that basis.
+- Source/artifact structural QA is complete; actual rendered review now proceeds at the production review URL.
+- Shared interactive scene-card semantics remain a common Country Template accessibility concern and must not be patched Lithuania-only.
 
 Last Action:
-- PHASE 4 implementation completed on lithuania-v1-content and branch-level structural QA passed.
+- Review deployment to main completed successfully and exact deployed artifact QA passed without publication-state violations.
 
 Next Action:
-- Open a review PR against main to trigger repository validation. If checks pass, merge for REVIEW DEPLOYMENT while keeping atlasPublished:false, then QA https://atlas.yagenji.com/countries/lithuania/.
+- User reviews https://atlas.yagenji.com/countries/lithuania/ on the actual production URL, including Desktop/Mobile visual appearance, Hero crop and Map marker/label readability.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Do not set atlasPublished:true until explicit user publication approval.
