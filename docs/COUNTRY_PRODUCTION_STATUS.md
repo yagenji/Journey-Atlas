@@ -236,7 +236,7 @@ Hero:
 - Status: APPROVED
 
 Scenes:
-1. Seven Sisters / Cuckmere Haven — PENDING
+1. Seven Sisters / Cuckmere Haven — APPROVED
 2. Hadrian’s Wall / Steel Rigg and Crag Lough — PENDING
 3. Edinburgh / Calton Hill to Old Town — PENDING
 4. Glen Coe / Three Sisters — PENDING
@@ -283,9 +283,9 @@ Completed:
 - High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
 
 Last Action:
-- Hero generated and explicitly approved by the user.
-- Hero subject-fidelity check passed: Palace of Westminster / Elizabeth Tower / River Thames remain clearly identifiable and consistent with the locked Hero concept.
+- Scene 1 Seven Sisters / Cuckmere Haven generated and explicitly approved by the user.
+- Scene 1 subject-fidelity check passed: the white chalk cliffs, Cuckmere Haven estuary and low South Downs landscape remain clearly identifiable and consistent with the locked scene definition.
 
 Next Action:
-- Generate Scene 1 only: Seven Sisters / Cuckmere Haven.
-- Do not generate Scene 2 until the user explicitly approves Scene 1.
+- Generate Scene 2 only: Hadrian’s Wall / Steel Rigg and Crag Lough.
+- Do not generate Scene 3 until the user explicitly approves Scene 2.
