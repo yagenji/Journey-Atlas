@@ -112,23 +112,24 @@ PLANNED COPY DIRECTION:
 
 Current state:
 - PHASE 1 complete.
-- PHASE 2 — VISUAL PRODUCTION started.
-- Latvia Hero generation attempted twice.
-- Both attempts were REJECTED because the image generator returned editorial / Country Page UI layouts rather than a standalone landscape asset.
-- No rejected output has been committed or connected to production.
-- Per JOURNEY ATLAS rule, the Latvia Hero generation series is now reset before the next attempt.
+- PHASE 2 — VISUAL PRODUCTION in progress.
+- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden.
+- Scene 4 was regenerated in a fresh context and approved with the intended Venta Rapid + red-brick bridge + old-town composition.
+- Scene 5 was regenerated to restore the target photographic realism 60% / watercolor 40% balance and approved.
+- Rejected outputs remain excluded from production.
 - No Latvia production page or Country JSON will be implemented until Hero + all 8 scenes pass the VISUAL COMPLETE GATE.
 
 Remaining:
-- Generate and approve Hero first.
-- Generate and approve all 8 scenes one image at a time.
+- Generate and approve Scene 6 Cēsis Medieval Castle.
+- Generate and approve Scene 7 Lake Rāzna / Rāzna National Park.
+- Generate and approve Scene 8 Daugavpils Fortress.
 - After 9/9 visual approval: create final assets, Latvia Country JSON, map, route and review page.
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Restart Scene 4 / Kuldīga / Venta Rapid in a fresh image-generation context to clear persistent Cape Kolka carryover.
-- Preserve approved assets: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka.
-- Required Kuldīga composition: broad, low Venta Rapid in foreground; seven-arch red-brick bridge upstream; Kuldīga old town beyond.
-- Bright blue sky, photographic realism 60% / watercolor 40%.
-- No sea, beach, dunes, pine coast, cliffs, castles, mountains, text, UI, borders, or collage.
-- Do not advance to Scene 5 until Scene 4 is approved.
+- Generate Scene 6 / Cēsis Medieval Castle one image at a time.
+- Required composition: conserved medieval stone castle ruins and recognizable towers integrated with the real park / old-town setting; no fantasy reconstruction.
+- Soft late-spring or early-autumn light.
+- Photographic realism 60% / watercolor 40%, restrained watercolor treatment over realistic structure.
+- No text, labels, UI, borders, collage, invented mountains, or reconstructed fantasy castle elements.
+- Do not advance to Scene 7 until Scene 6 is approved.
