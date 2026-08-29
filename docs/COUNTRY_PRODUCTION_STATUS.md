@@ -224,13 +224,13 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 2 next)
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 3 next)
 Branch: ireland-v1-content
 
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
-Scene 2 Diamond Hill / Connemara: USER-APPROVED OUTPUTS / SUBJECT-FIDELITY BLOCKED
-Scene 3 Burren / Mullaghmore: USER-APPROVED OUTPUT / INVALID-SEQUENCE + SUBJECT-FIDELITY BLOCKED
+Scene 2 Diamond Hill / Connemara: APPROVED
+Scene 3 Burren / Mullaghmore: PENDING
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
 Scene 6 Rock of Cashel: PENDING
@@ -238,12 +238,9 @@ Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
-- Scene 2 attempt 1: flat wetland / boardwalk, not Diamond Hill / Connemara.
-- Scene 2 attempt 2: forested river valley, not Diamond Hill / Connemara.
-- Scene 2 attempt 3 after reset: lighthouse coast, not Diamond Hill / Connemara.
-- Scene 3 was generated before Scene 2 passed the visual gate; this violates the locked sequence and cannot be accepted as production.
-- Latest Scene 3 output depicts a town / bridge / waterfall rather than The Burren / Mullaghmore.
-- User approvals are retained as feedback, but subject-fidelity QA blocks both Scene 2 and Scene 3.
+- Scene 2 earlier attempts failed subject fidelity.
+- Scene 2 reset output now passes visual gate as a credible Connemara upland / lake / mountain landscape and is user-approved.
+- Previous invalid Scene 3 output (town / waterfall) remains rejected and excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -283,11 +280,9 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User approved the latest generated image.
-- Visual QA found that the latest image does not match Scene 3 The Burren / Mullaghmore.
-- Reconciled the sequence: Scene 2 still has not passed subject-fidelity QA, therefore Scene 3 is not eligible to advance.
+- Scene 2 reset output passed subject-fidelity QA and was user-approved.
+- Earlier Scene 2 failures and invalid Scene 3 output remain excluded.
 
 Next Action:
-- Regenerate Scene 2 only in a fresh, location-specific generation context: Diamond Hill / Connemara National Park.
-- Required cues: treeless brown-green blanket bog, pale quartzite mountains of the Twelve Bens, rough western upland terrain, small dark lakes/pools, Atlantic or coastal inlets in the distance; no forested river valley, no boardwalk bog, no lighthouse, no town.
-- Do not generate Scene 3 until Scene 2 passes subject-fidelity QA and user approval.
+- Generate Scene 3 only: The Burren / Mullaghmore limestone pavement.
+- Do not generate Scene 4 until Scene 3 passes subject-fidelity QA and user approval.
