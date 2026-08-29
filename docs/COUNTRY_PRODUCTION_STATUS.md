@@ -230,7 +230,7 @@ Branch: ireland-v1-content
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
 Scene 2 Diamond Hill / Connemara: APPROVED
-Scene 3 Burren / Mullaghmore: RESET REQUIRED / CONTEXT CONTAMINATION
+Scene 3 Burren / Mullaghmore: USER-APPROVED OUTPUT / SUBJECT-FIDELITY BLOCKED
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
 Scene 6 Rock of Cashel: PENDING
@@ -239,8 +239,10 @@ Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
-- Scene 3 attempt 1 repeated the prior lighthouse/coastal visual language and does not depict The Burren / Mullaghmore.
-- Context contamination is confirmed for Scene 3. Reset Scene 3 generation series only.
+- Scene 3 attempt 1: town / waterfall, not The Burren.
+- Scene 3 attempt 2: lighthouse coast, not The Burren; context contamination triggered a Scene 3 reset.
+- Scene 3 attempt 3 after reset: seaside city / tower / pier, not The Burren / Mullaghmore.
+- User approval is retained as feedback, but the visual gate blocks Scene 3 because the real location is clearly wrong.
 - Rejected Scene 3 outputs remain excluded from production.
 
 Map:
@@ -281,11 +283,11 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 3 generation showed context contamination by repeating the prior lighthouse/coast subject.
-- User flagged the duplication.
-- Scene 3 generation series is reset.
+- User approved the latest Scene 3 output.
+- Visual QA rejected it for subject fidelity: it depicts a seaside city rather than The Burren / Mullaghmore.
+- Scene 3 remains blocked; no advancement to Scene 4.
 
 Next Action:
-- Regenerate Scene 3 only from a fresh context: The Burren / Mullaghmore.
-- Required cues: pale exposed limestone pavement with deep grikes and clints in the foreground, rounded terraced limestone profile of Mullaghmore, sparse low vegetation and small spring wildflowers in fissures, open treeless karst landscape, no lighthouse, no town, no waterfall, no dramatic sea cliff.
+- Regenerate Scene 3 only: The Burren / Mullaghmore.
+- Required cues: pale gray limestone pavement filling the foreground, clearly visible clints and deep grikes, rounded terraced limestone hill of Mullaghmore in the middle distance, sparse low grass/moss and tiny spring flowers in fissures, open treeless karst plateau, soft Atlantic daylight. Absolutely no lighthouse, no town, no pier, no waterfall, no beach, no tower.
 - Do not generate Scene 4 until Scene 3 passes subject-fidelity QA and user approval.
