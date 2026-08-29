@@ -246,6 +246,11 @@ Scenes:
 8. Silent Valley / Mourne Mountains — PENDING
 
 Visual issues:
+- Scene 4 generation failed twice consecutively with subject drift.
+- Failure 1: Hadrian’s Wall-like stone wall / ridge / lake landscape instead of Glen Coe / Three Sisters.
+- Failure 2: Bath-like historic riverside city / bridge scene instead of Glen Coe / Three Sisters.
+- Both Scene 4 outputs are REJECTED and must never enter production.
+- Per production rule, Scene 4 generation series is RESET before the next attempt.
 - Scene 3 subject-fidelity failure: first output depicted a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. The second fresh attempt again produced a rural mountain / lake / stone-wall landscape instead of Edinburgh.
 - Both Scene 3 outputs are REJECTED and must never enter production.
 - Scene 3 has now failed twice consecutively with the same subject/context drift. Per production rule, the Scene 3 generation series is RESET before the next attempt.
@@ -296,8 +301,9 @@ Last Action:
 - Subject-fidelity check passed: Calton Hill foreground monument, Edinburgh Castle, Old Town skyline and city context are identifiable.
 
 Next Action:
-- Generate Scene 4 only: Glen Coe / Three Sisters.
-- Do not generate Scene 5 until the user explicitly approves Scene 4.
+- Start a fresh Scene 4-only generation series for Glen Coe / Three Sisters.
+- Use no prior Hadrian’s Wall / city / bridge context.
+- Do not generate Scene 5 until the user explicitly approves a correct Scene 4.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
