@@ -229,7 +229,7 @@ Branch: ireland-v1-content
 
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
-Scene 2 Diamond Hill / Connemara: USER-APPROVED / SUBJECT-FIDELITY BLOCKED
+Scene 2 Diamond Hill / Connemara: USER-APPROVED / SUBJECT-FIDELITY BLOCKED / RESET REQUIRED
 Scene 3 Burren / Mullaghmore: PENDING
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
@@ -238,7 +238,9 @@ Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
-- Scene 2 latest output does not depict Diamond Hill / Connemara. It reads as a flat wetland/boardwalk landscape and is subject-fidelity blocked despite user approval.
+- Scene 2 attempt 1: flat wetland / boardwalk, not Diamond Hill / Connemara.
+- Scene 2 attempt 2: forested river valley, not Diamond Hill / Connemara.
+- Two consecutive subject-fidelity failures confirmed. Reset Scene 2 generation series only.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -278,10 +280,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 2 latest output was user-approved.
-- Final visual QA found a subject-fidelity failure: the image depicts a flat wetland/boardwalk rather than Diamond Hill / Connemara.
-- Per JOURNEY ATLAS visual gate rules, user approval alone is not sufficient when the real location is clearly wrong.
+- Scene 2 second output was user-approved.
+- Final visual QA rejected it for subject fidelity: it depicts a forested river valley rather than Diamond Hill / Connemara.
+- Two consecutive failures reached; Scene 2 generation series reset per production rule.
 
 Next Action:
-- Regenerate Scene 2 only: Diamond Hill / Connemara National Park with identifiable quartzite mountains, blanket bog, and Atlantic-facing uplands.
+- Regenerate Scene 2 only in a fresh generation series: Diamond Hill / Connemara National Park, with identifiable quartzite mountains, brown-green blanket bog, sparse treeless uplands, and Atlantic-facing Connemara character.
 - Do not generate Scene 3 until Scene 2 passes subject-fidelity QA and user approval.
