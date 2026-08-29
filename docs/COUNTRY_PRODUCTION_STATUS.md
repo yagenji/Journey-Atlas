@@ -224,7 +224,7 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 7 next)
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -234,17 +234,18 @@ Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: APPROVED
 Scene 5 Sceilg Mhichíl: APPROVED
 Scene 6 Rock of Cashel: APPROVED
-Scene 7 Glendalough: RESET REQUIRED / CONTEXT CONTAMINATION
-Scene 8 Brú na Bóinne / Newgrange: PENDING
+Scene 7 Glendalough: APPROVED
+Scene 8 Brú na Bóinne / Newgrange: APPROVED
 
 Visual issues:
-- Scene 2 earlier attempts failed subject fidelity; reset output was approved.
-- Scene 3 had repeated context-contamination failures; final Burren output was approved.
-- Scene 4 initial attempt duplicated Burren; final Killarney output was approved.
-- Scene 6 initial outputs depicted coastal mining scenery; final Rock of Cashel output was approved.
-- Scene 7 attempt 1 repeated the prior Rock of Cashel / hilltop castle visual language rather than Glendalough.
-- Context contamination is confirmed for Scene 7. Reset Scene 7 generation series only.
-- Rejected Scene 7 output remains excluded from production.
+- Scene 2 earlier attempts failed subject fidelity; final reset output approved.
+- Scene 3 had repeated context contamination; final Burren output approved.
+- Scene 4 initial attempt duplicated Burren; final Killarney output approved.
+- Scene 6 initial outputs depicted coastal mining scenery; final Rock of Cashel output approved.
+- Scene 7 initial output duplicated Rock of Cashel and a later attempt was too photographic; final watercolor Glendalough output approved.
+- Scene 8 Newgrange output approved.
+- Rejected outputs remain excluded from production.
+- Final cross-set style consistency still requires Visual Complete Gate review before implementation.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -284,13 +285,12 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 7 attempt 1 duplicated the prior Rock of Cashel visual context.
-- User flagged the duplication.
-- Scene 7 generation series reset.
-- Visual production paused by user.
+- Scene 7 / Glendalough final watercolor output approved.
+- Scene 8 / Brú na Bóinne / Newgrange passed subject-fidelity QA and was user-approved.
+- Hero + all 8 scenes now have approved outputs.
 
 Next Action:
-- When resumed, regenerate Scene 7 only in a clean context: Glendalough / Monastic City and Upper Valley.
-- Required cues: tall slender round tower, low early-medieval stone church ruins and graveyard, wooded Wicklow glacial valley enclosing the site, ground-level composition, late-autumn atmosphere.
-- Explicitly exclude: hilltop fortress, large castle walls, battlements, grand cathedral massing, coastal scenery.
-- Do not generate Scene 8 until Scene 7 passes subject-fidelity QA and user approval.
+- Run VISUAL COMPLETE GATE across Hero + Scenes 1–8.
+- Confirm: real-location fidelity, watercolor-series consistency, Iceland / Norway fit, no visible generation artifacts, and no duplicated subject.
+- If all nine pass, provide final production filenames for the user to upload manually and then verify all files exist in GitHub.
+- Do not begin Country JSON / Map / page implementation until the Visual Complete Gate passes.
