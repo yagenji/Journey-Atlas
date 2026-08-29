@@ -241,8 +241,8 @@ Scenes:
 3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
 4. Glen Coe / Three Sisters — APPROVED
 5. Eryri / Llyn Llydaw — APPROVED
-6. Caernarfon Castle / River Seiont — PENDING
-7. Giant’s Causeway / Grand Causeway — PENDING
+6. Caernarfon Castle / River Seiont — APPROVED
+7. Giant’s Causeway / Grand Causeway — APPROVED
 8. Silent Valley / Mourne Mountains — PENDING
 
 Visual issues:
@@ -308,9 +308,15 @@ Last Action:
 - Scene 5 Eryri / Llyn Llydaw regenerated correctly and explicitly approved by the user.
 - Subject-fidelity check passed: Llyn Llydaw, rugged mountain slopes and foreground walking path are present.
 
+Last Action:
+- Scene 6 Caernarfon Castle / River Seiont generated and explicitly approved by the user.
+- Subject-fidelity check passed: Caernarfon Castle’s massive medieval curtain walls and towers are identifiable in the waterfront context.
+- Scene 7 Giant’s Causeway / Grand Causeway generated and explicitly approved by the user.
+- Subject-fidelity check passed: wet polygonal basalt columns, Atlantic water and Antrim cliff context are clearly present.
+
 Next Action:
-- Generate Scene 6 only: Caernarfon Castle / River Seiont.
-- Do not generate Scene 7 until the user explicitly approves Scene 6.
+- Generate Scene 8 only: Silent Valley / Mourne Mountains.
+- Do not proceed to VISUAL COMPLETE GATE until the user explicitly approves Scene 8.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
