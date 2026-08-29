@@ -126,8 +126,9 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 3 / Cape Kolka / Slītere as a standalone 3:2 landscape.
-- Show the narrow sandy cape with water on both sides, low dune vegetation and pine forest behind.
-- Keep the terrain flat and low; no cliffs, castles, or mountains.
-- Photographic realism 60% / watercolor 40%, matching the approved Latvia Hero / Estonia reference.
+- Generate Scene 4 / Kuldīga / Venta Rapid as a standalone 3:2 landscape.
+- Show the broad, low Venta Rapid in the foreground with the historic red-brick bridge and Kuldīga old town behind.
+- Spring or early-summer water level, bright but restrained blue sky, realistic river texture.
+- Keep the waterfall low and wide; do not exaggerate it into a high cascade.
+- Photographic realism 60% / watercolor 40%, matching approved Latvia visuals.
 - No text, numbers, UI, borders, or collage.
