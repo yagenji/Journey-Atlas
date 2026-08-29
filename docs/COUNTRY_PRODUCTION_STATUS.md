@@ -229,7 +229,7 @@ Branch: ireland-v1-content
 
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
-Scene 2 Diamond Hill / Connemara: PENDING
+Scene 2 Diamond Hill / Connemara: USER-APPROVED / SUBJECT-FIDELITY BLOCKED
 Scene 3 Burren / Mullaghmore: PENDING
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
@@ -238,7 +238,7 @@ Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
-- None on approved Hero.
+- Scene 2 latest output does not depict Diamond Hill / Connemara. It reads as a flat wetland/boardwalk landscape and is subject-fidelity blocked despite user approval.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -278,9 +278,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 1 / Glenveagh National Park generated and user-approved.
-- Approved Hero remains unchanged.
+- Scene 2 latest output was user-approved.
+- Final visual QA found a subject-fidelity failure: the image depicts a flat wetland/boardwalk rather than Diamond Hill / Connemara.
+- Per JOURNEY ATLAS visual gate rules, user approval alone is not sufficient when the real location is clearly wrong.
 
 Next Action:
-- Generate Scene 2 only: Diamond Hill / Connemara National Park.
-- Do not generate Scene 3 until user approves Scene 2.
+- Regenerate Scene 2 only: Diamond Hill / Connemara National Park with identifiable quartzite mountains, blanket bog, and Atlantic-facing uplands.
+- Do not generate Scene 3 until Scene 2 passes subject-fidelity QA and user approval.
