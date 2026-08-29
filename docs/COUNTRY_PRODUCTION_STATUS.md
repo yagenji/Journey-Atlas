@@ -134,3 +134,10 @@ Next action:
 - Scene 6 check: Cēsis must visibly read as the real medieval castle ruins / towers rather than a generic riverside town.
 - Scene 8 check: Daugavpils must visibly read as the real early-19th-century bastion fortress; the currently approved coastal image does not satisfy that subject definition.
 - Resolve these QA flags without changing the Country Page structure, style language, or scene list.
+
+
+MAP CONCEPT REVIEW:
+- User approved the latest Latvia illustrated map concept on 2026-08-29.
+- Treat this approval as visual-direction approval only.
+- Production map must still be implemented in the standard JOURNEY ATLAS map system at 1200×760, using Iceland / Norway map design language and coordinate-based point placement.
+- Do not use the generated infographic layout with profile statistics / bottom destination copy as the final Country Page map, because that would change the locked common map component.
