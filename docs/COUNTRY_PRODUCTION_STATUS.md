@@ -191,3 +191,10 @@ IMPLEMENTATION UPDATE — 2026-08-29:
 - Created countries/latvia/index.html as a noindex,follow review entry on the working branch; canonical is https://atlas.yagenji.com/countries/latvia/.
 - Review deployment to main / production has NOT been performed yet.
 - Final visual QA still retains subject-fidelity concerns on Scene 6 and Scene 8; do not call Latvia complete until actual-page review resolves them.
+
+
+REVIEW FIX — 2026-08-29:
+- Removed the two decorative ellipse overlays from the Latvia map because they rendered as visible artifacts in the review page and are not present in the Iceland / Norway benchmark maps.
+- Promoted the clean map asset to assets/images/latvia/map-atlas-v3.svg and removed the superseded v2 asset.
+- Fixed the Travel Trivia MARKET card icon by replacing unsupported icon id "market" with the existing shared "food" icon from atlas-icons.svg; no country-specific icon was added.
+- atlasPublished remains false.
