@@ -10,88 +10,410 @@
   "capital": {
     "nameEn": "Helsinki",
     "nameJa": "ヘルシンキ",
-    "coordinates": {"latitude": 60.1699, "longitude": 24.9384},
+    "coordinates": {
+      "latitude": 60.1699,
+      "longitude": 24.9384
+    },
     "labelPosition": "left",
-    "mapOffset": {"x": -1.8, "y": -1.2}
+    "mapOffset": {
+      "x": -1.8,
+      "y": -1.2
+    }
   },
   "hero": {
     "lead": "森の向こうに湖がひらき、その先にも島と森が続く。水辺と北の光が、暮らしのすぐそばにある国。",
     "image": "assets/images/finland/hero-koli.webp",
     "location": "Ukko-Koli / Lake Pielinen",
-    "coordinates": {"latitude": 63.095, "longitude": 29.805},
-    "mapOffset": {"x": 0, "y": 0}
+    "coordinates": {
+      "latitude": 63.095,
+      "longitude": 29.805
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
   },
   "map": {
-    "bounds": {"north": 70.4, "south": 59.4, "west": 18.8, "east": 31.9},
-    "svg": "assets/images/finland/map-atlas-v2.svg",
+    "bounds": {
+      "north": 70.4,
+      "south": 59.4,
+      "west": 18.8,
+      "east": 31.9
+    },
+    "svg": "assets/images/finland/map-atlas-v3.svg",
     "route": null,
     "source": "geoBoundaries gbOpen FIN ADM1 dissolved (build Dec 12, 2023; ODbL 1.0); illustrated treatment: JOURNEY ATLAS"
   },
   "scenes": [
-    {"id":"punkaharju","name":"プンカハルユ","nameLocal":"Punkaharju Ridge","mapLabel":"Punkaharju","description":"氷河の融水がつくった細長い尾根が、サイマー湖水系の水面のあいだを走る。松林の道と左右の湖が、フィンランド湖沼地方の地形をそのまま見せる。","coordinates":{"latitude":61.8,"longitude":29.316},"image":"assets/images/finland/punkaharju.webp"},
-    {"id":"turku-archipelago","name":"トゥルク群島","nameLocal":"Turku Archipelago","mapLabel":"Turku Archipelago","description":"南西海岸には花崗岩の島と岩礁が細かく連なり、松林と海が入り組む。船とフェリーが島々を結び、内陸とは異なる海のフィンランドをつくっている。","coordinates":{"latitude":60.2,"longitude":21.9},"image":"assets/images/finland/turku-archipelago.webp"},
-    {"id":"old-rauma","name":"ラウマ旧市街","nameLocal":"Old Rauma","mapLabel":"Old Rauma","description":"低層の木造住宅が石畳の通りに並ぶ、北欧の木造都市の姿を残す旧市街。色や装飾の異なる家々が、フィンランド西岸の長い都市生活の層を伝える。","coordinates":{"latitude":61.128,"longitude":21.511},"image":"assets/images/finland/old-rauma.webp"},
-    {"id":"oulanka","name":"オウランカ国立公園","nameLocal":"Oulanka / Kiutaköngäs","mapLabel":"Oulanka","description":"北東部の森林を川が刻み、Kiutaköngäsでは急流が岩盤の間を流れる。静かな湖の印象とは異なる、川・岩・北方林の力強い地形が見える。","coordinates":{"latitude":66.376,"longitude":29.338},"image":"assets/images/finland/oulanka.webp"},
-    {"id":"pallas-yllastunturi","name":"パッラス・ユッラストゥントゥリ","nameLocal":"Pallas–Yllästunturi","mapLabel":"Pallas","description":"ラップランド西部には、氷河に削られた丸みのあるfellが連なる。森林限界を越えると低い植生と広い空が続き、秋にはruskaの色が地表を覆う。","coordinates":{"latitude":68.05,"longitude":24.05},"image":"assets/images/finland/pallas-yllastunturi.webp"},
-    {"id":"kilpisjarvi-saana","name":"キルピスヤルヴィ / サーナ","nameLocal":"Kilpisjärvi / Saana","mapLabel":"Saana","description":"フィンランド北西端では、Kilpisjärviの水面の向こうにSaanaの山体が立ち上がる。国内でも特に標高差が大きく、北欧山地へ続く地形の変化がはっきり現れる。","coordinates":{"latitude":69.043,"longitude":20.856},"image":"assets/images/finland/kilpisjarvi-saana.webp"},
-    {"id":"riisitunturi","name":"リーシトゥントゥリ","nameLocal":"Riisitunturi","mapLabel":"Riisitunturi","description":"冬には湿った雪がトウヒの枝に重なり、樹木が白い塊のような姿になる。丘陵の上から北方林を見渡すと、冬が景観そのものをつくり変えることが分かる。","coordinates":{"latitude":66.215,"longitude":28.497},"image":"assets/images/finland/riisitunturi.webp"},
-    {"id":"suomenlinna","name":"スオメンリンナ","nameLocal":"Suomenlinna / Helsinki","mapLabel":"Suomenlinna","description":"ヘルシンキ沖の島々に石造の要塞と草地が広がる。海峡を船が行き交い、首都のすぐ外側に群島と軍事史が重なるフィンランド南岸の景観がある。","coordinates":{"latitude":60.1458,"longitude":24.9877},"mapOffset":{"x":1.2,"y":1.2},"labelPosition":"right","image":"assets/images/finland/suomenlinna.webp"}
+    {
+      "id": "punkaharju",
+      "name": "プンカハルユ",
+      "nameLocal": "Punkaharju Ridge",
+      "mapLabel": "Punkaharju",
+      "description": "氷河の融水がつくった細長い尾根が、サイマー湖水系の水面のあいだを走る。松林の道と左右の湖が、フィンランド湖沼地方の地形をそのまま見せる。",
+      "coordinates": {
+        "latitude": 61.8,
+        "longitude": 29.316
+      },
+      "image": "assets/images/finland/punkaharju.webp"
+    },
+    {
+      "id": "turku-archipelago",
+      "name": "トゥルク群島",
+      "nameLocal": "Turku Archipelago",
+      "mapLabel": "Turku Archipelago",
+      "description": "南西海岸には花崗岩の島と岩礁が細かく連なり、松林と海が入り組む。船とフェリーが島々を結び、内陸とは異なる海のフィンランドをつくっている。",
+      "coordinates": {
+        "latitude": 60.2,
+        "longitude": 21.9
+      },
+      "image": "assets/images/finland/turku-archipelago.webp"
+    },
+    {
+      "id": "old-rauma",
+      "name": "ラウマ旧市街",
+      "nameLocal": "Old Rauma",
+      "mapLabel": "Old Rauma",
+      "description": "低層の木造住宅が石畳の通りに並ぶ、北欧の木造都市の姿を残す旧市街。色や装飾の異なる家々が、フィンランド西岸の長い都市生活の層を伝える。",
+      "coordinates": {
+        "latitude": 61.128,
+        "longitude": 21.511
+      },
+      "image": "assets/images/finland/old-rauma.webp"
+    },
+    {
+      "id": "oulanka",
+      "name": "オウランカ国立公園",
+      "nameLocal": "Oulanka / Kiutaköngäs",
+      "mapLabel": "Oulanka",
+      "description": "北東部の森林を川が刻み、Kiutaköngäsでは急流が岩盤の間を流れる。静かな湖の印象とは異なる、川・岩・北方林の力強い地形が見える。",
+      "coordinates": {
+        "latitude": 66.376,
+        "longitude": 29.338
+      },
+      "image": "assets/images/finland/oulanka.webp"
+    },
+    {
+      "id": "pallas-yllastunturi",
+      "name": "パッラス・ユッラストゥントゥリ",
+      "nameLocal": "Pallas–Yllästunturi",
+      "mapLabel": "Pallas",
+      "description": "ラップランド西部には、氷河に削られた丸みのあるfellが連なる。森林限界を越えると低い植生と広い空が続き、秋にはruskaの色が地表を覆う。",
+      "coordinates": {
+        "latitude": 68.05,
+        "longitude": 24.05
+      },
+      "image": "assets/images/finland/pallas-yllastunturi.webp"
+    },
+    {
+      "id": "kilpisjarvi-saana",
+      "name": "キルピスヤルヴィ / サーナ",
+      "nameLocal": "Kilpisjärvi / Saana",
+      "mapLabel": "Saana",
+      "description": "フィンランド北西端では、Kilpisjärviの水面の向こうにSaanaの山体が立ち上がる。国内でも特に標高差が大きく、北欧山地へ続く地形の変化がはっきり現れる。",
+      "coordinates": {
+        "latitude": 69.043,
+        "longitude": 20.856
+      },
+      "image": "assets/images/finland/kilpisjarvi-saana.webp"
+    },
+    {
+      "id": "riisitunturi",
+      "name": "リーシトゥントゥリ",
+      "nameLocal": "Riisitunturi",
+      "mapLabel": "Riisitunturi",
+      "description": "冬には湿った雪がトウヒの枝に重なり、樹木が白い塊のような姿になる。丘陵の上から北方林を見渡すと、冬が景観そのものをつくり変えることが分かる。",
+      "coordinates": {
+        "latitude": 66.215,
+        "longitude": 28.497
+      },
+      "image": "assets/images/finland/riisitunturi.webp"
+    },
+    {
+      "id": "suomenlinna",
+      "name": "スオメンリンナ",
+      "nameLocal": "Suomenlinna / Helsinki",
+      "mapLabel": "Suomenlinna",
+      "description": "ヘルシンキ沖の島々に石造の要塞と草地が広がる。海峡を船が行き交い、首都のすぐ外側に群島と軍事史が重なるフィンランド南岸の景観がある。",
+      "coordinates": {
+        "latitude": 60.1458,
+        "longitude": 24.9877
+      },
+      "mapOffset": {
+        "x": 1.2,
+        "y": 1.2
+      },
+      "labelPosition": "right",
+      "image": "assets/images/finland/suomenlinna.webp"
+    }
   ],
   "encounters": [
-    {"title":"湖","icon":"landscape"},{"title":"森","icon":"landscape"},{"title":"サウナ","icon":"hot-spring"},{"title":"群島","icon":"sea"},{"title":"木造の町","icon":"home"},{"title":"白夜","icon":"sun"},{"title":"雪の森","icon":"snow"},{"title":"北極圏","icon":"compass"}
+    {
+      "title": "湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "森",
+      "icon": "landscape"
+    },
+    {
+      "title": "サウナ",
+      "icon": "hot-spring"
+    },
+    {
+      "title": "群島",
+      "icon": "sea"
+    },
+    {
+      "title": "木造の町",
+      "icon": "home"
+    },
+    {
+      "title": "白夜",
+      "icon": "sun"
+    },
+    {
+      "title": "雪の森",
+      "icon": "snow"
+    },
+    {
+      "title": "北極圏",
+      "icon": "compass"
+    }
   ],
   "atlasExtras": [
-    {"themeEn":"CITY","themeJa":"街を歩く","title":"海とデザインの街、ヘルシンキ","text":"海岸線、島、トラム、公共建築が近い距離に集まる首都。中心部から船で群島へ出られ、都市と自然を同じ一日の中でたどれる。","points":["港とマーケット広場から島へ船が出る","近現代建築やデザインが公共空間や日用品まで広がる"]},
-    {"themeEn":"HISTORY","themeJa":"時をたどる","title":"スウェーデンとロシアのあいだで","text":"フィンランドは長くスウェーデン王国の一部で、1809年からロシア帝国下の自治大公国となり、1917年に独立した。都市や要塞には複数の時代が重なっている。","points":["スオメンリンナは18世紀にスウェーデンが築いた海上要塞","ヘルシンキ中心部には19世紀の都市計画と建築が残る"]},
-    {"themeEn":"LIFE","themeJa":"暮らしに出会う","title":"湖畔のコテージとサウナ","text":"森と湖のそばのmökkiで過ごし、サウナに入り、水へ入る。自然の中で過ごす時間が、特別な観光体験ではなく日常の延長としてある。","points":["国内には50万棟を超えるコテージがある","サウナ文化は2020年にユネスコ無形文化遺産に登録された"]},
-    {"themeEn":"CULTURE","themeJa":"文化に触れる","title":"北に続くサーミの現在","icon":"culture","text":"北部ラップランドは先住民族サーミの伝統地域サープミの一部。言語、トナカイ牧畜、工芸だけでなく、現代の文化や政治まで続いている。","points":["イナリにはフィンランドのサーミ議会が置かれている","Siidaでは自然環境とサーミ文化をあわせて知ることができる"]},
-    {"themeEn":"FOOD","themeJa":"食をめぐる","title":"ライ麦、ベリー、カレリアの味","text":"黒いライ麦パン、森のベリー、魚、カレリアパイなど、北の気候と森や湖に結びついた食が多い。市場やカフェでも季節の素材に出会える。","points":["karjalanpiirakkaはライ麦生地に米粥などを包む軽食","夏から秋にはブルーベリーやリンゴンベリーが森に実る"]},
-    {"themeEn":"ROAD","themeJa":"道の先へ","title":"南から北へ、景色が変わる","text":"南部の都市間は鉄道、北部へは夜行列車、南西部の島々へはフェリーを組み合わせる。移動そのものが、海岸・湖・森林・北極圏の変化を見せる。","points":["ヘルシンキからラップランド方面へ夜行列車で移動できる","群島ではフェリーをつないで島々を巡れる"]}
+    {
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "海とデザインの街、ヘルシンキ",
+      "text": "海岸線、島、トラム、公共建築が近い距離に集まる首都。中心部から船で群島へ出られ、都市と自然を同じ一日の中でたどれる。",
+      "points": [
+        "港とマーケット広場から島へ船が出る",
+        "近現代建築やデザインが公共空間や日用品まで広がる"
+      ]
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "スウェーデンとロシアのあいだで",
+      "text": "フィンランドは長くスウェーデン王国の一部で、1809年からロシア帝国下の自治大公国となり、1917年に独立した。都市や要塞には複数の時代が重なっている。",
+      "points": [
+        "スオメンリンナは18世紀にスウェーデンが築いた海上要塞",
+        "ヘルシンキ中心部には19世紀の都市計画と建築が残る"
+      ]
+    },
+    {
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "湖畔のコテージとサウナ",
+      "text": "森と湖のそばのmökkiで過ごし、サウナに入り、水へ入る。自然の中で過ごす時間が、特別な観光体験ではなく日常の延長としてある。",
+      "points": [
+        "国内には50万棟を超えるコテージがある",
+        "サウナ文化は2020年にユネスコ無形文化遺産に登録された"
+      ]
+    },
+    {
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "北に続くサーミの現在",
+      "icon": "culture",
+      "text": "北部ラップランドは先住民族サーミの伝統地域サープミの一部。言語、トナカイ牧畜、工芸だけでなく、現代の文化や政治まで続いている。",
+      "points": [
+        "イナリにはフィンランドのサーミ議会が置かれている",
+        "Siidaでは自然環境とサーミ文化をあわせて知ることができる"
+      ]
+    },
+    {
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "ライ麦、ベリー、カレリアの味",
+      "text": "黒いライ麦パン、森のベリー、魚、カレリアパイなど、北の気候と森や湖に結びついた食が多い。市場やカフェでも季節の素材に出会える。",
+      "points": [
+        "karjalanpiirakkaはライ麦生地に米粥などを包む軽食",
+        "夏から秋にはブルーベリーやリンゴンベリーが森に実る"
+      ]
+    },
+    {
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "南から北へ、景色が変わる",
+      "text": "南部の都市間は鉄道、北部へは夜行列車、南西部の島々へはフェリーを組み合わせる。移動そのものが、海岸・湖・森林・北極圏の変化を見せる。",
+      "points": [
+        "ヘルシンキからラップランド方面へ夜行列車で移動できる",
+        "群島ではフェリーをつないで島々を巡れる"
+      ]
+    }
   ],
   "travelTrivia": [
-    {"categoryEn":"SAUNA","categoryJa":"サウナ","title":"サウナではlöylyをつくる","text":"熱した石に水をかけて生まれる蒸気をlöylyと呼ぶ。温度だけでなく、蒸気と湿度を含めて楽しむのがフィンランドのサウナ文化にある。","icon":"hot-spring","sourceKey":"sauna"},
-    {"categoryEn":"NATURE","categoryJa":"自然","title":"森や湖へ入れる「万人の権利」","text":"自然を傷つけず、住居や耕作地を避けることを前提に、森を歩き、野生のベリーやキノコを採ることが広く認められている。","icon":"hike","sourceKey":"everymansRights"},
-    {"categoryEn":"COTTAGE","categoryJa":"夏の暮らし","title":"夏はmökkiへ向かう","text":"湖畔や森のコテージmökkiで過ごすことは、フィンランドの夏を象徴する習慣。サウナ、湖、焚き火が一つの時間につながる。","icon":"home","sourceKey":"mokki"},
-    {"categoryEn":"FLAVOUR","categoryJa":"味覚","title":"黒い菓子はサルミアッキかもしれない","text":"塩化アンモニウムを使った塩味のリコリスsalmiakkiは、フィンランドで親しまれる独特の味。菓子だけでなくアイスなどにも使われる。","icon":"food","sourceKey":"salmiakki"},
-    {"categoryEn":"MIDSUMMER","categoryJa":"夏至","title":"Juhannusは街が静かになる","text":"夏至の週末は多くの人が都市を離れ、湖や海辺のコテージへ向かう。焚き火やサウナとともに短い北欧の夏を過ごす。","icon":"sun","sourceKey":"midsummer"}
+    {
+      "categoryEn": "SAUNA",
+      "categoryJa": "サウナ",
+      "title": "サウナではlöylyをつくる",
+      "text": "熱した石に水をかけて生まれる蒸気をlöylyと呼ぶ。温度だけでなく、蒸気と湿度を含めて楽しむのがフィンランドのサウナ文化にある。",
+      "icon": "hot-spring",
+      "sourceKey": "sauna"
+    },
+    {
+      "categoryEn": "NATURE",
+      "categoryJa": "自然",
+      "title": "森や湖へ入れる「万人の権利」",
+      "text": "自然を傷つけず、住居や耕作地を避けることを前提に、森を歩き、野生のベリーやキノコを採ることが広く認められている。",
+      "icon": "hike",
+      "sourceKey": "everymansRights"
+    },
+    {
+      "categoryEn": "COTTAGE",
+      "categoryJa": "夏の暮らし",
+      "title": "夏はmökkiへ向かう",
+      "text": "湖畔や森のコテージmökkiで過ごすことは、フィンランドの夏を象徴する習慣。サウナ、湖、焚き火が一つの時間につながる。",
+      "icon": "home",
+      "sourceKey": "mokki"
+    },
+    {
+      "categoryEn": "FLAVOUR",
+      "categoryJa": "味覚",
+      "title": "黒い菓子はサルミアッキかもしれない",
+      "text": "塩化アンモニウムを使った塩味のリコリスsalmiakkiは、フィンランドで親しまれる独特の味。菓子だけでなくアイスなどにも使われる。",
+      "icon": "food",
+      "sourceKey": "salmiakki"
+    },
+    {
+      "categoryEn": "MIDSUMMER",
+      "categoryJa": "夏至",
+      "title": "Juhannusは街が静かになる",
+      "text": "夏至の週末は多くの人が都市を離れ、湖や海辺のコテージへ向かう。焚き火やサウナとともに短い北欧の夏を過ごす。",
+      "icon": "sun",
+      "sourceKey": "midsummer"
+    }
   ],
   "seasons": [
-    {"months":"6〜8月","color":"#92a253","text":"湖、群島、国立公園を旅しやすい季節。北部では白夜が続き、長い一日の中で歩く時間を大きく取れる。"},
-    {"months":"9〜10月","color":"#b77a49","text":"森とラップランドが黄や赤に変わるruskaの季節。北部では夜が戻り、季節の変化が急速に進む。"},
-    {"months":"11〜3月","color":"#6b90a5","text":"北部は雪に覆われ、南部も日が短くなる。凍った湖、雪の森、冬のサウナなど夏とは別の景色になる。"},
-    {"months":"4〜5月","color":"#73966f","text":"南から雪解けが進み、湖の氷がほどけていく移行期。北部にはまだ雪が残り、南北の季節差が大きい。"}
+    {
+      "months": "6〜8月",
+      "color": "#92a253",
+      "text": "湖、群島、国立公園を旅しやすい季節。北部では白夜が続き、長い一日の中で歩く時間を大きく取れる。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b77a49",
+      "text": "森とラップランドが黄や赤に変わるruskaの季節。北部では夜が戻り、季節の変化が急速に進む。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#6b90a5",
+      "text": "北部は雪に覆われ、南部も日が短くなる。凍った湖、雪の森、冬のサウナなど夏とは別の景色になる。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#73966f",
+      "text": "南から雪解けが進み、湖の氷がほどけていく移行期。北部にはまだ雪が残り、南北の季節差が大きい。"
+    }
   ],
-  "transport": {"title":"TRAIN / FERRY / ROAD","text":"南部の都市間は鉄道が使いやすく、ラップランドへは夜行列車も選べる。群島ではフェリー、湖沼地方では車を組み合わせると地域の違いが見えやすい。"},
+  "transport": {
+    "title": "TRAIN / FERRY / ROAD",
+    "text": "南部の都市間は鉄道が使いやすく、ラップランドへは夜行列車も選べる。群島ではフェリー、湖沼地方では車を組み合わせると地域の違いが見えやすい。"
+  },
   "personas": [
-    {"title":"湖とサウナの時間を過ごしたい人","text":"森と湖のそばに滞在し、サウナや水辺の時間そのものを旅の中心に置きたい人。"},
-    {"title":"北の地形を歩きたい人","text":"ラップランドのfellや雪の森を歩き、南部とは異なる光、植生、季節の変化を体験したい人。"},
-    {"title":"都市と自然を同時に見たい人","text":"木造都市やヘルシンキの海辺を歩きながら、群島や森林が都市生活のすぐ近くにある感覚を知りたい人。"}
+    {
+      "title": "湖とサウナの時間を過ごしたい人",
+      "text": "森と湖のそばに滞在し、サウナや水辺の時間そのものを旅の中心に置きたい人。"
+    },
+    {
+      "title": "北の地形を歩きたい人",
+      "text": "ラップランドのfellや雪の森を歩き、南部とは異なる光、植生、季節の変化を体験したい人。"
+    },
+    {
+      "title": "都市と自然を同時に見たい人",
+      "text": "木造都市やヘルシンキの海辺を歩きながら、群島や森林が都市生活のすぐ近くにある感覚を知りたい人。"
+    }
   ],
   "facts": [
-    {"label":"地域","value":"北ヨーロッパ"},
-    {"label":"首都","value":"ヘルシンキ"},
-    {"label":"人口","value":"約566万人"},
-    {"label":"面積","value":"約338,500 km²（日本の約90%）"},
-    {"label":"言語","value":"フィンランド語、スウェーデン語"},
-    {"label":"主な宗教","value":"キリスト教（福音ルーテル教会 61%）"},
-    {"label":"通貨","value":"ユーロ（EUR）"}
+    {
+      "label": "地域",
+      "value": "北ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "ヘルシンキ"
+    },
+    {
+      "label": "人口",
+      "value": "約566万人"
+    },
+    {
+      "label": "面積",
+      "value": "約338,500 km²（日本の約90%）"
+    },
+    {
+      "label": "言語",
+      "value": "フィンランド語、スウェーデン語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（福音ルーテル教会 61%）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
   ],
   "signatureFacts": [
-    {"label":"湖","value":"約16.8万","note":"面積500㎡以上の湖が約16.8万あり、湖沼地方では水と森が連続する景観をつくる。","icon":"map"},
-    {"label":"森林","value":"約75%","note":"国土の約4分の3を森林が覆い、都市の外だけでなく日常の景観にも深く入り込んでいる。","icon":"landscape"},
-    {"label":"サウナ","value":"約320万","note":"家庭、コテージ、公共施設まで広く存在し、サウナはフィンランドの日常文化の一部になっている。","icon":"hot-spring"}
+    {
+      "label": "湖",
+      "value": "約16.8万",
+      "note": "面積500㎡以上の湖が約16.8万あり、湖沼地方では水と森が連続する景観をつくる。",
+      "icon": "map"
+    },
+    {
+      "label": "森林",
+      "value": "約75%",
+      "note": "国土の約4分の3を森林が覆い、都市の外だけでなく日常の景観にも深く入り込んでいる。",
+      "icon": "landscape"
+    },
+    {
+      "label": "サウナ",
+      "value": "約320万",
+      "note": "家庭、コテージ、公共施設まで広く存在し、サウナはフィンランドの日常文化の一部になっている。",
+      "icon": "hot-spring"
+    }
   ],
   "tips": [
-    {"title":"南北で距離感が大きく変わる","text":"ヘルシンキからラップランドまでは長距離移動になる。北部を入れるなら夜行列車や国内線も含めて旅程を組む。"},
-    {"title":"湖と群島は船の季節を確認する","text":"夏季中心の航路や減便があるため、島や湖上ルートを使う場合は運航期間を先に確認する。"},
-    {"title":"サウナのルールは施設ごとに違う","text":"水着の有無、男女別、混浴、タオルの扱いは場所によって異なる。現地の案内に従う。"}
+    {
+      "title": "南北で距離感が大きく変わる",
+      "text": "ヘルシンキからラップランドまでは長距離移動になる。北部を入れるなら夜行列車や国内線も含めて旅程を組む。"
+    },
+    {
+      "title": "湖と群島は船の季節を確認する",
+      "text": "夏季中心の航路や減便があるため、島や湖上ルートを使う場合は運航期間を先に確認する。"
+    },
+    {
+      "title": "サウナのルールは施設ごとに違う",
+      "text": "水着の有無、男女別、混浴、タオルの扱いは場所によって異なる。現地の案内に従う。"
+    }
   ],
   "relatedCountries": [
-    {"slug":"sweden","nameEn":"SWEDEN","nameJa":"スウェーデン","flag":"🇸🇪","reason":"群島と森林を、より都市と海の文化へつなげて見たいなら。"},
-    {"slug":"norway","nameEn":"NORWAY","nameJa":"ノルウェー","flag":"🇳🇴","reason":"北極圏をさらに急峻な山とフィヨルドの地形へつなげて見たいなら。"},
-    {"slug":"estonia","nameEn":"ESTONIA","nameJa":"エストニア","flag":"🇪🇪","reason":"バルト海を渡り、木造の町と森・湿地の景観を続けて見たいなら。"}
+    {
+      "slug": "sweden",
+      "nameEn": "SWEDEN",
+      "nameJa": "スウェーデン",
+      "flag": "🇸🇪",
+      "reason": "群島と森林を、より都市と海の文化へつなげて見たいなら。"
+    },
+    {
+      "slug": "norway",
+      "nameEn": "NORWAY",
+      "nameJa": "ノルウェー",
+      "flag": "🇳🇴",
+      "reason": "北極圏をさらに急峻な山とフィヨルドの地形へつなげて見たいなら。"
+    },
+    {
+      "slug": "estonia",
+      "nameEn": "ESTONIA",
+      "nameJa": "エストニア",
+      "flag": "🇪🇪",
+      "reason": "バルト海を渡り、木造の町と森・湿地の景観を続けて見たいなら。"
+    }
   ],
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-29",
   "sourcesVerifiedAt": "2026-08-28",
   "sourceDates": {
     "population": "2026-07-31",
@@ -100,17 +422,17 @@
     "lakes": "2026"
   },
   "sources": {
-    "population":"Statistics Finland: preliminary population 5,655,296 at end of July 2026",
-    "area":"Statistics Finland, Finland in Figures 2026: total area 338,493 km² on 1 January 2026",
-    "languages":"Finlex, Constitution of Finland section 17: Finnish and Swedish are the national languages",
-    "religion":"Statistics Finland, Population structure 2025: Evangelical Lutheran Church members were 61% of the population",
-    "lakes":"Statistics Finland, Finland in Figures 2026: approximately 168,000 lakes with an area of 500 m² or more",
-    "forest":"Metsähallitus: forests cover approximately 75% of Finland's land area",
-    "sauna":"Finnish Heritage Agency: approximately 3.2 million saunas; sauna culture inscribed on UNESCO Representative List in 2020",
-    "everymansRights":"Ministry of the Environment, Finland: Everyman's rights",
-    "mokki":"Visit Finland: Finnish cottage culture and more than half a million cottages",
-    "salmiakki":"This is Finland: salmiakki in Finnish food culture",
-    "midsummer":"This is Finland / Visit Finland: Juhannus midsummer traditions",
-    "map":"geoBoundaries gbOpen FIN ADM1 dissolved, build Dec 12 2023, ODbL 1.0; illustrated treatment: JOURNEY ATLAS"
+    "population": "Statistics Finland: preliminary population 5,655,296 at end of July 2026",
+    "area": "Statistics Finland, Finland in Figures 2026: total area 338,493 km² on 1 January 2026",
+    "languages": "Finlex, Constitution of Finland section 17: Finnish and Swedish are the national languages",
+    "religion": "Statistics Finland, Population structure 2025: Evangelical Lutheran Church members were 61% of the population",
+    "lakes": "Statistics Finland, Finland in Figures 2026: approximately 168,000 lakes with an area of 500 m² or more",
+    "forest": "Metsähallitus: forests cover approximately 75% of Finland's land area",
+    "sauna": "Finnish Heritage Agency: approximately 3.2 million saunas; sauna culture inscribed on UNESCO Representative List in 2020",
+    "everymansRights": "Ministry of the Environment, Finland: Everyman's rights",
+    "mokki": "Visit Finland: Finnish cottage culture and more than half a million cottages",
+    "salmiakki": "This is Finland: salmiakki in Finnish food culture",
+    "midsummer": "This is Finland / Visit Finland: Juhannus midsummer traditions",
+    "map": "geoBoundaries gbOpen FIN ADM1 dissolved, build Dec 12 2023, ODbL 1.0; illustrated treatment: JOURNEY ATLAS"
   }
 }
