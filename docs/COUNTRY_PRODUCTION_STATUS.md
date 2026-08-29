@@ -231,7 +231,7 @@ Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
 Scene 2 Diamond Hill / Connemara: APPROVED
 Scene 3 Burren / Mullaghmore: APPROVED
-Scene 4 Killarney / Ladies View: PENDING
+Scene 4 Killarney / Ladies View: RESET REQUIRED / CONTEXT CONTAMINATION
 Scene 5 Sceilg Mhichíl: PENDING
 Scene 6 Rock of Cashel: PENDING
 Scene 7 Glendalough: PENDING
@@ -239,8 +239,10 @@ Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
-- Scene 3 had repeated context-contamination failures, but the latest clean-context output correctly depicts Burren karst limestone pavement and Mullaghmore and is approved.
-- All rejected Scene 3 outputs remain excluded from production.
+- Scene 3 had repeated context-contamination failures; the final Burren output passed and was approved.
+- Scene 4 attempt 1 repeated the Burren limestone landscape instead of Killarney / Ladies View.
+- Context contamination is confirmed for Scene 4. Reset Scene 4 generation series only.
+- Rejected Scene 4 output remains excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -280,10 +282,11 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 3 / The Burren / Mullaghmore passed subject-fidelity QA and was user-approved.
-- Production sequence now advances to Scene 4.
+- Scene 4 attempt 1 duplicated the prior Burren landscape.
+- User flagged the duplication.
+- Scene 4 generation series reset.
 
 Next Action:
-- Generate Scene 4 only: Killarney National Park / Ladies View.
-- Required cues: layered lakes, wooded slopes, MacGillycuddy's Reeks receding through moist Atlantic air, established roadside viewpoint perspective; no dramatic alpine exaggeration.
+- Regenerate Scene 4 only in a fresh context: Killarney National Park / Ladies View.
+- Required cues: elevated roadside overlook, Upper Lake and Middle Lake layered through the valley, wooded green slopes, MacGillycuddy's Reeks in the distance, moist Atlantic haze, no limestone pavement, no karst plateau, no lighthouse, no town.
 - Do not generate Scene 5 until Scene 4 passes subject-fidelity QA and user approval.
