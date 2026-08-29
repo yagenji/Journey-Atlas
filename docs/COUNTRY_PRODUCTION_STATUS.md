@@ -225,7 +225,7 @@ FINAL QA CHECKPOINT — 2026-08-29:
 
 Country: United Kingdom
 Slug: united-kingdom
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE
+Current Phase: PHASE 5 — QA
 Status: READY-FOR-VISUAL
 
 Branch: united-kingdom-v1-content
@@ -362,3 +362,32 @@ Last Action:
 Next Action:
 - User manually uploads the 9 approved raster assets to assets/images/united-kingdom/approved/ using the official filenames above.
 - Assistant then verifies all 9 files in GitHub, checks decode/dimensions, and proceeds to PHASE 4 implementation.
+
+
+IMPLEMENTATION UPDATE — 2026-08-30:
+- User manually uploaded all 9 approved raster assets to assets/images/united-kingdom/approved/.
+- GitHub asset existence check passed for Hero + Scenes 1–8; .gitkeep removed.
+- Uploaded byte sizes exactly match the locally QA-checked approved source files.
+- Complete decode / dimensions:
+  - Hero Westminster / Thames: PNG 1535×1024
+  - Scenes 1–8: PNG 1536×1024 each
+- Created data/countries/united-kingdom.json using schemaVersion 2 and the shared Country Template structure.
+- Created assets/images/united-kingdom/map-atlas-v1.svg.
+- Created data/maps/united-kingdom.json.
+- Created countries/united-kingdom/index.html as noindex,follow review route.
+- Theme taxonomy remains earth / city / history.
+- Publication registry remains atlasPublished:false, href empty, image empty.
+- Shared icon audit passed with zero invalid icon IDs.
+- Map SVG preflight passed: complete SVG, 1200×760 viewBox, journey-atlas-map-v1 styling.
+- Marker spacing QA passed after London capital / Hero display-offset adjustment; nearest capital–Hero separation is ~46.8px.
+- Scene 5 / Scene 6 display offsets preserve their true coordinates while avoiding label collision.
+- No Country-specific CSS added.
+
+Current QA state:
+- Structural / asset / map / icon / taxonomy / publication-state preflight: PASS.
+- Actual production-page browser QA is still required after review deployment.
+
+Next Action:
+- Merge the review-ready implementation to main while keeping atlasPublished:false.
+- Confirm deploy workflow succeeds.
+- Run actual Country URL QA at https://atlas.yagenji.com/countries/united-kingdom/.
