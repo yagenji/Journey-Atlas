@@ -224,12 +224,12 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE / VISUAL-BLOCKED
 Branch: ireland-v1-content
 
-Hero: APPROVED
-Scene 1 Glenveagh National Park: APPROVED
-Scene 2 Diamond Hill / Connemara: APPROVED
+Hero: USER-APPROVED / STYLE-REGEN REQUIRED
+Scene 1 Glenveagh National Park: USER-APPROVED / STYLE-REGEN REQUIRED
+Scene 2 Diamond Hill / Connemara: USER-APPROVED / STYLE-REGEN REQUIRED
 Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: APPROVED
 Scene 5 Sceilg Mhichíl: APPROVED
@@ -238,14 +238,13 @@ Scene 7 Glendalough: APPROVED
 Scene 8 Brú na Bóinne / Newgrange: APPROVED
 
 Visual issues:
-- Scene 2 earlier attempts failed subject fidelity; final reset output approved.
-- Scene 3 had repeated context contamination; final Burren output approved.
-- Scene 4 initial attempt duplicated Burren; final Killarney output approved.
-- Scene 6 initial outputs depicted coastal mining scenery; final Rock of Cashel output approved.
-- Scene 7 initial output duplicated Rock of Cashel and a later attempt was too photographic; final watercolor Glendalough output approved.
-- Scene 8 Newgrange output approved.
-- Rejected outputs remain excluded from production.
-- Final cross-set style consistency still requires Visual Complete Gate review before implementation.
+- Final cross-set review completed for Hero + Scenes 1–8.
+- Real-location subject set is broadly valid after the earlier subject-fidelity fixes.
+- BLOCKER: Hero, Scene 1 and Scene 2 are substantially more photographic than Scenes 3–8.
+- Scenes 3–8 form a coherent watercolor travel-atlas set; Hero / Scene 1 / Scene 2 do not match that rendering language.
+- Iceland / Norway series-consistency gate therefore does not pass.
+- Hero, Scene 1 and Scene 2 must be regenerated in the same clean watercolor language while preserving the approved locations and compositions.
+- Rejected / superseded outputs remain excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -285,12 +284,13 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 7 / Glendalough final watercolor output approved.
-- Scene 8 / Brú na Bóinne / Newgrange passed subject-fidelity QA and was user-approved.
-- Hero + all 8 scenes now have approved outputs.
+- Ran the VISUAL COMPLETE GATE across all nine approved visuals.
+- Subject diversity and geographic distribution pass.
+- Cross-set style consistency fails on Hero / Scene 1 / Scene 2.
+- Marked Ireland VISUAL-BLOCKED pending style regeneration of those three visuals.
 
 Next Action:
-- Run VISUAL COMPLETE GATE across Hero + Scenes 1–8.
-- Confirm: real-location fidelity, watercolor-series consistency, Iceland / Norway fit, no visible generation artifacts, and no duplicated subject.
-- If all nine pass, provide final production filenames for the user to upload manually and then verify all files exist in GitHub.
-- Do not begin Country JSON / Map / page implementation until the Visual Complete Gate passes.
+- Regenerate Hero only: Cliffs of Moher, preserving the approved viewpoint and composition but matching the watercolor language of Scenes 3–8.
+- After user approval, regenerate Scene 1, then Scene 2, one at a time.
+- Re-run the full Visual Complete Gate after all three replacements are approved.
+- Do not begin implementation until the gate passes.
