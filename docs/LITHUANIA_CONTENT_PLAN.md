@@ -221,6 +221,9 @@ Rationale:
 - Lithuania Travel: Curonian Spit, Hill of Crosses, Aukštaitija / Ladakalnis, Kernavė, Kaunas Modernism, Čepkeliai and Dzūkija.
 - Go Vilnius: Subačius Panoramic Viewpoint and Vilnius viewpoints.
 - European Central Bank: Lithuania uses the euro.
+- Ministry of Foreign Affairs of Japan: Chiune Sugihara served in Kaunas and issued the “Visas for Life” in July–August 1940; the surviving list contains 2,140 names and the actual number of lives saved is thought to be in the thousands.
+- Yad Vashem: Chiune Sugihara was recognized as Righteous Among the Nations on 4 October 1984.
+- Sugihara House Museum: the current museum building housed the Japanese Consulate in Lithuania from November 1939 to August 1940.
 
 ## GATE
 PHASE 1 complete.
