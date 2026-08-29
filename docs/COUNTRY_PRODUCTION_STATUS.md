@@ -224,15 +224,15 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 4 next)
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 6 next)
 Branch: ireland-v1-content
 
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
 Scene 2 Diamond Hill / Connemara: APPROVED
 Scene 3 Burren / Mullaghmore: APPROVED
-Scene 4 Killarney / Ladies View: RESET REQUIRED / CONTEXT CONTAMINATION
-Scene 5 Sceilg Mhichíl: PENDING
+Scene 4 Killarney / Ladies View: APPROVED
+Scene 5 Sceilg Mhichíl: APPROVED
 Scene 6 Rock of Cashel: PENDING
 Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
@@ -282,11 +282,11 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 4 attempt 1 duplicated the prior Burren landscape.
-- User flagged the duplication.
-- Scene 4 generation series reset.
+- Scene 4 / Killarney National Park / Ladies View user-approved.
+- Scene 5 / Sceilg Mhichíl / Skellig Michael passed visual QA and user approval.
+- Production sequence advances to Scene 6.
 
 Next Action:
-- Regenerate Scene 4 only in a fresh context: Killarney National Park / Ladies View.
-- Required cues: elevated roadside overlook, Upper Lake and Middle Lake layered through the valley, wooded green slopes, MacGillycuddy's Reeks in the distance, moist Atlantic haze, no limestone pavement, no karst plateau, no lighthouse, no town.
-- Do not generate Scene 5 until Scene 4 passes subject-fidelity QA and user approval.
+- Generate Scene 6 only: Rock of Cashel.
+- Required cues: limestone outcrop above open green fields, clustered medieval ecclesiastical stone complex with round tower, cathedral ruins and defensive walls, viewed from a lower field / town approach; restrained early-autumn light.
+- Do not generate Scene 7 until Scene 6 passes subject-fidelity QA and user approval.
