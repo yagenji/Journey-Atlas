@@ -230,7 +230,7 @@ Branch: ireland-v1-content
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
 Scene 2 Diamond Hill / Connemara: APPROVED
-Scene 3 Burren / Mullaghmore: USER-APPROVED OUTPUT / SUBJECT-FIDELITY BLOCKED
+Scene 3 Burren / Mullaghmore: USER-APPROVED OUTPUTS / SUBJECT-FIDELITY BLOCKED / RESET REQUIRED
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
 Scene 6 Rock of Cashel: PENDING
@@ -240,10 +240,11 @@ Scene 8 Brú na Bóinne / Newgrange: PENDING
 Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
 - Scene 3 attempt 1: town / waterfall, not The Burren.
-- Scene 3 attempt 2: lighthouse coast, not The Burren; context contamination triggered a Scene 3 reset.
-- Scene 3 attempt 3 after reset: seaside city / tower / pier, not The Burren / Mullaghmore.
-- User approval is retained as feedback, but the visual gate blocks Scene 3 because the real location is clearly wrong.
-- Rejected Scene 3 outputs remain excluded from production.
+- Scene 3 attempt 2: lighthouse coast, not The Burren; reset triggered.
+- Scene 3 post-reset attempt 1: seaside city / tower / pier, not The Burren.
+- Scene 3 post-reset attempt 2: large urban castle / Edinburgh-like fortress, not The Burren.
+- Two consecutive post-reset subject-fidelity failures confirmed. Reset Scene 3 generation series again.
+- User approvals are retained as feedback, but all mismatched Scene 3 outputs remain excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -283,11 +284,11 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User approved the latest Scene 3 output.
-- Visual QA rejected it for subject fidelity: it depicts a seaside city rather than The Burren / Mullaghmore.
-- Scene 3 remains blocked; no advancement to Scene 4.
+- User approved the latest generated output.
+- Visual QA rejected it for subject fidelity: it depicts an Edinburgh-like urban castle rather than The Burren / Mullaghmore.
+- Scene 3 reached two consecutive post-reset failures and is being reset again.
 
 Next Action:
-- Regenerate Scene 3 only: The Burren / Mullaghmore.
-- Required cues: pale gray limestone pavement filling the foreground, clearly visible clints and deep grikes, rounded terraced limestone hill of Mullaghmore in the middle distance, sparse low grass/moss and tiny spring flowers in fissures, open treeless karst plateau, soft Atlantic daylight. Absolutely no lighthouse, no town, no pier, no waterfall, no beach, no tower.
+- Regenerate Scene 3 only in a clean context: The Burren / Mullaghmore, County Clare.
+- Required cues: almost treeless pale-gray karst plateau; fractured limestone pavement with clints and deep grikes dominating the foreground; low rounded terraced limestone hill of Mullaghmore; only sparse low grass, moss and tiny spring flowers in cracks; no castle, no town, no lighthouse, no beach, no pier, no waterfall, no large trees.
 - Do not generate Scene 4 until Scene 3 passes subject-fidelity QA and user approval.
