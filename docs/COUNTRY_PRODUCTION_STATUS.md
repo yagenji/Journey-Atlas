@@ -240,7 +240,7 @@ Scenes:
 2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
 3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
 4. Glen Coe / Three Sisters — APPROVED
-5. Eryri / Llyn Llydaw — PENDING
+5. Eryri / Llyn Llydaw — APPROVED
 6. Caernarfon Castle / River Seiont — PENDING
 7. Giant’s Causeway / Grand Causeway — PENDING
 8. Silent Valley / Mourne Mountains — PENDING
@@ -304,9 +304,13 @@ Last Action:
 - Scene 4 Glen Coe / Three Sisters generated in a fresh series and explicitly approved by the user.
 - Subject-fidelity check passed: steep Highland glen, Three Sisters massif and valley road context are clearly present without prior-scene contamination.
 
+Last Action:
+- Scene 5 Eryri / Llyn Llydaw regenerated correctly and explicitly approved by the user.
+- Subject-fidelity check passed: Llyn Llydaw, rugged mountain slopes and foreground walking path are present.
+
 Next Action:
-- Generate Scene 5 only: Eryri / Llyn Llydaw.
-- Do not generate Scene 6 until the user explicitly approves Scene 5.
+- Generate Scene 6 only: Caernarfon Castle / River Seiont.
+- Do not generate Scene 7 until the user explicitly approves Scene 6.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
