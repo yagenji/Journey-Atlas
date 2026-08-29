@@ -246,7 +246,9 @@ Scenes:
 8. Silent Valley / Mourne Mountains — PENDING
 
 Visual issues:
-- Scene 3 subject-fidelity failure: the user approved the generated image, but it depicts a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. Per VISUAL COMPLETE GATE rules, user approval alone is insufficient when the real place is clearly wrong. This output is REJECTED for Scene 3 and must never enter production.
+- Scene 3 subject-fidelity failure: first output depicted a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. The second fresh attempt again produced a rural mountain / lake / stone-wall landscape instead of Edinburgh.
+- Both Scene 3 outputs are REJECTED and must never enter production.
+- Scene 3 has now failed twice consecutively with the same subject/context drift. Per production rule, the Scene 3 generation series is RESET before the next attempt.
 - Scene 2 generation has repeatedly failed with subject/context drift.
 - Earlier failure set: an 8-image UK collage with text/UI, then a generic coastal rock-arch landscape.
 - Fresh-series failure set: another 8-image UK collage with text/UI, then a full UK Content Design infographic instead of the requested landscape.
@@ -292,6 +294,6 @@ Last Action:
 - Subject-fidelity QA overruled acceptance for production because Edinburgh / Calton Hill / Old Town are not depicted.
 
 Next Action:
-- Regenerate Scene 3 only: Edinburgh / Calton Hill to Old Town.
-- Use a fresh generation context focused only on the locked Edinburgh scene definition.
+- Stop the current contaminated Scene 3 generation context.
+- On the next attempt, start a new Scene 3-only generation series for Edinburgh / Calton Hill to Old Town with no rural landscape / Hadrian’s Wall context carried over.
 - Do not generate Scene 4 until a correct Scene 3 is explicitly approved.
