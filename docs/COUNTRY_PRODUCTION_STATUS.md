@@ -224,13 +224,13 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 3 next)
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Scene 4 next)
 Branch: ireland-v1-content
 
 Hero: APPROVED
 Scene 1 Glenveagh National Park: APPROVED
 Scene 2 Diamond Hill / Connemara: APPROVED
-Scene 3 Burren / Mullaghmore: USER-APPROVED OUTPUTS / SUBJECT-FIDELITY BLOCKED / RESET REQUIRED
+Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: PENDING
 Scene 5 Sceilg Mhichíl: PENDING
 Scene 6 Rock of Cashel: PENDING
@@ -239,12 +239,8 @@ Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
-- Scene 3 attempt 1: town / waterfall, not The Burren.
-- Scene 3 attempt 2: lighthouse coast, not The Burren; reset triggered.
-- Scene 3 post-reset attempt 1: seaside city / tower / pier, not The Burren.
-- Scene 3 post-reset attempt 2: large urban castle / Edinburgh-like fortress, not The Burren.
-- Two consecutive post-reset subject-fidelity failures confirmed. Reset Scene 3 generation series again.
-- User approvals are retained as feedback, but all mismatched Scene 3 outputs remain excluded from production.
+- Scene 3 had repeated context-contamination failures, but the latest clean-context output correctly depicts Burren karst limestone pavement and Mullaghmore and is approved.
+- All rejected Scene 3 outputs remain excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -284,11 +280,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User approved the latest generated output.
-- Visual QA rejected it for subject fidelity: it depicts an Edinburgh-like urban castle rather than The Burren / Mullaghmore.
-- Scene 3 reached two consecutive post-reset failures and is being reset again.
+- Scene 3 / The Burren / Mullaghmore passed subject-fidelity QA and was user-approved.
+- Production sequence now advances to Scene 4.
 
 Next Action:
-- Regenerate Scene 3 only in a clean context: The Burren / Mullaghmore, County Clare.
-- Required cues: almost treeless pale-gray karst plateau; fractured limestone pavement with clints and deep grikes dominating the foreground; low rounded terraced limestone hill of Mullaghmore; only sparse low grass, moss and tiny spring flowers in cracks; no castle, no town, no lighthouse, no beach, no pier, no waterfall, no large trees.
-- Do not generate Scene 4 until Scene 3 passes subject-fidelity QA and user approval.
+- Generate Scene 4 only: Killarney National Park / Ladies View.
+- Required cues: layered lakes, wooded slopes, MacGillycuddy's Reeks receding through moist Atlantic air, established roadside viewpoint perspective; no dramatic alpine exaggeration.
+- Do not generate Scene 5 until Scene 4 passes subject-fidelity QA and user approval.
