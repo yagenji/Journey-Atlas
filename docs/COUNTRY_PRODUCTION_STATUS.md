@@ -149,8 +149,9 @@ IMPLEMENTATION PREP — MAP / TAXONOMY:
 - Map config created: data/maps/latvia.json.
 - Canvas / projection: 1200×760, equirectangular.
 - Bounds: W 20.65 / E 28.55 / S 55.45 / N 58.30.
-- Geometry source: GADM 3.6 ADM0 Latvia (WGS84), used as a high-detail fallback because geoBoundaries LFS retrieval was unavailable in the current execution environment.
-- SVG preflight passed: complete <svg>…</svg>, correct 1200×760 viewBox, journey-atlas-map-v1 metadata/style, 189,435 bytes, 13,514 projected line segments.
+- Geometry source: Natural Earth 1:10m Admin 0 Countries (public domain), matching MAP_SYSTEM standard source policy.
+- geoBoundaries LVA ADM0 was checked as the higher-detail fallback (2021 boundary, Geoportal of Latvia, CC BY 4.0), but its Git LFS object could not be retrieved in the current execution environment; no non-standard boundary source is retained in production.
+- SVG preflight passed: complete <svg>…</svg>, correct 1200×760 viewBox, journey-atlas-map-v1 metadata/style, 9,002 bytes, 541 projected line segments.
 - Marker-spacing calculation passed after small Hero / Capital display offsets. Hero–Capital final separation is about 38.5px; no configured pair violates MAP_SYSTEM minimum spacing thresholds.
 - Visual browser/render QA for the map is still required before review deployment.
 
