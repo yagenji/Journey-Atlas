@@ -113,26 +113,24 @@ PLANNED COPY DIRECTION:
 Current state:
 - PHASE 1 complete.
 - PHASE 2 — VISUAL PRODUCTION in progress.
-- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden, Scene 7 Lake Rāzna / Rāzna National Park.
+- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden, Scene 6 Cēsis Medieval Castle (user-approved; subject-fidelity QA flag retained), Scene 7 Lake Rāzna / Rāzna National Park.
 - Scene 4 was regenerated in a fresh context and approved with the intended Venta Rapid + red-brick bridge + old-town composition.
 - Scene 5 was regenerated to restore the target photographic realism 60% / watercolor 40% balance and approved.
 - Scene 7 Lake Rāzna was approved.
-- Scene 6 Cēsis Medieval Castle is still NOT approved: multiple generation attempts drifted into unrelated coast / collage imagery and are rejected.
+- Scene 6 Cēsis Medieval Castle was explicitly user-approved, but the latest image still carries a subject-fidelity QA concern because it reads more like a riverside town than a conserved medieval castle ruin. Keep this as a QA flag for the final visual gate.
 - Rejected outputs remain excluded from production.
 - No Latvia production page or Country JSON will be implemented until Hero + all 8 scenes pass the VISUAL COMPLETE GATE.
 
 Remaining:
-- Generate and approve Scene 6 Cēsis Medieval Castle.
 - Generate and approve Scene 8 Daugavpils Fortress.
+- Final visual gate must revisit the Scene 6 subject-fidelity QA flag before implementation.
 - After 9/9 visual approval: create final assets, Latvia Country JSON, map, route and review page.
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Recover Scene 6 / Cēsis Medieval Castle before advancing to Scene 8, because Scene 6 remains the only unapproved scene before Scene 7.
-- Reset the Cēsis generation series after repeated subject drift.
-- Re-anchor with real Cēsis Medieval Castle references.
-- Required composition: conserved medieval stone castle ruins and recognizable towers integrated with the real park / old-town setting; no fantasy reconstruction.
-- Soft late-spring or early-autumn light.
+- Generate Scene 8 / Daugavpils Fortress one image at a time.
+- Required composition: real early-19th-century bastion fortress in Daugavpils, with restrained red-brick / pale masonry arsenal buildings, broad ramparts and defensive geometry; no fantasy reconstruction.
+- Cool autumn or winter-edge light; no heavy snow required.
 - Photographic realism 60% / watercolor 40%, restrained watercolor treatment over realistic structure.
-- No sea, beach, dunes, coast, waterfall, collage, text, labels, UI, borders, invented mountains, or reconstructed fantasy castle elements.
-- Do not advance to Scene 8 until Scene 6 is approved.
+- No text, labels, UI, borders, collage, invented mountains, or castle-fantasy exaggeration.
+- Do not advance to implementation until Scene 8 is approved and the final visual gate is passed.
