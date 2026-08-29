@@ -369,7 +369,7 @@ QA remaining:
 - Map marker visual review on the actual page
 
 Last Action:
-- PHASE 4 implementation completed on lithuania-v1-content and branch-level structural QA passed.
+- Added Chiune Sugihara / “Visas for Life” to the implemented Lithuania Country JSON: Beyond the Scenery HISTORY and Travel Trivia. Verified against Japan MOFA, Yad Vashem and Sugihara House Museum. World Heritage count remains in Signature Facts.
 
 Next Action:
 - Open a review PR against main to trigger repository validation. If checks pass, merge for REVIEW DEPLOYMENT while keeping atlasPublished:false, then QA https://atlas.yagenji.com/countries/lithuania/.
