@@ -237,7 +237,7 @@ Hero:
 
 Scenes:
 1. Seven Sisters / Cuckmere Haven — APPROVED
-2. Hadrian’s Wall / Steel Rigg and Crag Lough — PENDING
+2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
 3. Edinburgh / Calton Hill to Old Town — PENDING
 4. Glen Coe / Three Sisters — PENDING
 5. Eryri / Llyn Llydaw — PENDING
@@ -287,10 +287,9 @@ Completed:
 - High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
 
 Last Action:
-- Scene 1 Seven Sisters / Cuckmere Haven generated and explicitly approved by the user.
-- Scene 1 subject-fidelity check passed: the white chalk cliffs, Cuckmere Haven estuary and low South Downs landscape remain clearly identifiable and consistent with the locked scene definition.
+- Scene 2 Hadrian’s Wall / Steel Rigg and Crag Lough generated in a fresh series and explicitly approved by the user.
+- Scene 2 subject-fidelity check passed: the stone wall traces the Whin Sill ridge with Crag Lough and open Northumberland moorland clearly visible.
 
 Next Action:
-- Stop the contaminated Scene 2 image-generation context.
-- On the next Scene 2 attempt, start from a fresh generation series with only the locked Hadrian’s Wall / Steel Rigg / Crag Lough scene definition.
-- Do not generate Scene 3 until the user explicitly approves a correct Scene 2.
+- Generate Scene 3 only: Edinburgh / Calton Hill to Old Town.
+- Do not generate Scene 4 until the user explicitly approves Scene 3.
