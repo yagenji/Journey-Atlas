@@ -367,11 +367,16 @@ Browser / responsive QA:
 - Shared interactive scene-card semantics remain a common Country Template accessibility concern and must not be patched Lithuania-only.
 
 Last Action:
-- Added Chiune Sugihara / “Visas for Life” to the implemented Lithuania Country JSON: Beyond the Scenery HISTORY and Travel Trivia. Verified against Japan MOFA, Yad Vashem and Sugihara House Museum. World Heritage count remains in Signature Facts.
+- Chiune Sugihara / “Visas for Life” review update merged to main at commit 5966868c390d8d724fb8c406431e23568d170ad0.
+- Push validation run 33261648633: SUCCESS.
+- Deploy JOURNEY ATLAS run 33261648618: SUCCESS.
+- Deploy steps passed: Validate source / Build production site / Validate production build / Upload site / Deploy to GitHub Pages.
+- Cloudflare production package validation passed.
+- atlasPublished remains false.
 
 Next Action:
-- Merge the clean Sugihara review update to main with atlasPublished:false.
-- Re-run production URL QA at https://atlas.yagenji.com/countries/lithuania/.
+- Confirm the updated Sugihara content on https://atlas.yagenji.com/countries/lithuania/ and continue user visual review.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
 - Do not set atlasPublished:true until explicit user publication approval.
 
 
