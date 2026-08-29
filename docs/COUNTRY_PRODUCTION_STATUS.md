@@ -238,7 +238,7 @@ Hero:
 Scenes:
 1. Seven Sisters / Cuckmere Haven — APPROVED
 2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
-3. Edinburgh / Calton Hill to Old Town — PENDING (user-approved output rejected by subject-fidelity QA)
+3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
 4. Glen Coe / Three Sisters — PENDING
 5. Eryri / Llyn Llydaw — PENDING
 6. Caernarfon Castle / River Seiont — PENDING
@@ -290,13 +290,14 @@ Completed:
 - High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
 
 Last Action:
-- Scene 3 generation produced the wrong subject (Hadrian’s Wall-like ridge / stone wall) and was explicitly user-approved.
-- Subject-fidelity QA overruled acceptance for production because Edinburgh / Calton Hill / Old Town are not depicted.
+- Scene 3 Edinburgh / Calton Hill to Old Town regenerated with the correct urban subject.
+- Watercolor strength was reduced after user feedback.
+- Final Scene 3 was explicitly approved by the user.
+- Subject-fidelity check passed: Calton Hill foreground monument, Edinburgh Castle, Old Town skyline and city context are identifiable.
 
 Next Action:
-- Stop the current contaminated Scene 3 generation context.
-- On the next attempt, start a new Scene 3-only generation series for Edinburgh / Calton Hill to Old Town with no rural landscape / Hadrian’s Wall context carried over.
-- Do not generate Scene 4 until a correct Scene 3 is explicitly approved.
+- Generate Scene 4 only: Glen Coe / Three Sisters.
+- Do not generate Scene 5 until the user explicitly approves Scene 4.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
