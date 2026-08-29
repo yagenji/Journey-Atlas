@@ -153,7 +153,7 @@ IMPLEMENTATION PREP — MAP / TAXONOMY:
 - geoBoundaries LVA ADM0 was checked as the higher-detail fallback (2021 boundary, Geoportal of Latvia, CC BY 4.0), but its Git LFS object could not be retrieved in the current execution environment; no non-standard boundary source is retained in production.
 - SVG preflight passed: complete <svg>…</svg>, correct 1200×760 viewBox, journey-atlas-map-v1 metadata/style, 9,002 bytes, 541 projected line segments.
 - Marker-spacing calculation passed after small Hero / Capital display offsets. Hero–Capital final separation is about 38.5px; no configured pair violates MAP_SYSTEM minimum spacing thresholds.
-- Visual browser/render QA for the map is still required before review deployment.
+- Standalone SVG render QA passed locally at 1200×760: Latvia silhouette, Gulf of Riga, western coast and eastern border render cleanly without clipping or broken paths. Full Country Page browser/responsive QA remains required after the page exists.
 
 IMPLEMENTATION BLOCKER:
 - assets/images/latvia currently contains only map-atlas-v2.svg.
