@@ -274,3 +274,102 @@ PUBLICATION COMPLETE — 2026-08-29:
 - Exact deployed artifact QA passed for publication metadata, sitemap inclusion, asset existence, full image decode, dimensions, map parse, and final asset cleanup.
 - Responsive layout had already passed Desktop / Tablet / Mobile QA before publication; publication changed only image asset format/normalization and publication metadata, not shared layout/CSS/JS.
 - Result: Latvia is formally PUBLISHED.
+
+---
+
+Country: Lithuania
+Status: QA
+Current Phase: PHASE 5 — QA
+Branch: lithuania-v1-content
+
+Hero: APPROVED — Vilnius Historic Centre from Subačius Panoramic Viewpoint
+Hero file name: hero-vilnius.png
+Scene 1: APPROVED — Curonian Spit / Parnidis Dune
+Scene 1 file name: curonian-spit-parnidis-dune.png
+Scene 2: APPROVED — Trakai Island Castle
+Scene 2 file name: trakai-island-castle.png
+Scene 3: APPROVED — Hill of Crosses
+Scene 3 file name: hill-of-crosses.png
+Scene 4: APPROVED — Kaunas Modernism / Central Post Office and Laisvės Avenue
+Scene 4 file name: kaunas-modernism-central-post-office.png
+Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
+Scene 5 file name: aukstaitija-ladakalnis.png
+Scene 6: APPROVED — Kernavė Archaeological Site
+Scene 6 file name: kernave-archaeological-site.png
+Scene 7: APPROVED — Čepkeliai Marsh
+Scene 7 file name: cepkeliai-marsh.png
+Scene 8: APPROVED — Vilnius Old Town street / Užupis edge
+Scene 8 file name: vilnius-uzupis.png
+
+Visual issues:
+- No blocking visual issue remains in the approved final set.
+- All wrong-subject, duplicate and context-contaminated generations remain rejected and excluded.
+- Scene 5 source is 1535×1024; all other approved rasters are 1536×1024. Shared crop can handle this, but keep as a dimension-consistency note for final QA.
+
+Raster assets:
+- assets/images/lithuania/approved/ contains exactly the 9 approved PNG assets.
+- GitHub byte sizes match the locally decoded approved originals.
+- All 9 approved PNGs fully decode.
+- .gitkeep removed; no ZIP or placeholder retained in production asset folder.
+
+Map:
+- IMPLEMENTED — assets/images/lithuania/map-atlas-v1.svg
+- Config: data/maps/lithuania.json
+- Canvas: 1200×760
+- Projection: equirectangular
+- Geometry: Natural Earth 1:10m Admin 0 Countries ISO
+- Bounds: W 20.55 / E 27.15 / S 53.65 / N 56.65
+- Marker offsets remain <=5% and calculated marker spacing passes validator thresholds.
+- No decorative ellipse artifacts.
+
+Country JSON:
+- IMPLEMENTED — data/countries/lithuania.json
+- schemaVersion 2
+- 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Required sourceKey references and sourceDates structure preflight passed.
+
+Themes:
+- earth / city / history
+- data/theme-taxonomy.json is the Single Source of Truth.
+- Lithuania is assigned to exactly these three themes.
+
+Review route:
+- IMPLEMENTED — countries/lithuania/index.html
+- Canonical: https://atlas.yagenji.com/countries/lithuania/
+- robots: noindex,follow
+- OG image: approved Hero
+- No Latvia residue found in the route template.
+
+Publication state:
+- atlasPublished:false in data/atlas-destinations.json
+- href remains empty
+- registry image remains empty
+- sitemap/top-page publication links must remain disabled.
+
+QA completed on branch:
+- Country JSON structural strict-preflight: PASS
+- Theme assignment: PASS
+- Asset paths / filenames: PASS
+- Raster decode: PASS
+- Raster dimensions: PASS with Scene 5 1px-width consistency note
+- Map SVG structure / viewBox: PASS
+- Map marker spacing calculation: PASS
+- noindex / canonical / OG metadata: PASS
+- No publication-state violation: PASS
+
+QA remaining:
+- CI / production build validation
+- Review deployment to main
+- Actual production URL QA
+- Desktop / Tablet / Mobile
+- Hero crop
+- horizontal overflow
+- JavaScript / Console errors
+- keyboard / heading / contrast / alt-aria review in the deployed page
+- Map marker visual review on the actual page
+
+Last Action:
+- PHASE 4 implementation completed on lithuania-v1-content and branch-level structural QA passed.
+
+Next Action:
+- Open a review PR against main to trigger repository validation. If checks pass, merge for REVIEW DEPLOYMENT while keeping atlasPublished:false, then QA https://atlas.yagenji.com/countries/lithuania/.
