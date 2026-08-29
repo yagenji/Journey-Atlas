@@ -370,4 +370,201 @@ Last Action:
 - Added Chiune Sugihara / “Visas for Life” to the implemented Lithuania Country JSON: Beyond the Scenery HISTORY and Travel Trivia. Verified against Japan MOFA, Yad Vashem and Sugihara House Museum. World Heritage count remains in Signature Facts.
 
 Next Action:
-- Merge the clean Sugihara review update to main with atlasPublished:false, then re-run production URL QA at https://atlas.yagenji.com/countries/lithuania/.
+- Merge the clean Sugihara review update to main with atlasPublished:false.
+- Re-run production URL QA at https://atlas.yagenji.com/countries/lithuania/.
+- Do not set atlasPublished:true until explicit user publication approval.
+
+
+---
+
+## UNITED KINGDOM
+
+Country: United Kingdom
+Slug: united-kingdom
+Current Phase: PHASE 7 — REVIEW
+Status: REVIEW
+
+Branch: united-kingdom-v1-content
+Content Plan: docs/UNITED_KINGDOM_CONTENT_PLAN.md
+
+Hero:
+- Place: Palace of Westminster / Elizabeth Tower from Albert Embankment / Lambeth riverside
+- Status: APPROVED
+
+Scenes:
+1. Seven Sisters / Cuckmere Haven — APPROVED
+2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
+3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
+4. Glen Coe / Three Sisters — APPROVED
+5. Eryri / Llyn Llydaw — APPROVED
+6. Caernarfon Castle / River Seiont — APPROVED
+7. Giant’s Causeway / Grand Causeway — APPROVED
+8. Silent Valley / Mourne Mountains — APPROVED
+
+Visual issues:
+- Scene 4 generation failed twice consecutively with subject drift.
+- Failure 1: Hadrian’s Wall-like stone wall / ridge / lake landscape instead of Glen Coe / Three Sisters.
+- Failure 2: Bath-like historic riverside city / bridge scene instead of Glen Coe / Three Sisters.
+- Both Scene 4 outputs are REJECTED and must never enter production.
+- Per production rule, Scene 4 generation series is RESET before the next attempt.
+- Scene 3 subject-fidelity failure: first output depicted a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. The second fresh attempt again produced a rural mountain / lake / stone-wall landscape instead of Edinburgh.
+- Both Scene 3 outputs are REJECTED and must never enter production.
+- Scene 3 has now failed twice consecutively with the same subject/context drift. Per production rule, the Scene 3 generation series is RESET before the next attempt.
+- Scene 2 generation has repeatedly failed with subject/context drift.
+- Earlier failure set: an 8-image UK collage with text/UI, then a generic coastal rock-arch landscape.
+- Fresh-series failure set: another 8-image UK collage with text/UI, then a full UK Content Design infographic instead of the requested landscape.
+- All four outputs are REJECTED and must never enter production.
+- Per production rule, Scene 2 generation series is RESET again before any further attempt.
+
+Map:
+- NOT STARTED
+- Must be created only after VISUAL COMPLETE GATE.
+
+Country JSON:
+- NOT CREATED
+- Must not be created before VISUAL COMPLETE GATE.
+
+Themes:
+- ASSIGNED in data/theme-taxonomy.json on working branch
+- earth / 地球の風景
+- city / 街を歩く
+- history / 時をたどる
+
+QA:
+- NOT STARTED
+
+Review URL:
+- NOT DEPLOYED
+
+atlasPublished:
+- NOT YET CREATED
+- Must be false when Country JSON is implemented.
+- Must remain false until explicit user publication approval.
+
+Completed:
+- GitHub main and existing status checked before production start.
+- No pre-existing United Kingdom Country JSON, dedicated Country Page, map, approved image assets, or UK-specific work branch found.
+- No existing United Kingdom assignment found in theme taxonomy.
+- Working branch united-kingdom-v1-content created.
+- PHASE 1 — CONTENT DESIGN completed.
+- Hero, 8 scenes, geographic distribution, viewpoints, seasons, compositions, Hero lead, scene descriptions, Country Profile, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes, Related destinations and TRAVEL THEMES locked.
+- High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
+
+Last Action:
+- Scene 3 Edinburgh / Calton Hill to Old Town regenerated with the correct urban subject.
+- Watercolor strength was reduced after user feedback.
+- Final Scene 3 was explicitly approved by the user.
+- Subject-fidelity check passed: Calton Hill foreground monument, Edinburgh Castle, Old Town skyline and city context are identifiable.
+
+Last Action:
+- Scene 4 Glen Coe / Three Sisters generated in a fresh series and explicitly approved by the user.
+- Subject-fidelity check passed: steep Highland glen, Three Sisters massif and valley road context are clearly present without prior-scene contamination.
+
+Last Action:
+- Scene 5 Eryri / Llyn Llydaw regenerated correctly and explicitly approved by the user.
+- Subject-fidelity check passed: Llyn Llydaw, rugged mountain slopes and foreground walking path are present.
+
+Last Action:
+- Scene 6 Caernarfon Castle / River Seiont generated and explicitly approved by the user.
+- Subject-fidelity check passed: Caernarfon Castle’s massive medieval curtain walls and towers are identifiable in the waterfront context.
+- Scene 7 Giant’s Causeway / Grand Causeway generated and explicitly approved by the user.
+- Subject-fidelity check passed: wet polygonal basalt columns, Atlantic water and Antrim cliff context are clearly present.
+
+Last Action:
+- Scene 8 Silent Valley / Mourne Mountains generated and explicitly approved by the user.
+- Subject-fidelity check passed: elongated reservoir, surrounding Mourne peaks and heather/granite foreground are consistent with the locked scene definition.
+
+Next Action:
+- Run VISUAL COMPLETE GATE across Hero + Scenes 1–8.
+- Confirm subject fidelity, visual consistency with Iceland / Norway, and absence of obvious generation defects before implementation.
+
+Generation guardrail added by user:
+- Do not present repeated or near-duplicate scene outputs as a new Scene.
+- Before showing any generated image, compare the dominant subject, terrain, composition and key motifs against the immediately preceding approved/rejected Scene outputs.
+- If the new output still carries the previous Scene's defining motifs (for example Hadrian’s Wall stone wall / upland ridge / lake context appearing in Edinburgh Scene 3), reject it internally and reset the scene generation context instead of presenting it to the user.
+- Prioritize real-place subject fidelity over merely producing another image.
+
+
+VISUAL COMPLETE GATE — 2026-08-30:
+- Result: PASS
+- Hero + Scenes 1–8 all explicitly approved by the user.
+- Subject-fidelity review passed for all 9 final visuals.
+- No obvious duplicate-scene contamination remains in the selected final set.
+- No visible text, map, table, UI or infographic elements remain in the selected final set.
+- Overall visual language is acceptable for the JOURNEY ATLAS Iceland / Norway benchmark: recognizable real-place structure, restrained color, and painterly treatment without fantasy reconstruction.
+- Minor style variance remains: Scene 2 is somewhat more photographic and Scenes 7–8 somewhat more watercolor-textured, but the set remains coherent enough to proceed without regeneration.
+- No visual blocker remains.
+
+OFFICIAL APPROVED FILENAMES:
+- hero-westminster-thames.png
+- seven-sisters-cuckmere-haven.png
+- hadrians-wall-crag-lough.png
+- edinburgh-calton-hill.png
+- glen-coe-three-sisters.png
+- eryri-llyn-llydaw.png
+- caernarfon-castle.png
+- giants-causeway.png
+- silent-valley-mourne-mountains.png
+
+TARGET ASSET DIRECTORY:
+- assets/images/united-kingdom/approved/
+
+Implementation gate:
+- Do not start Country JSON / production page wiring until the 9 approved raster files are manually materialized in GitHub and existence is verified there.
+
+Last Action:
+- VISUAL COMPLETE GATE passed and official filenames fixed.
+
+Next Action:
+- User manually uploads the 9 approved raster assets to assets/images/united-kingdom/approved/ using the official filenames above.
+- Assistant then verifies all 9 files in GitHub, checks decode/dimensions, and proceeds to PHASE 4 implementation.
+
+
+IMPLEMENTATION UPDATE — 2026-08-30:
+- User manually uploaded all 9 approved raster assets to assets/images/united-kingdom/approved/.
+- GitHub asset existence check passed for Hero + Scenes 1–8; .gitkeep removed.
+- Uploaded byte sizes exactly match the locally QA-checked approved source files.
+- Complete decode / dimensions:
+  - Hero Westminster / Thames: PNG 1535×1024
+  - Scenes 1–8: PNG 1536×1024 each
+- Created data/countries/united-kingdom.json using schemaVersion 2 and the shared Country Template structure.
+- Created assets/images/united-kingdom/map-atlas-v1.svg.
+- Created data/maps/united-kingdom.json.
+- Created countries/united-kingdom/index.html as noindex,follow review route.
+- Theme taxonomy remains earth / city / history.
+- Publication registry remains atlasPublished:false, href empty, image empty.
+- Shared icon audit passed with zero invalid icon IDs.
+- Map SVG preflight passed: complete SVG, 1200×760 viewBox, journey-atlas-map-v1 styling.
+- Marker spacing QA passed after London capital / Hero display-offset adjustment; nearest capital–Hero separation is ~46.8px.
+- Scene 5 / Scene 6 display offsets preserve their true coordinates while avoiding label collision.
+- No Country-specific CSS added.
+
+Current QA state:
+- Structural / asset / map / icon / taxonomy / publication-state preflight: PASS.
+- Actual production-page browser QA is still required after review deployment.
+
+Next Action:
+- Merge the review-ready implementation to main while keeping atlasPublished:false.
+- Confirm deploy workflow succeeds.
+- Run actual Country URL QA at https://atlas.yagenji.com/countries/united-kingdom/.
+
+
+REVIEW DEPLOYMENT — 2026-08-30:
+- Main review deployment commit: 6837789b01771c850b52823d70c854b02f8dc20a
+- Validate country data run 33261282361: SUCCESS.
+- Deploy JOURNEY ATLAS run 33261282330: SUCCESS.
+- Deploy job steps passed: Checkout / Validate source / Build production site / Validate production build / Setup Pages / Upload site / Deploy to GitHub Pages.
+- Cloudflare production package job passed: Build clean Cloudflare package / Validate packaged output.
+- GitHub Pages artifact ID: 9717322653.
+- Review URL: https://atlas.yagenji.com/countries/united-kingdom/
+- Publication state remains atlasPublished:false, href empty, registry image empty, noindex,follow, sitemap/top-page link disabled.
+- Automated direct browser fetch of the custom domain could not be completed in the current web execution environment; do not claim rendered Desktop/Tablet/Mobile QA complete from this run alone.
+- User review on the actual production URL is now required for Hero crop, Map labels/markers, responsive layout, horizontal overflow and final visual consistency.
+
+Last Action:
+- Review deployment to main completed successfully with validation and deploy pipelines passing.
+
+Next Action:
+- User reviews the actual production URL.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Do not set atlasPublished:true until explicit user publication approval.
