@@ -113,23 +113,26 @@ PLANNED COPY DIRECTION:
 Current state:
 - PHASE 1 complete.
 - PHASE 2 — VISUAL PRODUCTION in progress.
-- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden.
+- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden, Scene 7 Lake Rāzna / Rāzna National Park.
 - Scene 4 was regenerated in a fresh context and approved with the intended Venta Rapid + red-brick bridge + old-town composition.
 - Scene 5 was regenerated to restore the target photographic realism 60% / watercolor 40% balance and approved.
+- Scene 7 Lake Rāzna was approved.
+- Scene 6 Cēsis Medieval Castle is still NOT approved: multiple generation attempts drifted into unrelated coast / collage imagery and are rejected.
 - Rejected outputs remain excluded from production.
 - No Latvia production page or Country JSON will be implemented until Hero + all 8 scenes pass the VISUAL COMPLETE GATE.
 
 Remaining:
 - Generate and approve Scene 6 Cēsis Medieval Castle.
-- Generate and approve Scene 7 Lake Rāzna / Rāzna National Park.
 - Generate and approve Scene 8 Daugavpils Fortress.
 - After 9/9 visual approval: create final assets, Latvia Country JSON, map, route and review page.
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 6 / Cēsis Medieval Castle one image at a time.
+- Recover Scene 6 / Cēsis Medieval Castle before advancing to Scene 8, because Scene 6 remains the only unapproved scene before Scene 7.
+- Reset the Cēsis generation series after repeated subject drift.
+- Re-anchor with real Cēsis Medieval Castle references.
 - Required composition: conserved medieval stone castle ruins and recognizable towers integrated with the real park / old-town setting; no fantasy reconstruction.
 - Soft late-spring or early-autumn light.
 - Photographic realism 60% / watercolor 40%, restrained watercolor treatment over realistic structure.
-- No text, labels, UI, borders, collage, invented mountains, or reconstructed fantasy castle elements.
-- Do not advance to Scene 7 until Scene 6 is approved.
+- No sea, beach, dunes, coast, waterfall, collage, text, labels, UI, borders, invented mountains, or reconstructed fantasy castle elements.
+- Do not advance to Scene 8 until Scene 6 is approved.
