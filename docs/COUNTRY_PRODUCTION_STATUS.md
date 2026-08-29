@@ -1,10 +1,10 @@
 # COUNTRY PRODUCTION STATUS
 
 Country: Latvia
-Status: GENERATING
+Status: PUBLISHED
 
-Branch: latvia-v1-content
-Latest commit: 63bd6ca83282f770c00bc3bf03652d604a436262
+Branch: main
+Latest publication commit: fa2cb8b87c1c4ce29161c4dc1b0035f2e8074f22
 
 Completed:
 - GitHub main state checked before production start.
@@ -251,3 +251,26 @@ REPLACEMENT MATERIALIZATION + RE-QA — 2026-08-29:
   - Shared Country Template accessibility note for interactive scene-card semantics remains a common-system issue, not Latvia-specific.
 - Result: Latvia leaves QA-BLOCKED and moves to REVIEW-READY.
 - Next action: user reviews https://atlas.yagenji.com/countries/latvia/ on the production review URL. Keep atlasPublished:false until explicit publication approval.
+
+
+PUBLICATION COMPLETE — 2026-08-29:
+- User explicitly approved final publication after review.
+- Final publication assets are Hero + 8 approved scenes normalized to 1200×800 WebP; superseded PNG copies were removed from assets/images/latvia/approved/.
+- Scene 5 / Rundāle Palace was center-cropped to the common 3:2 source ratio before 1200×800 export; no new visual content was generated.
+- All 9 WebP files fully decode at 1200×800 in the exact deployed artifact.
+- Total Hero + 8-scene payload is 2,069,920 bytes (about 2.0 MiB), reduced from about 28.3 MB of PNG source assets.
+- Country JSON paths now reference only the final WebP assets.
+- atlasPublished:true.
+- Official href: countries/latvia/.
+- Registry hero image: assets/images/latvia/approved/hero-riga.webp.
+- Production build output has robots index,follow and canonical https://atlas.yagenji.com/countries/latvia/.
+- Production sitemap includes https://atlas.yagenji.com/countries/latvia/.
+- Normal top-page discovery is enabled through the published destination registry.
+- Map remains assets/images/latvia/map-atlas-v3.svg, valid 1200×760, with no ellipse artifacts.
+- TRAVEL THEMES remain earth / city / history.
+- Scene 6 Cēsis and Scene 8 Daugavpils replacement fidelity blockers remain resolved.
+- Strict published-country validation passed before merge and again on main.
+- Main publication deploy run 33252231536 passed source validation, production build, production-build validation, Cloudflare package validation, artifact upload, and Pages deployment.
+- Exact deployed artifact QA passed for publication metadata, sitemap inclusion, asset existence, full image decode, dimensions, map parse, and final asset cleanup.
+- Responsive layout had already passed Desktop / Tablet / Mobile QA before publication; publication changed only image asset format/normalization and publication metadata, not shared layout/CSS/JS.
+- Result: Latvia is formally PUBLISHED.
