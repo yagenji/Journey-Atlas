@@ -217,3 +217,13 @@ FINAL QA CHECKPOINT — 2026-08-29:
 - PERFORMANCE CONCERN — the 9 PNG raster assets total about 27.8 MiB; optimize final publication assets only after visual replacements are settled.
 - ACCESSIBILITY NOTE — scene cards are keyboard-focusable and keyboard-operable but use an interactive <article> without an explicit button role; this is a shared Country Template issue, not Latvia-specific, and should be handled in common UI work rather than with Latvia-specific markup.
 - Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
+
+
+VISUAL REPLACEMENT APPROVAL — 2026-08-29:
+- Scene 6 / Cēsis Medieval Castle replacement approved by user.
+- Approved replacement source prepared as cesis-medieval-castle.png (1536×1024 PNG).
+- Scene 8 / Daugavpils Fortress replacement approved by user.
+- Approved replacement source prepared as daugavpils-fortress.png (1536×1024 PNG).
+- User remains responsible for manually replacing the two raster files in assets/images/latvia/approved/.
+- Do not change atlasPublished yet.
+- Next action after user materializes the two approved replacements in GitHub: verify blob replacement, rerun full visual/technical QA on the production review URL, then determine whether Latvia can leave QA-BLOCKED.
