@@ -166,3 +166,28 @@ ASSET RESPONSIBILITY:
 - Map implementation and map-related GitHub updates remain assistant-owned, following the existing Iceland / Norway / Denmark / Sweden / Finland workflow.
 - User will manually materialize only the approved raster image assets (Hero + 8 scenes) into GitHub.
 - Do not ask the user to upload or manage map SVG / map config files.
+
+
+IMPLEMENTATION UPDATE — 2026-08-29:
+- User uploaded all 9 approved raster assets into assets/images/latvia/approved/ on latvia-v1-content.
+- GitHub asset check passed: Hero + 8 scene paths all exist; placeholder .gitkeep removed.
+- Exact uploaded byte sizes match the locally QA-checked source files.
+- Decode / dimensions from the matching source set:
+  - Hero Riga: PNG 1536×1024
+  - Scene 1 Great Ķemeri Bog: PNG 1536×1024
+  - Scene 2 Gauja Valley: PNG 1536×1024
+  - Scene 3 Cape Kolka: PNG 1536×1024
+  - Scene 4 Kuldīga / Venta Rapid: PNG 1536×1024
+  - Scene 5 Rundāle Palace: PNG 1586×992
+  - Scene 6 Cēsis Medieval Castle: PNG 1536×1024
+  - Scene 7 Lake Rāzna: PNG 1536×1024
+  - Scene 8 Daugavpils Fortress: PNG 1536×1024
+- Created data/countries/latvia.json using schemaVersion 2 and the locked Country Template content structure.
+- Country JSON structural preflight passed: 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Asset-path preflight passed with zero missing Hero / scene / map assets.
+- Map marker preflight passed with zero spacing collisions using coordinate-based placement and small Hero / capital offsets.
+- Theme taxonomy check passed: earth / city / history.
+- Publication state remains atlasPublished:false, href empty, registry image empty.
+- Created countries/latvia/index.html as a noindex,follow review entry on the working branch; canonical is https://atlas.yagenji.com/countries/latvia/.
+- Review deployment to main / production has NOT been performed yet.
+- Final visual QA still retains subject-fidelity concerns on Scene 6 and Scene 8; do not call Latvia complete until actual-page review resolves them.
