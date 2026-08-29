@@ -246,11 +246,11 @@ Scenes:
 8. Silent Valley / Mourne Mountains — PENDING
 
 Visual issues:
-- Scene 2 generation failed twice consecutively with subject/context drift.
-- Failure 1: an 8-image UK collage with text/UI was generated instead of a single Hadrian’s Wall scene.
-- Failure 2: a generic coastal rock-arch landscape was generated instead of Hadrian’s Wall / Steel Rigg and Crag Lough.
-- Both outputs are REJECTED and must never enter production.
-- Per production rule, Scene 2 generation series is RESET before the next attempt.
+- Scene 2 generation has repeatedly failed with subject/context drift.
+- Earlier failure set: an 8-image UK collage with text/UI, then a generic coastal rock-arch landscape.
+- Fresh-series failure set: another 8-image UK collage with text/UI, then a full UK Content Design infographic instead of the requested landscape.
+- All four outputs are REJECTED and must never enter production.
+- Per production rule, Scene 2 generation series is RESET again before any further attempt.
 
 Map:
 - NOT STARTED
@@ -291,6 +291,6 @@ Last Action:
 - Scene 1 subject-fidelity check passed: the white chalk cliffs, Cuckmere Haven estuary and low South Downs landscape remain clearly identifiable and consistent with the locked scene definition.
 
 Next Action:
-- Start a fresh generation series for Scene 2 only: Hadrian’s Wall / Steel Rigg and Crag Lough.
-- Use no prior failed image context.
+- Stop the contaminated Scene 2 image-generation context.
+- On the next Scene 2 attempt, start from a fresh generation series with only the locked Hadrian’s Wall / Steel Rigg / Crag Lough scene definition.
 - Do not generate Scene 3 until the user explicitly approves a correct Scene 2.
