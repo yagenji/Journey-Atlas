@@ -160,3 +160,9 @@ IMPLEMENTATION BLOCKER:
 - The approved Hero and Scene raster assets have not yet been materialized into GitHub.
 - Per asset-management and 404 rules, do not create/connect the production Latvia Country JSON or review route with missing image paths or placeholders.
 - Next implementation step is to materialize the 9 approved final raster assets into assets/images/latvia/approved/, run decode/dimension QA, then create Latvia Country JSON and review route with atlasPublished:false.
+
+
+ASSET RESPONSIBILITY:
+- Map implementation and map-related GitHub updates remain assistant-owned, following the existing Iceland / Norway / Denmark / Sweden / Finland workflow.
+- User will manually materialize only the approved raster image assets (Hero + 8 scenes) into GitHub.
+- Do not ask the user to upload or manage map SVG / map config files.
