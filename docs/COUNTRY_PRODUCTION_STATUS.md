@@ -126,9 +126,8 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Generate Scene 4 / Kuldīga / Venta Rapid as a standalone 3:2 landscape.
-- Show the broad, low Venta Rapid in the foreground with the historic red-brick bridge and Kuldīga old town behind.
-- Spring or early-summer water level, bright but restrained blue sky, realistic river texture.
-- Keep the waterfall low and wide; do not exaggerate it into a high cascade.
-- Photographic realism 60% / watercolor 40%, matching approved Latvia visuals.
-- No text, numbers, UI, borders, or collage.
+- Reset Scene 4 / Kuldīga / Venta Rapid generation series.
+- Re-anchor with real Kuldīga references before the next attempt.
+- Required composition: broad, low Venta Rapid in the foreground; historic red-brick bridge crossing behind it; Kuldīga old-town buildings beyond.
+- No sea, beach, pine coast, cliffs, castles, or mountains.
+- Photographic realism 60% / watercolor 40%, bright blue sky, no text/UI/border/collage.
