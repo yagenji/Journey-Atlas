@@ -227,3 +227,27 @@ VISUAL REPLACEMENT APPROVAL — 2026-08-29:
 - User remains responsible for manually replacing the two raster files in assets/images/latvia/approved/.
 - Do not change atlasPublished yet.
 - Next action after user materializes the two approved replacements in GitHub: verify blob replacement, rerun full visual/technical QA on the production review URL, then determine whether Latvia can leave QA-BLOCKED.
+
+
+REPLACEMENT MATERIALIZATION + RE-QA — 2026-08-29:
+- User replaced Scene 6 and Scene 8 in main under assets/images/latvia/approved/.
+- Git blob verification passed against the approved local source files:
+  - cesis-medieval-castle.png -> blob a143afc962ec202be2fe6d000df43cf381b3acd1, 3,434,322 bytes.
+  - daugavpils-fortress.png -> blob e659e6f33c6c48a189aad605d44032a1ac181382, 2,968,095 bytes.
+- Latest Pages deploy for the replacement commit cf48e77c113775a133fde53d67fb1558b3666323 completed successfully.
+- Scene 6 subject-fidelity blocker resolved: the replacement visibly reads as Cēsis Medieval Castle, including the red-roofed round tower, adjacent round tower, ruined stone walls and castle-park setting consistent with official Cēsis / Latvia tourism references.
+- Scene 8 subject-fidelity blocker resolved: the replacement visibly reads as Daugavpils Fortress, with bastion earthworks, brick / stone fortifications, moat / bridge and military-town buildings consistent with official Daugavpils / Latvia tourism references.
+- Hero + 8-scene contact-sheet review now reads as one coherent photo-leaning watercolor series; no remaining place-mismatch blocker.
+- Latest deployed artifact QA:
+  - Hero + 8 scenes all exist and fully decode.
+  - Scene 6 and Scene 8 are both 1536×1024 PNG.
+  - Map v3 parses correctly at 1200×760 and contains no ellipse artifacts.
+  - Latvia remains absent from sitemap.
+  - atlasPublished:false, href empty and noindex,follow remain intact.
+  - Theme taxonomy remains earth / city / history.
+- Non-blocking publication-prep notes:
+  - Scene 5 source remains 1586×992 while the other 8 raster sources are 1536×1024.
+  - The nine PNGs total about 28.3 MB; final web optimization can be done only after review approval so the approved visuals are not altered prematurely.
+  - Shared Country Template accessibility note for interactive scene-card semantics remains a common-system issue, not Latvia-specific.
+- Result: Latvia leaves QA-BLOCKED and moves to REVIEW-READY.
+- Next action: user reviews https://atlas.yagenji.com/countries/latvia/ on the production review URL. Keep atlasPublished:false until explicit publication approval.
