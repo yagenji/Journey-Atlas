@@ -126,8 +126,9 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Reset Scene 4 / Kuldīga / Venta Rapid generation series.
-- Re-anchor with real Kuldīga references before the next attempt.
-- Required composition: broad, low Venta Rapid in the foreground; historic red-brick bridge crossing behind it; Kuldīga old-town buildings beyond.
-- No sea, beach, pine coast, cliffs, castles, or mountains.
-- Photographic realism 60% / watercolor 40%, bright blue sky, no text/UI/border/collage.
+- Restart Scene 4 / Kuldīga / Venta Rapid in a fresh image-generation context to clear persistent Cape Kolka carryover.
+- Preserve approved assets: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka.
+- Required Kuldīga composition: broad, low Venta Rapid in foreground; seven-arch red-brick bridge upstream; Kuldīga old town beyond.
+- Bright blue sky, photographic realism 60% / watercolor 40%.
+- No sea, beach, dunes, pine coast, cliffs, castles, mountains, text, UI, borders, or collage.
+- Do not advance to Scene 5 until Scene 4 is approved.
