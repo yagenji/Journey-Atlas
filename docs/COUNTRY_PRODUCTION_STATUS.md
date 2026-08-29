@@ -141,3 +141,21 @@ MAP CONCEPT REVIEW:
 - Treat this approval as visual-direction approval only.
 - Production map must still be implemented in the standard JOURNEY ATLAS map system at 1200×760, using Iceland / Norway map design language and coordinate-based point placement.
 - Do not use the generated infographic layout with profile statistics / bottom destination copy as the final Country Page map, because that would change the locked common map component.
+
+
+IMPLEMENTATION PREP — MAP / TAXONOMY:
+- Latvia theme assignments are now actually committed to data/theme-taxonomy.json: earth / city / history.
+- Production map base created: assets/images/latvia/map-atlas-v2.svg.
+- Map config created: data/maps/latvia.json.
+- Canvas / projection: 1200×760, equirectangular.
+- Bounds: W 20.65 / E 28.55 / S 55.45 / N 58.30.
+- Geometry source: GADM 3.6 ADM0 Latvia (WGS84), used as a high-detail fallback because geoBoundaries LFS retrieval was unavailable in the current execution environment.
+- SVG preflight passed: complete <svg>…</svg>, correct 1200×760 viewBox, journey-atlas-map-v1 metadata/style, 189,435 bytes, 13,514 projected line segments.
+- Marker-spacing calculation passed after small Hero / Capital display offsets. Hero–Capital final separation is about 38.5px; no configured pair violates MAP_SYSTEM minimum spacing thresholds.
+- Visual browser/render QA for the map is still required before review deployment.
+
+IMPLEMENTATION BLOCKER:
+- assets/images/latvia currently contains only map-atlas-v2.svg.
+- The approved Hero and Scene raster assets have not yet been materialized into GitHub.
+- Per asset-management and 404 rules, do not create/connect the production Latvia Country JSON or review route with missing image paths or placeholders.
+- Next implementation step is to materialize the 9 approved final raster assets into assets/images/latvia/approved/, run decode/dimension QA, then create Latvia Country JSON and review route with atlasPublished:false.
