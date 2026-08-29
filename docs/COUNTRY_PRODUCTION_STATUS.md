@@ -126,24 +126,8 @@ Remaining:
 - Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- Restart Latvia Hero as a fresh standalone landscape-generation series.
-- Subject only: Riga historic skyline across the Daugava from the left bank.
-- Absolutely no text, UI, map, card, flag, infographic or page layout.
-- Photographic realism 60% / watercolor 40%, Iceland reference.
-
-
-VISUAL APPROVAL UPDATE
-- Hero / Riga: APPROVED.
-- Scene 1 / Great Ķemeri Bog: APPROVED.
-- Scene 2 / Gauja Valley / Paradise Hill, Sigulda: NEXT TO GENERATE.
-- Scene 3 / Cape Kolka / Slītere: PENDING.
-- Scene 4 / Kuldīga / Venta Rapid: PENDING.
-- Scene 5 / Rundāle Palace and French Garden: PENDING.
-- Scene 6 / Cēsis Medieval Castle: PENDING.
-- Scene 7 / Lake Rāzna / Rāzna National Park: PENDING.
-- Scene 8 / Daugavpils Fortress: PENDING.
-
-Next action:
-- Generate Scene 2 / Gauja Valley from Paradise Hill, Sigulda.
-- Standalone 3:2 landscape only.
-- Photographic realism 60% / watercolor 40%, matching the approved Latvia Hero and Estonia visual standard.
+- Generate Scene 3 / Cape Kolka / Slītere as a standalone 3:2 landscape.
+- Show the narrow sandy cape with water on both sides, low dune vegetation and pine forest behind.
+- Keep the terrain flat and low; no cliffs, castles, or mountains.
+- Photographic realism 60% / watercolor 40%, matching the approved Latvia Hero / Estonia reference.
+- No text, numbers, UI, borders, or collage.
