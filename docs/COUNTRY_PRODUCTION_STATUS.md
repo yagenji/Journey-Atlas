@@ -297,3 +297,9 @@ Next Action:
 - Stop the current contaminated Scene 3 generation context.
 - On the next attempt, start a new Scene 3-only generation series for Edinburgh / Calton Hill to Old Town with no rural landscape / Hadrian’s Wall context carried over.
 - Do not generate Scene 4 until a correct Scene 3 is explicitly approved.
+
+Generation guardrail added by user:
+- Do not present repeated or near-duplicate scene outputs as a new Scene.
+- Before showing any generated image, compare the dominant subject, terrain, composition and key motifs against the immediately preceding approved/rejected Scene outputs.
+- If the new output still carries the previous Scene's defining motifs (for example Hadrian’s Wall stone wall / upland ridge / lake context appearing in Edinburgh Scene 3), reject it internally and reset the scene generation context instead of presenting it to the user.
+- Prioritize real-place subject fidelity over merely producing another image.
