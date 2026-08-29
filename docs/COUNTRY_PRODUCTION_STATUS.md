@@ -243,7 +243,7 @@ Scenes:
 5. Eryri / Llyn Llydaw — APPROVED
 6. Caernarfon Castle / River Seiont — APPROVED
 7. Giant’s Causeway / Grand Causeway — APPROVED
-8. Silent Valley / Mourne Mountains — PENDING
+8. Silent Valley / Mourne Mountains — APPROVED
 
 Visual issues:
 - Scene 4 generation failed twice consecutively with subject drift.
@@ -314,9 +314,13 @@ Last Action:
 - Scene 7 Giant’s Causeway / Grand Causeway generated and explicitly approved by the user.
 - Subject-fidelity check passed: wet polygonal basalt columns, Atlantic water and Antrim cliff context are clearly present.
 
+Last Action:
+- Scene 8 Silent Valley / Mourne Mountains generated and explicitly approved by the user.
+- Subject-fidelity check passed: elongated reservoir, surrounding Mourne peaks and heather/granite foreground are consistent with the locked scene definition.
+
 Next Action:
-- Generate Scene 8 only: Silent Valley / Mourne Mountains.
-- Do not proceed to VISUAL COMPLETE GATE until the user explicitly approves Scene 8.
+- Run VISUAL COMPLETE GATE across Hero + Scenes 1–8.
+- Confirm subject fidelity, visual consistency with Iceland / Norway, and absence of obvious generation defects before implementation.
 
 Generation guardrail added by user:
 - Do not present repeated or near-duplicate scene outputs as a new Scene.
