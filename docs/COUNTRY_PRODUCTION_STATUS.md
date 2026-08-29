@@ -198,3 +198,22 @@ REVIEW FIX — 2026-08-29:
 - Promoted the clean map asset to assets/images/latvia/map-atlas-v3.svg and removed the superseded v2 asset.
 - Fixed the Travel Trivia MARKET card icon by replacing unsupported icon id "market" with the existing shared "food" icon from atlas-icons.svg; no country-specific icon was added.
 - atlasPublished remains false.
+
+
+FINAL QA CHECKPOINT — 2026-08-29:
+- QA source: exact GitHub Pages artifact from successful deploy run 33235902363 / main commit bd0409e5d62bd5f70c2cb7ca238a3593be753321.
+- Deployment pipeline passed: source validation, production build, production build validation, Pages artifact upload/deploy, and Cloudflare production package validation.
+- Strict country-data validation for Latvia passed with zero errors when schema-v2 strict rules are applied directly.
+- Hero + 8 scene image files all exist, fully decode, and have valid dimensions.
+- Map v3 exists, parses as valid SVG, uses 1200×760 viewBox, contains zero ellipse artifacts, and marker coordinate QA has zero collisions / edge violations.
+- Theme assignment matches taxonomy: earth / city / history.
+- Publication state is correct for review: atlasPublished:false, href empty, noindex, sitemap excluded, top page unlinked.
+- Shared icon audit has zero invalid icon IDs; MARKET trivia now renders through the existing food icon.
+- Responsive structure QA from the deployed artifact at desktop / tablet / mobile widths found no horizontal overflow and no JavaScript/page errors in the controlled artifact renderer.
+- BLOCKER — Scene 6 Cēsis Medieval Castle does not visually depict Cēsis Medieval Castle; it reads as a Kuldīga-like riverside town / bridge / low rapid.
+- BLOCKER — Scene 8 Daugavpils Fortress does not visually depict Daugavpils Fortress; it depicts a Baltic coastal beach.
+- VISUAL CONSISTENCY CONCERN — Hero and Scenes 1–4 read substantially more photographic than the Iceland / Norway watercolor benchmark, while Scenes 5–8 are more painterly. Final series consistency is not yet at benchmark level.
+- DIMENSION CONSISTENCY CONCERN — Scene 5 is 1586×992 while the other 8 assets are 1536×1024; the shared card crop handles it, but the source ratio is inconsistent with the rest of the approved set.
+- PERFORMANCE CONCERN — the 9 PNG raster assets total about 27.8 MiB; optimize final publication assets only after visual replacements are settled.
+- ACCESSIBILITY NOTE — scene cards are keyboard-focusable and keyboard-operable but use an interactive <article> without an explicit button role; this is a shared Country Template issue, not Latvia-specific, and should be handled in common UI work rather than with Latvia-specific markup.
+- Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
