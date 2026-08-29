@@ -1,98 +1,193 @@
 # COUNTRY PRODUCTION STATUS
 
-Country: Estonia
-Status: COMPLETE
+Country: Latvia
+Status: GENERATING
 
-Branch: main
-Latest publication commit: 18c5f995be62a1a115ed084f462c7d65dfd3fe15
+Branch: latvia-v1-content
+Latest commit: 63bd6ca83282f770c00bc3bf03652d604a436262
 
-Publication:
-- User explicitly approved formal publication.
-- atlasPublished:true.
-- Canonical country href: countries/estonia/.
-- Production robots: index,follow.
-- Estonia included in sitemap.xml.
-- Estonia enabled as a normal clickable Country destination.
-- Journey Lens publication state remains unchanged.
+Completed:
+- GitHub main state checked before production start.
+- No pre-existing Latvia country JSON, page, map, final image assets or Latvia-specific work branch existed.
+- Iceland / Norway / Estonia Country schema and current design language checked.
+- PHASE 1 — CONTENT DESIGN completed.
+- Hero, 8-scene set, region spread, seasons/compositions, key facts and TRAVEL THEMES fixed.
+- Latvia assigned in data/theme-taxonomy.json to:
+  - 地球の風景 / earth
+  - 街を歩く / city
+  - 時をたどる / history
+- High-reliability research sources checked: Central Statistical Bureau of Latvia, Latvian Constitution / Official Language Law, ECB, Latvia.travel, UNESCO, Rundāle Palace Museum, Sigulda tourism.
 
-CONTENT:
-- Country content complete in data/countries/estonia.json.
-- Hero, 8 scenes, Profile, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes and Related Destinations complete.
-- TRAVEL THEMES taxonomy: 街を歩く / 時をたどる / 暮らしに出会う.
-- Sources verified 2026-08-28.
+CONTENT DESIGN — HERO:
+- Hero: Riga historic skyline from the left bank of the Daugava / AB dambis direction.
+- Subject: Old Riga skyline across the broad river, with Riga Cathedral, St Peter’s Church and historic church towers identifiable.
+- Reason: UNESCO explicitly identifies the panorama of Riga’s historic centre from the left bank of the Daugava as an important characteristic view; it combines city, river and Baltic trading history.
+- Composition: wide horizontal panorama, river foreground, historic skyline concentrated around centre-left/centre, generous sky and water, no modern high-rise dominance.
+- Light: soft early morning or restrained golden light, not postcard-saturated.
+- Final visual style: photographic realism 60% / watercolor 40%, Iceland reference.
+- Hero location reference: AB dambis / Daugava left bank, approx. 56.946, 24.095.
 
-VISUAL:
-- Hero / Tallinn Old Town: APPROVED.
-- Scene 1 / Viru Bog: APPROVED.
-- Scene 2 / Soomaa National Park: APPROVED.
-- Scene 3 / Panga Cliff: APPROVED.
-- Scene 4 / Kaali Meteorite Crater: APPROVED.
-- Scene 5 / Narva Castle: APPROVED.
-- Scene 6 / Suur Taevaskoda: APPROVED after final visual-accuracy correction.
-- Scene 7 / Kõpu Lighthouse: APPROVED after final visual-accuracy correction.
-- Scene 8 / Suur Munamägi: APPROVED.
-- Final visual direction: photographic realism 60% / watercolor treatment 40%, Iceland reference.
-- Detailed map: assets/images/estonia/map-atlas-v2.svg, 1200 x 760.
+CONTENT DESIGN — 8 SCENES:
+1. Great Ķemeri Bog / Ķemeri National Park
+   - Region: Pierīga / west of Riga.
+   - Visual: wooden boardwalk across raised bog, dark pools, low pine and birch.
+   - Season/light: early morning, light mist acceptable.
+   - Reference coordinate: 56.91794, 23.46760.
+   - Purpose: Latvia’s wetland landscape.
 
-ASSET QA:
-- 9/9 final visual assets are WebP.
-- 9/9 decode completely.
-- 9/9 are exactly 1200 x 800.
-- Final production asset names use cache-safe location-based *-atlas.webp paths.
-- Obsolete photographic source assets and PHOTO_SOURCES metadata removed from production.
-- Image review cache policy uses must-revalidate.
+2. Gauja Valley / Paradise Hill, Sigulda
+   - Region: Vidzeme.
+   - Visual: broad forested Gauja valley seen from Paradise Hill, river far below, Turaida tower small but identifiable across the valley.
+   - Season/light: golden autumn to differentiate the forested relief from other Baltic scenes.
+   - Coordinate: 57.17478, 24.86553.
+   - Purpose: Latvia’s strongest inland relief / river-valley landscape.
 
-TECHNICAL QA:
-- Estonia strict country validation: PASS.
-- 201-destination scope validation: PASS.
-- Country page generation: PASS.
-- Cloudflare production package build: PASS.
-- Cloudflare packaged-output validation: PASS.
-- GitHub Pages production build: PASS.
-- Source validation: PASS.
-- Production-build validation: PASS.
-- Pages upload/deploy: PASS.
-- Latest formal-publication deploy run: 33182463419.
-- Published deployment artifact independently inspected.
+3. Cape Kolka / Slītere
+   - Region: northern Kurzeme.
+   - Visual: low sand cape where open Baltic Sea and Gulf of Riga meet; currents/waves visible, pine-backed coast.
+   - Season/light: cool late-summer or autumn light; no invented dramatic cliffs.
+   - Coordinate: 57.7590, 22.6048.
+   - Purpose: Latvia’s long Baltic coastline and Liv Coast.
 
-PUBLISHED ARTIFACT QA:
-- /countries/estonia/index.html exists.
-- /data/countries/estonia.json exists.
-- robots meta = index,follow.
-- canonical = https://atlas.yagenji.com/countries/estonia/.
-- sitemap contains https://atlas.yagenji.com/countries/estonia/.
-- runtime registry has atlasPublished:true.
-- runtime registry href = countries/estonia/.
-- top-page renderer creates an active <a> Country card when atlasPublished && href are present.
-- all 8 scene entries are present.
-- Hero + all 8 referenced visual files are present in the deployed artifact.
-- all 9 deployed visual files decode as 1200 x 800 WebP.
-- Published Atlas countries are now Iceland / Denmark / Estonia / Finland / Norway / Sweden.
+4. Kuldīga / Venta Rapid
+   - Region: Kurzeme.
+   - Visual: wide, low Venta Rapid with Kuldīga’s old brick bridge and historic town context.
+   - Season/light: spring or early summer with sufficient river flow.
+   - Coordinate: approx. 56.9681, 21.9793.
+   - Purpose: horizontal waterfall + UNESCO historic town relationship.
 
-RESPONSIVE / ACCESSIBILITY QA:
-- Desktop 1440px: PASS.
-- Tablet 768px: PASS.
-- Mobile 375px: PASS.
-- No material horizontal overflow.
-- Hero layout/crop consistent with Iceland / Norway template.
-- Scene grid: 2 columns desktop/tablet, 1 column mobile.
-- Heading hierarchy: PASS.
-- Duplicate IDs: none.
-- Unlabeled links/buttons: none.
-- Map scene markers are keyboard-focusable buttons with aria-labels.
-- Enter navigation from markers: PASS.
-- No page script errors or failed local production-asset requests in deployed-artifact browser QA.
+5. Rundāle Palace and French Garden
+   - Region: Zemgale.
+   - Visual: Baroque palace seen symmetrically across formal garden / parterre, fertile plain beyond implied rather than exaggerated.
+   - Season/light: early summer garden.
+   - GPS: 56.414819, 24.026048.
+   - Purpose: southern Latvia / Duchy of Courland / Baroque architecture.
 
-Final state:
-- Estonia satisfies the JOURNEY ATLAS Definition of Done.
-- Review Deployment completed.
-- User approval received.
-- Formal publication completed.
-- Production QA completed.
-- No identified blocking issues remain.
+6. Cēsis Medieval Castle
+   - Region: Vidzeme.
+   - Visual: conserved medieval stone ruins and towers integrated with park/old-town setting; not fantasy reconstruction.
+   - Season/light: soft late-spring or early autumn.
+   - Coordinate: approx. 57.3134, 25.2704.
+   - Purpose: medieval Livonian history distinct from Riga.
 
-Canonical URL:
-- https://atlas.yagenji.com/countries/estonia/
+7. Lake Rāzna / Rāzna National Park
+   - Region: Latgale.
+   - Visual: broad blue lake, forested low hills and rural shoreline; no alpine terrain.
+   - Season/light: clear summer afternoon / evening.
+   - Representative coordinate: approx. 56.3239, 27.4606.
+   - Purpose: eastern Latvia as the ‘land of blue lakes’.
+
+8. Daugavpils Fortress
+   - Region: Latgale / southeast.
+   - Visual: early-19th-century bastion fortress, red-brick / pale masonry arsenal and ramparts, restrained urban context.
+   - Season/light: cool autumn or winter-edge light, but no heavy snow required.
+   - Representative coordinate: approx. 55.883, 26.497.
+   - Purpose: eastern border history, Russian Imperial layer and present-day cultural reuse.
+
+GEOGRAPHIC COVERAGE:
+- Riga / Pierīga: Hero + Ķemeri
+- Vidzeme: Gauja / Cēsis
+- Kurzeme: Kolka / Kuldīga
+- Zemgale: Rundāle
+- Latgale: Rāzna / Daugavpils
+- Urban / architecture / natural wetland / forest valley / coast / river / lake are intentionally distributed.
+
+KEY FACTS VERIFIED FOR LATER COUNTRY JSON:
+- Population: 1.845 million at beginning of 2026 — Central Statistical Bureau of Latvia.
+- Area: about 64,589 km² — Central Statistical Bureau.
+- Official language: Latvian — Constitution Article 4 / Official Language Law.
+- Currency: euro since 1 January 2014 — ECB.
+- Religion wording: Christianity is the principal religious tradition; major denominations include Lutheran, Roman Catholic and Orthodox — Latvian government / official information.
+- Forest cover: about half the country; official forest-cover statistics are around 51%, with 2026 source tables published by Ministry of Agriculture / CSB.
+- Coastline: about 495–500 km — Latvia.travel.
+- UNESCO World Heritage properties: 3 — Historic Centre of Riga, Old town of Kuldīga, Struve Geodetic Arc.
+- Constitution identifies four historical Latvian lands: Vidzeme, Latgale, Kurzeme and Zemgale.
+
+PLANNED COPY DIRECTION:
+- Hero lead: river-facing Riga as the entry point, then bogs, forests, long coast, manor landscapes and eastern lakes.
+- Avoid ranking language and promotional superlatives.
+- Explain why each landscape changes understanding of Latvia, not merely why it is famous.
+- Include Riga Art Nouveau / wooden districts, Song and Dance Celebration, Jāņi, Latgalian culture/crafts, Central Market / rye bread / smoked fish as supporting cultural material.
+- Public transport copy to reflect rail and bus links from Riga; road use becomes more useful for Kolka, Rāzna and dispersed rural scenes.
+
+Current state:
+- PHASE 1 complete.
+- PHASE 2 — VISUAL PRODUCTION in progress.
+- Approved in the current visual-production sequence: Hero, Scene 1 Great Ķemeri Bog, Scene 2 Gauja Valley, Scene 3 Cape Kolka, Scene 4 Kuldīga / Venta Rapid, Scene 5 Rundāle Palace and French Garden, Scene 6 Cēsis Medieval Castle (user-approved; subject-fidelity QA flag retained), Scene 7 Lake Rāzna / Rāzna National Park, Scene 8 Daugavpils Fortress (user-approved; subject-fidelity QA flag retained).
+- Scene 4 was regenerated in a fresh context and approved with the intended Venta Rapid + red-brick bridge + old-town composition.
+- Scene 5 was regenerated to restore the target photographic realism 60% / watercolor 40% balance and approved.
+- Scene 7 Lake Rāzna was approved.
+- Scene 6 Cēsis Medieval Castle was explicitly user-approved, but the latest image still carries a subject-fidelity QA concern because it reads more like a riverside town than a conserved medieval castle ruin. Keep this as a QA flag for the final visual gate.
+- Scene 8 Daugavpils Fortress was explicitly user-approved, but the latest image still carries a critical subject-fidelity QA concern because it depicts a Baltic coastal landscape rather than Daugavpils Fortress. Keep this as a blocking QA flag for the final visual gate.
+- Rejected outputs remain excluded from production.
+- No Latvia production page or Country JSON will be implemented until Hero + all 8 scenes pass the VISUAL COMPLETE GATE.
+
+Remaining:
+- Run the final VISUAL COMPLETE GATE across Hero + 8 scenes before implementation.
+- Scene 6 and Scene 8 carry subject-fidelity QA flags and must be explicitly resolved before production implementation.
+- After the visual gate passes: create final assets, Latvia Country JSON, map, route and review page.
+- Keep atlasPublished:false until explicit publication approval.
 
 Next action:
-- None for Estonia unless a post-publication issue is reported.
+- Do not start production implementation yet.
+- Final visual QA must compare all 9 approved visuals against the locked scene definitions and Iceland / Norway series quality.
+- Scene 6 check: Cēsis must visibly read as the real medieval castle ruins / towers rather than a generic riverside town.
+- Scene 8 check: Daugavpils must visibly read as the real early-19th-century bastion fortress; the currently approved coastal image does not satisfy that subject definition.
+- Resolve these QA flags without changing the Country Page structure, style language, or scene list.
+
+
+MAP CONCEPT REVIEW:
+- User approved the latest Latvia illustrated map concept on 2026-08-29.
+- Treat this approval as visual-direction approval only.
+- Production map must still be implemented in the standard JOURNEY ATLAS map system at 1200×760, using Iceland / Norway map design language and coordinate-based point placement.
+- Do not use the generated infographic layout with profile statistics / bottom destination copy as the final Country Page map, because that would change the locked common map component.
+
+
+IMPLEMENTATION PREP — MAP / TAXONOMY:
+- Latvia theme assignments are now actually committed to data/theme-taxonomy.json: earth / city / history.
+- Production map base created: assets/images/latvia/map-atlas-v2.svg.
+- Map config created: data/maps/latvia.json.
+- Canvas / projection: 1200×760, equirectangular.
+- Bounds: W 20.65 / E 28.55 / S 55.45 / N 58.30.
+- Geometry source: Natural Earth 1:10m Admin 0 Countries (public domain), matching MAP_SYSTEM standard source policy.
+- geoBoundaries LVA ADM0 was checked as the higher-detail fallback (2021 boundary, Geoportal of Latvia, CC BY 4.0), but its Git LFS object could not be retrieved in the current execution environment; no non-standard boundary source is retained in production.
+- SVG preflight passed: complete <svg>…</svg>, correct 1200×760 viewBox, journey-atlas-map-v1 metadata/style, 9,002 bytes, 541 projected line segments.
+- Marker-spacing calculation passed after small Hero / Capital display offsets. Hero–Capital final separation is about 38.5px; no configured pair violates MAP_SYSTEM minimum spacing thresholds.
+- Standalone SVG render QA passed locally at 1200×760: Latvia silhouette, Gulf of Riga, western coast and eastern border render cleanly without clipping or broken paths. Full Country Page browser/responsive QA remains required after the page exists.
+
+IMPLEMENTATION BLOCKER:
+- assets/images/latvia currently contains only map-atlas-v2.svg.
+- The approved Hero and Scene raster assets have not yet been materialized into GitHub.
+- Per asset-management and 404 rules, do not create/connect the production Latvia Country JSON or review route with missing image paths or placeholders.
+- Next implementation step is to materialize the 9 approved final raster assets into assets/images/latvia/approved/, run decode/dimension QA, then create Latvia Country JSON and review route with atlasPublished:false.
+
+
+ASSET RESPONSIBILITY:
+- Map implementation and map-related GitHub updates remain assistant-owned, following the existing Iceland / Norway / Denmark / Sweden / Finland workflow.
+- User will manually materialize only the approved raster image assets (Hero + 8 scenes) into GitHub.
+- Do not ask the user to upload or manage map SVG / map config files.
+
+
+IMPLEMENTATION UPDATE — 2026-08-29:
+- User uploaded all 9 approved raster assets into assets/images/latvia/approved/ on latvia-v1-content.
+- GitHub asset check passed: Hero + 8 scene paths all exist; placeholder .gitkeep removed.
+- Exact uploaded byte sizes match the locally QA-checked source files.
+- Decode / dimensions from the matching source set:
+  - Hero Riga: PNG 1536×1024
+  - Scene 1 Great Ķemeri Bog: PNG 1536×1024
+  - Scene 2 Gauja Valley: PNG 1536×1024
+  - Scene 3 Cape Kolka: PNG 1536×1024
+  - Scene 4 Kuldīga / Venta Rapid: PNG 1536×1024
+  - Scene 5 Rundāle Palace: PNG 1586×992
+  - Scene 6 Cēsis Medieval Castle: PNG 1536×1024
+  - Scene 7 Lake Rāzna: PNG 1536×1024
+  - Scene 8 Daugavpils Fortress: PNG 1536×1024
+- Created data/countries/latvia.json using schemaVersion 2 and the locked Country Template content structure.
+- Country JSON structural preflight passed: 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Asset-path preflight passed with zero missing Hero / scene / map assets.
+- Map marker preflight passed with zero spacing collisions using coordinate-based placement and small Hero / capital offsets.
+- Theme taxonomy check passed: earth / city / history.
+- Publication state remains atlasPublished:false, href empty, registry image empty.
+- Created countries/latvia/index.html as a noindex,follow review entry on the working branch; canonical is https://atlas.yagenji.com/countries/latvia/.
+- Review deployment to main / production has NOT been performed yet.
+- Final visual QA still retains subject-fidelity concerns on Scene 6 and Scene 8; do not call Latvia complete until actual-page review resolves them.
