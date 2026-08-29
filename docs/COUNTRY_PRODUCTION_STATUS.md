@@ -238,7 +238,7 @@ Hero:
 Scenes:
 1. Seven Sisters / Cuckmere Haven — APPROVED
 2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
-3. Edinburgh / Calton Hill to Old Town — PENDING
+3. Edinburgh / Calton Hill to Old Town — PENDING (user-approved output rejected by subject-fidelity QA)
 4. Glen Coe / Three Sisters — PENDING
 5. Eryri / Llyn Llydaw — PENDING
 6. Caernarfon Castle / River Seiont — PENDING
@@ -246,6 +246,7 @@ Scenes:
 8. Silent Valley / Mourne Mountains — PENDING
 
 Visual issues:
+- Scene 3 subject-fidelity failure: the user approved the generated image, but it depicts a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. Per VISUAL COMPLETE GATE rules, user approval alone is insufficient when the real place is clearly wrong. This output is REJECTED for Scene 3 and must never enter production.
 - Scene 2 generation has repeatedly failed with subject/context drift.
 - Earlier failure set: an 8-image UK collage with text/UI, then a generic coastal rock-arch landscape.
 - Fresh-series failure set: another 8-image UK collage with text/UI, then a full UK Content Design infographic instead of the requested landscape.
@@ -287,9 +288,10 @@ Completed:
 - High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
 
 Last Action:
-- Scene 2 Hadrian’s Wall / Steel Rigg and Crag Lough generated in a fresh series and explicitly approved by the user.
-- Scene 2 subject-fidelity check passed: the stone wall traces the Whin Sill ridge with Crag Lough and open Northumberland moorland clearly visible.
+- Scene 3 generation produced the wrong subject (Hadrian’s Wall-like ridge / stone wall) and was explicitly user-approved.
+- Subject-fidelity QA overruled acceptance for production because Edinburgh / Calton Hill / Old Town are not depicted.
 
 Next Action:
-- Generate Scene 3 only: Edinburgh / Calton Hill to Old Town.
-- Do not generate Scene 4 until the user explicitly approves Scene 3.
+- Regenerate Scene 3 only: Edinburgh / Calton Hill to Old Town.
+- Use a fresh generation context focused only on the locked Edinburgh scene definition.
+- Do not generate Scene 4 until a correct Scene 3 is explicitly approved.
