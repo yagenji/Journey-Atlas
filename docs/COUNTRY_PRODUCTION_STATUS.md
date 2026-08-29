@@ -217,3 +217,71 @@ FINAL QA CHECKPOINT — 2026-08-29:
 - PERFORMANCE CONCERN — the 9 PNG raster assets total about 27.8 MiB; optimize final publication assets only after visual replacements are settled.
 - ACCESSIBILITY NOTE — scene cards are keyboard-focusable and keyboard-operable but use an interactive <article> without an explicit button role; this is a shared Country Template issue, not Latvia-specific, and should be handled in common UI work rather than with Latvia-specific markup.
 - Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
+
+
+---
+
+# Country: Ireland
+
+Status: READY-FOR-VISUAL
+Current Phase: PHASE 2 — VISUAL PRODUCTION (Hero next)
+Branch: ireland-v1-content
+
+Hero: PENDING
+Scene 1 Glenveagh National Park: PENDING
+Scene 2 Diamond Hill / Connemara: PENDING
+Scene 3 Burren / Mullaghmore: PENDING
+Scene 4 Killarney / Ladies View: PENDING
+Scene 5 Sceilg Mhichíl: PENDING
+Scene 6 Rock of Cashel: PENDING
+Scene 7 Glendalough: PENDING
+Scene 8 Brú na Bóinne / Newgrange: PENDING
+
+Visual issues:
+- None yet. Visual production has not started.
+
+Map:
+- NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
+
+Country JSON:
+- NOT CREATED. Content design is locked in docs/IRELAND_CONTENT_PLAN.md; production JSON waits for Visual Complete Gate.
+
+Themes:
+- ASSIGNED in data/theme-taxonomy.json (SSOT):
+  - earth / 地球の風景
+  - history / 時をたどる
+  - road / 道の先へ
+
+QA:
+- PHASE 1 source verification complete.
+- Full page QA not started.
+
+Review URL:
+- Not created.
+
+atlasPublished:
+- false (confirmed on main before production start).
+
+Initial GitHub state confirmed 2026-08-29:
+- No Ireland Country JSON.
+- No Ireland final image assets.
+- No Ireland Map JSON / SVG.
+- No /countries/ireland/ page.
+- No pre-existing Ireland work branch.
+- No previous Ireland Production Status record.
+- No pre-existing Ireland theme assignment.
+- Main registry entry exists with slug ireland, ISO2 IE, atlasPublished:false, empty href/image.
+
+PHASE 1 — CONTENT DESIGN:
+- COMPLETE.
+- Hero, 8 scenes, geographic spread, coordinates, viewpoints, seasons, compositions, Hero lead, Profile direction, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes, Related destinations and TRAVEL THEMES defined.
+- Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
+
+Last Action:
+- Created ireland-v1-content from main.
+- Added Ireland theme assignments to taxonomy.
+- Completed PHASE 1 and recorded READY-FOR-VISUAL.
+
+Next Action:
+- Generate Hero only: Cliffs of Moher / County Clare.
+- Do not generate Scene 1 until user approves Hero.
