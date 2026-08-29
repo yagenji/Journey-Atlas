@@ -233,16 +233,17 @@ Scene 2 Diamond Hill / Connemara: APPROVED
 Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: APPROVED
 Scene 5 Sceilg Mhichíl: APPROVED
-Scene 6 Rock of Cashel: PENDING
+Scene 6 Rock of Cashel: USER-APPROVED OUTPUT / SUBJECT-FIDELITY BLOCKED
 Scene 7 Glendalough: PENDING
 Scene 8 Brú na Bóinne / Newgrange: PENDING
 
 Visual issues:
 - Scene 2 earlier attempts failed subject fidelity; reset output was approved.
-- Scene 3 had repeated context-contamination failures; the final Burren output passed and was approved.
-- Scene 4 attempt 1 repeated the Burren limestone landscape instead of Killarney / Ladies View.
-- Context contamination is confirmed for Scene 4. Reset Scene 4 generation series only.
-- Rejected Scene 4 output remains excluded from production.
+- Scene 3 had repeated context-contamination failures; final Burren output was approved.
+- Scene 4 initial attempt duplicated Burren; final Killarney output was approved.
+- Scene 6 latest output depicts a coastal mining-engine-house landscape rather than Rock of Cashel.
+- User approval is retained as feedback, but Scene 6 is blocked by subject-fidelity QA.
+- Rejected Scene 6 output remains excluded from production.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -282,11 +283,12 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Scene 4 / Killarney National Park / Ladies View user-approved.
-- Scene 5 / Sceilg Mhichíl / Skellig Michael passed visual QA and user approval.
-- Production sequence advances to Scene 6.
+- User approved the latest Scene 6 output.
+- Visual QA rejected it for subject fidelity: it is not Rock of Cashel.
+- Scene 6 remains blocked; no advancement to Scene 7.
 
 Next Action:
-- Generate Scene 6 only: Rock of Cashel.
-- Required cues: limestone outcrop above open green fields, clustered medieval ecclesiastical stone complex with round tower, cathedral ruins and defensive walls, viewed from a lower field / town approach; restrained early-autumn light.
+- Regenerate Scene 6 only: Rock of Cashel.
+- Required cues: elevated limestone outcrop in County Tipperary; clustered medieval ecclesiastical complex with round tower, roofless Gothic cathedral, chapel and enclosing stone walls; broad green agricultural fields below; inland setting with no sea, no lighthouse, no mining chimney.
+- View from lower field / town approach, restrained early-autumn light.
 - Do not generate Scene 7 until Scene 6 passes subject-fidelity QA and user approval.
