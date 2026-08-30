@@ -1,10 +1,10 @@
 # COUNTRY PRODUCTION STATUS
 
 Country: Latvia
-Status: GENERATING
+Status: PUBLISHED
 
-Branch: latvia-v1-content
-Latest commit: 63bd6ca83282f770c00bc3bf03652d604a436262
+Branch: main
+Latest publication commit: fa2cb8b87c1c4ce29161c4dc1b0035f2e8074f22
 
 Completed:
 - GitHub main state checked before production start.
@@ -219,12 +219,390 @@ FINAL QA CHECKPOINT — 2026-08-29:
 - Result: Latvia remains REVIEW / QA BLOCKED and must not be marked complete or atlasPublished:true.
 
 
+VISUAL REPLACEMENT APPROVAL — 2026-08-29:
+- Scene 6 / Cēsis Medieval Castle replacement approved by user.
+- Approved replacement source prepared as cesis-medieval-castle.png (1536×1024 PNG).
+- Scene 8 / Daugavpils Fortress replacement approved by user.
+- Approved replacement source prepared as daugavpils-fortress.png (1536×1024 PNG).
+- User remains responsible for manually replacing the two raster files in assets/images/latvia/approved/.
+- Do not change atlasPublished yet.
+- Next action after user materializes the two approved replacements in GitHub: verify blob replacement, rerun full visual/technical QA on the production review URL, then determine whether Latvia can leave QA-BLOCKED.
+
+
+REPLACEMENT MATERIALIZATION + RE-QA — 2026-08-29:
+- User replaced Scene 6 and Scene 8 in main under assets/images/latvia/approved/.
+- Git blob verification passed against the approved local source files:
+  - cesis-medieval-castle.png -> blob a143afc962ec202be2fe6d000df43cf381b3acd1, 3,434,322 bytes.
+  - daugavpils-fortress.png -> blob e659e6f33c6c48a189aad605d44032a1ac181382, 2,968,095 bytes.
+- Latest Pages deploy for the replacement commit cf48e77c113775a133fde53d67fb1558b3666323 completed successfully.
+- Scene 6 subject-fidelity blocker resolved: the replacement visibly reads as Cēsis Medieval Castle, including the red-roofed round tower, adjacent round tower, ruined stone walls and castle-park setting consistent with official Cēsis / Latvia tourism references.
+- Scene 8 subject-fidelity blocker resolved: the replacement visibly reads as Daugavpils Fortress, with bastion earthworks, brick / stone fortifications, moat / bridge and military-town buildings consistent with official Daugavpils / Latvia tourism references.
+- Hero + 8-scene contact-sheet review now reads as one coherent photo-leaning watercolor series; no remaining place-mismatch blocker.
+- Latest deployed artifact QA:
+  - Hero + 8 scenes all exist and fully decode.
+  - Scene 6 and Scene 8 are both 1536×1024 PNG.
+  - Map v3 parses correctly at 1200×760 and contains no ellipse artifacts.
+  - Latvia remains absent from sitemap.
+  - atlasPublished:false, href empty and noindex,follow remain intact.
+  - Theme taxonomy remains earth / city / history.
+- Non-blocking publication-prep notes:
+  - Scene 5 source remains 1586×992 while the other 8 raster sources are 1536×1024.
+  - The nine PNGs total about 28.3 MB; final web optimization can be done only after review approval so the approved visuals are not altered prematurely.
+  - Shared Country Template accessibility note for interactive scene-card semantics remains a common-system issue, not Latvia-specific.
+- Result: Latvia leaves QA-BLOCKED and moves to REVIEW-READY.
+- Next action: user reviews https://atlas.yagenji.com/countries/latvia/ on the production review URL. Keep atlasPublished:false until explicit publication approval.
+
+
+PUBLICATION COMPLETE — 2026-08-29:
+- User explicitly approved final publication after review.
+- Final publication assets are Hero + 8 approved scenes normalized to 1200×800 WebP; superseded PNG copies were removed from assets/images/latvia/approved/.
+- Scene 5 / Rundāle Palace was center-cropped to the common 3:2 source ratio before 1200×800 export; no new visual content was generated.
+- All 9 WebP files fully decode at 1200×800 in the exact deployed artifact.
+- Total Hero + 8-scene payload is 2,069,920 bytes (about 2.0 MiB), reduced from about 28.3 MB of PNG source assets.
+- Country JSON paths now reference only the final WebP assets.
+- atlasPublished:true.
+- Official href: countries/latvia/.
+- Registry hero image: assets/images/latvia/approved/hero-riga.webp.
+- Production build output has robots index,follow and canonical https://atlas.yagenji.com/countries/latvia/.
+- Production sitemap includes https://atlas.yagenji.com/countries/latvia/.
+- Normal top-page discovery is enabled through the published destination registry.
+- Map remains assets/images/latvia/map-atlas-v3.svg, valid 1200×760, with no ellipse artifacts.
+- TRAVEL THEMES remain earth / city / history.
+- Scene 6 Cēsis and Scene 8 Daugavpils replacement fidelity blockers remain resolved.
+- Strict published-country validation passed before merge and again on main.
+- Main publication deploy run 33252231536 passed source validation, production build, production-build validation, Cloudflare package validation, artifact upload, and Pages deployment.
+- Exact deployed artifact QA passed for publication metadata, sitemap inclusion, asset existence, full image decode, dimensions, map parse, and final asset cleanup.
+- Responsive layout had already passed Desktop / Tablet / Mobile QA before publication; publication changed only image asset format/normalization and publication metadata, not shared layout/CSS/JS.
+- Result: Latvia is formally PUBLISHED.
+
+---
+
+Country: Lithuania
+Status: REVIEW-BLOCKED
+Current Phase: PHASE 7 — REVIEW / QA BLOCKED
+Branch: main review deployment from lithuania-v1-content
+Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
+Review URL: https://atlas.yagenji.com/countries/lithuania/
+
+Hero: APPROVED — Vilnius Historic Centre from Subačius Panoramic Viewpoint
+Hero file: assets/images/lithuania/approved/hero-vilnius.png
+Scene 1: APPROVED — Curonian Spit / Parnidis Dune
+Scene 2: APPROVED — Trakai Island Castle
+Scene 3: APPROVED — Hill of Crosses
+Scene 4: APPROVED — Kaunas Modernism / Central Post Office and Laisvės Avenue
+Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
+Scene 6: APPROVED — Kernavė Archaeological Site
+Scene 7: APPROVED — Čepkeliai Marsh
+Scene 8: APPROVED — Vilnius Old Town street / Užupis edge
+
+Visual:
+- VISUAL COMPLETE GATE passed.
+- Wrong-subject / duplicate / contaminated generations are excluded.
+- 9 approved PNGs exist in the exact deployed artifact and fully decode.
+- Hero + Scenes 1–4 and 6–8: 1536×1024.
+- Scene 5: 1535×1024; retained as approved source with a non-blocking 1px width-consistency note.
+
+Map:
+- IMPLEMENTED — assets/images/lithuania/map-atlas-v1.svg
+- 1200×760 / journey-atlas-map-v1
+- Natural Earth 1:10m Admin 0 Countries ISO geometry.
+- No ellipse artifacts.
+- Marker offsets <= 5%.
+- Coordinate-based marker spacing passes validator minimum thresholds.
+- Actual-page marker visual review remains part of user review.
+
+Country JSON:
+- IMPLEMENTED — data/countries/lithuania.json
+- schemaVersion 2.
+- Structural strict-preflight passed: 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
+- Source keys and sourceDates preflight passed.
+- Asset paths have zero missing files in the deployed artifact.
+
+Themes:
+- earth / city / history.
+- data/theme-taxonomy.json remains the Single Source of Truth.
+- Deployed taxonomy matches the Country content.
+
+Publication state:
+- atlasPublished:false.
+- Registry href empty.
+- Registry image empty.
+- Country route robots: noindex,follow.
+- Lithuania absent from production sitemap.
+- Normal top-page publication link remains disabled.
+- Formal publication has NOT occurred.
+
+CI / DEPLOY QA:
+- Review PR #17 validation run 33260677929: SUCCESS.
+- Main review deployment run 33260703148: SUCCESS.
+- Deploy job:
+  - Checkout: success
+  - Validate source: success
+  - Build production site: success
+  - Validate production build: success
+  - Setup Pages: success
+  - Upload site: success
+  - Deploy to GitHub Pages: success
+- Cloudflare production package job:
+  - Checkout: success
+  - Build clean Cloudflare package: success
+  - Validate packaged output: success
+- Exact deployed Pages artifact ID 9717164181 inspected.
+- Deployed artifact checks:
+  - Lithuania route exists.
+  - Country JSON exists.
+  - Hero + 8 scene assets exist and fully decode.
+  - Map parses at 1200×760.
+  - noindex,follow is present.
+  - canonical is https://atlas.yagenji.com/countries/lithuania/.
+  - Lithuania is absent from sitemap.
+  - atlasPublished:false / href empty / registry image empty.
+  - Themes are exactly earth / city / history.
+  - No Latvia residue in Lithuania route HTML.
+
+Browser / responsive QA:
+- Automated local Chromium rendering of the deployed artifact was blocked by the execution environment with ERR_BLOCKED_BY_ADMINISTRATOR.
+- Do not claim Desktop / Tablet / Mobile visual QA complete on that basis.
+- Source/artifact structural QA is complete; actual rendered review now proceeds at the production review URL.
+- Shared interactive scene-card semantics remain a common Country Template accessibility concern and must not be patched Lithuania-only.
+
+Last Action:
+- Editorial non-overlap rule implemented: BEYOND THE SCENERY and TRAVEL TRIVIA must use different topics.
+- Lithuania TRAVEL TRIVIA now uses language / basketball / amber / five ethnographic regions / hot-air balloons.
+- Chiune Sugihara remains only in BEYOND THE SCENERY HISTORY.
+- Shared docs updated: docs/COUNTRY_PAGE_TEMPLATE.md and docs/PRODUCTION_WORKFLOW.md.
+- Main review update commit: a8ba62d6f15bf6a335a0bdcb6b74fc462b4e54ec.
+- Validation run 33283781624: SUCCESS.
+- Deploy run 33283781635: SUCCESS.
+- GitHub Pages deploy and Cloudflare production package validation both passed.
+- atlasPublished remains false.
+
+Next Action:
+- User reviews the revised BEYOND THE SCENERY / TRAVEL TRIVIA separation at https://atlas.yagenji.com/countries/lithuania/.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Do not set atlasPublished:true until explicit user publication approval.
+QA UPDATE — 2026-08-30:
+- Production state / CI: PASS. atlasPublished:false, href/image empty, noindex,follow maintained. Latest Pages deploy run 33283818960 SUCCESS; Cloudflare package validation SUCCESS.
+- Data/facts: PASS. Population, area, religion, World Heritage count, national park count and forest cover rechecked against official sources.
+- Editorial duplication: PASS. BEYOND THE SCENERY and TRAVEL TRIVIA now use non-overlapping topics.
+- Raster integrity: PASS. All 9 approved PNGs fully decode; byte sizes match GitHub uploads. Scene 5 remains 1535×1024; other 8 are 1536×1024.
+- Hero mobile crop simulation at ~390px: PASS; Old Town and church-tower subject remains readable.
+- Map coordinates / marker-spacing: PASS. All markers remain inside bounds; no validator-threshold collisions. Closest pairs: capital–Hero ~29.2px (min 28), Hero–Užupis ~36.2px (min 36), capital–Užupis ~45.1px (min 44).
+- VISUAL BLOCKER: Scene 4 image does not depict the locked Kaunas Central Post Office. The real building at Laisvės al. 102 has two rounded curved wings and a central clock-tower block; the approved raster depicts a different rectilinear modernist façade. Per Visual Complete Gate rules, user approval cannot override clear subject mismatch.
+- Hero viewpoint fidelity: REVIEW NOTE, not confirmed blocker. The approved panorama contains a prominent Neris bend / modern skyline composition that is closer to some hill viewpoints than standard Subačius reference views. Keep under final visual review if Hero is revisited.
+- Scene 5 Ladakalnis fidelity: PASS WITH NOTE. The lake/forest character is consistent with Aukštaitija, though exact Ladakalnis summit cues are less specific than official reference views.
+- Accessibility: FIXED IN SHARED TEMPLATE. Scene cards now expose button role / aria-pressed semantics with keyboard support, and Hero aria-label now uses the actual Hero location. Shared fix commit 14951604bd595f0d96f942fe14157bf4727d9db1; deploy run 33291206746 SUCCESS.
+- Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
+
+Blocking Next Actions:
+1. Replace Scene 4 only with a subject-faithful Kaunas Central Post Office / Laisvės Avenue image, then re-run Visual Complete Gate.
+2. Re-run deployed review QA after Scene 4 replacement. Keep atlasPublished:false until explicit user publication approval.
+
+Accessibility follow-up:
+- Shared accessibility semantics fix completed and deployed successfully.
+- No Lithuania-specific CSS or template exception was introduced.
+
+
+---
+
+## UNITED KINGDOM
+
+Country: United Kingdom
+Slug: united-kingdom
+Current Phase: PHASE 7 — REVIEW
+Status: REVIEW
+
+Branch: united-kingdom-v1-content
+Content Plan: docs/UNITED_KINGDOM_CONTENT_PLAN.md
+
+Hero:
+- Place: Palace of Westminster / Elizabeth Tower from Albert Embankment / Lambeth riverside
+- Status: APPROVED
+
+Scenes:
+1. Seven Sisters / Cuckmere Haven — APPROVED
+2. Hadrian’s Wall / Steel Rigg and Crag Lough — APPROVED
+3. Edinburgh / Calton Hill to Old Town — APPROVED (user-approved output rejected by subject-fidelity QA)
+4. Glen Coe / Three Sisters — APPROVED
+5. Eryri / Llyn Llydaw — APPROVED
+6. Caernarfon Castle / River Seiont — APPROVED
+7. Giant’s Causeway / Grand Causeway — APPROVED
+8. Silent Valley / Mourne Mountains — APPROVED
+
+Visual issues:
+- Scene 4 generation failed twice consecutively with subject drift.
+- Failure 1: Hadrian’s Wall-like stone wall / ridge / lake landscape instead of Glen Coe / Three Sisters.
+- Failure 2: Bath-like historic riverside city / bridge scene instead of Glen Coe / Three Sisters.
+- Both Scene 4 outputs are REJECTED and must never enter production.
+- Per production rule, Scene 4 generation series is RESET before the next attempt.
+- Scene 3 subject-fidelity failure: first output depicted a Hadrian’s Wall-style ridge / stone wall landscape rather than Edinburgh from Calton Hill. The second fresh attempt again produced a rural mountain / lake / stone-wall landscape instead of Edinburgh.
+- Both Scene 3 outputs are REJECTED and must never enter production.
+- Scene 3 has now failed twice consecutively with the same subject/context drift. Per production rule, the Scene 3 generation series is RESET before the next attempt.
+- Scene 2 generation has repeatedly failed with subject/context drift.
+- Earlier failure set: an 8-image UK collage with text/UI, then a generic coastal rock-arch landscape.
+- Fresh-series failure set: another 8-image UK collage with text/UI, then a full UK Content Design infographic instead of the requested landscape.
+- All four outputs are REJECTED and must never enter production.
+- Per production rule, Scene 2 generation series is RESET again before any further attempt.
+
+Map:
+- NOT STARTED
+- Must be created only after VISUAL COMPLETE GATE.
+
+Country JSON:
+- NOT CREATED
+- Must not be created before VISUAL COMPLETE GATE.
+
+Themes:
+- ASSIGNED in data/theme-taxonomy.json on working branch
+- earth / 地球の風景
+- city / 街を歩く
+- history / 時をたどる
+
+QA:
+- NOT STARTED
+
+Review URL:
+- NOT DEPLOYED
+
+atlasPublished:
+- NOT YET CREATED
+- Must be false when Country JSON is implemented.
+- Must remain false until explicit user publication approval.
+
+Completed:
+- GitHub main and existing status checked before production start.
+- No pre-existing United Kingdom Country JSON, dedicated Country Page, map, approved image assets, or UK-specific work branch found.
+- No existing United Kingdom assignment found in theme taxonomy.
+- Working branch united-kingdom-v1-content created.
+- PHASE 1 — CONTENT DESIGN completed.
+- Hero, 8 scenes, geographic distribution, viewpoints, seasons, compositions, Hero lead, scene descriptions, Country Profile, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes, Related destinations and TRAVEL THEMES locked.
+- High-reliability sources checked: ONS, GOV.UK, UNESCO, Ordnance Survey, National Parks UK, Historic Environment Scotland, National Trust / National Trust for Scotland, South Downs National Park Authority, Scottish Government, Welsh legislation sources, NI Direct and official destination sources.
+
+Last Action:
+- Scene 3 Edinburgh / Calton Hill to Old Town regenerated with the correct urban subject.
+- Watercolor strength was reduced after user feedback.
+- Final Scene 3 was explicitly approved by the user.
+- Subject-fidelity check passed: Calton Hill foreground monument, Edinburgh Castle, Old Town skyline and city context are identifiable.
+
+Last Action:
+- Scene 4 Glen Coe / Three Sisters generated in a fresh series and explicitly approved by the user.
+- Subject-fidelity check passed: steep Highland glen, Three Sisters massif and valley road context are clearly present without prior-scene contamination.
+
+Last Action:
+- Scene 5 Eryri / Llyn Llydaw regenerated correctly and explicitly approved by the user.
+- Subject-fidelity check passed: Llyn Llydaw, rugged mountain slopes and foreground walking path are present.
+
+Last Action:
+- Scene 6 Caernarfon Castle / River Seiont generated and explicitly approved by the user.
+- Subject-fidelity check passed: Caernarfon Castle’s massive medieval curtain walls and towers are identifiable in the waterfront context.
+- Scene 7 Giant’s Causeway / Grand Causeway generated and explicitly approved by the user.
+- Subject-fidelity check passed: wet polygonal basalt columns, Atlantic water and Antrim cliff context are clearly present.
+
+Last Action:
+- Scene 8 Silent Valley / Mourne Mountains generated and explicitly approved by the user.
+- Subject-fidelity check passed: elongated reservoir, surrounding Mourne peaks and heather/granite foreground are consistent with the locked scene definition.
+
+Next Action:
+- Run VISUAL COMPLETE GATE across Hero + Scenes 1–8.
+- Confirm subject fidelity, visual consistency with Iceland / Norway, and absence of obvious generation defects before implementation.
+
+Generation guardrail added by user:
+- Do not present repeated or near-duplicate scene outputs as a new Scene.
+- Before showing any generated image, compare the dominant subject, terrain, composition and key motifs against the immediately preceding approved/rejected Scene outputs.
+- If the new output still carries the previous Scene's defining motifs (for example Hadrian’s Wall stone wall / upland ridge / lake context appearing in Edinburgh Scene 3), reject it internally and reset the scene generation context instead of presenting it to the user.
+- Prioritize real-place subject fidelity over merely producing another image.
+
+
+VISUAL COMPLETE GATE — 2026-08-30:
+- Result: PASS
+- Hero + Scenes 1–8 all explicitly approved by the user.
+- Subject-fidelity review passed for all 9 final visuals.
+- No obvious duplicate-scene contamination remains in the selected final set.
+- No visible text, map, table, UI or infographic elements remain in the selected final set.
+- Overall visual language is acceptable for the JOURNEY ATLAS Iceland / Norway benchmark: recognizable real-place structure, restrained color, and painterly treatment without fantasy reconstruction.
+- Minor style variance remains: Scene 2 is somewhat more photographic and Scenes 7–8 somewhat more watercolor-textured, but the set remains coherent enough to proceed without regeneration.
+- No visual blocker remains.
+
+OFFICIAL APPROVED FILENAMES:
+- hero-westminster-thames.png
+- seven-sisters-cuckmere-haven.png
+- hadrians-wall-crag-lough.png
+- edinburgh-calton-hill.png
+- glen-coe-three-sisters.png
+- eryri-llyn-llydaw.png
+- caernarfon-castle.png
+- giants-causeway.png
+- silent-valley-mourne-mountains.png
+
+TARGET ASSET DIRECTORY:
+- assets/images/united-kingdom/approved/
+
+Implementation gate:
+- Do not start Country JSON / production page wiring until the 9 approved raster files are manually materialized in GitHub and existence is verified there.
+
+Last Action:
+- VISUAL COMPLETE GATE passed and official filenames fixed.
+
+Next Action:
+- User manually uploads the 9 approved raster assets to assets/images/united-kingdom/approved/ using the official filenames above.
+- Assistant then verifies all 9 files in GitHub, checks decode/dimensions, and proceeds to PHASE 4 implementation.
+
+
+IMPLEMENTATION UPDATE — 2026-08-30:
+- User manually uploaded all 9 approved raster assets to assets/images/united-kingdom/approved/.
+- GitHub asset existence check passed for Hero + Scenes 1–8; .gitkeep removed.
+- Uploaded byte sizes exactly match the locally QA-checked approved source files.
+- Complete decode / dimensions:
+  - Hero Westminster / Thames: PNG 1535×1024
+  - Scenes 1–8: PNG 1536×1024 each
+- Created data/countries/united-kingdom.json using schemaVersion 2 and the shared Country Template structure.
+- Created assets/images/united-kingdom/map-atlas-v1.svg.
+- Created data/maps/united-kingdom.json.
+- Created countries/united-kingdom/index.html as noindex,follow review route.
+- Theme taxonomy remains earth / city / history.
+- Publication registry remains atlasPublished:false, href empty, image empty.
+- Shared icon audit passed with zero invalid icon IDs.
+- Map SVG preflight passed: complete SVG, 1200×760 viewBox, journey-atlas-map-v1 styling.
+- Marker spacing QA passed after London capital / Hero display-offset adjustment; nearest capital–Hero separation is ~46.8px.
+- Scene 5 / Scene 6 display offsets preserve their true coordinates while avoiding label collision.
+- No Country-specific CSS added.
+
+Current QA state:
+- Structural / asset / map / icon / taxonomy / publication-state preflight: PASS.
+- Actual production-page browser QA is still required after review deployment.
+
+Next Action:
+- Merge the review-ready implementation to main while keeping atlasPublished:false.
+- Confirm deploy workflow succeeds.
+- Run actual Country URL QA at https://atlas.yagenji.com/countries/united-kingdom/.
+
+
+REVIEW DEPLOYMENT — 2026-08-30:
+- Main review deployment commit: 6837789b01771c850b52823d70c854b02f8dc20a
+- Validate country data run 33261282361: SUCCESS.
+- Deploy JOURNEY ATLAS run 33261282330: SUCCESS.
+- Deploy job steps passed: Checkout / Validate source / Build production site / Validate production build / Setup Pages / Upload site / Deploy to GitHub Pages.
+- Cloudflare production package job passed: Build clean Cloudflare package / Validate packaged output.
+- GitHub Pages artifact ID: 9717322653.
+- Review URL: https://atlas.yagenji.com/countries/united-kingdom/
+- Publication state remains atlasPublished:false, href empty, registry image empty, noindex,follow, sitemap/top-page link disabled.
+- Automated direct browser fetch of the custom domain could not be completed in the current web execution environment; do not claim rendered Desktop/Tablet/Mobile QA complete from this run alone.
+- User review on the actual production URL is now required for Hero crop, Map labels/markers, responsive layout, horizontal overflow and final visual consistency.
+
+Last Action:
+- Review deployment to main completed successfully with validation and deploy pipelines passing.
+
+Next Action:
+- User reviews the actual production URL.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Do not set atlasPublished:true until explicit user publication approval.
+
 ---
 
 # Country: Ireland
 
-Status: READY-FOR-VISUAL
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE PASSED / ASSET MATERIALIZATION
+Status: IMPLEMENTED / STATIC QA PASSED
+Current Phase: PHASE 5 — QA (static checks passed; production browser QA pending)
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -245,10 +623,16 @@ Visual issues:
 - No approved Ireland raster assets are currently materialized in GitHub.
 
 Map:
-- NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
+- IMPLEMENTED: assets/images/ireland/map-atlas-v1.svg
+- Map config: data/maps/ireland.json
+- Geometry: Eurostat GISCO NUTS 2024 1:1M, WGS84.
+- SVG preflight passed: 1200×760, complete SVG, no decorative ellipse artifacts.
+- Marker-spacing preflight: minimum pair separation ~97.7px; no critical collision.
 
 Country JSON:
-- NOT CREATED. Content design is locked in docs/IRELAND_CONTENT_PLAN.md; production JSON waits for Visual Complete Gate.
+- IMPLEMENTED: data/countries/ireland.json
+- SchemaVersion 2; 8 scenes; 8 encounters; 6 atlasExtras; 5 travelTrivia; 4 seasons; 5 personas; 7 facts; 3 signatureFacts; 3 tips; 3 relatedCountries.
+- Hero + 8 image paths all resolve to uploaded approved PNG filenames.
 
 Themes:
 - ASSIGNED in data/theme-taxonomy.json (SSOT):
@@ -257,11 +641,18 @@ Themes:
   - road / 道の先へ
 
 QA:
-- PHASE 1 source verification complete.
-- Full page QA not started.
+- Static structural QA passed with zero errors.
+- 9 approved PNGs confirmed in assets/images/ireland/approved/.
+- Uploaded byte sizes match the approved manifest; all listed dimensions are 1536×1024.
+- JSON required keys / scene count / fact order / trivia source keys passed.
+- Shared icon IDs passed.
+- Theme taxonomy passed: earth / history / road.
+- Map bounds / point projection / marker spacing passed.
+- Review route noindex,follow and canonical passed.
+- Actual browser QA on production URL remains pending until review deployment.
 
 Review URL:
-- Not created.
+- https://atlas.yagenji.com/countries/ireland/ (not deployed yet)
 
 atlasPublished:
 - false (confirmed on main before production start).
@@ -282,21 +673,13 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Replacement Hero, Scene 1 and Scene 2 were approved.
-- Re-ran the Visual Complete Gate across the full 9-image set.
-- Gate result: PASSED.
-- Checked GitHub branch assets/images/ireland/: directory does not yet exist; approved raster assets are not yet materialized.
+- User materialized all 9 approved raster assets to the correct GitHub path.
+- Completed PHASE 4 implementation: Country JSON, map SVG/config and direct review route.
+- Static QA passed with zero errors.
+- Synced latest main theme taxonomy to avoid overwriting other Country assignments.
 
 Next Action:
-- User to upload the 9 approved final raster assets to assets/images/ireland/approved/ using these exact filenames:
-  - hero-cliffs-of-moher.png
-  - glenveagh-national-park.png
-  - connemara.png
-  - the-burren-mullaghmore.png
-  - killarney-ladies-view.png
-  - skellig-michael.png
-  - rock-of-cashel.png
-  - glendalough.png
-  - newgrange.png
-- After upload, verify all 9 files exist and run decode / dimension checks.
-- Then begin PHASE 4 — IMPLEMENTATION: Country JSON, Map, taxonomy connection, countries/ireland/, atlasPublished:false, noindex,follow.
+- Clean non-production helper files from the approved asset directory.
+- Review branch diff against latest main.
+- Perform REVIEW DEPLOYMENT to main while keeping atlasPublished:false, noindex, sitemap excluded and top page unlinked.
+- Then run actual production-page browser/responsive/accessibility QA at https://atlas.yagenji.com/countries/ireland/.
