@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: REVIEW-READY
-Current Phase: PHASE 5 — QA / REVIEW DEPLOYMENT READY
+Status: REVIEW-DEPLOYED
+Current Phase: PHASE 7 — REVIEW
 Branch: main review deployment from lithuania-v1-content
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -395,10 +395,9 @@ QA UPDATE — 2026-08-30:
 - Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
 
 Blocking Next Actions:
-1. Open/merge review PR after CI validation passes.
-2. Confirm main deployment completes successfully.
-3. Review the actual Country URL at https://atlas.yagenji.com/countries/lithuania/ with atlasPublished:false.
-4. Keep formal publication blocked until explicit user approval.
+1. User reviews https://atlas.yagenji.com/countries/lithuania/ on Desktop / Tablet / Mobile.
+2. Apply any visual or content corrections to the same review URL.
+3. Keep atlasPublished:false until explicit user publication approval.
 
 Accessibility follow-up:
 - Shared accessibility semantics fix completed and deployed successfully.
@@ -432,6 +431,18 @@ SCENE 4 ASSET VERIFICATION — 2026-08-30:
 - PNG fully decodes: 1536×1024, RGB.
 - Scene 4 content / coordinate / image path are internally consistent.
 - Hero + 8 scenes are now all APPROVED; Visual Complete Gate PASSED.
+
+
+REVIEW DEPLOYMENT — SCENE 4 REPLACEMENT — 2026-08-30:
+- PR #25 merged to main as 7cf9435baa096483dea27bfb54f24c967367d0c1.
+- PR validation run 33313584555: SUCCESS.
+- Main validation run 33313610026: SUCCESS.
+- Main deploy run 33313609983: SUCCESS.
+- Deploy job: Validate source / Build production site / Validate production build / Setup Pages / Upload site / Deploy to GitHub Pages — all SUCCESS.
+- Cloudflare package job: Build clean Cloudflare package / Validate packaged output — all SUCCESS.
+- Approved Scene 4 asset is present at its final production path and byte-identical to the approved local source.
+- atlasPublished:false / noindex review state remains required.
+- Automated direct fetch of the custom review URL is unavailable from this environment; final rendered Desktop / Tablet / Mobile review remains user-facing QA.
 
 
 ---
