@@ -3,17 +3,37 @@ name: Validate country data
 on:
   push:
     paths:
+      - 'data/theme-taxonomy.json'
+      - 'assets/js/top.js'
+      - 'assets/css/top-layout-v4.css'
+      - 'index.html'
+      - '404.html'
+      - '_redirects'
+      - 'scripts/build_site.py'
+      - 'scripts/package_site.py'
+      - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/validate_country.py'
+      - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
+      - 'data/theme-taxonomy.json'
+      - 'assets/js/top.js'
+      - 'assets/css/top-layout-v4.css'
+      - 'index.html'
+      - '404.html'
+      - '_redirects'
+      - 'scripts/build_site.py'
+      - 'scripts/package_site.py'
+      - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/validate_country.py'
+      - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
 
 jobs:
@@ -26,5 +46,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate source syntax
+        run: |
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          node --check assets/js/top.js
       - name: Validate published country JSON and 201-destination scope
         run: python3 scripts/validate_country.py --published
+      - name: Validate JOURNEY LENS slug drift
+        run: python3 scripts/validate_lens_slugs.py
+      - name: Build and validate Cloudflare package
+        env:
+          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+        run: python3 scripts/build_cloudflare.py

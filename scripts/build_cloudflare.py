@@ -34,6 +34,7 @@ def main() -> int:
     # domain is connected, set JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/.
     env.setdefault("JOURNEY_ATLAS_SITE_URL", default_site_url())
 
+    run(sys.executable, "scripts/validate_lens_slugs.py", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/build_site.py", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
@@ -42,6 +43,8 @@ def main() -> int:
     dist = ROOT / "dist"
     expected = [
         dist / "index.html",
+        dist / "404.html",
+        dist / "_redirects",
         dist / "sitemap.xml",
         dist / "robots.txt",
         dist / "_headers",

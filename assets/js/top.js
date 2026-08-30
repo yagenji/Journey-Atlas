@@ -17,6 +17,9 @@ const heroStepButtons = [...document.querySelectorAll('[data-hero-step]')];
 const alphabetHost = document.querySelector('#alphabet-buttons');
 const alphabetButtons = () => [...document.querySelectorAll('[data-letter]')];
 const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
+const lensRail = document.querySelector('.lens-rail');
+const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
+const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 const ATLAS_TOTAL = 201;
 
 function syncScrollHeader() {
@@ -34,14 +37,14 @@ let heroSources = [];
 let heroIndex = 0;
 let heroTimer;
 let themeSets = {
-  earth:['iceland','antarctica','bolivia','namibia','new-zealand','nepal'],
+  earth:['iceland','antarctica','bolivia','namibia','newzealand','nepal'],
   city:['japan','italy','morocco','cuba','uzbekistan','mexico'],
   history:['egypt','peru','italy','cambodia','india','jordan'],
   life:['india','morocco','vietnam','mexico','ethiopia','mongolia'],
-  wildlife:['kenya','tanzania','botswana','south-africa','australia','costa-rica'],
+  wildlife:['kenya','tanzania','botswana','southafrica','australia','costarica'],
   sea:['maldives','belize','philippines','seychelles','fiji','palau'],
   food:['japan','italy','mexico','thailand','vietnam','turkiye'],
-  road:['tajikistan','kyrgyzstan','argentina','chile','lesotho','iceland']
+  road:['tajikistan','kyrgyz','argentina','chile','lesotho','iceland']
 };
 
 const heroFiles = [
@@ -160,10 +163,12 @@ if(alphabetHost){
   });
 }
 
-Promise.all([
-  fetch('data/atlas-destinations.json').then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();}),
-  fetch('data/atlas-destinations-editorial.json').then((response)=>{if(!response.ok) throw new Error('Editorial destination registry not found');return response.json();})
-])
+const coreRegistryPromise=fetch('data/atlas-destinations.json')
+  .then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();});
+const editorialRegistryPromise=fetch('data/atlas-destinations-editorial.json')
+  .then((response)=>{if(!response.ok) throw new Error('Editorial destination registry not found');return response.json();});
+
+Promise.all([coreRegistryPromise,editorialRegistryPromise])
   .then(([core, editorial])=>{
     const items=[...(core.destinations||[]),...(editorial.destinations||[])];
     destinations=sortForDisplay(items);
@@ -171,6 +176,127 @@ Promise.all([
     renderRail(destinations);renderGrid(destinations);
   })
   .catch(()=>{if(rail) rail.innerHTML='<p class="country-load-error">国一覧を読み込めませんでした。</p>';});
+
+Promise.all([
+  coreRegistryPromise,
+  fetch(LENS_RSS_URL).then((response)=>{if(!response.ok) throw new Error('JOURNEY LENS RSS not found');return response.text();})
+])
+  .then(([core,rssText])=>renderLensRail(core.destinations||[],rssText))
+  .catch((error)=>{
+    console.warn('[JOURNEY ATLAS] JOURNEY LENS rail could not be loaded.',error);
+    if(lensRail) lensRail.innerHTML='<p class="lens-rail__error">JOURNEY LENSを読み込めませんでした。</p>';
+  });
+
+
+function parseLensFeed(xmlText){
+  const xml=new DOMParser().parseFromString(xmlText,'application/xml');
+  if(xml.querySelector('parsererror')) throw new Error('Invalid JOURNEY LENS RSS XML');
+  const grouped=new Map();
+  [...xml.querySelectorAll('item')].forEach((item)=>{
+    const link=(item.querySelector('link')?.textContent||'').trim();
+    const match=link.match(LENS_LINK_PATTERN);
+    if(!match){
+      console.warn('[JOURNEY ATLAS] LENS article URL does not match slug+sequence convention:',link);
+      return;
+    }
+    const slug=match[1];
+    const sequence=Number(match[2]);
+    const existing=grouped.get(slug);
+    if(existing&&existing.sequence<=sequence)return;
+    const title=(item.querySelector('title')?.textContent||'').trim();
+    const titleParts=title.split('｜');
+    const subtitle=titleParts.length>1?titleParts.slice(1).join('｜').trim():'';
+    const image=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
+    grouped.set(slug,{slug,sequence,link,subtitle,image});
+  });
+  return [...grouped.values()];
+}
+
+function createLensCard(entry,country,{duplicate=false}={}){
+  const card=document.createElement('a');
+  card.className='lens-card';
+  card.href=entry.link;
+  card.target='_blank';
+  card.rel='noopener noreferrer';
+  card.setAttribute('role','listitem');
+  if(duplicate)card.tabIndex=-1;
+
+  const art=document.createElement('div');
+  art.className='lens-card__art';
+  if(entry.image){
+    const img=document.createElement('img');
+    img.src=entry.image;
+    img.loading='lazy';
+    img.decoding='async';
+    img.alt=country?`${country.nameJa} — ${entry.subtitle}`:entry.subtitle;
+    art.append(img);
+  }else{
+    art.classList.add('is-image-missing');
+    art.setAttribute('aria-hidden','true');
+  }
+
+  const body=document.createElement('div');
+  body.className='lens-card__body';
+  if(country){
+    const flag=document.createElement('span');
+    flag.className='lens-card__flag';
+    flag.setAttribute('aria-hidden','true');
+    flag.textContent=country.flag;
+    const copy=document.createElement('div');
+    const name=document.createElement('h3');
+    name.textContent=country.nameEn;
+    const nameJa=document.createElement('small');
+    nameJa.textContent=country.nameJa;
+    const subtitle=document.createElement('p');
+    subtitle.textContent=entry.subtitle;
+    copy.append(name,nameJa,subtitle);
+    body.append(flag,copy);
+    card.setAttribute('aria-label',`${country.nameJa}のJOURNEY LENS「${entry.subtitle}」を読む`);
+  }else{
+    const subtitle=document.createElement('p');
+    subtitle.className='lens-card__fallback-title';
+    subtitle.textContent=entry.subtitle;
+    body.append(subtitle);
+    card.setAttribute('aria-label',`JOURNEY LENS「${entry.subtitle}」を読む`);
+  }
+  card.append(art,body);
+  return card;
+}
+
+function renderLensRail(registryItems,rssText){
+  if(!lensRail)return;
+  const registryBySlug=new Map(registryItems.map((item)=>[item.slug,item]));
+  const entries=parseLensFeed(rssText).map((entry)=>({
+    ...entry,
+    country:registryBySlug.get(entry.slug)||null
+  }));
+  entries.forEach((entry)=>{
+    if(!entry.country)console.warn('[JOURNEY ATLAS] LENS slug not found in atlas-destinations.json:',entry.slug);
+  });
+  entries.sort((a,b)=>{
+    const aOrder=a.country?.order??Number.MAX_SAFE_INTEGER;
+    const bOrder=b.country?.order??Number.MAX_SAFE_INTEGER;
+    if(aOrder!==bOrder)return aOrder-bOrder;
+    return a.slug.localeCompare(b.slug,'en');
+  });
+
+  const track=document.createElement('div');
+  track.className='lens-rail__track';
+  track.style.setProperty('--lens-duration',`${Math.max(36,entries.length*4.5)}s`);
+
+  const primary=document.createElement('div');
+  primary.className='lens-rail__set';
+  primary.setAttribute('role','list');
+  entries.forEach((entry)=>primary.append(createLensCard(entry,entry.country)));
+
+  const duplicate=document.createElement('div');
+  duplicate.className='lens-rail__set lens-rail__set--clone';
+  duplicate.setAttribute('aria-hidden','true');
+  entries.forEach((entry)=>duplicate.append(createLensCard(entry,entry.country,{duplicate:true})));
+
+  track.append(primary,duplicate);
+  lensRail.replaceChildren(track);
+}
 
 function sortForDisplay(items){
   const rank=new Map(featuredOrder.map((slug,index)=>[slug,index]));

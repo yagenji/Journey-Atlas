@@ -26,9 +26,10 @@ jobs:
 
       - name: Validate source
         run: |
-          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
+          python scripts/validate_lens_slugs.py
           python scripts/validate_country.py --published
 
       - name: Build production site
@@ -83,11 +84,16 @@ jobs:
       - name: Validate packaged output
         run: |
           test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/_redirects
           test -f dist/sitemap.xml
           test -f dist/robots.txt
           test -f dist/_headers
           test -f dist/countries/iceland/index.html
           test -f dist/data/countries/iceland.json
+          test -f dist/countries/unitedkingdom/index.html
+          test -f dist/data/countries/unitedkingdom.json
+          grep -q '/countries/united-kingdom/\*  /countries/unitedkingdom/:splat  301' dist/_redirects
           test ! -e dist/country.html
           test ! -d dist/scripts
           test ! -d dist/.github
