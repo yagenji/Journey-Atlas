@@ -489,3 +489,144 @@
   .atlas-colophon .meta{text-align:left}
   .atlas-colophon .meta-links{justify-content:flex-start}
 }
+
+/* ============================================================
+   JOURNEY LENS — RSS-driven continuous photo marquee
+   ============================================================ */
+.lens-rail{
+  display:block;
+  min-width:0;
+  overflow:hidden;
+  padding:2px 0 4px;
+  scrollbar-width:none;
+}
+.lens-rail::-webkit-scrollbar{display:none}
+.lens-rail__track{
+  --lens-duration:120s;
+  display:flex;
+  width:max-content;
+  animation:lens-marquee var(--lens-duration) linear infinite;
+  will-change:transform;
+}
+.lens-rail__set{
+  display:flex;
+  flex:none;
+  gap:10px;
+  padding-right:10px;
+}
+.lens-rail .lens-card,
+.lens-rail .lens-card:nth-child(n){
+  display:block;
+  flex:0 0 168px;
+  min-width:168px;
+  border:1px solid rgba(11,44,87,.08);
+  border-radius:8px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(11,44,87,.05);
+}
+.lens-card__art{
+  height:106px;
+  border-radius:0;
+  background:#e5eceb;
+}
+.lens-card__art.is-image-missing{
+  background:
+    linear-gradient(135deg,rgba(18,54,92,.06),rgba(117,130,78,.08)),
+    #edf1ed;
+}
+.lens-card__art img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.lens-card__body{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:8px;
+  min-height:76px;
+  padding:9px 10px 10px;
+  align-items:start;
+}
+.lens-card__flag{
+  font-size:17px;
+  line-height:1;
+}
+.lens-card__body h3{
+  margin:0;
+  overflow:hidden;
+  color:#173b5d;
+  font-size:10px;
+  line-height:1.3;
+  letter-spacing:.04em;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.lens-card__body small{
+  display:block;
+  margin-top:2px;
+  color:#677582;
+  font-size:8.5px;
+  line-height:1.3;
+}
+.lens-card__body p{
+  margin:5px 0 0;
+  display:-webkit-box;
+  overflow:hidden;
+  color:#405364;
+  font-size:9px;
+  line-height:1.35;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+.lens-card__fallback-title{
+  grid-column:1 / -1;
+  margin:0!important;
+  font-weight:600;
+}
+.lens-card:focus-visible{
+  outline:2px solid #173b5d;
+  outline-offset:2px;
+}
+.lens-rail:hover .lens-rail__track,
+.lens-rail:focus-within .lens-rail__track{
+  animation-play-state:paused;
+}
+.lens-rail__error{
+  margin:0;
+  padding:20px 0;
+  color:#657485;
+  font-size:10px;
+}
+@keyframes lens-marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(max-width:760px){
+  .lens-rail{
+    overflow:hidden;
+  }
+  .lens-rail .lens-card,
+  .lens-rail .lens-card:nth-child(n){
+    flex-basis:146px;
+    min-width:146px;
+  }
+  .lens-card__art{height:94px}
+  .lens-card__body{min-height:72px;padding:8px 9px 9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .lens-rail{
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+  }
+  .lens-rail__track{
+    animation:none;
+    transform:none;
+  }
+  .lens-rail__set--clone{
+    display:none;
+  }
+  .lens-card{
+    scroll-snap-align:start;
+  }
+}
