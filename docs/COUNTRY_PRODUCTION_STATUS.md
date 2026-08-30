@@ -498,8 +498,8 @@ Next Action:
 
 # Country: Ireland
 
-Status: PUBLISHING
-Current Phase: PHASE 8 — PUBLISH
+Status: PUBLISHED
+Current Phase: PHASE 8 — PUBLISH COMPLETE
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -540,18 +540,21 @@ Themes:
 QA:
 - Static structural QA: PASS.
 - Country JSON strict schema validation: PASS.
-- 9 approved PNG assets present at assets/images/ireland/approved/: PASS.
+- 9 approved PNG assets: PASS; all 1536×1024 and complete-decode verified from the deployed GitHub Pages artifact.
 - Map SVG/config: PASS.
 - Shared icon IDs / scene count / facts order / trivia source keys / related destinations rendering logic: PASS.
 - Theme taxonomy: PASS (earth / history / road).
-- Publication state: PASS (atlasPublished: true (publication approved; deploy in progress)
+- Published artifact: index,follow confirmed.
+- Published artifact: canonical https://atlas.yagenji.com/countries/ireland/ confirmed.
+- Published artifact: sitemap includes https://atlas.yagenji.com/countries/ireland/.
+- Published artifact: registry atlasPublished:true, href countries/ireland/, Hero image path enabled.
+- Published artifact: Hero TRAVEL THEMES render as 地球の風景 / 時をたどる / 道の先へ.
 - GitHub Actions country-data validation: PASS.
 - GitHub Pages production build/deploy: PASS.
 - Cloudflare production package validation: PASS.
-- Content fact-check: PASS.
-- Mobile Hero readability issue was resolved through the shared Country UI by stacking editorial copy above Hero artwork on mobile.
-- User completed final visual review and confirmed the page is OK.
-- Result: REVIEW APPROVED.
+- User completed final visual review before publication and confirmed the page is OK.
+- Publication blocker discovered during first publish attempt: sourceDates.mapGeometry had no matching sources key. Fixed by aligning it to sourceDates.map; revalidation and redeployment both passed.
+- Direct DNS access to atlas.yagenji.com is unavailable from this execution environment, so HTTP/browser verification of the custom domain itself could not be independently repeated after deploy; deployed production artifact and workflow outputs were verified instead.
 
 Review URL:
 - https://atlas.yagenji.com/countries/ireland/
@@ -575,13 +578,12 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User explicitly approved formal publication.
-- atlasPublished is being changed from false to true.
-- Published top-page destination href and Hero image are being enabled.
+- User explicitly approved publication.
+- Set atlasPublished:true and enabled published destination href + Hero image.
+- Fixed the Ireland source-date key validation issue.
+- Re-ran validation, Cloudflare package build and GitHub Pages deploy successfully.
+- Inspected deployed GitHub Pages artifact and confirmed index,follow, sitemap inclusion, published registry state, themes, map and all 9 raster assets.
 
 Next Action:
-- Deploy main.
-- Verify build, validation, package and deploy success.
-- Confirm generated Ireland page is index,follow.
-- Confirm sitemap inclusion and published navigation state.
-- Run final publication QA.
+- Country production complete.
+- Continue normal post-publication monitoring only if a future content/UI issue is reported.
