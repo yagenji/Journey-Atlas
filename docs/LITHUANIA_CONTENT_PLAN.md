@@ -223,7 +223,8 @@ Rationale:
 - UNESCO Intangible Cultural Heritage: Baltic song and dance celebrations; Cross-crafting and its symbolism; Sutartinės; Sodai straw garden making.
 - State Service for Protected Areas under the Ministry of Environment: 5 national parks; Aukštaitija and Čepkeliai protected-area information.
 - National Audit Office of Lithuania, 2026 forest-resource overview: 2025 forest cover 33.91%.
-- Lithuania Travel: Curonian Spit, Hill of Crosses, Aukštaitija / Ladakalnis, Kernavė, Kaunas Modernism, Čepkeliai and Dzūkija.
+- Lithuania Travel / Kaunas IN: Curonian Spit, Hill of Crosses, Aukštaitija / Ladakalnis, Kernavė, Pažaislis Monastery / Kaunas Reservoir, Čepkeliai and Dzūkija.
+- Kaunas IN: Vieškūnai Hill Fort provides a panorama that includes Kaunas Reservoir and Pažaislis Monastery.
 - Go Vilnius: Subačius Panoramic Viewpoint and Vilnius viewpoints.
 - European Central Bank: Lithuania uses the euro.
 - Lithuania Travel: basketball is widely described as a major cultural force and the country's “second religion”.
