@@ -42,6 +42,8 @@ def main() -> int:
     dist = ROOT / "dist"
     expected = [
         dist / "index.html",
+        dist / "404.html",
+        dist / "_redirects",
         dist / "sitemap.xml",
         dist / "robots.txt",
         dist / "_headers",
