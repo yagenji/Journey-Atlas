@@ -167,6 +167,15 @@ html{scroll-padding-top:96px!important;}
   white-space:nowrap;
 }
 
+
+
+/* Ensure the optional travel-theme row stays inside the Hero instead of being clipped. */
+@media(min-width:701px){
+  .country-page .hero:has(.country-theme-context:not([hidden])){
+    min-height:660px;
+  }
+}
+
 /* ---------- TOP PAGE: SAME-LEVEL HEADINGS ---------- */
 .countries .section-head h2,
 .detail-heading h2,
