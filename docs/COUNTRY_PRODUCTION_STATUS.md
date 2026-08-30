@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: PUBLISHING / CLEANUP
-Current Phase: PHASE 8 — PUBLISH
+Status: PUBLISHED
+Current Phase: PHASE 8 — PUBLISH COMPLETE
 Branch: main
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -481,6 +481,21 @@ PUBLICATION ASSET CLEANUP — 2026-08-30:
 - Removed assets/images/lithuania/approved/kaunas-modernism-central-post-office.png.
 - The live Country JSON never referenced this rejected file after the Pažaislis replacement.
 - Revalidation and redeployment required before closing publication.
+
+
+PUBLICATION COMPLETE — 2026-08-30:
+- User explicitly approved formal publication.
+- atlasPublished:true.
+- Official href: countries/lithuania/.
+- Registry Hero image: assets/images/lithuania/approved/hero-vilnius.png.
+- Publication commit: 01e7ae94586db80a2f23bce67b3a8f1c4630553a.
+- Final asset-cleanup commit: e857db9e43da5c871254b63ff0fb0ef61ba55f66.
+- Rejected former Scene 4 asset removed from production.
+- Final deploy run 33315389050: SUCCESS.
+- Source validation / production build / production-build validation / GitHub Pages deploy: SUCCESS.
+- Cloudflare production package validation: SUCCESS.
+- Published strict validation passed with 10 published country files in scope.
+- Formal publication is complete.
 
 
 ---
