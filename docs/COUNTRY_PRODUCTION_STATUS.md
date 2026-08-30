@@ -498,8 +498,8 @@ Next Action:
 
 # Country: Ireland
 
-Status: REVIEW APPROVED / AWAITING PUBLISH APPROVAL
-Current Phase: PHASE 7 — REVIEW COMPLETE
+Status: PUBLISHING
+Current Phase: PHASE 8 — PUBLISH
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -544,7 +544,7 @@ QA:
 - Map SVG/config: PASS.
 - Shared icon IDs / scene count / facts order / trivia source keys / related destinations rendering logic: PASS.
 - Theme taxonomy: PASS (earth / history / road).
-- Publication state: PASS (atlasPublished:false, href empty, image empty, noindex,follow).
+- Publication state: PASS (atlasPublished: true (publication approved; deploy in progress)
 - GitHub Actions country-data validation: PASS.
 - GitHub Pages production build/deploy: PASS.
 - Cloudflare production package validation: PASS.
@@ -575,10 +575,13 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User confirmed the Ireland Country Page is OK after the mobile Hero readability fix.
-- PHASE 7 — REVIEW is complete.
-- atlasPublished remains false because formal publication approval has not yet been given.
+- User explicitly approved formal publication.
+- atlasPublished is being changed from false to true.
+- Published top-page destination href and Hero image are being enabled.
 
 Next Action:
-- Await explicit user approval to publish.
-- On explicit approval only: set atlasPublished:true, enable index,follow, published navigation, sitemap inclusion, deploy, and run final production QA.
+- Deploy main.
+- Verify build, validation, package and deploy success.
+- Confirm generated Ireland page is index,follow.
+- Confirm sitemap inclusion and published navigation state.
+- Run final publication QA.
