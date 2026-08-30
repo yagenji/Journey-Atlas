@@ -243,10 +243,8 @@ function projectPoint(coordinates, bounds, offset = {}) {
 
   const xPx = offsetX + (coordinates.longitude - bounds.west) * longitudeScale * canvasScale;
   const yPx = offsetY + (bounds.north - coordinates.latitude) * canvasScale;
-  const offsetScaleX = drawWidth / mapWidth;
-  const offsetScaleY = drawHeight / mapHeight;
-  const x = (xPx / mapWidth) * 100 + (Number(offset.x) || 0) * offsetScaleX;
-  const y = (yPx / mapHeight) * 100 + (Number(offset.y) || 0) * offsetScaleY;
+  const x = (xPx / mapWidth) * 100 + (Number(offset.x) || 0);
+  const y = (yPx / mapHeight) * 100 + (Number(offset.y) || 0);
   return { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) };
 }
 
