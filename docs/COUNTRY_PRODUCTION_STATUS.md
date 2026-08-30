@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: REVIEW-DEPLOYED
-Current Phase: PHASE 7 — REVIEW
+Status: PUBLISHING
+Current Phase: PHASE 8 — PUBLISH
 Branch: main
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -466,6 +466,14 @@ SIGNATURE FACTS REVISION — 2026-08-30:
   - Living Baltic languages: 2 — Lithuanian and Latvian.
 - UNESCO confirms Baltic Song and Dance Celebrations can assemble as many as 40,000 singers and dancers; Lithuania's large celebration is held every fourth year.
 - Linguistic reference confirms Lithuanian and Latvian are the two living Baltic languages; Old Prussian is extinct.
+
+
+PUBLICATION APPROVAL — 2026-08-30:
+- User explicitly approved formal publication.
+- atlasPublished set to true.
+- Official href enabled: countries/lithuania/.
+- Registry Hero image enabled: assets/images/lithuania/approved/hero-vilnius.png.
+- Final validation / sitemap / robots / deployment verification in progress.
 
 
 ---
