@@ -26,7 +26,7 @@ Required before publication:
 - common basic facts in the fixed order
 - exactly 3 signature facts
 - Beyond the Scenery content
-- 4–6 sourced Travel Trivia items
+- 4–6 sourced Travel Trivia items that do not repeat topics already used in Beyond the Scenery
 - seasons, transport, personas and travel notes
 - related destinations
 - `seo.description`
@@ -85,6 +85,6 @@ Automation catches structural/data failures. A human visual check is still requi
 - map marker collisions / label readability
 - Japanese line breaks
 - image crop and watercolor consistency
-- factual/contextual duplication across sections
+- factual/contextual duplication across sections, especially zero topic duplication between Beyond the Scenery and Travel Trivia
 
 Do not publish the next batch solely because CI is green; CI confirms structure, not editorial quality.
