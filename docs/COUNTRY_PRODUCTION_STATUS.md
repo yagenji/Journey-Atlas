@@ -457,6 +457,17 @@ FINAL QA AFTER SCENE 4 REPLACEMENT — 2026-08-30:
 - Remaining QA limitation: actual rendered Desktop / Tablet / Mobile custom-domain browser inspection cannot be independently executed from this environment. This is recorded as UNVERIFIED, not PASS.
 
 
+SIGNATURE FACTS REVISION — 2026-08-30:
+- Removed World Heritage count and national park count from Lithuania Signature Facts.
+- Rationale: both are database-like counts and weak as country-specific hooks; World Heritage count was also inconsistent with other Country Pages.
+- New Signature Facts:
+  - Forest cover: 33.9%.
+  - National Song and Dance Celebration: up to about 40,000 singers and dancers.
+  - Living Baltic languages: 2 — Lithuanian and Latvian.
+- UNESCO confirms Baltic Song and Dance Celebrations can assemble as many as 40,000 singers and dancers; Lithuania's large celebration is held every fourth year.
+- Linguistic reference confirms Lithuanian and Latvian are the two living Baltic languages; Old Prussian is extinct.
+
+
 ---
 
 ## UNITED KINGDOM
