@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: REVIEW-BLOCKED
-Current Phase: PHASE 7 — REVIEW / QA BLOCKED
+Status: VISUAL-REWORK
+Current Phase: PHASE 2 — VISUAL REWORK / SCENE 4 ONLY
 Branch: main review deployment from lithuania-v1-content
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -289,7 +289,7 @@ Hero file: assets/images/lithuania/approved/hero-vilnius.png
 Scene 1: APPROVED — Curonian Spit / Parnidis Dune
 Scene 2: APPROVED — Trakai Island Castle
 Scene 3: APPROVED — Hill of Crosses
-Scene 4: APPROVED — Kaunas Modernism / Central Post Office and Laisvės Avenue
+Scene 4: REPLACED — Pažaislis Monastery / Kaunas Reservoir — awaiting new visual approval
 Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
 Scene 6: APPROVED — Kernavė Archaeological Site
 Scene 7: APPROVED — Čepkeliai Marsh
@@ -395,12 +395,23 @@ QA UPDATE — 2026-08-30:
 - Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
 
 Blocking Next Actions:
-1. Replace Scene 4 only with a subject-faithful Kaunas Central Post Office / Laisvės Avenue image, then re-run Visual Complete Gate.
-2. Re-run deployed review QA after Scene 4 replacement. Keep atlasPublished:false until explicit user publication approval.
+1. Generate Scene 4 only as Pažaislis Monastery / Kaunas Reservoir using the locked landscape brief.
+2. User approval + subject-fidelity check.
+3. Only after approval, update Country JSON / map coordinate / final filename and re-run Visual Complete Gate / deployed review QA.
 
 Accessibility follow-up:
 - Shared accessibility semantics fix completed and deployed successfully.
 - No Lithuania-specific CSS or template exception was introduced.
+
+
+SCENE 4 REPLACEMENT DECISION — 2026-08-30:
+- Former Scene 4 Kaunas Central Post Office rejected after repeated subject-fidelity failures.
+- User approved changing Scene 4 rather than continuing to force the Central Post Office.
+- Sugihara House was explicitly rejected as a scenery choice because its value belongs to the historical story, not the 8-scene landscape set.
+- New locked Scene 4: Pažaislis Monastery / Kaunas Reservoir.
+- Coordinate: 54.87608, 24.02187.
+- Visual brief: elevated three-quarter landscape; recognizable Pažaislis Baroque ensemble with central hexagonal dome and twin towers; dense forest; Kaunas Reservoir visible; early summer; clear late afternoon; photo 60% / watercolor 40%.
+- Do not update production JSON/map until the replacement image is approved.
 
 
 ---
