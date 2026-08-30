@@ -367,15 +367,19 @@ Browser / responsive QA:
 - Shared interactive scene-card semantics remain a common Country Template accessibility concern and must not be patched Lithuania-only.
 
 Last Action:
-- Applied new editorial separation rule: BEYOND THE SCENERY and TRAVEL TRIVIA must not repeat the same topic.
-- Lithuania TRAVEL TRIVIA replaced with five non-overlapping topics: language / basketball / amber / five ethnographic regions / hot-air balloons.
+- Editorial non-overlap rule implemented: BEYOND THE SCENERY and TRAVEL TRIVIA must use different topics.
+- Lithuania TRAVEL TRIVIA now uses language / basketball / amber / five ethnographic regions / hot-air balloons.
 - Chiune Sugihara remains only in BEYOND THE SCENERY HISTORY.
-- Cross-crafting, song celebration, food/foraging and transport remain only in their deeper thematic sections, not repeated in trivia.
-- New trivia facts verified against Lithuania Travel / Go Vilnius.
+- Shared docs updated: docs/COUNTRY_PAGE_TEMPLATE.md and docs/PRODUCTION_WORKFLOW.md.
+- Main review update commit: a8ba62d6f15bf6a335a0bdcb6b74fc462b4e54ec.
+- Validation run 33283781624: SUCCESS.
+- Deploy run 33283781635: SUCCESS.
+- GitHub Pages deploy and Cloudflare production package validation both passed.
+- atlasPublished remains false.
 
 Next Action:
-- Validate the focused review change, merge to main with atlasPublished:false, and redeploy the same review URL.
-- Confirm the two sections have zero topic duplication on https://atlas.yagenji.com/countries/lithuania/.
+- User reviews the revised BEYOND THE SCENERY / TRAVEL TRIVIA separation at https://atlas.yagenji.com/countries/lithuania/.
+- Apply any review fixes to the same URL while keeping atlasPublished:false.
 - Do not set atlasPublished:true until explicit user publication approval.
 
 ---
