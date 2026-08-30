@@ -75,7 +75,12 @@ function renderCountry(data, registry) {
     element.textContent = value ?? '';
   });
 
-  setBackground(fragment.querySelector('[data-image-field="hero.image"]'), data.hero?.image);
+  const heroArt = fragment.querySelector('[data-image-field="hero.image"]');
+  if (heroArt) {
+    const heroLabel = data.hero?.location || data.nameJa || data.nameEn || '代表風景';
+    heroArt.setAttribute('aria-label', `代表風景: ${heroLabel}`);
+  }
+  setBackground(heroArt, data.hero?.image);
   renderMapBase(fragment, data.map);
   renderCapitalMarker(fragment, data.capital, data.map?.bounds);
   renderScenes(fragment, data.scenes, data.map?.bounds);
@@ -255,7 +260,9 @@ function renderScenes(fragment, scenes = [], bounds) {
     card.dataset.scene = scene.id;
     card.id = `scene-${scene.id}`;
     card.tabIndex = 0;
-    card.setAttribute('aria-label', `${number} ${scene.name}`);
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-pressed', 'false');
+    card.setAttribute('aria-label', `${number} ${scene.name}を選択`);
     card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
     setBackground(card.querySelector('.scene-image'), scene.image, { lazy: true });
@@ -314,7 +321,7 @@ function setActiveScene(id, shouldScroll = false) {
   document.querySelectorAll('[data-scene]').forEach((element) => {
     const active = element.dataset.scene === id;
     element.classList.toggle('is-active', active);
-    if (element.matches('button')) element.setAttribute('aria-pressed', String(active));
+    if (element.hasAttribute('aria-pressed')) element.setAttribute('aria-pressed', String(active));
   });
   if (shouldScroll) document.querySelector(`.scene-card[data-scene="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
