@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_CONFIG_PATH = ROOT / "data/site.json"
 CORE_REGISTRY_PATH = ROOT / "data/atlas-destinations.json"
 EDITORIAL_REGISTRY_PATH = ROOT / "data/atlas-destinations-editorial.json"
+THEME_TAXONOMY_PATH = ROOT / "data/theme-taxonomy.json"
 
 
 def site_url() -> str:
@@ -122,6 +123,44 @@ def reviewable_destinations(registries: list[tuple[Path, dict]]) -> list[dict]:
     return items
 
 
+def country_theme_labels(slug: str) -> list[str]:
+    if not THEME_TAXONOMY_PATH.exists():
+        return []
+    taxonomy = json.loads(THEME_TAXONOMY_PATH.read_text(encoding="utf-8"))
+    labels: list[str] = []
+    for theme in taxonomy.get("themes", []):
+        examples = theme.get("examples", [])
+        if slug in examples and theme.get("label"):
+            labels.append(str(theme["label"]))
+    return labels
+
+
+def inject_country_themes(page: str, slug: str) -> str:
+    labels = country_theme_labels(slug)
+    start = '      <div class="country-theme-context" id="country-theme-context" hidden>\n'
+    end = '      </div>\n'
+    start_index = page.find(start)
+    if start_index < 0:
+        raise ValueError("Country theme context marker missing from template")
+    end_index = page.find(end, start_index)
+    if end_index < 0:
+        raise ValueError("Country theme context end marker missing from template")
+    end_index += len(end)
+
+    chips = "".join(
+        f'<span class="country-theme-chip">{html.escape(label)}</span>'
+        for label in labels
+    )
+    hidden = "" if labels else " hidden"
+    replacement = (
+        f'      <div class="country-theme-context" id="country-theme-context"{hidden}>\n'
+        '        <span class="country-theme-context__label">TRAVEL THEMES</span>\n'
+        f'        <div class="country-theme-context__list" id="country-theme-list">{chips}</div>\n'
+        '      </div>\n'
+    )
+    return page[:start_index] + replacement + page[end_index:]
+
+
 def set_tag(text: str, old: str, new: str) -> str:
     if old not in text:
         raise ValueError(f"Template marker missing: {old}")
@@ -215,6 +254,7 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     page = set_tag(page, '<html lang="ja">', f'<html lang="ja" data-country="{html.escape(slug)}">')
     page = set_tag(page, '<head>', '<head>\n  <base href="../../">')
     page = set_tag(page, '<title>JOURNEY ATLAS — Country</title>', f'<title>{html.escape(title)}</title>')
+    page = inject_country_themes(page, slug)
     page = set_tag(page, 'content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。"', f'content="{html.escape(description, quote=True)}"')
     page = set_tag(page, 'href="https://yagenji.github.io/Journey-Atlas/country.html"', f'href="{html.escape(canonical, quote=True)}"')
     page = set_tag(page, 'content="JOURNEY ATLAS — Country"', f'content="{html.escape(title, quote=True)}"')
