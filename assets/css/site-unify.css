@@ -380,3 +380,23 @@ html{scroll-padding-top:96px!important;}
     letter-spacing:.055em!important;
   }
 }
+
+
+/* Mobile country Hero readability: keep lead legible over variable imagery. */
+@media(max-width:760px){
+  .country-page .hero-lead{
+    position:relative;
+    z-index:2;
+    margin-left:-10px!important;
+    margin-right:-10px!important;
+    width:auto!important;
+    padding:10px 12px 11px!important;
+    background:rgba(247,243,233,.86);
+    box-shadow:0 1px 0 rgba(11,44,87,.05);
+    -webkit-backdrop-filter:blur(3px);
+    backdrop-filter:blur(3px);
+    border-radius:6px;
+    color:#173a5d!important;
+    text-shadow:none!important;
+  }
+}
