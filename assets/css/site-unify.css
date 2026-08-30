@@ -383,36 +383,56 @@ html{scroll-padding-top:96px!important;}
 
 
 
-/* Mobile country Hero readability without covering the artwork. */
+
+/* Mobile Country Hero: separate editorial copy from artwork for stable readability. */
 @media(max-width:760px){
+  .country-page .hero{
+    display:flex!important;
+    flex-direction:column!important;
+    min-height:0!important;
+    background:var(--paper-soft)!important;
+  }
+
+  .country-page .hero-copy{
+    order:1!important;
+    height:auto!important;
+    padding-top:calc(var(--ja-header-mobile) + 24px)!important;
+    padding-bottom:22px!important;
+  }
+
+  .country-page .hero-art{
+    order:2!important;
+    position:relative!important;
+    inset:auto!important;
+    left:auto!important;
+    width:100%!important;
+    height:clamp(300px,72vw,410px)!important;
+    min-height:300px!important;
+    background-position:center center!important;
+  }
+
   .country-page .hero-art::after{
-    height:52%!important;
-    background:linear-gradient(
-      to bottom,
-      rgba(247,243,233,.98) 0%,
-      rgba(247,243,233,.91) 30%,
-      rgba(247,243,233,.64) 52%,
-      rgba(247,243,233,.22) 70%,
-      rgba(247,243,233,0) 100%
-    )!important;
+    content:none!important;
+    display:none!important;
   }
 
   .country-page .hero-lead{
-    position:relative;
-    z-index:2;
-    margin-left:0!important;
-    margin-right:0!important;
     width:100%!important;
+    margin-top:17px!important;
     padding:0!important;
     background:none!important;
     box-shadow:none!important;
-    -webkit-backdrop-filter:none!important;
-    backdrop-filter:none!important;
-    border-radius:0!important;
     color:#173a5d!important;
-    text-shadow:
-      0 1px 0 rgba(247,243,233,.96),
-      0 0 5px rgba(247,243,233,.92),
-      0 0 10px rgba(247,243,233,.72)!important;
+    text-shadow:none!important;
+  }
+
+  .country-page .country-theme-context{
+    margin-top:16px!important;
+    margin-bottom:0!important;
+  }
+
+  .country-page .hero-location{
+    right:12px!important;
+    bottom:9px!important;
   }
 }
