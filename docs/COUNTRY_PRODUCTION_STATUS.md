@@ -224,10 +224,10 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE / VISUAL-BLOCKED
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE / REPLACEMENT IN PROGRESS
 Branch: ireland-v1-content
 
-Hero: USER-APPROVED / STYLE-REGEN REQUIRED
+Hero: APPROVED (replacement watercolor version)
 Scene 1 Glenveagh National Park: USER-APPROVED / STYLE-REGEN REQUIRED
 Scene 2 Diamond Hill / Connemara: USER-APPROVED / STYLE-REGEN REQUIRED
 Scene 3 Burren / Mullaghmore: APPROVED
@@ -284,13 +284,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Ran PHASE 3 visual-complete review across Hero + 8 approved scenes.
-- Subject fidelity is acceptable across the final selected set.
-- Cross-image style consistency failed because Hero, Scene 1 and Scene 2 are too photographic relative to Iceland / Norway and Scenes 3–8.
+- Replacement Hero / Cliffs of Moher generated one-at-a-time and user-approved.
+- Replacement sequence now advances to Scene 1 only.
 
 Next Action:
-- Regenerate only the blocked visuals in order: Hero → Scene 1 → Scene 2.
-- Preserve the already locked locations and compositions; change only the rendering toward clean editorial watercolor.
-- User approval is required after each replacement.
-- Keep Scenes 3–8 unchanged.
-- Do not proceed to Country JSON / Map / implementation until the three replacements pass and the full Visual Complete Gate is rerun.
+- Regenerate Scene 1 only: Glenveagh National Park / Lough Veagh and Glenveagh Castle.
+- Preserve the locked location and composition; change rendering toward the same clean editorial watercolor balance as the newly approved Hero and Scenes 3–8.
+- Do not regenerate Scene 2 until Scene 1 is user-approved.
