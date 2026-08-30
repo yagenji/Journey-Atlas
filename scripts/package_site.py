@@ -21,7 +21,7 @@ REGISTRY_PATHS = [
     DATA_DIR / "atlas-destinations.json",
     DATA_DIR / "atlas-destinations-editorial.json",
 ]
-ROOT_FILES = ["index.html", "sitemap.xml", "robots.txt"]
+ROOT_FILES = ["index.html", "404.html", "_redirects", "sitemap.xml", "robots.txt"]
 
 
 def published_slugs() -> list[str]:
