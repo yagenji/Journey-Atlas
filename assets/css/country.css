@@ -12,3 +12,49 @@
 @import url("country-trivia.css");
 @import url("site-unify.css?v=20260826-2253");
 @import url("site-footer.css");@import url("photo-credits.css");
+
+
+/* Country travel themes */
+.country-theme-context {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.country-theme-context[hidden] {
+  display: none !important;
+}
+.country-theme-context__label {
+  font-family: "Spline Sans Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  color: #7c6855;
+}
+.country-theme-context__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.country-theme-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 12px;
+  border: 1px solid rgba(26, 56, 85, .22);
+  border-radius: 999px;
+  background: rgba(250, 247, 238, .74);
+  color: #173a5d;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .03em;
+}
+@media (max-width: 700px) {
+  .country-theme-context {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+  }
+}
