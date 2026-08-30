@@ -596,3 +596,90 @@ Next Action:
 - User reviews the actual production URL.
 - Apply any review fixes to the same URL while keeping atlasPublished:false.
 - Do not set atlasPublished:true until explicit user publication approval.
+
+---
+
+# Country: Ireland
+
+Status: IMPLEMENTED / STATIC QA PASSED
+Current Phase: PHASE 5 — QA (static checks passed; production browser QA pending)
+Branch: ireland-v1-content
+
+Hero: APPROVED
+Scene 1 Glenveagh National Park: APPROVED
+Scene 2 Diamond Hill / Connemara: APPROVED
+Scene 3 Burren / Mullaghmore: APPROVED
+Scene 4 Killarney / Ladies View: APPROVED
+Scene 5 Sceilg Mhichíl: APPROVED
+Scene 6 Rock of Cashel: APPROVED
+Scene 7 Glendalough: APPROVED
+Scene 8 Brú na Bóinne / Newgrange: APPROVED
+
+Visual issues:
+- Final approved set: Hero + Scenes 1–8.
+- Replacement Hero, Scene 1 and Scene 2 resolved the prior photo-heavy style inconsistency.
+- Final set now passes the Visual Complete Gate for subject fidelity and series consistency.
+- Earlier rejected outputs remain excluded from production.
+- No approved Ireland raster assets are currently materialized in GitHub.
+
+Map:
+- IMPLEMENTED: assets/images/ireland/map-atlas-v1.svg
+- Map config: data/maps/ireland.json
+- Geometry: Eurostat GISCO NUTS 2024 1:1M, WGS84.
+- SVG preflight passed: 1200×760, complete SVG, no decorative ellipse artifacts.
+- Marker-spacing preflight: minimum pair separation ~97.7px; no critical collision.
+
+Country JSON:
+- IMPLEMENTED: data/countries/ireland.json
+- SchemaVersion 2; 8 scenes; 8 encounters; 6 atlasExtras; 5 travelTrivia; 4 seasons; 5 personas; 7 facts; 3 signatureFacts; 3 tips; 3 relatedCountries.
+- Hero + 8 image paths all resolve to uploaded approved PNG filenames.
+
+Themes:
+- ASSIGNED in data/theme-taxonomy.json (SSOT):
+  - earth / 地球の風景
+  - history / 時をたどる
+  - road / 道の先へ
+
+QA:
+- Static structural QA passed with zero errors.
+- 9 approved PNGs confirmed in assets/images/ireland/approved/.
+- Uploaded byte sizes match the approved manifest; all listed dimensions are 1536×1024.
+- JSON required keys / scene count / fact order / trivia source keys passed.
+- Shared icon IDs passed.
+- Theme taxonomy passed: earth / history / road.
+- Map bounds / point projection / marker spacing passed.
+- Review route noindex,follow and canonical passed.
+- Actual browser QA on production URL remains pending until review deployment.
+
+Review URL:
+- https://atlas.yagenji.com/countries/ireland/ (not deployed yet)
+
+atlasPublished:
+- false (confirmed on main before production start).
+
+Initial GitHub state confirmed 2026-08-29:
+- No Ireland Country JSON.
+- No Ireland final image assets.
+- No Ireland Map JSON / SVG.
+- No /countries/ireland/ page.
+- No pre-existing Ireland work branch.
+- No previous Ireland Production Status record.
+- No pre-existing Ireland theme assignment.
+- Main registry entry exists with slug ireland, ISO2 IE, atlasPublished:false, empty href/image.
+
+PHASE 1 — CONTENT DESIGN:
+- COMPLETE.
+- Hero, 8 scenes, geographic spread, coordinates, viewpoints, seasons, compositions, Hero lead, Profile direction, Signature Facts, Encounters, Beyond the Scenery, Travel Trivia, Seasons, Transport, For Whom, Travel Notes, Related destinations and TRAVEL THEMES defined.
+- Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
+
+Last Action:
+- User materialized all 9 approved raster assets to the correct GitHub path.
+- Completed PHASE 4 implementation: Country JSON, map SVG/config and direct review route.
+- Static QA passed with zero errors.
+- Synced latest main theme taxonomy to avoid overwriting other Country assignments.
+
+Next Action:
+- Clean non-production helper files from the approved asset directory.
+- Review branch diff against latest main.
+- Perform REVIEW DEPLOYMENT to main while keeping atlasPublished:false, noindex, sitemap excluded and top page unlinked.
+- Then run actual production-page browser/responsive/accessibility QA at https://atlas.yagenji.com/countries/ireland/.
