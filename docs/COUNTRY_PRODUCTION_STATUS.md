@@ -498,8 +498,8 @@ Next Action:
 
 # Country: Ireland
 
-Status: REVIEW DEPLOYED / NON-VISUAL QA PASSED
-Current Phase: PHASE 7 — REVIEW (production visual/browser QA pending)
+Status: REVIEW APPROVED / AWAITING PUBLISH APPROVAL
+Current Phase: PHASE 7 — REVIEW COMPLETE
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -541,17 +541,17 @@ QA:
 - Static structural QA: PASS.
 - Country JSON strict schema validation: PASS.
 - 9 approved PNG assets present at assets/images/ireland/approved/: PASS.
-- Approved image manifest dimensions: all 1536×1024; uploaded byte sizes matched approved files before helper manifest removal.
-- Map SVG/config: PASS (1200×760, GISCO geometry source, all markers in bounds, minimum marker separation ~97.7px).
+- Map SVG/config: PASS.
 - Shared icon IDs / scene count / facts order / trivia source keys / related destinations rendering logic: PASS.
-- Theme taxonomy: PASS (earth / history / road); build-time injection will render 3 chips in Hero.
-- Publication state: PASS (atlasPublished:false, href empty, image empty, noindex,follow; unpublished countries remain excluded from discovery/sitemap generation).
+- Theme taxonomy: PASS (earth / history / road).
+- Publication state: PASS (atlasPublished:false, href empty, image empty, noindex,follow).
 - GitHub Actions country-data validation: PASS.
 - GitHub Pages production build/deploy: PASS.
 - Cloudflare production package validation: PASS.
-- Content fact-check: PASS for 2026 population (CSO 5,525,600), official languages (Constitution Article 8), Census 2022 religion figures, UNESCO World Heritage count/properties, Wild Atlantic Way ~2,500 km, peat-soil 20.6%, Newgrange access procedure, Glendalough/Rock of Cashel monument descriptions.
-- No critical content or technical blocker found.
-- Remaining limitation: actual visual/browser QA on atlas.yagenji.com (Hero crop, card rendering, map label placement, desktop/tablet/mobile overflow, keyboard/contrast) could not be executed from this environment because the custom domain is not reachable/resolvable here.
+- Content fact-check: PASS.
+- Mobile Hero readability issue was resolved through the shared Country UI by stacking editorial copy above Hero artwork on mobile.
+- User completed final visual review and confirmed the page is OK.
+- Result: REVIEW APPROVED.
 
 Review URL:
 - https://atlas.yagenji.com/countries/ireland/
@@ -575,11 +575,10 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Completed Ireland QA across source, build, deployment state, content facts, assets, map, taxonomy and publication controls.
-- No critical blocker found.
-- Production-domain visual/browser QA remains the only outstanding QA category due environment access limitation.
+- User confirmed the Ireland Country Page is OK after the mobile Hero readability fix.
+- PHASE 7 — REVIEW is complete.
+- atlasPublished remains false because formal publication approval has not yet been given.
 
 Next Action:
-- User review at https://atlas.yagenji.com/countries/ireland/.
-- Perform visual QA from the actual page for Hero crop, map, 8 scene cards, responsive behavior and accessibility when browser access to the production domain is available.
-- Keep atlasPublished:false until explicit user publication approval.
+- Await explicit user approval to publish.
+- On explicit approval only: set atlasPublished:true, enable index,follow, published navigation, sitemap inclusion, deploy, and run final production QA.
