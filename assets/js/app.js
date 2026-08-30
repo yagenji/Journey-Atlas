@@ -75,6 +75,13 @@ function renderCountry(data, registry) {
     element.textContent = value ?? '';
   });
 
+  const heroTitle = fragment.querySelector('.hero h1');
+  if (heroTitle) {
+    const titleLength = Array.from((data.nameEn || '').replace(/\s+/g, '')).length;
+    if (titleLength >= 12) heroTitle.classList.add('hero-title--long');
+    if (titleLength >= 18) heroTitle.classList.add('hero-title--very-long');
+  }
+
   const heroArt = fragment.querySelector('[data-image-field="hero.image"]');
   if (heroArt) {
     const heroLabel = data.hero?.location || data.nameJa || data.nameEn || '代表風景';
