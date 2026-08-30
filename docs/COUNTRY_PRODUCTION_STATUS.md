@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: REVIEW
-Current Phase: PHASE 7 — REVIEW
+Status: REVIEW-BLOCKED
+Current Phase: PHASE 7 — REVIEW / QA BLOCKED
 Branch: main review deployment from lithuania-v1-content
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -381,6 +381,24 @@ Next Action:
 - User reviews the revised BEYOND THE SCENERY / TRAVEL TRIVIA separation at https://atlas.yagenji.com/countries/lithuania/.
 - Apply any review fixes to the same URL while keeping atlasPublished:false.
 - Do not set atlasPublished:true until explicit user publication approval.
+QA UPDATE — 2026-08-30:
+- Production state / CI: PASS. atlasPublished:false, href/image empty, noindex,follow maintained. Latest Pages deploy run 33283818960 SUCCESS; Cloudflare package validation SUCCESS.
+- Data/facts: PASS. Population, area, religion, World Heritage count, national park count and forest cover rechecked against official sources.
+- Editorial duplication: PASS. BEYOND THE SCENERY and TRAVEL TRIVIA now use non-overlapping topics.
+- Raster integrity: PASS. All 9 approved PNGs fully decode; byte sizes match GitHub uploads. Scene 5 remains 1535×1024; other 8 are 1536×1024.
+- Hero mobile crop simulation at ~390px: PASS; Old Town and church-tower subject remains readable.
+- Map coordinates / marker-spacing: PASS. All markers remain inside bounds; no validator-threshold collisions. Closest pairs: capital–Hero ~29.2px (min 28), Hero–Užupis ~36.2px (min 36), capital–Užupis ~45.1px (min 44).
+- VISUAL BLOCKER: Scene 4 image does not depict the locked Kaunas Central Post Office. The real building at Laisvės al. 102 has two rounded curved wings and a central clock-tower block; the approved raster depicts a different rectilinear modernist façade. Per Visual Complete Gate rules, user approval cannot override clear subject mismatch.
+- Hero viewpoint fidelity: REVIEW NOTE, not confirmed blocker. The approved panorama contains a prominent Neris bend / modern skyline composition that is closer to some hill viewpoints than standard Subačius reference views. Keep under final visual review if Hero is revisited.
+- Scene 5 Ladakalnis fidelity: PASS WITH NOTE. The lake/forest character is consistent with Aukštaitija, though exact Ladakalnis summit cues are less specific than official reference views.
+- Accessibility: COMMON TEMPLATE ISSUE. Scene cards are focusable/clickable <article> elements with keyboard handlers but no button role/state semantics. Hero role=img retains generic aria-label “国の風景” instead of location-specific text. Must be fixed on shared app/template, not Lithuania-only.
+- Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
+
+Blocking Next Actions:
+1. Replace Scene 4 only with a subject-faithful Kaunas Central Post Office / Laisvės Avenue image, then re-run Visual Complete Gate.
+2. Fix the two shared accessibility semantics issues in common app/template and regression-check existing Country pages.
+3. Re-run deployed review QA. Keep atlasPublished:false until explicit user publication approval.
+
 
 ---
 
