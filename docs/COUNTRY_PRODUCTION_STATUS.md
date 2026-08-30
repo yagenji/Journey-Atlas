@@ -409,10 +409,10 @@ Accessibility follow-up:
 
 Country: United Kingdom
 Slug: united-kingdom
-Status: REVIEW / QA IN PROGRESS
-Current Phase: PHASE 7 — REVIEW
-Review URL: https://atlas.yagenji.com/countries/united-kingdom/
-atlasPublished: false
+Status: PUBLISHED
+Current Phase: PHASE 8 — PUBLISH
+Review / Production URL: https://atlas.yagenji.com/countries/united-kingdom/
+atlasPublished: true
 
 Visual:
 - Hero: APPROVED — Palace of Westminster / River Thames, London
@@ -425,7 +425,6 @@ Visual:
 - Scene 7 Giant’s Causeway / Grand Causeway: APPROVED
 - Scene 8 Silent Valley / Mourne Mountains: APPROVED
 - VISUAL COMPLETE GATE: PASS
-- Approved raster set exists in assets/images/united-kingdom/approved/.
 - Hero: 1535×1024 PNG; Scenes 1–8: 1536×1024 PNG.
 - Earlier rejected / contaminated generation attempts are excluded from production.
 
@@ -433,66 +432,58 @@ Map:
 - IMPLEMENTED — assets/images/united-kingdom/map-atlas-v1.svg
 - Config — data/maps/united-kingdom.json
 - 1200×760 / journey-atlas-map-v1.
-- Coordinate projection uses locked WGS84 scene coordinates.
-- Marker-spacing preflight: minimum capital/Hero separation ~46.8px; Scene 5/6 ~61.1px.
-- No decorative ellipse artifacts.
+- Marker-spacing preflight passed.
 
 Country JSON:
 - IMPLEMENTED — data/countries/united-kingdom.json
 - schemaVersion 2.
 - 8 scenes / 8 encounters / 6 atlasExtras / 5 travelTrivia / 4 seasons / 3 personas / 7 facts / 3 signatureFacts / 3 tips / 3 relatedCountries.
-- Travel Trivia sourceKey references: complete.
+- Travel Trivia sourceKey references complete.
+- sourceDates normalized to validator format before publication.
 
 Themes:
 - data/theme-taxonomy.json is SSOT.
 - earth / 地球の風景
 - city / 街を歩く
 - history / 時をたどる
-- Build-time static embedding added so themes do not depend solely on runtime JavaScript.
+- Build-time static embedding enabled.
 
-Publication state:
-- atlasPublished:false.
-- Registry href empty.
-- Registry image empty.
-- robots: noindex,follow.
-- United Kingdom absent from sitemap.
-- Normal top-page publication link disabled.
-- Do not set atlasPublished:true without explicit user approval.
+Publication:
+- User explicitly approved formal publication on 2026-08-30.
+- atlasPublished:true.
+- href: countries/united-kingdom/.
+- registry image: assets/images/united-kingdom/approved/hero-westminster-thames.png.
+- robots: index,follow.
+- sitemap: included.
+- canonical: https://atlas.yagenji.com/countries/united-kingdom/.
+- Normal discovery route enabled by published registry state.
 
-QA completed:
-- JSON structure: PASS.
-- 9 raster existence / complete decode: PASS.
-- Dimensions: PASS with non-blocking Hero 1px width difference.
-- Asset paths: PASS.
-- Map SVG / bounds / marker spacing: PASS.
-- Theme assignment and static Theme HTML: PASS.
-- Icon IDs: PASS.
-- noindex / canonical / sitemap / registry publication state: PASS.
-- Facts checked against ONS, World Bank, Ordnance Survey, UNESCO, Scottish Government, GOV.UK / DCMS, Darlington Borough Council: PASS.
-- CI validation: SUCCESS.
-- Production build validation: SUCCESS.
-- Cloudflare package validation: SUCCESS.
-- GitHub Pages deployment: SUCCESS.
-- Hero Theme clipping issue found during review and fixed at the shared source/template level.
-- Long English Hero title clipping found at ~970px width; generic long-country-title handling added and cache keys refreshed.
-- Missing source definitions for pub/daylight trivia found and fixed.
-
-QA remaining:
-- User-visible confirmation after latest deployment that TRAVEL THEMES are fully visible.
-- User-visible confirmation that UNITED KINGDOM no longer clips at desktop/tablet widths.
-- Actual production-page visual review of Map, all 8 Scene cards and lower sections.
-- Desktop / Tablet / Mobile horizontal-overflow visual confirmation.
-- Keyboard / focus / contrast final rendered-page confirmation.
+Publication QA:
+- Initial publication validation failed because sourceDates.population / area used non-validator strings.
+- Fixed sourceDates to valid year format.
+- Final Validate country data run 33310147376: SUCCESS.
+- Final Deploy JOURNEY ATLAS run 33310147382: SUCCESS.
+- Cloudflare production package validation: SUCCESS.
+- GitHub Pages build / upload / deploy: SUCCESS.
+- Final Pages artifact ID: 9731722368.
+- Exact final artifact verified:
+  - United Kingdom route exists.
+  - robots is index,follow.
+  - noindex is absent.
+  - sitemap contains https://atlas.yagenji.com/countries/united-kingdom/.
+  - registry atlasPublished:true.
+  - registry href is countries/united-kingdom/.
+  - registry Hero image is set.
+  - canonical is correct.
+  - TRAVEL THEMES earth / city / history are embedded.
+- Structural image / asset / map / taxonomy QA passed prior to publication.
 
 Last Action:
-- Completed first full structural/content QA pass.
-- Fixed long Hero title handling, completed trivia source references, and refreshed generated asset cache keys.
-- Latest review deployment succeeded while keeping atlasPublished:false.
+- Formal publication completed after explicit user approval.
+- Publication-state and exact deployed-artifact QA passed.
 
 Next Action:
-- Re-check the actual production review URL after the latest deployment.
-- Continue visual QA from Hero → Profile → Map → 8 Scenes → lower travel sections.
-- Apply any review fixes to the same URL while keeping atlasPublished:false.
+- Continue normal post-publication visual monitoring only if a user-visible issue is reported.
 
 ---
 
