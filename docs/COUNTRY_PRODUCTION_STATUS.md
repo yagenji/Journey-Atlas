@@ -224,12 +224,12 @@ FINAL QA CHECKPOINT — 2026-08-29:
 # Country: Ireland
 
 Status: READY-FOR-VISUAL
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE / REPLACEMENT IN PROGRESS
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE PASSED / ASSET MATERIALIZATION
 Branch: ireland-v1-content
 
-Hero: APPROVED (replacement watercolor version)
-Scene 1 Glenveagh National Park: USER-APPROVED / STYLE-REGEN REQUIRED
-Scene 2 Diamond Hill / Connemara: USER-APPROVED / STYLE-REGEN REQUIRED
+Hero: APPROVED
+Scene 1 Glenveagh National Park: APPROVED
+Scene 2 Diamond Hill / Connemara: APPROVED
 Scene 3 Burren / Mullaghmore: APPROVED
 Scene 4 Killarney / Ladies View: APPROVED
 Scene 5 Sceilg Mhichíl: APPROVED
@@ -238,13 +238,11 @@ Scene 7 Glendalough: APPROVED
 Scene 8 Brú na Bóinne / Newgrange: APPROVED
 
 Visual issues:
-- Final location fidelity: Hero and Scenes 1–8 are recognizably aligned with their locked locations.
-- Series consistency blocker: Hero / Cliffs of Moher is substantially more photographic than the Iceland / Norway watercolor benchmark.
-- Series consistency blocker: Scene 1 / Glenveagh is substantially more photographic than the benchmark.
-- Series consistency blocker: Scene 2 / Connemara is substantially more photographic than the benchmark.
-- Scenes 3–8 are materially closer to the intended clean editorial watercolor language.
-- Earlier rejected attempts remain excluded from production.
-- Result: VISUAL-BLOCKED. Do not begin implementation yet.
+- Final approved set: Hero + Scenes 1–8.
+- Replacement Hero, Scene 1 and Scene 2 resolved the prior photo-heavy style inconsistency.
+- Final set now passes the Visual Complete Gate for subject fidelity and series consistency.
+- Earlier rejected outputs remain excluded from production.
+- No approved Ireland raster assets are currently materialized in GitHub.
 
 Map:
 - NOT STARTED. Production begins only after VISUAL COMPLETE GATE.
@@ -284,10 +282,21 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Replacement Hero / Cliffs of Moher generated one-at-a-time and user-approved.
-- Replacement sequence now advances to Scene 1 only.
+- Replacement Hero, Scene 1 and Scene 2 were approved.
+- Re-ran the Visual Complete Gate across the full 9-image set.
+- Gate result: PASSED.
+- Checked GitHub branch assets/images/ireland/: directory does not yet exist; approved raster assets are not yet materialized.
 
 Next Action:
-- Regenerate Scene 1 only: Glenveagh National Park / Lough Veagh and Glenveagh Castle.
-- Preserve the locked location and composition; change rendering toward the same clean editorial watercolor balance as the newly approved Hero and Scenes 3–8.
-- Do not regenerate Scene 2 until Scene 1 is user-approved.
+- User to upload the 9 approved final raster assets to assets/images/ireland/approved/ using these exact filenames:
+  - hero-cliffs-of-moher.png
+  - glenveagh-national-park.png
+  - connemara.png
+  - the-burren-mullaghmore.png
+  - killarney-ladies-view.png
+  - skellig-michael.png
+  - rock-of-cashel.png
+  - glendalough.png
+  - newgrange.png
+- After upload, verify all 9 files exist and run decode / dimension checks.
+- Then begin PHASE 4 — IMPLEMENTATION: Country JSON, Map, taxonomy connection, countries/ireland/, atlasPublished:false, noindex,follow.
