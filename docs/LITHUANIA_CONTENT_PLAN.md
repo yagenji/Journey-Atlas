@@ -157,16 +157,21 @@ Updated: 2026-08-29
    - Vilnius–Kaunas–Klaipėda axis is practical by rail/bus; car becomes useful for dispersed parks and rural scenes; Curonian Spit requires ferry access from Klaipėda side.
 
 ### Travel Trivia
+Editorial rule:
+- Do not repeat topics used in BEYOND THE SCENERY.
+- BEYOND THE SCENERY explains deeper themes that help understand the country.
+- TRAVEL TRIVIA adds small, observable or usable facts that make the trip more interesting.
+
 1. LANGUAGE / 言葉 — 「Ačiūは“ありがとう”」
-   - Lithuanian is the state language; include simple phrases Labas / Ačiū / Prašau.
-2. HISTORY / 歴史 — 「1940年、カウナスで発給された“命のビザ”」
-   - 杉原千畝はカウナスの日本副領事として、1940年7〜8月に日本通過ビザを発給した。現在の杉原記念館は、当時の日本領事館として使われた建物にある。
-3. TRADITION / 伝統 — 「十字架は今も増え続ける」
-   - Hill of Crosses remains an active pilgrimage site where visitors leave crosses and rosaries.
-4. FOREST / 森 — 「秋はキノコ採りが日常のレジャーになる」
-   - Foraging for mushrooms and berries is a strong seasonal tradition, especially in Dzūkija.
-5. MUSIC / 音 — 「Sutartinėsは北東部の多声歌」
-   - UNESCO-listed multipart singing tradition associated with northeastern Lithuania.
+   - Labas / Ačiū / Prašau are simple phrases visitors can actually use.
+2. SPORT / スポーツ — 「バスケットボールは“第二の宗教”とも呼ばれる」
+   - Basketball is a major cultural force; Žalgiris Kaunas and national-team games draw strong public attention.
+3. AMBER / 琥珀 — 「バルト海岸では琥珀を探せる」
+   - Amber has long been gathered along the Lithuanian Baltic coast; Palanga has a major amber museum.
+4. REGIONS / 地域 — 「伝統的には5つの民族誌地域に分かれる」
+   - Aukštaitija, Žemaitija, Dzūkija, Suvalkija and Lithuania Minor each have distinct regional traditions.
+5. SKY / 空 — 「ヴィリニュス旧市街の上を気球が飛ぶ」
+   - Vilnius is one of the few European capitals where hot-air balloons may fly over the historical centre.
 
 ### Seasons
 - 6〜8月: Long days; best balance for Curonian Spit, lake districts, outdoor city walking and festivals.
@@ -221,6 +226,10 @@ Rationale:
 - Lithuania Travel: Curonian Spit, Hill of Crosses, Aukštaitija / Ladakalnis, Kernavė, Kaunas Modernism, Čepkeliai and Dzūkija.
 - Go Vilnius: Subačius Panoramic Viewpoint and Vilnius viewpoints.
 - European Central Bank: Lithuania uses the euro.
+- Lithuania Travel: basketball is widely described as a major cultural force and the country's “second religion”.
+- Lithuania Travel: amber gathering remains part of Baltic-coast visitor culture; Palanga Amber Museum holds a major collection.
+- Lithuania Travel: Lithuania is traditionally divided into five ethnographic regions.
+- Lithuania Travel / Go Vilnius: Vilnius is one of the few European capitals permitting hot-air-balloon flights over its historical centre.
 - Ministry of Foreign Affairs of Japan: Chiune Sugihara served in Kaunas and issued the “Visas for Life” in July–August 1940; the surviving list contains 2,140 names and the actual number of lives saved is thought to be in the thousands.
 - Yad Vashem: Chiune Sugihara was recognized as Righteous Among the Nations on 4 October 1984.
 - Sugihara House Museum: the current museum building housed the Japanese Consulate in Lithuania from November 1939 to August 1940.
