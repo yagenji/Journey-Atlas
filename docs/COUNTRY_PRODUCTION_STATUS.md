@@ -498,8 +498,8 @@ Next Action:
 
 # Country: Ireland
 
-Status: REVIEW DEPLOYED / PRODUCTION VISUAL QA PENDING
-Current Phase: PHASE 7 — REVIEW
+Status: REVIEW DEPLOYED / NON-VISUAL QA PASSED
+Current Phase: PHASE 7 — REVIEW (production visual/browser QA pending)
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -538,19 +538,20 @@ Themes:
   - road / 道の先へ
 
 QA:
-- Static structural QA passed with zero errors.
-- 9 approved PNGs confirmed in assets/images/ireland/approved/.
-- Image manifest dimensions were 1536×1024 for all 9; uploaded byte sizes matched the approved set before helper manifest removal.
-- JSON required keys / scene count / fact order / trivia source keys passed.
-- Shared icon IDs passed.
-- Theme taxonomy passed: earth / history / road.
-- Map bounds / point projection / marker spacing passed.
-- Review route noindex,follow and canonical passed.
-- GitHub Actions Validate country data run 33304664553: success.
-- GitHub Pages deploy run 33304664569: success.
-- Deploy job passed source validation, production build, production build validation, Pages upload and deployment.
-- Cloudflare production package validation passed.
-- Actual visual browser QA on atlas.yagenji.com remains pending because this execution environment cannot resolve/open the custom domain directly.
+- Static structural QA: PASS.
+- Country JSON strict schema validation: PASS.
+- 9 approved PNG assets present at assets/images/ireland/approved/: PASS.
+- Approved image manifest dimensions: all 1536×1024; uploaded byte sizes matched approved files before helper manifest removal.
+- Map SVG/config: PASS (1200×760, GISCO geometry source, all markers in bounds, minimum marker separation ~97.7px).
+- Shared icon IDs / scene count / facts order / trivia source keys / related destinations rendering logic: PASS.
+- Theme taxonomy: PASS (earth / history / road); build-time injection will render 3 chips in Hero.
+- Publication state: PASS (atlasPublished:false, href empty, image empty, noindex,follow; unpublished countries remain excluded from discovery/sitemap generation).
+- GitHub Actions country-data validation: PASS.
+- GitHub Pages production build/deploy: PASS.
+- Cloudflare production package validation: PASS.
+- Content fact-check: PASS for 2026 population (CSO 5,525,600), official languages (Constitution Article 8), Census 2022 religion figures, UNESCO World Heritage count/properties, Wild Atlantic Way ~2,500 km, peat-soil 20.6%, Newgrange access procedure, Glendalough/Rock of Cashel monument descriptions.
+- No critical content or technical blocker found.
+- Remaining limitation: actual visual/browser QA on atlas.yagenji.com (Hero crop, card rendering, map label placement, desktop/tablet/mobile overflow, keyboard/contrast) could not be executed from this environment because the custom domain is not reachable/resolvable here.
 
 Review URL:
 - https://atlas.yagenji.com/countries/ireland/
@@ -574,10 +575,9 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- Merged clean Ireland review deployment to main at commit 4f6f5d860274632a78b10e3399de807a6661c830.
-- Validation workflow succeeded.
-- GitHub Pages deployment and Cloudflare package validation succeeded.
-- Confirmed on main: atlasPublished:false, href empty, image empty, noindex review route, themes earth/history/road.
+- Completed Ireland QA across source, build, deployment state, content facts, assets, map, taxonomy and publication controls.
+- No critical blocker found.
+- Production-domain visual/browser QA remains the only outstanding QA category due environment access limitation.
 
 Next Action:
 - User review at https://atlas.yagenji.com/countries/ireland/.
