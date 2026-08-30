@@ -228,8 +228,23 @@ function projectPoint(coordinates, bounds, offset = {}) {
   const longitudeRange = bounds.east - bounds.west;
   const latitudeRange = bounds.north - bounds.south;
   if (longitudeRange <= 0 || latitudeRange <= 0) return null;
-  const x = ((coordinates.longitude - bounds.west) / longitudeRange) * 100 + (Number(offset.x) || 0);
-  const y = ((bounds.north - coordinates.latitude) / latitudeRange) * 100 + (Number(offset.y) || 0);
+
+  const mapWidth = 1200;
+  const mapHeight = 760;
+  const midpointLatitude = (bounds.south + bounds.north) / 2;
+  const longitudeScale = Math.cos((midpointLatitude * Math.PI) / 180);
+  const projectedWidth = longitudeRange * longitudeScale;
+  const projectedHeight = latitudeRange;
+  const canvasScale = Math.min(mapWidth / projectedWidth, mapHeight / projectedHeight);
+  const drawWidth = projectedWidth * canvasScale;
+  const drawHeight = projectedHeight * canvasScale;
+  const offsetX = (mapWidth - drawWidth) / 2;
+  const offsetY = (mapHeight - drawHeight) / 2;
+
+  const xPx = offsetX + (coordinates.longitude - bounds.west) * longitudeScale * canvasScale;
+  const yPx = offsetY + (bounds.north - coordinates.latitude) * canvasScale;
+  const x = (xPx / mapWidth) * 100 + (Number(offset.x) || 0);
+  const y = (yPx / mapHeight) * 100 + (Number(offset.y) || 0);
   return { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) };
 }
 
