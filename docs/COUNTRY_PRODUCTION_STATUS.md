@@ -280,7 +280,7 @@ PUBLICATION COMPLETE — 2026-08-29:
 Country: Lithuania
 Status: REVIEW-DEPLOYED
 Current Phase: PHASE 7 — REVIEW
-Branch: main review deployment from lithuania-v1-content
+Branch: main
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
 
@@ -388,7 +388,7 @@ QA UPDATE — 2026-08-30:
 - Raster integrity: PASS. All 9 approved PNGs fully decode; byte sizes match GitHub uploads. Scene 5 remains 1535×1024; other 8 are 1536×1024.
 - Hero mobile crop simulation at ~390px: PASS; Old Town and church-tower subject remains readable.
 - Map coordinates / marker-spacing: PASS. All markers remain inside bounds; no validator-threshold collisions. Closest pairs: capital–Hero ~29.2px (min 28), Hero–Užupis ~36.2px (min 36), capital–Užupis ~45.1px (min 44).
-- VISUAL BLOCKER: Scene 4 image does not depict the locked Kaunas Central Post Office. The real building at Laisvės al. 102 has two rounded curved wings and a central clock-tower block; the approved raster depicts a different rectilinear modernist façade. Per Visual Complete Gate rules, user approval cannot override clear subject mismatch.
+- RESOLVED VISUAL BLOCKER (historical): Former Scene 4 / Kaunas Central Post Office failed subject fidelity and was rejected. It has been replaced by the user-approved Pažaislis Monastery / Kaunas Reservoir scene; the new asset is verified and deployed.
 - Hero viewpoint fidelity: REVIEW NOTE, not confirmed blocker. The approved panorama contains a prominent Neris bend / modern skyline composition that is closer to some hill viewpoints than standard Subačius reference views. Keep under final visual review if Hero is revisited.
 - Scene 5 Ladakalnis fidelity: PASS WITH NOTE. The lake/forest character is consistent with Aukštaitija, though exact Ladakalnis summit cues are less specific than official reference views.
 - Accessibility: FIXED IN SHARED TEMPLATE. Scene cards now expose button role / aria-pressed semantics with keyboard support, and Hero aria-label now uses the actual Hero location. Shared fix commit 14951604bd595f0d96f942fe14157bf4727d9db1; deploy run 33291206746 SUCCESS.
@@ -443,6 +443,18 @@ REVIEW DEPLOYMENT — SCENE 4 REPLACEMENT — 2026-08-30:
 - Approved Scene 4 asset is present at its final production path and byte-identical to the approved local source.
 - atlasPublished:false / noindex review state remains required.
 - Automated direct fetch of the custom review URL is unavailable from this environment; final rendered Desktop / Tablet / Mobile review remains user-facing QA.
+
+
+FINAL QA AFTER SCENE 4 REPLACEMENT — 2026-08-30:
+- Content structure: PASS — Hero + 8 scenes / 8 encounters / 6 Beyond the Scenery / 5 Travel Trivia / 4 seasons / 3 personas / 7 profile facts / 3 signature facts / 3 tips / 3 related destinations.
+- Scene 4 integration: PASS — Pažaislis Monastery / Kaunas Reservoir copy, coordinate 54.87608 / 24.02187, image path and encounter are consistent.
+- Scene 4 visual fidelity: PASS WITH NOTE — generated view contains the identifying central dome, twin towers, red-roof monastery wings, forest and Kaunas Reservoir. Compared with current Pažaislis references, architectural proportions are interpretive rather than survey-accurate, but the location is recognizable and no wrong-subject blocker remains.
+- Theme taxonomy: PASS — earth / city / history, with data/theme-taxonomy.json as SSOT.
+- Publication state: PASS — atlasPublished:false, href/image empty, route noindex,follow, canonical preserved.
+- Editorial separation: PASS — Beyond the Scenery and Travel Trivia have no repeated topic; Chiune Sugihara remains only in the historical story layer.
+- Accessibility source QA: PASS — shared Hero aria-label and scene-card button / aria-pressed semantics remain deployed.
+- CI / package / deploy: PASS — main validation and review deploy after replacement succeeded.
+- Remaining QA limitation: actual rendered Desktop / Tablet / Mobile custom-domain browser inspection cannot be independently executed from this environment. This is recorded as UNVERIFIED, not PASS.
 
 
 ---
