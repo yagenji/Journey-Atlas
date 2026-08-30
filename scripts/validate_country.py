@@ -101,14 +101,15 @@ def validate_coordinates(errors: list[str], owner: str, coordinates: object, bou
 
 def marker_min_distance(kind_a: str, kind_b: str) -> float:
     kinds = {kind_a, kind_b}
+    # Intrinsic-canvas distances equivalent to the 320px mobile map.
     if kind_a == kind_b == "scene":
-        return 40.0
+        return 71.0
     if kinds == {"scene", "hero"}:
-        return 36.0
+        return 64.0
     if kinds == {"scene", "capital"}:
-        return 44.0
+        return 55.0
     if kinds == {"hero", "capital"}:
-        return 28.0
+        return 47.0
     return 0.0
 
 
@@ -143,8 +144,19 @@ def project_marker(
     north, south, west, east = bounds
     if not all(isinstance(value, (int, float)) for value in (lat, lon, north, south, west, east)):
         return None
-    x = ((lon - west) / (east - west)) * MAP_WIDTH + offset[0] / 100 * MAP_WIDTH
-    y = ((north - lat) / (north - south)) * MAP_HEIGHT + offset[1] / 100 * MAP_HEIGHT
+    longitude_range = east - west
+    latitude_range = north - south
+    midpoint_latitude = (south + north) / 2
+    longitude_scale = math.cos(math.radians(midpoint_latitude))
+    projected_width = longitude_range * longitude_scale
+    projected_height = latitude_range
+    canvas_scale = min(MAP_WIDTH / projected_width, MAP_HEIGHT / projected_height)
+    draw_width = projected_width * canvas_scale
+    draw_height = projected_height * canvas_scale
+    canvas_offset_x = (MAP_WIDTH - draw_width) / 2
+    canvas_offset_y = (MAP_HEIGHT - draw_height) / 2
+    x = canvas_offset_x + (lon - west) * longitude_scale * canvas_scale + offset[0] / 100 * MAP_WIDTH
+    y = canvas_offset_y + (north - lat) * canvas_scale + offset[1] / 100 * MAP_HEIGHT
     return x, y
 
 
