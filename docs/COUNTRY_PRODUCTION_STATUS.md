@@ -278,7 +278,7 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: PUBLISHING
+Status: PUBLISHING / CLEANUP
 Current Phase: PHASE 8 — PUBLISH
 Branch: main
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
@@ -474,6 +474,13 @@ PUBLICATION APPROVAL — 2026-08-30:
 - Official href enabled: countries/lithuania/.
 - Registry Hero image enabled: assets/images/lithuania/approved/hero-vilnius.png.
 - Final validation / sitemap / robots / deployment verification in progress.
+
+
+PUBLICATION ASSET CLEANUP — 2026-08-30:
+- Final publication QA detected the rejected former Scene 4 asset still present in assets/images/lithuania/approved/.
+- Removed assets/images/lithuania/approved/kaunas-modernism-central-post-office.png.
+- The live Country JSON never referenced this rejected file after the Pažaislis replacement.
+- Revalidation and redeployment required before closing publication.
 
 
 ---
