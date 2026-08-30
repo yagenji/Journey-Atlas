@@ -248,12 +248,12 @@
   ],
   "travelTrivia": [
     {
-      "categoryEn": "ROAD",
-      "categoryJa": "道路",
-      "title": "車は左側通行",
-      "text": "英国では車は左側通行。速度表示はmphで、地方道では狭い道やpassing placeもある。",
-      "icon": "road",
-      "sourceKey": "driving"
+      "categoryEn": "WALK",
+      "categoryJa": "歩く",
+      "title": "スコットランドは「道がない場所」も歩ける",
+      "text": "スコットランドでは、責任ある行動を前提に、多くの土地や内水面へ非動力でアクセスできる権利が法律で認められている。登山道だけをたどる旅とは感覚が少し違う。",
+      "icon": "hike",
+      "sourceKey": "scotlandAccess"
     },
     {
       "categoryEn": "LANGUAGE",
@@ -272,12 +272,12 @@
       "sourceKey": "pub"
     },
     {
-      "categoryEn": "POWER",
-      "categoryJa": "電源",
-      "title": "プラグはType G",
-      "text": "3本角のType G、230V / 50Hz。日本のプラグはそのまま使えない。",
-      "icon": "energy",
-      "sourceKey": "power"
+      "categoryEn": "MUSEUM",
+      "categoryJa": "博物館",
+      "title": "大きな博物館でも常設展無料が珍しくない",
+      "text": "大英博物館やNational Galleryなど、主要な国立博物館・美術館では常設コレクションを無料で見られる施設が多い。都市歩きの途中に立ち寄りやすいのも英国旅行の特徴。",
+      "icon": "culture",
+      "sourceKey": "freeMuseums"
     },
     {
       "categoryEn": "DAYLIGHT",
@@ -366,10 +366,10 @@
       "icon": "map"
     },
     {
-      "label": "国立公園",
-      "value": "15",
-      "note": "England 10、Wales 3、Scotland 2。Northern Irelandには現在指定なし。",
-      "icon": "landscape"
+      "label": "近代鉄道の始まり",
+      "value": "1825",
+      "note": "Stockton & Darlington Railwayは1825年に開業し、蒸気機関車を使う世界初の公共鉄道として近代鉄道の出発点になった。",
+      "icon": "road"
     },
     {
       "label": "最高地点",
@@ -420,17 +420,19 @@
   "sourceDates": {
     "population": "2025-mid provisional",
     "area": "current",
-    "nationalParks": "current"
+    "railway": "1825"
   },
   "sources": {
     "map": "Natural Earth admin-0 public-domain extraction via eFrane/admin0; WGS84; illustrated treatment: JOURNEY ATLAS",
     "population": "Office for National Statistics: provisional UK population estimate, mid-2025, 69,487,000",
     "area": "World Bank World Development Indicators: surface area 243,610 km²",
     "composition": "ONS / GOV.UK: United Kingdom comprises England, Scotland, Wales and Northern Ireland",
-    "nationalParks": "National Parks UK: 15 National Parks — 10 England, 3 Wales, 2 Scotland",
     "highestPoint": "Ordnance Survey: Ben Nevis 1,345 m",
     "giantsCauseway": "UNESCO World Heritage Centre: Giant’s Causeway and Causeway Coast geology",
     "caernarfon": "UNESCO World Heritage Centre: Castles and Town Walls of King Edward in Gwynedd",
-    "languages": "Welsh legislation / Scottish Government / UK official guidance on regional language status"
+    "languages": "Welsh legislation / Scottish Government / UK official guidance on regional language status",
+    "railway": "Darlington Borough Council / Stockton & Darlington Railway: opened 27 September 1825; the world's first public railway to use steam locomotives",
+    "scotlandAccess": "Scottish Government: Land Reform (Scotland) Act 2003 provides rights of responsible non-motorised access to most land and inland water",
+    "freeMuseums": "UK Parliament / DCMS policy: free admission to the core collections of national museums and galleries introduced broadly from December 2001; major institutions continue free general collection access"
   }
 }
