@@ -601,8 +601,8 @@ Next Action:
 
 # Country: Ireland
 
-Status: IMPLEMENTED / STATIC QA PASSED
-Current Phase: PHASE 5 — QA (static checks passed; production browser QA pending)
+Status: REVIEW DEPLOYED / PRODUCTION VISUAL QA PENDING
+Current Phase: PHASE 7 — REVIEW
 Branch: ireland-v1-content
 
 Hero: APPROVED
@@ -643,16 +643,20 @@ Themes:
 QA:
 - Static structural QA passed with zero errors.
 - 9 approved PNGs confirmed in assets/images/ireland/approved/.
-- Uploaded byte sizes match the approved manifest; all listed dimensions are 1536×1024.
+- Image manifest dimensions were 1536×1024 for all 9; uploaded byte sizes matched the approved set before helper manifest removal.
 - JSON required keys / scene count / fact order / trivia source keys passed.
 - Shared icon IDs passed.
 - Theme taxonomy passed: earth / history / road.
 - Map bounds / point projection / marker spacing passed.
 - Review route noindex,follow and canonical passed.
-- Actual browser QA on production URL remains pending until review deployment.
+- GitHub Actions Validate country data run 33304664553: success.
+- GitHub Pages deploy run 33304664569: success.
+- Deploy job passed source validation, production build, production build validation, Pages upload and deployment.
+- Cloudflare production package validation passed.
+- Actual visual browser QA on atlas.yagenji.com remains pending because this execution environment cannot resolve/open the custom domain directly.
 
 Review URL:
-- https://atlas.yagenji.com/countries/ireland/ (not deployed yet)
+- https://atlas.yagenji.com/countries/ireland/
 
 atlasPublished:
 - false (confirmed on main before production start).
@@ -673,13 +677,12 @@ PHASE 1 — CONTENT DESIGN:
 - Detailed source-backed plan: docs/IRELAND_CONTENT_PLAN.md.
 
 Last Action:
-- User materialized all 9 approved raster assets to the correct GitHub path.
-- Completed PHASE 4 implementation: Country JSON, map SVG/config and direct review route.
-- Static QA passed with zero errors.
-- Synced latest main theme taxonomy to avoid overwriting other Country assignments.
+- Merged clean Ireland review deployment to main at commit 4f6f5d860274632a78b10e3399de807a6661c830.
+- Validation workflow succeeded.
+- GitHub Pages deployment and Cloudflare package validation succeeded.
+- Confirmed on main: atlasPublished:false, href empty, image empty, noindex review route, themes earth/history/road.
 
 Next Action:
-- Clean non-production helper files from the approved asset directory.
-- Review branch diff against latest main.
-- Perform REVIEW DEPLOYMENT to main while keeping atlasPublished:false, noindex, sitemap excluded and top page unlinked.
-- Then run actual production-page browser/responsive/accessibility QA at https://atlas.yagenji.com/countries/ireland/.
+- User review at https://atlas.yagenji.com/countries/ireland/.
+- Perform visual QA from the actual page for Hero crop, map, 8 scene cards, responsive behavior and accessibility when browser access to the production domain is available.
+- Keep atlasPublished:false until explicit user publication approval.
