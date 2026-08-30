@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import urllib.request
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -14,7 +15,7 @@ from shapely.ops import unary_union
 
 WIDTH = 1200
 HEIGHT = 760
-STYLE_VERSION = "journey-atlas-map-v1"
+STYLE_VERSION = "journey-atlas-map-v2-proportional"
 
 
 def parse_args() -> argparse.Namespace:
@@ -150,10 +151,38 @@ def load_geoboundaries(iso: str, admin_level: str) -> tuple[list[Polygon], list[
     return land, lakes, source_note
 
 
+def projection_frame(
+    bounds: tuple[float, float, float, float],
+) -> tuple[float, float, float, float]:
+    """Return local-equirectangular scale and centered offsets for the canvas.
+
+    Longitude degrees become physically shorter toward the poles.  Using the
+    country's midpoint latitude as the standard parallel preserves the local
+    geographic aspect ratio while keeping north up and east right.
+    """
+    west, south, east, north = bounds
+    longitude_range = east - west
+    latitude_range = north - south
+    if longitude_range <= 0 or latitude_range <= 0:
+        raise ValueError("Map bounds must have positive longitude and latitude ranges")
+
+    midpoint_latitude = (south + north) / 2
+    longitude_scale = math.cos(math.radians(midpoint_latitude))
+    projected_width = longitude_range * longitude_scale
+    projected_height = latitude_range
+    canvas_scale = min(WIDTH / projected_width, HEIGHT / projected_height)
+    draw_width = projected_width * canvas_scale
+    draw_height = projected_height * canvas_scale
+    offset_x = (WIDTH - draw_width) / 2
+    offset_y = (HEIGHT - draw_height) / 2
+    return longitude_scale, canvas_scale, offset_x, offset_y
+
+
 def project(lon: float, lat: float, bounds: tuple[float, float, float, float]) -> tuple[float, float]:
     west, south, east, north = bounds
-    x = (lon - west) / (east - west) * WIDTH
-    y = (north - lat) / (north - south) * HEIGHT
+    longitude_scale, canvas_scale, offset_x, offset_y = projection_frame(bounds)
+    x = offset_x + (lon - west) * longitude_scale * canvas_scale
+    y = offset_y + (north - lat) * canvas_scale
     return x, y
 
 
@@ -206,7 +235,7 @@ def render_svg(
             for geometry in major_lakes
         )
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}" data-map-projection="local-equirectangular-fit-v1">
 <metadata>{escape(source_note)}</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
