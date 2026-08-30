@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: VISUAL-COMPLETE / ASSET-PENDING
-Current Phase: PHASE 3 — VISUAL COMPLETE GATE / APPROVED, ASSET UPLOAD PENDING
+Status: REVIEW-READY
+Current Phase: PHASE 5 — QA / REVIEW DEPLOYMENT READY
 Branch: main review deployment from lithuania-v1-content
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -289,7 +289,7 @@ Hero file: assets/images/lithuania/approved/hero-vilnius.png
 Scene 1: APPROVED — Curonian Spit / Parnidis Dune
 Scene 2: APPROVED — Trakai Island Castle
 Scene 3: APPROVED — Hill of Crosses
-Scene 4: APPROVED — Pažaislis Monastery / Kaunas Reservoir — replacement asset pending GitHub upload
+Scene 4: APPROVED — Pažaislis Monastery / Kaunas Reservoir — asset verified
 Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
 Scene 6: APPROVED — Kernavė Archaeological Site
 Scene 7: APPROVED — Čepkeliai Marsh
@@ -395,10 +395,10 @@ QA UPDATE — 2026-08-30:
 - Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
 
 Blocking Next Actions:
-1. Add approved replacement raster as assets/images/lithuania/approved/pazaislis-monastery-kaunas-reservoir.png.
-2. Verify full decode, dimensions and exact production asset path.
-3. Re-run Visual Complete Gate / JSON validation / deployed review QA.
-4. Merge replacement branch to main only after the asset is present, keeping atlasPublished:false.
+1. Open/merge review PR after CI validation passes.
+2. Confirm main deployment completes successfully.
+3. Review the actual Country URL at https://atlas.yagenji.com/countries/lithuania/ with atlasPublished:false.
+4. Keep formal publication blocked until explicit user approval.
 
 Accessibility follow-up:
 - Shared accessibility semantics fix completed and deployed successfully.
@@ -422,6 +422,16 @@ SCENE 4 APPROVAL — 2026-08-30:
 - Map position check: no additional marker offset required.
 - Scene image path reserved: assets/images/lithuania/approved/pazaislis-monastery-kaunas-reservoir.png.
 - Main remains unchanged until the approved raster is present at the reserved path.
+
+
+SCENE 4 ASSET VERIFICATION — 2026-08-30:
+- Production path exists: assets/images/lithuania/approved/pazaislis-monastery-kaunas-reservoir.png.
+- Git blob SHA: 4f65f67fb5d0b1001e864def9955a8cf4b1754cc.
+- Local approved source Git blob SHA matches exactly.
+- SHA-256: 8ec7c0cc26a6007ad46a1c225a06ac5f546411f975af3e78cfc8e78f731a50e3.
+- PNG fully decodes: 1536×1024, RGB.
+- Scene 4 content / coordinate / image path are internally consistent.
+- Hero + 8 scenes are now all APPROVED; Visual Complete Gate PASSED.
 
 
 ---
