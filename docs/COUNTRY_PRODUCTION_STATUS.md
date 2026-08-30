@@ -278,8 +278,8 @@ PUBLICATION COMPLETE — 2026-08-29:
 ---
 
 Country: Lithuania
-Status: VISUAL-REWORK
-Current Phase: PHASE 2 — VISUAL REWORK / SCENE 4 ONLY
+Status: VISUAL-COMPLETE / ASSET-PENDING
+Current Phase: PHASE 3 — VISUAL COMPLETE GATE / APPROVED, ASSET UPLOAD PENDING
 Branch: main review deployment from lithuania-v1-content
 Review deployment commit: 50512387b99bb393852802948c4e9c22962ae5e0
 Review URL: https://atlas.yagenji.com/countries/lithuania/
@@ -289,7 +289,7 @@ Hero file: assets/images/lithuania/approved/hero-vilnius.png
 Scene 1: APPROVED — Curonian Spit / Parnidis Dune
 Scene 2: APPROVED — Trakai Island Castle
 Scene 3: APPROVED — Hill of Crosses
-Scene 4: REPLACED — Pažaislis Monastery / Kaunas Reservoir — awaiting new visual approval
+Scene 4: APPROVED — Pažaislis Monastery / Kaunas Reservoir — replacement asset pending GitHub upload
 Scene 5: APPROVED — Aukštaitija National Park / Ladakalnis
 Scene 6: APPROVED — Kernavė Archaeological Site
 Scene 7: APPROVED — Čepkeliai Marsh
@@ -395,9 +395,10 @@ QA UPDATE — 2026-08-30:
 - Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
 
 Blocking Next Actions:
-1. Generate Scene 4 only as Pažaislis Monastery / Kaunas Reservoir using the locked landscape brief.
-2. User approval + subject-fidelity check.
-3. Only after approval, update Country JSON / map coordinate / final filename and re-run Visual Complete Gate / deployed review QA.
+1. Add approved replacement raster as assets/images/lithuania/approved/pazaislis-monastery-kaunas-reservoir.png.
+2. Verify full decode, dimensions and exact production asset path.
+3. Re-run Visual Complete Gate / JSON validation / deployed review QA.
+4. Merge replacement branch to main only after the asset is present, keeping atlasPublished:false.
 
 Accessibility follow-up:
 - Shared accessibility semantics fix completed and deployed successfully.
@@ -412,6 +413,15 @@ SCENE 4 REPLACEMENT DECISION — 2026-08-30:
 - Coordinate: 54.87608, 24.02187.
 - Visual brief: elevated three-quarter landscape; recognizable Pažaislis Baroque ensemble with central hexagonal dome and twin towers; dense forest; Kaunas Reservoir visible; early summer; clear late afternoon; photo 60% / watercolor 40%.
 - Do not update production JSON/map until the replacement image is approved.
+
+
+SCENE 4 APPROVAL — 2026-08-30:
+- User approved the replacement visual for Pažaislis Monastery / Kaunas Reservoir.
+- Country JSON updated on branch lithuania-scene4-pazaislis.
+- New scene coordinate: 54.87608, 24.02187.
+- Map position check: no additional marker offset required.
+- Scene image path reserved: assets/images/lithuania/approved/pazaislis-monastery-kaunas-reservoir.png.
+- Main remains unchanged until the approved raster is present at the reserved path.
 
 
 ---
