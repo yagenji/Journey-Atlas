@@ -391,13 +391,16 @@ QA UPDATE — 2026-08-30:
 - VISUAL BLOCKER: Scene 4 image does not depict the locked Kaunas Central Post Office. The real building at Laisvės al. 102 has two rounded curved wings and a central clock-tower block; the approved raster depicts a different rectilinear modernist façade. Per Visual Complete Gate rules, user approval cannot override clear subject mismatch.
 - Hero viewpoint fidelity: REVIEW NOTE, not confirmed blocker. The approved panorama contains a prominent Neris bend / modern skyline composition that is closer to some hill viewpoints than standard Subačius reference views. Keep under final visual review if Hero is revisited.
 - Scene 5 Ladakalnis fidelity: PASS WITH NOTE. The lake/forest character is consistent with Aukštaitija, though exact Ladakalnis summit cues are less specific than official reference views.
-- Accessibility: COMMON TEMPLATE ISSUE. Scene cards are focusable/clickable <article> elements with keyboard handlers but no button role/state semantics. Hero role=img retains generic aria-label “国の風景” instead of location-specific text. Must be fixed on shared app/template, not Lithuania-only.
+- Accessibility: FIXED IN SHARED TEMPLATE. Scene cards now expose button role / aria-pressed semantics with keyboard support, and Hero aria-label now uses the actual Hero location. Shared fix commit 14951604bd595f0d96f942fe14157bf4727d9db1; deploy run 33291206746 SUCCESS.
 - Responsive source QA: PASS structurally. Shared breakpoints exist at desktop/tablet/mobile ranges; scene-title wrapping and mobile map-label suppression are implemented. Full rendered Desktop/Tablet/Mobile visual QA still cannot be claimed from this environment because the custom-domain browser is not directly reachable here.
 
 Blocking Next Actions:
 1. Replace Scene 4 only with a subject-faithful Kaunas Central Post Office / Laisvės Avenue image, then re-run Visual Complete Gate.
-2. Fix the two shared accessibility semantics issues in common app/template and regression-check existing Country pages.
-3. Re-run deployed review QA. Keep atlasPublished:false until explicit user publication approval.
+2. Re-run deployed review QA after Scene 4 replacement. Keep atlasPublished:false until explicit user publication approval.
+
+Accessibility follow-up:
+- Shared accessibility semantics fix completed and deployed successfully.
+- No Lithuania-specific CSS or template exception was introduced.
 
 
 ---
