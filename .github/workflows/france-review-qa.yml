@@ -26,111 +26,129 @@ jobs:
           node --input-type=module <<'NODE'
           import { chromium } from 'playwright';
           import fs from 'fs';
+
           const target = process.env.TARGET_URL;
           const viewports = [
             { name: 'desktop', width: 1440, height: 900 },
             { name: 'tablet', width: 768, height: 1024 },
             { name: 'mobile', width: 390, height: 844 },
           ];
-          const expected = {
+          const expectedCounts = {
             facts: 7, signatures: 3, scenes: 8, encounters: 8,
             extras: 6, trivia: 5, seasons: 4, personas: 3, tips: 3, related: 3,
           };
+
           const browser = await chromium.launch({ headless: true });
           const all = [];
           let failed = false;
 
           for (const vp of viewports) {
-            const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height }, deviceScaleFactor: 1 });
+            const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
             const consoleErrors = [];
             const pageErrors = [];
             const requestFailures = [];
             const badResponses = [];
+
             page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
             page.on('pageerror', err => pageErrors.push(String(err)));
-            page.on('requestfailed', req => requestFailures.push({url:req.url(), error:req.failure()?.errorText || ''}));
-            page.on('response', res => { if (res.status() >= 400) badResponses.push({url:res.url(), status:res.status()}); });
+            page.on('requestfailed', req => requestFailures.push({ url:req.url(), error:req.failure()?.errorText || '' }));
+            page.on('response', res => { if (res.status() >= 400) badResponses.push({ url:res.url(), status:res.status() }); });
 
             const response = await page.goto(target, { waitUntil: 'networkidle', timeout: 90000 });
-            await page.waitForSelector('#country-template', { state: 'visible', timeout: 30000 });
-            await page.waitForTimeout(1500);
+            await page.waitForSelector('#app .country-page', { state: 'visible', timeout: 30000 });
+            await page.waitForFunction(() => document.querySelectorAll('#scene-cards .scene-card').length === 8, null, { timeout: 30000 });
 
-            const data = await page.evaluate((expected) => {
+            const height = await page.evaluate(() => document.documentElement.scrollHeight);
+            for (let y = 0; y < height; y += 600) {
+              await page.evaluate(y => window.scrollTo(0, y), y);
+              await page.waitForTimeout(90);
+            }
+            await page.evaluate(() => window.scrollTo(0, 0));
+            await page.waitForTimeout(1000);
+
+            const data = await page.evaluate((expectedCounts) => {
               const byId = id => document.getElementById(id);
               const count = id => byId(id)?.children?.length ?? -1;
+              const bgLoaded = el => {
+                if (!el) return false;
+                const bg = getComputedStyle(el).backgroundImage;
+                return el.classList.contains('has-image') && bg && bg !== 'none';
+              };
               const imgs = [...document.images];
               const failedImages = imgs.filter(i => !i.complete || i.naturalWidth === 0).map(i => i.currentSrc || i.src);
-              const themeChips = [...document.querySelectorAll('#country-theme-list .country-theme-chip')].map(e => e.textContent.trim());
+              const missingAlt = imgs.filter(i => !i.hasAttribute('alt')).map(i => i.src);
+              const roleImgMissingLabel = [...document.querySelectorAll('[role="img"]')]
+                .filter(e => !(e.getAttribute('aria-label') || '').trim())
+                .map(e => e.outerHTML.slice(0,180));
               const h1s = [...document.querySelectorAll('h1')];
               const headings = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].map(h => ({level:+h.tagName.slice(1), text:h.textContent.trim()}));
               const headingJumps = [];
               for (let i=1;i<headings.length;i++) if (headings[i].level > headings[i-1].level + 1) headingJumps.push({from:headings[i-1],to:headings[i]});
-              const missingAlt = imgs.filter(i => !i.hasAttribute('alt')).map(i => i.src);
-              const emptyAltNonDecorative = imgs.filter(i => i.getAttribute('alt') === '' && i.getAttribute('role') !== 'presentation' && !i.hasAttribute('aria-hidden')).map(i => i.src);
               const duplicateIds = [...document.querySelectorAll('[id]')].map(e=>e.id).filter((id,i,a)=>a.indexOf(id)!==i);
-              const badInteractiveNames = [...document.querySelectorAll('a,button,input,select,textarea')]
-                .filter(el => {
-                  const aria = (el.getAttribute('aria-label') || '').trim();
-                  const text = (el.textContent || '').trim();
-                  const title = (el.getAttribute('title') || '').trim();
-                  const value = (el.getAttribute('value') || '').trim();
-                  const alt = el.querySelector('img')?.getAttribute('alt')?.trim() || '';
-                  return !aria && !text && !title && !value && !alt;
-                }).map(el => el.outerHTML.slice(0,160));
-              const hero = document.querySelector('.hero img, #country-template .hero img');
-              const mapImg = document.querySelector('#country-map-art img');
-              const sceneImgs = [...document.querySelectorAll('#scene-cards img')];
-              const header = document.querySelector('header');
-              const heroSection = document.querySelector('.hero, #country-template .hero');
-              const headerBox = header?.getBoundingClientRect();
-              const heroBox = heroSection?.getBoundingClientRect();
-              const headerHeroOverlap = !!(headerBox && heroBox && headerBox.bottom > heroBox.top + 8 && headerBox.top < heroBox.bottom);
+              const badInteractiveNames = [...document.querySelectorAll('a,button,input,select,textarea')].filter(el => {
+                const aria=(el.getAttribute('aria-label')||'').trim();
+                const text=(el.textContent||'').trim();
+                const title=(el.getAttribute('title')||'').trim();
+                const value=(el.getAttribute('value')||'').trim();
+                const imgAlt=el.querySelector('img')?.getAttribute('alt')?.trim()||'';
+                return !aria && !text && !title && !value && !imgAlt;
+              }).map(el => el.outerHTML.slice(0,180));
+
+              const heroArt = document.querySelector('.hero-art');
+              const sceneImages = [...document.querySelectorAll('#scene-cards .scene-image')];
+              const mapImg = document.querySelector('#country-map-art .map-base');
+              const themeChips = [...document.querySelectorAll('#country-theme-list .country-theme-chip')].map(e=>e.textContent.trim());
               const bodyText = document.body.innerText;
-              const links = [...document.querySelectorAll('a[href]')].map(a=>a.href);
+
+              const markerEls = [...document.querySelectorAll('#map-markers .map-marker, #map-markers .map-hero-marker, #map-markers .map-capital-marker')];
+              const markerRects = markerEls.map((el,i) => {
+                const r=el.getBoundingClientRect();
+                return {i, cls:el.className, label:(el.textContent||el.getAttribute('aria-label')||'').trim(), left:r.left, right:r.right, top:r.top, bottom:r.bottom, w:r.width, h:r.height};
+              }).filter(r => r.w > 0 && r.h > 0);
+              const overlaps = [];
+              for (let i=0;i<markerRects.length;i++) for (let j=i+1;j<markerRects.length;j++) {
+                const a=markerRects[i], b=markerRects[j];
+                const overlap = !(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top);
+                if (overlap) overlaps.push({a:a.label||a.cls,b:b.label||b.cls});
+              }
+
+              const sectionIds = [
+                'facts','signature-facts','country-map-art','scene-cards','encounters',
+                'atlas-extras-grid','travel-trivia-grid','seasons','transport','personas','tips','related'
+              ];
+              const missingSections = sectionIds.filter(id => !byId(id));
+
               return {
                 title: document.title,
                 lang: document.documentElement.lang || '',
-                h1Count: h1s.length,
-                h1: h1s[0]?.textContent?.trim() || '',
-                headings,
-                headingJumps,
                 robots: document.querySelector('meta[name="robots"]')?.content || '',
                 canonical: document.querySelector('link[rel="canonical"]')?.href || '',
+                h1Count: h1s.length,
+                h1: h1s[0]?.textContent?.trim() || '',
+                headingJumps,
                 themeChips,
                 counts: {
-                  facts: count('facts'),
-                  signatures: count('signature-facts'),
-                  scenes: count('scene-cards'),
-                  encounters: count('encounters'),
-                  extras: count('atlas-extras-grid'),
-                  trivia: count('travel-trivia-grid'),
-                  seasons: count('seasons'),
-                  personas: count('personas'),
-                  tips: count('tips'),
-                  related: count('related'),
+                  facts: count('facts'), signatures: count('signature-facts'), scenes: count('scene-cards'),
+                  encounters: count('encounters'), extras: count('atlas-extras-grid'), trivia: count('travel-trivia-grid'),
+                  seasons: count('seasons'), personas: count('personas'), tips: count('tips'), related: count('related')
                 },
                 updatedAreaText: bodyText.includes('日本の約1.44倍'),
                 updatedBaguetteText: bodyText.includes('年間約60億本'),
-                staleTgvText: bodyText.includes('最大320 km/h') || bodyText.includes('TGVの営業最高速度'),
-                heroLoaded: !!hero && hero.complete && hero.naturalWidth > 0,
-                heroSize: hero ? {w:hero.naturalWidth,h:hero.naturalHeight} : null,
+                staleTgvText: bodyText.includes('TGVの営業最高速度') || bodyText.includes('最大320 km/h'),
+                heroBackgroundLoaded: bgLoaded(heroArt),
+                sceneBackgroundCount: sceneImages.length,
+                sceneBackgroundLoaded: sceneImages.filter(bgLoaded).length,
                 mapLoaded: !!mapImg && mapImg.complete && mapImg.naturalWidth > 0,
                 mapSize: mapImg ? {w:mapImg.naturalWidth,h:mapImg.naturalHeight} : null,
-                sceneImageCount: sceneImgs.length,
-                sceneImagesLoaded: sceneImgs.filter(i => i.complete && i.naturalWidth > 0).length,
-                totalImages: imgs.length,
-                failedImages,
-                missingAlt,
-                emptyAltNonDecorative,
-                duplicateIds,
-                badInteractiveNames,
+                failedImages, missingAlt, roleImgMissingLabel, duplicateIds, badInteractiveNames,
+                horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
                 scrollWidth: document.documentElement.scrollWidth,
                 innerWidth: window.innerWidth,
-                horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 2,
-                headerHeroOverlap,
-                linksCount: links.length,
+                mapMarkerCount: markerRects.length,
+                mapMarkerOverlaps: overlaps,
+                missingSections,
               };
-            }, expected);
+            }, expectedCounts);
 
             const status = response?.status() || 0;
             const checks = {
@@ -138,13 +156,13 @@ jobs:
               noindex: data.robots === 'noindex,follow',
               canonical: data.canonical === target,
               themes: JSON.stringify(data.themeChips) === JSON.stringify(['街を歩く','時をたどる','食をめぐる']),
-              counts: Object.entries(expected).every(([k,v]) => data.counts[k] === v),
+              counts: Object.entries(expectedCounts).every(([k,v]) => data.counts[k] === v),
               updatedArea: data.updatedAreaText,
               updatedBaguette: data.updatedBaguetteText,
               noStaleTgv: !data.staleTgvText,
-              heroLoaded: data.heroLoaded,
+              heroLoaded: data.heroBackgroundLoaded,
+              scenesLoaded: data.sceneBackgroundCount === 8 && data.sceneBackgroundLoaded === 8,
               mapLoaded: data.mapLoaded,
-              scenesLoaded: data.sceneImageCount === 8 && data.sceneImagesLoaded === 8,
               noFailedImages: data.failedImages.length === 0,
               noHorizontalOverflow: !data.horizontalOverflow,
               noConsoleErrors: consoleErrors.length === 0 && pageErrors.length === 0,
@@ -153,19 +171,24 @@ jobs:
               oneH1: data.h1Count === 1,
               noHeadingJumps: data.headingJumps.length === 0,
               noMissingAlt: data.missingAlt.length === 0,
+              roleImagesNamed: data.roleImgMissingLabel.length === 0,
               noDuplicateIds: data.duplicateIds.length === 0,
               interactiveNames: data.badInteractiveNames.length === 0,
-              langSet: !!data.lang,
+              langSet: data.lang === 'ja',
+              noMissingSections: data.missingSections.length === 0,
+              mapMarkersPresent: data.mapMarkerCount >= 9,
+              noMapMarkerOverlap: data.mapMarkerOverlaps.length === 0,
               franceTitle: /フランス/.test(data.title) && /FRANCE/.test(data.title),
             };
             if (Object.values(checks).some(v => !v)) failed = true;
 
             await page.screenshot({ path: `qa-france-${vp.name}.png`, fullPage: true });
-            const result = { viewport: vp, status, checks, data, consoleErrors, pageErrors, requestFailures, badResponses };
+            const result = { viewport:vp, status, checks, data, consoleErrors, pageErrors, requestFailures, badResponses };
             all.push(result);
-            console.log('FRANCE_QA ' + JSON.stringify(result));
+            console.log('FRANCE_RESULT=' + JSON.stringify(result));
             await page.close();
           }
+
           await browser.close();
           fs.writeFileSync('qa-france-results.json', JSON.stringify(all, null, 2));
           if (failed) process.exit(1);
