@@ -1,0 +1,37 @@
+{
+  "slug": "germany",
+  "source": "assets/images/germany/map-atlas-v1.svg",
+  "projection": "local-equirectangular-fit-v1",
+  "bounds": {
+    "west": 5.4,
+    "east": 15.5,
+    "south": 47,
+    "north": 55.4
+  },
+  "geometrySource": "CountryGeoJSONCollection DEU.geojson; WGS84; Germany national boundary",
+  "style": "journey-atlas-map-v2-proportional",
+  "markerOffsets": {
+    "capital": {
+      "x": -2.5,
+      "y": 0
+    },
+    "hero": {
+      "x": 0,
+      "y": 0
+    },
+    "scenes": {
+      "berlin-museum-island": {
+        "x": 2.5,
+        "y": 0
+      },
+      "hamburg-speicherstadt": {
+        "x": -3.5,
+        "y": -1
+      },
+      "luneburg-heath-wilseder-berg": {
+        "x": 3.5,
+        "y": 1
+      }
+    }
+  }
+}
