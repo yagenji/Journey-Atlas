@@ -47,12 +47,18 @@ jobs:
           test -f assets/images/top/theme-approved-sprite.webp
           test -f assets/images/top/explore-entry-sprite.webp
           test -f countries/iceland/index.html
+          test -f faq/index.html
+          test -f privacy/index.html
           test -f sitemap.xml
           test -f robots.txt
           grep -q 'data-country="iceland"' countries/iceland/index.html
           grep -q 'assets/images/iceland/v3/hero.webp' data/countries/iceland.json
           grep -q 'countries/iceland/' data/atlas-destinations.json
           grep -q 'hero-world-collage.svg' assets/js/top.js
+          grep -q 'href="faq/"' index.html
+          grep -q 'href="privacy/"' index.html
+          grep -q 'https://atlas.yagenji.com/faq/' sitemap.xml
+          grep -q 'https://atlas.yagenji.com/privacy/' sitemap.xml
           if grep -q '\.b64' assets/js/top.js; then echo 'top.js still contains runtime base64 media'; exit 1; fi
 
       - name: Setup Pages
@@ -88,6 +94,8 @@ jobs:
           test -f dist/_redirects
           test -f dist/sitemap.xml
           test -f dist/robots.txt
+          test -f dist/faq/index.html
+          test -f dist/privacy/index.html
           test -f dist/_headers
           test -f dist/countries/iceland/index.html
           test -f dist/data/countries/iceland.json
@@ -98,5 +106,7 @@ jobs:
           test ! -d dist/scripts
           test ! -d dist/.github
           grep -q 'https://atlas.yagenji.com/' dist/sitemap.xml
+          grep -q 'https://atlas.yagenji.com/faq/' dist/sitemap.xml
+          grep -q 'https://atlas.yagenji.com/privacy/' dist/sitemap.xml
           grep -q 'https://atlas.yagenji.com/countries/iceland/' dist/countries/iceland/index.html
           if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then echo 'encoded source files leaked into dist'; exit 1; fi
