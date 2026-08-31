@@ -189,6 +189,7 @@ Promise.all([coreRegistryPromise,editorialRegistryPromise])
     destinations=sortForDisplay(items);
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);renderGrid(destinations);
+    if(activeTheme)renderThemeResults();
   })
   .catch(()=>{if(rail) rail.innerHTML='<p class="country-load-error">国一覧を読み込めませんでした。</p>';});
 
@@ -493,7 +494,6 @@ themeResultsClear?.addEventListener('click',clearThemeResults);
 wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
-document.querySelector('[data-theme-open]')?.addEventListener('click',()=>{document.querySelector('.theme-icons button')?.focus();});
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
 document.addEventListener('click',(event)=>{
   const button=event.target.closest('[data-letter]');if(!button)return;
