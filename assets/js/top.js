@@ -20,6 +20,7 @@ const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
 const lensRail = document.querySelector('.lens-rail');
 const lensPrevButton = document.querySelector('[data-lens-prev]');
 const lensNextButton = document.querySelector('[data-lens-next]');
+const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 const ATLAS_TOTAL = 201;
@@ -193,25 +194,71 @@ Promise.all([
 function parseLensFeed(xmlText){
   const xml=new DOMParser().parseFromString(xmlText,'application/xml');
   if(xml.querySelector('parsererror')) throw new Error('Invalid JOURNEY LENS RSS XML');
-  const grouped=new Map();
-  [...xml.querySelectorAll('item')].forEach((item)=>{
+  return [...xml.querySelectorAll('item')].flatMap((item)=>{
     const link=(item.querySelector('link')?.textContent||'').trim();
     const match=link.match(LENS_LINK_PATTERN);
     if(!match){
       console.warn('[JOURNEY ATLAS] LENS article URL does not match slug+sequence convention:',link);
-      return;
+      return [];
     }
     const slug=match[1];
     const sequence=Number(match[2]);
-    const existing=grouped.get(slug);
-    if(existing&&existing.sequence<=sequence)return;
     const title=(item.querySelector('title')?.textContent||'').trim();
     const titleParts=title.split('｜');
     const subtitle=titleParts.length>1?titleParts.slice(1).join('｜').trim():'';
     const image=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
-    grouped.set(slug,{slug,sequence,link,subtitle,image});
+    return [{slug,sequence,link,subtitle,image}];
   });
-  return [...grouped.values()];
+}
+
+function orderLensStories(entries,registryItems){
+  const countryOrder=new Map(registryItems.map((item)=>[item.slug,item.order??Number.MAX_SAFE_INTEGER]));
+  const groups=new Map();
+
+  entries.forEach((entry)=>{
+    if(!groups.has(entry.slug))groups.set(entry.slug,[]);
+    groups.get(entry.slug).push(entry);
+  });
+  groups.forEach((items)=>items.sort((a,b)=>a.sequence-b.sequence));
+
+  const orderedSlugs=[...groups.keys()].sort((a,b)=>{
+    const aOrder=countryOrder.get(a)??Number.MAX_SAFE_INTEGER;
+    const bOrder=countryOrder.get(b)??Number.MAX_SAFE_INTEGER;
+    if(aOrder!==bOrder)return aOrder-bOrder;
+    return a.localeCompare(b,'en');
+  });
+
+  const output=[];
+  orderedSlugs.forEach((slug)=>{
+    const first=groups.get(slug)?.shift();
+    if(first)output.push(first);
+  });
+
+  let lastSlug=output.at(-1)?.slug||'';
+  while(true){
+    const candidates=orderedSlugs
+      .filter((slug)=>(groups.get(slug)?.length||0)>0)
+      .sort((a,b)=>{
+        const countDiff=(groups.get(b)?.length||0)-(groups.get(a)?.length||0);
+        if(countDiff!==0)return countDiff;
+        const aOrder=countryOrder.get(a)??Number.MAX_SAFE_INTEGER;
+        const bOrder=countryOrder.get(b)??Number.MAX_SAFE_INTEGER;
+        if(aOrder!==bOrder)return aOrder-bOrder;
+        return a.localeCompare(b,'en');
+      });
+    if(!candidates.length)break;
+
+    let slug=candidates.find((candidate)=>candidate!==lastSlug);
+    if(!slug)slug=candidates[0];
+
+    const next=groups.get(slug)?.shift();
+    if(next){
+      output.push(next);
+      lastSlug=slug;
+    }
+  }
+
+  return output;
 }
 
 function createLensCard(entry,country){
@@ -283,19 +330,20 @@ window.addEventListener('resize',()=>window.requestAnimationFrame(updateLensCont
 function renderLensRail(registryItems,rssText){
   if(!lensRail)return;
   const registryBySlug=new Map(registryItems.map((item)=>[item.slug,item]));
-  const entries=parseLensFeed(rssText).map((entry)=>({
+  const parsedEntries=parseLensFeed(rssText);
+  const entries=orderLensStories(parsedEntries,registryItems).map((entry)=>({
     ...entry,
     country:registryBySlug.get(entry.slug)||null
   }));
+
   entries.forEach((entry)=>{
     if(!entry.country)console.warn('[JOURNEY ATLAS] LENS slug not found in atlas-destinations.json:',entry.slug);
   });
-  entries.sort((a,b)=>{
-    const aOrder=a.country?.order??Number.MAX_SAFE_INTEGER;
-    const bOrder=b.country?.order??Number.MAX_SAFE_INTEGER;
-    if(aOrder!==bOrder)return aOrder-bOrder;
-    return a.slug.localeCompare(b.slug,'en');
-  });
+
+  if(lensCount){
+    const countryCount=new Set(parsedEntries.map((entry)=>entry.slug)).size;
+    lensCount.textContent=`${parsedEntries.length} STORIES / ${countryCount} COUNTRIES`;
+  }
 
   const track=document.createElement('div');
   track.className='lens-rail__track';
