@@ -22,8 +22,13 @@ body{
 }
 a{color:inherit}
 .info-header{
+  position:sticky;
+  top:0;
+  z-index:50;
   border-bottom:1px solid var(--info-line);
-  background:rgba(255,253,249,.96);
+  background:rgba(255,253,249,.94);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
 .info-header__inner{
   width:min(100% - 56px,1240px);
