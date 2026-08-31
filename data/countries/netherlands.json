@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 2,
+  "slug": "netherlands",
+  "nameEn": "NETHERLANDS",
+  "nameJa": "オランダ",
+  "region": "WESTERN EUROPE / 52°N",
+  "seo": {
+    "description": "風車とポルダー、アムステルダムの運河、ロッテルダム、北海の砂丘、ヒース、花畑、南リンブルフの丘。オランダの8つの景色と地図から、水と暮らす国の輪郭をたどる。"
+  },
+  "capital": {
+    "nameEn": "Amsterdam",
+    "nameJa": "アムステルダム",
+    "coordinates": {
+      "latitude": 52.3676,
+      "longitude": 4.9041
+    },
+    "labelPosition": "above",
+    "mapOffset": {
+      "x": 2.8,
+      "y": -2.5
+    }
+  },
+  "hero": {
+    "lead": "風車と運河、堤防、橋、自転車。海と川の水を制御しながら、歴史都市と農地、砂丘、丘陵を近い距離に重ねてきた国。",
+    "image": "assets/images/netherlands/approved/hero-kinderdijk.png",
+    "location": "Kinderdijk-Elshout / Zuid-Holland",
+    "coordinates": {
+      "latitude": 51.8825,
+      "longitude": 4.6333
+    },
+    "mapOffset": {
+      "x": 3,
+      "y": 2
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 53.75,
+      "south": 50.65,
+      "west": 3.15,
+      "east": 7.35
+    },
+    "svg": "assets/images/netherlands/map-atlas-v1.svg",
+    "route": null,
+    "source": "Country geometry: Natural Earth 1:10m admin boundaries; public domain; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "amsterdam-prinsengracht",
+      "name": "アムステルダム / プリンセン運河",
+      "nameLocal": "Amsterdam / Prinsengracht",
+      "mapLabel": "Amsterdam",
+      "description": "17世紀に整えられた運河帯の一部。細長い運河住宅、橋、自転車、水面が密接に重なり、水路が都市の骨格になっていることが見える。",
+      "coordinates": {
+        "latitude": 52.3745,
+        "longitude": 4.8836
+      },
+      "image": "assets/images/netherlands/approved/amsterdam-prinsengracht-westerkerk.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": 2.5
+      }
+    },
+    {
+      "id": "rotterdam-erasmusbrug",
+      "name": "ロッテルダム / エラスムス橋",
+      "nameLocal": "Rotterdam / Erasmusbrug",
+      "mapLabel": "Rotterdam",
+      "description": "ニューウェ・マース川をまたぐ白い斜張橋と、ウィルヘルミナピアの高層建築群。歴史都市とは異なる、再建と現代建築のオランダを示す。",
+      "coordinates": {
+        "latitude": 51.909,
+        "longitude": 4.487
+      },
+      "image": "assets/images/netherlands/approved/rotterdam-erasmusbrug.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -2
+      }
+    },
+    {
+      "id": "oosterscheldekering",
+      "name": "東スヘルデ防潮堤",
+      "nameLocal": "Oosterscheldekering / Eastern Scheldt Barrier",
+      "mapLabel": "Oosterscheldekering",
+      "description": "ゼーラントの島々を結ぶ全長9kmの可動式防潮施設。通常は海水と潮汐を通し、高水位の危険時だけゲートを閉じる設計に、水管理と生態系保全の両立が表れる。",
+      "coordinates": {
+        "latitude": 51.644,
+        "longitude": 3.708
+      },
+      "image": "assets/images/netherlands/approved/oosterscheldekering.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "texel-eierland",
+      "name": "テセル島 / エイエルラント灯台",
+      "nameLocal": "Texel / Eierland Lighthouse",
+      "mapLabel": "Texel",
+      "description": "ワッデン諸島の西端に近いテセル島北部。赤い灯台の周囲に砂丘と広い海浜が続き、北海とワッデン海にはさまれた島の地形が見える。",
+      "coordinates": {
+        "latitude": 53.1817,
+        "longitude": 4.8558
+      },
+      "image": "assets/images/netherlands/approved/texel-eierland-lighthouse.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "hoge-veluwe",
+      "name": "デ・ホーヘ・フェルウェ国立公園",
+      "nameLocal": "De Hoge Veluwe National Park",
+      "mapLabel": "De Hoge Veluwe",
+      "description": "森林、ヒース、草原、砂地が近い距離で切り替わる内陸の自然景観。晩夏には低いヒースが紫に色づき、海岸やポルダーとは違う地表が広がる。",
+      "coordinates": {
+        "latitude": 52.095,
+        "longitude": 5.83
+      },
+      "image": "assets/images/netherlands/approved/hoge-veluwe-heath.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "lisse-tulip-fields",
+      "name": "リッセ / 球根花畑",
+      "nameLocal": "Lisse / Bulb Fields",
+      "mapLabel": "Lisse",
+      "description": "南ホラント州の砂質土壌地帯に、春だけ直線的な球根花畑が現れる。色の帯と排水路、平坦な農地は、園芸産業がつくる季節景観でもある。",
+      "coordinates": {
+        "latitude": 52.258,
+        "longitude": 4.54
+      },
+      "image": "assets/images/netherlands/approved/lisse-tulip-fields.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -5,
+        "y": 0
+      }
+    },
+    {
+      "id": "giethoorn",
+      "name": "ヒートホールン / ドルプス運河",
+      "nameLocal": "Giethoorn / Dorpsgracht",
+      "mapLabel": "Giethoorn",
+      "description": "茅葺きの家々の間を細い運河が通り、小さな木橋が両岸を結ぶ水辺の村。かつて人や農産物の移動を担った水路が、今も集落の中心に残る。",
+      "coordinates": {
+        "latitude": 52.74,
+        "longitude": 6.079
+      },
+      "image": "assets/images/netherlands/approved/giethoorn-village-canal.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "vijlen",
+      "name": "ファイレン / 南リンブルフ",
+      "nameLocal": "Vijlen / South Limburg",
+      "mapLabel": "Vijlen",
+      "description": "南リンブルフの丘陵に集落と農地が重なり、教会塔が谷から見える。水平な低地の印象が強いオランダの中で、南端には明確な起伏が続く。",
+      "coordinates": {
+        "latitude": 50.788,
+        "longitude": 5.965
+      },
+      "image": "assets/images/netherlands/approved/vijlen-south-limburg.png",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "水路と切妻屋根の運河都市",
+      "icon": "city"
+    },
+    {
+      "title": "川沿いの現代建築",
+      "icon": "landmark"
+    },
+    {
+      "title": "海を閉じ切らない防潮施設",
+      "icon": "waterfall"
+    },
+    {
+      "title": "砂丘と北海の島",
+      "icon": "sea"
+    },
+    {
+      "title": "ヒースと森林",
+      "icon": "landscape"
+    },
+    {
+      "title": "春だけ現れる球根花畑",
+      "icon": "sun"
+    },
+    {
+      "title": "運河が道になる水辺の村",
+      "icon": "home"
+    },
+    {
+      "title": "南端の丘陵と農地",
+      "icon": "hike"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "運河は景観ではなく、都市の骨格",
+      "text": "アムステルダムでは、水路、橋、細長い街区が街歩きの方向を決める。運河沿いを歩くと、住宅、倉庫、交通、防水の仕組みが同じ都市空間に重なっている。",
+      "points": [
+        "中心部の運河帯は17世紀の都市拡張と結びつく",
+        "水辺の建物と橋を追うと街区の構造が見えやすい"
+      ]
+    },
+    {
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "自転車が日常の距離感を変える",
+      "text": "駅、学校、商店、住宅地が自転車道で細かくつながる。観光用のアクティビティというより、都市と郊外をつなぐ普段の移動手段として街の設計に組み込まれている。",
+      "points": [
+        "全国に約37,000kmの案内付きレクリエーション自転車ルートがある",
+        "鉄道駅を起点に自転車へ乗り換える旅程も組みやすい"
+      ]
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "土地は「あるもの」ではなく、管理して維持するもの",
+      "text": "干拓地、堤防、排水路、水門、風車、ポンプ場が長い時間をかけて国土を支えてきた。Kinderdijkでは、中世から続く排水の仕組みを一つの景観として見ることができる。",
+      "points": [
+        "Kinderdijkには19基の排水風車が残る",
+        "現在の水管理にも地域ごとのwaterschap（水管理委員会）が関わる"
+      ]
+    },
+    {
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "北海とワッデン海の間を島で読む",
+      "text": "テセル島から北へ続くワッデン諸島は、砂丘、干潟、潮路が連続する沿岸地形。潮が動くことで海と陸の境界そのものが変化する。",
+      "points": [
+        "ワッデン海は世界最大の連続した潮間帯砂泥干潟システム",
+        "干潟、塩性湿地、砂州、砂丘が一つの沿岸系をつくる"
+      ]
+    },
+    {
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "市場と街角で乳製品と小さな軽食に出会う",
+      "text": "チーズ、ニシン、フライドポテト、ストロープワッフルなど、街歩きの途中で食べられるものが多い。大きなコース料理より、市場や専門店で土地の日常に触れやすい。",
+      "points": [
+        "ゴーダやアルクマールなどチーズ文化と結びつく町がある",
+        "ストロープワッフルは薄いワッフル生地にシロップをはさむ菓子"
+      ]
+    },
+    {
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "鉄道と自転車を組み合わせると国の密度が変わる",
+      "text": "主要都市間は鉄道で移動しやすく、駅から自転車を足すと郊外の堤防、農地、砂丘まで一続きの旅になる。島へ渡る区間ではフェリーが地理を実感させる。",
+      "points": [
+        "Amsterdam・Rotterdam・Utrechtなど主要都市間は鉄道でつながる",
+        "Wadden諸島ではフェリーと自転車の組み合わせが使いやすい"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "categoryEn": "CAPITAL",
+      "categoryJa": "首都",
+      "title": "首都と政府所在地は別の街",
+      "text": "憲法上の首都はアムステルダムだが、議会と中央政府はデン・ハーグに置かれている。二つの都市が異なる役割を担う。",
+      "icon": "landmark",
+      "sourceKey": "euProfile"
+    },
+    {
+      "categoryEn": "WATER",
+      "categoryJa": "水管理",
+      "title": "国土は21の水管理区域にも分かれる",
+      "text": "州や自治体とは別に、水管理を担うwaterschapがある。EUの国別情報では、オランダは21の水管理区域に分かれている。",
+      "icon": "waterfall",
+      "sourceKey": "euProfile"
+    },
+    {
+      "categoryEn": "CYCLING",
+      "categoryJa": "自転車",
+      "title": "案内付き自転車ルートだけで約37,000km",
+      "text": "都市の自転車道だけでなく、番号付きのルート網が全国に広がる。景色を点で見るより、自転車で都市と農村の間をつなぐと国のスケールが分かりやすい。",
+      "icon": "road",
+      "sourceKey": "cycling"
+    },
+    {
+      "categoryEn": "DELTA",
+      "categoryJa": "防潮",
+      "title": "東スヘルデ防潮堤は海を常時閉じない",
+      "text": "全長9kmのうち約3kmが可動ゲート部分。通常は潮を通し、危険な高水位のときだけ閉鎖することで、防災と海の環境を両立させている。",
+      "icon": "sea",
+      "sourceKey": "oosterschelde"
+    },
+    {
+      "categoryEn": "RELIGION",
+      "categoryJa": "社会",
+      "title": "無宗教と答える人が多数派",
+      "text": "CBSの2025年調査では、15歳以上の58%が特定の宗教・宗派に属さないと回答している。宗教建築が多い歴史都市と、現在の社会構成には差がある。",
+      "icon": "culture",
+      "sourceKey": "religion"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7d9b63",
+      "text": "球根花の季節。リッセ周辺の畑は年ごと・畑ごとに開花時期がずれるため、春の旅は花だけに固定せず、運河都市や海岸と組み合わせる。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#8aa07a",
+      "text": "日が長く、テセル島や海岸、自転車移動を旅程に入れやすい。夏休み期は人気都市や島の宿が混みやすい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#a98458",
+      "text": "晩夏から初秋はフェルウェのヒースと森林の色が変わる時期。都市歩きと内陸自然を同じ旅で比べやすい。"
+    },
+    {
+      "months": "11〜2月",
+      "color": "#718b99",
+      "text": "日照時間が短く、北海からの風や雨で体感が変わりやすい。美術館、建築、都市のカフェを軸にしつつ、晴れ間を見て水辺を歩く旅になる。"
+    }
+  ],
+  "transport": {
+    "title": "RAIL / BICYCLE / TRAM / FERRY",
+    "text": "Amsterdam、Rotterdam、Utrechtなど主要都市は鉄道で結びやすい。都市内は徒歩・トラム・自転車、郊外は自転車や地域バス、Texelなど島へはフェリーを組み合わせると景観の幅を追いやすい。"
+  },
+  "personas": [
+    {
+      "title": "都市の形を歩いて読みたい人",
+      "text": "アムステルダムの運河帯とロッテルダムの現代建築を比べ、同じ低地国家の中で都市がどう違うか見たい人。"
+    },
+    {
+      "title": "水と人間の関係に興味がある人",
+      "text": "Kinderdijk、Oosterscheldekering、堤防、運河、ポルダーをたどり、景観の背後にある水管理を知りたい人。"
+    },
+    {
+      "title": "鉄道と自転車で国を横断したい人",
+      "text": "大都市だけでなく、花畑、ヒース、島、農村へ公共交通と自転車を組み合わせて動きたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "アムステルダム（政府・議会はデン・ハーグ）"
+    },
+    {
+      "label": "人口",
+      "value": "約1,815万人"
+    },
+    {
+      "label": "面積",
+      "value": "約41,543 km²（日本の約11%）"
+    },
+    {
+      "label": "言語",
+      "value": "オランダ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "無宗教が多数／キリスト教・イスラム教など"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "label": "国土に占める水域",
+      "value": "約19%",
+      "note": "CBSの2022年土地利用統計では、総面積約415万haのうち約79万haが水域。国の輪郭そのものに海、湖、川、干潟が大きく入り込む。",
+      "icon": "sea"
+    },
+    {
+      "label": "案内付き自転車ルート",
+      "value": "約37,000 km",
+      "note": "NBTCのHolland.comが案内する全国のレクリエーション自転車ルート網。都市だけでなく、砂丘、農地、村をつなぐ旅のインフラになっている。",
+      "icon": "road"
+    },
+    {
+      "label": "Kinderdijkの排水風車",
+      "value": "19基",
+      "note": "UNESCO登録地に残る排水風車。堤防、運河、ポンプ場などとともに、長期にわたるオランダの水管理システムを構成する。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "title": "自転車レーンは歩道ではない",
+      "text": "都市では自転車の流れが速く、歩行者が無意識にレーンへ入ると危険。交差点では自動車だけでなく、自転車が来る方向も確認する。"
+    },
+    {
+      "title": "海岸と島は風を前提にする",
+      "text": "TexelやZeelandでは風で体感温度や自転車移動の負荷が変わる。距離だけでなく風向きと天気を見て移動時間を考える。"
+    },
+    {
+      "title": "花畑は農地として扱う",
+      "text": "球根畑は観賞用公園ではなく生産地。道路や指定された場所から眺め、畑へ立ち入らない。開花時期は毎年同じではない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "belgium",
+      "nameEn": "BELGIUM",
+      "nameJa": "ベルギー",
+      "flag": "🇧🇪",
+      "reason": "低地の歴史都市、運河、フランドルの街並みを南へつなげて比べたいなら。"
+    },
+    {
+      "slug": "germany",
+      "nameEn": "GERMANY",
+      "nameJa": "ドイツ",
+      "flag": "🇩🇪",
+      "reason": "ライン川流域と北海側の都市・農地を東へ広げ、国境を越えた低地の連続を見たいなら。"
+    },
+    {
+      "slug": "denmark",
+      "nameEn": "DENMARK",
+      "nameJa": "デンマーク",
+      "flag": "🇩🇰",
+      "reason": "北海・ワッデン海、自転車文化、デザイン都市をさらに北で比較したいなら。"
+    }
+  ],
+  "updatedAt": "2026-08-31",
+  "sourcesVerifiedAt": "2026-08-31",
+  "sourceDates": {
+    "population": "2026-06",
+    "area": "2022",
+    "religion": "2025"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m Admin 0 Countries (public domain), WGS84; illustrated treatment: JOURNEY ATLAS",
+    "population": "CBS, Population dynamics; month and year (updated 30 July 2026): https://www.cbs.nl/en-gb/figures/detail/83474ENG",
+    "area": "CBS, Bodemgebruik, wijk- en buurtcijfers 2022 (updated 13 March 2026): https://www.cbs.nl/nl-nl/cijfers/detail/86211NED",
+    "language": "European Union, Netherlands country profile: https://european-union.europa.eu/principles-countries-history/eu-countries/netherlands_en",
+    "religion": "CBS, Religieuze betrokkenheid; persoonskenmerken (updated 13 March 2026): https://www.cbs.nl/nl-nl/cijfers/detail/82904NED",
+    "currency": "European Union, Netherlands country profile: https://european-union.europa.eu/principles-countries-history/eu-countries/netherlands_en",
+    "euProfile": "European Union, Netherlands country profile: https://european-union.europa.eu/principles-countries-history/eu-countries/netherlands_en",
+    "kinderdijk": "UNESCO World Heritage Centre, Mill Network at Kinderdijk-Elshout: https://whc.unesco.org/en/list/818",
+    "oosterschelde": "Rijkswaterstaat, Eastern Scheldt Barrier: https://www.rijkswaterstaat.nl/en/projects/iconic-structures/eastern-scheldt-barrier",
+    "wadden": "UNESCO World Heritage Centre, Wadden Sea: https://whc.unesco.org/en/list/1314/",
+    "hogeVeluwe": "De Hoge Veluwe National Park, Nature: https://hogeveluwe.nl/en/nature-and-culture/nature",
+    "giethoorn": "Visit Weerribben Wieden, Giethoorn: https://en.visitweerribbenwieden.com/weerribben-wieden-national-park/giethoorn/",
+    "cycling": "Holland.com / NBTC, cycling in the Netherlands: https://www.holland.com/global/tourism/get-inspired/current/the-netherlands-bicycle-country/7-remarkable-cycling-destinations-in-the-netherlands",
+    "lisse": "Holland.com / NBTC, The Flower Bulb Region: https://www.holland.com/global/tourism/get-inspired/nl-in-7-stories/blooming-netherlands/the-flower-bulb-region",
+    "vijlen": "Visit Zuid-Limburg, Bergdorpje Vijlen: https://www.visitzuidlimburg.nl/omgeving/plaatsen/detail/vijlen/132/",
+    "amsterdam": "I amsterdam, Amsterdam canal ring / 17th-century city expansion: https://www.iamsterdam.com/en/whats-on/calendar/museums-and-galleries/museums/museum-of-the-canals",
+    "rotterdam": "Rotterdam.info, Erasmusbrug: https://www.rotterdam.info/nl/visit/finder-locations/erasmusbrug"
+  }
+}
