@@ -710,3 +710,67 @@
   font:600 9px/1.3 "Hanken Grotesk",sans-serif;
   letter-spacing:.16em;
 }
+
+
+/* Theme selection is a persistent search filter. */
+.theme-icons button.is-active,
+.theme-icons button[aria-pressed="true"]{
+  transform:translateY(-2px);
+  border-color:rgba(23,59,93,.52);
+  background:#fff;
+  box-shadow:0 7px 18px rgba(33,67,86,.10);
+}
+.theme-icons button.is-active b,
+.theme-icons button[aria-pressed="true"] b{
+  color:#173b5d;
+}
+.country-theme-filter{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  padding:6px 8px 6px 10px;
+  border:1px solid rgba(23,59,93,.16);
+  border-radius:999px;
+  background:#fff;
+}
+.country-theme-filter[hidden]{display:none!important}
+.country-theme-filter>span{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.country-theme-filter b{
+  color:#173b5d;
+  font-size:10.5px;
+  line-height:1.3;
+}
+.country-theme-filter small{
+  color:#9a856d;
+  font:600 8px/1.3 "Hanken Grotesk",sans-serif;
+  letter-spacing:.10em;
+}
+.country-theme-filter button{
+  padding:3px 7px;
+  border:0;
+  border-radius:999px;
+  background:#f1eee7;
+  color:#667787;
+  font-size:9px;
+  line-height:1.4;
+  cursor:pointer;
+}
+.country-theme-filter button:hover{
+  background:#e8e3da;
+  color:#173b5d;
+}
+.country-theme-filter button:focus-visible{
+  outline:2px solid #173b5d;
+  outline-offset:2px;
+}
+@media(max-width:760px){
+  .country-theme-filter{
+    max-width:100%;
+    flex-wrap:wrap;
+  }
+}
