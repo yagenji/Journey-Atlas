@@ -1,0 +1,486 @@
+{
+  "schemaVersion": 2,
+  "slug": "france",
+  "nameEn": "FRANCE",
+  "nameJa": "フランス",
+  "region": "WESTERN EUROPE / 46°N",
+  "seo": {
+    "description": "モン・サン＝ミシェル、パリ、アルプス、プロヴァンス、ロワール、アルザス、大西洋の砂丘、コルシカ。フランスの8つの景色と地図から、地域ごとに異なる地形・建築・暮らしをたどる。"
+  },
+  "capital": {
+    "nameEn": "Paris",
+    "nameJa": "パリ",
+    "coordinates": {
+      "latitude": 48.8566,
+      "longitude": 2.3522
+    },
+    "labelPosition": "below",
+    "mapOffset": {
+      "x": -1,
+      "y": 3
+    }
+  },
+  "hero": {
+    "lead": "潮の満ち引きで陸と海の境界が変わるモン・サン＝ミシェルから、パリ、アルプス、地中海、葡萄畑、砂丘、コルシカへ。地方ごとに風景の尺度が切り替わる国。",
+    "image": "assets/images/france/approved/hero-mont-saint-michel.png",
+    "location": "Mont-Saint-Michel / モン・サン＝ミシェル（Normandy）",
+    "coordinates": {
+      "latitude": 48.6361,
+      "longitude": -1.5115
+    },
+    "mapOffset": {
+      "x": -1,
+      "y": -1
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 51.4,
+      "south": 41.2,
+      "west": -5.5,
+      "east": 10
+    },
+    "svg": "assets/images/france/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin 0 Countries via CountryGeoJSONCollection; WGS84; metropolitan France and Corsica; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "paris-notre-dame",
+      "name": "ノートルダム大聖堂 / セーヌ川",
+      "nameBreaks": [
+        10
+      ],
+      "nameLocal": "Notre-Dame de Paris / Seine",
+      "mapLabel": "Paris",
+      "description": "セーヌ川の中洲、シテ島に建つゴシック大聖堂。川沿いから見ると後陣を支える飛梁と尖塔が重なり、パリの都市景観に中世建築が残る位置関係が分かる。",
+      "coordinates": {
+        "latitude": 48.853,
+        "longitude": 2.3499
+      },
+      "image": "assets/images/france/approved/paris-notre-dame-seine.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -2
+      }
+    },
+    {
+      "id": "lac-blanc",
+      "name": "ラック・ブラン / モンブラン山群",
+      "nameBreaks": [
+        7
+      ],
+      "nameLocal": "Lac Blanc / Massif du Mont-Blanc",
+      "mapLabel": "Lac Blanc",
+      "description": "エギーユ・ルージュ自然保護区の高山湖。湖の向こうにモンブラン山群と氷河を正面から望み、シャモニー谷を挟んで二つの山塊が向き合う地形を見渡せる。",
+      "coordinates": {
+        "latitude": 45.9818,
+        "longitude": 6.8917
+      },
+      "image": "assets/images/france/approved/lac-blanc-mont-blanc.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": 0
+      }
+    },
+    {
+      "id": "senanque-abbey",
+      "name": "セナンク修道院",
+      "nameLocal": "Abbaye Notre-Dame de Sénanque",
+      "mapLabel": "Sénanque",
+      "description": "ゴルド近郊の細い谷に建つ12世紀創建のシトー会修道院。簡素な石造ロマネスク建築の前にラヴァンダン畑が並び、宗教建築とプロヴァンスの農地が一つの景観になる。",
+      "coordinates": {
+        "latitude": 43.931533,
+        "longitude": 5.189041
+      },
+      "image": "assets/images/france/approved/senanque-abbey-lavender.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": 1
+      }
+    },
+    {
+      "id": "calanque-en-vau",
+      "name": "カランク・ダン＝ヴォー",
+      "nameLocal": "Calanque d’En-Vau",
+      "mapLabel": "En-Vau",
+      "description": "マルセイユとカシの間に続く石灰岩海岸の入り江。白い岩壁が細い海面を囲み、地中海の青緑色の水と松が急な斜面の中で接する。",
+      "coordinates": {
+        "latitude": 43.204103,
+        "longitude": 5.494069
+      },
+      "image": "assets/images/france/approved/calanque-en-vau.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "chateau-chenonceau",
+      "name": "シュノンソー城",
+      "nameLocal": "Château de Chenonceau",
+      "mapLabel": "Chenonceau",
+      "description": "ロワール地方、シェール川をまたぐ城館。石造の橋脚とアーチの上に長いギャラリーが延び、ルネサンス期の建築が川そのものを取り込んだ景観をつくる。",
+      "coordinates": {
+        "latitude": 47.3249,
+        "longitude": 1.07029
+      },
+      "image": "assets/images/france/approved/chateau-chenonceau.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 1
+      }
+    },
+    {
+      "id": "riquewihr",
+      "name": "リクヴィール / アルザス葡萄畑",
+      "nameBreaks": [
+        6
+      ],
+      "nameLocal": "Riquewihr / Alsace vineyards",
+      "mapLabel": "Riquewihr",
+      "description": "ヴォージュ山地の麓、葡萄畑に囲まれたアルザスの町。城壁内の木組みの家々と、そのすぐ外から始まる葡萄畑が、ワイン産地と集落の距離の近さを見せる。",
+      "coordinates": {
+        "latitude": 48.1661,
+        "longitude": 7.297
+      },
+      "image": "assets/images/france/approved/riquewihr-vineyards.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": -1
+      }
+    },
+    {
+      "id": "dune-du-pilat",
+      "name": "ピラ砂丘",
+      "nameLocal": "Dune du Pilat",
+      "mapLabel": "Dune du Pilat",
+      "description": "アルカション湾の入口に連なる巨大な海岸砂丘。稜線に立つと、砂、ランド地方の松林、大西洋、バン・ダルガンの砂州が異なる方向に広がる。",
+      "coordinates": {
+        "latitude": 44.5897,
+        "longitude": -1.213
+      },
+      "image": "assets/images/france/approved/dune-du-pilat.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "aiguilles-de-bavella",
+      "name": "バヴェラ針峰群",
+      "nameLocal": "Aiguilles de Bavella",
+      "mapLabel": "Bavella",
+      "description": "コルシカ南部に連なる花崗岩の針峰群。鋭い岩塔と谷、風に形を変えたコルシカ松が重なり、本土とは異なる地中海の山岳景観が現れる。",
+      "coordinates": {
+        "latitude": 41.7954,
+        "longitude": 9.2244
+      },
+      "image": "assets/images/france/approved/aiguilles-de-bavella.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": -1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "セーヌ川とゴシック建築",
+      "icon": "city"
+    },
+    {
+      "title": "高山湖とモンブラン山群",
+      "icon": "landscape"
+    },
+    {
+      "title": "修道院とラヴァンダン畑",
+      "icon": "home"
+    },
+    {
+      "title": "石灰岩のカランク",
+      "icon": "shore"
+    },
+    {
+      "title": "川をまたぐルネサンス城",
+      "icon": "history"
+    },
+    {
+      "title": "葡萄畑と木組みの村",
+      "icon": "food"
+    },
+    {
+      "title": "砂丘・森・大西洋",
+      "icon": "sea"
+    },
+    {
+      "title": "花崗岩の峰とコルシカ松",
+      "icon": "hike"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "パリはセーヌ川から地区を読む",
+      "text": "シテ島を核に、右岸と左岸へ街が広がる。川沿いを歩くと、ノートルダム、ルーヴル周辺、近代の大通りまで、建築の時代差と都市の方向が同時に見えてくる。",
+      "points": [
+        "セーヌ川を基準にすると主要地区の位置関係をつかみやすい",
+        "大通りだけでなく市場や住宅地へ入ると、観光都市とは別の日常が見える"
+      ]
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "修道院、大聖堂、城を同じ国土でつなぐ",
+      "text": "中世のモン・サン＝ミシェルとノートルダム、ルネサンス期のロワールの城館まで、建築様式は土地と権力の変化を映す。建物単体ではなく、川、湾、農地との位置関係を見ると歴史が立体的になる。",
+      "points": [
+        "モン・サン＝ミシェルでは潮汐地形と宗教建築が重なる",
+        "シュノンソーではシェール川そのものが建築の一部になっている"
+      ]
+    },
+    {
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "地方へ行くほど、暮らしの輪郭が変わる",
+      "text": "パリからアルザス、プロヴァンス、コルシカへ移ると、家の形、食材、言葉の響き、街の速度が変わる。フランスを一つの都市文化として見るより、地域の違いを移動して比べる方が国の幅を理解しやすい。",
+      "points": [
+        "市場やパン屋は地域の食材と日常を見やすい入口になる",
+        "同じフランス語圏でも建築や食文化は地方ごとの差が大きい"
+      ]
+    },
+    {
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "文化は建物ではなく、今も続く技術に残る",
+      "text": "パンづくり、亜鉛屋根、葡萄栽培、石造建築の手入れなど、景観を形づくる技術が現在も仕事として続いている。完成した風景だけでなく、それを維持する人の技術を見ると街の見え方が変わる。",
+      "points": [
+        "パリの亜鉛屋根職人の技術はユネスコ無形文化遺産",
+        "バゲットの職人技と文化もユネスコ無形文化遺産に登録されている"
+      ]
+    },
+    {
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "食材の名前から土地へ戻っていく",
+      "text": "パン、チーズ、ワイン、海産物、山地の料理は全国一様ではない。アルザスの葡萄畑や大西洋岸、アルプスの町へ移動すると、食が気候と農地の違いから生まれていることが分かる。",
+      "points": [
+        "産地で食べると、料理と周囲の農地・海・山の関係が見えやすい",
+        "『フランス料理』を一括りにせず、地域ごとに一つずつ試す"
+      ]
+    },
+    {
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "高速鉄道を骨格に、地方交通を足す",
+      "text": "パリから主要都市へはTGVが旅の骨格になる。一方、山岳、葡萄畑、カランク、砂丘へ入るほどTER、地域バス、車、徒歩を組み合わせる必要があり、移動手段の切り替えがそのまま地理の理解につながる。",
+      "points": [
+        "都市間は鉄道、自然景観は地域交通を組み合わせる",
+        "コルシカを加える場合は本土とは別の旅程単位で考える"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "categoryEn": "BAGUETTE",
+      "categoryJa": "パン",
+      "title": "バゲットを「文化」として見る",
+      "text": "バゲットの職人技と文化は2022年にユネスコ無形文化遺産へ登録された。パン屋では焼き色や切れ目、香りの違いを見比べると、日常食の中に職人仕事が見えてくる。",
+      "icon": "food",
+      "sourceKey": "baguette"
+    },
+    {
+      "categoryEn": "TIDE",
+      "categoryJa": "潮汐",
+      "title": "モン・サン＝ミシェルは高潮で再び島になる",
+      "text": "大潮の高潮時には周囲が海水に囲まれ、モン・サン＝ミシェルが一時的に島の姿へ戻る。訪問日が合うなら、現地の潮汐時刻を先に確認すると湾の地形を実感しやすい。",
+      "icon": "sea",
+      "sourceKey": "montTides"
+    },
+    {
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "6月21日は街そのものが音楽会場になる",
+      "text": "Fête de la musiqueは毎年6月21日に開かれ、アマチュアとプロの演奏が街路や広場へ広がる。1982年にフランス文化省が始め、現在も無料公演を原則とする全国的な催し。",
+      "icon": "culture",
+      "sourceKey": "feteMusique"
+    },
+    {
+      "categoryEn": "MEAL",
+      "categoryJa": "食文化",
+      "title": "「フランス人の美食術」は料理名ではない",
+      "text": "ユネスコが2010年に登録したのは特定の料理ではなく、節目の日に人が集まり、料理を選び、食卓を整え、順序をもって食事を楽しむ社会的慣習。食べる行為そのものの組み立てが対象になっている。",
+      "icon": "food",
+      "sourceKey": "gastronomicMeal"
+    },
+    {
+      "categoryEn": "DUNE",
+      "categoryJa": "地形",
+      "title": "ピラ砂丘は少しずつ森側へ動いている",
+      "text": "ピラ砂丘は風の作用で年間およそ1〜5m森側へ移動すると現地管理機関が説明している。巨大な砂の塊を固定された地形ではなく、現在も変化している海岸として見られる。",
+      "icon": "landscape",
+      "sourceKey": "dunePilat"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "5〜6月",
+      "color": "#7f9a61",
+      "text": "日が長く、パリ、ロワール、アルザスと自然景観を組み合わせやすい。6月21日はFête de la musiqueが各地で開かれ、プロヴァンスでは初夏からラヴァンダン畑が色づき始める。"
+    },
+    {
+      "months": "7〜8月",
+      "color": "#aa9555",
+      "text": "アルプスの高地、地中海岸、コルシカまで動きやすい一方、観光地は混みやすい。山岳は残雪や雷雨、カランクは火災リスクによる入山規制を確認する。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b4764c",
+      "text": "葡萄畑の収穫期と秋色が重なり、アルザスや地方都市を歩きやすい。真夏より気温が落ち着き、鉄道と地域滞在を組み合わせやすい。"
+    },
+    {
+      "months": "11〜4月",
+      "color": "#708da0",
+      "text": "都市の建築、博物館、食文化を軸にしやすい季節。アルプスは冬山・スキーの条件となり、アルザスでは冬の街並みなど、夏とは別の地域文化が前面に出る。"
+    }
+  ],
+  "transport": {
+    "title": "TGV / TER / ROAD / FERRY",
+    "text": "パリと主要都市はTGVを軸にし、地方ではTERや地域バスへ接続する。アルプス、葡萄畑、カランク、砂丘は徒歩や車を足し、コルシカは航空・フェリーを含む別区間として組むと国土の広さを無理なく追える。"
+  },
+  "personas": [
+    {
+      "title": "建築と街を歩きながら時代をたどりたい人",
+      "text": "パリ、モン・サン＝ミシェル、ロワールの城館を巡り、都市、宗教建築、宮廷文化を景観の中でつなげたい人。"
+    },
+    {
+      "title": "山・海・砂丘まで地形の幅を見たい人",
+      "text": "アルプスの高山湖、地中海のカランク、大西洋の砂丘、コルシカの花崗岩峰を一つの国で比較したい人。"
+    },
+    {
+      "title": "食と地方文化を産地まで追いたい人",
+      "text": "パリだけで完結せず、アルザスやプロヴァンスなどへ移動し、葡萄畑、市場、パン、地域料理と周囲の土地を一緒に見たい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "パリ"
+    },
+    {
+      "label": "人口",
+      "value": "約6,679万人（フランス本土）"
+    },
+    {
+      "label": "面積",
+      "value": "約543,965 km²（フランス本土・日本の約1.44倍）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "無宗教が約半数／宗教ではカトリックが最大（18〜59歳）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "label": "バゲット",
+      "value": "年間約60億本",
+      "note": "フランスのパン業界団体によると、国内では年間約60億本のバゲットが購入される。約3.5万の販売拠点があり、パン屋が日常の街角に根づいている。",
+      "icon": "food"
+    },
+    {
+      "label": "アルザス・ワイン街道",
+      "value": "170 km超",
+      "note": "1953年に開かれたルートがヴォージュ山麓の葡萄畑と村をつなぐ。リクヴィールも、その景観を理解する入口の一つ。",
+      "icon": "food"
+    },
+    {
+      "label": "パリの亜鉛屋根",
+      "value": "約80%",
+      "note": "ユネスコによると、パリの屋根のおよそ8割が亜鉛で覆われる。灰色の屋根景観を支える職人技は2024年に無形文化遺産へ登録された。",
+      "icon": "city"
+    }
+  ],
+  "tips": [
+    {
+      "title": "フランスは地域単位で旅程を切る",
+      "text": "パリ、アルザス、プロヴァンス、大西洋岸、コルシカは同じ国でも距離が大きい。短期間に全国をつなげず、1回の旅で2〜3地域ほどに絞る方が地域差を見やすい。"
+    },
+    {
+      "title": "Calanquesは当日の入山条件を確認する",
+      "text": "夏は山火事リスクに応じて自然地域へのアクセスが制限されることがある。En-Vauへ向かう日は、国立公園の最新アクセス情報を確認してから出発する。"
+    },
+    {
+      "title": "高山と海岸は都市と同じ感覚で予定を組まない",
+      "text": "Lac Blancは残雪や天候、Dune du Pilatや海岸は風・暑さの影響を受ける。移動時間だけでなく、その日の自然条件を旅程に入れる。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "アルプス、地中海、歴史都市、地域ごとの食文化を、国境の向こうでさらに比較したいなら。"
+    },
+    {
+      "slug": "spain",
+      "nameEn": "SPAIN",
+      "nameJa": "スペイン",
+      "flag": "🇪🇸",
+      "reason": "大西洋と地中海、山地、都市文化の組み合わせを、イベリア半島まで南西へ広げたいなら。"
+    },
+    {
+      "slug": "switzerland",
+      "nameEn": "SWITZERLAND",
+      "nameJa": "スイス",
+      "flag": "🇨🇭",
+      "reason": "フランス・アルプスから国境を越え、高山景観と鉄道旅行をより密度高くつなげたいなら。"
+    }
+  ],
+  "updatedAt": "2026-08-31",
+  "sourcesVerifiedAt": "2026-08-31",
+  "sourceDates": {
+    "population": "2026-01-01"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m Cultural Vectors, country boundary extracted via CountryGeoJSONCollection; public-domain source data; WGS84; metropolitan France and Corsica only; illustrated treatment: JOURNEY ATLAS",
+    "population": "INSEE, Population au 1er janvier 2026: France métropolitaine approximately 66.793 million (provisional)",
+    "area": "INSEE: France métropolitaine 543,965 km²; comparison uses Geospatial Information Authority of Japan, national area 377,974.87 km² as of 1 April 2026; ratio approximately 1.44.",
+    "language": "Constitution of the French Republic, Article 2: the language of the Republic is French",
+    "religion": "INSEE / INED, Trajectoires et Origines 2 (2019–2020): in metropolitan France among ages 18–59, 51% reported no religion; Catholicism was the largest religious affiliation at 29%",
+    "currency": "European Commission: France has been a euro-area member since 1 January 1999; euro notes and coins introduced in 2002",
+    "montSaintMichel": "Mont Saint-Michel Normandy Tourist Office / Centre des monuments nationaux: tidal bay, medieval village and abbey",
+    "montTides": "Mont Saint-Michel Normandy Tourist Office: high spring tides can surround the mount and temporarily restore its island form",
+    "notreDame": "Notre-Dame de Paris official site: Gothic cathedral architecture, apse, flying buttresses and Seine-side setting",
+    "lacBlanc": "Chamonix-Mont-Blanc Tourism Office: Lac Blanc in the Aiguilles Rouges Nature Reserve, facing the Mont-Blanc massif",
+    "senanque": "Abbaye Notre-Dame de Sénanque official site: 12th-century Cistercian abbey and lavandin cultivation",
+    "enVau": "Parc national des Calanques: En-Vau lookout and calanque, official GPS coordinates and access guidance",
+    "chenonceau": "Château de Chenonceau official site: château spanning the Cher river; official location and access information",
+    "riquewihr": "Visit Alsace: Riquewihr, historic wine village surrounded by vineyards in the Alsace wine-growing landscape",
+    "dunePilat": "Grand Site de la Dune du Pilat: protected dune landscape between forest and ocean; dune moves roughly 1–5 metres per year",
+    "bavella": "Corsica tourism information: Aiguilles de Bavella, granite needles and mountain landscape of southern Corsica",
+    "alsaceWineRoute": "Visit Alsace: Alsace Wine Route inaugurated in 1953 and extends for more than 170 km through vineyards and villages",
+    "parisZincRoofs": "UNESCO Intangible Cultural Heritage: Skills of Parisian zinc roofers and ornamentalists, inscribed 2024; nearly 80% of Paris roofs are zinc-covered",
+    "baguette": "UNESCO Intangible Cultural Heritage: Artisanal know-how and culture of baguette bread, inscribed 2022",
+    "feteMusique": "French Ministry of Culture: Fête de la musique is held on 21 June, launched in 1982, with free concerts by amateur and professional musicians",
+    "gastronomicMeal": "UNESCO Intangible Cultural Heritage: Gastronomic meal of the French, inscribed 2010 as a social practice around celebratory meals",
+    "calanquesAccess": "Parc national des Calanques: summer access to natural areas may be restricted according to wildfire risk",
+    "transport": "SNCF / SNCF Réseau: TGV and TER networks connect major French cities and regions; local road, bus and ferry connections are needed for many rural and island destinations",
+    "bakery": "Confédération Nationale de la Boulangerie-Pâtisserie Française: more than 35,000 bakeries / points of sale, 12 million customers per day, and approximately 6 billion baguettes purchased annually."
+  }
+}
