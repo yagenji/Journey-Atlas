@@ -23,9 +23,9 @@ jobs:
         env:
           TARGET_URL: https://atlas.yagenji.com/countries/france/
         run: |
-          node --input-type=commonjs <<'NODE'
-          const { chromium } = require('playwright');
-          const fs = require('fs');
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          import fs from 'fs';
           const target = process.env.TARGET_URL;
           const viewports = [
             { name: 'desktop', width: 1440, height: 900 },
