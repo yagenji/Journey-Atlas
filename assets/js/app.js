@@ -77,9 +77,13 @@ function renderCountry(data, registry) {
 
   const heroTitle = fragment.querySelector('.hero h1');
   if (heroTitle) {
-    const titleLength = Array.from((data.nameEn || '').replace(/\s+/g, '')).length;
+    const normalizedTitle = (data.nameEn || '').trim();
+    const titleLength = Array.from(normalizedTitle.replace(/\s+/g, '')).length;
     if (titleLength >= 12) heroTitle.classList.add('hero-title--long');
     if (titleLength >= 18) heroTitle.classList.add('hero-title--very-long');
+    if (!/\s/.test(normalizedTitle) && titleLength >= 10) {
+      heroTitle.classList.add('hero-title--unbroken-long');
+    }
   }
 
   const heroArt = fragment.querySelector('[data-image-field="hero.image"]');
