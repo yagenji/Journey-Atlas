@@ -1,0 +1,47 @@
+name: France map visual QA
+on:
+  push:
+    branches: [country-france]
+    paths: ['.github/workflows/france-map-qa.yml']
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Check France preview map
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          import fs from 'fs';
+          const url='https://country-france.journey-atlas.pages.dev/countries/france/';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1440,height:900}});
+          const response=await page.goto(url,{waitUntil:'networkidle',timeout:90000});
+          if (!response || response.status()!==200) throw new Error('France preview not 200');
+          await page.waitForSelector('#app .country-page',{state:'visible',timeout:30000});
+          await page.locator('#country-map-art').scrollIntoViewIfNeeded();
+          await page.waitForTimeout(1200);
+          const mapSrc=await page.locator('#country-map-art .map-base').getAttribute('src');
+          if (!mapSrc) throw new Error('Map image missing');
+          const svg=await page.evaluate(async (src)=>await (await fetch(src,{cache:'no-store'})).text(),mapSrc);
+          const ellipseCount=(svg.match(/<ellipse\\b/g)||[]).length;
+          console.log('FRANCE_MAP_QA='+JSON.stringify({status:response.status(),mapSrc,ellipseCount}));
+          if (ellipseCount!==0) throw new Error('Ellipse artifacts remain');
+          await page.locator('.map-frame').screenshot({path:'france-map-fixed.png'});
+          await browser.close();
+          fs.writeFileSync('france-map-result.json',JSON.stringify({ellipseCount},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: france-map-visual-qa
+          path: |
+            france-map-fixed.png
+            france-map-result.json
+          retention-days: 3
