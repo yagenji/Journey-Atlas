@@ -279,7 +279,12 @@ def rewrite_published_hrefs(registries: list[tuple[Path, dict]]) -> None:
 
 
 def generate_sitemap(country_urls: list[str]) -> None:
-    urls = [SITE_URL, *country_urls]
+    urls = [
+        SITE_URL,
+        urljoin(SITE_URL, "faq/"),
+        urljoin(SITE_URL, "privacy/"),
+        *country_urls,
+    ]
     body = "\n".join(f"  <url><loc>{html.escape(url)}</loc></url>" for url in urls)
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n'
     (ROOT / "sitemap.xml").write_text(xml, encoding="utf-8")
