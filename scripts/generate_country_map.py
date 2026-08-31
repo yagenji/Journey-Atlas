@@ -15,7 +15,7 @@ from shapely.ops import unary_union
 
 WIDTH = 1200
 HEIGHT = 760
-STYLE_VERSION = "journey-atlas-map-v2-proportional"
+STYLE_VERSION = "journey-atlas-map-v3-clean-background"
 
 
 def parse_args() -> argparse.Namespace:
@@ -243,7 +243,6 @@ def render_svg(
 <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
 </defs>
 <rect width="{WIDTH}" height="{HEIGHT}" fill="url(#sea)"/>
-<ellipse cx="220" cy="130" rx="300" ry="125" fill="#fbf7ec" opacity=".34"/><ellipse cx="1000" cy="650" rx="330" ry="155" fill="#d5e4e2" opacity=".35"/>
 <path d="{land_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
 {f'<g fill="#e5eceb" stroke="#6f8a92" stroke-opacity=".35" stroke-width=".65">{lake_markup}</g>' if lake_markup else ''}
 </svg>'''
