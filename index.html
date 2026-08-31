@@ -11,12 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/top-preview.css">
   <link rel="stylesheet" href="assets/css/top-layout-v3.css">
-  <link rel="stylesheet" href="assets/css/top-layout-v4.css?v=20260831-theme-search-v1">
+  <link rel="stylesheet" href="assets/css/top-layout-v4.css?v=20260831-theme-inline-v1">
   <link rel="stylesheet" href="assets/css/map-regions.css?v=20260822-2346">
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20260825-0152">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <script src="assets/js/top.js?v=20260831-theme-search-v1" defer></script>
+  <script src="assets/js/top.js?v=20260831-theme-inline-v1" defer></script>
   <script src="assets/js/map-regions.js?v=20260825-0136" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
@@ -78,17 +78,7 @@
       <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">201 DESTINATIONS</span></div>
       <div class="alphabet" aria-label="国名の頭文字から探す"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
       <div class="all-countries-panel" id="all-countries-panel" hidden>
-        <div class="all-countries-panel__head">
-          <div>
-            <strong id="country-results-title">すべての国・地域</strong>
-            <p id="country-results-meta">英語名・日本語名で検索できます。</p>
-            <div class="country-theme-filter" id="country-theme-filter" hidden>
-              <span><b id="country-theme-filter-label"></b><small id="country-theme-filter-count"></small></span>
-              <button type="button" id="country-theme-filter-clear" aria-label="テーマの絞り込みを解除">テーマ解除 ×</button>
-            </div>
-          </div>
-          <label class="country-search"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国・地域を検索" autocomplete="off"></label>
-        </div>
+        <div class="all-countries-panel__head"><div><strong>すべての国・地域</strong><p>英語名・日本語名で検索できます。</p></div><label class="country-search"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国・地域を検索" autocomplete="off"></label></div>
         <div class="country-grid" id="country-grid"></div><p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
       </div>
     </section>
@@ -148,6 +138,21 @@
           <button type="button" data-theme="sea"><span class="theme-art" data-theme-art="5" aria-hidden="true"></span><b>海の世界へ</b><small>青い海と島々をめぐる</small></button>
           <button type="button" data-theme="food"><span class="theme-art" data-theme-art="6" aria-hidden="true"></span><b>食をめぐる</b><small>おいしいものを求めて</small></button>
           <button type="button" data-theme="road"><span class="theme-art" data-theme-art="7" aria-hidden="true"></span><b>道の先へ</b><small>移動そのものを楽しむ</small></button>
+        </div>
+        <div class="theme-results" id="theme-results" hidden>
+          <div class="theme-results__head">
+            <div>
+              <span class="section-kicker">SELECTED THEME</span>
+              <h3 id="theme-results-title"></h3>
+              <p id="theme-results-meta"></p>
+            </div>
+            <div class="theme-results__actions">
+              <label class="theme-results__search"><span aria-hidden="true">⌕</span><input id="theme-country-search" type="search" placeholder="このテーマから国・地域を検索" autocomplete="off"></label>
+              <button type="button" id="theme-results-clear">テーマを解除 ×</button>
+            </div>
+          </div>
+          <div class="theme-results__grid" id="theme-results-grid" role="list"></div>
+          <p class="country-empty" id="theme-results-empty" hidden>該当する国・地域がありません。</p>
         </div>
       </article>
     </section>
