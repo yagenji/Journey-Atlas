@@ -79,6 +79,101 @@ def validate_asset(errors: list[str], owner: str, source: object) -> None:
             fail(errors, f"{owner}: base64 asset を復元できません: {exc}")
 
 
+def validate_map_svg_clean(errors: list[str], filename: str, source: object) -> None:
+    if not isinstance(source, str) or not source.endswith(".svg"):
+        return
+    path = ROOT / source
+    if not path.exists():
+        return
+    try:
+        svg = path.read_text(encoding="utf-8")
+    except Exception as exc:
+        fail(errors, f"{filename}: map SVGを読み込めません: {exc}")
+        return
+
+    # JOURNEY ATLAS country maps must use one continuous sea background.
+    # Decorative ellipse/radial hotspots caused the recurring pale oval artifact.
+    if "<ellipse" in svg:
+        fail(errors, f"{filename}: country map SVG に <ellipse> は使用できません（背景の白い楕円アーティファクト防止）")
+    if "<radialGradient" in svg:
+        fail(errors, f"{filename}: country map SVG に radialGradient は使用できません（背景ムラ防止）")
+
+
+def normalized_editorial_title(value: object) -> str:
+    if not isinstance(value, str):
+        return ""
+    return re.sub(r"[\s\W_]+", "", value, flags=re.UNICODE).casefold()
+
+
+def validate_content_topic_keys(errors: list[str], filename: str, data: dict) -> None:
+    sections = (
+        ("signatureFacts", "label"),
+        ("atlasExtras", "title"),
+        ("travelTrivia", "title"),
+        ("tips", "title"),
+    )
+
+    # Exact title duplication is invalid for every schema-v2 country, even before
+    # topicKey metadata is adopted.
+    seen_titles: dict[str, str] = {}
+    for section, title_field in sections:
+        items = data.get(section) if isinstance(data.get(section), list) else []
+        for index, item in enumerate(items, 1):
+            if not isinstance(item, dict):
+                continue
+            normalized = normalized_editorial_title(item.get(title_field))
+            if not normalized:
+                continue
+            owner = f"{section}[{index}]"
+            if normalized in seen_titles:
+                fail(
+                    errors,
+                    f"{filename}: editorial title が重複しています: "
+                    f"{seen_titles[normalized]} / {owner}",
+                )
+            else:
+                seen_titles[normalized] = owner
+
+    # contentQaVersion=1 is the mandatory Topic Lock for newly scaffolded
+    # countries. One primary topic may appear only once across these editorial
+    # sections. Encounters/Seasons/Transport/Personas are intentionally excluded
+    # because they summarize scenes or provide functional travel context.
+    if data.get("contentQaVersion") != 1:
+        return
+
+    seen_keys: dict[str, str] = {}
+    generic_keys = {
+        "city", "history", "life", "food", "road", "earth", "sea", "culture",
+        "nature", "travel", "transport", "season", "fact", "trivia", "tip",
+    }
+    topic_pattern = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+
+    for section, _title_field in sections:
+        items = data.get(section) if isinstance(data.get(section), list) else []
+        for index, item in enumerate(items, 1):
+            owner = f"{section}[{index}]"
+            if not isinstance(item, dict):
+                continue
+            key = item.get("topicKey")
+            if not isinstance(key, str) or not key.strip():
+                fail(errors, f"{filename}: {owner} に topicKey がありません")
+                continue
+            key = key.strip()
+            if not topic_pattern.fullmatch(key):
+                fail(errors, f"{filename}: {owner}.topicKey は英小文字kebab-caseで指定してください: {key}")
+                continue
+            if key in generic_keys:
+                fail(errors, f"{filename}: {owner}.topicKey が抽象的すぎます: {key}")
+            if key in seen_keys:
+                fail(
+                    errors,
+                    f"{filename}: primary topic '{key}' が重複しています: "
+                    f"{seen_keys[key]} / {owner}",
+                )
+            else:
+                seen_keys[key] = owner
+
+
 def bounds_values(data: dict) -> tuple[object, object, object, object]:
     bounds = data.get("map", {}).get("bounds", {})
     return bounds.get("north"), bounds.get("south"), bounds.get("west"), bounds.get("east")
@@ -237,6 +332,7 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         fail(errors, f"{path.name}: map.bounds の大小関係が不正です")
 
     validate_asset(errors, f"{path.name}: map", data.get("map", {}).get("svg"))
+    validate_map_svg_clean(errors, path.name, data.get("map", {}).get("svg"))
     validate_asset(errors, f"{path.name}: hero", data.get("hero", {}).get("image"))
     validate_coordinates(errors, f"{path.name}: hero", data.get("hero", {}).get("coordinates"), bounds)
 
@@ -295,6 +391,9 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         trivia = data.get("travelTrivia") if isinstance(data.get("travelTrivia"), list) else []
         if len(trivia) != 5:
             fail(errors, f"{path.name}: travelTrivia はレイアウト仕様上5件必要です")
+
+        validate_content_topic_keys(errors, path.name, data)
+
         sources = data.get("sources") if isinstance(data.get("sources"), dict) else {}
         sources_verified_at = data.get("sourcesVerifiedAt")
         if not isinstance(sources_verified_at, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", sources_verified_at):
