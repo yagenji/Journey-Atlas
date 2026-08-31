@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 2,
+  "slug": "belgium",
+  "nameEn": "BELGIUM",
+  "nameJa": "ベルギー",
+  "region": "WESTERN EUROPE / BENELUX / 50°N",
+  "seo": {
+    "description": "ブリュッセルの広場、ブルージュとゲントの運河、ムーズ川、アルデンヌ、高層湿原、北海の砂丘。ベルギーの8つの景色と地図から、都市と自然の幅をたどる。"
+  },
+  "capital": {
+    "nameEn": "Brussels",
+    "nameJa": "ブリュッセル",
+    "coordinates": {
+      "latitude": 50.8503,
+      "longitude": 4.3517
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -3.2,
+      "y": 2.4
+    }
+  },
+  "hero": {
+    "lead": "金色のギルドハウスが囲むブリュッセルから、運河都市、ムーズ川、アルデンヌ、高層湿原、北海へ。小さな国土の中で言語と景観が切り替わる国。",
+    "image": "assets/images/belgium/approved/hero-brussels-grand-place.png",
+    "location": "Grand-Place / Brussels",
+    "coordinates": {
+      "latitude": 50.8467,
+      "longitude": 4.3525
+    },
+    "mapOffset": {
+      "x": 3.2,
+      "y": -2.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 51.6,
+      "south": 49.45,
+      "west": 2.42,
+      "east": 6.52
+    },
+    "svg": "assets/images/belgium/map-atlas-v1.svg",
+    "route": null,
+    "source": "Eurostat GISCO NUTS 2024 1:1M WGS84 geometry via euraf/eu-nuts-lau; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "bruges-rozenhoedkaai",
+      "name": "ブルージュ / ローゼンフートカーイ",
+      "nameLocal": "Bruges / Rozenhoedkaai",
+      "mapLabel": "Bruges",
+      "description": "運河が折れ曲がるローゼンフートカーイから、煉瓦の家並みと鐘楼を望む。水路と中世以来の都市構造が近い距離で重なるブルージュらしい景観。",
+      "coordinates": {
+        "latitude": 51.207,
+        "longitude": 3.2271
+      },
+      "image": "assets/images/belgium/approved/bruges-rozenhoedkaai.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "ghent-st-michaels-bridge",
+      "name": "ゲント / 聖ミヒャエル橋",
+      "nameLocal": "Ghent / St Michael’s Bridge",
+      "mapLabel": "Ghent",
+      "description": "聖ミヒャエル橋からは、グラスレイとコーレンレイの水辺、旧市街の家並み、ゲントを象徴する三つの塔を一つの視界に収められる。",
+      "coordinates": {
+        "latitude": 51.0536,
+        "longitude": 3.7205
+      },
+      "image": "assets/images/belgium/approved/ghent-st-michaels-bridge.png",
+      "labelPosition": "below"
+    },
+    {
+      "id": "dinant-meuse",
+      "name": "ディナン / ムーズ川",
+      "nameLocal": "Dinant / Meuse River",
+      "mapLabel": "Dinant",
+      "description": "ムーズ川沿いの細長い市街、その背後に迫る石灰岩の崖、崖上のシタデル、ノートルダム教会が縦に重なる。ワロン地方の川と地形が街の形を決めている。",
+      "coordinates": {
+        "latitude": 50.2608,
+        "longitude": 4.9123
+      },
+      "image": "assets/images/belgium/approved/dinant-meuse-citadel.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "rochehaut-frahan",
+      "name": "ロシュオー / フラアン",
+      "nameLocal": "Rochehaut / Frahan, Semois Valley",
+      "mapLabel": "Rochehaut",
+      "description": "ロシュオーの高台から見ると、スモワ川が大きく蛇行し、その内側にフラアンの集落が収まる。アルデンヌの森林と河谷を一望できる地形の景観。",
+      "coordinates": {
+        "latitude": 49.83962,
+        "longitude": 5.00097
+      },
+      "image": "assets/images/belgium/approved/rochehaut-frahan-semois.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "high-fens",
+      "name": "オート・ファーニュ / 高層湿原",
+      "nameLocal": "High Fens / Hautes Fagnes",
+      "mapLabel": "High Fens",
+      "description": "ベルギー東部の高地に広がる泥炭湿原。低い植生と湿った地表の上を木道が通り、都市や農地とは異なる開放的な風景が続く。",
+      "coordinates": {
+        "latitude": 50.501,
+        "longitude": 6.093
+      },
+      "image": "assets/images/belgium/approved/high-fens-boardwalk.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "hallerbos",
+      "name": "ハルの森 / ブルーベル",
+      "nameLocal": "Hallerbos / Bluebells",
+      "mapLabel": "Hallerbos",
+      "description": "ブナ林の林床を青紫のブルーベルが覆う春のハルの森。開花は毎年の気温に左右され、若いブナの葉が開く時期と重なると光の色も変わる。",
+      "coordinates": {
+        "latitude": 50.695,
+        "longitude": 4.268
+      },
+      "image": "assets/images/belgium/approved/hallerbos-bluebells.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.5,
+        "y": 2
+      }
+    },
+    {
+      "id": "de-westhoek",
+      "name": "デ・ウェストフック / デ・パンネ",
+      "nameLocal": "De Westhoek / De Panne",
+      "mapLabel": "De Westhoek",
+      "description": "フランス国境に近い北海岸に残る砂丘地帯。砂浜の背後に起伏のある砂丘と草地が続き、ベルギーが北海に面する国であることを地形として見せる。",
+      "coordinates": {
+        "latitude": 51.091,
+        "longitude": 2.579
+      },
+      "image": "assets/images/belgium/approved/de-panne-westhoek-dunes.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 2,
+        "y": 0
+      }
+    },
+    {
+      "id": "borgloon-reading-between-the-lines",
+      "name": "ボルフローン / Reading Between the Lines",
+      "nameLocal": "Borgloon / Reading Between the Lines",
+      "mapLabel": "Borgloon",
+      "description": "ハスペンハウの丘陵と果樹園の中に置かれた、水平の鋼板でできた教会形の作品。見る角度によって輪郭が透け、農村景観と現代アートが一つになる。",
+      "coordinates": {
+        "latitude": 50.79411,
+        "longitude": 5.35178
+      },
+      "image": "assets/images/belgium/approved/borgloon-reading-between-the-lines.png",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ギルドハウスが囲む広場",
+      "icon": "city"
+    },
+    {
+      "title": "運河沿いの煉瓦都市",
+      "icon": "city"
+    },
+    {
+      "title": "市民都市を示す鐘楼",
+      "icon": "history"
+    },
+    {
+      "title": "ムーズ川と石灰岩の崖",
+      "icon": "landscape"
+    },
+    {
+      "title": "アルデンヌの森と蛇行河川",
+      "icon": "landscape"
+    },
+    {
+      "title": "高地の泥炭湿原",
+      "icon": "hike"
+    },
+    {
+      "title": "北海岸の砂丘",
+      "icon": "sea"
+    },
+    {
+      "title": "田園の中の現代アート",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "都市の個性が短い鉄道移動で切り替わる",
+      "text": "ブリュッセル、ゲント、ブルージュは互いに近いが、広場、運河、街路の表情は異なる。大都市を一つ見るより、複数の旧市街を歩き比べることでベルギーの輪郭が見えやすい。",
+      "points": [
+        "ブリュッセルからゲントへは直通列車で最短約35分",
+        "ブリュッセルからブルージュへも直通列車で約1時間"
+      ]
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "王宮だけでなく、市民都市の歴史を見る",
+      "text": "フランドルの都市では、鐘楼、ギルドハウス、市庁舎が街の中心に立つ。王や教会だけでなく、商人や自治都市の力が建築として残っている。",
+      "points": [
+        "ブリュッセルのGrand-Placeは歴史的な商業都市の中心",
+        "ゲントやブルージュでは水路と商業建築が旧市街の骨格をつくる"
+      ]
+    },
+    {
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "一つの国の中で言語圏が切り替わる",
+      "text": "ベルギーにはオランダ語、フランス語、ドイツ語の三つの公用語があり、地域と共同体が連邦制度を形づくる。地名や駅名の表記からも、その境界を旅の途中で感じる。",
+      "points": [
+        "フランドル、ワロン、ブリュッセル首都の3地域",
+        "言語を基礎にフラマン、フランス、ドイツ語の3共同体がある"
+      ]
+    },
+    {
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "ビールは飲み物だけでなく地域文化として続く",
+      "text": "ベルギーでは醸造、提供、料理との組み合わせ、地域の習慣まで含めてビール文化が受け継がれている。カフェや醸造所を訪れると、銘柄の多さより文化の層が見えてくる。",
+      "points": [
+        "「Beer culture in Belgium」は2016年にUNESCO無形文化遺産へ登録",
+        "UNESCOは約1,500種類のビールが生産されると説明している"
+      ]
+    },
+    {
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "北海から高地湿原まで、低い国土にも地形差がある",
+      "text": "西端には北海の砂丘、南東には森林のアルデンヌ、東部にはHigh Fensの湿原がある。歴史都市の印象が強い国だが、端から端へ移動すると自然景観も大きく変わる。",
+      "points": [
+        "De Westhoekでは砂浜の背後に砂丘が続く",
+        "Semois Valleyでは森林と蛇行河川が地形をつくる"
+      ]
+    },
+    {
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "都市は鉄道、自然はローカル交通を足してつなぐ",
+      "text": "主要都市は鉄道で動きやすい。一方、Semois ValleyやHigh Fensまで広げると、バスの本数や接続時間を見ながら車を組み合わせる方が景観を追いやすい。",
+      "points": [
+        "都市間は駅から徒歩で旧市街へ入りやすい",
+        "南部・東部の自然景観は移動時間を距離だけで判断しない"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "categoryEn": "SEA",
+      "categoryJa": "海の文化",
+      "title": "北海岸では馬に乗ってエビを獲る",
+      "text": "Oostduinkerkeでは、馬で浅瀬に入り網を引くエビ漁が現在も受け継がれている。2013年にUNESCO無形文化遺産へ登録された。",
+      "icon": "sea",
+      "sourceKey": "horsebackShrimp"
+    },
+    {
+      "categoryEn": "COMICS",
+      "categoryJa": "漫画",
+      "title": "ブリュッセルでは壁を見ながら漫画を探せる",
+      "text": "中心部にはベルギー漫画のキャラクターを描いた壁画が点在する。美術館だけでなく、街歩きそのものを漫画文化の入口にできる。",
+      "icon": "culture",
+      "sourceKey": "comics"
+    },
+    {
+      "categoryEn": "ART NOUVEAU",
+      "categoryJa": "建築",
+      "title": "住宅街にアール・ヌーヴォーの線を探す",
+      "text": "ブリュッセルにはVictor Hortaらが手がけたアール・ヌーヴォー建築が残る。中心広場とは別の時代の都市景観を、住宅街を歩きながら見比べられる。",
+      "icon": "history",
+      "sourceKey": "horta"
+    },
+    {
+      "categoryEn": "BEER",
+      "categoryJa": "ビール文化",
+      "title": "銘柄だけでなく、グラスの形まで変わる",
+      "text": "ベルギーのビール文化では、醸造法だけでなく提供方法や専用グラスも体験の一部。カフェでは銘柄ごとに異なる器が使われることがある。",
+      "icon": "food",
+      "sourceKey": "beerCulture"
+    },
+    {
+      "categoryEn": "BRUSSELS",
+      "categoryJa": "街の習慣",
+      "title": "Manneken Pisには衣装カレンダーがある",
+      "text": "小便小僧は行事や訪問団に合わせて衣装を着る日があり、公式の着替え予定も公開される。像だけでなく、その運用自体が街の文化になっている。",
+      "icon": "city",
+      "sourceKey": "mannekenPis"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#73966f",
+      "text": "街歩きと新緑を組み合わせやすい。Hallerbosのブルーベルは毎年時期がずれるが、2026年は4月中旬に見頃を迎えた。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#92a253",
+      "text": "日が長く、ブルージュやゲントの水辺、北海岸まで移動しやすい。都市のイベントが増える一方、観光地は混みやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b77a49",
+      "text": "都市の人出が少し落ち着き、アルデンヌの森林は秋色へ変わる。街とSemois Valleyのような自然を同じ旅に入れやすい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#6b90a5",
+      "text": "日が短く雨の多い時期。歴史都市や美術館を軸にしつつ、東部の高地では気温が下がり、冬らしい景観になることもある。"
+    }
+  ],
+  "transport": {
+    "title": "RAIL / TRAM / BUS / ROAD",
+    "text": "主要都市は鉄道でつなぎやすく、SNCBの2026年時刻表ではブリュッセル〜ゲントが最短約35分、ブリュッセル〜ブルージュが約1時間。アルデンヌやHigh Fensへ広げる場合は、バスや車を組み合わせて考える。"
+  },
+  "personas": [
+    {
+      "title": "歴史都市を歩き比べたい人",
+      "text": "ブリュッセル、ゲント、ブルージュを鉄道でつなぎ、広場、運河、鐘楼、ギルドハウスの違いを徒歩で見たい人。"
+    },
+    {
+      "title": "食とカフェ文化を旅の軸にしたい人",
+      "text": "ビール、チョコレート、フリッツなどを単なる名物ではなく、街や地域の暮らしと一緒に味わいたい人。"
+    },
+    {
+      "title": "都市の外にある風景も見たい人",
+      "text": "Semois Valley、High Fens、北海の砂丘、Hallerbosまで足を延ばし、小さな国土の景観差を追いたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西ヨーロッパ／ベネルクス"
+    },
+    {
+      "label": "首都",
+      "value": "ブリュッセル"
+    },
+    {
+      "label": "人口",
+      "value": "約1,187万人"
+    },
+    {
+      "label": "面積",
+      "value": "約30,700 km²（日本の約8%）"
+    },
+    {
+      "label": "言語",
+      "value": "オランダ語・フランス語・ドイツ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（ローマ・カトリックが最大の宗教的自己認識）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "label": "公用語",
+      "value": "3言語",
+      "note": "オランダ語、フランス語、ドイツ語が公用語。言語圏は文化と行政の構造にも結びついている。",
+      "icon": "language"
+    },
+    {
+      "label": "連邦を構成する単位",
+      "value": "3地域＋3共同体",
+      "note": "フランドル、ブリュッセル首都、ワロンの3地域に加え、言語を基礎に3共同体が置かれている。",
+      "icon": "city"
+    },
+    {
+      "label": "UNESCO無形文化遺産",
+      "value": "ビール文化 / 2016",
+      "note": "醸造技術だけでなく、飲み方、地域社会、料理との関係まで含む「Beer culture in Belgium」が登録されている。",
+      "icon": "food"
+    }
+  ],
+  "tips": [
+    {
+      "title": "地名は言語で表記が変わる",
+      "text": "Brugge / Bruges、Gent / Gand、Liège / Luikのように、同じ都市でもオランダ語とフランス語で名前が変わる。乗換案内や道路標識では地域の言語表記を意識する。"
+    },
+    {
+      "title": "Hallerbosは開花情報と歩道ルールを確認する",
+      "text": "ブルーベルの時期は毎年同じではない。公式サイトで開花状況を確認し、花を守るため必ず指定された道から外れない。"
+    },
+    {
+      "title": "都市とアルデンヌでは移動の感覚が違う",
+      "text": "ブリュッセル、ゲント、ブルージュは鉄道中心で組みやすいが、RochehautやHigh Fensまで入れると公共交通の接続時間が増える。自然景観は別日に余白を持たせる。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "netherlands",
+      "nameEn": "NETHERLANDS",
+      "nameJa": "オランダ",
+      "flag": "🇳🇱",
+      "reason": "低地の都市、水路、北海沿岸を北へつなぎ、フランドルとの景観差を見比べたいなら。"
+    },
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "フランス語圏の文化と歴史都市を南西へ広げ、ベルギーとの連続と違いをたどりたいなら。"
+    },
+    {
+      "slug": "germany",
+      "nameEn": "GERMANY",
+      "nameJa": "ドイツ",
+      "flag": "🇩🇪",
+      "reason": "東部のドイツ語圏からライン地方へつなぎ、都市と森林の景観をさらに東へ追いたいなら。"
+    }
+  ],
+  "updatedAt": "2026-08-31",
+  "sourcesVerifiedAt": "2026-08-31",
+  "sourceDates": {
+    "population": "2026-01",
+    "area": "2021",
+    "religion": "2018",
+    "transport": "2026-08"
+  },
+  "sources": {
+    "map": "Eurostat GISCO NUTS 2024 1:1M WGS84 via euraf/eu-nuts-lau: BE_NUTS1_RG_01M_2024_4326.geojson",
+    "population": "Statbel, Structure of the population on 1 January 2026: 11,867,634 inhabitants",
+    "area": "Statbel, total surface area of Belgium: 30,689 km² (2021 methodology)",
+    "language": "Belgium.be, Belgium is a federal state: three official languages — Dutch, French and German",
+    "religion": "U.S. Department of State 2023 International Religious Freedom Report, citing GESIS 2018 survey: Roman Catholic 57.1%, largest religious identification",
+    "currency": "European Union / European Central Bank: Belgium uses the euro",
+    "federalStructure": "Belgium.be: three Regions and three Communities",
+    "grandPlace": "UNESCO World Heritage Centre / visit.brussels: Grand-Place, Brussels",
+    "bruges": "Visit Bruges: Rozenhoedkaai (Rosary Quay)",
+    "ghent": "Visit Gent: St Michael’s Bridge — view of Graslei, Korenlei and the three towers",
+    "dinant": "VISITWallonia / Dinant tourism: Meuse riverfront, Collegiate Church and Citadel",
+    "rochehaut": "Pays de Bouillon en Ardenne / Rochehaut panoramic viewpoint at Frahan",
+    "highFens": "VISITWallonia / High Fens nature and walking routes",
+    "hallerbos": "Hallerbos official site: bluebell flowering and visitor rules",
+    "deWesthoek": "Agency for Nature and Forest / De Westhoek dune reserve, De Panne",
+    "borgloon": "Gijs Van Vaerenbergh / local tourism: Reading Between the Lines, Borgloon (2011)",
+    "beerCulture": "UNESCO Intangible Cultural Heritage: Beer culture in Belgium, inscribed 2016; almost 1,500 types described",
+    "horsebackShrimp": "UNESCO Intangible Cultural Heritage: Shrimp fishing on horseback in Oostduinkerke, inscribed 2013",
+    "comics": "visit.brussels: Brussels Comic Strip Route and comic murals",
+    "horta": "UNESCO / Brussels tourism: Major Town Houses of the Architect Victor Horta and Art Nouveau heritage",
+    "mannekenPis": "City of Brussels / GardeRobe MannekenPis: official costume collection and dressing calendar",
+    "transport": "SNCB-NMBS, popular train routes/current timetables: Brussels–Ghent about 35 min; Brussels–Bruges about 1 h 01",
+    "climate": "Royal Meteorological Institute / Belgium tourism climate context: temperate maritime climate with year-round precipitation"
+  }
+}
