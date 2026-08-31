@@ -291,7 +291,10 @@ function renderScenes(fragment, scenes = [], bounds) {
     card.setAttribute('aria-label', `${number} ${scene.name}を選択`);
     card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
-    setBackground(card.querySelector('.scene-image'), scene.image, { lazy: true });
+    const sceneImage = card.querySelector('.scene-image');
+    sceneImage.setAttribute('role', 'img');
+    sceneImage.setAttribute('aria-label', `景色 ${number}: ${scene.name}`);
+    setBackground(sceneImage, scene.image, { lazy: true });
     const point = projectPoint(scene.coordinates, bounds, scene.mapOffset);
     if (point) {
       const marker = document.createElement('button');
