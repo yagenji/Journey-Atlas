@@ -22,6 +22,7 @@ REGISTRY_PATHS = [
     DATA_DIR / "atlas-destinations-editorial.json",
 ]
 ROOT_FILES = ["index.html", "404.html", "_redirects", "sitemap.xml", "robots.txt"]
+STATIC_PAGE_DIRS = ["faq", "privacy"]
 
 
 def published_slugs() -> list[str]:
@@ -136,6 +137,9 @@ def validate_package(slugs: list[str]) -> None:
     for relative in ROOT_FILES:
         if not (DIST / relative).exists():
             raise FileNotFoundError(f"Packaged root file missing: {relative}")
+    for relative in STATIC_PAGE_DIRS:
+        if not (DIST / relative / "index.html").exists():
+            raise FileNotFoundError(f"Packaged static page missing: {relative}/index.html")
     if (DIST / "country.html").exists():
         raise ValueError("Generic draft country route must not be shipped to production")
     if (DIST / "scripts").exists() or (DIST / ".github").exists():
@@ -158,6 +162,12 @@ def main() -> int:
         if not source.exists():
             raise FileNotFoundError(f"Build output missing: {source}")
         shutil.copy2(source, DIST / relative)
+
+    for relative in STATIC_PAGE_DIRS:
+        source = ROOT / relative
+        if not (source / "index.html").exists():
+            raise FileNotFoundError(f"Static page missing: {source / 'index.html'}")
+        copy_path(source, DIST / relative)
 
     copy_path(ROOT / "assets", DIST / "assets", ignore=ignore_asset_sources)
     package_data(slugs)
