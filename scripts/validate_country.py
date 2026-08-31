@@ -451,6 +451,30 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
     return errors
 
 
+def validate_all_atlas_map_assets() -> list[str]:
+    errors: list[str] = []
+    image_root = ROOT / "assets" / "images"
+    if not image_root.exists():
+        return errors
+    for path in sorted(image_root.rglob("map-atlas*.svg")):
+        try:
+            svg = path.read_text(encoding="utf-8")
+        except Exception as exc:
+            fail(errors, f"{path.relative_to(ROOT)}: SVGを読み込めません: {exc}")
+            continue
+        if "<ellipse" in svg:
+            fail(
+                errors,
+                f"{path.relative_to(ROOT)}: <ellipse> を検出。Country Mapの装飾楕円は禁止です",
+            )
+        if "<radialGradient" in svg:
+            fail(
+                errors,
+                f"{path.relative_to(ROOT)}: radialGradient を検出。Country Mapの背景ムラは禁止です",
+            )
+    return errors
+
+
 def country_paths_from_index() -> tuple[list[Path], list[str]]:
     errors: list[str] = []
     registry = COUNTRY_DIR / "index.json"
@@ -525,6 +549,8 @@ def main() -> int:
         errors = []
     else:
         paths, errors = country_paths_from_index()
+
+    errors.extend(validate_all_atlas_map_assets())
 
     for path in paths:
         errors.extend(validate_country(path, strict=strict))
