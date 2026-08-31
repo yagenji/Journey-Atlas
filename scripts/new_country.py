@@ -39,6 +39,7 @@ def blank_scene(index: int, slug: str) -> dict:
 
 def blank_extra() -> dict:
     return {
+        "topicKey": "",
         "themeEn": "",
         "themeJa": "",
         "title": "",
@@ -52,7 +53,7 @@ def blank_persona() -> dict:
 
 
 def blank_tip() -> dict:
-    return {"title": "", "text": ""}
+    return {"topicKey": "", "title": "", "text": ""}
 
 
 def blank_related() -> dict:
@@ -63,6 +64,7 @@ def scaffold(destination: dict) -> dict:
     slug = destination["slug"]
     return {
         "schemaVersion": 2,
+        "contentQaVersion": 1,
         "slug": slug,
         "nameEn": destination.get("nameEn", ""),
         "nameJa": destination.get("nameJa", ""),
@@ -89,7 +91,7 @@ def scaffold(destination: dict) -> dict:
         "encounters": [{"title": ""} for _ in range(8)],
         "atlasExtras": [blank_extra() for _ in range(6)],
         "travelTrivia": [
-            {"categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
+            {"topicKey": "", "categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
             for _ in range(5)
         ],
         "seasons": [
@@ -108,7 +110,7 @@ def scaffold(destination: dict) -> dict:
             {"label": "通貨", "value": ""},
         ],
         "signatureFacts": [
-            {"label": "", "value": "", "note": ""}
+            {"topicKey": "", "label": "", "value": "", "note": ""}
             for _ in range(3)
         ],
         "tips": [blank_tip() for _ in range(3)],
