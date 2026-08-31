@@ -655,3 +655,49 @@
     transition:none;
   }
 }
+
+
+/* Full-width LENS composition: heading above, photo rail across the section. */
+.lens-world{
+  display:block;
+  min-height:0;
+  padding:28px 24px 30px;
+}
+.lens-world .section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:28px;
+}
+.lens-head .section-link{
+  flex:none;
+  margin-top:0;
+}
+.lens-rail-tools{
+  margin-top:20px;
+}
+.lens-rail__track{
+  min-width:100%;
+}
+.lens-rail .lens-card,
+.lens-rail .lens-card:nth-child(n){
+  flex-basis:clamp(210px,20vw,260px);
+}
+@media(max-width:760px){
+  .lens-world{
+    padding:20px 16px 22px;
+  }
+  .lens-world .section-head{
+    display:block;
+  }
+  .lens-head .section-link{
+    margin-top:16px;
+  }
+  .lens-rail{
+    margin-top:16px;
+  }
+  .lens-rail .lens-card,
+  .lens-rail .lens-card:nth-child(n){
+    flex-basis:min(62vw,220px);
+  }
+}
