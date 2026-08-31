@@ -18,6 +18,8 @@ const alphabetHost = document.querySelector('#alphabet-buttons');
 const alphabetButtons = () => [...document.querySelectorAll('[data-letter]')];
 const themeArtElements = [...document.querySelectorAll('[data-theme-art]')];
 const lensRail = document.querySelector('.lens-rail');
+const lensPrevButton = document.querySelector('[data-lens-prev]');
+const lensNextButton = document.querySelector('[data-lens-next]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 const ATLAS_TOTAL = 201;
@@ -212,14 +214,13 @@ function parseLensFeed(xmlText){
   return [...grouped.values()];
 }
 
-function createLensCard(entry,country,{duplicate=false}={}){
+function createLensCard(entry,country){
   const card=document.createElement('a');
   card.className='lens-card';
   card.href=entry.link;
   card.target='_blank';
   card.rel='noopener noreferrer';
   card.setAttribute('role','listitem');
-  if(duplicate)card.tabIndex=-1;
 
   const art=document.createElement('div');
   art.className='lens-card__art';
@@ -238,19 +239,13 @@ function createLensCard(entry,country,{duplicate=false}={}){
   const body=document.createElement('div');
   body.className='lens-card__body';
   if(country){
-    const flag=document.createElement('span');
-    flag.className='lens-card__flag';
-    flag.setAttribute('aria-hidden','true');
-    flag.textContent=country.flag;
-    const copy=document.createElement('div');
     const name=document.createElement('h3');
     name.textContent=country.nameEn;
     const nameJa=document.createElement('small');
     nameJa.textContent=country.nameJa;
     const subtitle=document.createElement('p');
     subtitle.textContent=entry.subtitle;
-    copy.append(name,nameJa,subtitle);
-    body.append(flag,copy);
+    body.append(name,nameJa,subtitle);
     card.setAttribute('aria-label',`${country.nameJa}のJOURNEY LENS「${entry.subtitle}」を読む`);
   }else{
     const subtitle=document.createElement('p');
@@ -262,6 +257,28 @@ function createLensCard(entry,country,{duplicate=false}={}){
   card.append(art,body);
   return card;
 }
+
+function updateLensControls(){
+  if(!lensRail)return;
+  const maxScroll=Math.max(0,lensRail.scrollWidth-lensRail.clientWidth);
+  if(lensPrevButton)lensPrevButton.disabled=lensRail.scrollLeft<=2;
+  if(lensNextButton)lensNextButton.disabled=lensRail.scrollLeft>=maxScroll-2;
+}
+
+function scrollLensRail(direction){
+  if(!lensRail)return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const distance=Math.max(220,lensRail.clientWidth*0.82);
+  lensRail.scrollBy({
+    left:direction*distance,
+    behavior:reduced?'auto':'smooth'
+  });
+}
+
+lensPrevButton?.addEventListener('click',()=>scrollLensRail(-1));
+lensNextButton?.addEventListener('click',()=>scrollLensRail(1));
+lensRail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
+window.addEventListener('resize',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
 
 function renderLensRail(registryItems,rssText){
   if(!lensRail)return;
@@ -282,20 +299,12 @@ function renderLensRail(registryItems,rssText){
 
   const track=document.createElement('div');
   track.className='lens-rail__track';
-  track.style.setProperty('--lens-duration',`${Math.max(36,entries.length*4.5)}s`);
+  track.setAttribute('role','list');
+  entries.forEach((entry)=>track.append(createLensCard(entry,entry.country)));
 
-  const primary=document.createElement('div');
-  primary.className='lens-rail__set';
-  primary.setAttribute('role','list');
-  entries.forEach((entry)=>primary.append(createLensCard(entry,entry.country)));
-
-  const duplicate=document.createElement('div');
-  duplicate.className='lens-rail__set lens-rail__set--clone';
-  duplicate.setAttribute('aria-hidden','true');
-  entries.forEach((entry)=>duplicate.append(createLensCard(entry,entry.country,{duplicate:true})));
-
-  track.append(primary,duplicate);
   lensRail.replaceChildren(track);
+  lensRail.scrollLeft=0;
+  window.requestAnimationFrame(updateLensControls);
 }
 
 function sortForDisplay(items){
