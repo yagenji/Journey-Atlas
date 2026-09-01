@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "croatia",
+  "nameEn": "CROATIA",
+  "nameJa": "クロアチア",
+  "region": "SOUTHERN EUROPE / 45°N",
+  "seo": {
+    "description": "ドゥブロヴニクの城壁都市から、プリトヴィツェ湖群、ロヴィニ、コルナティ諸島、パクレニツァ、スタリ・グラード平原、トラコシュチャン、コパチュキ・リト、ザグレブへ。海・山・平原が切り替わるクロアチアを地図と9つの景観でたどる。"
+  },
+  "capital": {
+    "nameEn": "Zagreb",
+    "nameJa": "ザグレブ",
+    "coordinates": {
+      "latitude": 45.815,
+      "longitude": 15.9819
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 3.5,
+      "y": -1.5
+    }
+  },
+  "hero": {
+    "lead": "城壁都市と島々が続くアドリア海岸から、カルストの湖と峡谷、北部の森、東部の湿地へ。細長い国土をたどると、海・山・平原が短い距離で切り替わる。",
+    "image": "assets/images/croatia/approved/hero-dubrovnik.png",
+    "location": "Srđ / Dubrovnik Old City",
+    "coordinates": {
+      "latitude": 42.649,
+      "longitude": 18.111
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 46.8,
+      "south": 42.2,
+      "west": 13,
+      "east": 19.7
+    },
+    "svg": "assets/images/croatia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection HRV.geojson; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "plitvice-lakes",
+      "name": "プリトヴィツェ湖群",
+      "nameLocal": "Plitvička jezera",
+      "mapLabel": "Plitvice Lakes",
+      "description": "森の谷に16の名のある湖が段状に連なり、水は石灰華の堰を越えて次の湖へ落ちていく。堰は現在も形成が続き、水そのものがカルスト地形をつくり変えている。",
+      "coordinates": {
+        "latitude": 44.878,
+        "longitude": 15.614
+      },
+      "image": "assets/images/croatia/approved/plitvice-lakes.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "rovinj",
+      "name": "ロヴィニ旧市街",
+      "nameLocal": "Rovinj / Rovigno",
+      "mapLabel": "Rovinj",
+      "description": "海へ張り出す旧市街の丘を、聖エウフェミア教会の鐘楼と淡い色の家並みが形づくる。かつて島だった街は1763年に本土とつながり、今も水際から立ち上がる輪郭にその名残がある。",
+      "coordinates": {
+        "latitude": 45.0807,
+        "longitude": 13.6417
+      },
+      "image": "assets/images/croatia/approved/rovinj.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "kornati",
+      "name": "コルナティ諸島",
+      "nameLocal": "Kornati",
+      "mapLabel": "Kornati",
+      "description": "白っぽい石灰岩の島々が、深い青のアドリア海に細かく散らばる。植生の薄い斜面と海の境界が繰り返され、沿岸部とは違う「海そのものが地形を分ける」クロアチアが見える。",
+      "coordinates": {
+        "latitude": 43.8228,
+        "longitude": 15.3067
+      },
+      "image": "assets/images/croatia/approved/kornati.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": 1
+      }
+    },
+    {
+      "id": "velika-paklenica",
+      "name": "ヴェリカ・パクレニツァ峡谷",
+      "nameLocal": "Velika Paklenica",
+      "mapLabel": "Paklenica",
+      "description": "ヴェレビット山地を削る全長約14kmの峡谷。狭い区間では両側の石灰岩壁が迫り、場所によって700mを超える岩壁が、海岸のすぐ背後に山岳地形があることを示す。",
+      "coordinates": {
+        "latitude": 44.3333,
+        "longitude": 15.4833
+      },
+      "image": "assets/images/croatia/approved/velika-paklenica.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "stari-grad-plain",
+      "name": "スタリ・グラード平原",
+      "nameLocal": "Starogradsko polje",
+      "mapLabel": "Stari Grad Plain",
+      "description": "フヴァル島の平地に、石垣で区切られた葡萄畑やオリーブ畑が広がる。紀元前4世紀にギリシャ人が導入した土地割りが約2400年にわたり保たれ、農地そのものが歴史を残している。",
+      "coordinates": {
+        "latitude": 43.1817,
+        "longitude": 16.6386
+      },
+      "image": "assets/images/croatia/approved/stari-grad-plain.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "trakoscan",
+      "name": "トラコシュチャン城",
+      "nameLocal": "Dvor Trakošćan",
+      "mapLabel": "Trakošćan",
+      "description": "森と湖の上に白い城が立つ北部内陸の景観。中世の小要塞を起点に改築を重ね、19世紀には居館と周囲のロマン主義的な庭園・湖が一体として整えられた。",
+      "coordinates": {
+        "latitude": 46.259,
+        "longitude": 15.95
+      },
+      "image": "assets/images/croatia/approved/trakoscan.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "kopacki-rit",
+      "name": "コパチュキ・リト",
+      "nameLocal": "Kopački rit",
+      "mapLabel": "Kopački Rit",
+      "description": "ドナウ川とドラヴァ川にはさまれた東部の氾濫原。湖、水路、ヨシ原、湿地林が水位によってつながったり分かれたりし、アドリア海とは別の水の国土を見せる。",
+      "coordinates": {
+        "latitude": 45.5892,
+        "longitude": 18.8533
+      },
+      "image": "assets/images/croatia/approved/kopacki-rit.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "zagreb-upper-town",
+      "name": "ザグレブ上町",
+      "nameLocal": "Gornji grad / Zagreb",
+      "mapLabel": "Zagreb Upper Town",
+      "description": "丘の上の歴史地区から赤瓦の屋根が広がり、その先に近代以降の首都が続く。アドリア海岸の石造都市とは異なる、中欧側へ開いたクロアチアの都市景観を見せる。",
+      "coordinates": {
+        "latitude": 45.8145,
+        "longitude": 15.973
+      },
+      "image": "assets/images/croatia/approved/zagreb.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": 1.5
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "カルスト",
+      "icon": "landscape"
+    },
+    {
+      "title": "港町",
+      "icon": "city"
+    },
+    {
+      "title": "島影",
+      "icon": "sea"
+    },
+    {
+      "title": "石畳",
+      "icon": "history"
+    },
+    {
+      "title": "葡萄畑",
+      "icon": "food"
+    },
+    {
+      "title": "オリーブ畑",
+      "icon": "food"
+    },
+    {
+      "title": "ヨシ原",
+      "icon": "landscape"
+    },
+    {
+      "title": "小型船",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "split-palace-became-city",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "スプリトでは、ローマ皇帝の宮殿が街の土台になった",
+      "text": "ディオクレティアヌス宮殿は3世紀末から4世紀初頭に建てられ、その遺構の内部や周囲へ中世以降の教会、住宅、街路が重なった。遺跡を保存して眺めるのではなく、古代建築を使いながら都市が続いてきた場所である。",
+      "points": [
+        "古代の霊廟は中世に大聖堂へ転用された",
+        "ローマ、ロマネスク、ゴシック、ルネサンス、バロックが同じ街区に重なる"
+      ]
+    },
+    {
+      "topicKey": "klapa-dalmatian-voices",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ダルマチアでは、楽器なしの複数の声が歌をつくる",
+      "text": "クラパは南部ダルマチアの多声アカペラ。第一テノールから始まる旋律へほかの声が重なり、歌い手同士が近く立って声を混ぜる。海岸の街や祭りで耳にすると、景色とは別の地域性が音から立ち上がる。",
+      "points": [
+        "アカペラの多声歌唱と口承が中心",
+        "2012年にユネスコ無形文化遺産の代表一覧へ登録"
+      ]
+    },
+    {
+      "topicKey": "three-croatian-lace-traditions",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "レース編みは、パグ・レポグラヴァ・フヴァルで技法が違う",
+      "text": "クロアチアには少なくとも三つの異なるレース編みの伝統が残る。パグは針、北部レポグラヴァはボビン、フヴァルではベネディクト会の修道女がアロエの繊維を使い、同じ『レース』でも土地ごとに材料と技法が変わる。",
+      "points": [
+        "海岸・北部内陸・島という異なる地域に伝統が分布",
+        "2009年にユネスコ無形文化遺産の代表一覧へ登録"
+      ]
+    },
+    {
+      "topicKey": "dry-stone-walling-landscape",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "石を積む技術が、島と沿岸の農地の輪郭をつくってきた",
+      "text": "乾石垣は接着材を使わず、石を選びながら積み上げる技術。畑の境界、斜面の保持、家畜の区画などに使われ、石灰岩の多い土地で人が農地をつくってきた痕跡として景観の中に残る。",
+      "points": [
+        "モルタルなどの結合材を使わず石を積む",
+        "クロアチアを含む複数国の伝統として2018年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "mediterranean-diet-shared-practice",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "地中海の食は、料理だけでなく『つくり、分け合う』習慣まで含む",
+      "text": "ユネスコが扱う地中海食は、農作物の栽培、漁、保存、調理、食卓を囲む習慣までを一つの生活文化として捉える。クロアチアの島や沿岸では、オリーブ、葡萄、魚介を見るだけでなく、それらを支える土地と共同体まで旅の対象になる。",
+      "points": [
+        "クロアチアを含む7か国の要素として2013年に登録",
+        "食材ではなく、知識・儀礼・共有の習慣まで含む"
+      ]
+    },
+    {
+      "topicKey": "lipizzan-rural-eastern-croatia",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "東部では、リピッツァナーが農村の行事と暮らしに残る",
+      "text": "リピッツァナーの飼育文化はかつてハプスブルク宮廷のために発達したが、現在は農村の祭礼や行事、乗馬などへ広がっている。クロアチアでは特にスラヴォニア、バラニャ、スリイェムで受け継がれ、海岸とは違う東部の文化景観につながる。",
+      "points": [
+        "国営牧場と個人農家の双方で飼育文化が継承される",
+        "クロアチアを含む8か国の伝統として2022年にユネスコ無形文化遺産へ登録"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "zagreb-funicular-66m",
+      "categoryEn": "ZAGREB",
+      "categoryJa": "街歩き",
+      "title": "ザグレブのケーブルカーは、線路がわずか66m",
+      "text": "上町と下町を結ぶケーブルカーの線路は66mで、通常の所要時間は約64秒。長距離移動というより、坂のある旧市街の地形を短い乗車で体感できる。",
+      "icon": "city",
+      "sourceKey": "zagrebFunicular"
+    },
+    {
+      "topicKey": "zadar-sea-organ-35-pipes",
+      "categoryEn": "ZADAR",
+      "categoryJa": "音",
+      "title": "ザダルの海岸では、波が35本のパイプを鳴らす",
+      "text": "海岸の階段下に設けられた『海のオルガン』は、波と潮の動きで空気を押し、約70mにわたる35本のパイプから音を出す。海況によって同じ場所でも聞こえ方が変わる。",
+      "icon": "sea",
+      "sourceKey": "zadarSeaOrgan"
+    },
+    {
+      "topicKey": "istria-truffle-dogs",
+      "categoryEn": "ISTRIA",
+      "categoryJa": "食",
+      "title": "イストリアでは、犬と森を歩いてトリュフを探せる",
+      "text": "ミルナ川流域やモトヴンの森はトリュフで知られ、訓練された犬と探す体験も行われている。秋には白トリュフの季節と重なり、森の土の下にある食材を自分で探す旅になる。",
+      "icon": "food",
+      "sourceKey": "istrianTruffles"
+    },
+    {
+      "topicKey": "northern-gingerbread-hearts",
+      "categoryEn": "CRAFT",
+      "categoryJa": "工芸",
+      "title": "北部では、赤いハート形のジンジャーブレッドを探す",
+      "text": "北部クロアチアのジンジャーブレッドは食べ物であると同時に工芸品でもある。ハート形が代表的で、鏡や短い言葉などを飾り、祭りや祝いの場で今も作られている。",
+      "icon": "culture",
+      "sourceKey": "gingerbread"
+    },
+    {
+      "topicKey": "sinjska-alka-ring-target",
+      "categoryEn": "SINJ",
+      "categoryJa": "祭り",
+      "title": "シンイでは、馬上から槍で小さな鉄の輪を狙う",
+      "text": "シニスカ・アルカは18世紀から続く騎士競技。騎手が全速力の馬で通りを走り、吊られた鉄の輪を槍で狙う。毎年行われ、衣装や道具の維持も地域共同体が支えている。",
+      "icon": "culture",
+      "sourceKey": "sinjskaAlka"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#879b63",
+      "text": "海岸の街と内陸の国立公園を組み合わせやすい春。新緑が戻り、真夏ほど気温が上がらない一方、山地では天候の変化と残雪の有無を確認する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b39a55",
+      "text": "島、海岸、山歩きの季節。アドリア海沿岸と主要観光地は混みやすく、日中の暑さも強くなるため、旧市街歩きは朝夕へずらし、船や入場枠は早めに確認する。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b2784b",
+      "text": "海に夏の暖かさが残りつつ、街歩きや内陸移動がしやすくなる。葡萄やオリーブなど農地の季節変化も見え、海岸と平原を同じ旅でつなぎやすい。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748d9b",
+      "text": "内陸は寒く、山地では雪になる。海岸は夏より静かだが、島路線や観光施設は季節で本数・営業時間が変わるため、目的地ごとの運行と営業状況を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "INTERCITY BUS / FERRY / CAR",
+    "text": "ザグレブを起点に内陸へ鉄道やバス、アドリア海沿岸へ都市間バスや車をつなぐ。島へ渡る区間はフェリーや高速船が旅程の一部になり、同じ距離でも季節と接続で所要時間が変わるため、地域ごとに移動手段を組み合わせる。"
+  },
+  "personas": [
+    {
+      "title": "海岸と島を移動しながら見たい人",
+      "text": "一つの港町に滞在するだけでなく、船や道路で島・半島・城壁都市の違いをつなげたい人。"
+    },
+    {
+      "title": "自然と歴史を同じ地図で追いたい人",
+      "text": "湖、峡谷、湿地を歩きながら、古代の農地や中世都市がその地形とどう結びついたか見たい人。"
+    },
+    {
+      "title": "有名な海岸以外のクロアチアも知りたい人",
+      "text": "北部の城と森、東部の氾濫原まで足を延ばし、国土の地域差を旅そのものにしたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "ザグレブ"
+    },
+    {
+      "label": "人口",
+      "value": "約387万人"
+    },
+    {
+      "label": "面積",
+      "value": "約56,600 km²（日本の約15%）"
+    },
+    {
+      "label": "言語",
+      "value": "クロアチア語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "croatian-archipelago-1244",
+      "label": "島・小島・岩礁",
+      "value": "1,244",
+      "note": "政府の島嶼登録簿は、78の島、524の小島、642の岩礁を記録する。地図で見る細かな海岸線は、国土の周縁ではなくクロアチアを形づくる主要な地理そのもの。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "croatia-lowland-under-200m",
+      "label": "標高200m未満",
+      "value": "国土の53%",
+      "note": "山と海の印象が強い一方、国土の半分以上は標高200m未満。北東部にはサヴァ、ドラヴァ、ドナウに連なるパンノニア低地が広がる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "euro-schengen-2023",
+      "label": "ユーロ圏・シェンゲン",
+      "value": "2023年",
+      "note": "2023年1月1日にユーロを導入し、同日にシェンゲン圏の陸路・海路の域内国境検査も撤廃された。現在のクロアチア旅行の移動と支払いを大きく変えた節目。",
+      "icon": "map"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "island-ferry-port-schedule-check",
+      "title": "島へ行く日は、便名だけでなく発着港まで確認する",
+      "text": "島路線は季節で運航本数が変わり、同じ島でも複数の港や高速船・カーフェリーが使われることがある。Jadrolinijaなど運航会社の最新時刻と発着港を旅程ごとに確認する。"
+    },
+    {
+      "topicKey": "plitvice-entry-route-planning",
+      "title": "プリトヴィツェは入口と散策ルートを先に決める",
+      "text": "湖群は複数の公式ルートに分かれ、入口によって最初に見る景色と歩行距離が変わる。オンライン券や当日の案内を確認し、移動日の途中に短時間だけ詰め込まない。"
+    },
+    {
+      "topicKey": "summer-old-town-time-shift",
+      "title": "夏の旧市街歩きは、朝と夕方を使う",
+      "text": "アドリア海沿岸の夏は日中の暑さと混雑が重なりやすい。ドゥブロヴニクやロヴィニでは、屋外を歩く時間を朝夕へ寄せ、昼は屋内や移動へ回すと景観を見やすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "slovenia",
+      "nameEn": "SLOVENIA",
+      "nameJa": "スロベニア",
+      "flag": "🇸🇮",
+      "reason": "カルスト、高山、アドリア海がさらに小さな国土で切り替わる地理を北へつなげたいなら。"
+    },
+    {
+      "slug": "montenegro",
+      "nameEn": "MONTENEGRO",
+      "nameJa": "モンテネグロ",
+      "flag": "🇲🇪",
+      "reason": "ダルマチア海岸を南へたどり、入り組んだ湾とディナル山地が接する景観を続けて見たいなら。"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "アドリア海の向こう側へ渡り、ローマからヴェネツィアまで重なる都市史と地域差を比較したいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-02",
+  "sourcesVerifiedAt": "2026-09-02",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2021",
+    "islandRegistry": "2026",
+    "euroSchengen": "2023"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection HRV.geojson; WGS84",
+    "population": "European Union country profile for Croatia / Eurostat 2025: population 3,874,350",
+    "area": "European Union country profile for Croatia / Eurostat 2025: geographical size 56,594 km²",
+    "language": "European Union country profile for Croatia: official EU language Croatian",
+    "religion": "Croatian Bureau of Statistics, 2021 Census: Catholics are the largest religious group (3,057,735; 78.97%)",
+    "currency": "European Commission: Croatia adopted the euro on 1 January 2023",
+    "dubrovnik": "UNESCO World Heritage Centre: Old City of Dubrovnik, Mediterranean sea power from the 13th century; Gothic, Renaissance and Baroque heritage",
+    "plitvice": "Plitvice Lakes National Park official information: 16 named lakes connected by waterfalls and actively forming tufa barriers",
+    "rovinj": "Rovinj-Rovigno Tourist Board: Old Town once stood on an island; channel was filled in 1763; St Euphemia church dominates the skyline",
+    "kornati": "Kornati National Park official information: protected Adriatic archipelago characterized by karst islands and marine landscape",
+    "paklenica": "Paklenica National Park official information: Velika Paklenica canyon about 14 km long; cliffs rise over 700 m in places",
+    "stariGrad": "UNESCO World Heritage Centre: Stari Grad Plain, Greek land division from the 4th century BC preserved for about 2400 years",
+    "trakoscan": "Trakošćan Castle museum: origins in a 13th-century fortress; 19th-century historicist residential transformation with landscaped park and lake",
+    "kopackiRit": "Kopački Rit Nature Park official information: Danube-Drava floodplain mosaic of lakes, channels, reedbeds and floodplain forests",
+    "zagreb": "Zagreb Tourist Board: historic Upper Town and funicular connect the hilly old core with Lower Town",
+    "splitPalace": "UNESCO World Heritage Centre: Historical Complex of Split with the Palace of Diocletian, late 3rd/early 4th century palace reused by the medieval and later city",
+    "klapa": "UNESCO Intangible Cultural Heritage: Klapa multipart singing of Dalmatia, southern Croatia; inscribed 2012",
+    "lacemaking": "UNESCO Intangible Cultural Heritage: distinct lacemaking traditions in Pag, Lepoglava and Hvar; inscribed 2009",
+    "dryStone": "UNESCO Intangible Cultural Heritage: Art of dry stone walling, knowledge and techniques; Croatia included in multinational inscription",
+    "mediterraneanDiet": "UNESCO Intangible Cultural Heritage: Mediterranean diet includes knowledge, rituals, cultivation, fishing, preparation and communal eating; Croatia included since 2013",
+    "lipizzan": "UNESCO / Croatian Ministry of Culture: Lipizzan horse breeding traditions, especially represented in Slavonia, Baranja and Srijem; multinational inscription 2022",
+    "zagrebFunicular": "Zagreb Tourist Board: Zagreb Funicular track is 66 m; ride lasts about 64 seconds",
+    "zadarSeaOrgan": "Zadar Tourist Board: Sea Organ extends about 70 m and uses 35 pipes activated by waves and tides",
+    "istrianTruffles": "Istria Tourist Board: white and black truffles are found around the Mirna Valley and Motovun Forest using trained dogs",
+    "gingerbread": "UNESCO Intangible Cultural Heritage: gingerbread craft from Northern Croatia; heart is the most common motif; inscribed 2010",
+    "sinjskaAlka": "UNESCO Intangible Cultural Heritage: Sinjska Alka is an annual chivalric tournament in Sinj in which riders aim lances at an iron ring",
+    "islandRegistry": "Croatian Ministry of Regional Development and EU Funds, Island Registry / 2026 Islands Act: 1,244 islands, islets and rocks; registry breakdown 78 islands, 524 islets, 642 rocks",
+    "lowlandShare": "Croatia.eu relief: 53% of Croatia lies below 200 m elevation; three main relief types are Pannonian lowland, Dinaric mountains and Adriatic coast",
+    "euroSchengen": "European Commission / EUR-Lex: euro adopted 1 Jan 2023; internal land and sea border checks under Schengen lifted 1 Jan 2023",
+    "transport": "Jadrolinija official schedules and route information for Croatian island ferry and fast-ship services",
+    "plitviceRoutes": "Plitvice Lakes National Park official visitor information: seven routes and four hiking trails are available"
+  }
+}
