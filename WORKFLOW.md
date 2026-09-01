@@ -106,10 +106,10 @@ Locked Hero copy:
 - `見つける。`
 - `まだ知らない景色、心に残る出会い。`
 - `文化や人々の暮らし。`
-- `199の国・地域を、イラストとともに`
+- `201の国・地域を、イラストとともに`
 - `めぐる世界図鑑です。`
 
-The 199 destination registry is part of the top page from the beginning, but completion of 199 final illustrations is **not** a release blocker for the top page. Missing destination art may use the existing neutral fallback and be replaced progressively as approved illustrations are completed.
+The 201 destination registry is part of the top page from the beginning, but completion of 201 final illustrations is **not** a release blocker for the top page. Missing destination art may use the existing neutral fallback and be replaced progressively as approved illustrations are completed.
 
 From this point, top-page work is limited to:
 - clear bugs;
