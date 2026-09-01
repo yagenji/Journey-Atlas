@@ -1,0 +1,466 @@
+{
+  "schemaVersion": 2,
+  "slug": "switzerland",
+  "nameEn": "SWITZERLAND",
+  "nameJa": "スイス",
+  "region": "CENTRAL EUROPE / ALPS / 47°N",
+  "seo": {
+    "description": "ラウターブルンネンの氷食谷、マッターホルン、ベルン、レマン湖の葡萄畑、ティチーノ、アレッチ氷河、山岳鉄道、ジュラ、アッペンツェル。スイスの8つの景色と地図から、山だけではない国土の幅をたどる。"
+  },
+  "capital": {
+    "nameEn": "Bern",
+    "nameJa": "ベルン",
+    "coordinates": {
+      "latitude": 46.948,
+      "longitude": 7.4474
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -3,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "切り立つ氷食谷と滝の間に村が続くラウターブルンネンから、高峰、氷河、湖、葡萄畑、都市、鉄道へ。言語圏と地形が短い移動の中で切り替わる国。",
+    "image": "assets/images/switzerland/approved/hero-lauterbrunnen-wengen.png",
+    "location": "Lauterbrunnen Valley / Wengen",
+    "coordinates": {
+      "latitude": 46.6064,
+      "longitude": 7.9214
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 47.95,
+      "south": 45.55,
+      "west": 5.75,
+      "east": 10.75
+    },
+    "svg": "assets/images/switzerland/map-atlas-v1.svg",
+    "route": null,
+    "source": "Basemap country boundaries and GSHHS lakes, intermediate resolution; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "matterhorn-riffelsee",
+      "name": "マッターホルン / リッフェル湖",
+      "nameLocal": "Matterhorn / Riffelsee",
+      "mapLabel": "Riffelsee",
+      "description": "リッフェル湖の水面に、マッターホルンの鋭い山体が映る。単独峰の輪郭と高山湖を近い距離で見る、ヴァレーを代表する高所景観。",
+      "coordinates": {
+        "latitude": 45.983,
+        "longitude": 7.762
+      },
+      "image": "assets/images/switzerland/approved/matterhorn-riffelsee.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "bern-rosengarten",
+      "name": "ベルン / バラ公園",
+      "nameLocal": "Bern / Rosengarten",
+      "mapLabel": "Bern",
+      "description": "バラ公園から見下ろすと、アーレ川が大きく曲がりながら旧市街を包み、赤褐色の屋根の上にベルン大聖堂の尖塔が立つ。",
+      "coordinates": {
+        "latitude": 46.9515,
+        "longitude": 7.459
+      },
+      "image": "assets/images/switzerland/approved/bern-rosengarten.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 0
+      }
+    },
+    {
+      "id": "lavaux-rivaz",
+      "name": "ラヴォー / リヴァ",
+      "nameLocal": "Lavaux / Rivaz",
+      "mapLabel": "Lavaux",
+      "description": "レマン湖へ向かって石垣の段々葡萄畑が下り、その間にリヴァの集落が収まる。斜面、湖、対岸の山々が一つの文化景観をつくる。",
+      "coordinates": {
+        "latitude": 46.476,
+        "longitude": 6.779
+      },
+      "image": "assets/images/switzerland/approved/lavaux-rivaz.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "morcote-lake-lugano",
+      "name": "モルコテ / ルガーノ湖",
+      "nameLocal": "Morcote / Lake Lugano",
+      "mapLabel": "Morcote",
+      "description": "ルガーノ湖の水際から斜面を見上げると、赤瓦の家々とサンタ・マリア・デル・サッソ教会が濃い緑の中に重なる。アルプス北側とは異なるティチーノの景観。",
+      "coordinates": {
+        "latitude": 45.925,
+        "longitude": 8.916
+      },
+      "image": "assets/images/switzerland/approved/morcote-lake-lugano.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "aletsch-glacier-eggishorn",
+      "name": "アレッチ氷河 / エッギスホルン",
+      "nameLocal": "Great Aletsch Glacier / Eggishorn",
+      "mapLabel": "Aletsch",
+      "description": "エッギスホルンの高所から、黒いモレーンの帯を載せた巨大な氷河が山間を曲がりながら続く。峰ではなく、流れる氷そのものの尺度を見る景観。",
+      "coordinates": {
+        "latitude": 46.427,
+        "longitude": 8.094
+      },
+      "image": "assets/images/switzerland/approved/aletsch-glacier-eggishorn.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "landwasser-viaduct",
+      "name": "ランドヴァッサー橋",
+      "nameLocal": "Landwasser Viaduct / Graubünden",
+      "mapLabel": "Landwasser",
+      "description": "石造アーチの高架橋が峡谷を湾曲して渡り、そのまま岩壁のトンネルへ入る。赤いレーティッシュ鉄道が、山地で移動すること自体を景観に変える。",
+      "coordinates": {
+        "latitude": 46.68,
+        "longitude": 9.675
+      },
+      "image": "assets/images/switzerland/approved/landwasser-viaduct.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "creux-du-van",
+      "name": "クルー・デュ・ヴァン",
+      "nameLocal": "Creux du Van / Neuchâtel Jura",
+      "mapLabel": "Creux du Van",
+      "description": "ジュラ山地の草地が突然切れ落ち、半円状の石灰岩壁が森林を囲む。高峰とは違う地質の成り立ちを、崖の縁から一望できる。",
+      "coordinates": {
+        "latitude": 46.93,
+        "longitude": 6.73
+      },
+      "image": "assets/images/switzerland/approved/creux-du-van.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "appenzell-hauptgasse",
+      "name": "アッペンツェル / ハウプトガッセ",
+      "nameLocal": "Appenzell / Hauptgasse",
+      "mapLabel": "Appenzell",
+      "description": "彩色された切妻ファサードと鉄製の看板が細い通りに並ぶ。大きな自然景観から街路の距離へ視点を移し、東部スイスの暮らしと建築を見る。",
+      "coordinates": {
+        "latitude": 47.331,
+        "longitude": 9.409
+      },
+      "image": "assets/images/switzerland/approved/appenzell-hauptgasse.png",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "高山湖に映るマッターホルン",
+      "icon": "landscape"
+    },
+    {
+      "title": "アーレ川が囲むベルン旧市街",
+      "icon": "city"
+    },
+    {
+      "title": "レマン湖へ下る段々葡萄畑",
+      "icon": "food"
+    },
+    {
+      "title": "ティチーノの湖畔集落",
+      "icon": "city"
+    },
+    {
+      "title": "モレーンを載せて流れる氷河",
+      "icon": "landscape"
+    },
+    {
+      "title": "峡谷を渡る山岳鉄道",
+      "icon": "road"
+    },
+    {
+      "title": "ジュラの半円状石灰岩壁",
+      "icon": "hike"
+    },
+    {
+      "title": "彩色ファサードの村通り",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "夏になると家畜と暮らしが高地へ移る",
+      "text": "アルプスの高地放牧は、家畜を夏の牧草地へ移し、チーズづくりや牧草地の管理を続ける季節の営み。山の景観は自然だけでなく、人が長く使い続けてきた土地でもある。",
+      "points": [
+        "「Alpine pasture season」は2023年にUNESCO無形文化遺産へ登録",
+        "放牧地への移動、家畜の世話、乳製品づくりなど複数の慣習が結びつく"
+      ],
+      "topicKey": "alpine-pasture-season"
+    },
+    {
+      "themeEn": "CRAFT",
+      "themeJa": "技を受け継ぐ",
+      "title": "ジュラの町に機械式時計の技術が積み重なる",
+      "text": "スイスとフランスにまたがるジュラ地域では、時計製作と精密機械の技能が工房、企業、教育の中で受け継がれてきた。完成品だけでなく、その土地に残る技能の集積も旅の背景になる。",
+      "points": [
+        "機械式時計製作とアートメカニクスの技能は2020年にUNESCO無形文化遺産へ登録",
+        "国境を越えてスイスとフランスのジュラ地域に広がる文化"
+      ],
+      "topicKey": "mechanical-watchmaking-craft"
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ジュネーヴから国際人道の仕組みが始まった",
+      "text": "アンリー・デュナンの提案を受けた委員会は1863年にジュネーヴで初会合を開き、のちのICRCへつながった。翌1864年には最初のジュネーヴ条約が採択される。",
+      "points": [
+        "ICRCの前身となる委員会は1863年2月にジュネーヴで初会合",
+        "赤十字運動と近代の国際人道法の形成につながった"
+      ],
+      "topicKey": "red-cross-geneva-origin"
+    },
+    {
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "1916年、チューリヒの小さな舞台からDadaが動き出した",
+      "text": "第一次世界大戦中のチューリヒでCabaret Voltaireが開き、詩、音楽、ダンス、仮面を組み合わせた実験が続いた。1916年春、その新しい運動に「Dada」という名が与えられた。",
+      "points": [
+        "Cabaret Voltaireでは1916年2月5日から公演が始まった",
+        "同年4月に「Dada」という名称が合意された"
+      ],
+      "topicKey": "dada-zurich-1916"
+    },
+    {
+      "themeEn": "FESTIVAL",
+      "themeJa": "街の行事",
+      "title": "バーゼルでは街全体が三日間の舞台になる",
+      "text": "Basel Carnivalは音楽、灯籠、仮面、行列が旧市街を動き続ける地域文化。観客向けの一回のショーではなく、都市の団体と住民が長く準備してつくる行事として受け継がれている。",
+      "points": [
+        "Basel Carnivalは2017年にUNESCO無形文化遺産へ登録",
+        "宗教暦に連動し、毎年決まった時期に旧市街で行われる"
+      ],
+      "topicKey": "basel-carnival-tradition"
+    },
+    {
+      "themeEn": "POLITICS",
+      "themeJa": "国の成り立ち",
+      "title": "中立は地理的な孤立ではなく、外交政策として続いてきた",
+      "text": "スイスの中立は1815年に国際的に公式承認された。武力紛争への不参加を原則としながら、ジュネーヴを含む国際機関や人道外交の場とも結びついている。",
+      "points": [
+        "国際社会による公式な中立承認は1815年",
+        "中立は現在もスイス外交政策の基盤の一つ"
+      ],
+      "topicKey": "permanent-neutrality-1815"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "categoryEn": "BERN",
+      "categoryJa": "街歩き",
+      "title": "ベルン旧市街には約6kmのアーケードが続く",
+      "text": "建物の一階部分に連なる屋根付き歩道は、雨や雪の日にも街を歩きやすくする。広場だけでなく、通りの断面そのものがベルンらしい都市景観になっている。",
+      "icon": "city",
+      "sourceKey": "bernArcades",
+      "topicKey": "bern-six-kilometre-arcades"
+    },
+    {
+      "categoryEn": "ST. MORITZ",
+      "categoryJa": "旅の歴史",
+      "title": "1864年の「冬にも来てみて」という賭けが冬季観光の物語になった",
+      "text": "ホテル経営者Johannes Badruttが英国人の夏客に冬の滞在を提案し、気に入らなければ費用を負担すると約束した逸話は、サン・モリッツの冬季観光の始まりとして語られている。",
+      "icon": "history",
+      "sourceKey": "stMoritzWinter",
+      "topicKey": "st-moritz-winter-tourism-1864"
+    },
+    {
+      "categoryEn": "CERN",
+      "categoryJa": "科学",
+      "title": "ジュネーヴ近郊の地下には周長27kmの加速器がある",
+      "text": "CERNのLarge Hadron Colliderはフランスとスイスの国境地下を通る約27kmのリング。アルプスや旧市街とは別に、国境をまたぐ科学研究の風景がある。",
+      "icon": "culture",
+      "sourceKey": "cernLhc",
+      "topicKey": "cern-lhc-franco-swiss-border"
+    },
+    {
+      "categoryEn": "MATTERHORN",
+      "categoryJa": "登山史",
+      "title": "マッターホルン初登頂は1865年7月14日",
+      "text": "Edward Whymperらの隊が初登頂に成功した日付は1865年7月14日。現在のツェルマットの景観には、山を見る旅と登る歴史の両方が重なっている。",
+      "icon": "hike",
+      "sourceKey": "matterhornAscent",
+      "topicKey": "matterhorn-first-ascent-1865"
+    },
+    {
+      "categoryEn": "HEIDI",
+      "categoryJa": "文学",
+      "title": "『ハイジ』が世界に広げたスイス山地のイメージ",
+      "text": "Johanna Spyriの『Heidi』は1880年に最初の巻が刊行され、各国語へ翻訳された。グラウビュンデン周辺には、物語が描いた山の暮らしをたどる場所も残る。",
+      "icon": "culture",
+      "sourceKey": "heidi",
+      "topicKey": "heidi-global-literary-icon"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#73966f",
+      "text": "低地では春が進み、ベルンやティチーノ、湖畔の町を歩きやすくなる。一方、高山では残雪が多く、ハイキングコースや山岳交通はまだ冬季・休止期の場所がある。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#92a253",
+      "text": "高山ハイキング、氷河展望、山岳鉄道を組み合わせやすい時期。標高差で気温が大きく変わるため、湖畔と高所を同じ服装で考えない。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b77a49",
+      "text": "ラヴォーなどの葡萄畑が秋色へ変わり、都市の人出も少し落ち着く。標高の高い場所では早くから雪や運休が始まるため、季節の境目を意識する。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#6b90a5",
+      "text": "高地は雪の季節。スキーだけでなく、冬季鉄道や雪の村景観も旅の軸になる。低地の都市と山岳リゾートでは天候と日照時間の条件が大きく異なる。"
+    }
+  ],
+  "transport": {
+    "title": "RAIL / POSTBUS / BOAT / MOUNTAIN RAILWAY",
+    "text": "都市間鉄道を骨格に、山岳鉄道、ロープウェイ、PostBus、湖船を組み合わせると地形の違いを追いやすい。高所の交通は季節運行や点検、天候による変更があるため、当日の運行情報を確認する。"
+  },
+  "personas": [
+    {
+      "title": "高峰だけでなく、氷河と谷の地形まで見たい人",
+      "text": "マッターホルン、アレッチ氷河、ラウターブルンネン、ジュラまで移動し、同じ山国の中にある地形の違いを見比べたい人。"
+    },
+    {
+      "title": "鉄道で移動する時間そのものを旅にしたい人",
+      "text": "都市間列車だけでなく、ランドヴァッサー橋のような山岳鉄道や湖船を組み合わせ、移動しながら景色が変わる過程を楽しみたい人。"
+    },
+    {
+      "title": "言語圏ごとの街と暮らしの違いを歩きたい人",
+      "text": "ベルン、レマン湖岸、ティチーノ、アッペンツェルへ足を延ばし、建築、言葉、食、植生の変化を一つの国の中で確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ／アルプス"
+    },
+    {
+      "label": "首都",
+      "value": "ベルン"
+    },
+    {
+      "label": "人口",
+      "value": "約913万人"
+    },
+    {
+      "label": "面積",
+      "value": "約41,300 km²（日本の約11%）"
+    },
+    {
+      "label": "言語",
+      "value": "ドイツ語・フランス語・イタリア語・ロマンシュ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック・改革派）・無宗教など"
+    },
+    {
+      "label": "通貨",
+      "value": "スイス・フラン（CHF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "four-national-languages",
+      "label": "国語",
+      "value": "4言語",
+      "note": "憲法上の国語はドイツ語、フランス語、イタリア語、ロマンシュ語。地域を移動すると駅名、案内、日常語の景色まで切り替わる。",
+      "icon": "culture"
+    },
+    {
+      "topicKey": "gotthard-base-tunnel",
+      "label": "ゴッタルド・ベーストンネル",
+      "value": "約57 km",
+      "note": "2016年に開業したアルプス直下の鉄道トンネル。南北を結ぶ移動の骨格で、山を越える交通を地下へ通した巨大なインフラ。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "direct-democracy-ballots",
+      "label": "国民発議",
+      "value": "10万署名",
+      "note": "憲法改正を提案する国民発議は18か月以内に10万人の署名が必要。成立した提案は全国投票へ進み、市民が政策判断に直接関わる。",
+      "icon": "city"
+    }
+  ],
+  "tips": [
+    {
+      "title": "Swiss Travel Passは移動量と日数で判断する",
+      "text": "鉄道だけでなくバス、船、都市交通まで広く使えるが、旅程によって得になるかは変わる。先に移動区間を並べ、個別運賃や他のパスと比較する。",
+      "topicKey": "swiss-travel-pass-network"
+    },
+    {
+      "title": "登山道は標識の色で難易度が変わる",
+      "text": "黄色は一般的なハイキング、白赤白は山岳ハイキング、白青白はアルパインルート。距離だけでなく、標識カテゴリーに合う装備と経験があるかを確認する。",
+      "topicKey": "hiking-trail-markings"
+    },
+    {
+      "title": "山岳交通は前日ではなく当日も運行状況を見る",
+      "text": "ロープウェイや登山鉄道は天候、強風、積雪、季節運行、保守点検で条件が変わる。高所へ上がる日は公式運行情報を確認してから出発する。",
+      "topicKey": "mountain-transport-live-status"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "レマン湖の西へつなぎ、フランス語圏の都市、食文化、アルプスの続きを見たいなら。"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "ティチーノから南へ、湖、山、イタリア語圏の街と食文化の連続をたどりたいなら。"
+    },
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "東へアルプスをつなぎ、鉄道、山村、ドイツ語圏の都市文化を比較したいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2023"
+  },
+  "sources": {
+    "map": "Basemap country boundaries and GSHHS lakes, intermediate resolution; Switzerland national boundary reconstructed from shared country boundary segments; WGS84.",
+    "population": "Swiss Federal Statistical Office (FSO), permanent resident population at end of 2025: 9,127,125.",
+    "area": "FDFA / About Switzerland, Geography: Switzerland surface area 41,285 km²; comparison uses Japan area approximately 377,975 km².",
+    "language": "FDFA / About Switzerland, Multilingualism: national languages German, French, Italian and Romansh.",
+    "religion": "FDFA / About Switzerland, Religion: historically predominantly Christian, including Roman Catholic and Reformed traditions, with a growing unaffiliated population.",
+    "currency": "Swiss National Bank / Swiss Confederation: Swiss franc (CHF).",
+    "gotthard": "SBB: Gotthard Base Tunnel opened in 2016 and is approximately 57 km long.",
+    "directDemocracy": "FDFA / About Switzerland, Direct Democracy: popular initiative requires 100,000 signatures in 18 months; optional referendum 50,000 in 100 days.",
+    "alpinePasture": "UNESCO Intangible Cultural Heritage: Alpine pasture season, Switzerland, inscribed 2023.",
+    "watchmaking": "UNESCO Intangible Cultural Heritage: Craftsmanship of mechanical watchmaking and art mechanics, Switzerland and France, inscribed 2020.",
+    "redCross": "International Committee of the Red Cross: future ICRC first met in Geneva in February 1863; first Geneva Convention adopted in 1864.",
+    "dada": "Cabaret Voltaire: events began 5 February 1916; the Dadaists agreed on the name Dada in April 1916.",
+    "baselCarnival": "UNESCO Intangible Cultural Heritage: Basel Carnival, Switzerland, inscribed 2017.",
+    "neutrality": "FDFA / About Switzerland, Neutrality: Switzerland's neutrality was officially recognised internationally in 1815.",
+    "bernArcades": "Bern Welcome: Bern Old City has approximately 6 km of arcades.",
+    "stMoritzWinter": "St. Moritz official history: Johannes Badrutt's 1864 winter wager with English summer guests is associated with the beginnings of winter tourism.",
+    "cernLhc": "CERN: Large Hadron Collider is a 27 km ring underground across the Franco-Swiss border near Geneva.",
+    "matterhornAscent": "Zermatt official tourism: first ascent of the Matterhorn on 14 July 1865.",
+    "heidi": "Switzerland Tourism / Heididorf: Johanna Spyri's Heidi first appeared in 1880 and became internationally translated.",
+    "swissTravelPass": "SBB: Swiss Travel Pass covers train, bus and boat travel plus local public transport in more than 90 towns and cities, subject to product conditions.",
+    "hikingSignals": "Schweizer Wanderwege: yellow = hiking trail, white-red-white = mountain hiking trail, white-blue-white = alpine hiking trail.",
+    "mountainTransport": "Individual Swiss mountain railway and cableway operators publish seasonal timetables and live operating information; check operator status for the day of travel."
+  },
+  "contentQaVersion": 1
+}
