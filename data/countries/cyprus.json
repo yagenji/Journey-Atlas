@@ -1,0 +1,477 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "cyprus",
+  "nameEn": "CYPRUS",
+  "nameJa": "キプロス",
+  "region": "EASTERN MEDITERRANEAN / 35°N",
+  "seo": {
+    "description": "パフォスの海沿い遺跡からニコシア、クリオン、トロードス、ラルナカ塩湖、キレニア、アヴァカス峡谷、オモドス、ケープ・グレコへ。海・山・都市・遺跡・農村が近いキプロスを9つの景観でたどる。"
+  },
+  "capital": {
+    "nameEn": "Nicosia",
+    "nameJa": "ニコシア",
+    "coordinates": {
+      "latitude": 35.1856,
+      "longitude": 33.3823
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -1,
+      "y": -1
+    }
+  },
+  "hero": {
+    "lead": "海沿いに古代都市の層が残るパフォスから、城壁都市、海から持ち上がった山地、塩湖、葡萄畑、峡谷へ。東地中海の島に、地質と交易と暮らしの時間が重なる。",
+    "image": "assets/images/cyprus/approved/hero-paphos-archaeological-park.png",
+    "location": "Kato Paphos Archaeological Park",
+    "coordinates": {
+      "latitude": 34.755667,
+      "longitude": 32.404167
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 35.836,
+      "south": 34.422,
+      "west": 32.07025,
+      "east": 34.79973
+    },
+    "svg": "assets/images/cyprus/map-atlas-v1.svg",
+    "route": null,
+    "source": "Cyprus coastline assembled from six district polygons in dtrihinas/cyprus-geojson (OpenStreetMap-derived community boundary data), dissolved to one island outline; WGS84; internal political and administrative lines omitted; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "nicosia-venetian-walls",
+      "name": "ニコシア / ヴェネツィア城壁",
+      "nameLocal": "Lefkosia / Nicosia Venetian Walls",
+      "mapLabel": "Nicosia Walls",
+      "description": "16世紀にヴェネツィアが築き直した城壁は、11の稜堡と広い堀で旧市街を囲む。円形に近い防御線の内外に現在の都市が広がり、首都の歴史を地形として読める。",
+      "coordinates": {
+        "latitude": 35.16852,
+        "longitude": 33.36568
+      },
+      "image": "assets/images/cyprus/approved/nicosia-venetian-walls.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4.5,
+        "y": 2
+      }
+    },
+    {
+      "id": "kourion-ancient-theatre",
+      "name": "クリオン遺跡 / 古代劇場",
+      "nameLocal": "Kourion Ancient Theatre",
+      "mapLabel": "Kourion",
+      "description": "海を見下ろす高台に、古代都市クリオンの劇場と住居跡が残る。舞台の向こうに地中海が開き、都市が海岸段丘を選んで築かれた理由まで視界に入る。",
+      "coordinates": {
+        "latitude": 34.6642,
+        "longitude": 32.8877
+      },
+      "image": "assets/images/cyprus/approved/kourion-ancient-theatre.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "troodos-mountains",
+      "name": "トロードス山地",
+      "nameLocal": "Troodos Mountains / Mount Olympus",
+      "mapLabel": "Troodos",
+      "description": "松林と露岩が続く中央山地は、かつて海底をつくっていた地殻と上部マントルが陸上へ持ち上がった場所。海の島という印象を、地質の時間から反転させる景観。",
+      "coordinates": {
+        "latitude": 34.936667,
+        "longitude": 32.863889
+      },
+      "image": "assets/images/cyprus/approved/troodos-mountains.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": -2
+      }
+    },
+    {
+      "id": "larnaca-salt-lake-hala-sultan-tekke",
+      "name": "ラルナカ塩湖 / ハラ・スルタン・テッケ",
+      "nameLocal": "Larnaka Salt Lake / Hala Sultan Tekke",
+      "mapLabel": "Larnaka Salt Lake",
+      "description": "冬の塩湖にフラミンゴが集まり、岸辺にはオスマン期のハラ・スルタン・テッケが立つ。乾季には水景が薄れ、季節によって同じ場所の輪郭が大きく変わる。",
+      "coordinates": {
+        "latitude": 34.885277,
+        "longitude": 33.61165
+      },
+      "image": "assets/images/cyprus/approved/larnaca-salt-lake-hala-sultan-tekke.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "kyrenia-old-harbour-castle",
+      "name": "キレニア旧港 / キレニア城",
+      "nameLocal": "Kyrenia Old Harbour / Kyrenia Castle",
+      "mapLabel": "Kyrenia",
+      "description": "北岸の小さな港を城塞が縁取り、その背後にキレニア山脈が長く連なる。港、旧市街、急に立ち上がる山が近接し、島北部の地形を一枚の景色で見せる。",
+      "coordinates": {
+        "latitude": 35.34333,
+        "longitude": 33.31986
+      },
+      "image": "assets/images/cyprus/approved/kyrenia-old-harbour-castle.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "avakas-gorge",
+      "name": "アヴァカス峡谷",
+      "nameLocal": "Avakas Gorge / Akamas",
+      "mapLabel": "Avakas Gorge",
+      "description": "アカマス半島の石灰岩を川が削り、狭い谷底へ岩壁が迫る。乾いた海岸のすぐ内側に湿った峡谷環境が入り込み、西部の地形の変化を足元で体感できる。",
+      "coordinates": {
+        "latitude": 34.920499,
+        "longitude": 32.337698
+      },
+      "image": "assets/images/cyprus/approved/avakas-gorge.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "omodos-vineyards",
+      "name": "オモドス / 葡萄畑",
+      "nameLocal": "Omodos / Krasochoria",
+      "mapLabel": "Omodos",
+      "description": "トロードス南麓の斜面に葡萄畑と石造家屋が重なる。高地の気候と農地、村の路地、ワインづくりが同じ土地利用の中でつながる山村景観。",
+      "coordinates": {
+        "latitude": 34.8481,
+        "longitude": 32.8078
+      },
+      "image": "assets/images/cyprus/approved/omodos-vineyards-village.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "cape-greco-sea-caves",
+      "name": "ケープ・グレコ / 海食洞",
+      "nameLocal": "Cape Greco / Sea Caves",
+      "mapLabel": "Cape Greco",
+      "description": "島の南東部では、明るい石灰岩の崖に海食洞が刻まれ、浅瀬の青から外海の濃い青へ色が変わる。西部とは異なる乾いた海岸地形を見せる。",
+      "coordinates": {
+        "latitude": 34.963785,
+        "longitude": 34.067116
+      },
+      "image": "assets/images/cyprus/approved/cape-greco-sea-caves.png",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "城壁の輪郭から読むニコシア旧市街",
+      "icon": "city"
+    },
+    {
+      "title": "古代劇場の向こうに開く地中海",
+      "icon": "history"
+    },
+    {
+      "title": "海底由来の岩石が山になったトロードス",
+      "icon": "landscape"
+    },
+    {
+      "title": "冬の塩湖に集まるフラミンゴ",
+      "icon": "wildlife"
+    },
+    {
+      "title": "城塞と山脈に挟まれた北岸の旧港",
+      "icon": "city"
+    },
+    {
+      "title": "石灰岩の壁が迫るアヴァカス峡谷",
+      "icon": "hike"
+    },
+    {
+      "title": "葡萄畑から続くオモドスの石造集落",
+      "icon": "food"
+    },
+    {
+      "title": "海食洞と透明な浅瀬が続く岬",
+      "icon": "shore"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "copper-aes-cyprium-origin",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "銅の名前に、キプロスの記憶が残った",
+      "text": "キプロスでは紀元前3000年頃から銅の生産が本格化し、古代世界の主要な生産・交易地になった。ラテン語の「キプロスの金属」を意味する表現が、のちの「cuprum」へ変化し、英語の copper につながった。",
+      "points": [
+        "トロードスの鉱床は古代から採掘された",
+        "地質が島の交易上の重要性を形づくった"
+      ]
+    },
+    {
+      "topicKey": "troodos-painted-churches-roofed-frescoes",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "山村の小さな教会の内側に、500年の絵画史が残る",
+      "text": "トロードスには急勾配の木造屋根を持つ小規模な教会が点在し、その内部をビザンツ・ポストビザンツ期の壁画が覆う。外観の素朴さと内部装飾の密度の差が、この山地独自の宗教建築をつくっている。",
+      "points": [
+        "世界遺産は10の教会・修道院で構成",
+        "山地の気候に適応した屋根形式も特徴"
+      ]
+    },
+    {
+      "topicKey": "halloumi-hellim-islandwide-pdo",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "ハルーミ／ヘリムの産地は、島全体として登録されている",
+      "text": "EUの原産地名称保護では、ハルーミ／ヘリムの地理的範囲はキプロス島全体。南北の政治的分断とは別に、乳製品の文化が島全体にまたがることを制度の形でも確認できる。",
+      "points": [
+        "EUのPDO登録は2021年",
+        "条件を満たす島内生産者が対象"
+      ]
+    },
+    {
+      "topicKey": "lefkara-lace-living-craft",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "レフカラでは、路地で交わされる会話と刺繍が同じ時間にある",
+      "text": "レフカラ刺繍は、幾何学模様と透かし技法を組み合わせる手仕事。技術だけでなく、女性たちが集まって縫い、家族の中で習得していく社会的な営みとして受け継がれている。",
+      "points": [
+        "少なくとも14世紀まで遡る伝統",
+        "2009年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "choirokoitia-neolithic-round-houses",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ヒロキティアでは、都市になる前の集住の形を歩ける",
+      "text": "ヒロキティアは紀元前7〜5千年紀に営まれた新石器時代の集落。円形住居が集まる構成から、東地中海で農耕を基盤とした人びとが定住していく初期の姿を読み取れる。",
+      "points": [
+        "東地中海の重要な先史遺跡",
+        "未発掘部分も大きく残されている"
+      ]
+    },
+    {
+      "topicKey": "cyprus-mouflon-paphos-forest",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "パフォスの森には、キプロスだけのムフロンが残る",
+      "text": "キプロス・ムフロンは島固有の野生羊で、現在は主にパフォス森林の険しい山地に生息する。観光地の海岸とは別に、島の内陸に独自の野生動物の世界がある。",
+      "points": [
+        "キプロス最大の陸生野生動物",
+        "野外では警戒心が強く、簡単には近づけない"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "cyprus-coffee-three-sweetness-orders",
+      "categoryEn": "COFFEE",
+      "categoryJa": "飲み物",
+      "title": "キプロスコーヒーは、甘さを言葉で注文する",
+      "text": "砂糖なしは「スケト」、砂糖1杯ほどは「メトリオ」、甘めは「グリキ」。小さなカップと水が一緒に出てきたら、底に沈んだ粉は残してゆっくり飲む。",
+      "icon": "food",
+      "sourceKey": "coffee"
+    },
+    {
+      "topicKey": "anogyra-pastelli-cool-season",
+      "categoryEn": "SWEET",
+      "categoryJa": "甘味",
+      "title": "アノギラでは、涼しい季節だけ作りやすい飴がある",
+      "text": "キャロブのシロップを煮詰め、何度も引き伸ばして作るパステリは、暑いと形を整えにくい。公式観光案内では、伝統製法は現在アノギラで9〜5月を中心に続いている。",
+      "icon": "food",
+      "sourceKey": "pastelli"
+    },
+    {
+      "topicKey": "kataklysmos-larnaca-water-festival",
+      "categoryEn": "FESTIVAL",
+      "categoryJa": "祭り",
+      "title": "聖霊降臨祭の月曜は、水辺の祭り「カタクリスモス」になる",
+      "text": "カタクリスモスはキプロスの祝日で、ラルナカでは海沿いを中心に民謡、詩、踊り、水上競技などが続く。2026年は6月1日が該当した。",
+      "icon": "culture",
+      "sourceKey": "kataklysmos"
+    },
+    {
+      "topicKey": "lara-toxeftra-turtle-reserve-rules",
+      "categoryEn": "TURTLES",
+      "categoryJa": "自然",
+      "title": "ウミガメの産卵浜では、夜に浜へ残らない",
+      "text": "ララ／トクセフトラ保護区では、産卵するウミガメと卵を守るため、夜間の浜への滞在、車両の乗り入れ、サンベッドやテントの設置などが禁止されている。",
+      "icon": "wildlife",
+      "sourceKey": "turtles"
+    },
+    {
+      "topicKey": "tombs-of-kings-no-kings",
+      "categoryEn": "NAME",
+      "categoryJa": "名前",
+      "title": "「王の墓」に、王は埋葬されていない",
+      "text": "パフォスの「王の墓」は、実際には高位の役人や貴族の墓。岩を掘り込んだ大規模な中庭や列柱の壮麗さから、この名前で呼ばれるようになった。",
+      "icon": "history",
+      "sourceKey": "tombs"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "野花が増え、遺跡、山村、海岸を組み合わせやすい時期。高地は沿岸より涼しく、同じ日でも服装差が出る。復活祭前後は祝日と営業時間を確認する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "海岸の季節だが、低地の日中は強い暑さになる。遺跡や都市歩きは朝夕へ寄せ、トロードスの高地を組み合わせると気温差を活かせる。ウミガメの繁殖期でもあるため保護区のルールを優先する。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b27a4c",
+      "text": "9月は海の暖かさが残り、山地と海岸を一度の旅でつなぎやすい。葡萄畑は収穫期と重なる地域があり、10〜11月は暑さが落ち着いて街歩きもしやすくなる。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748e9d",
+      "text": "ラルナカ塩湖に水が戻り、フラミンゴなどの渡り鳥を見る理由が増える。トロードス高地では雪になることがあり、沿岸との季節差が最も大きく見える。"
+    }
+  ],
+  "transport": {
+    "title": "CAR / INTERCITY BUS / WALK",
+    "text": "主要都市間は道路移動が中心。ニコシア、ラルナカ、リマソール、パフォスは都市間バスでもつながるが、アカマス、トロードスの山村、岬を一度に巡るなら車が動きやすい。島内の実効支配区域をまたぐ移動は通常の都市間移動とは扱いが異なるため、利用する通過地点と必要書類を直前に公的情報で確認する。"
+  },
+  "personas": [
+    {
+      "title": "海だけではない地中海の島を見たい人",
+      "text": "パフォスやケープ・グレコの海岸からトロードス、峡谷、塩湖へ移り、短い距離で地形が切り替わる島を見たい人。"
+    },
+    {
+      "title": "古代から近代まで、歴史を景色の中で追いたい人",
+      "text": "古代都市、ヴェネツィア城壁、山地の教会、銅の交易史まで、時代ごとの層が現在の町や土地利用にどう残っているかに興味がある人。"
+    },
+    {
+      "title": "地域差を一つの島の中で比べたい人",
+      "text": "南西岸、中央山地、北岸、南東の岬をつなぎ、建築、言葉、食、宗教、地形が場所ごとに変わる様子を歩いて確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東地中海"
+    },
+    {
+      "label": "首都",
+      "value": "ニコシア"
+    },
+    {
+      "label": "人口",
+      "value": "約100万人（政府管理地域・2025年暫定）"
+    },
+    {
+      "label": "面積",
+      "value": "9,251 km²（日本の約2.4%）"
+    },
+    {
+      "label": "言語",
+      "value": "ギリシャ語・トルコ語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教、イスラム教など"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "troodos-ophiolite-92-82-million-years",
+      "label": "トロードス・オフィオライト",
+      "value": "約9,200万〜8,200万年前",
+      "note": "海洋地殻とその下の上部マントルが陸上へ持ち上がって露出した地質体。山を歩きながら、かつての海底断面をたどれる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "un-buffer-zone-180-kilometres",
+      "label": "国連緩衝地帯",
+      "value": "約180 km",
+      "note": "国連管理の緩衝地帯は島を東西に横断し、ニコシア旧市街も通る。幅は数mの場所から数kmの場所まで変化する。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "mediterranean-third-largest-island",
+      "label": "地中海の島として",
+      "value": "3番目の大きさ",
+      "note": "シチリア島、サルデーニャ島に次ぐ規模。山地、中央平原、長い海岸線を一つの島の中で移動できる。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "avakas-temporary-closure-check",
+      "title": "アヴァカス峡谷は出発前に開通状況を確認する",
+      "text": "2026年9月1日時点で、公式観光サイトはアヴァカス峡谷トレイルを「一時閉鎖」と表示している。景色だけを目的に現地へ向かわず、再開情報を確認してから旅程へ入れる。"
+    },
+    {
+      "topicKey": "left-hand-driving-rental-car",
+      "title": "レンタカーは左側通行を前提に選ぶ",
+      "text": "キプロスは左側通行。山村や海岸の細い道路まで走る場合は、車幅や駐車のしやすさも含めて車種を選び、都市部を出る前に給油地点も確認する。"
+    },
+    {
+      "topicKey": "green-line-crossing-current-rules",
+      "title": "島内の通過地点は通常の国内移動と同じ感覚で考えない",
+      "text": "国連緩衝地帯には複数の通過地点があるが、適用される制度やレンタカー保険などは移動条件で変わり得る。予定がある場合は、当日の公的案内と契約条件を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "greece",
+      "nameEn": "GREECE",
+      "nameJa": "ギリシャ",
+      "flag": "🇬🇷",
+      "reason": "東地中海の古代都市、正教文化、島の暮らしをさらに広い地域でつなげたいなら。"
+    },
+    {
+      "slug": "turkiye",
+      "nameEn": "TÜRKİYE",
+      "nameJa": "トルコ",
+      "flag": "🇹🇷",
+      "reason": "アナトリアと東地中海の交易・食・建築のつながりを、海の向こうまで追いたいなら。"
+    },
+    {
+      "slug": "malta",
+      "nameEn": "MALTA",
+      "nameJa": "マルタ",
+      "flag": "🇲🇹",
+      "reason": "同じ地中海の島国で、城塞都市と石灰岩海岸が別の歴史をどう形づくったか比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2021",
+    "avakas": "2026-09-01",
+    "kataklysmos": "2026"
+  },
+  "sources": {
+    "map": "dtrihinas/cyprus-geojson, OpenStreetMap-derived district/community boundary data; six district polygons dissolved to one island outline; WGS84; internal political and administrative lines omitted.",
+    "population": "Statistical Service of Cyprus (CYSTAT), Population 2025 provisional data update: 996.6 thousand in the government-controlled areas.",
+    "area": "Republic of Cyprus official publication / government information: total area 9,251 km²; Cyprus is the Mediterranean's third-largest island after Sicily and Sardinia.",
+    "language": "Republic of Cyprus official information: Greek and Turkish are the official languages.",
+    "religion": "Statistical Service of Cyprus, Census of Population and Housing 2021 religion tables; religion question was optional and categories include Christian Orthodox, other Christian denominations, Muslim and others.",
+    "currency": "Republic of Cyprus official information / EU membership: euro is the national currency in the government-controlled areas.",
+    "nicosiaWalls": "Visit Cyprus, The Medieval Walls of Lefkosia (Nicosia): 16th-century Venetian walls, eleven heart-shaped bastions and moat.",
+    "paphos": "Visit Cyprus / UNESCO: Kato Paphos Archaeological Park contains remains from the 4th century BC to the Middle Ages and has been part of the Paphos World Heritage property since 1980.",
+    "kourion": "Visit Cyprus / Department of Antiquities: Kourion archaeological site and ancient theatre on the coastal plateau west of Limassol.",
+    "troodos": "UNESCO Troodos Global Geopark: the Troodos Ophiolite is exposed oceanic crust and upper mantle formed approximately 92–82 million years ago.",
+    "larnacaSaltLake": "UNESCO Tentative List / Visit Cyprus: Hala Sultan Tekke and the Larnaka Salt Lake complex; flamingos and other migratory birds use the salt-lake system seasonally.",
+    "kyrenia": "OpenStreetMap/Wikidata geographic reference for Kyrenia old harbour; northern coastal harbour backed by the Kyrenia range.",
+    "avakas": "Visit Cyprus, Avakas Gorge Nature Trail: limestone gorge in Pegeia state forest; official page marked Temporarily closed as verified 2026-09-01.",
+    "omodos": "Visit Cyprus wine-route material / geographic references: Omodos is a stone-built wine village on the southern slopes of Troodos.",
+    "capeGreco": "Visit Cyprus, Cape Greco National Forest Park nature trails and sea-cave coastal landscape.",
+    "copper": "Republic of Cyprus Mines and Quarries Service / Ministry of Agriculture: ancient Cyprus became a major copper centre; Latin aes Cyprium evolved to cuprum, origin of 'copper'.",
+    "paintedChurches": "UNESCO World Heritage Centre, Painted Churches in the Troodos Region: serial property of 10 richly muralled churches and monasteries with distinctive steep-pitched wooden roofs.",
+    "halloumi": "European Commission / Implementing Regulation (EU) 2021/591: Halloumi/Hellim registered as PDO with geographical area corresponding to the island of Cyprus.",
+    "lefkara": "UNESCO Intangible Cultural Heritage, Lefkara laces or Lefkaritika: inscribed 2009; tradition dates to at least the 14th century.",
+    "choirokoitia": "UNESCO World Heritage Centre, Choirokoitia: Neolithic settlement occupied from the 7th to 5th millennium BC, a key prehistoric site in the eastern Mediterranean.",
+    "mouflon": "Republic of Cyprus Department of Environment / Department of Forests: Cyprus mouflon is endemic to Cyprus and primarily inhabits Paphos forest.",
+    "coffee": "Visit Cyprus, Cyprus Coffee: orders include sketo, metrio and glyki; served in a small cup with water.",
+    "pastelli": "Visit Cyprus, Pastelli (Carob Toffee): traditional hand-pulled carob sweet now practised in Anogyra, mainly September-May.",
+    "kataklysmos": "Visit Cyprus public-holiday calendar / Larnaka Municipality: Pentecost Monday is Kataklysmos (Festival of the Flood); 2026 date was 1 June.",
+    "turtles": "Republic of Cyprus Department of Fisheries and Marine Research: Lara/Toxeftra protected area rules prohibit night stays, vehicles, sunbeds, umbrellas and tents on nesting beaches.",
+    "tombs": "Visit Cyprus, Tombs of the Kings: high-ranking officials and aristocracy, not kings, were buried in the monumental rock-cut tombs.",
+    "greenLine": "UNFICYP / European Commission Green Line Regulation: UN buffer zone extends about 180 km; crossing conditions are governed separately from ordinary domestic travel."
+  }
+}
