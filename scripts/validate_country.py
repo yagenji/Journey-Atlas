@@ -544,6 +544,22 @@ def published_paths() -> tuple[list[Path], list[str]]:
         if not path.exists():
             errors.append(f"公開対象 '{slug}' のcountry JSONがありません")
         else:
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except Exception as exc:
+                errors.append(f"{path.name}: JSONを読み込めません: {exc}")
+                continue
+            expected_href = f"countries/{slug}/"
+            if item.get("href") != expected_href:
+                errors.append(
+                    f"公開対象 '{slug}' のhrefは '{expected_href}' が必要です: {item.get('href')!r}"
+                )
+            expected_image = data.get("hero", {}).get("image")
+            if item.get("image") != expected_image:
+                errors.append(
+                    f"公開対象 '{slug}' のregistry imageがhero.imageと一致しません: "
+                    f"{item.get('image')!r} != {expected_image!r}"
+                )
             paths.append(path)
     return paths, errors
 
