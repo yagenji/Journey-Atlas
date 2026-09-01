@@ -38,6 +38,7 @@ def main() -> int:
     run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/build_site.py", env=env)
+    run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/package_site.py", env=env)
 
