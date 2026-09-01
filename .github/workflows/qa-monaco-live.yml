@@ -1,57 +1,64 @@
-name: Monaco final live map QA
+name: Monaco final publication QA
 
 on:
   push:
     branches: ["qa-monaco-live"]
-    paths-ignore:
-      - "qa-output/live-map/**"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  map-qa:
+  qa:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout QA branch
-        uses: actions/checkout@v4
-      - name: Wait for current map on production
+      - name: Wait for Monaco published production state
         shell: bash
         run: |
           set -euo pipefail
           for attempt in $(seq 1 120); do
-            curl -fsSL https://atlas.yagenji.com/assets/images/monaco/map-atlas-v1.svg -o /tmp/map.svg
+            curl -fsSL https://atlas.yagenji.com/countries/monaco/ -o /tmp/page.html
             curl -fsSL https://atlas.yagenji.com/data/countries/monaco.json -o /tmp/country.json
-            if grep -Fq 'OpenStreetMap relation 36990' /tmp/map.svg \
-              && grep -Fq '2.083473 km' /tmp/map.svg \
-              && grep -Fq 'OpenStreetMap relation 36990' /tmp/country.json; then
-              echo "PRODUCTION_MAP=CURRENT"
+            curl -fsSL https://atlas.yagenji.com/data/atlas-destinations.json -o /tmp/dest.json
+            curl -fsSL https://atlas.yagenji.com/sitemap.xml -o /tmp/sitemap.xml
+            curl -fsSL https://atlas.yagenji.com/ -o /tmp/top.html
+            curl -fsSL https://atlas.yagenji.com/assets/images/monaco/map-atlas-v1.svg -o /tmp/map.svg
+
+            if grep -Fq '<meta name="robots" content="index,follow">' /tmp/page.html \
+              && grep -Fq 'https://atlas.yagenji.com/countries/monaco/' /tmp/sitemap.xml \
+              && grep -Eq 'href="(\./)?countries/monaco/|href="/countries/monaco/' /tmp/top.html \
+              && grep -Fq '"atlasPublished": true' /tmp/dest.json \
+              && grep -Fq 'モナコとインドネシアの国旗はよく似ている' /tmp/country.json \
+              && grep -Fq '小国の日常文化まで見てみたい人' /tmp/country.json \
+              && grep -Fq '土地の家庭的な食文化を知る入口になる' /tmp/country.json \
+              && grep -Fq 'OpenStreetMap relation 36990' /tmp/map.svg; then
+              echo "PRODUCTION_PUBLICATION_STATE=UPDATED"
               break
             fi
             if [ "$attempt" -eq 120 ]; then
-              echo "production map did not update"
+              echo "production publication state did not update"
               exit 1
             fi
             sleep 5
           done
-          grep -Fq 'viewBox="0 0 1200 760"' /tmp/map.svg
+
           ! grep -Fq '<ellipse' /tmp/map.svg
           ! grep -Fq '<radialGradient' /tmp/map.svg
-          echo "ELLIPSE=0"
-          echo "RADIAL_GRADIENT=0"
-      - name: Install Playwright
+          echo "SITEMAP_MONACO=PASS"
+          echo "TOP_LINK_MONACO=PASS"
+          echo "ROBOTS_INDEX_FOLLOW=PASS"
+          echo "EDITORIAL_FIXES=PASS"
+          echo "MAP_FORBIDDEN_ELEMENTS=0"
+
+      - name: Install browser QA tools
         run: |
-          npm install --no-save playwright@1.55.0
+          npm install --no-save playwright@1.55.0 axe-core@4.10.3
           npx playwright install --with-deps chromium
-      - name: Run responsive map browser QA
+
+      - name: Run live browser QA
         shell: bash
         run: |
-          mkdir -p qa-output/live-map
-          cat > qa-map.js <<'NODE'
+          cat > qa.js <<'NODE'
           const { chromium } = require('playwright');
-          const fs = require('fs');
+          const axeSource = require('axe-core').source;
           (async () => {
             const url='https://atlas.yagenji.com/countries/monaco/';
             const viewports=[
@@ -60,7 +67,6 @@ jobs:
               {name:'mobile',width:390,height:844},
             ];
             const browser=await chromium.launch({headless:true});
-            const reports=[];
             let failures=0;
             for(const vp of viewports){
               const page=await browser.newPage({viewport:{width:vp.width,height:vp.height}});
@@ -69,26 +75,12 @@ jobs:
               page.on('pageerror',e=>pageErrors.push(String(e)));
               page.on('requestfailed',r=>failedRequests.push(r.url()+' :: '+(r.failure()?.errorText||'')));
               const response=await page.goto(url,{waitUntil:'networkidle',timeout:60000});
-              const map=page.locator('#country-map-art');
-              await map.scrollIntoViewIfNeeded();
-              await page.waitForFunction(() => {
-                const img=document.querySelector('#country-map-art .map-base');
-                return !!(img && img.complete && img.naturalWidth>0);
-              },null,{timeout:30000});
-              await page.waitForTimeout(700);
+              await page.waitForSelector('.country-page',{state:'visible',timeout:30000});
+              await page.waitForTimeout(800);
               const report=await page.evaluate(() => {
-                const map=document.querySelector('#country-map-art');
-                const mapBase=map?.querySelector('.map-base');
-                const rect=map.getBoundingClientRect();
-                const els=[...document.querySelectorAll('#map-markers > *')];
-                const markers=els.map(el=>{
+                const markers=[...document.querySelectorAll('#map-markers > *')].map(el=>{
                   const r=el.getBoundingClientRect();
-                  return {
-                    label:el.getAttribute('aria-label')||'',
-                    cls:el.className,
-                    x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom,
-                    leftStyle:parseFloat(el.style.left),topStyle:parseFloat(el.style.top)
-                  };
+                  return {label:el.getAttribute('aria-label')||'',x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom};
                 });
                 const overlaps=[];
                 for(let i=0;i<markers.length;i++){
@@ -99,57 +91,76 @@ jobs:
                     if(ix*iy>25) overlaps.push({a:a.label,b:b.label,area:Math.round(ix*iy)});
                   }
                 }
-                const outOfBounds=markers.filter(m=>m.leftStyle<0||m.leftStyle>100||m.topStyle<0||m.topStyle>100).map(m=>m.label);
+                const mapBase=document.querySelector('#country-map-art .map-base');
                 return {
-                  mapLoaded:!!(mapBase && mapBase.complete && mapBase.naturalWidth>0),
-                  mapSrc:mapBase?.src||'',
-                  mapRect:{x:rect.x,y:rect.y,w:rect.width,h:rect.height},
-                  markerCount:markers.length,
-                  sceneMarkerCount:document.querySelectorAll('#map-markers .map-marker').length,
+                  country:document.documentElement.dataset.country,
+                  robots:document.querySelector('meta[name="robots"]')?.content||'',
+                  canonical:document.querySelector('link[rel="canonical"]')?.href||'',
+                  theme:[...document.querySelectorAll('#country-theme-list .country-theme-chip')].map(x=>x.textContent.trim()),
+                  scenes:document.querySelectorAll('#scene-cards .scene-card').length,
+                  encounters:document.querySelectorAll('#encounters > *').length,
+                  signature:document.querySelectorAll('#signature-facts > *').length,
+                  extras:document.querySelectorAll('#atlas-extras-grid > *').length,
+                  trivia:document.querySelectorAll('#travel-trivia-grid > *').length,
+                  seasons:document.querySelectorAll('#seasons > *').length,
+                  personas:document.querySelectorAll('#personas > *').length,
+                  tips:document.querySelectorAll('#tips > *').length,
+                  related:document.querySelectorAll('#related > *').length,
+                  markers:markers.length,
+                  sceneMarkers:document.querySelectorAll('#map-markers .map-marker').length,
                   overlaps,
-                  outOfBounds,
-                  bodyOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-                  pageCountry:document.documentElement.dataset.country,
-                  robots:document.querySelector('meta[name="robots"]')?.content||''
+                  mapLoaded:!!(mapBase&&mapBase.complete&&mapBase.naturalWidth>0),
+                  horizontalOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+                  text:document.body.innerText
                 };
               });
+              await page.addScriptTag({content:axeSource});
+              const axe=await page.evaluate(async()=>await axe.run(document,{
+                runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}
+              }));
+              const serious=axe.violations.filter(v=>['critical','serious'].includes(v.impact));
               const checks={
                 http200:response?.status()===200,
-                monaco:report.pageCountry==='monaco',
-                noindex:report.robots==='noindex,follow',
-                mapLoaded:report.mapLoaded,
-                currentMap:report.mapSrc.includes('/assets/images/monaco/map-atlas-v1.svg'),
-                markers:report.markerCount===10,
-                sceneMarkers:report.sceneMarkerCount===8,
+                country:report.country==='monaco',
+                indexFollow:report.robots==='index,follow',
+                canonical:report.canonical==='https://atlas.yagenji.com/countries/monaco/',
+                theme:report.theme.length===1&&report.theme[0]==='街を歩く',
+                scenes:report.scenes===8,
+                encounters:report.encounters===8,
+                signature:report.signature===3,
+                extras:report.extras===6,
+                trivia:report.trivia===5,
+                seasons:report.seasons===4,
+                personas:report.personas===3,
+                tips:report.tips===3,
+                related:report.related===3,
+                markers:report.markers===10&&report.sceneMarkers===8,
                 noMarkerOverlap:report.overlaps.length===0,
-                markersInCanvas:report.outOfBounds.length===0,
-                noHorizontalOverflow:report.bodyOverflow<=1,
+                mapLoaded:report.mapLoaded,
+                noHorizontalOverflow:report.horizontalOverflow<=1,
+                flagFix:report.text.includes('モナコとインドネシアの国旗はよく似ている'),
+                personaFix:report.text.includes('小国の日常文化まで見てみたい人'),
+                barbFix:report.text.includes('土地の家庭的な食文化を知る入口になる'),
                 noConsoleErrors:consoleErrors.length===0,
                 noPageErrors:pageErrors.length===0,
-                noFailedRequests:failedRequests.length===0
+                noFailedRequests:failedRequests.length===0,
+                noSeriousA11y:serious.length===0
               };
               const failed=Object.entries(checks).filter(([,v])=>!v).map(([k])=>k);
               failures+=failed.length;
-              const out={viewport:vp,checks,failed,...report,consoleErrors,pageErrors,failedRequests};
-              reports.push(out);
               console.log('\n=== '+vp.name.toUpperCase()+' ===');
-              console.log(JSON.stringify(out));
-              await map.screenshot({path:`qa-output/live-map/monaco-map-${vp.name}.png`});
+              console.log('CHECKS '+JSON.stringify(checks));
+              console.log('FAILED '+JSON.stringify(failed));
+              console.log('MARKER_OVERLAPS '+JSON.stringify(report.overlaps));
+              console.log('CONSOLE_ERRORS '+JSON.stringify(consoleErrors));
+              console.log('PAGE_ERRORS '+JSON.stringify(pageErrors));
+              console.log('FAILED_REQUESTS '+JSON.stringify(failedRequests));
+              console.log('AXE_SERIOUS '+JSON.stringify(serious.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}))));
               await page.close();
             }
             await browser.close();
-            fs.writeFileSync('qa-output/live-map/report.json',JSON.stringify(reports,null,2));
             if(failures){console.error('HARD_FAILURE_COUNT='+failures);process.exit(1)}
             console.log('HARD_FAILURE_COUNT=0');
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
-          node qa-map.js
-      - name: Commit live map QA screenshots
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa-output/live-map/
-          git diff --cached --quiet && exit 0
-          git commit -m "qa: capture Monaco current live map"
-          git push
+          node qa.js
