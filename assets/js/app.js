@@ -447,7 +447,7 @@ function renderFacts(fragment, facts = []) {
   const container = fragment.querySelector('#facts');
   facts.forEach((fact) => {
     const group = document.createElement('div');
-    group.innerHTML = `${iconSvg(iconName(fact, 'info'))}<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>`;
+    group.innerHTML = `${iconSvg(iconName(fact, 'info'))}<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>`;
     container.append(group);
   });
 }
