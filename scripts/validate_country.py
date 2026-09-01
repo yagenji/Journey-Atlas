@@ -485,24 +485,8 @@ def validate_all_atlas_map_assets() -> list[str]:
     return errors
 
 
-def country_paths_from_index() -> tuple[list[Path], list[str]]:
-    errors: list[str] = []
-    registry = COUNTRY_DIR / "index.json"
-    if not registry.exists():
-        return sorted(path for path in COUNTRY_DIR.glob("*.json") if path.name != "index.json"), errors
-    try:
-        registry_data = json.loads(registry.read_text(encoding="utf-8"))
-    except Exception as exc:
-        return [], [f"index.json: JSONを読み込めません: {exc}"]
-    entries = registry_data.get("countries")
-    if not isinstance(entries, list):
-        return [], ["index.json: countries は配列である必要があります"]
-    paths = []
-    for entry in entries:
-        slug = entry.get("slug") if isinstance(entry, dict) else None
-        if slug and (COUNTRY_DIR / f"{slug}.json").exists():
-            paths.append(COUNTRY_DIR / f"{slug}.json")
-    return paths, errors
+def all_country_paths() -> tuple[list[Path], list[str]]:
+    return sorted(COUNTRY_DIR.glob("*.json")), []
 
 
 def load_destination_scope() -> tuple[list[dict], list[str]]:
@@ -601,7 +585,7 @@ def main() -> int:
         paths = [Path(arg) for arg in args]
         errors = []
     else:
-        paths, errors = country_paths_from_index()
+        paths, errors = all_country_paths()
 
     errors.extend(validate_all_atlas_map_assets())
     validate_map_css_clean(errors)

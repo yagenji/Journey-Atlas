@@ -1,36 +1,55 @@
 # JOURNEY ATLAS
 
-「この国へ行ってみたい」という気持ちをつくる、大人向けのビジュアル・トラベルアトラスです。明るく美しい水彩・ガッシュ調のイラスト、イラスト地図、旅の見どころを一国一ページでまとめます。
+景色と地図からその国を知り、まだ知らなかった場所へ行ってみたいと思う体験をつくるビジュアル・トラベルアトラスです。
 
-## 現在のプロトタイプ
+## Source of truth
 
-- ICELAND / アイスランド
-- ANTARCTICA / 南極
-- TAJIKISTAN / タジキスタン
+- Destination scope: `data/atlas-scope.json`
+- Destination registries: `data/atlas-destinations.json` / `data/atlas-destinations-editorial.json`
+- Country content: `data/countries/{slug}.json`
+- Travel themes: `data/theme-taxonomy.json`
+- Region taxonomy: `data/region-taxonomy.json`
+- Shared Country template: `country.html`
+- Country map generator: `scripts/generate_country_map.py`
 
-トップページから各国ページへ遷移できます。国ページは `country.html?country=<slug>` の形式です。
+Country固有情報はCountry JSONへ置き、共通UIはCountry Templateで共有します。Iceland / NorwayをCountry Pageの基準とします。
 
-## 公開
+## Publication state
 
-GitHub PagesをGitHub Actionsから自動デプロイします。
+`atlasPublished` が公開状態の正本です。
 
-- Top: `https://yagenji.github.io/Journey-Atlas/`
-- Iceland: `https://yagenji.github.io/Journey-Atlas/country.html?country=iceland`
-- Antarctica: `https://yagenji.github.io/Journey-Atlas/country.html?country=antarctica`
-- Tajikistan: `https://yagenji.github.io/Journey-Atlas/country.html?country=tajikistan`
+- `false`: レビュー可能。直接URL表示可、`noindex,follow`、通常導線・sitemapには載せない。
+- `true`: ユーザー承認済みの正式公開。通常導線、`index,follow`、sitemapを有効化する。
 
-`.github/workflows/deploy-pages.yml` が `main` へのpushごとに公開します。
+標準Country URL:
 
-## 制作方針
+`https://atlas.yagenji.com/countries/{slug}/`
 
-JOURNEY LENSで公開済みの国・地域を優先して制作します。全体対象は、日本が国家承認する外国195か国＋日本＋台湾＋北朝鮮＋南極の計199ページです。
+`schemaVersion: 2` のCountry JSONは、正式公開前でもビルド時にレビュー用Country Pageを生成します。
 
-画像は写真の代用品ではなく、実景の特徴を守りながら「美しい・行きたくなる」と感じる旅図鑑イラストを目指します。地図も位置関係を大きく崩さず、イラストだからできる視覚表現を取り入れます。
+## Generated files
 
-## データ検証
+`countries/{slug}/index.html` は `scripts/build_site.py` がビルド時に生成する成果物です。Gitでは管理しません。
+
+Production packageにはブラウザ実行に必要なruntime dataとreviewable Country JSONのみを含め、制作管理用JSON・scripts・CI設定は含めません。
+
+## Validation
+
+Country JSON、公開Registry、Map、Theme、production packageを検証します。
 
 ```bash
-python3 scripts/validate_country.py
+python3 scripts/validate_country.py --reviewable
+python3 scripts/validate_country.py --published
+python3 scripts/build_cloudflare.py
 ```
 
-国データは `data/countries/`、国一覧は `data/countries/index.json` で管理します。
+GitHub Actions:
+
+- `.github/workflows/validate-country-data.yml`
+- `.github/workflows/deploy-pages.yml`
+
+## Branch policy
+
+ブランチ運用の詳細は `WORKFLOW.md` の **Branch lifecycle** を参照してください。
+
+基本は `main` + 現在作業中のCountry / 共通修正ブランチのみとし、review・publish・QAのためだけの派生ブランチは作りません。
