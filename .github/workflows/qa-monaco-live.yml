@@ -20,6 +20,7 @@ jobs:
           cat > /tmp/qa.js <<'NODE'
           const { chromium } = require('playwright');
           const axeSource = require('axe-core').source;
+          (async () => {
           const url = 'https://atlas.yagenji.com/countries/monaco/';
           const viewports = [
             {name:'desktop', width:1440, height:1100},
@@ -186,5 +187,6 @@ jobs:
           await browser.close();
           if(hardFailures){ console.error('HARD_FAILURE_COUNT='+hardFailures); process.exit(1); }
           console.log('HARD_FAILURE_COUNT=0');
+          })().catch(err => { console.error(err); process.exit(1); });
           NODE
           node /tmp/qa.js
