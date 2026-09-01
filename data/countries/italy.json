@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "italy",
+  "nameEn": "ITALY",
+  "nameJa": "イタリア",
+  "region": "SOUTHERN EUROPE / MEDITERRANEAN / 36–47°N",
+  "seo": {
+    "description": "水上都市ヴェネツィアから、トスカーナの丘、ドロミーティ、ローマ、チンクエ・テッレ、マテーラ、エトナ山、プーリア、サルデーニャへ。地形と都市の歴史が地域ごとに切り替わるイタリアを9つの景観でたどる。"
+  },
+  "capital": {
+    "nameEn": "Rome",
+    "nameJa": "ローマ",
+    "coordinates": {
+      "latitude": 41.9028,
+      "longitude": 12.4964
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 2.5,
+      "y": -1.5
+    }
+  },
+  "hero": {
+    "lead": "水面に街が重なるヴェネツィアから、糸杉の丘、淡い岩峰、古代都市、段々畑の海岸、岩窟住居、火山、石造集落、サルデーニャの入り江へ。北から南へ進むほど、地形と暮らしの作法が切り替わる。",
+    "image": "assets/images/italy/approved/hero-venice-grand-canal-salute.png",
+    "location": "Ponte dell'Accademia / Grand Canal / Santa Maria della Salute",
+    "coordinates": {
+      "latitude": 45.4319,
+      "longitude": 12.3286
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 47.4,
+      "south": 35.2,
+      "west": 6,
+      "east": 19
+    },
+    "svg": "assets/images/italy/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection ITA.geojson; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "val-dorcia-san-quirico",
+      "name": "ヴァル・ドルチャ / サン・クイーリコ・ドルチャ",
+      "nameLocal": "Val d'Orcia / San Quirico d'Orcia",
+      "mapLabel": "Val d'Orcia",
+      "description": "曲線を描く丘と糸杉の道、農家が重なる。ヴァル・ドルチャは14〜15世紀にシエナの農業後背地として整えられ、人が地形を耕しながらつくったルネサンス期の文化景観を今に残す。",
+      "coordinates": {
+        "latitude": 43.058,
+        "longitude": 11.604
+      },
+      "image": "assets/images/italy/approved/val-dorcia-san-quirico.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "tre-cime-di-lavaredo",
+      "name": "トレ・チーメ・ディ・ラヴァレード",
+      "nameLocal": "Tre Cime di Lavaredo / Dolomiti",
+      "mapLabel": "Tre Cime",
+      "description": "三つの巨大な岩峰が、淡い炭酸塩岩の壁として立ち上がる。ドロミーティでは尖塔、岩壁、深い谷と高山草地が隣り合い、アルプスの中でも独特の輪郭をつくる。",
+      "coordinates": {
+        "latitude": 46.636,
+        "longitude": 12.31
+      },
+      "image": "assets/images/italy/approved/tre-cime-di-lavaredo.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "rome-forum-romanum",
+      "name": "フォロ・ロマーノ / ローマ",
+      "nameLocal": "Foro Romano / Roma",
+      "mapLabel": "Foro Romano",
+      "description": "神殿の柱、凱旋門、公共建築の基礎が同じ谷に折り重なる。遺跡を一つずつ見るより、古代ローマの政治・宗教・商業の中心が何世紀も同じ場所に積み重なったことが見えてくる。",
+      "coordinates": {
+        "latitude": 41.8925,
+        "longitude": 12.4853
+      },
+      "image": "assets/images/italy/approved/rome-forum-romanum.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "manarola-cinque-terre",
+      "name": "マナローラ / チンクエ・テッレ",
+      "nameLocal": "Manarola / Cinque Terre",
+      "mapLabel": "Manarola",
+      "description": "家々が岩の尾根へ密集し、その背後を石積みの段々畑が登る。急斜面を葡萄やオリーブの農地へ変えてきた営みが、リグーリア海岸の集落の形そのものになっている。",
+      "coordinates": {
+        "latitude": 44.1065,
+        "longitude": 9.7287
+      },
+      "image": "assets/images/italy/approved/manarola-cinque-terre.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "matera-sassi",
+      "name": "サッシ / マテーラ",
+      "nameLocal": "Sassi di Matera",
+      "mapLabel": "Matera",
+      "description": "グラヴィーナ渓谷の縁に、自然の洞窟を取り込んだ住居や教会と石造建築が重なる。岩を掘り、積み、地形そのものを都市として使ってきた長い時間を見せる。",
+      "coordinates": {
+        "latitude": 40.6663,
+        "longitude": 16.6093
+      },
+      "image": "assets/images/italy/approved/matera-sassi.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 0
+      }
+    },
+    {
+      "id": "mount-etna-silvestri",
+      "name": "シルヴェストリ火口群 / エトナ山",
+      "nameLocal": "Crateri Silvestri / Etna",
+      "mapLabel": "Etna",
+      "description": "黒い火山礫と火口丘の奥にエトナ山体が続く。山頂火口、側火口、溶岩流など異なる火山地形が近い距離に現れ、現在進行形の地質活動を地表で読める。",
+      "coordinates": {
+        "latitude": 37.7008,
+        "longitude": 14.9994
+      },
+      "image": "assets/images/italy/approved/mount-etna-silvestri-craters.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "alberobello-trulli",
+      "name": "トゥルッリ / アルベロベッロ",
+      "nameLocal": "Trulli di Alberobello",
+      "mapLabel": "Alberobello",
+      "description": "白壁の上に、モルタルを使わず石灰岩を積んだ円錐屋根が連なる。アルベロベッロではトゥルッリが街区として集中し、農村建築の技術が都市景観へ変わっている。",
+      "coordinates": {
+        "latitude": 40.7827,
+        "longitude": 17.2374
+      },
+      "image": "assets/images/italy/approved/alberobello-trulli.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 0
+      }
+    },
+    {
+      "id": "cala-goloritze-sardinia",
+      "name": "カラ・ゴロリッツェ / サルデーニャ",
+      "nameLocal": "Cala Goloritzè / Sardegna",
+      "mapLabel": "Cala Goloritzè",
+      "description": "オロゼイ湾の石灰岩壁の下に小さな入り江が開き、海辺には高さ約143mの石灰岩の尖塔モンテ・カロッディが立つ。山地の岩壁と透明な海が直接接するサルデーニャ東岸の地形が見える。",
+      "coordinates": {
+        "latitude": 40.1087,
+        "longitude": 9.6893
+      },
+      "image": "assets/images/italy/approved/cala-goloritze-sardinia.png",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "丘陵農地と糸杉の道",
+      "icon": "landscape"
+    },
+    {
+      "title": "淡色の岩峰と高山草地",
+      "icon": "hike"
+    },
+    {
+      "title": "古代遺構が重なる都市の谷",
+      "icon": "history"
+    },
+    {
+      "title": "段々畑と海岸集落",
+      "icon": "shore"
+    },
+    {
+      "title": "岩窟住居と石灰岩の渓谷",
+      "icon": "home"
+    },
+    {
+      "title": "火口丘と黒い溶岩地形",
+      "icon": "volcano"
+    },
+    {
+      "title": "乾式石造の円錐屋根",
+      "icon": "culture"
+    },
+    {
+      "title": "石灰岩の尖塔と地中海の入り江",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "apennines-peninsula-spine",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "半島の背骨にアペニン山脈が走る",
+      "text": "アペニン山脈は北西部でアルプスにつながり、イタリア半島を南へ約1350kmたどってメッシーナ海峡まで続く。海に囲まれた国でありながら、内陸の移動や集落の位置を山地が大きく形づくる。",
+      "points": [
+        "リグーリアから半島中央部を通って南へ続く山系",
+        "海岸都市と内陸の町の距離感を地形から見る"
+      ]
+    },
+    {
+      "topicKey": "italian-unification-1861-regional-legacy",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "1861年に一つの国家になっても、地域の輪郭は消えなかった",
+      "text": "イタリア王国は1861年3月17日に成立した。統一以前に異なる国家や都市の歴史を歩んだ地域が一つの国になったため、建築、方言、食、都市文化の違いを地域ごとに追うと、現在のイタリアが見えやすくなる。",
+      "points": [
+        "1861年3月17日に統一国家が成立",
+        "ローマが加わる過程は1870年まで続いた"
+      ]
+    },
+    {
+      "topicKey": "ravenna-western-byzantine-layers",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "ラヴェンナでは西ローマとビザンツがモザイクで重なる",
+      "text": "ラヴェンナは西ローマ帝国最後の首都となり、東ゴート王国を経て、ビザンツ支配の中心になった。5〜6世紀のモザイクを見ると、東西の文化が同じ都市で連続したことが色と図像から読み取れる。",
+      "points": [
+        "西ローマ帝国、東ゴート、ビザンツという三つの時代が重なる",
+        "モザイクは現在も街の工房文化へつながる"
+      ]
+    },
+    {
+      "topicKey": "regional-cuisine-geography",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "「イタリア料理」より、まず地域名を見る",
+      "text": "山地の北部、中部の丘陵、地中海に面する南部と島では、気候、農業、交易の歴史が違う。料理も一つの型ではなく、地域ごとの食材と暮らしを反映した集合として見ると旅先の違いがわかる。",
+      "points": [
+        "北部・中部・南部と島で食材と調理の背景が変わる",
+        "同じ料理名でも街や家庭ごとに解釈が異なる"
+      ]
+    },
+    {
+      "topicKey": "high-speed-rail-backbone",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "高速鉄道を骨格に、地方交通を足して旅を組む",
+      "text": "ミラノ、ヴェネツィア、ボローニャ、フィレンツェ、ローマ、ナポリなど主要都市は高速鉄道でつながる。一方、丘陵の村、山地、海岸の小さな町では地域鉄道やバスを足す必要があり、交通の層を切り替えること自体が旅の設計になる。",
+      "points": [
+        "主要都市間は高速鉄道が移動の骨格",
+        "農村・山地・小さな海岸集落は地域交通を組み合わせる"
+      ]
+    },
+    {
+      "topicKey": "north-south-demographic-movement",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "人口の動きも、北と南で同じではない",
+      "text": "Istatによる2025年の人口動態では、北部は人口が増え、中部はほぼ横ばい、南部・島嶼部を含むメッツォジョルノは減少した。景観や産業だけでなく、人の移動にも地域差が表れている。",
+      "points": [
+        "2025年の人口増減率は北部プラス2.2‰",
+        "メッツォジョルノはマイナス3.1‰"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "rome-nasoni-drinking-fountains",
+      "categoryEn": "ROME",
+      "categoryJa": "街歩き",
+      "title": "ローマでは「ナゾーニ」から水を飲める",
+      "text": "ローマ市内には約2500基の「ナゾーニ」と呼ばれる公共給水栓がある。注ぎ口上部の小さな穴を使うと水が上向きに出る仕組みで、街歩きの途中に実際に試せる。",
+      "icon": "landmark",
+      "sourceKey": "nasoni"
+    },
+    {
+      "topicKey": "florence-wine-windows-170",
+      "categoryEn": "FLORENCE",
+      "categoryJa": "街歩き",
+      "title": "フィレンツェでは約170の「ワインの小窓」を探せる",
+      "text": "旧市街の宮殿壁には、かつて生産者が直接ワインを販売した小さな開口部が残る。フィレンツェ市内には約170か所あり、現在も一部は使われている。",
+      "icon": "city",
+      "sourceKey": "wineWindows"
+    },
+    {
+      "topicKey": "sicilian-granita-hot-brioche",
+      "categoryEn": "SICILY",
+      "categoryJa": "朝食",
+      "title": "シチリアではグラニータに温かいブリオッシュを合わせる",
+      "text": "グラニータは夏の冷菓だけではなく、朝食にも食べられる。温かいブリオッシュを添える組み合わせが定番で、島の日常の食べ方をそのまま体験できる。",
+      "icon": "food",
+      "sourceKey": "sicilianGranita"
+    },
+    {
+      "topicKey": "siena-seventeen-contrade",
+      "categoryEn": "SIENA",
+      "categoryJa": "地区文化",
+      "title": "シエナ旧市街は17のコントラーダで読む",
+      "text": "シエナには17のコントラーダと呼ばれる地区共同体があり、それぞれに動物などの象徴がある。パリオの時期でなくても、旗や紋章を探すと旧市街の地域意識が見えてくる。",
+      "icon": "culture",
+      "sourceKey": "sienaContrade"
+    },
+    {
+      "topicKey": "naples-caffe-sospeso",
+      "categoryEn": "NAPLES",
+      "categoryJa": "習慣",
+      "title": "ナポリには誰かのためにコーヒーを一杯残す習慣がある",
+      "text": "「カフェ・ソスペーゾ」は、自分の分に加えて一杯分を先に支払い、必要とする誰かへ残すナポリの習慣。コーヒーを飲む行為が、街の小さな助け合いにもつながっている。",
+      "icon": "food",
+      "sourceKey": "caffeSospeso"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜6月",
+      "color": "#879b63",
+      "text": "都市、丘陵、海岸を組み合わせやすい時期。トスカーナは緑が濃くなり、南部は真夏ほど暑くない。高山部は春の残雪や施設の営業状況を確認する。"
+    },
+    {
+      "months": "7〜8月",
+      "color": "#b59a57",
+      "text": "アルプスの山歩きと島・海岸の季節が重なる一方、ローマやフィレンツェなど低地の都市は暑くなる。海岸と主要観光都市は混雑を前提に旅程を組む。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b1774c",
+      "text": "丘陵の農村景観や食の季節変化を追いやすく、都市と海岸も真夏より歩きやすくなる。ドロミーティでは天候が変わりやすく、標高の高い場所は早い降雪にも注意する。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#738d9c",
+      "text": "北部の山地は雪の季節になり、都市では美術館や建築を軸に組みやすい。島や海岸では夏季と交通・営業状況が異なるため、目的地ごとに確認する。"
+    }
+  ],
+  "transport": {
+    "title": "HIGH-SPEED RAIL / REGIONAL TRAIN / FERRY",
+    "text": "主要都市間は高速鉄道が使いやすい。そこから地域鉄道やバスへ乗り継ぎ、農村や山地へ枝分かれする。シチリアやサルデーニャを組み込む場合は、本土の都市間移動とは別の時間軸で船や航空も含めて考える。"
+  },
+  "personas": [
+    {
+      "title": "都市と地形を同じ旅で見たい人",
+      "text": "古代都市や水上都市を歩くだけでなく、丘陵、アルプス、火山、島まで一つの国の地域差としてつなげたい人。"
+    },
+    {
+      "title": "地域ごとの文化差を追いたい人",
+      "text": "建築、食、街の習慣を「イタリアらしさ」で一括りにせず、都市や州ごとの違いとして見たい人。"
+    },
+    {
+      "title": "鉄道を軸に複数の地域を巡りたい人",
+      "text": "主要都市を高速鉄道でつなぎ、地域交通を足しながら小さな町や景観へ移動する旅が好きな人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "ローマ"
+    },
+    {
+      "label": "人口",
+      "value": "約5,894万人"
+    },
+    {
+      "label": "面積",
+      "value": "約302,000 km²（日本の約80%）"
+    },
+    {
+      "label": "言語",
+      "value": "イタリア語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "hills-mountains-share-768",
+      "label": "丘陵＋山地",
+      "value": "76.8%",
+      "note": "Istatの2025年版統計年鑑では、国土の41.6%が丘陵、35.2%が山地。海岸線の長い半島だが、平地は国土の4分の1未満にとどまる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "five-special-statute-regions",
+      "label": "特別自治の地域",
+      "value": "5地域",
+      "note": "憲法116条は、シチリア、サルデーニャ、トレンティーノ＝アルト・アディジェ、フリウリ＝ヴェネツィア・ジュリア、ヴァッレ・ダオスタに特別な自治を定める。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "bologna-porticoes-62km",
+      "label": "ボローニャのポルティコ",
+      "value": "62 km",
+      "note": "街に続く柱廊の総延長は約62km。雨や日差しを避ける通路であると同時に、商業や交流の場として都市生活の一部になっている。",
+      "icon": "city"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "ztl-historic-centres",
+      "title": "車で旧市街へ入る前にZTLを確認する",
+      "text": "多くの都市にはZTL（交通制限区域）があり、通行できる曜日や時間、許可条件は都市ごとに異なる。レンタカーで歴史地区へ近づく場合は、入口の標識と宿泊施設の案内を先に確認する。"
+    },
+    {
+      "topicKey": "regional-rail-last-mile",
+      "title": "高速鉄道の駅から先の移動を先に組む",
+      "text": "主要都市間の移動が速くても、ヴァル・ドルチャや山地、小さな海岸集落では地域鉄道やバス、徒歩への乗り継ぎが必要になる。長距離区間より最後の移動時間を先に確認する。"
+    },
+    {
+      "topicKey": "alpine-seasonal-access",
+      "title": "山地は標高ごとの季節差を見る",
+      "text": "北部の高山では、都市が春でも高所に雪が残ることがある。道路、登山道、山小屋、ロープウェーは同じ日に一斉に夏季条件へ切り替わるわけではないため、目的地単位で営業・通行状況を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "アルプス、地中海岸、歴史都市、地域ごとの食文化を別の組み合わせで比べたいなら。"
+    },
+    {
+      "slug": "switzerland",
+      "nameEn": "SWITZERLAND",
+      "nameJa": "スイス",
+      "flag": "🇨🇭",
+      "reason": "アルプスの地形と鉄道移動を、より小さな国土と複数言語圏の中で追いたいなら。"
+    },
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "アルプスと歴史都市の関係を、ドナウ流域とハプスブルクの都市文化へつなげたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2026-01-01",
+    "terrain": "2024",
+    "religion": "2021",
+    "demographicDivide": "2025"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country geometry via LonnyGomes/CountryGeoJSONCollection ITA.geojson; WGS84; illustrated treatment: JOURNEY ATLAS",
+    "capital": "European Union, Italy country profile: capital Rome",
+    "population": "Istat, Demographic Indicators – Year 2025: resident population 58,943,000 as of 1 January 2026 (provisional)",
+    "area": "European Union / Eurostat Italy country profile: geographical size 302,073 km²; Japan comparison calculated by JOURNEY ATLAS using Japan 377,975 km²",
+    "language": "European Union, Italy country profile: official EU language Italian",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Italy; cites 2021 CESNUR estimate with Catholicism the largest affiliation",
+    "currency": "European Union, Italy country profile: euro; euro-area member since 1 January 1999",
+    "terrain": "Istat, Italian Statistical Yearbook 2025 Executive Summary: 41.6% hilly and 35.2% mountainous surface",
+    "specialAutonomy": "Senato della Repubblica, Constitution Article 116: five regions with special forms and conditions of autonomy",
+    "bolognaPorticoes": "UNESCO World Heritage Centre, The Porticoes of Bologna: city porticoes total 62 km",
+    "heroVenice": "UNESCO World Heritage Centre, Venice and its Lagoon",
+    "valDorcia": "UNESCO World Heritage Centre, Val d'Orcia: Renaissance agricultural landscape developed in the 14th and 15th centuries",
+    "dolomites": "UNESCO World Heritage Centre, The Dolomites: 18 peaks above 3,000 m with vertical walls, cliffs, pinnacles and valleys",
+    "romeForum": "UNESCO World Heritage Centre, Historic Centre of Rome and the Properties of the Holy See",
+    "cinqueTerre": "UNESCO World Heritage Centre, Portovenere, Cinque Terre, and the Islands: steep Ligurian coast shaped by stone-walled terraces; Manarola is one of the five villages",
+    "matera": "UNESCO World Heritage Centre, The Sassi and the Park of the Rupestrian Churches of Matera: rock-cut settlement integrated with the Murgia terrain",
+    "etna": "UNESCO World Heritage Centre, Mount Etna: active stratovolcano with summit craters, cinder cones and lava flows",
+    "alberobello": "UNESCO World Heritage Centre, The Trulli of Alberobello: mortarless dry-stone limestone dwellings with conical roofs",
+    "calaGoloritze": "Sardegna Turismo, Cala Goloritzè: limestone cove and 143 m Monte Caroddi pinnacle",
+    "apennines": "Treccani, Appennino: mountain chain forming the spine of the Italian peninsula for about 1,350 km",
+    "unification": "Presidency of the Italian Republic historical archive: unified Italian state proclaimed on 17 March 1861; Rome incorporated in 1870",
+    "ravenna": "Italia.it, Ravenna / mosaics: last capital of the Western Roman Empire, then Ostrogothic and Byzantine centre",
+    "regionalCuisine": "Italia.it, Italian cuisine: regional diversity reflects distinct landscapes, cultures and biodiversity",
+    "highSpeedRail": "Italia.it, High-speed rail in Italy and practical transport information",
+    "demographicDivide": "Istat, Demographic Indicators – Year 2025: North +2.2‰, Centre 0.0‰, Mezzogiorno -3.1‰",
+    "nasoni": "Turismo Roma, The Nasoni: almost 2,500 public drinking fountains in Rome",
+    "wineWindows": "FeelFlorence / Comune di Firenze tourism, Wine windows: about 170 in the municipality of Florence",
+    "sicilianGranita": "Visit Sicily official tourism: granita is served with warm brioche and is also eaten at breakfast",
+    "sienaContrade": "Visit Siena Official, History of the Palio: Siena has 17 Contrade, with 10 participating in a given Palio under the draw system",
+    "caffeSospeso": "Comune di Napoli: caffè sospeso is the custom of paying an extra coffee for someone who cannot afford one",
+    "ztl": "Italia.it practical information / ACI: ZTL access rules vary by city, day and time and are signposted at entrances"
+  }
+}
