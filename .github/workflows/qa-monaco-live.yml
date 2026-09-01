@@ -1,4 +1,4 @@
-name: Monaco boundary freshness QA
+name: Monaco Mareterra geometry QA
 
 on:
   push:
@@ -9,57 +9,33 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Compare current OSM and packaged Monaco boundary
+      - name: Inspect Mareterra land geometry
         shell: bash
         run: |
           set -euo pipefail
           curl -fsSL -A 'JourneyAtlasQA/1.0 (https://atlas.yagenji.com/)' \
-            'https://nominatim.openstreetmap.org/search?q=Monaco&format=geojson&polygon_geojson=1&limit=5' \
-            -o /tmp/current.json
-          curl -fsSL \
-            'https://raw.githubusercontent.com/BrickHario/wordOrigin/669fa71d233a7c738d937f6cda4f8bb18d48ae57/data/MCO.geojson' \
-            -o /tmp/packaged-source.json
+            'https://nominatim.openstreetmap.org/search?q=Mareterra%2C%20Monaco&format=geojson&polygon_geojson=1&limit=10' \
+            -o /tmp/mareterra.json
           python3 - <<'PY'
           import json, math
-
-          def rings(geom):
-              typ=geom['type']
-              c=geom['coordinates']
-              if typ=='Polygon':
-                  return c
-              if typ=='MultiPolygon':
-                  return [ring for poly in c for ring in poly]
-              raise ValueError(typ)
-
-          def area_km2(geom):
-              total=0.0
-              for ring in rings(geom):
-                  if len(ring)<3: continue
+          def rings(g):
+              if g['type']=='Polygon': return g['coordinates']
+              if g['type']=='MultiPolygon': return [r for p in g['coordinates'] for r in p]
+              return []
+          def area(g):
+              total=0
+              for ring in rings(g):
                   lat0=sum(p[1] for p in ring)/len(ring)
-                  kx=111.320*math.cos(math.radians(lat0))
-                  ky=110.574
+                  kx=111.320*math.cos(math.radians(lat0)); ky=110.574
                   pts=[(p[0]*kx,p[1]*ky) for p in ring]
-                  a=0.0
-                  for (x1,y1),(x2,y2) in zip(pts,pts[1:]+pts[:1]):
-                      a += x1*y2-x2*y1
-                  total += abs(a)/2
+                  total += abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:]+pts[:1])))/2
               return total
-
-          cur=json.load(open('/tmp/current.json'))
-          feats=cur.get('features',[])
-          for i,f in enumerate(feats):
+          j=json.load(open('/tmp/mareterra.json'))
+          for i,f in enumerate(j.get('features',[])):
               p=f.get('properties',{})
-              print('CURRENT_CANDIDATE',i,p.get('display_name'),p.get('osm_type'),p.get('osm_id'),f['geometry']['type'],area_km2(f['geometry']))
-          candidates=[f for f in feats if f.get('properties',{}).get('osm_type')=='relation']
-          current=candidates[0] if candidates else feats[0]
-          old=json.load(open('/tmp/packaged-source.json'))['features'][0]
-          ca=area_km2(current['geometry']); oa=area_km2(old['geometry'])
-          def point_count(g):
-              return sum(len(r) for r in rings(g))
-          print(f'CURRENT_OSM_AREA_KM2={ca:.5f}')
-          print(f'PACKAGED_SOURCE_AREA_KM2={oa:.5f}')
-          print(f'AREA_DELTA_PERCENT={(ca/oa-1)*100:.2f}')
-          print(f'CURRENT_POINTS={point_count(current["geometry"])}')
-          print(f'PACKAGED_POINTS={point_count(old["geometry"])}')
-          print('CURRENT_BBOX='+','.join(map(str,current.get('bbox',[]))))
+              print('CANDIDATE',i)
+              print('DISPLAY',p.get('display_name'))
+              print('TYPE',p.get('type'),'CLASS',p.get('category'),'OSM',p.get('osm_type'),p.get('osm_id'))
+              print('GEOM',f['geometry']['type'],'AREA_KM2',area(f['geometry']),'BBOX',f.get('bbox'))
+              print('POINTS',sum(len(r) for r in rings(f['geometry'])))
           PY
