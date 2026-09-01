@@ -1,4 +1,4 @@
-name: Monaco OSM land-area QA
+name: Monaco OSM land-area relation QA
 
 on:
   push:
@@ -9,38 +9,68 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Check OSM Monaco land_area relation 36990
+      - name: Reconstruct OSM relation 36990
         shell: bash
         run: |
           set -euo pipefail
-          curl -fsSL -A 'JourneyAtlasQA/1.0 (https://atlas.yagenji.com/)' \
-            'https://nominatim.openstreetmap.org/lookup?osm_ids=R36990&format=geojson&polygon_geojson=1' \
-            -o /tmp/land.json
+          curl -fsSL -A 'JourneyAtlasQA/1.0' \
+            'https://api.openstreetmap.org/api/0.6/relation/36990/full' \
+            -o /tmp/land.osm
           python3 - <<'PY'
-          import json, math
-          def rings(g):
-              if g['type']=='Polygon': return g['coordinates']
-              if g['type']=='MultiPolygon': return [r for p in g['coordinates'] for r in p]
-              return []
-          def area(g):
-              total=0
-              for ring in rings(g):
-                  lat0=sum(p[1] for p in ring)/len(ring)
-                  kx=111.320*math.cos(math.radians(lat0)); ky=110.574
-                  pts=[(p[0]*kx,p[1]*ky) for p in ring]
-                  total += abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:]+pts[:1])))/2
-              return total
-          j=json.load(open('/tmp/land.json'))
-          for f in j.get('features',[]):
-              p=f.get('properties',{})
-              a=area(f['geometry'])
-              print('DISPLAY='+str(p.get('display_name')))
-              print('OSM_TYPE='+str(p.get('osm_type')))
-              print('OSM_ID='+str(p.get('osm_id')))
-              print('GEOM='+f['geometry']['type'])
-              print(f'AREA_KM2={a:.6f}')
-              print(f'OFFICIAL_DELTA_PERCENT={(a/2.084-1)*100:.3f}')
-              print('POINTS='+str(sum(len(r) for r in rings(f['geometry']))))
-              print('BBOX='+','.join(map(str,f.get('bbox',[]))))
-              print('GEOJSON='+json.dumps(f['geometry'],separators=(',',':')))
+          import xml.etree.ElementTree as ET
+          import math, json
+
+          root=ET.parse('/tmp/land.osm').getroot()
+          nodes={int(n.attrib['id']):(float(n.attrib['lon']),float(n.attrib['lat'])) for n in root.findall('node')}
+          ways={}
+          for w in root.findall('way'):
+              ways[int(w.attrib['id'])]=[int(nd.attrib['ref']) for nd in w.findall('nd')]
+          rel=next(r for r in root.findall('relation') if int(r.attrib['id'])==36990)
+          members=[]
+          for m in rel.findall('member'):
+              if m.attrib['type']=='way':
+                  wid=int(m.attrib['ref']); role=m.attrib.get('role','')
+                  if wid in ways:
+                      members.append((wid,role,ways[wid]))
+          tags={t.attrib['k']:t.attrib['v'] for t in rel.findall('tag')}
+          print('REL_TAGS='+json.dumps(tags,ensure_ascii=False,sort_keys=True))
+          print('WAY_MEMBERS='+str(len(members)))
+          print('ROLES='+json.dumps({r:sum(1 for _,rr,_ in members if rr==r) for r in sorted(set(rr for _,rr,_ in members))}))
+          for wid,role,seq in members:
+              print(f'MEMBER way={wid} role={role} nodes={len(seq)} first={seq[0]} last={seq[-1]}')
+
+          outer=[list(seq) for _,role,seq in members if role in ('outer','')]
+          if not outer: raise SystemExit('no outer ways')
+          rings=[]
+          while outer:
+              chain=outer.pop(0)
+              changed=True
+              while chain[0]!=chain[-1] and changed:
+                  changed=False
+                  for i,s in enumerate(outer):
+                      if chain[-1]==s[0]:
+                          chain.extend(s[1:]); outer.pop(i); changed=True; break
+                      if chain[-1]==s[-1]:
+                          chain.extend(list(reversed(s[:-1]))); outer.pop(i); changed=True; break
+                      if chain[0]==s[-1]:
+                          chain=s[:-1]+chain; outer.pop(i); changed=True; break
+                      if chain[0]==s[0]:
+                          chain=list(reversed(s[1:]))+chain; outer.pop(i); changed=True; break
+              rings.append(chain)
+          print('RINGS='+str(len(rings)))
+          for idx,chain in enumerate(rings):
+              print(f'RING_{idx}_NODES={len(chain)} CLOSED={chain[0]==chain[-1]}')
+
+          closed=[c for c in rings if c[0]==c[-1]]
+          if not closed: raise SystemExit('no closed ring')
+          chain=max(closed,key=len)
+          coords=[nodes[n] for n in chain]
+          lat0=sum(y for x,y in coords)/len(coords)
+          kx=111.320*math.cos(math.radians(lat0)); ky=110.574
+          pts=[(x*kx,y*ky) for x,y in coords]
+          area=abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:])))/2
+          print(f'AREA_KM2={area:.6f}')
+          print(f'OFFICIAL_DELTA_PERCENT={(area/2.084-1)*100:.3f}')
+          print(f'BBOX={min(x for x,y in coords)},{min(y for x,y in coords)},{max(x for x,y in coords)},{max(y for x,y in coords)}')
+          print('COORDS='+json.dumps(coords,separators=(',',':')))
           PY
