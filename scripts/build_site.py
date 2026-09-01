@@ -7,6 +7,7 @@ import html
 import json
 import os
 import re
+import shutil
 import subprocess
 from pathlib import Path
 from urllib.parse import urljoin
@@ -340,7 +341,14 @@ def generate_sitemap(country_urls: list[str]) -> None:
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {urljoin(SITE_URL, 'sitemap.xml')}\n", encoding="utf-8")
 
 
+def clean_generated_country_pages() -> None:
+    output = ROOT / "countries"
+    if output.exists():
+        shutil.rmtree(output)
+
+
 def main() -> int:
+    clean_generated_country_pages()
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
     prepare_top_assets_and_js()
