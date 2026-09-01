@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "greece",
+  "nameEn": "GREECE",
+  "nameJa": "ギリシャ",
+  "region": "SOUTHERN EUROPE / 39°N",
+  "seo": {
+    "description": "エーゲ海の島々、古代都市、岩峰の修道院、峡谷と湖。ギリシャの8つの景色、旅の地図、暮らしや文化、季節を一枚の図鑑でめぐる。"
+  },
+  "capital": {
+    "nameEn": "Athens",
+    "nameJa": "アテネ",
+    "coordinates": {
+      "latitude": 37.9838,
+      "longitude": 23.7275
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2.4,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "エーゲ海に散る島々、岩峰の修道院、深い峡谷、古代から中世へ続く都市。海と山の間に、異なる時代と暮らしが重なる国。",
+    "image": "assets/images/greece/approved/hero-santorini-oia.png",
+    "location": "Oia / イア（サントリーニ島）",
+    "coordinates": {
+      "latitude": 36.46234,
+      "longitude": 25.375694
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 42.15,
+      "south": 34.4,
+      "west": 18.95,
+      "east": 30.05
+    },
+    "svg": "assets/images/greece/map-atlas-v1.svg",
+    "route": null,
+    "source": "Greece regional boundaries: peterdsp/greece-prefectures-and-units (MIT License; source data filtered from Eurostat); dissolved visual treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "acropolis-athens",
+      "name": "アテネのアクロポリス",
+      "nameLocal": "Ακρόπολη Αθηνών",
+      "mapLabel": "Acropolis",
+      "description": "アテネ中心部の丘に、パルテノン神殿をはじめとする古代建築が残る。周囲の現代都市まで見渡すと、首都の中で異なる時代が重なっていることが分かる。",
+      "coordinates": {
+        "latitude": 37.97087,
+        "longitude": 23.72618
+      },
+      "image": "assets/images/greece/approved/acropolis-athens.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.4,
+        "y": 0
+      }
+    },
+    {
+      "id": "meteora",
+      "name": "メテオラ",
+      "nameLocal": "Μετέωρα",
+      "mapLabel": "Meteora",
+      "description": "テッサリアの平地から砂岩の岩柱が立ち上がり、その頂に正教会の修道院が載る。11世紀以降に修道士が定住し、山地と信仰が結びついた景観が形成された。",
+      "coordinates": {
+        "latitude": 39.71667,
+        "longitude": 21.63333
+      },
+      "image": "assets/images/greece/approved/meteora.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "vikos-gorge",
+      "name": "ヴィコス峡谷",
+      "nameLocal": "Φαράγγι του Βίκου",
+      "mapLabel": "Vikos Gorge",
+      "description": "北西部のピンドス山地に刻まれた峡谷。断崖と森林が連なり、ザゴリの石造集落や山道を含む、海とは異なるギリシャの高地景観を見せる。",
+      "coordinates": {
+        "latitude": 39.906642,
+        "longitude": 20.751715
+      },
+      "image": "assets/images/greece/approved/vikos-gorge.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "prespa-lake",
+      "name": "プレスパ湖",
+      "nameLocal": "Πρέσπες",
+      "mapLabel": "Prespa",
+      "description": "北西端の国境地帯に広がる湖と湿地。山に囲まれた水辺では、集落や農地と鳥類の生息地が近い距離で重なり、北部の静かな地理が見えてくる。",
+      "coordinates": {
+        "latitude": 40.829167,
+        "longitude": 21.031111
+      },
+      "image": "assets/images/greece/approved/prespa-lake.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "monemvasia",
+      "name": "モネンヴァシア",
+      "nameLocal": "Μονεμβασιά",
+      "mapLabel": "Monemvasia",
+      "description": "ペロポネソス南東岸の海から巨大な岩が立ち上がり、その麓を城塞都市が囲む。本土とは細い土手道でつながり、ビザンツ以降の石造建築が残る。",
+      "coordinates": {
+        "latitude": 36.6874,
+        "longitude": 23.0555
+      },
+      "image": "assets/images/greece/approved/monemvasia.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "balos-lagoon",
+      "name": "バロス・ラグーン",
+      "nameLocal": "Μπάλος",
+      "mapLabel": "Balos",
+      "description": "クレタ島北西部、グラムヴサ半島に広がる砂州と浅いラグーン。白い砂、浅瀬、外海が地形の境界に沿って切り替わり、島の海岸地形を俯瞰できる。",
+      "coordinates": {
+        "latitude": 35.582404,
+        "longitude": 23.58853
+      },
+      "image": "assets/images/greece/approved/balos-lagoon.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "delphi",
+      "name": "デルフィ",
+      "nameLocal": "Δελφοί",
+      "mapLabel": "Delphi",
+      "description": "パルナッソス山の斜面、二つの岩壁の間に築かれたアポロンの聖域。遺跡を谷と山の中で見ると、宗教空間が地形と結びついていたことが分かる。",
+      "coordinates": {
+        "latitude": 38.48149,
+        "longitude": 22.49617
+      },
+      "image": "assets/images/greece/approved/delphi.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "rhodes-old-town",
+      "name": "ロードス旧市街",
+      "nameLocal": "Μεσαιωνική Πόλη της Ρόδου",
+      "mapLabel": "Rhodes",
+      "description": "騎士団時代の城壁と街路を基層に、その後の時代の建築も重なる旧市街。現在も人が暮らす街として、中世の都市構造が日常の中に続いている。",
+      "coordinates": {
+        "latitude": 36.44722,
+        "longitude": 28.22778
+      },
+      "image": "assets/images/greece/approved/rhodes-old-town.png",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "エーゲ海"
+    },
+    {
+      "title": "古代遺跡"
+    },
+    {
+      "title": "正教会"
+    },
+    {
+      "title": "島めぐり"
+    },
+    {
+      "title": "石造集落"
+    },
+    {
+      "title": "オリーブ"
+    },
+    {
+      "title": "タベルナ"
+    },
+    {
+      "title": "フェリー"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "minoan-palatial-centres-2025",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "クレタ島では、「古代ギリシャ」より前の都市文明をたどれる",
+      "text": "2025年、クノッソスなど6つのミノア宮殿中心地が世界遺産に登録された。宮殿は行政・経済・宗教の拠点でもあり、ギリシャの歴史を古典期だけで見ない入口になる。",
+      "points": [
+        "6つの構成資産はクレタ島各地に分布する",
+        "都市計画、初期の文字体系、海上ネットワークの痕跡が残る"
+      ]
+    },
+    {
+      "topicKey": "delos-sanctuary-trading-port",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "小さなデロス島は、聖域であると同時に地中海交易の港だった",
+      "text": "アポロンの聖域として人を集めたデロスは、やがて商人や船主が集まる国際的な港にもなった。宗教と交易が同じ島に重なったことが、エーゲ海の役割を広げて見せる。",
+      "points": [
+        "紀元前9世紀頃からアポロンの聖域が発展した",
+        "紀元前2〜1世紀には倉庫や商社、居住区を備える交易港として栄えた"
+      ]
+    },
+    {
+      "topicKey": "thessaloniki-byzantine-city-layers",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "テッサロニキでは、4〜15世紀のキリスト教建築が街に連なる",
+      "text": "北部の港湾都市テッサロニキには、初期キリスト教からビザンツ時代までの教会、城壁、モザイクが現在の街の中に残る。ギリシャの歴史が古代で終わらないことを歩いて確かめられる。",
+      "points": [
+        "都市は紀元前315年に創建され、港として発展した",
+        "4〜15世紀の建築群がビザンツ世界の変化を時系列で伝える"
+      ]
+    },
+    {
+      "topicKey": "rebetiko-urban-music",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "レベティコは、20世紀の都市生活から育った歌と踊り",
+      "text": "レベティコは20世紀初頭の都市の労働者層などに広がった音楽文化。現在も演奏の場では歌と踊りが一体になり、聴衆も参加する、生きた都市文化として続いている。",
+      "points": [
+        "2017年にユネスコ無形文化遺産の代表一覧へ登録",
+        "歌詞には当時の暮らし、習慣、社会の記憶が残る"
+      ]
+    },
+    {
+      "topicKey": "chios-mastic-cultivation",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ヒオス島のマスティハは、家族の年間作業そのものが文化になっている",
+      "text": "マスティハは樹皮を傷つけて採る香りのある樹脂。剪定、地面の準備、採取、洗浄まで家族や地域が役割を分け、栽培技術と助け合いの関係が一緒に受け継がれてきた。",
+      "points": [
+        "栽培の知識は2014年にユネスコ無形文化遺産へ登録",
+        "作業は冬の手入れから夏の採取まで一年を通して続く"
+      ]
+    },
+    {
+      "topicKey": "regional-cuisine-geography",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "ギリシャ料理は、一つの定番料理より地域差を見ると地理が分かる",
+      "text": "山地の本土と海に囲まれた島々では、手に入る食材も保存方法も異なる。地域料理を追うと、乾いた島、山間部、肥沃な平野という地形の違いがそのまま食卓に現れる。",
+      "points": [
+        "公式観光案内も本土山岳部と島嶼部の料理を異なる地域文化として紹介している",
+        "キクラデスでは島ごとの地形と微気候が食文化を形づくる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "greek-coffee-briki-water",
+      "categoryEn": "COFFEE",
+      "categoryJa": "喫茶",
+      "title": "ギリシャコーヒーには、冷たい水が一緒に出てくる",
+      "text": "伝統的なギリシャコーヒーは小鍋のブリキで淹れ、厚手のカップと冷たい水で提供される。「コーヒーに行く」という言葉自体が、友人と時間を過ごす日常の誘いになっている。",
+      "icon": "food",
+      "sourceKey": "greekCoffee"
+    },
+    {
+      "topicKey": "livadia-easter-lakki",
+      "categoryEn": "EASTER",
+      "categoryJa": "祭り",
+      "title": "リヴァディアの復活祭では、町のあちこちに羊を焼く穴ができる",
+      "text": "復活祭の日曜日、庭や空き地に掘った「ラッコス」と呼ばれる穴の周りに家族や近所の人が集まり、羊を焼く。旅人も地区を歩きながら、食と音楽の輪に出会える。",
+      "icon": "culture",
+      "sourceKey": "easterLivadia"
+    },
+    {
+      "topicKey": "volos-tsipouradiko-meze",
+      "categoryEn": "VOLOS",
+      "categoryJa": "食",
+      "title": "ヴォロスでは、ツィプロを頼むたびに違うメゼが付いてくる",
+      "text": "港町ヴォロスのツィプラディコでは、蒸留酒ツィプロと小皿料理を組み合わせる。店によっては一杯ごとに別のメゼが出され、魚介を中心に少しずつ食卓が広がっていく。",
+      "icon": "food",
+      "sourceKey": "tsipouradika"
+    },
+    {
+      "topicKey": "name-days-saints",
+      "categoryEn": "CUSTOMS",
+      "categoryJa": "習慣",
+      "title": "誕生日とは別に、自分と同じ名の聖人の日を祝う",
+      "text": "ギリシャでは、名前の由来となる聖人の日を「ネームデー」として祝う習慣がある。滞在中に祝いの席へ出会ったら、誕生日ではなく名前の日ということもある。",
+      "icon": "culture",
+      "sourceKey": "nameDays"
+    },
+    {
+      "topicKey": "ikaria-panigyria-dance",
+      "categoryEn": "IKARIA",
+      "categoryJa": "祭り",
+      "title": "イカリア島の夏祭りでは、旅人も輪になって踊る",
+      "text": "夏の村々で開かれるパニギリアでは、ヴァイオリンやリュートの音に合わせ、食事を囲みながら世代を越えて踊る。2022年からギリシャの無形文化遺産全国目録にも含まれている。",
+      "icon": "culture",
+      "sourceKey": "ikariaPanigyria"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#7f9a61",
+      "text": "低地は暑さが強まる前で、都市や遺跡、村歩きを組み合わせやすい。山地は低地より涼しく、海水浴を主目的にするにはまだ早い地域もある。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "島と海の旅が中心になる時期。本土や遺跡では暑さが強くなるため、屋外は朝夕へ寄せる。フェリーや島の宿は利用が集中しやすく、移動日に余白を置く。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "海には夏の暖かさが残りつつ、都市や遺跡も歩きやすくなる。島と本土を同じ旅程でつなぎ、景観の違いを見るのに向く季節。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "平地の冬は比較的穏やかだが、山地では雪になる。都市や遺跡中心の旅は続けられる一方、島の交通や季節営業は夏と同じ前提で組まない。"
+    }
+  ],
+  "transport": {
+    "title": "FERRY / RAIL / INTERCITY BUS",
+    "text": "島嶼部はフェリー、本土は鉄道・都市間バス・車を組み合わせる。アテネの外港ピレウスは島への主要な玄関口で、サントリーニ、クレタ、ロードスなどを含む旅では海上移動が旅程の骨格になる。鉄道は工事や区間変更が発生するため、Hellenic Trainの運行情報を直前に確認する。"
+  },
+  "personas": [
+    {
+      "title": "島と海を、地図でつないで旅したい人",
+      "text": "一つの島だけでなく、キクラデス、クレタ、ドデカネスなど、島群ごとの地形や街の違いを移動しながら見たい人。"
+    },
+    {
+      "title": "古代だけでなく、その後の時代も歩きたい人",
+      "text": "アクロポリスやデルフィから、ビザンツの修道院、中世の城塞都市、現代の街まで、時間の層を続けて見たい人。"
+    },
+    {
+      "title": "海の印象を越えて、山や地方の暮らしも知りたい人",
+      "text": "ピンドス山地、国境湖、北部の都市や村へ足を延ばし、島国のイメージだけでは見えないギリシャを知りたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "アテネ"
+    },
+    {
+      "label": "人口",
+      "value": "約1,037万人"
+    },
+    {
+      "label": "面積",
+      "value": "131,694 km²（日本の約35%）"
+    },
+    {
+      "label": "言語",
+      "value": "ギリシャ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（東方正教会が中心）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "islands-6000-inhabited-227",
+      "label": "島と小島",
+      "value": "約6,000（有人227）",
+      "note": "エーゲ海・イオニア海などに島と小島が散在する。島嶼性は景観だけでなく、交通、食、地域文化の違いを生む国の骨格になっている。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "ancient-olympics-776-bce",
+      "label": "古代オリンピック",
+      "value": "紀元前776年から",
+      "note": "オリンピアでは、記録上の古代オリンピックが4年ごとに開かれるようになった。遺跡には競技施設と聖域が同じ谷に残る。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "greek-shipping-global-dwt-2026",
+      "label": "ギリシャ系商船隊",
+      "value": "世界DWTの19.1%",
+      "note": "2026年時点のギリシャ船主保有船隊は約5,800隻。古代の海洋史だけでなく、現代も海運が世界との接点になっている。",
+      "icon": "sea"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "island-transfer-buffer",
+      "title": "島をまたぐ日は、移動そのものを一日の予定として考える",
+      "text": "島間や本土とのフェリーは、直行便の有無や季節で組み方が変わる。乗継ぎを詰め込みすぎず、港までの移動と天候の影響を含めて余白を取る。"
+    },
+    {
+      "topicKey": "summer-heat-outdoor-sites",
+      "title": "夏の遺跡・ハイキングは、昼の暑さを避けて組む",
+      "text": "ギリシャの夏は乾燥した暑い日が続く。本土の遺跡や島の徒歩区間は朝夕へ寄せ、水分と日陰の少なさを前提に行動する。"
+    },
+    {
+      "topicKey": "rail-status-check",
+      "title": "鉄道を使う日は、Hellenic Trainの運行状況を直前に確認する",
+      "text": "主要都市間の鉄道は運行しているが、工事や復旧に伴う区間変更・代行輸送が発生することがある。時刻だけでなくTraffic Statusまで確認してから移動する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "albania",
+      "nameEn": "ALBANIA",
+      "nameJa": "アルバニア",
+      "flag": "🇦🇱",
+      "reason": "北西部の山地から国境を越え、バルカンの石造集落や湖、歴史の連続をさらに追いたいなら。"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "地中海の古代都市、港、地域料理が、海の反対側でどのように別の形をとったか見比べたいなら。"
+    },
+    {
+      "slug": "cyprus",
+      "nameEn": "CYPRUS",
+      "nameJa": "キプロス",
+      "flag": "🇨🇾",
+      "reason": "東地中海へ進み、ギリシャ語文化と島の歴史が異なる政治・地理の中でどう続くか見たいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-02",
+  "sourcesVerifiedAt": "2026-09-02",
+  "sourceDates": {
+    "population": "2025-01-01",
+    "shipping": "2026-01",
+    "minoanPalatial": "2025"
+  },
+  "sources": {
+    "map": "peterdsp/greece-prefectures-and-units, greecePrefectures.geojson (MIT License; source data filtered from Eurostat). 13 regional MultiPolygons visually dissolved to national outline; extent includes Kastellorizo.",
+    "population": "Hellenic Statistical Authority (ELSTAT), Data on Estimated Population (1.1.2025): resident population 10,372,335.",
+    "area": "European Union country profile for Greece / Eurostat 2025: geographical size 131,694 km².",
+    "language": "European Union country profile for Greece: Greek is the official EU language of Greece.",
+    "currency": "European Union country profile for Greece: euro; euro-area member since 1 January 2001.",
+    "politicalSystem": "European Union country profile for Greece: parliamentary republic.",
+    "religion": "Constitution of Greece, Article 3: prevailing religion is the Eastern Orthodox Church of Christ; Article 13 protects freedom of religious conscience.",
+    "islands": "Greek National Tourism Organisation (Visit Greece), Islands: Greece includes about 6,000 islands and islets, 227 inhabited.",
+    "shipping": "Union of Greek Shipowners Annual Report 2025/26, based on S&P Global Market Intelligence January 2026: 5,800 vessels; 19.1% of global fleet by DWT.",
+    "olympia": "UNESCO World Heritage Centre, Archaeological Site of Olympia: Olympic Games held every four years beginning in 776 BC.",
+    "heroOia": "Greek National Tourism Organisation (Visit Greece), Santorini / Oia: settlements such as Oia develop along the caldera rim and adapt to volcanic morphology.",
+    "acropolis": "UNESCO World Heritage Centre, Acropolis, Athens: property coordinates and World Heritage description.",
+    "meteora": "UNESCO World Heritage Centre, Meteora: sandstone peaks and monasteries; monastic settlement from the 11th century onwards.",
+    "vikos": "Greek National Tourism Organisation (Visit Greece), Zagori / Vikos-Aoos: Vikos Gorge within the mountain landscape of north-west Greece.",
+    "prespa": "Natural Environment & Climate Change Agency (N.E.C.C.A.), Management Unit of Prespa National Park and Protected Areas of Western Macedonia.",
+    "monemvasia": "Greek National Tourism Organisation (Visit Greece), Monemvasia: fortified town on a massive rock connected to the mainland by a narrow causeway.",
+    "balos": "Greek National Tourism Organisation (Visit Greece), Gramvoussa–Balos: shallow blue-green waters, white sand and Gramvousa peninsula landscape.",
+    "delphi": "UNESCO World Heritage Centre, Archaeological Site of Delphi: sanctuary of Apollo between the Phaidriades rocks on Mount Parnassus.",
+    "rhodes": "UNESCO World Heritage Centre, Medieval City of Rhodes: living historical settlement and World Heritage coordinates.",
+    "minoanPalatial": "UNESCO World Heritage Centre, Minoan Palatial Centres: six Cretan sites inscribed in 2025; major prehistoric Mediterranean culture and maritime networks.",
+    "delos": "UNESCO World Heritage Centre, Delos: Pan-Hellenic sanctuary and cosmopolitan Mediterranean trading port.",
+    "thessaloniki": "UNESCO World Heritage Centre, Paleochristian and Byzantine Monuments of Thessalonika: 4th–15th century monuments in a major port and Byzantine cultural centre.",
+    "rebetiko": "UNESCO Intangible Cultural Heritage, Rebetiko: inscribed 2017; urban song-and-dance tradition with roots in early 20th-century working-class populations.",
+    "chiosMastic": "UNESCO Intangible Cultural Heritage, Know-how of cultivating mastic on Chios: family occupation, year-round care and community networks; inscribed 2014.",
+    "regionalCuisine": "Greek National Tourism Organisation (Visit Greece), Traditional Cuisine / Cycladic Cuisine: regional identities reflect mainland, island morphology and microclimates.",
+    "greekCoffee": "Greek National Tourism Organisation (Visit Greece), Coffee Pleasure, The Greek Way: Greek coffee prepared in a briki and served with cold water; coffee as a social habit.",
+    "easterLivadia": "Greek National Tourism Organisation (Visit Greece), Easter: The Authentic Roumeli: Livadia's communal 'lakki' pits and Easter lamb-roasting custom.",
+    "tsipouradika": "Greek National Tourism Organisation (Visit Greece), Tsipouradika / Greek spirits: Volos tradition of serving tsipouro with changing meze, often seafood and vegetables.",
+    "nameDays": "Greek National Tourism Organisation (Visit Greece), Greece trivia: people celebrate the name day of the saint whose name they bear in a similar way to a birthday.",
+    "ikariaPanigyria": "Greek National Tourism Organisation (Visit Greece), Panigyria on Ikaria Island: summer village festivals of music, food and communal dance; in Greece's National Inventory of Intangible Cultural Heritage since 2022.",
+    "climate": "Greek National Tourism Organisation (Visit Greece), Travel Tips: Mediterranean climate with hot dry summers; mountainous areas are cooler and often snowy in winter.",
+    "ferryNetwork": "Greek National Tourism Organisation (Visit Greece), Piraeus and island destination access pages: Piraeus is Greece's main passenger gateway for island ferry travel.",
+    "summerHeat": "Greek National Tourism Organisation (Visit Greece), travel routes: in high summer temperatures, hiking is recommended very early or avoided when heat conditions are unsuitable.",
+    "railStatus": "Hellenic Train, Traffic Status / Athens–Thessaloniki route: daily main north–south service with current operational updates and possible temporary changes."
+  }
+}
