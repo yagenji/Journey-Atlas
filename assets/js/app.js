@@ -264,6 +264,13 @@ function renderCapitalMarker(fragment, capital, bounds) {
   marker.setAttribute('role', 'img');
   marker.setAttribute('aria-label', `首都: ${capital.nameJa || capital.nameEn || ''}`);
   marker.innerHTML = `<i aria-hidden="true"></i><span>${escapeHtml(capital.nameJa || capital.nameEn || '')}</span>`;
+  const label = marker.querySelector('span');
+  const labelOffsetX = Number(capital?.labelOffset?.x);
+  const labelOffsetY = Number(capital?.labelOffset?.y);
+  if (label) {
+    if (Number.isFinite(labelOffsetX) && labelOffsetX !== 0) label.style.marginLeft = `${Math.max(-80, Math.min(80, labelOffsetX))}px`;
+    if (Number.isFinite(labelOffsetY) && labelOffsetY !== 0) label.style.marginTop = `${Math.max(-80, Math.min(80, labelOffsetY))}px`;
+  }
   markers.append(marker);
 }
 
