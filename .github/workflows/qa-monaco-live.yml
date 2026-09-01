@@ -1,46 +1,42 @@
-name: Monaco OSM land-area relation QA
+name: Monaco current OSM land map QA
 
 on:
   push:
     branches: ["qa-monaco-live"]
+    paths-ignore:
+      - "qa-output/current-osm/**"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  probe:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Reconstruct OSM relation 36990
+      - name: Checkout QA branch
+        uses: actions/checkout@v4
+      - name: Reconstruct current Monaco OSM land relation
         shell: bash
         run: |
           set -euo pipefail
           curl -fsSL -A 'JourneyAtlasQA/1.0' \
             'https://api.openstreetmap.org/api/0.6/relation/36990/full' \
             -o /tmp/land.osm
+          mkdir -p qa-output/current-osm
           python3 - <<'PY'
           import xml.etree.ElementTree as ET
-          import math, json
+          import json, math
+          from pathlib import Path
 
           root=ET.parse('/tmp/land.osm').getroot()
           nodes={int(n.attrib['id']):(float(n.attrib['lon']),float(n.attrib['lat'])) for n in root.findall('node')}
-          ways={}
-          for w in root.findall('way'):
-              ways[int(w.attrib['id'])]=[int(nd.attrib['ref']) for nd in w.findall('nd')]
+          ways={int(w.attrib['id']):[int(nd.attrib['ref']) for nd in w.findall('nd')] for w in root.findall('way')}
           rel=next(r for r in root.findall('relation') if int(r.attrib['id'])==36990)
-          members=[]
-          for m in rel.findall('member'):
-              if m.attrib['type']=='way':
-                  wid=int(m.attrib['ref']); role=m.attrib.get('role','')
-                  if wid in ways:
-                      members.append((wid,role,ways[wid]))
-          tags={t.attrib['k']:t.attrib['v'] for t in rel.findall('tag')}
-          print('REL_TAGS='+json.dumps(tags,ensure_ascii=False,sort_keys=True))
-          print('WAY_MEMBERS='+str(len(members)))
-          print('ROLES='+json.dumps({r:sum(1 for _,rr,_ in members if rr==r) for r in sorted(set(rr for _,rr,_ in members))}))
-          for wid,role,seq in members:
-              print(f'MEMBER way={wid} role={role} nodes={len(seq)} first={seq[0]} last={seq[-1]}')
-
-          outer=[list(seq) for _,role,seq in members if role in ('outer','')]
+          members=[(int(m.attrib['ref']),m.attrib.get('role','')) for m in rel.findall('member') if m.attrib['type']=='way']
+          outer=[list(ways[wid]) for wid,role in members if role in ('outer','') and wid in ways]
           if not outer: raise SystemExit('no outer ways')
+
           rings=[]
           while outer:
               chain=outer.pop(0)
@@ -56,21 +52,89 @@ jobs:
                           chain=s[:-1]+chain; outer.pop(i); changed=True; break
                       if chain[0]==s[0]:
                           chain=list(reversed(s[1:]))+chain; outer.pop(i); changed=True; break
-              rings.append(chain)
-          print('RINGS='+str(len(rings)))
-          for idx,chain in enumerate(rings):
-              print(f'RING_{idx}_NODES={len(chain)} CLOSED={chain[0]==chain[-1]}')
+              if chain[0]!=chain[-1]:
+                  raise SystemExit('unclosed outer chain')
+              rings.append([nodes[n] for n in chain])
 
-          closed=[c for c in rings if c[0]==c[-1]]
-          if not closed: raise SystemExit('no closed ring')
-          chain=max(closed,key=len)
-          coords=[nodes[n] for n in chain]
-          lat0=sum(y for x,y in coords)/len(coords)
-          kx=111.320*math.cos(math.radians(lat0)); ky=110.574
-          pts=[(x*kx,y*ky) for x,y in coords]
-          area=abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:])))/2
-          print(f'AREA_KM2={area:.6f}')
-          print(f'OFFICIAL_DELTA_PERCENT={(area/2.084-1)*100:.3f}')
-          print(f'BBOX={min(x for x,y in coords)},{min(y for x,y in coords)},{max(x for x,y in coords)},{max(y for x,y in coords)}')
-          print('COORDS='+json.dumps(coords,separators=(',',':')))
+          def ring_area(coords):
+              lat0=sum(y for x,y in coords)/len(coords)
+              kx=111.320*math.cos(math.radians(lat0)); ky=110.574
+              pts=[(x*kx,y*ky) for x,y in coords]
+              return abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:])))/2
+
+          areas=[ring_area(r) for r in rings]
+          total=sum(areas)
+          official=2.084
+          delta=(total/official-1)*100
+          print('RING_COUNT='+str(len(rings)))
+          for i,(r,a) in enumerate(zip(rings,areas)):
+              print(f'RING_{i}_POINTS={len(r)}')
+              print(f'RING_{i}_AREA_KM2={a:.6f}')
+              print(f'RING_{i}_BBOX={min(x for x,y in r)},{min(y for x,y in r)},{max(x for x,y in r)},{max(y for x,y in r)}')
+          print(f'TOTAL_AREA_KM2={total:.6f}')
+          print(f'OFFICIAL_AREA_KM2={official:.3f}')
+          print(f'DELTA_PERCENT={delta:.3f}')
+          if abs(delta)>0.35:
+              raise SystemExit(f'OSM land relation area {total:.6f} differs too far from official {official:.3f}')
+
+          # GeoJSON: each OSM outer ring is an independent polygon.
+          geom={"type":"MultiPolygon","coordinates":[[r] for r in rings]}
+          fc={"type":"FeatureCollection","features":[{
+            "type":"Feature",
+            "properties":{
+              "name":"Monaco",
+              "source":"OpenStreetMap relation 36990",
+              "boundary":"land_area",
+              "verifiedAt":"2026-09-01",
+              "areaKm2Approx":round(total,6),
+              "officialAreaKm2":official,
+              "officialAreaDeltaPercent":round(delta,3)
+            },
+            "geometry":geom
+          }]}
+          Path('qa-output/current-osm/monaco-land-relation-36990.geojson').write_text(
+            json.dumps(fc,ensure_ascii=False,indent=2)+"\n",encoding='utf-8'
+          )
+
+          WIDTH,HEIGHT=1200,760
+          bounds={"north":43.754,"south":43.723,"west":7.405,"east":7.444}
+          mid=(bounds["south"]+bounds["north"])/2
+          lon_scale=math.cos(math.radians(mid))
+          pwidth=(bounds["east"]-bounds["west"])*lon_scale
+          pheight=bounds["north"]-bounds["south"]
+          scale=min(WIDTH/pwidth,HEIGHT/pheight)
+          draw_w=pwidth*scale; draw_h=pheight*scale
+          off_x=(WIDTH-draw_w)/2; off_y=(HEIGHT-draw_h)/2
+          def project(x,y):
+              return (off_x+(x-bounds["west"])*lon_scale*scale, off_y+(bounds["north"]-y)*scale)
+          def ring_path(coords):
+              pts=[project(x,y) for x,y in coords]
+              return "M "+" L ".join(f"{x:.1f},{y:.1f}" for x,y in pts)+" Z"
+          d=" ".join(ring_path(r) for r in rings)
+          svg=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Monaco" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+          <metadata>OpenStreetMap relation 36990 (Monaco land_area), WGS84; reconstructed from 29 outer member ways and verified 2026-09-01 against IMSEE 2026 official area 2.084 km²; JOURNEY ATLAS clean-background treatment</metadata>
+          <defs>
+          <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
+          <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+          <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+          </defs>
+          <rect width="1200" height="760" fill="url(#sea)"/>
+          <path d="{d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
+          </svg>
+          '''
+          if '<ellipse' in svg or '<radialGradient' in svg:
+              raise SystemExit('forbidden map element generated')
+          Path('qa-output/current-osm/map-atlas-v1.svg').write_text(svg,encoding='utf-8')
+          print('ELLIPSE=0')
+          print('RADIAL_GRADIENT=0')
           PY
+
+      - name: Commit current-map candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa-output/current-osm/
+          git diff --cached --quiet && exit 0
+          git commit -m "qa: materialize current Monaco OSM land map"
+          git push
