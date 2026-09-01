@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "luxembourg",
+  "nameEn": "LUXEMBOURG",
+  "nameJa": "ルクセンブルク",
+  "region": "WESTERN EUROPE / BENELUX / 49°N",
+  "seo": {
+    "description": "ルクセンブルク市の要塞と谷、ヴィアンデン、ミュラータール、モーゼルの葡萄畑、赤い鉄鉱石の大地、ベルヴァル、エヒタナハ、オート・シュール湖。小さな国土に切り替わる8つの景色と地図をたどる。"
+  },
+  "capital": {
+    "nameEn": "Luxembourg City",
+    "nameJa": "ルクセンブルク市",
+    "coordinates": {
+      "latitude": 49.6116,
+      "longitude": 6.1319
+    },
+    "labelPosition": "left"
+  },
+  "hero": {
+    "lead": "要塞都市の高台からGrundの谷を見下ろし、北の城と河谷、東の砂岩と葡萄畑、南の赤い鉄鉱石地帯へ。国土は小さいが、地形と産業の表情が短い距離で切り替わる国。",
+    "image": "assets/images/luxembourg/approved/hero-luxembourg-city-corniche.png",
+    "location": "Chemin de la Corniche / Luxembourg City",
+    "coordinates": {
+      "latitude": 49.611,
+      "longitude": 6.135
+    },
+    "mapOffset": {
+      "x": 4,
+      "y": -3
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 50.18,
+      "south": 49.38,
+      "west": 5.55,
+      "east": 6.55
+    },
+    "svg": "assets/images/luxembourg/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection LUX.geojson; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "vianden-castle-our-valley",
+      "name": "ヴィアンデン城 / Our Valley",
+      "nameLocal": "Vianden Castle / Our Valley",
+      "mapLabel": "Vianden",
+      "description": "森林に包まれたOur川の谷を見下ろす丘上にヴィアンデン城が立ち、その下に町が細長く続く。城郭だけでなく、川・斜面・集落が一体になった北東部Éislekの景観。",
+      "coordinates": {
+        "latitude": 49.9342,
+        "longitude": 6.2028
+      },
+      "image": "assets/images/luxembourg/approved/vianden-castle-our-valley.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "schiessentumpel-waterfall",
+      "name": "シーセントゥンペル / ミュラータール",
+      "nameLocal": "Schiessentümpel / Mullerthal",
+      "mapLabel": "Schiessentümpel",
+      "description": "Black Ernzの小滝の上に1879年築の砂岩橋が架かり、苔むした岩と森林が近距離で重なる。Mullerthalを特徴づける砂岩地形を、水辺の目線で見る場所。",
+      "coordinates": {
+        "latitude": 49.7698,
+        "longitude": 6.3026
+      },
+      "image": "assets/images/luxembourg/approved/schiessentumpel-waterfall.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "esch-sur-sure-kuelebierg",
+      "name": "エシュ＝シュル＝シュール / Kuelebierg",
+      "nameLocal": "Esch-sur-Sûre / Kuelebierg",
+      "mapLabel": "Esch-sur-Sûre",
+      "description": "Sûre川が大きく蛇行する内側に集落が収まり、中央の岩山に城跡が残る。道路より先に川と地形が町の形を決めたことが、一望で分かる北西部の景観。",
+      "coordinates": {
+        "latitude": 49.91,
+        "longitude": 5.934
+      },
+      "image": "assets/images/luxembourg/approved/esch-sur-sure-kuelebierg.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": -2
+      }
+    },
+    {
+      "id": "wormeldange-koeppchen",
+      "name": "ヴォルメルダンジュ / Koeppchen",
+      "nameLocal": "Wormeldange / Koeppchen Vineyards",
+      "mapLabel": "Wormeldange",
+      "description": "Moselle川へ落ちる急斜面を葡萄畑が覆い、Koeppchenの小礼拝堂と村が斜面に重なる。川沿いの低地ではなく、傾斜そのものが葡萄栽培の景観をつくっている。",
+      "coordinates": {
+        "latitude": 49.6118,
+        "longitude": 6.4055
+      },
+      "image": "assets/images/luxembourg/approved/wormeldange-koeppchen-vineyards.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "giele-botter-red-rocks",
+      "name": "Giele Botter / Minett",
+      "nameLocal": "Prënzebierg–Giele Botter / Minett",
+      "mapLabel": "Giele Botter",
+      "description": "旧露天掘り跡に赤褐色の岩肌と土が露出し、その間へ植生が戻りつつある。鉄鉱石を含む赤い地質が、南部Minettの産業史と現在の自然景観をつないでいる。",
+      "coordinates": {
+        "latitude": 49.527,
+        "longitude": 5.874
+      },
+      "image": "assets/images/luxembourg/approved/giele-botter-red-rocks.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -1
+      }
+    },
+    {
+      "id": "belval-blast-furnaces",
+      "name": "ベルヴァル / 高炉群",
+      "nameLocal": "Belval / Blast Furnaces",
+      "mapLabel": "Belval",
+      "description": "かつての製鉄所に2基の高炉が保存され、その周囲に大学と研究施設、文化施設が建つ。鉄鋼業の設備を消すのではなく、次の都市機能へ組み込んだ南部の景観。",
+      "coordinates": {
+        "latitude": 49.5005,
+        "longitude": 5.9487
+      },
+      "image": "assets/images/luxembourg/approved/belval-blast-furnaces.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "echternach-market-square-denzelt",
+      "name": "エヒタナハ / Denzelt",
+      "nameLocal": "Echternach / Market Square / Denzelt",
+      "mapLabel": "Echternach",
+      "description": "エヒタナハの市場広場に、ゴシックのアーケードを持つDenzeltが立つ。首都の要塞都市とは異なり、広場と町家が近い距離でまとまる、東部の人間尺度の旧市街。",
+      "coordinates": {
+        "latitude": 49.8124,
+        "longitude": 6.4214
+      },
+      "image": "assets/images/luxembourg/approved/echternach-market-square-denzelt.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "upper-sure-lake-burfelt",
+      "name": "オート・シュール湖 / Burfelt",
+      "nameLocal": "Upper Sûre Lake / Belvédère Burfelt",
+      "mapLabel": "Burfelt",
+      "description": "森林丘陵の間を枝分かれする貯水湖を、Burfeltの高台から見下ろす。飲料水源でもある湖と深い森林が、北西部の静かな水辺景観をつくる。",
+      "coordinates": {
+        "latitude": 49.8955,
+        "longitude": 5.8945
+      },
+      "image": "assets/images/luxembourg/approved/upper-sure-lake-burfelt.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 2
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "丘上の城とOur川の谷",
+      "icon": "history"
+    },
+    {
+      "title": "砂岩橋と森の小滝",
+      "icon": "landscape"
+    },
+    {
+      "title": "蛇行河川の内側に収まる町",
+      "icon": "landscape"
+    },
+    {
+      "title": "Moselleへ落ちる葡萄畑",
+      "icon": "food"
+    },
+    {
+      "title": "鉄鉱石を含む赤い地層",
+      "icon": "landscape"
+    },
+    {
+      "title": "高炉と大学が並ぶ再開発地区",
+      "icon": "city"
+    },
+    {
+      "title": "中世の市場広場とDenzelt",
+      "icon": "history"
+    },
+    {
+      "title": "森林丘陵に広がる貯水湖",
+      "icon": "shore"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "fortress-rocky-cityscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "首都は「街」より先に、岩と谷を読む",
+      "text": "ルクセンブルク市はAlzette川とPétrusse川が刻む急な谷と岩の台地に築かれ、そこへ何世紀もの要塞が重ねられた。旧市街を歩くだけでなく、高低差を見ると都市の成り立ちが理解しやすい。",
+      "points": [
+        "16世紀から1867年まで欧州有数の要塞都市として強化された",
+        "CornicheからGrundとRham Plateauを見ると地形と要塞の関係が分かる"
+      ]
+    },
+    {
+      "topicKey": "mullerthal-sandstone-geopark",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "Mullerthalは砂岩の隙間を歩く",
+      "text": "東部Mullerthalでは、砂岩の塔、狭い岩の割れ目、渓流、森林が近い距離で連続する。大きな山脈ではなく、足元と岩壁の変化を歩いて読む地域である。",
+      "points": [
+        "Mullerthal Trailは全長112km",
+        "Mëllerdall Nature & Geoparkは2022年にUNESCO Global Geoparkとなった"
+      ]
+    },
+    {
+      "topicKey": "wormeldange-steep-viticulture",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "Moselleでは斜面そのものがワインの景色になる",
+      "text": "WormeldangeのKoeppchenでは、Moselleを見下ろす急斜面に葡萄畑が広がる。平地の農園ではなく、日照と石灰質土壌を得るための傾斜がそのまま景観になっている。",
+      "points": [
+        "Koeppchenの傾斜は70度を超える",
+        "Saint Donatus礼拝堂が葡萄畑の高所に立つ"
+      ]
+    },
+    {
+      "topicKey": "minett-iron-to-science",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "赤い鉄鉱石の土地が、産業から研究都市へつながる",
+      "text": "Minettという名は鉄鉱石を含む赤い土に由来する。Giele Botterでは採掘跡に自然が戻り、Belvalでは停止した高炉の横に大学と研究施設が建つ。地質・産業・都市転換を一続きで見られる。",
+      "points": [
+        "Minettは2020年にUNESCO Biosphere Reserveに指定された",
+        "Belvalの高炉は1997年に操業を停止し、現在は保存されている"
+      ]
+    },
+    {
+      "topicKey": "schengen-agreement-1985",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "小さな葡萄畑の村の名が、欧州の国境制度になった",
+      "text": "フランスとドイツに接するMoselle沿いのSchengenで、1985年6月14日に協定が署名された。地名がそのまま欧州の自由移動を象徴する言葉になった。",
+      "points": [
+        "協定は1985年6月14日に署名",
+        "Schengen Museumでは協定と国境の変化をたどれる"
+      ]
+    },
+    {
+      "topicKey": "echternach-medieval-scriptorium",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "Echternachは写本を通して中世ヨーロッパとつながった",
+      "text": "Echternach Abbeyのscriptoriumでは、中世に装飾写本が制作され、ヨーロッパ各地で知られた。現在のAbbey Museumでは、その写本文化を複製資料とともに見ることができる。",
+      "points": [
+        "修道院はSaint Willibrordが698年に創設",
+        "Codex Epternacensisなどscriptorium由来の写本を紹介している"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "echternach-hopping-procession",
+      "categoryEn": "PROCESSION",
+      "categoryJa": "祭礼",
+      "title": "エヒタナハでは約8,000人が跳ねながら進む",
+      "text": "聖霊降臨祭の火曜日に行われるHopping Processionでは、UNESCOによると約8,000人の踊り手が45グループに分かれて進む。伝統は1100年から記録されている。",
+      "icon": "culture",
+      "sourceKey": "hoppingProcession"
+    },
+    {
+      "topicKey": "family-of-man-503-photos",
+      "categoryEn": "PHOTOGRAPHY",
+      "categoryJa": "写真",
+      "title": "Clervauxには503枚の写真で構成された展覧会がある",
+      "text": "Edward Steichenが1955年にMoMAで企画したThe Family of Manは、503点、273人の写真家、68か国の作品で構成される。現在はClervaux Castleで常設展示されている。",
+      "icon": "culture",
+      "sourceKey": "familyOfMan"
+    },
+    {
+      "topicKey": "national-day-june-23",
+      "categoryEn": "NATIONAL DAY",
+      "categoryJa": "国の習慣",
+      "title": "国民の日は大公の実際の誕生日とは別の日",
+      "text": "LuxembourgのNational Dayは6月23日。大公の誕生日を祝う日だが、現在のGrand Duke Guillaumeの実際の誕生日とは一致しない。6月22日夜から各地で行事が続く。",
+      "icon": "city",
+      "sourceKey": "nationalDay"
+    },
+    {
+      "topicKey": "patton-luxembourg-cemetery",
+      "categoryEn": "WWII",
+      "categoryJa": "戦争の記憶",
+      "title": "Patton将軍はルクセンブルクで部下たちと眠る",
+      "text": "Luxembourg American Cemeteryには5,070人が埋葬され、George S. Pattonも本人の希望によりここに葬られた。首都は当時、米第3軍の司令部でもあった。",
+      "icon": "history",
+      "sourceKey": "patton"
+    },
+    {
+      "topicKey": "radio-luxembourg-1933",
+      "categoryEn": "RADIO",
+      "categoryJa": "放送",
+      "title": "Radio Luxembourgは1933年に欧州へ定期放送を始めた",
+      "text": "Radio Luxembourgは1933年3月15日にフランス語とドイツ語の定期長波放送を開始した。小国から多言語で欧州へ届く放送局として、その後のRTLにつながった。",
+      "icon": "culture",
+      "sourceKey": "radioLuxembourg"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜6月",
+      "color": "#7f9a61",
+      "text": "街歩き、Mullerthalの森林、Moselleの新緑を組み合わせやすい。Viandenのchairliftは季節営業のため、利用する場合は当年の開始日を確認する。"
+    },
+    {
+      "months": "7〜8月",
+      "color": "#a9a05b",
+      "text": "日が長く、Upper Sûre LakeやÉislekまで動きやすい。湖では水質や遊泳可否の案内を確認し、保護区域の表示に従う。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "Moselleの葡萄畑と北部の森林に秋色が入りやすい。都市と自然を同じ旅に入れやすい一方、日没は早くなる。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "旧市街、博物館、Belvalの産業遺産など都市・文化を軸にしやすい。高地や森林路は凍結や雨で歩行条件が変わる。"
+    }
+  ],
+  "transport": {
+    "title": "FREE PUBLIC TRANSPORT / TRAIN / BUS / WALK",
+    "text": "国内のトラム、バス、列車2等は原則無料で、Luxembourg Cityから主要都市へ公共交通を組みやすい。MullerthalやUpper Sûreの自然景観は、バスの接続と徒歩区間を確認し、必要に応じて車を組み合わせる。"
+  },
+  "personas": [
+    {
+      "title": "小さな国で景観の切り替わりを見たい人",
+      "text": "首都の要塞と谷、北部の河谷、東部の砂岩、南部の赤い採掘跡まで、短い移動で地形差を追いたい人。"
+    },
+    {
+      "title": "都市の歴史を地形と一緒に理解したい人",
+      "text": "Luxembourg City、Vianden、Echternach、Schengenを歩き、城・要塞・修道院・欧州統合の歴史を場所と結びつけたい人。"
+    },
+    {
+      "title": "産業遺産と現在の都市転換に興味がある人",
+      "text": "Giele BotterからBelvalへ移動し、鉄鉱石の地質、採掘、製鉄、大学・研究都市への変化を一続きで見たい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西ヨーロッパ／ベネルクス"
+    },
+    {
+      "label": "首都",
+      "value": "ルクセンブルク市"
+    },
+    {
+      "label": "人口",
+      "value": "約68万人"
+    },
+    {
+      "label": "面積",
+      "value": "2,586 km²（日本の約0.7%）"
+    },
+    {
+      "label": "言語",
+      "value": "ルクセンブルク語・フランス語・ドイツ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック系の伝統）・無宗教など"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "only-sovereign-grand-duchy",
+      "label": "主権大公国",
+      "value": "世界で1か国",
+      "note": "Luxembourg政府は、現在のLuxembourgを世界で唯一のGrand Duchyと説明している。国家元首はGrand Duke。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "nationwide-free-public-transport",
+      "label": "国内公共交通",
+      "value": "2等 0€",
+      "note": "2020年3月1日から国内のトラム、バス、列車2等は原則無料。Mobiliteit.luは全国規模の無料公共交通を世界初と説明している。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "three-administrative-languages",
+      "label": "行政で使う言語",
+      "value": "3言語",
+      "note": "行政・司法ではルクセンブルク語、フランス語、ドイツ語が使われる。日常では英語やポルトガル語なども広く聞かれる。",
+      "icon": "culture"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "city-vertical-mobility",
+      "title": "首都は地図の距離より高低差を見る",
+      "text": "Upper TownとPfaffenthal、Grundは近く見えても谷で高さが分かれる。Pfaffenthalの無料パノラマエレベーターは約71mの高低差をつなぐため、徒歩ルートに組み込むと移動しやすい。"
+    },
+    {
+      "topicKey": "vianden-chairlift-season-check",
+      "title": "Viandenのchairliftは通年運行ではない",
+      "text": "城と谷を上から見るchairliftは季節営業。2026年は4月4日〜10月19日と案内されているが、年によって変わるため旅行前に公式営業時間を確認する。"
+    },
+    {
+      "topicKey": "upper-sure-protected-water-zone",
+      "title": "Upper Sûre Lakeは保護区域と遊泳情報を確認する",
+      "text": "湖は飲料水源でもあり、主ダムから約5kmは保護区域。水質によって遊泳禁止が出ることもあるため、現地表示と最新情報を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "belgium",
+      "nameEn": "BELGIUM",
+      "nameJa": "ベルギー",
+      "flag": "🇧🇪",
+      "reason": "Ardennesの森林と河谷を西へつなぎ、ベネルクス内の都市・言語・地形差を比べたいなら。"
+    },
+    {
+      "slug": "germany",
+      "nameEn": "GERMANY",
+      "nameJa": "ドイツ",
+      "flag": "🇩🇪",
+      "reason": "MoselleとOurの向こうへ進み、ドイツ語圏の都市と河川景観を東へ広げたいなら。"
+    },
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "Moselle流域とフランス語圏の文化を南へつなぎ、国境を越えた連続性を見たいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2025-01-01",
+    "area": "2026",
+    "viandenChairlift": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection LUX.geojson, WGS84.",
+    "population": "STATEC, 1 January 2025: 681,973 inhabitants.",
+    "area": "Luxembourg government, Luxembourg's territory: 2,586 km²; comparison uses Japan area about 377,975 km².",
+    "language": "Luxembourg government, Languages Law of 1984: Luxembourgish, French and German used in administrative and judicial matters.",
+    "religion": "Luxembourg government / STATEC general demographic and cultural information: historic Catholic tradition alongside other religions and non-religious residents.",
+    "currency": "European Commission / Luxembourg government: Luxembourg is a euro-area member using the euro.",
+    "grandDuchy": "Luxembourg government: Luxembourg is currently the only Grand Duchy in the world.",
+    "freeTransport": "Mobiliteit.lu: nationwide public transport free since 1 March 2020 except 1st class; free travel ends at the border.",
+    "fortress": "UNESCO World Heritage Centre: City of Luxembourg old quarters and fortifications; strategic fortress reinforced from the 16th century until dismantling began in 1867.",
+    "mullerthal": "Visit Luxembourg: Mullerthal Trail 112 km; Mëllerdall Nature & Geopark awarded UNESCO Global Geopark label in 2022.",
+    "schiessentumpel": "Visit Luxembourg: Schiessentümpel sandstone bridge built in 1879 over the Black Ernz and became a symbol of Mullerthal.",
+    "koeppchen": "Visit Luxembourg: Wormer Koeppchen vineyard inclination exceeds 70 degrees; Saint Donatus chapel built in 1925.",
+    "minett": "Visit Luxembourg: Minett named for iron-rich red soil; UNESCO Biosphere Reserve since 2020; Belval blast furnaces conserved within university/research redevelopment.",
+    "schengen": "Visit Luxembourg / Schengen Museum: Schengen Agreement signed on 14 June 1985 in the Moselle village of Schengen.",
+    "echternachScriptorium": "Visit Luxembourg Abbey Museum: Echternach scriptorium produced decorated manuscripts known across Europe; abbey founded by Saint Willibrord in 698.",
+    "hoppingProcession": "UNESCO Intangible Cultural Heritage: Echternach Hopping Procession documented since 1100; around 8,000 dancers in 45 groups; inscribed in 2010.",
+    "familyOfMan": "UNESCO Memory of the World: The Family of Man consists of 503 photographs by 273 photographers from 68 countries.",
+    "nationalDay": "Luxembourg government: National Day is 23 June; celebrations take place on 22 and 23 June as the public celebration of the Grand Duke's birthday.",
+    "patton": "American Battle Monuments Commission: Luxembourg American Cemetery has 5,070 burials and is the final resting place of General George S. Patton.",
+    "radioLuxembourg": "RTL Group history: Radio Luxembourg began regular long-wave broadcasting on 15 March 1933 in French and German.",
+    "cityElevator": "Visit Luxembourg: Pfaffenthal panoramic elevator connects upper city and valley, overcomes 71m elevation and is free.",
+    "viandenChairlift": "Visit Luxembourg: Vianden chairlift is seasonal; 2026 season listed as 4 April to 19 October.",
+    "upperSure": "Visit Luxembourg: Upper Sûre Lake is 380 ha, supplies drinking water and has a protected zone extending about 5 km from the main dam; bathing bans may apply."
+  }
+}
