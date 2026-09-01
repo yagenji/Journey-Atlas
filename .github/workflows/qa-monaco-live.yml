@@ -14,6 +14,15 @@ jobs:
         run: |
           npm install --no-save playwright@1.55.0 axe-core@4.10.3
           npx playwright install --with-deps chromium
+      - name: Verify production has shared accessibility fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://atlas.yagenji.com/assets/js/app.js -o /tmp/live-app.js
+          curl -fsSL https://atlas.yagenji.com/assets/css/country.css -o /tmp/live-country.css
+          grep -Fq '<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>' /tmp/live-app.js
+          ! grep -Fq '<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>' /tmp/live-app.js
+          grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css
       - name: Run live responsive and accessibility QA
         shell: bash
         run: |
@@ -59,7 +68,7 @@ jobs:
               const hero = document.querySelector('.hero-art');
               const heroStyle = hero ? getComputedStyle(hero) : null;
               const map = document.querySelector('#country-map-art');
-              const mapStyle = map ? getComputedStyle(map) : null;
+              const mapBase = document.querySelector('#country-map-art .map-base');
               const markerEls=[...document.querySelectorAll('#map-markers > *')];
               const markerRects=markerEls.map((el,i)=>{
                 const r=el.getBoundingClientRect();
@@ -117,7 +126,7 @@ jobs:
                 },
                 heroBackground:heroStyle?.backgroundImage||'',
                 heroSize:bbox('.hero-art'),
-                mapBackground:mapStyle?.backgroundImage||'',
+                mapBaseLoaded:!!(mapBase && mapBase.complete && mapBase.naturalWidth>0 && mapBase.naturalHeight>0),
                 mapSize:bbox('#country-map-art'),
                 bodyOverflow,
                 missingSceneBg,
@@ -144,7 +153,7 @@ jobs:
               canonical: report.canonical==='https://atlas.yagenji.com/countries/monaco/',
               theme: report.themeText.length===1 && report.themeText[0]==='街を歩く',
               heroVisible: report.visible.hero && report.heroBackground!=='none',
-              mapVisible: report.visible.map && report.mapBackground!=='none',
+              mapVisible: report.visible.map && report.mapBaseLoaded,
               scenes: report.counts.scenes===8 && report.missingSceneBg===0,
               sceneMarkers: report.counts.sceneMarkers===8,
               allMarkers: report.counts.markers===10,
