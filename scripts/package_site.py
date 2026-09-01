@@ -84,6 +84,61 @@ def copy_path(source: Path, destination: Path, *, ignore=None) -> None:
         shutil.copy2(source, destination)
 
 
+def collect_image_refs(value: object, refs: set[str]) -> None:
+    if isinstance(value, str):
+        if value.startswith("assets/images/"):
+            refs.add(value)
+        return
+    if isinstance(value, dict):
+        for item in value.values():
+            collect_image_refs(item, refs)
+        return
+    if isinstance(value, list):
+        for item in value:
+            collect_image_refs(item, refs)
+
+
+def production_image_paths(slugs: list[str]) -> set[str]:
+    refs: set[str] = set()
+
+    # Top-page visual assets are direct runtime dependencies.
+    top_root = ROOT / "assets" / "images" / "top"
+    if top_root.exists():
+        for path in top_root.rglob("*"):
+            if path.is_file():
+                refs.add(path.relative_to(ROOT).as_posix())
+
+    # Destination registries may reference card art before a Country Page is reviewable.
+    for registry_path in REGISTRY_PATHS:
+        collect_image_refs(json.loads(registry_path.read_text(encoding="utf-8")), refs)
+
+    # Reviewable Country JSON is the source of truth for Hero, Scene and Map assets.
+    for slug in slugs:
+        country_path = COUNTRY_DIR / f"{slug}.json"
+        collect_image_refs(json.loads(country_path.read_text(encoding="utf-8")), refs)
+
+    return refs
+
+
+def prune_unreferenced_images(slugs: list[str]) -> set[str]:
+    allowed = production_image_paths(slugs)
+    image_root = DIST / "assets" / "images"
+    if not image_root.exists():
+        raise FileNotFoundError(f"Packaged image root missing: {image_root}")
+
+    for path in sorted(image_root.rglob("*"), reverse=True):
+        if path.is_file():
+            relative = path.relative_to(DIST).as_posix()
+            if relative not in allowed:
+                path.unlink()
+        elif path.is_dir():
+            try:
+                path.rmdir()
+            except OSError:
+                pass
+    return allowed
+
+
 def package_data(slugs: list[str]) -> None:
     target = DIST / "data"
     target.mkdir(parents=True, exist_ok=True)
@@ -140,7 +195,7 @@ def write_cloudflare_headers() -> None:
     (DIST / "_headers").write_text(headers, encoding="utf-8")
 
 
-def validate_package(slugs: list[str]) -> None:
+def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
     for relative in ROOT_FILES:
         if not (DIST / relative).exists():
             raise FileNotFoundError(f"Packaged root file missing: {relative}")
@@ -156,6 +211,18 @@ def validate_package(slugs: list[str]) -> None:
     unexpected_data = sorted(path.name for path in (DIST / "data").iterdir() if path.name not in allowed_data)
     if unexpected_data:
         raise ValueError(f"Unexpected production data file(s): {unexpected_data}")
+
+    packaged_images = {
+        path.relative_to(DIST).as_posix()
+        for path in (DIST / "assets" / "images").rglob("*")
+        if path.is_file()
+    }
+    if packaged_images != allowed_images:
+        missing = sorted(allowed_images - packaged_images)
+        unexpected = sorted(packaged_images - allowed_images)
+        raise ValueError(
+            f"Production image set mismatch. missing={missing}, unexpected={unexpected}"
+        )
 
     packaged = sorted(path.stem for path in (DIST / "data" / "countries").glob("*.json"))
     if packaged != sorted(slugs):
@@ -182,10 +249,11 @@ def main() -> int:
         copy_path(source, DIST / relative)
 
     copy_path(ROOT / "assets", DIST / "assets", ignore=ignore_asset_sources)
+    allowed_images = prune_unreferenced_images(slugs)
     package_data(slugs)
     package_country_pages(slugs)
     write_cloudflare_headers()
-    validate_package(slugs)
+    validate_package(slugs, allowed_images)
 
     file_count = sum(1 for path in DIST.rglob("*") if path.is_file())
     size_bytes = sum(path.stat().st_size for path in DIST.rglob("*") if path.is_file())
