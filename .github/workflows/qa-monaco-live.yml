@@ -14,12 +14,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for attempt in $(seq 1 24); do
+          for attempt in $(seq 1 120); do
             curl -fsSL https://atlas.yagenji.com/assets/js/app.js -o /tmp/live-app.js
             curl -fsSL https://atlas.yagenji.com/assets/css/country.css -o /tmp/live-country.css
             if grep -Fq '<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>' /tmp/live-app.js \
               && ! grep -Fq '<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>' /tmp/live-app.js \
-              && grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css; then
+              && grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css \
+              && grep -Fq 'background:#647242' /tmp/live-country.css \
+              && grep -Fq 'related-card.is-coming .related-status{color:#66717a' /tmp/live-country.css; then
               echo "PRODUCTION_A11Y_BUNDLE=UPDATED"
               exit 0
             fi
