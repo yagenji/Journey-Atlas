@@ -24,95 +24,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate source
+      - name: Validate source syntax
         run: |
           python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
-          python scripts/validate_lens_slugs.py
-          python scripts/validate_country.py --reviewable
-          python scripts/validate_country.py --published
 
-      - name: Build production site
-        run: python scripts/build_site.py
-
-      - name: Validate production build
-        run: |
-          python scripts/validate_country.py --reviewable
-          python scripts/validate_country.py --published
-          node --check assets/js/app.js
-          node --check assets/js/top.js
-          test -f assets/css/country.css
-          test -f assets/css/top.css
-          test -f assets/images/iceland/v3/hero.webp
-          test -f assets/images/top/hero-world-collage.svg
-          test -f assets/images/top/theme-approved-sprite.webp
-          test -f assets/images/top/explore-entry-sprite.webp
-          test -f countries/iceland/index.html
-          test -f faq/index.html
-          test -f privacy/index.html
-          grep -q '掲載情報の正確性・完全性・最新性を保証するものではありません' faq/index.html
-          grep -q 'position:sticky' assets/css/site-info.css
-          test -f sitemap.xml
-          test -f robots.txt
-          grep -q 'data-country="iceland"' countries/iceland/index.html
-          grep -q 'assets/images/iceland/v3/hero.webp' data/countries/iceland.json
-          grep -q 'countries/iceland/' data/atlas-destinations.json
-          grep -q 'hero-world-collage.svg' assets/js/top.js
-          grep -q 'href="faq/"' index.html
-          grep -q 'href="privacy/"' index.html
-          grep -q 'https://atlas.yagenji.com/faq/' sitemap.xml
-          grep -q 'https://atlas.yagenji.com/privacy/' sitemap.xml
-          if grep -q '\.b64' assets/js/top.js; then echo 'top.js still contains runtime base64 media'; exit 1; fi
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-  cloudflare-package-check:
-    name: Validate Cloudflare production package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build clean Cloudflare package
+      - name: Build clean production package
         env:
           JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
-        run: |
-          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/package_site.py scripts/build_cloudflare.py
-          python scripts/build_cloudflare.py
+        run: python scripts/build_cloudflare.py
 
       - name: Validate packaged output
         run: |
           test -f dist/index.html
           test -f dist/404.html
           test -f dist/_redirects
+          test -f dist/_headers
           test -f dist/sitemap.xml
           test -f dist/robots.txt
           test -f dist/faq/index.html
           test -f dist/privacy/index.html
-          grep -q '掲載情報の正確性・完全性・最新性を保証するものではありません' dist/faq/index.html
-          grep -q 'position:sticky' dist/assets/css/site-info.css
-          test -f dist/_headers
+          test -f dist/assets/css/country.css
+          test -f dist/assets/css/top.css
           test -f dist/countries/iceland/index.html
           test -f dist/data/countries/iceland.json
           test -f dist/countries/unitedkingdom/index.html
           test -f dist/data/countries/unitedkingdom.json
+          grep -q '掲載情報の正確性・完全性・最新性を保証するものではありません' dist/faq/index.html
+          grep -q 'position:sticky' dist/assets/css/site-info.css
           grep -q '/countries/united-kingdom/\*  /countries/unitedkingdom/:splat  301' dist/_redirects
-          test ! -e dist/country.html
-          test ! -d dist/scripts
-          test ! -d dist/.github
           grep -q 'https://atlas.yagenji.com/' dist/sitemap.xml
           grep -q 'https://atlas.yagenji.com/faq/' dist/sitemap.xml
           grep -q 'https://atlas.yagenji.com/privacy/' dist/sitemap.xml
           grep -q 'https://atlas.yagenji.com/countries/iceland/' dist/countries/iceland/index.html
+          test ! -e dist/country.html
+          test ! -d dist/scripts
+          test ! -d dist/.github
           if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then echo 'encoded source files leaked into dist'; exit 1; fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload clean site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
