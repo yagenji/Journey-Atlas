@@ -20,7 +20,7 @@ jobs:
             if grep -Fq '<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>' /tmp/live-app.js \
               && ! grep -Fq '<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>' /tmp/live-app.js \
               && grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css \
-              && grep -Fq 'background:#647242' /tmp/live-country.css \
+              && grep -Eq 'background:[[:space:]]*#647242' /tmp/live-country.css \
               && grep -Fq 'related-card.is-coming .related-status{color:#66717a' /tmp/live-country.css; then
               echo "PRODUCTION_A11Y_BUNDLE=UPDATED"
               exit 0
