@@ -6,6 +6,8 @@ from __future__ import annotations
 import html
 import json
 import os
+import re
+import subprocess
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -24,6 +26,28 @@ def site_url() -> str:
 
 
 SITE_URL = site_url()
+
+
+def build_version() -> str:
+    for key in ("JOURNEY_ATLAS_BUILD_VERSION", "CF_PAGES_COMMIT_SHA", "GITHUB_SHA"):
+        value = os.environ.get(key, "").strip()
+        if value:
+            return re.sub(r"[^A-Za-z0-9._-]", "", value)[:16] or "build"
+    try:
+        value = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        if value:
+            return value[:16]
+    except Exception:
+        pass
+    return "local"
+
+
+BUILD_VERSION = build_version()
 
 COUNTRY_CSS_SOURCES = [
     "assets/css/style.css",
@@ -192,12 +216,21 @@ def prepare_top_assets_and_js() -> None:
 def prepare_app_js() -> None:
     path = ROOT / "assets/js/app.js"
     script = path.read_text(encoding="utf-8")
-    old = "const SITE_ORIGIN = 'https://yagenji.github.io/Journey-Atlas/';"
-    new = f"const SITE_ORIGIN = '{SITE_URL}';"
-    if old in script:
-        script = script.replace(old, new, 1)
-    elif "const SITE_ORIGIN =" not in script:
+
+    site_origin_pattern = r"const SITE_ORIGIN = '[^']*';"
+    if not re.search(site_origin_pattern, script):
         raise ValueError("app.js SITE_ORIGIN marker missing")
+    script = re.sub(site_origin_pattern, f"const SITE_ORIGIN = '{SITE_URL}';", script, count=1)
+
+    data_version_pattern = r"const DATA_VERSION = '[^']*';"
+    if not re.search(data_version_pattern, script):
+        raise ValueError("app.js DATA_VERSION marker missing")
+    script = re.sub(
+        data_version_pattern,
+        f"const DATA_VERSION = '{BUILD_VERSION}';",
+        script,
+        count=1,
+    )
     path.write_text(script, encoding="utf-8")
 
 
@@ -232,6 +265,22 @@ def prepare_generic_country_page() -> None:
             '  <meta name="robots" content="noindex,follow">\n  <meta name="description" id="meta-description"',
             1,
         )
+
+    # Country pages are HTML entry points with revalidation enabled. Give the
+    # runtime JS and generated CSS a per-build URL so browsers/CDNs cannot keep
+    # a stale app that requests old country JSON after a content-only deploy.
+    page = re.sub(
+        r'assets/js/app\.js\?v=[^"\']+',
+        f'assets/js/app.js?v={BUILD_VERSION}',
+        page,
+        count=1,
+    )
+    page = re.sub(
+        r'assets/css/country\.css\?v=[^"\']+',
+        f'assets/css/country.css?v={BUILD_VERSION}',
+        page,
+        count=1,
+    )
     path.write_text(page, encoding="utf-8")
 
 
@@ -312,6 +361,7 @@ def main() -> int:
             urls.append(canonical)
     rewrite_published_hrefs(registries)
     generate_sitemap(urls)
+    print(f"Build version: {BUILD_VERSION}")
     print(
         f"Built CSS bundles, direct top media, {len(reviewable)} reviewable country page(s), "
         f"and {len(urls)} published country page(s) from 201 destinations."
