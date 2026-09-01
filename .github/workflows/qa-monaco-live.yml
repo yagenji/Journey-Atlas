@@ -1,41 +1,159 @@
-name: Monaco Mareterra geometry QA
+name: Monaco current-land map candidate
 
 on:
   push:
     branches: ["qa-monaco-live"]
+    paths-ignore:
+      - "qa-output/**"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  probe:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect Mareterra land geometry
+      - name: Checkout QA branch
+        uses: actions/checkout@v4
+      - name: Install geometry dependency
+        run: pip install shapely
+      - name: Build current Monaco land geometry and map
         shell: bash
         run: |
           set -euo pipefail
+          curl -fsSL \
+            'https://raw.githubusercontent.com/BrickHario/wordOrigin/669fa71d233a7c738d937f6cda4f8bb18d48ae57/data/MCO.geojson' \
+            -o /tmp/old.json
           curl -fsSL -A 'JourneyAtlasQA/1.0 (https://atlas.yagenji.com/)' \
             'https://nominatim.openstreetmap.org/search?q=Mareterra%2C%20Monaco&format=geojson&polygon_geojson=1&limit=10' \
             -o /tmp/mareterra.json
-          python3 - <<'PY'
+
+          mkdir -p qa-output
+          cat > /tmp/build.py <<'PY'
           import json, math
-          def rings(g):
-              if g['type']=='Polygon': return g['coordinates']
-              if g['type']=='MultiPolygon': return [r for p in g['coordinates'] for r in p]
-              return []
-          def area(g):
-              total=0
-              for ring in rings(g):
-                  lat0=sum(p[1] for p in ring)/len(ring)
-                  kx=111.320*math.cos(math.radians(lat0)); ky=110.574
-                  pts=[(p[0]*kx,p[1]*ky) for p in ring]
-                  total += abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:]+pts[:1])))/2
-              return total
-          j=json.load(open('/tmp/mareterra.json'))
-          for i,f in enumerate(j.get('features',[])):
+          from pathlib import Path
+          from shapely.geometry import shape, mapping
+          from shapely.ops import unary_union
+
+          old_fc=json.load(open('/tmp/old.json'))
+          old=shape(old_fc['features'][0]['geometry'])
+          mt=json.load(open('/tmp/mareterra.json'))
+          target=None
+          target_props=None
+          for f in mt.get('features',[]):
               p=f.get('properties',{})
-              print('CANDIDATE',i)
-              print('DISPLAY',p.get('display_name'))
-              print('TYPE',p.get('type'),'CLASS',p.get('category'),'OSM',p.get('osm_type'),p.get('osm_id'))
-              print('GEOM',f['geometry']['type'],'AREA_KM2',area(f['geometry']),'BBOX',f.get('bbox'))
-              print('POINTS',sum(len(r) for r in rings(f['geometry'])))
+              if p.get('osm_type')=='way' and str(p.get('osm_id'))=='686693023':
+                  target=shape(f['geometry']); target_props=p; break
+          if target is None:
+              raise SystemExit('Mareterra OSM way 686693023 not found')
+
+          merged=unary_union([old,target])
+          if merged.geom_type not in ('Polygon','MultiPolygon'):
+              raise SystemExit(f'unexpected merged type {merged.geom_type}')
+
+          def area_km2(g):
+              # local equal-enough projected shoelace sanity check for Monaco scale
+              polys=[g] if g.geom_type=='Polygon' else list(g.geoms)
+              total=0.0
+              for poly in polys:
+                  coords=list(poly.exterior.coords)
+                  lat0=sum(y for x,y in coords)/len(coords)
+                  kx=111.320*math.cos(math.radians(lat0)); ky=110.574
+                  pts=[(x*kx,y*ky) for x,y in coords]
+                  total += abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:])))/2
+                  for interior in poly.interiors:
+                      coords=list(interior.coords)
+                      pts=[(x*kx,y*ky) for x,y in coords]
+                      total -= abs(sum(x1*y2-x2*y1 for (x1,y1),(x2,y2) in zip(pts,pts[1:])))/2
+              return total
+
+          old_area=area_km2(old); mt_area=area_km2(target); merged_area=area_km2(merged)
+          official=2.084
+          delta_pct=(merged_area/official-1)*100
+          if abs(delta_pct)>0.5:
+              raise SystemExit(f'merged geometry area {merged_area:.5f} too far from official {official:.3f} km2')
+
+          feature={
+            "type":"Feature",
+            "properties":{
+              "name":"Monaco current land candidate",
+              "base":"geoBoundaries/OSM pre-Mareterra land geometry",
+              "addition":"OpenStreetMap way 686693023 L'Anse du Portier / Mareterra",
+              "verifiedAt":"2026-09-01",
+              "oldAreaKm2":round(old_area,6),
+              "mareterraAreaKm2":round(mt_area,6),
+              "mergedAreaKm2":round(merged_area,6),
+              "officialAreaKm2":official,
+              "officialAreaDeltaPercent":round(delta_pct,3)
+            },
+            "geometry":mapping(merged)
+          }
+          Path('qa-output/monaco-current-land.geojson').write_text(
+            json.dumps({"type":"FeatureCollection","features":[feature]},ensure_ascii=False,indent=2)+"\n",
+            encoding='utf-8'
+          )
+
+          # Render exactly in JOURNEY ATLAS map-v3 clean-background language.
+          WIDTH,HEIGHT=1200,760
+          bounds={"north":43.754,"south":43.723,"west":7.405,"east":7.444}
+          mid=(bounds["south"]+bounds["north"])/2
+          lon_scale=math.cos(math.radians(mid))
+          pwidth=(bounds["east"]-bounds["west"])*lon_scale
+          pheight=bounds["north"]-bounds["south"]
+          scale=min(WIDTH/pwidth,HEIGHT/pheight)
+          draw_w=pwidth*scale; draw_h=pheight*scale
+          off_x=(WIDTH-draw_w)/2; off_y=(HEIGHT-draw_h)/2
+
+          def project(x,y):
+              return (
+                off_x+(x-bounds["west"])*lon_scale*scale,
+                off_y+(bounds["north"]-y)*scale
+              )
+          def ring_path(coords):
+              pts=[project(x,y) for x,y in coords]
+              return "M "+" L ".join(f"{x:.1f},{y:.1f}" for x,y in pts)+" Z"
+          def geom_path(g):
+              polys=[g] if g.geom_type=='Polygon' else list(g.geoms)
+              chunks=[]
+              for poly in polys:
+                  chunks.append(ring_path(list(poly.exterior.coords)))
+                  for hole in poly.interiors:
+                      chunks.append(ring_path(list(hole.coords)))
+              return " ".join(chunks)
+
+          d=geom_path(merged)
+          svg=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Monaco" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+          <metadata>Monaco current land geometry: geoBoundaries/OSM ADM0 base plus OpenStreetMap way 686693023 (L'Anse du Portier / Mareterra); WGS84; union verified 2026-09-01 against IMSEE 2026 official area 2.084 km²; JOURNEY ATLAS clean-background treatment</metadata>
+          <defs>
+          <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
+          <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+          <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+          </defs>
+          <rect width="1200" height="760" fill="url(#sea)"/>
+          <path d="{d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
+          </svg>
+          '''
+          if '<ellipse' in svg or '<radialGradient' in svg:
+              raise SystemExit('forbidden map element generated')
+          Path('qa-output/map-atlas-current.svg').write_text(svg,encoding='utf-8')
+          print(f'OLD_AREA_KM2={old_area:.6f}')
+          print(f'MARETERRA_AREA_KM2={mt_area:.6f}')
+          print(f'MERGED_AREA_KM2={merged_area:.6f}')
+          print(f'OFFICIAL_AREA_KM2={official:.3f}')
+          print(f'DELTA_PERCENT={delta_pct:.3f}')
+          print(f'MERGED_TYPE={merged.geom_type}')
+          print('ELLIPSE=0')
+          print('RADIAL_GRADIENT=0')
           PY
+          python3 /tmp/build.py
+
+      - name: Commit QA candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa-output/monaco-current-land.geojson qa-output/map-atlas-current.svg
+          git diff --cached --quiet && exit 0
+          git commit -m "qa: materialize current Monaco map candidate"
+          git push
