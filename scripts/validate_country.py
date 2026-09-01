@@ -166,6 +166,30 @@ def validate_content_topic_keys(errors: list[str], filename: str, data: dict) ->
                 seen_keys[key] = owner
 
 
+def validate_map_css_clean(errors: list[str]) -> None:
+    """Reject decorative map ovals in shared Country CSS sources.
+
+    Generated assets/css/country.css is rebuilt from source CSS during build,
+    so scan the source stylesheets and leave generated bundles out of this gate.
+    """
+    css_root = ROOT / "assets" / "css"
+    if not css_root.exists():
+        return
+    for path in sorted(css_root.glob("*.css")):
+        if path.name in {"country.css", "top.css"}:
+            continue
+        try:
+            css = path.read_text(encoding="utf-8")
+        except Exception as exc:
+            fail(errors, f"{path.relative_to(ROOT)}: CSSを読み込めません: {exc}")
+            continue
+        if ".map-art::before" in css or ".map-art::after" in css:
+            fail(
+                errors,
+                f"{path.relative_to(ROOT)}: Country Mapの装飾楕円pseudo-elementは禁止です",
+            )
+
+
 def bounds_values(data: dict) -> tuple[object, object, object, object]:
     bounds = data.get("map", {}).get("bounds", {})
     return bounds.get("north"), bounds.get("south"), bounds.get("west"), bounds.get("east")
@@ -537,6 +561,7 @@ def main() -> int:
         paths, errors = country_paths_from_index()
 
     errors.extend(validate_all_atlas_map_assets())
+    validate_map_css_clean(errors)
 
     for path in paths:
         errors.extend(validate_country(path, strict=strict))
