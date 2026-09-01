@@ -9,21 +9,36 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe production and Pages URLs
+      - name: Probe Monaco production review route
         shell: bash
         run: |
-          set -u
-          for url in \
-            "https://atlas.yagenji.com/" \
-            "https://atlas.yagenji.com/countries/monaco/" \
-            "https://yagenji.github.io/Journey-Atlas/" \
-            "https://yagenji.github.io/Journey-Atlas/countries/monaco/"
-          do
-            echo "===== $url ====="
-            curl -sS -L --max-time 20 -D /tmp/h -o /tmp/b -w "HTTP=%{http_code} FINAL=%{url_effective}\n" "$url" || true
-            echo "--- headers ---"
-            sed -n '1,30p' /tmp/h || true
-            echo "--- body markers ---"
-            grep -Eo '<title>[^<]*</title>|data-country="[^"]+"|Page not found|404|JOURNEY ATLAS' /tmp/b | head -20 || true
-            echo
-          done
+          set -euo pipefail
+          base="https://atlas.yagenji.com"
+          page="$base/countries/monaco/"
+
+          curl -fsSL "$page" -o /tmp/page.html
+          curl -fsSL "$base/data/countries/monaco.json" -o /tmp/country.json
+          curl -fsSL "$base/assets/images/monaco/map-atlas-v1.svg" -o /tmp/map.svg
+          curl -fsSL "$base/assets/images/monaco/approved/hero-port-hercule-le-rocher.png" -o /tmp/hero.png
+          curl -fsSL "$base/sitemap.xml" -o /tmp/sitemap.xml
+          curl -fsSL "$base/" -o /tmp/top.html
+
+          grep -q 'data-country="monaco"' /tmp/page.html
+          grep -q '<meta name="robots" content="noindex,follow">' /tmp/page.html
+          grep -q '<title>モナコ | MONACO — JOURNEY ATLAS</title>' /tmp/page.html
+          grep -q '"slug": "monaco"' /tmp/country.json
+          grep -q 'viewBox="0 0 1200 760"' /tmp/map.svg
+          ! grep -q '<ellipse' /tmp/map.svg
+          ! grep -q '<radialGradient' /tmp/map.svg
+          ! grep -q 'countries/monaco/' /tmp/sitemap.xml
+          ! grep -q 'href="countries/monaco/' /tmp/top.html
+
+          echo "PAGE=200"
+          echo "COUNTRY_JSON=200"
+          echo "MAP=200"
+          echo "HERO=200"
+          echo "NOINDEX=PASS"
+          echo "SITEMAP_EXCLUDED=PASS"
+          echo "TOP_NON_LINKED=PASS"
+          echo "MAP_ELLIPSE=0"
+          echo "MAP_RADIAL_GRADIENT=0"
