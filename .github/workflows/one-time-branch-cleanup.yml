@@ -1,0 +1,96 @@
+name: One-time branch cleanup
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/one-time-branch-cleanup.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Archive and delete stale branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+          branches=(
+          align-about-lens-left
+          common-country-a11y-review
+          country/cyprus
+          country-albania
+          country-albania-publish
+          country-albania-review-fix
+          country-andorra
+          country-austria
+          country-belgium
+          country-france
+          country-germany
+          country-italy
+          country-liechtenstein
+          country-luxembourg
+          country-monaco
+          country-netherlands
+          country-switzerland
+          estonia-map-ellipse-fix
+          estonia-publish
+          estonia-v1-build
+          estonia-v2-visual
+          estonia-v3-cachefix
+          estonia-v4-visual-qa
+          faq-disclaimer-sticky-info-header
+          finland-sweden-map-ellipse-fix
+          fix-country-a11y-contrast-2
+          fix-country-a11y-dl-contrast
+          fix-country-robots-meta
+          fix-country-runtime-cache
+          fix-estonia-top-image
+          fix-monaco-current-map
+          footer-info-pages
+          ireland-review-deploy
+          ireland-v1-content
+          italy-review-fix-1
+          italy-review-fix-2
+          latvia-publish-final
+          latvia-review-fixes
+          latvia-v1-content
+          lithuania-publish-cleanup
+          lithuania-review-trivia-separation
+          lithuania-scene4-pazaislis
+          lithuania-signature-facts
+          lithuania-song-festival-label
+          lithuania-sugihara-review
+          lithuania-v1-content
+          production-hard-gates
+          publish-italy
+          publish-lithuania
+          publish-monaco
+          qa-monaco-live
+          theme-inline-results
+          theme-published-only
+          theme-search-filter
+          united-kingdom-v1-content
+          )
+          for branch in "${branches[@]}"; do
+            remote_ref="refs/remotes/origin/${branch}"
+            if ! git show-ref --verify --quiet "${remote_ref}"; then
+              echo "Already absent: ${branch}"
+              continue
+            fi
+            safe_name="${branch//\//-}"
+            tag="archive/2026-09-02/${safe_name}"
+            if ! git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null 2>&1; then
+              git tag "${tag}" "${remote_ref}"
+              git push origin "refs/tags/${tag}"
+            fi
+            git push origin --delete "${branch}"
+          done
