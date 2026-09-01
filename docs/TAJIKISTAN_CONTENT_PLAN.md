@@ -44,12 +44,12 @@ Pamir Highway / high plateau / snow peaks / alpine lakes / Panj River / border v
 
 ## Visual direction
 
-- Iceland / Antarcticaと同じJOURNEY ATLASの水彩・ガッシュ系統。
+- 現行 `ILLUSTRATION_STYLE_GUIDE.md` とIceland / Norway基準に従う。実在場所を識別できる写実性を保ちつつ、静かな水彩・painterly realismとして統一する。
 - 色は青空、深い湖の青、乾いた黄土・茶、雪の白を主軸にする。
 - 「荒涼＝暗い」にはしない。高地の透明な光と、遠くまで抜ける空気感を優先する。
 - Heroは山だけを巨大化せず、道路・川・谷を入れて「この道を進みたい」と思える構図にする。
 - Dushanbeだけ都市色を入れ、ページ全体の山岳風景との差を作る。
-- 地図はPamir Highwayの移動を視覚的に追えるイラスト地図にする。
+- 地図はIceland / Norwayと同じ1200×760のCountry Mapデザイン言語を使い、地点は緯度経度で配置する。ルート表現は共通仕様と整合する場合のみ追加する。
 
 ## Source material confirmed in JOURNEY LENS
 
