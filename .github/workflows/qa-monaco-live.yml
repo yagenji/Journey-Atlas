@@ -10,19 +10,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Wait for production accessibility bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 24); do
+            curl -fsSL https://atlas.yagenji.com/assets/js/app.js -o /tmp/live-app.js
+            curl -fsSL https://atlas.yagenji.com/assets/css/country.css -o /tmp/live-country.css
+            if grep -Fq '<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>' /tmp/live-app.js \
+              && ! grep -Fq '<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>' /tmp/live-app.js \
+              && grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css; then
+              echo "PRODUCTION_A11Y_BUNDLE=UPDATED"
+              exit 0
+            fi
+            echo "production bundle still old (attempt $attempt)"
+            sleep 5
+          done
+          echo "production bundle did not update in probe window"
+          exit 1
       - name: Install browser QA tools
         run: |
           npm install --no-save playwright@1.55.0 axe-core@4.10.3
           npx playwright install --with-deps chromium
-      - name: Verify production has shared accessibility fix
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl -fsSL https://atlas.yagenji.com/assets/js/app.js -o /tmp/live-app.js
-          curl -fsSL https://atlas.yagenji.com/assets/css/country.css -o /tmp/live-country.css
-          grep -Fq '<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>' /tmp/live-app.js
-          ! grep -Fq '<div><dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd></div>' /tmp/live-app.js
-          grep -Fq 'color:#5f4b3d!important' /tmp/live-country.css
       - name: Run live responsive and accessibility QA
         shell: bash
         run: |
