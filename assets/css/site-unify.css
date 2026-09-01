@@ -130,10 +130,11 @@ html{scroll-padding-top:96px!important;}
 .country-theme-context{
   width:360px;
   max-width:100%;
-  margin-top:20px;
+  margin-top:26px;
+  margin-bottom:18px;
   display:flex;
   align-items:flex-start;
-  gap:10px;
+  gap:12px;
 }
 .country-theme-context[hidden]{display:none!important;}
 .country-theme-context__label{
@@ -172,7 +173,7 @@ html{scroll-padding-top:96px!important;}
 /* Ensure the optional travel-theme row stays inside the Hero instead of being clipped. */
 @media(min-width:701px){
   .country-page .hero:has(.country-theme-context:not([hidden])){
-    min-height:680px;
+    min-height:710px;
   }
 }
 
@@ -287,7 +288,7 @@ html{scroll-padding-top:96px!important;}
   .utility-nav a{font-size:11px!important;}
 
   .country-theme-context{
-    margin-top:16px;
+    margin-top:22px;
     display:block;
   }
   .country-theme-context__label{
@@ -405,7 +406,7 @@ html{scroll-padding-top:96px!important;}
     order:1!important;
     height:auto!important;
     padding-top:calc(var(--ja-header-mobile) + 24px)!important;
-    padding-bottom:22px!important;
+    padding-bottom:30px!important;
   }
 
   .country-page .hero-art{
@@ -435,8 +436,8 @@ html{scroll-padding-top:96px!important;}
   }
 
   .country-page .country-theme-context{
-    margin-top:16px!important;
-    margin-bottom:0!important;
+    margin-top:22px!important;
+    margin-bottom:6px!important;
   }
 
   .country-page .hero-location{
