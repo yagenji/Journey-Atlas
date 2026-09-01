@@ -141,6 +141,7 @@ html{scroll-padding-top:108px;}
   min-height:74px!important;
   display:grid!important;
   grid-template-columns:18px minmax(0,1fr)!important;
+  grid-template-areas:"icon term" ". value";
   align-content:start!important;
   align-items:start!important;
   column-gap:8px!important;
@@ -157,9 +158,10 @@ html{scroll-padding-top:108px;}
   flex-basis:17px;
   margin-top:.5px;
   color:#6c8190;
+  grid-area:icon;
 }
-.country-facts-strip .fact-list>div>div{width:100%;min-width:0;}
 .country-facts-strip .fact-list dt{
+  grid-area:term;
   min-height:18px!important;
   margin:0 0 6px!important;
   color:#61717e!important;
@@ -171,6 +173,7 @@ html{scroll-padding-top:108px;}
   white-space:nowrap;
 }
 .country-facts-strip .fact-list dd{
+  grid-area:value;
   margin:0!important;
   color:#0b2c57!important;
   font-family:"Zen Kaku Gothic New",sans-serif!important;
@@ -357,7 +360,7 @@ html{scroll-padding-top:108px;}
 .season-list article b{
   display:block;
   margin-bottom:2px;
-  color:var(--season-color)!important;
+  color:#5f4b3d!important;
   font-size:11px!important;
 }
 .transport{
