@@ -1,0 +1,29 @@
+name: Monaco live URL QA
+
+on:
+  push:
+    branches: ["qa-monaco-live"]
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe production and Pages URLs
+        shell: bash
+        run: |
+          set -u
+          for url in \
+            "https://atlas.yagenji.com/" \
+            "https://atlas.yagenji.com/countries/monaco/" \
+            "https://yagenji.github.io/Journey-Atlas/" \
+            "https://yagenji.github.io/Journey-Atlas/countries/monaco/"
+          do
+            echo "===== $url ====="
+            curl -sS -L --max-time 20 -D /tmp/h -o /tmp/b -w "HTTP=%{http_code} FINAL=%{url_effective}\n" "$url" || true
+            echo "--- headers ---"
+            sed -n '1,30p' /tmp/h || true
+            echo "--- body markers ---"
+            grep -Eo '<title>[^<]*</title>|data-country="[^"]+"|Page not found|404|JOURNEY ATLAS' /tmp/b | head -20 || true
+            echo
+          done
