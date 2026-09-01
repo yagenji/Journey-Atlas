@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "liechtenstein",
+  "nameEn": "LIECHTENSTEIN",
+  "nameJa": "リヒテンシュタイン",
+  "region": "CENTRAL EUROPE / ALPS / 47°N",
+  "seo": {
+    "description": "ファドゥーツ城と葡萄畑、ライン川の木橋、山腹のトリーゼンベルク、マルブンの雪景色、サレイスの高山、北端の湿地。160km²の国土で低地からアルプスへ切り替わる8つの景色と地図をたどる。"
+  },
+  "capital": {
+    "nameEn": "Vaduz",
+    "nameJa": "ファドゥーツ",
+    "coordinates": {
+      "latitude": 47.1415,
+      "longitude": 9.5215
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 2.8,
+      "y": 2.2
+    }
+  },
+  "hero": {
+    "lead": "ライン川沿いの低地から葡萄畑と城を見上げ、山腹のWalser集落を経て2000m級のアルプスへ。南北24.6kmほどの国土で、平地と高山の距離が驚くほど近い国。",
+    "image": "assets/images/liechtenstein/approved/hero-vaduz-castle-vineyard.png",
+    "location": "Red House / Herawingert / Vaduz Castle",
+    "coordinates": {
+      "latitude": 47.1448,
+      "longitude": 9.52182
+    },
+    "mapOffset": {
+      "x": 3.3,
+      "y": -2.8
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 47.28,
+      "south": 47.035,
+      "west": 9.39,
+      "east": 9.7
+    },
+    "svg": "assets/images/liechtenstein/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection LIE.geojson; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "vaduz-government-district",
+      "name": "政府地区 / ファドゥーツ",
+      "nameLocal": "Government Quarter / Vaduz",
+      "mapLabel": "Government Quarter",
+      "description": "Peter-Kaiser-Platzを挟んで、1905年完成の政府庁舎と現代のLandtagが並ぶ。城だけではない、現在の国家機能が徒歩圏に集まる首都の中心。",
+      "coordinates": {
+        "latitude": 47.13711,
+        "longitude": 9.52277
+      },
+      "image": "assets/images/liechtenstein/approved/vaduz-government-district.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.8,
+        "y": -2.4
+      }
+    },
+    {
+      "id": "old-rhine-bridge-vaduz",
+      "name": "旧ライン橋 / ファドゥーツ–ゼーフェレン",
+      "nameLocal": "Old Rhine Bridge / Vaduz–Sevelen",
+      "mapLabel": "Old Rhine Bridge",
+      "description": "ライン川を渡る135mの屋根付き木橋は、ファドゥーツとスイスのSevelenを結ぶ。1901年完成で、現在は歩行者と自転車が国境を越える静かな橋になっている。",
+      "coordinates": {
+        "latitude": 47.132619,
+        "longitude": 9.512454
+      },
+      "image": "assets/images/liechtenstein/approved/old-rhine-bridge-vaduz.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.2,
+        "y": 2.6
+      }
+    },
+    {
+      "id": "gutenberg-castle-balzers",
+      "name": "グーテンベルク城 / バルザース",
+      "nameLocal": "Gutenberg Castle / Balzers",
+      "mapLabel": "Gutenberg Castle",
+      "description": "南部Balzersの平地から独立して立ち上がる城丘の上にGutenberg Castleが残る。谷底の葡萄畑、孤立丘、背後の山が重なり、南端の地形を一枚で読める。",
+      "coordinates": {
+        "latitude": 47.06563,
+        "longitude": 9.50046
+      },
+      "image": "assets/images/liechtenstein/approved/gutenberg-castle-balzers.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "triesenberg-walser-village",
+      "name": "トリーゼンベルク / Walserの山村",
+      "nameLocal": "Triesenberg / Walser Village",
+      "mapLabel": "Triesenberg",
+      "description": "ライン谷を見下ろす急斜面に家々が点在し、オニオンドームのSt. Joseph教会が集落の目印になる。高所へ移住したWalserの暮らしが地形そのものに残る。",
+      "coordinates": {
+        "latitude": 47.117625,
+        "longitude": 9.54495
+      },
+      "image": "assets/images/liechtenstein/approved/triesenberg-walser-village.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "malbun-peace-chapel-winter",
+      "name": "平和礼拝堂 / マルブン",
+      "nameLocal": "Peace Chapel / Malbun",
+      "mapLabel": "Malbun",
+      "description": "標高1627mのMalbunに、自然石の小さなPeace Chapelが立つ。冬には雪原と山に包まれ、ライン谷の低地とは別の国に来たように景観が切り替わる。",
+      "coordinates": {
+        "latitude": 47.10298,
+        "longitude": 9.61031
+      },
+      "image": "assets/images/liechtenstein/approved/malbun-peace-chapel-winter.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "sareis-ridge-malbun",
+      "name": "サレイス / Malbuntal",
+      "nameLocal": "Sareis / Malbun",
+      "mapLabel": "Sareis",
+      "description": "Malbunの東斜面を上がった約2000mのSareisから、谷とRätikonの山並みを見渡す。小国という先入観を、稜線の広がりがいったん外してくれる場所。",
+      "coordinates": {
+        "latitude": 47.10291,
+        "longitude": 9.61953
+      },
+      "image": "assets/images/liechtenstein/approved/sareis-ridge-malbun.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.2,
+        "y": 0
+      }
+    },
+    {
+      "id": "ruggeller-riet-iris",
+      "name": "ルッゲラー・リート / Ruggell",
+      "nameLocal": "Ruggeller Riet / Ruggell",
+      "mapLabel": "Ruggeller Riet",
+      "description": "国の北端に広がる低湿地では、fen、池、生垣、草地がモザイク状につながる。5月末から6月初旬にはSiberian irisが咲き、430mの低地側の自然を見せる。",
+      "coordinates": {
+        "latitude": 47.25,
+        "longitude": 9.55
+      },
+      "image": "assets/images/liechtenstein/approved/ruggeller-riet-iris.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "drei-schwestern-dux",
+      "name": "Dux展望塔 / Drei Schwestern",
+      "nameLocal": "Tower at Dux / Drei Schwestern",
+      "mapLabel": "Tower at Dux",
+      "description": "Schaanの森林縁に立つ曲線的な木造展望塔から、Drei Schwesternの岩山とライン谷を望む。2024年に加わった現代木造建築と北部山地が同じ視界に入る。",
+      "coordinates": {
+        "latitude": 47.16673,
+        "longitude": 9.52672
+      },
+      "image": "assets/images/liechtenstein/approved/drei-schwestern-dux.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1.1,
+        "y": -0.2
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "政府庁舎とLandtagが向き合う広場",
+      "icon": "city"
+    },
+    {
+      "title": "ライン川を渡る屋根付き木橋",
+      "icon": "road"
+    },
+    {
+      "title": "南部の独立丘に立つ城",
+      "icon": "history"
+    },
+    {
+      "title": "Walserが暮らした山腹の集落",
+      "icon": "culture"
+    },
+    {
+      "title": "雪のMalbunに立つ石造礼拝堂",
+      "icon": "landscape"
+    },
+    {
+      "title": "約2000mから見下ろす高山谷",
+      "icon": "landscape"
+    },
+    {
+      "title": "Siberian irisが咲く北端の湿地",
+      "icon": "landscape"
+    },
+    {
+      "title": "木造展望塔とDrei Schwestern",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "walser-settlement-triesenberg",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "Triesenbergでは、山の高さが文化を分けた",
+      "text": "12〜13世紀、現在のスイスValais方面から移住したWalserは高地を中心に定住した。Triesenbergでは独自の方言や農山村文化が残り、ライン谷の集落とは異なる生活史をたどれる。",
+      "points": [
+        "Walserは主に高標高地へ定住した",
+        "Walser MuseumやWalser Saga Trailで文化と伝承をたどれる"
+      ]
+    },
+    {
+      "topicKey": "philately-since-1912",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "1912年からの国の姿が、小さな切手に残る",
+      "text": "VaduzのPostMuseumは、Liechtensteinが1912年以来発行してきた切手をすべて所蔵する。原画、試刷り、彫版なども並び、小国がデザインと郵便を通して外の世界へ発信してきた歴史が見える。",
+      "points": [
+        "PostMuseumは1936年開館",
+        "1912年以来のLiechtenstein切手を収蔵する"
+      ]
+    },
+    {
+      "topicKey": "swiss-customs-territory-since-1923",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "国境はあるが、1923年からスイス関税圏",
+      "text": "Liechtensteinは1923年の関税条約によってスイス関税圏に入った。スイスとの国境で通常の税関検査がない背景には、100年以上続くこの制度的な結びつきがある。",
+      "points": [
+        "スイスとの関税条約は1923年",
+        "通貨もSwiss franc（CHF）を使用する"
+      ]
+    },
+    {
+      "topicKey": "women-suffrage-1984",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "女性参政権の導入は1984年だった",
+      "text": "国政レベルの女性参政権は1971年と1973年の国民投票で否決され、1984年の3度目の投票で成立した。現在の政治制度を見るとき、この導入時期の遅さは外せない歴史である。",
+      "points": [
+        "1971年・1973年の国民投票では否決",
+        "1984年に導入、女性が初めてLandtagへ選出されたのは1986年"
+      ]
+    },
+    {
+      "topicKey": "constitutional-prince-and-people",
+      "themeEn": "CIVICS",
+      "themeJa": "国のしくみ",
+      "title": "国家権力は「君主」と「国民」の双方に置かれる",
+      "text": "憲法はLiechtensteinを「民主的・議会的基盤を持つ立憲世襲君主制」と定める。Reigning Princeだけでなく、Landtagや国民投票・国民発議も政治を動かすため、君主制と直接民主制が同時に存在する。",
+      "points": [
+        "Landtagは25議席の一院制",
+        "政府は首相と4人の閣僚からなる"
+      ]
+    },
+    {
+      "topicKey": "herawingert-four-hectare-vineyard",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "首都の斜面に、4haのHerawingertがある",
+      "text": "VaduzのCourt WineryはHerawingertという約4haの葡萄畑に位置する。南西向きの斜面とFöhnの穏やかな気候を生かし、Pinot NoirやChardonnayが栽培されている。",
+      "points": [
+        "Herawingertの葡萄畑は約4ha",
+        "Vaduz Castleへ上がる斜面景観の一部になっている"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "doubly-landlocked-with-uzbekistan",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "二重内陸国は世界に2か国だけ",
+      "text": "海を持たず、接する国もすべて内陸国という「二重内陸国」。LiechtensteinとUzbekistanの2か国だけが該当する。",
+      "icon": "landscape",
+      "sourceKey": "doubleLandlocked"
+    },
+    {
+      "topicKey": "liechtenstein-trail-75km-all-municipalities",
+      "categoryEn": "TRAIL",
+      "categoryJa": "歩く",
+      "title": "75kmの道が全11自治体をつなぐ",
+      "text": "Liechtenstein Trailは南から北へ全11自治体を通る。徒歩ルートは約75kmで、5つの主要ステージに分けて国を縦断できる。",
+      "icon": "road",
+      "sourceKey": "liechtensteinTrail"
+    },
+    {
+      "topicKey": "old-rhine-bridge-1901-135m",
+      "categoryEn": "BRIDGE",
+      "categoryJa": "国境",
+      "title": "1901年の木橋を歩いてスイスへ渡れる",
+      "text": "Vaduz–Sevelen間のOld Rhine Bridgeは1901年完成、全長135m。現在は非動力交通専用で、ライン川に残る最後の木造橋とされる。",
+      "icon": "road",
+      "sourceKey": "oldRhineBridge"
+    },
+    {
+      "topicKey": "national-day-august-15",
+      "categoryEn": "NATIONAL DAY",
+      "categoryJa": "国の習慣",
+      "title": "National Dayは毎年8月15日",
+      "text": "8月15日はLiechtensteinのNational Holidayで、カトリックのAssumption Dayと同じ日。Vaduzを中心に国の祝日として行事が行われる。",
+      "icon": "culture",
+      "sourceKey": "nationalDay"
+    },
+    {
+      "topicKey": "no-armed-forces-since-1868",
+      "categoryEn": "MILITARY",
+      "categoryJa": "国家",
+      "title": "1868年以来、自国軍を持っていない",
+      "text": "German Confederation解体後の1868年に軍を廃止した。Liechtenstein政府資料は、それ以降自国の軍隊を保有していないと説明している。",
+      "icon": "history",
+      "sourceKey": "military1868"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜6月",
+      "color": "#7f9a61",
+      "text": "ライン谷では新緑が進み、5月末〜6月初旬はRuggeller RietのSiberian irisの時期。高山道には晩春まで残雪があり得るため、谷と山で季節がずれる。"
+    },
+    {
+      "months": "7〜8月",
+      "color": "#a9a05b",
+      "text": "Sareisや高山ハイキングを組み込みやすい時期。標高差が大きいため、Vaduzが暖かくても山では気温と天候が変わりやすい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "葡萄畑と山腹の草地、森林が秋色へ変わる。Vaduz、Triesenberg、山地を同じ旅程でつなぐと、高度による季節の進み方の差が見えやすい。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "Malbunでは雪景色が旅の中心になる一方、Vaduzとライン谷は別の気象条件になる。山へ上がる日は道路・リフト・積雪状況を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "BUS / TRAIN CONNECTION / WALK",
+    "text": "国内移動の軸はLIEmobilのバス。鉄道で入る場合はスイスのSargans・Buchs/SG、またはオーストリアのFeldkirchからバスへ接続しやすい。国土が小さいため、Vaduz周辺は徒歩、南北移動はバス、山地はバスと徒歩を組み合わせると地形の変化を追いやすい。"
+  },
+  "personas": [
+    {
+      "title": "小さな国で地形の落差を見たい人",
+      "text": "430mの北部湿地とライン谷から、1600mのMalbun、2000m級のSareisまで、短距離で標高と景観が切り替わる過程を追いたい人。"
+    },
+    {
+      "title": "国境を越える日常に興味がある人",
+      "text": "木橋、越境通勤、スイス関税圏、Swiss francなど、政治的な国境と生活圏が必ずしも一致しない小国の仕組みを場所から理解したい人。"
+    },
+    {
+      "title": "歩いて一国の輪郭をつかみたい人",
+      "text": "Liechtenstein TrailやTriesenbergの山道を使い、城・集落・湿地・山を車窓ではなく自分の移動でつなぎたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ／アルプス"
+    },
+    {
+      "label": "首都",
+      "value": "ファドゥーツ"
+    },
+    {
+      "label": "人口",
+      "value": "約4.1万人"
+    },
+    {
+      "label": "面積",
+      "value": "160 km²（日本の約0.04%）"
+    },
+    {
+      "label": "言語",
+      "value": "ドイツ語（公用語）／アレマン語系方言"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック系が中心）"
+    },
+    {
+      "label": "通貨",
+      "value": "スイス・フラン（CHF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "microstate-extent-24-6-by-12-4km",
+      "label": "国土の最大延長",
+      "value": "24.6 × 12.4 km",
+      "note": "南北の最大延長は約24.6km、最大幅は約12.4km。国全体の距離感を一日の移動でも実感できる。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "elevation-extremes-430-to-2599m",
+      "label": "標高差",
+      "value": "430 → 2,599 m",
+      "note": "最低地点はRuggeller Rietの430m、最高地点はGrauspitzの2599m。160km²の国土で約2169mの高低差がある。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "cross-border-commuter-share-57-4",
+      "label": "国内就業者の越境通勤",
+      "value": "57.4%",
+      "note": "2024年末、国内就業43,441人のうち24,943人が国外居住のinward commuters。日々の労働市場が国境を越えて成立している。",
+      "icon": "road"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "vaduz-castle-not-open-to-public",
+      "title": "Vaduz Castleは内部見学できない",
+      "text": "現在もPrincely Familyの居所で、一般公開されていない。城そのものへ入る計画ではなく、Vaduz中心部からの徒歩ルートと外観・Rhine Valleyの眺めを組み合わせる。"
+    },
+    {
+      "topicKey": "fuerstensteig-late-spring-snow",
+      "title": "Fürstensteigは晩春でも残雪を確認する",
+      "text": "Drei SchwesternとFürstensteigの山道では、晩春まで雪が残る可能性がある。出発前にtrail conditionを確認し、雪がある場合は装備とルート判断を優先する。"
+    },
+    {
+      "topicKey": "swiss-austrian-motorway-vignettes",
+      "title": "車で入るなら周辺国のvignetteを確認する",
+      "text": "Liechtensteinへ向かう際にスイスまたはオーストリアの高速道路を使う場合、それぞれvignetteが必要。国境だけでなく、進入ルート全体の道路条件を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "switzerland",
+      "nameEn": "SWITZERLAND",
+      "nameJa": "スイス",
+      "flag": "🇨🇭",
+      "reason": "ライン川の対岸へ渡り、同じアルプスと生活圏を共有しながら国家規模がどう変わるか比べたいなら。"
+    },
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "Vorarlbergへ東に抜け、Rätikonの山地とドイツ語圏の町を国境の向こうまでつなげたいなら。"
+    },
+    {
+      "slug": "luxembourg",
+      "nameEn": "LUXEMBOURG",
+      "nameJa": "ルクセンブルク",
+      "flag": "🇱🇺",
+      "reason": "欧州の小国という共通点から、アルプスの山岳国家と低丘陵・要塞都市国家の違いを比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2025-12-31",
+    "employment": "2024-12-31",
+    "nationalDay": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection LIE.geojson, WGS84.",
+    "population": "Liechtenstein Statistics Portal, provisional population at 31 December 2025: permanent population 41,237; total population 41,722.",
+    "employment": "Liechtenstein in Figures 2026, employment at 31 December 2024: 43,441 employed in Liechtenstein; 24,943 inward commuters.",
+    "area": "Liechtenstein Tourism facts & figures: land area 160 km²; maximum extent 24.6 km by 12.4 km; lowest point 430 m; highest point 2,599 m.",
+    "language": "Liechtenstein Tourism facts & figures: German is the official language; Alemannic dialect is spoken.",
+    "religion": "Liechtenstein Tourism facts & figures: Roman Catholic tradition remains the largest religious group.",
+    "currency": "Liechtenstein National Administration / Swiss customs relationship: Swiss franc is used as currency.",
+    "governmentQuarter": "Gemeinde Vaduz: Government Building constructed 1903–1905 and opened in 1905; Peter-Kaiser-Platz, Vaduz.",
+    "oldRhineBridge": "Liechtenstein Tourism: Old Rhine Bridge between Vaduz and Sevelen, completed 1901, 135 m long, last remaining wooden bridge over the Rhine.",
+    "gutenbergCastle": "Gutenberg Castle, Balzers; coordinate reference from Wikidata/OpenStreetMap-derived mapping sources.",
+    "triesenberg": "Liechtenstein Tourism: St. Joseph Parish Church at 886 m with characteristic onion dome; Walser heritage in Triesenberg.",
+    "peaceChapel": "Liechtenstein Tourism: Peace Chapel, Malbun, 1,627 m; natural-stone single-nave chapel built 1950–1951.",
+    "sareis": "Liechtenstein Tourism: Sareis viewpoint and panoramic panel at around/over 2,000 m with views of the Rätikon.",
+    "ruggellerRiet": "Liechtenstein Tourism: Ruggeller Riet nature reserve, around 90 ha; Siberian iris flowering late May to early June.",
+    "dux": "Liechtenstein Tourism: Tower at Dux in Schaan, added in 2024, curved timber tower made from local woods, view toward Three Sisters massif.",
+    "walser": "Liechtenstein Tourism: Walser migration from the former Goms/Valais between the 12th and 13th centuries and settlement at higher altitudes.",
+    "postMuseum": "Liechtenstein Tourism: PostMuseum opened in 1936 and holds Liechtenstein stamps issued since 1912.",
+    "customs1923": "Liechtenstein National Administration: part of the Swiss customs territory since the 1923 Customs Treaty.",
+    "womenSuffrage": "Liechtenstein Parliament history: women’s suffrage rejected in 1971 and 1973; introduced in 1984.",
+    "stateSystem": "Government of Liechtenstein: constitutional hereditary monarchy on a democratic and parliamentary basis; Government consists of Prime Minister and four Ministers.",
+    "herawingert": "Liechtenstein Tourism: Herawingert vineyard in Vaduz covers four hectares and grows Pinot Noir and Chardonnay.",
+    "doubleLandlocked": "Government of Liechtenstein SDG report: together with Uzbekistan, Liechtenstein is one of only two doubly landlocked states.",
+    "liechtensteinTrail": "Liechtenstein Tourism: Liechtenstein Trail connects all eleven municipalities over about 75 km, divided into five main stages.",
+    "nationalDay": "Liechtenstein Tourism 2026 holidays: National Holiday / Assumption Day on 15 August.",
+    "military1868": "Government of Liechtenstein: the military was abolished in 1868; Liechtenstein has had no armed forces since then.",
+    "vaduzCastle": "Liechtenstein Tourism: Vaduz Castle is the residence of the princely family and is not open to the public.",
+    "fuerstensteig": "Liechtenstein Tourism: snow patches can remain on the Fürstensteig / Drei Schwestern route well into late spring; check trail conditions.",
+    "vignette": "Liechtenstein Tourism travel & mobility: motorway use in Switzerland and Austria requires a vignette.",
+    "transport": "Liechtenstein Tourism travel & mobility: LIEmobil bus network; rail access via Sargans, Buchs/SG and Feldkirch with bus connections."
+  }
+}
