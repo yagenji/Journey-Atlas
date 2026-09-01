@@ -116,7 +116,7 @@ def write_cloudflare_headers() -> None:
   Cache-Control: public, max-age=0, must-revalidate
 
 /data/*
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/css/*
   Cache-Control: public, max-age=86400
