@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "monaco",
+  "nameEn": "MONACO",
+  "nameJa": "モナコ",
+  "region": "SOUTHERN EUROPE / MEDITERRANEAN / 43°N",
+  "seo": {
+    "description": "ル・ロシェから港を見下ろし、宮殿、海崖の海洋博物館、モンテカルロ、ラルヴォット、日本庭園、フォンヴィエイユ、F1のヘアピン、サント・デヴォートへ。約2.08km²の国土に重なる8つの景色と地図をたどる。"
+  },
+  "capital": {
+    "nameEn": "Monaco",
+    "nameJa": "モナコ",
+    "coordinates": {
+      "latitude": 43.7384,
+      "longitude": 7.4246
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -0.3,
+      "y": 0.2
+    }
+  },
+  "hero": {
+    "lead": "岩山の旧市街から港を見下ろすと、地中海、マリーナ、急斜面の高層都市が一つの視界に収まる。約2km²の国土に、歴史地区と海辺の都市機能が垂直に重なる国。",
+    "image": "assets/images/monaco/approved/hero-port-hercule-le-rocher.png",
+    "location": "Port Hercule from Le Rocher / Monaco-Ville",
+    "coordinates": {
+      "latitude": 43.73521,
+      "longitude": 7.4252
+    },
+    "mapOffset": {
+      "x": -0.2,
+      "y": -0.1
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 43.754,
+      "south": 43.723,
+      "west": 7.405,
+      "east": 7.444
+    },
+    "svg": "assets/images/monaco/map-atlas-v1.svg",
+    "route": null,
+    "source": "geoBoundaries gbOpen MCO ADM0 (OpenStreetMap / Wambacher; 2017 boundary, source data updated 2023), WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "princes-palace-place-du-palais",
+      "name": "大公宮殿 / パレ広場",
+      "nameLocal": "Palais Princier / Place du Palais",
+      "mapLabel": "Palace",
+      "description": "ル・ロシェ頂部の広場に、要塞を起源とする大公宮殿が面する。石畳の広場と砲台、淡い色の宮殿外壁が、港の近代都市とは異なるモナコ＝ヴィルの尺度をつくる。",
+      "coordinates": {
+        "latitude": 43.73133,
+        "longitude": 7.4202
+      },
+      "image": "assets/images/monaco/approved/scene-01-princes-palace-place-du-palais.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.9,
+        "y": -0.9
+      }
+    },
+    {
+      "id": "oceanographic-museum-cliff",
+      "name": "海洋博物館 / 海崖",
+      "nameLocal": "Musée Océanographique / Jardins Saint-Martin",
+      "mapLabel": "Museum",
+      "description": "海へ落ちる石灰岩の崖に、海洋博物館の大きな石造建築が立つ。サン・マルタン庭園の緑、垂直の岩壁、地中海が近距離で重なり、モナコの海との関係を地形から見せる。",
+      "coordinates": {
+        "latitude": 43.73066,
+        "longitude": 7.42553
+      },
+      "image": "assets/images/monaco/approved/scene-02-oceanographic-museum-cliff.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.3,
+        "y": -0.2
+      }
+    },
+    {
+      "id": "casino-boulingrins",
+      "name": "カジノ・ド・モンテカルロ / ブーラングラン庭園",
+      "nameLocal": "Casino de Monte-Carlo / Jardins des Boulingrins",
+      "mapLabel": "Casino",
+      "description": "整形式庭園の軸線の先にベル・エポックのカジノが立つ。19世紀後半に形成されたモンテカルロでは、宮殿地区とは異なる社交都市の建築と公共空間がまとまって見える。",
+      "coordinates": {
+        "latitude": 43.7393,
+        "longitude": 7.4282
+      },
+      "image": "assets/images/monaco/approved/scene-03-casino-boulingrins.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "larvotto-beach-promenade",
+      "name": "ラルヴォット海岸",
+      "nameLocal": "Plage du Larvotto",
+      "mapLabel": "Larvotto",
+      "description": "東側の海岸では、公共ビーチとプロムナードのすぐ背後まで高層建築が迫る。海辺の開放感と高密度な都市が同居し、モナコの限られた土地と地中海の近さが分かる。",
+      "coordinates": {
+        "latitude": 43.74603,
+        "longitude": 7.43313
+      },
+      "image": "assets/images/monaco/approved/scene-04-larvotto-beach-promenade.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0.1
+      }
+    },
+    {
+      "id": "japanese-garden",
+      "name": "日本庭園",
+      "nameLocal": "Jardin Japonais",
+      "mapLabel": "Japanese Garden",
+      "description": "池、石組み、松、木造建築で構成された庭園の向こうに、モンテカルロの高層建築が立ち上がる。密集した都市の中に、視線と音を切り替える小さな緑地が組み込まれている。",
+      "coordinates": {
+        "latitude": 43.74152,
+        "longitude": 7.43054
+      },
+      "image": "assets/images/monaco/approved/scene-05-japanese-garden.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -2,
+        "y": -2.1
+      }
+    },
+    {
+      "id": "fontvieille-port-le-rocher",
+      "name": "フォンヴィエイユ港 / ル・ロシェ",
+      "nameLocal": "Port de Fontvieille / Le Rocher",
+      "mapLabel": "Fontvieille",
+      "description": "フォンヴィエイユの水際から見上げると、小さなマリーナの背後にル・ロシェの岩壁が立ち、その上にモナコ＝ヴィルが載る。造成された海辺と古い岩山を上下で比較できる。",
+      "coordinates": {
+        "latitude": 43.730556,
+        "longitude": 7.420833
+      },
+      "image": "assets/images/monaco/approved/scene-06-fontvieille-port-le-rocher.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 1.9,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "fairmont-hairpin",
+      "name": "フェアモント・ヘアピン",
+      "nameLocal": "Fairmont Hairpin / Circuit de Monaco",
+      "mapLabel": "Hairpin",
+      "description": "ホテル脇の公道がほぼ180度折り返す、モナコ市街地コースの象徴的なカーブ。レース専用施設ではなく、急斜面を通す日常の道路がそのまま国際レースの舞台になる。",
+      "coordinates": {
+        "latitude": 43.74021,
+        "longitude": 7.4298
+      },
+      "image": "assets/images/monaco/approved/scene-07-fairmont-hairpin.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.2,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "sainte-devote-ravine",
+      "name": "サント・デヴォート / 谷",
+      "nameLocal": "Église Sainte-Dévote / Vallon Sainte-Dévote",
+      "mapLabel": "Sainte-Dévote",
+      "description": "小さな教会の背後から、擁壁、道路、住宅が急斜面を上へ積み重なる。港から数分の場所でも谷地形が都市の動線を決めており、モナコの高低差を地上目線で実感できる。",
+      "coordinates": {
+        "latitude": 43.73752,
+        "longitude": 7.42092
+      },
+      "image": "assets/images/monaco/approved/scene-08-sainte-devote-ravine.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.1,
+        "y": -0.1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "宮殿広場と要塞都市",
+      "icon": "history"
+    },
+    {
+      "title": "海崖に立つ海洋博物館",
+      "icon": "sea"
+    },
+    {
+      "title": "ベル・エポックの庭園とカジノ",
+      "icon": "city"
+    },
+    {
+      "title": "都市の足元に続く地中海の浜",
+      "icon": "shore"
+    },
+    {
+      "title": "高層都市の中の日本庭園",
+      "icon": "culture"
+    },
+    {
+      "title": "マリーナから見上げるル・ロシェ",
+      "icon": "landscape"
+    },
+    {
+      "title": "180度曲がる市街地の公道",
+      "icon": "road"
+    },
+    {
+      "title": "谷に重なる教会と高層都市",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "grimaldi-rock-seizure-1297",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "1297年、修道士に変装してル・ロシェを奪った",
+      "text": "1297年1月、François Grimaldiは修道士に変装して岩山の要塞へ入り、モナコを奪取したと伝えられる。現在の大公宮殿が立つル・ロシェは、Grimaldi家とモナコの歴史が結びつく起点になった。",
+      "points": [
+        "ジェノヴァの要塞は1215年に築かれ始めた",
+        "François Grimaldiは「Malizia」の名でも知られる"
+      ]
+    },
+    {
+      "topicKey": "albert-i-28-oceanographic-campaigns",
+      "themeEn": "SCIENCE",
+      "themeJa": "海を知る",
+      "title": "Albert Iは28回の海洋調査航海を行った",
+      "text": "Prince Albert Iは1885年から1915年に28回の海洋学的調査を行った。海洋博物館は単なる水族館ではなく、モナコが長く海洋科学を国家の文化として位置づけてきたことを伝える場所でもある。",
+      "points": [
+        "調査範囲は北大西洋から北極圏まで広がった",
+        "採集標本の多くが現在も博物館の自然史コレクションに残る"
+      ]
+    },
+    {
+      "topicKey": "monaco-grand-prix-3337m-street-circuit",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "3.337kmの公道がレースコースに変わる",
+      "text": "Circuit de Monacoは3.337km、19コーナーの市街地コース。Sainte-DévoteからCasino、Mirabeau、Hairpin、Portierへ、普段の道路と都市の高低差そのものがコースをつくる。",
+      "points": [
+        "初のMonaco Grand Prixは1929年",
+        "Fairmont Hairpinはコース中でも特に低速な180度カーブ"
+      ]
+    },
+    {
+      "topicKey": "sainte-devote-boat-burning",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "守護聖人の日には港で小舟を燃やす",
+      "text": "1月26〜27日のSainte-Dévote祭では、教会での儀式や行列に続き、Quai Albert Iで象徴的な舟に火をつける。港と教会を結ぶ行事として、都市の中心で古い信仰が受け継がれている。",
+      "points": [
+        "Sainte-Dévoteはモナコの守護聖人",
+        "2026年も1月26日に象徴的な舟の点火が行われた"
+      ]
+    },
+    {
+      "topicKey": "barbagiuan-monegasque-specialty",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "Barbagiuànはモナコの日常側にある味",
+      "text": "Barbagiuànはフダンソウなどを包んで揚げるモナコの伝統的な料理として知られる。豪華なレストランだけでなく、市場や地域の食文化を見る入口になる。",
+      "points": [
+        "La Condamine市場でもモナコの郷土料理として紹介される",
+        "近隣のリグーリア文化とのつながりも感じられる"
+      ]
+    },
+    {
+      "topicKey": "larvotto-posidonia-marine-reserve",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "海水浴場の沖にはPosidoniaの保護区がある",
+      "text": "Larvottoの海洋保護区は33.6haあり、地中海固有の海草Posidonia oceanicaの草原を保全することが主要目的の一つ。高密度な都市のすぐ沖で、生態系保護が続けられている。",
+      "points": [
+        "保護区は岸から約600m沖まで広がる",
+        "Posidoniaの生育状況は長期的にモニタリングされている"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "monte-carlo-charles-iii-1866",
+      "categoryEn": "NAME",
+      "categoryJa": "地名",
+      "title": "Monte-Carloの名はPrince Charles IIIに由来する",
+      "text": "1866年、Spélugues台地に開発された新地区がPrince Charles IIIにちなみMonte-Carloと名付けられた。現在は国名のようにも聞こえるが、モナコを構成する地区名である。",
+      "icon": "history",
+      "sourceKey": "monteCarlo"
+    },
+    {
+      "topicKey": "monegasque-gambling-restriction",
+      "categoryEn": "CASINO",
+      "categoryJa": "制度",
+      "title": "モネガスク国民は国内のgaming houseで賭けられない",
+      "text": "モナコの賭博法は、モネガスク国民がgaming house内のゲームへ参加することを禁じている。「国民はカジノに入れない」と単純化するのではなく、法律上の制限はゲームへの参加に置かれている。",
+      "icon": "city",
+      "sourceKey": "gambling"
+    },
+    {
+      "topicKey": "monegasque-language-schooling",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "モネガスク語は学校とコンテストで受け継がれている",
+      "text": "公用語はフランス語だが、モネガスク語は学校教育や文化活動を通じて継承されている。2026年のMonégasque Language Competitionでは76人の生徒が表彰された。",
+      "icon": "culture",
+      "sourceKey": "monegasqueLanguage"
+    },
+    {
+      "topicKey": "monaco-red-white-national-flag",
+      "categoryEn": "FLAG",
+      "categoryJa": "国旗",
+      "title": "国旗は赤を上、白を下にした2本の横帯",
+      "text": "モナコ憲法第7条は、国旗を同じ幅の赤と白の横帯と定め、赤を上、白を下と明記している。簡潔な二色旗だが、国家の法文に配置まで記されている。",
+      "icon": "culture",
+      "sourceKey": "flag"
+    },
+    {
+      "topicKey": "as-monaco-french-football-system",
+      "categoryEn": "FOOTBALL",
+      "categoryJa": "サッカー",
+      "title": "AS MonacoはフランスのLigue 1で戦う",
+      "text": "モナコは独立した主権国家だが、AS Monaco FCはフランスのリーグ体系に参加している。2026–27シーズンもLigue 1の日程に組み込まれている。",
+      "icon": "culture",
+      "sourceKey": "asMonaco"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "庭園と街歩きを組み合わせやすい時期。5月のGrand Prix前後は道路・歩行ルート・観客設備が通常時と変わるため、交通規制を確認する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9555",
+      "text": "Larvottoの海辺が旅の中心に入りやすい。日中は暑さと日差しが強く、狭い歩道や人気地区も混みやすいため、朝夕に街歩きを寄せると動きやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b4764c",
+      "text": "初秋は海辺と都市歩きを両立しやすい。大型イベント開催時はPort Hercule周辺の動線や宿泊需要が大きく変わるため、日程を先に確認する。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#708da0",
+      "text": "夏より静かに旧市街や博物館を歩きやすい。1月26〜27日はSainte-Dévoteの行事があり、教会と港周辺で通常とは異なる街の使われ方が見える。"
+    }
+  ],
+  "transport": {
+    "title": "TRAIN / BUS / WALK / LIFTS",
+    "text": "外部からはMonaco–Monte-Carlo駅を軸に鉄道で入り、国内はバスと徒歩を組み合わせる。国土は小さいが高低差が大きいため、公共エレベーターやエスカレーターを使うと移動が大きく変わる。"
+  },
+  "personas": [
+    {
+      "title": "都市を地形と建築の両方から歩きたい人",
+      "text": "Le Rocher、Port Hercule、Monte-Carlo、Larvottoをつなぎ、数kmの中で旧市街、港、高層都市、海岸がどう積み重なるかを見たい人。"
+    },
+    {
+      "title": "小国の土地利用と都市設計に興味がある人",
+      "text": "FontvieilleやMareterra、斜面の道路、庭園、海洋保護区を見ながら、限られた国土をどう使い、増やし、守っているかを追いたい人。"
+    },
+    {
+      "title": "モータースポーツを街そのものとして見たい人",
+      "text": "HairpinやSainte-Dévoteをレース会場としてだけでなく、日常の道路と急斜面都市のインフラとして歩いて確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ／地中海沿岸"
+    },
+    {
+      "label": "首都",
+      "value": "モナコ"
+    },
+    {
+      "label": "人口",
+      "value": "38,857人（2025）"
+    },
+    {
+      "label": "面積",
+      "value": "約2.08 km²"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）／モネガスク語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック（国教）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "principality-maximum-width-1140m",
+      "label": "国土の最大幅",
+      "value": "1,140 m",
+      "note": "IMSEEの2026年版統計では、モナコの最大幅は1,140m。海岸からフランス国境までの距離感が、徒歩で実感できる規模に収まる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "mareterra-six-hectare-expansion",
+      "label": "Mareterraで増えた土地",
+      "value": "6 ha",
+      "note": "2024年12月に開いたMareterraは海上造成で6haを加え、国土を物理的に約3%拡張した。小国では都市開発が国土そのものを変える。",
+      "icon": "city"
+    },
+    {
+      "topicKey": "monegasque-resident-share-2023",
+      "label": "居住者に占めるモネガスク",
+      "value": "23.9%",
+      "note": "2023年国勢調査では、居住者38,367人のうちモネガスク国籍者は9,179人。居住人口の約4人に1人だった。",
+      "icon": "culture"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mechanised-pedestrian-links",
+      "title": "短い距離でも高低差を先に見る",
+      "text": "地図上では近くても、港とMonte-Carlo、Le Rocherの間には大きな高低差がある。公共エレベーター、エスカレーター、歩行連絡路をルートに組み込むと移動が大きく楽になる。"
+    },
+    {
+      "topicKey": "monaco-monte-carlo-station-access",
+      "title": "鉄道駅は出口を選んでから歩く",
+      "text": "Monaco–Monte-Carlo駅は市街地の高低差の中にあり、出口によって向かう地区が変わる。到着後に地上で遠回りするより、目的地側の出口を先に確認する。"
+    },
+    {
+      "topicKey": "nice-airport-heliport-connection",
+      "title": "空港はNiceを玄関口にする",
+      "text": "モナコに商業空港はないため、国際線はNice Côte d’Azur Airportが主要な玄関口になる。鉄道・道路のほか、Nice空港とFontvieilleのheliportを約7分で結ぶ定期ヘリ便も選択肢にある。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "モナコを囲むコート・ダジュールへ広げ、同じ地中海沿岸で都市と海岸のスケールを比べたいなら。"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "東へ進み、リグーリアの港町と食文化の連続性を国境の向こうまでたどりたいなら。"
+    },
+    {
+      "slug": "sanmarino",
+      "nameEn": "SAN MARINO",
+      "nameJa": "サンマリノ",
+      "flag": "🇸🇲",
+      "reason": "同じヨーロッパの小国でも、海沿いの高密度都市とは異なる丘上の共和国を比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-01",
+  "sourcesVerifiedAt": "2026-09-01",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2026",
+    "census2023": "2023",
+    "mareterra": "2024-12-04",
+    "asMonaco": "2026-2027"
+  },
+  "sources": {
+    "map": "geoBoundaries gbOpen MCO ADM0, OpenStreetMap / Wambacher; 2017 boundary, source data updated 2023; mirrored GeoJSON verified against shapeID 9783051B96397749018979; WGS84.",
+    "population": "Journal de Monaco, Arrêté Ministériel n° 2026-174: official population for 2025 is 38,857.",
+    "area": "IMSEE, Monaco en chiffres 2026: total territory 208.4 hectares; maximum width 1,140 m.",
+    "language": "Constitution of Monaco, Article 8: French is the official language of the State; Monaco City Hall documents ongoing Monegasque-language education and competition.",
+    "religion": "Constitution of Monaco, Article 9: Roman Catholicism is the State religion.",
+    "currency": "European Commission / Monaco monetary arrangements: Monaco uses the euro.",
+    "census2023": "IMSEE, 2023 population census: 38,367 residents; 9,179 resident Monegasques, 23.9%.",
+    "mareterra": "VisitMonaco, 5 December 2024: Mareterra officially opened 4 December 2024, adding six hectares and physically expanding Monaco by around 3%.",
+    "grimaldi": "VisitMonaco Media & Trade, History of Monaco: François Grimaldi seized the fortress on 8 January 1297 after entering disguised as a monk.",
+    "oceanography": "Musée Océanographique de Monaco: Prince Albert I carried out 28 oceanographic campaigns from 1885 to 1915.",
+    "grandPrix": "Automobile Club de Monaco: Circuit de Monaco is a 3.337 km urban circuit with 19 corners; full layout runs via Sainte-Dévote, Casino, Mirabeau, Hairpin and Portier.",
+    "sainteDevote": "Mairie de Monaco, Sainte-Dévote 2026: celebrations on 26–27 January included the symbolic burning of a boat on Quai Albert I.",
+    "barbajuan": "VisitMonaco: Barbajuan is presented as a local Monegasque fritter / traditional speciality, commonly filled with greens including chard.",
+    "larvottoReserve": "Direction de l'Environnement, Monaco: Larvotto marine protected area covers about 33.6 ha and primarily conserves a Posidonia oceanica meadow.",
+    "monteCarlo": "VisitMonaco Media & Trade, History of Monaco: Monte-Carlo was founded/named in 1866 under Prince Charles III, whose name it bears.",
+    "gambling": "Legimonaco, Law n° 1.103 of 12 June 1987, Article 11: Monegasques may not participate in games in gaming houses.",
+    "monegasqueLanguage": "Mairie de Monaco, 17 June 2026: Monegasque Language Competition organised with the national education authority; 76 students awarded.",
+    "flag": "Constitution of Monaco, Article 7: national flag has equal horizontal red and white bands, red above white.",
+    "asMonaco": "AS Monaco, 10 June 2026: club schedule for the 2026-2027 Ligue 1 season.",
+    "mechanisedLinks": "VisitMonaco official visitor maps identify public lifts, escalators and pedestrian links connecting the Principality's different levels.",
+    "station": "VisitMonaco / SNCF visitor information: Monaco–Monte-Carlo railway station connects the Principality to the regional rail network and has pedestrian exits serving different parts of the city.",
+    "niceAirportHelicopter": "Monacair current service information: Monaco has no commercial airport; regular Nice Côte d'Azur Airport–Monaco heliport flight time is about 7 minutes."
+  }
+}
