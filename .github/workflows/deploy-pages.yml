@@ -30,6 +30,7 @@ jobs:
           node --check assets/js/app.js
           node --check assets/js/top.js
           python scripts/validate_lens_slugs.py
+          python scripts/validate_country.py --reviewable
           python scripts/validate_country.py --published
 
       - name: Build production site
@@ -37,6 +38,7 @@ jobs:
 
       - name: Validate production build
         run: |
+          python scripts/validate_country.py --reviewable
           python scripts/validate_country.py --published
           node --check assets/js/app.js
           node --check assets/js/top.js

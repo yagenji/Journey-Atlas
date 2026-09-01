@@ -548,12 +548,39 @@ def published_paths() -> tuple[list[Path], list[str]]:
     return paths, errors
 
 
+def reviewable_paths() -> tuple[list[Path], list[str]]:
+    """Return schema-v2 country JSONs that build_site renders as review pages."""
+    items, errors = load_destination_scope()
+    paths: list[Path] = []
+    for item in items:
+        slug = item.get("slug")
+        if not slug:
+            continue
+        path = COUNTRY_DIR / f"{slug}.json"
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            errors.append(f"{path.name}: JSONを読み込めません: {exc}")
+            continue
+        if data.get("schemaVersion") == 2:
+            paths.append(path)
+    return paths, errors
+
+
 def main() -> int:
     strict = False
+    mode = "standard"
     args = sys.argv[1:]
     if args and args[0] == "--published":
         strict = True
+        mode = "published strict"
         paths, errors = published_paths()
+    elif args and args[0] == "--reviewable":
+        strict = True
+        mode = "reviewable strict"
+        paths, errors = reviewable_paths()
     elif args:
         paths = [Path(arg) for arg in args]
         errors = []
@@ -572,7 +599,6 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    mode = "published strict" if strict else "standard"
     print(f"Validation passed ({mode}): {len(paths)} country file(s); 201-destination scope is consistent")
     return 0
 

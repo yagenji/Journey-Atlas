@@ -66,8 +66,10 @@ jobs:
         run: |
           python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/top.js
-      - name: Validate published country JSON and 201-destination scope
-        run: python3 scripts/validate_country.py --published
+      - name: Validate reviewable and published country JSON
+        run: |
+          python3 scripts/validate_country.py --reviewable
+          python3 scripts/validate_country.py --published
       - name: Validate JOURNEY LENS slug drift
         run: python3 scripts/validate_lens_slugs.py
       - name: Build and validate Cloudflare package
