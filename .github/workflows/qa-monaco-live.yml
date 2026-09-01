@@ -1,46 +1,44 @@
-name: Monaco geodesic land-area QA
+name: Monaco final current map candidate
 
 on:
   push:
     branches: ["qa-monaco-live"]
+    paths-ignore:
+      - "qa-output/final-current-map/**"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  probe:
+  build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout QA branch
+        uses: actions/checkout@v4
       - name: Install pyproj
         run: pip install pyproj
-      - name: Reconstruct OSM relation 36990 and measure geodesically
+      - name: Build final current Monaco map
         shell: bash
         run: |
           set -euo pipefail
           curl -fsSL -A 'JourneyAtlasQA/1.0' \
             'https://api.openstreetmap.org/api/0.6/relation/36990/full' \
             -o /tmp/land.osm
-          curl -fsSL \
-            'https://raw.githubusercontent.com/BrickHario/wordOrigin/669fa71d233a7c738d937f6cda4f8bb18d48ae57/data/MCO.geojson' \
-            -o /tmp/old.json
+          mkdir -p qa-output/final-current-map
           python3 - <<'PY'
           import xml.etree.ElementTree as ET
-          import json
+          import json, math
+          from pathlib import Path
           from pyproj import Geod
 
           geod=Geod(ellps='WGS84')
-
-          def polygon_area(coords):
-              lons=[p[0] for p in coords]
-              lats=[p[1] for p in coords]
-              a,_=geod.polygon_area_perimeter(lons,lats)
-              return abs(a)/1_000_000
-
           root=ET.parse('/tmp/land.osm').getroot()
           nodes={int(n.attrib['id']):(float(n.attrib['lon']),float(n.attrib['lat'])) for n in root.findall('node')}
           ways={int(w.attrib['id']):[int(nd.attrib['ref']) for nd in w.findall('nd')] for w in root.findall('way')}
           rel=next(r for r in root.findall('relation') if int(r.attrib['id'])==36990)
-          members=[(int(m.attrib['ref']),m.attrib.get('role','')) for m in rel.findall('member') if m.attrib['type']=='way']
-          outer=[list(ways[wid]) for wid,role in members if role in ('outer','') and wid in ways]
-
+          outer=[list(ways[int(m.attrib['ref'])]) for m in rel.findall('member')
+                 if m.attrib['type']=='way' and m.attrib.get('role','') in ('outer','') and int(m.attrib['ref']) in ways]
           rings=[]
           while outer:
               chain=outer.pop(0)
@@ -57,25 +55,91 @@ jobs:
                       if chain[0]==s[0]:
                           chain=list(reversed(s[1:]))+chain; outer.pop(i); changed=True; break
               if chain[0]!=chain[-1]:
-                  raise SystemExit('unclosed ring')
+                  raise SystemExit('unclosed outer ring')
               rings.append([nodes[n] for n in chain])
 
-          areas=[polygon_area(r) for r in rings]
+          def geodesic_area(coords):
+              a,_=geod.polygon_area_perimeter([p[0] for p in coords],[p[1] for p in coords])
+              return abs(a)/1_000_000
+          areas=[geodesic_area(r) for r in rings]
           total=sum(areas)
-
-          old=json.load(open('/tmp/old.json'))['features'][0]['geometry']
-          old_rings=old['coordinates'] if old['type']=='Polygon' else [r for p in old['coordinates'] for r in p]
-          old_area=sum(polygon_area(r) for r in old_rings)
-
           official=2.084
-          print('RING_COUNT='+str(len(rings)))
-          for i,(r,a) in enumerate(zip(rings,areas)):
-              print(f'RING_{i}_AREA_GEODESIC_KM2={a:.6f}')
-              print(f'RING_{i}_POINTS={len(r)}')
-          print(f'CURRENT_OSM_GEODESIC_KM2={total:.6f}')
-          print(f'OLD_SOURCE_GEODESIC_KM2={old_area:.6f}')
-          print(f'OFFICIAL_KM2={official:.6f}')
-          print(f'CURRENT_DELTA_PERCENT={(total/official-1)*100:.3f}')
-          print(f'OLD_DELTA_PERCENT={(old_area/official-1)*100:.3f}')
-          print(f'CURRENT_MINUS_OLD_KM2={total-old_area:.6f}')
+          delta=(total/official-1)*100
+          if len(rings)!=2:
+              raise SystemExit(f'expected 2 outer rings, got {len(rings)}')
+          if abs(delta)>0.1:
+              raise SystemExit(f'geodesic area mismatch {total:.6f} km² vs {official:.3f} km²')
+          if sum(len(r) for r in rings)<850:
+              raise SystemExit('boundary unexpectedly simplified')
+
+          WIDTH,HEIGHT=1200,760
+          bounds={"north":43.754,"south":43.723,"west":7.405,"east":7.444}
+          mid=(bounds["south"]+bounds["north"])/2
+          lon_scale=math.cos(math.radians(mid))
+          projected_width=(bounds["east"]-bounds["west"])*lon_scale
+          projected_height=bounds["north"]-bounds["south"]
+          scale=min(WIDTH/projected_width,HEIGHT/projected_height)
+          draw_w=projected_width*scale
+          draw_h=projected_height*scale
+          off_x=(WIDTH-draw_w)/2
+          off_y=(HEIGHT-draw_h)/2
+          def project(lon,lat):
+              return (
+                  off_x+(lon-bounds["west"])*lon_scale*scale,
+                  off_y+(bounds["north"]-lat)*scale
+              )
+          def ring_path(coords):
+              pts=[project(lon,lat) for lon,lat in coords]
+              return "M "+" L ".join(f"{x:.1f},{y:.1f}" for x,y in pts)+" Z"
+          d=" ".join(ring_path(r) for r in rings)
+
+          svg=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Monaco" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+          <metadata>OpenStreetMap relation 36990 (Monaco land_area), WGS84; 2 outer rings / {sum(len(r) for r in rings)} points; retrieved and verified 2026-09-01; geodesic area {total:.6f} km2 vs IMSEE official 2.084 km2; JOURNEY ATLAS clean-background treatment</metadata>
+          <defs>
+          <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
+          <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+          <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+          </defs>
+          <rect width="1200" height="760" fill="url(#sea)"/>
+          <path d="{d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
+          </svg>
+          '''
+          if '<ellipse' in svg or '<radialGradient' in svg:
+              raise SystemExit('forbidden map element generated')
+          Path('qa-output/final-current-map/map-atlas-v1.svg').write_text(svg,encoding='utf-8')
+
+          geo={"type":"FeatureCollection","features":[{
+              "type":"Feature",
+              "properties":{
+                  "name":"Monaco",
+                  "source":"OpenStreetMap relation 36990",
+                  "boundary":"land_area",
+                  "retrievedAt":"2026-09-01",
+                  "geodesicAreaKm2":round(total,6),
+                  "officialAreaKm2":official,
+                  "officialAreaDeltaPercent":round(delta,3),
+                  "outerRingCount":len(rings),
+                  "pointCount":sum(len(r) for r in rings)
+              },
+              "geometry":{"type":"MultiPolygon","coordinates":[[r] for r in rings]}
+          }]}
+          Path('qa-output/final-current-map/monaco-land-relation-36990.geojson').write_text(
+              json.dumps(geo,ensure_ascii=False,indent=2)+"\n",encoding='utf-8'
+          )
+          print(f'GEODESIC_AREA_KM2={total:.6f}')
+          print(f'OFFICIAL_AREA_KM2={official:.3f}')
+          print(f'DELTA_PERCENT={delta:.3f}')
+          print(f'OUTER_RINGS={len(rings)}')
+          print(f'POINTS={sum(len(r) for r in rings)}')
+          print('ELLIPSE=0')
+          print('RADIAL_GRADIENT=0')
           PY
+      - name: Commit final candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa-output/final-current-map/
+          git diff --cached --quiet && exit 0
+          git commit -m "qa: materialize final current Monaco map"
+          git push
