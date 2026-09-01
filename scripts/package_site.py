@@ -23,6 +23,12 @@ REGISTRY_PATHS = [
 ]
 ROOT_FILES = ["index.html", "404.html", "_redirects", "sitemap.xml", "robots.txt"]
 STATIC_PAGE_DIRS = ["faq", "privacy"]
+RUNTIME_DATA_FILES = [
+    "atlas-destinations.json",
+    "atlas-destinations-editorial.json",
+    "region-taxonomy.json",
+    "theme-taxonomy.json",
+]
 
 
 def published_slugs() -> list[str]:
@@ -82,11 +88,12 @@ def package_data(slugs: list[str]) -> None:
     target = DIST / "data"
     target.mkdir(parents=True, exist_ok=True)
 
-    # Top-page taxonomies and registries are runtime data. Reviewable country
-    # bodies are included so direct noindex Country Page URLs work before publish.
-    for source in DATA_DIR.iterdir():
-        if source.name == "countries":
-            continue
+    # Only browser/runtime data is shipped. Authoring-only source JSON and
+    # map-generation inputs stay in the repository but never enter production.
+    for name in RUNTIME_DATA_FILES:
+        source = DATA_DIR / name
+        if not source.exists():
+            raise FileNotFoundError(f"Runtime data missing: {source}")
         copy_path(source, target / source.name)
 
     countries_target = target / "countries"
@@ -144,6 +151,11 @@ def validate_package(slugs: list[str]) -> None:
         raise ValueError("Generic draft country route must not be shipped to production")
     if (DIST / "scripts").exists() or (DIST / ".github").exists():
         raise ValueError("Authoring or CI files leaked into production package")
+
+    allowed_data = set(RUNTIME_DATA_FILES) | {"countries"}
+    unexpected_data = sorted(path.name for path in (DIST / "data").iterdir() if path.name not in allowed_data)
+    if unexpected_data:
+        raise ValueError(f"Unexpected production data file(s): {unexpected_data}")
 
     packaged = sorted(path.stem for path in (DIST / "data" / "countries").glob("*.json"))
     if packaged != sorted(slugs):
