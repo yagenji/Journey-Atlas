@@ -8,15 +8,15 @@ JOURNEY ATLAS keeps GitHub as the source of truth and uses Cloudflare Pages as t
 - Production branch: `main`
 - Production domain: `https://atlas.yagenji.com/`
 - Cloudflare build output: `dist/`
-- Draft preview while authoring: existing GitHub Pages generic route (`country.html?country=...`)
+- Review preview while authoring: canonical `/countries/{slug}/` route generated from `schemaVersion: 2` Country JSON
 - Production country routes: `/countries/{slug}/`
-- A country is shipped only when its registry entry has `atlasPublished: true`.
+- `schemaVersion: 2` countries are shipped for direct review; `atlasPublished: true` controls discovery, indexing and sitemap inclusion.
 
 The production package deliberately excludes:
 
 - `country.html` (generic draft renderer)
 - `scripts/`, `.github/`, authoring docs
-- unpublished `data/countries/*.json`
+- non-reviewable Country JSON and unreferenced production images
 - Base64 source chunks (`*.b64`, `*.parts.json`, `*-parts/`)
 
 ## Cloudflare Pages project settings
@@ -46,14 +46,13 @@ Do not change `data/site.json.baseUrl` during the transition. GitHub Pages still
 
 ## Publishing a country
 
-A country remains a draft until `atlasPublished` is set to `true` in its destination registry. The strict validator checks published countries before a production build. Once published, the build generates:
+A `schemaVersion: 2` Country JSON is reviewable at its canonical `/countries/{slug}/` URL with `noindex,follow`. It becomes formally published only when `atlasPublished` is set to `true` in its destination registry. The strict validator checks both reviewable and published countries before a production build. Once published, the build additionally enables:
 
-- `/countries/{slug}/index.html`
-- the corresponding runtime country JSON
+- `index,follow` on `/countries/{slug}/`
 - the country URL in `sitemap.xml`
 - the production `href` in the destination registry copied into `dist/`
 
-Unpublished country bodies are not copied into `dist/`.
+Reviewable unpublished Country JSON and page assets are copied into `dist/` only when required by the canonical noindex review route.
 
 ## Local/CI build
 
