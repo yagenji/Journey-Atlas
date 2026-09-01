@@ -1,4 +1,4 @@
-name: Monaco production state probe
+name: Monaco final browser publication QA
 
 on:
   push:
@@ -6,45 +6,144 @@ on:
   workflow_dispatch:
 
 jobs:
-  probe:
+  browser:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
-      - name: Probe live publication state
+      - name: Install browser QA tools
+        run: |
+          npm install --no-save playwright@1.55.0 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+      - name: Verify country page and published top link
         shell: bash
         run: |
-          set -euo pipefail
-          curl -sS -L -D /tmp/page.h https://atlas.yagenji.com/countries/monaco/ -o /tmp/page.html
-          curl -fsSL https://atlas.yagenji.com/data/countries/monaco.json -o /tmp/country.json
-          curl -fsSL https://atlas.yagenji.com/data/atlas-destinations.json -o /tmp/dest.json
-          curl -fsSL https://atlas.yagenji.com/sitemap.xml -o /tmp/sitemap.xml
-          curl -fsSL https://atlas.yagenji.com/assets/images/monaco/map-atlas-v1.svg -o /tmp/map.svg
+          cat > qa.js <<'NODE'
+          const { chromium } = require('playwright');
+          const axeSource = require('axe-core').source;
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            let failures=0;
+            const viewports=[
+              {name:'desktop',width:1440,height:1100},
+              {name:'tablet',width:820,height:1180},
+              {name:'mobile',width:390,height:844},
+            ];
+            for(const vp of viewports){
+              const page=await browser.newPage({viewport:{width:vp.width,height:vp.height}});
+              const consoleErrors=[],pageErrors=[],failedRequests=[];
+              page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
+              page.on('pageerror',e=>pageErrors.push(String(e)));
+              page.on('requestfailed',r=>failedRequests.push(r.url()+' :: '+(r.failure()?.errorText||'')));
+              const res=await page.goto('https://atlas.yagenji.com/countries/monaco/',{waitUntil:'networkidle',timeout:60000});
+              await page.waitForSelector('.country-page',{state:'visible',timeout:30000});
+              await page.waitForTimeout(800);
+              const r=await page.evaluate(()=>{
+                const els=[...document.querySelectorAll('#map-markers > *')];
+                const rects=els.map(el=>{const b=el.getBoundingClientRect();return {label:el.getAttribute('aria-label')||'',x:b.x,y:b.y,right:b.right,bottom:b.bottom};});
+                const overlaps=[];
+                for(let i=0;i<rects.length;i++)for(let j=i+1;j<rects.length;j++){
+                  const a=rects[i],b=rects[j];
+                  const ix=Math.max(0,Math.min(a.right,b.right)-Math.max(a.x,b.x));
+                  const iy=Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.y,b.y));
+                  if(ix*iy>25)overlaps.push({a:a.label,b:b.label,area:Math.round(ix*iy)});
+                }
+                const map=document.querySelector('#country-map-art .map-base');
+                return {
+                  country:document.documentElement.dataset.country,
+                  robots:document.querySelector('meta[name="robots"]')?.content||'',
+                  canonical:document.querySelector('link[rel="canonical"]')?.href||'',
+                  theme:[...document.querySelectorAll('#country-theme-list .country-theme-chip')].map(x=>x.textContent.trim()),
+                  scenes:document.querySelectorAll('#scene-cards .scene-card').length,
+                  encounters:document.querySelectorAll('#encounters > *').length,
+                  signature:document.querySelectorAll('#signature-facts > *').length,
+                  extras:document.querySelectorAll('#atlas-extras-grid > *').length,
+                  trivia:document.querySelectorAll('#travel-trivia-grid > *').length,
+                  seasons:document.querySelectorAll('#seasons > *').length,
+                  personas:document.querySelectorAll('#personas > *').length,
+                  tips:document.querySelectorAll('#tips > *').length,
+                  related:document.querySelectorAll('#related > *').length,
+                  markers:els.length,
+                  sceneMarkers:document.querySelectorAll('#map-markers .map-marker').length,
+                  overlaps,
+                  mapLoaded:!!(map&&map.complete&&map.naturalWidth>0),
+                  overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+                  body:document.body.innerText
+                };
+              });
+              await page.addScriptTag({content:axeSource});
+              const axe=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+              const serious=axe.violations.filter(v=>['critical','serious'].includes(v.impact));
+              const checks={
+                http200:res?.status()===200,
+                country:r.country==='monaco',
+                indexFollow:r.robots==='index,follow',
+                canonical:r.canonical==='https://atlas.yagenji.com/countries/monaco/',
+                theme:r.theme.length===1&&r.theme[0]==='街を歩く',
+                sections:r.scenes===8&&r.encounters===8&&r.signature===3&&r.extras===6&&r.trivia===5&&r.seasons===4&&r.personas===3&&r.tips===3&&r.related===3,
+                markers:r.markers===10&&r.sceneMarkers===8,
+                noMarkerOverlap:r.overlaps.length===0,
+                mapLoaded:r.mapLoaded,
+                noOverflow:r.overflow<=1,
+                flagFix:r.body.includes('モナコとインドネシアの国旗はよく似ている'),
+                personaFix:r.body.includes('小国の日常文化まで見てみたい人'),
+                barbFix:r.body.includes('土地の家庭的な食文化を知る入口になる'),
+                noConsoleErrors:consoleErrors.length===0,
+                noPageErrors:pageErrors.length===0,
+                noFailedRequests:failedRequests.length===0,
+                noSeriousA11y:serious.length===0
+              };
+              const failed=Object.entries(checks).filter(([,v])=>!v).map(([k])=>k);
+              failures+=failed.length;
+              console.log('\n=== '+vp.name.toUpperCase()+' ===');
+              console.log('CHECKS '+JSON.stringify(checks));
+              console.log('FAILED '+JSON.stringify(failed));
+              console.log('OVERLAPS '+JSON.stringify(r.overlaps));
+              console.log('CONSOLE '+JSON.stringify(consoleErrors));
+              console.log('PAGE_ERRORS '+JSON.stringify(pageErrors));
+              console.log('REQUEST_FAILED '+JSON.stringify(failedRequests));
+              console.log('AXE_SERIOUS '+JSON.stringify(serious.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length}))));
+              await page.close();
+            }
 
-          echo "=== PAGE ==="
-          head -30 /tmp/page.h
-          grep -Eo '<meta name="robots" content="[^"]+"|<title>[^<]+' /tmp/page.html | head -10 || true
-
-          echo "=== REGISTRY ==="
-          python3 - <<'PY'
-          import json
-          j=json.load(open('/tmp/dest.json'))
-          m=next((x for x in j.get('destinations',[]) if x.get('slug')=='monaco'),None)
-          print(m)
-          PY
-
-          echo "=== SITEMAP ==="
-          grep -o 'https://atlas.yagenji.com/countries/monaco/' /tmp/sitemap.xml || true
-
-          echo "=== CONTENT ==="
-          python3 - <<'PY'
-          import json
-          c=json.load(open('/tmp/country.json'))
-          print('flag=', next((x['title'] for x in c['travelTrivia'] if 'flag' in x['topicKey']), None))
-          print('persona=', c['personas'][2]['title'])
-          print('barb=', next((x['text'] for x in c['atlasExtras'] if x['topicKey']=='barbagiuan-monegasque-specialty'), None))
-          print('map_source=', c['map']['source'])
-          PY
-
-          echo "=== MAP ==="
-          grep -o 'OpenStreetMap relation 36990[^<]*' /tmp/map.svg | head -1 || true
-          if grep -q '<ellipse' /tmp/map.svg; then echo ELLIPSE=1; else echo ELLIPSE=0; fi
-          if grep -q '<radialGradient' /tmp/map.svg; then echo RADIAL=1; else echo RADIAL=0; fi
+            const top=await browser.newPage({viewport:{width:1440,height:1100}});
+            const topErrors=[],topPageErrors=[],topFailed=[];
+            top.on('console',m=>{if(m.type()==='error')topErrors.push(m.text())});
+            top.on('pageerror',e=>topPageErrors.push(String(e)));
+            top.on('requestfailed',r=>topFailed.push(r.url()));
+            const topRes=await top.goto('https://atlas.yagenji.com/',{waitUntil:'networkidle',timeout:60000});
+            await top.waitForTimeout(1000);
+            const topReport=await top.evaluate(()=>{
+              const links=[...document.querySelectorAll('a')].filter(a=>{
+                const href=a.getAttribute('href')||'';
+                return href==='countries/monaco/'||href==='/countries/monaco/'||href.endsWith('/countries/monaco/');
+              });
+              return {
+                links:links.length,
+                visible:links.some(a=>{const s=getComputedStyle(a),r=a.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0}),
+                imageMatch:links.some(a=>a.querySelector('img[src*="assets/images/monaco/approved/hero-port-hercule-le-rocher.png"]')||a.style.backgroundImage.includes('hero-port-hercule-le-rocher.png'))
+              };
+            });
+            const topChecks={
+              http200:topRes?.status()===200,
+              monacoLink:topReport.links>0,
+              visibleMonacoLink:topReport.visible,
+              noConsoleErrors:topErrors.length===0,
+              noPageErrors:topPageErrors.length===0,
+              noFailedRequests:topFailed.length===0
+            };
+            const topFailedChecks=Object.entries(topChecks).filter(([,v])=>!v).map(([k])=>k);
+            failures+=topFailedChecks.length;
+            console.log('\n=== TOP ===');
+            console.log('CHECKS '+JSON.stringify(topChecks));
+            console.log('REPORT '+JSON.stringify(topReport));
+            console.log('FAILED '+JSON.stringify(topFailedChecks));
+            console.log('CONSOLE '+JSON.stringify(topErrors));
+            console.log('PAGE_ERRORS '+JSON.stringify(topPageErrors));
+            console.log('REQUEST_FAILED '+JSON.stringify(topFailed));
+            await top.close();
+            await browser.close();
+            if(failures){console.error('HARD_FAILURE_COUNT='+failures);process.exit(1)}
+            console.log('HARD_FAILURE_COUNT=0');
+          })().catch(e=>{console.error(e);process.exit(1)});
+          NODE
+          node qa.js
