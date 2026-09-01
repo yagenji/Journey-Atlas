@@ -170,6 +170,20 @@ Country-page scene artwork follows the same visual language. A country page may 
 
 ---
 
+## Branch lifecycle
+
+Keep the repository branch list intentionally small.
+
+- Use **one working branch per active country**.
+- Continue review fixes, QA fixes, and publish preparation on that same country branch.
+- Do not create derivative branches such as `*-review-fix`, `*-publish`, `publish-*`, or `qa-*`.
+- Shared fixes may use one clearly named common branch only while the work is active.
+- After the work is merged into `main` and no further country-specific work remains, delete the working branch.
+- If an old branch contains unique history that should be preserved, create an archive tag first, then delete the branch.
+- Deployment and validation must use the shared workflows on `main`; do not add country-specific deployment or QA workflows.
+- Normal steady state should be: `main` + only currently active country/common work branches.
+
+
 ## Decision rule
 If implementation requires a visual choice that was not decided in the approved design:
 - make the smallest neutral technical choice if it does not alter the design;
