@@ -4,7 +4,7 @@
   "slug": "albania",
   "nameEn": "ALBANIA",
   "nameJa": "アルバニア",
-  "region": "SOUTHEASTERN EUROPE / BALKAN PENINSULA / 41°N",
+  "region": "SOUTHEASTERN EUROPE / BALKANS / 41°N",
   "seo": {
     "description": "ベラトの斜面都市からアルバニア・アルプス、コマン湖、ティラナ、ジペ湾、ジロカストラ、ブトリント、オフリド湖、ブルーアイへ。山・海・湖・都市・遺跡を9つの景観でたどるアルバニア。"
   },
@@ -17,7 +17,7 @@
     },
     "labelPosition": "left",
     "mapOffset": {
-      "x": 0,
+      "x": -2.5,
       "y": 0
     }
   },
@@ -53,7 +53,11 @@
         "longitude": 19.7747
       },
       "image": "assets/images/albania/approved/theth.png",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": -0.5
+      }
     },
     {
       "id": "lake-koman-canyon",
@@ -66,7 +70,11 @@
         "longitude": 19.826
       },
       "image": "assets/images/albania/approved/lake-koman.png",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0.5
+      }
     },
     {
       "id": "tirana-skanderbeg-square",
@@ -81,8 +89,8 @@
       "image": "assets/images/albania/approved/tirana-skanderbeg-square.png",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 4,
-        "y": 2
+        "x": 2.5,
+        "y": 0
       }
     },
     {
@@ -96,7 +104,11 @@
         "longitude": 19.6768
       },
       "image": "assets/images/albania/approved/gjipe-beach.png",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0
+      }
     },
     {
       "id": "gjirokaster-stone-city",
@@ -109,7 +121,11 @@
         "longitude": 20.1408
       },
       "image": "assets/images/albania/approved/gjirokaster.png",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -2,
+        "y": 0
+      }
     },
     {
       "id": "butrint-archaeology",
@@ -148,41 +164,45 @@
         "longitude": 20.1927
       },
       "image": "assets/images/albania/approved/syri-i-kalter.png",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 0
+      }
     }
   ],
   "encounters": [
     {
-      "title": "山岳村",
-      "icon": "home"
+      "title": "アルバニア・アルプス",
+      "icon": "landscape"
     },
     {
       "title": "石造都市",
       "icon": "city"
     },
     {
+      "title": "バンカー",
+      "icon": "history"
+    },
+    {
       "title": "バザール",
       "icon": "culture"
     },
     {
-      "title": "カフェ",
-      "icon": "food"
+      "title": "イオニア海",
+      "icon": "sea"
     },
     {
-      "title": "家庭料理",
-      "icon": "food"
-    },
-    {
-      "title": "手工芸",
+      "title": "民俗音楽",
       "icon": "culture"
+    },
+    {
+      "title": "ビュレク",
+      "icon": "food"
     },
     {
       "title": "湖上フェリー",
       "icon": "road"
-    },
-    {
-      "title": "海岸集落",
-      "icon": "sea"
     }
   ],
   "atlasExtras": [
@@ -231,14 +251,14 @@
       ]
     },
     {
-      "topicKey": "adriatic-ionian-transition",
-      "themeEn": "EARTH",
-      "themeJa": "地球の風景",
-      "title": "西岸では、アドリア海の低地からイオニア海の急斜面へ景色が切り替わる",
-      "text": "北から中部の海岸には比較的平らな低地が続く一方、南へ進むと山が海際まで迫る。ヴロラ以南のリヴィエラでは、この地形差が道路、集落、湾の形まで変えている。",
+      "topicKey": "xhiro-evening-walk",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "夕方になると、街の中心を『ジロ』で歩く",
+      "text": "ティラナをはじめアルバニアの街では、夕方に家族や友人とゆっくり歩く『ジロ（xhiro）』の習慣が残る。目的地へ急ぐためではなく、歩きながら人に会い、会話をする時間そのものが都市の日常になっている。",
       "points": [
-        "国土西側はアドリア海とイオニア海に面する",
-        "南部では山地が海岸線近くまで続く"
+        "ティラナ市も、夕方のxhiroを長く続く歩行文化として紹介している",
+        "広場や歩行者通りが、移動だけでなく交流の場になる"
       ]
     },
     {
@@ -473,6 +493,7 @@
     "oliveGastronomy": "Albania National Tourism Agency, Albanian Gastronomy: olive groves are prominent in southern/coastal landscapes and olive oil is widely used in traditional cuisine.",
     "socialTips": "Albania National Tourism Agency, Discover Albania, Social Tips: guests in northern villages may be expected to remove shoes when entering homes.",
     "religionBan": "U.S. Department of State, International Religious Freedom Report on Albania: in 1967 the communist government banned all religious practices and expropriated property of Islamic, Orthodox, Catholic and other religious institutions.",
-    "shkodraBicycle": "Albania National Tourism Agency, Bicycle City: Shkodra is widely known as the City of Bicycles; bicycles have been part of daily urban life for decades."
+    "shkodraBicycle": "Albania National Tourism Agency, Bicycle City: Shkodra is widely known as the City of Bicycles; bicycles have been part of daily urban life for decades.",
+    "xhiro": "Walk21 Tirana / Municipality of Tirana with GIZ Albania: a cultural tradition of walking remains strong; every evening people do their 'xhiro', taking leisurely walks with friends."
   }
 }
