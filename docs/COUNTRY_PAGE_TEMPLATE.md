@@ -114,17 +114,17 @@ Dead controlsを置かない。
 4. 画像pathが存在。
 5. map source記載。
 6. populationなど時点依存データにsourceまたはupdatedAtを持つ。
-7. atlasPublishedをtrueにするのはページ完成後。
+7. Review Deploymentでは `atlasPublished:false` を維持し、ユーザー承認後のみ `true` にする。
 
 ## 11. Production sequence
 
-1. JSON draft
-2. real-place scene verification
-3. map asset
-4. Hero / scene illustration production
-5. page render
-6. desktop QA
-7. mobile QA
-8. data validation
-9. atlasPublished = true
-10. top page card link activation
+1. content design / scene lock
+2. Hero + 8 scene visual production and approval
+3. Country JSON / map / shared template implementation
+4. desktop / tablet / mobile QA
+5. data / asset / accessibility validation
+6. Review Deployment at canonical /countries/{slug}/ URL
+7. keep atlasPublished = false / noindex / sitemap excluded
+8. user review and fixes on the same URL
+9. user approval
+10. atlasPublished = true / index / sitemap / formal discovery links
