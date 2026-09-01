@@ -17,7 +17,7 @@ jobs:
       - name: Run live responsive and accessibility QA
         shell: bash
         run: |
-          cat > /tmp/qa.js <<'NODE'
+          cat > qa.js <<'NODE'
           const { chromium } = require('playwright');
           const axeSource = require('axe-core').source;
           (async () => {
@@ -189,4 +189,4 @@ jobs:
           console.log('HARD_FAILURE_COUNT=0');
           })().catch(err => { console.error(err); process.exit(1); });
           NODE
-          node /tmp/qa.js
+          node qa.js
