@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "sanmarino",
+  "nameEn": "SAN MARINO",
+  "nameJa": "サンマリノ",
+  "region": "SOUTHERN EUROPE / 44°N",
+  "seo": {
+    "description": "モンテ・ティターノの三つの塔、リベルタ広場、ボルゴ・マッジョーレ、周辺の丘陵と集落。サンマリノの8つの景色と地図から、丘上の共和国とその暮らしをたどる。"
+  },
+  "capital": {
+    "nameEn": "City of San Marino",
+    "nameJa": "サンマリノ市",
+    "coordinates": {
+      "latitude": 43.93672,
+      "longitude": 12.44653
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": 1,
+      "y": -4
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -26
+    }
+  },
+  "hero": {
+    "lead": "モンテ・ティターノの岩山に歴史地区と三つの塔が重なり、その周囲を丘陵と集落が囲む。中世以来の共和国の制度と、現在の暮らしが近い距離に並ぶ国。",
+    "image": "assets/images/sanmarino/approved/hero-monte-titano.png",
+    "location": "Monte Titano / view from Fiorentino",
+    "coordinates": {
+      "latitude": 43.91,
+      "longitude": 12.455
+    },
+    "mapOffset": {
+      "x": 1,
+      "y": -2.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 43.998,
+      "south": 43.888,
+      "west": 12.397,
+      "east": 12.522
+    },
+    "svg": "assets/images/sanmarino/map-atlas-v1.svg",
+    "route": null,
+    "source": "OpenStreetMap-derived San Marino boundary via Geo2day, WGS84; source extract current to 2026-08-22; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "guaita-first-tower",
+      "name": "グアイタ第一塔",
+      "nameLocal": "Prima Torre / Guaita",
+      "mapLabel": "Guaita",
+      "description": "モンテ・ティターノの岩上に立つ三塔のうち最も古い塔で、起源は11世紀頃までさかのぼる。二重の城壁と塔が斜面に沿って重なり、丘上に防御都市が成立した地形を読み取れる。",
+      "coordinates": {
+        "latitude": 43.93548,
+        "longitude": 12.44946
+      },
+      "image": "assets/images/sanmarino/approved/guaita-first-tower.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -2
+      }
+    },
+    {
+      "id": "piazza-della-liberta-public-palace",
+      "name": "リベルタ広場 / 公共宮殿",
+      "nameLocal": "Piazza della Libertà / Palazzo Pubblico",
+      "mapLabel": "Palazzo Pubblico",
+      "description": "公共宮殿は1884〜1894年に現在の姿へ建て替えられ、執政官や大評議会など主要機関の所在地として使われている。中世風の外観の内側で、現在の国家機能が動いている場所。",
+      "coordinates": {
+        "latitude": 43.93672,
+        "longitude": 12.44653
+      },
+      "image": "assets/images/sanmarino/approved/piazza-della-liberta-public-palace.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 3
+      }
+    },
+    {
+      "id": "montale-third-tower",
+      "name": "モンターレ第三塔",
+      "nameLocal": "Terza Torre / Montale",
+      "mapLabel": "Montale",
+      "description": "三塔で最も小さく、旧市街から離れた森の中に立つ五角形の見張り塔。内部は公開されず外観のみ見学でき、城郭というより監視地点としての役割が地形に残る。",
+      "coordinates": {
+        "latitude": 43.92999,
+        "longitude": 12.45247
+      },
+      "image": "assets/images/sanmarino/approved/montale-third-tower.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": 2
+      }
+    },
+    {
+      "id": "borgo-maggiore-cable-car",
+      "name": "ボルゴ・マッジョーレ / ロープウェイ",
+      "nameLocal": "Borgo Maggiore / Funivia",
+      "mapLabel": "Borgo Maggiore",
+      "description": "ボルゴ・マッジョーレのカンポ・デッラ・フィエラから、ロープウェイがサンマリノ市の歴史地区へ上る。約200mの高低差を2分弱で結び、山麓と丘上都市の関係を移動そのものから理解できる。",
+      "coordinates": {
+        "latitude": 43.940312,
+        "longitude": 12.445946
+      },
+      "image": "assets/images/sanmarino/approved/borgo-maggiore-cable-car.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": -3.5
+      }
+    },
+    {
+      "id": "montegiardino-village",
+      "name": "モンテジャルディーノ",
+      "nameLocal": "Montegiardino",
+      "mapLabel": "Montegiardino",
+      "description": "南東部の丘陵に石造家屋と細い道がまとまる小さな集落。起源はランゴバルド期にさかのぼるとされ、1463年に共和国へ加わった。首都とは異なる、周縁の生活尺度が残る。",
+      "coordinates": {
+        "latitude": 43.90889,
+        "longitude": 12.48444
+      },
+      "image": "assets/images/sanmarino/approved/montegiardino-village.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "acquaviva-monte-cerreto",
+      "name": "モンテ・チェッレート / アクアヴィーヴァ",
+      "nameLocal": "Monte Cerreto / Acquaviva",
+      "mapLabel": "Monte Cerreto",
+      "description": "アクアヴィーヴァのモンテ・チェッレート公園には、全長約1.91kmの短い散策路がある。標高386〜453mほどの森林を歩き、サンマリノ市やモンテフェルトロ方面を望む西側の低丘陵の自然。",
+      "coordinates": {
+        "latitude": 43.94558,
+        "longitude": 12.41847
+      },
+      "image": "assets/images/sanmarino/approved/acquaviva-monte-cerreto.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "faetano-lake",
+      "name": "ファエターノ湖",
+      "nameLocal": "Lago di Faetano",
+      "mapLabel": "Lago di Faetano",
+      "description": "マラーノ川近くに、1968年につくられた長さ約120m・幅30mの小さな人工池がある。スポーツ釣りに使われる水辺で、石造の首都とは異なる東端の日常景観を見せる。",
+      "coordinates": {
+        "latitude": 43.940627,
+        "longitude": 12.51588
+      },
+      "image": "assets/images/sanmarino/approved/faetano-lake.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "chiesanuova-hills",
+      "name": "キエザヌオーヴァ",
+      "nameLocal": "Chiesanuova",
+      "mapLabel": "Chiesanuova",
+      "description": "南西部のキエザヌオーヴァは、中世のブジニャーノの城と荘園に起源を持つ集落。サンマリノ側のアペニン最初の支脈に位置し、起伏のある農地と集落が続く。",
+      "coordinates": {
+        "latitude": 43.9053,
+        "longitude": 12.422
+      },
+      "image": "assets/images/sanmarino/approved/chiesanuova-hills.png",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "三つの塔",
+      "icon": "history"
+    },
+    {
+      "title": "城壁",
+      "icon": "history"
+    },
+    {
+      "title": "石造旧市街",
+      "icon": "city"
+    },
+    {
+      "title": "丘陵",
+      "icon": "landscape"
+    },
+    {
+      "title": "ロープウェイ",
+      "icon": "road"
+    },
+    {
+      "title": "山道",
+      "icon": "road"
+    },
+    {
+      "title": "小さな湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "クロスボウ",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "free-republic-continuity-since-13th-century",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "世界遺産の核心は、古い建物より「共和国が続いていること」",
+      "text": "ユネスコはサンマリノ歴史地区とモンテ・ティターノを、13世紀以来の自由な共和国の連続性を伝える場所として評価している。歴史地区は現在も居住地であり、公共宮殿などの国家機能も残る。",
+      "points": [
+        "世界遺産登録は2008年",
+        "登録区域は歴史地区、モンテ・ティターノ、主要な制度・宗教建築を含む"
+      ]
+    },
+    {
+      "topicKey": "titano-northeast-southwest-landscape-split",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "モンテ・ティターノを境に、国土の使われ方が変わる",
+      "text": "政府の植物・地形研究では、ティターノの北東側は農地と主要道路沿いの市街・産業地区が目立つ一方、南西側は石灰岩の丘陵と自然度の高い場所が比較的多い。小国でも地形が土地利用を分けている。",
+      "points": [
+        "北東側にはアウサ川・マラーノ川の流域がある",
+        "南西側にはモンテ・チェッレートなど複数の石灰岩丘陵が続く"
+      ]
+    },
+    {
+      "topicKey": "last-four-castelli-annexed-1463",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "現在の国土の輪郭は、1463年の領土拡大で大きく固まった",
+      "text": "マラテスタ家との戦いの後、セラヴァッレ、フィオレンティーノ、ファエターノ、モンテジャルディーノが1463年に共和国へ加わった。公共宮殿の正面には、この最後の4地区の紋章も刻まれている。",
+      "points": [
+        "ファエターノとモンテジャルディーノも1463年に編入",
+        "現在の丘陵集落を歩くと、首都だけでは見えない領土形成史が分かる"
+      ]
+    },
+    {
+      "topicKey": "white-blue-railway-1932-1944",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "かつてリミニから山上まで、青白の電車が走っていた",
+      "text": "1932年開通のリミニ＝サンマリノ鉄道は、32kmを約1時間で結ぶ電気鉄道だった。1944年の空襲で運行を終えたが、モンターレ・トンネルと復元車両AB03が現在も鉄道時代を伝える。",
+      "points": [
+        "運行期間は1932〜1944年",
+        "戦時中にはトンネルが多数の避難民の避難場所として使われた"
+      ]
+    },
+    {
+      "topicKey": "arengo-1906-restored-elected-council",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "1906年、約3世紀ぶりのアレンゴが民選議会への転換点になった",
+      "text": "長く休眠していた家長会議アレンゴは1906年3月25日に再召集され、終身・補充制に傾いていた評議会の仕組みを改め、議員を民選する方向へ戻した。現在も3月25日はこの出来事を記念する。",
+      "points": [
+        "政府資料は1906年のアレンゴを民主制回復の転換点と位置づける",
+        "現在も『アレンゴ請願』として公共的な請願制度に名称が残る"
+      ]
+    },
+    {
+      "topicKey": "enclave-with-open-italian-border",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "国境線はあるが、イタリアから入る日常に検問所はない",
+      "text": "サンマリノは四方をイタリアに囲まれる内陸国だが、観光客向けの通常の国境手続きはない。イタリアへ有効に入国できる旅行者は、そのまま道路で国境を越える。",
+      "points": [
+        "国境はすべてイタリアとの境界",
+        "移動の感覚は連続していても、国境を越えると独立国家の制度へ切り替わる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "tourist-passport-stamp-five-euro",
+      "categoryEn": "PASSPORT",
+      "categoryJa": "旅の記録",
+      "title": "観光案内所でパスポートに記念スタンプを押せる",
+      "text": "通常の出入国印ではないが、歴史地区の観光案内所で5ユーロの観光ビザ風スタンプをパスポートに押してもらえる。小国へ入った記録を現地で残せる。",
+      "icon": "culture",
+      "sourceKey": "borderFormalities"
+    },
+    {
+      "topicKey": "sammarinese-euro-coins-own-designs",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "ユーロ圏外の国だが、独自図柄のユーロ硬貨を発行する",
+      "text": "サンマリノはEU加盟国ではないがユーロを使用し、協定に基づいて独自デザインのユーロ硬貨を発行する。買い物のお釣りや貨幣・切手関連の売店で国の図柄を探せる。",
+      "icon": "culture",
+      "sourceKey": "euroCoins"
+    },
+    {
+      "topicKey": "torta-tre-monti-five-wafer-layers",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "「三つの山」の名を持つ薄いウエハース菓子がある",
+      "text": "トルタ・トレ・モンティは、丸いウエハース5層にカカオとヘーゼルナッツのクリームを重ね、外周をダークチョコレートで仕上げる菓子。名前も国の三塔を連想させる。",
+      "icon": "food",
+      "sourceKey": "gastronomy"
+    },
+    {
+      "topicKey": "saint-marinus-day-crossbow-palio",
+      "categoryEn": "FESTIVAL",
+      "categoryJa": "祭り",
+      "title": "9月3日は歴史行列とクロスボウ競技が旧市街を動かす",
+      "text": "守護聖人マリーノと共和国創建を記念する9月3日には、宗教行列に加えて歴史行列とパリオ・デッレ・バレストレが行われ、9地区の代表がクロスボウ競技に参加する。",
+      "icon": "culture",
+      "sourceKey": "september3Festival"
+    },
+    {
+      "topicKey": "summer-changing-guard-2026",
+      "categoryEn": "CEREMONY",
+      "categoryJa": "儀礼",
+      "title": "夏の公共宮殿では、衛兵交代を時間ごとに見られる",
+      "text": "2026年は6月15日〜9月20日に、公共宮殿で衛兵交代が日中1時間ごとに行われる。緑と赤の制服をまとったロッカ衛兵隊が、現役の国家儀礼として広場に現れる。",
+      "icon": "history",
+      "sourceKey": "changingGuard2026"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "丘陵の緑が戻り、歴史地区と郊外の散策路を同じ旅程に組み込みやすい時期。標高差があるため、山上と低地で体感温度が変わる前提で薄手の上着を持つ。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#a9a05b",
+      "text": "旧市街の屋外行事や丘陵歩きを組み込みやすい一方、日中は日差しと混雑を避ける工夫が必要。石畳と坂が多いため、朝夕に歩く区間を寄せると動きやすい。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#b27a4c",
+      "text": "丘陵の色が変わり、首都と南西部の集落をつなぐ景観差が見えやすい。日が短くなるため、森林の散策路は明るいうちに終える計画が向く。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748e9d",
+      "text": "夏より静かな旧市街を歩きやすい時期。屋外景観だけに寄せず、博物館や公共空間を組み合わせ、当日の天候と施設営業時間を確認して動く。"
+    }
+  ],
+  "transport": {
+    "title": "BUS / CAR / CABLE CAR / WALK",
+    "text": "サンマリノ国内へ鉄道は入っていない。鉄道利用はイタリアのリミニ駅から路線バスへ乗り継ぎ、車ではSS72などから入る。国内はバスと車を軸に、ボルゴ・マッジョーレから歴史地区へロープウェイ、旧市街は徒歩を組み合わせる。"
+  },
+  "personas": [
+    {
+      "title": "小さな共和国を制度と建築から理解したい人",
+      "text": "三つの塔や公共宮殿を歩きながら、中世の自治都市の仕組みが現在の国家制度へどうつながっているかを場所から読みたい人。"
+    },
+    {
+      "title": "首都だけでなく丘陵の暮らしまで見たい人",
+      "text": "モンテジャルディーノ、アクアヴィーヴァ、ファエターノ、キエザヌオーヴァへ広げ、限られた国土に都市・農地・森林がどう収まるかを見たい人。"
+    },
+    {
+      "title": "歩いて一国の輪郭をつかみたい人",
+      "text": "山上の歴史地区だけで終わらず、カミーノ・デル・ティターノや周辺の短い散策路を使って、首都から周辺地区へ続く国土の距離感を体で確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ／アペニン山系"
+    },
+    {
+      "label": "首都",
+      "value": "サンマリノ市"
+    },
+    {
+      "label": "人口",
+      "value": "約3万人"
+    },
+    {
+      "label": "面積",
+      "value": "61.19 km²（世田谷区とほぼ同じ）"
+    },
+    {
+      "label": "言語",
+      "value": "イタリア語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが中心）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "italy-only-border-nearly-forty-km",
+      "label": "イタリアとの国境",
+      "value": "約40 km",
+      "note": "国境の全区間がイタリアとの境界。エミリア＝ロマーニャ州とマルケ州の間に、独立国家の輪郭が約40km続く。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "two-heads-state-six-month-term",
+      "label": "国家元首",
+      "value": "2人 × 6か月",
+      "note": "2人の執政官が共同で国家元首を務め、毎年4月1日と10月1日に交代する。権力を一人へ長く集中させない仕組みが制度として残る。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "walk-titano-forty-three-km-nine-castelli",
+      "label": "カミーノ・デル・ティターノ",
+      "value": "43 km",
+      "note": "国の9つの行政地区をつなぐ環状ルート。全体110kmの散策路網を結び、小国を首都だけでなく周辺の丘陵まで歩いて理解できる。",
+      "icon": "road"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "palazzo-pubblico-closure-through-september-2026",
+      "title": "公共宮殿の内部は2026年9月30日まで休館中",
+      "text": "公共宮殿は修復のため2026年4月2日〜9月30日まで閉館。リベルタ広場と外観は旅程に残しつつ、内部見学を前提にしない。"
+    },
+    {
+      "topicKey": "rimini-station-daily-bus-gateway",
+      "title": "鉄道ならリミニ駅でバスへ乗り継ぐ",
+      "text": "サンマリノ国内に鉄道駅はない。イタリア側のリミニ駅からサンマリノ行きバスが毎日運行しているため、列車旅ではリミニを玄関口にする。"
+    },
+    {
+      "topicKey": "borgo-maggiore-cable-car-entry",
+      "title": "車ではボルゴ・マッジョーレから山上へ上がる選択肢もある",
+      "text": "ボルゴ・マッジョーレ側のロープウェイ下駅はカンポ・デッラ・フィエラにあり、周辺に駐車場がある。旧市街の坂道と駐車を減らしたい場合に使いやすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "サンマリノを完全に囲む国へ広げ、エミリア＝ロマーニャやマルケの丘陵と国境を越えて続く景観を比べたいなら。"
+    },
+    {
+      "slug": "vaticancity",
+      "nameEn": "VATICAN CITY",
+      "nameJa": "バチカン市国",
+      "flag": "🇻🇦",
+      "reason": "同じくイタリアに囲まれた小国でも、共和国と宗教国家で制度・都市構造がどう異なるか比べたいなら。"
+    },
+    {
+      "slug": "liechtenstein",
+      "nameEn": "LIECHTENSTEIN",
+      "nameJa": "リヒテンシュタイン",
+      "flag": "🇱🇮",
+      "reason": "山地の小国という共通点から、アペニンの共和国とアルプスの君主国の地形・制度・移動感を比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-02",
+  "sourcesVerifiedAt": "2026-09-02",
+  "sourceDates": {
+    "population": "2026-06-30",
+    "changingGuard2026": "2026-09-20",
+    "palazzoClosure2026": "2026-09-30",
+    "september3Festival": "2026-09-03"
+  },
+  "sources": {
+    "map": "Geo2day San Marino GeoJSON, OpenStreetMap-derived boundary, extract current to 2026-08-22; WGS84. Cross-checked against geoBoundaries gbOpen SMR ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0).",
+    "population": "Ufficio Nazionale di Statistica, Bollettino demografico II trimestre 2026: resident population 34,167 at 30 June 2026.",
+    "area": "Visit San Marino, Population and Territory: 61.19 km²; border with Italy almost 40 km.",
+    "language": "Ministry of Foreign Affairs of Japan, San Marino basic data, updated 8 May 2026: Italian.",
+    "religion": "Ministry of Foreign Affairs of Japan, San Marino basic data, updated 8 May 2026: Catholicism.",
+    "currency": "Visit San Marino / official visitor information: euro is the currency; San Marino issues its own euro coins under monetary arrangements.",
+    "unesco": "UNESCO World Heritage Centre, San Marino Historic Centre and Mount Titano: inscription 2008; continuity of a free republic since the Middle Ages/13th century; living historic centre with institutional functions.",
+    "guaita": "Visit San Marino, Prima Torre Guaita: oldest of the Three Towers, origins around the 11th century, double ring of walls.",
+    "palazzoPubblico": "Visit San Marino, Public Palace: current building constructed 1884-1894; seat of principal institutional and administrative bodies.",
+    "montale": "Visit San Marino, Third Tower Montale: smallest of the Three Towers, pentagonal plan, isolated in the woods, visible only from outside.",
+    "cableCar": "Visit San Marino, The Cable Car: Borgo Maggiore to San Marino old town in under two minutes with about 200 m elevation difference; lower station at Piazzale Campo della Fiera 10.",
+    "castelli": "Visit San Marino, The nine Castelli: Borgo Maggiore market history; Faetano, Chiesanuova, Montegiardino and Acquaviva descriptions; final territorial additions in 1463.",
+    "monteCerreto": "Visit San Marino, Monte Cerreto Path: Acquaviva, approx. 1.91 km, 386-453 m elevation, views toward San Marino old town and Montefeltro.",
+    "faetanoLake": "Visit San Marino, Lake Faetano: small artificial lake created in 1968, approx. 0.0036 km², 120 m long and 30 m wide, used for sport fishing.",
+    "landscape": "Republic of San Marino government flora/geography study: Mount Titano divides more cultivated/urbanised north-east from more natural rocky south-west; 61.19 km² total area.",
+    "railway": "Visit San Marino, Montale Tunnel and Historic Train / Treno Bianco Azzurro: Rimini-San Marino electric railway operated 1932-1944 over 32 km; tunnels sheltered refugees; restored AB03 remains.",
+    "arengo1906": "Republic of San Marino, Great and General Council electoral history; Visit San Marino festivities: Arengo reconvened 25 March 1906 and restored popular election of the Council.",
+    "borderFormalities": "Visit San Marino, Border formalities: no ordinary border formalities for travellers validly admitted to Italy; tourist passport stamp available at Tourism Information Office for €5.",
+    "euroCoins": "Visit San Marino, Useful information: since 2002 San Marino has the right to mint euro coins at the Italian Mint with Sammarinese designs.",
+    "gastronomy": "Visit San Marino, Gastronomy / La Serenissima: Torta Tre Monti consists of five wafer layers with cocoa-hazelnut cream and dark chocolate finish.",
+    "september3Festival": "Visit San Marino, Feast of Saint Marinus and Foundation of the Republic Day, 3 September 2026: procession, historical parade and Palio delle Balestre with representatives of the nine Castelli.",
+    "changingGuard2026": "Visit San Marino, Changing of the Guard: 2026 season 15 June-20 September, hourly daytime ceremonies at Palazzo Pubblico.",
+    "palazzoClosure2026": "Visit San Marino, Public Palace: closed for restoration from 2 April through 30 September 2026.",
+    "captainsRegent": "Regency of the Republic of San Marino: two Captains Regent jointly exercise Head of State functions; six-month terms; take office 1 April and 1 October.",
+    "walkTitano": "Visit San Marino, The Walk of the Titano: 43 km ring linking all nine Castelli and connecting an overall 110 km trail network.",
+    "transport": "Visit San Marino, How to get to San Marino: rail travellers use Rimini station and bus; daily Rimini-San Marino bus; road access via SS72/A14 connections."
+  }
+}
