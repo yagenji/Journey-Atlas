@@ -85,9 +85,8 @@
 .travel-scale__head{align-items:flex-end;}
 .travel-scale__grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  border-top:1px solid rgba(18,54,92,.12);
-  border-left:1px solid rgba(18,54,92,.12);
+  grid-template-columns:1fr;
+  border:0;
 }
 .travel-scale__item{
   min-width:0;
@@ -188,7 +187,7 @@
 }
 .travel-planning__content{
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   grid-template-areas:
     "days season"
     "transport season";
@@ -387,4 +386,23 @@
   font-size:12.5px!important;
   line-height:1.5!important;
   font-weight:600!important;
+}
+
+/* Review fixes: equal columns, single separators, no stray transport icon */
+.travel-planning__content{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+.travel-scale__grid{
+  border:0!important;
+}
+.travel-scale__item{
+  border-left:0!important;
+  border-right:0!important;
+  border-bottom:0!important;
+}
+.travel-scale__head>p[hidden]{
+  display:none!important;
+}
+.travel-planning__block--transport .transport>.ui-icon{
+  display:none!important;
 }
