@@ -32,7 +32,7 @@ Purpose: Pilot the revised JOURNEY ATLAS Country Page standard before applying i
 | 04 | Ribeira Sacra / Sil Canyon | ATLAS VIEW | APPROVED / KEEP | River gorge + steep vineyards show how people have reshaped difficult terrain for agriculture. |
 | 05 | Las Médulas / Mirador de Orellán | ATLAS VIEW + DISCOVERY | APPROVED | Red clay peaks and chestnut forest reveal a landscape physically transformed by Roman hydraulic gold mining. |
 | 06 | Consuegra / Cerro Calderico | ANCHOR + ATLAS VIEW | APPROVED / KEEP | The broad La Mancha plateau, windmills and wind-shaped cultural landscape create a recognisable inland Spain. |
-| 07 | Ronda / Puente Nuevo + Tajo | ANCHOR + ATLAS VIEW | PENDING IMAGE | The city is split by a deep gorge and reconnected by Puente Nuevo: terrain and urban form are inseparable. |
+| 07 | Ronda / Puente Nuevo + Tajo | ANCHOR + ATLAS VIEW | APPROVED | The city is split by a deep gorge and reconnected by Puente Nuevo: terrain and urban form are inseparable. |
 | 08 | Teide / Roques de García | DISCOVERY | APPROVED / KEEP | Makes clear that Spain also includes a high volcanic Atlantic-island world far beyond the peninsula. |
 
 ### Removed from the 8
@@ -149,10 +149,10 @@ Rules:
 - S04 — Ribeira Sacra / Sil Canyon — APPROVED
 - S05 — Las Médulas / Mirador de Orellán — APPROVED
 - S06 — Consuegra / Cerro Calderico — APPROVED
-- S07 — Ronda / Puente Nuevo + Tajo — PENDING
+- S07 — Ronda / Puente Nuevo + Tajo — APPROVED
 - S08 — Teide / Roques de García — APPROVED
 
-VISUAL COMPLETE GATE is not passed until S05 and S07 are approved.
+VISUAL COMPLETE GATE: PASSED. Hero + S01–S08 are approved.
 
 ## 10. Implementation gate
 
