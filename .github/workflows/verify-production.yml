@@ -91,6 +91,10 @@ jobs:
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" -o /tmp/spain.html
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
+          for food in food-paella.png food-jamon-iberico.png food-tortilla-espanola.png; do
+            curl -fsS --max-time 20 -H 'Cache-Control: no-cache'               "$SITE_URL/assets/images/spain/approved/$food?qa=$GITHUB_RUN_ID"               -o "/tmp/$food"
+            test -s "/tmp/$food"
+          done
           grep -q 'data-country="spain"' /tmp/spain.html
           grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
           grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
