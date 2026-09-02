@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/country.css?v=20260902-spain-v3-pilot">
+  <link rel="stylesheet" href="assets/css/country.css?v=20260902-spain-v3-review2">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -141,12 +141,20 @@
           <div class="travel-trivia__grid" id="travel-trivia-grid"></div>
         </section>
 
+        <section class="travel-scale" id="travel-scale-section" aria-labelledby="travel-scale-title" hidden>
+          <div class="travel-scale__head">
+            <span class="section-kicker-en" id="travel-scale-kicker">TRAVEL SCALE</span>
+            <h2 id="travel-scale-title"></h2>
+            <p id="travel-scale-intro"></p>
+          </div>
+          <div class="travel-scale__grid" id="travel-scale-grid"></div>
+        </section>
+
         <section class="travel-grid" aria-label="旅の情報">
           <section class="info-section info-seasons">
             <span class="section-kicker-en">WHEN TO GO</span>
             <h2>旅するなら</h2>
             <p class="section-label">季節</p>
-            <div class="season-matrix" id="season-matrix" hidden></div>
             <div class="season-list" id="seasons"></div>
             <div class="transport" id="transport"></div>
           </section>
@@ -160,15 +168,6 @@
             <h2>知っておきたいこと</h2>
             <div class="tip-list" id="tips"></div>
           </section>
-        </section>
-
-        <section class="travel-scale" id="travel-scale-section" aria-labelledby="travel-scale-title" hidden>
-          <div class="travel-scale__head">
-            <span class="section-kicker-en" id="travel-scale-kicker">TRAVEL SCALE</span>
-            <h2 id="travel-scale-title"></h2>
-            <p id="travel-scale-intro"></p>
-          </div>
-          <div class="travel-scale__grid" id="travel-scale-grid"></div>
         </section>
 
         <section class="journey-footer" aria-labelledby="next-title">
@@ -200,7 +199,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260902-spain-v3-pilot" defer></script>
+  <script src="assets/js/app.js?v=20260902-spain-v3-review2" defer></script>
   <script src="assets/js/country-themes.js?v=20260830-theme-context-v2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2345" defer></script>
 </body>

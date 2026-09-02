@@ -522,148 +522,43 @@
   },
   "taste": {
     "kicker": "TASTE OF SPAIN",
-    "title": "土地の味から、スペインを見る",
-    "intro": "料理名を覚えるのではなく、地形や農業が食卓へどうつながるかを見る。",
+    "title": "スペインで食べたいもの",
+    "intro": "スペインを訪れたら、まず味わいたい代表的な3つ。",
     "items": [
       {
-        "name": "パエリア・バレンシアーナ",
-        "nameLocal": "Paella Valenciana",
-        "region": "VALENCIA",
-        "text": "浅い鍋で米にスープの旨味を吸わせ、粒を立たせて仕上げる。バレンシアの米料理をたどると、地中海沿岸の湿地と稲作が、土地の代表料理へつながっていることが見えてくる。",
-        "atlasLink": "アルブフェラ周辺の水田景観と、米を中心にした食文化。",
-        "icon": "food"
+        "id": "paella",
+        "name": "パエリア",
+        "nameLocal": "Paella",
+        "text": "米に肉や魚介、野菜の旨味を吸わせて炊く料理。地域や店で具材は変わるが、香ばしく炊けた米の食感まで含めて味わいたい。",
+        "image": null,
+        "imageState": "PENDING"
       },
       {
-        "name": "ハモン・イベリコ・デ・ベジョータ",
-        "nameLocal": "Jamón Ibérico de bellota",
-        "region": "DEHESA",
-        "text": "薄く切ると脂がやわらかくほどけ、塩味の奥にナッツを思わせる香りが残る。味の背景には、樫の木が点在するデエサで豚がどんぐりを食べる放牧の風景がある。",
-        "atlasLink": "西部・南西部のデエサは、景観そのものが食の生産環境になっている。",
-        "icon": "food"
+        "id": "jamon-iberico",
+        "name": "ハモン・イベリコ",
+        "nameLocal": "Jamón Ibérico",
+        "text": "薄く切った生ハムは、口に入れると脂がゆっくりほどける。塩味だけでなく、熟成による香りと余韻を楽しむスペインを代表する食。",
+        "image": null,
+        "imageState": "PENDING"
+      },
+      {
+        "id": "tortilla-espanola",
+        "name": "トルティージャ・エスパニョーラ",
+        "nameLocal": "Tortilla española",
+        "text": "じゃがいもと卵を厚く焼いた定番料理。バルでも家庭でも身近で、外側の焼き目と中のやわらかさをシンプルに味わえる。",
+        "image": null,
+        "imageState": "PENDING"
       }
     ]
   },
-  "seasonMatrix": {
-    "months": [
-      "1月",
-      "2月",
-      "3月",
-      "4月",
-      "5月",
-      "6月",
-      "7月",
-      "8月",
-      "9月",
-      "10月",
-      "11月",
-      "12月"
-    ],
-    "rows": [
-      {
-        "label": "北部・大西洋側",
-        "states": [
-          "cool-wet",
-          "cool-wet",
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "cool-wet",
-          "cool-wet"
-        ]
-      },
-      {
-        "label": "中央高原",
-        "states": [
-          "cold",
-          "cold",
-          "mild",
-          "mild",
-          "mild",
-          "hot-dry",
-          "hot-dry",
-          "hot-dry",
-          "mild",
-          "mild",
-          "cold",
-          "cold"
-        ]
-      },
-      {
-        "label": "地中海沿岸・南部",
-        "states": [
-          "mild",
-          "mild",
-          "mild",
-          "mild",
-          "warm",
-          "hot-dry",
-          "hot-dry",
-          "hot-dry",
-          "warm",
-          "mild",
-          "mild",
-          "mild"
-        ]
-      },
-      {
-        "label": "カナリア諸島",
-        "states": [
-          "stable-mild",
-          "stable-mild",
-          "stable-mild",
-          "stable-mild",
-          "stable-mild",
-          "stable-mild",
-          "warm",
-          "warm",
-          "warm",
-          "stable-mild",
-          "stable-mild",
-          "stable-mild"
-        ]
-      }
-    ],
-    "legend": [
-      {
-        "state": "cold",
-        "label": "寒い"
-      },
-      {
-        "state": "cool-wet",
-        "label": "涼しく雨が多い"
-      },
-      {
-        "state": "mild",
-        "label": "穏やか"
-      },
-      {
-        "state": "warm",
-        "label": "暖かい"
-      },
-      {
-        "state": "hot-dry",
-        "label": "暑く乾燥"
-      },
-      {
-        "state": "stable-mild",
-        "label": "年間を通じ比較的穏やか"
-      }
-    ],
-    "note": "山地は標高による差が大きく、冬は積雪する地域がある。ここでは国全体の地域差をつかむための大まかなリズムを示す。"
-  },
   "travelScale": {
     "kicker": "TRAVEL SCALE",
-    "title": "旅の大きさを想像する",
-    "intro": "モデルコースではなく、休暇の長さでどこまで世界が広がるかの目安。",
+    "title": "旅の日数",
+    "intro": "滞在日数ごとに、無理なく見られる範囲の目安。",
     "items": [
       {
         "duration": "3〜4日",
-        "title": "一つの都市、または一つの地域へ",
+        "title": "一つの都市、または一つの地域",
         "text": "バルセロナやマドリードのような都市、あるいはバスクやアンダルシアの一地域に焦点を絞る。"
       },
       {
@@ -673,8 +568,8 @@
       },
       {
         "duration": "2週間〜",
-        "title": "地方や島まで、移動の速度を落とす",
-        "text": "山岳・農村を加えたり、本土とは別の時間を取ってカナリア諸島まで視野を広げられる。"
+        "title": "地方や島まで広げる",
+        "text": "山岳や農村を加えたり、本土とは別にカナリア諸島まで視野を広げられる。"
       }
     ]
   }
