@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "spain",
+  "nameEn": "SPAIN",
+  "nameJa": "スペイン",
+  "region": "SOUTHERN EUROPE / 40°N",
+  "seo": {
+    "description": "グラナダから、バルセロナ、ラ・コンチャ湾、ピコス・デ・エウロパ、リベイラ・サクラ、ラ・マンチャ、モンフラグエ、カボ・デ・ガタ、テイデへ。高原・山・海・火山島まで地域差の大きいスペインを地図と9つの景観でたどる。"
+  },
+  "capital": {
+    "nameEn": "Madrid",
+    "nameJa": "マドリード",
+    "coordinates": {
+      "latitude": 40.4168,
+      "longitude": -3.7038
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 1.5,
+      "y": -1
+    }
+  },
+  "hero": {
+    "lead": "北部の緑、中央高原、地中海沿岸、火山島。スペインは一つの気候や景観では捉えきれない。地域を移るたび、地形、言語、食、街の成り立ちまで切り替わっていく。",
+    "image": "assets/images/spain/approved/hero-granada-alhambra.png",
+    "location": "Mirador de San Nicolás / Alhambra / Granada",
+    "coordinates": {
+      "latitude": 37.181,
+      "longitude": -3.5922
+    },
+    "mapOffset": {
+      "x": 1,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 44.4,
+      "south": 27.2,
+      "west": -18.4,
+      "east": 4.5
+    },
+    "svg": "assets/images/spain/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection ESP.geojson; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "barcelona-turo-de-la-rovira",
+      "name": "バルセロナ / トゥロ・デ・ラ・ロビラ",
+      "nameLocal": "Barcelona / Turó de la Rovira",
+      "mapLabel": "Barcelona",
+      "description": "標高約260mの丘から、アシャンプラの格子状街区とサグラダ・ファミリア、その先の地中海までを一望する。都市計画と海へ開いた地形を同じ視界で読める場所。",
+      "coordinates": {
+        "latitude": 41.4195,
+        "longitude": 2.1618
+      },
+      "image": "assets/images/spain/approved/barcelona-turo-de-la-rovira.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    {
+      "id": "san-sebastian-la-concha",
+      "name": "サン・セバスティアン / ラ・コンチャ湾",
+      "nameLocal": "Donostia / San Sebastián / Bahía de La Concha",
+      "mapLabel": "San Sebastián",
+      "description": "モンテ・イゲルド側から見ると、貝殻形の湾を砂浜と市街地が囲み、中央にサンタ・クララ島が浮かぶ。乾いた地中海沿岸とは異なる、緑の濃い大西洋側の都市景観。",
+      "coordinates": {
+        "latitude": 43.321,
+        "longitude": -2.009
+      },
+      "image": "assets/images/spain/approved/san-sebastian-la-concha.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": 2
+      }
+    },
+    {
+      "id": "picos-de-europa-picu-urriellu",
+      "name": "ピコス・デ・エウロパ / ピク・ウリエリュ",
+      "nameLocal": "Picos de Europa / Picu Urriellu",
+      "mapLabel": "Picu Urriellu",
+      "description": "石灰岩の峰が牧草地と森の上から急に立ち上がる北部の山岳景観。海に近い場所で湿潤な緑と険しいカルストが隣り合い、スペイン北部の地形の強さを見せる。",
+      "coordinates": {
+        "latitude": 43.201,
+        "longitude": -4.817
+      },
+      "image": "assets/images/spain/approved/picos-de-europa-picu-urriellu.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": 1
+      }
+    },
+    {
+      "id": "ribeira-sacra-sil-canyon",
+      "name": "リベイラ・サクラ / シル峡谷",
+      "nameLocal": "Ribeira Sacra / Cañón del Sil",
+      "mapLabel": "Ribeira Sacra",
+      "description": "深く刻まれたシル川の峡谷に、細い段々畑が斜面へ張り付く。急傾斜で続けられてきた葡萄栽培が、自然の谷を人の手で読み替えた文化景観になっている。",
+      "coordinates": {
+        "latitude": 42.405,
+        "longitude": -7.64
+      },
+      "image": "assets/images/spain/approved/ribeira-sacra-sil-canyon.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "consuegra-cerro-calderico",
+      "name": "コンスエグラ / セロ・カルデリコ",
+      "nameLocal": "Consuegra / Cerro Calderico",
+      "mapLabel": "Consuegra",
+      "description": "乾いたラ・マンチャ平原を見下ろす尾根に、白い風車と城が並ぶ。水平線まで続く高原の広がりと風を利用してきた暮らしが、ひとつの輪郭として残る。",
+      "coordinates": {
+        "latitude": 39.461,
+        "longitude": -3.608
+      },
+      "image": "assets/images/spain/approved/consuegra-cerro-calderico.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    {
+      "id": "monfrague-national-park",
+      "name": "モンフラグエ国立公園",
+      "nameLocal": "Parque Nacional de Monfragüe",
+      "mapLabel": "Monfragüe",
+      "description": "タホ川が低い山地を切り、珪岩の岩壁と地中海性の森、デエサが続く。海岸都市とは違う内陸西部の景観で、川と乾いた森林がつくる生態系を見渡せる。",
+      "coordinates": {
+        "latitude": 39.82,
+        "longitude": -6.058
+      },
+      "image": "assets/images/spain/approved/monfrague-national-park.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -1
+      }
+    },
+    {
+      "id": "cabo-de-gata-monsul",
+      "name": "カボ・デ・ガタ / モンスル海岸",
+      "nameLocal": "Cabo de Gata / Playa de Mónsul",
+      "mapLabel": "Cabo de Gata",
+      "description": "乾燥した火山性の丘が、そのまま砂浜と透明な地中海へ落ちていく。植物の少ない斜面と黒っぽい岩が、北部の緑とは対照的な南東部の気候を伝える。",
+      "coordinates": {
+        "latitude": 36.731,
+        "longitude": -2.146
+      },
+      "image": "assets/images/spain/approved/cabo-de-gata-monsul.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 0
+      }
+    },
+    {
+      "id": "teide-roques-de-garcia",
+      "name": "テイデ国立公園 / ロケス・デ・ガルシア",
+      "nameLocal": "Parque Nacional del Teide / Roques de García",
+      "mapLabel": "Teide",
+      "description": "テネリフェ島の高地に、侵食された火山岩群とテイデ山が向き合う。本土から離れたカナリア諸島を入れることで、スペインが大西洋の火山島まで含む国だと分かる。",
+      "coordinates": {
+        "latitude": 28.2237,
+        "longitude": -16.6311
+      },
+      "image": "assets/images/spain/approved/teide-roques-de-garcia.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": -2
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石畳",
+      "icon": "history"
+    },
+    {
+      "title": "市場",
+      "icon": "food"
+    },
+    {
+      "title": "広場",
+      "icon": "city"
+    },
+    {
+      "title": "バル",
+      "icon": "food"
+    },
+    {
+      "title": "オリーブ畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "巡礼者",
+      "icon": "hike"
+    },
+    {
+      "title": "火山",
+      "icon": "landscape"
+    },
+    {
+      "title": "入り江",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "regional-languages-autonomous-spain",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "言語が変わると、標識と街の名前も変わる",
+      "text": "スペイン語は国全体の公用語だが、自治州によってカタルーニャ語、バスク語、ガリシア語なども公用語になる。旅先で見る地名や案内表示の違いは、地域が持つ歴史と自治の輪郭そのものでもある。",
+      "points": [
+        "憲法はスペイン語を全国の公用語と定める",
+        "ほかのスペイン諸語も自治憲章に基づき地域で公用語になる"
+      ]
+    },
+    {
+      "topicKey": "camino-connects-northern-towns",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "巡礼路が、北部の町を一本につないできた",
+      "text": "サンティアゴ・デ・コンポステーラへ向かう巡礼路は、徒歩の道であると同時に、教会、宿、橋、町を連ねてきた歴史の線でもある。都市を点で見るのではなく、移動しながら国土を読む視点を与えてくれる。",
+      "points": [
+        "フランス人の道をはじめ複数のルートがある",
+        "徒歩、自転車、馬など複数の方法でたどられている"
+      ]
+    },
+    {
+      "topicKey": "roman-islamic-christian-urban-layers",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "都市には、異なる時代の層が同じ街路に残る",
+      "text": "メリダではローマ劇場の近くにイスラム期の要塞があり、コルドバやトレドではイスラム、ユダヤ、キリスト教の建築が近接する。スペインの歴史都市は、一つの時代で完成したのではなく、使い替えと重なりで現在の姿になった。",
+      "points": [
+        "メリダにはローマ遺構とイスラム期の要塞が残る",
+        "コルドバやトレドでは複数の宗教文化の痕跡を歩いてたどれる"
+      ]
+    },
+    {
+      "topicKey": "flamenco-living-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "フラメンコは、歌・踊り・演奏が重なる生活文化",
+      "text": "フラメンコは主にアンダルシアを中心に育ち、歌、踊り、ギターなどが組み合わさる。舞台で鑑賞する芸術であると同時に、家族、地域の集まり、ペーニャ、祭りを通じて受け継がれてきた文化でもある。",
+      "points": [
+        "2010年にユネスコ無形文化遺産へ登録",
+        "アンダルシアのほかムルシアやエストレマドゥーラにも伝統が広がる"
+      ]
+    },
+    {
+      "topicKey": "regional-cuisines-not-one-table",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "料理は「スペイン料理」より、地域ごとの差を見る",
+      "text": "北の魚介、内陸の煮込み、地中海沿岸の米料理、南部の農産物まで、食は気候と農業の違いをそのまま映す。同じ国でも移動するほど食材と食べ方が変わることが、スペインを旅する面白さになる。",
+      "points": [
+        "公式観光情報でも地域別の料理として整理されている",
+        "市場やバルは地域の食材を短時間で比較しやすい"
+      ]
+    },
+    {
+      "topicKey": "paradores-reuse-historic-buildings",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "城や修道院が、旅人を泊める場所として使われている",
+      "text": "パラドールには、城、宮殿、修道院など歴史建築を宿泊施設として再利用した例が各地にある。建物を保存して眺めるだけではなく、泊まりながら使い続ける仕組みとして歴史に触れられる。",
+      "points": [
+        "最初のパラドールは1928年にグレドスで開業",
+        "サンティアゴ、グラナダ、レオンなど歴史建築を使う施設がある"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "twelve-grapes-new-year",
+      "categoryEn": "NEW YEAR",
+      "categoryJa": "年越し",
+      "title": "大晦日は、12回の鐘に合わせて葡萄を12粒",
+      "text": "マドリードのプエルタ・デル・ソルの時計が午前0時を告げると、12回の鐘に合わせて葡萄を一粒ずつ食べる習慣が全国で親しまれている。年末に訪れるなら、広場の時計が旅先の時間そのものになる。",
+      "icon": "food",
+      "sourceKey": "twelveGrapes"
+    },
+    {
+      "topicKey": "cordoba-patios-open-homes",
+      "categoryEn": "CORDOBA",
+      "categoryJa": "暮らし",
+      "title": "5月のコルドバでは、住民が家の中庭を開く",
+      "text": "パティオ祭りでは、旧市街の住民が花で整えた中庭を来訪者へ開放する。建築を見るだけでなく、私的な住空間が共同体の交流の場になる仕組みまで体験できる。",
+      "icon": "culture",
+      "sourceKey": "cordobaPatios"
+    },
+    {
+      "topicKey": "valencia-fallas-burn",
+      "categoryEn": "VALENCIA",
+      "categoryJa": "祭り",
+      "title": "バレンシアでは、巨大な造形物を最後に燃やす",
+      "text": "火祭りでは時事や社会を風刺する巨大なファリャが街の広場に立ち、祭りの最後に火を入れる。数か月かけて作られた造形物が一夜で消えるところまでが行事の一部になっている。",
+      "icon": "culture",
+      "sourceKey": "valenciaFallas"
+    },
+    {
+      "topicKey": "catalonia-human-towers",
+      "categoryEn": "CATALONIA",
+      "categoryJa": "共同体",
+      "title": "カタルーニャでは、人が6〜10層の塔になる",
+      "text": "カステイスは、町の祭りなどで人が肩の上に立ち、何層もの塔を組み上げる伝統。下の大きな集団が塔全体を支え、技術だけでなく共同体の協力そのものが見える。",
+      "icon": "culture",
+      "sourceKey": "humanTowers"
+    },
+    {
+      "topicKey": "gomera-whistled-language",
+      "categoryEn": "LA GOMERA",
+      "categoryJa": "言葉",
+      "title": "ラ・ゴメラでは、スペイン語を口笛に変えて伝える",
+      "text": "シルボ・ゴメロは、スペイン語の音を異なる高さや切れ方の口笛へ置き換える伝達法。険しい地形の島で発達し、現在も学校で教えられている。",
+      "icon": "culture",
+      "sourceKey": "silboGomero"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#879b63",
+      "text": "都市歩きと内陸の自然を組み合わせやすい春。北部は雨の日もあり、山地には残雪がある一方、南部は夏ほど暑くならず街と景観をつなぎやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b89a52",
+      "text": "地中海沿岸と島は海の季節。中央・南部の内陸は日中の暑さが強くなるため、街歩きは朝夕へ寄せ、北部や高地を組み合わせると地域差が分かりやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad7749",
+      "text": "夏の暑さが弱まり、都市と内陸を移動しやすくなる。葡萄やオリーブなど農地の季節変化も見え、北から南までをつなぐ旅程を組みやすい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748d9b",
+      "text": "中央高原と山地は寒く、ピレネーや高山では雪になる。北部は湿潤、地中海沿岸は比較的穏やか、カナリア諸島はさらに異なるため、同じ冬でも地域で条件が大きく変わる。"
+    }
+  ],
+  "transport": {
+    "title": "HIGH-SPEED RAIL / REGIONAL TRAIN / CAR",
+    "text": "マドリードを中心に高速鉄道が主要都市を結ぶ一方、山地、農村、海岸の自然景観は在来線や車を組み合わせる。カナリア諸島は本土から離れるため、全国を一続きの陸路として考えず、地域単位で移動手段を分ける。"
+  },
+  "personas": [
+    {
+      "title": "一つの国の中で景色が切り替わる旅が好きな人",
+      "text": "緑の北部、中央高原、乾燥した南東部、火山島まで、地域差を移動そのものとして楽しみたい人。"
+    },
+    {
+      "title": "街を歩きながら歴史の重なりを見たい人",
+      "text": "ローマ、イスラム、中世、近現代が同じ都市空間に残る理由を、自分の足でたどりたい人。"
+    },
+    {
+      "title": "食と暮らしを地域ごとに比べたい人",
+      "text": "市場やバルに入りながら、土地ごとに食材、言語、生活のリズムが変わることを確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "マドリード"
+    },
+    {
+      "label": "人口",
+      "value": "約4,980万人"
+    },
+    {
+      "label": "面積",
+      "value": "約506,000 km²"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（カスティーリャ語）。自治州によりカタルーニャ語、バスク語、ガリシア語なども公用語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "autonomous-communities-and-cities",
+      "label": "自治州・自治都市",
+      "value": "17＋2",
+      "note": "17の自治州に加え、北アフリカ側にセウタとメリリャの2自治都市がある。言語、制度、食、祭りの地域差が大きいスペインを、一つの均質な国として見ないための基本構造。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "olive-grove-area-2025",
+      "label": "オリーブ畑",
+      "value": "約287万 ha",
+      "note": "農業省の2025年暫定調査では、オリーブ栽培面積は約287万ha。南部を中心に、農業そのものが広域の景観を形づくっている。",
+      "icon": "food"
+    },
+    {
+      "topicKey": "high-speed-rail-4000km",
+      "label": "高速鉄道",
+      "value": "約4,000 km",
+      "note": "Adifが管理する高速鉄道網は約4,000kmで、欧州最大規模。大都市間の距離感を大きく縮め、地域を横断する旅の組み方を変えている。",
+      "icon": "train"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "split-trip-by-region",
+      "title": "全国を一度に追わず、地域で旅を分ける",
+      "text": "バルセロナ、バスク、ガリシア、中央高原、アンダルシア、カナリアでは景色も移動の密度も違う。都市数ではなく、地理的なまとまりで旅程を区切ると地域差が見えやすい。"
+    },
+    {
+      "topicKey": "summer-midday-pace",
+      "title": "夏の内陸部は、昼の予定を詰めすぎない",
+      "text": "中央・南部の内陸は夏の日中に高温になりやすい。長い街歩きや屋外遺跡は朝夕へ寄せ、昼は屋内や移動へ回すと無理なく旅を続けられる。"
+    },
+    {
+      "topicKey": "island-logistics-separate",
+      "title": "島を入れるなら、本土とは移動日を分けて考える",
+      "text": "カナリア諸島は本土の延長として車や鉄道でつなげられない。テイデなど島の景観を旅程へ入れる場合は、航空移動と島内移動を独立した区間として確保する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "portugal",
+      "nameEn": "PORTUGAL",
+      "nameJa": "ポルトガル",
+      "flag": "🇵🇹",
+      "reason": "イベリア半島の大西洋側を、港町と内陸の景観から続けて見たいなら。"
+    },
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "ピレネーの向こう側へ渡り、都市・農地・山岳の違いを比較したいなら。"
+    },
+    {
+      "slug": "morocco",
+      "nameEn": "MOROCCO",
+      "nameJa": "モロッコ",
+      "flag": "🇲🇦",
+      "reason": "海峡の南へ渡り、イベリアと北アフリカの歴史的なつながりを追いたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-02",
+  "sourcesVerifiedAt": "2026-09-02",
+  "sourceDates": {
+    "population": "2026-07-01",
+    "religion": "2026-04",
+    "oliveArea": "2025",
+    "highSpeedRail": "2024",
+    "autonomousCommunities": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection ESP.geojson; WGS84",
+    "population": "Instituto Nacional de Estadística (INE), Estadística Continua de Población, 1 July 2026: 49,801,559 residents (provisional), published 6 Aug 2026",
+    "area": "Instituto Nacional de Estadística (INE), Superficie y altimetría: total national area 505,990 km²",
+    "language": "Boletín Oficial del Estado, Constitución Española, Article 3: Castilian is the official Spanish language of the State; other Spanish languages may also be official in their Autonomous Communities",
+    "religion": "Centro de Investigaciones Sociológicas (CIS), Barómetro de abril 2026: Catholic self-identification (practising and non-practising combined) remains the largest religious identification",
+    "currency": "European Union / European Central Bank: Spain uses the euro (EUR)",
+    "barcelona": "Barcelona Turisme / Barcelona City Council: Turó de la Rovira is about 262 m high and offers a 360-degree view over Barcelona; Civil War anti-aircraft battery remains survive there",
+    "sanSebastian": "San Sebastián Turismo: Monte Igeldo overlooks La Concha; La Concha is a shell-shaped bay between Igeldo and Urgull with Santa Clara island",
+    "picos": "Organismo Autónomo Parques Nacionales: Picos de Europa is a limestone/karst mountain landscape with Picu Urriellu as a defining peak",
+    "ribeiraSacra": "Turismo de Galicia: the Sil canyon reaches steep depths and supports terrace/heroic viticulture on its slopes",
+    "consuegra": "Spain.info: Cerro Calderico above Consuegra preserves a line of windmills beside the castle overlooking the La Mancha plain",
+    "monfrague": "MITECO / Parques Nacionales: Monfragüe is structured by the Tagus and Tiétar rivers, quartzite ridges, Mediterranean forest and dehesa",
+    "caboDeGata": "Spain.info / Turismo de Andalucía: Mónsul is a volcanic coastal landscape of dunes, dark sand and volcanic cliffs within Cabo de Gata-Níjar",
+    "teide": "Spain.info / Tenerife official sources: Roques de García are eroded volcanic formations within Teide National Park",
+    "hero": "Turismo de Granada: Mirador de San Nicolás gives a complete view of the Alhambra with the Sierra Nevada behind it",
+    "autonomyLanguages": "Boletín Oficial del Estado, Constitución Española Article 3; La Moncloa: Spain is organised into 17 autonomous communities plus Ceuta and Melilla",
+    "camino": "Spain.info, The Way of Saint James: multiple pilgrimage routes lead to Santiago de Compostela and are travelled on foot, bicycle or horseback",
+    "layeredCities": "Spain.info: Mérida preserves Roman monuments and an Arab fortress; Córdoba and Toledo preserve overlapping Christian, Islamic and Jewish heritage",
+    "flamenco": "UNESCO / Spain.info: Flamenco combines cante, baile and toque and was inscribed on the Representative List of Intangible Cultural Heritage in 2010",
+    "regionalCuisine": "Spain.info, Regional cuisine in Spain: food traditions differ markedly among the north, interior, Mediterranean coast and south",
+    "paradores": "Paradores / Spain.info: the Paradores network began at Gredos in 1928 and includes reused castles, palaces, monasteries and other historic buildings",
+    "twelveGrapes": "Madrid official tourism, Puerta del Sol: the New Year tradition is to eat 12 grapes with the 12 midnight chimes",
+    "cordobaPatios": "UNESCO Intangible Cultural Heritage: Fiesta of the patios in Cordova, inscribed 2012; residents open flower-filled patios during the festival",
+    "valenciaFallas": "UNESCO Intangible Cultural Heritage: Valencia Fallas festivity, inscribed 2016; giant fallas are erected and burned at the end of the festival",
+    "humanTowers": "UNESCO Intangible Cultural Heritage: Human towers (Castells), inscribed 2010; towers typically consist of six to ten levels",
+    "silboGomero": "UNESCO Intangible Cultural Heritage: Silbo Gomero, inscribed 2009; whistled language replicates Castilian Spanish and is taught in schools",
+    "oliveArea": "Ministerio de Agricultura, Pesca y Alimentación, ESYRCE provisional 2025: olive grove area 2,873,396 ha",
+    "highSpeedRail": "Adif: Spain maintains about 4,000 km of high-speed railway, the most extensive high-speed network in Europe",
+    "weather": "Spain.info practical weather guidance: climate varies strongly by region and season",
+    "autonomousCommunities": "Gobierno de España / La Moncloa, Organización territorial: Spain has 17 autonomous communities; Ceuta and Melilla are autonomous cities"
+  }
+}
