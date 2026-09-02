@@ -57,12 +57,14 @@ jobs:
           missing = sorted(required_scenes - set(scene_ids))
           if missing:
               raise SystemExit(f"Spain V3 scenes missing in production: {missing}")
-          if len(data.get("taste", {}).get("items", [])) < 2:
-              raise SystemExit("Spain V3 taste block missing in production")
-          if len(data.get("seasonMatrix", {}).get("rows", [])) != 4:
-              raise SystemExit("Spain V3 season matrix missing in production")
-          if len(data.get("travelScale", {}).get("items", [])) != 3:
-              raise SystemExit("Spain V3 travel scale missing in production")
+          taste = data.get("taste", {})
+          if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 3:
+              raise SystemExit("Spain food shortlist is not the reviewed 3-item version")
+          if "seasonMatrix" in data:
+              raise SystemExit("Removed Spain season matrix is still present in production")
+          travel_scale = data.get("travelScale", {})
+          if travel_scale.get("title") != "旅の日数" or len(travel_scale.get("items", [])) != 3:
+              raise SystemExit("Spain travel scale is not the reviewed version")
           print("Spain V3 production JSON verified.")
           PY
 
@@ -78,5 +80,8 @@ jobs:
           grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
           grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
           grep -q 'taste-section' /tmp/country.css
-          grep -q 'season-matrix' /tmp/country.css
+          ! grep -q 'renderSeasonMatrix' /tmp/app.js
+          ! grep -q 'scene-role' /tmp/app.js
+          ! grep -q 'season-matrix' /tmp/country.css
+          ! grep -q 'scene-role' /tmp/country.css
           echo "Production route, JS and CSS verified."
