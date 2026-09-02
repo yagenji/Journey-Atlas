@@ -446,7 +446,7 @@ function renderTravelScale(fragment, data = {}) {
   data.items.forEach((item) => {
     const article = document.createElement('article');
     article.className = 'travel-scale__item';
-    article.innerHTML = `<strong>${escapeHtml(item.duration || '')}</strong><div><h3>${escapeHtml(item.title || '')}</h3><p>${escapeHtml(item.text || '')}</p></div>`;
+    article.innerHTML = `<span class="travel-scale__icon">${iconSvg(item.icon || 'calendar')}</span><div><strong>${escapeHtml(item.duration || '')}</strong><h3>${escapeHtml(item.title || '')}</h3><p>${escapeHtml(item.text || '')}</p></div>`;
     grid.append(article);
   });
   section.hidden = false;
