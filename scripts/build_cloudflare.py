@@ -43,6 +43,24 @@ def main() -> int:
     run(sys.executable, "scripts/package_site.py", env=env)
 
     dist = ROOT / "dist"
+    commit_sha = (
+        env.get("CF_PAGES_COMMIT_SHA")
+        or env.get("GITHUB_SHA")
+        or subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    )
+    build_meta = {
+        "commit": commit_sha,
+        "host": env["JOURNEY_ATLAS_SITE_URL"].rstrip("/"),
+    }
+    (dist / "build-meta.json").write_text(
+        json.dumps(build_meta, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     expected = [
         dist / "index.html",
         dist / "404.html",
@@ -52,6 +70,7 @@ def main() -> int:
         dist / "faq" / "index.html",
         dist / "privacy" / "index.html",
         dist / "_headers",
+        dist / "build-meta.json",
         dist / "assets" / "css" / "country.css",
         dist / "assets" / "css" / "top.css",
         dist / "countries" / "iceland" / "index.html",
