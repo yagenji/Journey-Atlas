@@ -6,7 +6,7 @@
   "nameJa": "スペイン",
   "region": "SOUTHERN EUROPE / 40°N",
   "seo": {
-    "description": "グラナダから、バルセロナ、ラ・コンチャ湾、ピコス・デ・エウロパ、リベイラ・サクラ、ラ・マンチャ、モンフラグエ、カボ・デ・ガタ、テイデへ。高原・山・海・火山島まで地域差の大きいスペインを地図と9つの景観でたどる。"
+    "description": "グラナダのアルハンブラから、バルセロナ、サン・セバスティアン、ピコス・デ・エウロパ、リベイラ・サクラ、ラス・メドゥラス、ラ・マンチャ、ロンダ、テイデへ。景色から地域差と暮らしを知るスペイン。"
   },
   "capital": {
     "nameEn": "Madrid",
@@ -51,7 +51,7 @@
       "name": "バルセロナ / トゥロ・デ・ラ・ロビラ",
       "nameLocal": "Barcelona / Turó de la Rovira",
       "mapLabel": "Barcelona",
-      "description": "標高約260mの丘から、アシャンプラの格子状街区と、その先に広がる地中海までを一望する。都市計画と海へ開いた地形を同じ視界で読める場所。",
+      "description": "丘から見下ろすと、アシャンプラの格子状街区とサグラダ・ファミリア、その先の地中海が一つの視界に収まる。建築だけでなく、計画都市と海へ開いた地形までバルセロナの輪郭として読める。",
       "coordinates": {
         "latitude": 41.4195,
         "longitude": 2.1618
@@ -61,14 +61,15 @@
       "mapOffset": {
         "x": 0,
         "y": 1
-      }
+      },
+      "role": "ANCHOR + ATLAS VIEW"
     },
     {
       "id": "san-sebastian-la-concha",
       "name": "サン・セバスティアン / ラ・コンチャ湾",
       "nameLocal": "Donostia / San Sebastián / Bahía de La Concha",
       "mapLabel": "San Sebastián",
-      "description": "モンテ・イゲルド側から見ると、貝殻形の湾を砂浜と市街地が囲み、中央にサンタ・クララ島が浮かぶ。乾いた地中海沿岸とは異なる、緑の濃い大西洋側の都市景観。",
+      "description": "緑の丘に囲まれた貝殻形の湾を、砂浜と市街地が縁取る。乾いた地中海沿岸とは違う湿潤な大西洋側の景色が、スペインを一つの気候で捉えられないことを教える。",
       "coordinates": {
         "latitude": 43.321,
         "longitude": -2.009
@@ -78,14 +79,15 @@
       "mapOffset": {
         "x": 1,
         "y": 2
-      }
+      },
+      "role": "ATLAS VIEW"
     },
     {
       "id": "picos-de-europa-picu-urriellu",
       "name": "ピコス・デ・エウロパ / ピク・ウリエリュ",
       "nameLocal": "Picos de Europa / Picu Urriellu",
       "mapLabel": "Picu Urriellu",
-      "description": "石灰岩の峰が牧草地と森の上から急に立ち上がる北部の山岳景観。海に近い場所で湿潤な緑と険しいカルストが隣り合い、スペイン北部の地形の強さを見せる。",
+      "description": "牧草地と森の上に、切り立った石灰岩の峰が急に立ち上がる。海に近い北部にこれほど険しい山岳世界があることが、一般的なスペイン像を大きく広げる。",
       "coordinates": {
         "latitude": 43.201,
         "longitude": -4.817
@@ -95,14 +97,15 @@
       "mapOffset": {
         "x": -1,
         "y": 1
-      }
+      },
+      "role": "DISCOVERY"
     },
     {
       "id": "ribeira-sacra-sil-canyon",
       "name": "リベイラ・サクラ / シル峡谷",
       "nameLocal": "Ribeira Sacra / Cañón del Sil",
       "mapLabel": "Ribeira Sacra",
-      "description": "深く刻まれたシル川の峡谷に、細い段々畑が斜面へ張り付く。急傾斜で続けられてきた葡萄栽培が、自然の谷を人の手で読み替えた文化景観になっている。",
+      "description": "深いシル峡谷の斜面に、細い葡萄畑が段々に連なる。急傾斜を耕地へ変えてきた営みが、川の地形とワイン文化を一つの景観にしている。",
       "coordinates": {
         "latitude": 42.405,
         "longitude": -7.64
@@ -112,6 +115,25 @@
       "mapOffset": {
         "x": -1.5,
         "y": 0
+      },
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "las-medulas-mirador-orellan",
+      "name": "ラス・メドゥラス / オレリャン展望台",
+      "nameLocal": "Las Médulas / Mirador de Orellán",
+      "mapLabel": "Las Médulas",
+      "role": "ATLAS VIEW + DISCOVERY",
+      "description": "赤い粘土の峰が栗林の間から立ち上がる。一見すると自然地形に見えるが、その輪郭の多くはローマ時代の金採掘で水の力を使って山を崩した痕跡だ。古代の産業が地形そのものに残っている。",
+      "coordinates": {
+        "latitude": 42.45696,
+        "longitude": -6.75154
+      },
+      "image": "assets/images/spain/approved/las-medulas-mirador-orellan.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": -1
       }
     },
     {
@@ -119,7 +141,7 @@
       "name": "コンスエグラ / セロ・カルデリコ",
       "nameLocal": "Consuegra / Cerro Calderico",
       "mapLabel": "Consuegra",
-      "description": "乾いたラ・マンチャ平原を見下ろす尾根に、白い風車と城が並ぶ。水平線まで続く高原の広がりと風を利用してきた暮らしが、ひとつの輪郭として残る。",
+      "description": "乾いたラ・マンチャ平原を見下ろす尾根に、白い風車と城が並ぶ。水平線まで続く高原と風を利用してきた暮らしが、文学の記憶とともに内陸スペインの象徴的な輪郭をつくる。",
       "coordinates": {
         "latitude": 39.461,
         "longitude": -3.608
@@ -129,40 +151,25 @@
       "mapOffset": {
         "x": 2,
         "y": 2
-      }
+      },
+      "role": "ANCHOR + ATLAS VIEW"
     },
     {
-      "id": "monfrague-national-park",
-      "name": "モンフラグエ国立公園",
-      "nameLocal": "Parque Nacional de Monfragüe",
-      "mapLabel": "Monfragüe",
-      "description": "タホ川が低い山地を切り、珪岩の岩壁と地中海性の森、デエサが続く。海岸都市とは違う内陸西部の景観で、川と乾いた森林がつくる生態系を見渡せる。",
+      "id": "ronda-puente-nuevo-tajo",
+      "name": "ロンダ / ヌエボ橋とタホ峡谷",
+      "nameLocal": "Ronda / Puente Nuevo / Tajo",
+      "mapLabel": "Ronda",
+      "role": "ANCHOR + ATLAS VIEW",
+      "description": "深い峡谷の両側ぎりぎりまで白い市街が続き、その間を巨大な石橋がつなぐ。ヌエボ橋は名所であるだけでなく、分断された旧市街と新市街を結び、地形が都市の成長そのものを決めてきたことを見せる。",
       "coordinates": {
-        "latitude": 39.82,
-        "longitude": -6.058
+        "latitude": 36.74072,
+        "longitude": -5.16588
       },
-      "image": "assets/images/spain/approved/monfrague-national-park.png",
+      "image": "assets/images/spain/approved/ronda-puente-nuevo-tajo.png",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -2,
-        "y": -1
-      }
-    },
-    {
-      "id": "cabo-de-gata-monsul",
-      "name": "カボ・デ・ガタ / モンスル海岸",
-      "nameLocal": "Cabo de Gata / Playa de Mónsul",
-      "mapLabel": "Cabo de Gata",
-      "description": "乾燥した火山性の丘が、そのまま砂浜と透明な地中海へ落ちていく。植物の少ない斜面と黒っぽい岩が、北部の緑とは対照的な南東部の気候を伝える。",
-      "coordinates": {
-        "latitude": 36.731,
-        "longitude": -2.146
-      },
-      "image": "assets/images/spain/approved/cabo-de-gata-monsul.png",
-      "labelPosition": "right",
-      "mapOffset": {
-        "x": 2,
-        "y": 0
+        "x": -1.5,
+        "y": 1
       }
     },
     {
@@ -170,7 +177,7 @@
       "name": "テイデ国立公園 / ロケス・デ・ガルシア",
       "nameLocal": "Parque Nacional del Teide / Roques de García",
       "mapLabel": "Teide",
-      "description": "テネリフェ島の高地に、侵食された火山岩群とテイデ山が向き合う。本土から離れたカナリア諸島を入れることで、スペインが大西洋の火山島まで含む国だと分かる。",
+      "description": "高地の乾いた大地に侵食された火山岩群が並び、その背後にテイデ山が立つ。本土から遠く離れたカナリア諸島まで含めて初めて、スペインが大西洋の火山島を持つ国だと実感できる。",
       "coordinates": {
         "latitude": 28.2237,
         "longitude": -16.6311
@@ -180,7 +187,8 @@
       "mapOffset": {
         "x": 2,
         "y": -2
-      }
+      },
+      "role": "DISCOVERY"
     }
   ],
   "encounters": [
@@ -506,6 +514,168 @@
     "weather": "Spain.info practical weather guidance: climate varies strongly by region and season",
     "autonomousCommunities": "Gobierno de España / La Moncloa, Organización territorial: Spain has 17 autonomous communities; Ceuta and Melilla are autonomous cities",
     "japanArea": "Geospatial Information Authority of Japan (GSI), national land area as of 1 April 2026: 377,974.87 km²; used to calculate Spain ≈ 1.34× Japan",
-    "sagradaFamilia": "Basílica de la Sagrada Família, official history and 2026 tower materials: on 20 February 2026 the upper arm of the cross completed the exterior of the tower of Jesus Christ; the tower stands 172.5 m tall; the basilica has 18 towers"
+    "sagradaFamilia": "Basílica de la Sagrada Família, official history and 2026 tower materials: on 20 February 2026 the upper arm of the cross completed the exterior of the tower of Jesus Christ; the tower stands 172.5 m tall; the basilica has 18 towers",
+    "lasMedulas": "Spain.info: Las Médulas cultural landscape; Roman gold mining from the 1st century AD used hydraulic force (ruina montium), producing the red-clay relief and chestnut-covered landscape; Mirador de Orellán overlooks the complex.",
+    "ronda": "Turismo de Andalucía: Puente Nuevo is 98 m high and connects the modern Mercadillo quarter with Ronda's old quarter across the Tajo gorge, enabling urban expansion; Tajo de Ronda is about 100 m deep.",
+    "paella": "Spain.info: La Albufera near Valencia links the regional wetland landscape with Valencia's local dish, paella.",
+    "jamonIberico": "Spain.info: Iberian ham production is closely linked to dehesa landscapes; bellota categories depend on Iberian breed and acorn feeding in the dehesa."
+  },
+  "taste": {
+    "kicker": "TASTE OF SPAIN",
+    "title": "土地の味から、スペインを見る",
+    "intro": "料理名を覚えるのではなく、地形や農業が食卓へどうつながるかを見る。",
+    "items": [
+      {
+        "name": "パエリア・バレンシアーナ",
+        "nameLocal": "Paella Valenciana",
+        "region": "VALENCIA",
+        "text": "浅い鍋で米にスープの旨味を吸わせ、粒を立たせて仕上げる。バレンシアの米料理をたどると、地中海沿岸の湿地と稲作が、土地の代表料理へつながっていることが見えてくる。",
+        "atlasLink": "アルブフェラ周辺の水田景観と、米を中心にした食文化。",
+        "icon": "food"
+      },
+      {
+        "name": "ハモン・イベリコ・デ・ベジョータ",
+        "nameLocal": "Jamón Ibérico de bellota",
+        "region": "DEHESA",
+        "text": "薄く切ると脂がやわらかくほどけ、塩味の奥にナッツを思わせる香りが残る。味の背景には、樫の木が点在するデエサで豚がどんぐりを食べる放牧の風景がある。",
+        "atlasLink": "西部・南西部のデエサは、景観そのものが食の生産環境になっている。",
+        "icon": "food"
+      }
+    ]
+  },
+  "seasonMatrix": {
+    "months": [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
+    "rows": [
+      {
+        "label": "北部・大西洋側",
+        "states": [
+          "cool-wet",
+          "cool-wet",
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "cool-wet",
+          "cool-wet"
+        ]
+      },
+      {
+        "label": "中央高原",
+        "states": [
+          "cold",
+          "cold",
+          "mild",
+          "mild",
+          "mild",
+          "hot-dry",
+          "hot-dry",
+          "hot-dry",
+          "mild",
+          "mild",
+          "cold",
+          "cold"
+        ]
+      },
+      {
+        "label": "地中海沿岸・南部",
+        "states": [
+          "mild",
+          "mild",
+          "mild",
+          "mild",
+          "warm",
+          "hot-dry",
+          "hot-dry",
+          "hot-dry",
+          "warm",
+          "mild",
+          "mild",
+          "mild"
+        ]
+      },
+      {
+        "label": "カナリア諸島",
+        "states": [
+          "stable-mild",
+          "stable-mild",
+          "stable-mild",
+          "stable-mild",
+          "stable-mild",
+          "stable-mild",
+          "warm",
+          "warm",
+          "warm",
+          "stable-mild",
+          "stable-mild",
+          "stable-mild"
+        ]
+      }
+    ],
+    "legend": [
+      {
+        "state": "cold",
+        "label": "寒い"
+      },
+      {
+        "state": "cool-wet",
+        "label": "涼しく雨が多い"
+      },
+      {
+        "state": "mild",
+        "label": "穏やか"
+      },
+      {
+        "state": "warm",
+        "label": "暖かい"
+      },
+      {
+        "state": "hot-dry",
+        "label": "暑く乾燥"
+      },
+      {
+        "state": "stable-mild",
+        "label": "年間を通じ比較的穏やか"
+      }
+    ],
+    "note": "山地は標高による差が大きく、冬は積雪する地域がある。ここでは国全体の地域差をつかむための大まかなリズムを示す。"
+  },
+  "travelScale": {
+    "kicker": "TRAVEL SCALE",
+    "title": "旅の大きさを想像する",
+    "intro": "モデルコースではなく、休暇の長さでどこまで世界が広がるかの目安。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "一つの都市、または一つの地域へ",
+        "text": "バルセロナやマドリードのような都市、あるいはバスクやアンダルシアの一地域に焦点を絞る。"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "異なる2〜3地域をつなぐ",
+        "text": "都市と地方、北部と内陸など、性格の違う地域を組み合わせるとスペインの幅が見え始める。"
+      },
+      {
+        "duration": "2週間〜",
+        "title": "地方や島まで、移動の速度を落とす",
+        "text": "山岳・農村を加えたり、本土とは別の時間を取ってカナリア諸島まで視野を広げられる。"
+      }
+    ]
   }
 }
