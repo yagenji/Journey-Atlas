@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/country.css?v=20260902-spain-v3-review2">
+  <link rel="stylesheet" href="assets/css/country.css?v=20260902-travel-layout-v2">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -141,31 +141,42 @@
           <div class="travel-trivia__grid" id="travel-trivia-grid"></div>
         </section>
 
-        <section class="travel-scale" id="travel-scale-section" aria-labelledby="travel-scale-title" hidden>
-          <div class="travel-scale__head">
-            <span class="section-kicker-en" id="travel-scale-kicker">TRAVEL SCALE</span>
-            <h2 id="travel-scale-title"></h2>
-            <p id="travel-scale-intro"></p>
+        <section class="travel-planning" aria-labelledby="travel-planning-title">
+          <div class="travel-planning__head">
+            <span class="section-kicker-en">WHEN TO GO</span>
+            <h2 id="travel-planning-title">旅するなら</h2>
           </div>
-          <div class="travel-scale__grid" id="travel-scale-grid"></div>
+          <div class="travel-planning__content">
+            <section class="travel-scale travel-planning__block travel-planning__block--days" id="travel-scale-section" aria-labelledby="travel-scale-title" hidden>
+              <div class="travel-scale__head">
+                <span class="travel-planning__label" id="travel-scale-kicker">TRAVEL SCALE</span>
+                <h3 id="travel-scale-title"></h3>
+                <p id="travel-scale-intro"></p>
+              </div>
+              <div class="travel-scale__grid" id="travel-scale-grid"></div>
+            </section>
+            <section class="travel-planning__block travel-planning__block--season" aria-labelledby="travel-season-title">
+              <span class="travel-planning__label">SEASON</span>
+              <h3 id="travel-season-title">季節</h3>
+              <div class="season-list" id="seasons"></div>
+            </section>
+            <section class="travel-planning__block travel-planning__block--transport" aria-labelledby="travel-transport-title">
+              <span class="travel-planning__label">TRANSPORT</span>
+              <h3 id="travel-transport-title">移動</h3>
+              <div class="transport" id="transport"></div>
+            </section>
+          </div>
         </section>
 
-        <section class="travel-grid" aria-label="旅の情報">
-          <section class="info-section info-seasons">
-            <span class="section-kicker-en">WHEN TO GO</span>
-            <h2>旅するなら</h2>
-            <p class="section-label">季節</p>
-            <div class="season-list" id="seasons"></div>
-            <div class="transport" id="transport"></div>
-          </section>
-          <section class="info-section">
+        <section class="travel-guidance" aria-label="旅のヒント">
+          <section class="travel-guidance__block" aria-labelledby="for-whom-title">
             <span class="section-kicker-en">FOR WHOM</span>
-            <h2>こんな人に</h2>
+            <h2 id="for-whom-title">こんな人に</h2>
             <div class="persona-list" id="personas"></div>
           </section>
-          <section class="info-section">
+          <section class="travel-guidance__block" aria-labelledby="travel-notes-title">
             <span class="section-kicker-en">TRAVEL NOTES</span>
-            <h2>知っておきたいこと</h2>
+            <h2 id="travel-notes-title">知っておきたいこと</h2>
             <div class="tip-list" id="tips"></div>
           </section>
         </section>
@@ -199,7 +210,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260902-spain-v3-review2" defer></script>
+  <script src="assets/js/app.js?v=20260902-travel-layout-v2" defer></script>
   <script src="assets/js/country-themes.js?v=20260830-theme-context-v2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2345" defer></script>
 </body>
