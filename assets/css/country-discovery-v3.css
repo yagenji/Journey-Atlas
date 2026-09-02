@@ -91,34 +91,51 @@
 }
 .travel-scale__item{
   min-width:0;
-  padding:16px 17px 18px;
-  border-right:1px solid rgba(18,54,92,.12);
-  border-bottom:1px solid rgba(18,54,92,.12);
-  background:rgba(255,255,255,.22);
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:12px 0;
+  border-top:1px solid rgba(18,54,92,.12);
+  border-right:0;
+  border-bottom:0;
+  background:transparent;
 }
-.travel-scale__item>strong{
+.travel-scale__icon,
+.travel-planning__block--season .season-list article>.ui-icon{
+  width:18px;
+  height:18px;
+  margin-top:2px;
+  color:#8a6b55;
+}
+.travel-scale__item strong,
+.travel-planning__block--season .season-list article>b{
   display:block;
-  margin:0 0 8px;
+  margin:0;
   color:#8a6b55;
   font-family:var(--meta);
-  font-size:10px;
-  line-height:1.3;
+  font-size:10.5px;
+  line-height:1.5;
   font-weight:500;
-  letter-spacing:.08em;
+  letter-spacing:.04em;
 }
 .travel-scale__item h3{
-  margin:0;
+  margin:4px 0 0;
   color:#12365c;
   font-family:"Zen Kaku Gothic New",sans-serif;
-  font-size:14px;
-  line-height:1.55;
+  font-size:12.5px;
+  line-height:1.5;
   font-weight:600;
 }
-.travel-scale__item p{
-  margin:7px 0 0;
+.travel-scale__item p,
+.travel-planning__block--season .season-list p,
+.travel-planning__block--transport .transport p,
+.travel-guidance .persona-list p,
+.travel-guidance .tip-list p{
+  margin:5px 0 0;
   color:#4d5b65;
-  font-size:12px;
-  line-height:1.72;
+  font-size:11.5px;
+  line-height:1.68;
 }
 
 .sr-only{
@@ -215,30 +232,15 @@
   background:rgba(255,255,255,.24);
 }
 .travel-scale__head{
-  display:grid;
-  grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);
-  column-gap:18px;
-  row-gap:2px;
-  align-items:end;
+  display:block;
   margin-bottom:12px;
 }
-.travel-scale__head .travel-planning__label{
-  grid-column:1;
-  grid-row:1;
-}
-.travel-scale__head h3{
-  grid-column:1;
-  grid-row:2;
-}
 .travel-scale__head>p{
-  grid-column:2;
-  grid-row:1 / span 2;
-  align-self:end;
   max-width:none;
-  margin:0;
+  margin:5px 0 0;
   color:#66717a;
   font-size:11.5px;
-  line-height:1.7;
+  line-height:1.65;
 }
 .travel-scale__grid{
   grid-template-columns:1fr;
@@ -252,18 +254,14 @@
 .travel-planning__block--season .season-list article{
   min-height:0;
   display:grid;
-  grid-template-columns:62px 1fr!important;
-  gap:8px;
+  grid-template-columns:24px minmax(0,1fr)!important;
+  gap:10px;
   align-items:start;
-  padding:9px 0;
+  padding:12px 0;
+  border-top:1px solid rgba(18,54,92,.12);
 }
-.travel-planning__block--season .season-list article>b{
-  font-size:10.5px;
-  line-height:1.5;
-}
-.travel-planning__block--season .season-list p{
-  font-size:11.5px;
-  line-height:1.65;
+.travel-planning__block--season .season-list article>div{
+  min-width:0;
 }
 .travel-planning__block--transport .transport{
   display:grid!important;
@@ -281,17 +279,11 @@
 .travel-planning__block--transport .transport h4{
   margin:0;
   color:#12365c;
-  font-family:var(--meta);
-  font-size:10px;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:12.5px;
   line-height:1.5;
-  font-weight:500;
-  letter-spacing:.05em;
-}
-.travel-planning__block--transport .transport p{
-  margin:6px 0 0;
-  color:#4d5b65;
-  font-size:11.5px;
-  line-height:1.72;
+  font-weight:600;
+  letter-spacing:0;
 }
 .travel-planning__block--transport .transport>b{
   display:none!important;
@@ -377,4 +369,22 @@
   .travel-guidance__block{
     padding:20px 18px 21px;
   }
+}
+
+/* Typography lock for the compact travel area */
+.travel-planning__block>h3,
+.travel-scale__head h3{
+  font-size:15px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+}
+.travel-planning__label{
+  font-size:9px!important;
+  line-height:1.3!important;
+}
+.travel-guidance .persona-list h3,
+.travel-guidance .tip-list h3{
+  font-size:12.5px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
 }
