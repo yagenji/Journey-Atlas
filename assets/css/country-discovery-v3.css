@@ -1,0 +1,154 @@
+/* Optional Country Page discovery components — shared across countries. */
+.scene-role {
+  display: inline-flex;
+  width: fit-content;
+  margin: 7px 0 0;
+  padding: 3px 7px;
+  border: 1px solid rgba(23,58,93,.2);
+  border-radius: 999px;
+  font-family: "Spline Sans Mono", monospace;
+  font-size: 9px;
+  line-height: 1.2;
+  letter-spacing: .06em;
+  color: #173a5d;
+  background: rgba(250,247,238,.8);
+}
+.taste-section,
+.travel-scale {
+  margin-top: 72px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(23,58,93,.16);
+}
+.taste-section[hidden],
+.travel-scale[hidden],
+.season-matrix[hidden] { display:none !important; }
+.taste-section__head {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);
+  gap:36px;
+  align-items:end;
+  margin-bottom:24px;
+}
+.taste-section__head h2,
+.travel-scale__head h2 { margin:6px 0 0; }
+.taste-section__intro,
+.travel-scale__head > p {
+  margin:0;
+  color:#59636b;
+  line-height:1.8;
+}
+.taste-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.taste-card {
+  padding:24px;
+  border:1px solid rgba(23,58,93,.15);
+  background:rgba(250,247,238,.46);
+}
+.taste-card__meta {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:"Spline Sans Mono",monospace;
+  font-size:10px;
+  letter-spacing:.12em;
+  color:#7c6855;
+}
+.taste-card h3 { margin:12px 0 2px; font-size:20px; }
+.taste-card small { color:#6e7479; }
+.taste-card p { margin:14px 0 0; line-height:1.85; }
+.taste-card__atlas {
+  padding-top:12px;
+  border-top:1px solid rgba(23,58,93,.12);
+  color:#173a5d;
+  font-size:13px;
+}
+.season-matrix {
+  margin:14px 0 24px;
+  overflow-x:auto;
+  padding-bottom:6px;
+}
+.season-matrix__row {
+  min-width:700px;
+  display:grid;
+  grid-template-columns:140px repeat(12,minmax(34px,1fr));
+  gap:3px;
+  align-items:center;
+  margin-bottom:3px;
+}
+.season-matrix__row > strong { font-size:11px; font-weight:500; }
+.season-matrix__row--head b {
+  font-family:"Spline Sans Mono",monospace;
+  font-size:9px;
+  font-weight:500;
+  text-align:center;
+  color:#777;
+}
+.season-cell {
+  display:block;
+  height:18px;
+  border-radius:2px;
+  border:1px solid rgba(23,58,93,.08);
+}
+.season-cell--cold { background:#dbe6e8; }
+.season-cell--cool-wet { background:#cbdde1; }
+.season-cell--mild { background:#dce2c8; }
+.season-cell--warm { background:#ead9af; }
+.season-cell--hot-dry { background:#dfc08b; }
+.season-cell--stable-mild { background:#d7dec7; }
+.season-matrix__legend {
+  min-width:700px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px 18px;
+  margin:12px 0 0 140px;
+  font-size:10px;
+  color:#697179;
+}
+.season-matrix__legend span { display:inline-flex; align-items:center; gap:6px; }
+.season-matrix__legend .season-cell { width:20px; height:10px; }
+.season-matrix__note { min-width:700px; margin:12px 0 0 140px; font-size:11px; color:#747b80; line-height:1.7; }
+.travel-scale__head { max-width:760px; margin-bottom:24px; }
+.travel-scale__grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.travel-scale__item {
+  padding:22px;
+  border-top:2px solid #173a5d;
+  background:rgba(250,247,238,.34);
+}
+.travel-scale__item > strong {
+  display:block;
+  margin-bottom:16px;
+  font-family:"Spline Sans Mono",monospace;
+  color:#7c6855;
+  font-size:14px;
+}
+.travel-scale__item h3 { margin:0 0 8px; font-size:16px; }
+.travel-scale__item p { margin:0; color:#59636b; line-height:1.75; font-size:13px; }
+.sr-only {
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+@media (max-width: 900px) {
+  .taste-section__head { grid-template-columns:1fr; gap:12px; }
+  .travel-scale__grid { grid-template-columns:1fr; }
+}
+@media (max-width: 700px) {
+  .taste-section, .travel-scale { margin-top:52px; padding-top:28px; }
+  .taste-grid { grid-template-columns:1fr; }
+  .taste-card { padding:20px; }
+  .season-matrix__row { grid-template-columns:120px repeat(12,32px); min-width:540px; }
+  .season-matrix__legend, .season-matrix__note { margin-left:120px; min-width:420px; }
+}
