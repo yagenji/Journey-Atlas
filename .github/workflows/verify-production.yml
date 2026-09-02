@@ -90,6 +90,7 @@ jobs:
           ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
           grep -q 'travel-guidance' /tmp/country.css
+          grep -q 'display:flex!important' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
           ! grep -q 'renderSeasonMatrix' /tmp/app.js
           ! grep -q 'scene-role' /tmp/app.js

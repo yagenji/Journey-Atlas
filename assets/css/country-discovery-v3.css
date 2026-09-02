@@ -407,13 +407,17 @@
   display:none!important;
 }
 
-/* Keep one transport icon, aligned to the text column without overlap */
+/* Keep one transport icon without collapsing the text width */
 .travel-planning__block--transport .transport{
-  grid-template-columns:24px minmax(0,1fr)!important;
-  column-gap:10px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:flex-start!important;
+  gap:10px!important;
+  width:100%;
 }
 .travel-planning__block--transport .transport-icon{
   display:block!important;
+  flex:0 0 18px;
   width:18px;
   height:18px;
   margin-top:1px;
@@ -423,4 +427,17 @@
   display:block!important;
   width:18px;
   height:18px;
+}
+.travel-planning__block--transport .transport>div{
+  flex:1 1 auto;
+  min-width:0;
+  width:auto!important;
+}
+.travel-planning__block--transport .transport h4,
+.travel-planning__block--transport .transport p{
+  width:auto!important;
+  max-width:none!important;
+  white-space:normal!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere;
 }
