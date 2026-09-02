@@ -485,7 +485,7 @@ function renderSeasons(fragment, items = []) {
 
 function renderTransport(fragment, item = {}) {
   const container = fragment.querySelector('#transport');
-  container.innerHTML = `<div><small>移動</small><h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
+  container.innerHTML = `<span class="transport-icon">${iconSvg(item.icon || 'road')}</span><div><small>移動</small><h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
 }
 
 function renderPersonas(fragment, items = []) {
