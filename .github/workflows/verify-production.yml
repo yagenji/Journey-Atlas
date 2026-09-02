@@ -60,6 +60,16 @@ jobs:
           taste = data.get("taste", {})
           if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 3:
               raise SystemExit("Spain food shortlist is not the reviewed 3-item version")
+          expected_food_images = {
+              "paella": "assets/images/spain/approved/food-paella.png",
+              "jamon-iberico": "assets/images/spain/approved/food-jamon-iberico.png",
+              "tortilla-espanola": "assets/images/spain/approved/food-tortilla-espanola.png",
+          }
+          for item in taste.get("items", []):
+              if item.get("image") != expected_food_images.get(item.get("id")):
+                  raise SystemExit(f"Spain food image mismatch: {item.get('id')} -> {item.get('image')}")
+              if item.get("imageState") != "APPROVED":
+                  raise SystemExit(f"Spain food image is not approved: {item.get('id')}")
           if "seasonMatrix" in data:
               raise SystemExit("Removed Spain season matrix is still present in production")
           travel_scale = data.get("travelScale", {})
