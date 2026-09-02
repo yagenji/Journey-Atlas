@@ -101,7 +101,6 @@ function renderCountry(data, registry) {
   renderAtlasExtras(fragment, data.atlasExtras);
   renderTaste(fragment, data.taste);
   renderTravelTrivia(fragment, data.travelTrivia);
-  renderSeasonMatrix(fragment, data.seasonMatrix);
   renderSeasons(fragment, data.seasons);
   renderTransport(fragment, data.transport);
   renderPersonas(fragment, data.personas);
@@ -299,7 +298,7 @@ function renderScenes(fragment, scenes = [], bounds) {
     card.setAttribute('role', 'button');
     card.setAttribute('aria-pressed', 'false');
     card.setAttribute('aria-label', `${number} ${scene.name}を選択`);
-    card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small>${scene.role ? `<span class="scene-role">${escapeHtml(scene.role)}</span>` : ''}<p>${escapeHtml(scene.description)}</p></div></div>`;
+    card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
     const sceneImage = card.querySelector('.scene-image');
     sceneImage.setAttribute('role', 'img');
@@ -416,34 +415,22 @@ function renderAtlasExtras(fragment, items = []) {
 function renderTaste(fragment, data = {}) {
   const section = fragment.querySelector('#taste-section');
   const grid = fragment.querySelector('#taste-grid');
-  if (!section || !grid || !Array.isArray(data.items) || !data.items.length) {
+  const items = Array.isArray(data.items) ? data.items : [];
+  if (!section || !grid || !items.length || items.some((item) => !item.image)) {
     if (section) section.hidden = true;
     return;
   }
   fragment.querySelector('#taste-kicker').textContent = data.kicker || 'TASTE';
   fragment.querySelector('#taste-title').textContent = data.title || '';
   fragment.querySelector('#taste-intro').textContent = data.intro || '';
-  data.items.forEach((item) => {
+  items.forEach((item) => {
     const article = document.createElement('article');
     article.className = 'taste-card';
-    article.innerHTML = `<div class="taste-card__meta">${iconSvg(item.icon || 'food')}<span>${escapeHtml(item.region || '')}</span></div><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p>${item.atlasLink ? `<p class="taste-card__atlas">${escapeHtml(item.atlasLink)}</p>` : ''}`;
+    article.innerHTML = `<div class="taste-card__image media-slot" role="img" aria-label="${escapeHtml(item.name || '')}"></div><div class="taste-card__copy"><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p></div>`;
+    setBackground(article.querySelector('.taste-card__image'), item.image, { lazy: true });
     grid.append(article);
   });
   section.hidden = false;
-}
-
-function renderSeasonMatrix(fragment, data = {}) {
-  const container = fragment.querySelector('#season-matrix');
-  if (!container || !Array.isArray(data.rows) || !data.rows.length || !Array.isArray(data.months)) {
-    if (container) container.hidden = true;
-    return;
-  }
-  const stateLabels = new Map((data.legend || []).map((item) => [item.state, item.label]));
-  const head = `<div class="season-matrix__row season-matrix__row--head"><span></span>${data.months.map((month) => `<b>${escapeHtml(month)}</b>`).join('')}</div>`;
-  const rows = data.rows.map((row) => `<div class="season-matrix__row"><strong>${escapeHtml(row.label)}</strong>${(row.states || []).map((state, index) => `<span class="season-cell season-cell--${escapeHtml(state)}" title="${escapeHtml(data.months[index] || '')}: ${escapeHtml(stateLabels.get(state) || state)}"><i class="sr-only">${escapeHtml(data.months[index] || '')} ${escapeHtml(stateLabels.get(state) || state)}</i></span>`).join('')}</div>`).join('');
-  const legend = (data.legend || []).map((item) => `<span><i class="season-cell season-cell--${escapeHtml(item.state)}"></i>${escapeHtml(item.label)}</span>`).join('');
-  container.innerHTML = head + rows + `<div class="season-matrix__legend">${legend}</div>` + (data.note ? `<p class="season-matrix__note">${escapeHtml(data.note)}</p>` : '');
-  container.hidden = false;
 }
 
 function renderTravelScale(fragment, data = {}) {
