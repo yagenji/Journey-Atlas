@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "kosovo",
+  "nameEn": "KOSOVO",
+  "nameJa": "コソボ",
+  "region": "SOUTHEASTERN EUROPE / 42°N",
+  "seo": {
+    "description": "プリズレンの石橋からルゴヴァ渓谷、プリシュティナ、グラチャニツァ、ミルシャ滝、ジャコヴァ、ノヴォ・ブルド、シャル山地、ガディメ洞窟へ。山・峡谷・都市・宗教建築・市場を9つの景観でたどるコソボ。"
+  },
+  "capital": {
+    "nameEn": "Pristina",
+    "nameJa": "プリシュティナ",
+    "coordinates": {
+      "latitude": 42.6629,
+      "longitude": 21.1655
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2,
+      "y": -1.75
+    },
+    "labelOffset": {
+      "x": -8,
+      "y": -8
+    }
+  },
+  "hero": {
+    "lead": "ルンバルディ川の石橋とモスク、その背後の城塞から、深い峡谷、高原の村、中世修道院、現代都市へ。小さな国土の中で、山と都市と歴史の距離が近い国。",
+    "image": "assets/images/kosovo/approved/hero-prizren.png",
+    "location": "Old Stone Bridge / Sinan Pasha Mosque / Prizren",
+    "coordinates": {
+      "latitude": 42.20967,
+      "longitude": 20.74067
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 43.404977,
+      "south": 41.702104,
+      "west": 19.84995,
+      "east": 21.947559
+    },
+    "svg": "assets/images/kosovo/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin 0 Countries via datasets/geo-countries; public domain; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "rugova-canyon",
+      "name": "ルゴヴァ渓谷",
+      "nameLocal": "Gryka e Rugovës / Rugova Canyon",
+      "mapLabel": "Rugova",
+      "description": "西部の山地をペチ・ビストリツァ川が刻む峡谷。急な岩壁の間を川と道路が並んで進み、平地の町から山岳へ切り替わる地形を短い距離で体感できる。",
+      "coordinates": {
+        "latitude": 42.69222,
+        "longitude": 20.16861
+      },
+      "image": "assets/images/kosovo/approved/rugova-canyon.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "national-library-pristina",
+      "name": "プリシュティナ / コソボ国立図書館",
+      "nameLocal": "Biblioteka Kombëtare e Kosovës / Prishtina",
+      "mapLabel": "National Library",
+      "description": "白いドーム群を金属格子が包む国立図書館。歴史都市とは異なる20世紀後半の建築が首都中心部に立ち、現在のプリシュティナの都市景観を強く印象づける。",
+      "coordinates": {
+        "latitude": 42.6575,
+        "longitude": 21.16227
+      },
+      "image": "assets/images/kosovo/approved/national-library-pristina.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -0.75
+      }
+    },
+    {
+      "id": "gracanica-monastery",
+      "name": "グラチャニツァ修道院",
+      "nameLocal": "Manastir Gračanica / Manastiri i Graçanicës",
+      "mapLabel": "Gračanica",
+      "description": "14世紀初頭に建てられたセルビア正教会の修道院。複数のドームが段階的に重なる教会建築と壁画が残り、ユネスコの「コソボの中世建造物群」を構成する一件。",
+      "coordinates": {
+        "latitude": 42.5983,
+        "longitude": 21.1933
+      },
+      "image": "assets/images/kosovo/approved/gracanica-monastery.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -3,
+        "y": 2
+      }
+    },
+    {
+      "id": "mirusha-waterfalls",
+      "name": "ミルシャ滝",
+      "nameLocal": "Ujëvarat e Mirushës / Mirusha Waterfalls",
+      "mapLabel": "Mirusha",
+      "description": "石灰岩の峡谷を流れる水が段差ごとに滝と水潭をつくる自然景観。大きな一枚滝ではなく、水と岩が連続して地形を刻む姿にこの地域のカルスト地形が表れる。",
+      "coordinates": {
+        "latitude": 42.524,
+        "longitude": 20.5843
+      },
+      "image": "assets/images/kosovo/approved/mirusha-waterfalls.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "gjakova-grand-bazaar",
+      "name": "ジャコヴァ / グランド・バザール",
+      "nameLocal": "Çarshia e Madhe / Gjakovë",
+      "mapLabel": "Gjakova",
+      "description": "木造の店先と石畳が続くジャコヴァの歴史的商業地区。商店や工房が通りに連なり、記念建築だけではなく、商いを中心に形づくられてきた都市の尺度が見える。",
+      "coordinates": {
+        "latitude": 42.3815,
+        "longitude": 20.4306
+      },
+      "image": "assets/images/kosovo/approved/gjakova-grand-bazaar.png",
+      "labelPosition": "left"
+    },
+    {
+      "id": "novo-brdo-fortress",
+      "name": "ノヴォ・ブルド要塞",
+      "nameLocal": "Novobërdë / Novo Brdo",
+      "mapLabel": "Novo Brdo",
+      "description": "東部の丘上に城壁と塔の遺構が残る中世都市跡。草地の尾根に沿って上城と下城が広がり、周囲を見渡す立地そのものが要塞都市の構造を伝える。",
+      "coordinates": {
+        "latitude": 42.61503,
+        "longitude": 21.41706
+      },
+      "image": "assets/images/kosovo/approved/novo-brdo-fortress.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.75,
+        "y": 0.25
+      }
+    },
+    {
+      "id": "brod-sharr-mountains",
+      "name": "ブロド / シャル山地",
+      "nameLocal": "Brod / Malet e Sharrit",
+      "mapLabel": "Brod",
+      "description": "南部の高原に集落と草地が広がり、その背後をシャル山地の稜線が囲む。都市や峡谷とは違い、放牧地と家々が山の斜面へ緩やかにつながる高地の暮らしが見える。",
+      "coordinates": {
+        "latitude": 41.99222,
+        "longitude": 20.70667
+      },
+      "image": "assets/images/kosovo/approved/brod-sharr-mountains.png",
+      "labelPosition": "right"
+    },
+    {
+      "id": "gadime-cave",
+      "name": "ガディメ洞窟",
+      "nameLocal": "Shpella e Gadimes / Gadime Cave",
+      "mapLabel": "Gadime",
+      "description": "大理石質の岩盤内部に鍾乳石や石筍が発達する洞窟。地上の山岳景観とは別に、石灰質の地層と地下水が長い時間をかけてつくった内部の地形を歩いて見られる。",
+      "coordinates": {
+        "latitude": 42.4781,
+        "longitude": 21.2076
+      },
+      "image": "assets/images/kosovo/approved/gadime-cave.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.75,
+        "y": 1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "フリア",
+      "icon": "food"
+    },
+    {
+      "title": "プリス",
+      "icon": "culture"
+    },
+    {
+      "title": "チフテリ",
+      "icon": "culture"
+    },
+    {
+      "title": "フィリグリー",
+      "icon": "culture"
+    },
+    {
+      "title": "オダ",
+      "icon": "home"
+    },
+    {
+      "title": "バザール",
+      "icon": "culture"
+    },
+    {
+      "title": "ラホヴェツワイン",
+      "icon": "food"
+    },
+    {
+      "title": "山岳トレイル",
+      "icon": "hike"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "ulpiana-roman-urban-layer",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ウルピアナでは、修道院よりさらに古い都市の層が地表に残る",
+      "text": "プリシュティナ南東のウルピアナは、ローマ期に発展した都市遺跡。街路、建築基礎、初期キリスト教期の遺構などが発掘され、現在は考古学公園として公開されている。",
+      "points": [
+        "ローマ期から初期キリスト教期の都市遺構を現地でたどれる",
+        "現在も発掘と研究が続く考古学公園"
+      ]
+    },
+    {
+      "topicKey": "diaspora-summer-return-rhythm",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "夏になると、国外で暮らす人々の帰省が国の時間を大きく動かす",
+      "text": "政府の観光戦略では、ディアスポラによる親族・友人訪問が大きな旅行流として位置づけられている。特に7〜8月は帰省が重なり、家族行事、飲食店、道路や空港の混み方まで季節のリズムが変わる。",
+      "points": [
+        "ドイツやスイスなどに大きなディアスポラが暮らす",
+        "夏の帰省は家族との再会だけでなく、国内の消費や文化行事にも影響する"
+      ]
+    },
+    {
+      "topicKey": "independence-declaration-2008",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "古い宗教都市の隣に、2008年以降の国家形成の時間が重なる",
+      "text": "コソボ議会は2008年2月17日に独立を宣言し、日本は同年3月18日に国家承認した。中世やオスマン期の景観と、独立後につくられた国家制度や都市空間が同じ旅の中に並ぶ。",
+      "points": [
+        "独立宣言は2008年2月17日",
+        "日本による国家承認は2008年3月18日"
+      ]
+    },
+    {
+      "topicKey": "dujagjin-oda-elders-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "「オダ」は、家の一室であり、地域の対話が積み重なった場所でもある",
+      "text": "文化省の無形文化遺産には「ドゥカジンのオダにおける長老の慣習」が記録されている。西部の伝統家屋を知るとき、石造建築だけでなく、人が集まり、話し合い、知恵を受け渡してきた室内空間にも目を向けられる。",
+      "points": [
+        "オダに結びつく長老の慣習が無形文化遺産として記録される",
+        "建物の外観だけでなく、家の中での集まり方が地域社会を理解する手がかりになる"
+      ]
+    },
+    {
+      "topicKey": "two-official-languages-public-space",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "同じ場所に複数の地名表記が現れるのは、公用語が二つあるから",
+      "text": "憲法上、アルバニア語とセルビア語はともに公用語。Prishtinë / Priština、Gjakovë / Đakovicaのように表記が変わることがあり、地図や標識そのものが複数言語で暮らす社会を映す。",
+      "points": [
+        "アルバニア語とセルビア語は全国レベルの公用語",
+        "自治体によってはトルコ語なども公用・公式使用の対象になる"
+      ]
+    },
+    {
+      "topicKey": "traditional-crafts-living-skills",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "フィリグリーから木工まで、古い手仕事が文化遺産として記録されている",
+      "text": "文化省の文化遺産リストには、フィリグリー、木工、馬具、刺繍、フェルト加工、陶器など多様な伝統工芸がまとめて記録されている。市場では商品だけでなく、素材と技術の違いを見ると土地の暮らしが立体的になる。",
+      "points": [
+        "金銀細工だけでなく、木工・馬具・刺繍・陶器など幅広い技術が記録される",
+        "土産物としてではなく、生活を支えてきた手仕事として見る"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "flija-layered-traditional-food",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "薄い生地を何層も重ねる「フリア」を探す",
+      "text": "フリアは薄い生地と乳製品を層状に重ねて焼く伝統料理。文化省の無形文化遺産リストにも伝統食として掲載され、家庭料理や郷土料理店で地域ごとの作り方に出会える。",
+      "icon": "food",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "plis-white-felt-cap",
+      "categoryEn": "CULTURE",
+      "categoryJa": "装い",
+      "title": "白いフェルト帽「プリス」を市場や文化行事で探す",
+      "text": "丸い白色のフェルト帽プリスは、文化省が無形文化遺産として記録する伝統的な装い。市場や文化行事で見かけたら、形やかぶり方にも目を向けると地域文化が見えてくる。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "ciftelia-two-string-instrument",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "二本弦の楽器「チフテリ」の音を聴く",
+      "text": "チフテリは細長い棹を持つ二弦の伝統楽器で、文化省の無形文化遺産リストにも掲載される。祭りや民俗音楽の場では、景色とは別の入口から地域文化に触れられる。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "rahovec-vineyards-wine",
+      "categoryEn": "FOOD",
+      "categoryJa": "ワイン",
+      "title": "ラホヴェツでは、葡萄畑とワイナリーを一緒に見る",
+      "text": "西部のラホヴェツは葡萄畑が広がるワイン産地。現地の観光案内ではワイナリー訪問や試飲も紹介されており、農地として見える斜面がそのまま地域の産業と食文化につながる。",
+      "icon": "food",
+      "sourceKey": "rahovecWine"
+    },
+    {
+      "topicKey": "traditional-games-festival-search",
+      "categoryEn": "GAMES",
+      "categoryJa": "遊び",
+      "title": "祭りでは、綱引きや石投げなど昔からの競技を探してみる",
+      "text": "文化省の無形文化遺産リストには、綱引き、石を投げる競技、腕相撲、棒登りなど複数の伝統遊戯が記録されている。地域行事に出会ったら、舞台だけでなく参加型の競技にも目を向けたい。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#7f9a61",
+      "text": "低地や都市の緑が増え、暑さが強まる前に旧市街や遺跡を歩きやすい時期。高地では残雪や雨で路面・登山道の条件が変わるため、山岳部を組み込む場合は直前に状況を確認する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "夏は内陸部で気温が上がる一方、ルゴヴァやシャル山地では山歩きの季節になる。都市観光は朝夕へ寄せ、日中は高地や屋内施設を組み合わせると地域差を体感しやすい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "暑さが和らぎ、都市・遺跡・山地を一つの旅程に組み込みやすくなる。葡萄畑や山地では秋の色が進み、同じ国土でも平地と高地の季節差が見えやすい。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "内陸性の冬で冷え込み、高地では積雪が増える。都市や歴史建築を軸にしつつ、山岳道路や屋外遺跡は天候・日照時間・当日のアクセスを確認して動く。"
+    }
+  ],
+  "transport": {
+    "title": "INTERCITY BUS / CAR / RAIL",
+    "text": "都市間と景勝地をつなぐ旅では道路移動が中心になる。Trainkosはプリシュティナ―ペヤやプリシュティナ―スコピエ方面の旅客列車時刻表を案内しているが、工事や運行変更が続くことがあるため、鉄道を使う日は当日の運行状況を確認する。ルゴヴァやミルシャなどは道路移動を組み合わせる。"
+  },
+  "personas": [
+    {
+      "title": "歴史都市と宗教建築を地続きで見たい人",
+      "text": "プリズレン、グラチャニツァ、ウルピアナ、ノヴォ・ブルドをつなぎ、ローマ期から中世、オスマン期、現在までの時間が近い距離に重なる旅をしたい人。"
+    },
+    {
+      "title": "山と峡谷を歩きたい人",
+      "text": "ルゴヴァの岩壁やシャル山地の高原を歩き、都市から短い移動で地形が大きく変わるバルカン内陸部を体感したい人。"
+    },
+    {
+      "title": "バルカン半島を陸路でつなぎたい人",
+      "text": "アルバニア、北マケドニア、モンテネグロなどへ国境を越えながら、言語・宗教・地形が連続しつつ変わる様子を追いたい人。"
+    },
+    {
+      "title": "市場や食から暮らしを知りたい人",
+      "text": "ジャコヴァのバザール、プリシュティナのカフェ、ラホヴェツの葡萄畑など、観光名所だけでなく日常の商いと食文化へ入っていきたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南東ヨーロッパ／バルカン半島"
+    },
+    {
+      "label": "首都",
+      "value": "プリシュティナ"
+    },
+    {
+      "label": "人口",
+      "value": "約158万人"
+    },
+    {
+      "label": "面積",
+      "value": "約10,905 km²（日本の約2.9%）"
+    },
+    {
+      "label": "言語",
+      "value": "アルバニア語、セルビア語（ともに公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が多数、正教会・カトリックなど"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "three-sea-drainage-basins",
+      "label": "河川がつながる海域",
+      "value": "3つ",
+      "note": "国土の河川は流域によって黒海、アドリア海、エーゲ海へつながる。内陸国でも、水の流れを追うと三つの海域との地理的なつながりが見えてくる。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "euro-use-outside-eu",
+      "label": "EU非加盟でも通貨はユーロ",
+      "value": "2002年から",
+      "note": "コソボはEU加盟国でもユーロ圏加盟国でもないが、国内ではユーロを使用している。EUとの通貨協定に基づく採用ではなく、ドイツマルクからユーロへ移行した独自の経緯を持つ。",
+      "icon": "coin"
+    },
+    {
+      "topicKey": "medieval-monuments-four-components",
+      "label": "「コソボの中世建造物群」の構成資産",
+      "value": "4件",
+      "note": "ユネスコ世界遺産「コソボの中世建造物群」は、デチャニ修道院、ペーチ総主教修道院、グラチャニツァ修道院、リェヴィシャの生神女教会の4件で構成される。異なる都市をたどることで、中世セルビア正教会建築と壁画の広がりが見えてくる。",
+      "icon": "history"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "northern-border-current-safety-check",
+      "title": "北部のセルビア国境付近を旅程に入れるなら、最新の安全情報を確認する",
+      "text": "日本の外務省は北部の一部地域に「不要不急の渡航は止めてください（レベル2）」を継続している。北部へ向かう場合は、出発前に対象地域と最新の危険情報を確認する。"
+    },
+    {
+      "topicKey": "mountain-road-time-buffer",
+      "title": "山岳部は距離ではなく、道路状況と所要時間で旅程を組む",
+      "text": "ルゴヴァやシャル山地では、都市間の直線距離が短くても谷沿い・峠道の移動になる。山を含む日は予定を詰めず、天候と道路状況を確認できる余白を残す。"
+    },
+    {
+      "topicKey": "religious-sites-visit-etiquette",
+      "title": "修道院やモスクでは、礼拝の場としてのルールを先に確認する",
+      "text": "宗教建築は観光施設である前に現在も使われる礼拝の場。服装、撮影可否、礼拝中の立ち入りなどは現地表示や係員の案内に従い、見学時間にも余裕を持たせる。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "albania",
+      "nameEn": "ALBANIA",
+      "nameJa": "アルバニア",
+      "flag": "🇦🇱",
+      "reason": "山地の村とオスマン期の歴史都市を、アドリア海側までつなげて見たいなら。"
+    },
+    {
+      "slug": "northmacedonia",
+      "nameEn": "NORTH MACEDONIA",
+      "nameJa": "北マケドニア",
+      "flag": "🇲🇰",
+      "reason": "シャル山地の南側へ進み、スコピエやオフリドまでバルカン内陸の都市と山をつなげたいなら。"
+    },
+    {
+      "slug": "montenegro",
+      "nameEn": "MONTENEGRO",
+      "nameJa": "モンテネグロ",
+      "flag": "🇲🇪",
+      "reason": "西部の山岳景観を国境の向こうへ延ばし、ディナル・アルプスの地形をさらに追いたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-02",
+  "sourcesVerifiedAt": "2026-09-02",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2024",
+    "transport": "2026",
+    "safety": "2026-09-02",
+    "diaspora": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m Admin 0 Countries via datasets/geo-countries; Natural Earth data is public domain; WGS84.",
+    "population": "Kosovo Agency of Statistics (KAS), population estimate for 2025: 1,582,322 inhabitants.",
+    "area": "Government of Kosovo, Agriculture and Rural Development Strategy: territory area 10,905.25 km².",
+    "language": "Constitution of the Republic of Kosovo, Article 5: Albanian and Serbian are official languages; Turkish, Bosnian and Roma have official/use status at municipal level as provided by law.",
+    "religion": "Kosovo Agency of Statistics, Population Census 2024 religious affiliation tables; Islam is the majority affiliation, with Orthodox and Catholic communities among others.",
+    "currency": "Central Bank of the Republic of Kosovo, Currency in Circulation: the currency used in Kosovo is the euro; CBK is not an issuing bank.",
+    "climate": "Government of Kosovo, Agriculture and Rural Development Strategy: primarily continental climate, with warm summers and cold winters.",
+    "drainage": "Government of Kosovo, Agriculture and Rural Development Strategy: Kosovo belongs to river basins draining toward the Black Sea, Adriatic Sea and Aegean Sea.",
+    "gracanica": "UNESCO World Heritage Centre, Medieval Monuments in Kosovo: Gračanica Monastery is one of four components of the serial property; church built in the early 14th century.",
+    "ulpiana": "Ministry of Culture, Youth and Sport of Kosovo, Archaeological Guide of Kosovo / Ulpiana Archaeological Park: Roman-period urban archaeological site with continued excavation and public presentation.",
+    "novoBrdo": "Ministry of Culture, Youth and Sport of Kosovo, Archaeological Guide of Kosovo: Novobërda/Novo Brdo appears in early 14th-century written sources and developed as a medieval mining centre with Upper and Lower Town fortifications.",
+    "mirusha": "Kosovo Environmental Protection Agency, nature reports: Mirusha is a protected canyon and waterfall complex formed in limestone terrain.",
+    "sharri": "Kosovo environmental and spatial-planning documents: Sharri National Park protects high-mountain landscapes in southern Kosovo.",
+    "gadime": "Kosovo Environmental Protection Agency, Directorate for Gadime Cave and Mirusha: Gadime is a protected cave site developed in marble/limestone formations.",
+    "independence": "Ministry of Foreign Affairs of Japan, Kosovo basic data: Kosovo declared independence on 17 February 2008; Japan recognized the Republic of Kosovo on 18 March 2008.",
+    "intangibleHeritage": "Ministry of Culture, Youth and Sport of Kosovo, cultural heritage protection lists: Çiftelia, Plisi, Pleqnia në odat e Dukagjinit, traditional foods including Flija, traditional games, and old crafts including filigree, woodworking, saddlery, embroidery, felt-making and pottery are recorded as intangible/spiritual heritage.",
+    "rahovecWine": "Kosova.Travel, Rahovec Wine Tasting / Rahovec destination information: vineyards and winery visits are presented as a regional travel experience.",
+    "transport": "Trainkos, 2026 regular passenger timetable: daily passenger services include Prishtinë–Pejë and Prishtinë–Shkup corridors.",
+    "safety": "Ministry of Foreign Affairs of Japan, Overseas Safety Information for Kosovo, checked 2026-09-02: Level 2 'Avoid non-essential travel' remains in force for specified northern areas near the Serbia border.",
+    "diaspora": "Government of Kosovo, Tourism Strategy 2024–2030 and 2026 diaspora cultural-program information: diaspora visits, especially in summer, form a major travel flow and shape seasonal social activity.",
+    "euroOutsideEU": "European Commission, The euro outside the euro area: Kosovo uses the euro as a de facto domestic currency without a monetary agreement with the EU; Central Bank of the Republic of Kosovo: the currency used in Kosovo is the euro.",
+    "medievalMonuments": "UNESCO World Heritage Centre, Medieval Monuments in Kosovo: serial property comprising Dečani Monastery, Patriarchate of Peć Monastery, Gračanica Monastery, and Church of the Virgin of Ljevisa; property expanded in 2006 and placed on the List of World Heritage in Danger."
+  }
+}
