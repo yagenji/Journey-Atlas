@@ -67,6 +67,7 @@ jobs:
       - name: Validate source syntax
         run: |
           python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          node --check assets/js/app.js
           node --check assets/js/top.js
       - name: Validate reviewable and published country JSON
         run: |
