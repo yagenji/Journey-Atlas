@@ -27,7 +27,7 @@ jobs:
           set -euo pipefail
           for attempt in $(seq 1 18); do
             meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
-            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; try: print(json.load(sys.stdin).get("commit","")) except Exception: print("")')"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
             echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
             if [ "$live_sha" = "$EXPECTED_SHA" ]; then
               echo "Cloudflare production is serving the expected commit."
