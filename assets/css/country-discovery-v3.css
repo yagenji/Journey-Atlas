@@ -406,3 +406,21 @@
 .travel-planning__block--transport .transport>.ui-icon{
   display:none!important;
 }
+
+/* Keep one transport icon, aligned to the text column without overlap */
+.travel-planning__block--transport .transport{
+  grid-template-columns:24px minmax(0,1fr)!important;
+  column-gap:10px!important;
+}
+.travel-planning__block--transport .transport-icon{
+  display:block!important;
+  width:18px;
+  height:18px;
+  margin-top:1px;
+  color:#8a6b55;
+}
+.travel-planning__block--transport .transport-icon .ui-icon{
+  display:block!important;
+  width:18px;
+  height:18px;
+}
