@@ -63,10 +63,10 @@ jobs:
           if "seasonMatrix" in data:
               raise SystemExit("Removed Spain season matrix is still present in production")
           travel_scale = data.get("travelScale", {})
-          if travel_scale.get("title") != "旅の日数" or len(travel_scale.get("items", [])) != 3:
+          if travel_scale.get("title") != "旅の目安日程" or len(travel_scale.get("items", [])) != 3:
               raise SystemExit("Spain travel scale is not the reviewed version")
           durations = [item.get("duration") for item in travel_scale.get("items", [])]
-          if durations != ["3〜4日", "5〜7日", "8〜14日"]:
+          if durations != ["3〜4日", "5〜7日", "8日以上"]:
               raise SystemExit(f"Spain travel durations are not continuous: {durations}")
           if data.get("transport", {}).get("title") != "高速鉄道・在来線・車":
               raise SystemExit("Spain transport title is not Japanese")
@@ -85,6 +85,8 @@ jobs:
           grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
           grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
           grep -q 'travel-scale__icon' /tmp/app.js
+          grep -q "旅の目安日程" /tmp/spain.json
+          ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
           grep -q 'travel-guidance' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
