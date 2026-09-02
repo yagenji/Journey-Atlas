@@ -442,7 +442,11 @@ function renderTravelScale(fragment, data = {}) {
   }
   fragment.querySelector('#travel-scale-kicker').textContent = data.kicker || 'TRAVEL SCALE';
   fragment.querySelector('#travel-scale-title').textContent = data.title || '';
-  fragment.querySelector('#travel-scale-intro').textContent = data.intro || '';
+  const intro = fragment.querySelector('#travel-scale-intro');
+  if (intro) {
+    intro.textContent = data.intro || '';
+    intro.hidden = !data.intro;
+  }
   data.items.forEach((item) => {
     const article = document.createElement('article');
     article.className = 'travel-scale__item';
@@ -481,7 +485,7 @@ function renderSeasons(fragment, items = []) {
 
 function renderTransport(fragment, item = {}) {
   const container = fragment.querySelector('#transport');
-  container.innerHTML = `${iconSvg(item.icon || 'road')}<div><small>移動</small><h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
+  container.innerHTML = `<div><small>移動</small><h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
 }
 
 function renderPersonas(fragment, items = []) {
