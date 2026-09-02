@@ -271,7 +271,6 @@
   padding-top:9px;
   border-top:1px solid #e5dfd2;
 }
-.travel-planning__block--transport .transport>span,
 .travel-planning__block--transport .transport>div>small{
   display:none!important;
 }
@@ -440,4 +439,11 @@
   white-space:normal!important;
   word-break:normal!important;
   overflow-wrap:anywhere;
+}
+
+/* Ensure the dedicated transport icon is visible */
+.travel-planning__block--transport .transport>.transport-icon{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
 }
