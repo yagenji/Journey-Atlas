@@ -79,6 +79,8 @@ jobs:
           grep -q 'data-country="spain"' /tmp/spain.html
           grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
           grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
+          grep -q 'travel-planning' /tmp/country.css
+          grep -q 'travel-guidance' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
           ! grep -q 'renderSeasonMatrix' /tmp/app.js
           ! grep -q 'scene-role' /tmp/app.js
