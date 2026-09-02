@@ -30,7 +30,7 @@ Purpose: Pilot the revised JOURNEY ATLAS Country Page standard before applying i
 | 02 | San Sebastián / La Concha | ATLAS VIEW | APPROVED / KEEP | Shows the green Atlantic Spain that contrasts with the common dry-Mediterranean image. |
 | 03 | Picos de Europa / Picu Urriellu | DISCOVERY | APPROVED / KEEP | A dramatic limestone mountain world that many first-time readers do not associate with Spain. |
 | 04 | Ribeira Sacra / Sil Canyon | ATLAS VIEW | APPROVED / KEEP | River gorge + steep vineyards show how people have reshaped difficult terrain for agriculture. |
-| 05 | Las Médulas / Mirador de Orellán | ATLAS VIEW + DISCOVERY | PENDING IMAGE | Red clay peaks and chestnut forest reveal a landscape physically transformed by Roman hydraulic gold mining. |
+| 05 | Las Médulas / Mirador de Orellán | ATLAS VIEW + DISCOVERY | APPROVED | Red clay peaks and chestnut forest reveal a landscape physically transformed by Roman hydraulic gold mining. |
 | 06 | Consuegra / Cerro Calderico | ANCHOR + ATLAS VIEW | APPROVED / KEEP | The broad La Mancha plateau, windmills and wind-shaped cultural landscape create a recognisable inland Spain. |
 | 07 | Ronda / Puente Nuevo + Tajo | ANCHOR + ATLAS VIEW | PENDING IMAGE | The city is split by a deep gorge and reconnected by Puente Nuevo: terrain and urban form are inseparable. |
 | 08 | Teide / Roques de García | DISCOVERY | APPROVED / KEEP | Makes clear that Spain also includes a high volcanic Atlantic-island world far beyond the peninsula. |
@@ -147,7 +147,7 @@ Rules:
 - S02 — San Sebastián / La Concha — APPROVED
 - S03 — Picos de Europa / Picu Urriellu — APPROVED
 - S04 — Ribeira Sacra / Sil Canyon — APPROVED
-- S05 — Las Médulas / Mirador de Orellán — PENDING
+- S05 — Las Médulas / Mirador de Orellán — APPROVED
 - S06 — Consuegra / Cerro Calderico — APPROVED
 - S07 — Ronda / Puente Nuevo + Tajo — PENDING
 - S08 — Teide / Roques de García — APPROVED
