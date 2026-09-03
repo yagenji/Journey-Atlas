@@ -109,6 +109,7 @@ jobs:
         run: |
           set -euo pipefail
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" -o /tmp/spain.html
+          curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/about/?qa=$GITHUB_RUN_ID" -o /tmp/about.html
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
           for food in food-paella.webp food-jamon-iberico.webp food-tortilla-espanola.webp food-churros-con-chocolate.webp; do
@@ -129,7 +130,8 @@ jobs:
           grep -q 'taste-section' /tmp/country.css
           grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
           grep -q 'aspect-ratio:3 / 2' /tmp/country.css
-          grep -q '>地図から探す<' /tmp/spain.html
+          grep -q '>国から探す<' /tmp/spain.html
+                    grep -q '>地図から探す<' /tmp/spain.html
           ! grep -q '<a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>' /tmp/spain.html
           grep -q 'id="country-lens-bridge"' /tmp/spain.html
           grep -q 'initCountryLensBridge(data)' /tmp/app.js
@@ -139,4 +141,6 @@ jobs:
           ! grep -q 'scene-role' /tmp/app.js
           ! grep -q 'season-matrix' /tmp/country.css
           ! grep -q 'scene-role' /tmp/country.css
+          grep -q '<title>このサイトについて — JOURNEY ATLAS</title>' /tmp/about.html
+          grep -q 'href="about/"' /tmp/spain.html
           echo "Production route, JS and CSS verified."
