@@ -493,7 +493,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "IN_PROGRESS",
       "map": "PENDING",
       "sources": "PENDING",
       "qa": "PENDING",
@@ -513,7 +513,14 @@
         "PHASE 2 TRANSPORT PLAN: Japanese title 鉄道・長距離バス・車 with explicit icon road. Official Latvia tourism confirms rail from Riga toward Sigulda/Cēsis and other major cities and a broad intercity bus network; car remains the flexible option for remote coast/lake combinations.",
         "PHASE 2 TRAVEL NOTES: remove the current duplicate 'do not pack multiple regions into one day' guidance because Travel Scale will cover trip size. Retain winter daylight/road-condition planning and replace the other two notes with non-overlapping practical planning guidance.",
         "PHASE 2 SOURCE REFRESH: current population source remains valid for 2026. New/renewed content is supported by Latvia Official Statistics, Latvia.travel, UNESCO Memory of the World and EUR-Lex. sourcesVerifiedAt will be advanced only when the final Country JSON is implemented.",
-        "Visual Complete Gate remains BLOCKED. hardImageGate stays false until FOOD01–04 are user APPROVED, stored as valid 1200×800 / 3:2 WebP, and the retained Hero/Scenes/Taste assets pass decode/path/hygiene checks."
+        "Visual Complete Gate remains BLOCKED. hardImageGate stays false until FOOD01–04 are user APPROVED, stored as valid 1200×800 / 3:2 WebP, and the retained Hero/Scenes/Taste assets pass decode/path/hygiene checks.",
+        "PHASE 3 VISUAL DECISION DONE 2026-09-03: Hero Riga and S01–S08 are KEEP. No landscape NORMALIZE or REGENERATE targets remain. Existing retained scenic assets stay locked unless later browser QA finds a specific visual defect.",
+        "TASTE VISUAL TARGET FOOD01: Pelēkie zirņi ar speķi / grey peas with bacon. DISH IDENTITY: cooked grey-brown peas; small pieces of fried bacon/smoked pork; fried onion; warm savoury dish; not soup; no beetroot/herb garnish. NEW INDEPENDENT IMAGE. Target assets/images/latvia/approved/food-grey-peas-bacon.webp. State NOT STARTED.",
+        "TASTE VISUAL TARGET FOOD02: Aukstā zupa / Latvian cold beet soup. DISH IDENTITY: bright pink chilled kefir/sour-milk soup; beetroot; cucumber; boiled egg and/or potato pieces consistent with traditional preparation; dill/scallion only as intrinsic ingredients; served in a bowl; no separate side dishes. NEW INDEPENDENT IMAGE. Target assets/images/latvia/approved/food-auksta-zupa.webp. State NOT STARTED.",
+        "TASTE VISUAL TARGET FOOD03: Sklandrausis. DISH IDENTITY: small round open rye-flour pie; visibly raised/upturned rye crust edge; layered potato and carrot filling; orange-golden top; pastry rather than soup/cheese/meat dish; no decorative fruit or herbs. NEW INDEPENDENT IMAGE. Target assets/images/latvia/approved/food-sklandrausis.webp. State NOT STARTED.",
+        "TASTE VISUAL TARGET FOOD04: Jāņu siers. DISH IDENTITY: round wheel/wedge of fresh yellow cheese; caraway seeds visibly embedded; dense smooth fresh-cheese texture; simple cheese presentation; not bread/cake; no fruit, herbs or accompaniments. NEW INDEPENDENT IMAGE. Target assets/images/latvia/approved/food-janu-siers.webp. State NOT STARTED.",
+        "TASTE GENERATION HARD RULE: FOOD01–04 must each be generated independently against Spain Taste Global Visual Language. Never use the immediately preceding Latvia Taste image as an edit/reference source. Any dish mismatch or repeat triggers immediate single-FOOD RESET.",
+        "PHASE 3 GATE: Visual Production target set is Taste FOOD01–04 only. Production Country JSON remains unchanged and hardImageGate remains false until all four Taste images are user APPROVED and repository-verified."
       ],
       "automatedAudit": "DONE"
     },
