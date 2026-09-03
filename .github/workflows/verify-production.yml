@@ -79,6 +79,14 @@ jobs:
           durations = [item.get("duration") for item in travel_scale.get("items", [])]
           if durations != ["3〜4日", "5〜7日", "8日以上"]:
               raise SystemExit(f"Spain travel durations are not continuous: {durations}")
+          route_titles = [item.get("title") for item in travel_scale.get("items", [])]
+          expected_route_titles = [
+              "マドリード＋トレド",
+              "バルセロナ → マドリード → セビリア",
+              "マドリード → コルドバ → セビリア → ロンダ → グラナダ",
+          ]
+          if route_titles != expected_route_titles:
+              raise SystemExit(f"Spain travel routes are not the reviewed version: {route_titles}")
           if data.get("transport", {}).get("title") != "高速鉄道・在来線・車":
               raise SystemExit("Spain transport title is not Japanese")
           print("Spain V3 production JSON verified.")
