@@ -18,13 +18,14 @@ on:
       - 'scripts/build_site.py'
       - 'scripts/generate_country_map.py'
       - 'scripts/new_country.py'
-      - 'assets/images/**/map-atlas*.svg'
+      - 'assets/images/**'
       - 'scripts/package_site.py'
       - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/validate_country.py'
+      - 'scripts/validate_images.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
@@ -44,13 +45,14 @@ on:
       - 'scripts/build_site.py'
       - 'scripts/generate_country_map.py'
       - 'scripts/new_country.py'
-      - 'assets/images/**/map-atlas*.svg'
+      - 'assets/images/**'
       - 'scripts/package_site.py'
       - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/validate_country.py'
+      - 'scripts/validate_images.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
 
@@ -64,11 +66,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install image QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_images.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
+
+      - name: Fully decode published Country images
+        run: python3 scripts/validate_images.py --scope published
       - name: Validate reviewable and published country JSON
         run: |
           python3 scripts/validate_country.py --reviewable
