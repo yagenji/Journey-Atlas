@@ -67,6 +67,7 @@ def main() -> int:
         dist / "_redirects",
         dist / "sitemap.xml",
         dist / "robots.txt",
+        dist / "about" / "index.html",
         dist / "faq" / "index.html",
         dist / "privacy" / "index.html",
         dist / "_headers",
