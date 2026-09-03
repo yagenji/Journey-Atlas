@@ -275,3 +275,16 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `food-skyr.webp`
 - Final path: `assets/images/iceland/approved/food-skyr.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### FOOD03 approval — 2026-09-03
+
+**Rúgbrauð: APPROVED.**
+
+- Dish: Rúgbrauð / ルーグブロイズ
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Visual reference: Spain approved Taste series
+- Final filename: `food-rugbraud.webp`
+- Final path: `assets/images/iceland/approved/food-rugbraud.webp`
+- Do not regenerate without explicit user instruction.
