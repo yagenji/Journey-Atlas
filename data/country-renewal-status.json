@@ -294,7 +294,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
@@ -329,7 +329,8 @@
         "hardImageGate re-enabled only after the corrected Taste assets cleared the visual gate. Final automated QA and refreshed preview deployment remain pending.",
         "CORRECTED AUTOMATED QA PASS 2026-09-03: final hard-gate validation run 33762805151 succeeded at commit bbad07ba7751e96557d87622fdd208baf76a2e71, including source syntax, renewal registry, all-published image audit, renewed image hard gate, Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
         "CORRECTED PREVIEW DEPLOY PASS 2026-09-03: GitHub Pages Country Preview run 33762936163 succeeded from commit 6bd1bff143c85b58e181199753fe6c52973d57e7. Review path: https://yagenji.github.io/Journey-Atlas/countries/estonia/. Human Desktop / Tablet / Mobile visual inspection remains required before qa can become PASS.",
-        "FINAL QA PASS 2026-09-03: corrected Taste assets, Reference v3 structure, topic keys, image refs, map refs, theme assignments, related slugs, hard image gate, Cloudflare package build, and refreshed GitHub Pages preview deployment all passed. No blocking issue remained in the accessible QA scope. User authorized publication if QA found no blocking issue."
+        "FINAL QA PASS 2026-09-03: corrected Taste assets, Reference v3 structure, topic keys, image refs, map refs, theme assignments, related slugs, hard image gate, Cloudflare package build, and refreshed GitHub Pages preview deployment all passed. No blocking issue remained in the accessible QA scope. User authorized publication if QA found no blocking issue.",
+        "PRODUCTION LIVE VERIFIED 2026-09-03: PR #176 was squash-merged to main as commit 46500d2a923751c1034c3410b2f07c2d09e05d91. Cloudflare Production Verify run 33764997114 passed commit propagation, Spain V3 payload regression checks, and production runtime assets/routes. Estonia renewal is now LIVE_CURRENT."
       ],
       "automatedAudit": "DONE"
     },
