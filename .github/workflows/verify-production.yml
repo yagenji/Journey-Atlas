@@ -58,12 +58,13 @@ jobs:
           if missing:
               raise SystemExit(f"Spain V3 scenes missing in production: {missing}")
           taste = data.get("taste", {})
-          if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 3:
+          if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 4:
               raise SystemExit("Spain food shortlist is not the reviewed 3-item version")
           expected_food_images = {
-              "paella": "assets/images/spain/approved/food-paella.png",
-              "jamon-iberico": "assets/images/spain/approved/food-jamon-iberico.png",
-              "tortilla-espanola": "assets/images/spain/approved/food-tortilla-espanola.png",
+              "paella": "assets/images/spain/approved/food-paella.webp",
+              "jamon-iberico": "assets/images/spain/approved/food-jamon-iberico.webp",
+              "tortilla-espanola": "assets/images/spain/approved/food-tortilla-espanola.webp",
+              "churros-con-chocolate": "assets/images/spain/approved/food-churros-con-chocolate.webp",
           }
           for item in taste.get("items", []):
               if item.get("image") != expected_food_images.get(item.get("id")):
@@ -91,7 +92,7 @@ jobs:
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" -o /tmp/spain.html
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
           curl -fsS --max-time 20 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
-          for food in food-paella.png food-jamon-iberico.png food-tortilla-espanola.png; do
+          for food in food-paella.webp food-jamon-iberico.webp food-tortilla-espanola.webp food-churros-con-chocolate.webp; do
             curl -fsS --max-time 20 -H 'Cache-Control: no-cache'               "$SITE_URL/assets/images/spain/approved/$food?qa=$GITHUB_RUN_ID"               -o "/tmp/$food"
             test -s "/tmp/$food"
           done
@@ -107,6 +108,8 @@ jobs:
           grep -q 'travel-guidance' /tmp/country.css
           grep -q 'display:flex!important' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
+          grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
+          grep -q 'aspect-ratio:3 / 2' /tmp/country.css
           ! grep -q 'renderSeasonMatrix' /tmp/app.js
           ! grep -q 'scene-role' /tmp/app.js
           ! grep -q 'season-matrix' /tmp/country.css

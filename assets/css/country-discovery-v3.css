@@ -42,7 +42,7 @@
 
 .taste-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:12px;
 }
 .taste-card{
@@ -53,16 +53,16 @@
 }
 .taste-card__image{
   width:100%;
-  aspect-ratio:4 / 3;
+  aspect-ratio:3 / 2;
   background-size:cover;
   background-position:center;
 }
-.taste-card__copy{padding:15px 16px 17px;}
+.taste-card__copy{padding:13px 14px 15px;}
 .taste-card h3{
   margin:0;
   color:#12365c;
   font-family:"Zen Kaku Gothic New",sans-serif;
-  font-size:15px;
+  font-size:14px;
   line-height:1.5;
   font-weight:600;
 }
@@ -78,8 +78,8 @@
 .taste-card p{
   margin:8px 0 0;
   color:#4d5b65;
-  font-size:12px;
-  line-height:1.72;
+  font-size:11.5px;
+  line-height:1.68;
 }
 
 .travel-scale__head{align-items:flex-end;}
@@ -154,10 +154,11 @@
   .travel-scale__head{display:block;}
   .taste-section__intro,
   .travel-scale__head>p{margin-top:8px;}
-  .taste-grid{grid-template-columns:1fr;}
+  .taste-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .travel-scale__grid{grid-template-columns:1fr;}
 }
 @media(max-width:760px){
+  .taste-grid{grid-template-columns:1fr;}
   .taste-section,
   .travel-scale{padding:20px 18px 22px;}
   .taste-card__copy{padding:14px 14px 16px;}
