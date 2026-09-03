@@ -330,3 +330,18 @@ Adjusted only Iceland content density:
 - 8日以上: `リングロードで島を一周`
 - Transport title changed from English `RING ROAD / ROAD TRIP` to Japanese `レンタカー・リングロード`
 - Transport icon explicitly set to `road`
+
+
+## Travel Scale Spain-reference copy alignment — 2026-09-03
+
+Human review requested that Iceland use the same editorial pattern as Spain Reference v3.
+
+Applied pattern:
+- concise duration title
+- short explanatory sentence
+- `例：` followed by a concrete route
+
+Routes:
+- 3〜4日: レイキャヴィーク → シンクヴェトリル → ゲイシール → スコゥガフォス
+- 5〜7日: レイキャヴィーク → スコゥガフォス → ヴィーク → ヨークルスアゥルロゥン
+- 8日以上: レイキャヴィーク → ヴィーク → ヨークルスアゥルロゥン → ミーヴァトン → アークレイリ → レイキャヴィーク
