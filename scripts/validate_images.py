@@ -239,6 +239,8 @@ def scan(slugs: list[str]) -> tuple[list[str], int]:
                 errors.append(f"{asset}: {exc}")
                 continue
             if embedded:
+                width, height, _fmt = embedded
+                validate_dimensions(errors, asset, owners, width, height)
                 decoded += 1
 
     for slug in slugs:
