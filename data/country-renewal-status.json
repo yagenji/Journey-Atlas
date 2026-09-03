@@ -259,7 +259,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "Reference v3 audit complete: Renewal class B. Existing Hero Copenhagen Harbour, all 8 scenes and map remain KEEP.",
@@ -278,7 +278,8 @@
         "QA SOURCE FIX 2026-09-03: national cycle route Signature Fact normalized from VisitDenmark's 4,770 km figure to approximately 4,800 km using the Danish Road Directorate (Vejdirektoratet), the route-network administrator and higher-authority source.",
         "QA REVIEW 2026-09-03: clarified Copenhagen Harbour Bath wording to avoid Japanese ambiguity; content counts, topicKey uniqueness, Theme taxonomy, Travel Scale, Japanese Transport title, FOR WHOM=3, Related Destinations, headings/ARIA renderer structure, responsive shared CSS, map structure, asset paths and approved-folder hygiene reviewed. Automated validation passes; full live Desktop/Tablet/Mobile browser screenshot QA remains unverified in this execution environment, so qa stays PENDING.",
         "SYSTEM ISSUE 2026-09-03: GitHub Pages Country Preview uses one shared deployment environment; parallel country renewals can overwrite each other's preview. Denmark content was intact in branch; preview was re-deployed after Ireland/UK activity. Fix belongs in shared preview infrastructure, not Denmark-specific code.",
-        "USER PRODUCTION APPROVAL 2026-09-03: user explicitly requested the Denmark renewal be reflected to main/production. atlasPublished remains true. Browser visual QA will be completed on the production URL after deployment; qa remains PENDING until that review."
+        "USER PRODUCTION APPROVAL 2026-09-03: user explicitly requested the Denmark renewal be reflected to main/production. atlasPublished remains true. Browser visual QA will be completed on the production URL after deployment; qa remains PENDING until that review.",
+        "PRODUCTION DEPLOY PASS 2026-09-03: Denmark renewal merged via PR #173 as c717af57b6b972879ed605fdf43cd9483c2bdb73. A newer main commit containing the Denmark changes passed Cloudflare Production Verify run 33765382920; main serves the renewed Denmark JSON with Taste 4, Travel Scale and Japanese Transport. Browser visual QA remains PENDING."
       ],
       "automatedAudit": "DONE"
     },
