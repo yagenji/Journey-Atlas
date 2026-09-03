@@ -526,13 +526,13 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "IN_PROGRESS",
-      "visual": "IN_PROGRESS",
-      "map": "PENDING",
-      "sources": "IN_PROGRESS",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
         "Hero Subačius panoramic viewpoint / Vilnius Historic Centre and the current eight-scene selection remain KEEP. No scene replacement is justified by the Reference v3 selection rule.",
@@ -578,7 +578,13 @@
         "TASTE FINAL BATCH QA PASS 2026-09-04: four user-approved images are visually distinct dishes and consistent as one Spain-reference Taste series. No repeated dish, cross-country food, text/UI, or prohibited extra-object regression remains in the approved set.",
         "TASTE ASSET PACKAGE READY 2026-09-04: FOOD01–04 were normalized from 1536×1024 approved PNG generations to 1200×800 / 3:2 WebP without stretching and fully decoded successfully after export.",
         "Prepared final filenames and SHA-256: food-saltibarsciai.webp 39b3fd9c55b552c8d50b26c449e61e2e07a2df1d48e96aa93cd62a389d80f119; food-cepelinai.webp e69c21f7c8ab332d59d1abc2b8854d589e3701366fc6f478537f48e897f09d23; food-kibinai.webp 34199b6f431eb45e7a50a4837862452e20554b2ffec1bc7cdf4cbaac1f76969e; food-sakotis.webp 558f56f855b9c4bf27c2b63ccbde6bbba4bf169757b3fd36d8137557a4f7d4ee.",
-        "VISUAL COMPLETE GATE remains BLOCKED only on repository storage verification. The GitHub text API available in this session cannot ingest local binary WebP files directly, so Country JSON is intentionally still unchanged until the four prepared binaries exist in assets/images/lithuania/approved/ and are re-audited."
+        "VISUAL COMPLETE GATE remains BLOCKED only on repository storage verification. The GitHub text API available in this session cannot ingest local binary WebP files directly, so Country JSON is intentionally still unchanged until the four prepared binaries exist in assets/images/lithuania/approved/ and are re-audited.",
+        "TASTE STORAGE VERIFIED 2026-09-04: food-saltibarsciai.webp / food-cepelinai.webp / food-kibinai.webp / food-sakotis.webp exist in assets/images/lithuania/approved/ and their Git blob SHAs exactly match the locally fully-decoded 1200×800 / 3:2 WebP masters.",
+        "REFERENCE v3 IMPLEMENTATION 2026-09-04: Country JSON connected with contentQaVersion 1, renewed Signature Facts / Encounters / Beyond / Travel Notes, Taste 4, Spain-format Travel Scale, Japanese Transport title and explicit road icon.",
+        "STRUCTURAL CONTENT QA PASS 2026-09-04: Scenes=8 / Encounters=8 / Beyond=6 / Trivia=5 / Taste=4 / Travel Scale=3 / Seasons=4 / FOR WHOM=3 / Travel Notes=3 / Signature Facts=3. Required topicKey fields are present and unique.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-04: exactly 13 referenced Lithuania production assets are present — Hero + 8 Scenes + 4 Taste — with zero unreferenced or missing referenced assets.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: retained Hero + 8 Scenes remain KEEP; all four Taste images are user APPROVED, stored, SHA-verified and fully decoded locally at 1200×800 / 3:2 WebP. hardImageGate enabled.",
+        "PRE-PUBLISH STATE: Content / Visual / Map / Sources DONE; qa remains PENDING until branch automated validation and actual browser visual/responsive review. Production remains LIVE_OLD and atlasPublished remains true."
       ],
       "automatedAudit": "DONE"
     },
