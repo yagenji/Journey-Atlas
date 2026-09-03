@@ -153,3 +153,15 @@ Use these sources when implementing the Country JSON.
   https://www.visiticeland.com/article/the-ring-road/
 
 Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signature Fact: a new Hornafjörður section opened on 24 June 2026 and shortened the Ring Road by 12 km. The Travel Scale copy therefore uses the route concept and minimum-day guidance rather than an obsolete exact length.
+
+
+### S01 approval — 2026-09-03
+
+**Skógafoss: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `skogafoss.webp`
+- Final path: `assets/images/iceland/approved/skogafoss.webp`
+- Do not regenerate without explicit user instruction.
