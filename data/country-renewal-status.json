@@ -531,7 +531,11 @@
         "PHASE 4 IMPLEMENTATION 2026-09-04: Reference v3 Country JSON connected Taste 4 with imageState APPROVED, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Signature Facts, Encounters, Beyond the Scenery and Travel Notes, plus contentQaVersion 1.",
         "SOURCE REFRESH 2026-09-04: renewed facts and travel content use Latvia Official Statistics, Latvia.travel, UNESCO Memory of the World / Intangible Cultural Heritage, CSDD, Latvijas Valsts ceļi and EUR-Lex. Population reference remains 2026-01-01.",
         "MAP remains KEEP and DONE: existing 1200×760 Natural Earth-based map retained; all capital/Hero/scene coordinates are inside bounds and no prohibited ellipse was detected.",
-        "QA remains PENDING until branch automated validation/hard image gate and preview/runtime visual checks are complete. Production remains LIVE_OLD until final user approval."
+        "QA remains PENDING until branch automated validation/hard image gate and preview/runtime visual checks are complete. Production remains LIVE_OLD until final user approval.",
+        "AUTOMATED QA PASS 2026-09-04: validation run 33771857247 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift and Cloudflare package build after adding required Travel Trivia topicKey values.",
+        "PREVIEW DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33771988136 succeeded with the renewed Latvia payload. The temporary preview trigger was then removed.",
+        "CLEAN PREVIEW RE-DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33772177511 succeeded from commit 577503d7ff34cbffa3e84197dd07058a198402b6 after removing the temporary trigger file.",
+        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level inspection of Hero crop, map labels, scene cards, Taste images, spacing and responsive behaviour is still required before qa can become PASS. Production remains LIVE_OLD."
       ],
       "automatedAudit": "DONE"
     },
