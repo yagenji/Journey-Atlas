@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import io
 import json
 import math
 import re
@@ -90,6 +92,42 @@ def verify_raster(path: Path) -> tuple[int, int, str]:
     if width <= 0 or height <= 0:
         raise ValueError(f"invalid dimensions: {width}x{height}")
     return width, height, fmt
+
+def verify_embedded_svg_raster(path: Path) -> tuple[int, int, str] | None:
+    try:
+        root = ElementTree.fromstring(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise ValueError(f"SVG parse failed: {exc}") from exc
+
+    hrefs: list[str] = []
+    for element in root.iter():
+        if element.tag.rsplit("}", 1)[-1] != "image":
+            continue
+        href = element.attrib.get("href") or element.attrib.get("{http://www.w3.org/1999/xlink}href")
+        if isinstance(href, str):
+            hrefs.append(href)
+
+    data_href = next((href for href in hrefs if href.startswith("data:image/") and ";base64," in href), None)
+    if not data_href:
+        return None
+
+    header, encoded = data_href.split(",", 1)
+    mime_match = re.match(r"data:image/([^;]+);base64$", header)
+    mime = mime_match.group(1) if mime_match else "embedded"
+    try:
+        payload = base64.b64decode(encoded, validate=True)
+        with Image.open(io.BytesIO(payload)) as image:
+            image.verify()
+        with Image.open(io.BytesIO(payload)) as image:
+            image.load()
+            width, height = image.size
+            fmt = image.format or mime.upper()
+    except Exception as exc:
+        raise ValueError(f"embedded {mime} decode failed: {exc}") from exc
+    if width <= 0 or height <= 0:
+        raise ValueError(f"embedded raster has invalid dimensions: {width}x{height}")
+    return width, height, fmt
+
 
 
 def validate_dimensions(errors: list[str], asset: str, owners: set[str], width: int, height: int) -> None:
@@ -187,9 +225,17 @@ def main() -> int:
                 continue
             validate_dimensions(errors, asset, owners, width, height)
             decoded += 1
-        elif suffix == ".svg" and any(owner.endswith(":map") for owner in owners):
-            for owner in sorted(owner for owner in owners if owner.endswith(":map")):
-                validate_map_svg(errors, owner, asset)
+        elif suffix == ".svg":
+            if any(owner.endswith(":map") for owner in owners):
+                for owner in sorted(owner for owner in owners if owner.endswith(":map")):
+                    validate_map_svg(errors, owner, asset)
+            try:
+                embedded = verify_embedded_svg_raster(path)
+            except ValueError as exc:
+                errors.append(f"{asset}: {exc}")
+                continue
+            if embedded:
+                decoded += 1
 
     for slug in slugs:
         approved_folder_hygiene(errors, slug, per_country[slug])
