@@ -165,3 +165,15 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `skogafoss.webp`
 - Final path: `assets/images/iceland/approved/skogafoss.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### S02 approval — 2026-09-03
+
+**Jökulsárlón: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `jokulsarlon.webp`
+- Final path: `assets/images/iceland/approved/jokulsarlon.webp`
+- Do not regenerate without explicit user instruction.
