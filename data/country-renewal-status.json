@@ -281,22 +281,23 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "BLOCKED",
+      "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
       "notes": [
         "Hero concept/location (Ukko-Koli / Lake Pielinen) and all 8 current scenes are KEEP; no scene reselection is required.",
         "Hero + all 8 scene WebP assets are 1200×800 / 3:2 and have no current automated image-audit findings; actual browser visual review remains required before hardImageGate.",
         "Beyond the Scenery was renewed to remove FOOD and transport duplication and now covers Oodi/public space, Swedish–Russian historical layers, mökki life, Sámi self-government, Everyman's rights, and the two national languages.",
-        "Taste content is locked to lohikeitto, karjalanpiirakka, korvapuusti, and mustikkapiirakka. No image paths are connected until all four Taste visuals are approved.",
         "Travel Scale was added; Seasons and Travel Notes were adjusted to avoid duplication with Midsummer, Santa and duration guidance.",
         "contentQaVersion 1 and unique topicKey values were added across Signature Facts, Beyond, Trivia and Travel Notes.",
         "Sources were refreshed and expanded on 2026-09-03, including official coverage for scenes, food, Everyman's rights, Sámi, Oodi, aurora and night trains.",
         "Map v3 is technically current at 1200×760 and remains KEEP; actual browser label/readability review is still pending.",
-        "Taste visual approval state: FOOD01 lohikeitto, FOOD02 karjalanpiirakka, FOOD03 korvapuusti, FOOD04 mustikkapiirakka are all user APPROVED. Final 1200×800 WebP files are prepared; GitHub asset storage and JSON image-path connection are still pending."
+        "Taste implementation complete: lohikeitto, karjalanpiirakka, korvapuusti and mustikkapiirakka are user APPROVED, stored in assets/images/finland/approved/, referenced by Country JSON, and marked imageState APPROVED.",
+        "Automation QA PASS on 2026-09-03 (run 33723869550): source syntax, renewal audit, image audit, hard-gate check, reviewable/published JSON validation, LENS slug validation, and Cloudflare package build all succeeded.",
+        "Human browser visual QA remains pending for Hero crop, map readability, Taste rendering, long copy and Desktop / Tablet / Mobile consistency; keep hardImageGate false until that review is complete."
       ],
       "automatedAudit": "DONE"
     },
