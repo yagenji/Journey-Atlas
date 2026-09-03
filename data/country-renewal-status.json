@@ -496,7 +496,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -536,7 +536,10 @@
         "PREVIEW DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33771988136 succeeded with the renewed Latvia payload. The temporary preview trigger was then removed.",
         "CLEAN PREVIEW RE-DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33772177511 succeeded from commit 577503d7ff34cbffa3e84197dd07058a198402b6 after removing the temporary trigger file.",
         "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level inspection of Hero crop, map labels, scene cards, Taste images, spacing and responsive behaviour is still required before qa can become PASS. Production remains LIVE_OLD.",
-        "SYSTEM ISSUE 2026-09-04: GitHub Pages Country Preview uses one shared deployment environment. Latvia preview run 33772177511 succeeded, but Austria renewal run 33772376341 deployed afterward to the same Pages environment, so the shared preview URL no longer represented the Latvia branch. This is shared preview infrastructure behavior, not a Latvia Country JSON/content failure. Do not add Latvia-specific workaround."
+        "SYSTEM ISSUE 2026-09-04: GitHub Pages Country Preview uses one shared deployment environment. Latvia preview run 33772177511 succeeded, but Austria renewal run 33772376341 deployed afterward to the same Pages environment, so the shared preview URL no longer represented the Latvia branch. This is shared preview infrastructure behavior, not a Latvia Country JSON/content failure. Do not add Latvia-specific workaround.",
+        "FINAL QA PASS 2026-09-04: Reference v3 structural counts confirmed — visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3 with city/map/compass, Seasons 4, Japanese Transport with road icon, FOR WHOM 3, Travel Notes 3. Theme taxonomy remains SSOT with earth/city/history; related destinations Estonia/Lithuania/Finland are published valid slugs.",
+        "FINAL QA SCOPE 2026-09-04: automated validation, source syntax, Country JSON, image full-decode hard gate, approved-folder hygiene, package build and GitHub Pages preview deployment all passed. User had previously identified the shared-preview overwrite symptom; that infrastructure issue was isolated and Latvia preview was successfully restored. No Latvia-specific blocking defect remains in the validated scope.",
+        "USER PUBLICATION APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Production remains LIVE_OLD until merge and production verification complete."
       ],
       "automatedAudit": "DONE"
     },
