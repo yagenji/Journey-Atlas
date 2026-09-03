@@ -450,8 +450,8 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
             fail(errors, f"{path.name}: seasons はレイアウト仕様上4件必要です")
 
         personas = data.get("personas") if isinstance(data.get("personas"), list) else []
-        if len(personas) < 3:
-            fail(errors, f"{path.name}: personas は少なくとも3件必要です（表示は先頭3件）")
+        if len(personas) != 3:
+            fail(errors, f"{path.name}: personas はレイアウト仕様上3件必要です")
 
         tips = data.get("tips") if isinstance(data.get("tips"), list) else []
         if len(tips) != 3:
