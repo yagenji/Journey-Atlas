@@ -531,7 +531,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
@@ -573,7 +573,10 @@
         "SYSTEM ISSUE 2026-09-04: GitHub Pages Country Preview uses one shared deployment environment. Latvia preview run 33772177511 succeeded, but Austria renewal run 33772376341 deployed afterward to the same Pages environment, so the shared preview URL no longer represented the Latvia branch. This is shared preview infrastructure behavior, not a Latvia Country JSON/content failure. Do not add Latvia-specific workaround.",
         "FINAL QA PASS 2026-09-04: Reference v3 structural counts confirmed — visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3 with city/map/compass, Seasons 4, Japanese Transport with road icon, FOR WHOM 3, Travel Notes 3. Theme taxonomy remains SSOT with earth/city/history; related destinations Estonia/Lithuania/Finland are published valid slugs.",
         "FINAL QA SCOPE 2026-09-04: automated validation, source syntax, Country JSON, image full-decode hard gate, approved-folder hygiene, package build and GitHub Pages preview deployment all passed. User had previously identified the shared-preview overwrite symptom; that infrastructure issue was isolated and Latvia preview was successfully restored. No Latvia-specific blocking defect remains in the validated scope.",
-        "USER PUBLICATION APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Production remains LIVE_OLD until merge and production verification complete."
+        "USER PUBLICATION APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Production remains LIVE_OLD until merge and production verification complete.",
+        "PRODUCTION DEPLOY PASS 2026-09-04: PR #179 was squash-merged to main as commit d4f1d78de9222f2582460bce3054d8e4782ec591. Main validation run 33774608141 passed source syntax, renewal registry, published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
+        "PRODUCTION PAGES PASS 2026-09-04: GitHub Pages run 33774608175 completed successfully for the Latvia merge commit.",
+        "PRODUCTION LIVE VERIFIED 2026-09-04: Cloudflare Production Verify run 33774608875 confirmed atlas.yagenji.com served merge commit d4f1d78de9222f2582460bce3054d8e4782ec591, then passed Spain V3 regression checks and production runtime asset/route verification. Latvia renewal is LIVE_CURRENT."
       ],
       "automatedAudit": "DONE"
     },
