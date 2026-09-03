@@ -213,3 +213,15 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `kirkjufell.webp`
 - Final path: `assets/images/iceland/approved/kirkjufell.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### S06 approval — 2026-09-03
+
+**Þingvellir: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `thingvellir.webp`
+- Final path: `assets/images/iceland/approved/thingvellir.webp`
+- Do not regenerate without explicit user instruction.
