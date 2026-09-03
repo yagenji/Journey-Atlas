@@ -7,12 +7,13 @@
 - Destination scope: `data/atlas-scope.json`
 - Destination registries: `data/atlas-destinations.json` / `data/atlas-destinations-editorial.json`
 - Country content: `data/countries/{slug}.json`
+- Published-country renewal status: `data/country-renewal-status.json`
 - Travel themes: `data/theme-taxonomy.json`
 - Region taxonomy: `data/region-taxonomy.json`
 - Shared Country template: `country.html`
 - Country map generator: `scripts/generate_country_map.py`
 
-Country固有情報はCountry JSONへ置き、共通UIはCountry Templateで共有します。Iceland / NorwayをCountry Pageの基準とします。
+Country固有情報はCountry JSONへ置き、共通UIはCountry Templateで共有します。公開済みCountryの改修は `docs/PUBLISHED_COUNTRY_RENEWAL.md` に従います。Reference v3は、Iceland / Norwayをビジュアル言語、Spainを現行構造・情報密度・UIの実装基準として役割分担します。Norwayの旧低解像度Sceneは現行画像解像度の基準ではありません。
 
 ## Publication state
 
@@ -40,6 +41,9 @@ Country JSON、公開Registry、Map、Theme、production packageを検証しま�
 ```bash
 python3 scripts/validate_country.py --reviewable
 python3 scripts/validate_country.py --published
+python3 scripts/audit_published_countries.py
+python3 scripts/validate_images.py --mode audit
+python3 scripts/validate_images.py --mode hard
 python3 scripts/build_cloudflare.py
 ```
 
