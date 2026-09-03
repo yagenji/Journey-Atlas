@@ -269,8 +269,8 @@
       "nameJa": "エストニア",
       "wave": 6,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -278,7 +278,16 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
+        "Hero Tallinn Old Town and Scene 1–7 are KEEP candidates; current Hero and all eight landscape assets are 1200×800 / 3:2 WebP. Do not regenerate acceptable existing visuals solely because this is a renewal.",
+        "Scene 8 Suur Munamägi requires content-level selection reconsideration: the current highest-point rationale is weaker than the Reference v3 discovery standard. Regenerate only if the scene is actually replaced.",
+        "Map is technically KEEP: 1200×760 SVG, geographic source retained, no ellipse or radialGradient structural issue found. Human browser label/crop QA remains pending.",
+        "Reference v3 content gaps: contentQaVersion, Taste (4 items/images), and Travel Scale are missing. Transport title is English-only and lacks explicit road icon.",
+        "Content renewal required for scene-like Encounters, the weak highest-point Signature Fact, FOOD/ROAD overlap in Beyond, black-bread overlap in Trivia, and the first Travel Note which will overlap the new Travel Scale.",
+        "Current source verification is recent (2026-08-31); population 2026-01-01, forest 2025, island count, and 100% online public services were rechecked against current official/official-tourism sources. New Taste/replacement-content sources still need to be added.",
+        "hardImageGate remains false until all retained/replacement landscape visuals and all four Taste visuals clear the visual-complete gate."
+      ],
       "automatedAudit": "DONE"
     },
     {
