@@ -7,7 +7,7 @@ Classification: **B — medium renewal**
 ## Decision summary
 
 - Hero: **KEEP**
-- 8-scene selection: **REVIEW 1 / KEEP 7 pending candidate review**
+- 8-scene selection: **KEEP 8**
 - Scene production assets: **RENEW / NORMALIZE 8**
 - Map: **KEEP**
 - Country Profile: **KEEP**
@@ -38,7 +38,7 @@ Current set:
 7. Geysir
 8. Landmannalaugar
 
-The set is strong, but Hero Seljalandsfoss + Scene 1 Skógafoss gives two waterfalls at the very start of the page. Under the current ANCHOR / ATLAS VIEW / DISCOVERY rule, run the normal 12–16 candidate review before locking the renewed eight. Do not replace Skógafoss solely for geographic distribution.
+The current eight are locked for renewal. Seljalandsfoss in the Hero and Skógafoss in Scene 1 are both waterfalls, but that is not treated as unnecessary duplication: waterfalls are one of Iceland's defining landscape experiences, and the two locations provide distinct scenes and scales. Do not weaken the page merely to increase category dispersion.
 
 ### Asset gate
 All eight raster-backed SVG scene assets fully decode, but none currently pass the renewed 1200×800 / 3:2 gate:
@@ -77,4 +77,4 @@ Technical map validation passes. Keep the current map unless later visual review
 
 ## Why B
 
-The page structure, Hero, map, themes and most editorial content remain useful. However, all eight Scene production assets need normalization/renewal, one Scene slot needs editorial review, and two current shared sections must be added.
+The page structure, Hero, eight-scene selection, map, themes and most editorial content remain useful. The medium-renewal classification remains because all eight Scene production assets need normalization/renewal and the current Taste / Travel Scale sections must be added.
