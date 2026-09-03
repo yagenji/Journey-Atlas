@@ -8,7 +8,7 @@ Classification: **B — medium renewal**
 
 - Hero: **KEEP**
 - 8-scene selection: **KEEP 8**
-- Scene production assets: **RENEW / NORMALIZE 8**
+- Scene production assets: **S01 REGENERATE / S02–S08 NORMALIZE DECISION PENDING**
 - Map: **KEEP**
 - Country Profile: **KEEP**
 - Signature Facts: **REWRITE 1**
@@ -46,6 +46,14 @@ All eight raster-backed SVG scene assets fully decode, but none currently pass t
 - Landmannalaugar: 1000×625
 
 Because Iceland is a visual reference, preserve the approved visual direction. First determine whether the existing visuals can be production-normalized without visible quality loss; regenerate only where normalization is not sufficient or the scene itself changes.
+
+### S01 normalization decision — 2026-09-03
+
+**Skógafoss: REGENERATE.**
+
+The current scene is 1200×750 (aspect ratio 1.60), while the renewed target is 1200×800 / 3:2 (aspect ratio 1.50). A true normalization cannot preserve the approved composition exactly: fitting to 3:2 requires either horizontal crop, added canvas/padding, or geometric distortion. All three visibly alter the image, so S01 does not qualify as NORMALIZE under the renewal rule.
+
+Keep the scene/location itself. Regenerate only the production asset at the current JOURNEY ATLAS visual direction and target geometry. Do not connect the replacement path to Country JSON until approval and the visual-complete gate.
 
 ## Content audit
 
