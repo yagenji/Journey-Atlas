@@ -591,7 +591,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -603,7 +603,9 @@
         "Sources refreshed and verified 3 Sep 2026 using SCB, Försäkringskassan, Naturvårdsverket, Church of Sweden, NobelPrize.org, Visit Stockholm, Visit Sweden and GSI.",
         "Published via PR #163. Main merge commit 6c692cd60d78e850c825871dfcbd684da3649a22 reached atlas.yagenji.com and passed Cloudflare Production Verify run 33725422482.",
         "Main validation run 33725422665 PASS. GitHub Pages preview deploy run 33725422607 attempt 2 PASS.",
-        "Production is LIVE_CURRENT. Human browser visual/responsive/accessibility QA remains PENDING; automation and production HTTP verification are not treated as a substitute for final visual inspection."
+        "Final production browser QA PASS on 3 Sep 2026 using Chromium against https://atlas.yagenji.com/countries/sweden/ at Desktop 1440×1000, Tablet 834×1112, and Mobile 390×844. Required sections, counts, lazy-loaded Hero/8 Scenes/Taste images, map markers, canonical/index state, horizontal overflow, ARIA, and keyboard scene activation all passed with zero errors and zero warnings.",
+        "Visual screenshot review confirmed Hero crop, map, scene cards, Taste cards, Travel Scale, Japanese text wrapping, spacing, and responsive layout. A shared missing-Japanese-glyph issue found during browser QA was fixed via PR #168 by adding Zen Kaku Gothic New fallbacks to the display/meta stacks; post-fix screenshots confirmed 480日, 3〜4日, 6〜8月 and Beyond theme labels render correctly.",
+        "Sweden renewal is complete: Content/Visual/Map/Sources DONE, QA PASS, hard image gate enabled, and production LIVE_CURRENT."
       ],
       "automatedAudit": "DONE"
     },
