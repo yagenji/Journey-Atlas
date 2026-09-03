@@ -366,8 +366,8 @@
       "nameJa": "アイルランド",
       "wave": 6,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -375,7 +375,12 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "AUDIT 2026-09-03: classified B / Medium Renewal. Hero, all 8 existing scenes and map remain KEEP; no landscape regeneration is required.",
+        "CONTENT DESIGN 2026-09-03: Reference v3 renewal scope fixed for Taste 4, Travel Scale 3, Japanese Transport with icon road, contentQaVersion 1, topicKey normalization, and overlap cleanup across Signature Facts / Beyond / Trivia / Travel Notes.",
+        "VISUAL APPROVAL 2026-09-03: FOOD01 Irish Stew, FOOD02 Brown Soda Bread, FOOD03 Seafood Chowder and FOOD04 Boxty were user APPROVED. Approved images were normalized without regeneration to 1200×800 / 3:2 WebP.",
+        "IMPLEMENTATION HOLD: approved Taste binaries are prepared for assets/images/ireland/approved/ but are not yet present in the GitHub branch; hardImageGate remains false and Country JSON is not connected to missing assets."
+      ],
       "automatedAudit": "DONE"
     },
     {
