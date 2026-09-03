@@ -435,81 +435,116 @@
   display:none!important;
 }
 
-/* Quiet country-specific handoff to JOURNEY LENS.
-   It appears only when the external LENS feed has stories for this country. */
+/* JOURNEY LENS bridge — same quiet editorial card language as NEXT DESTINATIONS.
+   The real-photo thumbnail remains the visual cue that LENS is a different layer of the journey. */
 .country-lens-bridge{
-  margin:18px 0 8px;
-  padding:18px 0 4px;
-  border-top:1px solid rgba(18,54,92,.12);
+  margin:22px 0 8px;
 }
 .country-lens-bridge[hidden]{display:none!important;}
+.country-lens-bridge__head{
+  margin-bottom:10px;
+}
+.country-lens-bridge__head .section-kicker-en{
+  display:block;
+  margin-bottom:5px;
+}
+.country-lens-bridge__head h2{
+  margin:0;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:22px;
+  line-height:1.42;
+  font-weight:600;
+  letter-spacing:.01em;
+}
 .country-lens-bridge__link{
+  min-height:132px;
   display:grid;
-  grid-template-columns:116px minmax(0,1fr);
+  grid-template-columns:164px minmax(0,1fr);
   gap:18px;
   align-items:center;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.32);
   color:inherit;
   text-decoration:none;
+  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
 }
 .country-lens-bridge__thumb{
-  width:116px;
+  width:164px;
   aspect-ratio:3 / 2;
   border-radius:8px;
   background:#ece8df;
   background-size:cover;
   background-position:center;
 }
-.country-lens-bridge__copy{min-width:0;}
-.country-lens-bridge__kicker{
-  display:block;
-  margin-bottom:4px;
-  color:#8a6b55;
-  font-family:var(--meta);
-  font-size:9px;
-  line-height:1.3;
-  letter-spacing:.11em;
-}
-.country-lens-bridge h2{
-  margin:0;
-  color:#12365c;
-  font-family:"Zen Kaku Gothic New",sans-serif;
-  font-size:15px;
-  line-height:1.5;
-  font-weight:600;
+.country-lens-bridge__copy{
+  min-width:0;
+  padding-right:6px;
 }
 .country-lens-bridge p{
-  margin:4px 0 0;
+  max-width:680px;
+  margin:0;
   color:#66717a;
-  font-size:11.5px;
-  line-height:1.65;
+  font-size:12px;
+  line-height:1.7;
 }
 .country-lens-bridge small{
   display:block;
-  margin-top:6px;
-  color:#12365c;
+  margin-top:9px;
+  color:#8a6b55;
   font-family:var(--meta);
   font-size:9.5px;
   line-height:1.4;
-  letter-spacing:.04em;
+  font-weight:500;
+  letter-spacing:.06em;
 }
-.country-lens-bridge__link:hover h2,
-.country-lens-bridge__link:focus-visible h2{
-  text-decoration:underline;
-  text-underline-offset:4px;
+.country-lens-bridge__link:hover,
+.country-lens-bridge__link:focus-visible{
+  border-color:#a86545;
+  background:rgba(255,255,255,.42);
+  box-shadow:0 5px 16px rgba(70,66,52,.09);
 }
 .country-lens-bridge__link:focus-visible{
-  outline:2px solid rgba(18,54,92,.45);
-  outline-offset:5px;
-  border-radius:4px;
+  outline:2px solid var(--navy);
+  outline-offset:3px;
 }
 @media(max-width:760px){
-  .country-lens-bridge{padding-top:15px;}
-  .country-lens-bridge__link{
-    grid-template-columns:88px minmax(0,1fr);
-    gap:13px;
+  .country-lens-bridge{
+    margin-top:18px;
   }
-  .country-lens-bridge__thumb{width:88px;}
-  .country-lens-bridge h2{font-size:14px;}
-  .country-lens-bridge p{font-size:11px;}
+  .country-lens-bridge__head{
+    margin-bottom:8px;
+  }
+  .country-lens-bridge__head h2{
+    font-size:20px;
+  }
+  .country-lens-bridge__link{
+    min-height:0;
+    grid-template-columns:112px minmax(0,1fr);
+    gap:12px;
+    padding:10px;
+  }
+  .country-lens-bridge__thumb{
+    width:112px;
+  }
+  .country-lens-bridge p{
+    font-size:11px;
+    line-height:1.65;
+  }
+  .country-lens-bridge small{
+    margin-top:7px;
+    font-size:9px;
+  }
 }
+@media(max-width:460px){
+  .country-lens-bridge__link{
+    grid-template-columns:96px minmax(0,1fr);
+  }
+  .country-lens-bridge__thumb{
+    width:96px;
+  }
+}
+
 
