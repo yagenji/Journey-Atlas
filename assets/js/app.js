@@ -7,6 +7,8 @@ const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
 const DATA_VERSION = '20260828-estonia-review';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
 const SITE_ORIGIN = 'https://atlas.yagenji.com/';
+const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
+const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 
 const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
   .then((response) => {
@@ -113,6 +115,7 @@ function renderCountry(data, registry) {
   app.replaceChildren(fragment);
   updatePageMetadata(data);
   initWishButton(data.slug);
+  initCountryLensBridge(data);
 
   const scenes = data.scenes || [];
   const requestedScene = getSceneFromHash(scenes) || scenes[0]?.id;
@@ -529,6 +532,68 @@ function renderRelated(fragment, countries = [], registry = []) {
     article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
     container.append(article);
   });
+}
+
+function parseCountryLensFeed(xmlText, countrySlug) {
+  const xml = new DOMParser().parseFromString(xmlText, 'application/xml');
+  if (xml.querySelector('parsererror')) throw new Error('Invalid JOURNEY LENS RSS XML');
+  return [...xml.querySelectorAll('item')].flatMap((item) => {
+    const link = (item.querySelector('link')?.textContent || '').trim();
+    const match = link.match(LENS_LINK_PATTERN);
+    if (!match || match[1] !== countrySlug) return [];
+    const title = (item.querySelector('title')?.textContent || '').trim();
+    const titleParts = title.split('｜');
+    const subtitle = titleParts.length > 1 ? titleParts.slice(1).join('｜').trim() : title;
+    const image = (item.querySelector('enclosure')?.getAttribute('url') || '').trim();
+    return [{
+      link,
+      sequence: Number(match[2]),
+      subtitle,
+      image,
+    }];
+  }).sort((a, b) => a.sequence - b.sequence);
+}
+
+function initCountryLensBridge(data) {
+  const section = document.querySelector('#country-lens-bridge');
+  if (!section || !data?.slug) return;
+
+  fetch(LENS_RSS_URL, { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('JOURNEY LENS RSS not found');
+      return response.text();
+    })
+    .then((xmlText) => {
+      const stories = parseCountryLensFeed(xmlText, data.slug);
+      if (!stories.length) return;
+
+      const first = stories[0];
+      const link = section.querySelector('#country-lens-link');
+      const thumb = section.querySelector('#country-lens-thumb');
+      const title = section.querySelector('#country-lens-title');
+      const description = section.querySelector('#country-lens-description');
+      const meta = section.querySelector('#country-lens-meta');
+
+      if (link) {
+        link.href = first.link;
+        link.setAttribute('aria-label', `JOURNEY LENSで${data.nameJa}の写真と物語を見る`);
+      }
+      if (thumb && first.image) {
+        thumb.style.backgroundImage = `url("${first.image.replaceAll('"', '%22')}")`;
+        thumb.classList.add('has-image');
+      }
+      if (title) title.textContent = `JOURNEY LENSで見る${data.nameJa}`;
+      if (description) {
+        description.textContent = first.subtitle
+          ? `実際に訪れた${data.nameJa}を、写真と物語で。— ${first.subtitle}`
+          : `実際に訪れた${data.nameJa}を、写真と物語で。`;
+      }
+      if (meta) meta.textContent = stories.length > 1 ? `${stories.length} STORIES　写真と物語を見る →` : '写真と物語を見る →';
+      section.hidden = false;
+    })
+    .catch(() => {
+      section.hidden = true;
+    });
 }
 
 function renderPhotoCredits(fragment, items = []) {
