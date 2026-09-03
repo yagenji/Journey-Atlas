@@ -129,6 +129,12 @@ jobs:
           grep -q 'taste-section' /tmp/country.css
           grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
           grep -q 'aspect-ratio:3 / 2' /tmp/country.css
+          grep -q '>地図から探す<' /tmp/spain.html
+          ! grep -q '<a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>' /tmp/spain.html
+          grep -q 'id="country-lens-bridge"' /tmp/spain.html
+          grep -q 'initCountryLensBridge(data)' /tmp/app.js
+          grep -q 'parseCountryLensFeed' /tmp/app.js
+          grep -q 'country-lens-bridge__link' /tmp/country.css
           ! grep -q 'renderSeasonMatrix' /tmp/app.js
           ! grep -q 'scene-role' /tmp/app.js
           ! grep -q 'season-matrix' /tmp/country.css
