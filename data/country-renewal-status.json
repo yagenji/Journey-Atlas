@@ -577,13 +577,13 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "IN_PROGRESS",
-      "visual": "IN_PROGRESS",
+      "content": "DONE",
+      "visual": "DONE",
       "map": "DONE",
-      "sources": "IN_PROGRESS",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B / Medium Renewal. Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
         "VISUAL AUDIT: Kinderdijk Hero and all eight existing landscape scenes remain KEEP. Current scene selection covers canal city / modern city / water engineering / Wadden island / heathland / bulb fields / water village / South Limburg hills; no landscape replacement is justified.",
@@ -617,7 +617,8 @@
         "TASTE STORAGE PREP 2026-09-04: FOOD01 Stamppot and FOOD02 Bitterballen were normalized to 1200×800 / 3:2 WebP and fully decoded successfully. Final target paths: assets/images/netherlands/approved/food-stamppot.webp and assets/images/netherlands/approved/food-bitterballen.webp. Binary repository storage remains pending. FOOD03/04 are not storage-eligible because they remain rejected by Taste hard rules.",
         "TASTE STORAGE VERIFIED 2026-09-04: food-stamppot.webp and food-bitterballen.webp are present in assets/images/netherlands/approved/ on the renewal branch. Their Git blob SHAs exactly match the prepared 1200×800 / 3:2 WebP masters (Stamppot b2b1d1b4707e00ceb81a8d1385bbbffdd95490a3; Bitterballen b6914f5e388fc778ef64136b3d15e337625d2194). FOOD03/04 remain outside approved storage because their current generations are rejected by the Taste hard rules.",
         "PARTIAL IMPLEMENTATION 2026-09-04: Reference v3 non-visual Country JSON is implemented on the renewal branch: contentQaVersion 1, simplified visible capital, normalized Signature Facts, renewed Beyond the Scenery, Spain-format Travel Scale, Japanese Transport title with explicit road icon, topic-keyed Travel Notes, and refreshed sources. Taste remains intentionally unconnected until FOOD03/04 pass the visual gate; therefore content/sources remain IN_PROGRESS and hardImageGate remains false.",
-        "TASTE APPROVAL 2026-09-04: FOOD03 Haring generation 3106bf2b-44f5-4c10-9701-795fb7fa3c22 passed Assistant QA and was user-approved; no flag/text/extra side dish, only herring with chopped onion. FOOD04 Poffertjes generation 5f697d80-8a93-4cf3-b0ea-ea2fea1efda2 passed Assistant QA and was user-approved; only poffertjes with powdered sugar and butter. FOOD01–04 are now APPROVED / LOCKED. Next step: normalize FOOD03/04 to 1200×800 WebP, store them in assets/images/netherlands/approved/, verify complete decode/dimensions, then connect the four Taste items in Country JSON and set the visual hard gate only after storage verification."
+        "TASTE APPROVAL 2026-09-04: FOOD03 Haring generation 3106bf2b-44f5-4c10-9701-795fb7fa3c22 passed Assistant QA and was user-approved; no flag/text/extra side dish, only herring with chopped onion. FOOD04 Poffertjes generation 5f697d80-8a93-4cf3-b0ea-ea2fea1efda2 passed Assistant QA and was user-approved; only poffertjes with powdered sugar and butter. FOOD01–04 are now APPROVED / LOCKED. Next step: normalize FOOD03/04 to 1200×800 WebP, store them in assets/images/netherlands/approved/, verify complete decode/dimensions, then connect the four Taste items in Country JSON and set the visual hard gate only after storage verification.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + 8 scenes KEEP, Map KEEP, FOOD01–04 all APPROVED / LOCKED and stored in assets/images/netherlands/approved/. FOOD03 Haring and FOOD04 Poffertjes Git blob SHAs exactly match the approved 1200×800 WebP masters. Taste is connected in Country JSON with imageState APPROVED for all four items. Validation run 33786749636 passed source syntax, registry audit, published image audit, hard image gate, reviewable/published country validation, LENS slug validation, and Cloudflare package build. hardImageGate is now true. Next phase: Review Preview + browser QA; production remains LIVE_OLD until user approval."
       ],
       "automatedAudit": "DONE"
     },
