@@ -189,3 +189,15 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `studlagil.webp`
 - Final path: `assets/images/iceland/approved/studlagil.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### S04 approval — 2026-09-03
+
+**Mývatn: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `myvatn.webp`
+- Final path: `assets/images/iceland/approved/myvatn.webp`
+- Do not regenerate without explicit user instruction.
