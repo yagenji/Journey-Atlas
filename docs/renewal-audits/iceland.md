@@ -49,24 +49,67 @@ Because Iceland is a visual reference, preserve the approved visual direction. F
 
 ## Content audit
 
-### Add current sections
-Iceland predates the current Spain structure and is missing:
-- `contentQaVersion`
+### Add current sections — LOCKED
+- `contentQaVersion: 1`
 - `taste`
 - `travelScale`
 
-### Signature Facts
-- Population density 約4人/km²: **replace** — correct but too generic for the current editorial standard.
-- Glacier coverage 約10%: **keep candidate**
-- Renewable electricity nearly 100%: **keep candidate**
+#### Taste
+Kicker: `TASTE OF ICELAND`  
+Title: `アイスランドで食べたいもの`  
+Intro: `火山島の気候と海、牧畜、地熱がそのまま食文化につながっている。`
 
-A replacement should create travel curiosity rather than merely describe sparse population.
+1. **キョーツーパ / Kjötsúpa**  
+   羊肉と根菜を煮込む素朴なスープ。冷えた日に湯気の立つ一杯を食べると、羊の放牧が身近な国の食卓が見えてくる。  
+   Planned asset: `food-kjotsupa.webp`
 
-### Beyond the Scenery
-The current FOOD item will overlap the new dedicated Taste section. Replace that one topic with a different country-understanding layer rather than duplicating food.
+2. **スキール / Skyr**  
+   乳製品のスキールは、朝食や軽食として身近な存在。濃厚さがありながら酸味は穏やかで、ベリーやグラノーラと合わせても食べられる。  
+   Planned asset: `food-skyr.webp`
+
+3. **ルーグブロイズ / Rúgbrauð**  
+   甘みのある濃い色のライ麦パン。地熱地帯では熱い地面を利用して焼く方法もあり、地中の熱が料理までつながる。  
+   Planned asset: `food-rugbraud.webp`
+
+4. **ハルズフィスクル / Harðfiskur**  
+   魚を干して作る保存食。小さく裂いてそのまま食べられ、長い海岸線と漁業の歴史が日常の軽食に残っている。  
+   Planned asset: `food-hardfiskur.webp`
+
+#### Travel Scale
+Kicker: `DURATION`  
+Title: `旅の目安日程`
+
+- **3〜4日 — レイキャヴィークから南西部をめぐる**  
+  首都を拠点にゴールデンサークルと南岸の滝まで。短い日程でも、地熱・断層・滝というアイスランドの入口をつなげられる。
+
+- **5〜7日 — 南岸を氷河湖まで伸ばす**  
+  レイキャヴィークからヴィーク、ヨークルスアゥルロゥン方面へ。移動距離を増やすより、滝や黒砂海岸、氷河で立ち止まる時間を残す。
+
+- **8日以上 — リングロードで島を一周する**  
+  国道1号を軸に北部や東部までつなぐ。公式観光情報でも一周には少なくとも7日が目安とされるため、天候や寄り道を考えると8日以上あると組みやすい。
+
+### Signature Facts — LOCKED
+Use the following three facts in the renewed page:
+- **活火山系：約30** — Icelandic Meteorological Office describes about 30 active volcanic systems in Iceland.
+- **氷河：国土の約10%** — keep the current glacier-scale fact.
+- **地熱暖房：約90%** — Orkustofnun states that about 90% of the energy used for domestic heating comes from geothermal energy.
+
+This replaces both the generic population-density fact and the less travel-visible renewable-electricity statistic with a more balanced set: geology / ice / everyday life.
+
+### Beyond the Scenery — LOCKED
+Replace the current FOOD item with:
+
+**LIFE / ロパペイサと羊毛**  
+羊毛のセーター、ロパペイサは土産物というだけではなく、寒冷な暮らしと手仕事が結びついたアイスランドの日常文化。町の毛糸店や工房をのぞくと、自然素材が服として暮らしに残っていることが分かる。
+
+Points:
+- 円形のヨーク模様を持つロパペイサは、歴史・手仕事・日常生活を象徴する存在として紹介されている
+- 地方の毛糸店や工房では、アイスランド産ウールを使った製品に触れられる
 
 ### Travel Trivia
-The five topics are usable. Fix the doubled Japanese quotation mark in the hot-dog phrase.
+Keep the current five topics. Fix the doubled Japanese quotation mark in the hot-dog phrase so it reads:
+
+「エイナ・メズ・オッル」
 
 ### Encounters
 Current eight are concise tags and fit the current rule. Keep.
@@ -78,3 +121,27 @@ Technical map validation passes. Keep the current map unless later visual review
 ## Why B
 
 The page structure, Hero, eight-scene selection, map, themes and most editorial content remain useful. The medium-renewal classification remains because all eight Scene production assets need normalization/renewal and the current Taste / Travel Scale sections must be added.
+
+
+## Content source lock — 2026-09-03
+
+Use these sources when implementing the Country JSON.
+
+- Active volcanic systems: Icelandic Meteorological Office — about 30 active volcanic systems.
+  https://en.vedur.is/media/vedurstofan-utgafa-2020/VI_2020_004.pdf
+- Glacier coverage: Icelandic Meteorological Office — glaciers cover about 10% of Iceland.
+  https://en.vedur.is/volcanoes/volcanic-hazards/glacial-outburst/
+- Geothermal domestic heating: Orkustofnun — about 90% of energy used for domestic heating comes from geothermal energy.
+  https://orkustofnun.is/en/natural_resources/district_heating
+- Icelandic food overview / kjötsúpa / skyr / dried fish: Visit Iceland.
+  https://www.visiticeland.com/article/top-10-foods-in-iceland/
+- Geothermal rye bread: Visit Iceland / Geothermal Park and Laugarvatn Fontana.
+  https://www.visiticeland.com/service-provider/64635a5b38c85f000b7f41b9
+  https://www.visiticeland.com/service-provider/6093f0b386700f000a2791a2
+- Icelandic knitting / lopapeysa: Visit Iceland.
+  https://www.visiticeland.com/article/icelandic-knitting/
+- Ring Road / travel scale: Icelandic Road and Coastal Administration + Visit Iceland.
+  https://www.vegagerdin.is/en/home/exploring-iceland/the-ring-road
+  https://www.visiticeland.com/article/the-ring-road/
+
+Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signature Fact: a new Hornafjörður section opened on 24 June 2026 and shortened the Ring Road by 12 km. The Travel Scale copy therefore uses the route concept and minimum-day guidance rather than an obsolete exact length.
