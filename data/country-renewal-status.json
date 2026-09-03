@@ -296,7 +296,6 @@
         "PHASE 3 NEW VISUAL TARGETS: FOOD01 Kiluvõileib, FOOD02 Mulgipuder, FOOD03 Kama, FOOD04 Must leib. All are NOT STARTED and must follow the Spain Taste Global Visual Reference.",
         "Visual Complete Gate remains BLOCKED until FOOD01–04 are individually user APPROVED and stored as 1200×800 / 3:2 WebP. hardImageGate remains false.",
         "VISUAL APPROVAL FOOD01 2026-09-03: Kiluvõileib APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/estonia/approved/food-kiluvoileib.webp.",
-        "VISUAL APPROVAL FOOD02 2026-09-03: Mulgipuder APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/estonia/approved/food-mulgipuder.webp.",
         "VISUAL APPROVAL FOOD03 2026-09-03: Kama APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/estonia/approved/food-kama.webp.",
         "VISUAL APPROVAL FOOD04 2026-09-03: Must leib APPROVED and locked after regeneration. Do not regenerate unless explicitly requested. Target production path: assets/images/estonia/approved/food-black-bread.webp.",
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-03: FOOD01 Kiluvõileib / FOOD02 Mulgipuder / FOOD03 Kama / FOOD04 Must leib are all user APPROVED. Visual Complete Gate still awaits repository storage, WebP conversion, 1200×800 verification, complete decode, and approved-folder hygiene.",
@@ -305,7 +304,8 @@
         "QA REGRESSION 2026-09-03: final Taste hard-rule review found FOOD02 Mulgipuder invalid because the approved image contains unsourced beetroot slices and a thyme garnish; Visit Estonia describes Mulgipuder as potato-and-groats porridge typically served with bacon and sour cream. FOOD03 Kama is invalid because a wooden spoon is visible, violating the explicit no-cutlery rule.",
         "QA CORRECTIVE ACTION 2026-09-03: FOOD02 and FOOD03 were removed from assets/images/estonia/approved/ on the renewal branch, hardImageGate was returned to false, visual returned to IN_PROGRESS, and data/countries/estonia.json was reset to main so incomplete Taste visuals are not connected before the Visual Complete Gate.",
         "FOOD01 Kiluvõileib and FOOD04 Must leib remain APPROVED and locked. FOOD02 and FOOD03 require regeneration against the Spain Taste hard rules before Phase 4 can be re-applied.",
-        "Previous automated validation and preview deployment were technically successful, but they are superseded by this visual QA regression and must not be treated as final QA PASS."
+        "Previous automated validation and preview deployment were technically successful, but they are superseded by this visual QA regression and must not be treated as final QA PASS.",
+        "VISUAL APPROVAL FOOD02 2026-09-03: regenerated Mulgipuder APPROVED and locked. The revised image contains potato-and-groats porridge with bacon and sour cream only; the prior beetroot and thyme hard-rule issues are resolved. Target production path: assets/images/estonia/approved/food-mulgipuder.webp. Repository restorage and decode verification remain pending."
       ],
       "automatedAudit": "DONE"
     },
