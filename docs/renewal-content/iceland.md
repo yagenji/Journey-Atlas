@@ -69,14 +69,14 @@ Intro: 火山島の気候と海、牧畜、地熱がそのまま食文化につ�
 **DURATION**  
 **旅の目安日程**
 
-### 3〜4日 — レイキャヴィークから南西部をめぐる
-首都を拠点にゴールデンサークルと南岸の滝まで。短い日程でも、地熱・断層・滝というアイスランドの入口をつなげられる。
+### 3〜4日 — 首都を拠点に南西部へ
+レイキャヴィークを拠点に、ゴールデンサークルと南岸の滝を組み合わせる。短い日程なら移動範囲を絞り、地熱・断層・滝をつなぐ。
 
-### 5〜7日 — 南岸を氷河湖まで伸ばす
-レイキャヴィークからヴィーク、ヨークルスアゥルロゥン方面へ。移動距離を増やすより、滝や黒砂海岸、氷河で立ち止まる時間を残す。
+### 5〜7日 — 南岸を氷河湖まで
+ヴィークを経てヨークルスアゥルロゥン方面へ。滝、黒砂海岸、氷河をつなぎながら、各地で立ち止まる時間も残す。
 
-### 8日以上 — リングロードで島を一周する
-国道1号を軸に北部や東部までつなぐ。公式観光情報でも一周には少なくとも7日が目安とされるため、天候や寄り道を考えると8日以上あると組みやすい。
+### 8日以上 — リングロードで島を一周
+国道1号を軸に北部・東部までつなぐ。天候や寄り道を考えると、少なくとも一週間より余裕を持たせると組みやすい。
 
 ## Trivia copy fix
 
@@ -92,3 +92,10 @@ to:
 - Do not add `taste` image paths to the production Country JSON until all four food images are APPROVED.
 - Do not connect renewed Scene assets until the visual-complete gate is passed.
 - Add/refresh the source keys only at implementation, using the locked source list in the audit document.
+
+
+## Transport wording update — 2026-09-03
+
+- Title: `レンタカー・リングロード`
+- Keep the shared Spain Reference v3 travel-planning component; do not add Iceland-specific CSS.
+- Travel Scale titles are shortened to match the Spain reference information density and reduce wrapping.
