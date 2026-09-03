@@ -569,19 +569,18 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "Hero location and approved image: KEEP. Current Hero is 1200×800 / 3:2 and was implemented as an approved asset on 27 Aug 2026.",
         "Current 8-scene selection: KEEP 8. All eight approved Scene assets are 1200×800 / 3:2; no existing Hero/Scene regeneration or normalization is required.",
         "Map: KEEP. Current map-atlas-v3 is 1200×760, north-up, and includes the prior ellipse-artifact and marker-collision fixes.",
-        "Content v3 renewal completed: added contentQaVersion 1, broadened Signature Facts, rewrote Beyond the Scenery and Travel Notes, and added a 3-level Travel Scale.",
-        "Taste content is locked to four items: Köttbullar, Kanelbulle, Sill and Kräftor. Taste images remain NOT_STARTED and no unapproved image paths are connected.",
+        "Content v3 renewal completed: contentQaVersion 1, broader Signature Facts, renewed Beyond the Scenery and Travel Notes, and a 3-level Travel Scale.",
+        "Taste visual gate PASS: Köttbullar, Kanelbulle, Sill and Kräftor are user-approved, connected from assets/images/sweden/approved/, and fully decode at 1200×800 / 3:2.",
         "Sources refreshed and verified 3 Sep 2026 using SCB, Försäkringskassan, Naturvårdsverket, Church of Sweden, NobelPrize.org, Visit Stockholm, Visit Sweden and GSI.",
-        "Taste visual gate PASS: all four user-approved Taste WebP files exist under assets/images/sweden/approved/, exactly match the prepared approved binaries by Git blob SHA, and decode fully at 1200×800 / 3:2.",
-        "Country JSON now connects only the four approved Taste assets. Visual renewal is DONE and the renewed Country image hard gate is enabled.",
-        "Automation QA PASS on GitHub Actions run 33723851665: source syntax, renewal registry, published image audit, renewed image hard gate, reviewable/published strict JSON, JOURNEY LENS slug validation, and Cloudflare package build all succeeded.",
-        "Hard image gate decoded 26 raster payloads across the two gated countries; Sweden is included with gate=Y. Human browser visual/responsive/accessibility QA remains pending and CI success is not treated as renewal completion."
+        "Published via PR #163. Main merge commit 6c692cd60d78e850c825871dfcbd684da3649a22 reached atlas.yagenji.com and passed Cloudflare Production Verify run 33725422482.",
+        "Main validation run 33725422665 PASS. GitHub Pages preview deploy run 33725422607 attempt 2 PASS.",
+        "Production is LIVE_CURRENT. Human browser visual/responsive/accessibility QA remains PENDING; automation and production HTTP verification are not treated as a substitute for final visual inspection."
       ],
       "automatedAudit": "DONE"
     },
