@@ -3,6 +3,8 @@ name: Verify JOURNEY ATLAS Cloudflare Production
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - ".github/**"
   workflow_dispatch:
 
 permissions:
