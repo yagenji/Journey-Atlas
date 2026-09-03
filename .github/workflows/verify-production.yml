@@ -81,9 +81,9 @@ jobs:
               raise SystemExit(f"Spain travel durations are not continuous: {durations}")
           route_titles = [item.get("title") for item in travel_scale.get("items", [])]
           expected_route_titles = [
-              "マドリード＋トレド",
-              "バルセロナ → マドリード → セビリア",
-              "マドリード → コルドバ → セビリア → ロンダ → グラナダ",
+              "一つの都市を拠点に近郊へ",
+              "高速鉄道で2〜3都市をつなぐ",
+              "都市に地方の町や景観を加える",
           ]
           if route_titles != expected_route_titles:
               raise SystemExit(f"Spain travel routes are not the reviewed version: {route_titles}")
