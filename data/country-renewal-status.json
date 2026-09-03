@@ -609,7 +609,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
@@ -667,7 +667,11 @@
         "FINAL CHANGE-SCOPE QA 2026-09-04: PR contains only Lithuania Country JSON, Lithuania renewal status and four approved Lithuania Taste assets after removing the temporary preview trigger. No shared Template/CSS/JS, taxonomy, workflow or other-country files are modified.",
         "VISUAL/REVIEW QA 2026-09-04: Hero + 8 Scenes + Map are retained previously published visuals; four new Taste images were individually user-approved and batch-consistency checked. New sections use the already-established shared Reference v3 renderer/UI. Cloudflare branch preview deployed successfully at commit 6c842a2; user then instructed publication if final QA found no blocking issue.",
         "FINAL QA PASS 2026-09-04: Reference v3 counts/formats, topicKey uniqueness, image refs, approved-folder hygiene, hard image gate, source claims, Cloudflare package build, branch validation and Cloudflare Pages preview deployment passed with no blocking issue. User publication approval received.",
-        "PUBLICATION APPROVAL 2026-09-04: user explicitly instructed to publish if QA found no issue. atlasPublished remains true; production will change to LIVE_CURRENT only after main merge and Production Verify succeed."
+        "PUBLICATION APPROVAL 2026-09-04: user explicitly instructed to publish if QA found no issue. atlasPublished remains true; production will change to LIVE_CURRENT only after main merge and Production Verify succeed.",
+        "PUBLISHED 2026-09-04: PR #178 was squash-merged to main as commit c54fac8b4b93999afd4c0ffb5f2c592414886e81.",
+        "MAIN VALIDATION PASS 2026-09-04: Validate country data run 33776902422 succeeded on the Lithuania merge commit, including source syntax, renewal registry, all-published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug validation, and Cloudflare package build.",
+        "PRODUCTION LIVE VERIFIED 2026-09-04: Cloudflare Production Verify run 33776902481 succeeded on merge commit c54fac8b4b93999afd4c0ffb5f2c592414886e81, including commit propagation to atlas.yagenji.com, Spain V3 production regression, and production runtime assets/routes. Lithuania renewal is LIVE_CURRENT.",
+        "NON-BLOCKING GITHUB PAGES NOTE: main GitHub Pages run 33776902460 built and validated the package successfully but its final Pages deploy step failed. Cloudflare Production Verify independently confirmed the actual production site and is the authoritative production gate."
       ],
       "automatedAudit": "DONE"
     },
