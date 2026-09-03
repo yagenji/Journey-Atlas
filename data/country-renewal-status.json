@@ -535,7 +535,8 @@
         "AUTOMATED QA PASS 2026-09-04: validation run 33771857247 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift and Cloudflare package build after adding required Travel Trivia topicKey values.",
         "PREVIEW DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33771988136 succeeded with the renewed Latvia payload. The temporary preview trigger was then removed.",
         "CLEAN PREVIEW RE-DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33772177511 succeeded from commit 577503d7ff34cbffa3e84197dd07058a198402b6 after removing the temporary trigger file.",
-        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level inspection of Hero crop, map labels, scene cards, Taste images, spacing and responsive behaviour is still required before qa can become PASS. Production remains LIVE_OLD."
+        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level inspection of Hero crop, map labels, scene cards, Taste images, spacing and responsive behaviour is still required before qa can become PASS. Production remains LIVE_OLD.",
+        "SYSTEM ISSUE 2026-09-04: GitHub Pages Country Preview uses one shared deployment environment. Latvia preview run 33772177511 succeeded, but Austria renewal run 33772376341 deployed afterward to the same Pages environment, so the shared preview URL no longer represented the Latvia branch. This is shared preview infrastructure behavior, not a Latvia Country JSON/content failure. Do not add Latvia-specific workaround."
       ],
       "automatedAudit": "DONE"
     },
