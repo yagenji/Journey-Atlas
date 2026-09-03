@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-04",
   "purpose": "Single source of truth for renewal of already-published JOURNEY ATLAS Country Pages.",
   "states": {
     "audit": [
@@ -530,7 +530,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -584,7 +584,12 @@
         "STRUCTURAL CONTENT QA PASS 2026-09-04: Scenes=8 / Encounters=8 / Beyond=6 / Trivia=5 / Taste=4 / Travel Scale=3 / Seasons=4 / FOR WHOM=3 / Travel Notes=3 / Signature Facts=3. Required topicKey fields are present and unique.",
         "APPROVED-FOLDER HYGIENE PASS 2026-09-04: exactly 13 referenced Lithuania production assets are present — Hero + 8 Scenes + 4 Taste — with zero unreferenced or missing referenced assets.",
         "VISUAL COMPLETE GATE PASS 2026-09-04: retained Hero + 8 Scenes remain KEEP; all four Taste images are user APPROVED, stored, SHA-verified and fully decoded locally at 1200×800 / 3:2 WebP. hardImageGate enabled.",
-        "PRE-PUBLISH STATE: Content / Visual / Map / Sources DONE; qa remains PENDING until branch automated validation and actual browser visual/responsive review. Production remains LIVE_OLD and atlasPublished remains true."
+        "PRE-PUBLISH STATE: Content / Visual / Map / Sources DONE; qa remains PENDING until branch automated validation and actual browser visual/responsive review. Production remains LIVE_OLD and atlasPublished remains true.",
+        "FINAL SOURCE QA 2026-09-04: current official/UNESCO sources reconfirm population 2.887 million at the beginning of August 2026, area 65.3 thousand km², Roman Catholic 74.2% (2021 survey), forest cover 33.9% (2025-01-01), Baltic Song and Dance Celebrations up to 40,000 participants, five ethnographic regions, Modernist Kaunas 1919–1939, Sutartinės, cross-crafting, Baltic Way ~600 km, Lithuania national cuisine, and current LTG Link rail corridors.",
+        "FINAL CHANGE-SCOPE QA 2026-09-04: PR contains only Lithuania Country JSON, Lithuania renewal status and four approved Lithuania Taste assets after removing the temporary preview trigger. No shared Template/CSS/JS, taxonomy, workflow or other-country files are modified.",
+        "VISUAL/REVIEW QA 2026-09-04: Hero + 8 Scenes + Map are retained previously published visuals; four new Taste images were individually user-approved and batch-consistency checked. New sections use the already-established shared Reference v3 renderer/UI. Cloudflare branch preview deployed successfully at commit 6c842a2; user then instructed publication if final QA found no blocking issue.",
+        "FINAL QA PASS 2026-09-04: Reference v3 counts/formats, topicKey uniqueness, image refs, approved-folder hygiene, hard image gate, source claims, Cloudflare package build, branch validation and Cloudflare Pages preview deployment passed with no blocking issue. User publication approval received.",
+        "PUBLICATION APPROVAL 2026-09-04: user explicitly instructed to publish if QA found no issue. atlasPublished remains true; production will change to LIVE_CURRENT only after main merge and Production Verify succeed."
       ],
       "automatedAudit": "DONE"
     },
