@@ -252,8 +252,8 @@
       "nameJa": "デンマーク",
       "wave": 2,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -261,7 +261,11 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "Reference v3 audit: Hero + 8 scenes are current 1200x800 WebP assets; map is current 1200x760 baseline.",
+        "Add Taste (4) and Travel Scale (3); fix Transport format; diversify Signature Facts; add contentQaVersion after renewal QA.",
+        "Keep atlasPublished:true during renewal; hardImageGate remains false until final image/browser QA."
+      ],
       "automatedAudit": "DONE"
     },
     {
