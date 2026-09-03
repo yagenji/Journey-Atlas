@@ -301,3 +301,20 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `food-hardfiskur.webp`
 - Final path: `assets/images/iceland/approved/food-hardfiskur.webp`
 - Do not regenerate without explicit user instruction.
+
+
+## Approved asset packaging — 2026-09-03
+
+The eight renewed Scene visuals and four Taste visuals have been exported from their approved 1536×1024 source generations to final 1200×800 / 3:2 WebP files without cropping or distortion.
+
+Local technical verification:
+- 12 / 12 files: complete decode PASS
+- 12 / 12 files: 1200×800 PASS
+- 12 / 12 files: WebP PASS
+- visual state: user APPROVED for all 12
+- Hero remains KEEP at its existing production path
+
+Production gate remains **BLOCKED** until the final WebP binaries are physically present in:
+`assets/images/iceland/approved/`
+
+Do not connect the new Scene or Taste paths to `data/countries/iceland.json` until repository presence and approved-folder hygiene are verified.
