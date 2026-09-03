@@ -12,19 +12,22 @@ on:
       - 'privacy/**'
       - 'assets/css/site-info.css'
       - 'assets/css/site-footer.css'
-      - 'assets/css/country-discovery-v3.css'
+      - 'assets/css/country*.css'
       - '404.html'
       - '_redirects'
       - 'scripts/build_site.py'
       - 'scripts/generate_country_map.py'
       - 'scripts/new_country.py'
-      - 'assets/images/**/map-atlas*.svg'
+      - 'assets/images/**'
       - 'scripts/package_site.py'
       - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'data/country-renewal-status.json'
       - 'scripts/validate_country.py'
+      - 'scripts/audit_published_countries.py'
+      - 'scripts/validate_images.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
@@ -38,19 +41,22 @@ on:
       - 'privacy/**'
       - 'assets/css/site-info.css'
       - 'assets/css/site-footer.css'
-      - 'assets/css/country-discovery-v3.css'
+      - 'assets/css/country*.css'
       - '404.html'
       - '_redirects'
       - 'scripts/build_site.py'
       - 'scripts/generate_country_map.py'
       - 'scripts/new_country.py'
-      - 'assets/images/**/map-atlas*.svg'
+      - 'assets/images/**'
       - 'scripts/package_site.py'
       - 'scripts/build_cloudflare.py'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
+      - 'data/country-renewal-status.json'
       - 'scripts/validate_country.py'
+      - 'scripts/audit_published_countries.py'
+      - 'scripts/validate_images.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
 
@@ -64,11 +70,24 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install image QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
+
+      - name: Validate published renewal registry
+        run: python3 scripts/audit_published_countries.py
+
+      - name: Audit all published Country images
+        run: python3 scripts/validate_images.py --mode audit
+
+      - name: Enforce renewed Country image hard gate
+        run: python3 scripts/validate_images.py --mode hard
+
       - name: Validate reviewable and published country JSON
         run: |
           python3 scripts/validate_country.py --reviewable
