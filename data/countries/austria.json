@@ -153,36 +153,36 @@
   ],
   "encounters": [
     {
-      "title": "宮殿庭園",
-      "icon": "city"
-    },
-    {
-      "title": "城塞都市",
-      "icon": "city"
-    },
-    {
-      "title": "アルプスの谷",
+      "title": "アルプス",
       "icon": "landscape"
     },
     {
-      "title": "ドナウ河畔",
+      "title": "湖畔集落",
       "icon": "landscape"
     },
     {
-      "title": "ステップ湖",
-      "icon": "landscape"
-    },
-    {
-      "title": "山村",
+      "title": "カフェ文化",
       "icon": "culture"
     },
     {
-      "title": "季節湖",
+      "title": "クラシック音楽",
+      "icon": "culture"
+    },
+    {
+      "title": "山岳鉄道",
+      "icon": "road"
+    },
+    {
+      "title": "葡萄畑",
       "icon": "landscape"
     },
     {
-      "title": "高山草地",
-      "icon": "landscape"
+      "title": "アルム",
+      "icon": "culture"
+    },
+    {
+      "title": "木造建築",
+      "icon": "city"
     }
   ],
   "atlasExtras": [
@@ -220,25 +220,25 @@
       ]
     },
     {
-      "topicKey": "bregenzerwald-timber-craft",
+      "topicKey": "vienna-social-housing",
       "themeEn": "CITY",
       "themeJa": "街を歩く",
-      "title": "ブレゲンツァーヴァルトでは、古い木造家屋の隣に現代建築が立つ",
-      "text": "フォアアールベルクのブレゲンツァーヴァルトでは、何世代も続く木工技術が現代の住宅、公共建築、家具にも接続している。伝統建築を保存物として見るだけでなく、現在進行形の地域デザインとして歩ける。",
+      "title": "約22万戸の市営住宅が、ウィーンの日常の一部になっている",
+      "text": "ウィーンでは、市が約22万戸の市営住宅（Gemeindewohnungen）を所有する。さらに市の支援を受けた協同組合住宅も約20万戸あり、社会住宅は特別な施設ではなく、都市の暮らしと街並みを形づくる長期的な仕組みになっている。",
       "points": [
-        "地域には23の村が点在する",
-        "木を使う職人文化と現代建築が同じ地域で連続している"
+        "市営住宅は約22万戸、協同組合住宅は約20万戸",
+        "20世紀から続く住宅政策が現在の都市景観にも残る"
       ]
     },
     {
-      "topicKey": "wachau-vineyard-terraces",
-      "themeEn": "EARTH",
-      "themeJa": "地球の風景",
-      "title": "ヴァッハウの急斜面は、葡萄畑の段々へ変えられた",
-      "text": "ドナウ川沿いの急斜面には石積みの段々畑が続き、集落、修道院、川と一体の文化景観をつくる。自然の谷に人が長く手を入れてきた痕跡が、ヴァッハウでは地形そのものとして読める。",
+      "topicKey": "austrian-german-everyday-language",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "同じドイツ語でも、旅先で聞こえる言葉は少し違う",
+      "text": "公用語はドイツ語だが、オーストリアでは標準ドイツ語と異なる語彙や挨拶が日常的に使われる。Grüß Gott、Servus、Babaなど、駅や店、山村で耳にする言葉からも地域の距離感が見えてくる。",
       "points": [
-        "ドナウ川と急斜面の葡萄畑が景観の骨格",
-        "リースリングやグリューナー・ヴェルトリーナーの産地としても知られる"
+        "挨拶では Grüß Gott や Servus がよく使われる",
+        "食や日常語にも標準ドイツ語とは異なる語彙がある"
       ]
     },
     {
@@ -300,6 +300,70 @@
       "sourceKey": "krampus"
     }
   ],
+  "taste": {
+    "kicker": "TASTE OF AUSTRIA",
+    "title": "オーストリアで食べたいもの",
+    "intro": "ウィーンの定番から西部の山の料理まで、旅先で出会いたい4つ。",
+    "items": [
+      {
+        "id": "wiener-schnitzel",
+        "name": "ウィーナー・シュニッツェル",
+        "nameLocal": "Wiener Schnitzel",
+        "text": "薄く叩いた仔牛肉に小麦粉、卵、パン粉をまとわせ、澄ましバターなどで黄金色に揚げる。軽く波打つ衣と薄い肉の食感まで含めて味わいたい、ウィーンを代表する一皿。",
+        "image": "assets/images/austria/approved/food-wiener-schnitzel.webp",
+        "imageState": "REVIEW CANDIDATE"
+      },
+      {
+        "id": "kaesknoepfle",
+        "name": "ケースクネップフレ",
+        "nameLocal": "Käsknöpfle",
+        "text": "小さな卵麺に熟成した山のチーズを絡め、香ばしく焼いた玉ねぎを重ねる。フォアアールベルクでは谷ごとに作り方が異なり、西部の山岳地域らしい乳製品文化に出会える。",
+        "image": "assets/images/austria/approved/food-kaesknoepfle.webp",
+        "imageState": "REVIEW CANDIDATE"
+      },
+      {
+        "id": "kaiserschmarren",
+        "name": "カイザーシュマレン",
+        "nameLocal": "Kaiserschmarren",
+        "text": "卵と牛乳、小麦粉で焼いた厚めの生地を粗く裂き、砂糖で軽くキャラメル化して粉糖をまぶす。山小屋でも親しまれ、プラムなどのコンポートと合わせて食べる。",
+        "image": "assets/images/austria/approved/food-kaiserschmarren.webp",
+        "imageState": "REVIEW CANDIDATE"
+      },
+      {
+        "id": "apfelstrudel",
+        "name": "アプフェルシュトゥルーデル",
+        "nameLocal": "Apfelstrudel",
+        "text": "薄く伸ばした生地で、リンゴ、レーズン、シナモン、香ばしいパン粉などを巻いて焼く。層の軽さと果実の酸味が合わさる、カフェでも出会いやすい定番菓子。",
+        "image": "assets/images/austria/approved/food-apfelstrudel.webp",
+        "imageState": "REVIEW CANDIDATE"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ウィーンを拠点にドナウ沿いへ",
+        "text": "一つの都市を軸に、近郊の文化景観を一つ加えるくらいが現実的。例：ウィーン＋ヴァッハウ（クレムス／デュルンシュタイン）。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "鉄道で主要都市を東西につなぐ",
+        "text": "Railjetなどの長距離列車を使えば、都市ごとの歴史とアルプスへの近さを比べながら移動できる。例：ウィーン → ザルツブルク → インスブルック。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "都市・湖・山地まで旅を広げる",
+        "text": "幹線鉄道に地域列車やバスを足すと、湖畔集落や西部の山村まで組み込みやすい。例：ウィーン → ザルツブルク → ハルシュタット → インスブルック → ブレゲンツァーヴァルト。",
+        "icon": "compass"
+      }
+    ]
+  },
   "seasons": [
     {
       "months": "4〜5月",
@@ -323,8 +387,9 @@
     }
   ],
   "transport": {
-    "title": "TRAIN / REGIONAL BUS / CAR",
-    "text": "都市間はÖBBの鉄道が軸。西部幹線でウィーン・リンツ・ザルツブルク・インスブルック・ブレゲンツ方面、南部幹線でウィーン・グラーツ・クラーゲンフルト・フィラッハ方面をつなげられる。ハルシュタットや山村は地域交通を足し、グロースグロックナーなど高山部は季節道路や車の条件も確認する。"
+    "title": "鉄道・地域バス・車",
+    "text": "都市間はÖBBのRailjetやIntercityが軸。ウィーンからザルツブルク、インスブルック方面は鉄道でつなぎやすく、南部もKoralmbahn開業でグラーツとクラーゲンフルトの移動が短くなった。ハルシュタットや山村は地域列車・バスを足し、高山道路や郊外の景観は車を組み合わせる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -433,12 +498,17 @@
       "reason": "南東アルプスと湖・石灰岩地形をさらに南へ追い、小さな国土で景観が切り替わる旅を続けたいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-03",
+  "sourcesVerifiedAt": "2026-09-03",
   "sourceDates": {
     "population": "2026-01-01",
     "grossglocknerRoad": "2026",
-    "transport": "2026"
+    "transport": "2026",
+    "religion": "2021",
+    "balls": "2026",
+    "hutReservation": "2026",
+    "travelScale": "2026",
+    "viennaSocialHousing": "2026"
   },
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection AUT.geojson, WGS84.",
@@ -467,7 +537,15 @@
     "vignette": "ASFINAG 2026 toll information: vehicles up to 3.5 t generally require a vignette on motorways/expressways; designated routes have separate section tolls.",
     "hutReservation": "Austrian Alpine Club online hut reservation system: more than 500 participating mountain huts.",
     "grossglocknerRoad": "Grossglockner High Alpine Road official 2026 opening information: road is winter-closed and operates seasonally from spring into autumn.",
-    "transport": "ÖBB 2026 network information: Western Line connects Vienna, Linz, Salzburg, Innsbruck and western Austria; Southern Line connects Vienna with Graz, Klagenfurt/Villach and onward regional links.",
-    "venusWillendorf": "Natural History Museum Vienna: Venus of Willendorf dates to about 29,500 years ago; the 11 cm limestone figurine was discovered at Willendorf in the Wachau region of Lower Austria on 7 August 1908."
+    "transport": "ÖBB 2026 network information: Western Line links Vienna, Linz, Salzburg, Innsbruck and Vorarlberg; since December 2025 the Koralmbahn has significantly expanded Southern Line services between Graz and Klagenfurt.",
+    "venusWillendorf": "Natural History Museum Vienna: Venus of Willendorf dates to about 29,500 years ago; the 11 cm limestone figurine was discovered at Willendorf in the Wachau region of Lower Austria on 7 August 1908.",
+    "viennaSocialHousing": "City of Vienna: about 220,000 city-owned flats and about 200,000 co-operative flats; the municipal-housing stock is a long-running part of Vienna's urban housing system.",
+    "austrianGerman": "Austria Tourism: German is the official language, while Austrian everyday usage includes regional vocabulary and greetings such as Grüß Gott, Servus and Baba.",
+    "wienerSchnitzel": "Austria Tourism, Wiener Schnitzel recipe: a Wiener Schnitzel on the menu refers to veal, thinly pounded, breaded and fried; typical sides include parsley potatoes or potato salad.",
+    "kaesknoepfle": "Austria Tourism, Käsknöpfle recipe: Vorarlberg/Kleinwalsertal-style small egg noodles with mature mountain cheese and roasted onions.",
+    "kaiserschmarren": "Austria Tourism, Kaiserschmarren recipe: torn sweet pancake made from eggs, flour and milk, caramelised and served with fruit compote.",
+    "apfelstrudel": "Austria Tourism, Viennese Apple Strudel recipe: thin strudel dough rolled with apples, raisins, cinnamon and nut-breadcrumb filling.",
+    "travelScale": "ÖBB / Austria Tourism 2026 rail information: Western Line links Vienna, Linz, Salzburg, Innsbruck and Vorarlberg at frequent intervals; regional rail/bus connections extend to Salzkammergut and rural destinations.",
+    "koralmbahn": "ÖBB 2026 network information: the Koralmbahn connects Graz and Klagenfurt in about 42 minutes and expands long-distance services on the Southern Line."
   }
 }
