@@ -189,3 +189,23 @@ If implementation requires a visual choice that was not decided in the approved 
 - make the smallest neutral technical choice if it does not alter the design;
 - if it would visibly alter the design, resolve that one point before coding;
 - do not create an unsolicited alternative design.
+
+
+---
+
+## Published Country Renewal
+
+Already-published Country Pages use a separate renewal workflow.
+
+- Protocol: `docs/PUBLISHED_COUNTRY_RENEWAL.md`
+- Status source of truth: `data/country-renewal-status.json`
+- Audit: `scripts/audit_published_countries.py`
+- Image migration QA: `scripts/validate_images.py --mode audit`
+- Renewed-country hard gate: `scripts/validate_images.py --mode hard`
+
+Do not treat a legacy published page as passing the current production standard merely because it is live. During renewal, legacy issues are recorded by AUDIT; once a country is renewed, set `hardImageGate: true` and that country becomes blocking.
+
+Reference v3 responsibilities:
+- Iceland / Norway: visual language and series character.
+- Spain: current shared structure, information density, responsive UI and JOURNEY LENS handoff.
+- Current image rule: the production specification, not Norway's legacy low-resolution files.
