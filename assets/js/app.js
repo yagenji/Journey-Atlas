@@ -584,13 +584,11 @@ function initCountryLensBridge(data) {
         thumb.style.backgroundImage = `url("${first.image.replaceAll('"', '%22')}")`;
         thumb.classList.add('has-image');
       }
-      if (title) title.textContent = `JOURNEY LENSで見る${data.nameJa}`;
+      if (title) title.textContent = `写真と物語で見る${data.nameJa}`;
       if (description) {
-        description.textContent = first.subtitle
-          ? `実際に訪れた${data.nameJa}を、写真と物語で。— ${first.subtitle}`
-          : `実際に訪れた${data.nameJa}を、写真と物語で。`;
+        description.textContent = `実際に訪れた${data.nameJa}を、写真と物語で。`;
       }
-      if (meta) meta.textContent = stories.length > 1 ? `${stories.length} STORIES　写真と物語を見る →` : '写真と物語を見る →';
+      if (meta) meta.textContent = stories.length > 1 ? `${stories.length} STORIES　写真と物語を見る →` : '1 STORY　写真と物語を見る →';
       section.hidden = false;
     })
     .catch(() => {
