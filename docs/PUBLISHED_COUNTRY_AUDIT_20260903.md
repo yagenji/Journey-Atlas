@@ -28,7 +28,19 @@ This means the broad renewal can start from a structurally consistent shared tem
 
 ## Image baseline
 
-The published-country image audit found 17 migration findings, all in Norway.
+The published-country image audit found 33 migration findings across Iceland and Norway after the validator was corrected to apply the current dimension/aspect-ratio rules to raster images embedded inside SVG scene assets.
+
+### Iceland
+
+Scenes:
+- Skógafoss: 1200×750 — below 1200×800 and not 3:2
+- Jökulsárlón: 1200×750 — below 1200×800 and not 3:2
+- Stuðlagil: 1200×750 — below 1200×800 and not 3:2
+- Mývatn: 1200×750 — below 1200×800 and not 3:2
+- Kirkjufell: 1200×750 — below 1200×800 and not 3:2
+- Þingvellir: 1200×750 — below 1200×800 and not 3:2
+- Geysir: 1200×750 — below 1200×800 and not 3:2
+- Landmannalaugar: 1000×625 — below 1200×800 and not 3:2
 
 ### Norway
 
@@ -45,7 +57,7 @@ Scenes:
 - Reine: 360×270 — below 1200×800 and 4:3
 - North Cape: 360×270 — below 1200×800 and 4:3
 
-No raster decode corruption was reported elsewhere in the 28-country published scan, including embedded raster payloads inside SVG assets.
+No raster decode corruption was reported in the 28-country published scan. The findings are production-geometry issues, not broken image files.
 
 ## What this audit does not decide
 
