@@ -606,7 +606,8 @@
         "PHASE 3 TASTE TARGET FOOD04: Poffertjes. Identity: multiple small thick round mini-pancakes with lightly browned surfaces; butter and powdered sugar allowed as customary accompaniment. Target food-poffertjes.webp.",
         "VISUAL APPROVAL FOOD01 2026-09-04: Stamppot APPROVED and locked. Do not regenerate unless explicitly requested. Target storage: assets/images/netherlands/approved/food-stamppot.webp.",
         "TASTE QA CORRECTION 2026-09-04: FOOD01 Stamppot remains APPROVED from the first user-approved generation. Subsequent accidental Stamppot repeat generations and the approval-card graphic are REJECTED and must not be stored or referenced.",
-        "TASTE IMAGE STATE 2026-09-04: FOOD01 Stamppot = APPROVED / LOCKED; FOOD02 Bitterballen = NEXT; FOOD03 Haring = NOT STARTED; FOOD04 Poffertjes = NOT STARTED."
+        "TASTE QA REJECT FOOD02 2026-09-04: user approved the generated Bitterballen image, but Assistant QA found hard-rule violations: beer, mustard, toothpicks and parsley were included although STRICT OBJECT LIMIT requires the specified dish only. FOOD02 is REJECTED despite visual approval and must be regenerated; FOOD01 Stamppot remains APPROVED / LOCKED.",
+        "TASTE IMAGE STATE 2026-09-04: FOOD01 Stamppot = APPROVED / LOCKED; FOOD02 Bitterballen = RESET / REGENERATING; FOOD03 Haring = NOT STARTED; FOOD04 Poffertjes = NOT STARTED."
       ],
       "automatedAudit": "DONE"
     },
