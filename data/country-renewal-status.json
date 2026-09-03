@@ -119,21 +119,29 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "PENDING",
-      "visual": "PENDING",
+      "content": "DONE",
+      "visual": "DONE",
       "map": "DONE",
-      "sources": "PENDING",
-      "qa": "BLOCKED",
-      "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "sources": "DONE",
+      "qa": "PENDING",
+      "production": "LIVE_CURRENT",
+      "hardImageGate": true,
       "notes": [
-        "Hero concept/image direction: KEEP.",
-        "Current 8-scene set is strong, but Hero Seljalandsfoss + Scene 1 Skógafoss creates a waterfall overlap; run the 12–16 candidate review before locking the renewed eight.",
-        "All 8 current Scene SVGs decode correctly but fail the renewed 1200×800 / 3:2 image gate: seven are 1200×750 and Landmannalaugar is 1000×625.",
-        "Add Taste and Travel Scale; add contentQaVersion.",
-        "Replace the weak population-density Signature Fact and avoid FOOD duplication between Beyond the Scenery and the new Taste section.",
-        "Fix the doubled Japanese quotation mark in the hot-dog Trivia.",
-        "Map is technically current and can be kept unless visual review finds a readability issue."
+        "Hero Seljalandsfoss remains KEEP; existing 1672×940 WebP clears the renewed Hero minimum.",
+        "Eight scene locations remain KEEP and all renewed scene assets are user APPROVED at 1200×800 / 3:2 WebP.",
+        "Taste added with four user APPROVED Spain-reference visuals: Kjötsúpa / Skyr / Rúgbrauð / Harðfiskur.",
+        "Reference v3 content implemented: contentQaVersion 1, Travel Scale, renewed Signature Facts, lopapeysa Beyond card, and Trivia quote fix.",
+        "Approved-folder hygiene passes: exactly 12 referenced renewal assets and no unreferenced file.",
+        "Theme taxonomy remains 地球の風景 / 道の先へ.",
+        "Map remains KEEP and passes 1200×760 / no ellipse / no radialGradient structural checks.",
+        "Source refresh completed 2026-09-03; population Q2 2026 = 396,500, geothermal domestic heating uses the official 2020 ~90% statistic, and Ring Road guidance accounts for the 24 June 2026 Hornafjörður change.",
+        "Source/technical QA passed. Human Cloudflare Preview review completed; full Desktop / Tablet / Mobile visual/responsive/accessibility QA remains pending before QA PASS.",
+        "Latest main shared Japanese typography fallback fix merged into the renewal branch before publication.",
+        "Published via PR #167. Main merge commit 992fd1b2f555d48aee4d2ff15bb9a5b14f300185.",
+        "Main validation run 33735291084 PASS: source syntax, renewal registry, all-published image audit, hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build.",
+        "GitHub Pages deploy run 33735291039 PASS.",
+        "Cloudflare Production Verify run 33735291016 PASS: atlas.yagenji.com served merge commit 992fd1b2f555d48aee4d2ff15bb9a5b14f300185 and production runtime checks passed.",
+        "Production is LIVE_CURRENT. Human Preview review completed; full Desktop / Tablet / Mobile responsive/accessibility QA remains PENDING and is not replaced by automated HTTP verification."
       ],
       "automatedAudit": "DONE"
     },
@@ -284,9 +292,9 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
-      "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
+      "hardImageGate": true,
       "notes": [
         "Hero concept/location (Ukko-Koli / Lake Pielinen) remains KEEP; existing Hero and retained scene assets are 1200×800 / 3:2 with no automated image-audit findings.",
         "Scene 5 Pallas–Yllästunturi was visually too similar to Scene 6 Saana and was replaced by user-approved Olavinlinna / Savonlinna; the superseded Pallas asset was removed.",
@@ -296,8 +304,9 @@
         "Map v3 remains KEEP; Olavinlinna marker collision with Punkaharju was resolved using minimal mapOffset within validator limits.",
         "Transport heading corrected to Japanese: 夜行列車・フェリー・車.",
         "Automation QA PASS after the Scene 5 replacement: source syntax, renewal audit, image audit, hard-gate check, reviewable/published JSON validation, LENS slug validation and Cloudflare package build all succeeded.",
-        "Human visual QA for Desktop / Tablet / Mobile remains pending before hardImageGate can be enabled.",
-        "Latest-main sync QA: branch is 0 commits behind main and validation run 33733897107 passed all steps after syncing Finland-specific changes onto current main."
+        "USER PUBLISH APPROVAL 2026-09-03: Finland renewal approved for formal publication.",
+        "Human Preview review completed by the user; Scene 5/6 visual overlap, Transport Japanese labeling, and Travel Scale alignment with Spain were corrected before publication.",
+        "Final automated QA before publication passed after Olavinlinna replacement and Travel Scale alignment. Responsive production QA will be verified after deploy."
       ],
       "automatedAudit": "DONE"
     },
@@ -539,7 +548,9 @@
         "VISUAL APPROVAL FOOD04 2026-09-03: Rømmegrøt APPROVED and locked. Do not regenerate unless explicitly requested.",
         "VISUAL COMPLETE GATE PASS 2026-09-03: all 13 approved assets exist in assets/images/norway/approved/, match the locally full-decoded QA files byte-for-byte by Git blob SHA, Hero is 1200×760, 8 scenes + 4 Taste are 1200×800, and Country JSON now references only approved renewal visuals.",
         "AUTOMATED QA PASS 2026-09-03: PR #165 and main validation passed source syntax, renewal registry, published image audit, Norway hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
-        "PRODUCTION DEPLOY PASS 2026-09-03: PR #165 merged as 4cf472d7b33d971f810a5d174268fb29d1b771a2. Cloudflare production verification confirmed atlas.yagenji.com serving that exact commit; GitHub Pages preview deployment also completed successfully. Human Desktop/Tablet/Mobile visual QA remains pending."
+        "PRODUCTION DEPLOY PASS 2026-09-03: PR #165 merged as 4cf472d7b33d971f810a5d174268fb29d1b771a2. Cloudflare production verification confirmed atlas.yagenji.com serving that exact commit; GitHub Pages preview deployment also completed successfully. Human Desktop/Tablet/Mobile visual QA remains pending.",
+        "QA FIXES 2026-09-03: normalized Friluftsliv spelling, corrected New Zealand related slug to newzealand, and replaced the overlapping sea/trade Beyond item with medieval stave churches using UNESCO/Visit Norway sources. Validation run 33733065388 passed all steps; Cloudflare production verification run 33733065340 attempt 2 passed after initial propagation delay. Human Desktop/Tablet/Mobile visual QA remains pending.",
+        "USER PUBLISH APPROVAL 2026-09-03: Norway renewal approved for formal publication. atlasPublished remains true and production remains LIVE_CURRENT. Content, visual, image hard gate, validation, package build, and Cloudflare production verification passed. Human Desktop/Tablet/Mobile visual QA remains the only unverified item in this execution environment."
       ],
       "automatedAudit": "DONE"
     },
@@ -592,7 +603,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -604,7 +615,9 @@
         "Sources refreshed and verified 3 Sep 2026 using SCB, Försäkringskassan, Naturvårdsverket, Church of Sweden, NobelPrize.org, Visit Stockholm, Visit Sweden and GSI.",
         "Published via PR #163. Main merge commit 6c692cd60d78e850c825871dfcbd684da3649a22 reached atlas.yagenji.com and passed Cloudflare Production Verify run 33725422482.",
         "Main validation run 33725422665 PASS. GitHub Pages preview deploy run 33725422607 attempt 2 PASS.",
-        "Production is LIVE_CURRENT. Human browser visual/responsive/accessibility QA remains PENDING; automation and production HTTP verification are not treated as a substitute for final visual inspection."
+        "Final production browser QA PASS on 3 Sep 2026 using Chromium against https://atlas.yagenji.com/countries/sweden/ at Desktop 1440×1000, Tablet 834×1112, and Mobile 390×844. Required sections, counts, lazy-loaded Hero/8 Scenes/Taste images, map markers, canonical/index state, horizontal overflow, ARIA, and keyboard scene activation all passed with zero errors and zero warnings.",
+        "Visual screenshot review confirmed Hero crop, map, scene cards, Taste cards, Travel Scale, Japanese text wrapping, spacing, and responsive layout. A shared missing-Japanese-glyph issue found during browser QA was fixed via PR #168 by adding Zen Kaku Gothic New fallbacks to the display/meta stacks; post-fix screenshots confirmed 480日, 3〜4日, 6〜8月 and Beyond theme labels render correctly.",
+        "Sweden renewal is complete: Content/Visual/Map/Sources DONE, QA PASS, hard image gate enabled, and production LIVE_CURRENT."
       ],
       "automatedAudit": "DONE"
     },
