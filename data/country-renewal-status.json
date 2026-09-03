@@ -272,12 +272,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "DONE",
+      "visual": "IN_PROGRESS",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": true,
+      "hardImageGate": false,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
         "Hero Tallinn Old Town and Scene 1–7 are KEEP candidates; current Hero and all eight landscape assets are 1200×800 / 3:2 WebP. Do not regenerate acceptable existing visuals solely because this is a renewal.",
@@ -301,10 +301,11 @@
         "VISUAL APPROVAL FOOD04 2026-09-03: Must leib APPROVED and locked after regeneration. Do not regenerate unless explicitly requested. Target production path: assets/images/estonia/approved/food-black-bread.webp.",
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-03: FOOD01 Kiluvõileib / FOOD02 Mulgipuder / FOOD03 Kama / FOOD04 Must leib are all user APPROVED. Visual Complete Gate still awaits repository storage, WebP conversion, 1200×800 verification, complete decode, and approved-folder hygiene.",
         "TASTE ASSET PACKAGE READY 2026-09-03: all four user-approved Taste images were normalized from 1536×1024 PNG to 1200×800 / 3:2 WebP and fully decoded successfully. Final filenames: food-kiluvoileib.webp / food-mulgipuder.webp / food-kama.webp / food-black-bread.webp. Repository binary storage remains pending; Visual Complete Gate must not pass until the files exist in assets/images/estonia/approved/ and approved-folder hygiene is rechecked.",
-        "VISUAL COMPLETE GATE PASS 2026-09-03: Hero + 8 scenes remain KEEP; all four user-approved Taste images are stored in assets/images/estonia/approved/, exact Git blob SHAs match the locally fully-decoded 1200×800 WebP masters, and the approved folder contains exactly 13 referenced production images with no extra asset.",
-        "AUTOMATED QA PASS 2026-09-03: validation run 33759302257 passed source syntax, renewal registry, all-published image audit, renewed image hard-gate check, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build.",
         "hardImageGate enabled after the completed visual asset gate. Human Browser Visual QA on Desktop / Tablet / Mobile remains pending, so qa remains PENDING and production remains LIVE_OLD.",
-        "PREVIEW DEPLOY PASS 2026-09-03: GitHub Pages Country Preview workflow run 33759610117 succeeded from commit 0fda31945ed36ad28d3eab3ad83148b93fa0e60c. Preview root: https://yagenji.github.io/Journey-Atlas/ ; Estonia review path: /countries/estonia/. Human Desktop / Tablet / Mobile visual QA is still pending, so qa remains PENDING."
+        "QA REGRESSION 2026-09-03: final Taste hard-rule review found FOOD02 Mulgipuder invalid because the approved image contains unsourced beetroot slices and a thyme garnish; Visit Estonia describes Mulgipuder as potato-and-groats porridge typically served with bacon and sour cream. FOOD03 Kama is invalid because a wooden spoon is visible, violating the explicit no-cutlery rule.",
+        "QA CORRECTIVE ACTION 2026-09-03: FOOD02 and FOOD03 were removed from assets/images/estonia/approved/ on the renewal branch, hardImageGate was returned to false, visual returned to IN_PROGRESS, and data/countries/estonia.json was reset to main so incomplete Taste visuals are not connected before the Visual Complete Gate.",
+        "FOOD01 Kiluvõileib and FOOD04 Must leib remain APPROVED and locked. FOOD02 and FOOD03 require regeneration against the Spain Taste hard rules before Phase 4 can be re-applied.",
+        "Previous automated validation and preview deployment were technically successful, but they are superseded by this visual QA regression and must not be treated as final QA PASS."
       ],
       "automatedAudit": "DONE"
     },
