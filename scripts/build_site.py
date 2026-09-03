@@ -332,6 +332,7 @@ def rewrite_published_hrefs(registries: list[tuple[Path, dict]]) -> None:
 def generate_sitemap(country_urls: list[str]) -> None:
     urls = [
         SITE_URL,
+        urljoin(SITE_URL, "about/"),
         urljoin(SITE_URL, "faq/"),
         urljoin(SITE_URL, "privacy/"),
         *country_urls,
