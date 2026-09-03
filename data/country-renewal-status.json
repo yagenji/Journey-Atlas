@@ -560,7 +560,9 @@
         "FOOD02 DISH IDENTITY: large oval/zeppelin-shaped grated-potato dumplings; traditional meat filling implied by cut or form only if natural; sour cream and bacon/crackling sauce as the dish's normal accompaniment; not a soup or pastry.",
         "FOOD03 DISH IDENTITY: Karaite crescent-shaped baked pastry from Trakai; golden-brown crimped dough; traditional meat filling; one or a small natural serving of kibinai; not dumplings, soup or cake.",
         "FOOD04 DISH IDENTITY: Lithuanian tree cake baked on a rotating spit; tall hollow ring/cone form with distinctive branching spikes; golden baked surface; cake alone on a simple plate or stand; no fruit, cream or decorative props.",
-        "Visual Complete Gate remains BLOCKED. Next production step is independent FOOD01→FOOD04 generation, Assistant QA after each image, then one batch user review before any Taste image can become APPROVED."
+        "Visual Complete Gate remains BLOCKED. Next production step is independent FOOD01→FOOD04 generation, Assistant QA after each image, then one batch user review before any Taste image can become APPROVED.",
+        "TASTE GENERATION ATTEMPT 2026-09-03: FOOD01 Šaltibarščiai failed three consecutive generations because the image system produced infographic/UI boards with text, flags and extra objects instead of a standalone food image. All three outputs are REJECTED and must not be stored or referenced.",
+        "ANTI-REPETITION / QUALITY GATE ACTION: FOOD01 generation series RESET after repeated structural failure. No Taste image is APPROVED, no asset was added to the repository, and Country JSON remains untouched. Generation is paused to avoid wasting additional image quota until the tool can reliably honor standalone-food-image instructions."
       ],
       "automatedAudit": "DONE"
     },
