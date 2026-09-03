@@ -502,11 +502,13 @@ function renderPersonas(fragment, items = []) {
 
 function renderFacts(fragment, facts = []) {
   const container = fragment.querySelector('#facts');
-  facts.forEach((fact) => {
-    const group = document.createElement('div');
-    group.innerHTML = `${iconSvg(iconName(fact, 'info'))}<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>`;
-    container.append(group);
-  });
+  facts
+    .filter((fact) => fact?.label !== '地域')
+    .forEach((fact) => {
+      const group = document.createElement('div');
+      group.innerHTML = `${iconSvg(iconName(fact, 'info'))}<dt>${escapeHtml(fact.label)}</dt><dd>${escapeHtml(fact.value)}</dd>`;
+      container.append(group);
+    });
 }
 
 function renderTips(fragment, tips = []) {
