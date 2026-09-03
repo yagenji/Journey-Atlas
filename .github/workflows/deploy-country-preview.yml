@@ -1,0 +1,80 @@
+name: Deploy Country Preview to GitHub Pages
+
+on:
+  push:
+    branches:
+      - "country/**"
+    paths:
+      - ".github/preview-trigger/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image QA dependency
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Validate source syntax
+        run: |
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
+          node --check assets/js/app.js
+          node --check assets/js/top.js
+
+      - name: Validate published renewal registry
+        run: python scripts/audit_published_countries.py
+
+      - name: Enforce renewed Country image hard gate
+        run: python scripts/validate_images.py --mode hard
+
+      - name: Build clean production package
+        env:
+          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+        run: python scripts/build_cloudflare.py
+
+      - name: Validate packaged output
+        run: |
+          test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/_redirects
+          test -f dist/_headers
+          test -f dist/sitemap.xml
+          test -f dist/robots.txt
+          test -f dist/assets/css/country.css
+          test -f dist/assets/js/app.js
+          if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then
+            echo 'encoded source files leaked into dist'
+            exit 1
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload clean site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
