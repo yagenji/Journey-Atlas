@@ -272,12 +272,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
         "Hero Tallinn Old Town and Scene 1–7 are KEEP candidates; current Hero and all eight landscape assets are 1200×800 / 3:2 WebP. Do not regenerate acceptable existing visuals solely because this is a renewal.",
@@ -305,7 +305,10 @@
         "FOOD01 Kiluvõileib and FOOD04 Must leib remain APPROVED and locked. FOOD02 and FOOD03 require regeneration against the Spain Taste hard rules before Phase 4 can be re-applied.",
         "Previous automated validation and preview deployment were technically successful, but they are superseded by this visual QA regression and must not be treated as final QA PASS.",
         "VISUAL APPROVAL FOOD02 2026-09-03: regenerated Mulgipuder APPROVED and locked. The revised image contains potato-and-groats porridge with bacon and sour cream only; the prior beetroot and thyme hard-rule issues are resolved. Target production path: assets/images/estonia/approved/food-mulgipuder.webp. Repository restorage and decode verification remain pending.",
-        "VISUAL APPROVAL FOOD03 2026-09-03: regenerated Kama APPROVED and locked. The revised image shows Kama in a creamy kefir/sour-milk style with no cutlery, no fruit garnish, and no extra objects. Target production path: assets/images/estonia/approved/food-kama.webp. Repository restorage and decode verification remain pending."
+        "VISUAL APPROVAL FOOD03 2026-09-03: regenerated Kama APPROVED and locked. The revised image shows Kama in a creamy kefir/sour-milk style with no cutlery, no fruit garnish, and no extra objects. Target production path: assets/images/estonia/approved/food-kama.webp. Repository restorage and decode verification remain pending.",
+        "FOOD02/03 RESTORAGE VERIFIED 2026-09-03: regenerated food-mulgipuder.webp and food-kama.webp are present in assets/images/estonia/approved/ and their Git blob SHAs exactly match the locally fully-decoded 1200×800 WebP masters.",
+        "VISUAL COMPLETE GATE RE-PASS 2026-09-03: Hero + 8 scenes KEEP; FOOD01–04 all user APPROVED, 1200×800 / 3:2 WebP, repository-stored, and approved-folder hygiene rechecked at 13 referenced production images only. Reference v3 Country JSON restored with all four Taste items imageState APPROVED.",
+        "hardImageGate re-enabled only after the corrected Taste assets cleared the visual gate. Final automated QA and refreshed preview deployment remain pending."
       ],
       "automatedAudit": "DONE"
     },
