@@ -12,7 +12,7 @@ on:
       - 'privacy/**'
       - 'assets/css/site-info.css'
       - 'assets/css/site-footer.css'
-      - 'assets/css/country-discovery-v3.css'
+      - 'assets/css/country*.css'
       - '404.html'
       - '_redirects'
       - 'scripts/build_site.py'
@@ -39,7 +39,7 @@ on:
       - 'privacy/**'
       - 'assets/css/site-info.css'
       - 'assets/css/site-footer.css'
-      - 'assets/css/country-discovery-v3.css'
+      - 'assets/css/country*.css'
       - '404.html'
       - '_redirects'
       - 'scripts/build_site.py'
@@ -77,6 +77,17 @@ jobs:
 
       - name: Fully decode published Country images
         run: python3 scripts/validate_images.py --scope published
+      - name: Validate shared Country CSS architecture
+        run: |
+          profile_sources="$(grep -l 'country-facts-strip' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$profile_sources" = "assets/css/country-icon-system.css"
+          transport_sources="$(grep -l 'travel-planning__block--transport .transport' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$transport_sources" = "assets/css/country-discovery-v3.css"
+          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' assets/css/country-icon-system.css
+          grep -q '@media(min-width:761px) and (max-width:1180px)' assets/css/country-icon-system.css
+          grep -q 'grid-template-columns:repeat(3,minmax(0,1fr))' assets/css/country-icon-system.css
+          grep -q 'grid-template-columns:repeat(2,minmax(0,1fr))' assets/css/country-icon-system.css
+
       - name: Validate reviewable and published country JSON
         run: |
           python3 scripts/validate_country.py --reviewable
