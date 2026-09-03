@@ -29,6 +29,12 @@ jobs:
           python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
+          profile_sources="$(grep -l 'country-facts-strip' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$profile_sources" = "assets/css/country-icon-system.css"
+          transport_sources="$(grep -l 'travel-planning__block--transport .transport' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$transport_sources" = "assets/css/country-discovery-v3.css"
+          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' assets/css/country-icon-system.css
+          grep -q 'Transport — single shared layout' assets/css/country-discovery-v3.css
 
       - name: Build clean production package
         env:

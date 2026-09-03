@@ -99,8 +99,8 @@ html{scroll-padding-top:108px;}
   letter-spacing:.04em!important;
 }
 
-/* ---------- PROFILE BANDS ----------
-   Common and country-specific facts use the same atlas-band language. */
+/* ---------- PROFILE BANDS — SINGLE SOURCE OF TRUTH ----------
+   Country Profile and Signature Facts geometry live here only. */
 .country-facts-strip,
 .signature-facts{
   display:grid!important;
@@ -124,9 +124,22 @@ html{scroll-padding-top:108px;}
   border:0!important;
   background:transparent!important;
 }
-.country-facts-strip__head .section-kicker-en,
+.country-facts-strip__head .section-kicker-en{
+  display:block!important;
+  margin:0 0 5px!important;
+  color:#8a6b55!important;
+  font-family:"Hanken Grotesk",sans-serif!important;
+  font-size:9px!important;
+  line-height:1.25!important;
+  font-weight:500!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+}
 .signature-facts__head .section-kicker-en{
   margin-bottom:5px!important;
+}
+.country-facts-strip__head h2{
+  margin:0!important;
 }
 
 .country-facts-strip .fact-list{
@@ -363,23 +376,6 @@ html{scroll-padding-top:108px;}
   color:#5f4b3d!important;
   font-size:11px!important;
 }
-.transport{
-  grid-template-columns:26px minmax(0,1fr) auto!important;
-  align-items:start!important;
-  column-gap:10px!important;
-}
-.transport>.ui-icon{
-  width:16px;
-  height:16px;
-  margin-top:0!important;
-  transform:translateY(5px);
-  color:#8a6b55;
-}
-.transport>div>small{
-  display:block!important;
-  min-height:18px;
-  line-height:18px!important;
-}
 .persona-list article,
 .tip-list article{
   display:grid!important;
@@ -424,6 +420,7 @@ html{scroll-padding-top:108px;}
   .signature-facts__grid{border-left:0;}
   .country-facts-strip .fact-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   .country-facts-strip .fact-list>div{
+    min-height:82px!important;
     grid-template-columns:18px minmax(0,1fr)!important;
     margin-top:0!important;
     padding:10px 10px!important;
