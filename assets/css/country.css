@@ -1,5 +1,5 @@
 /* JOURNEY ATLAS country stylesheet entrypoint.
-   The deploy build replaces this import list with one concatenated production bundle. */
+   scripts/build_site.py replaces this import list with the concatenated production bundle. */
 @import url("style.css");
 @import url("atlas-overrides.css");
 @import url("country-fixes.css");
@@ -8,11 +8,12 @@
 @import url("country-polish.css");
 @import url("country-refine.css");
 @import url("country-template-v2.css");
-@import url("country-icon-system.css?v=20260903-profile-six-v2");
-@import url("country-trivia.css");\n@import url("country-discovery-v3.css");
-@import url("site-unify.css?v=20260830-2042");
-@import url("site-footer.css");@import url("photo-credits.css");
-
+@import url("country-icon-system.css");
+@import url("country-trivia.css");
+@import url("country-discovery-v3.css");
+@import url("photo-credits.css");
+@import url("site-unify.css");
+@import url("site-footer.css");
 
 /* Country travel themes */
 .country-theme-context {
