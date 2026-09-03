@@ -344,6 +344,7 @@ The strict validator checks at least:
 - `sourcesVerifiedAt` and source-period metadata for time-sensitive statistics
 - rounded population display (no accidental decimal precision)
 - exactly 3 signature facts
+- exactly 3 `personas` entries for FOR WHOM
 - non-empty atlas extras
 - 4–6 travel trivia entries
 - every trivia `sourceKey` exists in `sources`
@@ -364,19 +365,20 @@ Before publishing a new country:
 7. All scene coordinates project inside the intended map area.
 8. Common facts are present and population follows the display-rounding rule.
 9. Three useful signature facts are sourced.
-10. Atlas extras are present where appropriate.
-11. Travel trivia contains 4–6 traveler-relevant, sourced items.
-12. Every trivia `sourceKey` resolves to an entry in `sources`.
-13. Travel trivia does not duplicate `atlasExtras`, signature facts, tips, hero copy, or scene copy.
-14. No country-specific runtime JS/CSS override is required.
-15. Related countries never produce broken links.
-16. Shared section-title hierarchy and icon styling remain intact.
-17. Shared top/country header treatment remains intact.
-18. `python scripts/validate_country.py --published` passes.
-19. Production build creates the direct Hero asset, CSS bundles, static country page, sitemap, and robots file.
-20. Desktop and mobile layouts are visually checked.
-21. GitHub Pages deployment workflow succeeds.
-22. Public page is visually reviewed after deployment.
+10. FOR WHOM contains exactly 3 `personas` entries.
+11. Atlas extras are present where appropriate.
+12. Travel trivia contains 4–6 traveler-relevant, sourced items.
+13. Every trivia `sourceKey` resolves to an entry in `sources`.
+14. Travel trivia does not duplicate `atlasExtras`, signature facts, tips, hero copy, or scene copy.
+15. No country-specific runtime JS/CSS override is required.
+16. Related countries never produce broken links.
+17. Shared section-title hierarchy and icon styling remain intact.
+18. Shared top/country header treatment remains intact.
+19. `python scripts/validate_country.py --published` passes.
+20. Production build creates the direct Hero asset, CSS bundles, static country page, sitemap, and robots file.
+21. Desktop and mobile layouts are visually checked.
+22. GitHub Pages deployment workflow succeeds.
+23. Public page is visually reviewed after deployment.
 
 ## Reference country
 
