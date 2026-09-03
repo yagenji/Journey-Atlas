@@ -374,7 +374,7 @@
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "AUDIT 2026-09-03: classified B / Medium Renewal. Existing Cliffs of Moher Hero, all 8 Scene selections and current map remain KEEP; no existing landscape regeneration is required.",
         "CONTENT RENEWAL 2026-09-03: added contentQaVersion 1, renewed Signature Facts, Encounters, Beyond the Scenery, Travel Trivia and Travel Notes, and added Reference v3 Travel Scale with 3–4 days / 5–7 days / 8+ days.",
@@ -386,7 +386,9 @@
         "TASTE IMPLEMENTATION 2026-09-03: all four user-approved Taste WebP assets are stored in assets/images/ireland/approved/ and Country JSON references them with imageState APPROVED.",
         "SOURCE REFRESH 2026-09-03: refreshed population, peat soils, transport, heritage access, culture and Taste source notes using current official sources.",
         "MAP 2026-09-03: current 1200×760 map remains KEEP; no country-specific map redesign applied.",
-        "HARD IMAGE GATE remains false until automated image decode/dimension validation and Country validation pass on the renewal branch."
+        "HARD IMAGE GATE remains false until automated image decode/dimension validation and Country validation pass on the renewal branch.",
+        "AUTOMATED VALIDATION 2026-09-03: source syntax, renewal registry, published image audit, reviewable/published Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build all passed after source-date mapping correction.",
+        "VISUAL COMPLETE GATE 2026-09-03: Hero + 8 retained Scenes + 4 user-approved Taste images are all connected from approved assets; Taste files match the locally full-decoded 1200×800 WebP files byte-for-byte by Git blob SHA. hardImageGate enabled for final enforcement."
       ],
       "automatedAudit": "DONE"
     },
