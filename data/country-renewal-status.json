@@ -565,12 +565,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "BLOCKED",
+      "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "Hero location and approved image: KEEP. Current Hero is 1200×800 / 3:2 and was implemented as an approved asset on 27 Aug 2026.",
         "Current 8-scene selection: KEEP 8. All eight approved Scene assets are 1200×800 / 3:2; no existing Hero/Scene regeneration or normalization is required.",
@@ -578,8 +578,9 @@
         "Content v3 renewal completed: added contentQaVersion 1, broadened Signature Facts, rewrote Beyond the Scenery and Travel Notes, and added a 3-level Travel Scale.",
         "Taste content is locked to four items: Köttbullar, Kanelbulle, Sill and Kräftor. Taste images remain NOT_STARTED and no unapproved image paths are connected.",
         "Sources refreshed and verified 3 Sep 2026 using SCB, Försäkringskassan, Naturvårdsverket, Church of Sweden, NobelPrize.org, Visit Stockholm, Visit Sweden and GSI.",
-        "Taste visual production completed and user-approved for all four items on 3 Sep 2026. Final WebP production files are prepared at 1200×800 / 3:2 with full decode PASS; repository asset upload is the remaining visual-gate dependency.",
-        "QA remains BLOCKED until the four approved Taste WebP files exist under assets/images/sweden/approved/, Country JSON image paths are connected, and final browser visual QA is completed."
+        "Taste visual gate PASS: all four user-approved Taste WebP files exist under assets/images/sweden/approved/, exactly match the prepared approved binaries by Git blob SHA, and decode fully at 1200×800 / 3:2.",
+        "Country JSON now connects only the four approved Taste assets. Visual renewal is DONE and the renewed Country image hard gate is enabled.",
+        "Remaining QA: CI validation/build plus actual browser visual/responsive/accessibility review before renewal completion."
       ],
       "automatedAudit": "DONE"
     },
