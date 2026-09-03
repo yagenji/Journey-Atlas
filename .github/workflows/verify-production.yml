@@ -89,6 +89,12 @@ jobs:
               raise SystemExit(f"Spain travel routes are not the reviewed version: {route_titles}")
           if data.get("transport", {}).get("title") != "高速鉄道・在来線・車":
               raise SystemExit("Spain transport title is not Japanese")
+          tips = data.get("tips", [])
+          if not tips or tips[0].get("title") != "昼食と夕食は、少し遅めに考える":
+              raise SystemExit("Spain Travel Notes overlap fix is missing")
+          extras = data.get("atlasExtras", [])
+          if len(extras) < 5 or extras[4].get("title") != "日が落ちても、街の暮らしは屋外に続く":
+              raise SystemExit("Spain Beyond the Scenery overlap fix is missing")
           print("Spain V3 production JSON verified.")
           PY
 
