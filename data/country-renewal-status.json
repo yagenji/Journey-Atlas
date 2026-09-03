@@ -611,7 +611,8 @@
         "TASTE QA REJECT FOOD04 2026-09-04: user approved the generated Poffertjes image, but Assistant QA found STRICT OBJECT LIMIT violations: a separate powdered-sugar bowl and an extra cream dollop are present. FOOD04 is REJECTED and must be regenerated with poffertjes, butter and powdered sugar only.",
         "ANTI-REPETITION GATE 2026-09-04: after FOOD04 rejection, two unintended Stamppot repeats were generated while FOOD02 Bitterballen was the active target. Both are REJECTED and must not be stored or referenced. FOOD01 original approved Stamppot remains the only locked FOOD01 asset. Generation sequence must reset before the next food image.",
         "TASTE QA REJECT FOOD02 2026-09-04: user approved the latest Bitterballen generation, but Assistant QA found hard-rule violations: a Dutch flag toothpick is present (explicitly prohibited) and a separate mustard ramekin is present although the locked FOOD02 identity specifies Bitterballen only. This generation is REJECTED and must not be stored or referenced.",
-        "TASTE IMAGE STATE 2026-09-04: FOOD01 Stamppot = APPROVED / LOCKED; FOOD02 Bitterballen = RESET / NEXT; FOOD03 Haring = RESET / NOT STARTED; FOOD04 Poffertjes = RESET / NOT STARTED."
+        "VISUAL APPROVAL FOOD02 2026-09-04: regenerated Bitterballen APPROVED and locked. Assistant QA PASS: specified dish identity matches; no flag, sauce, garnish, utensils, drinks or other prohibited objects are present. Target storage: assets/images/netherlands/approved/food-bitterballen.webp.",
+        "TASTE IMAGE STATE 2026-09-04: FOOD01 Stamppot = APPROVED / LOCKED; FOOD02 Bitterballen = APPROVED / LOCKED; FOOD03 Haring = RESET / NEXT; FOOD04 Poffertjes = RESET / NOT STARTED."
       ],
       "automatedAudit": "DONE"
     },
