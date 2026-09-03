@@ -439,6 +439,7 @@
    The real-photo thumbnail remains the visual cue that LENS is a different layer of the journey. */
 .country-lens-bridge{
   margin:22px 0 8px;
+  padding-inline:20px;
 }
 .country-lens-bridge[hidden]{display:none!important;}
 .country-lens-bridge__head{
@@ -458,18 +459,17 @@
   letter-spacing:.01em;
 }
 .country-lens-bridge__link{
-  min-height:132px;
+  min-height:0;
   display:grid;
   grid-template-columns:164px minmax(0,1fr);
   gap:18px;
   align-items:center;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:rgba(255,255,255,.32);
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
   color:inherit;
   text-decoration:none;
-  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
 }
 .country-lens-bridge__thumb{
   width:164px;
@@ -481,7 +481,7 @@
 }
 .country-lens-bridge__copy{
   min-width:0;
-  padding-right:6px;
+  padding-right:0;
 }
 .country-lens-bridge p{
   max-width:680px;
@@ -500,15 +500,16 @@
   font-weight:500;
   letter-spacing:.06em;
 }
-.country-lens-bridge__link:hover,
-.country-lens-bridge__link:focus-visible{
-  border-color:#a86545;
-  background:rgba(255,255,255,.42);
-  box-shadow:0 5px 16px rgba(70,66,52,.09);
+.country-lens-bridge__link:hover p,
+.country-lens-bridge__link:hover small,
+.country-lens-bridge__link:focus-visible p,
+.country-lens-bridge__link:focus-visible small{
+  text-decoration:underline;
+  text-underline-offset:3px;
 }
 .country-lens-bridge__link:focus-visible{
   outline:2px solid var(--navy);
-  outline-offset:3px;
+  outline-offset:4px;
 }
 @media(max-width:760px){
   .country-lens-bridge{
@@ -521,10 +522,8 @@
     font-size:20px;
   }
   .country-lens-bridge__link{
-    min-height:0;
     grid-template-columns:112px minmax(0,1fr);
     gap:12px;
-    padding:10px;
   }
   .country-lens-bridge__thumb{
     width:112px;
