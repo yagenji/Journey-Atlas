@@ -95,6 +95,11 @@ jobs:
           extras = data.get("atlasExtras", [])
           if len(extras) < 5 or extras[4].get("title") != "日が落ちても、街の暮らしは屋外に続く":
               raise SystemExit("Spain Beyond the Scenery overlap fix is missing")
+          trivia_titles = [item.get("title") for item in data.get("travelTrivia", [])]
+          if "8月のブニョールでは、街全体がトマト色になる" not in trivia_titles:
+              raise SystemExit("Spain Tomatina experience trivia is missing")
+          if any(item.get("topicKey") == "gomera-whistled-language" for item in data.get("travelTrivia", [])):
+              raise SystemExit("Replaced Silbo Gomero trivia is still present")
           print("Spain V3 production JSON verified.")
           PY
 
