@@ -721,7 +721,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B / Medium Renewal. Hero location, current 8-scene selection, and map are KEEP candidates; no full visual rebuild is justified.",
@@ -775,7 +775,11 @@
         "Use the Cloudflare Pages branch preview for UK renewal review. Cloudflare check for commit c5bdb719 completed SUCCESS with immutable preview https://debbe94a.journey-atlas.pages.dev and branch preview https://country-unitedkingdom-renewa.journey-atlas.pages.dev . Review route: /countries/unitedkingdom/.",
         "PUBLICATION APPROVAL 2026-09-03: user instructed to publish if final QA found no issues.",
         "PRE-PUBLISH QA COMPLETE 2026-09-03: latest renewal commit 38848f8 passed GitHub Pages preview deployment and Cloudflare Pages branch preview deployment (immutable preview https://06630af7.journey-atlas.pages.dev). No content, source, image hard-gate, JSON validation, package or preview-deploy blocker remains.",
-        "As with current renewed published countries, qa remains PENDING specifically for full Desktop / Tablet / Mobile responsive/accessibility review; this does not block publication after user approval and technical/source/preview QA pass."
+        "As with current renewed published countries, qa remains PENDING specifically for full Desktop / Tablet / Mobile responsive/accessibility review; this does not block publication after user approval and technical/source/preview QA pass.",
+        "PUBLISHED 2026-09-03: merged via PR #175. United Kingdom renewal merge commit 359f42088a4c977d5ac226d0a551fb1fd7f79024.",
+        "MAIN VALIDATION 2026-09-03: UK merge validation run 33764983497 PASS. Later main commits for Estonia and Denmark are descendants of the UK merge and retain the renewed UK Country JSON and approved Taste assets.",
+        "CLOUDFLARE PRODUCTION 2026-09-03: production verify run 33764997114 PASS on main descendant 46500d2a923751c1034c3410b2f07c2d09e05d91, confirming atlas.yagenji.com served the expected commit and production route / JS / CSS runtime checks passed.",
+        "Production is LIVE_CURRENT. qa remains PENDING only for full Desktop / Tablet / Mobile responsive/accessibility review; technical/source/image/package/production verification is complete."
       ],
       "automatedAudit": "DONE"
     }
