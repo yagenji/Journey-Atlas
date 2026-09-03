@@ -8,7 +8,7 @@ Classification: **B — medium renewal**
 
 - Hero: **KEEP**
 - 8-scene selection: **KEEP 8**
-- Scene production assets: **S01 REGENERATE / S02–S08 NORMALIZE DECISION PENDING**
+- Scene production assets: **RENEWED / APPROVED 8**
 - Map: **KEEP**
 - Country Profile: **KEEP**
 - Signature Facts: **REWRITE 1**
@@ -314,10 +314,11 @@ Local technical verification:
 - visual state: user APPROVED for all 12
 - Hero remains KEEP at its existing production path
 
-Production gate remains **BLOCKED** until the final WebP binaries are physically present in:
-`assets/images/iceland/approved/`
+Production asset gate: **PASS**.
 
-Do not connect the new Scene or Taste paths to `data/countries/iceland.json` until repository presence and approved-folder hygiene are verified.
+- Final WebP binaries are physically present in `assets/images/iceland/approved/`.
+- Country JSON references the approved Scene and Taste paths.
+- Approved-folder hygiene passes with no unreferenced renewal file.
 
 
 ## Travel Planning alignment — 2026-09-03
@@ -345,3 +346,13 @@ Routes:
 - 3〜4日: レイキャヴィーク → シンクヴェトリル → ゲイシール → スコゥガフォス
 - 5〜7日: レイキャヴィーク → スコゥガフォス → ヴィーク → ヨークルスアゥルロゥン
 - 8日以上: レイキャヴィーク → ヴィーク → ヨークルスアゥルロゥン → ミーヴァトン → アークレイリ → レイキャヴィーク
+
+
+## Pre-publish audit cleanup — 2026-09-03
+
+- All eight Scene production assets are renewed and user APPROVED.
+- All four Taste production assets are user APPROVED.
+- Visual Complete Gate and hard image gate pass.
+- Latest main shared typography fix has been merged into the renewal branch.
+- Automated validation is rerun on the final branch head.
+- Human review of the Cloudflare Preview has been performed; full Desktop / Tablet / Mobile browser QA remains the final QA item before marking PASS.
