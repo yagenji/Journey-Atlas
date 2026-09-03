@@ -493,12 +493,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
-      "map": "PENDING",
-      "sources": "PENDING",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
         "LANDSCAPE AUDIT: existing Riga Hero and all eight landscape scenes are KEEP candidates. Hero + 8 scenic assets are already 1200×800 / 3:2 WebP; no landscape regeneration is justified by dimensions or current selection.",
@@ -524,7 +524,14 @@
         "TASTE BATCH USER APPROVAL 2026-09-03: FOOD01 Pelēkie zirņi ar speķi / FOOD02 Aukstā zupa / FOOD03 Sklandrausis / FOOD04 Jāņu siers are all user APPROVED and locked. Do not regenerate unless explicitly requested.",
         "TASTE LOCAL NORMALIZATION 2026-09-03: all four approved generated PNG masters were resized from 1536×1024 to 1200×800 / 3:2 WebP, fully decoded successfully, and packaged for repository storage.",
         "APPROVED TASTE FILENAMES: food-grey-peas-bacon.webp / food-auksta-zupa.webp / food-sklandrausis.webp / food-janu-siers.webp. Target folder assets/images/latvia/approved/.",
-        "Visual Complete Gate remains BLOCKED only by repository storage and repository-side decode/path/approved-folder hygiene verification. Country JSON still intentionally does not connect Taste before that gate."
+        "Visual Complete Gate remains BLOCKED only by repository storage and repository-side decode/path/approved-folder hygiene verification. Country JSON still intentionally does not connect Taste before that gate.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-04: FOOD01–04 are present in assets/images/latvia/approved/ on the renewal branch. Each Git blob SHA exactly matches the locally fully-decoded 1200×800 / 3:2 WebP master.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-04: assets/images/latvia/approved/ contains exactly 13 final referenced assets — Hero + 8 scenes + 4 Taste images — with no draft/test/temporary/placeholder/old artifacts.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + S01–S08 remain KEEP; FOOD01–04 are user APPROVED, repository-stored, correctly named, 1200×800 / 3:2 WebP and locked. hardImageGate enabled.",
+        "PHASE 4 IMPLEMENTATION 2026-09-04: Reference v3 Country JSON connected Taste 4 with imageState APPROVED, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Signature Facts, Encounters, Beyond the Scenery and Travel Notes, plus contentQaVersion 1.",
+        "SOURCE REFRESH 2026-09-04: renewed facts and travel content use Latvia Official Statistics, Latvia.travel, UNESCO Memory of the World / Intangible Cultural Heritage, CSDD, Latvijas Valsts ceļi and EUR-Lex. Population reference remains 2026-01-01.",
+        "MAP remains KEEP and DONE: existing 1200×760 Natural Earth-based map retained; all capital/Hero/scene coordinates are inside bounds and no prohibited ellipse was detected.",
+        "QA remains PENDING until branch automated validation/hard image gate and preview/runtime visual checks are complete. Production remains LIVE_OLD until final user approval."
       ],
       "automatedAudit": "DONE"
     },
