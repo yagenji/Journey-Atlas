@@ -356,3 +356,17 @@ Routes:
 - Latest main shared typography fix has been merged into the renewal branch.
 - Automated validation is rerun on the final branch head.
 - Human review of the Cloudflare Preview has been performed; full Desktop / Tablet / Mobile browser QA remains the final QA item before marking PASS.
+
+
+## Publication — 2026-09-03
+
+User approved publication after reviewing the Cloudflare branch Preview.
+
+- PR: #167
+- Main merge commit: `992fd1b2f555d48aee4d2ff15bb9a5b14f300185`
+- Main validation: run 33735291084 — PASS
+- GitHub Pages deploy: run 33735291039 — PASS
+- Cloudflare Production Verify: run 33735291016 — PASS
+- Production state: `LIVE_CURRENT`
+- `atlasPublished:true` remained unchanged throughout the renewal.
+- Full human Desktop / Tablet / Mobile responsive/accessibility QA remains recorded as PENDING; automated production verification is not treated as a substitute.
