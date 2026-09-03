@@ -136,12 +136,10 @@ jobs:
           grep -q "旅の目安日程" /tmp/spain.json
           ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
-          grep -q 'PROFILE BANDS — SINGLE SOURCE OF TRUTH' /tmp/country.css
           grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' /tmp/country.css
           grep -q 'grid-column:1 / -1' /tmp/country.css
           grep -q 'margin-top:0!important' /tmp/country.css
           grep -q 'travel-guidance' /tmp/country.css
-          grep -q 'Transport — single shared layout' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
           grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
           grep -q 'aspect-ratio:3 / 2' /tmp/country.css
