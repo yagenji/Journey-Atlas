@@ -52,79 +52,7 @@
   display:none!important;
 }
 
-/* Basic facts: a horizontal country profile before map + scenery. */
-.country-facts-strip{
-  display:grid;
-  grid-template-columns:150px minmax(0,1fr);
-  margin:0 0 16px;
-  padding:0;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(255,253,248,.96);
-  box-shadow:0 5px 18px rgba(38,52,55,.035);
-}
-.country-facts-strip__head{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:4px;
-  margin:0;
-  padding:15px 18px;
-  border-right:1px solid var(--line);
-  background:rgba(207,222,224,.34);
-}
-.country-facts-strip__head h2{
-  order:2;
-  margin:0;
-  color:var(--navy);
-  font-size:var(--country-title-md);
-  line-height:1.4;
-  font-weight:600;
-}
-.country-facts-strip__head span{
-  order:1;
-  font-family:var(--meta);
-  font-size:var(--country-kicker);
-  line-height:1.35;
-  letter-spacing:.14em;
-  color:#8a6b55;
-}
-.country-facts-strip .fact-list{
-  display:grid!important;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:0!important;
-  margin:0!important;
-  align-items:stretch;
-}
-.country-facts-strip .fact-list>div{
-  min-height:74px!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:center!important;
-  padding:11px 13px 12px!important;
-  border:0!important;
-  border-left:1px solid #e4ddcf!important;
-  border-radius:0!important;
-  background:transparent!important;
-}
-.country-facts-strip .fact-list>div:first-child{border-left:0!important;}
-.country-facts-strip .fact-list>div>span{display:none!important;}
-.country-facts-strip .fact-list dt{
-  margin:0 0 5px;
-  color:var(--muted);
-  font-family:var(--meta);
-  font-size:9.5px;
-  line-height:1.3;
-  letter-spacing:.06em;
-}
-.country-facts-strip .fact-list dd{
-  margin:0!important;
-  color:var(--navy-deep);
-  font-size:13px!important;
-  font-weight:500!important;
-  line-height:1.55!important;
-}
+/* Country Profile is defined only in country-icon-system.css. */
 
 /* Map is for spatial relationship: numbered pins only. */
 .map-marker span{display:none!important;}
@@ -260,17 +188,6 @@
 .atlas-colophon a{color:inherit;}
 .atlas-colophon a:hover{color:var(--navy-deep);}
 
-@media(max-width:1120px){
-  .country-facts-strip{
-    grid-template-columns:132px minmax(0,1fr);
-  }
-  .country-facts-strip .fact-list{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-  }
-  .country-facts-strip .fact-list>div:nth-child(4){border-left:0!important;}
-  .country-facts-strip .fact-list>div:nth-child(n+4){border-top:1px solid #e4ddcf!important;}
-}
-
 @media(max-width:900px){
   .travel-grid{grid-template-columns:1fr!important;}
   .travel-grid .info-section{
@@ -287,24 +204,6 @@
     max-width:calc(100% - 24px);
     font-size:9px;
   }
-  .country-facts-strip{
-    display:block;
-  }
-  .country-facts-strip__head{
-    min-height:0;
-    padding:12px 14px;
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-  .country-facts-strip .fact-list{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-  .country-facts-strip .fact-list>div{
-    min-height:68px!important;
-  }
-  .country-facts-strip .fact-list>div:nth-child(odd){border-left:0!important;}
-  .country-facts-strip .fact-list>div:nth-child(n+3){border-top:1px solid #e4ddcf!important;}
-  .country-facts-strip .fact-list>div:nth-child(4){border-left:1px solid #e4ddcf!important;}
   .atlas-colophon .colophon-grid{display:block;}
   .atlas-colophon .meta{margin-top:24px;text-align:left;}
   .atlas-colophon .meta-links{justify-content:flex-start;}
