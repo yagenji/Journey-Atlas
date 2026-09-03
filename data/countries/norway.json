@@ -18,7 +18,7 @@
   },
   "hero": {
     "lead": "深いフィヨルド、切り立つ山、海へ落ちる滝。海岸をたどるたびに、陸と水の境界が入り組んでいく国。",
-    "image": "assets/images/norway/v1/hero-geirangerfjord.webp",
+    "image": "assets/images/norway/approved/hero-geirangerfjord.webp",
     "location": "Ørnesvingen / オルネスヴィンゲン（ガイランゲルフィヨルド）",
     "coordinates": {
       "latitude": 62.111,
@@ -51,7 +51,7 @@
         "latitude": 60.9436,
         "longitude": 6.9314
       },
-      "image": "assets/images/norway/v1/naeroyfjord.webp",
+      "image": "assets/images/norway/approved/naeroyfjord.webp",
       "mapOffset": {
         "x": -1,
         "y": -3
@@ -67,7 +67,7 @@
         "latitude": 58.9867,
         "longitude": 6.1875
       },
-      "image": "assets/images/norway/v1/preikestolen.webp",
+      "image": "assets/images/norway/approved/preikestolen.webp",
       "mapOffset": {
         "x": -1,
         "y": 1
@@ -83,7 +83,7 @@
         "latitude": 60.133,
         "longitude": 6.754
       },
-      "image": "assets/images/norway/v1/trolltunga.webp",
+      "image": "assets/images/norway/approved/trolltunga.webp",
       "mapOffset": {
         "x": 3,
         "y": 4
@@ -99,7 +99,7 @@
         "latitude": 60.3971,
         "longitude": 5.3244
       },
-      "image": "assets/images/norway/v1/bryggen.webp",
+      "image": "assets/images/norway/approved/bryggen.webp",
       "mapOffset": {
         "x": -2,
         "y": 1
@@ -118,7 +118,7 @@
         "latitude": 63.0167,
         "longitude": 7.354
       },
-      "image": "assets/images/norway/v1/atlantic-road.webp"
+      "image": "assets/images/norway/approved/atlantic-road.webp"
     },
     {
       "id": "voringsfossen",
@@ -130,7 +130,7 @@
         "latitude": 60.42669,
         "longitude": 7.251631
       },
-      "image": "assets/images/norway/v1/voringsfossen.webp",
+      "image": "assets/images/norway/approved/voringsfossen.webp",
       "mapOffset": {
         "x": 4,
         "y": -3
@@ -146,7 +146,7 @@
         "latitude": 67.9325,
         "longitude": 13.0896
       },
-      "image": "assets/images/norway/v1/reine.webp"
+      "image": "assets/images/norway/approved/reine.webp"
     },
     {
       "id": "north-cape",
@@ -158,7 +158,7 @@
         "latitude": 71.1725,
         "longitude": 25.7841
       },
-      "image": "assets/images/norway/v1/north-cape.webp"
+      "image": "assets/images/norway/approved/north-cape.webp"
     }
   ],
   "encounters": [
@@ -204,27 +204,31 @@
       "points": [
         "オペラハウスから海沿いを歩く",
         "ムンク美術館や国立美術館で北欧の表現に触れる"
-      ]
+      ],
+      "topicKey": "oslo-city-and-nature"
     },
     {
       "themeEn": "HISTORY",
       "themeJa": "時をたどる",
-      "title": "海と交易の歴史",
-      "text": "ヴァイキング時代の航海から、干しダラを運んだ中世の交易まで、長い海岸線はノルウェーの歴史を形づくってきた。",
+      "title": "木でつくられた中世の教会が残る",
+      "text": "中世に広がったスターヴ教会は、柱と板を組み上げたノルウェー独自の木造教会。現在も28棟が残り、ウルネスではヴァイキング時代の意匠とロマネスク建築の要素が一つの建物に重なる。",
       "points": [
-        "ベルゲンのブリッゲンはハンザ交易の記憶を残す",
-        "北部の漁業と沿岸航路は現在の町にもつながる"
-      ]
+        "ウルネス・スターヴ教会は12〜13世紀に建てられ、世界遺産に登録されている",
+        "ボルグン・スターヴ教会は1180年頃の建築で、中世木造建築をよく残している"
+      ],
+      "sourceKey": "staveChurches",
+      "topicKey": "medieval-stave-churches"
     },
     {
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
       "title": "フリルフツリフ",
-      "text": "森、山、海で過ごす時間を日常に取り込む「フリルフツリヴ」。休日のハイキングや山小屋文化に、自然との距離の近さが表れる。",
+      "text": "森、山、海で過ごす時間を日常に取り込む「フリルフツリフ」。休日のハイキングや山小屋文化に、自然との距離の近さが表れる。",
       "points": [
         "都市からも森や水辺へ出やすい",
         "山小屋をつないで歩く旅も身近な選択肢"
-      ]
+      ],
+      "topicKey": "friluftsliv-outdoor-life"
     },
     {
       "themeEn": "CULTURE",
@@ -235,26 +239,29 @@
       "points": [
         "カラショークには1989年に開設されたサーミ議会がある",
         "カウトケイノでは工芸や現代アート、サーミ国立劇場に触れられる"
+      ],
+      "topicKey": "sami-contemporary-culture"
+    },
+    {
+      "topicKey": "constitution-day-may-17",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "5月17日は、子どものパレードが街の主役になる",
+      "text": "1814年の憲法制定を祝う5月17日の憲法記念日。各地で子どもたちのパレードが行われ、ブーナッドと呼ばれる伝統衣装を着る人も多い。国家行事でありながら、学校や地域の参加が前面に出る祝日の姿にノルウェーらしい共同体の感覚が見える。",
+      "points": [
+        "1814年5月17日にノルウェー憲法が制定された",
+        "現在は各地の子どものパレードが祝賀の中心になっている"
       ]
     },
     {
-      "themeEn": "FOOD",
-      "themeJa": "食をめぐる",
-      "title": "海の食とストックフィッシュ",
-      "text": "サーモンやタラなどの魚介は、長い海岸線と直結した食文化。ロフォーテンでは冬に獲れたタラを風で乾燥させるストックフィッシュの景色も残る。",
+      "topicKey": "bokmal-nynorsk-two-written-standards",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉を知る",
+      "title": "同じノルウェー語を、二つの書き言葉で読む",
+      "text": "ノルウェー語にはブークモールとニーノシュクという二つの公的な書き言葉がある。地域によって学校や自治体で使われる形が異なり、地名や案内、文章の違いからも、この国が一つの言葉だけで均質にまとまっていないことが分かる。",
       "points": [
-        "沿岸の町では魚介のスープや干しダラに出会う",
-        "地域ごとの乳製品や保存食も旅の味になる"
-      ]
-    },
-    {
-      "themeEn": "ROAD",
-      "themeJa": "道の先へ",
-      "title": "道路とフェリーでつなぐ",
-      "text": "フィヨルドと島が入り組むため、道は橋、トンネル、フェリーを組み合わせて続く。目的地への移動そのものが景観体験になる。",
-      "points": [
-        "18のナショナル・シーニック・ルートが各地にある",
-        "フェリーの待ち時間も含めて旅程を組む"
+        "ブークモールとニーノシュクは法的に対等なノルウェー語の書き言葉",
+        "地理的な隔たりと方言の多様さが、二つの書記体系の背景にある"
       ]
     }
   ],
@@ -265,7 +272,8 @@
       "title": "自然を歩ける「万人の権利」",
       "text": "自然享受権（アレマンスレッテン）により、耕作地などを除く自然の中を歩き、スキーやキャンプを楽しめる。自由と同時に、土地や野生への配慮も求められる。",
       "icon": "hike",
-      "sourceKey": "rightToRoam"
+      "sourceKey": "rightToRoam",
+      "topicKey": "right-to-roam-allemannsretten"
     },
     {
       "categoryEn": "FOLKLORE",
@@ -273,7 +281,8 @@
       "title": "トロールを探しながら旅する",
       "text": "ノルウェーではトロールの伝承が山や岩の景色と結びつき、トロルスティーゲン、トロルトゥンガ、トロルハイメンなど地名にも残る。景色の中に“石になったトロール”を探すのも旅の楽しみになる。",
       "icon": "culture",
-      "sourceKey": "trolls"
+      "sourceKey": "trolls",
+      "topicKey": "troll-folklore-place-names"
     },
     {
       "categoryEn": "EASTER",
@@ -281,15 +290,17 @@
       "title": "イースターにはミステリーを読む",
       "text": "イースター休暇に犯罪小説やミステリーを読む「ポースケクリム」はノルウェー独特の習慣。書店やテレビでも、この時期は犯罪ものが目立つ。",
       "icon": "culture",
-      "sourceKey": "easterCrime"
+      "sourceKey": "easterCrime",
+      "topicKey": "easter-crime-paskekrim"
     },
     {
-      "categoryEn": "FOOD",
-      "categoryJa": "食",
-      "title": "ワッフルには茶色いチーズ",
-      "text": "ハート形のワッフルに、甘くキャラメルのような風味のブルーノストをのせる組み合わせは定番。山小屋やカフェでも見つけやすい。",
-      "icon": "food",
-      "sourceKey": "brownCheeseWaffle"
+      "topicKey": "dugnad-collective-volunteering",
+      "categoryEn": "DUGNAD",
+      "categoryJa": "共同体",
+      "title": "整った登山道の背景に「Dugnad」がある",
+      "text": "Dugnadは、地域や団体のために皆で行う無償の共同作業。登山道や山小屋の整備、地域行事、海岸清掃などにもこの文化が表れ、旅行者が使う場所の一部も地域の自主的な手で支えられている。",
+      "icon": "users",
+      "sourceKey": "dugnad"
     },
     {
       "categoryEn": "CHRISTMAS",
@@ -297,7 +308,8 @@
       "title": "サンタへの手紙が届く町",
       "text": "オスロ近郊のドローバックにはサンタの郵便局があり、世界各地から手紙が届く。納屋に住むフョースニッセンの伝承もあり、クリスマスには米粥を供える習慣が語られる。",
       "icon": "snow",
-      "sourceKey": "norwegianSanta"
+      "sourceKey": "norwegianSanta",
+      "topicKey": "norwegian-santa-drobak"
     }
   ],
   "seasons": [
@@ -323,8 +335,9 @@
     }
   ],
   "transport": {
-    "title": "FJORD FERRY / RAIL / ROAD",
-    "text": "鉄道や道路だけでなく、フィヨルドを横切るフェリーや沿岸船そのものが移動体験になる。南北に長いため、距離より所要時間と地域のまとまりで旅程を組む。"
+    "title": "鉄道・フェリー・車",
+    "text": "都市間は鉄道、フィヨルド地域はフェリーや車を組み合わせる。南北に長いため、北部まで移動する場合は国内線も現実的。沿岸船は移動そのものが旅の一部になる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -383,33 +396,40 @@
       "label": "海岸線",
       "value": "10万 km超",
       "note": "島、岩礁、小島を含めると、海岸線は10万kmを超える。",
-      "icon": "sea"
+      "icon": "sea",
+      "topicKey": "coastline-over-100000km"
     },
     {
       "label": "水力発電",
       "value": "約90%",
       "note": "2025年の発電量の約9割を水力が占める。",
-      "icon": "energy"
+      "icon": "energy",
+      "topicKey": "hydropower-about-90-percent"
     },
     {
-      "label": "市街地・建設地",
-      "value": "本土の1.8%",
-      "note": "本土の大部分は森林、山地、湿地などの非市街地で占められる。",
-      "icon": "city"
+      "topicKey": "laerdal-tunnel-24-5km",
+      "label": "ラルダール・トンネル",
+      "value": "24.5 km",
+      "note": "E16のラルダール・トンネルは全長24.5kmで、世界最長の道路トンネル。山地を迂回するだけでなく、山そのものを貫いて地域をつなぐノルウェーの移動を象徴する数字。",
+      "icon": "road"
     }
   ],
   "tips": [
     {
-      "title": "旅のスケール",
-      "text": "オスロとベルゲンを結ぶ西部の旅と、ロフォーテンやノールカップまで入る北部の旅ではスケールが違う。全国を一度に追わず、地域ごとに旅を分けると景観の違いが見えやすい。"
+      "topicKey": "hikes-need-full-trip-planning",
+      "title": "有名な展望地でも、山歩きとして考える",
+      "text": "トロルトゥンガなどは、駐車場からすぐに景色を見る場所ではない。歩行時間、標高差、天候、装備を確認し、移動の途中に立ち寄るのではなく一日単位で時間を確保する。",
+      "sourceKey": "mountainHiking"
     },
     {
       "title": "距離より時間で考える",
-      "text": "フィヨルド沿いでは道路が迂回し、フェリー待ちも入る。地図上の距離だけで日程を詰めない。"
+      "text": "フィヨルド沿いでは道路が迂回し、フェリー待ちも入る。地図上の距離だけで日程を詰めない。",
+      "topicKey": "distance-measured-in-time"
     },
     {
       "title": "季節で開く道が変わる",
-      "text": "高地の景観道路や登山道には冬季閉鎖がある。目的地だけでなく移動経路の季節条件も確認する。"
+      "text": "高地の景観道路や登山道には冬季閉鎖がある。目的地だけでなく移動経路の季節条件も確認する。",
+      "topicKey": "seasonal-road-and-trail-closures"
     }
   ],
   "relatedCountries": [
@@ -428,31 +448,40 @@
       "reason": "北欧の森と都市文化を、より穏やかな地形の中で辿りたいなら。"
     },
     {
-      "slug": "new-zealand",
+      "slug": "newzealand",
       "nameEn": "NEW ZEALAND",
       "nameJa": "ニュージーランド",
       "flag": "🇳🇿",
       "reason": "フィヨルドと山岳、長距離ドライブを南半球でも追いかけたいなら。"
     }
   ],
-  "updatedAt": "2026-08-31",
-  "sourcesVerifiedAt": "2026-08-31",
+  "updatedAt": "2026-09-03",
+  "sourcesVerifiedAt": "2026-09-03",
   "sourceDates": {
     "population": "2026-Q2",
     "area": "2026",
     "religion": "2025",
     "hydropower": "2025",
-    "landUse": "2026"
+    "laerdalTunnel": "2026",
+    "constitutionDay": "2025-04-23",
+    "dugnad": "2026",
+    "mountainHiking": "2026",
+    "writtenNorwegian": "2021-05-21",
+    "stockfishCuisine": "2026",
+    "farikal": "2026",
+    "brunost": "2026",
+    "rommegrot": "2026",
+    "travelScale": "2026",
+    "staveChurches": "2026"
   },
   "sources": {
-    "map": "Mainland coastline: GSHHS; national border: Basemap country boundary; illustrated treatment: JOURNEY ATLAS",
+    "map": "Country geometry: Natural Earth 1:10m admin-0; illustrated treatment: JOURNEY ATLAS",
     "population": "Statistics Norway (SSB), Population: 5,636,904 at end of Q2 2026",
     "area": "Statistics Norway (SSB), mainland area 323,807 km² in 2026",
     "language": "Government of Norway, Language Act: Norwegian is the national main language; Bokmål and Nynorsk are equal; Sami languages are indigenous languages",
     "religion": "Statistics Norway (SSB), Church of Norway members were 60.9% of inhabitants in 2025",
     "coastline": "Government of Norway: Norwegian coastline exceeds 100,000 km including islands, skerries and islets",
     "hydropower": "Statistics Norway (SSB): 145,476 GWh hydropower out of 161,793 GWh total generation in 2025",
-    "landUse": "Statistics Norway (SSB): built-up area was 1.8% of mainland land cover in 2026",
     "naeroyfjord": "Visit Norway: Nærøyfjord is about 17 km long and 250 m wide at its narrowest",
     "preikestolen": "Visit Norway: Preikestolen rises 604 m above Lysefjord",
     "trolltunga": "Visit Norway: Trolltunga is about 700 m above Ringedalsvatnet",
@@ -466,9 +495,84 @@
     "rightToRoam": "Visit Norway / Norwegian Environment Agency: Allemannsretten allows responsible access to uncultivated land",
     "tapWater": "Visit Norway: tap water is drinkable throughout Norway",
     "easterCrime": "Visit Norway: reading crime fiction and watching mysteries during Easter, Påskekrim, is a distinct Norwegian tradition",
-    "brownCheeseWaffle": "Visit Norway: Norwegian waffles are commonly served with sweet brown cheese",
     "norwegianSanta": "Visit Norway: Drøbak hosts Santa's Post Office; Norwegian Christmas tradition also includes Fjøsnissen and nissegrøt.",
     "trolls": "Visit Norway: The mythical Norwegian trolls / troll locations — troll folklore is tied to landscapes and names such as Trollstigen, Trolltunga and Trollheimen.",
-    "midnightSunAurora": "Visit Norway: Northern Norway has the midnight sun in summer; northern lights are typically visible from late August through late March."
+    "midnightSunAurora": "Visit Norway: Northern Norway has the midnight sun in summer; northern lights are typically visible from late August through late March.",
+    "laerdalTunnel": "Statens vegvesen: E16 Lærdal Tunnel is 24.5 km (24,509 m), opened in 2000, and is the world's longest road tunnel; current project information checked 2026-09-03",
+    "constitutionDay": "Norwegian Embassy in Japan / Visit Norway: Norway's Constitution Day is 17 May, commemorating the 1814 Constitution; children's parades and bunad are central parts of the celebration",
+    "writtenNorwegian": "Government of Norway, Language Act: Bokmål and Nynorsk are equal languages and are equal written languages in public bodies",
+    "dugnad": "Visit Norway: Dugnad is voluntary, unpaid collective work for a shared purpose and supports trails, cabins, local activities and public spaces",
+    "stockfishCuisine": "Visit Norway: Tørrfisk/stockfish is unsalted cod dried by wind and sun, strongly associated with Lofoten and Northern Norway's fishing and export history",
+    "farikal": "Visit Norway: Fårikål is a traditional lamb-and-cabbage stew described as Norway's national dish and associated with the autumn lamb season",
+    "brunost": "Visit Norway: Brunost is a traditional sweet brown whey cheese with a caramel-like flavour, commonly eaten on bread or waffles and linked to farm traditions",
+    "rommegrot": "Visit Norway: Rømmegrøt (sour-cream porridge) is served in rural and summer-pasture farm settings and forms part of Norwegian farm food traditions",
+    "mountainHiking": "Visit Norway: Trolltunga is a long, demanding high-mountain hike; hikers should plan for the full walking time, weather changes, fitness and proper equipment",
+    "travelScale": "Visit Norway: Bergen Railway links Oslo and Bergen; Myrdal connects with the Flåm Railway, and Nærøyfjord journeys combine rail, bus and fjord cruise. Lofoten access commonly combines domestic flights, ferries/express boats and road transport.",
+    "staveChurches": "UNESCO World Heritage Centre: Urnes Stave Church was built in the 12th–13th centuries and combines Viking traditions with Romanesque spatial structures; Visit Norway: 28 historical stave churches remain in Norway and Borgund Stave Church was built around 1180."
+  },
+  "contentQaVersion": 1,
+  "taste": {
+    "kicker": "TASTE OF NORWAY",
+    "title": "ノルウェーで食べたいもの",
+    "intro": "海と山、保存の知恵がつながる4つ。",
+    "items": [
+      {
+        "id": "torrfisk",
+        "name": "干しダラ",
+        "nameLocal": "Tørrfisk",
+        "text": "北部、とくにロフォーテンで受け継がれてきた保存食。冬に獲れたタラを塩を使わず風と寒気で乾かし、長い海岸と漁業、交易の歴史を一皿につないでいる。",
+        "sourceKey": "stockfishCuisine",
+        "image": "assets/images/norway/approved/food-torrfisk.webp"
+      },
+      {
+        "id": "farikal",
+        "name": "フォーリコール",
+        "nameLocal": "Fårikål",
+        "text": "羊肉とキャベツを重ねて煮込む素朴な料理。山や放牧地で育つ羊を秋に味わう料理として親しまれ、ノルウェーの農村と季節感がそのまま食卓に現れる。",
+        "sourceKey": "farikal",
+        "image": "assets/images/norway/approved/food-farikal.webp"
+      },
+      {
+        "id": "brunost",
+        "name": "ブルーノスト",
+        "nameLocal": "Brunost",
+        "text": "乳清を煮詰めてつくる茶色いチーズ。甘くキャラメルのような風味があり、パンやワッフルとともに食べられる。山地の酪農と保存の知恵から生まれた、ノルウェーらしい乳製品。",
+        "sourceKey": "brunost",
+        "image": "assets/images/norway/approved/food-brunost.webp"
+      },
+      {
+        "id": "rommegrot",
+        "name": "ロンメグロット",
+        "nameLocal": "Rømmegrøt",
+        "text": "サワークリームを使った濃厚な粥。山の夏季放牧地「セーテル」の食文化とも結びつき、乳製品を中心にした内陸・山地の暮らしを味わえる。",
+        "sourceKey": "rommegrot",
+        "image": "assets/images/norway/approved/food-rommegrot.webp"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "一つの都市を拠点に近郊へ",
+        "text": "ベルゲンなど一つの都市を拠点にし、日帰りでフィヨルドや近郊の町を加えるくらいが現実的。例：ベルゲン＋フロム＋ネーロイフィヨルド。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "鉄道とフェリーで2〜3地域をつなぐ",
+        "text": "ベルゲン鉄道、フロム鉄道、フェリーを組み合わせれば、都市とフィヨルドを無理なくつなぎやすい。例：オスロ → ミュルダール → フロム → グドヴァンゲン → ヴォス → ベルゲン。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "西部に北部の景観を加える",
+        "text": "国内線や沿岸航路を使って北部まで広げると、フィヨルド地方と北極圏の違いまで見えてくる。例：オスロ → フロム → ベルゲン → ボードー → ロフォーテン。",
+        "icon": "compass"
+      }
+    ]
   }
 }
