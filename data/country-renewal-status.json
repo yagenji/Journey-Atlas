@@ -187,12 +187,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE DECISION: existing Hallstatt Hero and all eight scene selections remain KEEP candidates; map is KEEP/DONE at 1200×760 with geographic source and no ellipse artifact found. Pixel/decode/browser visual QA remains pending.",
@@ -213,7 +213,12 @@
         "VISUAL APPROVAL FOOD03 2026-09-04: Kaiserschmarren APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/austria/approved/food-kaiserschmarren.webp.",
         "VISUAL APPROVAL FOOD04 2026-09-04: Apfelstrudel APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/austria/approved/food-apfelstrudel.webp.",
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-04: FOOD01 Wiener Schnitzel / FOOD02 Käsknöpfle / FOOD03 Kaiserschmarren / FOOD04 Apfelstrudel are all user APPROVED. Visual Complete Gate still awaits repository storage, WebP conversion, 1200×800 verification, complete decode, and approved-folder hygiene.",
-        "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized from 1536×1024 PNG to 1200×800 / 3:2 WebP and fully decoded successfully. Final filenames: food-wiener-schnitzel.webp / food-kaesknoepfle.webp / food-kaiserschmarren.webp / food-apfelstrudel.webp. Repository binary storage remains pending; Visual Complete Gate must not pass until the files exist in assets/images/austria/approved/ and approved-folder hygiene is rechecked."
+        "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized from 1536×1024 PNG to 1200×800 / 3:2 WebP and fully decoded successfully. Final filenames: food-wiener-schnitzel.webp / food-kaesknoepfle.webp / food-kaiserschmarren.webp / food-apfelstrudel.webp. Repository binary storage remains pending; Visual Complete Gate must not pass until the files exist in assets/images/austria/approved/ and approved-folder hygiene is rechecked.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-04: all four approved Taste WebP files exist in assets/images/austria/approved/ and their Git blob SHAs exactly match the locally full-decoded 1200×800 masters.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-04: Austria approved folder contains exactly 13 production assets (Hero + 8 scenes + 4 Taste); no draft, temporary, placeholder, parts, rejected or duplicate Taste files found.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + 8 scenes remain KEEP; FOOD01–04 are user APPROVED, repository-stored, 1200×800 / 3:2 WebP, full-decode verified, and connected with imageState APPROVED.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-04: Reference v3 Country JSON now includes Taste 4, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Encounters, diversified Beyond the Scenery, and refreshed source metadata.",
+        "hardImageGate enabled only after Taste repository storage and image QA passed. Automated validation and human Browser Visual QA remain pending before qa can become PASS."
       ],
       "automatedAudit": "DONE"
     },
