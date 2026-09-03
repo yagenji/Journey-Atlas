@@ -19,6 +19,17 @@ jobs:
       - name: Checkout expected source
         uses: actions/checkout@v4
 
+      - name: Verify shared Country CSS architecture
+        run: |
+          set -euo pipefail
+          profile_sources="$(grep -l 'country-facts-strip' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$profile_sources" = "assets/css/country-icon-system.css"
+          transport_sources="$(grep -l 'travel-planning__block--transport .transport' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$transport_sources" = "assets/css/country-discovery-v3.css"
+          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' assets/css/country-icon-system.css
+          grep -q 'Transport — single shared layout' assets/css/country-discovery-v3.css
+          echo "Shared Country CSS architecture verified."
+
       - name: Wait for atlas.yagenji.com to serve this commit
         env:
           SITE_URL: https://atlas.yagenji.com
@@ -59,7 +70,7 @@ jobs:
               raise SystemExit(f"Spain V3 scenes missing in production: {missing}")
           taste = data.get("taste", {})
           if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 4:
-              raise SystemExit("Spain food shortlist is not the reviewed 3-item version")
+              raise SystemExit("Spain food shortlist is not the reviewed 4-item version")
           expected_food_images = {
               "paella": "assets/images/spain/approved/food-paella.webp",
               "jamon-iberico": "assets/images/spain/approved/food-jamon-iberico.webp",
@@ -121,15 +132,16 @@ jobs:
           grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
           grep -q 'travel-scale__icon' /tmp/app.js
           grep -q 'transport-icon' /tmp/app.js
-          grep -q 'transport>.transport-icon' /tmp/country.css
+          grep -q 'travel-planning__block--transport .transport-icon' /tmp/country.css
           grep -q "旅の目安日程" /tmp/spain.json
           ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
-          grep -q '@media(min-width:901px)' /tmp/country.css
+          grep -q 'PROFILE BANDS — SINGLE SOURCE OF TRUTH' /tmp/country.css
+          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' /tmp/country.css
           grep -q 'grid-column:1 / -1' /tmp/country.css
           grep -q 'margin-top:0!important' /tmp/country.css
           grep -q 'travel-guidance' /tmp/country.css
-          grep -q 'display:flex!important' /tmp/country.css
+          grep -q 'Transport — single shared layout' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
           grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
           grep -q 'aspect-ratio:3 / 2' /tmp/country.css
