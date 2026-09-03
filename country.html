@@ -32,8 +32,7 @@
         <small>行きたい場所と出会う、旅の図鑑。</small>
       </a>
       <nav class="utility-nav" aria-label="サイトメニュー">
-        <a href="./">トップ</a>
-        <a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>
+        <a href="./#map">地図から探す</a>
       </nav>
     </header>
 
@@ -194,6 +193,18 @@
           <summary>PHOTO CREDITS / 写真出典</summary>
           <ul id="photo-credit-list"></ul>
         </details>
+
+        <section class="country-lens-bridge" id="country-lens-bridge" aria-labelledby="country-lens-title" hidden>
+          <a class="country-lens-bridge__link" id="country-lens-link" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">
+            <div class="country-lens-bridge__thumb" id="country-lens-thumb" aria-hidden="true"></div>
+            <div class="country-lens-bridge__copy">
+              <span class="country-lens-bridge__kicker">JOURNEY LENS</span>
+              <h2 id="country-lens-title"></h2>
+              <p id="country-lens-description"></p>
+              <small id="country-lens-meta"></small>
+            </div>
+          </a>
+        </section>
       </div>
     </article>
   </template>
@@ -210,7 +221,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260903-food-four-v9" defer></script>
+  <script src="assets/js/app.js?v=20260903-country-lens-v1" defer></script>
   <script src="assets/js/country-themes.js?v=20260830-theme-context-v2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2345" defer></script>
 </body>
