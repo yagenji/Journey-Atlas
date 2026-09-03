@@ -502,12 +502,12 @@
       "auditState": "AUDITED",
       "renewalClass": "C",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "BLOCKED",
+      "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "Hero place/composition remains KEEP, but the legacy 960×540 file still requires renewed production art.",
         "Current 8-scene selection remains KEEP 8; all eight legacy 4:3 low-resolution scene rasters still require renewed production assets.",
@@ -531,7 +531,8 @@
         "VISUAL APPROVAL FOOD03 2026-09-03: Brunost APPROVED and locked. Do not regenerate unless explicitly requested.",
         "VISUAL APPROVAL FOOD04 2026-09-03: Rømmegrøt APPROVED and locked. Do not regenerate unless explicitly requested.",
         "VISUAL APPROVAL COMPLETE 2026-09-03: Hero + all 8 scenes + all 4 Taste images are user-approved. Visual status remains IN_PROGRESS until approved files are stored, decoded, dimension-checked, and the visual-complete gate passes.",
-        "ASSET PREP 2026-09-03: 13 approved visuals converted and fully decoded locally. Hero is 1200×760; 8 scenes + 4 Taste images are 1200×800. Repository Visual Complete Gate remains blocked until the binary files exist under assets/images/norway/approved/."
+        "ASSET PREP 2026-09-03: 13 approved visuals converted and fully decoded locally. Hero is 1200×760; 8 scenes + 4 Taste images are 1200×800. Repository Visual Complete Gate remains blocked until the binary files exist under assets/images/norway/approved/.",
+        "VISUAL COMPLETE GATE PASS 2026-09-03: all 13 approved assets exist in assets/images/norway/approved/, match the locally full-decoded QA files byte-for-byte by Git blob SHA, Hero is 1200×760, 8 scenes + 4 Taste are 1200×800, and Country JSON now references only approved renewal visuals."
       ],
       "automatedAudit": "DONE"
     },
