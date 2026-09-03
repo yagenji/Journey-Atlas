@@ -388,9 +388,11 @@
   font-weight:600!important;
 }
 
-/* Review fixes: equal columns, single separators, no stray transport icon */
-.travel-planning__content{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+/* Review fixes: equal columns on desktop, single separators, no stray transport icon */
+@media(min-width:901px){
+  .travel-planning__content{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
 }
 .travel-scale__grid{
   border:0!important;

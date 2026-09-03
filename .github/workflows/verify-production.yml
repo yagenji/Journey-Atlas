@@ -125,6 +125,9 @@ jobs:
           grep -q "旅の目安日程" /tmp/spain.json
           ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
+          grep -q '@media(min-width:901px)' /tmp/country.css
+          grep -q 'grid-column:1 / -1' /tmp/country.css
+          grep -q 'margin-top:0!important' /tmp/country.css
           grep -q 'travel-guidance' /tmp/country.css
           grep -q 'display:flex!important' /tmp/country.css
           grep -q 'taste-section' /tmp/country.css
