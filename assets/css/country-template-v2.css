@@ -49,27 +49,7 @@
   line-height:1.65;
 }
 
-/* Ambiguous decorative symbols are intentionally omitted in v2. */
-.fact-list > div{
-  grid-template-columns:1fr!important;
-  gap:0!important;
-}
-.persona-list article,
-.tip-list article{
-  grid-template-columns:1fr!important;
-  gap:0!important;
-}
-.season-list article{
-  grid-template-columns:64px 1fr!important;
-  gap:10px;
-}
-.season-list article > b{
-  color:var(--season-color);
-  font-size:11px;
-}
-.transport{
-  grid-template-columns:1fr auto!important;
-}
+/* Shared icon/profile/travel geometry lives in the later shared CSS layers. */
 
 .encounter-list{
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
