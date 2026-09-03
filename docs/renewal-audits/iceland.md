@@ -237,3 +237,15 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `geysir.webp`
 - Final path: `assets/images/iceland/approved/geysir.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### S08 approval — 2026-09-03
+
+**Landmannalaugar: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `landmannalaugar.webp`
+- Final path: `assets/images/iceland/approved/landmannalaugar.webp`
+- Do not regenerate without explicit user instruction.
