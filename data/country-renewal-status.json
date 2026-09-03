@@ -372,8 +372,8 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "AUDIT 2026-09-03: classified B / Medium Renewal. Existing Cliffs of Moher Hero, all 8 Scene selections and current map remain KEEP; no existing landscape regeneration is required.",
@@ -390,7 +390,9 @@
         "AUTOMATED VALIDATION 2026-09-03: source syntax, renewal registry, published image audit, reviewable/published Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build all passed after source-date mapping correction.",
         "VISUAL COMPLETE GATE 2026-09-03: Hero + 8 retained Scenes + 4 user-approved Taste images are all connected from approved assets; Taste files match the locally full-decoded 1200×800 WebP files byte-for-byte by Git blob SHA. hardImageGate enabled for final enforcement.",
         "FINAL HARD-GATE VALIDATION 2026-09-03: run 33758999363 PASS. Source syntax, renewal registry, full published image audit, Ireland renewed hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift and Cloudflare package build all passed.",
-        "PREVIEW DEPLOY PASS 2026-09-03: GitHub Pages Ireland renewal preview run 33759853365 completed successfully after shared Pages concurrency cleared. Automated build/package/hard-gate checks passed. Human Desktop/Tablet/Mobile visual QA remains pending because this execution environment cannot directly render the deployed URL."
+        "PREVIEW DEPLOY PASS 2026-09-03: GitHub Pages Ireland renewal preview run 33759853365 completed successfully after shared Pages concurrency cleared. Automated build/package/hard-gate checks passed. Human Desktop/Tablet/Mobile visual QA remains pending because this execution environment cannot directly render the deployed URL.",
+        "USER APPROVAL 2026-09-03: Ireland renewal preview reviewed by the user and approved with no visual/content issues.",
+        "PUBLISH READY 2026-09-03: Content/Visual/Map/Sources DONE, QA PASS, hard image gate enabled. atlasPublished remains true; ready for main merge and production deployment."
       ],
       "automatedAudit": "DONE"
     },
