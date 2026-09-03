@@ -370,3 +370,13 @@ User approved publication after reviewing the Cloudflare branch Preview.
 - Production state: `LIVE_CURRENT`
 - `atlasPublished:true` remained unchanged throughout the renewal.
 - Full human Desktop / Tablet / Mobile responsive/accessibility QA remains recorded as PENDING; automated production verification is not treated as a substitute.
+
+
+## Post-publication related slug fix — 2026-09-03
+
+Corrected the Iceland Related Destination slug for New Zealand:
+
+- incorrect: `new-zealand`
+- registry slug: `newzealand`
+
+This prevents a future broken Related Destination link when New Zealand becomes atlasPublished.
