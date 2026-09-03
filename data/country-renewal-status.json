@@ -567,7 +567,9 @@
         "VISUAL APPROVAL FOOD02 2026-09-03: Cepelinai APPROVED by user and locked. Do not regenerate unless explicitly requested. Accepted image shows two oval potato dumplings with bacon/cracklings and sour cream on a pale ivory background. Target production path: assets/images/lithuania/approved/food-cepelinai.webp. Repository storage / WebP normalization / 1200×800 decode verification remain pending. Final batch QA will recheck dish accuracy and whether the additional side element should be retained.",
         "VISUAL APPROVAL FOOD03 2026-09-03: Kibinai APPROVED by user and locked. Do not regenerate unless explicitly requested. Accepted image shows golden half-moon Karaite pastries with crimped edges, one opened to reveal minced meat and onion filling, on a pale ivory background with no extra props. Target production path: assets/images/lithuania/approved/food-kibinai.webp. Repository storage / WebP normalization / 1200×800 decode verification remain pending.",
         "VISUAL APPROVAL FOOD01 2026-09-04: Šaltibarščiai APPROVED by user and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/lithuania/approved/food-saltibarsciai.webp.",
-        "TASTE STATE after FOOD01 approval: FOOD01 Šaltibarščiai APPROVED / FOOD02 Cepelinai NEXT / FOOD03 Kibinai NOT STARTED / FOOD04 Šakotis NOT STARTED."
+        "TASTE STATE after FOOD01 approval: FOOD01 Šaltibarščiai APPROVED / FOOD02 Cepelinai NEXT / FOOD03 Kibinai NOT STARTED / FOOD04 Šakotis NOT STARTED.",
+        "TASTE ANTI-REPETITION GATE 2026-09-04: the first attempted FOOD02 Cepelinai generation repeated FOOD01 Šaltibarščiai instead of producing Cepelinai. Output is immediately REJECTED and must not be stored or referenced.",
+        "FOOD02 generation series RESET. FOOD01 remains APPROVED and locked; FOOD02 returns to NOT STARTED/NEXT; FOOD03 and FOOD04 remain NOT STARTED."
       ],
       "automatedAudit": "DONE"
     },
