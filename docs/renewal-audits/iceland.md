@@ -225,3 +225,15 @@ Do not use the pre-June-2026 exact 1,322 km Ring Road length as a current Signat
 - Final filename: `thingvellir.webp`
 - Final path: `assets/images/iceland/approved/thingvellir.webp`
 - Do not regenerate without explicit user instruction.
+
+
+### S07 approval — 2026-09-03
+
+**Geysir Geothermal Area: APPROVED.**
+
+- Scene/location: KEEP
+- Visual state: APPROVED
+- Target production geometry: 1200×800 / 3:2
+- Final filename: `geysir.webp`
+- Final path: `assets/images/iceland/approved/geysir.webp`
+- Do not regenerate without explicit user instruction.
