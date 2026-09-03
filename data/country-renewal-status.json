@@ -117,16 +117,24 @@
       "nameJa": "アイスランド",
       "wave": 1,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
-      "map": "PENDING",
+      "map": "DONE",
       "sources": "PENDING",
-      "qa": "PENDING",
+      "qa": "BLOCKED",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "Hero concept/image direction: KEEP.",
+        "Current 8-scene set is strong, but Hero Seljalandsfoss + Scene 1 Skógafoss creates a waterfall overlap; run the 12–16 candidate review before locking the renewed eight.",
+        "All 8 current Scene SVGs decode correctly but fail the renewed 1200×800 / 3:2 image gate: seven are 1200×750 and Landmannalaugar is 1000×625.",
+        "Add Taste and Travel Scale; add contentQaVersion.",
+        "Replace the weak population-density Signature Fact and avoid FOOD duplication between Beyond the Scenery and the new Taste section.",
+        "Fix the doubled Japanese quotation mark in the hot-dog Trivia.",
+        "Map is technically current and can be kept unless visual review finds a readability issue."
+      ],
       "automatedAudit": "DONE"
     },
     {
@@ -495,15 +503,19 @@
       "renewalClass": "C",
       "content": "PENDING",
       "visual": "PENDING",
-      "map": "PENDING",
+      "map": "DONE",
       "sources": "PENDING",
       "qa": "BLOCKED",
       "production": "LIVE_OLD",
       "hardImageGate": false,
       "notes": [
-        "Legacy Hero is 960x540.",
-        "All 8 legacy scene rasters are only 320–360 x 240–270 and 4:3.",
-        "Renew Hero / scenes through the normal image approval flow; do not silently replace approved assets."
+        "Hero composition can remain the reference concept, but the current file is only 960×540 and must be rebuilt for the renewed image gate.",
+        "The current 8-scene selection is broadly strong and diverse; do not replace scenes merely because files are old.",
+        "All 8 current Scene rasters decode correctly but are only 320–360×240–270 and 4:3; all eight need renewed production assets.",
+        "Add Taste and Travel Scale; add contentQaVersion.",
+        "Replace the weak '市街地・建設地 1.8%' Signature Fact.",
+        "Avoid FOOD duplication between Beyond the Scenery and the new Taste section.",
+        "Map is technically current and can be kept unless visual review finds a readability issue."
       ],
       "automatedAudit": "DONE"
     },
@@ -531,15 +543,17 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "A",
-      "content": "PENDING",
-      "visual": "PENDING",
-      "map": "PENDING",
-      "sources": "PENDING",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
-        "Current structural/UI reference after 2026-09-03 QA. Renewal audit may still add country-wide improvements."
+        "Reference v3 for current shared Country structure, information density, responsive profile layout, Taste, Travel Scale, NEXT DESTINATIONS and JOURNEY LENS handoff.",
+        "Hero + 8 Scene assets pass the renewed image hard gate.",
+        "No country-specific renewal change is required before Wave 1 regression; only shared-system regressions should be applied."
       ],
       "automatedAudit": "DONE"
     },
@@ -602,11 +616,12 @@
     "structuralSummary": "All 28 published countries currently expose 6 visible Country Profile facts, 8 scenes, 8 Encounters, 6 Beyond the Scenery items, 5 Travel Trivia items, and 1–3 taxonomy themes.",
     "imageAudit": {
       "decodedRasterPayloads": 256,
-      "findings": 17,
+      "findings": 33,
       "findingCountries": [
+        "iceland",
         "norway"
       ],
-      "note": "Norway Hero is 960x540; all 8 Norway scene rasters are 320–360 x 240–270 and 4:3. No decode corruption was reported in the published-country scan."
+      "note": "After validating dimensions inside raster-backed SVGs, Iceland has 16 Scene geometry findings and Norway has 17 Hero/Scene geometry findings. No decode corruption was reported."
     },
     "hardGate": {
       "countries": [
