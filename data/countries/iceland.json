@@ -54,7 +54,7 @@
         "latitude": 63.5321,
         "longitude": -19.5114
       },
-      "image": "assets/images/iceland/v2/skogafoss.svg"
+      "image": "assets/images/iceland/approved/skogafoss.webp"
     },
     {
       "id": "jokulsarlon",
@@ -69,7 +69,7 @@
         "latitude": 64.0484,
         "longitude": -16.179
       },
-      "image": "assets/images/iceland/v2/jokulsarlon.svg"
+      "image": "assets/images/iceland/approved/jokulsarlon.webp"
     },
     {
       "id": "studlagil",
@@ -84,7 +84,7 @@
         "latitude": 65.16233,
         "longitude": -15.30813
       },
-      "image": "assets/images/iceland/v2/studlagil.svg"
+      "image": "assets/images/iceland/approved/studlagil.webp"
     },
     {
       "id": "myvatn",
@@ -96,7 +96,7 @@
         "latitude": 65.6039,
         "longitude": -17
       },
-      "image": "assets/images/iceland/v2/myvatn.svg"
+      "image": "assets/images/iceland/approved/myvatn.webp"
     },
     {
       "id": "kirkjufell",
@@ -111,7 +111,7 @@
         "latitude": 64.9417,
         "longitude": -23.3069
       },
-      "image": "assets/images/iceland/v2/kirkjufell.svg"
+      "image": "assets/images/iceland/approved/kirkjufell.webp"
     },
     {
       "id": "thingvellir",
@@ -126,7 +126,7 @@
         "latitude": 64.2559,
         "longitude": -21.129
       },
-      "image": "assets/images/iceland/v2/thingvellir.svg",
+      "image": "assets/images/iceland/approved/thingvellir.webp",
       "mapOffset": {
         "x": -1,
         "y": -1
@@ -145,7 +145,7 @@
         "latitude": 64.3104,
         "longitude": -20.3024
       },
-      "image": "assets/images/iceland/v2/geysir.svg"
+      "image": "assets/images/iceland/approved/geysir.webp"
     },
     {
       "id": "landmannalaugar",
@@ -160,7 +160,7 @@
         "latitude": 63.983,
         "longitude": -19.067
       },
-      "image": "assets/images/iceland/v2/landmannalaugar.svg"
+      "image": "assets/images/iceland/approved/landmannalaugar.webp"
     }
   ],
   "encounters": [
@@ -232,13 +232,13 @@
       ]
     },
     {
-      "themeEn": "FOOD",
-      "themeJa": "食をめぐる",
-      "title": "地熱パンと海の食",
-      "text": "魚介、羊肉、乳製品に加え、地熱を利用した調理もこの島ならでは。風景と同じ自然条件が、そのまま食文化につながっている。",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ロパペイサと羊毛",
+      "text": "羊毛のセーター、ロパペイサは土産物というだけではなく、寒冷な暮らしと手仕事が結びついたアイスランドの日常文化。町の毛糸店や工房をのぞくと、自然素材が服として暮らしに残っていることが分かる。",
       "points": [
-        "地熱で焼くライ麦パン、ルーグブロイズ",
-        "タラやサーモンなど北大西洋の魚介も身近"
+        "円形のヨーク模様を持つロパペイサは、歴史・手仕事・日常生活を象徴する存在として紹介されている",
+        "地方の毛糸店や工房では、アイスランド産ウールを使った製品に触れられる"
       ]
     },
     {
@@ -273,7 +273,7 @@
       "categoryEn": "FOOD",
       "categoryJa": "食",
       "title": "ホットドッグは「全部のせ」で",
-      "text": "ピルサは定番の軽食。注文で「「エイナ・メズ・オッル」」と言うと、玉ねぎやソースを含む“全部のせ”になる。街歩きの途中で試しやすい一品。",
+      "text": "ピルサは定番の軽食。注文で「エイナ・メズ・オッル」と言うと、玉ねぎやソースを含む“全部のせ”になる。街歩きの途中で試しやすい一品。",
       "icon": "food",
       "sourceKey": "hotDog"
     },
@@ -374,19 +374,25 @@
   ],
   "signatureFacts": [
     {
-      "label": "人口密度",
-      "value": "約4人 / km²",
-      "note": "人口約40万人と国土約103,000km²から見る、非常に低い人口密度。"
+      "topicKey": "active-volcanic-systems",
+      "label": "活火山系",
+      "value": "約30",
+      "note": "約30の活動的な火山系がある。火山、地熱、溶岩原が一つの島に連続して現れる背景になる。",
+      "icon": "volcano"
     },
     {
+      "topicKey": "glacier-coverage",
       "label": "氷河",
       "value": "国土の約10%",
-      "note": "氷河と氷帽が島の高地を広く覆う。"
+      "note": "氷河は島の高地を広く覆い、火山と氷が同じ場所に重なることで氷河湖やヨークルフロイプなど独特の地形現象を生む。",
+      "icon": "ice"
     },
     {
-      "label": "再生可能電力",
-      "value": "ほぼ100%",
-      "note": "水力と地熱を中心に、電力のほぼすべてを再生可能エネルギーで発電。"
+      "topicKey": "geothermal-domestic-heating",
+      "label": "地熱暖房",
+      "value": "約90%",
+      "note": "家庭暖房に使われるエネルギーの約90%が地熱由来。温泉だけでなく、地中の熱が日常の暮らしを支えている。",
+      "icon": "geothermal"
     }
   ],
   "tips": [
@@ -426,19 +432,20 @@
       "reason": "砂漠から氷河まで、大地の変化をひとつの国で辿りたいなら。"
     }
   ],
-  "updatedAt": "2026-08-31",
-  "sourcesVerifiedAt": "2026-08-31",
+  "updatedAt": "2026-09-03",
+  "sourcesVerifiedAt": "2026-09-03",
   "sourceDates": {
     "population": "2026-Q2",
-    "renewableElectricity": "2025"
+    "activeVolcanicSystems": "current official IMO wording; supporting publication 2021",
+    "geothermalHeating": "2020",
+    "ringRoadChange": "2026-06-24"
   },
   "sources": {
     "map": "Coastline base: GSHHS; illustrated treatment: JOURNEY ATLAS",
-    "population": "Statistics Iceland, population at end of Q2 2026: approximately 397,000",
+    "population": "Statistics Iceland, population at end of Q2 2026: 396,500",
     "area": "Iceland total area: approximately 103,000 km²",
     "religion": "Constitution of Iceland: Evangelical Lutheran Church is the State Church",
     "glacierCoverage": "Icelandic Meteorological Office: glaciers cover about 10% of Iceland",
-    "renewableElectricity": "Government of Iceland / Orkustofnun: close to 100% of electricity comes from renewable energy",
     "poolRules": "City of Reykjavík: swimmers must shower thoroughly without swimwear before entering the pool",
     "namingConvention": "Ísland.is / Registers Iceland: patronymic and matronymic surnames; family members may have different surnames",
     "hotDog": "Visit Iceland: Pylsa and the order phrase 'eina með öllu'",
@@ -447,6 +454,77 @@
     "seals": "Visit Iceland: Vatnsnes Peninsula is one of the best places in Iceland for watching seals",
     "hiddenFolk": "Visit Iceland: Hidden Worlds Walking Tours in Hafnarfjörður — local folklore describes elves and other 'Hidden Folk' living in rocks around the town.",
     "icelandicHorse": "Visit Iceland: The Icelandic Horse / registered horse-tour providers — the breed descends from settlement-era horses and is known for the smooth four-beat gait tölt.",
-    "puffinSeason": "Visit Iceland: Puffin-watching providers note that puffins are in Iceland for the nesting season from around early May to late August."
+    "puffinSeason": "Visit Iceland: Puffin-watching providers note that puffins are in Iceland for the nesting season from around early May to late August.",
+    "activeVolcanicSystems": "Icelandic Meteorological Office: over/about 30 active volcanic systems are monitored in Iceland",
+    "geothermalHeating": "Orkustofnun: about 90% of energy used for domestic heating comes from geothermal energy (2020)",
+    "icelandicFoods": "Visit Iceland: official food overview covering kjötsúpa, skyr and harðfiskur",
+    "geothermalRyeBread": "Visit Iceland / Laugarvatn Fontana: geothermal rye bread baked using natural geothermal heat",
+    "lopapeysa": "Visit Iceland: lopapeysa as a symbol of Icelandic history, craftsmanship and everyday life",
+    "ringRoad": "Icelandic Road and Coastal Administration / Visit Iceland: Ring Road route guidance; new Hornafjörður section opened 24 June 2026 and shortened the Ring Road by 12 km"
+  },
+  "contentQaVersion": 1,
+  "taste": {
+    "kicker": "TASTE OF ICELAND",
+    "title": "アイスランドで食べたいもの",
+    "intro": "火山島の気候と海、牧畜、地熱がそのまま食文化につながっている。",
+    "items": [
+      {
+        "id": "kjotsupa",
+        "name": "キョーツーパ",
+        "nameLocal": "Kjötsúpa",
+        "text": "羊肉と根菜を煮込む素朴なスープ。冷えた日に湯気の立つ一杯を食べると、羊の放牧が身近な国の食卓が見えてくる。",
+        "image": "assets/images/iceland/approved/food-kjotsupa.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "skyr",
+        "name": "スキール",
+        "nameLocal": "Skyr",
+        "text": "乳製品のスキールは、朝食や軽食として身近な存在。濃厚さがありながら酸味は穏やかで、ベリーやグラノーラと合わせても食べられる。",
+        "image": "assets/images/iceland/approved/food-skyr.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "rugbraud",
+        "name": "ルーグブロイズ",
+        "nameLocal": "Rúgbrauð",
+        "text": "甘みのある濃い色のライ麦パン。地熱地帯では熱い地面を利用して焼く方法もあり、地中の熱が料理までつながる。",
+        "image": "assets/images/iceland/approved/food-rugbraud.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "hardfiskur",
+        "name": "ハルズフィスクル",
+        "nameLocal": "Harðfiskur",
+        "text": "魚を干して作る保存食。小さく裂いてそのまま食べられ、長い海岸線と漁業の歴史が日常の軽食に残っている。",
+        "image": "assets/images/iceland/approved/food-hardfiskur.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "レイキャヴィークから南西部をめぐる",
+        "text": "首都を拠点にゴールデンサークルと南岸の滝まで。短い日程でも、地熱・断層・滝というアイスランドの入口をつなげられる。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "南岸を氷河湖まで伸ばす",
+        "text": "レイキャヴィークからヴィーク、ヨークルスアゥルロゥン方面へ。移動距離を増やすより、滝や黒砂海岸、氷河で立ち止まる時間を残す。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "リングロードで島を一周する",
+        "text": "国道1号を軸に北部や東部までつなぐ。公式観光情報でも一周には少なくとも7日が目安とされるため、天候や寄り道を考えると8日以上あると組みやすい。",
+        "icon": "compass"
+      }
+    ]
   }
 }
