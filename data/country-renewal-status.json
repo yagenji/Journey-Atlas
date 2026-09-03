@@ -190,8 +190,8 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -221,7 +221,12 @@
         "hardImageGate enabled only after Taste repository storage and image QA passed. Automated validation and human Browser Visual QA remain pending before qa can become PASS.",
         "AUTOMATED QA PASS 2026-09-04: Validate country data run 33771724433 passed source syntax, published renewal registry, all-published image audit, renewed Country image hard gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
         "PREVIEW DEPLOY PASS 2026-09-04: GitHub Pages Country Preview run 33771824776 passed source syntax, renewal registry, Austria hard image gate, clean production package build, packaged-output validation, upload, and GitHub Pages deployment.",
-        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level review of Hero crop, map labels, Taste rendering, long Japanese/German names, spacing and accessibility is still required. Do not mark qa PASS or merge/publish before that review."
+        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile browser-level review of Hero crop, map labels, Taste rendering, long Japanese/German names, spacing and accessibility is still required. Do not mark qa PASS or merge/publish before that review.",
+        "USER PUBLISH APPROVAL 2026-09-04: user authorized publication if final QA found no blocking issue.",
+        "FINAL PRE-MERGE QA PASS 2026-09-04: final branch head 0baab8fd570a26f288d90f50fe0cc49610eacdce passed source syntax, renewal registry, all-published image audit, Austria hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build. Diff limited to Austria JSON/status and four approved Taste assets.",
+        "PRODUCTION MERGE 2026-09-04: PR #177 squash-merged to main as bb7237bf3cbbceded30493273d2abbc0bb69fb43.",
+        "PRODUCTION DEPLOY PASS 2026-09-04: Cloudflare Pages deployed bb7237bf3cbbceded30493273d2abbc0bb69fb43 successfully; Verify JOURNEY ATLAS Cloudflare Production run 33773385862 passed commit propagation, shared Country CSS architecture, Spain V3 regression payload, and production runtime assets/routes.",
+        "FINAL QA PASS 2026-09-04: Reference v3 structure confirmed: Taste 4 APPROVED, Travel Scale 3 stages, Japanese Transport with road icon, Encounters 8, Beyond 6, Trivia 5, Seasons 4, FOR WHOM 3, Travel Notes 3, visible Profile 6, Signature Facts 3, Theme taxonomy earth/city/history, 1200×760 map without ellipse artifacts, and related slugs valid. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
