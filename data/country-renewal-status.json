@@ -532,7 +532,8 @@
         "VISUAL APPROVAL FOOD04 2026-09-03: Rømmegrøt APPROVED and locked. Do not regenerate unless explicitly requested.",
         "VISUAL APPROVAL COMPLETE 2026-09-03: Hero + all 8 scenes + all 4 Taste images are user-approved. Visual status remains IN_PROGRESS until approved files are stored, decoded, dimension-checked, and the visual-complete gate passes.",
         "ASSET PREP 2026-09-03: 13 approved visuals converted and fully decoded locally. Hero is 1200×760; 8 scenes + 4 Taste images are 1200×800. Repository Visual Complete Gate remains blocked until the binary files exist under assets/images/norway/approved/.",
-        "VISUAL COMPLETE GATE PASS 2026-09-03: all 13 approved assets exist in assets/images/norway/approved/, match the locally full-decoded QA files byte-for-byte by Git blob SHA, Hero is 1200×760, 8 scenes + 4 Taste are 1200×800, and Country JSON now references only approved renewal visuals."
+        "VISUAL COMPLETE GATE PASS 2026-09-03: all 13 approved assets exist in assets/images/norway/approved/, match the locally full-decoded QA files byte-for-byte by Git blob SHA, Hero is 1200×760, 8 scenes + 4 Taste are 1200×800, and Country JSON now references only approved renewal visuals.",
+        "AUTOMATED QA PASS 2026-09-03: PR #165 run 33729176172 passed source syntax, renewal registry, published image audit, Norway hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build. Human Desktop/Tablet/Mobile visual QA on the actual page is still pending, so qa remains PENDING and production remains LIVE_OLD."
       ],
       "automatedAudit": "DONE"
     },
