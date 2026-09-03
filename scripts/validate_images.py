@@ -135,15 +135,20 @@ def validate_map_svg(errors: list[str], owner: str, asset: str) -> None:
 
 
 def approved_folder_hygiene(errors: list[str], slug: str, referenced: set[str]) -> None:
-    approved = ROOT / "assets" / "images" / slug / "approved"
-    if not approved.exists():
-        return
-    for path in sorted(approved.iterdir()):
-        if not path.is_file():
+    approved_dirs = {
+        (ROOT / asset).parent
+        for asset in referenced
+        if Path(asset).parent.name == "approved"
+    }
+    for approved in sorted(approved_dirs):
+        if not approved.exists():
             continue
-        relative = path.relative_to(ROOT).as_posix()
-        if relative not in referenced:
-            errors.append(f"{slug}: unreferenced file remains in approved folder: {relative}")
+        for path in sorted(approved.iterdir()):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(ROOT).as_posix()
+            if relative not in referenced:
+                errors.append(f"{slug}: unreferenced file remains in approved folder: {relative}")
 
 
 def main() -> int:
