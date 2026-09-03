@@ -318,3 +318,15 @@ Production gate remains **BLOCKED** until the final WebP binaries are physically
 `assets/images/iceland/approved/`
 
 Do not connect the new Scene or Taste paths to `data/countries/iceland.json` until repository presence and approved-folder hygiene are verified.
+
+
+## Travel Planning alignment — 2026-09-03
+
+Human preview review found that Iceland's Travel Scale looked denser than Spain because of longer item headings/copy. The shared Country Template and CSS are already identical, so no country-specific style change is required.
+
+Adjusted only Iceland content density:
+- 3〜4日: `首都を拠点に南西部へ`
+- 5〜7日: `南岸を氷河湖まで`
+- 8日以上: `リングロードで島を一周`
+- Transport title changed from English `RING ROAD / ROAD TRIP` to Japanese `レンタカー・リングロード`
+- Transport icon explicitly set to `road`
