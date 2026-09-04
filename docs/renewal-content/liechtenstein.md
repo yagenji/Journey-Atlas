@@ -266,3 +266,121 @@ Still pending:
 - browser visual QA
 - final user approval
 - production publication
+
+
+## PHASE 3 — Landscape Image Decision
+
+Date: 2026-09-04
+
+### Hero
+
+**KEEP**
+
+- Current asset: `assets/images/liechtenstein/approved/hero-vaduz-castle-vineyard.png`
+- Current concept remains Red House / Herawingert / Vaduz Castle.
+- Prior publication review explicitly kept the approved Hero unchanged.
+- Latest-main all-published image audit fully decodes this referenced raster and reports no finding.
+- PNG format itself is supported by the current validator; format-only conversion is not justified.
+
+### Scene 01 — Government Quarter / Vaduz
+
+**KEEP**  
+`assets/images/liechtenstein/approved/vaduz-government-district.png`
+
+### Scene 02 — Old Rhine Bridge / Vaduz–Sevelen
+
+**KEEP**  
+`assets/images/liechtenstein/approved/old-rhine-bridge-vaduz.png`
+
+### Scene 03 — Gutenberg Castle / Balzers
+
+**KEEP**  
+`assets/images/liechtenstein/approved/gutenberg-castle-balzers.png`
+
+### Scene 04 — Triesenberg / Walser village
+
+**KEEP**  
+`assets/images/liechtenstein/approved/triesenberg-walser-village.png`
+
+### Scene 05 — Peace Chapel / Malbun
+
+**KEEP**  
+`assets/images/liechtenstein/approved/malbun-peace-chapel-winter.png`
+
+### Scene 06 — Sareis / Malbuntal
+
+**KEEP**  
+`assets/images/liechtenstein/approved/sareis-ridge-malbun.png`
+
+### Scene 07 — Ruggeller Riet / Ruggell
+
+**KEEP**  
+`assets/images/liechtenstein/approved/ruggeller-riet-iris.png`
+
+### Scene 08 — Dux / Drei Schwestern
+
+**KEEP**  
+`assets/images/liechtenstein/approved/drei-schwestern-dux.png`
+
+### Technical image QA evidence
+
+Latest current-main validation run: **33842921093**
+
+- Validate country data: PASS
+- All-published image audit: PASS
+- 28 published Country Pages
+- 320 raster payloads fully decoded
+- zero image findings
+- validator checks:
+  - complete raster verify + load
+  - Hero minimum 1200×760 and landscape orientation
+  - Scene minimum 1200×800
+  - Scene 3:2 aspect ratio
+  - map SVG 1200×760
+  - approved-folder hygiene
+
+The renewal branch is based on the same current main and has not changed any Liechtenstein landscape asset or Country image reference. Therefore the result applies directly to the retained Liechtenstein Hero + eight Scene assets.
+
+### NORMALIZE decision
+
+**NONE**
+
+No technical failure requires resize, crop, format conversion or recompression. Do not normalize solely because the retained assets are PNG.
+
+### REGENERATE decision
+
+**NONE**
+
+No Hero or Scene has a current selection, visual-history or technical-QA basis for regeneration.
+
+### Taste visual decision
+
+Taste is new content and requires four **NEW INDEPENDENT IMAGES**:
+
+1. FOOD01 Käsknöpfle — ADD / NOT STARTED
+2. FOOD02 Ribel — ADD / NOT STARTED
+3. FOOD03 Gerstensuppe — ADD / NOT STARTED
+4. FOOD04 Fasnachtsküachle — ADD / NOT STARTED
+
+Target for each final asset:
+
+- 1200×800
+- exact 3:2
+- WebP
+- Spain Taste Global Visual Language
+- no text / map / UI inside image
+- each food generated independently, one image at a time
+
+## PHASE 3 gate
+
+Landscape decision: **DONE / LOCKED**
+
+- Hero: KEEP
+- Scene 01–08: KEEP
+- NORMALIZE: 0
+- REGENERATE: 0
+- Map: KEEP
+- Taste: 4 new images required / NOT STARTED
+- `hardImageGate`: remains **false**
+
+Next phase: **VISUAL PRODUCTION — Taste FOOD01 → FOOD04**.
