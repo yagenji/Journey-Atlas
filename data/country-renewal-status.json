@@ -385,7 +385,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -454,7 +454,12 @@
         "PHASE 5 REVIEW URL 2026-09-05: https://yagenji.github.io/Journey-Atlas/countries/cyprus/ . Automated QA is green; human Desktop / Tablet / Mobile visual inspection remains required before production approval.",
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Cyprus Reference v3 preview and confirmed it. Human rendered-page review is accepted as PASS, including the final Spain-style Taste set.",
         "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication provided final QA finds no blocking issue.",
-        "FINAL PRE-MERGE QA PASS 2026-09-05: qa=PASS, hardImageGate=true, content/visual/map/sources are DONE, final automated validation and preview deployment are green, PR #190 is clean/mergeable, and the diff is limited to Cyprus JSON/status plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
+        "FINAL PRE-MERGE QA PASS 2026-09-05: qa=PASS, hardImageGate=true, content/visual/map/sources are DONE, final automated validation and preview deployment are green, PR #190 is clean/mergeable, and the diff is limited to Cyprus JSON/status plus four approved Taste assets. production remains LIVE_OLD until merge and production verification.",
+        "PRODUCTION MERGE 2026-09-05: PR #190 squash-merged to main as a416422052301b93263ad7b241c85f293ec581d2 after user visual approval and final branch validation passed.",
+        "PRODUCTION VALIDATION PASS 2026-09-05: Validate country data run 33901352916 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build for merge commit a416422052301b93263ad7b241c85f293ec581d2.",
+        "PRODUCTION DEPLOY PASS 2026-09-05: GitHub Pages deploy run 33901352756 completed successfully for merge commit a416422052301b93263ad7b241c85f293ec581d2.",
+        "PRODUCTION VERIFY PASS 2026-09-05: Verify JOURNEY ATLAS Cloudflare Production run 33901352874 confirmed atlas.yagenji.com served merge commit a416422052301b93263ad7b241c85f293ec581d2 and passed shared Country CSS architecture, Spain V3 regression payload and production runtime assets/routes.",
+        "FINAL QA PASS 2026-09-05: user visual review including final Taste 4 PASS; Cyprus Reference v3 structure, Taste approvals, hard image gate, source validation, Country JSON validation, JOURNEY LENS slug validation, package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
