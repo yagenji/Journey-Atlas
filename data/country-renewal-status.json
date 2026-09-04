@@ -723,7 +723,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-03: classified B / Medium Renewal. Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
@@ -762,7 +762,10 @@
         "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + 8 scenes KEEP, Map KEEP, FOOD01–04 all APPROVED / LOCKED and stored in assets/images/netherlands/approved/. FOOD03 Haring and FOOD04 Poffertjes Git blob SHAs exactly match the approved 1200×800 WebP masters. Taste is connected in Country JSON with imageState APPROVED for all four items. Validation run 33786749636 passed source syntax, registry audit, published image audit, hard image gate, reviewable/published country validation, LENS slug validation, and Cloudflare package build. hardImageGate is now true. Next phase: Review Preview + browser QA; production remains LIVE_OLD until user approval.",
         "FINAL PRE-PUBLISH QA 2026-09-04: no blocking issue found in the accessible QA scope. Reference v3 structure confirmed — visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3, Seasons 4, Japanese Transport with road icon, FOR WHOM 3, Travel Notes 3, Theme taxonomy city/life/road, related slugs valid, Map KEEP, and approved-folder hygiene clean.",
         "AUTOMATED QA PASS 2026-09-04: final Taste-complete branch validation passed source syntax, renewal registry, all-published image audit with 304 raster payloads fully decoded, Netherlands hard image gate, reviewable/published strict Country validation, JOURNEY LENS slug validation, and Cloudflare package build. GitHub Pages Taste-complete preview deployment also succeeded.",
-        "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Publication may proceed. Full Desktop / Tablet / Mobile screenshot-level browser QA cannot be independently executed from the current environment, so qa remains PENDING rather than falsely claiming complete browser QA."
+        "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Publication may proceed. Full Desktop / Tablet / Mobile screenshot-level browser QA cannot be independently executed from the current environment, so qa remains PENDING rather than falsely claiming complete browser QA.",
+        "PRODUCTION PUBLISH PASS 2026-09-04: PR #180 merged to main as 1a7a2c1edfa1822615c486e936185a4f2d8c651c after final branch validation passed. Netherlands remains atlasPublished:true.",
+        "PRODUCTION VERIFY PASS 2026-09-04: Cloudflare Production Verify run 33833244716 confirmed atlas.yagenji.com served merge commit 1a7a2c1edfa1822615c486e936185a4f2d8c651c and all runtime verification steps passed. Production is LIVE_CURRENT.",
+        "BROWSER QA STATE 2026-09-04: qa remains PENDING only because independent screenshot-level Desktop / Tablet / Mobile browser inspection cannot be executed from this environment. Technical/source/image/package/production verification is complete; publication is live."
       ],
       "automatedAudit": "DONE"
     },
