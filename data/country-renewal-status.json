@@ -167,8 +167,8 @@
       "nameJa": "アンドラ",
       "wave": 5,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -176,7 +176,19 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
+        "LANDSCAPE DECISION: existing Sant Joan de Caselles Hero and all eight scene selections are KEEP candidates. Latest-main all-published image audit fully decoded 324 raster payloads with zero findings; current validator requires Andorra scenes to be at least 1200×800 and exactly 3:2, and Hero to be at least 1200×760 landscape. Existing PNG format alone is not a reason to regenerate or convert.",
+        "MAP DECISION: KEEP candidate. assets/images/andorra/map-atlas-v1.svg is 1200×760, includes accessible role/label metadata, and contains no ellipse or radialGradient artifact.",
+        "REFERENCE V3 GAP: Taste and Travel Scale are absent. Transport title is English-only and lacks explicit icon=road; these require Phase 2 renewal before the Visual Complete Gate.",
+        "CURRENT STRUCTURE: visible Profile=6, Signature Facts=3, Scenes=8, Encounters=8, Beyond=6, Travel Trivia=5, Seasons=4, FOR WHOM=3, Travel Notes=3 and Related Countries=3 already match Reference v3 count expectations.",
+        "TASTE STATE: FOOD01–FOOD04 are NOT STARTED because the current Country JSON has no Taste section and no Taste assets. No duplicate Taste images exist.",
+        "THEMES: current taxonomy assignment 地球の風景 / 道の先へ is a strong KEEP candidate for Andorra.",
+        "SOURCE FRESHNESS: sourcesVerifiedAt=2026-09-01. Official Andorra statistics still report population 90,021 for July 2026; current Visit Andorra pages still support 308 km skiable terrain and more than 92% natural heritage. New Taste / Travel Scale / normalized Transport claims require source additions in Phase 2.",
+        "JOURNEY LENS: atlas destination registry has journeyLensPublished:false for Andorra, so no JOURNEY LENS story is currently expected; this is not treated as a Country renewal defect.",
+        "BRANCH FRESHNESS CHECK 1 PASS: country/andorra-renewal was created from main commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44 and initially compared identical to main (ahead 0 / behind 0).",
+        "COMMON CI PRE-FLIGHT: latest main Validate country data, Cloudflare Production Verify and GitHub Pages Preview workflows all passed on commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44."
+      ],
       "automatedAudit": "DONE"
     },
     {
