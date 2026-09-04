@@ -182,7 +182,7 @@
   "encounters": [
     {
       "title": "アルプス",
-      "icon": "city"
+      "icon": "landscape"
     },
     {
       "title": "ライン川",
@@ -193,24 +193,24 @@
       "icon": "history"
     },
     {
-      "title": "山村",
+      "title": "ヴァルザー文化",
       "icon": "culture"
     },
     {
-      "title": "ワイン畑",
-      "icon": "landscape"
+      "title": "葡萄畑",
+      "icon": "food"
     },
     {
-      "title": "高山草地",
+      "title": "湿地",
       "icon": "landscape"
     },
     {
       "title": "ハイキング",
-      "icon": "landscape"
+      "icon": "hike"
     },
     {
       "title": "小さな首都",
-      "icon": "landscape"
+      "icon": "city"
     }
   ],
   "atlasExtras": [
@@ -351,8 +351,9 @@
     }
   ],
   "transport": {
-    "title": "BUS / TRAIN CONNECTION / WALK",
-    "text": "国内移動の軸はリエモービル（LIEmobil）のバス。鉄道で入る場合はスイスのザルガンス・ブーフス、またはオーストリアのフェルトキルヒからバスへ接続しやすい。国土が小さいため、ファドゥーツ周辺は徒歩、南北移動はバス、山地はバスと徒歩を組み合わせると地形の変化を追いやすい。"
+    "title": "バス・徒歩・自転車",
+    "text": "国内移動の軸はLIEmobil。ファドゥーツ、南北の集落、トリーゼンベルク、マルブンへバスでつなぎ、近距離は徒歩や自転車を組み合わせる。鉄道で入る場合はスイスのザルガンス／ブーフス、またはオーストリアのフェルトキルヒでバスへ接続する。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -434,8 +435,8 @@
     },
     {
       "topicKey": "swiss-austrian-motorway-vignettes",
-      "title": "車で入るなら周辺国の高速道路通行証を確認する",
-      "text": "リヒテンシュタインへ向かう際にスイスまたはオーストリアの高速道路を使う場合、それぞれ高速道路通行証（高速道路通行証）が必要。国境だけでなく、進入ルート全体の道路条件を確認する。"
+      "title": "車で入るなら周辺国のヴィニェットを確認する",
+      "text": "スイスまたはオーストリアの高速道路を使って入国する場合は、各国の高速道路通行証（ヴィニェット）が必要。リヒテンシュタイン国内だけでなく、往復の進入ルートまで含めて確認する。"
     }
   ],
   "relatedCountries": [
@@ -461,12 +462,15 @@
       "reason": "欧州の小国という共通点から、アルプスの山岳国家と低丘陵・要塞都市国家の違いを比べたいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2025-12-31",
     "employment": "2024-12-31",
-    "nationalDay": "2026"
+    "nationalDay": "2026",
+    "transport": "2026",
+    "travelScale": "2026",
+    "taste": "2026"
   },
   "sources": {
     "map": "geoBoundaries gbOpen Liechtenstein ADM0 (shapeID 60073359B37148090091257), boundary year 2017; source OpenStreetMap/Wambacher; ODbL 1.0; WGS84.",
@@ -497,6 +501,75 @@
     "vaduzCastle": "Liechtenstein Tourism: Vaduz Castle is the residence of the princely family and is not open to the public.",
     "fuerstensteig": "Liechtenstein Tourism: snow patches can remain on the Fürstensteig / Drei Schwestern route well into late spring; check trail conditions.",
     "vignette": "Liechtenstein Tourism travel & mobility: motorway use in Switzerland and Austria requires a vignette.",
-    "transport": "Liechtenstein Tourism travel & mobility: LIEmobil bus network; rail access via Sargans, Buchs/SG and Feldkirch with bus connections."
+    "transport": "Liechtenstein Tourism travel & mobility / LIEmobil 2026: LIEmobil is the principal public-transport network; rail approaches via Sargans/Buchs in Switzerland and Feldkirch in Austria connect onward by bus.",
+    "kaesknoepfle": "Liechtenstein Tourism gastronomy overview and recipe: Käsknöpfle is presented as a national dish; small dough pieces are layered with cheese and roasted onions and traditionally served with apple sauce.",
+    "ribel": "Liechtenstein Tourism recipe: Ribel is a traditional cornmeal-based staple cooked with milk/water and butter, historically important in rural households.",
+    "gerstensuppe": "Liechtenstein Tourism recipe: Gerstensuppe is a barley soup with vegetables and smoked pork, associated with autumn and communal meals.",
+    "fasnachtskueachle": "Liechtenstein Tourism recipe: Fasnachtsküachle is a thin fried pastry dusted with powdered sugar and associated with the Fasnacht carnival season.",
+    "travelScale": "Liechtenstein Tourism: the Liechtenstein Trail connects all eleven municipalities over about 75 km and is divided into five main walking stages; LIEmobil links the main settlements and mountain destinations."
+  },
+  "taste": {
+    "kicker": "TASTE OF LIECHTENSTEIN",
+    "title": "リヒテンシュタインで食べたいもの",
+    "intro": "チーズの山料理、農家の主食、秋のスープ、季節の揚げ菓子から、小国の食卓をたどる。",
+    "items": [
+      {
+        "id": "kaesknoepfle",
+        "name": "ケーゼクネップフレ",
+        "nameLocal": "Käsknöpfle",
+        "text": "小さな生地をゆで、チーズを重ねて香ばしい玉ねぎをのせる代表料理。多くのレストランで見つけやすく、伝統的にはアップルソースを添えて食べる。",
+        "image": "assets/images/liechtenstein/approved/food-kaesknoepfle.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "ribel",
+        "name": "リーベル",
+        "nameLocal": "Ribel",
+        "text": "トウモロコシ粉を牛乳と水で蒸らし、バターで細かく香ばしく炒る素朴な料理。かつて農家や暮らしを支えた主食で、現在は伝統料理として受け継がれている。",
+        "image": "assets/images/liechtenstein/approved/food-ribel.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "gerstensuppe",
+        "name": "大麦スープ",
+        "nameLocal": "Gerstensuppe",
+        "text": "大麦、野菜、燻製豚肉などをゆっくり煮込む、秋に親しまれる温かいスープ。大鍋で準備しやすく、祭りや人が集まる場にも向く、山地の暮らしに近い一皿。",
+        "image": "assets/images/liechtenstein/approved/food-gerstensuppe.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "fasnachtskueachle",
+        "name": "ファスナハツキュアヒレ",
+        "nameLocal": "Fasnachtsküachle",
+        "text": "薄く伸ばした生地を油で揚げ、粉砂糖をかけるカーニバル期の菓子。Fasnachtの「第5の季節」と結びつき、食から年間行事へ興味を広げられる。",
+        "image": "assets/images/liechtenstein/approved/food-fasnachtskueachle.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ファドゥーツを拠点に谷と山へ",
+        "text": "首都とライン川沿いを歩き、LIEmobilで山腹や高地を加えるくらいが現実的。例：ファドゥーツ＋旧ライン橋 → トリーゼンベルク → マルブン。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "南北の集落と山地をつなぐ",
+        "text": "バスと徒歩で南部から北部へ移ると、城、斜面集落、湿地まで短距離で景観が切り替わる。例：バルザース → ファドゥーツ → トリーゼンベルク／マルブン → ルッゲル。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "Liechtenstein Trailを歩いて国全体へ",
+        "text": "75km・5ステージのLiechtenstein Trailを軸に、マルブンの山歩きを別日に加えると、小国を急がず地形と集落の変化で理解できる。例：バルザース → トリーゼンベルク → ファドゥーツ → ネンデルン → ルッゲル → シャーンヴァルト＋マルブン。",
+        "icon": "compass"
+      }
+    ]
   }
 }
