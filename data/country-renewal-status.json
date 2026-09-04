@@ -800,7 +800,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "READY_TO_GENERATE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
@@ -819,7 +819,13 @@
         "PHASE 2 BEYOND LOCK: six topics — multilingual everyday life / EU institutions on Kirchberg / daily cross-border commuting / Minett industrial-to-research transition / Schengen Agreement / Echternach scriptorium. This removes most scene-description duplication from the current Beyond set while retaining two strong historical-cultural entries.",
         "PHASE 2 SOURCE REFRESH: official Luxembourg government, Mobiliteit.lu and Visit Luxembourg sources were rechecked on 2026-09-04 for 2026 transport fares, multilingualism, EU institutions, cross-border commuting, Taste specialties, current Vianden chairlift season and Upper Sûre lake conditions.",
         "PHASE 2 IMPLEMENTATION LOCK: Country JSON intentionally remains unchanged until the Visual Complete Gate. Taste paths and imageState APPROVED must not be connected before user approval and repository image QA.",
-        "PHASE 3 NEXT: new visual production scope is Taste FOOD01-FOOD04 only. Hero and S01-S08 remain KEEP; hardImageGate remains false until Taste approval, repository storage, 1200x800 WebP decode/dimension verification and approved-folder hygiene pass."
+        "PHASE 3 NEXT: new visual production scope is Taste FOOD01-FOOD04 only. Hero and S01-S08 remain KEEP; hardImageGate remains false until Taste approval, repository storage, 1200x800 WebP decode/dimension verification and approved-folder hygiene pass.",
+        "PHASE 3 VISUAL DECISION LOCK 2026-09-04: Hero KEEP, Scene01-Scene08 KEEP, Map KEEP. No landscape image regeneration, normalization or format conversion is authorized.",
+        "PHASE 3 NEW VISUAL SCOPE: Taste only — FOOD01 Bouneschlupp, FOOD02 Judd mat Gaardebounen, FOOD03 Gromperekichelcher, FOOD04 Rieslingspaschtéit.",
+        "PHASE 3 TASTE GLOBAL STYLE: Spain approved Taste assets are visual reference only. Each Luxembourg dish must be generated as a new independent image, 1200x800, 3:2 WebP final target, pale beige/ivory neutral background, soft daylight, matte minimal tableware, photo≈6 / watercolor≈4, no text, flags, UI or unrelated props.",
+        "PHASE 3 GENERATION ORDER: generate FOOD01 -> FOOD02 -> FOOD03 -> FOOD04 sequentially. Perform internal identity/quality QA after each image; do not pause for user approval between dishes. Present all four only after the batch is complete.",
+        "PHASE 3 DISH IDENTITY: FOOD01 must read clearly as green-bean Bouneschlupp soup; FOOD02 as thick smoked pork neck with broad beans and potatoes; FOOD03 as small flat golden grated-potato fritters; FOOD04 as sliced Rieslingspaschtéit showing pastry shell, meat filling and internal Riesling jelly. Reject/reset immediately on identity mismatch or accidental repetition.",
+        "PHASE 3 GATE: Visual Complete Gate remains closed until all four Taste images are user-approved, stored under assets/images/luxembourg/approved/, and pass complete decode, 1200x800 dimensions, WebP format and approved-folder hygiene checks."
       ],
       "automatedAudit": "DONE"
     },
