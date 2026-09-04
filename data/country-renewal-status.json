@@ -153,7 +153,7 @@
       "auditState": "AUDITED",
       "renewalClass": "A",
       "content": "IN_PROGRESS",
-      "visual": "PENDING",
+      "visual": "IN_PROGRESS",
       "map": "PENDING",
       "sources": "PENDING",
       "qa": "PENDING",
@@ -179,7 +179,17 @@
         "TRAVEL SCALE LOCK: 3〜4日/city = Tirana base + Berat; 5〜7日/map = Tirana → Berat → Gjirokastër → Sarandë/Butrint; 8日以上/compass = add Shkodër/Theth in the north to the central/southern route. Albania NTA publishes 2-day Tirana, multi-day southern, 8-day Riviera and 11-day nationwide itineraries supporting these scales.",
         "TRANSPORT LOCK: title '都市間バス・車・フェリー', icon 'road'. Body retains eTransport as the national intercity route/station/time/operator platform, with car/transfer/walking for remote access and Lake Koman ferry as a travel experience.",
         "PROFILE / FOR WHOM / SEASONS / TRAVEL NOTES / THEMES remain structurally KEEP. Population rechecked against INSTAT 1 January 2026 = 2,335,930. Theme taxonomy remains EARTH / HISTORY / SEA.",
-        "Source refresh target for implementation: INSTAT population; Albania National Tourism Agency Taste/transport/itineraries/Tirana coexistence; Albanian Armed Forces Museum bunkerization; IUCN Vjosa. Stable UNESCO/culture sources from 2026-09-01 audit remain subject to final implementation QA."
+        "Source refresh target for implementation: INSTAT population; Albania National Tourism Agency Taste/transport/itineraries/Tirana coexistence; Albanian Armed Forces Museum bunkerization; IUCN Vjosa. Stable UNESCO/culture sources from 2026-09-01 audit remain subject to final implementation QA.",
+        "PHASE 3 IMAGE DECISION 2026-09-04: Hero and all 8 landscape scenes formally locked as KEEP. No NORMALIZE or REGENERATE target exists for the current landscape set.",
+        "LANDSCAPE LOCK: HERO Mangalem/Berat KEEP; S01 Theth KEEP; S02 Lake Koman KEEP; S03 Skanderbeg Square/Tirana KEEP; S04 Gjipe Bay KEEP; S05 Gjirokastër KEEP; S06 Butrint KEEP; S07 Lin/Lake Ohrid KEEP; S08 Syri i Kaltër KEEP. These approved assets must not be regenerated without explicit user instruction.",
+        "FORMAT DECISION: existing Albania approved landscape PNG files remain KEEP. Current image audit fully decodes them and current dimension/aspect requirements pass; PNG-to-WebP conversion alone is not a quality reason to touch user-approved visuals.",
+        "MAP IMAGE DECISION: map-atlas-v1.svg remains KEEP; 1200×760, Natural Earth geometry, no ellipse and no radialGradient. Map visual/browser QA is deferred to Phase 5.",
+        "SPAIN TASTE MASTER VERIFIED 2026-09-04: food-paella.webp / food-jamon-iberico.webp / food-tortilla-espanola.webp / food-churros-con-chocolate.webp all exist in assets/images/spain/approved/. They are visual-system references only, never edit sources for Albania food images.",
+        "FOOD01 DECISION: Tavë kosi — NEW INDEPENDENT IMAGE; target 1200×800 / 3:2 WebP; save assets/images/albania/approved/food-tave-kosi.webp. DISH IDENTITY: shallow baked casserole; pieces of lamb under/set within a pale yogurt-and-egg custard; lightly golden baked top; ceramic baking dish; no pastry, peppers, cookies or unrelated garnish.",
+        "FOOD02 DECISION: Byrek — NEW INDEPENDENT IMAGE; target 1200×800 / 3:2 WebP; save assets/images/albania/approved/food-byrek.webp. DISH IDENTITY: layered flaky thin pastry; spinach and white-cheese filling visible at a cut edge; golden crisp top; pie/pastry form; no yogurt casserole, red pepper stew or cookie form.",
+        "FOOD03 DECISION: Fërgesë me speca dhe gjizë — NEW INDEPENDENT IMAGE; target 1200×800 / 3:2 WebP; save assets/images/albania/approved/food-fergese.webp. DISH IDENTITY: baked/served soft mixture dominated by red peppers and tomato with white gjizë/curd cheese; warm red-orange and cream contrast; shallow ceramic dish; not meat-custard, pastry or biscuits.",
+        "FOOD04 DECISION: Ballokume — NEW INDEPENDENT IMAGE; target 1200×800 / 3:2 WebP; save assets/images/albania/approved/food-ballokume.webp. DISH IDENTITY: individual round thick corn-flour cookies/biscuits; pale golden-yellow baked surface; simple slightly rustic shape; small plain plate; no filling, stew, meat or pastry layers.",
+        "TASTE GENERATION MODE LOCK: FOOD01→FOOD02→FOOD03→FOOD04, four separate NEW INDEPENDENT IMAGE generations, previous image DO NOT REUSE, Assistant QA after each, user review only after all four reach REVIEW CANDIDATE."
       ],
       "automatedAudit": "DONE"
     },
