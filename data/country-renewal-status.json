@@ -853,7 +853,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Published production remains LIVE_OLD during renewal branch work.",
@@ -902,7 +902,12 @@
         "PR #186 is open and mergeable. Do not merge until human rendered-page review and explicit user publication approval.",
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Luxembourg Reference v3 preview, including Taste 4, and reported no issues. Human Desktop/Tablet/Mobile rendered-page review is accepted as PASS.",
         "USER PUBLISH APPROVAL 2026-09-05: user confirmed no issues after reviewing the rendered page; proceed to final QA and publication if no blocking issue is found.",
-        "FINAL PRE-MERGE STATE 2026-09-05: qa=PASS, hardImageGate=true, production remains LIVE_OLD until PR merge and production validation complete."
+        "FINAL PRE-MERGE STATE 2026-09-05: qa=PASS, hardImageGate=true, production remains LIVE_OLD until PR merge and production validation complete.",
+        "PRODUCTION MERGE 2026-09-05: PR #186 squash-merged to main as d7bf2bc1ef463f391f1c91e6a30d90fadef1938b after user visual approval and final branch validation passed.",
+        "PRODUCTION VALIDATION PASS 2026-09-05: Validate country data run 33893772862 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build for merge commit d7bf2bc1ef463f391f1c91e6a30d90fadef1938b.",
+        "PRODUCTION DEPLOY PASS 2026-09-05: GitHub Pages deploy run 33893772879 completed successfully for merge commit d7bf2bc1ef463f391f1c91e6a30d90fadef1938b.",
+        "PRODUCTION VERIFY PASS 2026-09-05: Verify JOURNEY ATLAS Cloudflare Production run 33893772826 confirmed atlas.yagenji.com served merge commit d7bf2bc1ef463f391f1c91e6a30d90fadef1938b and passed shared Country CSS architecture, Spain V3 regression payload and production runtime assets/routes.",
+        "FINAL QA PASS 2026-09-05: user visual review including Taste 4 PASS; Luxembourg Reference v3 structure, Taste approvals, hard image gate, source validation, Country JSON validation, JOURNEY LENS slug validation, package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
