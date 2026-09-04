@@ -384,3 +384,25 @@ Landscape decision: **DONE / LOCKED**
 - `hardImageGate`: remains **false**
 
 Next phase: **VISUAL PRODUCTION — Taste FOOD01 → FOOD04**.
+
+
+## Taste approvals — 2026-09-04
+
+All four Liechtenstein Taste images were user APPROVED as one review batch.
+
+- FOOD01 **Käsknöpfle** — APPROVED
+  - Final filename: `food-kaesknoepfle.webp`
+  - Target production path: `assets/images/liechtenstein/approved/food-kaesknoepfle.webp`
+- FOOD02 **Ribel** — APPROVED
+  - Final filename: `food-ribel.webp`
+  - Target production path: `assets/images/liechtenstein/approved/food-ribel.webp`
+- FOOD03 **Gerstensuppe** — APPROVED
+  - Final filename: `food-gerstensuppe.webp`
+  - Target production path: `assets/images/liechtenstein/approved/food-gerstensuppe.webp`
+- FOOD04 **Fasnachtsküachle** — APPROVED
+  - Final filename: `food-fasnachtskueachle.webp`
+  - Target production path: `assets/images/liechtenstein/approved/food-fasnachtskueachle.webp`
+
+Do not regenerate any of these four images without explicit user instruction.
+
+Repository storage / final WebP normalization / complete decode / dimension verification remain pending. Visual Complete Gate must remain blocked until those checks pass.
