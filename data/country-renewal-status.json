@@ -308,12 +308,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE DECISION: existing Kato Paphos Archaeological Park Hero and all eight existing Scene selections remain KEEP candidates. Latest main all-published image audit fully decoded all Cyprus raster assets with no Cyprus-specific finding; Browser crop/responsive review remains pending.",
@@ -371,7 +371,11 @@
         "TASTE REGENERATION LOCK 2026-09-05: regenerate FOOD01–FOOD04 as four independent fresh generations. Normalize set-level visual scale using the plate/vessel + dish footprint at approximately 60% of frame width, horizontal visual center within roughly ±3% of frame center, generous negative space, pale beige/ivory empty tabletop, and the existing Spain-style photo 6 : watercolor 4 treatment. No prior food image may be used as edit/reference/variation.",
         "HARD IMAGE GATE RESET 2026-09-05: hardImageGate returned to false and visual to IN_PROGRESS until the regenerated Taste 4 are user approved, stored, verified and reconnected.",
         "TASTE GENERATION REJECT 2026-09-05: a regenerated output incorrectly combined multiple dishes into a 2×2 collage. This violates ONE IMAGE / ONE DISH / NO COLLAGE and is REJECTED. It must not be stored or referenced.",
-        "FOOD01 GENERATION SERIES RESET 2026-09-05: Halloumi regeneration produced collage outputs twice consecutively despite current-food-only instructions. Per image production rule, the FOOD01 generation series is reset. Both collage outputs are REJECTED and must not be stored or referenced."
+        "FOOD01 GENERATION SERIES RESET 2026-09-05: Halloumi regeneration produced collage outputs twice consecutively despite current-food-only instructions. Per image production rule, the FOOD01 generation series is reset. Both collage outputs are REJECTED and must not be stored or referenced.",
+        "FINAL TASTE RE-APPROVAL 2026-09-05: after the user rejected the earlier watercolor-heavy / scale-inconsistent batch, FOOD01 Halloumi/Hellim, FOOD02 Sheftalia, FOOD03 Ofto Kleftiko and FOOD04 Soutzoukos were regenerated as four independent fresh images using the Spain Taste visual language and the user APPROVED the complete four-image set.",
+        "FINAL REPOSITORY ASSET VERIFICATION 2026-09-05: the four stored WebP Git blob SHAs exactly match the delivered masters that were fully decoded before handoff. Repository bytes are therefore identical to the approved 1200×800 / 3:2 WebP files; no corruption or file mix-up occurred during storage.",
+        "VISUAL COMPLETE GATE RESTORED PASS 2026-09-05: Hero + S01–S08 remain KEEP; final Spain-style FOOD01–FOOD04 are user-approved and repository-verified. visual=DONE and hardImageGate=true. Human Browser Visual QA remains a separate Phase 5 requirement.",
+        "PHASE 4 CONNECTION RECHECK 2026-09-05: current Cyprus Country JSON already references the four final Taste paths with imageState=APPROVED and already contains the locked Travel Scale, Japanese Transport title/icon, Flaouna Beyond replacement and Travel Notes. No Country JSON rewrite was necessary after the final asset replacement."
       ],
       "automatedAudit": "DONE"
     },
