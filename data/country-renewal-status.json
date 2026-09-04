@@ -308,12 +308,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "DONE",
+      "visual": "IN_PROGRESS",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": true,
+      "hardImageGate": false,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE DECISION: existing Kato Paphos Archaeological Park Hero and all eight existing Scene selections remain KEEP candidates. Latest main all-published image audit fully decoded all Cyprus raster assets with no Cyprus-specific finding; Browser crop/responsive review remains pending.",
@@ -366,7 +366,10 @@
         "PHASE 5 PREVIEW DEPLOY PASS 2026-09-05: GitHub Pages Country Preview run 33896435983 passed source syntax, renewal registry, hard image gate, clean production package build, packaged-output validation, upload and Pages deployment. Environment URL: https://yagenji.github.io/Journey-Atlas/ ; review route: /countries/cyprus/.",
         "PREVIEW CLEANUP 2026-09-05: .github/preview-trigger/cyprus-renewal.txt was removed after successful preview deployment. The cleanup commit changes no Country content, assets, shared runtime, or packaged site output.",
         "PHASE 5 STATIC QA PASS 2026-09-05: visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3 with city/map/compass, Seasons 4, Japanese Transport with road icon, FOR WHOM 3, Travel Notes 3, Themes 2, hardImageGate true.",
-        "HUMAN BROWSER VISUAL QA PENDING: actual rendered Desktop / Tablet / Mobile inspection of Hero crop, map labels, Scene cards, Taste card crop, long Japanese/Latin labels, spacing and accessibility is still required. qa remains PENDING and production remains LIVE_OLD."
+        "HUMAN BROWSER VISUAL QA PENDING: actual rendered Desktop / Tablet / Mobile inspection of Hero crop, map labels, Scene cards, Taste card crop, long Japanese/Latin labels, spacing and accessibility is still required. qa remains PENDING and production remains LIVE_OLD.",
+        "HUMAN VISUAL QA REJECT 2026-09-05: user found inconsistent subject scale across the four Taste images and right-shifted Soutzoukos composition. The prior Taste visual PASS is revoked.",
+        "TASTE REGENERATION LOCK 2026-09-05: regenerate FOOD01–FOOD04 as four independent fresh generations. Normalize set-level visual scale using the plate/vessel + dish footprint at approximately 60% of frame width, horizontal visual center within roughly ±3% of frame center, generous negative space, pale beige/ivory empty tabletop, and the existing Spain-style photo 6 : watercolor 4 treatment. No prior food image may be used as edit/reference/variation.",
+        "HARD IMAGE GATE RESET 2026-09-05: hardImageGate returned to false and visual to IN_PROGRESS until the regenerated Taste 4 are user approved, stored, verified and reconnected."
       ],
       "automatedAudit": "DONE"
     },
