@@ -235,8 +235,8 @@
       "nameJa": "ベルギー",
       "wave": 3,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -244,7 +244,17 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
+        "VISUAL DECISION: existing Grand-Place Hero and all eight scene selections remain KEEP candidates; prior Belgium review commit records approved Hero + 8 scenes. Current automated image audit fully decodes all published rasters and reports no dimension/aspect/hygiene findings.",
+        "MAP DECISION: KEEP. assets/images/belgium/map-atlas-v1.svg is 1200×760, uses geographic source data, and current SVG contains no ellipse or radialGradient artifact; the earlier corner highlight was removed before publication.",
+        "REFERENCE V3 GAP: Country JSON lacks contentQaVersion, Taste and Travel Scale. Transport title is English-only and lacks explicit icon=road.",
+        "CURRENT COUNT CHECK: visible Profile=6, Signature Facts=3, Encounters=8, Beyond=6, Travel Trivia=5, Seasons=4, FOR WHOM=3, Travel Notes=3, Scenes=8; these counts already match Reference v3.",
+        "CONTENT FIX: Encounters is still too scene-derived, and Beyond includes transport/route material that overlaps the new Travel Scale/Transport roles; diversify these topics during Phase 2.",
+        "THEMES: current taxonomy assignment city / history / food remains a strong KEEP candidate.",
+        "SOURCE FRESHNESS: population source remains the current Statbel 1 Jan 2026 official figure (11,867,634); federal structure and UNESCO beer-culture references remain current. New Taste/Travel Scale/Transport claims still require source work in Phase 2.",
+        "VISUAL COMPLETE GATE remains BLOCKED because Taste 4 is not yet implemented or user approved. hardImageGate remains false."
+      ],
       "automatedAudit": "DONE"
     },
     {
