@@ -245,15 +245,15 @@
       "topicKey": "bauhaus-migration"
     },
     {
-      "themeEn": "FOOD",
-      "themeJa": "食をめぐる",
-      "title": "料理より先に、地域名を見る",
-      "text": "パン、ソーセージ、ビールだけでドイツ料理を一括りにすると地域差を見落とす。北海側、ライン地方、フランケン、バイエルンなどで、食材、パンの種類、飲み物、食事の時間や店の雰囲気まで変わる。",
+      "topicKey": "ruhr-football-regional-identity",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "サッカーを見ると、ルール地方の輪郭が見えてくる",
+      "text": "ドルトムントやゲルゼンキルヒェンでは、クラブ文化が炭鉱・工業地域の歴史と長く結びついてきた。試合そのものだけでなく、スタジアムへ向かう人の流れや街の色から、都市ごとの帰属意識が見えてくる。",
       "points": [
-        "ライン地方では葡萄畑とワイン文化を土地と一緒に見る",
-        "南北を移動するとパンや肉料理の種類が変わる"
-      ],
-      "topicKey": "regional-foodways"
+        "ルール地方では炭鉱労働者のコミュニティから生まれたクラブも多い",
+        "ドルトムントとゲルゼンキルヒェンは、地域を代表するサッカー都市として知られる"
+      ]
     },
     {
       "themeEn": "ROAD",
@@ -337,8 +337,9 @@
     }
   ],
   "transport": {
-    "title": "ICE / REGIONAL TRAIN / ROAD / WALK",
-    "text": "ベルリン、ハンブルク、フランクフルト、ミュンヘンなど主要都市間はICE・ICを軸にできる。ライン川沿い、リューネブルク・ハイデ、黒い森、バイエルンの山地へ入るほど地域鉄道、バス、徒歩を組み合わせる。"
+    "title": "高速鉄道・地域鉄道・車",
+    "text": "主要都市間はICE・ICを軸に移動しやすい。地方へ入る区間ではRE・RB・S-Bahnやバスへ乗り継ぎ、黒い森や山地など公共交通だけでは回りにくい場所は車を組み合わせる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -447,14 +448,15 @@
       "reason": "北ドイツからさらに北へ、港町、海岸、平坦な国土の旅をつなげたいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2025",
     "area": "2024-12-31",
     "religion": "2025",
     "autobahn": "2026-01-01",
-    "heathBloom": "2026-08-28"
+    "heathBloom": "2026-08-28",
+    "transport": "2026"
   },
   "sources": {
     "map": "CountryGeoJSONCollection DEU.geojson, WGS84; country boundary used for JOURNEY ATLAS illustrated map",
@@ -478,10 +480,79 @@
     "heathBloom": "Lüneburger Heide GmbH: heather bloom in August and September; Wilseder Berg bloom status verified 28 August 2026",
     "rothenburg": "Rothenburg Tourism Service: Plönlein ensemble with half-timbered house, fountain, Kobolzeller Tor and Siebersturm",
     "ravenna": "Hochschwarzwald Tourismus: Ravenna Viaduct spans the gorge with nine arches; 224 m long, around 36–40 m high",
-    "transport": "Deutsche Bahn timetable/network information: ICE/IC long-distance and regional services connect German cities and regions",
+    "transport": "Deutsche Bahn, Streckenkarten & Liniennetzpläne: ICE/IC Liniennetz 2026 and regional network maps; https://www.bahn.de/service/fahrplaene/streckennetz",
     "bread": "Deutsches Brotinstitut, German Bread Register: more than 3,200 registered bread specialties.",
-    "oktoberfest2025": "City of Munich / Oktoberfest official final balance 2025: around 6.5 million visitors over 16 days and around 6.5 million Maß beer served.",
-    "cuckooClock": "German National Tourist Board (Germany Travel): Black Forest cuckoo-clock tradition; around 1,000 clock workshops in the Black Forest by 1840."
+    "oktoberfest2025": "Oktoberfest.de / City of Munich, preliminary final report for Oktoberfest 2025: around 6.5 million visitors over 16 days and around 6.5 million Maß beer served.",
+    "cuckooClock": "German National Tourist Board (Germany Travel): Black Forest cuckoo-clock tradition; around 1,000 clock workshops in the Black Forest by 1840.",
+    "currywurst": "visitBerlin, Berlin's Currywurst: sliced sausage with curry-flavoured tomato sauce, commonly served as a Berlin snack with chips; https://www.visitberlin.de/en/berlins-currywurst",
+    "maultaschen": "Tourismus Marketing GmbH Baden-Württemberg, Swabian Specialties & Baden Cuisine: Maultaschen are filled pasta pockets, served in broth or pan-fried with roasted onions; https://www.visit-bw.com/en/taste/typical-dishes",
+    "brezel": "Bavaria Travel, official tourism site: pretzels/Brezn are a characteristic Bavarian food and common beer-garden accompaniment; https://bavaria.travel/",
+    "blackForestGateau": "Tourismus Marketing GmbH Baden-Württemberg, typical dishes and Black Forest gateau: regional speciality associated with the Black Forest and Schwarzwälder Kirschwasser; https://www.visit-bw.com/en/taste/typical-dishes",
+    "ruhrFootball": "German National Tourist Board (Germany Travel), Football hotspots — Gelsenkirchen & Dortmund: football traditions in the Ruhr region developed over generations, including clubs founded from mining communities; https://www.germany.travel/en/cities-culture/football-cities.html"
   },
-  "contentQaVersion": 1
+  "contentQaVersion": 1,
+  "taste": {
+    "kicker": "TASTE OF GERMANY",
+    "title": "ドイツで食べたいもの",
+    "intro": "街角の軽食から南西部の郷土料理、パン、菓子まで、地域の違いが見える4つ。",
+    "items": [
+      {
+        "id": "currywurst",
+        "name": "カリーヴルスト",
+        "nameLocal": "Currywurst",
+        "text": "焼いたソーセージを切り、トマトベースのカレーソースとカレー粉を合わせるベルリンの軽食。Imbissや売店で出会いやすく、戦後の都市食文化を知る入口になる。",
+        "image": "assets/images/germany/approved/food-currywurst.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "maultaschen",
+        "name": "マウルタッシェン",
+        "nameLocal": "Maultaschen",
+        "text": "肉などの具を幅広の生地で包むシュヴァーベンの料理。ブイヨンでゆでてそのまま食べるほか、焼いて玉ねぎと合わせる食べ方もあり、南西部の郷土料理として出会える。",
+        "image": "assets/images/germany/approved/food-maultaschen.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "brezel",
+        "name": "ブレーツェル",
+        "nameLocal": "Brezel",
+        "text": "独特の結び目形に焼くラウゲン製法のパン。南部、とくにバイエルンではBreznとも呼ばれ、パン屋やビアガーデンで日常的に出会える。",
+        "image": "assets/images/germany/approved/food-brezel.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "schwarzwaelder-kirschtorte",
+        "name": "シュヴァルツヴェルダー・キルシュトルテ",
+        "nameLocal": "Schwarzwälder Kirschtorte",
+        "text": "チョコレート生地、クリーム、サクランボを重ねる黒い森のケーキ。地域のサクランボとキルシュの文化につながる菓子として、カフェで味わいたい。",
+        "image": "assets/images/germany/approved/food-schwarzwaelder-kirschtorte.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ベルリンを拠点に近郊へ",
+        "text": "首都を歩き、近郊を一つ加えるくらいが現実的。例：ベルリン＋ポツダム。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "ライン川から南西部へ鉄道でつなぐ",
+        "text": "ICE・地域鉄道を使い、都市と河川・森林景観を組み合わせる。例：フランクフルト → バッハラッハ（ライン渓谷）→ ハイデルベルク → 黒い森。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "北から南へ国土の幅をつなぐ",
+        "text": "長距離鉄道を軸に、港湾都市から南部のアルプス前縁まで広げる。例：ベルリン → ハンブルク → ミュンヘン＋ノイシュヴァンシュタイン城。",
+        "icon": "compass"
+      }
+    ]
+  }
 }
