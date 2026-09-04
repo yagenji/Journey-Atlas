@@ -816,7 +816,7 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "PENDING",
+      "content": "DONE",
       "visual": "PENDING",
       "map": "PENDING",
       "sources": "PENDING",
@@ -836,7 +836,18 @@
         "JOURNEY LENS: registry has journeyLensPublished:false for Monaco, so the shared JOURNEY LENS bridge should remain hidden; this is not a missing-section defect.",
         "BRANCH FRESHNESS CHECK 1 PASS 2026-09-04: country/monaco-renewal was created directly from latest main 7f056f042b4efd29e37023b66e738e6dd1f2c882.",
         "COMMON CI PRE-AUDIT 2026-09-04: latest main commit 7f056f042b4efd29e37023b66e738e6dd1f2c882 has successful Validate country data, GitHub Pages preview deploy, and Cloudflare production verification runs; no current shared CI blocker detected.",
-        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate stays false until Taste 4 images are user APPROVED, stored as final assets, fully decoded/dimension-checked, approved-folder hygiene passes, and retained landscape assets clear required technical/browser visual QA."
+        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate stays false until Taste 4 images are user APPROVED, stored as final assets, fully decoded/dimension-checked, approved-folder hygiene passes, and retained landscape assets clear required technical/browser visual QA.",
+        "PHASE 2 CONTENT RENEWAL DONE 2026-09-04: locked Reference v3 content specification in docs/renewal-content/monaco.md. Country JSON intentionally remains identical to main until the Visual Complete Gate.",
+        "PHASE 2 TASTE LOCK: FOOD01 Barbagiuàn / FOOD02 Stocafi / FOOD03 Socca / FOOD04 Fougasse monégasque. All four images remain NOT STARTED and must be independently generated, user-reviewed as one batch, approved, normalized to final 1200×800 WebP, repository-stored and technically verified before implementation.",
+        "PHASE 2 TASTE RATIONALE: selection prioritizes Monegasque/Riviera everyday food culture rather than luxury restaurant identity. Barbajuan and Stocafi are strongly Monegasque; Fougasse monégasque is the local sweet form; Socca is explicitly retained as a cross-border Riviera food encountered in Monaco and described as such rather than claimed as uniquely Monegasque.",
+        "PHASE 2 BEYOND LOCK: replace the existing Barbajuan FOOD card with La Palladienne de Monaco traditional music/dance so Beyond does not duplicate Taste. Keep the other five Beyond cards.",
+        "PHASE 2 ENCOUNTERS LOCK: 地中海 / 急斜面の街 / ベル・エポック / マリーナ / 海洋文化 / 公道サーキット / 庭園 / モネガスク文化.",
+        "PHASE 2 TRAVEL SCALE LOCK: retain global 3〜4日/city, 5〜7日/map, 8日以上/compass format. Because Monaco is a 2.084 km² microstate, 5–7 and 8+ day items explicitly use Monaco as a base and extend to the immediately connected French/Italian Riviera rather than fabricating an eight-day Monaco-only itinerary.",
+        "PHASE 2 TRANSPORT LOCK: title 鉄道・バス・徒歩・公共エレベーター / icon road. Current CAM bus network, SNCF TER and VisitMonaco mechanised pedestrian links verified 2026-09-04.",
+        "PHASE 2 THEME LOCK: Monaco remains 街を歩く only in data/theme-taxonomy.json. Taste addition alone does not justify 食をめぐる; Mediterranean presence alone does not justify 海の世界へ.",
+        "PHASE 2 SOURCE LOCK 2026-09-04: current official/authoritative sources rechecked for Taste, TER, CAM, public lifts, regional access and Nice–Monaco helicopter service. Current 2026 helicopter operators are confirmed by Journal de Monaco Arrêté Ministériel n° 2026-457.",
+        "CURRENT TEMPORARY CONDITION 2026: VisitMonaco states La Condamine market is temporarily closed for renovation from January 2026 with reopening scheduled in early 2027. Renewal copy must not imply normal market-hall operation during this period; do not hard-code the closure into evergreen Travel Notes without an expiry/update mechanism.",
+        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate remains false; no planned Taste path may be connected to Country JSON before user approval and repository technical verification."
       ],
       "automatedAudit": "DONE"
     },
