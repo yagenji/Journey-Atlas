@@ -605,8 +605,8 @@
       "nameJa": "イタリア",
       "wave": 5,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -614,7 +614,19 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
+        "VISUAL DECISION: existing Venice Grand Canal / Santa Maria della Salute Hero and all eight scene selections are KEEP candidates. Current main image audit fully decodes all published raster payloads; Italy has no audit finding, so current Hero/Scenes clear the active minimum dimension/aspect rules. Exact pixel dimensions should be recorded during Phase 3 asset verification rather than inferred from GitHub file metadata.",
+        "MAP DECISION: KEEP candidate. assets/images/italy/map-atlas-v1.svg uses a 1200×760 viewBox, geographic source metadata, and contains no ellipse or radialGradient artifact.",
+        "REFERENCE V3 GAP: Country JSON has contentQaVersion=1 and current standard counts for visible Profile=6, Signature Facts=3, Scenes=8, Encounters=8, Beyond=6, Trivia=5, Seasons=4, FOR WHOM=3 and Travel Notes=3, but Taste and Travel Scale are absent.",
+        "TRANSPORT FIX REQUIRED: current title is English-only (HIGH-SPEED RAIL / REGIONAL TRAIN / FERRY) and lacks explicit icon=road; Phase 2 must normalize it to the global Japanese-title format without duplicating Travel Scale.",
+        "TASTE STATE: FOOD01–04 do not exist yet; all are NOT STARTED. No Taste assets are present in the approved folder, so Visual Complete Gate remains blocked and hardImageGate remains false.",
+        "THEMES: taxonomy assigns city / history / food (街を歩く / 時をたどる / 食をめぐる); KEEP candidate.",
+        "SOURCE FRESHNESS: Istat 31 Mar 2026 confirms 58.943 million residents as of 1 Jan 2026 (provisional), EU country profile confirms Rome / Italian / euro / 302,073 km², and FIPE Rapporto Ristorazione 2026 confirms 124,917 bar-category businesses in 2025. Existing source set is current enough for audit; new Taste / Travel Scale / Transport claims require source work in Phase 2.",
+        "JOURNEY LENS: atlas destination registry has journeyLensPublished=false for Italy; this is not a renewal defect unless an Italy LENS story is intended to be linked.",
+        "BRANCH: country/italy-renewal created from main commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44 after verifying no pre-existing Italy renewal branch.",
+        "COMMON CI PRE-FLIGHT: main Validate country data run 33853388412 PASS; image audit fully decoded 324 published raster payloads and published/reviewable country validation passed. Preview and Cloudflare Production Verify for the same main head also PASS."
+      ],
       "automatedAudit": "DONE"
     },
     {
