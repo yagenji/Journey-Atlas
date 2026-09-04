@@ -607,7 +607,7 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "PENDING",
+      "content": "DONE",
       "visual": "PENDING",
       "map": "PENDING",
       "sources": "PENDING",
@@ -625,7 +625,18 @@
         "SOURCE FRESHNESS: Istat 31 Mar 2026 confirms 58.943 million residents as of 1 Jan 2026 (provisional), EU country profile confirms Rome / Italian / euro / 302,073 km², and FIPE Rapporto Ristorazione 2026 confirms 124,917 bar-category businesses in 2025. Existing source set is current enough for audit; new Taste / Travel Scale / Transport claims require source work in Phase 2.",
         "JOURNEY LENS: atlas destination registry has journeyLensPublished=false for Italy; this is not a renewal defect unless an Italy LENS story is intended to be linked.",
         "BRANCH: country/italy-renewal created from main commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44 after verifying no pre-existing Italy renewal branch.",
-        "COMMON CI PRE-FLIGHT: main Validate country data run 33853388412 PASS; image audit fully decoded 324 published raster payloads and published/reviewable country validation passed. Preview and Cloudflare Production Verify for the same main head also PASS."
+        "COMMON CI PRE-FLIGHT: main Validate country data run 33853388412 PASS; image audit fully decoded 324 published raster payloads and published/reviewable country validation passed. Preview and Cloudflare Production Verify for the same main head also PASS.",
+        "PHASE 2 CONTENT RENEWAL DONE 2026-09-04: Reference v3 content plan is locked while Country JSON intentionally remains unchanged until Visual Complete Gate.",
+        "PHASE 2 HERO/SEO LOCK: Hero remains Venice Grand Canal / Santa Maria della Salute. Hero lead will be rewritten away from an eight-scene list into a concise introduction to Italy's north-to-south geographic and urban contrast. SEO copy will remove the misleading '9 landscapes' wording and describe the page as Hero + map + eight scenes without changing the scene set.",
+        "PHASE 2 TASTE LOCK: TASTE OF ITALY / イタリアで食べたいもの. FOOD01 Pizza Napoletana / FOOD02 Lasagne alla Bolognese / FOOD03 Risotto alla Milanese / FOOD04 Cannoli Siciliani. The four roles and silhouettes are intentionally distinct: round baked pizza / layered baked pasta / saffron-yellow risotto / tubular ricotta-filled pastry. FOOD01–04 remain NOT STARTED; no image path or APPROVED state will be connected before user approval and asset QA.",
+        "PHASE 2 TASTE COPY LOCK: Pizza Napoletana = Neapolitan pizza centred on baked dough, tomato and cheese and the Naples pizzaiuolo tradition; Lasagne alla Bolognese = Emilia-Romagna layered egg pasta with ragù, béchamel and grated cheese; Risotto alla Milanese = Milanese saffron risotto with its characteristic yellow colour; Cannoli Siciliani = fried tubular shell filled with sheep-milk ricotta, with restrained traditional garnish. Sources: Italia.it / Visit Sicily official tourism.",
+        "PHASE 2 TRAVEL SCALE LOCK: 3〜4日 / city = ローマを拠点に近郊へ（例：ローマ＋ティヴォリ）。5〜7日 / map = 高速鉄道で主要都市をつなぐ（例：ローマ → フィレンツェ → ヴェネツィア）。8日以上 / compass = 北から南へ都市を縦につなぐ（例：ヴェネツィア → フィレンツェ → ローマ → ナポリ。さらに日数があればマテーラやシチリアへ）。",
+        "PHASE 2 TRANSPORT LOCK: title 高速鉄道・地域交通・車 / icon road. Frecciarossaなどで主要都市間を結び、地域鉄道・バスで枝分かれし、ヴァル・ドルチャや山地などは車を組み合わせる。シチリア／サルデーニャは航空・フェリーを別区間として考える。Travel Scaleとは役割を分離する。",
+        "PHASE 2 ENCOUNTERS LOCK: バール / 広場 / 市場 / モザイク / 職人工房 / 地方料理 / ワイン畑 / パッセジャータ. Current scene-like tags are replaced by short encounters with everyday urban, craft and food culture.",
+        "PHASE 2 BEYOND LOCK: six topics — (1) LIFE: Law 482/1999 protects twelve historical linguistic communities/languages across Italy; (2) HISTORY: 1861 national unification and persistent regional identities; (3) CULTURE: Ravenna's Western Roman / Ostrogothic / Byzantine mosaic layers; (4) CULTURE: the practice of opera singing in Italy, inscribed by UNESCO in 2023; (5) CITY: Turin industrial heritage and adaptive reuse around Fiat/Lingotto; (6) LIFE: Istat 2025 north/centre/Mezzogiorno demographic divergence. The Apennines landscape card and regional-cuisine card are removed from Beyond to avoid overlap with Scenes and Taste.",
+        "PHASE 2 KEEP LOCK: Profile visible 6, Signature Facts 3, current 8 scenes, Travel Trivia 5, Seasons 4, FOR WHOM 3, Travel Notes 3, Related Destinations and taxonomy themes city/history/food remain KEEP unless later QA finds a concrete defect.",
+        "PHASE 2 SOURCE LOCK: Normattiva Law 482/1999 verifies Italian as official language and the protected Albanian, Catalan, Germanic, Greek, Slovene, Croatian, French, Franco-Provençal, Friulian, Ladin, Occitan and Sardinian communities/languages; UNESCO verifies Italian opera singing inscription in 2023; Trenitalia currently advertises frequent Frecciarossa Rome–Florence, Rome–Venice and Rome–Naples connections supporting the Travel Scale logic; Italia.it / Visit Sicily verify the four selected Taste identities.",
+        "VISUAL COMPLETE GATE remains BLOCKED after Phase 2. hardImageGate remains false because Taste 4 independent images are not yet generated, user-approved, repository-stored, decoded and dimension-checked."
       ],
       "automatedAudit": "DONE"
     },
