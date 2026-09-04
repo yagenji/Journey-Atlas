@@ -464,7 +464,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Existing production remains atlasPublished:true / LIVE_OLD during renewal work.",
@@ -497,7 +497,11 @@
         "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the rendered Germany renewal preview and confirmed it. Browser visual review is accepted as PASS based on user inspection.",
         "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if final QA finds no blocking issue.",
         "REBASE SAFETY CHECK 2026-09-04: main advanced only with Switzerland Country JSON, Switzerland Taste assets and renewal-status updates; no shared Country template/CSS/JS change occurred, so the Germany visual review remains applicable.",
-        "FINAL PRE-MERGE QA PASS 2026-09-04: rebased Germany branch head passed Validate country data run 33837671631 across source syntax, renewal registry, all-published image audit, Germany hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build. User visual review is PASS. Diff remains exactly Germany Country JSON, Germany renewal status, and four approved Germany Taste assets. No blocking issue remains."
+        "FINAL PRE-MERGE QA PASS 2026-09-04: rebased Germany branch head passed Validate country data run 33837671631 across source syntax, renewal registry, all-published image audit, Germany hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build. User visual review is PASS. Diff remains exactly Germany Country JSON, Germany renewal status, and four approved Germany Taste assets. No blocking issue remains.",
+        "PRODUCTION MERGE 2026-09-04: PR #182 squash-merged to main as 21fbe31f5571b8d4f520ec0e18c2cb9756370f72 after user visual approval and final branch validation.",
+        "PRODUCTION DEPLOY PASS 2026-09-04: GitHub Pages production-package deploy run 33837812594 completed successfully for merge commit 21fbe31f5571b8d4f520ec0e18c2cb9756370f72.",
+        "PRODUCTION VERIFY PASS 2026-09-04: Verify JOURNEY ATLAS Cloudflare Production run 33837812846 confirmed atlas.yagenji.com served merge commit 21fbe31f5571b8d4f520ec0e18c2cb9756370f72 and passed shared Country CSS, Spain V3 regression, and production runtime asset/route checks.",
+        "FINAL QA PASS 2026-09-04: user visual review PASS; Germany Reference v3 structure, Taste 4 approvals, hard image gate, source validation, Country JSON validation, Cloudflare package build, production deployment and production verification all PASS. Germany renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
