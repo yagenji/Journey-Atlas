@@ -169,13 +169,13 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "PENDING",
+      "content": "DONE",
       "visual": "DONE",
       "map": "DONE",
-      "sources": "PENDING",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE DECISION: existing Sant Joan de Caselles Hero and all eight scene selections are KEEP candidates. Latest-main all-published image audit fully decoded 324 raster payloads with zero findings; current validator requires Andorra scenes to be at least 1200×800 and exactly 3:2, and Hero to be at least 1200×760 landscape. Existing PNG format alone is not a reason to regenerate or convert.",
@@ -213,7 +213,9 @@
         "APPROVED-FOLDER HYGIENE PASS 2026-09-05: Andorra approved folder contains exactly 13 production rasters (Hero + 8 Scenes + 4 Taste); no draft / temporary / placeholder / rejected / parts files and no misplaced Taste file remains at assets/images/andorra/.",
         "BRANCH FRESHNESS PASS 2026-09-05: latest main e4701db4e10403c5cd2cc54d9d07ba99f87e7606 merged into country/andorra-renewal via sync/storage commit 555bc40be8f7a61dd9f443795179260ff577f710; branch behind main = 0.",
         "AUTOMATED VALIDATION PASS 2026-09-05: GitHub Actions run 33898132301 passed source syntax, renewal registry, all-published image audit, renewed Country hard-gate step, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
-        "VISUAL COMPLETE GATE PASS 2026-09-05: Hero + 8 Scenes KEEP, Map KEEP, FOOD01–04 user APPROVED, 1200×800 / exact 3:2 WebP, full-decode verified, repository-stored and approved-folder hygiene passed. Country JSON implementation is now unblocked."
+        "VISUAL COMPLETE GATE PASS 2026-09-05: Hero + 8 Scenes KEEP, Map KEEP, FOOD01–04 user APPROVED, 1200×800 / exact 3:2 WebP, full-decode verified, repository-stored and approved-folder hygiene passed. Country JSON implementation is now unblocked.",
+        "PHASE 4 IMPLEMENTATION DONE 2026-09-05: Andorra JSON now includes approved Taste 4, Spain-format Travel Scale, Japanese Transport with road icon, locked Signature Facts, de-duplicated Beyond content, refreshed sources and sourcesVerifiedAt=2026-09-05.",
+        "PHASE 4 HARD IMAGE GATE ENABLED 2026-09-05: hardImageGate=true after Taste assets were connected to approved paths in the Country JSON. Full renewed Andorra image set is now enforced by CI."
       ],
       "automatedAudit": "DONE"
     },
