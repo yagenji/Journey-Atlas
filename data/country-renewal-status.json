@@ -152,7 +152,7 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "A",
-      "content": "PENDING",
+      "content": "IN_PROGRESS",
       "visual": "PENDING",
       "map": "PENDING",
       "sources": "PENDING",
@@ -169,7 +169,17 @@
         "Theme taxonomy currently assigns EARTH / HISTORY / SEA and matches the retained scene set.",
         "Population source remains current: INSTAT 1 Jan 2026 = 2,335,930. Stable history/culture/geography claims were recently source-audited on 2026-09-01 and require targeted recheck during Content Renewal, not wholesale replacement.",
         "Common CI pre-flight 2026-09-04: latest main validation, GitHub Pages preview deploy, and Cloudflare Production Verify all passed; no current system blocker identified.",
-        "Renewal branch created from latest main: country/albania-renewal. Production remains LIVE_OLD and atlasPublished remains true until user-approved renewal publication."
+        "Renewal branch created from latest main: country/albania-renewal. Production remains LIVE_OLD and atlasPublished remains true until user-approved renewal publication.",
+        "PHASE 2 CONTENT LOCK 2026-09-04: Reference v3 content design finalized before visual production; Country JSON implementation is intentionally deferred until the Visual Complete Gate.",
+        "TASTE LOCK: FOOD01 Tavë kosi / FOOD02 Byrek (spinach-white-cheese visual identity) / FOOD03 Fërgesë me speca dhe gjizë / FOOD04 Ballokume. All four are supported by current Albania National Tourism Agency culinary pages and provide distinct casserole / pastry / pepper-cheese dish / cookie silhouettes.",
+        "TASTE IMAGE STATE: FOOD01 NOT STARTED; FOOD02 NOT STARTED; FOOD03 NOT STARTED; FOOD04 NOT STARTED. No Taste asset is connected to Country JSON yet.",
+        "SIGNATURE FACTS CONTENT DELTA: KEEP bunkerization 173,371; REMOVE 1967 religion-ban card from Signature Facts to avoid a second communist-era history topic; ADD Adriatic + Ionian '2つの海' geography fact; KEEP Vjosa Europe-first Wild River National Park. Bunker museum, Albania NTA and IUCN sources rechecked 2026-09-04.",
+        "TRIVIA DELTA: remove Byrek trivia because Byrek moves to Taste. Replace with Tirana religious-coexistence discovery: mosque, Catholic church and Orthodox church within roughly 300 m in the city center, supported by Albania National Tourism Agency.",
+        "ENCOUNTERS DELTA: replace 'ビュレク' with 'ゲストハウス' so Taste is not duplicated; Theth official tourism information supports guesthouse culture in the Albanian Alps.",
+        "TRAVEL SCALE LOCK: 3〜4日/city = Tirana base + Berat; 5〜7日/map = Tirana → Berat → Gjirokastër → Sarandë/Butrint; 8日以上/compass = add Shkodër/Theth in the north to the central/southern route. Albania NTA publishes 2-day Tirana, multi-day southern, 8-day Riviera and 11-day nationwide itineraries supporting these scales.",
+        "TRANSPORT LOCK: title '都市間バス・車・フェリー', icon 'road'. Body retains eTransport as the national intercity route/station/time/operator platform, with car/transfer/walking for remote access and Lake Koman ferry as a travel experience.",
+        "PROFILE / FOR WHOM / SEASONS / TRAVEL NOTES / THEMES remain structurally KEEP. Population rechecked against INSTAT 1 January 2026 = 2,335,930. Theme taxonomy remains EARTH / HISTORY / SEA.",
+        "Source refresh target for implementation: INSTAT population; Albania National Tourism Agency Taste/transport/itineraries/Tirana coexistence; Albanian Armed Forces Museum bunkerization; IUCN Vjosa. Stable UNESCO/culture sources from 2026-09-01 audit remain subject to final implementation QA."
       ],
       "automatedAudit": "DONE"
     },
