@@ -407,7 +407,7 @@
       "auditState": "DONE",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "DONE",
       "map": "PENDING",
       "sources": "PENDING",
       "qa": "PENDING",
@@ -433,7 +433,10 @@
         "TECHNICAL IMAGE QA 2026-09-04: Draft PR #181 validation run 33835161072 passed the all-published image audit. scripts/validate_images.py fully decoded 304 raster payloads with zero findings; France therefore passes referenced raster decode, minimum Hero dimensions, minimum 1200×800 Scene dimensions, 3:2 Scene ratio, 1200×760 map canvas and approved-folder hygiene.",
         "PNG FORMAT DECISION: current France Hero/Scene PNG files remain KEEP because the current validator supports PNG and all technical gates pass. Format-only conversion to WebP is not justified.",
         "VISUAL HISTORY CHECK: current Hero, eight Scene and map SHAs are unchanged from the user-approved 2026-08-31 France publication set. Browser crop/responsive presentation remains a later Visual QA item and is not being claimed PASS here.",
-        "PHASE 3 TASTE DECISION: FOOD01 Croissant / FOOD02 Bouillabaisse / FOOD03 Galette complète / FOOD04 Quiche lorraine are ADD / NEW INDEPENDENT IMAGE. All remain NOT STARTED until Taste generation begins; target geometry is 1200×800 / 3:2 WebP and Spain Taste Global Visual Language."
+        "PHASE 3 TASTE DECISION: FOOD01 Croissant / FOOD02 Bouillabaisse / FOOD03 Galette complète / FOOD04 Quiche lorraine are ADD / NEW INDEPENDENT IMAGE. All remain NOT STARTED until Taste generation begins; target geometry is 1200×800 / 3:2 WebP and Spain Taste Global Visual Language.",
+        "USER TASTE APPROVAL 2026-09-04: all four France Taste images approved in one batch — Croissant / Bouillabaisse / Galette complète / Quiche lorraine.",
+        "TASTE EXPORT QA 2026-09-04: all four approved 1536×1024 / 3:2 PNG generations were exported locally to final 1200×800 WebP without crop or distortion. Complete decode, dimensions and WebP format PASS 4/4.",
+        "VISUAL COMPLETE GATE 2026-09-04: PASS at content/visual decision level — Hero KEEP, Scenes 1–8 KEEP, Map KEEP, Taste 4/4 APPROVED. Production asset commit / Country JSON connection remain for implementation; hardImageGate stays false until those references are committed and repository validation passes."
       ],
       "automatedAudit": "DONE"
     },
