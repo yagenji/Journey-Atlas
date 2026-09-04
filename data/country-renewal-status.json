@@ -221,7 +221,10 @@
         "PHASE 5 PREVIEW PACKAGE VERIFIED: deployment artifact explicitly contains countries/andorra/index.html, data/countries/andorra.json, map-atlas-v1.svg, Hero, all eight Scenes and all four approved Taste WebP assets.",
         "PHASE 5 REVIEW URL: https://yagenji.github.io/Journey-Atlas/countries/andorra/ . Production https://atlas.yagenji.com/countries/andorra/ remains LIVE_OLD until the renewed branch is visually reviewed and approved.",
         "TASTE SCALE ADJUSTMENT PREPARED 2026-09-05: user requested larger food presentation after comparison with Spain and recent renewed countries. No regeneration. Four approved originals were center-cropped only and re-exported as 1200×800 WebP to bring dish/vessel visual occupancy to approximately 60–62%.",
-        "TASTE SCALE REPLACEMENT PENDING: replacement package prepared with unchanged filenames. Repository assets must be replaced in assets/images/andorra/approved/ before rerunning hard image gate and preview QA."
+        "TASTE SCALE REPLACEMENT PENDING: replacement package prepared with unchanged filenames. Repository assets must be replaced in assets/images/andorra/approved/ before rerunning hard image gate and preview QA.",
+        "PREVIEW ROUTING CORRECTION 2026-09-05: GitHub Pages Country Preview is a shared deployment target and was overwritten after the Andorra deploy by Cyprus / Monaco / main preview runs. The absence of Taste on the shared GitHub Pages URL was therefore not an Andorra JSON/image/rendering defect.",
+        "CLOUDFLARE BRANCH PREVIEW PASS 2026-09-05: commit 3b8a838f6d41ea0b48e382e912e96be8597bd49a deployed successfully to immutable preview https://4fbc8116.journey-atlas.pages.dev and stable branch preview https://country-andorra-renewal.journey-atlas.pages.dev . Use /countries/andorra/ for renewal review; this branch preview is isolated from other Country preview overwrites.",
+        "TASTE SCALE REVIEW TARGET: https://country-andorra-renewal.journey-atlas.pages.dev/countries/andorra/ contains the adjusted approved Taste assets from the Andorra branch. GitHub Pages shared preview is no longer the review source of truth for this renewal."
       ],
       "automatedAudit": "DONE"
     },
