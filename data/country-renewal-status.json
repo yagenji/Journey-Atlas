@@ -707,7 +707,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -752,7 +752,12 @@
         "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile review of Hero crop, map labels, Taste rendering, long German/Japanese names, spacing, buttons and accessibility remains required. qa stays PENDING until user review.",
         "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the rendered Liechtenstein Reference v3 preview and confirmed it. Human rendered-page review is accepted as PASS.",
         "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication provided final QA finds no blocking issue.",
-        "FINAL PRE-MERGE QA PASS 2026-09-04: branch is based on current main 7f056f042b4efd29e37023b66e738e6dd1f2c882 with behind 0; PR #185 is mergeable; hardImageGate is true; Reference v3 structural checks, image QA, map QA, Theme taxonomy, source validation, Country JSON validation, JOURNEY LENS slug validation, Cloudflare package build and clean preview deployment all passed. Diff is limited to Liechtenstein JSON/status/content-design doc plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
+        "FINAL PRE-MERGE QA PASS 2026-09-04: branch is based on current main 7f056f042b4efd29e37023b66e738e6dd1f2c882 with behind 0; PR #185 is mergeable; hardImageGate is true; Reference v3 structural checks, image QA, map QA, Theme taxonomy, source validation, Country JSON validation, JOURNEY LENS slug validation, Cloudflare package build and clean preview deployment all passed. Diff is limited to Liechtenstein JSON/status/content-design doc plus four approved Taste assets. production remains LIVE_OLD until merge and production verification.",
+        "PRODUCTION MERGE 2026-09-04: PR #185 squash-merged to main as 6f05683d5a88dab39f5092a95c44f3cf1cbc38cd after user visual approval and final branch validation passed.",
+        "PRODUCTION VALIDATION PASS 2026-09-04: Validate country data run 33853192627 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build for merge commit 6f05683d5a88dab39f5092a95c44f3cf1cbc38cd.",
+        "PRODUCTION DEPLOY PASS 2026-09-04: GitHub Pages deploy run 33853192683 completed successfully for merge commit 6f05683d5a88dab39f5092a95c44f3cf1cbc38cd.",
+        "PRODUCTION VERIFY PASS 2026-09-04: Verify JOURNEY ATLAS Cloudflare Production run 33853192602 confirmed atlas.yagenji.com served merge commit 6f05683d5a88dab39f5092a95c44f3cf1cbc38cd and passed shared Country CSS architecture, Spain V3 regression payload and production runtime assets/routes.",
+        "FINAL QA PASS 2026-09-04: user visual review PASS; Liechtenstein Reference v3 structure, Taste 4 approvals, hard image gate, source validation, Country JSON validation, JOURNEY LENS slug validation, Cloudflare package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
