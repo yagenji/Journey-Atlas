@@ -152,10 +152,10 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "A",
-      "content": "IN_PROGRESS",
+      "content": "DONE",
       "visual": "DONE",
       "map": "DONE",
-      "sources": "PENDING",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
@@ -208,7 +208,12 @@
         "ASSET INTEGRITY PASS: GitHub blob SHA exactly matches the assistant-delivered local production file for each Taste asset: food-tave-kosi.webp 169ddade0cbc535324b5a1fc4728d3376d613cba; food-byrek.webp 11303b638b7d7d124ab4d4153be1eca0cf5a47af; food-fergese.webp 74012967204a66faa49235ee267e32f327afd9ba; food-ballokume.webp c4a8572454b255641949fe9d07b52a6d6494bd04.",
         "TASTE TECHNICAL QA PASS: all four files are WebP, exactly 1200×800 (3:2), PIL verify PASS and full pixel load/decode PASS.",
         "APPROVED FOLDER HYGIENE CHECK: 13 final assets only = existing Hero + 8 scenes + 4 approved Taste images; no draft/temp/test/placeholder/.b64/parts files present.",
-        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero KEEP + 8 scenes KEEP + Map KEEP + all 4 Taste assets user-approved and technically verified. Renewal may proceed to IMPLEMENTATION. hardImageGate remains false until Country JSON references the new assets and strict branch validation is run."
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero KEEP + 8 scenes KEEP + Map KEEP + all 4 Taste assets user-approved and technically verified. Renewal may proceed to IMPLEMENTATION. hardImageGate remains false until Country JSON references the new assets and strict branch validation is run.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-04: data/countries/albania.json updated to Reference v3 content contract without changing shared template/CSS/JS/theme taxonomy.",
+        "IMPLEMENTED: Taste 4 approved items; Travel Scale 3 items; Transport Japanese title + road icon; Signature Facts topic rebalance (bunkerization / two seas / Vjosa); Encounter Byrek→guesthouse; Trivia Byrek→Tirana three-faith coexistence; source registry/date refresh.",
+        "POST-WRITE STRUCTURAL QA PASS: schemaVersion 2 / contentQaVersion 1 / Hero present / Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Seasons 4 / Personas 3 / Signature Facts 3 / Taste 4 APPROVED / Travel Scale 3 / Transport icon road / all Trivia sourceKeys resolve.",
+        "IMPLEMENTATION SCOPE QA: branch diff contains only Albania Taste assets, data/countries/albania.json, and data/country-renewal-status.json. No shared UI/template/taxonomy file changed.",
+        "NEXT PHASE REQUIRED: branch is currently diverged from main (ahead 11 / behind 2). Per renewal flow, sync latest main next, then run common CI preflight and Country/System QA. hardImageGate remains false until strict validation after sync."
       ],
       "automatedAudit": "DONE"
     },
