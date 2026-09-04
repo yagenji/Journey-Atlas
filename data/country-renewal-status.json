@@ -800,7 +800,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PARTIAL_APPROVAL",
+      "visual": "APPROVED_PENDING_STORAGE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
@@ -830,7 +830,10 @@
         "PRODUCTION ASSET QA BLOCK: the generated outputs are 2x2 collages rather than four independent FOOD01-FOOD04 images, and the displayed FOOD04 is not Rieslingspaschtéit. Therefore this approval is recorded as visual-direction approval only; final Taste assets are not yet APPROVED for repository connection.",
         "REWORK REQUIRED: regenerate FOOD01-FOOD04 as four independent images matching the locked dish identities. Do not open Visual Complete Gate until final independent assets pass user review and repository decode/dimension/WebP/hygiene checks.",
         "FOOD04 USER APPROVAL 2026-09-04: Rieslingspaschtéit independent image approved. Final candidate prepared as food04-rieslingspaschteit.webp at 1200x800.",
-        "Taste batch approval state after FOOD04 review: FOOD04 approved. FOOD01-FOOD03 are independent 1200x800 WebP candidates already prepared but still require explicit final user approval before the Visual Complete Gate can open."
+        "Taste batch approval state after FOOD04 review: FOOD04 approved. FOOD01-FOOD03 are independent 1200x800 WebP candidates already prepared but still require explicit final user approval before the Visual Complete Gate can open.",
+        "USER APPROVAL 2026-09-04: FOOD01 Bouneschlupp, FOOD02 Judd mat Gaardebounen, FOOD03 Gromperekichelcher and FOOD04 Rieslingspaschtéit are all user-approved.",
+        "FINAL TASTE FILE QA 2026-09-04: all four approved local handoff files are WebP, 1200x800, 3:2 and fully decoded successfully before packaging.",
+        "VISUAL STATE: all required visuals are now user-approved, but repository storage verification is still pending. hardImageGate must remain false until the four Taste files are stored under assets/images/luxembourg/approved/ and repository decode/dimension/path/hygiene QA passes."
       ],
       "automatedAudit": "DONE"
     },
