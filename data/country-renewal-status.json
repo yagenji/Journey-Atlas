@@ -869,7 +869,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "BLOCKED",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -922,7 +922,10 @@
         "BRANCH FRESHNESS CHECK 2 PASS 2026-09-05: country/monaco-renewal was merged with latest main 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44; compare shows behind 0. Main's completed Liechtenstein renewal was preserved while Monaco changes remain isolated to Monaco JSON/assets/status/doc.",
         "PHASE 5 COUNTRY STRUCTURAL QA 2026-09-05: visible Profile 6 / Signature Facts 3 / Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Taste 4 APPROVED / Travel Scale 3 with city-map-compass / Seasons 4 / Transport Japanese + road / FOR WHOM 3 / Travel Notes 3 / Related 3. Duplicate topicKey none. Theme taxonomy remains city only.",
         "PHASE 5 IMAGE HARD GATE EVIDENCE: run 33891528133 decoded 324 published raster payloads and passed audit; renewed-country hard gate decoded 234 payloads across 18 countries and PASS with Monaco enabled. This confirms the newly referenced Monaco Taste 4 decode/dimension/aspect/hygiene checks pass in CI.",
-        "PHASE 5 JSON FIX: validator identified only one Monaco schema issue, sourceDates key helicopterRoute did not match sources key helicopter2026. Fixed by normalizing the source key to helicopterRoute; no content or visual change."
+        "PHASE 5 JSON FIX: validator identified only one Monaco schema issue, sourceDates key helicopterRoute did not match sources key helicopter2026. Fixed by normalizing the source key to helicopterRoute; no content or visual change.",
+        "PHASE 5 COUNTRY CI PASS 2026-09-05: Validate country data run 33891750202 passed source syntax, published renewal registry, all-published image audit, renewed-country hard image gate, and reviewable/published Country JSON for Monaco.",
+        "PHASE 5 SYSTEM BLOCKER: the same run fails only at shared JOURNEY LENS slug drift because the external RSS currently exposes https://journey.yagenji.com/qatar/ instead of the required /qatar{sequence}/ convention. Cloudflare package build is skipped downstream. This is not a Monaco defect and must not be patched with Monaco-specific code.",
+        "QA STATE set BLOCKED rather than PASS because shared CI must be green and rendered preview/browser QA must still be completed before review/publication."
       ],
       "automatedAudit": "DONE"
     },
