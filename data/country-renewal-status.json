@@ -852,7 +852,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -899,7 +899,10 @@
         "PHASE 5 SYSTEM NOTE: an earlier run briefly failed JOURNEY LENS slug drift on external Qatar URL /qatar/, but the latest validation run passed without Country-side workaround. No current System blocker.",
         "PHASE 5 PREVIEW DEPLOY PASS 2026-09-05: Deploy Country Preview run 33892880972 passed validation, hard image gate, clean package build, packaged-output checks, upload and GitHub Pages deployment. Preview environment URL is https://yagenji.github.io/Journey-Atlas/.",
         "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile review of https://yagenji.github.io/Journey-Atlas/countries/luxembourg/ remains required for Hero crop, header collision, map labels, Taste images, Travel Scale, long Japanese/local names, spacing, controls and accessibility. qa remains PENDING until rendered-page user review.",
-        "PR #186 is open and mergeable. Do not merge until human rendered-page review and explicit user publication approval."
+        "PR #186 is open and mergeable. Do not merge until human rendered-page review and explicit user publication approval.",
+        "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Luxembourg Reference v3 preview, including Taste 4, and reported no issues. Human Desktop/Tablet/Mobile rendered-page review is accepted as PASS.",
+        "USER PUBLISH APPROVAL 2026-09-05: user confirmed no issues after reviewing the rendered page; proceed to final QA and publication if no blocking issue is found.",
+        "FINAL PRE-MERGE STATE 2026-09-05: qa=PASS, hardImageGate=true, production remains LIVE_OLD until PR merge and production validation complete."
       ],
       "automatedAudit": "DONE"
     },
