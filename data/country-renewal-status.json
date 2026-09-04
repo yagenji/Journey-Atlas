@@ -708,7 +708,7 @@
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE AUDIT: current Red House / Herawingert / Vaduz Castle Hero and all eight current Scene selections remain KEEP. Prior publication PR explicitly retained all approved Hero / Scene assets; no landscape regeneration is justified by selection or known visual regression.",
@@ -739,7 +739,10 @@
         "REPOSITORY STORAGE VERIFIED 2026-09-04: all four user-approved Taste WebP files exist in assets/images/liechtenstein/approved/ and their Git blob SHAs exactly match the locally full-decoded 1200×800 masters.",
         "APPROVED-FOLDER HYGIENE PASS 2026-09-04: Liechtenstein approved folder contains exactly 13 production assets (Hero + 8 scenes + 4 Taste); no draft, temporary, placeholder, .b64, parts, rejected or duplicate files found.",
         "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + 8 scenes remain KEEP; FOOD01–04 are user APPROVED, repository-stored, 1200×800 / exact 3:2 WebP, full-decode verified locally and Git blob matched. Country JSON implementation is now unblocked.",
-        "HARD IMAGE GATE STATE: remains false until Taste APPROVED paths are connected to Country JSON and renewed-country validation can enforce the final references."
+        "HARD IMAGE GATE STATE: remains false until Taste APPROVED paths are connected to Country JSON and renewed-country validation can enforce the final references.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-04: Reference v3 Country JSON now includes Taste 4 APPROVED, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Encounters, corrected vignette Travel Note, and refreshed source metadata.",
+        "HARD IMAGE GATE ENABLED 2026-09-04: enabled only after all four Taste assets were user APPROVED, repository-stored, Git blob matched, full-decode checked locally, 1200×800 / 3:2 verified, approved-folder hygiene passed, and final Country JSON references were connected.",
+        "REFERENCE V3 STRUCTURE AFTER IMPLEMENTATION: Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Taste 4 / Travel Scale 3 / Seasons 4 / FOR WHOM 3 / visible Profile 6 via shared Region hide / Signature Facts 3 / Travel Notes 3. Automated and browser QA remain pending."
       ],
       "automatedAudit": "DONE"
     },
