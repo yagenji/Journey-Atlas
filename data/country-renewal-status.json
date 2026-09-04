@@ -150,8 +150,8 @@
       "nameJa": "アルバニア",
       "wave": 8,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "A",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -159,7 +159,18 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: Reference v3 audit completed from latest main 7f056f042b4efd29e37023b66e738e6dd1f2c882.",
+        "Hero Berat and all 8 existing scenes are KEEP candidates: the original Albania review PR documented all 9 landscape assets as user-approved; current all-published Pillow image audit fully decodes the published raster set with no Albania findings.",
+        "Current Albania scenes pass the active validator thresholds: each scene is at least 1200×800 and 3:2; Hero passes the active minimum of at least 1200×760 landscape. Existing approved assets are PNG and remain valid production assets; no format-only regeneration is justified.",
+        "Map KEEP candidate: 1200×760 SVG from Natural Earth 1:10m geometry; Albania map projection and marker spacing were specifically fixed before publication and current validation reports no Albania map findings.",
+        "Reference v3 content delta: Taste is missing; Travel Scale is missing; Transport title is English-only and lacks explicit road icon. These require renewal.",
+        "Profile visible structure already resolves to 6 current shared facts even though Region remains in JSON for the shared contract. Signature Facts=3, Encounters=8, Beyond=6, Trivia=5, Seasons=4, Personas=3, Travel Notes=3.",
+        "Theme taxonomy currently assigns EARTH / HISTORY / SEA and matches the retained scene set.",
+        "Population source remains current: INSTAT 1 Jan 2026 = 2,335,930. Stable history/culture/geography claims were recently source-audited on 2026-09-01 and require targeted recheck during Content Renewal, not wholesale replacement.",
+        "Common CI pre-flight 2026-09-04: latest main validation, GitHub Pages preview deploy, and Cloudflare Production Verify all passed; no current system blocker identified.",
+        "Renewal branch created from latest main: country/albania-renewal. Production remains LIVE_OLD and atlasPublished remains true until user-approved renewal publication."
+      ],
       "automatedAudit": "DONE"
     },
     {
