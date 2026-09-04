@@ -185,36 +185,36 @@
   ],
   "encounters": [
     {
-      "title": "宮殿",
-      "icon": "history"
-    },
-    {
-      "title": "海洋文化",
-      "icon": "sea"
-    },
-    {
-      "title": "カジノ",
-      "icon": "city"
-    },
-    {
       "title": "地中海",
       "icon": "shore"
     },
     {
-      "title": "庭園",
-      "icon": "culture"
+      "title": "急斜面の街",
+      "icon": "city"
+    },
+    {
+      "title": "ベル・エポック",
+      "icon": "history"
     },
     {
       "title": "マリーナ",
       "icon": "landscape"
     },
     {
-      "title": "市街地サーキット",
+      "title": "海洋文化",
+      "icon": "sea"
+    },
+    {
+      "title": "公道サーキット",
       "icon": "road"
     },
     {
-      "title": "高層都市",
-      "icon": "city"
+      "title": "庭園",
+      "icon": "culture"
+    },
+    {
+      "title": "モネガスク文化",
+      "icon": "culture"
     }
   ],
   "atlasExtras": [
@@ -263,14 +263,14 @@
       ]
     },
     {
-      "topicKey": "barbagiuan-monegasque-specialty",
-      "themeEn": "FOOD",
-      "themeJa": "食をめぐる",
-      "title": "バルバジュアンはモナコの日常側にある味",
-      "text": "バルバジュアンは、フダンソウなどを詰めて揚げるモナコの伝統料理。高級レストランのイメージが強い国で、土地の家庭的な食文化を知る入口になる。",
+      "topicKey": "la-palladienne-monegasque-folk-tradition",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "赤と白の衣装で踊る、ラ・パラディエンヌ",
+      "text": "ラ・パラディエンヌ・ド・モナコは、マンドリンやギターなどの演奏と伝統舞踊を組み合わせる民俗グループ。地域行事や文化行事で伝統衣装と音楽が現れ、宮殿やカジノだけでは見えないモナコの文化継承に触れられる。",
       "points": [
-        "フダンソウなどの青菜を使うのが特徴",
-        "近隣のリグーリア文化とのつながりも感じられる"
+        "伝統舞踊と弦楽器の演奏を組み合わせる",
+        "モナコの文化行事で現在も披露されている"
       ]
     },
     {
@@ -327,7 +327,7 @@
       "categoryEn": "FOOTBALL",
       "categoryJa": "サッカー",
       "title": "ASモナコはフランスのリーグ・アンで戦う",
-      "text": "モナコは独立した主権国家だが、ASモナコはフランスのリーグ体系に参加している。2026–27シーズンもリーグ・アンの日程に組み込まれている。",
+      "text": "モナコは独立した主権国家だが、ASモナコはフランスのプロリーグ体系に参加している。国境とサッカーのリーグ境界が一致しない、小国ならではの関係が見える。",
       "icon": "culture",
       "sourceKey": "asMonaco"
     }
@@ -355,8 +355,9 @@
     }
   ],
   "transport": {
-    "title": "TRAIN / BUS / WALK / LIFTS",
-    "text": "外部からはモナコ＝モンテカルロ駅を軸に鉄道で入り、国内はバスと徒歩を組み合わせる。国土は小さいが高低差が大きいため、公共エレベーターやエスカレーターを使うと移動が大きく変わる。"
+    "title": "鉄道・バス・徒歩・公共エレベーター",
+    "text": "外部からはモナコ＝モンテカルロ駅のTERが使いやすく、国内はCAMのバスと徒歩を組み合わせる。国土は小さいが高低差が大きいため、公共エレベーターやエスカレーターを使うと、港・モンテカルロ・ル・ロシェ間の移動が大きく変わる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -465,15 +466,21 @@
       "reason": "同じヨーロッパの小国でも、海沿いの高密度都市とは異なる丘上の共和国を比べたいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2025",
     "area": "2026",
     "census2023": "2023",
     "mareterra": "2024-12-04",
     "asMonaco": "2026-06-10",
-    "map": "2026-09-01"
+    "map": "2026-09-01",
+    "taste": "2026-09-04",
+    "travelScale": "2026-09-04",
+    "transport": "2026-09-04",
+    "palladienne": "2026-09-04",
+    "condamineMarket": "2026",
+    "helicopterRoute": "2026-08-07"
   },
   "sources": {
     "map": "OpenStreetMap relation 36990 (Monaco land_area), WGS84; 2 outer rings / 866 points; retrieved 2026-09-01 from the OSM API. Geodesic area 2.083473 km², within 0.025% of IMSEE official 2.084 km²; includes the current post-Mareterra land outline.",
@@ -497,6 +504,76 @@
     "asMonaco": "AS Monaco, 10 June 2026: club schedule for the 2026-2027 Ligue 1 season.",
     "mechanisedLinks": "VisitMonaco official visitor maps identify public lifts, escalators and pedestrian links connecting the Principality's different levels.",
     "station": "VisitMonaco / SNCF visitor information: Monaco–Monte-Carlo railway station connects the Principality to the regional rail network and has pedestrian exits serving different parts of the city.",
-    "niceAirportHelicopter": "Monacair current service information: Monaco has no commercial airport; regular Nice Côte d'Azur Airport–Monaco heliport flight time is about 7 minutes."
+    "niceAirportHelicopter": "Monacair current service information: Monaco has no commercial airport; regular Nice Côte d'Azur Airport–Monaco heliport flight time is about 7 minutes.",
+    "taste": "VisitMonaco local experiences / Monaco-Ville / La Condamine, Monaco Now official communication material, and France.fr Côte d’Azur culinary guidance: Barbajuan, Stocafi, Socca and Fougasse monégasque.",
+    "travelScale": "VisitMonaco official 72-hour itinerary and regional access guidance, plus SNCF Connect current TER service for Monaco–Nice and the Riviera.",
+    "transport": "Compagnie des Autobus de Monaco current network, SNCF Connect Monaco–Monte-Carlo TER service, and VisitMonaco mobility guidance for public lifts, escalators and pedestrian links.",
+    "palladienne": "VisitMonaco cultural heritage material on La Palladienne de Monaco and traditional Monegasque music/dance.",
+    "condamineMarket": "VisitMonaco 2026 visitor information: La Condamine market is under renovation with temporary closure from January 2026 and reopening scheduled for early 2027.",
+    "helicopter2026": "Journal de Monaco, Arrêté Ministériel n° 2026-457 of 7 August 2026, and current Monacair service information for authorised regular Nice–Monaco helicopter service."
+  },
+  "taste": {
+    "kicker": "TASTE OF MONACO",
+    "title": "モナコで食べたいもの",
+    "intro": "旧市街の郷土料理から、海の保存食、リヴィエラの粉食、祝い菓子まで、モナコの日常側を4品からたどる。",
+    "items": [
+      {
+        "id": "barbajuan",
+        "name": "バルバジュアン",
+        "nameLocal": "Barbagiuàn",
+        "text": "フダンソウなどの青菜を詰めた生地を揚げる、モナコを代表する小さな包み料理。フランスとリグーリアの間にある土地らしい食文化を、気軽な一品から感じられる。",
+        "image": "assets/images/monaco/approved/food-barbajuan.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "stocafi",
+        "name": "ストカフィ",
+        "nameLocal": "Stocafi",
+        "text": "乾燥させたタラを戻して煮込む、モナコの海辺の食文化を伝える料理。保存できる魚とオリーブオイル、香味野菜を使う一皿に、地中海と交易の歴史が重なる。",
+        "image": "assets/images/monaco/approved/food-stocafi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "socca",
+        "name": "ソッカ",
+        "nameLocal": "Socca",
+        "text": "ひよこ豆の粉とオリーブオイルで焼く薄い生地。ニースを中心とするリヴィエラの料理だが、モナコでも身近に食べられ、国境を越えて続く海岸の食文化を感じられる。",
+        "image": "assets/images/monaco/approved/food-socca.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "fougasse-monegasque",
+        "name": "モナコ風フガス",
+        "nameLocal": "Fougasse monégasque",
+        "text": "オレンジの花の香りをつけ、アーモンドやアニスを添えるモナコの甘いフガス。南フランスで見かける塩味の葉形パンとは異なり、祝いの場にも結びつく土地固有の菓子として受け継がれている。",
+        "image": "assets/images/monaco/approved/food-fougasse-monegasque.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "国土を地区ごとに分けて歩く",
+        "text": "ル・ロシェ、ラ・コンダミーヌ、モンテカルロ、ラルヴォット、フォンヴィエイユを分けて歩くと、小さな国でも高低差と地区の役割の違いが見えてくる。例：モナコ＝ヴィル → ラ・コンダミーヌ → モンテカルロ → ラルヴォット → フォンヴィエイユ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "モナコを拠点に近隣の海岸都市へ",
+        "text": "モナコを数日歩いた後、TERや地域バスで国境の外へ日帰りすると、同じ海岸線の中で街の性格を比べられる。例：モナコ＋エズ＋マントン＋ニース。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "コート・ダジュールからリグーリアまでつなぐ",
+        "text": "モナコだけで日数を埋めるのではなく、鉄道でフランスとイタリアの海岸都市へ広げると、この小国が地中海沿岸のどこに位置するかが分かる。例：ニース → エズ → モナコ → マントン → ヴェンティミリア／サンレモ。",
+        "icon": "compass"
+      }
+    ]
   }
 }
