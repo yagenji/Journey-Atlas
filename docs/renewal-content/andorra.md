@@ -522,3 +522,16 @@ Image Decision: **DONE / LOCKED**
 - `hardImageGate`: remains **false**
 
 Next phase: **VISUAL PRODUCTION — FOOD01 Escudella**
+
+
+## Taste approvals — 2026-09-05
+
+- FOOD01 **Escudella** — APPROVED
+  - Final filename: `food-escudella.webp`
+  - Target production path: `assets/images/andorra/approved/food-escudella.webp`
+  - Source generated image is approved for use, but repository storage / 1200×800 WebP normalization / complete decode verification remain pending.
+- FOOD02 **Trinxat amb rosta** — NEXT
+- FOOD03 **Canelons a l’andorrana** — NOT STARTED
+- FOOD04 **Crema a l’andorrana** — NOT STARTED
+
+Do not regenerate FOOD01 unless explicitly requested by the user.
