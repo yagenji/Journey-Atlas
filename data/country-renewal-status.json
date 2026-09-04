@@ -884,12 +884,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "LANDSCAPE DECISION: Lauterbrunnen Valley / Wengen Hero and all eight existing scene selections remain KEEP. No landscape NORMALIZE or REGENERATE target is justified at Phase 2.",
@@ -930,7 +930,12 @@
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-04: FOOD01–FOOD04 are all user APPROVED and locked. Visual Complete Gate still requires final WebP preparation, repository storage, 1200×800 / 3:2 verification, complete decode, approved-folder hygiene, and Country JSON connection.",
         "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized from 1536×1024 PNG masters to final 1200×800 / 3:2 RGB WebP and fully decoded successfully. Final filenames: food-cheese-fondue.webp / food-roesti.webp / food-risotto-ticinese.webp / food-engadiner-nusstorte.webp.",
         "TASTE TECHNICAL QA 2026-09-04: complete decode PASS for all four final WebP files; exact dimensions 1200×800 for each; four distinct binary payloads and visually distinct dish identities confirmed. Prepared package: switzerland_taste_approved_1200x800.zip.",
-        "VISUAL COMPLETE GATE CHECK 2026-09-04: BLOCKED only on repository binary storage and approved-folder hygiene verification. Country JSON remains intentionally unconnected and hardImageGate remains false until the four approved WebP files exist in assets/images/switzerland/approved/ and repository verification passes."
+        "VISUAL COMPLETE GATE CHECK 2026-09-04: BLOCKED only on repository binary storage and approved-folder hygiene verification. Country JSON remains intentionally unconnected and hardImageGate remains false until the four approved WebP files exist in assets/images/switzerland/approved/ and repository verification passes.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-04: all four approved Taste WebP files exist in assets/images/switzerland/approved/. Git blob SHAs exactly match the locally prepared and fully decoded masters: fondue bdd60bd9510213b988607c740b4620bb9eac8f27; roesti 8c35a843d58f3e051b8e4c6a220929ef304ac7e6; risotto c9b5176e73c8993a6591a37de925d8be174c42d5; nusstorte fa4546e19084d7d91888486f6617a825c70010b9.",
+        "TASTE IMAGE QA PASS 2026-09-04: each repository-stored Taste asset fully decodes as RGB WebP at exactly 1200×800 / 3:2. Four binary payloads are distinct and correspond to the four user-approved dishes.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-04: Switzerland approved folder contains exactly 13 production assets — Hero + 8 scenes + 4 Taste. No draft, temporary, placeholder, parts, rejected, duplicate or unused approved asset found.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + S01–S08 remain KEEP; FOOD01–FOOD04 are user APPROVED, repository-stored, fully decoded, 1200×800 / 3:2 WebP and connected in Country JSON with imageState APPROVED. hardImageGate is now true.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-04: Switzerland Country JSON now includes Reference v3 Taste 4, Spain-format Travel Scale, Japanese Transport title with explicit road icon, updated religion profile wording, Heidi typo fix and refreshed 2026 source metadata. Shared Template/CSS/JS remain unchanged."
       ],
       "automatedAudit": "DONE"
     },
