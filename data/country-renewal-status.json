@@ -428,7 +428,12 @@
         "BEYOND LOCK: current FOOD and ROAD cards are replaced in content design by regional-languages and cafe/social-life cards, removing duplication with Taste and Transport.",
         "TASTE CONTENT LOCK: Croissant / Bouillabaisse / Galette complète / Quiche lorraine. FOOD01-04 remain NOT STARTED; no unapproved image paths are connected to Country JSON.",
         "TRAVEL PLANNING LOCK: Spain-format 3〜4日 / 5〜7日 / 8日以上 with city / map / compass; Transport title locked to 高速鉄道・在来線・車・フェリー with road icon; Travel Note 1 replaced by TGV long-distance booking guidance.",
-        "SOURCE LOCK VERIFIED 2026-09-04: INSEE population, French Ministry of Labour/Service-Public 35-hour workweek, Ministry of Culture/Constitution regional languages, France.fr Taste/cafe references, SNCF planning, Parc national des Calanques access, Visit Alsace Wine Route and Dune du Pilat references identified for implementation."
+        "SOURCE LOCK VERIFIED 2026-09-04: INSEE population, French Ministry of Labour/Service-Public 35-hour workweek, Ministry of Culture/Constitution regional languages, France.fr Taste/cafe references, SNCF planning, Parc national des Calanques access, Visit Alsace Wine Route and Dune du Pilat references identified for implementation.",
+        "PHASE 3 LANDSCAPE IMAGE DECISION 2026-09-04: Hero Mont-Saint-Michel and all eight existing Scene assets are KEEP. No landscape image is marked NORMALIZE or REGENERATE.",
+        "TECHNICAL IMAGE QA 2026-09-04: Draft PR #181 validation run 33835161072 passed the all-published image audit. scripts/validate_images.py fully decoded 304 raster payloads with zero findings; France therefore passes referenced raster decode, minimum Hero dimensions, minimum 1200×800 Scene dimensions, 3:2 Scene ratio, 1200×760 map canvas and approved-folder hygiene.",
+        "PNG FORMAT DECISION: current France Hero/Scene PNG files remain KEEP because the current validator supports PNG and all technical gates pass. Format-only conversion to WebP is not justified.",
+        "VISUAL HISTORY CHECK: current Hero, eight Scene and map SHAs are unchanged from the user-approved 2026-08-31 France publication set. Browser crop/responsive presentation remains a later Visual QA item and is not being claimed PASS here.",
+        "PHASE 3 TASTE DECISION: FOOD01 Croissant / FOOD02 Bouillabaisse / FOOD03 Galette complète / FOOD04 Quiche lorraine are ADD / NEW INDEPENDENT IMAGE. All remain NOT STARTED until Taste generation begins; target geometry is 1200×800 / 3:2 WebP and Spain Taste Global Visual Language."
       ],
       "automatedAudit": "DONE"
     },
