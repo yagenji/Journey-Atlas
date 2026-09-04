@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -19,9 +20,14 @@ SLUG_RE = re.compile(r"^[a-z]+$")
 
 
 def load_rss() -> bytes:
+    cache_busted_url = f"{RSS_URL}?atlas_check={time.time_ns()}"
     request = urllib.request.Request(
-        RSS_URL,
-        headers={"User-Agent": "JOURNEY-ATLAS-slug-validator/1.0"},
+        cache_busted_url,
+        headers={
+            "User-Agent": "JOURNEY-ATLAS-slug-validator/1.0",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+        },
     )
     with urllib.request.urlopen(request, timeout=20) as response:
         return response.read()
