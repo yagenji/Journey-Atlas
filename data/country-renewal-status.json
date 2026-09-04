@@ -237,8 +237,8 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "IN_PROGRESS",
-      "visual": "PENDING",
+      "content": "DONE",
+      "visual": "IN_PROGRESS",
       "map": "DONE",
       "sources": "IN_PROGRESS",
       "qa": "PENDING",
@@ -264,7 +264,11 @@
         "PHASE 2 TRANSPORT LOCK: title 鉄道・トラム・バス・車 / icon road. Copy: ブリュッセル、ゲント、ブルージュなど主要都市間はSNCB/NMBSの鉄道が使いやすい。都市内はトラムやバス、アルデンヌやオート・ファーニュなど自然地域は地域バスや車を組み合わせる。",
         "PHASE 2 SOURCE REFRESH 2026-09-04: Statbel 1 Jan 2026 population 11,867,634 remains current official figure. New authoritative sources checked for SNCB/NMBS rail network and current journeys; Visit Brussels culinary specialties; Visit Liège authentic Liège waffle; Visit Brussels/VisitFlanders Belgian praline history; VisitFlanders Flemish Masters and Flanders Fields; UNESCO Carnival of Binche; UNESCO Major Mining Sites of Wallonia; International Trappist Association ATP criteria; EUR-Lex/Consilium for EU institutions in Brussels.",
         "PHASE 2 IMPLEMENTATION LOCK: contentQaVersion=1, Taste 4, Spain-format Travel Scale, Japanese Transport title with explicit road icon, renewed Encounters/Beyond, source additions and sourcesVerifiedAt refresh will be written to Belgium JSON only after Taste FOOD01–04 are user APPROVED and repository image QA clears the Visual Complete Gate.",
-        "PHASE 2 VISUAL NEXT: Taste FOOD01–04 are NOT STARTED. Landscape Hero/S01–S08 and Map remain KEEP; no landscape regeneration is planned."
+        "PHASE 2 VISUAL NEXT: Taste FOOD01–04 are NOT STARTED. Landscape Hero/S01–S08 and Map remain KEEP; no landscape regeneration is planned.",
+        "PHASE 3 TASTE VISUAL APPROVAL 2026-09-04: User APPROVED all four independently generated Taste images. FOOD01 Moules-frites APPROVED; FOOD02 Waterzooi APPROVED; FOOD03 Liège waffle APPROVED; FOOD04 Belgian pralines APPROVED.",
+        "PHASE 3 FILE NORMALIZATION: approved Taste masters normalized to 1200x800 3:2 WebP with production filenames food-moules-frites.webp / food-waterzooi.webp / food-liege-waffle.webp / food-belgian-pralines.webp. Repository storage is still pending, so visual remains IN_PROGRESS and hardImageGate remains false.",
+        "PHASE 3 LANDSCAPE DECISION: existing Hero and S01-S08 remain KEEP; Map remains DONE. No landscape regeneration required.",
+        "PHASE 3 GATE STATUS: Visual Complete Gate will clear only after the four approved Taste WebP files are stored under assets/images/belgium/approved/, Belgium JSON references are connected, and repository image validation passes."
       ],
       "automatedAudit": "DONE"
     },
