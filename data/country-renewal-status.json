@@ -1059,7 +1059,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD while renewal work stays on country/monaco-renewal.",
@@ -1121,7 +1121,12 @@
         "QA moved from BLOCKED back to PENDING: shared blockers are cleared; only rendered-page human/browser visual review remains before final publication approval.",
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Monaco Reference v3 preview including Taste 4 and confirmed it.",
         "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication provided final QA finds no blocking issue.",
-        "FINAL PRE-MERGE QA CHECK 2026-09-05: branch is based on current main e4701db4e10403c5cd2cc54d9d07ba99f87e7606 with behind 0 before clean-head commit; atlasPublished remains true because Monaco is an already-published renewal; journeyLensPublished remains false; Theme taxonomy remains city only; Taste 4 are APPROVED; hardImageGate true; preview deployment run 33895192323 PASS. Temporary preview trigger is removed before merge."
+        "FINAL PRE-MERGE QA CHECK 2026-09-05: branch is based on current main e4701db4e10403c5cd2cc54d9d07ba99f87e7606 with behind 0 before clean-head commit; atlasPublished remains true because Monaco is an already-published renewal; journeyLensPublished remains false; Theme taxonomy remains city only; Taste 4 are APPROVED; hardImageGate true; preview deployment run 33895192323 PASS. Temporary preview trigger is removed before merge.",
+        "PRODUCTION MERGE 2026-09-05: PR #191 squash-merged to main as 82281c564164af6f99a980dd437ffb1b16a90964 after user visual approval and clean-head final validation PASS.",
+        "PRODUCTION VALIDATION PASS 2026-09-05: merge commit 82281c564164af6f99a980dd437ffb1b16a90964 passed Validate country data run 33900853717; subsequent main descendants retaining Monaco also passed validation, including run 33900992562.",
+        "PRODUCTION PAGES DEPLOY PASS 2026-09-05: merge commit 82281c564164af6f99a980dd437ffb1b16a90964 completed GitHub Pages deploy run 33900853814 successfully.",
+        "PRODUCTION VERIFY PASS 2026-09-05: latest main descendant a416422052301b93263ad7b241c85f293ec581d2 (parent chain includes Monaco merge) passed Cloudflare production verification run 33901352874, confirming atlas.yagenji.com served the expected latest commit and production runtime checks passed.",
+        "FINAL QA PASS 2026-09-05: user rendered-page review PASS; Monaco Reference v3 structure, Taste 4 approvals, hard image gate, source validation, Country JSON validation, JOURNEY LENS slug validation, Cloudflare package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
