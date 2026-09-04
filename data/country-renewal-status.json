@@ -887,7 +887,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -941,7 +941,10 @@
         "CLOUDFLARE BRANCH PREVIEW PASS 2026-09-04: Cloudflare Pages check for commit f8713843e5c68bbfa4754cc47f95f8826b9e20e6 completed SUCCESS. Immutable preview: https://af977f4a.journey-atlas.pages.dev ; branch preview: https://country-switzerland-renewal.journey-atlas.pages.dev ; review route: /countries/switzerland/.",
         "PREVIEW CLEANUP 2026-09-04: temporary .github/preview-trigger/switzerland-renewal.txt was removed on the same working branch. This cleanup does not alter Country content or assets.",
         "PHASE 5 STATIC/RUNTIME QA: Reference v3 structural counts remain PASS — visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3 with city/map/compass, Seasons 4, Japanese Transport with road icon, FOR WHOM 3, Travel Notes 3, Theme taxonomy earth/road, approved-folder hygiene clean and hardImageGate true.",
-        "HUMAN BROWSER VISUAL QA PENDING: Desktop / Tablet / Mobile inspection of Hero crop, map labels, scene cards, Taste rendering, long Japanese/Latin labels, spacing and accessibility still requires actual rendered-page review. qa remains PENDING and production remains LIVE_OLD until user final approval."
+        "HUMAN BROWSER VISUAL QA PENDING: Desktop / Tablet / Mobile inspection of Hero crop, map labels, scene cards, Taste rendering, long Japanese/Latin labels, spacing and accessibility still requires actual rendered-page review. qa remains PENDING and production remains LIVE_OLD until user final approval.",
+        "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the Switzerland renewal preview and reported no problem. Desktop/browser visual review is accepted as PASS based on user inspection of the rendered branch preview.",
+        "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if final QA found no blocking issue.",
+        "FINAL PRE-MERGE QA 2026-09-04: latest branch diff remains limited to Switzerland Country JSON, Switzerland renewal status, and four approved Switzerland Taste assets. main is one unrelated Belgium Taste-asset commit ahead; no overlapping file conflict identified. Publication may proceed after final branch validation passes."
       ],
       "automatedAudit": "DONE"
     },
