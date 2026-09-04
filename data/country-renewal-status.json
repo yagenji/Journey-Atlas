@@ -800,7 +800,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "READY_TO_GENERATE",
+      "visual": "REWORK_REQUIRED",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
@@ -825,7 +825,10 @@
         "PHASE 3 TASTE GLOBAL STYLE: Spain approved Taste assets are visual reference only. Each Luxembourg dish must be generated as a new independent image, 1200x800, 3:2 WebP final target, pale beige/ivory neutral background, soft daylight, matte minimal tableware, photo≈6 / watercolor≈4, no text, flags, UI or unrelated props.",
         "PHASE 3 GENERATION ORDER: generate FOOD01 -> FOOD02 -> FOOD03 -> FOOD04 sequentially. Perform internal identity/quality QA after each image; do not pause for user approval between dishes. Present all four only after the batch is complete.",
         "PHASE 3 DISH IDENTITY: FOOD01 must read clearly as green-bean Bouneschlupp soup; FOOD02 as thick smoked pork neck with broad beans and potatoes; FOOD03 as small flat golden grated-potato fritters; FOOD04 as sliced Rieslingspaschtéit showing pastry shell, meat filling and internal Riesling jelly. Reject/reset immediately on identity mismatch or accidental repetition.",
-        "PHASE 3 GATE: Visual Complete Gate remains closed until all four Taste images are user-approved, stored under assets/images/luxembourg/approved/, and pass complete decode, 1200x800 dimensions, WebP format and approved-folder hygiene checks."
+        "PHASE 3 GATE: Visual Complete Gate remains closed until all four Taste images are user-approved, stored under assets/images/luxembourg/approved/, and pass complete decode, 1200x800 dimensions, WebP format and approved-folder hygiene checks.",
+        "USER REVIEW 2026-09-04: user approved the displayed Taste direction/style.",
+        "PRODUCTION ASSET QA BLOCK: the generated outputs are 2x2 collages rather than four independent FOOD01-FOOD04 images, and the displayed FOOD04 is not Rieslingspaschtéit. Therefore this approval is recorded as visual-direction approval only; final Taste assets are not yet APPROVED for repository connection.",
+        "REWORK REQUIRED: regenerate FOOD01-FOOD04 as four independent images matching the locked dish identities. Do not open Visual Complete Gate until final independent assets pass user review and repository decode/dimension/WebP/hygiene checks."
       ],
       "automatedAudit": "DONE"
     },
