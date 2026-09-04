@@ -922,7 +922,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "BLOCKED",
+      "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -978,7 +978,11 @@
         "PHASE 5 JSON FIX: validator identified only one Monaco schema issue, sourceDates key helicopterRoute did not match sources key helicopter2026. Fixed by normalizing the source key to helicopterRoute; no content or visual change.",
         "PHASE 5 COUNTRY CI PASS 2026-09-05: Validate country data run 33891750202 passed source syntax, published renewal registry, all-published image audit, renewed-country hard image gate, and reviewable/published Country JSON for Monaco.",
         "PHASE 5 SYSTEM BLOCKER: the same run fails only at shared JOURNEY LENS slug drift because the external RSS currently exposes https://journey.yagenji.com/qatar/ instead of the required /qatar{sequence}/ convention. Cloudflare package build is skipped downstream. This is not a Monaco defect and must not be patched with Monaco-specific code.",
-        "QA STATE set BLOCKED rather than PASS because shared CI must be green and rendered preview/browser QA must still be completed before review/publication."
+        "QA STATE set BLOCKED rather than PASS because shared CI must be green and rendered preview/browser QA must still be completed before review/publication.",
+        "SHARED SYSTEM BLOCKERS RESOLVED 2026-09-05: Qatar JOURNEY LENS source normalized to /qatar1/ with legacy 301; shared Atlas LENS validator now cache-busts/no-caches production RSS; Pages deployments now queue instead of cancelling in-flight Country previews.",
+        "COMMON CI PASS 2026-09-05: clean-head Monaco run 33894016834 passed source syntax, renewal registry, published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build.",
+        "REVIEW PREVIEW DEPLOY PASS 2026-09-05: Deploy Country Preview run 33895192323 succeeded through hard image gate, clean production package build, packaged-output validation, artifact upload and GitHub Pages deployment. Review URL: https://yagenji.github.io/Journey-Atlas/countries/monaco/ . Preview contains Taste 4 because Monaco JSON references all four APPROVED WebP assets.",
+        "QA moved from BLOCKED back to PENDING: shared blockers are cleared; only rendered-page human/browser visual review remains before final publication approval."
       ],
       "automatedAudit": "DONE"
     },
