@@ -891,7 +891,15 @@
         "PHASE 4 IMPLEMENTATION 2026-09-04: PASS. data/countries/luxembourg.json now connects the approved Taste 4 assets, Travel Scale 3, Japanese Transport + road icon, rewritten Encounters 8, broadened Beyond 6, and refreshed source metadata.",
         "PHASE 4 SCOPE CONTROL: no common template, CSS, JS, theme taxonomy, Hero, Scene or Map asset was modified. Existing published production remains LIVE_OLD pending QA and final approval.",
         "PHASE 4 STRUCTURE CHECK: Taste=4 all imageState APPROVED; Travel Scale=3 with city/map/compass; Encounters=8; Beyond=6; Transport icon=road.",
-        "NEXT PHASE: sync/check against latest main, run common CI pre-flight, then Country QA and Browser Visual QA before any production merge."
+        "NEXT PHASE: sync/check against latest main, run common CI pre-flight, then Country QA and Browser Visual QA before any production merge.",
+        "PHASE 5 LATEST MAIN SYNC 2026-09-05: renewal branch synced with main 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44; current compare behind_by=0.",
+        "PHASE 5 COUNTRY QA PASS 2026-09-05: Reference v3 structural counts pass — scenes=8, encounters=8, beyond=6, trivia=5, signatureFacts=3, personas=3, tips=3, Taste=4 APPROVED, Travel Scale=3 with city/map/compass, Transport road icon. No missing referenced approved assets, duplicate IDs or sourceDates/source-key mismatch remain.",
+        "PHASE 5 MAP QA PASS 2026-09-05: map-atlas-v1.svg retains viewBox 1200x760 and no ellipse/forbidden black artifact was detected.",
+        "PHASE 5 COMMON CI PASS 2026-09-05: Validate country data run 33892885881 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, Country JSON, JOURNEY LENS slug validation and Cloudflare package build on head 8098be7fa37367b6eef7b52e591dba2057ce93a2.",
+        "PHASE 5 SYSTEM NOTE: an earlier run briefly failed JOURNEY LENS slug drift on external Qatar URL /qatar/, but the latest validation run passed without Country-side workaround. No current System blocker.",
+        "PHASE 5 PREVIEW DEPLOY PASS 2026-09-05: Deploy Country Preview run 33892880972 passed validation, hard image gate, clean package build, packaged-output checks, upload and GitHub Pages deployment. Preview environment URL is https://yagenji.github.io/Journey-Atlas/.",
+        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile review of https://yagenji.github.io/Journey-Atlas/countries/luxembourg/ remains required for Hero crop, header collision, map labels, Taste images, Travel Scale, long Japanese/local names, spacing, controls and accessibility. qa remains PENDING until rendered-page user review.",
+        "PR #186 is open and mergeable. Do not merge until human rendered-page review and explicit user publication approval."
       ],
       "automatedAudit": "DONE"
     },
