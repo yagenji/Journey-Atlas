@@ -608,12 +608,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "VISUAL DECISION: existing Venice Grand Canal / Santa Maria della Salute Hero and all eight scene selections are KEEP candidates. Current main image audit fully decodes all published raster payloads; Italy has no audit finding, so current Hero/Scenes clear the active minimum dimension/aspect rules. Exact pixel dimensions should be recorded during Phase 3 asset verification rather than inferred from GitHub file metadata.",
@@ -656,7 +656,13 @@
         "VISUAL APPROVAL FOOD03 2026-09-05: Risotto alla Milanese latest standalone generation APPROVED and locked. Do not regenerate unless explicitly requested. Approved local candidate: サフラン香るクリーミーリゾット.png. Target production path after normalization/storage: assets/images/italy/approved/food-risotto-alla-milanese.webp.",
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-05: FOOD01 Pizza Napoletana / FOOD02 Lasagne alla Bolognese / FOOD03 Risotto alla Milanese / FOOD04 Cannoli Siciliani are all user APPROVED. Visual Complete Gate still awaits file normalization to 1200×800 / 3:2 WebP, repository storage, complete decode, dimension verification, and approved-folder hygiene.",
         "VISUAL APPROVAL FOOD02 2026-09-05: Lasagne alla Bolognese standalone image APPROVED and locked. Target production path: assets/images/italy/approved/food-lasagne-alla-bolognese.webp.",
-        "TASTE ASSET PACKAGE READY 2026-09-05: four user-approved Taste images normalized to 1200×800 / 3:2 WebP and full-decode verified. Final filenames: food-pizza-napoletana.webp / food-lasagne-alla-bolognese.webp / food-risotto-alla-milanese.webp / food-cannoli-siciliani.webp. Repository storage is still pending; Visual Complete Gate remains blocked until the files exist in assets/images/italy/approved/ and folder hygiene is checked."
+        "TASTE ASSET PACKAGE READY 2026-09-05: four user-approved Taste images normalized to 1200×800 / 3:2 WebP and full-decode verified. Final filenames: food-pizza-napoletana.webp / food-lasagne-alla-bolognese.webp / food-risotto-alla-milanese.webp / food-cannoli-siciliani.webp. Repository storage is still pending; Visual Complete Gate remains blocked until the files exist in assets/images/italy/approved/ and folder hygiene is checked.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-05: all four approved Taste WebP files are now in assets/images/italy/approved/. The initially uploaded root-level files were moved without re-encoding by reusing the exact Git blob SHAs.",
+        "BINARY IDENTITY VERIFIED 2026-09-05: GitHub blob SHAs exactly match the locally generated Production masters that were full-decode verified at 1200×800 / 3:2 WebP: pizza e5c32621ec01bbe31de4adc6d08deafd740ef85c; lasagne 6b839b264a76bf80e2603d8c3a8bb67b85d5fcf1; risotto 8f1474d0e0b3465769621e28bacf1015db823322; cannoli d68afb7756094814a2d20b1394f205c519937183.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-05: Italy approved folder contains exactly 13 production assets (Hero + 8 scenes + 4 Taste). No draft, temporary, placeholder, rejected, staging, .b64, .parts.json, old or duplicate root-level Taste assets remain.",
+        "VISUAL COMPLETE GATE PASS 2026-09-05: Hero + S01–S08 remain KEEP; FOOD01–04 are user APPROVED, repository-stored, 1200×800 / 3:2 WebP, full-decode verified and path-correct.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-05: Country JSON now includes Taste 4, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Encounters, diversified Beyond the Scenery, corrected Hero/SEO copy and refreshed source metadata.",
+        "hardImageGate enabled only after Taste approval, binary verification, repository storage and approved-folder hygiene passed. Automated QA and Browser Visual QA remain pending."
       ],
       "automatedAudit": "DONE"
     },
