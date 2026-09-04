@@ -406,3 +406,43 @@ All four Liechtenstein Taste images were user APPROVED as one review batch.
 Do not regenerate any of these four images without explicit user instruction.
 
 Repository storage / final WebP normalization / complete decode / dimension verification remain pending. Visual Complete Gate must remain blocked until those checks pass.
+
+
+## Asset handoff / repository verification — 2026-09-04
+
+User-uploaded Taste assets were verified in `assets/images/liechtenstein/approved/`.
+
+Final assets:
+
+- `food-kaesknoepfle.webp` — 1200×800 / WebP / full local decode PASS / Git blob `e8cc7a31b60dfdb1fceacefe3a16393c915b8761`
+- `food-ribel.webp` — 1200×800 / WebP / full local decode PASS / Git blob `8b0ec3ba36d6f04d37ccf7d99b7aa29eb82a0d30`
+- `food-gerstensuppe.webp` — 1200×800 / WebP / full local decode PASS / Git blob `39a9b23f55af21bc3aff27e77e52add03b8ff346`
+- `food-fasnachtskueachle.webp` — 1200×800 / WebP / full local decode PASS / Git blob `e00a7c147e8b0083c60ea8b0119e250a34024722`
+
+The GitHub repository blob SHAs exactly match the locally approved 1200×800 masters.
+
+Approved-folder hygiene:
+
+- Hero: 1
+- Scenes: 8
+- Taste: 4
+- Total production assets: 13
+- draft / temporary / placeholder / .b64 / parts / rejected assets: 0
+
+## Visual Complete Gate — PASS
+
+- Hero: KEEP / approved existing asset
+- Scene 01–08: KEEP / approved existing assets
+- Map: KEEP
+- FOOD01 Käsknöpfle: APPROVED / stored / verified
+- FOOD02 Ribel: APPROVED / stored / verified
+- FOOD03 Gerstensuppe: APPROVED / stored / verified
+- FOOD04 Fasnachtsküachle: APPROVED / stored / verified
+- Taste final geometry: 1200×800 / exact 3:2 / WebP
+- Complete local decode: PASS 4/4
+- Repository Git blob match: PASS 4/4
+- Approved-folder hygiene: PASS
+
+Visual production is complete. Country JSON implementation is now unblocked.
+
+`hardImageGate` remains false until the approved Taste paths are connected to the Country JSON and renewed-country validation can enforce them.
