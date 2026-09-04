@@ -293,7 +293,7 @@
       "categoryEn": "HEIDI",
       "categoryJa": "文学",
       "title": "『ハイジ』が世界に広げたスイス山地のイメージ",
-      "text": "ヨハンナ・シュピリの『『ハイジ』』は1880年に最初の巻が刊行され、各国語へ翻訳された。グラウビュンデン周辺には、物語が描いた山の暮らしをたどる場所も残る。",
+      "text": "ヨハンナ・シュピリの『ハイジ』は1880年に最初の巻が刊行され、各国語へ翻訳された。グラウビュンデン周辺には、物語が描いた山の暮らしをたどる場所も残る。",
       "icon": "culture",
       "sourceKey": "heidi",
       "topicKey": "heidi-global-literary-icon"
@@ -322,8 +322,9 @@
     }
   ],
   "transport": {
-    "title": "RAIL / POSTBUS / BOAT / MOUNTAIN RAILWAY",
-    "text": "都市間鉄道を骨格に、山岳鉄道、ロープウェイ、ポストバス、湖船を組み合わせると地形の違いを追いやすい。高所の交通は季節運行や点検、天候による変更があるため、当日の運行情報を確認する。"
+    "title": "鉄道・山岳鉄道・ポストバス・湖船",
+    "text": "都市間鉄道を骨格に、山間の谷や村へはポストバス、湖では船、高所へは山岳鉄道やロープウェイを組み合わせる。主要な観光地の多くは公共交通でつなぎやすく、旅程は乗り換え時間も含めて組む。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -362,7 +363,7 @@
     },
     {
       "label": "主な宗教",
-      "value": "キリスト教（カトリック・改革派）・無宗教など"
+      "value": "無宗教、キリスト教（カトリック・改革派）など"
     },
     {
       "label": "通貨",
@@ -432,19 +433,23 @@
       "reason": "東へアルプスをつなぎ、鉄道、山村、ドイツ語圏の都市文化を比較したいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2025",
     "area": "2023",
-    "map": "2026-01-01"
+    "map": "2026-01-01",
+    "religion": "2024",
+    "taste": "2026-09-04",
+    "transport": "2026-09-04",
+    "travelScale": "2026-09-04"
   },
   "sources": {
     "map": "Federal Office of Topography swisstopo, swissBOUNDARIES3D 2026, TLM_LANDESGEBIET (temporal status 2026-01-01): official national territory polygon including national boundaries and lake shares. Transformed to WGS84 and simplified to ≤0.5 px display deviation on the 1200×760 JOURNEY ATLAS canvas; existing GSHHS lake overlays retained.",
     "population": "Swiss Federal Statistical Office (FSO), permanent resident population at end of 2025: 9,127,125.",
     "area": "FDFA / About Switzerland, Geography: Switzerland surface area 41,285 km²; comparison uses Japan area approximately 377,975 km².",
     "language": "FDFA / About Switzerland, Multilingualism: national languages German, French, Italian and Romansh.",
-    "religion": "FDFA / About Switzerland, Religion: historically predominantly Christian, including Roman Catholic and Reformed traditions, with a growing unaffiliated population.",
+    "religion": "Swiss Federal Statistical Office (FSO), Religion 2024: no religious affiliation 37%, Roman Catholic 30%, Protestant Reformed 19%, other religious affiliations 14%.",
     "currency": "Swiss National Bank / Swiss Confederation: Swiss franc (CHF).",
     "gotthard": "SBB: Gotthard Base Tunnel opened in 2016 and is approximately 57 km long.",
     "directDemocracy": "FDFA / About Switzerland, Direct Democracy: popular initiative requires 100,000 signatures in 18 months; optional referendum 50,000 in 100 days.",
@@ -462,7 +467,74 @@
     "swissTravelPass": "SBB: Swiss Travel Pass covers train, bus and boat travel plus local public transport in more than 90 towns and cities, subject to product conditions.",
     "hikingSignals": "Schweizer Wanderwege: yellow = hiking trail, white-red-white = mountain hiking trail, white-blue-white = alpine hiking trail.",
     "mountainTransport": "Individual Swiss mountain railway and cableway operators publish seasonal timetables and live operating information; check operator status for the day of travel.",
-    "capital": "FDFA / About Switzerland, Political system (29 April 2026): Switzerland has no official de jure capital; Bern is the federal city and de facto capital."
+    "capital": "FDFA / About Switzerland, Political system (29 April 2026): Switzerland has no official de jure capital; Bern is the federal city and de facto capital.",
+    "taste": "Switzerland Tourism, Swiss cuisine / cheese fondue / Rösti / Engadiner Nusstorte: current official tourism guidance on representative Swiss and regional dishes; Ticino Turismo, Risotto ticinese, for the Ticino risotto tradition.",
+    "transport": "SBB, visitor guidance / Swiss Travel Pass: Switzerland-wide travel by train, bus/PostBus and boat, with panoramic trains and many mountain transport connections depending on product and route.",
+    "travelScale": "SBB visitor guidance and nationwide public-transport network information, checked 2026-09-04; route examples are JOURNEY ATLAS editorial itineraries based on practical rail/public-transport connections."
   },
-  "contentQaVersion": 1
+  "contentQaVersion": 1,
+  "taste": {
+    "kicker": "TASTE OF SWITZERLAND",
+    "title": "スイスで食べたいもの",
+    "intro": "スイスを訪れたら、地域の違いと一緒に味わいたい代表的な4つ。",
+    "items": [
+      {
+        "id": "cheese-fondue",
+        "name": "チーズフォンデュ",
+        "nameLocal": "Fondue au fromage",
+        "text": "複数のチーズを白ワインとともに溶かし、パンを絡めて食べる料理。鍋を囲んで食べるスタイルまで含めて、スイスのチーズ文化を身近に感じられる。",
+        "image": "assets/images/switzerland/approved/food-cheese-fondue.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "roesti",
+        "name": "レシュティ",
+        "nameLocal": "Rösti",
+        "text": "細切りのじゃがいもを円形に焼き、表面を香ばしく仕上げる。もとはドイツ語圏で親しまれ、今では主菜にも付け合わせにもなるスイスの定番料理。",
+        "image": "assets/images/switzerland/approved/food-roesti.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "risotto-ticinese",
+        "name": "ティチーノ風リゾット",
+        "nameLocal": "Risotto ticinese",
+        "text": "隣接するイタリアから伝わり、ティチーノの食卓に定着した米料理。地域の食材と結びついて多様な形に広がり、グロットやレストランでも出会える。",
+        "image": "assets/images/switzerland/approved/food-risotto-ticinese.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "engadiner-nusstorte",
+        "name": "エンガディナー・ヌストルテ",
+        "nameLocal": "Engadiner Nusstorte",
+        "text": "甘いショートクラスト生地に、キャラメリゼした胡桃のフィリングを詰めるエンガディンの菓子。山地の食文化を伝える代表的な焼き菓子として知られる。",
+        "image": "assets/images/switzerland/approved/food-engadiner-nusstorte.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ベルナーオーバーラントを一つの拠点から見る",
+        "text": "インターラーケン周辺を拠点に、ラウターブルンネンやグリンデルワルトへ日帰りで動くと、高山景観を無理なくまとめやすい。例：インターラーケン＋ラウターブルンネン＋グリンデルワルト。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "旧市街・アルプス・湖岸を鉄道でつなぐ",
+        "text": "ベルンの旧市街からベルナーオーバーラント、レマン湖岸へ鉄道でつなぐと、都市・アルプス・フランス語圏の違いが見えてくる。例：ベルン → インターラーケン／ラウターブルンネン → モントルー／ラヴォー。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "言語圏を越えて国土の幅を見る",
+        "text": "高山地域にティチーノとグラウビュンデンを加えると、地形だけでなく言葉や街並みの切り替わりまで追いやすい。例：ベルン → ラウターブルンネン → ツェルマット → ルガーノ → サン・モリッツ。",
+        "icon": "compass"
+      }
+    ]
+  }
 }
