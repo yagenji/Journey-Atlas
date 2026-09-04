@@ -703,7 +703,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
@@ -735,7 +735,11 @@
         "VISUAL APPROVAL FOOD03 2026-09-04: Gerstensuppe APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/liechtenstein/approved/food-gerstensuppe.webp.",
         "VISUAL APPROVAL FOOD04 2026-09-04: Fasnachtsküachle APPROVED and locked. Do not regenerate unless explicitly requested. Target production path: assets/images/liechtenstein/approved/food-fasnachtskueachle.webp.",
         "TASTE VISUAL APPROVAL COMPLETE 2026-09-04: FOOD01–04 are all user APPROVED. Repository storage, final WebP normalization, full decode, 1200×800 verification and approved-folder hygiene remain pending; hardImageGate remains false until those checks pass.",
-        "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized to 1200×800 / exact 3:2 WebP and fully decoded successfully. Final filenames: food-kaesknoepfle.webp / food-ribel.webp / food-gerstensuppe.webp / food-fasnachtskueachle.webp. Repository storage remains pending; Visual Complete Gate must not pass until the files exist in assets/images/liechtenstein/approved/ and approved-folder hygiene is rechecked."
+        "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized to 1200×800 / exact 3:2 WebP and fully decoded successfully. Final filenames: food-kaesknoepfle.webp / food-ribel.webp / food-gerstensuppe.webp / food-fasnachtskueachle.webp. Repository storage remains pending; Visual Complete Gate must not pass until the files exist in assets/images/liechtenstein/approved/ and approved-folder hygiene is rechecked.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-04: all four user-approved Taste WebP files exist in assets/images/liechtenstein/approved/ and their Git blob SHAs exactly match the locally full-decoded 1200×800 masters.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-04: Liechtenstein approved folder contains exactly 13 production assets (Hero + 8 scenes + 4 Taste); no draft, temporary, placeholder, .b64, parts, rejected or duplicate files found.",
+        "VISUAL COMPLETE GATE PASS 2026-09-04: Hero + 8 scenes remain KEEP; FOOD01–04 are user APPROVED, repository-stored, 1200×800 / exact 3:2 WebP, full-decode verified locally and Git blob matched. Country JSON implementation is now unblocked.",
+        "HARD IMAGE GATE STATE: remains false until Taste APPROVED paths are connected to Country JSON and renewed-country validation can enforce the final references."
       ],
       "automatedAudit": "DONE"
     },
