@@ -847,7 +847,14 @@
         "PHASE 2 THEME LOCK: Monaco remains 街を歩く only in data/theme-taxonomy.json. Taste addition alone does not justify 食をめぐる; Mediterranean presence alone does not justify 海の世界へ.",
         "PHASE 2 SOURCE LOCK 2026-09-04: current official/authoritative sources rechecked for Taste, TER, CAM, public lifts, regional access and Nice–Monaco helicopter service. Current 2026 helicopter operators are confirmed by Journal de Monaco Arrêté Ministériel n° 2026-457.",
         "CURRENT TEMPORARY CONDITION 2026: VisitMonaco states La Condamine market is temporarily closed for renovation from January 2026 with reopening scheduled in early 2027. Renewal copy must not imply normal market-hall operation during this period; do not hard-code the closure into evergreen Travel Notes without an expiry/update mechanism.",
-        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate remains false; no planned Taste path may be connected to Country JSON before user approval and repository technical verification."
+        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate remains false; no planned Taste path may be connected to Country JSON before user approval and repository technical verification.",
+        "PHASE 3 IMAGE DECISION 2026-09-04: Hero and S01–S08 are KEEP. No NORMALIZE and no REGENERATE are planned for retained landscape assets.",
+        "PHASE 3 TECHNICAL EVIDENCE: Validate country data run 33844616438 on country/monaco-renewal passed the all-published image audit. The validator fully decodes raster payloads with Pillow, verifies positive dimensions, enforces scene 3:2/minimum size and hero minimum/landscape geometry; result: 28 published countries / 320 raster payloads fully decoded / zero findings. Monaco is included in that audit.",
+        "PHASE 3 LANDSCAPE STATE: Hero KEEP; S01 KEEP; S02 KEEP; S03 KEEP; S04 KEEP; S05 KEEP; S06 KEEP; S07 KEEP; S08 KEEP. Existing approved PNG format/size alone is not a reason to rewrite accepted assets.",
+        "PHASE 3 MAP DECISION: map-atlas-v1.svg remains KEEP. Canvas 1200×760 and source geometry remain valid; Browser label/crop/readability review stays for later Visual QA.",
+        "PHASE 3 TASTE VISUAL NEXT: FOOD01 Barbagiuàn / FOOD02 Stocafi / FOOD03 Socca / FOOD04 Fougasse monégasque require NEW INDEPENDENT IMAGE generation. All remain NOT STARTED. One user start instruction will run four independent generations sequentially, followed by one batch review point.",
+        "PHASE 3 GATE STATUS: visual remains PENDING and hardImageGate remains false. Visual Complete Gate cannot pass until Taste 4 are user APPROVED, finalized as 1200×800 3:2 WebP, repository-stored, fully decoded/dimension-checked and approved-folder hygiene passes.",
+        "BROWSER VISUAL QA DEFERRED BY DESIGN: current CI proves binary decode/dimension compliance, but Hero crop, scene visual identity, typography overlap and responsive rendering are not marked PASS until later browser-level review."
       ],
       "automatedAudit": "DONE"
     },
