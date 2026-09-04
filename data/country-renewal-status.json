@@ -242,7 +242,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -278,7 +278,8 @@
         "PHASE 5 REVIEW URL: https://yagenji.github.io/Journey-Atlas/countries/belgium/ . This is the renewal-branch preview; production https://atlas.yagenji.com/countries/belgium/ remains LIVE_OLD until the renewal is approved and merged.",
         "PHASE 5 QA STATE: automation PASS and Preview deployment PASS. qa remains PENDING because human actual-browser Desktop / Tablet / Mobile visual and interaction review is still required by the renewal protocol; CI success alone is not treated as completion.",
         "PHASE 5 PREVIEW OVERWRITE FIX 2026-09-04: the shared GitHub Pages preview had been overwritten after Belgium by Germany and Switzerland country preview deployments, so the Belgium URL showed non-Belgium-branch content. Belgium preview was refreshed from country/belgium-renewal; run 33837377470 completed SUCCESS at commit 854cdb240bf4702103e698985d245c015095c1e6 and is the latest Pages deployment at verification time.",
-        "PHASE 5 USER REVIEW PASS 2026-09-04: user confirmed the refreshed Belgium preview and authorized publication if QA has no issues. This satisfies the required human visual review checkpoint after the successful preview deployment. qa set to PASS; production remains LIVE_OLD until main deployment and production verification succeed."
+        "PHASE 5 USER REVIEW PASS 2026-09-04: user confirmed the refreshed Belgium preview and authorized publication if QA has no issues. This satisfies the required human visual review checkpoint after the successful preview deployment. qa set to PASS; production remains LIVE_OLD until main deployment and production verification succeed.",
+        "PUBLISH COMPLETE 2026-09-04: Belgium Reference v3 renewal merged to main in commit ff7c18d18542cc04534545e1b818a4bfde5d1d94. Its own production verification was cancelled by the immediately following Germany main push, but Germany descendant commit 21fbe31f5571b8d4f520ec0e18c2cb9756370f72 includes the Belgium merge and Verify JOURNEY ATLAS Cloudflare Production run 33837812846 completed SUCCESS, confirming the descendant production package is live. Belgium production set to LIVE_CURRENT."
       ],
       "automatedAudit": "DONE"
     },
