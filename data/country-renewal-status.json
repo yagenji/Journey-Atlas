@@ -814,8 +814,8 @@
       "nameJa": "モナコ",
       "wave": 5,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -823,7 +823,21 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD while renewal work stays on country/monaco-renewal.",
+        "LANDSCAPE AUDIT: Hero location Port Hercule from Le Rocher and all 8 scene selections remain KEEP candidates. Existing approved folder contains exactly 9 landscape PNG assets (Hero + 8 scenes) with distinct Git blob SHAs; no landscape regeneration is justified by current audit evidence.",
+        "LANDSCAPE TECHNICAL LIMIT: GitHub connector confirms file presence, format, size and distinct SHA but does not expose raster dimensions/full decode for these repository PNGs. Dimensions/decode and Browser Visual QA remain pending; do not claim technical visual PASS yet.",
+        "MAP AUDIT: existing map-atlas-v1.svg is KEEP candidate; 1200×760 viewBox, OSM relation 36990 geometry, current Mareterra-inclusive land area provenance, and no white/black ellipse artifact found in source markup.",
+        "CONTENT STRUCTURE AUDIT: visible Country Profile is already 6 items because shared app.js filters the internal 地域 fact; Signature Facts 3 / Encounters 8 / Beyond 6 / Trivia 5 / Seasons 4 / FOR WHOM 3 / Travel Notes 3 / Related 3 are structurally aligned.",
+        "CURRENT-STANDARD GAPS: Taste is missing; Travel Scale is missing; Transport title is English-only and lacks explicit icon road. These require PHASE 2 renewal.",
+        "TOPIC COLLISION RISK: Beyond currently includes Barbajuan. If Barbajuan is selected for Taste, Beyond must replace that card rather than repeat the same food topic.",
+        "SOURCE AUDIT: sourcesVerifiedAt is 2026-09-01. Official 2025 population 38,857 is current and was published by Journal de Monaco in April 2026; PHASE 2 must refresh provenance for newly added Taste / Travel Scale / current transport and recheck time-sensitive facts before implementation.",
+        "THEME AUDIT: Monaco is currently assigned only to 街を歩く (city) in data/theme-taxonomy.json. Keep unless PHASE 2 content shows another theme is a strong destination-selection reason; do not duplicate assignments in Country JSON.",
+        "JOURNEY LENS: registry has journeyLensPublished:false for Monaco, so the shared JOURNEY LENS bridge should remain hidden; this is not a missing-section defect.",
+        "BRANCH FRESHNESS CHECK 1 PASS 2026-09-04: country/monaco-renewal was created directly from latest main 7f056f042b4efd29e37023b66e738e6dd1f2c882.",
+        "COMMON CI PRE-AUDIT 2026-09-04: latest main commit 7f056f042b4efd29e37023b66e738e6dd1f2c882 has successful Validate country data, GitHub Pages preview deploy, and Cloudflare production verification runs; no current shared CI blocker detected.",
+        "VISUAL COMPLETE GATE remains BLOCKED. hardImageGate stays false until Taste 4 images are user APPROVED, stored as final assets, fully decoded/dimension-checked, approved-folder hygiene passes, and retained landscape assets clear required technical/browser visual QA."
+      ],
       "automatedAudit": "DONE"
     },
     {
