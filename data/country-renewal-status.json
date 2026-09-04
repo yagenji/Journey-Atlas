@@ -276,7 +276,8 @@
         "PHASE 4 NEXT: PHASE 5 browser/responsive/accessibility QA is still required. production remains LIVE_OLD until the renewed branch is review-deployed and visually inspected.",
         "PHASE 5 PREVIEW DEPLOY PASS 2026-09-04: shared Deploy Country Preview workflow triggered via .github/preview-trigger/belgium.txt. Run 33836571365 completed successfully from branch commit 57a142e2777815e210bc9b5ec363abeb9793f717 after hard image gate, production package build, packaged-output validation, artifact upload and GitHub Pages deployment.",
         "PHASE 5 REVIEW URL: https://yagenji.github.io/Journey-Atlas/countries/belgium/ . This is the renewal-branch preview; production https://atlas.yagenji.com/countries/belgium/ remains LIVE_OLD until the renewal is approved and merged.",
-        "PHASE 5 QA STATE: automation PASS and Preview deployment PASS. qa remains PENDING because human actual-browser Desktop / Tablet / Mobile visual and interaction review is still required by the renewal protocol; CI success alone is not treated as completion."
+        "PHASE 5 QA STATE: automation PASS and Preview deployment PASS. qa remains PENDING because human actual-browser Desktop / Tablet / Mobile visual and interaction review is still required by the renewal protocol; CI success alone is not treated as completion.",
+        "PHASE 5 PREVIEW OVERWRITE FIX 2026-09-04: the shared GitHub Pages preview had been overwritten after Belgium by Germany and Switzerland country preview deployments, so the Belgium URL showed non-Belgium-branch content. Belgium preview was refreshed from country/belgium-renewal; run 33837377470 completed SUCCESS at commit 854cdb240bf4702103e698985d245c015095c1e6 and is the latest Pages deployment at verification time."
       ],
       "automatedAudit": "DONE"
     },
