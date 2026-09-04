@@ -406,7 +406,7 @@
       "published": true,
       "auditState": "DONE",
       "renewalClass": "B",
-      "content": "PENDING",
+      "content": "DONE",
       "visual": "PENDING",
       "map": "PENDING",
       "sources": "PENDING",
@@ -421,7 +421,14 @@
         "CONTENT AUDIT: Taste and Travel Scale are absent and must be added. Transport title is legacy English-only and lacks explicit road icon. FOR WHOM already has exactly 3 items and visible Profile remains 6 because shared renderer hides Region.",
         "CONTENT DIVERSITY AUDIT: Signature Facts currently contain two food-topic facts; Encounters are too close to a scene list; Beyond ROAD overlaps Transport; first Travel Note would overlap the forthcoming Travel Scale. These require content renewal without changing the page structure.",
         "SOURCE AUDIT: sourcesVerifiedAt is 2026-08-31. 2026 population, Paris zinc-roof, Alsace Wine Route, baguette-volume and Dune du Pilat movement claims remain supported by current official/high-trust sources; new/rewritten sections will require source additions and a refreshed verification date.",
-        "THEME AUDIT: taxonomy Single Source of Truth currently assigns city / history / food to France; keep unless Content Renewal finds a stronger reason to change."
+        "THEME AUDIT: taxonomy Single Source of Truth currently assigns city / history / food to France; keep unless Content Renewal finds a stronger reason to change.",
+        "PHASE 2 CONTENT LOCK 2026-09-04: Reference v3 content specification committed at docs/renewal-content/france.md. Hero lead/Profile/Trivia/Seasons/FOR WHOM/Related/Themes remain KEEP.",
+        "SIGNATURE FACTS LOCK: baguette / statutory 35-hour workweek / Paris zinc roofs. Alsace Wine Route removed from Signature Facts to avoid two food-topic facts.",
+        "ENCOUNTERS LOCK: 8 concise tags mixed across architecture, everyday life and landscapes rather than mirroring the eight scene names.",
+        "BEYOND LOCK: current FOOD and ROAD cards are replaced in content design by regional-languages and cafe/social-life cards, removing duplication with Taste and Transport.",
+        "TASTE CONTENT LOCK: Croissant / Bouillabaisse / Galette complète / Quiche lorraine. FOOD01-04 remain NOT STARTED; no unapproved image paths are connected to Country JSON.",
+        "TRAVEL PLANNING LOCK: Spain-format 3〜4日 / 5〜7日 / 8日以上 with city / map / compass; Transport title locked to 高速鉄道・在来線・車・フェリー with road icon; Travel Note 1 replaced by TGV long-distance booking guidance.",
+        "SOURCE LOCK VERIFIED 2026-09-04: INSEE population, French Ministry of Labour/Service-Public 35-hour workweek, Ministry of Culture/Constitution regional languages, France.fr Taste/cafe references, SNCF planning, Parc national des Calanques access, Visit Alsace Wine Route and Dune du Pilat references identified for implementation."
       ],
       "automatedAudit": "DONE"
     },
