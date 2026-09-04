@@ -927,7 +927,10 @@
         "VISUAL APPROVAL FOOD02 2026-09-04: レシュティ / Rösti APPROVED by user and locked. Do not regenerate unless explicitly requested. Target storage: assets/images/switzerland/approved/food-roesti.webp.",
         "VISUAL APPROVAL FOOD03 2026-09-04: ティチーノ風リゾット / Risotto alla ticinese APPROVED by user and locked. Do not regenerate unless explicitly requested. Target storage: assets/images/switzerland/approved/food-risotto-ticinese.webp.",
         "VISUAL APPROVAL FOOD04 2026-09-04: エンガディナー・ヌストルテ / Engadiner Nusstorte APPROVED by user and locked. Do not regenerate unless explicitly requested. Target storage: assets/images/switzerland/approved/food-engadiner-nusstorte.webp.",
-        "TASTE VISUAL APPROVAL COMPLETE 2026-09-04: FOOD01–FOOD04 are all user APPROVED and locked. Visual Complete Gate still requires final WebP preparation, repository storage, 1200×800 / 3:2 verification, complete decode, approved-folder hygiene, and Country JSON connection."
+        "TASTE VISUAL APPROVAL COMPLETE 2026-09-04: FOOD01–FOOD04 are all user APPROVED and locked. Visual Complete Gate still requires final WebP preparation, repository storage, 1200×800 / 3:2 verification, complete decode, approved-folder hygiene, and Country JSON connection.",
+        "TASTE ASSET PACKAGE READY 2026-09-04: all four user-approved Taste images were normalized from 1536×1024 PNG masters to final 1200×800 / 3:2 RGB WebP and fully decoded successfully. Final filenames: food-cheese-fondue.webp / food-roesti.webp / food-risotto-ticinese.webp / food-engadiner-nusstorte.webp.",
+        "TASTE TECHNICAL QA 2026-09-04: complete decode PASS for all four final WebP files; exact dimensions 1200×800 for each; four distinct binary payloads and visually distinct dish identities confirmed. Prepared package: switzerland_taste_approved_1200x800.zip.",
+        "VISUAL COMPLETE GATE CHECK 2026-09-04: BLOCKED only on repository binary storage and approved-folder hygiene verification. Country JSON remains intentionally unconnected and hardImageGate remains false until the four approved WebP files exist in assets/images/switzerland/approved/ and repository verification passes."
       ],
       "automatedAudit": "DONE"
     },
