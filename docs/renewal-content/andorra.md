@@ -338,3 +338,187 @@ Still pending:
 - browser visual QA
 - final user approval
 - production publication
+
+
+## PHASE 3 — Image Decision
+
+Date: 2026-09-04
+
+### Hero
+
+**KEEP**
+
+Current asset:
+
+`assets/images/andorra/approved/hero-san-joan-de-caselles.png`
+
+Decision basis:
+
+- Current Hero concept remains Sant Joan de Caselles / Canillo.
+- The asset is already in the approved production folder and was part of the published Andorra page.
+- Latest-main all-published image audit fully decoded all published raster payloads and reported zero findings.
+- The current validator requires Hero images to be at least 1200×760 and landscape; Andorra passes the current audit.
+- PNG format itself is supported and is not a reason to normalize or regenerate.
+
+### Scene 01 — Madriu-Perafita-Claror Valley
+
+**KEEP**
+
+`assets/images/andorra/approved/madriu-perafita-claror-valley.png`
+
+### Scene 02 — Tristaina Lakes
+
+**KEEP**
+
+`assets/images/andorra/approved/tristaina-lakes.png`
+
+### Scene 03 — Ordino Old Town
+
+**KEEP**
+
+`assets/images/andorra/approved/ordino-old-town.png`
+
+### Scene 04 — Casa de la Vall
+
+**KEEP**
+
+`assets/images/andorra/approved/casa-de-la-vall.png`
+
+### Scene 05 — Caldea / Escaldes-Engordany
+
+**KEEP**
+
+`assets/images/andorra/approved/caldea-escaldes-engordany.png`
+
+### Scene 06 — Grau Roig / Grandvalira
+
+**KEEP**
+
+`assets/images/andorra/approved/grau-roig-grandvalira.png`
+
+### Scene 07 — Comapedrosa Valley
+
+**KEEP**
+
+`assets/images/andorra/approved/comapedrosa-valley.png`
+
+### Scene 08 — Coll de la Gallina
+
+**KEEP**
+
+`assets/images/andorra/approved/coll-de-la-gallina.png`
+
+### Landscape selection rationale
+
+The current eight scenes already cover distinct Andorran roles without requiring a selection change:
+
+- cultural landscape / long-term mountain land use
+- glacial lakes
+- stone settlement
+- political / civic history
+- modern thermal urban architecture
+- winter ski plateau
+- high-alpine hiking terrain
+- mountain-road / cycling geography
+
+There is no current selection-quality reason to replace a scene merely for geographic equalisation or because another landscape type is visually different.
+
+### Technical image QA evidence
+
+Latest current-main validation run:
+
+`33853388412`
+
+Result:
+
+- Validate country data: PASS
+- All-published image audit: PASS
+- 28 published Country Pages
+- 324 raster payloads fully decoded
+- zero image findings
+
+Current validator requirements relevant to Andorra:
+
+- Hero: minimum 1200×760 and landscape orientation
+- Scene: minimum 1200×800
+- Scene: exact 3:2 aspect ratio
+- raster complete verify + load
+- approved-folder reference hygiene
+- map SVG canvas 1200×760
+
+The Andorra renewal branch has not changed any Hero / Scene asset or Country image reference since that audit, so the technical result applies directly to the retained landscape set.
+
+### Approved-folder hygiene — landscape state
+
+Current approved folder contains exactly the nine existing landscape production rasters:
+
+- 1 Hero
+- 8 Scenes
+- no Taste images yet
+- no draft / temporary / test / placeholder / rejected / parts files
+
+Taste assets will be added later only after user approval.
+
+### NORMALIZE decision
+
+**NONE**
+
+No retained Hero or Scene needs resize, crop, file-format conversion or recompression to meet the current validator. Do not normalize merely because the existing approved images are PNG.
+
+### REGENERATE decision
+
+**NONE for Hero / Scenes**
+
+No current technical or selection reason requires landscape regeneration.
+
+### Map
+
+**KEEP**
+
+`assets/images/andorra/map-atlas-v1.svg`
+
+Structural checks:
+
+- 1200×760 canvas: PASS
+- role=img: PASS
+- aria-label: PASS
+- ellipse: none
+- radialGradient: none
+- current scene / Hero coordinates remain unchanged
+
+Browser label readability is still part of later visual QA; that does not block the current structural KEEP decision.
+
+### Taste visual decision
+
+Taste is the only new visual-production requirement.
+
+1. FOOD01 — Escudella — **ADD / NEXT**
+2. FOOD02 — Trinxat amb rosta — **ADD / NOT STARTED**
+3. FOOD03 — Canelons a l’andorrana — **ADD / NOT STARTED**
+4. FOOD04 — Crema a l’andorrana — **ADD / NOT STARTED**
+
+Each image must be generated independently under the Taste rule:
+
+- one generation = one dish = one image
+- 1200×800 final target
+- exact 3:2
+- WebP
+- Spain Taste visual language
+- no collage / no multi-panel / no text
+- do not edit the previous food image into the next one
+
+## PHASE 3 gate
+
+Image Decision: **DONE / LOCKED**
+
+- Hero: KEEP
+- Scene 01–08: KEEP
+- Map: KEEP
+- NORMALIZE: 0
+- Landscape REGENERATE: 0
+- Taste: 4 new independent images required
+- FOOD01 Escudella: NEXT
+- FOOD02–04: NOT STARTED
+- `hardImageGate`: remains **false**
+
+Next phase: **VISUAL PRODUCTION — FOOD01 Escudella**
