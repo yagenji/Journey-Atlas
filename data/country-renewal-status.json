@@ -625,8 +625,8 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
-      "map": "PENDING",
+      "visual": "DONE",
+      "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
@@ -642,7 +642,13 @@
         "PHASE 2 TRAVEL SCALE LOCK: Spain three-level format — 3〜4日 Prishtina/Gračanica/Prizren; 5〜7日 add Gjakova/Peja/Rugova; 8日以上 add Novo Brdo and Brod/Sharri.",
         "PHASE 2 TRANSPORT LOCK: title バス・車・鉄道 with icon road. Trainkos 2026 confirms Prishtinë–Pejë and Prishtinë–Shkup passenger corridors; mountain/nature destinations still require road transport combinations.",
         "PHASE 2 TRAVEL NOTES LOCK: northern Serbia-border safety check / mountain-road time buffer / active religious-site etiquette. Japan MOFA current Kosovo hazard page still shows Level 2 for specified northern municipalities.",
-        "SOURCE LOCK 2026-09-04: current KAS 2025 population 1,582,322, Japan MOFA Kosovo safety page, European Commission euro status, Trainkos 2026 timetable, Kosovo Tourism Strategy / Multi-Modal Transport Strategy, Kosova.Travel, Visit Prizren and Peja municipal sources were rechecked. Content design and source work are DONE; Visual/Map remain pending PHASE 3."
+        "SOURCE LOCK 2026-09-04: current KAS 2025 population 1,582,322, Japan MOFA Kosovo safety page, European Commission euro status, Trainkos 2026 timetable, Kosovo Tourism Strategy / Multi-Modal Transport Strategy, Kosova.Travel, Visit Prizren and Peja municipal sources were rechecked. Content design and source work are DONE; Visual/Map remain pending PHASE 3.",
+        "PHASE 3 LANDSCAPE IMAGE DECISION 2026-09-04: Hero Prizren and all eight existing Scene assets are KEEP. Map is KEEP. NORMALIZE 0; REGENERATE 0.",
+        "APPROVED VISUAL HISTORY CHECK: current Kosovo Hero, Scene 01–08 and map Git blob SHAs exactly match the APPROVED review-set commit d6d3d105675445dff26c21cce9e658012bec113b. No retained visual has changed since user review.",
+        "TECHNICAL IMAGE QA BASIS: current scripts/validate_images.py requires full raster verify+load, Hero minimum 1200×760 landscape, Scene minimum 1200×800 and 3:2 ratio, map 1200×760, and approved-folder hygiene. Current-main all-published audit reports 28 published Country Pages, 320 raster payloads fully decoded and zero image findings; Kosovo is included because it is atlasPublished.",
+        "PNG FORMAT DECISION: current Kosovo Hero/Scene PNG files remain KEEP because the active validator supports PNG and technical gates pass. Format-only WebP conversion is not justified.",
+        "PHASE 3 TASTE DECISION: FOOD01 Flija / FOOD02 Qebapa / FOOD03 Tavë Prizreni / FOOD04 Tespishte are ADD / NEW INDEPENDENT IMAGE. All remain NOT STARTED. Final target is 1200×800 / exact 3:2 WebP using Spain Taste Global Visual Language.",
+        "PHASE 3 GATE: retained Landscape + Map decision DONE/LOCKED. hardImageGate remains false because Taste 4 are not yet generated, user approved, stored and verified."
       ],
       "automatedAudit": "DONE"
     },
