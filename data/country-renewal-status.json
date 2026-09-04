@@ -922,7 +922,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -982,7 +982,10 @@
         "SHARED SYSTEM BLOCKERS RESOLVED 2026-09-05: Qatar JOURNEY LENS source normalized to /qatar1/ with legacy 301; shared Atlas LENS validator now cache-busts/no-caches production RSS; Pages deployments now queue instead of cancelling in-flight Country previews.",
         "COMMON CI PASS 2026-09-05: clean-head Monaco run 33894016834 passed source syntax, renewal registry, published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build.",
         "REVIEW PREVIEW DEPLOY PASS 2026-09-05: Deploy Country Preview run 33895192323 succeeded through hard image gate, clean production package build, packaged-output validation, artifact upload and GitHub Pages deployment. Review URL: https://yagenji.github.io/Journey-Atlas/countries/monaco/ . Preview contains Taste 4 because Monaco JSON references all four APPROVED WebP assets.",
-        "QA moved from BLOCKED back to PENDING: shared blockers are cleared; only rendered-page human/browser visual review remains before final publication approval."
+        "QA moved from BLOCKED back to PENDING: shared blockers are cleared; only rendered-page human/browser visual review remains before final publication approval.",
+        "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Monaco Reference v3 preview including Taste 4 and confirmed it.",
+        "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication provided final QA finds no blocking issue.",
+        "FINAL PRE-MERGE QA CHECK 2026-09-05: branch is based on current main e4701db4e10403c5cd2cc54d9d07ba99f87e7606 with behind 0 before clean-head commit; atlasPublished remains true because Monaco is an already-published renewal; journeyLensPublished remains false; Theme taxonomy remains city only; Taste 4 are APPROVED; hardImageGate true; preview deployment run 33895192323 PASS. Temporary preview trigger is removed before merge."
       ],
       "automatedAudit": "DONE"
     },
