@@ -440,13 +440,13 @@
       "nameJa": "フランス",
       "wave": 3,
       "published": true,
-      "auditState": "DONE",
+      "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -485,7 +485,10 @@
         "SHARED BLOCKER RESOLVED 2026-09-04: JOURNEY LENS source typo `gerorgia2` was corrected at the source to `georgia2` via Journey-Lens PR #3; old URL is preserved with a 301 redirect. RSS, sitemap and generated page now use georgia2.",
         "PHASE 6 PRE-DEPLOY VALIDATION PASS 2026-09-04: Validate country data run 33842273162 passed full source syntax, renewal registry, all-published image audit, hard image gate, reviewable/published strict Country JSON, JOURNEY LENS slug validation, and Cloudflare package build.",
         "PHASE 6 REVIEW DEPLOYMENT PASS 2026-09-04: GitHub Pages Preview run 33842269422 passed hard image gate, clean Cloudflare package build, packaged-output validation, upload and deployment for France renewal commit 92b1a8987f17c32a65724faee94f4b05fe609e91.",
-        "REVIEW STATE 2026-09-04: renewed France is reviewable at the GitHub Pages Country Preview. production remains LIVE_OLD and qa remains PENDING until human Desktop / Tablet / Mobile visual review and user approval."
+        "REVIEW STATE 2026-09-04: renewed France is reviewable at the GitHub Pages Country Preview. production remains LIVE_OLD and qa remains PENDING until human Desktop / Tablet / Mobile visual review and user approval.",
+        "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the rendered France Reference v3 preview and confirmed it. Human rendered-page review is accepted as PASS.",
+        "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication provided final QA finds no blocking issue.",
+        "FINAL PRE-MERGE QA PASS 2026-09-04: France branch is based on current main 7c11de76cf3e386be6cd5c35207188a10e13a5c5, PR #181 is clean/mergeable, hardImageGate is true, structural/image/source/package/preview checks have passed, and diff remains limited to France JSON/status/content-design doc plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
       ],
       "automatedAudit": "DONE"
     },
