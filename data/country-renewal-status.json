@@ -157,7 +157,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: Reference v3 audit completed from latest main 7f056f042b4efd29e37023b66e738e6dd1f2c882.",
@@ -226,7 +226,12 @@
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Albania Reference v3 page including the four Taste images and the revised Travel Scale itinerary examples, and confirmed it.",
         "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication provided final QA finds no blocking issue.",
         "LATEST MAIN SYNC BEFORE PUBLISH 2026-09-05: main e4701db4e10403c5cd2cc54d9d07ba99f87e7606 merged into the Albania renewal branch as 535ef1f0623d5990148383710fbb722ffaffc0db. Post-sync behind=0; diff remains limited to Albania Country JSON/status plus four approved Taste assets.",
-        "FINAL PRE-MERGE QA PASS 2026-09-05: latest-main-synced branch behind=0; user visual review PASS; hardImageGate true; Validate country data run 33900789231 passed source syntax, renewal registry, all-published image audit, Albania hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build. Diff remains limited to Albania JSON/status plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
+        "FINAL PRE-MERGE QA PASS 2026-09-05: latest-main-synced branch behind=0; user visual review PASS; hardImageGate true; Validate country data run 33900789231 passed source syntax, renewal registry, all-published image audit, Albania hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build. Diff remains limited to Albania JSON/status plus four approved Taste assets. production remains LIVE_OLD until merge and production verification.",
+        "PRODUCTION MERGE 2026-09-05: PR #188 squash-merged to main as 168af391d4c71dbcd46701ceb46ad3e9e72e92dd after user visual approval and final branch validation passed.",
+        "PRODUCTION VALIDATION PASS 2026-09-05: Validate country data run 33900992562 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug validation and Cloudflare package build for the Albania merge commit.",
+        "PRODUCTION DEPLOY PASS 2026-09-05: GitHub Pages deploy run 33900991372 completed successfully for the Albania merge commit.",
+        "PRODUCTION VERIFY PASS 2026-09-05: latest production descendant a416422052301b93263ad7b241c85f293ec581d2, which contains Albania merge 168af391d4c71dbcd46701ceb46ad3e9e72e92dd, passed Cloudflare Production Verify run 33901352874.",
+        "FINAL QA PASS 2026-09-05: user visual review PASS; Albania Reference v3 structure, Taste 4 approvals, Travel Scale examples, hard image gate, source validation, Country JSON validation, JOURNEY LENS slug validation, package build, deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
