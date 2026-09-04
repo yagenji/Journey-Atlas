@@ -553,8 +553,8 @@
       "nameJa": "ギリシャ",
       "wave": 7,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "AUDITED",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -562,7 +562,18 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current Hero (Oia / Santorini), all eight published scenes, and the existing 1200×760 v3-style map are KEEP candidates; no landscape-wide rebuild is justified.",
+        "REFERENCE v3 GAPS: Taste 4 and Travel Scale 3 are missing. Transport uses the legacy English title FERRY / RAIL / INTERCITY BUS and lacks the explicit road icon.",
+        "CONTENT QA: visible Country Profile remains 6 items; Signature Facts 3, Encounters 8, Beyond 6, Trivia 5, Seasons 4, FOR WHOM 3 and Travel Notes 3 already meet structural counts.",
+        "CONTENT FIX DIRECTION: Beyond currently contains a regional-cuisine card that would overlap with the new Taste section and should be replaced/reframed. Signature Facts contain two sea-adjacent entries (islands / shipping) and need topic-role normalization while preserving strong facts where possible.",
+        "THEME TAXONOMY: Greece is assigned to history / sea / food (時をたどる / 海の世界へ / 食をめぐる); all three remain strong KEEP candidates.",
+        "SOURCE FRESHNESS: sourcesVerifiedAt 2026-09-02. ELSTAT 1 Jan 2025 population 10,372,335 and UGS 2025/26 shipping data (5,800 vessels / 19.1% global DWT) were rechecked on 2026-09-04; Hellenic Train Traffic Status remains live/current.",
+        "ASSET STATE: approved folder currently contains exactly Hero + 8 Scene PNGs; no Taste assets. Existing published-image audit reports no Greece decode/geometry findings. hardImageGate remains false until Taste is approved/stored and renewal image QA passes.",
+        "MAP CHECK: assets/images/greece/map-atlas-v1.svg uses viewBox 0 0 1200 760, journey-atlas-map-v3-clean-background, local-equirectangular-fit-v1, and contains no ellipse or black/white ellipse artifact.",
+        "BRANCH FRESHNESS: legacy country/greece branch is stale/diverged and is not reused. country/greece-renewal was created from main commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44 and was identical to main at creation.",
+        "COMMON CI PRE-FLIGHT: latest main Validate country data, Cloudflare Production Verify, and GitHub Pages preview workflows all completed successfully on commit 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44."
+      ],
       "automatedAudit": "DONE"
     },
     {
