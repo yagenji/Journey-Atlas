@@ -477,7 +477,11 @@
         "APPROVED-FOLDER HYGIENE PASS 2026-09-04: France approved folder contains only production Hero / Scene / Taste assets; temporary .upload-staging payloads were removed after SHA verification.",
         "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-04: Reference v3 Country JSON now includes Taste 4 APPROVED, Spain-format Travel Scale, diversified Signature Facts / Encounters / Beyond, Japanese Transport title with road icon, Travel Notes and refreshed sources.",
         "HARD IMAGE GATE ENABLED 2026-09-04: enabled only after all four Taste assets were repository-stored, SHA-verified and image audit passed. qa remains PENDING until latest-head automated QA and browser-level review.",
-        "BRANCH SYNC 2026-09-04: France renewal branch merged latest main 7c11de76cf3e386be6cd5c35207188a10e13a5c5 so shared JOURNEY LENS slug correction is included without France-specific shared-code changes."
+        "BRANCH SYNC 2026-09-04: France renewal branch merged latest main 7c11de76cf3e386be6cd5c35207188a10e13a5c5 so shared JOURNEY LENS slug correction is included without France-specific shared-code changes.",
+        "PHASE 5 STRUCTURAL QA 2026-09-04: PASS for Reference v3 content structure — visible Profile 6, Signature Facts 3, Scenes 8, Encounters 8, Beyond 6, Trivia 5, Taste 4 APPROVED, Travel Scale 3, Seasons 4, FOR WHOM 3, Travel Notes 3, topicKey set unique, Related slugs valid, Theme taxonomy city/history/food, and 1200×760 map with no ellipse artifact.",
+        "PHASE 5 AUTOMATED FRANCE CHECKS 2026-09-04: latest synced branch passed source syntax, renewal registry, all-published image audit, France-inclusive renewed Country hard image gate, and reviewable/published strict Country JSON validation. Hard image run decoded 221 raster payloads across 17 gated countries with zero image findings.",
+        "PHASE 5 SHARED BLOCKER 2026-09-04: full Validate country data and Preview/Cloudflare package cannot complete because shared JOURNEY LENS RSS currently exposes misspelled slug `gerorgia`; validate_lens_slugs.py rejects it before package build. Main atlas registry correctly contains `georgia`. This is not France data and no France-specific workaround was introduced.",
+        "PHASE 5 QA STATE: France-specific technical QA is clear, but qa remains PENDING because shared LENS slug drift blocks package/deploy and renewed-page Desktop / Tablet / Mobile browser visual QA has not yet been completed."
       ],
       "automatedAudit": "DONE"
     },
