@@ -158,7 +158,7 @@
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: Reference v3 audit completed from latest main 7f056f042b4efd29e37023b66e738e6dd1f2c882.",
         "Hero Berat and all 8 existing scenes are KEEP candidates: the original Albania review PR documented all 9 landscape assets as user-approved; current all-published Pillow image audit fully decodes the published raster set with no Albania findings.",
@@ -213,7 +213,9 @@
         "IMPLEMENTED: Taste 4 approved items; Travel Scale 3 items; Transport Japanese title + road icon; Signature Facts topic rebalance (bunkerization / two seas / Vjosa); Encounter Byrek→guesthouse; Trivia Byrek→Tirana three-faith coexistence; source registry/date refresh.",
         "POST-WRITE STRUCTURAL QA PASS: schemaVersion 2 / contentQaVersion 1 / Hero present / Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Seasons 4 / Personas 3 / Signature Facts 3 / Taste 4 APPROVED / Travel Scale 3 / Transport icon road / all Trivia sourceKeys resolve.",
         "IMPLEMENTATION SCOPE QA: branch diff contains only Albania Taste assets, data/countries/albania.json, and data/country-renewal-status.json. No shared UI/template/taxonomy file changed.",
-        "NEXT PHASE REQUIRED: branch is currently diverged from main (ahead 11 / behind 2). Per renewal flow, sync latest main next, then run common CI preflight and Country/System QA. hardImageGate remains false until strict validation after sync."
+        "NEXT PHASE REQUIRED: branch is currently diverged from main (ahead 11 / behind 2). Per renewal flow, sync latest main next, then run common CI preflight and Country/System QA. hardImageGate remains false until strict validation after sync.",
+        "MAIN SYNC PASS 2026-09-05: latest main 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44 merged into country/albania-renewal as 4f2b1885b54afbaea2311223b6db893c75732e3d. Only overlapping file was renewal registry; Liechtenstein latest main state and Albania renewal state were both preserved. Post-sync branch behind=0.",
+        "STRICT IMAGE GATE ENABLED 2026-09-05: hardImageGate set true after Visual Complete Gate and Country JSON implementation. Next CI run must validate Albania Hero + 8 scenes + 4 Taste assets under hard mode before Country QA."
       ],
       "automatedAudit": "DONE"
     },
