@@ -318,3 +318,144 @@ Still pending:
 - browser visual QA
 - final user approval
 - production publication
+
+
+## PHASE 3 — Landscape Image Decision
+
+Date: 2026-09-04
+
+### Hero
+
+**KEEP**
+
+- Current asset: `assets/images/kosovo/approved/hero-prizren.png`
+- Current concept remains Old Stone Bridge / Sinan Pasha Mosque / Prizren.
+- Kosovo review commit `d6d3d105675445dff26c21cce9e658012bec113b` explicitly added APPROVED Kosovo imagery.
+- The current main blob SHA is exactly the same as that approved review set.
+- Latest-main all-published image audit fully decodes all published raster payloads and reports zero image findings.
+- PNG format itself is supported by the current validator; format-only conversion is not justified.
+
+### Scene 01 — Rugova Canyon
+
+**KEEP**  
+`assets/images/kosovo/approved/rugova-canyon.png`
+
+### Scene 02 — National Library / Prishtina
+
+**KEEP**  
+`assets/images/kosovo/approved/national-library-pristina.png`
+
+### Scene 03 — Gračanica Monastery
+
+**KEEP**  
+`assets/images/kosovo/approved/gracanica-monastery.png`
+
+### Scene 04 — Mirusha Waterfalls
+
+**KEEP**  
+`assets/images/kosovo/approved/mirusha-waterfalls.png`
+
+### Scene 05 — Gjakova Grand Bazaar
+
+**KEEP**  
+`assets/images/kosovo/approved/gjakova-grand-bazaar.png`
+
+### Scene 06 — Novo Brdo Fortress
+
+**KEEP**  
+`assets/images/kosovo/approved/novo-brdo-fortress.png`
+
+### Scene 07 — Brod / Sharri Mountains
+
+**KEEP**  
+`assets/images/kosovo/approved/brod-sharr-mountains.png`
+
+### Scene 08 — Gadime Cave
+
+**KEEP**  
+`assets/images/kosovo/approved/gadime-cave.png`
+
+### Map
+
+**KEEP**
+
+- Current asset: `assets/images/kosovo/map-atlas-v1.svg`
+- Canvas: 1200×760
+- Map style: `journey-atlas-map-v3-clean-background`
+- No ellipse element is present.
+- The map blob SHA is unchanged from the user-reviewed Kosovo review set.
+- Final label collision / responsive readability remains a later browser Visual QA item.
+
+### Approved visual history check
+
+Every current Kosovo retained visual asset has the exact same Git blob SHA as the approved review commit `d6d3d105675445dff26c21cce9e658012bec113b`.
+
+- Hero: unchanged
+- Scene 01–08: unchanged
+- Map: unchanged
+
+Therefore the renewal does not replace previously approved landscape imagery without a concrete quality reason.
+
+### Technical image QA evidence
+
+Current validator `scripts/validate_images.py` checks:
+
+- complete raster `verify()` + `load()`
+- Hero minimum 1200×760 and landscape orientation
+- Scene minimum 1200×800
+- Scene 3:2 ratio with tolerance 0.015
+- Taste minimum 1200×800 / 3:2
+- map SVG canvas exactly 1200×760
+- approved-folder hygiene
+
+Current-main all-published image audit evidence:
+
+- 28 published Country Pages
+- 320 raster payloads fully decoded
+- zero image findings
+
+Kosovo is published and therefore included in this audit. No Kosovo raster, dimension, aspect-ratio, missing-path, map-canvas or approved-folder finding is reported.
+
+### NORMALIZE decision
+
+**NONE**
+
+No technical failure requires resize, crop, format conversion or recompression. Do not normalize solely because the retained Hero / Scene assets are PNG.
+
+### REGENERATE decision
+
+**NONE**
+
+No Hero or Scene has a current selection, visual-history or technical-QA basis for regeneration.
+
+### Taste visual decision
+
+Taste is new content and requires four **NEW INDEPENDENT IMAGES**:
+
+1. FOOD01 Flija — ADD / NOT STARTED
+2. FOOD02 Qebapa — ADD / NOT STARTED
+3. FOOD03 Tavë Prizreni — ADD / NOT STARTED
+4. FOOD04 Tespishte — ADD / NOT STARTED
+
+Target for each final asset:
+
+- 1200×800
+- exact 3:2
+- WebP
+- Spain Taste Global Visual Language
+- no text / map / UI inside image
+- each food generated independently, one image at a time
+
+## PHASE 3 gate
+
+Landscape decision: **DONE / LOCKED**
+
+- Hero: KEEP
+- Scene 01–08: KEEP
+- Map: KEEP
+- NORMALIZE: 0
+- REGENERATE: 0
+- Taste: 4 new images required / NOT STARTED
+- `hardImageGate`: remains **false**
+
+Next phase: **VISUAL PRODUCTION — Taste FOOD01 → FOOD04**.
