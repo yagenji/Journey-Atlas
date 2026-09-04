@@ -838,7 +838,11 @@
         "ASSET BYTE MATCH: Git blob SHAs exactly match the locally approved files — FOOD01 797395f274a0c130ab3ca73548de7e3fac0cd091 / FOOD02 ff18f013e54555b9e460862b890ceed394d1ce98 / FOOD03 d23689b014e2b095a4f421a0d8548cd9f474795c / FOOD04 882954da048988d38a7b5552e7bebd097428cd71.",
         "ASSET IMAGE QA: all four verified files fully decode as WebP at exactly 1200x800 (3:2). Approved folder contains only final Hero, eight existing Scene PNGs and the four approved Taste WebPs; no draft/temp/test/placeholder artifacts detected.",
         "VISUAL COMPLETE GATE 2026-09-04: PASS. Hero KEEP + S01-S08 KEEP + Map KEEP + FOOD01-FOOD04 APPROVED and repository-verified. hardImageGate opened.",
-        "NEXT PHASE: IMPLEMENTATION — connect Taste, Travel Scale, Transport, Encounters, Beyond and refreshed sources in the shared Country JSON structure. Do not alter common UI or approved landscape assets."
+        "NEXT PHASE: IMPLEMENTATION — connect Taste, Travel Scale, Transport, Encounters, Beyond and refreshed sources in the shared Country JSON structure. Do not alter common UI or approved landscape assets.",
+        "PHASE 4 IMPLEMENTATION 2026-09-04: PASS. data/countries/luxembourg.json now connects the approved Taste 4 assets, Travel Scale 3, Japanese Transport + road icon, rewritten Encounters 8, broadened Beyond 6, and refreshed source metadata.",
+        "PHASE 4 SCOPE CONTROL: no common template, CSS, JS, theme taxonomy, Hero, Scene or Map asset was modified. Existing published production remains LIVE_OLD pending QA and final approval.",
+        "PHASE 4 STRUCTURE CHECK: Taste=4 all imageState APPROVED; Travel Scale=3 with city/map/compass; Encounters=8; Beyond=6; Transport icon=road.",
+        "NEXT PHASE: sync/check against latest main, run common CI pre-flight, then Country QA and Browser Visual QA before any production merge."
       ],
       "automatedAudit": "DONE"
     },
