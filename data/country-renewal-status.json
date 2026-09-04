@@ -238,12 +238,12 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
-      "sources": "IN_PROGRESS",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
         "VISUAL DECISION: existing Grand-Place Hero and all eight scene selections remain KEEP candidates; prior Belgium review commit records approved Hero + 8 scenes. Current automated image audit fully decodes all published rasters and reports no dimension/aspect/hygiene findings.",
@@ -268,7 +268,12 @@
         "PHASE 3 TASTE VISUAL APPROVAL 2026-09-04: User APPROVED all four independently generated Taste images. FOOD01 Moules-frites APPROVED; FOOD02 Waterzooi APPROVED; FOOD03 Liège waffle APPROVED; FOOD04 Belgian pralines APPROVED.",
         "PHASE 3 FILE NORMALIZATION: approved Taste masters normalized to 1200x800 3:2 WebP with production filenames food-moules-frites.webp / food-waterzooi.webp / food-liege-waffle.webp / food-belgian-pralines.webp. Repository storage is still pending, so visual remains IN_PROGRESS and hardImageGate remains false.",
         "PHASE 3 LANDSCAPE DECISION: existing Hero and S01-S08 remain KEEP; Map remains DONE. No landscape regeneration required.",
-        "PHASE 3 GATE STATUS: Visual Complete Gate will clear only after the four approved Taste WebP files are stored under assets/images/belgium/approved/, Belgium JSON references are connected, and repository image validation passes."
+        "PHASE 3 GATE STATUS: Visual Complete Gate will clear only after the four approved Taste WebP files are stored under assets/images/belgium/approved/, Belgium JSON references are connected, and repository image validation passes.",
+        "PHASE 4 STORAGE VERIFIED 2026-09-04: user-uploaded Taste files were found on main and copied by exact Git blob SHA into country/belgium-renewal at assets/images/belgium/approved/. All four target filenames are present.",
+        "PHASE 4 IMPLEMENTATION DONE 2026-09-04: Belgium JSON now has contentQaVersion=1, Taste 4 with imageState APPROVED, Spain-format Travel Scale, Japanese Transport title + road icon, renewed Encounters, renewed Beyond the Scenery, topicKey coverage for all v1 editorial sections, refreshed sources, sourcesVerifiedAt and updatedAt.",
+        "PHASE 4 AUTOMATED VALIDATION PASS: GitHub Actions run 33836365503 passed source syntax, renewal registry, full image decode/dimension audit, renewed image hard-gate step, reviewable/published Country JSON validation, JOURNEY LENS slug check, and Cloudflare package build.",
+        "PHASE 4 VISUAL COMPLETE GATE PASS: existing Hero + S01-S08 KEEP, Map KEEP/DONE, FOOD01-04 user APPROVED and repository-stored as 1200x800 3:2 WebP; image audit passed. hardImageGate enabled.",
+        "PHASE 4 NEXT: PHASE 5 browser/responsive/accessibility QA is still required. production remains LIVE_OLD until the renewed branch is review-deployed and visually inspected."
       ],
       "automatedAudit": "DONE"
     },
