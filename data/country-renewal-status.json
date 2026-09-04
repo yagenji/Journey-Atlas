@@ -706,7 +706,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -749,7 +749,10 @@
         "COMMON CI PASS 2026-09-04: Validate country data clean-head run 33852098814 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift and Cloudflare package build.",
         "PHASE 5 PREVIEW DEPLOY PASS 2026-09-04: clean-head Deploy Country Preview run 33852095656 passed source syntax, renewal registry, hard image gate, clean production package build, packaged-output validation, artifact upload and GitHub Pages deployment.",
         "PHASE 5 REVIEW URL: https://yagenji.github.io/Journey-Atlas/countries/liechtenstein/ . This is the renewal-branch preview; production https://atlas.yagenji.com/countries/liechtenstein/ remains LIVE_OLD until renewed branch is approved and merged.",
-        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile review of Hero crop, map labels, Taste rendering, long German/Japanese names, spacing, buttons and accessibility remains required. qa stays PENDING until user review."
+        "HUMAN VISUAL QA PENDING: Desktop / Tablet / Mobile review of Hero crop, map labels, Taste rendering, long German/Japanese names, spacing, buttons and accessibility remains required. qa stays PENDING until user review.",
+        "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the rendered Liechtenstein Reference v3 preview and confirmed it. Human rendered-page review is accepted as PASS.",
+        "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication provided final QA finds no blocking issue.",
+        "FINAL PRE-MERGE QA PASS 2026-09-04: branch is based on current main 7f056f042b4efd29e37023b66e738e6dd1f2c882 with behind 0; PR #185 is mergeable; hardImageGate is true; Reference v3 structural checks, image QA, map QA, Theme taxonomy, source validation, Country JSON validation, JOURNEY LENS slug validation, Cloudflare package build and clean preview deployment all passed. Diff is limited to Liechtenstein JSON/status/content-design doc plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
       ],
       "automatedAudit": "DONE"
     },
