@@ -552,3 +552,61 @@ Current Taste state:
 - FOOD04 — NOT STARTED / Crema a l’andorrana
 
 Visual Complete Gate remains blocked until FOOD03–04 are also user APPROVED and all four final WebP files are stored, fully decoded, dimension-checked and approved-folder hygiene passes.
+
+
+## Repository storage verification — 2026-09-05
+
+The four user-approved Taste masters are now stored in the final approved folder.
+
+- `food-escudella.webp` — 1200×800 / WebP / Git blob `851c42d6a60338e8881b4b84982582c7361ba0e9`
+- `food-trinxat-amb-rosta.webp` — 1200×800 / WebP / Git blob `4a92c7382e952b20ef59ee1b96e0d19a317f3fe1`
+- `food-canelons-andorrana.webp` — 1200×800 / WebP / Git blob `4a0b652d2dc4d3d442b56315ff5347f41106dbb9`
+- `food-crema-andorrana.webp` — 1200×800 / WebP / Git blob `5408e0ad6536a97cfb089a1e34d9bf2863874d17`
+
+All four repository blob SHAs exactly match the locally approved 1200×800 masters.
+
+Approved-folder hygiene:
+
+- Hero: 1
+- Scenes: 8
+- Taste: 4
+- Total production raster assets: 13
+- draft / temporary / placeholder / rejected / parts: 0
+- misplaced Taste files at `assets/images/andorra/`: 0
+
+Branch freshness:
+
+- latest main merged into `country/andorra-renewal`
+- behind main: 0
+- sync/storage commit: `555bc40be8f7a61dd9f443795179260ff577f710`
+
+Automated validation:
+
+- GitHub Actions run `33898132301`: PASS
+- source syntax: PASS
+- renewal registry: PASS
+- all-published image audit: PASS
+- renewed Country hard-gate step: PASS
+- reviewable / published Country JSON validation: PASS
+- JOURNEY LENS slug drift: PASS
+- Cloudflare package build: PASS
+
+## Visual Complete Gate — PASS
+
+- Hero: KEEP / approved existing asset
+- Scene 01–08: KEEP / approved existing assets
+- Map: KEEP
+- FOOD01 Escudella: APPROVED / stored / verified
+- FOOD02 Trinxat amb rosta: APPROVED / stored / verified
+- FOOD03 Canelons a l’andorrana: APPROVED / stored / verified
+- FOOD04 Crema a l’andorrana: APPROVED / stored / verified
+- Taste geometry: 1200×800 / exact 3:2 / WebP
+- Full local decode: PASS 4/4
+- Repository Git blob match: PASS 4/4
+- Approved-folder hygiene: PASS
+- Branch freshness: PASS
+- Automated validation: PASS
+
+Visual production is complete. Country JSON implementation is now unblocked.
+
+`hardImageGate` remains false until the approved Taste paths are connected to the Country JSON and the renewed-country validation can enforce the full Andorra image set.
