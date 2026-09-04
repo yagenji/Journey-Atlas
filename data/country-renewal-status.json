@@ -427,7 +427,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -460,7 +460,8 @@
         "CLOUDFLARE BRANCH PREVIEW PASS 2026-09-04: Cloudflare Pages bot confirmed deploy successful for clean head 73ac2cc. Immutable preview: https://1bb3b23a.journey-atlas.pages.dev ; branch preview: https://country-germany-renewal.journey-atlas.pages.dev . Review route: /countries/germany/.",
         "USER VISUAL REVIEW PASS 2026-09-04: user reviewed the rendered Germany renewal preview and confirmed it. Browser visual review is accepted as PASS based on user inspection.",
         "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if final QA finds no blocking issue.",
-        "REBASE SAFETY CHECK 2026-09-04: main advanced only with Switzerland Country JSON, Switzerland Taste assets and renewal-status updates; no shared Country template/CSS/JS change occurred, so the Germany visual review remains applicable."
+        "REBASE SAFETY CHECK 2026-09-04: main advanced only with Switzerland Country JSON, Switzerland Taste assets and renewal-status updates; no shared Country template/CSS/JS change occurred, so the Germany visual review remains applicable.",
+        "FINAL PRE-MERGE QA PASS 2026-09-04: rebased Germany branch head passed Validate country data run 33837671631 across source syntax, renewal registry, all-published image audit, Germany hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build. User visual review is PASS. Diff remains exactly Germany Country JSON, Germany renewal status, and four approved Germany Taste assets. No blocking issue remains."
       ],
       "automatedAudit": "DONE"
     },
