@@ -884,7 +884,7 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "PENDING",
+      "visual": "IN_PROGRESS",
       "map": "DONE",
       "sources": "DONE",
       "qa": "PENDING",
@@ -912,7 +912,17 @@
         "PHASE 2 THEMES LOCK: taxonomy remains 地球の風景 / 道の先へ. No third theme is added merely because Swiss cities and culture are strong.",
         "PHASE 2 SOURCE REFRESH 2026-09-04: FSO 2024 religion data confirms no religious affiliation 37%, Roman Catholic 30%, Protestant Reformed 19%; Switzerland Tourism current cuisine pages confirm fondue, Rösti, Ticino risotto and Engadin/Graubünden nut tart as Swiss regional food references; current SBB visitor guidance and 3/4/8-day itinerary pages support rail/bus/boat-based Travel Scale and Transport planning.",
         "PHASE 2 SOURCE-DATE LOCK: Phase 4 Country JSON should add religion=2024 and current 2026 provenance for Travel Scale / Transport source material while retaining existing 2025 population and 2026-01-01 map dates.",
-        "PHASE 3 NEXT: Landscape Hero + S01–S08 remain KEEP. New visual production is Taste FOOD01–FOOD04 only. hardImageGate remains false until all four Taste images are user APPROVED, stored, fully decoded, dimension-verified and approved-folder hygiene passes."
+        "PHASE 3 NEXT: Landscape Hero + S01–S08 remain KEEP. New visual production is Taste FOOD01–FOOD04 only. hardImageGate remains false until all four Taste images are user APPROVED, stored, fully decoded, dimension-verified and approved-folder hygiene passes.",
+        "PHASE 3 VISUAL DECISION 2026-09-04: Hero Lauterbrunnen Valley / Wengen and S01–S08 are KEEP. No landscape NORMALIZE or REGENERATE target is justified. Map remains KEEP / DONE.",
+        "PHASE 3 LANDSCAPE STATE LOCK: Hero=KEEP; S01 Matterhorn/Riffelsee=KEEP; S02 Bern/Rosengarten=KEEP; S03 Lavaux/Rivaz=KEEP; S04 Morcote/Lake Lugano=KEEP; S05 Great Aletsch Glacier/Eggishorn=KEEP; S06 Landwasser Viaduct=KEEP; S07 Creux du Van=KEEP; S08 Appenzell/Hauptgasse=KEEP.",
+        "PHASE 3 TASTE STATE: FOOD01–FOOD04 are NOT STARTED. Taste is the only new visual production scope. No Taste asset may be connected to Country JSON before user approval and repository image QA.",
+        "PHASE 3 FOOD01 IDENTITY LOCK: チーズフォンデュ / Fondue au fromage. Identity = pale golden melted cheese in a traditional caquelon; smooth molten surface; bread cubes only as the customary dipping accompaniment; no wine glass, bottle, fork, napkin, herbs, flowers or extra side dish. Target 1200×800 / 3:2 WebP. Path assets/images/switzerland/approved/food-cheese-fondue.webp.",
+        "PHASE 3 FOOD02 IDENTITY LOCK: レシュティ / Rösti. Identity = coarse grated potato strands visibly fused into one flat round cake; crisp golden-brown surface and edges; plain rösti with no egg, cheese, bacon, sausage, sauce or salad; not a hash-brown pile or potato gratin. Target 1200×800 / 3:2 WebP. Path assets/images/switzerland/approved/food-roesti.webp.",
+        "PHASE 3 FOOD03 IDENTITY LOCK: ティチーノ風リゾット / Risotto alla ticinese. Identity = creamy short-grain risotto with individual rice grains still visible; soft flowing mound rather than dry rice; restrained local mushroom pieces allowed as part of the dish; no polenta, pasta, meat side dish, wine glass, herbs used only as decoration or unrelated garnish. Target 1200×800 / 3:2 WebP. Path assets/images/switzerland/approved/food-risotto-ticinese.webp.",
+        "PHASE 3 FOOD04 IDENTITY LOCK: エンガディナー・ヌストルテ / Engadiner Nusstorte. Identity = sweet shortcrust tart with a dense caramelised walnut filling; one whole small tart or a clean wedge showing the walnut interior; golden-brown pastry; no cream, berries, chocolate, coffee, flowers or extra dessert. Target 1200×800 / 3:2 WebP. Path assets/images/switzerland/approved/food-engadiner-nusstorte.webp.",
+        "PHASE 3 TASTE GLOBAL STYLE LOCK: all four must be NEW INDEPENDENT IMAGE generations using Spain Taste as visual-language reference only: bright pale beige/ivory neutral background, soft diffused daylight, restrained matte tableware appropriate to the dish, generous breathing space, photo≈6 / quiet watercolor≈4, no text/flag/UI/collage. Previous food image must not be reused as content reference.",
+        "PHASE 3 TASTE ANTI-REPETITION LOCK: each FOOD ID is a separate generation series. Any dish mismatch, repeated previous dish, leftover prior ingredients, flag/text/UI, prohibited extra objects, or identity mismatch is immediate REJECT and resets only that FOOD series.",
+        "PHASE 3 VISUAL COMPLETE GATE: BLOCKED until FOOD01–FOOD04 are user APPROVED, stored as final 1200×800 / 3:2 WebP, fully decoded, dimensions verified, approved-folder hygiene passes, and Country JSON connects all four with imageState APPROVED. hardImageGate remains false."
       ],
       "automatedAudit": "DONE"
     },
