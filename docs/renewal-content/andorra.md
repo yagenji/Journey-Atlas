@@ -535,3 +535,20 @@ Next phase: **VISUAL PRODUCTION — FOOD01 Escudella**
 - FOOD04 **Crema a l’andorrana** — NOT STARTED
 
 Do not regenerate FOOD01 unless explicitly requested by the user.
+
+
+## Taste approval update — FOOD02
+
+- FOOD02 **Trinxat amb rosta** — **APPROVED**
+  - Do not regenerate unless explicitly requested.
+  - Final filename: `food-trinxat-amb-rosta.webp`
+  - Target production path: `assets/images/andorra/approved/food-trinxat-amb-rosta.webp`
+
+Current Taste state:
+
+- FOOD01 — APPROVED / Escudella
+- FOOD02 — APPROVED / Trinxat amb rosta
+- FOOD03 — NEXT / Canelons a l’andorrana
+- FOOD04 — NOT STARTED / Crema a l’andorrana
+
+Visual Complete Gate remains blocked until FOOD03–04 are also user APPROVED and all four final WebP files are stored, fully decoded, dimension-checked and approved-folder hygiene passes.
