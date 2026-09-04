@@ -311,7 +311,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -378,7 +378,10 @@
         "PHASE 4 CONNECTION RECHECK 2026-09-05: current Cyprus Country JSON already references the four final Taste paths with imageState=APPROVED and already contains the locked Travel Scale, Japanese Transport title/icon, Flaouna Beyond replacement and Travel Notes. No Country JSON rewrite was necessary after the final asset replacement.",
         "PHASE 5 REVALIDATION PASS 2026-09-05: Validate country data run 33900204082 completed SUCCESS on final Taste assets. Source syntax, published renewal registry, all-published image audit, renewed Country hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift and Cloudflare package build all passed.",
         "PHASE 5 PREVIEW REDEPLOY PASS 2026-09-05: Deploy Country Preview to GitHub Pages run 33900196935 completed SUCCESS from the final Taste asset branch state. Hard image gate, clean production package build, packaged-output validation, upload and Pages deployment passed.",
-        "PHASE 5 REVIEW URL 2026-09-05: https://yagenji.github.io/Journey-Atlas/countries/cyprus/ . Automated QA is green; human Desktop / Tablet / Mobile visual inspection remains required before production approval."
+        "PHASE 5 REVIEW URL 2026-09-05: https://yagenji.github.io/Journey-Atlas/countries/cyprus/ . Automated QA is green; human Desktop / Tablet / Mobile visual inspection remains required before production approval.",
+        "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the rendered Cyprus Reference v3 preview and confirmed it. Human rendered-page review is accepted as PASS, including the final Spain-style Taste set.",
+        "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication provided final QA finds no blocking issue.",
+        "FINAL PRE-MERGE QA PASS 2026-09-05: qa=PASS, hardImageGate=true, content/visual/map/sources are DONE, final automated validation and preview deployment are green, PR #190 is clean/mergeable, and the diff is limited to Cyprus JSON/status plus four approved Taste assets. production remains LIVE_OLD until merge and production verification."
       ],
       "automatedAudit": "DONE"
     },
