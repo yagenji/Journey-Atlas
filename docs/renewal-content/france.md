@@ -341,3 +341,30 @@ Still pending:
 - browser visual QA
 - final user approval
 - production publication
+
+
+## Taste approvals — 2026-09-04
+
+All four France Taste images were user APPROVED as one review batch.
+
+- FOOD01 **Croissant** — APPROVED
+  - Final filename: `food-croissant.webp`
+  - Target production path: `assets/images/france/approved/food-croissant.webp`
+- FOOD02 **Bouillabaisse** — APPROVED
+  - Final filename: `food-bouillabaisse.webp`
+  - Target production path: `assets/images/france/approved/food-bouillabaisse.webp`
+- FOOD03 **Galette complète** — APPROVED
+  - Final filename: `food-galette-complete.webp`
+  - Target production path: `assets/images/france/approved/food-galette-complete.webp`
+- FOOD04 **Quiche lorraine** — APPROVED
+  - Final filename: `food-quiche-lorraine.webp`
+  - Target production path: `assets/images/france/approved/food-quiche-lorraine.webp`
+
+Local export QA:
+- source generation: 1536×1024 / exact 3:2
+- final export: 1200×800 WebP
+- complete decode: PASS 4/4
+- dimensions: PASS 4/4
+- format: WebP PASS 4/4
+
+Do not regenerate any of these four images without explicit user instruction.
