@@ -404,8 +404,8 @@
       "nameJa": "フランス",
       "wave": 3,
       "published": true,
-      "auditState": "PENDING",
-      "renewalClass": "UNCLASSIFIED",
+      "auditState": "DONE",
+      "renewalClass": "B",
       "content": "PENDING",
       "visual": "PENDING",
       "map": "PENDING",
@@ -413,7 +413,16 @@
       "qa": "PENDING",
       "production": "LIVE_OLD",
       "hardImageGate": false,
-      "notes": [],
+      "notes": [
+        "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Current published page remains atlasPublished:true / LIVE_OLD during branch work.",
+        "LANDSCAPE AUDIT: current Mont-Saint-Michel Hero and all eight existing scene selections are KEEP. Current Hero/Scene asset SHAs are unchanged from the 2026-08-31 approved publication set; no landscape regeneration is justified by selection or known visual regression.",
+        "LANDSCAPE TECHNICAL AUDIT: current Hero + 8 scenes are legacy PNG assets. Exact current raster dimensions/full decode are not certified by the GitHub binary connector and must be checked by image audit before any NORMALIZE decision; do not regenerate solely because they are PNG.",
+        "MAP AUDIT: current 1200×760 Natural Earth-based SVG is KEEP; no prohibited ellipse is present and the map asset SHA is unchanged from the approved publication set. Human browser QA remains required later.",
+        "CONTENT AUDIT: Taste and Travel Scale are absent and must be added. Transport title is legacy English-only and lacks explicit road icon. FOR WHOM already has exactly 3 items and visible Profile remains 6 because shared renderer hides Region.",
+        "CONTENT DIVERSITY AUDIT: Signature Facts currently contain two food-topic facts; Encounters are too close to a scene list; Beyond ROAD overlaps Transport; first Travel Note would overlap the forthcoming Travel Scale. These require content renewal without changing the page structure.",
+        "SOURCE AUDIT: sourcesVerifiedAt is 2026-08-31. 2026 population, Paris zinc-roof, Alsace Wine Route, baguette-volume and Dune du Pilat movement claims remain supported by current official/high-trust sources; new/rewritten sections will require source additions and a refreshed verification date.",
+        "THEME AUDIT: taxonomy Single Source of Truth currently assigns city / history / food to France; keep unless Content Renewal finds a stronger reason to change."
+      ],
       "automatedAudit": "DONE"
     },
     {
