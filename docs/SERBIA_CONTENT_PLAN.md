@@ -369,5 +369,18 @@ Pre-publish QA:
 
 Publication state:
 - atlasPublished: true
-- production: PENDING until Cloudflare Production Verify passes
+- production: LIVE_CURRENT
+- hardImageGate: true
+
+
+## Production completion
+
+Formal publication completed on 2026-09-06.
+
+- Cloudflare Pages deploy: PASS
+- expected production commit served: PASS
+- production runtime assets / route: PASS
+- all-published Desktop / Tablet / Mobile browser QA: PASS
+- atlasPublished: true
+- production: LIVE_CURRENT
 - hardImageGate: true
