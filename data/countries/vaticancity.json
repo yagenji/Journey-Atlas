@@ -1,0 +1,582 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "vaticancity",
+  "nameEn": "VATICAN CITY",
+  "nameJa": "バチカン市国",
+  "region": "SOUTHERN EUROPE / 41°N",
+  "seo": {
+    "description": "サン・ピエトロ広場と大聖堂、バチカン美術館、庭園、鉄道駅、国境の門へ。44ヘクタールの独立国家に重なる信仰、美術、国家機能を8つの景色と地図からたどる。"
+  },
+  "capital": {
+    "nameEn": "Vatican City",
+    "nameJa": "バチカン市",
+    "coordinates": {
+      "latitude": 41.903492,
+      "longitude": 12.452835
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "labelOffset": {
+      "x": -4,
+      "y": -24
+    }
+  },
+  "hero": {
+    "lead": "ローマの街の中に、広場、聖堂、美術館、庭園を44ヘクタールの国土へ収めた独立国家がある。信仰の中心と国家の仕組み、美術と日常が数百メートルの距離で重なる。",
+    "image": "assets/images/vaticancity/approved/hero-st-peters-square-vatican-city.png",
+    "location": "St. Peter’s Square / Vatican City",
+    "coordinates": {
+      "latitude": 41.90217,
+      "longitude": 12.45394
+    },
+    "mapOffset": {
+      "x": 4.45,
+      "y": -0.75
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 41.9082,
+      "south": 41.8997,
+      "west": 12.4447,
+      "east": 12.459
+    },
+    "svg": "assets/images/vaticancity/map-atlas-v1.svg",
+    "route": null,
+    "source": "OpenStreetMap relation 36989 boundary geometry snapshot via missinglink/osm-boundaries, WGS84; current relation identity and bounds cross-checked 2026-09-06; UNESCO World Heritage Centre 2016 adopted Vatican City property map cross-check; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "st-peters-square",
+      "name": "サン・ピエトロ広場",
+      "nameLocal": "Piazza San Pietro",
+      "mapLabel": "St. Peter’s Square",
+      "description": "ベルニーニの列柱が楕円形の広場を包み、中央のオベリスクと二つの噴水が大聖堂への軸をつくる。列柱の外縁を結ぶ白い大理石の線は、ローマとバチカン市国の国境でもある。",
+      "coordinates": {
+        "latitude": 41.902183,
+        "longitude": 12.457239
+      },
+      "image": "assets/images/vaticancity/approved/st-peters-square.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ANCHOR"
+    },
+    {
+      "id": "st-peters-dome-view",
+      "name": "サン・ピエトロ大聖堂 / クーポラからの眺め",
+      "nameLocal": "Basilica di San Pietro / Cupola",
+      "mapLabel": "Dome View",
+      "description": "クーポラ上部から広場を見下ろすと、楕円の列柱からコンチリアツィオーネ通り、ローマ市街へ都市軸が延びる。44ヘクタールの国家が大都市の中に置かれている距離感を一望できる。",
+      "coordinates": {
+        "latitude": 41.90217,
+        "longitude": 12.45394
+      },
+      "image": "assets/images/vaticancity/approved/st-peters-dome-view.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.85,
+        "y": 1.4
+      },
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "vatican-gardens",
+      "name": "バチカン庭園",
+      "nameLocal": "Giardini Vaticani",
+      "mapLabel": "Gardens",
+      "description": "国土の約半分、約22ヘクタールを占める庭園。芝地、林、噴水、宗教彫刻、施設が入り、石造建築だけでは見えないバチカン内部の緑と生活基盤をつくっている。",
+      "coordinates": {
+        "latitude": 41.90418,
+        "longitude": 12.44862
+      },
+      "image": "assets/images/vaticancity/approved/vatican-gardens.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "cortile-della-pigna",
+      "name": "松ぼっくりの中庭",
+      "nameLocal": "Cortile della Pigna",
+      "mapLabel": "Pinecone",
+      "description": "バチカン美術館の中庭。古代ローマの巨大な青銅製松ぼっくりと、ルネサンスの建築軸が同じ空間に置かれ、美術館が異なる時代の作品と建築を重ねてきたことを見せる。",
+      "coordinates": {
+        "latitude": 41.90596,
+        "longitude": 12.45458
+      },
+      "image": "assets/images/vaticancity/approved/cortile-della-pigna.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "st-peters-basilica-interior",
+      "name": "サン・ピエトロ大聖堂内部",
+      "nameLocal": "Basilica di San Pietro",
+      "mapLabel": "Basilica",
+      "description": "広い身廊の先にベルニーニの青銅製バルダッキーノが立ち、その上を大クーポラが覆う。巡礼の場であると同時に、ルネサンスとバロックの建築・彫刻・モザイクが現在も機能する宗教空間。",
+      "coordinates": {
+        "latitude": 41.90222,
+        "longitude": 12.45342
+      },
+      "image": "assets/images/vaticancity/approved/st-peters-basilica-interior.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3.7,
+        "y": -0.7
+      },
+      "role": "ANCHOR"
+    },
+    {
+      "id": "sistine-chapel",
+      "name": "システィーナ礼拝堂",
+      "nameLocal": "Cappella Sistina",
+      "mapLabel": "Sistine Chapel",
+      "description": "15世紀の壁画群に、ミケランジェロの天井画と『最後の審判』が重なる礼拝堂。美術館の一部として公開される一方、教皇選挙のコンクラーベが行われる現役の制度空間でもある。",
+      "coordinates": {
+        "latitude": 41.90296,
+        "longitude": 12.45438
+      },
+      "image": "assets/images/vaticancity/approved/sistine-chapel.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "vatican-railway-station",
+      "name": "バチカン鉄道駅",
+      "nameLocal": "Stazione di Città del Vaticano",
+      "mapLabel": "Railway",
+      "description": "ラテラノ条約がイタリア国鉄との接続とバチカン市国内の鉄道駅建設を定めたことで整備された国家インフラ。短い線路が城壁を抜けてイタリア側へ接続し、小国の交通機能を目に見える形で残す。",
+      "coordinates": {
+        "latitude": 41.90088,
+        "longitude": 12.45093
+      },
+      "image": "assets/images/vaticancity/approved/vatican-railway-station.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "porta-santanna",
+      "name": "サンタンナ門",
+      "nameLocal": "Porta Sant’Anna",
+      "mapLabel": "Sant’Anna",
+      "description": "ローマ側のVia di Porta Angelicaに面する実用的な入口の一つ。観光客が自由に歩くサン・ピエトロ広場とは違い、鉄門と警備のある入口が、バチカンが現在も行政と治安を持つ国家であることを感じさせる。",
+      "coordinates": {
+        "latitude": 41.90398,
+        "longitude": 12.45759
+      },
+      "image": "assets/images/vaticancity/approved/porta-santanna.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ATLAS VIEW"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "楕円の列柱",
+      "icon": "landmark"
+    },
+    {
+      "title": "大聖堂の鐘",
+      "icon": "culture"
+    },
+    {
+      "title": "スイス衛兵",
+      "icon": "history"
+    },
+    {
+      "title": "美術館の回廊",
+      "icon": "city"
+    },
+    {
+      "title": "庭園の糸杉",
+      "icon": "earth"
+    },
+    {
+      "title": "バチカン切手",
+      "icon": "culture"
+    },
+    {
+      "title": "国境の大理石線",
+      "icon": "map"
+    },
+    {
+      "title": "小さな鉄道駅",
+      "icon": "road"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "holy-see-and-vatican-city-not-identical",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "「聖座」と「バチカン市国」は、同じ名前で呼ばれがちでも別の存在",
+      "text": "聖座はローマ教皇と教皇庁を中心とするカトリック教会の統治主体で、バチカン市国はその独立を目に見える形で保障するための領域国家として成立した。国土を見るとき、この二つを分けると制度の意味が分かりやすい。",
+      "points": [
+        "外交・教会統治の主体は聖座",
+        "領域国家としてのバチカン市国は1929年に成立"
+      ]
+    },
+    {
+      "topicKey": "lateran-treaty-created-state-1929",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "44ヘクタールの国家は、1929年のラテラノ条約から始まった",
+      "text": "イタリアと聖座が1929年2月11日に結んだラテラノ条約によって、バチカン市国は独立した主権国家として成立した。小さな領土の目的は、聖座が他国から独立して活動できる状態を保障することにある。",
+      "points": [
+        "ラテラノ条約は1929年2月11日締結",
+        "イタリアが独立した主権国家として承認"
+      ]
+    },
+    {
+      "topicKey": "entire-vatican-world-heritage",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "世界遺産は建物一つではなく、44ヘクタールの国家全体",
+      "text": "ユネスコの「Vatican City」は1984年に登録され、登録面積は44ヘクタール。大聖堂や美術館だけでなく、城壁に囲まれた国家全体が一つの文化遺産として扱われている。",
+      "points": [
+        "世界遺産登録は1984年",
+        "登録資産の面積は44 ha"
+      ]
+    },
+    {
+      "topicKey": "gardens-half-of-state",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "国土の約半分は、建物ではなく庭園になっている",
+      "text": "バチカン庭園は約22ヘクタールで、国土44ヘクタールのおよそ半分を占める。巨大な聖堂や美術館の印象とは対照的に、国家の内側には芝地、林、噴水、庭園建築が広く残る。",
+      "points": [
+        "庭園は約22 ha",
+        "バチカン市国全体の約半分"
+      ]
+    },
+    {
+      "topicKey": "sistine-chapel-art-and-conclave",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "システィーナ礼拝堂は「美術作品」であると同時に、今も制度が動く場所",
+      "text": "ミケランジェロの天井画で知られる礼拝堂は、日常はバチカン美術館の見学動線に含まれる。一方で教皇を選ぶコンクラーベもここで行われ、過去の文化財と現在の教会制度が同じ空間に重なる。",
+      "points": [
+        "ミケランジェロの天井画は1512年完成",
+        "教皇選挙のコンクラーベが行われる"
+      ]
+    },
+    {
+      "topicKey": "tiny-state-with-security-and-services",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "小さな国土の中にも、警備・行政・公共サービスがある",
+      "text": "バチカン市国には独自の行政機構があり、国内の治安はジャンダルメリアが担い、教皇の警護ではスイス衛兵とも連携する。城壁や門を歩くと、宗教施設の集合ではなく一つの国家として運営されていることが見えてくる。",
+      "points": [
+        "ジャンダルメリアが国内の警察機能を担う",
+        "主要な入口では国家としてのアクセス管理が行われる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "marble-line-border-st-peters-square",
+      "categoryEn": "BORDER",
+      "categoryJa": "国境",
+      "title": "サン・ピエトロ広場では、白い大理石の線が国境になる",
+      "text": "列柱の外側をつなぐ白い大理石の線が、バチカン市国とイタリアの境界を示す。入国審査なしに歩ける場所だからこそ、足元の線を探すと都市の中の国境を実感できる。",
+      "icon": "map",
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "vatican-euro-coins-and-stamps",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "ユーロを使いながら、バチカン独自の硬貨と切手を発行する",
+      "text": "バチカン市国はユーロを公式通貨として使用し、独自図柄の硬貨と郵便切手を発行する。小さな国家の存在を、日常の紙片や貨幣から確認できる。",
+      "icon": "culture",
+      "sourceKey": "currency"
+    },
+    {
+      "topicKey": "official-vatican-museums-ticket-portal",
+      "categoryEn": "TICKET",
+      "categoryJa": "予約",
+      "title": "美術館のオンライン券は、公式ポータルを確認する",
+      "text": "バチカン美術館は、オンライン購入の公式サイトが tickets.museivaticani.va だけだと案内している。似たドメインの販売サイトもあるため、予約時はURLを確認したい。",
+      "icon": "culture",
+      "sourceKey": "museumTickets"
+    },
+    {
+      "topicKey": "vatican-dress-code",
+      "categoryEn": "CUSTOMS",
+      "categoryJa": "服装",
+      "title": "美術館、礼拝堂、大聖堂、庭園には共通の服装規定がある",
+      "text": "ノースリーブや胸元の大きく開いた服、膝を覆わない短パン、ミニスカート、帽子などは認められない。暑い季節でも、宗教空間へ入る前提で服装を組む必要がある。",
+      "icon": "culture",
+      "sourceKey": "dressCode"
+    },
+    {
+      "topicKey": "last-sunday-free-vatican-museums",
+      "categoryEn": "MUSEUM",
+      "categoryJa": "美術館",
+      "title": "原則、毎月最終日曜はバチカン美術館が無料開館する",
+      "text": "最終日曜は9:00〜14:00、最終入場12:30の無料開館が設定されている。ただし祝祭日との重複など例外があるため、訪問年の公式カレンダーで確認する。",
+      "icon": "city",
+      "sourceKey": "museumHours"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE AROUND VATICAN CITY",
+    "title": "バチカン周辺で食べたいもの",
+    "intro": "バチカン市国内に固有の「国民料理」を立てるのではなく、門を出てローマの街へ続く食文化から4品を選ぶ。ペコリーノ、揚げ物、春の野菜、甘いパンに、周辺の日常が見えてくる。",
+    "items": [
+      {
+        "id": "cacio-e-pepe",
+        "name": "カチョ・エ・ペペ",
+        "nameLocal": "Cacio e pepe",
+        "text": "ペコリーノ・ロマーノと黒胡椒、パスタのゆで汁で濃度をつくるローマの定番。材料は少ないが、チーズをなめらかに乳化させる加減で食感が大きく変わる。",
+        "image": "assets/images/vaticancity/approved/food-cacio-e-pepe.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "suppli",
+        "name": "スップリ",
+        "nameLocal": "Supplì",
+        "text": "米とモッツァレラを包んで衣をつけ、揚げるローマの軽食。割ったときに溶けたチーズが糸を引く姿から「スップリ・アル・テレフォノ」とも呼ばれる。",
+        "image": "assets/images/vaticancity/approved/food-suppli.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "carciofi-alla-romana",
+        "name": "カルチョーフィ・アッラ・ロマーナ",
+        "nameLocal": "Carciofi alla romana",
+        "text": "アーティチョークににんにくやミントなどの香草を合わせ、オリーブ油でやわらかく仕上げるローマ式の料理。野菜そのものの形と季節感を味わえる一皿。",
+        "image": "assets/images/vaticancity/approved/food-carciofi-alla-romana.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "maritozzo",
+        "name": "マリトッツォ",
+        "nameLocal": "Maritozzo",
+        "text": "やわらかな発酵パンを切り、生クリームをたっぷり挟むローマの菓子。朝食だけでなく、街歩きの途中の甘い休憩としても定着している。",
+        "image": "assets/images/vaticancity/approved/food-maritozzo.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ローマ滞在の中で、バチカンを二つに分けて見る",
+        "text": "3〜4日のローマ滞在なら、大聖堂側と美術館側を別の時間帯に分けると、どちらも急がず見られる。例：ローマ旧市街 → サン・ピエトロ広場・大聖堂 → 翌日にバチカン美術館・システィーナ礼拝堂。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "バチカンとローマの宗教・都市空間をつなぐ",
+        "text": "バチカンを一日で消化せず、周囲のボルゴ地区やローマ中心部と分けて歩くと、国境を越えて街がどう続くかが見える。例：バチカン → ボルゴ → サンタンジェロ城周辺 → ローマ歴史地区。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "ローマの教会史まで広げ、バチカンを位置づける",
+        "text": "長めの滞在では、バチカンだけでなくローマの主要な教会や古代・近代の都市層まで広げると、聖座とローマの関係を立体的に読める。例：バチカン → サン・ジョバンニ・イン・ラテラノ → サンタ・マリア・マッジョーレ → サン・パオロ・フオーリ・レ・ムーラ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "ローマは春に穏やかな気温になりやすく、広場、大聖堂、美術館を徒歩でつなぎやすい。復活祭前後は宗教行事の日程を確認し、通常の観光日と同じ感覚で予定を詰めない。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "7〜8月は暑さが強まりやすい。広場やクーポラなど屋外の時間を朝へ寄せ、美術館の長い屋内動線と組み合わせる。服装規定を満たしながら暑さにも対応できる服装が必要。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b27a4c",
+      "text": "秋は春と並んで気温が穏やかな時期。庭園や広場と美術館を一日に組み込みやすいが、11月は雨が増える傾向があるため屋内と屋外を入れ替えられる旅程が向く。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748e9d",
+      "text": "冬のローマは比較的温和だが、日照時間は短い。クリスマス前後など典礼や行事の多い時期は、大聖堂・広場の利用状況を確認し、美術館と分けて計画する。"
+    }
+  ],
+  "transport": {
+    "title": "徒歩・地下鉄・バス",
+    "text": "バチカン市国そのものは徒歩で把握できる規模だが、旅行者はローマ側からアクセスする。バチカン美術館へは地下鉄A線のOttavianoまたはCipro、複数のバスが利用できる。サン・ピエトロ広場と美術館入口は国土の別側にあるため、同じ入口として考えない方が動きやすい。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "宗教史を、制度と空間の両方から理解したい人",
+      "text": "大聖堂や礼拝堂を見るだけでなく、聖座と国家の関係、コンクラーベ、門や警備まで含め、信仰がどのような制度と場所を持つのかを知りたい人。"
+    },
+    {
+      "title": "美術館と聖堂を、時間をかけて深く見たい人",
+      "text": "バチカン美術館、システィーナ礼拝堂、サン・ピエトロ大聖堂を一つの名所として急いで回らず、建築や作品の時代差を追いながら歩きたい人。"
+    },
+    {
+      "title": "ローマ再訪で「都市の中の別の国」を読み解きたい人",
+      "text": "有名な広場の先にある庭園、鉄道駅、国境の線、門へ視線を広げ、ローマ市街の中で独立国家がどう成り立っているかを確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ／ローマ市内の内陸国"
+    },
+    {
+      "label": "首都",
+      "value": "バチカン市"
+    },
+    {
+      "label": "人口",
+      "value": "882人（2024年12月末）"
+    },
+    {
+      "label": "面積",
+      "value": "0.44 km²（44 ha）"
+    },
+    {
+      "label": "言語",
+      "value": "ラテン語（公用語）。日常会話ではイタリア語が中心"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "vatican-gardens-twenty-two-hectares",
+      "label": "バチカン庭園",
+      "value": "約22 ha",
+      "note": "国土44haのおよそ半分。大聖堂と美術館の背後に、芝地、林、噴水、庭園建築が広がる。",
+      "icon": "earth"
+    },
+    {
+      "topicKey": "world-heritage-whole-state",
+      "label": "世界遺産",
+      "value": "44 ha",
+      "note": "1984年登録の世界遺産「Vatican City」は、単一の建物ではなくバチカン市国全体を登録資産としている。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "lateran-treaty-state-founded",
+      "label": "国家成立",
+      "value": "1929年",
+      "note": "2月11日のラテラノ条約によって、聖座の独立を保障する主権国家として成立した。",
+      "icon": "history"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "use-official-vatican-museums-ticket-site",
+      "title": "美術館は公式予約サイトを確認する",
+      "text": "バチカン美術館はオンライン券の公式ポータルを tickets.museivaticani.va と明示している。似た名称の販売サイトではなく、公式URLから営業日と時間も確認する。"
+    },
+    {
+      "topicKey": "dress-for-sacred-spaces",
+      "title": "暑い季節でも服装規定を前提にする",
+      "text": "美術館、システィーナ礼拝堂、サン・ピエトロ大聖堂、庭園では肩や膝などを覆う服装が求められる。入場直前に困らないよう、街歩きの服装から準備する。"
+    },
+    {
+      "topicKey": "separate-museums-and-square-entrances",
+      "title": "広場と美術館は「同じ入口」ではない",
+      "text": "サン・ピエトロ広場は東側、美術館入口はViale Vaticano側にある。国土が小さいからと一続きの入口だと考えず、予約時刻に合わせてローマ側の移動時間を取る。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "バチカンを完全に囲むローマへ広げ、教皇庁と都市の歴史が国境を越えてどう続くかをたどりたいなら。"
+    },
+    {
+      "slug": "sanmarino",
+      "nameEn": "SAN MARINO",
+      "nameJa": "サンマリノ",
+      "flag": "🇸🇲",
+      "reason": "同じくイタリアに囲まれた小国でも、宗教国家と共和国で制度・地形・街の成り立ちがどう異なるか比べたいなら。"
+    },
+    {
+      "slug": "monaco",
+      "nameEn": "MONACO",
+      "nameJa": "モナコ",
+      "flag": "🇲🇨",
+      "reason": "欧州の都市型ミクロステートへ広げ、限られた国土に国家機能と都市景観をどう収めるか比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-06",
+  "sourcesVerifiedAt": "2026-09-06",
+  "sourceDates": {
+    "population": "2024-12-31",
+    "unesco": "1984",
+    "map": "2016",
+    "museumHours": "2026"
+  },
+  "sources": {
+    "map": "OpenStreetMap relation 36989 boundary geometry snapshot via missinglink/osm-boundaries, WGS84; current relation identity/bounds cross-checked 6 Sep 2026; UNESCO World Heritage Centre, Vatican City: Map of the inscribed property, adopted 2016.",
+    "population": "Governorate of Vatican City State, Population: statistical data updated to 31 Dec 2024, 882 residents; current citizenship figures also published on the same page. Cross-checked with Ministry of Foreign Affairs of Japan, Vatican basic data, updated 2026.",
+    "area": "Governorate of Vatican City State, Geography: 0.44 km² (44 ha), including Saint Peter’s Square up to the marble strip at the outer parts of the Colonnade.",
+    "language": "Ministry of Foreign Affairs of Japan, Vatican basic data, 2026: Latin is the official language; French is used diplomatically and Italian commonly in daily conversation.",
+    "religion": "Ministry of Foreign Affairs of Japan, Vatican basic data, 2026: Christianity (Catholicism).",
+    "currency": "Governorate of Vatican City State, Coins and Stamps: Vatican City State uses the euro as its official currency and issues its own coins and postage stamps.",
+    "origins": "Governorate of Vatican City State, Vatican City Today / Origins and Characteristics: the State arose from the Lateran Treaty signed 11 Feb 1929 to assure the Holy See visible independence and sovereignty.",
+    "unesco": "UNESCO World Heritage Centre, Vatican City, dossier 286: inscribed 1984 under criteria (i)(ii)(iv)(vi), property 44 ha; independent State defined by the Lateran Treaty.",
+    "geography": "Governorate of Vatican City State, Geography: white marble strip at St Peter’s Square marks the State boundary; five entrances are protected by the Swiss Guard and Vatican Gendarmerie; Museums access is from Viale Vaticano.",
+    "stPetersSquare": "Fabric of Saint Peter / official Basilica website: Saint Peter’s Square was designed by Gian Lorenzo Bernini at the behest of Pope Alexander VII; Governorate geography used for the marble-border detail.",
+    "dome": "Fabric of Saint Peter, The Dome: conceived and built to the drum by Michelangelo, completed by Giacomo della Porta with Domenico Fontana in 1588–1590.",
+    "gardens": "Vatican Museums, Vatican Gardens: approximately 22 ha, corresponding to half the entire territory of Vatican City.",
+    "pinecone": "Vatican Museums, Terrace of the Niche / Courtyard of the Pinecone: colossal Roman bronze pinecone, originally a 2nd-century fountain, moved to the courtyard in 1608.",
+    "basilica": "Fabric of Saint Peter, official digital experience: St Peter’s Basilica main level and Bernini’s Baldachin; official Basilica history for Renaissance/Baroque construction context.",
+    "sistine": "Vatican Museums, Sistine Chapel: Sixtus IV chapel; Michelangelo ceiling commissioned in 1508 and finished in 1512; conclave for election of the Supreme Pontiff is held in the Chapel.",
+    "railway": "Lateran Treaty, Article 6: Italy was to connect Vatican City with the State railways by constructing a railway station within Vatican City and permitting Vatican railway vehicles on Italian railways.",
+    "portaSantAnna": "Holy See, Useful Information: access to the Vatican Pharmacy is via Via di Porta Angelica, entrance Porta Sant’Anna; Governorate geography for State entrances and access control.",
+    "museumTickets": "Vatican Museums, official visitor information: the only official website for online ticket purchases is tickets.museivaticani.va.",
+    "museumHours": "Vatican Museums, Days & Hours of closure / 2026 calendar: Monday–Saturday 08:00–20:00 (final entry 18:00); last Sunday of the month 09:00–14:00 (final entry 12:30), free entry subject to listed exceptions.",
+    "dressCode": "Vatican Museums, Useful information for visitors: appropriate dress is required for the Museums, Sistine Chapel, St Peter’s Basilica and Vatican Gardens; sleeveless/low-cut clothes, shorts above the knee, miniskirts and hats are not permitted.",
+    "transport": "Vatican Museums, Getting Here: Rome Metro Line A via Ottaviano or Cipro; current bus and tram access information to Viale Vaticano.",
+    "climate": "Roma Capitale / Turismo Roma, Climate: generally mild, hotter in July–August; spring and autumn are mild; rainfall is more frequent around November and February.",
+    "cacioEPepe": "Roma Capitale / Turismo Roma, Spaghetti cacio e pepe: Roman recipe based on pasta, Pecorino Romano and black pepper, emulsified with pasta cooking water.",
+    "suppli": "Roma Capitale / Turismo Roma, Street food: supplì are Roman breaded fried rice croquettes filled with mozzarella; melted cheese produces the traditional 'al telefono' string.",
+    "carciofi": "Roma Capitale / Turismo Roma, Carciofi alla romana: Roman-style artichokes prepared with aromatic herbs, garlic, mint and olive oil.",
+    "maritozzo": "Roma Capitale / Turismo Roma, The maritozzo: traditional Roman sweet bun, in its classic modern form filled with fresh cream.",
+    "travelScale": "Editorial JOURNEY ATLAS itinerary framing based on Vatican City’s 44 ha scale and its location within Rome; Vatican and Rome official visitor information used for access and site grouping."
+  }
+}
