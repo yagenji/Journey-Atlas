@@ -28,6 +28,7 @@ on:
       - 'scripts/validate_country.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
+      - 'scripts/qa_published_browser.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
@@ -57,6 +58,7 @@ on:
       - 'scripts/validate_country.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
+      - 'scripts/qa_published_browser.py'
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
 
@@ -75,7 +77,7 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
 
