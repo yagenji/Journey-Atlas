@@ -181,21 +181,27 @@ def validate_map_svg(errors: list[str], owner: str, asset: str) -> None:
         errors.append(f"{owner}: map SVG canvas must be 1200x760: {asset} ({width:g}x{height:g})")
 
 
-def approved_folder_hygiene(errors: list[str], slug: str, referenced: set[str]) -> None:
-    approved_dirs = {
-        (ROOT / asset).parent
-        for asset in referenced
-        if Path(asset).parent.name == "approved"
-    }
-    for approved in sorted(approved_dirs):
-        if not approved.exists():
+def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str]) -> None:
+    """Ensure renewed production folders contain only currently referenced final assets."""
+    roots: set[Path] = set()
+    for asset in referenced:
+        parts = Path(asset).parts
+        if len(parts) >= 3 and parts[:2] == ("assets", "images"):
+            roots.add(ROOT.joinpath(*parts[:3]))
+
+        path = Path(asset)
+        if path.suffix.lower() in RASTER_SUFFIXES and "approved" not in path.parts:
+            errors.append(f"{slug}: production raster must live in approved/: {asset}")
+
+    for root in sorted(roots):
+        if not root.exists():
             continue
-        for path in sorted(approved.iterdir()):
+        for path in sorted(root.rglob("*")):
             if not path.is_file():
                 continue
             relative = path.relative_to(ROOT).as_posix()
             if relative not in referenced:
-                errors.append(f"{slug}: unreferenced file remains in approved folder: {relative}")
+                errors.append(f"{slug}: unreferenced file remains in production asset folder: {relative}")
 
 
 def scan(slugs: list[str]) -> tuple[list[str], int]:
@@ -244,7 +250,7 @@ def scan(slugs: list[str]) -> tuple[list[str], int]:
                 decoded += 1
 
     for slug in slugs:
-        approved_folder_hygiene(errors, slug, per_country.get(slug, set()))
+        production_asset_hygiene(errors, slug, per_country.get(slug, set()))
 
     return errors, decoded
 
