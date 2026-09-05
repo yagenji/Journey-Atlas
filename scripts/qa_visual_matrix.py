@@ -111,45 +111,76 @@ def make_scene_sheet(slug, name, scene_paths):
     canvas.save(out, quality=88)
     return out
 
+def make_taste_sheet(slug, name, taste_paths):
+    tile_w, tile_h, cols, label_h = 320, 260, 2, 24
+    rows = 2
+    canvas = Image.new("RGB", (tile_w * cols, tile_h * rows + 30), (244,242,236))
+    draw = ImageDraw.Draw(canvas)
+    font = ImageFont.load_default()
+    draw.text((8,8), f"{name} / {slug}", fill=(25,25,25), font=font)
+    for i, p in enumerate(taste_paths):
+        img = Image.open(p)
+        fitted = fit_image(img, tile_w - 10, tile_h - label_h - 8)
+        x = (i % cols) * tile_w
+        y = 30 + (i // cols) * tile_h
+        draw.text((x+6,y+4), f"FOOD{i+1:02d}", fill=(30,30,30), font=font)
+        px = x + (tile_w - fitted.width)//2
+        py = y + label_h + (tile_h-label_h-fitted.height)//2
+        canvas.paste(fitted,(px,py))
+    out = OUT / "taste-sheets" / f"{slug}.jpg"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out, quality=88)
+    return out
+
 def main():
     countries = load_countries()
     driver = make_driver()
-    hero_desktop = []
-    hero_mobile = []
+    maps = []
+    scene_overview = []
+    taste_overview = []
     try:
         for slug, name in countries:
             url = f"{BASE_URL}/countries/{slug}/?visual-audit={int(time.time())}"
-            print(f"CAPTURE HERO {slug}", flush=True)
-
+            print(f"CAPTURE VISUAL {slug}", flush=True)
             set_viewport(driver, 1440, 1000, False)
             driver.get(url)
             wait_page(driver)
-            driver.execute_script("window.scrollTo(0,0)")
-            time.sleep(0.25)
-            hp = RAW / f"{slug}-hero-desktop.png"
-            capture(driver, ".hero", hp)
 
-            set_viewport(driver, 390, 844, True)
-            driver.get(url)
-            wait_page(driver)
-            driver.execute_script("window.scrollTo(0,0)")
-            time.sleep(0.25)
-            hmp = RAW / f"{slug}-hero-mobile.png"
-            capture(driver, ".hero", hmp)
+            mp = RAW / f"{slug}-map.png"
+            capture(driver, "#country-map-art", mp)
+            maps.append((f"{name} / {slug}", mp))
 
-            hero_desktop.append((f"{name} / {slug}", hp))
-            hero_mobile.append((f"{name} / {slug}", hmp))
+            scene_paths = []
+            for i, card in enumerate(driver.find_elements(By.CSS_SELECTOR, ".scene-card")):
+                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", card)
+                time.sleep(0.12)
+                p = RAW / f"{slug}-scene-{i+1:02d}.png"
+                card.screenshot(str(p))
+                scene_paths.append(p)
+            sp = make_scene_sheet(slug, name, scene_paths)
+            scene_overview.append((f"{name} / {slug}", sp))
+
+            taste_paths = []
+            for i, card in enumerate(driver.find_elements(By.CSS_SELECTOR, ".taste-card")):
+                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", card)
+                time.sleep(0.12)
+                p = RAW / f"{slug}-taste-{i+1:02d}.png"
+                card.screenshot(str(p))
+                taste_paths.append(p)
+            tp = make_taste_sheet(slug, name, taste_paths)
+            taste_overview.append((f"{name} / {slug}", tp))
     finally:
         driver.quit()
 
-    contact_sheet(hero_desktop, OUT / "01-hero-desktop-contact.jpg", cols=4, tile_w=360, tile_h=250)
-    contact_sheet(hero_mobile, OUT / "02-hero-mobile-contact.jpg", cols=7, tile_w=190, tile_h=280)
+    contact_sheet(maps, OUT / "03-map-contact.jpg", cols=4, tile_w=360, tile_h=250)
+    contact_sheet(scene_overview, OUT / "04-scenes-contact.jpg", cols=2, tile_w=620, tile_h=420)
+    contact_sheet(taste_overview, OUT / "05-taste-contact.jpg", cols=3, tile_w=420, tile_h=360)
 
     manifest = {
         "baseUrl": BASE_URL,
         "countries": [{"slug": s, "nameJa": n} for s,n in countries],
-        "phase": "hero",
-        "outputs": ["01-hero-desktop-contact.jpg", "02-hero-mobile-contact.jpg"]
+        "phase": "scenes-map-taste",
+        "outputs": ["03-map-contact.jpg", "04-scenes-contact.jpg", "05-taste-contact.jpg"]
     }
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
