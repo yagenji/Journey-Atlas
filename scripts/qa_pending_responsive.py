@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Temporary branch QA runner: production responsive/accessibility sweep.
 from __future__ import annotations
 
 import base64
