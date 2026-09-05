@@ -816,7 +816,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -869,7 +869,9 @@
         "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-05: Country JSON now includes Taste 4, Spain-format Travel Scale, Japanese Transport title with road icon, renewed Encounters, diversified Beyond the Scenery, corrected Hero/SEO copy and refreshed source metadata.",
         "hardImageGate enabled only after Taste approval, binary verification, repository storage and approved-folder hygiene passed. Automated QA and Browser Visual QA remain pending.",
         "SYSTEM ISSUE 2026-09-05: User Preview review found Taste images were not visible even though Italy JSON, package image set and hard image gate all passed. Shared renderTaste used CSS background images through IntersectionObserver and swallowed load failures, leaving blank media slots without a visible error.",
-        "SHARED FIX 2026-09-05: renderTaste now uses real lazy <img> elements resolved through the existing image resolver, with object-fit cover and an explicit image-error class. This is a common Country Template fix, not an Italy-specific CSS/JS workaround. Scene rendering remains unchanged."
+        "SHARED FIX 2026-09-05: renderTaste now uses real lazy <img> elements resolved through the existing image resolver, with object-fit cover and an explicit image-error class. This is a common Country Template fix, not an Italy-specific CSS/JS workaround. Scene rendering remains unchanged.",
+        "USER VISUAL REVIEW PASS 2026-09-05: user confirmed the revised Preview after the shared Taste image rendering fix; Taste 4 are visible and the page is approved for publication provided final QA remains clean.",
+        "FINAL PRE-MERGE QA PASS 2026-09-05: Reference v3 counts, Hero/S01–S08 KEEP set, Map, Taste 4 approvals, 1200×800 WebP full-decode checks, approved-folder hygiene, hardImageGate, source keys, Country JSON validation, package build and revised Preview deployment all PASS. Shared Taste rendering fix uses real <img> elements and is intentionally common, not Italy-specific. production remains LIVE_OLD until main merge and production runtime verification."
       ],
       "automatedAudit": "DONE"
     },
