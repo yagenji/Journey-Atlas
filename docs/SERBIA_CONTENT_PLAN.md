@@ -353,3 +353,21 @@ Verified on 2026-09-06 against `country/serbia`.
 Asset Verification: PASS
 
 Map asset has been created from Natural Earth geometry. Visual Complete Gate remains pending final map/browser visual QA.
+
+
+## Final publication approval
+
+User final review approval received on 2026-09-06.
+
+Pre-publish QA:
+- latest main freshness: PASS
+- Country validation: PASS
+- approved asset verification: PASS
+- Serbia Desktop / Tablet / Mobile browser QA: PASS
+- all-published regression QA: PASS
+- no console / image / overflow / accessibility failures detected
+
+Publication state:
+- atlasPublished: true
+- production: PENDING until Cloudflare Production Verify passes
+- hardImageGate: true
