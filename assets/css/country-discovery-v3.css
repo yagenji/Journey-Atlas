@@ -54,8 +54,18 @@
 .taste-card__image{
   width:100%;
   aspect-ratio:3 / 2;
-  background-size:cover;
-  background-position:center;
+  overflow:hidden;
+  background:rgba(18,54,92,.035);
+}
+.taste-card__img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.taste-card--image-error .taste-card__image{
+  background:rgba(18,54,92,.06);
 }
 .taste-card__copy{padding:13px 14px 15px;}
 .taste-card h3{

@@ -197,8 +197,8 @@
       "icon": "culture"
     },
     {
-      "title": "ビュレク",
-      "icon": "food"
+      "title": "ゲストハウス",
+      "icon": "culture"
     },
     {
       "title": "湖上フェリー",
@@ -275,13 +275,13 @@
   ],
   "travelTrivia": [
     {
-      "topicKey": "byrek-everyday-food",
-      "categoryEn": "FOOD",
-      "categoryJa": "食",
-      "title": "薄い生地を重ねたビュレクは、地域ごとに中身が変わる",
-      "text": "チーズ、肉、ほうれん草などを包むビュレクは日常的な料理。北部の山地では、手で薄く延ばした生地と地元の乳製品を使う地域独自の作り方も見られる。",
-      "icon": "food",
-      "sourceKey": "byrek"
+      "topicKey": "tirana-three-faiths-300m",
+      "categoryEn": "TIRANA",
+      "categoryJa": "街",
+      "title": "ティラナ中心部では、3つの宗教建築が約300m圏に集まる",
+      "text": "公式観光サイトは、モスク、カトリック教会、正教会が半径約300mにあることを、ティラナの宗教的共存を示す特徴として紹介している。中心部を歩くと、異なる宗教建築を短い距離の中で見比べられる。",
+      "icon": "culture",
+      "sourceKey": "tiranaCoexistence"
     },
     {
       "topicKey": "raki-fruit-distillation",
@@ -343,8 +343,9 @@
     }
   ],
   "transport": {
-    "title": "INTERCITY BUS / CAR / FERRY",
-    "text": "都市間は道路交通が中心で、国のeTransportで路線、発着地、時刻、運行会社を確認できる。ティラナ、ベラト、ジロカストラなどをつなぎ、テスやジペなど公共交通だけでは組みにくい場所は送迎・車・徒歩を足す。北部ではコマン湖フェリーを移動そのものとして旅程に組み込める。"
+    "title": "都市間バス・車・フェリー",
+    "text": "都市間は道路交通が中心で、国のeTransportで路線、発着地、時刻、運行会社を確認できる。ティラナ、ベラト、ジロカストラなどをつなぎ、テスやジペなど公共交通だけでは組みにくい場所は送迎・車・徒歩を足す。北部ではコマン湖フェリーを移動そのものとして旅程に組み込める。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -399,11 +400,11 @@
       "icon": "history"
     },
     {
-      "topicKey": "religion-ban-1967",
-      "label": "宗教活動が全面禁止された年",
-      "value": "1967年",
-      "note": "共産主義政権は1967年にイスラム教、正教会、カトリックなどの宗教活動を全面的に禁止し、宗教施設の財産を接収した。現在のモスクや教会を見るとき、宗教建築が一度公共空間から消された時代があったことが背景になる。",
-      "icon": "history"
+      "topicKey": "two-seas-adriatic-ionian",
+      "label": "国土が接する海",
+      "value": "2つ",
+      "note": "西側はアドリア海、南西側はイオニア海に面する。ヴロラ周辺は二つの海の境界に近く、北側の砂浜が続く海岸から南側の入り江や岩の多い海岸へ、短い距離で景観が変わっていく。",
+      "icon": "sea"
     },
     {
       "topicKey": "vjosa-first-wild-river-national-park",
@@ -453,15 +454,21 @@
       "reason": "南部から国境を越え、古代地中海世界と山岳文化がどのように連続しているかさらに追いたいなら。"
     }
   ],
-  "updatedAt": "2026-09-01",
-  "sourcesVerifiedAt": "2026-09-01",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2026-01-01",
     "religion": "2023",
     "bunkerization": "1983",
     "vjosa": "2023",
     "transport": "2026",
-    "religionBan": "1967"
+    "twoSeas": "2026",
+    "tiranaCoexistence": "2026",
+    "travelScale": "2026",
+    "taveKosi": "2026",
+    "byrek": "2026",
+    "fergese": "2026",
+    "ballokume": "2026"
   },
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection ALB.geojson, WGS84.",
@@ -484,7 +491,7 @@
     "albanianLanguage": "University of Texas Linguistics Research Center: Albanian forms a separate branch of Indo-European.",
     "isoPolyphony": "UNESCO Intangible Cultural Heritage: Albanian folk iso-polyphony, Representative List 2008.",
     "transhumance": "UNESCO Intangible Cultural Heritage: transhumance, seasonal droving of livestock, Representative List 2023 including Albania.",
-    "byrek": "Albania National Tourism Agency: traditional byrek/pie includes regional versions with hand-rolled thin pastry and fillings such as cheese, meat or spinach.",
+    "byrek": "Albania National Tourism Agency: Byrek is a widespread traditional pie made with thin pastry and fillings such as cheese, spinach, meat or pumpkin.",
     "raki": "Albania National Tourism Agency: raki is traditionally distilled from fermented fruits, often grapes, and is linked to hospitality and family celebrations.",
     "kcimi": "UNESCO Intangible Cultural Heritage: K'cimi dancing of Tropojë, Representative List 2024.",
     "xhubleta": "UNESCO Intangible Cultural Heritage: Xhubleta, skills, craftsmanship and forms of usage, Urgent Safeguarding List 2022.",
@@ -492,8 +499,77 @@
     "transport": "Albania National Tourism Agency / eTransport: national digital platform provides intercity routes, station locations, departure/arrival times and operator contacts.",
     "oliveGastronomy": "Albania National Tourism Agency, Albanian Gastronomy: olive groves are prominent in southern/coastal landscapes and olive oil is widely used in traditional cuisine.",
     "socialTips": "Albania National Tourism Agency, Discover Albania, Social Tips: guests in northern villages may be expected to remove shoes when entering homes.",
-    "religionBan": "U.S. Department of State, International Religious Freedom Report on Albania: in 1967 the communist government banned all religious practices and expropriated property of Islamic, Orthodox, Catholic and other religious institutions.",
     "shkodraBicycle": "Albania National Tourism Agency, Bicycle City: Shkodra is widely known as the City of Bicycles; bicycles have been part of daily urban life for decades.",
-    "xhiro": "Walk21 Tirana / Municipality of Tirana with GIZ Albania: a cultural tradition of walking remains strong; every evening people do their 'xhiro', taking leisurely walks with friends."
+    "xhiro": "Walk21 Tirana / Municipality of Tirana with GIZ Albania: a cultural tradition of walking remains strong; every evening people do their 'xhiro', taking leisurely walks with friends.",
+    "twoSeas": "Albania National Tourism Agency: Albania is washed by the Adriatic and Ionian seas; Vlora lies between the two, with distinct coastal landscapes.",
+    "taveKosi": "Albania National Tourism Agency: Tavë kosi is a representative traditional Albanian dish, especially associated with central Albania, prepared mainly with lamb, rice and sauce.",
+    "fergese": "Albania National Tourism Agency: a traditional baked fërgesë variant combines peppers, tomatoes and cheese or cottage cheese.",
+    "ballokume": "Albania National Tourism Agency: Ballokume is an Elbasan-origin corn-flour cookie associated with Summer Day on 14 March.",
+    "tiranaCoexistence": "Albania National Tourism Agency: within roughly a 300 m radius in central Tirana are a mosque, a Catholic church and an Orthodox church, presented as a sign of religious coexistence.",
+    "travelScale": "Albania National Tourism Agency itineraries: official examples include a 2-day Tirana visit, an 8-day Ionian/Riviera route and an 11-day nationwide route, supporting progressive trip lengths."
+  },
+  "taste": {
+    "kicker": "TASTE OF ALBANIA",
+    "title": "アルバニアで食べたいもの",
+    "intro": "アルバニアを訪れたら、まず味わいたい代表的な4つ。",
+    "items": [
+      {
+        "id": "tave-kosi",
+        "name": "タヴァ・コシ",
+        "nameLocal": "Tavë kosi",
+        "text": "羊肉と米を、ヨーグルトを使ったソースとともに焼く伝統料理。中央部で親しまれ、やわらかな酸味と焼き目の香ばしさを一皿で味わえる。",
+        "image": "assets/images/albania/approved/food-tave-kosi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "byrek",
+        "name": "ビュレク",
+        "nameLocal": "Byrek",
+        "text": "薄く重ねた生地でチーズやほうれん草、肉などを包むパイ。家庭やベーカリーでも身近で、具材の違いから地域や店ごとの味を比べやすい。",
+        "image": "assets/images/albania/approved/food-byrek.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "fergese",
+        "name": "フェルゲセ",
+        "nameLocal": "Fërgesë me speca dhe gjizë",
+        "text": "赤パプリカとトマトに、チーズやギズ（フレッシュチーズ）を合わせて焼く料理。野菜の甘みと乳製品のコクが重なる、パンと一緒に食べやすい一皿。",
+        "image": "assets/images/albania/approved/food-fergese.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "ballokume",
+        "name": "バロクメ",
+        "nameLocal": "Ballokume",
+        "text": "エルバサン発祥の、トウモロコシ粉を使った素朴な焼き菓子。3月14日の『夏の日』と結びつき、季節の行事と食文化を一緒に知ることができる。",
+        "image": "assets/images/albania/approved/food-ballokume.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ティラナを拠点にベラトへ",
+        "text": "首都を歩き、日帰りまたは1泊でベラトを加えるくらいが組みやすい。都市の日常とオスマン期の街並みを、移動を増やしすぎずに比べられる。例：ティラナ → ベラト → ティラナ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "南部の歴史都市と海をつなぐ",
+        "text": "石造都市、考古遺跡、イオニア海を一つの旅程にまとめやすい。例：ティラナ → ベラト → ジロカストラ → サランダ／ブトリント。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "北部の山岳地帯まで広げる",
+        "text": "北部の山岳地帯まで加えると、アルバニア・アルプスから中央部、南部の海岸まで国土の変化が見えてくる。例：ティラナ → シュコドラ → テス → ベラト → ジロカストラ → サランダ／ブトリント。",
+        "icon": "compass"
+      }
+    ]
   }
 }
