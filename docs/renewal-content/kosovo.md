@@ -1,3 +1,6 @@
+> **STATUS — COMPLETED (2026-09-05)**  
+> This file is retained as a historical execution/plan record. The current authoritative renewal status is `data/country-renewal-status.json`: content / visual / map / sources = `DONE`, QA = `PASS`, production = `LIVE_CURRENT`. Any `PENDING`, `Still pending`, or pre-publish notes below describe an earlier checkpoint and are not current tasks.
+
 # Kosovo Renewal — Locked Content Specification
 
 Date: 2026-09-04  
