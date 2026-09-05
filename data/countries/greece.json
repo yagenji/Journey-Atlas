@@ -242,14 +242,14 @@
       ]
     },
     {
-      "topicKey": "regional-cuisine-geography",
-      "themeEn": "FOOD",
-      "themeJa": "食をめぐる",
-      "title": "ギリシャ料理は、一つの定番料理より地域差を見ると地理が分かる",
-      "text": "山地の本土と海に囲まれた島々では、手に入る食材も保存方法も異なる。地域料理を追うと、乾いた島、山間部、肥沃な平野という地形の違いがそのまま食卓に現れる。",
+      "topicKey": "athens-open-air-cinema-summer",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "アテネでは、夏の夜に街の中で映画を見る",
+      "text": "アテネでは夏になると、屋外映画館や広場、庭園などで上映を楽しむ文化が街に現れる。2026年のAthens Open Air Film Festivalも市内各所で開かれ、映画を見ること自体が夏の都市体験になっている。",
       "points": [
-        "公式観光案内も本土山岳部と島嶼部の料理を異なる地域文化として紹介している",
-        "キクラデスでは島ごとの地形と微気候が食文化を形づくる"
+        "2026年のAthens Open Air Film Festivalは5月18日〜8月26日に開催",
+        "公園、広場、中庭、屋外映画館など街の異なる場所が上映会場になる"
       ]
     }
   ],
@@ -323,8 +323,9 @@
     }
   ],
   "transport": {
-    "title": "FERRY / RAIL / INTERCITY BUS",
-    "text": "島嶼部はフェリー、本土は鉄道・都市間バス・車を組み合わせる。アテネの外港ピレウスは島への主要な玄関口で、サントリーニ、クレタ、ロードスなどを含む旅では海上移動が旅程の骨格になる。鉄道は工事や区間変更が発生するため、Hellenic Trainの運行情報を直前に確認する。"
+    "title": "フェリー・国内線・都市間バス・車",
+    "text": "島どうしや本土との移動はフェリーと国内線が中心。本土では都市間バスや車が使いやすく、鉄道もアテネ〜テッサロニキなどで利用できる。鉄道は工事や遅延、区間変更が出ることがあるため、移動前にHellenic TrainのTraffic Statusを確認する。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -433,12 +434,15 @@
       "reason": "東地中海へ進み、ギリシャ語文化と島の歴史が異なる政治・地理の中でどう続くか見たいなら。"
     }
   ],
-  "updatedAt": "2026-09-02",
-  "sourcesVerifiedAt": "2026-09-02",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-05",
   "sourceDates": {
     "population": "2025-01-01",
     "shipping": "2026-01",
-    "minoanPalatial": "2025"
+    "minoanPalatial": "2025",
+    "taste": "2026-09-05",
+    "openAirCinema": "2026",
+    "railStatus": "2026-09-05"
   },
   "sources": {
     "map": "peterdsp/greece-prefectures-and-units, greecePrefectures.geojson (MIT License; source data filtered from Eurostat). 13 regional MultiPolygons visually dissolved to national outline; extent includes Kastellorizo.",
@@ -474,6 +478,73 @@
     "climate": "Greek National Tourism Organisation (Visit Greece), Travel Tips: Mediterranean climate with hot dry summers; mountainous areas are cooler and often snowy in winter.",
     "ferryNetwork": "Greek National Tourism Organisation (Visit Greece), Piraeus and island destination access pages: Piraeus is Greece's main passenger gateway for island ferry travel.",
     "summerHeat": "Greek National Tourism Organisation (Visit Greece), travel routes: in high summer temperatures, hiking is recommended very early or avoided when heat conditions are unsuitable.",
-    "railStatus": "Hellenic Train, Traffic Status / Athens–Thessaloniki route: daily main north–south service with current operational updates and possible temporary changes."
+    "railStatus": "Hellenic Train, Athens–Thessaloniki route and Traffic Status / Important Updates, checked 2026-09-05: daily Athens–Thessaloniki service remains in operation; live service changes and delays are published.",
+    "tasteMoussakaSouvlakiLoukoumades": "Greek National Tourism Organisation (Visit Greece), The Athenian Odyssey: History, Culture and Cuisine: moussaka, souvlaki and loukoumades descriptions.",
+    "tasteHoriatiki": "Greek National Tourism Organisation (Visit Greece), A Veggie Adventure Through Greece: Choriatiki ingredients include tomatoes, cucumbers, onions, feta, olives, olive oil and oregano.",
+    "openAirCinema": "Greek National Tourism Organisation (Visit Greece), 16th Athens Open Air Film Festival 2026 / Starry Cinema: open-air screenings are a recurring part of Athens and Greece's summer cultural experience."
+  },
+  "taste": {
+    "kicker": "TASTE OF GREECE",
+    "title": "ギリシャで食べたいもの",
+    "intro": "旅の途中で出会いやすく、食文化の違いも見えやすい代表的な4つ。",
+    "items": [
+      {
+        "id": "moussaka",
+        "name": "ムサカ",
+        "nameLocal": "Μουσακάς",
+        "text": "ナスとひき肉を重ね、ベシャメルソースをのせて焼く料理。断面に層が見え、家庭料理としてもレストランでも出会いやすい。",
+        "image": "assets/images/greece/approved/food-moussaka.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "souvlaki",
+        "name": "スブラキ",
+        "nameLocal": "Σουβλάκι",
+        "text": "豚肉や鶏肉などを小さく切って串に刺し、香ばしく焼く。ピタと合わせることも多く、街歩きの途中にも食べやすい。",
+        "image": "assets/images/greece/approved/food-souvlaki.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "horiatiki",
+        "name": "ホリアティキ",
+        "nameLocal": "Χωριάτικη σαλάτα",
+        "text": "トマト、きゅうり、玉ねぎ、オリーブ、フェタを合わせ、オリーブオイルとオレガノで仕上げる。夏の食卓でギリシャの素材感をそのまま味わえる。",
+        "image": "assets/images/greece/approved/food-horiatiki.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "loukoumades",
+        "name": "ルクマデス",
+        "nameLocal": "Λουκουμάδες",
+        "text": "小さく丸めた生地を揚げ、蜂蜜やシナモンを合わせる甘味。外は香ばしく、中はやわらかく、食後や街歩きの休憩にも向く。",
+        "image": "assets/images/greece/approved/food-loukoumades.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "アテネを拠点に近郊へ",
+        "text": "首都の古代遺跡と街歩きを中心にし、1日だけ近郊へ足を延ばすくらいが現実的。例：アテネ → デルフィ → アテネ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "首都と2つの島をつなぐ",
+        "text": "アテネに加え、フェリーや国内線で島を2つほど組み合わせると、都市とエーゲ海の両方が見えてくる。例：アテネ → ナクソス → サントリーニ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "本土北部から島まで広げる",
+        "text": "メテオラやテッサロニキなど本土北部へ進み、日数に余裕があれば島を加えると地理的な幅が見える。例：アテネ → メテオラ → テッサロニキ → クレタ島。",
+        "icon": "compass"
+      }
+    ]
   }
 }
