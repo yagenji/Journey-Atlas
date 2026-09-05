@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "slovenia",
+  "nameEn": "SLOVENIA",
+  "nameJa": "スロベニア",
+  "region": "CENTRAL EUROPE / 46°N",
+  "seo": {
+    "description": "ブレッド湖からソチャ渓谷、カルストの地下世界、リュブリャナ、羊飼いの高原、ワイン丘陵、プトゥイ、アドリア海へ。小さな国土で景観が切り替わるスロベニアを8つの景色からたどる。"
+  },
+  "capital": {
+    "nameEn": "Ljubljana",
+    "nameJa": "リュブリャナ",
+    "coordinates": {
+      "latitude": 46.0569,
+      "longitude": 14.5058
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 2.1,
+      "y": -1.5
+    }
+  },
+  "hero": {
+    "lead": "ジュリアン・アルプスの湖から、エメラルド色の川、カルストの地下世界、アドリア海の港町へ。小さな国土を進むほど、アルプス・地中海・カルスト・パンノニアの景観が短い距離で切り替わっていく。",
+    "image": "assets/images/slovenia/approved/hero-lake-bled.webp",
+    "location": "Mala Osojnica / Lake Bled",
+    "coordinates": {
+      "latitude": 46.3556,
+      "longitude": 14.0806
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 46.9504,
+      "south": 45.3372,
+      "west": 13.1763,
+      "east": 16.7043
+    },
+    "svg": "assets/images/slovenia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection SVN.geojson (blob dcbe8e7bc5fba992ad998c111f5a4e1599aea2d1), WGS84; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "soca-great-gorge",
+      "name": "ソチャ大峡谷 / ソチャ渓谷",
+      "nameLocal": "Velika korita Soče / Soča Valley",
+      "mapLabel": "Soča Gorge",
+      "description": "白灰色の石灰岩が狭く切れ込み、その間を青緑色のソチャ川が流れる。水の色だけでなく、ジュリアン・アルプスの石灰岩と急流がつくる地形を近い距離で読める場所。",
+      "coordinates": {
+        "latitude": 46.3384,
+        "longitude": 13.6494
+      },
+      "image": "assets/images/slovenia/approved/soca-valley.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "logar-valley",
+      "name": "ロガル渓谷",
+      "nameLocal": "Logarska dolina",
+      "mapLabel": "Logar Valley",
+      "description": "カムニーク＝サヴィニャ・アルプスの峰に囲まれた氷河谷。開けた谷底に草地、森、農家が続き、急峻な山と人の暮らしが同じ視界の中に収まる。",
+      "coordinates": {
+        "latitude": 46.3836,
+        "longitude": 14.6216
+      },
+      "image": "assets/images/slovenia/approved/logar-valley.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "piran-st-george",
+      "name": "聖ユーリ教会 / ピラン",
+      "nameLocal": "St. George's Parish Church / Piran",
+      "mapLabel": "Piran",
+      "description": "教会の高台から、赤橙色の屋根が密集する細長い半島とアドリア海を見下ろす。アルプスの国という印象から一転し、ヴェネツィアの影響を受けた地中海の都市景観へ切り替わる。",
+      "coordinates": {
+        "latitude": 45.5283,
+        "longitude": 13.5685
+      },
+      "image": "assets/images/slovenia/approved/piran.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "skocjan-caves",
+      "name": "シュコツィアン洞窟群",
+      "nameLocal": "Škocjanske jame",
+      "mapLabel": "Škocjan Caves",
+      "description": "石灰岩の地下をレカ川が削り、巨大な地下峡谷をつくる。地表の森や村の下に別の地形が続くことを実感でき、「カルスト」という地理概念をスロベニアから理解できる。",
+      "coordinates": {
+        "latitude": 45.665,
+        "longitude": 13.9947
+      },
+      "image": "assets/images/slovenia/approved/skocjan-caves.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "ljubljana-triple-bridge",
+      "name": "三本橋 / リュブリャナ",
+      "nameLocal": "Tromostovje / Ljubljana",
+      "mapLabel": "Ljubljana",
+      "description": "リュブリャニツァ川の両岸を、プレチニックが再設計した三本橋と川沿いの公共空間がつなぐ。橋、広場、市場、歩行空間が連続する小さな首都の構造が見える。",
+      "coordinates": {
+        "latitude": 46.0514,
+        "longitude": 14.506
+      },
+      "image": "assets/images/slovenia/approved/ljubljana.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.1,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "velika-planina",
+      "name": "ヴェリカ・プラニナ",
+      "nameLocal": "Velika planina",
+      "mapLabel": "Velika Planina",
+      "description": "高原の草地に、低く広い屋根をもつ木造の羊飼い小屋が点在する。夏の放牧と山上の集落がつくってきた景観で、アルプスを自然だけでなく季節の暮らしとして見られる。",
+      "coordinates": {
+        "latitude": 46.2959,
+        "longitude": 14.652
+      },
+      "image": "assets/images/slovenia/approved/velika-planina.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "goriska-brda-smartno",
+      "name": "シュマルトノ / ゴリシュカ・ブルダ",
+      "nameLocal": "Šmartno / Goriška Brda",
+      "mapLabel": "Goriška Brda",
+      "description": "イタリア国境近くの丘に葡萄畑、果樹園、森、小さな集落が重なる。高山でも海岸でもない穏やかな丘陵が続き、西部スロベニアの農業景観とワイン文化を見せる。",
+      "coordinates": {
+        "latitude": 46.005,
+        "longitude": 13.555
+      },
+      "image": "assets/images/slovenia/approved/goriska-brda.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "ptuj-castle-drava",
+      "name": "プトゥイ城 / ドラヴァ川",
+      "nameLocal": "Ptujski grad / Drava",
+      "mapLabel": "Ptuj",
+      "description": "ドラヴァ川越しに旧市街と丘上の城を見る。西部の山岳・カルスト景観から離れ、東へ進むにつれて低地と歴史都市が現れるスロベニアの地理的な変化を示す。",
+      "coordinates": {
+        "latitude": 46.4211,
+        "longitude": 15.8677
+      },
+      "image": "assets/images/slovenia/approved/ptuj.webp",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "プレトナ舟",
+      "icon": "road"
+    },
+    {
+      "title": "ターコイズ色の川",
+      "icon": "landscape"
+    },
+    {
+      "title": "羊飼いの木造小屋",
+      "icon": "culture"
+    },
+    {
+      "title": "カルストの地下世界",
+      "icon": "landscape"
+    },
+    {
+      "title": "プレチニック建築",
+      "icon": "city"
+    },
+    {
+      "title": "アドリア海の港町",
+      "icon": "city"
+    },
+    {
+      "title": "ワインの丘陵",
+      "icon": "landscape"
+    },
+    {
+      "title": "養蜂文化",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "slovene-dual-and-dialects",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "「私たち二人」を一語で言い分ける言語",
+      "text": "スロベニア語は、単数と複数の間に「2」を表す双数形を残す数少ないインド・ヨーロッパ語の一つ。さらに40を超える方言・下位方言があり、小さな国土の中でも話し言葉に地域差がある。",
+      "points": [
+        "双数形が現在も文法として使われる",
+        "40を超える方言・下位方言がある"
+      ]
+    },
+    {
+      "topicKey": "slovenian-beekeeping-carniolan-bee",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "養蜂が「仕事」だけでなく暮らしの文化になっている",
+      "text": "スロベニアの養蜂は2022年にユネスコ無形文化遺産へ登録された。国内で飼育されるミツバチの亜種はクランジスカ・シヴカ（Carniolan bee）のみで、蜂蜜だけでなく巣箱、知識、地域活動まで文化として継承されている。",
+      "points": [
+        "2022年にユネスコ無形文化遺産へ登録",
+        "国内で飼育される亜種はCarniolan bee"
+      ]
+    },
+    {
+      "topicKey": "plecnik-human-centred-ljubljana",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "一人の建築家が、橋・市場・通りを都市の連続した空間にした",
+      "text": "第一次世界大戦後から第二次世界大戦の間、ヨジェ・プレチニックは橋、広場、市場、図書館などを既存の街へ組み込み、リュブリャナを人の歩行スケールで再構成した。その一連の作品は世界遺産になっている。",
+      "points": [
+        "橋や広場だけでなく公共空間全体を設計",
+        "既存都市との対話を重視した人間中心の都市設計"
+      ]
+    },
+    {
+      "topicKey": "lipizzan-breeding-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "リピッツァナーの繁殖文化は450年以上続いてきた",
+      "text": "リピッツァナーはハプスブルク宮廷向けの馬として育種され、現在は農村の行事、馬術、観光などにも受け継がれる。スロベニアを含む8か国の繁殖文化が2022年にユネスコ無形文化遺産へ登録された。",
+      "points": [
+        "繁殖文化は450年以上にわたって継承",
+        "2022年に8か国共同でユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "kurenti-shrovetide-rounds",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "冬の終わり、鈴を鳴らすクレンティが家々を回る",
+      "text": "プトゥイ周辺では、毛皮や仮面、大きな鈴を身につけたクレンティが、2月2日の聖燭祭から灰の水曜日まで家々を訪ねる。地域の家族や学校も継承に関わる習慣で、2017年にユネスコ無形文化遺産へ登録された。",
+      "points": [
+        "聖燭祭から灰の水曜日まで続く習慣",
+        "2017年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "idrija-mercury-heritage",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "1490年に見つかった水銀が、山の町を世界交易へつないだ",
+      "text": "イドリヤでは1490年に水銀が発見され、スペインのアルマデンと並ぶ大規模な水銀鉱山へ発展した。採掘施設だけでなく鉱夫の住居や劇場も残り、鉱物資源が都市と世界交易をどう変えたかをたどれる。",
+      "points": [
+        "イドリヤで水銀が発見されたのは1490年",
+        "アルマデンとともに世界遺産を構成する"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "bled-pletna-1590",
+      "categoryEn": "BOAT",
+      "categoryJa": "舟",
+      "title": "ブレッド湖のプレトナ舟、その起源は1590年までさかのぼる",
+      "text": "平底の木造舟を立って二本の櫂で操り、湖岸からブレッド島へ渡る。漕ぎ手の仕事も代々家族へ受け継がれてきたため、移動そのものが湖の文化を知る体験になる。",
+      "icon": "road",
+      "sourceKey": "pletna"
+    },
+    {
+      "topicKey": "knafelc-trail-marker-1922",
+      "categoryEn": "HIKING",
+      "categoryJa": "山歩き",
+      "title": "赤い輪に白い点の登山標識は1922年から使われている",
+      "text": "山道で目にする赤い円と中央の白点はKnafelc blaze。スロベニアの登山道を歩くと繰り返し現れるので、出発前に形を知っておくと道標そのものが旅の発見になる。",
+      "icon": "landscape",
+      "sourceKey": "knafelc"
+    },
+    {
+      "topicKey": "postojna-cave-railway",
+      "categoryEn": "CAVE",
+      "categoryJa": "洞窟",
+      "title": "ポストイナ鍾乳洞では、140年以上前から洞窟列車が走る",
+      "text": "洞窟の入口から地下の回廊へ列車で入り、その後に徒歩で鍾乳石の空間を巡る。カルスト地形を見るだけでなく、観光洞窟として発展してきた歴史まで体験できる。",
+      "icon": "road",
+      "sourceKey": "postojnaRailway"
+    },
+    {
+      "topicKey": "piran-salt-700-years",
+      "categoryEn": "SALT",
+      "categoryJa": "塩",
+      "title": "ピランの塩田では700年以上続く方法で塩を採る",
+      "text": "セチョウリェ塩田では、太陽、風、海水を使い、伝統的な道具で手作業の採塩が続く。ピランの街が海とどう結びついて発展したかを、町の外側に広がる塩田から理解できる。",
+      "icon": "culture",
+      "sourceKey": "piranSalt"
+    },
+    {
+      "topicKey": "ljubljana-pedestrian-centre-2007",
+      "categoryEn": "CITY",
+      "categoryJa": "街歩き",
+      "title": "リュブリャナ中心部は2007年から歩行者中心へ変わった",
+      "text": "旧市街中心部では車の通行を抑え、歩行者と自転車を優先する空間が広がっている。川沿い、橋、市場を連続して歩ける現在の街の感覚は、都市政策によってつくられたものでもある。",
+      "icon": "city",
+      "sourceKey": "ljubljanaPedestrian"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SLOVENIA",
+    "title": "スロベニアで食べたいもの",
+    "intro": "アルプス、カルスト、地中海、東部の食文化が交わるスロベニアから、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "kranjska-klobasa",
+        "name": "クランスカ・クロバサ",
+        "nameLocal": "Kranjska klobasa",
+        "text": "粗く挽いた豚肉とベーコンを、にんにくと胡椒で調えるクラン地方由来のソーセージ。EUの地理的表示保護を受け、温めてマスタードや発酵キャベツなどと食べる。",
+        "image": "assets/images/slovenia/approved/food-kranjska-klobasa.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "idrijski-zlikrofi",
+        "name": "イドリスキ・ジュリクロフィ",
+        "nameLocal": "Idrijski žlikrofi",
+        "text": "薄い生地でじゃがいもを中心とした具を包み、両端をつまんだ小さなダンプリング。イドリヤの鉱山町で育った料理で、EUの伝統的特産品保証を受けている。",
+        "image": "assets/images/slovenia/approved/food-idrijski-zlikrofi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "jota",
+        "name": "ヨタ",
+        "nameLocal": "Jota",
+        "text": "豆、じゃがいも、ザワークラウトや発酵カブを煮込む温かな料理。カルスト、イストリア、ヴィパヴァなど地域ごとに材料の組み合わせが変わり、西部の発酵食文化を味わえる。",
+        "image": "assets/images/slovenia/approved/food-jota.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "potica",
+        "name": "ポティツァ",
+        "nameLocal": "Slovenska potica",
+        "text": "発酵生地にくるみなどのフィリングを広げて巻き、輪状に焼く祝い菓子。多様なフィリングがあり、なかでもくるみは代表的。2021年にEUの伝統的特産品保証へ登録された。",
+        "image": "assets/images/slovenia/approved/food-potica.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "リュブリャナとブレッドを二つの軸にする",
+        "text": "首都の街歩きとアルプスの湖を組み合わせる程度なら、移動を詰め込みすぎず回れる。例：リュブリャナ → ブレッド → リュブリャナ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "西へ進み、アルプスからアドリア海までつなぐ",
+        "text": "車またはバスを組み合わせると、山岳景観、カルスト、海岸を一つの旅程に入れやすい。例：リュブリャナ → ブレッド → ソチャ渓谷 → シュコツィアン → ピラン。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "西部の自然から東部の歴史都市まで横断する",
+        "text": "主要景観に東部を加え、国土の変化を追う旅にする。例：リュブリャナ → ブレッド → ソチャ渓谷 → ゴリシュカ・ブルダ → ピラン → シュコツィアン → プトゥイ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#7f9a61",
+      "text": "低地や都市は新緑の季節に入る一方、高山にはまだ雪が残る。湖、街、カルストを中心に組み、標高の高いハイキングは積雪と山小屋の営業状況を確認する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "アルプスのハイキング、湖、ソチャ川、アドリア海岸を組み込みやすい時期。山地では天候が急変しやすく、暑い低地と涼しい高地で装備を分けて考える。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "ゴリシュカ・ブルダなどの葡萄畑が収穫期を迎え、森も秋色へ変わる。朝晩は冷え込み、高山では早い雪もあり得るため、山と丘陵で季節差が大きい。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "高山は本格的な冬となり、多くの山小屋が閉まる。リュブリャナ、プトゥイ、ピランなどの都市や、通年で訪ねられる洞窟を軸にすると旅程を組みやすい。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・レンタカー",
+    "text": "リュブリャナを起点に主要都市は鉄道とバスでつながり、多くの町や地方部へバスで移動できる。ブレッド、海岸、都市を結ぶ旅は公共交通でも可能だが、ソチャ渓谷、ゴリシュカ・ブルダ、高原などを一続きに回るならレンタカーの自由度が高い。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "短い距離で景観が変わる旅が好きな人",
+      "text": "湖と高山、青緑の川、カルストの洞窟、葡萄畑、アドリア海まで、移動するたびに地形が切り替わる国を一つの旅で見たい人。"
+    },
+    {
+      "title": "自然と小さな都市を同じ比重で歩きたい人",
+      "text": "リュブリャナやピランの街を歩きながら、ブレッド、ロガル渓谷、ヴェリカ・プラニナなどへ足を延ばし、都市と自然を交互に旅したい人。"
+    },
+    {
+      "title": "有名景観の先にある暮らしまで知りたい人",
+      "text": "プレトナ舟、養蜂、羊飼い集落、ワイン、クレンティなど、風景の背景にある仕事や習慣へ関心を広げたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ／アルプス・アドリア"
+    },
+    {
+      "label": "首都",
+      "value": "リュブリャナ"
+    },
+    {
+      "label": "人口",
+      "value": "約214万人（2026年）"
+    },
+    {
+      "label": "面積",
+      "value": "20,273 km²（日本の約5.4%）"
+    },
+    {
+      "label": "言語",
+      "value": "スロベニア語／一部地域でイタリア語・ハンガリー語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "ローマ・カトリック 57.8%（2002年国勢調査）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "forest-cover-2024",
+      "label": "国土を覆う森林",
+      "value": "58.1%",
+      "note": "2024年の統計では国土の58.1%が森林。アルプスの山地だけでなく、カルストや丘陵まで森林が景観の背景に入り続ける。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "adriatic-coastline-47km",
+      "label": "アドリア海の海岸線",
+      "value": "47 km",
+      "note": "海岸線は47km。短い海岸の中にピラン、コペル、塩田があり、「アルプスの国」から地中海へ景観が切り替わる。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "maribor-old-vine",
+      "label": "今も実をつける栽培ブドウ樹",
+      "value": "450年以上",
+      "note": "マリボルのドラヴァ川沿いには450年以上育つŽametovkaの古木が残る。現在も実をつけ、スロベニアのワイン文化を時間の長さで示す。",
+      "icon": "food"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "slovenia-evignette-motorways",
+      "title": "高速道路へ入る前にe-vignetteを確認する",
+      "text": "最大許容重量3.5t以下の車両で有料の高速道路・自動車専用道路を走る場合、電子ビニエットが必要。レンタカーでは付帯状況を確認し、自車なら走行前に購入する。"
+    },
+    {
+      "topicKey": "slovenia-winter-mountain-conditions",
+      "title": "山では季節より「当日の条件」を優先する",
+      "text": "高山では天候が急変し、冬は雪・氷・雪崩の条件が加わる。冬季は多くの山小屋も閉まるため、ルート、天候、積雪、営業状況を出発前に確認する。"
+    },
+    {
+      "topicKey": "piran-historic-centre-parking",
+      "title": "ピラン旧市街へは車を持ち込まない前提で考える",
+      "text": "歴史地区の大部分は車両通行が制限される。車旅では町の外側の駐車場・立体駐車場へ停め、徒歩またはシャトルで中心部へ入ると動きやすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "北へ続くアルプスの谷、湖、放牧地をたどり、同じ山系が国境を越えてどう変わるか見たいなら。"
+    },
+    {
+      "slug": "croatia",
+      "nameEn": "CROATIA",
+      "nameJa": "クロアチア",
+      "flag": "🇭🇷",
+      "reason": "カルスト地形とアドリア海岸を南へ追い、より長い海岸線と島々へ景観を広げたいなら。"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "ジュリアン・アルプスとアドリア海を西へつなぎ、山岳・ワイン丘陵・港町の連続性を国境越しに見たいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-06",
+  "sourcesVerifiedAt": "2026-09-06",
+  "sourceDates": {
+    "population": "2026-01-01",
+    "area": "2025",
+    "religion": "2002",
+    "forestCover": "2024",
+    "oldVine": "2025",
+    "tolls": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection SVN.geojson, blob dcbe8e7bc5fba992ad998c111f5a4e1599aea2d1; WGS84.",
+    "population": "SURS final data: 2,135,107 residents on 1 January 2026.",
+    "area": "European Union / Eurostat 2025: 20,273 km². Japan comparison calculated against Statistics Bureau of Japan 2025 total area 377,975.37 km².",
+    "language": "Government of Slovenia: Slovenian; Italian and Hungarian also official in ethnically mixed regions.",
+    "religion": "SURS Census 2002: Catholic 57.8%; the UI explicitly retains the 2002 reference date.",
+    "currency": "European Union: euro; euro area member since 1 January 2007.",
+    "forestCover": "SURS Sustainable Development Goals Indicators 2024: forest area 58.1% of total land.",
+    "coastline": "Government of Slovenia: coastline length 47 km.",
+    "oldVine": "Slovenian Tourist Board, 2025/current: Maribor Old Vine is more than 450 years old and remains the oldest noble cultivated grapevine still bearing fruit.",
+    "soca": "Slovenian Tourist Board: Soča Valley and Great Soča Gorge.",
+    "logar": "Slovenian Tourist Board: Logar Valley, Alpine glacial valley in the Kamnik–Savinja Alps.",
+    "piran": "Slovenian Tourist Board: Portorož and Piran, historic Mediterranean town on the Adriatic.",
+    "skocjan": "UNESCO World Heritage Centre / Škocjan Caves Park: karst cave system and Reka underground canyon.",
+    "ljubljana": "UNESCO World Heritage Centre: The works of Jože Plečnik in Ljubljana – Human Centred Urban Design.",
+    "velikaPlanina": "Slovenian Tourist Board: Velika planina shepherd settlement and high-pasture landscape.",
+    "goriskaBrda": "Slovenian Tourist Board: Goriška Brda vineyard hills and villages.",
+    "ptuj": "Slovenian Tourist Board: Ptuj historic town and castle above the Drava.",
+    "slovenianLanguage": "Slovenian Tourist Board: Slovenian retains the dual and has more than 40 dialects/subdialects.",
+    "beekeeping": "UNESCO ICH: Beekeeping in Slovenia, a way of life, inscribed 2022; Carniolan bee is the only subspecies kept in Slovenia.",
+    "plecnik": "UNESCO World Heritage Centre: Plečnik's interwar Ljubljana works are human-centred urban design.",
+    "lipizzan": "UNESCO ICH: Lipizzan horse breeding traditions, inscribed 2022; tradition over 450 years.",
+    "kurenti": "UNESCO ICH: Door-to-door rounds of Kurenti, inscribed 2017; Candlemas to Ash Wednesday around Ptuj.",
+    "mercury": "UNESCO World Heritage Centre: Heritage of Mercury, Almadén and Idrija; mercury found in Idrija in 1490.",
+    "pletna": "Bled pletna tradition: origins traced to 1590; oarsman profession passed through families.",
+    "knafelc": "Slovenian Tourist Board: Knafelc blaze has marked mountain trails since 1922.",
+    "postojnaRailway": "Slovenian Tourist Board: Postojna Cave railway has operated for more than 140 years.",
+    "piranSalt": "Slovenian Tourist Board: Piran/Sečovlje salt-making tradition exceeds 700 years.",
+    "ljubljanaPedestrian": "Visit Ljubljana: wider pedestrian/cyclist transformation of city centre began in 2007.",
+    "kranjskaKlobasa": "Government of Slovenia protected-food publication: Kranjska klobasa is PGI, made from pork and bacon with garlic and pepper.",
+    "idrijskiZlikrofi": "Government of Slovenia / Slovenian Tourist Board: Idrijski žlikrofi are TSG dough pockets with potato filling.",
+    "jota": "Slovenian Tourist Board: regional jota variants use sauerkraut or turnip with potatoes and/or beans.",
+    "potica": "Government of Slovenia / European Commission: Slovenska potica entered TSG register in 2021.",
+    "transport": "Slovenian Tourist Board current Getting to and around Slovenia guidance: rail/road links; buses reach most towns/countryside; car offers local flexibility.",
+    "tolls": "Government of Slovenia, edited 4 June 2026: e-vignette compulsory on toll roads for vehicles not exceeding 3,500 kg.",
+    "mountainSafety": "Slovenian Tourist Board mountain safety guidance: conditions change rapidly; winter adds snow/ice/avalanche risks; most mountain huts close.",
+    "piranParking": "Portorož & Piran official visitor information: Piran historic centre is largely closed to traffic; use outside garages and walk/shuttle.",
+    "seasons": "Slovenian Tourist Board outdoor/mountain guidance on seasonal conditions.",
+    "travelScale": "Slovenian Tourist Board current transport guidance used to construct realistic route examples."
+  }
+}
