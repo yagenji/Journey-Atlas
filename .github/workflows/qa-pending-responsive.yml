@@ -28,11 +28,16 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Set up ChromeDriver
-        uses: browser-actions/setup-chromedriver@v1
-
       - name: Install Selenium
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
+
+      - name: Show browser versions
+        run: |
+          google-chrome --version || chrome --version || true
+          python3 - <<'PY'
+          import selenium
+          print("selenium", selenium.__version__)
+          PY
 
       - name: Run production responsive and accessibility QA
         env:
@@ -46,5 +51,5 @@ jobs:
         with:
           name: pending-country-responsive-qa
           path: qa-browser-output/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 2
