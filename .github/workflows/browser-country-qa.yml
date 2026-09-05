@@ -2,20 +2,6 @@ name: Browser QA published Country pages
 
 on:
   pull_request:
-    paths:
-      - "country.html"
-      - "assets/css/country*.css"
-      - "assets/js/app.js"
-      - "assets/images/**"
-      - "data/countries/**"
-      - "data/atlas-destinations.json"
-      - "data/atlas-destinations-editorial.json"
-      - "data/country-renewal-status.json"
-      - "scripts/build_site.py"
-      - "scripts/package_site.py"
-      - "scripts/build_cloudflare.py"
-      - "scripts/qa_published_browser.py"
-      - ".github/workflows/browser-country-qa.yml"
   workflow_dispatch:
 
 permissions:
@@ -28,21 +14,53 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Country-page-impacting changes
+        id: changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "run_browser=true" >> "$GITHUB_OUTPUT"
+            echo "Manual run: browser QA required."
+            exit 0
+          fi
+
+          base_sha="${{ github.event.pull_request.base.sha }}"
+          git diff --name-only "$base_sha"...HEAD > /tmp/pr-changed-files.txt
+
+          echo "Changed files:"
+          cat /tmp/pr-changed-files.txt
+
+          if grep -Eq '^(country\.html$|assets/css/|assets/js/|assets/images/|data/|scripts/(build_site|package_site|build_cloudflare|qa_published_browser)\.py$|\.github/workflows/browser-country-qa\.yml$)' /tmp/pr-changed-files.txt; then
+            echo "run_browser=true" >> "$GITHUB_OUTPUT"
+            echo "Country-page-impacting changes detected."
+          else
+            echo "run_browser=false" >> "$GITHUB_OUTPUT"
+            echo "No Country-page-impacting changes detected; expensive browser QA is not required."
+          fi
 
       - name: Set up Python
+        if: steps.changes.outputs.run_browser == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install browser QA dependencies
+        if: steps.changes.outputs.run_browser == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
 
       - name: Build production package
+        if: steps.changes.outputs.run_browser == 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
 
       - name: Start local production package
+        if: steps.changes.outputs.run_browser == 'true'
         run: |
           python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser-qa-http.log 2>&1 &
           echo $! > /tmp/journey-atlas-browser-qa-http.pid
@@ -56,20 +74,25 @@ jobs:
           exit 1
 
       - name: Run all-published Desktop / Tablet / Mobile QA
+        if: steps.changes.outputs.run_browser == 'true'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
         run: python3 scripts/qa_published_browser.py
 
+      - name: Browser QA not required
+        if: steps.changes.outputs.run_browser != 'true'
+        run: echo "Browser QA check passed without running the 84-view test because this PR does not affect Country page rendering."
+
       - name: Stop local server
-        if: always()
+        if: always() && steps.changes.outputs.run_browser == 'true'
         run: |
           if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
             kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
           fi
 
       - name: Upload browser QA report
-        if: always()
+        if: always() && steps.changes.outputs.run_browser == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: published-country-browser-qa
