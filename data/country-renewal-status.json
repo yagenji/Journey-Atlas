@@ -760,13 +760,13 @@
       "published": true,
       "auditState": "AUDITED",
       "renewalClass": "B",
-      "content": "PENDING",
-      "visual": "PENDING",
-      "map": "PENDING",
-      "sources": "PENDING",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current Hero (Oia / Santorini), all eight published scenes, and the existing 1200×760 v3-style map are KEEP candidates; no landscape-wide rebuild is justified.",
         "REFERENCE v3 GAPS: Taste 4 and Travel Scale 3 are missing. Transport uses the legacy English title FERRY / RAIL / INTERCITY BUS and lacks the explicit road icon.",
@@ -794,7 +794,12 @@
         "TASTE STATE AFTER PHASE 3: FOOD01 Moussaka — NEXT / NOT STARTED; FOOD02 Souvlaki — NOT STARTED; FOOD03 Horiatiki — NOT STARTED; FOOD04 Loukoumades — NOT STARTED. Visual Complete Gate remains blocked until all four independent Taste images are user APPROVED, stored, decoded and verified.",
         "TASTE USER APPROVAL COMPLETE 2026-09-05: FOOD01 Moussaka / Μουσακάς, FOOD02 Souvlaki / Σουβλάκι, FOOD03 Horiatiki / Χωριάτικη σαλάτα, FOOD04 Loukoumades / Λουκουμάδες are all user APPROVED and locked. Do not regenerate unless explicitly requested.",
         "TASTE ASSET PREPARATION 2026-09-05: the four approved independent source generations were normalized to 1200×800 / 3:2 RGB WebP without geometric crop or distortion. Prepared filenames: food-moussaka.webp, food-souvlaki.webp, food-horiatiki.webp, food-loukoumades.webp.",
-        "TASTE LOCAL DECODE QA 2026-09-05: all four prepared WebP files fully decode at exactly 1200×800 / 3:2. Visual Complete Gate remains blocked until the user stores them under assets/images/greece/approved/ and repository asset verification passes."
+        "TASTE LOCAL DECODE QA 2026-09-05: all four prepared WebP files fully decode at exactly 1200×800 / 3:2. Visual Complete Gate remains blocked until the user stores them under assets/images/greece/approved/ and repository asset verification passes.",
+        "REPOSITORY STORAGE VERIFIED 2026-09-05: all four approved Greece Taste WebP files exist in assets/images/greece/approved/. Git blob SHAs exactly match the locally prepared and fully decoded masters: moussaka f36086cdf4b4a6dd1c9ec81d7eb575523f54cc9e; souvlaki 038d6282815273b16751676746a2eeffbfe5db60; horiatiki 735d52ad7a22dfb20c8de163077095700fd33b91; loukoumades acc8173fc0c7775030f668ba2a1b8a48b059e867.",
+        "APPROVED-FOLDER HYGIENE PASS 2026-09-05: Greece approved folder contains exactly 13 production assets — Hero + 8 scenes + 4 Taste. No draft, temporary, placeholder, parts, rejected, duplicate or unused approved asset found.",
+        "VISUAL COMPLETE GATE PASS 2026-09-05: Hero + S01–S08 remain KEEP; FOOD01–FOOD04 are user APPROVED, repository-stored, locally fully decoded as 1200×800 / 3:2 WebP, and connected in Country JSON with imageState APPROVED. hardImageGate is now true.",
+        "PHASE 4 IMPLEMENTATION COMPLETE 2026-09-05: Greece Country JSON now includes Reference v3 Taste 4, Spain-format Travel Scale, Japanese Transport title with explicit road icon, Beyond open-air cinema replacement, and refreshed source metadata. Shared Template/CSS/JS were not modified.",
+        "PHASE 5 PRE-QA MAIN SYNC 2026-09-05: renewal branch synchronized onto latest main commit 7fad28d64e7b3985145b8fa38c868b936aeedd43 via merge commit 90d29dbde5ae666353f274d0e1a4eb4ac52c467f while preserving only Greece-specific Country JSON, renewal status and four approved Taste assets."
       ],
       "automatedAudit": "DONE"
     },
