@@ -80,6 +80,13 @@ jobs:
           QA_OUT_DIR: qa-browser-output
         run: python3 scripts/qa_published_browser.py
 
+      - name: Capture published visual quality matrix
+        if: steps.changes.outputs.run_browser == 'true'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_VISUAL_OUT_DIR: qa-visual-matrix
+        run: python3 scripts/qa_visual_matrix.py
+
       - name: Browser QA not required
         if: steps.changes.outputs.run_browser != 'true'
         run: echo "Browser QA check passed without running the 84-view test because this PR does not affect Country page rendering."
@@ -97,5 +104,14 @@ jobs:
         with:
           name: published-country-browser-qa
           path: qa-browser-output/
+          if-no-files-found: warn
+          retention-days: 3
+
+      - name: Upload visual quality matrix
+        if: always() && steps.changes.outputs.run_browser == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-country-visual-matrix
+          path: qa-visual-matrix/
           if-no-files-found: warn
           retention-days: 3
