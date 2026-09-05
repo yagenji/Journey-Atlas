@@ -970,7 +970,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current Hero, eight Scenes and 1200x760 map are strong KEEP candidates; the primary Reference v3 gap is Taste + Travel Scale + Transport/Travel Notes normalization rather than landscape replacement.",
@@ -1000,7 +1000,13 @@
         "APPROVED-FOLDER HYGIENE BASIS 2026-09-05: prior published-image audit reported no Kosovo hygiene finding; renewal diff adds exactly the four approved Taste assets and Country JSON now references all four. Automated hard-gate validation remains required after latest-main sync.",
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the isolated Cloudflare Kosovo branch preview, including Taste visibility and corrected Taste intro, and approved publication subject to final QA.",
         "FINAL PRE-MERGE QA PASS 2026-09-05: current renewal head is synced to latest main (behind 0), PR #197 is mergeable, Reference v3 structure is complete, Taste 4 are APPROVED and repository-verified, hardImageGate is enabled, Country JSON/renewal registry/source syntax/JOURNEY LENS slug validation/Cloudflare package build all pass, and isolated Cloudflare branch preview deploy is successful.",
-        "PUBLICATION APPROVAL 2026-09-05: user explicitly authorized publication if final QA finds no blocking issue. No blocking issue remains at pre-merge review."
+        "PUBLICATION APPROVAL 2026-09-05: user explicitly authorized publication if final QA finds no blocking issue. No blocking issue remains at pre-merge review.",
+        "PUBLISHED 2026-09-05: PR #197 was squash-merged to main as commit 4398029e274840a2d4f5c08852f38123a9082a42 after user visual approval and final pre-merge QA PASS.",
+        "MAIN VALIDATION PASS 2026-09-05: Validate country data run 33943755732 succeeded on the Kosovo merge commit, including source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build.",
+        "GITHUB PAGES DEPLOY PASS 2026-09-05: deploy run 33943755725 completed successfully for merge commit 4398029e274840a2d4f5c08852f38123a9082a42.",
+        "CLOUDFLARE PAGES DEPLOY PASS 2026-09-05: Cloudflare Pages check 101245972442 deployed merge commit 4398029e274840a2d4f5c08852f38123a9082a42 successfully.",
+        "CLOUDFLARE PRODUCTION VERIFY PASS 2026-09-05: Verify JOURNEY ATLAS Cloudflare Production run 33943755716 confirmed atlas.yagenji.com served merge commit 4398029e274840a2d4f5c08852f38123a9082a42 and passed shared Country CSS architecture, Spain V3 production payload, production runtime asset and route checks.",
+        "FINAL QA PASS 2026-09-05: user visual review PASS including Taste visibility and corrected Taste intro; Kosovo Reference v3 structure, Taste approvals, hard image gate, source validation, Country JSON validation, package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
