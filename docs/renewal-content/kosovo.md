@@ -496,3 +496,45 @@ Taste visual approval: **PASS**
 Repository storage verification: **PENDING**
 
 The Visual Complete Gate remains blocked until the four WebPs are stored under `assets/images/kosovo/approved/`, referenced by Country JSON, fully decoded from the repository copy and approved-folder hygiene passes.
+
+
+## Taste approvals and repository verification — 2026-09-05
+
+User APPROVED all four Taste images as one review batch.
+
+- FOOD01 Flija — APPROVED — `food-flija.webp`
+- FOOD02 Qebapa — APPROVED — `food-qebapa.webp`
+- FOOD03 Tavë Prizreni — APPROVED — `food-tave-prizreni.webp`
+- FOOD04 Tespishte — APPROVED — `food-tespishte.webp`
+
+Final production geometry for all four assets:
+
+- 1200×800
+- exact 3:2
+- WebP
+- complete local decode PASS
+
+Repository storage was verified on `country/kosovo-renewal`.
+
+Git blob SHA comparison against the fully decoded local masters:
+
+- Flija — `c45c1763bc63fca5694ce4651f98bce4b16b14e2`
+- Qebapa — `6a8a6b6b3fc55034ea46577355cff387d35c70f1`
+- Tavë Prizreni — `8148054b95c2d94949a7749b2bc1cfb7802ef98c`
+- Tespishte — `3f65e3d36eb1bb5f55f0075f56d461e8aa7f9adf`
+
+Every repository blob SHA is byte-for-byte identical to the corresponding local master that passed full WebP decode and dimension verification.
+
+## Visual Complete Gate — PASS
+
+- Hero: KEEP
+- Scene 01–08: KEEP
+- Map: KEEP
+- Taste 4: APPROVED / stored / 1200×800 / 3:2 / WebP / byte-verified
+- Country JSON Taste connection: DONE
+- Spain-format Travel Scale: connected
+- Japanese Transport title + road icon: connected
+- Travel Notes: connected
+- hardImageGate: enabled in renewal status
+
+Automated hard-gate validation remains required after latest-main sync.
