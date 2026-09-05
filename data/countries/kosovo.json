@@ -173,10 +173,6 @@
   ],
   "encounters": [
     {
-      "title": "フリア",
-      "icon": "food"
-    },
-    {
       "title": "プリス",
       "icon": "culture"
     },
@@ -198,6 +194,10 @@
     },
     {
       "title": "ラホヴェツワイン",
+      "icon": "food"
+    },
+    {
+      "title": "コーヒーハウス",
       "icon": "food"
     },
     {
@@ -275,13 +275,13 @@
   ],
   "travelTrivia": [
     {
-      "topicKey": "flija-layered-traditional-food",
-      "categoryEn": "FOOD",
-      "categoryJa": "食",
-      "title": "薄い生地を何層も重ねる「フリア」を探す",
-      "text": "フリアは薄い生地と乳製品を層状に重ねて焼く伝統料理。文化省の無形文化遺産リストにも伝統食として掲載され、家庭料理や郷土料理店で地域ごとの作り方に出会える。",
+      "topicKey": "prishtina-coffee-culture",
+      "categoryEn": "LIFE",
+      "categoryJa": "暮らし",
+      "title": "プリシュティナでは、マキアートを飲みながら街の時間を見る",
+      "text": "プリシュティナではカフェが日常の社交空間として使われ、エスプレッソやマキアートを飲みながら長く話す光景に出会う。建築を見るだけでなく、席に座ることで現在の首都の生活リズムが見えてくる。",
       "icon": "food",
-      "sourceKey": "intangibleHeritage"
+      "sourceKey": "coffeeCulture"
     },
     {
       "topicKey": "plis-white-felt-cap",
@@ -343,8 +343,9 @@
     }
   ],
   "transport": {
-    "title": "INTERCITY BUS / CAR / RAIL",
-    "text": "都市間と景勝地をつなぐ旅では道路移動が中心になる。Trainkosはプリシュティナ―ペヤやプリシュティナ―スコピエ方面の旅客列車時刻表を案内しているが、工事や運行変更が続くことがあるため、鉄道を使う日は当日の運行状況を確認する。ルゴヴァやミルシャなどは道路移動を組み合わせる。"
+    "title": "バス・車・鉄道",
+    "text": "都市間は道路移動を軸にすると組みやすく、バスと車でプリシュティナ、プリズレン、ジャコヴァ、ペヤなどをつなげる。Trainkosは2026年にプリシュティナ―ペヤ、プリシュティナ―スコピエ方面の定期旅客列車を案内しているが、景勝地全体を鉄道だけでは結べない。ルゴヴァ、ミルシャ、シャル山地などは道路移動を組み合わせる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -416,13 +417,13 @@
   "tips": [
     {
       "topicKey": "northern-border-current-safety-check",
-      "title": "北部のセルビア国境付近を旅程に入れるなら、最新の安全情報を確認する",
-      "text": "日本の外務省は北部の一部地域に「不要不急の渡航は止めてください（レベル2）」を継続している。北部へ向かう場合は、出発前に対象地域と最新の危険情報を確認する。"
+      "title": "北部のセルビア国境付近は、最新の安全情報を確認する",
+      "text": "日本の外務省は、レポサヴィッチ、ズヴェチャン、ズビン・ポトク、ミトロヴィツァ北など北部国境付近の一部地域をレベル2としている。北部へ向かう場合は、出発前に対象地域と最新情報を確認する。"
     },
     {
       "topicKey": "mountain-road-time-buffer",
       "title": "山岳部は距離ではなく、道路状況と所要時間で旅程を組む",
-      "text": "ルゴヴァやシャル山地では、都市間の直線距離が短くても谷沿い・峠道の移動になる。山を含む日は予定を詰めず、天候と道路状況を確認できる余白を残す。"
+      "text": "ルゴヴァやシャル山地では、都市からの直線距離が短くても谷沿いや山道の移動になる。山を含む日は予定を詰めすぎず、天候と道路状況を確認できる余白を残す。"
     },
     {
       "topicKey": "religious-sites-visit-etiquette",
@@ -453,14 +454,16 @@
       "reason": "西部の山岳景観を国境の向こうへ延ばし、ディナル・アルプスの地形をさらに追いたいなら。"
     }
   ],
-  "updatedAt": "2026-09-02",
-  "sourcesVerifiedAt": "2026-09-02",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-04",
   "sourceDates": {
     "population": "2025",
     "religion": "2024",
     "transport": "2026",
     "safety": "2026-09-02",
-    "diaspora": "2026"
+    "diaspora": "2026",
+    "travelScale": "2026",
+    "taste": "2026"
   },
   "sources": {
     "map": "Natural Earth 1:10m Admin 0 Countries via datasets/geo-countries; Natural Earth data is public domain; WGS84.",
@@ -484,6 +487,76 @@
     "safety": "Ministry of Foreign Affairs of Japan, Overseas Safety Information for Kosovo, checked 2026-09-02: Level 2 'Avoid non-essential travel' remains in force for specified northern areas near the Serbia border.",
     "diaspora": "Government of Kosovo, Tourism Strategy 2024–2030 and 2026 diaspora cultural-program information: diaspora visits, especially in summer, form a major travel flow and shape seasonal social activity.",
     "euroOutsideEU": "European Commission, The euro outside the euro area: Kosovo uses the euro as a de facto domestic currency without a monetary agreement with the EU; Central Bank of the Republic of Kosovo: the currency used in Kosovo is the euro.",
-    "medievalMonuments": "UNESCO World Heritage Centre, Medieval Monuments in Kosovo: serial property comprising Dečani Monastery, Patriarchate of Peć Monastery, Gračanica Monastery, and Church of the Virgin of Ljevisa; property expanded in 2006 and placed on the List of World Heritage in Danger."
+    "medievalMonuments": "UNESCO World Heritage Centre, Medieval Monuments in Kosovo: serial property comprising Dečani Monastery, Patriarchate of Peć Monastery, Gračanica Monastery, and Church of the Virgin of Ljevisa; property expanded in 2006 and placed on the List of World Heritage in Danger.",
+    "coffeeCulture": "Kosova.Travel, Prishtina destination information: cafés and coffee culture are presented as part of the capital's everyday social life.",
+    "flija": "Kosova.Travel and Kosovo cultural heritage / municipal gastronomy sources: Flija is a traditional layered batter dish associated with shared preparation and local food culture.",
+    "qebapa": "Kosova.Travel and Visit Prizren: Qebapa are a common grilled minced-meat dish served in qebaptore and traditional restaurants.",
+    "tavePrizreni": "Visit Prizren and food-science references on Prizren tava: a baked meat-and-vegetable casserole associated with Prizren.",
+    "tespishte": "Visit Prizren: Tespishte is listed among local traditional sweets; visual identity is a syrup-soaked baked pastry/cake scored into geometric portions.",
+    "travelScale": "Kosova.Travel destination information and current Country map coordinates used to structure realistic multi-day combinations; rail assumptions constrained by Trainkos 2026 timetable."
+  },
+  "taste": {
+    "kicker": "TASTE OF KOSOVO",
+    "title": "コソボで食べたいもの",
+    "intro": "層を重ねる家庭料理、炭火の肉料理、プリズレンの煮込み、甘い焼き菓子から、バルカン内陸の食卓をたどる。",
+    "items": [
+      {
+        "id": "flija",
+        "name": "フリア",
+        "nameLocal": "Flija",
+        "text": "薄い生地とクリーム状の乳製品を何層にも重ね、上から熱した蓋を当てながら少しずつ焼き上げる料理。時間をかけて作る工程そのものが家庭や人の集まりと結びついている。",
+        "image": "assets/images/kosovo/approved/food-flija.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "qebapa",
+        "name": "チェバパ",
+        "nameLocal": "Qebapa",
+        "text": "ひき肉を小さな筒状にまとめて炭火で焼く、街中のqebaptoreで出会いやすい肉料理。温かい平たいパンや玉ねぎと合わせ、短い食事でも土地の日常に入りやすい。",
+        "image": "assets/images/kosovo/approved/food-qebapa.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "tave-prizreni",
+        "name": "タヴァ・プリズレニ",
+        "nameLocal": "Tavë Prizreni",
+        "text": "プリズレンに結びつくオーブン料理。肉とナス、ピーマン、トマト、オクラ、玉ねぎなどを土鍋でゆっくり火入れし、街の歴史とオスマン由来の調理文化が重なる一皿として知られる。",
+        "image": "assets/images/kosovo/approved/food-tave-prizreni.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "tespishte",
+        "name": "テスピシュテ",
+        "nameLocal": "Tespishte",
+        "text": "小麦粉やセモリナ系の生地を平たく焼き、切り込みを入れて甘いシロップを含ませる菓子。プリズレンでも親しまれ、バクラヴァとは違う密度のある焼き菓子として出会える。",
+        "image": "assets/images/kosovo/approved/food-tespishte.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "プリシュティナとプリズレンを軸に近郊へ",
+        "text": "首都と歴史都市を一つずつ歩き、近郊の宗教建築を加えるくらいが現実的。例：プリシュティナ → グラチャニツァ → プリズレン。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "西部の町とルゴヴァ渓谷までつなぐ",
+        "text": "主要都市にジャコヴァ、ペヤと山岳景観を加えると、都市・市場・修道院・峡谷の距離感が見えてくる。例：プリシュティナ → プリズレン → ジャコヴァ → ペヤ／ルゴヴァ渓谷。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "東部と南部の高地まで広げる",
+        "text": "西部だけでなくノヴォ・ブルドやシャル山地側へ回ると、小さな国土の中にある地形と歴史の幅を追いやすい。例：プリシュティナ → ノヴォ・ブルド → プリズレン → ジャコヴァ → ペヤ／ルゴヴァ → ブロド／シャル山地。",
+        "icon": "compass"
+      }
+    ]
   }
 }
