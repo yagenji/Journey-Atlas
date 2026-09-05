@@ -36,6 +36,14 @@ def load_countries() -> list[tuple[str, str]]:
             continue
         data = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
         countries.append((slug, data.get("nameJa") or slug))
+    # Temporary review-only QA: include Serbia without changing publication state.
+    review_slug = "serbia"
+    if review_slug not in {slug for slug, _ in countries}:
+        review_path = COUNTRY_DIR / f"{review_slug}.json"
+        if review_path.exists():
+            review_data = json.loads(review_path.read_text(encoding="utf-8"))
+            countries.append((review_slug, review_data.get("nameJa") or review_slug))
+
     if requested:
         found = {slug for slug, _ in countries}
         missing = sorted(requested - found)
