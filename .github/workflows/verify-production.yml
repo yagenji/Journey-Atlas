@@ -57,7 +57,7 @@ jobs:
           SITE_URL: https://atlas.yagenji.com
         run: |
           set -euo pipefail
-          curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'             "$SITE_URL/data/countries/spain.json?qa=$GITHUB_RUN_ID"             -o /tmp/spain.json
+          bash scripts/http_fetch_retry.sh "$SITE_URL/data/countries/spain.json?qa=$GITHUB_RUN_ID" /tmp/spain.json
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -122,12 +122,12 @@ jobs:
           SITE_URL: https://atlas.yagenji.com
         run: |
           set -euo pipefail
-          curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'             "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" -o /tmp/spain.html
-          curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'             "$SITE_URL/about/?qa=$GITHUB_RUN_ID" -o /tmp/about.html
-          curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
-          curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'             "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
+          bash scripts/http_fetch_retry.sh "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" /tmp/spain.html
+          bash scripts/http_fetch_retry.sh "$SITE_URL/about/?qa=$GITHUB_RUN_ID" /tmp/about.html
+          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" /tmp/app.js
+          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" /tmp/country.css
           for food in food-paella.webp food-jamon-iberico.webp food-tortilla-espanola.webp food-churros-con-chocolate.webp; do
-            curl -fsS --retry 4 --retry-all-errors --retry-delay 2 --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'               "$SITE_URL/assets/images/spain/approved/$food?qa=$GITHUB_RUN_ID"               -o "/tmp/$food"
+            bash scripts/http_fetch_retry.sh "$SITE_URL/assets/images/spain/approved/$food?qa=$GITHUB_RUN_ID" "/tmp/$food"
             test -s "/tmp/$food"
           done
           grep -q 'data-country="spain"' /tmp/spain.html
