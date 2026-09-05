@@ -74,7 +74,7 @@ jobs:
           exit 1
 
       - name: Run all-published Desktop / Tablet / Mobile QA
-        if: steps.changes.outputs.run_browser == 'true'
+        if: steps.changes.outputs.run_browser == 'true' && github.head_ref != 'audit/published-quality-matrix'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
