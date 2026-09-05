@@ -34,6 +34,7 @@ on:
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
+  workflow_dispatch:
 
 jobs:
   validate:
