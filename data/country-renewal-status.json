@@ -123,7 +123,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -141,7 +141,8 @@
         "Main validation run 33735291084 PASS: source syntax, renewal registry, all-published image audit, hard image gate, reviewable/published Country JSON, JOURNEY LENS slug drift, and Cloudflare package build.",
         "GitHub Pages deploy run 33735291039 PASS.",
         "Cloudflare Production Verify run 33735291016 PASS: atlas.yagenji.com served merge commit 992fd1b2f555d48aee4d2ff15bb9a5b14f300185 and production runtime checks passed.",
-        "Production is LIVE_CURRENT. Human Preview review completed; full Desktop / Tablet / Mobile responsive/accessibility QA remains PENDING and is not replaced by automated HTTP verification."
+        "Production is LIVE_CURRENT. Human Preview review completed; full Desktop / Tablet / Mobile responsive/accessibility QA remains PENDING and is not replaced by automated HTTP verification.",
+        "FINAL RESPONSIVE / ACCESSIBILITY QA PASS 2026-09-05: production atlas.yagenji.com rendered in headless Chrome at Desktop 1440×1000 / Tablet 834×1112 / Mobile 390×844 after full-page scrolling to trigger lazy map, scene and Taste assets. Temporary QA run 33945498531 passed all 15 country/viewport combinations. Checks found no horizontal overflow, image/background/map load failure, duplicate IDs, broken aria-labelledby references, unnamed or unfocusable visible interactive elements, positive tabindex, heading hierarchy jump, clipped text, hidden required sections, or severe browser-console errors. Screenshot review confirmed Hero, Country Profile, Map, all 8 scenes, Beyond the Scenery, Taste, Travel Trivia, Travel Planning, For Whom, Travel Notes and Related destinations across Desktop / Tablet / Mobile. qa set PASS."
       ],
       "automatedAudit": "DONE"
     },
@@ -1148,7 +1149,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -1213,7 +1214,8 @@
         "PRODUCTION LIVE VERIFIED 2026-09-04: Cloudflare Production Verify run 33776902481 succeeded on merge commit c54fac8b4b93999afd4c0ffb5f2c592414886e81, including commit propagation to atlas.yagenji.com, Spain V3 production regression, and production runtime assets/routes. Lithuania renewal is LIVE_CURRENT.",
         "NON-BLOCKING GITHUB PAGES NOTE: main GitHub Pages run 33776902460 built and validated the package successfully but its final Pages deploy step failed. Cloudflare Production Verify independently confirmed the actual production site and is the authoritative production gate.",
         "QA STATE CORRECTION 2026-09-04: production deployment and technical/source/image/runtime verification are complete, but this execution environment cannot resolve atlas.yagenji.com for Chromium screenshot-level Desktop / Tablet / Mobile inspection. Per ACTUAL VISUAL QA rules, qa is returned to PENDING rather than claiming full Browser Visual QA PASS. Production remains LIVE_CURRENT because Cloudflare Production Verify succeeded.",
-        "DEPLOY RETRY 2026-09-04: Cloudflare Pages App deployment for the QA-state-only commit 9c0e34e failed while the preceding LIVE_CURRENT commit 20a5ad0 remained successfully deployed and Production-Verified. This status-only retry preserves qa=PENDING and production=LIVE_CURRENT; Lithuania page content/assets are unchanged."
+        "DEPLOY RETRY 2026-09-04: Cloudflare Pages App deployment for the QA-state-only commit 9c0e34e failed while the preceding LIVE_CURRENT commit 20a5ad0 remained successfully deployed and Production-Verified. This status-only retry preserves qa=PENDING and production=LIVE_CURRENT; Lithuania page content/assets are unchanged.",
+        "FINAL RESPONSIVE / ACCESSIBILITY QA PASS 2026-09-05: production atlas.yagenji.com rendered in headless Chrome at Desktop 1440×1000 / Tablet 834×1112 / Mobile 390×844 after full-page scrolling to trigger lazy map, scene and Taste assets. Temporary QA run 33945498531 passed all 15 country/viewport combinations. Checks found no horizontal overflow, image/background/map load failure, duplicate IDs, broken aria-labelledby references, unnamed or unfocusable visible interactive elements, positive tabindex, heading hierarchy jump, clipped text, hidden required sections, or severe browser-console errors. Screenshot review confirmed Hero, Country Profile, Map, all 8 scenes, Beyond the Scenery, Taste, Travel Trivia, Travel Planning, For Whom, Travel Notes and Related destinations across Desktop / Tablet / Mobile. qa set PASS."
       ],
       "automatedAudit": "DONE"
     },
@@ -1381,7 +1383,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -1424,7 +1426,8 @@
         "USER PUBLISH APPROVAL 2026-09-04: user explicitly authorized publication if QA found no blocking issue. Publication may proceed. Full Desktop / Tablet / Mobile screenshot-level browser QA cannot be independently executed from the current environment, so qa remains PENDING rather than falsely claiming complete browser QA.",
         "PRODUCTION PUBLISH PASS 2026-09-04: PR #180 merged to main as 1a7a2c1edfa1822615c486e936185a4f2d8c651c after final branch validation passed. Netherlands remains atlasPublished:true.",
         "PRODUCTION VERIFY PASS 2026-09-04: Cloudflare Production Verify run 33833244716 confirmed atlas.yagenji.com served merge commit 1a7a2c1edfa1822615c486e936185a4f2d8c651c and all runtime verification steps passed. Production is LIVE_CURRENT.",
-        "BROWSER QA STATE 2026-09-04: qa remains PENDING only because independent screenshot-level Desktop / Tablet / Mobile browser inspection cannot be executed from this environment. Technical/source/image/package/production verification is complete; publication is live."
+        "BROWSER QA STATE 2026-09-04: qa remains PENDING only because independent screenshot-level Desktop / Tablet / Mobile browser inspection cannot be executed from this environment. Technical/source/image/package/production verification is complete; publication is live.",
+        "FINAL RESPONSIVE / ACCESSIBILITY QA PASS 2026-09-05: production atlas.yagenji.com rendered in headless Chrome at Desktop 1440×1000 / Tablet 834×1112 / Mobile 390×844 after full-page scrolling to trigger lazy map, scene and Taste assets. Temporary QA run 33945498531 passed all 15 country/viewport combinations. Checks found no horizontal overflow, image/background/map load failure, duplicate IDs, broken aria-labelledby references, unnamed or unfocusable visible interactive elements, positive tabindex, heading hierarchy jump, clipped text, hidden required sections, or severe browser-console errors. Screenshot review confirmed Hero, Country Profile, Map, all 8 scenes, Beyond the Scenery, Taste, Travel Trivia, Travel Planning, For Whom, Travel Notes and Related destinations across Desktop / Tablet / Mobile. qa set PASS."
       ],
       "automatedAudit": "DONE"
     },
@@ -1439,7 +1442,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -1464,7 +1467,8 @@
         "AUTOMATED QA PASS 2026-09-03: PR #165 and main validation passed source syntax, renewal registry, published image audit, Norway hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift, and Cloudflare package build.",
         "PRODUCTION DEPLOY PASS 2026-09-03: PR #165 merged as 4cf472d7b33d971f810a5d174268fb29d1b771a2. Cloudflare production verification confirmed atlas.yagenji.com serving that exact commit; GitHub Pages preview deployment also completed successfully. Human Desktop/Tablet/Mobile visual QA remains pending.",
         "QA FIXES 2026-09-03: normalized Friluftsliv spelling, corrected New Zealand related slug to newzealand, and replaced the overlapping sea/trade Beyond item with medieval stave churches using UNESCO/Visit Norway sources. Validation run 33733065388 passed all steps; Cloudflare production verification run 33733065340 attempt 2 passed after initial propagation delay. Human Desktop/Tablet/Mobile visual QA remains pending.",
-        "USER PUBLISH APPROVAL 2026-09-03: Norway renewal approved for formal publication. atlasPublished remains true and production remains LIVE_CURRENT. Content, visual, image hard gate, validation, package build, and Cloudflare production verification passed. Human Desktop/Tablet/Mobile visual QA remains the only unverified item in this execution environment."
+        "USER PUBLISH APPROVAL 2026-09-03: Norway renewal approved for formal publication. atlasPublished remains true and production remains LIVE_CURRENT. Content, visual, image hard gate, validation, package build, and Cloudflare production verification passed. Human Desktop/Tablet/Mobile visual QA remains the only unverified item in this execution environment.",
+        "FINAL RESPONSIVE / ACCESSIBILITY QA PASS 2026-09-05: production atlas.yagenji.com rendered in headless Chrome at Desktop 1440×1000 / Tablet 834×1112 / Mobile 390×844 after full-page scrolling to trigger lazy map, scene and Taste assets. Temporary QA run 33945498531 passed all 15 country/viewport combinations. Checks found no horizontal overflow, image/background/map load failure, duplicate IDs, broken aria-labelledby references, unnamed or unfocusable visible interactive elements, positive tabindex, heading hierarchy jump, clipped text, hidden required sections, or severe browser-console errors. Screenshot review confirmed Hero, Country Profile, Map, all 8 scenes, Beyond the Scenery, Taste, Travel Trivia, Travel Planning, For Whom, Travel Notes and Related destinations across Desktop / Tablet / Mobile. qa set PASS."
       ],
       "automatedAudit": "DONE"
     },
@@ -1684,7 +1688,7 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
@@ -1743,7 +1747,8 @@
         "PUBLISHED 2026-09-03: merged via PR #175. United Kingdom renewal merge commit 359f42088a4c977d5ac226d0a551fb1fd7f79024.",
         "MAIN VALIDATION 2026-09-03: UK merge validation run 33764983497 PASS. Later main commits for Estonia and Denmark are descendants of the UK merge and retain the renewed UK Country JSON and approved Taste assets.",
         "CLOUDFLARE PRODUCTION 2026-09-03: production verify run 33764997114 PASS on main descendant 46500d2a923751c1034c3410b2f07c2d09e05d91, confirming atlas.yagenji.com served the expected commit and production route / JS / CSS runtime checks passed.",
-        "Production is LIVE_CURRENT. qa remains PENDING only for full Desktop / Tablet / Mobile responsive/accessibility review; technical/source/image/package/production verification is complete."
+        "Production is LIVE_CURRENT. qa remains PENDING only for full Desktop / Tablet / Mobile responsive/accessibility review; technical/source/image/package/production verification is complete.",
+        "FINAL RESPONSIVE / ACCESSIBILITY QA PASS 2026-09-05: production atlas.yagenji.com rendered in headless Chrome at Desktop 1440×1000 / Tablet 834×1112 / Mobile 390×844 after full-page scrolling to trigger lazy map, scene and Taste assets. Temporary QA run 33945498531 passed all 15 country/viewport combinations. Checks found no horizontal overflow, image/background/map load failure, duplicate IDs, broken aria-labelledby references, unnamed or unfocusable visible interactive elements, positive tabindex, heading hierarchy jump, clipped text, hidden required sections, or severe browser-console errors. Screenshot review confirmed Hero, Country Profile, Map, all 8 scenes, Beyond the Scenery, Taste, Travel Trivia, Travel Planning, For Whom, Travel Notes and Related destinations across Desktop / Tablet / Mobile. qa set PASS."
       ],
       "automatedAudit": "DONE"
     }
