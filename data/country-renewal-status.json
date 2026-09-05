@@ -243,10 +243,10 @@
       "auditState": "AUDITED",
       "renewalClass": "B",
       "content": "DONE",
-      "visual": "IN_PROGRESS",
+      "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
+      "qa": "PASS",
       "production": "LIVE_OLD",
       "hardImageGate": true,
       "notes": [
@@ -300,7 +300,10 @@
         "TASTE SCALE REVIEW TARGET: https://country-andorra-renewal.journey-atlas.pages.dev/countries/andorra/ contains the adjusted approved Taste assets from the Andorra branch. GitHub Pages shared preview is no longer the review source of truth for this renewal.",
         "USER VISUAL REVIEW PASS 2026-09-05: user reviewed the isolated Cloudflare branch preview with the enlarged Taste crop and confirmed the rendered Andorra renewal.",
         "USER PUBLISH APPROVAL 2026-09-05: user explicitly authorized publication if final QA finds no blocking issue.",
-        "PRE-PUBLISH REBASE SAFETY CHECK 2026-09-05: main advanced by 6 commits affecting only Albania / Cyprus / Monaco Country JSON, their Taste assets, renewal-status data and Monaco renewal documentation. No shared Country Template / CSS / JS / taxonomy / workflow change occurred, so the accepted Andorra visual review remains applicable."
+        "PRE-PUBLISH REBASE SAFETY CHECK 2026-09-05: main advanced by 6 commits affecting only Albania / Cyprus / Monaco Country JSON, their Taste assets, renewal-status data and Monaco renewal documentation. No shared Country Template / CSS / JS / taxonomy / workflow change occurred, so the accepted Andorra visual review remains applicable.",
+        "FINAL PRE-PUBLISH QA PASS 2026-09-05: latest-main sync commit ab2adfbd455f99b18f0a6316909fc0416a517160 is behind main=0 and changes only Andorra Country JSON/status/doc plus four approved Taste assets. Validate country data run 33940384024 passed source syntax, renewal registry, all-published image audit, renewed-country hard image gate, reviewable/published Country JSON validation, JOURNEY LENS slug drift and Cloudflare package build.",
+        "FINAL CLOUDFLARE BRANCH PREVIEW PASS 2026-09-05: commit ab2adfbd455f99b18f0a6316909fc0416a517160 deployed successfully to immutable preview https://36459cdd.journey-atlas.pages.dev and branch preview https://country-andorra-renewal.journey-atlas.pages.dev . User's visual review remains applicable because the pre-publish main sync introduced no shared template/CSS/JS changes.",
+        "FINAL QA DECISION 2026-09-05: no blocking content, visual, map, source, asset, validation or deployment issue remains. visual=DONE and qa=PASS. production remains LIVE_OLD until main merge and production verification complete."
       ],
       "automatedAudit": "DONE"
     },
