@@ -817,7 +817,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -871,7 +871,12 @@
         "SYSTEM ISSUE 2026-09-05: User Preview review found Taste images were not visible even though Italy JSON, package image set and hard image gate all passed. Shared renderTaste used CSS background images through IntersectionObserver and swallowed load failures, leaving blank media slots without a visible error.",
         "SHARED FIX 2026-09-05: renderTaste now uses real lazy <img> elements resolved through the existing image resolver, with object-fit cover and an explicit image-error class. This is a common Country Template fix, not an Italy-specific CSS/JS workaround. Scene rendering remains unchanged.",
         "USER VISUAL REVIEW PASS 2026-09-05: user confirmed the revised Preview after the shared Taste image rendering fix; Taste 4 are visible and the page is approved for publication provided final QA remains clean.",
-        "FINAL PRE-MERGE QA PASS 2026-09-05: Reference v3 counts, Hero/S01–S08 KEEP set, Map, Taste 4 approvals, 1200×800 WebP full-decode checks, approved-folder hygiene, hardImageGate, source keys, Country JSON validation, package build and revised Preview deployment all PASS. Shared Taste rendering fix uses real <img> elements and is intentionally common, not Italy-specific. production remains LIVE_OLD until main merge and production runtime verification."
+        "FINAL PRE-MERGE QA PASS 2026-09-05: Reference v3 counts, Hero/S01–S08 KEEP set, Map, Taste 4 approvals, 1200×800 WebP full-decode checks, approved-folder hygiene, hardImageGate, source keys, Country JSON validation, package build and revised Preview deployment all PASS. Shared Taste rendering fix uses real <img> elements and is intentionally common, not Italy-specific. production remains LIVE_OLD until main merge and production runtime verification.",
+        "PUBLISHED 2026-09-05: PR #193 was squash-merged to main as commit 29183dcd9e00cf89a11d3396fb63378944d08da2 after user visual approval and final clean-head validation PASS.",
+        "MAIN VALIDATION PASS 2026-09-05: Validate country data run 33941621365 succeeded on the Italy merge commit, including source syntax, renewal registry, all-published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build.",
+        "GITHUB PAGES DEPLOY PASS 2026-09-05: deploy run 33941621368 completed successfully for merge commit 29183dcd9e00cf89a11d3396fb63378944d08da2.",
+        "CLOUDFLARE PRODUCTION VERIFY PASS 2026-09-05: Verify JOURNEY ATLAS Cloudflare Production run 33941621347 confirmed atlas.yagenji.com served merge commit 29183dcd9e00cf89a11d3396fb63378944d08da2 and passed shared Country CSS architecture, Spain V3 regression payload, and production runtime asset/route checks.",
+        "FINAL QA PASS 2026-09-05: user visual review PASS including Taste 4 visibility after shared renderer fix; Italy Reference v3 structure, Taste approvals, hard image gate, source validation, Country JSON validation, package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
