@@ -427,7 +427,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -456,7 +456,13 @@
         "FINAL CLOUDFLARE BRANCH PREVIEW PASS 2026-09-05: commit 6bab32925c3a904878a7e2fcad4773d0a95711df deployed successfully to immutable preview https://0b05b8ed.journey-atlas.pages.dev and branch preview https://country-croatia-renewal.journey-atlas.pages.dev .",
         "FINAL QA WARNING REVIEW: Node.js 20 deprecation warnings and the existing Palestine LENS slug scope exception are non-blocking shared/system warnings and unrelated to Croatia.",
         "FINAL QA DECISION 2026-09-05: no blocking content, visual, map, source, asset, validation or deployment issue remains. visual=DONE and qa=PASS. production remains LIVE_OLD until main merge and production verification complete.",
-        "PRE-MERGE MAIN SYNC 2026-09-05: main advanced after final preview only in data/country-renewal-status.json; no shared template/CSS/JS, Croatia Country JSON, or Croatia asset changed. User visual review remains applicable."
+        "PRE-MERGE MAIN SYNC 2026-09-05: main advanced after final preview only in data/country-renewal-status.json; no shared template/CSS/JS, Croatia Country JSON, or Croatia asset changed. User visual review remains applicable.",
+        "PUBLISHED 2026-09-05: PR #195 was squash-merged to main as commit 661932f24043fba92ba7c1ab9fbf622adadb84db after user visual approval and final clean-head validation PASS.",
+        "MAIN VALIDATION PASS 2026-09-05: Validate country data run 33942826725 succeeded on the Croatia merge commit, including source syntax, renewal registry, all-published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build.",
+        "GITHUB PAGES DEPLOY PASS 2026-09-05: deploy run 33942826729 completed successfully for merge commit 661932f24043fba92ba7c1ab9fbf622adadb84db.",
+        "CLOUDFLARE PRODUCTION DEPLOY PASS 2026-09-05: Cloudflare Pages deployed merge commit 661932f24043fba92ba7c1ab9fbf622adadb84db successfully.",
+        "PRODUCTION VERIFY PASS 2026-09-05: Verify JOURNEY ATLAS Cloudflare Production run 33942826631 confirmed atlas.yagenji.com serves the Croatia merge commit and passed production runtime verification.",
+        "FINAL QA PASS 2026-09-05: user visual review PASS; Croatia Reference v3 structure, Taste 4 approvals, hard image gate, source validation, Country JSON validation, package build, production deployment and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
