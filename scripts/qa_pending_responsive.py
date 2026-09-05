@@ -109,7 +109,23 @@ def wait_for_country(driver: webdriver.Chrome) -> None:
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, ".scene-card")) == 8)
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, ".taste-card")) == 4)
     wait.until(lambda d: len((d.find_element(By.CSS_SELECTOR, ".hero h1").text or "").strip()) > 0)
-    time.sleep(1.0)
+    time.sleep(0.5)
+
+def scroll_entire_page(driver: webdriver.Chrome) -> None:
+    # Trigger all lazy map/image/background loading exactly as a user scrolling the page would.
+    height = int(driver.execute_script("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)"))
+    viewport = max(300, int(driver.execute_script("return window.innerHeight")))
+    step = max(250, int(viewport * 0.72))
+    y = 0
+    while y < height:
+        driver.execute_script("window.scrollTo(0, arguments[0])", y)
+        time.sleep(0.12)
+        height = max(height, int(driver.execute_script("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)")))
+        y += step
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    time.sleep(0.8)
+    driver.execute_script("window.scrollTo(0, 0)")
+    time.sleep(0.4)
 
 def full_page_screenshot(driver: webdriver.Chrome, path: Path) -> None:
     metrics = driver.execute_cdp_cmd("Page.getLayoutMetrics", {})
@@ -184,7 +200,14 @@ for (const el of document.querySelectorAll('[aria-labelledby]')) {
 
 const imgFailures = [...document.images]
   .filter(img => visible(img) && (!img.complete || img.naturalWidth < 1 || img.naturalHeight < 1))
-  .map(img => ({src: img.currentSrc || img.src, alt: img.alt}));
+  .map(img => ({src: img.currentSrc || img.src, alt: img.alt, cls:String(img.className || '')}));
+
+const missingBackgroundMedia = [...document.querySelectorAll('.hero-art, .scene-image')]
+  .filter(el => !el.classList.contains('has-image'))
+  .map(el => ({cls:String(el.className || ''), scene:el.closest('.scene-card')?.dataset?.scene || null}));
+
+const mapBase = document.querySelector('#country-map-art .map-base');
+const mapImageLoaded = !!(mapBase && mapBase.complete && mapBase.naturalWidth > 0 && mapBase.naturalHeight > 0);
 
 const badImgAlt = [...document.images]
   .filter(img => !img.hasAttribute('alt'))
@@ -275,11 +298,13 @@ return {
   title: document.title,
   viewport: {innerWidth:window.innerWidth, innerHeight:window.innerHeight, requested:viewport},
   h1: (heroTitle?.innerText || '').trim(),
+  countryJa: (document.querySelector('.country-ja')?.innerText || '').trim(),
   counts,
   criticalVisible,
   duplicateIds,
   badAriaLabels,
   imgFailures,
+  missingBackgroundMedia,
   badImgAlt,
   badRoleImg,
   unnamedInteractive,
@@ -294,6 +319,9 @@ return {
   sceneRoles,
   map: {
     hasSvg: !!mapSvg,
+    hasMapImage: !!mapBase,
+    imageLoaded: mapImageLoaded,
+    hasMapClass: !!map?.classList.contains('has-map'),
     width: mapRect ? Math.round(mapRect.width) : 0,
     height: mapRect ? Math.round(mapRect.height) : 0,
   },
@@ -326,7 +354,9 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
     if audit["badAriaLabels"]:
         errors.append(f"broken aria-labelledby refs: {audit['badAriaLabels']}")
     if audit["imgFailures"]:
-        errors.append(f"visible image load failures: {audit['imgFailures']}")
+        errors.append(f"image load failures after full scroll: {audit['imgFailures']}")
+    if audit["missingBackgroundMedia"]:
+        errors.append(f"hero/scene lazy backgrounds missing after full scroll: {audit['missingBackgroundMedia']}")
     if audit["badImgAlt"]:
         errors.append(f"img missing alt attribute: {audit['badImgAlt'][:5]}")
     if audit["badRoleImg"]:
@@ -345,7 +375,8 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
         errors.append(f"clipped text candidates: {audit['clippedText'][:8]}")
     if audit["hiddenRequired"]:
         errors.append(f"required sections hidden: {audit['hiddenRequired']}")
-    if not audit["map"]["hasSvg"] or audit["map"]["width"] < 200 or audit["map"]["height"] < 120:
+    if (not audit["map"]["hasMapImage"] or not audit["map"]["imageLoaded"] or not audit["map"]["hasMapClass"]
+            or audit["map"]["width"] < 200 or audit["map"]["height"] < 120):
         errors.append(f"map render invalid: {audit['map']}")
     if any(x.get("role") != "button" or x.get("tabindex") != "0" or not x.get("ariaLabel") for x in audit["sceneRoles"]):
         errors.append("scene cards do not expose consistent button/tabindex/accessibility semantics")
@@ -375,6 +406,7 @@ def main() -> int:
                 try:
                     driver.get(url)
                     wait_for_country(driver)
+                    scroll_entire_page(driver)
                     audit = collect_dom_audit(driver, vp)
                     bg_checks = background_image_check(driver)
                     browser_logs = driver.get_log("browser")
@@ -382,8 +414,8 @@ def main() -> int:
                     screenshot = OUT / f"{slug}-{vp_name}.jpg"
                     full_page_screenshot(driver, screenshot)
 
-                    if name_ja not in audit["h1"]:
-                        errors.append(f"hero h1 does not contain expected Japanese country name: {audit['h1']!r}")
+                    if audit.get("countryJa") != name_ja:
+                        errors.append(f"Japanese country subtitle mismatch: expected {name_ja!r}, got {audit.get('countryJa')!r}")
 
                     row = {
                         "slug": slug,
