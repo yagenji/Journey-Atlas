@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05",
+  "updatedAt": "2026-09-06",
   "purpose": "Single source of truth for renewal of already-published JOURNEY ATLAS Country Pages.",
   "states": {
     "audit": [
@@ -107,30 +107,12 @@
       "label": "BALKANS",
       "countries": [
         "albania",
-        "kosovo"
+        "kosovo",
+        "serbia"
       ]
     }
   ],
   "countries": [
-    {
-      "slug": "iceland",
-      "nameJa": "アイスランド",
-      "wave": 1,
-      "published": true,
-      "auditState": "AUDITED",
-      "renewalClass": "B",
-      "content": "DONE",
-      "visual": "DONE",
-      "map": "DONE",
-      "sources": "DONE",
-      "qa": "PASS",
-      "production": "LIVE_CURRENT",
-      "hardImageGate": true,
-      "notes": [
-        "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
-      ],
-      "automatedAudit": "DONE"
-    },
     {
       "slug": "albania",
       "nameJa": "アルバニア",
@@ -360,6 +342,25 @@
       "automatedAudit": "DONE"
     },
     {
+      "slug": "iceland",
+      "nameJa": "アイスランド",
+      "wave": 1,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "B",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
+      "hardImageGate": true,
+      "notes": [
+        "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
       "slug": "ireland",
       "nameJa": "アイルランド",
       "wave": 6,
@@ -565,6 +566,25 @@
       "hardImageGate": true,
       "notes": [
         "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
+      "slug": "serbia",
+      "nameJa": "セルビア",
+      "wave": 8,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "PENDING",
+      "hardImageGate": true,
+      "notes": [
+        "New Country production completed to current Reference v3 standard on 2026-09-06. User final review approved. Formal publication initiated; production remains PENDING until Cloudflare production verification succeeds."
       ],
       "automatedAudit": "DONE"
     },
