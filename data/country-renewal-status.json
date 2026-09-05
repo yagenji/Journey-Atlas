@@ -1480,7 +1480,7 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "LIVE_OLD",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B (Medium Renewal). Published production remains atlasPublished:true / LIVE_OLD during renewal branch work.",
@@ -1538,7 +1538,12 @@
         "PRE-PUBLISH MAIN SAFETY CHECK 2 2026-09-05: main advanced once more with Kosovo country-specific JSON, Taste assets and renewal documentation only; no shared template/CSS/JS/workflow change. San Marino visual approval remains applicable.",
         "FINAL PRE-PUBLISH QA PASS 2026-09-05: latest-main synchronized San Marino renewal passed clean-head Validate run 33943807459, including source syntax, renewal registry, all-published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug validation, and Cloudflare package build.",
         "FINAL BROWSER QA PASS 2026-09-05: Preview run 33943827188 rendered the latest-main synced San Marino build in Chromium; Taste section became visible with exactly four Taste cards and four images, no image-error state, and the full Preview deploy pipeline passed.",
-        "FINAL QA DECISION 2026-09-05: no blocking content, visual, map, source, asset, validation, browser-rendering, or deployment issue remains. User visual review and publish approval are recorded. production remains LIVE_OLD until main merge and production verification complete."
+        "FINAL QA DECISION 2026-09-05: no blocking content, visual, map, source, asset, validation, browser-rendering, or deployment issue remains. User visual review and publish approval are recorded. production remains LIVE_OLD until main merge and production verification complete.",
+        "PUBLISHED 2026-09-05: PR #201 was squash-merged to main as commit 9406b13c6b98067f4d1de37449254fe548ea008d after user visual approval and final QA PASS.",
+        "MAIN VALIDATION PASS 2026-09-05: Validate country data run 33944025089 succeeded on the San Marino merge commit, including source syntax, renewal registry, all-published image audit, hard image gate, Country JSON validation, JOURNEY LENS slug validation and Cloudflare package build.",
+        "GITHUB PAGES DEPLOY PASS 2026-09-05: run 33944025169 status=completed conclusion=success.",
+        "CLOUDFLARE PRODUCTION VERIFY PASS 2026-09-05: run 33944025146 confirmed atlas.yagenji.com served merge commit 9406b13c6b98067f4d1de37449254fe548ea008d and passed shared Country CSS architecture, Spain V3 regression payload, and production runtime asset/route checks.",
+        "FINAL QA PASS 2026-09-05: user visual review PASS including Taste 4 visibility; Reference v3 structure, approved assets, hard image gate, source validation, Country JSON validation, Browser Smoke, main validation and production runtime verification all PASS. Renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
