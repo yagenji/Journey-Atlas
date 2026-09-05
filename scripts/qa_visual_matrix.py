@@ -134,47 +134,41 @@ def make_taste_sheet(slug, name, taste_paths):
 
 def main():
     countries = load_countries()
-    driver = make_driver()
     maps = []
     scene_overview = []
     taste_overview = []
+
+    # Build Scene / Taste matrices directly from the approved production assets.
+    for slug, name in countries:
+        data = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+
+        scene_paths = [ROOT / item["image"] for item in data.get("scenes", [])]
+        sp = make_scene_sheet(slug, name, scene_paths)
+        scene_overview.append((f"{name} / {slug}", sp))
+
+        taste_paths = [ROOT / item["image"] for item in data.get("taste", {}).get("items", [])]
+        tp = make_taste_sheet(slug, name, taste_paths)
+        taste_overview.append((f"{name} / {slug}", tp))
+
+    contact_sheet(scene_overview, OUT / "04-scenes-contact.jpg", cols=2, tile_w=620, tile_h=420)
+    contact_sheet(taste_overview, OUT / "05-taste-contact.jpg", cols=3, tile_w=420, tile_h=360)
+
+    # Map needs the rendered Country page because labels and markers are runtime UI.
+    driver = make_driver()
     try:
         for slug, name in countries:
             url = f"{BASE_URL}/countries/{slug}/?visual-audit={int(time.time())}"
-            print(f"CAPTURE VISUAL {slug}", flush=True)
+            print(f"CAPTURE MAP {slug}", flush=True)
             set_viewport(driver, 1440, 1000, False)
             driver.get(url)
             wait_page(driver)
-
             mp = RAW / f"{slug}-map.png"
             capture(driver, "#country-map-art", mp)
             maps.append((f"{name} / {slug}", mp))
-
-            scene_paths = []
-            for i, card in enumerate(driver.find_elements(By.CSS_SELECTOR, ".scene-card")):
-                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", card)
-                time.sleep(0.12)
-                p = RAW / f"{slug}-scene-{i+1:02d}.png"
-                card.screenshot(str(p))
-                scene_paths.append(p)
-            sp = make_scene_sheet(slug, name, scene_paths)
-            scene_overview.append((f"{name} / {slug}", sp))
-
-            taste_paths = []
-            for i, card in enumerate(driver.find_elements(By.CSS_SELECTOR, ".taste-card")):
-                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", card)
-                time.sleep(0.12)
-                p = RAW / f"{slug}-taste-{i+1:02d}.png"
-                card.screenshot(str(p))
-                taste_paths.append(p)
-            tp = make_taste_sheet(slug, name, taste_paths)
-            taste_overview.append((f"{name} / {slug}", tp))
     finally:
         driver.quit()
 
     contact_sheet(maps, OUT / "03-map-contact.jpg", cols=4, tile_w=360, tile_h=250)
-    contact_sheet(scene_overview, OUT / "04-scenes-contact.jpg", cols=2, tile_w=620, tile_h=420)
-    contact_sheet(taste_overview, OUT / "05-taste-contact.jpg", cols=3, tile_w=420, tile_h=360)
 
     manifest = {
         "baseUrl": BASE_URL,
