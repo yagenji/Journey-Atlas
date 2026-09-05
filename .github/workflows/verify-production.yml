@@ -17,6 +17,7 @@ concurrency:
 jobs:
   verify-production:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout expected source
         uses: actions/checkout@v4
@@ -159,3 +160,26 @@ jobs:
           grep -q '<title>このサイトについて — JOURNEY ATLAS</title>' /tmp/about.html
           grep -q 'href="about/"' /tmp/spain.html
           echo "Production route, JS and CSS verified."
+
+      - name: Run all-published Desktop / Tablet / Mobile browser QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-browser-output
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser" ]; then
+            echo "No Chromium-compatible browser found on runner"
+            exit 1
+          fi
+          python3 -m pip install --disable-pip-version-check --quiet selenium
+          python3 scripts/qa_published_browser.py
+
+      - name: Upload production browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-country-browser-qa
+          path: qa-browser-output/
+          if-no-files-found: warn
+          retention-days: 3
