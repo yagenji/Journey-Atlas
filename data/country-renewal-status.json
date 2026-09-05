@@ -764,8 +764,8 @@
       "visual": "DONE",
       "map": "DONE",
       "sources": "DONE",
-      "qa": "PENDING",
-      "production": "LIVE_OLD",
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current Hero (Oia / Santorini), all eight published scenes, and the existing 1200×760 v3-style map are KEEP candidates; no landscape-wide rebuild is justified.",
@@ -805,7 +805,12 @@
         "CLOUDFLARE BRANCH PREVIEW PASS 2026-09-05: Cloudflare Pages check for commit 34f27e16d150963349912eb2d5026ac2ab327000 completed SUCCESS. Immutable preview: https://924d66ea.journey-atlas.pages.dev ; branch preview: https://country-greece-renewal.journey-atlas.pages.dev ; review route: /countries/greece/.",
         "HUMAN BROWSER VISUAL QA PENDING: Desktop / Tablet / Mobile inspection of Hero crop, map labels, scene cards, Taste rendering, long Japanese/Greek labels, spacing and accessibility still requires actual rendered-page review. qa remains PENDING and production remains LIVE_OLD until user review and final approval.",
         "USER PUBLISH APPROVAL 2026-09-05: user instructed to proceed after reviewing the renewal flow, authorizing final QA and publication if no blocking issue remains.",
-        "FINAL PRE-MERGE QA PASS 2026-09-05: Reference v3 counts are Profile 6 / Signature Facts 3 / Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Taste 4 / Travel Scale 3 / Seasons 4 / FOR WHOM 3 / Travel Notes 3. Theme taxonomy history/sea/food matches Country intent. Approved folder contains exactly Hero + 8 scenes + 4 Taste. Latest branch head validation and Cloudflare branch preview are PASS; diff against latest main remains limited to Greece Country JSON, Greece renewal status and four approved Taste assets. No blocking issue remains."
+        "FINAL PRE-MERGE QA PASS 2026-09-05: Reference v3 counts are Profile 6 / Signature Facts 3 / Scenes 8 / Encounters 8 / Beyond 6 / Trivia 5 / Taste 4 / Travel Scale 3 / Seasons 4 / FOR WHOM 3 / Travel Notes 3. Theme taxonomy history/sea/food matches Country intent. Approved folder contains exactly Hero + 8 scenes + 4 Taste. Latest branch head validation and Cloudflare branch preview are PASS; diff against latest main remains limited to Greece Country JSON, Greece renewal status and four approved Taste assets. No blocking issue remains.",
+        "PUBLISHED 2026-09-05: PR #198 squash-merged to main as commit 052cc649c7c916ad534f6b0003515dcc29823216 after user approval and final clean-head QA.",
+        "MAIN VALIDATION PASS 2026-09-05: Validate country data run 33942562121 succeeded on Greece merge commit 052cc649c7c916ad534f6b0003515dcc29823216.",
+        "GITHUB PAGES DEPLOY PASS 2026-09-05: deploy run 33942562171 completed successfully for Greece merge commit 052cc649c7c916ad534f6b0003515dcc29823216.",
+        "CLOUDFLARE PRODUCTION VERIFY PASS 2026-09-05: production verify run 33942562111 confirmed atlas.yagenji.com served Greece merge commit 052cc649c7c916ad534f6b0003515dcc29823216 and production runtime checks passed.",
+        "FINAL QA PASS 2026-09-05: Reference v3 structure, Hero/S01–S08 KEEP set, Map, Taste 4 approvals, hard image gate, source validation, Country JSON validation, Cloudflare package build, production deployment and production runtime verification all PASS. Greece renewal publication complete."
       ],
       "automatedAudit": "DONE"
     },
