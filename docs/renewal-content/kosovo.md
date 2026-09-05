@@ -459,3 +459,40 @@ Landscape decision: **DONE / LOCKED**
 - `hardImageGate`: remains **false**
 
 Next phase: **VISUAL PRODUCTION — Taste FOOD01 → FOOD04**.
+
+
+## Taste approvals — 2026-09-05
+
+All four Kosovo Taste images were user APPROVED as one review batch.
+
+- FOOD01 **Flija** — APPROVED
+  - Final filename: `food-flija.webp`
+  - Target production path: `assets/images/kosovo/approved/food-flija.webp`
+- FOOD02 **Qebapa** — APPROVED
+  - Final filename: `food-qebapa.webp`
+  - Target production path: `assets/images/kosovo/approved/food-qebapa.webp`
+- FOOD03 **Tavë Prizreni** — APPROVED
+  - Final filename: `food-tave-prizreni.webp`
+  - Target production path: `assets/images/kosovo/approved/food-tave-prizreni.webp`
+- FOOD04 **Tespishte** — APPROVED
+  - Final filename: `food-tespishte.webp`
+  - Target production path: `assets/images/kosovo/approved/food-tespishte.webp`
+
+### Asset preparation
+
+All four user-approved generations were prepared as:
+
+- 1200×800
+- exact 3:2
+- WebP
+- complete local decode PASS
+
+No geometric stretching was used. The source generations were already exact 3:2 (1536×1024), so they were resized directly to 1200×800.
+
+### Visual Complete Gate status
+
+Taste visual approval: **PASS**
+
+Repository storage verification: **PENDING**
+
+The Visual Complete Gate remains blocked until the four WebPs are stored under `assets/images/kosovo/approved/`, referenced by Country JSON, fully decoded from the repository copy and approved-folder hygiene passes.
