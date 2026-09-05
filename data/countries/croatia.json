@@ -6,7 +6,7 @@
   "nameJa": "クロアチア",
   "region": "SOUTHERN EUROPE / 45°N",
   "seo": {
-    "description": "ドゥブロヴニクの城壁都市から、プリトヴィツェ湖群、ロヴィニ、コルナティ諸島、パクレニツァ、スタリ・グラード平原、トラコシュチャン、コパチュキ・リト、ザグレブへ。海・山・平原が切り替わるクロアチアを地図と9つの景観でたどる。"
+    "description": "ドゥブロヴニクの城壁都市から始まり、プリトヴィツェ湖群、アドリア海の島々、内陸の城と湿地、ザグレブへ。海・山・平原が短い距離で切り替わるクロアチアを、地図と8つの景観でたどる。"
   },
   "capital": {
     "nameEn": "Zagreb",
@@ -331,8 +331,9 @@
     }
   ],
   "transport": {
-    "title": "INTERCITY BUS / FERRY / CAR",
-    "text": "ザグレブを起点に内陸へ鉄道やバス、アドリア海沿岸へ都市間バスや車をつなぐ。島へ渡る区間はフェリーや高速船が旅程の一部になり、同じ距離でも季節と接続で所要時間が変わるため、地域ごとに移動手段を組み合わせる。"
+    "title": "鉄道・都市間バス・フェリー・車",
+    "text": "ザグレブと内陸では鉄道も使えるが、海岸都市間は都市間バスや車を組み合わせやすい。島へ渡る区間はJadrolinijaなどのフェリー・高速船が旅程の一部になり、同じ距離でも季節と接続で所要時間が変わる。南北に長い国土では、沿岸と島の接続時間まで含めて移動を組む。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -441,8 +442,8 @@
       "reason": "アドリア海の向こう側へ渡り、ローマからヴェネツィアまで重なる都市史と地域差を比較したいなら。"
     }
   ],
-  "updatedAt": "2026-09-02",
-  "sourcesVerifiedAt": "2026-09-02",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-05",
   "sourceDates": {
     "population": "2025",
     "religion": "2021",
@@ -476,10 +477,79 @@
     "sinjskaAlka": "UNESCO Intangible Cultural Heritage: Sinjska Alka is an annual chivalric tournament in Sinj in which riders aim lances at an iron ring",
     "islandRegistry": "Croatian Ministry of Regional Development and EU Funds, Island Registry / 2026 Islands Act: 1,244 islands, islets and rocks; registry breakdown 78 islands, 524 islets, 642 rocks",
     "euroSchengen": "European Commission / EUR-Lex: euro adopted 1 Jan 2023; internal land and sea border checks under Schengen lifted 1 Jan 2023",
-    "transport": "Jadrolinija official schedules and route information for Croatian island ferry and fast-ship services",
+    "transport": "HŽ Putnički prijevoz official timetable and Jadrolinija official ferry / fast-ship schedules; island connections and seasonal sailings are date-dependent",
     "plitviceRoutes": "Plitvice Lakes National Park official visitor information: seven routes and four hiking trails are available",
     "cravat": "Croatian Ministry of Foreign and European Affairs / Croatia.eu: Croatian soldiers' knotted neck cloth was noticed in Paris in 1630 and gave rise to the French cravate",
     "croatianDialects": "Croatia.eu, Language: Croatian has three dialects—Štokavian, Kajkavian and Čakavian—named after the interrogative forms što, kaj and ča; the modern standard is mainly based on New Štokavian Ijekavian forms",
-    "peljesacBridge": "European Commission Representation in Croatia, 26 July 2022: Pelješac Bridge opened across Mali Ston Bay, 2.4 km long with four lanes, connecting Dubrovnik-Neretva County more directly with the rest of Croatia and strengthening territorial cohesion"
+    "peljesacBridge": "European Commission Representation in Croatia, 26 July 2022: Pelješac Bridge opened across Mali Ston Bay, 2.4 km long with four lanes, connecting Dubrovnik-Neretva County more directly with the rest of Croatia and strengthening territorial cohesion",
+    "strukli": "Zagreb Tourist Board / InfoZagreb: Štrukli is an authentic Zagreb and Zagorje dish made with thin dough and fresh-cheese filling; it may be boiled or baked",
+    "crniRizot": "Dubrovnik Tourist Board / Split-Dalmatia County Tourist Board: Crni rižot is an Adriatic black risotto colored with cuttlefish or squid ink",
+    "pasticada": "Split-Dalmatia County Tourist Board / Visit Split: Pašticada is a characteristic Dalmatian slow-cooked beef dish commonly served with gnocchi",
+    "fritule": "Visit Split: Fritule are small fried dough sweets associated especially with the Christmas season in Dalmatia",
+    "railTransport": "HŽ Putnički prijevoz official 2025/2026 timetable, including Zagreb–Split services and September 2026 timetable changes"
+  },
+  "taste": {
+    "kicker": "TASTE OF CROATIA",
+    "title": "クロアチアで食べたいもの",
+    "intro": "北部のチーズ料理から、アドリア海のイカ墨、ダルマチアの煮込み、冬の揚げ菓子まで、地域差の大きい食文化を4皿からたどる。",
+    "items": [
+      {
+        "id": "strukli",
+        "name": "シュトゥルクリ",
+        "nameLocal": "Štrukli",
+        "text": "薄く伸ばした生地にフレッシュチーズと卵のフィリングを包む、ザゴリェ地方とザグレブで身近な料理。茹でる形と焼く形があり、ここでは表面に軽く焼き色のついた焼きシュトゥルクリを見る。",
+        "image": "assets/images/croatia/approved/food-strukli.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "crni-rizot",
+        "name": "ブラックリゾット",
+        "nameLocal": "Crni rižot",
+        "text": "イカやコウイカの墨で米を黒く仕上げる、アドリア海沿岸で出会いやすい魚介のリゾット。見た目の黒さそのものが、内陸とは異なる海の食文化を端的に伝える。",
+        "image": "assets/images/croatia/approved/food-crni-rizot.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "pasticada",
+        "name": "パシュティツァダ",
+        "nameLocal": "Pašticada",
+        "text": "牛肉を時間をかけて煮込み、濃いソースとニョッキを合わせるダルマチアの料理。魚介だけではない沿岸部の家庭料理と祝いの食卓を見せる一皿になる。",
+        "image": "assets/images/croatia/approved/food-pasticada.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "fritule",
+        "name": "フリトゥレ",
+        "nameLocal": "Fritule",
+        "text": "小さく丸めた生地を揚げ、粉砂糖をかけるダルマチアの菓子。特にクリスマス期の食卓や街角と結びつき、季節の行事から暮らしへ関心を広げられる。",
+        "image": "assets/images/croatia/approved/food-fritule.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "スプリトを拠点に近郊へ",
+        "text": "一つの都市に滞在し、近郊の歴史都市まで加えるくらいが現実的。例：スプリト＋トロギール。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "首都・湖群・ダルマチアをつなぐ",
+        "text": "内陸から海岸へ南下すると、都市、カルスト湖、アドリア海岸の違いを一度の旅で比べられる。例：ザグレブ → プリトヴィツェ湖群 → スプリト。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "島を加えて南部まで旅を広げる",
+        "text": "海岸都市だけでなく島泊を加えると、クロアチアの細長い国土とアドリア海の距離感が見えてくる。例：ザグレブ → プリトヴィツェ湖群 → スプリト → フヴァル → ドゥブロヴニク。",
+        "icon": "compass"
+      }
+    ]
   }
 }
