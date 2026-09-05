@@ -116,70 +116,40 @@ def main():
     driver = make_driver()
     hero_desktop = []
     hero_mobile = []
-    maps = []
-    tastes = []
-    scene_overview = []
-
     try:
         for slug, name in countries:
             url = f"{BASE_URL}/countries/{slug}/?visual-audit={int(time.time())}"
-            print(f"CAPTURE {slug}", flush=True)
+            print(f"CAPTURE HERO {slug}", flush=True)
 
             set_viewport(driver, 1440, 1000, False)
             driver.get(url)
             wait_page(driver)
             driver.execute_script("window.scrollTo(0,0)")
-            time.sleep(0.3)
-
+            time.sleep(0.25)
             hp = RAW / f"{slug}-hero-desktop.png"
-            mp = RAW / f"{slug}-map.png"
-            tp = RAW / f"{slug}-taste.png"
             capture(driver, ".hero", hp)
-            capture(driver, "#country-map-art", mp)
-            capture(driver, "#taste-section", tp)
-
-            scene_paths = []
-            cards = driver.find_elements(By.CSS_SELECTOR, ".scene-card")
-            for i, card in enumerate(cards):
-                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", card)
-                time.sleep(0.15)
-                p = RAW / f"{slug}-scene-{i+1:02d}.png"
-                card.screenshot(str(p))
-                scene_paths.append(p)
-            sp = make_scene_sheet(slug, name, scene_paths)
 
             set_viewport(driver, 390, 844, True)
             driver.get(url)
             wait_page(driver)
             driver.execute_script("window.scrollTo(0,0)")
-            time.sleep(0.3)
+            time.sleep(0.25)
             hmp = RAW / f"{slug}-hero-mobile.png"
             capture(driver, ".hero", hmp)
 
             hero_desktop.append((f"{name} / {slug}", hp))
             hero_mobile.append((f"{name} / {slug}", hmp))
-            maps.append((f"{name} / {slug}", mp))
-            tastes.append((f"{name} / {slug}", tp))
-            scene_overview.append((f"{name} / {slug}", sp))
     finally:
         driver.quit()
 
     contact_sheet(hero_desktop, OUT / "01-hero-desktop-contact.jpg", cols=4, tile_w=360, tile_h=250)
     contact_sheet(hero_mobile, OUT / "02-hero-mobile-contact.jpg", cols=7, tile_w=190, tile_h=280)
-    contact_sheet(maps, OUT / "03-map-contact.jpg", cols=4, tile_w=360, tile_h=250)
-    contact_sheet(tastes, OUT / "04-taste-contact.jpg", cols=4, tile_w=360, tile_h=260)
-    contact_sheet(scene_overview, OUT / "05-scenes-contact.jpg", cols=2, tile_w=620, tile_h=420)
 
     manifest = {
         "baseUrl": BASE_URL,
         "countries": [{"slug": s, "nameJa": n} for s,n in countries],
-        "outputs": [
-            "01-hero-desktop-contact.jpg",
-            "02-hero-mobile-contact.jpg",
-            "03-map-contact.jpg",
-            "04-taste-contact.jpg",
-            "05-scenes-contact.jpg",
-        ]
+        "phase": "hero",
+        "outputs": ["01-hero-desktop-contact.jpg", "02-hero-mobile-contact.jpg"]
     }
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
