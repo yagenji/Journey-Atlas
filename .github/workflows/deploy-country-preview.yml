@@ -67,6 +67,45 @@ jobs:
             exit 1
           fi
 
+      - name: Browser smoke current Country
+        run: |
+          slug="${GITHUB_REF_NAME#country/}"
+          slug="${slug%-renewal}"
+          test -f "dist/countries/${slug}/index.html"
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser" ]; then
+            echo "No Chromium-compatible browser found on runner"
+            exit 1
+          fi
+          python -m http.server 4173 --directory dist >/tmp/journey-atlas-preview-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          sleep 1
+          "$browser" --headless --no-sandbox --disable-gpu --virtual-time-budget=8000             --dump-dom "http://127.0.0.1:4173/countries/${slug}/" > "/tmp/${slug}-dom.html"
+          python - "$slug" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          slug = sys.argv[1]
+          dom = Path(f"/tmp/{slug}-dom.html").read_text(encoding="utf-8")
+          section = re.search(r'<section class="taste-section" id="taste-section"([^>]*)>', dom)
+          if not section:
+              raise SystemExit(f"{slug}: Taste section missing from rendered DOM")
+          if "hidden" in section.group(1):
+              raise SystemExit(f"{slug}: Taste section remains hidden after runtime render")
+
+          cards = len(re.findall(r'class="taste-card(?:\s|"|$)', dom))
+          images = len(re.findall(r'class="taste-card__img"', dom))
+          if cards != 4 or images != 4:
+              raise SystemExit(f"{slug}: expected 4 Taste cards/images, got cards={cards}, images={images}")
+          if "taste-card--image-error" in dom:
+              raise SystemExit(f"{slug}: at least one Taste image emitted a browser load error")
+          if "food-" not in dom:
+              raise SystemExit(f"{slug}: rendered Taste images have no food asset URL")
+          print(f"{slug}: browser Taste smoke PASS ({cards} cards / {images} images)")
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

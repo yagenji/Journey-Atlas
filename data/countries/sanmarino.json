@@ -173,27 +173,27 @@
   ],
   "encounters": [
     {
-      "title": "切手",
-      "icon": "culture"
+      "title": "三つの塔",
+      "icon": "history"
     },
     {
-      "title": "陶器",
-      "icon": "culture"
+      "title": "石造建築",
+      "icon": "city"
+    },
+    {
+      "title": "丘陵農地",
+      "icon": "earth"
     },
     {
       "title": "葡萄畑",
       "icon": "food"
     },
     {
-      "title": "オリーブ",
+      "title": "オリーブ畑",
       "icon": "food"
     },
     {
-      "title": "ピアディーナ",
-      "icon": "food"
-    },
-    {
-      "title": "市場",
+      "title": "木曜市",
       "icon": "city"
     },
     {
@@ -201,8 +201,8 @@
       "icon": "culture"
     },
     {
-      "title": "ブストレンゴ",
-      "icon": "food"
+      "title": "森林の小径",
+      "icon": "road"
     }
   ],
   "atlasExtras": [
@@ -243,11 +243,11 @@
       "topicKey": "white-blue-railway-1932-1944",
       "themeEn": "ROAD",
       "themeJa": "道の先へ",
-      "title": "かつてリミニから山上まで、青白の電車が走っていた",
-      "text": "1932年開通のリミニ＝サンマリノ鉄道は、32kmを約1時間で結ぶ電気鉄道だった。1944年の空襲で運行を終えたが、モンターレ・トンネルと復元車両AB03が現在も鉄道時代を伝える。",
+      "title": "1932年の「青白の列車」が、2026年に旧駅へ戻った",
+      "text": "1932年開通のリミニ＝サンマリノ鉄道は、32kmを約1時間で結ぶ電気鉄道だった。1944年に運行を終えたが、保存・復元が進み、2026年6月にはAB-03電車がモンターレ・トンネルから旧サンマリノ駅前まで再び走れる約950mの区間が整備された。",
       "points": [
-        "運行期間は1932〜1944年",
-        "戦時中にはトンネルが多数の避難民の避難場所として使われた"
+        "本線の運行期間は1932〜1944年",
+        "2026年6月、復元区間が旧駅前まで延伸された"
       ]
     },
     {
@@ -293,13 +293,13 @@
       "sourceKey": "euroCoins"
     },
     {
-      "topicKey": "torta-tre-monti-five-wafer-layers",
-      "categoryEn": "FOOD",
-      "categoryJa": "食",
-      "title": "「三つの山」の名を持つ薄いウエハース菓子がある",
-      "text": "トルタ・トレ・モンティは、丸いウエハース5層にカカオとヘーゼルナッツのクリームを重ね、外周をダークチョコレートで仕上げる菓子。名前も国の三塔を連想させる。",
-      "icon": "food",
-      "sourceKey": "tortaTreMonti"
+      "topicKey": "borgo-maggiore-thursday-market",
+      "categoryEn": "MARKET",
+      "categoryJa": "暮らし",
+      "title": "木曜朝の市場は、13世紀のMercataleから続く",
+      "text": "ボルゴ・マッジョーレでは毎週木曜の朝に市場が開かれる。公式観光情報では最初の記録を1243年までさかのぼり、現在も日用品の露店が並ぶ週ごとの習慣として続いている。",
+      "icon": "city",
+      "sourceKey": "borgoMarket"
     },
     {
       "topicKey": "saint-marinus-day-crossbow-palio",
@@ -343,8 +343,9 @@
     }
   ],
   "transport": {
-    "title": "BUS / CAR / CABLE CAR / WALK",
-    "text": "サンマリノ国内へ鉄道は入っていない。鉄道利用はイタリアのリミニ駅から路線バスへ乗り継ぎ、車ではSS72などから入る。国内はバスと車を軸に、ボルゴ・マッジョーレから歴史地区へロープウェイ、旧市街は徒歩を組み合わせる。"
+    "title": "バス・車・ロープウェイ・徒歩",
+    "text": "国内へ入る旅客鉄道はなく、鉄道利用ならイタリアのリミニ駅からバスへ乗り継ぐ。車はSS72などから入り、国内ではバスと車を軸に、ボルゴ・マッジョーレとサンマリノ市を結ぶロープウェイ、歴史地区や丘陵の徒歩を組み合わせる。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -371,7 +372,7 @@
     },
     {
       "label": "人口",
-      "value": "約3万人（2026年）"
+      "value": "34,167人（2026年6月30日）"
     },
     {
       "label": "面積",
@@ -453,10 +454,11 @@
       "reason": "山地の小国という共通点から、アペニンの共和国とアルプスの君主国の地形・制度・移動感を比べたいなら。"
     }
   ],
-  "updatedAt": "2026-09-02",
-  "sourcesVerifiedAt": "2026-09-02",
+  "updatedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-05",
   "sourceDates": {
-    "population": "2026-06-30"
+    "population": "2026-06-30",
+    "railwayRestoration": "2026-06-29"
   },
   "sources": {
     "map": "Geo2day San Marino GeoJSON, OpenStreetMap-derived boundary, extract current to 2026-08-22; WGS84. Cross-checked against geoBoundaries gbOpen SMR ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0).",
@@ -478,7 +480,7 @@
     "arengo1906": "Republic of San Marino, Great and General Council electoral history; Visit San Marino festivities: Arengo reconvened 25 March 1906 and restored popular election of the Council.",
     "borderFormalities": "Visit San Marino, Border formalities / Useful information: travellers validly admitted to Italy normally enter San Marino without routine border formalities; a commemorative tourist passport stamp is available at the Tourism Information Office.",
     "euroCoins": "Visit San Marino, Useful information: since 2002 San Marino has the right to mint euro coins at the Italian Mint with Sammarinese designs.",
-    "gastronomy": "Visit San Marino, Gastronomy of San Marino: vineyards and olive cultivation are part of the agricultural landscape; piadina is a traditional local food; bustrengo is one of the oldest and most popular local cakes.",
+    "gastronomy": "Visit San Marino, Gastronomy of San Marino: traditional fresh pasta including cappelletti in brodo; piadina; bustrengo and other local food traditions.",
     "september3Festival": "Visit San Marino, Sammarinese Holidays: 3 September is the Feast of Saint Marinus and anniversary of the Foundation of the Republic; the day traditionally includes a historical procession and the Palio delle Balestre.",
     "captainsRegent": "Regency of the Republic of San Marino: two Captains Regent jointly exercise Head of State functions; six-month terms; take office 1 April and 1 October.",
     "walkTitano": "Visit San Marino, The Walk of the Titano: 43 km ring linking all nine Castelli and connecting an overall 110 km trail network.",
@@ -486,6 +488,75 @@
     "castelliGovernance": "Consiglio Grande e Generale, Legge 24 settembre 2020 n.158, art. 1: the Republic is divided into nine Castelli; each Castello is an institutional and territorial entity with administrative, representative and proposal functions; the Capitano di Castello and Giunta are elected.",
     "changingGuard": "Visit San Marino, Public Palace / Changing of the Guard: the Uniformed Unit of the Fortress Guard performs the Changing of the Guard at Palazzo Pubblico during the summer months.",
     "craftsShopping": "Visit San Marino, Shopping: the historic centre includes local traditional products such as hand-painted ceramics and artisan work; San Marino is also known for stamps and coins; Borgo Maggiore hosts market activity.",
-    "tortaTreMonti": "Visit San Marino, La Serenissima: Torta Tre Monti is made with five layers of round wafers filled with cocoa and hazelnut cream and finished with an outer ring of dark chocolate."
+    "tortaTreMonti": "Visit San Marino, La Serenissima: Torta Tre Monti is made with five layers of round wafers filled with cocoa and hazelnut cream and finished with an outer ring of dark chocolate.",
+    "piadina": "Consorzio Terra di San Marino, Piadina Terra di San Marino: local production specification and ingredients including San Marino flour and extra-virgin olive oil.",
+    "borgoMarket": "Visit San Marino, Borgo Maggiore market: weekly Thursday market; official visitor information traces the market tradition to 1243.",
+    "travelScale": "Visit San Marino, Walk of the Titano and nature itineraries: 43 km ring linking all nine Castelli, connected to eight themed routes and an overall 110 km trail network.",
+    "tasteTreMonti": "Visit San Marino, La Serenissima / Torta Tre Monti: five round wafer layers with cocoa-hazelnut cream and dark chocolate outer finish.",
+    "railwayRestoration": "Visit San Marino, 29 June 2026 / 30 June 2026 railway restoration news: restored AB-03 returned from Montale Tunnel to the former San Marino station square on an approximately 950 m restored section."
+  },
+  "taste": {
+    "kicker": "TASTE OF SAN MARINO",
+    "title": "サンマリノで食べたいもの",
+    "intro": "手打ちパスタ、薄いピアディーナ、農家菓子、三塔を名に持つ菓子から、ロマーニャとマルケに接する小国の食文化をたどる。",
+    "items": [
+      {
+        "id": "cappelletti-in-brodo",
+        "name": "カッペレッティ・イン・ブロード",
+        "nameLocal": "Cappelletti in brodo",
+        "text": "詰め物をした小さなパスタを温かいブロードに浮かべる料理。サンマリノではクリスマス当日の伝統食として公式観光情報にも紹介され、家庭の祝祭と手打ちパスタ文化をつなぐ一皿。",
+        "image": "assets/images/sanmarino/approved/food-cappelletti-in-brodo.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "piadina-sammarinese",
+        "name": "サンマリノ式ピアディーナ",
+        "nameLocal": "Piadina sammarinese",
+        "text": "サンマリノのピアディーナは、周辺のエミリア系の中でも特に薄いと紹介される平焼きパン。Terra di San Marinoでは地元小麦やオリーブ油などを使う規格があり、地域の乳製品と合わせても食べられる。",
+        "image": "assets/images/sanmarino/approved/food-piadina-sammarinese.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "bustrengo",
+        "name": "ブストレンゴ",
+        "nameLocal": "Bustrengo",
+        "text": "乾いたパンや乳製品づくりの残り、干し葡萄などを無駄にしない農家の知恵から生まれた焼き菓子。公式観光情報でも、サンマリノで最も古く親しまれてきた菓子の一つとして紹介される。",
+        "image": "assets/images/sanmarino/approved/food-bustrengo.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "torta-tre-monti",
+        "name": "トルタ・トレ・モンティ",
+        "nameLocal": "Torta Tre Monti",
+        "text": "丸いウエハースを5層重ね、カカオとヘーゼルナッツのクリームを挟み、外周をダークチョコレートで仕上げる菓子。「三つの山」の名がモンテ・ティターノと三塔の国らしさを食へつなぐ。",
+        "image": "assets/images/sanmarino/approved/food-torta-tre-monti.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "山上の歴史地区とボルゴを歩く",
+        "text": "サンマリノ市を拠点に三つの塔と公共宮殿を歩き、ボルゴ・マッジョーレまで下ると、山上都市と麓の関係を無理なく見られる。例：サンマリノ市 → 三つの塔 → ボルゴ・マッジョーレ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "首都から東西のCastelliへ広げる",
+        "text": "歴史地区に加え、東のモンテジャルディーノ／ファエターノと、西のアクアヴィーヴァへ日を分けて広げると、首都だけでは見えない丘陵集落と土地利用が見えてくる。例：サンマリノ市 → ボルゴ・マッジョーレ → アクアヴィーヴァ → モンテジャルディーノ → ファエターノ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "9つのCastelliを歩き、小国全体を旅にする",
+        "text": "43kmのCammino del Titanoと8つのテーマ別散策路を軸にすると、国土61km²を短時間で「回る」のではなく、森林・農地・旧鉄道・周縁集落まで一つずつ読む旅にできる。例：サンマリノ市 → ボルゴ・マッジョーレ → モンテ・チェッレート → キエザヌオーヴァ → フィオレンティーノ → モンテジャルディーノ → セラヴァッレ／ドマニャーノ。",
+        "icon": "compass"
+      }
+    ]
   }
 }
