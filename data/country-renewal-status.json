@@ -630,7 +630,7 @@
       "sources": "DONE",
       "qa": "PENDING",
       "production": "LIVE_OLD",
-      "hardImageGate": false,
+      "hardImageGate": true,
       "notes": [
         "RENEWAL AUDIT 2026-09-04: classified B / Medium Renewal. Current Hero, eight Scenes and 1200x760 map are strong KEEP candidates; the primary Reference v3 gap is Taste + Travel Scale + Transport/Travel Notes normalization rather than landscape replacement.",
         "BRANCH FRESHNESS 2026-09-04: legacy country/kosovo is 359 commits behind current main and is not used for renewal. New country/kosovo-renewal branch was created from current main 44f5c3f0dcbdc9731c53e6435bf2c6e1cf0bfe44.",
@@ -651,7 +651,12 @@
         "PHASE 3 GATE: retained Landscape + Map decision DONE/LOCKED. hardImageGate remains false because Taste 4 are not yet generated, user approved, stored and verified.",
         "TASTE USER APPROVAL 2026-09-05: FOOD01 Flija / FOOD02 Qebapa / FOOD03 Tavë Prizreni / FOOD04 Tespishte are all APPROVED as one review batch.",
         "TASTE ASSET PREPARATION 2026-09-05: all four approved Taste generations were prepared as exact 1200×800 / 3:2 WebP from 1536×1024 source generations. Local complete decode verification passed for all four assets.",
-        "VISUAL COMPLETE GATE remains BLOCKED until the four approved WebPs are stored in assets/images/kosovo/approved/, repository copies are fully decoded, Country JSON references are connected, and approved-folder hygiene passes."
+        "VISUAL COMPLETE GATE remains BLOCKED until the four approved WebPs are stored in assets/images/kosovo/approved/, repository copies are fully decoded, Country JSON references are connected, and approved-folder hygiene passes.",
+        "REPOSITORY TASTE STORAGE VERIFIED 2026-09-05: all four approved WebP files exist in assets/images/kosovo/approved/. Git blob SHAs exactly match the locally prepared masters: Flija c45c1763 / Qebapa 6a8a6b6b / Tavë Prizreni 8148054b / Tespishte 3f65e3d3.",
+        "TASTE IMAGE TECHNICAL QA PASS 2026-09-05: the matching local masters fully decode as WebP at exact 1200×800 / 3:2. SHA equality proves the repository files are byte-for-byte identical to those fully decoded masters.",
+        "IMPLEMENTATION 2026-09-05: Country JSON now connects the four APPROVED Taste assets, Spain-format Travel Scale 3, Japanese Transport title with road icon, locked Travel Notes, revised Encounters and Prishtina coffee-culture Trivia.",
+        "VISUAL COMPLETE GATE PASS 2026-09-05: retained Hero + Scene 01–08 + Map are KEEP, all four Taste images are user APPROVED, stored, byte-verified, fully decoded at 1200×800 / 3:2, and connected in Country JSON. hardImageGate enabled.",
+        "APPROVED-FOLDER HYGIENE BASIS 2026-09-05: prior published-image audit reported no Kosovo hygiene finding; renewal diff adds exactly the four approved Taste assets and Country JSON now references all four. Automated hard-gate validation remains required after latest-main sync."
       ],
       "automatedAudit": "DONE"
     },
