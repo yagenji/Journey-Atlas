@@ -178,15 +178,20 @@ Exactly 3:
 
 ## Encounters
 
-Exactly 8:
-- ドナウ川
-- 要塞
-- 正教会修道院
-- アール・ヌーヴォー
-- 山岳の森
-- カファナ
-- スラヴァ
-- プラム
+Exactly 8 — revised after final editorial QA to avoid turning Encounters into a summary of the 8 Scenes:
+- キリル文字
+- ピロト絨毯
+- グスレ
+- トランペット楽団
+- スラトコと冷水
+- オパナク
+- スプラヴ
+- 赤パプリカの市場
+
+Editorial rule applied:
+- do not restate Scene categories
+- favor things travelers can actually see, hear, taste, or notice in daily travel
+- keep these distinct from Beyond the Scenery topics where possible
 
 ## Beyond the Scenery
 
@@ -369,5 +374,12 @@ Pre-publish QA:
 
 Publication state:
 - atlasPublished: true
-- production: PENDING until Cloudflare Production Verify passes
+- production: LIVE_CURRENT — Cloudflare Production Verify PASS
 - hardImageGate: true
+
+
+Production Verify final result: PASS
+- production commit served by atlas.yagenji.com
+- runtime assets / route: PASS
+- all-published Desktop / Tablet / Mobile browser QA: PASS
+- final production state: LIVE_CURRENT
