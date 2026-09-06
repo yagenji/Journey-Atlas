@@ -95,9 +95,9 @@ function renderCountry(data, registry) {
   }
   setBackground(heroArt, data.hero?.image);
   renderMapBase(fragment, data.map);
-  renderCapitalMarker(fragment, data.capital, data.map?.bounds);
-  renderScenes(fragment, data.scenes, data.map?.bounds);
-  renderHeroMarker(fragment, data.hero, data.map?.bounds);
+  renderCapitalMarker(fragment, data.capital, data.map);
+  renderScenes(fragment, data.scenes, data.map);
+  renderHeroMarker(fragment, data.hero, data.map);
   renderEncounters(fragment, data.encounters);
   renderSignatureFacts(fragment, data.signatureFacts);
   renderAtlasExtras(fragment, data.atlasExtras);
@@ -232,7 +232,29 @@ function setBackground(element, image, options = {}) {
   applyBackground(element, image);
 }
 
-function projectPoint(coordinates, bounds, offset = {}) {
+function mapRegionContains(region, coordinates) {
+  const bounds = region?.bounds;
+  if (!bounds || !coordinates) return false;
+  const { latitude, longitude } = coordinates;
+  return Number.isFinite(latitude)
+    && Number.isFinite(longitude)
+    && latitude >= bounds.south
+    && latitude <= bounds.north
+    && longitude >= bounds.west
+    && longitude <= bounds.east;
+}
+
+function resolveMapRegion(mapData, coordinates, regionId) {
+  const regions = Array.isArray(mapData?.regions) ? mapData.regions : [];
+  if (!regions.length) return null;
+  if (regionId) {
+    const explicit = regions.find((region) => region.id === regionId);
+    if (explicit) return explicit;
+  }
+  return regions.find((region) => mapRegionContains(region, coordinates)) || null;
+}
+
+function projectPointToRect(coordinates, bounds, rect, offset = {}) {
   if (!coordinates || !bounds) return null;
   const longitudeRange = bounds.east - bounds.west;
   const latitudeRange = bounds.north - bounds.south;
@@ -240,15 +262,19 @@ function projectPoint(coordinates, bounds, offset = {}) {
 
   const mapWidth = 1200;
   const mapHeight = 760;
+  const rectX = Number(rect?.x) || 0;
+  const rectY = Number(rect?.y) || 0;
+  const rectWidth = Number(rect?.width) || mapWidth;
+  const rectHeight = Number(rect?.height) || mapHeight;
   const midpointLatitude = (bounds.south + bounds.north) / 2;
   const longitudeScale = Math.cos((midpointLatitude * Math.PI) / 180);
   const projectedWidth = longitudeRange * longitudeScale;
   const projectedHeight = latitudeRange;
-  const canvasScale = Math.min(mapWidth / projectedWidth, mapHeight / projectedHeight);
+  const canvasScale = Math.min(rectWidth / projectedWidth, rectHeight / projectedHeight);
   const drawWidth = projectedWidth * canvasScale;
   const drawHeight = projectedHeight * canvasScale;
-  const offsetX = (mapWidth - drawWidth) / 2;
-  const offsetY = (mapHeight - drawHeight) / 2;
+  const offsetX = rectX + (rectWidth - drawWidth) / 2;
+  const offsetY = rectY + (rectHeight - drawHeight) / 2;
 
   const xPx = offsetX + (coordinates.longitude - bounds.west) * longitudeScale * canvasScale;
   const yPx = offsetY + (bounds.north - coordinates.latitude) * canvasScale;
@@ -257,9 +283,24 @@ function projectPoint(coordinates, bounds, offset = {}) {
   return { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) };
 }
 
-function renderCapitalMarker(fragment, capital, bounds) {
+function projectPoint(coordinates, mapDataOrBounds, offset = {}, regionId = '') {
+  if (!coordinates || !mapDataOrBounds) return null;
+  const mapData = (mapDataOrBounds.bounds || mapDataOrBounds.regions)
+    ? mapDataOrBounds
+    : { bounds: mapDataOrBounds };
+  const region = resolveMapRegion(mapData, coordinates, regionId);
+  if (region) return projectPointToRect(coordinates, region.bounds, region.rect, offset);
+  return projectPointToRect(
+    coordinates,
+    mapData.bounds,
+    { x: 0, y: 0, width: 1200, height: 760 },
+    offset
+  );
+}
+
+function renderCapitalMarker(fragment, capital, mapData) {
   const markers = fragment.querySelector('#map-markers');
-  const point = projectPoint(capital?.coordinates, bounds, capital?.mapOffset);
+  const point = projectPoint(capital?.coordinates, mapData, capital?.mapOffset, capital?.mapRegion);
   if (!markers || !point) return;
   const marker = document.createElement('div');
   marker.className = 'map-capital-marker';
@@ -288,7 +329,7 @@ function renderSceneName(element, name, preferredBreaks = []) {
   });
 }
 
-function renderScenes(fragment, scenes = [], bounds) {
+function renderScenes(fragment, scenes = [], mapData) {
   const cards = fragment.querySelector('#scene-cards');
   const markers = fragment.querySelector('#map-markers');
   scenes.forEach((scene, index) => {
@@ -307,7 +348,7 @@ function renderScenes(fragment, scenes = [], bounds) {
     sceneImage.setAttribute('role', 'img');
     sceneImage.setAttribute('aria-label', `景色 ${number}: ${scene.name}`);
     setBackground(sceneImage, scene.image, { lazy: true });
-    const point = projectPoint(scene.coordinates, bounds, scene.mapOffset);
+    const point = projectPoint(scene.coordinates, mapData, scene.mapOffset, scene.mapRegion);
     if (point) {
       const marker = document.createElement('button');
       marker.type = 'button';
@@ -327,9 +368,9 @@ function renderScenes(fragment, scenes = [], bounds) {
   });
 }
 
-function renderHeroMarker(fragment, hero, bounds) {
+function renderHeroMarker(fragment, hero, mapData) {
   const markers = fragment.querySelector('#map-markers');
-  const point = projectPoint(hero?.coordinates, bounds, hero?.mapOffset);
+  const point = projectPoint(hero?.coordinates, mapData, hero?.mapOffset, hero?.mapRegion);
   if (!markers || !point) return;
   const marker = document.createElement('div');
   marker.className = 'map-hero-marker';
