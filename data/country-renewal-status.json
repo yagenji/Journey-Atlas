@@ -79,7 +79,8 @@
         "monaco",
         "andorra",
         "sanmarino",
-        "italy"
+        "italy",
+        "vaticancity"
       ]
     },
     {
@@ -681,6 +682,25 @@
       "hardImageGate": true,
       "notes": [
         "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
+      "slug": "vaticancity",
+      "nameJa": "バチカン市国",
+      "wave": 5,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "PENDING",
+      "hardImageGate": true,
+      "notes": [
+        "New Country production completed to current Reference v3 standard on 2026-09-06. User final review approval received. Formal publication initiated; production remains PENDING until Cloudflare production verification succeeds."
       ],
       "automatedAudit": "DONE"
     }
