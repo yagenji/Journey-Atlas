@@ -25,8 +25,34 @@ OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output"))
 OUT.mkdir(parents=True, exist_ok=True)
 
 def load_countries() -> list[tuple[str, str]]:
-    status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     requested = {x.strip() for x in os.environ.get("QA_SLUGS", "").split(",") if x.strip()}
+    scope = os.environ.get("QA_SCOPE", "published").strip().lower()
+
+    if scope == "reviewable":
+        candidate_paths = (
+            [COUNTRY_DIR / f"{slug}.json" for slug in sorted(requested)]
+            if requested
+            else sorted(COUNTRY_DIR.glob("*.json"))
+        )
+        countries: list[tuple[str, str]] = []
+        invalid: list[str] = []
+        for path in candidate_paths:
+            if not path.exists():
+                invalid.append(path.stem)
+                continue
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if data.get("schemaVersion") != 2:
+                invalid.append(path.stem)
+                continue
+            countries.append((path.stem, data.get("nameJa") or path.stem))
+        if invalid:
+            raise SystemExit(
+                "QA_SCOPE=reviewable requires schemaVersion=2 country JSONs: "
+                + ", ".join(sorted(invalid))
+            )
+        return countries
+
+    status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     countries: list[tuple[str, str]] = []
     for row in status.get("countries", []):
         slug = row.get("slug")
