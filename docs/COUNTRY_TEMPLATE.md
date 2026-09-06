@@ -49,6 +49,7 @@ Each published country JSON uses `schemaVersion: 2` and contains:
 - `encounters`
 - `atlasExtras`
 - `travelTrivia`
+- `travelScale`
 - `seasons`
 - `transport`
 - `personas`
@@ -165,6 +166,26 @@ Prefer concrete geography, geology, history, scale, material, or observable char
 Avoid generic promotional phrases such as “breathtaking,” “magical,” or “must-see.”
 
 The shared scenery intro frames the eight selections for every country. Do not create a country-specific replacement unless the page structure itself changes globally.
+
+### Travel Scale
+
+`travelScale` uses a shared three-step UI, but the day ranges are country-specific.
+
+Fixed across countries:
+- exactly 3 items;
+- kicker `DURATION`;
+- title `旅の目安日程`;
+- icons `city` / `map` / `compass` in that order;
+- each item explains a realistic way to use that amount of time.
+
+Not fixed:
+- `3〜4日 / 5〜7日 / 8日以上` is **not** a global duration template;
+- small countries may use shorter ranges such as `半日〜1日 / 2日 / 3日`;
+- geographically broad or travel-intensive countries may expand to `7〜10日`, `12〜16日`, `2〜3週間`, or another realistic range.
+
+Choose the ranges from the actual travel scale of the country: distribution of places, regional diversity, surface/air/sea transfer burden, islands or mountain access, and whether the proposed itinerary can be travelled without rushing. Country area alone is not sufficient.
+
+Do not inflate a small country to fill the template, and do not compress a large country merely to preserve cross-country numerical uniformity. The three-step **information structure** is shared; the number of days is editorial content.
 
 ### Beyond the Scenery
 

@@ -91,13 +91,16 @@ jobs:
           if travel_scale.get("title") != "旅の目安日程" or len(travel_scale.get("items", [])) != 3:
               raise SystemExit("Spain travel scale is not the reviewed version")
           durations = [item.get("duration") for item in travel_scale.get("items", [])]
-          if durations != ["3〜4日", "5〜7日", "8日以上"]:
-              raise SystemExit(f"Spain travel durations are not continuous: {durations}")
+          if len(durations) != 3 or any(not isinstance(value, str) or not value.strip() for value in durations):
+              raise SystemExit(f"Spain travel durations are invalid: {durations}")
+          icons = [item.get("icon") for item in travel_scale.get("items", [])]
+          if icons != ["city", "map", "compass"]:
+              raise SystemExit(f"Spain travel scale icon order is invalid: {icons}")
           route_titles = [item.get("title") for item in travel_scale.get("items", [])]
           expected_route_titles = [
               "一つの都市を拠点に近郊へ",
-              "高速鉄道で2〜3都市をつなぐ",
-              "都市に地方の町や景観を加える",
+              "2〜3地域を高速鉄道でつなぐ",
+              "地方都市と景観まで広くたどる",
           ]
           if route_titles != expected_route_titles:
               raise SystemExit(f"Spain travel routes are not the reviewed version: {route_titles}")
@@ -137,7 +140,6 @@ jobs:
           grep -q 'transport-icon' /tmp/app.js
           grep -q 'travel-planning__block--transport .transport-icon' /tmp/country.css
           grep -q "旅の目安日程" /tmp/spain.json
-          ! grep -q '8〜14日' /tmp/spain.json
           grep -q 'travel-planning' /tmp/country.css
           grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' /tmp/country.css
           grep -q 'grid-column:1 / -1' /tmp/country.css

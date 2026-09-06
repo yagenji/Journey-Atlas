@@ -50,6 +50,16 @@ Use them for the JOURNEY ATLAS series character: recognizable real places, calm 
 ### Spain — current structure / information-density / UI reference
 Use Spain for the current shared Country Page structure, six-item Country Profile, responsive behavior, compact travel area, NEXT DESTINATIONS, and JOURNEY LENS handoff.
 
+### Travel Scale — variable duration rule
+Published countries use the same three-item Travel Scale structure, but their duration ranges are not globally locked.
+
+- Keep exactly 3 items and the shared `city / map / compass` progression.
+- Review the actual itinerary logic for each country.
+- Shorten microstates and compact countries when the old template overstates the time needed.
+- Expand geographically broad, regionally diverse, island-heavy, or transfer-intensive countries when `8日以上` is too coarse to be useful.
+- Do not change a country merely because another country uses different ranges; KEEP is correct when the existing range is realistic.
+- Country size is only one input. Use distribution of destinations, travel-time burden, regional diversity, and route feasibility.
+
 ### Current image production rule
 For renewed countries:
 - approved Hero + 8 approved scenes;
