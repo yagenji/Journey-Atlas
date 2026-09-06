@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "montenegro",
+  "nameEn": "MONTENEGRO",
+  "nameJa": "モンテネグロ",
+  "region": "SOUTHEASTERN EUROPE / 42°N",
+  "seo": {
+    "description": "コトル湾の石造集落からロヴチェン、オストログ修道院、スカダル湖、デュルミトル、タラ峡谷、ビオグラツカ・ゴラ、プロクレティエへ。海と高山の距離が急に縮まるモンテネグロを8つの景観でたどる。"
+  },
+  "capital": {
+    "nameEn": "Podgorica",
+    "nameJa": "ポドゴリツァ",
+    "coordinates": {
+      "latitude": 42.4413,
+      "longitude": 19.2633
+    },
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "アドリア海の湾を囲む石灰岩の山と石造りの町から、氷河湖、原生林、深い峡谷へ。小さな国土の中で、海と高山の距離が急に縮まる国。",
+    "image": "assets/images/montenegro/approved/hero-kotor-serpentine.webp",
+    "location": "Kotor Serpentine / Bay of Kotor",
+    "coordinates": {
+      "latitude": 42.40381,
+      "longitude": 18.78541
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 43.67589683086,
+      "south": 41.73452897914,
+      "west": 18.29826860060004,
+      "east": 20.49333217540011
+    },
+    "svg": "assets/images/montenegro/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection MNE.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; JOURNEY ATLAS map-v3 clean background"
+  },
+  "scenes": [
+    {
+      "id": "perast-our-lady-of-the-rocks",
+      "name": "ペラスト / 岩礁の聖母",
+      "nameLocal": "Perast / Our Lady of the Rocks",
+      "mapLabel": "Perast",
+      "description": "コトル湾の内側に、石造りの家々と教会塔が海沿いへ細長く続くペラスト。沖の岩礁の聖母教会と急な山腹が同じ視界に入り、海運で栄えた湾岸文化と地形の近さが分かる。",
+      "coordinates": {
+        "latitude": 42.48685,
+        "longitude": 18.68872
+      },
+      "image": "assets/images/montenegro/approved/perast-our-lady-of-the-rocks.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -2
+      }
+    },
+    {
+      "id": "lovcen-njegos-mausoleum",
+      "name": "ロヴチェン / ニェゴシュ廟",
+      "nameLocal": "Lovćen / Njegoš Mausoleum",
+      "mapLabel": "Lovćen",
+      "description": "ロヴチェン山のJezerski vrhに立つニェゴシュ廟。石灰岩の稜線を登った先から山地と湾岸側を広く見渡せ、モンテネグロの国家史と山岳景観が一つの場所で重なる。",
+      "coordinates": {
+        "latitude": 42.40003,
+        "longitude": 18.83778
+      },
+      "image": "assets/images/montenegro/approved/lovcen-njegos-mausoleum.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -3
+      }
+    },
+    {
+      "id": "ostrog-monastery",
+      "name": "オストログ修道院",
+      "nameLocal": "Ostrog Monastery",
+      "mapLabel": "Ostrog",
+      "description": "中央部の断崖へ白い修道院が埋め込まれるように建つ正教会の聖地。17世紀の洞窟教会とゼタ川流域を見下ろす立地から、信仰と険しい地形が結びついた景観を見られる。",
+      "coordinates": {
+        "latitude": 42.675,
+        "longitude": 19.02917
+      },
+      "image": "assets/images/montenegro/approved/ostrog-monastery.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "skadar-lake-pavlova-strana",
+      "name": "スカダル湖 / パヴロヴァ・ストラナ",
+      "nameLocal": "Lake Skadar / Pavlova Strana",
+      "mapLabel": "Skadar",
+      "description": "ツェティニェ近郊の高台から、ツルノイェヴィチャ川が大きく蛇行してスカダル湖へ向かう地形を見下ろす。湖、湿地、集落、カルストの丘が連続する南東部の水辺景観。",
+      "coordinates": {
+        "latitude": 42.36298,
+        "longitude": 19.06056
+      },
+      "image": "assets/images/montenegro/approved/skadar-lake-pavlova-strana.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.5,
+        "y": 3.5
+      }
+    },
+    {
+      "id": "durmitor-black-lake",
+      "name": "ツルノ湖 / デュルミトル",
+      "nameLocal": "Crno Jezero / Durmitor",
+      "mapLabel": "Black Lake",
+      "description": "ジャブリャク近郊の森に囲まれた氷河湖。静かな湖面の背後にデュルミトルの石灰岩峰が立ち、アドリア海沿岸とは別のアルプス性の景観へ国土が切り替わる。",
+      "coordinates": {
+        "latitude": 43.14539,
+        "longitude": 19.09068
+      },
+      "image": "assets/images/montenegro/approved/durmitor-black-lake.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 2
+      }
+    },
+    {
+      "id": "tara-canyon-curevac",
+      "name": "タラ峡谷 / チュレヴァツ",
+      "nameLocal": "Tara Canyon / Ćurevac",
+      "mapLabel": "Tara Canyon",
+      "description": "チュレヴァツの高所から、森林に覆われた谷底をタラ川が細く蛇行する様子を見下ろす。北部の山地が川によって深く刻まれたことを、垂直方向の大きなスケールで理解できる。",
+      "coordinates": {
+        "latitude": 43.20155,
+        "longitude": 19.09298
+      },
+      "image": "assets/images/montenegro/approved/tara-canyon-curevac.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "biogradska-gora-lake",
+      "name": "ビオグラツコ湖 / ビオグラツカ・ゴラ",
+      "nameLocal": "Biogradsko Lake / Biogradska Gora",
+      "mapLabel": "Biogradsko",
+      "description": "ビェラシツァ山地の原生林に囲まれたビオグラツコ湖。湖畔から森の層と水面の反射を見ると、岩峰中心のデュルミトルとは異なる、樹林の厚い北部景観が見えてくる。",
+      "coordinates": {
+        "latitude": 42.89833,
+        "longitude": 19.60056
+      },
+      "image": "assets/images/montenegro/approved/biogradska-gora-lake.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "prokletije-grebaje-valley",
+      "name": "グレバイェ渓谷 / プロクレティエ",
+      "nameLocal": "Grebaje Valley / Prokletije",
+      "mapLabel": "Grebaje",
+      "description": "アルバニア国境に近いグシニェから入る山岳谷。谷底の草地と森の両側から鋭い石灰岩峰が立ち上がり、ディナル・アルプス南端の荒々しい地形を足元から見上げる。",
+      "coordinates": {
+        "latitude": 42.515892,
+        "longitude": 19.78318
+      },
+      "image": "assets/images/montenegro/approved/prokletije-grebaje-valley.webp",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石灰岩の山肌",
+      "icon": "landscape"
+    },
+    {
+      "title": "湾沿いの石造集落",
+      "icon": "city"
+    },
+    {
+      "title": "正教会の鐘",
+      "icon": "culture"
+    },
+    {
+      "title": "山村のカトゥン",
+      "icon": "culture"
+    },
+    {
+      "title": "湖上の小舟",
+      "icon": "sea"
+    },
+    {
+      "title": "つづら折りの山道",
+      "icon": "road"
+    },
+    {
+      "title": "海事文化",
+      "icon": "sea"
+    },
+    {
+      "title": "二つの文字",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "cetinje-old-royal-capital",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "首都ポドゴリツァとは別に、ツェティニェが「旧王都」として国の記憶を担う",
+      "text": "現在の行政・経済の中心はポドゴリツァだが、ロヴチェン山麓のツェティニェには王宮、修道院、博物館が集まる。国家の形成を知るときは、この二つの都市の役割を分けて見ると分かりやすい。",
+      "points": [
+        "ツェティニェはOld Royal Capitalとして位置づけられる",
+        "ペトロヴィッチ朝の宮殿や国立博物館群が残る"
+      ]
+    },
+    {
+      "topicKey": "boka-navy-maritime-memory",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "コトル湾には、809年を起源とする海事共同体の記憶が残る",
+      "text": "Boka Navyは船乗りたちの組織として発展し、現在は祭礼や伝統舞踊を通じて湾岸の海事文化を伝えている。石の町を歩くだけでなく、海が地域社会をどう結んできたかを見る手がかりになる。",
+      "points": [
+        "Boka Navyは809年創設とされる",
+        "2021年にユネスコ無形文化遺産の代表一覧へ登録"
+      ]
+    },
+    {
+      "topicKey": "montenegrin-two-scripts",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "モンテネグロ語では、ラテン文字とキリル文字がともに使われる",
+      "text": "憲法はモンテネグロ語を公用語とし、ラテン文字とキリル文字を同等に扱う。さらにセルビア語、ボスニア語、アルバニア語、クロアチア語も公的使用の対象で、看板や表記からバルカンの言語空間が見える。",
+      "points": [
+        "モンテネグロ語が公用語",
+        "セルビア語・ボスニア語・アルバニア語・クロアチア語も公的使用"
+      ]
+    },
+    {
+      "topicKey": "katun-seasonal-pastoral-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "北部のカトゥンは、家畜と人が山へ移る季節の暮らしから生まれた",
+      "text": "高地のカトゥンは、牧畜民が家畜とともに季節移動した歴史を残す山の生活拠点。現在も宿泊や食事を通じて、乳製品、粉もの、放牧地といった山地の暮らしに触れられる。",
+      "points": [
+        "Bjelasicaなど各地の山にカトゥンが残る",
+        "高地の牧畜と季節移動の歴史につながる"
+      ]
+    },
+    {
+      "topicKey": "independence-restored-2006",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "現在の国家としての独立は、2006年の住民投票から始まった",
+      "text": "2006年5月21日の住民投票を経て、6月3日に議会が独立宣言を採択した。中世以来の国家史を持ちながら、現在のモンテネグロ国家は21世紀に再び独立したという二つの時間軸を持つ。",
+      "points": [
+        "独立を問う住民投票は2006年5月21日",
+        "独立宣言は2006年6月3日"
+      ]
+    },
+    {
+      "topicKey": "multi-religious-multi-ethnic-montenegro",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "正教会が多数派でも、国の文化は一つの宗教だけでは読めない",
+      "text": "2023年国勢調査では正教会系が約71%で最大だが、イスラム教、カトリックも暮らしの中に存在する。湾岸、南部、北部を移動すると、教会や修道院、モスクが異なる歴史層を伝える。",
+      "points": [
+        "2023年国勢調査で正教会系71.10%",
+        "政府観光局もモンテネグロをmulti-religious / multi-ethnic countryとして紹介"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "fasinada-stone-island-tradition",
+      "categoryEn": "PERAST",
+      "categoryJa": "祭り",
+      "title": "7月22日のペラストでは、船から石を海へ投げ入れる",
+      "text": "Fašinadaでは住民が石を積んだ船で岩礁の聖母の周囲へ向かい、島の基礎を保つように石を海へ落とす。人工島の成り立ちを現在の祭りとして見ることができる。",
+      "icon": "culture",
+      "sourceKey": "fasinada"
+    },
+    {
+      "topicKey": "old-olive-tree-bar",
+      "categoryEn": "BAR",
+      "categoryJa": "木",
+      "title": "バルには、樹齢2,000年を超えるとされるオリーブの古木がある",
+      "text": "Stara Maslinaはモンテネグロ政府観光局がヨーロッパ最古級の木として紹介する古木。海岸部で長く続いてきたオリーブ栽培を、一本の木からたどれる。",
+      "icon": "landscape",
+      "sourceKey": "montenegroFacts"
+    },
+    {
+      "topicKey": "skadar-280-bird-species",
+      "categoryEn": "SKADAR",
+      "categoryJa": "野鳥",
+      "title": "スカダル湖では、約280種の鳥が記録されている",
+      "text": "湖と湿地はニシハイイロペリカンやウなど多くの鳥の生息地。湖畔には観察地点もあり、船からの景観だけでなく季節による生態の違いも見つけられる。",
+      "icon": "wildlife",
+      "sourceKey": "skadar"
+    },
+    {
+      "topicKey": "lovcen-461-steps",
+      "categoryEn": "LOVĆEN",
+      "categoryJa": "山",
+      "title": "ニェゴシュ廟へは、山頂部で461段の階段を上る",
+      "text": "ロヴチェンのJezerski vrhでは、駐車地点から階段を上って廟へ向かう。山頂の建築を見る前に、石灰岩の山そのものを身体で上る時間が入る。",
+      "icon": "road",
+      "sourceKey": "cetinje"
+    },
+    {
+      "topicKey": "ostrog-three-kilometre-pilgrim-path",
+      "categoryEn": "OSTROG",
+      "categoryJa": "道",
+      "title": "オストログには、下院から約3kmの森の近道を歩く巡礼ルートがある",
+      "text": "車道とは別に、森を上る徒歩ルートで上院へ向かうことができる。洞窟教会のある標高約900mの断崖へ近づく過程そのものが、巡礼地らしい体験になる。",
+      "icon": "road",
+      "sourceKey": "ostrog"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#7f9a61",
+      "text": "コトル湾、ツェティニェ、スカダル湖は緑が戻り歩きやすい時期。デュルミトルやプロクレティエの高地では残雪があり、道路やトレイルの開通状況を確認して組み込む。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "海岸と高山を同じ旅に入れやすい季節。北部はハイキング期に入る一方、コトル湾など海岸部は暑さと混雑が強くなるため、街歩きは朝夕へずらす。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "海に暖かさが残り、山地では秋色が進む。海・湖・北部の森を一度の旅でつなぎやすいが、高地ほど冷え込みが早いため装備と天候を確認する。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "海岸部は雨が増え、北部山岳は雪の季節になる。都市と湾岸の旅は可能だが、デュルミトルやプロクレティエを含む周遊は道路・施設の季節条件に左右される。"
+    }
+  ],
+  "transport": {
+    "title": "都市間バス・鉄道・車",
+    "text": "主要都市間はバスでつながり、鉄道はBar―Podgorica―北部方向などを走る。一方、ロヴチェン、パヴロヴァ・ストラナ、タラ峡谷の展望地、グレバイェ渓谷まで一度に広げるなら車が組みやすい。短い直線距離でも山道では所要時間が伸びる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "海と高山を一度の旅で見たい人",
+      "text": "コトル湾の海辺からデュルミトルやプロクレティエまで、数日の移動で景観が大きく切り替わる国を旅したい人。"
+    },
+    {
+      "title": "石の町と宗教・国家史を地形と一緒に見たい人",
+      "text": "ペラスト、ロヴチェン、ツェティニェ、オストログをつなぎ、建築や信仰が山と海の地形の中でどう残ったかに興味がある人。"
+    },
+    {
+      "title": "山道と展望地をつなぐ移動そのものを楽しみたい人",
+      "text": "湾岸のつづら折り、湖畔、峡谷、高原の道路を走りながら、地図上の近さと実際の地形の違いを体験したい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南東ヨーロッパ／バルカン半島"
+    },
+    {
+      "label": "首都",
+      "value": "ポドゴリツァ"
+    },
+    {
+      "label": "人口",
+      "value": "約62万人（2023年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "13,812 km²（日本の約3.7%）"
+    },
+    {
+      "label": "言語",
+      "value": "モンテネグロ語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（正教会系が約71%）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "tara-canyon-depth-1333",
+      "label": "タラ峡谷の最大深度",
+      "value": "1,333 m",
+      "note": "北部を流れるタラ川が刻む峡谷は、モンテネグロ政府観光局がヨーロッパ最深の峡谷として紹介する。小さな国土の中に大きな標高差があることを示す数字。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "ecological-state-declaration-1991",
+      "label": "「生態国家」宣言",
+      "value": "1991年",
+      "note": "1991年9月20日、ジャブリャクでモンテネグロを生態国家とする宣言が採択された。山、湖、海岸を国の資源として捉える現在の環境政策の象徴的な起点になっている。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "euro-without-eu-monetary-agreement",
+      "label": "EUとのユーロ通貨協定",
+      "value": "なし",
+      "note": "モンテネグロはEU加盟国・ユーロ圏加盟国ではないが、ユーロを事実上の国内通貨として使用する。欧州委員会はEUとの通貨協定を結ばず使用している国として説明している。",
+      "icon": "coin"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mountain-road-time-not-distance",
+      "title": "山道は、距離ではなく所要時間で旅程を組む",
+      "text": "コトル湾からロヴチェン、北部のジャブリャクやグシニェへは、地図上の距離以上にカーブと標高差がある。複数地域を同日に詰め込まず、道路状況を確認して余白を持たせる。"
+    },
+    {
+      "topicKey": "kotor-summer-morning-evening",
+      "title": "夏のコトル湾は、旧市街と道路の混雑を見込む",
+      "text": "夏はクルーズ客や沿岸旅行者が集中し、コトル周辺では旧市街と道路の両方が混みやすい。街歩きは朝夕へずらし、移動日は渋滞を前提に時間を確保する。"
+    },
+    {
+      "topicKey": "northern-season-road-check",
+      "title": "北部へ入る日は、道路と山の季節条件を確認する",
+      "text": "デュルミトルやプロクレティエでは、海岸が春でも高地に雪が残ることがある。峠道、登山道、施設の営業は季節で変わるため、出発前に現地の道路・天候情報を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "croatia",
+      "nameEn": "CROATIA",
+      "nameJa": "クロアチア",
+      "flag": "🇭🇷",
+      "reason": "コトル湾からさらに北へ進み、アドリア海の石造都市とヴェネツィア文化の連続と違いを見たいなら。"
+    },
+    {
+      "slug": "albania",
+      "nameEn": "ALBANIA",
+      "nameJa": "アルバニア",
+      "flag": "🇦🇱",
+      "reason": "スカダル湖とプロクレティエを国境の向こうへつなぎ、同じ山地と湖が文化の違いでどう変わるか見たいなら。"
+    },
+    {
+      "slug": "bosniaherzegovina",
+      "nameEn": "BOSNIA AND HERZEGOVINA",
+      "nameJa": "ボスニア・ヘルツェゴビナ",
+      "flag": "🇧🇦",
+      "reason": "ディナル山系を内陸へ進み、峡谷・石造都市・宗教文化が重なるバルカンの別の表情を続けて見たいなら。"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MONTENEGRO",
+    "title": "モンテネグロで食べたいもの",
+    "intro": "山と海の間で仕上げる燻製肉、北部の乳製品と粉もの、湖魚、サチ焼きまで、短い距離で食卓の重心が変わる4品。",
+    "items": [
+      {
+        "id": "njeguski-prsut",
+        "name": "ニェグシュ風生ハム",
+        "nameLocal": "Njeguški pršut",
+        "text": "ニェグシ周辺で作られる豚の生ハム。山と海の間の空気を利用して燻製・乾燥させる食文化が、ロヴチェン周辺の地形と食卓をつないでいる。",
+        "image": "assets/images/montenegro/approved/food-njeguski-prsut.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "kacamak",
+        "name": "カチャマク",
+        "nameLocal": "Kačamak",
+        "text": "じゃがいもやトウモロコシをベースに、チーズやカイマクを合わせる山地の料理。北部のカトゥンや家庭料理で、牧畜と乳製品の文化に触れられる。",
+        "image": "assets/images/montenegro/approved/food-kacamak.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "krap-u-tavi",
+        "name": "スカダル湖の鯉料理",
+        "nameLocal": "Krap u tavi",
+        "text": "スカダル湖の鯉を玉ねぎや果物などと焼く湖畔の魚料理。海の魚とは別に、内陸の大きな湖が独自の食文化をつくっていることが分かる。",
+        "image": "assets/images/montenegro/approved/food-krap-u-tavi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "jagnjetina-ispod-saca",
+        "name": "サチ焼きの子羊",
+        "nameLocal": "Jagnjetina ispod sača",
+        "text": "子羊とじゃがいもなどを鉄蓋のサチの下でじっくり火入れする料理。山地の肉料理と共同の食卓を感じやすい一皿。",
+        "image": "assets/images/montenegro/approved/food-jagnjetina-ispod-saca.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "コトル湾とロヴチェンから国へ入る",
+        "text": "湾岸の石造都市と山上の歴史を一つの地域として見る。例：コトル → ペラスト → ロヴチェン／ツェティニェ → コトル。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜6日",
+        "title": "海・湖・高山を一つの旅につなぐ",
+        "text": "湾岸から中央部を越えて北部まで進むと、国土の小ささと景観差の両方が見える。例：コトル → ロヴチェン／ツェティニェ → スカダル湖 → オストログ → ジャブリャク／デュルミトル。",
+        "icon": "map"
+      },
+      {
+        "duration": "7〜9日",
+        "title": "北東部まで入り、山地の違いまで見る",
+        "text": "タラ峡谷、原生林、プロクレティエまで加えると、北部の中でも景観が一様でないことが分かる。例：コトル → スカダル湖 → オストログ → デュルミトル／タラ峡谷 → ビオグラツカ・ゴラ → グシニェ／グレバイェ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "updatedAt": "2026-09-07",
+  "sourcesVerifiedAt": "2026-09-07",
+  "sourceDates": {
+    "population": "2023",
+    "religion": "2023",
+    "transport": "2026",
+    "euro": "2026",
+    "japanArea": "2026-04-01"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection MNE.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84",
+    "population": "MONSTAT, final results of the 2023 Census: 623,633 persons with usual residence in Montenegro",
+    "religion": "MONSTAT, 2023 Census religion structure: Orthodox 443,394 / 71.10%, Islam 19.99%, Catholic 3.27%",
+    "area": "National Tourism Organisation of Montenegro, Facts about Montenegro: 13,812 km²",
+    "japanArea": "Geospatial Information Authority of Japan, national land area as of 1 April 2026; used for Montenegro ≈ 3.7% of Japan",
+    "language": "Government of Montenegro, Constitution Article 13: Montenegrin is the official language; Serbian, Bosnian, Albanian and Croatian are in official use; Cyrillic and Latin scripts are equal",
+    "currency": "European Commission, The euro outside the euro area: Montenegro uses the euro as a de facto domestic currency without an EU monetary agreement",
+    "euro": "European Commission, The euro outside the euro area, accessed 2026-09-07",
+    "kotor": "UNESCO World Heritage Centre, Natural and Culturo-Historical Region of Kotor",
+    "durmitor": "National Tourism Organisation of Montenegro / UNESCO: Durmitor National Park, glacial lakes and mountain landscape",
+    "skadar": "National Tourism Organisation of Montenegro, Skadar Lake National Park: seasonal lake area and about 280 bird species",
+    "biogradska": "National Tourism Organisation of Montenegro, Biogradska Gora: six glacial lakes and 1,600 ha primeval forest reserve",
+    "prokletije": "National Tourism Organisation of Montenegro, Prokletije National Park: southern Dinaric Alps and high mountain landscape",
+    "ostrog": "National Tourism Organisation of Montenegro, Sacred sites: Ostrog Monastery, 17th-century cave churches and pilgrim route",
+    "lovcen": "National Tourism Organisation of Montenegro, Lovćen National Park / Old Royal Capital Cetinje",
+    "cetinje": "National Tourism Organisation of Montenegro, The Old Royal Capital of Cetinje: Njegoš Mausoleum and 461 steps",
+    "bokaNavy": "UNESCO Intangible Cultural Heritage / National Tourism Organisation of Montenegro, Boka Navy Kotor, founded in 809 and inscribed in 2021",
+    "katun": "National Tourism Organisation of Montenegro, Life in katuns: mountain pastoral migration and rural traditions",
+    "independence": "Government of Montenegro, referendum 21 May 2006 and Declaration of Independence 3 June 2006",
+    "ecologicalState": "National Tourism Organisation of Montenegro, 20 September 1991 ecological-state declaration in Žabljak",
+    "tara": "National Tourism Organisation of Montenegro, Facts about Montenegro: Tara Canyon depth 1,333 m",
+    "montenegroFacts": "National Tourism Organisation of Montenegro, Facts about Montenegro: area, coastline, old olive tree, Tara canyon, ecological-state declaration",
+    "fasinada": "National Tourism Organisation of Montenegro, Fašinada tradition in Perast",
+    "transport": "National Tourism Organisation of Montenegro, How can you journey to us?: buses, road network and railway connections",
+    "multiReligious": "National Tourism Organisation of Montenegro, Montenegro's history & traditions: multi-religious and multi-ethnic country",
+    "tasteGeneral": "National Tourism Organisation of Montenegro, Food & Wine / Eat like a local: kačamak, pršut, lake fish and lamb under sač"
+  }
+}
