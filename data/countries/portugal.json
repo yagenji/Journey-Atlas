@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "portugal",
+  "nameEn": "PORTUGAL",
+  "nameJa": "ポルトガル",
+  "region": "SOUTHERN EUROPE / ATLANTIC",
+  "seo": {
+    "description": "リスボンの丘から、ドウロ渓谷、ポルト、シントラ、アルガルヴェ、アレンテージョ、セーラ・ダ・エストレーラ、マデイラ、アソーレスへ。大西洋と地域差から知るポルトガル。"
+  },
+  "capital": {
+    "nameEn": "Lisbon",
+    "nameJa": "リスボン",
+    "coordinates": {
+      "latitude": 38.7223,
+      "longitude": -9.1393
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 2.5,
+      "y": 3.5
+    },
+    "mapRegion": "mainland"
+  },
+  "hero": {
+    "lead": "大西洋へ開く港町、段々畑のワイン渓谷、乾いた内陸、火山島。ポルトガルは細長い本土だけでなく、海の向こうまで景観が続く国だ。",
+    "image": "assets/images/portugal/approved/hero-lisbon-portas-do-sol.webp",
+    "location": "Miradouro das Portas do Sol / Alfama / Lisbon",
+    "coordinates": {
+      "latitude": 38.71235,
+      "longitude": -9.13037
+    },
+    "mapOffset": {
+      "x": 1,
+      "y": -3.5
+    },
+    "mapRegion": "mainland"
+  },
+  "map": {
+    "bounds": {
+      "north": 42.3,
+      "south": 32.2,
+      "west": -31.5,
+      "east": -6
+    },
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "north": 42.3,
+          "south": 36.8,
+          "west": -9.7,
+          "east": -6
+        },
+        "rect": {
+          "x": 520,
+          "y": 35,
+          "width": 430,
+          "height": 690
+        }
+      },
+      {
+        "id": "azores",
+        "bounds": {
+          "north": 40,
+          "south": 36.7,
+          "west": -31.5,
+          "east": -24.4
+        },
+        "rect": {
+          "x": 40,
+          "y": 80,
+          "width": 380,
+          "height": 260
+        }
+      },
+      {
+        "id": "madeira",
+        "bounds": {
+          "north": 33.2,
+          "south": 32.4,
+          "west": -17.4,
+          "east": -15.6
+        },
+        "rect": {
+          "x": 95,
+          "y": 500,
+          "width": 300,
+          "height": 170
+        }
+      }
+    ],
+    "svg": "assets/images/portugal/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin 0 country boundary via LonnyGomes/CountryGeoJSONCollection PRT.geojson sha ce02dabb0ea17eba11923f78ed1525d8989c9b58; WGS84; mainland, Azores and Madeira rendered as geographically accurate local insets; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "douro-sao-leonardo-galafura",
+      "name": "ドウロ渓谷 / サン・レオナルド・ダ・ガラフーラ",
+      "nameLocal": "Douro / Miradouro de São Leonardo da Galafura",
+      "mapLabel": "Douro",
+      "description": "ドウロ川の蛇行に沿って、急斜面の葡萄畑が細かな段々をつくる。川と農業が長い時間をかけて一つの文化景観になったことが、展望台から俯瞰すると分かりやすい。",
+      "coordinates": {
+        "latitude": 41.17264,
+        "longitude": -7.67234
+      },
+      "image": "assets/images/portugal/approved/douro-sao-leonardo-galafura.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "porto-ribeira-serra-do-pilar",
+      "name": "ポルト / リベイラとルイス1世橋",
+      "nameLocal": "Porto / Ribeira / Ponte de Dom Luís I / Serra do Pilar",
+      "mapLabel": "Porto",
+      "description": "ドウロ川の両岸に市街地が斜面状に広がり、その間を鉄橋が結ぶ。セラ・ド・ピラール側から見ると、旧市街、川、ガイアのワイン地区が一つの都市景観として読める。",
+      "coordinates": {
+        "latitude": 41.13793,
+        "longitude": -8.6081
+      },
+      "image": "assets/images/portugal/approved/porto-ribeira-serra-do-pilar.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "ANCHOR + ATLAS VIEW"
+    },
+    {
+      "id": "sintra-pena-palace",
+      "name": "シントラ / ペーナ宮殿",
+      "nameLocal": "Sintra / Palácio Nacional da Pena",
+      "mapLabel": "Sintra",
+      "description": "深い森に覆われたシントラ山地の稜線に、色彩の異なる塔と宮殿が立つ。建築だけを切り取るのではなく、庭園と山の地形まで含めて見ると、この場所が文化的景観として成立している理由が見えてくる。",
+      "coordinates": {
+        "latitude": 38.78759,
+        "longitude": -9.390474
+      },
+      "image": "assets/images/portugal/approved/sintra-pena-palace.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "ANCHOR + DISCOVERY"
+    },
+    {
+      "id": "algarve-ponta-da-piedade",
+      "name": "アルガルヴェ / ポンタ・ダ・ピエダーデ",
+      "nameLocal": "Algarve / Ponta da Piedade",
+      "mapLabel": "Ponta da Piedade",
+      "description": "黄金色の石灰岩が海食によって塔やアーチ、入り江へ削られている。北部の湿潤な景観や内陸の高原とは異なる、ポルトガル南岸の乾いた海岸地形を見せる場所だ。",
+      "coordinates": {
+        "latitude": 37.07944,
+        "longitude": -8.66806
+      },
+      "image": "assets/images/portugal/approved/algarve-ponta-da-piedade.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "alentejo-monsaraz",
+      "name": "アレンテージョ / モンサラーシュ",
+      "nameLocal": "Alentejo / Monsaraz",
+      "mapLabel": "Monsaraz",
+      "description": "城壁に囲まれた白い集落が丘の上にまとまり、その外側にはオリーブや牧草地、アルケヴァ湖が広がる。海岸都市とは違う、乾いた内陸の土地利用と集落の関係が見える。",
+      "coordinates": {
+        "latitude": 38.443184,
+        "longitude": -7.380692
+      },
+      "image": "assets/images/portugal/approved/alentejo-monsaraz.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "serra-da-estrela-zezere-glacial-valley",
+      "name": "セーラ・ダ・エストレーラ / ゼゼレ氷河谷",
+      "nameLocal": "Serra da Estrela / Vale Glaciar do Zêzere",
+      "mapLabel": "Zêzere Valley",
+      "description": "花崗岩の山肌に挟まれて、幅の広いU字谷が長く続く。海や歴史都市の印象が強いポルトガルにも、氷河が削った高地の地形が残ることを実感できる。",
+      "coordinates": {
+        "latitude": 40.328042,
+        "longitude": -7.586722
+      },
+      "image": "assets/images/portugal/approved/serra-da-estrela-zezere-glacial-valley.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland",
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "madeira-pico-do-areeiro",
+      "name": "マデイラ / ピコ・ド・アレイロ",
+      "nameLocal": "Madeira / Pico do Areeiro",
+      "mapLabel": "Pico do Areeiro",
+      "description": "鋭い火山性の稜線が何重にも重なり、その間を雲が流れる。リゾート島というイメージだけでは見えない、マデイラの急峻な山岳地形を示す一景。",
+      "coordinates": {
+        "latitude": 32.73584,
+        "longitude": -16.92767
+      },
+      "image": "assets/images/portugal/approved/madeira-pico-do-areeiro.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "madeira",
+      "role": "DISCOVERY + ATLAS VIEW"
+    },
+    {
+      "id": "azores-sete-cidades",
+      "name": "アソーレス / セテ・シダーデス",
+      "nameLocal": "Açores / Sete Cidades / Miradouro da Vista do Rei",
+      "mapLabel": "Sete Cidades",
+      "description": "大きなカルデラの内側に湖と集落、牧草地が収まり、その外側には大西洋が続く。本土から遠く離れたアソーレスが、火山地形の上に暮らしを築いてきた島々だと分かる。",
+      "coordinates": {
+        "latitude": 37.83924,
+        "longitude": -25.79483
+      },
+      "image": "assets/images/portugal/approved/azores-sete-cidades.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "azores",
+      "role": "DISCOVERY + ATLAS VIEW"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "アズレージョ",
+      "icon": "culture"
+    },
+    {
+      "title": "カルサーダ",
+      "icon": "city"
+    },
+    {
+      "title": "ファド",
+      "icon": "culture"
+    },
+    {
+      "title": "タスカ",
+      "icon": "food"
+    },
+    {
+      "title": "コルク樫",
+      "icon": "landscape"
+    },
+    {
+      "title": "路地の洗濯物",
+      "icon": "city"
+    },
+    {
+      "title": "ワイン倉庫",
+      "icon": "food"
+    },
+    {
+      "title": "大西洋の風",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "azulejo-urban-surfaces",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "壁を見ると、街の時間がタイルで残っている",
+      "text": "アズレージョは床や壁の装飾として15世紀から建築へ広がり、教会、宮殿、住宅、駅など多様な場所に使われてきた。街を歩くと、建物の表面そのものが時代ごとの意匠を伝える。",
+      "points": [
+        "15世紀から建築装飾として広がった",
+        "18世紀には教会、宮殿、住宅などでさらに普及した"
+      ]
+    },
+    {
+      "topicKey": "fado-lisbon-urban-music",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ファドは、リスボンの街で育った都市の歌",
+      "text": "ファドは音楽と詩を組み合わせる演奏文化で、リスボンの複数の地域共同体で受け継がれてきた。舞台だけでなく、小さなファドハウスや旧市街の暮らしとのつながりまで含めて現在へ続いている。",
+      "points": [
+        "2011年にユネスコ無形文化遺産へ登録",
+        "リスボンの地域共同体で広く実践されてきた"
+      ]
+    },
+    {
+      "topicKey": "cork-oak-montado-cycle",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "コルクは、木を伐らずに樹皮を使い続ける",
+      "text": "コルク樫は幹の樹皮を剥いでも再生するため、一本の木から長い期間にわたり収穫できる。南部のモンタードでは、樹木を残した土地利用と産業が同じ景観の中にある。",
+      "points": [
+        "成熟後のコルク採取は9年以上の間隔を空ける",
+        "樹皮を再生させながら複数回収穫する"
+      ]
+    },
+    {
+      "topicKey": "manueline-maritime-era",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "海へ向かった時代が、建築の細部に残る",
+      "text": "リスボンのベレンには、15〜16世紀の海洋活動と結びついた建築が残る。ジェロニモス修道院やベレンの塔に見られるマヌエル様式は、航海の時代を都市の中でたどる入口になる。",
+      "points": [
+        "ベレンは大航海時代の出発と帰着に深く関わった",
+        "ジェロニモス修道院とベレンの塔はマヌエル様式の代表例"
+      ]
+    },
+    {
+      "topicKey": "atlantic-island-geographies",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "本土の外に、二つの大西洋の地理がある",
+      "text": "ポルトガルの領域には、本土に加えてアソーレスとマデイラの二つの自治地域がある。火山地形、気候、植生が本土と異なるため、島まで見ると国の地理的な幅が大きく広がる。",
+      "points": [
+        "アソーレスとマデイラは二つの自治地域",
+        "本土とは航空移動を前提に旅程を分ける"
+      ]
+    },
+    {
+      "topicKey": "mirandese-language-rights",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "北東部には、ポルトガル語とは別の言語文化が残る",
+      "text": "憲法上の公用語はポルトガル語だが、ミランダ・ド・ドウロ周辺ではミランダ語の言語権が法律で認められている。国境地域へ行くと、国内にも異なる言語文化が残ることが見えてくる。",
+      "points": [
+        "憲法はポルトガル語を公用語と定める",
+        "1999年の法律でミランダ語共同体の言語権を公式に承認"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "tram-28-hill-neighbourhoods",
+      "categoryEn": "LISBON",
+      "categoryJa": "移動",
+      "title": "28番トラムは、丘の旧市街を一本でつなぐ",
+      "text": "Carrisの28EはGraçaからPortas do Sol、Sé、Chiadoなどを通る。観光列車ではなく公共交通として走るため、リスボンの高低差と日常の街路を同時に体験できる。",
+      "icon": "road",
+      "sourceKey": "tram28"
+    },
+    {
+      "topicKey": "gaia-port-wine-cellars",
+      "categoryEn": "PORTO",
+      "categoryJa": "ワイン",
+      "title": "ポートワインのセラーは、川向こうのガイアに並ぶ",
+      "text": "ポルト旧市街からドウロ川を渡ったVila Nova de Gaiaには、多くのポートワインセラーが集まる。橋を渡るだけで、歴史都市を見る視点からワイン流通の側へ旅の焦点が切り替わる。",
+      "icon": "food",
+      "sourceKey": "gaiaCellars"
+    },
+    {
+      "topicKey": "pena-palace-timed-entry",
+      "categoryEn": "SINTRA",
+      "categoryJa": "予約",
+      "title": "ペーナ宮殿の内部は、入場時刻まで予約する",
+      "text": "宮殿内部は事前に日付と時刻を指定して入場する。公園入口から宮殿までも移動時間が必要なため、シントラ到着時刻ではなく宮殿入口へ着く時間から逆算したい。",
+      "icon": "history",
+      "sourceKey": "penaTickets"
+    },
+    {
+      "topicKey": "calcada-portuguesa-patterns",
+      "categoryEn": "LISBON",
+      "categoryJa": "石畳",
+      "title": "足元の白黒模様にも、街ごとの意匠がある",
+      "text": "ポルトガル式石畳は小さな石を組み合わせて模様をつくる。リスボンのRossioには白黒の波形「Mar Largo」が残り、建物だけでなく足元も街歩きの観察対象になる。",
+      "icon": "city",
+      "sourceKey": "calcada"
+    },
+    {
+      "topicKey": "dark-sky-alqueva",
+      "categoryEn": "ALENTEJO",
+      "categoryJa": "夜",
+      "title": "アレンテージョでは、夜空も旅の時間になる",
+      "text": "アルケヴァ周辺にはDark Skyの観察拠点があり、Reguengos de Monsaraz近郊のCumeadaに公式観測施設がある。昼の白い村と乾いた平原だけでなく、夜まで滞在する理由が生まれる。",
+      "icon": "landscape",
+      "sourceKey": "darkSkyAlqueva"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#879b63",
+      "text": "本土の都市歩きと内陸の景観を組み合わせやすい時期。北部は南部より涼しく雨の日もあるが、夏の強い暑さになる前にリスボン、ドウロ、アレンテージョをつなぎやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b89a52",
+      "text": "本土では暑く乾燥し、特に南部と内陸は日中の暑さが強くなる。海岸は夏らしい景色になる一方、街歩きは朝夕へ寄せると動きやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad7749",
+      "text": "夏の暑さが弱まり、本土を南北に移動しやすくなる。ドウロでは葡萄畑の季節変化も見え、都市と農村景観を同じ旅程に組み込みやすい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748d9b",
+      "text": "北部と高地は冷え込み、セーラ・ダ・エストレーラでは雪になることもある。マデイラは本土より穏やかで、アソーレスは年間を通じて温和だが雨が多い。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・車・国内線",
+    "text": "リスボン、ポルト、コインブラ、ファロなど主要都市は鉄道でつなぎやすい。ドウロ、アレンテージョ、高地の細かな地点は車を組み合わせると動きやすく、マデイラとアソーレスは国内線を独立した移動区間として考える。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "歴史都市と自然景観を同じ旅で見たい人",
+      "text": "リスボンやポルトを歩くだけでなく、ドウロ、アルガルヴェ、高地まで移動し、都市が置かれた地形そのものを見たい人。"
+    },
+    {
+      "title": "本土と大西洋の火山島を比べたい人",
+      "text": "細長い本土からマデイラやアソーレスへ渡り、同じ国の中で山、海、火山、気候が切り替わることを確かめたい人。"
+    },
+    {
+      "title": "食と街の日常から地域差を知りたい人",
+      "text": "タスカや市場、ワイン産地、菓子店に立ち寄りながら、魚介、家庭料理、ワイン、甘味が地域ごとに変わることを楽しみたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "リスボン"
+    },
+    {
+      "label": "人口",
+      "value": "約1,142万人（2025年末）"
+    },
+    {
+      "label": "面積",
+      "value": "92,152 km²（日本の約24%）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語。北東部ではミランダ語の言語権も法的に認められる"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "douro-port-regulation-1756",
+      "label": "ドウロのワイン規制",
+      "value": "1756",
+      "note": "ドウロのポートワインは1756年から品質が規制されてきた。約2,000年の葡萄栽培と制度の積み重ねが、現在の段々畑の文化景観につながる。",
+      "icon": "food"
+    },
+    {
+      "topicKey": "cork-harvest-nine-year-cycle",
+      "label": "コルク採取",
+      "value": "9年",
+      "note": "成熟したコルク樫の樹皮は、9年未満の間隔では採取できない。木を伐らず、樹皮を再生させながら長期に利用する産業の周期を表す数字。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "two-atlantic-autonomous-regions",
+      "label": "大西洋の自治地域",
+      "value": "2地域",
+      "note": "アソーレスとマデイラの二つの自治地域を含めてポルトガルの国土になる。本土だけでは見えない火山島の地理を持つ。",
+      "icon": "map"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "lisbon-hills-footwear",
+      "title": "リスボンは、距離より高低差を見て歩く",
+      "text": "旧市街は坂と石畳が続く。地図上では近い場所でも上り下りが大きいため、徒歩区間を詰め込みすぎず、トラムや地下鉄を組み合わせると街の高低差を無理なく楽しめる。"
+    },
+    {
+      "topicKey": "summer-interior-heat",
+      "title": "夏の内陸部は、昼の予定を軽くする",
+      "text": "ポルトガル本土の夏は暑く乾燥し、南部ほど高温になりやすい。アレンテージョなどの屋外移動は朝夕へ寄せ、昼は移動や屋内へ回すと旅程を保ちやすい。"
+    },
+    {
+      "topicKey": "islands-separate-flight-segments",
+      "title": "島を入れるなら、本土とは別の旅程ブロックにする",
+      "text": "マデイラとアソーレスは本土から航空移動になる。到着後の島内移動や天候変化も考え、都市周遊の延長ではなく独立した数日間として確保したい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "spain",
+      "nameEn": "SPAIN",
+      "nameJa": "スペイン",
+      "flag": "🇪🇸",
+      "reason": "イベリア半島を東西に移動し、大西洋側と内陸・地中海側の地形や都市文化を比較したいなら。"
+    },
+    {
+      "slug": "morocco",
+      "nameEn": "MOROCCO",
+      "nameJa": "モロッコ",
+      "flag": "🇲🇦",
+      "reason": "海を挟いだ建築、交易、航海史のつながりを北アフリカ側から見直したいなら。"
+    },
+    {
+      "slug": "france",
+      "nameEn": "FRANCE",
+      "nameJa": "フランス",
+      "flag": "🇫🇷",
+      "reason": "イベリアからさらに北へ進み、都市、ワイン産地、海岸景観の違いをつなげて見たいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-07",
+  "sourcesVerifiedAt": "2026-09-07",
+  "sourceDates": {
+    "population": "2025-12-31",
+    "religion": "2021"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m Admin 0 boundary via LonnyGomes/CountryGeoJSONCollection PRT.geojson sha ce02dabb0ea17eba11923f78ed1525d8989c9b58; WGS84",
+    "population": "Instituto Nacional de Estatística (INE), Estimativas de População Residente 2025: 11,424,031 residents on 31 Dec 2025, published in INEWS No. 66, July 2026",
+    "area": "Governo de Portugal, Sobre Portugal: national territory 92,152 km², 18 mainland districts and two autonomous regions (Azores and Madeira)",
+    "language": "Assembleia da República, Constituição da República Portuguesa Article 11: Portuguese is the official language; Lei 7/1999 recognizes linguistic rights of the Mirandese community",
+    "religion": "Instituto Nacional de Estatística (INE), Censos 2021 table 15475: resident population aged 15+ by religion; Catholicism is the largest affiliation",
+    "currency": "European Union / European Central Bank: Portugal uses the euro (EUR)",
+    "hero": "Lisbon / Alfama / Miradouro das Portas do Sol; WGS84 location cross-checked against public map sources",
+    "douro": "UNESCO World Heritage Centre, Alto Douro Wine Region: traditional viticulture for about 2,000 years; Port quality regulated since 1756",
+    "porto": "Visit Porto: Serra do Pilar / Gaia viewpoints overlook Porto, the Douro and Port Wine Cellars",
+    "sintra": "Parques de Sintra / UNESCO Cultural Landscape of Sintra: Park and National Palace of Pena within the forested Sintra cultural landscape",
+    "algarve": "Visit Portugal: Ponta da Piedade coastal rock formations and sea caves near Lagos",
+    "monsaraz": "Visit Portugal / Município de Reguengos de Monsaraz: walled hilltop village overlooking the Alqueva landscape",
+    "serraEstrela": "Visit Portugal / Serra da Estrela Natural Park: Zêzere glacial valley and granite highland landscape",
+    "madeira": "Visit Madeira / official regional tourism: Pico do Areeiro high-mountain volcanic landscape",
+    "azores": "Visit Azores: Miradouro da Vista do Rei / Sete Cidades caldera landscape",
+    "azulejos": "Visit Portugal, In the country of tiles: architectural use of azulejos spread from the 15th century and expanded strongly in the 18th century",
+    "fado": "UNESCO Intangible Cultural Heritage, Fado, urban popular song of Portugal: inscribed in 2011 and widely practiced by communities in Lisbon",
+    "cork": "APCOR, Cork Oak / Transformation Process: harvesting must not occur at intervals shorter than nine years; bark regenerates for repeated harvests",
+    "manueline": "Visit Portugal, Lisbon of Discoveries: Belém, Jerónimos Monastery and Belém Tower connect maritime expansion with Manueline architecture",
+    "islands": "Governo de Portugal, Sobre Portugal: national territory includes two autonomous regions, Azores and Madeira",
+    "mirandese": "Assembleia da República, Lei 7/1999: official recognition of linguistic rights of the Mirandese community",
+    "tram28": "Carris, route 28E: Graça–Campo Ourique route includes Portas do Sol, Santa Luzia, Sé and Chiado",
+    "gaiaCellars": "Visit Porto, Porto Card / Wines and Cellars: multiple Port Wine Cellars are located in Vila Nova de Gaia",
+    "penaTickets": "Parques de Sintra: entrance to the Palace of Pena interior requires a previously booked date and time; allow about 30 minutes from the park entrance",
+    "calcada": "Visit Lisboa, Portuguese Paving Route: Rossio preserves the black-and-white wave pattern known as Mar Largo",
+    "darkSkyAlqueva": "Dark Sky Alqueva: official observatory at Cumeada, Reguengos de Monsaraz",
+    "weather": "Visit Portugal, Weather: north is cooler, south warmer; summers are generally hot and dry; Madeira and Azores have distinct mild island climates",
+    "transport": "Visit Portugal, How to get there: CP rail network across mainland Portugal and domestic flights connecting mainland, Madeira and Azores",
+    "bacalhau": "Visit Portugal gastronomy references: bacalhau is a recurring element of Portuguese cuisine; Bacalhau à Brás combines shredded cod, potato and egg",
+    "caldoVerde": "Visit Portugal gastronomy references: caldo verde is a traditional potato and leafy-green soup associated with northern Portugal",
+    "cataplana": "Visit Portugal / Algarve gastronomy references: cataplana is both a traditional vessel and a seafood preparation strongly associated with Algarve",
+    "pastelNata": "Visit Portugal gastronomy references: pastel de nata is a widely encountered Portuguese custard tart linked to conventual pastry traditions"
+  },
+  "taste": {
+    "kicker": "TASTE OF PORTUGAL",
+    "title": "ポルトガルで食べたいもの",
+    "intro": "海の魚介、北部の家庭料理、南部の鍋料理、修道院菓子まで、細長い国土の地域差がそのまま食卓に現れる。",
+    "items": [
+      {
+        "id": "bacalhau-a-bras",
+        "name": "バカリャウ・ア・ブラス",
+        "nameLocal": "Bacalhau à Brás",
+        "text": "塩ダラを細くほぐし、細切りのじゃがいも、玉ねぎ、卵と合わせる。身近な食材を一皿にまとめた、リスボンでも出会いやすいバカリャウ料理。",
+        "image": "assets/images/portugal/approved/food-bacalhau-a-bras.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "caldo-verde",
+        "name": "カルド・ヴェルデ",
+        "nameLocal": "Caldo Verde",
+        "text": "じゃがいもをベースに細く切った青菜を加える素朴なスープ。北部にルーツを持ち、薄切りのソーセージを添える形でも親しまれている。",
+        "image": "assets/images/portugal/approved/food-caldo-verde.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "cataplana-marisco",
+        "name": "カタプラーナ・デ・マリスコ",
+        "nameLocal": "Cataplana de marisco",
+        "text": "二枚貝のように閉じる金属鍋で、海老や貝、魚介と野菜を蒸し煮にする。アルガルヴェの海と調理器具がそのまま一皿につながる。",
+        "image": "assets/images/portugal/approved/food-cataplana-marisco.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "pastel-de-nata",
+        "name": "パステル・デ・ナタ",
+        "nameLocal": "Pastel de nata",
+        "text": "薄いパイ生地にカスタードを流し、高温で表面を香ばしく焼く小さな菓子。街のパステラリアで日常的に出会える。",
+        "image": "assets/images/portugal/approved/food-pastel-de-nata.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "リスボンを拠点にシントラへ",
+        "text": "一つの都市を軸に国への入口を見るなら、リスボンの丘とテージョ川を歩き、1日をシントラへ充てる。例：Lisbon → Sintra → Lisbon。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "北と南の都市・ワイン景観をつなぐ",
+        "text": "鉄道を軸にリスボンとポルトを結び、シントラとドウロを加えると、都市と農村の違いが見え始める。例：Lisbon → Sintra → Porto → Douro。",
+        "icon": "map"
+      },
+      {
+        "duration": "14〜18日",
+        "title": "本土の地域差に大西洋の島を加える",
+        "text": "本土を南北に移動したうえで、マデイラまたはアソーレスを独立した区間として加える。例：Lisbon → Alentejo → Algarve → Porto / Douro → Madeira または Azores。",
+        "icon": "compass"
+      }
+    ]
+  }
+}
