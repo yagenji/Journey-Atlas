@@ -101,7 +101,7 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Run changed reviewable Country Desktop / Tablet / Mobile QA
-        if: steps.changes.outputs.run_browser == 'true' && steps.changes.outputs.review_slugs != ''
+        if: always() && !cancelled() && steps.changes.outputs.run_browser == 'true' && steps.changes.outputs.review_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
