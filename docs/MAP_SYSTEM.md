@@ -49,6 +49,28 @@
 国ページ内のマーカーとの整合を優先し、基本は equirectangular（緯度経度の線形投影）を使用する。
 地図SVGを生成したboundsと、ページ上のマーカー計算に使うboundsを必ず一致させる。
 
+
+### 離島・群島を持つ国のmulti-region map
+本土と遠隔群島を一つのglobal boundsへ無理に収めると、主要地域が小さくなりmarker可読性が落ちる場合がある。
+
+その場合はCountry固有の座標改変ではなく、共通の `map.regions` を使用する。
+
+各regionは：
+- `id`
+- 実緯度経度の `bounds`
+- 1200×760 canvas内の `rect: {x, y, width, height}`
+
+を持つ。
+
+地点側は必要に応じて `mapRegion` を指定する。markerはregion固有boundsを使ってrect内へ投影するため、実緯度経度は変更しない。
+
+原則：
+- 国土形状は各regionでも正確な地理geometryを使用する
+- insetは地理的縮尺の比較図ではなく、国土の位置関係を読みやすくするatlas表現として扱う
+- region rect同士を重ねない
+- 既存Countryは`map.regions`未指定のまま従来のsingle-bounds投影を維持する
+- `scripts/validate_country.py`でregion定義、canvas内配置、marker collisionを検証する
+
 ## マーカー補正ルール
 実座標はSingle Source of Truthとし、緯度経度そのものを重複回避のために変更しない。
 表示上の補正は各地点の `mapOffset: {x, y}` だけで行う。x / y はmap canvasに対する百分率。

@@ -35,6 +35,36 @@ jobs:
           echo "Changed files:"
           cat /tmp/pr-changed-files.txt
 
+          review_slugs=""
+          while IFS= read -r file; do
+            slug=""
+            case "$file" in
+              data/countries/*.json)
+                slug="${file#data/countries/}"
+                slug="${slug%.json}"
+                ;;
+              assets/images/*/*)
+                slug="${file#assets/images/}"
+                slug="${slug%%/*}"
+                ;;
+            esac
+            if [ -n "$slug" ] && [ -f "data/countries/$slug.json" ]; then
+              echo "$slug"
+            fi
+          done < /tmp/pr-changed-files.txt | sort -u > /tmp/review-slug-candidates.txt
+
+          while IFS= read -r slug; do
+            [ -n "$slug" ] || continue
+            if [ -z "$review_slugs" ]; then
+              review_slugs="$slug"
+            else
+              review_slugs="$review_slugs,$slug"
+            fi
+          done < /tmp/review-slug-candidates.txt
+
+          echo "review_slugs=$review_slugs" >> "$GITHUB_OUTPUT"
+          echo "Changed reviewable Country candidates: ${review_slugs:-none}"
+
           if grep -Eq '^(country\.html$|assets/css/|assets/js/|assets/images/|data/|scripts/(build_site|package_site|build_cloudflare|qa_published_browser)\.py$|\.github/workflows/browser-country-qa\.yml$)' /tmp/pr-changed-files.txt; then
             echo "run_browser=true" >> "$GITHUB_OUTPUT"
             echo "Country-page-impacting changes detected."
@@ -73,6 +103,15 @@ jobs:
           cat /tmp/journey-atlas-browser-qa-http.log || true
           exit 1
 
+      - name: Run changed reviewable Country Desktop / Tablet / Mobile QA
+        if: steps.changes.outputs.run_browser == 'true' && steps.changes.outputs.review_slugs != ''
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-browser-reviewable-output
+          QA_SCOPE: reviewable
+          QA_SLUGS: ${{ steps.changes.outputs.review_slugs }}
+        run: python3 scripts/qa_published_browser.py
+
       - name: Run all-published Desktop / Tablet / Mobile QA
         if: steps.changes.outputs.run_browser == 'true'
         env:
@@ -96,6 +135,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: published-country-browser-qa
-          path: qa-browser-output/
+          path: |
+            qa-browser-output/
+            qa-browser-reviewable-output/
           if-no-files-found: warn
           retention-days: 3

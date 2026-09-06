@@ -25,8 +25,34 @@ OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output"))
 OUT.mkdir(parents=True, exist_ok=True)
 
 def load_countries() -> list[tuple[str, str]]:
-    status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     requested = {x.strip() for x in os.environ.get("QA_SLUGS", "").split(",") if x.strip()}
+    scope = os.environ.get("QA_SCOPE", "published").strip().lower()
+
+    if scope == "reviewable":
+        candidate_paths = (
+            [COUNTRY_DIR / f"{slug}.json" for slug in sorted(requested)]
+            if requested
+            else sorted(COUNTRY_DIR.glob("*.json"))
+        )
+        countries: list[tuple[str, str]] = []
+        invalid: list[str] = []
+        for path in candidate_paths:
+            if not path.exists():
+                invalid.append(path.stem)
+                continue
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if data.get("schemaVersion") != 2:
+                invalid.append(path.stem)
+                continue
+            countries.append((path.stem, data.get("nameJa") or path.stem))
+        if invalid:
+            raise SystemExit(
+                "QA_SCOPE=reviewable requires schemaVersion=2 country JSONs: "
+                + ", ".join(sorted(invalid))
+            )
+        return countries
+
+    status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     countries: list[tuple[str, str]] = []
     for row in status.get("countries", []):
         slug = row.get("slug")
@@ -410,14 +436,17 @@ def main() -> int:
     countries = load_countries()
     results = []
     failures = []
-    driver = make_driver()
-    try:
-        for slug, name_ja in countries:
-            for vp_name, vp in VIEWPORTS.items():
-                set_viewport(driver, vp)
-                url = f"{BASE_URL}/countries/{slug}/?qa=responsive-{int(time.time())}"
-                print(f"QA {slug} {vp_name}: {url}", flush=True)
+
+    for slug, name_ja in countries:
+        for vp_name, vp in VIEWPORTS.items():
+            url = f"{BASE_URL}/countries/{slug}/?qa=responsive-{int(time.time())}"
+            print(f"QA {slug} {vp_name}: {url}", flush=True)
+            completed = False
+
+            for attempt in (1, 2):
+                driver = make_driver()
                 try:
+                    set_viewport(driver, vp)
                     driver.get(url)
                     wait_for_country(driver)
                     scroll_entire_page(driver)
@@ -426,7 +455,10 @@ def main() -> int:
                     browser_logs = driver.get_log("browser")
                     errors = assert_audit(audit, bg_checks, browser_logs)
                     if audit.get("countryJa") != name_ja:
-                        errors.append(f"Japanese country subtitle mismatch: expected {name_ja!r}, got {audit.get('countryJa')!r}")
+                        errors.append(
+                            f"Japanese country subtitle mismatch: expected {name_ja!r}, "
+                            f"got {audit.get('countryJa')!r}"
+                        )
 
                     row = {
                         "slug": slug,
@@ -447,18 +479,76 @@ def main() -> int:
                         print(f"FAIL {slug} {vp_name}: " + " | ".join(errors), flush=True)
                     else:
                         print(f"PASS {slug} {vp_name}", flush=True)
-                except Exception as exc:
+                    completed = True
+                    break
+
+                except (TimeoutException, WebDriverException) as exc:
+                    err = f"{type(exc).__name__}: {exc}"
+                    if attempt == 1:
+                        print(
+                            f"RETRY {slug} {vp_name}: browser session failed; "
+                            f"starting a fresh session ({err.splitlines()[0]})",
+                            flush=True,
+                        )
+                        continue
                     try:
                         screenshot = OUT / f"{slug}-{vp_name}-exception.png"
                         screenshot.write_bytes(driver.get_screenshot_as_png())
                     except Exception:
                         pass
-                    err = f"{type(exc).__name__}: {exc}"
                     failures.append({"slug": slug, "viewport": vp_name, "errors": [err]})
-                    results.append({"slug": slug, "nameJa": name_ja, "viewport": vp_name, "url": url, "errors": [err]})
+                    results.append(
+                        {
+                            "slug": slug,
+                            "nameJa": name_ja,
+                            "viewport": vp_name,
+                            "url": url,
+                            "errors": [err],
+                        }
+                    )
                     print(f"EXCEPTION {slug} {vp_name}: {err}", flush=True)
-    finally:
-        driver.quit()
+                    completed = True
+                    break
+
+                except Exception as exc:
+                    err = f"{type(exc).__name__}: {exc}"
+                    try:
+                        screenshot = OUT / f"{slug}-{vp_name}-exception.png"
+                        screenshot.write_bytes(driver.get_screenshot_as_png())
+                    except Exception:
+                        pass
+                    failures.append({"slug": slug, "viewport": vp_name, "errors": [err]})
+                    results.append(
+                        {
+                            "slug": slug,
+                            "nameJa": name_ja,
+                            "viewport": vp_name,
+                            "url": url,
+                            "errors": [err],
+                        }
+                    )
+                    print(f"EXCEPTION {slug} {vp_name}: {err}", flush=True)
+                    completed = True
+                    break
+
+                finally:
+                    try:
+                        driver.quit()
+                    except Exception:
+                        pass
+
+            if not completed:
+                err = "browser QA did not complete after retry"
+                failures.append({"slug": slug, "viewport": vp_name, "errors": [err]})
+                results.append(
+                    {
+                        "slug": slug,
+                        "nameJa": name_ja,
+                        "viewport": vp_name,
+                        "url": url,
+                        "errors": [err],
+                    }
+                )
 
     report = {
         "baseUrl": BASE_URL,
@@ -468,8 +558,17 @@ def main() -> int:
         "failures": failures,
         "pass": not failures,
     }
-    (OUT / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"pass": not failures, "failureCount": len(failures), "failures": failures}, ensure_ascii=False, indent=2))
+    (OUT / "report.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(
+        json.dumps(
+            {"pass": not failures, "failureCount": len(failures), "failures": failures},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     return 1 if failures else 0
 
 if __name__ == "__main__":

@@ -243,9 +243,101 @@ def marker_offset(errors: list[str], owner: str, value: object) -> tuple[float, 
     return float(x), float(y)
 
 
-def project_marker(
+def region_contains(region: object, coordinates: object) -> bool:
+    if not isinstance(region, dict) or not isinstance(coordinates, dict):
+        return False
+    bounds = region.get("bounds")
+    if not isinstance(bounds, dict):
+        return False
+    lat = coordinates.get("latitude")
+    lon = coordinates.get("longitude")
+    north = bounds.get("north")
+    south = bounds.get("south")
+    west = bounds.get("west")
+    east = bounds.get("east")
+    if not all(isinstance(value, (int, float)) for value in (lat, lon, north, south, west, east)):
+        return False
+    return south <= lat <= north and west <= lon <= east
+
+
+def validate_map_regions(errors: list[str], filename: str, data: dict) -> None:
+    map_data = data.get("map") if isinstance(data.get("map"), dict) else {}
+    regions = map_data.get("regions")
+    if regions is None:
+        return
+    if not isinstance(regions, list) or not regions:
+        fail(errors, f"{filename}: map.regions は空でない配列にしてください")
+        return
+
+    seen_ids: set[str] = set()
+    rects: list[tuple[str, float, float, float, float]] = []
+    for index, region in enumerate(regions, 1):
+        owner = f"{filename}: map.regions[{index}]"
+        if not isinstance(region, dict):
+            fail(errors, f"{owner}: object で指定してください")
+            continue
+        region_id = region.get("id")
+        if not isinstance(region_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", region_id):
+            fail(errors, f"{owner}.id は英小文字kebab-caseで指定してください")
+        elif region_id in seen_ids:
+            fail(errors, f"{owner}.id が重複しています: {region_id}")
+        else:
+            seen_ids.add(region_id)
+
+        bounds = region.get("bounds") if isinstance(region.get("bounds"), dict) else {}
+        north = bounds.get("north")
+        south = bounds.get("south")
+        west = bounds.get("west")
+        east = bounds.get("east")
+        if not all(isinstance(v, (int, float)) for v in (north, south, west, east)):
+            fail(errors, f"{owner}.bounds が不正です")
+        elif not (north > south and east > west):
+            fail(errors, f"{owner}.bounds の大小関係が不正です")
+
+        rect = region.get("rect") if isinstance(region.get("rect"), dict) else {}
+        x = rect.get("x")
+        y = rect.get("y")
+        width = rect.get("width")
+        height = rect.get("height")
+        if not all(isinstance(v, (int, float)) for v in (x, y, width, height)):
+            fail(errors, f"{owner}.rect は x / y / width / height を数値で指定してください")
+            continue
+        if width <= 0 or height <= 0:
+            fail(errors, f"{owner}.rect の width / height は正数にしてください")
+        if x < 0 or y < 0 or x + width > MAP_WIDTH or y + height > MAP_HEIGHT:
+            fail(errors, f"{owner}.rect が 1200×760 canvas の外です")
+        rects.append((str(region_id), float(x), float(y), float(width), float(height)))
+
+    for index, first in enumerate(rects):
+        for second in rects[index + 1 :]:
+            _, ax, ay, aw, ah = first
+            _, bx, by, bw, bh = second
+            overlap_x = max(0.0, min(ax + aw, bx + bw) - max(ax, bx))
+            overlap_y = max(0.0, min(ay + ah, by + bh) - max(ay, by))
+            if overlap_x > 0 and overlap_y > 0:
+                fail(errors, f"{filename}: map.regions rect が重複しています: {first[0]} / {second[0]}")
+
+
+def resolve_map_region(
+    map_data: dict,
+    coordinates: object,
+    region_id: object,
+) -> dict | None:
+    regions = map_data.get("regions") if isinstance(map_data.get("regions"), list) else []
+    if isinstance(region_id, str) and region_id:
+        for region in regions:
+            if isinstance(region, dict) and region.get("id") == region_id:
+                return region
+    for region in regions:
+        if region_contains(region, coordinates):
+            return region
+    return None
+
+
+def project_marker_to_rect(
     coordinates: object,
     bounds: tuple[object, object, object, object],
+    rect: tuple[float, float, float, float],
     offset: tuple[float, float],
 ) -> tuple[float, float] | None:
     if not isinstance(coordinates, dict):
@@ -257,18 +349,54 @@ def project_marker(
         return None
     longitude_range = east - west
     latitude_range = north - south
+    if longitude_range <= 0 or latitude_range <= 0:
+        return None
+    rect_x, rect_y, rect_width, rect_height = rect
     midpoint_latitude = (south + north) / 2
     longitude_scale = math.cos(math.radians(midpoint_latitude))
     projected_width = longitude_range * longitude_scale
     projected_height = latitude_range
-    canvas_scale = min(MAP_WIDTH / projected_width, MAP_HEIGHT / projected_height)
+    canvas_scale = min(rect_width / projected_width, rect_height / projected_height)
     draw_width = projected_width * canvas_scale
     draw_height = projected_height * canvas_scale
-    canvas_offset_x = (MAP_WIDTH - draw_width) / 2
-    canvas_offset_y = (MAP_HEIGHT - draw_height) / 2
+    canvas_offset_x = rect_x + (rect_width - draw_width) / 2
+    canvas_offset_y = rect_y + (rect_height - draw_height) / 2
     x = canvas_offset_x + (lon - west) * longitude_scale * canvas_scale + offset[0] / 100 * MAP_WIDTH
     y = canvas_offset_y + (north - lat) * canvas_scale + offset[1] / 100 * MAP_HEIGHT
     return x, y
+
+
+def project_marker(
+    coordinates: object,
+    map_data: dict,
+    fallback_bounds: tuple[object, object, object, object],
+    offset: tuple[float, float],
+    region_id: object = None,
+) -> tuple[float, float] | None:
+    region = resolve_map_region(map_data, coordinates, region_id)
+    if region:
+        bounds_dict = region.get("bounds", {})
+        rect_dict = region.get("rect", {})
+        region_bounds = (
+            bounds_dict.get("north"),
+            bounds_dict.get("south"),
+            bounds_dict.get("west"),
+            bounds_dict.get("east"),
+        )
+        rect = (
+            float(rect_dict.get("x", 0)),
+            float(rect_dict.get("y", 0)),
+            float(rect_dict.get("width", MAP_WIDTH)),
+            float(rect_dict.get("height", MAP_HEIGHT)),
+        )
+        return project_marker_to_rect(coordinates, region_bounds, rect, offset)
+
+    return project_marker_to_rect(
+        coordinates,
+        fallback_bounds,
+        (0.0, 0.0, float(MAP_WIDTH), float(MAP_HEIGHT)),
+        offset,
+    )
 
 
 def validate_map_markers(
@@ -278,16 +406,27 @@ def validate_map_markers(
     bounds: tuple[object, object, object, object],
 ) -> None:
     markers: list[tuple[str, str, float, float]] = []
+    map_data = data.get("map") if isinstance(data.get("map"), dict) else {}
+    valid_region_ids = {
+        region.get("id")
+        for region in map_data.get("regions", [])
+        if isinstance(region, dict) and isinstance(region.get("id"), str)
+    }
+
+    def marker_point(kind: str, label: str, item: dict) -> tuple[float, float] | None:
+        region_id = item.get("mapRegion")
+        if region_id and region_id not in valid_region_ids:
+            fail(errors, f"{filename}: {label}.mapRegion が map.regions にありません: {region_id}")
+        offset = marker_offset(errors, f"{filename}: {label}", item.get("mapOffset"))
+        return project_marker(item.get("coordinates"), map_data, bounds, offset, region_id)
 
     capital = data.get("capital") if isinstance(data.get("capital"), dict) else {}
-    capital_offset = marker_offset(errors, f"{filename}: capital", capital.get("mapOffset"))
-    capital_point = project_marker(capital.get("coordinates"), bounds, capital_offset)
+    capital_point = marker_point("capital", "capital", capital)
     if capital_point:
         markers.append(("capital", "capital", *capital_point))
 
     hero = data.get("hero") if isinstance(data.get("hero"), dict) else {}
-    hero_offset = marker_offset(errors, f"{filename}: hero", hero.get("mapOffset"))
-    hero_point = project_marker(hero.get("coordinates"), bounds, hero_offset)
+    hero_point = marker_point("hero", "hero", hero)
     if hero_point:
         markers.append(("hero", "hero", *hero_point))
 
@@ -295,8 +434,7 @@ def validate_map_markers(
     for index, scene in enumerate(scenes, 1):
         if not isinstance(scene, dict):
             continue
-        offset = marker_offset(errors, f"{filename}: scene {index}", scene.get("mapOffset"))
-        point = project_marker(scene.get("coordinates"), bounds, offset)
+        point = marker_point("scene", f"scene {index}", scene)
         if point:
             markers.append(("scene", f"scene {index}", *point))
 
@@ -317,7 +455,6 @@ def validate_map_markers(
                     f"{filename}: map marker collision: {first[1]} / {second[1]} "
                     f"({distance:.1f}px < {minimum:.1f}px)。座標は維持し mapOffset で最小補正してください",
                 )
-
 
 def validate_country(path: Path, strict: bool = False) -> list[str]:
     errors: list[str] = []
@@ -347,6 +484,7 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
     elif not (north > south and east > west):
         fail(errors, f"{path.name}: map.bounds の大小関係が不正です")
 
+    validate_map_regions(errors, path.name, data)
     validate_asset(errors, f"{path.name}: map", data.get("map", {}).get("svg"))
     validate_map_svg_clean(errors, path.name, data.get("map", {}).get("svg"))
     validate_asset(errors, f"{path.name}: hero", data.get("hero", {}).get("image"))
