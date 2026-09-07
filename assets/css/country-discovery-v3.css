@@ -798,3 +798,278 @@
     gap:2px;
   }
 }
+
+
+/* Featured NEXT DESTINATIONS preview — editorial journey recommendation. */
+.mobility-section .mobility-panel{
+  width:100%;
+}
+.mobility-section .mobility-domestic__list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0 18px;
+  margin-top:13px;
+}
+.mobility-section .mobility-domestic__list article{
+  padding:12px 0 0;
+}
+.mobility-section .mobility-domestic__summary{
+  max-width:880px;
+}
+
+.journey-footer--expanded{
+  grid-template-columns:1fr;
+}
+.journey-footer--expanded .related-wrap{
+  padding:24px 26px 26px;
+}
+.journey-footer--expanded .wish-wrap{
+  min-height:0;
+  background:transparent;
+  color:var(--navy);
+}
+.journey-footer--expanded .wish-button{
+  min-height:78px;
+  color:var(--navy);
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(251,248,240,.82);
+}
+.journey-footer--expanded .wish-button:hover,
+.journey-footer--expanded .wish-button:focus-visible,
+.journey-footer--expanded .wish-button.is-saved{
+  background:rgba(251,248,240,.82);
+}
+
+.next-destinations-preview{
+  display:grid;
+  gap:18px;
+}
+.featured-journey{
+  margin-top:4px;
+  padding:20px;
+  border:1px solid rgba(18,54,92,.12);
+  border-radius:12px;
+  background:rgba(255,255,255,.24);
+}
+.featured-journey__topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:9px;
+}
+.featured-journey__eyebrow{
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:9px;
+  line-height:1.3;
+  font-weight:500;
+  letter-spacing:.12em;
+}
+.featured-journey__country{
+  color:#12365c;
+  font-family:var(--meta);
+  font-size:10px;
+  line-height:1.4;
+  font-weight:500;
+  letter-spacing:.06em;
+}
+.featured-journey h3{
+  max-width:850px;
+  margin:0;
+  color:#12365c;
+  font-family:"Shippori Mincho","Yu Mincho",serif;
+  font-size:23px;
+  line-height:1.65;
+  font-weight:500;
+}
+.featured-journey__media{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:10px;
+  margin-top:17px;
+}
+.featured-journey__figure{
+  margin:0;
+  overflow:hidden;
+  border-radius:9px;
+  background:#ece8df;
+}
+.featured-journey__figure img{
+  display:block;
+  width:100%;
+  aspect-ratio:3 / 2;
+  object-fit:cover;
+}
+.featured-journey__body{
+  max-width:930px;
+  margin-top:17px;
+}
+.featured-journey__body p{
+  margin:0;
+  color:#334654;
+  font-family:"Shippori Mincho","Yu Mincho",serif;
+  font-size:13px;
+  line-height:2;
+}
+.featured-journey__body p+p{
+  margin-top:11px;
+}
+.featured-journey__route{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  margin-top:18px;
+  padding:13px 0;
+  border-top:1px solid rgba(18,54,92,.12);
+  border-bottom:1px solid rgba(18,54,92,.12);
+}
+.featured-journey__route span{
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:9.5px;
+  line-height:1.6;
+}
+.featured-journey__route strong{
+  color:#12365c;
+  font-family:var(--meta);
+  font-size:10.5px;
+  line-height:1.7;
+  font-weight:500;
+}
+.featured-journey__practical{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:14px 0 0;
+}
+.featured-journey__practical>div{
+  padding:11px 12px;
+  border:1px solid rgba(18,54,92,.1);
+  border-radius:8px;
+  background:rgba(247,243,233,.55);
+}
+.featured-journey__practical dt{
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:9px;
+  line-height:1.4;
+}
+.featured-journey__practical dd{
+  margin:4px 0 0;
+  color:#4d5b65;
+  font-size:10.5px;
+  line-height:1.65;
+}
+.featured-journey__link{
+  display:inline-flex;
+  margin-top:14px;
+  color:#12365c;
+  font-size:11px;
+  font-weight:500;
+  text-decoration:none;
+}
+.featured-journey__link:hover,
+.featured-journey__link:focus-visible{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.other-directions{
+  padding-top:2px;
+}
+.other-directions__grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:8px;
+}
+.other-direction{
+  display:block;
+  min-width:0;
+  padding:14px 15px;
+  border:1px solid rgba(18,54,92,.1);
+  border-radius:9px;
+  background:rgba(255,255,255,.2);
+  color:inherit;
+  text-decoration:none;
+}
+.other-direction__country{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.other-direction__country>span{
+  font-size:19px;
+  line-height:1;
+}
+.other-direction__country strong,
+.other-direction__country small{
+  display:block;
+}
+.other-direction__country strong{
+  color:#12365c;
+  font-family:var(--display);
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.07em;
+}
+.other-direction__country small{
+  margin-top:1px;
+  color:#66717a;
+  font-size:9.5px;
+}
+.other-direction p{
+  margin:8px 0 0;
+  color:#4d5b65;
+  font-size:10.5px;
+  line-height:1.65;
+}
+.other-direction b{
+  display:block;
+  margin-top:8px;
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:8.5px;
+  line-height:1.3;
+  font-weight:500;
+  letter-spacing:.06em;
+}
+@media(max-width:900px){
+  .mobility-section .mobility-domestic__list,
+  .featured-journey__practical{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:760px){
+  .journey-footer--expanded .related-wrap{
+    padding:20px 18px 22px;
+  }
+  .featured-journey{
+    padding:16px 14px;
+  }
+  .featured-journey__topline{
+    display:block;
+  }
+  .featured-journey__country{
+    display:block;
+    margin-top:6px;
+  }
+  .featured-journey h3{
+    font-size:19px;
+    line-height:1.65;
+  }
+  .featured-journey__media,
+  .other-directions__grid{
+    grid-template-columns:1fr;
+  }
+  .featured-journey__body p{
+    font-size:12px;
+    line-height:1.9;
+  }
+  .featured-journey__route{
+    grid-template-columns:1fr;
+    gap:3px;
+  }
+}
