@@ -416,25 +416,25 @@
       "nameEn": "FRANCE",
       "nameJa": "フランス",
       "flag": "🇫🇷",
-      "reason": "レマン湖の西へつなぎ、フランス語圏の都市、食文化、アルプスの続きを見たいなら。"
+      "reason": "アルプス、湖畔の町、フランス語圏の文化をより広い地域で楽しみたいなら。"
     },
     {
       "slug": "italy",
       "nameEn": "ITALY",
       "nameJa": "イタリア",
       "flag": "🇮🇹",
-      "reason": "ティチーノから南へ、湖、山、イタリア語圏の街と食文化の連続をたどりたいなら。"
+      "reason": "山と湖、イタリア語圏の街、食文化の組み合わせが好きなら。"
     },
     {
       "slug": "austria",
       "nameEn": "AUSTRIA",
       "nameJa": "オーストリア",
       "flag": "🇦🇹",
-      "reason": "東へアルプスをつなぎ、鉄道、山村、ドイツ語圏の都市文化を比較したいなら。"
+      "reason": "アルプス、山村、鉄道、歴史都市を別のまとまりで楽しみたいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-06",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2025",
     "area": "2023",
@@ -442,7 +442,8 @@
     "religion": "2024",
     "taste": "2026-09-04",
     "transport": "2026-09-04",
-    "travelScale": "2026-09-04"
+    "travelScale": "2026-09-04",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "Federal Office of Topography swisstopo, swissBOUNDARIES3D 2026, TLM_LANDESGEBIET (temporal status 2026-01-01): official national territory polygon including national boundaries and lake shares. Transformed to WGS84 and simplified to ≤0.5 px display deviation on the 1200×760 JOURNEY ATLAS canvas; existing GSHHS lake overlays retained.",
@@ -472,7 +473,8 @@
     "transport": "SBB, visitor guidance / Swiss Travel Pass: Switzerland-wide travel by train, bus/PostBus and boat, with panoramic trains and many mountain transport connections depending on product and route.",
     "travelScale": "SBB visitor guidance and nationwide public-transport network information, checked 2026-09-04; route examples are JOURNEY ATLAS editorial itineraries based on practical rail/public-transport connections.",
     "encounterAlpineCustoms": "Switzerland Tourism: Alpine farming traditions include seasonal movement of livestock, cowbells, cheese making and related mountain customs.",
-    "encounterWatchmaking": "Switzerland Tourism: watchmaking remains strongly associated with the Jura and Swiss craft traditions."
+    "encounterWatchmaking": "Switzerland Tourism: watchmaking remains strongly associated with the Jura and Swiss craft traditions.",
+    "nextRoutes": "SBB international connections toward Milan, Munich and France, checked 2026-09-07."
   },
   "contentQaVersion": 1,
   "taste": {
@@ -538,5 +540,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇮🇹",
+      "countryEn": "ITALY",
+      "countryJa": "イタリア",
+      "path": "Zurich → Milan",
+      "description": "スイスからイタリアへアルプスを越える代表的な鉄道周遊。チューリヒの湖畔から山岳トンネルを抜け、ミラノの都市景観とイタリア文化へ一気に切り替わる。"
+    },
+    {
+      "flag": "🇩🇪",
+      "countryEn": "GERMANY",
+      "countryJa": "ドイツ",
+      "path": "Zurich → Munich",
+      "description": "スイス北東部からバイエルンへ向かう主要ルート。湖とアルプスの縁をたどりながら、ミュンヘンの歴史都市と南ドイツ文化へ旅がつながる。"
+    },
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "Geneva → Lyon → Paris",
+      "description": "フランス語圏スイスからフランスへ進む代表的な周遊。レマン湖畔からローヌ流域のリヨンを経て、パリまで都市と食文化のスケールを広げられる。"
+    }
+  ]
 }

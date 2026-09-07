@@ -431,32 +431,33 @@
       "nameEn": "AUSTRIA",
       "nameJa": "オーストリア",
       "flag": "🇦🇹",
-      "reason": "ドイツ南部からアルプスとドイツ語圏の都市文化をさらに南へつなげたいなら。"
+      "reason": "歴史都市とアルプス、ドイツ語圏の文化を一緒に楽しみたいなら。"
     },
     {
       "slug": "czechia",
       "nameEn": "CZECHIA",
       "nameJa": "チェコ",
       "flag": "🇨🇿",
-      "reason": "ザクセンから国境を越え、中欧の歴史都市と砂岩地形の続きを見たいなら。"
+      "reason": "中世都市、城、森や岩山の景観が好きなら。"
     },
     {
       "slug": "denmark",
       "nameEn": "DENMARK",
       "nameJa": "デンマーク",
       "flag": "🇩🇰",
-      "reason": "北ドイツからさらに北へ、港町、海岸、平坦な国土の旅をつなげたいなら。"
+      "reason": "北海・バルト海の港町と、平坦な風景に惹かれたなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-06",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2025",
     "area": "2024-12-31",
     "religion": "2025",
     "autobahn": "2026-01-01",
     "heathBloom": "2026-08-28",
-    "transport": "2026"
+    "transport": "2026",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "CountryGeoJSONCollection DEU.geojson, WGS84; country boundary used for JOURNEY ATLAS illustrated map",
@@ -491,7 +492,8 @@
     "ruhrFootball": "German National Tourist Board (Germany Travel), Football hotspots — Gelsenkirchen & Dortmund: football traditions in the Ruhr region developed over generations, including clubs founded from mining communities; https://www.germany.travel/en/cities-culture/football-cities.html",
     "encounterBeerGardensMarkets": "Germany Travel: in warmer months beer gardens and regional/street-food markets become part of outdoor urban life; seasonal wine taverns open along wine regions.",
     "encounterHalfTimber": "Germany Travel: the German Half-Timbered Houses Route links historic towns with distinctive regional timber-frame architecture.",
-    "encounterChristmasMarkets": "Germany Travel: Christmas markets are a major seasonal urban tradition across Germany."
+    "encounterChristmasMarkets": "Germany Travel: Christmas markets are a major seasonal urban tradition across Germany.",
+    "nextRoutes": "DB international timetable connections toward Prague, Austria and Amsterdam, checked 2026-09-07."
   },
   "contentQaVersion": 1,
   "taste": {
@@ -557,5 +559,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇨🇿",
+      "countryEn": "CZECHIA",
+      "countryJa": "チェコ",
+      "path": "Berlin → Dresden → Prague",
+      "description": "ベルリンからエルベ川沿いを南へ進む中欧の代表ルート。大都市からザクセンの歴史都市を経て、プラハの旧市街へ建築の層が変わっていく。"
+    },
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Munich → Salzburg → Vienna",
+      "description": "南ドイツからオーストリアへつなぐ定番周遊。アルプスの山麓とザルツブルクを経て、ウィーンの帝都景観へ旅のスケールが広がる。"
+    },
+    {
+      "flag": "🇳🇱",
+      "countryEn": "NETHERLANDS",
+      "countryJa": "オランダ",
+      "path": "Cologne → Amsterdam",
+      "description": "ライン流域からオランダの低地へ向かう代表ルート。大聖堂の町ケルンから運河都市アムステルダムへ、地形も街並みも次第に平坦になる。"
+    }
+  ]
 }

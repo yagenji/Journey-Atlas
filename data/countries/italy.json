@@ -425,25 +425,25 @@
       "nameEn": "FRANCE",
       "nameJa": "フランス",
       "flag": "🇫🇷",
-      "reason": "アルプス、地中海岸、歴史都市、地域ごとの食文化を別の組み合わせで比べたいなら。"
+      "reason": "歴史都市、アルプス、地中海、食文化を別の組み合わせで楽しみたいなら。"
     },
     {
       "slug": "switzerland",
       "nameEn": "SWITZERLAND",
       "nameJa": "スイス",
       "flag": "🇨🇭",
-      "reason": "アルプスの地形と鉄道移動を、より小さな国土と複数言語圏の中で追いたいなら。"
+      "reason": "アルプスと鉄道、湖畔の町をより凝縮して楽しみたいなら。"
     },
     {
       "slug": "austria",
       "nameEn": "AUSTRIA",
       "nameJa": "オーストリア",
       "flag": "🇦🇹",
-      "reason": "アルプスと歴史都市の関係を、ドナウ流域とハプスブルクの都市文化へつなげたいなら。"
+      "reason": "アルプスと歴史都市、宮殿文化が好きなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2026-01-01",
     "terrain": "2024",
@@ -452,7 +452,8 @@
     "barBusinesses": "2025",
     "languageMinorities": "1999",
     "operaSinging": "2023",
-    "railTransport": "2026"
+    "railTransport": "2026",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "Natural Earth 1:10m country geometry via LonnyGomes/CountryGeoJSONCollection ITA.geojson; WGS84; illustrated treatment: JOURNEY ATLAS",
@@ -494,7 +495,8 @@
     "lasagneBolognese": "Italia.it / Emilia-Romagna food culture references: lasagne alla bolognese as a regional layered pasta preparation.",
     "risottoMilanese": "Italia.it, Milan guide and Lombardy food references: risotto alla milanese distinguished by its saffron-infused yellow colour.",
     "cannoliSiciliani": "Visit Sicily official tourism, Cannoli Siciliani: fried tubular shells filled with sheep-milk ricotta, with traditional pistachio/candied orange finishing.",
-    "railTransport": "Trenitalia current Frecciarossa network and timetable information: high-speed services connect Rome with Florence, Venice and Naples."
+    "railTransport": "Trenitalia current Frecciarossa network and timetable information: high-speed services connect Rome with Florence, Venice and Naples.",
+    "nextRoutes": "Trenitalia/SBB/ÖBB/SŽ international rail information for Milan–Zurich, Venice–Vienna and Trieste–Ljubljana corridors, checked 2026-09-07."
   },
   "taste": {
     "kicker": "TASTE OF ITALY",
@@ -559,5 +561,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇨🇭",
+      "countryEn": "SWITZERLAND",
+      "countryJa": "スイス",
+      "path": "Milan → Zurich",
+      "description": "ミラノからアルプスを越えてスイスへ入る代表的な鉄道周遊。イタリア北部の都市から湖と山岳トンネルを経て、チューリヒの落ち着いた都市景観へ変わる。"
+    },
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Venice → Vienna",
+      "description": "ヴェネツィアからアルプス東部を越えてウィーンへ向かう定番ルート。アドリア海の水上都市から、中欧の山地と帝都景観へ旅がつながる。"
+    },
+    {
+      "flag": "🇸🇮",
+      "countryEn": "SLOVENIA",
+      "countryJa": "スロベニア",
+      "path": "Trieste → Ljubljana",
+      "description": "北東イタリアからスロベニアへ入る代表的な短距離周遊。港町トリエステからカルスト台地を越え、緑の多いリュブリャナへ景観が切り替わる。"
+    }
+  ]
 }

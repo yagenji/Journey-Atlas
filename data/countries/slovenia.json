@@ -485,25 +485,25 @@
   ],
   "relatedCountries": [
     {
+      "slug": "switzerland",
+      "nameEn": "SWITZERLAND",
+      "nameJa": "スイス",
+      "flag": "🇨🇭",
+      "reason": "アルプス、高山湖、鉄道で山岳景観をさらに深く楽しみたいなら。"
+    },
+    {
       "slug": "austria",
       "nameEn": "AUSTRIA",
       "nameJa": "オーストリア",
       "flag": "🇦🇹",
-      "reason": "北へ続くアルプスの谷、湖、放牧地をたどり、同じ山系が国境を越えてどう変わるか見たいなら。"
+      "reason": "湖とアルプス、歴史都市をより大きなスケールで旅したいなら。"
     },
     {
-      "slug": "croatia",
-      "nameEn": "CROATIA",
-      "nameJa": "クロアチア",
-      "flag": "🇭🇷",
-      "reason": "カルスト地形とアドリア海岸を南へ追い、より長い海岸線と島々へ景観を広げたいなら。"
-    },
-    {
-      "slug": "italy",
-      "nameEn": "ITALY",
-      "nameJa": "イタリア",
-      "flag": "🇮🇹",
-      "reason": "ジュリアン・アルプスとアドリア海を西へつなぎ、山岳・ワイン丘陵・港町の連続性を国境越しに見たいなら。"
+      "slug": "montenegro",
+      "nameEn": "MONTENEGRO",
+      "nameJa": "モンテネグロ",
+      "flag": "🇲🇪",
+      "reason": "石灰岩の山とアドリア海が接する景観を、より険しい地形で見たいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
@@ -514,7 +514,8 @@
     "religion": "2002",
     "oldVine": "2025",
     "tolls": "2026",
-    "karstCaves": "2026-09-07"
+    "karstCaves": "2026-09-07",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection SVN.geojson, blob dcbe8e7bc5fba992ad998c111f5a4e1599aea2d1; WGS84.",
@@ -556,6 +557,30 @@
     "travelScale": "Slovenian Tourist Board current transport guidance used to construct realistic route examples.",
     "kozolec": "Slovenian Tourist Board: kozolec hayracks are distinctive Slovenian wooden farm structures used for drying hay and other produce.",
     "beehivePanels": "Slovenian Tourist Board: painted beehive panels are a characteristic feature of Slovenian beekeeping and an expression of folk art.",
-    "karstCaves": "Slovenian Tourist Board: more than 13,000 karst caves have been discovered in Slovenia; the international term karst derives from the Slovenian Kras region."
-  }
+    "karstCaves": "Slovenian Tourist Board: more than 13,000 karst caves have been discovered in Slovenia; the international term karst derives from the Slovenian Kras region.",
+    "nextRoutes": "Slovenian Railways current international travel information toward Zagreb, Villach/Salzburg and Trieste/Italy, checked 2026-09-07."
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇭🇷",
+      "countryEn": "CROATIA",
+      "countryJa": "クロアチア",
+      "path": "Ljubljana → Zagreb",
+      "description": "二つの首都を結ぶ、スロベニアからクロアチアへの代表的な周遊。リュブリャナの小さな旧市街からザグレブへ進むと、中央ヨーロッパとバルカンが重なる都市の表情へ変わる。"
+    },
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Ljubljana → Villach → Salzburg",
+      "description": "アルプスを北へ越えていく代表的な山岳ルート。スロベニアの湖と山を見たあと、ケルンテンの山岳地帯を通り、ザルツブルクの歴史都市へ景観がつながる。"
+    },
+    {
+      "flag": "🇮🇹",
+      "countryEn": "ITALY",
+      "countryJa": "イタリア",
+      "path": "Ljubljana → Trieste → Venice",
+      "description": "カルスト台地を西へ抜け、アドリア海へ出る代表的な周遊。内陸のリュブリャナから港町トリエステへ、さらにヴェネツィアへ進むと地形と都市文化が段階的に変わる。"
+    }
+  ]
 }

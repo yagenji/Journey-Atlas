@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/country.css?v=20260903-lens-spacing-v3">
+  <link rel="stylesheet" href="assets/css/country.css?v=20260907-next-routes-v1">
 </head>
 <body>
   <main id="app" aria-live="polite">
@@ -141,6 +141,19 @@
           <div class="travel-trivia__grid" id="travel-trivia-grid"></div>
         </section>
 
+        <section class="travel-guidance" aria-label="旅のヒント">
+          <section class="travel-guidance__block" aria-labelledby="for-whom-title">
+            <span class="section-kicker-en">FOR WHOM</span>
+            <h2 id="for-whom-title">こんな人に</h2>
+            <div class="persona-list" id="personas"></div>
+          </section>
+          <section class="travel-guidance__block" aria-labelledby="travel-notes-title">
+            <span class="section-kicker-en">TRAVEL NOTES</span>
+            <h2 id="travel-notes-title">知っておきたいこと</h2>
+            <div class="tip-list" id="tips"></div>
+          </section>
+        </section>
+
         <section class="travel-planning" aria-labelledby="travel-planning-title">
           <div class="travel-planning__head">
             <span class="section-kicker-en">WHEN TO GO</span>
@@ -168,17 +181,15 @@
           </div>
         </section>
 
-        <section class="travel-guidance" aria-label="旅のヒント">
-          <section class="travel-guidance__block" aria-labelledby="for-whom-title">
-            <span class="section-kicker-en">FOR WHOM</span>
-            <h2 id="for-whom-title">こんな人に</h2>
-            <div class="persona-list" id="personas"></div>
-          </section>
-          <section class="travel-guidance__block" aria-labelledby="travel-notes-title">
-            <span class="section-kicker-en">TRAVEL NOTES</span>
-            <h2 id="travel-notes-title">知っておきたいこと</h2>
-            <div class="tip-list" id="tips"></div>
-          </section>
+        <section class="next-routes-section" id="next-routes-section" aria-labelledby="next-routes-title" hidden>
+          <div class="next-routes__head">
+            <div>
+              <span class="section-kicker-en">NEXT ROUTES</span>
+              <h2 id="next-routes-title">隣国へ旅をつなぐ</h2>
+            </div>
+            <p>この国から旅を続けやすい、代表的な周遊ルート。</p>
+          </div>
+          <div class="next-routes__grid" id="next-routes-grid"></div>
         </section>
 
         <section class="journey-footer" aria-labelledby="next-title">
@@ -224,7 +235,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260903-lens-card-v1" defer></script>
+  <script src="assets/js/app.js?v=20260907-next-routes-v1" defer></script>
   <script src="assets/js/country-themes.js?v=20260830-theme-context-v2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2345" defer></script>
 </body>

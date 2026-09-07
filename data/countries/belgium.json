@@ -425,29 +425,30 @@
       "nameEn": "NETHERLANDS",
       "nameJa": "オランダ",
       "flag": "🇳🇱",
-      "reason": "低地の都市、水路、北海沿岸を北へつなぎ、フランドルとの景観差を見比べたいなら。"
+      "reason": "運河の町、低地の風景、デザインや日常文化に惹かれたなら。"
     },
     {
       "slug": "france",
       "nameEn": "FRANCE",
       "nameJa": "フランス",
       "flag": "🇫🇷",
-      "reason": "フランス語圏の文化と歴史都市を南西へ広げ、ベルギーとの連続と違いをたどりたいなら。"
+      "reason": "歴史都市、建築、食文化をより広い地域差の中で楽しみたいなら。"
     },
     {
       "slug": "germany",
       "nameEn": "GERMANY",
       "nameJa": "ドイツ",
       "flag": "🇩🇪",
-      "reason": "東部のドイツ語圏からライン地方へつなぎ、都市と森林の景観をさらに東へ追いたいなら。"
+      "reason": "中世都市、森、ビール文化などをより大きな国土で見たいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2026-01-01",
     "area": "2023",
-    "map": "2024"
+    "map": "2024",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "Eurostat GISCO NUTS 2024 1:1M WGS84 via euraf/eu-nuts-lau: BE_NUTS1_RG_01M_2024_4326.geojson",
@@ -486,7 +487,8 @@
     "waterzooi": "visit.brussels, Brussels culinary specialities: waterzooi as a Ghent-origin dish prepared with fish or chicken and vegetables in a creamy broth.",
     "liegeWaffle": "Visit Liège, authentic Liège waffle: yeast dough with pearl sugar that caramelises during baking.",
     "belgianPralines": "visit.brussels / Belgian chocolate history: the filled Belgian praline was created in Brussels in 1912.",
-    "travelScale": "SNCB-NMBS journey planner and network information: frequent rail links connect Brussels with Ghent, Bruges and other principal Belgian cities; regional buses/road travel extend access to rural Wallonia and the High Fens."
+    "travelScale": "SNCB-NMBS journey planner and network information: frequent rail links connect Brussels with Ghent, Bruges and other principal Belgian cities; regional buses/road travel extend access to rural Wallonia and the High Fens.",
+    "nextRoutes": "Eurostar current international routes linking Brussels with Paris, Amsterdam and London, checked 2026-09-07."
   },
   "taste": {
     "kicker": "TASTE OF BELGIUM",
@@ -555,5 +557,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "Brussels → Paris",
+      "description": "ブリュッセルからパリへ向かう西ヨーロッパの定番周遊。大広場と石造の街並みから、より大きな都市軸と美術・建築の世界へ旅がつながる。"
+    },
+    {
+      "flag": "🇳🇱",
+      "countryEn": "NETHERLANDS",
+      "countryJa": "オランダ",
+      "path": "Brussels → Rotterdam → Amsterdam",
+      "description": "低地の都市を北へつなぐ代表ルート。フランドルの重厚な旧市街から、ロッテルダムの現代建築とアムステルダムの運河都市へ景観が変わる。"
+    },
+    {
+      "flag": "🇬🇧",
+      "countryEn": "UNITED KINGDOM",
+      "countryJa": "イギリス",
+      "path": "Brussels → London",
+      "description": "大陸の首都から英仏海峡を越えてロンドンへ入る主要ルート。ベルギーの中世都市から、英国の大都市景観へ一気に旅のスケールが変わる。"
+    }
+  ]
 }
