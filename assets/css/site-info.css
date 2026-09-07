@@ -15,6 +15,7 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
+  padding-top:82px;
   background:var(--info-paper);
   color:var(--info-ink);
   font-family:var(--info-jp);
@@ -245,6 +246,7 @@ a{color:inherit}
   text-underline-offset:3px;
 }
 @media(max-width:760px){
+  body{padding-top:70px}
   .info-header{
     height:70px;
     min-height:70px;
