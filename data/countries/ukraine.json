@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "ukraine",
+  "nameEn": "UKRAINE",
+  "nameJa": "ウクライナ",
+  "region": "EASTERN EUROPE / BLACK SEA",
+  "seo": {
+    "description": "カームヤネツィ＝ポジーリシクィイの峡谷城塞から、キーウとドニプロ川、リヴィウ、カルパチア、スヴィチャジ湖、バコタ、チェルニウツィー、オデーサ、クレーヴァニへ。広い国土と地域差から知るウクライナ。"
+  },
+  "capital": {
+    "nameEn": "Kyiv",
+    "nameJa": "キーウ",
+    "coordinates": {
+      "latitude": 50.4501,
+      "longitude": 30.5234
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2,
+      "y": -2
+    }
+  },
+  "hero": {
+    "lead": "ドニプロの大河、カルパチアの山と森、黒海の港町、幾つもの時代が重なる都市。広い国土を移動すると、ウクライナの風景は地域ごとに大きく姿を変える。",
+    "image": "assets/images/ukraine/approved/hero-kamianets-podilskyi-castle.webp",
+    "location": "Kamianets-Podilskyi Castle / Smotrych Canyon",
+    "coordinates": {
+      "latitude": 48.67333,
+      "longitude": 26.5625
+    },
+    "mapOffset": {
+      "x": -2,
+      "y": -2
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 52.72671832265007,
+      "south": 44.855799384350036,
+      "west": 21.231504638600104,
+      "east": 41.0608782554001
+    },
+    "svg": "assets/images/ukraine/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/UKR.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; internationally recognized territory of Ukraine; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "kyiv-pechersk-lavra-dnipro",
+      "name": "キーウ / ペチェールシク大修道院とドニプロ川",
+      "nameLocal": "Kyiv / Kyiv-Pechersk Lavra / Dnipro",
+      "mapLabel": "Kyiv Lavra",
+      "description": "金色のドームを持つ修道院群が、広いドニプロ川を見下ろす丘に重なる。宗教建築だけでなく大河と都市の位置関係まで見ると、キーウが川沿いに発達した首都であることが伝わる。",
+      "coordinates": {
+        "latitude": 50.43393,
+        "longitude": 30.55838
+      },
+      "image": "assets/images/ukraine/approved/kyiv-pechersk-lavra-dnipro.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 2
+      },
+      "role": "ANCHOR + ATLAS VIEW"
+    },
+    {
+      "id": "lviv-historic-centre",
+      "name": "リヴィウ / 歴史地区",
+      "nameLocal": "Lviv / Historic Centre",
+      "mapLabel": "Lviv",
+      "description": "中世以来の街路に、ルネサンス、バロック、その後の時代の建築が重なる。東西の交易と複数の文化共同体が交差した都市の層を、歩ける距離の中で読み取れる。",
+      "coordinates": {
+        "latitude": 49.84167,
+        "longitude": 24.03194
+      },
+      "image": "assets/images/ukraine/approved/lviv-historic-centre.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ANCHOR + HISTORY"
+    },
+    {
+      "id": "chornohora-hoverla",
+      "name": "チョルノホラ / ホヴェールラ",
+      "nameLocal": "Chornohora / Hoverla",
+      "mapLabel": "Hoverla",
+      "description": "森林帯の上に草地の稜線が続き、丸みを帯びた高峰が幾重にも連なる。平原の印象とは異なる、ウクライナ・カルパチアの高山景観を代表する場所だ。",
+      "coordinates": {
+        "latitude": 48.16028,
+        "longitude": 24.5
+      },
+      "image": "assets/images/ukraine/approved/chornohora-hoverla.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "lake-svityaz-shatsk",
+      "name": "スヴィチャジ湖 / シャツク湖群",
+      "nameLocal": "Lake Svityaz / Shatsk Lakes",
+      "mapLabel": "Svityaz",
+      "description": "低く平らな森林地帯の中に、透明度の高い浅瀬と広い水面が開く。カルパチアとは対照的な北西部ポリッシャの、水と森が近接する穏やかな地形を見せる。",
+      "coordinates": {
+        "latitude": 51.492,
+        "longitude": 23.84
+      },
+      "image": "assets/images/ukraine/approved/lake-svityaz.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "DISCOVERY"
+    },
+    {
+      "id": "bakota-dniester-canyon",
+      "name": "バコタ / ドニステル峡谷",
+      "nameLocal": "Bakota / Dniester Canyon",
+      "mapLabel": "Bakota",
+      "description": "高い石灰岩の斜面の間を、大きく曲がるドニステルの水面が長く続く。西部の都市景観から少し離れるだけで、川がつくった大きな谷地形へ景色が切り替わる。",
+      "coordinates": {
+        "latitude": 48.57961,
+        "longitude": 26.97851
+      },
+      "image": "assets/images/ukraine/approved/bakota-dniester-canyon.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 1
+      },
+      "role": "DISCOVERY + ATLAS VIEW"
+    },
+    {
+      "id": "chernivtsi-metropolitans-residence",
+      "name": "チェルニウツィー / ブコヴィナ・ダルマチア府主教の邸宅",
+      "nameLocal": "Chernivtsi / Residence of Bukovinian and Dalmatian Metropolitans",
+      "mapLabel": "Chernivtsi",
+      "description": "煉瓦造りの建物群と幾何学模様の屋根が庭園を囲む。ブコヴィナの地域史と19世紀の建築文化が一つの複合施設に凝縮され、都市ごとの文化層の違いが見えてくる。",
+      "coordinates": {
+        "latitude": 48.29667,
+        "longitude": 25.92472
+      },
+      "image": "assets/images/ukraine/approved/chernivtsi-metropolitans-residence.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1,
+        "y": 2
+      },
+      "role": "HISTORY + DISCOVERY"
+    },
+    {
+      "id": "odesa-historic-centre-black-sea",
+      "name": "オデーサ / 歴史地区と黒海",
+      "nameLocal": "Odesa / Historic Centre / Black Sea",
+      "mapLabel": "Odesa",
+      "description": "古典主義建築の街路と大きな階段の先に、黒海の港が開く。内陸の山や川とは異なり、海運と交易を通じて外へつながってきた南部の都市景観が表れる。",
+      "coordinates": {
+        "latitude": 46.48645,
+        "longitude": 30.74161
+      },
+      "image": "assets/images/ukraine/approved/odesa-historic-centre-black-sea.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "ANCHOR + CITY"
+    },
+    {
+      "id": "klevan-tunnel-of-love",
+      "name": "クレーヴァニ / 愛のトンネル",
+      "nameLocal": "Klevan / Tunnel of Love",
+      "mapLabel": "Klevan",
+      "description": "鉄道線路の両側から伸びた樹木が、長い緑のアーチをつくる。列車の通行と植生が重なって生まれた、自然と人工の境界がそのまま景観になった場所だ。",
+      "coordinates": {
+        "latitude": 50.750471,
+        "longitude": 26.043806
+      },
+      "image": "assets/images/ukraine/approved/klevan-tunnel-of-love.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "role": "DISCOVERY"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "金色のドーム",
+      "icon": "landmark"
+    },
+    {
+      "title": "石畳の旧市街",
+      "icon": "city"
+    },
+    {
+      "title": "カルパチア山脈",
+      "icon": "landscape"
+    },
+    {
+      "title": "湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "大河",
+      "icon": "landscape"
+    },
+    {
+      "title": "峡谷",
+      "icon": "landscape"
+    },
+    {
+      "title": "黒海の港町",
+      "icon": "shore"
+    },
+    {
+      "title": "緑のトンネル",
+      "icon": "road"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "pysanka-wax-resist-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "卵の表面に、蝋と染色を重ねて模様を残す",
+      "text": "ピサンカは、蝋で色を残す部分を覆いながら染色を繰り返す装飾卵の文化。家庭や地域で技法と図柄が受け継がれ、2024年にユネスコ無形文化遺産へ登録された。",
+      "points": [
+        "蝋で防染しながら複数回染める",
+        "2024年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "petrykivka-ornamental-painting",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "花や鳥の装飾画が、家の内外から工芸へ広がった",
+      "text": "ペトリキウカ装飾画は、花や植物、鳥などをリズミカルに描く民俗絵画。住居の装飾から紙や木製品へ表現の場を広げ、地域の視覚文化として継承されている。",
+      "points": [
+        "植物や鳥を中心にした装飾的な構図",
+        "2013年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "kosiv-painted-ceramics",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "カルパチアの暮らしが、陶器の線と色に描かれる",
+      "text": "コシウの彩色陶器では、粘土の表面に人物、動物、植物、生活場面などを描く。カルパチア地域の暮らしや物語が、器そのものに記録されるように残っている。",
+      "points": [
+        "黄色・緑・茶系の色使いが特徴",
+        "2019年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "kobza-wheel-lyre-safeguarding",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "語りと弦楽器を結ぶ伝統を、演奏だけでなく学び方ごと残す",
+      "text": "コブザやバンドゥーラ、ホイール・ライアを伴う語りの伝統では、曲だけでなく師弟関係や演奏技法の継承も重要になる。2024年にはその保護プログラムがユネスコに登録された。",
+      "points": [
+        "語りと弦楽器演奏が結びつく伝統",
+        "2024年に保護プログラムがユネスコ登録"
+      ]
+    },
+    {
+      "topicKey": "borscht-community-cooking-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ボルシチは、一つの固定レシピではなく家庭と地域で変わる",
+      "text": "ウクライナのボルシチ文化は、材料や調理法が地域、家庭、季節、機会によって変わること自体を含む。料理を通して家族や共同体の知識が受け継がれてきた。",
+      "points": [
+        "地域や家庭ごとに作り方が異なる",
+        "2022年に緊急保護が必要な無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "chernozem-black-soil-plains",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "広い平原の下には、黒土が国土の大きな部分を占める",
+      "text": "ウクライナでは肥沃な黒土が約3,420万ha、国土の57%を占めるとUkraineInvestが紹介している。穀物畑が地平線まで続く景観は、土壌と農業が国土理解につながる例でもある。",
+      "points": [
+        "黒土は約3,420万ha",
+        "国土の57%とされる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "pysanka-repeated-dye-process",
+      "categoryEn": "CRAFT",
+      "categoryJa": "工芸",
+      "title": "ピサンカは、一度に模様を描いて終わりではない",
+      "text": "残したい色の部分を蝋で覆い、薄い色から濃い色へ染色を重ねる。最後に蝋を外すことで、複数の色と線が現れる。",
+      "icon": "culture",
+      "sourceKey": "pysanka"
+    },
+    {
+      "topicKey": "lviv-multiple-architectural-layers",
+      "categoryEn": "LVIV",
+      "categoryJa": "街歩き",
+      "title": "リヴィウは、一つの建築様式だけでできた街ではない",
+      "text": "中世の都市構造を基盤に、ルネサンス、バロック、その後の建築が重なる。UNESCOも異なる民族共同体と建築伝統の共存を評価している。",
+      "icon": "city",
+      "sourceKey": "lviv"
+    },
+    {
+      "topicKey": "chernivtsi-patterned-roof-complex",
+      "categoryEn": "CHERNIVTSI",
+      "categoryJa": "建築",
+      "title": "チェルニウツィーでは、屋根まで建築の一部として見る",
+      "text": "府主教の邸宅は煉瓦の外壁だけでなく、色と模様を組み合わせた屋根面も景観の重要な要素。中庭を囲む複数棟を一体として見ると構成が分かりやすい。",
+      "icon": "history",
+      "sourceKey": "chernivtsi"
+    },
+    {
+      "topicKey": "borscht-regional-variations",
+      "categoryEn": "FOOD",
+      "categoryJa": "料理",
+      "title": "ボルシチには、地域や家庭の数だけ違いがある",
+      "text": "ビーツを軸にしても、使う野菜、肉、豆、仕上げ方は一定ではない。ユネスコも多様なレシピと調理慣習を一つの文化として扱っている。",
+      "icon": "food",
+      "sourceKey": "borscht"
+    },
+    {
+      "topicKey": "klevan-railway-shaped-green-arch",
+      "categoryEn": "KLEVAN",
+      "categoryJa": "鉄道",
+      "title": "緑のトンネルは、庭園として造られたものではない",
+      "text": "クレーヴァニ近郊の線路沿いで樹木が成長し、列車の通行によって車両の輪郭に沿うような緑の回廊が形成された。鉄道と植生が共同でつくった景観だ。",
+      "icon": "road",
+      "sourceKey": "klevan"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF UKRAINE",
+    "title": "ウクライナで食べたいもの",
+    "intro": "ビーツや穀物、じゃがいも、乳製品、山地のトウモロコシ料理まで、家庭料理をたどると平原とカルパチアの地域差が見えてくる。",
+    "items": [
+      {
+        "id": "ukrainian-borscht",
+        "name": "ウクライナ・ボルシチ",
+        "nameLocal": "Ukrainian Borscht",
+        "text": "ビーツを軸に野菜を煮込むスープで、肉や豆を加えるなど作り方は地域や家庭によって異なる。鮮やかな色だけでなく、家庭ごとの違いそのものが食文化の一部になっている。",
+        "image": "assets/images/ukraine/approved/food-borscht.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "varenyky",
+        "name": "ヴァレーヌィク",
+        "nameLocal": "Varenyky",
+        "text": "薄い生地で具を包んで茹でる半月形の料理。じゃがいも、チーズ、キャベツから果物まで中身が変わり、日常の食卓と季節の素材をつなぐ。",
+        "image": "assets/images/ukraine/approved/food-varenyky.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "holubtsi",
+        "name": "ホルブツィ",
+        "nameLocal": "Holubtsi",
+        "text": "キャベツの葉で米や肉、野菜などの具を包み、煮込んで仕上げる家庭料理。地域や家庭によって具材やソースが変わる。",
+        "image": "assets/images/ukraine/approved/food-holubtsi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "banosh",
+        "name": "バノシュ",
+        "nameLocal": "Banosh",
+        "text": "トウモロコシ粉を乳製品とともに温かく練り、チーズやきのこなどを合わせるカルパチア地域の料理。山地の牧畜と食卓のつながりが見える一皿。",
+        "image": "assets/images/ukraine/approved/food-banosh.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "以下は安全が回復した将来に、国土の広がりを理解するために組む場合の旅程イメージ。現在の渡航を推奨するものではない。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "西部の一地域から国への入口を見る",
+        "text": "安全が回復した将来の想定では、リヴィウを軸に近郊とカルパチア方面の入口までを見ると、歴史都市と山地の対比を短い日程でもつくれる。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "西部の都市・山・峡谷をつなぐ",
+        "text": "リヴィウからカルパチア、チェルニウツィー、カームヤネツィ＝ポジーリシクィイへ進むと、都市文化、高山、峡谷の違いを一つの旅程で比較できる。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "ドニプロと黒海まで国土を広げる",
+        "text": "西部にキーウとオデーサを加え、カルパチアからドニプロ川、黒海まで移動する構成。広い国土の東西・南北の景観差を急がず見るための将来的な旅程イメージ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#879b63",
+      "text": "低地から春が進み、森林や都市の緑が戻る。カルパチアの高地では遅くまで雪が残ることがあり、平地と山地で季節の進み方が異なる。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b89a52",
+      "text": "平地は暖かく暑い日も増え、カルパチアでは山の緑が濃くなる。北西部の湖や山岳景観まで、地域ごとの夏の表情が分かりやすい時期。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad7749",
+      "text": "森林やカルパチアの色が変わり、平原では収穫期の景観が現れる。都市、農地、山地を比べると季節の違いが見えやすい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748d9b",
+      "text": "内陸部は寒く、カルパチアでは積雪景観になる。地域による寒さや降雪差が大きく、現在は観光計画より安全情報の確認を優先する必要がある。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・都市間バス・車",
+    "text": "広い国土では都市間鉄道が地理をつなぐ重要な軸になる。ただし2026年9月時点で日本外務省はウクライナ全土を危険レベル4としており、運行・道路・施設状況も情勢によって変わり得る。現在の観光移動手段として固定的な所要時間やルートは案内しない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "歴史都市と自然景観を同じ国で比べたい人",
+      "text": "リヴィウやキーウの都市景観だけでなく、カルパチア、湖、峡谷まで移動し、国土の広さが風景をどう変えるかを見たい人。"
+    },
+    {
+      "title": "カルパチアから黒海まで地域差を知りたい人",
+      "text": "山岳地帯、ドニプロ流域、黒海沿岸を地図の上でつなぎ、一つの国の中に異なる地理が並ぶことに興味がある人。"
+    },
+    {
+      "title": "工芸・料理・建築から暮らしを知りたい人",
+      "text": "ピサンカ、装飾画、陶器、家庭料理などを入口に、観光名所だけでは見えない地域文化の違いまで知りたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "キーウ"
+    },
+    {
+      "label": "人口",
+      "value": "約3,898万人（2025年UN推計）"
+    },
+    {
+      "label": "面積",
+      "value": "603,500 km²（日本の約1.6倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ウクライナ語（国家語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（正教会系が最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "フリヴニャ（UAH）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "country-surface-area-603500",
+      "label": "国土面積",
+      "value": "603,500 km²",
+      "note": "UNDataの表面積。2026年4月1日時点の日本の国土面積と比べると約1.6倍で、山地、森林、平原、大河、黒海沿岸まで景観が分散する土台になっている。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "black-soil-share-57-percent",
+      "label": "黒土が占める国土",
+      "value": "57%",
+      "note": "UkraineInvestは黒土を約3,420万ha、国土の57%と紹介する。肥沃な土壌と広い農地は、都市や山岳とは別のウクライナの地理的な顔をつくる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "hoverla-elevation-2061",
+      "label": "最高峰ホヴェールラ",
+      "value": "2,061 m",
+      "note": "カルパチア国立自然公園がウクライナ最高峰として案内する標高。森林帯から亜高山帯へ景観が変わるチョルノホラ山地の基準になる数字。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mofa-level-four-current-safety",
+      "title": "現在は観光目的で渡航しない",
+      "text": "日本外務省は2026年1月19日更新の危険情報で、ウクライナ全土をレベル4「退避してください。渡航は止めてください」としている。本ページの景観紹介は、現在の渡航推奨を意味しない。"
+    },
+    {
+      "topicKey": "wartime-transport-information-changes",
+      "title": "交通や施設の情報を固定して旅程を組まない",
+      "text": "現在は治安情勢や攻撃、運行変更などにより、移動条件が短期間で変わり得る。将来安全状況が変化した場合も、外務省と現地公式情報を改めて確認する必要がある。"
+    },
+    {
+      "topicKey": "heritage-conservation-current-status",
+      "title": "文化遺産も、現在の保全状況を確認する",
+      "text": "UNESCOは2026年にもキーウ、リヴィウ、オデーサの世界遺産について保全状況を審議している。歴史的価値と現在の状態を分け、最新の公式情報で確認したい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "poland",
+      "nameEn": "POLAND",
+      "nameJa": "ポーランド",
+      "flag": "🇵🇱",
+      "reason": "カルパチアと中東欧の歴史都市という二つの軸を、さらに西側の地域まで比較したいなら。"
+    },
+    {
+      "slug": "romania",
+      "nameEn": "ROMANIA",
+      "nameJa": "ルーマニア",
+      "flag": "🇷🇴",
+      "reason": "カルパチア山脈とブコヴィナの文化圏を、国境の反対側から見比べたいなら。"
+    },
+    {
+      "slug": "moldova",
+      "nameEn": "MOLDOVA",
+      "nameJa": "モルドバ",
+      "flag": "🇲🇩",
+      "reason": "ドニステル流域と東欧南東部の文化・農村景観へ関心を広げたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-08",
+  "sourcesVerifiedAt": "2026-09-08",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2025-11",
+    "japanArea": "2026-04-01",
+    "safety": "2026-01-19",
+    "heritageStatus": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/UKR.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; internationally recognized territory of Ukraine; JOURNEY ATLAS map-v3.",
+    "population": "UNData, Ukraine general information: population 38,980,000 (2025).",
+    "area": "UNData, Ukraine general information: surface area 603,500 km².",
+    "japanArea": "Geospatial Information Authority of Japan, national land area as of 1 April 2026: 377,974.87 km²; used for Ukraine ≈ 1.6× Japan.",
+    "language": "Constitution of Ukraine, Article 10: Ukrainian is the state language.",
+    "religion": "Razumkov Centre, November 2025 survey: Orthodox self-identification 58.3%, the largest single confessional category in surveyed government-controlled, non-hostility areas.",
+    "currency": "UNData, Ukraine general information: Hryvnia (UAH).",
+    "unesco": "UNESCO World Heritage Centre, Ukraine State Party page: 8 inscribed properties, including Kyiv, Lviv, Chernivtsi, Odesa and the transnational beech forests.",
+    "heritageStatus": "UNESCO World Heritage Centre documents: 2026 state-of-conservation decisions for Kyiv, Lviv and Odesa.",
+    "hoverla": "Carpathian National Nature Park, Hoverla Mount: 2,061 m and highest point of Ukraine.",
+    "blackSoil": "UkraineInvest, Agricultural Sector of Ukraine: black soil 34.2 million ha / 57% of Ukraine territory.",
+    "pysanka": "UNESCO Intangible Cultural Heritage, Pysanka, Ukrainian tradition and art of decorating eggs; inscribed 2024.",
+    "petrykivka": "UNESCO Intangible Cultural Heritage, Petrykivka decorative painting; inscribed 2013.",
+    "kosiv": "UNESCO Intangible Cultural Heritage, tradition of Kosiv painted ceramics; inscribed 2019.",
+    "kobza": "UNESCO Intangible Cultural Heritage, safeguarding programme for kobza and wheel lyre tradition; selected 2024.",
+    "borscht": "UNESCO Intangible Cultural Heritage, culture of Ukrainian borscht cooking; inscribed 2022 on the Urgent Safeguarding List.",
+    "lviv": "UNESCO World Heritage Centre, L'viv – the Ensemble of the Historic Centre.",
+    "chernivtsi": "UNESCO World Heritage Centre, Residence of Bukovinian and Dalmatian Metropolitans.",
+    "odesa": "UNESCO World Heritage Centre, The Historic Centre of Odesa.",
+    "kyiv": "UNESCO World Heritage Centre, Kyiv: Saint-Sophia Cathedral and Related Monastic Buildings, Kyiv-Pechersk Lavra.",
+    "svityaz": "Shatsk Lakes / Lake Svityaz public geographic references; WGS84 location cross-checked for map placement.",
+    "bakota": "Bakota Bay / Dniester Canyon public geographic references; WGS84 scenic viewpoint cross-checked for map placement.",
+    "klevan": "Discover Ukraine, Tunnel of Love near Klevan: railway green corridor formed by vegetation and train passage; location cross-checked.",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website, Ukraine risk information, updated 2026-01-19: Level 4 nationwide.",
+    "transport": "Current Ukraine page intentionally omits fixed tourist timetables and route recommendations while Japan MOFA Level 4 remains in force.",
+    "hero": "Kamianets-Podilskyi Castle / Smotrych Canyon; cultural landscape listed on Ukraine's UNESCO Tentative List; WGS84 location cross-checked.",
+    "encounters": "Encounter set derived from the approved eight-scene geographic coverage and visitor-facing cultural/natural references.",
+    "tasteGeneral": "UNESCO borscht heritage reference plus Ukrainian regional food references; dish set selected to show household and Carpathian variation."
+  },
+  "nextRoutes": []
+}
