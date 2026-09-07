@@ -529,7 +529,7 @@
     "forestCover": "2024",
     "oldVine": "2025",
     "tolls": "2026",
-    "crossBorder": "2026-09-07"
+    "featuredJourney": "2026-09-07"
   },
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection SVN.geojson, blob dcbe8e7bc5fba992ad998c111f5a4e1599aea2d1; WGS84.",
@@ -572,85 +572,46 @@
     "travelScale": "Slovenian Tourist Board current transport guidance used to construct realistic route examples.",
     "kozolec": "Slovenian Tourist Board: kozolec hayracks are distinctive Slovenian wooden farm structures used for drying hay and other produce.",
     "beehivePanels": "Slovenian Tourist Board: painted beehive panels are a characteristic feature of Slovenian beekeeping and an expression of folk art.",
-    "crossBorderItaly": "Slovenian Railways current international route guidance for Ljubljana–Trieste–Udine; Ljubljana Bus Station current Ljubljana–Trieste and Ljubljana–Udine listings, checked 2026-09-07.",
-    "crossBorderAustria": "Slovenian Railways current international route guidance for Ljubljana–Villach and Ljubljana–Graz via Jesenice / Maribor–Spielfeld; Ljubljana Bus Station current Ljubljana–Graz listings, checked 2026-09-07.",
-    "crossBorderCroatia": "Slovenian Railways current Ljubljana–Zagreb international route via Dobova; Ljubljana Bus Station current Ljubljana–Zagreb listings, checked 2026-09-07.",
-    "crossBorderHungary": "Slovenian Railways current Ljubljana–Budapest international route via Hodoš; Ljubljana Bus Station current Ljubljana–Budapest listings, checked 2026-09-07.",
-    "crossBorder": "Slovenian Railways and Ljubljana Bus Station current international route guidance/listings for representative Slovenia connections to Italy, Austria, Croatia and Hungary; checked 2026-09-07. Route details are editorially reduced to major travel corridors and transport modes, not timetables."
+    "featuredJourney": "JOURNEY ATLAS approved Slovenia/Croatia scene data used for the scenery connection; Government of Slovenia, 11 June 2026, lifting temporary internal border checks with Croatia/Hungary while retaining random police checks; European Union country profile for Croatia confirming Schengen membership since 1 January 2023 and euro-area membership since 1 January 2023."
   },
-  "crossBorder": {
-    "kicker": "CROSS-BORDER",
-    "title": "国境の先へ",
-    "intro": "スロベニアから陸路で旅を続けやすい隣国と、その先で旅行者が向かいやすい代表的な都市・地域。",
-    "countries": [
+  "featuredJourney": {
+    "kicker": "FEATURED JOURNEY",
+    "slug": "croatia",
+    "nameEn": "CROATIA",
+    "nameJa": "クロアチア",
+    "flag": "🇭🇷",
+    "title": "カルストとアドリア海を南へ、もう一つの港町へ",
+    "paragraphs": [
+      "シュコツィアンでレカ川が地下へ消え、ピランで石灰岩の大地がアドリア海に触れる。そのまま南へ進むと、国境の向こうでもカルストは続き、クロアチアのイストリア半島へつながっていく。国境線では切れない地形の連続を、二つの国で追える周遊になる。",
+      "ピランとロヴィニは、赤橙色の屋根が海へ張り出す小さな旧市街という共通点を持ちながら、町の密度や海岸の表情は少し違う。さらに内陸のプリトヴィツェへ進めば、スロベニアで地下へ潜ったカルストの水が、今度は地上の湖と滝として現れる。同じ石灰岩地形が別の景色をつくる違いが、この二か国を続けて旅する理由になる。"
+    ],
+    "images": [
       {
-        "nameEn": "ITALY",
-        "nameJa": "イタリア",
-        "destinations": [
-          "Trieste",
-          "Udine",
-          "Gorizia"
-        ],
-        "gateways": [
-          "Sežana",
-          "Nova Gorica"
-        ],
-        "modes": [
-          "鉄道",
-          "バス",
-          "車"
-        ]
+        "src": "assets/images/croatia/approved/rovinj.png",
+        "alt": "クロアチア・ロヴィニ旧市街"
       },
       {
-        "nameEn": "AUSTRIA",
-        "nameJa": "オーストリア",
-        "destinations": [
-          "Villach",
-          "Graz"
-        ],
-        "gateways": [
-          "Jesenice",
-          "Maribor"
-        ],
-        "modes": [
-          "鉄道",
-          "バス",
-          "車"
-        ]
-      },
-      {
-        "nameEn": "CROATIA",
-        "nameJa": "クロアチア",
-        "destinations": [
-          "Zagreb",
-          "Istria方面"
-        ],
-        "gateways": [
-          "南東部",
-          "南西部"
-        ],
-        "modes": [
-          "鉄道",
-          "バス",
-          "車"
-        ]
-      },
-      {
-        "nameEn": "HUNGARY",
-        "nameJa": "ハンガリー",
-        "destinations": [
-          "Budapest"
-        ],
-        "gateways": [
-          "Murska Sobota / Hodoš方面"
-        ],
-        "modes": [
-          "鉄道",
-          "バス",
-          "車"
-        ]
+        "src": "assets/images/croatia/approved/plitvice-lakes.png",
+        "alt": "クロアチア・プリトヴィツェ湖群"
       }
     ],
-    "note": "このほかにも越境ルートがあります。鉄道・バスの運行や国境通過条件は変わるため、旅行時は最新の公式情報をご確認ください。"
+    "route": {
+      "label": "旅のつなぎ方",
+      "value": "Ljubljana → Škocjan Caves → Piran → Rovinj → Plitvice Lakes"
+    },
+    "practical": [
+      {
+        "label": "主な移動",
+        "value": "車 / バス"
+      },
+      {
+        "label": "国境",
+        "value": "両国ともシェンゲン圏。通常の定常的な国境検査はないが、ランダムな警察チェックはあり得る。"
+      },
+      {
+        "label": "通貨",
+        "value": "どちらもユーロ"
+      }
+    ]
   }
 }
