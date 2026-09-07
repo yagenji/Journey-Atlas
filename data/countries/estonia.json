@@ -408,30 +408,31 @@
       "nameEn": "FINLAND",
       "nameJa": "フィンランド",
       "flag": "🇫🇮",
-      "reason": "フェリーで海を越え、森と湿地の風景をより北へつなげたいなら。"
+      "reason": "森、湿地、木造の町、サウナなど静かな北の暮らしに惹かれたなら。"
     },
     {
       "slug": "sweden",
       "nameEn": "SWEDEN",
       "nameJa": "スウェーデン",
       "flag": "🇸🇪",
-      "reason": "バルト海の島と中世都市のつながりを、より大きな国土で見たいなら。"
+      "reason": "バルト海の島々と歴史都市を、より大きな国土で楽しみたいなら。"
     },
     {
       "slug": "latvia",
       "nameEn": "LATVIA",
       "nameJa": "ラトビア",
       "flag": "🇱🇻",
-      "reason": "陸路でバルト地域を南へ進み、海岸・森・都市の連続性を見たいなら。"
+      "reason": "湿原、森、中世都市、バルト海岸の組み合わせをもっと見たいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-03",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2026-01-01",
     "religion": "2021",
     "forest": "2025",
-    "digital": "2024"
+    "digital": "2024",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "geoBoundaries gbOpen EST ADM1 dissolved, build Dec 12 2023, source OpenStreetMap/Wambacher, ODbL 1.0; illustrated treatment: JOURNEY ATLAS",
@@ -466,7 +467,8 @@
     "marzipan": "Visit Estonia: Maiasmokk Marzipan Room / marzipan workshops — visitors can see hand-painted figures, buy them, and make or decorate marzipan.",
     "kihnu": "Visit Estonia: Kihnu Island — striped skirts, handicrafts, songs, music and dance remain part of everyday island life and UNESCO-listed cultural space.",
     "setoLeelo": "Visit Estonia: Setomaa — the polyphonic leelo singing style is UNESCO-listed and can be heard at local cultural events; traditional costume experiences are available at Obinitsa Museum.",
-    "estonianFood": "Visit Estonia, Five classic foods to try in Estonia, updated 2026-02-06: Kiluvõileib, Mulgipuder, Kama desserts, and Black bread."
+    "estonianFood": "Visit Estonia, Five classic foods to try in Estonia, updated 2026-02-06: Kiluvõileib, Mulgipuder, Kama desserts, and Black bread.",
+    "nextRoutes": "Tallink Helsinki/Stockholm ferry routes and Elron/Vivi international connections toward Riga, checked 2026-09-07."
   },
   "contentQaVersion": 1,
   "travelScale": {
@@ -532,5 +534,28 @@
         "imageState": "APPROVED"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇫🇮",
+      "countryEn": "FINLAND",
+      "countryJa": "フィンランド",
+      "path": "Tallinn → Helsinki",
+      "description": "バルト海を渡る、エストニアから最も自然な周遊の一つ。タリンの中世旧市街からヘルシンキの海辺の近代都市へ、短い海路で街の表情が変わる。"
+    },
+    {
+      "flag": "🇱🇻",
+      "countryEn": "LATVIA",
+      "countryJa": "ラトビア",
+      "path": "Tallinn → Riga",
+      "description": "バルト三国を南北につなぐ代表ルート。中世のタリンからリガへ進むと、木造建築やアール・ヌーヴォーが加わり都市景観の違いが見えてくる。"
+    },
+    {
+      "flag": "🇸🇪",
+      "countryEn": "SWEDEN",
+      "countryJa": "スウェーデン",
+      "path": "Tallinn → Stockholm",
+      "description": "バルト海を夜行フェリーで越える代表的な海路。中世都市タリンから、群島の中に広がるストックホルムへ海そのものが旅の一部になる。"
+    }
+  ]
 }

@@ -368,6 +368,14 @@ return {
   h1: (heroTitle?.innerText || '').trim(),
   countryJa: (document.querySelector('.country-ja')?.innerText || '').trim(),
   counts,
+  nextRouteCount: document.querySelectorAll('#next-routes-grid > article').length,
+  nextRoutesVisible: visible(document.querySelector('#next-routes-section')),
+  sectionTops: {
+    guidance: document.querySelector('.travel-guidance')?.getBoundingClientRect().top ?? null,
+    planning: document.querySelector('.travel-planning')?.getBoundingClientRect().top ?? null,
+    routes: document.querySelector('#next-routes-section')?.getBoundingClientRect().top ?? null,
+    footer: document.querySelector('.journey-footer')?.getBoundingClientRect().top ?? null,
+  },
   criticalVisible,
   duplicateIds,
   badAriaLabels,
@@ -550,6 +558,32 @@ def main() -> int:
                             f"Japanese country subtitle mismatch: expected {name_ja!r}, "
                             f"got {audit.get('countryJa')!r}"
                         )
+
+                    country_data = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+                    expected_routes = len(country_data.get("nextRoutes") or [])
+                    if audit.get("nextRouteCount") != expected_routes:
+                        errors.append(
+                            f"nextRoutes count mismatch: expected {expected_routes}, "
+                            f"got {audit.get('nextRouteCount')}"
+                        )
+                    if bool(audit.get("nextRoutesVisible")) != bool(expected_routes):
+                        errors.append(
+                            f"NEXT ROUTES visibility mismatch: expected visible={bool(expected_routes)}, "
+                            f"got {audit.get('nextRoutesVisible')}"
+                        )
+                    tops = audit.get("sectionTops") or {}
+                    guidance_top = tops.get("guidance")
+                    planning_top = tops.get("planning")
+                    footer_top = tops.get("footer")
+                    routes_top = tops.get("routes")
+                    if None not in (guidance_top, planning_top) and not guidance_top < planning_top:
+                        errors.append("section order mismatch: travel guidance must precede travel planning")
+                    if expected_routes and None not in (planning_top, routes_top, footer_top):
+                        if not (planning_top < routes_top < footer_top):
+                            errors.append("section order mismatch: planning -> NEXT ROUTES -> NEXT DESTINATIONS")
+                    elif not expected_routes and None not in (planning_top, footer_top):
+                        if not planning_top < footer_top:
+                            errors.append("section order mismatch: travel planning must precede NEXT DESTINATIONS")
 
                     row = {
                         "slug": slug,

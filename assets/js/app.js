@@ -109,6 +109,7 @@ function renderCountry(data, registry) {
   renderFacts(fragment, data.facts);
   renderTips(fragment, data.tips);
   renderTravelScale(fragment, data.travelScale);
+  renderNextRoutes(fragment, data.nextRoutes);
   renderRelated(fragment, data.relatedCountries, registry);
   renderPhotoCredits(fragment, data.photoCredits);
 
@@ -572,6 +573,31 @@ function renderTips(fragment, tips = []) {
     const article = document.createElement('article');
     article.innerHTML = `${iconSvg(iconName(tip, 'note'))}<div><h3>${escapeHtml(tip.title)}</h3><p>${escapeHtml(tip.text)}</p></div>`;
     container.append(article);
+  });
+}
+
+function renderNextRoutes(fragment, routes = []) {
+  const section = fragment.querySelector('#next-routes-section');
+  const grid = fragment.querySelector('#next-routes-grid');
+  const items = Array.isArray(routes) ? routes.slice(0, 3) : [];
+  if (!section || !grid || !items.length) return;
+
+  section.hidden = false;
+  items.forEach((route) => {
+    const article = document.createElement('article');
+    article.className = 'next-route-card';
+    article.innerHTML = `
+      <div class="next-route-card__country">
+        <span class="next-route-card__flag" aria-hidden="true">${escapeHtml(route.flag || '')}</span>
+        <div>
+          <strong>${escapeHtml(route.countryEn || '')}</strong>
+          <small>${escapeHtml(route.countryJa || '')}</small>
+        </div>
+      </div>
+      <p class="next-route-card__path">${escapeHtml(route.path || '')}</p>
+      <p class="next-route-card__description">${escapeHtml(route.description || '')}</p>
+    `;
+    grid.append(article);
   });
 }
 

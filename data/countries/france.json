@@ -454,27 +454,28 @@
       "nameEn": "ITALY",
       "nameJa": "イタリア",
       "flag": "🇮🇹",
-      "reason": "アルプス、地中海、歴史都市、地域ごとの食文化を、国境の向こうでさらに比較したいなら。"
+      "reason": "アルプス、地中海、歴史都市、地域ごとの食文化が好きなら。"
     },
     {
       "slug": "spain",
       "nameEn": "SPAIN",
       "nameJa": "スペイン",
       "flag": "🇪🇸",
-      "reason": "大西洋と地中海、山地、都市文化の組み合わせを、イベリア半島まで南西へ広げたいなら。"
+      "reason": "大西洋と地中海、山地、都市文化の多様さに惹かれたなら。"
     },
     {
       "slug": "switzerland",
       "nameEn": "SWITZERLAND",
       "nameJa": "スイス",
       "flag": "🇨🇭",
-      "reason": "フランス・アルプスから国境を越え、高山景観と鉄道旅行をより密度高くつなげたいなら。"
+      "reason": "アルプスと鉄道旅行を、より凝縮された国土で楽しみたいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
-    "population": "2026-01-01"
+    "population": "2026-01-01",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "Natural Earth 1:10m Cultural Vectors, country boundary extracted via CountryGeoJSONCollection; public-domain source data; WGS84; metropolitan France and Corsica only; illustrated treatment: JOURNEY ATLAS",
@@ -510,7 +511,8 @@
     "bouillabaisse": "France.fr / Marseille destination guidance: bouillabaisse is a Marseille fish dish rooted in Mediterranean port culture.",
     "galetteComplete": "France.fr / Brittany gastronomy guidance: Breton buckwheat galettes are a regional staple; galette complète commonly combines egg, ham and cheese.",
     "quicheLorraine": "France.fr / Lorraine gastronomy guidance: Quiche Lorraine is a Lorraine savoury tart based on pastry, eggs, cream and smoked pork/lardons.",
-    "tgvReservation": "SNCF Connect: TGV INOUI and certain INTERCITÉS services use reservation-based ticketing and sales windows; book fixed long-distance segments before local connections."
+    "tgvReservation": "SNCF Connect: TGV INOUI and certain INTERCITÉS services use reservation-based ticketing and sales windows; book fixed long-distance segments before local connections.",
+    "nextRoutes": "Eurostar and SNCF/Renfe international timetable information for London, Brussels/Amsterdam and Barcelona, checked 2026-09-07."
   },
   "taste": {
     "kicker": "TASTE OF FRANCE",
@@ -575,5 +577,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇬🇧",
+      "countryEn": "UNITED KINGDOM",
+      "countryJa": "イギリス",
+      "path": "Paris → London",
+      "description": "パリとロンドンを結ぶ西ヨーロッパの代表ルート。大陸の街路と石造建築から、テムズ川沿いの英国の大都市景観へ短時間で切り替わる。"
+    },
+    {
+      "flag": "🇧🇪",
+      "countryEn": "BELGIUM",
+      "countryJa": "ベルギー",
+      "path": "Paris → Brussels → Amsterdam",
+      "description": "パリから低地諸国へ進む定番の都市周遊。フランスの大都市からブリュッセルの広場、アムステルダムの運河へ街の密度と水辺の表情が変わる。"
+    },
+    {
+      "flag": "🇪🇸",
+      "countryEn": "SPAIN",
+      "countryJa": "スペイン",
+      "path": "Paris → Barcelona",
+      "description": "フランスからイベリア半島へ入る代表的な高速鉄道ルート。北側の都市景観から地中海性の明るい街並みへ、気候と建築の変化が分かりやすい。"
+    }
+  ]
 }

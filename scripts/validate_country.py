@@ -534,6 +534,22 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         if len(encounters) != 8:
             fail(errors, f"{path.name}: encounters はレイアウト仕様上8件必要です")
 
+        next_routes = data.get("nextRoutes", [])
+        if next_routes is None:
+            next_routes = []
+        if not isinstance(next_routes, list):
+            fail(errors, f"{path.name}: nextRoutes は配列で指定してください")
+            next_routes = []
+        if len(next_routes) > 3:
+            fail(errors, f"{path.name}: nextRoutes は0〜3件ですが {len(next_routes)} 件です")
+        for index, route in enumerate(next_routes, 1):
+            if not isinstance(route, dict):
+                fail(errors, f"{path.name}: nextRoutes {index} がobjectではありません")
+                continue
+            for key in ("flag", "countryEn", "countryJa", "path", "description"):
+                if not isinstance(route.get(key), str) or not route.get(key, "").strip():
+                    fail(errors, f"{path.name}: nextRoutes {index} に {key} がありません")
+
         signature = data.get("signatureFacts") if isinstance(data.get("signatureFacts"), list) else []
         if len(signature) != 3:
             fail(errors, f"{path.name}: signatureFacts は3件必要です")

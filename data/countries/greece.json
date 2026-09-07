@@ -425,32 +425,33 @@
       "nameEn": "ALBANIA",
       "nameJa": "アルバニア",
       "flag": "🇦🇱",
-      "reason": "北西部の山地から国境を越え、バルカンの石造集落や湖、歴史の連続をさらに追いたいなら。"
+      "reason": "山、湖、石造の町と地中海が近くにある旅が好きなら。"
     },
     {
       "slug": "italy",
       "nameEn": "ITALY",
       "nameJa": "イタリア",
       "flag": "🇮🇹",
-      "reason": "地中海の古代都市、港、地域料理が、海の反対側でどのように別の形をとったか見比べたいなら。"
+      "reason": "古代都市、港、地域料理を別の地中海文化で楽しみたいなら。"
     },
     {
       "slug": "cyprus",
       "nameEn": "CYPRUS",
       "nameJa": "キプロス",
       "flag": "🇨🇾",
-      "reason": "東地中海へ進み、ギリシャ語文化と島の歴史が異なる政治・地理の中でどう続くか見たいなら。"
+      "reason": "ギリシャ語文化と島の歴史を、東地中海の別の環境で見たいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-05",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2025-01-01",
     "shipping": "2026-01",
     "minoanPalatial": "2025",
     "taste": "2026-09-05",
     "openAirCinema": "2026",
-    "railStatus": "2026-09-05"
+    "railStatus": "2026-09-05",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "peterdsp/greece-prefectures-and-units, greecePrefectures.geojson (MIT License; source data filtered from Eurostat). 13 regional MultiPolygons visually dissolved to national outline; extent includes Kastellorizo.",
@@ -490,7 +491,8 @@
     "tasteMoussakaSouvlakiLoukoumades": "Greek National Tourism Organisation (Visit Greece), The Athenian Odyssey: History, Culture and Cuisine: moussaka, souvlaki and loukoumades descriptions.",
     "tasteHoriatiki": "Greek National Tourism Organisation (Visit Greece), A Veggie Adventure Through Greece: Choriatiki ingredients include tomatoes, cucumbers, onions, feta, olives, olive oil and oregano.",
     "openAirCinema": "Greek National Tourism Organisation (Visit Greece), 16th Athens Open Air Film Festival 2026 / Starry Cinema: open-air screenings are a recurring part of Athens and Greece's summer cultural experience.",
-    "taste": "Greek National Tourism Organisation (Visit Greece): The Athenian Odyssey: History, Culture and Cuisine (moussaka, souvlaki, loukoumades) and A Veggie Adventure Through Greece (Choriatiki ingredients). Checked 2026-09-05."
+    "taste": "Greek National Tourism Organisation (Visit Greece): The Athenian Odyssey: History, Culture and Cuisine (moussaka, souvlaki, loukoumades) and A Veggie Adventure Through Greece (Choriatiki ingredients). Checked 2026-09-05.",
+    "nextRoutes": "Superfast Ferries Greece–Italy routes and current international coach corridors from Thessaloniki toward Sofia and Skopje, checked 2026-09-07."
   },
   "taste": {
     "kicker": "TASTE OF GREECE",
@@ -555,5 +557,28 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇮🇹",
+      "countryEn": "ITALY",
+      "countryJa": "イタリア",
+      "path": "Patras / Igoumenitsa → Bari / Ancona",
+      "description": "ギリシャ西岸からアドリア海を渡る代表的なフェリー周遊。島と山の景観を離れ、船上泊を挟んでイタリアの港町と歴史都市へ旅が続く。"
+    },
+    {
+      "flag": "🇧🇬",
+      "countryEn": "BULGARIA",
+      "countryJa": "ブルガリア",
+      "path": "Thessaloniki → Sofia",
+      "description": "ギリシャ北部からバルカン内陸へ入る代表的な陸路。地中海性の都市から山地を越え、ソフィアの大陸的な街並みへ景観が変わる。"
+    },
+    {
+      "flag": "🇲🇰",
+      "countryEn": "NORTH MACEDONIA",
+      "countryJa": "北マケドニア",
+      "path": "Thessaloniki → Skopje",
+      "description": "テッサロニキからヴァルダル川流域を北へ進む定番ルート。地中海の港町から、山に囲まれたスコピエのバルカン内陸都市へつながる。"
+    }
+  ]
 }

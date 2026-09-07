@@ -449,25 +449,25 @@
       "nameEn": "FRANCE",
       "nameJa": "フランス",
       "flag": "🇫🇷",
-      "reason": "モナコを囲むコート・ダジュールへ広げ、同じ地中海沿岸で都市と海岸のスケールを比べたいなら。"
+      "reason": "地中海沿岸の都市と海岸景観、庭園やリゾート文化が好きなら。"
     },
     {
       "slug": "italy",
       "nameEn": "ITALY",
       "nameJa": "イタリア",
       "flag": "🇮🇹",
-      "reason": "東へ進み、リグーリアの港町と食文化の連続性を国境の向こうまでたどりたいなら。"
+      "reason": "港町、海岸、歴史ある街並みと食文化に惹かれたなら。"
     },
     {
       "slug": "sanmarino",
       "nameEn": "SAN MARINO",
       "nameJa": "サンマリノ",
       "flag": "🇸🇲",
-      "reason": "同じヨーロッパの小国でも、海沿いの高密度都市とは異なる丘上の共和国を比べたいなら。"
+      "reason": "ヨーロッパの小国そのものに興味を持ち、丘上の共和国も見てみたいなら。"
     }
   ],
   "updatedAt": "2026-09-07",
-  "sourcesVerifiedAt": "2026-09-04",
+  "sourcesVerifiedAt": "2026-09-07",
   "sourceDates": {
     "population": "2025",
     "area": "2026",
@@ -480,7 +480,8 @@
     "transport": "2026-09-04",
     "palladienne": "2026-09-04",
     "condamineMarket": "2026",
-    "helicopterRoute": "2026-08-07"
+    "helicopterRoute": "2026-08-07",
+    "nextRoutes": "2026-09-07"
   },
   "sources": {
     "map": "OpenStreetMap relation 36990 (Monaco land_area), WGS84; 2 outer rings / 866 points; retrieved 2026-09-01 from the OSM API. Geodesic area 2.083473 km², within 0.025% of IMSEE official 2.084 km²; includes the current post-Mareterra land outline.",
@@ -510,7 +511,8 @@
     "transport": "Compagnie des Autobus de Monaco current network, SNCF Connect Monaco–Monte-Carlo TER service, and VisitMonaco mobility guidance for public lifts, escalators and pedestrian links.",
     "palladienne": "VisitMonaco cultural heritage material on La Palladienne de Monaco and traditional Monegasque music/dance.",
     "condamineMarket": "VisitMonaco 2026 visitor information: La Condamine market is under renovation with temporary closure from January 2026 and reopening scheduled for early 2027.",
-    "helicopterRoute": "Journal de Monaco, Arrêté Ministériel n° 2026-457 of 7 August 2026, and current Monacair service information for authorised regular Nice–Monaco helicopter service."
+    "helicopterRoute": "Journal de Monaco, Arrêté Ministériel n° 2026-457 of 7 August 2026, and current Monacair service information for authorised regular Nice–Monaco helicopter service.",
+    "nextRoutes": "SNCF TER Sud current Monaco connections toward Nice/Cannes and Ventimiglia, with onward Ligurian rail connections, checked 2026-09-07."
   },
   "taste": {
     "kicker": "TASTE OF MONACO",
@@ -575,5 +577,21 @@
         "icon": "compass"
       }
     ]
-  }
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "Monaco → Nice → Cannes",
+      "description": "モナコからコート・ダジュールを巡る最も自然な周遊。高密度な都市国家からニース、カンヌへ進み、地中海沿岸の街と海岸景観を連続して楽しめる。"
+    },
+    {
+      "flag": "🇮🇹",
+      "countryEn": "ITALY",
+      "countryJa": "イタリア",
+      "path": "Monaco → Ventimiglia → Genoa",
+      "description": "リグーリア海岸を東へ進む代表ルート。モナコのマリーナから国境を越え、イタリアの海辺の町と港湾都市ジェノヴァへ街並みが変わっていく。"
+    }
+  ]
 }

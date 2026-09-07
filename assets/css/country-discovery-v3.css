@@ -559,3 +559,93 @@
 }
 
 
+
+
+/* NEXT ROUTES — compact optional continuation layer. */
+.next-routes-section{
+  margin-top:12px;
+  padding:20px 22px 22px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--paper-soft);
+}
+.next-routes-section[hidden]{display:none!important;}
+.next-routes__head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:12px;
+}
+.next-routes__head h2{
+  margin:0;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:20px;
+  line-height:1.42;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.next-routes__head>p{
+  max-width:430px;
+  margin:0;
+  color:#66717a;
+  font-size:10.5px;
+  line-height:1.65;
+}
+.next-routes__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.next-route-card{
+  min-width:0;
+  padding:14px 15px 15px;
+  border:1px solid rgba(18,54,92,.11);
+  border-radius:10px;
+  background:rgba(255,255,255,.24);
+}
+.next-route-card__country{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.next-route-card__flag{font-size:18px;line-height:1;}
+.next-route-card__country strong,
+.next-route-card__country small{display:block;}
+.next-route-card__country strong{
+  color:#12365c;
+  font-family:"Hanken Grotesk","Zen Kaku Gothic New",sans-serif;
+  font-size:10.5px;
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.next-route-card__country small{
+  margin-top:1px;
+  color:#66717a;
+  font-size:9px;
+  line-height:1.35;
+}
+.next-route-card__path{
+  margin:10px 0 0;
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:10px;
+  line-height:1.55;
+  font-weight:500;
+}
+.next-route-card__description{
+  margin:7px 0 0;
+  color:#4d5b65;
+  font-size:10.5px;
+  line-height:1.68;
+}
+@media(max-width:900px){
+  .next-routes__grid{grid-template-columns:1fr;}
+}
+@media(max-width:760px){
+  .next-routes-section{padding:18px 16px 19px;}
+  .next-routes__head{display:block;}
+  .next-routes__head>p{margin-top:6px;}
+}

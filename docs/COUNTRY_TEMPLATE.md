@@ -56,6 +56,7 @@ Each published country JSON uses `schemaVersion: 2` and contains:
 - `facts`
 - `signatureFacts`
 - `tips`
+- optional `nextRoutes`: 0–3 representative cross-border journey routes
 - `relatedCountries`
 - `updatedAt`
 - `sourcesVerifiedAt`
@@ -197,6 +198,29 @@ Not fixed:
 Choose the ranges from the actual travel scale of the country: distribution of places, regional diversity, surface/air/sea transfer burden, islands or mountain access, and whether the proposed itinerary can be travelled without rushing. Country area alone is not sufficient.
 
 Do not inflate a small country to fill the template, and do not compress a large country merely to preserve cross-country numerical uniformity. The three-step **information structure** is shared; the number of days is editorial content.
+
+### Next Routes
+
+`nextRoutes` is optional and contains 0–3 representative cross-border journeys.
+
+- Show it only where a real, mainstream travel continuation exists.
+- Prefer rail, road/coach, bridge or regular ferry travel that feels like one continuous trip.
+- Do not create a route merely because two countries share a border.
+- Do not create a route when flying is effectively the only mainstream continuation.
+- Island countries may still qualify when a regular ferry route is itself a major travel pattern.
+- Each item uses `flag / countryEn / countryJa / path / description`.
+- Keep descriptions editorial: explain what landscapes, cities or cultural settings change along the route.
+- Do not store fares, frequencies, exact journey times or service numbers.
+- Route connectivity is time-sensitive: record `sources.nextRoutes` and `sourceDates.nextRoutes`.
+
+### Next Destinations
+
+`relatedCountries` is a preference recommendation layer: “if you liked this country, what else may you like?”
+
+- Adjacency is not required.
+- Select by landscape, geography, urban character, culture or travel style.
+- Overlap with `nextRoutes` is allowed because the two sections answer different questions.
+- The reason must explain the affinity, not merely describe crossing a border or continuing in a direction.
 
 ### Beyond the Scenery
 
