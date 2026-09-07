@@ -21,7 +21,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit}
-/* Match the global JOURNEY ATLAS header language used on the Top page. */
+
+/* Use the same header dimensions, typography, spacing and nav language as Top. */
 .info-header{
   position:sticky;
   top:0;
@@ -73,22 +74,32 @@ a{color:inherit}
   letter-spacing:.04em;
   white-space:nowrap;
 }
-.info-back{
+.info-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(22px,2.5vw,40px);
+  margin:0;
+  padding:0;
+  font-family:var(--info-jp);
+  font-size:12.5px;
+  line-height:1;
+}
+.info-nav a{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   padding:7px 0;
   color:#12365c;
-  font-family:var(--info-jp);
   font-size:12.5px;
   font-weight:700;
   line-height:1;
-  letter-spacing:0;
   text-decoration:none;
   white-space:nowrap;
 }
-.info-back:hover,
-.info-back:focus-visible{
+.info-nav a:hover,
+.info-nav a:focus-visible,
+.info-nav a[aria-current="page"]{
   color:#092a4b;
   text-decoration:underline;
   text-underline-offset:5px;
@@ -239,12 +250,25 @@ a{color:inherit}
     min-height:70px;
   }
   .info-header__inner{
-    padding-inline:28px;
+    padding-inline:18px;
     gap:18px;
   }
-  .info-brand strong{font-size:23px}
+  .info-brand strong{font-size:clamp(19px,5.8vw,23px)}
   .info-brand small{display:none}
-  .info-back{font-size:12px}
+  .info-nav{
+    gap:14px;
+    font-size:11px;
+  }
+  .info-nav a{
+    display:none;
+    font-size:11px;
+  }
+  .info-nav a[aria-current="page"]{
+    display:inline-flex;
+  }
+  .info-nav a[href="./#countries"]{
+    display:inline-flex;
+  }
   .info-main{
     width:min(100% - 36px,980px);
     padding:42px 0 72px;
@@ -255,6 +279,18 @@ a{color:inherit}
   .faq-item summary{padding:18px 36px 18px 0}
   .faq-answer{padding:0 30px 20px 0}
   .info-contact{padding:18px}
+}
+@media(max-width:480px){
+  .info-header__inner{padding-inline:14px;gap:10px}
+  .info-brand strong{font-size:18px;letter-spacing:.18em}
+  .info-nav{gap:10px}
+  .info-nav a{font-size:10px}
+}
+@media(max-width:340px){
+  .info-header__inner{padding-inline:10px;gap:7px}
+  .info-brand strong{font-size:16px;letter-spacing:.14em}
+  .info-nav{gap:7px}
+  .info-nav a{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
