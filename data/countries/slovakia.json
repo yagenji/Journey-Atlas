@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "slovakia",
+  "nameEn": "SLOVAKIA",
+  "nameJa": "スロバキア",
+  "region": "CENTRAL EUROPE / 48°N",
+  "seo": {
+    "description": "ハイ・タトラスの山岳湖からスロバキア・パラダイスの峡谷、スピシュ城、鉱山都市、木造集落、アラゴナイト洞窟、ドナウ、トカイの葡萄畑、カルパチアの木造教会へ。スロバキアを8つの景色からたどる。"
+  },
+  "capital": {
+    "nameEn": "Bratislava",
+    "nameJa": "ブラチスラヴァ",
+    "coordinates": {
+      "latitude": 48.1458333,
+      "longitude": 17.1072222
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": -2.4,
+      "y": -2
+    }
+  },
+  "hero": {
+    "lead": "切り立ったタトラの峰から、森に隠れた峡谷、地下の洞窟、中世の城、木造の村へ。山の国を東西に進むと、カルパチアの自然と中央ヨーロッパの歴史が短い距離の中で次々に重なっていく。",
+    "image": "assets/images/slovakia/approved/hero-zelene-pleso.webp",
+    "location": "Zelené pleso / High Tatras",
+    "coordinates": {
+      "latitude": 49.1661111,
+      "longitude": 20.2813889
+    },
+    "mapOffset": {
+      "x": -1.4,
+      "y": -2
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 49.75177968400001,
+      "south": 47.60000640900007,
+      "west": 16.69448042800011,
+      "east": 22.689636678000127
+    },
+    "svg": "assets/images/slovakia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/SVK.geojson (blob 58383588275cf27c2e124c26045d101708903357), WGS84; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "sucha-bela-slovak-paradise",
+      "name": "スハー・ベラー / スロバキア・パラダイス",
+      "nameLocal": "Suchá Belá / Slovenský raj",
+      "mapLabel": "Suchá Belá",
+      "description": "石灰岩の狭い峡谷を沢が流れ、滝の脇を金属梯子や足場で登っていく。森の中に隠れた谷へ入るほど、スロバキアの山地を「歩く地形」として体感できる。",
+      "coordinates": {
+        "latitude": 48.9752778,
+        "longitude": 20.4088889
+      },
+      "image": "assets/images/slovakia/approved/sucha-bela-slovak-paradise.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.4,
+        "y": 1.6
+      }
+    },
+    {
+      "id": "spis-castle",
+      "name": "スピシュ城",
+      "nameLocal": "Spišský hrad",
+      "mapLabel": "Spiš Castle",
+      "description": "石灰岩の丘を大きな城壁と塔が占め、周囲の草地と集落を見下ろす。城そのものだけでなく、街道と盆地を監視する高所が選ばれたことまで景観から読み取れる。",
+      "coordinates": {
+        "latitude": 48.9986111,
+        "longitude": 20.7791667
+      },
+      "image": "assets/images/slovakia/approved/spis-castle.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.4,
+        "y": -1.2
+      }
+    },
+    {
+      "id": "banska-stiavnica",
+      "name": "バンスカー・シュティアヴニツァ",
+      "nameLocal": "Banská Štiavnica",
+      "mapLabel": "Banská Štiavnica",
+      "description": "山に囲まれた斜面へ教会塔と赤い屋根が重なり、その周囲に鉱山の痕跡が残る。金銀採掘によって都市と周辺景観が一体で形づくられたことが見える。",
+      "coordinates": {
+        "latitude": 48.4586111,
+        "longitude": 18.8930556
+      },
+      "image": "assets/images/slovakia/approved/banska-stiavnica.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "vlkolinec",
+      "name": "ヴルコリニェツ",
+      "nameLocal": "Vlkolínec",
+      "mapLabel": "Vlkolínec",
+      "description": "山の斜面に木造の家々が道沿いに並び、その背後へ畑と牧草地が続く。都市の歴史とは別に、カルパチアの山村で家と農地がどう結びついてきたかを残す集落。",
+      "coordinates": {
+        "latitude": 49.0388889,
+        "longitude": 19.2780556
+      },
+      "image": "assets/images/slovakia/approved/vlkolinec.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "ochtina-aragonite-cave",
+      "name": "オフチナ・アラゴナイト洞窟",
+      "nameLocal": "Ochtinská aragonitová jaskyňa",
+      "mapLabel": "Ochtiná Cave",
+      "description": "暗い岩壁から白いアラゴナイト結晶が枝や針のように広がる。鍾乳石とは異なる鉱物の成長が洞窟の表情をつくり、地下にもスロバキアの地質の多様さが続いている。",
+      "coordinates": {
+        "latitude": 48.6680556,
+        "longitude": 20.3088889
+      },
+      "image": "assets/images/slovakia/approved/ochtina-aragonite-cave.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "bratislava-danube",
+      "name": "ブラチスラヴァ城 / ドナウ川",
+      "nameLocal": "Bratislavský hrad / Dunaj",
+      "mapLabel": "Bratislava",
+      "description": "ドナウ川の上に白い城が立ち、丘の下へ旧市街が広がる。山岳地域とは違う大河の都市景観から、スロバキアがウィーンやブダペストへ続く中央ヨーロッパの軸上にあることが分かる。",
+      "coordinates": {
+        "latitude": 48.1422222,
+        "longitude": 17.1
+      },
+      "image": "assets/images/slovakia/approved/bratislava-danube.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 2.4,
+        "y": 2
+      }
+    },
+    {
+      "id": "tokaj-mala-trna",
+      "name": "マーラ・トルニャ / トカイ",
+      "nameLocal": "Malá Tŕňa / Tokaj",
+      "mapLabel": "Tokaj",
+      "description": "南東部の丘陵に葡萄畑が連なり、その間に小さな村とワインセラーが点在する。高山や森林だけではない、火山性の土壌と農業がつくる穏やかな東部の景観。",
+      "coordinates": {
+        "latitude": 48.455,
+        "longitude": 21.6797222
+      },
+      "image": "assets/images/slovakia/approved/tokaj-mala-trna.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "bodruzal-wooden-church",
+      "name": "聖ニコラス教会 / ボドルジャル",
+      "nameLocal": "Chrám svätého Mikuláša / Bodružal",
+      "mapLabel": "Bodružal",
+      "description": "森と草地の中に、木板で覆われた三つの塔をもつ教会が立つ。北東部カルパチアでは木という地域の素材と宗教建築が結びつき、村の輪郭をつくってきた。",
+      "coordinates": {
+        "latitude": 49.3525,
+        "longitude": 21.7077778
+      },
+      "image": "assets/images/slovakia/approved/bodruzal-wooden-church.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "山岳湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "岩の峡谷",
+      "icon": "landscape"
+    },
+    {
+      "title": "城",
+      "icon": "landmark"
+    },
+    {
+      "title": "歴史的な街並み",
+      "icon": "city"
+    },
+    {
+      "title": "木造集落",
+      "icon": "city"
+    },
+    {
+      "title": "洞窟",
+      "icon": "landscape"
+    },
+    {
+      "title": "葡萄畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "木造教会",
+      "icon": "landmark"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "fujara-shepherd-flute",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "山の羊飼い文化から、2m近い笛が生まれた",
+      "text": "フヤラは中央スロバキアの羊飼い文化から発達した長い倍音笛。山の放牧地で生まれた音楽が、現在ではスロバキアを象徴する伝統の一つとして受け継がれている。",
+      "points": [
+        "羊飼い文化と結びついた大型の木管楽器",
+        "フヤラとその音楽はユネスコ無形文化遺産に登録"
+      ]
+    },
+    {
+      "topicKey": "mountain-sheep-farming-bryndza",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "山の草地は、羊乳チーズの食文化までつながっている",
+      "text": "中央・北部では春から秋に羊を山の放牧地で飼う暮らしが発達した。羊乳からつくるbryndzaや燻製チーズは、この山岳牧畜の延長にある食文化として現在も残る。",
+      "points": [
+        "15世紀以降に山岳羊飼い文化が広がった",
+        "bryndzaやžinčicaなど羊乳由来の食品が定着した"
+      ]
+    },
+    {
+      "topicKey": "banska-stiavnica-mining-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "鉱山都市は、街だけでなく周囲の山まで産業景観に変えた",
+      "text": "バンスカー・シュティアヴニツァでは金銀採掘を軸に、中世以降の町と鉱山・冶金施設が一体で発展した。旧市街を歩いた後に周辺へ出ると、鉱業が都市の外側まで形づくったことが見えてくる。",
+      "points": [
+        "中世から続く重要な鉱山都市",
+        "都市と周辺の技術遺産が一体で世界遺産を構成する"
+      ]
+    },
+    {
+      "topicKey": "carpathian-wooden-church-faiths",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "木造教会を見ると、小さな地域に複数の信仰が重なっていたことが分かる",
+      "text": "カルパチアの木造教会群にはローマ・カトリック、プロテスタント、東方典礼系の教会が含まれる。同じ木を主材料にしながら、平面や塔、内部空間に宗派ごとの違いが表れる。",
+      "points": [
+        "16〜18世紀に建てられた木造教会群",
+        "異なる宗派の建築が近い地域に共存する"
+      ]
+    },
+    {
+      "topicKey": "cicmany-painted-houses",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "木の家の外壁に、白い幾何学模様を描く村がある",
+      "text": "チチュマニでは濃い木壁に白い幾何学模様を描いた家々が並ぶ。衣服の刺繍を思わせる文様が建築の表面へ広がり、民俗文化を村の景観として見ることができる。",
+      "points": [
+        "白い幾何学模様が木造家屋の外壁に描かれる",
+        "村は民俗建築の保護地区として知られる"
+      ]
+    },
+    {
+      "topicKey": "tatra-high-mountain-porters",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "タトラの山小屋には、今も人の背中で荷物が運ばれる",
+      "text": "道路が届かないタトラの山小屋では、高山ポーターが食料や資材を背負って登る文化が残る。登山道を歩くと、山小屋が観光施設ではなく人の労働で維持されていることに気づく。",
+      "points": [
+        "高山ポーターの職業文化は17世紀までさかのぼる",
+        "現在も一部の山小屋への物資輸送を担う"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "sucha-bela-one-way-ladders",
+      "categoryEn": "HIKING",
+      "categoryJa": "山歩き",
+      "title": "スハー・ベラーでは、沢を上流へたどる一方通行区間がある",
+      "text": "滝の横に固定された梯子や足場を使って峡谷を上るルート。入口で通常の森歩きの感覚のまま入らず、進行方向と装備を確認してから歩くと地形の面白さを楽しみやすい。",
+      "icon": "landscape",
+      "sourceKey": "suchaBela"
+    },
+    {
+      "topicKey": "tokaj-volcanic-tuff-cellars",
+      "categoryEn": "WINE",
+      "categoryJa": "ワイン",
+      "title": "トカイの地下には、火山性凝灰岩を掘った中世のワインセラーがある",
+      "text": "マーラ・トルニャやヴェルカー・トルニャでは、丘の地下へ掘られたセラーを訪ねられる。深いものは地下8〜16mに達し、葡萄畑の下にもワイン文化の景観が続く。",
+      "icon": "food",
+      "sourceKey": "tokaj"
+    },
+    {
+      "topicKey": "ochtina-aragonite-rarity",
+      "categoryEn": "CAVE",
+      "categoryJa": "洞窟",
+      "title": "オフチナでは、鍾乳石ではなくアラゴナイト結晶を見る",
+      "text": "白い結晶が針や枝のように岩壁へ広がり、一般的な鍾乳洞とは景色が大きく異なる。洞窟名を知らなくても、結晶の形を意識して入ると特徴を見つけやすい。",
+      "icon": "landscape",
+      "sourceKey": "ochtina"
+    },
+    {
+      "topicKey": "bratislava-two-country-border",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "ブラチスラヴァは、オーストリアとハンガリーの両方に接する首都",
+      "text": "旧市街から少し西や南へ進むだけで国境が近づく。ドナウ沿いの街を歩くと、首都でありながら隣国との距離が極端に近い都市であることを実感できる。",
+      "icon": "map",
+      "sourceKey": "bratislavaBorders"
+    },
+    {
+      "topicKey": "tatra-huts-human-supplied",
+      "categoryEn": "MOUNTAIN",
+      "categoryJa": "山",
+      "title": "タトラの登山道で、大きな荷物を背負うポーターに出会うことがある",
+      "text": "一部の山小屋では物資輸送を高山ポーターが担う。観光用の演出ではなく現在も続く仕事なので、登山道では道を譲り、山の物流そのものを旅の一場面として見る。",
+      "icon": "road",
+      "sourceKey": "tatraPorters"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SLOVAKIA",
+    "title": "スロバキアで食べたいもの",
+    "intro": "羊飼いの山岳料理から、発酵キャベツ、じゃがいも料理、西部の焼き菓子まで。地域ごとに食卓が変わるスロバキアから、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "bryndzove-halusky",
+        "name": "ブリンゾヴェー・ハルシュキ",
+        "nameLocal": "Bryndzové halušky",
+        "text": "じゃがいもの小さな生地を茹で、羊乳チーズのブリンザを絡めて焼いたベーコンをのせる料理。山岳羊飼い文化と現在の食卓がつながる、スロバキアを代表する一皿。",
+        "image": "assets/images/slovakia/approved/food-bryndzove-halusky.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "kapustnica",
+        "name": "カプストニツァ",
+        "nameLocal": "Kapustnica",
+        "text": "発酵キャベツを軸に、燻製肉やソーセージ、きのこなどを煮込む温かなスープ。家庭や地域、季節によって具材が変わり、酸味と燻製の香りが重なる。",
+        "image": "assets/images/slovakia/approved/food-kapustnica.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "lokse",
+        "name": "ロクシェ",
+        "nameLocal": "Lokše",
+        "text": "じゃがいもを使った薄いフラットブレッドを鉄板で焼く料理。鴨料理の付け合わせとして食べるほか、甘い具材を合わせることもあり、西部を中心に家庭料理として親しまれる。",
+        "image": "assets/images/slovakia/approved/food-lokse.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "skalicky-trdelnik",
+        "name": "スカリツキー・トルデルニーク",
+        "nameLocal": "Skalický trdelník",
+        "text": "生地を円筒に巻きつけて焼き、表面を砂糖や胡桃で仕上げるスカリツァの焼き菓子。中が空洞になった螺旋状の形そのものが特徴で、地域名を冠した菓子として知られる。",
+        "image": "assets/images/slovakia/approved/food-skalicky-trdelnik.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ブラチスラヴァとタトラを二つの軸にする",
+        "text": "首都と高山という対照的な二つの景観に絞れば、鉄道を使って国の西と北東をつなげられる。例：ブラチスラヴァ → ポプラト・タトリ → ハイ・タトラス。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "山・城・鉱山都市まで横断する",
+        "text": "タトラにスピシュとバンスカー・シュティアヴニツァを加えると、自然だけでなく城郭と鉱業の歴史まで一つの旅で追える。例：ブラチスラヴァ → バンスカー・シュティアヴニツァ → スピシュ → ハイ・タトラス。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "峡谷・木造村・洞窟・トカイまで広げる",
+        "text": "スロバキア・パラダイス、ヴルコリニェツ、洞窟、北東部の木造教会、南東部トカイまで加え、地域ごとの地形と暮らしの違いを急がずたどれる。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#819963",
+      "text": "低地と都市は春になる一方、高山には雪が残る。ブラチスラヴァ、城、歴史都市を軸にし、高所の登山道は積雪や季節閉鎖の状況を確認して組み込む。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#aa9b55",
+      "text": "ハイ・タトラスやスロバキア・パラダイスを歩きやすい主な時期。山では午後に天候が変わることもあるため、早めの出発と当日の予報確認を前提にする。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#ad794b",
+      "text": "森林が秋色へ変わり、南東部の葡萄畑も収穫期を迎える。都市・城・ワイン地域を組み合わせやすい一方、高山では早い降雪も考えて装備を調整する。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#758e9e",
+      "text": "タトラは雪の季節となり、スキーや冬景色が中心になる。山歩きの選択肢は限られるため、都市、城、温泉地などと組み合わせ、施設や交通の季節運用を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・レンタカー",
+    "text": "ブラチスラヴァからジリナ、ポプラトを経てコシツェへ向かう鉄道が国内移動の主軸になる。地方部はバスを組み合わせれば多くの町や村へ届くが、洞窟、トカイ、木造教会などを連続して巡るならレンタカーの自由度が高い。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "高山だけでなく、その途中の町や村まで歩きたい人",
+      "text": "タトラの岩峰や峡谷と、木造集落、鉱山都市、城を同じ旅の中で行き来し、自然と人の暮らしを分けずに見たい人。"
+    },
+    {
+      "title": "城・木造建築・鉱山など時間の層が残る場所が好きな人",
+      "text": "有名建築を一つ見るより、土地の素材や地形と歴史がどう結びついたかを現地で読み解くことに面白さを感じる人。"
+    },
+    {
+      "title": "一つの国を東西に横断して景観の変化を知りたい人",
+      "text": "ドナウの首都から山岳地帯、東部の木造教会、南東部の葡萄畑まで、移動することで国の輪郭が見えてくる旅が好きな人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ / 西カルパチア"
+    },
+    {
+      "label": "首都",
+      "value": "ブラチスラヴァ"
+    },
+    {
+      "label": "人口",
+      "value": "約540万人（2026年6月末・暫定）"
+    },
+    {
+      "label": "面積",
+      "value": "49,035 km²"
+    },
+    {
+      "label": "言語",
+      "value": "スロバキア語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "ローマ・カトリック 55.8%（2021年国勢調査）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "known-caves-over-7500",
+      "label": "確認されている洞窟",
+      "value": "7,500以上",
+      "note": "石灰岩洞窟だけでなく氷洞やアラゴナイト洞窟まで種類が広く、地表の山岳景観の下にも別の地形が続いている。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "castles-220-chateaux-425",
+      "label": "城・城跡 / シャトー",
+      "value": "220 / 425",
+      "note": "公式観光情報では220の城・城跡と425のシャトーが紹介される。移動すると高台や町の中に城郭建築が繰り返し現れる。",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "mountains-highlands-over-half",
+      "label": "山地・高地",
+      "value": "国土の半分以上",
+      "note": "国土の半分以上が山地・高地。タトラの高山だけでなく、中部・北部の山地が都市や農村の間にも入り込む。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mountain-rescue-insurance",
+      "title": "山へ入るなら、救助活動を対象にした保険を確認する",
+      "text": "スロバキアでは山岳活動時の救助費用を対象にした保険が重要。通常の旅行保険だけでなく、Mountain Rescue Serviceの技術的救助が補償範囲に入るか出発前に確認する。"
+    },
+    {
+      "topicKey": "cave-opening-schedule",
+      "title": "洞窟は公開時期と入場時間を先に確認する",
+      "text": "公開洞窟は季節や曜日によって運用が異なり、自由に常時入れる場所ではない。移動距離のある洞窟を旅程に入れる場合は、当日の公開情報を確認してから向かう。"
+    },
+    {
+      "topicKey": "slovakia-electronic-vignette",
+      "title": "有料高速道路へ入る前に電子ビニエットを確認する",
+      "text": "レンタカーや自家用車で指定された有料区間を走る場合は電子ビニエットが必要になる。購入済みかを確認し、必要なら公式販売サイト・アプリ・販売所を利用する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "slovenia",
+      "nameEn": "SLOVENIA",
+      "nameJa": "スロベニア",
+      "flag": "🇸🇮",
+      "reason": "コンパクトな国土で、アルプス、洞窟、葡萄畑、木造の山村まで景観が短い距離で切り替わる旅が気に入ったなら。"
+    },
+    {
+      "slug": "romania",
+      "nameEn": "ROMANIA",
+      "nameJa": "ルーマニア",
+      "flag": "🇷🇴",
+      "reason": "カルパチアの山岳景観、木造建築、城や農村文化を、より広いスケールで追いかけたいなら。"
+    },
+    {
+      "slug": "czechia",
+      "nameEn": "CZECHIA",
+      "nameJa": "チェコ",
+      "flag": "🇨🇿",
+      "reason": "中欧の旧市街、城、温泉・産業史に惹かれ、スロバキアとは異なる都市密度の中で共通する歴史の層を見たいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-08",
+  "sourcesVerifiedAt": "2026-09-08",
+  "sourceDates": {
+    "population": "2026-06-30",
+    "area": "2025",
+    "religion": "2021",
+    "caves": "2026",
+    "castles": "2026",
+    "transport": "2026-09-08",
+    "tolls": "2026-06-03",
+    "nextRoutes": "2026-09-08"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/SVK.geojson, blob 58383588275cf27c2e124c26045d101708903357; WGS84.",
+    "population": "Statistical Office of the Slovak Republic: provisional population 5,403,009 at 30 June 2026.",
+    "area": "European Union / Eurostat 2025 country profile: 49,035 km².",
+    "language": "European Union country profile / Slovak public information: Slovak is the official language.",
+    "religion": "Statistical Office of the Slovak Republic, Census 2021: Roman Catholic 55.8%, no religion 23.8%.",
+    "currency": "European Union: euro; Slovakia adopted the euro on 1 January 2009.",
+    "mountains": "Slovakia.travel: more than half of Slovakia is formed by mountains and highlands.",
+    "caves": "Slovakia.travel: more than 7,500 caves are known in Slovakia; Ochtiná Aragonite Cave is part of the UNESCO-listed cave system.",
+    "castles": "Slovakia.travel: 220 castles/castle ruins and 425 chateaux are presented in official destination information.",
+    "suchaBela": "Slovakia.travel / Slovak Paradise visitor information: Suchá Belá gorge uses ladders, chains, steps and bridges; the gorge route is walked upstream.",
+    "spisCastle": "Slovakia.travel / UNESCO: Spiš Castle occupies more than 4 ha and forms part of the Levoča, Spišský Hrad and associated monuments World Heritage property.",
+    "banskaStiavnica": "UNESCO World Heritage Centre: Historic Town of Banská Štiavnica and Technical Monuments in its Vicinity, a mining settlement developed since the Middle Ages.",
+    "vlkolinec": "UNESCO World Heritage Centre: Vlkolínec is a preserved mountain settlement of traditional log houses and farming landscape.",
+    "ochtina": "Slovakia.travel: Ochtiná Aragonite Cave features rare aragonite formations and is part of the UNESCO-listed Caves of Aggtelek Karst and Slovak Karst.",
+    "bratislava": "Slovakia.travel / ÖBB: Bratislava is Slovakia's Danube capital and borders both Austria and Hungary.",
+    "tokaj": "Slovakia.travel Tokaj Wine Route: centres include Malá Tŕňa and Veľká Tŕňa; medieval cellars are carved into volcanic tuff, some 8–16 m deep.",
+    "bodruzal": "UNESCO World Heritage Centre: Bodružal is one component of the Wooden Churches of the Slovak part of the Carpathian Mountain Area, inscribed 2008.",
+    "fujara": "Slovakia.travel / UNESCO intangible heritage: the fujara is a long shepherd overtone flute associated with central Slovak mountain culture.",
+    "sheepFarming": "Slovakia.travel: mountain sheep farming developed in central and northern Slovakia and is linked to bryndza, žinčica and shepherd crafts.",
+    "cicmany": "Slovakia.travel: Čičmany is known for wooden houses decorated with white geometric motifs and protected folk architecture.",
+    "tatraPorters": "Slovakia.travel: high-mountain porters have supplied remote Tatra chalets for centuries and continue the practice today.",
+    "taste": "Slovakia.travel regional gastronomy guidance: bryndzové halušky, kapustnica, potato lokše and Skalický trdelník are among traditional Slovak regional foods.",
+    "transport": "Slovakia.travel current Getting around guidance: the Bratislava–Žilina–Poprad–Košice rail corridor is the main rail artery; trains combine with buses for local connections; cars add flexibility in rural mountain areas.",
+    "mountainSafety": "Slovakia.travel practical information and Mountain Rescue Service guidance: mountain rescue intervention insurance is recommended/required for mountain tourism and hikers should check weather and conditions.",
+    "tolls": "Národná diaľničná spoločnosť / eznamka.sk, 3 June 2026: drivers using charged motorway sections should obtain an electronic vignette; eznamka.sk is the official website.",
+    "nextRoutes": "ÖBB current Bratislava–Vienna services and České dráhy 2026 Metropolitan timetable support direct Bratislava–Prague and Bratislava–Budapest rail travel."
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Bratislava → Vienna",
+      "description": "ドナウ沿いの二つの首都を短い鉄道移動でつなぐ代表ルート。ブラチスラヴァの小さな旧市街から、ウィーンの帝都景観へ都市のスケールが大きく変わる。"
+    },
+    {
+      "flag": "🇨🇿",
+      "countryEn": "CZECHIA",
+      "countryJa": "チェコ",
+      "path": "Bratislava → Prague",
+      "description": "かつて同じ国を構成した二つの首都を鉄道で結ぶ中欧周遊。ドナウ沿いのブラチスラヴァから、ヴルタヴァ川と塔の多いプラハへ街の表情を比べられる。"
+    },
+    {
+      "flag": "🇭🇺",
+      "countryEn": "HUNGARY",
+      "countryJa": "ハンガリー",
+      "path": "Bratislava → Budapest",
+      "description": "ドナウを軸に南東へ続く代表的な鉄道路線。同じ大河に面しながら、ブラチスラヴァの丘上の城からブダペストの広い河岸景観へ変化していく。"
+    }
+  ]
+}
