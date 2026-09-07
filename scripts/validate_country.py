@@ -762,7 +762,7 @@ def main() -> int:
                     for item in travel_items
                 ]
                 for index, duration in enumerate(durations, 1):
-                    if not isinstance(duration, str) or "週間" in duration or not duration.strip():
+                    if not isinstance(duration, str) or "週間" in duration or "日" not in duration or not duration.strip():
                         fail(errors, f"{path.name}: travelScale {index} は『日』表記に統一してください: {duration!r}")
                 if not isinstance(final_duration, str) or not re.fullmatch(r"\d+日以上", final_duration.strip()):
                     fail(errors, f"{path.name}: travelScale 第3段階は『○日以上』形式にしてください: {final_duration!r}")
