@@ -559,3 +559,188 @@
 }
 
 
+
+
+/* Mobility + cross-border review block.
+   Hidden by default and exposed only with ?mobility=1 while the content model is under review. */
+.mobility-section{
+  margin-top:18px;
+  padding:24px 26px 26px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--paper-soft);
+}
+.mobility-section[hidden]{display:none!important;}
+.mobility-section__head{
+  margin-bottom:17px;
+}
+.mobility-section__head h2{
+  margin:0;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:22px;
+  line-height:1.42;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.mobility-section__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  align-items:start;
+}
+.mobility-panel{
+  min-width:0;
+  padding:17px 18px 18px;
+  border:1px solid rgba(18,54,92,.12);
+  border-radius:10px;
+  background:rgba(255,255,255,.24);
+}
+.mobility-panel>h3{
+  margin:0;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  font-weight:600;
+}
+.mobility-domestic__summary,
+.cross-border__intro{
+  margin:8px 0 0;
+  color:#4d5b65;
+  font-size:11.5px;
+  line-height:1.68;
+}
+.mobility-domestic__list,
+.cross-border__countries{
+  margin-top:11px;
+}
+.mobility-domestic__list article{
+  padding:10px 0;
+  border-top:1px solid rgba(18,54,92,.1);
+}
+.mobility-domestic__list h4{
+  margin:0;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:12.5px;
+  line-height:1.5;
+  font-weight:600;
+}
+.mobility-domestic__list p{
+  margin:4px 0 0;
+  color:#4d5b65;
+  font-size:11.5px;
+  line-height:1.68;
+}
+.cross-border-country{
+  padding:11px 0 10px;
+  border-top:1px solid rgba(18,54,92,.1);
+}
+.cross-border-country__head{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-bottom:5px;
+}
+.cross-border-country__head h4{
+  margin:0;
+  color:#12365c;
+  font-family:"Hanken Grotesk","Zen Kaku Gothic New",sans-serif;
+  font-size:12.5px;
+  line-height:1.45;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.cross-border-country__head span{
+  color:#66717a;
+  font-size:10.5px;
+}
+.cross-border-routes{
+  display:grid;
+  gap:0;
+}
+.cross-border-route{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  padding:7px 0;
+}
+.cross-border-route+.cross-border-route{
+  border-top:1px dashed rgba(18,54,92,.08);
+}
+.cross-border-route__path{
+  min-width:0;
+}
+.cross-border-route__path strong{
+  display:block;
+  color:#12365c;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:11.8px;
+  line-height:1.55;
+  font-weight:600;
+}
+.cross-border-route__path small{
+  display:block;
+  margin-top:1px;
+  color:#66717a;
+  font-family:var(--meta);
+  font-size:9px;
+  line-height:1.45;
+}
+.cross-border-route__modes{
+  display:flex;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:4px;
+}
+.cross-border-route__modes span{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  padding:2px 7px;
+  border:1px solid rgba(18,54,92,.12);
+  border-radius:999px;
+  color:#4d5b65;
+  background:rgba(247,243,233,.7);
+  font-size:9.5px;
+  line-height:1.2;
+  white-space:nowrap;
+}
+.cross-border__note{
+  margin:10px 0 0;
+  padding-top:10px;
+  border-top:1px solid rgba(18,54,92,.1);
+  color:#66717a;
+  font-size:9.5px;
+  line-height:1.65;
+}
+.travel-planning--without-transport .travel-planning__content{
+  grid-template-areas:"days season";
+}
+@media(max-width:900px){
+  .mobility-section__grid{
+    grid-template-columns:1fr;
+  }
+  .travel-planning--without-transport .travel-planning__content{
+    grid-template-areas:
+      "days"
+      "season";
+  }
+}
+@media(max-width:760px){
+  .mobility-section{
+    padding:20px 18px 22px;
+  }
+  .mobility-panel{
+    padding:15px 14px 16px;
+  }
+  .cross-border-route{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+  .cross-border-route__modes{
+    justify-content:flex-start;
+  }
+}
