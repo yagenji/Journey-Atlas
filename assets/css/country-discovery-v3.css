@@ -744,3 +744,57 @@
     justify-content:flex-start;
   }
 }
+
+
+/* Cross-border review v2 — destination overview, not route instructions. */
+.cross-border-country__details{
+  display:grid;
+  gap:0;
+  margin:0;
+}
+.cross-border-country__details>div{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:6px 0;
+}
+.cross-border-country__details>div+div{
+  border-top:1px dashed rgba(18,54,92,.08);
+}
+.cross-border-country__details dt{
+  margin:0;
+  color:#66717a;
+  font-size:9.5px;
+  line-height:1.6;
+}
+.cross-border-country__details dd{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 8px;
+  margin:0;
+  color:#12365c;
+  font-size:11.5px;
+  line-height:1.6;
+}
+.cross-border-country__details dd>span{
+  white-space:nowrap;
+}
+.cross-border-country__modes>span{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  padding:2px 7px;
+  border:1px solid rgba(18,54,92,.12);
+  border-radius:999px;
+  color:#4d5b65;
+  background:rgba(247,243,233,.7);
+  font-size:9.5px;
+  line-height:1.2;
+}
+@media(max-width:460px){
+  .cross-border-country__details>div{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+}
