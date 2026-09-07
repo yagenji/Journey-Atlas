@@ -117,7 +117,8 @@
       "id": 9,
       "label": "NEW COUNTRY PRODUCTION",
       "countries": [
-        "portugal"
+        "portugal",
+        "northmacedonia"
       ]
     }
   ],
@@ -537,6 +538,25 @@
       "hardImageGate": true,
       "notes": [
         "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
+      "slug": "northmacedonia",
+      "nameJa": "北マケドニア",
+      "wave": 9,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "PENDING",
+      "hardImageGate": true,
+      "notes": [
+        "New Country production completed to current Reference v3 standard on 2026-09-07. User final review approval received. Encounters aligned to the published-country rule before formal publication. Production remains PENDING until production deployment and verification succeed."
       ],
       "automatedAudit": "DONE"
     },
