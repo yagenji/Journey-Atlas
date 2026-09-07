@@ -2,6 +2,7 @@ const app = document.querySelector('#app');
 const countryTemplate = document.querySelector('#country-template');
 const embeddedSlug = document.documentElement.dataset.country;
 const querySlug = new URLSearchParams(window.location.search).get('country');
+const mobilityPreview = new URLSearchParams(window.location.search).get('mobility') === '1';
 const slug = embeddedSlug || querySlug || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
 const DATA_VERSION = '20260828-estonia-review';
@@ -105,6 +106,7 @@ function renderCountry(data, registry) {
   renderTravelTrivia(fragment, data.travelTrivia);
   renderSeasons(fragment, data.seasons);
   renderTransport(fragment, data.transport);
+  renderMobilityPreview(fragment, data);
   renderPersonas(fragment, data.personas);
   renderFacts(fragment, data.facts);
   renderTips(fragment, data.tips);
@@ -544,6 +546,76 @@ function renderSeasons(fragment, items = []) {
 function renderTransport(fragment, item = {}) {
   const container = fragment.querySelector('#transport');
   container.innerHTML = `<span class="transport-icon">${iconSvg(item.icon || 'road')}</span><div><small>移動</small><h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p></div>${item.distance ? `<b>${escapeHtml(item.distance)}<small>km</small></b>` : ''}`;
+}
+
+function renderMobilityPreview(fragment, data = {}) {
+  const section = fragment.querySelector('#mobility-section');
+  const crossBorder = data.crossBorder;
+  if (!section || !mobilityPreview || !Array.isArray(crossBorder?.countries) || !crossBorder.countries.length) return;
+
+  section.hidden = false;
+
+  const legacyTransport = fragment.querySelector('.travel-planning__block--transport');
+  if (legacyTransport) legacyTransport.hidden = true;
+  const travelPlanning = fragment.querySelector('.travel-planning');
+  if (travelPlanning) travelPlanning.classList.add('travel-planning--without-transport');
+
+  const domestic = fragment.querySelector('#mobility-domestic');
+  if (domestic) {
+    const summary = document.createElement('p');
+    summary.className = 'mobility-domestic__summary';
+    summary.textContent = data.transport?.text || '';
+    domestic.append(summary);
+
+    const items = Array.isArray(data.transport?.items) ? data.transport.items : [];
+    if (items.length) {
+      const list = document.createElement('div');
+      list.className = 'mobility-domestic__list';
+      items.forEach((item) => {
+        const article = document.createElement('article');
+        article.innerHTML = `<h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p>`;
+        list.append(article);
+      });
+      domestic.append(list);
+    }
+  }
+
+  const intro = fragment.querySelector('#cross-border-intro');
+  if (intro) intro.textContent = crossBorder.intro || '';
+
+  const countries = fragment.querySelector('#cross-border-countries');
+  if (countries) {
+    crossBorder.countries.forEach((country) => {
+      const article = document.createElement('article');
+      article.className = 'cross-border-country';
+
+      const head = document.createElement('div');
+      head.className = 'cross-border-country__head';
+      head.innerHTML = `<h4>${escapeHtml(country.nameEn || '')}</h4><span>${escapeHtml(country.nameJa || '')}</span>`;
+      article.append(head);
+
+      const routes = document.createElement('div');
+      routes.className = 'cross-border-routes';
+      (country.routes || []).forEach((route) => {
+        const row = document.createElement('div');
+        row.className = 'cross-border-route';
+        const modes = (route.modes || []).map((mode) => `<span>${escapeHtml(mode)}</span>`).join('');
+        row.innerHTML = `
+          <div class="cross-border-route__path">
+            <strong>${escapeHtml(route.from || '')} → ${escapeHtml(route.to || '')}</strong>
+            ${route.corridor ? `<small>${escapeHtml(route.corridor)}</small>` : ''}
+          </div>
+          <div class="cross-border-route__modes" aria-label="主な移動手段">${modes}</div>
+        `;
+        routes.append(row);
+      });
+      article.append(routes);
+      countries.append(article);
+    });
+  }
+
+  const note = fragment.querySelector('#cross-border-note');
+  if (note) note.textContent = crossBorder.note || '';
 }
 
 function renderPersonas(fragment, items = []) {
