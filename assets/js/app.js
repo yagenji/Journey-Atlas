@@ -112,6 +112,7 @@ function renderCountry(data, registry) {
   renderTips(fragment, data.tips);
   renderTravelScale(fragment, data.travelScale);
   renderRelated(fragment, data.relatedCountries, registry);
+  renderFeaturedJourneyPreview(fragment, data, registry);
   renderPhotoCredits(fragment, data.photoCredits);
 
   app.replaceChildren(fragment);
@@ -550,8 +551,7 @@ function renderTransport(fragment, item = {}) {
 
 function renderMobilityPreview(fragment, data = {}) {
   const section = fragment.querySelector('#mobility-section');
-  const crossBorder = data.crossBorder;
-  if (!section || !mobilityPreview || !Array.isArray(crossBorder?.countries) || !crossBorder.countries.length) return;
+  if (!section || !mobilityPreview || !data.transport) return;
 
   section.hidden = false;
 
@@ -561,67 +561,24 @@ function renderMobilityPreview(fragment, data = {}) {
   if (travelPlanning) travelPlanning.classList.add('travel-planning--without-transport');
 
   const domestic = fragment.querySelector('#mobility-domestic');
-  if (domestic) {
-    const summary = document.createElement('p');
-    summary.className = 'mobility-domestic__summary';
-    summary.textContent = data.transport?.text || '';
-    domestic.append(summary);
+  if (!domestic) return;
 
-    const items = Array.isArray(data.transport?.items) ? data.transport.items : [];
-    if (items.length) {
-      const list = document.createElement('div');
-      list.className = 'mobility-domestic__list';
-      items.forEach((item) => {
-        const article = document.createElement('article');
-        article.innerHTML = `<h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p>`;
-        list.append(article);
-      });
-      domestic.append(list);
-    }
-  }
+  const summary = document.createElement('p');
+  summary.className = 'mobility-domestic__summary';
+  summary.textContent = data.transport?.text || '';
+  domestic.append(summary);
 
-  const intro = fragment.querySelector('#cross-border-intro');
-  if (intro) intro.textContent = crossBorder.intro || '';
+  const items = Array.isArray(data.transport?.items) ? data.transport.items : [];
+  if (!items.length) return;
 
-  const countries = fragment.querySelector('#cross-border-countries');
-  if (countries) {
-    crossBorder.countries.forEach((country) => {
-      const article = document.createElement('article');
-      article.className = 'cross-border-country';
-
-      const head = document.createElement('div');
-      head.className = 'cross-border-country__head';
-      head.innerHTML = `<h4>${escapeHtml(country.nameEn || '')}</h4><span>${escapeHtml(country.nameJa || '')}</span>`;
-      article.append(head);
-
-      const details = document.createElement('dl');
-      details.className = 'cross-border-country__details';
-
-      const destinations = Array.isArray(country.destinations) ? country.destinations : [];
-      const gateways = Array.isArray(country.gateways) ? country.gateways : [];
-      const modes = Array.isArray(country.modes) ? country.modes : [];
-
-      details.innerHTML = `
-        <div>
-          <dt>主な行き先</dt>
-          <dd>${destinations.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
-        </div>
-        <div>
-          <dt>主な越境方面</dt>
-          <dd>${gateways.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
-        </div>
-        <div>
-          <dt>移動</dt>
-          <dd class="cross-border-country__modes">${modes.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
-        </div>
-      `;
-      article.append(details);
-      countries.append(article);
-    });
-  }
-
-  const note = fragment.querySelector('#cross-border-note');
-  if (note) note.textContent = crossBorder.note || '';
+  const list = document.createElement('div');
+  list.className = 'mobility-domestic__list';
+  items.forEach((item) => {
+    const article = document.createElement('article');
+    article.innerHTML = `<h4>${escapeHtml(item.title || '')}</h4><p>${escapeHtml(item.text || '')}</p>`;
+    list.append(article);
+  });
+  domestic.append(list);
 }
 
 function renderPersonas(fragment, items = []) {
@@ -667,6 +624,93 @@ function renderRelated(fragment, countries = [], registry = []) {
     article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
     container.append(article);
   });
+}
+
+function renderFeaturedJourneyPreview(fragment, data = {}, registry = []) {
+  if (!mobilityPreview || !data.featuredJourney) return;
+
+  const journey = data.featuredJourney;
+  const wrap = fragment.querySelector('.related-wrap');
+  const container = fragment.querySelector('#related');
+  const footer = fragment.querySelector('.journey-footer');
+  const heading = fragment.querySelector('#next-title');
+  if (!wrap || !container || !footer || !heading) return;
+
+  footer.classList.add('journey-footer--expanded');
+  wrap.classList.add('related-wrap--expanded');
+  heading.textContent = `${data.nameJa || ''}の次に旅するなら`;
+
+  const published = new Map(
+    registry
+      .filter((item) => item?.slug && item?.atlasPublished && item?.href)
+      .map((item) => [item.slug, item])
+  );
+
+  container.className = 'next-destinations-preview';
+  container.replaceChildren();
+
+  const featured = document.createElement('article');
+  featured.className = 'featured-journey';
+
+  const destination = published.get(journey.slug);
+  const imageMarkup = (journey.images || []).map((image) => `
+    <figure class="featured-journey__figure">
+      <img src="${escapeHtml(image.src || '')}" alt="${escapeHtml(image.alt || '')}" loading="lazy" decoding="async">
+    </figure>
+  `).join('');
+
+  const paragraphs = (journey.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('');
+  const practical = (journey.practical || []).map((item) => `
+    <div>
+      <dt>${escapeHtml(item.label || '')}</dt>
+      <dd>${escapeHtml(item.value || '')}</dd>
+    </div>
+  `).join('');
+
+  featured.innerHTML = `
+    <div class="featured-journey__topline">
+      <span class="featured-journey__eyebrow">${escapeHtml(journey.kicker || 'FEATURED JOURNEY')}</span>
+      <span class="featured-journey__country"><span aria-hidden="true">${journey.flag || ''}</span> ${escapeHtml(journey.nameEn || '')} / ${escapeHtml(journey.nameJa || '')}</span>
+    </div>
+    <h3>${escapeHtml(journey.title || '')}</h3>
+    <div class="featured-journey__media">${imageMarkup}</div>
+    <div class="featured-journey__body">${paragraphs}</div>
+    <div class="featured-journey__route">
+      <span>${escapeHtml(journey.route?.label || '旅のつなぎ方')}</span>
+      <strong>${escapeHtml(journey.route?.value || '')}</strong>
+    </div>
+    <dl class="featured-journey__practical">${practical}</dl>
+    ${destination ? `<a class="featured-journey__link" href="${escapeHtml(destination.href)}" aria-label="${escapeHtml(journey.nameJa || journey.nameEn || '')}のJOURNEY ATLASを見る">クロアチアのページを見る →</a>` : ''}
+  `;
+  container.append(featured);
+
+  const others = (data.relatedCountries || []).filter((country) => country.slug !== journey.slug);
+  if (others.length) {
+    const otherWrap = document.createElement('section');
+    otherWrap.className = 'other-directions';
+    otherWrap.innerHTML = '<span class="featured-journey__eyebrow">OTHER DIRECTIONS</span><div class="other-directions__grid"></div>';
+    const grid = otherWrap.querySelector('.other-directions__grid');
+
+    others.forEach((country) => {
+      const target = published.get(country.slug);
+      const card = document.createElement(target ? 'a' : 'article');
+      card.className = 'other-direction';
+      if (target) {
+        card.href = target.href;
+        card.setAttribute('aria-label', `${country.nameJa}のJOURNEY ATLASを見る`);
+      }
+      card.innerHTML = `
+        <div class="other-direction__country">
+          <span aria-hidden="true">${country.flag || '◌'}</span>
+          <div><strong>${escapeHtml(country.nameEn || '')}</strong><small>${escapeHtml(country.nameJa || '')}</small></div>
+        </div>
+        <p>${escapeHtml(country.reason || '')}</p>
+        <b>${target ? 'EXPLORE →' : 'COMING SOON'}</b>
+      `;
+      grid.append(card);
+    });
+    container.append(otherWrap);
+  }
 }
 
 function parseCountryLensFeed(xmlText, countrySlug) {
