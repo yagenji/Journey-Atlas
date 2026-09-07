@@ -746,6 +746,19 @@ def main() -> int:
 
     for path in paths:
         errors.extend(validate_country(path, strict=strict))
+        if mode == "published strict":
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            travel_scale = data.get("travelScale") if isinstance(data.get("travelScale"), dict) else {}
+            travel_items = travel_scale.get("items") if isinstance(travel_scale.get("items"), list) else []
+            if len(travel_items) != 3:
+                fail(errors, f"{path.name}: travelScale は3段階必要です")
+            else:
+                final_duration = travel_items[2].get("duration") if isinstance(travel_items[2], dict) else None
+                if not isinstance(final_duration, str) or not final_duration.strip().endswith("以上"):
+                    fail(errors, f"{path.name}: travelScale 第3段階は『○日以上 / ○週間以上』形式にしてください: {final_duration!r}")
 
     if errors:
         print("Validation failed:")
