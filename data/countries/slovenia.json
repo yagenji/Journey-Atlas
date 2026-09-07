@@ -581,89 +581,73 @@
   "crossBorder": {
     "kicker": "CROSS-BORDER",
     "title": "国境の先へ",
-    "intro": "スロベニアはイタリア、オーストリア、ハンガリー、クロアチアと陸路でつながる。以下は、旅行者が次の国へ旅を続けるときに使いやすい代表的なルート。",
+    "intro": "スロベニアから陸路で旅を続けやすい隣国と、その先で旅行者が向かいやすい代表的な都市・地域。",
     "countries": [
       {
         "nameEn": "ITALY",
         "nameJa": "イタリア",
-        "routes": [
-          {
-            "from": "Ljubljana",
-            "to": "Trieste",
-            "corridor": "Sežana / Villa Opicina方面",
-            "modes": [
-              "鉄道",
-              "バス",
-              "車"
-            ]
-          },
-          {
-            "from": "Ljubljana",
-            "to": "Udine",
-            "corridor": "Sežana / Trieste方面",
-            "modes": [
-              "鉄道",
-              "バス",
-              "車"
-            ]
-          }
+        "destinations": [
+          "Trieste",
+          "Udine",
+          "Gorizia"
+        ],
+        "gateways": [
+          "Sežana",
+          "Nova Gorica"
+        ],
+        "modes": [
+          "鉄道",
+          "バス",
+          "車"
         ]
       },
       {
         "nameEn": "AUSTRIA",
         "nameJa": "オーストリア",
-        "routes": [
-          {
-            "from": "Ljubljana",
-            "to": "Villach",
-            "corridor": "Jesenice方面",
-            "modes": [
-              "鉄道",
-              "車"
-            ]
-          },
-          {
-            "from": "Ljubljana",
-            "to": "Graz",
-            "corridor": "Maribor / Spielfeld方面",
-            "modes": [
-              "鉄道",
-              "バス",
-              "車"
-            ]
-          }
+        "destinations": [
+          "Villach",
+          "Graz"
+        ],
+        "gateways": [
+          "Jesenice",
+          "Maribor"
+        ],
+        "modes": [
+          "鉄道",
+          "バス",
+          "車"
         ]
       },
       {
         "nameEn": "CROATIA",
         "nameJa": "クロアチア",
-        "routes": [
-          {
-            "from": "Ljubljana",
-            "to": "Zagreb",
-            "corridor": "Dobova / Obrežje方面",
-            "modes": [
-              "鉄道",
-              "バス",
-              "車"
-            ]
-          }
+        "destinations": [
+          "Zagreb",
+          "Istria方面"
+        ],
+        "gateways": [
+          "南東部",
+          "南西部"
+        ],
+        "modes": [
+          "鉄道",
+          "バス",
+          "車"
         ]
       },
       {
         "nameEn": "HUNGARY",
         "nameJa": "ハンガリー",
-        "routes": [
-          {
-            "from": "Ljubljana",
-            "to": "Budapest",
-            "corridor": "Murska Sobota / Hodoš方面",
-            "modes": [
-              "鉄道",
-              "バス",
-              "車"
-            ]
-          }
+        "destinations": [
+          "Budapest"
+        ],
+        "gateways": [
+          "Murska Sobota / Hodoš方面"
+        ],
+        "modes": [
+          "鉄道",
+          "バス",
+          "車"
         ]
       }
     ],
