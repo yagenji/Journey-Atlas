@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-07",
   "purpose": "Single source of truth for renewal of already-published JOURNEY ATLAS Country Pages.",
   "states": {
     "audit": [
@@ -111,6 +111,13 @@
         "kosovo",
         "serbia",
         "slovenia"
+      ]
+    },
+    {
+      "id": 9,
+      "label": "NEW COUNTRY PRODUCTION",
+      "countries": [
+        "portugal"
       ]
     }
   ],
@@ -549,6 +556,25 @@
       "hardImageGate": true,
       "notes": [
         "Renewal complete 2026-09-05: content / visual / map / sources DONE; QA PASS; production LIVE_CURRENT; hard image gate enabled. Detailed execution history is retained in Git history and merged renewal PRs."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
+      "slug": "portugal",
+      "nameJa": "ポルトガル",
+      "wave": 9,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "PENDING",
+      "hardImageGate": true,
+      "notes": [
+        "New Country production completed to current Reference v3 standard on 2026-09-07. User final review approval received. Formal publication initiated; production remains PENDING until production deployment and verification succeed."
       ],
       "automatedAudit": "DONE"
     },
