@@ -168,6 +168,23 @@ One destination = one coherent real-world scene for country-card artwork.
 
 Country-page scene artwork follows the same visual language. A country page may contain multiple scene illustrations, but every individual scene must still represent one real place rather than a synthetic collage.
 
+
+### Taste images — HARD RULE
+
+Taste visual production must follow `docs/TASTE_IMAGE_PRODUCTION.md`.
+
+The critical lock is:
+
+- one image = one dish;
+- one generation request = one dish;
+- four-image Taste “batch” means four independent sequential generations, never one collage;
+- plain pale beige / warm ivory background;
+- no extra table styling or background props;
+- no cutlery, napkins, drinks, ingredients, second plates, restaurant/kitchen scenery, hands or people;
+- regenerate only the failed dish; never regenerate already-approved Taste images.
+
+Any Taste image that violates the above is automatically NG and must not enter the approved production asset folder.
+
 ---
 
 ## Branch lifecycle
