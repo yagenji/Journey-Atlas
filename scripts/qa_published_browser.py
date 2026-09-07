@@ -54,16 +54,18 @@ def load_countries() -> list[tuple[str, str]]:
         )
         countries: list[tuple[str, str]] = []
         invalid: list[str] = []
+        registry = load_registry_rows() if scope == "unpublished-reviewable" else {}
         for path in candidate_paths:
             if not path.exists():
-                invalid.append(path.stem)
+                if requested:
+                    invalid.append(path.stem)
                 continue
             data = json.loads(path.read_text(encoding="utf-8"))
             if data.get("schemaVersion") != 2:
-                invalid.append(path.stem)
+                if requested:
+                    invalid.append(path.stem)
                 continue
             if scope == "unpublished-reviewable":
-                registry = load_registry_rows()
                 row = registry.get(path.stem)
                 if not row or row.get("atlasPublished"):
                     if requested:
