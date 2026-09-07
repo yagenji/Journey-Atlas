@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 import time
+import urllib.request
 from pathlib import Path
 
 from selenium import webdriver
@@ -20,15 +21,32 @@ from selenium.webdriver.support.ui import WebDriverWait
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_PATH = ROOT / "data" / "country-renewal-status.json"
 COUNTRY_DIR = ROOT / "data" / "countries"
+REGISTRY_PATHS = (
+    ROOT / "data" / "atlas-destinations.json",
+    ROOT / "data" / "atlas-destinations-editorial.json",
+)
 BASE_URL = os.environ.get("QA_BASE_URL", "https://atlas.yagenji.com").rstrip("/")
+QA_SCOPE = os.environ.get("QA_SCOPE", "published").strip().lower()
 OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output"))
 OUT.mkdir(parents=True, exist_ok=True)
 
+def load_registry_rows() -> dict[str, dict]:
+    rows: dict[str, dict] = {}
+    for path in REGISTRY_PATHS:
+        if not path.exists():
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        for item in payload.get("destinations", []):
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if slug:
+                rows[slug] = item
+    return rows
+
 def load_countries() -> list[tuple[str, str]]:
     requested = {x.strip() for x in os.environ.get("QA_SLUGS", "").split(",") if x.strip()}
-    scope = os.environ.get("QA_SCOPE", "published").strip().lower()
+    scope = QA_SCOPE
 
-    if scope == "reviewable":
+    if scope in {"reviewable", "unpublished-reviewable"}:
         candidate_paths = (
             [COUNTRY_DIR / f"{slug}.json" for slug in sorted(requested)]
             if requested
@@ -44,10 +62,17 @@ def load_countries() -> list[tuple[str, str]]:
             if data.get("schemaVersion") != 2:
                 invalid.append(path.stem)
                 continue
+            if scope == "unpublished-reviewable":
+                registry = load_registry_rows()
+                row = registry.get(path.stem)
+                if not row or row.get("atlasPublished"):
+                    if requested:
+                        invalid.append(path.stem)
+                    continue
             countries.append((path.stem, data.get("nameJa") or path.stem))
         if invalid:
             raise SystemExit(
-                "QA_SCOPE=reviewable requires schemaVersion=2 country JSONs: "
+                f"QA_SCOPE={scope} requires matching schemaVersion=2 Country JSONs: "
                 + ", ".join(sorted(invalid))
             )
         return countries
@@ -335,6 +360,8 @@ const sceneRoles = [...document.querySelectorAll('.scene-card')].map(el => ({
 return {
   href: location.href,
   title: document.title,
+  robots: (document.querySelector('meta[name="robots"]')?.getAttribute('content') || '').trim(),
+  canonical: (document.querySelector('link[rel="canonical"]')?.href || '').trim(),
   viewport: {innerWidth:window.innerWidth, innerHeight:window.innerHeight, requested:viewport},
   h1: (heroTitle?.innerText || '').trim(),
   countryJa: (document.querySelector('.country-ja')?.innerText || '').trim(),
@@ -432,10 +459,60 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
         errors.append(f"browser console severe errors: {severe[:6]}")
     return errors
 
+def verify_unpublished_reviewability(countries: list[tuple[str, str]]) -> list[str]:
+    if QA_SCOPE != "unpublished-reviewable":
+        return []
+
+    errors: list[str] = []
+    request_headers = {"Cache-Control": "no-cache", "User-Agent": "JOURNEY-ATLAS-QA/1.0"}
+
+    try:
+        req = urllib.request.Request(f"{BASE_URL}/sitemap.xml?qa={int(time.time())}", headers=request_headers)
+        with urllib.request.urlopen(req, timeout=30) as response:
+            sitemap = response.read().decode("utf-8", "replace")
+    except Exception as exc:
+        return [f"sitemap fetch failed: {exc}"]
+
+    runtime_rows: dict[str, dict] = {}
+    for registry_name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+        try:
+            req = urllib.request.Request(
+                f"{BASE_URL}/data/{registry_name}?qa={int(time.time())}",
+                headers=request_headers,
+            )
+            with urllib.request.urlopen(req, timeout=30) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            for item in payload.get("destinations", []):
+                slug = item.get("slug") if isinstance(item, dict) else None
+                if slug:
+                    runtime_rows[slug] = item
+        except Exception as exc:
+            errors.append(f"runtime registry fetch failed ({registry_name}): {exc}")
+
+    for slug, _name_ja in countries:
+        canonical = f"{BASE_URL}/countries/{slug}/"
+        if canonical in sitemap:
+            errors.append(f"{slug}: unpublished review URL is present in sitemap")
+        row = runtime_rows.get(slug)
+        if not row:
+            errors.append(f"{slug}: missing from runtime destination registry")
+            continue
+        if row.get("atlasPublished"):
+            errors.append(f"{slug}: runtime registry unexpectedly has atlasPublished=true")
+        if row.get("href"):
+            errors.append(f"{slug}: runtime registry unexpectedly exposes href={row.get('href')!r}")
+    return errors
+
 def main() -> int:
     countries = load_countries()
     results = []
     failures = []
+
+    preflight_errors = verify_unpublished_reviewability(countries)
+    if preflight_errors:
+        for error in preflight_errors:
+            failures.append({"slug": "_reviewability", "viewport": "preflight", "errors": [error]})
+            print(f"FAIL reviewability: {error}", flush=True)
 
     for slug, name_ja in countries:
         for vp_name, vp in VIEWPORTS.items():
@@ -454,6 +531,18 @@ def main() -> int:
                     bg_checks = background_image_check(driver)
                     browser_logs = driver.get_log("browser")
                     errors = assert_audit(audit, bg_checks, browser_logs)
+                    expected_canonical = f"{BASE_URL}/countries/{slug}/"
+                    if audit.get("canonical") != expected_canonical:
+                        errors.append(
+                            f"canonical mismatch: expected {expected_canonical!r}, "
+                            f"got {audit.get('canonical')!r}"
+                        )
+                    if QA_SCOPE == "unpublished-reviewable":
+                        robots = (audit.get("robots") or "").replace(" ", "").lower()
+                        if robots != "noindex,follow":
+                            errors.append(
+                                f"unpublished review page robots must be noindex,follow; got {audit.get('robots')!r}"
+                            )
                     if audit.get("countryJa") != name_ja:
                         errors.append(
                             f"Japanese country subtitle mismatch: expected {name_ja!r}, "

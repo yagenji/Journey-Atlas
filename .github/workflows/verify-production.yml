@@ -163,6 +163,21 @@ jobs:
           grep -q 'href="about/"' /tmp/spain.html
           echo "Production route, JS and CSS verified."
 
+      - name: Run unpublished reviewable Desktop / Tablet / Mobile browser QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-browser-reviewable-output
+          QA_SCOPE: unpublished-reviewable
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser" ]; then
+            echo "No Chromium-compatible browser found on runner"
+            exit 1
+          fi
+          python3 -m pip install --disable-pip-version-check --quiet selenium
+          python3 scripts/qa_published_browser.py
+
       - name: Run all-published Desktop / Tablet / Mobile browser QA
         env:
           QA_BASE_URL: https://atlas.yagenji.com
@@ -182,6 +197,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: production-country-browser-qa
-          path: qa-browser-output/
+          path: |
+            qa-browser-output/
+            qa-browser-reviewable-output/
           if-no-files-found: warn
           retention-days: 3
