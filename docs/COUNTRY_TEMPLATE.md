@@ -188,12 +188,14 @@ Fixed across countries:
 - kicker `DURATION`;
 - title `旅の目安日程`;
 - icons `city` / `map` / `compass` in that order;
-- each item explains a realistic way to use that amount of time.
+- each item explains a realistic way to use that amount of time;
+- **the third/final duration is always open-ended and must use `以上`** (for example `8日以上`, `12日以上`, `2週間以上`).
 
 Not fixed:
 - `3〜4日 / 5〜7日 / 8日以上` is **not** a global duration template;
-- small countries may use shorter ranges such as `半日〜1日 / 2日 / 3日`;
-- geographically broad or travel-intensive countries may expand to `7〜10日`, `12〜16日`, `2〜3週間`, or another realistic range.
+- small countries may use shorter thresholds such as `半日〜1日 / 2日 / 3日以上`;
+- geographically broad or travel-intensive countries may use thresholds such as `3〜4日 / 7〜10日 / 12日以上` or `3〜4日 / 7〜10日 / 2週間以上`.
+- The final step represents the point from which a traveler can keep expanding regions or themes; do not impose an arbitrary upper limit.
 
 Choose the ranges from the actual travel scale of the country: distribution of places, regional diversity, surface/air/sea transfer burden, islands or mountain access, and whether the proposed itinerary can be travelled without rushing. Country area alone is not sufficient.
 
