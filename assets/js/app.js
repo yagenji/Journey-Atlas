@@ -594,22 +594,28 @@ function renderMobilityPreview(fragment, data = {}) {
       head.innerHTML = `<h4>${escapeHtml(country.nameEn || '')}</h4><span>${escapeHtml(country.nameJa || '')}</span>`;
       article.append(head);
 
-      const routes = document.createElement('div');
-      routes.className = 'cross-border-routes';
-      (country.routes || []).forEach((route) => {
-        const row = document.createElement('div');
-        row.className = 'cross-border-route';
-        const modes = (route.modes || []).map((mode) => `<span>${escapeHtml(mode)}</span>`).join('');
-        row.innerHTML = `
-          <div class="cross-border-route__path">
-            <strong>${escapeHtml(route.from || '')} → ${escapeHtml(route.to || '')}</strong>
-            ${route.corridor ? `<small>${escapeHtml(route.corridor)}</small>` : ''}
-          </div>
-          <div class="cross-border-route__modes" aria-label="主な移動手段">${modes}</div>
-        `;
-        routes.append(row);
-      });
-      article.append(routes);
+      const details = document.createElement('dl');
+      details.className = 'cross-border-country__details';
+
+      const destinations = Array.isArray(country.destinations) ? country.destinations : [];
+      const gateways = Array.isArray(country.gateways) ? country.gateways : [];
+      const modes = Array.isArray(country.modes) ? country.modes : [];
+
+      details.innerHTML = `
+        <div>
+          <dt>主な行き先</dt>
+          <dd>${destinations.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
+        </div>
+        <div>
+          <dt>主な越境方面</dt>
+          <dd>${gateways.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
+        </div>
+        <div>
+          <dt>移動</dt>
+          <dd class="cross-border-country__modes">${modes.map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</dd>
+        </div>
+      `;
+      article.append(details);
       countries.append(article);
     });
   }
