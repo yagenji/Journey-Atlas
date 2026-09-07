@@ -757,8 +757,15 @@ def main() -> int:
                 fail(errors, f"{path.name}: travelScale は3段階必要です")
             else:
                 final_duration = travel_items[2].get("duration") if isinstance(travel_items[2], dict) else None
-                if not isinstance(final_duration, str) or not final_duration.strip().endswith("以上"):
-                    fail(errors, f"{path.name}: travelScale 第3段階は『○日以上 / ○週間以上』形式にしてください: {final_duration!r}")
+                durations = [
+                    item.get("duration") if isinstance(item, dict) else None
+                    for item in travel_items
+                ]
+                for index, duration in enumerate(durations, 1):
+                    if not isinstance(duration, str) or "週間" in duration or not duration.strip():
+                        fail(errors, f"{path.name}: travelScale {index} は『日』表記に統一してください: {duration!r}")
+                if not isinstance(final_duration, str) or not re.fullmatch(r"\d+日以上", final_duration.strip()):
+                    fail(errors, f"{path.name}: travelScale 第3段階は『○日以上』形式にしてください: {final_duration!r}")
 
     if errors:
         print("Validation failed:")
