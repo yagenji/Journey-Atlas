@@ -1,0 +1,570 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "malta",
+  "nameEn": "MALTA",
+  "nameJa": "マルタ",
+  "region": "SOUTHERN EUROPE / 36°N",
+  "seo": {
+    "description": "ヴァレッタの要塞港からイムディーナ、マルサシュロック、ディングリの断崖、コミノ島、巨石神殿、ゴゾ島へ。小さな島国に重なる港・城壁・先史・海の景観を8つの景色からたどるマルタ。"
+  },
+  "capital": {
+    "nameEn": "Valletta",
+    "nameJa": "ヴァレッタ",
+    "coordinates": {
+      "latitude": 35.8989,
+      "longitude": 14.5146
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -5,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "蜂蜜色の石灰岩でできた城壁都市の先に、青い地中海が開く。マルタでは、先史の巨石神殿から騎士団の要塞港、漁村と離島まで、短い距離の中で景色の時代が切り替わる。",
+    "image": "assets/images/malta/approved/hero-valletta-grand-harbour.webp",
+    "location": "Valletta / Grand Harbour",
+    "coordinates": {
+      "latitude": 35.8997,
+      "longitude": 14.5149
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": -5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 36.105,
+      "south": 35.775,
+      "west": 14.145,
+      "east": 14.605
+    },
+    "svg": "assets/images/malta/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 scale-rank minor-islands dataset; Malta, Gozo and Comino; WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "valletta-old-town",
+      "name": "ヴァレッタ旧市街",
+      "nameLocal": "Valletta",
+      "mapLabel": "Valletta",
+      "description": "坂のある石畳の通りに、蜂蜜色の石灰岩の建物と張り出し式の木製バルコニーが並ぶ。城壁の内側に高密度の街区が収まり、港へ向かって道が下る。",
+      "coordinates": {
+        "latitude": 35.8989,
+        "longitude": 14.5146
+      },
+      "image": "assets/images/malta/approved/valletta-old-town.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 5,
+        "y": 0
+      },
+      "role": "ANCHOR + ATLAS VIEW"
+    },
+    {
+      "id": "three-cities-fort-st-angelo",
+      "name": "スリー・シティーズ / 聖アンジェロ砦",
+      "nameLocal": "Three Cities / Fort St. Angelo",
+      "mapLabel": "Three Cities",
+      "description": "グランド・ハーバーの水際に聖アンジェロ砦が突き出し、その背後にヴィットリオーザの石造建築が重なる。港そのものが都市防衛の地形として使われてきたことが見える。",
+      "coordinates": {
+        "latitude": 35.889,
+        "longitude": 14.5189
+      },
+      "image": "assets/images/malta/approved/three-cities-fort-st-angelo.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 5
+      },
+      "role": "ANCHOR + ATLAS VIEW"
+    },
+    {
+      "id": "mdina-gate",
+      "name": "イムディーナ / 城門",
+      "nameLocal": "Mdina Gate",
+      "mapLabel": "Mdina",
+      "description": "島の内陸にある旧都は、高い城壁と堀で周囲から切り分けられている。海辺の要塞都市とは違い、石橋を渡って門をくぐると静かな路地へ景色が切り替わる。",
+      "coordinates": {
+        "latitude": 35.8866,
+        "longitude": 14.4032
+      },
+      "image": "assets/images/malta/approved/mdina-gate.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4,
+        "y": -1
+      },
+      "role": "ATLAS VIEW"
+    },
+    {
+      "id": "marsaxlokk-harbour",
+      "name": "マルサシュロック",
+      "nameLocal": "Marsaxlokk",
+      "mapLabel": "Marsaxlokk",
+      "description": "天然港に青・黄・赤で彩られたルッツが浮かび、石灰岩の町並みが水際を囲む。軍港とは異なる、漁業と市場を軸にしたマルタの海辺の日常が見える。",
+      "coordinates": {
+        "latitude": 35.8413,
+        "longitude": 14.5435
+      },
+      "image": "assets/images/malta/approved/marsaxlokk-harbour.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4,
+        "y": 2.5
+      },
+      "role": "LIFE + ATLAS VIEW"
+    },
+    {
+      "id": "dingli-cliffs",
+      "name": "ディングリの断崖",
+      "nameLocal": "Dingli Cliffs",
+      "mapLabel": "Dingli Cliffs",
+      "description": "島の西岸では石灰岩の台地が海へ急に落ち、断崖が南北に連なる。都市の密度から離れると、乾いた低木地と水平線がマルタ島の地形の輪郭を見せる。",
+      "coordinates": {
+        "latitude": 35.8425,
+        "longitude": 14.3798
+      },
+      "image": "assets/images/malta/approved/dingli-cliffs.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4,
+        "y": 2
+      },
+      "role": "EARTH + DISCOVERY"
+    },
+    {
+      "id": "comino-blue-lagoon",
+      "name": "コミノ島 / ブルー・ラグーン",
+      "nameLocal": "Comino / Blue Lagoon",
+      "mapLabel": "Comino",
+      "description": "マルタ島とゴゾ島の間にある小島では、浅い海底の上で水色が明るく変わる。人口の集中する本島とは対照的に、岩の島と海そのものが景観の中心になる。",
+      "coordinates": {
+        "latitude": 36.0144,
+        "longitude": 14.3233
+      },
+      "image": "assets/images/malta/approved/comino-blue-lagoon.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -1
+      },
+      "role": "SEA + DISCOVERY"
+    },
+    {
+      "id": "hagar-qim-mnajdra",
+      "name": "ハジャーイムとムナイドラの神殿",
+      "nameLocal": "Ħaġar Qim & Mnajdra",
+      "mapLabel": "Ħaġar Qim",
+      "description": "海を望む石灰岩台地に、巨大な石材を組んだ新石器時代の神殿群が残る。都市国家になるはるか以前から、この島に定住と建築の長い時間があったことを景観で示す。",
+      "coordinates": {
+        "latitude": 35.8277,
+        "longitude": 14.4428
+      },
+      "image": "assets/images/malta/approved/hagar-qim-mnajdra.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": 2
+      },
+      "role": "HISTORY + DISCOVERY"
+    },
+    {
+      "id": "gozo-cittadella",
+      "name": "ゴゾ島 / チッタデッラ",
+      "nameLocal": "Gozo / Cittadella",
+      "mapLabel": "Cittadella",
+      "description": "ゴゾ島中央部の丘に城壁都市が立ち、その周囲へ畑と石垣が広がる。都市化したマルタ島とは異なる農村景観の中で、島の防衛拠点が高所を選んだ理由を読み取れる。",
+      "coordinates": {
+        "latitude": 36.0447,
+        "longitude": 14.2395
+      },
+      "image": "assets/images/malta/approved/gozo-cittadella.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4,
+        "y": -1
+      },
+      "role": "ATLAS VIEW + DISCOVERY"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石造りの路地",
+      "icon": "city"
+    },
+    {
+      "title": "木製バルコニー",
+      "icon": "city"
+    },
+    {
+      "title": "ルッツ",
+      "icon": "sea"
+    },
+    {
+      "title": "教会の鐘",
+      "icon": "culture"
+    },
+    {
+      "title": "街角のパスティッツィ",
+      "icon": "food"
+    },
+    {
+      "title": "フェスタの飾り",
+      "icon": "culture"
+    },
+    {
+      "title": "乾いた石垣",
+      "icon": "landscape"
+    },
+    {
+      "title": "港を渡るフェリー",
+      "icon": "road"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "maltese-semitic-latin-script",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "マルタ語は、セム語系の言葉をラテン文字で書く",
+      "text": "マルタ語はアラビア語と同じセム語族に属しながら、ラテン文字を使う。シチリア語やイタリア語、英語からの影響も重なり、地中海の往来そのものが言葉の中に残っている。",
+      "points": [
+        "マルタ語と英語は公用語",
+        "ċ・ġ・għ・ħ・żなど独自の綴りが街の標識にも現れる"
+      ]
+    },
+    {
+      "topicKey": "knights-fortified-harbours",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "港の形が、そのまま防衛都市の骨格になった",
+      "text": "聖ヨハネ騎士団は天然の入り江を利用し、ヴァレッタとスリー・シティーズ周辺に要塞線を築いた。海から都市を見ると、宮殿や教会だけでなく、港全体を守るための地形利用が見えてくる。",
+      "points": [
+        "グランド・ハーバーの複数の岬に砦が配置される",
+        "1565年の大包囲戦後にヴァレッタ建設が進んだ"
+      ]
+    },
+    {
+      "topicKey": "parish-festa-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "夏の町では、教区ごとのフェスタが街路を変える",
+      "text": "各地の教区祭では、旗や電飾、聖人像、楽隊、花火が町の空間を一時的に作り替える。教会は建築物として見るだけでなく、地域の行事が集まる中心でもある。",
+      "points": [
+        "教区ごとに守護聖人の祭りがある",
+        "道路装飾やバンド演奏も街で観察できる"
+      ]
+    },
+    {
+      "topicKey": "limestone-building-material",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "島の色をそろえているのは、地元の石灰岩",
+      "text": "マルタの建物や城壁に多用される淡い蜂蜜色の石材は、島で採れるグロビゲリナ石灰岩。街、農村、要塞、教会が同じ素材でつながり、国全体の景観に統一感をつくっている。",
+      "points": [
+        "柔らかく加工しやすい石灰岩が伝統建築に広く使われる",
+        "日射によって黄土色から淡い金色まで見え方が変わる"
+      ]
+    },
+    {
+      "topicKey": "british-layer-modern-malta",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "地中海の街に、英国統治時代の層も残る",
+      "text": "19〜20世紀の英国統治は、英語、公制度、交通習慣など現在のマルタにも痕跡を残した。騎士団時代だけでなく、近代の地中海拠点としての時間も街の中に重なっている。",
+      "points": [
+        "英語は現在も公用語",
+        "車は左側通行"
+      ]
+    },
+    {
+      "topicKey": "ghana-improvised-folksong",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "歌は、即興の言葉の応酬として受け継がれてきた",
+      "text": "L-Għanaは、韻を踏みながら即興で言葉を交わすマルタの民謡伝統。家族や地域の集まり、祭りなどで歌われ、社会への風刺や共有された記憶を言葉にしてきた。",
+      "points": [
+        "2021年にユネスコ無形文化遺産へ登録",
+        "代表的な形式では歌い手同士が即興で韻と議論を交わす"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "categoryEn": "NAMES",
+      "categoryJa": "地名",
+      "title": "Mdina と Rabat は、地名にもアラビア語の層が残る",
+      "text": "旧都イムディーナと隣接するラバトを歩くと、建築だけでなく地名にも中世地中海の言語史が残っていることに気づける。",
+      "icon": "language",
+      "sourceKey": "languageHistory",
+      "topicKey": "arabic-layer-place-names"
+    },
+    {
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "移動",
+      "title": "ヴァレッタ周辺は、港を横切るフェリーが徒歩旅と相性がいい",
+      "text": "スリーマやスリー・シティーズ方面は、バスだけでなく港を渡るフェリーも使える。地図上では近く見えても入り江が深いため、水上移動が街の構造を理解する助けになる。",
+      "icon": "road",
+      "sourceKey": "ferries",
+      "topicKey": "valletta-harbour-ferries"
+    },
+    {
+      "categoryEn": "EVERYDAY",
+      "categoryJa": "日常",
+      "title": "家の正面を見ると、色のついた木製バルコニーが目に入る",
+      "text": "ヴァレッタや周辺都市では、石造ファサードから張り出す木製のギャラリヤが街路の表情をつくる。色や形の違いを見比べながら歩ける。",
+      "icon": "city",
+      "sourceKey": "balconies",
+      "topicKey": "gallariji-street-detail"
+    },
+    {
+      "categoryEn": "LOCAL TIP",
+      "categoryJa": "現地のコツ",
+      "title": "コミノ島は、海の色だけでなく時間帯で印象が変わる",
+      "text": "Blue Lagoonは日中に訪問者が集中しやすい。島そのものの岩地形や入り江まで見るなら、船の運航時間を確認しつつ混雑のピークを外すと景観を読み取りやすい。",
+      "icon": "sea",
+      "sourceKey": "comino",
+      "topicKey": "comino-time-of-day"
+    },
+    {
+      "topicKey": "st-john-marble-tombstone-floor",
+      "categoryEn": "LOCAL DETAIL",
+      "categoryJa": "街の発見",
+      "title": "聖ヨハネ准司教座聖堂では、床そのものが騎士たちの記録になっている",
+      "text": "ヴァレッタの聖ヨハネ准司教座聖堂では、色大理石を象嵌した墓碑が教会の床を覆う。紋章や骸骨、ラテン語の碑文を追うと、装飾の中に騎士団員の身分や死生観が読み取れる。",
+      "icon": "history",
+      "sourceKey": "stJohnFloor"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#879b63",
+      "text": "日差しが強くなり始める一方、真夏ほど暑くない。城壁都市、遺跡、断崖を歩いてつなぐ旅に向き、春の草花が乾いた石灰岩景観に色を加える。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b89a52",
+      "text": "暑く乾燥した日が続き、海の透明感が主役になる時期。日中の街歩きは暑さが強いため、都市散策を朝夕へ寄せ、海辺と組み合わせると動きやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad7749",
+      "text": "夏の暑さが弱まり、海水温が比較的高い時期も続く。都市・遺跡と海を同じ旅程に入れやすいが、秋が進むにつれて雨の日が増える。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748d9b",
+      "text": "海水浴の季節ではないが、城壁都市や遺跡を歩く旅には選択肢になる。風や雨でフェリー運航が影響を受けることがあるため、島間移動には余裕を持ちたい。"
+    }
+  ],
+  "transport": {
+    "title": "バス・港内フェリー・ゴゾ航路",
+    "text": "マルタ島の主要地点はバスでつながり、ヴァレッタ周辺ではスリーマやスリー・シティーズへのフェリーが港を横切る。ゴゾ島へは海峡を渡るフェリーを組み込み、コミノ島は季節・天候に応じた船便を確認して動く。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "歴史都市と海を短い日程で両方見たい人",
+      "text": "ヴァレッタ、イムディーナ、港町を歩きながら、断崖や離島の海まで無理なく組み合わせたい人。"
+    },
+    {
+      "title": "城壁・要塞・先史遺跡を景観として読みたい人",
+      "text": "建築の年代だけでなく、港、高台、石灰岩台地など場所の選ばれ方から歴史を理解したい人。"
+    },
+    {
+      "title": "小さな国の中の島ごとの違いを見たい人",
+      "text": "都市化したマルタ島、農村景観の残るゴゾ島、海が主役のコミノ島を移動して比べたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南ヨーロッパ / 地中海"
+    },
+    {
+      "label": "首都",
+      "value": "ヴァレッタ"
+    },
+    {
+      "label": "人口",
+      "value": "約59万人（2025年末）"
+    },
+    {
+      "label": "面積",
+      "value": "316 km²（日本の約0.08%）"
+    },
+    {
+      "label": "言語",
+      "value": "マルタ語、英語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "three-inhabited-islands",
+      "label": "主な有人島",
+      "value": "3島",
+      "note": "マルタ島、ゴゾ島、コミノ島の3島が旅の基本単位になる。短い海峡を越えるだけでも、都市密度や農村景観、海の比重が変わる。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "three-unesco-sites",
+      "label": "世界遺産",
+      "value": "3件",
+      "note": "ヴァレッタ市街、ハル・サフリエニ地下墳墓、マルタの巨石神殿群が登録され、都市史と先史の両方に世界遺産がある。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "valletta-monuments-density",
+      "label": "ヴァレッタのモニュメント",
+      "value": "約320",
+      "note": "UNESCOは約55haのヴァレッタに320のモニュメントが集中すると説明する。小さな首都に歴史建築が高密度で重なる。",
+      "icon": "city"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "summer-heat-street-walking",
+      "title": "夏は街歩きを朝夕へ寄せる",
+      "text": "石造市街は日陰が限られる場所もあり、真夏の日中は強い暑さになる。ヴァレッタやイムディーナの徒歩時間を朝夕へ寄せ、昼は移動や屋内へ回すと動きやすい。"
+    },
+    {
+      "topicKey": "ferry-weather-buffer",
+      "title": "島を渡る日は、海況の変化を旅程に織り込む",
+      "text": "ゴゾやコミノを含める場合は船の運航確認が必要。特に冬季や風の強い日は、島間移動を到着・出発便の直前へ詰め込まない方が安全に組みやすい。"
+    },
+    {
+      "topicKey": "small-island-travel-time",
+      "title": "距離が短くても、移動時間は地図どおりではない",
+      "text": "国土は小さいが、港や入り江、都市部の道路混雑によって移動時間は伸びる。1日に島の端から端まで何度も往復するより、地域ごとにまとめて回る方が景色を見やすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "シチリアを含む中央地中海の都市・食・海上交易のつながりをさらに広く見たいなら。"
+    },
+    {
+      "slug": "greece",
+      "nameEn": "GREECE",
+      "nameJa": "ギリシャ",
+      "flag": "🇬🇷",
+      "reason": "島嶼、港、古代遺跡が海の地形と重なる景観を、エーゲ海側と比較したいなら。"
+    },
+    {
+      "slug": "cyprus",
+      "nameEn": "CYPRUS",
+      "nameJa": "キプロス",
+      "flag": "🇨🇾",
+      "reason": "地中海の島国で、海・城壁都市・遺跡・農村が近い構成を東地中海側から見比べたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-07",
+  "sourcesVerifiedAt": "2026-09-07",
+  "sourceDates": {
+    "population": "2025-12-31",
+    "religion": "2021"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m Admin-0 scale-rank minor-islands dataset (nvkelso/natural-earth-vector): Malta, Gozo and Comino; WGS84",
+    "population": "National Statistics Office Malta, population at end of 2025: 588,254",
+    "area": "Government of Malta country profile: total area 316 km²",
+    "language": "Constitution of Malta, Article 5: Maltese is the national language; Maltese and English are official languages",
+    "religion": "National Statistics Office Malta, Census of Population and Housing 2021: Roman Catholic is the largest religious affiliation among residents aged 15+",
+    "currency": "European Union / European Central Bank: Malta uses the euro (EUR)",
+    "unesco": "UNESCO World Heritage Centre: City of Valletta, Ħal Saflieni Hypogeum, Megalithic Temples of Malta",
+    "valletta": "UNESCO World Heritage Centre, City of Valletta: approximately 320 monuments within 55 hectares",
+    "temples": "Heritage Malta: Ħaġar Qim and Mnajdra are Neolithic megalithic temple sites more than 5,000 years old",
+    "transport": "Malta Public Transport: Journey Planner and routes/timetables for Malta and Gozo",
+    "ferries": "Transport Malta / local ferry operators: passenger ferry services connect Valletta with Sliema and the Three Cities",
+    "comino": "VisitMalta: Comino and Blue Lagoon visitor information",
+    "festa": "VisitMalta / Malta cultural heritage references: parish festas feature street decoration, bands and fireworks",
+    "languageHistory": "University of Malta / official cultural references: Maltese is a Semitic language written in the Latin alphabet; Arabic-derived place-name layers remain visible",
+    "balconies": "VisitMalta / cultural heritage references: traditional enclosed wooden Maltese balconies (gallariji) are characteristic of historic urban streets",
+    "limestone": "Heritage Malta / Malta cultural geology references: Globigerina limestone is a principal traditional building stone",
+    "knights": "UNESCO / Heritage Malta references on Valletta and Grand Harbour fortifications and the Order of St John",
+    "hero": "Valletta / Grand Harbour; WGS84 location cross-checked against public map sources",
+    "encounters": "Country encounter set cross-checked against VisitMalta, Heritage Malta and Malta Public Transport visitor-facing references",
+    "ghana": "UNESCO Intangible Cultural Heritage: L-Għana, a Maltese folksong tradition; inscribed in 2021",
+    "stJohnFloor": "St John’s Co-Cathedral Foundation: the church floor is covered with inlaid marble tombstones commemorating Knights of the Order"
+  },
+  "taste": {
+    "kicker": "TASTE OF MALTA",
+    "title": "マルタで食べたいもの",
+    "intro": "街角の焼き菓子、パンを使う軽食、家庭の煮込み、海の魚まで、島の食卓には地中海の素材と日常の食べ方が重なる。",
+    "items": [
+      {
+        "id": "pastizzi",
+        "name": "パスティッツィ",
+        "nameLocal": "Pastizzi",
+        "text": "薄い生地を幾重にも折って焼く小さなペイストリー。リコッタや豆のペーストを詰める形が定番で、街角で手軽に出会える。",
+        "image": "assets/images/malta/approved/food-pastizzi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "ftira",
+        "name": "フティーラ",
+        "nameLocal": "Ftira",
+        "text": "輪形の平たいパンにトマト、ツナ、オリーブ、ケッパーなどを合わせる。パンそのものがマルタの日常食文化を伝える一品。",
+        "image": "assets/images/malta/approved/food-ftira.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "stuffat-tal-fenek",
+        "name": "ウサギの煮込み",
+        "nameLocal": "Stuffat tal-Fenek",
+        "text": "ウサギ肉をトマトやワイン、香味野菜とともにゆっくり煮込む家庭料理。島の代表的な肉料理としてレストランでも出会える。",
+        "image": "assets/images/malta/approved/food-stuffat-tal-fenek.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "lampuki-pie",
+        "name": "ランプキ・パイ",
+        "nameLocal": "Torta tal-Lampuki",
+        "text": "季節のランプキ（シイラ）を野菜やハーブとともに包んで焼く魚のパイ。海に囲まれた島の季節食を一皿で感じられる。",
+        "image": "assets/images/malta/approved/food-lampuki-pie.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "ヴァレッタと旧都を軸に見る",
+        "text": "短い滞在ならヴァレッタとスリー・シティーズを歩き、イムディーナまたはマルサシュロックを加える。例：ヴァレッタ → スリー・シティーズ → イムディーナ。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "本島の歴史と海にゴゾを加える",
+        "text": "本島の都市、巨石神殿、断崖を分けて回り、1日をゴゾ島へ充てる。例：ヴァレッタ → イムディーナ → Ħaġar Qim → Dingli → Gozo。",
+        "icon": "map"
+      },
+      {
+        "duration": "6〜7日",
+        "title": "3島を急がず比べる",
+        "text": "ゴゾ島に一泊し、天候が合えばコミノ島を別日に組み込む。都市、農村、離島の海をそれぞれ独立した時間として見る。例：Malta → Gozo → Comino。",
+        "icon": "compass"
+      }
+    ]
+  }
+}
