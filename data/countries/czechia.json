@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "czechia",
+  "nameEn": "CZECHIA",
+  "nameJa": "チェコ",
+  "region": "CENTRAL EUROPE / BOHEMIA & MORAVIA",
+  "seo": {
+    "description": "プラハの石橋から、チェスキー・クルムロフ、カルロヴィ・ヴァリ、クトナー・ホラ、砂岩の岩塔、シュマヴァの湖、南モラヴィアの葡萄畑、モラヴィア・カルスト、テルチへ。8つの景色からチェコの都市と地形をたどる。"
+  },
+  "capital": {
+    "nameEn": "Prague",
+    "nameJa": "プラハ",
+    "coordinates": {
+      "latitude": 50.0755,
+      "longitude": 14.4378
+    },
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "石橋と尖塔の都市から、森の湖、砂岩の岩塔、温泉街、葡萄畑へ。チェコを歩くと、ボヘミアとモラヴィアの歴史都市の間に、思いのほか多様な地形と暮らしが入り込んでいる。",
+    "image": "assets/images/czechia/approved/hero-prague-charles-bridge.webp",
+    "location": "Charles Bridge / Prague",
+    "coordinates": {
+      "latitude": 50.0864,
+      "longitude": 14.4119
+    },
+    "mapOffset": {
+      "x": -3.5,
+      "y": -0.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 51.04001230900008,
+      "south": 48.557915751999985,
+      "west": 12.076140991000043,
+      "east": 18.837433716000103
+    },
+    "svg": "assets/images/czechia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CZE.geojson (blob 06fcbd006ee5bcad17763798357707559002e45c), WGS84; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "cesky-krumlov-castle-vltava",
+      "name": "チェスキー・クルムロフ / 城とヴルタヴァ川",
+      "nameLocal": "Český Krumlov / Castle & Vltava",
+      "mapLabel": "Český Krumlov",
+      "description": "ヴルタヴァ川の蛇行に囲まれた旧市街へ赤い屋根が密集し、その上に城と塔が立つ。川に沿って形成された中世都市の輪郭と、城が占める高所の関係を一望できる。",
+      "coordinates": {
+        "latitude": 48.8129,
+        "longitude": 14.3146
+      },
+      "image": "assets/images/czechia/approved/cesky-krumlov-castle-vltava.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "karlovy-vary-mill-colonnade",
+      "name": "カルロヴィ・ヴァリ / ミル・コロネード",
+      "nameLocal": "Karlovy Vary / Mlýnská kolonáda",
+      "mapLabel": "Karlovy Vary",
+      "description": "テプラー川沿いの谷に色の淡い建物が連なり、その一角を長い列柱回廊が占める。温泉を飲み歩く文化が、街路と建築そのものを形づくってきたことが見える。",
+      "coordinates": {
+        "latitude": 50.2253,
+        "longitude": 12.8818
+      },
+      "image": "assets/images/czechia/approved/karlovy-vary-mill-colonnade.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "kutna-hora-st-barbara",
+      "name": "クトナー・ホラ / 聖バルボラ教会",
+      "nameLocal": "Kutná Hora / Chrám svaté Barbory",
+      "mapLabel": "Kutná Hora",
+      "description": "後期ゴシックの大きな教会が丘の縁に立ち、その周囲へ旧市街が広がる。銀鉱山で栄えた都市の経済力が、鉱夫の守護聖人に捧げた建築として残っている。",
+      "coordinates": {
+        "latitude": 49.9449,
+        "longitude": 15.2636
+      },
+      "image": "assets/images/czechia/approved/kutna-hora-st-barbara.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "adrspach-teplice-rocks",
+      "name": "アドルシュパフ＝テプリツェ岩群",
+      "nameLocal": "Adršpašsko-teplické skály",
+      "mapLabel": "Adršpach",
+      "description": "森の中から砂岩の塔が何十メートルも立ち上がり、その間を細い峡谷と遊歩道が抜ける。城や旧市街の印象とは異なる、北東部ボヘミアの岩の地形を歩いて理解できる。",
+      "coordinates": {
+        "latitude": 50.6139,
+        "longitude": 16.1189
+      },
+      "image": "assets/images/czechia/approved/adrspach-teplice-rocks.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "sumava-cerne-jezero",
+      "name": "シュマヴァ / チェルネー・イェゼロ",
+      "nameLocal": "Šumava / Černé jezero",
+      "mapLabel": "Černé jezero",
+      "description": "標高1,000mを超える森の中に暗い水面の氷河湖が静かに開く。周囲の針葉樹林を映す水の色から、都市部とは別のチェコ西部の山地景観が見えてくる。",
+      "coordinates": {
+        "latitude": 49.1792,
+        "longitude": 13.1825
+      },
+      "image": "assets/images/czechia/approved/sumava-cerne-jezero.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "palava-pavlov-devicky",
+      "name": "パーラヴァ / パヴロフとデヴィチュキ",
+      "nameLocal": "Pálava / Pavlov & Děvičky",
+      "mapLabel": "Pavlov",
+      "description": "葡萄畑の斜面の下にパヴロフの村、その上にデヴィチュキ城跡が立ち、遠くにノヴェー・ムリーニの水面が広がる。南モラヴィアでは農業、集落、石灰岩丘陵が一つの景観になる。",
+      "coordinates": {
+        "latitude": 48.8759,
+        "longitude": 16.6619
+      },
+      "image": "assets/images/czechia/approved/palava-pavlov-devicky.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "moravian-karst-macocha",
+      "name": "モラヴィア・カルスト / マコハ渓谷",
+      "nameLocal": "Moravský kras / Propast Macocha",
+      "mapLabel": "Macocha",
+      "description": "森林に囲まれた石灰岩地帯に、深い陥没地形が突然開く。地表から約138m下まで落ち込むマコハと地下を流れるプンクヴァ川は、チェコの景観が地下へも続いていることを示す。",
+      "coordinates": {
+        "latitude": 49.3731,
+        "longitude": 16.7294
+      },
+      "image": "assets/images/czechia/approved/moravian-karst-macocha.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "telc-zacharias-square",
+      "name": "テルチ / ザハリアーシュ広場",
+      "nameLocal": "Telč / náměstí Zachariáše z Hradce",
+      "mapLabel": "Telč",
+      "description": "細長い広場の両側に、装飾された切妻をもつルネサンスとバロックの町家が連なり、地上階のアーケードが街路をつなぐ。プラハとは違う小都市の密度を見せる場所。",
+      "coordinates": {
+        "latitude": 49.1841,
+        "longitude": 15.454
+      },
+      "image": "assets/images/czechia/approved/telc-zacharias-square.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石橋",
+      "icon": "road"
+    },
+    {
+      "title": "尖塔の旧市街",
+      "icon": "city"
+    },
+    {
+      "title": "城",
+      "icon": "landmark"
+    },
+    {
+      "title": "砂岩の岩塔",
+      "icon": "landscape"
+    },
+    {
+      "title": "森と湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "葡萄畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "温泉街の回廊",
+      "icon": "city"
+    },
+    {
+      "title": "ルネサンスの広場",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "czech-cubism-black-madonna",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "キュビスムが、絵画だけでなく建物になった",
+      "text": "20世紀初頭のプラハでは、キュビスムの考え方が建築や家具へ展開した。旧市街の「黒い聖母の家」は1911〜1912年にヨゼフ・ゴチャールの設計で建てられ、街を歩きながらチェコ独自の造形運動を見られる。",
+      "points": [
+        "黒い聖母の家は1911〜1912年に建設",
+        "現在はチェコ・キュビスムを紹介する展示拠点"
+      ]
+    },
+    {
+      "topicKey": "czech-puppetry-unesco",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "人形劇は、家庭と舞台の両方で受け継がれてきた",
+      "text": "チェコとスロバキアの人形劇文化は、娯楽だけでなく教育や共同体の物語を伝える役割も担ってきた。木製人形を使う伝統は現在も劇場や地域の活動へ続いている。",
+      "points": [
+        "2016年にユネスコ無形文化遺産へ登録",
+        "チェコとスロバキアにまたがる文化"
+      ]
+    },
+    {
+      "topicKey": "handmade-glass-unesco-2023",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ガラスは、一人の作品ではなく工程をつなぐ手仕事",
+      "text": "手作りガラスは、熱したガラスの成形から冷加工、装飾まで複数の技能をつなぐ。前工程を受け継いで次へ渡す協働性も含め、その知識と技術が地域の工房で継承されている。",
+      "points": [
+        "2023年に複数国共同でユネスコ無形文化遺産へ登録",
+        "熱加工と冷加工の両方に高度な技能が必要"
+      ]
+    },
+    {
+      "topicKey": "velvet-revolution-november-1989",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "1989年11月17日、学生デモから体制転換が始まった",
+      "text": "プラハの学生デモをきっかけに広がったビロード革命は、40年以上続いた共産党支配を終わらせ、チェコスロバキアの複数政党制民主主義への復帰につながった。現在の街を歩くうえで20世紀後半の大きな転換点になる。",
+      "points": [
+        "1989年11月17日に学生デモから拡大",
+        "1990年の自由選挙へつながった"
+      ]
+    },
+    {
+      "topicKey": "pavlov-wine-cellar-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "葡萄畑の下には、ワインをつくる村の暮らしがある",
+      "text": "パヴロフでは葡萄畑だけでなく、装飾されたワイン農家の家や地下セラーが村の景観をつくる。丘を眺めるだけでなく集落を歩くと、南モラヴィアの農業が建築へつながっていることが分かる。",
+      "points": [
+        "パーラヴァ山地の麓にあるワイン村",
+        "ワイン農家の家とセラーが街並みに残る"
+      ]
+    },
+    {
+      "topicKey": "modrotisk-indigo-block-printing",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "藍染めの白い模様は、染めない部分を先につくる",
+      "text": "モドロティスクでは、防染糊を木版で布へ印刷してから藍で染めることで、模様の部分を白く残す。地域の植物や伝統意匠を刻んだ木版を使う技術は、中欧の複数地域で受け継がれている。",
+      "points": [
+        "2018年にユネスコ無形文化遺産へ登録",
+        "防染糊と木版を使って白い模様を残す"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "prague-astronomical-clock-1410",
+      "categoryEn": "PRAGUE",
+      "categoryJa": "時計",
+      "title": "プラハの天文時計は1410年から時を刻む",
+      "text": "旧市庁舎の天文時計は1410年に造られた機構を起点とし、現在は毎時に十二使徒の仕掛けが動く。文字盤は時刻だけでなく太陽や月の位置なども示す。",
+      "icon": "history",
+      "sourceKey": "astronomicalClock"
+    },
+    {
+      "topicKey": "charles-bridge-construction-1357",
+      "categoryEn": "PRAGUE",
+      "categoryJa": "橋",
+      "title": "カレル橋の建設は1357年に始まった",
+      "text": "ヴルタヴァ川を渡る石橋は1357年に建設が始まり、15世紀初頭に完成した。プラハ城と旧市街を結ぶ王の道の一部として、現在の街歩きにも同じ地理が残る。",
+      "icon": "road",
+      "sourceKey": "charlesBridge"
+    },
+    {
+      "topicKey": "vridlo-hot-spring-72c",
+      "categoryEn": "SPA",
+      "categoryJa": "温泉",
+      "title": "カルロヴィ・ヴァリには72℃の温泉が湧く",
+      "text": "中心部のヴジードロは約72℃の温泉。温泉水を飲む文化があるため、街では浴場だけでなく、湧水を受ける回廊や飲泉用のカップが目に入る。",
+      "icon": "landscape",
+      "sourceKey": "vridlo"
+    },
+    {
+      "topicKey": "macocha-abyss-138m",
+      "categoryEn": "KARST",
+      "categoryJa": "地形",
+      "title": "マコハは地表から約138m落ち込む",
+      "text": "モラヴィア・カルストのマコハは約138mの深さがあり、上の展望地点だけでなくプンクヴァ洞窟側から底部へ入ることもできる。地表と地下が一つの観光ルートにつながる。",
+      "icon": "landscape",
+      "sourceKey": "macocha"
+    },
+    {
+      "topicKey": "listopad-means-leaf-fall",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "チェコ語の11月「listopad」は、葉が落ちることを表す",
+      "text": "チェコ語で11月はlistopad。秋の終わりに葉が落ちる様子がそのまま月名になっている。季節の景色と日常の言葉がつながる小さな手がかりになる。",
+      "icon": "culture",
+      "sourceKey": "weather"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CZECHIA",
+    "title": "チェコで食べたいもの",
+    "intro": "クリームソースの肉料理、鴨とキャベツ、街のオープンサンド、果実やケシの実を包む焼き菓子まで。旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "svickova-na-smetane",
+        "name": "スヴィーチコヴァー・ナ・スメタニェ",
+        "nameLocal": "Svíčková na smetaně",
+        "text": "牛肉に根菜を使ったクリームソースを合わせ、クネドリーキ、ホイップクリーム、ベリー類を添える。甘味、酸味、コクが一皿で重なるチェコの定番料理。",
+        "image": "assets/images/czechia/approved/food-svickova.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "pecena-kachna",
+        "name": "ローストダック",
+        "nameLocal": "Pečená kachna se zelím a knedlíky",
+        "text": "皮を香ばしく焼いた鴨に、煮込んだ赤キャベツや白キャベツとクネドリーキを合わせる。肉、酸味のある野菜、ソースを一緒に食べる組み合わせが特徴。",
+        "image": "assets/images/czechia/approved/food-roast-duck.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "chlebicky",
+        "name": "フレビーチキ",
+        "nameLocal": "Chlebíčky",
+        "text": "細長いパンにハム、卵、チーズ、サラダ、ピクルスなどを重ねる小さなオープンサンド。デリや軽食店で見かけるほか、人が集まる場の食卓にも並ぶ。",
+        "image": "assets/images/czechia/approved/food-chlebicky.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "kolace",
+        "name": "コラーチェ",
+        "nameLocal": "Koláče",
+        "text": "丸い発酵生地の中央にケシの実、カッテージチーズ、果実などのフィリングをのせて焼く菓子。地域や店によって大きさや中身が変わる。",
+        "image": "assets/images/czechia/approved/food-kolace.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "プラハを軸にクトナー・ホラへ",
+        "text": "まずはプラハの旧市街、カレル橋、城を歩き、日帰りでクトナー・ホラへ広げる。例：プラハ → クトナー・ホラ → プラハ。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "ボヘミアから南モラヴィアまでつなぐ",
+        "text": "鉄道とバスを使い、プラハからチェスキー・クルムロフ、テルチ、南モラヴィアへ進む。都市の大きさと農村景観が段階的に変わる。例：プラハ → チェスキー・クルムロフ → テルチ → パヴロフ／ブルノ。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "温泉・森・岩群・カルストまで横断する",
+        "text": "カルロヴィ・ヴァリ、シュマヴァ、アドルシュパフ、モラヴィア・カルストまで加え、西から東へ景観を追う。自然地域では連泊を入れ、移動だけの旅程にしない。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#819963",
+      "text": "都市では春の街歩きをしやすくなる一方、3月前半や山地はまだ冷える。5月へ進むほど緑が増え、プラハと地方都市、低山の散策を組み合わせやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9b55",
+      "text": "日が長く、岩群、シュマヴァ、葡萄畑まで動きやすい。都市部では30℃を超える日もあるため、旧市街の徒歩時間は朝夕へ分け、日中は移動や屋内を混ぜる。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad794b",
+      "text": "9月は比較的穏やかで、南モラヴィアの葡萄畑や森林の色が変わっていく。10月以降は冷え込みと雨が増えるため、自然地域は日没時刻も見ながら組む。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#758e9e",
+      "text": "都市と山地で冬景色を見られる時期。山地では雪を前提にし、プラハや温泉都市を軸にする場合も短い日照時間と凍結を考えて徒歩区間を詰め込みすぎない。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・レンタカー",
+    "text": "都市間は密な鉄道網が主軸になり、鉄道が届かない町や自然地域はバスを組み合わせやすい。プラハ、クトナー・ホラ、ブルノなどは公共交通中心で動き、シュマヴァやパーラヴァ周辺の細かな地点を連続して回る場合だけ車を加えると旅程を組みやすい。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "旧市街と建築を、歩いて読み解きたい人",
+      "text": "プラハだけでなく、クトナー・ホラ、テルチ、温泉都市へ移動し、ゴシック、ルネサンス、キュビスムまで街ごとの建築の違いを見たい人。"
+    },
+    {
+      "title": "歴史都市と岩山・森を同じ旅で見たい人",
+      "text": "城や広場だけに絞らず、アドルシュパフの砂岩、シュマヴァの湖、モラヴィア・カルストまで足を伸ばして国の地形的な幅を知りたい人。"
+    },
+    {
+      "title": "食・ワイン・工芸から日常文化へ入りたい人",
+      "text": "料理だけでなく、南モラヴィアの葡萄畑、ガラス、人形劇、藍染めなど、人の手仕事と地域の暮らしが続く背景まで興味を広げたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "プラハ"
+    },
+    {
+      "label": "人口",
+      "value": "約1,090万人（2026年3月末・暫定）"
+    },
+    {
+      "label": "面積",
+      "value": "78,871 km²（日本の約21%）"
+    },
+    {
+      "label": "言語",
+      "value": "チェコ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "無宗教が多数（宗教設問回答者の68.3%が「信仰なし」、2021年）"
+    },
+    {
+      "label": "通貨",
+      "value": "チェコ・コルナ（CZK / Kč）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "pilsner-first-batch-1842",
+      "label": "ピルスナー型ビール",
+      "value": "1842",
+      "note": "1842年10月5日、プルゼニでヨゼフ・グロルが最初のピルスナー型ビールを仕込んだ。現在世界に広がる淡色ラガーの系譜を、都市の醸造史からたどれる。",
+      "icon": "food"
+    },
+    {
+      "topicKey": "marked-hiking-trails-44000km",
+      "label": "色分けされた歩道",
+      "value": "44,000km超",
+      "note": "赤・青・緑・黄などで統一されたハイキング標識が全国へ延びる。都市から森や岩群へ入りやすいチェコの旅を支える、長く続く歩くためのインフラ。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "castles-chateaux-2000plus",
+      "label": "城・城館・要塞・城跡",
+      "value": "約2,000",
+      "note": "中世の城からルネサンスの城館、要塞、城跡まで各地に残る。単に数が多いだけでなく、都市、村、丘陵の景観に繰り返し現れることがチェコらしさにつながる。",
+      "icon": "landmark"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "charles-bridge-early-morning-walk",
+      "title": "カレル橋は、旧市街が動き出す前の時間を使う",
+      "text": "プラハの中心部は訪問者が集中しやすい。Heroで見る橋と城の関係を落ち着いて確かめたいなら、旧市街の観光施設が本格的に動き出す前から歩き始めると街の地形を読みやすい。"
+    },
+    {
+      "topicKey": "adrspach-advance-reservation",
+      "title": "アドルシュパフは、到着前に予約状況を確認する",
+      "text": "岩群の公式観光案内でも事前予約が勧められている。自然景観だから自由に入れると考えず、訪問日、入場枠、交通を先に確認してから旅程へ入れる。"
+    },
+    {
+      "topicKey": "czech-train-bus-connection-planning",
+      "title": "地方へは、鉄道だけでなくバスの接続まで一度に見る",
+      "text": "チェコは鉄道網が密で、バス交通も発達している。小都市や自然地域では最寄り駅から先のバスを含めて接続を確認すると、車を使わずに組める区間が大きく増える。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "slovakia",
+      "nameEn": "SLOVAKIA",
+      "nameJa": "スロバキア",
+      "flag": "🇸🇰",
+      "reason": "かつて同じ国を構成した歴史を持ちながら、カルパチアの山岳景観や木造集落がより前面に出る隣国まで続けて見たいなら。"
+    },
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "中欧の帝国史、温泉、都市建築を共有しつつ、アルプスの山岳景観へさらに大きく広げたいなら。"
+    },
+    {
+      "slug": "germany",
+      "nameEn": "GERMANY",
+      "nameJa": "ドイツ",
+      "flag": "🇩🇪",
+      "reason": "ボヘミア北部から国境を越え、砂岩地形や歴史都市、鉄道でつながる中央ヨーロッパの連続性を追いたいなら。"
+    }
+  ],
+  "updatedAt": "2026-09-08",
+  "sourcesVerifiedAt": "2026-09-08",
+  "sourceDates": {
+    "population": "2026-03-31",
+    "religion": "2021"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CZE.geojson (blob 06fcbd006ee5bcad17763798357707559002e45c), WGS84; JOURNEY ATLAS map-v3.",
+    "population": "Czech Statistical Office, Population change – 1st quarter of 2026: 10,896,003 residents at 31 March 2026; provisional data; published 12 June 2026.",
+    "area": "Czech Statistical Office, Land use balance: total area of the Czech Republic 78,871 km²; latest update 18 June 2026.",
+    "religion": "Czech Statistical Office, Census 2021: among respondents to the voluntary religious-belief question, 68.3% answered no religious belief; 30.1% left the question blank.",
+    "language": "Ministry of Foreign Affairs of the Czech Republic: Czech is the official language of the Czech Republic; Czech administrative proceedings are conducted in Czech.",
+    "currency": "Czech National Bank, Article 13: the monetary unit in the Czech Republic is the Czech koruna (Kč).",
+    "charlesBridge": "Prague City Tourism / VisitCzechia: Charles Bridge construction began in 1357 and connects Old Town with Lesser Town below Prague Castle.",
+    "ceskyKrumlov": "VisitCzechia: Český Krumlov is encircled by meanders of the Vltava; its castle stands on a rocky projection above the river; historic centre and castle are UNESCO-listed.",
+    "millColonnade": "VisitCzechia: Mill Colonnade in Karlovy Vary is 132 m long, supported by 124 Corinthian columns and contains five springs.",
+    "kutnaHora": "VisitCzechia: Kutná Hora developed through silver mining; St Barbara is a high/late Gothic cathedral dedicated to the patron saint of miners.",
+    "adrspach": "VisitCzechia: Adršpach–Teplice Rocks contain gorges and sandstone towers tens of metres high; advance reservation is recommended.",
+    "cerneJezero": "VisitCzechia: Černé jezero lies above 1,000 m and is the largest lake in Šumava and the Czech Republic.",
+    "pavlov": "VisitCzechia: Pavlov is a winemaking village below Děvín; Děvičky ruins overlook Nové Mlýny reservoirs; historic vintners' houses include wine cellars.",
+    "macocha": "VisitCzechia: Macocha Abyss in the Moravian Karst is about 138 m deep and is linked to the Punkva Caves and subterranean river visitor route.",
+    "telc": "VisitCzechia / UNESCO: Telč historic centre is defined by Renaissance/Baroque houses with decorated gables and continuous arcades around the main square.",
+    "pilsner": "VisitCzechia: Josef Groll brewed the first Pilsner-type beer in Plzeň on 5 October 1842.",
+    "hiking": "VisitCzechia: Czechia has more than 44,000 km of colour-marked hiking trails maintained largely by Czech Tourist Club volunteers.",
+    "castles": "VisitCzechia: around 2,000 castles, chateaux, fortresses and ruins are found across Czechia.",
+    "cubism": "Prague City Tourism: House at the Black Madonna, a key Czech Cubist building by Josef Gočár, was constructed in 1911–1912.",
+    "puppetry": "UNESCO Intangible Cultural Heritage: Puppetry in Slovakia and Czechia was inscribed in 2016.",
+    "handmadeGlass": "UNESCO Intangible Cultural Heritage: knowledge, craft and skills of handmade glass production, including Czechia, was inscribed in 2023.",
+    "velvetRevolution": "Ministry of Foreign Affairs of the Czech Republic: the Velvet Revolution began on 17 November 1989 and ended more than forty years of communist rule, leading back to pluralist democracy.",
+    "modrotisk": "UNESCO Intangible Cultural Heritage: Blaudruck/Modrotisk resist block printing and indigo dyeing was inscribed in 2018.",
+    "astronomicalClock": "Prague City Tourism: the Old Town astronomical clock dates to 1410; the twelve apostles appear hourly during current opening hours.",
+    "vridlo": "VisitCzechia / Karlovy Vary visitor information: Vřídlo is the city's hottest spring, about 72°C, used for the traditional drinking cure.",
+    "weather": "VisitCzechia, Weather: Czechia has four seasons; September is often mild, October cooler and wetter; the Czech name Listopad for November means leaf-fall.",
+    "taste": "VisitCzechia gastronomy guidance: svíčková, roast duck with cabbage and dumplings, chlebíčky and koláče are established Czech foods encountered across restaurants, delis and bakeries.",
+    "transport": "VisitCzechia current transport guidance: Czechia has one of Europe's densest railway networks and a sophisticated, reliable bus system.",
+    "nextRoutes": "České dráhy 2026: direct Prague–Vienna railjet/ComfortJet services; ComfortJet on all Berliner services Prague–Berlin and selected Prague–Bratislava trains; Metropolitan services run directly Prague–Bratislava.",
+    "japanArea": "Geospatial Information Authority of Japan, nationwide area survey: Japan 377,974.87 km² as of 1 April 2026. Czechia's 78,871 km² is approximately 20.9% of Japan."
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Prague → Vienna",
+      "description": "プラハからブルノを経てウィーンへ直通列車で南下する中欧の代表ルート。ボヘミアの旧市街から、ハプスブルク帝国の中心だった都市へ建築と歴史の連続性を追える。"
+    },
+    {
+      "flag": "🇩🇪",
+      "countryEn": "GERMANY",
+      "countryJa": "ドイツ",
+      "path": "Prague → Berlin",
+      "description": "ヴルタヴァとエルベ沿いを北へ進み、ドレスデン方面を経てベルリンへ向かう鉄道ルート。チェコ北部とザクセンの地形・都市文化を国境越しにつなげられる。"
+    },
+    {
+      "flag": "🇸🇰",
+      "countryEn": "SLOVAKIA",
+      "countryJa": "スロバキア",
+      "path": "Prague → Bratislava",
+      "description": "プラハからモラヴィアを通ってブラチスラヴァへ直通するルート。かつて同じ国を構成した二つの首都を結び、都市のスケールと街並みの違いを比較できる。"
+    }
+  ]
+}
