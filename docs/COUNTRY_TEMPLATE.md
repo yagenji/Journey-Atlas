@@ -269,6 +269,23 @@ Every item must have a credible source recorded through `sourceKey`.
 
 **No-overlap rule:** travel trivia must add a new layer of information. Before selecting an item, check it against `signatureFacts`, `atlasExtras`, `tips`, scene descriptions, and the hero copy. Do not repeat the same fact in a different card just because it is interesting.
 
+### Taste image production
+
+Taste images follow `docs/TASTE_IMAGE_PRODUCTION.md`, which is the Single Source of Truth.
+
+Key rules:
+
+- one image / one generation request / one dish;
+- a four-image batch is four independent sequential generations, not a collage;
+- exact 3:2, final 1200×800;
+- Spain Taste visual language, photo 6 : quiet watercolor 4;
+- simple single vessel;
+- plain pale beige / warm ivory background;
+- no unrelated props, cutlery, napkins, drinks, ingredients around the dish, extra plates, people, hands, restaurant/kitchen/scenery backgrounds, text, logos, flags, or packaging;
+- an integral garnish is allowed only on the same plate/bowl and only when normal for the dish;
+- hard reject any collage, multi-dish image, prop-heavy background, or lifestyle food scene;
+- regenerate only NG items; APPROVED Taste images are immutable unless the user explicitly requests regeneration.
+
 ## Asset rules
 
 ### Hero
