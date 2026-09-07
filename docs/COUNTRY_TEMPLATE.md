@@ -194,7 +194,7 @@ Fixed across countries:
 Not fixed:
 - `3〜4日 / 5〜7日 / 8日以上` is **not** a global duration template;
 - small countries may use shorter thresholds such as `半日〜1日 / 2日 / 3日以上`;
-- geographically broad or travel-intensive countries may use thresholds such as `3〜4日 / 7〜10日 / 12日以上` .
+- geographically broad or travel-intensive countries may use thresholds such as `3〜4日 / 7〜10日 / 12日以上`.
 - The final step represents the point from which a traveler can keep expanding regions or themes; do not impose an arbitrary upper limit.
 
 Choose the ranges from the actual travel scale of the country: distribution of places, regional diversity, surface/air/sea transfer burden, islands or mountain access, and whether the proposed itinerary can be travelled without rushing. Country area alone is not sufficient.
