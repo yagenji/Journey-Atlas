@@ -159,6 +159,17 @@ Examples for Iceland:
 
 Avoid trivia that is difficult to verify, rapidly becomes stale, or does not help the visitor understand the country.
 
+### Encounters
+
+`encounters` is a visual index of what a visitor can expect to see in the country.
+
+- Use around 8 short, immediately understandable nouns or noun phrases.
+- Prefer common-language categories for landscapes, nature, streetscapes, architecture, animals, and broadly recognized cultural sights.
+- Avoid specialist vocabulary, obscure local names, named tools, niche traditions, product/brand names, and specific fictional/commercial characters.
+- A globally understood figure such as Santa Claus may be used when it works as a direct visual cue.
+- Do not use Encounters to teach cultural trivia. Move explanatory cultural material to Beyond the Scenery or Travel Trivia.
+- Do not simply duplicate the eight Scene titles; summarize the country's visible range at a glance.
+
 ### Scenery descriptions
 
 Write as an atlas, not a tourism advertisement.
