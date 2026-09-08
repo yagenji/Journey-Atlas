@@ -35,8 +35,6 @@ Visual identity:
 - photo 6 : quiet watercolor 4
 - no text, map, UI, or collage
 
-Hero image state: APPROVED
-
 ## Locked 8-scene selection
 
 ### S01 — Uvac River Gorge / Uvački kanjon
