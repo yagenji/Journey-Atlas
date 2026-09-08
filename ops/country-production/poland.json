@@ -3,9 +3,9 @@
   "slug": "poland",
   "countryName": "POLAND",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-08T23:10:00+09:00",
+  "phase": "PUBLISH",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-08T23:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -130,21 +130,81 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "da46c4572b443e4c385d0d5e0973904f237d12d2",
+    "validateRunId": 34236921517,
+    "productionVerifyRunId": 34236921421,
+    "browserQaArtifactId": 10060401921,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "cloudflare-package-build",
+      "production-commit-served",
+      "production-country-route",
+      "production-country-payload",
+      "targeted-reviewable-browser-qa",
+      "desktop-tablet-mobile-layout",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-08T23:17:42+09:00"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/poland/",
+    "commit": "da46c4572b443e4c385d0d5e0973904f237d12d2",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-08T23:17:42+09:00"
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-08T23:18:00+09:00",
+    "basis": "User instructed: QAして問題なければ公開して. Latest post-revision production browser QA passed with zero failures."
   },
   "publication": {
     "state": "DRAFT",
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "PUBLISH_COUNTRY",
     "asset": null
   },
   "assetQa": {
