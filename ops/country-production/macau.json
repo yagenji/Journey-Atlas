@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-09T01:42:00+09:00",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-09T01:58:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -39,15 +39,19 @@
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "sai-van-lake-macau-tower"
+      "contentId": "sai-van-lake-macau-tower",
+      "approvedGenerationId": "412d7f20-f905-4b43-bff0-346f7e0066de",
+      "approvedAt": "2026-09-09T01:50:00+09:00"
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "taipa-houses-green-villas"
+      "contentId": "taipa-houses-green-villas",
+      "approvedGenerationId": "53d142c4-8116-4961-80bc-309c486e3ac0",
+      "approvedAt": "2026-09-09T01:58:00+09:00"
     },
     {
       "id": "S06",
@@ -118,7 +122,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S04"
+    "asset": "S06"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
