@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
-  "phase": "ASSET_QA",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-08T19:03:30+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-08T19:20:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -123,7 +123,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "sceneBatchReview": {
@@ -166,12 +166,15 @@
     "notes": "Bulgaria map matches the current JOURNEY ATLAS clean-background map language; no regeneration required."
   },
   "assetQa": {
-    "result": "FAIL",
+    "result": "PASS",
     "checked": [
       "state-generation-id-match",
       "source-raster-full-decode",
-      "production-export-1200x800-webp",
+      "production-webp-full-decode",
+      "production-dimensions-1200x800",
       "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
       "map-svg-existence"
     ],
     "sourceAssets": {
@@ -182,31 +185,20 @@
       "decode": "PASS",
       "generationIdMatch": "PASS"
     },
-    "productionExport": {
+    "productionAssets": {
       "rasterCount": 13,
       "format": "WebP",
       "dimensions": "1200x800",
       "decode": "PASS",
-      "status": "PREPARED_NOT_MATERIALIZED_IN_GITHUB"
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS"
     },
-    "presentInMain": [
-      "assets/images/bulgaria/map-atlas-v1.svg"
-    ],
-    "missingInMain": [
-      "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
-      "assets/images/bulgaria/approved/belogradchik-rocks-kaleto-fortress.webp",
-      "assets/images/bulgaria/approved/seven-rila-lakes-kidney-lake.webp",
-      "assets/images/bulgaria/approved/plovdiv-ancient-theatre-old-town.webp",
-      "assets/images/bulgaria/approved/nessebar-old-town-peninsula.webp",
-      "assets/images/bulgaria/approved/melnik-sandstone-pyramids.webp",
-      "assets/images/bulgaria/approved/kazanlak-rose-valley.webp",
-      "assets/images/bulgaria/approved/shiroka-laka-rhodope-village.webp",
-      "assets/images/bulgaria/approved/veliko-tarnovo-tsarevets-yantra.webp",
-      "assets/images/bulgaria/approved/banitsa.webp",
-      "assets/images/bulgaria/approved/shopska-salad.webp",
-      "assets/images/bulgaria/approved/tarator.webp",
-      "assets/images/bulgaria/approved/kavarma.webp"
-    ],
-    "notes": "Approved raster sources were recovered from this production conversation and exported successfully, but the 13 raster files are not yet materialized under assets/images/bulgaria/approved/ in GitHub main. Asset QA must remain FAIL until those exact production paths exist."
+    "map": {
+      "asset": "assets/images/bulgaria/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS"
+    },
+    "notes": "All 13 approved raster assets were materialized on country/bulgaria, fully decoded, matched the verified production exports byte-for-byte via Git blob SHA, and passed 1200x800/path/hygiene checks. Ready for implementation."
   }
 }
