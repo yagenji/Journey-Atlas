@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "MAP",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-09T00:46:28+09:00",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-09T00:51:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -113,8 +113,15 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/belarus/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/BLR.geojson (blob 3c367a9f06a500f1fef740f4f3870c460213c15a), WGS84; JOURNEY ATLAS map-v3.",
+    "bounds": {
+      "north": 56.15680592900006,
+      "south": 51.235168356000095,
+      "west": 23.165644979000028,
+      "east": 32.719532104000045
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -135,7 +142,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "sceneBatchReview": {
