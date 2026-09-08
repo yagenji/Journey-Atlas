@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-08T17:12:39+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-08T17:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -65,9 +65,10 @@
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "wroclaw-market-square"
+      "contentId": "wroclaw-market-square",
+      "candidateGenerationId": "1329cffc-fd8f-4ee6-be1b-dcd6c9ae162d"
     }
   ],
   "taste": [
@@ -118,7 +119,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S08"
+    "action": "BATCH_REVIEW_SCENES",
+    "asset": null
   }
 }
