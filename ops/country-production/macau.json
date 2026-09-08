@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-09T01:37:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-09T01:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -31,9 +31,11 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "guia-fortress-lighthouse"
+      "contentId": "guia-fortress-lighthouse",
+      "approvedGenerationId": "e7bd57b6-b51e-46a7-8142-4bfa47520a40",
+      "approvedAt": "2026-09-09T01:42:00+09:00"
     },
     {
       "id": "S04",
@@ -116,7 +118,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
