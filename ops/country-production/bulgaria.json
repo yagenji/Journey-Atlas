@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-08T17:49:30+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-08T17:55:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -73,9 +73,10 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "banitsa"
+      "state": "APPROVED",
+      "asset": "assets/images/bulgaria/approved/banitsa.webp",
+      "contentId": "banitsa",
+      "approvedGenerationId": "39e85b1c-e0f8-4771-8468-f59042ef4e35"
     },
     {
       "id": "FOOD02",
@@ -120,7 +121,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "sceneBatchReview": {
     "result": "PASS",
