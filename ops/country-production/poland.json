@@ -3,9 +3,9 @@
   "slug": "poland",
   "countryName": "POLAND",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-08T21:47:00+09:00",
+  "phase": "REVIEW",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-08T22:29:05+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -130,11 +130,51 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "b2d03f0241b2a423e33591bd95ec92dcb5a7cb40",
+    "validateRunId": 34231867733,
+    "productionVerifyRunId": 34231867785,
+    "browserQaArtifactId": 10058263082,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "production-commit-served",
+      "production-country-route",
+      "production-country-payload",
+      "targeted-reviewable-browser-qa",
+      "desktop-tablet-mobile-layout",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "failureCount": 0,
+    "completedAt": "2026-09-08T22:29:05+09:00"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/poland/",
+    "commit": "b2d03f0241b2a423e33591bd95ec92dcb5a7cb40",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-08T22:29:05+09:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -144,7 +184,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "assetQa": {
