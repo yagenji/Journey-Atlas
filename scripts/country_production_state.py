@@ -214,6 +214,33 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
                         f"{filename}: executionPolicy.{key} must be {expected!r}, got {policy.get(key)!r}"
                     )
 
+    image_phases = {"HERO", "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN"}
+    if state.get("phase") in image_phases:
+        image_policy = state.get("imageGenerationPolicy")
+        expected_image_policy = {
+            "revision": 2,
+            "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+            "sceneReview": "BATCH_ONLY",
+            "mandatoryNoAddedText": True,
+            "rejectTypographyImmediately": True,
+            "rejectCollageImmediately": True,
+            "rejectPreviousAssetRepeatImmediately": True,
+            "maxConsecutiveHardFailuresBeforeReset": 2,
+            "approvedAssetRegeneration": False,
+            "runtimeContinuation": "AUTO_IF_SUPPORTED",
+        }
+        if not isinstance(image_policy, dict):
+            errors.append(
+                f"{filename}: active image-production phase requires imageGenerationPolicy revision 2"
+            )
+        else:
+            for key, expected in expected_image_policy.items():
+                if image_policy.get(key) != expected:
+                    errors.append(
+                        f"{filename}: imageGenerationPolicy.{key} must be "
+                        f"{expected!r}, got {image_policy.get(key)!r}"
+                    )
+
     hero = state.get("hero") if isinstance(state.get("hero"), dict) else {}
     if hero.get("state") not in ASSET_STATES:
         errors.append(f"{filename}: hero has invalid state {hero.get('state')!r}")
