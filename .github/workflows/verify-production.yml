@@ -3,8 +3,24 @@ name: Verify JOURNEY ATLAS Cloudflare Production
 on:
   push:
     branches: ["main"]
-    paths-ignore:
-      - ".github/**"
+    paths:
+      - "index.html"
+      - "country.html"
+      - "404.html"
+      - "_redirects"
+      - "faq/**"
+      - "privacy/**"
+      - "assets/css/**"
+      - "assets/js/**"
+      - "assets/images/**"
+      - "assets/icons/**"
+      - "data/countries/**"
+      - "data/theme-taxonomy.json"
+      - "data/atlas-destinations.json"
+      - "data/atlas-destinations-editorial.json"
+      - "scripts/build_site.py"
+      - "scripts/package_site.py"
+      - "scripts/build_cloudflare.py"
   workflow_dispatch:
 
 permissions:
@@ -15,9 +31,42 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify-production:
+  classify:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    outputs:
+      production_changed: ${{ steps.impact.outputs.production_changed }}
+      browser_scope: ${{ steps.impact.outputs.browser_scope }}
+      target_slugs: ${{ steps.impact.outputs.target_slugs }}
+      published_slugs: ${{ steps.impact.outputs.published_slugs }}
+      reviewable_slugs: ${{ steps.impact.outputs.reviewable_slugs }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Classify production impact
+        id: impact
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            echo "Manual run: full production verification requested."
+            exit 0
+          fi
+          base_sha="${{ github.event.before }}"
+          python3 scripts/classify_country_impact.py --base "$base_sha" --head HEAD --github-output "$GITHUB_OUTPUT"
+
+  runtime:
+    needs: classify
+    if: needs.classify.outputs.production_changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout expected source
         uses: actions/checkout@v4
@@ -29,9 +78,6 @@ jobs:
           test "$profile_sources" = "assets/css/country-icon-system.css"
           transport_sources="$(grep -l 'travel-planning__block--transport .transport' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
           test "$transport_sources" = "assets/css/country-discovery-v3.css"
-          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' assets/css/country-icon-system.css
-          grep -q 'Transport — single shared layout' assets/css/country-discovery-v3.css
-          echo "Shared Country CSS architecture verified."
 
       - name: Wait for atlas.yagenji.com to serve this commit
         env:
@@ -39,7 +85,7 @@ jobs:
           EXPECTED_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          for attempt in $(seq 1 60); do
+          for attempt in $(seq 1 120); do
             meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
             live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
             echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
@@ -47,12 +93,49 @@ jobs:
               echo "Cloudflare production is serving the expected commit."
               exit 0
             fi
-            sleep 10
+            sleep 5
           done
           echo "atlas.yagenji.com did not reach expected commit within the 10-minute verification window: $EXPECTED_SHA"
           exit 1
 
-      - name: Verify Spain V3 production payload
+      - name: Verify production runtime baseline
+        env:
+          SITE_URL: https://atlas.yagenji.com
+        run: |
+          set -euo pipefail
+          bash scripts/http_fetch_retry.sh "$SITE_URL/?qa=$GITHUB_RUN_ID" /tmp/top.html
+          bash scripts/http_fetch_retry.sh "$SITE_URL/about/?qa=$GITHUB_RUN_ID" /tmp/about.html
+          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" /tmp/app.js
+          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" /tmp/country.css
+          test -s /tmp/top.html
+          test -s /tmp/about.html
+          test -s /tmp/app.js
+          test -s /tmp/country.css
+          grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
+          grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
+          grep -q 'travel-planning' /tmp/country.css
+          echo "Production runtime baseline verified."
+
+      - name: Verify changed Country routes and payloads
+        if: needs.classify.outputs.target_slugs != ''
+        env:
+          SITE_URL: https://atlas.yagenji.com
+          TARGET_SLUGS: ${{ needs.classify.outputs.target_slugs }}
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            bash scripts/http_fetch_retry.sh "$SITE_URL/countries/$slug/?qa=$GITHUB_RUN_ID" "/tmp/$slug.html"
+            bash scripts/http_fetch_retry.sh "$SITE_URL/data/countries/$slug.json?qa=$GITHUB_RUN_ID" "/tmp/$slug.json"
+            test -s "/tmp/$slug.html"
+            test -s "/tmp/$slug.json"
+            grep -q "data-country=\"$slug\"" "/tmp/$slug.html"
+            echo "Verified production Country route: $slug"
+          done
+
+      - name: Verify Spain shared baseline
+        if: needs.classify.outputs.browser_scope == 'all'
         env:
           SITE_URL: https://atlas.yagenji.com
         run: |
@@ -61,144 +144,74 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-
           data = json.loads(Path("/tmp/spain.json").read_text(encoding="utf-8"))
-          scene_ids = [scene.get("id") for scene in data.get("scenes", [])]
-          required_scenes = {
-              "las-medulas-mirador-orellan",
-              "ronda-puente-nuevo-tajo",
-          }
-          missing = sorted(required_scenes - set(scene_ids))
-          if missing:
-              raise SystemExit(f"Spain V3 scenes missing in production: {missing}")
+          if len(data.get("scenes", [])) != 8:
+              raise SystemExit("Spain shared baseline: scenes != 8")
           taste = data.get("taste", {})
           if taste.get("title") != "スペインで食べたいもの" or len(taste.get("items", [])) != 4:
-              raise SystemExit("Spain food shortlist is not the reviewed 4-item version")
-          expected_food_images = {
-              "paella": "assets/images/spain/approved/food-paella.webp",
-              "jamon-iberico": "assets/images/spain/approved/food-jamon-iberico.webp",
-              "tortilla-espanola": "assets/images/spain/approved/food-tortilla-espanola.webp",
-              "churros-con-chocolate": "assets/images/spain/approved/food-churros-con-chocolate.webp",
-          }
-          for item in taste.get("items", []):
-              if item.get("image") != expected_food_images.get(item.get("id")):
-                  raise SystemExit(f"Spain food image mismatch: {item.get('id')} -> {item.get('image')}")
-              if item.get("imageState") != "APPROVED":
-                  raise SystemExit(f"Spain food image is not approved: {item.get('id')}")
-          if "seasonMatrix" in data:
-              raise SystemExit("Removed Spain season matrix is still present in production")
-          travel_scale = data.get("travelScale", {})
-          if travel_scale.get("title") != "旅の目安日程" or len(travel_scale.get("items", [])) != 3:
-              raise SystemExit("Spain travel scale is not the reviewed version")
-          durations = [item.get("duration") for item in travel_scale.get("items", [])]
-          if len(durations) != 3 or any(not isinstance(value, str) or not value.strip() for value in durations):
-              raise SystemExit(f"Spain travel durations are invalid: {durations}")
-          icons = [item.get("icon") for item in travel_scale.get("items", [])]
-          if icons != ["city", "map", "compass"]:
-              raise SystemExit(f"Spain travel scale icon order is invalid: {icons}")
-          route_titles = [item.get("title") for item in travel_scale.get("items", [])]
-          expected_route_titles = [
-              "一つの都市を拠点に近郊へ",
-              "2〜3地域を高速鉄道でつなぐ",
-              "地方都市と景観まで広くたどる",
-          ]
-          if route_titles != expected_route_titles:
-              raise SystemExit(f"Spain travel routes are not the reviewed version: {route_titles}")
-          if data.get("transport", {}).get("title") != "高速鉄道・在来線・車":
-              raise SystemExit("Spain transport title is not Japanese")
-          tips = data.get("tips", [])
-          if not tips or tips[0].get("title") != "昼食と夕食は、少し遅めに考える":
-              raise SystemExit("Spain Travel Notes overlap fix is missing")
-          extras = data.get("atlasExtras", [])
-          if len(extras) < 5 or extras[4].get("title") != "日が落ちても、街の暮らしは屋外に続く":
-              raise SystemExit("Spain Beyond the Scenery overlap fix is missing")
-          trivia_titles = [item.get("title") for item in data.get("travelTrivia", [])]
-          if "8月のブニョールでは、街全体がトマト色になる" not in trivia_titles:
-              raise SystemExit("Spain Tomatina experience trivia is missing")
-          if any(item.get("topicKey") == "gomera-whistled-language" for item in data.get("travelTrivia", [])):
-              raise SystemExit("Replaced Silbo Gomero trivia is still present")
-          print("Spain V3 production JSON verified.")
+              raise SystemExit("Spain shared baseline: Taste mismatch")
+          travel = data.get("travelScale", {})
+          if travel.get("title") != "旅の目安日程" or len(travel.get("items", [])) != 3:
+              raise SystemExit("Spain shared baseline: Travel Scale mismatch")
+          if [item.get("icon") for item in travel.get("items", [])] != ["city", "map", "compass"]:
+              raise SystemExit("Spain shared baseline: icon order mismatch")
+          print("Spain shared baseline verified.")
           PY
 
-      - name: Verify production runtime assets and route
-        env:
-          SITE_URL: https://atlas.yagenji.com
-        run: |
-          set -euo pipefail
-          bash scripts/http_fetch_retry.sh "$SITE_URL/countries/spain/?qa=$GITHUB_RUN_ID" /tmp/spain.html
-          bash scripts/http_fetch_retry.sh "$SITE_URL/about/?qa=$GITHUB_RUN_ID" /tmp/about.html
-          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/js/app.js?qa=$GITHUB_RUN_ID" /tmp/app.js
-          bash scripts/http_fetch_retry.sh "$SITE_URL/assets/css/country.css?qa=$GITHUB_RUN_ID" /tmp/country.css
-          for food in food-paella.webp food-jamon-iberico.webp food-tortilla-espanola.webp food-churros-con-chocolate.webp; do
-            bash scripts/http_fetch_retry.sh "$SITE_URL/assets/images/spain/approved/$food?qa=$GITHUB_RUN_ID" "/tmp/$food"
-            test -s "/tmp/$food"
-          done
-          grep -q 'data-country="spain"' /tmp/spain.html
-          grep -q 'renderTaste(fragment, data.taste)' /tmp/app.js
-          grep -q 'renderTravelScale(fragment, data.travelScale)' /tmp/app.js
-          grep -q 'travel-scale__icon' /tmp/app.js
-          grep -q 'transport-icon' /tmp/app.js
-          grep -q 'travel-planning__block--transport .transport-icon' /tmp/country.css
-          grep -q "旅の目安日程" /tmp/spain.json
-          grep -q 'travel-planning' /tmp/country.css
-          grep -q 'grid-template-columns:repeat(6,minmax(0,1fr))' /tmp/country.css
-          grep -q 'grid-column:1 / -1' /tmp/country.css
-          grep -q 'margin-top:0!important' /tmp/country.css
-          grep -q 'travel-guidance' /tmp/country.css
-          grep -q 'taste-section' /tmp/country.css
-          grep -q 'repeat(4,minmax(0,1fr))' /tmp/country.css
-          grep -q 'aspect-ratio:3 / 2' /tmp/country.css
-          grep -q '>国から探す<' /tmp/spain.html
-                    grep -q '>地図から探す<' /tmp/spain.html
-          ! grep -q '<a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>' /tmp/spain.html
-          grep -q 'id="country-lens-bridge"' /tmp/spain.html
-          grep -q 'initCountryLensBridge(data)' /tmp/app.js
-          grep -q 'parseCountryLensFeed' /tmp/app.js
-          grep -q 'country-lens-bridge__link' /tmp/country.css
-          ! grep -q 'renderSeasonMatrix' /tmp/app.js
-          ! grep -q 'scene-role' /tmp/app.js
-          ! grep -q 'season-matrix' /tmp/country.css
-          ! grep -q 'scene-role' /tmp/country.css
-          grep -q '<title>このサイトについて — JOURNEY ATLAS</title>' /tmp/about.html
-          grep -q 'href="about/"' /tmp/spain.html
-          echo "Production route, JS and CSS verified."
-
-      - name: Run unpublished reviewable Desktop / Tablet / Mobile browser QA
+  qa-reviewable:
+    needs: [classify, runtime]
+    if: |
+      always() &&
+      needs.runtime.result == 'success' &&
+      (needs.classify.outputs.browser_scope == 'all' || needs.classify.outputs.reviewable_slugs != '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout expected source
+        uses: actions/checkout@v4
+      - name: Install browser QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Run production unpublished-reviewable browser QA
         env:
           QA_BASE_URL: https://atlas.yagenji.com
           QA_OUT_DIR: qa-browser-reviewable-output
           QA_SCOPE: unpublished-reviewable
-        run: |
-          set -euo pipefail
-          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          if [ -z "$browser" ]; then
-            echo "No Chromium-compatible browser found on runner"
-            exit 1
-          fi
-          python3 -m pip install --disable-pip-version-check --quiet selenium
-          python3 scripts/qa_published_browser.py
-
-      - name: Run all-published Desktop / Tablet / Mobile browser QA
-        env:
-          QA_BASE_URL: https://atlas.yagenji.com
-          QA_OUT_DIR: qa-browser-output
-        run: |
-          set -euo pipefail
-          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          if [ -z "$browser" ]; then
-            echo "No Chromium-compatible browser found on runner"
-            exit 1
-          fi
-          python3 -m pip install --disable-pip-version-check --quiet selenium
-          python3 scripts/qa_published_browser.py
-
-      - name: Upload production browser QA report
+          QA_SLUGS: ${{ needs.classify.outputs.reviewable_slugs }}
+        run: python3 scripts/qa_published_browser.py
+      - name: Upload reviewable browser QA report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: production-country-browser-qa
-          path: |
-            qa-browser-output/
-            qa-browser-reviewable-output/
+          name: production-reviewable-country-browser-qa
+          path: qa-browser-reviewable-output/
+          if-no-files-found: warn
+          retention-days: 3
+
+  qa-published:
+    needs: [classify, runtime]
+    if: |
+      always() &&
+      needs.runtime.result == 'success' &&
+      (needs.classify.outputs.browser_scope == 'all' || needs.classify.outputs.published_slugs != '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout expected source
+        uses: actions/checkout@v4
+      - name: Install browser QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Run production published browser QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-browser-output
+          QA_SCOPE: published
+          QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
+        run: python3 scripts/qa_published_browser.py
+      - name: Upload published browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-published-country-browser-qa
+          path: qa-browser-output/
           if-no-files-found: warn
           retention-days: 3

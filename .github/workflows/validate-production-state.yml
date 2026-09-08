@@ -1,0 +1,73 @@
+name: Validate production state and QA routing
+
+on:
+  push:
+    paths:
+      - 'ops/country-production/**'
+      - 'data/countries/**'
+      - 'data/atlas-destinations.json'
+      - 'data/atlas-destinations-editorial.json'
+      - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
+      - '.github/workflows/validate-production-state.yml'
+      - '.github/workflows/browser-country-qa.yml'
+      - '.github/workflows/verify-production.yml'
+      - '.github/workflows/deploy-pages.yml'
+  pull_request:
+    paths:
+      - 'ops/country-production/**'
+      - 'data/countries/**'
+      - 'data/atlas-destinations.json'
+      - 'data/atlas-destinations-editorial.json'
+      - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
+      - '.github/workflows/validate-production-state.yml'
+      - '.github/workflows/browser-country-qa.yml'
+      - '.github/workflows/verify-production.yml'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: validate-production-state-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate-state:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate automation syntax
+        run: |
+          python3 -m py_compile scripts/country_production_state.py scripts/classify_country_impact.py
+          python3 scripts/classify_country_impact.py --self-test
+
+      - name: Validate workflow YAML syntax
+        run: |
+          python3 -m pip install --disable-pip-version-check --quiet pyyaml
+          python3 - <<'PY'
+          from pathlib import Path
+          import yaml
+          for path in [
+              Path(".github/workflows/browser-country-qa.yml"),
+              Path(".github/workflows/verify-production.yml"),
+              Path(".github/workflows/deploy-pages.yml"),
+              Path(".github/workflows/validate-production-state.yml"),
+          ]:
+              yaml.safe_load(path.read_text(encoding="utf-8"))
+              print(f"YAML OK: {path}")
+          PY
+
+      - name: Validate canonical Country production state
+        run: python3 scripts/country_production_state.py validate
