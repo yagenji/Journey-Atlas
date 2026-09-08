@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "belarus",
   "countryName": "BELARUS",
-  "contentRef": "country-belarus",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-09T01:20:30+09:00",
+  "contentRef": "main",
+  "phase": "QA",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-09T01:24:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -125,7 +125,20 @@
     "approvedAt": "2026-09-09T00:58:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-09T01:24:00+09:00",
+    "files": [
+      "data/countries/belarus.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "history",
+      "life"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Current MOFA Level 3/4 safety guidance is reflected; nextRoutes is intentionally empty and all duration examples are explicitly future-hypothetical. atlasPublished remains false."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -143,7 +156,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
