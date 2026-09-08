@@ -1,0 +1,551 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "hungary",
+  "nameEn": "HUNGARY",
+  "nameJa": "ハンガリー",
+  "region": "CENTRAL EUROPE / 47°N",
+  "seo": {
+    "description": "ブダペストのドナウ河岸から、バラトン湖、大平原、トカイの葡萄畑と地下セラー、アッグテレクの洞窟、伝統村、南部都市、温泉湖へ。水・平原・都市・農村を9つの景観でたどるハンガリー。"
+  },
+  "capital": {
+    "nameEn": "Budapest",
+    "nameJa": "ブダペスト",
+    "coordinates": {
+      "latitude": 47.4979,
+      "longitude": 19.0402
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2.2,
+      "y": 1.6
+    }
+  },
+  "hero": {
+    "lead": "ドナウをはさんで丘のブダと平地のペストが向き合う首都から、バラトン湖、東の大平原、北東の葡萄畑と洞窟、西の温泉湖へ。平坦な国土の中に、水・都市・農村の景観がゆるやかに切り替わる中欧の国。",
+    "image": "assets/images/hungary/approved/hero-budapest-parliament-danube.webp",
+    "location": "Batthyány tér / Budapest",
+    "coordinates": {
+      "latitude": 47.50639,
+      "longitude": 19.03861
+    },
+    "mapOffset": {
+      "x": 2,
+      "y": -1.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 48.795464042320056,
+      "south": 45.515112333679994,
+      "west": 15.687021361920122,
+      "east": 23.284614462080043
+    },
+    "svg": "assets/images/hungary/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/HUN.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; JOURNEY ATLAS map-v3 clean background"
+  },
+  "scenes": [
+    {
+      "id": "visegrad-danube-bend",
+      "name": "ヴィシェグラード城塞 / ドナウベンド",
+      "nameLocal": "Visegrád Citadel / Danube Bend",
+      "mapLabel": "Visegrád",
+      "description": "ドナウが山地の間で大きく曲がる場所を、城塞の高台から見下ろす。平原を流れてきた大河が、北部の丘陵に入り込む地形の変化が一望できる。",
+      "coordinates": {
+        "latitude": 47.79367,
+        "longitude": 18.98032
+      },
+      "image": "assets/images/hungary/approved/visegrad-danube-bend.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "tihany-abbey-lake-balaton",
+      "name": "ティハニ修道院 / バラトン湖",
+      "nameLocal": "Tihany Abbey / Lake Balaton",
+      "mapLabel": "Tihany",
+      "description": "火山地形のティハニ半島から、中欧最大級の湖バラトンを望む。双塔の修道院と集落、広い水面が重なり、ハンガリー西部の湖と暮らしの関係が見える。",
+      "coordinates": {
+        "latitude": 46.91389,
+        "longitude": 17.88944
+      },
+      "image": "assets/images/hungary/approved/tihany-abbey-lake-balaton.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "hortobagy-puszta-nine-arch-bridge",
+      "name": "ホルトバージ / プスタ",
+      "nameLocal": "Hortobágy Puszta / Nine-Arch Bridge",
+      "mapLabel": "Hortobágy",
+      "description": "地平線が低く伸びる大平原に、九連アーチ橋と放牧地が横たわる。水路、草地、家畜を含む景観は、自然だけでなく長い牧畜利用によって形づくられてきた。",
+      "coordinates": {
+        "latitude": 47.59458,
+        "longitude": 21.15678
+      },
+      "image": "assets/images/hungary/approved/hortobagy-puszta-nine-arch-bridge.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "hercegkut-gombos-cellar-row",
+      "name": "ヘルツェグクート / ゴンボシュ丘のワインセラー",
+      "nameLocal": "Hercegkút / Gombos-hegy Cellars",
+      "mapLabel": "Hercegkút",
+      "description": "丘の斜面に、白い切妻とアーチ状の入口を持つ地下セラーが反復する。トカイでは葡萄畑だけでなく、醸造・熟成のための地下空間までが文化景観の一部になっている。",
+      "coordinates": {
+        "latitude": 48.55145,
+        "longitude": 21.76419
+      },
+      "image": "assets/images/hungary/approved/hercegkut-gombos-cellar-row.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "aggtelek-baradla-cave",
+      "name": "バラドラ洞窟 / アッグテレク",
+      "nameLocal": "Baradla Cave / Aggtelek",
+      "mapLabel": "Aggtelek",
+      "description": "石灰岩の地下に鍾乳石と石筍が重なる、アッグテレク・カルストの代表的な洞窟。地上の平原や丘陵とは別の地形が、国境を越えてスロバキア側のカルストへ続く。",
+      "coordinates": {
+        "latitude": 48.50869,
+        "longitude": 20.54308
+      },
+      "image": "assets/images/hungary/approved/aggtelek-baradla-cave.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "holloko-old-village",
+      "name": "ホッローケー旧村落",
+      "nameLocal": "Old Village of Hollókő",
+      "mapLabel": "Hollókő",
+      "description": "白壁と木部を組み合わせた家々が細い通りに続く、北部ノーグラードの村。保存された建築だけでなく、集落として続いてきた農村景観を歩いて見られる。",
+      "coordinates": {
+        "latitude": 47.99444,
+        "longitude": 19.52917
+      },
+      "image": "assets/images/hungary/approved/holloko-old-village.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "pecs-szechenyi-square-mosque",
+      "name": "セーチェーニ広場 / ペーチ",
+      "nameLocal": "Széchenyi Square / Pécs",
+      "mapLabel": "Pécs",
+      "description": "広場の中心に、オスマン時代のモスクを起源とする緑青色のドームが残る。現在は教会として使われ、南部の都市に重なったオスマンとキリスト教の歴史が建築に表れる。",
+      "coordinates": {
+        "latitude": 46.07694,
+        "longitude": 18.22806
+      },
+      "image": "assets/images/hungary/approved/pecs-szechenyi-square-mosque.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "lake-heviz-thermal-pavilion",
+      "name": "ヘーヴィーズ湖 / 温泉湖",
+      "nameLocal": "Lake Hévíz / Thermal Lake",
+      "mapLabel": "Hévíz",
+      "description": "森に囲まれた天然の温泉湖に、入浴施設が水上へ張り出す。冷える季節には湯気が立ち、水そのものが都市施設ではなく風景をつくる西ハンガリーの一角。",
+      "coordinates": {
+        "latitude": 46.78722,
+        "longitude": 17.19306
+      },
+      "image": "assets/images/hungary/approved/lake-heviz-thermal-pavilion.webp",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ドナウ川",
+      "icon": "landscape"
+    },
+    {
+      "title": "城",
+      "icon": "landmark"
+    },
+    {
+      "title": "温泉",
+      "icon": "hot-spring"
+    },
+    {
+      "title": "湖",
+      "icon": "landscape"
+    },
+    {
+      "title": "大平原",
+      "icon": "landscape"
+    },
+    {
+      "title": "葡萄畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "洞窟",
+      "icon": "landscape"
+    },
+    {
+      "title": "伝統的な村",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "budapest-bathing-history-two-millennia",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ブダペストでは、温泉に入る文化が二千年以上重なってきた",
+      "text": "ローマ時代の浴場跡、オスマン時代の浴場、19〜20世紀の大型温泉施設が同じ都市に残る。温泉は観光施設が突然生まれたのではなく、時代ごとに使い方と建築を変えて続いてきた。",
+      "points": [
+        "ローマ時代から温泉利用の痕跡がある",
+        "オスマン期と近代の浴場建築を同じ都市で比較できる"
+      ]
+    },
+    {
+      "topicKey": "tanchaz-safeguarding-method",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "タンツハーズは、踊りを「展示」せず参加しながら伝える",
+      "text": "タンツハーズでは、伝統舞踊を舞台上だけに置かず、演奏と踊りの場に参加しながら学ぶ。ユネスコは2011年、無形文化遺産を継承する実践例としてこの方法を登録した。",
+      "points": [
+        "生演奏と直接の模倣・指導を組み合わせる",
+        "2011年にユネスコの優良な保護実践として登録"
+      ]
+    },
+    {
+      "topicKey": "hungarian-string-band-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "村の祝いと踊りを、弦楽バンドが支えてきた",
+      "text": "フィドル、ヴィオラ、コントラバスなどを組み合わせる弦楽バンドは、踊り、家族行事、村の祝いと結びついてきた。演奏だけでなく、人が集まる場そのものを形づくる音楽文化として続く。",
+      "points": [
+        "地域ごとに編成や演奏様式が異なる",
+        "2022年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "matyo-embroidery-community-tradition",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "マチョーの花模様は、衣服から共同体の記憶へ広がる",
+      "text": "メゼークヴェシュド周辺のマチョー刺繍は、鮮やかな花模様を祝いの衣装や布製品へ施す伝統。現在は工芸として見るだけでなく、地域の行事や継承活動を通じて受け渡されている。",
+      "points": [
+        "花を中心とする密度の高い刺繍が特徴",
+        "2012年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "mohacs-buso-festivities",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "冬の終わり、モハーチでは木の仮面のブショーが街を歩く",
+      "text": "2月末ごろのモハーチでは、木の仮面と毛皮を身につけたブショーが行列や音楽とともに街へ現れる。季節の節目を共同体で祝う六日間の習慣として受け継がれている。",
+      "points": [
+        "仮面、行列、音楽、共同参加が組み合わさる",
+        "2009年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "millennium-underground-1896",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "M1は1896年からアンドラーシ通りの地下を走っている",
+      "text": "ミレニアム地下鉄は1893〜1896年に建設され、1896年に開業した。大通りの景観を保ちながら地下へ交通を通した都市整備で、現在のM1としてブダペストの日常交通に組み込まれている。",
+      "points": [
+        "1896年開業",
+        "ヨーロッパ大陸で最初の地下鉄として世界遺産の構成要素になっている"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "budapest-unification-1873",
+      "categoryEn": "CITY",
+      "categoryJa": "都市",
+      "title": "ブダペストは、ブダ・ペスト・オーブダが一つになった都市",
+      "text": "ドナウ西岸のブダとオーブダ、東岸のペストが1872〜73年の統合で現在の首都を形づくった。川を渡ると街の地形と雰囲気が変わる理由を、都市の成り立ちから理解できる。",
+      "icon": "city",
+      "sourceKey": "budapest"
+    },
+    {
+      "topicKey": "tihany-charter-1055",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "1055年のティハニ創建文書には、初期のハンガリー語が残る",
+      "text": "ティハニ修道院の創建文書はラテン語で書かれているが、地名などにハンガリー語が現れる。湖畔の修道院が、建築だけでなく言語史の場所でもあると分かる。",
+      "icon": "history",
+      "sourceKey": "tihanyCharter"
+    },
+    {
+      "topicKey": "heviz-water-renewal-three-days",
+      "categoryEn": "THERMAL",
+      "categoryJa": "温泉",
+      "title": "ヘーヴィーズ湖の水は、およそ3日で入れ替わる",
+      "text": "約4.4ha、深さ約38mの湖へ温泉水が供給され続けるため、水は約3日で更新される。寒い季節に湖面へ湯気が立つ景観も、この大量の温泉水とつながっている。",
+      "icon": "hot-spring",
+      "sourceKey": "heviz"
+    },
+    {
+      "topicKey": "visegrad-kings-meeting-1335",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "1335年、ヴィシェグラードに中欧の王たちが集まった",
+      "text": "ハンガリー王カーロイ1世、ボヘミア王ヨハン、ポーランド王カジミェシュ3世らがヴィシェグラードで会合した。現在のVisegrád Groupの名称も、この歴史的な場所を参照している。",
+      "icon": "history",
+      "sourceKey": "visegrad1335"
+    },
+    {
+      "topicKey": "hungary-eight-world-heritage-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "ハンガリーには8件の世界遺産がある",
+      "text": "ブダペスト、ホッローケー、ホルトバージ、トカイ、アッグテレクの洞窟群など、都市・農村・平原・ワイン・地下世界まで異なる景観が世界遺産として登録されている。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF HUNGARY",
+    "title": "ハンガリーで食べたいもの",
+    "intro": "パプリカの煮込みから市場の揚げパン、家庭料理、ブダペスト生まれの菓子まで、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "gulyas",
+        "name": "グヤーシュ",
+        "nameLocal": "Gulyás",
+        "text": "牛肉、玉ねぎ、パプリカ、じゃがいもなどを煮る、汁気のあるスープ料理。濃いシチューのようなプルクルトとは分けて考えると、ハンガリー料理の煮込みの違いが見えてくる。",
+        "image": "assets/images/hungary/approved/food-gulyas.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "langos",
+        "name": "ラーンゴシュ",
+        "nameLocal": "Lángos",
+        "text": "発酵させたパン生地を油で揚げる平たい料理。にんにく、サワークリーム、すりおろしたチーズの組み合わせが定番で、市場や屋台、バラトン湖畔でも出会いやすい。",
+        "image": "assets/images/hungary/approved/food-langos.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "csirkepaprikas",
+        "name": "チルケパプリカーシュ",
+        "nameLocal": "Csirkepaprikás",
+        "text": "鶏肉を玉ねぎとパプリカで煮、サワークリームでまろやかに仕上げる家庭料理。小さな卵入りダンプリングのノケドリを添えると、ソースまで一緒に味わえる。",
+        "image": "assets/images/hungary/approved/food-csirkepaprikas.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "dobostorta",
+        "name": "ドボシュトルタ",
+        "nameLocal": "Dobostorta",
+        "text": "薄いスポンジとチョコレートバタークリームを重ね、硬いカラメルを上面に置く菓子。菓子職人ドボシュ・C・ヨージェフが1885年にブダペストで発表した。",
+        "image": "assets/images/hungary/approved/food-dobostorta.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ブダペストを軸にドナウの上流へ",
+        "text": "首都の両岸を歩き、日帰りまたは1泊でヴィシェグラードを加える程度なら、都市と大河の地形を無理なくつなげられる。例：ブダペスト → ヴィシェグラード → ブダペスト。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "首都から北東の城・葡萄畑へつなぐ",
+        "text": "鉄道とバスを組み合わせ、ドナウから北東部へ広げる。例：ブダペスト → エゲル → トカイ → ブダペスト。アッグテレクまで入れるなら移動に余裕を持たせたい。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "湖・南部都市・大平原まで横断する",
+        "text": "公共交通に車を組み合わせると、国土の東西差を急がず追える。例：ブダペスト → ティハニ／バラトン湖 → ヘーヴィーズ → ペーチ → ホルトバージ → トカイ／アッグテレク。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "都市や低地に緑が戻り、真夏ほど暑くない時期。ブダペスト、ドナウベンド、バラトン湖畔を組み合わせやすく、北部の洞窟や丘陵は気温差を見込んで服装を調整する。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "バラトン湖を旅程へ入れやすい一方、ブダペストやホルトバージの低地は暑くなる。露出の多い街歩きや大平原は朝夕へ寄せ、日中の暑さを避ける余白を持たせたい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "トカイの葡萄畑が収穫期を迎え、ドナウベンドの森にも秋色が入り始める。都市、葡萄畑、平原を同じ旅程に入れやすい時期だが、朝晩は冷え込みが増す。"
+    },
+    {
+      "months": "11〜2月",
+      "color": "#748e9d",
+      "text": "日照時間が短く、内陸性の寒さが強まる。ブダペストの都市文化や温泉、ペーチなどを軸にし、ヘーヴィーズでは冷たい空気の中に湯気が立つ温泉湖らしい景観に出会える。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・都市間バス・車",
+    "text": "ブダペストが国内移動の大きな結節点で、主要都市やバラトン湖へ鉄道を使いやすい。地方の町は都市間バスも補完する。一方、アッグテレク、ホルトバージの分散した地点、ワインセラー、複数の農村景観を一続きに回るなら、車や事前に組んだ送迎を加える方が現実的。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "大河の都市を歩きながら、建築と歴史の層を見たい人",
+      "text": "ブダペストとペーチでは、中世、オスマン、ハプスブルク期以降の時間が、河岸、広場、浴場、宗教建築の中に重なって見える。"
+    },
+    {
+      "title": "温泉と湖を旅の中に組み込みたい人",
+      "text": "都市の温泉浴場だけでなく、バラトン湖の広い水面やヘーヴィーズの天然温泉湖まで、水の性格が変わる場所をつないで旅したい人。"
+    },
+    {
+      "title": "首都だけで終わらず、平原・葡萄畑・洞窟・村へ広げたい人",
+      "text": "ブダペストから外へ出て、プスタ、トカイ、アッグテレク、ホッローケーまで進み、国土の地形と暮らしの幅を見たい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ／カルパチア盆地"
+    },
+    {
+      "label": "首都",
+      "value": "ブダペスト"
+    },
+    {
+      "label": "人口",
+      "value": "約949万人（2026年）"
+    },
+    {
+      "label": "面積",
+      "value": "93,025 km²（日本の約25%）"
+    },
+    {
+      "label": "言語",
+      "value": "ハンガリー語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが最大。2022年国勢調査の回答者ベース）"
+    },
+    {
+      "label": "通貨",
+      "value": "フォリント（HUF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "land-below-200-metres-share",
+      "label": "標高200m未満の国土",
+      "value": "82.5%",
+      "note": "国土の8割以上が標高200m未満。ホルトバージだけでなく、ハンガリー全体を理解するうえで「低く平らな国」という地形感覚が大きな手がかりになる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "budapest-thermal-wells-over-one-hundred",
+      "label": "ブダペストの温泉源・井戸",
+      "value": "100超",
+      "note": "公式観光情報では、ブダペストには100を超える温泉源・井戸があり、湯温は最高77℃に達する。温泉が一施設の特徴ではなく都市規模で存在することを示す。",
+      "icon": "hot-spring"
+    },
+    {
+      "topicKey": "tokaj-closed-wine-region-1737",
+      "label": "トカイの閉鎖ワイン地域",
+      "value": "1737年",
+      "note": "1737年の勅令で範囲を定めた閉鎖ワイン地域となった。ユネスコは世界でも初期の法的なワイン地域画定の一つとして位置づける。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "rural-transfer-time-gap",
+      "title": "ブダペストと地方の移動時間を同じ感覚で組まない",
+      "text": "首都の公共交通は密だが、洞窟、農村、ワインセラーなどは乗り継ぎや現地移動に時間がかかる。地方の日は訪問地点を絞り、帰路まで含めて組む。"
+    },
+    {
+      "topicKey": "summer-plain-heat-planning",
+      "title": "夏の大平原と都市歩きは、時間帯を分ける",
+      "text": "夏の低地は高温になりやすく、ホルトバージや石畳の都市を長時間歩くと負担が大きい。朝夕へ屋外を寄せ、日中は休憩を取りやすい旅程にする。"
+    },
+    {
+      "topicKey": "cave-bath-wine-access-check",
+      "title": "洞窟・温泉・ワイン地域は利用条件を事前確認する",
+      "text": "洞窟ツアーの出発時刻、温泉施設の利用条件、セラー見学や試飲の予約方法は場所と季節で異なる。移動後に入れない事態を避けるため、公式情報を直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "ドナウ沿いの二つの首都、ハプスブルク期の都市文化、温泉や葡萄畑を比べながら、中欧の共通点と違いを続けて見たいなら。"
+    },
+    {
+      "slug": "slovakia",
+      "nameEn": "SLOVAKIA",
+      "nameJa": "スロバキア",
+      "flag": "🇸🇰",
+      "reason": "ドナウからカルパチア山地へ地形を広げ、アッグテレクと国境を越えて続くカルスト地形を別の国側から見たいなら。"
+    },
+    {
+      "slug": "serbia",
+      "nameEn": "SERBIA",
+      "nameJa": "セルビア",
+      "flag": "🇷🇸",
+      "reason": "パンノニア平原とドナウを南へ追い、ヴォイヴォディナからベオグラードへ、中欧とバルカンの文化が切り替わる場所を見たいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Budapest → Vienna",
+      "description": "直通列車でドナウ沿いの二つの首都をつなぐ代表的な中欧ルート。ブダペストの河岸と温泉都市から、ウィーンの帝都景観へ同じ歴史圏の違いを見比べられる。"
+    }
+  ],
+  "updatedAt": "2026-09-08",
+  "sourcesVerifiedAt": "2026-09-08",
+  "sourceDates": {
+    "population": "2026-01-01",
+    "religion": "2022",
+    "transport": "2026",
+    "nextRoutes": "2026"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/HUN.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84.",
+    "population": "Hungarian Central Statistical Office (KSH), Population by type of settlement, 1 January: total resident population 9,488,428 on 1 January 2026.",
+    "area": "Hungarian Central Statistical Office (KSH), Basic geographical data, updated 28 April 2026: area 93,025 km²; 82.5% of the country below 200 m.",
+    "japanArea": "Geospatial Information Authority of Japan, national area 377,974.87 km² as of 1 April 2026; Hungary 93,025 km² is 24.61%, rounded to about 25%.",
+    "language": "Fundamental Law of Hungary, Article H: the official language of Hungary is Hungarian.",
+    "religion": "Hungarian Central Statistical Office, Census 2022: religion question voluntary; 60% responded; Catholics were the largest affiliation among respondents, including 2.6 million Roman Catholics.",
+    "currency": "Magyar Nemzeti Bank: forint banknotes and coins are Hungarian legal tender; the forint currency system was introduced in 1946.",
+    "budapest": "UNESCO World Heritage Centre, Budapest including the Banks of the Danube, the Buda Castle Quarter and Andrássy Avenue: Pest, Buda and Óbuda were united in 1872–73; Millennium Underground Railway built 1893–1896.",
+    "budapestThermal": "Official Budapest / Visit Hungary tourism information: Budapest bathing history spans roughly two millennia and the city has more than 100 thermal springs and wells, with water up to 77°C.",
+    "visegrad": "Visit Visegrád official tourism: the Citadel overlooks the Danube Bend and forms part of Visegrád's medieval royal heritage.",
+    "visegrad1335": "Visegrád Group / Visit Visegrád: the 1335 Meeting of Kings brought together the kings of Hungary, Bohemia and Poland at Visegrád.",
+    "tihany": "Municipality of Tihany official tourism/history: King Andrew I founded a Benedictine monastery at Tihany in 1055 above Lake Balaton; the present abbey was rebuilt in Baroque style.",
+    "tihanyCharter": "National Széchényi Library / Hungarian Electronic Library: the 1055 Tihany Abbey foundation charter survives in its original form and contains early Hungarian words within its Latin text.",
+    "hortobagy": "UNESCO World Heritage Centre, Hortobágy National Park - the Puszta: an extensive plain and wetland cultural landscape shaped by more than two millennia of pastoral use.",
+    "tokaj": "UNESCO World Heritage Centre, Tokaj Wine Region Historic Cultural Landscape: living wine-production landscape; legal delimitation as a closed wine region dates to 1737; Gombos-hegy Cellars at Hercegkút are included in the World Heritage property.",
+    "aggtelek": "Aggtelek National Park Directorate / UNESCO: Baradla is a major cave of the Aggtelek Karst; the transboundary Caves of Aggtelek Karst and Slovak Karst World Heritage property contains more than a thousand caves.",
+    "holloko": "UNESCO World Heritage Centre, Old Village of Hollókő and its Surroundings: a deliberately preserved traditional settlement that remains a living village.",
+    "pecs": "City of Pécs / Bishopric of Pécs: the former Mosque of Pasha Qasim at Széchenyi Square is now the Downtown Candlemas Church and is a major surviving Ottoman-era monument.",
+    "heviz": "Visit Hungary / Hévíz official tourism information: Lake Hévíz is about 4.4 ha and 38 m deep; its thermal water is renewed in roughly three days and steam is characteristic in cold weather.",
+    "worldHeritage": "UNESCO World Heritage Centre, Hungary State Party page: 8 properties inscribed on the World Heritage List.",
+    "tanchaz": "UNESCO Intangible Cultural Heritage: Táncház method, Hungarian model for transmission of intangible cultural heritage, selected in 2011 for the Register of Good Safeguarding Practices.",
+    "stringBand": "UNESCO Intangible Cultural Heritage: Hungarian string band tradition inscribed in 2022.",
+    "matyo": "UNESCO Intangible Cultural Heritage: Folk art of the Matyó, embroidery of a traditional community, inscribed in 2012.",
+    "buso": "UNESCO Intangible Cultural Heritage: Busó festivities at Mohács, masked end-of-winter carnival custom, inscribed in 2009.",
+    "gulyas": "Collection of Hungarikums / Hungarian Values: Hungarian goulash is a broth-rich soup with onions and paprika, prepared with cubed potatoes and csipetke.",
+    "langos": "Collection of Hungarikums / Visit Hungary: lángos is fried bread dough, traditionally served with garlic, sour cream and grated cheese; it is also associated with markets and beach food.",
+    "csirkepaprikas": "Visit Hungary, A Spoonful of Hungary – Chicken Paprikash: chicken paprikash is a classic Hungarian dish centered on paprika, commonly finished with sour cream and served with dumplings.",
+    "dobostorta": "Collection of Hungarikums / Hungarian Values: Dobos cake is layered sponge with chocolate buttercream and caramel topping, introduced by József C. Dobos at Budapest's National General Exhibition in 1885.",
+    "transport": "MÁV Group 2025–2026 domestic public-service timetable and 2026 Balaton service information: Budapest is the principal rail hub; current services connect Budapest with Lake Balaton, Pécs, Tokaj and other major destinations.",
+    "nextRoutes": "ÖBB 2026 Hungary connections: direct Railjet/Eurocity services operate between Vienna and Budapest, with frequent direct service.",
+    "travelScale": "MÁV Group 2025–2026 timetable and destination service information; route ranges are editorial estimates based on the distribution of Budapest, Balaton, Pécs, Hortobágy, Tokaj and Aggtelek rather than a fixed cross-country template."
+  }
+}
