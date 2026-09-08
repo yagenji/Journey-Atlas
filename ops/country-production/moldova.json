@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "MAP",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-08T19:02:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-08T19:08:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -121,7 +121,7 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/moldova/map-atlas-v1.svg",
     "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MDA.geojson (blob 910ae48e30530f285010bbf3298b3f9daeec6c2f), WGS84; JOURNEY ATLAS map-v3.",
     "bounds": {
@@ -150,8 +150,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -178,5 +178,20 @@
     "notes": "All four Taste images are user-approved and remain immutable. FOOD02, FOOD03, and FOOD04 retain explicit user-approval overrides of earlier internal composition/identity concerns; no regeneration is requested by the user.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-08T18:55:00+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "accessible-svg-label"
+    ],
+    "notes": "Moldova boundary is centered with symmetric margins (left/right 328.6 px; top/bottom 37.7 px), preserving the country's tall geographic aspect without rotation or distortion. Styling tokens match the current map-v3 reference.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-08T19:08:00+09:00"
   }
 }
