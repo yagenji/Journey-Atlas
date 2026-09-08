@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-08T21:44:00+09:00",
+  "phase": "QA",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-08T22:06:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -116,62 +116,9 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "PASS",
-    "productionState": "PASS",
-    "sourceCommit": "ed2fe059b52f0f62013a40df49fef6b9d758056b",
-    "validateRunId": 34216878942,
-    "productionVerifyRunId": 34216878938,
-    "browserQaArtifactId": 10052220211,
-    "checks": [
-      "source-syntax",
-      "reviewable-country-json",
-      "cloudflare-package-build",
-      "production-commit-served",
-      "production-country-route",
-      "production-country-payload",
-      "desktop-1440x1000",
-      "tablet-834x1112",
-      "mobile-390x844",
-      "hero-and-scene-image-load",
-      "taste-card-count-4",
-      "scene-card-count-8",
-      "map-render",
-      "critical-section-visibility",
-      "canonical-url",
-      "noindex-follow",
-      "sitemap-exclusion",
-      "registry-atlasPublished-false",
-      "registry-href-empty",
-      "next-route-count-and-order",
-      "heading-hierarchy",
-      "aria-references",
-      "image-alt",
-      "interactive-accessible-name",
-      "keyboard-focusability",
-      "no-positive-tabindex",
-      "no-horizontal-overflow",
-      "no-clipped-text",
-      "no-severe-console-errors"
-    ],
-    "browserViewports": {
-      "desktop": {
-        "width": 1440,
-        "height": 1000,
-        "result": "PASS"
-      },
-      "tablet": {
-        "width": 834,
-        "height": 1112,
-        "result": "PASS"
-      },
-      "mobile": {
-        "width": 390,
-        "height": 844,
-        "result": "PASS"
-      }
-    },
-    "failureCount": 0,
-    "completedAt": "2026-09-08T21:44:00+09:00"
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED",
+    "reason": "Content revision: related destinations and encounters updated after user review."
   },
   "reviewDeployment": {
     "state": "DONE",
@@ -191,7 +138,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
