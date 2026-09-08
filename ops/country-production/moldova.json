@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-08T17:55:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-08T17:56:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -67,13 +67,12 @@
     },
     {
       "id": "S07",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/moldova/approved/congaz-gagauz-courtyard.webp",
       "contentId": "congaz-gagauz-courtyard",
-      "rejectedGenerationIds": [
-        "6c5e3642-ba2b-450b-a8c7-00b0504b35f0"
-      ],
-      "resetReason": "Generated scene violates locked S07 identity: food table dominates the foreground, making cuisine the subject instead of the Gagauz courtyard architecture. Do not reuse this output."
+      "approvedGenerationId": "6c5e3642-ba2b-450b-a8c7-00b0504b35f0",
+      "approvedAt": "2026-09-08T17:56:00+09:00",
+      "approvalNote": "Explicit user approval overrides prior internal REGENERATE assessment."
     },
     {
       "id": "S08",
