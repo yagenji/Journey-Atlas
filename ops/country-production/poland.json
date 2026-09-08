@@ -3,9 +3,9 @@
   "slug": "poland",
   "countryName": "POLAND",
   "contentRef": "country/poland",
-  "phase": "MAP",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-08T18:18:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-08T18:28:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -102,8 +102,22 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
-    "asset": "assets/images/poland/map-atlas-v1.svg"
+    "state": "APPROVED",
+    "asset": "assets/images/poland/map-atlas-v1.svg",
+    "approvedAt": "2026-09-08T18:28:00+09:00",
+    "qa": {
+      "result": "PASS",
+      "checks": [
+        "WGS84-boundary",
+        "1200x760-canvas",
+        "svg-integrity",
+        "no-ellipse",
+        "no-decorative-text",
+        "benchmark-style",
+        "marker-collision-plan"
+      ],
+      "markerOffsetsLocked": true
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -123,7 +137,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   }
 }
