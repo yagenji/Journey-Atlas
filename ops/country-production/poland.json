@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "poland",
   "countryName": "POLAND",
-  "contentRef": "country/poland",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 30,
-  "updatedAt": "2026-09-08T20:39:00+09:00",
+  "contentRef": "main",
+  "phase": "QA",
+  "stateRevision": 31,
+  "updatedAt": "2026-09-08T20:50:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -120,7 +120,14 @@
     }
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "countryJson": "data/countries/poland.json",
+    "themeTaxonomy": [
+      "city",
+      "history"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false
   },
   "qa": {
     "state": "NOT_STARTED"
@@ -137,7 +144,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "assetQa": {

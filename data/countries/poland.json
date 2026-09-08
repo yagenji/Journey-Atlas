@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "poland",
+  "nameEn": "POLAND",
+  "nameJa": "ポーランド",
+  "region": "CENTRAL EUROPE / 52°N",
+  "seo": {
+    "description": "クラクフのヴァヴェル城から、再建されたワルシャワ、グダニスクの港、マルボルク、タトラ、移動砂丘、マズーリ湖沼、ヴィエリチカ、ヴロツワフへ。8つの景色からポーランドの都市史と地形の幅をたどる。"
+  },
+  "capital": {
+    "nameEn": "Warsaw",
+    "nameJa": "ワルシャワ",
+    "coordinates": {
+      "latitude": 52.2297,
+      "longitude": 21.0122
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2.3,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "ヴィスワ川沿いの王都クラクフから、再建された首都、バルト海の港、湖沼地帯、移動砂丘、タトラの高山へ。中世の城郭と20世紀の記憶が都市に重なり、北から南へ進むほど水辺と地形の表情が切り替わる中央ヨーロッパの国。",
+    "image": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
+    "location": "Wawel Royal Castle / Vistula River",
+    "coordinates": {
+      "latitude": 50.054,
+      "longitude": 19.935
+    },
+    "mapOffset": {
+      "x": -2.3,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 55.13054,
+      "south": 48.701798,
+      "west": 13.622961,
+      "east": 24.644118
+    },
+    "svg": "assets/images/poland/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/POL.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {
+      "id": "warsaw-castle-square-old-town",
+      "name": "ワルシャワ / 王宮広場と旧市街",
+      "nameLocal": "Warsaw / Castle Square & Old Town",
+      "mapLabel": "Warsaw",
+      "description": "王宮広場とジグムント3世の記念柱、その背後に旧市街の屋根が続く。1944年に大部分を失った歴史地区が戦後に再建された事実を知ると、整った街並みそのものが20世紀史の痕跡に見えてくる。",
+      "coordinates": {
+        "latitude": 52.2471,
+        "longitude": 21.0142
+      },
+      "image": "assets/images/poland/approved/warsaw-castle-square-old-town.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "gdansk-motlawa-crane",
+      "name": "グダニスク / モトワヴァ川と木造クレーン",
+      "nameLocal": "Gdańsk / Motława & Żuraw",
+      "mapLabel": "Gdańsk",
+      "description": "モトワヴァ川沿いに切妻屋根の商館が並び、中世の港湾クレーン「ジュラフ」が水辺の輪郭をつくる。内陸の王都とは異なる、バルト海交易と港町の歴史が見える北部の都市。",
+      "coordinates": {
+        "latitude": 54.3506,
+        "longitude": 18.6575
+      },
+      "image": "assets/images/poland/approved/gdansk-motlawa-crane.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "malbork-castle-nogat",
+      "name": "マルボルク / 城郭とノガト川",
+      "nameLocal": "Malbork / Castle & Nogat River",
+      "mapLabel": "Malbork",
+      "description": "ノガト川越しに赤レンガの城壁、塔、複数の中庭を抱える巨大な城郭群が一つの塊として立つ。単独の城というより、修道騎士団の政治と軍事を収めた要塞都市の規模が伝わる。",
+      "coordinates": {
+        "latitude": 54.0405,
+        "longitude": 19.0299
+      },
+      "image": "assets/images/poland/approved/malbork-castle-nogat.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "morskie-oko-tatra",
+      "name": "モルスキェ・オコ / ポーランド・タトラ",
+      "nameLocal": "Morskie Oko / Polish Tatras",
+      "mapLabel": "Morskie Oko",
+      "description": "森林の上に急な岩稜が立ち上がり、その足元に高山湖モルスキェ・オコが広がる。平野の印象が強いポーランドで、南端にはアルプス的な高山景観が続くことを一枚で示す。",
+      "coordinates": {
+        "latitude": 49.1972,
+        "longitude": 20.0708
+      },
+      "image": "assets/images/poland/approved/morskie-oko-tatra.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "slowinski-lacka-dune",
+      "name": "スウォヴィンスキ / ウォンツカ砂丘",
+      "nameLocal": "Słowiński National Park / Łącka Dune",
+      "mapLabel": "Łącka Dune",
+      "description": "バルト海沿岸に淡い砂丘の稜線が広がり、風で形を変える砂と松林が接する。海辺でありながら砂漠のようにも見える移動砂丘は、ポーランド北部の地形に意外な幅を加える。",
+      "coordinates": {
+        "latitude": 54.7498,
+        "longitude": 17.4366
+      },
+      "image": "assets/images/poland/approved/slowinski-lacka-dune.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "mikolajki-masurian-lakes",
+      "name": "ミコワイキ / マズーリ湖沼地帯",
+      "nameLocal": "Mikołajki / Masurian Lakes",
+      "mapLabel": "Mikołajki",
+      "description": "湖面に帆船が行き交い、町の縁から森と水路が奥へ続く。北東部では湖が点ではなく連続する移動空間になり、都市間を結ぶ旅とは別の水上・湖畔のリズムが生まれる。",
+      "coordinates": {
+        "latitude": 53.8013,
+        "longitude": 21.5695
+      },
+      "image": "assets/images/poland/approved/mikolajki-masurian-lakes.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "wieliczka-st-kinga-chapel",
+      "name": "ヴィエリチカ / 聖キンガ礼拝堂",
+      "nameLocal": "Wieliczka / St Kinga's Chapel",
+      "mapLabel": "Wieliczka",
+      "description": "岩塩を掘った地下空間に、祭壇、壁面彫刻、シャンデリアまでが収まる。採掘のためにつくられた地中の空間が、職人技と信仰によって礼拝堂へ変わった場所。",
+      "coordinates": {
+        "latitude": 49.9835,
+        "longitude": 20.0516
+      },
+      "image": "assets/images/poland/approved/wieliczka-st-kinga-chapel.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "wroclaw-market-square",
+      "name": "ヴロツワフ / 市場広場",
+      "nameLocal": "Wrocław / Market Square",
+      "mapLabel": "Wrocław",
+      "description": "ゴシックの旧市庁舎を中心に、色と形の異なる切妻屋根の建物が広場を囲む。西部シレジアの都市として、ワルシャワ、クラクフ、グダニスクとは別の歴史と建築の重なりを見せる。",
+      "coordinates": {
+        "latitude": 51.1095,
+        "longitude": 17.0313
+      },
+      "image": "assets/images/poland/approved/wroclaw-market-square.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ミルクバー",
+      "icon": "food"
+    },
+    {
+      "title": "琥珀の店",
+      "icon": "culture"
+    },
+    {
+      "title": "路面電車",
+      "icon": "road"
+    },
+    {
+      "title": "ショパンの音楽と記念ベンチ",
+      "icon": "culture"
+    },
+    {
+      "title": "オブヴァジャネクの屋台",
+      "icon": "food"
+    },
+    {
+      "title": "グラル文化の木造家屋",
+      "icon": "city"
+    },
+    {
+      "title": "ボレスワヴィエツ陶器",
+      "icon": "culture"
+    },
+    {
+      "title": "ヴィチナンキの切り絵",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "warsaw-old-town-postwar-reconstruction",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ワルシャワ旧市街は、失われた街を再建した都市景観",
+      "text": "1944年のワルシャワ蜂起で歴史地区の85%以上が破壊された。戦後、市民は絵画や図面、記録を手がかりに旧市街を再建し、現在の街並みそのものが「復元とは何か」を考える場所になっている。",
+      "points": [
+        "1944年に歴史地区の85%以上が破壊",
+        "戦後の再建はユネスコ世界遺産で例外的な保存事例として評価"
+      ]
+    },
+    {
+      "topicKey": "gdansk-solidarity-1980-shipyard-strike",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "グダニスクの造船所から「連帯」が生まれた",
+      "text": "1980年8月、グダニスクのレーニン造船所で始まったストライキは全国へ広がり、21項目の要求とグダニスク協定を経て独立自主管理労組「連帯」へつながった。港町の産業景観が政治史の舞台でもある。",
+      "points": [
+        "ストライキ開始は1980年8月14日",
+        "造船所の21項目の要求は現在も欧州連帯センターでたどれる"
+      ]
+    },
+    {
+      "topicKey": "krakow-szopka-nativity-tradition-2018",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "クラクフの建築は、ショプカの小さな世界に作り替えられる",
+      "text": "クラクフのショプカは、教会の塔や街の建築を自由に組み合わせてつくる華やかな降誕模型。19世紀に形づくられ、世代を越えて制作技術が受け継がれている。",
+      "points": [
+        "2018年にユネスコ無形文化遺産へ登録",
+        "実在するクラクフ建築を引用しながら作者ごとに構成が変わる"
+      ]
+    },
+    {
+      "topicKey": "polonaise-processional-dance-2023",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ポロネーズは、列をつくって歩くように踊る",
+      "text": "ポロネーズは複数の組が行列をつくり、先頭の組が示す進路に沿ってゆったり進む集団舞踊。舞台芸術だけでなく、祝いの場や学校行事などにもつながる文化として残っている。",
+      "points": [
+        "数組から数百組まで参加できる行列型の舞踊",
+        "2023年にユネスコ無形文化遺産へ登録"
+      ]
+    },
+    {
+      "topicKey": "bialowieza-primary-forest-european-bison",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ビャウォヴィエジャでは、原生的な森とヨーロッパバイソンが残る",
+      "text": "ポーランドとベラルーシの国境にまたがるビャウォヴィエジャは、針葉樹と広葉樹が混じる広大な原生的森林。倒木や湿地を含む複雑な森が、多様な生物とヨーロッパバイソンを支える。",
+      "points": [
+        "世界遺産区域は国境をまたぐ141,885 ha",
+        "ユネスコはヨーロッパバイソンをこの森林の象徴種として挙げる"
+      ]
+    },
+    {
+      "topicKey": "lodz-textile-factories-reuse",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ウッチでは、繊維工場が街の次の用途へ引き継がれている",
+      "text": "19世紀以降に繊維産業で急成長したウッチには、赤レンガの工場群と工場主の邸宅が残る。旧工場を文化施設や商業空間へ転用した場所も多く、産業都市の骨格を現在の街歩きの中で読める。",
+      "points": [
+        "かつて欧州有数の繊維生産都市へ成長",
+        "旧イズラエル・ポズナンスキ工場は現在Manufakturaとして再利用"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "krakow-hejnal-hourly-abrupt-ending",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音",
+      "title": "聖マリア教会のラッパは、毎時鳴って途中で止まる",
+      "text": "クラクフの聖マリア教会の高い塔から、ヘイナウが毎時四方向へ生演奏される。旋律は最後まで完結せず、途中で途切れる形そのものが街のよく知られた伝統になっている。",
+      "icon": "culture",
+      "sourceKey": "hejnal"
+    },
+    {
+      "topicKey": "warsaw-mermaid-sword-shield-symbol",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "街の印",
+      "title": "ワルシャワの人魚は、剣と盾を持っている",
+      "text": "ヴィスワ川と結びつく人魚「シレンカ」はワルシャワの象徴。旧市街や河岸で像や意匠を探すと、剣と盾を持つ守護者として描かれていることに気づく。",
+      "icon": "city",
+      "sourceKey": "warsawMermaid"
+    },
+    {
+      "topicKey": "wroclaw-bronze-dwarfs-city-search",
+      "categoryEn": "CITY",
+      "categoryJa": "街歩き",
+      "title": "ヴロツワフでは、小さなブロンズの小人を探しながら歩ける",
+      "text": "街角、橋、店先などに小さな小人像が置かれ、歩いて見つけること自体がヴロツワフの街歩きになっている。新しい像も加わるため、固定の総数ではなく出会い方を楽しみたい。",
+      "icon": "city",
+      "sourceKey": "wroclawDwarfs"
+    },
+    {
+      "topicKey": "slowinski-moving-dunes-buried-forest-traces",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "地形",
+      "title": "移動砂丘は、埋もれた森の痕跡を現すことがある",
+      "text": "スウォヴィンスキの砂丘は風でゆっくり移動し、松林を覆う一方で、移動後の場所に古い木の幹や切り株が現れることがある。砂丘が固定した景色ではないことが目で分かる。",
+      "icon": "landscape",
+      "sourceKey": "slowinski"
+    },
+    {
+      "topicKey": "fat-thursday-paczki-custom",
+      "categoryEn": "FOOD",
+      "categoryJa": "季節の食",
+      "title": "「脂の木曜日」は、ポンチキを食べる日",
+      "text": "四旬節前の木曜日には、ジャムやクリームを詰めたポンチキが菓子店に大量に並ぶ。普段から食べられる菓子だが、この日はポーランド各地で特に多く食べられる。",
+      "icon": "food",
+      "sourceKey": "fatThursday"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF POLAND",
+    "title": "ポーランドで食べたいもの",
+    "intro": "じゃがいもとチーズを包むピエロギ、酸味のあるライ麦スープ、タトラ地方の燻製チーズ、季節行事にも結びつく菓子まで。地域と日常の食卓が見えるポーランドから、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "pierogi-ruskie",
+        "name": "ピエロギ・ルスキ",
+        "nameLocal": "Pierogi ruskie",
+        "text": "薄い生地に、じゃがいも、白チーズ、炒めた玉ねぎなどの餡を包むピエロギ。肉入りや果物入りなど幅広い種類がある中で、乳製品とじゃがいもを合わせる定番の一つ。",
+        "image": "assets/images/poland/approved/pierogi-ruskie.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "zurek",
+        "name": "ジュレック",
+        "nameLocal": "Żurek",
+        "text": "発酵させたライ麦を使う酸味のあるスープ。白ソーセージや卵と合わせることが多く、穀物の発酵風味が肉料理とは違うポーランド料理の輪郭をつくる。",
+        "image": "assets/images/poland/approved/zurek.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "oscypek-z-zurawina",
+        "name": "オスツィペク・ズ・ジュラヴィノン",
+        "nameLocal": "Oscypek z żurawiną",
+        "text": "タトラ周辺でつくられる模様入りの燻製羊乳チーズ、オスツィペクを焼き、クランベリーを合わせる。塩気と燻香、果実の甘酸っぱさを一皿で味わえる山地の食。",
+        "image": "assets/images/poland/approved/oscypek-z-zurawina.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "paczki",
+        "name": "ポンチキ",
+        "nameLocal": "Pączki",
+        "text": "発酵生地を揚げ、ローズジャムや果実のフィリング、クリームなどを詰める菓子。日常の菓子店でも見かけるが、四旬節前の「脂の木曜日」には特に存在感が大きくなる。",
+        "image": "assets/images/poland/approved/paczki.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ワルシャワを軸にクラクフまで",
+        "text": "首都の旧市街と20世紀史を歩き、鉄道でクラクフへ移る。二都市に絞れば、再建された首都と旧王都という異なる都市史を急がず比べられる。例：ワルシャワ → クラクフ → ワルシャワ、またはクラクフで終了。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "三つの歴史都市と地下景観をつなぐ",
+        "text": "都市間鉄道を軸に北から南へつなぐ。例：ワルシャワ → グダニスク → ヴロツワフ → クラクフ／ヴィエリチカ。日数に余裕があればマルボルクをグダニスク側から組み込める。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "バルト海から湖沼・タトラまで縦断する",
+        "text": "都市間は鉄道、自然地域はバスや車も組み合わせ、北部の湖と海岸から南部の山地まで広げる。例：ワルシャワ → マズーリ → グダニスク → スウォヴィンスキ → ヴロツワフ → クラクフ／ヴィエリチカ → ザコパネ／タトラ → ワルシャワ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#7f9a61",
+      "text": "都市の街歩きがしやすくなり、低地では緑が戻る。一方、タトラでは春でも雪や冬季条件が残ることがあるため、南部の山地を入れる日は都市部の気温だけで判断しない。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a9a05b",
+      "text": "マズーリの湖、バルト海沿岸、長い日照を旅程へ入れやすい季節。ワルシャワやクラクフの中心部、モルスキェ・オコなど人気地点は混みやすく、自然景観は朝の時間帯を使うと動きやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b27a4c",
+      "text": "初秋は都市、森、タトラを組み合わせやすく、朝晩の冷え込みとともに景色の色も変わる。11月に近づくほど日照時間が短くなり、高山では積雪や路面凍結を前提に最新条件を確認する。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748e9d",
+      "text": "冬の旧市街やクリスマス期の街並みと、雪のタトラを組み合わせられる時期。山では天候と積雪条件が移動を左右するため、都市観光と同じ固定日程で高山ルートを組まない。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・車",
+    "text": "ワルシャワ、クラクフ、グダニスク、ヴロツワフ、マルボルクなど主要都市は鉄道を旅の骨格にしやすい。ヴィエリチカや山岳の入口は近郊交通・バスを組み合わせる。マズーリやスウォヴィンスキなど分散した自然地域を連続して回るなら、車を加えると移動の自由度が上がる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "旧市街を歩きながら、王都・破壊・再建の歴史まで読みたい人",
+      "text": "クラクフの王都景観、ワルシャワの再建、グダニスクの港と「連帯」、マルボルクの城郭まで、建築を入口に時代の違いを追いたい人。"
+    },
+    {
+      "title": "都市だけでなく、海岸・湖・高山まで景色を切り替えたい人",
+      "text": "バルト海の移動砂丘、マズーリの湖沼、タトラの高山湖をつなぎ、一つの国の中で低地から山地まで視覚的な幅を確かめたい人。"
+    },
+    {
+      "title": "ミルクバー、工芸、音楽、地域の食から暮らしへ入りたい人",
+      "text": "有名建築だけで終わらず、日常の食堂、ショパンの音、陶器、切り絵、山地のチーズなど、旅先で見つけられる生活文化に関心がある人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ／バルト海"
+    },
+    {
+      "label": "首都",
+      "value": "ワルシャワ"
+    },
+    {
+      "label": "人口",
+      "value": "約3,733万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "313,933 km²（日本の約83%）"
+    },
+    {
+      "label": "言語",
+      "value": "ポーランド語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "ローマ・カトリック71.3%（2021年国勢調査）"
+    },
+    {
+      "label": "通貨",
+      "value": "ズウォティ（PLN）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "vistula-river-1022-km",
+      "label": "ヴィスワ川",
+      "value": "1,022 km",
+      "note": "ポーランド最長の川。南部から中央平原を通ってバルト海へ流れ、クラクフとワルシャワの両方を同じ水系でつないでいる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "malbork-castle-complex-21-hectares",
+      "label": "マルボルク城郭複合体",
+      "value": "約21 ha",
+      "note": "城郭博物館が示す複合体全体の規模。高城・中城・前城、城壁や緑地を含むため、一つの建物ではなく広い要塞群として歩くことになる。",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "wieliczka-mine-depth-327-m",
+      "label": "ヴィエリチカ岩塩坑",
+      "value": "最深部327 m",
+      "note": "鉱山全体は9つの主要レベルを持ち、深さ57〜327mに及ぶ。観光ルートが通る範囲よりさらに下にも採掘空間が続いてきた。",
+      "icon": "landmark"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "tatra-current-parking-entry-trail-conditions",
+      "title": "タトラは、駐車・入山・トレイル条件を直前に確認する",
+      "text": "モルスキェ・オコや高山ルートは季節と天候で状況が変わる。駐車やアクセス、閉鎖区間、山岳天気をタトラ国立公園の最新情報で確認し、都市側の天気だけで判断しない。"
+    },
+    {
+      "topicKey": "wieliczka-timed-ticket-two-three-hours",
+      "title": "ヴィエリチカは、入場時間を先に決めてクラクフの日程へ入れる",
+      "text": "観光ルートはオンラインで日時を選ぶ方式で、見学には通常2〜3時間かかる。クラクフの街歩きの合間に短時間で差し込まず、移動と集合時間を含めた枠を確保する。"
+    },
+    {
+      "topicKey": "nature-regions-local-connections-buffer",
+      "title": "自然地域は、都市間鉄道と同じ感覚で組まない",
+      "text": "主要都市間は鉄道が使いやすい一方、マズーリ、スウォヴィンスキ、山岳部ではローカル接続や車が必要になる。景観地点を連続して入れる日は、乗り継ぎと日没までの余白を持たせる。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "czechia",
+      "nameEn": "CZECHIA",
+      "nameJa": "チェコ",
+      "flag": "🇨🇿",
+      "reason": "歴史都市と城を歩く密度をそのまま南西へつなぎ、プラハやモラヴィアで中央ヨーロッパの都市景観を比較したいなら。"
+    },
+    {
+      "slug": "lithuania",
+      "nameEn": "LITHUANIA",
+      "nameJa": "リトアニア",
+      "flag": "🇱🇹",
+      "reason": "バルト海・湖・森の景観と、ポーランドと長く重なった歴史を北東側からたどり、ヴィリニュスまで文化圏を広げたいなら。"
+    },
+    {
+      "slug": "slovakia",
+      "nameEn": "SLOVAKIA",
+      "nameJa": "スロバキア",
+      "flag": "🇸🇰",
+      "reason": "ポーランド南端のタトラを国境の反対側へ続け、山岳湖、峡谷、木造集落までカルパチアの地形を深く見たいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇩🇪",
+      "countryEn": "GERMANY",
+      "countryJa": "ドイツ",
+      "path": "Warsaw → Berlin",
+      "description": "ワルシャワから西へ鉄道でベルリンへつなぐ中欧横断。現在はベルリン—ワルシャワ間をEuroCityが結び、再建都市から20世紀史の層が厚い別の首都へ街の見方を続けられる。"
+    },
+    {
+      "flag": "🇨🇿",
+      "countryEn": "CZECHIA",
+      "countryJa": "チェコ",
+      "path": "Kraków → Prague",
+      "description": "クラクフからプラハへ国際列車で南西へ進むルート。2026年の時刻表でも両都市を結ぶ直通系統があり、旧王都からヴルタヴァ川沿いの歴史都市へ旅をつなげられる。"
+    },
+    {
+      "flag": "🇱🇹",
+      "countryEn": "LITHUANIA",
+      "countryJa": "リトアニア",
+      "path": "Warsaw → Vilnius",
+      "description": "ワルシャワから北東へ鉄道でヴィリニュスへ。現在のポーランド—リトアニア国際列車はモッカヴァで同一ホームの乗り換えを行い、バルト側の歴史都市へつながる。"
+    }
+  ],
+  "updatedAt": "2026-09-08",
+  "sourcesVerifiedAt": "2026-09-08",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025-01-01",
+    "religion": "2021",
+    "transport": "2026-09-08",
+    "tatra": "2026-09-08",
+    "wieliczkaVisit": "2026-09-08",
+    "nextRoutes": "2026-09-08"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/POL.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84.",
+    "population": "Statistics Poland, Poland in figures 2026: population 37.33 million / 37,333 thousand for 2025.",
+    "area": "Statistics Poland, Poland in figures 2026: total area 31,393,293 ha as of 2025 data, equivalent to 313,932.93 km².",
+    "japanArea": "Geospatial Information Authority of Japan, national area 377,974.87 km² as of 1 April 2026; Poland 313,932.93 km² is about 83.1%.",
+    "language": "Constitution of the Republic of Poland, Article 27: Polish is the official language of the Republic of Poland.",
+    "religion": "Statistics Poland, National Census of Population and Housing 2021 final religious-affiliation tables: Roman Catholic affiliation 27,121,331 people, about 71.3% of the population; the religion question was voluntary.",
+    "currency": "Narodowy Bank Polski: Polish złoty banknotes and coins issued by NBP are legal tender in Poland; currency code PLN.",
+    "wawel": "Wawel Royal Castle official visitor/history information; royal castle and cathedral complex on Wawel Hill above the Vistula in Kraków.",
+    "warsaw": "UNESCO World Heritage Centre, Historic Centre of Warsaw: more than 85% of the historic centre was destroyed in 1944 and reconstructed after the war.",
+    "gdansk": "Polish Tourism Organisation / Gdańsk official tourism information on the Motława waterfront and medieval port crane Żuraw.",
+    "malbork": "Malbork Castle Museum: the castle complex covers about 21 ha; UNESCO World Heritage Centre describes the monumental Gothic brick Teutonic castle property.",
+    "morskieOko": "Tatra National Park / Polish tourism information on Morskie Oko in the Polish Tatras and access via the Rybi Potok valley.",
+    "slowinski": "Słowiński National Park / Polish tourism information on the moving dune belt around Łącka Dune, including shifting sand and forest traces.",
+    "masuria": "Polish Tourism Organisation information on the Masurian Lake District and Mikołajki as a sailing/lake gateway.",
+    "wieliczka": "Wieliczka Salt Mine official corporate data: 9 principal levels at depths from 57 to 327 m, 2,391 chambers and about 245 km of galleries.",
+    "wroclaw": "Polish Tourism Organisation / Wrocław official tourism information on the Market Square, Gothic Town Hall and city-centre architecture.",
+    "vistula": "Statistics Poland, Poland in figures 2026: Wisła/Vistula is Poland's longest river at 1,022 km.",
+    "solidarity": "European Solidarity Centre, Gdańsk: the shipyard strike began on 14 August 1980; the 21 Demands and strike led to the emergence of Solidarność.",
+    "szopka": "UNESCO Intangible Cultural Heritage: Nativity scene (szopka) tradition in Krakow, inscribed in 2018.",
+    "polonaise": "UNESCO Intangible Cultural Heritage: Polonaise, traditional Polish dance, inscribed in 2023.",
+    "bialowieza": "UNESCO World Heritage Centre, Białowieża Forest: transboundary primary forest property of 141,885 ha and habitat of the iconic European bison.",
+    "lodz": "Polish Tourism Organisation, Łódź: historic textile manufacturing city; former factories including Izrael Poznański's complex have been repurposed as Manufaktura and cultural/leisure spaces.",
+    "hejnal": "City of Kraków official service: the Hejnał Mariacki is performed live every hour from St Mary's Church tower, in four directions, and the melody ends abruptly.",
+    "warsawMermaid": "City of Warsaw official information: the mermaid/siren is Warsaw's civic symbol linked with the Vistula and is depicted with a sword and shield.",
+    "wroclawDwarfs": "Polish Tourism Organisation / Wrocław tourism information on the bronze dwarf figures distributed through the city; the collection continues to grow.",
+    "fatThursday": "Polish Tourism Organisation culinary guide: pączki are especially popular on Fat Thursday, when millions are eaten.",
+    "taste": "Polish Tourism Organisation culinary guidance: pierogi with potato and cottage-cheese fillings, żurek, regional highlander oscypek and pączki are established parts of Polish food culture.",
+    "transport": "PKP Intercity / Polish rail timetable information: rail forms the principal intercity spine among Warsaw, Kraków, Gdańsk, Wrocław and Malbork; regional buses/local services complete access to smaller and natural destinations.",
+    "tatra": "Tatra National Park current visitor information and alerts for access, parking, trail closures and mountain conditions around Morskie Oko and the Polish Tatras.",
+    "wieliczkaVisit": "Wieliczka Salt Mine current Tourist Route information: tickets are selected for a date/time online; advance online purchase is required and the route normally takes 2–3 hours.",
+    "travelScale": "Editorial route ranges based on the geographic distribution of Warsaw, Gdańsk, Wrocław, Kraków, Masuria, Słowiński National Park and the Tatras; not a fixed national itinerary.",
+    "nextRoutes": "Deutsche Bahn current Poland services: Berlin–Warsaw EuroCity corridor; České dráhy 2026 timetable: Praha hl.n.–Kraków Główny direct EC/IC services; LTG Link current Poland–Lithuania service: Warsaw/Vilnius journeys operate with a coordinated transfer at Mockava."
+  }
+}
