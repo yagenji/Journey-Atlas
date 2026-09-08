@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "MAP",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-09T00:51:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-09T00:58:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -113,15 +113,16 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/belarus/map-atlas-v1.svg",
     "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/BLR.geojson (blob 3c367a9f06a500f1fef740f4f3870c460213c15a), WGS84; JOURNEY ATLAS map-v3.",
     "bounds": {
-      "north": 56.15680592900006,
-      "south": 51.235168356000095,
-      "west": 23.165644979000028,
-      "east": 32.719532104000045
-    }
+      "north": 56.40680592900006,
+      "south": 50.985168356000095,
+      "west": 22.815644979000027,
+      "east": 33.06953210400005
+    },
+    "approvedAt": "2026-09-09T00:58:00+09:00"
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -142,8 +143,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -180,5 +181,21 @@
     "notes": "All four Taste images are individually approved and visually distinct. FOOD02 was regenerated to correct an oversized composition. FOOD04 includes a small pickle garnish and parsley beyond the strictest minimal direction, but the dish remains a single plated serving and was explicitly approved by the user; no regeneration is requested.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-09T00:46:28+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "accessible-svg-label",
+      "all-nine-editorial-points-in-bounds"
+    ],
+    "notes": "Initial exact-fit render touched the top/bottom canvas edges and was corrected before approval by adding geographic padding. Final country extent margins are approximately left 203.5 px / right 203.5 px / top 35.0 px / bottom 35.0 px. All nine Hero/Scene coordinates project inside the map. Mir/Nesvizh and Pushcha/Brest are the two closest marker pairs; label-side/offset collision handling must be verified during Country JSON implementation and browser QA.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T00:58:00+09:00"
   }
 }
