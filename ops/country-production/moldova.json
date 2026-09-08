@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-08T18:16:00+09:00",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-08T18:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -94,13 +94,12 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/moldova/approved/food-placinte-cu-branza.webp",
       "contentId": "placinte-cu-branza",
-      "rejectedGenerationIds": [
-        "ddb6b33e-ba54-4c20-a8f0-52714a699e95"
-      ],
-      "resetReason": "Generated FOOD02 violates locked Taste rules: multiple pastries are shown and an herb garnish is present. One dominant pie portion only, no herbs or extra pastry items."
+      "approvedGenerationId": "ddb6b33e-ba54-4c20-a8f0-52714a699e95",
+      "approvedAt": "2026-09-08T18:18:00+09:00",
+      "approvalNote": "Explicit user approval overrides prior internal REGENERATE assessment."
     },
     {
       "id": "FOOD03",
