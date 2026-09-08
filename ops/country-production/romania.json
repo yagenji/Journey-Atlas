@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-09T02:22:00+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-09T02:23:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -61,9 +61,14 @@
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "ieud-deal-wooden-church-maramures"
+      "contentId": "ieud-deal-wooden-church-maramures",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "7a08daea-ad46-4a8f-bd26-392c9052805e"
+      ],
+      "failureReason": "Hard reject: generation repeated the prior Danube Delta wetland instead of Ieud Deal wooden church / Maramureș. Previous-asset repetition and scene mismatch are prohibited."
     },
     {
       "id": "S07",
@@ -128,7 +133,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S06"
+    "asset": "S07"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
