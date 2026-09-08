@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-08T22:40:00+09:00",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-09T00:31:47+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -78,15 +78,22 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "draniki"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-draniki.webp",
+      "contentId": "draniki",
+      "candidateGenerationId": "a1540af4-5509-45a9-871a-56bd18cfd50e",
+      "approvedAt": "2026-09-09T00:31:47+09:00"
     },
     {
       "id": "FOOD02",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "machanka"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-machanka.webp",
+      "contentId": "machanka",
+      "candidateGenerationId": "99a7623f-92d5-42a7-9d2d-cd0a60bd9ff7",
+      "approvedAt": "2026-09-09T00:31:47+09:00",
+      "rejectedGenerationIds": [
+        "c8f67d73-44d3-44bf-98e2-acd4000980cc"
+      ]
     },
     {
       "id": "FOOD03",
@@ -125,7 +132,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD03"
   },
   "sceneBatchReview": {
     "result": "PASS",
