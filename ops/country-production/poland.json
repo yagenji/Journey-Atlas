@@ -3,9 +3,9 @@
   "slug": "poland",
   "countryName": "POLAND",
   "contentRef": "country/poland",
-  "phase": "ASSET_QA",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-08T18:28:00+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-08T20:39:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -137,7 +137,39 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
+  },
+  "assetQa": {
+    "result": "PASS",
+    "checked": [
+      "state-generation-id-match",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "map-svg-existence"
+    ],
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS",
+      "contentRef": "country/poland"
+    },
+    "map": {
+      "asset": "assets/images/poland/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS"
+    },
+    "notes": "All 13 approved Poland raster assets on country/poland fully decode, match the verified local production exports byte-for-byte via Git blob SHA, use the exact Production State paths, and the approved folder contains only the 13 final rasters. Ready for implementation."
   }
 }
