@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-08T17:38:00+09:00",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-08T17:49:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -88,9 +88,10 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "oscypek-z-zurawina"
+      "contentId": "oscypek-z-zurawina",
+      "candidateGenerationId": "61dbaca3-1964-4962-a868-9ebaf8363df6"
     },
     {
       "id": "FOOD04",
@@ -122,6 +123,6 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   }
 }
