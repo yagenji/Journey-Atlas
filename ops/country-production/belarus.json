@@ -3,28 +3,28 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-08T15:39:00+09:00",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-08T15:55:00+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": null
   },
   "scenes": [
-    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": "bialowieza-belovezhskaya-pushcha-bison"},
+    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": "braslaw-lakes-mount-mayak"},
+    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": "grodno-kalozha-neman-river"},
+    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": "nesvizh-palace-ponds"},
+    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": "minsk-trinity-suburb-svislach"},
+    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": "turov-meadows-pripyat-floodplain"},
+    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": "polotsk-sophia-western-dvina"},
+    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": "brest-fortress-kholm-gate"}
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": "draniki"},
+    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": "machanka"},
+    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": "kholodnik"},
+    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": "potato-babka"}
   ],
   "map": {
     "state": "NOT_STARTED",
@@ -49,7 +49,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "COMPLETE_CONTENT_DESIGN",
-    "asset": null
+    "action": "GENERATE_HERO",
+    "asset": "HERO"
   }
 }
