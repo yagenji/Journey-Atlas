@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "slug": "macau",
+  "countryName": "MACAU",
+  "contentRef": "country/macau",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-09T01:13:00+09:00",
+  "hero": {
+    "state": "APPROVED",
+    "asset": null,
+    "contentId": "ruins-st-pauls-steps",
+    "approvedGenerationId": "bbb46eb5-932d-4fab-89c2-3db7091578fa",
+    "approvedAt": "2026-09-09T01:13:00+09:00"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "senado-square-wave-paving"
+    },
+    {
+      "id": "S02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "a-ma-temple-barra"
+    },
+    {
+      "id": "S03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "guia-fortress-lighthouse"
+    },
+    {
+      "id": "S04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "sai-van-lake-macau-tower"
+    },
+    {
+      "id": "S05",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "taipa-houses-green-villas"
+    },
+    {
+      "id": "S06",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "coloane-village-pier-waterfront"
+    },
+    {
+      "id": "S07",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "hac-sa-black-sand-beach"
+    },
+    {
+      "id": "S08",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "cotai-reclaimed-urban-district"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "minchi"
+    },
+    {
+      "id": "FOOD02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "african-chicken"
+    },
+    {
+      "id": "FOOD03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "dried-shrimp-roe-noodles"
+    },
+    {
+      "id": "FOOD04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "pastel-de-nata"
+    }
+  ],
+  "map": {
+    "state": "NOT_STARTED",
+    "asset": null
+  },
+  "implementation": {
+    "state": "NOT_STARTED"
+  },
+  "qa": {
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "next": {
+    "action": "GENERATE_SCENE",
+    "asset": "S01"
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  }
+}
