@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-09T00:42:42+09:00",
+  "phase": "MAP",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-09T00:46:28+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -135,8 +135,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_TASTE",
-    "asset": null
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -160,5 +160,18 @@
     "batchMaterialization": true,
     "autoPostVisualPipeline": true,
     "singleReviewIntegration": true
+  },
+  "tasteBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety"
+    ],
+    "notes": "All four Taste images are individually approved and visually distinct. FOOD02 was regenerated to correct an oversized composition. FOOD04 includes a small pickle garnish and parsley beyond the strictest minimal direction, but the dish remains a single plated serving and was explicitly approved by the user; no regeneration is requested.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T00:46:28+09:00"
   }
 }
