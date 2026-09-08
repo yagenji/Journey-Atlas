@@ -1,6 +1,6 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 ## Purpose
 
@@ -30,6 +30,7 @@ Production Stateが存在しない場合：
 - Registry / Country JSON / assets / branchの実状態を確認し、新規CountryのProduction Stateをmainに初期化してください。
 
 制作進行・承認ゲート・Batch処理・QA・Review Deployment・Publishは docs/COUNTRY_PRODUCTION_STATE.md に従ってください。
+Scene / Hero画像は docs/SCENE_IMAGE_PRODUCTION.md に従ってください。
 Taste画像は docs/TASTE_IMAGE_PRODUCTION.md に従ってください。
 
 Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED状態 / generation cursor / failure logを持たせないでください。
@@ -46,10 +47,11 @@ When instructions appear to conflict, use this order for Country production oper
 1. PROJECT MASTER INSTRUCTIONS
 2. `ops/country-production/{slug}.json` on `main` for current operational state
 3. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval / throughput rules
-4. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
-5. other global design / implementation specifications
-6. Country Content Plan for editorial and visual-design intent only
-7. chat history
+4. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
+5. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
+6. other global design / implementation specifications
+7. Country Content Plan for editorial and visual-design intent only
+8. chat history
 
 A Content Plan must never override current Production State.
 
