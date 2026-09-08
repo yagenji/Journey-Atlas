@@ -4,27 +4,89 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-08T16:02:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-08T16:14:00+09:00",
   "hero": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": null,
+    "contentId": "orheiul-vechi-raut",
+    "candidateGenerationId": "65e0d764-3edd-4968-a0e8-2c5a9c84d17b"
   },
   "scenes": [
-    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": "chisinau-cathedral-triumphal-arch"},
-    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": "soroca-fortress-dniester"},
-    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": "suta-de-movile"},
-    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": "cricova-underground-winery"},
-    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": "saharna-monastery-valley"},
-    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": "naslavcea-dniester-meander"},
-    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": "congaz-gagauz-courtyard"},
-    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": "lake-beleu-lower-prut"}
+    {
+      "id": "S01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "chisinau-cathedral-triumphal-arch"
+    },
+    {
+      "id": "S02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "soroca-fortress-dniester"
+    },
+    {
+      "id": "S03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "suta-de-movile"
+    },
+    {
+      "id": "S04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "cricova-underground-winery"
+    },
+    {
+      "id": "S05",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "saharna-monastery-valley"
+    },
+    {
+      "id": "S06",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "naslavcea-dniester-meander"
+    },
+    {
+      "id": "S07",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "congaz-gagauz-courtyard"
+    },
+    {
+      "id": "S08",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "lake-beleu-lower-prut"
+    }
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": "mamaliga-cu-branza"},
-    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": "placinte-cu-branza"},
-    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": "zeama"},
-    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": "cusma-lui-guguta"}
+    {
+      "id": "FOOD01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "mamaliga-cu-branza"
+    },
+    {
+      "id": "FOOD02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "placinte-cu-branza"
+    },
+    {
+      "id": "FOOD03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "zeama"
+    },
+    {
+      "id": "FOOD04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "cusma-lui-guguta"
+    }
   ],
   "map": {
     "state": "NOT_STARTED",
@@ -49,7 +111,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_HERO",
+    "action": "WAIT_HERO_APPROVAL",
     "asset": "HERO"
   }
 }
