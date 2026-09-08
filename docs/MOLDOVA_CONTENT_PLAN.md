@@ -339,7 +339,7 @@ No item should repeat a Scene description or Taste copy verbatim.
 
 ## Travel Trivia
 
-Target exactly 4:
+Target exactly 5:
 
 1. **LANGUAGE / 言葉 — 国家語はルーマニア語**
    - The 2023 law confirmed Romanian as Moldova's state language and replaced “Moldovan language” in legislation.
@@ -356,6 +356,10 @@ Target exactly 4:
 4. **TRANSPORT / 移動 — キシナウには長距離バス駅が複数ある**
    - Moldova Travel currently lists Central, North and South bus stations serving different destinations.
    - Travelers should check which station their route uses rather than assuming all intercity buses leave from one terminal.
+
+5. **LOCAL TIP / 街歩き — 週末の観光トロリーバスには英語案内がある**
+   - Visit Chișinău currently lists a weekend sightseeing trolleybus with an English-language departure.
+   - Traveler angle: it can be used as an orientation ride after arrival; recheck the current city schedule before use.
 
 User review decision (2026-09-08):
 - Do not use airport-code trivia.
