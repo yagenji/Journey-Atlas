@@ -244,6 +244,25 @@ Publication rule:
 
 This is a productivity rule, not a relaxation of Definition of Done. The affected surface still requires actual-page verification.
 
+
+### Country production throughput — GLOBAL LOCK
+
+The canonical throughput policy is defined in `docs/COUNTRY_PRODUCTION_STATE.md#throughput-mode--mandatory`.
+
+Production must optimize for **few user turns and few production deployments**, while keeping all quality gates.
+
+Locked behavior:
+
+- Hero: one image → user approval.
+- Scenes: S01–S08 are independent images but one automatic initial round; no per-image approval.
+- Taste: FOOD01–FOOD04 are independent images but one automatic initial round; no per-image approval.
+- State is updated after each image for duplication protection, but state-only CI is non-blocking.
+- Image materialization / conversion / asset QA happens by batch, not per image.
+- After visual approval, Map → asset QA → implementation → validation → review deployment → targeted production QA is one automatic chain.
+- Country content/assets remain on the Country branch until the review package is complete.
+- Merge to main once for review deployment; do not repeatedly deploy intermediate post-image steps.
+- User interaction after Taste batch review resumes only when the canonical Country URL is ready, unless a real blocking failure requires a spec decision.
+
 ---
 
 ## Branch lifecycle
