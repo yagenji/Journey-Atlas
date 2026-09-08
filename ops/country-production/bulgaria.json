@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
-  "phase": "SCENES_REVIEW",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-08T17:41:30+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-08T17:49:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -119,8 +119,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "WAIT_SCENE_BATCH_REVIEW",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -131,6 +131,8 @@
       "location-recognizability",
       "series-balance"
     ],
-    "notes": "No scene requires regeneration after batch review."
+    "notes": "No scene requires regeneration after batch review.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-08T17:49:00+09:00"
   }
 }
