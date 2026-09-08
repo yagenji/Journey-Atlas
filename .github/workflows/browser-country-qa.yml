@@ -4,6 +4,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: browser-country-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -17,80 +21,44 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Detect Country-page-impacting changes
-        id: changes
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          if [ "${{ github.event_name }}" != "pull_request" ]; then
-            echo "run_browser=true" >> "$GITHUB_OUTPUT"
-            echo "Manual run: browser QA required."
-            exit 0
-          fi
-
-          base_sha="${{ github.event.pull_request.base.sha }}"
-          git diff --name-only "$base_sha"...HEAD > /tmp/pr-changed-files.txt
-
-          echo "Changed files:"
-          cat /tmp/pr-changed-files.txt
-
-          review_slugs=""
-          while IFS= read -r file; do
-            slug=""
-            case "$file" in
-              data/countries/*.json)
-                slug="${file#data/countries/}"
-                slug="${slug%.json}"
-                ;;
-              assets/images/*/*)
-                slug="${file#assets/images/}"
-                slug="${slug%%/*}"
-                ;;
-            esac
-            if [ -n "$slug" ] && [ -f "data/countries/$slug.json" ]; then
-              echo "$slug"
-            fi
-          done < /tmp/pr-changed-files.txt | sort -u > /tmp/review-slug-candidates.txt
-
-          while IFS= read -r slug; do
-            [ -n "$slug" ] || continue
-            if [ -z "$review_slugs" ]; then
-              review_slugs="$slug"
-            else
-              review_slugs="$review_slugs,$slug"
-            fi
-          done < /tmp/review-slug-candidates.txt
-
-          echo "review_slugs=$review_slugs" >> "$GITHUB_OUTPUT"
-          echo "Changed reviewable Country candidates: ${review_slugs:-none}"
-
-          if grep -Eq '^(country\.html$|assets/css/|assets/js/|assets/images/|data/|scripts/(build_site|package_site|build_cloudflare|qa_published_browser)\.py$|\.github/workflows/browser-country-qa\.yml$)' /tmp/pr-changed-files.txt; then
-            echo "run_browser=true" >> "$GITHUB_OUTPUT"
-            echo "Country-page-impacting changes detected."
-          else
-            echo "run_browser=false" >> "$GITHUB_OUTPUT"
-            echo "No Country-page-impacting changes detected; expensive browser QA is not required."
-          fi
-
       - name: Set up Python
-        if: steps.changes.outputs.run_browser == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+      - name: Classify Country-page impact
+        id: impact
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            echo "Manual run: full Country browser QA requested."
+            exit 0
+          fi
+
+          base_sha="${{ github.event.pull_request.base.sha }}"
+          python3 scripts/classify_country_impact.py \
+            --base "$base_sha" \
+            --head HEAD \
+            --github-output "$GITHUB_OUTPUT"
+
       - name: Install browser QA dependencies
-        if: steps.changes.outputs.run_browser == 'true'
+        if: steps.impact.outputs.browser_scope != 'none'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
 
       - name: Build production package
-        if: steps.changes.outputs.run_browser == 'true'
+        if: steps.impact.outputs.browser_scope != 'none'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
 
       - name: Start local production package
-        if: steps.changes.outputs.run_browser == 'true'
+        if: steps.impact.outputs.browser_scope != 'none'
         run: |
           python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser-qa-http.log 2>&1 &
           echo $! > /tmp/journey-atlas-browser-qa-http.pid
@@ -103,38 +71,58 @@ jobs:
           cat /tmp/journey-atlas-browser-qa-http.log || true
           exit 1
 
-      - name: Run changed reviewable Country Desktop / Tablet / Mobile QA
-        if: steps.changes.outputs.run_browser == 'true' && steps.changes.outputs.review_slugs != ''
+      - name: Run targeted unpublished reviewable Country QA
+        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.reviewable_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
-          QA_SCOPE: reviewable
-          QA_SLUGS: ${{ steps.changes.outputs.review_slugs }}
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: ${{ steps.impact.outputs.reviewable_slugs }}
         run: python3 scripts/qa_published_browser.py
 
-      - name: Run all-published Desktop / Tablet / Mobile QA
-        if: steps.changes.outputs.run_browser == 'true'
+      - name: Run targeted published Country QA
+        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.published_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
+          QA_SCOPE: published
+          QA_SLUGS: ${{ steps.impact.outputs.published_slugs }}
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Run all unpublished reviewable Country QA
+        if: steps.impact.outputs.browser_scope == 'all'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-browser-reviewable-output
+          QA_SCOPE: unpublished-reviewable
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Run all published Country QA
+        if: steps.impact.outputs.browser_scope == 'all'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-browser-output
+          QA_SCOPE: published
         run: python3 scripts/qa_published_browser.py
 
       - name: Browser QA not required
-        if: steps.changes.outputs.run_browser != 'true'
-        run: echo "Browser QA check passed without running the 84-view test because this PR does not affect Country page rendering."
+        if: steps.impact.outputs.browser_scope == 'none'
+        run: |
+          echo "No Country-rendering impact detected."
+          echo "Browser QA skipped by risk-based classifier."
 
       - name: Stop local server
-        if: always() && steps.changes.outputs.run_browser == 'true'
+        if: always() && steps.impact.outputs.browser_scope != 'none'
         run: |
           if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
             kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
           fi
 
       - name: Upload browser QA report
-        if: always() && steps.changes.outputs.run_browser == 'true'
+        if: always() && steps.impact.outputs.browser_scope != 'none'
         uses: actions/upload-artifact@v4
         with:
-          name: published-country-browser-qa
+          name: country-browser-qa
           path: |
             qa-browser-output/
             qa-browser-reviewable-output/

@@ -221,6 +221,29 @@ to confirm deterministic NEXT, and:
 
 to validate all tracked states.
 
+
+### Impact-aware QA — GLOBAL LOCK
+
+Country production and publication use risk-based QA. Quality gates remain mandatory, but the test scope must match the change scope.
+
+Classify every change as:
+
+- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, workflow metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
+- **TARGETED COUNTRY IMPACT** — one or more Country JSON files, Country assets, publication-state rows, or theme assignments. Run validation plus Desktop / Tablet / Mobile Browser QA only for the affected Country slugs.
+- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, Country build/package logic, or Browser QA logic. Run all unpublished-reviewable and all published Country Browser QA.
+
+Use `scripts/classify_country_impact.py` as the canonical classifier.
+
+Publication rule:
+
+- Publishing one Country must not trigger all-Country browser regression unless shared rendering code changed in the same change.
+- Final production verification for a Country-only publish is the affected Country at Desktop / Tablet / Mobile plus production route/payload checks.
+- All-Country regression is reserved for shared Country-system changes.
+- GitHub Pages is a manual preview utility and is not part of the normal formal-publication critical path.
+- Production State updates do not trigger the heavy Country data/image/build validation; they use the lightweight production-state validation workflow.
+
+This is a productivity rule, not a relaxation of Definition of Done. The affected surface still requires actual-page verification.
+
 ---
 
 ## Branch lifecycle
