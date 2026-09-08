@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "main",
   "phase": "PUBLISH",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-08T22:44:00+09:00",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-08T22:48:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -117,7 +117,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "NOT_STARTED",
     "sourceCommit": "2dcf2efc410941b6d89e745543b1f9a4025e6b6e",
     "validateRunId": 34232189190,
     "productionVerifyRunId": 34232189295,
@@ -189,8 +189,10 @@
     "basis": "User instructed: QAして問題なければ公開して. Latest post-revision QA passed with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-08T22:48:00+09:00",
+    "productionVerification": "PENDING"
   },
   "next": {
     "action": "PUBLISH_COUNTRY",
