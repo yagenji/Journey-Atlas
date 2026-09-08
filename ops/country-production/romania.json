@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-09T01:38:00+09:00",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-09T01:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -24,9 +24,14 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "sighisoara-citadel-clock-tower"
+      "contentId": "sighisoara-citadel-clock-tower",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "c41dfe07-91f3-47b6-9cd5-a565aaf72c1c"
+      ],
+      "failureReason": "Hard reject: generated scene included typography / travel-poster overlays, violating mandatory no-text scene rules."
     },
     {
       "id": "S03",
@@ -115,7 +120,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
