@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-08T17:53:00+09:00",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-08T17:57:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -95,9 +95,10 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "paczki"
+      "contentId": "paczki",
+      "candidateGenerationId": "e5145f85-6c40-4b41-9406-6ab836a9ee3e"
     }
   ],
   "map": {
@@ -122,7 +123,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   }
 }
