@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-09T02:20:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-09T02:21:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -43,9 +43,10 @@
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "danube-delta-mila23-channels"
+      "contentId": "danube-delta-mila23-channels",
+      "candidateGenerationId": "ec2b6bfe-e1ab-41cf-950d-f2faf392d6de"
     },
     {
       "id": "S05",
@@ -122,7 +123,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S04"
+    "asset": "S05"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
