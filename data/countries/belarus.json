@@ -1,0 +1,539 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "belarus",
+  "nameEn": "BELARUS",
+  "nameJa": "ベラルーシ",
+  "region": "EASTERN EUROPE / 54°N",
+  "seo": {
+    "description": "ミール城から、ビャウォヴィエジャの森、ブラスラウ湖群、グロドノ、ネスヴィジ、ミンスク、トゥーロフの湿地、ポロツク、ブレスト要塞へ。8つの景色からベラルーシの水・森・古都・20世紀史をたどる。"
+  },
+  "capital": {
+    "nameEn": "Minsk",
+    "nameJa": "ミンスク",
+    "coordinates": {
+      "latitude": 53.9006,
+      "longitude": 27.559
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 2.2,
+      "y": -1.5
+    }
+  },
+  "hero": {
+    "lead": "赤煉瓦の城館から、氷河が残した湖群、原生林、ネマン川の古都、南の湿地へ。平坦な国土を進むほど、水と森の静かな広がりに中東欧の歴史が重なる国。",
+    "image": "assets/images/belarus/approved/hero-mir-castle-reflection.webp",
+    "location": "Mir Castle / Pond Reflection",
+    "coordinates": {
+      "latitude": 53.45108,
+      "longitude": 26.47272
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 56.40680592900006,
+      "south": 50.985168356000095,
+      "west": 22.815644979000027,
+      "east": 33.06953210400005
+    },
+    "svg": "assets/images/belarus/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/BLR.geojson (blob 3c367a9f06a500f1fef740f4f3870c460213c15a), WGS84; JOURNEY ATLAS map-v3."
+  },
+  "scenes": [
+    {
+      "id": "bialowieza-belovezhskaya-pushcha-bison",
+      "name": "ビャウォヴィエジャの森 / ベロヴェシュスカヤ・プーシャ",
+      "nameLocal": "Białowieża Forest / Belovezhskaya Pushcha",
+      "mapLabel": "Pushcha",
+      "description": "ベラルーシとポーランドにまたがる低地原生林。大径木、倒木、湿地、下草が幾層にも重なり、ヨーロッパバイソンが暮らす森の構造そのものを見られる。",
+      "coordinates": {
+        "latitude": 52.6758,
+        "longitude": 24.0277
+      },
+      "image": "assets/images/belarus/approved/bialowieza-belovezhskaya-pushcha-bison.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "braslaw-lakes-mount-mayak",
+      "name": "ブラスラウ湖群 / マヤーク山",
+      "nameLocal": "Braslaw Lakes / Mount Mayak",
+      "mapLabel": "Braslaw",
+      "description": "氷河が残した湖、半島、島、低い丘が一つの視界に広がる北部の湖沼地帯。高山ではなく、低い地形と水面の組み合わせが国土の北側を特徴づける。",
+      "coordinates": {
+        "latitude": 55.71944,
+        "longitude": 27.0575
+      },
+      "image": "assets/images/belarus/approved/braslaw-lakes-mount-mayak.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "grodno-kalozha-neman-river",
+      "name": "グロドノ / カロージャ教会とネマン川",
+      "nameLocal": "Grodno / Kalozha Church & Neman River",
+      "mapLabel": "Grodno",
+      "description": "12世紀のカロージャ教会がネマン川の高い岸に立つ。川の曲線と歴史地区を一緒に見ると、グロドノが西へ開いた河川都市として育った位置関係が分かる。",
+      "coordinates": {
+        "latitude": 53.67843,
+        "longitude": 23.81863
+      },
+      "image": "assets/images/belarus/approved/grodno-kalozha-neman-river.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "nesvizh-palace-ponds",
+      "name": "ネスヴィジ / ラジヴィウ宮殿と池",
+      "nameLocal": "Nesvizh / Radziwiłł Palace & Ponds",
+      "mapLabel": "Nesvizh",
+      "description": "ラジヴィウ家の宮殿複合体を、池と公園の広がりの中で見る場所。要塞性の強いミール城とは異なり、水辺と庭園を含む貴族の居住景観として国の歴史を見せる。",
+      "coordinates": {
+        "latitude": 53.22278,
+        "longitude": 26.69139
+      },
+      "image": "assets/images/belarus/approved/nesvizh-palace-ponds.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.4,
+        "y": 1.6
+      }
+    },
+    {
+      "id": "minsk-trinity-suburb-svislach",
+      "name": "ミンスク / トリニティ郊外とスヴィスラチ川",
+      "nameLocal": "Minsk / Trinity Suburb & Svislach River",
+      "mapLabel": "Minsk",
+      "description": "スヴィスラチ川沿いに低層のトリニティ郊外が並び、その背後に大きな首都の街並みが続く。古い都市の断片と戦後に再構成されたミンスクを同じ水辺から見比べられる。",
+      "coordinates": {
+        "latitude": 53.90854,
+        "longitude": 27.55598
+      },
+      "image": "assets/images/belarus/approved/minsk-trinity-suburb-svislach.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.2,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "turov-meadows-pripyat-floodplain",
+      "name": "トゥーロフ草原 / プリピャチ氾濫原",
+      "nameLocal": "Turov Meadows / Pripyat Floodplain",
+      "mapLabel": "Turov",
+      "description": "春から初夏に水位が上がると、草原、浅い水路、ヨシ原が低い地平線の中で入り組む。南部ポレシエでは、平坦さそのものが季節で大きく姿を変える。",
+      "coordinates": {
+        "latitude": 52.06667,
+        "longitude": 27.73333
+      },
+      "image": "assets/images/belarus/approved/turov-meadows-pripyat-floodplain.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "polotsk-sophia-western-dvina",
+      "name": "ポロツク / 聖ソフィア大聖堂と西ドヴィナ川",
+      "nameLocal": "Polotsk / Saint Sophia Cathedral & Western Dvina",
+      "mapLabel": "Polotsk",
+      "description": "白い聖ソフィア大聖堂が西ドヴィナ川を見下ろす古都。川はバルト海方面へつながり、862年の年代記にも現れるポロツクの古い交易・政治史を地理から理解できる。",
+      "coordinates": {
+        "latitude": 55.48628,
+        "longitude": 28.75859
+      },
+      "image": "assets/images/belarus/approved/polotsk-sophia-western-dvina.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "brest-fortress-kholm-gate",
+      "name": "ブレスト要塞 / ホルム門",
+      "nameLocal": "Brest Fortress / Kholm Gate",
+      "mapLabel": "Brest",
+      "description": "水路と橋の先に、戦争の損傷を残す赤煉瓦のホルム門が立つ。城館や古都とは異なる20世紀の歴史層を、現在残る建築そのものから読み取る場所。",
+      "coordinates": {
+        "latitude": 52.0808,
+        "longitude": 23.6565
+      },
+      "image": "assets/images/belarus/approved/brest-fortress-kholm-gate.webp",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ヨーロッパバイソン",
+      "icon": "wildlife"
+    },
+    {
+      "title": "キリル文字",
+      "icon": "culture"
+    },
+    {
+      "title": "麦わら細工",
+      "icon": "culture"
+    },
+    {
+      "title": "切り絵",
+      "icon": "culture"
+    },
+    {
+      "title": "刺繍の布",
+      "icon": "culture"
+    },
+    {
+      "title": "木造家屋",
+      "icon": "city"
+    },
+    {
+      "title": "ライ麦パン",
+      "icon": "food"
+    },
+    {
+      "title": "白樺と松の森",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "belarus-straw-weaving-2022",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "麦わらは、生活素材から立体の工芸へ変わる",
+      "text": "ベラルーシの麦わら細工は、籠や帽子だけでなく、玩具、装身具、収穫のリース、幾何学的な室内装飾まで形を変える。身近な農業素材が細かな手仕事へ変わる文化。",
+      "points": [
+        "2022年にユネスコ無形文化遺産へ登録",
+        "編む、束ねる、組み上げる技法で多様な形をつくる"
+      ]
+    },
+    {
+      "topicKey": "belarus-vytsinanka-paper-cutting-2024",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "一枚の紙を折り、左右対称の模様を切り出す",
+      "text": "ヴィツィナンカは紙を折って切り、植物や幾何学模様をつくる伝統。祭りの装飾だけでなく、家庭や工芸教育の中でも続き、一枚の紙から地域の模様が現れる。",
+      "points": [
+        "2024年にユネスコ無形文化遺産へ登録",
+        "折りと切りを組み合わせ、対称性のある模様をつくる"
+      ]
+    },
+    {
+      "topicKey": "belarus-poland-tree-beekeeping-2020",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "森では、木の洞や丸太の巣箱で蜂を育てる文化が残る",
+      "text": "木の幹や丸太に設けた巣箱で、野生に近い環境を保ちながら蜂を育てる。森を木材や景観だけでなく、長く使い続ける生活空間として見る手がかりになる。",
+      "points": [
+        "2020年にポーランドと共同でユネスコ無形文化遺産へ登録",
+        "樹上や丸太の巣箱でミツバチの生態に沿った養蜂を行う"
+      ]
+    },
+    {
+      "topicKey": "negliubka-textile-tradition-2025",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "南東部には、織りと刺繍を家族で継ぐ地域文化がある",
+      "text": "ネグリュブカ周辺では、織ったタオルや衣服に幾何学・植物模様を組み合わせる布文化が受け継がれてきた。技術は家庭や地域活動を通じて次の世代へ渡される。",
+      "points": [
+        "2025年にユネスコ緊急保護リストへ登録",
+        "織りと刺繍を組み合わせた地域固有の布文化"
+      ]
+    },
+    {
+      "topicKey": "budslau-fest-pilgrimage-2018",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ブズラウでは、聖像をめぐる巡礼と祭りが共同体をつなぐ",
+      "text": "ブズラウの祭りでは、聖母の聖像を中心に巡礼、礼拝、地域の集まりが重なる。宗教建築を見るだけでなく、人が定期的に集まることで場所の意味が続いている。",
+      "points": [
+        "2018年にユネスコ無形文化遺産へ登録",
+        "巡礼と宗教行事、地域の集まりが一つの祭りを形づくる"
+      ]
+    },
+    {
+      "topicKey": "minsk-old-fragments-postwar-city",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ミンスクでは、旧市街の断片と20世紀の再建都市が隣り合う",
+      "text": "スヴィスラチ川沿いのトリニティ郊外には小さな歴史地区が残る一方、中心部には戦後の大規模な都市軸が広がる。一つの首都で街路と建築のスケールが急に切り替わる。",
+      "points": [
+        "トリニティ郊外はスヴィスラチ川沿いの歴史地区",
+        "戦後の再建で中心部の都市構造が大きく変わった"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "polotsk-first-chronicle-862",
+      "categoryEn": "HISTORY",
+      "categoryJa": "古都",
+      "title": "ポロツクは862年の年代記に登場する",
+      "text": "東ヨーロッパの古い年代記に862年の都市として現れる。西ドヴィナ川沿いを歩くと、現在の地方都市の景観の下に中世から続く長い時間軸があることが分かる。",
+      "icon": "history",
+      "sourceKey": "polotsk"
+    },
+    {
+      "topicKey": "lake-narach-79-6-square-km",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "湖",
+      "title": "ナラチ湖は約79.6 km²で国内最大",
+      "text": "8景には入れていないが、ナラチ湖はベラルーシ最大の湖。北部から中央部には湖が多く、ブラスラウだけではない「湖の国」の一面を数字で補える。",
+      "icon": "landscape",
+      "sourceKey": "narach"
+    },
+    {
+      "topicKey": "mir-gothic-renaissance-baroque-layers",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "ミール城には複数の建築時代が重なる",
+      "text": "城は一つの時代の様式で完成したのではなく、ゴシック、ルネサンス、バロックの影響を受けながら姿を変えてきた。Heroの外観にもその積層が残っている。",
+      "icon": "landmark",
+      "sourceKey": "mir"
+    },
+    {
+      "topicKey": "kalozha-church-twelfth-century",
+      "categoryEn": "HISTORY",
+      "categoryJa": "建築史",
+      "title": "グロドノには12世紀の教会建築が残る",
+      "text": "ネマン川沿いのカロージャ教会は12世紀にさかのぼる建築。戦後都市の印象が強いミンスクとは違う、グロドノの中世以来の歴史の深さを具体的に示す。",
+      "icon": "landmark",
+      "sourceKey": "kalozha"
+    },
+    {
+      "topicKey": "bialowieza-baltic-black-sea-watershed",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "流域",
+      "title": "ビャウォヴィエジャの森は二つの海へ分かれる流域の境界にある",
+      "text": "森林はバルト海側と黒海側へ流れる水系の分水界に位置する。国境をまたぐ森を見ると、政治的な境界とは別に水が分かれていく地理の線も重なっている。",
+      "icon": "landscape",
+      "sourceKey": "bialowieza"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF BELARUS",
+    "title": "ベラルーシで食べたいもの",
+    "intro": "じゃがいもを揚げる・焼く、肉のソースにパンケーキを添える、夏はビーツを冷たく食べる。内陸の食卓の違いが見える4品。",
+    "items": [
+      {
+        "id": "draniki",
+        "name": "ドラニキ",
+        "nameLocal": "Draniki",
+        "text": "細かくすりおろしたじゃがいもを薄く焼くパンケーキ。外側の香ばしさと中のやわらかさがあり、サワークリームを添える食べ方から日常的なじゃがいも料理へ入れる。",
+        "image": "assets/images/belarus/approved/food-draniki.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "machanka",
+        "name": "マチャンカ",
+        "nameLocal": "Machanka",
+        "text": "豚肉やソーセージを濃いソースで煮て、パンケーキを浸して食べる料理。料理名も「浸す」動作と結びつき、肉と生地を一皿で合わせる食べ方が特徴になる。",
+        "image": "assets/images/belarus/approved/food-machanka.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "kholodnik",
+        "name": "ハラドニク",
+        "nameLocal": "Kholodnik",
+        "text": "ビーツと発酵乳製品を合わせた冷たいスープ。きゅうりやディル、卵を加えることがあり、温かいじゃがいも・肉料理とは対照的な夏の食卓を見せる。",
+        "image": "assets/images/belarus/approved/food-kholodnik.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "potato-babka",
+        "name": "ポテト・バブカ",
+        "nameLocal": "Potato Babka",
+        "text": "すりおろしたじゃがいもを型に入れて焼く料理。同じじゃがいもでも、ドラニキのように薄く焼くのではなく、厚みのある生地を焼き上げることで食感が変わる。",
+        "image": "assets/images/belarus/approved/food-potato-babka.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "現在は外務省が全土に渡航中止以上の危険情報を出しているため、以下は安全状況が回復した将来を想定した地理理解の例。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "将来、ミンスクからミールとネスヴィジへ",
+        "text": "安全が回復した将来を前提に、首都から中央部の二つの城館を比べる。都市、水辺の要塞的な城館、庭園型の宮殿という違いを短い距離でつかめる。例：ミンスク → ミール → ネスヴィジ → ミンスク。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "将来、西部の古都・森・ブレストへ広げる",
+        "text": "グロドノ、ビャウォヴィエジャ周辺、ブレストをつなぐと、ネマン川の古都、低地原生林、20世紀史を比較できる。例：ミンスク → グロドノ → ビャウォヴィエジャ周辺 → ブレスト → ミンスク。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "将来、北の湖群とポロツクまで国土を縦に見る",
+        "text": "北のブラスラウ湖群とポロツクを加えると、中央の城館、西部の森と古都、北部の湖沼という国土の差が見える。例：ミンスク → ブラスラウ → ポロツク → グロドノ → ブレスト → ミンスク。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#819963",
+      "text": "雪解けとともに森や草地へ緑が戻り、川や湿地では水位が高くなる時期がある。トゥーロフの氾濫原のような季節変化が見えやすいが、現在の安全情報が旅行時期の判断より優先される。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9b55",
+      "text": "湖と森が緑に包まれ、日照時間も長い。ブラスラウなど北部の水辺や都市の散策を考えやすい季節だが、内陸性の暑さと湿度が出る日もある。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad794b",
+      "text": "森や公園の葉色が変わり、ミール、ネスヴィジ、ビャウォヴィエジャの水辺と樹林に秋の色が加わる。後半ほど日が短くなり、冷え込みが強くなる。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#758e9e",
+      "text": "寒い大陸性の冬で、雪に覆われる時期がある。都市と森で冬景色は変わるが、積雪を前提に固定旅程を組まず、現地条件と安全情報を優先する。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・車（将来想定）",
+    "text": "現在は観光旅行を前提に交通手段を案内できる状況ではない。安全環境が正常化した将来を想定すれば、ミンスクを中心に主要都市を鉄道・バスで結び、森、湖、湿地の景観地点では車や現地送迎を組み合わせる形になる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "城館や古都を、川や森と一緒に見て歴史を理解したい人",
+      "text": "ミール、ネスヴィジ、グロドノ、ポロツク、ブレストを単独の建築としてではなく、水辺や交通路と結びついた場所として見たい人。"
+    },
+    {
+      "title": "原生林、湖群、湿地など平坦な国土の自然差を追いたい人",
+      "text": "大きな高山や海ではなく、ビャウォヴィエジャの森、ブラスラウ湖群、プリピャチ氾濫原のように低地の中で変わる景観を読みたい人。"
+    },
+    {
+      "title": "工芸、布、紙、養蜂など暮らしの技術に興味がある人",
+      "text": "麦わら細工、ヴィツィナンカ、織物、木の巣箱を使う養蜂など、自然素材と生活技術が文化として続く様子を知りたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東ヨーロッパ／東ヨーロッパ平原"
+    },
+    {
+      "label": "首都",
+      "value": "ミンスク"
+    },
+    {
+      "label": "人口",
+      "value": "約906万人（2026年1月1日）"
+    },
+    {
+      "label": "面積",
+      "value": "207,600 km²（日本の約55%）"
+    },
+    {
+      "label": "言語",
+      "value": "ベラルーシ語・ロシア語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（正教会が最大）"
+    },
+    {
+      "label": "通貨",
+      "value": "ベラルーシ・ルーブル（BYN）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "belarus-struve-five-stations",
+      "label": "ストルーヴェ測地弧の世界遺産ポイント",
+      "value": "5地点",
+      "note": "世界遺産に登録された34の測量点のうち5地点がベラルーシにある。19世紀に地球の形と大きさを測った科学史が、国土上の具体的な地点として残る。",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "berezinsky-undrained-peat-bog-11000-ha",
+      "label": "ベレジンスキーの未排水泥炭地",
+      "value": "約11,000 ha",
+      "note": "ベレジンスキー生物圏保存地域には、東ヨーロッパでも大規模な未排水泥炭地が残る。平坦な国土に水を蓄える湿地が大きな地理システムであることを示す。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "bialowieza-world-heritage-141885-ha",
+      "label": "ビャウォヴィエジャの森・世界遺産全体",
+      "value": "141,885 ha",
+      "note": "ベラルーシとポーランドにまたがる世界遺産全体の面積。原生的な低地森林とヨーロッパバイソンの生息地を、国境を越えた一つの森林として保全している。",
+      "icon": "landscape"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "belarus-current-level-three-four-no-tourism",
+      "title": "現在は観光目的で渡航しない",
+      "text": "外務省はウクライナとの国境周辺地域をレベル4、それ以外のベラルーシ全土をレベル3としている。このページの景観は地理・文化を知るための編集内容であり、現在の旅行推奨ではない。"
+    },
+    {
+      "topicKey": "belarus-photography-restrictions-current",
+      "title": "写真撮影を通常の欧州旅行と同じ感覚で行わない",
+      "text": "政府関連施設のほか、地下鉄、鉄道、駅、線路などを含む多くの場所で撮影により拘束される可能性があると外務省が注意している。撮影可能な場所を自己判断で広げない。"
+    },
+    {
+      "topicKey": "belarus-border-payment-exit-conditions-change",
+      "title": "国境・決済・出国手段は短期間でも変わり得る",
+      "text": "国境検問所の業務停止や制限、国際的な決済・送金環境などが変化し得る。現在の状況では固定した越境ルートや具体的な旅行手順を掲載しない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "poland",
+      "nameEn": "POLAND",
+      "nameJa": "ポーランド",
+      "flag": "🇵🇱",
+      "reason": "ビャウォヴィエジャの森を国境の反対側から見て、クラクフやワルシャワまで中東欧の都市史と自然景観を広げたいなら。"
+    },
+    {
+      "slug": "lithuania",
+      "nameEn": "LITHUANIA",
+      "nameJa": "リトアニア",
+      "flag": "🇱🇹",
+      "reason": "リトアニア大公国の歴史的なつながりをたどりながら、ヴィリニュス、湖、森へ北西側の景観と文化圏を続けたいなら。"
+    },
+    {
+      "slug": "latvia",
+      "nameEn": "LATVIA",
+      "nameJa": "ラトビア",
+      "flag": "🇱🇻",
+      "reason": "さらに北へ進み、リガの都市景観と湿地・森・バルト海を比べ、東ヨーロッパ平原からバルト地域への変化を見たいなら。"
+    }
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-09",
+  "sourcesVerifiedAt": "2026-09-09",
+  "sourceDates": {
+    "population": "2026-01-01",
+    "safety": "2026-09-09",
+    "transport": "2026-09"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/BLR.geojson (blob 3c367a9f06a500f1fef740f4f3870c460213c15a), WGS84; JOURNEY ATLAS map-v3.",
+    "population": "Belstat / CIS Interstate Statistical Committee 2026 demographic presentation: population of the Republic of Belarus was 9,056.1 thousand as of 1 January 2026.",
+    "area": "UNData: Belarus surface area 207,600 km².",
+    "japanArea": "Geospatial Information Authority of Japan: national area 377,974.87 km² as of 1 April 2026; Belarus 207,600 km² is approximately 54.92%, rounded to about 55%.",
+    "language": "Constitution of the Republic of Belarus, Article 17: Belarusian and Russian are official languages.",
+    "religion": "Belarus official/religious-demography source family: Christianity is dominant and Orthodox Christianity is the largest denomination; no percentage is used because methodologies and reference years vary.",
+    "currency": "National Bank of the Republic of Belarus: national currency is the Belarusian ruble, ISO code BYN.",
+    "struve": "UNESCO World Heritage Centre, Struve Geodetic Arc: 34 selected station points across 10 countries; five inscribed station points are in Belarus.",
+    "berezinsky": "UNESCO Man and the Biosphere Programme, Berezinsky Biosphere Reserve: includes an undrained peat bog of about 11,000 ha.",
+    "bialowieza": "UNESCO World Heritage Centre, Białowieża Forest: transboundary Belarus–Poland property covers 141,885 ha and lies on the watershed between the Baltic Sea and Black Sea basins.",
+    "straw": "UNESCO Intangible Cultural Heritage, Straw weaving in Belarus, inscribed 2022.",
+    "vytsinanka": "UNESCO Intangible Cultural Heritage, Vytsinanka traditional art of paper cutting in Belarus, inscribed 2024.",
+    "treeBeekeeping": "UNESCO Intangible Cultural Heritage, Tree beekeeping culture shared by Belarus and Poland, inscribed 2020.",
+    "negliubka": "UNESCO Intangible Cultural Heritage, Negliubka traditional textile culture, inscribed on the Urgent Safeguarding List in 2025.",
+    "budslau": "UNESCO Intangible Cultural Heritage, Celebration in honor of the Budslaŭ icon of Our Lady, inscribed 2018.",
+    "minskUrban": "Belarusian urban-history source family: Trinity Suburb preserves/reconstructs a small historic riverside quarter within a capital extensively rebuilt in the post-war period.",
+    "polotsk": "Historical reference sources for Polotsk: the city is recorded in the Primary Chronicle under the year 862.",
+    "narach": "Belarus geographic/statistical reference sources: Lake Narach has an area of about 79.6 km² and is the country's largest lake.",
+    "mir": "UNESCO World Heritage Centre, Mir Castle Complex: successive Gothic, Renaissance and Baroque cultural influences are visible in the complex.",
+    "kalozha": "Belarusian heritage / historical reference sources: Saints Boris and Gleb (Kalozha) Church in Grodno dates to the 12th century.",
+    "taste": "Belarusian gastronomy reference sources: draniki, machanka, kholodnik and potato babka are established Belarusian dishes representing potato, meat-sauce/pancake and seasonal beet-soup traditions.",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website, Belarus page checked 9 September 2026: Ukraine-border area Level 4; all other areas Level 3; warns about photography, border restrictions and possible difficulty leaving the country.",
+    "transport": "Editorial future-travel framing only. No current tourist timetable or fixed border route is presented while Japan MOFA Level 3 / Level 4 remains in force.",
+    "travelScale": "Editorial future hypothetical route ranges based on the geographic distribution of Minsk, Mir, Nesvizh, Grodno, Białowieża, Brest, Braslaw and Polotsk; Turov is excluded from suggested itineraries under current Ukraine-border risk."
+  }
+}
