@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-08T18:54:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-08T22:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -139,5 +139,15 @@
     "notes": "All eight scenes are individually approved and no duplicate scene requires regeneration. S03, S05, and S07 share a river-and-built-heritage motif, but differ in city scale, architectural subject, and composition; S01, S02, and S06 provide forest/lake/floodplain nature coverage while S04 and S08 add distinct palace/fortress history.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-08T18:54:00+09:00"
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
   }
 }
