@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-08T18:08:00+09:00",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-08T18:13:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -86,9 +86,11 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "mamaliga-cu-branza"
+      "state": "APPROVED",
+      "asset": "assets/images/moldova/approved/food-mamaliga-cu-branza.webp",
+      "contentId": "mamaliga-cu-branza",
+      "approvedGenerationId": "5566f713-b3c0-4a31-afad-5f2c889026e2",
+      "approvedAt": "2026-09-08T18:13:00+09:00"
     },
     {
       "id": "FOOD02",
@@ -133,7 +135,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "sceneBatchReview": {
     "result": "PASS",
