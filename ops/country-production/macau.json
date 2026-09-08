@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-09T01:13:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-09T01:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -16,15 +16,18 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "senado-square-wave-paving"
+      "contentId": "senado-square-wave-paving",
+      "candidateGenerationId": "8d0d5c65-3903-44dd-9abc-9f8b416b285b"
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "a-ma-temple-barra"
+      "contentId": "a-ma-temple-barra",
+      "approvedGenerationId": "641f33e5-71b0-4d98-bf02-77c367dbb487",
+      "approvedAt": "2026-09-09T01:18:00+09:00"
     },
     {
       "id": "S03",
@@ -113,7 +116,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
