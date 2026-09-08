@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T01:55:18+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-09T02:01:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -29,9 +29,15 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "lake-khovsgol-forested-shore"
+      "contentId": "lake-khovsgol-forested-shore",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "84d25223-7dc8-4d54-a517-f2290f4e2009"
+      ],
+      "failureReason": "Hard reject: the runtime repeated the previous Orkhon Valley scene instead of generating Lake Khövsgöl S02. Same-turn distinct-target continuation is not reliable for this image runtime.",
+      "consecutiveFailureCount": 1
     },
     {
       "id": "S03",
@@ -120,7 +126,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
