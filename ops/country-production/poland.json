@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-08T16:16:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-08T16:24:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -23,9 +23,10 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "gdansk-motlawa-crane"
+      "contentId": "gdansk-motlawa-crane",
+      "candidateGenerationId": "c5523aa0-13ec-4a67-8ac4-b79b9de29091"
     },
     {
       "id": "S03",
@@ -113,6 +114,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   }
 }
