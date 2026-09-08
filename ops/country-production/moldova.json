@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-08T18:22:00+09:00",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-08T18:53:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -103,13 +103,12 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/moldova/approved/food-zeama.webp",
       "contentId": "zeama",
-      "rejectedGenerationIds": [
-        "b597ee45-5ff9-4c57-a2ed-77af3d8b9310"
-      ],
-      "resetReason": "Generated FOOD03 does not match locked Zeamă identity: visible noodles are missing and potato-heavy presentation reads as generic chicken soup. Regenerate later with clear broth, noodles, vegetables and restrained lovage."
+      "approvedGenerationId": "b597ee45-5ff9-4c57-a2ed-77af3d8b9310",
+      "approvedAt": "2026-09-08T18:53:00+09:00",
+      "approvalNote": "Explicit user approval overrides prior internal REGENERATE assessment."
     },
     {
       "id": "FOOD04",
