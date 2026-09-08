@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
-  "phase": "MAP",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-09T00:58:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-09T01:09:48+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -197,5 +197,53 @@
     "notes": "Initial exact-fit render touched the top/bottom canvas edges and was corrected before approval by adding geographic padding. Final country extent margins are approximately left 203.5 px / right 203.5 px / top 35.0 px / bottom 35.0 px. All nine Hero/Scene coordinates project inside the map. Mir/Nesvizh and Pushcha/Brest are the two closest marker pairs; label-side/offset collision handling must be verified during Country JSON implementation and browser QA.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-09T00:58:00+09:00"
+  },
+  "assetQa": {
+    "result": "BLOCKED",
+    "checked": [
+      "approved-source-raster-recovery",
+      "source-raster-full-decode",
+      "local-production-webp-full-decode",
+      "local-production-dimensions",
+      "production-path-existence-on-main",
+      "map-svg-existence"
+    ],
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "format": "PNG",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1536x1024",
+        "taste": "FOOD01 1448x1086; FOOD02-04 1536x1024"
+      },
+      "decode": "PASS",
+      "approvalSequenceMatch": "PASS"
+    },
+    "localProductionExport": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS"
+    },
+    "repositoryProductionAssets": {
+      "expectedRasterCount": 13,
+      "rasterCount": 0,
+      "approvedFolder": "assets/images/belarus/approved/",
+      "pathExistence": "FAIL",
+      "gitBlobShaMatch": "NOT_RUN",
+      "approvedFolderHygiene": "NOT_RUN"
+    },
+    "map": {
+      "asset": "assets/images/belarus/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS"
+    },
+    "blocker": "All 13 approved source images were recovered without regeneration and production WebP exports were prepared and fully decoded locally, but the GitHub production approved folder does not yet exist. Do not advance to implementation until the 13 final WebP files are present at the exact Production State paths and Git blob/decode/dimension/hygiene checks pass.",
+    "notes": "The earlier Production State referenced raster paths before the raster binaries were materialized. S02 Braslaw Lakes / Mount Mayak was recovered from the model-generated image library in the approval sequence between S01 and S03 and visually matches the approved scene plan. No approved image was regenerated."
   }
 }
