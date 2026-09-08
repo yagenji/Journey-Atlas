@@ -4,13 +4,16 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-08T16:14:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-08T16:20:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "REGENERATE",
     "asset": null,
     "contentId": "orheiul-vechi-raut",
-    "candidateGenerationId": "65e0d764-3edd-4968-a0e8-2c5a9c84d17b"
+    "rejectedGenerationIds": [
+      "65e0d764-3edd-4968-a0e8-2c5a9c84d17b"
+    ],
+    "resetReason": "Duplicate/repeated Hero generation. Rejected by user. Reset generation series; do not reuse, crop, restage, or reference the rejected output."
   },
   "scenes": [
     {
@@ -111,7 +114,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "WAIT_HERO_APPROVAL",
+    "action": "GENERATE_HERO",
     "asset": "HERO"
   }
 }
