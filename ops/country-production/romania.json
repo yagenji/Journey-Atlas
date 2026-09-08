@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-09T02:21:00+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-09T02:22:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -50,9 +50,14 @@
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "voronet-painted-church"
+      "contentId": "voronet-painted-church",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "aba8c9a7-5e22-4931-b03a-a77d49fff521"
+      ],
+      "failureReason": "Hard reject: generation repeated the Danube Delta / Mila 23 scene instead of Voroneț and also introduced visible text. Scene mismatch and typography are both prohibited."
     },
     {
       "id": "S06",
@@ -123,7 +128,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S05"
+    "asset": "S06"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
