@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "bulgaria",
   "countryName": "BULGARIA",
-  "contentRef": "country/bulgaria",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-08T19:20:30+09:00",
+  "contentRef": "main",
+  "phase": "QA",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-08T19:34:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -105,7 +105,15 @@
     "asset": "assets/images/bulgaria/map-atlas-v1.svg"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "countryJson": "data/countries/bulgaria.json",
+    "themeTaxonomy": [
+      "earth",
+      "history",
+      "life"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -123,7 +131,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
