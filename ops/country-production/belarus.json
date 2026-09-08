@@ -4,27 +4,89 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-08T16:14:00+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-08T16:45:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
   },
   "scenes": [
-    {"id": "S01", "state": "REVIEW_CANDIDATE", "asset": null, "contentId": "bialowieza-belovezhskaya-pushcha-bison"},
-    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": "braslaw-lakes-mount-mayak"},
-    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": "grodno-kalozha-neman-river"},
-    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": "nesvizh-palace-ponds"},
-    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": "minsk-trinity-suburb-svislach"},
-    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": "turov-meadows-pripyat-floodplain"},
-    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": "polotsk-sophia-western-dvina"},
-    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": "brest-fortress-kholm-gate"}
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/bialowieza-belovezhskaya-pushcha-bison.webp",
+      "contentId": "bialowieza-belovezhskaya-pushcha-bison",
+      "approvedAt": "2026-09-08T16:45:00+09:00"
+    },
+    {
+      "id": "S02",
+      "state": "REVIEW_CANDIDATE",
+      "asset": null,
+      "contentId": "braslaw-lakes-mount-mayak",
+      "candidateGenerationId": "802adeea-0d1b-4d97-a4a6-9c2355cf5d28"
+    },
+    {
+      "id": "S03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "grodno-kalozha-neman-river"
+    },
+    {
+      "id": "S04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "nesvizh-palace-ponds"
+    },
+    {
+      "id": "S05",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "minsk-trinity-suburb-svislach"
+    },
+    {
+      "id": "S06",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "turov-meadows-pripyat-floodplain"
+    },
+    {
+      "id": "S07",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "polotsk-sophia-western-dvina"
+    },
+    {
+      "id": "S08",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "brest-fortress-kholm-gate"
+    }
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": "draniki"},
-    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": "machanka"},
-    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": "kholodnik"},
-    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": "potato-babka"}
+    {
+      "id": "FOOD01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "draniki"
+    },
+    {
+      "id": "FOOD02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "machanka"
+    },
+    {
+      "id": "FOOD03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "kholodnik"
+    },
+    {
+      "id": "FOOD04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "potato-babka"
+    }
   ],
   "map": {
     "state": "NOT_STARTED",
@@ -50,6 +112,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   }
 }
