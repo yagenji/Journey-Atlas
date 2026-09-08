@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-08T17:55:30+09:00",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-08T18:00:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -80,9 +80,10 @@
     },
     {
       "id": "FOOD02",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "shopska-salad"
+      "state": "APPROVED",
+      "asset": "assets/images/bulgaria/approved/shopska-salad.webp",
+      "contentId": "shopska-salad",
+      "approvedGenerationId": "56c9ed1c-456b-4ca0-be6c-b773c07749e1"
     },
     {
       "id": "FOOD03",
@@ -121,7 +122,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "sceneBatchReview": {
     "result": "PASS",
