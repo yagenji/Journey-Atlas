@@ -184,6 +184,27 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
     if not isinstance(state.get("contentRef"), str) or not state.get("contentRef"):
         errors.append(f"{filename}: contentRef is required")
 
+    policy = state.get("executionPolicy")
+    if policy is not None:
+        if not isinstance(policy, dict):
+            errors.append(f"{filename}: executionPolicy must be an object")
+        else:
+            expected_policy = {
+                "heroApproval": "INDIVIDUAL",
+                "sceneApproval": "BATCH",
+                "tasteApproval": "BATCH",
+                "autoContinueImageRounds": True,
+                "waitForStateOnlyCI": False,
+                "batchMaterialization": True,
+                "autoPostVisualPipeline": True,
+                "singleReviewIntegration": True,
+            }
+            for key, expected in expected_policy.items():
+                if policy.get(key) != expected:
+                    errors.append(
+                        f"{filename}: executionPolicy.{key} must be {expected!r}, got {policy.get(key)!r}"
+                    )
+
     hero = state.get("hero") if isinstance(state.get("hero"), dict) else {}
     if hero.get("state") not in ASSET_STATES:
         errors.append(f"{filename}: hero has invalid state {hero.get('state')!r}")
