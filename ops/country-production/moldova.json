@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "moldova",
   "countryName": "MOLDOVA",
-  "contentRef": "country/moldova",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-08T20:04:00+09:00",
+  "contentRef": "main",
+  "phase": "QA",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-08T20:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -132,7 +132,13 @@
     }
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-08T20:12:00+09:00",
+    "files": [
+      "data/countries/moldova.json",
+      "data/theme-taxonomy.json"
+    ],
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. atlasPublished remains false."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -150,7 +156,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
