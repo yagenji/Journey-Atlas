@@ -30,33 +30,6 @@ on:
       - 'scripts/validate_lens_slugs.py'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
-    paths:
-      - 'data/theme-taxonomy.json'
-      - 'assets/js/**'
-      - 'assets/css/**'
-      - 'index.html'
-      - 'country.html'
-      - 'faq/**'
-      - 'privacy/**'
-      - '404.html'
-      - '_redirects'
-      - 'scripts/build_site.py'
-      - 'scripts/generate_country_map.py'
-      - 'scripts/new_country.py'
-      - 'assets/images/**'
-      - 'scripts/package_site.py'
-      - 'scripts/build_cloudflare.py'
-      - 'data/countries/**'
-      - 'data/atlas-destinations.json'
-      - 'data/atlas-destinations-editorial.json'
-      - 'data/country-renewal-status.json'
-      - 'scripts/validate_country.py'
-      - 'scripts/audit_published_countries.py'
-      - 'scripts/validate_images.py'
-      - 'scripts/qa_published_browser.py'
-      - 'scripts/http_fetch_retry.sh'
-      - 'scripts/validate_lens_slugs.py'
-      - '.github/workflows/validate-country-data.yml'
   workflow_dispatch:
 
 concurrency:
@@ -69,14 +42,44 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Determine validation scope
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "required=true" >> "$GITHUB_OUTPUT"
+            echo "Full validation requested for ${{ github.event_name }}."
+            exit 0
+          fi
+
+          base_sha="${{ github.event.pull_request.base.sha }}"
+          changed_files="$(git diff --name-only "$base_sha"...HEAD)"
+          printf '%s\n' "$changed_files"
+
+          if printf '%s\n' "$changed_files" | grep -Eq '^(data/theme-taxonomy\.json|assets/js/|assets/css/|index\.html$|country\.html$|faq/|privacy/|404\.html$|_redirects$|scripts/build_site\.py$|scripts/generate_country_map\.py$|scripts/new_country\.py$|assets/images/|scripts/package_site\.py$|scripts/build_cloudflare\.py$|data/countries/|data/atlas-destinations\.json$|data/atlas-destinations-editorial\.json$|data/country-renewal-status\.json$|scripts/validate_country\.py$|scripts/audit_published_countries\.py$|scripts/validate_images\.py$|scripts/qa_published_browser\.py$|scripts/http_fetch_retry\.sh$|scripts/validate_lens_slugs\.py$|\.github/workflows/validate-country-data\.yml$)'; then
+            echo "required=true" >> "$GITHUB_OUTPUT"
+            echo "Country data/build validation required."
+          else
+            echo "required=false" >> "$GITHUB_OUTPUT"
+            echo "No Country data/build validation impact detected."
+          fi
+
       - name: Install image QA dependency
+        if: steps.scope.outputs.required == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
       - name: Validate source syntax
+        if: steps.scope.outputs.required == 'true'
         run: |
           python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
@@ -84,23 +87,35 @@ jobs:
           bash -n scripts/http_fetch_retry.sh
 
       - name: Validate published renewal registry
+        if: steps.scope.outputs.required == 'true'
         run: python3 scripts/audit_published_countries.py
 
       - name: Audit all published Country images
+        if: steps.scope.outputs.required == 'true'
         run: python3 scripts/validate_images.py --mode audit
 
       - name: Enforce renewed Country image hard gate
+        if: steps.scope.outputs.required == 'true'
         run: python3 scripts/validate_images.py --mode hard
 
       - name: Validate reviewable and published country JSON
+        if: steps.scope.outputs.required == 'true'
         run: |
           python3 scripts/validate_country.py --reviewable
           python3 scripts/validate_country.py --published
 
       - name: Validate JOURNEY LENS slug drift
+        if: steps.scope.outputs.required == 'true'
         run: python3 scripts/validate_lens_slugs.py
 
       - name: Build and validate Cloudflare package
+        if: steps.scope.outputs.required == 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
         run: python3 scripts/build_cloudflare.py
+
+      - name: Country data/build validation not required
+        if: steps.scope.outputs.required != 'true'
+        run: |
+          echo "Required status check satisfied."
+          echo "Heavy Country data/build validation skipped for this non-rendering change."
