@@ -4,14 +4,14 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-08T16:10:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-08T16:14:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
   },
   "scenes": [
-    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": "bialowieza-belovezhskaya-pushcha-bison"},
+    {"id": "S01", "state": "REVIEW_CANDIDATE", "asset": null, "contentId": "bialowieza-belovezhskaya-pushcha-bison"},
     {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": "braslaw-lakes-mount-mayak"},
     {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": "grodno-kalozha-neman-river"},
     {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": "nesvizh-palace-ponds"},
@@ -50,6 +50,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   }
 }
