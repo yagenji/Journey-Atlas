@@ -185,3 +185,26 @@ body{
   #about.about-note .about-note__lead + p{margin-top:10px;font-size:11.5px;line-height:1.85}
   #about.about-note .about-note__definition{margin-top:15px;padding-top:0;border-top:0;font-size:8.8px;line-height:1.75}
 }
+
+
+/* Top-page hierarchy: About stands on spacing alone; JOURNEY LENS stays secondary. */
+#about.about-note{
+  border-top:0!important;
+}
+#lens-world .lens-rail .lens-card,
+#lens-world .lens-rail .lens-card:nth-child(n){
+  flex-basis:clamp(172px,15.5vw,195px)!important;
+}
+#lens-world .lens-card__body{
+  min-height:62px;
+  padding:8px 9px 9px;
+}
+@media(max-width:760px){
+  #lens-world .lens-rail .lens-card,
+  #lens-world .lens-rail .lens-card:nth-child(n){
+    flex-basis:min(58vw,190px)!important;
+  }
+  #lens-world .lens-card__body{
+    min-height:64px;
+  }
+}
