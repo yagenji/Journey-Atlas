@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-09T01:37:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-09T01:38:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -16,9 +16,11 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "brasov-old-town-tampa"
+      "contentId": "brasov-old-town-tampa",
+      "approvedGenerationId": "a1a3e296-d6ff-4a4f-8157-240f4ed68470",
+      "approvedAt": "2026-09-09T01:36:30+09:00"
     },
     {
       "id": "S02",
@@ -113,7 +115,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
