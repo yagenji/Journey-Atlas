@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "main",
-  "phase": "PUBLISH",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-08T22:48:00+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-08T22:53:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -117,10 +117,10 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "sourceCommit": "2dcf2efc410941b6d89e745543b1f9a4025e6b6e",
     "validateRunId": 34232189190,
-    "productionVerifyRunId": 34232189295,
+    "productionVerifyRunId": 34234397945,
     "browserQaArtifactId": 10058382479,
     "checks": [
       "source-syntax",
@@ -171,7 +171,19 @@
       }
     },
     "failureCount": 0,
-    "completedAt": "2026-09-08T22:32:00+09:00"
+    "completedAt": "2026-09-08T22:32:00+09:00",
+    "productionSourceCommit": "1fdbfe3d8f9f1547e49a192e84276218a6b5c40e",
+    "productionBrowserQaArtifactId": 10059292678,
+    "productionChecks": [
+      "cloudflare-serves-publish-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "published-desktop-browser-qa",
+      "published-tablet-browser-qa",
+      "published-mobile-browser-qa",
+      "published-failure-count-zero"
+    ]
   },
   "reviewDeployment": {
     "state": "DONE",
@@ -192,10 +204,17 @@
     "state": "PUBLISHED",
     "atlasPublished": true,
     "publishedAt": "2026-09-08T22:48:00+09:00",
-    "productionVerification": "PENDING"
+    "productionVerification": "PASS",
+    "liveCommit": "1fdbfe3d8f9f1547e49a192e84276218a6b5c40e",
+    "productionVerifyRunId": 34234397945,
+    "browserQaArtifactId": 10059292678,
+    "verifiedAt": "2026-09-08T22:53:00+09:00",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true
   },
   "next": {
-    "action": "PUBLISH_COUNTRY",
+    "action": "NONE",
     "asset": null
   },
   "sceneBatchReview": {
