@@ -3,9 +3,9 @@
   "slug": "moldova",
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 30,
-  "updatedAt": "2026-09-08T18:53:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 31,
+  "updatedAt": "2026-09-08T18:55:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -143,8 +143,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_TASTE",
-    "asset": null
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -158,5 +158,18 @@
     "notes": "Eight scenes are distinct and geographically/visually distributed. S07 is retained by explicit user approval despite an earlier internal composition concern.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-08T18:08:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety"
+    ],
+    "notes": "All four Taste images are user-approved and remain immutable. FOOD02, FOOD03, and FOOD04 retain explicit user-approval overrides of earlier internal composition/identity concerns; no regeneration is requested by the user.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-08T18:55:00+09:00"
   }
 }
