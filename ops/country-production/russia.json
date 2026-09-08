@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-09T01:22:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-09T01:28:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -26,8 +26,12 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
-      "asset": null
+      "state": "REGENERATE",
+      "asset": null,
+      "rejectedGenerationIds": [
+        "cbe3b629-d241-49b4-9698-15d790374586"
+      ],
+      "failureReason": "Hard reject: generation repeated the previously approved Moscow Kremlin scene instead of Saint Petersburg / Neva & Palace Embankment."
     },
     {
       "id": "S03",
@@ -106,7 +110,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
