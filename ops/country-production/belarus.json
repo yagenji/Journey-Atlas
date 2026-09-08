@@ -3,8 +3,8 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 18,
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 19,
   "updatedAt": "2026-09-08T18:54:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -124,7 +124,20 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_SCENES",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
+  },
+  "sceneBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance"
+    ],
+    "notes": "All eight scenes are individually approved and no duplicate scene requires regeneration. S03, S05, and S07 share a river-and-built-heritage motif, but differ in city scale, architectural subject, and composition; S01, S02, and S06 provide forest/lake/floodplain nature coverage while S04 and S08 add distinct palace/fortress history.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-08T18:54:00+09:00"
   }
 }
