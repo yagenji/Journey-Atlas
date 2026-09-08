@@ -185,6 +185,42 @@ The critical lock is:
 
 Any Taste image that violates the above is automatically NG and must not enter the approved production asset folder.
 
+
+### Country production state — GLOBAL LOCK
+
+Parallel Country production must use the operational state machine in `docs/COUNTRY_PRODUCTION_STATE.md`.
+
+Authoritative state:
+
+`ops/country-production/{slug}.json` on `main`.
+
+Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review or publish instructions:
+
+1. read the state file from `main`;
+2. execute only `next.action / next.asset`;
+3. update the state immediately after the transition;
+4. re-read before the next action.
+
+Do not infer NEXT from chat memory when a state file exists.
+
+Important:
+- one Country = one state file, so parallel Country chats do not edit the same record;
+- use the current blob SHA when updating state; on conflict re-fetch instead of force-overwriting;
+- during initial Scene/Taste rounds, finish later `NOT_STARTED` assets before retrying `REGENERATE` assets;
+- APPROVED assets never move backward unless the user explicitly requests regeneration;
+- published/complete Countries have `phase: COMPLETE` and `next.action: NONE`;
+- review-deployed unpublished Countries have `phase: REVIEW` and must not fall back into image generation.
+
+Use:
+
+`python3 scripts/country_production_state.py next {slug}`
+
+to confirm deterministic NEXT, and:
+
+`python3 scripts/country_production_state.py validate`
+
+to validate all tracked states.
+
 ---
 
 ## Branch lifecycle
