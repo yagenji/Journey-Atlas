@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "main",
   "phase": "PUBLISH",
-  "stateRevision": 37,
-  "updatedAt": "2026-09-08T23:18:00+09:00",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-08T23:28:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -131,7 +131,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "NOT_STARTED",
     "sourceCommit": "da46c4572b443e4c385d0d5e0973904f237d12d2",
     "validateRunId": 34236921517,
     "productionVerifyRunId": 34236921421,
@@ -200,8 +200,10 @@
     "basis": "User instructed: QAして問題なければ公開して. Latest post-revision production browser QA passed with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-08T23:28:00+09:00",
+    "productionVerification": "PENDING"
   },
   "next": {
     "action": "PUBLISH_COUNTRY",
