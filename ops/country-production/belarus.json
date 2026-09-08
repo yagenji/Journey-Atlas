@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-09T02:13:00+09:00",
+  "phase": "REVIEW",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-09T02:24:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -141,11 +141,77 @@
     "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Current MOFA Level 3/4 safety guidance is reflected; nextRoutes is intentionally empty and all duration examples are explicitly future-hypothetical. atlasPublished remains false."
   },
   "qa": {
-    "state": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "e3c54b531912120b07413592b5e7420bc0b0fe49",
+    "validateRunId": 34256354823,
+    "productionVerifyRunId": 34256355081,
+    "browserQaArtifactId": 10068202498,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "cloudflare-package-build",
+      "production-commit-served",
+      "production-country-route",
+      "production-country-payload",
+      "targeted-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "related-country-count-3",
+      "related-country-poland-lithuania-ukraine",
+      "encounter-count-8",
+      "encounter-general-visual-language",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "notes": "Review corrections passed production QA. Related Countries now uses the required three-card layout with Poland, Lithuania, and Ukraine. Russia remains omitted while atlasPublished:false. Encounters were revised from generic weak items to an immediately readable visual index: European bison, primeval forest, lake groups, wetlands/floodplains, red-brick castles, Orthodox domes, straw craft, and paper cutting. Production served the corrected commit and targeted unpublished-reviewable browser QA passed with zero failures.",
+    "completedAt": "2026-09-09T02:24:00+09:00"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/belarus/",
+    "commit": "e3c54b531912120b07413592b5e7420bc0b0fe49",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-09T02:24:00+09:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -155,7 +221,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "sceneBatchReview": {
