@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-08T22:32:00+09:00",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-08T22:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -268,5 +268,15 @@
       "existence": "PASS"
     },
     "notes": "All 13 approved raster assets were materialized on country/bulgaria, fully decoded, matched the verified production exports byte-for-byte via Git blob SHA, and passed 1200x800/path/hygiene checks. Ready for implementation."
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
   }
 }

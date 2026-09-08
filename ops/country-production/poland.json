@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-08T22:29:05+09:00",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-08T22:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -218,5 +218,15 @@
       "existence": "PASS"
     },
     "notes": "All 13 approved Poland raster assets on country/poland fully decode, match the verified local production exports byte-for-byte via Git blob SHA, use the exact Production State paths, and the approved folder contains only the 13 final rasters. Ready for implementation."
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
   }
 }

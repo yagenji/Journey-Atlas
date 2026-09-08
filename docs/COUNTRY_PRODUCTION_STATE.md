@@ -185,3 +185,95 @@ Show deterministic next action:
 Show all tracked countries:
 
 `python3 scripts/country_production_state.py summary`
+
+
+## Throughput mode — mandatory
+
+The production state machine exists to prevent duplicate work. It must **not** create a user approval gate after every image.
+
+### User approval gates
+
+There are only four normal user-facing gates:
+
+1. Hero approval
+2. 8-Scene batch review
+3. 4-Taste batch review
+4. Final canonical-page review / publication approval
+
+Scene-by-Scene and Food-by-Food user approval is prohibited during the initial production round.
+
+### Auto-continue inside image rounds
+
+During `SCENES_INITIAL`:
+
+- after S01 generation, write S01 as `REVIEW_CANDIDATE` or `REGENERATE`;
+- immediately re-read NEXT;
+- if another Scene is `NOT_STARTED`, generate it in the **same assistant turn**;
+- repeat until S01–S08 have all received one initial attempt;
+- do not emit an approval request between images;
+- stop only when NEXT reaches the Scene batch-review boundary.
+
+During `TASTE_INITIAL`, use exactly the same behavior for FOOD01–FOOD04.
+
+The image generation UI may produce separate image cards. That does not create separate user approval gates.
+
+### State-only writes are non-blocking
+
+State must still be written after each generation so another chat cannot regenerate the same asset.
+
+However:
+
+- do not wait for GitHub Actions after a state-only write;
+- do not inspect workflow runs after every Scene/Food;
+- re-fetch the state file and continue immediately;
+- run/inspect state validation only at a batch or phase boundary, or when a write/validation conflict occurs.
+
+### Batch materialization
+
+Do not recover, convert, optimize, rename, or commit each generated image separately.
+
+During image production, store the generation identity/state only.
+
+After the user approves the Scene batch:
+- recover/materialize the approved Scene assets together;
+- convert/resize them together;
+- place them into the approved Country folder together;
+- verify the batch together.
+
+Do the same after Taste batch approval.
+
+This preserves one-image-one-generation while removing repeated post-processing overhead.
+
+### Post-visual auto pipeline
+
+After Hero + 8 Scenes + 4 Taste images are approved, no further user input is normally required until the canonical Country page is ready for review.
+
+Auto-chain:
+
+1. batch materialize approved visual assets;
+2. full decode / dimensions / path / hygiene QA;
+3. build and QA the Map;
+4. implement Country JSON and taxonomy;
+5. run source validation;
+6. prepare one review-deployment integration;
+7. merge/integrate to main **once** for review deployment;
+8. wait for the production commit once;
+9. run targeted Desktop / Tablet / Mobile QA for that Country;
+10. write `phase: REVIEW` and present the canonical URL.
+
+Do not pause between these steps merely to report progress.
+
+### Main integration rule
+
+Country visual production stays on the Country working branch.
+
+Do not merge/push individual approved images, Map work, asset QA work, and JSON implementation to main as separate production changes.
+
+Normal pre-review integration count:
+
+- state-only metadata writes to main: allowed and non-deploying;
+- Country content/assets: **one main integration when the review package is complete**.
+
+Formal publication after user approval is a second small main change that switches publication state.
+
+This rule prevents repeated deployment / Cloudflare propagation / production QA cycles.
