@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-09T00:31:47+09:00",
+  "stateRevision": 22,
+  "updatedAt": "2026-09-09T00:42:42+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -97,15 +97,19 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "kholodnik"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-kholodnik.webp",
+      "contentId": "kholodnik",
+      "candidateGenerationId": "5733984f-321a-4077-83e1-990c96562a3c",
+      "approvedAt": "2026-09-09T00:38:24+09:00"
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "potato-babka"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-potato-babka.webp",
+      "contentId": "potato-babka",
+      "candidateGenerationId": "ef103774-5761-485c-8318-7a9896fd0692",
+      "approvedAt": "2026-09-09T00:42:42+09:00"
     }
   ],
   "map": {
@@ -131,8 +135,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
