@@ -10,7 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = ROOT / "ops" / "country-production"
 COUNTRY_DIR = ROOT / "data" / "countries"
-REGISTRY_PATH = ROOT / "data" / "atlas-destinations.json"
+REGISTRY_PATHS = [
+    ROOT / "data" / "atlas-destinations.json",
+    ROOT / "data" / "atlas-destinations-editorial.json",
+]
 
 PHASES = {
     "CONTENT", "HERO",
@@ -158,10 +161,16 @@ def all_approved(items: list[dict]) -> bool:
 
 
 def registry_map() -> dict[str, dict]:
-    if not REGISTRY_PATH.exists():
-        return {}
-    data = load_json(REGISTRY_PATH)
-    return {item.get("slug"): item for item in data.get("destinations", []) if item.get("slug")}
+    registry: dict[str, dict] = {}
+    for path in REGISTRY_PATHS:
+        if not path.exists():
+            continue
+        data = load_json(path)
+        for item in data.get("destinations", []):
+            slug = item.get("slug")
+            if slug:
+                registry[slug] = item
+    return registry
 
 
 def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:

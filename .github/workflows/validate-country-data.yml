@@ -3,6 +3,8 @@ name: Validate country data
 on:
   push:
     paths:
+      - 'ops/country-production/**'
+      - 'scripts/country_production_state.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
@@ -31,6 +33,8 @@ on:
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
+      - 'ops/country-production/**'
+      - 'scripts/country_production_state.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
