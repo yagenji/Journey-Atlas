@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-09T01:37:00+09:00",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-09T02:05:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -16,24 +16,26 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "orkhon-valley-pasture-ger-horses",
-      "candidateGenerationId": null,
+      "candidateGenerationId": "1c739698-fd0d-4e97-86f0-6dbbf9c40444",
       "rejectedGenerationIds": [
         "27a25535-5aeb-4251-be6a-ef3430461fac",
         "015468df-136b-427a-b805-1b196cad11b5"
-      ],
-      "failureReason": "Second consecutive hard reject: image generation produced a Khongoryn Els Hero/travel-poster composition with typography instead of Orkhon Valley S01. Reset S01 generation series before retry.",
-      "consecutiveFailureCount": 2,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T01:17:00+09:00"
+      ]
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "lake-khovsgol-forested-shore"
+      "contentId": "lake-khovsgol-forested-shore",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "84d25223-7dc8-4d54-a517-f2290f4e2009"
+      ],
+      "failureReason": "Hard reject: generated image repeated the Orkhon Valley scene instead of Lake Khövsgöl S02.",
+      "consecutiveFailureCount": 1
     },
     {
       "id": "S03",
@@ -122,7 +124,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
