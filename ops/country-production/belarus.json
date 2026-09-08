@@ -4,7 +4,7 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 12,
+  "stateRevision": 13,
   "updatedAt": "2026-09-08T18:54:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -43,9 +43,11 @@
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "minsk-trinity-suburb-svislach"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/minsk-trinity-suburb-svislach.webp",
+      "contentId": "minsk-trinity-suburb-svislach",
+      "candidateGenerationId": "ace7b654-df0e-4f4c-b080-2c6a12dd6003",
+      "approvedAt": "2026-09-08T18:54:00+09:00"
     },
     {
       "id": "S06",
@@ -116,6 +118,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S05"
+    "asset": "S06"
   }
 }
