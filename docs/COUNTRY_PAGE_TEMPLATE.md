@@ -162,13 +162,14 @@ Dead controlsを置かない。
 
 ## 11. Production sequence
 
-1. content design / scene lock
-2. Hero + 8 scene visual production and approval
-3. Country JSON / map / shared template implementation
-4. desktop / tablet / mobile QA
-5. data / asset / accessibility validation
-6. Review Deployment at canonical /countries/{slug}/ URL
-7. keep atlasPublished = false / noindex / sitemap excluded
-8. user review and fixes on the same URL
-9. user approval
-10. atlasPublished = true / index / sitemap / formal discovery links
+Operational sequencing is defined only by `docs/COUNTRY_PRODUCTION_STATE.md` and `ops/country-production/{slug}.json` on `main`.
+
+Normal user-facing gates are:
+1. Hero approval
+2. S01–S08 batch review
+3. FOOD01–FOOD04 batch review
+4. canonical Country URL final review / publication approval
+
+Scenes and Taste are generated as independent images without per-image user approval. After visual approval, Map → asset QA → Country JSON / taxonomy implementation → validation → Review Deployment → targeted Desktop / Tablet / Mobile QA proceeds as one automatic chain unless a real blocking specification decision is required.
+
+Review Deployment keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion. Only explicit final user approval may switch to `atlasPublished:true`, indexing, sitemap inclusion, and formal discovery links.
