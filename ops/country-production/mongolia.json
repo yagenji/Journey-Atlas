@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "slug": "mongolia",
+  "countryName": "MONGOLIA",
+  "contentRef": "country/mongolia",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-09T00:20:00+09:00",
+  "hero": {
+    "state": "NOT_STARTED",
+    "asset": null,
+    "contentId": "khongoryn-els-gobi"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "orkhon-valley-pasture-ger-horses"
+    },
+    {
+      "id": "S02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "lake-khovsgol-forested-shore"
+    },
+    {
+      "id": "S03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "altai-tavan-bogd-potanin-glacier"
+    },
+    {
+      "id": "S04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "bayanzag-flaming-cliffs"
+    },
+    {
+      "id": "S05",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "ulaanbaatar-gandan-monastery-city"
+    },
+    {
+      "id": "S06",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "kharkhorin-erdene-zuu-stupas"
+    },
+    {
+      "id": "S07",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "uushigiin-uvur-deer-stones"
+    },
+    {
+      "id": "S08",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "hustai-takhi-steppe"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "buuz"
+    },
+    {
+      "id": "FOOD02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "khuushuur"
+    },
+    {
+      "id": "FOOD03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "tsuivan"
+    },
+    {
+      "id": "FOOD04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": "khorkhog"
+    }
+  ],
+  "map": {
+    "state": "NOT_STARTED",
+    "asset": null
+  },
+  "implementation": {
+    "state": "NOT_STARTED"
+  },
+  "qa": {
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "next": {
+    "action": "GENERATE_HERO",
+    "asset": "HERO"
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  }
+}
