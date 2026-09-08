@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-08T17:08:00+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-08T17:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -58,9 +58,10 @@
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "wieliczka-st-kinga-chapel"
+      "contentId": "wieliczka-st-kinga-chapel",
+      "candidateGenerationId": "b43706d7-cf0c-4f59-8225-af8766eb01a7"
     },
     {
       "id": "S08",
@@ -118,6 +119,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S07"
+    "asset": "S08"
   }
 }
