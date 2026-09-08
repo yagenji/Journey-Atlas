@@ -5,20 +5,6 @@ Branch: `country/moldova`
 
 This is the PHASE 1 new-country production brief for JOURNEY ATLAS Moldova. It locks content direction and planned visual identities only. It does not connect unapproved Hero, Scene, Taste, or Map assets to production and does not change `atlasPublished:false`.
 
-## Production state
-
-- Registry: `moldova` exists / `atlasPublished:false`
-- Country JSON: NOT CREATED
-- Production image folder: NOT CREATED
-- Map: NOT CREATED
-- Review page: NOT CREATED
-- Theme taxonomy assignment: NOT YET IMPLEMENTED
-- Hero: NOT STARTED
-- Scene 01–08: NOT STARTED
-- Taste 01–04: NOT STARTED
-
-APPROVED is irreversible unless the user explicitly requests a remake. Only NOT STARTED or REGENERATE items may be generated.
-
 ## Page concept
 
 **MOLDOVA / モルドバ**
@@ -59,8 +45,6 @@ UNESCO tentative-list site coordinate reference: approximately **47.30556, 28.97
 
 Planned filename: `hero-orheiul-vechi-raut.webp`
 
-Image state: **NOT STARTED**
-
 Scene identity:
 - elevated real-world view across the Butuceni / Orheiul Vechi limestone promontory and Răut River
 - the embedded river meander, steep pale limestone banks, cultivated valley floor and village must read together
@@ -86,7 +70,6 @@ Why this Hero:
 Working coordinate: **47.02591, 28.83430**  
 Planned filename: `chisinau-cathedral-triumphal-arch.webp`  
 Content ID: `chisinau-cathedral-triumphal-arch`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - real Cathedral Park / central Chișinău axis
@@ -104,7 +87,6 @@ Role: **CITY + ANCHOR**
 Working coordinate: **48.16128, 28.30524**  
 Planned filename: `soroca-fortress-dniester.webp`  
 Content ID: `soroca-fortress-dniester`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - stone Soroca Fortress clearly identifiable beside the Dniester / Nistru
@@ -121,7 +103,6 @@ Role: **HISTORY + RIVER**
 Working coordinate: **47.81837, 27.30206**  
 Planned filename: `suta-de-movile.webp`  
 Content ID: `suta-de-movile`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - elevated view over the protected landscape near Braniște / Cobani
@@ -138,7 +119,6 @@ Role: **EARTH + AGRICULTURAL LANDSCAPE**
 Working coordinate: **47.13300, 28.85000**  
 Planned filename: `cricova-underground-winery.webp`  
 Content ID: `cricova-underground-winery`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - one real Cricova underground limestone gallery
@@ -156,7 +136,6 @@ Role: **LIFE + FOOD / WINE INFRASTRUCTURE**
 Working coordinate: **47.69493, 28.96505**  
 Planned filename: `saharna-monastery-valley.webp`  
 Content ID: `saharna-monastery-valley`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - Saharna Monastery positioned within its steep wooded valley
@@ -173,7 +152,6 @@ Role: **LIFE + LANDSCAPE**
 Working locality coordinate: **48.46897, 27.58492**  
 Planned filename: `naslavcea-dniester-meander.webp`  
 Content ID: `naslavcea-dniester-meander`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - elevated real-world viewpoint above the Dniester near Naslavcea, Moldova's northern edge
@@ -191,7 +169,6 @@ Role: **EARTH + RIVER**
 Working coordinate: **46.09968, 28.59828**  
 Planned filename: `congaz-gagauz-courtyard.webp`  
 Content ID: `congaz-gagauz-courtyard`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - the real Gagauz Sofrasi traditional courtyard complex in Congaz
@@ -209,7 +186,6 @@ Role: **LIFE + CULTURAL REGION**
 Working coordinate: **45.60026, 28.12138**  
 Planned filename: `lake-beleu-lower-prut.webp`  
 Content ID: `lake-beleu-lower-prut`  
-Image state: **NOT STARTED**
 
 Scene identity:
 - low wetland horizon at Lake Beleu / Lower Prut
@@ -366,7 +342,6 @@ User review decision (2026-09-08):
 - Do not use money/currency trivia because currency is already shown in the common facts.
 - Keep Travel Trivia distinct from Beyond the Scenery and the common facts.
 
-
 ## Taste
 
 Four dishes selected for culinary and visual variety. All Taste images must follow `docs/TASTE_IMAGE_PRODUCTION.md` exactly: one dish / one image / one generation request, plain pale beige or warm ivory background, no props, no drinks, no utensils, no extra ingredients around the dish, no restaurant scenery, no people, no collage.
@@ -375,7 +350,6 @@ Four dishes selected for culinary and visual variety. All Taste images must foll
 
 Content ID: `mamaliga-cu-branza`  
 Planned filename: `food-mamaliga-cu-branza.webp`  
-Image state: **NOT STARTED**
 
 Dish identity:
 - one simple plate
@@ -391,7 +365,6 @@ Cornmeal is cooked into mămăligă and commonly paired with brânză and sour c
 
 Content ID: `placinte-cu-branza`  
 Planned filename: `food-placinte-cu-branza.webp`  
-Image state: **NOT STARTED**
 
 Dish identity:
 - one plate containing one clearly dominant round / folded Moldovan-style pie portion
@@ -406,7 +379,6 @@ Plăcinte appear in many savoury and sweet forms; cheese, cabbage, potato, green
 
 Content ID: `zeama`  
 Planned filename: `food-zeama.webp`  
-Image state: **NOT STARTED**
 
 Dish identity:
 - one plain bowl only
@@ -421,7 +393,6 @@ A clear chicken soup built around domestic chicken, noodles and lovage. Its ever
 
 Content ID: `cusma-lui-guguta`  
 Planned filename: `food-cusma-lui-guguta.webp`  
-Image state: **NOT STARTED**
 
 Dish identity:
 - one neat slice only
@@ -583,26 +554,8 @@ High-confidence source families checked during PHASE 1:
 
 Time-sensitive claims — population, transport connectivity, event dates, safety / entry conditions — require fresh verification and `sourceDates` at implementation.
 
-## Production gates
+## Production handoff
 
-1. Generate Hero only
-2. User approves Hero
-3. Start S01–S08 initial round as independent images
-4. Finish every NOT_STARTED Scene once before batch review; failed scenes become REGENERATE and are not immediately retried while later NOT_STARTED scenes remain
-5. User batch review; regenerate only requested / failed scenes
-6. Generate FOOD01–FOOD04 as four independent single-dish images
-7. User batch review; regenerate only requested / failed foods
-8. Visual Complete Gate — Hero + S01–S08 + FOOD01–FOOD04 all APPROVED
-9. Build / QA Map
-10. Approved-asset QA
-11. Country JSON / taxonomy implementation using approved assets only
-12. `atlasPublished:false` review deployment
-13. Desktop / Tablet / Mobile + accessibility + production URL QA
-14. User final page approval
-15. Formal publication only after explicit approval
+This Content Plan stores editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs, or publication state.
 
-## Current generation cursor after CONTENT completion
-
-NEXT IMAGE: **HERO — Orheiul Vechi / Răut River archaeological landscape ONLY**.
-
-Generate one standalone horizontal Hero image. Do not generate any Scene or Taste image in the same action. No collage, grid, text, labels, border, flags, UI, or unrelated landmark montage.
+Operational production state is authoritative only in `ops/country-production/moldova.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.
