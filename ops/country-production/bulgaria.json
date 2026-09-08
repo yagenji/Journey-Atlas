@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-08T18:00:30+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-08T18:15:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -87,15 +87,17 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "tarator"
+      "state": "APPROVED",
+      "asset": "assets/images/bulgaria/approved/tarator.webp",
+      "contentId": "tarator",
+      "approvedGenerationId": "8be2d5b4-2d9c-454e-9d9d-d638d07d83aa"
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "kavarma"
+      "state": "APPROVED",
+      "asset": "assets/images/bulgaria/approved/kavarma.webp",
+      "contentId": "kavarma",
+      "approvedGenerationId": "a1daddfc-3fb2-4293-88ca-ec5a2c744cd2"
     }
   ],
   "map": {
@@ -121,8 +123,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
