@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-08T17:22:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-08T17:26:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -74,9 +74,10 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "pierogi-ruskie"
+      "contentId": "pierogi-ruskie",
+      "candidateGenerationId": "5889a2db-b741-4d24-84ad-1dfa12915e35"
     },
     {
       "id": "FOOD02",
@@ -120,6 +121,6 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   }
 }
