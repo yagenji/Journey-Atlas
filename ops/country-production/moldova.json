@@ -3,9 +3,9 @@
   "slug": "moldova",
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-08T18:03:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-08T18:08:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -132,7 +132,20 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_SCENES",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
+  },
+  "sceneBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance"
+    ],
+    "notes": "Eight scenes are distinct and geographically/visually distributed. S07 is retained by explicit user approval despite an earlier internal composition concern.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-08T18:08:00+09:00"
   }
 }
