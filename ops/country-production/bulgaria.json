@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-08T22:06:00+09:00",
+  "phase": "REVIEW",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-08T22:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -116,19 +116,72 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED",
-    "reason": "Content revision: related destinations and encounters updated after user review."
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "2dcf2efc410941b6d89e745543b1f9a4025e6b6e",
+    "validateRunId": 34232189190,
+    "productionVerifyRunId": 34232189295,
+    "browserQaArtifactId": 10058382479,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "cloudflare-package-build",
+      "production-commit-served",
+      "production-country-route",
+      "production-country-payload",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "next-route-count-and-order",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-08T22:32:00+09:00"
   },
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/bulgaria/",
-    "commit": "ed2fe059b52f0f62013a40df49fef6b9d758056b",
+    "commit": "2dcf2efc410941b6d89e745543b1f9a4025e6b6e",
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-08T21:44:00+09:00"
+    "verifiedAt": "2026-09-08T22:32:00+09:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -138,7 +191,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "sceneBatchReview": {
