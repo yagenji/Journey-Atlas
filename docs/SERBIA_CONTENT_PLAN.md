@@ -35,15 +35,10 @@ Visual identity:
 - photo 6 : quiet watercolor 4
 - no text, map, UI, or collage
 
-Hero image state: APPROVED
-
 ## Locked 8-scene selection
-
-All eight scenes below were generated as independent images and user-approved on 2026-09-06. APPROVED scenes are locked and must not be regenerated without explicit user instruction.
 
 ### S01 — Uvac River Gorge / Uvački kanjon
 Working coordinate: 43.36070, 19.96176  
-Image state: APPROVED  
 Planned filename: `uvac-river-gorge.webp`
 
 Scene identity:
@@ -56,7 +51,6 @@ Scene identity:
 
 ### S02 — Petrovaradin Fortress / Petrovaradinska tvrđava
 Working coordinate: 45.25208, 19.86615  
-Image state: APPROVED  
 Planned filename: `petrovaradin-fortress.webp`
 
 Scene identity:
@@ -69,7 +63,6 @@ Scene identity:
 
 ### S03 — Subotica City Hall / Gradska kuća
 Working coordinate: 46.10167, 19.66361  
-Image state: APPROVED  
 Planned filename: `subotica-city-hall.webp`
 
 Scene identity:
@@ -82,7 +75,6 @@ Scene identity:
 
 ### S04 — Đerdap / Veliki Štrbac
 Working coordinate: 44.59246, 22.27929  
-Image state: APPROVED  
 Planned filename: `djerdap-veliki-strbac.webp`
 
 Scene identity:
@@ -95,7 +87,6 @@ Scene identity:
 
 ### S05 — Stara Planina / Babin Zub
 Working coordinate: 43.3689, 22.6083
-Image state: APPROVED
 Planned filename: `stara-planina-babin-zub.webp`
 
 Scene identity:
@@ -112,7 +103,6 @@ Previous S05 attempts:
 
 ### S06 — Studenica Monastery / Manastir Studenica
 Working coordinate: 43.48654, 20.53165  
-Image state: APPROVED  
 Planned filename: `studenica-monastery.webp`
 
 Scene identity:
@@ -125,7 +115,6 @@ Scene identity:
 
 ### S07 — Gamzigrad–Romuliana / Felix Romuliana
 Working coordinate: 43.8993, 22.1861  
-Image state: APPROVED  
 Planned filename: `gamzigrad-romuliana.webp`
 
 Scene identity:
@@ -138,7 +127,6 @@ Scene identity:
 
 ### S08 — Đavolja Varoš / Devil's Town
 Working coordinate: 42.99274, 21.40191  
-Image state: APPROVED  
 Planned filename: `davolja-varos.webp`
 
 Scene identity:
@@ -311,75 +299,8 @@ High-confidence source families already checked:
 
 All time-sensitive facts must be rechecked and sourceDates recorded when the final Country JSON is implemented.
 
-## Production gates
+## Production handoff
 
-1. Hero generation and user approval
-2. S01–S08 independent generation and batch user approval
-3. FOOD01–FOOD04 independent generation and batch user approval
-4. Map production and geographic QA
-5. Country JSON / taxonomy implementation
-6. `atlasPublished:false` review deployment
-7. Desktop / Tablet / Mobile + accessibility QA
-8. User final approval
-9. Formal publication only after approval
+This Content Plan stores editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs, or publication state.
 
-
-## Taste production status
-
-Round 1 — 2026-09-06
-
-- Generated output: REJECTED
-- Reason: multiple dishes were combined into one collage; violates one-food-per-image and no-collage rules.
-- FOOD01 Ćevapčići — APPROVED — planned filename: `food-cevapcici.webp`
-- FOOD02 Gibanica — APPROVED — planned filename: `food-gibanica.webp`
-- FOOD03 Sarma — APPROVED — planned filename: `food-sarma.webp`
-- FOOD04 Komplet lepinja — APPROVED — planned filename: `food-komplet-lepinja.webp`
-
-Do not reuse or crop the rejected collage. Start the next round with FOOD01 as a fresh independent image.
-
-
-## Asset verification
-
-Verified on 2026-09-06 against `country/serbia`.
-
-- approved folder: `assets/images/serbia/approved/`
-- expected assets: 13
-- GitHub assets found: 13
-- unexpected / rejected / temporary assets: 0
-- file extensions: all `.webp`
-- Hero: 1536×1024
-- S01–S08: each 1200×800
-- FOOD01–FOOD04: each 1200×800
-- local approved manifest decode check: PASS
-- Git blob SHA comparison against approved handoff bytes: 13/13 exact match
-- asset transfer integrity: PASS
-- approved-folder hygiene: PASS
-
-Asset Verification: PASS
-
-Map asset has been created from Natural Earth geometry. Visual Complete Gate remains pending final map/browser visual QA.
-
-
-## Final publication approval
-
-User final review approval received on 2026-09-06.
-
-Pre-publish QA:
-- latest main freshness: PASS
-- Country validation: PASS
-- approved asset verification: PASS
-- Serbia Desktop / Tablet / Mobile browser QA: PASS
-- all-published regression QA: PASS
-- no console / image / overflow / accessibility failures detected
-
-Publication state:
-- atlasPublished: true
-- production: LIVE_CURRENT — Cloudflare Production Verify PASS
-- hardImageGate: true
-
-
-Production Verify final result: PASS
-- production commit served by atlas.yagenji.com
-- runtime assets / route: PASS
-- all-published Desktop / Tablet / Mobile browser QA: PASS
-- final production state: LIVE_CURRENT
+Operational production state is authoritative only in `ops/country-production/serbia.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.

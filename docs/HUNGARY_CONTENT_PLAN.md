@@ -5,32 +5,6 @@ Branch: `country-hungary`
 
 This is the new-country production brief for JOURNEY ATLAS Hungary. It locks PHASE 1 content direction and image identity only. It does not connect unapproved Hero, Scene, Taste, or Map assets to production and does not change `atlasPublished:false`.
 
-## Production state
-
-- Registry: `hungary` exists / `atlasPublished:false`
-- Country JSON: NOT CREATED
-- Production image folder: NOT CREATED
-- Map: NOT CREATED
-- Review page: NOT CREATED
-- Theme taxonomy assignment: NOT YET IMPLEMENTED
-- Hero: APPROVED
-- Scene 01–08: NOT STARTED
-- Taste 01–04: NOT STARTED
-
-APPROVED is irreversible unless the user explicitly requests a remake. Only NOT STARTED or REGENERATE items may be generated.
-
-### Scene generation reset — 2026-09-07
-Three consecutive attempts incorrectly produced a single multi-panel collage instead of independent Scene files. All outputs are REJECTED and must never be used, cropped, stored, or connected to production. Further generation is stopped to avoid wasting image credits until the generator can be driven as one standalone Scene per call.
-
-Reset rule:
-- Scene 01–08 remain NOT STARTED.
-- Generate each Scene as a separate standalone image file.
-- Do not create a collage, grid, contact sheet, poster, captions, numbers, labels, typography, borders, or UI.
-- Do not include the Hero inside the Scene batch.
-- Current NEXT IMAGE: **S01 Visegrád Citadel / Danube Bend only**.
-- After S01 is generated, continue to S02, then S03…S08 without asking for per-scene approval.
-- User review occurs only after all eight standalone images are generated.
-
 ## Page concept
 
 **HUNGARY / ハンガリー**
@@ -70,8 +44,6 @@ Subject coordinate: **47.50726, 19.04536** — Hungarian Parliament Building
 
 Planned filename: `hero-budapest-parliament-danube.webp`
 
-Image state: **APPROVED**
-
 Scene identity:
 - real view from the Buda side of the Danube near Batthyány tér
 - Hungarian Parliament Building clearly identifiable across the river
@@ -94,7 +66,6 @@ Why this Hero:
 ### S01 — Visegrád Citadel / Danube Bend
 Working coordinate: **47.79367, 18.98032**  
 Planned filename: `visegrad-danube-bend.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - elevated view from the Visegrád Citadel terrace
@@ -106,7 +77,6 @@ Scene identity:
 ### S02 — Tihany Abbey / Lake Balaton
 Working coordinate: **46.91389, 17.88944**  
 Planned filename: `tihany-abbey-lake-balaton.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - Benedictine Abbey twin towers on the Tihany Peninsula
@@ -118,7 +88,6 @@ Scene identity:
 ### S03 — Hortobágy Puszta / Nine-Arch Bridge
 Working coordinate: **47.59458, 21.15678**  
 Planned filename: `hortobagy-puszta-nine-arch-bridge.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - low, immense horizon of the Great Hungarian Plain
@@ -132,7 +101,6 @@ Scene identity:
 ### S04 — Tokaj-Hegyalja / Hercegkút Gombos-hegy cellar rows
 Working coordinate: **48.55145, 21.76419**  
 Planned filename: `hercegkut-gombos-cellar-row.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - repeated white cellar entrances built into the hillside at Gombos-hegy
@@ -144,7 +112,6 @@ Scene identity:
 ### S05 — Aggtelek / Baradla Cave
 Working coordinate: **48.50869, 20.54308**  
 Planned filename: `aggtelek-baradla-cave.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - a real Baradla-type limestone chamber with dense stalactites and stalagmites
@@ -156,7 +123,6 @@ Scene identity:
 ### S06 — Hollókő Old Village
 Working coordinate: **47.99444, 19.52917**  
 Planned filename: `holloko-old-village.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - traditional Palóc village street
@@ -170,7 +136,6 @@ Scene identity:
 ### S07 — Pécs / Széchenyi Square and Mosque of Pasha Gazi Qasim
 Working coordinate: **46.07694, 18.22806**  
 Planned filename: `pecs-szechenyi-square-mosque.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - Széchenyi Square with the pale-green dome of the former Mosque of Pasha Gazi Qasim as primary anchor
@@ -183,7 +148,6 @@ Scene identity:
 ### S08 — Lake Hévíz / thermal lake pavilion
 Working coordinate: **46.78722, 17.19306**  
 Planned filename: `lake-heviz-thermal-pavilion.webp`  
-Image state: **APPROVED**
 
 Scene identity:
 - natural thermal lake and its recognizable bathing pavilion / structures on water
@@ -314,7 +278,6 @@ Exactly 5:
 Four dishes, designed for visual and culinary variety:
 
 ### FOOD01 — Gulyás / グヤーシュ
-Image state: **APPROVED**  
 Planned filename: `food-gulyas.webp`
 
 Direction:
@@ -327,7 +290,6 @@ Copy direction:
 Paprika, meat and vegetables come together in a soup closely associated with Hungarian cuisine. Avoid collapsing gulyás and pörkölt into the same “stew” description.
 
 ### FOOD02 — Lángos / ラーンゴシュ
-Image state: **APPROVED**  
 Planned filename: `food-langos.webp`
 
 Direction:
@@ -340,7 +302,6 @@ Copy direction:
 A deep-fried yeast dough widely found at markets, street-food stands and Balaton beaches, traditionally topped simply with garlic, sour cream and cheese.
 
 ### FOOD03 — Csirkepaprikás / チルケパプリカーシュ
-Image state: **APPROVED**  
 Planned filename: `food-csirkepaprikas.webp`
 
 Direction:
@@ -353,7 +314,6 @@ Copy direction:
 Chicken paprikash combines onion, garlic, paprika, pepper and sour cream; it developed from everyday rural cooking and remains a Hungarian classic.
 
 ### FOOD04 — Dobostorta / ドボシュトルタ
-Image state: **APPROVED**  
 Planned filename: `food-dobostorta.webp`
 
 Direction:
@@ -484,182 +444,8 @@ High-confidence source families already checked:
 
 Time-sensitive data must be rechecked and `sourceDates` recorded when the Country JSON is implemented.
 
-## Production gates
+## Production handoff
 
-1. Generate Hero only
-2. User approves Hero
-3. Generate S01–S08 in one production sequence, with independent prompts and no per-scene approval interruption
-4. User batch review; only specified REGENERATE scenes may be regenerated
-5. Generate FOOD01–FOOD04 in one production sequence
-6. User batch review; only specified REGENERATE foods may be regenerated
-7. Visual Complete Gate — Hero + S01–S08 + FOOD01–FOOD04 all APPROVED
-8. Map production and geographic QA
-9. Country JSON / taxonomy implementation using approved assets only
-10. `atlasPublished:false` review deployment
-11. Desktop / Tablet / Mobile + accessibility + production URL QA
-12. User final approval
-13. Formal publication only after explicit approval
+This Content Plan stores editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs, or publication state.
 
-
-## Current generation cursor
-NEXT IMAGE: **S02 — Tihany Abbey / Lake Balaton ONLY**. Generate one standalone 1200×800 landscape image only. No collage, grid, text, labels, borders, Hero, or other scenes. After S02, continue sequentially without user approval.
-
-
-### Generator cursor failure — 2026-09-07
-After S01 was successfully generated as a standalone image, the next generation call was explicitly advanced to S02 in production state, but the image generator still regenerated S01 / Visegrád. The duplicate is REJECTED. S02–S08 remain NOT STARTED. Generation is stopped again to avoid further credit waste. Do not mark any additional scene GENERATED or APPROVED from these duplicate Visegrád outputs.
-
-
-Current cursor update: S02 APPROVED by user. NEXT IMAGE: S03 — Hortobágy Puszta / Nine-Arch Bridge ONLY. Generate one standalone landscape image, no collage/grid/text/labels/borders/Hero/other scenes.
-
-Current cursor update: S03 APPROVED by user. NEXT IMAGE: S04 — Tokaj-Hegyalja / Hercegkút Gombos-hegy cellar rows ONLY. Generate one standalone landscape image, no collage/grid/text/labels/borders/Hero/other scenes.
-
-S04 generation attempt 1: REJECTED — generator incorrectly repeated Visegrád / Danube Bend. S04 remains NOT STARTED. Retry S04 once as a fresh standalone scene; if the same wrong landscape recurs, reset the S04 generation series per project rules.
-
-S04 generation attempt 2: REJECTED — generator produced Budapest / Fisherman's Bastion + Parliament instead of Tokaj-Hegyalja / Hercegkút. This is the second consecutive S04 failure. Per project rule, the S04 generation series is RESET. S04 remains NOT STARTED. Do not reuse either failed S04 output. NEXT valid target after reset remains S04 — Tokaj-Hegyalja / Hercegkút Gombos-hegy cellar rows.
-
-Current cursor update: S04 APPROVED by user. NEXT IMAGE: S05 — Aggtelek / Baradla Cave ONLY. Generate one standalone landscape image, no collage/grid/text/labels/borders/Hero/other scenes.
-
-S05 generation attempt 1: REJECTED — generator repeated S04 / Hercegkút cellar landscape instead of Aggtelek / Baradla Cave. S05 remains NOT STARTED. Retry S05 as a fresh standalone cave scene only; do not reuse or crop this output.
-
-S05 generation attempt 2: REJECTED — generator again repeated S04 / Hercegkút cellar landscape instead of Aggtelek / Baradla Cave. This is the second consecutive S05 failure. Per project rule, the S05 generation series is RESET. S05 remains NOT STARTED. Do not reuse or crop either failed output.
-
-
-## Duplicate-generation rule reinforced — 2026-09-08
-User instruction: creating the same image twice is prohibited.
-
-State handling:
-- S04 Hercegkút / Gombos-hegy remains APPROVED from the first approved valid image.
-- The two later S04-like cellar images generated during the S05 attempt are DUPLICATES and REJECTED; they are not additional approved assets and must not be stored, cropped, reused, or connected to production.
-- S05 Aggtelek / Baradla Cave remains NOT STARTED after generation-series reset.
-- Before any future image generation, compare the target against the immediately preceding approved/generated scene and reject any prompt/state carryover that would recreate the prior landscape.
-- APPROVED assets are generated exactly once unless the user explicitly requests a remake.
-
-Current cursor update: S05 APPROVED by user. NEXT IMAGE: S06 — Hollókő Old Village ONLY. Generate one standalone landscape image, no collage/grid/text/labels/borders/Hero/other scenes. Do not recreate any previously approved landscape.
-
-
-## Hard duplicate ban — reinforced 2026-09-08
-User instruction: generating the same image twice is prohibited.
-
-Immediate state:
-- S05 Aggtelek / Baradla Cave remains APPROVED.
-- The attempted S06 output duplicated S05 / Baradla Cave and is REJECTED.
-- S06 Hollókő Old Village remains NOT STARTED.
-- No duplicate, near-duplicate, crop, variation, or restaging of any APPROVED or GENERATED scene may be used as the next scene.
-- Before generation, the NEXT IMAGE identity must differ by location, subject, terrain, architecture, and composition from the previous approved scene.
-- If the generator repeats the previous scene once, stop that scene series and reset before retrying; do not generate the same landscape again in sequence.
-
-Current cursor update: S06 APPROVED by user. NEXT IMAGE: S07 — Pécs / Széchenyi Square and Mosque of Pasha Gazi Qasim ONLY. Generate one standalone landscape image, no collage/grid/text/labels/borders/Hero/other scenes. Do not recreate any previously approved landscape.
-
-
-## Duplicate violation — S07 attempt — 2026-09-08
-User correctly identified a rule violation: the S07 generation reproduced the already APPROVED S06 Hollókő Old Village landscape.
-
-State correction:
-- S06 Hollókő Old Village: APPROVED and locked.
-- S07 Pécs / Széchenyi Square: NOT STARTED.
-- The duplicate Hollókő output created during the S07 attempt: REJECTED.
-- It must not be stored, cropped, reused, renamed, or connected to production.
-
-Hard enforcement from this point:
-1. Never generate an APPROVED scene again unless the user explicitly requests a remake.
-2. Never generate the immediately preceding scene as a variation, alternate angle, crop, or restaging.
-3. Before each image call, the target identity must be checked against the previous approved/generated image across location, subject, architecture, terrain, and composition.
-4. If the generator returns the wrong or duplicate landscape even once, STOP that scene immediately. Do not auto-retry in the same sequence.
-5. The next valid image target remains S07 Pécs / Széchenyi Square and Mosque of Pasha Gazi Qasim ONLY.
-
-
-Current cursor update:
-- S07 Pécs / Széchenyi Square — APPROVED by user
-- S08 Lake Hévíz — APPROVED by user
-- Visual Scene Gate must not advance to Taste until every S01–S08 is APPROVED.
-
-
-Current cursor update:
-- S01 Visegrád Citadel / Danube Bend — APPROVED by user
-- Hero — APPROVED
-- S01–S08 — ALL APPROVED
-- Scene Gate — PASS
-- NEXT PHASE: Taste 01–04 batch production
-- NEXT IMAGE: FOOD01 Gulyás only, one dish per image, no collage, no extra background subjects.
-
-
-## Taste batch start failure — 2026-09-08
-After S01 approval completed the Scene Gate, the first Taste generation call should have produced FOOD01 Gulyás. Instead, the generator reproduced a Visegrád / Danube Bend landscape.
-
-State correction:
-- Hero: APPROVED.
-- S01–S08: ALL APPROVED.
-- Scene Gate: PASS.
-- FOOD01 Gulyás: NOT STARTED.
-- FOOD02 Lángos: NOT STARTED.
-- FOOD03 Csirkepaprikás: NOT STARTED.
-- FOOD04 Dobostorta: NOT STARTED.
-- Wrong FOOD01 output (Visegrád landscape): REJECTED and prohibited from storage/reuse.
-- Taste generation stops immediately after this wrong-scene output to avoid duplicate-image credit waste.
-
-Current Taste cursor update:
-- FOOD01 Gulyás — APPROVED by user
-- FOOD02 Lángos — APPROVED by user
-- NEXT IMAGE: FOOD03 Csirkepaprikás ONLY
-- Then FOOD04 Dobostorta
-- One dish per image, no collage, no duplicate of prior Taste images, no extra background subjects.
-
-Current Taste cursor update:
-- FOOD03 Csirkepaprikás — APPROVED by user
-- NEXT IMAGE: FOOD04 Dobostorta ONLY
-- One dessert slice per image, no collage, no second dish, no decorative background subjects, no repetition of prior food compositions.
-
-
-## Duplicate violation — FOOD04 attempt — 2026-09-08
-User correctly identified a hard rule violation: the FOOD04 Dobostorta generation reproduced the same gulyás-style image family already generated for FOOD03 instead of a distinct Dobostorta dessert.
-
-State correction:
-- FOOD01 Gulyás — APPROVED.
-- FOOD02 Lángos — APPROVED.
-- FOOD03 Csirkepaprikás — remains APPROVED because the user explicitly approved that generated image.
-- FOOD04 Dobostorta — NOT STARTED.
-- The duplicate FOOD04 output — REJECTED.
-- The rejected FOOD04 image must not be stored, cropped, renamed, reused, or connected to production.
-- No automatic retry is allowed after a duplicate/wrong-dish generation.
-- NEXT valid target remains FOOD04 Dobostorta ONLY.
-- Before the next generation, the target must be a single layered sponge-cake slice with chocolate buttercream and a hard caramel top, and must differ completely from all prior savory dishes.
-
-Current Taste cursor update:
-- FOOD04 Dobostorta — APPROVED by user
-- FOOD01–FOOD04 — ALL APPROVED
-- Hero + S01–S08 + FOOD01–FOOD04 — ALL APPROVED
-- Visual Complete Gate — PASS
-- NEXT PHASE: implementation preparation using approved assets only.
-
-
-## Pre-implementation asset identity QA — 2026-09-08
-Approval-state gate is complete, but production connection is BLOCKED by one content-identity mismatch:
-
-- FOOD01 Gulyás — APPROVED / identity matches.
-- FOOD02 Lángos — APPROVED / identity matches.
-- FOOD03 Csirkepaprikás — APPROVED by user, BUT generated raster visually depicts another gulyás-style beef-and-potato stew rather than chicken paprikash with paprika-sour-cream sauce and dumplings. Production identity QA: FAIL.
-- FOOD04 Dobostorta — APPROVED / identity matches.
-
-Rule consequence:
-- Do not connect or store the mismatched FOOD03 raster as `food-csirkepaprikas.webp`.
-- Do not rename a wrong dish to make the mismatch disappear.
-- Do not change the planned dish list without user instruction.
-- Because APPROVED is irreversible, no regeneration is performed automatically. An explicit user remake instruction is required for FOOD03 if it is to be corrected.
-- Country JSON / production asset implementation remains blocked at this identity QA gate until FOOD03 is resolved.
-
-
-## FOOD03 explicit remake resolution — 2026-09-08
-User explicitly instructed regeneration of FOOD03 after the pre-implementation identity mismatch.
-
-Resolution:
-- Previous mismatched FOOD03 raster: REJECTED and prohibited from production use.
-- New FOOD03 Csirkepaprikás raster: APPROVED by user.
-- New FOOD03 identity: chicken pieces in paprika-sour-cream sauce with pale dumplings; matches planned dish identity.
-- FOOD01 Gulyás — APPROVED.
-- FOOD02 Lángos — APPROVED.
-- FOOD03 Csirkepaprikás — APPROVED, corrected raster.
-- FOOD04 Dobostorta — APPROVED.
-- Hero + S01–S08 + FOOD01–FOOD04 — ALL APPROVED.
-- Visual Complete Gate — PASS.
-- Pre-implementation identity QA blocker — RESOLVED.
-- NEXT PHASE: implementation using approved final rasters only.
+Operational production state is authoritative only in `ops/country-production/hungary.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.

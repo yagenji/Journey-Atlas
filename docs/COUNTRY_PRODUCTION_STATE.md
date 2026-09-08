@@ -187,6 +187,43 @@ Show all tracked countries:
 `python3 scripts/country_production_state.py summary`
 
 
+## Canonical new-Country start
+
+The reusable start instruction lives at:
+
+`docs/NEW_COUNTRY_START.md`
+
+For a new Country:
+
+1. read `ops/country-production/{slug}.json` from `main`;
+2. if it exists, resume exactly from its deterministic NEXT;
+3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state and initialize the State once;
+4. create or update the Content Plan only for editorial and visual-design intent;
+5. do not copy operational cursor information into the Content Plan;
+6. proceed through the State machine without asking the user to repeat a master prompt.
+
+The chat is not an operational source of truth.
+
+## Content Plan / Production State separation — mandatory
+
+`docs/*_CONTENT_PLAN.md` answers **what to make**.
+
+`ops/country-production/{slug}.json` answers **where production currently is**.
+
+Content Plans must not contain:
+- current PHASE;
+- current NEXT ACTION / NEXT ASSET / NEXT IMAGE;
+- current approval states such as `Image state: APPROVED`;
+- generation cursors;
+- regeneration attempt logs;
+- temporary failure-state corrections;
+- current review / publication state;
+- a duplicate production-gate sequence.
+
+Historical production incidents that reveal a reusable rule belong in the relevant global production specification, not in a Country Content Plan.
+
+Operational sequencing, asset state and publication state must be read only from the Production State on `main`.
+
 ## Throughput mode — mandatory
 
 The production state machine exists to prevent duplicate work. It must **not** create a user approval gate after every image.

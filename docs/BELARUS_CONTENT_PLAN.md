@@ -5,20 +5,6 @@ Branch: `country-belarus`
 
 This is the new-country production brief for JOURNEY ATLAS Belarus. It locks PHASE 1 content direction and image identity only. It does not connect unapproved Hero, Scene, Taste, or Map assets to production and does not change `atlasPublished:false`.
 
-## Production state
-
-- Registry: `belarus` exists / `atlasPublished:false`
-- Country JSON: NOT CREATED
-- Production image folder: NOT CREATED
-- Map: NOT CREATED
-- Review page: NOT CREATED
-- Theme taxonomy assignment: DECIDED / NOT YET IMPLEMENTED
-- Hero: NOT STARTED
-- Scene 01–08: NOT STARTED
-- Taste 01–04: NOT STARTED
-
-APPROVED is irreversible unless the user explicitly requests a remake. Only NOT_STARTED or REGENERATE items may be generated.
-
 ## Page concept
 
 **BELARUS / ベラルーシ**
@@ -52,7 +38,6 @@ Editorial balance:
 
 Working coordinate: **53.45108, 26.47272**  
 Planned filename: `hero-mir-castle-reflection.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - real Mir Castle Complex viewed across the landscaped pond
@@ -77,7 +62,6 @@ Why this Hero:
 
 Working coordinate: **52.67580, 24.02770**  
 Planned filename: `bialowieza-belovezhskaya-pushcha-bison.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - old-growth mixed lowland forest in the Belarusian part of the forest complex
@@ -91,7 +75,6 @@ Scene identity:
 
 Working coordinate: **55.71944, 27.05750**  
 Planned filename: `braslaw-lakes-mount-mayak.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - elevated view over the Braslaw glacial lake mosaic
@@ -105,7 +88,6 @@ Scene identity:
 
 Working coordinate: **53.67843, 23.81863**  
 Planned filename: `grodno-kalozha-neman-river.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - 12th-century Kalozha Church on the high bank of the Neman
@@ -118,7 +100,6 @@ Scene identity:
 
 Working coordinate: **53.22278, 26.69139**  
 Planned filename: `nesvizh-palace-ponds.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - Radziwiłł palace complex read together with its landscaped ponds / park
@@ -131,7 +112,6 @@ Scene identity:
 
 Working coordinate: **53.90854, 27.55598**  
 Planned filename: `minsk-trinity-suburb-svislach.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - Trinity Suburb façades along / across the Svislach
@@ -144,7 +124,6 @@ Scene identity:
 
 Working coordinate: **52.06667, 27.73333**  
 Planned filename: `turov-meadows-pripyat-floodplain.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - seasonal Pripyat floodplain near Turov
@@ -158,7 +137,6 @@ Scene identity:
 
 Working coordinate: **55.48628, 28.75859**  
 Planned filename: `polotsk-sophia-western-dvina.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - Saint Sophia Cathedral on the high riverbank / historic upper town
@@ -171,7 +149,6 @@ Scene identity:
 
 Working coordinate: **52.08080, 23.65650**  
 Planned filename: `brest-fortress-kholm-gate.webp`  
-Image state: **NOT_STARTED**
 
 Scene identity:
 - recognisable red-brick Kholm Gate viewed across the water / bridge approach
@@ -313,7 +290,6 @@ Four independent dishes. One image = one dish; no collage.
 
 ### FOOD01 — Draniki / ドラニキ
 
-Image state: **NOT_STARTED**  
 Planned filename: `food-draniki.webp`
 
 Direction:
@@ -327,7 +303,6 @@ Finely grated potato pancakes are one of the clearest entry points into Belarusi
 
 ### FOOD02 — Machanka / マチャンカ
 
-Image state: **NOT_STARTED**  
 Planned filename: `food-machanka.webp`
 
 Direction:
@@ -341,7 +316,6 @@ A thick meat sauce traditionally eaten by dipping pancakes into it; its name its
 
 ### FOOD03 — Kholodnik / ハラドニク
 
-Image state: **NOT_STARTED**  
 Planned filename: `food-kholodnik.webp`
 
 Direction:
@@ -355,7 +329,6 @@ A cold beet-based soup associated with the warmer season, giving the Taste set a
 
 ### FOOD04 — Potato Babka / ポテト・バブカ
 
-Image state: **NOT_STARTED**  
 Planned filename: `food-potato-babka.webp`
 
 Direction:
@@ -475,15 +448,8 @@ High-confidence source families checked:
 
 All time-sensitive facts must be rechecked and `sourceDates` recorded when the final Country JSON is implemented.
 
-## Production gates
+## Production handoff
 
-1. Hero generation and user approval
-2. S01–S08 independent generation, one Scene per request, then batch user review
-3. FOOD01–FOOD04 independent generation, one dish per request, then batch user review
-4. Map production and geographic QA
-5. Approved-asset verification
-6. Country JSON / taxonomy implementation
-7. `atlasPublished:false` canonical review deployment
-8. Desktop / Tablet / Mobile + accessibility QA
-9. User final approval
-10. Formal publication only after approval
+This Content Plan stores editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs, or publication state.
+
+Operational production state is authoritative only in `ops/country-production/belarus.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.

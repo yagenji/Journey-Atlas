@@ -434,14 +434,8 @@ High-confidence source families checked:
 
 All time-sensitive facts must be rechecked and `sourceDates` recorded when the final Country JSON is implemented.
 
-## Production gates
+## Production handoff
 
-1. Hero generation and user approval
-2. S01–S08 independent generation and batch user approval
-3. FOOD01–FOOD04 independent generation and batch user approval
-4. Map production and geographic QA
-5. Country JSON / taxonomy implementation
-6. `atlasPublished:false` review deployment
-7. Desktop / Tablet / Mobile + accessibility QA
-8. User final approval
-9. Formal publication only after approval
+This Content Plan stores editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs, or publication state.
+
+Operational production state is authoritative only in `ops/country-production/poland.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.

@@ -206,12 +206,13 @@ ATLASの絵が写真に見える場合はNG。LENSとの視覚的な差が一目
 
 Icelandを新スタイルの最終ベンチマークとして再制作し、Heroと8景のQA完了後にlockする。
 
-1. IcelandのHeroと8景を一枚ずつ生成・確認する。
+1. 1 generation request = 1 image とし、複数景観を1枚にまとめない。
 2. 対象地点の実景を生成前に確認する。
-3. 1枚ごとにstyle、real-place、crop、clarityをQAする。
-4. 承認されたIcelandを新しい基準としてlockする。
-5. その後、他国をcontrolled batchで制作する。
-6. 問題がある画像のみ再生成する。
+3. 生成画像ごとにstyle、real-place、crop、clarityを内部QAする。
+4. Heroのみ個別にユーザー承認する。
+5. S01–S08は独立画像として連続生成し、8枚完成後にbatch reviewする。画像ごとのユーザー承認は挟まない。
+6. 問題がある画像のみ再生成し、APPROVED画像は明示指示なしに再生成しない。
 7. approved画像のみサイトへ実装する。
+8. 実行順序と承認ゲートは `docs/COUNTRY_PRODUCTION_STATE.md` を正本とする。
 
 旧Iceland画像は新スタイルの承認素材として扱わない。
