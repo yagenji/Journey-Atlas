@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T01:42:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-09T02:20:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -35,9 +35,11 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "transfagarasan-balea-switchbacks"
+      "contentId": "transfagarasan-balea-switchbacks",
+      "approvedGenerationId": "416c0f77-92db-4299-9416-37bdeb5b682f",
+      "approvedAt": "2026-09-09T02:20:00+09:00"
     },
     {
       "id": "S04",
@@ -120,7 +122,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
