@@ -4,8 +4,8 @@
   "countryName": "POLAND",
   "contentRef": "country/poland",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-08T16:27:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-08T16:31:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -30,9 +30,10 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "malbork-castle-nogat"
+      "contentId": "malbork-castle-nogat",
+      "candidateGenerationId": "c36c9f39-6453-4a4d-8651-6d5db8b675af"
     },
     {
       "id": "S04",
@@ -114,6 +115,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   }
 }
