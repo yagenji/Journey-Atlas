@@ -4,16 +4,20 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-09T00:38:58+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-09T00:42:23+09:00",
   "hero": {
     "state": "REGENERATE",
     "asset": null,
-    "candidateGenerationId": "d555ff67-6852-41b5-8a96-56819519afe2",
+    "candidateGenerationId": null,
     "rejectedGenerationIds": [
-      "d555ff67-6852-41b5-8a96-56819519afe2"
+      "d555ff67-6852-41b5-8a96-56819519afe2",
+      "10bb9220-8168-4400-aeb2-a294c833e1a1"
     ],
-    "failureReason": "Hard reject: generated Hero contained text / typography, violating the no-text Hero rule."
+    "failureReason": "Second consecutive hard reject: generated Hero again contained text / typography. Reset Hero generation series before retry.",
+    "consecutiveFailureCount": 2,
+    "generationSeriesReset": true,
+    "generationSeriesResetAt": "2026-09-09T00:42:23+09:00"
   },
   "scenes": [
     {
