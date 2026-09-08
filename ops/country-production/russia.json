@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T01:37:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-09T01:22:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -19,8 +19,10 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
-      "asset": null
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/moscow-kremlin-moskva-river.webp",
+      "approvedGenerationId": "1d827e7e-485f-432d-9607-30ff279c1b3d",
+      "approvedAt": "2026-09-09T01:22:00+09:00"
     },
     {
       "id": "S02",
@@ -104,7 +106,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
