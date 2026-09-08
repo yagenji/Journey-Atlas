@@ -4,12 +4,13 @@
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-08T15:55:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-08T16:00:00+09:00",
   "hero": {
-    "state": "NOT_STARTED",
+    "state": "REVIEW_CANDIDATE",
     "asset": null,
-    "contentId": "rila-monastery-valley"
+    "contentId": "rila-monastery-valley",
+    "candidateGenerationId": "d899cbf3-0923-4d00-a36f-b0c207df2880"
   },
   "scenes": [
     {
@@ -110,7 +111,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_HERO",
+    "action": "WAIT_HERO_APPROVAL",
     "asset": "HERO"
   }
 }
