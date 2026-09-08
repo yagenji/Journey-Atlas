@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "MAP",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-08T18:55:00+09:00",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-08T19:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -121,8 +121,15 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/moldova/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MDA.geojson (blob 910ae48e30530f285010bbf3298b3f9daeec6c2f), WGS84; JOURNEY ATLAS map-v3.",
+    "bounds": {
+      "north": 48.65236812558504,
+      "south": 45.29543969541504,
+      "west": 26.424636234465005,
+      "east": 30.324829178535126
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -143,7 +150,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "sceneBatchReview": {
