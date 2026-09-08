@@ -3,9 +3,9 @@
   "slug": "bulgaria",
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-08T17:18:30+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-08T17:26:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -64,9 +64,10 @@
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "veliko-tarnovo-tsarevets-yantra"
+      "state": "APPROVED",
+      "asset": "assets/images/bulgaria/approved/veliko-tarnovo-tsarevets-yantra.webp",
+      "contentId": "veliko-tarnovo-tsarevets-yantra",
+      "approvedGenerationId": "f5e23328-07cd-43f7-870e-6d4d125352aa"
     }
   ],
   "taste": [
@@ -118,7 +119,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S08"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   }
 }
