@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
-  "phase": "ASSET_QA",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-09T01:09:48+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-09T01:20:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -143,7 +143,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "sceneBatchReview": {
@@ -199,28 +199,17 @@
     "approvedAt": "2026-09-09T00:58:00+09:00"
   },
   "assetQa": {
-    "result": "BLOCKED",
+    "result": "PASS",
     "checked": [
       "approved-source-raster-recovery",
-      "source-raster-full-decode",
-      "local-production-webp-full-decode",
-      "local-production-dimensions",
-      "production-path-existence-on-main",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
       "map-svg-existence"
     ],
-    "sourceAssets": {
-      "expectedRasterCount": 13,
-      "recoveredRasterCount": 13,
-      "format": "PNG",
-      "dimensions": {
-        "hero": "1536x1024",
-        "scenes": "1536x1024",
-        "taste": "FOOD01 1448x1086; FOOD02-04 1536x1024"
-      },
-      "decode": "PASS",
-      "approvalSequenceMatch": "PASS"
-    },
-    "localProductionExport": {
+    "productionAssets": {
       "rasterCount": 13,
       "format": "WebP",
       "dimensions": {
@@ -228,22 +217,18 @@
         "scenes": "1200x800",
         "taste": "1200x800"
       },
-      "decode": "PASS"
-    },
-    "repositoryProductionAssets": {
-      "expectedRasterCount": 13,
-      "rasterCount": 0,
-      "approvedFolder": "assets/images/belarus/approved/",
-      "pathExistence": "FAIL",
-      "gitBlobShaMatch": "NOT_RUN",
-      "approvedFolderHygiene": "NOT_RUN"
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS"
     },
     "map": {
       "asset": "assets/images/belarus/map-atlas-v1.svg",
       "state": "APPROVED",
       "existence": "PASS"
     },
-    "blocker": "All 13 approved source images were recovered without regeneration and production WebP exports were prepared and fully decoded locally, but the GitHub production approved folder does not yet exist. Do not advance to implementation until the 13 final WebP files are present at the exact Production State paths and Git blob/decode/dimension/hygiene checks pass.",
-    "notes": "The earlier Production State referenced raster paths before the raster binaries were materialized. S02 Braslaw Lakes / Mount Mayak was recovered from the model-generated image library in the approval sequence between S01 and S03 and visually matches the approved scene plan. No approved image was regenerated."
+    "notes": "All 13 approved Belarus raster assets were materialized on country-belarus. Their Git blob SHAs match the locally fully decoded production WebP exports byte-for-byte. The approved folder contains exactly the 13 final rasters and no draft/temp/placeholder files. Hero remains 1536x1024; all eight Scenes and four Taste assets are 1200x800. Ready for implementation.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T01:20:30+09:00"
   }
 }
