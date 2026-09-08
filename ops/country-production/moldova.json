@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-08T16:46:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-08T16:50:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -19,9 +19,10 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "chisinau-cathedral-triumphal-arch"
+      "contentId": "chisinau-cathedral-triumphal-arch",
+      "candidateGenerationId": "35df1be9-201e-4796-8c72-87ef888af2ed"
     },
     {
       "id": "S02",
@@ -116,6 +117,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   }
 }
