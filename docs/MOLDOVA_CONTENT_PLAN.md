@@ -339,29 +339,29 @@ No item should repeat a Scene description or Taste copy verbatim.
 
 ## Travel Trivia
 
-Target exactly 5:
+Target exactly 4:
 
 1. **LANGUAGE / 言葉 — 国家語はルーマニア語**
    - The 2023 law confirmed Romanian as Moldova's state language and replaced “Moldovan language” in legislation.
    - Traveler angle: signs and formal public information should be read with Romanian as the language baseline, while other languages are also used in communities.
 
-2. **AIRPORT / 空港 — キシナウ空港のコードは RMO**
-   - Current Moldova Travel access information uses Chișinău Airport code RMO.
-   - Useful because older travel material may still show the previous code.
-
-3. **WINE / 季節 — ワインの日は10月最初の週末**
+2. **WINE / 季節 — ワインの日は10月最初の週末**
    - Moldova Travel describes National Wine Day as an annual first-weekend-of-October event in Chișinău.
    - This gives harvest-season travel a concrete cultural rhythm; exact yearly dates must be rechecked.
 
-4. **MONEY / お金 — 通貨はレウ、コードはMDL**
-   - The National Bank identifies the Moldovan leu as the national monetary unit / legal tender.
-   - Keep the trivia practical and do not publish a volatile exchange rate.
+3. **CUSTOMS / 習慣 — クリスマスも新年も、二つの暦で祝う**
+   - Moldova Travel notes that Christmas and New Year are celebrated according to both new-style and old-style calendar dates.
+   - Traveler angle: a winter visitor may encounter the festive period continuing across more than one date.
 
-5. **TRANSPORT / 移動 — キシナウには長距離バス駅が複数ある**
+4. **TRANSPORT / 移動 — キシナウには長距離バス駅が複数ある**
    - Moldova Travel currently lists Central, North and South bus stations serving different destinations.
    - Travelers should check which station their route uses rather than assuming all intercity buses leave from one terminal.
 
-Final wording and source keys must be rechecked at JSON implementation. Do not duplicate Mărțișor here because it is already Beyond the Scenery.
+User review decision (2026-09-08):
+- Do not use airport-code trivia.
+- Do not use money/currency trivia because currency is already shown in the common facts.
+- Keep Travel Trivia distinct from Beyond the Scenery and the common facts.
+
 
 ## Taste
 
@@ -542,6 +542,8 @@ Candidate locked direction:
    - affinity: Orthodox architecture, wine, agricultural landscapes and southeastern European rural culture, while Black Sea / Balkan mountain scenery broadens the visual range.
 
 Final clickable state must follow the destination registry at implementation time.
+
+Ukraine is a land neighbor of Moldova, but it is intentionally excluded from the current NEXT DESTINATIONS recommendation set while Japan's Ministry of Foreign Affairs maintains Level 4 (evacuate / do not travel) for all of Ukraine. NEXT DESTINATIONS is a preference-recommendation layer, not an exhaustive neighbor list. Re-evaluate only when official safety guidance materially changes.
 
 ## Primary Themes
 
