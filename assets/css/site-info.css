@@ -3,10 +3,10 @@
   --info-ink:#0b2c57;
   --info-text:#405364;
   --info-muted:#6f7d88;
-  --info-accent:#9a856d;
-  --info-paper:#fbfaf6;
-  --info-panel:#fffdf9;
-  --info-line:rgba(11,44,87,.12);
+  --info-accent:#8b7457;
+  --info-paper:#f7f3e9;
+  --info-panel:#fbf8f0;
+  --info-line:rgba(18,54,92,.12);
   --info-sans:"Hanken Grotesk","Zen Kaku Gothic New",sans-serif;
   --info-jp:"Zen Kaku Gothic New",sans-serif;
   --info-mincho:"Shippori Mincho",serif;
@@ -296,4 +296,29 @@ a{color:inherit}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+}
+
+
+/* Harmonize informational pages with the Top palette. */
+.info-hero h1,
+.info-section h2,
+.faq-item summary,
+.info-contact strong{
+  color:#12365c;
+}
+.info-hero p,
+.info-section p,
+.info-section li,
+.faq-answer p,
+.info-contact p{
+  color:#405364;
+}
+.info-section,
+.faq-list,
+.faq-item{
+  border-color:rgba(18,54,92,.11);
+}
+.info-contact{
+  background:#fbf8f0;
+  border-color:rgba(18,54,92,.12);
 }
