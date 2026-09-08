@@ -3,20 +3,31 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-09T00:20:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-09T01:17:00+09:00",
   "hero": {
-    "state": "NOT_STARTED",
+    "state": "APPROVED",
     "asset": null,
-    "contentId": "khongoryn-els-gobi"
+    "contentId": "khongoryn-els-gobi",
+    "approvedGenerationId": "40ad3d22-43d0-4b44-b87f-331422917fbc",
+    "approvedAt": "2026-09-09T01:11:00+09:00"
   },
   "scenes": [
     {
       "id": "S01",
       "state": "NOT_STARTED",
       "asset": null,
-      "contentId": "orkhon-valley-pasture-ger-horses"
+      "contentId": "orkhon-valley-pasture-ger-horses",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "27a25535-5aeb-4251-be6a-ef3430461fac",
+        "015468df-136b-427a-b805-1b196cad11b5"
+      ],
+      "failureReason": "Second consecutive hard reject: image generation produced a Khongoryn Els Hero/travel-poster composition with typography instead of Orkhon Valley S01. Reset S01 generation series before retry.",
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-09T01:17:00+09:00"
     },
     {
       "id": "S02",
@@ -110,8 +121,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_HERO",
-    "asset": "HERO"
+    "action": "GENERATE_SCENE",
+    "asset": "S01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
