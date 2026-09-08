@@ -4,8 +4,8 @@
   "countryName": "MOLDOVA",
   "contentRef": "country/moldova",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-08T18:56:00+09:00",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-08T18:53:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/moldova/approved/hero-orheiul-vechi-raut.webp",
@@ -112,13 +112,12 @@
     },
     {
       "id": "FOOD04",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/moldova/approved/food-cusma-lui-guguta.webp",
       "contentId": "cusma-lui-guguta",
-      "rejectedGenerationIds": [
-        "80e20c68-2588-4f51-beb5-d3f07f775143"
-      ],
-      "resetReason": "Generated FOOD04 violates locked Cușma lui Guguță identity: it shows cream-covered pastry puffs with chocolate/nuts instead of a single triangular slice made from rolled pancakes filled with sour cherries. Regenerate with visible cherry cross-sections and no extra toppings."
+      "approvedGenerationId": "80e20c68-2588-4f51-beb5-d3f07f775143",
+      "approvedAt": "2026-09-08T18:53:00+09:00",
+      "approvalNote": "Explicit user approval overrides prior internal REGENERATE assessment."
     }
   ],
   "map": {
