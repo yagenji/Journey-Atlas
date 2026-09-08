@@ -4,8 +4,8 @@
   "countryName": "BULGARIA",
   "contentRef": "country/bulgaria",
   "phase": "MAP",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-08T18:31:30+09:00",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-08T18:54:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bulgaria/approved/hero-rila-monastery-valley.webp",
@@ -101,7 +101,7 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/bulgaria/map-atlas-v1.svg"
   },
   "implementation": {
@@ -123,8 +123,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -151,5 +151,18 @@
     "notes": "All four approved Taste images pass batch review; no regeneration required.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-08T18:25:00+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "accessible-svg-label"
+    ],
+    "notes": "Bulgaria map matches the current JOURNEY ATLAS clean-background map language; no regeneration required."
   }
 }
