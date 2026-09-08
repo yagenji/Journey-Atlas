@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-09T01:28:00+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-09T01:33:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -22,7 +22,8 @@
       "state": "APPROVED",
       "asset": "assets/images/russia/approved/moscow-kremlin-moskva-river.webp",
       "approvedGenerationId": "1d827e7e-485f-432d-9607-30ff279c1b3d",
-      "approvedAt": "2026-09-09T01:22:00+09:00"
+      "approvedAt": "2026-09-09T01:22:00+09:00",
+      "contentId": "moscow-kremlin-moskva-river"
     },
     {
       "id": "S02",
@@ -31,37 +32,48 @@
       "rejectedGenerationIds": [
         "cbe3b629-d241-49b4-9698-15d790374586"
       ],
-      "failureReason": "Hard reject: generation repeated the previously approved Moscow Kremlin scene instead of Saint Petersburg / Neva & Palace Embankment."
+      "failureReason": "Hard reject: generation repeated the previously approved Moscow Kremlin scene instead of Saint Petersburg / Neva & Palace Embankment.",
+      "contentId": "saint-petersburg-neva-palace-embankment"
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
-      "asset": null
+      "state": "REGENERATE",
+      "asset": null,
+      "contentId": "kazan-kremlin-kazanka",
+      "rejectedGenerationIds": [
+        "0a89f1b5-67e6-4e34-8559-3b7f4ecfd17a"
+      ],
+      "failureReason": "Hard reject: generation repeated the approved Moscow Kremlin scene instead of Kazan / Kremlin & Kazanka."
     },
     {
       "id": "S04",
       "state": "NOT_STARTED",
-      "asset": null
+      "asset": null,
+      "contentId": "curonian-spit-efa-dune"
     },
     {
       "id": "S05",
       "state": "NOT_STARTED",
-      "asset": null
+      "asset": null,
+      "contentId": "lake-baikal-olkhon-cape-burkhan"
     },
     {
       "id": "S06",
       "state": "NOT_STARTED",
-      "asset": null
+      "asset": null,
+      "contentId": "altai-lake-teletskoye"
     },
     {
       "id": "S07",
       "state": "NOT_STARTED",
-      "asset": null
+      "asset": null,
+      "contentId": "lena-pillars-lena-river"
     },
     {
       "id": "S08",
       "state": "NOT_STARTED",
-      "asset": null
+      "asset": null,
+      "contentId": "kamchatka-klyuchevskoy-volcano"
     }
   ],
   "taste": [
@@ -110,7 +122,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
