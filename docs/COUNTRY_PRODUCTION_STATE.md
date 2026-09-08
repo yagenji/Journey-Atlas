@@ -1,6 +1,6 @@
 # COUNTRY PRODUCTION STATE — OPERATING CONTRACT
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 ## Purpose
 
@@ -224,6 +224,29 @@ Historical production incidents that reveal a reusable rule belong in the releva
 
 Operational sequencing, asset state and publication state must be read only from the Production State on `main`.
 
+## Scene image-generation policy — mandatory
+
+Hero and S01–S08 generation must follow `docs/SCENE_IMAGE_PRODUCTION.md`.
+
+Any Country in an image-production phase must carry:
+
+```json
+"imageGenerationPolicy": {
+  "revision": 2,
+  "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+  "sceneReview": "BATCH_ONLY",
+  "mandatoryNoAddedText": true,
+  "rejectTypographyImmediately": true,
+  "rejectCollageImmediately": true,
+  "rejectPreviousAssetRepeatImmediately": true,
+  "maxConsecutiveHardFailuresBeforeReset": 2,
+  "approvedAssetRegeneration": false,
+  "runtimeContinuation": "AUTO_IF_SUPPORTED"
+}
+```
+
+The State policy is a live enforcement marker for existing Country chats. If the latest `main` State carries a newer revision than the chat history, the State wins immediately from the next generation action.
+
 ## Throughput mode — mandatory
 
 The production state machine exists to prevent duplicate work. It must **not** create a user approval gate after every image.
@@ -245,10 +268,11 @@ During `SCENES_INITIAL`:
 
 - after S01 generation, write S01 as `REVIEW_CANDIDATE` or `REGENERATE`;
 - immediately re-read NEXT;
-- if another Scene is `NOT_STARTED`, generate it in the **same assistant turn**;
+- if another Scene is `NOT_STARTED`, continue automatically when the image runtime supports a distinct next-target generation in the same turn;
+- if the runtime permits only one generated image per turn, stop only at that runtime boundary — not for approval — and the next `生成` / `進めて` must execute NEXT immediately without re-planning or re-confirmation;
 - repeat until S01–S08 have all received one initial attempt;
 - do not emit an approval request between images;
-- stop only when NEXT reaches the Scene batch-review boundary.
+- stop for user review only when NEXT reaches the Scene batch-review boundary.
 
 During `TASTE_INITIAL`, use exactly the same behavior for FOOD01–FOOD04.
 

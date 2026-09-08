@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-09T01:18:00+09:00",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-09T01:37:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -115,5 +115,17 @@
     "batchMaterialization": true,
     "autoPostVisualPipeline": true,
     "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 2,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "maxConsecutiveHardFailuresBeforeReset": 2,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED"
   }
 }

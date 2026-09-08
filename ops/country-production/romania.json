@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-09T01:36:30+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-09T01:38:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -126,5 +126,17 @@
     "batchMaterialization": true,
     "autoPostVisualPipeline": true,
     "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 2,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "maxConsecutiveHardFailuresBeforeReset": 2,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED"
   }
 }

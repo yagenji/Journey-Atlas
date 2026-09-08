@@ -214,5 +214,6 @@ Icelandを新スタイルの最終ベンチマークとして再制作し、Hero
 6. 問題がある画像のみ再生成し、APPROVED画像は明示指示なしに再生成しない。
 7. approved画像のみサイトへ実装する。
 8. 実行順序と承認ゲートは `docs/COUNTRY_PRODUCTION_STATE.md` を正本とする。
+9. Hero / Sceneの生成直前プロンプト、文字・ポスター・コラージュの即NG判定、失敗系列リセットは `docs/SCENE_IMAGE_PRODUCTION.md` を必ず適用する。
 
 旧Iceland画像は新スタイルの承認素材として扱わない。
