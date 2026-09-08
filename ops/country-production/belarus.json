@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "country-belarus",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-08T16:45:00+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-08T16:51:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -27,9 +27,11 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "grodno-kalozha-neman-river"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/grodno-kalozha-neman-river.webp",
+      "contentId": "grodno-kalozha-neman-river",
+      "candidateGenerationId": "e94b549c-2453-4c7d-9d55-dd2e0680f3a8",
+      "approvedAt": "2026-09-08T16:51:00+09:00"
     },
     {
       "id": "S04",
@@ -112,6 +114,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   }
 }
