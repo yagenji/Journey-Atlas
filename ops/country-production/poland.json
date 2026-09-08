@@ -3,9 +3,9 @@
   "slug": "poland",
   "countryName": "POLAND",
   "contentRef": "main",
-  "phase": "PUBLISH",
-  "stateRevision": 38,
-  "updatedAt": "2026-09-08T23:28:00+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 39,
+  "updatedAt": "2026-09-08T23:40:28+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/poland/approved/hero-krakow-wawel-vistula.webp",
@@ -131,10 +131,10 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "sourceCommit": "da46c4572b443e4c385d0d5e0973904f237d12d2",
     "validateRunId": 34236921517,
-    "productionVerifyRunId": 34236921421,
+    "productionVerifyRunId": 34239149877,
     "browserQaArtifactId": 10060401921,
     "checks": [
       "source-syntax",
@@ -182,7 +182,25 @@
       }
     },
     "failureCount": 0,
-    "completedAt": "2026-09-08T23:17:42+09:00"
+    "completedAt": "2026-09-08T23:17:42+09:00",
+    "prePublicationProductionVerifyRunId": 34236921421,
+    "publishCandidateBrowserQaRunId": 34238392049,
+    "publishCandidateBrowserQaArtifactId": 10060893835,
+    "publishRuntimeRunId": 34238543778,
+    "publishRuntimeJobId": 102102626244,
+    "productionSourceCommit": "fe7cae8c3152ecaaeafd2daeee725f9b1a03a4d8",
+    "productionChecks": [
+      "publish-candidate-desktop-browser-qa",
+      "publish-candidate-tablet-browser-qa",
+      "publish-candidate-mobile-browser-qa",
+      "publish-candidate-failure-count-zero",
+      "cloudflare-served-poland-publish-commit",
+      "production-runtime-baseline",
+      "production-poland-route",
+      "production-poland-payload",
+      "latest-main-cloudflare-runtime-pass",
+      "post-publish-diff-does-not-modify-poland-country-json-or-assets"
+    ]
   },
   "reviewDeployment": {
     "state": "DONE",
@@ -203,10 +221,19 @@
     "state": "PUBLISHED",
     "atlasPublished": true,
     "publishedAt": "2026-09-08T23:28:00+09:00",
-    "productionVerification": "PENDING"
+    "productionVerification": "PASS",
+    "publishCommit": "ffd9baa363586d2e4431957c3f8263e6f76ed99b",
+    "liveCommit": "fe7cae8c3152ecaaeafd2daeee725f9b1a03a4d8",
+    "publishRuntimeRunId": 34238543778,
+    "productionVerifyRunId": 34239149877,
+    "publishCandidateBrowserQaArtifactId": 10060893835,
+    "verifiedAt": "2026-09-08T23:40:28+09:00",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true
   },
   "next": {
-    "action": "PUBLISH_COUNTRY",
+    "action": "NONE",
     "asset": null
   },
   "assetQa": {
