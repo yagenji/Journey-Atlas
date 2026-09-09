@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-10T08:39:00+09:00",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-10T08:41:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -300,7 +300,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "har-gow-dim-sum",
       "promptSeries": 2,
@@ -333,7 +333,8 @@
       },
       "promptSeriesReset": true,
       "promptSeriesResetAt": "2026-09-10T01:17:00+09:00",
-      "candidateGenerationId": "6460c036-0d1c-4c90-86f5-85cc16e0afda"
+      "approvedGenerationId": "6460c036-0d1c-4c90-86f5-85cc16e0afda",
+      "approvedAt": "2026-09-10T08:41:00+09:00"
     },
     {
       "id": "FOOD02",
@@ -499,7 +500,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD02"
   },
   "sceneBatchReview": {
@@ -517,25 +518,26 @@
     "approvedAt": "2026-09-10T00:55:00+09:00"
   },
   "tasteBatchReview": {
-    "result": "AUTO_REJECTED_HARD_RULE_FAILURES",
+    "result": "PARTIAL_APPROVAL",
     "checked": [
       "single-dish-only",
       "no-collage",
       "target-identity",
       "previous-asset-repeat"
     ],
-    "notes": "All four initial Taste generations were automatic NG because the image runtime returned multi-dish 2x2 collages instead of the single current dish. No invalid candidate was sent to the user for approval.",
-    "approval": "PENDING"
+    "notes": "User approved FOOD01 only. FOOD02, FOOD03 and FOOD04 were explicitly rejected because the outputs were collages; only those three remain eligible for regeneration.",
+    "approval": "PENDING",
+    "reviewedAt": "2026-09-10T08:41:00+09:00",
+    "approvedItems": [
+      "FOOD01"
+    ],
+    "rejectedItems": [
+      "FOOD02",
+      "FOOD03",
+      "FOOD04"
+    ]
   },
-  "blockingIssues": [
-    {
-      "code": "TASTE_RUNTIME_COLLAGE_LOOP",
-      "severity": "BLOCKING",
-      "asset": "FOOD02",
-      "detectedAt": "2026-09-10T08:39:00+09:00",
-      "detail": "FOOD02 remains blocked because the image runtime continues to return a four-dish collage after multiple prompt-series refreshes. FOOD01 now has a valid single-dish REVIEW_CANDIDATE. Further immediate retries would waste image credits."
-    }
-  ],
+  "blockingIssues": [],
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
