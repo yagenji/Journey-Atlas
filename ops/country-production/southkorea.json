@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-10T01:38:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-10T08:27:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -42,7 +42,7 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "seongsan-ilchulbong-gwangchigi",
       "promptSeries": 1,
@@ -71,11 +71,19 @@
         "previousAssetRepeat": "PASS",
         "collageTypography": "FAIL",
         "notes": "Generation produced the Seoul/Gwanghwamun palace subject instead of S01 Jeju Seongsan Ilchulbong, and included readable signage/typography. Automatically rejected under revision 4."
+      },
+      "approvedGenerationId": "f24e73fa-fce4-48f9-9017-5eb5eba5aa21",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S02",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "gyeongju-daereungwon-tumuli",
       "promptSeries": 1,
@@ -104,11 +112,19 @@
         "previousAssetRepeat": "PASS",
         "collageTypography": "FAIL",
         "notes": "Generation produced a labelled 2x4 collage of multiple South Korea scenes instead of standalone S02 Gyeongju Daereungwon, with explicit typography. Automatically rejected under current image-generation policy."
+      },
+      "approvedGenerationId": "1b40f483-3bf0-4a44-a3f2-f6a9fb4bde6e",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S03",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "andong-hahoe-buyongdae",
       "promptSeries": 1,
@@ -137,11 +153,19 @@
         "previousAssetRepeat": "FAIL",
         "collageTypography": "FAIL",
         "notes": "Generation again produced the same multi-scene labelled collage family rather than standalone S03 Andong Hahoe Village. Automatically rejected; generation halted to protect credits because the runtime is carrying the previous collage pattern across targets."
+      },
+      "approvedGenerationId": "564197f1-fadb-46e9-a40b-86728e85d1d0",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S04",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "seoraksan-ulsanbawi-autumn",
       "promptSeries": 1,
@@ -170,11 +194,19 @@
         "previousAssetRepeat": "FAIL",
         "collageTypography": "FAIL",
         "notes": "S04 generation produced a prohibited labelled multi-scene collage instead of one standalone Seoraksan/Ulsanbawi scene. User explicitly confirmed collage is prohibited. Automatically rejected; asset remains for regeneration after remaining NOT_STARTED scenes."
+      },
+      "approvedGenerationId": "5845dce9-9a93-4127-b830-8796115c2c13",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S05",
-      "state": "GENERATING",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "suncheon-bay-tidal-wetland",
       "promptSeries": 1,
@@ -196,16 +228,18 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "S05-series1-attempt1",
-        "reservedAt": "2026-09-10T01:24:00+09:00",
-        "contentId": "suncheon-bay-tidal-wetland",
-        "promptSeries": 1
+      "approvedGenerationId": "e611dc55-6c8b-470b-891a-00dd89ae8b7a",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "busan-gamcheon-hillside-harbor",
       "promptSeries": 1,
@@ -226,11 +260,19 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "approvedGenerationId": "2c73dbad-37d8-43b4-9271-41b9695065c8",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "boseong-tea-terraces",
       "promptSeries": 1,
@@ -251,11 +293,19 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "approvedGenerationId": "c776cdf7-5583-4cc5-8746-667abbfb404b",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "ulleungdo-taeha-volcanic-coast",
       "promptSeries": 1,
@@ -276,6 +326,14 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "approvedGenerationId": "d7d1262d-240a-4fde-9677-b3444b3dbf3b",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
       }
     }
   ],
@@ -446,15 +504,10 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "S05"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
-  "blockingIssue": {
-    "code": "IMAGE_RUNTIME_COLLAGE_REPEAT",
-    "state": "OPEN",
-    "detectedAt": "2026-09-10T01:23:00+09:00",
-    "notes": "S04 also produced the same prohibited multi-scene collage pattern. Future generation must be fresh text-to-image for exactly one current asset with no labels, captions, borders, grid, or references to the previous collage output."
-  },
+  "blockingIssue": null,
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
@@ -462,5 +515,19 @@
     "lastFailureAsset": null,
     "lastFailureReason": null
   },
-  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json"
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "sceneBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance",
+      "mandatory-no-added-text"
+    ],
+    "notes": "User approved the complete eight-scene South Korea batch. The approved set covers Jeju, Gyeongju, Andong, Seoraksan, Suncheon Bay, Busan, Boseong and Ulleungdo as eight standalone images.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T08:26:00+09:00"
+  }
 }
