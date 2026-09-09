@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-10T08:30:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-10T08:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -303,8 +303,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "peking-roast-duck",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "ec89717d-843d-4580-b831-11443aa6c256"
       ],
@@ -471,13 +471,13 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RESET_GENERATION_CONTEXT",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "generationContext": {
-    "state": "CONTAMINATED",
-    "epoch": 2,
-    "lastResetAt": "2026-09-10T01:32:00+09:00",
+    "state": "CLEAN",
+    "epoch": 3,
+    "lastResetAt": "2026-09-10T08:32:00+09:00",
     "lastFailureAsset": "FOOD01",
     "lastFailureReason": "COLLAGE_OR_MULTIPANEL"
   },
