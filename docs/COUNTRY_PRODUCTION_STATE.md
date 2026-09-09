@@ -180,6 +180,22 @@ Before **every** Hero / Scene / Taste image-generation tool call:
 6. Re-read the State and confirm NEXT is now `RECONCILE_GENERATION / {same asset}`.
 7. **Only then** call image generation.
 
+Example:
+
+```json
+{
+  "id": "S03",
+  "state": "GENERATING",
+  "contentId": "stable-scene-id",
+  "generationReservation": {
+    "reservationId": "S03-series1-attempt1",
+    "reservedAt": "2026-09-10T01:00:00+09:00",
+    "contentId": "stable-scene-id",
+    "promptSeries": 1
+  }
+}
+```
+
 While any asset is `GENERATING`:
 
 - no second image generation may start;
