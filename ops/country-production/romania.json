@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_REGEN",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-09T11:42:00+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-09T11:44:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -68,9 +68,13 @@
       "contentId": "ieud-deal-wooden-church-maramures",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
-        "7a08daea-ad46-4a8f-bd26-392c9052805e"
+        "7a08daea-ad46-4a8f-bd26-392c9052805e",
+        "da48298f-7727-4f92-a586-548f9252320f"
       ],
-      "failureReason": "Hard reject: generation repeated the prior Danube Delta wetland instead of Ieud Deal wooden church / Maramureș. Previous-asset repetition and scene mismatch are prohibited."
+      "failureReason": "Second consecutive hard reject: generated a fortified hill town instead of Ieud Deal wooden church / Maramureș. Reset S06 generation series before retry.",
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-09T11:44:00+09:00"
     },
     {
       "id": "S07",
