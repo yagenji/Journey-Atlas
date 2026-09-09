@@ -3,9 +3,9 @@
   "slug": "macau",
   "countryName": "MACAU",
   "contentRef": "country/macau",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-09T10:40:00+09:00",
+  "phase": "SCENES_REGEN",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-09T10:46:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -71,9 +71,18 @@
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "cotai-reclaimed-urban-district"
+      "contentId": "cotai-reclaimed-urban-district",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "505d1a8c-30c0-4e11-8208-e127aaa142ec",
+        "0bc0dd68-dc73-4887-9d02-420661c37839"
+      ],
+      "failureReason": "Two consecutive hard rejects: S08 Cotai generation repeated the Ruins of St. Paul’s / Hero subject instead of the Cotai reclaimed urban district. Reset only S08 generation series before retry.",
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-09T10:43:00+09:00"
     }
   ],
   "taste": [
