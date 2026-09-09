@@ -3,9 +3,9 @@
   "slug": "bosniaherzegovina",
   "countryName": "BOSNIA & HERZEGOVINA",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-09T21:35:00+09:00",
+  "phase": "PUBLISH",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-09T21:45:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bosniaherzegovina/approved/hero-mostar-stari-most.webp",
@@ -97,13 +97,34 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "failureCount": 0,
-    "notes": "Legacy publication PR #227 recorded pre-publication validation/browser QA PASS. Current-main validation and canonical production review QA are being re-run before restoring formal publication."
+    "notes": "Bosnia package restored on current main and verified on canonical production URL with unpublished-reviewable Desktop / Tablet / Mobile Browser QA PASS.",
+    "sourceCommit": "0b5cbd4aadeea394d5e7b0be41c71cb2ddadbe63",
+    "productionVerifyRunId": 34353966940,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "hard-image-gate",
+      "cloudflare-package-build",
+      "production-commit-served",
+      "canonical-review-route",
+      "unpublished-reviewable-browser-qa",
+      "desktop",
+      "tablet",
+      "mobile"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/bosniaherzegovina/",
+    "commit": "0b5cbd4aadeea394d5e7b0be41c71cb2ddadbe63",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-09T21:45:00+09:00",
+    "verificationBasis": "Verify production run 34353966940 served the exact current-main Bosnia review package and unpublished-reviewable Browser QA passed."
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -115,7 +136,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "PUBLISH_COUNTRY",
     "asset": null
   },
   "executionPolicy": {
