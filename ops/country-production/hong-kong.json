@@ -5,14 +5,14 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-10T00:38:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-10T00:39:00+09:00",
   "hero": {
     "state": "REGENERATE",
     "asset": null,
     "contentId": "victoria-harbour-lugard-road-peak",
-    "promptSeries": 1,
-    "promptSeriesRejectCount": 2,
+    "promptSeries": 2,
+    "promptSeriesRejectCount": 0,
     "rejectedGenerationIds": [
       "6bdf721d-8926-4cfb-9790-43ec8f288dd9",
       "9de1c99e-fc0d-41d5-b56e-96f045e4d020"
@@ -20,12 +20,14 @@
     "renderPacket": {
       "kind": "HERO",
       "contentId": "victoria-harbour-lugard-road-peak",
-      "identity": "Real Victoria Harbour panorama from Lugard Road Lookout at The Peak; Hong Kong Island/Central urban slope in lower right or lower middle, Victoria Harbour as central geographic subject, Kowloon across the water and only geographically plausible distant New Territories mountains; wide horizontal composition with calm harbour/sky text-safe space to left and upper area; early morning or just-before-sunset soft natural light, restrained humid haze, realistic skyline and harbour proportions; photo 6 : quiet watercolor 4; no Peak Tower foreground, no neon poster treatment.",
+      "identity": "Real Victoria Harbour seen from Lugard Road Lookout on The Peak in a very wide distant panorama; Victoria Harbour is the dominant open shape, with the dense Central/Hong Kong Island urban mass occupying only the lower-right quarter and Kowloon forming a smaller distant band across the water; individual skyscrapers are small and subordinate, with only broad real skyline anchors and no invented landmark towers; visible green hillside edge in the immediate lower foreground, distant mountains through restrained humid haze; calm early morning blue-gold light rather than dramatic sunset; generous quiet sky and water for Hero copy; photo 6 : quiet watercolor 4; realistic geography and city proportions, no Peak Tower foreground, no neon/night treatment.",
       "independentGeneration": true,
       "forbidPreviousAssetReuse": true,
       "noAddedText": true
     },
-    "candidateGenerationId": null
+    "candidateGenerationId": null,
+    "promptSeriesReset": true,
+    "promptSeriesResetAt": "2026-09-10T00:39:00+09:00"
   },
   "scenes": [
     {
@@ -289,7 +291,7 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_HERO",
     "asset": "HERO"
   }
 }
