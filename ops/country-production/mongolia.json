@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-09T18:48:00+09:00",
+  "phase": "PUBLISH",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-09T19:52:48+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
@@ -154,7 +154,7 @@
   "qa": {
     "state": "PASS",
     "productionState": "PASS",
-    "sourceCommit": "75fa64d3dbda06df239238278e89066f082af762",
+    "sourceCommit": "fbe2d6c2e5a63c914cc48f99b0a538de49efe55d",
     "validateRunId": 34336428685,
     "productionVerifyRunId": 34336428765,
     "browserQaArtifactId": 10097974853,
@@ -210,8 +210,8 @@
       }
     },
     "failureCount": 0,
-    "notes": "The Mongolia canonical-review correction commit 75fa64d3dbda06df239238278e89066f082af762 passed Country data validation, production runtime verification and unpublished-reviewable Browser QA. atlasPublished remains false; formal publication is not authorized.",
-    "completedAt": "2026-09-09T18:47:20+09:00"
+    "notes": "Latest Mongolia review package including the herder-household icon correction passed Country validation, Production State validation, runtime verification, unpublished-reviewable Browser QA, and Cloudflare Pages deployment with zero blocking failures.",
+    "completedAt": "2026-09-09T19:52:48+09:00"
   },
   "reviewDeployment": {
     "state": "DONE",
@@ -225,14 +225,16 @@
     "verificationBasis": "Cloudflare production runtime served the exact canonical-review correction commit and unpublished-reviewable Browser QA passed."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-09T19:52:48+09:00",
+    "basis": "User instructed: QAして問題なければ、公開して。 Latest post-icon-correction QA passed with zero blocking failures."
   },
   "publication": {
     "state": "REVIEWABLE",
     "atlasPublished": false
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "PUBLISH_COUNTRY",
     "asset": null
   },
   "executionPolicy": {
