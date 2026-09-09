@@ -57,7 +57,7 @@ If the packet is incomplete, do not spend a generation credit.
 
 Before calling image generation:
 
-1. Read `ops/country-production/{slug}.json` from `main`.
+1. Resolve `stateRef` and read `ops/country-production/{slug}.json` from the authoritative reference (`country/{slug}` during active production, `main` from REVIEW onward).
 2. Confirm `next.action` is a generation action.
 3. Confirm the exact `next.asset`.
 4. Read that asset's visual identity from the authoritative Content Plan on `contentRef`.
@@ -145,4 +145,4 @@ After every Scene has one valid REVIEW_CANDIDATE or is marked REGENERATE:
 
 ## Current production
 
-Any Country already in HERO / SCENES / TASTE production must use the latest policy revision from its Production State on `main` starting with the next generation action. Existing APPROVED assets remain untouched.
+Any Country already in HERO / SCENES / TASTE production must use the latest policy revision from its authoritative Production State resolved by `stateRef` starting with the next generation action. Existing APPROVED assets remain untouched.
