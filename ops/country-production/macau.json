@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-09T10:41:00+09:00",
+  "stateRevision": 14,
+  "updatedAt": "2026-09-09T10:47:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -86,9 +86,14 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "minchi"
+      "contentId": "minchi",
+      "rejectedGenerationIds": [
+        "4f0e44c9-6811-49c8-814e-9ac28a235918"
+      ],
+      "failureReason": "Hard reject: FOOD01 Minchi generation produced a Cotai cityscape instead of a single-dish food image. No dish was rendered.",
+      "consecutiveFailureCount": 1
     },
     {
       "id": "FOOD02",
@@ -133,7 +138,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
