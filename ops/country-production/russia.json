@@ -3,9 +3,9 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "ASSET_QA",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-10T00:41:00+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-10T08:42:19+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -172,7 +172,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "executionPolicy": {
@@ -216,5 +216,17 @@
     "approvedAt": "2026-09-10T00:41:00+09:00",
     "migration": true,
     "notes": "Taste production was completed through legacy per-item approvals. FOOD03 replacement was explicitly approved by the user; all four Taste items are now approved, so no redundant second batch approval is requested."
+  },
+  "assetQa": {
+    "state": "PASS",
+    "verifiedAt": "2026-09-10T08:42:19+09:00",
+    "rasterCount": 13,
+    "mapCount": 1,
+    "checks": [
+      "approved asset paths exist on working branch",
+      "Git blob SHA matches recovered approved bytes",
+      "local raster decode and 1200x800 dimension check passed",
+      "batch perceptual duplicate check passed"
+    ]
   }
 }
