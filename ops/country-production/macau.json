@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "TASTE_REGEN",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-09T11:44:00+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-09T12:49:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -86,7 +86,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "minchi",
       "rejectedGenerationIds": [
@@ -96,7 +96,9 @@
       "failureReason": "Two hard rejects: FOOD01 Minchi generated non-Minchi targets, including an exact repeat of the approved FOOD04 Pastel de Nata.",
       "consecutiveFailureCount": 2,
       "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T11:44:00+09:00"
+      "generationSeriesResetAt": "2026-09-09T11:44:00+09:00",
+      "approvedGenerationId": "8e3a86eb-14ef-4df3-8e17-0b703c2503f7",
+      "approvedAt": "2026-09-09T12:49:00+09:00"
     },
     {
       "id": "FOOD02",
@@ -155,7 +157,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
