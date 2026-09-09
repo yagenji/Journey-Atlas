@@ -21,7 +21,7 @@ yagenji/Journey-Atlas
 
 PROJECT MASTER INSTRUCTIONSとGitHub mainの最新仕様を使用してください。
 
-最初に ops/country-production/{slug}.json をmainから確認してください。
+最初に main の `ops/image-generation-policy.json` を確認し、画像生成ルールの最新revisionを確定してください。その後、ops/country-production/{slug}.json をmainから確認してください。
 
 Production Stateが存在する場合：
 - stateRef / contentRef が country/{slug} を指していれば、そのbranchのProduction Stateを再取得し、そちらを正本としてPHASE / NEXT ACTION / NEXT ASSETから再開してください。
@@ -41,7 +41,7 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 
 通常のユーザー承認はHero、8景Batch、Taste Batch、Canonical URL最終確認のみとし、それ以外はBlocking Issueがない限り自動進行してください。
 
-新規Stateは imageGenerationPolicy revision 6 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。各Render Packetにはsingle-frame contract（singleFrameOnly / forbidCollage / forbidPanels / forbidGrid / forbidContactSheet / forbidMontage / forbidInsetImages、Hero/SceneはsingleSceneOnly）を必須で設定してください。実際の画像生成ターンでは現在の1 target以外を言及せず、「8景」「4画像」「batch」「series」「collection」等の複数画像を想起させる文言を生成指示に含めないでください。コラージュが1度でも出た場合はgenerationContextをCONTAMINATEDにし、そのターンの画像生成を停止してください。次のアクションはRESET_GENERATION_CONTEXTとし、resetのターンでは画像生成を行わないでください。画像生成前に必ず対象assetをGENERATINGとして予約し、generationReservationをworking branchへ保存してから生成してください。画像生成後は次の生成前にRECONCILE_GENERATIONを実行し、candidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認してください。同一assetを同じassistant turnで2回生成することは禁止です。前画像を参照・編集元に使わず、毎回fresh independent text-to-imageとして生成してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
+新規Stateには `imageGenerationPolicyRef: "main:ops/image-generation-policy.json"` を設定し、mainのpolicy revision 6を使用してください。Country branch側の古いpolicy snapshotでmainのpolicyを上書き・巻き戻ししないでください。Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。各Render Packetにはsingle-frame contract（singleFrameOnly / forbidCollage / forbidPanels / forbidGrid / forbidContactSheet / forbidMontage / forbidInsetImages、Hero/SceneはsingleSceneOnly）を必須で設定してください。実際の画像生成ターンでは現在の1 target以外を言及せず、「8景」「4画像」「batch」「series」「collection」等の複数画像を想起させる文言を生成指示に含めないでください。コラージュが1度でも出た場合はgenerationContextをCONTAMINATEDにし、そのターンの画像生成を停止してください。次のアクションはRESET_GENERATION_CONTEXTとし、resetのターンでは画像生成を行わないでください。画像生成前に必ず対象assetをGENERATINGとして予約し、generationReservationをworking branchへ保存してから生成してください。画像生成後は次の生成前にRECONCILE_GENERATIONを実行し、candidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認してください。同一assetを同じassistant turnで2回生成することは禁止です。前画像を参照・編集元に使わず、毎回fresh independent text-to-imageとして生成してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
 
