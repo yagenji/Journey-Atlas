@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_REGEN",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-09T12:59:00+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-09T13:00:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -77,13 +77,15 @@
     },
     {
       "id": "S07",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "lena-pillars-lena-river",
       "rejectedGenerationIds": [
         "c9f83ed5-a08a-49eb-82bf-d674a26a46d3"
       ],
-      "failureReason": "Hard reject: generation repeated a Curonian Spit dune/coast scene instead of Lena Pillars / Lena River, Yakutia."
+      "failureReason": null,
+      "candidateGenerationId": "6bcbe4e8-a4d0-4f18-8999-b165c27484e8",
+      "consecutiveFailureCount": 0
     },
     {
       "id": "S08",
@@ -139,8 +141,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S07"
+    "action": "BATCH_REVIEW_SCENES",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
