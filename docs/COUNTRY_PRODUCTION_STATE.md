@@ -281,6 +281,7 @@ For revision 4, the formal publication PR is terminal. It must set:
 - `publication.atlasPublished: true`;
 - `qa.productionState: CI_GATED`;
 - `publication.productionVerification: CI_GATED`;
+- the Country row in `data/country-renewal-status.json` uses `production: CI_GATED`;
 - `next.action: NONE`.
 
 After merge, the required `Verify JOURNEY ATLAS Cloudflare Production` workflow is the authoritative production-verification record. Do not create another PR merely to write the workflow run ID or PASS result back into State.
