@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-10T00:53:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-10T00:55:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -34,12 +34,14 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "seongsan-ilchulbong-gwangchigi",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "0e446bc0-8bea-42b4-b85f-30cdc5713926"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "seongsan-ilchulbong-gwangchigi",
@@ -47,6 +49,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced the Seoul/Gwanghwamun palace subject instead of S01 Jeju Seongsan Ilchulbong, and included readable signage/typography. Automatically rejected under revision 4."
       }
     },
     {
@@ -298,6 +306,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   }
 }
