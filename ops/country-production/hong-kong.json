@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-10T01:05:00+09:00",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-10T01:08:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -278,12 +278,14 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "roast-goose-rice",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "18d4b94a-275c-4342-8eb8-4bb060e164c7"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "roast-goose-rice",
@@ -292,6 +294,11 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL"
       }
     },
     {
@@ -364,7 +371,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "sceneBatchReview": {
     "result": "PASS",
