@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-10T08:27:00+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-10T08:30:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -300,12 +300,14 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "peking-roast-duck",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "ec89717d-843d-4580-b831-11443aa6c256"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "peking-roast-duck",
@@ -321,6 +323,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "note": "Automatic hard reject: generated a 2x2 four-dish collage instead of one standalone Peking roast duck image."
       }
     },
     {
@@ -463,15 +471,15 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "action": "RESET_GENERATION_CONTEXT",
+    "asset": null
   },
   "generationContext": {
-    "state": "CLEAN",
+    "state": "CONTAMINATED",
     "epoch": 2,
     "lastResetAt": "2026-09-10T01:32:00+09:00",
-    "lastFailureAsset": null,
-    "lastFailureReason": null
+    "lastFailureAsset": "FOOD01",
+    "lastFailureReason": "COLLAGE_OR_MULTIPANEL"
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "sceneBatchReview": {
