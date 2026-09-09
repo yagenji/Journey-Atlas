@@ -3,9 +3,9 @@
   "slug": "romania",
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-09T10:40:30+09:00",
+  "phase": "SCENES_REGEN",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-09T11:06:50+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -84,9 +84,11 @@
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "buzau-paclele-mari-mud-volcanoes"
+      "contentId": "buzau-paclele-mari-mud-volcanoes",
+      "approvedGenerationId": "bcf608c9-a506-456e-9a08-fcd3391b323d",
+      "approvedAt": "2026-09-09T11:06:50+09:00"
     }
   ],
   "taste": [
@@ -139,7 +141,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S08"
+    "asset": "S02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
