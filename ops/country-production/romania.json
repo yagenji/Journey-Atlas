@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T01:42:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-09T10:39:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -35,27 +35,41 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "transfagarasan-balea-switchbacks"
+      "contentId": "transfagarasan-balea-switchbacks",
+      "approvedGenerationId": "416c0f77-92db-4299-9416-37bdeb5b682f",
+      "approvedAt": "2026-09-09T02:20:00+09:00"
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "danube-delta-mila23-channels"
+      "contentId": "danube-delta-mila23-channels",
+      "approvedGenerationId": "ec2b6bfe-e1ab-41cf-950d-f2faf392d6de",
+      "approvedAt": "2026-09-09T10:39:00+09:00"
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "voronet-painted-church"
+      "contentId": "voronet-painted-church",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "aba8c9a7-5e22-4931-b03a-a77d49fff521"
+      ],
+      "failureReason": "Hard reject: generation repeated the Danube Delta / Mila 23 scene instead of Voroneț and also introduced visible text. Scene mismatch and typography are both prohibited."
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "ieud-deal-wooden-church-maramures"
+      "contentId": "ieud-deal-wooden-church-maramures",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "7a08daea-ad46-4a8f-bd26-392c9052805e"
+      ],
+      "failureReason": "Hard reject: generation repeated the prior Danube Delta wetland instead of Ieud Deal wooden church / Maramureș. Previous-asset repetition and scene mismatch are prohibited."
     },
     {
       "id": "S07",
@@ -120,7 +134,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S07"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
