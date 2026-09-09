@@ -80,7 +80,7 @@ jobs:
           state = module.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
           assert state["phase"] == "CONTENT"
           assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
-          assert state["imageGenerationPolicy"]["revision"] == 3
+          assert state["imageGenerationPolicy"]["revision"] == 4
           assert state["executionPolicy"]["sceneApproval"] == "BATCH"
           assert state["executionPolicy"]["tasteApproval"] == "BATCH"
           assert len(state["scenes"]) == 8
