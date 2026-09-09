@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-10T01:01:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-10T01:03:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -84,12 +84,14 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "andong-hahoe-buyongdae",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "8f1a7a8b-f845-4674-b1a8-8e51f1a1abe0"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "andong-hahoe-buyongdae",
@@ -97,6 +99,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL",
+        "notes": "Generation again produced the same multi-scene labelled collage family rather than standalone S03 Andong Hahoe Village. Automatically rejected; generation halted to protect credits because the runtime is carrying the previous collage pattern across targets."
       }
     },
     {
@@ -320,6 +328,12 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
+  },
+  "blockingIssue": {
+    "code": "IMAGE_RUNTIME_CONTEXT_CARRYOVER",
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T01:03:00+09:00",
+    "notes": "Two consecutive cross-target generations (S02, S03) produced the same prohibited labelled multi-scene collage pattern. Further generation in this turn is halted to avoid wasting image credits. S01–S03 remain REGENERATE; S04 is deterministic NEXT when generation resumes from a fresh runtime context."
   }
 }
