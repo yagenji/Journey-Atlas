@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-10T00:44:00+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-10T01:23:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -80,12 +80,14 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "shanghai-bund-lujiazui-huangpu",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "3158e8f2-d97c-4be1-b5eb-92bc9022f5b2"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "shanghai-bund-lujiazui-huangpu",
@@ -93,6 +95,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "note": "Automatic hard reject: generation returned an 8-panel China collage instead of the single standalone Shanghai Scene required for S03."
       }
     },
     {
@@ -315,6 +323,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S04"
   }
 }
