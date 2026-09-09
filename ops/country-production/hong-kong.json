@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-10T01:38:00+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-10T08:29:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -300,11 +300,11 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "har-gow-dim-sum",
       "promptSeries": 2,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "2cbc75d4-ef5d-458c-bd7d-ab4650b73cb9",
         "4d562b38-a992-49e0-bdf1-2dbd0b0f0c9f",
@@ -327,12 +327,13 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "FAIL"
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
       },
       "promptSeriesReset": true,
-      "promptSeriesResetAt": "2026-09-10T01:17:00+09:00"
+      "promptSeriesResetAt": "2026-09-10T01:17:00+09:00",
+      "candidateGenerationId": "6460c036-0d1c-4c90-86f5-85cc16e0afda"
     },
     {
       "id": "FOOD02",
@@ -493,7 +494,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -520,15 +521,7 @@
     "notes": "All four initial Taste generations were automatic NG because the image runtime returned multi-dish 2x2 collages instead of the single current dish. No invalid candidate was sent to the user for approval.",
     "approval": "PENDING"
   },
-  "blockingIssues": [
-    {
-      "code": "TASTE_RUNTIME_COLLAGE_LOOP",
-      "severity": "BLOCKING",
-      "asset": "FOOD01",
-      "detectedAt": "2026-09-10T01:20:00+09:00",
-      "detail": "Image runtime repeatedly returns a four-dish 2x2 collage despite a refreshed FOOD01-only Render Packet. Invalid outputs are auto-rejected to protect credits; no candidate is awaiting user approval."
-    }
-  ],
+  "blockingIssues": [],
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
