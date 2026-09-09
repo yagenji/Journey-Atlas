@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-10T08:30:00+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-10T08:31:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -374,12 +374,14 @@
     },
     {
       "id": "FOOD02",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "5fda8350-31f2-4336-bf6a-94ba636735ec"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "tteokbokki",
@@ -397,11 +399,11 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "generationReservation": {
-        "reservationId": "FOOD02-series1-attempt1",
-        "reservedAt": "2026-09-10T08:30:00+09:00",
-        "contentId": "tteokbokki",
-        "promptSeries": 1
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL",
+        "notes": "Generation again produced a prohibited 2x2 collage of all four Korean foods instead of one standalone FOOD02 tteokbokki image. This repeats the same runtime collage failure pattern from FOOD01."
       }
     },
     {
@@ -518,10 +520,15 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "FOOD02"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD03"
   },
-  "blockingIssue": null,
+  "blockingIssue": {
+    "code": "TASTE_RUNTIME_COLLAGE_REPEAT",
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T08:31:00+09:00",
+    "notes": "FOOD01 and FOOD02 both produced the same prohibited four-dish collage pattern despite independent render packets. Further Taste generation is halted in this turn to protect credits. FOOD03 and FOOD04 remain NOT_STARTED; FOOD01 and FOOD02 remain REGENERATE."
+  },
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
