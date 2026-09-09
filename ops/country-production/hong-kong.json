@@ -5,18 +5,19 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "HERO",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-10T00:43:00+09:00",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-10T00:46:00+09:00",
   "hero": {
     "state": "REGENERATE",
     "asset": null,
     "contentId": "victoria-harbour-lugard-road-peak",
     "promptSeries": 2,
-    "promptSeriesRejectCount": 1,
+    "promptSeriesRejectCount": 2,
     "rejectedGenerationIds": [
       "6bdf721d-8926-4cfb-9790-43ec8f288dd9",
       "9de1c99e-fc0d-41d5-b56e-96f045e4d020",
-      "2ccc234f-c829-42f0-add4-2fdda9392a64"
+      "2ccc234f-c829-42f0-add4-2fdda9392a64",
+      "6e25c6ce-7980-4478-9b4a-4b8864bcb465"
     ],
     "renderPacket": {
       "kind": "HERO",
@@ -292,7 +293,7 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "GENERATE_HERO",
+    "action": "REFRESH_RENDER_PACKET",
     "asset": "HERO"
   }
 }
