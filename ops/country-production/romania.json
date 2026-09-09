@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-09T13:03:00+09:00",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-09T13:04:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -131,9 +131,14 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "ciorba-de-burta"
+      "contentId": "ciorba-de-burta",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "2d69c08d-fd3e-4fd6-9642-324eb3520ab0"
+      ],
+      "failureReason": "Hard reject: generated Mici / Mititei with fries, salad, and mustard instead of Ciorbă de burtă. Wrong dish and prohibited extra plate elements."
     },
     {
       "id": "FOOD04",
@@ -166,7 +171,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
