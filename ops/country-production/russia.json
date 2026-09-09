@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-09T14:04:00+09:00",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-09T16:35:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -108,12 +108,13 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "rejectedGenerationIds": [
         "1dd52536-21fb-4afc-b615-557c1fd32498"
       ],
-      "failureReason": "Hard reject: generated Pelmeni again instead of FOOD02 Shchi. Correct food identity is mandatory."
+      "failureReason": null,
+      "candidateGenerationId": "4d5cecce-36bd-4f45-b1ed-733c65272472"
     },
     {
       "id": "FOOD03",
@@ -156,7 +157,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
