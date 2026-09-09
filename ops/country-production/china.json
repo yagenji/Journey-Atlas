@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-10T08:37:00+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-10T08:39:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -480,13 +480,13 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RESET_GENERATION_CONTEXT",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "generationContext": {
-    "state": "CONTAMINATED",
-    "epoch": 3,
-    "lastResetAt": "2026-09-10T08:32:00+09:00",
+    "state": "CLEAN",
+    "epoch": 4,
+    "lastResetAt": "2026-09-10T08:39:00+09:00",
     "lastFailureAsset": "FOOD02",
     "lastFailureReason": "PREVIOUS_ASSET_REPEAT_WRONG_TARGET"
   },
