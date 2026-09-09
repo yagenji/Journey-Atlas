@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-10T01:23:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-10T01:24:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -134,7 +134,7 @@
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "suncheon-bay-tidal-wetland",
       "promptSeries": 1,
@@ -147,6 +147,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "generationReservation": {
+        "reservationId": "S05-series1-attempt1",
+        "reservedAt": "2026-09-10T01:24:00+09:00",
+        "contentId": "suncheon-bay-tidal-wetland",
+        "promptSeries": 1
       }
     },
     {
@@ -335,7 +341,7 @@
     "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
-    "action": "GENERATE_SCENE",
+    "action": "RECONCILE_GENERATION",
     "asset": "S05"
   },
   "blockingIssue": {
