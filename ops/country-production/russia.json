@@ -3,9 +3,9 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-10T08:42:19+09:00",
+  "phase": "QA",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-10T08:55:25+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -154,7 +154,12 @@
     "approvedAt": "2026-09-10T00:41:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "implementedAt": "2026-09-10T08:55:25+09:00",
+    "files": [
+      "data/countries/russia.json",
+      "data/theme-taxonomy.json"
+    ]
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -172,7 +177,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "executionPolicy": {
