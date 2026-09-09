@@ -274,12 +274,18 @@ CI validates this.
 
 `PUBLISH` is entered only after explicit page-level user approval.
 
-`COMPLETE` requires:
-- formal publication;
-- `atlasPublished:true`;
-- final approval recorded;
-- production QA passed;
-- `next.action = NONE`.
+For revision 4, the formal publication PR is terminal. It must set:
+
+- `phase: COMPLETE`;
+- `publication.state: PUBLISHED`;
+- `publication.atlasPublished: true`;
+- `qa.productionState: CI_GATED`;
+- `publication.productionVerification: CI_GATED`;
+- `next.action: NONE`.
+
+After merge, the required `Verify JOURNEY ATLAS Cloudflare Production` workflow is the authoritative production-verification record. Do not create another PR merely to write the workflow run ID or PASS result back into State.
+
+Legacy or manually normalized Countries may use `PASS`; revision 4 accepts both `PASS` and `CI_GATED` as terminal production-verification values.
 
 ## State update examples
 
@@ -501,8 +507,9 @@ Normal main integration count:
 
 - active State / image cursor writes: **zero main integrations**;
 - Country review package (content + assets + latest State): **one main integration**;
-- formal publication after user approval: **one second small main integration**.
+- formal publication after user approval: **one second and final main integration**;
+- post-publication State normalization: **zero additional integrations**.
 
-Per-image State PRs are prohibited. This is a throughput rule, not an optional optimization.
+Per-image State PRs and post-publication completion PRs are prohibited. This is a throughput rule, not an optional optimization.
 
 This rule prevents repeated deployment / Cloudflare propagation / production QA cycles.
