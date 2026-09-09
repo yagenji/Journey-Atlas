@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 37,
-  "updatedAt": "2026-09-09T23:05:00+09:00",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T00:33:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -133,14 +133,14 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "ciorba-de-burta",
-      "candidateGenerationId": null,
+      "candidateGenerationId": "da039905-f01f-4d66-b93f-d7458a09f3cf",
       "rejectedGenerationIds": [
         "2d69c08d-fd3e-4fd6-9642-324eb3520ab0"
       ],
-      "failureReason": "Hard reject: generated Mici / Mititei with fries, salad, and mustard instead of Ciorbă de burtă. Wrong dish and prohibited extra plate elements.",
+      "failureReason": null,
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "ciorba-de-burta",
@@ -167,7 +167,8 @@
         "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1
+      "promptSeriesRejectCount": 1,
+      "consecutiveFailureCount": 0
     },
     {
       "id": "FOOD04",
@@ -232,7 +233,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
