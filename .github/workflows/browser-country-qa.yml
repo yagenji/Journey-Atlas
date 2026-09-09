@@ -50,7 +50,7 @@ jobs:
 
       - name: Install browser QA dependencies
         if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
-        run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
       - name: Build production package
         if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
