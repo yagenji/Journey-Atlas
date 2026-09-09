@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-09T13:01:00+09:00",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-09T13:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -98,8 +98,12 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null
+      "state": "REGENERATE",
+      "asset": null,
+      "rejectedGenerationIds": [
+        "ad9733da-5867-46d1-8137-20d4bd0d26bb"
+      ],
+      "failureReason": "Hard reject: generated Lena Pillars landscape instead of Pelmeni. Taste rule requires one dish only, no landscape."
     },
     {
       "id": "FOOD02",
@@ -141,7 +145,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
