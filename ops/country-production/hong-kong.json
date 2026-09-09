@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-10T08:31:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-10T08:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -340,8 +340,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "wonton-noodles",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "912e1725-9b6c-4fed-b7f6-bdc3d3032206",
         "0424fd5d-5197-4524-bf85-17a4c4b9fb5f"
@@ -349,7 +349,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "wonton-noodles",
-        "identity": "Hong Kong wonton noodles as one dish: one simple bowl only, thin egg noodles in clear pale-golden broth with several shrimp/pork wontons; centered on plain pale beige/warm ivory background; no chopsticks, spoon, condiments, roast meat, extra bowl or props; photo 6 : quiet watercolor 4; exact 3:2.",
+        "identity": "FOOD02 ONLY — Hong Kong wonton noodles. Generate exactly ONE standalone image of exactly ONE simple bowl containing thin egg noodles in clear pale-golden broth with several shrimp/pork wontons. No other dish or serving vessel. Explicitly exclude har gow, dim sum steamer, roast goose, char siu, pork belly, egg tart, egg waffle, rice, extra greens as side dishes, tea, sauces and condiments. One centered bowl on an empty pale beige/warm ivory background. No grid, no 2x2 layout, no split panel, no collage, no montage, no contact sheet, no inset images. No text, logos, flags, people, hands, chopsticks, spoon, napkins, drinks or decorative props. Photo realism 60% with quiet watercolor 40%, exact 3:2.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -366,7 +366,9 @@
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
         "collageTypography": "FAIL"
-      }
+      },
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-10T08:32:00+09:00"
     },
     {
       "id": "FOOD03",
@@ -494,7 +496,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD02"
   },
   "sceneBatchReview": {
