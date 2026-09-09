@@ -3,9 +3,9 @@
   "slug": "macau",
   "countryName": "MACAU",
   "contentRef": "country/macau",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-09T11:42:00+09:00",
+  "phase": "TASTE_REGEN",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-09T11:43:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -116,9 +116,16 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "pastel-de-nata"
+      "contentId": "pastel-de-nata",
+      "approvedGenerationId": "69e49cfd-3375-49cc-9502-f5f3c87a42b4",
+      "approvedAt": "2026-09-09T11:43:00+09:00",
+      "rejectedGenerationIds": [
+        "c8886e66-c403-40d8-9de7-36b12fa73285",
+        "67a1ce70-f382-455e-bcaa-78c2a8879255",
+        "bc77f872-9a9d-435a-b72d-8d750b7f6443"
+      ]
     }
   ],
   "map": {
@@ -145,7 +152,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "asset": "FOOD01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -181,5 +188,11 @@
     "notes": "S08 Cotai now clearly differs from the Hero and represents the reclaimed urban district. S01 remains the only REVIEW_CANDIDATE awaiting the formal 8-Scene batch approval. S05 and S06 contain visible environmental signage/text and S07 renders Hac-Sa sand lighter than its characteristic dark tone; all three were individually and explicitly approved by the user, so they are not regenerated automatically under the approved-asset immutability rule.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-09T10:41:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "APPROVED_WITH_REGEN",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T11:43:00+09:00",
+    "notes": "FOOD03 and FOOD04 approved. FOOD01 and FOOD02 remain REGENERATE and must be regenerated before Taste can complete."
   }
 }
