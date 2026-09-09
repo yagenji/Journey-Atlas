@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_REGEN",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-09T11:09:00+09:00",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-09T11:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -24,15 +24,15 @@
     },
     {
       "id": "S02",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "sighisoara-citadel-clock-tower",
-      "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "c41dfe07-91f3-47b6-9cd5-a565aaf72c1c",
         "97889f6a-e330-4a85-9f46-4a6c65c1f8b9"
       ],
-      "failureReason": "Hard reject: generated Sighișoara scene contained visible added text/signage ('Casa Saseasca'), violating mandatory no-added-text rules."
+      "approvedGenerationId": "aba835ad-3ea3-4883-ada0-4520eb8310c1",
+      "approvedAt": "2026-09-09T11:42:00+09:00"
     },
     {
       "id": "S03",
@@ -142,7 +142,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S06"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
