@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = ROOT / "ops" / "country-production"
 COUNTRY_DIR = ROOT / "data" / "countries"
+IMAGE_POLICY_PATH = ROOT / "ops" / "image-generation-policy.json"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
     ROOT / "data" / "atlas-destinations-editorial.json",
@@ -338,6 +339,7 @@ def new_state(destination: dict) -> dict:
             "autoPostVisualPipeline": True,
             "singleReviewIntegration": True,
         },
+        "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
         "generationContext": {
             "state": "CLEAN",
             "epoch": 1,
@@ -433,6 +435,28 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         errors.append(f"{filename}: stateRevision must be a positive integer")
     if not isinstance(state.get("contentRef"), str) or not state.get("contentRef"):
         errors.append(f"{filename}: contentRef is required")
+
+    policy_ref = state.get("imageGenerationPolicyRef")
+    if policy_ref is not None:
+        if policy_ref != "main:ops/image-generation-policy.json":
+            errors.append(
+                f"{filename}: imageGenerationPolicyRef must be main:ops/image-generation-policy.json"
+            )
+        elif IMAGE_POLICY_PATH.exists():
+            central_policy = load_json(IMAGE_POLICY_PATH)
+            central_revision = central_policy.get("revision")
+            state_revision = state.get("imageGenerationPolicy", {}).get("revision")
+            if state.get("phase") in {
+                "HERO",
+                "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN",
+                "TASTE_INITIAL", "TASTE_REVIEW", "TASTE_REGEN",
+            } and state_revision != central_revision:
+                errors.append(
+                    f"{filename}: active image policy revision {state_revision!r} must match "
+                    f"main authority revision {central_revision!r}"
+                )
+        else:
+            errors.append(f"{filename}: main image policy file is missing")
 
     image_policy_revision = state.get("imageGenerationPolicy", {}).get("revision")
     if isinstance(image_policy_revision, int) and image_policy_revision >= 4:
