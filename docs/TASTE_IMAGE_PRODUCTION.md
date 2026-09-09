@@ -100,6 +100,16 @@ The prompt must be rebuilt from the current Render Packet. Never carry the previ
 
 If the Render Packet is missing or incomplete, do not generate.
 
+## Single-frame prompt envelope — mandatory
+
+For every Taste generation, the effective instruction begins with the semantic equivalent of:
+
+> ONE SINGLE FULL-BLEED 3:2 IMAGE. ONE DISH IN ONE SERVING ONLY. NO COLLAGE, NO GRID, NO PANELS, NO CONTACT SHEET, NO MONTAGE, NO INSET IMAGE, NO BORDER, NO LABELS, NO SECOND DISH.
+
+Do not mention the four Taste images as a set, "4 images", "batch", "series", "collection", or review layout in the generation turn.
+
+If a collage/multi-panel output occurs, mark generation context CONTAMINATED and stop image generation for that assistant turn.
+
 ## Pre-generation reservation — mandatory
 
 Before every FOOD image-generation call:
