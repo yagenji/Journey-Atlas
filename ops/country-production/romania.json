@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_REGEN",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-09T12:50:00+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-09T12:52:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -86,9 +86,13 @@
       "contentId": "turda-salt-mine-rudolf",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
-        "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8"
+        "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8",
+        "6ce677bb-9390-49fc-8adb-c82decba8506"
       ],
-      "failureReason": "Hard reject: generated Voroneț-style painted monastery instead of Rudolf Mine / Salina Turda. Scene mismatch and previous-target drift are prohibited."
+      "failureReason": "Second consecutive hard reject: generated an outdoor river canyon landscape instead of Rudolf Mine / Salina Turda. Reset S07 generation series before retry.",
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-09T12:52:00+09:00"
     },
     {
       "id": "S08",
