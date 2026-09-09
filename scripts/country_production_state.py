@@ -92,6 +92,9 @@ def derive_next(state: dict) -> dict:
     if phase == "SCENES_REGEN":
         asset = first_asset(scenes, "REGENERATE")
         if asset:
+            item = next((x for x in scenes if x.get("id") == asset), {})
+            if prompt_refresh_required(item):
+                return {"action": "REFRESH_RENDER_PACKET", "asset": asset}
             return {"action": "GENERATE_SCENE", "asset": asset}
         return {"action": "BATCH_REVIEW_SCENES", "asset": None}
 
@@ -107,6 +110,9 @@ def derive_next(state: dict) -> dict:
     if phase == "TASTE_REGEN":
         asset = first_asset(taste, "REGENERATE")
         if asset:
+            item = next((x for x in taste if x.get("id") == asset), {})
+            if prompt_refresh_required(item):
+                return {"action": "REFRESH_RENDER_PACKET", "asset": asset}
             return {"action": "GENERATE_FOOD", "asset": asset}
         return {"action": "BATCH_REVIEW_TASTE", "asset": None}
 
@@ -158,6 +164,68 @@ def validate_ids(errors: list[str], filename: str, items: object, expected: list
 
 def all_approved(items: list[dict]) -> bool:
     return bool(items) and all(item.get("state") == "APPROVED" for item in items)
+
+
+def collect_generation_ids(hero: dict, scenes: list[dict], taste: list[dict]) -> list[tuple[str, str, str]]:
+    refs: list[tuple[str, str, str]] = []
+    groups = [("HERO", [hero]), ("SCENE", scenes), ("TASTE", taste)]
+    for group, items in groups:
+        for item in items:
+            asset_id = item.get("id") or "HERO"
+            owner = f"{group}:{asset_id}"
+            for key in ("approvedGenerationId", "candidateGenerationId"):
+                value = item.get(key)
+                if isinstance(value, str) and value:
+                    refs.append((value, owner, key))
+            rejected = item.get("rejectedGenerationIds")
+            if isinstance(rejected, list):
+                for value in rejected:
+                    if isinstance(value, str) and value:
+                        refs.append((value, owner, "rejectedGenerationIds"))
+    return refs
+
+
+def validate_generation_id_uniqueness(errors: list[str], filename: str, hero: dict, scenes: list[dict], taste: list[dict]) -> None:
+    seen: dict[str, list[tuple[str, str]]] = {}
+    for generation_id, owner, field in collect_generation_ids(hero, scenes, taste):
+        seen.setdefault(generation_id, []).append((owner, field))
+    for generation_id, refs in seen.items():
+        owners = {owner for owner, _field in refs}
+        if len(refs) > 1 and len(owners) > 1:
+            errors.append(
+                f"{filename}: generation id {generation_id} is assigned to multiple assets: {refs}"
+            )
+
+
+def render_packet_valid(item: dict, expected_kind: str) -> bool:
+    packet = item.get("renderPacket")
+    if not isinstance(packet, dict):
+        return False
+    if packet.get("kind") != expected_kind:
+        return False
+    if packet.get("contentId") != item.get("contentId"):
+        return False
+    if not isinstance(packet.get("identity"), str) or not packet.get("identity").strip():
+        return False
+    if packet.get("independentGeneration") is not True:
+        return False
+    if packet.get("forbidPreviousAssetReuse") is not True:
+        return False
+    if expected_kind == "SCENE" and packet.get("noAddedText") is not True:
+        return False
+    if expected_kind == "TASTE":
+        if packet.get("singleDishOnly") is not True:
+            return False
+        if packet.get("cleanNeutralBackground") is not True:
+            return False
+    return True
+
+
+def prompt_refresh_required(item: dict) -> bool:
+    if item.get("state") != "REGENERATE":
+        return False
+    count = item.get("promptSeriesRejectCount", 0)
+    return isinstance(count, int) and count >= 2
 
 
 def registry_map() -> dict[str, dict]:
@@ -214,24 +282,31 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
                         f"{filename}: executionPolicy.{key} must be {expected!r}, got {policy.get(key)!r}"
                     )
 
-    image_phases = {"HERO", "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN"}
+    image_phases = {
+        "HERO",
+        "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN",
+        "TASTE_INITIAL", "TASTE_REVIEW", "TASTE_REGEN",
+    }
     if state.get("phase") in image_phases:
         image_policy = state.get("imageGenerationPolicy")
         expected_image_policy = {
-            "revision": 2,
+            "revision": 3,
             "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+            "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "sceneReview": "BATCH_ONLY",
+            "tasteReview": "BATCH_ONLY",
             "mandatoryNoAddedText": True,
             "rejectTypographyImmediately": True,
             "rejectCollageImmediately": True,
             "rejectPreviousAssetRepeatImmediately": True,
-            "maxConsecutiveHardFailuresBeforeReset": 2,
+            "maxConsecutiveHardFailuresPerPromptSeries": 2,
+            "requireRenderPacketRefreshAfterLimit": True,
             "approvedAssetRegeneration": False,
             "runtimeContinuation": "AUTO_IF_SUPPORTED",
         }
         if not isinstance(image_policy, dict):
             errors.append(
-                f"{filename}: active image-production phase requires imageGenerationPolicy revision 2"
+                f"{filename}: active image-production phase requires imageGenerationPolicy revision 3"
             )
         else:
             for key, expected in expected_image_policy.items():
@@ -247,6 +322,41 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
 
     scenes = validate_ids(errors, filename, state.get("scenes"), SCENE_IDS, "scenes")
     taste = validate_ids(errors, filename, state.get("taste"), FOOD_IDS, "taste")
+
+    # Batch approval is a state-machine rule, not a prose convention.
+    phase = state.get("phase")
+    if phase in {"SCENES_INITIAL", "SCENES_REVIEW"}:
+        approved_ids = [x.get("id") for x in scenes if x.get("state") == "APPROVED"]
+        if approved_ids:
+            errors.append(
+                f"{filename}: {phase} cannot contain APPROVED Scenes before the 8-Scene batch review: {approved_ids}"
+            )
+    if phase in {"TASTE_INITIAL", "TASTE_REVIEW"}:
+        approved_ids = [x.get("id") for x in taste if x.get("state") == "APPROVED"]
+        if approved_ids:
+            errors.append(
+                f"{filename}: {phase} cannot contain APPROVED Taste items before the 4-Taste batch review: {approved_ids}"
+            )
+
+    if phase in image_phases:
+        active_items: list[tuple[str, dict]] = []
+        if phase.startswith("SCENES"):
+            active_items = [("SCENE", x) for x in scenes if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
+        elif phase.startswith("TASTE"):
+            active_items = [("TASTE", x) for x in taste if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
+        for kind, item in active_items:
+            if not isinstance(item.get("contentId"), str) or not item.get("contentId"):
+                errors.append(f"{filename}: active {kind} {item.get('id')} requires contentId")
+            if not render_packet_valid(item, kind):
+                errors.append(f"{filename}: active {kind} {item.get('id')} requires a complete renderPacket")
+            count = item.get("promptSeriesRejectCount", 0)
+            if not isinstance(count, int) or count < 0 or count > 2:
+                errors.append(f"{filename}: {kind} {item.get('id')} promptSeriesRejectCount must be 0..2")
+            series = item.get("promptSeries", 1)
+            if not isinstance(series, int) or series < 1:
+                errors.append(f"{filename}: {kind} {item.get('id')} promptSeries must be a positive integer")
+
+    validate_generation_id_uniqueness(errors, filename, hero, scenes, taste)
 
     map_state = state.get("map") if isinstance(state.get("map"), dict) else {}
     if map_state.get("state") not in ASSET_STATES:
@@ -278,6 +388,16 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         errors.append(f"{filename}: phase {phase} requires all 8 scenes APPROVED")
     if phase in AFTER_TASTE and not all_approved(taste):
         errors.append(f"{filename}: phase {phase} requires all 4 Taste images APPROVED")
+
+    if state.get("imageGenerationPolicy", {}).get("revision") == 3:
+        if phase in AFTER_SCENES:
+            scene_review = state.get("sceneBatchReview")
+            if not isinstance(scene_review, dict) or scene_review.get("approval") != "APPROVED":
+                errors.append(f"{filename}: revision 3 requires approved sceneBatchReview before leaving Scene production")
+        if phase in AFTER_TASTE:
+            taste_review = state.get("tasteBatchReview")
+            if not isinstance(taste_review, dict) or taste_review.get("approval") != "APPROVED":
+                errors.append(f"{filename}: revision 3 requires approved tasteBatchReview before leaving Taste production")
     if phase in AFTER_MAP and map_state.get("state") != "APPROVED":
         errors.append(f"{filename}: phase {phase} requires APPROVED map")
     if phase in AFTER_IMPLEMENTATION and implementation.get("state") != "DONE":

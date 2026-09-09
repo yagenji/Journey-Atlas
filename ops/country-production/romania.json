@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-09T16:33:00+09:00",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-09T18:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -74,10 +74,10 @@
       ],
       "failureReason": null,
       "consecutiveFailureCount": 0,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T11:44:00+09:00",
       "approvedGenerationId": "06e9823a-c885-4333-9bcd-e38bc0f0aef0",
-      "approvedAt": "2026-09-09T12:50:00+09:00"
+      "approvedAt": "2026-09-09T12:50:00+09:00",
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-09T11:44:00+09:00"
     },
     {
       "id": "S07",
@@ -86,16 +86,15 @@
       "contentId": "turda-salt-mine-rudolf",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
-        "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8",
         "6ce677bb-9390-49fc-8adb-c82decba8506",
         "ea24e396-faab-449d-bac0-afe96888bbad"
       ],
       "failureReason": null,
       "consecutiveFailureCount": 0,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T12:52:00+09:00",
       "approvedGenerationId": "604fc599-93ff-44be-998e-476ee707fa11",
-      "approvedAt": "2026-09-09T12:58:00+09:00"
+      "approvedAt": "2026-09-09T12:58:00+09:00",
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-09T12:52:00+09:00"
     },
     {
       "id": "S08",
@@ -141,7 +140,20 @@
       "rejectedGenerationIds": [
         "2d69c08d-fd3e-4fd6-9642-324eb3520ab0"
       ],
-      "failureReason": "Hard reject: generated Mici / Mititei with fries, salad, and mustard instead of Ciorbă de burtă. Wrong dish and prohibited extra plate elements."
+      "failureReason": "Hard reject: generated Mici / Mititei with fries, salad, and mustard instead of Ciorbă de burtă. Wrong dish and prohibited extra plate elements.",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "ciorba-de-burta",
+        "identity": "Ciorbă de burtă: one plain bowl only; pale creamy-sour soup with recognizable fine strips of tripe; restrained natural surface oil/pepper color; no bread, chilli bowl, vinegar bottle, spoon or table styling.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "mici-mititei",
+        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD03"
+      },
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1
     },
     {
       "id": "FOOD04",
@@ -152,7 +164,20 @@
       "rejectedGenerationIds": [
         "eacaac89-e2eb-4153-8c17-250bf4cbb93d"
       ],
-      "failureReason": "Hard reject: generated Ciorbă de burtă instead of Papanași. Wrong dish."
+      "failureReason": "Hard reject: generated Ciorbă de burtă instead of Papanași. Wrong dish.",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "papanasi",
+        "identity": "Papanași: one serving on one plate; characteristic fried cheese-doughnut ring with small top piece; sour cream and dark berry preserve only as integral toppings; no loose berries, mint, coffee, flowers or second dessert.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "ciorba-de-burta",
+        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD04"
+      },
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1
     }
   ],
   "map": {
@@ -192,15 +217,32 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 2,
+    "revision": 3,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
     "mandatoryNoAddedText": true,
     "rejectTypographyImmediately": true,
     "rejectCollageImmediately": true,
     "rejectPreviousAssetRepeatImmediately": true,
-    "maxConsecutiveHardFailuresBeforeReset": 2,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "stateIntegrityRepairs": [
+    {
+      "repairedAt": "2026-09-09T18:40:00+09:00",
+      "issue": "Cross-asset generation ID misassignment detected: S05 approvedGenerationId had also been recorded under S07 rejectedGenerationIds.",
+      "action": "Removed the duplicate S07 reference; preserved S05 approvedGenerationId as authoritative."
+    }
+  ],
+  "sceneBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T18:40:00+09:00",
+    "migration": true,
+    "notes": "Scene production was completed before policy revision 3. Existing user-approved Scenes are preserved. Future Scene production must use the enforced 8-Scene batch gate."
   }
 }

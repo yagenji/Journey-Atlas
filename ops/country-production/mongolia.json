@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-09T18:47:20+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-09T18:48:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
@@ -246,14 +246,17 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 2,
+    "revision": 3,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
     "mandatoryNoAddedText": true,
     "rejectTypographyImmediately": true,
     "rejectCollageImmediately": true,
     "rejectPreviousAssetRepeatImmediately": true,
-    "maxConsecutiveHardFailuresBeforeReset": 2,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },

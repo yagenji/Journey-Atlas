@@ -2,6 +2,7 @@ name: Validate production state and QA routing
 
 on:
   push:
+    branches: ["main"]
     paths:
       - 'ops/country-production/**'
       - 'data/countries/**'

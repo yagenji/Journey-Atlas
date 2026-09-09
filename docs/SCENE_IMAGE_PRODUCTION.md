@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — Scene Image Production Hard Rule
 
 Updated: 2026-09-09
-Policy revision: 2
+Policy revision: 3
 
 ## Scope
 
@@ -35,6 +35,22 @@ Single standalone landscape image only.
 ```
 
 The negative block is mandatory. Do not shorten it because the Content Plan already contains "no text".
+
+## Render Packet input contract
+
+Before a Scene generation call, the exact target must already exist in Production State as a complete `renderPacket`.
+
+The generation instruction must be constructed from that packet plus the mandatory prompt tail. Do not use the previous image, a conversational shorthand such as "next", or only the Scene number as the target definition.
+
+A valid packet must identify:
+- stable `contentId`;
+- real place / subject;
+- viewpoint and composition;
+- season / light where relevant;
+- independence from the previous asset;
+- `noAddedText:true`.
+
+If the packet is incomplete, do not spend a generation credit.
 
 ## Preflight before every generation
 
@@ -79,11 +95,11 @@ For an automatic NG:
 For the same target:
 
 - first hard failure: reject immediately;
-- second consecutive hard failure: reject, set / retain the asset for regeneration, reset that asset's generation series;
+- second consecutive hard failure: reject, set / retain the asset for regeneration, reset that asset's prompt series;
 - do not make a third near-identical attempt using the same prompt family;
 - after reset, rebuild the prompt from the Content Plan + mandatory prompt tail, with no reference to the failed output.
 
-The failure limit prevents spending long periods and image credits on one broken generation series.
+The failure limit prevents spending long periods and image credits on one broken prompt series.
 
 ## Throughput and runtime constraint
 

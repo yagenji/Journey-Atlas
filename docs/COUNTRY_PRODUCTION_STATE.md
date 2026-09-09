@@ -68,6 +68,99 @@ Hero / Scene / Taste / Map:
 
 Do not use `APPROVED` unless the user has actually approved that asset, except when initializing from an already published/review-deployed page whose approved production assets are already authoritative.
 
+## Batch approval enforcement — hard state rule
+
+Batch approval is enforced by `scripts/country_production_state.py`.
+
+### Scenes
+
+During `SCENES_INITIAL` and `SCENES_REVIEW`:
+
+- S01–S08 may be `NOT_STARTED`, `REVIEW_CANDIDATE`, or `REGENERATE`;
+- **no Scene may be `APPROVED`**;
+- individual user approval requests are invalid;
+- user review occurs only after the initial 8-Scene round reaches its batch boundary.
+
+Only the batch-review transition may convert accepted Scene candidates to `APPROVED`.
+NG items enter `SCENES_REGEN`; already accepted items remain locked while only NG items are regenerated.
+
+### Taste
+
+During `TASTE_INITIAL` and `TASTE_REVIEW`:
+
+- FOOD01–FOOD04 may be `NOT_STARTED`, `REVIEW_CANDIDATE`, or `REGENERATE`;
+- **no Taste item may be `APPROVED`**;
+- individual user approval requests are invalid;
+- user review occurs only after all four Taste targets have completed the round.
+
+Only the batch-review transition may convert accepted Taste candidates to `APPROVED`.
+
+For image-generation policy revision 3, leaving Scene production requires an approved `sceneBatchReview`, and leaving Taste production requires an approved `tasteBatchReview`.
+
+## Render Packet — mandatory
+
+A Scene or Taste target must not be generated from `S03` / `FOOD03` alone.
+
+Every active generation target must carry a `renderPacket` in Production State before generation.
+
+Scene minimum:
+
+```json
+{
+  "kind": "SCENE",
+  "contentId": "stable-scene-id",
+  "identity": "place + subject + viewpoint + composition + season/light",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "noAddedText": true
+}
+```
+
+Taste minimum:
+
+```json
+{
+  "kind": "TASTE",
+  "contentId": "stable-dish-id",
+  "identity": "dish + vessel + visible structure + integral accompaniment",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "singleDishOnly": true,
+  "cleanNeutralBackground": true
+}
+```
+
+The Render Packet is the exact image target identity. Chat history and the previous generated image are not target definitions.
+
+## Generation identity integrity
+
+Within one Country Production State, a generation ID may belong to only one asset.
+
+The same generation ID must never appear under different Hero / Scene / Taste assets, even if one occurrence is marked rejected.
+
+Cross-asset generation-ID reuse is a hard validation failure because it indicates that a previous output was carried into the wrong target.
+
+## Prompt-series failure guard
+
+`generationSeriesReset` is deprecated because Production State cannot reset the image model's internal state.
+
+Use:
+
+- `promptSeries`: positive integer;
+- `promptSeriesRejectCount`: 0–2;
+- `promptSeriesReset` / `promptSeriesResetAt` only to describe a prompt-family refresh.
+
+After two hard failures in the same prompt series:
+
+- do not make a third near-identical generation attempt;
+- NEXT becomes `REFRESH_RENDER_PACKET`;
+- rebuild the Render Packet / prompt from authoritative content identity;
+- increment `promptSeries`;
+- reset `promptSeriesRejectCount` to 0;
+- only then generate again.
+
+This is a credit-protection rule.
+
 ## Scene initial round
 
 During `SCENES_INITIAL`:
@@ -232,14 +325,17 @@ Any Country in an image-production phase must carry:
 
 ```json
 "imageGenerationPolicy": {
-  "revision": 2,
+  "revision": 3,
   "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+  "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
   "sceneReview": "BATCH_ONLY",
+  "tasteReview": "BATCH_ONLY",
   "mandatoryNoAddedText": true,
   "rejectTypographyImmediately": true,
   "rejectCollageImmediately": true,
   "rejectPreviousAssetRepeatImmediately": true,
-  "maxConsecutiveHardFailuresBeforeReset": 2,
+  "maxConsecutiveHardFailuresPerPromptSeries": 2,
+  "requireRenderPacketRefreshAfterLimit": true,
   "approvedAssetRegeneration": false,
   "runtimeContinuation": "AUTO_IF_SUPPORTED"
 }

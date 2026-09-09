@@ -1,6 +1,6 @@
 # JOURNEY ATLAS — Taste Image Production Hard Rule
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 This file is the Single Source of Truth for Country-page Taste image generation.
 
@@ -82,6 +82,24 @@ Do not compensate for weak dish identity by adding props or scenery.
 
 If the dish cannot be recognized without explanatory background objects, improve the dish depiction itself.
 
+## Render Packet input contract
+
+Before any FOOD generation, Production State must contain a complete `renderPacket` for that exact dish.
+
+Minimum packet:
+- `kind: TASTE`;
+- stable `contentId`;
+- concrete dish identity;
+- `independentGeneration:true`;
+- `forbidPreviousAssetReuse:true`;
+- `singleDishOnly:true`;
+- `cleanNeutralBackground:true`;
+- previous dish content ID where applicable.
+
+The prompt must be rebuilt from the current Render Packet. Never carry the previous generated dish forward as an image-edit target or implicit reference.
+
+If the Render Packet is missing or incomplete, do not generate.
+
 ## Generation-state rule
 
 For four Taste items:
@@ -96,6 +114,20 @@ For four Taste items:
 APPROVED Taste images are immutable unless the user explicitly asks for regeneration.
 
 Do not edit the previous dish image into the next dish image. Each dish starts from an independent generation state.
+
+## Batch approval enforcement
+
+During `TASTE_INITIAL` / `TASTE_REVIEW`, no FOOD item may become `APPROVED`.
+
+FOOD01–FOOD04 first become `REVIEW_CANDIDATE` (or `REGENERATE` for a hard failure). The user is asked for approval only after all four have completed the round.
+
+This is enforced by Production State validation, not only by this document.
+
+## Prompt-series credit guard
+
+Track `promptSeries` and `promptSeriesRejectCount` per active dish.
+
+After two hard failures in one prompt series, do not generate again until the Render Packet / prompt family is refreshed. This prevents repeated wrong-dish generations from consuming credits.
 
 ## Hard reject conditions
 
