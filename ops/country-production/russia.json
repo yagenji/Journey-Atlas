@@ -4,7 +4,7 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 29,
+  "stateRevision": 30,
   "updatedAt": "2026-09-09T18:40:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -200,5 +200,12 @@
     "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "sceneBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T18:40:00+09:00",
+    "migration": true,
+    "notes": "Scene production was completed before policy revision 3. Existing user-approved Scenes are preserved. Future Scene production must use the enforced 8-Scene batch gate."
   }
 }
