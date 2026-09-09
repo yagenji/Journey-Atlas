@@ -192,11 +192,11 @@ Parallel Country production must use the operational state machine in `docs/COUN
 
 Authoritative state:
 
-`ops/country-production/{slug}.json` on `main`.
+`ops/country-production/{slug}.json`, resolved by `stateRef`: `country/{slug}` during active production and `main` from REVIEW onward.
 
 Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review or publish instructions:
 
-1. read the state file from `main`;
+1. resolve `stateRef` and read the authoritative state file (`country/{slug}` during active production; `main` from REVIEW onward);
 2. execute only `next.action / next.asset`;
 3. update the state immediately after the transition;
 4. re-read before the next action.
@@ -252,7 +252,7 @@ Country production execution, approval gates, batching, State-write behavior, po
 `WORKFLOW.md` must not maintain a second detailed copy of those rules.
 
 Non-negotiable principles:
-- operational State remains `ops/country-production/{slug}.json` on `main`;
+- operational State remains `ops/country-production/{slug}.json`; active-production cursor writes live on `country/{slug}`, not `main`;
 - State updates prevent duplicate work but do not create user interaction gates;
 - one image = one generation request does not mean one image = one user approval;
 - intermediate State writes do not trigger deployment or require CI waiting;
