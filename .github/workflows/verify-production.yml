@@ -43,7 +43,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Classify production impact
         id: impact
@@ -59,7 +59,7 @@ jobs:
             echo "Manual run: full production verification requested."
             exit 0
           fi
-          base_sha="${{ github.event.before }}"
+          base_sha="$(git rev-parse HEAD^)"
           python3 scripts/classify_country_impact.py --base "$base_sha" --head HEAD --github-output "$GITHUB_OUTPUT"
 
   runtime:

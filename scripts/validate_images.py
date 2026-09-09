@@ -434,7 +434,10 @@ def main() -> int:
         )
         return 0
 
-    slugs = published_slugs() if args.mode == "audit" else hard_gate_slugs()
+    if args.slug:
+        slugs = list(dict.fromkeys(args.slug))
+    else:
+        slugs = published_slugs() if args.mode == "audit" else hard_gate_slugs()
     if not slugs:
         print(f"Image QA ({args.mode}): no target countries.")
         return 0

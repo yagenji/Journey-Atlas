@@ -595,7 +595,18 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
             errors.append(f"{filename}: COMPLETE requires final approval")
         if publication.get("state") != "PUBLISHED" or publication.get("atlasPublished") is not True:
             errors.append(f"{filename}: COMPLETE requires PUBLISHED / atlasPublished:true")
-        if qa.get("productionState") != "PASS":
+        production_state = qa.get("productionState")
+        production_verification = publication.get("productionVerification")
+        if isinstance(image_policy_revision, int) and image_policy_revision >= 4:
+            if production_state not in {"PASS", "CI_GATED"}:
+                errors.append(
+                    f"{filename}: revision 4 COMPLETE requires productionState PASS or CI_GATED"
+                )
+            if production_verification not in {"PASS", "CI_GATED"}:
+                errors.append(
+                    f"{filename}: revision 4 COMPLETE requires productionVerification PASS or CI_GATED"
+                )
+        elif production_state != "PASS":
             errors.append(f"{filename}: COMPLETE requires production QA PASS")
 
     expected_next = derive_next(state)

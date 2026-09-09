@@ -741,6 +741,13 @@ def main() -> int:
         strict = True
         mode = "reviewable strict"
         paths, errors = reviewable_paths()
+    elif args and args[0] == "--strict":
+        strict = True
+        mode = "target strict"
+        paths = [Path(arg) for arg in args[1:]]
+        errors = []
+        if not paths:
+            errors.append("--strict requires at least one Country JSON path")
     elif args:
         paths = [Path(arg) for arg in args]
         errors = []
