@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "ASSET_QA",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-09T14:22:55+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-09T16:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
@@ -154,7 +154,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "executionPolicy": {
@@ -223,24 +223,22 @@
     "approvedAt": "2026-09-09T14:07:00+09:00"
   },
   "assetQa": {
-    "result": "BLOCKED",
+    "result": "PASS",
     "checked": [
       "approved-source-raster-recovery",
-      "source-raster-full-decode",
-      "local-production-webp-full-decode",
-      "local-production-dimensions",
-      "production-path-existence-on-working-branch",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
       "map-svg-existence"
     ],
     "sourceAssets": {
       "expectedRasterCount": 13,
       "recoveredRasterCount": 13,
-      "format": "PNG",
-      "dimensions": "all 1536x1024",
-      "decode": "PASS",
       "approvalSequenceMatch": "PASS"
     },
-    "localProductionExport": {
+    "productionAssets": {
       "rasterCount": 13,
       "format": "WebP",
       "dimensions": {
@@ -248,31 +246,19 @@
         "scenes": "1200x800",
         "taste": "1200x800"
       },
-      "decode": "PASS"
-    },
-    "repositoryProductionAssets": {
-      "expectedRasterCount": 13,
-      "rasterCount": 0,
-      "approvedFolder": "assets/images/mongolia/approved/",
-      "pathExistence": "FAIL",
-      "gitBlobShaMatch": "NOT_RUN",
-      "approvedFolderHygiene": "NOT_RUN"
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS"
     },
     "map": {
       "asset": "assets/images/mongolia/map-atlas-v1.svg",
       "state": "APPROVED",
-      "existenceOnWorkingBranch": "PASS",
-      "structuralQa": "PASS",
-      "checks": [
-        "1200x760",
-        "map-v3-clean-background",
-        "Natural Earth 1:10m boundary",
-        "no ellipse",
-        "role/aria present",
-        "markers/labels delegated to Country JSON overlay"
-      ]
+      "existence": "PASS",
+      "structuralQa": "PASS"
     },
-    "blocker": "All 13 approved source rasters were recovered without regeneration and production WebP exports were prepared and fully decoded locally, but the final WebP binaries are not yet materialized in assets/images/mongolia/approved/ on country/mongolia. Do not advance to implementation until those exact 13 files exist and Git blob/decode/dimension/hygiene checks pass.",
-    "notes": "Map QA passed on country/mongolia. The base SVG intentionally contains the country silhouette only; Scene markers and labels are rendered from Country JSON coordinates/mapLabel by the shared Country template. No approved image was regenerated."
+    "notes": "All 13 approved Mongolia raster assets are present on country/mongolia. Git blob SHAs match the fully decoded production WebP exports byte-for-byte. The approved folder contains exactly the 13 final rasters and no draft/temp/placeholder files. Hero is 1536x1024; all eight Scenes and four Taste assets are 1200x800. Map QA is approved. Ready for implementation.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T16:34:00+09:00"
   }
 }
