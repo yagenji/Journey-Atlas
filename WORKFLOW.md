@@ -228,9 +228,10 @@ Country production and publication use risk-based QA. Quality gates remain manda
 
 Classify every change as:
 
-- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, workflow metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
+- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
+- **QA INFRASTRUCTURE IMPACT** — Browser QA script / classifier / Browser QA workflow changes without shared rendering changes. Run one real Spain baseline Browser QA smoke test; do not regress every published Country.
 - **TARGETED COUNTRY IMPACT** — one or more Country JSON files, Country assets, publication-state rows, or theme assignments. Run validation plus Desktop / Tablet / Mobile Browser QA only for the affected Country slugs.
-- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, Country build/package logic, or Browser QA logic. Run all unpublished-reviewable and all published Country Browser QA.
+- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, or Country build/package logic. Run all unpublished-reviewable and all published Country Browser QA.
 
 Use `scripts/classify_country_impact.py` as the canonical classifier.
 
