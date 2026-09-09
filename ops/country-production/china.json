@@ -4,9 +4,9 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-10T08:26:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-10T08:27:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -38,7 +38,7 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "xian-terracotta-army-pit1",
       "promptSeries": 1,
@@ -63,15 +63,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: output repeated/restaged the approved Great Wall Hero instead of the Terracotta Army target."
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "4a66dccc-8b10-403c-aa98-30bf803715d7"
     },
     {
       "id": "S02",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "forbidden-city-jingshan-axis",
       "promptSeries": 1,
@@ -96,15 +96,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: output again repeated/restaged the approved Great Wall Hero instead of the Forbidden City target. Further generation stopped to protect credits after two consecutive cross-target repeats."
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "ff3cde92-c97e-4e5c-8abf-82acdbb7b0bd"
     },
     {
       "id": "S03",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "shanghai-bund-lujiazui-huangpu",
       "promptSeries": 1,
@@ -129,15 +129,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
+        "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
-        "collageTypography": "FAIL",
-        "note": "Automatic hard reject: generation returned an 8-panel China collage instead of the single standalone Shanghai Scene required for S03."
-      }
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "6c06132c-6638-4df0-b35b-ceb95924671c"
     },
     {
       "id": "S04",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "wulingyuan-yuanjiajie-sandstone-pillars",
       "promptSeries": 1,
@@ -162,15 +162,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
+        "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: generated Xi'an Terracotta Army instead of the Wulingyuan/Yuanjiajie S04 target."
-      }
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "9d8b9ab0-cf0c-4341-80eb-4ccd97e28b7d"
     },
     {
       "id": "S05",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "lhasa-potala-chakpori",
       "promptSeries": 1,
@@ -195,15 +195,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
+        "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: generated Wulingyuan/Zhangjiajie scenery instead of the Potala Palace / Lhasa S05 target."
-      }
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "5f0a00f3-6027-4b4e-8b40-438b230c7e73"
     },
     {
       "id": "S06",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "tianluokeng-fujian-tulou-cluster",
       "promptSeries": 1,
@@ -228,15 +228,15 @@
         "singleSceneOnly": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
+        "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS",
-        "note": "Automatic reject: intended Tianluokeng 'four round + one square' cluster is not reproduced clearly; output shows a generic tulou cluster with the target arrangement incomplete/ambiguous."
-      }
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "a925eb45-a6c6-4f80-a0e2-46edb000d432"
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "dunhuang-crescent-lake-mingsha-dunes",
       "promptSeries": 1,
@@ -257,11 +257,17 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "approvedGenerationId": "0969c821-432b-47a0-8f50-2279d353f6f5",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
       }
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "honghe-hani-duoyishu-terraces",
       "promptSeries": 1,
@@ -282,6 +288,12 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "approvedGenerationId": "4bc17ee2-9ee9-4b21-a40a-5fff8536aefd",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
       }
     }
   ],
@@ -451,8 +463,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S07"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "generationContext": {
     "state": "CLEAN",
@@ -461,5 +473,19 @@
     "lastFailureAsset": null,
     "lastFailureReason": null
   },
-  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json"
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T08:27:00+09:00",
+    "scope": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ]
+  }
 }
