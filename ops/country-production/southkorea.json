@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-10T01:22:00+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-10T01:23:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -109,12 +109,14 @@
     },
     {
       "id": "S04",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "seoraksan-ulsanbawi-autumn",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "53a5ab51-b415-4d4b-b589-0b36636ec693"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "seoraksan-ulsanbawi-autumn",
@@ -123,11 +125,11 @@
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
       },
-      "generationReservation": {
-        "reservationId": "S04-series1-attempt1",
-        "reservedAt": "2026-09-10T01:22:00+09:00",
-        "contentId": "seoraksan-ulsanbawi-autumn",
-        "promptSeries": 1
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL",
+        "notes": "S04 generation produced a prohibited labelled multi-scene collage instead of one standalone Seoraksan/Ulsanbawi scene. User explicitly confirmed collage is prohibited. Automatically rejected; asset remains for regeneration after remaining NOT_STARTED scenes."
       }
     },
     {
@@ -333,15 +335,13 @@
     "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "S04"
+    "action": "GENERATE_SCENE",
+    "asset": "S05"
   },
   "blockingIssue": {
-    "code": "IMAGE_RUNTIME_CONTEXT_CARRYOVER",
-    "state": "RESOLVED",
-    "detectedAt": "2026-09-10T01:03:00+09:00",
-    "notes": "Two consecutive cross-target generations (S02, S03) produced the same prohibited labelled multi-scene collage pattern. Further generation in this turn is halted to avoid wasting image credits. S01–S03 remain REGENERATE; S04 is deterministic NEXT when generation resumes from a fresh runtime context.",
-    "resolvedAt": "2026-09-10T01:22:00+09:00",
-    "resolution": "Fresh user turn began; S04 reserved under revision 5 before a fresh standalone text-to-image call."
+    "code": "IMAGE_RUNTIME_COLLAGE_REPEAT",
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T01:23:00+09:00",
+    "notes": "S04 also produced the same prohibited multi-scene collage pattern. Future generation must be fresh text-to-image for exactly one current asset with no labels, captions, borders, grid, or references to the previous collage output."
   }
 }
