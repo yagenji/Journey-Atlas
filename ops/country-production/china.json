@@ -5,15 +5,17 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-10T00:28:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-10T00:31:00+09:00",
   "hero": {
-    "state": "NOT_STARTED",
+    "state": "REGENERATE",
     "asset": null,
     "contentId": "li-river-xingping-xianggong-hill",
     "promptSeries": 1,
-    "promptSeriesRejectCount": 0,
-    "rejectedGenerationIds": [],
+    "promptSeriesRejectCount": 1,
+    "rejectedGenerationIds": [
+      "da2cff32-7be5-4892-be07-ffdf77f0b74e"
+    ],
     "renderPacket": {
       "kind": "HERO",
       "contentId": "li-river-xingping-xianggong-hill",
@@ -21,6 +23,12 @@
       "independentGeneration": true,
       "forbidPreviousAssetReuse": true,
       "noAddedText": true
+    },
+    "candidateVisualQa": {
+      "targetIdentity": "FAIL",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS",
+      "note": "Place/viewpoint is strong, but the output reads too much like literal photography and does not meet the required visible photo-6 / quiet-watercolor-4 illustrated treatment."
     }
   },
   "scenes": [
