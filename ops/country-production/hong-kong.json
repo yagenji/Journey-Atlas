@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-10T01:11:00+09:00",
+  "phase": "TASTE_REGEN",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-10T01:13:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -377,8 +377,8 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "BATCH_REVIEW_TASTE",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -393,5 +393,16 @@
     "notes": "All eight independently generated Hong Kong Scene candidates were approved together by the user. Each generation ID is unique and each Scene remains visually distinct from the preceding asset.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T00:55:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "AUTO_REJECTED_HARD_RULE_FAILURES",
+    "checked": [
+      "single-dish-only",
+      "no-collage",
+      "target-identity",
+      "previous-asset-repeat"
+    ],
+    "notes": "All four initial Taste generations were automatic NG because the image runtime returned multi-dish 2x2 collages instead of the single current dish. No invalid candidate was sent to the user for approval.",
+    "approval": "PENDING"
   }
 }
