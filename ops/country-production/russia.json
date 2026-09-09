@@ -3,8 +3,8 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "MAP",
-  "stateRevision": 34,
+  "phase": "ASSET_QA",
+  "stateRevision": 35,
   "updatedAt": "2026-09-10T00:41:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -141,8 +141,17 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "APPROVED",
+    "asset": "assets/images/russia/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/RUS.geojson (blob 373edae59f6417340c9383b7f852bbe85975f650), WGS84; JOURNEY ATLAS map-v3 clean background; antimeridian normalized by shifting negative longitudes +360.",
+    "bounds": {
+      "north": 83.48535120664006,
+      "south": 39.566039383360085,
+      "west": 13.610694206310042,
+      "east": 197.00423587369013
+    },
+    "antimeridianMode": "shift-negative-longitudes-plus-360",
+    "approvedAt": "2026-09-10T00:41:00+09:00"
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -163,8 +172,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BUILD_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
