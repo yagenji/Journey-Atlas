@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-09T10:47:00+09:00",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-09T10:48:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -97,9 +97,14 @@
     },
     {
       "id": "FOOD02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "african-chicken"
+      "contentId": "african-chicken",
+      "rejectedGenerationIds": [
+        "03db23b9-9459-48b9-8587-e0a61538294c"
+      ],
+      "failureReason": "Hard reject: FOOD02 African Chicken generation produced a Cotai cityscape instead of a single-dish food image. No dish was rendered.",
+      "consecutiveFailureCount": 1
     },
     {
       "id": "FOOD03",
@@ -138,7 +143,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
