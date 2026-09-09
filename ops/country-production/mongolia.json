@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "MAP",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-09T14:02:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-09T14:07:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -124,7 +124,7 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/mongolia/map-atlas-v1.svg",
     "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MNG.geojson (blob 7e80d7fc424823ca43e32f884be58652f2f2cc54), WGS84; JOURNEY ATLAS map-v3 clean background",
     "bounds": {
@@ -132,7 +132,8 @@
       "south": 41.00625576596,
       "west": 86.60971273468012,
       "east": 121.03302294332008
-    }
+    },
+    "approvedAt": "2026-09-09T14:07:00+09:00"
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -153,8 +154,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -204,5 +205,21 @@
     "notes": "All four Taste images are single plated dishes on clean warm ivory backgrounds and are visually distinct. FOOD01 first attempt was rejected for background/props; the corrected Buuz image is the approved candidate.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-09T13:56:00+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "no-added-text",
+      "accessible-svg-label"
+    ],
+    "notes": "Mongolia SVG uses the exact Natural Earth 1:10m-derived MNG boundary, local-equirectangular north-up projection, map-v3 clean-background colors, no ellipse/circle/text decoration, and accessible role/aria labeling. Marker collision offsets will be applied in Country JSON while preserving real coordinates.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T14:07:00+09:00"
   }
 }
