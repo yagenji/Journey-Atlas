@@ -39,7 +39,7 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 
 通常のユーザー承認はHero、8景Batch、Taste Batch、Canonical URL最終確認のみとし、それ以外はBlocking Issueがない限り自動進行してください。
 
-新規Stateは imageGenerationPolicy revision 3 を使用し、Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
+新規Stateは imageGenerationPolicy revision 3 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
 ```
