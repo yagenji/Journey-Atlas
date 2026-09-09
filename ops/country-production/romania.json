@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-09T13:56:00+09:00",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-09T13:57:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -120,14 +120,15 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "mici-mititei",
-      "candidateGenerationId": null,
+      "candidateGenerationId": "000b24cf-8e16-4954-a46b-b436de3efd93",
       "rejectedGenerationIds": [
         "f5489738-2196-49d8-a95d-1c4dbf962b49"
       ],
-      "failureReason": "Hard reject: generated a soup instead of Mici / Mititei. Wrong dish."
+      "failureReason": null,
+      "consecutiveFailureCount": 0
     },
     {
       "id": "FOOD03",
@@ -176,7 +177,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
