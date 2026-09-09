@@ -53,13 +53,14 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 When instructions appear to conflict, use this order for Country production operations:
 
 1. PROJECT MASTER INSTRUCTIONS
-2. authoritative `ops/country-production/{slug}.json` resolved by `stateRef` (working branch during production, main from REVIEW onward)
-3. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval / throughput rules
-4. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
-5. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
-6. other global design / implementation specifications
-7. Country Content Plan for editorial and visual-design intent only
-8. chat history
+2. `ops/image-generation-policy.json` on `main` for all Hero / Scene / Taste generation rules
+3. authoritative `ops/country-production/{slug}.json` resolved by `stateRef` for operational progress (working branch during production, main from REVIEW onward)
+4. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval / throughput rules
+5. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
+6. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
+7. other global design / implementation specifications
+8. Country Content Plan for editorial and visual-design intent only
+9. chat history
 
 A Content Plan must never override current Production State.
 
