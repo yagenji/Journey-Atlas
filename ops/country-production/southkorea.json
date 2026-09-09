@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-10T00:58:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-10T01:01:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -59,12 +59,14 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "gyeongju-daereungwon-tumuli",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "beb5dc6e-15cd-4ead-bf93-f4d9154afeef"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "gyeongju-daereungwon-tumuli",
@@ -72,6 +74,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced a labelled 2x4 collage of multiple South Korea scenes instead of standalone S02 Gyeongju Daereungwon, with explicit typography. Automatically rejected under current image-generation policy."
       }
     },
     {
@@ -312,6 +320,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   }
 }
