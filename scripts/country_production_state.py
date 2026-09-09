@@ -75,6 +75,8 @@ def derive_next(state: dict) -> dict:
     if phase == "HERO":
         hs = hero.get("state")
         if hs in {"NOT_STARTED", "REGENERATE"}:
+            if hs == "REGENERATE" and prompt_refresh_required(hero):
+                return {"action": "REFRESH_RENDER_PACKET", "asset": "HERO"}
             return {"action": "GENERATE_HERO", "asset": "HERO"}
         if hs == "REVIEW_CANDIDATE":
             return {"action": "WAIT_HERO_APPROVAL", "asset": "HERO"}
@@ -191,10 +193,9 @@ def validate_generation_id_uniqueness(errors: list[str], filename: str, hero: di
     for generation_id, owner, field in collect_generation_ids(hero, scenes, taste):
         seen.setdefault(generation_id, []).append((owner, field))
     for generation_id, refs in seen.items():
-        owners = {owner for owner, _field in refs}
-        if len(refs) > 1 and len(owners) > 1:
+        if len(refs) > 1:
             errors.append(
-                f"{filename}: generation id {generation_id} is assigned to multiple assets: {refs}"
+                f"{filename}: generation id {generation_id} must appear exactly once, got: {refs}"
             )
 
 
@@ -212,7 +213,7 @@ def render_packet_valid(item: dict, expected_kind: str) -> bool:
         return False
     if packet.get("forbidPreviousAssetReuse") is not True:
         return False
-    if expected_kind == "SCENE" and packet.get("noAddedText") is not True:
+    if expected_kind in {"HERO", "SCENE"} and packet.get("noAddedText") is not True:
         return False
     if expected_kind == "TASTE":
         if packet.get("singleDishOnly") is not True:
@@ -453,21 +454,24 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
 
     if phase in image_phases:
         active_items: list[tuple[str, dict]] = []
-        if phase.startswith("SCENES"):
+        if phase == "HERO":
+            active_items = [("HERO", hero)]
+        elif phase.startswith("SCENES"):
             active_items = [("SCENE", x) for x in scenes if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
         elif phase.startswith("TASTE"):
             active_items = [("TASTE", x) for x in taste if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
         for kind, item in active_items:
+            owner_id = item.get("id") or "HERO"
             if not isinstance(item.get("contentId"), str) or not item.get("contentId"):
-                errors.append(f"{filename}: active {kind} {item.get('id')} requires contentId")
+                errors.append(f"{filename}: active {kind} {owner_id} requires contentId")
             if not render_packet_valid(item, kind):
-                errors.append(f"{filename}: active {kind} {item.get('id')} requires a complete renderPacket")
+                errors.append(f"{filename}: active {kind} {owner_id} requires a complete renderPacket")
             count = item.get("promptSeriesRejectCount", 0)
             if not isinstance(count, int) or count < 0 or count > 2:
-                errors.append(f"{filename}: {kind} {item.get('id')} promptSeriesRejectCount must be 0..2")
+                errors.append(f"{filename}: {kind} {owner_id} promptSeriesRejectCount must be 0..2")
             series = item.get("promptSeries", 1)
             if not isinstance(series, int) or series < 1:
-                errors.append(f"{filename}: {kind} {item.get('id')} promptSeries must be a positive integer")
+                errors.append(f"{filename}: {kind} {owner_id} promptSeries must be a positive integer")
 
     validate_generation_id_uniqueness(errors, filename, hero, scenes, taste)
 
