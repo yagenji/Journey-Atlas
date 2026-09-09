@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "MAP",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-09T13:56:00+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-09T14:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -124,8 +124,15 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/mongolia/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MNG.geojson (blob 7e80d7fc424823ca43e32f884be58652f2f2cc54), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "north": 52.70947319804003,
+      "south": 41.00625576596,
+      "west": 86.60971273468012,
+      "east": 121.03302294332008
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -146,7 +153,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "executionPolicy": {
