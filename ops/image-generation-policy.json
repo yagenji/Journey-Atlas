@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "authority": "main",
+  "revision": 6,
+  "updatedAt": "2026-09-10T01:36:00+09:00",
+  "sourceOfTruth": "ops/image-generation-policy.json",
+  "appliesTo": [
+    "HERO",
+    "SCENE",
+    "TASTE"
+  ],
+  "reservation": {
+    "requiredBeforeGeneration": true,
+    "state": "GENERATING",
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1
+  },
+  "freshness": {
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true
+  },
+  "singleFrame": {
+    "required": true,
+    "singleFrameOnly": true,
+    "forbidCollage": true,
+    "forbidPanels": true,
+    "forbidGrid": true,
+    "forbidContactSheet": true,
+    "forbidMontage": true,
+    "forbidInsetImages": true,
+    "heroSceneSingleSceneOnly": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true
+  },
+  "contamination": {
+    "collageFailureContaminatesContext": true,
+    "nextAction": "RESET_GENERATION_CONTEXT",
+    "resetRequiresSeparateAssistantTurn": true,
+    "noImageGenerationDuringReset": true
+  },
+  "approval": {
+    "hero": "INDIVIDUAL",
+    "scenes": "BATCH_AFTER_8",
+    "taste": "BATCH_AFTER_4",
+    "finalPage": "INDIVIDUAL"
+  }
+}

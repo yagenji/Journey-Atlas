@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — Scene Image Production Hard Rule
 
 Updated: 2026-09-09
-Policy revision: 5
+Policy revision: 6
 
 ## Scope
 
@@ -52,6 +52,18 @@ A valid packet must identify:
 - `noAddedText:true`.
 
 If the packet is incomplete, do not spend a generation credit.
+
+## Single-frame prompt envelope — mandatory
+
+For every Hero / Scene generation, the effective instruction begins with the semantic equivalent of:
+
+> ONE SINGLE FULL-BLEED 3:2 LANDSCAPE FRAME. ONE PLACE. ONE CONTINUOUS CAMERA VIEW. NO COLLAGE, NO GRID, NO PANELS, NO CONTACT SHEET, NO MONTAGE, NO INSET IMAGE, NO BORDER, NO LABELS, NO MULTI-SCENE COMPOSITION.
+
+Only after this fixed envelope may the current target identity be described.
+
+Do not mention S01–S08 as a set, the other Scenes, "8 images", "batch", "series", "collection", or review layout in the generation turn.
+
+If a collage/multi-panel output occurs, mark generation context CONTAMINATED and stop image generation for that assistant turn. The next action is RESET_GENERATION_CONTEXT, not another Scene.
 
 ## Pre-generation reservation — mandatory
 
