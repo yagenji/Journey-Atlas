@@ -3,8 +3,8 @@
   "slug": "macau",
   "countryName": "MACAU",
   "contentRef": "country/macau",
-  "phase": "SCENES_REVIEW",
-  "stateRevision": 11,
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 12,
   "updatedAt": "2026-09-09T10:41:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -16,10 +16,11 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "senado-square-wave-paving",
-      "candidateGenerationId": "8d0d5c65-3903-44dd-9abc-9f8b416b285b"
+      "approvedGenerationId": "8d0d5c65-3903-44dd-9abc-9f8b416b285b",
+      "approvedAt": "2026-09-09T10:41:00+09:00"
     },
     {
       "id": "S02",
@@ -131,8 +132,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "WAIT_SCENE_BATCH_REVIEW",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -166,6 +167,7 @@
       "series-balance"
     ],
     "notes": "S08 Cotai now clearly differs from the Hero and represents the reclaimed urban district. S01 remains the only REVIEW_CANDIDATE awaiting the formal 8-Scene batch approval. S05 and S06 contain visible environmental signage/text and S07 renders Hac-Sa sand lighter than its characteristic dark tone; all three were individually and explicitly approved by the user, so they are not regenerated automatically under the approved-asset immutability rule.",
-    "approval": "PENDING"
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T10:41:00+09:00"
   }
 }
