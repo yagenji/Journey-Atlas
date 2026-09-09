@@ -27,7 +27,9 @@ Production Stateが存在する場合：
 - チャット履歴ではなくProduction Stateを正本として、PHASE / NEXT ACTION / NEXT ASSETから再開してください。
 
 Production Stateが存在しない場合：
-- Registry / Country JSON / assets / branchの実状態を確認し、新規CountryのProduction Stateをmainに初期化してください。
+- Registry / Country JSON / assets / branchの実状態を確認してください。
+- 新規Countryであることを確認したら、`python3 scripts/country_production_state.py init {slug}` が生成するrevision 3 Stateを標準形としてmainに初期化してください。
+- 手作業で古いrevision 2 Stateを複製しないでください。
 
 制作進行・承認ゲート・Batch処理・QA・Review Deployment・Publishは docs/COUNTRY_PRODUCTION_STATE.md に従ってください。
 Scene / Hero画像は docs/SCENE_IMAGE_PRODUCTION.md に従ってください。
