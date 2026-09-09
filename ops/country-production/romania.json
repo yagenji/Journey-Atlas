@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "QA",
-  "stateRevision": 42,
-  "updatedAt": "2026-09-10T08:20:00+09:00",
+  "stateRevision": 43,
+  "updatedAt": "2026-09-10T08:23:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/romania/approved/hero-sinaia-peles-carpathians.webp",
@@ -241,8 +241,66 @@
     "notes": "Romania schema-v2 Country JSON implemented with approved Hero, eight Scene, four Taste and Map assets. Theme assignments remain exclusively in data/theme-taxonomy.json. atlasPublished remains false and registry discovery stays disabled."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "670395a0b04e2e99995488adb7af3d998832d992",
+    "validateRunId": 34417219555,
+    "productionStateRunId": 34417219557,
+    "browserQaRunId": 34417219607,
+    "browserQaArtifactId": 10129558274,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "targeted-country-image-set",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "perceptual-duplicate-gate",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "theme-taxonomy-earth-history-life",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T08:23:00+09:00",
+    "notes": "Romania targeted Country validation, production-state validation and unpublished-reviewable Browser QA passed after minimal hero mapOffset correction. All 13 raster assets decode and image duplicate QA passed."
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
