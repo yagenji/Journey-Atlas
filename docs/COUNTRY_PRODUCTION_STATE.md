@@ -10,6 +10,12 @@ The authoritative operational state for each Country lives at:
 
 `ops/country-production/{slug}.json`
 
+Image-generation **rules** do not live in the Country branch. Their single source of truth is always:
+
+`ops/image-generation-policy.json` on `main`.
+
+Before every Hero / Scene / Taste generation action, read that main policy file first. A Country State may carry a policy snapshot for validation, but it must never override or downgrade the main policy authority.
+
 The **reference** is phase-dependent:
 
 - while a Country is under active production, the authoritative State lives on `country/{slug}`;
@@ -22,13 +28,15 @@ One country = one state file. Separate files prevent parallel Country chats from
 
 Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review, or publish instructions:
 
-1. Read the Country State from `main` if it exists.
-2. If `stateRef` / `contentRef` points to `country/{slug}`, read the State from that working branch and use it as authoritative.
-3. If main has no State but `country/{slug}` exists with a State file, use the working-branch State.
-4. Read `next.action` and `next.asset`.
-5. Execute only that action.
-6. Update the State immediately on its authoritative reference.
-7. Re-read that same reference before the next action.
+1. Read `ops/image-generation-policy.json` from `main` and use its revision/rules as the image-generation authority.
+2. Read the Country State from `main` if it exists.
+3. If `stateRef` / `contentRef` points to `country/{slug}`, read the State from that working branch and use it as the progress authority.
+4. If main has no State but `country/{slug}` exists with a State file, use the working-branch State.
+5. If the State's image-policy snapshot is older than the main policy file, upgrade the snapshot before generation; never downgrade the main policy.
+6. Read `next.action` and `next.asset`.
+7. Execute only that action.
+8. Update the State immediately on its authoritative reference.
+9. Re-read that same reference before the next action.
 
 Do not derive NEXT from conversation memory when a state file exists.
 
@@ -541,6 +549,7 @@ Hero and S01–S08 generation must follow `docs/SCENE_IMAGE_PRODUCTION.md`.
 Any new Country in an image-production phase must carry revision 6. Existing older active Countries should be upgraded before the next image-generation action:
 
 ```json
+"imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
 "imageGenerationPolicy": {
   "revision": 4,
   "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
