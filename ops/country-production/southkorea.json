@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-10T08:32:00+09:00",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-10T08:33:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -408,7 +408,7 @@
     },
     {
       "id": "FOOD03",
-      "state": "GENERATING",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "samgyetang",
       "promptSeries": 1,
@@ -431,11 +431,17 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "generationReservation": {
-        "reservationId": "FOOD03-series1-attempt1",
-        "reservedAt": "2026-09-10T08:32:00+09:00",
-        "contentId": "samgyetang",
-        "promptSeries": 1
+      "candidateGenerationId": "7d300871-9011-49f8-b170-d13b1e483bd0",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Standalone samgyetang image matches FOOD03 identity: one bowl, one whole chicken in broth with integral ginseng/jujube/garlic/scallion; no collage, no text, no second dish."
+      },
+      "userAcceptanceSignal": {
+        "state": "ACCEPTED_PENDING_BATCH",
+        "recordedAt": "2026-09-10T08:33:00+09:00",
+        "basis": "User replied approve after FOOD03 generation; final APPROVED state deferred until Taste batch review per revision 5."
       }
     },
     {
@@ -526,8 +532,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "FOOD03"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD04"
   },
   "blockingIssue": {
     "code": "TASTE_RUNTIME_COLLAGE_REPEAT",
