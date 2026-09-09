@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-10T01:24:00+09:00",
+  "stateRevision": 13,
+  "updatedAt": "2026-09-10T01:26:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -130,12 +130,14 @@
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "lhasa-potala-chakpori",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "f6948708-b8ff-420b-8366-7ee7f5c47b59"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "lhasa-potala-chakpori",
@@ -143,6 +145,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "note": "Automatic hard reject: generated Wulingyuan/Zhangjiajie scenery instead of the Potala Palace / Lhasa S05 target."
       }
     },
     {
@@ -331,6 +339,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S05"
+    "asset": "S06"
   }
 }
