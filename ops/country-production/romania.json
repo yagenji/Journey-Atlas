@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-09T12:58:00+09:00",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-09T13:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -109,9 +109,14 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "sarmale-cu-mamaliga"
+      "contentId": "sarmale-cu-mamaliga",
+      "rejectedGenerationIds": [
+        "da3c3802-6721-4571-9073-7da17cf51ccb"
+      ],
+      "approvedGenerationId": "f1939555-fe19-4fdc-93f5-d00ce5017389",
+      "approvedAt": "2026-09-09T13:02:00+09:00"
     },
     {
       "id": "FOOD02",
@@ -156,7 +161,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
