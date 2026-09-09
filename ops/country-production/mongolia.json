@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-09T10:42:00+09:00",
+  "phase": "SCENES_REGEN",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-09T11:43:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -60,21 +60,24 @@
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "kharkhorin-erdene-zuu-stupas"
+      "contentId": "kharkhorin-erdene-zuu-stupas",
+      "candidateGenerationId": "e7c7c52f-58e5-4e1f-b9df-bf08a8bc206c"
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "uushigiin-uvur-deer-stones"
+      "contentId": "uushigiin-uvur-deer-stones",
+      "candidateGenerationId": "8a316f88-e5d6-4d9f-a192-cb35a59a5f0f"
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "hustai-takhi-steppe"
+      "contentId": "hustai-takhi-steppe",
+      "candidateGenerationId": "03352913-0866-4446-9554-01b5811d5f6a"
     }
   ],
   "taste": [
@@ -127,7 +130,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S06"
+    "asset": "S02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
