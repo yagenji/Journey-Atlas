@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-10T08:29:00+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-10T08:30:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -374,7 +374,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 1,
@@ -396,6 +396,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "generationReservation": {
+        "reservationId": "FOOD02-series1-attempt1",
+        "reservedAt": "2026-09-10T08:30:00+09:00",
+        "contentId": "tteokbokki",
+        "promptSeries": 1
       }
     },
     {
@@ -512,7 +518,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD02"
   },
   "blockingIssue": null,
