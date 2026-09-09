@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-09T11:22:00+09:00",
+  "phase": "QA",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-09T11:36:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -138,81 +138,30 @@
     ],
     "sharedTemplate": true,
     "countrySpecificCss": false,
-    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Current MOFA Level 3/4 safety guidance is reflected; nextRoutes contains three explicitly future-hypothetical cross-border continuations (Russia, Lithuania, Poland) and is not current travel advice. atlasPublished remains false."
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Final review corrections now distinguish NEXT DESTINATIONS (Russia, Ukraine, Moldova) from NEXT ROUTES (Russia, Lithuania, Poland), clarify the Struve Geodetic Arc signature fact, and improve long Encounter label wrapping in the shared template. Current MOFA Level 3/4 safety guidance remains reflected; atlasPublished remains false."
   },
   "qa": {
-    "state": "PASS",
+    "state": "NOT_STARTED",
     "productionState": "NOT_STARTED",
-    "sourceCommit": "42d247fdbf6745b7409701b774911d460de58773",
-    "validateRunId": 34302792511,
-    "productionVerifyRunId": 34256355081,
-    "browserQaArtifactId": 10085541773,
-    "checks": [
-      "source-syntax",
-      "reviewable-country-json",
-      "cloudflare-package-build",
-      "production-commit-served",
-      "production-country-route",
-      "production-country-payload",
-      "targeted-reviewable-browser-qa",
-      "desktop-1440x1000",
-      "tablet-834x1112",
-      "mobile-390x844",
-      "hero-and-scene-image-load",
-      "taste-card-count-4",
-      "scene-card-count-8",
-      "map-render",
-      "critical-section-visibility",
-      "canonical-url",
-      "noindex-follow",
-      "sitemap-exclusion",
-      "registry-atlasPublished-false",
-      "registry-href-empty",
-      "related-country-count-3",
-      "encounter-count-8",
-      "encounter-general-visual-language",
-      "heading-hierarchy",
-      "aria-references",
-      "image-alt",
-      "interactive-accessible-name",
-      "keyboard-focusability",
-      "no-positive-tabindex",
-      "no-horizontal-overflow",
-      "no-clipped-text",
-      "no-severe-console-errors",
-      "related-country-russia-lithuania-poland",
-      "next-route-count-3"
-    ],
-    "browserViewports": {
-      "desktop": {
-        "width": 1440,
-        "height": 1000,
-        "result": "PASS"
-      },
-      "tablet": {
-        "width": 834,
-        "height": 1112,
-        "result": "PASS"
-      },
-      "mobile": {
-        "width": 390,
-        "height": 844,
-        "result": "PASS"
-      }
-    },
+    "sourceCommit": null,
+    "validateRunId": null,
+    "productionVerifyRunId": null,
+    "browserQaArtifactId": null,
+    "checks": [],
+    "browserViewports": {},
     "failureCount": 0,
-    "notes": "Editorial review correction passed PR country-data validation, Production State routing validation, and targeted unpublished-reviewable browser QA on head 42d247fdbf6745b7409701b774911d460de58773. Related Countries is Russia, Lithuania, and Poland; NEXT ROUTES contains three explicitly future-hypothetical routes to Russia, Lithuania, and Poland. The previously recorded production deployment remains the last separately verified production commit; atlasPublished remains false.",
-    "completedAt": "2026-09-09T02:24:00+09:00"
+    "notes": "Final review corrections from 2026-09-09 require fresh Country validation and targeted browser QA before returning to REVIEW.",
+    "completedAt": null
   },
   "reviewDeployment": {
-    "state": "DONE",
+    "state": "NOT_STARTED",
     "url": "https://atlas.yagenji.com/countries/belarus/",
-    "commit": "e3c54b531912120b07413592b5e7420bc0b0fe49",
+    "commit": null,
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-09T02:24:00+09:00"
+    "verifiedAt": null
   },
   "finalApproval": {
     "state": "PENDING"
@@ -222,7 +171,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
