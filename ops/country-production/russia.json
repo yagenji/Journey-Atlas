@@ -3,8 +3,8 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "SCENES_INITIAL",
-  "stateRevision": 14,
+  "phase": "SCENES_REVIEW",
+  "stateRevision": 15,
   "updatedAt": "2026-09-09T11:10:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -83,9 +83,11 @@
     },
     {
       "id": "S08",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "kamchatka-klyuchevskoy-volcano"
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/kamchatka-klyuchevskoy-volcano.webp",
+      "contentId": "kamchatka-klyuchevskoy-volcano",
+      "approvedGenerationId": "fd0453ee-56f7-425d-aa37-4e75d125e5d0",
+      "approvedAt": "2026-09-09T11:10:00+09:00"
     }
   ],
   "taste": [
@@ -133,8 +135,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S08"
+    "action": "WAIT_SCENE_BATCH_REVIEW",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
