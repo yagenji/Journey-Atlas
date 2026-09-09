@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-09T18:40:00+09:00",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-09T21:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -149,8 +149,22 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true,
-        "previousContentId": "mici-mititei",
-        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD03"
+        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD03",
+        "generationMode": "NEW_TEXT_TO_IMAGE_NO_REFERENCE_IMAGE",
+        "forbiddenContentIds": [
+          "sarmale-cu-mamaliga",
+          "mici-mititei",
+          "papanasi"
+        ],
+        "hardNegative": [
+          "grilled meat rolls",
+          "fries",
+          "salad",
+          "mustard",
+          "cabbage rolls",
+          "fried doughnut dessert"
+        ],
+        "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
       "promptSeriesRejectCount": 1
@@ -173,8 +187,22 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true,
-        "previousContentId": "ciorba-de-burta",
-        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD04"
+        "source": "docs/ROMANIA_CONTENT_PLAN.md#FOOD04",
+        "generationMode": "NEW_TEXT_TO_IMAGE_NO_REFERENCE_IMAGE",
+        "forbiddenContentIds": [
+          "sarmale-cu-mamaliga",
+          "mici-mititei",
+          "ciorba-de-burta"
+        ],
+        "hardNegative": [
+          "soup bowl",
+          "tripe soup",
+          "grilled meat rolls",
+          "fries",
+          "cabbage rolls",
+          "second dessert"
+        ],
+        "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
       "promptSeriesRejectCount": 1

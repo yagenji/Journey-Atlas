@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 30,
-  "updatedAt": "2026-09-09T18:40:00+09:00",
+  "stateRevision": 31,
+  "updatedAt": "2026-09-09T21:18:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -135,8 +135,22 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true,
-        "previousContentId": "shchi",
-        "source": "docs/RUSSIA_CONTENT_PLAN.md#Beef Stroganoff"
+        "source": "docs/RUSSIA_CONTENT_PLAN.md#Beef Stroganoff",
+        "generationMode": "NEW_TEXT_TO_IMAGE_NO_REFERENCE_IMAGE",
+        "forbiddenContentIds": [
+          "pelmeni",
+          "shchi",
+          "pirozhki"
+        ],
+        "hardNegative": [
+          "dumplings",
+          "soup bowl",
+          "filled buns",
+          "second plate",
+          "cutlery",
+          "table props"
+        ],
+        "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
       "promptSeriesRejectCount": 1
