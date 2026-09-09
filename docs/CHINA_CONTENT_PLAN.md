@@ -11,11 +11,11 @@ This document stores editorial and visual-design intent for JOURNEY ATLAS China.
 
 Lead direction:
 
-石灰岩の峰が連なる漓江から、山稜を走る長城、北京の宮殿、上海の高層建築、湖南の石柱群、チベット高原、福建の土楼、敦煌の砂丘、雲南の棚田へ。長い距離を移動するほど、地形、都市、建築、食、暮らしの地域差が大きく切り替わる国。
+山稜を走る万里の長城から、北京の宮殿、上海の高層建築、湖南の石柱群、チベット高原、福建の土楼、敦煌の砂丘、雲南の棚田、西安の兵馬俑へ。長い距離を移動するほど、地形、都市、建築、食、暮らしの地域差が大きく切り替わる国。
 
 The page should reveal China through:
-- a recognisable southern karst river landscape as the Hero, rather than making one monument stand for the whole country
-- the Great Wall as a northern mountain-and-history landscape
+- the Great Wall as the Hero because it is the most immediately recognisable China-specific landscape marker for a global audience
+- Xi'an and the Terracotta Army as a distinct archaeological / imperial-history layer replacing the former Great Wall Scene
 - Beijing's imperial axis and Shanghai's contemporary river city as two different urban layers
 - Wulingyuan's quartz-sandstone landforms
 - the Tibetan Plateau through the Potala Palace in its real Lhasa valley setting
@@ -25,44 +25,44 @@ The page should reveal China through:
 
 ## Hero
 
-### H — Li River / Xingping–Yangshuo from Xianggong Hill
+### H — Jinshanling Great Wall / mountain ridge
 
-Working coordinate: **24.9140, 110.5360**  
-Planned filename: `hero-li-river-xingping-karst.webp`  
-Content ID: `li-river-xingping-xianggong-hill`
+Working coordinate: **40.6769, 117.2442**  
+Planned filename: `hero-jinshanling-great-wall.webp`  
+Content ID: `jinshanling-great-wall-hero`
 
 Visual identity:
-- real Li River near Xingping / Yangshuo from an elevated Xianggong Hill-type viewpoint
-- winding river visibly threading between repeated steep limestone-karst towers
-- small riverside fields and villages only as scale cues
-- broad horizontal composition; stronger layered karst mass toward centre-right, quieter sky / river area available for Hero copy
-- soft early-morning light with light atmospheric haze; restrained natural green, slate and muted warm tones
-- photo 6 : quiet watercolor 4; refined painterly realism, recognisable place, not literal stock photography
-- no staged cormorant fisherman, no oversized bamboo raft, no fantasy needle peaks, no dramatic orange poster sunrise
-- no text, signage emphasis, flag, border, collage, map or UI
+- real Jinshanling section of the Great Wall
+- unmistakable long stone wall with multiple watchtowers visibly following steep, layered mountain ridges
+- broad horizontal composition with the wall entering from foreground / lower-left and receding strongly toward centre-right
+- enough wall mass and recognisable watchtowers to read instantly as the Great Wall even at mobile crop
+- restrained early-autumn greens and ochres under soft clear daylight; slight atmospheric depth in distant ridges
+- photo 6 : quiet watercolor 4; refined painterly realism, visibly illustrated on inspection
+- no giant crowds, souvenir stalls, flag display, impossible drone altitude, fantasy mountains, exaggerated wall width, dramatic poster sunset or heavy fog hiding the wall
+- no text, labels, border, collage, map or UI
 
 Why this Hero:
-- Li River karst is immediately identifiable as southern China while leaving room for the page to reveal a far broader country
-- river + mountain layering fits the quiet watercolor visual language particularly well
-- the subject survives wide desktop crop and mobile crop better than a complex palace façade or dense skyline
+- the Great Wall is more universally recognisable as China than the Li River and directly answers the requirement that the country be identifiable at first glance
+- the long diagonal wall creates a strong horizontal Hero composition while leaving quieter sky / distant-ridge space for copy
+- using Jinshanling preserves real mountain context and avoids turning the Hero into a monument close-up
 
 ## Locked 8-scene selection
 
-### S01 — Jinshanling Great Wall / autumn ridge
+### S01 — Xi'an / Terracotta Army, Pit 1
 
-Working coordinate: **40.6769, 117.2442**  
-Planned filename: `jinshanling-great-wall-autumn.webp`  
-Content ID: `jinshanling-great-wall-autumn`
+Working coordinate: **34.3841, 109.2785**  
+Planned filename: `xian-terracotta-army-pit1.webp`  
+Content ID: `xian-terracotta-army-pit1`
 
 Scene identity:
-- real Jinshanling section of the Great Wall
-- long wall and multiple watchtowers following rolling mountain ridges
-- broad oblique ridge view with clear spatial depth, not one tower close-up
-- restrained early-autumn greens and ochres under clear soft daylight
-- no giant crowds, souvenir staging, impossible drone height, fantasy mountains or exaggerated wall width
+- real Pit 1 of the Mausoleum of the First Qin Emperor near Xi'an
+- long orderly ranks of life-size terracotta warriors visible in the excavated earthen corridors
+- broad oblique interior view from the public-side perspective; the archaeological grid and repeated figures remain the subject
+- restrained warm earth tones and soft museum daylight
+- no close-up portrait of one warrior, no fantasy reconstruction, no painted living-colour army, no cinematic battle scene, no readable signage
 
 Why:
-The Great Wall should read as a line shaped by terrain, not merely as an isolated monument.
+The scene adds an unmistakable archaeological and imperial-history layer without repeating the Great Wall Hero.
 
 ### S02 — Forbidden City / imperial axis from Jingshan
 
@@ -176,8 +176,8 @@ The terraces show a living agricultural system in which forest, water, village a
 ## Coverage check
 
 Hero + 8 Scenes distribute:
-- Guangxi — Li River karst
-- North China — Jinshanling Great Wall
+- North China — Jinshanling Great Wall Hero
+- Shaanxi — Xi'an / Terracotta Army
 - Beijing — imperial urban history
 - Shanghai — contemporary river metropolis
 - Hunan — sandstone mountain landscape
@@ -187,8 +187,8 @@ Hero + 8 Scenes distribute:
 - Yunnan — terraced agriculture / minority-region cultural landscape
 
 Visual types:
-- river + limestone karst
 - wall + mountain ridge
+- archaeological army + excavation grid
 - palace + urban axis
 - river + contemporary skyline
 - sandstone pillars + forest
@@ -198,7 +198,7 @@ Visual types:
 - flooded terraces + forest + village
 
 Editorial note:
-Beijing and Jinshanling are intentionally separate because one explains imperial urban order and the other the relationship between defensive architecture and mountain terrain. The two southern cultivated landscapes are also visually distinct: Fujian is architecture embedded in agriculture; Honghe is agriculture itself as the dominant landform.
+The Great Wall is reserved for the Hero and is not repeated in the 8 Scenes. Xi'an / Terracotta Army replaces the former Great Wall Scene to add a distinct archaeological layer. Fujian and Honghe remain visually separate because one is architecture embedded in agriculture while the other is agriculture itself as the dominant landform.
 
 ## Country Profile
 
