@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-09T12:12:00+09:00",
+  "phase": "PUBLISH",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-09T12:16:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -213,14 +213,16 @@
     "verificationBasis": "Targeted Browser QA passed on the exact release package; formal production runtime verification is performed after publication."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-09T12:16:00+09:00",
+    "basis": "User instructed: QAして問題なければ公開して. Final post-revision QA passed with zero failures."
   },
   "publication": {
     "state": "DRAFT",
     "atlasPublished": false
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "PUBLISH_COUNTRY",
     "asset": null
   },
   "sceneBatchReview": {
