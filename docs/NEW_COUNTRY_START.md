@@ -28,8 +28,8 @@ Production Stateが存在する場合：
 
 Production Stateが存在しない場合：
 - Registry / Country JSON / assets / branchの実状態を確認してください。
-- 新規Countryであることを確認したら、`python3 scripts/country_production_state.py init {slug}` が生成するrevision 3 Stateを標準形としてmainに初期化してください。
-- 手作業で古いrevision 2 Stateを複製しないでください。
+- 新規Countryであることを確認したら、`python3 scripts/country_production_state.py init {slug}` が生成するrevision 4 Stateを標準形としてmainに初期化してください。
+- 手作業で古いrevision 2 / 3 Stateを複製しないでください。
 
 制作進行・承認ゲート・Batch処理・QA・Review Deployment・Publishは docs/COUNTRY_PRODUCTION_STATE.md に従ってください。
 Scene / Hero画像は docs/SCENE_IMAGE_PRODUCTION.md に従ってください。
@@ -39,7 +39,7 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 
 通常のユーザー承認はHero、8景Batch、Taste Batch、Canonical URL最終確認のみとし、それ以外はBlocking Issueがない限り自動進行してください。
 
-新規Stateは imageGenerationPolicy revision 3 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
+新規Stateは imageGenerationPolicy revision 4 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。生成直後はcandidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認し、SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
 ```
@@ -72,7 +72,7 @@ start
 → explicit publish approval
 ```
 
-No per-Scene or per-Food approval gate is created by the rule that each image is generated independently.
+No per-Scene or per-Food approval gate is created by the rule that each image is generated independently. Revision 4 additionally requires candidate visual novelty QA after each generation and a perceptual duplicate gate before the review package proceeds.
 
 ## Post-visual rule
 
