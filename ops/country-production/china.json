@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-10T01:31:00+09:00",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-10T01:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -443,13 +443,13 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RESET_GENERATION_CONTEXT",
-    "asset": null
+    "action": "GENERATE_SCENE",
+    "asset": "S06"
   },
   "generationContext": {
-    "state": "CONTAMINATED",
-    "epoch": 1,
-    "lastResetAt": null,
+    "state": "CLEAN",
+    "epoch": 2,
+    "lastResetAt": "2026-09-10T01:32:00+09:00",
     "lastFailureAsset": "S05",
     "lastFailureReason": "COLLAGE_OR_MULTIPANEL"
   }
