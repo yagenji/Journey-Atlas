@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "mongolia",
+  "nameEn": "MONGOLIA",
+  "nameJa": "モンゴル",
+  "region": "EASTERN ASIA / 47°N",
+  "seo": {
+    "description": "ホンゴリン・エルスの砂丘から、オルホン渓谷、フブスグル湖、アルタイの氷河、バヤンザグ、ウランバートル、カラコルム、鹿石、フスタイへ。8つの景色からモンゴルの距離と地形、遊牧の暮らしをたどる。"
+  },
+  "capital": {
+    "nameEn": "Ulaanbaatar",
+    "nameJa": "ウランバートル",
+    "coordinates": {
+      "latitude": 47.9185,
+      "longitude": 106.9177
+    },
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "草原を走る馬と白いゲルの先に、ゴビの砂丘、北の森と湖、西の氷河、古都カラコルムが大きな距離を置いて続く。広い国土を移動するほど、遊牧の暮らしと地形の変化が地図の距離として見えてくる国。",
+    "image": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
+    "location": "Khongoryn Els / Gobi Gurvansaikhan",
+    "coordinates": {
+      "latitude": 43.796,
+      "longitude": 102.1812
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 52.70947319804003,
+      "south": 41.00625576596,
+      "west": 86.60971273468012,
+      "east": 121.03302294332008
+    },
+    "svg": "assets/images/mongolia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MNG.geojson (blob 7e80d7fc424823ca43e32f884be58652f2f2cc54), WGS84; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {
+      "id": "orkhon-valley-pasture-ger-horses",
+      "name": "オルホン渓谷 / 草原とゲル",
+      "nameLocal": "Orkhon Valley / Pasture & Ger",
+      "mapLabel": "Orkhon Valley",
+      "description": "オルホン川の両岸に草地が広がり、白いゲルと馬が低い丘の間に散らばる。古代の都だけでなく、現在も続く牧畜と季節移動を同じ谷で見られる。",
+      "coordinates": {
+        "latitude": 47.4792,
+        "longitude": 102.6785
+      },
+      "image": "assets/images/mongolia/approved/orkhon-valley-pasture-ger-horses.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.5,
+        "y": -2
+      }
+    },
+    {
+      "id": "lake-khovsgol-forested-shore",
+      "name": "フブスグル湖 / 森に囲まれた湖岸",
+      "nameLocal": "Lake Khövsgöl / Forested Shore",
+      "mapLabel": "Khövsgöl",
+      "description": "透明感のある大きな湖面を、カラマツを中心とするタイガの森と長い山稜が囲む。乾いた草原やゴビとは異なる、北部モンゴルの冷涼な水と森林の地理が現れる。",
+      "coordinates": {
+        "latitude": 50.644,
+        "longitude": 100.5233
+      },
+      "image": "assets/images/mongolia/approved/lake-khovsgol-forested-shore.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "altai-tavan-bogd-potanin-glacier",
+      "name": "アルタイ・タワン・ボグド / ポターニン氷河",
+      "nameLocal": "Altai Tavan Bogd / Potanin Glacier",
+      "mapLabel": "Tavan Bogd",
+      "description": "モンゴル最西部で、氷河の舌とモレーン、岩峰が一つの高山盆地に重なる。草原の国という印象から大きく離れた、モンゴル・アルタイの氷河地形を知る場所。",
+      "coordinates": {
+        "latitude": 49.149,
+        "longitude": 87.942
+      },
+      "image": "assets/images/mongolia/approved/altai-tavan-bogd-potanin-glacier.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "bayanzag-flaming-cliffs",
+      "name": "バヤンザグ / フレーミング・クリフ",
+      "nameLocal": "Bayanzag / Flaming Cliffs",
+      "mapLabel": "Bayanzag",
+      "description": "赤褐色の崖と侵食された乾燥地が、砂丘とは別のゴビの表情をつくる。1920年代の古生物学調査でも知られ、地形と科学史を同じ場所からたどれる。",
+      "coordinates": {
+        "latitude": 44.14,
+        "longitude": 103.72
+      },
+      "image": "assets/images/mongolia/approved/bayanzag-flaming-cliffs.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.75,
+        "y": 0
+      }
+    },
+    {
+      "id": "ulaanbaatar-gandan-monastery-city",
+      "name": "ウランバートル / ガンダン寺",
+      "nameLocal": "Ulaanbaatar / Gandantegchinlen Monastery",
+      "mapLabel": "Gandan",
+      "description": "ガンダン寺の仏教建築の背後に都市の丘と住宅地が重なる。大草原だけではないモンゴルを、人口が集中する首都の暮らしと信仰から見る景観。",
+      "coordinates": {
+        "latitude": 47.922,
+        "longitude": 106.8948
+      },
+      "image": "assets/images/mongolia/approved/ulaanbaatar-gandan-monastery-city.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4.5,
+        "y": -2
+      }
+    },
+    {
+      "id": "kharkhorin-erdene-zuu-stupas",
+      "name": "カラコルム / エルデネ・ゾー",
+      "nameLocal": "Kharkhorin / Erdene Zuu Monastery",
+      "mapLabel": "Kharkhorin",
+      "description": "白い仏塔が長く連なる寺院外壁と、その外へ続くオルホンの草原を一緒に見る。モンゴル帝国の都の地域に、後世の仏教史が重なっていることが分かる。",
+      "coordinates": {
+        "latitude": 47.2019,
+        "longitude": 102.843
+      },
+      "image": "assets/images/mongolia/approved/kharkhorin-erdene-zuu-stupas.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": 0
+      }
+    },
+    {
+      "id": "uushigiin-uvur-deer-stones",
+      "name": "ウーシギーン・ウブル / 鹿石",
+      "nameLocal": "Uushigiin Uvur / Deer Stones",
+      "mapLabel": "Uushigiin Uvur",
+      "description": "草原に立つ細長い石柱には、鹿などを表した彫刻が残る。モンゴル帝国よりはるか前、青銅器時代の遊牧文化が同じステップの上に刻まれている。",
+      "coordinates": {
+        "latitude": 49.6545,
+        "longitude": 99.9275
+      },
+      "image": "assets/images/mongolia/approved/uushigiin-uvur-deer-stones.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "hustai-takhi-steppe",
+      "name": "フスタイ / タヒの草原",
+      "nameLocal": "Hustai National Park / Takhi Steppe",
+      "mapLabel": "Hustai",
+      "description": "起伏のある草原を、タヒ（モウコノウマ）の小さな群れが移動する。動物だけを切り取らず、生息地のステップと再導入・保全の物語を同時に見る場所。",
+      "coordinates": {
+        "latitude": 47.7,
+        "longitude": 105.9
+      },
+      "image": "assets/images/mongolia/approved/hustai-takhi-steppe.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "白いゲル",
+      "icon": "landmark"
+    },
+    {
+      "title": "馬の群れ",
+      "icon": "wildlife"
+    },
+    {
+      "title": "フタコブラクダ",
+      "icon": "wildlife"
+    },
+    {
+      "title": "広い草原",
+      "icon": "landscape"
+    },
+    {
+      "title": "砂丘",
+      "icon": "landscape"
+    },
+    {
+      "title": "高山の氷河",
+      "icon": "landscape"
+    },
+    {
+      "title": "仏教寺院",
+      "icon": "landmark"
+    },
+    {
+      "title": "岩絵と石碑",
+      "icon": "history"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "mongol-ger-craftsmanship-mobile-home",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ゲルは、移動する暮らしに合わせて分解し、組み直せる住まい",
+      "text": "木の格子壁と屋根骨を組み、フェルトで覆うゲルは、季節ごとの移動に合わせて解体と再組立てができる。建物そのものだけでなく、材料の準備や組立てを共同で行う技術と慣習まで含めて受け継がれている。",
+      "points": [
+        "ユネスコ無形文化遺産に伝統的なゲル製作技術と関連慣習が登録",
+        "現在も農村の牧畜生活だけでなく都市周辺のゲル地区でも使われる"
+      ]
+    },
+    {
+      "topicKey": "mongolian-khoomei-overtone-singing",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ホーミーは、一人の声から低い持続音と高い倍音を同時に響かせる",
+      "text": "喉の共鳴を使って基音と倍音を重ねるホーミーは、とくに西部モンゴルやアルタイ地域と深く結びつく声の文化。風、水、動物など周囲の音との関係を語る伝承もあり、景観と音が切り離されていない。",
+      "points": [
+        "2010年にユネスコ無形文化遺産へ登録",
+        "単なる特殊発声ではなく、地域の自然観や伝承と結びつく"
+      ]
+    },
+    {
+      "topicKey": "naadam-three-games-community",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ナーダムでは、競馬・相撲・弓射が一つの祭りに集まる",
+      "text": "夏のナーダムでは、競馬、モンゴル相撲、弓射が各地の集まりの中心になる。競技結果だけではなく、家族や地域が集まり、衣服、食、音楽まで一度に現れることが祭りの面白さ。",
+      "points": [
+        "2010年にユネスコ無形文化遺産へ登録",
+        "全国規模の祝祭で、地域ごとの開催もある"
+      ]
+    },
+    {
+      "topicKey": "airag-fermented-mares-milk",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "アイラグは、馬乳を発酵させる技術と季節の牧畜がつながる",
+      "text": "馬乳を発酵させてつくるアイラグは、搾乳、発酵容器、攪拌、客へのふるまいまでが一連の生活文化になっている。夏の牧畜と食文化が直接つながるため、飲み物だけを切り取ると見えにくい背景がある。",
+      "points": [
+        "2019年にアイラグ製造技術と関連慣習がユネスコ無形文化遺産へ登録",
+        "家庭や地域のもてなしとも結びつく"
+      ]
+    },
+    {
+      "topicKey": "mongol-nomad-migration-seasonal-system",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "遊牧は「定住しないこと」ではなく、季節・牧草・家畜に合わせた移動の体系",
+      "text": "家畜の状態、牧草、水、季節の変化を読みながら営地を移すことは、行き当たりばったりの移動ではない。広い国土の道路や距離を旅するとき、牧畜の移動体系を知ると草原の見え方が変わる。",
+      "points": [
+        "2024年にモンゴル遊牧民の移動と関連慣習がユネスコ無形文化遺産へ登録",
+        "移動先や時期は地域・家畜・気象条件によって異なる"
+      ]
+    },
+    {
+      "topicKey": "traditional-mongolian-script-calligraphy",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "伝統モンゴル文字は、縦に連なる文字そのものが文化景観になる",
+      "text": "上から下へ縦に書く伝統モンゴル文字は、看板や文化施設、書の作品でキリル文字とは異なる形を見せる。言語そのものと、文字を書く技術・美意識を分けて見ると旅先で見つけやすい。",
+      "points": [
+        "モンゴル書道は2013年にユネスコ無形文化遺産へ登録",
+        "現代の公共空間ではキリル文字と伝統文字を見比べられる場面がある"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "gobi-not-only-sand-dunes",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "地形",
+      "title": "ゴビは、砂丘だけではない",
+      "text": "ゴビ地域には砂丘だけでなく、礫地、乾燥草原、岩山、赤い崖が広がる。ホンゴリン・エルスとバヤンザグを別の景色として見ると、「砂漠」という一語では収まらない地形の幅が分かる。",
+      "icon": "landscape",
+      "sourceKey": "gobi"
+    },
+    {
+      "topicKey": "bayanzag-paleontology-1920s",
+      "categoryEn": "HISTORY",
+      "categoryJa": "化石",
+      "title": "バヤンザグは、1920年代の恐竜研究史でも知られる",
+      "text": "アメリカ自然史博物館の中央アジア探検隊による1920年代の調査で、恐竜の巣や卵化石を含む発見が世界的に知られるようになった。「世界初」と単純化せず、近代古生物学史の重要地点として見る方が正確。",
+      "icon": "history",
+      "sourceKey": "bayanzag"
+    },
+    {
+      "topicKey": "ger-door-south-facing-convention",
+      "categoryEn": "LIFE",
+      "categoryJa": "暮らし",
+      "title": "ゲルの入口は、伝統的に南を向く",
+      "text": "モンゴルのゲルは、日射を取り込みやすく冷たい北風を避けるため、入口を南へ向けるのが伝統的な基本形。ただし地形や風向きなど現地条件で厳密に南にならない場合もある。",
+      "icon": "culture",
+      "sourceKey": "gerOrientation"
+    },
+    {
+      "topicKey": "khovsgol-egiin-selenga-baikal",
+      "categoryEn": "LAKES",
+      "categoryJa": "水",
+      "title": "フブスグル湖の水は、バイカル湖の水系へつながる",
+      "text": "フブスグル湖の唯一の流出河川はエギーン川で、セレンゲ川へ合流し、最終的にバイカル湖へ注ぐ。地図上では離れて見える二つの大湖が、同じ水系でつながっている。",
+      "icon": "landscape",
+      "sourceKey": "khovsgolHydrology"
+    },
+    {
+      "topicKey": "cyrillic-and-traditional-mongolian-script",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "文字",
+      "title": "キリル文字と伝統モンゴル文字を見比べられる",
+      "text": "現代モンゴルではキリル文字が広く使われる一方、伝統モンゴル文字も教育、文化施設、標示などで目にする。縦書きの文字を見つけると、同じモンゴル語でも表記体系の違いが分かる。",
+      "icon": "culture",
+      "sourceKey": "script"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MONGOLIA",
+    "title": "モンゴルで食べたいもの",
+    "intro": "蒸すボーズ、揚げるホーショール、麺のツォイワン、肉を大きく調理するホルホグ。小麦と肉を軸に、調理法の違いが見える4品。",
+    "items": [
+      {
+        "id": "buuz",
+        "name": "ボーズ",
+        "nameLocal": "Buuz",
+        "text": "小麦の生地でひき肉を包み、上部をひだ状に閉じて蒸す餃子。日常の食事だけでなく旧正月ツァガーン・サルの食卓でも多く作られる。",
+        "image": "assets/images/mongolia/approved/food-buuz.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "khuushuur",
+        "name": "ホーショール",
+        "nameLocal": "Khuushuur",
+        "text": "肉を包んだ平たい生地を油で揚げる料理。蒸すボーズと材料は近いが、薄く香ばしい皮になり、夏のナーダムでも見かける食べ方。",
+        "image": "assets/images/mongolia/approved/food-khuushuur.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "tsuivan",
+        "name": "ツォイワン",
+        "nameLocal": "Tsuivan",
+        "text": "太めの手打ち麺を肉と少量の野菜と合わせ、蒸し焼きのように仕上げる一皿。肉料理が中心という印象の中で、小麦の麺が日常食として入ることが分かる。",
+        "image": "assets/images/mongolia/approved/food-tsuivan.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "khorkhog",
+        "name": "ホルホグ",
+        "nameLocal": "Khorkhog",
+        "text": "羊肉を野菜とともに密閉容器で加熱する料理で、伝統的には熱した石を調理に使う。完成した皿だけを見るより、屋外の集まりや肉の調理文化まで知ると位置づけが分かりやすい。",
+        "image": "assets/images/mongolia/approved/food-khorkhog.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ウランバートルから近郊の草原へ出る",
+        "text": "首都の寺院と街を見た後、フスタイやゴルヒ・テレルジ方面へ短く移動すると、都市と草原の距離感をつかみやすい。例：ウランバートル → フスタイ → ゴルヒ・テレルジ → ウランバートル。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "古都とゴビを一つの陸路でつなぐ",
+        "text": "カラコルム／オルホン渓谷から南へ回り、バヤンザグとホンゴリン・エルスまで進む。地点数より道路条件と一地点の滞在時間を優先したい。例：ウランバートル → カラコルム → オルホン渓谷 → バヤンザグ → ホンゴリン・エルス → ウランバートル。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "北の湖か西のアルタイを、別の地域ブロックとして加える",
+        "text": "遠隔地は「ついで」に足さず、フブスグルまたはバヤン・ウルギー／アルタイのどちらかを一つの旅として組み込む。国内線と陸路を組み合わせ、移動日にも余白を置く。例：ウランバートル → カラコルム／オルホン → ムルン → フブスグル湖 → ウランバートル。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#9aa36a",
+      "text": "乾燥して風が強い肩の季節。草原の緑は場所によってまだ揃わず、昼夜の寒暖差も大きい。夏のような緑の草原を前提にせず、防風と防寒を含めて組みたい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#6f8f58",
+      "text": "長距離の陸路を組みやすく、中央部と北部では草原や森林の緑が増える時期。7月はナーダムが文化的な目印になる一方、ゴビの暑さと繁忙期の移動・宿は早めに確認したい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b27a4c",
+      "text": "乾いた空気と低い光で草原、ゴビ、アルタイを見やすい秋。北部や高地では夜の冷え込みが急に強まり、季節が進むほど遠隔地のサービスや道路条件に余裕が必要になる。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#748e9d",
+      "text": "厳しい大陸性の冬で、日照時間、道路、宿泊条件が旅程を大きく左右する。ウランバートルや冬を目的にした専門的な旅は可能だが、晴天が多いことを暖かさと同じ意味にはしない。"
+    }
+  ],
+  "transport": {
+    "title": "4WD・国内線・鉄道",
+    "text": "国土が広いため、移動そのものが旅の大きな部分を占める。主要回廊は舗装道路でつながる一方、ゴビ、オルホン、遠隔の遺跡や山岳では長い未舗装区間が残る。西部や北部を短い日程へ加えるなら国内線が有効で、ウランバートルを南北に貫く鉄道は中国・ロシア方面にも続く。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "草原、砂丘、湖、氷河まで、一つの国で地形が大きく切り替わる旅をしたい人",
+      "text": "ゴビだけで終わらず、北のタイガ湖、西の氷河、中央の草原まで距離を移動しながら、国の大きさを景色の変化として感じたい人。"
+    },
+    {
+      "title": "ゲル、牧畜、食、祭りから、移動する暮らしと風景の関係を知りたい人",
+      "text": "遊牧を固定された観光イメージとしてではなく、季節、家畜、住まい、食、地域の集まりがつながる生活の体系として見たい人。"
+    },
+    {
+      "title": "都市観光より、長い陸路そのものを旅の一部として楽しめる人",
+      "text": "舗装路と未舗装路をつなぎ、一日に進める距離や天候の変化まで含めて移動を楽しみ、目的地の数より途中の景色を重視できる人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アジア／モンゴル高原"
+    },
+    {
+      "label": "首都",
+      "value": "ウランバートル"
+    },
+    {
+      "label": "人口",
+      "value": "約352万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,564,116 km²（日本の約4.1倍）"
+    },
+    {
+      "label": "言語",
+      "value": "モンゴル語（国家公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "仏教が最大。イスラム教、シャーマニズム、キリスト教などもみられる"
+    },
+    {
+      "label": "通貨",
+      "value": "トゥグルグ（MNT）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "mongolia-population-density-2-3",
+      "label": "人口密度",
+      "value": "2.3人 / km²",
+      "note": "2025年の国連統計。国土の広さに対して人口が少なく、都市を離れると景観の間隔が急に大きくなる理由を数字でも確認できる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "mongolia-deer-stones-over-80-percent",
+      "label": "モンゴルにある鹿石",
+      "value": "世界確認数の80%以上",
+      "note": "ユーラシアのステップで確認された約1,500基の鹿石のうち、80%以上がモンゴルにある。紀元前1200〜600年ごろの青銅器時代文化を示す石碑群。",
+      "icon": "history"
+    },
+    {
+      "topicKey": "xiongnu-nobility-eight-components-2026",
+      "label": "2026年登録の匈奴貴族墓地群",
+      "value": "8つの構成資産",
+      "note": "2026年にユネスコ世界遺産へ登録された連続資産。青銅器時代の鹿石と後のモンゴル帝国の間に、匈奴の政治・埋葬文化という歴史層が加わる。",
+      "icon": "history"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mongolia-road-distance-buffer",
+      "title": "地図上の距離だけで移動時間を決めない",
+      "text": "未舗装路、天候、轍、川の状態、途中の休憩で実際の所要時間は大きく変わる。遠隔地をつなぐ日は到着時刻を詰めず、予備日や日没までの余白を持たせる。"
+    },
+    {
+      "topicKey": "mongolia-summer-layering",
+      "title": "夏でも防寒を前提にする",
+      "text": "高地、乾燥した空気、昼夜の寒暖差により、夏でも朝晩は冷えやすい。首都の予報だけでゴビ、北部、アルタイの装備を決めず、地域ごとの直前予報を確認する。"
+    },
+    {
+      "topicKey": "mongolia-ger-camp-respect",
+      "title": "ゲルと家畜は、観光セットではなく生活の場として見る",
+      "text": "遊牧地や家族のゲルへ入るとき、近距離で人を撮るときは一声かける。家畜や住民を写真のために動かしてもらう前提にせず、日常の流れを妨げない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "kyrgyz",
+      "nameEn": "KYRGYZSTAN",
+      "nameJa": "キルギス",
+      "flag": "🇰🇬",
+      "reason": "ゲルに近い移動式住居、馬、牧畜文化を共有しながら、天山の高山湖と峠がより密に連なる中央アジアの山岳旅へ広げたいなら。"
+    },
+    {
+      "slug": "kazakhstan",
+      "nameEn": "KAZAKHSTAN",
+      "nameJa": "カザフスタン",
+      "flag": "🇰🇿",
+      "reason": "広いステップと遊牧文化の歴史を持ちながら、アルマトイやアスタナなど大都市と大陸的な草原の対比を別のスケールで見たいなら。"
+    },
+    {
+      "slug": "namibia",
+      "nameEn": "NAMIBIA",
+      "nameJa": "ナミビア",
+      "flag": "🇳🇦",
+      "reason": "文化や生態系は異なるが、低い人口密度、砂漠と開けた地形、長い陸路そのものが旅の体験になる国を別大陸で比べたいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇳",
+      "countryEn": "CHINA",
+      "countryJa": "中国",
+      "path": "Ulaanbaatar → Zamyn-Üüd → Erlian / Beijing",
+      "description": "ウランバートルから南へゴビを抜け、ザミンウード／エレンホトで国境を越えて中国へ続く鉄道回廊。2026年は北京—ウランバートルの国際旅客列車が運行しており、ステップから華北へ地形と都市の密度を変えられる。"
+    },
+    {
+      "flag": "🇷🇺",
+      "countryEn": "RUSSIA",
+      "countryJa": "ロシア",
+      "path": "Ulaanbaatar → Sükhbaatar → Ulan-Ude / Irkutsk",
+      "description": "北へスフバートルを通ってブリヤート共和国のウラン・ウデ、さらにバイカル湖近くのイルクーツクへつなぐ鉄道ルート。2026年9月時点で305系統の国際旅客列車が運行し、草原からシベリアの森林と湖へ景観をつなげられる。"
+    }
+  ],
+  "updatedAt": "2026-09-09",
+  "sourcesVerifiedAt": "2026-09-09",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2020",
+    "worldHeritage": "2026-09-09",
+    "transport": "2026-09-09",
+    "nextRoutes": "2026-09-09"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/MNG.geojson (blob 7e80d7fc424823ca43e32f884be58652f2f2cc54), WGS84; JOURNEY ATLAS map-v3 clean background.",
+    "population": "United Nations UNData Mongolia profile: population 3.517 million and population density 2.3 people/km² for 2025.",
+    "area": "United Nations UNData Mongolia profile: surface area 1,564,116 km².",
+    "japanArea": "Geospatial Information Authority of Japan: national area 377,974.87 km²; Mongolia 1,564,116 km² is about 4.14 times Japan, displayed as about 4.1 times.",
+    "language": "Constitution of Mongolia, Article 8: Mongolian is the official language of the State; minority citizens retain the right to use native languages in education, communication and cultural activities.",
+    "religion": "National Statistics Office of Mongolia, 2020 Population and Housing Census religion tables; Buddhism is the largest declared religious affiliation, with Islam, shamanic traditions and Christianity also present.",
+    "currency": "Bank of Mongolia and UNData: the national currency is the tugrik/tögrög, international code MNT.",
+    "khongoryn": "Mongolia government tourism / Go MonGOlia destination information on Khongoryn Els in Gobi Gurvansaikhan: major dune system backed by Gobi mountain terrain.",
+    "orkhon": "UNESCO World Heritage Centre, Orkhon Valley Cultural Landscape: extensive pastoral landscape on both banks of the Orkhon River, still grazed by Mongolian nomadic pastoralists.",
+    "khovsgol": "NASA Earth Observatory, Lake Khuvsgul: large freshwater lake in northern Mongolia framed by boreal/taiga forest and mountain terrain.",
+    "altai": "Mongolia government tourism and peer-reviewed glacier research on Altai Tavan Bogd / Potanin Glacier in western Mongolia.",
+    "bayanzag": "Mongolia government tourism / American Museum of Natural History history of the Central Asiatic Expeditions: Bayanzag/Flaming Cliffs red Gobi badlands and important 1920s dinosaur fossil discoveries.",
+    "gandan": "Gandantegchinlen Monastery / Mongolia tourism information: principal Buddhist monastery complex in Ulaanbaatar centred on the Migjid Janraisig temple.",
+    "erdeneZuu": "UNESCO Orkhon Valley context and Erdene Zuu heritage information: historic Buddhist monastery at Kharkhorin within the former imperial-capital landscape.",
+    "deerStones": "UNESCO World Heritage Centre, Deer Stone Monuments and Related Bronze Age Sites: about 1,500 deer stones are known across the Eurasian steppe, more than 80% in Mongolia, dated approximately 1200–600 BCE.",
+    "hustai": "Hustai National Park official information on the reintroduction and free-ranging population of takhi/Przewalski's horse within rolling steppe habitat.",
+    "xiongnu": "UNESCO World Heritage Centre, The Cemetery Complexes of the Xiongnu Nobility: inscribed in 2026 as a serial property comprising eight funerary complexes.",
+    "ger": "UNESCO Intangible Cultural Heritage: Traditional craftsmanship of the Mongol Ger and its associated customs, inscribed in 2013.",
+    "khoomei": "UNESCO Intangible Cultural Heritage: Mongolian traditional art of Khöömei, inscribed in 2010.",
+    "naadam": "UNESCO Intangible Cultural Heritage: Naadam, Mongolian traditional festival, inscribed in 2010.",
+    "airag": "UNESCO Intangible Cultural Heritage: Traditional technique of making Airag in Khokhuur and its associated customs, inscribed in 2019.",
+    "nomadMigration": "UNESCO Intangible Cultural Heritage: Mongol nomad migration and its associated practices, inscribed in 2024.",
+    "calligraphy": "UNESCO Intangible Cultural Heritage: Mongolian calligraphy, inscribed in 2013.",
+    "gobi": "Mongolia tourism and geographic sources: the Gobi includes gravel plains, dry steppe, rocky uplands, cliffs and dune fields rather than a continuous sand sea.",
+    "gerOrientation": "Current Mongolia cultural guidance and ethnographic convention: ger doors traditionally face south to gain sunlight and reduce exposure to cold northerly winds, while local conditions can alter exact orientation.",
+    "khovsgolHydrology": "NASA Earth Observatory: Lake Khövsgöl's only outflow is the Egiin River, which joins the Selenga and ultimately drains to Lake Baikal.",
+    "script": "Constitution/language guidance and UNESCO Mongolian calligraphy material: modern Mongolian Cyrillic and traditional vertical Mongolian script are both encountered in contemporary Mongolia.",
+    "taste": "Mongolian gastronomy guidance: buuz, khuushuur, tsuivan and khorkhog are established Mongolian dishes showing steamed, fried, noodle-based and large-meat cooking traditions.",
+    "transport": "Mongolia travel/rail guidance reviewed 9 September 2026: major paved corridors radiate from Ulaanbaatar, many remote scenic routes retain long unpaved sections, domestic flights serve distant regions, and the central railway links the China and Russia borders.",
+    "nextRoutes": "Current international rail information reviewed 9 September 2026: Beijing–Ulaanbaatar K23/K24 is operating in 2026; Ulaanbaatar–Ulan-Ude/Irkutsk train 305 operates in 2026 with a higher summer frequency. Exact dates and tickets should be rechecked for the travel date.",
+    "travelScale": "Editorial route ranges based on the geographic distribution of Ulaanbaatar, Hustai, Kharkhorin, Orkhon Valley, Bayanzag, Khongoryn Els, Khövsgöl and the Mongolian Altai; not a fixed national itinerary.",
+    "worldHeritage": "UNESCO World Heritage Centre Mongolia State Party page, reviewed 9 September 2026: seven inscribed properties, including the 2026 Cemetery Complexes of the Xiongnu Nobility; Deer Stone Monuments and Related Bronze Age Sites was inscribed in 2023."
+  }
+}

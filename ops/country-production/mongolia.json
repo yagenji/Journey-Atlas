@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-09T16:34:00+09:00",
+  "phase": "QA",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-09T16:38:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
@@ -136,7 +136,20 @@
     "approvedAt": "2026-09-09T14:22:55+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-09T16:38:00+09:00",
+    "files": [
+      "data/countries/mongolia.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "life",
+      "road"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Mongolia schema-v2 Country JSON implemented using only approved Hero, eight Scene, four Taste and Map assets. Theme assignments remain exclusively in data/theme-taxonomy.json. atlasPublished remains false; the destination registry is unchanged and therefore no normal navigation or sitemap publication is enabled."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -154,7 +167,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "executionPolicy": {
