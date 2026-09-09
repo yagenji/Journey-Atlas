@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-10T08:31:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-10T08:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -408,7 +408,7 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "samgyetang",
       "promptSeries": 1,
@@ -430,6 +430,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "generationReservation": {
+        "reservationId": "FOOD03-series1-attempt1",
+        "reservedAt": "2026-09-10T08:32:00+09:00",
+        "contentId": "samgyetang",
+        "promptSeries": 1
       }
     },
     {
@@ -520,14 +526,16 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD03"
   },
   "blockingIssue": {
     "code": "TASTE_RUNTIME_COLLAGE_REPEAT",
-    "state": "OPEN",
+    "state": "RESOLVED",
     "detectedAt": "2026-09-10T08:31:00+09:00",
-    "notes": "FOOD01 and FOOD02 both produced the same prohibited four-dish collage pattern despite independent render packets. Further Taste generation is halted in this turn to protect credits. FOOD03 and FOOD04 remain NOT_STARTED; FOOD01 and FOOD02 remain REGENERATE."
+    "notes": "FOOD01 and FOOD02 both produced the same prohibited four-dish collage pattern despite independent render packets. Further Taste generation is halted in this turn to protect credits. FOOD03 and FOOD04 remain NOT_STARTED; FOOD01 and FOOD02 remain REGENERATE.",
+    "resolvedAt": "2026-09-10T08:32:00+09:00",
+    "resolution": "Fresh user turn; resume with one-dish-only FOOD03 generation."
   },
   "generationContext": {
     "state": "CLEAN",
