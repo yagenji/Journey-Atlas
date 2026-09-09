@@ -4,11 +4,11 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "HERO",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-10T00:38:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-10T00:40:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": null,
     "contentId": "jinshanling-great-wall-hero",
     "promptSeries": 2,
@@ -25,12 +25,7 @@
       "forbidPreviousAssetReuse": true,
       "noAddedText": true
     },
-    "candidateGenerationId": "7d8f8612-8204-4dcd-9454-5b93631bc2c4",
-    "candidateVisualQa": {
-      "targetIdentity": "PASS",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS"
-    }
+    "approvedGenerationId": "7d8f8612-8204-4dcd-9454-5b93631bc2c4"
   },
   "scenes": [
     {
@@ -303,7 +298,7 @@
     "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
-    "action": "WAIT_HERO_APPROVAL",
-    "asset": "HERO"
+    "action": "GENERATE_SCENE",
+    "asset": "S01"
   }
 }
