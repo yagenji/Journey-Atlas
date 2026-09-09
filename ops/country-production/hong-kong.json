@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-10T01:16:00+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-10T01:17:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -231,8 +231,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "har-gow-dim-sum",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "2cbc75d4-ef5d-458c-bd7d-ab4650b73cb9",
         "4d562b38-a992-49e0-bdf1-2dbd0b0f0c9f"
@@ -240,7 +240,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "har-gow-dim-sum",
-        "identity": "Hong Kong har gow as one coherent serving: one small bamboo steamer only, four translucent pleated shrimp dumplings, shrimp structure visible through wrappers; centered on plain pale beige/warm ivory background; no other dim sum, tea, chopsticks, sauce, garnish or props; photo 6 : quiet watercolor 4; exact 3:2.",
+        "identity": "FOOD01 ONLY — Hong Kong har gow. Generate exactly ONE standalone image depicting exactly ONE serving vessel: one small bamboo steamer containing four translucent pleated shrimp dumplings. No other food of any kind. Explicitly exclude wonton noodles, roast goose, char siu, pork belly, egg tart, rice, greens, soup, tea, sauces, garnish and side dishes. Single centered dish on an empty pale beige/warm ivory background. No grid, no 2x2 layout, no split panel, no collage, no montage, no contact sheet. No text, labels, logos, flags, people, hands, utensils, napkins, drinks or decorative ingredients. Photo realism 60% with quiet watercolor 40%, exact 3:2.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -250,7 +250,9 @@
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
         "collageTypography": "FAIL"
-      }
+      },
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-10T01:17:00+09:00"
     },
     {
       "id": "FOOD02",
@@ -378,7 +380,7 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD01"
   },
   "sceneBatchReview": {
