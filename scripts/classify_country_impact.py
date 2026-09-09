@@ -204,6 +204,12 @@ def classify(base: str, head: str) -> dict:
 
     production_changed = any(is_production_file(path) for path in files)
 
+    publication_metadata_paths = set(REGISTRY_PATHS) | {STATUS_PATH}
+    publication_metadata_only = bool(target_slugs) and bool(files) and all(
+        path in publication_metadata_paths or path.startswith("ops/country-production/")
+        for path in files
+    )
+
     registry = load_current_registry()
     published: list[str] = []
     reviewable: list[str] = []
@@ -231,6 +237,7 @@ def classify(base: str, head: str) -> dict:
         "head": head,
         "changedFiles": files,
         "productionChanged": production_changed,
+        "publicationMetadataOnly": publication_metadata_only,
         "browserScope": browser_scope,
         "targetSlugs": sorted(target_slugs),
         "publishedSlugs": published,
@@ -242,6 +249,7 @@ def classify(base: str, head: str) -> dict:
 def write_github_output(path: Path, result: dict) -> None:
     values = {
         "production_changed": str(result["productionChanged"]).lower(),
+        "publication_metadata_only": str(result["publicationMetadataOnly"]).lower(),
         "browser_scope": result["browserScope"],
         "target_slugs": ",".join(result["targetSlugs"]),
         "published_slugs": ",".join(result["publishedSlugs"]),
@@ -259,6 +267,7 @@ def self_test() -> int:
     assert is_production_file("assets/css/country.css")
     assert not is_production_file("ops/country-production/ukraine.json")
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
+    assert set(REGISTRY_PATHS) | {STATUS_PATH}
     assert "country.html" in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0
