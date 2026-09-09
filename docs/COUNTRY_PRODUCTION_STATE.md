@@ -290,10 +290,12 @@ For a new Country:
 
 1. read `ops/country-production/{slug}.json` from `main`;
 2. if it exists, resume exactly from its deterministic NEXT;
-3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state and initialize the State once;
-4. create or update the Content Plan only for editorial and visual-design intent;
-5. do not copy operational cursor information into the Content Plan;
-6. proceed through the State machine without asking the user to repeat a master prompt.
+3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state;
+4. for a genuinely new Country, use `python3 scripts/country_production_state.py init {slug}` as the canonical revision-3 State scaffold, then commit that State to `main`;
+5. do not clone an older Country State by hand;
+6. create or update the Content Plan only for editorial and visual-design intent;
+7. do not copy operational cursor information into the Content Plan;
+8. proceed through the State machine without asking the user to repeat a master prompt.
 
 The chat is not an operational source of truth.
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -226,6 +227,118 @@ def prompt_refresh_required(item: dict) -> bool:
         return False
     count = item.get("promptSeriesRejectCount", 0)
     return isinstance(count, int) and count >= 2
+
+
+def now_jst() -> str:
+    return datetime.now(timezone(timedelta(hours=9))).isoformat(timespec="seconds")
+
+
+def new_state(destination: dict) -> dict:
+    slug = destination["slug"]
+    state = {
+        "schemaVersion": 1,
+        "slug": slug,
+        "countryName": destination.get("nameEn", slug).upper(),
+        "contentRef": f"country/{slug}",
+        "phase": "CONTENT",
+        "stateRevision": 1,
+        "updatedAt": now_jst(),
+        "hero": {
+            "state": "NOT_STARTED",
+            "asset": None,
+            "contentId": None,
+        },
+        "scenes": [
+            {
+                "id": scene_id,
+                "state": "NOT_STARTED",
+                "asset": None,
+                "contentId": None,
+            }
+            for scene_id in SCENE_IDS
+        ],
+        "taste": [
+            {
+                "id": food_id,
+                "state": "NOT_STARTED",
+                "asset": None,
+                "contentId": None,
+            }
+            for food_id in FOOD_IDS
+        ],
+        "map": {
+            "state": "NOT_STARTED",
+            "asset": None,
+        },
+        "implementation": {
+            "state": "NOT_STARTED",
+        },
+        "qa": {
+            "state": "NOT_STARTED",
+            "productionState": "NOT_STARTED",
+        },
+        "reviewDeployment": {
+            "state": "NOT_STARTED",
+            "url": None,
+        },
+        "finalApproval": {
+            "state": "PENDING",
+        },
+        "publication": {
+            "state": "DRAFT",
+            "atlasPublished": False,
+        },
+        "executionPolicy": {
+            "heroApproval": "INDIVIDUAL",
+            "sceneApproval": "BATCH",
+            "tasteApproval": "BATCH",
+            "autoContinueImageRounds": True,
+            "waitForStateOnlyCI": False,
+            "batchMaterialization": True,
+            "autoPostVisualPipeline": True,
+            "singleReviewIntegration": True,
+        },
+        "imageGenerationPolicy": {
+            "revision": 3,
+            "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+            "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+            "sceneReview": "BATCH_ONLY",
+            "tasteReview": "BATCH_ONLY",
+            "mandatoryNoAddedText": True,
+            "rejectTypographyImmediately": True,
+            "rejectCollageImmediately": True,
+            "rejectPreviousAssetRepeatImmediately": True,
+            "maxConsecutiveHardFailuresPerPromptSeries": 2,
+            "requireRenderPacketRefreshAfterLimit": True,
+            "approvedAssetRegeneration": False,
+            "runtimeContinuation": "AUTO_IF_SUPPORTED",
+        },
+    }
+    state["next"] = derive_next(state)
+    return state
+
+
+def cmd_init(slug: str) -> int:
+    path = state_path(slug)
+    if path.exists():
+        print(f"State already exists: {path.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+
+    registry = registry_map()
+    destination = registry.get(slug)
+    if destination is None:
+        print(f"Unknown destination slug: {slug}", file=sys.stderr)
+        return 1
+    if destination.get("atlasPublished"):
+        print(f"Refusing to initialize new production state for already-published slug: {slug}", file=sys.stderr)
+        return 1
+
+    state = new_state(destination)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Created {path.relative_to(ROOT)}")
+    print("Next: complete Content Design, then fill stable contentId + renderPacket before entering image phases.")
+    return 0
 
 
 def registry_map() -> dict[str, dict]:
@@ -534,13 +647,18 @@ def cmd_summary() -> int:
 
 def main() -> int:
     args = sys.argv[1:]
-    if not args or args[0] not in {"validate", "next", "summary"}:
-        print("Usage: country_production_state.py validate | next <slug> | summary", file=sys.stderr)
+    if not args or args[0] not in {"validate", "next", "summary", "init"}:
+        print("Usage: country_production_state.py validate | next <slug> | summary | init <slug>", file=sys.stderr)
         return 2
     if args[0] == "validate":
         return cmd_validate()
     if args[0] == "summary":
         return cmd_summary()
+    if args[0] == "init":
+        if len(args) != 2:
+            print("Usage: country_production_state.py init <slug>", file=sys.stderr)
+            return 2
+        return cmd_init(args[1])
     if len(args) != 2:
         print("Usage: country_production_state.py next <slug>", file=sys.stderr)
         return 2

@@ -30,7 +30,14 @@ Create a Pages project from the existing GitHub repository with these settings:
 - Build output directory: `dist`
 - Environment variable: `JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/`
 
-Cloudflare Pages will automatically create preview deployments for non-production branches when preview deployments are enabled.
+JOURNEY ATLAS does **not** need automatic Cloudflare Preview deployments for working branches because Country review uses the canonical production URL with `atlasPublished:false`.
+
+Recommended Pages branch control:
+- Production branch: `main`
+- Automatic production deployment: enabled
+- Preview branch deployments: **None**
+
+This prevents `country/**`, `system/**`, State-update and PR branches from creating unnecessary Cloudflare builds and notification email. If an exceptional branch preview is needed, use the explicit GitHub Pages preview workflow instead of enabling Cloudflare previews globally.
 
 ## First deployment sequence
 

@@ -67,6 +67,26 @@ jobs:
         run: |
           python3 -m py_compile scripts/country_production_state.py scripts/classify_country_impact.py
           python3 scripts/classify_country_impact.py --self-test
+          python3 - <<'PY'
+          import importlib.util
+          from pathlib import Path
+
+          path = Path("scripts/country_production_state.py")
+          spec = importlib.util.spec_from_file_location("country_state", path)
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          state = module.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
+          assert state["phase"] == "CONTENT"
+          assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
+          assert state["imageGenerationPolicy"]["revision"] == 3
+          assert state["executionPolicy"]["sceneApproval"] == "BATCH"
+          assert state["executionPolicy"]["tasteApproval"] == "BATCH"
+          assert len(state["scenes"]) == 8
+          assert len(state["taste"]) == 4
+          assert all(item["state"] == "NOT_STARTED" for item in state["scenes"])
+          assert all(item["state"] == "NOT_STARTED" for item in state["taste"])
+          print("Initializer contract self-test passed")
+          PY
 
       - name: Validate workflow YAML syntax
         run: |
