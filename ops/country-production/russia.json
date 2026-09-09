@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-09T01:33:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-09T10:57:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -47,15 +47,19 @@
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "curonian-spit-efa-dune"
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/curonian-spit-efa-dune.webp",
+      "contentId": "curonian-spit-efa-dune",
+      "approvedGenerationId": "c54ba3ef-c317-4516-939d-83ade5d2d9f3",
+      "approvedAt": "2026-09-09T10:57:00+09:00"
     },
     {
       "id": "S05",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "lake-baikal-olkhon-cape-burkhan"
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/lake-baikal-olkhon-cape-burkhan.webp",
+      "contentId": "lake-baikal-olkhon-cape-burkhan",
+      "approvedGenerationId": "19bfd38e-ffb6-4ac6-b69c-747ad8d8c3d7",
+      "approvedAt": "2026-09-09T10:57:00+09:00"
     },
     {
       "id": "S06",
@@ -122,7 +126,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S04"
+    "asset": "S06"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
