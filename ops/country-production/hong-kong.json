@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-10T01:17:00+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-10T01:20:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -232,10 +232,11 @@
       "asset": null,
       "contentId": "har-gow-dim-sum",
       "promptSeries": 2,
-      "promptSeriesRejectCount": 0,
+      "promptSeriesRejectCount": 1,
       "rejectedGenerationIds": [
         "2cbc75d4-ef5d-458c-bd7d-ab4650b73cb9",
-        "4d562b38-a992-49e0-bdf1-2dbd0b0f0c9f"
+        "4d562b38-a992-49e0-bdf1-2dbd0b0f0c9f",
+        "55945143-0123-48c5-be55-c76e8a867ac4"
       ],
       "renderPacket": {
         "kind": "TASTE",
@@ -407,5 +408,14 @@
     ],
     "notes": "All four initial Taste generations were automatic NG because the image runtime returned multi-dish 2x2 collages instead of the single current dish. No invalid candidate was sent to the user for approval.",
     "approval": "PENDING"
-  }
+  },
+  "blockingIssues": [
+    {
+      "code": "TASTE_RUNTIME_COLLAGE_LOOP",
+      "severity": "BLOCKING",
+      "asset": "FOOD01",
+      "detectedAt": "2026-09-10T01:20:00+09:00",
+      "detail": "Image runtime repeatedly returns a four-dish 2x2 collage despite a refreshed FOOD01-only Render Packet. Invalid outputs are auto-rejected to protect credits; no candidate is awaiting user approval."
+    }
+  ]
 }
