@@ -33,6 +33,7 @@ jobs:
           set -euo pipefail
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "publication_metadata_only=false" >> "$GITHUB_OUTPUT"
             echo "browser_scope=all" >> "$GITHUB_OUTPUT"
             echo "target_slugs=" >> "$GITHUB_OUTPUT"
             echo "published_slugs=" >> "$GITHUB_OUTPUT"
@@ -48,17 +49,17 @@ jobs:
             --github-output "$GITHUB_OUTPUT"
 
       - name: Install browser QA dependencies
-        if: steps.impact.outputs.browser_scope != 'none'
+        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
 
       - name: Build production package
-        if: steps.impact.outputs.browser_scope != 'none'
+        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
 
       - name: Start local production package
-        if: steps.impact.outputs.browser_scope != 'none'
+        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         run: |
           python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser-qa-http.log 2>&1 &
           echo $! > /tmp/journey-atlas-browser-qa-http.pid
@@ -72,7 +73,7 @@ jobs:
           exit 1
 
       - name: Run targeted unpublished reviewable Country QA
-        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.reviewable_slugs != ''
+        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.reviewable_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
@@ -81,7 +82,7 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Run targeted published Country QA
-        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.published_slugs != ''
+        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.published_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
@@ -90,7 +91,7 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Run all unpublished reviewable Country QA
-        if: steps.impact.outputs.browser_scope == 'all'
+        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'all'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
@@ -98,7 +99,7 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Run all published Country QA
-        if: steps.impact.outputs.browser_scope == 'all'
+        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'all'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
@@ -106,13 +107,13 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Browser QA not required
-        if: steps.impact.outputs.browser_scope == 'none'
+        if: steps.impact.outputs.browser_scope == 'none' || steps.impact.outputs.publication_metadata_only == 'true'
         run: |
-          echo "No Country-rendering impact detected."
-          echo "Browser QA skipped by risk-based classifier."
+          echo "No local Country-rendering QA required."
+          echo "Publication metadata-only changes are verified after merge by production QA."
 
       - name: Stop local server
-        if: always() && steps.impact.outputs.browser_scope != 'none'
+        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.publication_metadata_only != 'true'
         run: |
           if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
             kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
