@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-10T08:28:00+09:00",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-10T08:29:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -340,12 +340,14 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "bibimbap",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "879ac417-b8b2-4547-b833-7f5eae2e6dc1"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "bibimbap",
@@ -363,11 +365,11 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "generationReservation": {
-        "reservationId": "FOOD01-series1-attempt1",
-        "reservedAt": "2026-09-10T08:28:00+09:00",
-        "contentId": "bibimbap",
-        "promptSeries": 1
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced a prohibited 2x2 multi-dish collage containing all four Korean foods instead of one standalone FOOD01 bibimbap image. Automatically rejected."
       }
     },
     {
@@ -510,8 +512,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "FOOD01"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD02"
   },
   "blockingIssue": null,
   "generationContext": {
