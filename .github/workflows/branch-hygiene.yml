@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
 
           if [ "$EVENT_NAME" = "push" ]; then
-            targets="country/moldova-publish-20260908,country/mongolia,country/ukraine,feature/mobility-cross-border-demo,finalize/northmacedonia-production,finalize/vaticancity-production,finalize-slovakia-production,fix/mongolia-herder-icon-20260909,fix/mongolia-xiongnu-fact-20260909,fix/northmacedonia-encounters,fix/required-validate-routing,fix/ukraine-encounters,fix/ukraine-final-qa,fix/ukraine-profile-travel-scale,fix/ukraine-profile-travel-scale-v2,fix/ukraine-travel-scale-examples,ops/cleanup-merged-branches-20260909,publish/portugal,publish/portugal-final,publish/ukraine,publish/ukraine-v2,status/malta-live,system/mongolia-food01-reject-20260909,system/mongolia-food04-candidate-20260909,system/mongolia-hero-approved-20260909,system/mongolia-s01-approved-20260909,system/russia-reconcile-scene-approvals-20260909,system/russia-reject-food02-20260909,system/russia-s07-candidate-20260909,ui-home-lens-info-colors-20260908-v2,ui-home-lens-info-colors-20260908,ops/cleanup-superseded-branches-20260909"
+            targets="country/slovenia-renewal,ops/delete-slovenia-renewal-20260909"
           else
             targets="$MANUAL_BRANCHES"
           fi
