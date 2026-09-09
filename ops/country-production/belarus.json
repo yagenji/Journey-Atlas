@@ -3,9 +3,9 @@
   "slug": "belarus",
   "countryName": "BELARUS",
   "contentRef": "main",
-  "phase": "QA",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-09T11:56:00+09:00",
+  "phase": "REVIEW",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-09T12:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -141,27 +141,76 @@
     "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Final review corrections shorten the Encounter label to バイソン while preserving the full species name in Scene copy, distinguish NEXT DESTINATIONS (Russia, Ukraine, Moldova) from NEXT ROUTES (Russia, Lithuania, Poland), and clarify the Struve Geodetic Arc signature fact. Current MOFA Level 3/4 safety guidance remains reflected; atlasPublished remains false."
   },
   "qa": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "productionState": "NOT_STARTED",
-    "sourceCommit": null,
-    "validateRunId": null,
+    "sourceCommit": "8df0f0003185325a39c67f907e28cdd0775b80b3",
+    "validateRunId": 34305566472,
     "productionVerifyRunId": null,
-    "browserQaArtifactId": null,
-    "checks": [],
-    "browserViewports": {},
+    "browserQaArtifactId": 10086523797,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "cloudflare-package-build",
+      "targeted-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "related-country-russia-ukraine-moldova",
+      "next-route-russia-lithuania-poland",
+      "encounter-count-8",
+      "encounter-label-bison",
+      "signature-fact-struve-explained",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
     "failureCount": 0,
-    "notes": "Final review corrections from 2026-09-09 require fresh Country validation and targeted browser QA before returning to REVIEW.",
-    "completedAt": null
+    "notes": "Final-review corrections passed production-state validation, Country data validation, and targeted unpublished-reviewable Browser QA with zero failures on the exact Belarus release package merged as 8df0f0003185325a39c67f907e28cdd0775b80b3. Production runtime verification is intentionally deferred until formal publication.",
+    "completedAt": "2026-09-09T12:12:00+09:00"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/belarus/",
-    "commit": null,
+    "commit": "8df0f0003185325a39c67f907e28cdd0775b80b3",
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": null
+    "verifiedAt": "2026-09-09T12:12:00+09:00",
+    "verificationBasis": "Targeted Browser QA passed on the exact release package; formal production runtime verification is performed after publication."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -171,7 +220,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "sceneBatchReview": {
