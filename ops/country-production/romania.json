@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-09T21:18:00+09:00",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-09T23:05:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -245,7 +245,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 3,
+    "revision": 4,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
@@ -257,7 +257,9 @@
     "maxConsecutiveHardFailuresPerPromptSeries": 2,
     "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
-    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+    "runtimeContinuation": "AUTO_IF_SUPPORTED",
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true
   },
   "stateIntegrityRepairs": [
     {
