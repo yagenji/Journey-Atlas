@@ -3,9 +3,9 @@
   "slug": "bosniaherzegovina",
   "countryName": "BOSNIA & HERZEGOVINA",
   "contentRef": "main",
-  "phase": "PUBLISH",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-09T21:50:00+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-09T21:58:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/bosniaherzegovina/approved/hero-mostar-stari-most.webp",
@@ -99,9 +99,9 @@
     "state": "PASS",
     "productionState": "PASS",
     "failureCount": 0,
-    "notes": "Bosnia package restored on current main and verified on canonical production URL with unpublished-reviewable Desktop / Tablet / Mobile Browser QA PASS.",
+    "notes": "Bosnia current-main publication verified on Cloudflare production runtime; published Desktop / Tablet / Mobile Browser QA passed.",
     "sourceCommit": "0b5cbd4aadeea394d5e7b0be41c71cb2ddadbe63",
-    "productionVerifyRunId": 34353966940,
+    "productionVerifyRunId": 34354647530,
     "checks": [
       "source-syntax",
       "reviewable-country-json",
@@ -113,7 +113,9 @@
       "desktop",
       "tablet",
       "mobile"
-    ]
+    ],
+    "productionRuntime": "PASS",
+    "publishedBrowserQa": "PASS"
   },
   "reviewDeployment": {
     "state": "DONE",
@@ -135,13 +137,18 @@
     "state": "PUBLISHED",
     "atlasPublished": true,
     "publishedAt": "2026-09-09T21:50:00+09:00",
-    "productionVerification": "PENDING",
+    "productionVerification": "PASS",
     "robots": "index,follow",
     "sitemapListed": true,
-    "linkedFromRegistry": true
+    "linkedFromRegistry": true,
+    "publishCommit": "787ecf44677016ea3a637dcaa2bfb68514aff7ef",
+    "liveCommit": "787ecf44677016ea3a637dcaa2bfb68514aff7ef",
+    "verifiedAt": "2026-09-09T21:58:00+09:00",
+    "runtimeCheckId": 102476267202,
+    "publishedBrowserQaCheckId": 102476595176
   },
   "next": {
-    "action": "PUBLISH_COUNTRY",
+    "action": "NONE",
     "asset": null
   },
   "executionPolicy": {
