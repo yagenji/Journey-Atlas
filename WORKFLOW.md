@@ -257,6 +257,7 @@ Non-negotiable principles:
 - one image = one generation request does not mean one image = one user approval;
 - intermediate State writes do not trigger deployment or require CI waiting;
 - Review Package is integrated to production once when ready for canonical-URL review.
+- After canonical review approval, do not create a State-only approval PR; create the one terminal publication PR directly.
 ---
 
 ## Branch lifecycle
