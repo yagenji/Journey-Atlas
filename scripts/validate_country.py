@@ -491,7 +491,13 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
     validate_coordinates(errors, f"{path.name}: hero", data.get("hero", {}).get("coordinates"), bounds)
 
     if strict:
-        validate_coordinates(errors, f"{path.name}: capital", data.get("capital", {}).get("coordinates"), bounds)
+        capital = data.get("capital")
+        if capital is None:
+            pass
+        elif isinstance(capital, dict):
+            validate_coordinates(errors, f"{path.name}: capital", capital.get("coordinates"), bounds)
+        else:
+            fail(errors, f"{path.name}: capital は object または null で指定してください")
         if not data.get("seo", {}).get("description"):
             fail(errors, f"{path.name}: seo.description がありません")
 
