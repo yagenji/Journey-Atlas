@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-09T16:36:00+09:00",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-09T18:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -104,7 +104,8 @@
       "approvedAt": "2026-09-09T13:05:00+09:00",
       "rejectedGenerationIds": [
         "ad9733da-5867-46d1-8137-20d4bd0d26bb"
-      ]
+      ],
+      "contentId": "pelmeni"
     },
     {
       "id": "FOOD02",
@@ -114,7 +115,8 @@
       "approvedAt": "2026-09-09T16:36:00+09:00",
       "rejectedGenerationIds": [
         "1dd52536-21fb-4afc-b615-557c1fd32498"
-      ]
+      ],
+      "contentId": "shchi"
     },
     {
       "id": "FOOD03",
@@ -123,14 +125,29 @@
       "rejectedGenerationIds": [
         "14107d31-0623-4f8b-a52f-f1eb1604ae3c"
       ],
-      "failureReason": "Hard reject: repeated the already-approved Pelmeni instead of FOOD03 Beef Stroganoff."
+      "failureReason": "Hard reject: repeated the already-approved Pelmeni instead of FOOD03 Beef Stroganoff.",
+      "contentId": "beef-stroganoff",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "beef-stroganoff",
+        "identity": "Beef Stroganoff: sliced beef in a creamy/savoury sauce on one plate only; any accompaniment stays on the same plate and must not become a second dish; avoid glossy restaurant-advertising treatment.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "shchi",
+        "source": "docs/RUSSIA_CONTENT_PLAN.md#Beef Stroganoff"
+      },
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1
     },
     {
       "id": "FOOD04",
       "state": "APPROVED",
       "asset": "assets/images/russia/approved/pirozhki.webp",
       "approvedGenerationId": "f83b987e-28ed-4023-ae05-3f7cc77e23fb",
-      "approvedAt": "2026-09-09T14:04:00+09:00"
+      "approvedAt": "2026-09-09T14:04:00+09:00",
+      "contentId": "pirozhki"
     }
   ],
   "map": {
@@ -170,14 +187,17 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 2,
+    "revision": 3,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
     "mandatoryNoAddedText": true,
     "rejectTypographyImmediately": true,
     "rejectCollageImmediately": true,
     "rejectPreviousAssetRepeatImmediately": true,
-    "maxConsecutiveHardFailuresBeforeReset": 2,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   }
