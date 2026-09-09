@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-10T00:33:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-10T00:58:00+09:00",
   "hero": {
     "state": "REVIEW_CANDIDATE",
     "asset": null,
@@ -279,7 +279,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 4,
+    "revision": 5,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
@@ -293,7 +293,13 @@
     "maxConsecutiveHardFailuresPerPromptSeries": 2,
     "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
-    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+    "runtimeContinuation": "AUTO_IF_SUPPORTED",
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
     "action": "WAIT_HERO_APPROVAL",
