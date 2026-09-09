@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-09T23:05:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-10T00:33:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -120,12 +120,12 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "rejectedGenerationIds": [
         "14107d31-0623-4f8b-a52f-f1eb1604ae3c"
       ],
-      "failureReason": "Hard reject: repeated the already-approved Pelmeni instead of FOOD03 Beef Stroganoff.",
+      "failureReason": null,
       "contentId": "beef-stroganoff",
       "renderPacket": {
         "kind": "TASTE",
@@ -153,7 +153,8 @@
         "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1
+      "promptSeriesRejectCount": 1,
+      "candidateGenerationId": "81a6deb3-8ea0-4960-8698-d2ab449bed03"
     },
     {
       "id": "FOOD04",
@@ -187,8 +188,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
