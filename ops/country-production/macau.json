@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "REVIEW",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-09T20:56:00+09:00",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-09T21:04:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/macau/approved/hero-ruins-st-pauls-steps.webp",
@@ -158,11 +158,11 @@
   "qa": {
     "state": "PASS",
     "productionState": "NOT_STARTED",
-    "sourceCommit": "18272b34ab6730fe2f0152374f90293560ecdb93",
-    "validateRunId": 34347699618,
-    "productionStateRunId": 34347699670,
-    "browserQaRunId": 34347699504,
-    "browserQaArtifactId": 10102408096,
+    "sourceCommit": "6bec913db72dfcf122962087b2a257c85b8bdb4d",
+    "validateRunId": 34348566999,
+    "productionStateRunId": 34348566902,
+    "browserQaRunId": 34348566842,
+    "browserQaArtifactId": 10102730297,
     "checks": [
       "source-syntax",
       "reviewable-country-json",
@@ -210,19 +210,19 @@
       }
     },
     "failureCount": 0,
-    "notes": "Macau passed reviewable strict validation and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. The PR head tree and squash-merged main tree are identical (79cda698c50944af028a444ecc02de7c03b5639b), so the QA applies to the exact review release package. Production runtime verification is deferred until formal publication.",
-    "completedAt": "2026-09-09T20:56:00+09:00"
+    "notes": "Macau review corrections passed reviewable strict validation and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. The 4日以上 travel-scale band now includes a concrete route example, and travel trivia category 水 uses the supported sea icon instead of the nonexistent water symbol. PR head and squash-merged main trees are identical (09e26622219a4c8658cdbc48fe14584017ba6c44), so QA applies to the exact review release package.",
+    "completedAt": "2026-09-09T21:04:00+09:00"
   },
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/macau/",
-    "commit": "18272b34ab6730fe2f0152374f90293560ecdb93",
+    "commit": "6bec913db72dfcf122962087b2a257c85b8bdb4d",
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-09T20:56:00+09:00",
-    "verificationBasis": "Targeted Browser QA passed on the exact release package; formal production runtime verification is performed after publication."
+    "verifiedAt": "2026-09-09T21:04:00+09:00",
+    "verificationBasis": "Targeted Browser QA passed on the exact corrected review package; formal production runtime verification is performed after publication."
   },
   "finalApproval": {
     "state": "PENDING"
