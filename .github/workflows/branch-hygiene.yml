@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
 
           if [ "$EVENT_NAME" = "push" ]; then
-            targets="ops/image-batch-duplicate-guard"
+            targets="ops/fast-country-production-state"
           else
             targets="$MANUAL_BRANCHES"
           fi
