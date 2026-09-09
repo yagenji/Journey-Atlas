@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-10T08:27:00+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-10T08:28:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -340,7 +340,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "bibimbap",
       "promptSeries": 1,
@@ -362,6 +362,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "generationReservation": {
+        "reservationId": "FOOD01-series1-attempt1",
+        "reservedAt": "2026-09-10T08:28:00+09:00",
+        "contentId": "bibimbap",
+        "promptSeries": 1
       }
     },
     {
@@ -504,7 +510,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD01"
   },
   "blockingIssue": null,
