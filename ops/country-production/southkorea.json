@@ -4,11 +4,11 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-10T00:47:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-10T00:53:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": null,
     "contentId": "seoul-gyeongbokgung-bugaksan",
     "promptSeries": 1,
@@ -22,13 +22,14 @@
       "forbidPreviousAssetReuse": true,
       "noAddedText": true
     },
-    "candidateGenerationId": "cbc904ca-55f4-437b-afbd-3978c5be1f19",
     "candidateVisualQa": {
       "targetIdentity": "PASS",
       "previousAssetRepeat": "PASS",
       "collageTypography": "PASS",
       "notes": "Candidate depicts a recognisable Seoul palace-and-mountain city composition with Gyeongbokgung/Gwanghwamun architectural language, clear mountain adjacency, no added text, collage, UI or poster treatment. No previous South Korea Hero/Scene asset exists to repeat."
-    }
+    },
+    "approvedGenerationId": "cbc904ca-55f4-437b-afbd-3978c5be1f19",
+    "approvedAt": "2026-09-10T00:53:00+09:00"
   },
   "scenes": [
     {
@@ -296,7 +297,7 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "WAIT_HERO_APPROVAL",
-    "asset": "HERO"
+    "action": "GENERATE_SCENE",
+    "asset": "S01"
   }
 }
