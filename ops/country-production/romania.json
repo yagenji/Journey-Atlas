@@ -3,9 +3,9 @@
   "slug": "romania",
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
-  "phase": "TASTE_REGEN",
-  "stateRevision": 37,
-  "updatedAt": "2026-09-09T23:05:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T00:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -133,14 +133,14 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "ciorba-de-burta",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "2d69c08d-fd3e-4fd6-9642-324eb3520ab0"
       ],
-      "failureReason": "Hard reject: generated Mici / Mititei with fries, salad, and mustard instead of Ciorbă de burtă. Wrong dish and prohibited extra plate elements.",
+      "failureReason": null,
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "ciorba-de-burta",
@@ -167,18 +167,20 @@
         "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1
+      "promptSeriesRejectCount": 1,
+      "approvedGenerationId": "da039905-f01f-4d66-b93f-d7458a09f3cf",
+      "approvedAt": "2026-09-10T00:32:00+09:00"
     },
     {
       "id": "FOOD04",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "papanasi",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "eacaac89-e2eb-4153-8c17-250bf4cbb93d"
       ],
-      "failureReason": "Hard reject: generated Ciorbă de burtă instead of Papanași. Wrong dish.",
+      "failureReason": null,
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "papanasi",
@@ -205,7 +207,9 @@
         "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1
+      "promptSeriesRejectCount": 1,
+      "approvedGenerationId": "4da9a729-9591-4407-929b-f113386b3e70",
+      "approvedAt": "2026-09-10T00:34:00+09:00"
     }
   ],
   "map": {
@@ -231,8 +235,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
