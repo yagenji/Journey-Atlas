@@ -4,7 +4,7 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "TASTE_REGEN",
-  "stateRevision": 34,
+  "stateRevision": 35,
   "updatedAt": "2026-09-09T18:40:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -237,5 +237,12 @@
       "issue": "Cross-asset generation ID misassignment detected: S05 approvedGenerationId had also been recorded under S07 rejectedGenerationIds.",
       "action": "Removed the duplicate S07 reference; preserved S05 approvedGenerationId as authoritative."
     }
-  ]
+  ],
+  "sceneBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T18:40:00+09:00",
+    "migration": true,
+    "notes": "Scene production was completed before policy revision 3. Existing user-approved Scenes are preserved. Future Scene production must use the enforced 8-Scene batch gate."
+  }
 }
