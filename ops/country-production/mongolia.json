@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T02:05:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-09T10:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -39,15 +39,17 @@
     },
     {
       "id": "S03",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "altai-tavan-bogd-potanin-glacier"
+      "contentId": "altai-tavan-bogd-potanin-glacier",
+      "candidateGenerationId": "5b14ff5a-d2b4-428c-9040-f7618c6866d5"
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "bayanzag-flaming-cliffs"
+      "contentId": "bayanzag-flaming-cliffs",
+      "candidateGenerationId": "bdff4b0c-e451-4c7e-a6db-a87358fdd6b6"
     },
     {
       "id": "S05",
@@ -124,7 +126,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S03"
+    "asset": "S05"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
