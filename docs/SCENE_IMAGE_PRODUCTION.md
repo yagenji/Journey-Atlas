@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — Scene Image Production Hard Rule
 
 Updated: 2026-09-09
-Policy revision: 3
+Policy revision: 4
 
 ## Scope
 
@@ -73,6 +73,20 @@ Before calling image generation:
 
 Do not generate from chat memory alone.
 
+## Candidate visual novelty QA — mandatory
+
+After every generated Hero / Scene and before writing `REVIEW_CANDIDATE`:
+
+1. Compare the output against the current Render Packet.
+2. Compare it against the immediately previous generated or approved Hero / Scene.
+3. Record `candidateVisualQa.targetIdentity = PASS`.
+4. Record `candidateVisualQa.previousAssetRepeat = PASS`.
+5. Record `candidateVisualQa.collageTypography = PASS`.
+
+If the previous image is repeated, restaged, lightly cropped, or otherwise materially the same, reject it automatically and do not ask the user to approve it.
+
+This check is required even when the generation ID is new. A new generation ID does not prove that the visual output is new.
+
 ## Immediate rejection
 
 The output is automatic NG without waiting for user review if any of these occur:
@@ -111,6 +125,14 @@ Quality and asset identity remain more important than forcing eight different ta
 - Where the runtime supports distinct sequential generation calls in one assistant turn, continue automatically through remaining NOT_STARTED Scenes.
 - Where the runtime allows only one generated image per turn, that runtime boundary is not an approval gate: the next user `生成` / `進めて` must immediately execute the next Production State asset without re-planning, re-confirming, or discussing the previous valid candidate.
 - Never claim that all eight were generated if the runtime produced only one.
+
+## Machine duplicate gate
+
+After approved Scene assets are materialized, run:
+
+`python3 scripts/validate_images.py --duplicates-only --slug {slug}`
+
+Hero + 8 Scenes are checked pairwise for same-path reuse, normalized identical pixels, and conservative near-duplicate similarity. A failure reopens only the affected Scene(s) for regeneration; the review package must not proceed.
 
 ## Batch review
 
