@@ -300,7 +300,7 @@ def new_state(destination: dict) -> dict:
             "singleReviewIntegration": True,
         },
         "imageGenerationPolicy": {
-            "revision": 3,
+            "revision": 4,
             "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "sceneReview": "BATCH_ONLY",
@@ -309,6 +309,8 @@ def new_state(destination: dict) -> dict:
             "rejectTypographyImmediately": True,
             "rejectCollageImmediately": True,
             "rejectPreviousAssetRepeatImmediately": True,
+            "candidateVisualQaRequired": True,
+            "batchPerceptualDuplicateGate": True,
             "maxConsecutiveHardFailuresPerPromptSeries": 2,
             "requireRenderPacketRefreshAfterLimit": True,
             "approvedAssetRegeneration": False,
@@ -403,8 +405,7 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
     }
     if state.get("phase") in image_phases:
         image_policy = state.get("imageGenerationPolicy")
-        expected_image_policy = {
-            "revision": 3,
+        base_image_policy = {
             "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "sceneReview": "BATCH_ONLY",
@@ -420,15 +421,31 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         }
         if not isinstance(image_policy, dict):
             errors.append(
-                f"{filename}: active image-production phase requires imageGenerationPolicy revision 3"
+                f"{filename}: active image-production phase requires imageGenerationPolicy revision 3 or 4"
             )
         else:
-            for key, expected in expected_image_policy.items():
+            revision = image_policy.get("revision")
+            if revision not in {3, 4}:
+                errors.append(
+                    f"{filename}: imageGenerationPolicy.revision must be 3 or 4, got {revision!r}"
+                )
+            for key, expected in base_image_policy.items():
                 if image_policy.get(key) != expected:
                     errors.append(
                         f"{filename}: imageGenerationPolicy.{key} must be "
                         f"{expected!r}, got {image_policy.get(key)!r}"
                     )
+            if revision == 4:
+                revision4_policy = {
+                    "candidateVisualQaRequired": True,
+                    "batchPerceptualDuplicateGate": True,
+                }
+                for key, expected in revision4_policy.items():
+                    if image_policy.get(key) != expected:
+                        errors.append(
+                            f"{filename}: imageGenerationPolicy.{key} must be "
+                            f"{expected!r}, got {image_policy.get(key)!r}"
+                        )
 
     hero = state.get("hero") if isinstance(state.get("hero"), dict) else {}
     if hero.get("state") not in ASSET_STATES:
@@ -472,6 +489,21 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
             series = item.get("promptSeries", 1)
             if not isinstance(series, int) or series < 1:
                 errors.append(f"{filename}: {kind} {owner_id} promptSeries must be a positive integer")
+            if (
+                state.get("imageGenerationPolicy", {}).get("revision") == 4
+                and item.get("state") == "REVIEW_CANDIDATE"
+            ):
+                visual_qa = item.get("candidateVisualQa")
+                if not isinstance(visual_qa, dict):
+                    errors.append(
+                        f"{filename}: revision 4 {kind} {owner_id} REVIEW_CANDIDATE requires candidateVisualQa"
+                    )
+                else:
+                    for check in ("targetIdentity", "previousAssetRepeat", "collageTypography"):
+                        if visual_qa.get(check) != "PASS":
+                            errors.append(
+                                f"{filename}: revision 4 {kind} {owner_id} candidateVisualQa.{check} must be PASS"
+                            )
 
     validate_generation_id_uniqueness(errors, filename, hero, scenes, taste)
 
@@ -506,7 +538,8 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
     if phase in AFTER_TASTE and not all_approved(taste):
         errors.append(f"{filename}: phase {phase} requires all 4 Taste images APPROVED")
 
-    if state.get("imageGenerationPolicy", {}).get("revision") == 3:
+    image_policy_revision = state.get("imageGenerationPolicy", {}).get("revision")
+    if isinstance(image_policy_revision, int) and image_policy_revision >= 3:
         if phase in AFTER_SCENES:
             scene_review = state.get("sceneBatchReview")
             if not isinstance(scene_review, dict) or scene_review.get("approval") != "APPROVED":
