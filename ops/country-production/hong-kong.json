@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-10T01:08:00+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-10T01:11:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -303,12 +303,14 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "hong-kong-egg-tart",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "6f613aba-d8bc-488f-bc5c-6218f754ab6e"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "hong-kong-egg-tart",
@@ -317,6 +319,11 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL"
       }
     }
   ],
@@ -370,8 +377,8 @@
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
