@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-10T08:33:00+09:00",
+  "stateRevision": 22,
+  "updatedAt": "2026-09-10T08:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -446,7 +446,7 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "bulgogi",
       "promptSeries": 1,
@@ -468,6 +468,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "generationReservation": {
+        "reservationId": "FOOD04-series1-attempt1",
+        "reservedAt": "2026-09-10T08:34:00+09:00",
+        "contentId": "bulgogi",
+        "promptSeries": 1
       }
     }
   ],
@@ -532,7 +538,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD04"
   },
   "blockingIssue": {
