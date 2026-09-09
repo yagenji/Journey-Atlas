@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
@@ -34,6 +35,7 @@ on:
   pull_request:
     paths:
       - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
@@ -78,30 +80,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install image QA dependency
-        run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
-      - name: Validate source syntax
-        run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
-          node --check assets/js/app.js
-          node --check assets/js/top.js
-          bash -n scripts/http_fetch_retry.sh
-
-      - name: Validate published renewal registry
-        run: python3 scripts/audit_published_countries.py
-
-      - name: Audit all published Country images
-        run: python3 scripts/validate_images.py --mode audit
-
-      - name: Enforce renewed Country image hard gate
-        run: python3 scripts/validate_images.py --mode hard
-
-      - name: Enforce duplicate gate on changed Country image sets
-        if: github.event_name == 'pull_request' || github.event_name == 'push'
+      - name: Classify validation scope
+        id: impact
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "publication_metadata_only=false" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
             base="$(git rev-parse HEAD^1)"
@@ -111,28 +104,59 @@ jobs:
             head="$(git rev-parse HEAD)"
           fi
 
-          changed="$(git diff --name-only "$base" "$head")"
-          slugs="$(
-            printf '%s\n' "$changed" |
-              sed -n                 -e 's#^data/countries/\([^/]*\)\.json$#\1#p'                 -e 's#^assets/images/\([^/]*\)/.*#\1#p' |
-              sort -u
-          )"
+          python3 scripts/classify_country_impact.py             --base "$base"             --head "$head"             --github-output "$GITHUB_OUTPUT"
 
-          if [ -z "$slugs" ]; then
-            echo "No changed Country image sets require duplicate QA."
-            exit 0
-          fi
+      - name: Install image QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
-          while IFS= read -r slug; do
+      - name: Validate source syntax
+        run: |
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
+          node --check assets/js/app.js
+          node --check assets/js/top.js
+          bash -n scripts/http_fetch_retry.sh
+
+      - name: Validate published renewal registry
+        run: python3 scripts/audit_published_countries.py
+
+      - name: Audit all published Country images
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        run: python3 scripts/validate_images.py --mode audit
+
+      - name: Enforce renewed Country image hard gate
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        run: python3 scripts/validate_images.py --mode hard
+
+      - name: Validate targeted Country image sets
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all' && steps.impact.outputs.publication_metadata_only != 'true'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            python3 scripts/validate_images.py --mode audit --slug "$slug"
+            python3 scripts/validate_images.py --duplicates-only --slug "$slug"
+          done
+
+      - name: Validate targeted Country JSON
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
             [ -n "$slug" ] || continue
             if [ -f "data/countries/$slug.json" ]; then
-              python3 scripts/validate_images.py --duplicates-only --slug "$slug"
-            else
-              echo "Skip $slug: Country JSON not materialized yet."
+              python3 scripts/validate_country.py --strict "data/countries/$slug.json"
             fi
-          done <<< "$slugs"
+          done
 
-      - name: Validate reviewable and published country JSON
+      - name: Validate all reviewable and published Country JSON
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
         run: |
           python3 scripts/validate_country.py --reviewable
           python3 scripts/validate_country.py --published
