@@ -29,7 +29,7 @@ Each published country JSON uses `schemaVersion: 2` and contains:
 - `seo`
   - `description`
   - optional `ogImage`
-- `capital`
+- `capital`: capital object when the destination has a separate capital; `null` for a territory/SAR with no separate capital
   - `nameEn`
   - `nameJa`
   - `coordinates`
