@@ -3,12 +3,12 @@
   "slug": "romania",
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
-  "phase": "ASSET_QA",
-  "stateRevision": 41,
-  "updatedAt": "2026-09-10T00:42:00+09:00",
+  "phase": "QA",
+  "stateRevision": 42,
+  "updatedAt": "2026-09-10T08:20:00+09:00",
   "hero": {
     "state": "APPROVED",
-    "asset": null,
+    "asset": "assets/images/romania/approved/hero-sinaia-peles-carpathians.webp",
     "contentId": "sinaia-peles-carpathians",
     "approvedGenerationId": "d9824d61-510d-47d1-bb4e-760710ccd039",
     "approvedAt": "2026-09-09T01:13:00+09:00"
@@ -17,7 +17,7 @@
     {
       "id": "S01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/brasov-old-town-tampa.webp",
       "contentId": "brasov-old-town-tampa",
       "approvedGenerationId": "a1a3e296-d6ff-4a4f-8157-240f4ed68470",
       "approvedAt": "2026-09-09T01:36:30+09:00"
@@ -25,7 +25,7 @@
     {
       "id": "S02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/sighisoara-citadel-clock-tower.webp",
       "contentId": "sighisoara-citadel-clock-tower",
       "rejectedGenerationIds": [
         "c41dfe07-91f3-47b6-9cd5-a565aaf72c1c",
@@ -37,7 +37,7 @@
     {
       "id": "S03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/transfagarasan-balea-switchbacks.webp",
       "contentId": "transfagarasan-balea-switchbacks",
       "approvedGenerationId": "416c0f77-92db-4299-9416-37bdeb5b682f",
       "approvedAt": "2026-09-09T02:20:00+09:00"
@@ -45,7 +45,7 @@
     {
       "id": "S04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/danube-delta-mila23-channels.webp",
       "contentId": "danube-delta-mila23-channels",
       "approvedGenerationId": "ec2b6bfe-e1ab-41cf-950d-f2faf392d6de",
       "approvedAt": "2026-09-09T10:39:00+09:00"
@@ -53,7 +53,7 @@
     {
       "id": "S05",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/voronet-painted-church.webp",
       "contentId": "voronet-painted-church",
       "rejectedGenerationIds": [
         "aba8c9a7-5e22-4931-b03a-a77d49fff521"
@@ -64,7 +64,7 @@
     {
       "id": "S06",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/ieud-deal-wooden-church-maramures.webp",
       "contentId": "ieud-deal-wooden-church-maramures",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
@@ -82,7 +82,7 @@
     {
       "id": "S07",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/turda-salt-mine-rudolf.webp",
       "contentId": "turda-salt-mine-rudolf",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
@@ -99,7 +99,7 @@
     {
       "id": "S08",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/buzau-paclele-mari-mud-volcanoes.webp",
       "contentId": "buzau-paclele-mari-mud-volcanoes",
       "approvedGenerationId": "bcf608c9-a506-456e-9a08-fcd3391b323d",
       "approvedAt": "2026-09-09T11:06:50+09:00"
@@ -109,7 +109,7 @@
     {
       "id": "FOOD01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/food-sarmale-cu-mamaliga.webp",
       "contentId": "sarmale-cu-mamaliga",
       "rejectedGenerationIds": [
         "da3c3802-6721-4571-9073-7da17cf51ccb"
@@ -120,7 +120,7 @@
     {
       "id": "FOOD02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/food-mici-mititei.webp",
       "contentId": "mici-mititei",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
@@ -134,7 +134,7 @@
     {
       "id": "FOOD03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/food-ciorba-de-burta.webp",
       "contentId": "ciorba-de-burta",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
@@ -174,7 +174,7 @@
     {
       "id": "FOOD04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/romania/approved/food-papanasi.webp",
       "contentId": "papanasi",
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
@@ -225,7 +225,20 @@
     "approvedAt": "2026-09-10T00:42:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-10T08:20:00+09:00",
+    "files": [
+      "data/countries/romania.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "history",
+      "life"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Romania schema-v2 Country JSON implemented with approved Hero, eight Scene, four Taste and Map assets. Theme assignments remain exclusively in data/theme-taxonomy.json. atlasPublished remains false and registry discovery stays disabled."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -243,7 +256,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "executionPolicy": {
@@ -292,5 +305,47 @@
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T00:36:00+09:00",
     "notes": "FOOD01–FOOD04 were each explicitly approved by the user; aggregate Taste approval recorded before leaving Taste production."
+  },
+  "assetQa": {
+    "result": "PASS",
+    "checked": [
+      "state-generation-id-match",
+      "source-raster-full-decode",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "perceptual-duplicate-gate",
+      "map-svg-existence"
+    ],
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "generationIdMatch": "PASS"
+    },
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1600x900",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS",
+      "perceptualDuplicateGate": "PASS"
+    },
+    "map": {
+      "asset": "assets/images/romania/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS",
+      "structuralQa": "PASS"
+    },
+    "notes": "All 13 approved Romania rasters are present on country/romania. Their Git blob SHAs exactly match the locally fully decoded production WebP exports. Hero is 1600x900; all eight Scenes and four Taste assets are 1200x800. The approved folder contains exactly the 13 final rasters with no draft/temp/placeholder assets. Perceptual duplicate gate passed. Map SVG exists and passed structural QA.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T08:20:00+09:00"
   }
 }
