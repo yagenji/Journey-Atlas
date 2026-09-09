@@ -5,45 +5,40 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "HERO",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-10T00:58:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-10T00:36:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "REGENERATE",
     "asset": null,
-    "contentId": "li-river-xingping-xianggong-hill",
-    "promptSeries": 1,
-    "promptSeriesRejectCount": 1,
+    "contentId": "jinshanling-great-wall-hero",
+    "promptSeries": 2,
+    "promptSeriesRejectCount": 0,
     "rejectedGenerationIds": [
-      "da2cff32-7be5-4892-be07-ffdf77f0b74e"
+      "da2cff32-7be5-4892-be07-ffdf77f0b74e",
+      "3ff4d33e-6d2a-4897-8c4b-b580a44726dc"
     ],
     "renderPacket": {
       "kind": "HERO",
-      "contentId": "li-river-xingping-xianggong-hill",
-      "identity": "Real Li River near Xingping/Yangshuo from an elevated Xianggong Hill viewpoint: winding river threading through layered steep limestone-karst towers, small riverside fields/villages only as scale, broad horizontal 3:2 composition with stronger karst mass centre-right and quieter sky/river text-safe area, soft early-morning atmospheric haze, restrained natural green/slate/muted warm tones, photo 6 to quiet watercolor 4; no staged fisherman, oversized raft, fantasy peaks or poster sunrise.",
+      "contentId": "jinshanling-great-wall-hero",
+      "identity": "Real Jinshanling section of the Great Wall in China: unmistakable long stone wall with multiple watchtowers following steep layered mountain ridges, broad horizontal 3:2 composition with the wall entering from lower-left/foreground and receding strongly toward centre-right, enough wall mass and recognisable watchtowers to read instantly as the Great Wall even at mobile crop, restrained early-autumn greens and ochres under soft clear daylight with slight atmospheric depth, photo 6 to quiet watercolor 4, refined painterly realism; no crowds, souvenir stalls, flags, impossible drone altitude, fantasy mountains, exaggerated wall width, poster sunset or fog hiding the wall.",
       "independentGeneration": true,
       "forbidPreviousAssetReuse": true,
       "noAddedText": true
-    },
-    "candidateVisualQa": {
-      "targetIdentity": "PASS",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS"
-    },
-    "candidateGenerationId": "3ff4d33e-6d2a-4897-8c4b-b580a44726dc"
+    }
   },
   "scenes": [
     {
       "id": "S01",
       "state": "NOT_STARTED",
       "asset": null,
-      "contentId": "jinshanling-great-wall-autumn",
+      "contentId": "xian-terracotta-army-pit1",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [],
       "renderPacket": {
         "kind": "SCENE",
-        "contentId": "jinshanling-great-wall-autumn",
-        "identity": "Real Jinshanling Great Wall: long wall and multiple watchtowers following rolling mountain ridges, broad oblique ridge composition with deep spatial layering, restrained early-autumn greens and ochres in soft daylight; no crowds, impossible aerial angle, fantasy mountains or exaggerated wall width.",
+        "contentId": "xian-terracotta-army-pit1",
+        "identity": "Real Pit 1 of the Terracotta Army near Xi'an: long orderly ranks of life-size terracotta warriors visible in excavated earthen corridors, broad oblique interior view from a public-side perspective, archaeological grid and repeated figures as the subject, restrained warm earth tones and soft museum daylight; no single-warrior portrait, fantasy reconstruction, painted living-colour army, battle scene or readable signage.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
@@ -302,7 +297,7 @@
     "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
-    "action": "WAIT_HERO_APPROVAL",
+    "action": "GENERATE_HERO",
     "asset": "HERO"
   }
 }
