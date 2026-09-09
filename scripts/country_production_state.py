@@ -22,7 +22,7 @@ PHASES = {
     "TASTE_INITIAL", "TASTE_REVIEW", "TASTE_REGEN",
     "MAP", "ASSET_QA", "IMPLEMENTATION", "QA", "REVIEW", "PUBLISH", "COMPLETE",
 }
-ASSET_STATES = {"NOT_STARTED", "REVIEW_CANDIDATE", "REGENERATE", "APPROVED"}
+ASSET_STATES = {"NOT_STARTED", "GENERATING", "REVIEW_CANDIDATE", "REGENERATE", "APPROVED"}
 IMPLEMENTATION_STATES = {"NOT_STARTED", "DONE"}
 QA_STATES = {"NOT_STARTED", "PASS", "FAIL"}
 REVIEW_DEPLOYMENT_STATES = {"NOT_STARTED", "DONE"}
@@ -68,6 +68,14 @@ def derive_next(state: dict) -> dict:
     scenes = state.get("scenes") or []
     taste = state.get("taste") or []
     map_state = state.get("map") or {}
+
+    generating = []
+    if hero.get("state") == "GENERATING":
+        generating.append("HERO")
+    generating.extend(item.get("id") for item in scenes if item.get("state") == "GENERATING")
+    generating.extend(item.get("id") for item in taste if item.get("state") == "GENERATING")
+    if generating:
+        return {"action": "RECONCILE_GENERATION", "asset": generating[0]}
 
     if phase == "CONTENT":
         return {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
@@ -301,7 +309,7 @@ def new_state(destination: dict) -> dict:
             "singleReviewIntegration": True,
         },
         "imageGenerationPolicy": {
-            "revision": 4,
+            "revision": 5,
             "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
             "sceneReview": "BATCH_ONLY",
@@ -312,6 +320,12 @@ def new_state(destination: dict) -> dict:
             "rejectPreviousAssetRepeatImmediately": True,
             "candidateVisualQaRequired": True,
             "batchPerceptualDuplicateGate": True,
+            "preGenerationReservationRequired": True,
+            "reconcileBeforeNextGeneration": True,
+            "maxSameAssetGenerationsPerTurn": 1,
+            "freshTextToImageRequired": True,
+            "previousImageReferenceForbidden": True,
+            "repeatFailureRequiresRenderPacketRefresh": True,
             "maxConsecutiveHardFailuresPerPromptSeries": 2,
             "requireRenderPacketRefreshAfterLimit": True,
             "approvedAssetRegeneration": False,
@@ -446,13 +460,13 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         }
         if not isinstance(image_policy, dict):
             errors.append(
-                f"{filename}: active image-production phase requires imageGenerationPolicy revision 3 or 4"
+                f"{filename}: active image-production phase requires imageGenerationPolicy revision 3, 4 or 5"
             )
         else:
             revision = image_policy.get("revision")
-            if revision not in {3, 4}:
+            if revision not in {3, 4, 5}:
                 errors.append(
-                    f"{filename}: imageGenerationPolicy.revision must be 3 or 4, got {revision!r}"
+                    f"{filename}: imageGenerationPolicy.revision must be 3, 4 or 5, got {revision!r}"
                 )
             for key, expected in base_image_policy.items():
                 if image_policy.get(key) != expected:
@@ -460,12 +474,27 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
                         f"{filename}: imageGenerationPolicy.{key} must be "
                         f"{expected!r}, got {image_policy.get(key)!r}"
                     )
-            if revision == 4:
+            if revision in {4, 5}:
                 revision4_policy = {
                     "candidateVisualQaRequired": True,
                     "batchPerceptualDuplicateGate": True,
                 }
                 for key, expected in revision4_policy.items():
+                    if image_policy.get(key) != expected:
+                        errors.append(
+                            f"{filename}: imageGenerationPolicy.{key} must be "
+                            f"{expected!r}, got {image_policy.get(key)!r}"
+                        )
+            if revision == 5:
+                revision5_policy = {
+                    "preGenerationReservationRequired": True,
+                    "reconcileBeforeNextGeneration": True,
+                    "maxSameAssetGenerationsPerTurn": 1,
+                    "freshTextToImageRequired": True,
+                    "previousImageReferenceForbidden": True,
+                    "repeatFailureRequiresRenderPacketRefresh": True,
+                }
+                for key, expected in revision5_policy.items():
                     if image_policy.get(key) != expected:
                         errors.append(
                             f"{filename}: imageGenerationPolicy.{key} must be "
@@ -499,9 +528,9 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         if phase == "HERO":
             active_items = [("HERO", hero)]
         elif phase.startswith("SCENES"):
-            active_items = [("SCENE", x) for x in scenes if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
+            active_items = [("SCENE", x) for x in scenes if x.get("state") in {"NOT_STARTED", "GENERATING", "REGENERATE", "REVIEW_CANDIDATE"}]
         elif phase.startswith("TASTE"):
-            active_items = [("TASTE", x) for x in taste if x.get("state") in {"NOT_STARTED", "REGENERATE", "REVIEW_CANDIDATE"}]
+            active_items = [("TASTE", x) for x in taste if x.get("state") in {"NOT_STARTED", "GENERATING", "REGENERATE", "REVIEW_CANDIDATE"}]
         for kind, item in active_items:
             owner_id = item.get("id") or "HERO"
             if not isinstance(item.get("contentId"), str) or not item.get("contentId"):
@@ -515,7 +544,7 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
             if not isinstance(series, int) or series < 1:
                 errors.append(f"{filename}: {kind} {owner_id} promptSeries must be a positive integer")
             if (
-                state.get("imageGenerationPolicy", {}).get("revision") == 4
+                state.get("imageGenerationPolicy", {}).get("revision") in {4, 5}
                 and item.get("state") == "REVIEW_CANDIDATE"
             ):
                 visual_qa = item.get("candidateVisualQa")
@@ -529,6 +558,57 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
                             errors.append(
                                 f"{filename}: revision 4 {kind} {owner_id} candidateVisualQa.{check} must be PASS"
                             )
+
+    if state.get("imageGenerationPolicy", {}).get("revision") == 5:
+        generating_items = []
+        if hero.get("state") == "GENERATING":
+            generating_items.append(("HERO", hero))
+        generating_items.extend(("SCENE", item) for item in scenes if item.get("state") == "GENERATING")
+        generating_items.extend(("TASTE", item) for item in taste if item.get("state") == "GENERATING")
+
+        if len(generating_items) > 1:
+            errors.append(
+                f"{filename}: revision 5 allows only one GENERATING asset at a time, got "
+                f"{[item.get('id') or kind for kind, item in generating_items]}"
+            )
+
+        for kind, item in generating_items:
+            owner_id = item.get("id") or "HERO"
+            reservation = item.get("generationReservation")
+            if not isinstance(reservation, dict):
+                errors.append(
+                    f"{filename}: revision 5 {kind} {owner_id} GENERATING requires generationReservation"
+                )
+                continue
+            if not isinstance(reservation.get("reservationId"), str) or not reservation.get("reservationId"):
+                errors.append(
+                    f"{filename}: revision 5 {kind} {owner_id} generationReservation.reservationId is required"
+                )
+            if reservation.get("contentId") != item.get("contentId"):
+                errors.append(
+                    f"{filename}: revision 5 {kind} {owner_id} reservation contentId must match target"
+                )
+            if reservation.get("promptSeries") != item.get("promptSeries", 1):
+                errors.append(
+                    f"{filename}: revision 5 {kind} {owner_id} reservation promptSeries must match target"
+                )
+            if not isinstance(reservation.get("reservedAt"), str) or not reservation.get("reservedAt"):
+                errors.append(
+                    f"{filename}: revision 5 {kind} {owner_id} generationReservation.reservedAt is required"
+                )
+
+        if generating_items:
+            expected_asset = generating_items[0][1].get("id") or "HERO"
+            if state.get("next") != {"action": "RECONCILE_GENERATION", "asset": expected_asset}:
+                errors.append(
+                    f"{filename}: revision 5 GENERATING asset must block further generation until reconciliation"
+                )
+
+        for kind, item in [("HERO", hero)] + [("SCENE", x) for x in scenes] + [("TASTE", x) for x in taste]:
+            if item.get("state") != "GENERATING" and item.get("generationReservation") is not None:
+                errors.append(
+                    f"{filename}: revision 5 {kind} {item.get('id') or 'HERO'} must clear generationReservation after reconciliation"
+                )
 
     validate_generation_id_uniqueness(errors, filename, hero, scenes, taste)
 
