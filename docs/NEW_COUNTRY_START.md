@@ -45,7 +45,7 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
 
-正式公開PRではrevision 4 Stateを直接 COMPLETE / CI_GATED にしてください。公開後のCloudflare Production検証結果を書き戻すためだけの追加PRは作成しないでください。
+最終ページ確認でユーザーが公開を承認したら、承認記録だけのState PRを作らず、そのまま1本の正式公開PRでrevision 4 Stateを COMPLETE / CI_GATED にしてください。公開後のCloudflare Production検証結果を書き戻すためだけの追加PRも作成しないでください。
 ```
 
 ## Authority order
