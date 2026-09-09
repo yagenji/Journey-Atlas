@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "SCENES_REGEN",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-09T11:43:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-09T11:46:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -16,68 +16,74 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "orkhon-valley-pasture-ger-horses",
-      "candidateGenerationId": "1c739698-fd0d-4e97-86f0-6dbbf9c40444",
       "rejectedGenerationIds": [
         "27a25535-5aeb-4251-be6a-ef3430461fac",
         "015468df-136b-427a-b805-1b196cad11b5"
-      ]
+      ],
+      "approvedGenerationId": "1c739698-fd0d-4e97-86f0-6dbbf9c40444",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S02",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "lake-khovsgol-forested-shore",
-      "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "84d25223-7dc8-4d54-a517-f2290f4e2009"
       ],
-      "failureReason": "Hard reject: generated image repeated the Orkhon Valley scene instead of Lake Khövsgöl S02.",
-      "consecutiveFailureCount": 1
+      "approvedGenerationId": "d0d40468-2c96-48af-a181-851f2bc877a5",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "altai-tavan-bogd-potanin-glacier",
-      "candidateGenerationId": "5b14ff5a-d2b4-428c-9040-f7618c6866d5"
+      "approvedGenerationId": "5b14ff5a-d2b4-428c-9040-f7618c6866d5",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S04",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "bayanzag-flaming-cliffs",
-      "candidateGenerationId": "bdff4b0c-e451-4c7e-a6db-a87358fdd6b6"
+      "approvedGenerationId": "bdff4b0c-e451-4c7e-a6db-a87358fdd6b6",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S05",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "ulaanbaatar-gandan-monastery-city",
-      "candidateGenerationId": "0441dba1-e00f-40e4-a18e-9c108359e90f"
+      "approvedGenerationId": "0441dba1-e00f-40e4-a18e-9c108359e90f",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S06",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "kharkhorin-erdene-zuu-stupas",
-      "candidateGenerationId": "e7c7c52f-58e5-4e1f-b9df-bf08a8bc206c"
+      "approvedGenerationId": "e7c7c52f-58e5-4e1f-b9df-bf08a8bc206c",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S07",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "uushigiin-uvur-deer-stones",
-      "candidateGenerationId": "8a316f88-e5d6-4d9f-a192-cb35a59a5f0f"
+      "approvedGenerationId": "8a316f88-e5d6-4d9f-a192-cb35a59a5f0f",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     },
     {
       "id": "S08",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "hustai-takhi-steppe",
-      "candidateGenerationId": "03352913-0866-4446-9554-01b5811d5f6a"
+      "approvedGenerationId": "03352913-0866-4446-9554-01b5811d5f6a",
+      "approvedAt": "2026-09-09T11:46:00+09:00"
     }
   ],
   "taste": [
@@ -129,8 +135,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -153,5 +159,19 @@
     "maxConsecutiveHardFailuresBeforeReset": 2,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "sceneBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance",
+      "mandatory-no-added-text"
+    ],
+    "notes": "Eight scenes form a balanced Mongolia set: central pasture and nomadic life, northern taiga lake, western glacier, southern Gobi badlands, capital Buddhist architecture, historic Kharkhorin monastery, Bronze Age deer stones, and takhi steppe wildlife. No unresolved duplicate or wrong-target generation remains. S02 recognizability is landscape-led rather than landmark-led, but the forested shore, large clear lake and mountain setting are appropriate for Lake Khövsgöl and add necessary northern geographic contrast.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T11:46:00+09:00"
   }
 }
