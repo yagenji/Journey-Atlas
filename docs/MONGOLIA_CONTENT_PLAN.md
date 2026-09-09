@@ -241,9 +241,10 @@ Exactly 3:
    - UNESCO's Deer Stone Monuments material.
    - The monuments date broadly to about 1200–600 BCE and connect today's pastoral landscape with a much older steppe culture.
 
-3. **2026年登録の匈奴貴族墓地群 — 8つの構成資産**
-   - UNESCO World Heritage inscription added in 2026.
-   - It extends the page's historical arc between Bronze Age deer stones and the later Mongol imperial period.
+3. **四季を通じて牧畜する世帯 — 約19.6万世帯**
+   - Mongolia National Statistics Office reports 195.7 thousand herder households in 2024.
+   - The official definition covers households that herd livestock through all four seasons and rely on livestock husbandry as their main livelihood.
+   - This is preferred over a historical archaeology fact because it makes Mongolia's living pastoral culture visible at national scale.
 
 Do not substitute a generic highest-point or national-park-count fact.
 
