@@ -380,25 +380,27 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
 
     image_policy_revision = state.get("imageGenerationPolicy", {}).get("revision")
     if isinstance(image_policy_revision, int) and image_policy_revision >= 4:
-        state_ref = state.get("stateRef")
-        if not isinstance(state_ref, str) or not state_ref:
-            errors.append(f"{filename}: revision 4 requires stateRef")
-        else:
-            working_phases = {
-                "CONTENT", "HERO",
-                "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN",
-                "TASTE_INITIAL", "TASTE_REVIEW", "TASTE_REGEN",
-                "MAP", "ASSET_QA", "IMPLEMENTATION", "QA",
-            }
-            if state.get("phase") in working_phases and state_ref != state.get("contentRef"):
-                errors.append(
-                    f"{filename}: active revision 4 stateRef must match contentRef "
-                    f"({state_ref!r} != {state.get('contentRef')!r})"
-                )
-            if state.get("phase") in {"REVIEW", "PUBLISH", "COMPLETE"} and state_ref != "main":
-                errors.append(
-                    f"{filename}: {state.get('phase')} revision 4 stateRef must be 'main'"
-                )
+        explicit_state_ref = state.get("stateRef")
+        if explicit_state_ref is not None and (
+            not isinstance(explicit_state_ref, str) or not explicit_state_ref
+        ):
+            errors.append(f"{filename}: stateRef must be a non-empty string when present")
+        state_ref = explicit_state_ref or state.get("contentRef")
+        working_phases = {
+            "CONTENT", "HERO",
+            "SCENES_INITIAL", "SCENES_REVIEW", "SCENES_REGEN",
+            "TASTE_INITIAL", "TASTE_REVIEW", "TASTE_REGEN",
+            "MAP", "ASSET_QA", "IMPLEMENTATION", "QA",
+        }
+        if state.get("phase") in working_phases and state_ref != state.get("contentRef"):
+            errors.append(
+                f"{filename}: active revision 4 stateRef must match contentRef "
+                f"({state_ref!r} != {state.get('contentRef')!r})"
+            )
+        if state.get("phase") in {"REVIEW", "PUBLISH", "COMPLETE"} and state_ref != "main":
+            errors.append(
+                f"{filename}: {state.get('phase')} revision 4 stateRef must resolve to 'main'"
+            )
 
     policy = state.get("executionPolicy")
     if policy is not None:
