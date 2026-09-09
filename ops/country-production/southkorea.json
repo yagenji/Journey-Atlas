@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-10T08:36:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-10T08:37:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -340,7 +340,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REGENERATE",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "bibimbap",
       "promptSeries": 1,
@@ -370,6 +370,12 @@
         "previousAssetRepeat": "PASS",
         "collageTypography": "FAIL",
         "notes": "Generation produced a prohibited 2x2 multi-dish collage containing all four Korean foods instead of one standalone FOOD01 bibimbap image. Automatically rejected."
+      },
+      "generationReservation": {
+        "reservationId": "FOOD01-series1-attempt2",
+        "reservedAt": "2026-09-10T08:37:00+09:00",
+        "contentId": "bibimbap",
+        "promptSeries": 1
       }
     },
     {
@@ -542,14 +548,16 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD01"
   },
   "blockingIssue": {
     "code": "TASTE_PREVIOUS_ASSET_REPEAT",
-    "state": "OPEN",
+    "state": "RESOLVED",
     "detectedAt": "2026-09-10T08:36:00+09:00",
-    "notes": "FOOD04 repeated FOOD03 samgyetang instead of generating bulgogi. Regeneration must use a refreshed text-only render packet and must not reference or inherit the previous image."
+    "notes": "FOOD04 repeated FOOD03 samgyetang instead of generating bulgogi. Regeneration must use a refreshed text-only render packet and must not reference or inherit the previous image.",
+    "resolvedAt": "2026-09-10T08:37:00+09:00",
+    "resolution": "Fresh user turn; resume with standalone FOOD01 text-to-image and no previous-image reference."
   },
   "generationContext": {
     "state": "CLEAN",
