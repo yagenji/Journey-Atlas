@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-10T08:34:00+09:00",
+  "phase": "TASTE_REVIEW",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-10T08:35:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -446,12 +446,14 @@
     },
     {
       "id": "FOOD04",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "bulgogi",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "4732f6da-03f2-4ada-82c2-4a79196fa206"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "bulgogi",
@@ -469,11 +471,11 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "generationReservation": {
-        "reservationId": "FOOD04-series1-attempt1",
-        "reservedAt": "2026-09-10T08:34:00+09:00",
-        "contentId": "bulgogi",
-        "promptSeries": 1
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "notes": "FOOD04 generation repeated the immediately previous samgyetang visual instead of bulgogi. Automatically rejected under revision 5 previous-asset-repeat and target-identity rules."
       }
     }
   ],
@@ -538,8 +540,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "FOOD04"
+    "action": "WAIT_TASTE_BATCH_REVIEW",
+    "asset": null
   },
   "blockingIssue": {
     "code": "TASTE_RUNTIME_COLLAGE_REPEAT",
