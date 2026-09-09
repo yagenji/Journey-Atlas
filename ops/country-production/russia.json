@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-09T10:57:00+09:00",
+  "stateRevision": 13,
+  "updatedAt": "2026-09-09T10:59:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -63,9 +63,13 @@
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "altai-lake-teletskoye"
+      "contentId": "altai-lake-teletskoye",
+      "rejectedGenerationIds": [
+        "b6cb2f65-bbfc-4e4b-bd27-1f2714195ce8"
+      ],
+      "failureReason": "Hard reject: generation repeated a Curonian Spit dune/coast scene instead of Altai / Lake Teletskoye."
     },
     {
       "id": "S07",
@@ -126,7 +130,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S06"
+    "asset": "S07"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
