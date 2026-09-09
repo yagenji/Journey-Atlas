@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "MAP",
-  "stateRevision": 39,
-  "updatedAt": "2026-09-10T00:36:00+09:00",
+  "stateRevision": 40,
+  "updatedAt": "2026-09-10T00:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -213,8 +213,15 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/romania/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/ROU.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "north": 48.459824,
+      "south": 43.465059,
+      "west": 19.864557,
+      "east": 30.077824
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -235,7 +242,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "executionPolicy": {
