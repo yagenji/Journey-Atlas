@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
 
           if [ "$EVENT_NAME" = "push" ]; then
-            targets="country/bosniaherzegovina,normalize/bosniaherzegovina-current-main-20260909,publish/bosniaherzegovina-20260909,state/bosnia-review-pass-20260909,state/bosnia-complete-20260909,ops/cleanup-bosnia-branches-20260909"
+            targets="country/macau,ops/belarus-state-normalization"
           else
             targets="$MANUAL_BRANCHES"
           fi
