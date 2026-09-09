@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-10T00:42:00+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-10T00:44:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -55,12 +55,14 @@
     },
     {
       "id": "S02",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "forbidden-city-jingshan-axis",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "f77ff404-baf6-475b-99a8-2d0a99199ed5"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "forbidden-city-jingshan-axis",
@@ -68,6 +70,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "note": "Automatic hard reject: output again repeated/restaged the approved Great Wall Hero instead of the Forbidden City target. Further generation stopped to protect credits after two consecutive cross-target repeats."
       }
     },
     {
@@ -307,6 +315,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S03"
   }
 }
