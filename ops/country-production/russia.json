@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-09T13:07:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-09T14:04:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -126,8 +126,9 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
-      "asset": null
+      "state": "REVIEW_CANDIDATE",
+      "asset": null,
+      "candidateGenerationId": "f83b987e-28ed-4023-ae05-3f7cc77e23fb"
     }
   ],
   "map": {
@@ -153,8 +154,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
