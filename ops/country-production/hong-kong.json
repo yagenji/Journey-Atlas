@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-10T00:57:00+09:00",
+  "stateRevision": 13,
+  "updatedAt": "2026-09-10T01:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -228,12 +228,14 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "har-gow-dim-sum",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "2cbc75d4-ef5d-458c-bd7d-ab4650b73cb9"
+      ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "har-gow-dim-sum",
@@ -242,6 +244,11 @@
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL"
       }
     },
     {
@@ -350,7 +357,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "sceneBatchReview": {
     "result": "PASS",
