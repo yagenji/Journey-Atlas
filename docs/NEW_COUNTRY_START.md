@@ -29,7 +29,7 @@ Production Stateが存在する場合：
 
 mainにProduction Stateが存在しない場合：
 - country/{slug} branchを確認し、そこにStateがあればそのStateを正本としてください。
-- 完全な新規Countryならcountry/{slug} branchを先に作成し、revision 5 Stateをそのbranchに初期化してください。
+- 完全な新規Countryならcountry/{slug} branchを先に作成し、revision 6 Stateをそのbranchに初期化してください。
 - active production中のState更新のためにmain PRを作成しないでください。
 - 手作業で古いrevision 2 / 3 Stateを複製しないでください。
 
@@ -41,11 +41,11 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 
 通常のユーザー承認はHero、8景Batch、Taste Batch、Canonical URL最終確認のみとし、それ以外はBlocking Issueがない限り自動進行してください。
 
-新規Stateは imageGenerationPolicy revision 5 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。画像生成前に必ず対象assetをGENERATINGとして予約し、generationReservationをworking branchへ保存してから生成してください。画像生成後は次の生成前にRECONCILE_GENERATIONを実行し、candidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認してください。同一assetを同じassistant turnで2回生成することは禁止です。前画像を参照・編集元に使わず、毎回fresh independent text-to-imageとして生成してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
+新規Stateは imageGenerationPolicy revision 6 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。各Render Packetにはsingle-frame contract（singleFrameOnly / forbidCollage / forbidPanels / forbidGrid / forbidContactSheet / forbidMontage / forbidInsetImages、Hero/SceneはsingleSceneOnly）を必須で設定してください。実際の画像生成ターンでは現在の1 target以外を言及せず、「8景」「4画像」「batch」「series」「collection」等の複数画像を想起させる文言を生成指示に含めないでください。コラージュが1度でも出た場合はgenerationContextをCONTAMINATEDにし、そのターンの画像生成を停止してください。次のアクションはRESET_GENERATION_CONTEXTとし、resetのターンでは画像生成を行わないでください。画像生成前に必ず対象assetをGENERATINGとして予約し、generationReservationをworking branchへ保存してから生成してください。画像生成後は次の生成前にRECONCILE_GENERATIONを実行し、candidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認してください。同一assetを同じassistant turnで2回生成することは禁止です。前画像を参照・編集元に使わず、毎回fresh independent text-to-imageとして生成してください。SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
 
-最終ページ確認でユーザーが公開を承認したら、承認記録だけのState PRを作らず、そのまま1本の正式公開PRでrevision 5 Stateを COMPLETE / CI_GATED にしてください。公開後のCloudflare Production検証結果を書き戻すためだけの追加PRも作成しないでください。
+最終ページ確認でユーザーが公開を承認したら、承認記録だけのState PRを作らず、そのまま1本の正式公開PRでrevision 6 Stateを COMPLETE / CI_GATED にしてください。公開後のCloudflare Production検証結果を書き戻すためだけの追加PRも作成しないでください。
 ```
 
 ## Authority order
@@ -76,7 +76,7 @@ start
 → explicit publish approval
 ```
 
-No per-Scene or per-Food approval gate is created by the rule that each image is generated independently. Revision 5 additionally requires pre-generation reservation, mandatory reconciliation before any next generation, candidate visual novelty QA, and a perceptual duplicate gate before the review package proceeds.
+No per-Scene or per-Food approval gate is created by the rule that each image is generated independently. Revision 6 additionally requires pre-generation reservation, mandatory reconciliation before any next generation, candidate visual novelty QA, and a perceptual duplicate gate before the review package proceeds.
 
 ## Post-visual rule
 
