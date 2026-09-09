@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-10T01:23:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-10T01:24:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -105,12 +105,14 @@
     },
     {
       "id": "S04",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "wulingyuan-yuanjiajie-sandstone-pillars",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "f7b7d3a1-063b-40b1-a5ba-f121b3094ab2"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "wulingyuan-yuanjiajie-sandstone-pillars",
@@ -118,6 +120,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "note": "Automatic hard reject: generated Xi'an Terracotta Army instead of the Wulingyuan/Yuanjiajie S04 target."
       }
     },
     {
@@ -323,6 +331,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S04"
+    "asset": "S05"
   }
 }
