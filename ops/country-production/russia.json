@@ -3,8 +3,8 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 25,
+  "phase": "TASTE_REGEN",
+  "stateRevision": 26,
   "updatedAt": "2026-09-09T14:04:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -126,9 +126,10 @@
     },
     {
       "id": "FOOD04",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
-      "candidateGenerationId": "f83b987e-28ed-4023-ae05-3f7cc77e23fb"
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/pirozhki.webp",
+      "approvedGenerationId": "f83b987e-28ed-4023-ae05-3f7cc77e23fb",
+      "approvedAt": "2026-09-09T14:04:00+09:00"
     }
   ],
   "map": {
@@ -154,8 +155,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_TASTE",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
