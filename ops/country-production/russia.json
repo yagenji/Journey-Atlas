@@ -3,9 +3,9 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "SCENES_REGEN",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-09T13:00:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-09T13:01:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -77,15 +77,14 @@
     },
     {
       "id": "S07",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/lena-pillars-lena-river.webp",
       "contentId": "lena-pillars-lena-river",
+      "approvedGenerationId": "6bcbe4e8-a4d0-4f18-8999-b165c27484e8",
+      "approvedAt": "2026-09-09T13:01:00+09:00",
       "rejectedGenerationIds": [
         "c9f83ed5-a08a-49eb-82bf-d674a26a46d3"
-      ],
-      "failureReason": null,
-      "candidateGenerationId": "6bcbe4e8-a4d0-4f18-8999-b165c27484e8",
-      "consecutiveFailureCount": 0
+      ]
     },
     {
       "id": "S08",
@@ -141,8 +140,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_SCENES",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
