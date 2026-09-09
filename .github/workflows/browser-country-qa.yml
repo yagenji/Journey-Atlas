@@ -113,14 +113,14 @@ jobs:
           echo "Publication metadata-only changes are verified after merge by production QA."
 
       - name: Stop local server
-        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         run: |
           if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
             kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
           fi
 
       - name: Upload browser QA report
-        if: always() && steps.impact.outputs.browser_scope != 'none'
+        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: country-browser-qa
