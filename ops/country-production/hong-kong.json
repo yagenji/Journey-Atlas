@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 30,
-  "updatedAt": "2026-09-10T08:41:00+09:00",
+  "stateRevision": 31,
+  "updatedAt": "2026-09-10T08:43:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -338,11 +338,11 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "wonton-noodles",
       "promptSeries": 3,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "912e1725-9b6c-4fed-b7f6-bdc3d3032206",
         "0424fd5d-5197-4524-bf85-17a4c4b9fb5f",
@@ -367,12 +367,13 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "FAIL"
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
       },
       "promptSeriesReset": true,
-      "promptSeriesResetAt": "2026-09-10T08:37:00+09:00"
+      "promptSeriesResetAt": "2026-09-10T08:37:00+09:00",
+      "candidateGenerationId": "3c6dc704-ac2e-4e42-ade9-62ea9d102df7"
     },
     {
       "id": "FOOD03",
@@ -501,7 +502,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "sceneBatchReview": {
     "result": "PASS",
