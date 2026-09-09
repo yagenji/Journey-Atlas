@@ -3,9 +3,9 @@
   "slug": "macau",
   "countryName": "MACAU",
   "contentRef": "country/macau",
-  "phase": "REVIEW",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-09T21:12:00+09:00",
+  "phase": "PUBLISH",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-09T21:16:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/macau/approved/hero-ruins-st-pauls-steps.webp",
@@ -230,14 +230,21 @@
     "productionVerificationRunId": 34347986012
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-09T21:10:00+09:00",
+    "basis": "User instructed: QAして問題なければ公開。 Latest post-review-correction QA passed on Desktop / Tablet / Mobile with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-09T21:16:00+09:00",
+    "productionVerification": "PENDING",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "PUBLISH_COUNTRY",
     "asset": null
   },
   "executionPolicy": {
