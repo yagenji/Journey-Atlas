@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-09T11:46:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-09T12:52:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -89,9 +89,15 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
-      "contentId": "buuz"
+      "contentId": "buuz",
+      "candidateGenerationId": null,
+      "rejectedGenerationIds": [
+        "8f9a15d2-dd42-4c42-b841-a677543b93c5"
+      ],
+      "failureReason": "Hard reject: FOOD01 Buuz violated Taste rules by including a yurt interior, landscape, horses, ger, side bowls, drink and sauce. Taste images require one finished dish only on a plain warm ivory background with no props, drinks, ingredients or background scene.",
+      "consecutiveFailureCount": 1
     },
     {
       "id": "FOOD02",
@@ -136,7 +142,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
