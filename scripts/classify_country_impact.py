@@ -197,8 +197,14 @@ def classify(base: str, head: str) -> dict:
     if STATUS_PATH in files:
         target_slugs |= changed_status_slugs(base, head)
 
-    if any(path in COUNTRY_SHARED_FILES or path in QA_SHARED_FILES for path in files):
+    if any(path in COUNTRY_SHARED_FILES for path in files):
         browser_scope = "all"
+    elif any(path in QA_SHARED_FILES for path in files):
+        # QA infrastructure changes need a real browser smoke test, not a
+        # full regression of every published Country. Spain is the shared
+        # reference baseline and exercises the complete Country template.
+        target_slugs.add("spain")
+        browser_scope = "targeted"
     elif target_slugs:
         browser_scope = "targeted"
 
@@ -269,6 +275,8 @@ def self_test() -> int:
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
     assert "country.html" in COUNTRY_SHARED_FILES
+    assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
+    assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0
 
