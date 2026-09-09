@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "TASTE_REGEN",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-10T08:43:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-10T08:45:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -338,7 +338,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "wonton-noodles",
       "promptSeries": 3,
@@ -373,15 +373,16 @@
       },
       "promptSeriesReset": true,
       "promptSeriesResetAt": "2026-09-10T08:37:00+09:00",
-      "candidateGenerationId": "3c6dc704-ac2e-4e42-ade9-62ea9d102df7"
+      "approvedGenerationId": "3c6dc704-ac2e-4e42-ade9-62ea9d102df7",
+      "approvedAt": "2026-09-10T08:45:00+09:00"
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "roast-goose-rice",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "18d4b94a-275c-4342-8eb8-4bb060e164c7"
       ],
@@ -402,18 +403,20 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "FAIL"
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "0e7bddd1-0de4-4fbf-9d36-15b345ee0206",
+      "approvedAt": "2026-09-10T08:45:00+09:00"
     },
     {
       "id": "FOOD04",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "hong-kong-egg-tart",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "6f613aba-d8bc-488f-bc5c-6218f754ab6e"
       ],
@@ -434,10 +437,12 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "FAIL"
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "acd565c9-d5b4-4e62-8e27-cda6e233830c",
+      "approvedAt": "2026-09-10T08:45:00+09:00"
     }
   ],
   "map": {
@@ -501,8 +506,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -519,24 +524,18 @@
     "approvedAt": "2026-09-10T00:55:00+09:00"
   },
   "tasteBatchReview": {
-    "result": "PARTIAL_APPROVAL",
+    "result": "PASS",
     "checked": [
       "single-dish-only",
-      "no-collage",
-      "target-identity",
-      "previous-asset-repeat"
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety",
+      "no-collage"
     ],
-    "notes": "User approved FOOD01 only. FOOD02, FOOD03 and FOOD04 were explicitly rejected because the outputs were collages; only those three remain eligible for regeneration.",
-    "approval": "PENDING",
-    "reviewedAt": "2026-09-10T08:41:00+09:00",
-    "approvedItems": [
-      "FOOD01"
-    ],
-    "rejectedItems": [
-      "FOOD02",
-      "FOOD03",
-      "FOOD04"
-    ]
+    "notes": "FOOD01–FOOD04 are explicitly approved by the user. Earlier collage outputs remain rejected and are not eligible for production.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T08:45:00+09:00"
   },
   "blockingIssues": [],
   "generationContext": {
