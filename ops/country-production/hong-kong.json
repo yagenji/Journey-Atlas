@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "HERO",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-10T00:47:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-10T00:58:00+09:00",
   "hero": {
     "state": "REGENERATE",
     "asset": null,
@@ -276,7 +276,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicy": {
-    "revision": 4,
+    "revision": 5,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "sceneReview": "BATCH_ONLY",
@@ -290,7 +290,13 @@
     "maxConsecutiveHardFailuresPerPromptSeries": 2,
     "requireRenderPacketRefreshAfterLimit": true,
     "approvedAssetRegeneration": false,
-    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+    "runtimeContinuation": "AUTO_IF_SUPPORTED",
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
     "action": "GENERATE_HERO",
