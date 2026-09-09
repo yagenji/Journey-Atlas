@@ -198,8 +198,11 @@ Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regenerati
 
 1. resolve `stateRef` and read the authoritative state file (`country/{slug}` during active production; `main` from REVIEW onward);
 2. execute only `next.action / next.asset`;
-3. update the state immediately after the transition;
-4. re-read before the next action.
+3. before any Hero / Scene / Taste image tool call, reserve that exact asset as `GENERATING` on the authoritative working branch;
+4. re-read and confirm NEXT is `RECONCILE_GENERATION / same asset`;
+5. only then call image generation;
+6. reconcile the reserved generation before any later image-generation call;
+7. re-read before the next action.
 
 Do not infer NEXT from chat memory when a state file exists.
 
@@ -255,6 +258,9 @@ Country production execution, approval gates, batching, State-write behavior, po
 Non-negotiable principles:
 - operational State remains `ops/country-production/{slug}.json`; active-production cursor writes live on `country/{slug}`, not `main`;
 - State updates prevent duplicate work but do not create user interaction gates;
+- image generation uses revision-5 pre-generation reservation: no image tool call occurs before the target is locked as `GENERATING`;
+- the same Hero / Scene / Taste asset may be generated at most once per assistant turn;
+- production image calls are fresh independent text-to-image generations; the previous output is never used as the edit/reference source;
 - one image = one generation request does not mean one image = one user approval;
 - intermediate State writes do not trigger deployment or require CI waiting;
 - Review Package is integrated to production once when ready for canonical-URL review.
