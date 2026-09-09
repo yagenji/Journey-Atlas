@@ -3,9 +3,9 @@
   "slug": "mongolia",
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-09T12:56:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-09T13:56:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -89,33 +89,38 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "buuz",
-      "candidateGenerationId": "d91d2dab-f662-4505-b015-919357740695",
       "rejectedGenerationIds": [
         "8f9a15d2-dd42-4c42-b841-a677543b93c5"
-      ]
+      ],
+      "approvedGenerationId": "d91d2dab-f662-4505-b015-919357740695",
+      "approvedAt": "2026-09-09T13:56:00+09:00"
     },
     {
       "id": "FOOD02",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "khuushuur",
-      "candidateGenerationId": "7002566a-da0a-474b-a7d0-9b0359804e57"
+      "approvedGenerationId": "7002566a-da0a-474b-a7d0-9b0359804e57",
+      "approvedAt": "2026-09-09T13:56:00+09:00"
     },
     {
       "id": "FOOD03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "tsuivan",
-      "candidateGenerationId": "c30510b8-0ed2-483f-81ad-d6263f71c7c6"
+      "approvedGenerationId": "c30510b8-0ed2-483f-81ad-d6263f71c7c6",
+      "approvedAt": "2026-09-09T13:56:00+09:00"
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "khorkhog"
+      "contentId": "khorkhog",
+      "approvedGenerationId": "3cae59d7-a96a-429c-938d-578acbb7e5f0",
+      "approvedAt": "2026-09-09T13:56:00+09:00"
     }
   ],
   "map": {
@@ -141,8 +146,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -179,5 +184,18 @@
     "notes": "Eight scenes form a balanced Mongolia set: central pasture and nomadic life, northern taiga lake, western glacier, southern Gobi badlands, capital Buddhist architecture, historic Kharkhorin monastery, Bronze Age deer stones, and takhi steppe wildlife. No unresolved duplicate or wrong-target generation remains. S02 recognizability is landscape-led rather than landmark-led, but the forested shore, large clear lake and mountain setting are appropriate for Lake Khövsgöl and add necessary northern geographic contrast.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-09T11:46:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety"
+    ],
+    "notes": "All four Taste images are single plated dishes on clean warm ivory backgrounds and are visually distinct. FOOD01 first attempt was rejected for background/props; the corrected Buuz image is the approved candidate.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T13:56:00+09:00"
   }
 }
