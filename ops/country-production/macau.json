@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-09T10:48:00+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-09T11:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -108,9 +108,11 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "dried-shrimp-roe-noodles"
+      "contentId": "dried-shrimp-roe-noodles",
+      "approvedGenerationId": "bb37debd-af7d-453c-af54-5aa13859759e",
+      "approvedAt": "2026-09-09T11:42:00+09:00"
     },
     {
       "id": "FOOD04",
@@ -143,7 +145,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
