@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "TASTE_REGEN",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-10T08:36:00+09:00",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-10T08:37:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -340,8 +340,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "wonton-noodles",
-      "promptSeries": 2,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 3,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "912e1725-9b6c-4fed-b7f6-bdc3d3032206",
         "0424fd5d-5197-4524-bf85-17a4c4b9fb5f",
@@ -351,7 +351,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "wonton-noodles",
-        "identity": "FOOD02 ONLY — Hong Kong wonton noodles. Generate exactly ONE standalone image of exactly ONE simple bowl containing thin egg noodles in clear pale-golden broth with several shrimp/pork wontons. No other dish or serving vessel. Explicitly exclude har gow, dim sum steamer, roast goose, char siu, pork belly, egg tart, egg waffle, rice, extra greens as side dishes, tea, sauces and condiments. One centered bowl on an empty pale beige/warm ivory background. No grid, no 2x2 layout, no split panel, no collage, no montage, no contact sheet, no inset images. No text, logos, flags, people, hands, chopsticks, spoon, napkins, drinks or decorative props. Photo realism 60% with quiet watercolor 40%, exact 3:2.",
+        "identity": "ONLY ONE IMAGE OF ONE FOOD TARGET: Hong Kong wonton noodles. The entire frame contains a single plain ceramic bowl, centered, with thin yellow egg noodles in a clear light-golden broth and exactly four folded shrimp-pork wontons. No other dish, food, plate, steamer, pastry, roast meat, rice, side dish, garnish pile, tea, sauce, cutlery, hands, people, signage or text. The background is empty warm ivory. Absolutely no collage, no four-panel layout, no grid, no split frame, no contact sheet, no inset picture, no multiple food examples. This must look like one isolated atlas food plate only. Restrained photo-real structure with quiet watercolor softness, 3:2 landscape composition.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -370,7 +370,7 @@
         "collageTypography": "FAIL"
       },
       "promptSeriesReset": true,
-      "promptSeriesResetAt": "2026-09-10T08:32:00+09:00"
+      "promptSeriesResetAt": "2026-09-10T08:37:00+09:00"
     },
     {
       "id": "FOOD03",
@@ -498,7 +498,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD02"
   },
   "sceneBatchReview": {
