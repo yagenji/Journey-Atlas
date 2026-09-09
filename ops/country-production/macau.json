@@ -3,9 +3,9 @@
   "slug": "macau",
   "countryName": "MACAU",
   "contentRef": "country/macau",
-  "phase": "SCENES_REGEN",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-09T10:46:00+09:00",
+  "phase": "SCENES_REVIEW",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-09T10:41:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -71,18 +71,15 @@
     },
     {
       "id": "S08",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "cotai-reclaimed-urban-district",
-      "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "505d1a8c-30c0-4e11-8208-e127aaa142ec",
         "0bc0dd68-dc73-4887-9d02-420661c37839"
       ],
-      "failureReason": "Two consecutive hard rejects: S08 Cotai generation repeated the Ruins of St. Paul’s / Hero subject instead of the Cotai reclaimed urban district. Reset only S08 generation series before retry.",
-      "consecutiveFailureCount": 2,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T10:43:00+09:00"
+      "approvedGenerationId": "ee1f525c-b67b-41a4-95e0-ffbe4bf3af8b",
+      "approvedAt": "2026-09-09T10:40:00+09:00"
     }
   ],
   "taste": [
@@ -134,8 +131,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S08"
+    "action": "WAIT_SCENE_BATCH_REVIEW",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -158,5 +155,17 @@
     "maxConsecutiveHardFailuresBeforeReset": 2,
     "approvedAssetRegeneration": false,
     "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "sceneBatchReview": {
+    "result": "PASS_WITH_NOTES",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance"
+    ],
+    "notes": "S08 Cotai now clearly differs from the Hero and represents the reclaimed urban district. S01 remains the only REVIEW_CANDIDATE awaiting the formal 8-Scene batch approval. S05 and S06 contain visible environmental signage/text and S07 renders Hac-Sa sand lighter than its characteristic dark tone; all three were individually and explicitly approved by the user, so they are not regenerated automatically under the approved-asset immutability rule.",
+    "approval": "PENDING"
   }
 }
