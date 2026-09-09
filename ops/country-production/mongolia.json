@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-09T12:56:00+09:00",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-09T13:54:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -113,9 +113,10 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "khorkhog"
+      "contentId": "khorkhog",
+      "candidateGenerationId": "3cae59d7-a96a-429c-938d-578acbb7e5f0"
     }
   ],
   "map": {
@@ -141,8 +142,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BATCH_REVIEW_TASTE",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
