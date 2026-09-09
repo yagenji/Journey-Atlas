@@ -3,9 +3,9 @@
   "slug": "romania",
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
-  "phase": "SCENES_REGEN",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-09T12:56:00+09:00",
+  "phase": "TASTE_INITIAL",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-09T12:58:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -81,10 +81,10 @@
     },
     {
       "id": "S07",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "turda-salt-mine-rudolf",
-      "candidateGenerationId": "604fc599-93ff-44be-998e-476ee707fa11",
+      "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8",
         "6ce677bb-9390-49fc-8adb-c82decba8506",
@@ -93,7 +93,9 @@
       "failureReason": null,
       "consecutiveFailureCount": 0,
       "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T12:52:00+09:00"
+      "generationSeriesResetAt": "2026-09-09T12:52:00+09:00",
+      "approvedGenerationId": "604fc599-93ff-44be-998e-476ee707fa11",
+      "approvedAt": "2026-09-09T12:58:00+09:00"
     },
     {
       "id": "S08",
@@ -153,8 +155,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "BATCH_REVIEW_SCENES",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
