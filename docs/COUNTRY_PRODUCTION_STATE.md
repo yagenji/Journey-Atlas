@@ -103,6 +103,19 @@ A Scene or Taste target must not be generated from `S03` / `FOOD03` alone.
 
 Every active generation target must carry a `renderPacket` in Production State before generation.
 
+Hero minimum:
+
+```json
+{
+  "kind": "HERO",
+  "contentId": "stable-hero-id",
+  "identity": "real place + subject + viewpoint + composition + season/light + text-safe area",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "noAddedText": true
+}
+```
+
 Scene minimum:
 
 ```json
@@ -150,7 +163,7 @@ Use:
 - `promptSeriesRejectCount`: 0–2;
 - `promptSeriesReset` / `promptSeriesResetAt` only to describe a prompt-family refresh.
 
-After two hard failures in the same prompt series:
+After two hard failures in the same Hero / Scene / Taste prompt series:
 
 - do not make a third near-identical generation attempt;
 - NEXT becomes `REFRESH_RENDER_PACKET`;

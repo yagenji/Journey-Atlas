@@ -38,11 +38,12 @@ The negative block is mandatory. Do not shorten it because the Content Plan alre
 
 ## Render Packet input contract
 
-Before a Scene generation call, the exact target must already exist in Production State as a complete `renderPacket`.
+Before a Hero or Scene generation call, the exact target must already exist in Production State as a complete `renderPacket`.
 
 The generation instruction must be constructed from that packet plus the mandatory prompt tail. Do not use the previous image, a conversational shorthand such as "next", or only the Scene number as the target definition.
 
 A valid packet must identify:
+- `kind: HERO` or `kind: SCENE`;
 - stable `contentId`;
 - real place / subject;
 - viewpoint and composition;
