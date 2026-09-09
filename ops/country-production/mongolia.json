@@ -4,8 +4,8 @@
   "countryName": "MONGOLIA",
   "contentRef": "country/mongolia",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 13,
-  "updatedAt": "2026-09-09T12:55:00+09:00",
+  "stateRevision": 14,
+  "updatedAt": "2026-09-09T12:56:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -106,9 +106,10 @@
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
-      "contentId": "tsuivan"
+      "contentId": "tsuivan",
+      "candidateGenerationId": "c30510b8-0ed2-483f-81ad-d6263f71c7c6"
     },
     {
       "id": "FOOD04",
@@ -141,7 +142,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
