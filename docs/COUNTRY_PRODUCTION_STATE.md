@@ -6,9 +6,15 @@ Updated: 2026-09-09
 
 Parallel Country production must not depend on chat memory.
 
-The authoritative operational state for each active or recently completed Country lives at:
+The authoritative operational state for each Country lives at:
 
 `ops/country-production/{slug}.json`
+
+The **reference** is phase-dependent:
+
+- while a Country is under active production, the authoritative State lives on `country/{slug}`;
+- after the complete review package is integrated, the authoritative State lives on `main`;
+- `stateRef` records which reference is authoritative for revision 4.
 
 One country = one state file. Separate files prevent parallel Country chats from editing the same record.
 
@@ -16,11 +22,13 @@ One country = one state file. Separate files prevent parallel Country chats from
 
 Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review, or publish instructions:
 
-1. Read the Country state file from **main**.
-2. Read `next.action` and `next.asset`.
-3. Execute only that action.
-4. Update the state immediately after the transition.
-5. Re-read before the next action.
+1. Read the Country State from `main` if it exists.
+2. If `stateRef` / `contentRef` points to `country/{slug}`, read the State from that working branch and use it as authoritative.
+3. If main has no State but `country/{slug}` exists with a State file, use the working-branch State.
+4. Read `next.action` and `next.asset`.
+5. Execute only that action.
+6. Update the State immediately on its authoritative reference.
+7. Re-read that same reference before the next action.
 
 Do not derive NEXT from conversation memory when a state file exists.
 
@@ -308,11 +316,16 @@ After:
 
 ## Central state and content branches
 
-State files are operational metadata and live on `main`.
+State files are operational metadata, but **active per-image cursor updates must not be routed through main**.
 
-`contentRef` records where the current Country implementation is authoritative:
-- early production may point to `country/{slug}`;
-- after review deployment it is normally `main`.
+For revision 4:
+
+- `contentRef: country/{slug}` + `stateRef: country/{slug}` means active production;
+- commit State transitions directly to the working branch;
+- no PR is created for Scene/Food candidate, rejection, regeneration, or batch-progress State writes;
+- when the full review package is ready, integrate Country content/assets + the latest State to main once;
+- in that review integration, set `contentRef: main` and `stateRef: main`;
+- from REVIEW onward, main is authoritative.
 
 The state file does not replace Country JSON, approved assets, taxonomy, or registry. It only controls production sequencing.
 
@@ -339,11 +352,12 @@ The reusable start instruction lives at:
 
 For a new Country:
 
-1. read `ops/country-production/{slug}.json` from `main`;
-2. if it exists, resume exactly from its deterministic NEXT;
-3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state;
-4. for a genuinely new Country, use `python3 scripts/country_production_state.py init {slug}` as the canonical revision-4 State scaffold, then commit that State to `main`;
-5. do not clone an older Country State by hand;
+1. read `ops/country-production/{slug}.json` from main if present;
+2. resolve `stateRef`; when it points to `country/{slug}`, re-read the State from that branch and resume exactly from its deterministic NEXT;
+3. if main has no State, inspect `country/{slug}` and use its State when present;
+4. for a genuinely new Country, create `country/{slug}` first and initialize the revision-4 State on that branch with `python3 scripts/country_production_state.py init {slug}`;
+5. do not create a main PR merely to initialize or advance an active-production State;
+6. do not clone an older Country State by hand;
 6. create or update the Content Plan only for editorial and visual-design intent;
 7. do not copy operational cursor information into the Content Plan;
 8. proceed through the State machine without asking the user to repeat a master prompt.
@@ -368,7 +382,7 @@ Content Plans must not contain:
 
 Historical production incidents that reveal a reusable rule belong in the relevant global production specification, not in a Country Content Plan.
 
-Operational sequencing, asset state and publication state must be read only from the Production State on `main`.
+Operational sequencing, asset state and publication state must be read only from the authoritative Production State resolved by `stateRef` (working branch during production, main from REVIEW onward).
 
 ## Scene image-generation policy — mandatory
 
@@ -433,11 +447,13 @@ The image generation UI may produce separate image cards. That does not create s
 
 State must still be written after each generation so another chat cannot regenerate the same asset.
 
-However:
+During active production, write that State **directly to `country/{slug}`**. Do not open a PR for the State transition.
+
+Then:
 
 - do not wait for GitHub Actions after a state-only write;
 - do not inspect workflow runs after every Scene/Food;
-- re-fetch the state file and continue immediately;
+- re-fetch the working-branch State and continue immediately;
 - run/inspect state validation only at a batch or phase boundary, or when a write/validation conflict occurs.
 
 ### Batch materialization
@@ -481,11 +497,12 @@ Country visual production stays on the Country working branch.
 
 Do not merge/push individual approved images, Map work, asset QA work, and JSON implementation to main as separate production changes.
 
-Normal pre-review integration count:
+Normal main integration count:
 
-- state-only metadata writes to main: allowed and non-deploying;
-- Country content/assets: **one main integration when the review package is complete**.
+- active State / image cursor writes: **zero main integrations**;
+- Country review package (content + assets + latest State): **one main integration**;
+- formal publication after user approval: **one second small main integration**.
 
-Formal publication after user approval is a second small main change that switches publication state.
+Per-image State PRs are prohibited. This is a throughput rule, not an optional optimization.
 
 This rule prevents repeated deployment / Cloudflare propagation / production QA cycles.
