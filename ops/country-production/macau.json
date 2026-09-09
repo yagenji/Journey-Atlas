@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-09T01:58:00+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-09T10:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -55,15 +55,19 @@
     },
     {
       "id": "S06",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "coloane-village-pier-waterfront"
+      "contentId": "coloane-village-pier-waterfront",
+      "approvedGenerationId": "360c73ef-7d5b-4730-b855-f647e97306ac",
+      "approvedAt": "2026-09-09T02:18:00+09:00"
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "APPROVED",
       "asset": null,
-      "contentId": "hac-sa-black-sand-beach"
+      "contentId": "hac-sa-black-sand-beach",
+      "approvedGenerationId": "eba52418-502a-42d8-8431-7aa94242ae82",
+      "approvedAt": "2026-09-09T10:40:00+09:00"
     },
     {
       "id": "S08",
@@ -122,7 +126,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S06"
+    "asset": "S08"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
