@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_REGEN",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-09T12:54:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-09T12:56:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -81,17 +81,17 @@
     },
     {
       "id": "S07",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "turda-salt-mine-rudolf",
-      "candidateGenerationId": null,
+      "candidateGenerationId": "604fc599-93ff-44be-998e-476ee707fa11",
       "rejectedGenerationIds": [
         "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8",
         "6ce677bb-9390-49fc-8adb-c82decba8506",
         "ea24e396-faab-449d-bac0-afe96888bbad"
       ],
-      "failureReason": "Hard reject after series reset: generated a Romania atlas map instead of Rudolf Mine / Salina Turda. Wrong target and added text/map content are prohibited.",
-      "consecutiveFailureCount": 1,
+      "failureReason": null,
+      "consecutiveFailureCount": 0,
       "generationSeriesReset": true,
       "generationSeriesResetAt": "2026-09-09T12:52:00+09:00"
     },
@@ -153,8 +153,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_SCENE",
-    "asset": "S07"
+    "action": "BATCH_REVIEW_SCENES",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
