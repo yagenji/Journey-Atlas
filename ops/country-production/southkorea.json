@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "TASTE_REVIEW",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-10T08:35:00+09:00",
+  "phase": "TASTE_REGEN",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-10T08:36:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -408,7 +408,7 @@
     },
     {
       "id": "FOOD03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "samgyetang",
       "promptSeries": 1,
@@ -431,7 +431,6 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "7d300871-9011-49f8-b170-d13b1e483bd0",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
@@ -442,22 +441,24 @@
         "state": "ACCEPTED_PENDING_BATCH",
         "recordedAt": "2026-09-10T08:33:00+09:00",
         "basis": "User replied approve after FOOD03 generation; final APPROVED state deferred until Taste batch review per revision 5."
-      }
+      },
+      "approvedGenerationId": "7d300871-9011-49f8-b170-d13b1e483bd0",
+      "approvedAt": "2026-09-10T08:33:00+09:00"
     },
     {
       "id": "FOOD04",
       "state": "REGENERATE",
       "asset": null,
       "contentId": "bulgogi",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "4732f6da-03f2-4ada-82c2-4a79196fa206"
       ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "bulgogi",
-        "identity": "Bulgogi in one shallow neutral plate or bowl only: thin cooked marinated beef slices with onion/scallion only where integral, moist realistic texture; central dominant dish on plain warm ivory background, no grill, lettuce wraps, rice, banchan, utensils or sauce bowls.",
+        "identity": "Bulgogi ONLY. One shallow neutral plate or bowl containing thin cooked marinated beef slices with a small amount of onion/scallion only where integral. No chicken, no soup, no broth, no ginseng, no jujube, no black stone soup bowl, no wooden trivet. Central dominant single dish on plain pale beige/warm ivory background. No props, utensils, side dishes, rice, lettuce wraps, grill, sauce bowls, text, collage, or restaurant setting.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -469,7 +470,8 @@
         "forbidGrid": true,
         "forbidContactSheet": true,
         "forbidMontage": true,
-        "forbidInsetImages": true
+        "forbidInsetImages": true,
+        "refreshedForRepeatFailure": true
       },
       "lastRejectedVisualQa": {
         "targetIdentity": "FAIL",
@@ -540,16 +542,14 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "WAIT_TASTE_BATCH_REVIEW",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD01"
   },
   "blockingIssue": {
-    "code": "TASTE_RUNTIME_COLLAGE_REPEAT",
-    "state": "RESOLVED",
-    "detectedAt": "2026-09-10T08:31:00+09:00",
-    "notes": "FOOD01 and FOOD02 both produced the same prohibited four-dish collage pattern despite independent render packets. Further Taste generation is halted in this turn to protect credits. FOOD03 and FOOD04 remain NOT_STARTED; FOOD01 and FOOD02 remain REGENERATE.",
-    "resolvedAt": "2026-09-10T08:32:00+09:00",
-    "resolution": "Fresh user turn; resume with one-dish-only FOOD03 generation."
+    "code": "TASTE_PREVIOUS_ASSET_REPEAT",
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T08:36:00+09:00",
+    "notes": "FOOD04 repeated FOOD03 samgyetang instead of generating bulgogi. Regeneration must use a refreshed text-only render packet and must not reference or inherit the previous image."
   },
   "generationContext": {
     "state": "CLEAN",
@@ -572,5 +572,18 @@
     "notes": "User approved the complete eight-scene South Korea batch. The approved set covers Jeju, Gyeongju, Andong, Seoraksan, Suncheon Bay, Busan, Boseong and Ulleungdo as eight standalone images.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T08:26:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "PARTIAL",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "previous-asset-repeat",
+      "target-identity"
+    ],
+    "notes": "FOOD03 samgyetang accepted by user. FOOD01 and FOOD02 were automatic hard rejects for four-dish collage. FOOD04 was automatic hard reject for repeating the prior samgyetang image instead of bulgogi. Only FOOD03 is locked; FOOD01, FOOD02 and FOOD04 require regeneration.",
+    "approval": "PARTIAL",
+    "approvedAt": "2026-09-10T08:36:00+09:00"
   }
 }
