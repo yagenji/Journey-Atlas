@@ -4,18 +4,17 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "HERO",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-10T00:58:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-10T00:49:00+09:00",
   "hero": {
-    "state": "REGENERATE",
+    "state": "APPROVED",
     "asset": null,
     "contentId": "victoria-harbour-lugard-road-peak",
     "promptSeries": 3,
     "promptSeriesRejectCount": 0,
     "rejectedGenerationIds": [
       "6bdf721d-8926-4cfb-9790-43ec8f288dd9",
-      "9de1c99e-fc0d-41d5-b56e-96f045e4d020",
       "2ccc234f-c829-42f0-add4-2fdda9392a64",
       "6e25c6ce-7980-4478-9b4a-4b8864bcb465"
     ],
@@ -29,7 +28,8 @@
     },
     "candidateGenerationId": null,
     "promptSeriesReset": true,
-    "promptSeriesResetAt": "2026-09-10T00:47:00+09:00"
+    "promptSeriesResetAt": "2026-09-10T00:47:00+09:00",
+    "approvedGenerationId": "9de1c99e-fc0d-41d5-b56e-96f045e4d020"
   },
   "scenes": [
     {
@@ -299,7 +299,7 @@
     "repeatFailureRequiresRenderPacketRefresh": true
   },
   "next": {
-    "action": "GENERATE_HERO",
-    "asset": "HERO"
+    "action": "GENERATE_SCENE",
+    "asset": "S01"
   }
 }
