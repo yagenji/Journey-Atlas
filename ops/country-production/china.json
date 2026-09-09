@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-10T00:40:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-10T00:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -30,12 +30,14 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "xian-terracotta-army-pit1",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "fb1d6137-70b0-4b7c-bde5-1dfddb0f7cb4"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "xian-terracotta-army-pit1",
@@ -43,6 +45,12 @@
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "noAddedText": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "note": "Automatic hard reject: output repeated/restaged the approved Great Wall Hero instead of the Terracotta Army target."
       }
     },
     {
@@ -299,6 +307,6 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S01"
+    "asset": "S02"
   }
 }
