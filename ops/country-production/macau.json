@@ -4,8 +4,8 @@
   "countryName": "MACAU",
   "contentRef": "country/macau",
   "phase": "TASTE_REGEN",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-09T11:43:00+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-09T11:44:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -90,10 +90,13 @@
       "asset": null,
       "contentId": "minchi",
       "rejectedGenerationIds": [
-        "4f0e44c9-6811-49c8-814e-9ac28a235918"
+        "4f0e44c9-6811-49c8-814e-9ac28a235918",
+        "c5d01901-739e-42c4-bc96-c19ec56b4f48"
       ],
-      "failureReason": "Hard reject: FOOD01 Minchi generation produced a Cotai cityscape instead of a single-dish food image. No dish was rendered.",
-      "consecutiveFailureCount": 1
+      "failureReason": "Two hard rejects: FOOD01 Minchi generated non-Minchi targets, including an exact repeat of the approved FOOD04 Pastel de Nata.",
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-09T11:44:00+09:00"
     },
     {
       "id": "FOOD02",
