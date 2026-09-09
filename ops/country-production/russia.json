@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "SCENES_REGEN",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-09T11:10:30+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-09T12:59:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -27,27 +27,26 @@
     },
     {
       "id": "S02",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/saint-petersburg-neva-palace-embankment.webp",
+      "contentId": "saint-petersburg-neva-palace-embankment",
+      "approvedGenerationId": "15f1e577-3ec4-4182-934b-f8a3ff73eedb",
+      "approvedAt": "2026-09-09T12:59:00+09:00",
       "rejectedGenerationIds": [
         "cbe3b629-d241-49b4-9698-15d790374586",
         "3de8ed21-e3c6-48a8-99df-db584997b2fe"
-      ],
-      "failureReason": "Second consecutive hard reject: regeneration produced Kamchatka / Klyuchevskoy Volcano instead of Saint Petersburg / Neva & Palace Embankment. Reset S02 generation series before retry.",
-      "contentId": "saint-petersburg-neva-palace-embankment",
-      "consecutiveFailureCount": 2,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-09T11:10:30+09:00"
+      ]
     },
     {
       "id": "S03",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/kazan-kremlin-kazanka.webp",
       "contentId": "kazan-kremlin-kazanka",
+      "approvedGenerationId": "226238c9-7d3b-446e-b43c-383169d13719",
+      "approvedAt": "2026-09-09T12:59:00+09:00",
       "rejectedGenerationIds": [
         "0a89f1b5-67e6-4e34-8559-3b7f4ecfd17a"
-      ],
-      "failureReason": "Hard reject: generation repeated the approved Moscow Kremlin scene instead of Kazan / Kremlin & Kazanka."
+      ]
     },
     {
       "id": "S04",
@@ -67,13 +66,14 @@
     },
     {
       "id": "S06",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/altai-lake-teletskoye.webp",
       "contentId": "altai-lake-teletskoye",
+      "approvedGenerationId": "24cb996c-b1c9-45b7-8693-fa7a8aa2c2db",
+      "approvedAt": "2026-09-09T12:59:00+09:00",
       "rejectedGenerationIds": [
         "b6cb2f65-bbfc-4e4b-bd27-1f2714195ce8"
-      ],
-      "failureReason": "Hard reject: generation repeated a Curonian Spit dune/coast scene instead of Altai / Lake Teletskoye."
+      ]
     },
     {
       "id": "S07",
@@ -140,7 +140,7 @@
   },
   "next": {
     "action": "GENERATE_SCENE",
-    "asset": "S02"
+    "asset": "S07"
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
