@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "slug": "hong-kong",
+  "countryName": "HONG KONG",
+  "contentRef": "country/hong-kong",
+  "stateRef": "country/hong-kong",
+  "phase": "CONTENT",
+  "stateRevision": 1,
+  "updatedAt": "2026-09-10T00:21:00+09:00",
+  "hero": {
+    "state": "NOT_STARTED",
+    "asset": null,
+    "contentId": null
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S05",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S06",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S07",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "S08",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "FOOD02",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "FOOD03",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    },
+    {
+      "id": "FOOD04",
+      "state": "NOT_STARTED",
+      "asset": null,
+      "contentId": null
+    }
+  ],
+  "map": {
+    "state": "NOT_STARTED",
+    "asset": null
+  },
+  "implementation": {
+    "state": "NOT_STARTED"
+  },
+  "qa": {
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 4,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "next": {
+    "action": "COMPLETE_CONTENT_DESIGN",
+    "asset": null
+  }
+}
