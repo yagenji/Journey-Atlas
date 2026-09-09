@@ -4,8 +4,8 @@
   "countryName": "ROMANIA",
   "contentRef": "country/romania",
   "phase": "SCENES_REGEN",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-09T12:52:00+09:00",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-09T12:54:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -87,10 +87,11 @@
       "candidateGenerationId": null,
       "rejectedGenerationIds": [
         "5e46cc51-0ca2-4336-9e7e-fe0ab0fadba8",
-        "6ce677bb-9390-49fc-8adb-c82decba8506"
+        "6ce677bb-9390-49fc-8adb-c82decba8506",
+        "ea24e396-faab-449d-bac0-afe96888bbad"
       ],
-      "failureReason": "Second consecutive hard reject: generated an outdoor river canyon landscape instead of Rudolf Mine / Salina Turda. Reset S07 generation series before retry.",
-      "consecutiveFailureCount": 2,
+      "failureReason": "Hard reject after series reset: generated a Romania atlas map instead of Rudolf Mine / Salina Turda. Wrong target and added text/map content are prohibited.",
+      "consecutiveFailureCount": 1,
       "generationSeriesReset": true,
       "generationSeriesResetAt": "2026-09-09T12:52:00+09:00"
     },
