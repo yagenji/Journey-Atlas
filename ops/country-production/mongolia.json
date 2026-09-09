@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "mongolia",
   "countryName": "MONGOLIA",
-  "contentRef": "country/mongolia",
+  "contentRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-09T17:35:41+09:00",
+  "stateRevision": 22,
+  "updatedAt": "2026-09-09T18:47:20+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/mongolia/approved/hero-khongoryn-els-gobi.webp",
@@ -154,10 +154,10 @@
   "qa": {
     "state": "PASS",
     "productionState": "PASS",
-    "sourceCommit": "7c935c78d4032deef45d5ae7c494c7a64f513302",
-    "validateRunId": 34329796624,
-    "productionVerifyRunId": 34329796770,
-    "browserQaArtifactId": 10095322862,
+    "sourceCommit": "75fa64d3dbda06df239238278e89066f082af762",
+    "validateRunId": 34336428685,
+    "productionVerifyRunId": 34336428765,
+    "browserQaArtifactId": 10097974853,
     "checks": [
       "source-syntax",
       "reviewable-country-json",
@@ -210,19 +210,19 @@
       }
     },
     "failureCount": 0,
-    "notes": "The exact Mongolia review implementation commit 7c935c78d4032deef45d5ae7c494c7a64f513302 passed source validation, reviewable Country validation, Cloudflare package build, production runtime verification and production unpublished-reviewable Browser QA. atlasPublished remains false; formal publication is not authorized.",
-    "completedAt": "2026-09-09T17:35:41+09:00"
+    "notes": "The Mongolia canonical-review correction commit 75fa64d3dbda06df239238278e89066f082af762 passed Country data validation, production runtime verification and unpublished-reviewable Browser QA. atlasPublished remains false; formal publication is not authorized.",
+    "completedAt": "2026-09-09T18:47:20+09:00"
   },
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/mongolia/",
-    "commit": "7c935c78d4032deef45d5ae7c494c7a64f513302",
+    "commit": "75fa64d3dbda06df239238278e89066f082af762",
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-09T17:35:41+09:00",
-    "verificationBasis": "Cloudflare production runtime served the exact review implementation commit and production unpublished-reviewable Browser QA passed at Desktop, Tablet and Mobile."
+    "verifiedAt": "2026-09-09T18:47:20+09:00",
+    "verificationBasis": "Cloudflare production runtime served the exact canonical-review correction commit and unpublished-reviewable Browser QA passed."
   },
   "finalApproval": {
     "state": "PENDING"
