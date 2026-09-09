@@ -241,9 +241,10 @@ Exactly 3:
    - UNESCO's Deer Stone Monuments material.
    - The monuments date broadly to about 1200–600 BCE and connect today's pastoral landscape with a much older steppe culture.
 
-3. **匈奴貴族の墓の深さ — 最大約20m**
-   - UNESCO documentation describes elite Xiongnu tomb pits reaching roughly 20 m below the surface.
-   - The scale is more revealing than the number of serial components: a predominantly nomadic culture built large, technically sophisticated burial spaces underground.
+3. **四季を通じて牧畜する世帯 — 約19.6万世帯**
+   - Mongolia National Statistics Office reports 195.7 thousand herder households in 2024.
+   - The official definition covers households that herd livestock through all four seasons and rely on livestock husbandry as their main livelihood.
+   - This is preferred over a historical archaeology fact because it makes Mongolia's living pastoral culture visible at national scale.
 
 Do not substitute a generic highest-point or national-park-count fact.
 
