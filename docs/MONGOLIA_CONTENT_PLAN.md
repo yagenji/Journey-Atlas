@@ -241,9 +241,9 @@ Exactly 3:
    - UNESCO's Deer Stone Monuments material.
    - The monuments date broadly to about 1200–600 BCE and connect today's pastoral landscape with a much older steppe culture.
 
-3. **2026年登録の匈奴貴族墓地群 — 8つの構成資産**
-   - UNESCO World Heritage inscription added in 2026.
-   - It extends the page's historical arc between Bronze Age deer stones and the later Mongol imperial period.
+3. **匈奴貴族の墓の深さ — 最大約20m**
+   - UNESCO documentation describes elite Xiongnu tomb pits reaching roughly 20 m below the surface.
+   - The scale is more revealing than the number of serial components: a predominantly nomadic culture built large, technically sophisticated burial spaces underground.
 
 Do not substitute a generic highest-point or national-park-count fact.
 
