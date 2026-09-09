@@ -4,8 +4,8 @@
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
   "phase": "TASTE_REGEN",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-09T23:05:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-10T00:36:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -123,9 +123,10 @@
       "state": "REGENERATE",
       "asset": null,
       "rejectedGenerationIds": [
-        "14107d31-0623-4f8b-a52f-f1eb1604ae3c"
+        "14107d31-0623-4f8b-a52f-f1eb1604ae3c",
+        "75e5d9b7-0bf1-4637-ab7a-13bcdfc0be45"
       ],
-      "failureReason": "Hard reject: repeated the already-approved Pelmeni instead of FOOD03 Beef Stroganoff.",
+      "failureReason": "Second hard reject for FOOD03: generated Shchi/cabbage soup instead of Beef Stroganoff. Reset FOOD03 generation series before retry.",
       "contentId": "beef-stroganoff",
       "renderPacket": {
         "kind": "TASTE",
@@ -152,8 +153,12 @@
         ],
         "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
       },
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 1
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
+      "consecutiveFailureCount": 2,
+      "generationSeriesReset": true,
+      "generationSeriesResetAt": "2026-09-10T00:36:00+09:00",
+      "candidateGenerationId": null
     },
     {
       "id": "FOOD04",
