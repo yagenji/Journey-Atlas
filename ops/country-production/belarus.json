@@ -4,8 +4,8 @@
   "countryName": "BELARUS",
   "contentRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-09T02:24:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-09T11:22:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -138,15 +138,15 @@
     ],
     "sharedTemplate": true,
     "countrySpecificCss": false,
-    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Current MOFA Level 3/4 safety guidance is reflected; nextRoutes is intentionally empty and all duration examples are explicitly future-hypothetical. atlasPublished remains false."
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Current MOFA Level 3/4 safety guidance is reflected; nextRoutes contains three explicitly future-hypothetical cross-border continuations (Russia, Lithuania, Poland) and is not current travel advice. atlasPublished remains false."
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
-    "sourceCommit": "e3c54b531912120b07413592b5e7420bc0b0fe49",
-    "validateRunId": 34256354823,
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "42d247fdbf6745b7409701b774911d460de58773",
+    "validateRunId": 34302792511,
     "productionVerifyRunId": 34256355081,
-    "browserQaArtifactId": 10068202498,
+    "browserQaArtifactId": 10085541773,
     "checks": [
       "source-syntax",
       "reviewable-country-json",
@@ -169,7 +169,6 @@
       "registry-atlasPublished-false",
       "registry-href-empty",
       "related-country-count-3",
-      "related-country-poland-lithuania-ukraine",
       "encounter-count-8",
       "encounter-general-visual-language",
       "heading-hierarchy",
@@ -180,7 +179,9 @@
       "no-positive-tabindex",
       "no-horizontal-overflow",
       "no-clipped-text",
-      "no-severe-console-errors"
+      "no-severe-console-errors",
+      "related-country-russia-lithuania-poland",
+      "next-route-count-3"
     ],
     "browserViewports": {
       "desktop": {
@@ -200,7 +201,7 @@
       }
     },
     "failureCount": 0,
-    "notes": "Review corrections passed production QA. Related Countries now uses the required three-card layout with Poland, Lithuania, and Ukraine. Russia remains omitted while atlasPublished:false. Encounters were revised from generic weak items to an immediately readable visual index: European bison, primeval forest, lake groups, wetlands/floodplains, red-brick castles, Orthodox domes, straw craft, and paper cutting. Production served the corrected commit and targeted unpublished-reviewable browser QA passed with zero failures.",
+    "notes": "Editorial review correction passed PR country-data validation, Production State routing validation, and targeted unpublished-reviewable browser QA on head 42d247fdbf6745b7409701b774911d460de58773. Related Countries is Russia, Lithuania, and Poland; NEXT ROUTES contains three explicitly future-hypothetical routes to Russia, Lithuania, and Poland. The previously recorded production deployment remains the last separately verified production commit; atlasPublished remains false.",
     "completedAt": "2026-09-09T02:24:00+09:00"
   },
   "reviewDeployment": {
