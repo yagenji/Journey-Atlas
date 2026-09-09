@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "romania",
   "countryName": "ROMANIA",
-  "contentRef": "country/romania",
-  "phase": "QA",
-  "stateRevision": 43,
-  "updatedAt": "2026-09-10T08:23:00+09:00",
+  "contentRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 44,
+  "updatedAt": "2026-09-10T08:37:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/romania/approved/hero-sinaia-peles-carpathians.webp",
@@ -242,7 +242,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "sourceCommit": "670395a0b04e2e99995488adb7af3d998832d992",
     "validateRunId": 34417219555,
     "productionStateRunId": 34417219557,
@@ -300,11 +300,32 @@
     },
     "failureCount": 0,
     "completedAt": "2026-09-10T08:23:00+09:00",
-    "notes": "Romania targeted Country validation, production-state validation and unpublished-reviewable Browser QA passed after minimal hero mapOffset correction. All 13 raster assets decode and image duplicate QA passed."
+    "notes": "Romania targeted Country validation, production-state validation and unpublished-reviewable Browser QA passed after minimal hero mapOffset correction. All 13 raster assets decode and image duplicate QA passed.",
+    "productionSourceCommit": "e1da2ccf59f748ef3bdbaa5e2b45d1d776cd900c",
+    "productionVerifyRunId": 34417478364,
+    "productionBrowserQaArtifactId": 10129691808,
+    "productionChecks": [
+      "cloudflare-serves-review-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "production-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "failure-count-zero"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/romania/",
+    "commit": "e1da2ccf59f748ef3bdbaa5e2b45d1d776cd900c",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-10T08:37:00+09:00",
+    "verificationBasis": "Cloudflare production served the exact Romania review merge commit and unpublished-reviewable Browser QA passed."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -314,7 +335,7 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "executionPolicy": {
@@ -405,5 +426,6 @@
     "notes": "All 13 approved Romania rasters are present on country/romania. Their Git blob SHAs exactly match the locally fully decoded production WebP exports. Hero is 1600x900; all eight Scenes and four Taste assets are 1200x800. The approved folder contains exactly the 13 final rasters with no draft/temp/placeholder assets. Perceptual duplicate gate passed. Map SVG exists and passed structural QA.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T08:20:00+09:00"
-  }
+  },
+  "stateRef": "main"
 }
