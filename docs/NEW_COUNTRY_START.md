@@ -44,6 +44,8 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 新規Stateは imageGenerationPolicy revision 4 を使用し、Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。生成直後はcandidateVisualQaで前画像重複・対象一致・コラージュ/文字混入を確認し、SCENES_INITIAL / TASTE_INITIAL中の個別APPROVEDは禁止です。
 
 ユーザー承認前に atlasPublished:true へ変更しないでください。
+
+正式公開PRではrevision 4 Stateを直接 COMPLETE / CI_GATED にしてください。公開後のCloudflare Production検証結果を書き戻すためだけの追加PRは作成しないでください。
 ```
 
 ## Authority order
@@ -92,4 +94,4 @@ approved asset materialization
 → canonical URL presentation
 ```
 
-Do not create intermediate State / publish / QA / fix branches for normal Country production. Keep one Country working branch until review integration. Per-image State updates are direct commits to that working branch, not PRs.
+Do not create intermediate State / publish / QA / fix branches for normal Country production. Keep one Country working branch until review integration. Per-image State updates are direct commits to that working branch, not PRs. After explicit publication approval, use one terminal publication PR and do not create a post-production State normalization PR.
