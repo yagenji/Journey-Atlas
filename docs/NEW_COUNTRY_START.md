@@ -24,11 +24,13 @@ PROJECT MASTER INSTRUCTIONSとGitHub mainの最新仕様を使用してくださ
 最初に ops/country-production/{slug}.json をmainから確認してください。
 
 Production Stateが存在する場合：
-- チャット履歴ではなくProduction Stateを正本として、PHASE / NEXT ACTION / NEXT ASSETから再開してください。
+- stateRef / contentRef が country/{slug} を指していれば、そのbranchのProduction Stateを再取得し、そちらを正本としてPHASE / NEXT ACTION / NEXT ASSETから再開してください。
+- stateRef が main ならmainを正本としてください。
 
-Production Stateが存在しない場合：
-- Registry / Country JSON / assets / branchの実状態を確認してください。
-- 新規Countryであることを確認したら、`python3 scripts/country_production_state.py init {slug}` が生成するrevision 4 Stateを標準形としてmainに初期化してください。
+mainにProduction Stateが存在しない場合：
+- country/{slug} branchを確認し、そこにStateがあればそのStateを正本としてください。
+- 完全な新規Countryならcountry/{slug} branchを先に作成し、revision 4 Stateをそのbranchに初期化してください。
+- active production中のState更新のためにmain PRを作成しないでください。
 - 手作業で古いrevision 2 / 3 Stateを複製しないでください。
 
 制作進行・承認ゲート・Batch処理・QA・Review Deployment・Publishは docs/COUNTRY_PRODUCTION_STATE.md に従ってください。
@@ -49,7 +51,7 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 When instructions appear to conflict, use this order for Country production operations:
 
 1. PROJECT MASTER INSTRUCTIONS
-2. `ops/country-production/{slug}.json` on `main` for current operational state
+2. authoritative `ops/country-production/{slug}.json` resolved by `stateRef` (working branch during production, main from REVIEW onward)
 3. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval / throughput rules
 4. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
 5. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
@@ -90,4 +92,4 @@ approved asset materialization
 → canonical URL presentation
 ```
 
-Do not create intermediate publish / QA / fix branches for normal Country production. Keep one Country working branch until review integration.
+Do not create intermediate State / publish / QA / fix branches for normal Country production. Keep one Country working branch until review integration. Per-image State updates are direct commits to that working branch, not PRs.
