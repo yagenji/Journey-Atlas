@@ -14,8 +14,8 @@ Lead direction:
 火山島の海辺から、首都の宮殿と山、古都の墳墓、河回村、雪岳山、干潟、港町、茶畑、東海の離島へ。都市の密度が高い一方、山と海がいつも近く、半島と島の地形に歴史と暮らしが重なる国。
 
 The page should reveal South Korea through:
-- Jeju's volcanic coast as the Hero rather than reducing the country to Seoul
-- Seoul as a capital where palace architecture, contemporary city fabric and mountains coexist
+- Seoul as the Hero, using the immediately recognisable combination of Gyeongbokgung palace, Bugaksan mountain and capital-city context
+- Jeju's volcanic coast as one of the eight Scenes, broadening the country beyond the capital
 - Gyeongju as the Silla historical layer
 - Hahoe as a lived Joseon-period clan-village landscape
 - Seoraksan as a rugged granite-mountain landscape
@@ -26,46 +26,48 @@ The page should reveal South Korea through:
 
 ## Hero
 
-### H — Jeju / Seongsan Ilchulbong from Gwangchigi coast
+### H — Seoul / Gyeongbokgung and Bugaksan
 
-Working coordinate: **33.4578, 126.9422**  
-Planned filename: `hero-seongsan-ilchulbong-gwangchigi.webp`  
-Content ID: `seongsan-ilchulbong-gwangchigi`
+Working coordinate: **37.5796, 126.9770**  
+Planned filename: `hero-seoul-gyeongbokgung-bugaksan.webp`  
+Content ID: `seoul-gyeongbokgung-bugaksan`
 
 Visual identity:
-- real Seongsan Ilchulbong tuff cone, recognisable by its broad truncated crater-rim profile
-- viewpoint from the Gwangchigi coastal side, with basalt shore / shallow tidal foreground where geographically plausible
-- cone placed right-centre; quieter sky, sea and low foreground remain available on the left for Hero copy
-- broad horizontal composition that remains legible after mobile crop
-- soft early-morning or clear daylight; restrained sea blue, volcanic green and dark basalt
-- no theatrical giant sunrise, saturated red sky, aerial-only impossible viewpoint or generic tropical-island treatment
-- no oversized tourists, horses or boats
+- real Gyeongbokgung palace complex as the unmistakable architectural anchor
+- Bugaksan rising directly behind the palace so the image reads specifically as Seoul, not a generic East Asian palace
+- enough modern-capital context at the edges to register the living city, without letting high-rises dominate
+- broad central-axis or slightly elevated composition; palace roofs and mountain silhouette remain clear after mobile crop
+- preserve quiet negative space for Hero copy
+- clear spring or autumn daylight; restrained dancheong, tiled-roof, stone and mountain colors
+- people may appear only at natural small scale
+- no guard-change spectacle, costume parade, oversized crowd, neon-night treatment or tourism-poster saturation
+- no invented readable signage or fantasy palace scale
 - photo 6 : quiet watercolor 4; refined illustrated realism consistent with Iceland / Norway
 - no text, labels, flag, collage, border, map or UI
 
 Why this Hero:
-- Seongsan is a real, identifiable volcanic form that adds sea + island + geology immediately
-- it avoids making Seoul the entire visual identity of Korea
-- the 8 Scenes can then broaden the page into mainland city, history, mountains, wetlands, agriculture and another island geography
+- Gyeongbokgung + Bugaksan is immediately readable as Seoul and therefore strongly anchors the country as Korea
+- palace, mountain and modern capital context show several layers of the country in one frame
+- Jeju then moves into the eight Scenes, preserving volcanic-island geography without asking it to carry national recognition alone
 
 ## Locked 8-scene selection
 
-### S01 — Seoul / Gyeongbokgung and Bukhansan context
+### S01 — Jeju / Seongsan Ilchulbong from Gwangchigi coast
 
-Working coordinate: **37.5796, 126.9770**  
-Planned filename: `seoul-gyeongbokgung-bukhansan.webp`  
-Content ID: `seoul-gyeongbokgung-bukhansan`
+Working coordinate: **33.4578, 126.9422**  
+Planned filename: `seongsan-ilchulbong-gwangchigi.webp`  
+Content ID: `seongsan-ilchulbong-gwangchigi`
 
 Scene identity:
-- recognisable Gyeongbokgung / Gwanghwamun palace axis as the architectural anchor
-- Bukhansan / northern mountain ridges visible as real city context where the viewpoint permits
-- enough surrounding urban fabric to read as Seoul, but palace architecture remains primary
-- small natural pedestrians are acceptable; no guard-change portrait, costume group or crowd spectacle
-- spring or clear autumn daylight with restrained palace colors
-- no invented readable signage, giant modern tower insertion or fantasy palace scale
+- real Seongsan Ilchulbong tuff cone, recognisable by its broad truncated crater-rim profile
+- viewpoint from the Gwangchigi coastal side, with basalt shore / shallow tidal foreground where geographically plausible
+- broad scene with the volcanic form, sea and shore all readable
+- soft early-morning or clear daylight; restrained sea blue, volcanic green and dark basalt
+- no theatrical giant sunrise, saturated sky, generic tropical-island treatment or aerial-only impossible viewpoint
+- no oversized tourists, horses or boats
 
 Why:
-Seoul is most useful here when the frame shows the close relationship among capital city, royal architecture and mountains rather than a generic skyline.
+Jeju adds a volcanic-island landscape that is geographically and visually distinct from the mainland while keeping the Hero focused on national recognition.
 
 ### S02 — Gyeongju / Daereungwon royal tumuli
 
@@ -184,8 +186,8 @@ Ulleungdo completes the map with an isolated East Sea island and a rockier coast
 ## Coverage check
 
 Hero + 8 Scenes distribute:
-- Jeju — volcanic tuff cone / sea
 - Seoul — capital / palace / mountain adjacency
+- Jeju — volcanic tuff cone / sea
 - Gyeongju — Silla royal-tomb landscape
 - Andong — Joseon clan village / river / agriculture
 - Gangwon — granite mountain / autumn forest
@@ -195,8 +197,8 @@ Hero + 8 Scenes distribute:
 - Ulleungdo — isolated volcanic coast
 
 Visual types:
-- volcanic cone + sea
 - palace + city + mountain
+- volcanic cone + sea
 - grassy tumuli
 - river village
 - granite peaks + forest
@@ -205,7 +207,7 @@ Visual types:
 - cultivated tea rows
 - rugged island cliffs
 
-The set intentionally avoids using multiple Seoul palace / hanok / skyline scenes and avoids turning Korea into either an all-urban or all-traditional page.
+The Hero carries Seoul's national recognisability once; the eight Scenes then move out across Jeju, Gyeongju, Andong, Gangwon, Jeollanam-do, Busan, Boseong and Ulleungdo. The set avoids repeating Seoul palace / skyline imagery and avoids turning Korea into either an all-urban or all-traditional page.
 
 ## Country Profile
 
