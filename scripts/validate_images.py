@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import base64
 import io
+import hashlib
 import json
 import math
 import re
@@ -35,6 +36,12 @@ TASTE_MIN = (1200, 800)
 HERO_MIN = (1200, 760)
 RATIO_3_2 = 1.5
 RATIO_TOLERANCE = 0.015
+
+DUPLICATE_THUMB_SIZE = (32, 32)
+DUPLICATE_HASH_SIZE = 8
+NEAR_DUPLICATE_DHASH_MAX = 2
+NEAR_DUPLICATE_AHASH_MAX = 2
+NEAR_DUPLICATE_RMS_MAX = 12.0
 
 
 def published_slugs() -> list[str]:
@@ -95,6 +102,155 @@ def verify_raster(path: Path) -> tuple[int, int, str]:
     if width <= 0 or height <= 0:
         raise ValueError(f"invalid dimensions: {width}x{height}")
     return width, height, fmt
+
+
+def _resample_lanczos():
+    resampling = getattr(Image, "Resampling", Image)
+    return resampling.LANCZOS
+
+
+def _bit_hash(values: list[int], threshold: float) -> tuple[bool, ...]:
+    return tuple(value >= threshold for value in values)
+
+
+def _hamming(left: tuple[bool, ...], right: tuple[bool, ...]) -> int:
+    return sum(a != b for a, b in zip(left, right))
+
+
+def visual_fingerprint(path: Path) -> dict[str, object]:
+    """Return a conservative fingerprint for exact/near-duplicate detection."""
+    try:
+        with Image.open(path) as image:
+            rgb = image.convert("RGB")
+            thumb = rgb.resize(DUPLICATE_THUMB_SIZE, _resample_lanczos())
+            gray = thumb.convert("L")
+
+            gray_values = list(gray.getdata())
+            average = sum(gray_values) / len(gray_values)
+            ahash = _bit_hash(gray_values, average)
+
+            dhash_image = gray.resize(
+                (DUPLICATE_HASH_SIZE + 1, DUPLICATE_HASH_SIZE),
+                _resample_lanczos(),
+            )
+            dhash_values = list(dhash_image.getdata())
+            dhash_bits: list[bool] = []
+            row_width = DUPLICATE_HASH_SIZE + 1
+            for y in range(DUPLICATE_HASH_SIZE):
+                row = dhash_values[y * row_width : (y + 1) * row_width]
+                dhash_bits.extend(row[x] > row[x + 1] for x in range(DUPLICATE_HASH_SIZE))
+
+            payload = thumb.tobytes()
+    except (OSError, UnidentifiedImageError) as exc:
+        raise ValueError(f"duplicate fingerprint decode failed: {exc}") from exc
+
+    return {
+        "digest": hashlib.sha256(payload).hexdigest(),
+        "ahash": ahash,
+        "dhash": tuple(dhash_bits),
+        "thumb": payload,
+    }
+
+
+def _thumbnail_rms(left: bytes, right: bytes) -> float:
+    if len(left) != len(right) or not left:
+        return float("inf")
+    squared = sum((a - b) ** 2 for a, b in zip(left, right))
+    return math.sqrt(squared / len(left))
+
+
+def validate_duplicate_group(
+    errors: list[str],
+    slug: str,
+    label: str,
+    members: list[tuple[str, str]],
+) -> int:
+    fingerprints: dict[str, dict[str, object]] = {}
+    compared = 0
+
+    for owner, asset in members:
+        path = ROOT / asset
+        if not path.exists() or path.suffix.lower() not in RASTER_SUFFIXES:
+            continue
+        try:
+            fingerprints[owner] = visual_fingerprint(path)
+        except ValueError as exc:
+            errors.append(f"{slug}:{owner}: {exc}")
+            continue
+
+    active = [(owner, asset) for owner, asset in members if owner in fingerprints]
+    for index, (left_owner, left_asset) in enumerate(active):
+        left = fingerprints[left_owner]
+        for right_owner, right_asset in active[index + 1 :]:
+            right = fingerprints[right_owner]
+            compared += 1
+
+            if left_asset == right_asset:
+                errors.append(
+                    f"{slug}:{label}: duplicate asset path reused by {left_owner} and {right_owner}: {left_asset}"
+                )
+                continue
+
+            if left["digest"] == right["digest"]:
+                errors.append(
+                    f"{slug}:{label}: visually identical normalized image used by "
+                    f"{left_owner} and {right_owner}: {left_asset} / {right_asset}"
+                )
+                continue
+
+            dhash_distance = _hamming(left["dhash"], right["dhash"])
+            ahash_distance = _hamming(left["ahash"], right["ahash"])
+            rms = _thumbnail_rms(left["thumb"], right["thumb"])
+
+            if (
+                dhash_distance <= NEAR_DUPLICATE_DHASH_MAX
+                and ahash_distance <= NEAR_DUPLICATE_AHASH_MAX
+                and rms <= NEAR_DUPLICATE_RMS_MAX
+            ):
+                errors.append(
+                    f"{slug}:{label}: near-duplicate images detected between "
+                    f"{left_owner} and {right_owner} "
+                    f"(dHash={dhash_distance}, aHash={ahash_distance}, RMS={rms:.2f}): "
+                    f"{left_asset} / {right_asset}"
+                )
+
+    return compared
+
+
+def scan_duplicates(slugs: list[str]) -> tuple[list[str], int]:
+    """Check Hero+Scenes and Taste groups for duplicate/near-duplicate imagery."""
+    errors: list[str] = []
+    compared = 0
+
+    for slug in slugs:
+        path = COUNTRY_DIR / f"{slug}.json"
+        if not path.exists():
+            errors.append(f"{slug}: Country JSON missing for duplicate scan")
+            continue
+
+        data = json.loads(path.read_text(encoding="utf-8"))
+
+        scene_members: list[tuple[str, str]] = []
+        hero_asset = data.get("hero", {}).get("image")
+        if isinstance(hero_asset, str):
+            scene_members.append(("hero", hero_asset))
+        for index, scene in enumerate(data.get("scenes", []), 1):
+            asset = scene.get("image") if isinstance(scene, dict) else None
+            if isinstance(asset, str):
+                scene_members.append((f"scene:{index}", asset))
+
+        taste_members: list[tuple[str, str]] = []
+        taste = data.get("taste", {})
+        if isinstance(taste, dict):
+            for index, item in enumerate(taste.get("items", []), 1):
+                asset = item.get("image") if isinstance(item, dict) else None
+                if isinstance(asset, str):
+                    taste_members.append((f"taste:{index}", asset))
+
+        compared += validate_duplicate_group(errors, slug, "hero-scenes", scene_members)
+        compared += validate_duplicate_group(errors, slug, "taste", taste_members)
+
+    return errors, compared
 
 
 def verify_embedded_svg_raster(path: Path) -> tuple[int, int, str] | None:
@@ -258,7 +414,25 @@ def scan(slugs: list[str]) -> tuple[list[str], int]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=("audit", "hard"), default="audit")
+    parser.add_argument("--duplicates-only", action="store_true")
+    parser.add_argument("--slug", action="append", default=[])
     args = parser.parse_args()
+
+    if args.duplicates_only:
+        if not args.slug:
+            parser.error("--duplicates-only requires at least one --slug")
+        slugs = list(dict.fromkeys(args.slug))
+        errors, compared = scan_duplicates(slugs)
+        if errors:
+            print("Image QA DUPLICATE-GATE FAILURES:", file=sys.stderr)
+            for error in errors:
+                print(f"- {error}", file=sys.stderr)
+            return 1
+        print(
+            f"Image duplicate QA passed: {len(slugs)} country page(s), "
+            f"{compared} pair(s) compared."
+        )
+        return 0
 
     slugs = published_slugs() if args.mode == "audit" else hard_gate_slugs()
     if not slugs:

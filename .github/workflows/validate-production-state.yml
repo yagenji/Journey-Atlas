@@ -58,7 +58,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -80,7 +80,7 @@ jobs:
           state = module.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
           assert state["phase"] == "CONTENT"
           assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
-          assert state["imageGenerationPolicy"]["revision"] == 3
+          assert state["imageGenerationPolicy"]["revision"] == 4
           assert state["executionPolicy"]["sceneApproval"] == "BATCH"
           assert state["executionPolicy"]["tasteApproval"] == "BATCH"
           assert len(state["scenes"]) == 8

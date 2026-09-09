@@ -95,7 +95,7 @@ During `TASTE_INITIAL` and `TASTE_REVIEW`:
 
 Only the batch-review transition may convert accepted Taste candidates to `APPROVED`.
 
-For image-generation policy revision 3, leaving Scene production requires an approved `sceneBatchReview`, and leaving Taste production requires an approved `tasteBatchReview`.
+For image-generation policy revision 3 or later, leaving Scene production requires an approved `sceneBatchReview`, and leaving Taste production requires an approved `tasteBatchReview`.
 
 ## Render Packet — mandatory
 
@@ -152,6 +152,44 @@ Within one Country Production State, a generation ID may belong to only one asse
 The same generation ID must never appear under different Hero / Scene / Taste assets, even if one occurrence is marked rejected.
 
 Cross-asset generation-ID reuse is a hard validation failure because it indicates that a previous output was carried into the wrong target.
+
+## Candidate visual novelty QA — revision 4 hard rule
+
+A generated Hero / Scene / Taste output must not become `REVIEW_CANDIDATE` merely because generation completed.
+
+Before the State transition, compare the new output against the immediately previous generated/approved asset and the current target Render Packet. Record:
+
+```json
+"candidateVisualQa": {
+  "targetIdentity": "PASS",
+  "previousAssetRepeat": "PASS",
+  "collageTypography": "PASS"
+}
+```
+
+For revision 4, Production State validation rejects a `REVIEW_CANDIDATE` that does not carry all three PASS results.
+
+If the new output is the previous image repeated, restaged, lightly cropped, or otherwise materially the same image:
+- reject it automatically;
+- record its generation ID under rejected generations;
+- do not ask the user to review it;
+- do not immediately spend another credit on the same prompt family when later NOT_STARTED targets remain.
+
+## Batch perceptual duplicate gate — revision 4 hard rule
+
+Visual inspection is followed by a machine duplicate check during asset QA.
+
+`scripts/validate_images.py --duplicates-only --slug {slug}` compares:
+- Hero against all 8 Scenes;
+- all Scene pairs;
+- all 4 Taste pairs.
+
+The gate rejects:
+- the same asset path reused for different targets;
+- normalized pixel-identical images;
+- conservative near-duplicates detected by combined dHash / aHash / thumbnail RMS thresholds.
+
+The Country review package must not proceed while this duplicate gate fails.
 
 ## Prompt-series failure guard
 
@@ -304,7 +342,7 @@ For a new Country:
 1. read `ops/country-production/{slug}.json` from `main`;
 2. if it exists, resume exactly from its deterministic NEXT;
 3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state;
-4. for a genuinely new Country, use `python3 scripts/country_production_state.py init {slug}` as the canonical revision-3 State scaffold, then commit that State to `main`;
+4. for a genuinely new Country, use `python3 scripts/country_production_state.py init {slug}` as the canonical revision-4 State scaffold, then commit that State to `main`;
 5. do not clone an older Country State by hand;
 6. create or update the Content Plan only for editorial and visual-design intent;
 7. do not copy operational cursor information into the Content Plan;
@@ -336,11 +374,11 @@ Operational sequencing, asset state and publication state must be read only from
 
 Hero and S01–S08 generation must follow `docs/SCENE_IMAGE_PRODUCTION.md`.
 
-Any Country in an image-production phase must carry:
+Any new Country in an image-production phase must carry revision 4. Existing revision 3 Countries may finish under revision 3 unless their State is explicitly upgraded:
 
 ```json
 "imageGenerationPolicy": {
-  "revision": 3,
+  "revision": 4,
   "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
   "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
   "sceneReview": "BATCH_ONLY",
@@ -349,6 +387,8 @@ Any Country in an image-production phase must carry:
   "rejectTypographyImmediately": true,
   "rejectCollageImmediately": true,
   "rejectPreviousAssetRepeatImmediately": true,
+  "candidateVisualQaRequired": true,
+  "batchPerceptualDuplicateGate": true,
   "maxConsecutiveHardFailuresPerPromptSeries": 2,
   "requireRenderPacketRefreshAfterLimit": true,
   "approvedAssetRegeneration": false,

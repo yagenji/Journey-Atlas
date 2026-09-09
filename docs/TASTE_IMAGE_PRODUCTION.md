@@ -100,6 +100,18 @@ The prompt must be rebuilt from the current Render Packet. Never carry the previ
 
 If the Render Packet is missing or incomplete, do not generate.
 
+## Candidate visual novelty QA — mandatory
+
+After every generated Taste image and before writing `REVIEW_CANDIDATE`:
+
+- confirm the output matches the current dish Render Packet;
+- compare it with the immediately previous generated / approved Taste image;
+- record `candidateVisualQa.targetIdentity = PASS`;
+- record `candidateVisualQa.previousAssetRepeat = PASS`;
+- record `candidateVisualQa.collageTypography = PASS`.
+
+A new generation ID is not sufficient. If the previous dish image is repeated, restaged, lightly altered, or the wrong dish is carried forward, reject automatically without asking the user to approve it.
+
 ## Generation-state rule
 
 For four Taste items:
@@ -114,6 +126,14 @@ For four Taste items:
 APPROVED Taste images are immutable unless the user explicitly asks for regeneration.
 
 Do not edit the previous dish image into the next dish image. Each dish starts from an independent generation state.
+
+## Machine duplicate gate
+
+After the four approved Taste assets are materialized, run:
+
+`python3 scripts/validate_images.py --duplicates-only --slug {slug}`
+
+All four Taste images are compared pairwise for same-path reuse, normalized identical pixels, and conservative near-duplicate similarity. A failure reopens only the affected Taste item(s); the Country review package must not proceed.
 
 ## Batch approval enforcement
 

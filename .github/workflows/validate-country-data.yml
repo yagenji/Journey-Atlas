@@ -72,6 +72,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -94,6 +96,41 @@ jobs:
 
       - name: Enforce renewed Country image hard gate
         run: python3 scripts/validate_images.py --mode hard
+
+      - name: Enforce duplicate gate on changed Country image sets
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            base="$(git rev-parse HEAD^1)"
+            head="$(git rev-parse HEAD^2)"
+          else
+            base="$(git rev-parse HEAD^)"
+            head="$(git rev-parse HEAD)"
+          fi
+
+          changed="$(git diff --name-only "$base" "$head")"
+          slugs="$(
+            printf '%s\n' "$changed" |
+              sed -n                 -e 's#^data/countries/\([^/]*\)\.json$#\1#p'                 -e 's#^assets/images/\([^/]*\)/.*#\1#p' |
+              sort -u
+          )"
+
+          if [ -z "$slugs" ]; then
+            echo "No changed Country image sets require duplicate QA."
+            exit 0
+          fi
+
+          while IFS= read -r slug; do
+            [ -n "$slug" ] || continue
+            if [ -f "data/countries/$slug.json" ]; then
+              python3 scripts/validate_images.py --duplicates-only --slug "$slug"
+            else
+              echo "Skip $slug: Country JSON not materialized yet."
+            fi
+          done <<< "$slugs"
 
       - name: Validate reviewable and published country JSON
         run: |
