@@ -9,7 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
-REGISTRY_PATH = ROOT / "data" / "atlas-destinations.json"
+REGISTRY_PATHS = [
+    ROOT / "data" / "atlas-destinations.json",
+    ROOT / "data" / "atlas-destinations-editorial.json",
+]
 TAXONOMY_PATH = ROOT / "data" / "region-taxonomy.json"
 
 REGION_RE = re.compile(r"^(.+?) / (\d{1,2})°([NS])$")
@@ -40,13 +43,15 @@ def expected_region_by_iso2(taxonomy: dict) -> dict[str, str]:
 
 
 def main() -> int:
-    registry = load_json(REGISTRY_PATH)
     taxonomy = load_json(TAXONOMY_PATH)
-    slug_to_iso2 = {
-        row.get("slug"): row.get("iso2")
-        for row in registry.get("destinations", [])
-        if row.get("slug") and row.get("iso2")
-    }
+    slug_to_iso2: dict[str, str] = {}
+    for registry_path in REGISTRY_PATHS:
+        registry = load_json(registry_path)
+        for row in registry.get("destinations", []):
+            slug = row.get("slug")
+            iso2 = row.get("iso2")
+            if slug and iso2:
+                slug_to_iso2[slug] = iso2
     expected_by_iso2 = expected_region_by_iso2(taxonomy)
 
     errors: list[str] = []
@@ -63,7 +68,7 @@ def main() -> int:
         value = data.get("region")
 
         if not iso2:
-            errors.append(f"{path.name}: slug {slug!r} is missing from destination registry")
+            errors.append(f"{path.name}: slug {slug!r} is missing from destination registries")
             continue
         expected = expected_by_iso2.get(iso2)
         if not expected:
