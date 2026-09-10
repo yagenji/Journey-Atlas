@@ -4,11 +4,11 @@
   "countryName": "JAPAN",
   "contentRef": "country/japan",
   "stateRef": "country/japan",
-  "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-10T15:48:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-10T15:50:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": null,
     "contentId": "fuji-lake-kawaguchi-oishi",
     "promptSeries": 1,
@@ -30,18 +30,19 @@
       "forbidInsetImages": true,
       "singleSceneOnly": true
     },
-    "candidateGenerationId": "a63292d6-42fd-4fd7-b673-9456f68b4e57",
+    "approvedGenerationId": "a63292d6-42fd-4fd7-b673-9456f68b4e57",
     "candidateVisualQa": {
       "targetIdentity": "PASS",
       "previousAssetRepeat": "PASS",
       "collageTypography": "PASS",
       "notes": "Candidate shows a single continuous real-world Lake Kawaguchi and Mount Fuji composition consistent with the Oishi Park direction. Fuji is unmistakable, lake geography is clear, foreground vegetation remains subordinate, and no false landmark, readable text, UI, collage, grid or panel is present. No prior Japan Hero/Scene generation exists to repeat."
-    }
+    },
+    "approvedAt": "2026-09-10T15:50:00+09:00"
   },
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "tokyo-shibuya-crossing",
       "promptSeries": 1,
@@ -62,6 +63,14 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "generationReservation": {
+        "reservationId": "S01-series1-attempt1-20260910T155000",
+        "asset": "S01",
+        "contentId": "tokyo-shibuya-crossing",
+        "promptSeries": 1,
+        "generationContextEpoch": 1,
+        "reservedAt": "2026-09-10T15:50:00+09:00"
       }
     },
     {
@@ -241,197 +250,22 @@
     }
   ],
   "taste": [
-    {
-      "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "nigiri-sushi",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
-      "renderPacket": {
-        "kind": "TASTE",
-        "contentId": "nigiri-sushi",
-        "identity": "One coherent serving of five to six Japanese nigiri sushi on one simple low ceramic plate, compact centered arrangement with natural rice-to-fish proportions and a restrained familiar selection such as tuna, salmon, white fish and shrimp. Clean warm-ivory / pale-beige seamless background. No soy dish, chopsticks, ginger, wasabi mound, sake, leaves, ingredient scatter, extra plate, person, restaurant scenery or text.",
-        "independentGeneration": true,
-        "forbidPreviousAssetReuse": true,
-        "noAddedText": true,
-        "singleDishOnly": true,
-        "cleanNeutralBackground": true,
-        "singleFrameOnly": true,
-        "forbidCollage": true,
-        "forbidPanels": true,
-        "forbidGrid": true,
-        "forbidContactSheet": true,
-        "forbidMontage": true,
-        "forbidInsetImages": true
-      }
-    },
-    {
-      "id": "FOOD02",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "shoyu-ramen",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
-      "renderPacket": {
-        "kind": "TASTE",
-        "contentId": "shoyu-ramen",
-        "identity": "One Japanese shoyu ramen in one simple bowl only: clear brown soy-based broth, noodles visible, restrained chashu, scallion and modest egg or menma kept inside the bowl. Bowl centered large on a seamless warm-ivory / pale-beige background. No side plate, gyoza, spoon, chopsticks, condiment jars, napkin, drink, table setting, person, restaurant background or text.",
-        "independentGeneration": true,
-        "forbidPreviousAssetReuse": true,
-        "noAddedText": true,
-        "singleDishOnly": true,
-        "cleanNeutralBackground": true,
-        "singleFrameOnly": true,
-        "forbidCollage": true,
-        "forbidPanels": true,
-        "forbidGrid": true,
-        "forbidContactSheet": true,
-        "forbidMontage": true,
-        "forbidInsetImages": true
-      }
-    },
-    {
-      "id": "FOOD03",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "okonomiyaki",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
-      "renderPacket": {
-        "kind": "TASTE",
-        "contentId": "okonomiyaki",
-        "identity": "One single round Osaka-style Japanese okonomiyaki on one plain plate only, intact and centered large; brown sauce and a modest mayonnaise pattern on the surface, tiny bonito or aonori only as part of the dish. Seamless warm-ivory / pale-beige background. No hotplate, spatula, chopsticks, extra bowl, ingredients, drink, napkin, person, restaurant setting or text.",
-        "independentGeneration": true,
-        "forbidPreviousAssetReuse": true,
-        "noAddedText": true,
-        "singleDishOnly": true,
-        "cleanNeutralBackground": true,
-        "singleFrameOnly": true,
-        "forbidCollage": true,
-        "forbidPanels": true,
-        "forbidGrid": true,
-        "forbidContactSheet": true,
-        "forbidMontage": true,
-        "forbidInsetImages": true
-      }
-    },
-    {
-      "id": "FOOD04",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "japanese-curry-rice",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
-      "renderPacket": {
-        "kind": "TASTE",
-        "contentId": "japanese-curry-rice",
-        "identity": "One Japanese curry rice on one simple plate only: thick restrained brown curry and white rice share the same plate in a clean recognisable composition, with only a few small cooked vegetable or meat pieces naturally within the curry. Plate centered large on a seamless warm-ivory / pale-beige background. No pickles, separate garnish dish, spoon, glass, condiment, napkin, person, restaurant setting or text.",
-        "independentGeneration": true,
-        "forbidPreviousAssetReuse": true,
-        "noAddedText": true,
-        "singleDishOnly": true,
-        "cleanNeutralBackground": true,
-        "singleFrameOnly": true,
-        "forbidCollage": true,
-        "forbidPanels": true,
-        "forbidGrid": true,
-        "forbidContactSheet": true,
-        "forbidMontage": true,
-        "forbidInsetImages": true
-      }
-    }
+    {"id":"FOOD01","state":"NOT_STARTED","asset":null,"contentId":"nigiri-sushi","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"TASTE","contentId":"nigiri-sushi","identity":"One coherent serving of five to six Japanese nigiri sushi on one simple low ceramic plate, compact centered arrangement with natural rice-to-fish proportions and a restrained familiar selection such as tuna, salmon, white fish and shrimp. Clean warm-ivory / pale-beige seamless background. No soy dish, chopsticks, ginger, wasabi mound, sake, leaves, ingredient scatter, extra plate, person, restaurant scenery or text.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleDishOnly":true,"cleanNeutralBackground":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}},
+    {"id":"FOOD02","state":"NOT_STARTED","asset":null,"contentId":"shoyu-ramen","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"TASTE","contentId":"shoyu-ramen","identity":"One Japanese shoyu ramen in one simple bowl only: clear brown soy-based broth, noodles visible, restrained chashu, scallion and modest egg or menma kept inside the bowl. Bowl centered large on a seamless warm-ivory / pale-beige background. No side plate, gyoza, spoon, chopsticks, condiment jars, napkin, drink, table setting, person, restaurant background or text.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleDishOnly":true,"cleanNeutralBackground":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}},
+    {"id":"FOOD03","state":"NOT_STARTED","asset":null,"contentId":"okonomiyaki","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"TASTE","contentId":"okonomiyaki","identity":"One single round Osaka-style Japanese okonomiyaki on one plain plate only, intact and centered large; brown sauce and a modest mayonnaise pattern on the surface, tiny bonito or aonori only as part of the dish. Seamless warm-ivory / pale-beige background. No hotplate, spatula, chopsticks, extra bowl, ingredients, drink, napkin, person, restaurant setting or text.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleDishOnly":true,"cleanNeutralBackground":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}},
+    {"id":"FOOD04","state":"NOT_STARTED","asset":null,"contentId":"japanese-curry-rice","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"TASTE","contentId":"japanese-curry-rice","identity":"One Japanese curry rice on one simple plate only: thick restrained brown curry and white rice share the same plate in a clean recognisable composition, with only a few small cooked vegetable or meat pieces naturally within the curry. Plate centered large on a seamless warm-ivory / pale-beige background. No pickles, separate garnish dish, spoon, glass, condiment, napkin, person, restaurant setting or text.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleDishOnly":true,"cleanNeutralBackground":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}}
   ],
-  "map": {
-    "state": "NOT_STARTED",
-    "asset": null
-  },
-  "implementation": {
-    "state": "NOT_STARTED"
-  },
-  "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
-  },
-  "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
-  },
-  "finalApproval": {
-    "state": "PENDING"
-  },
-  "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
-  },
-  "executionPolicy": {
-    "heroApproval": "INDIVIDUAL",
-    "sceneApproval": "BATCH",
-    "tasteApproval": "BATCH",
-    "autoContinueImageRounds": true,
-    "waitForStateOnlyCI": false,
-    "batchMaterialization": true,
-    "autoPostVisualPipeline": true,
-    "singleReviewIntegration": true
-  },
+  "map": {"state":"NOT_STARTED","asset":null},
+  "implementation": {"state":"NOT_STARTED"},
+  "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
+  "reviewDeployment": {"state":"NOT_STARTED","url":null},
+  "finalApproval": {"state":"PENDING"},
+  "publication": {"state":"DRAFT","atlasPublished":false},
+  "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH","tasteApproval":"BATCH","autoContinueImageRounds":true,"waitForStateOnlyCI":false,"batchMaterialization":true,"autoPostVisualPipeline":true,"singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {
-    "state": "CLEAN",
-    "epoch": 1,
-    "lastResetAt": null,
-    "lastFailureAsset": null,
-    "lastFailureReason": null
-  },
-  "imageGenerationPolicy": {
-    "revision": 7,
-    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
-    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
-    "sceneReview": "BATCH_ONLY",
-    "tasteReview": "BATCH_ONLY",
-    "mandatoryNoAddedText": true,
-    "rejectTypographyImmediately": true,
-    "rejectCollageImmediately": true,
-    "rejectPreviousAssetRepeatImmediately": true,
-    "candidateVisualQaRequired": true,
-    "batchPerceptualDuplicateGate": true,
-    "preGenerationReservationRequired": true,
-    "reconcileBeforeNextGeneration": true,
-    "maxSameAssetGenerationsPerTurn": 1,
-    "differentTargetSameTurnContinuation": true,
-    "reservationBlocksOnlyUnreconciledTarget": true,
-    "freshTextToImageRequired": true,
-    "previousImageReferenceForbidden": true,
-    "repeatFailureRequiresRenderPacketRefresh": true,
-    "singleFrameContractRequired": true,
-    "collageFailureContaminatesContext": true,
-    "repeatFailureContaminatesContext": true,
-    "wrongTargetCarryoverContaminatesContext": true,
-    "contextResetRequiresSeparateTurn": true,
-    "batchLanguageForbiddenInGenerationTurn": true,
-    "multiTargetPromptForbidden": true,
-    "maxConsecutiveHardFailuresPerPromptSeries": 2,
-    "requireRenderPacketRefreshAfterLimit": true,
-    "approvedAssetRegeneration": false,
-    "runtimeContinuation": "TO_BATCH_BOUNDARY",
-    "batchApprovalProvenanceRequired": true,
-    "regenBatchApprovalRequired": true,
-    "allPriorCountryAssetComparisonRequired": true,
-    "targetEpochBindingRequired": true
-  },
-  "sceneBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
-  },
-  "tasteBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
-  },
-  "next": {
-    "action": "WAIT_HERO_APPROVAL",
-    "asset": "HERO"
-  }
+  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
+  "sceneBatchReview": {"approval":"PENDING","rounds":[]},
+  "tasteBatchReview": {"approval":"PENDING","rounds":[]},
+  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
 }
