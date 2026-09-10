@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "hong-kong",
   "countryName": "HONG KONG",
-  "contentRef": "country/hong-kong-map-fix",
-  "stateRef": "country/hong-kong-map-fix",
-  "phase": "QA",
-  "stateRevision": 43,
-  "updatedAt": "2026-09-10T10:16:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 44,
+  "updatedAt": "2026-09-10T10:20:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -482,7 +482,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "sourceCommit": "cd0b3f5cca0c7820d73b82ade94f3b132bd61c28",
     "validateRunId": 34424426798,
     "productionStateRunId": 34424426791,
@@ -532,11 +532,32 @@
     },
     "failureCount": 0,
     "completedAt": "2026-09-10T10:16:00+09:00",
-    "notes": "Hong Kong map correction passed Country validation, Production State validation and targeted unpublished-reviewable Browser QA with zero failures. The former administrative polygons that filled marine territory were replaced by land-only Hong Kong geometry while preserving the JOURNEY ATLAS 1200x760 map language and all point coordinates."
+    "notes": "Hong Kong map correction passed Country validation, Production State validation and targeted unpublished-reviewable Browser QA with zero failures. The former administrative polygons that filled marine territory were replaced by land-only Hong Kong geometry while preserving the JOURNEY ATLAS 1200x760 map language and all point coordinates. Production verification confirmed the Hong Kong land-geometry fix commit was served at atlas.yagenji.com; production unpublished-reviewable Browser QA passed on desktop/tablet/mobile with zero failures.",
+    "productionSourceCommit": "605b352bd1f5e4b229cbb4d035d767a3d90b9aea",
+    "productionVerifyRunId": 34424843069,
+    "productionBrowserQaArtifactId": 10132276331,
+    "productionChecks": [
+      "cloudflare-serves-map-fix-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "production-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "failure-count-zero"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/hong-kong/",
+    "commit": "605b352bd1f5e4b229cbb4d035d767a3d90b9aea",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-10T10:20:00+09:00",
+    "verificationBasis": "Cloudflare production served the Hong Kong land-geometry fix commit; production runtime, route/payload and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -584,7 +605,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "sceneBatchReview": {
