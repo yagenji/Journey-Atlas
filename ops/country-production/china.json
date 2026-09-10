@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "QA",
-  "stateRevision": 40,
-  "updatedAt": "2026-09-10T10:17:00+09:00",
+  "stateRevision": 41,
+  "updatedAt": "2026-09-10T10:27:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
@@ -467,8 +467,61 @@
     "notes": "China schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and the approved 1200x760 map. Theme assignments live only in data/theme-taxonomy.json. Registry remains atlasPublished:false with no normal discovery link."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "924359b2acee6c304bd41c0ee12f7e41b8f8c3d7",
+    "validateRunId": 34425441073,
+    "productionStateRunId": 34425441092,
+    "browserQaRunId": 34425441192,
+    "browserQaArtifactId": 10132474719,
+    "checks": [
+      "source-syntax",
+      "targeted-country-image-set",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "perceptual-duplicate-gate",
+      "targeted-country-json-strict",
+      "reviewable-country-json",
+      "published-country-regression",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop",
+      "tablet",
+      "mobile",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "theme-taxonomy-earth-history-food",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "result": "PASS"
+      },
+      "tablet": {
+        "result": "PASS"
+      },
+      "mobile": {
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T10:27:00+09:00",
+    "notes": "China review-package candidate passed current-main targeted Country validation, Production State validation, Cloudflare package build, and targeted unpublished-reviewable browser QA. Browser QA explicitly passed desktop, tablet, and mobile with zero failures."
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
