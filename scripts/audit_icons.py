@@ -16,6 +16,29 @@ SPRITE_PATH = ROOT / "assets" / "icons" / "atlas-icons.svg"
 TRAVEL_SCALE_ICONS = ["city", "map", "compass"]
 TRANSPORT_ICON = "road"
 
+# Shared renderer fallbacks and theme-derived icons in assets/js/app.js.
+# These symbols must remain present even when Country JSON intentionally omits `icon`.
+RENDERER_FALLBACK_ICONS = {
+    "aurora",
+    "calendar",
+    "city",
+    "compass",
+    "food",
+    "history",
+    "home",
+    "info",
+    "landscape",
+    "leaf",
+    "note",
+    "road",
+    "sea",
+    "snow",
+    "spark",
+    "sun",
+    "traveler",
+    "wildlife",
+}
+
 # These sections render an icon but intentionally support shared fallbacks.
 OPTIONAL_ICON_SECTIONS = (
     "encounters",
@@ -51,6 +74,10 @@ def main() -> int:
     explicit_usage: Counter[str] = Counter()
     fallback_usage: dict[str, list[str]] = defaultdict(list)
     checked = 0
+
+    missing_fallbacks = sorted(RENDERER_FALLBACK_ICONS - icons)
+    for icon in missing_fallbacks:
+        errors.append(f"shared renderer fallback references missing sprite symbol '{icon}'")
 
     for country_path in sorted(COUNTRY_DIR.glob("*.json")):
         try:
@@ -104,6 +131,7 @@ def main() -> int:
 
     print(f"Checked schemaVersion 2 Country files: {checked}")
     print(f"Shared sprite symbols: {len(icons)}")
+    print(f"Renderer fallback symbols checked: {len(RENDERER_FALLBACK_ICONS)}")
     print(f"Explicit icon references: {sum(explicit_usage.values())}")
     print("Explicit icon IDs used:")
     for icon, count in sorted(explicit_usage.items()):
@@ -122,7 +150,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print("Icon audit passed: no missing required icons and no invalid explicit sprite references.")
+    print("Icon audit passed: no missing required, explicit, or shared fallback icons.")
     return 0
 
 
