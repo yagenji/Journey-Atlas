@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong-map-fix",
   "stateRef": "country/hong-kong-map-fix",
   "phase": "QA",
-  "stateRevision": 42,
-  "updatedAt": "2026-09-10T10:12:00+09:00",
+  "stateRevision": 43,
+  "updatedAt": "2026-09-10T10:16:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -481,8 +481,58 @@
     "notes": "Hong Kong schema-v2 Country JSON implemented using the approved Hero, eight Scene, four Taste and Map target paths. Theme assignments live only in data/theme-taxonomy.json. Hong Kong is described as a PRC Special Administrative Region; capital is null. atlasPublished remains false and normal registry discovery remains disabled."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "cd0b3f5cca0c7820d73b82ade94f3b132bd61c28",
+    "validateRunId": 34424426798,
+    "productionStateRunId": 34424426791,
+    "browserQaRunId": 34424426749,
+    "browserQaArtifactId": 10132103747,
+    "checks": [
+      "hong-kong-land-only-map-geometry",
+      "marine-area-excluded",
+      "map-svg-clean-background-structure",
+      "map-bounds-and-coordinate-validation",
+      "map-marker-collision-gate",
+      "targeted-country-image-set",
+      "production-webp-full-decode",
+      "perceptual-duplicate-gate",
+      "targeted-country-json-strict",
+      "reviewable-country-json",
+      "published-country-regression",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "map-render",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T10:16:00+09:00",
+    "notes": "Hong Kong map correction passed Country validation, Production State validation and targeted unpublished-reviewable Browser QA with zero failures. The former administrative polygons that filled marine territory were replaced by land-only Hong Kong geometry while preserving the JOURNEY ATLAS 1200x760 map language and all point coordinates."
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
