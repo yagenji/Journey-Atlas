@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-10T08:45:00+09:00",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-10T08:47:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -334,7 +334,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "xiaolongbao",
       "promptSeries": 2,
@@ -361,11 +361,11 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: FOOD02 expected xiaolongbao but the generation repeated the Peking duck subject from FOOD01."
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "candidateGenerationId": "0d692892-c65e-4696-b404-9e0a8fd1cc49"
     },
     {
       "id": "FOOD03",
@@ -482,7 +482,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "asset": "FOOD03"
   },
   "generationContext": {
     "state": "CLEAN",
