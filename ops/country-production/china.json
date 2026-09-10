@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-10T09:36:00+09:00",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-10T09:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -398,7 +398,7 @@
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "lanzhou-beef-noodles",
       "promptSeries": 1,
@@ -420,6 +420,12 @@
         "forbidContactSheet": true,
         "forbidMontage": true,
         "forbidInsetImages": true
+      },
+      "candidateGenerationId": "43ba7acd-63fb-4e5a-b048-84fa0bcbc700",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
       }
     }
   ],
@@ -484,8 +490,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "WAIT_TASTE_APPROVAL",
+    "asset": null
   },
   "generationContext": {
     "state": "CLEAN",
