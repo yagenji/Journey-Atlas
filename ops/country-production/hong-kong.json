@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 47,
-  "updatedAt": "2026-09-10T10:35:00+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 48,
+  "updatedAt": "2026-09-10T10:49:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -482,7 +482,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "CI_GATED",
     "sourceCommit": "bbdc03624399ac9b626dfc347e3d97e632c7dd18",
     "validateRunId": 34425583886,
     "productionStateRunId": 34425583869,
@@ -548,11 +548,21 @@
     "verificationBasis": "Cloudflare production served the Hong Kong encounter-label fix commit; production runtime, route/payload and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-10T10:49:00+09:00",
+    "basis": "User instruction: QAして問題なければ公開して. Latest corrected Hong Kong review package QA and production Browser QA passed with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "url": "https://atlas.yagenji.com/countries/hong-kong/",
+    "requestedAt": "2026-09-10T10:49:00+09:00",
+    "publishedAt": "2026-09-10T10:49:00+09:00",
+    "productionVerification": "CI_GATED",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "note": "Terminal revision-6 publication PR. Post-merge Verify JOURNEY ATLAS Cloudflare Production is the authoritative production verification."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -593,7 +603,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "sceneBatchReview": {
