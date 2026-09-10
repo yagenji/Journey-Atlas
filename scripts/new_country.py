@@ -14,6 +14,7 @@ REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
     ROOT / "data" / "atlas-destinations-editorial.json",
 ]
+TAXONOMY_PATH = ROOT / "data" / "region-taxonomy.json"
 
 
 def destination_for_slug(slug: str) -> dict | None:
@@ -22,6 +23,19 @@ def destination_for_slug(slug: str) -> dict | None:
         for item in registry.get("destinations", []):
             if item.get("slug") == slug:
                 return item
+    return None
+
+
+def taxonomy_region_for_iso2(iso2: str) -> str | None:
+    taxonomy = json.loads(TAXONOMY_PATH.read_text(encoding="utf-8"))
+    for region in taxonomy.get("regions", []):
+        subregions = region.get("subregions") or []
+        if subregions:
+            for subregion in subregions:
+                if iso2 in subregion.get("iso2", []):
+                    return subregion.get("labelEn")
+        elif iso2 in region.get("iso2", []):
+            return region.get("labelEn")
     return None
 
 
@@ -60,7 +74,7 @@ def blank_related() -> dict:
     return {"slug": "", "nameEn": "", "nameJa": "", "flag": "", "reason": ""}
 
 
-def scaffold(destination: dict) -> dict:
+def scaffold(destination: dict, region_label: str) -> dict:
     slug = destination["slug"]
     return {
         "schemaVersion": 2,
@@ -68,7 +82,7 @@ def scaffold(destination: dict) -> dict:
         "slug": slug,
         "nameEn": destination.get("nameEn", ""),
         "nameJa": destination.get("nameJa", ""),
-        "region": "",
+        "region": region_label,
         "seo": {"description": ""},
         "capital": {
             "nameEn": "",
@@ -130,12 +144,18 @@ def main() -> int:
     if not destination:
         parser.error(f"Unknown destination slug: {args.slug}")
 
+    region_label = taxonomy_region_for_iso2(destination.get("iso2", ""))
+    if not region_label:
+        parser.error(f"No region-taxonomy assignment for {args.slug}: {destination.get('iso2')!r}")
+
     output = COUNTRY_DIR / f"{args.slug}.json"
     if output.exists() and not args.force:
         parser.error(f"Country JSON already exists: {output.relative_to(ROOT)} (use --force only intentionally)")
 
-    output.write_text(json.dumps(scaffold(destination), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    output.write_text(json.dumps(scaffold(destination, region_label), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
+    print(f"Region taxonomy label locked: {region_label}")
+    print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
     print("Next: fill content/assets, run strict validation, then set atlasPublished=true only when release-ready.")
     return 0
 
