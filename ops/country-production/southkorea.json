@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-10T08:44:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-10T08:45:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -466,23 +466,24 @@
     },
     {
       "id": "FOOD04",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "bulgogi",
-      "promptSeries": 2,
+      "promptSeries": 3,
       "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
-        "4732f6da-03f2-4ada-82c2-4a79196fa206"
+        "4732f6da-03f2-4ada-82c2-4a79196fa206",
+        "f62d3f20-42d3-4684-9bef-2960aa7ab38c"
       ],
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "bulgogi",
-        "identity": "Bulgogi ONLY. One shallow neutral plate or bowl containing thin cooked marinated beef slices with a small amount of onion/scallion only where integral. No chicken, no soup, no broth, no ginseng, no jujube, no black stone soup bowl, no wooden trivet. Central dominant single dish on plain pale beige/warm ivory background. No props, utensils, side dishes, rice, lettuce wraps, grill, sauce bowls, text, collage, or restaurant setting.",
+        "identity": "BULGOGI ONLY. One shallow light neutral plate containing thin, irregular slices of fully cooked marinated beef, brown and lightly glossy, with only a small amount of translucent cooked onion and a few scallion pieces integral to the beef. Absolutely no rice cakes, no cylindrical tteok, no fish cake, no red-orange gochujang sauce, no soup, no broth, no whole chicken, no egg yolk, no rice, no bibimbap arrangement, no black stone soup bowl, no wooden trivet. Single dish centered on a plain pale beige or warm ivory background. No side dishes, lettuce, grill, utensils, napkin, drink, sauce bowl, loose ingredients, props, people, text, collage, panels, grid, montage, restaurant or kitchen setting.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
         "cleanNeutralBackground": true,
-        "previousContentId": "samgyetang",
+        "previousContentId": "tteokbokki",
         "singleFrameOnly": true,
         "forbidCollage": true,
         "forbidPanels": true,
@@ -496,14 +497,9 @@
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
         "collageTypography": "PASS",
-        "notes": "FOOD04 generation repeated the immediately previous samgyetang visual instead of bulgogi. Automatically rejected under revision 5 previous-asset-repeat and target-identity rules."
+        "notes": "FOOD04 repeated the approved FOOD02 tteokbokki image instead of bulgogi. User explicitly flagged the duplicate. Automatically rejected under target-identity and previous-asset-repeat rules."
       },
-      "generationReservation": {
-        "reservationId": "FOOD04-series2-attempt1",
-        "reservedAt": "2026-09-10T08:44:00+09:00",
-        "contentId": "bulgogi",
-        "promptSeries": 2
-      }
+      "renderPacketRefreshedAt": "2026-09-10T08:45:00+09:00"
     }
   ],
   "map": {
@@ -567,15 +563,15 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD04"
   },
   "blockingIssue": {
     "code": "TASTE_PREVIOUS_ASSET_REPEAT",
     "state": "RESOLVED",
-    "detectedAt": "2026-09-10T08:40:00+09:00",
-    "resolvedAt": "2026-09-10T08:41:00+09:00",
-    "notes": "FOOD02 repeated approved FOOD01 bibimbap. Prompt family refreshed and explicitly excludes bibimbap visual features and vessel styling before any new generation."
+    "detectedAt": "2026-09-10T08:44:00+09:00",
+    "resolvedAt": "2026-09-10T08:45:00+09:00",
+    "notes": "FOOD04 repeated approved FOOD02 tteokbokki. Generation was rejected and FOOD04 prompt series/render packet was refreshed to explicitly exclude tteokbokki and all previously generated Taste visual structures."
   },
   "generationContext": {
     "state": "CLEAN",
