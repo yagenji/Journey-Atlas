@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-10T08:40:00+09:00",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-10T08:41:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -385,8 +385,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "tteokbokki",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "5fda8350-31f2-4336-bf6a-94ba636735ec",
         "531badba-6139-4277-8f7b-3306cc8fdcde"
@@ -394,7 +394,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "tteokbokki",
-        "identity": "Tteokbokki in one shallow bowl only: cylindrical rice cakes clearly recognisable in red-orange sauce, restrained fish cake only if integral; central dominant dish on plain warm ivory background, no skewers, boiled-egg side, street-stall context, utensils or loose garnish.",
+        "identity": "TTEOKBOKKI ONLY. One shallow light neutral bowl containing only cylindrical Korean rice cakes coated in glossy red-orange gochujang sauce, with a restrained amount of flat fish cake only if integral. Absolutely no rice, no egg yolk, no spinach, no bean sprouts, no mushrooms, no beef topping, no bibimbap arrangement, no black stone bowl, no wooden trivet. Central dominant single dish on plain pale beige or warm ivory background. No side dishes, utensils, napkin, drink, scattered garnish, extra ingredients, props, people, text, collage, panels, grid, montage, restaurant or kitchen setting.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -406,14 +406,16 @@
         "forbidGrid": true,
         "forbidContactSheet": true,
         "forbidMontage": true,
-        "forbidInsetImages": true
+        "forbidInsetImages": true,
+        "refreshedForRepeatFailure": true
       },
       "lastRejectedVisualQa": {
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
         "collageTypography": "PASS",
         "notes": "FOOD02 regeneration repeated the approved FOOD01 bibimbap visual instead of generating tteokbokki. Automatically rejected under revision 5 target-identity and previous-asset-repeat rules."
-      }
+      },
+      "renderPacketRefreshedAt": "2026-09-10T08:41:00+09:00"
     },
     {
       "id": "FOOD03",
@@ -551,14 +553,15 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REFRESH_RENDER_PACKET",
+    "action": "GENERATE_FOOD",
     "asset": "FOOD02"
   },
   "blockingIssue": {
     "code": "TASTE_PREVIOUS_ASSET_REPEAT",
-    "state": "OPEN",
+    "state": "RESOLVED",
     "detectedAt": "2026-09-10T08:40:00+09:00",
-    "notes": "FOOD02 repeated the approved FOOD01 bibimbap image. Further Taste generation is halted to protect credits. FOOD02 remains REGENERATE; FOOD04 remains REGENERATE; FOOD01 and FOOD03 stay APPROVED and locked."
+    "resolvedAt": "2026-09-10T08:41:00+09:00",
+    "notes": "FOOD02 repeated approved FOOD01 bibimbap. Prompt family refreshed and explicitly excludes bibimbap visual features and vessel styling before any new generation."
   },
   "generationContext": {
     "state": "CLEAN",
