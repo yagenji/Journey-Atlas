@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "hong-kong",
+  "nameEn": "HONG KONG",
+  "nameJa": "香港",
+  "region": "EASTERN ASIA / PEARL RIVER ESTUARY",
+  "seo": {
+    "description": "ヴィクトリア・ハーバーから二階建てトラム、大澳の水上集落、ドラゴンズバック、火山岩柱、米埔湿地、客家村、長洲へ。高密度の街と海・尾根・島・湿地が短い距離で切り替わる香港を8つの景色から見る。"
+  },
+  "capital": null,
+  "hero": {
+    "lead": "高層都市と港を入口に、トラムの走る街、大澳の水上集落、海を見下ろす尾根、火山地質、湿地、客家村、離島へ。香港は、都市と自然が離れて存在するのではなく、短い移動の中で何度も隣り合う地域。",
+    "image": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
+    "location": "Victoria Harbour / Lugard Road Lookout, The Peak",
+    "coordinates": {
+      "latitude": 22.2803,
+      "longitude": 114.1439
+    },
+    "mapOffset": {
+      "x": -1.8,
+      "y": -2.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 22.587752,
+      "south": 22.117298,
+      "west": 113.793247,
+      "east": 114.526453
+    },
+    "svg": "assets/images/hong-kong/map-atlas-v1.svg",
+    "route": null,
+    "source": "Hong Kong Home Affairs Department administrative district boundaries via DATA.GOV.HK; 18 WGS84 district features, visually dissolved for the JOURNEY ATLAS map-v3 clean-background silhouette."
+  },
+  "scenes": [
+    {
+      "id": "hong-kong-tram-central-street",
+      "name": "香港島 / 二階建てトラムの街路",
+      "nameLocal": "Hong Kong Island / Double-deck Tram",
+      "mapLabel": "Central",
+      "description": "二階建てトラムが高層建築と古い街区の間を走る。1904年から続く路面交通は、香港島北岸の細長い市街地を地上の速度で読み直す入口になる。",
+      "coordinates": {
+        "latitude": 22.2839,
+        "longitude": 114.1564
+      },
+      "image": "assets/images/hong-kong/approved/hong-kong-tram-central-street.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.4,
+        "y": 2.2
+      }
+    },
+    {
+      "id": "tai-o-stilt-house-canal",
+      "name": "大澳 / 水路と棚屋",
+      "nameLocal": "Tai O / Stilt-house Canal",
+      "mapLabel": "Tai O",
+      "description": "大嶼山西端の水路沿いに、杭の上へ張り出す家々と小舟が続く。高層都市とは異なる水辺の生活景観が、同じ香港の地図の中に残っている。",
+      "coordinates": {
+        "latitude": 22.253,
+        "longitude": 113.863
+      },
+      "image": "assets/images/hong-kong/approved/tai-o-stilt-house-canal.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "dragons-back-shek-o-ridge",
+      "name": "ドラゴンズバック / 石澳の尾根",
+      "nameLocal": "Dragon's Back / Shek O Ridge",
+      "mapLabel": "Dragon's Back",
+      "description": "香港島南東部の緑の稜線から、湾、岬、沖の島々を見渡す。市街地の背後で尾根がすぐ海へ落ちる地形が、香港の都市密度だけでは見えない島の形を示す。",
+      "coordinates": {
+        "latitude": 22.226,
+        "longitude": 114.239
+      },
+      "image": "assets/images/hong-kong/approved/dragons-back-shek-o-ridge.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "high-island-east-dam-hexagonal-columns",
+      "name": "萬宜水庫東壩 / 六角柱状岩",
+      "nameLocal": "High Island Reservoir East Dam / Hexagonal Rock Columns",
+      "mapLabel": "East Dam",
+      "description": "西貢東部では、約1億4000万年前の巨大な火山活動に由来する流紋岩の六角柱状岩が斜面に現れる。都市の近くに、香港を地質の時間から読む景観が露出している。",
+      "coordinates": {
+        "latitude": 22.3608,
+        "longitude": 114.3722
+      },
+      "image": "assets/images/hong-kong/approved/high-island-east-dam-hexagonal-columns.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "mai-po-inner-deep-bay-wetlands",
+      "name": "米埔 / 内深湾の湿地",
+      "nameLocal": "Mai Po / Inner Deep Bay Wetlands",
+      "mapLabel": "Mai Po",
+      "description": "浅い池、マングローブ、干潟、ヨシ原が低い水平線の中でつながる。香港北西部には渡り鳥を支える国際的に重要な湿地があり、都市と保全地域の距離の近さが見える。",
+      "coordinates": {
+        "latitude": 22.4872,
+        "longitude": 114.0299
+      },
+      "image": "assets/images/hong-kong/approved/mai-po-inner-deep-bay-wetlands.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0
+      }
+    },
+    {
+      "id": "chi-lin-nunnery-nan-lian-garden",
+      "name": "志蓮淨苑 / 南蓮園池",
+      "nameLocal": "Chi Lin Nunnery / Nan Lian Garden",
+      "mapLabel": "Chi Lin",
+      "description": "唐代様式を参照した木造寺院と庭園の背後に、九龍の住宅群と山が迫る。伝統建築を孤立した文化財としてではなく、現代都市の中に置かれた空間として見る場所。",
+      "coordinates": {
+        "latitude": 22.3398,
+        "longitude": 114.2044
+      },
+      "image": "assets/images/hong-kong/approved/chi-lin-nunnery-nan-lian-garden.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": 1
+      }
+    },
+    {
+      "id": "lai-chi-wo-hakka-walled-village",
+      "name": "茘枝窩 / 客家の村落景観",
+      "nameLocal": "Lai Chi Wo / Hakka Walled Village",
+      "mapLabel": "Lai Chi Wo",
+      "description": "新界北東部の山と水に囲まれた場所に、客家の家並みと風水林がまとまって残る。港湾都市としての香港より前から続く村落の配置と環境利用を、景観そのものから読める。",
+      "coordinates": {
+        "latitude": 22.527,
+        "longitude": 114.254
+      },
+      "image": "assets/images/hong-kong/approved/lai-chi-wo-hakka-walled-village.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "cheung-chau-harbour-waterfront",
+      "name": "長洲 / 港のある島の町",
+      "nameLocal": "Cheung Chau / Harbour Waterfront",
+      "mapLabel": "Cheung Chau",
+      "description": "小型漁船とフェリーの港を低層の町が囲み、その背後に島の丘が続く。ヴィクトリア・ハーバーとは別の尺度で、海上交通と日常生活が結びつく香港の離島を見る。",
+      "coordinates": {
+        "latitude": 22.2087,
+        "longitude": 114.0287
+      },
+      "image": "assets/images/hong-kong/approved/cheung-chau-harbour-waterfront.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.8,
+        "y": -0.4
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "二階建てトラム",
+      "icon": "road"
+    },
+    {
+      "title": "港を渡るフェリー",
+      "icon": "sea"
+    },
+    {
+      "title": "点心の蒸籠",
+      "icon": "food"
+    },
+    {
+      "title": "漢字と英語の街路表示",
+      "icon": "language"
+    },
+    {
+      "title": "竹の足場",
+      "icon": "city"
+    },
+    {
+      "title": "海辺の天后廟",
+      "icon": "culture"
+    },
+    {
+      "title": "漁船とサンパン",
+      "icon": "sea"
+    },
+    {
+      "title": "緑の尾根と高層住宅",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "victoria-harbour-city-skeleton",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "港は景色ではなく、香港島と九龍を分けて結ぶ街の骨格",
+      "text": "ヴィクトリア・ハーバーの両岸に市街地が伸び、フェリー、鉄道、道路が水面を越えて結ぶ。ピークから港を見ると、香港の都市構造を地形として理解しやすい。",
+      "points": [
+        "香港島と九龍の位置関係を港からつかめる",
+        "水上交通が現在も都市移動の一部として残る"
+      ]
+    },
+    {
+      "topicKey": "country-parks-urban-proximity",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "高層都市の背後に、陸地の4割前後を占める郊野公園と特別地区",
+      "text": "香港政府の概要では、郊野公園と特別地区は陸地の約40%。街から尾根や海岸へ短時間で景色が切り替わる背景には、法定保護地域がまとまって残る地理がある。",
+      "points": [
+        "都市と保護された緑地が近接する",
+        "尾根・海岸・湿地を都市旅行と同じ地図で見られる"
+      ]
+    },
+    {
+      "topicKey": "rhyolitic-hexagonal-columns",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "西貢には、流紋岩でできた巨大な六角柱状岩が海と陸に続く",
+      "text": "香港ユネスコ世界ジオパークの柱状岩は、約1億4000万年前の火山活動に由来する。分布は海域を含め100km²を超え、玄武岩が多い世界の柱状節理とは成分も異なる。",
+      "points": [
+        "都市の近くに大規模な火山地質が露出する",
+        "東壩では岩柱と人工の貯水池景観を同時に見られる"
+      ]
+    },
+    {
+      "topicKey": "hakka-village-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "新界の村では、家の配置と森、水の関係に客家の暮らしが残る",
+      "text": "茘枝窩は保存状態のよい客家の囲村の一つ。家並み、風水林、山、水の位置関係を追うと、現在の都市化以前から続く集落の環境利用が見えてくる。",
+      "points": [
+        "村落配置と風水林を一つの文化景観として見られる",
+        "香港の歴史を港湾中心部だけで終わらせない"
+      ]
+    },
+    {
+      "topicKey": "living-intangible-heritage",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "祭り、粤劇、飲食の技術まで、現在の生活の中に無形文化が続く",
+      "text": "香港の無形文化遺産代表作リストは2024年の更新で24項目。粤劇、長洲太平清醮、大澳の龍舟遊涌、舞火龍、香港式ミルクティー製作技術など、街や島で目にする文化が含まれる。",
+      "points": [
+        "宗教行事と芸能だけでなく食の技術も継承対象になっている",
+        "地域ごとに異なる祭りが都市圏の多様性を示す"
+      ]
+    },
+    {
+      "topicKey": "ferries-change-urban-speed",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "フェリーに乗ると、同じ地域の中で街の速度と尺度が変わる",
+      "text": "港を横切る短距離航路と、長洲や大嶼山へ向かう離島航路では、水上から見える都市の密度が大きく変わる。移動そのものが香港の地理を理解する時間になる。",
+      "points": [
+        "海は街を分断するだけでなく移動空間でもある",
+        "中心部と離島を同じ旅程で比較できる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "lugard-road-1913-1914",
+      "categoryEn": "HISTORY",
+      "categoryJa": "道",
+      "title": "ルガードロードは1913〜1914年に造られた",
+      "text": "ピークを回り込む細い道は20世紀初頭に建設された。現在の展望だけでなく、山腹をたどる道路そのものが香港島の都市拡大を眺める場所になっている。",
+      "icon": "history",
+      "sourceKey": "lugard"
+    },
+    {
+      "topicKey": "tram-since-1904",
+      "categoryEn": "MOBILITY",
+      "categoryJa": "移動",
+      "title": "香港電車は1904年から走り続ける",
+      "text": "最初の26両は一階建てだった。現在は二階建て車両を中心とする路面電車が香港島北岸を走り、街路の高さから都市を見られる。",
+      "icon": "road",
+      "sourceKey": "tram"
+    },
+    {
+      "topicKey": "ich-representative-list-24",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "香港の無形文化遺産代表作リストは24項目",
+      "text": "2024年の更新で4項目が追加され、代表作リストは24項目になった。祭り、芸能、工芸、飲食の技術まで、現在の暮らしと接する文化が並ぶ。",
+      "icon": "culture",
+      "sourceKey": "ich"
+    },
+    {
+      "topicKey": "cantonese-opera-unesco-2009",
+      "categoryEn": "PERFORMANCE",
+      "categoryJa": "芸能",
+      "title": "粤劇は2009年にユネスコ無形文化遺産へ",
+      "text": "広東語圏で発展した伝統演劇は、音楽、歌唱、衣装、動作を組み合わせる。香港では劇場公演だけでなく地域の祭礼文化ともつながる。",
+      "icon": "culture",
+      "sourceKey": "cantoneseOpera"
+    },
+    {
+      "topicKey": "sea-area-larger-than-land",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "海",
+      "title": "香港は、陸地より海域の方が広い",
+      "text": "政府の2026年地理データでは、陸地1,114.57km²に対して海域は1,640.40km²。港、島、フェリーが香港の旅で繰り返し現れる理由を数字からも読める。",
+      "icon": "sea",
+      "sourceKey": "geography"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF HONG KONG",
+    "title": "香港で食べたいもの",
+    "intro": "蒸籠の点心、澄んだスープの麺、香ばしく焼く燒味、街のベーカリーに並ぶ蛋撻。広東料理を基盤に、日常の食べ方が異なる4品から香港の食卓を見る。",
+    "items": [
+      {
+        "id": "har-gow-dim-sum",
+        "name": "蝦餃",
+        "nameLocal": "Har Gow",
+        "text": "薄く半透明の皮で海老を包み、蒸籠で蒸す点心。蒸したてを小皿で分け合う飲茶の時間そのものが、香港の広東食文化を感じる入口になる。",
+        "image": "assets/images/hong-kong/approved/food-har-gow.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "wonton-noodles",
+        "name": "雲呑麺",
+        "nameLocal": "Wonton Noodles",
+        "text": "細い卵麺と海老や豚肉を包んだ雲呑を澄んだスープで合わせる。具材を重ねすぎず、麺・スープ・雲呑の組み合わせを短時間で食べる香港の日常的な一杯。",
+        "image": "assets/images/hong-kong/approved/food-wonton-noodles.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "roast-goose-rice",
+        "name": "燒鵝飯",
+        "nameLocal": "Roast Goose Rice",
+        "text": "香ばしく焼いたガチョウを切り分け、ご飯と合わせる燒味の一皿。艶のある皮と肉の厚みから、香港で発達した広東式ローストの技術が分かりやすい。",
+        "image": "assets/images/hong-kong/approved/food-roast-goose-rice.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "hong-kong-egg-tart",
+        "name": "蛋撻",
+        "nameLocal": "Hong Kong Egg Tart",
+        "text": "ショートクラストやパイ生地に滑らかな卵カスタードを流して焼く。茶餐廳やベーカリーで出会いやすく、街歩きの途中に香港の日常的な甘味として加えられる。",
+        "image": "assets/images/hong-kong/approved/food-hong-kong-egg-tart.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "港と街を基準に香港島・九龍を歩く",
+        "text": "ピーク、セントラル、湾仔、九龍をつなぎ、港、トラム、寺院、市場、夜の街を短い距離で比較する。例：ピーク → セントラル → スターフェリー → 九龍 → 志蓮淨苑。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "大嶼山と離島を加え、都市の外へ広げる",
+        "text": "中心部に大澳や長洲を加えると、水上集落、フェリー、低層の島の町まで香港の尺度が変わる。例：香港島・九龍 → 大澳 → 長洲 → 香港島。",
+        "icon": "map"
+      },
+      {
+        "duration": "6日以上",
+        "title": "新界の湿地・地質・村落まで見る",
+        "text": "米埔、西貢の東壩、茘枝窩まで広げると、湿地、火山地質、客家村という中心市街地だけでは見えない地理が加わる。例：市街地 → 米埔 → 西貢・東壩 → 茘枝窩。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜2月",
+      "color": "#758e9e",
+      "text": "比較的涼しく、寒気で気温が下がる日もある。湿度が夏より低い時期は街歩きや尾根歩きを組みやすいが、山上や海辺では風への備えを持ちたい。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#819963",
+      "text": "気温が上がり始め、湿度が高く霧の出る日も増える。ピークや海岸の遠望は天候に左右されるため、視界が悪い日は街・寺院・食へ切り替えられる余白を持つ。"
+    },
+    {
+      "months": "5〜8月",
+      "color": "#aa9b55",
+      "text": "暑く湿潤で、大雨や雷雨が増える。香港天文台の平年値では年間降水量の多くが5〜9月に集中するため、屋外は暑さと雨の両方を前提にする。"
+    },
+    {
+      "months": "9〜12月",
+      "color": "#ad794b",
+      "text": "秋は次第に乾燥し、11〜12月は晴れて涼しい日が多い。熱帯低気圧は主に6〜10月に影響し得るため、秋前半は最新の警報を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "MTR・バス・フェリー・トラム",
+    "text": "中心部はMTRとバスが基礎になり、ヴィクトリア・ハーバーや離島ではフェリーが地理そのものをつなぐ。香港島北岸ではトラムも使える。郊野公園、米埔、西貢、遠隔の村は、場所ごとにバス・ミニバス・タクシー・徒歩を組み合わせる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "高密度の街と港を、地形から理解しながら歩きたい人",
+      "text": "ピーク、ヴィクトリア・ハーバー、香港島と九龍の街路を行き来し、高層建築だけでなく山と海が都市の形を決めていることまで見たい人。"
+    },
+    {
+      "title": "短い移動で尾根・島・湿地・火山地質まで景色を切り替えたい人",
+      "text": "ドラゴンズバック、西貢、米埔、大澳、長洲へ広げ、都市旅行と自然旅行を別々にせず同じ地域の多様性として追いたい人。"
+    },
+    {
+      "title": "広東料理、交通、祭り、村落から現在の暮らしに触れたい人",
+      "text": "点心や燒味を食べ、トラムやフェリーに乗り、客家村や島の祭りまで、香港の日常と継承文化の両方を旅の中で知りたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アジア／珠江河口"
+    },
+    {
+      "label": "首都",
+      "value": "該当なし（中華人民共和国香港特別行政区）"
+    },
+    {
+      "label": "人口",
+      "value": "約752万人（2026年年央・暫定）"
+    },
+    {
+      "label": "面積",
+      "value": "1,114.57 km²"
+    },
+    {
+      "label": "言語",
+      "value": "中国語・英語（正式語。広東語が日常で広く使われる）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "仏教・道教・キリスト教、民間信仰など"
+    },
+    {
+      "label": "通貨",
+      "value": "香港ドル（HKD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "protected-country-parks-special-areas",
+      "label": "郊野公園・特別地区",
+      "value": "陸地の約40%",
+      "note": "香港政府の概要では、郊野公園と特別地区が陸地の約40%を占める。高層都市のすぐ背後に尾根や海岸の緑が残ることを、面積の数字からも理解できる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "hong-kong-islands-261",
+      "label": "500m²以上の島",
+      "value": "261島",
+      "note": "香港島と大嶼山を除いても、面積500m²以上の島が261ある。香港を一つの都市として見るだけでは見落としやすい、海と島の多さを示す数字。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "double-deck-tram-fleet",
+      "label": "二階建てトラムの車両",
+      "value": "165両",
+      "note": "香港電車は165両を保有・運行し、事業者は現在運行する世界最大の二階建てトラム車両群としている。1904年開始の交通が今も街の日常に残る。",
+      "icon": "road"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "heat-rain-typhoon-current-warning",
+      "title": "暑さ・大雨・熱帯低気圧は、その日の警報を基準にする",
+      "text": "5〜9月は雨が多く、熱帯低気圧は主に6〜10月に影響し得る。山、海岸、離島の予定は香港天文台の最新警報を見て変更できるようにする。"
+    },
+    {
+      "topicKey": "country-park-reserve-access",
+      "title": "郊野・湿地は市街地と同じ準備で考えない",
+      "text": "尾根や西貢では水、日差し、靴、交通の戻り方を先に確認する。米埔自然保護区はアクセスが管理されており、訪問方法・許可制度を事前に確認する。"
+    },
+    {
+      "topicKey": "payment-transport-local-differences",
+      "title": "交通と支払いは便利でも、場所ごとの差を残す",
+      "text": "中心部では公共交通と電子決済を使いやすい一方、離島や小規模店まで同じ条件とは限らない。現金やオクトパスなど複数の手段を持つと動きやすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "taiwan",
+      "nameEn": "TAIWAN",
+      "nameJa": "台湾",
+      "flag": "🇹🇼",
+      "reason": "高密度の街、山、海、夜の食文化が近い距離で切り替わる別の東アジアの旅先を比べたいなら。"
+    },
+    {
+      "slug": "singapore",
+      "nameEn": "SINGAPORE",
+      "nameJa": "シンガポール",
+      "flag": "🇸🇬",
+      "reason": "港湾都市、多言語環境、高密度の公共交通と緑地という共通点を、熱帯の都市国家と比較したいなら。"
+    },
+    {
+      "slug": "japan",
+      "nameEn": "JAPAN",
+      "nameJa": "日本",
+      "flag": "🇯🇵",
+      "reason": "鉄道中心の都市生活、島の地理、山と海が市街地に近い感覚を、より大きな国土スケールで比べたいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇳",
+      "countryEn": "CHINA",
+      "countryJa": "中国（深圳）",
+      "path": "Hong Kong → Shenzhen",
+      "description": "香港から深圳へつなぎ、珠江デルタの二つの高密度都市を比較する代表的な周遊。鉄道・陸路の具体的な出入境条件は旅行日の最新情報を確認する。"
+    },
+    {
+      "flag": "🇲🇴",
+      "countryEn": "MACAU",
+      "countryJa": "マカオ",
+      "path": "Hong Kong → Macau",
+      "description": "珠江河口を西へマカオへ。港湾都市という共通点を持ちながら、街路、歴史建築、都市の尺度が大きく異なる二つの特別行政区を続けて見るルート。"
+    }
+  ],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-10",
+  "sourceDates": {
+    "population": "2026-08-18",
+    "geography": "2026",
+    "countryParks": "2026-08",
+    "transport": "2026-09",
+    "climate": "2026-09",
+    "ich": "2024-12"
+  },
+  "sources": {
+    "map": "Hong Kong Home Affairs Department via DATA.GOV.HK: Administrative District Boundary of Hong Kong, WGS84 GeoJSON, 18 district features; JOURNEY ATLAS map-v3 clean background.",
+    "status": "GovHK / Basic Law: Hong Kong is a Special Administrative Region of the People's Republic of China.",
+    "population": "Hong Kong Census and Statistics Department, Mid-year population for 2026, released 18 August 2026: provisional population 7,518,300.",
+    "geography": "Lands Department, Hong Kong Geographic Data 2026 / GovHK Hong Kong – the Facts: total land area 1,114.57 km²; sea area 1,640.40 km²; 261 islands of 500m² or over excluding Hong Kong Island and Lantau Island.",
+    "language": "Basic Law Article 9 and Department of Justice: Chinese and English are official languages; Cantonese is widely used in everyday Hong Kong life.",
+    "religion": "GovHK Hong Kong: The Facts – Religion: Buddhism, Taoism, Christianity and other religious traditions have substantial communities in Hong Kong.",
+    "currency": "Hong Kong Basic Law Article 111 / Hong Kong Monetary Authority: the Hong Kong dollar remains legal tender in the HKSAR; code HKD.",
+    "countryParks": "GovHK Hong Kong – the Facts / Environment and Ecology Bureau: country parks and special areas account for about 40% / over 40% of Hong Kong's land area.",
+    "lugard": "Hong Kong Tourism Board, Peak Circle Walk: Lugard Road was built between 1913 and 1914 and is a viewpoint over Victoria Harbour.",
+    "tram": "Hong Kong Tramways, Key Figures: founded in 1904; current fleet 165 tramcars including antique and sightseeing trams; described by the operator as the world's largest double-deck tram fleet still in operation.",
+    "taiO": "Hong Kong Tourism Board current Tai O guidance: western Lantau fishing-village landscape with waterways and stilt-house settlement.",
+    "dragonsBack": "Hong Kong Tourism Board, Dragon's Back: ridge trail in Shek O Country Park with views over the coast and Big Wave Bay.",
+    "geopark": "Hong Kong UNESCO Global Geopark / AFCD: Early Cretaceous rhyolitic hexagonal columnar rock formation in Sai Kung, around 140 million years old, distributed over more than 100 km² on land and under the sea.",
+    "maiPo": "WWF-Hong Kong / Ramsar context: Mai Po and Inner Deep Bay wetlands are a Wetland of International Importance; habitats include gei wai, freshwater ponds, intertidal mudflats, mangroves and reedbeds.",
+    "chiLin": "Hong Kong Tourism Board: Chi Lin Nunnery and Nan Lian Garden in Diamond Hill combine Tang-style timber architecture and landscaped garden within modern Kowloon.",
+    "laiChiWo": "Hong Kong UNESCO Global Geopark: Lai Chi Wo is one of Hong Kong's best-preserved Hakka walled villages, with settlement layout closely related to fung shui and surrounding woodland.",
+    "cheungChau": "Hong Kong Tourism Board current Cheung Chau guidance: outlying-island settlement connected by ferry, with harbourfront, fishing activity and low-rise town fabric.",
+    "ich": "Hong Kong Intangible Cultural Heritage Office: 2024 update of the Representative List added four items, bringing the list to 24.",
+    "cantoneseOpera": "UNESCO Intangible Cultural Heritage / Hong Kong cultural authorities: Cantonese opera was inscribed on the Representative List in 2009.",
+    "taste": "Hong Kong Tourism Board food guidance: dim sum is a core Cantonese dining experience; Hong Kong egg tarts are a local staple; current local-flavour guidance features roast goose and wonton noodles among characteristic Hong Kong foods.",
+    "climate": "Hong Kong Observatory climate normals and GovHK: about 80% of annual rainfall falls May–September; tropical cyclones commonly affect Hong Kong from June to October; November–December are generally cooler and drier.",
+    "transport": "Hong Kong Transport Department / current operator guidance: MTR, franchised buses, ferries, trams and minibuses form the public-transport network; route-specific access applies to country parks and remote areas.",
+    "maiPoAccess": "WWF-Hong Kong / AFCD permit guidance effective July 2026: access to Mai Po Nature Reserve is regulated and visitors should use current booking/permit arrangements.",
+    "nextRoutes": "Editorial route pair based on Hong Kong's direct geographic links to Shenzhen and Macau; current immigration, rail, bridge and ferry conditions must be checked for the travel date.",
+    "travelScale": "Editorial duration ranges based on Hong Kong Island, Kowloon, New Territories, Lantau and outlying-island geography; not fixed itineraries."
+  }
+}
