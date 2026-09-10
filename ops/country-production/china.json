@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 28,
-  "updatedAt": "2026-09-10T08:49:00+09:00",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-10T08:51:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -372,8 +372,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "mapo-tofu",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "81683c0b-0f97-4168-91b5-09c55dfede0f"
       ],
@@ -381,7 +381,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "mapo-tofu",
-        "identity": "Mapo tofu in one shallow bowl: distinct tofu cubes in red-brown chilli-bean sauce with restrained minced meat and only minimal integral green/Sichuan-pepper finish inside the bowl; no rice, spoon, chopsticks, condiment bowls or scattered spices.",
+        "identity": "Mapo tofu only: one shallow neutral ceramic bowl centered on a plain warm ivory / pale beige background. Distinct tofu cubes in a red-brown doubanjiang chili-bean sauce with a restrained amount of minced meat; minimal integral green scallion and Sichuan-pepper finish only inside the bowl. Absolutely no xiaolongbao, no duck, no noodles, no rice, no side dishes, no spoon, no chopsticks, no condiment bowls, no loose spices, no ingredients around the bowl, no tableware, no restaurant scenery, no text, no collage, no panels, no grid.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -489,13 +489,13 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RESET_GENERATION_CONTEXT",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD03"
   },
   "generationContext": {
-    "state": "CONTAMINATED",
-    "epoch": 5,
-    "lastResetAt": "2026-09-10T08:45:00+09:00",
+    "state": "CLEAN",
+    "epoch": 6,
+    "lastResetAt": "2026-09-10T08:51:00+09:00",
     "lastFailureAsset": "FOOD03",
     "lastFailureReason": "PREVIOUS_ASSET_REPEAT_WRONG_TARGET"
   },
