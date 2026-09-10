@@ -2,7 +2,9 @@
   "schemaVersion": 1,
   "authority": "main",
   "revision": 7,
-  "updatedAt": "2026-09-10T15:05:00+09:00",
+  "patch": 1,
+  "policyId": "7.1",
+  "updatedAt": "2026-09-10T15:30:00+09:00",
   "sourceOfTruth": "ops/image-generation-policy.json",
   "appliesTo": [
     "HERO",
@@ -49,6 +51,20 @@
     "userApprovalBoundaryScenes": "AFTER_ROUND_BOUNDARY_ONLY",
     "userApprovalBoundaryTaste": "AFTER_ROUND_BOUNDARY_ONLY",
     "runtimeHardStopIsNotApprovalGate": true
+  },
+  "throughputOptimization": {
+    "sameTurnAuthoritativeStateCache": true,
+    "successfulStateWriteAdvancesAuthority": true,
+    "rereadAfterOwnSuccessfulWrite": false,
+    "rereadRequiredOnTurnBoundary": true,
+    "rereadRequiredOnShaConflict": true,
+    "atomicReconcileAndReserveNext": true,
+    "reserveNextInSameStateTransitionWhenCurrentPasses": true,
+    "renderPacketsValidatedAtRoundStart": true,
+    "contentPlanRereadPerTarget": false,
+    "incrementalAllPriorVisualSetWithinTurn": true,
+    "waitForCountryBranchCiBetweenImages": false,
+    "countryBranchCiMode": "TRANSITION_ONLY"
   },
   "targetSynchronization": {
     "currentTargetOnly": true,
