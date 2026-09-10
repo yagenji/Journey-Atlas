@@ -1061,6 +1061,27 @@
         "User instructed publication if QA passed. Review Cloudflare runtime, route/payload verification, and Desktop / Tablet / Mobile browser QA passed with zero failures; formal publication is gated by the publish PR CI."
       ],
       "automatedAudit": "DONE"
+    },
+    {
+      "slug": "southkorea",
+      "nameJa": "韓国",
+      "wave": 9,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "CI_GATED",
+      "hardImageGate": true,
+      "notes": [
+        "New South Korea Country production completed to current Reference standard on 2026-09-10.",
+        "User instructed publication if final QA passed. Review deployment, strict Country validation, production runtime verification, and Desktop / Tablet / Mobile browser QA passed with zero failures after the final Encounters and Signature Facts revisions.",
+        "Revision-6 terminal publication uses CI_GATED production verification; post-merge Cloudflare production verification is authoritative."
+      ],
+      "automatedAudit": "DONE"
     }
   ],
   "automatedBaseline": {

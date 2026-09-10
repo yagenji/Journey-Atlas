@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 40,
-  "updatedAt": "2026-09-10T10:54:03+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 41,
+  "updatedAt": "2026-09-10T10:55:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/southkorea/approved/hero-seoul-gyeongbokgung-bugaksan.webp",
@@ -600,7 +600,7 @@
     "failureCount": 0,
     "completedAt": "2026-09-10T10:11:11+09:00",
     "notes": "South Korea review page passed source validation, strict Country validation, production runtime verification, and unpublished-reviewable Browser QA on desktop/tablet/mobile after the Signature Facts update. The current review content uses Hangeul 11,172 syllable blocks, UNESCO World Heritage 17, and capital-region population over 50%.",
-    "productionState": "PASS",
+    "productionState": "CI_GATED",
     "productionSourceCommit": "8942d9959e6bacf319cf42746060c73254645214",
     "productionVerifyRunId": 34427156665,
     "productionBrowserQaArtifactId": 10133130767,
@@ -628,11 +628,21 @@
     "verificationBasis": "Cloudflare production served the exact South Korea Signature Facts review commit; production runtime and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-10T10:48:00+09:00",
+    "basis": "User instruction: QAして問題なければ公開して. Latest South Korea review deployment, revised Encounters, revised Signature Facts, strict Country validation, production runtime verification, and Desktop / Tablet / Mobile review Browser QA all passed with zero blocking failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "url": "https://atlas.yagenji.com/countries/southkorea/",
+    "requestedAt": "2026-09-10T10:48:00+09:00",
+    "publishedAt": "2026-09-10T10:48:00+09:00",
+    "productionVerification": "CI_GATED",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "note": "Terminal revision-6 publication PR. Post-merge Verify JOURNEY ATLAS Cloudflare Production is the authoritative production verification."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -673,7 +683,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "blockingIssue": null,
