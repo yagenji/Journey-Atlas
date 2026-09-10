@@ -168,10 +168,9 @@ One destination = one coherent real-world scene for country-card artwork.
 
 Country-page scene artwork follows the same visual language. A country page may contain multiple scene illustrations, but every individual scene must still represent one real place rather than a synthetic collage.
 
-
 ### Taste images — HARD RULE
 
-Taste visual production must follow `docs/TASTE_IMAGE_PRODUCTION.md`.
+Taste visual production must follow `docs/TASTE_IMAGE_PRODUCTION.md` together with the current main image policy.
 
 The critical lock is:
 
@@ -185,10 +184,9 @@ The critical lock is:
 
 Any Taste image that violates the above is automatically NG and must not enter the approved production asset folder.
 
-
 ### Country production state — GLOBAL LOCK
 
-Parallel Country production must use the operational state machine in `docs/COUNTRY_PRODUCTION_STATE.md`.
+Parallel Country production uses the operational state machine in `docs/COUNTRY_PRODUCTION_STATE.md`, but image execution is governed first by the current `ops/image-generation-policy.json` on `main` and its revision guide.
 
 Authoritative progress state:
 
@@ -198,37 +196,44 @@ Authoritative image-generation policy:
 
 `ops/image-generation-policy.json` on `main` only. Country branches must never downgrade or override it.
 
-Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review or publish instructions:
+For policyId 7.1 or later, `docs/IMAGE_POLICY_REVISION_7_1.md` supersedes older per-action re-read instructions in lower-priority documents.
+
+At the start of a new assistant turn:
 
 1. read `ops/image-generation-policy.json` from `main`;
-2. resolve `stateRef` and read the authoritative state file (`country/{slug}` during active production; `main` from REVIEW onward);
-2. execute only `next.action / next.asset`;
-3. before any Hero / Scene / Taste image tool call, reserve that exact asset as `GENERATING` on the authoritative working branch;
-4. re-read and confirm NEXT is `RECONCILE_GENERATION / same asset`;
-5. only then call image generation;
-6. reconcile the reserved generation before any later image-generation call;
-7. re-read before the next action.
+2. resolve `stateRef` and read the authoritative Country State;
+3. execute the deterministic `next.action / next.asset`.
 
-Do not infer NEXT from chat memory when a state file exists.
+For image generation:
+
+1. before the first image, reserve the exact target as `GENERATING` on the authoritative working branch;
+2. only one unreconciled `GENERATING` target may exist;
+3. after a valid generation, reconcile that target and run target/all-prior/collage QA;
+4. if the next different target is available and generation context is CLEAN, reconcile the current target **and reserve the next target in the same State update**;
+5. after GitHub accepts a State write using the expected blob SHA, the exact content just written plus the returned new blob SHA is authoritative within that same assistant turn; do not re-fetch merely to confirm your own successful write;
+6. generate the already-reserved next target immediately;
+7. re-fetch State only on a new assistant turn, SHA conflict, possible external modification, or genuine uncertainty.
+
+Do not infer NEXT from chat memory when a state file exists. Same-turn State chaining uses the exact State content written by the assistant, not conversational guesses.
 
 Important:
 - one Country = one state file, so parallel Country chats do not edit the same record;
-- use the current blob SHA when updating state; on conflict re-fetch instead of force-overwriting;
+- use the current blob SHA when updating State; on conflict re-fetch instead of force-overwriting;
 - during initial Scene/Taste rounds, finish later `NOT_STARTED` assets before retrying `REGENERATE` assets;
 - APPROVED assets never move backward unless the user explicitly requests regeneration;
 - published/complete Countries have `phase: COMPLETE` and `next.action: NONE`;
-- review-deployed unpublished Countries have `phase: REVIEW` and must not fall back into image generation.
+- review-deployed unpublished Countries have `phase: REVIEW` and must not fall back into image generation;
+- a successful per-image State write does not require waiting for CI before continuing to the next different target.
 
-Use:
+For Revision 7 state operations use:
 
-`python3 scripts/country_production_state.py next {slug}`
+`python3 scripts/country_production_state_v7.py next {slug}`
 
-to confirm deterministic NEXT, and:
+and:
 
-`python3 scripts/country_production_state.py validate`
+`python3 scripts/country_production_state_v7.py validate`
 
-to validate all tracked states.
-
+Legacy states may still be inspected with `scripts/country_production_state.py` where appropriate.
 
 ### Impact-aware QA — GLOBAL LOCK
 
@@ -249,29 +254,37 @@ Publication rule:
 - Final production verification for a Country-only publish is the affected Country at Desktop / Tablet / Mobile plus production route/payload checks.
 - All-Country regression is reserved for shared Country-system changes.
 - GitHub Pages is a manual preview utility and is not part of the normal formal-publication critical path.
-- Production State updates do not trigger the heavy Country data/image/build validation; they use the lightweight production-state validation workflow.
+- Production State updates do not trigger the heavy Country data/image/build validation; they use lightweight production-state transition validation.
 
 This is a productivity rule, not a relaxation of Definition of Done. The affected surface still requires actual-page verification.
 
-
 ### Country production throughput — GLOBAL LOCK
 
-Country production execution, approval gates, batching, State-write behavior, post-visual automation and main-integration timing are defined **only** in `docs/COUNTRY_PRODUCTION_STATE.md`.
+Country production execution is governed by:
 
-`WORKFLOW.md` must not maintain a second detailed copy of those rules.
+1. current `ops/image-generation-policy.json` on `main`;
+2. `docs/IMAGE_POLICY_REVISION_7_1.md` when policyId is 7.1 or later;
+3. `docs/IMAGE_POLICY_REVISION_7.md` for Revision 7 batch/target rules;
+4. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing rules not superseded above.
 
 Non-negotiable principles:
 - operational State remains `ops/country-production/{slug}.json`; active-production cursor writes live on `country/{slug}`, not `main`;
 - State updates prevent duplicate work but do not create user interaction gates;
-- image generation uses the current main policy (revision 6): no image tool call occurs before the target is locked as `GENERATING`;
-- every generation uses a one-target single-frame envelope; batch/series/set language is forbidden in the generation turn;
-- any collage/multi-panel failure contaminates generation context and blocks further image calls until a separate RESET_GENERATION_CONTEXT turn;
+- one image = one independent generation request; one image does not equal one user approval;
+- different targets continue in the same assistant turn after successful reconciliation when the image tool returns control;
 - the same Hero / Scene / Taste asset may be generated at most once per assistant turn;
+- at most one unreconciled `GENERATING` target exists;
+- use atomic `reconcile current + reserve next` State transitions during clean normal rounds instead of separate commits;
+- use same-turn authoritative State chaining after successful GitHub writes instead of redundant confirmation re-fetches;
+- validate complete Scene/Taste Render Packet sets at round start; do not re-read unchanged Content Plans before every image;
+- every generation uses a one-target single-frame envelope; batch/series/set language is forbidden in the generation prompt;
+- collage/multi-panel, repeat/restage, or wrong-target carryover contaminates generation context and routes to RESET before another image;
 - production image calls are fresh independent text-to-image generations; the previous output is never used as the edit/reference source;
-- one image = one generation request does not mean one image = one user approval;
-- intermediate State writes do not trigger deployment or require CI waiting;
-- Review Package is integrated to production once when ready for canonical-URL review.
-- After canonical review approval, do not create a State-only approval PR; create the one terminal publication PR directly.
+- intermediate State writes do not trigger deployment and do not require CI waiting;
+- country-branch image-policy CI is transition-only; full regression remains on PR/main;
+- Review Package is integrated to production once when ready for canonical-URL review;
+- after canonical review approval, do not create a State-only approval PR; create the one terminal publication PR directly.
+
 ---
 
 ## Branch lifecycle
@@ -287,13 +300,11 @@ Keep the repository branch list intentionally small.
 - Deployment and validation must use the shared workflows on `main`; do not add country-specific deployment or QA workflows.
 - Normal steady state should be: `main` + only currently active country/common work branches.
 
-
 ## Decision rule
 If implementation requires a visual choice that was not decided in the approved design:
 - make the smallest neutral technical choice if it does not alter the design;
 - if it would visibly alter the design, resolve that one point before coding;
 - do not create an unsolicited alternative design.
-
 
 ---
 
