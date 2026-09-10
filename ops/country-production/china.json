@@ -4,9 +4,9 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "ASSET_QA",
-  "stateRevision": 37,
-  "updatedAt": "2026-09-10T09:52:00+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T10:03:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
@@ -507,7 +507,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "generationContext": {
@@ -543,29 +543,29 @@
     ]
   },
   "assetQa": {
-    "state": "FAIL",
-    "checkedAt": "2026-09-10T09:52:00+09:00",
-    "localApprovedExport": {
-      "rasterCount": 13,
-      "fullDecode": "PASS",
-      "dimensions": "PASS",
-      "expectedDimensions": "1200x800",
-      "perceptualDuplicateGate": "PASS",
-      "heroScenePairsCompared": 36,
-      "tastePairsCompared": 6
-    },
+    "state": "PASS",
+    "checkedAt": "2026-09-10T10:03:00+09:00",
+    "approvedRasterCount": 13,
+    "fullDecode": "PASS",
+    "dimensions": "PASS",
+    "expectedDimensions": "1200x800",
+    "perceptualDuplicateGate": "PASS",
+    "heroScenePairsCompared": 36,
+    "tastePairsCompared": 6,
     "repositoryMaterialization": {
-      "state": "BLOCKED",
-      "approvedFolderExists": false,
-      "expectedRasterCount": 13,
-      "materializedRasterCount": 0,
-      "reason": "Current GitHub connector can create/update UTF-8 files and blobs from supplied string content, but exposes no operation that accepts the generated image file/file reference as binary input. The approved raster folder therefore cannot be truthfully marked materialized from this chat runtime."
+      "state": "PASS",
+      "approvedFolderExists": true,
+      "materializedRasterCount": 13,
+      "commit": "d8b2af1f643d081349d3785035a3415c03251b21",
+      "gitBlobShaMatch": "PASS",
+      "riffWebpHeader": "PASS"
     },
+    "hygiene": "PASS",
     "map": {
       "asset": "assets/images/china/map-atlas-v1.svg",
       "existence": "PASS",
       "state": "APPROVED"
     },
-    "notes": "All 13 explicitly approved source images were recovered locally, converted to 1200x800 WebP, fully decoded, and passed the same conservative dHash/aHash/thumbnail-RMS duplicate thresholds used by scripts/validate_images.py. Review-package integration is blocked until those exact approved WebP bytes are committed to the working branch."
+    "notes": "All 13 approved China raster assets are materialized on country/china. Source outputs were converted to 1200x800 WebP, fully decoded, passed conservative pairwise duplicate QA, and each committed Git blob SHA matches the uploaded production bytes."
   }
 }
