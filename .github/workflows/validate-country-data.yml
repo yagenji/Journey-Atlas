@@ -7,6 +7,7 @@ on:
       - 'scripts/country_production_state.py'
       - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
+      - 'data/region-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
       - 'index.html'
@@ -26,6 +27,8 @@ on:
       - 'data/atlas-destinations-editorial.json'
       - 'data/country-renewal-status.json'
       - 'scripts/validate_country.py'
+      - 'scripts/audit_country_region_labels.py'
+      - 'scripts/normalize_country_region_labels.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
       - 'scripts/qa_published_browser.py'
@@ -37,6 +40,7 @@ on:
       - 'scripts/country_production_state.py'
       - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
+      - 'data/region-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
       - 'index.html'
@@ -56,6 +60,8 @@ on:
       - 'data/atlas-destinations-editorial.json'
       - 'data/country-renewal-status.json'
       - 'scripts/validate_country.py'
+      - 'scripts/audit_country_region_labels.py'
+      - 'scripts/normalize_country_region_labels.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
       - 'scripts/qa_published_browser.py'
@@ -111,13 +117,16 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
 
       - name: Validate published renewal registry
         run: python3 scripts/audit_published_countries.py
+
+      - name: Validate Country region contract
+        run: python3 scripts/audit_country_region_labels.py
 
       - name: Audit all published Country images
         if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
