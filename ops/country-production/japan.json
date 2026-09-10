@@ -5,10 +5,10 @@
   "contentRef": "country/japan",
   "stateRef": "country/japan",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-10T15:46:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-10T15:48:00+09:00",
   "hero": {
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": null,
     "contentId": "fuji-lake-kawaguchi-oishi",
     "promptSeries": 1,
@@ -30,13 +30,12 @@
       "forbidInsetImages": true,
       "singleSceneOnly": true
     },
-    "generationReservation": {
-      "reservationId": "HERO-series1-attempt1-20260910T154600JST",
-      "asset": "HERO",
-      "contentId": "fuji-lake-kawaguchi-oishi",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-10T15:46:00+09:00"
+    "candidateGenerationId": "a63292d6-42fd-4fd7-b673-9456f68b4e57",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS",
+      "notes": "Candidate shows a single continuous real-world Lake Kawaguchi and Mount Fuji composition consistent with the Oishi Park direction. Fuji is unmistakable, lake geography is clear, foreground vegetation remains subordinate, and no false landmark, readable text, UI, collage, grid or panel is present. No prior Japan Hero/Scene generation exists to repeat."
     }
   },
   "scenes": [
@@ -432,7 +431,7 @@
     "rounds": []
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
+    "action": "WAIT_HERO_APPROVAL",
     "asset": "HERO"
   }
 }
