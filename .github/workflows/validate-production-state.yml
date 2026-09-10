@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -25,6 +26,7 @@ on:
   pull_request:
     paths:
       - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -80,7 +82,7 @@ jobs:
           state = module.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
           assert state["phase"] == "CONTENT"
           assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
-          assert state["imageGenerationPolicy"]["revision"] == 4
+          assert state["imageGenerationPolicy"]["revision"] == 6
           assert state["executionPolicy"]["sceneApproval"] == "BATCH"
           assert state["executionPolicy"]["tasteApproval"] == "BATCH"
           assert len(state["scenes"]) == 8

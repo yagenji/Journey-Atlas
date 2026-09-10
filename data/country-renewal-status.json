@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-09",
+  "updatedAt": "2026-09-10",
   "purpose": "Single source of truth for renewal of already-published JOURNEY ATLAS Country Pages.",
   "states": {
     "audit": [
@@ -997,6 +997,27 @@
       "hardImageGate": true,
       "notes": [
         "Bosnia and Herzegovina current-main normalization completed 2026-09-09. Previously user-approved Country package restored, canonical review QA passed, formal publication restored, Cloudflare production runtime and published Desktop / Tablet / Mobile Browser QA passed. production LIVE_CURRENT."
+      ],
+      "automatedAudit": "DONE"
+    },
+    {
+      "slug": "russia",
+      "nameJa": "ロシア",
+      "wave": 9,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "LIVE_CURRENT",
+      "hardImageGate": true,
+      "notes": [
+        "New Russia Country production completed to current Reference v3 standard on 2026-09-10. User instructed publication if QA passed.",
+        "Formal publication completed. Cloudflare production served publish commit 5e5755589473ac37048e5a63a7133b1d0aac5ec4; production runtime, Russia route/payload verification, and published Desktop / Tablet / Mobile browser QA passed with zero failures.",
+        "hardImageGate enabled."
       ],
       "automatedAudit": "DONE"
     }

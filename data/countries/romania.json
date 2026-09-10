@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "romania",
+  "nameEn": "ROMANIA",
+  "nameJa": "ルーマニア",
+  "region": "SOUTHEASTERN EUROPE / 46°N",
+  "seo": {
+    "description": "ペレシュ城とカルパチアから、ブラショフ、シギショアラ、トランスファガラシャン、ドナウ・デルタ、ブコヴィナ、マラムレシュ、トゥルダ、ブザウへ。8つの景色からルーマニアの山・川・歴史圏・暮らしをたどる。"
+  },
+  "capital": {
+    "nameEn": "Bucharest",
+    "nameJa": "ブカレスト",
+    "coordinates": {
+      "latitude": 44.4268,
+      "longitude": 26.1025
+    },
+    "labelPosition": "left"
+  },
+  "hero": {
+    "lead": "カルパチアの森に建つ王宮から、トランシルヴァニアの中世都市、山岳道路、ブコヴィナの壁画教会、マラムレシュの木造文化、地下の岩塩坑、そして黒海へ開くドナウ・デルタまで。山地と川、複数の歴史圏、農村の暮らしが重なってできた国をたどる。",
+    "image": "assets/images/romania/approved/hero-sinaia-peles-carpathians.webp",
+    "location": "Peleș Castle / Sinaia",
+    "coordinates": {
+      "latitude": 45.3599,
+      "longitude": 25.5426
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 3
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 48.459824,
+      "south": 43.465059,
+      "west": 19.864557,
+      "east": 30.077824
+    },
+    "svg": "assets/images/romania/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/ROU.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; JOURNEY ATLAS map-v3 clean background"
+  },
+  "scenes": [
+    {
+      "id": "brasov-old-town-tampa",
+      "name": "ブラショフ / タンパ山から見る旧市街",
+      "nameLocal": "Brașov / Old Town from Tâmpa",
+      "mapLabel": "Brașov",
+      "description": "タンパ山側から見下ろすと、赤い屋根の旧市街と黒の教会がカルパチアの斜面に囲まれている。都市だけでなく、山の盆地に街が収まる地形まで一緒に読める。",
+      "coordinates": {
+        "latitude": 45.6427,
+        "longitude": 25.5887
+      },
+      "image": "assets/images/romania/approved/brasov-old-town-tampa.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "sighisoara-citadel-clock-tower",
+      "name": "シギショアラ / 城塞都市と時計塔",
+      "nameLocal": "Sighișoara / Citadel & Clock Tower",
+      "mapLabel": "Sighișoara",
+      "description": "丘の上に城壁、時計塔、細い路地と屋根がまとまって残る。トランシルヴァニア・ザクセン人が築いた小さな要塞都市を、単独の建物ではなく街全体として見られる。",
+      "coordinates": {
+        "latitude": 46.2181,
+        "longitude": 24.7926
+      },
+      "image": "assets/images/romania/approved/sighisoara-citadel-clock-tower.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "transfagarasan-balea-switchbacks",
+      "name": "トランスファガラシャン / バレア湖と山岳道路",
+      "nameLocal": "Transfăgărășan / Bâlea Lake & Switchbacks",
+      "mapLabel": "Transfăgărășan",
+      "description": "ファガラシュ山地の高所で、氷河地形を縫うDN7Cのつづら折りが谷へ落ちていく。カルパチアを眺めるだけでなく、山を越える移動そのものが地理体験になる場所。",
+      "coordinates": {
+        "latitude": 45.603,
+        "longitude": 24.6178
+      },
+      "image": "assets/images/romania/approved/transfagarasan-balea-switchbacks.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "danube-delta-mila23-channels",
+      "name": "ドナウ・デルタ / ミラ23と水路",
+      "nameLocal": "Danube Delta / Mila 23 & Old Danube Channels",
+      "mapLabel": "Danube Delta",
+      "description": "黒海へ向かうドナウが、水路、ヨシ原、湖へ細かく分かれていく。低い水面から見ると、山地の国という印象とはまったく異なる、広い湿地の世界が続く。",
+      "coordinates": {
+        "latitude": 45.2275,
+        "longitude": 29.2455
+      },
+      "image": "assets/images/romania/approved/danube-delta-mila23-channels.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "voronet-painted-church",
+      "name": "ヴォロネツ / 聖ゲオルゲ教会",
+      "nameLocal": "Voroneț / Church of St George",
+      "mapLabel": "Voroneț",
+      "description": "ブコヴィナの教会では、宗教画が内部だけでなく外壁を覆う。ヴォロネツでは青を基調とした壁画と建築、周囲の緑が一体になり、北東部独自の正教会文化を見せる。",
+      "coordinates": {
+        "latitude": 47.5333,
+        "longitude": 25.8667
+      },
+      "image": "assets/images/romania/approved/voronet-painted-church.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "ieud-deal-wooden-church-maramures",
+      "name": "イェウド・ディアル / 木造教会とマラムレシュ",
+      "nameLocal": "Ieud Deal / Wooden Church & Maramureș",
+      "mapLabel": "Ieud",
+      "description": "細く高い木造の塔が、丘陵と村の景観の中に立つ。石造の歴史都市とは違い、木材、牧草地、集落が近い距離で結びつく北部マラムレシュの建築文化が見える。",
+      "coordinates": {
+        "latitude": 47.6769,
+        "longitude": 24.2383
+      },
+      "image": "assets/images/romania/approved/ieud-deal-wooden-church-maramures.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "turda-salt-mine-rudolf",
+      "name": "トゥルダ / ルドルフ坑",
+      "nameLocal": "Turda / Rudolf Mine, Salina Turda",
+      "mapLabel": "Turda",
+      "description": "塩を切り出した巨大な地下空間に、現在の見学施設が収まる。地上の山や都市とは別のスケールで、採掘の歴史と岩塩の地質を身体的に感じられる場所。",
+      "coordinates": {
+        "latitude": 46.5877,
+        "longitude": 23.7876
+      },
+      "image": "assets/images/romania/approved/turda-salt-mine-rudolf.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "buzau-paclele-mari-mud-volcanoes",
+      "name": "ブザウ / プクレレ・マリ泥火山",
+      "nameLocal": "Buzău Land / Pâclele Mari Mud Volcanoes",
+      "mapLabel": "Pâclele Mari",
+      "description": "灰褐色の泥の円錐とひび割れた地表が、サブカルパチアの丘の中に現れる。火山岩や溶岩ではなく、地下のガスが泥を押し上げてつくる地質現象が地表に見えている。",
+      "coordinates": {
+        "latitude": 45.3581,
+        "longitude": 26.7124
+      },
+      "image": "assets/images/romania/approved/buzau-paclele-mari-mud-volcanoes.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "木彫りの門",
+      "icon": "landmark"
+    },
+    {
+      "title": "干し草の山",
+      "icon": "landscape"
+    },
+    {
+      "title": "外壁フレスコ",
+      "icon": "landmark"
+    },
+    {
+      "title": "要塞教会の塔",
+      "icon": "landmark"
+    },
+    {
+      "title": "羊の放牧地",
+      "icon": "landscape"
+    },
+    {
+      "title": "絵付けされた陶器",
+      "icon": "culture"
+    },
+    {
+      "title": "刺繍の入った民族衣装",
+      "icon": "culture"
+    },
+    {
+      "title": "色彩豊かな村の家",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "martisor-first-march-practices",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "3月1日、赤と白の糸で春を迎える",
+      "text": "Mărțișorでは、赤と白の糸を組み合わせた小さな飾りを贈り、身につける。暦の日付と、花や渡り鳥など春の兆しが暮らしの中で結びつく習慣。",
+      "points": [
+        "ルーマニアを含む4か国の文化慣習としてユネスコ無形文化遺産に登録",
+        "春の最初の兆しまで身につける地域の習慣がある"
+      ]
+    },
+    {
+      "topicKey": "romanian-transhumance-pastoral-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "山地では、季節移動の牧畜が風景と暮らしをつなぐ",
+      "text": "家畜を季節に合わせて牧草地へ移す移牧は、集落、山道、草地を一つの生活圏として結んできた。カルパチアの牧草地を、自然だけでなく利用される景観として見られる。",
+      "points": [
+        "ルーマニアは多国間のtranshumance無形文化遺産に参加",
+        "移動は季節、牧草地、家畜管理と結びつく"
+      ]
+    },
+    {
+      "topicKey": "horezu-ceramic-craftsmanship",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ホレズの陶器は、土と手仕事から生まれる",
+      "text": "ホレズでは、粘土の成形、焼成、細かな装飾までが地域の工芸として受け継がれる。完成品だけでなく、工房での作業を通して暮らしと手仕事の関係が見える。",
+      "points": [
+        "ホレズ陶器の技術は2012年にユネスコ無形文化遺産へ登録",
+        "成形と装飾を含む地域の工芸文化"
+      ]
+    },
+    {
+      "topicKey": "brancusi-targu-jiu-axis",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ブランクーシは、彫刻を都市の1.5 kmの軸に置いた",
+      "text": "トゥルグ・ジウでは、彫刻、公園、教会、英雄通りが一本の概念軸で結ばれている。中世建築とは異なる20世紀の公共空間が、ルーマニアの文化史に加わる。",
+      "points": [
+        "ブランクーシのモニュメンタル・アンサンブルは2024年に世界遺産登録",
+        "作品群は約1,500mの軸に展開する"
+      ]
+    },
+    {
+      "topicKey": "dacian-roman-frontier-layers",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ダキアとローマの境界は、山地を歴史の地図に変える",
+      "text": "オラシュティエ山地のダキア人要塞と、ローマ帝国のダキア国境遺産は別の時代を伝える。カルパチア周辺を進むと、山や谷が政治と防衛の境界でもあったことが分かる。",
+      "points": [
+        "ダキア人要塞群とローマ帝国ダキア国境は別の世界遺産",
+        "二つの時代を一つの文明として混同しない"
+      ]
+    },
+    {
+      "topicKey": "bucharest-twentieth-century-restructuring",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ブカレストでは、旧市街と20世紀の大規模改造が隣り合う",
+      "text": "首都には歴史的な街路と、20世紀後半のシヴィック・センター再編で生まれた大きな都市空間が共存する。ブラショフやシギショアラとは異なる都市の時間軸が見える。",
+      "points": [
+        "首都の都市構造は複数の時代の改造を受けている",
+        "地方の中世都市とは街区のスケールが大きく異なる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "romanian-romance-language",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "ルーマニア語はロマンス語",
+      "text": "ルーマニア語はラテン語から発達したロマンス諸語の一つ。周辺にスラヴ系やウラル系言語が広がる地域で、標識や地名の響きに異なる言語史が見える。",
+      "icon": "culture",
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "sapanta-merry-cemetery",
+      "categoryEn": "MARAMUREȘ",
+      "categoryJa": "墓地",
+      "title": "サプンツァには、色彩のある木製墓標が並ぶ",
+      "text": "Merry Cemeteryでは、青を基調とした木製の十字架に絵や文章が描かれている。墓地の景観を通して、死者の人生を共同体の記憶として残す独特の表現に出会う。",
+      "icon": "culture",
+      "sourceKey": "merryCemetery"
+    },
+    {
+      "topicKey": "brasov-black-church-name",
+      "categoryEn": "BRAȘOV",
+      "categoryJa": "名前",
+      "title": "「黒の教会」という名は、大火の記憶と結びつく",
+      "text": "ブラショフを象徴するBlack Churchは、17世紀末の大火後に現在の呼称が定着した。旧市街を見下ろすと、巨大な教会が街の基準点になっていることが分かる。",
+      "icon": "landmark",
+      "sourceKey": "blackChurch"
+    },
+    {
+      "topicKey": "bran-dracula-history-fiction",
+      "categoryEn": "TRANSYLVANIA",
+      "categoryJa": "物語",
+      "title": "Bran CastleとDraculaは、歴史と文学を分けて見る",
+      "text": "ブラム・ストーカーのDraculaは架空の人物で、城の公式史もVlad ȚepeșとBran Fortressの結びつきを限定的に説明している。観光上の物語と実在の城史を分けて見ると面白い。",
+      "icon": "landmark",
+      "sourceKey": "bran"
+    },
+    {
+      "topicKey": "transfagarasan-seasonal-road",
+      "categoryEn": "ROAD",
+      "categoryJa": "山道",
+      "title": "Transfăgărășanは一年中同じ条件では走れない",
+      "text": "高所区間は積雪、落石、工事などで季節的な通行規制が入る。低地が春や秋でも、山上の道路状況は別なので、走行前に当日の公式交通情報を確認したい。",
+      "icon": "road",
+      "sourceKey": "transfagarasan"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ROMANIA",
+    "title": "ルーマニアで食べたいもの",
+    "intro": "キャベツ包みとトウモロコシ、炭火のミチ、酸味のあるスープ、乳製品を使う菓子まで。山地と農村の食材が家庭料理につながるルーマニアから、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "sarmale-cu-mamaliga",
+        "name": "サルマーレ・ク・ママリガ",
+        "nameLocal": "Sarmale cu mămăligă",
+        "text": "肉や米をキャベツの葉で包んだサルマーレに、トウモロコシ粉を炊いたママリガを合わせる。保存食、穀物、乳製品が同じ皿でつながる家庭料理。",
+        "image": "assets/images/romania/approved/food-sarmale-cu-mamaliga.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "mici-mititei",
+        "name": "ミチ / ミティテイ",
+        "nameLocal": "Mici / Mititei",
+        "text": "味をつけた挽き肉を皮なしの小さな筒状にまとめ、焼き目をつけるグリル料理。マスタードを添える食べ方があり、煮込みや包み料理とは違う食感が旅の食卓に加わる。",
+        "image": "assets/images/romania/approved/food-mici-mititei.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "ciorba-de-burta",
+        "name": "チョルバ・デ・ブルタ",
+        "nameLocal": "Ciorbă de burtă",
+        "text": "牛の胃を細く切り、酸味のあるクリーミーなスープに仕立てる。ルーマニアのciorbăにある「酸味のある汁物」という食文化を、はっきりした形で味わえる一杯。",
+        "image": "assets/images/romania/approved/food-ciorba-de-burta.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "papanasi",
+        "name": "パパナシ",
+        "nameLocal": "Papanași",
+        "text": "チーズを練り込んだ生地を揚げ、サワークリームと濃いベリー系のジャムを合わせる菓子。温かい生地、乳製品、果実の酸味が一皿に重なる。",
+        "image": "assets/images/romania/approved/food-papanasi.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ブカレストからシナイアとブラショフへ",
+        "text": "首都を入口に、鉄道や車でカルパチアの谷へ移動し、PeleșとBrașovまでをつなぐ。短い滞在では都市数を増やしすぎず、首都・王宮・山岳都市という三つの違いをつかむ。例：ブカレスト → シナイア → ブラショフ → ブカレスト。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "トランシルヴァニアを横断し、山と地下へ入る",
+        "text": "ブカレスト／シナイアからブラショフ、シギショアラ、シビウ方面、トゥルダ／クルジュまでをつなぐ。Transfăgărășanを入れる場合は道路状況を優先する。例：ブカレスト → シナイア → ブラショフ → シギショアラ → シビウ → トゥルダ／クルジュ。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "北の木造文化とブコヴィナ、ドナウ・デルタまで広げる",
+        "text": "トランシルヴァニアにマラムレシュとブコヴィナを加え、さらに時間を取れるならトゥルチャからドナウ・デルタへ。地域ごとに滞在の余白を置く。例：ブカレスト → トランシルヴァニア → マラムレシュ → ブコヴィナ → ブカレスト／トゥルチャ → ドナウ・デルタ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#819963",
+      "text": "都市、ザクセン系の歴史都市、低地の農村が歩きやすくなり、3月初めにはMărțișorが季節の目印になる。高所はまだ冬の影響が残るため、Transfăgărășanの通行は月だけで判断しない。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9b55",
+      "text": "高山、地方の長距離移動、ドナウ・デルタの船旅を組み込みやすい時期。山岳道路は必ず最新の通行情報を確認し、Peleșや主要都市では混雑する時間帯を避ける余白を持つ。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#ad794b",
+      "text": "カルパチアの森やトランシルヴァニアの町に秋色が入り、農村景観も変化する。朝晩は冷え込み、日照時間も短くなるため、山越えや地方移動は日中に余白を置く。"
+    },
+    {
+      "months": "11〜2月",
+      "color": "#758e9e",
+      "text": "旅の軸はブカレスト、歴史都市、博物館、城、冬の山岳拠点へ移る。高所道路の制限と地方交通の遅れを見込み、雪景色を低地や都市で必ず見られるとは考えない。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バス・車・デルタの船",
+    "text": "ブカレスト、シナイア、ブラショフと主要なトランシルヴァニア都市は鉄道が移動の軸になる。地方の町や村はバスや車で補い、マラムレシュやブコヴィナを連続して回るなら車の自由度が高い。ドナウ・デルタではトゥルチャ周辺から船へ移動手段が変わる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "中世都市や城だけでなく、その背景にある山地と歴史圏まで一緒に見たい人",
+      "text": "Peleș、Brașov、Sighișoaraを単独の名所ではなく、カルパチアとトランシルヴァニアの地理の中でつないで見たい人。"
+    },
+    {
+      "title": "カルパチアの山道、湿地、地下空間、泥火山まで景色の種類を切り替えたい人",
+      "text": "高山道路からドナウ・デルタ、Salina Turda、Buzău Landまで、同じ国の中で地形とスケールが大きく変わる旅をしたい人。"
+    },
+    {
+      "title": "木造建築、壁画、陶器、牧畜など、地域の暮らしと手仕事に触れたい人",
+      "text": "Maramureș、Bucovina、Horezuなどへ足を延ばし、都市史だけでなく村、工芸、季節の習慣まで見たい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東南ヨーロッパ／カルパチアと下ドナウ"
+    },
+    {
+      "label": "首都",
+      "value": "ブカレスト"
+    },
+    {
+      "label": "人口",
+      "value": "約1,904万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "238,398 km²（日本の約63%）"
+    },
+    {
+      "label": "言語",
+      "value": "ルーマニア語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（ルーマニア正教会を中心に正教会が多数）"
+    },
+    {
+      "label": "通貨",
+      "value": "ルーマニア・レウ（RON）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "romanian-danube-length",
+      "label": "ルーマニアを流れるドナウ",
+      "value": "約1,075 km",
+      "note": "西のBaziaș付近から黒海のデルタへ向かうドナウは、国境線だけでなく南部と東部をつなぐ大きな地理軸になる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "danube-delta-world-heritage-area",
+      "label": "ドナウ・デルタ世界遺産区域",
+      "value": "312,440 ha",
+      "note": "ユネスコ世界遺産の登録区域だけで31万haを超える。デルタを一つの観察地点ではなく、広い水域と湿地のまとまりとして理解するための数字。",
+      "icon": "wildlife"
+    },
+    {
+      "topicKey": "brancusi-targu-jiu-axis-length",
+      "label": "ブランクーシの都市軸",
+      "value": "1,500 m",
+      "note": "トゥルグ・ジウの彫刻群は、公園や教会、通りを約1.5kmの概念軸でつなぐ。中世や農村とは異なる20世紀のルーマニアが都市空間に残る。",
+      "icon": "landmark"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "transfagarasan-current-road-status",
+      "title": "Transfăgărășanは現在の道路状況を必ず確認する",
+      "text": "高所区間は季節的に規制され、積雪、落石、工事、交通管理で条件が変わる。固定の開通日を前提にせず、走行直前に道路管理当局の情報を確認する。"
+    },
+    {
+      "topicKey": "danube-delta-boat-access",
+      "title": "ドナウ・デルタは「車で回る場所」と考えない",
+      "text": "湿地の多くは船で入る。保護区域のルールや航路、運航条件を確認し、野生動物を追い回すのではなく、規則に沿った小規模な観察を選ぶ。"
+    },
+    {
+      "topicKey": "romanian-regional-transfer-buffer",
+      "title": "地図上の距離より、山越えと地方接続に余白を置く",
+      "text": "Maramureș、Bucovina、Transylvania、Deltaを連日の一泊移動でつなぐと景観を見る時間が減る。地方では地域ごとに滞在日をまとめる方が旅の密度を保ちやすい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "moldova",
+      "nameEn": "MOLDOVA",
+      "nameJa": "モルドバ",
+      "flag": "🇲🇩",
+      "reason": "ルーマニア語圏のつながりを保ちながら、より平坦な農地、ワイン文化、村の暮らしへ旅のスケールを変えたいなら。"
+    },
+    {
+      "slug": "hungary",
+      "nameEn": "HUNGARY",
+      "nameJa": "ハンガリー",
+      "flag": "🇭🇺",
+      "reason": "トランシルヴァニアから西へ進み、カルパチア盆地、ドナウ、ハプスブルク期の都市文化を中央ヨーロッパ側へつなげたいなら。"
+    },
+    {
+      "slug": "bulgaria",
+      "nameEn": "BULGARIA",
+      "nameJa": "ブルガリア",
+      "flag": "🇧🇬",
+      "reason": "ドナウを越えて、正教会文化、山地、黒海へ続く南東ヨーロッパの地理を別の国側から見たいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇭🇺",
+      "countryEn": "HUNGARY",
+      "countryJa": "ハンガリー",
+      "path": "Transylvania / Oradea → Budapest",
+      "description": "トランシルヴァニア西部からオラデアを経てブダペスト方面へ抜ける中欧への続き方。2026年はCluj–Oradea区間で鉄道工事と代行輸送があるため、利用日の運行を確認する。"
+    },
+    {
+      "flag": "🇧🇬",
+      "countryEn": "BULGARIA",
+      "countryJa": "ブルガリア",
+      "path": "Bucharest → Ruse",
+      "description": "ブカレストからドナウを越えてルセへ進む国境ルート。2026年夏ダイヤにはBucharest–Giurgiu–Ruseの季節列車が設定されており、その他の時期は最新の鉄道・バス接続を確認する。"
+    },
+    {
+      "flag": "🇲🇩",
+      "countryEn": "MOLDOVA",
+      "countryJa": "モルドバ",
+      "path": "Iași → Chișinău",
+      "description": "北東部ブコヴィナ方面からIașiを経てChișinăuへつなぎ、ルーマニア語文化圏の連続と国土スケールの違いを見る。国境を越える公共交通は利用時の最新時刻を確認する。"
+    }
+  ],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-10",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2021",
+    "transport": "2026-09",
+    "nextRoutes": "2026-09",
+    "transfagarasan": "2026-09"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/ROU.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84.",
+    "population": "European Union Romania country profile / Eurostat 2025: population 19,036,031.",
+    "area": "European Union Romania country profile / Eurostat 2025: geographical size 238,398 km².",
+    "japanArea": "Geospatial Information Authority of Japan national area 377,974.87 km²; Romania 238,398 km² is 63.07%, rounded to about 63%.",
+    "language": "European Union Romania country profile: Romanian is Romania's official EU language; Romanian is a Romance language.",
+    "religion": "Romania Population and Housing Census 2021 definitive results, Table 2.04.1/2.04.2 on resident population by religion; Romanian Orthodox is the dominant reported affiliation.",
+    "currency": "European Union Romania country profile: Romanian leu (RON).",
+    "peles": "Peleș National Museum history: Peleș Castle project developed under King Carol I from 1873 to 1914.",
+    "sighisoara": "UNESCO World Heritage Centre, Historic Centre of Sighișoara: fortified medieval town and Transylvanian Saxon cultural testimony.",
+    "transfagarasan": "Romanian road administration/current traffic information; high-altitude DN7C access is seasonal and subject to current safety conditions.",
+    "danubeDelta": "UNESCO World Heritage Centre, Danube Delta: inscribed property 312,440 ha and more than 300 bird species; Danube Delta Biosphere Reserve Authority for current access rules.",
+    "voronet": "UNESCO World Heritage Centre, Churches of Moldavia: eight churches with exterior frescoed walls dating mainly from the 15th–16th centuries, including Voroneț.",
+    "maramures": "UNESCO World Heritage Centre, Wooden Churches of Maramureș: eight timber churches characterized by narrow construction and tall slender towers.",
+    "salinaTurda": "Salina Turda official Rudolf Mine information: chamber about 42 m deep, 50 m wide and 80 m long; visitor facilities are located underground.",
+    "buzau": "UNESCO Global Geoparks, Buzău Land: mud volcanoes are gas-driven geological features rather than magmatic volcanoes.",
+    "martisor": "UNESCO Intangible Cultural Heritage, Cultural practices associated with 1 March, multinational inscription including Romania.",
+    "transhumance": "UNESCO Intangible Cultural Heritage, Transhumance, the seasonal droving of livestock, multinational inscription including Romania.",
+    "horezu": "UNESCO Intangible Cultural Heritage, Craftsmanship of Horezu ceramics, inscribed 2012.",
+    "brancusi": "UNESCO World Heritage Centre, Brâncuși Monumental Ensemble of Târgu Jiu: 1,500-m conceptual axis; inscribed 2024.",
+    "dacia": "UNESCO World Heritage Centre, Dacian Fortresses of the Orăștie Mountains and Frontiers of the Roman Empire – Dacia.",
+    "bucharest": "Historical documentation on Bucharest's 20th-century Civic Centre restructuring; used only for neutral urban-form context.",
+    "merryCemetery": "Romanian tourism and Maramureș cultural sources on Săpânța Merry Cemetery and its painted wooden crosses.",
+    "blackChurch": "Black Church Brașov official history; the church's present name is associated with the aftermath of the 1689 Great Fire.",
+    "bran": "Bran Castle official history and Count Dracula pages: Bram Stoker's Dracula is fictional; the official fortress history treats Vlad Țepeș's connection with Bran as limited.",
+    "taste": "Romanian culinary reference sources and dish identity cross-checks for sarmale cu mămăligă, mici/mititei, ciorbă de burtă and papanași.",
+    "transport": "CFR Călători 2025–2026 timetable and current 2026 itinerary data: Bucharest/Sinaia/Brașov and major Transylvanian cities use rail corridors; Cluj–Oradea has 2026 infrastructure works with replacement buses on affected services.",
+    "nextRoutes": "CFR Călători 2025–2026 timetable and May 2026 international announcements: seasonal Bucharest–Giurgiu–Ruse services in summer 2026; current Romania–Hungary services and infrastructure notices; Moldova continuation described without fixed frequency and requires live verification.",
+    "travelScale": "Editorial ranges based on the distribution of Bucharest, Sinaia, Transylvania, Maramureș, Bucovina and the Danube Delta, with current CFR and road-access constraints considered."
+  }
+}
