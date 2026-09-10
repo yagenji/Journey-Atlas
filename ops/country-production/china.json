@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "china",
   "countryName": "CHINA",
-  "contentRef": "country/china",
-  "stateRef": "country/china",
-  "phase": "QA",
-  "stateRevision": 41,
-  "updatedAt": "2026-09-10T10:27:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 43,
+  "updatedAt": "2026-09-10T10:46:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
@@ -468,7 +468,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "CI_GATED",
     "sourceCommit": "924359b2acee6c304bd41c0ee12f7e41b8f8c3d7",
     "validateRunId": 34425441073,
     "productionStateRunId": 34425441092,
@@ -521,18 +521,48 @@
     },
     "failureCount": 0,
     "completedAt": "2026-09-10T10:27:00+09:00",
-    "notes": "China review-package candidate passed current-main targeted Country validation, Production State validation, Cloudflare package build, and targeted unpublished-reviewable browser QA. Browser QA explicitly passed desktop, tablet, and mobile with zero failures."
+    "notes": "China review-package candidate passed current-main targeted Country validation, Production State validation, Cloudflare package build, and targeted unpublished-reviewable browser QA. Browser QA explicitly passed desktop, tablet, and mobile with zero failures. Production verification for the China merge commit confirmed Cloudflare served the exact review commit, verified the China production route/payload, and passed production unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. The run was superseded only after all China classify/runtime/qa-reviewable jobs had completed successfully; the subsequent latest-main Cloudflare production verification also completed successfully.",
+    "productionSourceCommit": "3e465398fd0beda28c3c170309ef1f43248501ea",
+    "productionVerifyRunId": 34425678399,
+    "productionVerifyRunConclusion": "SUPERSEDED_AFTER_TARGET_QA_PASS",
+    "latestMainVerifyRunId": 34425835864,
+    "productionBrowserQaArtifactId": 10132620639,
+    "productionChecks": [
+      "cloudflare-served-china-review-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "production-unpublished-reviewable-browser-qa",
+      "desktop",
+      "tablet",
+      "mobile",
+      "failure-count-zero",
+      "latest-main-production-verification-success"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/china/",
+    "commit": "3e465398fd0beda28c3c170309ef1f43248501ea",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-10T10:32:38+09:00",
+    "verificationBasis": "Cloudflare production served the exact China review merge commit; production route/payload and unpublished-reviewable Desktop / Tablet / Mobile Browser QA all passed with zero failures. A later main commit superseded the workflow only after these China jobs had completed successfully; the latest-main production verification also passed."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-10T10:46:00+09:00",
+    "basis": "User instruction: QAして問題なければ公開して; current review deployment passed production route/payload verification and Desktop / Tablet / Mobile browser QA with zero failures. Final semantic QA issue in Encounters was corrected in the terminal publication PR."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-10T10:46:00+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/china/",
+    "note": "Registry publication, final semantic QA correction, and terminal Production State are committed atomically. CI must validate the published build and production route."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -573,7 +603,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "NONE",
     "asset": null
   },
   "generationContext": {
