@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "QA",
-  "stateRevision": 39,
-  "updatedAt": "2026-09-10T10:12:00+09:00",
+  "stateRevision": 40,
+  "updatedAt": "2026-09-10T10:17:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
@@ -444,10 +444,10 @@
         "y": -2
       },
       "s02Offset": {
-        "x": -3.5,
-        "y": 2
+        "x": -4.4,
+        "y": 2.3
       },
-      "notes": "Beijing capital, Forbidden City Scene and Jinshanling Hero are geographically close at national scale; display offsets stay within the <=5% map rule and satisfy marker spacing thresholds without changing coordinates."
+      "notes": "Beijing capital, Forbidden City Scene and Jinshanling Hero are geographically close at national scale. S02 uses a 4.965% vector offset (-4.4, +2.3), remaining within the 5% rule; capital↔S02 is 55.7px and Hero↔capital is 47.2px under current validator geometry."
     }
   },
   "implementation": {
