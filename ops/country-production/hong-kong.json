@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-10T09:18:00+09:00",
+  "phase": "QA",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-10T09:28:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -464,7 +464,20 @@
     }
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-10T09:28:00+09:00",
+    "files": [
+      "data/countries/hong-kong.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "city",
+      "earth",
+      "life"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Hong Kong schema-v2 Country JSON implemented using the approved Hero, eight Scene, four Taste and Map target paths. Theme assignments live only in data/theme-taxonomy.json. Hong Kong is described as a PRC Special Administrative Region; capital is null. atlasPublished remains false and normal registry discovery remains disabled."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -520,7 +533,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
