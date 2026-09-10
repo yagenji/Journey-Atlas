@@ -5,16 +5,20 @@ on:
     paths:
       - "data/countries/**"
       - "data/atlas-destinations.json"
+      - "data/atlas-destinations-editorial.json"
       - "data/region-taxonomy.json"
       - "scripts/audit_country_region_labels.py"
+      - "scripts/normalize_country_region_labels.py"
       - ".github/workflows/audit-country-region-labels.yml"
   push:
     branches: ["main"]
     paths:
       - "data/countries/**"
       - "data/atlas-destinations.json"
+      - "data/atlas-destinations-editorial.json"
       - "data/region-taxonomy.json"
       - "scripts/audit_country_region_labels.py"
+      - "scripts/normalize_country_region_labels.py"
       - ".github/workflows/audit-country-region-labels.yml"
   workflow_dispatch:
 
