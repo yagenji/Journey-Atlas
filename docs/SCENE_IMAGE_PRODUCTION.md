@@ -1,13 +1,13 @@
 # JOURNEY ATLAS — Scene Image Production Hard Rule
 
 Updated: 2026-09-10
-Policy revision: 6.1
+Policy revision: 7.1
 
 ## Scope
 
-This is the canonical generation rule for Country Hero and S01–S08 scenic images.
+This is the canonical generation rule for Country Hero and S01–S08 scenic images beneath the current main image-generation policy.
 
-It exists to prevent wasted generations from typography, poster layouts, collages, repeated previous assets, target-scene drift, and unnecessary per-image user interaction.
+It exists to prevent wasted generations from typography, poster layouts, collages, repeated previous assets, target-scene drift, and unnecessary per-image user interaction or repository round-trips.
 
 ## Core rule
 
@@ -16,6 +16,7 @@ It exists to prevent wasted generations from typography, poster layouts, collage
 - Never combine multiple Scenes into one collage, grid, contact sheet, poster, diptych, triptych, storyboard, or labelled panel.
 - "Batch review" means one user review gate after the Scene round. It does not mean a collage.
 - One independent image-generation request per Scene does **not** mean one user approval per Scene.
+- Different Scene targets should continue in the same assistant turn after successful reconciliation when the image tool returns control.
 - Do not regenerate an APPROVED asset unless the user explicitly requests it.
 
 ## Mandatory prompt tail
@@ -54,6 +55,8 @@ A valid packet must identify:
 
 If the packet is incomplete, do not spend a generation credit.
 
+For a Scene round, validate the complete S01–S08 Render Packet set once at round start. Within the same uninterrupted assistant turn, an unchanged validated Render Packet may be reused directly from authoritative State without re-reading the Content Plan before every image.
+
 ## Single-frame prompt envelope — mandatory
 
 For every Hero / Scene generation, the effective instruction begins with the semantic equivalent of:
@@ -68,49 +71,53 @@ If a collage/multi-panel output occurs, mark generation context CONTAMINATED and
 
 ## Pre-generation reservation — mandatory
 
-Before calling image generation for Hero or Scene:
+Before the first Hero / Scene generation in a new assistant turn, or whenever State authority is uncertain:
 
-1. Re-read authoritative Production State.
+1. Read authoritative Production State.
 2. Confirm the exact NEXT target.
-3. Write that target as `GENERATING` with a unique `generationReservation`.
-4. Re-read and confirm NEXT becomes `RECONCILE_GENERATION / {same asset}`.
-5. Only then generate the image.
+3. Write that target as `GENERATING` with a unique `generationReservation` bound to exact asset id, contentId, promptSeries, and current generationContext epoch.
+4. Persist using the expected blob SHA.
+5. If GitHub accepts the write, treat the exact State content just written plus the returned new blob SHA as authoritative for that same assistant turn.
+6. Confirm locally/deterministically that NEXT is now `RECONCILE_GENERATION / {same asset}` and generate the image.
+
+Do **not** immediately re-fetch the same State merely to confirm your own successful write. Re-fetch only on a new assistant turn, SHA conflict, possible external modification, or genuine uncertainty.
 
 Never generate first and plan to update State afterward.
 
 If a previous generation is still `GENERATING`, reconcile it first. Do not call image generation again until reconciliation is complete.
 
-The same Hero / Scene may be generated at most once in one assistant turn.
+The same Hero / Scene may be generated at most once in one assistant turn. At most one unreconciled `GENERATING` target may exist.
 
 Every call must be a fresh independent text-to-image generation. Never use a previously generated image as an edit/reference source for the next target or regeneration.
 
-## Preflight before every generation
+## Preflight before generation
 
-Before calling image generation:
+At the start of an uninterrupted Scene round:
 
-1. Resolve `stateRef` and read `ops/country-production/{slug}.json` from the authoritative reference (`country/{slug}` during active production, `main` from REVIEW onward).
-2. Confirm `next.action` is a generation action.
-3. Confirm the exact `next.asset`.
-4. Read that asset's visual identity from the authoritative Content Plan on `contentRef`.
-5. Compare the target identity with **all** previously generated or approved Hero / Scene assets in the same Country, not only the immediately previous asset:
-   - contentId / location
-   - main subject
-   - terrain
-   - architecture
-   - season / light
-   - composition
-6. Confirm the target is not a duplicate target and is not accidentally carrying forward another Scene identity.
-7. Append the mandatory prompt tail above.
-8. Generate only the current target.
+1. Resolve `stateRef` and read authoritative Production State.
+2. Confirm the round and deterministic first target.
+3. Validate the complete S01–S08 Render Packet set against the intended Content Plan once.
+4. Confirm all target identities are distinct before spending credits.
+5. Build the in-turn all-prior comparison set from already generated/approved Hero / Scene outputs.
+
+For each subsequent different target in that same turn:
+
+1. use the exact already-validated Render Packet from authoritative State;
+2. confirm the currently reserved asset/contentId/epoch;
+3. compare its identity with all prior targets/outputs in the in-turn comparison set;
+4. append the mandatory prompt tail;
+5. generate only the current target.
+
+Do not re-read an unchanged Content Plan or re-fetch unchanged State before every image. Reconstruct from repository sources after a turn boundary, reset, prompt-series refresh, contentId change, or conflict.
 
 Do not generate from chat memory alone.
 
 ## Candidate visual novelty QA — mandatory
 
-After every generated Hero / Scene, reconcile the existing `GENERATING` reservation before writing `REVIEW_CANDIDATE`:
+After every generated Hero / Scene, reconcile the existing `GENERATING` reservation before the next image is generated:
 
 1. Compare the output against the current Render Packet.
-2. Compare it against **every** previously generated or approved Hero / Scene in the same Country.
+2. Compare it against **every** previously generated or approved Hero / Scene in the same Country, using the in-turn incremental comparison set where available.
 3. Record `candidateVisualQa.targetIdentity = PASS`.
 4. Record `candidateVisualQa.previousAssetRepeat = PASS` only after the all-prior comparison passes.
 5. Record `candidateVisualQa.collageTypography = PASS`.
@@ -136,9 +143,10 @@ On contamination:
 2. set the affected asset to `REGENERATE`;
 3. record the failure reason;
 4. set `generationContext.state = CONTAMINATED`;
-5. stop image generation for that assistant turn;
-6. next action must be `RESET_GENERATION_CONTEXT`;
-7. RESET is a no-image turn and must rebuild the next prompt from exactly one Render Packet.
+5. do **not** reserve the next target in that transition;
+6. stop image generation for that assistant turn;
+7. next action must be `RESET_GENERATION_CONTEXT`;
+8. RESET is a no-image turn and must rebuild the next prompt from exactly one Render Packet.
 
 ## Immediate rejection
 
@@ -172,18 +180,20 @@ The failure limit prevents spending long periods and image credits on one broken
 
 ## Scene round execution — hard throughput rule
 
-Quality and asset identity remain more important than forcing multiple targets into one image-generation request. At the same time, State transitions must not become unnecessary user interaction gates.
+Quality and asset identity remain more important than forcing multiple targets into one image-generation request. State transitions must also avoid redundant user interaction and repository I/O.
 
-During `SCENES_INITIAL`:
+During `SCENES_INITIAL` or a Scene regeneration round:
 
-1. reserve the current `next.asset`;
+1. reserve the first current target before generation;
 2. generate exactly that one standalone Scene;
-3. reconcile it;
-4. run target / all-prior duplicate / collage QA;
-5. persist it as `REVIEW_CANDIDATE` or `REGENERATE`;
-6. re-read authoritative State;
-7. if NEXT points to another `NOT_STARTED` Scene and generation context is CLEAN, reserve and generate that next Scene immediately;
-8. repeat until no `NOT_STARTED` Scene remains or a real blocking condition requires the round to stop.
+3. reconcile it and run target / all-prior duplicate / collage QA;
+4. if the result is valid and another different target remains while generation context is CLEAN, use **one atomic State update** to:
+   - persist the current target as `REVIEW_CANDIDATE`;
+   - clear its reservation;
+   - reserve the next different target as `GENERATING` with exact asset/contentId/promptSeries/epoch binding;
+5. after that successful State write, do not re-fetch merely to confirm it; generate the already-reserved next target immediately;
+6. repeat until the round boundary or a real blocking/contamination condition;
+7. for the final target, reconcile/persist it without reserving another target.
 
 Hard interaction rules:
 
@@ -192,7 +202,8 @@ Hard interaction rules:
 - A valid Scene result is an internal production checkpoint, not a user interaction checkpoint.
 - While sequential image-generation calls are technically available in the current assistant turn, do **not voluntarily return control** after a valid Scene; continue to the next Scene.
 - Each Scene still uses its own independent image-generation request. Never merge several Scene targets into one prompt or one collage-oriented request.
-- If the image runtime truly hard-stops the assistant turn after one generated image, that runtime boundary is not approval. On the next user message, reconcile if needed and immediately continue from NEXT without asking the user to review the previous valid candidate.
+- Do not wait for country-branch CI completion between valid images; CI is an asynchronous transition guard.
+- If the image runtime truly hard-stops the assistant turn after one generated image, that runtime boundary is not approval. On the next user message, re-read/reconcile if needed and immediately continue from NEXT without asking the user to review the previous valid candidate.
 - Never claim all eight were generated unless eight independent outputs actually exist.
 
 ## Machine duplicate gate
@@ -214,7 +225,7 @@ Only after every Scene has one valid `REVIEW_CANDIDATE` or is marked `REGENERATE
 - regenerate only specified NG / REGENERATE assets;
 - APPROVED assets are locked.
 
-No individual Scene may be user-approved during `SCENES_INITIAL` / `SCENES_REVIEW`.
+No individual Scene may be user-approved during `SCENES_INITIAL` / `SCENES_REVIEW` or during a regeneration round. Revision 7 batch-ledger provenance rules apply.
 
 ## Current production
 
