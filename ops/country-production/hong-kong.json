@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "MAP",
-  "stateRevision": 32,
-  "updatedAt": "2026-09-10T08:45:00+09:00",
+  "stateRevision": 33,
+  "updatedAt": "2026-09-10T09:05:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -446,8 +446,9 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/hong-kong/map-atlas-v1.svg",
+    "source": "Hong Kong Home Affairs Department district boundaries via DATA.GOV.HK; 18 WGS84 district features."
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -506,7 +507,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "sceneBatchReview": {
