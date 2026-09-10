@@ -2,7 +2,9 @@
   "schemaVersion": 1,
   "authority": "main",
   "revision": 6,
-  "updatedAt": "2026-09-10T01:36:00+09:00",
+  "patch": 1,
+  "policyId": "6.1",
+  "updatedAt": "2026-09-10T14:35:00+09:00",
   "sourceOfTruth": "ops/image-generation-policy.json",
   "appliesTo": [
     "HERO",
@@ -32,8 +34,32 @@
     "batchLanguageForbiddenInGenerationTurn": true,
     "multiTargetPromptForbidden": true
   },
+  "roundExecution": {
+    "sceneInitialRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
+    "tasteInitialRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
+    "oneIndependentToolCallPerTarget": true,
+    "reconcileEachTargetBeforeNext": true,
+    "continueAfterValidReconciliation": true,
+    "voluntaryReturnControlBetweenValidTargets": false,
+    "perSceneApprovalPromptForbidden": true,
+    "perTasteApprovalPromptForbidden": true,
+    "userApprovalBoundaryScenes": "AFTER_ALL_8_INITIAL_TARGETS",
+    "userApprovalBoundaryTaste": "AFTER_ALL_4_INITIAL_TARGETS",
+    "runtimeHardStopIsNotApprovalGate": true
+  },
+  "novelty": {
+    "compareAgainstAllPriorCountryAssets": true,
+    "immediatelyPreviousOnlyIsInsufficient": true,
+    "wrongTargetCarryoverIsHardFailure": true,
+    "repeatOrRestageIsHardFailure": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "machinePairwiseGateStillRequiredBeforeReviewPackage": true
+  },
   "contamination": {
     "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
     "nextAction": "RESET_GENERATION_CONTEXT",
     "resetRequiresSeparateAssistantTurn": true,
     "noImageGenerationDuringReset": true
@@ -42,6 +68,8 @@
     "hero": "INDIVIDUAL",
     "scenes": "BATCH_AFTER_8",
     "taste": "BATCH_AFTER_4",
+    "perSceneApprovalPrompt": "FORBIDDEN",
+    "perTasteApprovalPrompt": "FORBIDDEN",
     "finalPage": "INDIVIDUAL"
   }
 }
