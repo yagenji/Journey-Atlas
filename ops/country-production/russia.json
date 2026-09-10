@@ -3,9 +3,9 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 39,
-  "updatedAt": "2026-09-10T09:06:00+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 41,
+  "updatedAt": "2026-09-10T09:37:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -231,8 +231,8 @@
     "failureCount": 0,
     "completedAt": "2026-09-10T09:05:11+09:00",
     "notes": "Russia review package passed source validation, production-state validation, exact Cloudflare review-commit serving, production route/payload verification, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures.",
-    "productionSourceCommit": "951df13bbe86ce27ace5cd08aeb0f91feeb812bb",
-    "productionVerifyRunId": 34419587229,
+    "productionSourceCommit": "5e5755589473ac37048e5a63a7133b1d0aac5ec4",
+    "productionVerifyRunId": 34421968370,
     "productionBrowserQaArtifactId": 10130425309,
     "productionChecks": [
       "cloudflare-serves-review-commit",
@@ -243,7 +243,16 @@
       "desktop-1440x1000",
       "tablet-834x1112",
       "mobile-390x844",
-      "failure-count-zero"
+      "failure-count-zero",
+      "publish-cloudflare-serves-exact-commit",
+      "publish-production-runtime-baseline",
+      "publish-production-country-route",
+      "publish-production-country-payload",
+      "publish-published-browser-qa",
+      "publish-desktop-1440x1000",
+      "publish-tablet-834x1112",
+      "publish-mobile-390x844",
+      "publish-failure-count-zero"
     ]
   },
   "reviewDeployment": {
@@ -258,14 +267,26 @@
     "verificationBasis": "Cloudflare production served the exact Russia review merge commit and targeted unpublished-reviewable Browser QA passed."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-10T09:30:00+09:00",
+    "basis": "User instruction: QAして問題なければ公開して; latest reviewable production QA passed with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PASS",
+    "requestedAt": "2026-09-10T09:30:00+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/russia/",
+    "note": "Cloudflare production served the publish commit; production route/payload verification and published Desktop / Tablet / Mobile browser QA passed.",
+    "publishedCommit": "5e5755589473ac37048e5a63a7133b1d0aac5ec4",
+    "productionVerifyRunId": 34421968370,
+    "productionVerifyArtifactIds": [
+      10131273005
+    ],
+    "verifiedAt": "2026-09-10T00:38:22Z"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "executionPolicy": {
