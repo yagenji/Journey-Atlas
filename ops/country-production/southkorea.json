@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "TASTE_REGEN",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-10T08:45:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-10T09:32:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -466,7 +466,7 @@
     },
     {
       "id": "FOOD04",
-      "state": "REGENERATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "bulgogi",
       "promptSeries": 3,
@@ -499,7 +499,15 @@
         "collageTypography": "PASS",
         "notes": "FOOD04 repeated the approved FOOD02 tteokbokki image instead of bulgogi. User explicitly flagged the duplicate. Automatically rejected under target-identity and previous-asset-repeat rules."
       },
-      "renderPacketRefreshedAt": "2026-09-10T08:45:00+09:00"
+      "renderPacketRefreshedAt": "2026-09-10T08:45:00+09:00",
+      "approvedGenerationId": "f2e0e70a-fbfa-4b60-bac8-fa36129065f6",
+      "approvedAt": "2026-09-10T09:32:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Approved standalone bulgogi image: one plate of cooked marinated beef with integral onion/scallion, visually distinct from bibimbap, tteokbokki and samgyetang, with no collage or text."
+      }
     }
   ],
   "map": {
@@ -563,16 +571,10 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD04"
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
-  "blockingIssue": {
-    "code": "TASTE_PREVIOUS_ASSET_REPEAT",
-    "state": "RESOLVED",
-    "detectedAt": "2026-09-10T08:44:00+09:00",
-    "resolvedAt": "2026-09-10T08:45:00+09:00",
-    "notes": "FOOD04 repeated approved FOOD02 tteokbokki. Generation was rejected and FOOD04 prompt series/render packet was refreshed to explicitly exclude tteokbokki and all previously generated Taste visual structures."
-  },
+  "blockingIssue": null,
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
@@ -596,16 +598,17 @@
     "approvedAt": "2026-09-10T08:26:00+09:00"
   },
   "tasteBatchReview": {
-    "result": "PARTIAL",
+    "result": "PASS",
     "checked": [
       "single-dish-composition",
       "clean-background",
       "dish-recognizability",
-      "previous-asset-repeat",
-      "target-identity"
+      "visual-consistency",
+      "menu-variety",
+      "previous-asset-repeat"
     ],
-    "notes": "FOOD03 samgyetang accepted by user. FOOD01 and FOOD02 were automatic hard rejects for four-dish collage. FOOD04 was automatic hard reject for repeating the prior samgyetang image instead of bulgogi. Only FOOD03 is locked; FOOD01, FOOD02 and FOOD04 require regeneration.",
-    "approval": "PARTIAL",
-    "approvedAt": "2026-09-10T08:36:00+09:00"
+    "notes": "All four South Korea Taste images are approved as distinct standalone dishes: bibimbap, tteokbokki, samgyetang and bulgogi. Earlier collage and repeat failures remain recorded as rejected generations.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T09:32:00+09:00"
   }
 }
