@@ -162,14 +162,29 @@ Avoid trivia that is difficult to verify, rapidly becomes stale, or does not hel
 
 ### Encounters
 
-`encounters` is a visual index of what a visitor can expect to see in the country.
+`encounters` is an independent eight-item overview of what a visitor can expect to encounter while travelling through the country.
 
-- Use around 8 short, immediately understandable nouns or noun phrases.
-- Prefer common-language categories for landscapes, nature, streetscapes, architecture, animals, and broadly recognized cultural sights.
-- Avoid specialist vocabulary, obscure local names, named tools, niche traditions, product/brand names, and specific fictional/commercial characters.
+The eight Scenes are only eight real landscapes selected by JOURNEY ATLAS to show geographic and visual range. They are not an exhaustive inventory of the country. Encounters must therefore be selected by looking across the whole country, not by converting the Scene list into shorter labels.
+
+- Use exactly 8 short, immediately understandable nouns or noun phrases.
+- The eight items together must give a broad, multi-angle impression of the country rather than eight examples from one category.
+- Consider multiple lenses such as geography/nature, streets and architecture, everyday life/work, mobility/public space, food, animals/season, belief/culture, and language/signage. These are lenses, not a fixed quota.
+- A Scene element may also appear in Encounters when it is independently representative of the country. Never include it merely because it already appears in a Scene.
+- Do not create Encounters by replacing the eight Scene titles with generic nouns. This is a content failure even when every individual term is understandable.
+- Nature-led countries may legitimately contain more natural elements, but include other strong travel encounters when they materially help explain the country.
+- Prefer common-language terms that can be pictured without explanation.
+- A short locally rooted phrase may be used when its visual meaning is immediately clear, such as `白いゲル`, `韓屋の屋根`, or `寺廟の屋根飾り`.
+- Avoid specialist vocabulary, obscure local names, named tools, niche traditions, product/brand names, and specific fictional/commercial characters when the term needs prior knowledge to make sense.
 - A globally understood figure such as Santa Claus may be used when it works as a direct visual cue.
 - Do not use Encounters to teach cultural trivia. Move explanatory cultural material to Beyond the Scenery or Travel Trivia.
-- Do not simply duplicate the eight Scene titles; summarize the country's visible range at a glance.
+
+Country QA must confirm all five points below:
+
+1. The eight items are not paraphrases of the eight Scenes.
+2. The set shows meaningful breadth across the country.
+3. Every item is something a traveller can directly see, hear, taste, use, or experience on location.
+4. The set does not depend on unexplained specialist/local terminology.
+5. Representative value for the country outranks the convenience of reusing content already present elsewhere on the page.
 
 ### Scenery descriptions
 
