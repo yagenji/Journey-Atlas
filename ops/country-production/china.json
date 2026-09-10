@@ -5,11 +5,11 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "ASSET_QA",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-10T09:47:00+09:00",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-10T09:52:00+09:00",
   "hero": {
     "state": "APPROVED",
-    "asset": null,
+    "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
     "contentId": "jinshanling-great-wall-hero",
     "promptSeries": 2,
     "promptSeriesRejectCount": 0,
@@ -39,7 +39,7 @@
     {
       "id": "S01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/xian-terracotta-army-pit1.webp",
       "contentId": "xian-terracotta-army-pit1",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -72,7 +72,7 @@
     {
       "id": "S02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/forbidden-city-jingshan-axis.webp",
       "contentId": "forbidden-city-jingshan-axis",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -105,7 +105,7 @@
     {
       "id": "S03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/shanghai-bund-lujiazui-huangpu.webp",
       "contentId": "shanghai-bund-lujiazui-huangpu",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -138,7 +138,7 @@
     {
       "id": "S04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/wulingyuan-yuanjiajie-sandstone-pillars.webp",
       "contentId": "wulingyuan-yuanjiajie-sandstone-pillars",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -171,7 +171,7 @@
     {
       "id": "S05",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/lhasa-potala-chakpori.webp",
       "contentId": "lhasa-potala-chakpori",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -204,7 +204,7 @@
     {
       "id": "S06",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/tianluokeng-fujian-tulou-cluster.webp",
       "contentId": "tianluokeng-fujian-tulou-cluster",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -237,7 +237,7 @@
     {
       "id": "S07",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/dunhuang-crescent-lake-mingsha-dunes.webp",
       "contentId": "dunhuang-crescent-lake-mingsha-dunes",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -268,7 +268,7 @@
     {
       "id": "S08",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/honghe-hani-duoyishu-terraces.webp",
       "contentId": "honghe-hani-duoyishu-terraces",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -301,7 +301,7 @@
     {
       "id": "FOOD01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/food-peking-roast-duck.webp",
       "contentId": "peking-roast-duck",
       "promptSeries": 2,
       "promptSeriesRejectCount": 1,
@@ -330,7 +330,7 @@
     {
       "id": "FOOD02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/food-xiaolongbao.webp",
       "contentId": "xiaolongbao",
       "promptSeries": 2,
       "promptSeriesRejectCount": 0,
@@ -360,7 +360,7 @@
     {
       "id": "FOOD03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/food-mapo-tofu.webp",
       "contentId": "mapo-tofu",
       "promptSeries": 2,
       "promptSeriesRejectCount": 0,
@@ -389,7 +389,7 @@
     {
       "id": "FOOD04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/china/approved/food-lanzhou-beef-noodles.webp",
       "contentId": "lanzhou-beef-noodles",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -541,5 +541,31 @@
       "FOOD03",
       "FOOD04"
     ]
+  },
+  "assetQa": {
+    "state": "FAIL",
+    "checkedAt": "2026-09-10T09:52:00+09:00",
+    "localApprovedExport": {
+      "rasterCount": 13,
+      "fullDecode": "PASS",
+      "dimensions": "PASS",
+      "expectedDimensions": "1200x800",
+      "perceptualDuplicateGate": "PASS",
+      "heroScenePairsCompared": 36,
+      "tastePairsCompared": 6
+    },
+    "repositoryMaterialization": {
+      "state": "BLOCKED",
+      "approvedFolderExists": false,
+      "expectedRasterCount": 13,
+      "materializedRasterCount": 0,
+      "reason": "Current GitHub connector can create/update UTF-8 files and blobs from supplied string content, but exposes no operation that accepts the generated image file/file reference as binary input. The approved raster folder therefore cannot be truthfully marked materialized from this chat runtime."
+    },
+    "map": {
+      "asset": "assets/images/china/map-atlas-v1.svg",
+      "existence": "PASS",
+      "state": "APPROVED"
+    },
+    "notes": "All 13 explicitly approved source images were recovered locally, converted to 1200x800 WebP, fully decoded, and passed the same conservative dHash/aHash/thumbnail-RMS duplicate thresholds used by scripts/validate_images.py. Review-package integration is blocked until those exact approved WebP bytes are committed to the working branch."
   }
 }
