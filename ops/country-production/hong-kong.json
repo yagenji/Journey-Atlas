@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
   "phase": "QA",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-10T09:28:00+09:00",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-10T09:35:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -480,8 +480,35 @@
     "notes": "Hong Kong schema-v2 Country JSON implemented using the approved Hero, eight Scene, four Taste and Map target paths. Theme assignments live only in data/theme-taxonomy.json. Hong Kong is described as a PRC Special Administrative Region; capital is null. atlasPublished remains false and normal registry discovery remains disabled."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "FAIL",
+    "productionState": "NOT_STARTED",
+    "completedAt": "2026-09-10T09:35:00+09:00",
+    "failureCount": 1,
+    "checksPassed": [
+      "country-json-schema-v2-structure",
+      "required-section-counts",
+      "facts-order-and-population-display",
+      "content-topic-key-uniqueness",
+      "map-bounds-and-coordinate-validation",
+      "map-marker-collision-gate",
+      "map-svg-clean-background-structure",
+      "theme-taxonomy-city-earth-life",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "registry-image-empty",
+      "final-approval-pending",
+      "local-production-webp-full-decode-13",
+      "local-production-dimensions-1200x800-13",
+      "local-perceptual-duplicate-gate",
+      "source-validation-current-official-sources"
+    ],
+    "checksBlocked": [
+      "repository-approved-raster-asset-existence",
+      "reviewable-strict-validator",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa"
+    ],
+    "notes": "Country content, map, taxonomy, publication gate, official-source checks, and the local approved 13-image batch pass QA. The only blocking failure is repository materialization: all 13 final WebP files exist and pass decode/dimension/duplicate QA in the local production batch, but none is yet present on country/hong-kong. Review integration must not start until the exact approved WebPs are transferred into their target repository paths."
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -564,7 +591,14 @@
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T08:45:00+09:00"
   },
-  "blockingIssues": [],
+  "blockingIssues": [
+    {
+      "code": "APPROVED_RASTER_REPO_TRANSFER",
+      "severity": "BLOCKING",
+      "detectedAt": "2026-09-10T09:35:00+09:00",
+      "detail": "13 approved 1200x800 WebP assets are materialized and QA-passed locally but are missing from country/hong-kong. The available GitHub connector can create binary blobs only from literal base64 content and does not expose a direct local-file/file-ref upload handoff. Do not create the Review Package or main integration until these exact approved assets are committed."
+    }
+  ],
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
