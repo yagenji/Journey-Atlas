@@ -5,8 +5,8 @@
   "contentRef": "country/taiwan",
   "stateRef": "country/taiwan",
   "phase": "QA",
-  "stateRevision": 51,
-  "updatedAt": "2026-09-10T11:14:00+09:00",
+  "stateRevision": 52,
+  "updatedAt": "2026-09-10T11:38:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -74,7 +74,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "766c83fe-4760-42c6-b460-76d11560f0d3",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
@@ -111,7 +110,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "878c8fd7-499e-4c57-b945-9b75f9ecc24c",
       "approvedGenerationId": "878c8fd7-499e-4c57-b945-9b75f9ecc24c",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
@@ -150,7 +148,6 @@
       },
       "promptSeriesReset": true,
       "promptSeriesResetAt": "2026-09-10T08:40:30+09:00",
-      "candidateGenerationId": "ace82ed1-f963-4460-8513-4380022e3042",
       "approvedGenerationId": "ace82ed1-f963-4460-8513-4380022e3042",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
@@ -186,7 +183,6 @@
         "singleSceneOnly": true
       },
       "adoptionTransferNote": "Earlier wrong-target S04 output was reassigned to S03 because it visually matches Sun Moon Lake; S04 still requires a fresh Alishan generation.",
-      "candidateGenerationId": "14a1f288-9573-40ff-b98f-3edf998f006a",
       "approvedGenerationId": "14a1f288-9573-40ff-b98f-3edf998f006a",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
@@ -220,7 +216,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "9907fb16-bca3-4387-acf9-e9abf18481ec",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
@@ -255,7 +250,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "759adf0a-c009-4cd2-ba8a-57e9bf207205",
       "approvedGenerationId": "759adf0a-c009-4cd2-ba8a-57e9bf207205",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
@@ -290,7 +284,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "d0ae5678-f0e8-4879-9e67-b748c3cdfaa7",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
@@ -325,7 +318,6 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "candidateGenerationId": "3fb0d18d-095b-437c-9ba9-c2d97c2dbfac",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
@@ -364,7 +356,6 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "a8e70d83-9a63-4035-91a0-00b43cb7204e",
       "approvedGenerationId": "a8e70d83-9a63-4035-91a0-00b43cb7204e",
       "candidateVisualQa": {
         "dishIdentity": "PASS",
@@ -402,7 +393,6 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "a538c32d-8ab1-43cb-aa0a-83c97b5b39d9",
       "approvedGenerationId": "a538c32d-8ab1-43cb-aa0a-83c97b5b39d9",
       "candidateVisualQa": {
         "dishIdentity": "PASS",
@@ -441,7 +431,6 @@
         "forbidInsetImages": true
       },
       "transferNote": "Wrong-target FOOD03 output reassigned to FOOD02 after explicit user approval.",
-      "candidateGenerationId": "3cd3e129-7548-4939-8e9c-69452a8bd945",
       "approvedGenerationId": "3cd3e129-7548-4939-8e9c-69452a8bd945",
       "candidateVisualQa": {
         "dishIdentity": "PASS",
@@ -480,7 +469,6 @@
         "forbidInsetImages": true
       },
       "transferNote": "Wrong-target FOOD04 output reassigned to FOOD03 after explicit user approval.",
-      "candidateGenerationId": "bf73b09b-3890-4c01-9db3-f9376f1b8931",
       "approvedGenerationId": "bf73b09b-3890-4c01-9db3-f9376f1b8931",
       "candidateVisualQa": {
         "dishIdentity": "PASS",
@@ -560,7 +548,7 @@
     "notes": "Taiwan Country JSON implemented from the approved visual set and current content plan. Theme assignments live only in theme-taxonomy.json. Current island-destination rule keeps nextRoutes empty. Registry publication state is unchanged."
   },
   "qa": {
-    "state": "PRE_INTEGRATION_PASS",
+    "state": "NOT_STARTED",
     "checkedAt": "2026-09-10T11:14:00+09:00",
     "checks": [
       "strict-schema-mirror",
@@ -584,7 +572,8 @@
       "atlasPublished-false-registry-unchanged"
     ],
     "failureCount": 0,
-    "note": "Pre-integration checks mirror the current main strict validator. Authoritative GitHub Actions and browser QA still run on the review-deployment package."
+    "note": "Pre-integration mirror checks passed. Authoritative PR Country-data / production-state / browser checks are the QA gate; do not mark PASS before those checks complete.",
+    "preIntegrationState": "PASS"
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
