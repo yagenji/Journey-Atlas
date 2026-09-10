@@ -298,12 +298,21 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
     description = data.get("seo", {}).get("description") or data.get("hero", {}).get("lead") or f"{data['nameJa']}を景色と地図からめぐるJOURNEY ATLAS。"
     canonical = urljoin(SITE_URL, f"countries/{slug}/")
-    hero = data.get("seo", {}).get("ogImage") or data.get("hero", {}).get("image", "")
-    og_image = urljoin(SITE_URL, hero) if hero else urljoin(SITE_URL, "assets/icons/favicon.svg")
+    hero_image = data.get("hero", {}).get("image", "")
+    og_source = data.get("seo", {}).get("ogImage") or hero_image
+    og_image = urljoin(SITE_URL, og_source) if og_source else urljoin(SITE_URL, "assets/icons/favicon.svg")
 
     page = template
     page = set_tag(page, '<html lang="ja">', f'<html lang="ja" data-country="{html.escape(slug)}">')
     page = set_tag(page, '<head>', '<head>\n  <base href="../../">')
+    if isinstance(hero_image, str) and hero_image and not hero_image.endswith((".parts.json", ".b64")):
+        preload_href = html.escape(urljoin(SITE_URL, hero_image), quote=True)
+        preload_type = ' type="image/webp"' if hero_image.lower().endswith(".webp") else ""
+        page = set_tag(
+            page,
+            '  <base href="../../">',
+            f'  <base href="../../">\n  <link rel="preload" as="image" href="{preload_href}" fetchpriority="high"{preload_type}>',
+        )
     page = set_tag(page, '<title>JOURNEY ATLAS — Country</title>', f'<title>{html.escape(title)}</title>')
     page = inject_country_themes(page, slug)
     page = set_tag(page, 'content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。"', f'content="{html.escape(description, quote=True)}"')

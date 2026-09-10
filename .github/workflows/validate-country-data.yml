@@ -31,6 +31,7 @@ on:
       - 'scripts/normalize_country_region_labels.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
+      - 'scripts/normalize_country_image_delivery.py'
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
@@ -64,6 +65,7 @@ on:
       - 'scripts/normalize_country_region_labels.py'
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
+      - 'scripts/normalize_country_image_delivery.py'
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
@@ -117,10 +119,13 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
+
+      - name: Enforce Country image delivery budget
+        run: python3 scripts/normalize_country_image_delivery.py --audit
 
       - name: Validate published renewal registry
         run: python3 scripts/audit_published_countries.py

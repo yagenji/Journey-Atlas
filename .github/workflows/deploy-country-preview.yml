@@ -37,9 +37,12 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
+          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
           node --check assets/js/app.js
           node --check assets/js/top.js
+
+      - name: Enforce Country image delivery budget
+        run: python scripts/normalize_country_image_delivery.py --audit
 
       - name: Validate published renewal registry
         run: python scripts/audit_published_countries.py
