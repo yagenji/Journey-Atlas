@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "hong-kong",
   "countryName": "HONG KONG",
-  "contentRef": "main",
-  "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 41,
-  "updatedAt": "2026-09-10T09:57:00+09:00",
+  "contentRef": "country/hong-kong-map-fix",
+  "stateRef": "country/hong-kong-map-fix",
+  "phase": "QA",
+  "stateRevision": 43,
+  "updatedAt": "2026-09-10T10:16:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -448,7 +448,7 @@
   "map": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/map-atlas-v1.svg",
-    "source": "Hong Kong Home Affairs Department district boundaries via DATA.GOV.HK; 18 WGS84 district features.",
+    "source": "Land-only geometry rebuilt from high-resolution district land polygons and checked against HKSAR Lands Department iB5000 LANDPOLY current basemap metadata (rev. 2026-08-13).",
     "bounds": {
       "west": 113.793247,
       "south": 22.117298,
@@ -460,6 +460,7 @@
       "projection": "local-equirectangular-fit-v1",
       "allPointsInside": true,
       "internalDistrictBordersHidden": true,
+      "marineAreaExcluded": true,
       "result": "PASS"
     }
   },
@@ -481,17 +482,20 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
-    "sourceCommit": "54172dc05c040639962c58addc97bceae4e2035a",
-    "validateRunId": 34422921074,
-    "productionStateRunId": 34422921098,
-    "browserQaRunId": 34422921091,
-    "browserQaArtifactId": 10131578751,
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "cd0b3f5cca0c7820d73b82ade94f3b132bd61c28",
+    "validateRunId": 34424426798,
+    "productionStateRunId": 34424426791,
+    "browserQaRunId": 34424426749,
+    "browserQaArtifactId": 10132103747,
     "checks": [
-      "source-syntax",
+      "hong-kong-land-only-map-geometry",
+      "marine-area-excluded",
+      "map-svg-clean-background-structure",
+      "map-bounds-and-coordinate-validation",
+      "map-marker-collision-gate",
       "targeted-country-image-set",
       "production-webp-full-decode",
-      "production-dimensions",
       "perceptual-duplicate-gate",
       "targeted-country-json-strict",
       "reviewable-country-json",
@@ -501,23 +505,10 @@
       "desktop-1440x1000",
       "tablet-834x1112",
       "mobile-390x844",
-      "hero-and-scene-image-load",
-      "taste-card-count-4",
-      "scene-card-count-8",
       "map-render",
-      "critical-section-visibility",
-      "canonical-url",
       "noindex-follow",
       "sitemap-exclusion",
       "registry-atlasPublished-false",
-      "registry-href-empty",
-      "theme-taxonomy-city-earth-life",
-      "heading-hierarchy",
-      "aria-references",
-      "image-alt",
-      "interactive-accessible-name",
-      "keyboard-focusability",
-      "no-positive-tabindex",
       "no-horizontal-overflow",
       "no-clipped-text",
       "no-severe-console-errors"
@@ -540,33 +531,12 @@
       }
     },
     "failureCount": 0,
-    "completedAt": "2026-09-10T09:52:00+09:00",
-    "notes": "Hong Kong review-package candidate passed targeted Country validation, Production State validation, 13-raster full-decode image QA, 42-pair perceptual duplicate QA, Cloudflare package build, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. Production verification then confirmed the exact main review commit was served at atlas.yagenji.com and production unpublished-reviewable Browser QA passed on desktop/tablet/mobile with zero failures.",
-    "productionSourceCommit": "061be0b91b37345e18a2fb02b099c39370cc8a1f",
-    "productionVerifyRunId": 34423181481,
-    "productionBrowserQaArtifactId": 10131711403,
-    "productionChecks": [
-      "cloudflare-serves-review-commit",
-      "production-runtime-baseline",
-      "production-country-route",
-      "production-country-payload",
-      "production-unpublished-reviewable-browser-qa",
-      "desktop-1440x1000",
-      "tablet-834x1112",
-      "mobile-390x844",
-      "failure-count-zero"
-    ]
+    "completedAt": "2026-09-10T10:16:00+09:00",
+    "notes": "Hong Kong map correction passed Country validation, Production State validation and targeted unpublished-reviewable Browser QA with zero failures. The former administrative polygons that filled marine territory were replaced by land-only Hong Kong geometry while preserving the JOURNEY ATLAS 1200x760 map language and all point coordinates."
   },
   "reviewDeployment": {
-    "state": "DONE",
-    "url": "https://atlas.yagenji.com/countries/hong-kong/",
-    "commit": "061be0b91b37345e18a2fb02b099c39370cc8a1f",
-    "robots": "noindex,follow",
-    "sitemapListed": false,
-    "atlasPublished": false,
-    "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-10T09:57:00+09:00",
-    "verificationBasis": "Cloudflare production served the exact Hong Kong review merge commit; production runtime and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
+    "state": "NOT_STARTED",
+    "url": null
   },
   "finalApproval": {
     "state": "PENDING"
@@ -614,7 +584,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
