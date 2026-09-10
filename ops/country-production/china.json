@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-10T08:43:00+09:00",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-10T08:45:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -337,8 +337,8 @@
       "state": "REGENERATE",
       "asset": null,
       "contentId": "xiaolongbao",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": [
         "f6462b3e-f8ef-4f2e-9a3c-e9667ceef8c0",
         "11d028ef-2975-473f-b0ae-c2aacbde4d65"
@@ -347,7 +347,7 @@
       "renderPacket": {
         "kind": "TASTE",
         "contentId": "xiaolongbao",
-        "identity": "Xiaolongbao as one finished serving in one simple bamboo steamer: 5–7 pale steamed soup dumplings with delicate pleated tops and realistic soft dough; no dipping sauce, ginger, chopsticks, tea, garnish scatter or second plate.",
+        "identity": "Xiaolongbao only: one simple bamboo steamer containing 5–7 pale steamed soup dumplings with delicate pleated tops and realistic soft dough, centered on a plain warm ivory / pale beige background. Absolutely no duck, no pancakes, no sauce, no ginger, no chopsticks, no tea, no garnish, no second plate, no props, no restaurant setting, no text, no collage, no multi-panel layout.",
         "independentGeneration": true,
         "forbidPreviousAssetReuse": true,
         "singleDishOnly": true,
@@ -481,13 +481,13 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RESET_GENERATION_CONTEXT",
-    "asset": null
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD02"
   },
   "generationContext": {
-    "state": "CONTAMINATED",
-    "epoch": 4,
-    "lastResetAt": "2026-09-10T08:39:00+09:00",
+    "state": "CLEAN",
+    "epoch": 5,
+    "lastResetAt": "2026-09-10T08:45:00+09:00",
     "lastFailureAsset": "FOOD02",
     "lastFailureReason": "PREVIOUS_ASSET_REPEAT_WRONG_TARGET"
   },
