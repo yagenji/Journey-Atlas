@@ -5,11 +5,11 @@
   "contentRef": "country/northkorea",
   "stateRef": "country/northkorea",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-10T15:46:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-10T15:47:40+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": null,
     "contentId": "pyongyang-taedong-ryugyong",
     "promptSeries": 1,
@@ -31,13 +31,11 @@
       "forbidInsetImages": true,
       "singleSceneOnly": true
     },
-    "generationReservation": {
-      "reservationId": "northkorea-HERO-series1-attempt1-20260910T154600JST",
-      "asset": "HERO",
-      "contentId": "pyongyang-taedong-ryugyong",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-10T15:46:00+09:00"
+    "candidateGenerationId": "c360ed68-01c6-4c81-82db-94bc56e9de55",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
     }
   },
   "scenes": [
@@ -433,7 +431,7 @@
     "rounds": []
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
+    "action": "WAIT_HERO_APPROVAL",
     "asset": "HERO"
   }
 }
