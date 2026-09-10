@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "MAP",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-10T09:05:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-10T09:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -446,9 +446,22 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/hong-kong/map-atlas-v1.svg",
-    "source": "Hong Kong Home Affairs Department district boundaries via DATA.GOV.HK; 18 WGS84 district features."
+    "source": "Hong Kong Home Affairs Department district boundaries via DATA.GOV.HK; 18 WGS84 district features.",
+    "bounds": {
+      "west": 113.793247,
+      "south": 22.117298,
+      "east": 114.526453,
+      "north": 22.587752
+    },
+    "qa": {
+      "canvas": "1200x760",
+      "projection": "local-equirectangular-fit-v1",
+      "allPointsInside": true,
+      "internalDistrictBordersHidden": true,
+      "result": "PASS"
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -507,8 +520,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
