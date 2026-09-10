@@ -1041,6 +1041,26 @@
         "Revision-6 terminal publication uses CI_GATED production verification; post-merge Cloudflare production verification is authoritative."
       ],
       "automatedAudit": "DONE"
+    },
+    {
+      "slug": "china",
+      "nameJa": "中国",
+      "wave": 9,
+      "published": true,
+      "auditState": "AUDITED",
+      "renewalClass": "UNCLASSIFIED",
+      "content": "DONE",
+      "visual": "DONE",
+      "map": "DONE",
+      "sources": "DONE",
+      "qa": "PASS",
+      "production": "CI_GATED",
+      "hardImageGate": true,
+      "notes": [
+        "New China Country production completed to current Reference v3 standard on 2026-09-10. Final semantic QA corrected Encounters so they describe generic visible travel experiences rather than merely restating the eight Scenes.",
+        "User instructed publication if QA passed. Review Cloudflare runtime, route/payload verification, and Desktop / Tablet / Mobile browser QA passed with zero failures; formal publication is gated by the publish PR CI."
+      ],
+      "automatedAudit": "DONE"
     }
   ],
   "automatedBaseline": {
