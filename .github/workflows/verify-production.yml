@@ -21,6 +21,7 @@ on:
       - "scripts/build_site.py"
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
+      - ".github/workflows/verify-production.yml"
   workflow_dispatch:
 
 permissions:
