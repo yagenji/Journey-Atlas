@@ -5,8 +5,8 @@
   "contentRef": "country/hong-kong-encounters-fix",
   "stateRef": "country/hong-kong-encounters-fix",
   "phase": "QA",
-  "stateRevision": 45,
-  "updatedAt": "2026-09-10T10:26:00+09:00",
+  "stateRevision": 46,
+  "updatedAt": "2026-09-10T10:31:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -481,8 +481,46 @@
     "notes": "Hong Kong schema-v2 Country JSON implemented using the approved Hero, eight Scene, four Taste and Map target paths. Theme assignments live only in data/theme-taxonomy.json. Hong Kong is described as a PRC Special Administrative Region; capital is null. atlasPublished remains false and normal registry discovery remains disabled."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "bbdc03624399ac9b626dfc347e3d97e632c7dd18",
+    "validateRunId": 34425583886,
+    "productionStateRunId": 34425583869,
+    "browserQaRunId": 34425583881,
+    "browserQaArtifactId": 10132531346,
+    "checks": [
+      "encounter-labels-generic-visible-nouns",
+      "targeted-country-json-strict",
+      "production-state-validation",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T10:31:00+09:00",
+    "notes": "Hong Kong encounter-label correction passed Country validation, production-state validation, package build and targeted unpublished-reviewable browser QA with zero failures. Only two labels changed: 海辺の天后廟→海辺の寺廟 and 漁船とサンパン→漁船と小舟."
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
