@@ -21,10 +21,13 @@ yagenji/Journey-Atlas
 
 PROJECT MASTER INSTRUCTIONSとGitHub mainの最新仕様を使用してください。
 
-最初に main の `ops/image-generation-policy.json` を確認し、画像生成ルールの最新revisionを確定してください。Revision 7以降では `docs/IMAGE_POLICY_REVISION_7.md` と `scripts/country_production_state_v7.py` を使用してください。その後、ops/country-production/{slug}.json をmainから確認してください。
+最初に main の `ops/image-generation-policy.json` を確認し、画像生成ルールの最新revision / patch / policyIdを確定してください。
+- Revision 7では `docs/IMAGE_POLICY_REVISION_7.md` と `scripts/country_production_state_v7.py` を使用してください。
+- policyId 7.1以降では、さらに `docs/IMAGE_POLICY_REVISION_7_1.md` のthroughput rulesを使用してください。
+その後、`ops/country-production/{slug}.json` を確認してください。
 
 Production Stateが存在する場合：
-- stateRef / contentRef が country/{slug} を指していれば、そのbranchのProduction Stateを再取得し、そちらを正本としてPHASE / NEXT ACTION / NEXT ASSETから再開してください。
+- stateRef / contentRef が country/{slug} を指していれば、そのbranchのProduction Stateを正本としてPHASE / NEXT ACTION / NEXT ASSETから再開してください。
 - stateRef が main ならmainを正本としてください。
 - active image phaseのStateがmain中央Policyより古い場合は、次の画像生成前に最新revisionへ移行してください。古いStateを理由に中央Policyを巻き戻してはいけません。
 
@@ -36,6 +39,7 @@ mainにProduction Stateが存在しない場合：
 
 制作進行・承認ゲート・Batch処理・QA・Review Deployment・Publishは docs/COUNTRY_PRODUCTION_STATE.md に従ってください。
 Revision 7の画像実行・承認由来・REGENルールは docs/IMAGE_POLICY_REVISION_7.md に従ってください。
+Revision 7.1のState read/write最適化・atomic handoff・軽量CIルールは docs/IMAGE_POLICY_REVISION_7_1.md に従ってください。
 Scene / Hero画像は docs/SCENE_IMAGE_PRODUCTION.md に従ってください。
 Taste画像は docs/TASTE_IMAGE_PRODUCTION.md に従ってください。
 
@@ -47,8 +51,8 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 - 1画像 = 1独立生成リクエストを守ってください。複数Scene / 複数料理を1つの生成プロンプトにまとめてはいけません。
 - ただし、1画像 = 1ユーザー操作ではありません。正常な画像1枚の生成完了をユーザー承認ゲートにしてはいけません。
 - `maxSameAssetGenerationsPerTurn = 1` は同一Targetの重複生成防止です。異なるTargetを同一assistant turnで連続生成することを禁止するルールではありません。
-- SCENES_INITIALでは、S01を生成・reconcileしたらStateを再取得し、Blocking IssueがなければS02へ進み、同じ手順でS08まで自動継続してください。S01〜S08の途中で「approve」「進めて」「生成」等のユーザー入力を要求してはいけません。
-- TASTE_INITIALでも、FOOD01を生成・reconcileしたらStateを再取得し、Blocking IssueがなければFOOD02→FOOD03→FOOD04まで自動継続してください。FOOD01〜FOOD04の途中で個別承認を要求してはいけません。
+- SCENES_INITIALでは、S01を生成・reconcileしたらBlocking Issueがない限りS02へ進み、同じ手順でS08まで自動継続してください。S01〜S08の途中で「approve」「進めて」「生成」等のユーザー入力を要求してはいけません。
+- TASTE_INITIALでも、FOOD01を生成・reconcileしたらBlocking Issueがない限りFOOD02→FOOD03→FOOD04まで自動継続してください。FOOD01〜FOOD04の途中で個別承認を要求してはいけません。
 - SCENES_REGEN / TASTE_REGENでも同じです。今回のREGEN対象をそれぞれ独立生成で連続処理し、round boundary到達後に一括承認してください。
 - ユーザー承認を求めるのは、initial / regenを問わず、そのroundがbatch boundaryへ到達した時だけです。
 - 画像生成ランタイムが実際にassistant turnを強制終了した場合だけ次ターンへ跨いで構いません。ただし、それは承認ゲートではありません。次にユーザー入力が来たら、前画像の承認確認をせず、reconcile後のNEXTへ直ちに自動継続してください。
@@ -60,6 +64,18 @@ Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED
 - SCENES_REGEN / TASTE_REGEN中に既にAPPROVEDのassetが存在してよいのは、過去のBatch ledgerでそのexact `approvedGenerationId` が承認済みの場合だけです。
 - 新しく再生成したcandidateは、次のBatch boundaryまでは `REVIEW_CANDIDATE` のままにしてください。個別にAPPROVEDへ変更してはいけません。
 - Batch ledgerはappend-onlyです。後から個別承認をBatch承認だったことに見せかける追記・改変は禁止です。CIがcommit transition単位で検査します。
+
+【Revision 7.1 Throughputルール】
+- 新しいassistant turnの開始時はmain Policyとauthoritative Stateを読み直してください。
+- 同一assistant turn内では、期待blob SHAを使ったState writeが成功した時点で「自分が書いた完全なState内容 + 返却された新しいblob SHA」を新しいauthoritative Stateとして扱ってください。同じ内容を確認するためだけの再fetchは禁止です。
+- 再fetchするのは、assistant turnが変わった時、SHA conflictが起きた時、外部変更の可能性がある時、またはState内容が不確かな時だけです。
+- 正常な画像をreconcileする時、次の異なるTargetがありgenerationContextがCLEANなら、`current: GENERATING → REVIEW_CANDIDATE` と `next: NOT_STARTED → GENERATING` を1回のState updateで原子的に行ってください。
+- このatomic handoff後も未reconcileの`GENERATING`は常に1つだけでなければなりません。
+- 現在画像がコラージュ・重複/restage・wrong-target carryover等でgenerationContextを汚染した場合は次Targetを同時予約せず、RESETへ進んでください。
+- SCENES_INITIAL開始時にS01〜S08のRender Packetを一度まとめてpreflightし、同一turn内でContent Planを画像ごとに再読込しないでください。TasteもFOOD01〜04をround開始時に同様にpreflightしてください。
+- 同一turn内のall-prior novelty QAでは、既に現在の生成contextにある過去画像をincremental comparison setとして再利用し、同じ画像をGitHubから毎回取り直さないでください。
+- country/{slug}へのper-image State commit後、次の画像へ進むためにCI完了を待ってはいけません。State write成功を継続条件とし、country branch CIは非同期のtransition guardとして扱ってください。
+- lower-priority文書に「自分の成功したState write直後にも必ず再fetch」とある場合、policyId 7.1ではこのsectionが優先します。
 
 新規Stateには `imageGenerationPolicyRef: "main:ops/image-generation-policy.json"` を設定し、mainのRevision 7を使用してください。Country branch側の古いpolicy snapshotでmainのpolicyを上書き・巻き戻ししないでください。Hero / Scene / Tasteの全生成対象にcontentIdとrenderPacketをPHASE 1で確定してください。各Render Packetにはsingle-frame contract（singleFrameOnly / forbidCollage / forbidPanels / forbidGrid / forbidContactSheet / forbidMontage / forbidInsetImages、Hero/SceneはsingleSceneOnly）を必須で設定してください。実際の画像生成ターンでは現在の1 target以外を言及せず、「8景」「4画像」「batch」「series」「collection」等の複数画像を想起させる文言を生成指示に含めないでください。
 
@@ -80,14 +96,15 @@ When instructions appear to conflict, use this order for Country production oper
 
 1. PROJECT MASTER INSTRUCTIONS
 2. `ops/image-generation-policy.json` on `main` for all Hero / Scene / Taste generation rules
-3. `docs/IMAGE_POLICY_REVISION_7.md` for revision-7 execution / batch provenance / REGEN rules
-4. authoritative `ops/country-production/{slug}.json` resolved by `stateRef` for operational progress (working branch during production, main from REVIEW onward)
-5. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval / throughput rules
-6. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
-7. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
-8. other global design / implementation specifications
-9. Country Content Plan for editorial and visual-design intent only
-10. chat history
+3. `docs/IMAGE_POLICY_REVISION_7_1.md` when main policyId is 7.1 or later, for State I/O / atomic handoff / CI throughput rules
+4. `docs/IMAGE_POLICY_REVISION_7.md` for revision-7 execution / batch provenance / REGEN rules
+5. authoritative `ops/country-production/{slug}.json` resolved by `stateRef` for operational progress (working branch during production, main from REVIEW onward)
+6. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing / approval rules not superseded by Revision 7/7.1
+7. `docs/SCENE_IMAGE_PRODUCTION.md` for Hero / Scene image generation
+8. `docs/TASTE_IMAGE_PRODUCTION.md` for Taste image production
+9. other global design / implementation specifications
+10. Country Content Plan for editorial and visual-design intent only
+11. chat history
 
 A Content Plan must never override current Production State or the central image-generation policy.
 
@@ -105,6 +122,8 @@ start
 ```
 
 No per-Scene or per-Food approval gate is created by the rule that each image is generated independently. Revision 7 requires different-target continuation after each successful reconcile, batch-only approval provenance in initial and regeneration rounds, target reservation synchronization, all-prior novelty QA, and commit-transition validation against late Batch backfill.
+
+Revision 7.1 additionally requires same-turn authoritative State chaining, atomic reconcile/reserve-next handoff, round-start Render Packet preflight, incremental visual comparison reuse, and non-blocking country-branch CI.
 
 A successful Scene or Taste generation is an internal production checkpoint, not a user interaction checkpoint. While sequential image tool calls return control, the assistant must continue to the batch boundary without voluntarily returning control.
 
