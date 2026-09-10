@@ -1,0 +1,762 @@
+{
+  "schemaVersion": 1,
+  "slug": "southkorea",
+  "countryName": "SOUTH KOREA",
+  "contentRef": "country/southkorea",
+  "stateRef": "country/southkorea",
+  "phase": "QA",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T10:15:00+09:00",
+  "hero": {
+    "state": "APPROVED",
+    "asset": "assets/images/southkorea/approved/hero-seoul-gyeongbokgung-bugaksan.webp",
+    "contentId": "seoul-gyeongbokgung-bugaksan",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "seoul-gyeongbokgung-bugaksan",
+      "identity": "Seoul, real Gyeongbokgung palace complex viewed on a broad central axis with Bugaksan mountain rising directly behind the palace and enough contemporary Seoul context to read unmistakably as the Korean capital; palace roofs and dancheong are recognisable, mountain-city adjacency is clear, composition is wide and calm with text-safe negative space, soft clear autumn or spring daylight, restrained natural colors, no guard-change spectacle, no oversized crowd, no night neon, no readable signage, no fantasy palace scale.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    },
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS",
+      "notes": "Candidate depicts a recognisable Seoul palace-and-mountain city composition with Gyeongbokgung/Gwanghwamun architectural language, clear mountain adjacency, no added text, collage, UI or poster treatment. No previous South Korea Hero/Scene asset exists to repeat."
+    },
+    "approvedGenerationId": "d9ccc53d-5787-486a-8cd2-b3a801c28c4b",
+    "approvedAt": "2026-09-10T00:53:00+09:00"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/seongsan-ilchulbong-gwangchigi.webp",
+      "contentId": "seongsan-ilchulbong-gwangchigi",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "0e446bc0-8bea-42b4-b85f-30cdc5713926"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "seongsan-ilchulbong-gwangchigi",
+        "identity": "Jeju, real Seongsan Ilchulbong tuff cone viewed from the Gwangchigi coastal side; recognisable broad crater-rim profile, basalt shore and shallow tidal foreground where plausible, soft clear daylight, restrained volcanic green/sea blue/dark basalt, no theatrical sunrise, no tropical-resort treatment.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced the Seoul/Gwanghwamun palace subject instead of S01 Jeju Seongsan Ilchulbong, and included readable signage/typography. Automatically rejected under revision 4."
+      },
+      "approvedGenerationId": "f24e73fa-fce4-48f9-9017-5eb5eba5aa21",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/gyeongju-daereungwon-tumuli.webp",
+      "contentId": "gyeongju-daereungwon-tumuli",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "beb5dc6e-15cd-4ead-bf93-f4d9154afeef"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "gyeongju-daereungwon-tumuli",
+        "identity": "Gyeongju Daereungwon, multiple overlapping grass-covered Silla royal tumuli in a broad park-like urban landscape; path and mature trees for scale, low city/hanok context subordinate, spring green or early autumn, no excavation display or fantasy burial reconstruction.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced a labelled 2x4 collage of multiple South Korea scenes instead of standalone S02 Gyeongju Daereungwon, with explicit typography. Automatically rejected under current image-generation policy."
+      },
+      "approvedGenerationId": "1b40f483-3bf0-4a44-a3f2-f6a9fb4bde6e",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/andong-hahoe-buyongdae.webp",
+      "contentId": "andong-hahoe-buyongdae",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "8f1a7a8b-f845-4674-b1a8-8e51f1a1abe0"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "andong-hahoe-buyongdae",
+        "identity": "Andong Hahoe Village from a Buyongdae-style elevated viewpoint across the Nakdong River bend; clustered hanok and thatched houses, fields and wooded hills visible together, settlement pattern and river geography primary, late spring/summer green or restrained early autumn, no costume portrait or staged festival.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL",
+        "notes": "Generation again produced the same multi-scene labelled collage family rather than standalone S03 Andong Hahoe Village. Automatically rejected; generation halted to protect credits because the runtime is carrying the previous collage pattern across targets."
+      },
+      "approvedGenerationId": "564197f1-fadb-46e9-a40b-86728e85d1d0",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/seoraksan-ulsanbawi-autumn.webp",
+      "contentId": "seoraksan-ulsanbawi-autumn",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "53a5ab51-b415-4d4b-b589-0b36636ec693"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "seoraksan-ulsanbawi-autumn",
+        "identity": "Seoraksan real Ulsanbawi multi-peak granite wall from a broad valley/mid-distance viewpoint; grey granite mass above mixed autumn forest with restrained natural reds/yellows/greens, crisp daylight, no fantasy snow, exaggerated cliffs or poster sky.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "FAIL",
+        "notes": "S04 generation produced a prohibited labelled multi-scene collage instead of one standalone Seoraksan/Ulsanbawi scene. User explicitly confirmed collage is prohibited. Automatically rejected; asset remains for regeneration after remaining NOT_STARTED scenes."
+      },
+      "approvedGenerationId": "5845dce9-9a93-4127-b830-8796115c2c13",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/suncheon-bay-tidal-wetland.webp",
+      "contentId": "suncheon-bay-tidal-wetland",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "suncheon-bay-tidal-wetland",
+        "identity": "Suncheon Bay tidal wetland from an elevated Yongsan-Observatory-like viewpoint; winding tidal channels through reed beds and mudflat/shallow-water mosaics, broad wetland geometry primary, soft afternoon or early-evening light, tiny birds only if natural, no giant sun or saturated orange.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "e611dc55-6c8b-470b-891a-00dd89ae8b7a",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/busan-gamcheon-hillside-harbor.webp",
+      "contentId": "busan-gamcheon-hillside-harbor",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "busan-gamcheon-hillside-harbor",
+        "identity": "Busan Gamcheon, dense stepped houses on a steep hillside with port/sea context beyond where geographically plausible; layered alleys and roofs, varied but restrained color, people tiny and incidental, no Little Prince statue, mural close-up, readable signage or postcard saturation.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "2c73dbad-37d8-43b4-9271-41b9695065c8",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/boseong-tea-terraces.webp",
+      "contentId": "boseong-tea-terraces",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "boseong-tea-terraces",
+        "identity": "Boseong real tea fields, long curving rows following hillside contours with cedar/forest and low mountains; distant sea only if naturally visible from chosen viewpoint, early-summer green restrained rather than neon, no staged tea-picker portrait, product or sign.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "c776cdf7-5583-4cc5-8746-667abbfb404b",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/ulleungdo-taeha-volcanic-coast.webp",
+      "contentId": "ulleungdo-taeha-volcanic-coast",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "ulleungdo-taeha-volcanic-coast",
+        "identity": "Ulleungdo Taeha–Daepunggam coastal landscape, real steep volcanic/eroded sea cliffs, deep East Sea water and dense island vegetation from a plausible elevated viewpoint; infrastructure incidental, landscape primary, no tropical turquoise treatment, fantasy sea arches or exaggerated island walls.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "d7d1262d-240a-4fde-9677-b3444b3dbf3b",
+      "approvedAt": "2026-09-10T08:26:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Batch-produced as independent standalone scenic output; target identity visually matches the locked South Korea Scene definition, with no collage, labels, UI, or repeated previous asset."
+      }
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/food-bibimbap.webp",
+      "contentId": "bibimbap",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "879ac417-b8b2-4547-b833-7f5eae2e6dc1"
+      ],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "bibimbap",
+        "identity": "Bibimbap in one simple bowl only: rice visible beneath/between clearly separated vegetable sections, modest beef only if integral, one egg component at centre, gochujang contained within the bowl; central dominant dish on plain warm ivory background, no banchan, utensils, soup or loose ingredients.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": null,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "FAIL",
+        "notes": "Generation produced a prohibited 2x2 multi-dish collage containing all four Korean foods instead of one standalone FOOD01 bibimbap image. Automatically rejected."
+      },
+      "approvedGenerationId": "469877fe-23b6-4d81-bcf8-061559147456",
+      "approvedAt": "2026-09-10T08:38:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Approved standalone bibimbap image. One bowl only, no collage, no text, no repeated samgyetang visual."
+      }
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/food-tteokbokki.webp",
+      "contentId": "tteokbokki",
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [
+        "5fda8350-31f2-4336-bf6a-94ba636735ec",
+        "531badba-6139-4277-8f7b-3306cc8fdcde"
+      ],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "tteokbokki",
+        "identity": "TTEOKBOKKI ONLY. One shallow light neutral bowl containing only cylindrical Korean rice cakes coated in glossy red-orange gochujang sauce, with a restrained amount of flat fish cake only if integral. Absolutely no rice, no egg yolk, no spinach, no bean sprouts, no mushrooms, no beef topping, no bibimbap arrangement, no black stone bowl, no wooden trivet. Central dominant single dish on plain pale beige or warm ivory background. No side dishes, utensils, napkin, drink, scattered garnish, extra ingredients, props, people, text, collage, panels, grid, montage, restaurant or kitchen setting.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "bibimbap",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "refreshedForRepeatFailure": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "notes": "FOOD02 regeneration repeated the approved FOOD01 bibimbap visual instead of generating tteokbokki. Automatically rejected under revision 5 target-identity and previous-asset-repeat rules."
+      },
+      "renderPacketRefreshedAt": "2026-09-10T08:41:00+09:00",
+      "approvedGenerationId": "c358604a-fa5e-4f44-8114-002852769691",
+      "approvedAt": "2026-09-10T08:43:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Approved standalone tteokbokki image: one bowl of cylindrical rice cakes in red-orange sauce, visually distinct from approved bibimbap and samgyetang, with no collage or text."
+      }
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/food-samgyetang.webp",
+      "contentId": "samgyetang",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "samgyetang",
+        "identity": "Samgyetang in one simple earthenware-style or neutral bowl only: one small whole cooked chicken clearly visible in pale broth, rice/garlic/jujube/ginseng only as integral contents; central dominant dish on plain warm ivory background, no kimchi, side dishes, utensils or table setting.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "tteokbokki",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Standalone samgyetang image matches FOOD03 identity: one bowl, one whole chicken in broth with integral ginseng/jujube/garlic/scallion; no collage, no text, no second dish."
+      },
+      "userAcceptanceSignal": {
+        "state": "ACCEPTED_PENDING_BATCH",
+        "recordedAt": "2026-09-10T08:33:00+09:00",
+        "basis": "User replied approve after FOOD03 generation; final APPROVED state deferred until Taste batch review per revision 5."
+      },
+      "approvedGenerationId": "7d300871-9011-49f8-b170-d13b1e483bd0",
+      "approvedAt": "2026-09-10T08:33:00+09:00"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/southkorea/approved/food-bulgogi.webp",
+      "contentId": "bulgogi",
+      "promptSeries": 3,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [
+        "4732f6da-03f2-4ada-82c2-4a79196fa206",
+        "f62d3f20-42d3-4684-9bef-2960aa7ab38c"
+      ],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "bulgogi",
+        "identity": "BULGOGI ONLY. One shallow light neutral plate containing thin, irregular slices of fully cooked marinated beef, brown and lightly glossy, with only a small amount of translucent cooked onion and a few scallion pieces integral to the beef. Absolutely no rice cakes, no cylindrical tteok, no fish cake, no red-orange gochujang sauce, no soup, no broth, no whole chicken, no egg yolk, no rice, no bibimbap arrangement, no black stone soup bowl, no wooden trivet. Single dish centered on a plain pale beige or warm ivory background. No side dishes, lettuce, grill, utensils, napkin, drink, sauce bowl, loose ingredients, props, people, text, collage, panels, grid, montage, restaurant or kitchen setting.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "tteokbokki",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "refreshedForRepeatFailure": true
+      },
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "notes": "FOOD04 repeated the approved FOOD02 tteokbokki image instead of bulgogi. User explicitly flagged the duplicate. Automatically rejected under target-identity and previous-asset-repeat rules."
+      },
+      "renderPacketRefreshedAt": "2026-09-10T08:45:00+09:00",
+      "approvedGenerationId": "f2e0e70a-fbfa-4b60-bac8-fa36129065f6",
+      "approvedAt": "2026-09-10T09:32:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Approved standalone bulgogi image: one plate of cooked marinated beef with integral onion/scallion, visually distinct from bibimbap, tteokbokki and samgyetang, with no collage or text."
+      }
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/southkorea/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/KOR.geojson (blob 5594b4b3f0fe8ce950a12b703e26f56b4272bace), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "north": 38.62433502800007,
+      "south": 33.19757721600006,
+      "west": 124.61361738399998,
+      "east": 131.86252188600005
+    },
+    "approvedAt": "2026-09-10T09:34:00+09:00"
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-10T10:12:00+09:00",
+    "files": [
+      "data/countries/southkorea.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "city",
+      "history",
+      "food"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "South Korea schema-v2 Country JSON implemented with approved Hero, eight Scene, four Taste and Map assets. Theme assignments remain exclusively in data/theme-taxonomy.json. atlasPublished remains false and registry discovery stays disabled."
+  },
+  "qa": {
+    "state": "PASS",
+    "sourceCommit": "9fb40eec4d7e175b3c43e190680ea13e97b9e528",
+    "validateRunId": 34424385312,
+    "productionStateRunId": 34424385263,
+    "browserQaRunId": 34424385376,
+    "browserQaArtifactId": 10132088367,
+    "checks": [
+      "source-syntax",
+      "targeted-country-image-set",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "perceptual-duplicate-gate",
+      "targeted-country-json-strict",
+      "reviewable-country-json",
+      "published-country-regression",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "theme-taxonomy-city-history-food",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T10:11:11+09:00",
+    "notes": "South Korea review-package candidate passed targeted Country validation, Production State validation, 13-raster full-decode image QA, 42-pair perceptual duplicate QA, Cloudflare package build, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures."
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 6,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED",
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true
+  },
+  "next": {
+    "action": "RUN_COUNTRY_QA",
+    "asset": null
+  },
+  "blockingIssue": null,
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 1,
+    "lastResetAt": null,
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "sceneBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance",
+      "mandatory-no-added-text"
+    ],
+    "notes": "User approved the complete eight-scene South Korea batch. The approved set covers Jeju, Gyeongju, Andong, Seoraksan, Suncheon Bay, Busan, Boseong and Ulleungdo as eight standalone images.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T08:26:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety",
+      "previous-asset-repeat"
+    ],
+    "notes": "All four South Korea Taste images are approved as distinct standalone dishes: bibimbap, tteokbokki, samgyetang and bulgogi. Earlier collage and repeat failures remain recorded as rejected generations.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T09:32:00+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "no-added-text",
+      "accessible-svg-label"
+    ],
+    "notes": "South Korea SVG uses Natural Earth 1:10m KOR geometry, local-equirectangular north-up projection, JOURNEY ATLAS map-v3 clean-background styling, no text/circle/ellipse decoration, and accessible role/aria labeling. Scene markers remain coordinate-driven in Country JSON.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T09:34:00+09:00"
+  },
+  "assetQa": {
+    "result": "PASS",
+    "checked": [
+      "state-generation-id-match",
+      "source-raster-full-decode",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "perceptual-duplicate-gate",
+      "map-svg-existence",
+      "map-structural-qa"
+    ],
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "sourceFormat": "PNG",
+      "sourceDimensions": "1536x1024",
+      "fullDecode": "PASS",
+      "generationIdMatch": "PASS"
+    },
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "fullDecode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS",
+      "perceptualDuplicateGate": "PASS",
+      "duplicateThresholds": {
+        "dhashMax": 2,
+        "ahashMax": 2,
+        "rmsMax": 12
+      },
+      "nearDuplicateCount": 0
+    },
+    "map": {
+      "asset": "assets/images/southkorea/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS",
+      "structuralQa": "PASS"
+    },
+    "notes": "All 13 approved South Korea rasters are present on country/southkorea. Local production WebP files fully decode, dimensions meet current validators, and Git blob SHAs match the uploaded repository files exactly. The approved folder contains exactly 13 final WebP files with no draft/temp/placeholder assets. Perceptual duplicate gate passed with zero near-duplicate pairs. Map SVG exists and passed structural QA.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T10:12:00+09:00"
+  }
+}
