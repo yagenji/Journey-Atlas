@@ -100,9 +100,33 @@ The prompt must be rebuilt from the current Render Packet. Never carry the previ
 
 If the Render Packet is missing or incomplete, do not generate.
 
+## Single-frame prompt envelope — mandatory
+
+For every Taste generation, the effective instruction begins with the semantic equivalent of:
+
+> ONE SINGLE FULL-BLEED 3:2 IMAGE. ONE DISH IN ONE SERVING ONLY. NO COLLAGE, NO GRID, NO PANELS, NO CONTACT SHEET, NO MONTAGE, NO INSET IMAGE, NO BORDER, NO LABELS, NO SECOND DISH.
+
+Do not mention the four Taste images as a set, "4 images", "batch", "series", "collection", or review layout in the generation turn.
+
+If a collage/multi-panel output occurs, mark generation context CONTAMINATED and stop image generation for that assistant turn.
+
+## Pre-generation reservation — mandatory
+
+Before every FOOD image-generation call:
+
+1. Re-read authoritative Production State.
+2. Confirm the exact FOOD target from NEXT.
+3. Write that FOOD item as `GENERATING` with a unique `generationReservation`.
+4. Re-read and confirm NEXT becomes `RECONCILE_GENERATION / {same FOOD}`.
+5. Only then call image generation.
+
+If any prior Hero / Scene / FOOD remains `GENERATING`, reconcile it first. Never generate the same FOOD more than once in one assistant turn.
+
+Every FOOD call is a fresh independent text-to-image generation. Never use the previous dish image as an edit/reference source.
+
 ## Candidate visual novelty QA — mandatory
 
-After every generated Taste image and before writing `REVIEW_CANDIDATE`:
+After every generated Taste image, reconcile the existing `GENERATING` reservation before writing `REVIEW_CANDIDATE`:
 
 - confirm the output matches the current dish Render Packet;
 - compare it with the immediately previous generated / approved Taste image;
@@ -110,7 +134,7 @@ After every generated Taste image and before writing `REVIEW_CANDIDATE`:
 - record `candidateVisualQa.previousAssetRepeat = PASS`;
 - record `candidateVisualQa.collageTypography = PASS`.
 
-A new generation ID is not sufficient. If the previous dish image is repeated, restaged, lightly altered, or the wrong dish is carried forward, reject automatically without asking the user to approve it.
+A new generation ID is not sufficient. If the previous dish image is repeated, restaged, lightly altered, or the wrong dish is carried forward, reject automatically, refresh the Render Packet / generation context, and do not retry the same FOOD again in the same assistant turn.
 
 ## Generation-state rule
 
