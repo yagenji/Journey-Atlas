@@ -1,0 +1,67 @@
+name: Validate image policy revision 7
+
+on:
+  push:
+    branches:
+      - main
+      - 'country/**'
+    paths:
+      - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
+      - 'scripts/country_production_state.py'
+      - 'scripts/country_production_state_v7.py'
+      - '.github/workflows/validate-image-policy-v7.yml'
+      - 'docs/IMAGE_POLICY_REVISION_7.md'
+      - 'docs/NEW_COUNTRY_START.md'
+      - 'docs/SCENE_IMAGE_PRODUCTION.md'
+      - 'docs/TASTE_IMAGE_PRODUCTION.md'
+  pull_request:
+    paths:
+      - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
+      - 'scripts/country_production_state.py'
+      - 'scripts/country_production_state_v7.py'
+      - '.github/workflows/validate-image-policy-v7.yml'
+      - 'docs/IMAGE_POLICY_REVISION_7.md'
+      - 'docs/NEW_COUNTRY_START.md'
+      - 'docs/SCENE_IMAGE_PRODUCTION.md'
+      - 'docs/TASTE_IMAGE_PRODUCTION.md'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v7:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compile validators
+        run: |
+          python3 -m py_compile scripts/country_production_state.py scripts/country_production_state_v7.py
+
+      - name: Revision 7 self-test
+        run: python3 scripts/country_production_state_v7.py self-test
+
+      - name: Validate current revision 7 state
+        run: python3 scripts/country_production_state_v7.py validate
+
+      - name: Validate every state transition in pushed range
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+
+      - name: Validate every state transition in pull request
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch origin "$BASE_REF" --depth=1
+          BASE_SHA="$(git merge-base "$HEAD_SHA" "origin/$BASE_REF")"
+          python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
