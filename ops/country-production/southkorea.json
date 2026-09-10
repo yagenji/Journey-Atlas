@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 30,
-  "updatedAt": "2026-09-10T08:42:00+09:00",
+  "stateRevision": 31,
+  "updatedAt": "2026-09-10T08:43:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -382,7 +382,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "GENERATING",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 2,
@@ -416,11 +416,13 @@
         "notes": "FOOD02 regeneration repeated the approved FOOD01 bibimbap visual instead of generating tteokbokki. Automatically rejected under revision 5 target-identity and previous-asset-repeat rules."
       },
       "renderPacketRefreshedAt": "2026-09-10T08:41:00+09:00",
-      "generationReservation": {
-        "reservationId": "FOOD02-series2-attempt1",
-        "reservedAt": "2026-09-10T08:42:00+09:00",
-        "contentId": "tteokbokki",
-        "promptSeries": 2
+      "approvedGenerationId": "c358604a-fa5e-4f44-8114-002852769691",
+      "approvedAt": "2026-09-10T08:43:00+09:00",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "notes": "Approved standalone tteokbokki image: one bowl of cylindrical rice cakes in red-orange sauce, visually distinct from approved bibimbap and samgyetang, with no collage or text."
       }
     },
     {
@@ -559,8 +561,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "FOOD02"
+    "action": "GENERATE_FOOD",
+    "asset": "FOOD04"
   },
   "blockingIssue": {
     "code": "TASTE_PREVIOUS_ASSET_REPEAT",
