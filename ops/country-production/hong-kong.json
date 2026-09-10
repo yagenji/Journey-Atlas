@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "hong-kong",
   "countryName": "HONG KONG",
-  "contentRef": "main",
-  "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 44,
-  "updatedAt": "2026-09-10T10:20:00+09:00",
+  "contentRef": "country/hong-kong-encounters-fix",
+  "stateRef": "country/hong-kong-encounters-fix",
+  "phase": "QA",
+  "stateRevision": 46,
+  "updatedAt": "2026-09-10T10:31:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -482,33 +482,21 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
-    "sourceCommit": "cd0b3f5cca0c7820d73b82ade94f3b132bd61c28",
-    "validateRunId": 34424426798,
-    "productionStateRunId": 34424426791,
-    "browserQaRunId": 34424426749,
-    "browserQaArtifactId": 10132103747,
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "bbdc03624399ac9b626dfc347e3d97e632c7dd18",
+    "validateRunId": 34425583886,
+    "productionStateRunId": 34425583869,
+    "browserQaRunId": 34425583881,
+    "browserQaArtifactId": 10132531346,
     "checks": [
-      "hong-kong-land-only-map-geometry",
-      "marine-area-excluded",
-      "map-svg-clean-background-structure",
-      "map-bounds-and-coordinate-validation",
-      "map-marker-collision-gate",
-      "targeted-country-image-set",
-      "production-webp-full-decode",
-      "perceptual-duplicate-gate",
+      "encounter-labels-generic-visible-nouns",
       "targeted-country-json-strict",
-      "reviewable-country-json",
-      "published-country-regression",
+      "production-state-validation",
       "cloudflare-package-build",
       "targeted-unpublished-reviewable-browser-qa",
       "desktop-1440x1000",
       "tablet-834x1112",
       "mobile-390x844",
-      "map-render",
-      "noindex-follow",
-      "sitemap-exclusion",
-      "registry-atlasPublished-false",
       "no-horizontal-overflow",
       "no-clipped-text",
       "no-severe-console-errors"
@@ -531,33 +519,12 @@
       }
     },
     "failureCount": 0,
-    "completedAt": "2026-09-10T10:16:00+09:00",
-    "notes": "Hong Kong map correction passed Country validation, Production State validation and targeted unpublished-reviewable Browser QA with zero failures. The former administrative polygons that filled marine territory were replaced by land-only Hong Kong geometry while preserving the JOURNEY ATLAS 1200x760 map language and all point coordinates. Production verification confirmed the Hong Kong land-geometry fix commit was served at atlas.yagenji.com; production unpublished-reviewable Browser QA passed on desktop/tablet/mobile with zero failures.",
-    "productionSourceCommit": "605b352bd1f5e4b229cbb4d035d767a3d90b9aea",
-    "productionVerifyRunId": 34424843069,
-    "productionBrowserQaArtifactId": 10132276331,
-    "productionChecks": [
-      "cloudflare-serves-map-fix-commit",
-      "production-runtime-baseline",
-      "production-country-route",
-      "production-country-payload",
-      "production-unpublished-reviewable-browser-qa",
-      "desktop-1440x1000",
-      "tablet-834x1112",
-      "mobile-390x844",
-      "failure-count-zero"
-    ]
+    "completedAt": "2026-09-10T10:31:00+09:00",
+    "notes": "Hong Kong encounter-label correction passed Country validation, production-state validation, package build and targeted unpublished-reviewable browser QA with zero failures. Only two labels changed: 海辺の天后廟→海辺の寺廟 and 漁船とサンパン→漁船と小舟."
   },
   "reviewDeployment": {
-    "state": "DONE",
-    "url": "https://atlas.yagenji.com/countries/hong-kong/",
-    "commit": "605b352bd1f5e4b229cbb4d035d767a3d90b9aea",
-    "robots": "noindex,follow",
-    "sitemapListed": false,
-    "atlasPublished": false,
-    "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-10T10:20:00+09:00",
-    "verificationBasis": "Cloudflare production served the Hong Kong land-geometry fix commit; production runtime, route/payload and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
+    "state": "NOT_STARTED",
+    "url": null
   },
   "finalApproval": {
     "state": "PENDING"
@@ -605,7 +572,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
