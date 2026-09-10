@@ -97,6 +97,17 @@ Do not create country-specific heading sizes.
 
 ## Information design
 
+### Region metadata contract
+
+`region` is a controlled metadata field, not free editorial copy.
+
+- `data/region-taxonomy.json` is the Single Source of Truth for the region label.
+- Resolve the destination through `data/atlas-destinations.json` or `data/atlas-destinations-editorial.json`, use its `iso2`, and use the matching taxonomy subregion `labelEn` exactly. When a taxonomy region has no subregions, use its top-level `labelEn`.
+- Final format is exactly `{TAXONOMY LABEL} / {integer latitude}°N|S`.
+- Do not invent alternate geographic labels or non-latitude suffixes for an individual Country. Labels such as `CENTRAL EUROPE`, `SOUTHEASTERN EUROPE`, `BALTIC SEA`, `NORTH ATLANTIC`, `ATLANTIC`, or `BLACK SEA` are invalid unless they become an explicit taxonomy `labelEn`.
+- For a new scaffold, `scripts/new_country.py` locks the taxonomy label first. After final map bounds exist, run `python3 scripts/normalize_country_region_labels.py`; it preserves an existing valid integer latitude or derives one from the north/south map-bounds midpoint when latitude is missing.
+- Before Review Deployment, `python3 scripts/audit_country_region_labels.py` must pass. The primary Country validation workflow runs the same audit automatically.
+
 ### Common basic facts
 
 Keep a stable shared set so countries remain comparable:
