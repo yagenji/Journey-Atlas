@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "MAP",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-10T09:40:00+09:00",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-10T09:44:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -415,8 +415,22 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/china/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CHN.geojson (blob 0c8361ab768142ef0669105e61a283f61e4feb3f), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "west": 71.15544338380005,
+      "south": 14.263613983640091,
+      "east": 137.2193923102,
+      "north": 55.081207190360054
+    },
+    "candidateQa": {
+      "canvas": "1200x760",
+      "geometrySource": "PASS",
+      "svgStructure": "PASS",
+      "margins": "PASS",
+      "allHeroSceneCoordinatesInsideBounds": "PASS"
+    }
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -475,7 +489,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "BUILD_MAP",
+    "action": "QA_MAP",
     "asset": "MAP"
   },
   "generationContext": {
