@@ -1,8 +1,9 @@
 # JOURNEY ATLAS — Taste Image Production Hard Rule
 
-Updated: 2026-09-09
+Updated: 2026-09-10
+Policy revision: 6.1
 
-This file is the Single Source of Truth for Country-page Taste image generation.
+This file is the Single Source of Truth for Country-page Taste image generation beneath the main image-generation policy.
 
 ## Purpose
 
@@ -18,6 +19,7 @@ They are **single-dish atlas cuts** whose job is to let the viewer recognize one
 - “Generate all four Taste images in one batch” means: generate four independent images consecutively without waiting for user approval between them.
 - It never means one four-dish image, a 2×2 grid, split screen, montage, diptych, triptych, contact sheet, comparison plate, or collage.
 - If a tool call can return multiple candidates, every candidate must still depict the same single dish. Do not use one call to request different dishes.
+- One independent generation request per dish does **not** mean one user approval per dish.
 
 ## Composition lock
 
@@ -96,7 +98,7 @@ Minimum packet:
 - `cleanNeutralBackground:true`;
 - previous dish content ID where applicable.
 
-The prompt must be rebuilt from the current Render Packet. Never carry the previous generated dish forward as an image-edit target or implicit reference.
+The prompt must be rebuilt from the current Render Packet. Never carry any previously generated dish forward as an image-edit target or implicit reference.
 
 If the Render Packet is missing or incomplete, do not generate.
 
@@ -106,7 +108,7 @@ For every Taste generation, the effective instruction begins with the semantic e
 
 > ONE SINGLE FULL-BLEED 3:2 IMAGE. ONE DISH IN ONE SERVING ONLY. NO COLLAGE, NO GRID, NO PANELS, NO CONTACT SHEET, NO MONTAGE, NO INSET IMAGE, NO BORDER, NO LABELS, NO SECOND DISH.
 
-Do not mention the four Taste images as a set, "4 images", "batch", "series", "collection", or review layout in the generation turn.
+Do not mention the four Taste images as a set, "4 images", "batch", "series", "collection", or review layout in the generation instruction sent to the image model.
 
 If a collage/multi-panel output occurs, mark generation context CONTAMINATED and stop image generation for that assistant turn.
 
@@ -122,30 +124,70 @@ Before every FOOD image-generation call:
 
 If any prior Hero / Scene / FOOD remains `GENERATING`, reconcile it first. Never generate the same FOOD more than once in one assistant turn.
 
-Every FOOD call is a fresh independent text-to-image generation. Never use the previous dish image as an edit/reference source.
+Every FOOD call is a fresh independent text-to-image generation. Never use a previous dish image as an edit/reference source.
+
+## Preflight and all-prior novelty check
+
+Before each FOOD generation:
+
+1. confirm the current Render Packet and dish identity;
+2. compare the intended target with **all** previously generated or approved Taste targets in the Country;
+3. confirm the dish identity is distinct and the current prompt contains only the current FOOD target;
+4. do not reuse the previous image, composition seed, or implicit visual starting point.
 
 ## Candidate visual novelty QA — mandatory
 
 After every generated Taste image, reconcile the existing `GENERATING` reservation before writing `REVIEW_CANDIDATE`:
 
 - confirm the output matches the current dish Render Packet;
-- compare it with the immediately previous generated / approved Taste image;
+- compare it with **every** previously generated or approved Taste image in the same Country, not only the immediately previous image;
 - record `candidateVisualQa.targetIdentity = PASS`;
-- record `candidateVisualQa.previousAssetRepeat = PASS`;
-- record `candidateVisualQa.collageTypography = PASS`.
+- record `candidateVisualQa.previousAssetRepeat = PASS` only after the all-prior comparison passes;
+- record `candidateVisualQa.collageTypography = PASS`;
+- confirm single-dish and clean-background rules.
 
-A new generation ID is not sufficient. If the previous dish image is repeated, restaged, lightly altered, or the wrong dish is carried forward, reject automatically, refresh the Render Packet / generation context, and do not retry the same FOOD again in the same assistant turn.
+Checking only the immediately previous dish is insufficient.
 
-## Generation-state rule
+A new generation ID is not sufficient. If any prior dish image is repeated, restaged, lightly altered, or carried into the wrong FOOD target, reject automatically and do not ask the user to approve it.
 
-For four Taste items:
+## Contamination handling
 
-1. FOOD01 independent generation
-2. FOOD02 independent generation
-3. FOOD03 independent generation
-4. FOOD04 independent generation
-5. batch review after all four are complete
-6. regenerate only the user-specified NG item(s)
+Set `generationContext.state = CONTAMINATED` when any of these occurs:
+
+- collage / multi-panel / grid / contact-sheet / montage;
+- the prior or another Taste image is repeated/restaged;
+- a different FOOD target is carried into the current target;
+- the model repeatedly preserves the prior dish structure while changing only superficial details.
+
+On contamination:
+
+1. reject and reconcile the generation;
+2. set the affected FOOD to `REGENERATE`;
+3. record the failure reason;
+4. stop further image generation for that assistant turn;
+5. NEXT must become `RESET_GENERATION_CONTEXT`;
+6. the RESET turn must perform no image generation and rebuild the next prompt from exactly one current Render Packet.
+
+## Taste round execution — hard throughput rule
+
+For the initial four Taste items, execute:
+
+1. FOOD01 independent generation → reconcile → QA
+2. FOOD02 independent generation → reconcile → QA
+3. FOOD03 independent generation → reconcile → QA
+4. FOOD04 independent generation → reconcile → QA
+5. one batch review after all four initial targets are complete
+6. regenerate only the user-specified or automatically rejected NG item(s)
+
+Hard interaction rules:
+
+- Do **not** ask for user approval after FOOD01, FOOD02, or FOOD03.
+- Do **not** ask the user to type `approve`, `進めて`, `生成`, `next`, or equivalent between valid Taste generations.
+- A valid FOOD result is an internal production checkpoint, not a user interaction checkpoint.
+- After each valid reconcile, re-read authoritative State and, if another `NOT_STARTED` FOOD exists and generation context is CLEAN, reserve and generate it immediately.
+- While sequential image-generation calls are technically available in the current assistant turn, do **not voluntarily return control** before FOOD04 completes.
+- Each FOOD still uses its own independent image-generation request. Never combine several dishes into one prompt or output.
+- If the image runtime truly hard-stops the assistant turn after one generated image, that boundary is not approval. On the next user message, reconcile if needed and immediately continue from NEXT without asking for review of the previous valid candidate.
 
 APPROVED Taste images are immutable unless the user explicitly asks for regeneration.
 
@@ -157,7 +199,9 @@ After the four approved Taste assets are materialized, run:
 
 `python3 scripts/validate_images.py --duplicates-only --slug {slug}`
 
-All four Taste images are compared pairwise for same-path reuse, normalized identical pixels, and conservative near-duplicate similarity. A failure reopens only the affected Taste item(s); the Country review package must not proceed.
+All four Taste images are compared pairwise for same-path reuse, normalized identical pixels, and conservative near-duplicate similarity. This remains a final machine safety gate; it does not replace the all-prior live comparison during generation.
+
+A failure reopens only the affected Taste item(s); the Country review package must not proceed.
 
 ## Batch approval enforcement
 
@@ -165,13 +209,15 @@ During `TASTE_INITIAL` / `TASTE_REVIEW`, no FOOD item may become `APPROVED`.
 
 FOOD01–FOOD04 first become `REVIEW_CANDIDATE` (or `REGENERATE` for a hard failure). The user is asked for approval only after all four have completed the round.
 
-This is enforced by Production State validation, not only by this document.
+Individual user approval prompts or individual `userApprovedAt` events during the initial four-item round are invalid workflow behavior. Only the batch-review transition may convert accepted FOOD candidates to `APPROVED`.
 
 ## Prompt-series credit guard
 
 Track `promptSeries` and `promptSeriesRejectCount` per active dish.
 
 After two hard failures in one prompt series, do not generate again until the Render Packet / prompt family is refreshed. This prevents repeated wrong-dish generations from consuming credits.
+
+A repeat or wrong-target carryover should trigger context reset immediately rather than spending another credit on a near-identical prompt family.
 
 ## Hard reject conditions
 
@@ -188,6 +234,7 @@ Reject and regenerate the affected dish if any of the following appears:
 - text / logo / flag / packaging
 - dish is too small because background dominates
 - wrong food structure or unrecognizable dish
+- another FOOD target is repeated or carried forward
 - photographic style is materially stronger than the JOURNEY ATLAS Taste reference
 - watercolor is materially stronger than the Spain Taste reference
 - low resolution, decode failure, wrong aspect ratio, or other technical failure
