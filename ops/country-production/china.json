@@ -4,9 +4,9 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 38,
-  "updatedAt": "2026-09-10T10:03:00+09:00",
+  "phase": "QA",
+  "stateRevision": 39,
+  "updatedAt": "2026-09-10T10:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
@@ -451,7 +451,20 @@
     }
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-10T10:12:00+09:00",
+    "files": [
+      "data/countries/china.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "history",
+      "food"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "China schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and the approved 1200x760 map. Theme assignments live only in data/theme-taxonomy.json. Registry remains atlasPublished:false with no normal discovery link."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -507,7 +520,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "generationContext": {
@@ -567,5 +580,6 @@
       "state": "APPROVED"
     },
     "notes": "All 13 approved China raster assets are materialized on country/china. Source outputs were converted to 1200x800 WebP, fully decoded, passed conservative pairwise duplicate QA, and each committed Git blob SHA matches the uploaded production bytes."
-  }
+  },
+  "blockingIssues": []
 }
