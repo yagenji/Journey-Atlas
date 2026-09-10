@@ -1,10 +1,8 @@
 {
   "schemaVersion": 1,
   "authority": "main",
-  "revision": 6,
-  "patch": 1,
-  "policyId": "6.1",
-  "updatedAt": "2026-09-10T14:35:00+09:00",
+  "revision": 7,
+  "updatedAt": "2026-09-10T15:05:00+09:00",
   "sourceOfTruth": "ops/image-generation-policy.json",
   "appliesTo": [
     "HERO",
@@ -15,7 +13,9 @@
     "requiredBeforeGeneration": true,
     "state": "GENERATING",
     "reconcileBeforeNextGeneration": true,
-    "maxSameAssetGenerationsPerTurn": 1
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true
   },
   "freshness": {
     "freshTextToImageRequired": true,
@@ -37,15 +37,27 @@
   "roundExecution": {
     "sceneInitialRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
     "tasteInitialRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
+    "sceneRegenRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
+    "tasteRegenRound": "AUTO_CONTINUE_TO_BATCH_BOUNDARY",
+    "differentTargetSameTurnContinuation": "REQUIRED_WHEN_IMAGE_TOOL_RETURNS_CONTROL",
     "oneIndependentToolCallPerTarget": true,
     "reconcileEachTargetBeforeNext": true,
     "continueAfterValidReconciliation": true,
     "voluntaryReturnControlBetweenValidTargets": false,
     "perSceneApprovalPromptForbidden": true,
     "perTasteApprovalPromptForbidden": true,
-    "userApprovalBoundaryScenes": "AFTER_ALL_8_INITIAL_TARGETS",
-    "userApprovalBoundaryTaste": "AFTER_ALL_4_INITIAL_TARGETS",
+    "userApprovalBoundaryScenes": "AFTER_ROUND_BOUNDARY_ONLY",
+    "userApprovalBoundaryTaste": "AFTER_ROUND_BOUNDARY_ONLY",
     "runtimeHardStopIsNotApprovalGate": true
+  },
+  "targetSynchronization": {
+    "currentTargetOnly": true,
+    "reservationContentIdMustMatchRenderPacket": true,
+    "reservationAssetMustMatchNextAsset": true,
+    "reservationEpochMustMatchGenerationContext": true,
+    "reconcileMustMatchReservedTarget": true,
+    "wrongTargetOutputIsHardFailure": true,
+    "wrongTargetOutputContaminatesContext": true
   },
   "novelty": {
     "compareAgainstAllPriorCountryAssets": true,
@@ -60,16 +72,33 @@
     "collageFailureContaminatesContext": true,
     "repeatFailureContaminatesContext": true,
     "wrongTargetCarryoverContaminatesContext": true,
+    "allowedReasons": [
+      "COLLAGE_OR_MULTIPANEL",
+      "PREVIOUS_ASSET_REPEAT",
+      "WRONG_TARGET_CARRYOVER"
+    ],
     "nextAction": "RESET_GENERATION_CONTEXT",
     "resetRequiresSeparateAssistantTurn": true,
     "noImageGenerationDuringReset": true
   },
   "approval": {
     "hero": "INDIVIDUAL",
-    "scenes": "BATCH_AFTER_8",
-    "taste": "BATCH_AFTER_4",
+    "scenes": "BATCH_AFTER_ROUND",
+    "taste": "BATCH_AFTER_ROUND",
     "perSceneApprovalPrompt": "FORBIDDEN",
     "perTasteApprovalPrompt": "FORBIDDEN",
+    "regenIndividualApproval": "FORBIDDEN",
+    "batchApprovalProvenanceRequired": true,
+    "approvalLedgerRequired": true,
     "finalPage": "INDIVIDUAL"
+  },
+  "validator": {
+    "activeRevisionMustEqualCentralRevision": true,
+    "countryBranchPushValidationRequired": true,
+    "validateEveryCommitTransition": true,
+    "initialApprovalRequiresBatchBoundary": true,
+    "regenApprovalRequiresBatchBoundary": true,
+    "approvedGenerationMustExistInBatchLedger": true,
+    "lateBackfillOfBatchApprovalForbidden": true
   }
 }
