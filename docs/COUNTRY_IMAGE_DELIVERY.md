@@ -57,11 +57,13 @@ The script:
 
 - scans reviewable `schemaVersion: 2` Country JSON;
 - converts only assets that exceed the delivery contract or use a non-WebP delivery format;
-- updates only literal image-path references when an extension changes;
-- preserves Country JSON formatting/order;
+- updates only literal Country JSON image-path references when an extension changes;
+- keeps every published destination registry `image` reference aligned with the corresponding Country `hero.image`;
+- preserves Country JSON and registry formatting/order by using literal path replacement rather than reserialization;
 - fully decodes every generated WebP before accepting it;
 - leaves compliant WebP assets untouched;
-- never processes map assets.
+- never processes map assets;
+- never changes `atlasPublished` state.
 
 Then run the normal image QA, including duplicate checks for the Country being produced.
 
@@ -73,9 +75,9 @@ The permanent CI gate is:
 python3 scripts/normalize_country_image_delivery.py --audit
 ```
 
-A reviewable Country may not proceed through the normal validation/deployment path while this audit reports an oversized eligible Hero/Scene/Taste asset or an eligible non-WebP delivery asset.
+A reviewable Country may not proceed through the normal validation/deployment path while this audit reports an oversized eligible Hero/Scene/Taste asset, an eligible non-WebP delivery asset, or a published registry Hero reference that no longer matches the Country JSON.
 
-This gate exists so future Country production does not reintroduce multi-megabyte PNG delivery or oversized Scene/Taste files.
+This gate exists so future Country production does not reintroduce multi-megabyte PNG delivery, oversized Scene/Taste files, or stale published Hero references.
 
 ## Quality rule
 
