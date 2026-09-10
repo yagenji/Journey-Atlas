@@ -1012,10 +1012,12 @@
       "map": "DONE",
       "sources": "DONE",
       "qa": "PASS",
-      "production": "PENDING",
+      "production": "LIVE_CURRENT",
       "hardImageGate": true,
       "notes": [
-        "New Russia Country production completed to current Reference v3 standard on 2026-09-10. User instructed publication if QA passed. Reviewable Cloudflare production, route/payload verification, and Desktop / Tablet / Mobile browser QA passed with zero failures. Formal publication is pending the publish commit reaching production verification."
+        "New Russia Country production completed to current Reference v3 standard on 2026-09-10. User instructed publication if QA passed.",
+        "Formal publication completed. Cloudflare production served publish commit 5e5755589473ac37048e5a63a7133b1d0aac5ec4; production runtime, Russia route/payload verification, and published Desktop / Tablet / Mobile browser QA passed with zero failures.",
+        "hardImageGate enabled."
       ],
       "automatedAudit": "DONE"
     }
