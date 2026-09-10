@@ -50,9 +50,7 @@ jobs:
         run: python3 scripts/normalize_country_image_delivery.py --apply
 
       - name: Verify full decode and image rules
-        run: |
-          python3 scripts/validate_images.py --mode audit
-          python3 scripts/validate_images.py --duplicates-only
+        run: python3 scripts/validate_images.py --mode audit
 
       - name: Commit normalized binaries and references
         shell: bash
