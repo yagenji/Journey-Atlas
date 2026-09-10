@@ -58,7 +58,8 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/images data/countries
+          git add -A assets/images
+          git add -f data/countries
           if git diff --cached --quiet; then
             echo "No normalization changes to commit."
             exit 0
