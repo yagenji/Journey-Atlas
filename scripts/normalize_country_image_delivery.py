@@ -11,9 +11,11 @@ Policy:
 - Maps and unrelated assets are never touched.
 - Country JSON references are updated only when an extension changes, using
   literal path replacement so original formatting/order is preserved.
+- Published destination registry Hero references are kept exactly aligned with
+  Country `hero.image`, again by literal replacement rather than reserialization.
 
 Use --audit to report work without modifying files. Use --apply to write the
-normalized assets and update Country JSON references.
+normalized assets and synchronize Country/registry image references.
 """
 from __future__ import annotations
 
@@ -59,6 +61,14 @@ class Plan:
     new_size: tuple[int, int]
     old_bytes: int
     reason: str
+
+
+@dataclass(frozen=True)
+class RegistryHeroMismatch:
+    registry: Path
+    slug: str
+    current: str
+    expected: str
 
 
 def reviewable_slugs() -> list[str]:
@@ -108,6 +118,67 @@ def all_uses(slugs: Iterable[str]) -> dict[str, list[AssetUse]]:
                 continue
             grouped.setdefault(use.asset, []).append(use)
     return grouped
+
+
+def published_registry_hero_mismatches() -> list[RegistryHeroMismatch]:
+    mismatches: list[RegistryHeroMismatch] = []
+    for registry_path in REGISTRY_PATHS:
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        for item in registry.get("destinations", []):
+            if not item.get("atlasPublished"):
+                continue
+            slug = item.get("slug")
+            if not isinstance(slug, str) or not slug:
+                continue
+            country_path = COUNTRY_DIR / f"{slug}.json"
+            if not country_path.exists():
+                continue
+            country = json.loads(country_path.read_text(encoding="utf-8"))
+            if country.get("schemaVersion") != 2:
+                continue
+            expected = country.get("hero", {}).get("image")
+            current = item.get("image")
+            if not isinstance(expected, str) or not expected:
+                continue
+            if current == expected:
+                continue
+            if not isinstance(current, str) or not current:
+                raise ValueError(f"Published registry image is missing for {slug}: {registry_path.name}")
+            mismatches.append(
+                RegistryHeroMismatch(
+                    registry=registry_path,
+                    slug=slug,
+                    current=current,
+                    expected=expected,
+                )
+            )
+    return mismatches
+
+
+def sync_published_registry_heroes() -> int:
+    mismatches = published_registry_hero_mismatches()
+    by_registry: dict[Path, list[RegistryHeroMismatch]] = {}
+    for mismatch in mismatches:
+        by_registry.setdefault(mismatch.registry, []).append(mismatch)
+
+    updated_count = 0
+    for registry_path, entries in by_registry.items():
+        text = registry_path.read_text(encoding="utf-8")
+        updated = text
+        for entry in entries:
+            old_token = json.dumps(entry.current, ensure_ascii=False)
+            new_token = json.dumps(entry.expected, ensure_ascii=False)
+            occurrences = updated.count(old_token)
+            if occurrences != 1:
+                raise ValueError(
+                    f"Refusing ambiguous registry replacement for {entry.slug}: "
+                    f"{entry.current!r} occurs {occurrences} times in {registry_path.name}"
+                )
+            updated = updated.replace(old_token, new_token, 1)
+            updated_count += 1
+        if updated != text:
+            registry_path.write_text(updated, encoding="utf-8")
+    return updated_count
 
 
 def image_info(path: Path) -> tuple[int, int, str]:
@@ -223,7 +294,7 @@ def webp_save(source: Path, target: Path, size: tuple[int, int]) -> int:
     return target.stat().st_size
 
 
-def apply(plans: list[Plan], slugs: list[str]) -> tuple[int, int]:
+def apply(plans: list[Plan], slugs: list[str]) -> tuple[int, int, int]:
     replacements = {plan.source: plan.target for plan in plans if plan.source != plan.target}
     before = sum(plan.old_bytes for plan in plans)
     after = 0
@@ -248,7 +319,8 @@ def apply(plans: list[Plan], slugs: list[str]) -> tuple[int, int]:
             if updated != text:
                 path.write_text(updated, encoding="utf-8")
 
-    return before, after
+    registry_updates = sync_published_registry_heroes()
+    return before, after, registry_updates
 
 
 def human_bytes(value: int) -> str:
@@ -305,6 +377,12 @@ def audit_delivery(slugs: list[str]) -> list[str]:
                     errors.append(f"oversized {role}: {asset} ({width}x{height})")
                 if fmt != "WEBP":
                     errors.append(f"{role} is not WebP: {asset} ({fmt})")
+
+    for mismatch in published_registry_hero_mismatches():
+        errors.append(
+            f"registry hero mismatch: {mismatch.slug}: "
+            f"{mismatch.current!r} != {mismatch.expected!r} ({mismatch.registry.name})"
+        )
     return errors
 
 
@@ -326,13 +404,13 @@ def main() -> int:
             print(f"- {error}")
         return 1 if errors else 0
 
-    before, after = apply(plans, slugs)
+    before, after, registry_updates = apply(plans, slugs)
     errors = audit_delivery(slugs)
     saved = before - after
     pct = (saved / before * 100) if before else 0.0
     print(
         f"APPLIED assets={len(plans)} before={human_bytes(before)} after={human_bytes(after)} "
-        f"saved={human_bytes(saved)} ({pct:.1f}%)"
+        f"saved={human_bytes(saved)} ({pct:.1f}%) registry_updates={registry_updates}"
     )
     if errors:
         print(f"POST-AUDIT issues={len(errors)}")
