@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 26,
-  "updatedAt": "2026-09-10T08:38:00+09:00",
+  "stateRevision": 27,
+  "updatedAt": "2026-09-10T08:39:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -382,7 +382,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 1,
@@ -412,6 +412,12 @@
         "previousAssetRepeat": "FAIL",
         "collageTypography": "FAIL",
         "notes": "Generation again produced a prohibited 2x2 collage of all four Korean foods instead of one standalone FOOD02 tteokbokki image. This repeats the same runtime collage failure pattern from FOOD01."
+      },
+      "generationReservation": {
+        "reservationId": "FOOD02-series1-attempt2",
+        "reservedAt": "2026-09-10T08:39:00+09:00",
+        "contentId": "tteokbokki",
+        "promptSeries": 1
       }
     },
     {
@@ -550,7 +556,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD02"
   },
   "blockingIssue": {
