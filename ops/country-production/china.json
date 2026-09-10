@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-10T08:51:00+09:00",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-10T09:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -369,7 +369,7 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "mapo-tofu",
       "promptSeries": 2,
@@ -395,11 +395,11 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
-        "previousAssetRepeat": "FAIL",
-        "collageTypography": "PASS",
-        "note": "Automatic hard reject: FOOD03 expected mapo tofu but generation repeated xiaolongbao from FOOD02."
-      }
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "candidateGenerationId": "e854fa89-8ea8-4208-aa6c-bfe54ad5c602"
     },
     {
       "id": "FOOD04",
@@ -490,7 +490,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "asset": "FOOD04"
   },
   "generationContext": {
     "state": "CLEAN",
