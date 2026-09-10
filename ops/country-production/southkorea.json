@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 31,
-  "updatedAt": "2026-09-10T08:43:00+09:00",
+  "stateRevision": 32,
+  "updatedAt": "2026-09-10T08:44:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -466,7 +466,7 @@
     },
     {
       "id": "FOOD04",
-      "state": "REGENERATE",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "bulgogi",
       "promptSeries": 2,
@@ -497,6 +497,12 @@
         "previousAssetRepeat": "FAIL",
         "collageTypography": "PASS",
         "notes": "FOOD04 generation repeated the immediately previous samgyetang visual instead of bulgogi. Automatically rejected under revision 5 previous-asset-repeat and target-identity rules."
+      },
+      "generationReservation": {
+        "reservationId": "FOOD04-series2-attempt1",
+        "reservedAt": "2026-09-10T08:44:00+09:00",
+        "contentId": "bulgogi",
+        "promptSeries": 2
       }
     }
   ],
@@ -561,7 +567,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD04"
   },
   "blockingIssue": {
