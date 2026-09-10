@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-10T08:41:00+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-10T08:43:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -338,9 +338,10 @@
       "asset": null,
       "contentId": "xiaolongbao",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 2,
       "rejectedGenerationIds": [
-        "f6462b3e-f8ef-4f2e-9a3c-e9667ceef8c0"
+        "f6462b3e-f8ef-4f2e-9a3c-e9667ceef8c0",
+        "11d028ef-2975-473f-b0ae-c2aacbde4d65"
       ],
       "previousContentId": "peking-roast-duck",
       "renderPacket": {
@@ -363,7 +364,7 @@
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
         "collageTypography": "PASS",
-        "note": "Automatic hard reject: FOOD02 expected xiaolongbao, but generation repeated Peking duck with the same prohibited props/background pattern."
+        "note": "Automatic hard reject: FOOD02 expected xiaolongbao but the generation repeated the Peking duck subject from FOOD01."
       }
     },
     {
@@ -480,11 +481,11 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD02"
+    "action": "RESET_GENERATION_CONTEXT",
+    "asset": null
   },
   "generationContext": {
-    "state": "CLEAN",
+    "state": "CONTAMINATED",
     "epoch": 4,
     "lastResetAt": "2026-09-10T08:39:00+09:00",
     "lastFailureAsset": "FOOD02",
