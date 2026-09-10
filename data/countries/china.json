@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "china",
+  "nameEn": "CHINA",
+  "nameJa": "中国",
+  "region": "EASTERN ASIA",
+  "seo": {
+    "description": "万里の長城、北京、西安、上海、武陵源、ラサ、福建土楼、敦煌、雲南の棚田へ。広い国土で地形・都市・建築・食が大きく切り替わる中国を8つの景色と地図から見る。"
+  },
+  "capital": {
+    "nameEn": "Beijing",
+    "nameJa": "北京",
+    "coordinates": {
+      "latitude": 39.9042,
+      "longitude": 116.4074
+    },
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "山稜を走る万里の長城から、北京の宮殿、上海の高層建築、湖南の石柱群、チベット高原、福建の土楼、敦煌の砂丘、雲南の棚田、西安の兵馬俑へ。長い距離を移動するほど、地形、都市、建築、食、暮らしの地域差が大きく切り替わる国。",
+    "image": "assets/images/china/approved/hero-jinshanling-great-wall.webp",
+    "location": "Jinshanling Great Wall",
+    "coordinates": {
+      "latitude": 40.6769,
+      "longitude": 117.2442
+    },
+    "mapOffset": {
+      "x": 2,
+      "y": -2
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 55.081207190360054,
+      "south": 14.263613983640091,
+      "west": 71.15544338380005,
+      "east": 137.2193923102
+    },
+    "svg": "assets/images/china/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CHN.geojson (blob 0c8361ab768142ef0669105e61a283f61e4feb3f), WGS84; JOURNEY ATLAS map-v3 clean background"
+  },
+  "scenes": [
+    {
+      "id": "xian-terracotta-army-pit1",
+      "name": "西安 / 兵馬俑",
+      "nameLocal": "Xi'an / Terracotta Army",
+      "mapLabel": "Xi'an",
+      "description": "秦始皇陵の兵馬俑坑では、等身大の兵士像が発掘区画に沿って列をつくる。王朝の歴史を宮殿ではなく、地下に埋められた軍団と考古学の現場から見る景色。",
+      "coordinates": {
+        "latitude": 34.3841,
+        "longitude": 109.2785
+      },
+      "image": "assets/images/china/approved/xian-terracotta-army-pit1.webp",
+      "role": "ANCHOR + HISTORY"
+    },
+    {
+      "id": "forbidden-city-jingshan-axis",
+      "name": "北京 / 故宮と都市軸",
+      "nameLocal": "Beijing / Forbidden City",
+      "mapLabel": "Beijing",
+      "description": "景山から南を見ると、赤い城壁と黄色い屋根の宮殿群が北京の中央軸に沿って重なる。単独の建物ではなく、王朝が都市空間そのものをどう組み立てたかが見える。",
+      "coordinates": {
+        "latitude": 39.9163,
+        "longitude": 116.3972
+      },
+      "image": "assets/images/china/approved/forbidden-city-jingshan-axis.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.4,
+        "y": 2.3
+      },
+      "role": "ANCHOR + CITY + HISTORY"
+    },
+    {
+      "id": "shanghai-bund-lujiazui-huangpu",
+      "name": "上海 / 黄浦江と陸家嘴",
+      "nameLocal": "Shanghai / Huangpu River & Lujiazui",
+      "mapLabel": "Shanghai",
+      "description": "黄浦江を挟んで外灘と陸家嘴が向かい合う。歴史的な港湾都市の輪郭と超高層都市の現在が同じ水辺に重なり、中国の都市変化を一枚で読み取れる。",
+      "coordinates": {
+        "latitude": 31.2397,
+        "longitude": 121.4998
+      },
+      "image": "assets/images/china/approved/shanghai-bund-lujiazui-huangpu.webp",
+      "role": "ANCHOR + CITY"
+    },
+    {
+      "id": "wulingyuan-yuanjiajie-sandstone-pillars",
+      "name": "武陵源 / 袁家界の石柱群",
+      "nameLocal": "Wulingyuan / Yuanjiajie",
+      "mapLabel": "Wulingyuan",
+      "description": "湖南の山地では、石英砂岩の細長い柱と峰が森林の中から数千本立ち上がる。霧で奥行きが変わる地形は、北方の山稜や高原とは別の中国南部の山景をつくる。",
+      "coordinates": {
+        "latitude": 29.33,
+        "longitude": 110.47
+      },
+      "image": "assets/images/china/approved/wulingyuan-yuanjiajie-sandstone-pillars.webp",
+      "role": "ATLAS VIEW + EARTH"
+    },
+    {
+      "id": "lhasa-potala-chakpori",
+      "name": "ラサ / ポタラ宮",
+      "nameLocal": "Lhasa / Potala Palace",
+      "mapLabel": "Lhasa",
+      "description": "標高の高いラサ盆地で、白と赤のポタラ宮がマルポリの丘に沿って立つ。チベット高原の地形とチベット仏教の歴史が、都市の中心で一つの景観になる。",
+      "coordinates": {
+        "latitude": 29.6578,
+        "longitude": 91.1172
+      },
+      "image": "assets/images/china/approved/lhasa-potala-chakpori.webp",
+      "role": "ANCHOR + HISTORY"
+    },
+    {
+      "id": "tianluokeng-fujian-tulou-cluster",
+      "name": "福建 / 田螺坑土楼群",
+      "nameLocal": "Fujian / Tianluokeng Tulou",
+      "mapLabel": "Fujian",
+      "description": "山の斜面に円形と方形の大型土楼がまとまり、周囲の畑と集落につながる。土を主材料にした共同住宅から、華南の山地に根づいた居住のかたちが見えてくる。",
+      "coordinates": {
+        "latitude": 24.587,
+        "longitude": 117.058
+      },
+      "image": "assets/images/china/approved/tianluokeng-fujian-tulou-cluster.webp",
+      "role": "DISCOVERY + LIFE + HISTORY"
+    },
+    {
+      "id": "dunhuang-crescent-lake-mingsha-dunes",
+      "name": "敦煌 / 鳴沙山と月牙泉",
+      "nameLocal": "Dunhuang / Mingsha Dunes & Crescent Lake",
+      "mapLabel": "Dunhuang",
+      "description": "甘粛の乾燥地では、大きな砂丘の間に月牙泉の水面と建物が収まる。オアシスが人と交易を支えたシルクロードの地理を、砂と水の対比から理解できる。",
+      "coordinates": {
+        "latitude": 40.0887,
+        "longitude": 94.6706
+      },
+      "image": "assets/images/china/approved/dunhuang-crescent-lake-mingsha-dunes.webp",
+      "role": "ATLAS VIEW + EARTH + HISTORY"
+    },
+    {
+      "id": "honghe-hani-duoyishu-terraces",
+      "name": "雲南 / 紅河ハニ棚田",
+      "nameLocal": "Yunnan / Honghe Hani Rice Terraces",
+      "mapLabel": "Honghe",
+      "description": "雲南南部では、水を張った棚田が急斜面を何層にも刻み、上部の森や村とつながる。水源、集落、耕作地を一体で使う暮らしが、そのまま山の輪郭になった景観。",
+      "coordinates": {
+        "latitude": 23.09,
+        "longitude": 102.77
+      },
+      "image": "assets/images/china/approved/honghe-hani-duoyishu-terraces.webp",
+      "role": "DISCOVERY + LIFE + EARTH"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "城壁",
+      "icon": "landmark"
+    },
+    {
+      "title": "宮殿",
+      "icon": "landmark"
+    },
+    {
+      "title": "超高層ビル",
+      "icon": "city"
+    },
+    {
+      "title": "石柱の山",
+      "icon": "landscape"
+    },
+    {
+      "title": "高原の寺院",
+      "icon": "culture"
+    },
+    {
+      "title": "土の集合住宅",
+      "icon": "city"
+    },
+    {
+      "title": "砂丘",
+      "icon": "landscape"
+    },
+    {
+      "title": "棚田",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "china-tea-techniques-social-practices",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "茶は、飲み物だけでなく加工技術ともてなしの文化まで地域ごとに変わる",
+      "text": "ユネスコの無形文化遺産には、茶葉の加工技術と、それに結びつく社会的な慣習が登録されている。産地や製法が変わると、色、香り、淹れ方、人を迎える場面まで違って見える。",
+      "points": [
+        "緑茶、紅茶、黒茶など多様な加工法がある",
+        "茶は家庭や社交の場にも組み込まれている"
+      ]
+    },
+    {
+      "topicKey": "china-spring-festival-social-practices",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "春節は一日の祝日ではなく、家族、飾り、食、訪問の習慣が連なる",
+      "text": "春節をめぐる社会的慣習は2024年にユネスコ無形文化遺産へ登録された。準備、家族の再会、食事、飾り、訪問などが地域ごとの形で続き、移動需要も大きく変わる。",
+      "points": [
+        "地域や家庭によって祝祭の形が異なる",
+        "旅行時期によって交通や街のリズムも変わる"
+      ]
+    },
+    {
+      "topicKey": "china-calligraphy-living-art",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "漢字は情報を伝えるだけでなく、書そのものが文化として受け継がれてきた",
+      "text": "中国書法は2009年にユネスコ無形文化遺産へ登録された。寺院、庭園、碑、街の文字を見ると、内容だけでなく筆線や配置そのものを文化として読む視点が加わる。",
+      "points": [
+        "文字の形と筆運び自体が鑑賞の対象になる",
+        "歴史建築や碑文を見る視点が広がる"
+      ]
+    },
+    {
+      "topicKey": "china-grand-canal-cities-waterway",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "大運河を見ると、歴史都市が水運の線でつながってきたことが分かる",
+      "text": "大運河は中国東部を南北に結ぶ巨大な水運体系として世界遺産に登録されている。都市、穀物輸送、水管理を一つの線で追うと、陸上の王朝史とは別の国土のつながりが見える。",
+      "points": [
+        "都市の発展を水運ネットワークから見られる",
+        "運河沿いでは橋、堤防、倉庫なども歴史の一部になる"
+      ]
+    },
+    {
+      "topicKey": "china-jingdezhen-porcelain-industry-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "景徳鎮では、窯、工房、原料、流通が一つの陶磁器産業景観をつくった",
+      "text": "2026年に世界遺産へ登録された景徳鎮手工業磁器産業遺産では、窯や工房だけでなく、原料調達や生産の仕組みまで含めて陶磁器の都市史をたどれる。",
+      "points": [
+        "器そのものだけでなく生産地の構造を見られる",
+        "長い陶磁器交易の背景を地域の景観から理解できる"
+      ]
+    },
+    {
+      "topicKey": "china-regional-food-differences",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "「中国料理」は一つではなく、地域を移動すると主食、香辛料、調理法が大きく変わる",
+      "text": "北方の小麦、南方の米、四川の発酵調味料や香辛料、沿海部の点心や海産物など、食の組み立ては地域で大きく変わる。長距離移動では景色と同じくらい食卓の変化が分かりやすい。",
+      "points": [
+        "主食の違いが麺、餃子、米料理に現れる",
+        "香辛料、発酵、蒸す・焼くなどの技法も地域差をつくる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "china-single-standard-time",
+      "categoryEn": "TIME",
+      "categoryJa": "時差",
+      "title": "国土は東西に広いが、公式時刻は一つ",
+      "text": "中国の標準時はUTC+8の北京時間。東西の距離が大きくても時計は同じなので、西部では日の出・日の入りの体感が東部と大きく異なる。",
+      "icon": "map",
+      "sourceKey": "standardTime"
+    },
+    {
+      "topicKey": "wulingyuan-more-than-three-thousand-pillars",
+      "categoryEn": "GEOLOGY",
+      "categoryJa": "地形",
+      "title": "武陵源には3,000本を超える石柱と峰が立つ",
+      "text": "ユネスコは武陵源に3,000を超える石英砂岩の柱と峰があり、その多くが200mを超えると説明している。写真だけでは分かりにくい密度を数字から想像できる。",
+      "icon": "landscape",
+      "sourceKey": "wulingyuan"
+    },
+    {
+      "topicKey": "honghe-up-to-three-thousand-terraces",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "棚田",
+      "title": "紅河の棚田は、場所によって約3,000段まで斜面を刻む",
+      "text": "ユネスコは急斜面に最大約3,000段の棚田が築かれた場所があると紹介する。水を上から下へ使いながら耕地を広げた山地農業の尺度が見える。",
+      "icon": "landscape",
+      "sourceKey": "honghe"
+    },
+    {
+      "topicKey": "forbidden-city-twenty-four-emperors",
+      "categoryEn": "HISTORY",
+      "categoryJa": "王朝",
+      "title": "故宮は明14人・清10人、計24人の皇帝の宮殿だった",
+      "text": "約5世紀にわたって明・清二王朝の皇帝がここを宮殿とした。景山から軸線を見ると、建物の数だけでなく政治空間の規模を感じやすい。",
+      "icon": "history",
+      "sourceKey": "forbiddenCity"
+    },
+    {
+      "topicKey": "fujian-tulou-up-to-eight-hundred-residents",
+      "categoryEn": "LIFE",
+      "categoryJa": "暮らし",
+      "title": "福建土楼には、一棟で最大約800人が暮らした例もある",
+      "text": "ユネスコが登録する大型土楼の中には、最大約800人を収容した例がある。巨大な円形・方形建築が、個人住宅ではなく共同生活の単位だったことが分かる。",
+      "icon": "city",
+      "sourceKey": "fujianTulou"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CHINA",
+    "title": "中国で食べたいもの",
+    "intro": "北京の鴨、江南の点心、四川の麻婆豆腐、蘭州の牛肉麺。地域を移動すると、焼く、蒸す、煮る、香辛料の使い方が大きく変わる4品。",
+    "items": [
+      {
+        "id": "peking-roast-duck",
+        "name": "北京ダック",
+        "nameLocal": "北京烤鸭",
+        "text": "香ばしく焼いた鴨の皮と肉を味わう北京の料理。皮を薄く仕上げる焼成技術が特徴で、北方の都市料理を知る入口になる。",
+        "image": "assets/images/china/approved/food-peking-roast-duck.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "xiaolongbao",
+        "name": "小籠包",
+        "nameLocal": "小笼包",
+        "text": "薄い生地の中に肉餡とスープを包んで蒸す江南の点心。上海周辺の食文化では、細かな包み方と蒸した生地の食感が一皿の特徴になる。",
+        "image": "assets/images/china/approved/food-xiaolongbao.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "mapo-tofu",
+        "name": "麻婆豆腐",
+        "nameLocal": "麻婆豆腐",
+        "text": "豆腐を豆板醤などの発酵調味料、唐辛子、花椒と合わせる四川料理。辛味だけでなく、発酵の旨味としびれる香りが味の輪郭をつくる。",
+        "image": "assets/images/china/approved/food-mapo-tofu.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "lanzhou-beef-noodles",
+        "name": "蘭州牛肉麺",
+        "nameLocal": "兰州牛肉面",
+        "text": "手延べの麺を澄んだ牛肉スープで食べる甘粛・蘭州の麺料理。小麦文化の強い西北部らしい一杯で、麺の太さや伸ばし方にも職人技が表れる。",
+        "image": "assets/images/china/approved/food-lanzhou-beef-noodles.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "北京と長城から、北方の中国を読む",
+        "text": "故宮と北京の都市軸を歩き、郊外の長城へ出る。短い旅では都市と山地を一つの地域ブロックとして深く見る。例：北京 → 故宮／景山 → 金山嶺または慕田峪 → 北京。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜12日",
+        "title": "北京・西安・上海を高速鉄道でつなぐ",
+        "text": "帝都、古都、現代都市を一本の都市軸として移動し、地域ごとの食と街の違いも見る。移動だけで日程を埋めず、各都市に複数泊置く。例：北京 → 西安 → 上海。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "一つの遠隔地域ブロックを加える",
+        "text": "四川、雲南、湖南、桂林／陽朔などから一地域を選び、主要都市周遊とは別の景観ブロックとして組み込む。8景を一度に回る旅程は想定しない。例：北京 → 西安 → 成都 → 桂林／陽朔 → 上海。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#819963",
+      "text": "多くの都市を歩きやすい時期だが、北部・西部は乾燥して風が強い日があり、南部は雨が増え始める。同じ春でも地域差を前提に組み立てる。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9b55",
+      "text": "東部・南部の低地は暑く湿度が高くなりやすく、南方や山地では降雨も重要になる。チベット高原や高山部は都市部とは別の気温・天候条件で考える。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#ad794b",
+      "text": "都市と自然を組み合わせやすい地域が多い一方、紅葉や気温の変化は緯度と標高で大きくずれる。北部と南部を同じ季節感として扱わない。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#758e9e",
+      "text": "北部・内陸は寒く乾燥し、南部はより穏やかな地域もある。高原や砂漠は冬季条件を別に確認し、春節前後は年ごとの日程と交通需要を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "高速鉄道・国内線・都市交通",
+    "text": "北京・上海・西安など東部・中部の主要都市は高速鉄道でつなぎやすい。一方、チベット高原、西北部、南西部まで組み合わせる場合は国内線や長距離の陸上移動が加わる。大都市では地下鉄が移動の軸になり、武陵源、土楼、棚田、砂漠景観では最後の道路・バス・現地移動を別に組み立てる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "山、砂漠、棚田、巨大都市まで、一つの国で景色が大きく切り替わる旅をしたい人",
+      "text": "北方の山稜、華中の石柱群、西北の砂漠、南部の棚田まで、地域ごとの地形差を長距離移動と一緒に見たい人。"
+    },
+    {
+      "title": "都市を歩きながら、王朝、宗教、交易、近現代の層を重ねて見たい人",
+      "text": "北京、西安、敦煌、ラサ、上海などを通じて、異なる時代の建築と都市構造が現在の街にどう残るかを見たい人。"
+    },
+    {
+      "title": "地域を移動するたびに食の味、主食、調理法が変わることを楽しみたい人",
+      "text": "北京、江南、四川、西北部などを移動し、麺、点心、発酵調味料、焼き料理といった食文化の地域差を旅の軸にしたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アジア"
+    },
+    {
+      "label": "首都",
+      "value": "北京"
+    },
+    {
+      "label": "人口",
+      "value": "約14億人（2025年末）"
+    },
+    {
+      "label": "面積",
+      "value": "約960万 km²（日本の約25.4倍）"
+    },
+    {
+      "label": "言語",
+      "value": "中国語。普通話が国家通用語で、地域言語・少数民族言語も使われる"
+    },
+    {
+      "label": "主な宗教",
+      "value": "仏教、道教、イスラム教、キリスト教など。民間信仰もみられる"
+    },
+    {
+      "label": "通貨",
+      "value": "人民元（CNY）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "china-high-speed-rail-50400-km",
+      "label": "高速鉄道の営業距離",
+      "value": "50,400 km",
+      "note": "2025年末の高速鉄道網は50,400km。主要都市間を鉄道で組み合わせられる範囲の広さが、中国の長距離旅行の組み方を変えている。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "china-great-wall-survey-21196-km",
+      "label": "確認された長城・壕などの総延長",
+      "value": "21,196.18 km",
+      "note": "文化財調査で確認された歴代の長城、壕などを合計した数字。一続きで完全に残る一本の壁の長さではなく、各時代の遺構を含む総延長として読む。",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "china-world-heritage-61",
+      "label": "世界遺産",
+      "value": "61件",
+      "note": "2026年時点で文化遺産42、自然遺産15、複合遺産4。長城や故宮だけでなく、地質、棚田、陶磁器産業まで登録対象の幅が広い。",
+      "icon": "history"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "china-plan-by-regional-blocks",
+      "title": "全国周遊ではなく、地域ブロックで旅程を組む",
+      "text": "地図上の距離だけでは移動負荷を読み切れない。北京・西安・上海などの連続する都市軸に、一つの遠隔地域を加えるように組む方が、景色と移動の両方に時間を残せる。"
+    },
+    {
+      "topicKey": "china-check-maps-payment-connectivity",
+      "title": "地図・決済・通信手段を出発前に確認する",
+      "text": "外国発行カードを登録できるモバイル決済など訪問者向け手段は整備されているが、利用条件は変わり得る。地図アプリ、ローミング／eSIM、決済方法を出発前に確認し、複数の手段を用意する。"
+    },
+    {
+      "topicKey": "china-restricted-area-procedures",
+      "title": "チベットなど一部地域は、通常の国内移動と同じ手続きとは限らない",
+      "text": "外国人旅行者には、地域によって事前許可や外国人向けの手続きが必要になる。チベットや国境管理地域を含める場合は、旅程確定前に最新の公的案内を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "mongolia",
+      "nameEn": "MONGOLIA",
+      "nameJa": "モンゴル",
+      "flag": "🇲🇳",
+      "reason": "大陸の長距離移動、乾燥地、草原という中国北部・西部との連続を、はるかに低い人口密度と遊牧文化の中で見たいなら。"
+    },
+    {
+      "slug": "japan",
+      "nameEn": "JAPAN",
+      "nameJa": "日本",
+      "flag": "🇯🇵",
+      "reason": "歴史都市、鉄道移動、地域ごとの食文化という共通点を、より小さな国土と島の地理の中で比較したいなら。"
+    },
+    {
+      "slug": "vietnam",
+      "nameEn": "VIETNAM",
+      "nameJa": "ベトナム",
+      "flag": "🇻🇳",
+      "reason": "南方の山地やカルスト、密度の高い街、地域食という重なりを、より熱帯的な気候と東南アジアの都市文化の中で見たいなら。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇱🇦",
+      "countryEn": "LAOS",
+      "countryJa": "ラオス",
+      "path": "Kunming → Vientiane",
+      "description": "昆明から中国・ラオス鉄道で南へ進み、雲南の高地からラオス北部の山地、ヴィエンチャンへつなぐ代表的な国際鉄道ルート。運行・入国条件は旅行日の最新情報を確認する。"
+    },
+    {
+      "flag": "🇻🇳",
+      "countryEn": "VIETNAM",
+      "countryJa": "ベトナム",
+      "path": "Nanning → Hanoi",
+      "description": "広西・南寧からハノイへ陸路・鉄道でつなぎ、中国南部からベトナム北部へ都市と気候が変わる流れを見る。列車運行と国境手続きは旅行日の最新情報を確認する。"
+    },
+    {
+      "flag": "🇲🇳",
+      "countryEn": "MONGOLIA",
+      "countryJa": "モンゴル",
+      "path": "Beijing → Ulaanbaatar",
+      "description": "北京から北へ進み、華北の都市圏から乾燥地を経てモンゴルの草原へつなぐ大陸横断型の周遊。国際列車の運行日と出入国条件は旅行前に確認する。"
+    }
+  ],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-10",
+  "sourceDates": {
+    "population": "2025",
+    "highSpeedRail": "2025",
+    "worldHeritage": "2026",
+    "springFestival": "2024",
+    "payment": "2026",
+    "restrictedAreas": "2026-09",
+    "nextRoutes": "2026-09"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CHN.geojson (blob 0c8361ab768142ef0669105e61a283f61e4feb3f), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "population": "National Bureau of Statistics of China, Statistical Communiqué of the People's Republic of China on the 2025 National Economic and Social Development: year-end 2025 national population 1,404.89 million; statistical scope excludes Hong Kong, Macao and Taiwan residents and foreigners in the mainland 31 provincial-level divisions.",
+    "area": "Government of China / National Bureau of Statistics official country profile baseline: China has a land area of approximately 9.6 million km².",
+    "japanArea": "Geospatial Information Authority of Japan, nationwide area as of 1 April 2026: 377,974.87 km²; 9.6 million km² / Japan is approximately 25.4.",
+    "language": "Law of the People's Republic of China on the Standard Spoken and Written Chinese Language: Putonghua and standardized Chinese characters form the standard national spoken and written language; regional and minority languages also remain in use under relevant laws.",
+    "religion": "State Council Information Office / official white-paper reference family: Buddhism, Taoism, Islam, Catholicism and Protestant Christianity are established religious traditions in China; folk beliefs also occur. No national percentage is shown.",
+    "currency": "People's Bank of China / official financial-system reference family: the legal currency is the renminbi; international currency code CNY.",
+    "highSpeedRail": "China State Railway / official government reporting for the end of 2025: China's high-speed railway operating mileage reached 50,400 km.",
+    "greatWallLength": "State Administration of Cultural Heritage survey figure cited by Beijing cultural-heritage authorities: identified Great Wall walls and trenches total 21,196.18 km across different historical periods.",
+    "worldHeritage": "UNESCO World Heritage Centre, China country list checked 10 September 2026: 61 properties — 42 cultural, 15 natural and 4 mixed — including the 2026 Jingdezhen Handicraft Porcelain Industry Sites inscription.",
+    "tea": "UNESCO Intangible Cultural Heritage, Traditional tea processing techniques and associated social practices in China, inscribed 2022: multiple tea categories, processing techniques and social practices tied to daily life and hospitality.",
+    "springFestival": "UNESCO Intangible Cultural Heritage, Spring festival, social practices of the Chinese people in celebration of traditional new year, inscribed 2024.",
+    "calligraphy": "UNESCO Intangible Cultural Heritage, Chinese calligraphy, inscribed on the Representative List in 2009.",
+    "grandCanal": "UNESCO World Heritage Centre, The Grand Canal: large-scale historic waterway system linking regions and cities through transport and water management.",
+    "jingdezhen": "UNESCO World Heritage Centre, Jingdezhen Handicraft Porcelain Industry Sites, inscribed 2026.",
+    "regionalFood": "Editorial synthesis based on established regional differences in staple grains, seasoning and cooking techniques; no unsupported fixed 'eight cuisines' count is used.",
+    "standardTime": "Government / national-standard time reference: China Standard Time (Beijing Time) is UTC+8 and is used as the country's official standard time.",
+    "wulingyuan": "UNESCO World Heritage Centre, Wulingyuan Scenic and Historic Interest Area: more than 3,000 narrow quartz-sandstone pillars and peaks, many over 200 m high.",
+    "honghe": "UNESCO World Heritage Centre, Cultural Landscape of Honghe Hani Rice Terraces: steep slopes shaped into terraces, reaching as many as about 3,000 levels in some places.",
+    "forbiddenCity": "UNESCO World Heritage Centre / Palace Museum historical reference: the Forbidden City served 14 Ming and 10 Qing emperors, 24 in total, for roughly five centuries.",
+    "fujianTulou": "UNESCO World Heritage Centre, Fujian Tulou: 46 representative buildings; some large communal buildings historically accommodated up to about 800 people.",
+    "payment": "State Council / official Guide to Working and Living in China 2025–2026: overseas bank cards can be linked to supported mobile-payment services including Alipay, WeChat Pay and UnionPay products; practical acceptance and limits should be checked before travel.",
+    "restrictedAreas": "National Immigration Administration and Ministry of Foreign Affairs current guidance: foreigners may need specific permission for places not open to foreigners and for designated border-administration areas; Tibet travel requires applicable procedures to be completed in advance.",
+    "nextRoutes": "Current 2026 official transport references: China–Laos Railway international passenger trains operate between Kunming and Vientiane; China–Vietnam passenger rail service linking Nanning and Hanoi is operating after its 2025 resumption; China Railway 12306 lists Beijing–Ulaanbaatar international K23/K24 service. Exact operating days and entry requirements remain date-sensitive.",
+    "transport": "China Railway 12306 and official transport guidance: high-speed rail connects many major eastern and central cities; domestic air, metro, road and local transfer networks are required for more distant and scenic regions.",
+    "travelScale": "Editorial duration ranges based on China's geographic scale, regional distribution and transfer burden; not fixed itineraries."
+  }
+}
