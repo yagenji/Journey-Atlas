@@ -53,6 +53,17 @@ def round_entry(round_number: int, scope: list[str], approved: dict[str, str], r
     }
 
 
+def reservation(asset_id: str, epoch: int = 1) -> dict:
+    return {
+        "reservationId": f"{asset_id}-series1-attempt1",
+        "asset": asset_id,
+        "contentId": f"content-{asset_id.lower()}",
+        "promptSeries": 1,
+        "generationContextEpoch": epoch,
+        "reservedAt": "2026-09-10T15:30:00+09:00",
+    }
+
+
 def test_initial_batch_good() -> None:
     before = base_state()
     after = copy.deepcopy(before)
@@ -138,10 +149,86 @@ def test_per_item_user_approval_field_fails() -> None:
     assert any("forbids per-item userApprovedAt" in error for error in errors), errors
 
 
+def test_atomic_reconcile_and_reserve_next_passes() -> None:
+    before = v7.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
+    before["phase"] = "SCENES_INITIAL"
+    before["hero"] = {
+        "state": "APPROVED",
+        "asset": "hero.webp",
+        "contentId": "hero",
+        "approvedGenerationId": "hero-g",
+    }
+    for i, item in enumerate(before["scenes"], 1):
+        item["contentId"] = f"content-s{i:02d}"
+    before["scenes"][0]["state"] = "GENERATING"
+    before["scenes"][0]["generationReservation"] = reservation("S01")
+    before["next"] = v7.legacy.derive_next(before)
+    assert before["next"] == {"action": "RECONCILE_GENERATION", "asset": "S01"}
+
+    after = copy.deepcopy(before)
+    current = after["scenes"][0]
+    current["state"] = "REVIEW_CANDIDATE"
+    current["candidateGenerationId"] = "g-s01"
+    current["candidateVisualQa"] = {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+    }
+    current.pop("generationReservation", None)
+
+    nxt = after["scenes"][1]
+    nxt["state"] = "GENERATING"
+    nxt["generationReservation"] = reservation("S02")
+    after["next"] = v7.legacy.derive_next(after)
+    assert after["next"] == {"action": "RECONCILE_GENERATION", "asset": "S02"}
+
+    errors = v7.validate_transition(before, after, "ops/country-production/test-slug.json")
+    assert not errors, errors
+
+
+def test_multiple_unreconciled_targets_still_fail() -> None:
+    state = v7.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
+    state["phase"] = "SCENES_INITIAL"
+    state["hero"] = {
+        "state": "APPROVED",
+        "asset": "hero.webp",
+        "contentId": "hero",
+        "approvedGenerationId": "hero-g",
+    }
+    for i, item in enumerate(state["scenes"], 1):
+        item["contentId"] = f"content-s{i:02d}"
+    state["scenes"][0]["state"] = "GENERATING"
+    state["scenes"][0]["generationReservation"] = reservation("S01")
+    state["scenes"][1]["state"] = "GENERATING"
+    state["scenes"][1]["generationReservation"] = reservation("S02")
+    state["next"] = v7.legacy.derive_next(state)
+    errors = v7.validate_state_dict(state, "test-slug.json")
+    assert any("only one unreconciled GENERATING target" in error for error in errors), errors
+
+
+def test_central_policy_7_1_throughput_contract() -> None:
+    policy = v7.load_json(v7.POLICY_PATH)
+    assert policy["revision"] == 7
+    assert policy["patch"] == 1
+    assert policy["policyId"] == "7.1"
+    assert policy["throughputGuide"] == "docs/IMAGE_POLICY_REVISION_7_1.md"
+    throughput = policy["throughputOptimization"]
+    assert throughput["sameTurnAuthoritativeStateCache"] is True
+    assert throughput["rereadAfterOwnSuccessfulWrite"] is False
+    assert throughput["atomicReconcileAndReserveNext"] is True
+    assert throughput["renderPacketsValidatedAtRoundStart"] is True
+    assert throughput["contentPlanRereadPerTarget"] is False
+    assert throughput["waitForCountryBranchCiBetweenImages"] is False
+    assert throughput["countryBranchCiMode"] == "TRANSITION_ONLY"
+
+
 if __name__ == "__main__":
     test_initial_batch_good()
     test_individual_approval_without_batch_fails()
     test_late_batch_backfill_fails()
     test_regen_individual_approval_fails_and_batch_passes()
     test_per_item_user_approval_field_fails()
-    print("Revision 7 batch-approval regression tests passed")
+    test_atomic_reconcile_and_reserve_next_passes()
+    test_multiple_unreconciled_targets_still_fail()
+    test_central_policy_7_1_throughput_contract()
+    print("Revision 7 batch-approval and throughput regression tests passed")

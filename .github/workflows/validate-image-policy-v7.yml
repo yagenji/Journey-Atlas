@@ -12,7 +12,10 @@ on:
       - 'scripts/country_production_state_v7.py'
       - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
+      - 'WORKFLOW.md'
+      - 'docs/COUNTRY_PRODUCTION_STATE.md'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_1.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
@@ -24,7 +27,10 @@ on:
       - 'scripts/country_production_state_v7.py'
       - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
+      - 'WORKFLOW.md'
+      - 'docs/COUNTRY_PRODUCTION_STATE.md'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_1.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
@@ -33,7 +39,28 @@ permissions:
   contents: read
 
 jobs:
-  validate-v7:
+  country-transition:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/country/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate pushed revision 7 transition range
+        if: github.event.before != '0000000000000000000000000000000000000000'
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+
+      - name: Validate current state on first branch push
+        if: github.event.before == '0000000000000000000000000000000000000000'
+        run: python3 scripts/country_production_state_v7.py validate
+
+  full-validation:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout full history
@@ -48,7 +75,7 @@ jobs:
       - name: Revision 7 initializer self-test
         run: python3 scripts/country_production_state_v7.py self-test
 
-      - name: Revision 7 batch-approval regression tests
+      - name: Revision 7 batch-approval and throughput regression tests
         run: python3 scripts/test_image_policy_v7.py
 
       - name: Validate current revision 7 state
