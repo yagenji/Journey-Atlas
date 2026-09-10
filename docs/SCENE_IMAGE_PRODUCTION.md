@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — Scene Image Production Hard Rule
 
 Updated: 2026-09-09
-Policy revision: 4
+Policy revision: 6
 
 ## Scope
 
@@ -53,6 +53,36 @@ A valid packet must identify:
 
 If the packet is incomplete, do not spend a generation credit.
 
+## Single-frame prompt envelope — mandatory
+
+For every Hero / Scene generation, the effective instruction begins with the semantic equivalent of:
+
+> ONE SINGLE FULL-BLEED 3:2 LANDSCAPE FRAME. ONE PLACE. ONE CONTINUOUS CAMERA VIEW. NO COLLAGE, NO GRID, NO PANELS, NO CONTACT SHEET, NO MONTAGE, NO INSET IMAGE, NO BORDER, NO LABELS, NO MULTI-SCENE COMPOSITION.
+
+Only after this fixed envelope may the current target identity be described.
+
+Do not mention S01–S08 as a set, the other Scenes, "8 images", "batch", "series", "collection", or review layout in the generation turn.
+
+If a collage/multi-panel output occurs, mark generation context CONTAMINATED and stop image generation for that assistant turn. The next action is RESET_GENERATION_CONTEXT, not another Scene.
+
+## Pre-generation reservation — mandatory
+
+Before calling image generation for Hero or Scene:
+
+1. Re-read authoritative Production State.
+2. Confirm the exact NEXT target.
+3. Write that target as `GENERATING` with a unique `generationReservation`.
+4. Re-read and confirm NEXT becomes `RECONCILE_GENERATION / {same asset}`.
+5. Only then generate the image.
+
+Never generate first and plan to update State afterward. The image runtime may end the assistant turn before a State write can occur.
+
+If a previous generation is still `GENERATING`, reconcile it first. Do not call image generation again.
+
+The same Hero / Scene may be generated at most once in one assistant turn.
+
+Every call must be a fresh independent text-to-image generation. Never use the previous generated image as an edit/reference source for the next target or regeneration.
+
 ## Preflight before every generation
 
 Before calling image generation:
@@ -75,7 +105,7 @@ Do not generate from chat memory alone.
 
 ## Candidate visual novelty QA — mandatory
 
-After every generated Hero / Scene and before writing `REVIEW_CANDIDATE`:
+After every generated Hero / Scene, reconcile the existing `GENERATING` reservation before writing `REVIEW_CANDIDATE`:
 
 1. Compare the output against the current Render Packet.
 2. Compare it against the immediately previous generated or approved Hero / Scene.
@@ -83,7 +113,7 @@ After every generated Hero / Scene and before writing `REVIEW_CANDIDATE`:
 4. Record `candidateVisualQa.previousAssetRepeat = PASS`.
 5. Record `candidateVisualQa.collageTypography = PASS`.
 
-If the previous image is repeated, restaged, lightly cropped, or otherwise materially the same, reject it automatically and do not ask the user to approve it.
+If the previous image is repeated, restaged, lightly cropped, or otherwise materially the same, reject it automatically, refresh the Render Packet / generation context, and do not ask the user to approve it. Do not retry that same asset again in the same assistant turn.
 
 This check is required even when the generation ID is new. A new generation ID does not prove that the visual output is new.
 
