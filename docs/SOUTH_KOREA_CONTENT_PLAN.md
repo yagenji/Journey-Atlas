@@ -251,12 +251,12 @@ Exactly 8; keep them immediately understandable and generic enough to be recogni
 
 1. **宮殿の門と彩色**
 2. **韓屋の屋根**
-3. **山の稜線**
-4. **干潟と葦原**
-5. **火山島の海岸**
-6. **市場と屋台**
-7. **茶畑**
-8. **港町の坂道**
+3. **市場の屋台**
+4. **山寺**
+5. **登山客**
+6. **海女**
+7. **漁船**
+8. **茶畑**
 
 ## Beyond the Scenery
 
