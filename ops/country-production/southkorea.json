@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-10T08:39:00+09:00",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-10T08:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -382,13 +382,14 @@
     },
     {
       "id": "FOOD02",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 1,
+      "promptSeriesRejectCount": 2,
       "rejectedGenerationIds": [
-        "5fda8350-31f2-4336-bf6a-94ba636735ec"
+        "5fda8350-31f2-4336-bf6a-94ba636735ec",
+        "531badba-6139-4277-8f7b-3306cc8fdcde"
       ],
       "renderPacket": {
         "kind": "TASTE",
@@ -410,14 +411,8 @@
       "lastRejectedVisualQa": {
         "targetIdentity": "FAIL",
         "previousAssetRepeat": "FAIL",
-        "collageTypography": "FAIL",
-        "notes": "Generation again produced a prohibited 2x2 collage of all four Korean foods instead of one standalone FOOD02 tteokbokki image. This repeats the same runtime collage failure pattern from FOOD01."
-      },
-      "generationReservation": {
-        "reservationId": "FOOD02-series1-attempt2",
-        "reservedAt": "2026-09-10T08:39:00+09:00",
-        "contentId": "tteokbokki",
-        "promptSeries": 1
+        "collageTypography": "PASS",
+        "notes": "FOOD02 regeneration repeated the approved FOOD01 bibimbap visual instead of generating tteokbokki. Automatically rejected under revision 5 target-identity and previous-asset-repeat rules."
       }
     },
     {
@@ -556,16 +551,14 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
+    "action": "REFRESH_RENDER_PACKET",
     "asset": "FOOD02"
   },
   "blockingIssue": {
     "code": "TASTE_PREVIOUS_ASSET_REPEAT",
-    "state": "RESOLVED",
-    "detectedAt": "2026-09-10T08:36:00+09:00",
-    "notes": "FOOD04 repeated FOOD03 samgyetang instead of generating bulgogi. Regeneration must use a refreshed text-only render packet and must not reference or inherit the previous image.",
-    "resolvedAt": "2026-09-10T08:37:00+09:00",
-    "resolution": "Fresh user turn; resume with standalone FOOD01 text-to-image and no previous-image reference."
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T08:40:00+09:00",
+    "notes": "FOOD02 repeated the approved FOOD01 bibimbap image. Further Taste generation is halted to protect credits. FOOD02 remains REGENERATE; FOOD04 remains REGENERATE; FOOD01 and FOOD03 stay APPROVED and locked."
   },
   "generationContext": {
     "state": "CLEAN",
