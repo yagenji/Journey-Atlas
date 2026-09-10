@@ -4,9 +4,9 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "VISUAL_COMPLETE",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-10T09:36:00+09:00",
+  "phase": "MAP",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-10T09:40:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -475,15 +475,15 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "MATERIALIZE_APPROVED_ASSETS",
-    "asset": null
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   },
   "generationContext": {
     "state": "CLEAN",
     "epoch": 6,
     "lastResetAt": "2026-09-10T08:51:00+09:00",
-    "lastFailureAsset": "FOOD03",
-    "lastFailureReason": "PREVIOUS_ASSET_REPEAT_WRONG_TARGET"
+    "lastFailureAsset": null,
+    "lastFailureReason": null
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "sceneBatchReview": {
