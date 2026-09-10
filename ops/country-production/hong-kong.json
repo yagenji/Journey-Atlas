@@ -4,12 +4,12 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "ASSET_QA",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-10T09:12:00+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-10T09:18:00+09:00",
   "hero": {
     "state": "APPROVED",
-    "asset": null,
+    "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
     "contentId": "victoria-harbour-lugard-road-peak",
     "promptSeries": 3,
     "promptSeriesRejectCount": 0,
@@ -43,7 +43,7 @@
     {
       "id": "S01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/hong-kong-tram-central-street.webp",
       "contentId": "hong-kong-tram-central-street",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -75,7 +75,7 @@
     {
       "id": "S02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/tai-o-stilt-house-canal.webp",
       "contentId": "tai-o-stilt-house-canal",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -107,7 +107,7 @@
     {
       "id": "S03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/dragons-back-shek-o-ridge.webp",
       "contentId": "dragons-back-shek-o-ridge",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -139,7 +139,7 @@
     {
       "id": "S04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/high-island-east-dam-hexagonal-columns.webp",
       "contentId": "high-island-east-dam-hexagonal-columns",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -171,7 +171,7 @@
     {
       "id": "S05",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/mai-po-inner-deep-bay-wetlands.webp",
       "contentId": "mai-po-inner-deep-bay-wetlands",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -203,7 +203,7 @@
     {
       "id": "S06",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/chi-lin-nunnery-nan-lian-garden.webp",
       "contentId": "chi-lin-nunnery-nan-lian-garden",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -235,7 +235,7 @@
     {
       "id": "S07",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/lai-chi-wo-hakka-walled-village.webp",
       "contentId": "lai-chi-wo-hakka-walled-village",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -267,7 +267,7 @@
     {
       "id": "S08",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/cheung-chau-harbour-waterfront.webp",
       "contentId": "cheung-chau-harbour-waterfront",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -301,7 +301,7 @@
     {
       "id": "FOOD01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/food-har-gow.webp",
       "contentId": "har-gow-dim-sum",
       "promptSeries": 2,
       "promptSeriesRejectCount": 0,
@@ -339,7 +339,7 @@
     {
       "id": "FOOD02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/food-wonton-noodles.webp",
       "contentId": "wonton-noodles",
       "promptSeries": 3,
       "promptSeriesRejectCount": 0,
@@ -379,7 +379,7 @@
     {
       "id": "FOOD03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/food-roast-goose-rice.webp",
       "contentId": "roast-goose-rice",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -413,7 +413,7 @@
     {
       "id": "FOOD04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/hong-kong/approved/food-hong-kong-egg-tart.webp",
       "contentId": "hong-kong-egg-tart",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -520,7 +520,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "IMPLEMENT_COUNTRY_PAGE",
     "asset": null
   },
   "sceneBatchReview": {
@@ -559,5 +559,31 @@
     "lastFailureAsset": null,
     "lastFailureReason": null
   },
-  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json"
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "assetQa": {
+    "result": "PASS_LOCAL_MATERIALIZATION",
+    "completedAt": "2026-09-10T09:18:00+09:00",
+    "materializedDirectory": "/mnt/data/hong-kong-approved",
+    "filesChecked": 13,
+    "decode": "PASS",
+    "dimensions": "PASS_1200x800",
+    "aspectRatio": "PASS_3:2",
+    "duplicateGate": "PASS",
+    "productionTargetPaths": [
+      "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
+      "assets/images/hong-kong/approved/hong-kong-tram-central-street.webp",
+      "assets/images/hong-kong/approved/tai-o-stilt-house-canal.webp",
+      "assets/images/hong-kong/approved/dragons-back-shek-o-ridge.webp",
+      "assets/images/hong-kong/approved/high-island-east-dam-hexagonal-columns.webp",
+      "assets/images/hong-kong/approved/mai-po-inner-deep-bay-wetlands.webp",
+      "assets/images/hong-kong/approved/chi-lin-nunnery-nan-lian-garden.webp",
+      "assets/images/hong-kong/approved/lai-chi-wo-hakka-walled-village.webp",
+      "assets/images/hong-kong/approved/cheung-chau-harbour-waterfront.webp",
+      "assets/images/hong-kong/approved/food-har-gow.webp",
+      "assets/images/hong-kong/approved/food-wonton-noodles.webp",
+      "assets/images/hong-kong/approved/food-roast-goose-rice.webp",
+      "assets/images/hong-kong/approved/food-hong-kong-egg-tart.webp"
+    ],
+    "notes": "All 13 user-approved raster assets were materialized locally from the approved generation IDs only, normalized to WebP 1200x800, fully decoded, and passed conservative perceptual duplicate checks. Earlier rejected collage outputs are excluded. Batch GitHub binary insertion is deferred to the single review-package integration step."
+  }
 }
