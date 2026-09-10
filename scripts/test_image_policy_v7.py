@@ -206,6 +206,22 @@ def test_multiple_unreconciled_targets_still_fail() -> None:
     assert any("only one unreconciled GENERATING target" in error for error in errors), errors
 
 
+def test_central_policy_7_1_throughput_contract() -> None:
+    policy = v7.load_json(v7.POLICY_PATH)
+    assert policy["revision"] == 7
+    assert policy["patch"] == 1
+    assert policy["policyId"] == "7.1"
+    assert policy["throughputGuide"] == "docs/IMAGE_POLICY_REVISION_7_1.md"
+    throughput = policy["throughputOptimization"]
+    assert throughput["sameTurnAuthoritativeStateCache"] is True
+    assert throughput["rereadAfterOwnSuccessfulWrite"] is False
+    assert throughput["atomicReconcileAndReserveNext"] is True
+    assert throughput["renderPacketsValidatedAtRoundStart"] is True
+    assert throughput["contentPlanRereadPerTarget"] is False
+    assert throughput["waitForCountryBranchCiBetweenImages"] is False
+    assert throughput["countryBranchCiMode"] == "TRANSITION_ONLY"
+
+
 if __name__ == "__main__":
     test_initial_batch_good()
     test_individual_approval_without_batch_fails()
@@ -214,4 +230,5 @@ if __name__ == "__main__":
     test_per_item_user_approval_field_fails()
     test_atomic_reconcile_and_reserve_next_passes()
     test_multiple_unreconciled_targets_still_fail()
+    test_central_policy_7_1_throughput_contract()
     print("Revision 7 batch-approval and throughput regression tests passed")
