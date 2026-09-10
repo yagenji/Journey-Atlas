@@ -1,0 +1,563 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "russia",
+  "nameEn": "RUSSIA",
+  "nameJa": "ロシア",
+  "region": "EASTERN EUROPE / NORTHERN ASIA",
+  "seo": {
+    "description": "オネガ湖のキジ島から、モスクワ、サンクトペテルブルク、カザン、クルシュー砂州、バイカル湖、アルタイ、レナ石柱、カムチャツカへ。都市と大河、湖、山、火山を横断してロシアの巨大な地理をたどる。"
+  },
+  "capital": {
+    "nameEn": "Moscow",
+    "nameJa": "モスクワ",
+    "coordinates": {
+      "latitude": 55.7558,
+      "longitude": 37.6173
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2.4,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "オネガ湖の木造教会から、モスクワとサンクトペテルブルクの都市景観、ヴォルガ沿いのカザン、バルト海の砂丘、バイカル湖、アルタイ、レナ川、カムチャツカへ。ヨーロッパと北アジアにまたがる距離と地形の変化を追うと、ひとつの国の中に複数の世界が見えてくる。",
+    "image": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
+    "location": "Kizhi Pogost / Lake Onega",
+    "coordinates": {
+      "latitude": 62.0676,
+      "longitude": 35.2244
+    },
+    "mapOffset": {
+      "x": 2,
+      "y": -1.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 83.48535120664006,
+      "south": 39.566039383360085,
+      "west": 13.610694206310042,
+      "east": 197.00423587369013
+    },
+    "svg": "assets/images/russia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/RUS.geojson (blob 373edae59f6417340c9383b7f852bbe85975f650), WGS84; JOURNEY ATLAS map-v3 clean background; antimeridian normalized by shifting negative longitudes +360."
+  },
+  "scenes": [
+    {
+      "id": "moscow-kremlin-moskva-river",
+      "name": "モスクワ / クレムリンとモスクワ川",
+      "nameLocal": "Moscow / Kremlin & Moskva River",
+      "mapLabel": "Moscow",
+      "description": "城壁と塔がモスクワ川の湾曲に沿って伸び、その背後に大聖堂のドームと都市中心部が重なる。政治の中心という印象だけでなく、川沿いに形成された歴史都市の輪郭が見える。",
+      "coordinates": {
+        "latitude": 55.754,
+        "longitude": 37.6204
+      },
+      "image": "assets/images/russia/approved/moscow-kremlin-moskva-river.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.4,
+        "y": 0
+      },
+      "role": "ANCHOR + CITY"
+    },
+    {
+      "id": "saint-petersburg-neva-palace-embankment",
+      "name": "サンクトペテルブルク / ネヴァ川と宮殿河岸",
+      "nameLocal": "Saint Petersburg / Neva & Palace Embankment",
+      "mapLabel": "St Petersburg",
+      "description": "幅の広いネヴァ川の水面に沿って宮殿や歴史建築が長く連なる。運河と河岸、均整の取れた街路を歩くと、海へ開かれた帝都として計画された都市のスケールを感じられる。",
+      "coordinates": {
+        "latitude": 59.95,
+        "longitude": 30.3183
+      },
+      "image": "assets/images/russia/approved/saint-petersburg-neva-palace-embankment.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -0.5
+      },
+      "role": "ANCHOR + HISTORY"
+    },
+    {
+      "id": "kazan-kremlin-kazanka",
+      "name": "カザン / クレムリンとカザンカ川",
+      "nameLocal": "Kazan / Kremlin & Kazanka River",
+      "mapLabel": "Kazan",
+      "description": "白い城壁の内側で正教会のドームとモスクの尖塔が同じ空に並ぶ。ヴォルガ地域の交易と多民族の歴史が、異なる宗教建築の共存として一つの高台に凝縮されている。",
+      "coordinates": {
+        "latitude": 55.7995,
+        "longitude": 49.1065
+      },
+      "image": "assets/images/russia/approved/kazan-kremlin-kazanka.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 0
+      },
+      "role": "HISTORY + LIFE"
+    },
+    {
+      "id": "curonian-spit-efa-dune",
+      "name": "クルシュー砂州 / エファ砂丘",
+      "nameLocal": "Curonian Spit / Efa Dune",
+      "mapLabel": "Curonian Spit",
+      "description": "バルト海と潟の間に細い砂州が伸び、砂丘の稜線と松林が帯状に続く。巨大な内陸国のように見えるロシアにも、風と砂が地形を動かすバルト海沿岸の景観がある。",
+      "coordinates": {
+        "latitude": 55.22,
+        "longitude": 20.9
+      },
+      "image": "assets/images/russia/approved/curonian-spit-efa-dune.webp",
+      "labelPosition": "right",
+      "role": "DISCOVERY + EARTH"
+    },
+    {
+      "id": "lake-baikal-olkhon-cape-burkhan",
+      "name": "バイカル湖 / オリホン島・ブルハン岬",
+      "nameLocal": "Lake Baikal / Olkhon / Cape Burkhan",
+      "mapLabel": "Baikal",
+      "description": "透明度の高い青い水面の向こうへ山並みが続き、岩の岬が湖へ突き出す。世界最深の湖を岸から眺めると、湖というより内海に近い広さと、シベリアの地形の大きさが実感できる。",
+      "coordinates": {
+        "latitude": 53.2041,
+        "longitude": 107.3386
+      },
+      "image": "assets/images/russia/approved/lake-baikal-olkhon-cape-burkhan.webp",
+      "labelPosition": "right",
+      "role": "ANCHOR + EARTH"
+    },
+    {
+      "id": "altai-lake-teletskoye",
+      "name": "アルタイ / テレツコエ湖",
+      "nameLocal": "Altai / Lake Teletskoye",
+      "mapLabel": "Altai",
+      "description": "森林に覆われた急斜面の間を細長い湖が深く入り込み、その背後にアルタイの山地が重なる。草原の印象が強い南シベリアで、水と森と高地が一体になった景観を見せる。",
+      "coordinates": {
+        "latitude": 51.7885,
+        "longitude": 87.247
+      },
+      "image": "assets/images/russia/approved/altai-lake-teletskoye.webp",
+      "labelPosition": "left",
+      "role": "DISCOVERY + EARTH"
+    },
+    {
+      "id": "lena-pillars-lena-river",
+      "name": "レナ石柱自然公園 / レナ川",
+      "nameLocal": "Lena Pillars / Lena River",
+      "mapLabel": "Lena Pillars",
+      "description": "数十キロにわたって切り立った岩柱が大河の岸に並び、水面から垂直に立ち上がる壁のように見える。シベリア東部では、川そのものが地域をつなぐ巨大な地理軸になっている。",
+      "coordinates": {
+        "latitude": 61.107,
+        "longitude": 127.3617
+      },
+      "image": "assets/images/russia/approved/lena-pillars-lena-river.webp",
+      "labelPosition": "right",
+      "role": "DISCOVERY + EARTH"
+    },
+    {
+      "id": "kamchatka-klyuchevskoy-volcano",
+      "name": "カムチャツカ / クリュチェフスカヤ山",
+      "nameLocal": "Kamchatka / Klyuchevskoy Volcano",
+      "mapLabel": "Kamchatka",
+      "description": "雪をまとった円錐形の火山が広い火山原から立ち上がり、周囲にも火山群が連なる。ヨーロッパ側の都市景観から数千キロ離れた極東では、プレート活動がつくる荒々しい地球の風景へ国土が切り替わる。",
+      "coordinates": {
+        "latitude": 56.056,
+        "longitude": 160.642
+      },
+      "image": "assets/images/russia/approved/kamchatka-klyuchevskoy-volcano.webp",
+      "labelPosition": "left",
+      "role": "ANCHOR + EARTH"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "白樺の森",
+      "icon": "landscape"
+    },
+    {
+      "title": "木造教会",
+      "icon": "landmark"
+    },
+    {
+      "title": "玉ねぎ型ドーム",
+      "icon": "landmark"
+    },
+    {
+      "title": "大河",
+      "icon": "landscape"
+    },
+    {
+      "title": "湖畔の集落",
+      "icon": "city"
+    },
+    {
+      "title": "地下鉄のモザイク",
+      "icon": "city"
+    },
+    {
+      "title": "火山と雪原",
+      "icon": "landscape"
+    },
+    {
+      "title": "石造りの要塞",
+      "icon": "landmark"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "trans-siberian-distance-as-journey",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "鉄道に乗ると、距離そのものが旅の主題になる",
+      "text": "シベリア鉄道はモスクワからウラジオストクへ大陸を横断する幹線。現在の渡航推奨ではないが、森林、都市、湖、時間帯が変わっていく移動は、ロシアの国土尺度を理解する象徴になる。",
+      "points": [
+        "大陸横断の移動が国土の大きさを可視化する",
+        "時差と景観変化が同じ旅の中で連続する"
+      ]
+    },
+    {
+      "topicKey": "russia-dacha-seasonal-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "都市の外には、夏を過ごす家と菜園の時間がある",
+      "text": "ダーチャは郊外の小住宅や庭と結びついた季節生活の文化。都市から週末や夏に移動し、野菜や果物を育てる習慣は、密集した都市生活と土地とのつながりを補う。",
+      "points": [
+        "都市と郊外を季節的に行き来する",
+        "菜園や保存食の文化とも結びつく"
+      ]
+    },
+    {
+      "topicKey": "russian-banya-social-steam-bath",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "蒸気浴は、体を洗うだけでなく人と時間を過ごす場所になる",
+      "text": "バーニャでは高温の蒸気室で体を温め、休憩や冷却を挟みながら過ごす。家庭用から共同浴場まで形があり、寒い季節の生活と社交の場として長く使われてきた。",
+      "points": [
+        "蒸気浴と休憩を繰り返す",
+        "入浴と社交が同じ空間に重なる"
+      ]
+    },
+    {
+      "topicKey": "kazan-tatar-russian-historical-layers",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "カザンでは、タタールとロシアの歴史が同じ城壁の内側に重なる",
+      "text": "カザン・クレムリンではイスラム建築と正教建築が同じ歴史地区に並ぶ。ヴォルガ地域の政治、交易、宗教の変化を、ひとつの都市景観から読み取れる。",
+      "points": [
+        "イスラムと正教の建築が並ぶ",
+        "ヴォルガ地域の多文化史が都市景観に残る"
+      ]
+    },
+    {
+      "topicKey": "moscow-metro-as-civic-architecture",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "地下鉄の駅が、公共建築としてつくられている",
+      "text": "モスクワ地下鉄の初期駅には大理石、照明、モザイク、彫刻を組み合わせた空間が多い。移動のための駅そのものが、20世紀の都市デザインを読む場所になる。",
+      "points": [
+        "石材・照明・モザイクを組み合わせた駅空間",
+        "交通インフラと公共建築が一体になる"
+      ]
+    },
+    {
+      "topicKey": "northern-russian-wooden-architecture-kizhi",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "北ロシアでは、木だけで大きな宗教建築の景観がつくられた",
+      "text": "キジ島では木造教会と鐘楼が湖畔の集落景観を形づくる。大工技術だけでなく、教区の生活とオネガ湖の水辺が一体となって北ロシアの文化景観を残している。",
+      "points": [
+        "大規模な木造宗教建築が残る",
+        "建築と湖畔の暮らしが同じ景観をつくる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "saint-petersburg-more-than-four-hundred-bridges",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "サンクトペテルブルクには400を超える橋がある",
+      "text": "ネヴァ川と多数の運河をまたぐ橋が都市の輪郭をつくる。水辺を歩くと、宮殿だけでなく橋と河岸が街の移動そのものを形づくっていることが分かる。",
+      "icon": "city",
+      "sourceKey": "stPetersburgBridges"
+    },
+    {
+      "topicKey": "curonian-spit-ninety-eight-kilometres",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "地形",
+      "title": "クルシュー砂州は長さ98 km、幅は約0.4〜4 km",
+      "text": "非常に細長い砂州のため、海、砂丘、森林、潟が短い距離で並ぶ。横幅の狭さを知ると、8景の砂丘が単なる海岸ではないことが見えてくる。",
+      "icon": "landscape",
+      "sourceKey": "curonianDimensions"
+    },
+    {
+      "topicKey": "moscow-kremlin-first-written-mention-1147",
+      "categoryEn": "HISTORY",
+      "categoryJa": "都市史",
+      "title": "モスクワ・クレムリンの歴史は12世紀の記録までさかのぼる",
+      "text": "ユネスコはクレムリンをモスクワ最古の部分とし、都市の最初の文献上の言及を1147年としている。現在の首都中心部の下に中世以来の時間が重なる。",
+      "icon": "history",
+      "sourceKey": "moscowKremlin"
+    },
+    {
+      "topicKey": "lena-pillars-about-one-hundred-metres",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "地形",
+      "title": "レナ川沿いの石柱は約100 mの高さに達する",
+      "text": "川面から見上げると、風化した岩塔が長い壁のように連なる。約100 mという高さを知ると、広いレナ川と岩壁の尺度がつかみやすい。",
+      "icon": "landscape",
+      "sourceKey": "lena"
+    },
+    {
+      "topicKey": "kamchatka-world-heritage-six-protected-areas",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "火山",
+      "title": "「カムチャツカの火山群」は6つの保護地域で構成される",
+      "text": "世界遺産は一つの火山ではなく、複数の保護地域をまとめた連続資産。クリュチェフスカヤ山の一峰だけでなく、半島全体に火山地形が広がることを示す。",
+      "icon": "landscape",
+      "sourceKey": "kamchatka"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF RUSSIA",
+    "title": "ロシアで食べたいもの",
+    "intro": "小麦の生地、キャベツのスープ、肉とサワークリーム、焼いたパン生地。寒い地域の保存と温かい食卓が見える4品。",
+    "items": [
+      {
+        "id": "pelmeni",
+        "name": "ペリメニ",
+        "nameLocal": "Pelmeni",
+        "text": "薄い生地でひき肉を包んで茹でる小さなダンプリング。サワークリームやバターを添えることが多く、冷凍保存しやすいことから寒冷地の家庭料理としても広がった。",
+        "image": "assets/images/russia/approved/pelmeni.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "shchi",
+        "name": "シチー",
+        "nameLocal": "Shchi",
+        "text": "キャベツを中心に野菜や肉を煮込むスープ。生のキャベツだけでなく発酵キャベツを使う作り方もあり、季節や家庭によって酸味と具材が変わる。",
+        "image": "assets/images/russia/approved/shchi.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "beef-stroganoff",
+        "name": "ビーフ・ストロガノフ",
+        "nameLocal": "Beef Stroganoff",
+        "text": "細切りの牛肉を炒め、サワークリームを使ったソースで仕上げる料理。19世紀のロシア料理として知られ、現在は世界各地に多くの派生形がある。",
+        "image": "assets/images/russia/approved/beef-stroganoff.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "pirozhki",
+        "name": "ピロシキ",
+        "nameLocal": "Pirozhki",
+        "text": "小麦生地で肉、じゃがいも、キャベツなどの具を包み、焼くまたは揚げて仕上げる。中身を変えながら軽食にも食事にもなる身近なパン料理。",
+        "image": "assets/images/russia/approved/pirozhki.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月時点、外務省はロシア全土にレベル3以上の危険情報を出している。以下は現在の渡航推奨ではなく、安全状況が改善した将来に、国土の広がりを理解するための旅程イメージ。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "モスクワとサンクトペテルブルクを二都市で見る",
+        "text": "欧州部の二つの都市に絞り、クレムリンとネヴァ河畔の違いを見る。例：モスクワ → サンクトペテルブルク。安全情報が改善し、実際の都市間交通が通常運行していることが前提。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜12日",
+        "title": "北西ロシアへ広げ、湖と木造建築までつなぐ",
+        "text": "モスクワとサンクトペテルブルクにカレリアを加え、都市から湖沼地域へ景色が変わる流れを見る。例：モスクワ → サンクトペテルブルク → ペトロザヴォーツク／キジ島。季節運航や現地接続は将来の実行時に再確認する。",
+        "icon": "map"
+      },
+      {
+        "duration": "15日以上",
+        "title": "ヨーロッパからシベリアへ大陸の距離をたどる",
+        "text": "一度の旅で8景を回収するのではなく、長距離鉄道や国内線を組み合わせながら地域を選ぶ。代表例：モスクワ → カザン → エカテリンブルク → イルクーツク／バイカル湖。アルタイ、ヤクーチア、カムチャツカは別の地域旅として切り分ける方が地理的に自然。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#819963",
+      "text": "ヨーロッパ側の都市は春へ向かう一方、北部、シベリア、山岳地域では雪やぬかるみが残ることがある。同じ月でも地域差が大きく、全国一律の「春のベストシーズン」とは考えない。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aa9b55",
+      "text": "日照時間が長く、カレリア、アルタイ、バイカルなど湖と山の景観を見やすい時期。高緯度やタイガでは虫や急な天候変化もあり、地域別の条件確認が必要。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#ad794b",
+      "text": "森林地帯では黄葉が強い景観になる一方、シベリアや山地、極東では気温が急速に下がる。9月前半と10月後半では条件が大きく変わる地域も多い。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#758e9e",
+      "text": "多くの地域で雪と凍結景観が現れるが、寒さ、日照、道路、湖氷の状態は地域ごとに大きく異なる。冬は通常の都市旅の延長ではなく、別の計画モードとして考える。"
+    }
+  ],
+  "transport": {
+    "title": "長距離鉄道・国内線・都市交通",
+    "text": "モスクワからカザン、ウラル、シベリアへ進む区間では鉄道が国土の距離を理解する軸になる。ヨーロッパ側とバイカル、ヤクーチア、カムチャツカを組み合わせる場合は国内線が重要で、遠隔自然地域では季節に応じて車、船、現地手配が加わる。ただし現在は外務省の危険情報を優先し、8景を一つの実用的な周遊ルートとして案内しない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "巨大な湖、タイガ、大河、火山まで、地形の変化を地図で追いたい人",
+      "text": "バイカル、アルタイ、レナ川、カムチャツカまで、東西移動によって自然景観が大きく切り替わる国土を見たい人。"
+    },
+    {
+      "title": "木造教会、要塞、帝政都市、タタール文化など、複数の歴史層を景色から読みたい人",
+      "text": "キジ島、モスクワ、サンクトペテルブルク、カザンを通じて、宗教、民族、帝政の異なる層が都市と建築に残る様子を見たい人。"
+    },
+    {
+      "title": "長距離鉄道や時差を含め、「移動する距離」そのものを旅のテーマとして考えたい人",
+      "text": "目的地だけでなく、時間帯や景観が変わる長距離移動そのものを、大陸の尺度を理解する体験として捉えたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東ヨーロッパ／北アジア"
+    },
+    {
+      "label": "首都",
+      "value": "モスクワ"
+    },
+    {
+      "label": "人口",
+      "value": "約1億4,400万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "17,098,246 km²（日本の約45.2倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ロシア語（連邦全域の国家語。共和国は独自の国家語も設定可能）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（ロシア正教を含む）、イスラム教など"
+    },
+    {
+      "label": "通貨",
+      "value": "ロシア・ルーブル（RUB）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "russia-eleven-time-zones",
+      "label": "国土をまたぐ時間帯",
+      "value": "11",
+      "note": "ロシアはUTC+2からUTC+12まで11の時間帯を使う。国内を東西に移動するだけで時計が何度も変わること自体が、国土の大きさを示している。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "lake-baikal-depth-seventeen-hundred-metres",
+      "label": "バイカル湖の最深部",
+      "value": "1,700 m",
+      "note": "ユネスコはバイカル湖を世界最深の湖とし、約2,500万年前に形成された古い湖として紹介している。深さの数字を知ると、巨大な内陸水域の尺度が見えてくる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "kizhi-transfiguration-twenty-two-cupolas",
+      "label": "キジ島・顕栄聖堂のドーム",
+      "value": "22",
+      "note": "ユネスコが紹介する高さ37 mの顕栄聖堂には、22の玉ねぎ型ドームが重なる。Heroの複雑な木造シルエットを特徴づける数字だ。",
+      "icon": "landmark"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "russia-mofa-danger-information-first",
+      "title": "外務省危険情報を最優先する",
+      "text": "2026年9月10日確認時点で、ウクライナとの国境周辺はレベル4、その他の地域（モスクワを含む）は原則レベル3。ページの景観情報より先に、最新の危険情報を確認する。"
+    },
+    {
+      "topicKey": "russia-current-international-transport-and-payment-restrictions",
+      "title": "国際交通・送金・カード利用の制約を前提にしない",
+      "text": "外務省は日本・西欧との直行便がないこと、国際送金の制限、国際クレジットカードを利用できない状況を案内している。これらは変動する条件なので、実際の渡航時には必ず再確認する。"
+    },
+    {
+      "topicKey": "russia-distance-and-time-zones-before-itinerary",
+      "title": "国内の距離と時差を旅程より先に見る",
+      "text": "ロシアは11の時間帯にまたがる。バイカル、ヤクーチア、アルタイ、カムチャツカは、現在の交通条件が十分に確認できない限り、一つの短い周遊ではなく別々の地域旅として考える。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "finland",
+      "nameEn": "FINLAND",
+      "nameJa": "フィンランド",
+      "flag": "🇫🇮",
+      "reason": "北方の湖と森、バルト海に開く都市と水辺の関係を、よりコンパクトな国土と北欧の都市文化の中で比べたいなら。"
+    },
+    {
+      "slug": "mongolia",
+      "nameEn": "MONGOLIA",
+      "nameJa": "モンゴル",
+      "flag": "🇲🇳",
+      "reason": "大陸規模の距離、開けた草原、長距離移動のリズムを、シベリアとは異なる遊牧文化と地形の中で追いたいなら。"
+    },
+    {
+      "slug": "kazakhstan",
+      "nameEn": "KAZAKHSTAN",
+      "nameJa": "カザフスタン",
+      "flag": "🇰🇿",
+      "reason": "ユーラシアの広いステップ、巨大都市と広大な土地の落差、旧ソ連圏の歴史的連続を別の角度から見たいなら。"
+    }
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-10",
+  "sourceDates": {
+    "population": "2025",
+    "safety": "2026-09-10",
+    "timeZones": "2026",
+    "internationalAccess": "2026-09-10"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/RUS.geojson (blob 373edae59f6417340c9383b7f852bbe85975f650), WGS84; antimeridian normalized by shifting negative longitudes +360.",
+    "population": "UNData Russian Federation country profile: population 143,997,000 for 2025.",
+    "area": "UNData Russian Federation country profile: surface area 17,098,246 km².",
+    "japanArea": "UNData Japan country profile surface-area basis 377,930 km²; Russia/ Japan ratio is approximately 45.2.",
+    "language": "Constitution of the Russian Federation, Article 68: Russian is the state language throughout the Russian Federation; republics may establish their own state languages.",
+    "religion": "High-confidence religious-demography reference family: Christianity, especially Russian Orthodoxy, and Islam are major religious traditions; no percentage is used because methods and reference years vary.",
+    "currency": "UNData Russian Federation country profile and Bank of Russia: national currency is the Russian ruble (RUB).",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website, Russia page checked 10 September 2026: Ukraine-border surrounding regions Level 4; the rest of Russia including Moscow Level 3, with additional cautions for specified regions.",
+    "internationalAccess": "Japan Ministry of Foreign Affairs Overseas Safety Website, checked 10 September 2026: no direct flights to Japan/Western Europe, international remittance restrictions, and international credit cards unavailable under current conditions.",
+    "timeZones": "Current 2026 time-zone reference set: Russia uses 11 time zones from UTC+2 through UTC+12 and does not use seasonal clock changes.",
+    "kizhi": "UNESCO World Heritage Centre, Kizhi Pogost: the 37 m Church of the Transfiguration is topped by 22 bulbous cupolas; UNESCO reference coordinates N62 04 03.3 / E35 13 27.7.",
+    "moscowKremlin": "UNESCO World Heritage Centre, Kremlin and Red Square, Moscow: the Kremlin is the oldest part of Moscow; the city's first written mention dates to 1147.",
+    "stPetersburg": "UNESCO World Heritage Centre, Historic Centre of Saint Petersburg and Related Groups of Monuments: the city contains numerous canals and more than 400 bridges.",
+    "stPetersburgBridges": "UNESCO World Heritage Centre, Historic Centre of Saint Petersburg and Related Groups of Monuments: numerous canals and more than 400 bridges shape the historic city.",
+    "kazan": "UNESCO World Heritage Centre, Historic and Architectural Complex of the Kazan Kremlin: a historic citadel reflecting the synthesis of Tatar and Russian influences.",
+    "curonian": "UNESCO World Heritage Centre, Curonian Spit, transboundary Lithuania/Russian Federation property.",
+    "curonianDimensions": "UNESCO World Heritage Centre / property documentation: Curonian Spit is about 98 km long and approximately 0.4–4 km wide.",
+    "baikal": "UNESCO World Heritage Centre, Lake Baikal: about 25 million years old and described by UNESCO as the world's deepest lake, with a depth of about 1,700 m.",
+    "altai": "UNESCO World Heritage Centre, Golden Mountains of Altai: the property includes Lake Teletskoye and surrounding protected areas.",
+    "lena": "UNESCO World Heritage Centre, Lena Pillars Nature Park: vertically weathered rock pillars reach about 100 m along the Lena River.",
+    "kamchatka": "UNESCO World Heritage Centre, Volcanoes of Kamchatka: a serial World Heritage property comprising six protected areas.",
+    "transSiberian": "Railway-history and Russian Railways reference family: the Trans-Siberian Railway links European Russia with the Russian Far East; used here as geographic context, not current travel advice.",
+    "dacha": "Reliable social-history and museum reference family on the Russian dacha: seasonal country houses and gardens link urban life with summer residence and food growing.",
+    "banya": "Reliable museum and cultural-history reference family on Russian banya traditions: steam bathing is a longstanding social and seasonal practice.",
+    "kazanLayers": "UNESCO World Heritage Centre, Kazan Kremlin: Tatar and Russian, Islamic and Christian historical layers coexist in the complex.",
+    "moscowMetro": "Official Moscow Metro / museum historical reference family: early stations were designed as monumental civic interiors using stone, lighting, mosaics and sculpture.",
+    "northernWood": "UNESCO World Heritage Centre, Kizhi Pogost: northern wooden architecture forms a religious ensemble within the Lake Onega cultural landscape.",
+    "taste": "Russian gastronomy reference family: pelmeni, shchi, beef stroganoff and pirozhki are established dishes associated with Russian cuisine.",
+    "transport": "Editorial future-travel framing only. Current international access and official danger information are not treated as evergreen transport guidance.",
+    "travelScale": "Editorial future hypothetical ranges based on the Content Plan; the page explicitly avoids presenting all eight scenes as a practical two-week route.",
+    "nextRoutes": "No NEXT ROUTES are displayed while current MOFA Level 3/4 advice and abnormal cross-border operating conditions remain in force."
+  }
+}

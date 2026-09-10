@@ -3,9 +3,9 @@
   "slug": "russia",
   "countryName": "RUSSIA",
   "contentRef": "country/russia",
-  "phase": "TASTE_REGEN",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-10T00:36:00+09:00",
+  "phase": "QA",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T09:02:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/russia/approved/hero-kizhi-pogost-lake-onega.webp",
@@ -120,45 +120,16 @@
     },
     {
       "id": "FOOD03",
-      "state": "REGENERATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/russia/approved/beef-stroganoff.webp",
+      "approvedGenerationId": "d4f04fbf-d8c7-4641-9588-4589a605caaf",
+      "approvedAt": "2026-09-10T00:41:00+09:00",
       "rejectedGenerationIds": [
         "14107d31-0623-4f8b-a52f-f1eb1604ae3c",
-        "75e5d9b7-0bf1-4637-ab7a-13bcdfc0be45"
+        "75e5d9b7-0bf1-4637-ab7a-13bcdfc0be45",
+        "763267ca-94b6-4bca-bbff-b3298eb73790"
       ],
-      "failureReason": "Second hard reject for FOOD03: generated Shchi/cabbage soup instead of Beef Stroganoff. Reset FOOD03 generation series before retry.",
-      "contentId": "beef-stroganoff",
-      "renderPacket": {
-        "kind": "TASTE",
-        "contentId": "beef-stroganoff",
-        "identity": "Beef Stroganoff: sliced beef in a creamy/savoury sauce on one plate only; any accompaniment stays on the same plate and must not become a second dish; avoid glossy restaurant-advertising treatment.",
-        "independentGeneration": true,
-        "forbidPreviousAssetReuse": true,
-        "singleDishOnly": true,
-        "cleanNeutralBackground": true,
-        "source": "docs/RUSSIA_CONTENT_PLAN.md#Beef Stroganoff",
-        "generationMode": "NEW_TEXT_TO_IMAGE_NO_REFERENCE_IMAGE",
-        "forbiddenContentIds": [
-          "pelmeni",
-          "shchi",
-          "pirozhki"
-        ],
-        "hardNegative": [
-          "dumplings",
-          "soup bowl",
-          "filled buns",
-          "second plate",
-          "cutlery",
-          "table props"
-        ],
-        "promptRule": "Build the prompt only from this current renderPacket. Do not use, edit, vary, restage, or visually reference any previously generated image."
-      },
-      "promptSeries": 2,
-      "promptSeriesRejectCount": 0,
-      "consecutiveFailureCount": 2,
-      "generationSeriesReset": true,
-      "generationSeriesResetAt": "2026-09-10T00:36:00+09:00",
-      "candidateGenerationId": null
+      "contentId": "beef-stroganoff"
     },
     {
       "id": "FOOD04",
@@ -170,11 +141,28 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "APPROVED",
+    "asset": "assets/images/russia/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/RUS.geojson (blob 373edae59f6417340c9383b7f852bbe85975f650), WGS84; JOURNEY ATLAS map-v3 clean background; antimeridian normalized by shifting negative longitudes +360.",
+    "bounds": {
+      "north": 83.48535120664006,
+      "south": 39.566039383360085,
+      "west": 13.610694206310042,
+      "east": 197.00423587369013
+    },
+    "antimeridianMode": "shift-negative-longitudes-plus-360",
+    "approvedAt": "2026-09-10T00:41:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "implementedAt": "2026-09-10T08:55:25+09:00",
+    "alignedToContentPlan": true,
+    "contentPlan": "docs/RUSSIA_CONTENT_PLAN.md",
+    "correctedAt": "2026-09-10T09:02:00+09:00",
+    "files": [
+      "data/countries/russia.json",
+      "data/theme-taxonomy.json"
+    ]
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -192,8 +180,8 @@
     "atlasPublished": false
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD03"
+    "action": "RUN_COUNTRY_QA",
+    "asset": null
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -228,5 +216,25 @@
     "approvedAt": "2026-09-09T18:40:00+09:00",
     "migration": true,
     "notes": "Scene production was completed before policy revision 3. Existing user-approved Scenes are preserved. Future Scene production must use the enforced 8-Scene batch gate."
+  },
+  "stateRef": "country/russia",
+  "tasteBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T00:41:00+09:00",
+    "migration": true,
+    "notes": "Taste production was completed through legacy per-item approvals. FOOD03 replacement was explicitly approved by the user; all four Taste items are now approved, so no redundant second batch approval is requested."
+  },
+  "assetQa": {
+    "state": "PASS",
+    "verifiedAt": "2026-09-10T08:42:19+09:00",
+    "rasterCount": 13,
+    "mapCount": 1,
+    "checks": [
+      "approved asset paths exist on working branch",
+      "Git blob SHA matches recovered approved bytes",
+      "local raster decode and 1200x800 dimension check passed",
+      "batch perceptual duplicate check passed"
+    ]
   }
 }
