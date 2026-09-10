@@ -10,6 +10,7 @@ on:
       - 'ops/image-generation-policy.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_state_v7.py'
+      - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/NEW_COUNTRY_START.md'
@@ -21,6 +22,7 @@ on:
       - 'ops/image-generation-policy.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_state_v7.py'
+      - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/NEW_COUNTRY_START.md'
@@ -41,10 +43,13 @@ jobs:
 
       - name: Compile validators
         run: |
-          python3 -m py_compile scripts/country_production_state.py scripts/country_production_state_v7.py
+          python3 -m py_compile scripts/country_production_state.py scripts/country_production_state_v7.py scripts/test_image_policy_v7.py
 
-      - name: Revision 7 self-test
+      - name: Revision 7 initializer self-test
         run: python3 scripts/country_production_state_v7.py self-test
+
+      - name: Revision 7 batch-approval regression tests
+        run: python3 scripts/test_image_policy_v7.py
 
       - name: Validate current revision 7 state
         run: python3 scripts/country_production_state_v7.py validate
