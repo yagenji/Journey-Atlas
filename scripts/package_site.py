@@ -10,6 +10,7 @@ atlasPublished=true still controls discovery, indexing and sitemap inclusion.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -29,6 +30,40 @@ RUNTIME_DATA_FILES = [
     "region-taxonomy.json",
     "theme-taxonomy.json",
 ]
+
+
+def runtime_build_version() -> str:
+    app_js = (ROOT / "assets" / "js" / "app.js").read_text(encoding="utf-8")
+    match = re.search(r"const DATA_VERSION = '([^']+)';", app_js)
+    if not match:
+        raise ValueError("Built app.js DATA_VERSION marker missing")
+    return match.group(1)
+
+
+BUILD_VERSION = runtime_build_version()
+
+
+def version_runtime_image_refs(value: object) -> object:
+    """Version approved Country image URLs in deploy copies only."""
+    if isinstance(value, str):
+        if value.startswith("assets/images/") and "/approved/" in value:
+            if "?v=" in value or "&v=" in value:
+                return value
+            separator = "&" if "?" in value else "?"
+            return f"{value}{separator}v={BUILD_VERSION}"
+        return value
+    if isinstance(value, dict):
+        return {key: version_runtime_image_refs(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [version_runtime_image_refs(item) for item in value]
+    return value
+
+
+def write_runtime_json(source: Path, destination: Path) -> None:
+    payload = json.loads(source.read_text(encoding="utf-8"))
+    payload = version_runtime_image_refs(payload)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def published_slugs() -> list[str]:
@@ -149,7 +184,10 @@ def package_data(slugs: list[str]) -> None:
         source = DATA_DIR / name
         if not source.exists():
             raise FileNotFoundError(f"Runtime data missing: {source}")
-        copy_path(source, target / source.name)
+        if name in {"atlas-destinations.json", "atlas-destinations-editorial.json"}:
+            write_runtime_json(source, target / source.name)
+        else:
+            copy_path(source, target / source.name)
 
     countries_target = target / "countries"
     countries_target.mkdir(parents=True, exist_ok=True)
@@ -157,7 +195,7 @@ def package_data(slugs: list[str]) -> None:
         source = COUNTRY_DIR / f"{slug}.json"
         if not source.exists():
             raise FileNotFoundError(f"Reviewable country JSON missing: {source}")
-        shutil.copy2(source, countries_target / source.name)
+        write_runtime_json(source, countries_target / source.name)
 
 
 def package_country_pages(slugs: list[str]) -> None:
@@ -189,10 +227,25 @@ def write_cloudflare_headers() -> None:
 /assets/icons/*
   Cache-Control: public, max-age=86400
 
-/assets/images/*
-  Cache-Control: public, max-age=0, must-revalidate
+/assets/images/:country/approved/*
+  Cache-Control: public, max-age=31536000, immutable
 """
     (DIST / "_headers").write_text(headers, encoding="utf-8")
+
+
+def assert_versioned_runtime_images(value: object, owner: str) -> None:
+    if isinstance(value, str):
+        if value.startswith("assets/images/") and "/approved/" in value:
+            if f"v={BUILD_VERSION}" not in value:
+                raise ValueError(f"Unversioned approved runtime image in {owner}: {value}")
+        return
+    if isinstance(value, dict):
+        for item in value.values():
+            assert_versioned_runtime_images(item, owner)
+        return
+    if isinstance(value, list):
+        for item in value:
+            assert_versioned_runtime_images(item, owner)
 
 
 def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
@@ -227,6 +280,25 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
     packaged = sorted(path.stem for path in (DIST / "data" / "countries").glob("*.json"))
     if packaged != sorted(slugs):
         raise ValueError(f"Packaged country JSON mismatch: expected {sorted(slugs)}, found {packaged}")
+
+    for registry_name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+        payload = json.loads((DIST / "data" / registry_name).read_text(encoding="utf-8"))
+        assert_versioned_runtime_images(payload, f"data/{registry_name}")
+    for slug in slugs:
+        payload = json.loads((DIST / "data" / "countries" / f"{slug}.json").read_text(encoding="utf-8"))
+        assert_versioned_runtime_images(payload, f"data/countries/{slug}.json")
+        source_payload = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        hero = source_payload.get("hero", {}).get("image", "")
+        if isinstance(hero, str) and hero.startswith("assets/images/") and "/approved/" in hero:
+            expected = f"{hero}?v={BUILD_VERSION}"
+            page = (DIST / "countries" / slug / "index.html").read_text(encoding="utf-8")
+            if expected not in page:
+                raise ValueError(f"Country Hero preload is not version-aligned for {slug}: {expected}")
+
+    headers = (DIST / "_headers").read_text(encoding="utf-8")
+    cache_rule = "/assets/images/:country/approved/*\n  Cache-Control: public, max-age=31536000, immutable"
+    if cache_rule not in headers:
+        raise ValueError("Approved Country image immutable cache rule missing")
 
 
 def main() -> int:
