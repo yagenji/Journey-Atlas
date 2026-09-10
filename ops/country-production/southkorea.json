@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "MAP",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-10T09:32:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-10T09:34:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -511,8 +511,16 @@
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "APPROVED",
+    "asset": "assets/images/southkorea/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/KOR.geojson (blob 5594b4b3f0fe8ce950a12b703e26f56b4272bace), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "north": 38.62433502800007,
+      "south": 33.19757721600006,
+      "west": 124.61361738399998,
+      "east": 131.86252188600005
+    },
+    "approvedAt": "2026-09-10T09:34:00+09:00"
   },
   "implementation": {
     "state": "NOT_STARTED"
@@ -571,8 +579,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "BUILD_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "blockingIssue": null,
   "generationContext": {
@@ -610,5 +618,21 @@
     "notes": "All four South Korea Taste images are approved as distinct standalone dishes: bibimbap, tteokbokki, samgyetang and bulgogi. Earlier collage and repeat failures remain recorded as rejected generations.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T09:32:00+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "no-added-text",
+      "accessible-svg-label"
+    ],
+    "notes": "South Korea SVG uses Natural Earth 1:10m KOR geometry, local-equirectangular north-up projection, JOURNEY ATLAS map-v3 clean-background styling, no text/circle/ellipse decoration, and accessible role/aria labeling. Scene markers remain coordinate-driven in Country JSON.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T09:34:00+09:00"
   }
 }
