@@ -5,8 +5,8 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "TASTE_REGEN",
-  "stateRevision": 29,
-  "updatedAt": "2026-09-10T08:41:00+09:00",
+  "stateRevision": 30,
+  "updatedAt": "2026-09-10T08:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -382,7 +382,7 @@
     },
     {
       "id": "FOOD02",
-      "state": "REGENERATE",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "tteokbokki",
       "promptSeries": 2,
@@ -415,7 +415,13 @@
         "collageTypography": "PASS",
         "notes": "FOOD02 regeneration repeated the approved FOOD01 bibimbap visual instead of generating tteokbokki. Automatically rejected under revision 5 target-identity and previous-asset-repeat rules."
       },
-      "renderPacketRefreshedAt": "2026-09-10T08:41:00+09:00"
+      "renderPacketRefreshedAt": "2026-09-10T08:41:00+09:00",
+      "generationReservation": {
+        "reservationId": "FOOD02-series2-attempt1",
+        "reservedAt": "2026-09-10T08:42:00+09:00",
+        "contentId": "tteokbokki",
+        "promptSeries": 2
+      }
     },
     {
       "id": "FOOD03",
@@ -553,7 +559,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "GENERATE_FOOD",
+    "action": "RECONCILE_GENERATION",
     "asset": "FOOD02"
   },
   "blockingIssue": {
