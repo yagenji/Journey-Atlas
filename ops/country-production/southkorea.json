@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "southkorea",
   "countryName": "SOUTH KOREA",
-  "contentRef": "country/southkorea",
-  "stateRef": "country/southkorea",
-  "phase": "QA",
-  "stateRevision": 38,
-  "updatedAt": "2026-09-10T10:15:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 39,
+  "updatedAt": "2026-09-10T10:21:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/southkorea/approved/hero-seoul-gyeongbokgung-bugaksan.webp",
@@ -599,11 +599,33 @@
     },
     "failureCount": 0,
     "completedAt": "2026-09-10T10:11:11+09:00",
-    "notes": "South Korea review-package candidate passed targeted Country validation, Production State validation, 13-raster full-decode image QA, 42-pair perceptual duplicate QA, Cloudflare package build, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures."
+    "notes": "South Korea review-package candidate passed targeted Country validation, Production State validation, 13-raster full-decode image QA, 42-pair perceptual duplicate QA, Cloudflare package build, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. Production verification confirmed the exact main review commit was served at atlas.yagenji.com and production unpublished-reviewable Browser QA passed on desktop/tablet/mobile with zero failures.",
+    "productionState": "PASS",
+    "productionSourceCommit": "d40fdc20651d031fa2632e7d5a8b213b865b231c",
+    "productionVerifyRunId": 34424649671,
+    "productionBrowserQaArtifactId": 10132217835,
+    "productionChecks": [
+      "cloudflare-serves-review-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "production-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "failure-count-zero"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/southkorea/",
+    "commit": "d40fdc20651d031fa2632e7d5a8b213b865b231c",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-10T10:16:37+09:00",
+    "verificationBasis": "Cloudflare production served the exact South Korea review merge commit; production runtime and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -651,7 +673,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "blockingIssue": null,
