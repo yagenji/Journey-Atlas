@@ -5,11 +5,11 @@
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
   "phase": "ASSET_QA",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-10T09:34:00+09:00",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-10T09:50:00+09:00",
   "hero": {
     "state": "APPROVED",
-    "asset": null,
+    "asset": "assets/images/southkorea/approved/hero-seoul-gyeongbokgung-bugaksan.webp",
     "contentId": "seoul-gyeongbokgung-bugaksan",
     "promptSeries": 1,
     "promptSeriesRejectCount": 0,
@@ -36,14 +36,14 @@
       "collageTypography": "PASS",
       "notes": "Candidate depicts a recognisable Seoul palace-and-mountain city composition with Gyeongbokgung/Gwanghwamun architectural language, clear mountain adjacency, no added text, collage, UI or poster treatment. No previous South Korea Hero/Scene asset exists to repeat."
     },
-    "approvedGenerationId": "cbc904ca-55f4-437b-afbd-3978c5be1f19",
+    "approvedGenerationId": "d9ccc53d-5787-486a-8cd2-b3a801c28c4b",
     "approvedAt": "2026-09-10T00:53:00+09:00"
   },
   "scenes": [
     {
       "id": "S01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/seongsan-ilchulbong-gwangchigi.webp",
       "contentId": "seongsan-ilchulbong-gwangchigi",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -84,7 +84,7 @@
     {
       "id": "S02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/gyeongju-daereungwon-tumuli.webp",
       "contentId": "gyeongju-daereungwon-tumuli",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -125,7 +125,7 @@
     {
       "id": "S03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/andong-hahoe-buyongdae.webp",
       "contentId": "andong-hahoe-buyongdae",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -166,7 +166,7 @@
     {
       "id": "S04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/seoraksan-ulsanbawi-autumn.webp",
       "contentId": "seoraksan-ulsanbawi-autumn",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -207,7 +207,7 @@
     {
       "id": "S05",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/suncheon-bay-tidal-wetland.webp",
       "contentId": "suncheon-bay-tidal-wetland",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -240,7 +240,7 @@
     {
       "id": "S06",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/busan-gamcheon-hillside-harbor.webp",
       "contentId": "busan-gamcheon-hillside-harbor",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -273,7 +273,7 @@
     {
       "id": "S07",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/boseong-tea-terraces.webp",
       "contentId": "boseong-tea-terraces",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -306,7 +306,7 @@
     {
       "id": "S08",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/ulleungdo-taeha-volcanic-coast.webp",
       "contentId": "ulleungdo-taeha-volcanic-coast",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -341,7 +341,7 @@
     {
       "id": "FOOD01",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/food-bibimbap.webp",
       "contentId": "bibimbap",
       "promptSeries": 1,
       "promptSeriesRejectCount": 1,
@@ -383,7 +383,7 @@
     {
       "id": "FOOD02",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/food-tteokbokki.webp",
       "contentId": "tteokbokki",
       "promptSeries": 2,
       "promptSeriesRejectCount": 0,
@@ -428,7 +428,7 @@
     {
       "id": "FOOD03",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/food-samgyetang.webp",
       "contentId": "samgyetang",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -467,7 +467,7 @@
     {
       "id": "FOOD04",
       "state": "APPROVED",
-      "asset": null,
+      "asset": "assets/images/southkorea/approved/food-bulgogi.webp",
       "contentId": "bulgogi",
       "promptSeries": 3,
       "promptSeriesRejectCount": 0,
@@ -523,7 +523,20 @@
     "approvedAt": "2026-09-10T09:34:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "NOT_STARTED",
+    "preparedFiles": [
+      "data/countries/southkorea.json",
+      "data/theme-taxonomy.json",
+      "assets/images/southkorea/map-atlas-v1.svg"
+    ],
+    "themeTaxonomy": [
+      "city",
+      "history",
+      "food"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Country JSON, taxonomy assignment and map are prepared, but implementation cannot be marked DONE until all 13 approved raster assets exist at the referenced production paths."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -582,7 +595,12 @@
     "action": "VERIFY_APPROVED_ASSETS",
     "asset": null
   },
-  "blockingIssue": null,
+  "blockingIssue": {
+    "code": "APPROVED_RASTER_REPOSITORY_MATERIALIZATION",
+    "state": "OPEN",
+    "detectedAt": "2026-09-10T09:50:00+09:00",
+    "notes": "13 approved WebP exports exist and pass local decode/dimension/duplicate QA, but none of the 13 intended repository paths exists on country/southkorea. GitHub connector cannot transfer local binary files by file reference/path; inline base64 would require re-emitting multi-megabyte binary payloads and is not a reliable production transfer path. Review Package and Browser QA are blocked until repository materialization succeeds."
+  },
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
@@ -634,5 +652,52 @@
     "notes": "South Korea SVG uses Natural Earth 1:10m KOR geometry, local-equirectangular north-up projection, JOURNEY ATLAS map-v3 clean-background styling, no text/circle/ellipse decoration, and accessible role/aria labeling. Scene markers remain coordinate-driven in Country JSON.",
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T09:34:00+09:00"
+  },
+  "assetQa": {
+    "result": "BLOCKED",
+    "checked": [
+      "state-generation-id-match",
+      "source-raster-full-decode",
+      "production-webp-full-decode-local",
+      "production-dimensions-local",
+      "perceptual-duplicate-gate-local",
+      "map-svg-existence",
+      "map-structural-qa",
+      "production-path-existence"
+    ],
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "sourceFormat": "PNG",
+      "sourceDimensions": "1536x1024",
+      "fullDecode": "PASS",
+      "generationIdMatch": "PASS"
+    },
+    "localProductionExports": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "fullDecode": "PASS",
+      "perceptualDuplicateGate": "PASS",
+      "intendedRepositoryDirectory": "assets/images/southkorea/approved/"
+    },
+    "repositoryMaterialization": {
+      "state": "BLOCKED",
+      "missingRasterCount": 13,
+      "reason": "The available GitHub connector accepts binary blobs only as inline base64 content and cannot ingest the already-materialized local files by path/file reference; the current execution environment also has no authenticated Git network path. Production asset paths therefore remain absent on country/southkorea."
+    },
+    "map": {
+      "asset": "assets/images/southkorea/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS",
+      "structuralQa": "PASS"
+    },
+    "notes": "All approved source images are recovered and locally exported at production dimensions with full decode and perceptual duplicate QA passing. Country JSON, taxonomy and map are prepared on the working branch. Asset QA cannot pass until the 13 WebP binaries are materialized into the repository.",
+    "approval": "BLOCKED",
+    "checkedAt": "2026-09-10T09:50:00+09:00"
   }
 }
