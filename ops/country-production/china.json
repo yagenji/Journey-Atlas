@@ -5,8 +5,8 @@
   "contentRef": "country/china",
   "stateRef": "country/china",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-10T08:39:00+09:00",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-10T08:41:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -300,7 +300,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REGENERATE",
+      "state": "REVIEW_CANDIDATE",
       "asset": null,
       "contentId": "peking-roast-duck",
       "promptSeries": 2,
@@ -326,11 +326,11 @@
         "forbidInsetImages": true
       },
       "candidateVisualQa": {
-        "targetIdentity": "FAIL",
+        "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS",
-        "note": "Automatic reject: Peking duck target is recognizable, but the image violates Taste rules by including pancakes, sauce bowl, cucumber, scallion, chopsticks, extra vessels/props, and a restaurant-style tabletop background."
-      }
+        "collageTypography": "PASS"
+      },
+      "candidateGenerationId": "64e1c523-7966-4161-8fd6-d7e428bf1640"
     },
     {
       "id": "FOOD02",
@@ -481,7 +481,7 @@
   },
   "next": {
     "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "asset": "FOOD02"
   },
   "generationContext": {
     "state": "CLEAN",
