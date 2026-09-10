@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "QA",
-  "stateRevision": 37,
-  "updatedAt": "2026-09-10T09:35:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-10T09:42:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -480,35 +480,8 @@
     "notes": "Hong Kong schema-v2 Country JSON implemented using the approved Hero, eight Scene, four Taste and Map target paths. Theme assignments live only in data/theme-taxonomy.json. Hong Kong is described as a PRC Special Administrative Region; capital is null. atlasPublished remains false and normal registry discovery remains disabled."
   },
   "qa": {
-    "state": "FAIL",
-    "productionState": "NOT_STARTED",
-    "completedAt": "2026-09-10T09:35:00+09:00",
-    "failureCount": 1,
-    "checksPassed": [
-      "country-json-schema-v2-structure",
-      "required-section-counts",
-      "facts-order-and-population-display",
-      "content-topic-key-uniqueness",
-      "map-bounds-and-coordinate-validation",
-      "map-marker-collision-gate",
-      "map-svg-clean-background-structure",
-      "theme-taxonomy-city-earth-life",
-      "registry-atlasPublished-false",
-      "registry-href-empty",
-      "registry-image-empty",
-      "final-approval-pending",
-      "local-production-webp-full-decode-13",
-      "local-production-dimensions-1200x800-13",
-      "local-perceptual-duplicate-gate",
-      "source-validation-current-official-sources"
-    ],
-    "checksBlocked": [
-      "repository-approved-raster-asset-existence",
-      "reviewable-strict-validator",
-      "cloudflare-package-build",
-      "targeted-unpublished-reviewable-browser-qa"
-    ],
-    "notes": "Country content, map, taxonomy, publication gate, official-source checks, and the local approved 13-image batch pass QA. The only blocking failure is repository materialization: all 13 final WebP files exist and pass decode/dimension/duplicate QA in the local production batch, but none is yet present on country/hong-kong. Review integration must not start until the exact approved WebPs are transferred into their target repository paths."
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -560,7 +533,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "VERIFY_APPROVED_ASSETS",
     "asset": null
   },
   "sceneBatchReview": {
@@ -595,8 +568,8 @@
     {
       "code": "APPROVED_RASTER_REPO_TRANSFER",
       "severity": "BLOCKING",
-      "detectedAt": "2026-09-10T09:35:00+09:00",
-      "detail": "13 approved 1200x800 WebP assets are materialized and QA-passed locally but are missing from country/hong-kong. The available GitHub connector can create binary blobs only from literal base64 content and does not expose a direct local-file/file-ref upload handoff. Do not create the Review Package or main integration until these exact approved assets are committed."
+      "detectedAt": "2026-09-10T09:42:00+09:00",
+      "detail": "The 13 approved 1200x800 WebP files have passed local decode/dimension/duplicate QA but are not yet present under assets/images/hong-kong/approved/ on country/hong-kong. Historical successful image-materialization commits in this repository use GitHub Web UI 'Add files via upload' (web-flow). Current GitHub connector exposes text/blob APIs but no local binary file-reference upload action."
     }
   ],
   "generationContext": {
@@ -632,5 +605,27 @@
       "assets/images/hong-kong/approved/food-hong-kong-egg-tart.webp"
     ],
     "notes": "All 13 user-approved raster assets were materialized locally from the approved generation IDs only, normalized to WebP 1200x800, fully decoded, and passed conservative perceptual duplicate checks. Earlier rejected collage outputs are excluded. Batch GitHub binary insertion is deferred to the single review-package integration step."
+  },
+  "preflightQa": {
+    "state": "PASS_WITH_TRANSFER_BLOCKER",
+    "checkedAt": "2026-09-10T09:42:00+09:00",
+    "checks": [
+      "country-json-schema-v2-structure",
+      "required-section-counts",
+      "facts-order-and-population-display",
+      "content-topic-key-uniqueness",
+      "map-bounds-and-coordinate-validation",
+      "map-marker-collision-gate",
+      "map-svg-clean-background-structure",
+      "theme-taxonomy-city-earth-life",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "registry-image-empty",
+      "local-production-webp-full-decode-13",
+      "local-production-dimensions-1200x800-13",
+      "local-perceptual-duplicate-gate",
+      "official-source-recheck-2026-09-10"
+    ],
+    "notes": "Official-source recheck confirmed 2026 mid-year population 7,518,300; 2026 land area 1,114.57 km² and sea area 1,640.40 km²; 261 islands of 500 m² or over excluding Hong Kong Island and Lantau; about 40% country parks/special areas; 165-tramcar fleet; 24-item ICH Representative List. HKO wording was corrected from June–October to May–November, most likely July–September."
   }
 }
