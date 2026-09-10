@@ -61,6 +61,15 @@ jobs:
             exit 0
           fi
           base_sha="$(git rev-parse HEAD^)"
+          if git diff --name-only "$base_sha" HEAD | grep -qx '.github/workflows/verify-production.yml'; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            echo "Production verification workflow changed: full verification requested."
+            exit 0
+          fi
           python3 scripts/classify_country_impact.py --base "$base_sha" --head HEAD --github-output "$GITHUB_OUTPUT"
 
   runtime:
