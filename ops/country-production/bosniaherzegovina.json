@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "slug": "bosniaherzegovina",
+  "countryName": "BOSNIA & HERZEGOVINA",
+  "contentRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-09T21:58:00+09:00",
+  "hero": {
+    "state": "APPROVED",
+    "asset": "assets/images/bosniaherzegovina/approved/hero-mostar-stari-most.webp",
+    "contentId": "mostar-stari-most"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/sarajevo-bascarsija-valley.webp",
+      "contentId": "sarajevo-bascarsija-valley"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/una-strbacki-buk.webp",
+      "contentId": "una-strbacki-buk"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/sutjeska-maglic.webp",
+      "contentId": "sutjeska-maglic"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/blagaj-buna-spring-tekija.webp",
+      "contentId": "blagaj-buna-spring-tekija"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/jajce-pliva-waterfall-fortress.webp",
+      "contentId": "jajce-pliva-waterfall-fortress"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/lukomir-rakitnica-canyon.webp",
+      "contentId": "lukomir-rakitnica-canyon"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/livno-kruzi-plateau.webp",
+      "contentId": "livno-kruzi-plateau"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/neum-adriatic-coast.webp",
+      "contentId": "neum-adriatic-coast"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/food-sarajevski-cevapi.webp",
+      "contentId": "sarajevski-cevapi"
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/food-burek.webp",
+      "contentId": "burek"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/food-begova-corba.webp",
+      "contentId": "begova-corba"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/bosniaherzegovina/approved/food-tufahija.webp",
+      "contentId": "tufahija"
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/bosniaherzegovina/map-atlas-v1.svg"
+  },
+  "implementation": {
+    "state": "DONE",
+    "notes": "Approved Bosnia Country package migrated from legacy publication branch onto current main-compatible package without regenerating assets."
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "PASS",
+    "failureCount": 0,
+    "notes": "Bosnia current-main publication verified on Cloudflare production runtime; published Desktop / Tablet / Mobile Browser QA passed.",
+    "sourceCommit": "0b5cbd4aadeea394d5e7b0be41c71cb2ddadbe63",
+    "productionVerifyRunId": 34354647530,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "hard-image-gate",
+      "cloudflare-package-build",
+      "production-commit-served",
+      "canonical-review-route",
+      "unpublished-reviewable-browser-qa",
+      "desktop",
+      "tablet",
+      "mobile"
+    ],
+    "productionRuntime": "PASS",
+    "publishedBrowserQa": "PASS"
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/bosniaherzegovina/",
+    "commit": "0b5cbd4aadeea394d5e7b0be41c71cb2ddadbe63",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-09T21:45:00+09:00",
+    "verificationBasis": "Verify production run 34353966940 served the exact current-main Bosnia review package and unpublished-reviewable Browser QA passed."
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-06T00:39:36Z",
+    "basis": "Legacy PR #227 records: User-approved formal publication for Bosnia and Herzegovina. Current normalization preserves that approval while re-running canonical review QA."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-09T21:50:00+09:00",
+    "productionVerification": "PASS",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "publishCommit": "787ecf44677016ea3a637dcaa2bfb68514aff7ef",
+    "liveCommit": "787ecf44677016ea3a637dcaa2bfb68514aff7ef",
+    "verifiedAt": "2026-09-09T21:58:00+09:00",
+    "runtimeCheckId": 102476267202,
+    "publishedBrowserQaCheckId": 102476595176
+  },
+  "next": {
+    "action": "NONE",
+    "asset": null
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 3,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "sceneBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-06T00:39:36Z",
+    "migration": true,
+    "notes": "Legacy PR #227 states the approved Hero / 8 Scenes package had user approval. Assets are preserved unchanged."
+  },
+  "tasteBatchReview": {
+    "result": "MIGRATED_APPROVAL",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-06T00:39:36Z",
+    "migration": true,
+    "notes": "Legacy PR #227 states the approved 4 Taste assets had user approval. Assets are preserved unchanged."
+  },
+  "mapQa": {
+    "state": "PASS",
+    "notes": "Legacy approved atlas map migrated unchanged; current browser QA will revalidate rendering."
+  },
+  "assetQa": {
+    "state": "PASS",
+    "notes": "Legacy approved raster assets migrated by exact Git blob SHA; current hard image gate will fully decode and revalidate them."
+  }
+}

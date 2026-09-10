@@ -1,14 +1,26 @@
 # COUNTRY PRODUCTION STATE — OPERATING CONTRACT
 
-Updated: 2026-09-08
+Updated: 2026-09-09
 
 ## Purpose
 
 Parallel Country production must not depend on chat memory.
 
-The authoritative operational state for each active or recently completed Country lives at:
+The authoritative operational state for each Country lives at:
 
 `ops/country-production/{slug}.json`
+
+Image-generation **rules** do not live in the Country branch. Their single source of truth is always:
+
+`ops/image-generation-policy.json` on `main`.
+
+Before every Hero / Scene / Taste generation action, read that main policy file first. A Country State may carry a policy snapshot for validation, but it must never override or downgrade the main policy authority.
+
+The **reference** is phase-dependent:
+
+- while a Country is under active production, the authoritative State lives on `country/{slug}`;
+- after the complete review package is integrated, the authoritative State lives on `main`;
+- `stateRef` records which reference is authoritative for revision 6.
 
 One country = one state file. Separate files prevent parallel Country chats from editing the same record.
 
@@ -16,11 +28,15 @@ One country = one state file. Separate files prevent parallel Country chats from
 
 Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review, or publish instructions:
 
-1. Read the Country state file from **main**.
-2. Read `next.action` and `next.asset`.
-3. Execute only that action.
-4. Update the state immediately after the transition.
-5. Re-read before the next action.
+1. Read `ops/image-generation-policy.json` from `main` and use its revision/rules as the image-generation authority.
+2. Read the Country State from `main` if it exists.
+3. If `stateRef` / `contentRef` points to `country/{slug}`, read the State from that working branch and use it as the progress authority.
+4. If main has no State but `country/{slug}` exists with a State file, use the working-branch State.
+5. If the State's image-policy snapshot is older than the main policy file, upgrade the snapshot before generation; never downgrade the main policy.
+6. Read `next.action` and `next.asset`.
+7. Execute only that action.
+8. Update the State immediately on its authoritative reference.
+9. Re-read that same reference before the next action.
 
 Do not derive NEXT from conversation memory when a state file exists.
 
@@ -62,11 +78,287 @@ The phase is operational, not editorial. It answers: **what can happen next?**
 Hero / Scene / Taste / Map:
 
 - `NOT_STARTED`
+- `GENERATING` — revision 6 pre-generation reservation; generation has been authorized but not yet reconciled
 - `REVIEW_CANDIDATE`
 - `REGENERATE`
 - `APPROVED`
 
 Do not use `APPROVED` unless the user has actually approved that asset, except when initializing from an already published/review-deployed page whose approved production assets are already authoritative.
+
+## Batch approval enforcement — hard state rule
+
+Batch approval is enforced by `scripts/country_production_state.py`.
+
+### Scenes
+
+During `SCENES_INITIAL` and `SCENES_REVIEW`:
+
+- S01–S08 may be `NOT_STARTED`, `REVIEW_CANDIDATE`, or `REGENERATE`;
+- **no Scene may be `APPROVED`**;
+- individual user approval requests are invalid;
+- user review occurs only after the initial 8-Scene round reaches its batch boundary.
+
+Only the batch-review transition may convert accepted Scene candidates to `APPROVED`.
+NG items enter `SCENES_REGEN`; already accepted items remain locked while only NG items are regenerated.
+
+### Taste
+
+During `TASTE_INITIAL` and `TASTE_REVIEW`:
+
+- FOOD01–FOOD04 may be `NOT_STARTED`, `REVIEW_CANDIDATE`, or `REGENERATE`;
+- **no Taste item may be `APPROVED`**;
+- individual user approval requests are invalid;
+- user review occurs only after all four Taste targets have completed the round.
+
+Only the batch-review transition may convert accepted Taste candidates to `APPROVED`.
+
+For image-generation policy revision 3 or later, leaving Scene production requires an approved `sceneBatchReview`, and leaving Taste production requires an approved `tasteBatchReview`.
+
+## Render Packet — mandatory
+
+A Scene or Taste target must not be generated from `S03` / `FOOD03` alone.
+
+Every active generation target must carry a `renderPacket` in Production State before generation.
+
+Hero minimum:
+
+```json
+{
+  "kind": "HERO",
+  "contentId": "stable-hero-id",
+  "identity": "real place + subject + viewpoint + composition + season/light + text-safe area",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "noAddedText": true
+}
+```
+
+Scene minimum:
+
+```json
+{
+  "kind": "SCENE",
+  "contentId": "stable-scene-id",
+  "identity": "place + subject + viewpoint + composition + season/light",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "noAddedText": true
+}
+```
+
+Taste minimum:
+
+```json
+{
+  "kind": "TASTE",
+  "contentId": "stable-dish-id",
+  "identity": "dish + vessel + visible structure + integral accompaniment",
+  "independentGeneration": true,
+  "forbidPreviousAssetReuse": true,
+  "singleDishOnly": true,
+  "cleanNeutralBackground": true
+}
+```
+
+The Render Packet is the exact image target identity. Chat history and the previous generated image are not target definitions.
+
+## Generation identity integrity
+
+Within one Country Production State, a generation ID may belong to only one asset.
+
+The same generation ID must never appear under different Hero / Scene / Taste assets, even if one occurrence is marked rejected.
+
+Cross-asset generation-ID reuse is a hard validation failure because it indicates that a previous output was carried into the wrong target.
+
+## Pre-generation reservation — revision 6 hard rule
+
+Revision 4 could detect a bad/repeated image only **after** a generation had already consumed a credit. Revision 6 adds a pre-generation lock so the same target cannot be generated twice because the image tool ended the turn before State was updated.
+
+Before **every** Hero / Scene / Taste image-generation tool call:
+
+1. Re-read authoritative Production State.
+2. Confirm NEXT is exactly `GENERATE_HERO`, `GENERATE_SCENE`, or `GENERATE_FOOD` for the intended asset.
+3. Update that asset to `GENERATING`.
+4. Add a unique `generationReservation`:
+   - `reservationId`
+   - `reservedAt`
+   - `contentId`
+   - `promptSeries`
+5. Persist the State successfully on `country/{slug}`.
+6. Re-read the State and confirm NEXT is now `RECONCILE_GENERATION / {same asset}`.
+7. **Only then** call image generation.
+
+Example:
+
+```json
+{
+  "id": "S03",
+  "state": "GENERATING",
+  "contentId": "stable-scene-id",
+  "generationReservation": {
+    "reservationId": "S03-series1-attempt1",
+    "reservedAt": "2026-09-10T01:00:00+09:00",
+    "contentId": "stable-scene-id",
+    "promptSeries": 1
+  }
+}
+```
+
+While any asset is `GENERATING`:
+
+- no second image generation may start;
+- NEXT must remain `RECONCILE_GENERATION`;
+- the same asset must not be generated again;
+- another Scene/Food must not be generated until the existing output is reconciled.
+
+On the next assistant turn, before acting on `生成`, `進めて`, approval, or regeneration:
+
+1. reconcile the reserved generation against the actual output from the prior turn;
+2. write `REVIEW_CANDIDATE` or `REGENERATE`;
+3. record the generation ID under candidate/rejected history;
+4. run `candidateVisualQa`;
+5. clear `generationReservation`;
+6. re-read NEXT;
+7. only then may another asset be reserved/generated.
+
+This rule exists specifically for image runtimes that terminate the assistant turn immediately after image generation.
+
+### One target, one call per assistant turn
+
+A Hero / Scene / Taste asset may receive **at most one image-generation call in one assistant turn**.
+
+- Never auto-retry the same Hero after a failed Hero generation in the same turn.
+- Never auto-retry the same Scene/Food in the same turn.
+- A failed Scene in an initial round becomes `REGENERATE`; later `NOT_STARTED` Scenes may continue only after reconciliation.
+- A visually repeated output forces a fresh Render Packet / generation context before the same target can be attempted again.
+
+### Fresh text-to-image requirement
+
+Every revision-5 production generation is a **fresh independent text-to-image generation**.
+
+- Do not edit the previously generated image into the next image.
+- Do not attach the previous output as an image reference for a different target.
+- Do not use the previous output as an implicit visual starting point.
+- For regeneration, rebuild from the authoritative Render Packet, not from the failed image.
+- If the runtime cannot guarantee an independent generation context, do not spend another credit until the context is reset/refreshed.
+
+## Single-frame generation contract — revision 6 hard rule
+
+Every Hero / Scene / Taste Render Packet must explicitly carry:
+
+```json
+{
+  "singleFrameOnly": true,
+  "forbidCollage": true,
+  "forbidPanels": true,
+  "forbidGrid": true,
+  "forbidContactSheet": true,
+  "forbidMontage": true,
+  "forbidInsetImages": true
+}
+```
+
+Hero / Scene must additionally carry:
+
+```json
+"singleSceneOnly": true
+```
+
+The immediate image-generation instruction must describe **only the current target**. It must not mention:
+- the other 7 Scenes;
+- the 4 Taste images;
+- a batch;
+- a set / series / collection;
+- review contact sheets;
+- multiple destinations or multiple image targets.
+
+Batching exists only in approval logic. **Batch language is forbidden in the actual generation turn.**
+
+## Collage contamination latch — revision 6 hard rule
+
+A collage / grid / multi-panel / contact-sheet / montage result is not treated as an ordinary single-asset failure.
+
+When any generated Hero / Scene / Taste output contains more than one framed scene, multiple panels, a labelled scene set, montage structure, or contact-sheet composition:
+
+1. reject the output automatically;
+2. reconcile and clear any `GENERATING` reservation;
+3. set the affected asset to `REGENERATE`;
+4. set:
+   - `generationContext.state = CONTAMINATED`
+   - `generationContext.lastFailureAsset = {asset}`
+   - `generationContext.lastFailureReason = COLLAGE_OR_MULTIPANEL`
+5. NEXT becomes `RESET_GENERATION_CONTEXT`;
+6. **do not generate another Scene/Food in the same assistant turn**.
+
+`RESET_GENERATION_CONTEXT` is a no-image action. It must:
+- rebuild the immediate instruction from exactly one current Render Packet;
+- add/verify the single-frame contract;
+- increment `generationContext.epoch`;
+- set `generationContext.state = CLEAN`;
+- set `lastResetAt`;
+- clear `lastFailureAsset / lastFailureReason`;
+- end that assistant turn without calling image generation.
+
+Only a later assistant turn may reserve and generate the next image. This sacrifices one interaction only after a collage failure in order to protect image credits.
+
+## Candidate visual novelty QA — revision 6 hard rule
+
+A generated Hero / Scene / Taste output must not become `REVIEW_CANDIDATE` merely because generation completed.
+
+Before the State transition, compare the new output against the immediately previous generated/approved asset and the current target Render Packet. Record:
+
+```json
+"candidateVisualQa": {
+  "targetIdentity": "PASS",
+  "previousAssetRepeat": "PASS",
+  "collageTypography": "PASS"
+}
+```
+
+For revision 6, Production State validation rejects a `REVIEW_CANDIDATE` that does not carry all three PASS results.
+
+If the new output is the previous image repeated, restaged, lightly cropped, or otherwise materially the same image:
+- reject it automatically;
+- record its generation ID under rejected generations;
+- do not ask the user to review it;
+- do not immediately spend another credit on the same prompt family when later NOT_STARTED targets remain.
+
+## Batch perceptual duplicate gate — revision 6 hard rule
+
+Visual inspection is followed by a machine duplicate check during asset QA.
+
+`scripts/validate_images.py --duplicates-only --slug {slug}` compares:
+- Hero against all 8 Scenes;
+- all Scene pairs;
+- all 4 Taste pairs.
+
+The gate rejects:
+- the same asset path reused for different targets;
+- normalized pixel-identical images;
+- conservative near-duplicates detected by combined dHash / aHash / thumbnail RMS thresholds.
+
+The Country review package must not proceed while this duplicate gate fails.
+
+## Prompt-series failure guard
+
+`generationSeriesReset` is deprecated because Production State cannot reset the image model's internal state.
+
+Use:
+
+- `promptSeries`: positive integer;
+- `promptSeriesRejectCount`: 0–2;
+- `promptSeriesReset` / `promptSeriesResetAt` only to describe a prompt-family refresh.
+
+After two hard failures in the same Hero / Scene / Taste prompt series:
+
+- do not make a third near-identical generation attempt;
+- NEXT becomes `REFRESH_RENDER_PACKET`;
+- rebuild the Render Packet / prompt from authoritative content identity;
+- increment `promptSeries`;
+- reset `promptSeriesRejectCount` to 0;
+- only then generate again.
+
+This is a credit-protection rule.
 
 ## Scene initial round
 
@@ -122,12 +414,19 @@ CI validates this.
 
 `PUBLISH` is entered only after explicit page-level user approval.
 
-`COMPLETE` requires:
-- formal publication;
-- `atlasPublished:true`;
-- final approval recorded;
-- production QA passed;
-- `next.action = NONE`.
+For revision 6, the formal publication PR is terminal. It must set:
+
+- `phase: COMPLETE`;
+- `publication.state: PUBLISHED`;
+- `publication.atlasPublished: true`;
+- `qa.productionState: CI_GATED`;
+- `publication.productionVerification: CI_GATED`;
+- the Country row in `data/country-renewal-status.json` uses `production: CI_GATED`;
+- `next.action: NONE`.
+
+After merge, the required `Verify JOURNEY ATLAS Cloudflare Production` workflow is the authoritative production-verification record. Do not create another PR merely to write the workflow run ID or PASS result back into State.
+
+Legacy or manually normalized Countries may use `PASS`; revision 6 accepts both `PASS` and `CI_GATED` as terminal production-verification values.
 
 ## State update examples
 
@@ -156,19 +455,35 @@ After:
 - phase → `SCENES_REGEN`
 - next → `GENERATE_SCENE / S04`
 
-### After final page approval
+### After final page approval — revision 6
 
-- `finalApproval.state = APPROVED`
-- phase → `PUBLISH`
-- next → `PUBLISH_COUNTRY`
+Do **not** create a State-only approval / PUBLISH PR.
+
+The explicit user approval authorizes one terminal publication PR that changes, together:
+
+- `finalApproval.state = APPROVED`;
+- `phase = COMPLETE`;
+- `publication.state = PUBLISHED`;
+- `publication.atlasPublished = true`;
+- `qa.productionState = CI_GATED`;
+- `publication.productionVerification = CI_GATED`;
+- renewal status `production = CI_GATED`;
+- `next = NONE`.
+
+The legacy `PUBLISH` phase remains readable for older States, but revision 6 must not persist it as a separate main integration.
 
 ## Central state and content branches
 
-State files are operational metadata and live on `main`.
+State files are operational metadata, but **active per-image cursor updates must not be routed through main**.
 
-`contentRef` records where the current Country implementation is authoritative:
-- early production may point to `country/{slug}`;
-- after review deployment it is normally `main`.
+For revision 6:
+
+- `contentRef: country/{slug}` + `stateRef: country/{slug}` means active production;
+- commit State transitions directly to the working branch;
+- no PR is created for Scene/Food candidate, rejection, regeneration, or batch-progress State writes;
+- when the full review package is ready, integrate Country content/assets + the latest State to main once;
+- in that review integration, set `contentRef: main` and `stateRef: main`;
+- from REVIEW onward, main is authoritative.
 
 The state file does not replace Country JSON, approved assets, taxonomy, or registry. It only controls production sequencing.
 
@@ -195,12 +510,15 @@ The reusable start instruction lives at:
 
 For a new Country:
 
-1. read `ops/country-production/{slug}.json` from `main`;
-2. if it exists, resume exactly from its deterministic NEXT;
-3. if it does not exist, inspect the actual registry / Country JSON / assets / branch state and initialize the State once;
-4. create or update the Content Plan only for editorial and visual-design intent;
-5. do not copy operational cursor information into the Content Plan;
-6. proceed through the State machine without asking the user to repeat a master prompt.
+1. read `ops/country-production/{slug}.json` from main if present;
+2. resolve `stateRef`; when it points to `country/{slug}`, re-read the State from that branch and resume exactly from its deterministic NEXT;
+3. if main has no State, inspect `country/{slug}` and use its State when present;
+4. for a genuinely new Country, create `country/{slug}` first and initialize the revision-4 State on that branch with `python3 scripts/country_production_state.py init {slug}`;
+5. do not create a main PR merely to initialize or advance an active-production State;
+6. do not clone an older Country State by hand;
+6. create or update the Content Plan only for editorial and visual-design intent;
+7. do not copy operational cursor information into the Content Plan;
+8. proceed through the State machine without asking the user to repeat a master prompt.
 
 The chat is not an operational source of truth.
 
@@ -222,7 +540,47 @@ Content Plans must not contain:
 
 Historical production incidents that reveal a reusable rule belong in the relevant global production specification, not in a Country Content Plan.
 
-Operational sequencing, asset state and publication state must be read only from the Production State on `main`.
+Operational sequencing, asset state and publication state must be read only from the authoritative Production State resolved by `stateRef` (working branch during production, main from REVIEW onward).
+
+## Scene image-generation policy — mandatory
+
+Hero and S01–S08 generation must follow `docs/SCENE_IMAGE_PRODUCTION.md`.
+
+Any new Country in an image-production phase must carry revision 6. Existing older active Countries should be upgraded before the next image-generation action:
+
+```json
+"imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+"imageGenerationPolicy": {
+  "revision": 4,
+  "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+  "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+  "sceneReview": "BATCH_ONLY",
+  "tasteReview": "BATCH_ONLY",
+  "mandatoryNoAddedText": true,
+  "rejectTypographyImmediately": true,
+  "rejectCollageImmediately": true,
+  "rejectPreviousAssetRepeatImmediately": true,
+  "candidateVisualQaRequired": true,
+  "batchPerceptualDuplicateGate": true,
+  "preGenerationReservationRequired": true,
+  "singleFrameContractRequired": true,
+  "collageFailureContaminatesContext": true,
+  "contextResetRequiresSeparateTurn": true,
+  "batchLanguageForbiddenInGenerationTurn": true,
+  "multiTargetPromptForbidden": true,
+  "reconcileBeforeNextGeneration": true,
+  "maxSameAssetGenerationsPerTurn": 1,
+  "freshTextToImageRequired": true,
+  "previousImageReferenceForbidden": true,
+  "repeatFailureRequiresRenderPacketRefresh": true,
+  "maxConsecutiveHardFailuresPerPromptSeries": 2,
+  "requireRenderPacketRefreshAfterLimit": true,
+  "approvedAssetRegeneration": false,
+  "runtimeContinuation": "AUTO_IF_SUPPORTED"
+}
+```
+
+The State policy is a live enforcement marker for existing Country chats. If the latest `main` State carries a newer revision than the chat history, the State wins immediately from the next generation action.
 
 ## Throughput mode — mandatory
 
@@ -243,12 +601,14 @@ Scene-by-Scene and Food-by-Food user approval is prohibited during the initial p
 
 During `SCENES_INITIAL`:
 
-- after S01 generation, write S01 as `REVIEW_CANDIDATE` or `REGENERATE`;
+- before S01 generation, reserve S01 as `GENERATING`;
+- after the image runtime returns, reconcile S01 to `REVIEW_CANDIDATE` or `REGENERATE` before any next generation;
 - immediately re-read NEXT;
-- if another Scene is `NOT_STARTED`, generate it in the **same assistant turn**;
+- if another Scene is `NOT_STARTED`, continue automatically when the image runtime supports a distinct next-target generation in the same turn;
+- if the runtime permits only one generated image per turn, stop only at that runtime boundary — not for approval — and the next `生成` / `進めて` must execute NEXT immediately without re-planning or re-confirmation;
 - repeat until S01–S08 have all received one initial attempt;
 - do not emit an approval request between images;
-- stop only when NEXT reaches the Scene batch-review boundary.
+- stop for user review only when NEXT reaches the Scene batch-review boundary.
 
 During `TASTE_INITIAL`, use exactly the same behavior for FOOD01–FOOD04.
 
@@ -258,11 +618,13 @@ The image generation UI may produce separate image cards. That does not create s
 
 State must still be written after each generation so another chat cannot regenerate the same asset.
 
-However:
+During active production, write that State **directly to `country/{slug}`**. Do not open a PR for the State transition. For revision 6, the pre-generation `GENERATING` reservation write happens **before** the image tool call; post-generation reconciliation may happen on the next assistant turn if the runtime ends the current turn.
+
+Then:
 
 - do not wait for GitHub Actions after a state-only write;
 - do not inspect workflow runs after every Scene/Food;
-- re-fetch the state file and continue immediately;
+- re-fetch the working-branch State and continue immediately;
 - run/inspect state validation only at a batch or phase boundary, or when a write/validation conflict occurs.
 
 ### Batch materialization
@@ -306,11 +668,14 @@ Country visual production stays on the Country working branch.
 
 Do not merge/push individual approved images, Map work, asset QA work, and JSON implementation to main as separate production changes.
 
-Normal pre-review integration count:
+Normal main integration count:
 
-- state-only metadata writes to main: allowed and non-deploying;
-- Country content/assets: **one main integration when the review package is complete**.
+- active State / image cursor writes: **zero main integrations**;
+- Country review package (content + assets + latest State): **one main integration**;
+- State-only publication-approval transition: **zero integrations**;
+- formal publication after user approval: **one second and final main integration**;
+- post-publication State normalization: **zero additional integrations**.
 
-Formal publication after user approval is a second small main change that switches publication state.
+Per-image State PRs, State-only publication-approval PRs, and post-publication completion PRs are prohibited. This is a throughput rule, not an optional optimization.
 
 This rule prevents repeated deployment / Cloudflare propagation / production QA cycles.

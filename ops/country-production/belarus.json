@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "belarus",
   "countryName": "BELARUS",
-  "contentRef": "country-belarus",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-08T22:40:00+09:00",
+  "contentRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 38,
+  "updatedAt": "2026-09-09T22:36:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belarus/approved/hero-mir-castle-reflection.webp"
@@ -78,54 +78,165 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "draniki"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-draniki.webp",
+      "contentId": "draniki",
+      "candidateGenerationId": "a1540af4-5509-45a9-871a-56bd18cfd50e",
+      "approvedAt": "2026-09-09T00:31:47+09:00"
     },
     {
       "id": "FOOD02",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "machanka"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-machanka.webp",
+      "contentId": "machanka",
+      "candidateGenerationId": "99a7623f-92d5-42a7-9d2d-cd0a60bd9ff7",
+      "approvedAt": "2026-09-09T00:31:47+09:00",
+      "rejectedGenerationIds": [
+        "c8f67d73-44d3-44bf-98e2-acd4000980cc"
+      ]
     },
     {
       "id": "FOOD03",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "kholodnik"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-kholodnik.webp",
+      "contentId": "kholodnik",
+      "candidateGenerationId": "5733984f-321a-4077-83e1-990c96562a3c",
+      "approvedAt": "2026-09-09T00:38:24+09:00"
     },
     {
       "id": "FOOD04",
-      "state": "NOT_STARTED",
-      "asset": null,
-      "contentId": "potato-babka"
+      "state": "APPROVED",
+      "asset": "assets/images/belarus/approved/food-potato-babka.webp",
+      "contentId": "potato-babka",
+      "candidateGenerationId": "ef103774-5761-485c-8318-7a9896fd0692",
+      "approvedAt": "2026-09-09T00:42:42+09:00"
     }
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "APPROVED",
+    "asset": "assets/images/belarus/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/BLR.geojson (blob 3c367a9f06a500f1fef740f4f3870c460213c15a), WGS84; JOURNEY ATLAS map-v3.",
+    "bounds": {
+      "north": 56.40680592900006,
+      "south": 50.985168356000095,
+      "west": 22.815644979000027,
+      "east": 33.06953210400005
+    },
+    "approvedAt": "2026-09-09T00:58:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-09T01:24:00+09:00",
+    "files": [
+      "data/countries/belarus.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "history",
+      "life"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments live only in theme-taxonomy.json. Final review corrections shorten the Encounter label to バイソン while preserving the full species name in Scene copy, distinguish NEXT DESTINATIONS (Russia, Ukraine, Moldova) from NEXT ROUTES (Russia, Lithuania, Poland), and clarify the Struve Geodetic Arc signature fact. Current MOFA Level 3/4 safety guidance remains reflected; atlasPublished remains false."
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "8df0f0003185325a39c67f907e28cdd0775b80b3",
+    "validateRunId": 34305566472,
+    "productionVerifyRunId": 34306819827,
+    "browserQaArtifactId": 10086523797,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "cloudflare-package-build",
+      "targeted-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "related-country-russia-ukraine-moldova",
+      "next-route-russia-lithuania-poland",
+      "encounter-count-8",
+      "encounter-label-bison",
+      "signature-fact-struve-explained",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "notes": "Final-review corrections passed source validation and unpublished-reviewable Browser QA. Formal publication then passed Cloudflare production runtime verification and published Browser QA on production verification run 34306819827.",
+    "completedAt": "2026-09-09T12:12:00+09:00",
+    "productionRuntime": "PASS",
+    "publishedBrowserQa": "PASS"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/belarus/",
+    "commit": "8df0f0003185325a39c67f907e28cdd0775b80b3",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-09T12:12:00+09:00",
+    "verificationBasis": "Targeted Browser QA passed on the exact release package; formal production runtime verification is performed after publication."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-09T12:16:00+09:00",
+    "basis": "User instructed: QAして問題なければ公開して. Final post-revision QA passed with zero failures."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-09T12:20:00+09:00",
+    "productionVerification": "PASS",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "publishCommit": "a3f7511f01fcb5b8ba01e1fde67aa0ec4c5712d8",
+    "liveCommit": "a3f7511f01fcb5b8ba01e1fde67aa0ec4c5712d8",
+    "verifiedAt": "2026-09-09T22:36:00+09:00",
+    "productionVerifyRunId": 34306819827,
+    "runtimeCheckId": 102325204922,
+    "publishedBrowserQaCheckId": 102325825222
   },
   "next": {
-    "action": "GENERATE_FOOD",
-    "asset": "FOOD01"
+    "action": "NONE",
+    "asset": null
   },
   "sceneBatchReview": {
     "result": "PASS",
@@ -149,5 +260,67 @@
     "batchMaterialization": true,
     "autoPostVisualPipeline": true,
     "singleReviewIntegration": true
+  },
+  "tasteBatchReview": {
+    "result": "PASS",
+    "checked": [
+      "single-dish-composition",
+      "clean-background",
+      "dish-recognizability",
+      "visual-consistency",
+      "menu-variety"
+    ],
+    "notes": "All four Taste images are individually approved and visually distinct. FOOD02 was regenerated to correct an oversized composition. FOOD04 includes a small pickle garnish and parsley beyond the strictest minimal direction, but the dish remains a single plated serving and was explicitly approved by the user; no regeneration is requested.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T00:46:28+09:00"
+  },
+  "mapQa": {
+    "result": "PASS",
+    "checked": [
+      "1200x760-viewbox",
+      "north-up-projection",
+      "natural-earth-1-10m-boundary",
+      "journey-atlas-v3-colors",
+      "country-fit-and-margins",
+      "no-white-or-black-ellipse",
+      "accessible-svg-label",
+      "all-nine-editorial-points-in-bounds"
+    ],
+    "notes": "Initial exact-fit render touched the top/bottom canvas edges and was corrected before approval by adding geographic padding. Final country extent margins are approximately left 203.5 px / right 203.5 px / top 35.0 px / bottom 35.0 px. All nine Hero/Scene coordinates project inside the map. Mir/Nesvizh and Pushcha/Brest are the two closest marker pairs; label-side/offset collision handling must be verified during Country JSON implementation and browser QA.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T00:58:00+09:00"
+  },
+  "assetQa": {
+    "result": "PASS",
+    "checked": [
+      "approved-source-raster-recovery",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "map-svg-existence"
+    ],
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS"
+    },
+    "map": {
+      "asset": "assets/images/belarus/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS"
+    },
+    "notes": "All 13 approved Belarus raster assets were materialized on country-belarus. Their Git blob SHAs match the locally fully decoded production WebP exports byte-for-byte. The approved folder contains exactly the 13 final rasters and no draft/temp/placeholder files. Hero remains 1536x1024; all eight Scenes and four Taste assets are 1200x800. Ready for implementation.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T01:20:30+09:00"
   }
 }

@@ -2,8 +2,10 @@ name: Validate production state and QA routing
 
 on:
   push:
+    branches: ["main"]
     paths:
       - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -11,6 +13,7 @@ on:
       - 'scripts/classify_country_impact.py'
       - '.github/workflows/validate-production-state.yml'
       - '.github/workflows/browser-country-qa.yml'
+      - '.github/workflows/branch-hygiene.yml'
       - '.github/workflows/verify-production.yml'
       - '.github/workflows/deploy-pages.yml'
       - 'WORKFLOW.md'
@@ -18,10 +21,12 @@ on:
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/COUNTRY_PAGE_TEMPLATE.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
+      - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/*_CONTENT_PLAN.md'
   pull_request:
     paths:
       - 'ops/country-production/**'
+      - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -29,6 +34,7 @@ on:
       - 'scripts/classify_country_impact.py'
       - '.github/workflows/validate-production-state.yml'
       - '.github/workflows/browser-country-qa.yml'
+      - '.github/workflows/branch-hygiene.yml'
       - '.github/workflows/verify-production.yml'
       - '.github/workflows/deploy-pages.yml'
       - 'WORKFLOW.md'
@@ -36,6 +42,7 @@ on:
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/COUNTRY_PAGE_TEMPLATE.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
+      - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/*_CONTENT_PLAN.md'
   workflow_dispatch:
 
@@ -53,7 +60,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -64,6 +71,26 @@ jobs:
         run: |
           python3 -m py_compile scripts/country_production_state.py scripts/classify_country_impact.py
           python3 scripts/classify_country_impact.py --self-test
+          python3 - <<'PY'
+          import importlib.util
+          from pathlib import Path
+
+          path = Path("scripts/country_production_state.py")
+          spec = importlib.util.spec_from_file_location("country_state", path)
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          state = module.new_state({"slug": "test-slug", "nameEn": "Test Slug"})
+          assert state["phase"] == "CONTENT"
+          assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
+          assert state["imageGenerationPolicy"]["revision"] == 6
+          assert state["executionPolicy"]["sceneApproval"] == "BATCH"
+          assert state["executionPolicy"]["tasteApproval"] == "BATCH"
+          assert len(state["scenes"]) == 8
+          assert len(state["taste"]) == 4
+          assert all(item["state"] == "NOT_STARTED" for item in state["scenes"])
+          assert all(item["state"] == "NOT_STARTED" for item in state["taste"])
+          print("Initializer contract self-test passed")
+          PY
 
       - name: Validate workflow YAML syntax
         run: |

@@ -2,7 +2,10 @@ name: Validate country data
 
 on:
   push:
+    branches: ["main"]
     paths:
+      - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
@@ -31,6 +34,8 @@ on:
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
+      - 'scripts/country_production_state.py'
+      - 'scripts/classify_country_impact.py'
       - 'data/theme-taxonomy.json'
       - 'assets/js/**'
       - 'assets/css/**'
@@ -69,16 +74,44 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Classify validation scope
+        id: impact
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "publication_metadata_only=false" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            base="$(git rev-parse HEAD^1)"
+            head="$(git rev-parse HEAD^2)"
+          else
+            base="$(git rev-parse HEAD^)"
+            head="$(git rev-parse HEAD)"
+          fi
+
+          python3 scripts/classify_country_impact.py             --base "$base"             --head "$head"             --github-output "$GITHUB_OUTPUT"
+
       - name: Install image QA dependency
         run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
@@ -87,12 +120,43 @@ jobs:
         run: python3 scripts/audit_published_countries.py
 
       - name: Audit all published Country images
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
         run: python3 scripts/validate_images.py --mode audit
 
       - name: Enforce renewed Country image hard gate
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
         run: python3 scripts/validate_images.py --mode hard
 
-      - name: Validate reviewable and published country JSON
+      - name: Validate targeted Country image sets
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all' && steps.impact.outputs.publication_metadata_only != 'true'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            python3 scripts/validate_images.py --mode audit --slug "$slug"
+            python3 scripts/validate_images.py --duplicates-only --slug "$slug"
+          done
+
+      - name: Validate targeted Country JSON
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            if [ -f "data/countries/$slug.json" ]; then
+              python3 scripts/validate_country.py --strict "data/countries/$slug.json"
+            fi
+          done
+
+      - name: Validate all reviewable and published Country JSON
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
         run: |
           python3 scripts/validate_country.py --reviewable
           python3 scripts/validate_country.py --published

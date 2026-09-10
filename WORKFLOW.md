@@ -190,16 +190,24 @@ Any Taste image that violates the above is automatically NG and must not enter t
 
 Parallel Country production must use the operational state machine in `docs/COUNTRY_PRODUCTION_STATE.md`.
 
-Authoritative state:
+Authoritative progress state:
 
-`ops/country-production/{slug}.json` on `main`.
+`ops/country-production/{slug}.json`, resolved by `stateRef`: `country/{slug}` during active production and `main` from REVIEW onward.
+
+Authoritative image-generation policy:
+
+`ops/image-generation-policy.json` on `main` only. Country branches must never downgrade or override it.
 
 Before acting on `生成`, `進めて`, `次`, `続けて`, approval, regeneration, QA, review or publish instructions:
 
-1. read the state file from `main`;
+1. read `ops/image-generation-policy.json` from `main`;
+2. resolve `stateRef` and read the authoritative state file (`country/{slug}` during active production; `main` from REVIEW onward);
 2. execute only `next.action / next.asset`;
-3. update the state immediately after the transition;
-4. re-read before the next action.
+3. before any Hero / Scene / Taste image tool call, reserve that exact asset as `GENERATING` on the authoritative working branch;
+4. re-read and confirm NEXT is `RECONCILE_GENERATION / same asset`;
+5. only then call image generation;
+6. reconcile the reserved generation before any later image-generation call;
+7. re-read before the next action.
 
 Do not infer NEXT from chat memory when a state file exists.
 
@@ -228,9 +236,10 @@ Country production and publication use risk-based QA. Quality gates remain manda
 
 Classify every change as:
 
-- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, workflow metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
+- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
+- **QA INFRASTRUCTURE IMPACT** — Browser QA script / classifier / Browser QA workflow changes without shared rendering changes. Run one real Spain baseline Browser QA smoke test; do not regress every published Country.
 - **TARGETED COUNTRY IMPACT** — one or more Country JSON files, Country assets, publication-state rows, or theme assignments. Run validation plus Desktop / Tablet / Mobile Browser QA only for the affected Country slugs.
-- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, Country build/package logic, or Browser QA logic. Run all unpublished-reviewable and all published Country Browser QA.
+- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, or Country build/package logic. Run all unpublished-reviewable and all published Country Browser QA.
 
 Use `scripts/classify_country_impact.py` as the canonical classifier.
 
@@ -252,11 +261,17 @@ Country production execution, approval gates, batching, State-write behavior, po
 `WORKFLOW.md` must not maintain a second detailed copy of those rules.
 
 Non-negotiable principles:
-- operational State remains `ops/country-production/{slug}.json` on `main`;
+- operational State remains `ops/country-production/{slug}.json`; active-production cursor writes live on `country/{slug}`, not `main`;
 - State updates prevent duplicate work but do not create user interaction gates;
+- image generation uses the current main policy (revision 6): no image tool call occurs before the target is locked as `GENERATING`;
+- every generation uses a one-target single-frame envelope; batch/series/set language is forbidden in the generation turn;
+- any collage/multi-panel failure contaminates generation context and blocks further image calls until a separate RESET_GENERATION_CONTEXT turn;
+- the same Hero / Scene / Taste asset may be generated at most once per assistant turn;
+- production image calls are fresh independent text-to-image generations; the previous output is never used as the edit/reference source;
 - one image = one generation request does not mean one image = one user approval;
 - intermediate State writes do not trigger deployment or require CI waiting;
 - Review Package is integrated to production once when ready for canonical-URL review.
+- After canonical review approval, do not create a State-only approval PR; create the one terminal publication PR directly.
 ---
 
 ## Branch lifecycle

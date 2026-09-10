@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "slug": "macau",
+  "countryName": "MACAU",
+  "contentRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 29,
+  "updatedAt": "2026-09-09T21:20:08+09:00",
+  "hero": {
+    "state": "APPROVED",
+    "asset": "assets/images/macau/approved/hero-ruins-st-pauls-steps.webp",
+    "contentId": "ruins-st-pauls-steps",
+    "approvedGenerationId": "bbb46eb5-932d-4fab-89c2-3db7091578fa",
+    "approvedAt": "2026-09-09T01:13:00+09:00"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/senado-square-wave-paving.webp",
+      "contentId": "senado-square-wave-paving",
+      "approvedGenerationId": "8d0d5c65-3903-44dd-9abc-9f8b416b285b",
+      "approvedAt": "2026-09-09T10:41:00+09:00"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/a-ma-temple-barra.webp",
+      "contentId": "a-ma-temple-barra",
+      "approvedGenerationId": "641f33e5-71b0-4d98-bf02-77c367dbb487",
+      "approvedAt": "2026-09-09T01:18:00+09:00"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/guia-fortress-lighthouse.webp",
+      "contentId": "guia-fortress-lighthouse",
+      "approvedGenerationId": "e7bd57b6-b51e-46a7-8142-4bfa47520a40",
+      "approvedAt": "2026-09-09T01:42:00+09:00"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/sai-van-lake-macau-tower.webp",
+      "contentId": "sai-van-lake-macau-tower",
+      "approvedGenerationId": "412d7f20-f905-4b43-bff0-346f7e0066de",
+      "approvedAt": "2026-09-09T01:50:00+09:00"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/taipa-houses-green-villas.webp",
+      "contentId": "taipa-houses-green-villas",
+      "approvedGenerationId": "53d142c4-8116-4961-80bc-309c486e3ac0",
+      "approvedAt": "2026-09-09T01:58:00+09:00"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/coloane-village-pier-waterfront.webp",
+      "contentId": "coloane-village-pier-waterfront",
+      "approvedGenerationId": "360c73ef-7d5b-4730-b855-f647e97306ac",
+      "approvedAt": "2026-09-09T02:18:00+09:00"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/hac-sa-black-sand-beach.webp",
+      "contentId": "hac-sa-black-sand-beach",
+      "approvedGenerationId": "eba52418-502a-42d8-8431-7aa94242ae82",
+      "approvedAt": "2026-09-09T10:40:00+09:00"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/cotai-reclaimed-urban-district.webp",
+      "contentId": "cotai-reclaimed-urban-district",
+      "rejectedGenerationIds": [
+        "505d1a8c-30c0-4e11-8208-e127aaa142ec",
+        "0bc0dd68-dc73-4887-9d02-420661c37839"
+      ],
+      "approvedGenerationId": "ee1f525c-b67b-41a4-95e0-ffbe4bf3af8b",
+      "approvedAt": "2026-09-09T10:40:00+09:00"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/food-minchi.webp",
+      "contentId": "minchi",
+      "rejectedGenerationIds": [
+        "4f0e44c9-6811-49c8-814e-9ac28a235918",
+        "c5d01901-739e-42c4-bc96-c19ec56b4f48"
+      ],
+      "failureReason": "Two hard rejects: FOOD01 Minchi generated non-Minchi targets, including an exact repeat of the approved FOOD04 Pastel de Nata.",
+      "consecutiveFailureCount": 2,
+      "approvedGenerationId": "8e3a86eb-14ef-4df3-8e17-0b703c2503f7",
+      "approvedAt": "2026-09-09T12:49:00+09:00",
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-09T11:44:00+09:00"
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/food-african-chicken.webp",
+      "contentId": "african-chicken",
+      "rejectedGenerationIds": [
+        "03db23b9-9459-48b9-8587-e0a61538294c"
+      ],
+      "failureReason": "Hard reject: FOOD02 African Chicken generation produced a Cotai cityscape instead of a single-dish food image. No dish was rendered.",
+      "consecutiveFailureCount": 1,
+      "approvedGenerationId": "f362967b-2154-46e8-8cea-ba13fadbd63b",
+      "approvedAt": "2026-09-09T12:53:00+09:00"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/food-dried-shrimp-roe-noodles.webp",
+      "contentId": "dried-shrimp-roe-noodles",
+      "approvedGenerationId": "bb37debd-af7d-453c-af54-5aa13859759e",
+      "approvedAt": "2026-09-09T11:42:00+09:00"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/macau/approved/food-pastel-de-nata.webp",
+      "contentId": "pastel-de-nata",
+      "approvedGenerationId": "69e49cfd-3375-49cc-9502-f5f3c87a42b4",
+      "approvedAt": "2026-09-09T11:43:00+09:00",
+      "rejectedGenerationIds": [
+        "c8886e66-c403-40d8-9de7-36b12fa73285",
+        "67a1ce70-f382-455e-bcaa-78c2a8879255",
+        "bc77f872-9a9d-435a-b72d-8d750b7f6443"
+      ]
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/macau/map-atlas-v1.svg"
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-09T20:33:00+09:00",
+    "files": [
+      "data/countries/macau.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "city",
+      "history",
+      "food"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Country data implemented with only approved Hero/Scene/Taste/Map assets. Theme assignments are city/history/food. Shared validator/template now explicitly support capital:null for a SAR/territory with no separate capital. atlasPublished remains false."
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "PASS",
+    "sourceCommit": "6bec913db72dfcf122962087b2a257c85b8bdb4d",
+    "validateRunId": 34348566999,
+    "productionStateRunId": 34348566902,
+    "browserQaRunId": 34348566842,
+    "browserQaArtifactId": 10102730297,
+    "checks": [
+      "source-syntax",
+      "reviewable-country-json",
+      "published-country-regression",
+      "cloudflare-package-build",
+      "targeted-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "notes": "Macau review corrections passed reviewable strict validation and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. The 4日以上 travel-scale band now includes a concrete route example, and travel trivia category 水 uses the supported sea icon instead of the nonexistent water symbol. PR head and squash-merged main trees are identical (09e26622219a4c8658cdbc48fe14584017ba6c44), so QA applies to the exact review release package. Formal publication verification passed: Cloudflare Pages served the publish commit, runtime verification passed, and published Desktop / Tablet / Mobile browser QA passed with zero failures.",
+    "completedAt": "2026-09-09T21:20:08+09:00",
+    "productionRunId": 34347986012,
+    "productionRuntime": "PASS",
+    "productionReviewableBrowserQa": "PASS",
+    "productionVerifiedCommit": "18272b34ab6730fe2f0152374f90293560ecdb93",
+    "productionVerifyRunId": 34350204162
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/macau/",
+    "commit": "6bec913db72dfcf122962087b2a257c85b8bdb4d",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-09T21:04:00+09:00",
+    "verificationBasis": "Cloudflare production runtime served commit 18272b34ab6730fe2f0152374f90293560ecdb93; changed-route runtime verification and unpublished-reviewable production Browser QA both passed in run 34347986012.",
+    "productionVerificationRunId": 34347986012
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-09T21:10:00+09:00",
+    "basis": "User instructed: QAして問題なければ公開。 Latest post-review-correction QA passed on Desktop / Tablet / Mobile with zero failures."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "publishedAt": "2026-09-09T21:16:00+09:00",
+    "productionVerification": "PASS",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "publishCommit": "47185e5e4cbfe96000d1e07de6ffda69e7db3c3e",
+    "liveCommit": "47185e5e4cbfe96000d1e07de6ffda69e7db3c3e",
+    "verifiedAt": "2026-09-09T21:20:08+09:00",
+    "cloudflareCheckId": 102461647615,
+    "runtimeCheckId": 102461453543,
+    "publishedBrowserQaCheckId": 102461719288
+  },
+  "next": {
+    "action": "NONE",
+    "asset": null
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 3,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED"
+  },
+  "sceneBatchReview": {
+    "result": "PASS_WITH_NOTES",
+    "checked": [
+      "duplication",
+      "visual-consistency",
+      "geographic-diversity",
+      "location-recognizability",
+      "series-balance"
+    ],
+    "notes": "S08 Cotai now clearly differs from the Hero and represents the reclaimed urban district. S01 remains the only REVIEW_CANDIDATE awaiting the formal 8-Scene batch approval. S05 and S06 contain visible environmental signage/text and S07 renders Hac-Sa sand lighter than its characteristic dark tone; all three were individually and explicitly approved by the user, so they are not regenerated automatically under the approved-asset immutability rule.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T10:41:00+09:00"
+  },
+  "tasteBatchReview": {
+    "result": "APPROVED",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T12:53:00+09:00",
+    "notes": "All four Taste images are now explicitly approved by the user."
+  },
+  "mapQa": {
+    "result": "PASS",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T19:55:00+09:00",
+    "checked": [
+      "official-gis-source",
+      "wgs84-bounds",
+      "land-area-cross-check",
+      "1200x760-render",
+      "silhouette-visual-qa"
+    ],
+    "notes": "Government WebMap WGS84 Freg geometry filtered to exclude OBJECTID 18 (University of Macau Hengqin campus). Approximate polygon area is 33.54 km², within about 1% of the official land-area figure around 33.3 km² used for Country content; 1200x760 render passed visual silhouette review."
+  },
+  "assetQa": {
+    "result": "PASS",
+    "checked": [
+      "state-generation-id-match",
+      "source-raster-full-decode",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "map-svg-existence"
+    ],
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "format": "PNG",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1536x1024",
+        "taste": "1536x1024"
+      },
+      "decode": "PASS",
+      "generationIdMatch": "PASS"
+    },
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1536x1024",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS"
+    },
+    "map": {
+      "asset": "assets/images/macau/map-atlas-v1.svg",
+      "existence": "PASS"
+    },
+    "notes": "All 13 explicitly approved Macau rasters were recovered from the approved Library outputs and materialized to the Country branch. The 13 Git blob SHAs match the pre-upload production ZIP byte-for-byte. Hero remains 1536x1024; Scenes and Taste are 1200x800 WebP. The approved folder contains exactly the 13 referenced final rasters; map SVG exists.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-09T20:27:00+09:00"
+  }
+}
