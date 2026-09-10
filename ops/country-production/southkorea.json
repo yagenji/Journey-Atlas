@@ -4,9 +4,9 @@
   "countryName": "SOUTH KOREA",
   "contentRef": "country/southkorea",
   "stateRef": "country/southkorea",
-  "phase": "ASSET_QA",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-10T09:50:00+09:00",
+  "phase": "QA",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-10T10:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/southkorea/approved/hero-seoul-gyeongbokgung-bugaksan.webp",
@@ -523,11 +523,11 @@
     "approvedAt": "2026-09-10T09:34:00+09:00"
   },
   "implementation": {
-    "state": "NOT_STARTED",
-    "preparedFiles": [
+    "state": "DONE",
+    "completedAt": "2026-09-10T10:12:00+09:00",
+    "files": [
       "data/countries/southkorea.json",
-      "data/theme-taxonomy.json",
-      "assets/images/southkorea/map-atlas-v1.svg"
+      "data/theme-taxonomy.json"
     ],
     "themeTaxonomy": [
       "city",
@@ -536,7 +536,7 @@
     ],
     "sharedTemplate": true,
     "countrySpecificCss": false,
-    "notes": "Country JSON, taxonomy assignment and map are prepared, but implementation cannot be marked DONE until all 13 approved raster assets exist at the referenced production paths."
+    "notes": "South Korea schema-v2 Country JSON implemented with approved Hero, eight Scene, four Taste and Map assets. Theme assignments remain exclusively in data/theme-taxonomy.json. atlasPublished remains false and registry discovery stays disabled."
   },
   "qa": {
     "state": "NOT_STARTED",
@@ -592,15 +592,10 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
-  "blockingIssue": {
-    "code": "APPROVED_RASTER_REPOSITORY_MATERIALIZATION",
-    "state": "OPEN",
-    "detectedAt": "2026-09-10T09:50:00+09:00",
-    "notes": "13 approved WebP exports exist and pass local decode/dimension/duplicate QA, but none of the 13 intended repository paths exists on country/southkorea. GitHub connector cannot transfer local binary files by file reference/path; inline base64 would require re-emitting multi-megabyte binary payloads and is not a reliable production transfer path. Review Package and Browser QA are blocked until repository materialization succeeds."
-  },
+  "blockingIssue": null,
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
@@ -654,16 +649,18 @@
     "approvedAt": "2026-09-10T09:34:00+09:00"
   },
   "assetQa": {
-    "result": "BLOCKED",
+    "result": "PASS",
     "checked": [
       "state-generation-id-match",
       "source-raster-full-decode",
-      "production-webp-full-decode-local",
-      "production-dimensions-local",
-      "perceptual-duplicate-gate-local",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "perceptual-duplicate-gate",
       "map-svg-existence",
-      "map-structural-qa",
-      "production-path-existence"
+      "map-structural-qa"
     ],
     "sourceAssets": {
       "expectedRasterCount": 13,
@@ -673,7 +670,7 @@
       "fullDecode": "PASS",
       "generationIdMatch": "PASS"
     },
-    "localProductionExports": {
+    "productionAssets": {
       "rasterCount": 13,
       "format": "WebP",
       "dimensions": {
@@ -682,13 +679,16 @@
         "taste": "1200x800"
       },
       "fullDecode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS",
       "perceptualDuplicateGate": "PASS",
-      "intendedRepositoryDirectory": "assets/images/southkorea/approved/"
-    },
-    "repositoryMaterialization": {
-      "state": "BLOCKED",
-      "missingRasterCount": 13,
-      "reason": "The available GitHub connector accepts binary blobs only as inline base64 content and cannot ingest the already-materialized local files by path/file reference; the current execution environment also has no authenticated Git network path. Production asset paths therefore remain absent on country/southkorea."
+      "duplicateThresholds": {
+        "dhashMax": 2,
+        "ahashMax": 2,
+        "rmsMax": 12
+      },
+      "nearDuplicateCount": 0
     },
     "map": {
       "asset": "assets/images/southkorea/map-atlas-v1.svg",
@@ -696,8 +696,8 @@
       "existence": "PASS",
       "structuralQa": "PASS"
     },
-    "notes": "All approved source images are recovered and locally exported at production dimensions with full decode and perceptual duplicate QA passing. Country JSON, taxonomy and map are prepared on the working branch. Asset QA cannot pass until the 13 WebP binaries are materialized into the repository.",
-    "approval": "BLOCKED",
-    "checkedAt": "2026-09-10T09:50:00+09:00"
+    "notes": "All 13 approved South Korea rasters are present on country/southkorea. Local production WebP files fully decode, dimensions meet current validators, and Git blob SHAs match the uploaded repository files exactly. The approved folder contains exactly 13 final WebP files with no draft/temp/placeholder assets. Perceptual duplicate gate passed with zero near-duplicate pairs. Map SVG exists and passed structural QA.",
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T10:12:00+09:00"
   }
 }
