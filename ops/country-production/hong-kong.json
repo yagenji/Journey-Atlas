@@ -4,9 +4,9 @@
   "countryName": "HONG KONG",
   "contentRef": "country/hong-kong",
   "stateRef": "country/hong-kong",
-  "phase": "ASSET_QA",
-  "stateRevision": 38,
-  "updatedAt": "2026-09-10T09:42:00+09:00",
+  "phase": "QA",
+  "stateRevision": 39,
+  "updatedAt": "2026-09-10T09:49:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -533,7 +533,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "sceneBatchReview": {
@@ -564,14 +564,7 @@
     "approval": "APPROVED",
     "approvedAt": "2026-09-10T08:45:00+09:00"
   },
-  "blockingIssues": [
-    {
-      "code": "APPROVED_RASTER_REPO_TRANSFER",
-      "severity": "BLOCKING",
-      "detectedAt": "2026-09-10T09:42:00+09:00",
-      "detail": "The 13 approved 1200x800 WebP files have passed local decode/dimension/duplicate QA but are not yet present under assets/images/hong-kong/approved/ on country/hong-kong. Historical successful image-materialization commits in this repository use GitHub Web UI 'Add files via upload' (web-flow). Current GitHub connector exposes text/blob APIs but no local binary file-reference upload action."
-    }
-  ],
+  "blockingIssues": [],
   "generationContext": {
     "state": "CLEAN",
     "epoch": 1,
@@ -581,30 +574,44 @@
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "assetQa": {
-    "result": "PASS_LOCAL_MATERIALIZATION",
-    "completedAt": "2026-09-10T09:18:00+09:00",
-    "materializedDirectory": "/mnt/data/hong-kong-approved",
-    "filesChecked": 13,
-    "decode": "PASS",
-    "dimensions": "PASS_1200x800",
-    "aspectRatio": "PASS_3:2",
-    "duplicateGate": "PASS",
-    "productionTargetPaths": [
-      "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
-      "assets/images/hong-kong/approved/hong-kong-tram-central-street.webp",
-      "assets/images/hong-kong/approved/tai-o-stilt-house-canal.webp",
-      "assets/images/hong-kong/approved/dragons-back-shek-o-ridge.webp",
-      "assets/images/hong-kong/approved/high-island-east-dam-hexagonal-columns.webp",
-      "assets/images/hong-kong/approved/mai-po-inner-deep-bay-wetlands.webp",
-      "assets/images/hong-kong/approved/chi-lin-nunnery-nan-lian-garden.webp",
-      "assets/images/hong-kong/approved/lai-chi-wo-hakka-walled-village.webp",
-      "assets/images/hong-kong/approved/cheung-chau-harbour-waterfront.webp",
-      "assets/images/hong-kong/approved/food-har-gow.webp",
-      "assets/images/hong-kong/approved/food-wonton-noodles.webp",
-      "assets/images/hong-kong/approved/food-roast-goose-rice.webp",
-      "assets/images/hong-kong/approved/food-hong-kong-egg-tart.webp"
+    "result": "PASS",
+    "checked": [
+      "state-generation-id-match",
+      "source-raster-full-decode",
+      "production-webp-full-decode",
+      "production-dimensions-1200x800",
+      "production-path-existence",
+      "git-blob-sha-match",
+      "approved-folder-hygiene",
+      "perceptual-duplicate-gate",
+      "map-svg-existence"
     ],
-    "notes": "All 13 user-approved raster assets were materialized locally from the approved generation IDs only, normalized to WebP 1200x800, fully decoded, and passed conservative perceptual duplicate checks. Earlier rejected collage outputs are excluded. Batch GitHub binary insertion is deferred to the single review-package integration step."
+    "sourceAssets": {
+      "expectedRasterCount": 13,
+      "recoveredRasterCount": 13,
+      "generationIdMatch": "PASS"
+    },
+    "productionAssets": {
+      "rasterCount": 13,
+      "format": "WebP",
+      "dimensions": {
+        "hero": "1200x800",
+        "scenes": "1200x800",
+        "taste": "1200x800"
+      },
+      "decode": "PASS",
+      "gitBlobShaMatch": "PASS",
+      "pathMatch": "PASS",
+      "hygiene": "PASS",
+      "perceptualDuplicateGate": "PASS"
+    },
+    "map": {
+      "asset": "assets/images/hong-kong/map-atlas-v1.svg",
+      "state": "APPROVED",
+      "existence": "PASS",
+      "structuralQa": "PASS"
+    },
+    "notes": "All 13 explicitly approved Hong Kong rasters are present under assets/images/hong-kong/approved/. Their Git blob SHAs exactly match the upload manifest and the locally decoded 1200x800 production WebP exports. The temporary upload parent folder and UPLOAD-MANIFEST.json are absent from the final branch diff."
   },
   "preflightQa": {
     "state": "PASS_WITH_TRANSFER_BLOCKER",
