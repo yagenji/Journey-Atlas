@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "hong-kong",
   "countryName": "HONG KONG",
-  "contentRef": "country/hong-kong-encounters-fix",
-  "stateRef": "country/hong-kong-encounters-fix",
-  "phase": "QA",
-  "stateRevision": 46,
-  "updatedAt": "2026-09-10T10:31:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 47,
+  "updatedAt": "2026-09-10T10:35:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/hong-kong/approved/hero-victoria-harbour-lugard-road.webp",
@@ -482,7 +482,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED",
+    "productionState": "PASS",
     "sourceCommit": "bbdc03624399ac9b626dfc347e3d97e632c7dd18",
     "validateRunId": 34425583886,
     "productionStateRunId": 34425583869,
@@ -520,11 +520,32 @@
     },
     "failureCount": 0,
     "completedAt": "2026-09-10T10:31:00+09:00",
-    "notes": "Hong Kong encounter-label correction passed Country validation, production-state validation, package build and targeted unpublished-reviewable browser QA with zero failures. Only two labels changed: 海辺の天后廟→海辺の寺廟 and 漁船とサンパン→漁船と小舟."
+    "notes": "Hong Kong encounter-label correction passed Country validation, production-state validation, package build and targeted unpublished-reviewable browser QA with zero failures. Only two labels changed: 海辺の天后廟→海辺の寺廟 and 漁船とサンパン→漁船と小舟. Production verification confirmed the Hong Kong encounter-label fix commit was served at atlas.yagenji.com; production unpublished-reviewable Browser QA passed on desktop/tablet/mobile with zero failures.",
+    "productionSourceCommit": "9947c3ffcb73b98a2478bb4ad6c42459304392e8",
+    "productionVerifyRunId": 34425835864,
+    "productionBrowserQaArtifactId": 10132665284,
+    "productionChecks": [
+      "cloudflare-serves-encounter-fix-commit",
+      "production-runtime-baseline",
+      "production-country-route",
+      "production-country-payload",
+      "production-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "failure-count-zero"
+    ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/hong-kong/",
+    "commit": "9947c3ffcb73b98a2478bb4ad6c42459304392e8",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-10T10:35:00+09:00",
+    "verificationBasis": "Cloudflare production served the Hong Kong encounter-label fix commit; production runtime, route/payload and unpublished-reviewable Desktop / Tablet / Mobile Browser QA passed with zero failures."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -572,7 +593,7 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "sceneBatchReview": {
