@@ -43,6 +43,14 @@ Revision 7.1のState read/write最適化・atomic handoff・軽量CIルールは
 Scene / Hero画像は docs/SCENE_IMAGE_PRODUCTION.md に従ってください。
 Taste画像は docs/TASTE_IMAGE_PRODUCTION.md に従ってください。
 
+【Country region 表記の絶対ルール】
+- Country JSON の `region` は `data/region-taxonomy.json` をSingle Source of Truthとし、destination registryの `iso2` が所属するsubregionの `labelEn` をそのまま使用してください。subregionがない地域はtop-level `labelEn` を使用してください。
+- 表記形式は必ず `{TAXONOMY LABEL} / {整数緯度}°N|S` とします。例：`EAST ASIA / 35°N`、`SOUTHERN EUROPE / 42°N`。
+- `CENTRAL EUROPE`、`SOUTHEASTERN EUROPE`、`BALTIC SEA`、`NORTH ATLANTIC` のようなCountry独自分類や、`ATLANTIC`、`BLACK SEA`、`NORTHERN ASIA` 等の緯度以外のsuffixを追加してはいけません。
+- `scripts/new_country.py` で新規scaffoldを作る場合、taxonomy labelは自動で固定されます。Map bounds確定後に `python3 scripts/normalize_country_region_labels.py` を実行して代表緯度を付与し、`python3 scripts/audit_country_region_labels.py` を通してください。
+- 代表緯度は既存の妥当な整数緯度を維持し、未設定の場合はCountry map boundsの南北中央を整数丸めして決定します。推測で別の緯度を足さないでください。
+- Region auditがPASSするまでReview Package / Review Deploymentへ進んではいけません。
+
 Content Planは何を作るかだけを保持し、PHASE / NEXT IMAGE / APPROVED状態 / generation cursor / failure logを持たせないでください。
 
 通常のユーザー承認はHero、8景Batch、Taste Batch、Canonical URL最終確認のみとし、それ以外はBlocking Issueがない限り自動進行してください。REGENが必要な場合も、対象画像を連続生成した後のREGEN Batch Reviewだけを承認ゲートとし、1枚ごとの承認は禁止です。
@@ -136,6 +144,7 @@ approved asset materialization
 → asset QA
 → Map build / QA
 → Country JSON / taxonomy implementation
+→ region normalization / audit
 → validation
 → one Review Package integration
 → Review Deployment

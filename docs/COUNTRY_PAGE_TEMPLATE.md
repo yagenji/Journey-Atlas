@@ -24,6 +24,13 @@ Icelandを基準に、以後の国・地域ページを同じ構造で制作す�
 
 ## 2. Hero
 
+### 国名上部のRegion表記
+
+- `region` は自由記述ではなく `data/region-taxonomy.json` に従う。destination registryの `iso2` から対応する `labelEn` を決定する。
+- 最終表記は必ず `{TAXONOMY LABEL} / {整数緯度}°N|S` とする。
+- 国ごとに `CENTRAL EUROPE`、`SOUTHEASTERN EUROPE`、`BALTIC SEA`、`NORTH ATLANTIC` 等の独自地域名を作らない。海域名や大陸横断説明を緯度の代わりに付けない。
+- 新規CountryはMap bounds確定後に `scripts/normalize_country_region_labels.py` で正規化し、`scripts/audit_country_region_labels.py` をPASSしてからReview Deploymentへ進む。
+
 - 1つの実在する風景を使う。
 - 国の名物を複数合成しない。
 - JOURNEY ATLAS固定スタイル：photo 60 / illustration 40。
@@ -172,7 +179,8 @@ Dead controlsを置かない。
 4. 画像pathが存在。
 5. map source記載。
 6. populationなど時点依存データにsourceまたはupdatedAtを持つ。
-7. Review Deploymentでは `atlasPublished:false` を維持し、ユーザー承認後のみ `true` にする。
+7. `region` が `data/region-taxonomy.json` の `labelEn` と一致し、`{TAXONOMY LABEL} / {整数緯度}°N|S` 形式で、代表緯度がmap boundsと矛盾しない。
+8. Review Deploymentでは `atlasPublished:false` を維持し、ユーザー承認後のみ `true` にする。
 
 ## 11. Production sequence
 

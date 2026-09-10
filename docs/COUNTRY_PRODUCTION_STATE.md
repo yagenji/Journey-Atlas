@@ -383,12 +383,16 @@ Auto-chain:
 2. decode / dimensions / path / hygiene QA;
 3. build and QA Map;
 4. implement Country JSON and taxonomy;
-5. run source/data validation;
-6. prepare one Review Package integration;
-7. integrate to `main` once for review deployment;
-8. run targeted Desktop / Tablet / Mobile QA for that Country;
-9. write `phase: REVIEW`;
-10. present the canonical URL.
+5. normalize `region` from `data/region-taxonomy.json` + final map bounds with `python3 scripts/normalize_country_region_labels.py`;
+6. require `python3 scripts/audit_country_region_labels.py` to pass;
+7. run source/data validation;
+8. prepare one Review Package integration;
+9. integrate to `main` once for review deployment;
+10. run targeted Desktop / Tablet / Mobile QA for that Country;
+11. write `phase: REVIEW`;
+12. present the canonical URL.
+
+The Region implementation gate is mandatory for every new Country: `region` must use the taxonomy label for the destination ISO2 and the final `{TAXONOMY LABEL} / {integer latitude}°N|S` format. Country-specific geographic nicknames or sea/continental suffixes are not allowed in this field.
 
 Do not pause merely to report intermediate progress.
 
