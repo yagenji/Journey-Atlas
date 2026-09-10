@@ -9,7 +9,8 @@ Policy:
   exactly 1200x800 and deliver as high-quality WebP.
 - Already-compliant WebP assets are left byte-for-byte unchanged.
 - Maps and unrelated assets are never touched.
-- Country JSON references are updated only when an extension changes.
+- Country JSON references are updated only when an extension changes, using
+  literal path replacement so original formatting/order is preserved.
 
 Use --audit to report work without modifying files. Use --apply to write the
 normalized assets and update Country JSON references.
@@ -197,6 +198,7 @@ def webp_save(source: Path, target: Path, size: tuple[int, int]) -> int:
     resampling = getattr(Image, "Resampling", Image)
     with Image.open(source) as image:
         image.load()
+        icc = image.info.get("icc_profile")
         if image.mode not in {"RGB", "RGBA"}:
             image = image.convert("RGBA" if "transparency" in image.info else "RGB")
         if image.size != size:
@@ -206,7 +208,6 @@ def webp_save(source: Path, target: Path, size: tuple[int, int]) -> int:
             "quality": WEBP_QUALITY,
             "method": 6,
         }
-        icc = image.info.get("icc_profile")
         if icc:
             save_kwargs["icc_profile"] = icc
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -220,16 +221,6 @@ def webp_save(source: Path, target: Path, size: tuple[int, int]) -> int:
             raise ValueError(f"normalized output verification failed: {target}")
     os.replace(tmp, target)
     return target.stat().st_size
-
-
-def replace_strings(value: object, replacements: dict[str, str]) -> object:
-    if isinstance(value, str):
-        return replacements.get(value, value)
-    if isinstance(value, list):
-        return [replace_strings(item, replacements) for item in value]
-    if isinstance(value, dict):
-        return {key: replace_strings(item, replacements) for key, item in value.items()}
-    return value
 
 
 def apply(plans: list[Plan], slugs: list[str]) -> tuple[int, int]:
@@ -248,10 +239,14 @@ def apply(plans: list[Plan], slugs: list[str]) -> tuple[int, int]:
     if replacements:
         for slug in slugs:
             path = COUNTRY_DIR / f"{slug}.json"
-            raw = json.loads(path.read_text(encoding="utf-8"))
-            updated = replace_strings(raw, replacements)
-            if updated != raw:
-                path.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            text = path.read_text(encoding="utf-8")
+            updated = text
+            for old, new in replacements.items():
+                quoted_old = json.dumps(old, ensure_ascii=False)
+                quoted_new = json.dumps(new, ensure_ascii=False)
+                updated = updated.replace(quoted_old, quoted_new)
+            if updated != text:
+                path.write_text(updated, encoding="utf-8")
 
     return before, after
 
@@ -270,7 +265,6 @@ def print_plan(plans: list[Plan]) -> None:
     by_role: dict[str, int] = {"hero": 0, "scene": 0, "taste": 0}
     total = 0
     for plan in plans:
-        role = plan.roles[0].split(":")[-2] if ":" in plan.roles[0] else ""
         if ":hero" in plan.roles[0]:
             by_role["hero"] += 1
         elif ":scene:" in plan.roles[0]:
