@@ -231,13 +231,13 @@ Data notes:
 
 Exactly 3:
 
-1. **面積 — 約100,459 km²**
-   - Korea.net, 2025.
-   - Useful because the page can then show how quickly mountains, coast and major cities change within a relatively compact country.
+1. **ハングル — 11,172音節**
+   - National Hangeul Museum: modern Hangeul uses 24 consonants and vowels that can be combined into 11,172 syllabic blocks.
+   - More distinctive and culturally revealing than repeating the land-area figure already shown in Country Profile.
 
 2. **世界遺産 — 17件**
    - UNESCO World Heritage Centre current State Party list: 15 cultural + 2 natural properties.
-   - This gives a better national-scale history / landscape signal than a generic highest-point fact.
+   - This gives a national-scale history / landscape signal without relying on generic geographic filler.
 
 3. **首都圏 — 人口の半数超**
    - Korea.net states that more than half of the population is concentrated in Seoul, Gyeonggi and Incheon.
@@ -251,12 +251,12 @@ Exactly 8; keep them immediately understandable and generic enough to be recogni
 
 1. **宮殿の門と彩色**
 2. **韓屋の屋根**
-3. **山の稜線**
-4. **干潟と葦原**
-5. **火山島の海岸**
-6. **市場と屋台**
-7. **茶畑**
-8. **港町の坂道**
+3. **市場の屋台**
+4. **山寺**
+5. **登山客**
+6. **海女**
+7. **漁船**
+8. **茶畑**
 
 ## Beyond the Scenery
 
