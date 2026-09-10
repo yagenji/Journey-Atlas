@@ -4,9 +4,9 @@
   "countryName": "CHINA",
   "contentRef": "country/china",
   "stateRef": "country/china",
-  "phase": "MAP",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-10T09:44:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-10T09:47:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -415,7 +415,7 @@
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/china/map-atlas-v1.svg",
     "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/CHN.geojson (blob 0c8361ab768142ef0669105e61a283f61e4feb3f), WGS84; JOURNEY ATLAS map-v3 clean background",
     "bounds": {
@@ -430,6 +430,24 @@
       "svgStructure": "PASS",
       "margins": "PASS",
       "allHeroSceneCoordinatesInsideBounds": "PASS"
+    },
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T09:47:00+09:00",
+    "qa": {
+      "svgStructure": "PASS",
+      "canvas": "PASS",
+      "sourceMetadata": "PASS",
+      "allMarkersInside": "PASS",
+      "markerCollisionWithPlannedOffsets": "PASS",
+      "heroOffset": {
+        "x": 2,
+        "y": -2
+      },
+      "s02Offset": {
+        "x": -3.5,
+        "y": 2
+      },
+      "notes": "Beijing capital, Forbidden City Scene and Jinshanling Hero are geographically close at national scale; display offsets stay within the <=5% map rule and satisfy marker spacing thresholds without changing coordinates."
     }
   },
   "implementation": {
@@ -489,8 +507,8 @@
     "multiTargetPromptForbidden": true
   },
   "next": {
-    "action": "QA_MAP",
-    "asset": "MAP"
+    "action": "VERIFY_APPROVED_ASSETS",
+    "asset": null
   },
   "generationContext": {
     "state": "CLEAN",
