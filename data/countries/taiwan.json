@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "taiwan",
+  "nameEn": "TAIWAN",
+  "nameJa": "台湾",
+  "region": "EAST ASIA",
+  "seo": {
+    "description": "台北の饒河街夜市から、台北101、九份、日月潭、阿里山、合歓山、台南、墾丁、澎湖へ。8つの景色から台湾の都市・山・湖・海岸・暮らしと食をたどる。"
+  },
+  "capital": {
+    "nameEn": "Taipei",
+    "nameJa": "台北",
+    "coordinates": {
+      "latitude": 25.0375,
+      "longitude": 121.5637
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -3,
+      "y": 2
+    }
+  },
+  "hero": {
+    "lead": "都市の密度から少し離れると、島の中央に高山が連なり、東と南では海まで地形が大きく切り替わる。夜市、寺廟、茶、鉄道をたどるほど、暮らしと自然が短い距離の中で重なって見える島。",
+    "image": "assets/images/taiwan/approved/hero-raohe-night-market-ciyou-temple.webp",
+    "location": "Taipei / Raohe Street Night Market & Ciyou Temple",
+    "coordinates": {
+      "latitude": 25.05,
+      "longitude": 121.5778
+    },
+    "mapOffset": {
+      "x": -0.5,
+      "y": -3
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 25.456561591000067,
+      "south": 21.735467841000066,
+      "west": 118.09326012509999,
+      "east": 122.19167321090006
+    },
+    "svg": "assets/images/taiwan/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/TWN.geojson (blob d9905d058db0f2c1b17d794289f01cc0f06cfc3a), WGS84; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {
+      "id": "taipei-101-elephant-mountain",
+      "name": "台北 / 台北101と象山",
+      "nameLocal": "Taipei / Taipei 101 from Xiangshan",
+      "mapLabel": "Taipei 101",
+      "description": "象山の緑の斜面越しに台北101と高層市街を見る。巨大な都市の背後まで山が迫り、首都の密度と台湾の起伏が一つの視界に収まる。",
+      "coordinates": {
+        "latitude": 25.0275,
+        "longitude": 121.5767
+      },
+      "image": "assets/images/taiwan/approved/taipei-101-elephant-mountain.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 3.5
+      }
+    },
+    {
+      "id": "jiufen-hillside-northern-coast",
+      "name": "九份 / 斜面の町と北海岸",
+      "nameLocal": "Jiufen / Hillside Settlement",
+      "mapLabel": "Jiufen",
+      "description": "山腹に家々が段状に重なり、その先に北海岸の海が開く。鉱山町として発展した集落の形を地形と一緒に見ると、台湾北部の急な山と海の近さが分かる。",
+      "coordinates": {
+        "latitude": 25.1097,
+        "longitude": 121.8452
+      },
+      "image": "assets/images/taiwan/approved/jiufen-hillside-northern-coast.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -2
+      }
+    },
+    {
+      "id": "sun-moon-lake-mountain-basin",
+      "name": "日月潭 / 山に囲まれた湖",
+      "nameLocal": "Sun Moon Lake / Mountain Basin",
+      "mapLabel": "Sun Moon Lake",
+      "description": "森林に覆われた山々の間に青緑の湖面が広がる。西部の都市平野から中央へ入ると、同じ島の中で水と山が主役になる内陸の景観へ切り替わる。",
+      "coordinates": {
+        "latitude": 23.8557,
+        "longitude": 120.9113
+      },
+      "image": "assets/images/taiwan/approved/sun-moon-lake-mountain-basin.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "alishan-forest-railway-cypress",
+      "name": "阿里山 / 森林鉄道と檜の森",
+      "nameLocal": "Alishan / Forest Railway",
+      "mapLabel": "Alishan",
+      "description": "高い針葉樹の森を小さな赤い列車が抜ける。低地の嘉義から標高を上げる鉄道は、森林、山地の暮らし、観光の歴史を一本の線でつないでいる。",
+      "coordinates": {
+        "latitude": 23.5113,
+        "longitude": 120.8037
+      },
+      "image": "assets/images/taiwan/approved/alishan-forest-railway-cypress.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "hehuanshan-wuling-high-mountains",
+      "name": "合歓山 / 武嶺の高山景観",
+      "nameLocal": "Hehuanshan / Wuling",
+      "mapLabel": "Hehuanshan",
+      "description": "低い草木に覆われた稜線が幾重にも続き、その間を山岳道路が通る。海に囲まれた島が短い距離で3,000m級の高山へ立ち上がることを実感できる。",
+      "coordinates": {
+        "latitude": 24.137,
+        "longitude": 121.275
+      },
+      "image": "assets/images/taiwan/approved/hehuanshan-wuling-high-mountains.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "tainan-confucius-temple",
+      "name": "台南 / 孔子廟",
+      "nameLocal": "Tainan / Confucius Temple",
+      "mapLabel": "Tainan",
+      "description": "赤い壁、瓦屋根、大きな樹木に囲まれた孔子廟を歩く。自然景観が多い台湾の中で、南部には長い都市史と教育・信仰の空間が街の日常に残っている。",
+      "coordinates": {
+        "latitude": 22.9903,
+        "longitude": 120.2044
+      },
+      "image": "assets/images/taiwan/approved/tainan-confucius-temple.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "kenting-longpan-pacific-coast",
+      "name": "墾丁 / 龍磐公園と太平洋",
+      "nameLocal": "Kenting / Longpan Park",
+      "mapLabel": "Longpan",
+      "description": "風を受ける草原台地の先で、陸地が太平洋へ落ちる。北部の密集した街や中央の山地とは異なり、台湾最南部では空と海の広さが景観の主役になる。",
+      "coordinates": {
+        "latitude": 21.9445,
+        "longitude": 120.8424
+      },
+      "image": "assets/images/taiwan/approved/kenting-longpan-pacific-coast.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "penghu-daguoye-basalt",
+      "name": "澎湖 / 大菓葉の玄武岩",
+      "nameLocal": "Penghu / Daguoye Basalt",
+      "mapLabel": "Penghu",
+      "description": "西嶼では黒い玄武岩が規則的な柱として並び、低い島の風景に強い地質の輪郭をつくる。台湾を本島だけでなく、海上の火山性群島まで含めて見る景観。",
+      "coordinates": {
+        "latitude": 23.5845,
+        "longitude": 119.5185
+      },
+      "image": "assets/images/taiwan/approved/penghu-daguoye-basalt.webp",
+      "labelPosition": "left"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "夜市の屋台",
+      "icon": "food"
+    },
+    {
+      "title": "寺廟の屋根飾り",
+      "icon": "landmark"
+    },
+    {
+      "title": "茶畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "スクーター",
+      "icon": "road"
+    },
+    {
+      "title": "森林鉄道",
+      "icon": "road"
+    },
+    {
+      "title": "高山の雲海",
+      "icon": "landscape"
+    },
+    {
+      "title": "田んぼ",
+      "icon": "landscape"
+    },
+    {
+      "title": "玄武岩の海岸",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "taiwan-temple-community-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "寺廟は、信仰だけでなく地域の集まりや祭礼の中心にもなる",
+      "text": "街角の寺廟には参拝だけでなく、祭礼や地域の人の往来が重なる。道教、仏教、民間信仰などの境界を単純に分けるより、日常の中で信仰がどう存在するかを見ると台湾の暮らしが分かりやすい。",
+      "points": [
+        "住宅地や商店街のすぐ近くに寺廟がある",
+        "祭礼の日には通りや市場の雰囲気まで変わる"
+      ]
+    },
+    {
+      "topicKey": "taiwan-high-mountain-tea",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "茶は、標高と気候の違いまで味に持ち込む",
+      "text": "台湾の烏龍茶や高山茶は、産地の標高、霧、気温差と結びつく。茶畑を景色として眺めるだけでなく、山の環境が一杯の香りへどうつながるかを知る入口になる。",
+      "points": [
+        "山地の農業景観と茶文化がつながる",
+        "産地ごとの環境差が味や香りの違いとして語られる"
+      ]
+    },
+    {
+      "topicKey": "taiwan-sixteen-indigenous-peoples",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "台湾には、現在16の先住民族が公的に認定されている",
+      "text": "先住民族を一つの文化としてまとめず、それぞれ異なる言語、祭礼、社会構造を持つ人々として見ることが重要。東部や山地、離島を旅すると、土地の名前や暮らしの背景にもその多様性が現れる。",
+      "points": [
+        "政府が認定する先住民族は16族",
+        "言語・祭礼・社会構造は民族ごとに異なる"
+      ]
+    },
+    {
+      "topicKey": "taiwan-alishan-railway-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "阿里山森林鉄道は、伐採のための山岳鉄道から旅の文化景観へ役割を変えてきた",
+      "text": "林業の輸送路として整備された鉄道は、現在では山地へ入る旅そのものを象徴する存在になった。線路の勾配や標高差をたどると、森林資源と交通の歴史が同じ景観に重なる。",
+      "points": [
+        "低地の嘉義から山地へ大きく標高を上げる",
+        "林業の歴史と現在の観光鉄道が同じ路線上に残る"
+      ]
+    },
+    {
+      "topicKey": "taiwan-national-languages",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "一つの島で、華語・台湾語・客家語・先住民族諸語・台湾手話などが行き交う",
+      "text": "台湾の国家言語発展法は、固有の族群が使う自然言語と台湾手話を国家言語として位置づけ、平等を定める。旅先でも地域や世代によって耳に入る言葉が変わる。",
+      "points": [
+        "国家言語は一つだけではない",
+        "自然言語に加えて台湾手話も法律上の国家言語に含まれる"
+      ]
+    },
+    {
+      "topicKey": "taiwan-night-market-daily-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "夜市は、食べ歩きだけでなく都市の日常が夜まで続く場所",
+      "text": "料理の屋台、買い物、ゲーム、寺廟への参拝、近所の人の移動が同じ通りに重なる。名物料理の一覧として見るより、昼とは違う時間帯に街がどう使われるかを見る場所として面白い。",
+      "points": [
+        "食事と買い物が同じ路地に重なる",
+        "観光客だけでなく地域の日常利用も続く"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "taipei101-damper-660-ton",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "台北101では、660トンの制振球を建物の中から見られる",
+      "text": "高層階に吊られた金色の質量ブロックは直径約5.5m、重量660トン。強風や地震による建物の揺れを抑える仕組みが、構造設備そのものとして観景フロアから見える。",
+      "icon": "city",
+      "sourceKey": "taipei101"
+    },
+    {
+      "topicKey": "sunmoon-lalu-thao-sacred-island",
+      "categoryEn": "CULTURE",
+      "categoryJa": "島",
+      "title": "日月潭の拉魯島は、邵族にとって祖霊と結びつく聖地",
+      "text": "湖の中央に浮かぶ小島は単なる展望対象ではなく、邵族の最高祖霊の居所や古い集落跡として重要な場所。一般の観光客は上陸せず、湖上や対岸から見る。",
+      "icon": "culture",
+      "sourceKey": "lalu"
+    },
+    {
+      "topicKey": "penghu-columnar-basalt",
+      "categoryEn": "GEOLOGY",
+      "categoryJa": "岩",
+      "title": "澎湖では、玄武岩の柱状節理が島の景観そのものをつくる",
+      "text": "大菓葉では、玄武岩が冷えて収縮したことで生まれた柱状の岩壁を間近に見られる。低い島の中に垂直の岩のリズムが現れ、澎湖の火山性地質を景色として読める。",
+      "icon": "landscape",
+      "sourceKey": "penghuBasalt"
+    },
+    {
+      "topicKey": "taiwan-west-east-rail-contrast",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "鉄道",
+      "title": "西部の高速鉄道と東部の在来鉄道では、旅の速度感が大きく変わる",
+      "text": "西部の主要都市は高速鉄道で短時間につながる一方、東部は台湾鉄道で山と海の間を進む。地図上の距離だけでなく、どの交通軸に乗るかで旅のリズムが変わる。",
+      "icon": "road",
+      "sourceKey": "rail"
+    },
+    {
+      "topicKey": "taiwan-uniform-invoice-lottery",
+      "categoryEn": "LIFE",
+      "categoryJa": "日常",
+      "title": "台湾のレシート「統一発票」には、番号抽選の仕組みがある",
+      "text": "買い物でもらう統一発票には番号が付き、財政部が定期的に当選番号を発表する。観光名所ではなく、日常の買い物の中に制度が見える台湾らしい観察ポイント。",
+      "icon": "culture",
+      "sourceKey": "uniformInvoice"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF TAIWAN",
+    "title": "台湾で食べたいもの",
+    "intro": "煮込む牛肉麵、飯にのせる滷肉飯、屋台の蚵仔煎、茶菓子の鳳梨酥。麺・米・海産物・菓子で、台湾の食の入口を4つの形に分ける。",
+    "items": [
+      {
+        "id": "taiwan-beef-noodle-soup",
+        "name": "牛肉麵",
+        "nameLocal": "Taiwan Beef Noodle Soup",
+        "text": "小麦麺を牛肉とともに濃い褐色のスープで食べる麺料理。煮込んだ牛肉の香りと麺の食感が主役で、食堂ごとにスープの方向が変わる。",
+        "image": "assets/images/taiwan/approved/food-taiwan-beef-noodle-soup.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "lu-rou-fan",
+        "name": "滷肉飯",
+        "nameLocal": "Lu Rou Fan",
+        "text": "細かく煮込んだ豚肉と煮汁をご飯にかける小さな丼。料理の構成は簡潔だが、脂、醤油系の煮汁、米の組み合わせに店ごとの違いが出る。",
+        "image": "assets/images/taiwan/approved/food-lu-rou-fan.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "oyster-omelet",
+        "name": "蚵仔煎",
+        "nameLocal": "Oyster Omelet",
+        "text": "小粒の牡蠣、卵、でんぷん質の生地、青菜を鉄板でまとめる屋台料理。柔らかさと香ばしさが同じ皿にあり、台湾の夜市で海産物を食べる代表的な入口になる。",
+        "image": "assets/images/taiwan/approved/food-oyster-omelet.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "pineapple-cake",
+        "name": "鳳梨酥",
+        "nameLocal": "Pineapple Cake",
+        "text": "四角い焼き菓子の中に果実の餡を詰める台湾の定番菓子。街歩きの途中で食べるだけでなく、茶と合わせたり土産として持ち帰ったりする食文化にもつながる。",
+        "image": "assets/images/taiwan/approved/food-pineapple-cake.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "台北と北部の丘陵を往復する",
+        "text": "台北の街・夜市・寺廟を軸に、鉄道やバスで九份や北部の山沿いへ出る。短い旅では島を一周しようとせず、都市と山地の距離感をつかむ。例：台北 → 九份 → 台北。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "西部の都市軸から中央の山へ入る",
+        "text": "高速鉄道・鉄道を背骨に、台北から日月潭、阿里山、台南へ南下する。山岳部は平地の都市間移動とは別に時間を取る。例：台北 → 日月潭 → 阿里山 → 台南 → 高雄 → 台北。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "西部縦断に東海岸か離島を一つ加える",
+        "text": "花蓮・台東の東海岸、または澎湖を別の地域ブロックとして加える。山岳道路・天候・フェリーや国内線の条件に余白を置き、全地点を詰め込まない。例：台北 → 花蓮 → 台東 → 高雄 → 台南 → 阿里山 → 台北。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#9aa36a",
+      "text": "低地は街歩きや地域移動をしやすい日が増える一方、梅雨期へ向かって雨と湿度が上がる。高山は平地より気温が大きく低く、同じ日でも服装を分けて考える。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#6f8f58",
+      "text": "低地は高温多湿。台風や大雨で山道、東海岸、鉄道、船の運行が変わることがあるため、固定した行程より直前の気象・交通情報を優先する。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#b27a4c",
+      "text": "暑さが弱まり、都市・海岸・山地を組み合わせやすい時期。北部・東部では北東季節風の影響で雨や風が強まる日があり、高地は早く冷え込む。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#748e9d",
+      "text": "低地は穏やかな日も多いが、北部・東部は湿った寒さになりやすく、南部との体感差がある。高山では氷点下や雪になることもあり、台湾を一様な亜熱帯として考えない。"
+    }
+  ],
+  "transport": {
+    "title": "高速鉄道・鉄道・バス・車",
+    "text": "西部の主要都市は台湾高速鉄道を軸に移動しやすく、東部や地域間は台湾鉄道が重要になる。九份、日月潭、阿里山などはバスやローカル交通を組み合わせ、山地では道路状況と天候を確認する。澎湖は鉄道の延長ではなく、航空または船を別区間として考える。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "夜市・寺廟・路地を歩きながら、都市の日常まで見たい人",
+      "text": "台北や台南で名所だけをつなぐのではなく、屋台、寺廟、スクーター、商店街が同じ街路に重なる時間まで歩きたい人。"
+    },
+    {
+      "title": "短い距離の中で、海岸・湖・森林・高山へ景色を大きく切り替えたい人",
+      "text": "日月潭、阿里山、合歓山、墾丁、澎湖を通して、小さく見える島の中に大きな標高差と地形差があることを体感したい人。"
+    },
+    {
+      "title": "鉄道、茶、歴史ある町、地域の食から暮らしへ入りたい人",
+      "text": "移動そのものや食事を単なる手段にせず、阿里山森林鉄道、茶産地、九份・台南、地域料理から土地の時間と暮らしを読みたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アジア／西太平洋"
+    },
+    {
+      "label": "首都",
+      "value": "台北"
+    },
+    {
+      "label": "人口",
+      "value": "約2,324万人（2026年7月末）"
+    },
+    {
+      "label": "面積",
+      "value": "約36,197 km²（日本の約10%）"
+    },
+    {
+      "label": "言語",
+      "value": "華語が広く使われ、台湾語・客家語・先住民族諸語・台湾手話なども使われる"
+    },
+    {
+      "label": "主な宗教",
+      "value": "民間信仰、道教、仏教、キリスト教など"
+    },
+    {
+      "label": "通貨",
+      "value": "新台湾ドル（NTD / NT$）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "taiwan-mountainous-two-thirds",
+      "label": "山地・丘陵が占める島の面積",
+      "value": "約3分の2",
+      "note": "台湾本島は中央部を南北に山脈が走り、平地は主に西部や盆地へ限られる。台北の密度から合歓山の高地まで景色が急に変わる理由が、この地形比率に表れる。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "taiwan-population-concentration",
+      "label": "人口90%が暮らす陸地",
+      "value": "約17.5%",
+      "note": "人口の約9割が、島の陸地の約17.5%に集中すると林業及自然保育署は紹介する。西部の都市密度と、すぐ背後に広がる山地の対比を数字で見ることができる。",
+      "icon": "users"
+    },
+    {
+      "topicKey": "taiwan-indigenous-population-202607",
+      "label": "先住民族人口",
+      "value": "63万8,466人",
+      "note": "2026年7月末で総人口の2.75%。政府が認定する16の先住民族があり、一つの文化としてまとめず、地域ごとの言語や祭礼の違いを見ることが大切。",
+      "icon": "culture"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "taiwan-east-coast-access-check",
+      "title": "東海岸・太魯閣周辺は、道路や遊歩道の状況を直前に確認する",
+      "text": "地震や豪雨の後は、道路・歩道・景勝地の開放状況が変わることがある。過去の旅行記や地図だけで判断せず、移動前に公式の交通・公園情報を確認する。"
+    },
+    {
+      "topicKey": "taiwan-mountain-travel-time",
+      "title": "山岳部は、都市間の直線距離だけで日程を組まない",
+      "text": "阿里山や合歓山は平地の鉄道軸から山道へ入る。乗り継ぎ、標高差、天候を含めると地図上の距離以上に時間が必要になるため、山の日は独立して余白を取る。"
+    },
+    {
+      "topicKey": "taiwan-typhoon-flexibility",
+      "title": "台風シーズンは、日程を動かせる余地を残す",
+      "text": "海岸、山地、船、鉄道はいずれも強風や大雨の影響を受ける可能性がある。旅行日に近い中央気象署と交通機関の情報を優先し、変更できる行程にしておく。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "japan",
+      "nameEn": "JAPAN",
+      "nameJa": "日本",
+      "flag": "🇯🇵",
+      "reason": "島の鉄道旅、寺社と都市、山と海、地域ごとの食文化を、近い距離にある別の東アジア社会で比べたいなら。"
+    },
+    {
+      "slug": "southkorea",
+      "nameEn": "SOUTH KOREA",
+      "nameJa": "韓国",
+      "flag": "🇰🇷",
+      "reason": "大都市の密度と山の近さ、強い市場・食文化を、より大陸側の気候と歴史の中で見比べたいなら。"
+    },
+    {
+      "slug": "philippines",
+      "nameEn": "PHILIPPINES",
+      "nameJa": "フィリピン",
+      "flag": "🇵🇭",
+      "reason": "台湾の南から続く島と海の世界を、より熱帯の気候、火山、珊瑚礁、島嶼文化へ広げたいなら。"
+    }
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-10",
+  "sourceDates": {
+    "population": "2026-07",
+    "area": "2025-05-28",
+    "language": "2019",
+    "currency": "2026-09-08",
+    "geography": "2026-09-10",
+    "indigenous": "2026-07",
+    "transport": "2026-09-10",
+    "uniformInvoice": "2026-09-10",
+    "taipei101": "2026-09-10"
+  },
+  "sources": {
+    "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/TWN.geojson (blob d9905d058db0f2c1b17d794289f01cc0f06cfc3a), WGS84; JOURNEY ATLAS map-v3 clean background.",
+    "population": "Taiwan Department of Household Registration, Household registration statistics data analysis in Jul 2026, published 10 Aug 2026: total population 23,235,002 at end-July 2026.",
+    "area": "Executive Yuan, National Conditions Overview — Land, data source Ministry of the Interior: effective jurisdiction land area 36,197.3371 km².",
+    "japanArea": "Geospatial Information Authority of Japan reference area 377,974.87 km²; 36,197.3371 km² is about 9.58%, displayed as about 10%.",
+    "language": "Ministry of Culture, Development of National Languages Act, Article 3: national languages are the natural languages used by Taiwan's indigenous ethnic groups and Taiwan Sign Language; Article 4 states national languages are equal.",
+    "religion": "Broad descriptive wording only; no precise percentage asserted because the page does not rely on a single current official affiliation survey.",
+    "currency": "Central Bank of the Republic of China (Taiwan), Currency Issuance / legal tender guidance, reviewed Sep 2026: New Taiwan Dollar banknotes and coins issued by the Bank are legal tender.",
+    "geography": "National Land Management Agency / Taiwan Tourism Administration official geography material: mountain and hilly terrain occupies about two-thirds of Taiwan island; major mountain ranges run north-south.",
+    "populationDistribution": "Forestry and Nature Conservation Agency, Island Forest / Island Coexistence: about 90% of the population lives on about 17.5% of the land area.",
+    "indigenous": "Department of Household Registration, Jul 2026: indigenous population 638,466, 2.75% of total population; Council of Indigenous Peoples lists 16 officially recognized indigenous peoples.",
+    "taipei101": "TAIPEI 101 official observatory structural introduction: tuned mass damper sphere approximately 5.5 m in diameter and 660 metric tons.",
+    "lalu": "Sun Moon Lake National Scenic Area Administration, Lalu Island / Lalu Platform: Lalu is a sacred Thao site associated with the highest ancestral spirit and early settlement; general visitors do not land on the island.",
+    "penghuBasalt": "Penghu National Scenic Area Administration, Daguoye Columnar Basalt: accessible columnar basalt formation at Xiyu, Penghu.",
+    "rail": "Taiwan Railways current route/timetable information reviewed 10 Sep 2026 includes Western, Eastern and South-Link lines; Taiwan High Speed Rail forms the fast western intercity axis.",
+    "uniformInvoice": "Ministry of Finance eTax Portal, Uniform-Invoice Winning Numbers, reviewed 10 Sep 2026: prize-winning numbers continue to be published for current 2026 invoice periods.",
+    "taste": "Taiwan food copy is descriptive for beef noodle soup, lu rou fan, oyster omelet and pineapple cake and avoids disputed origin claims.",
+    "transport": "Current Taiwan Railways, Taiwan High Speed Rail and tourism access guidance reviewed 10 Sep 2026; exact fares, timetables and weather-sensitive mountain/ferry operations are intentionally excluded.",
+    "weather": "Central Weather Administration current weather and typhoon information is the reference for severe-weather travel decisions; page copy avoids predicting access from seasonal averages.",
+    "travelScale": "Editorial duration ranges based on Taipei, Jiufen, Sun Moon Lake, Alishan, Tainan, Kaohsiung, Hualien, Taitung and Penghu; not a fixed national itinerary.",
+    "relatedCountries": "Editorial comparison set: Japan, South Korea and the Philippines. Link availability follows the destination registry.",
+    "nextRoutes": "Omitted under the current JOURNEY ATLAS rule for island destinations."
+  }
+}

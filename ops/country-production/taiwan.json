@@ -1,0 +1,791 @@
+{
+  "schemaVersion": 1,
+  "slug": "taiwan",
+  "countryName": "TAIWAN",
+  "contentRef": "country/taiwan",
+  "stateRef": "country/taiwan",
+  "phase": "QA",
+  "stateRevision": 53,
+  "updatedAt": "2026-09-10T11:41:00+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": null,
+    "contentId": "raohe-night-market-ciyou-temple",
+    "promptSeries": 2,
+    "promptSeriesRejectCount": 1,
+    "rejectedGenerationIds": [
+      "63584dab-add1-49dd-8265-19168ea7bec3",
+      "049fc73a-3b03-4867-89a3-c32124bfe89c",
+      "1b031e4f-c772-4d85-b884-72ea9aea38aa",
+      "350c15e7-8eeb-45f2-b89b-66c5722aae99",
+      "299d0907-878b-479d-8b3c-4b944bcff47d",
+      "f6ee41c0-b969-4bb6-a7dd-2c107ca223e3"
+    ],
+    "promptSeriesReset": true,
+    "promptSeriesResetAt": "2026-09-10T01:23:00+09:00",
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "raohe-night-market-ciyou-temple",
+      "identity": "ONE SINGLE STANDALONE WIDE LANDSCAPE IMAGE of the real Raohe Street Night Market at dusk in Songshan, Taipei, viewed at street level along one continuous market lane toward the real Ciyou Temple at the eastern end. Dense food stalls on both sides, warm lantern glow, cooking steam, natural pedestrian flow, a few parked scooters, ornate Ciyou Temple roofline clearly visible as the place anchor. Geographically plausible Raohe composition only. Do NOT include Taipei 101. Do NOT combine multiple Taiwan landmarks. Do NOT create a collage, grid, split panel, montage, contact sheet, poster, border or frame. No readable generated Chinese or English text: signs and stall boards must be abstract, blurred, cropped, or too small to read. No title, caption, labels, logo, flag, map or UI. Photo 6 : quiet watercolor 4, refined painterly realism, 3:2 horizontal Hero composition.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    },
+    "approvedGenerationId": "b7748d90-c92c-4f6f-9dcd-0a2399e9bb59",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
+    },
+    "userApprovedAt": "2026-09-10T08:35:00+09:00"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "taipei-101-elephant-mountain",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "taipei-101-elephant-mountain",
+        "identity": "Taipei 101 and the dense Taipei basin skyline seen from Elephant Mountain / Xiangshan, green foreground hillside framing, surrounding basin mountains visible, broad urban panorama rather than tower portrait, soft late-afternoon or early-evening natural light, no fireworks/neon spectacle, realistic city density and tower proportions, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "raohe-night-market-ciyou-temple",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userPositiveReviewAt": "2026-09-10T08:36:30+09:00",
+      "approvedGenerationId": "766c83fe-4760-42c6-b460-76d11560f0d3",
+      "userApprovedAt": "2026-09-10T08:36:30+09:00"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "jiufen-hillside-northern-coast",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "aa50c47f-ad13-4198-b8a4-de21d15e7666"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "jiufen-hillside-northern-coast",
+        "identity": "Jiufen hillside settlement in northern Taiwan, dense stepped roofs clinging to the mountain slope with Keelung Mountain / northern coast geography and distant sea where plausible, daylight or soft late-afternoon light, architecture and slope relationship dominant, no lantern-night poster, no Spirited Away imitation, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "taipei-101-elephant-mountain",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "878c8fd7-499e-4c57-b945-9b75f9ecc24c",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userApprovedAt": "2026-09-10T09:47:00+09:00",
+      "adoptionNote": "Reassigned from an earlier wrong-target HERO generation because the image visually matches the Jiufen S02 content identity; explicitly adopted by the user."
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "sun-moon-lake-mountain-basin",
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [
+        "f0a6f6c3-72e4-4876-8870-f6f6a1b1bec8"
+      ],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "sun-moon-lake-mountain-basin",
+        "identity": "ONE SINGLE STANDALONE SCENE of the real Sun Moon Lake in central Taiwan, viewed from an elevated Xiangshan-side viewpoint. The lake must occupy most of the lower and central frame, enclosed by layered forested mountain ridges. Include Lalu Island only if geographically plausible and small at natural scale. Calm blue-green inland lake water; no ocean, no coastline cliffs, no tunnel road, no seaside rocks, no Qingshui-style terrain. Soft clear morning or daytime light, restrained palette, photo 6 : quiet watercolor 4. No text, no collage, no panels, no border, no poster treatment.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "jiufen-hillside-northern-coast",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-10T08:40:30+09:00",
+      "approvedGenerationId": "ace82ed1-f963-4460-8513-4380022e3042",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userApprovedAt": "2026-09-10T09:48:00+09:00",
+      "adoptionNote": "Reassigned from an earlier wrong-target S04 generation because the image visually matches the Sun Moon Lake S03 content identity; explicitly adopted by the user."
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "alishan-forest-railway-cypress",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "alishan-forest-railway-cypress",
+        "identity": "Alishan Forest Railway curving through dense high-elevation cypress/conifer forest, one small recognisable red railway train at natural scale, towering trees remain dominant, cool filtered daylight or light mountain mist, no fantasy steam locomotive or heavy fog, no poster treatment, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "sun-moon-lake-mountain-basin",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "adoptionTransferNote": "Earlier wrong-target S04 output was reassigned to S03 because it visually matches Sun Moon Lake; S04 still requires a fresh Alishan generation.",
+      "approvedGenerationId": "14a1f288-9573-40ff-b98f-3edf998f006a",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userApprovedAt": "2026-09-10T09:50:00+09:00"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "hehuanshan-wuling-high-mountains",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "hehuanshan-wuling-high-mountains",
+        "identity": "Hehuanshan / Wuling high-mountain ridges in central Taiwan, layered alpine/subalpine vegetation and broad ridge view, narrow mountain road only as a small geographic cue if present, realistic Taiwan mountain scale, clear spring or autumn mountain light, no Himalayan snow exaggeration or Swiss-alpine substitution, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "alishan-forest-railway-cypress",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userPositiveReviewAt": "2026-09-10T09:38:00+09:00",
+      "approvedGenerationId": "9907fb16-bca3-4387-acf9-e9abf18481ec",
+      "userApprovedAt": "2026-09-10T09:38:00+09:00"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "tainan-confucius-temple",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "tainan-confucius-temple",
+        "identity": "Real Tainan Confucius Temple complex, human-scale courtyard/approach showing red walls, traditional tiled roofs and mature shade trees together, warm restrained southern Taiwan daylight, small natural visitors only if subordinate, no generic oversized Chinese palace, invented dragons or festival clutter, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "hehuanshan-wuling-high-mountains",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "approvedGenerationId": "759adf0a-c009-4cd2-ba8a-57e9bf207205",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "USER_OVERRIDDEN"
+      },
+      "userApprovedAt": "2026-09-10T09:51:00+09:00",
+      "approvalNote": "Explicit user adoption of the existing Tainan Confucius Temple candidate despite readable in-scene temple signage."
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "kenting-longpan-pacific-coast",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "kenting-longpan-pacific-coast",
+        "identity": "Kenting Longpan Park on southern Taiwan, broad wind-shaped grassland plateau meeting the Pacific with coastal edge and open sea, tropical-subtropical vegetation kept natural, clear or lightly clouded daylight, no resort/beach-umbrella/palm-postcard treatment, horizontal openness distinct from Qingshui Cliff, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "tainan-confucius-temple",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userPositiveReviewAt": "2026-09-10T09:42:00+09:00",
+      "approvedGenerationId": "d0ae5678-f0e8-4879-9e67-b748c3cdfaa7",
+      "userApprovedAt": "2026-09-10T09:42:00+09:00"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "penghu-daguoye-basalt",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "penghu-daguoye-basalt",
+        "identity": "Daguoye basalt columns on Xiyu, Penghu, recognisable dark columnar basalt geometry at scene-card scale with low island vegetation and open Penghu context, coastal atmosphere only where geographically plausible, side light revealing structure, no Iceland substitution, waterfalls, giant fantasy columns or posing people, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "previousContentId": "kenting-longpan-pacific-coast",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "userPositiveReviewAt": "2026-09-10T09:44:30+09:00",
+      "approvedGenerationId": "3fb0d18d-095b-437c-9ba9-c2d97c2dbfac",
+      "userApprovedAt": "2026-09-10T09:44:30+09:00"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "taiwan-beef-noodle-soup",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "d3e0a679-6ecc-48ba-9e09-f628976b417b"
+      ],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "taiwan-beef-noodle-soup",
+        "identity": "Taiwan beef noodle soup in one simple ceramic bowl only: wheat noodles within deep reddish-brown or clear-brown beef broth, several braised beef chunks as main topping, minimal scallion only if integral and inside bowl, no side dishes/pickles/spoon/chopsticks/tea/props, centered dominant single dish, plain warm ivory background, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": null,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "approvedGenerationId": "a8e70d83-9a63-4035-91a0-00b43cb7204e",
+      "candidateVisualQa": {
+        "dishIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "singleDish": "PASS",
+        "cleanNeutralBackground": "PASS",
+        "garnishConstraint": "USER_OVERRIDDEN"
+      },
+      "userApprovedAt": "2026-09-10T10:44:00+09:00",
+      "approvalNote": "Rescued from earlier wrong-target FOOD02 generation by explicit user instruction. Ivory background accepted; bok choy/scallion retained as user-approved exception."
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "lu-rou-fan",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "lu-rou-fan",
+        "identity": "Lu rou fan in one small plain rice bowl only: white rice topped with finely chopped/minced braised pork and glossy brown braise, no boiled egg/pickles/greens/soup/second bowl/cutlery, centered dominant single dish, plain warm ivory background, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "taiwan-beef-noodle-soup",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "approvedGenerationId": "a538c32d-8ab1-43cb-aa0a-83c97b5b39d9",
+      "candidateVisualQa": {
+        "dishIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "singleDish": "PASS",
+        "cleanNeutralBackground": "PASS",
+        "garnishConstraint": "USER_OVERRIDDEN"
+      },
+      "userApprovedAt": "2026-09-10T09:57:00+09:00",
+      "approvalNote": "Explicit user approval of rescued lu rou fan image. Boiled egg and pickled greens are retained as a user-approved exception to the stricter Taste render packet."
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "oyster-omelet",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "oyster-omelet",
+        "identity": "Taiwan oyster omelet on one plain plate only: soft irregular egg/starch structure with visible small oysters and restrained leafy greens, characteristic sauce only on the same plate as an integral component, no oyster shells/raw ingredients/chopsticks/side bowl, avoid western round omelet appearance, centered dominant single dish, plain warm ivory background, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "lu-rou-fan",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "transferNote": "Wrong-target FOOD03 output reassigned to FOOD02 after explicit user approval.",
+      "approvedGenerationId": "3cd3e129-7548-4939-8e9c-69452a8bd945",
+      "candidateVisualQa": {
+        "dishIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "singleDish": "PASS",
+        "cleanNeutralBackground": "PASS",
+        "garnishConstraint": "USER_OVERRIDDEN"
+      },
+      "userApprovedAt": "2026-09-10T09:59:00+09:00",
+      "approvalNote": "Explicit user approval of rescued Taiwan oyster omelet image. Extra cilantro garnish is retained as a user-approved exception."
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": null,
+      "contentId": "pineapple-cake",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [],
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "pineapple-cake",
+        "identity": "Taiwan pineapple cake on one plain plate only: three to four small rectangular golden baked pastries, one may be cut open to expose dense pineapple filling while remaining part of the same dish, no teacup/teapot/whole pineapple/packaging/gift box/crumb styling, centered dominant single dish, plain warm ivory background, photo 6 : quiet watercolor 4",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "previousContentId": "oyster-omelet",
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      },
+      "transferNote": "Wrong-target FOOD04 output reassigned to FOOD03 after explicit user approval.",
+      "approvedGenerationId": "bf73b09b-3890-4c01-9db3-f9376f1b8931",
+      "candidateVisualQa": {
+        "dishIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "singleDish": "PASS",
+        "cleanNeutralBackground": "PASS"
+      },
+      "userApprovedAt": "2026-09-10T10:44:00+09:00",
+      "approvalNote": "Explicit user approval of regenerated Taiwan pineapple cake image."
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/taiwan/map-atlas-v1.svg",
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/TWN.geojson (blob d9905d058db0f2c1b17d794289f01cc0f06cfc3a), WGS84; JOURNEY ATLAS map-v3 clean background",
+    "bounds": {
+      "west": 118.09326012509999,
+      "south": 21.735467841000066,
+      "east": 122.19167321090006,
+      "north": 25.456561591000067
+    },
+    "candidateQa": {
+      "canvas": "1200x760",
+      "geometrySource": "PASS",
+      "svgStructure": "PASS",
+      "margins": "PASS",
+      "allHeroSceneCoordinatesInsideBounds": "PASS"
+    },
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T10:48:00+09:00",
+    "qa": {
+      "svgStructure": "PASS",
+      "canvas": "PASS",
+      "sourceMetadata": "PASS",
+      "countryFitMargins": "PASS",
+      "noAddedTextCircleEllipse": "PASS",
+      "allMarkersInside": "PASS",
+      "markerCollisionWithPlannedOffsets": "PASS",
+      "plannedOffsets": {
+        "capital": {
+          "x": -3,
+          "y": 2
+        },
+        "hero": {
+          "x": -0.5,
+          "y": -3
+        },
+        "S01": {
+          "x": 3,
+          "y": 3.5
+        },
+        "S02": {
+          "x": 3,
+          "y": -2
+        }
+      },
+      "notes": "Display bounds use 5% padding around the Natural Earth TWN geometry. Geographic coordinates remain unchanged. Current main validator's stricter intrinsic-canvas collision thresholds pass after display-only offsets for Taipei capital/Hero/S01/S02."
+    }
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-10T11:14:00+09:00",
+    "files": [
+      "data/countries/taiwan.json",
+      "data/theme-taxonomy.json"
+    ],
+    "themeTaxonomy": [
+      "earth",
+      "life",
+      "food"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "atlasPublished": false,
+    "nextRoutes": [],
+    "notes": "Taiwan Country JSON implemented from the approved visual set and current content plan. Theme assignments live only in theme-taxonomy.json. Current island-destination rule keeps nextRoutes empty. Registry publication state is unchanged."
+  },
+  "qa": {
+    "state": "PASS",
+    "sourceCommit": "c86288a82e031b89d5c4788a8312b58ebac59ab4",
+    "validateRunId": 34430272588,
+    "productionStateRunId": 34430272601,
+    "browserQaRunId": 34430272587,
+    "browserQaArtifactId": 10134224879,
+    "checks": [
+      "source-syntax",
+      "targeted-country-image-set",
+      "production-webp-full-decode",
+      "production-dimensions",
+      "perceptual-duplicate-gate",
+      "targeted-country-json-strict",
+      "reviewable-country-json",
+      "published-country-regression",
+      "cloudflare-package-build",
+      "targeted-unpublished-reviewable-browser-qa",
+      "desktop-1440x1000",
+      "tablet-834x1112",
+      "mobile-390x844",
+      "hero-and-scene-image-load",
+      "taste-card-count-4",
+      "scene-card-count-8",
+      "map-render",
+      "critical-section-visibility",
+      "canonical-url",
+      "noindex-follow",
+      "sitemap-exclusion",
+      "registry-atlasPublished-false",
+      "registry-href-empty",
+      "theme-taxonomy-earth-life-food",
+      "heading-hierarchy",
+      "aria-references",
+      "image-alt",
+      "interactive-accessible-name",
+      "keyboard-focusability",
+      "no-positive-tabindex",
+      "no-horizontal-overflow",
+      "no-clipped-text",
+      "no-severe-console-errors"
+    ],
+    "browserViewports": {
+      "desktop": {
+        "width": 1440,
+        "height": 1000,
+        "result": "PASS"
+      },
+      "tablet": {
+        "width": 834,
+        "height": 1112,
+        "result": "PASS"
+      },
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "result": "PASS"
+      }
+    },
+    "failureCount": 0,
+    "completedAt": "2026-09-10T11:40:00+09:00",
+    "notes": "Taiwan review package passed strict Country validation, production-state validation, and targeted unpublished-reviewable Browser QA on desktop/tablet/mobile with zero failures. Formal production deployment verification is still pending."
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
+    "autoContinueImageRounds": true,
+    "waitForStateOnlyCI": false,
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicy": {
+    "revision": 6,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "AUTO_IF_SUPPORTED",
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true
+  },
+  "next": {
+    "action": "RUN_COUNTRY_QA",
+    "asset": null
+  },
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 2,
+    "lastResetAt": "2026-09-10T08:36:00+09:00",
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "reviewedAt": "2026-09-10T09:45:00+09:00",
+    "approvedIds": [
+      "S01",
+      "S05",
+      "S07",
+      "S08",
+      "S02",
+      "S03",
+      "S04",
+      "S06"
+    ],
+    "regenerateIds": [],
+    "note": "All eight Taiwan scenes are approved. S06 was explicitly adopted by the user despite the readable temple sign exception."
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T10:44:00+09:00",
+    "scope": [
+      "FOOD01",
+      "FOOD02",
+      "FOOD03",
+      "FOOD04"
+    ],
+    "note": "All four Taste assets approved. FOOD01 and FOOD03 include explicit user-approved exceptions recorded on their assets."
+  },
+  "assetQa": {
+    "state": "PASS",
+    "checkedAt": "2026-09-10T11:08:00+09:00",
+    "approvedRasterCount": 13,
+    "sourceRecovery": "PASS",
+    "sourceGenerationIdMatch": "PASS",
+    "fullDecode": "PASS",
+    "dimensions": "PASS",
+    "expectedDimensions": {
+      "hero": "1536x1024",
+      "scenes": "1200x800",
+      "taste": "1200x800"
+    },
+    "perceptualDuplicateGate": "PASS",
+    "heroScenePairsCompared": 36,
+    "heroSceneMinDhashHamming": 106,
+    "tastePairsCompared": 6,
+    "tasteMinDhashHamming": 76,
+    "exactShaDuplicates": 0,
+    "hygiene": "PASS",
+    "repositoryMaterialization": {
+      "state": "PASS",
+      "approvedFolderExists": true,
+      "materializedRasterCount": 13,
+      "commit": "b25513df1cd7baa6c0c7a353520b39cbced003bf",
+      "gitBlobShaMatch": "PASS",
+      "sha256Match": "PASS",
+      "byteMatch": "PASS",
+      "canonicalPath": "assets/images/taiwan/approved",
+      "nestedUploadFolderRemoved": true,
+      "note": "All 13 exact uploaded WebP blobs were relocated without recompression to the canonical approved folder; source SHA-256 values match the verified local exports."
+    },
+    "plannedAssets": {
+      "hero": "assets/images/taiwan/approved/hero-raohe-night-market-ciyou-temple.webp",
+      "S01": "assets/images/taiwan/approved/taipei-101-elephant-mountain.webp",
+      "S02": "assets/images/taiwan/approved/jiufen-hillside-northern-coast.webp",
+      "S03": "assets/images/taiwan/approved/sun-moon-lake-mountain-basin.webp",
+      "S04": "assets/images/taiwan/approved/alishan-forest-railway-cypress.webp",
+      "S05": "assets/images/taiwan/approved/hehuanshan-wuling-high-mountains.webp",
+      "S06": "assets/images/taiwan/approved/tainan-confucius-temple.webp",
+      "S07": "assets/images/taiwan/approved/kenting-longpan-pacific-coast.webp",
+      "S08": "assets/images/taiwan/approved/penghu-daguoye-basalt.webp",
+      "FOOD01": "assets/images/taiwan/approved/food-taiwan-beef-noodle-soup.webp",
+      "FOOD02": "assets/images/taiwan/approved/food-lu-rou-fan.webp",
+      "FOOD03": "assets/images/taiwan/approved/food-oyster-omelet.webp",
+      "FOOD04": "assets/images/taiwan/approved/food-pineapple-cake.webp"
+    },
+    "exportSha256": {
+      "hero": "c6890daff20bd3af89347e6e12ae03bdf9d293e82e6e6d7f58742e0d59d3e11a",
+      "S01": "476cff7c374187ed76ea5f358e9270ed236f17a60dd3aaabe1bd1fe9deef7d53",
+      "S02": "2187c1d21e06378aef49078f12cf5def5c8cbdb6db60eb0e4de9b5d08a81b467",
+      "S03": "698b4cce9a8f5883a68d85c24c92810f08d06337314476d0f2c9caed1a0952a5",
+      "S04": "5bca53af6544acd81abe3c9a88e0368b1d991f45cc77f4d3e9c174ab2f05cbca",
+      "S05": "0a0f586e0730c82461cbad55d33e3450727a02ff78ec4aa44e973813d3dd8e81",
+      "S06": "c1aad83b4d7f2da980a1e1646a289cea14ee2b9e57e3ea8137a03b72677b2718",
+      "S07": "cf8c708b5f00c783339c77dc1993beffda57f2f4e09f2669587c31c6de5a2f7f",
+      "S08": "44ef7465dae650d3281ed008015a51c7709196f2d4566aad11cdd441598cc91c",
+      "FOOD01": "d97519ddb580cb42046c9c739322762d59ab750970d20bbe09831ff5610a7987",
+      "FOOD02": "4a0b538613cc6e27c1c5e5ae8b917a9b821edb9be3edc17568d9ecdefbbf9441",
+      "FOOD03": "68e94a3b9d2dfa7d84b3ec5d889a01b63833977e9d06ffa60000ec72535cc67e",
+      "FOOD04": "01c8dba630d6e981d15cefe5cf7c1317301af0dffee2e4c341b83ed021b09854"
+    },
+    "map": {
+      "asset": "assets/images/taiwan/map-atlas-v1.svg",
+      "existence": "PASS",
+      "state": "APPROVED"
+    },
+    "approval": "APPROVED",
+    "approvedAt": "2026-09-10T11:08:00+09:00"
+  },
+  "sourceValidation": {
+    "state": "PASS",
+    "checkedAt": "2026-09-10T11:14:00+09:00",
+    "sourcesVerifiedAt": "2026-09-10",
+    "checks": [
+      "population-current-official",
+      "area-official",
+      "national-languages-law",
+      "currency-central-bank",
+      "terrain-official",
+      "population-concentration-forestry-agency",
+      "indigenous-population-and-16-peoples",
+      "taipei101-damper-official",
+      "lalu-thao-cultural-meaning",
+      "penghu-basalt-official",
+      "rail-current-official",
+      "uniform-invoice-current-mof"
+    ],
+    "result": "PASS"
+  }
+}
