@@ -5,8 +5,8 @@
   "contentRef": "country/japan",
   "stateRef": "country/japan",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-10T15:50:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-10T15:52:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -42,12 +42,12 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "tokyo-shibuya-crossing",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": ["64b028d0-696f-45cd-8c2f-cc5b1d5f9be4"],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "tokyo-shibuya-crossing",
@@ -64,13 +64,11 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "S01-series1-attempt1-20260910T155000",
-        "asset": "S01",
-        "contentId": "tokyo-shibuya-crossing",
-        "promptSeries": 1,
-        "generationContextEpoch": 1,
-        "reservedAt": "2026-09-10T15:50:00+09:00"
+      "lastRejectedVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "notes": "Generation produced the approved Mount Fuji / Lake Kawaguchi Hero composition again instead of the reserved Tokyo Shibuya Crossing target. This is wrong-target carryover and an effective repeat/restage of a prior Japan asset, so it was automatically rejected under policyId 7.1."
       }
     },
     {
@@ -263,9 +261,9 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH","tasteApproval":"BATCH","autoContinueImageRounds":true,"waitForStateOnlyCI":false,"batchMaterialization":true,"autoPostVisualPipeline":true,"singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
-  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
