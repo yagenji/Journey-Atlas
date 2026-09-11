@@ -4,11 +4,11 @@
   "countryName": "THAILAND",
   "contentRef": "country/thailand",
   "stateRef": "country/thailand",
-  "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-11T22:05:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-11T22:26:30+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": null,
     "contentId": "thailand-hero-wat-arun-chao-phraya-dawn-v1",
     "renderPacket": {
@@ -27,22 +27,43 @@
       "forbidMontage": true,
       "forbidInsetImages": true
     },
-    "candidateGenerationId": "67f10811-37a6-4987-bdf4-9e0b6a3d770b",
-    "candidateVisualQa": {
-      "targetIdentity": "PASS",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS"
-    }
+    "approvedGenerationId": "67f10811-37a6-4987-bdf4-9e0b6a3d770b",
+    "approvedAt": "2026-09-11T22:26:00+09:00"
   },
   "scenes": [
-    {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S04","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S05","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S06","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S07","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S08","state":"NOT_STARTED","asset":null,"contentId":null}
+    {
+      "id":"S01","state":"GENERATING","asset":null,"contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1","identity":"Ayutthaya Historical Park, specifically Wat Chaiwatthanaram: the recognizable central Khmer-style prang and symmetrical surrounding brick prangs/chedis rising from the flat central plain. View from a grounded riverside or open-park perspective with weathered red-brown masonry, low horizon and restrained warm light. No lotus pond, no giant Buddha, no generic Sukhothai ruins. Quiet realistic watercolor travel-atlas rendering, accurate architecture, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true},
+      "generationReservation":{"reservationId":"S01-series1-attempt1","asset":"S01","contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1","promptSeries":1,"generationContextEpoch":1,"reservedAt":"2026-09-11T22:26:30+09:00"}
+    },
+    {
+      "id":"S02","state":"NOT_STARTED","asset":null,"contentId":"thailand-s02-doi-luang-chiang-dao-fields-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s02-doi-luang-chiang-dao-fields-v1","identity":"Doi Luang Chiang Dao in northern Thailand: the distinctive steep grey limestone massif rising abruptly above green foothill rice fields and rural agricultural land near Chiang Dao. Mountain identity is the subject; no sea, no temples, no giant Buddha, no terraced fantasy landscape. Soft early-morning haze, subdued greens and stone greys, quiet realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S03","state":"NOT_STARTED","asset":null,"contentId":"thailand-s03-phanom-rung-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s03-phanom-rung-v1","identity":"Phanom Rung Historical Park in Buriram: the recognizable Khmer sandstone temple complex on an extinct volcanic ridge, with the long processional axis, naga bridge/stone causeway and main sanctuary visible in a geographically plausible view. Warm sandstone and laterite, dry Isan highland atmosphere, no Angkor Wat imitation, no fantasy towers. Quiet realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S04","state":"NOT_STARTED","asset":null,"contentId":"thailand-s04-sam-phan-bok-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s04-sam-phan-bok-v1","identity":"Sam Phan Bok on the Mekong in Ubon Ratchathani during the dry season: broad exposed sandstone bedrock carved into many natural potholes, basins and channels, with the Mekong waterline and opposite bank visible. The rock-basin geology is the unmistakable subject; no canyon fantasy, no temple, no waterfalls. Dry-season neutral light, realistic quiet watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S05","state":"NOT_STARTED","asset":null,"contentId":"thailand-s05-erawan-waterfall-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s05-erawan-waterfall-v1","identity":"Erawan Waterfall in Kanchanaburi: a recognizable limestone forest waterfall with clear turquoise-blue pools and pale travertine ledges under dense tropical forest. Show one coherent tiered-waterfall scene rather than a generic dramatic cascade; no people as the main subject, no fantasy blue glow. Soft filtered daylight, restrained realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S06","state":"NOT_STARTED","asset":null,"contentId":"thailand-s06-khao-sok-cheow-lan-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s06-khao-sok-cheow-lan-v1","identity":"Cheow Lan Lake in Khao Sok National Park: calm reservoir water surrounded by dense tropical rainforest and steep, forest-covered limestone karst towers rising directly from the lake. Inland lake identity must be clear; no beach, no resort, no ocean horizon. Humid morning atmosphere, subdued emerald and limestone tones, quiet realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S07","state":"NOT_STARTED","asset":null,"contentId":"thailand-s07-phang-nga-bay-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s07-phang-nga-bay-v1","identity":"Phang Nga Bay on Thailand's Andaman coast: shallow green-blue bay water scattered with sheer limestone karst islets and sea stacks, seen from a low or mid-level bay perspective that emphasizes the distinctive drowned-karst geography. A small long-tail boat may appear for scale but no resort beach, no generic tropical island panorama. Quiet overcast-to-soft sunlight, realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    },
+    {
+      "id":"S08","state":"NOT_STARTED","asset":null,"contentId":"thailand-s08-thale-noi-lotus-wetlands-v1",
+      "renderPacket":{"kind":"SCENE","contentId":"thailand-s08-thale-noi-lotus-wetlands-v1","identity":"Thale Noi wetlands in Phatthalung: expansive shallow freshwater wetland covered with natural pink lotus blossoms and green floating leaves, open low horizon, reed beds and distant wetland vegetation under soft early light. The broad southern Thai wetland identity is the subject; no temple, no mountains, no manicured garden pond. Quiet realistic watercolor travel-atlas rendering, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true}
+    }
   ],
   "taste": [
     {"id":"FOOD01","state":"NOT_STARTED","asset":null,"contentId":null},
@@ -68,5 +89,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
 }
