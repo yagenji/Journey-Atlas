@@ -38,7 +38,6 @@ def validate_travel_scale(errors: list[str], filename: str, data: dict[str, Any]
         fail(errors, f"{filename}: travelScale must contain exactly 3 items")
         return
 
-    expected_icons = ["city", "map", "compass"]
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
         if not isinstance(item, dict):
@@ -54,8 +53,8 @@ def validate_travel_scale(errors: list[str], filename: str, data: dict[str, Any]
             fail(errors, f"{owner}.title is required")
         if not body:
             fail(errors, f"{owner}.text is required")
-        if icon != expected_icons[index - 1]:
-            fail(errors, f"{owner}.icon must be {expected_icons[index - 1]!r}")
+        if not icon:
+            fail(errors, f"{owner}.icon is required")
         if "例：" not in body:
             fail(errors, f"{owner}.text must include a concrete example introduced by '例：'")
         else:
