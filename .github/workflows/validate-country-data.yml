@@ -37,6 +37,7 @@ on:
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
       - 'scripts/normalize_country_image_delivery.py'
+      - 'scripts/audit_country_image_delivery_targeted.py'
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
@@ -79,6 +80,7 @@ on:
       - 'scripts/audit_published_countries.py'
       - 'scripts/validate_images.py'
       - 'scripts/normalize_country_image_delivery.py'
+      - 'scripts/audit_country_image_delivery_targeted.py'
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
@@ -141,7 +143,7 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/test_country_editorial_v2.py scripts/country_production_protocol_v2.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/build_cloudflare_validated.py scripts/classify_country_impact.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/test_country_editorial_v2.py scripts/country_production_protocol_v2.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/audit_country_image_delivery_targeted.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/build_cloudflare_validated.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
@@ -156,8 +158,22 @@ jobs:
           python3 scripts/test_country_editorial_v2.py
           python3 scripts/validate_country_editorial_v2.py
 
-      - name: Enforce Country image delivery budget
+      - name: Enforce full Country image delivery budget
+        if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')
         run: python3 scripts/normalize_country_image_delivery.py --audit
+
+      - name: Enforce targeted Country image delivery budget
+        if: steps.impact.outputs.production_changed == 'true' && steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all' && steps.impact.outputs.publication_metadata_only != 'true'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            python3 scripts/audit_country_image_delivery_targeted.py --slug "$slug"
+          done
 
       - name: Validate published renewal registry
         run: python3 scripts/audit_published_countries.py
