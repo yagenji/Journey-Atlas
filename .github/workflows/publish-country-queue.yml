@@ -70,6 +70,7 @@ jobs:
 
           preview = state.get("reviewPreview") or {}
           publication = state.get("publication") or {}
+          review_deployment = state.get("reviewDeployment") or {}
           ready = all([
               state.get("phase") == "COMPLETE",
               state.get("stateRef") == "main",
@@ -78,6 +79,8 @@ jobs:
               (state.get("finalApproval") or {}).get("state") == "APPROVED",
               preview.get("state") == "DONE",
               preview.get("browserQa") == "PASS",
+              review_deployment.get("state") == "DONE",
+              review_deployment.get("url") == f"https://atlas.yagenji.com/countries/{slug}/",
               publication.get("state") == "PUBLISHED",
               publication.get("atlasPublished") is True,
               registry_published,
@@ -118,15 +121,25 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          fetch_queue_refs() {
+            git fetch --no-tags origin \
+              "+refs/heads/main:refs/remotes/origin/main" \
+              "+refs/heads/$HEAD_REF:refs/remotes/origin/$HEAD_REF"
+          }
+
+          fetch_main_ref() {
+            git fetch --no-tags origin "+refs/heads/main:refs/remotes/origin/main"
+          }
+
           for cycle in $(seq 1 5); do
             echo "Publication queue cycle $cycle"
-            git fetch origin main "$HEAD_REF"
+            fetch_queue_refs
             git checkout -B "$HEAD_REF" "origin/$HEAD_REF"
 
             if ! git merge-base --is-ancestor origin/main HEAD; then
               echo "Synchronizing latest main into $HEAD_REF before required checks."
               git merge --no-edit origin/main
-              git push origin "HEAD:$HEAD_REF"
+              git push origin "HEAD:refs/heads/$HEAD_REF"
             fi
 
             sha="$(git rev-parse HEAD)"
@@ -151,14 +164,20 @@ jobs:
           import sys
 
           payload = json.load(open(sys.argv[1], encoding="utf-8"))
-          required = [run for run in payload.get("check_runs", []) if run.get("name") in {"validate", "browser-qa"}]
-          names = {run.get("name") for run in required if run.get("status") == "completed" and run.get("conclusion") in {"success", "neutral", "skipped"}}
+          required_names = {"validate", "browser-qa"}
+          required = [run for run in payload.get("check_runs", []) if run.get("name") in required_names]
+          success = {
+              run.get("name")
+              for run in required
+              if run.get("status") == "completed"
+              and run.get("conclusion") in {"success", "neutral", "skipped"}
+          }
           failed = any(
               run.get("status") == "completed"
               and run.get("conclusion") not in {"success", "neutral", "skipped"}
               for run in required
           )
-          ready = {"validate", "browser-qa"}.issubset(names) and not failed
+          ready = required_names.issubset(success) and not failed
           print(str(ready).lower(), str(failed).lower())
           PY
               )"
@@ -169,7 +188,7 @@ jobs:
               fi
 
               if [ "$checks_ready" = "true" ]; then
-                git fetch origin main
+                fetch_main_ref
                 if ! git merge-base --is-ancestor origin/main "$sha"; then
                   echo "main advanced while checks ran; restarting with the new base."
                   continue 2
