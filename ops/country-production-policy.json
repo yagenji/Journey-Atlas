@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 2,
-  "updatedAt": "2026-09-11T21:05:00+09:00",
+  "policyPatch": 3,
+  "updatedAt": "2026-09-12T00:30:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -13,10 +13,14 @@
     "canonicalPageApproval": "INDIVIDUAL",
     "userPromptBetweenSceneTargets": "FORBIDDEN",
     "userPromptBetweenTasteTargets": "FORBIDDEN",
+    "userContinuationNudgeBetweenImageTargets": "FORBIDDEN",
     "runtimeBoundaryCreatesApprovalGate": false,
+    "runtimeForcedBoundaryMustResumeWithoutApproval": true,
     "roundIntentPersistsAcrossTurnBoundary": true,
     "resumeBehaviorDuringActiveRound": "CONTINUE_TO_BATCH_BOUNDARY",
-    "perImageApproveProceedGeneratePrompt": "FORBIDDEN"
+    "perImageApproveProceedGeneratePrompt": "FORBIDDEN",
+    "tasteInitialFailureHandling": "PARK_FAILED_TARGET_AND_FINISH_FIRST_PASS_BEFORE_BATCH_REVIEW",
+    "tasteRegenStart": "ONLY_AFTER_BATCH_REVIEW_BOUNDARY"
   },
   "assetDelivery": {
     "mode": "USER_HANDOFF",
@@ -93,6 +97,8 @@
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,
+    "userContinuationNudgesTarget": 0,
+    "measureRuntimeForcedImageTurnBoundaries": true,
     "sceneBatchUserReviewCountTarget": 1,
     "tasteBatchUserReviewCountTarget": 1,
     "assetHandoffCountTarget": 1,

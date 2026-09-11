@@ -10,12 +10,14 @@ on:
       - 'ops/image-generation-policy.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_state_v7.py'
+      - 'scripts/image_policy_v72.py'
       - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
       - 'WORKFLOW.md'
       - 'docs/COUNTRY_PRODUCTION_STATE.md'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/IMAGE_POLICY_REVISION_7_1.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_2.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
@@ -25,12 +27,14 @@ on:
       - 'ops/image-generation-policy.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_state_v7.py'
+      - 'scripts/image_policy_v72.py'
       - 'scripts/test_image_policy_v7.py'
       - '.github/workflows/validate-image-policy-v7.yml'
       - 'WORKFLOW.md'
       - 'docs/COUNTRY_PRODUCTION_STATE.md'
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/IMAGE_POLICY_REVISION_7_1.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_2.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
@@ -48,16 +52,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate pushed revision 7 transition range
+      - name: Validate pushed revision 7 and 7.2 transition range
         if: github.event.before != '0000000000000000000000000000000000000000'
         env:
           BASE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
-        run: python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+        run: |
+          python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+          python3 scripts/image_policy_v72.py validate-range "$BASE_SHA" "$HEAD_SHA"
 
       - name: Validate current state on first branch push
         if: github.event.before == '0000000000000000000000000000000000000000'
-        run: python3 scripts/country_production_state_v7.py validate
+        run: |
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/image_policy_v72.py validate
 
   full-validation:
     if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
@@ -70,23 +78,34 @@ jobs:
 
       - name: Compile validators
         run: |
-          python3 -m py_compile scripts/country_production_state.py scripts/country_production_state_v7.py scripts/test_image_policy_v7.py
+          python3 -m py_compile \
+            scripts/country_production_state.py \
+            scripts/country_production_state_v7.py \
+            scripts/image_policy_v72.py \
+            scripts/test_image_policy_v7.py
 
       - name: Revision 7 initializer self-test
         run: python3 scripts/country_production_state_v7.py self-test
 
-      - name: Revision 7 batch-approval and throughput regression tests
+      - name: Revision 7.2 policy self-test
+        run: python3 scripts/image_policy_v72.py self-test
+
+      - name: Revision 7.2 batch, Taste and retry regression tests
         run: python3 scripts/test_image_policy_v7.py
 
-      - name: Validate current revision 7 state
-        run: python3 scripts/country_production_state_v7.py validate
+      - name: Validate current revision 7 and 7.2 state
+        run: |
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/image_policy_v72.py validate
 
       - name: Validate every state transition in pushed range
         if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
         env:
           BASE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
-        run: python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+        run: |
+          python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+          python3 scripts/image_policy_v72.py validate-range "$BASE_SHA" "$HEAD_SHA"
 
       - name: Validate every state transition in pull request
         if: github.event_name == 'pull_request'
@@ -100,3 +119,4 @@ jobs:
           git fetch origin "$BASE_REF"
           BASE_SHA="$(git merge-base "$HEAD_SHA" "origin/$BASE_REF")"
           python3 scripts/country_production_state_v7.py validate-range "$BASE_SHA" "$HEAD_SHA"
+          python3 scripts/image_policy_v72.py validate-range "$BASE_SHA" "$HEAD_SHA"
