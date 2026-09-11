@@ -5,11 +5,11 @@
   "contentRef": "country/brunei",
   "stateRef": "country/brunei",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-11T21:43:52+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-11T21:45:25+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": "assets/images/brunei/approved/hero-kampong-ayer-brunei-river.webp",
     "contentId": "kampong-ayer-brunei-river",
     "promptSeries": 1,
@@ -31,13 +31,11 @@
       "forbidInsetImages": true,
       "singleSceneOnly": true
     },
-    "generationReservation": {
-      "reservationId": "30954d21-5ad1-4e32-982e-8778e9fbd314",
-      "asset": "HERO",
-      "contentId": "kampong-ayer-brunei-river",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-11T21:43:52+09:00"
+    "candidateGenerationId": "b4d006cf-157c-47ce-880a-a50b42e4fe47",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
     }
   },
   "scenes": [
@@ -56,11 +54,7 @@
     {"id":"FOOD03","state":"NOT_STARTED","asset":"assets/images/brunei/approved/kelupis.webp","contentId":"kelupis"},
     {"id":"FOOD04","state":"NOT_STARTED","asset":"assets/images/brunei/approved/penyaram.webp","contentId":"penyaram"}
   ],
-  "map": {
-    "state": "APPROVED",
-    "asset": "assets/images/brunei/map-atlas-v1.svg",
-    "qa": {"canvas":"1200x760","projection":"local-equirectangular-fit-v1","geometry":"PASS","sceneCoordinates":"PASS","labelCollision":"PASS","styleBaseline":"Iceland/Norway map language","approvedAt":"2026-09-11T21:43:00+09:00"}
-  },
+  "map": {"state":"APPROVED","asset":"assets/images/brunei/map-atlas-v1.svg","qa":{"canvas":"1200x760","projection":"local-equirectangular-fit-v1","geometry":"PASS","sceneCoordinates":"PASS","labelCollision":"PASS","styleBaseline":"Iceland/Norway map language","approvedAt":"2026-09-11T21:43:00+09:00"}},
   "implementation": {"state":"NOT_STARTED"},
   "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
@@ -77,6 +71,6 @@
   "preVisualBuild": {"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
-  "productionMetrics": {"perImageApprovalPrompts":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "productionMetrics": {"perImageApprovalPrompts":1,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
+  "next": {"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
