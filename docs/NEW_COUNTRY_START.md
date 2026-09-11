@@ -93,18 +93,32 @@ Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユ�
 1. 13画像Batch verification
 2. 必要な一括変換・dimensions/path/hygiene QA
 3. Country JSONとのpath一致確認
-4. strict validation
-5. Review Packageを1回だけmainへ統合
+4. target Countryだけstrict validation
+5. target CountryだけPreview Build
 6. targeted Desktop / Tablet / Mobile Browser QAを1回
-7. canonical URL提示
+7. `country/{slug}` からGitHub Pages review previewを1回だけdeploy
+8. review URLを提示し、最終ページ承認を求める
+9. 最終承認後にだけterminal publication PRを作り、mainへ1回だけ統合
+10. production deploy後、対象国だけproduction verification
 
-Blocking defectがない限り、途中で進行確認を求めたり、複数のReview integration / Browser QA cycleを作らないでください。
+**Final Country Page review前にReview Packageをmainへ統合してはいけません。**
+Protocol 2では、target QA後もlegacy `REVIEW` phaseへ移らず `phase: QA` のまま `reviewPreview` を使います。
+`contentRef/stateRef: country/{slug}` を維持し、mainは最終ページ承認後の一度だけ使用します。
+
+通常のCountry-only reviewで以下を実行してはいけません。
+- 全reviewable Country validation
+- 全published image audit / hard gate
+- 全Country static build/package
+- 全published Country Browser QA
+- ユーザー最終承認前のCloudflare production build
+
+Blocking defectがない限り、途中で進行確認を求めたり、複数のReview deployment / Browser QA cycleを作らないでください。
 
 通常のユーザー承認ゲートは以下のみです。
 1. Hero
 2. 8-Scene Batch
 3. 4-Taste Batch
-4. Canonical Country Page / Publish
+4. Final Country Page / Publish
 
 画像handoffは承認ゲートではありません。
 

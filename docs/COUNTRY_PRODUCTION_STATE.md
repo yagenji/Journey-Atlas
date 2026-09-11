@@ -1,6 +1,6 @@
 # COUNTRY PRODUCTION STATE — OPERATING CONTRACT
 
-Updated: 2026-09-10
+Updated: 2026-09-11
 Current image policy: Revision 7 / policyId 7.1
 
 ## Purpose
@@ -18,7 +18,7 @@ Image-generation rules live only in:
 Revision 7 rules are explained in `docs/IMAGE_POLICY_REVISION_7.md`.
 Revision 7.1 throughput rules are explained in `docs/IMAGE_POLICY_REVISION_7_1.md`.
 
-When this document conflicts with the current main image policy or its revision guide, the current main policy/revision guide wins.
+When this document conflicts with the current main image policy or its revision guide, the current main policy/revision guide wins. New-Country stage timing and pre-main review behavior are additionally governed by `ops/country-production-policy.json` and `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`.
 
 ## Authority and reference
 
@@ -27,10 +27,12 @@ During active production:
 - `contentRef: country/{slug}`
 - `stateRef: country/{slug}`
 
-From REVIEW onward:
+From legacy `REVIEW` onward:
 
 - `contentRef: main`
 - `stateRef: main`
+
+**Protocol 2 pre-main review does not enter legacy `REVIEW`.** After target QA passes, a new Country remains `phase: QA`, keeps `contentRef/stateRef: country/{slug}`, and uses `reviewPreview` as the final-page review gate. Only the terminal publication integration moves authority to `main`.
 
 One Country has one State file. Parallel Country chats must not edit a shared cursor record.
 
@@ -40,7 +42,7 @@ At the start of a new assistant turn that will act on Country production:
 
 1. read `ops/image-generation-policy.json` from `main`;
 2. resolve the authoritative Country State from `stateRef`;
-3. read `next.action / next.asset`;
+3. read the applicable Protocol 2 NEXT / `next.action / next.asset`;
 4. execute the deterministic next action.
 
 Do not infer NEXT from chat history when State exists.
@@ -88,6 +90,8 @@ Allowed phases:
 - `COMPLETE`
 
 The phase answers only: **what may happen next?**
+
+Protocol 2 adds `reviewPreview` as a sub-state under the existing `QA` phase; it does not add a new legacy phase value.
 
 ## Asset states
 
@@ -315,7 +319,7 @@ Normal production has four user-facing gates:
 1. Hero approval
 2. 8-Scene batch review
 3. 4-Taste batch review
-4. Canonical Country page review / publication approval
+4. Final Country page review / publication approval
 
 If a Scene/Taste regeneration round is needed, its affected targets are regenerated consecutively and reviewed once at that round boundary.
 
@@ -360,63 +364,67 @@ The machine gate checks path reuse, normalized identical pixels, and conservativ
 
 This final gate supplements, not replaces, live all-prior QA during generation.
 
-## Batch materialization
+## Batch materialization / USER_HANDOFF
 
-Do not recover / convert / resize / rename / commit each generated image separately during the generation round.
+Protocol 2 does not recover / convert / resize / rename / commit each generated image separately during the generation round.
 
-After Scene batch approval:
+After all Hero + Scene + Taste visuals are approved:
 
-- materialize approved Scene assets together;
-- convert/resize together;
-- place into final Country folder together;
-- verify together.
+- create one 13-image handoff manifest;
+- the user stores the approved rasters at the declared repository paths in one batch;
+- verify the 13 repository assets once;
+- run target-only dimensions/path/hygiene and duplicate checks once.
 
-Do the same after Taste batch approval.
+Do not alternate between assistant materialization and user handoff.
 
-## Post-visual auto pipeline
+## Post-visual auto pipeline — Protocol 2
 
-After Hero + Scenes + Taste are approved, normally no user input is needed until canonical-page review.
+After Hero + Scenes + Taste are approved and the 13-image USER_HANDOFF is verified, normally no user input is needed until final Country-page review.
 
-Auto-chain:
+Auto-chain on `country/{slug}`:
 
-1. batch materialize approved visual assets;
-2. decode / dimensions / path / hygiene QA;
-3. build and QA Map;
-4. implement Country JSON and taxonomy;
-5. normalize `region` from `data/region-taxonomy.json` + final map bounds with `python3 scripts/normalize_country_region_labels.py`;
-6. require `python3 scripts/audit_country_region_labels.py` to pass;
-7. run source/data validation;
-8. prepare one Review Package integration;
-9. integrate to `main` once for review deployment;
-10. run targeted Desktop / Tablet / Mobile QA for that Country;
-11. write `phase: REVIEW`;
-12. present the canonical URL.
+1. verify the 13 approved assets once;
+2. run target-only decode / dimensions / path / hygiene QA;
+3. confirm the pre-visual Map/content/taxonomy remain valid;
+4. run target-only source/data validation;
+5. build one targeted Country preview package;
+6. run one targeted Desktop / Tablet / Mobile Browser QA cycle;
+7. deploy the targeted package to the shared GitHub Pages review surface;
+8. write `reviewPreview.state = DONE`, `reviewPreview.browserQa = PASS`, and the actual review URL;
+9. remain `phase: QA` with `contentRef/stateRef: country/{slug}`;
+10. present the final Country-page review URL.
 
-The Region implementation gate is mandatory for every new Country: `region` must use the taxonomy label for the destination ISO2 and the final `{TAXONOMY LABEL} / {integer latitude}°N|S` format. Country-specific geographic nicknames or sea/continental suffixes are not allowed in this field.
+Do **not** integrate to `main`, run a Cloudflare production build, rebuild unrelated Countries, or enter legacy `REVIEW` before explicit final page approval.
+
+The Region implementation gate remains mandatory for every new Country: `region` must use the taxonomy label for the destination ISO2 and the final `{TAXONOMY LABEL} / {integer latitude}°N|S` format. Country-specific geographic nicknames or sea/continental suffixes are not allowed in this field.
 
 Do not pause merely to report intermediate progress.
 
 ## Review / publication
 
-`REVIEW` means:
+Legacy `REVIEW` still means:
 
 - all required visual assets approved;
 - implementation complete;
 - QA passed;
-- canonical review deployment exists;
+- canonical production review deployment exists;
 - `atlasPublished:false`;
 - `stateRef: main` / `contentRef: main`.
 
+Protocol 2 new Countries normally do not use this legacy pre-publication representation. Their pre-main final-page review remains `phase: QA` plus `reviewPreview` on `country/{slug}`.
+
 After explicit page-level publication approval, do not create a separate State-only PUBLISH PR.
 
-Use one terminal publication PR that sets together:
+Use one terminal publication PR that sets together as appropriate for the completed Country:
 
 - `finalApproval.state = APPROVED`;
+- `contentRef = main` / `stateRef = main`;
 - `phase = COMPLETE`;
 - `publication.state = PUBLISHED`;
 - `publication.atlasPublished = true`;
 - `qa.productionState = CI_GATED` or supported PASS legacy value;
 - `publication.productionVerification = CI_GATED` or supported PASS legacy value;
+- legacy `reviewDeployment` fields required by the COMPLETE validator;
 - renewal status production marker;
 - `next.action = NONE`.
 
@@ -424,13 +432,16 @@ After merge, Cloudflare Production verification is the authoritative external pr
 
 ## Main integration rule
 
-Normal main integration count:
+Normal Protocol 2 main integration count:
 
 - active per-image State cursor writes: **zero main integrations**;
-- review package: **one main integration**;
+- targeted pre-main review deployment: **zero main integrations**;
+- pre-final-approval Review Package: **zero main integrations**;
 - State-only publication approval: **zero integrations**;
 - formal publication after user approval: **one final main integration**;
 - post-publication State normalization: **zero integrations**.
+
+The one real production integration is allowed to trigger the normal full production package/deploy once. Production verification remains targeted to the affected Country unless shared rendering code changed.
 
 Do not create derivative publish / QA / state-only branches for normal Country production.
 
@@ -454,25 +465,31 @@ Reusable lessons from production incidents belong in global production specifica
 
 ## Commands
 
-For Revision 7 active production:
+For Revision 7 active image production:
 
-Validate:
+Validate image-policy State:
 
 `python3 scripts/country_production_state_v7.py validate`
 
+For Protocol 2 new-Country stage decisions:
+
 Show NEXT:
 
-`python3 scripts/country_production_state_v7.py next {slug}`
+`python3 scripts/country_production_protocol_v2.py next {slug}`
 
 Initialize a new Country:
 
-`python3 scripts/country_production_state_v7.py init {slug}`
+`python3 scripts/country_production_protocol_v2.py init {slug}`
 
-Validate a commit range:
+Validate Protocol 2:
+
+`python3 scripts/country_production_protocol_v2.py validate`
+
+Validate a Revision 7 commit range:
 
 `python3 scripts/country_production_state_v7.py validate-range {base} {head}`
 
-The legacy `scripts/country_production_state.py` remains available for compatibility with older completed State records, but must not be used to initialize a new active Revision 7 Country.
+The legacy `scripts/country_production_state.py` remains available for compatibility with older completed State records, but must not be used to initialize a new active Revision 7 / Protocol 2 Country.
 
 ## Canonical new-Country start
 

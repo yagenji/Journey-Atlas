@@ -7,12 +7,21 @@ on:
     paths:
       - ".github/preview-trigger/**"
   workflow_dispatch:
+    inputs:
+      slug:
+        description: "Country slug. Leave empty to derive from country/<slug> branch."
+        required: false
+        type: string
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# GitHub Pages is one shared deployment surface for this repository. Keep the
+# shared queue serialized to prevent one Country preview from racing another
+# and overwriting an in-flight deployment. The targeted build below makes each
+# queued preview short instead of paying an all-Country build cost.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -23,6 +32,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,91 +42,160 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install image QA dependency
-        run: python -m pip install --disable-pip-version-check --quiet pillow
-
-      - name: Validate source syntax
-        run: |
-          python -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/validate_lens_slugs.py scripts/new_country.py scripts/package_site.py scripts/build_cloudflare.py
-          node --check assets/js/app.js
-          node --check assets/js/top.js
-
-      - name: Enforce Country image delivery budget
-        run: python scripts/normalize_country_image_delivery.py --audit
-
-      - name: Validate published renewal registry
-        run: python scripts/audit_published_countries.py
-
-      - name: Enforce renewed Country image hard gate
-        run: python scripts/validate_images.py --mode hard
-
-      - name: Build clean production package
+      - name: Resolve target Country
+        id: target
+        shell: bash
         env:
-          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
-        run: python scripts/build_cloudflare.py
-
-      - name: Validate packaged output
+          INPUT_SLUG: ${{ inputs.slug }}
         run: |
-          test -f dist/index.html
-          test -f dist/404.html
-          test -f dist/_redirects
-          test -f dist/_headers
-          test -f dist/sitemap.xml
-          test -f dist/robots.txt
-          test -f dist/assets/css/country.css
-          test -f dist/assets/js/app.js
-          if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then
-            echo 'encoded source files leaked into dist'
+          set -euo pipefail
+          slug="${INPUT_SLUG:-}"
+          if [ -z "$slug" ]; then
+            slug="${GITHUB_REF_NAME#country/}"
+            slug="${slug%-renewal}"
+          fi
+          if [ -z "$slug" ] || [ ! -f "data/countries/$slug.json" ]; then
+            echo "Unable to resolve Country slug from ref=$GITHUB_REF_NAME input=${INPUT_SLUG:-<empty>}" >&2
             exit 1
           fi
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
 
-      - name: Browser smoke current Country
-        run: |
-          slug="${GITHUB_REF_NAME#country/}"
-          slug="${slug%-renewal}"
-          test -f "dist/countries/${slug}/index.html"
-          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          if [ -z "$browser" ]; then
-            echo "No Chromium-compatible browser found on runner"
-            exit 1
-          fi
-          python -m http.server 4173 --directory dist >/tmp/journey-atlas-preview-http.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-          sleep 1
-          "$browser" --headless --no-sandbox --disable-gpu --virtual-time-budget=8000             --dump-dom "http://127.0.0.1:4173/countries/${slug}/" > "/tmp/${slug}-dom.html"
-          python - "$slug" <<'PY'
-          import re
+          qa_scope="$(python3 - "$slug" <<'PY'
+          import json
           import sys
           from pathlib import Path
 
           slug = sys.argv[1]
-          dom = Path(f"/tmp/{slug}-dom.html").read_text(encoding="utf-8")
-          section = re.search(r'<section class="taste-section" id="taste-section"([^>]*)>', dom)
-          if not section:
-              raise SystemExit(f"{slug}: Taste section missing from rendered DOM")
-          if "hidden" in section.group(1):
-              raise SystemExit(f"{slug}: Taste section remains hidden after runtime render")
-
-          cards = len(re.findall(r'class="taste-card(?:\s|"|$)', dom))
-          images = len(re.findall(r'class="taste-card__img"', dom))
-          if cards != 4 or images != 4:
-              raise SystemExit(f"{slug}: expected 4 Taste cards/images, got cards={cards}, images={images}")
-          if "taste-card--image-error" in dom:
-              raise SystemExit(f"{slug}: at least one Taste image emitted a browser load error")
-          if "food-" not in dom:
-              raise SystemExit(f"{slug}: rendered Taste images have no food asset URL")
-          print(f"{slug}: browser Taste smoke PASS ({cards} cards / {images} images)")
+          published = False
+          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+              path = Path("data") / name
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              for row in payload.get("destinations", []):
+                  if row.get("slug") == slug:
+                      published = bool(row.get("atlasPublished"))
+                      break
+          print("published" if published else "unpublished-reviewable")
           PY
+          )"
+          echo "qa_scope=$qa_scope" >> "$GITHUB_OUTPUT"
+          echo "Target Country: $slug ($qa_scope)"
+
+      - name: Install targeted QA dependencies
+        run: python -m pip install --disable-pip-version-check --quiet pillow selenium
+
+      - name: Validate source syntax
+        run: |
+          python -m py_compile \
+            scripts/build_site.py \
+            scripts/build_country_preview_targeted.py \
+            scripts/validate_country.py \
+            scripts/validate_country_editorial_v2.py \
+            scripts/validate_images.py \
+            scripts/audit_country_image_delivery_targeted.py \
+            scripts/qa_published_browser.py
+          node --check assets/js/app.js
+
+      - name: Validate target Country only
+        shell: bash
+        env:
+          SLUG: ${{ steps.target.outputs.slug }}
+        run: |
+          set -euo pipefail
+          python scripts/validate_country_editorial_v2.py "data/countries/$SLUG.json"
+          python scripts/validate_country.py --strict "data/countries/$SLUG.json"
+          python scripts/audit_country_image_delivery_targeted.py --slug "$SLUG"
+          python scripts/validate_images.py --mode audit --slug "$SLUG"
+          python scripts/validate_images.py --duplicates-only --slug "$SLUG"
+
+      - name: Build local targeted Country preview
+        env:
+          TARGET_SLUGS: ${{ steps.target.outputs.slug }}
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: python scripts/build_country_preview_targeted.py
+
+      - name: Start local targeted preview
+        run: |
+          python -m http.server 4173 --directory dist >/tmp/journey-atlas-country-preview.log 2>&1 &
+          echo $! > /tmp/journey-atlas-country-preview.pid
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/journey-atlas-country-preview.log || true
+          exit 1
+
+      - name: Run target Desktop Tablet Mobile Browser QA
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-country-preview-output
+          QA_SCOPE: ${{ steps.target.outputs.qa_scope }}
+          QA_SLUGS: ${{ steps.target.outputs.slug }}
+        run: python scripts/qa_published_browser.py
+
+      - name: Stop local targeted preview
+        if: always()
+        run: |
+          if [ -f /tmp/journey-atlas-country-preview.pid ]; then
+            kill "$(cat /tmp/journey-atlas-country-preview.pid)" 2>/dev/null || true
+          fi
+
+      # Rebuild only the same target Country with production canonical metadata.
+      # This remains a targeted sub-second package build; it does not regenerate
+      # or validate unrelated Country pages.
+      - name: Build deployable targeted Country preview
+        env:
+          TARGET_SLUGS: ${{ steps.target.outputs.slug }}
+          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+        run: python scripts/build_country_preview_targeted.py
+
+      - name: Validate targeted packaged output
+        shell: bash
+        env:
+          SLUG: ${{ steps.target.outputs.slug }}
+        run: |
+          set -euo pipefail
+          test -f "dist/countries/$SLUG/index.html"
+          test -f "dist/data/countries/$SLUG.json"
+          test -f dist/assets/css/country.css
+          test -f dist/assets/js/app.js
+          test -f dist/preview-build-meta.json
+          test "$(find dist/data/countries -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')" = "1"
+          test "$(find dist/countries -mindepth 2 -maxdepth 2 -type f -name 'index.html' | wc -l | tr -d ' ')" = "1"
+          if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then
+            echo 'encoded source files leaked into targeted preview'
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload clean site
+      - name: Upload targeted Country preview
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy targeted Country preview
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Report Country review URL
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          SLUG: ${{ steps.target.outputs.slug }}
+        run: |
+          review_url="${PAGE_URL%/}/countries/$SLUG/"
+          echo "## Country review preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "$review_url" >> "$GITHUB_STEP_SUMMARY"
+          echo "Review URL: $review_url"
+
+      - name: Upload targeted Browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: country-preview-browser-qa-${{ steps.target.outputs.slug }}
+          path: qa-country-preview-output/
+          if-no-files-found: warn
+          retention-days: 3

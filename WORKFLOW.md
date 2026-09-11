@@ -190,7 +190,9 @@ Parallel Country production uses the operational state machine in `docs/COUNTRY_
 
 Authoritative progress state:
 
-`ops/country-production/{slug}.json`, resolved by `stateRef`: `country/{slug}` during active production and `main` from REVIEW onward.
+`ops/country-production/{slug}.json`, resolved by `stateRef`: `country/{slug}` during active production and `main` from legacy `REVIEW` onward.
+
+**Protocol 2 exception:** a new Country does not enter legacy `REVIEW` merely to obtain a final-page preview. After target QA passes it remains `phase: QA` with `contentRef/stateRef: country/{slug}` and uses `reviewPreview` as the pre-main final-page review gate. `main` becomes authoritative only after explicit final page approval and the terminal publication integration.
 
 Authoritative image-generation policy:
 
@@ -222,7 +224,8 @@ Important:
 - during initial Scene/Taste rounds, finish later `NOT_STARTED` assets before retrying `REGENERATE` assets;
 - APPROVED assets never move backward unless the user explicitly requests regeneration;
 - published/complete Countries have `phase: COMPLETE` and `next.action: NONE`;
-- review-deployed unpublished Countries have `phase: REVIEW` and must not fall back into image generation;
+- legacy review-deployed unpublished Countries may have `phase: REVIEW` on `main`;
+- Protocol 2 pre-main final-page review remains `phase: QA` with a completed `reviewPreview` on `country/{slug}`;
 - a successful per-image State write does not require waiting for CI before continuing to the next different target.
 
 For Revision 7 state operations use:
@@ -232,6 +235,10 @@ For Revision 7 state operations use:
 and:
 
 `python3 scripts/country_production_state_v7.py validate`
+
+For Protocol 2 stage decisions use:
+
+`python3 scripts/country_production_protocol_v2.py next {slug}`
 
 Legacy states may still be inspected with `scripts/country_production_state.py` where appropriate.
 
@@ -253,7 +260,8 @@ Publication rule:
 - Publishing one Country must not trigger all-Country browser regression unless shared rendering code changed in the same change.
 - Final production verification for a Country-only publish is the affected Country at Desktop / Tablet / Mobile plus production route/payload checks.
 - All-Country regression is reserved for shared Country-system changes.
-- GitHub Pages is a manual preview utility and is not part of the normal formal-publication critical path.
+- For Protocol 2 new Countries, GitHub Pages is the normal **non-production pre-main review surface**. It must use the targeted Country preview package and must not trigger a production Cloudflare build.
+- The shared GitHub Pages deployment queue remains serialized to prevent Country preview overwrite races; each deployment is kept short by building only the target Country.
 - Production State updates do not trigger the heavy Country data/image/build validation; they use lightweight production-state transition validation.
 
 This is a productivity rule, not a relaxation of Definition of Done. The affected surface still requires actual-page verification.
@@ -282,8 +290,9 @@ Non-negotiable principles:
 - production image calls are fresh independent text-to-image generations; the previous output is never used as the edit/reference source;
 - intermediate State writes do not trigger deployment and do not require CI waiting;
 - country-branch image-policy CI is transition-only; full regression remains on PR/main;
-- Review Package is integrated to production once when ready for canonical-URL review;
-- after canonical review approval, do not create a State-only approval PR; create the one terminal publication PR directly.
+- after images are verified, deploy one **targeted Country review preview from `country/{slug}`**; do not integrate to `main` to create the review URL;
+- after final Country-page approval, create the one terminal publication PR directly and integrate to production once;
+- do not create a State-only approval PR or a pre-approval production deployment.
 
 ---
 
