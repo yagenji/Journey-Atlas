@@ -47,7 +47,18 @@ def blank_scene(index: int, slug: str) -> dict:
         "mapLabel": "",
         "description": "",
         "coordinates": {"latitude": None, "longitude": None},
-        "image": f"assets/images/{slug}/scene-{index}.webp",
+        "image": f"assets/images/{slug}/approved/scene-{index}.webp",
+    }
+
+
+def blank_taste(index: int, slug: str) -> dict:
+    return {
+        "id": f"food-{index}",
+        "name": "",
+        "nameLocal": "",
+        "text": "",
+        "image": f"assets/images/{slug}/approved/food-{index}.webp",
+        "imageState": "PENDING",
     }
 
 
@@ -122,6 +133,12 @@ def scaffold(destination: dict, region_label: str) -> dict:
             {"topicKey": "", "categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
             for _ in range(5)
         ],
+        "taste": {
+            "kicker": f"TASTE OF {destination.get('nameEn', '').upper()}",
+            "title": "",
+            "intro": "",
+            "items": [blank_taste(index, slug) for index in range(1, 5)],
+        },
         "travelScale": blank_travel_scale(),
         "seasons": [
             {"months": "", "color": "", "text": ""}
@@ -173,6 +190,7 @@ def main() -> int:
     print(f"Created {output.relative_to(ROOT)}")
     print(f"Region taxonomy label locked: {region_label}")
     print("Content QA v2 locked: every Travel Scale item requires '例：'; moderate forest-share Signature Facts are prohibited.")
+    print("Hero / Scene / Taste final approved-path placeholders are present so the page can be prebuilt before image generation.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
     print("Before Hero production: complete editorial content + Map and run python3 scripts/validate_country_editorial_v2.py <country-json>.")
     return 0
