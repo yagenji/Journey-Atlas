@@ -5,10 +5,10 @@
   "contentRef": "country/thailand",
   "stateRef": "country/thailand",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-11T22:03:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-11T22:05:00+09:00",
   "hero": {
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": null,
     "contentId": "thailand-hero-wat-arun-chao-phraya-dawn-v1",
     "renderPacket": {
@@ -27,11 +27,11 @@
       "forbidMontage": true,
       "forbidInsetImages": true
     },
-    "generationReservation": {
-      "asset": "HERO",
-      "contentId": "thailand-hero-wat-arun-chao-phraya-dawn-v1",
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-11T22:03:00+09:00"
+    "candidateGenerationId": "67f10811-37a6-4987-bdf4-9e0b6a3d770b",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
     }
   },
   "scenes": [
@@ -68,5 +68,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next": {"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
