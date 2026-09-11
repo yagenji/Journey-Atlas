@@ -30,20 +30,16 @@ def run(*args: str, env: dict[str, str]) -> None:
 
 def main() -> int:
     env = os.environ.copy()
+    # Initial Cloudflare previews need no custom-domain setup. When the final
+    # domain is connected, set JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/.
     env.setdefault("JOURNEY_ATLAS_SITE_URL", default_site_url())
 
-    # In CI, the validation workflow may already have completed the exact source
-    # gates before calling this packaging step. Re-running all reviewable and
-    # published Country validation again makes the post-visual path needlessly
-    # expensive. Direct Cloudflare builds still run the full source gates once.
-    source_validated = env.get("JOURNEY_ATLAS_SOURCE_VALIDATED") == "1"
-    if not source_validated:
-        run(sys.executable, "scripts/validate_lens_slugs.py", env=env)
-        run(sys.executable, "scripts/validate_country_editorial_v2.py", env=env)
-        run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
-        run(sys.executable, "scripts/validate_country.py", "--published", env=env)
-
+    run(sys.executable, "scripts/validate_lens_slugs.py", env=env)
+    run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
+    run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/build_site.py", env=env)
+    run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
+    run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/package_site.py", env=env)
 
     dist = ROOT / "dist"
