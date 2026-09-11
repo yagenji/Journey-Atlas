@@ -4,9 +4,9 @@
   "countryName": "INDONESIA",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 34,
-  "updatedAt": "2026-09-11T18:30:41+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 35,
+  "updatedAt": "2026-09-11T18:41:08+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/indonesia/approved/hero-borobudur-upper-terraces.webp",
@@ -57,7 +57,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "CI_GATED",
     "sourceCommit": "8841a38fdb63a4a107d2a3451d5b2439ad8c03e5",
     "validateRunId": 34583091232,
     "browserQaRunId": 34583091233,
@@ -76,8 +76,22 @@
     "linkedFromRegistry": false,
     "verifiedAt": "2026-09-11T18:30:41+09:00"
   },
-  "finalApproval": {"state":"PENDING"},
-  "publication": {"state":"DRAFT","atlasPublished":false},
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-11T18:41:08+09:00",
+    "basis": "User instruction: QAして問題なければ公開して. Latest Indonesia review package passed strict Country validation, production-state validation, Cloudflare review runtime verification, Travel Themes visibility, Iceland/Norway map baseline alignment, and Desktop / Tablet / Mobile Browser QA with zero blocking failures after the final Theme / Map correction."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-11T18:41:08+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/indonesia/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "note": "Registry publication and terminal Production State are committed atomically. Publication CI must validate the published build, discovery link, indexability, sitemap inclusion and production route; post-merge Cloudflare production verification is authoritative."
+  },
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH","tasteApproval":"BATCH","autoContinueImageRounds":true,"waitForStateOnlyCI":false,"batchMaterialization":true,"autoPostVisualPipeline":true,"singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "generationContext": {"state":"CLEAN","epoch":6,"lastResetAt":"2026-09-11T12:49:47+09:00","lastFailureAsset":null,"lastFailureReason":null},
@@ -98,5 +112,5 @@
     "repositoryMaterialization": {"state":"PASS","approvedFolderExists":true,"materializedRasterCount":13,"byteForByteGitBlobMatch":"PASS","verifiedBranch":"main"},
     "map": {"asset":"assets/images/indonesia/map-atlas-v1.svg","state":"APPROVED"}
   },
-  "next": {"action":"REVIEW_CANONICAL_URL","asset":null}
+  "next": {"action":"NONE","asset":null}
 }
