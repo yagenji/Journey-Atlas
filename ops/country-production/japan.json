@@ -4,9 +4,9 @@
   "countryName": "JAPAN",
   "contentRef": "country/japan",
   "stateRef": "country/japan",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 23,
-  "updatedAt": "2026-09-11T14:47:57+09:00",
+  "phase": "QA",
+  "stateRevision": 24,
+  "updatedAt": "2026-09-11T14:51:08+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp",
@@ -35,8 +35,25 @@
     "source": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; simplify 0.003 degrees; JOURNEY ATLAS map-v3 clean background.",
     "bounds": {"north":46.0,"south":23.6,"west":122.3,"east":146.2}
   },
-  "implementation": {"state":"NOT_STARTED"},
-  "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-11T14:51:08+09:00",
+    "files": ["data/countries/japan.json", "data/theme-taxonomy.json"],
+    "themeTaxonomy": ["city", "history", "food"],
+    "sharedTemplate": true,
+    "countrySpecificCss": false,
+    "notes": "Japan schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and 1200x760 map. atlasPublished remains false."
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "NOT_STARTED",
+    "sourceCommit": "75597707c89e82163c3a51b891f5041f4741d87b",
+    "validateRunId": 34567326336,
+    "browserQaRunId": 34567326464,
+    "checks": ["source-syntax","image-delivery-budget","region-contract","approved-image-full-decode","perceptual-duplicate-gate","strict-country-json","lens-slug-drift","cloudflare-package-build","targeted-unpublished-reviewable-browser-qa","desktop-tablet-mobile-layout"],
+    "failureCount": 0,
+    "completedAt": "2026-09-11T14:51:08+09:00"
+  },
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
@@ -48,14 +65,18 @@
   "tasteBatchReview": {"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"scope":["FOOD01","FOOD02","FOOD03","FOOD04"],"approvedGenerations":{"FOOD01":"d3d1f20b-0a72-4cc7-bb54-6513b5dda754","FOOD02":"150601ed-b788-479b-ae9c-dd318096a06c","FOOD03":"c1b747ce-b564-4a8b-98b9-a74822263cf7","FOOD04":"43f1d900-ae8d-43a9-8184-ebe915dd5ced"},"regenerate":[],"approvedAt":"2026-09-11T11:56:00+09:00"}]},
   "assetQa": {
     "state": "PASS",
+    "checkedAt": "2026-09-11T14:51:08+09:00",
     "approvedRasterCount": 13,
-    "materializedRasterCount": 13,
-    "existence": "PASS",
-    "decode": "PASS",
+    "fullDecode": "PASS",
     "dimensions": "PASS",
-    "duplicateQa": "PASS",
-    "note": "All 13 approved WebP assets are committed under assets/images/japan/approved/, fully decoded at 1200x800, and passed targeted duplicate QA."
+    "expectedDimensions": "1200x800",
+    "perceptualDuplicateGate": "PASS",
+    "exactShaDuplicates": 0,
+    "hygiene": "PASS",
+    "repositoryMaterialization": {"state":"PASS","approvedFolderExists":true,"materializedRasterCount":13,"byteForByteGitBlobMatch":"PASS","verifiedBranch":"country/japan"},
+    "map": {"asset":"assets/images/japan/map-atlas-v1.svg","existence":"PASS","state":"APPROVED"},
+    "notes": "All 13 approved Japan raster assets are present on country/japan, fully decode at 1200x800, match the approved production WebP bytes by Git blob SHA, and pass targeted duplicate QA."
   },
   "blockingIssues": [],
-  "next": {"action":"IMPLEMENT_COUNTRY_PAGE","asset":null}
+  "next": {"action":"RUN_COUNTRY_QA","asset":null}
 }
