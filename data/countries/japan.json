@@ -17,8 +17,8 @@
     },
     "labelPosition": "right",
     "mapOffset": {
-      "x": 2.2,
-      "y": -1
+      "x": 1.0,
+      "y": 3.8
     }
   },
   "hero": {
@@ -30,8 +30,8 @@
       "longitude": 138.7448
     },
     "mapOffset": {
-      "x": -1.5,
-      "y": 0
+      "x": -0.9,
+      "y": 1.0
     }
   },
   "map": {
@@ -55,7 +55,7 @@
       "coordinates": {"latitude": 35.6595, "longitude": 139.7005},
       "image": "assets/images/japan/approved/tokyo-shibuya-crossing.webp",
       "labelPosition": "left",
-      "mapOffset": {"x": -2.2, "y": 1.0}
+      "mapOffset": {"x": 1.3, "y": -3.9}
     },
     {
       "id": "kyoto-kiyomizudera-okunoin",
@@ -65,7 +65,8 @@
       "description": "東山の斜面に木造伽藍が重なり、その先に京都盆地の市街が広がる。寺院を単独の建築としてではなく、山裾と都市が接する場所として見ると、古都の地形がよく分かる。",
       "coordinates": {"latitude": 34.9949, "longitude": 135.7850},
       "image": "assets/images/japan/approved/kyoto-kiyomizudera-okunoin.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.9, "y": 1.0}
     },
     {
       "id": "shirakawa-go-ogimachi-winter",
@@ -75,7 +76,8 @@
       "description": "雪の深い山あいに、急勾配の茅葺き屋根を持つ家々がまとまる。豪雪に適応した建築と農村景観を一緒に見ることで、日本海側の山地にある暮らしの条件が形として見えてくる。",
       "coordinates": {"latitude": 36.2570, "longitude": 136.9067},
       "image": "assets/images/japan/approved/shirakawa-go-ogimachi-winter.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.6, "y": -1.9}
     },
     {
       "id": "shiretoko-five-lakes",
@@ -95,7 +97,8 @@
       "description": "潮が満ちると朱色の大鳥居と社殿が海面の中に浮かぶように見える。島そのものを信仰の空間としてきた歴史と、瀬戸内海の潮位変化が同じ景観をつくる。",
       "coordinates": {"latitude": 34.2959, "longitude": 132.3199},
       "image": "assets/images/japan/approved/miyajima-itsukushima-high-tide.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": 0.6, "y": -0.4}
     },
     {
       "id": "aso-kusasenri-nakadake",
@@ -105,7 +108,8 @@
       "description": "広い草原と火口地形の背後に中岳の噴煙が上がる。巨大なカルデラの内部に町や牧草地があり、火山が特別な遠景ではなく日常の地形として存在する九州の内陸景観。",
       "coordinates": {"latitude": 32.8840, "longitude": 131.0520},
       "image": "assets/images/japan/approved/aso-kusasenri-nakadake.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.6, "y": 0.4}
     },
     {
       "id": "yakushima-shiratani-unsuikyo",
@@ -154,6 +158,14 @@
       "title": "神社や寺は、歴史建築であるだけでなく日常の中にも残る",
       "text": "大きな寺社だけでなく、住宅地や商店街の近くにも小さな社寺がある。初詣、祭礼、墓参、地域行事などを通じ、宗教施設が観光地と生活空間の両方に存在している。",
       "points": ["信仰と地域行事が同じ場所に重なる", "都市の中にも小さな社寺が点在する"]
+    },
+    {
+      "topicKey": "japan-layered-historical-landscapes",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "歴史は建物だけでなく、今の街路や町の形にも残る",
+      "text": "京都や奈良の寺社、各地の城下町や旧街道では、歴史的な建築だけでなく、道の曲がり方や町割り、門前や商店街の位置にも過去の都市構造が残る。建物を点で見るより、街を歩きながら時代の層を読むと、歴史が現在の生活空間につながって見える。",
+      "points": ["寺社・城・街道を周囲の町並みと一緒に見る", "古い都市構造の上に現代の生活が重なる"]
     },
     {
       "topicKey": "japan-regional-food-variation",
