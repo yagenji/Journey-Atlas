@@ -5,8 +5,8 @@
   "contentRef": "country/brunei",
   "stateRef": "country/brunei",
   "phase": "SCENES_REGEN",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-11T22:12:00+09:00",
+  "stateRevision": 13,
+  "updatedAt": "2026-09-11T22:14:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -23,7 +23,7 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "REGENERATE",
+      "state": "GENERATING",
       "asset": "assets/images/brunei/approved/jame-asr-hassanil-bolkiah-mosque.webp",
       "contentId": "jame-asr-hassanil-bolkiah-mosque",
       "promptSeries": 2,
@@ -46,6 +46,14 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "generationReservation": {
+        "reservationId": "brunei-s01-regen-p2-e4-20260911-2214",
+        "asset": "S01",
+        "contentId": "jame-asr-hassanil-bolkiah-mosque",
+        "promptSeries": 2,
+        "generationContextEpoch": 4,
+        "reservedAt": "2026-09-11T22:14:00+09:00"
       }
     },
     {"id": "S02", "state": "REVIEW_CANDIDATE", "asset": "assets/images/brunei/approved/ulu-temburong-canopy-rainforest.webp", "contentId": "ulu-temburong-canopy-rainforest", "promptSeries": 1, "promptSeriesRejectCount": 1, "rejectedGenerationIds": ["97a45ed9-599a-45ec-84d5-30b94dd8d498"], "renderPacket": {"kind": "SCENE", "contentId": "ulu-temburong-canopy-rainforest", "identity": "Ulu Temburong National Park in Brunei’s Temburong District, high canopy walkway or tower above intact equatorial rainforest, layered green canopy and humid ridges, photo 6 quiet watercolor 4.", "independentGeneration": true, "forbidPreviousAssetReuse": true, "noAddedText": true, "singleFrameOnly": true, "forbidCollage": true, "forbidPanels": true, "forbidGrid": true, "forbidContactSheet": true, "forbidMontage": true, "forbidInsetImages": true, "singleSceneOnly": true}, "candidateGenerationId": "097fb4ba-ce22-4ecc-be81-60d40a60bb08", "candidateVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"}},
@@ -80,5 +88,5 @@
   "assetHandoff": {"mode": "USER_HANDOFF", "state": "PENDING", "expectedRasterCount": 13, "verifiedRasterCount": 0, "verifiedAt": null},
   "reviewPreview": {"mode": "TARGETED_COUNTRY_BRANCH_PREVIEW", "state": "NOT_STARTED", "url": null, "browserQa": "NOT_STARTED", "deployedAt": null},
   "productionMetrics": {"perImageApprovalPrompts": 1, "sceneBatchReviews": 0, "tasteBatchReviews": 0, "assetHandoffs": 0, "reviewPackageIntegrations": 0, "reviewPreviewDeployments": 0, "preCanonicalMainIntegrations": 0, "productionIntegrations": 0, "browserQaCycles": 0, "tasteBatchApprovedAt": null, "canonicalReviewReadyAt": null},
-  "next": {"action": "GENERATE_SCENE", "asset": "S01"}
+  "next": {"action": "RECONCILE_GENERATION", "asset": "S01"}
 }
