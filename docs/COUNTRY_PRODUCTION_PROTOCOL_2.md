@@ -29,7 +29,7 @@ CONTENT + PRE-VISUAL BUILD
 → targeted Country-only preview build on country/{slug}
 → one targeted Browser QA cycle
 → targeted GitHub Pages review URL
-→ canonical-page user approval
+→ final Country-page user approval
 → one terminal publication PR / main integration
 → one production deployment + targeted production verification
 ```
@@ -87,7 +87,7 @@ python3 scripts/country_production_protocol_v2.py next {slug}
 The command returns both deterministic NEXT and an `interaction` object. `interaction.userGate` is the machine-readable answer to whether the user may be asked for approval.
 
 For Scene/Food generation and reconciliation, `userGate` must be `false`.
-For Hero, Scene Batch, Taste Batch and canonical-page review, it is `true` at the appropriate boundary.
+For Hero, Scene Batch, Taste Batch and final Country-page review, it is `true` at the appropriate boundary.
 
 ## 3. Image handoff is one fixed path
 
@@ -139,7 +139,7 @@ Use:
 python3 scripts/build_country_preview_targeted.py --slugs {slug}
 ```
 
-The Country branch remains the authoritative content/state source through the REVIEW gate. `main` becomes authoritative only when the approved terminal publication change is integrated.
+The Country branch remains the authoritative content/state source through the final page-review gate. `main` becomes authoritative only when the approved terminal publication change is integrated.
 
 A normal Country-only review must **not** run:
 
@@ -175,7 +175,7 @@ Two new hard rules:
 
 For a normal Country-only change, Content QA v2 runs against the target Country only. Full Content QA is reserved for shared/full-scope changes.
 
-## 6. State initialization and REVIEW authority
+## 6. State initialization and pre-main review gate
 
 For a genuinely new Country:
 
@@ -189,21 +189,25 @@ This builds on Revision 7 State and adds:
 - machine-readable interaction rules;
 - pre-visual checklist;
 - fixed USER_HANDOFF asset path;
-- targeted Country-branch review deployment mode;
+- `reviewPreview` for the targeted Country-branch review deployment;
 - production metrics.
 
 Before leaving CONTENT, mark `preVisualBuild.state = PASS` and every required check `PASS` only after the work actually exists.
 
-For Protocol 2 review:
+Protocol 2 intentionally does **not** enter the legacy `REVIEW` phase before final approval, because legacy `REVIEW` resolves authority to `main`.
 
-- `contentRef: country/{slug}` remains valid through `phase: REVIEW`;
-- `stateRef: country/{slug}` remains valid through `phase: REVIEW`;
-- `reviewDeployment.mode` is `TARGETED_COUNTRY_BRANCH_PREVIEW`;
-- `reviewDeployment.url` is the actual GitHub Pages Country review URL;
-- final approval is recorded on the Country branch;
-- the terminal publication PR moves `contentRef` / `stateRef` to `main` and completes publication.
+Instead, after target QA passes:
 
-Legacy or already-integrated States may still have `contentRef: main` / `stateRef: main` during REVIEW and remain valid.
+- keep `phase: QA`;
+- keep `contentRef: country/{slug}`;
+- keep `stateRef: country/{slug}`;
+- set `reviewPreview.mode = TARGETED_COUNTRY_BRANCH_PREVIEW`;
+- after the targeted GitHub Pages deployment and Desktop / Tablet / Mobile QA pass, set `reviewPreview.state = DONE`, `reviewPreview.browserQa = PASS`, and record the actual review URL;
+- Protocol 2 NEXT then returns `REVIEW_CANONICAL_URL` as the user gate without moving content to `main`;
+- after explicit final approval, Protocol 2 NEXT returns `CREATE_TERMINAL_PUBLICATION_PR`;
+- the terminal publication PR moves content/state authority to `main`, publishes the Country, and completes the State.
+
+Existing legacy or already-integrated States are not migrated and remain valid under their existing `REVIEW/main` representation.
 
 Validate:
 
