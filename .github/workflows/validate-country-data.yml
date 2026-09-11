@@ -119,8 +119,11 @@ jobs:
           fi
 
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            # PR checkout is GitHub's synthetic merge commit. Compare that merge
+            # result to its base parent so concurrent main-only changes are not
+            # misclassified as changes introduced by this PR.
             base="$(git rev-parse HEAD^1)"
-            head="$(git rev-parse HEAD^2)"
+            head="$(git rev-parse HEAD)"
           else
             base="$(git rev-parse HEAD^)"
             head="$(git rev-parse HEAD)"
