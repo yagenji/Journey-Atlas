@@ -52,8 +52,15 @@ jobs:
         if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
-      - name: Build production package
-        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
+      - name: Build targeted Country preview package
+        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.publication_metadata_only != 'true'
+        env:
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          TARGET_SLUGS: ${{ steps.impact.outputs.published_slugs }},${{ steps.impact.outputs.reviewable_slugs }}
+        run: python3 scripts/build_country_preview_targeted.py
+
+      - name: Build full production package
+        if: steps.impact.outputs.browser_scope == 'all' && steps.impact.outputs.publication_metadata_only != 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
