@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "protocolId": "2.0",
+  "updatedAt": "2026-09-11T19:05:00+09:00",
+  "authority": "main",
+  "appliesTo": "NEW_COUNTRY_PRODUCTION",
+  "imagePolicyRef": "main:ops/image-generation-policy.json",
+  "interaction": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "canonicalPageApproval": "INDIVIDUAL",
+    "userPromptBetweenSceneTargets": "FORBIDDEN",
+    "userPromptBetweenTasteTargets": "FORBIDDEN",
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "resumeBehaviorDuringActiveRound": "CONTINUE_TO_BATCH_BOUNDARY",
+    "perImageApproveProceedGeneratePrompt": "FORBIDDEN"
+  },
+  "assetDelivery": {
+    "mode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "handoffTiming": "AFTER_ALL_VISUAL_BATCH_APPROVALS",
+    "handoffBatch": "ALL_APPROVED_RASTERS_ONCE",
+    "expectedRasterCount": 13,
+    "assistantRepositoryMaterializationAttempt": "FORBIDDEN",
+    "verifyRepositoryAssetsAfterUserHandoff": true,
+    "verifyOnceAsBatch": true
+  },
+  "preVisualBuild": {
+    "requiredBeforeHero": true,
+    "countryJsonEditorialComplete": true,
+    "finalExpectedImagePathsDeclared": true,
+    "sceneCoordinatesFinal": true,
+    "mapBuiltAndQaPassed": true,
+    "taxonomyComplete": true,
+    "relatedCountriesComplete": true,
+    "nextRoutesResolved": true,
+    "travelScaleComplete": true,
+    "signatureFactsComplete": true,
+    "sourcesComplete": true,
+    "editorialQaV2Passed": true
+  },
+  "postVisual": {
+    "mode": "SINGLE_PASS",
+    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
+    "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
+    "assetVerificationPassesTarget": 1,
+    "reviewPackageIntegrationsTarget": 1,
+    "targetedBrowserQaCyclesTarget": 1,
+    "waitForStateOnlyCi": false,
+    "pauseForProgressConfirmation": false,
+    "canonicalReviewIsNextUserGateAfterAssetHandoff": true
+  },
+  "contentQuality": {
+    "version": 2,
+    "travelScaleExampleRequiredForEveryItem": true,
+    "travelScaleExampleMarker": "例：",
+    "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
+    "forestShareLowMaximumPercent": 10,
+    "forestShareHighMinimumPercent": 70,
+    "forestShareExplicitFlag": "exceptionalShare"
+  },
+  "metrics": {
+    "perImageApprovalPromptsTarget": 0,
+    "sceneBatchUserReviewCountTarget": 1,
+    "tasteBatchUserReviewCountTarget": 1,
+    "assetHandoffCountTarget": 1,
+    "measurePostTasteApprovalToCanonicalReview": true,
+    "measureMainIntegrationCount": true,
+    "measureBrowserQaCycleCount": true
+  }
+}
