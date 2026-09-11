@@ -11,6 +11,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 V7_PATH = HERE / "country_production_state_v7.py"
 POLICY_PATH = ROOT / "ops" / "country-production-policy.json"
+COUNTRY_DIR = ROOT / "data" / "countries"
 
 spec = importlib.util.spec_from_file_location("journey_atlas_state_v7", V7_PATH)
 if spec is None or spec.loader is None:
@@ -157,6 +158,70 @@ def protocol_next(state: dict[str, Any]) -> dict[str, Any]:
     return {"next": nxt, "interaction": interaction_for_next(nxt)}
 
 
+def generation_id(item: dict[str, Any]) -> str | None:
+    for key in ("approvedGenerationId", "candidateGenerationId", "generationId"):
+        value = item.get(key)
+        if isinstance(value, str) and value:
+            return value
+    return None
+
+
+def handoff_manifest(slug: str, state: dict[str, Any]) -> dict[str, Any]:
+    if not all_visuals_approved(state):
+        raise ValueError("All Hero / Scene / Taste assets must be batch-approved before handoff")
+    country_path = COUNTRY_DIR / f"{slug}.json"
+    if not country_path.exists():
+        raise ValueError(f"Missing Country JSON: {country_path.relative_to(ROOT)}")
+    country = load_json(country_path)
+    country_scenes = country.get("scenes") if isinstance(country.get("scenes"), list) else []
+    taste_section = country.get("taste") if isinstance(country.get("taste"), dict) else {}
+    country_taste = taste_section.get("items") if isinstance(taste_section.get("items"), list) else []
+    state_scenes = state.get("scenes") if isinstance(state.get("scenes"), list) else []
+    state_taste = state.get("taste") if isinstance(state.get("taste"), list) else []
+    if len(country_scenes) != 8 or len(state_scenes) != 8 or len(country_taste) != 4 or len(state_taste) != 4:
+        raise ValueError("Handoff requires exactly Hero + 8 Scenes + 4 Taste items")
+
+    hero = state.get("hero") if isinstance(state.get("hero"), dict) else {}
+    hero_path = country.get("hero", {}).get("image") if isinstance(country.get("hero"), dict) else None
+    items: list[dict[str, Any]] = [
+        {
+            "id": "HERO",
+            "kind": "HERO",
+            "generationId": generation_id(hero),
+            "path": hero_path,
+        }
+    ]
+    for state_item, country_item in zip(state_scenes, country_scenes):
+        items.append(
+            {
+                "id": state_item.get("id"),
+                "kind": "SCENE",
+                "generationId": generation_id(state_item),
+                "path": country_item.get("image") if isinstance(country_item, dict) else None,
+            }
+        )
+    for state_item, country_item in zip(state_taste, country_taste):
+        items.append(
+            {
+                "id": state_item.get("id"),
+                "kind": "TASTE",
+                "generationId": generation_id(state_item),
+                "path": country_item.get("image") if isinstance(country_item, dict) else None,
+            }
+        )
+
+    missing = [item["id"] for item in items if not item.get("generationId") or not item.get("path")]
+    if missing:
+        raise ValueError(f"Handoff manifest is incomplete for: {', '.join(str(x) for x in missing)}")
+    return {
+        "slug": slug,
+        "mode": "USER_HANDOFF",
+        "count": len(items),
+        "instruction": "Store each generated raster at its exact path, then report one completion event for batch verification.",
+        "items": items,
+    }
+
+
 def validate_protocol_state(state: dict[str, Any], filename: str) -> list[str]:
     errors: list[str] = []
     if state.get("productionProtocolId") != PROTOCOL_ID:
@@ -243,6 +308,21 @@ def cmd_next(slug: str) -> int:
     return 0
 
 
+def cmd_handoff(slug: str) -> int:
+    path = legacy.state_path(slug)
+    if not path.exists():
+        print(f"Missing state: {path.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+    state = load_json(path)
+    try:
+        manifest = handoff_manifest(slug, state)
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(json.dumps(manifest, ensure_ascii=False, indent=2))
+    return 0
+
+
 def print_errors(errors: list[str]) -> int:
     if not errors:
         print("Country production protocol 2 validation: PASS")
@@ -277,12 +357,14 @@ def self_test() -> int:
 def main() -> int:
     args = sys.argv[1:]
     if not args:
-        print("Usage: country_production_protocol_v2.py init <slug> | next <slug> | validate | self-test", file=sys.stderr)
+        print("Usage: country_production_protocol_v2.py init <slug> | next <slug> | handoff <slug> | validate | self-test", file=sys.stderr)
         return 2
     if args[0] == "init" and len(args) == 2:
         return cmd_init(args[1])
     if args[0] == "next" and len(args) == 2:
         return cmd_next(args[1])
+    if args[0] == "handoff" and len(args) == 2:
+        return cmd_handoff(args[1])
     if args[0] == "validate" and len(args) == 1:
         return print_errors(validate_all())
     if args[0] == "self-test" and len(args) == 1:
