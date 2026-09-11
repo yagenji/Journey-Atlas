@@ -10,6 +10,7 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 V7_PATH = HERE / "country_production_state_v7.py"
+V72_PATH = HERE / "image_policy_v72.py"
 POLICY_PATH = ROOT / "ops" / "country-production-policy.json"
 COUNTRY_DIR = ROOT / "data" / "countries"
 
@@ -19,6 +20,13 @@ if spec is None or spec.loader is None:
 v7 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(v7)
 legacy = v7.legacy
+
+spec72 = importlib.util.spec_from_file_location("journey_atlas_image_policy_v72", V72_PATH)
+if spec72 is None or spec72.loader is None:
+    raise RuntimeError(f"Cannot load {V72_PATH}")
+v72 = importlib.util.module_from_spec(spec72)
+spec72.loader.exec_module(v72)
+v72.install_legacy_patch(legacy)
 
 PROTOCOL_ID = "2.0"
 POST_VISUAL_PHASES = {"ASSET_QA", "IMPLEMENTATION", "QA", "REVIEW", "PUBLISH", "COMPLETE"}
@@ -93,6 +101,8 @@ def new_state(destination: dict[str, Any]) -> dict[str, Any]:
     }
     state["productionMetrics"] = {
         "perImageApprovalPrompts": 0,
+        "userContinuationNudges": 0,
+        "runtimeForcedImageTurnBoundaries": 0,
         "sceneBatchReviews": 0,
         "tasteBatchReviews": 0,
         "assetHandoffs": 0,
@@ -313,6 +323,23 @@ def validate_protocol_state(state: dict[str, Any], filename: str) -> list[str]:
     if isinstance(per_image_prompts, int) and per_image_prompts != 0:
         errors.append(f"{filename}: protocol 2 forbids per-image approval prompts; recorded {per_image_prompts}")
 
+    continuation_nudges = metrics.get("userContinuationNudges")
+    if continuation_nudges is not None:
+        if not isinstance(continuation_nudges, int) or continuation_nudges < 0:
+            errors.append(f"{filename}: productionMetrics.userContinuationNudges must be a non-negative integer")
+        elif continuation_nudges != 0:
+            errors.append(
+                f"{filename}: protocol 2 forbids user continuation nudges inside image rounds; recorded {continuation_nudges}"
+            )
+
+    forced_boundaries = metrics.get("runtimeForcedImageTurnBoundaries")
+    if forced_boundaries is not None and (
+        not isinstance(forced_boundaries, int) or forced_boundaries < 0
+    ):
+        errors.append(
+            f"{filename}: productionMetrics.runtimeForcedImageTurnBoundaries must be a non-negative integer"
+        )
+
     return errors
 
 
@@ -385,12 +412,18 @@ def print_errors(errors: list[str]) -> int:
 
 
 def self_test() -> int:
+    policy = protocol_policy()
+    assert policy["protocolId"] == PROTOCOL_ID
+    assert policy["policyPatch"] == 3
+
     state = new_state({"slug": "test-slug", "nameEn": "Test Slug"})
     assert state["productionProtocolId"] == PROTOCOL_ID
     assert state["executionPolicy"]["sceneApproval"] == "BATCH_ONLY"
     assert state["executionPolicy"]["userPromptBetweenSceneTargets"] is False
     assert state["assetHandoff"]["mode"] == "USER_HANDOFF"
     assert state["reviewPreview"]["mode"] == "TARGETED_COUNTRY_BRANCH_PREVIEW"
+    assert state["productionMetrics"]["userContinuationNudges"] == 0
+    assert state["productionMetrics"]["runtimeForcedImageTurnBoundaries"] == 0
 
     state["phase"] = "SCENES_INITIAL"
     state["preVisualBuild"]["state"] = "PASS"
