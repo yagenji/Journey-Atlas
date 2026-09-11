@@ -5,8 +5,8 @@
   "contentRef": "country/brunei",
   "stateRef": "country/brunei",
   "phase": "SCENES_REGEN",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-11T22:10:00+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-11T22:12:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -26,12 +26,27 @@
       "state": "REGENERATE",
       "asset": "assets/images/brunei/approved/jame-asr-hassanil-bolkiah-mosque.webp",
       "contentId": "jame-asr-hassanil-bolkiah-mosque",
-      "promptSeries": 1,
-      "promptSeriesRejectCount": 2,
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 0,
       "rejectedGenerationIds": ["4d5f1cf6-da26-4627-9195-7fda942234f7", "72425cb6-3795-4ba1-84a6-096b032fd142"],
-      "renderPacket": {"kind": "SCENE", "contentId": "jame-asr-hassanil-bolkiah-mosque", "identity": "Real Jame’ ‘Asr Hassanil Bolkiah Mosque in Bandar Seri Begawan, seen from the landscaped garden approach at human eye level in soft early-morning light. Show the mosque’s recognisable cream-white facades, multiple golden domes and tall minarets with realistic proportions, framed by clipped gardens, palms and reflective paving or water where plausible. The architecture is the clear single subject; no crowds, no palace substitution, no Sultan Omar Ali Saifuddien Mosque substitution, photo 6 : quiet watercolor 4.", "independentGeneration": true, "forbidPreviousAssetReuse": true, "noAddedText": true, "singleFrameOnly": true, "forbidCollage": true, "forbidPanels": true, "forbidGrid": true, "forbidContactSheet": true, "forbidMontage": true, "forbidInsetImages": true, "singleSceneOnly": true},
-      "candidateVisualQa": {"targetIdentity": "FAIL", "previousAssetRepeat": "PASS", "collageTypography": "FAIL"},
-      "lastFailureReason": "WRONG_TARGET_CARRYOVER"
+      "promptSeriesReset": true,
+      "promptSeriesResetAt": "2026-09-11T22:12:00+09:00",
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "jame-asr-hassanil-bolkiah-mosque",
+        "identity": "ONE SINGLE FULL-BLEED 3:2 LANDSCAPE FRAME. ONE PLACE ONLY: the real Jame’ ‘Asr Hassanil Bolkiah Mosque in Bandar Seri Begawan, Brunei. Human-eye-level landscaped garden approach in soft early-morning light. Show the recognisable cream-white mosque facades, multiple golden domes and tall minarets with realistic proportions, clipped gardens, palms and restrained reflective paving or water where geographically plausible. The mosque is the only subject. Absolutely no food, dishes, market scene, other Brunei landmarks, Sultan Omar Ali Saifuddien Mosque, collage, grid, panels, montage, inset images, labels or readable text. Refined photo-6 / quiet-watercolor-4 travel-atlas realism.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "singleSceneOnly": true
+      }
     },
     {"id": "S02", "state": "REVIEW_CANDIDATE", "asset": "assets/images/brunei/approved/ulu-temburong-canopy-rainforest.webp", "contentId": "ulu-temburong-canopy-rainforest", "promptSeries": 1, "promptSeriesRejectCount": 1, "rejectedGenerationIds": ["97a45ed9-599a-45ec-84d5-30b94dd8d498"], "renderPacket": {"kind": "SCENE", "contentId": "ulu-temburong-canopy-rainforest", "identity": "Ulu Temburong National Park in Brunei’s Temburong District, high canopy walkway or tower above intact equatorial rainforest, layered green canopy and humid ridges, photo 6 quiet watercolor 4.", "independentGeneration": true, "forbidPreviousAssetReuse": true, "noAddedText": true, "singleFrameOnly": true, "forbidCollage": true, "forbidPanels": true, "forbidGrid": true, "forbidContactSheet": true, "forbidMontage": true, "forbidInsetImages": true, "singleSceneOnly": true}, "candidateGenerationId": "097fb4ba-ce22-4ecc-be81-60d40a60bb08", "candidateVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"}},
     {"id": "S03", "state": "REVIEW_CANDIDATE", "asset": "assets/images/brunei/approved/sultan-omar-ali-saifuddien-bridge.webp", "contentId": "sultan-omar-ali-saifuddien-bridge", "promptSeries": 1, "promptSeriesRejectCount": 0, "rejectedGenerationIds": [], "renderPacket": {"kind": "SCENE", "contentId": "sultan-omar-ali-saifuddien-bridge", "identity": "Sultan Haji Omar ‘Ali Saifuddien Bridge crossing Brunei Bay toward Temburong, one long low bridge across broad tidal water and mangrove edges, photo 6 quiet watercolor 4.", "independentGeneration": true, "forbidPreviousAssetReuse": true, "noAddedText": true, "singleFrameOnly": true, "forbidCollage": true, "forbidPanels": true, "forbidGrid": true, "forbidContactSheet": true, "forbidMontage": true, "forbidInsetImages": true, "singleSceneOnly": true}, "candidateGenerationId": "9d9254b0-535e-4d59-a22c-5fc3fa3731f8", "candidateVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"}},
@@ -55,7 +70,7 @@
   "publication": {"state": "DRAFT", "atlasPublished": false},
   "executionPolicy": {"heroApproval": "INDIVIDUAL", "sceneApproval": "BATCH_ONLY", "tasteApproval": "BATCH_ONLY", "autoContinueImageRounds": true, "userPromptBetweenSceneTargets": false, "userPromptBetweenTasteTargets": false, "runtimeBoundaryCreatesApprovalGate": false, "roundIntentPersistsAcrossTurnBoundary": true, "waitForStateOnlyCI": false, "assetDeliveryMode": "USER_HANDOFF", "repositoryMaterializationOwner": "USER", "batchMaterialization": true, "autoPostVisualPipeline": true, "postVisualPipeline": "SINGLE_PASS", "singleReviewIntegration": true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state": "CONTAMINATED", "epoch": 3, "lastResetAt": "2026-09-11T22:00:00+09:00", "lastFailureAsset": "S01", "lastFailureReason": "WRONG_TARGET_CARRYOVER"},
+  "generationContext": {"state": "CLEAN", "epoch": 4, "lastResetAt": "2026-09-11T22:12:00+09:00", "lastFailureAsset": null, "lastFailureReason": null},
   "imageGenerationPolicy": {"revision": 7, "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE", "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE", "sceneReview": "BATCH_ONLY", "tasteReview": "BATCH_ONLY", "mandatoryNoAddedText": true, "rejectTypographyImmediately": true, "rejectCollageImmediately": true, "rejectPreviousAssetRepeatImmediately": true, "candidateVisualQaRequired": true, "batchPerceptualDuplicateGate": true, "preGenerationReservationRequired": true, "reconcileBeforeNextGeneration": true, "maxSameAssetGenerationsPerTurn": 1, "differentTargetSameTurnContinuation": true, "reservationBlocksOnlyUnreconciledTarget": true, "freshTextToImageRequired": true, "previousImageReferenceForbidden": true, "repeatFailureRequiresRenderPacketRefresh": true, "singleFrameContractRequired": true, "collageFailureContaminatesContext": true, "repeatFailureContaminatesContext": true, "wrongTargetCarryoverContaminatesContext": true, "contextResetRequiresSeparateTurn": true, "batchLanguageForbiddenInGenerationTurn": true, "multiTargetPromptForbidden": true, "maxConsecutiveHardFailuresPerPromptSeries": 2, "requireRenderPacketRefreshAfterLimit": true, "approvedAssetRegeneration": false, "runtimeContinuation": "TO_BATCH_BOUNDARY", "batchApprovalProvenanceRequired": true, "regenBatchApprovalRequired": true, "allPriorCountryAssetComparisonRequired": true, "targetEpochBindingRequired": true},
   "sceneBatchReview": {"approval": "PENDING", "rounds": []},
   "tasteBatchReview": {"approval": "PENDING", "rounds": []},
@@ -65,5 +80,5 @@
   "assetHandoff": {"mode": "USER_HANDOFF", "state": "PENDING", "expectedRasterCount": 13, "verifiedRasterCount": 0, "verifiedAt": null},
   "reviewPreview": {"mode": "TARGETED_COUNTRY_BRANCH_PREVIEW", "state": "NOT_STARTED", "url": null, "browserQa": "NOT_STARTED", "deployedAt": null},
   "productionMetrics": {"perImageApprovalPrompts": 1, "sceneBatchReviews": 0, "tasteBatchReviews": 0, "assetHandoffs": 0, "reviewPackageIntegrations": 0, "reviewPreviewDeployments": 0, "preCanonicalMainIntegrations": 0, "productionIntegrations": 0, "browserQaCycles": 0, "tasteBatchApprovedAt": null, "canonicalReviewReadyAt": null},
-  "next": {"action": "RESET_GENERATION_CONTEXT", "asset": null}
+  "next": {"action": "GENERATE_SCENE", "asset": "S01"}
 }
