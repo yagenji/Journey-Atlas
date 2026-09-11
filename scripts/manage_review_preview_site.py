@@ -9,6 +9,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from externalize_review_preview_images import self_test as externalize_images_self_test
+
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
@@ -152,6 +154,7 @@ def self_test() -> int:
         assert (site / "reviews" / "alpha" / "countries" / "alpha" / "index.html").exists()
         assert (site / "reviews" / "index.json").exists()
         assert (site / "index.html").exists()
+    externalize_images_self_test()
     print("Review preview site manager self-test passed.")
     return 0
 
