@@ -6,14 +6,25 @@
   let themes = [];
 
   const render = () => {
-    if (!themes.length) return false;
     const section = document.querySelector('#country-theme-context');
     const list = document.querySelector('#country-theme-list');
     if (!section || !list) return false;
 
+    // Generated Country HTML already contains taxonomy chips. Keep those visible
+    // immediately so the theme row never depends on a second network request.
+    if (!themes.length) {
+      if (list.querySelector('.country-theme-chip')) {
+        section.hidden = false;
+        return true;
+      }
+      return false;
+    }
+
     const matches = themes.filter((theme) => Array.isArray(theme.examples) && theme.examples.includes(slug));
     if (!matches.length) {
-      section.hidden = true;
+      // Preserve any server-rendered taxonomy chips rather than hiding a valid
+      // row because a runtime taxonomy response is stale or temporarily empty.
+      section.hidden = !list.querySelector('.country-theme-chip');
       return true;
     }
 
@@ -31,13 +42,19 @@
   const host = document.querySelector('#app');
   const observer = host
     ? new MutationObserver(() => {
-        if (render()) observer.disconnect();
+        if (render() && themes.length) observer.disconnect();
       })
     : null;
 
   if (observer && host) observer.observe(host, { childList: true, subtree: true });
 
-  fetch('data/theme-taxonomy.json?v=20260830-theme-context', { cache: 'no-store' })
+  // First try the generated chips as soon as the Country template is mounted.
+  render();
+
+  const taxonomyUrl = new URL('data/theme-taxonomy.json', document.baseURI);
+  taxonomyUrl.searchParams.set('v', '20260911-theme-context-v3');
+
+  fetch(taxonomyUrl.href, { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Theme taxonomy not found');
       return response.json();
@@ -46,5 +63,8 @@
       themes = Array.isArray(payload.themes) ? payload.themes : [];
       if (render() && observer) observer.disconnect();
     })
-    .catch(() => {});
+    .catch(() => {
+      // The build-time injected chips remain the authoritative fallback.
+      render();
+    });
 })();

@@ -146,6 +146,11 @@
   flex-wrap:wrap;
 }
 .country-theme-context[hidden]{display:none!important;}
+/* Build-time taxonomy chips are authoritative. If an older cached runtime
+   script leaves the hidden attribute behind, do not suppress valid themes. */
+.country-page .country-theme-context[hidden]:has(.country-theme-chip){
+  display:flex!important;
+}
 .country-theme-context__label{
   font-family:var(--meta);
   font-size:10px;
@@ -177,5 +182,8 @@
     flex-direction:column;
     gap:8px;
     margin-top:18px;
+  }
+  .country-page .country-theme-context[hidden]:has(.country-theme-chip){
+    display:flex!important;
   }
 }
