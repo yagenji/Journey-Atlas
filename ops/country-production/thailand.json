@@ -5,8 +5,8 @@
   "contentRef": "country/thailand",
   "stateRef": "country/thailand",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-11T22:26:30+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-11T22:27:30+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -32,9 +32,11 @@
   },
   "scenes": [
     {
-      "id":"S01","state":"GENERATING","asset":null,"contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1",
+      "id":"S01","state":"REGENERATE","asset":null,"contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1",
       "renderPacket":{"kind":"SCENE","contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1","identity":"Ayutthaya Historical Park, specifically Wat Chaiwatthanaram: the recognizable central Khmer-style prang and symmetrical surrounding brick prangs/chedis rising from the flat central plain. View from a grounded riverside or open-park perspective with weathered red-brown masonry, low horizon and restrained warm light. No lotus pond, no giant Buddha, no generic Sukhothai ruins. Quiet realistic watercolor travel-atlas rendering, accurate architecture, single scene.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"singleSceneOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true},
-      "generationReservation":{"reservationId":"S01-series1-attempt1","asset":"S01","contentId":"thailand-s01-ayutthaya-wat-chaiwatthanaram-v1","promptSeries":1,"generationContextEpoch":1,"reservedAt":"2026-09-11T22:26:30+09:00"}
+      "rejectedGenerationIds":["0532c375-e82b-48c7-90da-edd41e0395ba"],
+      "promptSeriesRejectCount":1,
+      "lastVisualQa":{"targetIdentity":"FAIL","previousAssetRepeat":"FAIL","collageTypography":"PASS"}
     },
     {
       "id":"S02","state":"NOT_STARTED","asset":null,"contentId":"thailand-s02-doi-luang-chiang-dao-fields-v1",
@@ -79,7 +81,7 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
@@ -89,5 +91,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
