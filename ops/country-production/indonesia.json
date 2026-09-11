@@ -5,8 +5,8 @@
   "contentRef": "main",
   "stateRef": "main",
   "phase": "REVIEW",
-  "stateRevision": 33,
-  "updatedAt": "2026-09-11T16:25:00+09:00",
+  "stateRevision": 34,
+  "updatedAt": "2026-09-11T18:30:41+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/indonesia/approved/hero-borobudur-upper-terraces.webp",
@@ -38,9 +38,9 @@
     "asset": "assets/images/indonesia/map-atlas-v1.svg",
     "qa": {
       "canvas": "1200x760",
-      "background": "#f5f2ea",
-      "landFill": "#f4f1e7",
-      "border": "#6e6b65",
+      "background": "#eef2ef",
+      "landFill": "#d4cc9b",
+      "border": "#31576a",
       "topography": "PASS",
       "bounds": {"west":94.0,"east":142.2,"south":-12.0,"north":7.0},
       "approvedAt": "2026-09-11T14:35:00+09:00"
@@ -48,33 +48,33 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-11T16:22:00+09:00",
-    "files": ["data/countries/indonesia.json", "data/theme-taxonomy.json", "assets/images/indonesia/map-atlas-v1.svg"],
+    "completedAt": "2026-09-11T18:30:41+09:00",
+    "files": ["data/countries/indonesia.json", "data/theme-taxonomy.json", "assets/images/indonesia/map-atlas-v1.svg", "assets/css/country-template-v2.css"],
     "themeTaxonomy": ["earth", "life", "sea"],
     "sharedTemplate": true,
     "countrySpecificCss": false,
-    "notes": "Indonesia schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and 1200x760 map. atlasPublished remains false."
+    "notes": "Indonesia review correction completed: taxonomy-driven Travel Themes are visible with a shared build-time fallback, and the Indonesia map palette/border language is aligned with the Iceland/Norway baseline. atlasPublished remains false."
   },
   "qa": {
     "state": "PASS",
     "productionState": "PASS",
-    "sourceCommit": "d40d834a39daf4f068eb64cb3b484b6551af0d48",
-    "validateRunId": 34574052249,
-    "browserQaRunId": 34574052252,
-    "productionVerifyRunId": 34574052252,
-    "checks": ["source-syntax","image-delivery-budget","region-contract","approved-image-full-decode","perceptual-duplicate-gate","strict-country-json","lens-slug-drift","cloudflare-package-build","production-commit-served","production-country-route","production-country-payload","targeted-unpublished-reviewable-browser-qa","desktop-tablet-mobile-layout","canonical-url","noindex-follow","sitemap-exclusion","registry-atlasPublished-false","registry-href-empty","map-render","critical-section-visibility","heading-hierarchy","aria-references","image-alt","interactive-accessible-name","keyboard-focusability","no-horizontal-overflow","no-clipped-text","no-severe-console-errors"],
+    "sourceCommit": "8841a38fdb63a4a107d2a3451d5b2439ad8c03e5",
+    "validateRunId": 34583091232,
+    "browserQaRunId": 34583091233,
+    "productionVerifyRunId": 34583091233,
+    "checks": ["source-syntax","image-delivery-budget","region-contract","approved-image-full-decode","perceptual-duplicate-gate","strict-country-json","lens-slug-drift","cloudflare-package-build","production-commit-served","production-country-route","production-country-payload","targeted-unpublished-reviewable-browser-qa","all-published-country-browser-regression","travel-themes-visible","map-baseline-alignment","desktop-tablet-mobile-layout","canonical-url","noindex-follow","sitemap-exclusion","registry-atlasPublished-false","registry-href-empty","map-render","critical-section-visibility","heading-hierarchy","aria-references","image-alt","interactive-accessible-name","keyboard-focusability","no-horizontal-overflow","no-clipped-text","no-severe-console-errors"],
     "failureCount": 0,
-    "completedAt": "2026-09-11T16:25:00+09:00"
+    "completedAt": "2026-09-11T18:30:41+09:00"
   },
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/indonesia/",
-    "commit": "d40d834a39daf4f068eb64cb3b484b6551af0d48",
+    "commit": "8841a38fdb63a4a107d2a3451d5b2439ad8c03e5",
     "robots": "noindex,follow",
     "sitemapListed": false,
     "atlasPublished": false,
     "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-11T16:25:00+09:00"
+    "verifiedAt": "2026-09-11T18:30:41+09:00"
   },
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
