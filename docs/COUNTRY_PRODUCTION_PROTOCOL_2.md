@@ -5,11 +5,12 @@ Updated: 2026-09-11
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. It is based on the Japan / Indonesia / Cambodia / North Korea production review and addresses three separate bottlenecks:
+Protocol 2.0 is the default for **new Country production**. It is based on the Japan / Indonesia / Cambodia / North Korea production review and addresses four separate bottlenecks:
 
 1. Scene/Taste generation could still be interpreted as one-image-one-user-approval despite Revision 7/7.1.
 2. Generated-image repository materialization followed two different paths.
 3. Most Country implementation work still happened after image approval, leaving a long post-image critical path.
+4. Country-only changes still triggered all-Country validation/build/package work before targeted Browser QA.
 
 ## Production shape
 
@@ -24,7 +25,7 @@ CONTENT + PRE-VISUAL BUILD
 → Taste batch review
 → one 13-image user handoff
 → one batch asset verification
-→ one review-package integration
+→ targeted Country-only preview build
 → one targeted Browser QA cycle
 → canonical review
 → publication
@@ -112,18 +113,40 @@ After repository verification, set `state: PASS`, `verifiedRasterCount: 13`, and
 
 ## 4. Post-visual fast path
 
-After the user handoff, do not resume broad editorial work.
+After the user handoff, do not resume broad editorial work and do not rebuild unrelated Country pages.
 
-Allowed normal work:
+For a normal Country-only change, the allowed path is:
 
-1. verify 13 assets once;
-2. perform batch conversion/size/path/hygiene checks if necessary;
-3. confirm Country JSON points to the verified assets;
-4. run strict Country validation;
-5. build one review package;
-6. integrate to `main` once;
-7. run targeted Desktop / Tablet / Mobile Browser QA once;
-8. present canonical URL.
+1. verify the 13 approved assets once;
+2. perform target-Country conversion/size/path/hygiene checks if necessary;
+3. confirm the target Country JSON points to the verified assets;
+4. run strict validation for the target Country only;
+5. build a **targeted Country preview package** containing only the requested Country page(s), target Country JSON, referenced Country images and shared runtime assets;
+6. run targeted Desktop / Tablet / Mobile Browser QA once;
+7. present the canonical URL.
+
+Use:
+
+```bash
+python3 scripts/build_country_preview_targeted.py --slugs {slug}
+```
+
+A normal Country-only change must **not** run:
+
+- all reviewable Country JSON validation;
+- all published Country image audit/hard gate;
+- all reviewable Country static-page generation;
+- all Country package assembly;
+- all published Country Browser QA.
+
+Those full-scope operations are reserved for:
+
+- shared Country template changes;
+- shared CSS / JavaScript changes;
+- production build-system changes;
+- explicit manual Full QA.
+
+The production Cloudflare builder remains unchanged and continues to perform the full production build when a real production deployment requires it. The targeted builder is a review/CI fast path, not a replacement for production packaging.
 
 Do not rebuild the Map, rewrite content, revisit taxonomy, reselect Signature Facts, or redesign Travel Scale after image approval unless a genuine blocking defect is discovered.
 
@@ -137,6 +160,8 @@ Two new hard rules:
 
 - every Travel Scale item includes a concrete `例：`;
 - forest/woodland percentage is not a routine Signature Fact. It requires `exceptionalShare:true` and must be <=10% or >=70% to pass the v2 machine gate.
+
+For a normal Country-only change, Content QA v2 runs against the target Country only. Full Content QA is reserved for shared/full-scope changes.
 
 ## 6. State initialization
 
@@ -174,6 +199,8 @@ Targets:
 - image handoffs: 1;
 - normal review-package integrations: 1;
 - normal targeted Browser QA cycles: 1;
+- Country-only post-visual full-Country builds: 0;
+- Country-only post-visual full-Country Browser QA cycles: 0;
 - measure Taste batch approval → canonical review ready time.
 
 A regeneration round may add a batch review, but never one approval per regenerated image.

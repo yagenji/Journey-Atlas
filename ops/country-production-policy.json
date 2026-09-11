@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "updatedAt": "2026-09-11T19:20:00+09:00",
+  "updatedAt": "2026-09-11T20:05:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -49,6 +49,16 @@
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
     "reviewPackageIntegrationsTarget": 1,
+    "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
+    "targetedPreviewBuildCommand": "python3 scripts/build_country_preview_targeted.py --slugs {slug}",
+    "fullCountryBuildDuringCountryOnlyChange": "FORBIDDEN",
+    "fullCountryBrowserQaDuringCountryOnlyChange": "FORBIDDEN",
+    "fullBuildAllowedFor": [
+      "SHARED_TEMPLATE_CHANGE",
+      "SHARED_CSS_OR_JS_CHANGE",
+      "PRODUCTION_BUILD_SYSTEM_CHANGE",
+      "MANUAL_FULL_QA"
+    ],
     "targetedBrowserQaCyclesTarget": 1,
     "waitForStateOnlyCi": false,
     "pauseForProgressConfirmation": false,
