@@ -5,9 +5,40 @@
   "contentRef": "country/vietnam",
   "stateRef": "country/vietnam",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-11T22:50:00+09:00",
-  "hero": {"state": "NOT_STARTED", "asset": null, "contentId": null},
+  "stateRevision": 3,
+  "updatedAt": "2026-09-11T22:51:00+09:00",
+  "hero": {
+    "state": "GENERATING",
+    "asset": "assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp",
+    "contentId": "ha-long-bay-ti-top-viewpoint-hero",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "ha-long-bay-ti-top-viewpoint-hero",
+      "identity": "Real Hạ Long Bay viewed from the public viewpoint on Ti Top Island, Vietnam: unmistakable emerald-toned bay filled with many steep forested limestone karst islets receding through atmospheric layers, elevated but plausible viewpoint from the island rather than an impossible drone perspective, broad horizontal 3:2 composition with open water and layered karst as the dominant subject, enough distinctive conical and tower-like islands to identify Hạ Long Bay instantly even in mobile crop. Quiet soft daylight, restrained humid haze, natural muted greens, blue-greys and warm limestone notes, realistic geography with refined watercolor treatment; photo 6 to quiet watercolor 4, premium adult travel-encyclopedia illustration. Keep the central-right area relatively calm for page text. No sunset spectacle, no fantasy peaks, no giant cruise ships, no crowded foreground, no invented architecture, no poster saturation, no typography or labels.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    },
+    "generationReservation": {
+      "reservationId": "HERO-series1-attempt1",
+      "asset": "HERO",
+      "contentId": "ha-long-bay-ti-top-viewpoint-hero",
+      "promptSeries": 1,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-11T22:51:00+09:00"
+    }
+  },
   "scenes": [
     {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
     {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": null},
@@ -48,13 +79,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {
-    "state": "CLEAN",
-    "epoch": 1,
-    "lastResetAt": null,
-    "lastFailureAsset": null,
-    "lastFailureReason": null
-  },
+  "generationContext": {"state": "CLEAN", "epoch": 1, "lastResetAt": null, "lastFailureAsset": null, "lastFailureReason": null},
   "imageGenerationPolicy": {
     "revision": 7,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
@@ -111,32 +136,13 @@
       "editorialQaV2Passed": "PASS"
     }
   },
-  "assetHandoff": {
-    "mode": "USER_HANDOFF",
-    "state": "PENDING",
-    "expectedRasterCount": 13,
-    "verifiedRasterCount": 0,
-    "verifiedAt": null
+  "mapQa": {
+    "result": "PASS",
+    "checked": ["1200x760-viewbox","natural-earth-1-10m-boundary","journey-atlas-v3-colors","xml-parse","lat-lon-marker-projection","marker-separation","country-fit-and-margins","no-ellipse-or-radial-gradient","accessible-svg-label"],
+    "notes": "Natural Earth 1:10m geometry rendered at 1200x760. Capital, Hero and all eight Scene markers remain inside bounds. Closest required separations pass: capital/Hero 48.3px >= 47px; capital/S01 56.5px >= 55px."
   },
-  "reviewPreview": {
-    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
-  },
-  "productionMetrics": {
-    "perImageApprovalPrompts": 0,
-    "sceneBatchReviews": 0,
-    "tasteBatchReviews": 0,
-    "assetHandoffs": 0,
-    "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 0,
-    "preCanonicalMainIntegrations": 0,
-    "productionIntegrations": 0,
-    "browserQaCycles": 0,
-    "tasteBatchApprovedAt": null,
-    "canonicalReviewReadyAt": null
-  },
-  "next": {"action": "GENERATE_HERO", "asset": "HERO"}
+  "assetHandoff": {"mode": "USER_HANDOFF", "state": "PENDING", "expectedRasterCount": 13, "verifiedRasterCount": 0, "verifiedAt": null},
+  "reviewPreview": {"mode": "TARGETED_COUNTRY_BRANCH_PREVIEW", "state": "NOT_STARTED", "url": null, "browserQa": "NOT_STARTED", "deployedAt": null},
+  "productionMetrics": {"perImageApprovalPrompts": 0,"sceneBatchReviews": 0,"tasteBatchReviews": 0,"assetHandoffs": 0,"reviewPackageIntegrations": 0,"reviewPreviewDeployments": 0,"preCanonicalMainIntegrations": 0,"productionIntegrations": 0,"browserQaCycles": 0,"tasteBatchApprovedAt": null,"canonicalReviewReadyAt": null},
+  "next": {"action": "RECONCILE_GENERATION", "asset": "HERO"}
 }
