@@ -10,6 +10,7 @@ on:
       - 'scripts/classify_country_impact.py'
       - 'scripts/validate_country_editorial_v2.py'
       - 'scripts/test_country_editorial_v2.py'
+      - 'scripts/build_country_preview_targeted.py'
       - 'data/theme-taxonomy.json'
       - 'data/region-taxonomy.json'
       - 'assets/js/**'
@@ -53,6 +54,7 @@ on:
       - 'scripts/classify_country_impact.py'
       - 'scripts/validate_country_editorial_v2.py'
       - 'scripts/test_country_editorial_v2.py'
+      - 'scripts/build_country_preview_targeted.py'
       - 'data/theme-taxonomy.json'
       - 'data/region-taxonomy.json'
       - 'assets/js/**'
@@ -143,7 +145,7 @@ jobs:
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/test_country_editorial_v2.py scripts/country_production_protocol_v2.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/audit_country_image_delivery_targeted.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/build_cloudflare_validated.py scripts/classify_country_impact.py
+          python3 -m py_compile scripts/build_site.py scripts/build_country_preview_targeted.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/test_country_editorial_v2.py scripts/country_production_protocol_v2.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/audit_country_image_delivery_targeted.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/build_cloudflare_validated.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
@@ -154,9 +156,24 @@ jobs:
           python3 scripts/country_production_protocol_v2.py validate
 
       - name: Run Content QA v2 regression tests
+        run: python3 scripts/test_country_editorial_v2.py
+
+      - name: Run targeted Content QA v2
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
         run: |
-          python3 scripts/test_country_editorial_v2.py
-          python3 scripts/validate_country_editorial_v2.py
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            python3 scripts/validate_country_editorial_v2.py --force "data/countries/$slug.json"
+          done
+
+      - name: Run full Content QA v2
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        run: python3 scripts/validate_country_editorial_v2.py
 
       - name: Enforce full Country image delivery budget
         if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')
@@ -226,7 +243,19 @@ jobs:
       - name: Validate JOURNEY LENS slug drift
         run: python3 scripts/validate_lens_slugs.py
 
-      - name: Build and validate Cloudflare package
+      - name: Build targeted Country preview package
+        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.publication_metadata_only != 'true'
+        env:
+          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+          TARGET_SLUGS: ${{ steps.impact.outputs.published_slugs }},${{ steps.impact.outputs.reviewable_slugs }}
+        run: python3 scripts/build_country_preview_targeted.py
+
+      - name: Build and validate full Cloudflare package
+        if: steps.impact.outputs.browser_scope == 'all'
         env:
           JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
         run: python3 scripts/build_cloudflare_validated.py
+
+      - name: No package build required
+        if: steps.impact.outputs.browser_scope == 'none' || steps.impact.outputs.publication_metadata_only == 'true'
+        run: echo "No Country package build required for this change scope."
