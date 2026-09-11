@@ -5,8 +5,8 @@
   "contentRef": "country/vietnam",
   "stateRef": "country/vietnam",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-11T23:05:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-11T23:56:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp",
@@ -35,7 +35,7 @@
   },
   "scenes": [
     {"id":"S01","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/hanoi-hoan-kiem-old-quarter.webp","contentId":"hanoi-hoan-kiem-old-quarter","promptSeries":1,"promptSeriesRejectCount":1,"rejectedGenerationIds":["4f7bfac1-3c4b-4303-85c1-c245f7dd3e19"]},
-    {"id":"S02","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/mu-cang-chai-la-pan-tan-terraces.webp","contentId":"mu-cang-chai-la-pan-tan-terraces","promptSeries":1,"promptSeriesRejectCount":1,"rejectedGenerationIds":["d6ff855a-4261-40e6-a721-ed549162c9a8"]},
+    {"id":"S02","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/mu-cang-chai-la-pan-tan-terraces.webp","contentId":"mu-cang-chai-la-pan-tan-terraces","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[]},
     {"id":"S03","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/ha-giang-ma-pi-leng-pass.webp","contentId":"ha-giang-ma-pi-leng-pass"},
     {"id":"S04","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/phong-nha-son-river-karst.webp","contentId":"phong-nha-son-river-karst"},
     {"id":"S05","state":"NOT_STARTED","asset":"assets/images/vietnam/approved/hue-imperial-city-ngo-mon.webp","contentId":"hue-imperial-city-ngo-mon"},
@@ -59,7 +59,7 @@
     "heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true
   },
   "imageGenerationPolicyRef":"main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S02","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
+  "generationContext": {"state":"CLEAN","epoch":2,"lastResetAt":"2026-09-11T23:56:00+09:00","lastFailureAsset":null,"lastFailureReason":null},
   "imageGenerationPolicy": {
     "revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true
   },
@@ -72,5 +72,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
+  "next": {"action":"GENERATE_SCENE","asset":"S01"}
 }
