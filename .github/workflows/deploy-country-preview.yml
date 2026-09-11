@@ -27,8 +27,11 @@ concurrency:
 jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
+    # Keep review previews separate from the production-oriented github-pages
+    # environment so country/* review branches are not rejected before a runner
+    # starts by the github-pages deployment branch protection rule.
     environment:
-      name: github-pages
+      name: country-review-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
