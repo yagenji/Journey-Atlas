@@ -4,9 +4,9 @@
   "countryName": "JAPAN",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-11T16:01:25+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-11T19:01:32+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp",
@@ -46,7 +46,7 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "PASS",
+    "productionState": "CI_GATED",
     "sourceCommit": "66859e29940a593ee84cd48df25afca0c832435a",
     "validateRunId": 34572239423,
     "browserQaRunId": 34572239316,
@@ -56,8 +56,8 @@
     "completedAt": "2026-09-11T16:01:25+09:00"
   },
   "reviewDeployment": {"state":"DONE","url":"https://atlas.yagenji.com/countries/japan/","commit":"66859e29940a593ee84cd48df25afca0c832435a","robots":"noindex,follow","sitemapListed":false,"atlasPublished":false,"linkedFromRegistry":false,"verifiedAt":"2026-09-11T16:01:25+09:00"},
-  "finalApproval": {"state":"PENDING"},
-  "publication": {"state":"DRAFT","atlasPublished":false},
+  "finalApproval": {"state":"APPROVED","approvedAt":"2026-09-11T19:01:32+09:00","basis":"User instruction: QAして問題なければ公開して, followed by 進めて. Final Japan review package passed strict Country validation, Production State validation, approved Hero / eight Scenes / four Taste assets / Map checks, final map/content corrections, and Desktop / Tablet / Mobile Browser QA with zero blocking failures."},
+  "publication": {"state":"PUBLISHED","atlasPublished":true,"productionVerification":"CI_GATED","requestedAt":"2026-09-11T19:01:32+09:00","publishedUrl":"https://atlas.yagenji.com/countries/japan/","robots":"index,follow","sitemapListed":true,"linkedFromRegistry":true,"note":"Registry publication and terminal Production State are committed atomically. Publication CI must validate the published build, discovery link, indexability, sitemap inclusion and production route; post-merge Cloudflare production verification is authoritative."},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH","tasteApproval":"BATCH","autoContinueImageRounds":true,"waitForStateOnlyCI":false,"batchMaterialization":true,"autoPostVisualPipeline":true,"singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "generationContext": {"state":"CLEAN","epoch":6,"lastResetAt":"2026-09-11T11:56:30+09:00","lastFailureAsset":null,"lastFailureReason":null},
@@ -79,5 +79,5 @@
     "notes": "All 13 approved Japan raster assets remain unchanged and pass prior QA. The Japan-only map geometry is served from the verified canonical review deployment and passes production unpublished-reviewable browser QA."
   },
   "blockingIssues": [],
-  "next": {"action":"REVIEW_CANONICAL_URL","asset":null}
+  "next": {"action":"NONE","asset":null}
 }
