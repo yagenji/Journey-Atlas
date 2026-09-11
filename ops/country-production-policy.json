@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "updatedAt": "2026-09-11T19:05:00+09:00",
+  "updatedAt": "2026-09-11T19:20:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -23,6 +23,8 @@
     "handoffTiming": "AFTER_ALL_VISUAL_BATCH_APPROVALS",
     "handoffBatch": "ALL_APPROVED_RASTERS_ONCE",
     "expectedRasterCount": 13,
+    "manifestCommand": "python3 scripts/country_production_protocol_v2.py handoff {slug}",
+    "manifestMustBindGenerationIdAndFinalPath": true,
     "assistantRepositoryMaterializationAttempt": "FORBIDDEN",
     "verifyRepositoryAssetsAfterUserHandoff": true,
     "verifyOnceAsBatch": true
