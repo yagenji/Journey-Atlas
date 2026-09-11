@@ -1,6 +1,6 @@
 # JOURNEY ATLAS Country Page Template
 
-最終更新：2026-09-10
+最終更新：2026-09-11
 
 Icelandを基準に、以後の国・地域ページを同じ構造で制作するためのテンプレート仕様。
 
@@ -180,18 +180,24 @@ Dead controlsを置かない。
 5. map source記載。
 6. populationなど時点依存データにsourceまたはupdatedAtを持つ。
 7. `region` が `data/region-taxonomy.json` の `labelEn` と一致し、`{TAXONOMY LABEL} / {整数緯度}°N|S` 形式で、代表緯度がmap boundsと矛盾しない。
-8. Review Deploymentでは `atlasPublished:false` を維持し、ユーザー承認後のみ `true` にする。
+8. pre-main Review Previewでは `atlasPublished:false` を維持し、ユーザー承認後のterminal publicationのみ `true` にする。
 
 ## 11. Production sequence
 
-Operational sequencing is defined only by `docs/COUNTRY_PRODUCTION_STATE.md` and `ops/country-production/{slug}.json` on `main`.
+Operational sequencing for new Countries is defined by `ops/country-production-policy.json`, `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`, and the authoritative `ops/country-production/{slug}.json` resolved by `stateRef`.
 
 Normal user-facing gates are:
 1. Hero approval
 2. S01–S08 batch review
 3. FOOD01–FOOD04 batch review
-4. canonical Country URL final review / publication approval
+4. Final Country Page review / publication approval
 
-Scenes and Taste are generated as independent images without per-image user approval. After visual approval, Map → asset QA → Country JSON / taxonomy implementation → validation → Review Deployment → targeted Desktop / Tablet / Mobile QA proceeds as one automatic chain unless a real blocking specification decision is required.
+Under Protocol 2, all non-raster Country content, Scene coordinates, Map, taxonomy, Travel Scale, Signature Facts and sources are completed and QA'd **before Hero generation**. Scenes and Taste are then generated as independent images without per-image user approval.
 
-Review Deployment keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion. Only explicit final user approval may switch to `atlasPublished:true`, indexing, sitemap inclusion, and formal discovery links.
+After all visual batches are approved, the normal post-image chain is:
+
+`13-image USER_HANDOFF verification → target-only asset/path QA → target-only strict validation → target-only Preview Build → target-only Desktop / Tablet / Mobile Browser QA → country/{slug} GitHub Pages Review Preview → final user approval → one terminal publication PR/main integration → one production deployment → target-only production verification`
+
+Do not integrate to `main` merely to create the review URL. Protocol 2 keeps `phase: QA` and `contentRef/stateRef: country/{slug}` while `reviewPreview` is active. The legacy `REVIEW` phase remains a main-authority representation for older/already-integrated states.
+
+The pre-main Review Preview keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion. Only explicit final user approval may switch to `atlasPublished:true`, indexing, sitemap inclusion, and formal discovery links.
