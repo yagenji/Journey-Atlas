@@ -154,7 +154,7 @@ def interaction_for_next(next_action: dict[str, Any]) -> dict[str, Any]:
             "approvalRequested": False,
             "expectedRasterCount": 13,
         }
-    if action in {"DEPLOY_TARGETED_REVIEW_PREVIEW", "CREATE_TERMINAL_PUBLICATION_PR"}:
+    if action in {"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW", "FINALIZE_REVIEW_PR_FOR_PUBLICATION"}:
         return {"userGate": False, "promptUser": False, "autoContinue": True}
     return {"userGate": False, "promptUser": False, "autoContinue": True}
 
@@ -169,20 +169,22 @@ def protocol_next(state: dict[str, Any]) -> dict[str, Any]:
             nxt = {"action": "HANDOFF_APPROVED_IMAGES_TO_USER", "asset": "ALL_13_RASTERS"}
             return {"next": nxt, "interaction": interaction_for_next(nxt)}
 
-    # Protocol 2 review fast path: stay on country/{slug} through the final
-    # page-review gate. Do not move to legacy REVIEW/main merely to obtain a URL.
+    # Protocol 2 review fast path: open one pre-main review PR after target QA.
+    # Opening/synchronizing that PR automatically drives the persistent targeted
+    # GitHub Pages preview. The same PR is finalized and serialized for
+    # publication after explicit canonical approval; a second PR is forbidden.
     phase = state.get("phase")
     qa = state.get("qa") if isinstance(state.get("qa"), dict) else {}
     preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else None
     final_approval = state.get("finalApproval") if isinstance(state.get("finalApproval"), dict) else {}
     if phase == "QA" and qa.get("state") == "PASS" and preview is not None:
         if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-            nxt = {"action": "DEPLOY_TARGETED_REVIEW_PREVIEW", "asset": None}
+            nxt = {"action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW", "asset": None}
             return {"next": nxt, "interaction": interaction_for_next(nxt)}
         if final_approval.get("state") != "APPROVED":
             nxt = {"action": "REVIEW_CANONICAL_URL", "asset": None}
             return {"next": nxt, "interaction": interaction_for_next(nxt)}
-        nxt = {"action": "CREATE_TERMINAL_PUBLICATION_PR", "asset": None}
+        nxt = {"action": "FINALIZE_REVIEW_PR_FOR_PUBLICATION", "asset": None}
         return {"next": nxt, "interaction": interaction_for_next(nxt)}
 
     nxt = legacy.derive_next(state)
@@ -401,8 +403,6 @@ def self_test() -> int:
     assert result["interaction"]["userGate"] is False
     assert result["interaction"]["continueUntil"] == "SCENE_BATCH_BOUNDARY"
 
-    # Protocol 2 review is a virtual gate while legacy phase remains QA, so the
-    # Country branch can be reviewed without a pre-approval main integration.
     state["phase"] = "QA"
     state["qa"]["state"] = "PASS"
     state["assetHandoff"] = {
@@ -422,12 +422,12 @@ def self_test() -> int:
     state["sceneBatchReview"] = {"approval": "APPROVED", "rounds": []}
     state["tasteBatchReview"] = {"approval": "APPROVED", "rounds": []}
     result = protocol_next(state)
-    assert result["next"] == {"action": "DEPLOY_TARGETED_REVIEW_PREVIEW", "asset": None}
+    assert result["next"] == {"action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW", "asset": None}
     assert result["interaction"]["userGate"] is False
     state["reviewPreview"] = {
         "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
         "state": "DONE",
-        "url": "https://example.test/countries/test-slug/",
+        "url": "https://example.test/reviews/test-slug/countries/test-slug/",
         "browserQa": "PASS",
         "deployedAt": "2026-09-11T00:00:00+09:00",
     }
@@ -436,7 +436,7 @@ def self_test() -> int:
     assert result["interaction"]["userGate"] is True
     state["finalApproval"]["state"] = "APPROVED"
     result = protocol_next(state)
-    assert result["next"] == {"action": "CREATE_TERMINAL_PUBLICATION_PR", "asset": None}
+    assert result["next"] == {"action": "FINALIZE_REVIEW_PR_FOR_PUBLICATION", "asset": None}
     assert result["interaction"]["userGate"] is False
 
     print("Country production protocol 2 self-test passed")
