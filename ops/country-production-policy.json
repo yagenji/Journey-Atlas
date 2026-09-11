@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "updatedAt": "2026-09-11T20:05:00+09:00",
+  "updatedAt": "2026-09-11T20:35:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -48,16 +48,22 @@
     "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
-    "reviewPackageIntegrationsTarget": 1,
     "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
     "targetedPreviewBuildCommand": "python3 scripts/build_country_preview_targeted.py --slugs {slug}",
+    "reviewDeploymentMode": "COUNTRY_BRANCH_TARGETED_GITHUB_PAGES",
+    "mainIntegrationBeforeCanonicalReview": false,
+    "countryBranchRemainsAuthoritativeThroughReview": true,
+    "productionIntegrationTiming": "AFTER_CANONICAL_APPROVAL",
+    "productionIntegrationsTarget": 1,
+    "reviewPreviewDeploymentsTarget": 1,
     "fullCountryBuildDuringCountryOnlyChange": "FORBIDDEN",
     "fullCountryBrowserQaDuringCountryOnlyChange": "FORBIDDEN",
     "fullBuildAllowedFor": [
       "SHARED_TEMPLATE_CHANGE",
       "SHARED_CSS_OR_JS_CHANGE",
       "PRODUCTION_BUILD_SYSTEM_CHANGE",
-      "MANUAL_FULL_QA"
+      "MANUAL_FULL_QA",
+      "FINAL_PRODUCTION_DEPLOYMENT"
     ],
     "targetedBrowserQaCyclesTarget": 1,
     "waitForStateOnlyCi": false,
@@ -78,6 +84,9 @@
     "sceneBatchUserReviewCountTarget": 1,
     "tasteBatchUserReviewCountTarget": 1,
     "assetHandoffCountTarget": 1,
+    "preCanonicalMainIntegrationsTarget": 0,
+    "productionIntegrationsTarget": 1,
+    "reviewPreviewDeploymentsTarget": 1,
     "measurePostTasteApprovalToCanonicalReview": true,
     "measureMainIntegrationCount": true,
     "measureBrowserQaCycleCount": true
