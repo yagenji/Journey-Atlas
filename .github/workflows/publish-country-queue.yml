@@ -97,9 +97,7 @@ jobs:
 
       - name: Validate terminal State before queueing
         if: steps.ready.outputs.ready == 'true'
-        run: |
-          python scripts/country_production_state.py validate
-          python scripts/country_production_protocol_v2.py validate
+        run: python scripts/validate_production_state_routed.py
 
       - name: Synchronize latest main, wait required checks, and squash merge
         if: steps.ready.outputs.ready == 'true'
