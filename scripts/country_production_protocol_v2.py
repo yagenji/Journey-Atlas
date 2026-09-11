@@ -81,12 +81,25 @@ def new_state(destination: dict[str, Any]) -> dict[str, Any]:
         "verifiedRasterCount": 0,
         "verifiedAt": None,
     }
+    # Protocol 2 keeps the Country branch authoritative through final page
+    # review. The legacy REVIEW phase requires main authority, so the pre-main
+    # review gate is represented explicitly here while phase remains QA.
+    state["reviewPreview"] = {
+        "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+        "state": "NOT_STARTED",
+        "url": None,
+        "browserQa": "NOT_STARTED",
+        "deployedAt": None,
+    }
     state["productionMetrics"] = {
         "perImageApprovalPrompts": 0,
         "sceneBatchReviews": 0,
         "tasteBatchReviews": 0,
         "assetHandoffs": 0,
         "reviewPackageIntegrations": 0,
+        "reviewPreviewDeployments": 0,
+        "preCanonicalMainIntegrations": 0,
+        "productionIntegrations": 0,
         "browserQaCycles": 0,
         "tasteBatchApprovedAt": None,
         "canonicalReviewReadyAt": None,
@@ -141,6 +154,8 @@ def interaction_for_next(next_action: dict[str, Any]) -> dict[str, Any]:
             "approvalRequested": False,
             "expectedRasterCount": 13,
         }
+    if action in {"DEPLOY_TARGETED_REVIEW_PREVIEW", "CREATE_TERMINAL_PUBLICATION_PR"}:
+        return {"userGate": False, "promptUser": False, "autoContinue": True}
     return {"userGate": False, "promptUser": False, "autoContinue": True}
 
 
@@ -153,6 +168,22 @@ def protocol_next(state: dict[str, Any]) -> dict[str, Any]:
         if handoff.get("state") != "PASS":
             nxt = {"action": "HANDOFF_APPROVED_IMAGES_TO_USER", "asset": "ALL_13_RASTERS"}
             return {"next": nxt, "interaction": interaction_for_next(nxt)}
+
+    # Protocol 2 review fast path: stay on country/{slug} through the final
+    # page-review gate. Do not move to legacy REVIEW/main merely to obtain a URL.
+    phase = state.get("phase")
+    qa = state.get("qa") if isinstance(state.get("qa"), dict) else {}
+    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else None
+    final_approval = state.get("finalApproval") if isinstance(state.get("finalApproval"), dict) else {}
+    if phase == "QA" and qa.get("state") == "PASS" and preview is not None:
+        if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
+            nxt = {"action": "DEPLOY_TARGETED_REVIEW_PREVIEW", "asset": None}
+            return {"next": nxt, "interaction": interaction_for_next(nxt)}
+        if final_approval.get("state") != "APPROVED":
+            nxt = {"action": "REVIEW_CANONICAL_URL", "asset": None}
+            return {"next": nxt, "interaction": interaction_for_next(nxt)}
+        nxt = {"action": "CREATE_TERMINAL_PUBLICATION_PR", "asset": None}
+        return {"next": nxt, "interaction": interaction_for_next(nxt)}
 
     nxt = legacy.derive_next(state)
     return {"next": nxt, "interaction": interaction_for_next(nxt)}
@@ -257,6 +288,24 @@ def validate_protocol_state(state: dict[str, Any], filename: str) -> list[str]:
         if handoff.get("verifiedRasterCount") != 13:
             errors.append(f"{filename}: phase {phase} requires 13 verified raster assets")
 
+    preview = state.get("reviewPreview")
+    if preview is not None:
+        if not isinstance(preview, dict):
+            errors.append(f"{filename}: reviewPreview must be an object when present")
+        else:
+            if preview.get("mode") != "TARGETED_COUNTRY_BRANCH_PREVIEW":
+                errors.append(f"{filename}: reviewPreview.mode must be TARGETED_COUNTRY_BRANCH_PREVIEW")
+            if preview.get("state") not in {"NOT_STARTED", "DONE"}:
+                errors.append(f"{filename}: reviewPreview.state must be NOT_STARTED or DONE")
+            if preview.get("browserQa") not in {"NOT_STARTED", "PASS", "FAIL"}:
+                errors.append(f"{filename}: reviewPreview.browserQa must be NOT_STARTED, PASS or FAIL")
+            if preview.get("state") == "DONE":
+                url = preview.get("url")
+                if not isinstance(url, str) or not url.startswith("https://") or "/countries/" not in url:
+                    errors.append(f"{filename}: completed reviewPreview requires an https Country review URL")
+                if preview.get("browserQa") != "PASS":
+                    errors.append(f"{filename}: completed reviewPreview requires browserQa PASS")
+
     metrics = state.get("productionMetrics") if isinstance(state.get("productionMetrics"), dict) else {}
     per_image_prompts = metrics.get("perImageApprovalPrompts")
     if isinstance(per_image_prompts, int) and per_image_prompts != 0:
@@ -339,6 +388,7 @@ def self_test() -> int:
     assert state["executionPolicy"]["sceneApproval"] == "BATCH_ONLY"
     assert state["executionPolicy"]["userPromptBetweenSceneTargets"] is False
     assert state["assetHandoff"]["mode"] == "USER_HANDOFF"
+    assert state["reviewPreview"]["mode"] == "TARGETED_COUNTRY_BRANCH_PREVIEW"
 
     state["phase"] = "SCENES_INITIAL"
     state["preVisualBuild"]["state"] = "PASS"
@@ -350,6 +400,45 @@ def self_test() -> int:
     assert result["next"] == {"action": "GENERATE_SCENE", "asset": "S01"}
     assert result["interaction"]["userGate"] is False
     assert result["interaction"]["continueUntil"] == "SCENE_BATCH_BOUNDARY"
+
+    # Protocol 2 review is a virtual gate while legacy phase remains QA, so the
+    # Country branch can be reviewed without a pre-approval main integration.
+    state["phase"] = "QA"
+    state["qa"]["state"] = "PASS"
+    state["assetHandoff"] = {
+        "mode": "USER_HANDOFF",
+        "state": "PASS",
+        "expectedRasterCount": 13,
+        "verifiedRasterCount": 13,
+        "verifiedAt": "2026-09-11T00:00:00+09:00",
+    }
+    state["hero"]["state"] = "APPROVED"
+    for index, item in enumerate(state["scenes"], start=1):
+        item["state"] = "APPROVED"
+        item["approvedGenerationId"] = f"scene-g-{index}"
+    for index, item in enumerate(state["taste"], start=1):
+        item["state"] = "APPROVED"
+        item["approvedGenerationId"] = f"food-g-{index}"
+    state["sceneBatchReview"] = {"approval": "APPROVED", "rounds": []}
+    state["tasteBatchReview"] = {"approval": "APPROVED", "rounds": []}
+    result = protocol_next(state)
+    assert result["next"] == {"action": "DEPLOY_TARGETED_REVIEW_PREVIEW", "asset": None}
+    assert result["interaction"]["userGate"] is False
+    state["reviewPreview"] = {
+        "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+        "state": "DONE",
+        "url": "https://example.test/countries/test-slug/",
+        "browserQa": "PASS",
+        "deployedAt": "2026-09-11T00:00:00+09:00",
+    }
+    result = protocol_next(state)
+    assert result["next"] == {"action": "REVIEW_CANONICAL_URL", "asset": None}
+    assert result["interaction"]["userGate"] is True
+    state["finalApproval"]["state"] = "APPROVED"
+    result = protocol_next(state)
+    assert result["next"] == {"action": "CREATE_TERMINAL_PUBLICATION_PR", "asset": None}
+    assert result["interaction"]["userGate"] is False
+
     print("Country production protocol 2 self-test passed")
     return 0
 
