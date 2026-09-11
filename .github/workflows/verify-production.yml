@@ -21,6 +21,7 @@ on:
       - "scripts/build_site.py"
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
+      - ".github/workflows/verify-production.yml"
   workflow_dispatch:
 
 permissions:
@@ -60,6 +61,15 @@ jobs:
             exit 0
           fi
           base_sha="$(git rev-parse HEAD^)"
+          if git diff --name-only "$base_sha" HEAD | grep -qx '.github/workflows/verify-production.yml'; then
+            echo "production_changed=true" >> "$GITHUB_OUTPUT"
+            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
+            echo "target_slugs=" >> "$GITHUB_OUTPUT"
+            echo "published_slugs=" >> "$GITHUB_OUTPUT"
+            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+            echo "Production verification workflow changed: full verification requested."
+            exit 0
+          fi
           python3 scripts/classify_country_impact.py --base "$base_sha" --head HEAD --github-output "$GITHUB_OUTPUT"
 
   runtime:
@@ -76,8 +86,8 @@ jobs:
           set -euo pipefail
           profile_sources="$(grep -l 'country-facts-strip' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
           test "$profile_sources" = "assets/css/country-icon-system.css"
-          transport_sources="$(grep -l 'travel-planning__block--transport .transport' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
-          test "$transport_sources" = "assets/css/country-discovery-v3.css"
+          transport_structure_sources="$(grep -l '^\.travel-planning__block--transport \.transport{$' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
+          test "$transport_structure_sources" = "assets/css/country-discovery-v3.css"
 
       - name: Wait for atlas.yagenji.com to serve this commit
         env:
