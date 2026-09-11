@@ -5,42 +5,58 @@ on:
     branches: ["main"]
     paths:
       - 'ops/country-production/**'
+      - 'ops/country-production-policy.json'
       - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_protocol_v2.py'
       - 'scripts/classify_country_impact.py'
+      - 'scripts/manage_review_preview_site.py'
+      - 'scripts/externalize_review_preview_images.py'
       - '.github/workflows/validate-production-state.yml'
       - '.github/workflows/browser-country-qa.yml'
       - '.github/workflows/branch-hygiene.yml'
       - '.github/workflows/verify-production.yml'
       - '.github/workflows/deploy-pages.yml'
+      - '.github/workflows/deploy-country-preview.yml'
+      - '.github/workflows/publish-country-queue.yml'
       - 'WORKFLOW.md'
       - 'docs/COUNTRY_PRODUCTION_STATE.md'
+      - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/COUNTRY_PAGE_TEMPLATE.md'
+      - 'docs/CLOUDFLARE_PAGES.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/*_CONTENT_PLAN.md'
   pull_request:
     paths:
       - 'ops/country-production/**'
+      - 'ops/country-production-policy.json'
       - 'ops/image-generation-policy.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_protocol_v2.py'
       - 'scripts/classify_country_impact.py'
+      - 'scripts/manage_review_preview_site.py'
+      - 'scripts/externalize_review_preview_images.py'
       - '.github/workflows/validate-production-state.yml'
       - '.github/workflows/browser-country-qa.yml'
       - '.github/workflows/branch-hygiene.yml'
       - '.github/workflows/verify-production.yml'
       - '.github/workflows/deploy-pages.yml'
+      - '.github/workflows/deploy-country-preview.yml'
+      - '.github/workflows/publish-country-queue.yml'
       - 'WORKFLOW.md'
       - 'docs/COUNTRY_PRODUCTION_STATE.md'
+      - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
       - 'docs/NEW_COUNTRY_START.md'
       - 'docs/COUNTRY_PAGE_TEMPLATE.md'
+      - 'docs/CLOUDFLARE_PAGES.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/*_CONTENT_PLAN.md'
@@ -69,8 +85,15 @@ jobs:
 
       - name: Validate automation syntax
         run: |
-          python3 -m py_compile scripts/country_production_state.py scripts/classify_country_impact.py
+          python3 -m py_compile \
+            scripts/country_production_state.py \
+            scripts/country_production_protocol_v2.py \
+            scripts/classify_country_impact.py \
+            scripts/manage_review_preview_site.py \
+            scripts/externalize_review_preview_images.py
           python3 scripts/classify_country_impact.py --self-test
+          python3 scripts/country_production_protocol_v2.py self-test
+          python3 scripts/manage_review_preview_site.py self-test
           python3 - <<'PY'
           import importlib.util
           from pathlib import Path
@@ -102,6 +125,8 @@ jobs:
               Path(".github/workflows/browser-country-qa.yml"),
               Path(".github/workflows/verify-production.yml"),
               Path(".github/workflows/deploy-pages.yml"),
+              Path(".github/workflows/deploy-country-preview.yml"),
+              Path(".github/workflows/publish-country-queue.yml"),
               Path(".github/workflows/validate-production-state.yml"),
           ]:
               yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -109,7 +134,9 @@ jobs:
           PY
 
       - name: Validate canonical Country production state
-        run: python3 scripts/country_production_state.py validate
+        run: |
+          python3 scripts/country_production_state.py validate
+          python3 scripts/country_production_protocol_v2.py validate
 
       - name: Validate Content Plan / Production State separation
         run: |

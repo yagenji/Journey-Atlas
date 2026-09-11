@@ -45,7 +45,10 @@ QA_SHARED_FILES = {
     "scripts/qa_published_browser.py",
     "scripts/classify_country_impact.py",
     "scripts/build_country_preview_targeted.py",
+    "scripts/manage_review_preview_site.py",
+    "scripts/externalize_review_preview_images.py",
     ".github/workflows/browser-country-qa.yml",
+    ".github/workflows/deploy-country-preview.yml",
 }
 
 PRODUCTION_PREFIXES = (
@@ -201,9 +204,8 @@ def classify(base: str, head: str) -> dict:
     if any(path in COUNTRY_SHARED_FILES for path in files):
         browser_scope = "all"
     elif any(path in QA_SHARED_FILES for path in files):
-        # QA infrastructure changes need a real browser smoke test, not a
-        # full regression of every published Country. Spain is the shared
-        # reference baseline and exercises the complete Country template.
+        # QA/review infrastructure changes need one real Country smoke test,
+        # not a full regression of every published Country.
         target_slugs.add("spain")
         browser_scope = "targeted"
     elif target_slugs:
@@ -278,6 +280,9 @@ def self_test() -> int:
     assert "country.html" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
     assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
+    assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
+    assert "scripts/externalize_review_preview_images.py" in QA_SHARED_FILES
+    assert ".github/workflows/deploy-country-preview.yml" in QA_SHARED_FILES
     assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0
