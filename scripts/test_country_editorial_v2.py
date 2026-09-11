@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import copy
 import importlib.util
+import json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
 SPEC = importlib.util.spec_from_file_location("editorial_v2", HERE / "validate_country_editorial_v2.py")
 assert SPEC and SPEC.loader
 v2 = importlib.util.module_from_spec(SPEC)
@@ -96,6 +97,14 @@ def test_non_forest_percentage_is_allowed() -> None:
     assert not errors, errors
 
 
+def test_protocol2_pilot_countries() -> None:
+    for slug in ("japan", "indonesia", "cambodia", "northkorea"):
+        path = ROOT / "data" / "countries" / f"{slug}.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        errors = v2.validate_data(data, path.name, force=True)
+        assert not errors, f"{slug}: {errors}"
+
+
 if __name__ == "__main__":
     test_valid()
     test_missing_example_fails()
@@ -103,4 +112,5 @@ if __name__ == "__main__":
     test_extreme_forest_share_requires_flag()
     test_extreme_forest_share_passes_with_flag()
     test_non_forest_percentage_is_allowed()
-    print("Editorial Content QA v2 regression tests passed")
+    test_protocol2_pilot_countries()
+    print("Editorial Content QA v2 regression tests passed, including four Protocol 2 pilot Countries")
