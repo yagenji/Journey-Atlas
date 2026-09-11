@@ -5,8 +5,8 @@
   "contentRef": "country/brunei",
   "stateRef": "country/brunei",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-11T21:47:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-11T21:49:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -32,18 +32,15 @@
       "singleSceneOnly": true
     },
     "approvedGenerationId": "b4d006cf-157c-47ce-880a-a50b42e4fe47",
-    "candidateVisualQa": {
-      "targetIdentity": "PASS",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS"
-    },
+    "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},
     "userApprovedAt": "2026-09-11T21:47:00+09:00"
   },
   "scenes": [
     {
-      "id":"S01","state":"GENERATING","asset":"assets/images/brunei/approved/jame-asr-hassanil-bolkiah-mosque.webp","contentId":"jame-asr-hassanil-bolkiah-mosque","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "id":"S01","state":"REGENERATE","asset":"assets/images/brunei/approved/jame-asr-hassanil-bolkiah-mosque.webp","contentId":"jame-asr-hassanil-bolkiah-mosque","promptSeries":1,"promptSeriesRejectCount":1,"rejectedGenerationIds":["4d5f1cf6-da26-4627-9195-7fda942234f7"],
       "renderPacket":{"kind":"SCENE","contentId":"jame-asr-hassanil-bolkiah-mosque","identity":"Real Jame’ ‘Asr Hassanil Bolkiah Mosque in Bandar Seri Begawan, seen from the landscaped garden approach at human eye level in soft early-morning light. Show the mosque’s recognisable cream-white facades, multiple golden domes and tall minarets with realistic proportions, framed by clipped gardens, palms and reflective paving or water where plausible. The architecture is the clear single subject; no crowds, no palace substitution, no Sultan Omar Ali Saifuddien Mosque substitution, photo 6 : quiet watercolor 4, refined realistic travel-atlas treatment.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
-      "generationReservation":{"reservationId":"brunei-s01-20260911T214700+0900","asset":"S01","contentId":"jame-asr-hassanil-bolkiah-mosque","promptSeries":1,"generationContextEpoch":1,"reservedAt":"2026-09-11T21:47:00+09:00"}
+      "candidateVisualQa":{"targetIdentity":"FAIL","previousAssetRepeat":"PASS","collageTypography":"FAIL"},
+      "lastFailureReason":"COLLAGE_OR_MULTIPANEL"
     },
     {
       "id":"S02","state":"NOT_STARTED","asset":"assets/images/brunei/approved/ulu-temburong-canopy-rainforest.webp","contentId":"ulu-temburong-canopy-rainforest","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
@@ -88,7 +85,7 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"COLLAGE_OR_MULTIPANEL"},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
@@ -98,5 +95,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":1,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
