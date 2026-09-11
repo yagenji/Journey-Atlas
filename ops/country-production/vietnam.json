@@ -4,9 +4,9 @@
   "countryName": "VIETNAM",
   "contentRef": "country/vietnam",
   "stateRef": "country/vietnam",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-11T21:22:00+09:00",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-11T22:50:00+09:00",
   "hero": {"state": "NOT_STARTED", "asset": null, "contentId": null},
   "scenes": [
     {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
@@ -24,7 +24,7 @@
     {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": null},
     {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": null}
   ],
-  "map": {"state": "NOT_STARTED", "asset": null},
+  "map": {"state": "APPROVED", "asset": "assets/images/vietnam/map-atlas-v1.svg"},
   "implementation": {"state": "NOT_STARTED"},
   "qa": {"state": "NOT_STARTED", "productionState": "NOT_STARTED"},
   "reviewDeployment": {"state": "NOT_STARTED", "url": null},
@@ -96,19 +96,19 @@
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
   "preVisualBuild": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "checks": {
-      "countryJsonEditorialComplete": "PENDING",
-      "finalExpectedImagePathsDeclared": "PENDING",
-      "sceneCoordinatesFinal": "PENDING",
-      "mapBuiltAndQaPassed": "PENDING",
-      "taxonomyComplete": "PENDING",
-      "relatedCountriesComplete": "PENDING",
-      "nextRoutesResolved": "PENDING",
-      "travelScaleComplete": "PENDING",
-      "signatureFactsComplete": "PENDING",
-      "sourcesComplete": "PENDING",
-      "editorialQaV2Passed": "PENDING"
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
     }
   },
   "assetHandoff": {
@@ -138,5 +138,5 @@
     "tasteBatchApprovedAt": null,
     "canonicalReviewReadyAt": null
   },
-  "next": {"action": "COMPLETE_CONTENT_DESIGN", "asset": null}
+  "next": {"action": "GENERATE_HERO", "asset": "HERO"}
 }
