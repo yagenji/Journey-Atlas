@@ -1,0 +1,200 @@
+name: Publish approved Country queue
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+
+# Production work may happen in parallel, but final main integration is a
+# single-file queue. This prevents Country A and Country B from repeatedly
+# invalidating each other's strict up-to-date required checks.
+concurrency:
+  group: "country-publication-main"
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: startsWith(github.head_ref, 'country/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout Country branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve terminal publication readiness
+        id: ready
+        shell: bash
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          slug="${HEAD_REF#country/}"
+          slug="${slug%-renewal}"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
+          ready="$(python3 - "$slug" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug = sys.argv[1]
+          state_path = Path("ops/country-production") / f"{slug}.json"
+          if not state_path.exists():
+              print("false")
+              raise SystemExit
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          if state.get("productionProtocolId") != "2.0":
+              print("false")
+              raise SystemExit
+
+          registry_published = False
+          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+              payload = json.loads((Path("data") / name).read_text(encoding="utf-8"))
+              for row in payload.get("destinations", []):
+                  if row.get("slug") == slug:
+                      registry_published = bool(row.get("atlasPublished"))
+                      break
+
+          preview = state.get("reviewPreview") or {}
+          publication = state.get("publication") or {}
+          ready = all([
+              state.get("phase") == "COMPLETE",
+              state.get("stateRef") == "main",
+              state.get("contentRef") == "main",
+              (state.get("qa") or {}).get("state") == "PASS",
+              (state.get("finalApproval") or {}).get("state") == "APPROVED",
+              preview.get("state") == "DONE",
+              preview.get("browserQa") == "PASS",
+              publication.get("state") == "PUBLISHED",
+              publication.get("atlasPublished") is True,
+              registry_published,
+          ])
+          print(str(ready).lower())
+          PY
+          )"
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+          echo "Terminal publication ready: $ready ($slug)"
+
+      - name: Not ready for publication
+        if: steps.ready.outputs.ready != 'true'
+        run: echo "PR remains a pre-main review PR. No publication action is allowed before explicit final approval and terminal State."
+
+      - name: Validate terminal State before queueing
+        if: steps.ready.outputs.ready == 'true'
+        run: |
+          python scripts/country_production_state.py validate
+          python scripts/country_production_protocol_v2.py validate
+
+      - name: Synchronize latest main, wait required checks, and squash merge
+        if: steps.ready.outputs.ready == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+
+          state="$(gh api "repos/$REPO/pulls/$PR_NUMBER" --jq '.state')"
+          if [ "$state" != "open" ]; then
+            echo "PR is already $state; nothing to publish."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for cycle in $(seq 1 5); do
+            echo "Publication queue cycle $cycle"
+            git fetch origin main "$HEAD_REF"
+            git checkout -B "$HEAD_REF" "origin/$HEAD_REF"
+
+            if ! git merge-base --is-ancestor origin/main HEAD; then
+              echo "Synchronizing latest main into $HEAD_REF before required checks."
+              git merge --no-edit origin/main
+              git push origin "HEAD:$HEAD_REF"
+            fi
+
+            sha="$(git rev-parse HEAD)"
+            echo "Waiting for required checks on $sha"
+
+            for attempt in $(seq 1 120); do
+              current_state="$(gh api "repos/$REPO/pulls/$PR_NUMBER" --jq '.state')"
+              if [ "$current_state" != "open" ]; then
+                echo "PR is now $current_state; publication queue is complete."
+                exit 0
+              fi
+
+              current_head="$(gh api "repos/$REPO/pulls/$PR_NUMBER" --jq '.head.sha')"
+              if [ "$current_head" != "$sha" ]; then
+                echo "PR head advanced from $sha to $current_head; restarting queue cycle."
+                continue 2
+              fi
+
+              gh api "repos/$REPO/commits/$sha/check-runs?per_page=100" > /tmp/checks.json
+              read -r checks_ready checks_failed <<<"$(python3 - /tmp/checks.json <<'PY'
+          import json
+          import sys
+
+          payload = json.load(open(sys.argv[1], encoding="utf-8"))
+          required = [run for run in payload.get("check_runs", []) if run.get("name") in {"validate", "browser-qa"}]
+          names = {run.get("name") for run in required if run.get("status") == "completed" and run.get("conclusion") in {"success", "neutral", "skipped"}}
+          failed = any(
+              run.get("status") == "completed"
+              and run.get("conclusion") not in {"success", "neutral", "skipped"}
+              for run in required
+          )
+          ready = {"validate", "browser-qa"}.issubset(names) and not failed
+          print(str(ready).lower(), str(failed).lower())
+          PY
+              )"
+
+              if [ "$checks_failed" = "true" ]; then
+                echo "A required validation failed on $sha. Publication is blocked."
+                exit 1
+              fi
+
+              if [ "$checks_ready" = "true" ]; then
+                git fetch origin main
+                if ! git merge-base --is-ancestor origin/main "$sha"; then
+                  echo "main advanced while checks ran; restarting with the new base."
+                  continue 2
+                fi
+
+                set +e
+                merge_response="$(gh api --method PUT "repos/$REPO/pulls/$PR_NUMBER/merge" \
+                  -f merge_method=squash \
+                  -f sha="$sha" 2>&1)"
+                merge_status=$?
+                set -e
+                if [ "$merge_status" -eq 0 ]; then
+                  echo "$merge_response"
+                  merged="$(printf '%s' "$merge_response" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("merged", False)).lower())')"
+                  if [ "$merged" = "true" ]; then
+                    echo "Country publication merged from the serialized queue."
+                    exit 0
+                  fi
+                fi
+                echo "Merge is not yet accepted by branch rules; retrying."
+              fi
+
+              sleep 5
+            done
+          done
+
+          echo "Publication queue could not reach a mergeable up-to-date state after five synchronization cycles."
+          exit 1
