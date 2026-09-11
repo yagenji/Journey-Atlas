@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
 Updated: 2026-09-11
-Current new-Country protocol: 2.0
+Current new-Country protocol: 2.0 / policy patch 2
 
 ## Copy / paste start prompt
 
@@ -17,7 +17,7 @@ GitHub：
 PROJECT MASTER INSTRUCTIONSとGitHub `main` の最新仕様を使用してください。
 
 最初に以下を確認してください。
-1. `main:ops/country-production-policy.json` の最新 protocolId
+1. `main:ops/country-production-policy.json` の最新 protocolId / policyPatch
 2. `main:ops/image-generation-policy.json` の最新 revision / patch / policyId
 3. `ops/country-production/{slug}.json` と `stateRef` / `contentRef`
 
@@ -94,16 +94,22 @@ Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユ�
 2. 必要な一括変換・dimensions/path/hygiene QA
 3. Country JSONとのpath一致確認
 4. target Countryだけstrict validation
-5. target CountryだけPreview Build
-6. targeted Desktop / Tablet / Mobile Browser QAを1回
-7. `country/{slug}` からGitHub Pages review previewを1回だけdeploy
-8. review URLを提示し、最終ページ承認を求める
-9. 最終承認後にだけterminal publication PRを作り、mainへ1回だけ統合
-10. production deploy後、対象国だけproduction verification
+5. target CountryだけPreview Build / targeted Desktop・Tablet・Mobile Browser QA
+6. 最新mainをCountry branchへ1回同期
+7. **1つだけ** pre-main Review PRを `country/{slug}` → `main` で開く
+8. PR open/synchronizeをトリガーとしてPersistent GitHub Pages Reviewを自動deploy
+9. `/reviews/{slug}/countries/{slug}/` の固定Review URLを提示し、最終ページ承認を求める
+10. 最終承認後、**同じPR**をterminal publication Stateへ更新する。2本目のPRは禁止
+11. serialized publication queueに任せ、latest main同期 → required `validate` / `browser-qa` → squash mergeを自動実行
+12. production deploy後、対象国だけproduction verification
 
 **Final Country Page review前にReview Packageをmainへ統合してはいけません。**
 Protocol 2では、target QA後もlegacy `REVIEW` phaseへ移らず `phase: QA` のまま `reviewPreview` を使います。
-`contentRef/stateRef: country/{slug}` を維持し、mainは最終ページ承認後の一度だけ使用します。
+`contentRef/stateRef: country/{slug}` を維持し、main統合は最終ページ承認後の一度だけです。
+
+通常のReview Previewでは `.github/preview-trigger/**` の専用commitや手動dispatchを作りません。Review PR自体がPreview triggerです。
+
+GitHub Pagesは共有面ですが、各Countryは `/reviews/{slug}/` に保持されます。別CountryのReview deploymentで既存Review URLを上書きしてはいけません。最大8件のreview snapshotを保持し、画像はimmutable commitのraw URLを利用します。
 
 通常のCountry-only reviewで以下を実行してはいけません。
 - 全reviewable Country validation
@@ -111,6 +117,7 @@ Protocol 2では、target QA後もlegacy `REVIEW` phaseへ移らず `phase: QA` 
 - 全Country static build/package
 - 全published Country Browser QA
 - ユーザー最終承認前のCloudflare production build
+- Review用PRとは別のPublication PR
 
 Blocking defectがない限り、途中で進行確認を求めたり、複数のReview deployment / Browser QA cycleを作らないでください。
 
