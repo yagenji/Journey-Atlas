@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "japan",
   "countryName": "JAPAN",
-  "contentRef": "main",
-  "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-11T15:30:11+09:00",
+  "contentRef": "country/japan",
+  "stateRef": "country/japan",
+  "phase": "QA",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-11T15:41:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp",
@@ -32,30 +32,30 @@
   "map": {
     "state": "APPROVED",
     "asset": "assets/images/japan/map-atlas-v1.svg",
-    "source": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; longitude scaled by cos(34.8 degrees) to match the JOURNEY ATLAS runtime marker projection; JOURNEY ATLAS map-v3 clean background.",
+    "source": "Japan-only GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; longitude scaled by cos(34.8 degrees) to match the JOURNEY ATLAS runtime marker projection; surrounding countries omitted to match the Norway country-only map language.",
     "bounds": {"north":46.0,"south":23.6,"west":122.3,"east":146.2}
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-11T15:30:11+09:00",
+    "completedAt": "2026-09-11T15:41:00+09:00",
     "files": ["data/countries/japan.json", "data/theme-taxonomy.json", "assets/images/japan/map-atlas-v1.svg"],
     "themeTaxonomy": ["city", "history", "food"],
     "sharedTemplate": true,
     "countrySpecificCss": false,
-    "notes": "Japan schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and corrected 1200x760 map. atlasPublished remains false."
+    "notes": "Japan schema-v2 Country JSON implemented with approved Hero, eight Scenes, four Taste assets and Japan-only 1200x760 map. atlasPublished remains false."
   },
   "qa": {
-    "state": "PASS",
-    "productionState": "PASS",
-    "sourceCommit": "e82d29ac40deb85651f1446df3632f1e76ef156c",
-    "validateRunId": 34570079837,
-    "browserQaRunId": 34570079798,
-    "productionVerifyRunId": 34570079798,
-    "checks": ["source-syntax","image-delivery-budget","region-contract","approved-image-full-decode","perceptual-duplicate-gate","strict-country-json","lens-slug-drift","cloudflare-package-build","production-commit-served","production-country-route","production-country-payload","targeted-unpublished-reviewable-browser-qa","desktop-tablet-mobile-layout","canonical-url","noindex-follow","sitemap-exclusion","registry-atlasPublished-false","registry-href-empty","map-render","critical-section-visibility","heading-hierarchy","aria-references","image-alt","interactive-accessible-name","keyboard-focusability","no-horizontal-overflow","no-clipped-text","no-severe-console-errors"],
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED",
+    "sourceCommit": null,
+    "validateRunId": null,
+    "browserQaRunId": null,
+    "productionVerifyRunId": null,
+    "checks": [],
     "failureCount": 0,
-    "completedAt": "2026-09-11T15:30:11+09:00"
+    "completedAt": null
   },
-  "reviewDeployment": {"state":"DONE","url":"https://atlas.yagenji.com/countries/japan/","commit":"e82d29ac40deb85651f1446df3632f1e76ef156c","robots":"noindex,follow","sitemapListed":false,"atlasPublished":false,"linkedFromRegistry":false,"verifiedAt":"2026-09-11T15:30:11+09:00"},
+  "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH","tasteApproval":"BATCH","autoContinueImageRounds":true,"waitForStateOnlyCI":false,"batchMaterialization":true,"autoPostVisualPipeline":true,"singleReviewIntegration":true},
@@ -66,7 +66,7 @@
   "tasteBatchReview": {"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"scope":["FOOD01","FOOD02","FOOD03","FOOD04"],"approvedGenerations":{"FOOD01":"d3d1f20b-0a72-4cc7-bb54-6513b5dda754","FOOD02":"150601ed-b788-479b-ae9c-dd318096a06c","FOOD03":"c1b747ce-b564-4a8b-98b9-a74822263cf7","FOOD04":"43f1d900-ae8d-43a9-8184-ebe915dd5ced"},"regenerate":[],"approvedAt":"2026-09-11T11:56:00+09:00"}]},
   "assetQa": {
     "state": "PASS",
-    "checkedAt": "2026-09-11T15:30:11+09:00",
+    "checkedAt": "2026-09-11T15:41:00+09:00",
     "approvedRasterCount": 13,
     "fullDecode": "PASS",
     "dimensions": "PASS",
@@ -74,10 +74,10 @@
     "perceptualDuplicateGate": "PASS",
     "exactShaDuplicates": 0,
     "hygiene": "PASS",
-    "repositoryMaterialization": {"state":"PASS","approvedFolderExists":true,"materializedRasterCount":13,"byteForByteGitBlobMatch":"PASS","verifiedBranch":"main"},
+    "repositoryMaterialization": {"state":"PASS","approvedFolderExists":true,"materializedRasterCount":13,"byteForByteGitBlobMatch":"PASS","verifiedBranch":"country/japan"},
     "map": {"asset":"assets/images/japan/map-atlas-v1.svg","existence":"PASS","state":"APPROVED"},
-    "notes": "All 13 approved Japan raster assets are present on main, fully decode at 1200x800, and pass targeted duplicate QA. The corrected Japan map and Country payload are served from the verified review commit."
+    "notes": "All 13 approved Japan raster assets remain unchanged and pass prior QA. Japan map geometry has been corrected to country-only rendering and requires a new page QA/deployment pass."
   },
   "blockingIssues": [],
-  "next": {"action":"REVIEW_CANONICAL_URL","asset":null}
+  "next": {"action":"RUN_COUNTRY_QA","asset":null}
 }
