@@ -1,11 +1,9 @@
 name: Deploy Country Preview to GitHub Pages
 
 on:
-  push:
-    branches:
-      - "country/**"
-    paths:
-      - ".github/preview-trigger/**"
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       slug:
@@ -14,53 +12,65 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+  pull-requests: read
 
-# GitHub Pages is one shared deployment surface for this repository. Keep the
-# shared queue serialized to prevent one Country preview from racing another
-# and overwriting an in-flight deployment. The targeted build below makes each
-# queued preview short instead of paying an all-Country build cost.
+# GitHub Pages is one shared deployment surface. Serialize deployments, but keep
+# each Country in its own persistent /reviews/{slug}/ subtree so a later review
+# does not erase an earlier Country review URL.
 concurrency:
-  group: "pages"
+  group: "country-review-pages"
   cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Checkout
+      - name: Checkout Country source
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Resolve target Country
+      - name: Resolve target Country and preview readiness
         id: target
         shell: bash
         env:
           INPUT_SLUG: ${{ inputs.slug }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
+          ref="${PR_HEAD_REF:-$GITHUB_REF_NAME}"
           slug="${INPUT_SLUG:-}"
           if [ -z "$slug" ]; then
-            slug="${GITHUB_REF_NAME#country/}"
+            slug="${ref#country/}"
             slug="${slug%-renewal}"
           fi
           if [ -z "$slug" ] || [ ! -f "data/countries/$slug.json" ]; then
-            echo "Unable to resolve Country slug from ref=$GITHUB_REF_NAME input=${INPUT_SLUG:-<empty>}" >&2
+            echo "Unable to resolve Country slug from ref=$ref input=${INPUT_SLUG:-<empty>}" >&2
             exit 1
           fi
-          echo "slug=$slug" >> "$GITHUB_OUTPUT"
 
-          qa_scope="$(python3 - "$slug" <<'PY'
+          source_sha="${PR_HEAD_SHA:-$GITHUB_SHA}"
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          pages_base="https://${GITHUB_REPOSITORY_OWNER}.github.io/${repo_name}/"
+          review_root="${pages_base%/}/reviews/$slug/"
+          review_url="${review_root}countries/$slug/"
+          image_origin="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${source_sha}/"
+
+          readiness="$(python3 - "$slug" <<'PY'
           import json
           import sys
           from pathlib import Path
@@ -74,28 +84,70 @@ jobs:
                   if row.get("slug") == slug:
                       published = bool(row.get("atlasPublished"))
                       break
-          print("published" if published else "unpublished-reviewable")
+
+          state_path = Path("ops/country-production") / f"{slug}.json"
+          protocol2 = False
+          ready = True
+          if state_path.exists():
+              state = json.loads(state_path.read_text(encoding="utf-8"))
+              protocol2 = state.get("productionProtocolId") == "2.0"
+              if protocol2:
+                  ready = (
+                      state.get("phase") == "QA"
+                      and (state.get("qa") or {}).get("state") == "PASS"
+                      and (state.get("assetHandoff") or {}).get("state") == "PASS"
+                      and (state.get("reviewPreview") or {}).get("state") != "DONE"
+                  )
+
+          should_preview = ready and not published
+          print(json.dumps({
+              "published": published,
+              "protocol2": protocol2,
+              "ready": ready,
+              "shouldPreview": should_preview,
+          }))
           PY
           )"
-          echo "qa_scope=$qa_scope" >> "$GITHUB_OUTPUT"
-          echo "Target Country: $slug ($qa_scope)"
+
+          should_preview="$(printf '%s' "$readiness" | python3 -c 'import json,sys; print(str(json.load(sys.stdin)["shouldPreview"]).lower())')"
+          published="$(printf '%s' "$readiness" | python3 -c 'import json,sys; print(str(json.load(sys.stdin)["published"]).lower())')"
+
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
+          echo "pages_base=$pages_base" >> "$GITHUB_OUTPUT"
+          echo "review_root=$review_root" >> "$GITHUB_OUTPUT"
+          echo "review_url=$review_url" >> "$GITHUB_OUTPUT"
+          echo "image_origin=$image_origin" >> "$GITHUB_OUTPUT"
+          echo "should_preview=$should_preview" >> "$GITHUB_OUTPUT"
+          echo "published=$published" >> "$GITHUB_OUTPUT"
+          echo "Target Country: $slug; source=$source_sha; readiness=$readiness"
+
+      - name: Preview not required
+        if: steps.target.outputs.should_preview != 'true'
+        run: echo "Country is not at the Protocol 2 pre-main review gate, or is already published. No Pages deployment required."
 
       - name: Install targeted QA dependencies
+        if: steps.target.outputs.should_preview == 'true'
         run: python -m pip install --disable-pip-version-check --quiet pillow selenium
 
       - name: Validate source syntax
+        if: steps.target.outputs.should_preview == 'true'
         run: |
           python -m py_compile \
             scripts/build_site.py \
             scripts/build_country_preview_targeted.py \
+            scripts/externalize_review_preview_images.py \
+            scripts/manage_review_preview_site.py \
             scripts/validate_country.py \
             scripts/validate_country_editorial_v2.py \
             scripts/validate_images.py \
             scripts/audit_country_image_delivery_targeted.py \
             scripts/qa_published_browser.py
+          python scripts/manage_review_preview_site.py self-test
           node --check assets/js/app.js
 
       - name: Validate target Country only
+        if: steps.target.outputs.should_preview == 'true'
         shell: bash
         env:
           SLUG: ${{ steps.target.outputs.slug }}
@@ -108,12 +160,15 @@ jobs:
           python scripts/validate_images.py --duplicates-only --slug "$SLUG"
 
       - name: Build local targeted Country preview
+        if: steps.target.outputs.should_preview == 'true'
         env:
           TARGET_SLUGS: ${{ steps.target.outputs.slug }}
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          JOURNEY_ATLAS_BUILD_VERSION: ${{ steps.target.outputs.source_sha }}
         run: python scripts/build_country_preview_targeted.py
 
       - name: Start local targeted preview
+        if: steps.target.outputs.should_preview == 'true'
         run: |
           python -m http.server 4173 --directory dist >/tmp/journey-atlas-country-preview.log 2>&1 &
           echo $! > /tmp/journey-atlas-country-preview.pid
@@ -127,30 +182,36 @@ jobs:
           exit 1
 
       - name: Run target Desktop Tablet Mobile Browser QA
+        if: steps.target.outputs.should_preview == 'true'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-country-preview-output
-          QA_SCOPE: ${{ steps.target.outputs.qa_scope }}
+          QA_SCOPE: unpublished-reviewable
           QA_SLUGS: ${{ steps.target.outputs.slug }}
         run: python scripts/qa_published_browser.py
 
       - name: Stop local targeted preview
-        if: always()
+        if: always() && steps.target.outputs.should_preview == 'true'
         run: |
           if [ -f /tmp/journey-atlas-country-preview.pid ]; then
             kill "$(cat /tmp/journey-atlas-country-preview.pid)" 2>/dev/null || true
           fi
 
-      # Rebuild only the same target Country with production canonical metadata.
-      # This remains a targeted sub-second package build; it does not regenerate
-      # or validate unrelated Country pages.
       - name: Build deployable targeted Country preview
+        if: steps.target.outputs.should_preview == 'true'
         env:
           TARGET_SLUGS: ${{ steps.target.outputs.slug }}
-          JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
-        run: python scripts/build_country_preview_targeted.py
+          JOURNEY_ATLAS_SITE_URL: ${{ steps.target.outputs.review_root }}
+          JOURNEY_ATLAS_BUILD_VERSION: ${{ steps.target.outputs.source_sha }}
+        run: |
+          python scripts/build_country_preview_targeted.py
+          python scripts/externalize_review_preview_images.py \
+            --dist dist \
+            --site-url "${{ steps.target.outputs.review_root }}" \
+            --image-origin "${{ steps.target.outputs.image_origin }}"
 
       - name: Validate targeted packaged output
+        if: steps.target.outputs.should_preview == 'true'
         shell: bash
         env:
           SLUG: ${{ steps.target.outputs.slug }}
@@ -161,6 +222,7 @@ jobs:
           test -f dist/assets/css/country.css
           test -f dist/assets/js/app.js
           test -f dist/preview-build-meta.json
+          test ! -d dist/assets/images
           test "$(find dist/data/countries -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')" = "1"
           test "$(find dist/countries -mindepth 2 -maxdepth 2 -type f -name 'index.html' | wc -l | tr -d ' ')" = "1"
           if find dist -type f \( -name '*.b64' -o -name '*.parts.json' \) | grep -q .; then
@@ -168,31 +230,75 @@ jobs:
             exit 1
           fi
 
+      - name: Checkout persistent review snapshot
+        if: steps.target.outputs.should_preview == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: review-previews
+          path: review-cache
+          fetch-depth: 1
+
+      - name: Stage Country into persistent review snapshot
+        if: steps.target.outputs.should_preview == 'true'
+        run: |
+          python scripts/manage_review_preview_site.py stage \
+            --root review-cache \
+            --source dist \
+            --slug "${{ steps.target.outputs.slug }}" \
+            --review-url "${{ steps.target.outputs.review_url }}" \
+            --source-sha "${{ steps.target.outputs.source_sha }}" \
+            --max-previews 8
+
+      - name: Persist compact review snapshot
+        if: steps.target.outputs.should_preview == 'true'
+        shell: bash
+        env:
+          SLUG: ${{ steps.target.outputs.slug }}
+        run: |
+          set -euo pipefail
+          git -C review-cache config user.name "github-actions[bot]"
+          git -C review-cache config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C review-cache add -A
+          tree="$(git -C review-cache write-tree)"
+          commit="$(printf 'Update persistent Country review: %s\n' "$SLUG" | git -C review-cache commit-tree "$tree")"
+          git -C review-cache push --force origin "$commit:refs/heads/review-previews"
+
+      - name: Prepare Pages artifact without Git metadata
+        if: steps.target.outputs.should_preview == 'true'
+        run: |
+          rm -rf pages-site
+          mkdir -p pages-site
+          rsync -a --exclude='.git/' review-cache/ pages-site/
+
       - name: Setup Pages
+        if: steps.target.outputs.should_preview == 'true'
         uses: actions/configure-pages@v5
 
-      - name: Upload targeted Country preview
+      - name: Upload persistent Country review site
+        if: steps.target.outputs.should_preview == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: pages-site
 
-      - name: Deploy targeted Country preview
+      - name: Deploy persistent Country review site
+        if: steps.target.outputs.should_preview == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Report Country review URL
+      - name: Report stable Country review URL
+        if: steps.target.outputs.should_preview == 'true'
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
           SLUG: ${{ steps.target.outputs.slug }}
         run: |
-          review_url="${PAGE_URL%/}/countries/$SLUG/"
+          review_url="${PAGE_URL%/}/reviews/$SLUG/countries/$SLUG/"
           echo "## Country review preview" >> "$GITHUB_STEP_SUMMARY"
           echo "$review_url" >> "$GITHUB_STEP_SUMMARY"
           echo "Review URL: $review_url"
 
       - name: Upload targeted Browser QA report
-        if: always()
+        if: always() && steps.target.outputs.should_preview == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: country-preview-browser-qa-${{ steps.target.outputs.slug }}
