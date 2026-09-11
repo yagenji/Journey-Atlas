@@ -74,11 +74,25 @@ def blank_related() -> dict:
     return {"slug": "", "nameEn": "", "nameJa": "", "flag": "", "reason": ""}
 
 
+def blank_travel_scale() -> dict:
+    return {
+        "kicker": "DURATION",
+        "title": "旅の目安日程",
+        "intro": "",
+        "items": [
+            {"duration": "", "title": "", "text": "例：", "icon": "city"},
+            {"duration": "", "title": "", "text": "例：", "icon": "map"},
+            {"duration": "", "title": "", "text": "例：", "icon": "compass"},
+        ],
+    }
+
+
 def scaffold(destination: dict, region_label: str) -> dict:
     slug = destination["slug"]
+    today = date.today().isoformat()
     return {
         "schemaVersion": 2,
-        "contentQaVersion": 1,
+        "contentQaVersion": 2,
         "slug": slug,
         "nameEn": destination.get("nameEn", ""),
         "nameJa": destination.get("nameJa", ""),
@@ -91,13 +105,13 @@ def scaffold(destination: dict, region_label: str) -> dict:
         },
         "hero": {
             "lead": "",
-            "image": f"assets/images/{slug}/hero.webp",
+            "image": f"assets/images/{slug}/approved/hero.webp",
             "location": "",
             "coordinates": {"latitude": None, "longitude": None},
         },
         "map": {
             "bounds": {"north": None, "south": None, "west": None, "east": None},
-            "svg": f"assets/images/{slug}/map-atlas.svg",
+            "svg": f"assets/images/{slug}/map-atlas-v1.svg",
             "route": None,
             "source": "",
         },
@@ -108,6 +122,7 @@ def scaffold(destination: dict, region_label: str) -> dict:
             {"topicKey": "", "categoryEn": "", "categoryJa": "", "title": "", "text": "", "icon": "", "sourceKey": ""}
             for _ in range(5)
         ],
+        "travelScale": blank_travel_scale(),
         "seasons": [
             {"months": "", "color": "", "text": ""}
             for _ in range(4)
@@ -129,7 +144,9 @@ def scaffold(destination: dict, region_label: str) -> dict:
         ],
         "tips": [blank_tip() for _ in range(3)],
         "relatedCountries": [blank_related() for _ in range(3)],
-        "updatedAt": date.today().isoformat(),
+        "updatedAt": today,
+        "sourcesVerifiedAt": today,
+        "sourceDates": {},
         "sources": {},
     }
 
@@ -155,8 +172,9 @@ def main() -> int:
     output.write_text(json.dumps(scaffold(destination, region_label), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
     print(f"Region taxonomy label locked: {region_label}")
+    print("Content QA v2 locked: every Travel Scale item requires '例：'; moderate forest-share Signature Facts are prohibited.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
-    print("Next: fill content/assets, run strict validation, then set atlasPublished=true only when release-ready.")
+    print("Before Hero production: complete editorial content + Map and run python3 scripts/validate_country_editorial_v2.py <country-json>.")
     return 0
 
 
