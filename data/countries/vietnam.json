@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "vietnam",
+  "nameEn": "VIETNAM",
+  "nameJa": "ベトナム",
+  "region": "SOUTHEAST ASIA",
+  "seo": {
+    "description": "ハロン湾から、ハノイ、北西部の棚田、ハザンの山岳道路、フォンニャのカルスト、フエ、ホイアン、白砂丘、メコンデルタへ。南北に細長い国土を移動しながら、地形・都市・歴史・暮らしの違いをたどる。"
+  },
+  "capital": {
+    "nameEn": "Hanoi",
+    "nameJa": "ハノイ",
+    "coordinates": {"latitude": 21.0278, "longitude": 105.8342},
+    "labelPosition": "left",
+    "mapOffset": {"x": 1.0, "y": -1.5}
+  },
+  "hero": {
+    "lead": "北部の石灰岩の湾から、山地の棚田と峠道、中部の洞窟・皇城・港町、乾いた砂丘、南部の大河デルタへ。南北に長い国土を移動するほど、気候、地形、建築、食、暮らしのリズムが切り替わる国。",
+    "image": "assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp",
+    "location": "Hạ Long Bay / Ti Top Island Viewpoint",
+    "coordinates": {"latitude": 20.859, "longitude": 107.0801}
+  },
+  "map": {
+    "bounds": {"north": 23.8, "south": 7.6, "west": 101.6, "east": 110.0},
+    "svg": "assets/images/vietnam/map-atlas-v1.svg",
+    "route": null,
+    "source": "JOURNEY ATLAS map-v3 clean background; Viet Nam boundary geometry in WGS84 from Natural Earth Admin-0 1:10m."
+  },
+  "scenes": [
+    {"id":"hanoi-hoan-kiem-old-quarter","name":"ハノイ / ホアンキエム湖と旧市街","nameLocal":"Hà Nội / Hoàn Kiếm & Old Quarter","mapLabel":"Hanoi","description":"湖の周囲から細い通りへ入ると、商店、低層の家並み、歩道の小さな店、バイクの流れが重なる。首都を記念建築だけでなく、密度の高い日常の街路から見る景観。","coordinates":{"latitude":21.0287,"longitude":105.8521},"image":"assets/images/vietnam/approved/hanoi-hoan-kiem-old-quarter.webp","labelPosition":"left","mapOffset":{"x":-2.5,"y":3.6}},
+    {"id":"mu-cang-chai-la-pan-tan-terraces","name":"ムーカンチャイ / ラパンタンの棚田","nameLocal":"Mù Cang Chải / La Pán Tẩn Rice Terraces","mapLabel":"Mù Cang Chải","description":"急斜面に沿って細い水田が幾重にも続く。北西部の山地では、平地の稲作とは異なる形で斜面と水を使い、農業そのものが地形の輪郭をつくっている。","coordinates":{"latitude":21.7885,"longitude":104.1662},"image":"assets/images/vietnam/approved/mu-cang-chai-la-pan-tan-terraces.webp","labelPosition":"left"},
+    {"id":"ha-giang-ma-pi-leng-pass","name":"ハザン / マーピーレン峠","nameLocal":"Hà Giang / Mã Pí Lèng Pass","mapLabel":"Mã Pí Lèng","description":"石灰岩の山壁を道路が縫い、深い峡谷の底をニョークエ川が流れる。紅河デルタの低地とは対照的な、北端の高原と険しい移動の地理が一度に見える。","coordinates":{"latitude":23.239,"longitude":105.4},"image":"assets/images/vietnam/approved/ha-giang-ma-pi-leng-pass.webp","labelPosition":"right"},
+    {"id":"phong-nha-son-river-karst","name":"フォンニャ / ソン川とカルスト","nameLocal":"Phong Nha / Son River & Karst","mapLabel":"Phong Nha","description":"穏やかな川の先に石灰岩の峰が重なり、その内部には長い洞窟系が広がる。海上のカルストであるハロン湾とは別の形で、中部の地質が地上と地下の景観をつくる。","coordinates":{"latitude":17.5793,"longitude":106.2836},"image":"assets/images/vietnam/approved/phong-nha-son-river-karst.webp","labelPosition":"left"},
+    {"id":"hue-imperial-city-ngo-mon","name":"フエ / 皇城午門","nameLocal":"Huế / Ngọ Môn, Imperial City","mapLabel":"Huế","description":"城壁と堀の内側に、阮朝の宮殿配置が残る。1802年から1945年まで都だったフエでは、王朝の政治空間が香江や周囲の地形と結びついている。","coordinates":{"latitude":16.4692,"longitude":107.578},"image":"assets/images/vietnam/approved/hue-imperial-city-ngo-mon.webp","labelPosition":"right"},
+    {"id":"hoi-an-thu-bon-riverside","name":"ホイアン / トゥボン川沿いの旧市街","nameLocal":"Hội An / Thu Bồn Riverside","mapLabel":"Hội An","description":"黄色い壁の商家と瓦屋根が細い街路に並び、建物の裏側は川へつながる。海上交易で育った町の構造が、通り・河岸・木造建築の関係として今も読み取れる。","coordinates":{"latitude":15.8794,"longitude":108.335},"image":"assets/images/vietnam/approved/hoi-an-thu-bon-riverside.webp","labelPosition":"right","mapOffset":{"x":3.5,"y":2.5}},
+    {"id":"bau-trang-white-sand-dunes","name":"バウチャン / 白砂丘","nameLocal":"Bàu Trắng / White Sand Dunes","mapLabel":"Bàu Trắng","description":"白い砂丘の起伏と青い湖面が隣り合い、植生の濃い北部とは異なる乾いた景観が現れる。南中部沿岸には、海と季節風がつくる砂地の地理も広がっている。","coordinates":{"latitude":11.0679,"longitude":108.4169},"image":"assets/images/vietnam/approved/bau-trang-white-sand-dunes.webp","labelPosition":"right"},
+    {"id":"cai-rang-floating-market","name":"カイラン / メコンデルタの水上市場","nameLocal":"Cái Răng / Floating Market","mapLabel":"Cái Răng","description":"幅のある川面に農産物を積んだ舟が集まり、水路が商いと移動の場になる。南部のデルタでは、道路だけでは見えない生活圏が川のネットワークに沿って続いている。","coordinates":{"latitude":10.003,"longitude":105.7447},"image":"assets/images/vietnam/approved/cai-rang-floating-market.webp","labelPosition":"left"}
+  ],
+  "encounters": [
+    {"title":"石灰岩の島々","icon":"landscape"},{"title":"棚田","icon":"landscape"},{"title":"山岳道路","icon":"road"},{"title":"洞窟","icon":"landscape"},{"title":"皇城","icon":"landmark"},{"title":"旧市街","icon":"city"},{"title":"砂丘","icon":"shore"},{"title":"川の市場","icon":"sea"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"vietnamese-coffee-street-culture","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"コーヒーは、店の中だけでなく街路の時間に入り込んでいる","text":"ハノイやホーチミン市では、低い椅子を置いた小さな店から現代的なカフェまで、コーヒーを飲む場所の幅が広い。濃い抽出と練乳、氷などの組み合わせも、都市の日常を観察する入口になる。","points":["朝から夜まで街角で出会いやすい","地域や店によって飲み方と空間が大きく変わる"]},
+    {"topicKey":"ao-dai-modern-dress","themeEn":"CULTURE","themeJa":"文化に触れる","title":"アオザイは、儀礼だけでなく現代の制服や式典にも残る","text":"長い上衣とパンツを組み合わせるアオザイは、学校、式典、接客、写真撮影など現代の場面にも現れる。固定された昔の衣装というより、形を変えながら使われ続けている服として見ると面白い。","points":["都市でも日常の節目に現れる","色・素材・仕立ては時代と用途で変わる"]},
+    {"topicKey":"water-puppetry-rice-culture","themeEn":"PERFORMANCE","themeJa":"芸能","title":"水面そのものを舞台にする人形劇がある","text":"北部で発達した水上人形劇は、水を舞台装置として使い、人形を水面の向こうから操作する。農村の生活、動物、伝承などが短い演目になり、水田地域の環境と舞台表現がつながっている。","points":["水面の裏側から人形を操作する","音楽と語りを伴う演目が多い"]},
+    {"topicKey":"hoi-an-trading-port-fusion","themeEn":"HISTORY","themeJa":"時をたどる","title":"ホイアンの街路は、海上交易で出会った文化を建物に残している","text":"15〜19世紀の交易港として栄えたホイアンでは、在地の建築に中国、日本、後のヨーロッパとの交流の痕跡が重なる。単独の名所より、通り全体の構造を見ると港町の歴史が分かりやすい。","points":["川と直交・並行する街路が残る","商家・宗教建築・河岸が近接する"]},
+    {"topicKey":"mekong-delta-water-livelihoods","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"南部では、川が移動・商い・農業を同じ空間につないでいる","text":"メコンデルタでは大河から細い水路まで水の網が広がり、舟の移動、市場、果樹園、集落が近接する。道路の地図だけでなく水路を見ると、南部の暮らしの位置関係が理解しやすい。","points":["大河と細い運河が生活圏をつなぐ","朝の市場や農産物の流通にも舟が使われる"]},
+    {"topicKey":"regional-cuisine-north-central-south","themeEn":"FOOD","themeJa":"食をめぐる","title":"同じ国の料理でも、北・中・南で味と食材の重ね方が変わる","text":"北部の澄んだ汁物、中部の香辛料や小皿文化、南部の甘味や香草の使い方など、地域差は一つの「ベトナム料理」に収まりきらない。移動するほど、麺、米、魚醤、香草の組み合わせが変わる。","points":["地域ごとに麺料理の形が異なる","市場と屋台を見ると土地の食材が分かる"]}
+  ],
+  "travelTrivia": [
+    {"topicKey":"vietnam-world-heritage-nine","categoryEn":"HERITAGE","categoryJa":"遺産","title":"世界遺産は9件","text":"2026年時点で、ベトナムの世界遺産は文化6・自然2・複合1の計9件。2025年にはイエントゥー関連の文化遺産が新規登録され、フォンニャの自然遺産もラオス側へ拡張された。","icon":"landmark","sourceKey":"worldHeritage"},
+    {"topicKey":"hoi-an-1107-timber-buildings","categoryEn":"CITY","categoryJa":"街","title":"ホイアン旧市街には1,107棟の木造軸組建築が残る","text":"UNESCOはホイアンを、1,107棟の木造軸組建築から成る保存状態のよい都市として説明している。商家、宗教建築、市場、河岸が一つの街路構造の中に残る。","icon":"city","sourceKey":"hoiAn"},
+    {"topicKey":"hue-capital-1802-1945","categoryEn":"HISTORY","categoryJa":"歴史","title":"フエは1802年から1945年まで統一ベトナムの都だった","text":"阮朝のもとでフエは政治だけでなく文化・宗教の中心となった。皇城、紫禁城、陵墓、香江を別々に見るより、都全体の配置として見ると意味がつながる。","icon":"history","sourceKey":"hue"},
+    {"topicKey":"phong-nha-hin-nam-no-217447ha","categoryEn":"EARTH","categoryJa":"地形","title":"フォンニャの世界遺産はラオス側を含む約21.7万ha","text":"2025年の境界拡張で、フォンニャ＝ケバンとラオスのヒンナムノーは国境をまたぐ一つの自然遺産になった。登録区域は217,447haで、カルスト地形と生態系を連続して保全する。","icon":"landscape","sourceKey":"phongNha"},
+    {"topicKey":"quang-binh-narrowest-50km","categoryEn":"GEOGRAPHY","categoryJa":"地理","title":"本土の東西幅は狭い所で約50km","text":"政府の地理情報では、クアンビン付近で東西幅が約50kmまで狭くなる。山地から海までの距離が短い中部では、細長い国土の形が移動時間や気候の違いにも表れる。","icon":"map","sourceKey":"geography"}
+  ],
+  "taste": {
+    "kicker":"TASTE OF VIETNAM","title":"ベトナムで食べたいもの","intro":"北部の米麺、中部の港町の麺、南まで広がる薄い生地の料理、街角のサンドイッチへ。地域と植民地期以降の食文化が重なる4品から、ベトナムの食卓の幅を見る。",
+    "items":[
+      {"id":"pho-bo","name":"フォー・ボー","nameLocal":"Phở bò","text":"米麺を牛肉と香りのある澄んだスープで食べる料理。香草やライムなどを加える食べ方もあり、一杯の中に麺・肉・香りの層が重なる。","image":"assets/images/vietnam/approved/food-pho-bo.webp","imageState":"PENDING"},
+      {"id":"banh-mi","name":"バインミー","nameLocal":"Bánh mì","text":"軽い食感のパンに肉、野菜、香草、調味料などを挟む。店ごとに具材が大きく変わり、短い食事でも街ごとの差が見えやすい。","image":"assets/images/vietnam/approved/food-banh-mi.webp","imageState":"PENDING"},
+      {"id":"cao-lau","name":"カオラウ","nameLocal":"Cao lầu","text":"ホイアンで出会う麺料理。太めの麺に豚肉、青菜、香草などを重ね、汁は少なめ。港町の地域料理として旧市街の食文化と結びつく。","image":"assets/images/vietnam/approved/food-cao-lau.webp","imageState":"PENDING"},
+      {"id":"banh-xeo","name":"バインセオ","nameLocal":"Bánh xèo","text":"米粉の生地を薄く焼き、肉や魚介、もやしなどを包む料理。香草や葉野菜と合わせることで、香ばしい生地と生野菜の対比が生まれる。","image":"assets/images/vietnam/approved/food-banh-xeo.webp","imageState":"PENDING"}
+    ]
+  },
+  "travelScale": {"kicker":"DURATION","title":"旅の目安日程","intro":"","items":[
+    {"duration":"4日","title":"ハノイとハロン湾で北部の入口を見る","text":"旧市街と湖のある首都に、石灰岩の島々が並ぶ湾を組み合わせる。都市と海上カルストという異なる景観を、移動を増やしすぎず比べる。例：ハノイ2日 → ハロン湾2日。","icon":"city"},
+    {"duration":"8〜10日","title":"北部から中部へ、都市と王朝・港町をつなぐ","text":"ハノイとハロン湾に、フエとホイアンを加える。北部の都市・湾から中部の王朝都市と交易港へ移動すると、建築と気候の変化が見えやすい。例：ハノイ2日 → ハロン湾2日 → フエ2日 → ホイアン2〜3日。","icon":"map"},
+    {"duration":"12日以上","title":"北の山地からメコンデルタまで国土を縦にたどる","text":"北部の山岳地帯、中部の歴史都市、南部の大都市とデルタまで範囲を広げる。国内線や夜行列車も使い、南北の長さそのものを旅の軸にする。例：ハノイ2日 → ハザン3日 → フエ2日 → ホイアン2日 → ホーチミン市2日 → メコンデルタ2日。","icon":"compass"}
+  ]},
+  "seasons": [
+    {"months":"12〜2月","color":"#758e9e","text":"北部は涼しく、山地ではかなり冷える日もある一方、南部は乾季で晴天が増える。ハロン湾は霧や低い雲が出やすく、全国を同じ服装・天候前提で組まない方がよい。"},
+    {"months":"3〜5月","color":"#8ea06d","text":"北部から中部では晴れる日が増え、地域をまたぐ旅を組みやすい時期。中部は次第に暑くなり、南部では乾季の終わりから雨季への切り替わりが始まる。"},
+    {"months":"6〜8月","color":"#6f9692","text":"北部と南部は高温多湿で雨が増え、熱帯低気圧や大雨の影響も受けやすい。中部は比較的晴れて暑い時期が続くため、地域ごとの天候差が大きい。"},
+    {"months":"9〜11月","color":"#9a8562","text":"北部は次第に涼しく乾いた日が増え、山地では棚田の収穫期と重なる場所がある。一方、中部は雨季に入り、台風や大雨で鉄道・道路・観光施設に影響が出ることがある。"}
+  ],
+  "transport":{"title":"鉄道・国内線・バス","text":"ハノイからホーチミン市まで南北を結ぶ鉄道が通り、主要都市間は国内線と長距離バスも多い。国土が長いため、全区間を陸路だけでつなぐか、一部を飛行機に置き換えるかで旅の密度が大きく変わる。デルタや湾では船移動も加わる。","icon":"road"},
+  "personas":[
+    {"title":"一つの国で、山・湾・洞窟・砂丘・大河デルタまで地形を見比べたい人","text":"南北に長い国土を移動しながら、緯度と地形が変わるたびに景観が切り替わること自体を旅の面白さにしたい人。"},
+    {"title":"王朝都市と交易港、現代都市を同じ旅の中でたどりたい人","text":"ハノイ、フエ、ホイアン、ホーチミン市などを比べ、歴史の層が建築や街路の形にどう残っているかを歩いて確かめたい人。"},
+    {"title":"麺・市場・カフェ・川辺から、地域ごとの暮らしの違いを知りたい人","text":"有名料理だけを食べるのではなく、朝の市場や街角の店、地方の一皿を通して北・中・南の生活文化を見たい人。"}
+  ],
+  "facts":[
+    {"label":"地域","value":"東南アジア"},{"label":"首都","value":"ハノイ"},{"label":"人口","value":"約1億230万人（2025年平均）"},{"label":"面積","value":"約33.2万km²（日本の約88%）"},{"label":"言語","value":"ベトナム語（国語）"},{"label":"主な宗教","value":"仏教、民間信仰、キリスト教など"},{"label":"通貨","value":"ベトナム・ドン（VND / ₫）"}
+  ],
+  "signatureFacts":[
+    {"topicKey":"vietnam-north-south-1650km","label":"南北の長さ","value":"約1,650km","note":"本土の北端から南端までの直線距離。国内移動だけでも緯度・気候・景観が大きく変わる理由が、この細長い国土にある。"},
+    {"topicKey":"vietnam-coastline-3260km","label":"海岸線","value":"約3,260km","note":"長い東岸が海に面し、北部の湾から中部の砂浜、南部の島やデルタまで、海が各地域の地理と移動に深く関わる。"},
+    {"topicKey":"vietnam-54-ethnic-groups","label":"民族","value":"54","note":"政府が認定する民族の数。多数派のキン族だけでなく、北部山地・中部高原・南部などで言語、衣服、住居、暮らしの形が異なる。"}
+  ],
+  "tips":[
+    {"topicKey":"vietnam-regional-weather-planning","title":"北・中・南を同じ季節感で考えない","text":"北部、中部、南部では雨季・乾季や気温の推移がずれる。複数地域を回る場合は「ベトナムの天気」ではなく、各都市の旅行日の予報を個別に確認する。"},
+    {"topicKey":"vietnam-long-distance-transport-buffer","title":"南北移動には余白を入れる","text":"都市間距離が長く、鉄道・バス・国内線を組み合わせる旅になりやすい。中部の大雨や台風などで遅延する可能性もあるため、重要な乗り継ぎを詰めすぎない。"},
+    {"topicKey":"vietnam-entry-rules-evisa","title":"入国条件は国籍と旅行日で確認する","text":"ベトナムのeVisaは最長90日・一次または数次入国の制度があるが、免除条件や必要書類は国籍で異なる。予約前と出発直前に公式入国管理サイトで確認する。"}
+  ],
+  "relatedCountries":[
+    {"slug":"laos","nameEn":"LAOS","nameJa":"ラオス","flag":"🇱🇦","reason":"アンナン山脈の反対側へ。海のない国へ移ると、同じインドシナ半島でも河川・高原・都市の位置関係が変わる。"},
+    {"slug":"cambodia","nameEn":"CAMBODIA","nameJa":"カンボジア","flag":"🇰🇭","reason":"メコン川を下流へたどり、デルタと大湖、クメールの都市・寺院景観を比較できる。"},
+    {"slug":"china","nameEn":"CHINA","nameJa":"中国","flag":"🇨🇳","reason":"北部国境の先へ。華南との地理的近さと長い交流史を、建築・食・交易の違いから見比べられる。"}
+  ],
+  "nextRoutes":[
+    {"flag":"🇰🇭","countryEn":"CAMBODIA","countryJa":"カンボジア","path":"Ho Chi Minh City → Phnom Penh","description":"南部の大都市からメコン流域を西へつなぐ代表的な周遊。国境、ビザ、バス運行条件は旅行日の最新情報を確認する。"},
+    {"flag":"🇱🇦","countryEn":"LAOS","countryJa":"ラオス","path":"Central Vietnam → Savannakhet / Vientiane","description":"中部の海側から山脈を越えてラオスへ移ると、沿岸国家から内陸国家へ地理が切り替わる。利用する国境と交通手段は事前確認が必要。"},
+    {"flag":"🇨🇳","countryEn":"CHINA","countryJa":"中国","path":"Hanoi → Nanning / Guangxi","description":"北部ベトナムから広西へつなぐ周遊。鉄道・道路の選択肢と入国条件は変わり得るため、予約時に公式情報で確認する。"}
+  ],
+  "updatedAt":"2026-09-11",
+  "sourcesVerifiedAt":"2026-09-11",
+  "sourceDates":{"population":"2025","worldHeritage":"2026-09-11","visa":"2026-09-11"},
+  "sources":{
+    "population":"National Statistics Office of Vietnam: average population in 2025 estimated at 102.3 million.",
+    "geography":"Viet Nam Government geography profile: mainland area 331,690 km²; north-south air distance 1,650 km; minimum east-west width about 50 km in Quảng Bình.",
+    "coastline":"Vietnam Tourism: Viet Nam has approximately 3,260 km of coastline.",
+    "ethnicGroups":"Viet Nam Government: Viet Nam is a multi-ethnic country with 54 officially recognized ethnic groups.",
+    "worldHeritage":"UNESCO World Heritage Centre: Viet Nam currently has 9 inscribed World Heritage properties (6 cultural, 2 natural, 1 mixed).",
+    "hoiAn":"UNESCO World Heritage Centre: Hoi An Ancient Town comprises a well-preserved complex of 1,107 timber frame buildings and a historic trading-port street plan.",
+    "hue":"UNESCO World Heritage Centre: Huế was the capital of unified Viet Nam from 1802 to 1945 under the Nguyễn dynasty.",
+    "phongNha":"UNESCO World Heritage Centre: Phong Nha-Ke Bang National Park and Hin Nam No National Park became a transboundary property in 2025; property area 217,447 ha.",
+    "climate":"Vietnam Tourism weather and climate guide: distinct regional patterns for northern, central and southern Viet Nam.",
+    "visa":"Vietnam Immigration Department eVisa portal: electronic visas may be single or multiple entry and valid for no more than 90 days; eligibility depends on traveler circumstances.",
+    "religion":"Government and international religious-demography references: Buddhism, Christianity, folk/ancestor traditions and several Viet Nam-origin religious traditions are practiced; affiliation estimates vary by methodology.",
+    "taste":"Vietnam Tourism culinary references and established regional food traditions for phở, bánh mì, cao lầu and bánh xèo.",
+    "transport":"Editorial synthesis of the national rail corridor, domestic aviation, long-distance bus and water transport patterns; individual timetables must be checked for travel dates.",
+    "nextRoutes":"Editorial regional routes toward Cambodia, Laos and China; border, visa and transport conditions should be checked immediately before travel.",
+    "travelScale":"Editorial duration ranges and concrete route examples based on the geography and travel time between northern, central and southern Viet Nam; not fixed itineraries."
+  }
+}
