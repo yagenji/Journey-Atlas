@@ -101,9 +101,9 @@ Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユ�
 9. 最終承認後にだけterminal publication PRを作り、mainへ1回だけ統合
 10. production deploy後、対象国だけproduction verification
 
-**Canonical review前にReview Packageをmainへ統合してはいけません。**
-Protocol 2ではREVIEWまで `contentRef/stateRef: country/{slug}` を維持します。
-mainは最終ページ承認後の一度だけ使用します。
+**Final Country Page review前にReview Packageをmainへ統合してはいけません。**
+Protocol 2では、target QA後もlegacy `REVIEW` phaseへ移らず `phase: QA` のまま `reviewPreview` を使います。
+`contentRef/stateRef: country/{slug}` を維持し、mainは最終ページ承認後の一度だけ使用します。
 
 通常のCountry-only reviewで以下を実行してはいけません。
 - 全reviewable Country validation
