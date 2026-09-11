@@ -4,9 +4,9 @@
   "countryName": "JAPAN",
   "contentRef": "country/japan",
   "stateRef": "country/japan",
-  "phase": "TASTE_INITIAL",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-11T11:56:30+09:00",
+  "phase": "MAP",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-11T11:57:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -74,7 +74,7 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "nigiri-sushi",
       "promptSeries": 1,
@@ -99,17 +99,17 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "d3d1f20b-0a72-4cc7-bb54-6513b5dda754",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
         "collageTypography": "PASS"
       },
-      "adoptionNote": "Existing standalone nigiri-sushi generation was explicitly adopted by the user as FOOD01 after it had been produced under a wrong-target FOOD02 reservation; retained to avoid wasteful duplicate regeneration."
+      "adoptionNote": "Existing standalone nigiri-sushi generation was explicitly adopted by the user as FOOD01 after it had been produced under a wrong-target FOOD02 reservation; retained to avoid wasteful duplicate regeneration.",
+      "approvedGenerationId": "d3d1f20b-0a72-4cc7-bb54-6513b5dda754"
     },
     {
       "id": "FOOD02",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "shoyu-ramen",
       "promptSeries": 1,
@@ -132,16 +132,16 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "150601ed-b788-479b-ae9c-dd318096a06c",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
         "collageTypography": "PASS"
-      }
+      },
+      "approvedGenerationId": "150601ed-b788-479b-ae9c-dd318096a06c"
     },
     {
       "id": "FOOD03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "okonomiyaki",
       "promptSeries": 1,
@@ -164,16 +164,16 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "c1b747ce-b564-4a8b-98b9-a74822263cf7",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
         "collageTypography": "PASS"
-      }
+      },
+      "approvedGenerationId": "c1b747ce-b564-4a8b-98b9-a74822263cf7"
     },
     {
       "id": "FOOD04",
-      "state": "REVIEW_CANDIDATE",
+      "state": "APPROVED",
       "asset": null,
       "contentId": "japanese-curry-rice",
       "promptSeries": 1,
@@ -198,12 +198,12 @@
         "forbidMontage": true,
         "forbidInsetImages": true
       },
-      "candidateGenerationId": "43f1d900-ae8d-43a9-8184-ebe915dd5ced",
       "candidateVisualQa": {
         "targetIdentity": "PASS",
         "previousAssetRepeat": "PASS",
         "collageTypography": "PASS"
-      }
+      },
+      "approvedGenerationId": "43f1d900-ae8d-43a9-8184-ebe915dd5ced"
     }
   ],
   "map": {
@@ -314,11 +314,30 @@
     ]
   },
   "tasteBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "d3d1f20b-0a72-4cc7-bb54-6513b5dda754",
+          "FOOD02": "150601ed-b788-479b-ae9c-dd318096a06c",
+          "FOOD03": "c1b747ce-b564-4a8b-98b9-a74822263cf7",
+          "FOOD04": "43f1d900-ae8d-43a9-8184-ebe915dd5ced"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-11T11:56:00+09:00"
+      }
+    ]
   },
   "next": {
-    "action": "BATCH_REVIEW_TASTE",
-    "asset": null
+    "action": "BUILD_MAP",
+    "asset": "MAP"
   }
 }
