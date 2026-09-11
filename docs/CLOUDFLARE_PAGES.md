@@ -8,9 +8,9 @@ JOURNEY ATLAS keeps GitHub as the source of truth and uses Cloudflare Pages as t
 - Production branch: `main`
 - Production domain: `https://atlas.yagenji.com/`
 - Cloudflare build output: `dist/`
-- Review preview while authoring: canonical `/countries/{slug}/` route generated from `schemaVersion: 2` Country JSON
+- Protocol 2 pre-main Country review: targeted GitHub Pages preview from `country/{slug}`
 - Production country routes: `/countries/{slug}/`
-- `schemaVersion: 2` countries are shipped for direct review; `atlasPublished: true` controls discovery, indexing and sitemap inclusion.
+- `atlasPublished: true` controls discovery, indexing and sitemap inclusion in production.
 
 The production package deliberately excludes:
 
@@ -30,14 +30,16 @@ Create a Pages project from the existing GitHub repository with these settings:
 - Build output directory: `dist`
 - Environment variable: `JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/`
 
-JOURNEY ATLAS does **not** need automatic Cloudflare Preview deployments for working branches because Country review uses the canonical production URL with `atlasPublished:false`.
+JOURNEY ATLAS does **not** use automatic Cloudflare Preview deployments for working branches. Cloudflare is the production surface and normal Country production must not deploy there before final page approval.
 
 Recommended Pages branch control:
 - Production branch: `main`
 - Automatic production deployment: enabled
 - Preview branch deployments: **None**
 
-This prevents `country/**`, `system/**`, State-update and PR branches from creating unnecessary Cloudflare builds and notification email. If an exceptional branch preview is needed, use the explicit GitHub Pages preview workflow instead of enabling Cloudflare previews globally.
+This prevents `country/**`, `system/**`, State-update and PR branches from creating unnecessary Cloudflare builds and notification email.
+
+For a Protocol 2 new Country, pre-main review uses the explicit GitHub Pages Country preview workflow. That workflow builds and Browser-QAs only the target Country. It does not run `build_cloudflare.py`, does not rebuild unrelated Countries, and does not alter production. After the user approves the final Country page, the terminal publication PR is integrated to `main` once and Cloudflare performs the one real production build.
 
 ## First deployment sequence
 
@@ -49,22 +51,26 @@ This prevents `country/**`, `system/**`, State-update and PR branches from creat
 6. Wait until Cloudflare reports the custom domain as active and HTTPS is valid.
 7. Verify `https://atlas.yagenji.com/`, `robots.txt`, `sitemap.xml`, canonical URLs, and OG URLs.
 
-Do not change `data/site.json.baseUrl` during the transition. GitHub Pages still uses that value for the authoring/preview deployment; the Cloudflare production build overrides it with `JOURNEY_ATLAS_SITE_URL`.
+Do not change `data/site.json.baseUrl` during the transition. Build workflows override the site URL with `JOURNEY_ATLAS_SITE_URL` for their intended environment.
 
-## Publishing a country
+## Reviewing and publishing a Country
 
-A `schemaVersion: 2` Country JSON is reviewable at its canonical `/countries/{slug}/` URL with `noindex,follow`. It becomes formally published only when `atlasPublished` is set to `true` in its destination registry. The strict validator checks both reviewable and published countries before a production build. Once published, the build additionally enables:
+A Protocol 2 new Country stays on `country/{slug}` through final page review. Its targeted GitHub Pages review package keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion.
+
+Only after explicit final page approval does the terminal publication change move to `main` and set `atlasPublished:true`. The production build then enables:
 
 - `index,follow` on `/countries/{slug}/`
 - the country URL in `sitemap.xml`
 - the production `href` in the destination registry copied into `dist/`
 
-Reviewable unpublished Country JSON and page assets are copied into `dist/` only when required by the canonical noindex review route.
+Legacy already-integrated unpublished review pages may still exist on the canonical production route, but that is not the normal Protocol 2 path for new Countries.
 
-## Local/CI build
+## Local production build
 
 ```bash
 JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/ python3 scripts/build_cloudflare.py
 ```
+
+Use the full Cloudflare builder only for production/full-scope validation. Country-only authoring/review uses `scripts/build_country_preview_targeted.py` instead.
 
 The generated `dist/` directory is disposable build output and should not be committed.
