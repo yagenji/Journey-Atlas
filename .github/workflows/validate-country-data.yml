@@ -4,8 +4,12 @@ on:
   push:
     branches: ["main"]
     paths:
+      - 'ops/country-production-policy.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_protocol_v2.py'
       - 'scripts/classify_country_impact.py'
+      - 'scripts/validate_country_editorial_v2.py'
+      - 'scripts/test_country_editorial_v2.py'
       - 'data/theme-taxonomy.json'
       - 'data/region-taxonomy.json'
       - 'assets/js/**'
@@ -35,11 +39,18 @@ on:
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
+      - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
+      - 'docs/CONTENT_QUALITY_RULES_V2.md'
+      - 'docs/NEW_COUNTRY_START.md'
       - '.github/workflows/validate-country-data.yml'
   pull_request:
     paths:
+      - 'ops/country-production-policy.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_protocol_v2.py'
       - 'scripts/classify_country_impact.py'
+      - 'scripts/validate_country_editorial_v2.py'
+      - 'scripts/test_country_editorial_v2.py'
       - 'data/theme-taxonomy.json'
       - 'data/region-taxonomy.json'
       - 'assets/js/**'
@@ -69,6 +80,9 @@ on:
       - 'scripts/qa_published_browser.py'
       - 'scripts/http_fetch_retry.sh'
       - 'scripts/validate_lens_slugs.py'
+      - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
+      - 'docs/CONTENT_QUALITY_RULES_V2.md'
+      - 'docs/NEW_COUNTRY_START.md'
       - '.github/workflows/validate-country-data.yml'
   workflow_dispatch:
 
@@ -112,17 +126,30 @@ jobs:
             head="$(git rev-parse HEAD)"
           fi
 
-          python3 scripts/classify_country_impact.py             --base "$base"             --head "$head"             --github-output "$GITHUB_OUTPUT"
+          python3 scripts/classify_country_impact.py \
+            --base "$base" \
+            --head "$head" \
+            --github-output "$GITHUB_OUTPUT"
 
       - name: Install image QA dependency
         run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
       - name: Validate source syntax
         run: |
-          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
+          python3 -m py_compile scripts/build_site.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/test_country_editorial_v2.py scripts/country_production_protocol_v2.py scripts/audit_country_region_labels.py scripts/normalize_country_region_labels.py scripts/audit_published_countries.py scripts/validate_images.py scripts/normalize_country_image_delivery.py scripts/qa_published_browser.py scripts/validate_lens_slugs.py scripts/package_site.py scripts/build_cloudflare.py scripts/classify_country_impact.py
           node --check assets/js/app.js
           node --check assets/js/top.js
           bash -n scripts/http_fetch_retry.sh
+
+      - name: Validate Country production protocol 2
+        run: |
+          python3 scripts/country_production_protocol_v2.py self-test
+          python3 scripts/country_production_protocol_v2.py validate
+
+      - name: Run Content QA v2 regression tests
+        run: |
+          python3 scripts/test_country_editorial_v2.py
+          python3 scripts/validate_country_editorial_v2.py
 
       - name: Enforce Country image delivery budget
         run: python3 scripts/normalize_country_image_delivery.py --audit
@@ -181,4 +208,5 @@ jobs:
       - name: Build and validate Cloudflare package
         env:
           JOURNEY_ATLAS_SITE_URL: https://atlas.yagenji.com/
+          JOURNEY_ATLAS_SOURCE_VALIDATED: '1'
         run: python3 scripts/build_cloudflare.py
