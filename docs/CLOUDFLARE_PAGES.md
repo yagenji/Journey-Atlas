@@ -8,7 +8,9 @@ JOURNEY ATLAS keeps GitHub as the source of truth and uses Cloudflare Pages as t
 - Production branch: `main`
 - Production domain: `https://atlas.yagenji.com/`
 - Cloudflare build output: `dist/`
-- Protocol 2 pre-main Country review: targeted GitHub Pages preview from `country/{slug}`
+- Protocol 2 pre-main Country review: persistent targeted GitHub Pages preview triggered by the one Review PR
+- Review route: `/reviews/{slug}/countries/{slug}/`
+- Review cache branch: `review-previews` (generated cache only; never production authority)
 - Production country routes: `/countries/{slug}/`
 - `atlasPublished: true` controls discovery, indexing and sitemap inclusion in production.
 
@@ -39,7 +41,19 @@ Recommended Pages branch control:
 
 This prevents `country/**`, `system/**`, State-update and PR branches from creating unnecessary Cloudflare builds and notification email.
 
-For a Protocol 2 new Country, pre-main review uses the explicit GitHub Pages Country preview workflow. That workflow builds and Browser-QAs only the target Country. It does not run `build_cloudflare.py`, does not rebuild unrelated Countries, and does not alter production. After the user approves the final Country page, the terminal publication PR is integrated to `main` once and Cloudflare performs the one real production build.
+For a Protocol 2 new Country, pre-main review uses GitHub Pages, not Cloudflare. Open one Review PR from `country/{slug}` to `main`; opening or synchronizing that PR automatically runs the targeted Country preview workflow. No dedicated preview-trigger commit and no normal-path manual dispatch is required.
+
+The GitHub Pages workflow:
+
+- builds and Browser-QAs only the target Country;
+- stores the compact review package under `/reviews/{slug}/`;
+- preserves other active Country review paths instead of overwriting them;
+- retains up to 8 review snapshots;
+- uses immutable raw source-commit URLs for Country raster images so snapshots do not duplicate the raster payload;
+- does not run `build_cloudflare.py`;
+- does not alter production.
+
+After the user approves the final Country page, update **the same Review PR** to terminal publication State. The serialized publication queue synchronizes latest `main`, waits for required checks and squash-merges it. Cloudflare then performs the one real production build. Do not create a second publication PR.
 
 ## First deployment sequence
 
@@ -55,9 +69,11 @@ Do not change `data/site.json.baseUrl` during the transition. Build workflows ov
 
 ## Reviewing and publishing a Country
 
-A Protocol 2 new Country stays on `country/{slug}` through final page review. Its targeted GitHub Pages review package keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion.
+A Protocol 2 new Country stays authoritative on `country/{slug}` through final page review. Its persistent GitHub Pages review keeps the Country out of production discovery; the review cache is `noindex` and is not the canonical production route.
 
-Only after explicit final page approval does the terminal publication change move to `main` and set `atlasPublished:true`. The production build then enables:
+Only after explicit final page approval does the same Review PR become the terminal publication change. Its terminal State includes the legacy COMPLETE-validator fields, including `reviewDeployment.state:DONE` with canonical URL `https://atlas.yagenji.com/countries/{slug}/` and CI-gated production-verification markers as defined by the State contract.
+
+The production build then enables:
 
 - `index,follow` on `/countries/{slug}/`
 - the country URL in `sitemap.xml`
