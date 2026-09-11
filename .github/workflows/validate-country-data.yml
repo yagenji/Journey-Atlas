@@ -166,15 +166,15 @@ jobs:
         run: python3 scripts/audit_country_region_labels.py
 
       - name: Audit all published Country images
-        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')
         run: python3 scripts/validate_images.py --mode audit
 
       - name: Enforce renewed Country image hard gate
-        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')
         run: python3 scripts/validate_images.py --mode hard
 
       - name: Validate targeted Country image sets
-        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: steps.impact.outputs.production_changed == 'true' && steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all' && steps.impact.outputs.publication_metadata_only != 'true'
         env:
           TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
         shell: bash
@@ -188,7 +188,7 @@ jobs:
           done
 
       - name: Validate targeted Country JSON
-        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
+        if: steps.impact.outputs.production_changed == 'true' && steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
         env:
           TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
         shell: bash
@@ -202,7 +202,7 @@ jobs:
           done
 
       - name: Validate all reviewable and published Country JSON
-        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')
         run: |
           python3 scripts/validate_country.py --reviewable
           python3 scripts/validate_country.py --published
