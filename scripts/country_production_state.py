@@ -487,10 +487,11 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         if not isinstance(policy, dict):
             errors.append(f"{filename}: executionPolicy must be an object")
         else:
+            protocol2 = state.get("productionProtocolId") == "2.0"
             expected_policy = {
                 "heroApproval": "INDIVIDUAL",
-                "sceneApproval": "BATCH",
-                "tasteApproval": "BATCH",
+                "sceneApproval": "BATCH_ONLY" if protocol2 else "BATCH",
+                "tasteApproval": "BATCH_ONLY" if protocol2 else "BATCH",
                 "autoContinueImageRounds": True,
                 "waitForStateOnlyCI": False,
                 "batchMaterialization": True,
