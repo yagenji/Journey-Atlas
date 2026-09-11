@@ -5,12 +5,13 @@ Updated: 2026-09-11
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. It is based on the Japan / Indonesia / Cambodia / North Korea production review and addresses four separate bottlenecks:
+Protocol 2.0 is the default for **new Country production**. It is based on the Japan / Indonesia / Cambodia / North Korea production review and addresses five separate bottlenecks:
 
 1. Scene/Taste generation could still be interpreted as one-image-one-user-approval despite Revision 7/7.1.
 2. Generated-image repository materialization followed two different paths.
 3. Most Country implementation work still happened after image approval, leaving a long post-image critical path.
 4. Country-only changes still triggered all-Country validation/build/package work before targeted Browser QA.
+5. Canonical review previously required a main integration first, causing an unnecessary production build before final user approval.
 
 ## Production shape
 
@@ -25,11 +26,15 @@ CONTENT + PRE-VISUAL BUILD
 → Taste batch review
 → one 13-image user handoff
 → one batch asset verification
-→ targeted Country-only preview build
+→ targeted Country-only preview build on country/{slug}
 → one targeted Browser QA cycle
-→ canonical review
-→ publication
+→ targeted GitHub Pages review URL
+→ canonical-page user approval
+→ one terminal publication PR / main integration
+→ one production deployment + targeted production verification
 ```
+
+**Main must not be used as the preview environment for a normal new Country.**
 
 ## 1. Pre-visual build is mandatory
 
@@ -121,9 +126,12 @@ For a normal Country-only change, the allowed path is:
 2. perform target-Country conversion/size/path/hygiene checks if necessary;
 3. confirm the target Country JSON points to the verified assets;
 4. run strict validation for the target Country only;
-5. build a **targeted Country preview package** containing only the requested Country page(s), target Country JSON, referenced Country images and shared runtime assets;
+5. build a **targeted Country preview package** containing only the requested Country page, target Country JSON, referenced Country images and shared runtime assets;
 6. run targeted Desktop / Tablet / Mobile Browser QA once;
-7. present the canonical URL.
+7. deploy that targeted package from `country/{slug}` to the shared GitHub Pages review surface;
+8. present the review URL to the user;
+9. only after explicit final page approval, create the one terminal publication PR and integrate to `main` once;
+10. allow the normal full production build once, then run targeted production verification for the published Country.
 
 Use:
 
@@ -131,26 +139,30 @@ Use:
 python3 scripts/build_country_preview_targeted.py --slugs {slug}
 ```
 
-A normal Country-only change must **not** run:
+The Country branch remains the authoritative content/state source through the REVIEW gate. `main` becomes authoritative only when the approved terminal publication change is integrated.
+
+A normal Country-only review must **not** run:
 
 - all reviewable Country JSON validation;
 - all published Country image audit/hard gate;
 - all reviewable Country static-page generation;
 - all Country package assembly;
-- all published Country Browser QA.
+- all published Country Browser QA;
+- a production Cloudflare build before the user has approved the final Country page.
 
 Those full-scope operations are reserved for:
 
 - shared Country template changes;
 - shared CSS / JavaScript changes;
 - production build-system changes;
-- explicit manual Full QA.
+- explicit manual Full QA;
+- the one real production deployment after final approval.
 
 The production Cloudflare builder remains unchanged and continues to perform the full production build when a real production deployment requires it. The targeted builder is a review/CI fast path, not a replacement for production packaging.
 
 Do not rebuild the Map, rewrite content, revisit taxonomy, reselect Signature Facts, or redesign Travel Scale after image approval unless a genuine blocking defect is discovered.
 
-The target is one Review Package integration and one targeted Browser QA cycle. A real defect may require another cycle; routine progress must not.
+The normal target is one targeted review deployment, one targeted Browser QA cycle, zero pre-approval main integrations, and one final production integration. A real defect may require another targeted review cycle; routine progress must not.
 
 ## 5. Content QA v2
 
@@ -163,7 +175,7 @@ Two new hard rules:
 
 For a normal Country-only change, Content QA v2 runs against the target Country only. Full Content QA is reserved for shared/full-scope changes.
 
-## 6. State initialization
+## 6. State initialization and REVIEW authority
 
 For a genuinely new Country:
 
@@ -177,9 +189,21 @@ This builds on Revision 7 State and adds:
 - machine-readable interaction rules;
 - pre-visual checklist;
 - fixed USER_HANDOFF asset path;
+- targeted Country-branch review deployment mode;
 - production metrics.
 
 Before leaving CONTENT, mark `preVisualBuild.state = PASS` and every required check `PASS` only after the work actually exists.
+
+For Protocol 2 review:
+
+- `contentRef: country/{slug}` remains valid through `phase: REVIEW`;
+- `stateRef: country/{slug}` remains valid through `phase: REVIEW`;
+- `reviewDeployment.mode` is `TARGETED_COUNTRY_BRANCH_PREVIEW`;
+- `reviewDeployment.url` is the actual GitHub Pages Country review URL;
+- final approval is recorded on the Country branch;
+- the terminal publication PR moves `contentRef` / `stateRef` to `main` and completes publication.
+
+Legacy or already-integrated States may still have `contentRef: main` / `stateRef: main` during REVIEW and remain valid.
 
 Validate:
 
@@ -197,13 +221,17 @@ Targets:
 - Scene Batch reviews: normally 1;
 - Taste Batch reviews: normally 1;
 - image handoffs: 1;
-- normal review-package integrations: 1;
+- pre-canonical main integrations: 0;
+- normal targeted review deployments: 1;
 - normal targeted Browser QA cycles: 1;
-- Country-only post-visual full-Country builds: 0;
+- production integrations after final approval: 1;
+- Country-only post-visual full-Country builds before approval: 0;
 - Country-only post-visual full-Country Browser QA cycles: 0;
-- measure Taste batch approval → canonical review ready time.
+- measure Taste batch approval → final review URL ready time.
 
 A regeneration round may add a batch review, but never one approval per regenerated image.
+
+GitHub Pages remains a shared review surface and therefore its deployment queue stays serialized to avoid preview overwrite races. The productivity improvement comes from each queued deployment being target-only rather than a full-Country production build.
 
 ## 8. Authority
 
