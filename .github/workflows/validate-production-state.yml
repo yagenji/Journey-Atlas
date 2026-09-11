@@ -12,6 +12,7 @@ on:
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_protocol_v2.py'
+      - 'scripts/validate_production_state_routed.py'
       - 'scripts/classify_country_impact.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -41,6 +42,7 @@ on:
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
       - 'scripts/country_production_protocol_v2.py'
+      - 'scripts/validate_production_state_routed.py'
       - 'scripts/classify_country_impact.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -88,6 +90,7 @@ jobs:
           python3 -m py_compile \
             scripts/country_production_state.py \
             scripts/country_production_protocol_v2.py \
+            scripts/validate_production_state_routed.py \
             scripts/classify_country_impact.py \
             scripts/manage_review_preview_site.py \
             scripts/externalize_review_preview_images.py
@@ -134,9 +137,7 @@ jobs:
           PY
 
       - name: Validate canonical Country production state
-        run: |
-          python3 scripts/country_production_state.py validate
-          python3 scripts/country_production_protocol_v2.py validate
+        run: python3 scripts/validate_production_state_routed.py
 
       - name: Validate Content Plan / Production State separation
         run: |
