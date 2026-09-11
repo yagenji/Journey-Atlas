@@ -1,0 +1,95 @@
+name: Verify Philippines production once
+
+on:
+  push:
+    branches: ["country/philippines"]
+    paths:
+      - '.github/workflows/verify-philippines-production-once.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out verification source
+        uses: actions/checkout@v4
+        with:
+          ref: country/philippines
+
+      - name: Wait for Cloudflare production merge commit
+        shell: bash
+        env:
+          SITE_URL: https://atlas.yagenji.com
+          EXPECTED_SHA: 5334855b0a5c6b7dedeb64985ed7b77a31ce5072
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 120); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=philippines-$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
+            if [ "$live_sha" = "$EXPECTED_SHA" ]; then
+              echo "Cloudflare production is serving the Philippines merge commit."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Production did not reach expected Philippines merge commit."
+          exit 1
+
+      - name: Verify public route registry sitemap and indexability
+        shell: bash
+        env:
+          SITE_URL: https://atlas.yagenji.com
+        run: |
+          set -euo pipefail
+          curl -fsS -H 'Cache-Control: no-cache' "$SITE_URL/countries/philippines/?qa=$GITHUB_RUN_ID" -o /tmp/philippines.html
+          curl -fsS -H 'Cache-Control: no-cache' "$SITE_URL/data/countries/philippines.json?qa=$GITHUB_RUN_ID" -o /tmp/philippines.json
+          curl -fsS -H 'Cache-Control: no-cache' "$SITE_URL/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" -o /tmp/registry.json
+          curl -fsS -H 'Cache-Control: no-cache' "$SITE_URL/sitemap.xml?qa=$GITHUB_RUN_ID" -o /tmp/sitemap.xml
+          test -s /tmp/philippines.html
+          test -s /tmp/philippines.json
+          grep -q 'data-country="philippines"' /tmp/philippines.html
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from html.parser import HTMLParser
+
+          html = Path('/tmp/philippines.html').read_text(encoding='utf-8')
+          payload = json.loads(Path('/tmp/philippines.json').read_text(encoding='utf-8'))
+          registry = json.loads(Path('/tmp/registry.json').read_text(encoding='utf-8'))
+          sitemap = Path('/tmp/sitemap.xml').read_text(encoding='utf-8')
+
+          assert payload.get('slug') == 'philippines'
+          row = next(x for x in registry.get('destinations', []) if x.get('slug') == 'philippines')
+          assert row.get('atlasPublished') is True, row
+          assert row.get('href') == 'countries/philippines/', row
+          assert row.get('image') == payload.get('hero', {}).get('image'), row
+          assert 'https://atlas.yagenji.com/countries/philippines/' in sitemap
+          lower = html.lower()
+          assert 'noindex' not in lower, 'published Philippines page still contains noindex'
+          assert 'rel="canonical"' in lower and 'https://atlas.yagenji.com/countries/philippines/' in html
+          print('Production registry, sitemap, canonical and indexability verified.')
+          PY
+
+      - name: Install browser QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+
+      - name: Run live Desktop Tablet Mobile browser QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-browser-output
+          QA_SCOPE: published
+          QA_SLUGS: philippines
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Upload live QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: philippines-production-browser-qa
+          path: qa-browser-output/
+          if-no-files-found: warn
+          retention-days: 3
