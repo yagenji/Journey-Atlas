@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 1,
+  "slug": "japan",
+  "nameEn": "JAPAN",
+  "nameJa": "日本",
+  "region": "EAST ASIA / 36°N",
+  "seo": {
+    "description": "東京の交差点から京都の寺院、白川郷、知床、宮島、阿蘇、屋久島、石垣島へ。8つの景色から日本の都市・山・森・火山・島・文化をたどる。"
+  },
+  "capital": {
+    "nameEn": "Tokyo",
+    "nameJa": "東京",
+    "coordinates": {
+      "latitude": 35.6762,
+      "longitude": 139.6503
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 1.0,
+      "y": 3.8
+    }
+  },
+  "hero": {
+    "lead": "巨大都市から少し離れるだけで山が立ち上がり、北では流氷と雪、南では亜熱帯の海まで景色が切り替わる。寺社、鉄道、集落、火山、森、島をたどるほど、地域ごとの差が一つの列島の中に重なって見える国。",
+    "image": "assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp",
+    "location": "Yamanashi / Lake Kawaguchi & Mount Fuji",
+    "coordinates": {
+      "latitude": 35.5226,
+      "longitude": 138.7448
+    },
+    "mapOffset": {
+      "x": -0.9,
+      "y": 1.0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 46.0,
+      "south": 23.6,
+      "west": 122.3,
+      "east": 146.2
+    },
+    "svg": "assets/images/japan/map-atlas-v1.svg",
+    "route": null,
+    "source": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; simplify 0.003 degrees; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {
+      "id": "tokyo-shibuya-crossing",
+      "name": "東京 / 渋谷スクランブル交差点",
+      "nameLocal": "Tokyo / Shibuya Crossing",
+      "mapLabel": "Tokyo",
+      "description": "高層ビルと大型画面に囲まれた交差点を、人の流れが一斉に横切る。日本の旅を自然や古都だけで捉えず、鉄道駅を中心に密度の高い都市生活が広がる現在の東京から始める景観。",
+      "coordinates": {"latitude": 35.6595, "longitude": 139.7005},
+      "image": "assets/images/japan/approved/tokyo-shibuya-crossing.webp",
+      "labelPosition": "left",
+      "mapOffset": {"x": 1.3, "y": -3.9}
+    },
+    {
+      "id": "kyoto-kiyomizudera-okunoin",
+      "name": "京都 / 清水寺と東山",
+      "nameLocal": "Kyoto / Kiyomizu-dera & Higashiyama",
+      "mapLabel": "Kyoto",
+      "description": "東山の斜面に木造伽藍が重なり、その先に京都盆地の市街が広がる。寺院を単独の建築としてではなく、山裾と都市が接する場所として見ると、古都の地形がよく分かる。",
+      "coordinates": {"latitude": 34.9949, "longitude": 135.7850},
+      "image": "assets/images/japan/approved/kyoto-kiyomizudera-okunoin.webp",
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.9, "y": 1.0}
+    },
+    {
+      "id": "shirakawa-go-ogimachi-winter",
+      "name": "白川郷 / 荻町の合掌造り",
+      "nameLocal": "Shirakawa-go / Ogimachi in Winter",
+      "mapLabel": "Shirakawa-go",
+      "description": "雪の深い山あいに、急勾配の茅葺き屋根を持つ家々がまとまる。豪雪に適応した建築と農村景観を一緒に見ることで、日本海側の山地にある暮らしの条件が形として見えてくる。",
+      "coordinates": {"latitude": 36.2570, "longitude": 136.9067},
+      "image": "assets/images/japan/approved/shirakawa-go-ogimachi-winter.webp",
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.6, "y": -1.9}
+    },
+    {
+      "id": "shiretoko-five-lakes",
+      "name": "知床 / 知床五湖",
+      "nameLocal": "Shiretoko / Five Lakes",
+      "mapLabel": "Shiretoko",
+      "description": "原生林の向こうに知床連山が続き、静かな湖面に山と空が映る。冬には周辺海域へ流氷が届く北海道東部で、海・森・河川がつながる生態系を陸側から見る場所。",
+      "coordinates": {"latitude": 44.1220, "longitude": 145.0820},
+      "image": "assets/images/japan/approved/shiretoko-five-lakes.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "miyajima-itsukushima-high-tide",
+      "name": "宮島 / 厳島神社と大鳥居",
+      "nameLocal": "Miyajima / Itsukushima Shrine at High Tide",
+      "mapLabel": "Miyajima",
+      "description": "潮が満ちると朱色の大鳥居と社殿が海面の中に浮かぶように見える。島そのものを信仰の空間としてきた歴史と、瀬戸内海の潮位変化が同じ景観をつくる。",
+      "coordinates": {"latitude": 34.2959, "longitude": 132.3199},
+      "image": "assets/images/japan/approved/miyajima-itsukushima-high-tide.webp",
+      "labelPosition": "left",
+      "mapOffset": {"x": 0.6, "y": -0.4}
+    },
+    {
+      "id": "aso-kusasenri-nakadake",
+      "name": "阿蘇 / 草千里と中岳",
+      "nameLocal": "Aso / Kusasenri & Nakadake",
+      "mapLabel": "Aso",
+      "description": "広い草原と火口地形の背後に中岳の噴煙が上がる。巨大なカルデラの内部に町や牧草地があり、火山が特別な遠景ではなく日常の地形として存在する九州の内陸景観。",
+      "coordinates": {"latitude": 32.8840, "longitude": 131.0520},
+      "image": "assets/images/japan/approved/aso-kusasenri-nakadake.webp",
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.6, "y": 0.4}
+    },
+    {
+      "id": "yakushima-shiratani-unsuikyo",
+      "name": "屋久島 / 白谷雲水峡",
+      "nameLocal": "Yakushima / Shiratani Unsuikyo",
+      "mapLabel": "Yakushima",
+      "description": "雨の多い森で、苔に覆われた岩と木々の間を沢が流れる。海岸近くの亜熱帯から標高を上げるほど植生が変わる島で、水と森林がつくる垂直方向の環境差を歩いて感じる。",
+      "coordinates": {"latitude": 30.3790, "longitude": 130.5730},
+      "image": "assets/images/japan/approved/yakushima-shiratani-unsuikyo.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "ishigaki-kabira-bay",
+      "name": "石垣島 / 川平湾",
+      "nameLocal": "Ishigaki / Kabira Bay",
+      "mapLabel": "Ishigaki",
+      "description": "白い砂浜と小島の間に、青緑の浅い海が広がる。北海道の雪や本州の都市とは大きく異なる亜熱帯の海景を加えることで、日本列島が南西へ長く伸びることが視覚的に分かる。",
+      "coordinates": {"latitude": 24.4520, "longitude": 124.1430},
+      "image": "assets/images/japan/approved/ishigaki-kabira-bay.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {"title": "駅のホーム", "icon": "road"},
+    {"title": "商店街", "icon": "city"},
+    {"title": "神社や寺の参道", "icon": "landmark"},
+    {"title": "温泉の湯けむり", "icon": "landscape"},
+    {"title": "里山の田畑", "icon": "landscape"},
+    {"title": "漁港", "icon": "sea"},
+    {"title": "暖簾のある店先", "icon": "culture"},
+    {"title": "祭り", "icon": "culture"}
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "japan-station-centered-cities",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "駅は、移動の場所であると同時に街の中心にもなる",
+      "text": "大都市では鉄道駅の周囲に商業施設、地下街、オフィス、飲食店が集まり、駅を出る方向によって街の性格が変わる。東京だけでなく大阪、名古屋、福岡などでも、鉄道網と都市構造を一緒に見ると歩き方が分かりやすい。",
+      "points": ["駅ごとに街の機能や雰囲気が切り替わる", "鉄道を使うこと自体が都市観察につながる"]
+    },
+    {
+      "topicKey": "japan-shrine-temple-everyday",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "神社や寺は、歴史建築であるだけでなく日常の中にも残る",
+      "text": "大きな寺社だけでなく、住宅地や商店街の近くにも小さな社寺がある。初詣、祭礼、墓参、地域行事などを通じ、宗教施設が観光地と生活空間の両方に存在している。",
+      "points": ["信仰と地域行事が同じ場所に重なる", "都市の中にも小さな社寺が点在する"]
+    },
+    {
+      "topicKey": "japan-layered-historical-landscapes",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "歴史は建物だけでなく、今の街路や町の形にも残る",
+      "text": "京都や奈良の寺社、各地の城下町や旧街道では、歴史的な建築だけでなく、道の曲がり方や町割り、門前や商店街の位置にも過去の都市構造が残る。建物を点で見るより、街を歩きながら時代の層を読むと、歴史が現在の生活空間につながって見える。",
+      "points": ["寺社・城・街道を周囲の町並みと一緒に見る", "古い都市構造の上に現代の生活が重なる"]
+    },
+    {
+      "topicKey": "japan-regional-food-variation",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "同じ料理名でも、地域を移ると味や形が変わる",
+      "text": "だし、醤油、味噌、麺、寿司、粉ものなどは地域ごとの差が大きい。全国共通の料理だけを追うより、移動した先で食べ方や味付けがどう変わるかを見ると、日本の地域性が食から見えてくる。",
+      "points": ["調味料やだしの方向が地域で変わる", "駅や市場、食堂が土地の食文化への入口になる"]
+    },
+    {
+      "topicKey": "japan-rail-islands-travel",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "高速鉄道の国でありながら、最後は船や飛行機でしか届かない島も多い",
+      "text": "本州・九州・北海道の主要都市は鉄道で結びやすい一方、屋久島や石垣島などは航空や船が旅程の一部になる。一本の交通手段で全国を考えず、地域ごとに移動の軸を切り替える必要がある。",
+      "points": ["都市間は鉄道が強い", "離島では航空・船と現地交通を別に組む"]
+    },
+    {
+      "topicKey": "japan-seasonal-geography",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "同じ季節でも、北海道と沖縄では景色も気温も大きく違う",
+      "text": "南北に長く、標高差も大きい列島では、桜、紅葉、雪、梅雨、台風の時期が一様ではない。季節を国全体のカレンダーで考えるより、地域ごとの気候として見る方が旅程を組みやすい。",
+      "points": ["緯度差と標高差が季節の時期をずらす", "山地・日本海側・太平洋側・南西諸島で条件が変わる"]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "tokaido-shinkansen-1964",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "鉄道",
+      "title": "東海道新幹線は1964年に東京〜新大阪間で開業した",
+      "text": "現在の高速鉄道網の出発点となった路線。主要都市間を短時間でつなぐだけでなく、駅の周囲に宿泊や商業が集まり、旅行者の日本国内での距離感そのものを変えている。",
+      "icon": "road",
+      "sourceKey": "shinkansen"
+    },
+    {
+      "topicKey": "fuji-3776-active-volcano",
+      "categoryEn": "VOLCANO",
+      "categoryJa": "火山",
+      "title": "富士山は標高3,776mの活火山",
+      "text": "日本最高峰であると同時に、気象庁が監視する活火山の一つ。歴史時代では1707年の宝永噴火が知られ、端正な山体の景観と火山としての性質を切り離さずに見ることが大切。",
+      "icon": "landscape",
+      "sourceKey": "fuji"
+    },
+    {
+      "topicKey": "shiretoko-seasonal-sea-ice",
+      "categoryEn": "NATURE",
+      "categoryJa": "流氷",
+      "title": "知床は、北半球で季節海氷が見られる地域として非常に低緯度にある",
+      "text": "冬の流氷が運ぶ栄養とプランクトンが海の生態系を支え、サケ類を通じて河川や森ともつながる。知床の価値は流氷を一つの冬景色として見るだけでは分からない。",
+      "icon": "sea",
+      "sourceKey": "shiretoko"
+    },
+    {
+      "topicKey": "yakushima-vertical-vegetation",
+      "categoryEn": "NATURE",
+      "categoryJa": "森",
+      "title": "屋久島では、海岸近くから山頂部まで植生が垂直に変わる",
+      "text": "温暖な海岸部から標高を上げるにつれ、暖温帯林、屋久杉を含む森林、高地の植生へと変化する。小さな島の中で大きな標高差があることが、生物相の幅につながっている。",
+      "icon": "landscape",
+      "sourceKey": "yakushima"
+    },
+    {
+      "topicKey": "japan-island-count-14125",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "島",
+      "title": "国土地理院の数え直しでは、日本の島は14,125島",
+      "text": "電子国土基本図を使い、一定条件で陸地を数えた結果。主要4島だけでなく、多数の有人島・無人島が列島を形づくり、離島航路や地域文化にもつながる数字。",
+      "icon": "map",
+      "sourceKey": "islands"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF JAPAN",
+    "title": "日本で食べたいもの",
+    "intro": "握る寿司、醤油の香るラーメン、鉄板で焼くお好み焼き、家庭や食堂に広がったカレーライス。米・麺・粉もの・洋食化した料理から、日本の食の幅を4つの入口に分ける。",
+    "items": [
+      {"id": "nigiri-sushi", "name": "握り寿司", "nameLocal": "Nigiri Sushi", "text": "酢飯の上に魚介などをのせて一貫ずつ握る寿司。市場や専門店から駅周辺の店まで食べる場所は幅広く、魚の種類だけでなく酢飯や切り方にも店ごとの差が出る。", "image": "assets/images/japan/approved/food-nigiri-sushi.webp", "imageState": "APPROVED"},
+      {"id": "shoyu-ramen", "name": "醤油ラーメン", "nameLocal": "Shoyu Ramen", "text": "醤油だれを軸にした褐色のスープと麺を食べる一杯。全国に広がる料理だが、だし、麺、具、油の組み合わせは地域や店で大きく変わる。", "image": "assets/images/japan/approved/food-shoyu-ramen.webp", "imageState": "APPROVED"},
+      {"id": "okonomiyaki", "name": "お好み焼き", "nameLocal": "Osaka-style Okonomiyaki", "text": "小麦粉を使った生地にキャベツなどを合わせ、鉄板で丸く焼く大阪系のお好み焼き。ソースの香りと焼きたての食感が主役で、店で鉄板を囲む体験も料理の一部になる。", "image": "assets/images/japan/approved/food-okonomiyaki.webp", "imageState": "APPROVED"},
+      {"id": "japanese-curry-rice", "name": "カレーライス", "nameLocal": "Japanese Curry Rice", "text": "とろみのある褐色のカレーをご飯と同じ皿で食べる料理。海外由来の料理が日本の家庭、食堂、学校、専門店へ広がり、日常食として定着した例を見ることができる。", "image": "assets/images/japan/approved/food-japanese-curry-rice.webp", "imageState": "APPROVED"}
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {"duration": "3〜4日", "title": "東京を軸に、富士山周辺まで距離を広げる", "text": "東京の街を歩き、鉄道やバスで河口湖など富士山麓へ一度出る。短い旅では複数地方を詰め込まず、大都市と山地がどれほど近いかを見る。例：東京 → 河口湖 → 東京。", "icon": "city"},
+      {"duration": "7〜10日", "title": "新幹線で東西の都市と歴史景観をつなぐ", "text": "東京から京都を経て広島・宮島まで進み、都市、寺社、瀬戸内海を一つの鉄道軸で組み合わせる。例：東京 → 京都 → 広島・宮島 → 東京。", "icon": "road"},
+      {"duration": "14日以上", "title": "主要都市に、北海道・九州南部・南西諸島の一地域を加える", "text": "東京・京都などの都市軸に、知床、阿蘇と屋久島、石垣島など遠隔地域を一つのブロックとして加える。国内線、船、現地バスやレンタカーの時間を別に確保する。", "icon": "compass"}
+    ]
+  },
+  "seasons": [
+    {"months": "3〜5月", "color": "#9aa36a", "text": "多くの地域で春へ向かうが、桜の時期は南北・標高で大きくずれる。大型連休は都市間交通や観光地が混みやすく、山地では平地より冬の条件が長く残ることがある。"},
+    {"months": "6〜9月", "color": "#6f8f58", "text": "梅雨、高温多湿、台風の影響を地域別に考える時期。北海道と沖縄、本州の山地では条件が異なり、登山・離島・海岸は直前の気象と交通情報を優先する。"},
+    {"months": "10〜11月", "color": "#b27a4c", "text": "暑さが弱まり、都市歩きと山地を組み合わせやすい。紅葉は北海道や高地から始まり南へ移るため、一つの全国日程ではなく訪れる地域の標高と緯度で見る。"},
+    {"months": "12〜2月", "color": "#748e9d", "text": "北海道や日本海側の豪雪地帯では冬景色が旅の主役になる一方、太平洋側の都市は乾燥した晴天も多い。南西諸島はさらに温暖で、同じ冬でも装備が大きく変わる。"}
+  ],
+  "transport": {
+    "title": "新幹線・鉄道・バス・国内線・船",
+    "text": "東京・名古屋・京都・大阪・広島・福岡など主要都市間は新幹線と鉄道を軸にしやすい。白川郷や阿蘇などではバス・車を組み合わせ、知床、屋久島、石垣島など遠隔地域は国内線や船を別区間として考える。",
+    "icon": "road"
+  },
+  "personas": [
+    {"title": "巨大都市から路地、寺社、地方都市まで、街を歩いて違いを見たい人", "text": "東京の密度、京都の山裾、商店街や駅前など、都市の規模や歴史によって歩く景色がどう変わるかを見たい人。"},
+    {"title": "雪山、火山、森、海、島まで、一つの国で景観を大きく切り替えたい人", "text": "知床、白川郷、阿蘇、屋久島、石垣島を通して、南北の長さと標高差がつくる自然環境の幅を体感したい人。"},
+    {"title": "鉄道と地域の食を入口に、土地ごとの暮らしへ入りたい人", "text": "移動や食事を単なる手段にせず、駅、商店街、食堂、地域料理から都市と地方の日常を読みたい人。"}
+  ],
+  "facts": [
+    {"label": "地域", "value": "東アジア／北西太平洋"},
+    {"label": "首都", "value": "東京"},
+    {"label": "人口", "value": "約1億2,268万人（2026年8月1日概算）"},
+    {"label": "面積", "value": "約377,975 km²"},
+    {"label": "言語", "value": "日本語が広く使われ、アイヌ語や琉球諸語なども残る"},
+    {"label": "主な宗教", "value": "神道、仏教、キリスト教など（重なりも多い）"},
+    {"label": "通貨", "value": "日本円（JPY / ¥）"}
+  ],
+  "signatureFacts": [
+    {"topicKey": "japan-islands-14125", "label": "国土地理院が数えた島", "value": "14,125島", "note": "電子国土基本図を用い、一定条件で2022年1月時点の陸地を数え直した結果。北海道・本州・四国・九州だけでなく、長い島嶼列まで含む国土の姿が数字に表れる。", "icon": "map"},
+    {"topicKey": "japan-forest-rate-2025", "label": "国土に占める林野の割合", "value": "66.3%", "note": "2025年農林業センサスの全国値。大都市の印象が強い一方、国土の約3分の2が林野で、山地と森林が交通や集落の形に大きく関わる。", "icon": "landscape"},
+    {"topicKey": "japan-world-heritage-2026", "label": "世界遺産", "value": "27件", "note": "2026年8月時点で文化遺産22件、自然遺産5件。『飛鳥・藤原の宮都』の登録で27件となり、古代都市から島の自然まで対象の幅が広い。", "icon": "landmark"}
+  ],
+  "tips": [
+    {"topicKey": "japan-region-weather-check", "title": "季節情報は『日本全体』ではなく、訪れる地域ごとに確認する", "text": "北海道、本州の山地、日本海側、太平洋側、沖縄では同じ月でも気温・降雪・台風・梅雨の影響が異なる。全国平均だけで服装や移動を決めない。"},
+    {"topicKey": "japan-peak-rail-reservations", "title": "大型連休や年末年始は、長距離交通の混雑を前提にする", "text": "新幹線や国内線は通常期と繁忙期で混雑度が変わる。固定日程で長距離移動する場合は、直前の空席だけに頼らず予約条件を早めに確認する。"},
+    {"topicKey": "japan-last-mile-transport", "title": "地方や島では、最終区間の交通を先に確認する", "text": "都市間の鉄道が便利でも、景勝地、山地、離島ではバス・船・レンタカーの本数や最終便が旅程を決める。最初に長距離列車だけを押さえて終わりにしない。"}
+  ],
+  "relatedCountries": [
+    {"slug": "taiwan", "nameEn": "TAIWAN", "nameJa": "台湾", "flag": "🇹🇼", "reason": "島の鉄道、寺廟と都市、山と海、地域の食文化を、よりコンパクトな距離感の中で見比べたいなら。"},
+    {"slug": "southkorea", "nameEn": "SOUTH KOREA", "nameJa": "韓国", "flag": "🇰🇷", "reason": "大都市と山の近さ、寺院、市場、食文化を、朝鮮半島の歴史と気候の中で比較したいなら。"},
+    {"slug": "china", "nameEn": "CHINA", "nameJa": "中国", "flag": "🇨🇳", "reason": "東アジアの建築・食・思想のつながりを、はるかに大きな地理と長い都市史の中へ広げて見たいなら。"}
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-11",
+  "sourcesVerifiedAt": "2026-09-11",
+  "sourceDates": {
+    "population": "2026-08-01",
+    "area": "2026-04-01",
+    "forest": "2025",
+    "worldHeritage": "2026-08",
+    "islands": "2023",
+    "language": "2026-09-11",
+    "currency": "2026-09-11",
+    "transport": "2026-09-11"
+  },
+  "sources": {
+    "map": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; JOURNEY ATLAS map-v3 clean background.",
+    "population": "Statistics Bureau of Japan, Population Estimates, preliminary estimate for 1 Aug 2026: total population approximately 122.68 million.",
+    "area": "Geospatial Information Authority of Japan, Nationwide prefectural/municipal area survey, reference date 1 Apr 2026: 377,974.87 km².",
+    "islands": "Geospatial Information Authority of Japan, 2023 recount using Digital Japan Basic Map land data: 14,125 islands under the published counting conditions.",
+    "forest": "Ministry of Agriculture, Forestry and Fisheries, 2025 Census of Agriculture and Forestry: forest/woodland area 24.75 million ha and forest rate 66.3%.",
+    "worldHeritage": "UNESCO World Heritage Centre / Agency for Cultural Affairs, reviewed Sep 2026: Japan has 27 World Heritage properties, 22 cultural and 5 natural, including Ancient Capitals of Asuka and Fujiwara registered in 2026.",
+    "language": "Agency for Cultural Affairs reference on endangered languages/dialects in Japan includes Ainu and Ryukyuan varieties; page wording avoids asserting a single legal official language.",
+    "religion": "Broad descriptive wording only; the page does not use a single affiliation percentage because Shinto and Buddhist practices can overlap.",
+    "currency": "Japanese yen (JPY / ¥); descriptive current currency reference.",
+    "shinkansen": "Central Japan Railway Company historical material: Tokaido Shinkansen opened between Tokyo and Shin-Osaka in 1964.",
+    "fuji": "Japan Meteorological Agency: Mount Fuji is a 3,776 m active volcano; the 1707 Hoei eruption is the latest confirmed historical eruption described in JMA material.",
+    "shiretoko": "Ministry of the Environment Shiretoko World Natural Heritage material: the area lies at the lowest latitude in the Northern Hemisphere where seasonal sea ice regularly forms and links marine and terrestrial food webs.",
+    "yakushima": "Ministry of the Environment Yakushima World Natural Heritage material: vegetation changes vertically from warm coastal forests through temperate forest to high-elevation vegetation.",
+    "taste": "Food copy is descriptive for nigiri sushi, shoyu ramen, Osaka-style okonomiyaki and Japanese curry rice and avoids disputed origin claims.",
+    "transport": "Current JR and domestic transport structure reviewed Sep 2026; page intentionally avoids exact fares/timetables that may change.",
+    "weather": "Japan Meteorological Agency current forecasts and severe-weather information are the reference for travel decisions; page copy avoids predicting access from seasonal averages.",
+    "travelScale": "Editorial duration ranges based on Tokyo, Lake Kawaguchi, Kyoto, Hiroshima/Miyajima and optional remote-region blocks; not a fixed national itinerary.",
+    "relatedCountries": "Editorial comparison set: Taiwan, South Korea and China. Link availability follows the destination registry.",
+    "nextRoutes": "Omitted under the current JOURNEY ATLAS rule for island destinations."
+  }
+}
