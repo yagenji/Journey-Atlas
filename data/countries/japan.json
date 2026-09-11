@@ -43,7 +43,7 @@
     },
     "svg": "assets/images/japan/map-atlas-v1.svg",
     "route": null,
-    "source": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; simplify 0.003 degrees; JOURNEY ATLAS map-v3 clean background."
+    "source": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; Japanese archipelago within W 122.3 / E 146.2 / S 23.6 / N 46.0; longitude scaled by cos(34.8°) to match the JOURNEY ATLAS runtime marker projection; JOURNEY ATLAS map-v3 clean background."
   },
   "scenes": [
     {
@@ -257,7 +257,7 @@
     "items": [
       {"duration": "3〜4日", "title": "東京を軸に、富士山周辺まで距離を広げる", "text": "東京の街を歩き、鉄道やバスで河口湖など富士山麓へ一度出る。短い旅では複数地方を詰め込まず、大都市と山地がどれほど近いかを見る。例：東京 → 河口湖 → 東京。", "icon": "city"},
       {"duration": "7〜10日", "title": "新幹線で東西の都市と歴史景観をつなぐ", "text": "東京から京都を経て広島・宮島まで進み、都市、寺社、瀬戸内海を一つの鉄道軸で組み合わせる。例：東京 → 京都 → 広島・宮島 → 東京。", "icon": "road"},
-      {"duration": "14日以上", "title": "主要都市に、北海道・九州南部・南西諸島の一地域を加える", "text": "東京・京都などの都市軸に、知床、阿蘇と屋久島、石垣島など遠隔地域を一つのブロックとして加える。国内線、船、現地バスやレンタカーの時間を別に確保する。", "icon": "compass"}
+      {"duration": "14日以上", "title": "主要都市に、北海道・九州南部・南西諸島の一地域を加える", "text": "東京・京都などの都市軸に遠隔地域を一つ加えると、列島の広がりが見えやすくなる。新幹線の東西軸に九州と離島を組み合わせ、国内線・船・現地交通の日も確保する。例：東京 → 京都 → 広島・宮島 → 熊本・阿蘇 → 屋久島 → 東京。", "icon": "compass"}
     ]
   },
   "seasons": [
@@ -287,7 +287,7 @@
   ],
   "signatureFacts": [
     {"topicKey": "japan-islands-14125", "label": "国土地理院が数えた島", "value": "14,125島", "note": "電子国土基本図を用い、一定条件で2022年1月時点の陸地を数え直した結果。北海道・本州・四国・九州だけでなく、長い島嶼列まで含む国土の姿が数字に表れる。", "icon": "map"},
-    {"topicKey": "japan-forest-rate-2025", "label": "国土に占める林野の割合", "value": "66.3%", "note": "2025年農林業センサスの全国値。大都市の印象が強い一方、国土の約3分の2が林野で、山地と森林が交通や集落の形に大きく関わる。", "icon": "landscape"},
+    {"topicKey": "japan-active-volcanoes-111", "label": "活火山", "value": "111", "note": "気象庁が現在、活火山として扱う全国の火山数。富士山、阿蘇山、桜島、北海道の火山群などが含まれ、温泉、カルデラ、高原といった旅先の地形にも直接つながっている。", "icon": "landscape"},
     {"topicKey": "japan-world-heritage-2026", "label": "世界遺産", "value": "27件", "note": "2026年8月時点で文化遺産22件、自然遺産5件。『飛鳥・藤原の宮都』の登録で27件となり、古代都市から島の自然まで対象の幅が広い。", "icon": "landmark"}
   ],
   "tips": [
@@ -306,7 +306,7 @@
   "sourceDates": {
     "population": "2026-08-01",
     "area": "2026-04-01",
-    "forest": "2025",
+    "activeVolcanoes": "2026-09-11",
     "worldHeritage": "2026-08",
     "islands": "2023",
     "language": "2026-09-11",
@@ -314,11 +314,11 @@
     "transport": "2026-09-11"
   },
   "sources": {
-    "map": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; JOURNEY ATLAS map-v3 clean background.",
+    "map": "GSHHS intermediate-resolution coastline via basemap-data 2.0.0, WGS84; JOURNEY ATLAS map-v3 clean background with local equirectangular longitude scaling matched to runtime marker projection.",
     "population": "Statistics Bureau of Japan, Population Estimates, preliminary estimate for 1 Aug 2026: total population approximately 122.68 million.",
     "area": "Geospatial Information Authority of Japan, Nationwide prefectural/municipal area survey, reference date 1 Apr 2026: 377,974.87 km².",
     "islands": "Geospatial Information Authority of Japan, 2023 recount using Digital Japan Basic Map land data: 14,125 islands under the published counting conditions.",
-    "forest": "Ministry of Agriculture, Forestry and Fisheries, 2025 Census of Agriculture and Forestry: forest/woodland area 24.75 million ha and forest rate 66.3%.",
+    "activeVolcanoes": "Japan Meteorological Agency, GuideBook 2026 / current volcano monitoring reference: Japan has 111 active volcanoes; 50 are continuously monitored volcanoes.",
     "worldHeritage": "UNESCO World Heritage Centre / Agency for Cultural Affairs, reviewed Sep 2026: Japan has 27 World Heritage properties, 22 cultural and 5 natural, including Ancient Capitals of Asuka and Fujiwara registered in 2026.",
     "language": "Agency for Cultural Affairs reference on endangered languages/dialects in Japan includes Ainu and Ryukyuan varieties; page wording avoids asserting a single legal official language.",
     "religion": "Broad descriptive wording only; the page does not use a single affiliation percentage because Shinto and Buddhist practices can overlap.",
