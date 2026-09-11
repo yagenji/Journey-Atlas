@@ -118,6 +118,7 @@ EXPECTED_COUNTS = {
 
 CRITICAL_VISIBLE = [
     ".hero",
+    "#country-theme-context",
     ".country-facts-strip",
     "#signature-facts-section",
     "#country-map-art",
@@ -345,6 +346,20 @@ const heroRect = hero ? hero.getBoundingClientRect() : null;
 const titleRect = heroTitle ? heroTitle.getBoundingClientRect() : null;
 const headerRect = header ? header.getBoundingClientRect() : null;
 
+const themeSection = document.querySelector('#country-theme-context');
+const themeList = document.querySelector('#country-theme-list');
+const themeChips = [...document.querySelectorAll('.country-theme-chip')];
+const themeListStyle = themeList ? getComputedStyle(themeList) : null;
+const themeChipStyle = themeChips.length ? getComputedStyle(themeChips[0]) : null;
+const themeChipRects = themeChips.map(el => el.getBoundingClientRect());
+const themeGapRaw = themeListStyle ? (themeListStyle.columnGap || themeListStyle.gap || '0') : '0';
+const themeGap = Number.parseFloat(themeGapRaw) || 0;
+const themeBorderWidth = themeChipStyle ? (Number.parseFloat(themeChipStyle.borderTopWidth) || 0) : 0;
+const themeBorderRadius = themeChipStyle ? (Number.parseFloat(themeChipStyle.borderTopLeftRadius) || 0) : 0;
+const themeFontSize = themeChipStyle ? (Number.parseFloat(themeChipStyle.fontSize) || 0) : 0;
+const themeBackground = themeChipStyle ? themeChipStyle.backgroundColor : '';
+const themeMinChipHeight = themeChipRects.length ? Math.min(...themeChipRects.map(r => r.height)) : 0;
+
 const map = document.querySelector('#country-map-art');
 const mapRect = map ? map.getBoundingClientRect() : null;
 const mapSvg = map ? map.querySelector('svg') : null;
@@ -393,6 +408,18 @@ return {
   clippedText,
   hiddenRequired,
   sceneRoles,
+  theme: {
+    visible: visible(themeSection),
+    chipCount: themeChips.length,
+    listDisplay: themeListStyle ? themeListStyle.display : '',
+    gap: themeGap,
+    borderWidth: themeBorderWidth,
+    borderRadius: themeBorderRadius,
+    fontSize: themeFontSize,
+    backgroundColor: themeBackground,
+    minChipHeight: themeMinChipHeight,
+    labels: themeChips.map(el => (el.textContent || '').trim()),
+  },
   map: {
     hasSvg: !!mapSvg,
     hasMapImage: !!mapBase,
@@ -451,6 +478,28 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
         errors.append(f"clipped text candidates: {audit['clippedText'][:8]}")
     if audit["hiddenRequired"]:
         errors.append(f"required sections hidden: {audit['hiddenRequired']}")
+
+    theme = audit.get("theme") or {}
+    if not theme.get("visible"):
+        errors.append("TRAVEL THEMES section is not visible")
+    chip_count = int(theme.get("chipCount") or 0)
+    if chip_count < 1 or chip_count > 3:
+        errors.append(f"TRAVEL THEMES must render 1–3 chips; got {chip_count}")
+    if theme.get("listDisplay") not in {"flex", "inline-flex", "grid", "inline-grid"}:
+        errors.append(f"TRAVEL THEMES chip list lacks layout separation: {theme.get('listDisplay')!r}")
+    if float(theme.get("gap") or 0) < 6:
+        errors.append(f"TRAVEL THEMES chip gap too small: {theme.get('gap')}px")
+    if float(theme.get("borderWidth") or 0) < 0.8:
+        errors.append(f"TRAVEL THEMES chips lack a visible border: {theme.get('borderWidth')}px")
+    if float(theme.get("borderRadius") or 0) < 8:
+        errors.append(f"TRAVEL THEMES chips lack pill geometry: radius={theme.get('borderRadius')}px")
+    if float(theme.get("fontSize") or 0) < 11:
+        errors.append(f"TRAVEL THEMES text too small: {theme.get('fontSize')}px")
+    if float(theme.get("minChipHeight") or 0) < 26:
+        errors.append(f"TRAVEL THEMES chips too short: {theme.get('minChipHeight')}px")
+    if str(theme.get("backgroundColor") or "").replace(" ", "").lower() in {"", "transparent", "rgba(0,0,0,0)"}:
+        errors.append("TRAVEL THEMES chips lack a visible background")
+
     if (not audit["map"]["hasMapImage"] or not audit["map"]["imageLoaded"] or not audit["map"]["hasMapClass"]
             or audit["map"]["width"] < 200 or audit["map"]["height"] < 120):
         errors.append(f"map render invalid: {audit['map']}")

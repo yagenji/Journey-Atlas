@@ -127,52 +127,66 @@ html{scroll-padding-top:96px!important;}
 }
 
 /* ---------- COUNTRY HERO: PRIMARY TRAVEL THEMES ---------- */
+/*
+  Theme chips are a primary discovery cue, not metadata. Keep the final shared
+  layer visually explicit so the labels never collapse into one unreadable run
+  of text on top of Hero artwork.
+*/
 .country-theme-context{
-  width:360px;
+  width:min(520px,100%);
   max-width:100%;
-  margin-top:26px;
+  margin-top:20px;
   margin-bottom:18px;
   display:flex;
+  flex-direction:column;
   align-items:flex-start;
-  gap:12px;
+  gap:8px;
 }
 .country-theme-context[hidden]{display:none!important;}
+/* Build-time taxonomy chips are authoritative. A stale runtime script must not
+   make them disappear merely because the hidden attribute remains. */
+.country-page .country-theme-context[hidden]:has(.country-theme-chip){
+  display:flex!important;
+}
 .country-theme-context__label{
+  display:block;
   flex:0 0 auto;
-  padding-top:5px;
-  color:#8a6b55;
+  padding-top:0;
+  color:#6f5847;
   font-family:"Spline Sans Mono",ui-monospace,monospace;
-  font-size:8.5px;
+  font-size:9px;
   font-weight:500;
   line-height:1.25;
-  letter-spacing:.12em;
+  letter-spacing:.16em;
 }
 .country-theme-context__list{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
+  gap:8px;
 }
 .country-theme-chip{
   display:inline-flex;
   align-items:center;
-  min-height:24px;
-  padding:3px 9px 4px;
-  border:1px solid rgba(18,54,92,.16);
+  min-height:30px;
+  padding:5px 12px;
+  border:1px solid rgba(18,54,92,.30);
   border-radius:999px;
-  background:rgba(251,248,240,.78);
+  background:rgba(251,248,240,.96);
+  box-shadow:0 1px 2px rgba(18,54,92,.06);
   color:#12365c;
   font-family:var(--ja-ui);
-  font-size:10.5px;
+  font-size:12px;
   font-weight:600;
-  line-height:1.3;
+  line-height:1.35;
+  letter-spacing:.02em;
   white-space:nowrap;
 }
 
-
-
-/* Ensure the optional travel-theme row stays inside the Hero instead of being clipped. */
+/* Ensure taxonomy themes stay inside the Hero even before runtime JS removes
+   a stale hidden attribute. Presence of real chips, not the attribute state,
+   controls the required Hero height. */
 @media(min-width:701px){
-  .country-page .hero:has(.country-theme-context:not([hidden])){
+  .country-page .hero:has(.country-theme-context .country-theme-chip){
     min-height:710px;
   }
 }
@@ -288,13 +302,20 @@ html{scroll-padding-top:96px!important;}
   .utility-nav a{font-size:11px!important;}
 
   .country-theme-context{
-    margin-top:22px;
-    display:block;
+    width:100%;
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
   }
   .country-theme-context__label{
     display:block;
     padding-top:0;
-    margin-bottom:6px;
+    margin-bottom:0;
+  }
+  .country-theme-context__list{
+    gap:8px;
   }
 
   .panel-title-wrap,
@@ -436,7 +457,7 @@ html{scroll-padding-top:96px!important;}
   }
 
   .country-page .country-theme-context{
-    margin-top:22px!important;
+    margin-top:20px!important;
     margin-bottom:6px!important;
   }
 
