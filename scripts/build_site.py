@@ -50,6 +50,24 @@ def build_version() -> str:
 
 BUILD_VERSION = build_version()
 
+
+def versioned_approved_image(value: str) -> str:
+    """Return a per-build URL for approved Country imagery.
+
+    Source Country JSON stays stable; only generated/runtime URLs receive the
+    version token. This lets browsers cache approved imagery long-term without
+    serving stale content after a later deploy replaces an asset at the same path.
+    """
+    if not isinstance(value, str) or not value:
+        return value
+    if not value.startswith("assets/images/") or "/approved/" not in value:
+        return value
+    if "?v=" in value or "&v=" in value:
+        return value
+    separator = "&" if "?" in value else "?"
+    return f"{value}{separator}v={BUILD_VERSION}"
+
+
 COUNTRY_CSS_SOURCES = [
     "assets/css/style.css",
     "assets/css/atlas-overrides.css",
@@ -298,12 +316,23 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
     description = data.get("seo", {}).get("description") or data.get("hero", {}).get("lead") or f"{data['nameJa']}を景色と地図からめぐるJOURNEY ATLAS。"
     canonical = urljoin(SITE_URL, f"countries/{slug}/")
-    hero = data.get("seo", {}).get("ogImage") or data.get("hero", {}).get("image", "")
-    og_image = urljoin(SITE_URL, hero) if hero else urljoin(SITE_URL, "assets/icons/favicon.svg")
+    hero_image = data.get("hero", {}).get("image", "")
+    versioned_hero_image = versioned_approved_image(hero_image)
+    og_source = data.get("seo", {}).get("ogImage") or hero_image
+    versioned_og_source = versioned_approved_image(og_source)
+    og_image = urljoin(SITE_URL, versioned_og_source) if versioned_og_source else urljoin(SITE_URL, "assets/icons/favicon.svg")
 
     page = template
     page = set_tag(page, '<html lang="ja">', f'<html lang="ja" data-country="{html.escape(slug)}">')
     page = set_tag(page, '<head>', '<head>\n  <base href="../../">')
+    if isinstance(hero_image, str) and hero_image and not hero_image.endswith((".parts.json", ".b64")):
+        preload_href = html.escape(urljoin(SITE_URL, versioned_hero_image), quote=True)
+        preload_type = ' type="image/webp"' if hero_image.lower().endswith(".webp") else ""
+        page = set_tag(
+            page,
+            '  <base href="../../">',
+            f'  <base href="../../">\n  <link rel="preload" as="image" href="{preload_href}" fetchpriority="high"{preload_type}>',
+        )
     page = set_tag(page, '<title>JOURNEY ATLAS — Country</title>', f'<title>{html.escape(title)}</title>')
     page = inject_country_themes(page, slug)
     page = set_tag(page, 'content="景色と地図から、次の旅先に出会う。JOURNEY ATLASの国ページ。"', f'content="{html.escape(description, quote=True)}"')
