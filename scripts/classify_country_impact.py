@@ -44,6 +44,7 @@ COUNTRY_SHARED_FILES = {
 QA_SHARED_FILES = {
     "scripts/qa_published_browser.py",
     "scripts/classify_country_impact.py",
+    "scripts/build_country_preview_targeted.py",
     ".github/workflows/browser-country-qa.yml",
 }
 
@@ -276,6 +277,7 @@ def self_test() -> int:
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
     assert "country.html" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
+    assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
     assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0
