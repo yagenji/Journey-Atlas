@@ -1,9 +1,11 @@
 name: Deploy Country Preview to GitHub Pages
 
 on:
+  push:
+    branches: ["country/**"]
   pull_request:
     branches: ["main"]
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened]
   workflow_dispatch:
     inputs:
       slug:
@@ -26,7 +28,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || startsWith(github.head_ref, 'country/')
     # Keep review previews separate from the production-oriented github-pages
     # environment so country/* review branches are not rejected before a runner
     # starts by the github-pages deployment branch protection rule.
