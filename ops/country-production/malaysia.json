@@ -5,8 +5,8 @@
   "contentRef": "country/malaysia",
   "stateRef": "country/malaysia",
   "phase": "QA",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-12T14:44:59+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-12T15:03:54+09:00",
   "implementation": {"state": "DONE"},
   "qa": {"state": "PASS", "productionState": "NOT_STARTED"},
   "reviewDeployment": {"state": "NOT_STARTED", "url": null},
@@ -147,10 +147,10 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/malaysia/countries/malaysia/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-12T14:44:59+09:00"
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
+    "deployedAt": null
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -165,7 +165,7 @@
     "productionIntegrations": 0,
     "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-12T12:10:48+09:00",
-    "canonicalReviewReadyAt": "2026-09-12T14:44:59+09:00"
+    "canonicalReviewReadyAt": null
   },
   "hero": {
     "state": "APPROVED",
@@ -190,5 +190,5 @@
     {"id": "FOOD04", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-04-sarawak-laksa.webp", "contentId": "sarawak-laksa", "approvedGenerationId": "35c8d9f5-a700-42ca-ac26-a38e17204f74"}
   ],
   "map": {"state": "APPROVED", "asset": "assets/images/malaysia/map-atlas-v1.svg"},
-  "next": {"action": "REVIEW_CANONICAL_URL", "asset": null}
+  "next": {"action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW", "asset": null}
 }
