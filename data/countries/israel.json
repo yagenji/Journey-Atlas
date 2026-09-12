@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "israel",
+  "nameEn": "ISRAEL",
+  "nameJa": "イスラエル",
+  "region": "WEST ASIA / MIDDLE EAST / 31°N",
+  "seo": {
+    "description": "地中海沿岸のテルアビブとアッコから、ガリラヤ、マサダ、ネゲヴ砂漠、ティムナへ。都市・宗教・考古遺産と乾燥地形が近い距離で切り替わるイスラエルを8つの景色と地図からたどる。"
+  },
+  "capital": {
+    "nameEn": "Jerusalem",
+    "nameJa": "エルサレム",
+    "coordinates": {
+      "latitude": 31.7683,
+      "longitude": 35.2137
+    },
+    "labelPosition": "left"
+  },
+  "hero": {
+    "lead": "地中海の近代都市から石造りの港町、ガリラヤの湖、死海を見下ろす要塞、ネゲヴの侵食地形まで。短い南北距離の中で、古代から現代までの歴史と、湿潤な北部から乾燥した南部への地理の変化が重なる。",
+    "image": "assets/images/israel/approved/hero-masada-dead-sea.webp",
+    "location": "Masada / マサダと死海",
+    "coordinates": {
+      "latitude": 31.3156,
+      "longitude": 35.3533
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 33.62,
+      "south": 29.25,
+      "west": 34.05,
+      "east": 36.15
+    },
+    "svg": "assets/images/israel/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 de facto/disputed-boundary representation (public domain), WGS84; boundary depiction is for geographic orientation and does not express a legal position on disputed territorial status; illustrated treatment: JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {
+      "id": "tel-aviv-white-city-rothschild",
+      "name": "テルアビブ / ホワイト・シティ",
+      "nameLocal": "Tel Aviv / White City & Rothschild Boulevard",
+      "mapLabel": "Tel Aviv",
+      "description": "ロスチャイルド大通り周辺には、1930年代以降に建てられた国際様式の白い集合住宅がまとまる。バルコニーや日除けを備えた建築と並木道から、地中海気候に合わせて変化したモダニズム都市の姿が見える。",
+      "coordinates": {
+        "latitude": 32.0639,
+        "longitude": 34.7748
+      },
+      "image": "assets/images/israel/approved/tel-aviv-white-city-rothschild.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "acre-old-city-harbor",
+      "name": "アッコ / 旧市街と港",
+      "nameLocal": "Acre / Old City & Harbor",
+      "mapLabel": "Acre",
+      "description": "地中海に面した城壁都市では、オスマン期の街路やハーンの下に十字軍時代の都市構造が残る。港、城壁、石造りの路地を一緒に見ることで、東地中海の交易と支配の層が同じ場所に重なっていることが分かる。",
+      "coordinates": {
+        "latitude": 32.9208,
+        "longitude": 35.0697
+      },
+      "image": "assets/images/israel/approved/acre-old-city-harbor.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.0,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "haifa-bahai-terraces",
+      "name": "ハイファ / バハーイー庭園",
+      "nameLocal": "Haifa / Bahá’í Terraces",
+      "mapLabel": "Haifa",
+      "description": "カルメル山の斜面に、バーブの聖廟を中心とした幾何学的な段丘庭園が海へ向かって伸びる。港湾都市の急斜面を宗教建築と庭園が縦につなぎ、ハイファの地形そのものを都市景観として見せる。",
+      "coordinates": {
+        "latitude": 32.814,
+        "longitude": 34.9864
+      },
+      "image": "assets/images/israel/approved/haifa-bahai-terraces.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.0,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "mount-arbel-sea-of-galilee",
+      "name": "アルベル山 / ガリラヤ湖",
+      "nameLocal": "Mount Arbel / Sea of Galilee",
+      "mapLabel": "Mount Arbel",
+      "description": "石灰岩の崖上からガリラヤ湖と周囲の丘陵を見下ろす。地中海沿岸とは異なる内陸の水景と農地が広がり、北部の地形が湖・断崖・谷の組み合わせでできていることを一望できる。",
+      "coordinates": {
+        "latitude": 32.8237,
+        "longitude": 35.5
+      },
+      "image": "assets/images/israel/approved/mount-arbel-sea-of-galilee.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "beit-guvrin-bell-caves",
+      "name": "ベト・グヴリン / ベル洞窟",
+      "nameLocal": "Bet Guvrin / Bell Caves",
+      "mapLabel": "Bet Guvrin",
+      "description": "柔らかな白亜質の岩盤を下へ掘り進めた採石跡が、鐘形の巨大な地下空間をつくる。地上の農地や集落とは別に、地下にも長い利用の歴史が残り、ユダヤ低地の石灰岩地形と人の活動が直結している。",
+      "coordinates": {
+        "latitude": 31.609,
+        "longitude": 34.8987
+      },
+      "image": "assets/images/israel/approved/beit-guvrin-bell-caves.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "makhtesh-ramon-rim",
+      "name": "マクテシュ・ラモン / 北縁",
+      "nameLocal": "Makhtesh Ramon / Northern Rim",
+      "mapLabel": "Makhtesh Ramon",
+      "description": "ネゲヴ高地を侵食して生まれた巨大なマクテシュが、ミツペ・ラモンの縁から長く伸びる。火山口や隕石孔ではなく、硬軟の異なる地層が削られて形成された侵食地形で、砂漠の地質を断面のように見せる。",
+      "coordinates": {
+        "latitude": 30.609,
+        "longitude": 34.8013
+      },
+      "image": "assets/images/israel/approved/makhtesh-ramon-rim.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "timna-solomons-pillars",
+      "name": "ティムナ / ソロモンの柱",
+      "nameLocal": "Timna Park / Solomon’s Pillars",
+      "mapLabel": "Timna",
+      "description": "アラバ谷の赤い砂岩が侵食され、崖の一部が縦長の柱状に残る。周辺には古代の銅採掘跡も点在し、南端の砂漠では地形と鉱業史が同じ赤褐色の岩山に重なっている。",
+      "coordinates": {
+        "latitude": 29.7877,
+        "longitude": 35.0026
+      },
+      "image": "assets/images/israel/approved/timna-solomons-pillars.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "caesarea-roman-theater-coast",
+      "name": "カイサリア / ローマ劇場と海岸",
+      "nameLocal": "Caesarea / Roman Theatre & Mediterranean Coast",
+      "mapLabel": "Caesarea",
+      "description": "ローマ期の劇場と港湾都市の遺構が、地中海の海岸線に直接接して残る。内陸の砂漠遺跡とは異なり、海上交通を前提に築かれた都市を見ることで、この国が東地中海世界の一部だったことが景観から分かる。",
+      "coordinates": {
+        "latitude": 32.5,
+        "longitude": 34.8919
+      },
+      "image": "assets/images/israel/approved/caesarea-roman-theater-coast.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ヘブライ語とアラビア語の看板",
+      "icon": "language"
+    },
+    {
+      "title": "地中海の海辺遊歩道",
+      "icon": "sea"
+    },
+    {
+      "title": "市場の香辛料と焼き菓子",
+      "icon": "food"
+    },
+    {
+      "title": "金曜夕方の街の変化",
+      "icon": "calendar"
+    },
+    {
+      "title": "淡い石灰岩の建物",
+      "icon": "landmark"
+    },
+    {
+      "title": "ナツメヤシの農地",
+      "icon": "leaf"
+    },
+    {
+      "title": "砂漠のアイベックス",
+      "icon": "wildlife"
+    },
+    {
+      "title": "都市を結ぶ鉄道",
+      "icon": "road"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "israel-mediterranean-to-arava",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "地中海岸からアラバの乾燥地まで、気候が短い距離で切り替わる",
+      "text": "北部と中央部には地中海性気候が広がり、南へ進むと半乾燥地からネゲヴの砂漠へ移る。国土を南北にたどると、植生、農地、岩の色、集落の間隔が連続的に変わる。",
+      "points": [
+        "地中海性・半乾燥・乾燥の3つの気候帯がある",
+        "南端のエイラートでは紅海へ達する"
+      ]
+    },
+    {
+      "topicKey": "israel-layered-archaeology",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "遺跡は一つの時代ではなく、同じ場所に複数の都市層を残す",
+      "text": "アッコ、カイサリア、ベト・グヴリンなどでは、古代から中世、オスマン期まで異なる時代の建築や都市構造が近接して残る。単独の遺構ではなく、上書きされた都市として見ると歴史の長さが分かる。",
+      "points": [
+        "港町では地中海交易の時代差が見える",
+        "地下遺構や再利用された石材にも都市の層が残る"
+      ]
+    },
+    {
+      "topicKey": "israel-tel-aviv-modern-city",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "テルアビブでは、20世紀の都市計画が今の歩行空間に残る",
+      "text": "ホワイト・シティは建物の外観だけでなく、街区、並木道、庭、建物間の余白まで含む都市計画として評価されている。古代遺跡とは対照的に、近代以降の都市形成そのものを歩いて読める。",
+      "points": [
+        "1930年代以降の国際様式建築がまとまる",
+        "ロスチャイルド大通りなどの緑地軸が街をつなぐ"
+      ]
+    },
+    {
+      "topicKey": "israel-multilingual-everyday",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "文字と休日のリズムから、多言語・多宗教の社会が見えてくる",
+      "text": "ヘブライ語が国家の言語で、アラビア語には特別な地位がある。街では英語表記も多く、看板や交通表示を読むだけでも複数の言語層が見える。宗教や地域によって休日と営業のリズムも異なる。",
+      "points": [
+        "ヘブライ語は右から左へ読む",
+        "安息日や宗教行事は都市ごとに街の動き方へ影響する"
+      ]
+    },
+    {
+      "topicKey": "israel-jerusalem-status-and-sacred-city",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "エルサレムは宗教史の中心であると同時に、現在も地位が争われる都市",
+      "text": "イスラエル法は統一エルサレムを首都と定める。一方、国連は東エルサレムを1967年以来の占領下パレスチナ領の一部として扱っており、都市の最終的な地位は国際政治上の争点であり続ける。宗教遺産を見る時も、この現在性を切り離さない。",
+      "points": [
+        "ユダヤ教・キリスト教・イスラム教の聖地が集中する",
+        "首都・領域の扱いには異なる法的・外交的立場がある"
+      ]
+    },
+    {
+      "topicKey": "israel-route-40-desert-spine",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "南部では、道路そのものが砂漠のスケールを見せる",
+      "text": "ベエルシェバからミツペ・ラモンを経てアラバ方面へ進むと、都市の密度が下がり、裸地と岩山の比率が増える。距離だけでなく、給水・日射・立寄り地点を考えることが砂漠の移動体験の一部になる。",
+      "points": [
+        "ミツペ・ラモンはRoute 40沿いの地形観察拠点",
+        "南へ進むほど都市間の景観が乾燥地へ変わる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "israel-signs-three-scripts",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "街では三つの文字体系が並ぶ",
+      "text": "ヘブライ語とアラビア語は右から左へ書き、道路や公共空間では英語表記もよく併記される。地名は言語ごとに綴りや発音が変わるため、同じ場所でも表記の違いに気づける。",
+      "icon": "language",
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "israel-sabbath-rest-day",
+      "categoryEn": "EVERYDAY",
+      "categoryJa": "日常",
+      "title": "安息日は公式の休息日",
+      "text": "イスラエルの基本法は安息日とユダヤ教の祝日を公式の休息日とする。金曜夕方から土曜にかけて営業や交通の状況は地域・事業者によって大きく変わるため、移動日は当日の運行情報を確認したい。",
+      "icon": "calendar",
+      "sourceKey": "basicLaw"
+    },
+    {
+      "topicKey": "israel-parks-reservation",
+      "categoryEn": "LOCAL TIP",
+      "categoryJa": "現地のコツ",
+      "title": "自然保護区は事前予約対象を確認する",
+      "text": "イスラエル自然公園局はマクテシュ・ラモンなど一部施設で予約システムを運用している。国立公園や保護区を組み込む日は、営業時間だけでなく予約要否も公式サイトで確認する。",
+      "icon": "calendar",
+      "sourceKey": "parksReservation"
+    },
+    {
+      "topicKey": "israel-white-city-climate-modernism",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "白い近代建築は気候への適応でもある",
+      "text": "テルアビブの国際様式建築は、欧州のモダニズムをそのまま移したのではなく、強い日差しや地中海気候に合わせてバルコニー、日除け、通風などを調整した。外観だけでなく細部を見ると土地との関係が分かる。",
+      "icon": "city",
+      "sourceKey": "whiteCity"
+    },
+    {
+      "topicKey": "israel-place-names-multiple-forms",
+      "categoryEn": "NAMES",
+      "categoryJa": "地名",
+      "title": "一つの都市に複数の名前がある",
+      "text": "Acre / Akko、Jerusalem / Yerushalayim / al-Quds のように、英語・ヘブライ語・アラビア語で地名の形が変わる。地図や交通表示では一つの英語綴りだけに固定されない場合がある。",
+      "icon": "map",
+      "sourceKey": "multilingualNames"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ISRAEL",
+    "title": "移住と東地中海が重なる食卓",
+    "intro": "周辺地域に共有される料理と、各地から移住したユダヤ人コミュニティが持ち込んだ料理が都市の食卓で交差する。起源を一国に固定せず、今どのように食べられているかを見る。",
+    "items": [
+      {
+        "id": "sabich",
+        "name": "サビフ",
+        "nameLocal": "Sabich",
+        "text": "揚げナス、ゆで卵、タヒニ、アンバ、刻み野菜などをピタに詰める。イラク系ユダヤ人の食文化と結びつき、現在は都市部の軽食として広く見かける。",
+        "image": "assets/images/israel/approved/sabich.webp",
+        "imageState": "PENDING"
+      },
+      {
+        "id": "jachnun",
+        "name": "ジャフヌン",
+        "nameLocal": "Jachnun",
+        "text": "薄く重ねた生地を巻き、低温で長時間焼くイエメン系ユダヤ人の料理。ゆで卵、すりおろしトマト、辛いソースと組み合わせるのが一般的。",
+        "image": "assets/images/israel/approved/jachnun.webp",
+        "imageState": "PENDING"
+      },
+      {
+        "id": "shakshuka",
+        "name": "シャクシュカ",
+        "nameLocal": "Shakshuka",
+        "text": "トマトと唐辛子・パプリカなどを煮たソースに卵を落とす北アフリカ系の料理。イスラエルでも朝食や軽食として定着している。",
+        "image": "assets/images/israel/approved/shakshuka.webp",
+        "imageState": "PENDING"
+      },
+      {
+        "id": "bourekas",
+        "name": "ブレカス",
+        "nameLocal": "Bourekas",
+        "text": "チーズ、じゃがいも、ほうれん草などを包む層状の焼き菓子。オスマン・バルカン・セファルディ系の食文化につながり、ベーカリーで日常的に見かける。",
+        "image": "assets/images/israel/approved/bourekas.webp",
+        "imageState": "PENDING"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は比較的コンパクトだが、都市・考古遺跡・北部の湖・南部の砂漠で旅の軸が大きく変わる。移動時間だけでなく、現在の安全情報と各施設の営業状況を確認して組み立てる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "テルアビブと中部を一つの軸で見る",
+        "text": "都市と近郊の歴史景観を絞ってたどる。例：テルアビブ → カイサリア → ハイファ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "北部と死海周辺まで地形を広げる",
+        "text": "地中海岸に加え、ガリラヤやマサダまで組み込む。例：テルアビブ → アッコ / ハイファ → ガリラヤ → マサダ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "ネゲヴ南部まで南北の変化を追う",
+        "text": "北部・中部・死海周辺に加えて、砂漠の移動日を確保する。例：テルアビブ → 北部 → マサダ → マクテシュ・ラモン → ティムナ / エイラート。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#c8c59f",
+      "text": "春。北部や地中海沿岸は比較的穏やかで、乾季へ向かう前の緑も残る。砂漠では日中と朝夕の温度差を見込む。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#d6b37c",
+      "text": "夏。沿岸部は暑く湿度が高く、ネゲヴや死海周辺は強い暑さになる。屋外遺跡や砂漠は早朝中心に組み立てたい。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#bfae91",
+      "text": "秋。暑さが和らぎ始め、都市と砂漠を組み合わせやすくなる。初雨の時期はワジや道路の急な増水情報を確認する。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#9fb3b2",
+      "text": "冬。地中海沿岸と北部は雨が増え、標高の高い場所では寒さも出る。南部砂漠は日中歩きやすい一方、朝夕は冷え込む。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・バスとレンタカーを地域で使い分ける",
+    "text": "テルアビブ、ハイファ、アッコなど主要都市間は鉄道やバスでつなぎやすい。マクテシュ・ラモンやティムナなど南部の自然景観は自動車の自由度が高い。安息日、祝日、治安状況で運行や道路条件が変わるため、移動当日は公式情報を確認する。"
+  },
+  "personas": [
+    {
+      "title": "歴史を街の層として歩きたい人",
+      "text": "アッコ、カイサリア、ベト・グヴリンなど、異なる時代の都市や遺構が近接する場所を比較できる。"
+    },
+    {
+      "title": "都市と地形を一つの旅で見たい人",
+      "text": "テルアビブの近代都市、ハイファの斜面都市、ガリラヤ、死海、ネゲヴ砂漠まで景観が短い距離で切り替わる。"
+    },
+    {
+      "title": "乾燥地の地質を歩いて見たい人",
+      "text": "マクテシュ・ラモンやティムナでは、侵食地形、色の異なる地層、砂岩の造形を現地で観察できる。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アジア / 東地中海"
+    },
+    {
+      "label": "首都",
+      "value": "エルサレム（イスラエル法上。東エルサレムを含む地位は国際的に係争）"
+    },
+    {
+      "label": "人口",
+      "value": "約1,031万人（2026年9月）"
+    },
+    {
+      "label": "面積",
+      "value": "22,072 km²（イスラエル中央統計局の統計定義）"
+    },
+    {
+      "label": "言語",
+      "value": "ヘブライ語（国家の言語）／アラビア語（特別な地位）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "ユダヤ教を中心に、イスラム教・キリスト教・ドルーズ派など"
+    },
+    {
+      "label": "通貨",
+      "value": "新シェケル（ILS / ₪）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "israel-world-heritage-nine",
+      "label": "ユネスコ世界遺産",
+      "value": "9件・すべて文化遺産",
+      "note": "UNESCOのイスラエルState Party一覧で登録されている9件はすべて文化遺産。エルサレム旧市街はこの9件とは別の扱い。",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "israel-makhtesh-ramon-40km",
+      "label": "マクテシュ・ラモン",
+      "value": "長さ約40km",
+      "note": "イスラエル自然公園局は世界最大のマクテシュと説明する。火山口ではなく侵食で形成された巨大な地形。",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "israel-two-sea-coasts",
+      "label": "二つの海への出口",
+      "value": "地中海194km / 紅海12km",
+      "note": "長い地中海岸に対し、紅海岸は南端エイラート周辺の短い区間だけ。細長い国土が二つの海域へ接する。",
+      "icon": "sea"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "israel-current-security-check",
+      "title": "安全情報は旅程を決める前と移動当日に確認する",
+      "text": "2026年9月10日時点で日本の外務省はイスラエルの多くの地域をレベル2、一部国境地帯などをより高い危険レベルとしている。状況は短期間で変わり得るため、地域ごとの最新情報を確認する。"
+    },
+    {
+      "topicKey": "israel-heat-water-desert",
+      "title": "砂漠では距離より日射と水を基準にする",
+      "text": "ネゲヴや死海周辺は高温・乾燥が強い。屋外遺跡やトレイルは早い時間帯に置き、給水地点と日陰の有無を先に確認する。"
+    },
+    {
+      "topicKey": "israel-holiday-opening-hours",
+      "title": "金曜夕方・土曜・宗教祝日は営業時間を個別確認する",
+      "text": "安息日や各宗教の祝日で、交通・商店・施設の運営は地域ごとに異なる。都市名だけで一律に判断せず、利用する交通機関や施設の公式案内を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "jordan",
+      "nameEn": "JORDAN",
+      "nameJa": "ヨルダン",
+      "flag": "🇯🇴",
+      "reason": "乾燥地の侵食地形、古代都市、死海周辺の景観に惹かれたなら。より広い砂漠と岩山のスケールで西アジアの地形と歴史を比較できる。"
+    },
+    {
+      "slug": "cyprus",
+      "nameEn": "CYPRUS",
+      "nameJa": "キプロス",
+      "flag": "🇨🇾",
+      "reason": "東地中海の港町、考古遺跡、宗教建築と海岸景観を続けて見たいなら。島という異なる地理の中で同じ海域の歴史層をたどれる。"
+    },
+    {
+      "slug": "greece",
+      "nameEn": "GREECE",
+      "nameJa": "ギリシャ",
+      "flag": "🇬🇷",
+      "reason": "古代遺跡と現代都市、地中海沿岸の生活を組み合わせたいなら。海上交易と古典古代のネットワークをより西側から見直せる。"
+    }
+  ],
+  "updatedAt": "2026-09-13",
+  "sourcesVerifiedAt": "2026-09-13",
+  "sourceDates": {
+    "population": "2026-09-09",
+    "area": "2024",
+    "travelSafety": "2026-09-10",
+    "worldHeritage": "2026"
+  },
+  "sources": {
+    "population": "Israel Central Bureau of Statistics — Israel in Numbers, eve of Rosh Hashana 5787 (9 Sep 2026): population estimated at 10.305 million. https://www.cbs.gov.il/he/mediarelease/DocLib/2026/282/11_26_282b.pdf",
+    "area": "Israel Central Bureau of Statistics — Israel in Figures 2024/Statistical geography: State of Israel area 22,072 km². CBS statistical geography has historically stated that its area definition includes East Jerusalem from 1967 and the Golan Heights from 1982; this is a statistical definition and not a statement on international legal status. https://www.cbs.gov.il/he/publications/DocLib/isr_in_n/isr_in_n24e.pdf",
+    "capitalStatus": "Knesset Basic-Law: Israel – the Nation State of the Jewish People states complete and united Jerusalem is the capital of Israel; UN Security Council resolution 2334 reporting treats East Jerusalem as part of the occupied Palestinian territory. https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawNationState.pdf | https://www.un.org/unispal/document/sg-report-24jun26/",
+    "language": "Knesset Basic-Law: Israel – the Nation State of the Jewish People: Hebrew is the language of the State; Arabic has special status. https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawNationState.pdf",
+    "religion": "Israel Ministry of Interior Religious Groups Department / Government information: non-Jewish communities include Muslims, Druze, Christians and other communities; government background notes Israel has no official religion. https://www.gov.il/he/departments/units/religious-groups-department-1",
+    "currency": "Bank of Israel — Banknotes and Coins: the new sheqel is Israel's currency/legal tender. https://www.boi.org.il/en/economic-roles/banknotes-and-coins/",
+    "unesco": "UNESCO World Heritage Convention — Israel State Party: 9 inscribed properties, all cultural. https://whc.unesco.org/en/statesparties/il",
+    "whiteCity": "UNESCO World Heritage — White City of Tel-Aviv – the Modern Movement. https://whc.unesco.org/en/list/1096",
+    "acre": "UNESCO World Heritage — Old City of Acre. https://whc.unesco.org/en/list/1042",
+    "masada": "UNESCO World Heritage — Masada. https://whc.unesco.org/en/list/1040",
+    "beitGuvrin": "UNESCO World Heritage — Caves of Maresha and Bet-Guvrin. https://whc.unesco.org/en/list/1370",
+    "bahai": "UNESCO World Heritage — Bahá’i Holy Places in Haifa and the Western Galilee. https://whc.unesco.org/en/list/1220",
+    "ramon": "Israel Nature and Parks Authority — Makhtesh Ramon Nature Reserve and Visitors Center: 40-km long, largest makhtesh. https://en.parks.org.il/reserve-park/makhtesh-ramon-nature-reserve-and-visitors-center/",
+    "timna": "Timna Park official information — geology and ancient copper mining landscape. https://www.parktimna.co.il/en/",
+    "caesarea": "Israel Nature and Parks Authority — Caesarea National Park, Roman theatre and ancient port city. https://en.parks.org.il/reserve-park/caesarea-national-park/",
+    "geography": "Israel Central Bureau of Statistics — Israel 70: Mediterranean coastline 194 km and Red Sea coastline 12 km; three climate zones. https://www.cbs.gov.il/en/Statistical/stat171e.pdf",
+    "basicLaw": "Knesset Basic-Law: Israel – the Nation State of the Jewish People: Sabbath and Jewish holidays are official days of rest. https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawNationState.pdf",
+    "parksReservation": "Israel Nature and Parks Authority — Makhtesh Ramon page and reservation system. https://en.parks.org.il/reserve-park/makhtesh-ramon-nature-reserve-and-visitors-center/",
+    "multilingualNames": "Israel government core documents and public signage use Hebrew, Arabic and English naming conventions; Knesset Basic Law establishes Hebrew and Arabic status. https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawNationState.pdf",
+    "travelSafety": "Ministry of Foreign Affairs of Japan — Israel/Palestinian Territories travel advisory, updated 10 Sep 2026. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2026T085.html",
+    "map": "Natural Earth 1:10m Admin-0 country geometry (public domain), via AshKyd/geojson-regions; Natural Earth documents de facto/disputed-boundary handling. https://github.com/AshKyd/geojson-regions"
+  }
+}
