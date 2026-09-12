@@ -5,11 +5,11 @@
   "contentRef": "country/timorleste",
   "stateRef": "country/timorleste",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-12T12:40:51+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-12T12:41:55+09:00",
   "hero": {
     "id": "HERO",
-    "state": "NOT_STARTED",
+    "state": "GENERATING",
     "asset": "assets/images/timorleste/approved/hero-cristo-rei-dili-bay.webp",
     "contentId": "cristo-rei-dili-bay",
     "promptSeries": 1,
@@ -30,6 +30,14 @@
       "forbidMontage": true,
       "forbidInsetImages": true,
       "singleSceneOnly": true
+    },
+    "generationReservation": {
+      "reservationId": "timorleste-HERO-e1-p1-20260912T124155+0900",
+      "asset": "HERO",
+      "contentId": "cristo-rei-dili-bay",
+      "promptSeries": 1,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-12T12:41:55+09:00"
     }
   },
   "scenes": [
@@ -474,5 +482,5 @@
     "tasteBatchApprovedAt": null,
     "canonicalReviewReadyAt": null
   },
-  "next": {"action": "GENERATE_HERO", "asset": "HERO"}
+  "next": {"action": "RECONCILE_GENERATION", "asset": "HERO"}
 }
