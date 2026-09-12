@@ -4,9 +4,9 @@
   "countryName": "THAILAND",
   "contentRef": "country/thailand",
   "stateRef": "country/thailand",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-12T11:10:00+09:00",
+  "phase": "QA",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-12T11:12:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": null,
@@ -31,7 +31,7 @@
     {"id":"FOOD04","state":"APPROVED","asset":null,"contentId":"thailand-food04-massaman-curry-v1","approvedGenerationId":"841b98be-6f8a-4efc-8eb8-cd0e581b8453"}
   ],
   "map":{"state":"APPROVED","asset":"assets/images/thailand/map-atlas-v1.svg"},
-  "implementation":{"state":"NOT_STARTED"},
+  "implementation":{"state":"DONE"},
   "qa":{"state":"NOT_STARTED","productionState":"NOT_STARTED"},
   "reviewDeployment":{"state":"NOT_STARTED","url":null},
   "finalApproval":{"state":"PENDING"},
@@ -48,5 +48,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-12T11:10:00+09:00"},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"sceneBatchReviews":1,"tasteBatchReviews":1,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":"2026-09-12T00:03:00+09:00","canonicalReviewReadyAt":null},
-  "next":{"action":"IMPLEMENT_COUNTRY_PAGE","asset":null}
+  "next":{"action":"RUN_COUNTRY_QA","asset":null}
 }
