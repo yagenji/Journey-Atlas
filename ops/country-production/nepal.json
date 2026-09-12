@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "nepal",
   "countryName": "NEPAL",
-  "contentRef": "country/nepal",
-  "stateRef": "country/nepal",
-  "phase": "QA",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-12T21:10:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-13T00:27:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/nepal/approved/hero-everest-kala-patthar.webp",
@@ -43,10 +43,45 @@
     }
   },
   "implementation": {"state":"DONE"},
-  "qa": {"state":"PASS","productionState":"NOT_STARTED"},
-  "reviewDeployment": {"state":"NOT_STARTED","url":null},
-  "finalApproval": {"state":"PENDING"},
-  "publication": {"state":"DRAFT","atlasPublished":false},
+  "qa": {
+    "state":"PASS",
+    "productionState":"CI_GATED",
+    "sourceCommit":"594cd5ea031c81afa8aa5a581c9d33983ada0da5",
+    "validateRunId":34702165552,
+    "browserQaRunId":34702165519,
+    "imagePolicyRunId":34702165582,
+    "productionStateRunId":34702165570,
+    "checks":["content-qa-v2","strict-country-json","image-delivery-budget","approved-image-audit","perceptual-duplicate-gate","targeted-country-build","desktop-tablet-mobile-browser-qa","revision-7-state","revision-7-2-policy","github-pages-review-preview"],
+    "failureCount":0,
+    "completedAt":"2026-09-13T00:26:00+09:00"
+  },
+  "reviewDeployment": {
+    "state":"DONE",
+    "url":"https://atlas.yagenji.com/countries/nepal/",
+    "commit":"594cd5ea031c81afa8aa5a581c9d33983ada0da5",
+    "robots":"noindex,follow",
+    "sitemapListed":false,
+    "atlasPublished":false,
+    "linkedFromRegistry":false,
+    "verifiedAt":"2026-09-13T00:26:00+09:00",
+    "note":"Persistent targeted review preview and Desktop / Tablet / Mobile Browser QA passed before final approval; post-merge production verification is authoritative."
+  },
+  "finalApproval": {
+    "state":"APPROVED",
+    "approvedAt":"2026-09-13T00:27:00+09:00",
+    "basis":"User instruction: QAして問題なければ公開して. Final persistent review QA, strict Country validation, Production State validation, Image Policy Revision 7.2 validation, approved Hero / eight Scenes / four Taste assets / Map, final Numbers / Travel Trivia / related-country revisions, and Desktop / Tablet / Mobile Browser QA passed after the final revisions."
+  },
+  "publication": {
+    "state":"PUBLISHED",
+    "atlasPublished":true,
+    "productionVerification":"CI_GATED",
+    "requestedAt":"2026-09-13T00:27:00+09:00",
+    "publishedUrl":"https://atlas.yagenji.com/countries/nepal/",
+    "robots":"index,follow",
+    "sitemapListed":true,
+    "linkedFromRegistry":true,
+    "note":"Registry publication and terminal Production State are committed for the single terminal PR. Publication CI must validate the published build, discovery link, indexability, sitemap inclusion and production route; post-merge Cloudflare production verification is authoritative."
+  },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
     "sceneApproval": "BATCH_ONLY",
@@ -169,10 +204,10 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/nepal/countries/nepal/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-13T00:26:00+09:00"
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -181,13 +216,13 @@
     "sceneBatchReviews": 1,
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
-    "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 0,
+    "reviewPackageIntegrations": 1,
+    "reviewPreviewDeployments": 3,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 0,
+    "browserQaCycles": 3,
     "tasteBatchApprovedAt": "2026-09-12T16:18:40+09:00",
-    "canonicalReviewReadyAt": null
+    "canonicalReviewReadyAt": "2026-09-13T00:26:00+09:00"
   },
-  "next": {"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}
+  "next": {"action":"NONE","asset":null}
 }
