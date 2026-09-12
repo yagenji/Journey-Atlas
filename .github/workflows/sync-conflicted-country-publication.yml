@@ -1,0 +1,205 @@
+name: Sync conflicted Country publication PR
+
+on:
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+# This pre-sync runs in the trusted base-branch context, so it can run even
+# when GitHub cannot create the normal pull_request merge ref because the PR
+# currently conflicts with main. It is restricted to same-repository Country
+# branches and terminal publication state only.
+concurrency:
+  group: "country-publication-main"
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: >-
+      startsWith(github.event.pull_request.head.ref, 'country/') &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Country branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Synchronize latest main for terminal publication
+        shell: bash
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+
+          slug="${HEAD_REF#country/}"
+          slug="${slug%-renewal}"
+
+          ready="$(python3 - "$slug" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug = sys.argv[1]
+          path = Path("ops/country-production") / f"{slug}.json"
+          if not path.exists():
+              print("false")
+              raise SystemExit
+          state = json.loads(path.read_text(encoding="utf-8"))
+          publication = state.get("publication") or {}
+          ready = all([
+              state.get("productionProtocolId") == "2.0",
+              state.get("phase") == "COMPLETE",
+              state.get("stateRef") == "main",
+              state.get("contentRef") == "main",
+              (state.get("qa") or {}).get("state") == "PASS",
+              (state.get("finalApproval") or {}).get("state") == "APPROVED",
+              publication.get("state") == "PUBLISHED",
+              publication.get("atlasPublished") is True,
+          ])
+          print(str(ready).lower())
+          PY
+          )"
+
+          if [ "$ready" != "true" ]; then
+            echo "$slug is not in terminal publication state; no conflict sync needed."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin \
+            "+refs/heads/main:refs/remotes/origin/main" \
+            "+refs/heads/$HEAD_REF:refs/remotes/origin/$HEAD_REF"
+          git checkout -B "$HEAD_REF" "origin/$HEAD_REF"
+
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "$HEAD_REF already contains latest main."
+            exit 0
+          fi
+
+          snapshot="/tmp/${slug}-shared-ssot.json"
+          python3 - "$slug" "$snapshot" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug, output = sys.argv[1:3]
+          data = Path("data")
+          snapshot = {"registryRows": {}, "statusRow": None, "themes": []}
+          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+              payload = json.loads((data / name).read_text(encoding="utf-8"))
+              row = next((row for row in payload.get("destinations", []) if row.get("slug") == slug), None)
+              if row is not None:
+                  snapshot["registryRows"][name] = row
+          status = json.loads((data / "country-renewal-status.json").read_text(encoding="utf-8"))
+          snapshot["statusRow"] = next(
+              (row for row in status.get("countries", []) if row.get("slug") == slug), None
+          )
+          taxonomy = json.loads((data / "theme-taxonomy.json").read_text(encoding="utf-8"))
+          snapshot["themes"] = [
+              theme.get("id")
+              for theme in taxonomy.get("themes", [])
+              if slug in theme.get("examples", [])
+          ]
+          Path(output).write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+          set +e
+          git merge --no-edit origin/main
+          merge_status=$?
+          set -e
+
+          shared_files=(
+            "data/atlas-destinations.json"
+            "data/atlas-destinations-editorial.json"
+            "data/country-renewal-status.json"
+            "data/theme-taxonomy.json"
+          )
+
+          if [ "$merge_status" -ne 0 ]; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            for path in "${conflicts[@]}"; do
+              allowed=false
+              for shared in "${shared_files[@]}"; do
+                if [ "$path" = "$shared" ]; then
+                  allowed=true
+                  break
+                fi
+              done
+              if [ "$allowed" != "true" ]; then
+                echo "Unexpected conflict outside shared Country SSOT: $path"
+                git merge --abort || true
+                exit 1
+              fi
+            done
+            for path in "${conflicts[@]}"; do
+              git checkout --theirs -- "$path"
+              git add "$path"
+            done
+          fi
+
+          python3 - "$slug" "$snapshot" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug, snapshot_path = sys.argv[1:3]
+          data = Path("data")
+          snapshot = json.loads(Path(snapshot_path).read_text(encoding="utf-8"))
+
+          for name, saved_row in snapshot.get("registryRows", {}).items():
+              path = data / name
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows = payload.get("destinations", [])
+              for index, row in enumerate(rows):
+                  if row.get("slug") == slug:
+                      rows[index] = saved_row
+                      break
+              else:
+                  rows.append(saved_row)
+              path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          saved_status = snapshot.get("statusRow")
+          if saved_status is not None:
+              path = data / "country-renewal-status.json"
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows = payload.get("countries", [])
+              for index, row in enumerate(rows):
+                  if row.get("slug") == slug:
+                      rows[index] = saved_status
+                      break
+              else:
+                  rows.append(saved_status)
+              path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          wanted_themes = set(snapshot.get("themes", []))
+          path = data / "theme-taxonomy.json"
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          for theme in payload.get("themes", []):
+              examples = [item for item in theme.get("examples", []) if item != slug]
+              if theme.get("id") in wanted_themes:
+                  examples.append(slug)
+              theme["examples"] = examples
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+          git add "${shared_files[@]}"
+          if [ "$merge_status" -ne 0 ]; then
+            git commit --no-edit
+          elif ! git diff --cached --quiet; then
+            git commit -m "Reconcile $slug publication metadata after main sync"
+          fi
+
+          git push origin "HEAD:refs/heads/$HEAD_REF"
