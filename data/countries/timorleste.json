@@ -18,7 +18,8 @@
     "lead": "ディリ湾を見下ろす岬から、珊瑚礁の島、標高3,000m近い山地、ポルトガル時代の街並み、コーヒーの高地、東端の湿地と聖なる島、インドネシア領に囲まれた飛び地へ。小さな国土の中で、海と山、独立の記憶、土地に根ざした暮らしが近い距離で切り替わる国。",
     "image": "assets/images/timorleste/approved/hero-cristo-rei-dili-bay.webp",
     "location": "Cristo Rei / Dili Bay",
-    "coordinates": {"latitude": -8.5207, "longitude": 125.60814}
+    "coordinates": {"latitude": -8.5207, "longitude": 125.60814},
+    "mapOffset": {"x": 2, "y": -1.5}
   },
   "map": {
     "bounds": {"north": -8.0, "south": -9.58, "west": 123.95, "east": 127.42},
@@ -75,7 +76,8 @@
       "description": "石灰岩地帯の内陸に淡水湖と季節湿地が広がり、その周囲を草地と森が囲む。海岸の珊瑚礁と同じ保護地域の中で、陸と海の生態系が近接する東端の景観。",
       "coordinates": {"latitude": -8.4465, "longitude": 127.1340},
       "image": "assets/images/timorleste/approved/ira-lalaro-wetland.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": -1.2, "y": 0.2}
     },
     {
       "id": "balibo-fort-highlands",
@@ -95,7 +97,8 @@
       "description": "急な山腹で、コーヒーが高木の木陰に混じるように育つ。高地の小規模農家が手摘みし、土地で乾燥させる工程まで含めて、コーヒーが輸出品である前に生活景観であることが見えてくる。",
       "coordinates": {"latitude": -8.7521, "longitude": 125.3955},
       "image": "assets/images/timorleste/approved/ermera-shade-coffee-highlands.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {"x": -0.7, "y": -0.5}
     },
     {
       "id": "oecusse-pante-macassar-coast",
@@ -180,10 +183,10 @@
     "title": "東ティモールで食べたいもの",
     "intro": "トウモロコシと豆の家庭料理、海の魚、祝いの米、竹筒で火を入れる料理。土地で手に入る素材と、海・農村・儀礼の暮らしがそのまま皿に現れる4品。",
     "items": [
-      {"id":"batar-daan","name":"バタール・ダアン","nameLocal":"Batar Da'an","text":"トウモロコシ、豆、カボチャを煮合わせる家庭的な料理。米だけではない内陸の主食文化が見える。","image":"assets/images/timorleste/approved/food-batar-daan.webp","imageState":"PENDING"},
-      {"id":"ikan-sabuko","name":"イカン・サブコ","nameLocal":"Ikan Sabuko","text":"魚にタマリンドやバジルなどの風味を合わせて焼く沿岸の料理。海と酸味のある素材をシンプルにつなぐ。","image":"assets/images/timorleste/approved/food-ikan-sabuko.webp","imageState":"PENDING"},
-      {"id":"katupa","name":"カトゥパ","nameLocal":"Katupa","text":"米をココナツとともに葉で包んで炊く料理。祝い事などでも食べられ、包みそのものが料理の一部になる。","image":"assets/images/timorleste/approved/food-katupa.webp","imageState":"PENDING"},
-      {"id":"tukir","name":"トゥキール","nameLocal":"Tukir","text":"肉などを竹筒に詰め、火のそばでゆっくり加熱する料理。器と調理法が一体になった、山間部や儀礼にもつながる食べ方。","image":"assets/images/timorleste/approved/food-tukir.webp","imageState":"PENDING"}
+      {"id":"batar-daan","name":"バタール・ダアン","nameLocal":"Batar Da'an","text":"トウモロコシ、豆、カボチャを煮合わせる家庭的な料理。米だけではない内陸の主食文化が見える。","image":"assets/images/timorleste/approved/food-batar-daan.webp","imageState":"APPROVED"},
+      {"id":"ikan-sabuko","name":"イカン・サブコ","nameLocal":"Ikan Sabuko","text":"魚にタマリンドやバジルなどの風味を合わせて焼く沿岸の料理。海と酸味のある素材をシンプルにつなぐ。","image":"assets/images/timorleste/approved/food-ikan-sabuko.webp","imageState":"APPROVED"},
+      {"id":"katupa","name":"カトゥパ","nameLocal":"Katupa","text":"米をココナツとともに葉で包んで炊く料理。祝い事などでも食べられ、包みそのものが料理の一部になる。","image":"assets/images/timorleste/approved/food-katupa.webp","imageState":"APPROVED"},
+      {"id":"tukir","name":"トゥキール","nameLocal":"Tukir","text":"肉などを竹筒に詰め、火のそばでゆっくり加熱する料理。器と調理法が一体になった、山間部や儀礼にもつながる食べ方。","image":"assets/images/timorleste/approved/food-tukir.webp","imageState":"APPROVED"}
     ]
   },
   "travelScale": {
@@ -245,11 +248,11 @@
   "sourcesVerifiedAt": "2026-09-12",
   "sourceDates": {
     "population":"2022",
-    "area":"2026-09-12",
+    "governmentProfile":"2026-09-12",
     "religion":"2022",
-    "reefBiodiversity":"2016 / verified 2026-09-12",
+    "reefBiodiversity":"2016",
     "asean":"2025-10-26",
-    "biosphere":"2026-06",
+    "ninoKonis":"2026-06",
     "ferries":"2026-08-30",
     "itineraries":"2026-09-12"
   },
