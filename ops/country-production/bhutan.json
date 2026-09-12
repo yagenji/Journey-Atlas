@@ -5,8 +5,8 @@
   "contentRef": "country/bhutan",
   "stateRef": "country/bhutan",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-12T15:03:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-12T15:05:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -43,12 +43,14 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": "assets/images/bhutan/approved/punakha-dzong-river-confluence.webp",
       "contentId": "punakha-dzong-river-confluence",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "rejectedGenerationIds": [
+        "55325c33-7d37-4753-870d-0370a890bceb"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "punakha-dzong-river-confluence",
@@ -65,13 +67,11 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "bhutan-S01-20260912T150300+0900",
-        "asset": "S01",
-        "contentId": "punakha-dzong-river-confluence",
-        "promptSeries": 1,
-        "generationContextEpoch": 1,
-        "reservedAt": "2026-09-12T15:03:00+09:00"
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER",
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS"
       }
     },
     {
@@ -292,7 +292,7 @@
     "singleReviewIntegration":true
   },
   "imageGenerationPolicyRef":"main:ops/image-generation-policy.json",
-  "generationContext":{"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext":{"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "imageGenerationPolicy":{"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview":{"approval":"PENDING","rounds":[]},
   "tasteBatchReview":{"approval":"PENDING","rounds":[]},
@@ -302,5 +302,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"RECONCILE_GENERATION","asset":"S01"}
+  "next":{"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
