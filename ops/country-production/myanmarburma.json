@@ -4,9 +4,9 @@
   "countryName": "MYANMAR (BURMA)",
   "contentRef": "country/myanmarburma",
   "stateRef": "country/myanmarburma",
-  "phase": "TASTE_REGEN",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-12T14:20:00+09:00",
+  "phase": "QA",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-12T19:58:06+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/myanmarburma/approved/hero-bagan-temple-plain.webp",
@@ -30,8 +30,14 @@
     {"id":"FOOD04","state":"APPROVED","asset":"assets/images/myanmarburma/approved/food-nga-htamin-ne.webp","contentId":"food-nga-htamin-ne","approvedGenerationId":"04f31563-19e4-45c9-9edd-ff1a096369e2","rejectedGenerationIds":["b338c05e-3491-4fa3-ae1d-e4a0a64fb7c5"]}
   ],
   "map": {"state":"APPROVED","asset":"assets/images/myanmarburma/map-atlas-v1.svg"},
-  "implementation": {"state":"NOT_STARTED"},
-  "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
+  "implementation": {
+    "state": "DONE",
+    "countryJson": "data/countries/myanmarburma.json",
+    "themeTaxonomy": ["history","life"],
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {"state":"PASS","productionState":"CI_GATED"},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
@@ -130,7 +136,7 @@
       "editorialQaV2Passed":"PASS"
     }
   },
-  "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
+  "assetHandoff": {"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-12T19:58:06+09:00"},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {
     "perImageApprovalPrompts":0,
@@ -138,14 +144,14 @@
     "runtimeForcedImageTurnBoundaries":1,
     "sceneBatchReviews":1,
     "tasteBatchReviews":1,
-    "assetHandoffs":0,
+    "assetHandoffs":1,
     "reviewPackageIntegrations":0,
     "reviewPreviewDeployments":0,
     "preCanonicalMainIntegrations":0,
     "productionIntegrations":0,
-    "browserQaCycles":0,
+    "browserQaCycles":1,
     "tasteBatchApprovedAt":"2026-09-12T14:20:00+09:00",
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"HANDOFF_APPROVED_IMAGES_TO_USER","asset":"ALL_13_RASTERS"}
+  "next": {"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}
 }
