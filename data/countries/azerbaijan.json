@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "azerbaijan",
+  "nameEn": "AZERBAIJAN",
+  "nameJa": "アゼルバイジャン",
+  "region": "WEST ASIA / MIDDLE EAST / 40°N",
+  "seo": {"description": "石造りの旧市街と現代都市が重なるバクーから、ゴブスタンの岩絵と泥火山、フナルグの高山集落、シェキ、ギョイギョル、ヒルカンの森、ナヒチェヴァン、ラヒジへ。8つの景色と地図から、南コーカサスの地形と暮らしをたどる。"},
+  "capital": {"nameEn":"Baku","nameJa":"バクー","coordinates":{"latitude":40.4093,"longitude":49.8671},"labelPosition":"right"},
+  "hero": {"lead":"カスピ海沿岸のバクーでは、石造りの旧市街と近現代の街並みが隣り合う。その外側へ出ると、半砂漠と泥火山、高山集落、山地の湖、南部の湿潤な森まで景観が切り替わり、交易・放牧・工芸が重なってきた国土の幅が見えてくる。","image":"assets/images/azerbaijan/approved/hero-baku-icherisheher-flame-towers.webp","location":"Baku / Icherisheher & Flame Towers","coordinates":{"latitude":40.366667,"longitude":49.833333},"mapOffset":{"x":-2.2,"y":1.2}},
+  "map": {"bounds":{"north":42.12,"south":38.05,"west":44.45,"east":50.72},"svg":"assets/images/azerbaijan/map-atlas-v1.svg","route":null,"source":"Country border: Basemap countries_i intermediate political boundary; Caspian coastline: GSHHS intermediate; cross-checked against Natural Earth Azerbaijan reference geometry; WGS84; JOURNEY ATLAS map-v3 clean background."},
+  "scenes": [
+    {"id":"gobustan-boyukdash-rock-art","name":"ゴブスタン / ボユクダシュの岩絵","nameLocal":"Gobustan / Boyukdash Rock Art","mapLabel":"Gobustan","description":"半砂漠の台地に露出する岩の表面へ、人や動物、狩猟、舟などの線刻が残る。現在の乾いた景観と、長い時間を通じて人がこの場所を利用してきた痕跡を同じ視野で見られる。","coordinates":{"latitude":40.11256,"longitude":49.3819},"image":"assets/images/azerbaijan/approved/s01-gobustan-rock-art.webp","labelPosition":"left","mapOffset":{"x":-1.5,"y":-1.5}},
+    {"id":"khinalig-mountain-village","name":"フナルグ / 高山の石造集落","nameLocal":"Khinalig / Mountain Village","mapLabel":"Khinalig","description":"大コーカサスの斜面に、石造りの家々が段状に重なる。高地の村と夏・冬の放牧地を季節移動で結ぶ暮らしが続き、山岳地形が生活の周期そのものを組み立てている。","coordinates":{"latitude":41.17883,"longitude":48.12082},"image":"assets/images/azerbaijan/approved/s02-khinalig.webp","labelPosition":"right"},
+    {"id":"sheki-khans-palace","name":"シェキ / ハーン宮殿","nameLocal":"Sheki / Khan's Palace","mapLabel":"Sheki","description":"大コーカサス山麓の緑の谷に、装飾的なファサードとシェベケの窓を持つ宮殿が残る。養蚕と絹交易で栄えた都市の富と、サファヴィー、カジャール、ロシアなど複数の文化の影響が建築に現れる。","coordinates":{"latitude":41.203333,"longitude":47.1875},"image":"assets/images/azerbaijan/approved/s03-sheki-khan-palace.webp","labelPosition":"left"},
+    {"id":"lake-goygol-mount-kapaz","name":"ギョイギョル湖 / カパズ山","nameLocal":"Lake Goygol / Mount Kapaz","mapLabel":"Lake Goygol","description":"小コーカサスの森に囲まれた湖の背後へ、カパズ山の岩峰が立つ。1139年の地震による山崩れが川をせき止めて生まれた湖で、西部山地の地形変化を現在の静かな水面から読める。","coordinates":{"latitude":40.40972,"longitude":46.32667},"image":"assets/images/azerbaijan/approved/s04-lake-goygol.webp","labelPosition":"left"},
+    {"id":"hirkan-national-park-forest","name":"ヒルカン国立公園 / カスピ海南岸の森","nameLocal":"Hirkan National Park / Hyrcanian Forest","mapLabel":"Hirkan","description":"南部ランカランからアスタラにかけて、落葉広葉樹の濃い森が山地を覆う。乾いた半島や内陸とは対照的に、カスピ海南西岸では湿潤なヒルカン森林帯が国境を越えて続く。","coordinates":{"latitude":38.63056,"longitude":48.71167},"image":"assets/images/azerbaijan/approved/s05-hirkan-forest.webp","labelPosition":"right"},
+    {"id":"alinja-castle-nakhchivan","name":"アリンジャ城 / ナヒチェヴァン","nameLocal":"Alinja Castle / Nakhchivan","mapLabel":"Alinja","description":"乾いたジュルファの山地で、復元された石壁が急な岩山の稜線へ段々と上がっていく。本土から離れたナヒチェヴァンの地形と、中世の要塞が山そのものを防御に取り込んだ構造を一度に見られる。","coordinates":{"latitude":39.19441,"longitude":45.69686},"image":"assets/images/azerbaijan/approved/s06-alinja-castle.webp","labelPosition":"left"},
+    {"id":"lahij-stone-village-copper","name":"ラヒジ / 石畳と銅工房","nameLocal":"Lahij / Stone Village & Copper Workshops","mapLabel":"Lahij","description":"山あいの石畳の通りに石造りの家と工房が連なり、銅板を打ち、磨き、文様を刻む仕事が続く。景観の中に工芸の工程がそのまま残り、山村の暮らしと手仕事の結びつきが見える。","coordinates":{"latitude":40.8457,"longitude":48.3826},"image":"assets/images/azerbaijan/approved/s07-lahij-village.webp","labelPosition":"right"},
+    {"id":"dashgil-mud-volcanoes","name":"ダシュギル / 泥火山群","nameLocal":"Dashgil / Mud Volcanoes","mapLabel":"Dashgil","description":"灰色の小丘や泥の噴出口が、草木の少ない地表に点在する。マグマの火山とは異なり、地下のガスと泥がつくる地形で、バクー南方の半砂漠にアゼルバイジャン特有の地質景観が現れる。","coordinates":{"latitude":39.996317,"longitude":49.402797},"image":"assets/images/azerbaijan/approved/s08-dashgil-mud-volcanoes.webp","labelPosition":"right","mapOffset":{"x":1.5,"y":1.5}}
+  ],
+  "encounters": [
+    {"title":"石造りの旧市街","icon":"landmark"},{"title":"カスピ海沿いの遊歩道","icon":"sea"},{"title":"山村の石積み家屋","icon":"home"},{"title":"カーペットの文様","icon":"culture"},{"title":"銅器を打つ工房","icon":"culture"},{"title":"アームドゥ形の紅茶グラス","icon":"food"},{"title":"市場のザクロ","icon":"food"},{"title":"放牧の羊群","icon":"landscape"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"azerbaijan-baku-urban-layers","themeEn":"HISTORY","themeJa":"時をたどる","title":"バクーは旧市街の外側に、石油ブームの都市が重なった","text":"城壁に囲まれたイチェリシェヘルの周囲では、19世紀末から20世紀初頭の石油産業の成長に伴って邸宅や公共建築が増えた。中世の石造都市と、ゴシック、バロック、ネオクラシック、アール・ヌーヴォーなどを取り込んだ近代建築を歩いて比較できる。","points":["城壁内には中世の街路と建築が残る","城壁外には石油ブーム期の近代建築が加わった"]},
+    {"topicKey":"azerbaijan-carpet-weaving","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"カーペットの文様は、地域ごとの手仕事と暮らしを映す","text":"アゼルバイジャンの手織りカーペットには、産地ごとに異なる文様があり、羊毛・綿・絹や天然染料を使う技術が家族の中で伝えられてきた。UNESCOは2010年にその伝統を無形文化遺産の代表一覧へ登録した。","points":["文様は複数の産地ごとに特徴がある","織りの技術は家庭と地域社会の中で継承されてきた"]},
+    {"topicKey":"azerbaijan-mugham","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ムガームは、決まった旋律を再現するだけではない音楽文化","text":"アゼルバイジャンのムガームは、歌と器楽を組み合わせ、演奏者の即興性を含む伝統音楽として受け継がれている。UNESCOの無形文化遺産に登録され、都市の舞台だけでなく国の音楽文化を理解する入口になる。","points":["歌と器楽、即興を組み合わせる伝統","UNESCO無形文化遺産の代表一覧に2008年登録"]},
+    {"topicKey":"azerbaijan-lahij-copper","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ラヒジの銅器は、打つ・磨く・彫る工程が分業でつながる","text":"ラヒジでは銅を薄い板に打ち、磨き、最後に文様を彫るまで複数の職人が関わる。工房で売られる器は展示品だけではなく、地域の生業と家族内の技能継承を現在までつなぐものでもある。","points":["銅板を打つ・磨く・彫る工程が連続する","UNESCO無形文化遺産の代表一覧に2015年登録"]},
+    {"topicKey":"azerbaijan-nakhchivan-yalli","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ナヒチェヴァンには、輪や列になって踊るヤルリが残る","text":"ヤルリは複数人が円・鎖・列をつくって踊る伝統で、祝祭や集まりの中で演じられてきた。ナヒチェヴァン固有の文化層を知る手がかりであり、UNESCOは2018年に緊急保護が必要な無形文化遺産として登録した。","points":["個人技ではなく集団の動きが中心","ナヒチェヴァンの地域文化として継承される"]},
+    {"topicKey":"azerbaijan-caspian-hyrcanian-contrast","themeEn":"EARTH","themeJa":"地球の風景","title":"同じカスピ海沿岸でも、バクーと南部では植生が大きく変わる","text":"アブシェロン半島周辺の乾いた景観から南へ進むと、ランカランとタリシュ山地では湿潤なヒルカン森林帯へ切り替わる。海沿いを南北に見ると、短い距離の中で乾燥地と古い広葉樹林が並ぶ国土の差が分かる。","points":["バクー周辺は半乾燥の景観が目立つ","南部には世界遺産にも含まれるヒルカン森林が続く"]}
+  ],
+  "travelTrivia": [
+    {"topicKey":"azerbaijan-tea-armudu-glass","categoryEn":"EVERYDAY","categoryJa":"日常","title":"紅茶は洋梨形のグラスで出てくる","text":"アゼルバイジャンの紅茶文化では、熱い紅茶を洋梨形のグラスで出すのが典型的。甘味、レモン、ジャム、ドライフルーツが添えられることもあり、客を迎える場面で何度も目にする。","icon":"food","sourceKey":"teaCulture"},
+    {"topicKey":"azerbaijan-nar-bayrami","categoryEn":"FESTIVAL","categoryJa":"祭り","title":"秋のギョイチャイではザクロが祭りの主役になる","text":"Nar Bayramiは10〜11月にギョイチャイ地域で行われるザクロの祭り。果実そのものだけでなく、料理、工芸、物語などに広がるザクロ文化がまとまって見える。","icon":"calendar","sourceKey":"narBayrami"},
+    {"topicKey":"azerbaijan-tandir-bread","categoryEn":"FOOD","categoryJa":"食","title":"パンは土器のタンドールでも焼かれる","text":"伝統的なタンドールには地上型と地下型があり、家庭や地域でパン焼きの技能が受け継がれてきた。パン屋や食卓を見るとき、料理だけでなく焼き窯の文化にも注目できる。","icon":"food","sourceKey":"tandir"},
+    {"topicKey":"azerbaijan-novruz","categoryEn":"FESTIVAL","categoryJa":"祭り","title":"春分の頃はノヴルズの季節","text":"ノヴルズは春の訪れを祝う文化で、家庭の準備、菓子、集まりなど日常の景色にも季節感が現れる。3月の旅では、通常時と違う街や家庭文化の表情に出会いやすい。","icon":"calendar","sourceKey":"novruz"}
+  ],
+  "taste": {"kicker":"TASTE OF AZERBAIJAN","title":"米、薄い生地、煮込み、甘味からたどる味","intro":"サフラン香る米料理、薄い生地を折る軽食、地方都市の煮込み、茶卓の菓子まで、食べ方と地域の違いが見える4品を選ぶ。","items":[
+    {"id":"shah-plov","name":"シャー・プロフ","nameLocal":"Shah Plov","text":"米、羊肉、玉ねぎ、ドライフルーツなどを詰め、バターを含ませたラヴァシュで全体を包んで焼く料理。外側の薄い生地を割ると中の米料理が現れる、祝祭性のあるプロフ。","image":"assets/images/azerbaijan/approved/food01-shah-plov.webp","imageState":"PENDING"},
+    {"id":"meat-gutab","name":"肉のグタブ","nameLocal":"Meat Gutab","text":"薄くのばした生地にひき肉などを入れて半月形に折り、サジで焼く軽食。持ち歩きやすい形で、街中でも見かけやすいアゼルバイジャンの粉もの料理。","image":"assets/images/azerbaijan/approved/food02-meat-gutab.webp","imageState":"PENDING"},
+    {"id":"sheki-piti","name":"シェキ・ピティ","nameLocal":"Sheki Piti","text":"羊肉などを小さな土鍋で煮込むシェキの代表料理。器ごと供されることが特徴で、同じ国の食でもバクーとは違う地方都市の食文化を感じられる。","image":"assets/images/azerbaijan/approved/food03-sheki-piti.webp","imageState":"PENDING"},
+    {"id":"azerbaijani-pakhlava","name":"アゼルバイジャン・パフラヴァ","nameLocal":"Azerbaijani Pakhlava","text":"生地とナッツ、砂糖、スパイスを重ね、蜂蜜などで仕上げる菓子。地域によって作り方や見た目が異なり、典型的には菱形に切られて紅茶の席にも並ぶ。","image":"assets/images/azerbaijan/approved/food04-pakhlava.webp","imageState":"PENDING"}
+  ]},
+  "travelScale": {"kicker":"DURATION","title":"旅の目安日程","intro":"バクー周辺だけでも旧市街・半砂漠・岩絵を組み合わせられるが、山地や西部、ナヒチェヴァンまで広げると地域ごとの地形差が大きくなる。","items":[
+    {"duration":"4日","title":"バクーと半砂漠に絞る","text":"旧市街と近現代のバクーを歩き、南へゴブスタンの岩絵と泥火山を加える。例：バクー → ゴブスタン／ダシュギル → バクー。","icon":"city"},
+    {"duration":"7日","title":"首都から山村と交易都市へ","text":"バクー周辺に加え、山道を通ってラヒジとシェキまで足を延ばし、都市・工芸・山地をつなぐ。例：バクー → ラヒジ → シェキ → バクー。","icon":"map"},
+    {"duration":"10日以上","title":"北部・西部とナヒチェヴァンまで広げる","text":"大コーカサス、西部の山地、別区間になるナヒチェヴァンまで組み合わせ、国土の差を立体的に見る。例：バクー → フナルグ → シェキ → ギャンジャ／ギョイギョル → バクー → ナヒチェヴァン（国内線）。","icon":"compass"}
+  ]},
+  "seasons": [
+    {"months":"3〜5月","color":"#c7d4b6","text":"春。低地では寒さが和らぎ、都市歩きや半砂漠を組み込みやすくなる。高山部はまだ雪や道路状況の影響が残るため、フナルグなどは現地条件を確認する。"},
+    {"months":"6〜8月","color":"#d7c89a","text":"夏。バクー周辺と低地は暑く乾きやすい一方、大コーカサスの高地は気温差が大きい。都市と山地を同じ旅程に入れると服装と移動時間の調整が必要になる。"},
+    {"months":"9〜10月","color":"#c5b082","text":"秋。山地やギョイギョル周辺では樹林の色が変わり始め、低地の暑さも落ち着く。南部の森や西部を含む長めの旅程を組みやすい時期。"},
+    {"months":"11〜2月","color":"#a9bdc6","text":"冬。バクーは風が強く冷える日があり、山地では積雪で道路条件が変わる。ナヒチェヴァンも大陸性の寒さが強くなるため、山岳部を固定日程に詰め込みすぎない。"}
+  ],
+  "transport": {"title":"鉄道・バス・車・国内線を組み合わせる","text":"バクーから主要都市へは鉄道、長距離バス、車を使い分け、ラヒジやフナルグなど山地は道路移動が中心になる。ナヒチェヴァンは本土から離れているため、国内線を含む別区間として考えると旅程を組みやすい。","icon":"road"},
+  "personas": [
+    {"title":"旧市街と近現代建築を同じ街で見比べたい人","text":"バクーやシェキを歩き、中世の城壁都市、交易で栄えた宮殿、石油ブーム期の近代建築まで、時代の層が街並みにどう残るかを見たい人。"},
+    {"title":"半砂漠・泥火山・高山・湖・森まで地形を変えたい人","text":"カスピ海沿岸から大コーカサス、小コーカサス、南部のヒルカン森林まで移動し、一つの国で気候と地形の切り替わりを体感したい人。"},
+    {"title":"工芸と山村の暮らしから文化を知りたい人","text":"ラヒジの銅器、地域ごとのカーペット、紅茶、放牧文化など、博物館だけでなく日常の手仕事や生活の中から国を理解したい人。"}
+  ],
+  "facts": [
+    {"label":"地域","value":"西アジア／南コーカサス"},{"label":"首都","value":"バクー"},{"label":"人口","value":"約1,027万人（2026年7月1日）"},{"label":"面積","value":"86,600 km²（日本の約23%）"},{"label":"言語","value":"アゼルバイジャン語"},{"label":"主な宗教","value":"イスラム教（国は世俗国家）"},{"label":"通貨","value":"マナト（AZN）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"azerbaijan-mud-volcanoes-350","label":"記録されている泥火山","value":"約350","note":"アゼルバイジャン観光局による記録数。特にバクー周辺に多く、地下のガスと泥が地表につくる景観を国の地質的特徴として見せる。","icon":"volcano"},
+    {"topicKey":"gobustan-rock-engravings-6000","label":"ゴブスタンの岩絵","value":"6,000点以上","note":"UNESCOが示す岩刻画の数。狩猟や動物、生活の痕跡が、約4万年にわたる人と環境の関係を伝える。","icon":"history"},
+    {"topicKey":"khinalig-transhumance-route-200km","label":"季節移動の道「Köç Yolu」","value":"約200 km","note":"フナルグの高山集落と夏・冬の放牧地を結ぶ季節移動路。山岳景観を、眺めるだけでなく生活の移動スケールとして理解できる。","icon":"road"}
+  ],
+  "tips": [
+    {"topicKey":"azerbaijan-land-border-entry-2026","title":"入国は空路を前提に最新の国境条件を確認する","text":"2026年9月時点では、制限なく入国できるのは空路で、陸路・海路の入国には制限がある。ジョージア・イランとの陸上国境も一時閉鎖中のため、周遊ルートを過去の情報だけで組まない。"},
+    {"topicKey":"azerbaijan-mountain-road-buffer","title":"山村へ行く日は道路条件の変化を見込む","text":"フナルグやラヒジなどの山地は、天候や季節によって道路条件と所要時間が変わる。都市間移動と同じ感覚で詰め込まず、現地の道路情報を確認して時間に余裕を持たせる。"},
+    {"topicKey":"azerbaijan-nakhchivan-separate-leg","title":"ナヒチェヴァンは本土と別区間として計画する","text":"ナヒチェヴァン自治共和国はアゼルバイジャン本土から地理的に離れている。アリンジャ城などを入れる場合は、バクー周辺の陸路旅程に連続させず、国内線を含む独立した移動日を置く。"}
+  ],
+  "relatedCountries": [
+    {"slug":"georgia","nameEn":"GEORGIA","nameJa":"ジョージア","flag":"🇬🇪","reason":"大コーカサスの山地、交易都市、ワインや手仕事など、南コーカサスの地形と暮らしを別の文化圏から比較できる。"},
+    {"slug":"turkiye","nameEn":"TÜRKİYE","nameJa":"トルコ","flag":"🇹🇷","reason":"テュルク系言語、紅茶文化、パンや肉料理、近世の歴史的つながりがあり、共通点と違いの両方を見つけやすい。"},
+    {"slug":"iran","nameEn":"IRAN","nameJa":"イラン","flag":"🇮🇷","reason":"カスピ海沿岸のヒルカン森林、建築・工芸・食文化の歴史的な連続性を、国境の南側から見比べられる。"}
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-13",
+  "sourcesVerifiedAt": "2026-09-13",
+  "sourceDates": {"population":"2026-07-01","geography":"2026-09-13","religion":"2026-09-13","worldHeritage":"2026-09-13","intangibleHeritage":"2026-09-13","tourism":"2026-09-13","borderAccess":"2026-09-13"},
+  "sources": {
+    "population":"State Statistical Committee of the Republic of Azerbaijan, Demographic situation in the country, 19 Aug 2026: population 10,273,450 as of 1 Jul 2026. https://www.stat.gov.az/news/index.php?id=6862&lang=en",
+    "geography":"Republic of Azerbaijan Ministry of Foreign Affairs, General Information: capital Baku, territory 86.6 thousand km², official language Azerbaijani, currency manat, geographic extent. https://mfa.gov.az/en/category/general-information",
+    "religion":"Azerbaijan state portal / MFA general information: religion is separated from the state; the majority of the population is Muslim. https://azerbaijan.az/en/related-information/212",
+    "bakuWorldHeritage":"UNESCO World Heritage Centre, Walled City of Baku with the Shirvanshah's Palace and Maiden Tower. https://whc.unesco.org/en/list/958",
+    "gobustan":"UNESCO World Heritage Centre, Gobustan Rock Art Cultural Landscape: more than 6,000 engravings bearing testimony to 40,000 years of rock art. https://whc.unesco.org/en/list/1076",
+    "khinalig":"UNESCO World Heritage Centre, Cultural Landscape of Khinalig People and Köç Yolu Transhumance Route: 200-km seasonal route. https://whc.unesco.org/en/list/1696",
+    "sheki":"UNESCO World Heritage Centre, Historic Centre of Sheki with the Khan's Palace. https://whc.unesco.org/en/list/1549",
+    "hyrcanian":"UNESCO World Heritage Centre, Hyrcanian Forests; Azerbaijan component added in 2023. https://whc.unesco.org/en/list/1584",
+    "mudVolcanoes":"Azerbaijan Travel, Explore Baku's mud volcanoes: approximately 350 recorded in Azerbaijan. https://azerbaijan.travel/explore-mud-volcanoes-near-baku",
+    "goygol":"Azerbaijan Travel, Be inspired by Lake Goygol: lake at 1,500 m, formed after the 1139 earthquake and landslide from Mount Kapaz. https://azerbaijan.travel/be-inspired-lake-goygol",
+    "alinja":"Azerbaijan Travel, Discover the Alinja Fortress: reconstructed medieval fortress in the Julfa mountains. https://azerbaijan.travel/discover-the-alinja-fortress",
+    "lahijCopper":"UNESCO Intangible Cultural Heritage, Copper craftsmanship of Lahij. https://ich.unesco.org/en/RL/copper-craftsmanship-of-lahij-00675",
+    "carpet":"UNESCO Intangible Cultural Heritage, Traditional art of Azerbaijani carpet weaving. https://ich.unesco.org/en/RL/traditional-art-of-azerbaijani-carpet-weaving-in-the-republic-of-azerbaijan-00389",
+    "mugham":"UNESCO Intangible Cultural Heritage, Azerbaijani Mugham, Representative List 2008. https://ich.unesco.org/en/state/azerbaijan-AZ?info=elements-on-the-lists",
+    "yalli":"UNESCO Intangible Cultural Heritage, Yalli (Kochari, Tenzere), traditional group dances of Nakhchivan, Urgent Safeguarding List 2018. https://ich.unesco.org/en/USL/yalli-kochari-tenzere-traditional-group-dances-of-nakhchivan-01190",
+    "teaCulture":"UNESCO Intangible Cultural Heritage, Culture of Çay (tea): tea is served freshly brewed and hot in pear-shaped cups. https://ich.unesco.org/en/RL/culture-of-cay-tea-a-symbol-of-identity-hospitality-and-social-interaction-01685",
+    "narBayrami":"UNESCO Intangible Cultural Heritage, Nar Bayrami: annual October/November pomegranate festival in Goychay region. https://ich.unesco.org/en/RL/nar-bayrami-traditional-pomegranate-festivity-and-culture-01511",
+    "tandir":"UNESCO Intangible Cultural Heritage, Tandir craftsmanship and bread baking in Azerbaijan, inscribed 2024. https://ich.unesco.org/en/RL/tandir-craftsmanship-and-bread-baking-in-azerbaijan-02120",
+    "novruz":"UNESCO Intangible Cultural Heritage, Azerbaijan elements on the Lists: Novruz/Nawrouz tradition. https://ich.unesco.org/en/state/azerbaijan-AZ?info=elements-on-the-lists",
+    "bakuOilArchitecture":"Azerbaijan Travel, Take a walking tour of Baku's oil-boom architecture: late-19th/early-20th-century urban expansion around the Old City. https://azerbaijan.travel/take-a-walking-tour-of-bakus-oil-boom-architecture",
+    "shahPlov":"Azerbaijan Travel, Experience Ganja's local cuisine: shah plov is a lavash-covered rice dish filled with lamb, onions and dried fruit. https://azerbaijan.travel/experience-ganjas-local-cuisine",
+    "gutab":"Azerbaijan Travel, Gutab with meat: thin dough folded over filling and cooked on a saj. https://azerbaijan.travel/gutab-with-meat",
+    "piti":"Azerbaijan Travel, Sheki visitor map: piti is a lamb stew served in clay pots. https://azerbaijan.travel/storage/pages/235/898c9b31db2b482ce6753ee98ea97cdfSheki%20DMO%20Visitor%20Map%20-%20Electronic.pdf",
+    "pakhlava":"Azerbaijan Travel, Pakhlava: traditional Azerbaijani sweet with regional variants, typically cut in diamond shapes. https://azerbaijan.travel/pakhlava",
+    "borderAccess":"UK FCDO, Azerbaijan entry requirements, checked 13 Sep 2026: unrestricted entry only by air; land/sea entry restricted; Iran and Georgia land borders temporarily closed. https://www.gov.uk/foreign-travel-advice/azerbaijan/entry-requirements"
+  }
+}
