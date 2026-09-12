@@ -5,15 +5,21 @@
   "contentRef": "country/uzbekistan",
   "stateRef": "country/uzbekistan",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-12T20:23:51+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-12T20:26:00+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": "assets/images/uzbekistan/approved/hero-registan-samarkand.webp",
     "contentId": "registan-square-samarkand",
     "promptSeries": 1,
     "promptSeriesRejectCount": 0,
+    "candidateGenerationId": "9eb7e1bf-9984-404f-86b6-9612c9ebb62e",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
+    },
     "renderPacket": {
       "kind": "HERO",
       "contentId": "registan-square-samarkand",
@@ -32,14 +38,6 @@
       "composition": "wide 3:2 atlas hero; open square foreground; the three-madrasa relationship remains legible; calm sky/upper breathing room for page typography; recognizable on mobile crop",
       "style": "real-place recognizability, restrained realistic detail with quiet watercolor texture, premium travel-atlas illustration, approximately photo 6 watercolor 4, natural low saturation",
       "negativeConstraints": ["photographic snapshot", "hyperreal HDR", "fantasy architecture", "anime", "oil painting", "tourism poster", "added lettering", "signage emphasis", "map", "UI"]
-    },
-    "generationReservation": {
-      "reservationId": "uzbekistan-HERO-e1-s1-20260912T202351JST",
-      "asset": "HERO",
-      "contentId": "registan-square-samarkand",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-12T20:23:51+09:00"
     }
   },
   "scenes": [
@@ -76,5 +74,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next":{"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
