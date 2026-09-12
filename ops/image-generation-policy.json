@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "authority": "main",
   "revision": 7,
-  "patch": 1,
-  "policyId": "7.1",
-  "updatedAt": "2026-09-10T15:30:00+09:00",
+  "patch": 2,
+  "policyId": "7.2",
+  "updatedAt": "2026-09-12T00:30:00+09:00",
   "sourceOfTruth": "ops/image-generation-policy.json",
-  "throughputGuide": "docs/IMAGE_POLICY_REVISION_7_1.md",
+  "throughputGuide": "docs/IMAGE_POLICY_REVISION_7_2.md",
   "appliesTo": [
     "HERO",
     "SCENE",
@@ -51,7 +51,10 @@
     "perTasteApprovalPromptForbidden": true,
     "userApprovalBoundaryScenes": "AFTER_ROUND_BOUNDARY_ONLY",
     "userApprovalBoundaryTaste": "AFTER_ROUND_BOUNDARY_ONLY",
-    "runtimeHardStopIsNotApprovalGate": true
+    "runtimeHardStopIsNotApprovalGate": true,
+    "initialTasteRoundMustAttemptEveryTargetBeforeRetry": true,
+    "failedInitialTasteTargetIsParkedUntilBatchBoundary": true,
+    "tasteRegenRequiresPriorBatchReview": true
   },
   "throughputOptimization": {
     "sameTurnAuthoritativeStateCache": true,
@@ -66,6 +69,37 @@
     "incrementalAllPriorVisualSetWithinTurn": true,
     "waitForCountryBranchCiBetweenImages": false,
     "countryBranchCiMode": "TRANSITION_ONLY"
+  },
+  "tasteComposition": {
+    "singleDishOnly": true,
+    "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY",
+    "plainBackgroundRequired": true,
+    "integralAccompanimentsAllowed": true,
+    "integralAccompanimentsMustBeNamedInRenderPacket": true,
+    "integralServingElementsAllowedWhenRequiredByDish": true,
+    "integralServingElementsMustBeNamedInRenderPacket": true,
+    "integralAccompanimentsOnly": true,
+    "decorativePropsForbidden": true,
+    "decorativePropsMustBeEmptyArray": true,
+    "rule": "ALLOW_ELEMENTS_REQUIRED_TO_CONSTITUTE_OR_RECOGNIZE_THE_DISH; FORBID_ELEMENTS_ADDED_ONLY_FOR_STYLING_OR_ATMOSPHERE"
+  },
+  "candidateVisualQa": {
+    "commonRequired": [
+      "targetIdentity",
+      "previousAssetRepeat",
+      "collageTypography"
+    ],
+    "tasteRequired": [
+      "targetIdentity",
+      "dishIdentity",
+      "singleDish",
+      "integralComponentsOnly",
+      "plainBackground",
+      "decorativePropsAbsent",
+      "previousAssetRepeat",
+      "collageTypography"
+    ],
+    "allRequiredChecksMustPassBeforeReviewCandidate": true
   },
   "targetSynchronization": {
     "currentTargetOnly": true,
@@ -83,6 +117,9 @@
     "repeatOrRestageIsHardFailure": true,
     "repeatFailureContaminatesContext": true,
     "wrongTargetCarryoverContaminatesContext": true,
+    "repeatFailureRequiresImmediateRenderPacketRefresh": true,
+    "wrongTargetFailureRequiresImmediateRenderPacketRefresh": true,
+    "samePromptSeriesRetryAfterRepeatOrWrongTargetForbidden": true,
     "machinePairwiseGateStillRequiredBeforeReviewPackage": true
   },
   "contamination": {
@@ -116,6 +153,11 @@
     "initialApprovalRequiresBatchBoundary": true,
     "regenApprovalRequiresBatchBoundary": true,
     "approvedGenerationMustExistInBatchLedger": true,
-    "lateBackfillOfBatchApprovalForbidden": true
+    "lateBackfillOfBatchApprovalForbidden": true,
+    "tasteRenderPacketCompositionContractRequired": true,
+    "tasteCandidateQaContractRequired": true,
+    "tasteInitialRetryBeforeBatchBoundaryForbidden": true,
+    "tasteRegenWithoutPriorBatchReviewForbidden": true,
+    "repeatWrongTargetRetryWithoutPromptRefreshForbidden": true
   }
 }

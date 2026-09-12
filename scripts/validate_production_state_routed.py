@@ -4,7 +4,7 @@
 Legacy Country states continue to use country_production_state.py. Protocol 2
 states are intentionally excluded from that legacy validator because Protocol 2
 owns a stricter execution-policy contract (for example BATCH_ONLY) and is
-validated by the Revision 7 + Protocol 2 validators instead.
+validated by the Revision 7 + Image Policy 7.2 + Protocol 2 validators instead.
 """
 
 from __future__ import annotations
@@ -29,6 +29,7 @@ def load_module(name: str, path: Path):
 
 legacy = load_module("journey_atlas_legacy_state", SCRIPTS / "country_production_state.py")
 v7 = load_module("journey_atlas_v7_state", SCRIPTS / "country_production_state_v7.py")
+v72 = load_module("journey_atlas_v72_state", SCRIPTS / "image_policy_v72.py")
 protocol2 = load_module("journey_atlas_protocol2_state", SCRIPTS / "country_production_protocol_v2.py")
 
 
@@ -45,9 +46,10 @@ def validate() -> list[str]:
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
             # Protocol 2 is a Revision 7 state. Validate the current state with
-            # both layers, but do not also apply the incompatible legacy
+            # all current layers, but do not also apply the incompatible legacy
             # executionPolicy contract.
             errors.extend(v7.validate_state_dict(state, path.name))
+            errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
         else:
             errors.extend(legacy.validate_state(path, registry))

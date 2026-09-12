@@ -1,7 +1,8 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
-Updated: 2026-09-11
-Current new-Country protocol: 2.0 / policy patch 2
+Updated: 2026-09-12
+Current new-Country protocol: 2.0 / policy patch 3
+Current image policy: Revision 7 / Patch 2 / policyId 7.2
 
 ## Copy / paste start prompt
 
@@ -33,6 +34,7 @@ NEXTが返す `interaction.userGate` を承認要否の正本としてくださ�
 - `userGate:false` の時にユーザーへ approve / 進めて / 生成 / next を要求してはいけません。
 - Scene / Tasteの途中画像は承認ゲートではありません。
 - 画像ランタイムやカード表示によってturnが区切られても、それを承認ゲートへ変換してはいけません。次のユーザーメッセージでは前画像の承認を求めず、reconcileして同じroundをBatch boundaryまで継続してください。
+- ユーザーに途中継続指示を要求した場合は `productionMetrics.userContinuationNudges` として記録対象となり、目標値は0です。
 
 【Hero前に必ず完了すること】
 `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md` のPre-visual buildを完了してください。
@@ -58,25 +60,38 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - 数字が取得できること自体を採用理由にしないでください。
 
 【画像生成】
-画像生成の安全ルールは現在のmain image policyに従ってください。
+画像生成は現在のmain image policyに従ってください。
 - 1生成 = 1画像 = 1Target
 - fresh independent text-to-image
 - collage / grid / panel / montage / text禁止
 - previous imageをreference/edit元にしない
 - wrong-target / repeat / restageは自動Reject
 - contamination時はRESET
+- `PREVIOUS_ASSET_REPEAT` / `WRONG_TARGET_CARRYOVER` は1回目からRender Packet / prompt familyをrefreshし、同じpromptSeriesで再試行しない
 
 Heroは1枚生成後に1回承認を求めます。
 
 Hero承認後、SCENES_INITIALを自動開始してください。
 S01〜S08を8つの独立生成callとしてBatch boundaryまで進めます。
-正常なSceneの途中でユーザー承認を求めてはいけません。
+正常なSceneの途中でユーザー承認や「進めて」を求めてはいけません。
 8景が揃ってから1回だけScene Batch Reviewを求めます。
 
 Scene Batch承認後、Taste roundを自動開始してください。
 FOOD01〜FOOD04を4つの独立生成callとしてBatch boundaryまで進めます。
-料理の途中でユーザー承認を求めてはいけません。
-4枚が揃ってから1回だけTaste Batch Reviewを求めます。
+料理の途中でユーザー承認や「進めて」を求めてはいけません。
+
+Tasteの構成ルール：
+- 料理を成立・認識させるために必要なタレ、ディップ、スープ、wrapper、serving elementは入れてよい
+- それらはFOOD Render Packetの `integralAccompaniments` / `integralServingElements` に事前明記する
+- 装飾目的のハーブ、材料、食器、箸、ナプキン、飲み物、花、店内・厨房・風景などは不可
+- `decorativeProps` は必ず `[]`
+- 背景は `PLAIN_PALE_BEIGE_OR_WARM_IVORY`
+- Taste candidateは `dishIdentity / singleDish / integralComponentsOnly / plainBackground / decorativePropsAbsent` を含む7.2 QAをすべてPASSしてからREVIEW_CANDIDATEにする
+
+TASTE_INITIALで1枚が失敗しても、その料理をすぐ再生成してはいけません。
+失敗Targetは `REGENERATE` にparkし、未生成のFOODをFOOD04まで先に一巡してください。
+全4Targetを一度attemptしてから1回だけTaste Batch Reviewを行い、そのBatch ReviewでNG確定したTargetだけをTASTE_REGENへ進めます。
+Taste Batch Review前に `TASTE_REGEN` へ移ることは禁止です。
 
 REGENも同じです。対象画像をすべて独立生成した後に1回のREGEN Batch Reviewを行い、1枚ごとの承認は禁止です。
 
