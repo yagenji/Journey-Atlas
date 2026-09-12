@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "india",
+  "nameEn": "INDIA",
+  "nameJa": "インド",
+  "region": "SOUTH ASIA / 21°N",
+  "seo": {"description": "タージ・マハルから、ガンジス河畔、ラダック、タール砂漠、デカンの遺跡、ケララの水郷、ムンバイ、メガラヤ、カジランガへ。地図と8つの景色からインドの地域差をたどる。"},
+  "capital": {"nameEn": "New Delhi", "nameJa": "ニューデリー", "coordinates": {"latitude": 28.6139, "longitude": 77.209}, "labelPosition": "left", "mapOffset": {"x": -0.75, "y": -1.0}},
+  "hero": {"lead": "ヒマラヤの高地から熱帯の水郷まで、都市・信仰・地形が大きく切り替わる。インドは、一つの風景ではつかめない広さを、地域から地域へ移動しながら知る国だ。", "image": "assets/images/india/approved/hero-taj-mahal-yamuna.webp", "location": "Taj Mahal / Yamuna River, Agra", "coordinates": {"latitude": 27.1751, "longitude": 78.0421}, "mapOffset": {"x": 0.75, "y": 0.75}},
+  "map": {"bounds": {"north": 36.5, "south": 5.7, "west": 67.0, "east": 98.5}, "svg": "assets/images/india/map-atlas-v1.svg", "route": null, "source": "WGS84 geographic-data composite: Basemap/WDBII intermediate country-border linework and GSHHS/GSHHG intermediate coastline data, constrained by Natural Earth India geometry; Lakshadweep and Andaman-Nicobar retained from GSHHS; JOURNEY ATLAS map-v3 clean background."},
+  "scenes": [
+    {"id": "varanasi-ghats-ganges", "name": "バラナシ / ガンジス河岸のガート", "nameLocal": "Varanasi / Ghats on the Ganges", "mapLabel": "Varanasi", "description": "ガンジス川に沿って石段、舟、寺院と街路が連続する。宗教儀礼が歴史都市の日常に組み込まれていることを、河岸の朝の風景から読み取れる。", "coordinates": {"latitude": 25.3069, "longitude": 83.0107}, "image": "assets/images/india/approved/varanasi-ghats-ganges.webp", "labelPosition": "right"},
+    {"id": "thiksey-monastery-indus-valley", "name": "ラダック / ティクセ僧院とインダス渓谷", "nameLocal": "Ladakh / Thiksey Monastery & Indus Valley", "mapLabel": "Thiksey", "description": "乾いた高地の斜面に白い僧院建築が積み重なり、その下にインダス渓谷が広がる。低地の湿潤な地域とは異なる、ラダックの地形とチベット仏教文化を示す景観。", "coordinates": {"latitude": 34.0556, "longitude": 77.6667}, "image": "assets/images/india/approved/thiksey-monastery-indus-valley.webp", "labelPosition": "right"},
+    {"id": "jaisalmer-fort-thar-desert", "name": "ジャイサルメール / 城塞とタール砂漠", "nameLocal": "Jaisalmer / Fort & Thar Desert", "mapLabel": "Jaisalmer", "description": "黄褐色の砂岩城塞が、乾いたタール砂漠の地形から立ち上がる。交易都市が地域の素材と防御の条件に合わせて形づくられたことが分かる、西部インドの景観。", "coordinates": {"latitude": 26.9124, "longitude": 70.9126}, "image": "assets/images/india/approved/jaisalmer-fort-thar-desert.webp", "labelPosition": "right"},
+    {"id": "hampi-boulder-temple-landscape", "name": "ハンピ / 巨岩とヴィジャヤナガル遺跡", "nameLocal": "Hampi / Vijayanagara Ruins & Boulder Landscape", "mapLabel": "Hampi", "description": "花崗岩の巨岩が連なる地形の中に、ヴィジャヤナガル王国の寺院、都市遺構、水利施設が残る。自然地形と計画都市が一体になったデカン高原の歴史景観。", "coordinates": {"latitude": 15.335, "longitude": 76.46}, "image": "assets/images/india/approved/hampi-boulder-temple-landscape.webp", "labelPosition": "right"},
+    {"id": "kuttanad-backwaters-kerala", "name": "ケララ / クッタナードの水郷", "nameLocal": "Kerala / Kuttanad Backwaters", "mapLabel": "Kuttanad", "description": "運河、水田、ヤシ、集落が低地の水路でつながる。道路だけでは捉えにくい移動と、水と農業が組み立てたケララの暮らしを知る南西部の景観。", "coordinates": {"latitude": 9.45, "longitude": 76.43}, "image": "assets/images/india/approved/kuttanad-backwaters-kerala.webp", "labelPosition": "right"},
+    {"id": "mumbai-marine-drive", "name": "ムンバイ / マリン・ドライブ", "nameLocal": "Mumbai / Marine Drive", "mapLabel": "Mumbai", "description": "アラビア海へ開く湾曲した海岸道路と高密度の都市が接する。遺跡や宗教建築とは別に、港湾・金融・人口集中が形づくる現代インドの都市スケールを示す。", "coordinates": {"latitude": 18.943, "longitude": 72.8235}, "image": "assets/images/india/approved/mumbai-marine-drive.webp", "labelPosition": "left"},
+    {"id": "nongriat-living-root-bridge", "name": "メガラヤ / ノングリアットの生きた根の橋", "nameLocal": "Meghalaya / Nongriat Living Root Bridge", "mapLabel": "Nongriat", "description": "多雨の森で樹木の根を長い時間をかけて導き、川を渡る橋として育てる。北東部の森林環境と地域の技術が、一つの構造物として結びつく景観。", "coordinates": {"latitude": 25.2495, "longitude": 91.7305}, "image": "assets/images/india/approved/nongriat-living-root-bridge.webp", "labelPosition": "left", "mapOffset": {"x": -1.2, "y": 0.5}},
+    {"id": "kaziranga-rhino-floodplain", "name": "カジランガ / 氾濫原とインドサイ", "nameLocal": "Kaziranga / Floodplain & Indian Rhinoceros", "mapLabel": "Kaziranga", "description": "ブラマプトラ川流域の高い草地と湿地にインドサイが暮らす。モンスーンと河川がつくる東部の氾濫原を、野生動物と植生の関係から読み取れる。", "coordinates": {"latitude": 26.5775, "longitude": 93.1711}, "image": "assets/images/india/approved/kaziranga-rhino-floodplain.webp", "labelPosition": "right", "mapOffset": {"x": 1.2, "y": -0.5}}
+  ],
+  "encounters": [
+    {"title": "川辺の祈り", "icon": "culture"}, {"title": "色と文字の違う看板", "icon": "language"}, {"title": "長距離列車", "icon": "road"}, {"title": "バザール", "icon": "city"}, {"title": "寺院とモスク", "icon": "landmark"}, {"title": "布と手仕事", "icon": "culture"}, {"title": "スパイスの香り", "icon": "food"}, {"title": "季節風の雨", "icon": "landscape"}
+  ],
+  "atlasExtras": [
+    {"topicKey": "india-many-scripts-public-space", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "州をまたぐと、話し言葉だけでなく文字の形まで変わる", "text": "インドでは連邦の公用語制度とは別に、州や地域で使われる言語が大きく異なる。デーヴァナーガリー、ベンガル、タミル、テルグなど異なる文字体系が駅名や店、道路標識に現れ、移動そのものが言語地図をたどる体験になる。", "points": ["憲法第8附則には22言語が掲げられる", "地域によって公的表示に現れる言語の組み合わせも変わる"]},
+    {"topicKey": "india-railways-national-scale", "themeEn": "ROAD", "themeJa": "道の先へ", "title": "鉄道に乗ると、都市の点ではなく国土の距離が見えてくる", "text": "インド鉄道は大都市だけでなく地方都市や農村地域を広く結ぶ。寝台列車や長距離列車で平原、乾燥地、デカン、海岸部をまたぐと、航空移動では飛び越える地域差を連続した景色として見られる。", "points": ["2023-24年度末の路線延長は約69,181km", "長距離移動では路線と予約条件を旅程ごとに確認する"]},
+    {"topicKey": "india-religious-landscapes-shared-cities", "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "一つの都市に、異なる宗教の時間が重なっている", "text": "ヒンドゥー教、イスラム教、シク教、仏教、ジャイナ教、キリスト教などの建築や巡礼地が、地域ごとに異なる密度で現れる。建物の様式だけでなく、音、食、服装、休日まで含めて都市のリズムが変わる。", "points": ["宗教施設ごとに入場・服装・撮影のルールが異なる", "礼拝の場と観光空間が重なる場所では現地の案内を優先する"]},
+    {"topicKey": "india-textiles-regional-craft", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "布を見ると、地域の素材・技法・色の違いが見えてくる", "text": "サリーやショール、織物は一つの型ではなく、絹、綿、染色、刺繍、織りの技法が地域ごとに変わる。市場や工房で布を見ることは、衣服を通じて気候、交易、手仕事の地域性を読む方法でもある。", "points": ["同じ衣服名でも素材や織り方は地域で異なる", "手工芸品は産地表示や工房の背景まで確認すると違いが分かりやすい"]},
+    {"topicKey": "india-food-regional-grains-spices", "themeEn": "FOOD", "themeJa": "食をめぐる", "title": "「インド料理」は一種類ではなく、主食も油も味の組み立ても地域で変わる", "text": "北部の小麦料理、南部の米や発酵生地、沿岸部の魚介、デカンの香辛料料理など、気候と農産物の違いが食卓に直結する。都市を移るたびに朝食や軽食まで変わることが、旅の分かりやすい地域差になる。", "points": ["米・小麦・豆類の組み合わせが地域で大きく変わる", "菜食料理の選択肢が幅広い地域も多い"]},
+    {"topicKey": "india-monsoon-shapes-calendar", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "モンスーンは雨の季節ではなく、移動と農業の暦を組み替える", "text": "南西モンスーンは6〜9月を中心に国土の多くへ雨をもたらす一方、雨量や時期は地域差が大きい。南東部では10〜12月の北東モンスーンも重要で、同じ月でも旅先によって季節の意味が変わる。", "points": ["南西モンスーン期に年間降水量の大部分を受ける地域が多い", "ラダックのような高地乾燥地域は同じ季節でも条件が異なる"]}
+  ],
+  "travelTrivia": [
+    {"topicKey": "india-single-time-zone-half-hour", "categoryEn": "EVERYDAY", "categoryJa": "時間", "title": "国土は広いが、標準時は一つ", "text": "インド標準時はUTC+5:30。東西に広い国土全体で同じ時刻を使うため、北東部と西部では日の出・日の入りの感覚がかなり違って見える。", "icon": "globe", "sourceKey": "time"},
+    {"topicKey": "india-stepwells-water-architecture", "categoryEn": "ARCHITECTURE", "categoryJa": "建築", "title": "乾燥地では、水へ下りていく建築がある", "text": "グジャラートのラーニー・キ・ヴァーヴのような階段井戸では、地上に建物を立てるのとは逆に、地下へ段を下りながら水へ近づく。気候と水管理が建築の形を変えた例として歩ける。", "icon": "landmark", "sourceKey": "stepwell"},
+    {"topicKey": "india-sikh-langar-community-kitchen", "categoryEn": "CUSTOMS", "categoryJa": "習慣", "title": "シク教のグルドワラでは、共同食堂「ランガル」に出会える", "text": "多くのグルドワラでは、背景にかかわらず人々が一緒に食事をとるランガルが行われる。訪れる場合は、頭を覆う、靴を脱ぐなど、その施設の案内に従う。", "icon": "food", "sourceKey": "langar"},
+    {"topicKey": "india-railway-station-city-inside-city", "categoryEn": "TRANSPORT", "categoryJa": "移動", "title": "大きな鉄道駅は、移動地点というより一つの街に近い", "text": "長距離列車、近郊列車、売店、食事、荷物、人の流れが同時に動く。駅で列車番号・車両・乗車位置を確認する習慣を持つと、巨大な鉄道網を旅の味方にしやすい。", "icon": "road", "sourceKey": "railways"},
+    {"topicKey": "india-sarnath-2026-world-heritage", "categoryEn": "HERITAGE", "categoryJa": "遺産", "title": "2026年、サールナートが45件目の世界遺産になった", "text": "バラナシ郊外のサールナートは、ブッダが最初の説法を行ったとされる仏教の主要巡礼地。2026年7月の登録で、インドの世界遺産は45件になった。", "icon": "landmark", "sourceKey": "sarnath"}
+  ],
+  "taste": {"kicker": "TASTE OF INDIA", "title": "インドで食べたいもの", "intro": "一つの「インド料理」にまとめず、地域ごとに主食・香辛料・調理法が変わることを感じたい4品。", "items": [
+    {"id": "hyderabadi-biryani", "name": "ハイデラバード・ビリヤニ", "nameLocal": "Hyderabadi Biryani", "text": "香り米と肉、香辛料を重ね、蒸気を閉じ込めて炊くハイデラバードの代表料理。米粒の香りと層になった味を一皿で楽しむ。", "image": "assets/images/india/approved/hyderabadi-biryani.webp", "imageState": "PENDING"},
+    {"id": "masala-dosa", "name": "マサラ・ドーサ", "nameLocal": "Masala Dosa", "text": "米と豆の発酵生地を薄く焼き、香辛料を使ったじゃがいもを包む南インドの定番。軽い酸味と薄い生地の食感が特徴。", "image": "assets/images/india/approved/masala-dosa.webp", "imageState": "PENDING"},
+    {"id": "chole-bhature", "name": "チョーレー・バトゥーレー", "nameLocal": "Chole Bhature", "text": "ひよこ豆の濃いカレーと、ふくらませて揚げたパンを組み合わせる北インドの料理。二つの要素を一緒に食べて完成する一品。", "image": "assets/images/india/approved/chole-bhature.webp", "imageState": "PENDING"},
+    {"id": "rasgulla", "name": "ラスグッラ", "nameLocal": "Rasgulla / Rasogolla", "text": "チェナーを丸めて軽い糖蜜で煮る東部インドの菓子。やわらかな弾力と、シロップを含んだ軽い甘さを味わう。", "image": "assets/images/india/approved/rasgulla.webp", "imageState": "PENDING"}
+  ]},
+  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "一度で全国を回ろうとせず、地域を選んで組み立てる方がインドの違いが見えやすい。", "items": [
+    {"duration": "7日", "title": "一つの地域軸を深く", "text": "都市と近郊を一つの流れに絞る。例：デリー → アグラ → ジャイプール。", "icon": "city"},
+    {"duration": "12〜14日", "title": "北部の地域差をつなぐ", "text": "大都市、歴史都市、宗教都市、乾燥地を国内移動でつなぐ。例：デリー → アグラ → バラナシ → ジャイプール → ジャイサルメール。", "icon": "map"},
+    {"duration": "18日以上", "title": "北と南を別の旅として組み合わせる", "text": "長距離移動日を確保し、気候と食文化が切り替わるところまで広げる。例：デリー → アグラ → バラナシ → ハンピ → ケララ。", "icon": "compass"}
+  ]},
+  "seasons": [
+    {"months": "1〜2月", "color": "#748d9b", "text": "北部の平原は涼しく、ヒマラヤ高地は厳しい冬、南部は比較的温暖。同じ時期でも緯度と標高で条件が大きく異なるため、都市と山地を同じ装備で考えない。"},
+    {"months": "3〜5月", "color": "#b89a52", "text": "多くの内陸部で暑さが強まるプレモンスーン期。長い屋外移動は朝夕へ寄せ、高地へ向かう場合は道路・峠の季節開通状況を個別に確認する。"},
+    {"months": "6〜9月", "color": "#879b63", "text": "南西モンスーンの中心期。西海岸や北東部では雨が旅程を左右する一方、地域差は大きい。雨季だから全国が同じ天候になるわけではない。"},
+    {"months": "10〜12月", "color": "#ad7749", "text": "北・中央部は雨が減り気温も下がり始める一方、タミル・ナードゥなど南東部は北東モンスーンの影響を受けやすい。南北を移動する旅では季節を二つ見る感覚が必要。"}
+  ],
+  "transport": {"title": "鉄道・国内線・車", "text": "主要都市間は長距離鉄道と国内線を組み合わせる。広い国土を一つの陸路でつなぐより、地域内は鉄道・車、地域間は鉄道または空路と役割を分けると旅程を組みやすい。", "icon": "road"},
+  "personas": [
+    {"title": "一つの国の中で、地域が切り替わる旅をしたい人", "text": "高地、砂漠、大河、デカン、熱帯水郷、北東部まで、移動するほど地形と暮らしが変わることを楽しみたい人。"},
+    {"title": "宗教と歴史を、現在の街の中で見たい人", "text": "遺跡だけでなく、礼拝、巡礼、市場、食、言語が今も同じ都市空間に続く様子を歩いて確かめたい人。"},
+    {"title": "食や文字まで含めて、地域文化を比べたい人", "text": "北と南、沿岸と内陸で料理、言語、服、看板の文字が変わることを、日常の細部から知りたい人。"}
+  ],
+  "facts": [
+    {"label": "地域", "value": "南アジア"}, {"label": "首都", "value": "ニューデリー"}, {"label": "人口", "value": "約14億6,400万人（2025年）"}, {"label": "面積", "value": "約3,287,000 km²（日本の約8.7倍）"}, {"label": "言語", "value": "連邦の公用語はヒンディー語。英語も連邦の公務で継続使用され、州・地域で多様な言語が使われる"}, {"label": "主な宗教", "value": "ヒンドゥー教を中心に、イスラム教、キリスト教、シク教、仏教、ジャイナ教など"}, {"label": "通貨", "value": "インドルピー（INR）"}
+  ],
+  "signatureFacts": [
+    {"topicKey": "india-eighth-schedule-languages", "label": "憲法第8附則の言語", "value": "22言語", "note": "連邦の公用語を一つの『国語』として捉えるだけではインドの言語環境は見えない。憲法第8附則には22言語が掲げられ、地域ごとに異なる言語と文字が公共空間に現れる。", "icon": "language"},
+    {"topicKey": "india-world-heritage-2026", "label": "世界遺産", "value": "45件", "note": "2026年7月にサールナートが登録され、文化37・自然7・複合1の計45件になった。古代遺跡だけでなく、鉄道、都市建築、自然保護区まで対象が広い。", "icon": "landmark"},
+    {"topicKey": "india-states-union-territories", "label": "州・連邦直轄領", "value": "28州＋8直轄領", "note": "28州と8つの連邦直轄領で構成される。言語、制度、食、祭り、景観の地域差を理解するうえで、州という単位が旅の実感にもつながりやすい。", "icon": "map"}
+  ],
+  "tips": [
+    {"topicKey": "india-travel-region-first", "title": "最初に『国』ではなく『地域』を決める", "text": "距離が大きく、地域差も強い。北部・ラダック・ラジャスタン・デカン・南部・北東部などから軸を選び、そこから都市をつなぐ方が移動だけで旅程が埋まりにくい。"},
+    {"topicKey": "india-long-distance-rail-booking", "title": "長距離列車は、路線と予約を旅程の骨格にする", "text": "鉄道網は広いが、人気列車や寝台は希望日に取りにくい場合がある。先に長距離区間を確認し、その前後へ街歩きや近郊移動を置くと組み立てやすい。"},
+    {"topicKey": "india-monsoon-regional-difference", "title": "雨季は月だけでなく、行く地域まで確認する", "text": "南西モンスーンと北東モンスーンでは影響地域が異なり、高地乾燥地も別の条件になる。同じ『雨季』という言葉だけで全国の旅程を判断しない。"}
+  ],
+  "nextRoutes": [
+    {"flag": "🇳🇵", "countryEn": "NEPAL", "countryJa": "ネパール", "path": "Gorakhpur → Sunauli / Bhairahawa → Lumbini → Kathmandu", "description": "北インドから陸路で国境を越え、タライ平原、仏教巡礼地ルンビニ、ヒマラヤ山麓の盆地へ景観をつなぐ。インド側の鉄道移動からネパール側の道路旅へ切り替わる代表的な周遊ルート。"}
+  ],
+  "relatedCountries": [
+    {"slug": "nepal", "nameEn": "NEPAL", "nameJa": "ネパール", "flag": "🇳🇵", "reason": "ヒマラヤ、ヒンドゥー教・仏教の巡礼地、都市と山地の距離感を、より小さな国土でたどりたいなら。"},
+    {"slug": "srilanka", "nameEn": "SRI LANKA", "nameJa": "スリランカ", "flag": "🇱🇰", "reason": "南アジアの宗教遺産、熱帯の緑、茶畑、海岸、食文化を、島のスケールで組み合わせたいなら。"},
+    {"slug": "indonesia", "nameEn": "INDONESIA", "nameJa": "インドネシア", "flag": "🇮🇩", "reason": "宗教・言語・食・島ごとの地域差が大きく、移動するほど文化と景観が切り替わる旅が好きなら。"}
+  ],
+  "updatedAt": "2026-09-12",
+  "sourcesVerifiedAt": "2026-09-12",
+  "sourceDates": {"population": "2025", "religion": "2011", "railways": "2024-03-31", "worldHeritage": "2026-07-25", "statesUnionTerritories": "2026", "monsoon": "2026", "nextRoutes": "2026-09-11", "japanArea": "2026-04-01"},
+  "sources": {
+    "map": "WGS84 geographic-data composite: Basemap/WDBII intermediate country-border linework and GSHHS/GSHHG intermediate coastline data, constrained by Natural Earth India geometry; Lakshadweep and Andaman-Nicobar retained from GSHHS.",
+    "population": "United Nations UNData, India country profile: 2025 population estimate 1,463,866,000; surface area 3,287,263 km².",
+    "japanArea": "Geospatial Information Authority of Japan (GSI), national land area 377,974.87 km²; used for India ≈ 8.7× Japan.",
+    "language": "Government of India, Department of Official Language: Constitution/Official Languages framework; Hindi in Devanagari is the official language of the Union and English continues for official purposes of the Union under the Official Languages Act, 1963.",
+    "scheduledLanguages": "Government of India, Department of Official Language: Eighth Schedule of the Constitution lists 22 languages.",
+    "religion": "Census of India 2011, Population by Religious Communities: Hindu, Muslim, Christian, Sikh, Buddhist, Jain and other categories.",
+    "currency": "Reserve Bank of India / Government of India: Indian Rupee (INR).",
+    "statesUnionTerritories": "Ministry of Home Affairs, Government of India: India has 28 States and 8 Union Territories.",
+    "worldHeritage": "UNESCO World Heritage Centre, India State Party page: 45 properties as of 2026, including Ancient Buddhist Site of Sarnath inscribed in 2026.",
+    "sarnath": "UNESCO World Heritage Committee Decision 48 COM 8B.17 and Press Information Bureau, 25 July 2026: Sarnath inscribed as India's 45th World Heritage property.",
+    "railways": "Indian Railways, Indian Railways Year Book / Annual Report 2023-24: route length 69,181 km as of 31 March 2024.",
+    "time": "CSIR-National Physical Laboratory / Government of India: Indian Standard Time is UTC+05:30.",
+    "stepwell": "UNESCO World Heritage Centre: Rani-ki-Vav (the Queen's Stepwell) at Patan, Gujarat, a subterranean stepwell and water-management architecture.",
+    "langar": "Shiromani Gurdwara Parbandhak Committee / Sikh institutional guidance: langar is the community kitchen tradition associated with gurdwaras; visitors follow head-covering and footwear customs.",
+    "monsoon": "India Meteorological Department: southwest monsoon season is June-September; northeast monsoon is important to the southeastern peninsula in October-December; regional rainfall varies strongly.",
+    "tajMahal": "UNESCO World Heritage Centre: Taj Mahal, Agra, on the right bank of the Yamuna River; white marble mausoleum built under Shah Jahan in the 17th century.",
+    "varanasi": "Ministry of Tourism, Incredible India: Varanasi ghats along the Ganges are active religious and urban riverfront spaces.",
+    "thiksey": "Ministry of Tourism, Incredible India: Thiksey Monastery south of Leh in Ladakh, a major Tibetan Buddhist monastic complex in the Indus valley setting.",
+    "jaisalmer": "Ministry of Tourism, Incredible India: Jaisalmer Fort is built of yellow sandstone on Trikuta Hill in the Thar Desert and forms part of the UNESCO Hill Forts of Rajasthan.",
+    "hampi": "UNESCO World Heritage Centre: Group of Monuments at Hampi integrates Vijayanagara urban and temple remains with its distinctive boulder-strewn natural setting.",
+    "kuttanad": "Kerala Tourism / Ministry of Tourism, Incredible India: Kuttanad is a backwater and lowland farming landscape structured by canals, paddy fields and settlements.",
+    "mumbai": "Ministry of Tourism, Incredible India: Marine Drive is a 3.6 km C-shaped boulevard along the Arabian Sea in South Mumbai.",
+    "nongriat": "Meghalaya Tourism / Ministry of Tourism, Incredible India: living root bridges in the Khasi Hills are formed by guiding living tree roots across streams; Nongriat is known for a double-decker bridge.",
+    "kaziranga": "UNESCO World Heritage Centre: Kaziranga National Park protects Brahmaputra floodplain grasslands and wetlands and is a major habitat of the Indian one-horned rhinoceros.",
+    "hyderabadiBiryani": "Ministry of Tourism, Incredible India: Hyderabadi biryani combines fragrant rice, meat and spices and is closely associated with Hyderabad's culinary traditions.",
+    "masalaDosa": "Ministry of Tourism, Incredible India: masala dosa is a South Indian/Karnataka preparation of a thin savoury fermented crepe with spiced potato filling, commonly served with chutneys.",
+    "choleBhature": "Ministry of Tourism, Incredible India: chole bhature is a North Indian/Punjabi combination of chickpea curry and fried leavened bread.",
+    "rasgulla": "Ministry of Tourism, Incredible India: rasogolla/rasgulla is a chhena-based sweet cooked in light sugar syrup and associated with eastern India.",
+    "nextRoutes": "Embassy of India in Kathmandu, visa page updated 11 September 2026: foreigners with valid Indian visa can use Sunauli-Bhairahawa and Birgunj-Raxaul India-Nepal border points; Nepal Tourism Board lists Sunauli-Bhairahawa as a designated land entry route to Lumbini and Kathmandu."
+  }
+}
