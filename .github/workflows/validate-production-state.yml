@@ -2,7 +2,9 @@ name: Validate production state and QA routing
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+      - 'country/**'
     paths:
       - 'ops/country-production/**'
       - 'ops/country-production-policy.json'
@@ -11,7 +13,11 @@ on:
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_state_v7.py'
+      - 'scripts/image_policy_v72.py'
+      - 'scripts/test_image_policy_v7.py'
       - 'scripts/country_production_protocol_v2.py'
+      - 'scripts/validate_production_state_routed.py'
       - 'scripts/classify_country_impact.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -30,6 +36,8 @@ on:
       - 'docs/CLOUDFLARE_PAGES.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
+      - 'docs/TASTE_IMAGE_PRODUCTION.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_2.md'
       - 'docs/*_CONTENT_PLAN.md'
   pull_request:
     paths:
@@ -40,7 +48,11 @@ on:
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
       - 'scripts/country_production_state.py'
+      - 'scripts/country_production_state_v7.py'
+      - 'scripts/image_policy_v72.py'
+      - 'scripts/test_image_policy_v7.py'
       - 'scripts/country_production_protocol_v2.py'
+      - 'scripts/validate_production_state_routed.py'
       - 'scripts/classify_country_impact.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -59,6 +71,8 @@ on:
       - 'docs/CLOUDFLARE_PAGES.md'
       - 'docs/ILLUSTRATION_STYLE_GUIDE.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
+      - 'docs/TASTE_IMAGE_PRODUCTION.md'
+      - 'docs/IMAGE_POLICY_REVISION_7_2.md'
       - 'docs/*_CONTENT_PLAN.md'
   workflow_dispatch:
 
@@ -87,12 +101,17 @@ jobs:
         run: |
           python3 -m py_compile \
             scripts/country_production_state.py \
+            scripts/country_production_state_v7.py \
+            scripts/image_policy_v72.py \
+            scripts/test_image_policy_v7.py \
             scripts/country_production_protocol_v2.py \
+            scripts/validate_production_state_routed.py \
             scripts/classify_country_impact.py \
             scripts/manage_review_preview_site.py \
             scripts/externalize_review_preview_images.py
           python3 scripts/classify_country_impact.py --self-test
           python3 scripts/country_production_protocol_v2.py self-test
+          python3 scripts/image_policy_v72.py self-test
           python3 scripts/manage_review_preview_site.py self-test
           python3 - <<'PY'
           import importlib.util
@@ -128,15 +147,17 @@ jobs:
               Path(".github/workflows/deploy-country-preview.yml"),
               Path(".github/workflows/publish-country-queue.yml"),
               Path(".github/workflows/validate-production-state.yml"),
+              Path(".github/workflows/validate-image-policy-v7.yml"),
           ]:
               yaml.safe_load(path.read_text(encoding="utf-8"))
               print(f"YAML OK: {path}")
           PY
 
+      - name: Run Revision 7.2 regression tests
+        run: python3 scripts/test_image_policy_v7.py
+
       - name: Validate canonical Country production state
-        run: |
-          python3 scripts/country_production_state.py validate
-          python3 scripts/country_production_protocol_v2.py validate
+        run: python3 scripts/validate_production_state_routed.py
 
       - name: Validate Content Plan / Production State separation
         run: |
