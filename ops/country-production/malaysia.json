@@ -2,16 +2,38 @@
   "schemaVersion": 1,
   "slug": "malaysia",
   "countryName": "MALAYSIA",
-  "contentRef": "country/malaysia",
-  "stateRef": "country/malaysia",
-  "phase": "QA",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-13T01:24:41+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-13T01:27:00+09:00",
   "implementation": {"state": "DONE"},
-  "qa": {"state": "PASS", "productionState": "NOT_STARTED"},
-  "reviewDeployment": {"state": "READY", "url": "https://yagenji.github.io/Journey-Atlas/reviews/malaysia/countries/malaysia/"},
-  "finalApproval": {"state": "PENDING"},
-  "publication": {"state": "DRAFT", "atlasPublished": false},
+  "qa": {"state": "PASS", "productionState": "CI_GATED"},
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/malaysia/",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-13T01:24:41+09:00"
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-13T01:27:00+09:00",
+    "basis": "User instructed QA and publication after the corrected Malaysia review page passed final QA."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-13T01:27:00+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/malaysia/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "note": "Post-merge Cloudflare production verification is authoritative."
+  },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
     "sceneApproval": "BATCH_ONLY",
@@ -190,5 +212,5 @@
     {"id": "FOOD04", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-04-sarawak-laksa.webp", "contentId": "sarawak-laksa", "approvedGenerationId": "35c8d9f5-a700-42ca-ac26-a38e17204f74"}
   ],
   "map": {"state": "APPROVED", "asset": "assets/images/malaysia/map-atlas-v1.svg"},
-  "next": {"action": "REVIEW_CANONICAL_URL", "asset": null}
+  "next": {"action": "NONE", "asset": null}
 }
