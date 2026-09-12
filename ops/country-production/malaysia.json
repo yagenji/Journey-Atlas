@@ -1,1 +1,194 @@
-{"schemaVersion":1,"slug":"malaysia","countryName":"MALAYSIA","contentRef":"country/malaysia","stateRef":"country/malaysia","phase":"QA","stateRevision":9,"updatedAt":"2026-09-12T12:51:34+09:00","implementation":{"state":"DONE"},"qa":{"state":"PASS","productionState":"NOT_STARTED"},"reviewDeployment":{"state":"NOT_STARTED","url":null},"finalApproval":{"state":"PENDING"},"publication":{"state":"DRAFT","atlasPublished":false},"executionPolicy":{"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},"imageGenerationPolicyRef":"main:ops/image-generation-policy.json","generationContext":{"state":"CLEAN","epoch":2,"lastResetAt":"2026-09-12T12:10:48+09:00","lastFailureAsset":null,"lastFailureReason":null},"imageGenerationPolicy":{"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},"sceneBatchReview":{"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"scope":["S01","S02","S03","S04","S05","S06","S07","S08"],"approvedGenerations":{"S02":"d15a617e-0a77-47fe-a8da-5446e4171e27","S03":"c1dabc2e-d142-4d85-aa47-422a875917c8","S04":"a3852bbd-4c7b-4195-94d3-b2f1f6f59231","S05":"71fc4102-55ef-40d5-b071-cecbc1c62a94","S06":"edd09c24-b251-4930-b20f-9cc5cf961134","S07":"92e0e385-5191-4962-b378-684f4e37bf59","S08":"c698dffd-9488-4759-a5ef-732879590f89"},"regenerate":["S01"],"approvedAt":"2026-09-12T12:10:48+09:00"},{"round":2,"reviewBoundary":true,"scope":["S01"],"approvedGenerations":{"S01":"216c4061-4576-4584-ab6a-183aa81a3dd1"},"regenerate":[],"approvedAt":"2026-09-12T12:10:48+09:00"}]},"tasteBatchReview":{"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"scope":["FOOD01","FOOD02","FOOD03","FOOD04"],"approvedGenerations":{"FOOD01":"a456cc38-e8d9-4773-b2c2-2df78e82aa4e","FOOD02":"71370672-b38d-462d-a2fb-ac70c635f226","FOOD03":"4cc98bac-b5c7-4291-b5ba-c4c1d28ecddd","FOOD04":"35c8d9f5-a700-42ca-ac26-a38e17204f74"},"regenerate":[],"approvedAt":"2026-09-12T12:10:48+09:00"}]},"productionProtocolRef":"main:ops/country-production-policy.json","productionProtocolId":"2.0","preVisualBuild":{"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},"assetHandoff":{"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-12T12:15:00+09:00"},"reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},"productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":2,"tasteBatchReviews":1,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":1,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":1,"tasteBatchApprovedAt":"2026-09-12T12:10:48+09:00","canonicalReviewReadyAt":null},"hero":{"state":"APPROVED","asset":"assets/images/malaysia/approved/hero-kuala-lumpur-petronas-twin-towers.webp","contentId":"kuala-lumpur-petronas-twin-towers-hero","approvedGenerationId":"617d9ab2-c0f2-4ca3-b2b0-9d960b6d6475"},"scenes":[{"id":"S01","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-01-mount-kinabalu-kundasang.webp","contentId":"mount-kinabalu-kundasang","approvedGenerationId":"216c4061-4576-4584-ab6a-183aa81a3dd1"},{"id":"S02","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-02-george-town-heritage-streets.webp","contentId":"george-town-heritage-streets","approvedGenerationId":"d15a617e-0a77-47fe-a8da-5446e4171e27"},{"id":"S03","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-03-cameron-highlands-sungei-palas-tea.webp","contentId":"cameron-highlands-sungei-palas-tea","approvedGenerationId":"c1dabc2e-d142-4d85-aa47-422a875917c8"},{"id":"S04","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-04-langkawi-kilim-karst-geoforest.webp","contentId":"langkawi-kilim-karst-geoforest","approvedGenerationId":"a3852bbd-4c7b-4195-94d3-b2f1f6f59231"},{"id":"S05","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-05-melaka-historic-city.webp","contentId":"melaka-historic-city","approvedGenerationId":"71fc4102-55ef-40d5-b071-cecbc1c62a94"},{"id":"S06","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-06-gunung-mulu-limestone-pinnacles.webp","contentId":"gunung-mulu-limestone-pinnacles","approvedGenerationId":"edd09c24-b251-4930-b20f-9cc5cf961134"},{"id":"S07","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-07-niah-great-cave.webp","contentId":"niah-great-cave","approvedGenerationId":"92e0e385-5191-4962-b378-684f4e37bf59"},{"id":"S08","state":"APPROVED","asset":"assets/images/malaysia/approved/scene-08-bohey-dulang-tun-sakaran.webp","contentId":"bohey-dulang-tun-sakaran","approvedGenerationId":"c698dffd-9488-4759-a5ef-732879590f89"}],"taste":[{"id":"FOOD01","state":"APPROVED","asset":"assets/images/malaysia/approved/food-01-nasi-lemak.webp","contentId":"nasi-lemak","approvedGenerationId":"a456cc38-e8d9-4773-b2c2-2df78e82aa4e"},{"id":"FOOD02","state":"APPROVED","asset":"assets/images/malaysia/approved/food-02-penang-char-kuey-teow.webp","contentId":"penang-char-kuey-teow","approvedGenerationId":"71370672-b38d-462d-a2fb-ac70c635f226"},{"id":"FOOD03","state":"APPROVED","asset":"assets/images/malaysia/approved/food-03-roti-canai.webp","contentId":"roti-canai","approvedGenerationId":"4cc98bac-b5c7-4291-b5ba-c4c1d28ecddd"},{"id":"FOOD04","state":"APPROVED","asset":"assets/images/malaysia/approved/food-04-sarawak-laksa.webp","contentId":"sarawak-laksa","approvedGenerationId":"35c8d9f5-a700-42ca-ac26-a38e17204f74"}],"map":{"state":"APPROVED","asset":"assets/images/malaysia/map-atlas-v1.svg"},"next":{"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}}
+{
+  "schemaVersion": 1,
+  "slug": "malaysia",
+  "countryName": "MALAYSIA",
+  "contentRef": "country/malaysia",
+  "stateRef": "country/malaysia",
+  "phase": "QA",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-12T14:44:59+09:00",
+  "implementation": {"state": "DONE"},
+  "qa": {"state": "PASS", "productionState": "NOT_STARTED"},
+  "reviewDeployment": {"state": "NOT_STARTED", "url": null},
+  "finalApproval": {"state": "PENDING"},
+  "publication": {"state": "DRAFT", "atlasPublished": false},
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 2,
+    "lastResetAt": "2026-09-12T12:10:48+09:00",
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
+        "approvedGenerations": {
+          "S02": "d15a617e-0a77-47fe-a8da-5446e4171e27",
+          "S03": "c1dabc2e-d142-4d85-aa47-422a875917c8",
+          "S04": "a3852bbd-4c7b-4195-94d3-b2f1f6f59231",
+          "S05": "71fc4102-55ef-40d5-b071-cecbc1c62a94",
+          "S06": "edd09c24-b251-4930-b20f-9cc5cf961134",
+          "S07": "92e0e385-5191-4962-b378-684f4e37bf59",
+          "S08": "c698dffd-9488-4759-a5ef-732879590f89"
+        },
+        "regenerate": ["S01"],
+        "approvedAt": "2026-09-12T12:10:48+09:00"
+      },
+      {
+        "round": 2,
+        "reviewBoundary": true,
+        "scope": ["S01"],
+        "approvedGenerations": {"S01": "216c4061-4576-4584-ab6a-183aa81a3dd1"},
+        "regenerate": [],
+        "approvedAt": "2026-09-12T12:10:48+09:00"
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": ["FOOD01", "FOOD02", "FOOD03", "FOOD04"],
+        "approvedGenerations": {
+          "FOOD01": "a456cc38-e8d9-4773-b2c2-2df78e82aa4e",
+          "FOOD02": "71370672-b38d-462d-a2fb-ac70c635f226",
+          "FOOD03": "4cc98bac-b5c7-4291-b5ba-c4c1d28ecddd",
+          "FOOD04": "35c8d9f5-a700-42ca-ac26-a38e17204f74"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-12T12:10:48+09:00"
+      }
+    ]
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-12T12:15:00+09:00"
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/malaysia/countries/malaysia/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-12T14:44:59+09:00"
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 2,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 2,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 2,
+    "tasteBatchApprovedAt": "2026-09-12T12:10:48+09:00",
+    "canonicalReviewReadyAt": "2026-09-12T14:44:59+09:00"
+  },
+  "hero": {
+    "state": "APPROVED",
+    "asset": "assets/images/malaysia/approved/hero-kuala-lumpur-petronas-twin-towers.webp",
+    "contentId": "kuala-lumpur-petronas-twin-towers-hero",
+    "approvedGenerationId": "617d9ab2-c0f2-4ca3-b2b0-9d960b6d6475"
+  },
+  "scenes": [
+    {"id": "S01", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-01-mount-kinabalu-kundasang.webp", "contentId": "mount-kinabalu-kundasang", "approvedGenerationId": "216c4061-4576-4584-ab6a-183aa81a3dd1"},
+    {"id": "S02", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-02-george-town-heritage-streets.webp", "contentId": "george-town-heritage-streets", "approvedGenerationId": "d15a617e-0a77-47fe-a8da-5446e4171e27"},
+    {"id": "S03", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-03-cameron-highlands-sungei-palas-tea.webp", "contentId": "cameron-highlands-sungei-palas-tea", "approvedGenerationId": "c1dabc2e-d142-4d85-aa47-422a875917c8"},
+    {"id": "S04", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-04-langkawi-kilim-karst-geoforest.webp", "contentId": "langkawi-kilim-karst-geoforest", "approvedGenerationId": "a3852bbd-4c7b-4195-94d3-b2f1f6f59231"},
+    {"id": "S05", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-05-melaka-historic-city.webp", "contentId": "melaka-historic-city", "approvedGenerationId": "71fc4102-55ef-40d5-b071-cecbc1c62a94"},
+    {"id": "S06", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-06-gunung-mulu-limestone-pinnacles.webp", "contentId": "gunung-mulu-limestone-pinnacles", "approvedGenerationId": "edd09c24-b251-4930-b20f-9cc5cf961134"},
+    {"id": "S07", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-07-niah-great-cave.webp", "contentId": "niah-great-cave", "approvedGenerationId": "92e0e385-5191-4962-b378-684f4e37bf59"},
+    {"id": "S08", "state": "APPROVED", "asset": "assets/images/malaysia/approved/scene-08-bohey-dulang-tun-sakaran.webp", "contentId": "bohey-dulang-tun-sakaran", "approvedGenerationId": "c698dffd-9488-4759-a5ef-732879590f89"}
+  ],
+  "taste": [
+    {"id": "FOOD01", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-01-nasi-lemak.webp", "contentId": "nasi-lemak", "approvedGenerationId": "a456cc38-e8d9-4773-b2c2-2df78e82aa4e"},
+    {"id": "FOOD02", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-02-penang-char-kuey-teow.webp", "contentId": "penang-char-kuey-teow", "approvedGenerationId": "71370672-b38d-462d-a2fb-ac70c635f226"},
+    {"id": "FOOD03", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-03-roti-canai.webp", "contentId": "roti-canai", "approvedGenerationId": "4cc98bac-b5c7-4291-b5ba-c4c1d28ecddd"},
+    {"id": "FOOD04", "state": "APPROVED", "asset": "assets/images/malaysia/approved/food-04-sarawak-laksa.webp", "contentId": "sarawak-laksa", "approvedGenerationId": "35c8d9f5-a700-42ca-ac26-a38e17204f74"}
+  ],
+  "map": {"state": "APPROVED", "asset": "assets/images/malaysia/map-atlas-v1.svg"},
+  "next": {"action": "REVIEW_CANONICAL_URL", "asset": null}
+}
