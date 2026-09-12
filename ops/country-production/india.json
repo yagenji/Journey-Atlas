@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "india",
   "countryName": "INDIA",
-  "contentRef": "country/india",
-  "stateRef": "country/india",
-  "phase": "QA",
-  "stateRevision": 27,
-  "updatedAt": "2026-09-12T19:52:37+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 28,
+  "updatedAt": "2026-09-12T20:20:00+09:00",
   "hero": {"id":"HERO","state":"APPROVED","asset":"assets/images/india/approved/hero-taj-mahal-yamuna.webp","contentId":"taj-mahal-charbagh-reflection-pool","approvedGenerationId":"21a8ebd7-8fbb-4544-8ba7-00305cda5d56"},
   "scenes": [
     {"id":"S01","state":"APPROVED","asset":"assets/images/india/approved/varanasi-ghats-ganges.webp","contentId":"varanasi-ghats-ganges","approvedGenerationId":"ec3fce7b-8c65-4c5f-87f9-2705a24f5206"},
@@ -26,10 +26,10 @@
   ],
   "map": {"state":"APPROVED","asset":"assets/images/india/map-atlas-v1.svg"},
   "implementation": {"state":"DONE","countryJson":"data/countries/india.json","themeTaxonomy":["history","life","food"],"sharedTemplate":true,"countrySpecificCss":false},
-  "qa": {"state":"PASS","productionState":"PASS","sourceCommit":"4b0ddfb8e5d6c47755078ae4f26ce56ef8abe6ea","checks":["country-json-schema-v2","content-qa-v2-previsual-pass","approved-raster-count-13","webp-full-decode","1200x800-dimensions","asset-paths","map-1200x760","map-marker-separation","theme-taxonomy","related-countries","next-routes","unpublished-noindex-build-path","sitemap-exclusion-build-path","production-asset-hygiene","targeted-preview-build","desktop-browser-qa","tablet-browser-qa","mobile-browser-qa"]},
-  "reviewDeployment": {"state":"DONE","url":"https://yagenji.github.io/Journey-Atlas/reviews/india/countries/india/"},
-  "finalApproval": {"state":"PENDING"},
-  "publication": {"state":"DRAFT","atlasPublished":false},
+  "qa": {"state":"PASS","productionState":"CI_GATED","sourceCommit":"4b0ddfb8e5d6c47755078ae4f26ce56ef8abe6ea","checks":["country-json-schema-v2","content-qa-v2-previsual-pass","approved-raster-count-13","webp-full-decode","1200x800-dimensions","asset-paths","map-1200x760","map-marker-separation","theme-taxonomy","related-countries","next-routes","unpublished-noindex-build-path","sitemap-exclusion-build-path","production-asset-hygiene","targeted-preview-build","desktop-browser-qa","tablet-browser-qa","mobile-browser-qa"]},
+  "reviewDeployment": {"state":"DONE","url":"https://atlas.yagenji.com/countries/india/"},
+  "finalApproval": {"state":"APPROVED","approvedAt":"2026-09-12T20:20:00+09:00","basis":"User explicitly instructed to proceed through publication after final QA. The latest India review package passed Country validation, Production State validation, Image Policy validation, approved-raster checks, targeted review deployment, and Desktop / Tablet / Mobile Browser QA with no blocking failures."},
+  "publication": {"state":"PUBLISHED","atlasPublished":true,"productionVerification":"CI_GATED","requestedAt":"2026-09-12T20:20:00+09:00","publishedUrl":"https://atlas.yagenji.com/countries/india/","robots":"index,follow","sitemapListed":true,"linkedFromRegistry":true,"note":"Registry publication and terminal Production State are committed on the same publication branch. Publication CI must validate the published build, discovery link, indexability, sitemap inclusion and production route; post-merge Cloudflare production verification is authoritative."},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
@@ -42,5 +42,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-12T19:10:00+09:00"},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"DONE","url":"https://yagenji.github.io/Journey-Atlas/reviews/india/countries/india/","browserQa":"PASS","deployedAt":"2026-09-12T19:52:37+09:00"},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":2,"assetHandoffs":1,"reviewPackageIntegrations":2,"reviewPreviewDeployments":2,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":2,"tasteBatchApprovedAt":"2026-09-12T16:54:00+09:00","canonicalReviewReadyAt":"2026-09-12T19:52:37+09:00"},
-  "next": {"action":"REVIEW_CANONICAL_URL","asset":null}
+  "next": {"action":"NONE","asset":null}
 }
