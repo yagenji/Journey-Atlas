@@ -26,7 +26,7 @@
     "bounds": {"north": 5.15, "south": 3.95, "west": 113.95, "east": 115.45},
     "svg": "assets/images/brunei/map-atlas-v1.svg",
     "route": null,
-    "source": "Country geometry: Natural Earth 1:10m admin-0 via LonnyGomes/CountryGeoJSONCollection BRN.geojson; WGS84; illustrated treatment: JOURNEY ATLAS map-v3 clean background"
+    "source": "Brunei boundary: Natural Earth 1:10m admin-0 via LonnyGomes/CountryGeoJSONCollection BRN.geojson; surrounding Borneo coastline: GSHHS/GSHHG via Basemap; WGS84; illustrated treatment: JOURNEY ATLAS map-v3 contextual-land"
   },
   "scenes": [
     {"id":"jame-asr-hassanil-bolkiah-mosque","name":"ジャメ・アスル・ハサナル・ボルキア・モスク","nameLocal":"Jame’ ‘Asr Hassanil Bolkiah Mosque","mapLabel":"Jame’ ‘Asr Mosque","description":"首都の市街地に29の金色のドームを重ねる、1994年完成の国最大のモスク。王室とイスラムが現在の都市景観にどう表れるかを、庭園と建築のまとまりから見る。","coordinates":{"latitude":4.89798,"longitude":114.92191},"image":"assets/images/brunei/approved/jame-asr-hassanil-bolkiah-mosque.webp","labelPosition":"left","mapOffset":{"x":-3,"y":4}},
@@ -53,7 +53,7 @@
     {"topicKey":"jame-asr-29-domes","categoryEn":"ARCHITECTURE","categoryJa":"建築","title":"29の金色のドーム","text":"ジャメ・アスル・ハサナル・ボルキア・モスクの29のドームは、現国王がブルネイ第29代スルタンであることに対応している。","icon":"landmark","sourceKey":"jameAsr"},
     {"topicKey":"bnd-sgd-parity","categoryEn":"MONEY","categoryJa":"通貨","title":"ブルネイ・ドルとシンガポール・ドルは等価","text":"両国の通貨当局と銀行は通貨互換協定のもとで相互通貨を等価交換する。シンガポール・ドルはブルネイで customary tender として流通するが、すべての店舗に受取義務があるわけではない。","icon":"money","sourceKey":"currency"},
     {"topicKey":"nasi-katok-name","categoryEn":"FOOD","categoryJa":"食","title":"「カトッ」は、扉をノックした名残","text":"ナシ・カトッの名は、かつて客が売り手の扉をノックして注文したという由来で説明される。基本はご飯、フライドチキン、サンバルの組み合わせ。","icon":"food","sourceKey":"food"},
-    {"topicKey":"ambuyat-candas","categoryEn":"FOOD","categoryJa":"食べ方","title":"アンブヤットは二又の竹具で巻き取る","text":"サゴで作る粘りの強いアンブヤットは、candas と呼ばれる二又の竹具で巻き取り、酸味や辛味のあるcacahにつけて食べる。","icon":"food","sourceKey":"food"},
+    {"topicKey":"empire-seven-star-nickname","categoryEn":"HOTEL","categoryJa":"ホテル","title":"公式は5つ星、通称は「7つ星」","text":"ジ・エンパイア・ブルネイは旅行記事などで「7つ星ホテル」と呼ばれることがあるが、これは公式格付けではない。ホテル自身の現在の表記は5つ星。180haの敷地にプライベートビーチ、5つのプール、ゴルフコース、映画館まで備える。","icon":"landmark","sourceKey":"empireHotel"},
     {"topicKey":"brunei-two-land-sections","categoryEn":"GEOGRAPHY","categoryJa":"地理","title":"国土は二つに分かれている","text":"西側の3地区と東側のテンブロン地区の間にはマレーシア領サラワクが入る。2020年開通の橋によって、現在は国外を通らず両地域を直接移動できる。","icon":"map","sourceKey":"bridge"}
   ],
   "taste": {
@@ -107,9 +107,9 @@
     {"slug":"singapore","nameEn":"SINGAPORE","nameJa":"シンガポール","flag":"🇸🇬","reason":"小さな国土と東南アジアの都市国家という共通点を、異なる都市密度と社会設計で比べたい人へ。"},
     {"slug":"indonesia","nameEn":"INDONESIA","nameJa":"インドネシア","flag":"🇮🇩","reason":"ボルネオの森や島嶼世界から、火山・海・民族文化まで視野を大きく広げたい人へ。"}
   ],
-  "updatedAt":"2026-09-11",
-  "sourcesVerifiedAt":"2026-09-11",
-  "sourceDates":{"population":"2026-04","countryProfile":"2026-09-11","kampongAyer":"2026-09-11","jameAsr":"2026-09-11","uluTemburong":"2026-09-11","bridge":"2026-09-11","tasekMerimbun":"2026-09-11","seriaOil":"2026-09-11","tamuKianggeh":"2026-09-11","teraja":"2026-09-11","muara":"2026-09-11","currency":"2026-09-11","food":"2026-09-11","climate":"2026-09-11","geometry":"2019-06-18","nextRoutes":"2026-09-11"},
+  "updatedAt":"2026-09-12",
+  "sourcesVerifiedAt":"2026-09-12",
+  "sourceDates":{"population":"2026-04","countryProfile":"2026-09-11","kampongAyer":"2026-09-11","jameAsr":"2026-09-11","uluTemburong":"2026-09-11","bridge":"2026-09-11","tasekMerimbun":"2026-09-11","seriaOil":"2026-09-11","tamuKianggeh":"2026-09-11","teraja":"2026-09-11","muara":"2026-09-11","currency":"2026-09-11","food":"2026-09-11","empireHotel":"2026-09-12","climate":"2026-09-11","geometry":"2026-09-12","nextRoutes":"2026-09-11"},
   "sources":{
     "population":"Department of Economic Planning and Statistics (DEPS), Population 2025: total population estimate 458,600.",
     "countryProfile":"Attorney General's Chambers, About Brunei: land area 5,765 km², capital Bandar Seri Begawan, official language Malay, religion Islam, currency BND, independence 1 January 1984.",
@@ -124,8 +124,9 @@
     "muara":"Brunei Tourism, Muara Beach: one-mile sandy beach and local weekend recreation.",
     "currency":"Brunei Darussalam Central Bank, Currency Interchangeability Agreement: BND and SGD equal value and bank exchange at par.",
     "food":"Brunei Tourism, Local Delicacies: Ambuyat, Nasi Katok, Kelupis and Penyaram descriptions.",
+    "empireHotel":"The Empire Brunei official site: current classification as a prestigious five-star resort, with private beaches, lagoons, five pools, championship golf and a cinema; the widely used ‘seven-star’ description is an informal travel-media nickname rather than an official rating.",
     "climate":"Brunei Darussalam Meteorological Department, Climate: hot and wet year-round; Northeast Monsoon Dec-Mar, Southwest Monsoon Jun-Sep, transition periods Apr-May and Oct-Nov; rainfall maxima Oct-Jan.",
-    "geometry":"Natural Earth 1:10m admin-0 country geometry, BRN GeoJSON via LonnyGomes/CountryGeoJSONCollection, WGS84.",
+    "geometry":"Natural Earth 1:10m admin-0 BRN geometry for Brunei boundary; GSHHS/GSHHG via Basemap for surrounding Borneo coastline; WGS84.",
     "nextRoutes":"Brunei/Malaysia land geography and current cross-border road continuity; routing text intentionally excludes timetable/fare claims."
   }
 }
