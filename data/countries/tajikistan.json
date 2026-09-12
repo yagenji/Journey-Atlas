@@ -1,294 +1,309 @@
 {
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
   "slug": "tajikistan",
   "nameEn": "TAJIKISTAN",
   "nameJa": "タジキスタン",
-  "region": "CENTRAL ASIA / PAMIR",
+  "region": "CENTRAL ASIA / 39°N",
+  "seo": {
+    "description": "ファン山地の湖、古代サラズム、ホジェンドの市場、ワハーン回廊、標高4,000mを超えるパミール高原へ。山地が国土と暮らし、道路の形を決めるタジキスタンを8つの景色からたどる。"
+  },
+  "capital": {
+    "nameEn": "Dushanbe",
+    "nameJa": "ドゥシャンベ",
+    "coordinates": {"latitude": 38.5598, "longitude": 68.787},
+    "labelPosition": "right"
+  },
   "hero": {
-    "lead": "首都を離れ、国境の川をたどり、\n木の消える高原へ。\n道の先ほど、大地が大きくなる国。",
-    "image": "assets/images/tajikistan/wakhan-corridor.svg"
+    "lead": "川の向こうにアフガニスタンの山地を見ながら、細い道がパンジ川の谷を東へ延びていく。都市、古代遺跡、緑の谷を離れるほど標高が上がり、最後は木の消えるパミール高原へ続く国。",
+    "image": "assets/images/tajikistan/approved/hero-wakhan-upper-panj-road.webp",
+    "location": "Wakhan Corridor / Upper Panj Valley",
+    "coordinates": {"latitude": 37.06, "longitude": 72.85}
   },
   "map": {
-    "bounds": {
-      "north": 41.2,
-      "south": 36.5,
-      "west": 67.3,
-      "east": 75.2
-    },
-    "svg": "assets/images/tajikistan/map-illustrated.svg",
+    "bounds": {"north": 41.262986, "south": 36.453371, "west": 66.951415, "east": 75.544554},
+    "svg": "assets/images/tajikistan/map-atlas-v1.svg",
     "route": null,
-    "source": "Illustrated Pamir Highway map: JOURNEY ATLAS; scene placement based on JOURNEY LENS story coordinates and route references"
+    "source": "Basemap countries_i political boundary data in cylindrical geographic coordinates; WGS84-equivalent; JOURNEY ATLAS map-v3 clean background."
   },
   "scenes": [
     {
-      "id": "dushanbe",
-      "name": "ドゥシャンベ",
-      "nameLocal": "Dushanbe",
-      "mapLabel": "Dushanbe",
-      "description": "Pamirへ入る前の首都。大きな公共建築と広い通りに、旧ソ連の重さと新しい華やかさが重なる。",
-      "coordinates": {
-        "latitude": 38.5358,
-        "longitude": 68.7791
-      },
-      "image": "assets/images/tajikistan/dushanbe.svg"
+      "id": "khujand-panjshanbe-bazaar",
+      "name": "ホジェンド / パンジシャンベ・バザール",
+      "nameLocal": "Khujand / Panjshanbe Bazaar",
+      "mapLabel": "Khujand",
+      "description": "フェルガナ盆地の西端にある北部の都市。装飾的な市場建築、果物や乾燥果実の売り場、近くの宗教建築がまとまり、山岳国の中にある平地の交易都市という別の顔を見せる。",
+      "coordinates": {"latitude": 40.2833, "longitude": 69.6222},
+      "image": "assets/images/tajikistan/approved/scene-01-khujand-panjshanbe-bazaar.webp",
+      "labelPosition": "right"
     },
     {
-      "id": "navruz-palace",
-      "name": "ナヴルズ宮殿",
-      "nameLocal": "Navruz Palace",
-      "mapLabel": "Navruz Palace",
-      "description": "無骨な街の外観から一転して、内部には細密で華やかな装飾が広がる。都市の別の表情を見せる場所。",
-      "coordinates": {
-        "latitude": 38.579,
-        "longitude": 68.783
-      },
-      "image": "assets/images/tajikistan/navruz-palace.svg"
+      "id": "sarazm-proto-urban-site",
+      "name": "サラズム / 原都市遺跡",
+      "nameLocal": "Sarazm / Proto-urban Site",
+      "mapLabel": "Sarazm",
+      "description": "ザラフシャン渓谷の平地に、紀元前4〜3千年紀の集落跡が広がる。農耕、金属加工、遠距離交流の痕跡が残り、山地の国に都市形成以前の長い生活史があることを示す。",
+      "coordinates": {"latitude": 39.5079, "longitude": 67.4587},
+      "image": "assets/images/tajikistan/approved/scene-02-sarazm-proto-urban-site.webp",
+      "labelPosition": "right"
     },
     {
-      "id": "panj-river",
-      "name": "パンジ川 / ワハーン回廊",
-      "nameBreaks": [
-        4
-      ],
-      "nameLocal": "Panj River / Wakhan Corridor",
-      "mapLabel": "Wakhan",
-      "description": "川の向こうはアフガニスタン。集落と岩山を横目に、国境沿いのPamir Highwayを進んでいく。",
-      "coordinates": {
-        "latitude": 37.2,
-        "longitude": 71.4
-      },
-      "image": "assets/images/tajikistan/wakhan-corridor.svg"
+      "id": "iskanderkul-fann-mountains",
+      "name": "イスカンダルクル / ファン山地",
+      "nameLocal": "Iskanderkul / Fann Mountains",
+      "mapLabel": "Iskanderkul",
+      "description": "標高約2,200mの湖を灰色の岩峰が囲む。西部から中央部へ向かうと、乾いた盆地の景色が急に高山の湖と切り立った稜線へ変わることを実感できる。",
+      "coordinates": {"latitude": 39.0748, "longitude": 68.366},
+      "image": "assets/images/tajikistan/approved/scene-03-iskanderkul-fann-mountains.webp",
+      "labelPosition": "left"
     },
     {
-      "id": "yamchun-fort",
-      "name": "ヤムチュン要塞",
-      "nameLocal": "Yamchun Fort",
-      "mapLabel": "Yamchun Fort",
-      "description": "乾いた山腹に残る古い要塞。高台から見るWakhanの谷とPanj Riverが、国境の大きさを感じさせる。",
-      "coordinates": {
-        "latitude": 36.96,
-        "longitude": 71.39
-      },
-      "image": "assets/images/tajikistan/yamchun-fort.svg"
+      "id": "yaghnob-valley",
+      "name": "ヤグノブ渓谷",
+      "nameLocal": "Yaghnob Valley",
+      "mapLabel": "Yaghnob",
+      "description": "ザラフシャン山脈の深い谷に川、耕地、石と土の集落が細く続く。道路から離れた山間の生活圏を見ることで、平地の都市だけでは分からないタジキスタンの居住のかたちが見えてくる。",
+      "coordinates": {"latitude": 39.2, "longitude": 69.0},
+      "image": "assets/images/tajikistan/approved/scene-04-yaghnob-valley.webp",
+      "labelPosition": "right"
     },
     {
-      "id": "engels-peak",
-      "name": "エンゲルス峰",
-      "nameLocal": "Engels Peak",
-      "mapLabel": "Engels Peak",
-      "description": "谷の奥に立つ鋭い雪峰。乾いた岩肌の向こうに白い山が現れ、Wakhanの景色を一段大きくする。",
-      "coordinates": {
-        "latitude": 37,
-        "longitude": 72.58
-      },
-      "image": "assets/images/tajikistan/engels-peak.svg"
+      "id": "hulbuk-fortress-khuttal",
+      "name": "フルブク / 古代フッタル",
+      "nameLocal": "Hulbuk / Ancient Khuttal",
+      "mapLabel": "Hulbuk",
+      "description": "南西部の丘陵地に、城塞と都市遺構が残る。7〜16世紀に続いたフッタルの政治・交易・工芸の層をたどる場所で、2025年に周辺の11構成資産とともに世界遺産へ登録された。",
+      "coordinates": {"latitude": 37.7777, "longitude": 69.5567},
+      "image": "assets/images/tajikistan/approved/scene-05-hulbuk-fortress-khuttal.webp",
+      "labelPosition": "right"
     },
     {
-      "id": "sashil-kul",
-      "name": "サシル・クル",
-      "nameLocal": "Sashil Kul",
-      "mapLabel": "Sashil Kul",
-      "description": "木々が消えたPamir Plateauに広がる湖。荒い岩と水面、広すぎる空だけが長く続く。",
-      "coordinates": {
-        "latitude": 38.2,
-        "longitude": 72
-      },
-      "image": "assets/images/tajikistan/sashil-kul.svg"
+      "id": "yamchun-fort-wakhan",
+      "name": "ヤムチュン要塞 / ワハーン",
+      "nameLocal": "Yamchun Fort / Wakhan",
+      "mapLabel": "Yamchun",
+      "description": "パンジ川を見下ろす乾いた山腹に、石積みの要塞跡が残る。谷の向こう側はアフガニスタンで、山地の交易路と国境が同じ景観の中に重なる。",
+      "coordinates": {"latitude": 36.9697, "longitude": 72.2609},
+      "image": "assets/images/tajikistan/approved/scene-06-yamchun-fort-wakhan.webp",
+      "labelPosition": "left"
     },
     {
-      "id": "ak-baital-pass",
-      "name": "アク・バイタル峠",
-      "nameBreaks": [
-        5
-      ],
-      "nameLocal": "Ak-Baital Pass",
-      "mapLabel": "Ak-Baital Pass",
-      "description": "標高4,600m級の高地を越えるPamir Highway。道そのものが景色になり、空気の薄さまで旅の一部になる。",
-      "coordinates": {
-        "latitude": 38.55,
-        "longitude": 73.48
-      },
-      "image": "assets/images/tajikistan/ak-baital-pass.svg"
+      "id": "ak-baital-pass-pamir-highway",
+      "name": "アク・バイタル峠 / パミール・ハイウェイ",
+      "nameLocal": "Ak-Baital Pass / Pamir Highway",
+      "mapLabel": "Ak-Baital",
+      "description": "M41が標高約4,655mまで上がる東部パミールの峠。植生の少ない高原と雪を残す稜線の間を道路が横切り、移動そのものが国の地形を理解する体験になる。",
+      "coordinates": {"latitude": 38.561, "longitude": 73.5978},
+      "image": "assets/images/tajikistan/approved/scene-07-ak-baital-pass-pamir-highway.webp",
+      "labelPosition": "right"
     },
     {
-      "id": "karakul-lake",
-      "name": "カラクル湖",
-      "nameLocal": "Karakul Lake",
-      "mapLabel": "Karakul Lake",
-      "description": "深い青の湖、茶色い大地、雪をまとい始めた山。キルギス国境に近い高地で、静けさが強く残る。",
-      "coordinates": {
-        "latitude": 39.0597,
-        "longitude": 73.3681
-      },
-      "image": "assets/images/tajikistan/karakul-lake.svg"
+      "id": "karakul-lake-eastern-pamir",
+      "name": "カラクル湖 / 東部パミール",
+      "nameLocal": "Karakul Lake / Eastern Pamir",
+      "mapLabel": "Karakul",
+      "description": "標高約3,900mの高原に大きな塩湖が広がり、茶褐色の地面と遠い雪山が水面を囲む。キルギス国境に近い北東部で、東部パミールの乾燥と高度を一枚に見せる。",
+      "coordinates": {"latitude": 39.0597, "longitude": 73.3681},
+      "image": "assets/images/tajikistan/approved/scene-08-karakul-lake-eastern-pamir.webp",
+      "labelPosition": "left"
     }
   ],
   "encounters": [
+    {"title": "雪を抱く高峰", "icon": "landscape"},
+    {"title": "青い高原湖", "icon": "landscape"},
+    {"title": "パンジ川沿いの道", "icon": "road"},
+    {"title": "果物が並ぶバザール", "icon": "city"},
+    {"title": "刺繍布と手仕事", "icon": "culture"},
+    {"title": "ホームステイの食卓", "icon": "home"},
+    {"title": "ヤクと羊の群れ", "icon": "wildlife"},
+    {"title": "旧ソ連期の大通り", "icon": "city"}
+  ],
+  "atlasExtras": [
     {
-      "symbol": "▱",
-      "title": "Pamir Highway"
+      "topicKey": "tajikistan-valleys-settlement",
+      "themeEn": "GEOGRAPHY",
+      "themeJa": "地理",
+      "title": "山が多い国では、谷が都市と農地の位置を決める",
+      "text": "国土の大半を山地が占めるため、人口と農地はフェルガナ盆地、ヒサール盆地、ヴァフシュ川流域など比較的低い場所へ集まりやすい。地図を見ると、道路も都市も山脈の隙間をたどっている。",
+      "points": ["北部はフェルガナ盆地につながる", "南西部では河川沿いの平地に農地と都市が集まる"]
     },
     {
-      "symbol": "△",
-      "title": "高峰"
+      "topicKey": "tajikistan-sarazm-long-distance-exchange",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "サラズムでは、5,000年以上前の交流圏が見えてくる",
+      "text": "サラズムは中央アジアで早い段階に都市的性格を持った集落の一つ。農耕や牧畜だけでなく、金属加工や遠距離交易の痕跡が見つかり、ザラフシャン渓谷が古くから人と物の通路だったことを伝える。",
+      "points": ["紀元前4〜3千年紀の集落層が残る", "金属加工と広域交流の痕跡が確認されている"]
     },
     {
-      "symbol": "≈",
-      "title": "国境の川"
+      "topicKey": "tajikistan-ancient-khuttal",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "南西部には、フッタルという中世の地域世界があった",
+      "text": "現在のハトロン地方には、7〜16世紀のフッタルに関わる城塞、寺院、都市遺構が点在する。2025年の世界遺産登録によって、東部パミールとは異なる南西部の歴史層が一つの連続資産として見えるようになった。",
+      "points": ["世界遺産は11の構成資産からなる", "政治・交易・仏教文化を含む複数時代の遺構が残る"]
     },
     {
-      "symbol": "◉",
-      "title": "高原湖"
+      "topicKey": "tajikistan-persian-language-world",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "タジク語は、中央アジアに残るペルシア語の世界",
+      "text": "公用語のタジク語は、イランのペルシア語やアフガニスタンのダリー語と近い言語。中央アジアの地理の中にありながら、言葉から見るとイラン文化圏とのつながりがはっきり現れる。",
+      "points": ["国家語はタジク語", "ロシア語も民族間コミュニケーションの言語として位置づけられる"]
     },
     {
-      "symbol": "▥",
-      "title": "要塞"
+      "topicKey": "tajikistan-pamir-road-culture",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "パミールでは、道路そのものが地域の骨格になる",
+      "text": "GBAOの山地では谷と峠をつなぐ道路が集落、宿、物資輸送を結ぶ。都市間の高速移動ではなく、川沿いの細い道や4,000m級の峠を何日もかけて進むことで東西の地形差が見えてくる。",
+      "points": ["M41の一部がパミール高原を横断する", "4,000mを超える峠が旅程と季節を左右する"]
     },
     {
-      "symbol": "♜",
-      "title": "旧ソ連建築"
-    },
-    {
-      "symbol": "♨",
-      "title": "ホームステイ"
-    },
-    {
-      "symbol": "♙",
-      "title": "ヤク"
+      "topicKey": "tajikistan-pamir-fauna",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "高地の生態系は、乾いた景観の中に残っている",
+      "text": "タジク国立公園にはユキヒョウ、マルコポーロアルガリ、シベリアアイベックスなど高山性の動物が生息する。観察は容易ではないが、広い保護地域がパミールを自然景観だけでなく生態系として見る視点を与える。",
+      "points": ["高原と氷河地形を含む広大な保護地域", "希少な高山性哺乳類の生息地"]
     }
   ],
-  "seasons": [
+  "travelTrivia": [
     {
-      "symbol": "♧",
-      "months": "4〜5月",
-      "color": "#7f9b73",
-      "text": "低地は穏やかになる一方、高地では雪や路面状況を確認しながら旅を組み立てる時期。"
+      "topicKey": "tajikistan-dushanbe-monday",
+      "categoryEn": "NAMES",
+      "categoryJa": "地名",
+      "title": "ドゥシャンベは、もともと「月曜日」を意味する地名",
+      "text": "ペルシア語系の名前は、かつて月曜日に市が立った集落に由来する。首都名を知ると、現在の大都市の下に市場町の起源が残っていることに気づける。",
+      "icon": "city",
+      "sourceKey": "dushanbeName"
     },
     {
-      "symbol": "☼",
-      "months": "6〜8月",
-      "color": "#b49a5e",
-      "text": "Pamir Highwayを走りやすい季節。高地でも朝晩は冷えるため、防寒は必要。"
+      "topicKey": "tajikistan-cyrillic-tajik",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "看板のタジク語は、現在はキリル文字で読む",
+      "text": "タジク語はペルシア語系だが、現在の標準表記はキリル文字。ロシア語と同じ文字に見えても語彙や文法は別なので、都市の看板を見比べると中央アジアの言語史が見えてくる。",
+      "icon": "language",
+      "sourceKey": "tajikLanguage"
     },
     {
-      "symbol": "♧",
-      "months": "9〜10月",
-      "color": "#b4794f",
-      "text": "乾いた山の色が深くなる頃。標高4,000mを超える場所では冬の寒さが早く始まる。"
+      "topicKey": "tajikistan-nowruz-spring",
+      "categoryEn": "CUSTOMS",
+      "categoryJa": "季節",
+      "title": "3月のノウルーズは、春を迎える大きな節目",
+      "text": "中央アジアとイラン文化圏に広がる新年行事で、タジキスタンでも春の祝祭として定着している。3月に訪れると、広場や家庭の食卓から季節の切り替わりを感じやすい。",
+      "icon": "sun",
+      "sourceKey": "nowruz"
     },
     {
-      "symbol": "❄",
-      "months": "11〜3月",
-      "color": "#718b9c",
-      "text": "高地は厳冬期。峠や道路の状況次第で移動が難しくなるため、一般的な周遊には向きにくい。"
+      "topicKey": "tajikistan-pamir-high-altitude-road",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "移動",
+      "title": "パミール・ハイウェイは4,000mを超える峠を通る",
+      "text": "東部では標高が一気に上がり、アク・バイタル峠は約4,655m。距離だけで日程を考えず、順応、路面、天候を含めて一日の移動量を見る必要がある。",
+      "icon": "road",
+      "sourceKey": "pamirHighway"
+    },
+    {
+      "topicKey": "tajikistan-gbao-entry-rules",
+      "categoryEn": "LOCAL TIP",
+      "categoryJa": "現地のコツ",
+      "title": "GBAOへ向かう前に、最新の入域条件を確認する",
+      "text": "パミールを含むGBAOは通常の国内移動と扱いが異なることがあり、国境地帯では通行条件も変わり得る。航空券や車だけでなく、入域許可と国境情報を出発前に確認したい。",
+      "icon": "info",
+      "sourceKey": "regionalTravel"
     }
+  ],
+  "taste": {
+    "kicker": "TASTE OF TAJIKISTAN",
+    "title": "タジキスタンで食べたいもの",
+    "intro": "米と肉を炊く祝いの料理から、乾燥乳製品を使う家庭料理、蒸し料理、手打ち麺まで。山地と農耕地、ペルシア系の食文化が重なる4品を見る。",
+    "items": [
+      {"id": "qurutob", "name": "クルトブ", "nameLocal": "Qurutob", "text": "乾燥させた発酵乳製品のクルトを溶かし、薄いパン、玉ねぎや野菜と合わせて大皿で食べる料理。乳製品とパンを軸にしたタジキスタンらしい家庭料理。", "image": "assets/images/tajikistan/approved/food-qurutob.webp", "imageState": "PENDING"},
+      {"id": "oshi-palav", "name": "オシ・パラフ", "nameLocal": "Oshi palav / Plov", "text": "米、肉、にんじん、玉ねぎを大鍋で炊き上げる料理。祝い事や人が集まる場とも結びつき、地域ごとに油やにんじん、肉の使い方が変わる。", "image": "assets/images/tajikistan/approved/food-oshi-palav.webp", "imageState": "PENDING"},
+      {"id": "mantu", "name": "マントゥ", "nameLocal": "Mantu", "text": "肉や玉ねぎなどを包んだ大ぶりの生地を蒸す料理。中央アジア一帯に広がる一皿で、タジキスタンでは家庭料理や食堂の定番として出会いやすい。", "image": "assets/images/tajikistan/approved/food-mantu.webp", "imageState": "PENDING"},
+      {"id": "laghman", "name": "ラグマン", "nameLocal": "Laghman", "text": "長い麺に肉と野菜を合わせる料理。汁気のあるものから炒めるものまで幅があり、中央アジアの交易路を通じた食文化の広がりを感じられる。", "image": "assets/images/tajikistan/approved/food-laghman.webp", "imageState": "PENDING"}
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "山地の移動は距離より時間がかかる。西部と首都だけを見る旅と、東部パミールまで入る旅は別のスケールで考えたい。",
+    "items": [
+      {"duration": "4〜5日", "title": "首都とファン山地を組み合わせる", "text": "ドゥシャンベを起点に、西部または中央山地へ一つ軸を伸ばす。例：ドゥシャンベ → イスカンダルクル → パンジケント / サラズム。", "icon": "city"},
+      {"duration": "8〜10日", "title": "北西部と南部まで国の幅を見る", "text": "都市、古代遺跡、湖、南部の歴史を組み合わせ、地域差を追う。例：ドゥシャンベ → フルブク → ファン山地 → パンジケント → ホジェンド。", "icon": "map"},
+      {"duration": "12日以上", "title": "パミールを旅の中心に据える", "text": "高地順応と道路状況に余裕を持ち、ワハーンから東部パミールへ抜ける。例：ドゥシャンベ → カライフム → ホログ → ワハーン → ムルガブ → カラクル。", "icon": "compass"}
+    ]
+  },
+  "seasons": [
+    {"months": "3〜5月", "color": "#7f9b73", "text": "低地の谷や都市では春が進み、ノウルーズの季節。高地の峠やパミールでは雪と道路状況がまだ旅程を左右する。"},
+    {"months": "6〜8月", "color": "#b49a5e", "text": "高地道路やトレッキングを組み込みやすい時期。低地は暑くなる一方、4,000m級の高原では朝晩の冷え込みに備える。"},
+    {"months": "9〜10月", "color": "#b4794f", "text": "空気が乾き、山地を移動しやすい日も多い。標高の高い場所では気温が急に下がり、初雪で峠の条件が変わることがある。"},
+    {"months": "11〜2月", "color": "#718b9c", "text": "都市や低地を中心にする季節。東部パミールや高い峠は厳冬となり、道路閉鎖や遅延を前提に計画する必要がある。"}
   ],
   "transport": {
-    "symbol": "▱",
-    "title": "PAMIR HIGHWAY",
-    "distance": "",
-    "text": "長距離の陸路移動が旅の中心。高地、未舗装区間、国境地帯を含むため、車両と日程には余裕を持たせる。"
+    "title": "4WD・乗合車・長距離道路",
+    "text": "主要都市間は道路移動が基本。東部パミールでは4WDを使う旅程が一般的で、未舗装区間、高地、落石や天候の影響を受ける区間がある。距離ではなく道路状況と標高から移動日を組む。",
+    "icon": "road"
   },
   "personas": [
-    {
-      "symbol": "△",
-      "title": "山岳風景のために旅する人",
-      "text": "雪峰、乾いた谷、高原湖を長い移動の中で追いかけたい人。"
-    },
-    {
-      "symbol": "▱",
-      "title": "ロードトリップが好きな人",
-      "text": "目的地だけではなく、Pamir Highwayを進む時間そのものを楽しめる人。"
-    },
-    {
-      "symbol": "◎",
-      "title": "まだ知られていない景色を見たい人",
-      "text": "観光客の少ない場所で、静かな大地を自分の目で確かめたい人。"
-    },
-    {
-      "symbol": "♨",
-      "title": "土地の暮らしに触れたい人",
-      "text": "ホームステイや小さな集落を通じて、高地の生活を感じたい人。"
-    },
-    {
-      "symbol": "◌",
-      "title": "不便さも旅として楽しめる人",
-      "text": "通信や設備が限られる環境を、遠くへ来た感覚として受け止められる人。"
-    }
+    {"title": "山岳ロードトリップを旅の主役にしたい人", "text": "目的地を短くつなぐより、川沿いの道、高原、峠を何日も進むこと自体を楽しみたい人。"},
+    {"title": "高地の湖と乾いた山を歩きたい人", "text": "ファン山地からパミールまで、標高と地形が変わる自然景観を自分の足で確かめたい人。"},
+    {"title": "シルクロードの外側にある歴史と暮らしを知りたい人", "text": "サラズム、フッタル、バザール、山村を通じて、古代から現在までの人の移動と生活を見たい人。"}
   ],
   "facts": [
-    {
-      "symbol": "◎",
-      "label": "地域",
-      "value": "中央アジア"
-    },
-    {
-      "symbol": "▥",
-      "label": "首都",
-      "value": "ドゥシャンベ"
-    },
-    {
-      "symbol": "♙",
-      "label": "人口",
-      "value": "約1,072万人（2026年）"
-    },
-    {
-      "symbol": "◯",
-      "label": "言語",
-      "value": "タジク語"
-    },
-    {
-      "symbol": "＄",
-      "label": "通貨",
-      "value": "ソモニ（TJS）"
-    }
+    {"label": "地域", "value": "中央アジア", "icon": "globe"},
+    {"label": "首都", "value": "ドゥシャンベ", "icon": "landmark"},
+    {"label": "人口", "value": "約1,082万人（2026年7月）", "icon": "users"},
+    {"label": "面積", "value": "約14.3万km²（日本の約38%）", "icon": "map"},
+    {"label": "言語", "value": "タジク語", "icon": "language"},
+    {"label": "主な宗教", "value": "イスラム教（主にスンニ派）", "icon": "culture"},
+    {"label": "通貨", "value": "ソモニ（TJS）", "icon": "coin"}
+  ],
+  "signatureFacts": [
+    {"topicKey": "tajikistan-mountain-share", "label": "国土の93%が山地", "value": "93%", "note": "フェルガナ盆地や南西部の谷を除くと、国土の大部分をパミール、ヒサール・アライなどの山地が占める。", "icon": "landscape"},
+    {"topicKey": "tajikistan-national-park-area", "label": "タジク国立公園", "value": "2,611,674 ha", "note": "パミールの広い範囲を含む世界自然遺産。高原、7,000m級の峰、氷河、湖が一つの保護地域に入る。", "icon": "landscape"},
+    {"topicKey": "tajikistan-world-heritage-count", "label": "世界遺産", "value": "5件", "note": "サラズム、タジク国立公園、ザラフシャン＝カラクム回廊、ティグロヴァヤ・バルカ、古代フッタルが登録されている。", "icon": "history"}
   ],
   "tips": [
-    {
-      "symbol": "△",
-      "title": "標高への順応を急がない",
-      "text": "Pamirでは4,000mを超える区間が続く。移動速度と休息を含めて余裕のある日程にする。"
-    },
-    {
-      "symbol": "▱",
-      "title": "道路状況を前提に組み立てる",
-      "text": "距離だけで所要時間を考えず、未舗装区間や峠、天候による遅れを見込む。"
-    },
-    {
-      "symbol": "◌",
-      "title": "通信が切れる場所がある",
-      "text": "高原では電波が入らない区間もある。連絡、地図、支払いをオフライン前提でも準備する。"
-    }
+    {"topicKey": "tajikistan-altitude-acclimatization", "title": "パミールでは高度順応を旅程に入れる", "text": "ムルガブ周辺やアク・バイタルでは4,000m前後まで上がる。低地から一気に移動せず、睡眠地点と休息日を含めて無理のない順序にする。"},
+    {"topicKey": "tajikistan-gbao-border-check", "title": "GBAOと国境地帯の条件は出発前に再確認する", "text": "入域許可、国境検問、道路通行は変更されることがある。ワハーンやキルギス方面へ進む場合は、最新の政府情報と現地運行状況を確認する。"},
+    {"topicKey": "tajikistan-cash-offline", "title": "高地では現金とオフライン前提で準備する", "text": "都市を離れるとATM、カード決済、通信が限られる区間がある。地図、宿の連絡先、現金、予備電源を移動前にそろえておく。"}
+  ],
+  "nextRoutes": [
+    {"flag": "🇺🇿", "countryEn": "UZBEKISTAN", "countryJa": "ウズベキスタン", "path": "Panjakent → Sarazm / Jartepa → Samarkand", "description": "ザラフシャン渓谷を西へ進み、古代サラズムからサマルカンドへつなぐ。山地の谷と農地の景色から、青いタイル建築の大都市へ地続きで変化していく。"},
+    {"flag": "🇰🇬", "countryEn": "KYRGYZSTAN", "countryJa": "キルギス", "path": "Dushanbe → Rasht → Lakhsh → Karamyk → Osh", "description": "中央部の谷から北東へ進み、2025年に再開された国境を越えてアライ谷とオシュへ。タジキスタンの狭い山谷から、キルギス側の広い高地草原へ景観が切り替わる。"}
   ],
   "relatedCountries": [
-    {
-      "nameEn": "KYRGYZSTAN",
-      "nameJa": "キルギス",
-      "flag": "🇰🇬",
-      "reason": "Pamirの高地から、そのまま天山山脈と草原のロードトリップへつなげたいなら。",
-      "image": ""
-    },
-    {
-      "nameEn": "UZBEKISTAN",
-      "nameJa": "ウズベキスタン",
-      "flag": "🇺🇿",
-      "reason": "山岳の旅から、サマルカンドやブハラの建築と都市文化へ景色を切り替えたいなら。",
-      "image": ""
-    },
-    {
-      "nameEn": "AFGHANISTAN",
-      "nameJa": "アフガニスタン",
-      "flag": "🇦🇫",
-      "reason": "Wakhanで川の向こうに見えていた山地と村の世界を、地理としてさらに知りたいなら。",
-      "image": ""
-    }
+    {"slug": "kyrgyz", "nameEn": "KYRGYZSTAN", "nameJa": "キルギス", "flag": "🇰🇬", "reason": "高地の湖、峠道、放牧地を長い陸路移動でつなぐ旅が好きなら、天山山脈と草原の広がりを比較できる。"},
+    {"slug": "pakistan", "nameEn": "PAKISTAN", "nameJa": "パキスタン", "flag": "🇵🇰", "reason": "巨大な山系と深い谷、長距離の高地道路を旅の中心にしたいなら、カラコルムの地形と道路旅へ視点を広げられる。"},
+    {"slug": "uzbekistan", "nameEn": "UZBEKISTAN", "nameJa": "ウズベキスタン", "flag": "🇺🇿", "reason": "ザラフシャンの古い交流路を、山地の遺跡からサマルカンドやブハラの都市建築まで続けて見たい人に合う。"}
   ],
-  "updatedAt": "2026-08-22",
-  "sources": {
-    "journeyLens": "JOURNEY LENS: Dushanbe / Wakhan Corridor / Pamir Plateau / Karakul Lake stories",
-    "map": "JOURNEY ATLAS illustrated Pamir route map; exact sub-location coordinates remain prototype-level",
-    "population": "Agency on Statistics under the President of the Republic of Tajikistan: population 10.721 million at 1 January 2026."
-  },
+  "updatedAt": "2026-09-13",
+  "sourcesVerifiedAt": "2026-09-13",
   "sourceDates": {
-    "population": "2026-01-01"
+    "population": "2026-07-01",
+    "worldHeritage": "2026",
+    "nextRoutes": "2026-09-13"
+  },
+  "sources": {
+    "population": "Agency on Statistics under the President of the Republic of Tajikistan, Population Growth and Demographic Changes in the Country, 4 Sep 2026: 10.8177 million people as of 1 July 2026.",
+    "area": "Ministry of Foreign Affairs of Japan, Tajikistan basic data, updated 6 Feb 2026: approx. 142,600 km²; UN data basis.",
+    "languageReligion": "Ministry of Foreign Affairs of Japan, Tajikistan basic data: Tajik is the official language; Sunni Islam is predominant and Ismaili Shia communities are common in the Pamir region.",
+    "tajikLanguage": "Constitution of the Republic of Tajikistan, Article 2: Tajik is the state language and Russian is the language of inter-nationality communication.",
+    "mountainShare": "World Bank, Tajikistan physical/topographic baseline: mountainous terrain accounts for 93% of land area.",
+    "worldHeritage": "UNESCO World Heritage Centre, Tajikistan World Heritage List, checked 2026: 5 properties including Cultural Heritage Sites of Ancient Khuttal.",
+    "pamirPark": "UNESCO World Heritage Centre, Tajik National Park (Mountains of the Pamirs): property area 2,611,674 ha, 1,085 inventoried glaciers, more than 400 lakes.",
+    "sarazm": "UNESCO World Heritage Centre, Proto-urban Site of Sarazm: coordinates N39 30 28.4 E67 27 31.4 and 15.93 ha property.",
+    "ancientKhuttal": "UNESCO World Heritage Centre, Cultural Heritage Sites of Ancient Khuttal; inscribed 2025 as an 11-component serial property.",
+    "pamirHighway": "Committee for Tourism Development / Travel to Tajikistan, The Pamir Highway: more than 700 km in GBAO with passes above 4,000 m.",
+    "food": "Committee for Tourism Development under the Government of Tajikistan: national dishes and popular food venues include plov, qurutob, mantu and lagman.",
+    "dushanbeName": "Encyclopaedic and standard geographic references: Dushanbe derives from the Persian/Tajik word for Monday, reflecting the former Monday market settlement.",
+    "nowruz": "UNESCO Intangible Cultural Heritage, Nowruz/Novruz/Nowrouz shared multinational element; Tajikistan is among participating states.",
+    "regionalTravel": "UK FCDO Tajikistan regional risks, checked 13 Sep 2026: border crossings can close at short notice; conditions near the Kyrgyzstan border can change and should be checked locally.",
+    "nextRoutes": "Tajikistan MFA lists Sarazm automobile crossing with Uzbekistan as international; Tajikistan/Kyrgyzstan authorities reopened border checkpoints in 2025, including Tojvaron–Karamyk in July 2025.",
+    "map": "Basemap countries_i political boundary linework rendered in WGS84-equivalent cylindrical coordinates and converted to JOURNEY ATLAS map-v3 clean background.",
+    "journeyLens": "JOURNEY LENS Tajikistan stories: Dushanbe, Wakhan Corridor, Pamir Plateau and Karakul Lake."
   }
 }
