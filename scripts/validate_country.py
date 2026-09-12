@@ -34,7 +34,6 @@ MAX_MARKER_OFFSET_PERCENT = 5.0
 MARKER_EDGE_MARGIN = {"scene": 18.0, "hero": 18.0, "capital": 18.0}
 
 
-
 def fail(errors: list[str], message: str) -> None:
     errors.append(message)
 
@@ -212,7 +211,7 @@ def validate_coordinates(errors: list[str], owner: str, coordinates: object, bou
 
 def marker_min_distance(kind_a: str, kind_b: str) -> float:
     kinds = {kind_a, kind_b}
-    # Intrinsic-canvas distances equivalent to the 320px mobile map.
+    # Intrinsic-canvas collision distances. Hero / Capital follows MAP_SYSTEM.md.
     if kind_a == kind_b == "scene":
         return 71.0
     if kinds == {"scene", "hero"}:
@@ -220,7 +219,7 @@ def marker_min_distance(kind_a: str, kind_b: str) -> float:
     if kinds == {"scene", "capital"}:
         return 55.0
     if kinds == {"hero", "capital"}:
-        return 47.0
+        return 28.0
     return 0.0
 
 
