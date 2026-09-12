@@ -1,0 +1,94 @@
+name: Temporary Thailand main sync
+
+on:
+  push:
+    branches:
+      - country/thailand
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/thailand
+          fetch-depth: 0
+      - name: Merge latest main and reconcile shared SSOT
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin "+refs/heads/main:refs/remotes/origin/main"
+
+          BRANCH_HEAD="$(git rev-parse HEAD)"
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "Latest main is already an ancestor."
+          else
+            git merge --no-edit --no-commit origin/main || true
+          fi
+
+          python3 - "$BRANCH_HEAD" <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          branch_head = sys.argv[1]
+
+          def show(ref, path):
+              return subprocess.check_output(
+                  ["git", "show", f"{ref}:{path}"], text=True, encoding="utf-8"
+              )
+
+          # Destination registry: latest main + Thailand's approved publication row.
+          path = "data/atlas-destinations.json"
+          main = json.loads(show("origin/main", path))
+          branch = json.loads(show(branch_head, path))
+          thai = next(row for row in branch["destinations"] if row.get("slug") == "thailand")
+          for i, row in enumerate(main["destinations"]):
+              if row.get("slug") == "thailand":
+                  main["destinations"][i] = thai
+                  break
+          else:
+              raise SystemExit("Thailand missing from atlas destination registry")
+          Path(path).write_text(json.dumps(main, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          # Theme taxonomy: latest main + the user-approved three Thailand themes.
+          path = "data/theme-taxonomy.json"
+          taxonomy = json.loads(show("origin/main", path))
+          desired = {"life", "sea", "food"}
+          for theme in taxonomy["themes"]:
+              examples = [slug for slug in theme.get("examples", []) if slug != "thailand"]
+              if theme.get("id") in desired:
+                  examples.append("thailand")
+              theme["examples"] = examples
+          Path(path).write_text(json.dumps(taxonomy, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          # Published-country audit: latest main (including Laos) + Thailand terminal row.
+          path = "data/country-renewal-status.json"
+          main_status = json.loads(show("origin/main", path))
+          branch_status = json.loads(show(branch_head, path))
+          thai_status = next(row for row in branch_status["countries"] if row.get("slug") == "thailand")
+          main_status["countries"] = [row for row in main_status["countries"] if row.get("slug") != "thailand"]
+          main_status["countries"].append(thai_status)
+          Path(path).write_text(json.dumps(main_status, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+          PY
+
+          git add data/atlas-destinations.json data/theme-taxonomy.json data/country-renewal-status.json
+
+          unresolved="$(git diff --name-only --diff-filter=U)"
+          if [ -n "$unresolved" ]; then
+            echo "Unexpected unresolved merge conflicts:"
+            echo "$unresolved"
+            exit 1
+          fi
+
+          git rm .github/workflows/tmp-thailand-sync.yml
+          git add -A
+          git commit -m "Merge latest main for Thailand publication"
+          git push origin HEAD:country/thailand
