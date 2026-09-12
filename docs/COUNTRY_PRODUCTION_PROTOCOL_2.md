@@ -1,11 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
-Updated: 2026-09-11
+Updated: 2026-09-12
+Current policy patch: 3
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. The current policy patch removes the remaining post-image bottlenecks: pre-approval production integration, review URL overwrite, review-trigger commits, repeated main-base invalidation, and duplicate targeted package builds.
+Protocol 2.0 is the default for **new Country production**. Patch 3 preserves the post-image fast path and adds stricter image-round interaction and Taste controls based on the Philippines / Singapore / Thailand / Vietnam / Brunei production review.
 
 ## Production shape
 
@@ -14,8 +15,9 @@ CONTENT + PRE-VISUAL BUILD
 → Hero generation/review
 → Scene round to batch boundary
 → Scene batch review
-→ Taste round to batch boundary
+→ Taste first-pass round to batch boundary
 → Taste batch review
+→ Taste REGEN round only when required
 → one 13-image USER_HANDOFF
 → one batch asset verification
 → target Country QA
@@ -56,7 +58,7 @@ Scene round:
 S01 → S02 → S03 → S04 → S05 → S06 → S07 → S08 → one Batch Review
 ```
 
-Taste round:
+Taste first-pass round:
 
 ```text
 FOOD01 → FOOD02 → FOOD03 → FOOD04 → one Batch Review
@@ -72,7 +74,43 @@ python3 scripts/country_production_protocol_v2.py next {slug}
 
 `interaction.userGate` is authoritative. Normal user gates are Hero, Scene Batch, Taste Batch, and final Country-page review only.
 
-## 3. Image handoff is one fixed path
+The assistant must not require `approve`, `進めて`, `next`, `生成` or equivalent between valid Scene/Taste targets. A platform-forced turn boundary is tracked separately from a user continuation nudge; only the latter is a workflow defect.
+
+Protocol 2 Patch 3 metrics:
+
+- `productionMetrics.perImageApprovalPrompts` target `0`;
+- `productionMetrics.userContinuationNudges` target `0`;
+- `productionMetrics.runtimeForcedImageTurnBoundaries` is measured but allowed.
+
+## 3. Taste first-pass and REGEN are separate rounds
+
+Taste follows Image Policy 7.2.
+
+If a FOOD target fails during `TASTE_INITIAL`:
+
+1. park that target as `REGENERATE`;
+2. continue to the next `NOT_STARTED` FOOD target;
+3. do not retry the failed FOOD while another first-pass target remains;
+4. after all FOOD01–FOOD04 targets have been attempted, stop at one Taste Batch Review;
+5. approve valid candidates and record failures in the batch ledger `regenerate` list;
+6. only then enter `TASTE_REGEN`.
+
+`TASTE_REGEN` before a first Taste batch-review ledger round is invalid.
+
+During REGEN, regenerate all remaining NG targets as independent calls and request one regeneration Batch Review at the round boundary. Per-image approval remains forbidden.
+
+Taste composition distinguishes integral dish components from decoration:
+
+- integral sauce, dip, broth, wrapper or serving element may appear when genuinely required to constitute or recognize the dish;
+- those elements must be named in the FOOD Render Packet;
+- decorative props and contextual styling are forbidden;
+- background remains plain pale beige / warm ivory.
+
+Repeat/restage and wrong-target carryover require immediate Render Packet / prompt-family refresh before regeneration. Do not retry the same prompt series once those failures occur.
+
+See `docs/TASTE_IMAGE_PRODUCTION.md` and `docs/IMAGE_POLICY_REVISION_7_2.md`.
+
+## 4. Image handoff is one fixed path
 
 After Hero + 8 Scenes + 4 Taste images are approved:
 
@@ -89,7 +127,7 @@ python3 scripts/country_production_protocol_v2.py handoff {slug}
 
 This is operational handoff, not an approval gate. Assistant-side raster recovery/materialization is forbidden under this protocol.
 
-## 4. Target-only post-visual fast path
+## 5. Target-only post-visual fast path
 
 For a normal Country-only change:
 
@@ -109,7 +147,7 @@ Full-Country build/QA is reserved for shared template/CSS/JS/build-system change
 
 The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build. This removes the previous duplicate targeted package build.
 
-## 5. One pre-main Review PR triggers Preview automatically
+## 6. One pre-main Review PR triggers Preview automatically
 
 After `phase: QA` and target QA `PASS`, Protocol 2 NEXT returns:
 
@@ -128,7 +166,7 @@ Opening or synchronizing that PR automatically triggers `.github/workflows/deplo
 
 The PR remains open through final user review. It is reused for publication after approval.
 
-## 6. Persistent Country review URLs
+## 7. Persistent Country review URLs
 
 GitHub Pages is one deployment surface, but each Country now lives in its own persistent subtree:
 
@@ -162,7 +200,7 @@ After the Pages deployment and Browser QA pass, record:
 
 Protocol NEXT then returns `REVIEW_CANONICAL_URL` as the final user gate.
 
-## 7. Final approval reuses the same PR
+## 8. Final approval reuses the same PR
 
 After explicit user approval, Protocol NEXT returns:
 
@@ -184,7 +222,7 @@ Finalize the existing Country branch/PR to the normal terminal publication repre
 
 Because this final commit is publication metadata/state only, local PR Browser QA may skip redundant rendering work; the already-passed persistent review remains the visual approval source.
 
-## 8. Serialized publication queue
+## 9. Serialized publication queue
 
 `.github/workflows/publish-country-queue.yml` is the final integration queue.
 
@@ -210,7 +248,7 @@ This matches the repository Ruleset's strict up-to-date requirement while preven
 
 Country production can remain parallel; **main publication is intentionally serial**.
 
-## 9. Content QA v2
+## 10. Content QA v2
 
 See `docs/CONTENT_QUALITY_RULES_V2.md`.
 
@@ -221,7 +259,7 @@ Hard rules include:
 
 For Country-only work, Content QA targets the Country. Full Content QA is reserved for shared/full-scope changes.
 
-## 10. State initialization
+## 11. State initialization
 
 For a new Country:
 
@@ -235,17 +273,20 @@ Validate with:
 
 ```bash
 python3 scripts/country_production_protocol_v2.py validate
+python3 scripts/image_policy_v72.py validate
 ```
 
-Existing legacy/already-integrated States are not retroactively migrated.
+Existing completed/already-integrated States are not retroactively migrated. Active image production must follow the current main policy before another image generation occurs.
 
-## 11. Productivity targets
+## 12. Productivity targets
 
 Normal new-Country targets:
 
 - per-image approval prompts: 0;
+- user continuation nudges during Scene/Taste rounds: 0;
+- runtime-forced image turn boundaries: measured separately, not treated as approvals;
 - Scene Batch reviews: 1;
-- Taste Batch reviews: 1;
+- Taste Batch reviews: 1 unless a genuine REGEN batch is required;
 - image handoffs: 1;
 - Review PRs: 1;
 - pre-canonical main integrations: 0;
@@ -258,7 +299,7 @@ Normal new-Country targets:
 
 Measure Taste Batch approval → review URL ready, publication queue synchronization cycles, and final main integration count.
 
-## 12. Authority
+## 13. Authority
 
 When Protocol 2 applies:
 
