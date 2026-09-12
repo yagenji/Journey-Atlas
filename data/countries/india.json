@@ -20,7 +20,7 @@
     {"id": "kaziranga-rhino-floodplain", "name": "カジランガ / 氾濫原とインドサイ", "nameLocal": "Kaziranga / Floodplain & Indian Rhinoceros", "mapLabel": "Kaziranga", "description": "ブラマプトラ川流域の高い草地と湿地にインドサイが暮らす。モンスーンと河川がつくる東部の氾濫原を、野生動物と植生の関係から読み取れる。", "coordinates": {"latitude": 26.5775, "longitude": 93.1711}, "image": "assets/images/india/approved/kaziranga-rhino-floodplain.webp", "labelPosition": "right", "mapOffset": {"x": 1.2, "y": -0.5}}
   ],
   "encounters": [
-    {"title": "川辺の祈り", "icon": "culture"}, {"title": "色と文字の違う看板", "icon": "language"}, {"title": "長距離列車", "icon": "road"}, {"title": "バザール", "icon": "city"}, {"title": "寺院とモスク", "icon": "landmark"}, {"title": "布と手仕事", "icon": "culture"}, {"title": "スパイスの香り", "icon": "food"}, {"title": "季節風の雨", "icon": "landscape"}
+    {"title": "川辺の祈り", "icon": "culture"}, {"title": "多言語の駅名標", "icon": "language"}, {"title": "長距離列車", "icon": "road"}, {"title": "オートリキシャ", "icon": "city"}, {"title": "寺院とモスク", "icon": "landmark"}, {"title": "布と手仕事", "icon": "culture"}, {"title": "市場の香辛料", "icon": "food"}, {"title": "季節風の雨", "icon": "landscape"}
   ],
   "atlasExtras": [
     {"topicKey": "india-many-scripts-public-space", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "州をまたぐと、話し言葉だけでなく文字の形まで変わる", "text": "インドでは連邦の公用語制度とは別に、州や地域で使われる言語が大きく異なる。デーヴァナーガリー、ベンガル、タミル、テルグなど異なる文字体系が駅名や店、道路標識に現れ、移動そのものが言語地図をたどる体験になる。", "points": ["憲法第8附則には22言語が掲げられる", "地域によって公的表示に現れる言語の組み合わせも変わる"]},
@@ -35,7 +35,7 @@
     {"topicKey": "india-stepwells-water-architecture", "categoryEn": "ARCHITECTURE", "categoryJa": "建築", "title": "乾燥地では、水へ下りていく建築がある", "text": "グジャラートのラーニー・キ・ヴァーヴのような階段井戸では、地上に建物を立てるのとは逆に、地下へ段を下りながら水へ近づく。気候と水管理が建築の形を変えた例として歩ける。", "icon": "landmark", "sourceKey": "stepwell"},
     {"topicKey": "india-sikh-langar-community-kitchen", "categoryEn": "CUSTOMS", "categoryJa": "習慣", "title": "シク教のグルドワラでは、共同食堂「ランガル」に出会える", "text": "多くのグルドワラでは、背景にかかわらず人々が一緒に食事をとるランガルが行われる。訪れる場合は、頭を覆う、靴を脱ぐなど、その施設の案内に従う。", "icon": "food", "sourceKey": "langar"},
     {"topicKey": "india-railway-station-city-inside-city", "categoryEn": "TRANSPORT", "categoryJa": "移動", "title": "大きな鉄道駅は、移動地点というより一つの街に近い", "text": "長距離列車、近郊列車、売店、食事、荷物、人の流れが同時に動く。駅で列車番号・車両・乗車位置を確認する習慣を持つと、巨大な鉄道網を旅の味方にしやすい。", "icon": "road", "sourceKey": "railways"},
-    {"topicKey": "india-sarnath-2026-world-heritage", "categoryEn": "HERITAGE", "categoryJa": "遺産", "title": "2026年、サールナートが45件目の世界遺産になった", "text": "バラナシ郊外のサールナートは、ブッダが最初の説法を行ったとされる仏教の主要巡礼地。2026年7月の登録で、インドの世界遺産は45件になった。", "icon": "landmark", "sourceKey": "sarnath"}
+    {"topicKey": "india-banknote-language-panel", "categoryEn": "EVERYDAY", "categoryJa": "言語", "title": "一枚の紙幣に、17の言語が現れる", "text": "インド準備銀行によると、紙幣の言語パネルには15言語が並び、これにヒンディー語と英語が加わる。財布の中だけでも、インドの多言語性を目で確かめられる。", "icon": "language", "sourceKey": "banknoteLanguages"}
   ],
   "taste": {"kicker": "TASTE OF INDIA", "title": "インドで食べたいもの", "intro": "一つの「インド料理」にまとめず、地域ごとに主食・香辛料・調理法が変わることを感じたい4品。", "items": [
     {"id": "hyderabadi-biryani", "name": "ハイデラバード・ビリヤニ", "nameLocal": "Hyderabadi Biryani", "text": "香り米と肉、香辛料を重ね、蒸気を閉じ込めて炊くハイデラバードの代表料理。米粒の香りと層になった味を一皿で楽しむ。", "image": "assets/images/india/approved/hyderabadi-biryani.webp", "imageState": "PENDING"},
@@ -64,9 +64,9 @@
     {"label": "地域", "value": "南アジア"}, {"label": "首都", "value": "ニューデリー"}, {"label": "人口", "value": "約14億6,400万人（2025年）"}, {"label": "面積", "value": "約3,287,000 km²（日本の約8.7倍）"}, {"label": "言語", "value": "連邦の公用語はヒンディー語。英語も連邦の公務で継続使用され、州・地域で多様な言語が使われる"}, {"label": "主な宗教", "value": "ヒンドゥー教を中心に、イスラム教、キリスト教、シク教、仏教、ジャイナ教など"}, {"label": "通貨", "value": "インドルピー（INR）"}
   ],
   "signatureFacts": [
-    {"topicKey": "india-eighth-schedule-languages", "label": "憲法第8附則の言語", "value": "22言語", "note": "連邦の公用語を一つの『国語』として捉えるだけではインドの言語環境は見えない。憲法第8附則には22言語が掲げられ、地域ごとに異なる言語と文字が公共空間に現れる。", "icon": "language"},
     {"topicKey": "india-world-heritage-2026", "label": "世界遺産", "value": "45件", "note": "2026年7月にサールナートが登録され、文化37・自然7・複合1の計45件になった。古代遺跡だけでなく、鉄道、都市建築、自然保護区まで対象が広い。", "icon": "landmark"},
-    {"topicKey": "india-states-union-territories", "label": "州・連邦直轄領", "value": "28州＋8直轄領", "note": "28州と8つの連邦直轄領で構成される。言語、制度、食、祭り、景観の地域差を理解するうえで、州という単位が旅の実感にもつながりやすい。", "icon": "map"}
+    {"topicKey": "india-rail-network", "label": "鉄道路線", "value": "約69,181 km", "note": "2024年3月末時点の路線延長。世界最大級の鉄道網の一つで、都市だけでなく平原、乾燥地、デカン、海岸部を連続した風景としてつなぐ。", "icon": "road"},
+    {"topicKey": "india-world-tiger-share", "label": "世界の野生トラ", "value": "約70%", "note": "インドのNational Tiger Conservation Authorityによると、13のトラ生息国にいる野生トラの約70%がインドに生息する。58のトラ保護区が18州に広がる。", "icon": "wildlife"}
   ],
   "tips": [
     {"topicKey": "india-travel-region-first", "title": "最初に『国』ではなく『地域』を決める", "text": "距離が大きく、地域差も強い。北部・ラダック・ラジャスタン・デカン・南部・北東部などから軸を選び、そこから都市をつなぐ方が移動だけで旅程が埋まりにくい。"},
@@ -74,16 +74,18 @@
     {"topicKey": "india-monsoon-regional-difference", "title": "雨季は月だけでなく、行く地域まで確認する", "text": "南西モンスーンと北東モンスーンでは影響地域が異なり、高地乾燥地も別の条件になる。同じ『雨季』という言葉だけで全国の旅程を判断しない。"}
   ],
   "nextRoutes": [
-    {"flag": "🇳🇵", "countryEn": "NEPAL", "countryJa": "ネパール", "path": "Gorakhpur → Sunauli / Bhairahawa → Lumbini → Kathmandu", "description": "北インドから陸路で国境を越え、タライ平原、仏教巡礼地ルンビニ、ヒマラヤ山麓の盆地へ景観をつなぐ。インド側の鉄道移動からネパール側の道路旅へ切り替わる代表的な周遊ルート。"}
+    {"flag": "🇳🇵", "countryEn": "NEPAL", "countryJa": "ネパール", "path": "Gorakhpur → Sunauli / Bhairahawa → Lumbini → Kathmandu", "description": "北インドから陸路で国境を越え、タライ平原、仏教巡礼地ルンビニ、ヒマラヤ山麓の盆地へ景観をつなぐ。インド側の鉄道移動からネパール側の道路旅へ切り替わる代表的な周遊ルート。"},
+    {"flag": "🇵🇰", "countryEn": "PAKISTAN", "countryJa": "パキスタン", "path": "Amritsar → Attari / Wagah → Lahore", "description": "パンジャーブの平原、食、シク教とイスラム文化、ムガル期の歴史が国境の両側へ続く、西向きの自然な文化ルート。ただし2025年4月以降、Attariの通常旅客越境は閉鎖されており、現時点ではこのまま陸路で通過できない。"},
+    {"flag": "🇧🇩", "countryEn": "BANGLADESH", "countryJa": "バングラデシュ", "path": "Kolkata → Petrapole / Benapole → Dhaka", "description": "ベンガル語、食、河川とデルタの景観を、コルカタから国境を越えてダッカへつなぐ東向きルート。Petrapole–Benapoleは現在も主要な旅客越境地点として使われている。"}
   ],
   "relatedCountries": [
     {"slug": "nepal", "nameEn": "NEPAL", "nameJa": "ネパール", "flag": "🇳🇵", "reason": "ヒマラヤ、ヒンドゥー教・仏教の巡礼地、都市と山地の距離感を、より小さな国土でたどりたいなら。"},
     {"slug": "srilanka", "nameEn": "SRI LANKA", "nameJa": "スリランカ", "flag": "🇱🇰", "reason": "南アジアの宗教遺産、熱帯の緑、茶畑、海岸、食文化を、島のスケールで組み合わせたいなら。"},
-    {"slug": "indonesia", "nameEn": "INDONESIA", "nameJa": "インドネシア", "flag": "🇮🇩", "reason": "宗教・言語・食・島ごとの地域差が大きく、移動するほど文化と景観が切り替わる旅が好きなら。"}
+    {"slug": "pakistan", "nameEn": "PAKISTAN", "nameJa": "パキスタン", "flag": "🇵🇰", "reason": "パンジャーブ、ムガル建築、イスラム文化、インダス文明など、国境をまたいで続く歴史と文化のつながりを見たいなら。"}
   ],
   "updatedAt": "2026-09-12",
   "sourcesVerifiedAt": "2026-09-12",
-  "sourceDates": {"population": "2025", "religion": "2011", "railways": "2024-03-31", "worldHeritage": "2026-07-25", "statesUnionTerritories": "2026", "monsoon": "2026", "nextRoutes": "2026-09-11", "japanArea": "2026-04-01"},
+  "sourceDates": {"population": "2025", "religion": "2011", "railways": "2024-03-31", "worldHeritage": "2026-07-25", "tigers": "2022", "banknoteLanguages": "2025", "monsoon": "2026", "nextRoutes": "2026-09-12", "japanArea": "2026-04-01"},
   "sources": {
     "map": "WGS84 geographic-data composite: Basemap/WDBII intermediate country-border linework and GSHHS/GSHHG intermediate coastline data, constrained by Natural Earth India geometry; Lakshadweep and Andaman-Nicobar retained from GSHHS.",
     "population": "United Nations UNData, India country profile: 2025 population estimate 1,463,866,000; surface area 3,287,263 km².",
@@ -92,10 +94,10 @@
     "scheduledLanguages": "Government of India, Department of Official Language: Eighth Schedule of the Constitution lists 22 languages.",
     "religion": "Census of India 2011, Population by Religious Communities: Hindu, Muslim, Christian, Sikh, Buddhist, Jain and other categories.",
     "currency": "Reserve Bank of India / Government of India: Indian Rupee (INR).",
-    "statesUnionTerritories": "Ministry of Home Affairs, Government of India: India has 28 States and 8 Union Territories.",
     "worldHeritage": "UNESCO World Heritage Centre, India State Party page: 45 properties as of 2026, including Ancient Buddhist Site of Sarnath inscribed in 2026.",
-    "sarnath": "UNESCO World Heritage Committee Decision 48 COM 8B.17 and Press Information Bureau, 25 July 2026: Sarnath inscribed as India's 45th World Heritage property.",
-    "railways": "Indian Railways, Indian Railways Year Book / Annual Report 2023-24: route length 69,181 km as of 31 March 2024.",
+    "railways": "Indian Railways, Indian Railways Year Book 2023-24: route length 69,181 km as of 31 March 2024.",
+    "tigers": "National Tiger Conservation Authority, Government of India: India has around 70% of the tiger population among the 13 tiger-range countries; 58 tiger reserves extend across 18 States.",
+    "banknoteLanguages": "Reserve Bank of India FAQ: 15 languages appear in the language panel of Indian banknotes, in addition to Hindi and English.",
     "time": "CSIR-National Physical Laboratory / Government of India: Indian Standard Time is UTC+05:30.",
     "stepwell": "UNESCO World Heritage Centre: Rani-ki-Vav (the Queen's Stepwell) at Patan, Gujarat, a subterranean stepwell and water-management architecture.",
     "langar": "Shiromani Gurdwara Parbandhak Committee / Sikh institutional guidance: langar is the community kitchen tradition associated with gurdwaras; visitors follow head-covering and footwear customs.",
@@ -113,6 +115,6 @@
     "masalaDosa": "Ministry of Tourism, Incredible India: masala dosa is a South Indian/Karnataka preparation of a thin savoury fermented crepe with spiced potato filling, commonly served with chutneys.",
     "choleBhature": "Ministry of Tourism, Incredible India: chole bhature is a North Indian/Punjabi combination of chickpea curry and fried leavened bread.",
     "rasgulla": "Ministry of Tourism, Incredible India: rasogolla/rasgulla is a chhena-based sweet cooked in light sugar syrup and associated with eastern India.",
-    "nextRoutes": "Embassy of India in Kathmandu, visa page updated 11 September 2026: foreigners with valid Indian visa can use Sunauli-Bhairahawa and Birgunj-Raxaul India-Nepal border points; Nepal Tourism Board lists Sunauli-Bhairahawa as a designated land entry route to Lumbini and Kathmandu."
+    "nextRoutes": "Nepal: Embassy of India in Kathmandu (updated 11 September 2026) and Nepal Tourism Board identify Sunauli-Bhairahawa as a designated India-Nepal land route. Pakistan: Government of India announced closure of ICP Attari to normal passenger movement from 23 April 2025; Attari-Wagah remains the geographic India-Pakistan land corridor. Bangladesh: Land Ports Authority of India identifies Petrapole-Benapole as a major current passenger crossing and reports passenger movement in 2025-26."
   }
 }
