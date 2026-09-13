@@ -5,8 +5,8 @@
   "contentRef": "country/tajikistan",
   "stateRef": "country/tajikistan",
   "phase": "QA",
-  "stateRevision": 13,
-  "updatedAt": "2026-09-13T22:51:00+09:00",
+  "stateRevision": 14,
+  "updatedAt": "2026-09-13T22:54:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -37,12 +37,20 @@
   },
   "implementation": {"state":"DONE","completedAt":"2026-09-13T13:42:00+09:00","sharedTemplate":true,"countrySpecificCss":false},
   "qa": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "productionState": "NOT_STARTED",
-    "sourceCommit": null,
-    "validateRunId": null,
-    "browserQaRunId": null,
-    "checks": []
+    "sourceCommit": "98e84b01bfa9abde08844ebf22cabcd0c9a5ed81",
+    "validateRunId": 34761553299,
+    "browserQaRunId": 34761553265,
+    "checks": [
+      "targeted-content-qa",
+      "targeted-strict-country-json",
+      "image-delivery-budget",
+      "approved-image-audit",
+      "perceptual-duplicate-gate",
+      "targeted-build",
+      "desktop-tablet-mobile-browser-qa"
+    ]
   },
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
@@ -118,9 +126,9 @@
     "reviewPreviewDeployments":2,
     "preCanonicalMainIntegrations":0,
     "productionIntegrations":0,
-    "browserQaCycles":3,
+    "browserQaCycles":4,
     "tasteBatchApprovedAt":"2026-09-13T13:08:00+09:00",
     "canonicalReviewReadyAt":null
   },
-  "next":{"action":"RUN_COUNTRY_QA","asset":null}
+  "next":{"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}
 }
