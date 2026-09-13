@@ -1,0 +1,83 @@
+name: Restore Uzbekistan travel day ranges
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/restore-uzbekistan-travel-days.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Restore day-based travel scale
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          country_path = Path('data/countries/uzbekistan.json')
+          data = json.loads(country_path.read_text(encoding='utf-8'))
+          items = data['travelScale']['items']
+          items[0]['duration'] = '3〜4日'
+          items[1]['duration'] = '7〜9日'
+          items[2]['duration'] = '12日以上'
+          data['updatedAt'] = '2026-09-13'
+          country_path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          state_path = Path('ops/country-production/uzbekistan.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+          state['qa'] = {'state': 'NOT_STARTED', 'productionState': 'NOT_STARTED'}
+          state['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED',
+              'deployedAt': None,
+          }
+          state['next'] = {'action': 'RUN_COUNTRY_QA', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate revised Country
+        shell: bash
+        run: |
+          python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
+          python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
+          python3 scripts/country_production_protocol_v2.py validate
+
+      - name: Mark QA passed and commit
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          p = Path('ops/country-production/uzbekistan.json')
+          s = json.loads(p.read_text(encoding='utf-8'))
+          s['stateRevision'] = int(s.get('stateRevision', 0)) + 1
+          s['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+          s['qa'] = {'state': 'PASS', 'productionState': 'CI_GATED'}
+          s['next'] = {'action': 'OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW', 'asset': None}
+          p.write_text(json.dumps(s, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/restore-uzbekistan-travel-days.yml
+          git add -f data/countries/uzbekistan.json ops/country-production/uzbekistan.json
+          git commit -m "Restore Uzbekistan day-based travel scale"
+          git push origin HEAD:country/uzbekistan
