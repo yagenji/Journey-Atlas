@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
 Updated: 2026-09-13
-Current policy patch: 4
+Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v4; existing v3 Countries remain valid under their v3 Travel Scale contract unless intentionally migrated.
+Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production uses Content QA v4: Travel Scale keeps visible day guidance, while the `例：` portion is route-only and does not contain day/night/week counts.
 
 ## Production shape
 
@@ -50,7 +50,7 @@ Before Hero generation, finish everything that does not require the final raster
 - current Content QA.
 
 New Countries use `contentQaVersion: 4` and must follow `docs/CONTENT_QUALITY_RULES_V4.md`.
-Existing v3 Countries remain on the v3 editorial contract unless explicitly migrated; existing v2 Countries remain on v2 unless intentionally migrated.
+Existing v3 Countries remain validator-compatible for historical continuity, but any active Country produced under the mistaken no-day Travel Scale interpretation should be migrated to v4 before its next editorial QA step.
 
 `preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
 
@@ -254,7 +254,7 @@ Country production can remain parallel; **main publication is intentionally seri
 
 ## 10. Content QA v4
 
-See `docs/CONTENT_QUALITY_RULES_V4.md` for new Countries. Existing v3 Countries continue to use `docs/CONTENT_QUALITY_RULES_V3.md`.
+See `docs/CONTENT_QUALITY_RULES_V4.md` for new Countries.
 
 Hard rules for v4 include:
 
@@ -262,6 +262,8 @@ Hard rules for v4 include:
 - Travel Scale `duration` uses day notation such as `2日`, `3〜4日`, `5日以上`;
 - weeks and night-count notation are not used in duration labels;
 - the third Travel Scale duration is open-ended and uses `○日以上`;
+- **the content after `例：` is route-only and must not contain day/night/week counts**;
+- day guidance remains in `duration`; the example must not duplicate it as `Aを2日 → Bを3日` or equivalent;
 - route text explains geographic scope / regional combination rather than merely repeating the day count;
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
 - canonical `topicKey` is required across those three sections;
