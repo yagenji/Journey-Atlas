@@ -147,7 +147,7 @@ def main() -> None:
         elif scene.get("id") == "astana-baiterek":
             scene["mapOffset"] = {"x": 2.5, "y": 1.2}
         elif scene.get("id") == "altyn-emel-singing-dune":
-            scene["mapOffset"] = {"x": -2.0, "y": -3.0}
+            scene["mapOffset"] = {"x": -1.5, "y": -3.5}
 
     sources = data.setdefault("sources", {})
     sources["map"] = (
