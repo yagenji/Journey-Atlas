@@ -6,7 +6,7 @@ Current policy patch: 4
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. Patch 4 preserves the post-image fast path and Image Policy 7.2 controls, and advances new Country editorial production to Content QA v3.
+Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v4; existing v3 Countries remain valid under their v3 Travel Scale contract unless intentionally migrated.
 
 ## Production shape
 
@@ -49,8 +49,8 @@ Before Hero generation, finish everything that does not require the final raster
 - sources/source dates;
 - current Content QA.
 
-New Countries created under policy patch 4 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
-Existing v2 Countries remain on the v2 editorial contract unless explicitly migrated.
+New Countries use `contentQaVersion: 4` and must follow `docs/CONTENT_QUALITY_RULES_V4.md`.
+Existing v3 Countries remain on the v3 editorial contract unless explicitly migrated; existing v2 Countries remain on v2 unless intentionally migrated.
 
 `preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
 
@@ -149,7 +149,9 @@ python3 scripts/build_country_preview_targeted.py --slugs {slug}
 
 Full-Country build/QA is reserved for shared template/CSS/JS/build-system changes, explicit Full QA, and the real final production deployment.
 
-The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build. This removes the previous duplicate targeted package build.
+The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build.
+
+If the user requests an editorial revision during final review, update only the requested content, keep approved image assets locked, reset target QA/reviewPreview state, and rerun the target-only post-visual path.
 
 ## 6. One pre-main Review PR triggers Preview automatically
 
@@ -188,7 +190,7 @@ Implementation rules:
 - other active review subtrees are preserved;
 - already-published previews are pruned when the next review snapshot is staged;
 - oldest snapshots beyond the retained maximum are pruned;
-- target raster URLs are rewritten to the immutable `raw.githubusercontent.com/.../{commit}/assets/images/...` origin so the persistent Pages snapshot does not duplicate all Country image bytes;
+- target raster URLs are rewritten to the immutable `raw.githubusercontent.com/.../{commit}/assets/images/...` origin;
 - the `review-previews` branch is a generated review cache, never production authority.
 
 After the Pages deployment and Browser QA pass, record:
@@ -248,26 +250,24 @@ The queue has one global concurrency lane. For each ready Country it:
 6. squash-merges the existing PR;
 7. retries synchronization if `main` advanced while checks were running.
 
-This matches the repository Ruleset's strict up-to-date requirement while preventing multiple Countries from repeatedly invalidating each other's final checks.
-
 Country production can remain parallel; **main publication is intentionally serial**.
 
-## 10. Content QA v3
+## 10. Content QA v4
 
-See `docs/CONTENT_QUALITY_RULES_V3.md` for new Countries.
+See `docs/CONTENT_QUALITY_RULES_V4.md` for new Countries. Existing v3 Countries continue to use `docs/CONTENT_QUALITY_RULES_V3.md`.
 
-Hard rules include:
+Hard rules for v4 include:
 
 - every Travel Scale item contains a concrete `例：`;
-- Travel Scale must not contain concrete stay/day/week counts such as `3日`, `4〜5日`, `7日以上`, `2泊3日`, `1週間`, or `日帰り`;
-- Travel Scale differentiates route scope / regional combination rather than duration;
+- Travel Scale `duration` uses day notation such as `2日`, `3〜4日`, `5日以上`;
+- weeks and night-count notation are not used in duration labels;
+- the third Travel Scale duration is open-ended and uses `○日以上`;
+- route text explains geographic scope / regional combination rather than merely repeating the day count;
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
-- canonical `topicKey` is required across those three sections, and generic suffix changes do not make the same underlying topic distinct;
+- canonical `topicKey` is required across those three sections;
 - forest/woodland percentage is not a routine Signature Fact; it requires `exceptionalShare:true` and must be <=10% or >=70%.
 
-The validator filename remains `scripts/validate_country_editorial_v2.py` for workflow compatibility, but it routes by `contentQaVersion`. Existing v2 Countries keep v2 rules; new Country scaffolds use v3.
-
-For Country-only work, Content QA targets the Country. Full Content QA is reserved for shared/full-scope changes.
+The validator filename remains `scripts/validate_country_editorial_v2.py` for workflow compatibility and routes by `contentQaVersion`.
 
 ## 11. State initialization
 
@@ -286,7 +286,7 @@ python3 scripts/country_production_protocol_v2.py validate
 python3 scripts/image_policy_v72.py validate
 ```
 
-Existing completed/already-integrated States are not retroactively migrated. Active image production must follow the current main policy before another image generation occurs.
+Existing completed/already-integrated States are not retroactively migrated. Active production follows the current main policy before another new step occurs.
 
 ## 12. Productivity targets
 
@@ -294,7 +294,7 @@ Normal new-Country targets:
 
 - per-image approval prompts: 0;
 - user continuation nudges during Scene/Taste rounds: 0;
-- runtime-forced image turn boundaries: measured separately, not treated as approvals;
+- runtime-forced image turn boundaries: measured separately;
 - Scene Batch reviews: 1;
 - Taste Batch reviews: 1 unless a genuine REGEN batch is required;
 - image handoffs: 1;
@@ -307,8 +307,6 @@ Normal new-Country targets:
 - Country-only full-Country builds before approval: 0;
 - Country-only full-Country Browser QA before approval: 0.
 
-Measure Taste Batch approval → review URL ready, publication queue synchronization cycles, and final main integration count.
-
 ## 13. Authority
 
 When Protocol 2 applies:
@@ -319,6 +317,6 @@ When Protocol 2 applies:
 4. this document
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. current content-quality rules (`CONTENT_QUALITY_RULES_V3.md` for new v3 Countries; v2 for legacy v2 Countries)
+7. current content-quality rules (`CONTENT_QUALITY_RULES_V4.md` for new v4 Countries; v3/v2 for legacy versions)
 8. image/content/map specifications
 9. chat history
