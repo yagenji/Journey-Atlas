@@ -1,0 +1,91 @@
+name: Finalize Uzbekistan editorial selection
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/finalize-uzbekistan-editorial-selection.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Apply final related and encounters selection
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          country_path = Path('data/countries/uzbekistan.json')
+          data = json.loads(country_path.read_text(encoding='utf-8'))
+          data['encounters'] = [
+              {'title': '青いタイルのドーム', 'icon': 'landmark'},
+              {'title': '煉瓦のミナレット', 'icon': 'landmark'},
+              {'title': '市場に積まれた丸いパン', 'icon': 'food'},
+              {'title': '青い陶器の工房', 'icon': 'culture'},
+              {'title': '絹織物の工房', 'icon': 'culture'},
+              {'title': '綿花畑と果樹園', 'icon': 'leaf'},
+              {'title': '街路沿いの灌漑水路', 'icon': 'landscape'},
+              {'title': '中庭でお茶を囲む人々', 'icon': 'users'},
+          ]
+          data['relatedCountries'] = [
+              {
+                  'slug': 'kyrgyz',
+                  'nameEn': 'KYRGYZSTAN',
+                  'nameJa': 'キルギス',
+                  'flag': '🇰🇬',
+                  'reason': '中央アジアを続けて旅しながら、青いタイルの都市景観から、高原、湖、遊牧文化が主役になる山岳国へ景色を切り替えたいなら。',
+              },
+              {
+                  'slug': 'tajikistan',
+                  'nameEn': 'TAJIKISTAN',
+                  'nameJa': 'タジキスタン',
+                  'flag': '🇹🇯',
+                  'reason': 'サマルカンドやブハラにつながる中央アジアの文化史に惹かれ、その先をパミールの谷、高地湖、山岳道路まで広げたいなら。',
+              },
+              {
+                  'slug': 'iran',
+                  'nameEn': 'IRAN',
+                  'nameJa': 'イラン',
+                  'flag': '🇮🇷',
+                  'reason': '青いタイル、バザール、砂漠の都市、ペルシア文化圏の建築と工芸に惹かれ、より西へ歴史のつながりをたどりたいなら。',
+              },
+          ]
+          data['updatedAt'] = '2026-09-13'
+          country_path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          state_path = Path('ops/country-production/uzbekistan.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+          state['qa'] = {'state': 'NOT_STARTED', 'productionState': 'NOT_STARTED'}
+          state['reviewPreview'] = {'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW', 'state': 'NOT_STARTED', 'url': None, 'browserQa': 'NOT_STARTED', 'deployedAt': None}
+          state['finalApproval'] = {'state': 'PENDING'}
+          state['next'] = {'action': 'RUN_COUNTRY_QA', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
+          python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
+          python3 scripts/country_production_protocol_v2.py validate
+
+      - name: Commit final selection
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/finalize-uzbekistan-editorial-selection.yml
+          git add -f data/countries/uzbekistan.json
+          git add ops/country-production/uzbekistan.json
+          git commit -m "Finalize Uzbekistan related destinations and encounters"
+          git push origin HEAD:country/uzbekistan
