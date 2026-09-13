@@ -5,11 +5,12 @@ Updated: 2026-09-13
 This specification applies to new Country JSON files with `contentQaVersion: 3`.
 Existing v2 Countries remain valid under the v2 rules unless intentionally migrated.
 
-## 1. Travel Scale uses travel scope, not day counts
+## 1. Travel Scale keeps country-specific day ranges
 
-`travelScale` remains a three-step UI, but it must no longer recommend or imply a number of days.
+`travelScale` remains a three-step UI and must show a concrete day range for each stage.
+Content QA v3 keeps the established Travel Scale duration contract; v3 adds cross-section topic separation, not removal of duration guidance.
 
-Each item still contains:
+Each item contains:
 
 - `duration`
 - `title`
@@ -17,29 +18,17 @@ Each item still contains:
 - fixed icon sequence `city` / `map` / `compass`
 - a concrete itinerary/example introduced by `例：`
 
-For v3, `duration` is a route-scope label, not a numeric duration.
-Recommended pattern:
+Rules:
 
-- `一都市中心`
-- `地域をつなぐ`
-- `広域周遊`
+- all three `duration` values use **days (`日`)**; do not mix weeks and days;
+- the first and second stages may use a single day count or a range such as `3〜4日` / `5〜7日`;
+- the third stage is always open-ended in the form `○日以上`;
+- day ranges are country-specific and should reflect geographic scale, attraction dispersion, domestic transport burden, and realistic routing;
+- small countries may use shorter ranges; large countries may use longer ranges;
+- do not inflate or compress durations merely to fit a fixed template;
+- every stage still requires a representative route introduced by `例：`.
 
-The exact wording may vary by Country, but numeric stay/day/week counts are forbidden in `duration`, `title`, and `text`.
-
-Forbidden examples include:
-
-- `3日`
-- `4〜5日`
-- `7日以上`
-- `2泊3日`
-- `1週間`
-- `日帰り`
-- equivalent Japanese-numeral forms such as `三日`
-
-The section should explain **how to compose the trip**, not how many days the reader should stay.
-Use geography, route shape, regional contrast, transport burden, and thematic breadth instead.
-
-The example remains required because the reader should still be able to picture a representative route.
+The section should explain both **how long** and **how to compose** the trip. The example route should remain representative rather than exhaustive.
 
 ## 2. Signature Facts / Beyond the Scenery / Travel Trivia must not repeat topics
 

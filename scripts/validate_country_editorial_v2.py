@@ -3,7 +3,7 @@
 
 The filename is retained for CI/backward compatibility. Content QA v2 rules remain
 valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- no numeric stay/day/week counts in Travel Scale;
+- the established day-based Travel Scale contract;
 - canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
 - a conservative near-duplicate text guard across those three sections.
 """
@@ -111,16 +111,9 @@ def contains_forbidden_duration(value: str) -> bool:
 
 
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    items = validate_common_travel_scale(errors, filename, data)
-    for index, item in enumerate(items, 1):
-        owner = f"{filename}: travelScale.items[{index}]"
-        for key in ("duration", "title", "text"):
-            value = text(item.get(key))
-            if contains_forbidden_duration(value):
-                fail(
-                    errors,
-                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
-                )
+    # Content QA v3 adds semantic topic-separation rules but keeps the shared
+    # day-based Travel Scale duration contract used across JOURNEY ATLAS.
+    validate_travel_scale_v2(errors, filename, data)
 
 
 def forest_related(item: dict[str, Any]) -> bool:

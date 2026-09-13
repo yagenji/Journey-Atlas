@@ -89,11 +89,11 @@ def blank_travel_scale() -> dict:
     return {
         "kicker": "DURATION",
         "title": "旅の目安日程",
-        "intro": "日数ではなく、旅の広がりと組み合わせ方で選ぶ。",
+        "intro": "",
         "items": [
-            {"duration": "一都市中心", "title": "", "text": "例：", "icon": "city"},
-            {"duration": "地域をつなぐ", "title": "", "text": "例：", "icon": "map"},
-            {"duration": "広域周遊", "title": "", "text": "例：", "icon": "compass"},
+            {"duration": "3〜4日", "title": "", "text": "例：", "icon": "city"},
+            {"duration": "5〜7日", "title": "", "text": "例：", "icon": "map"},
+            {"duration": "8日以上", "title": "", "text": "例：", "icon": "compass"},
         ],
     }
 

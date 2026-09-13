@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 4,
-  "updatedAt": "2026-09-13T08:54:00+09:00",
+  "policyPatch": 5,
+  "updatedAt": "2026-09-13T22:14:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -93,10 +93,14 @@
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
-    "travelScaleNumericDurationForbidden": true,
-    "travelScaleDayCountForbidden": true,
-    "travelScaleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
-    "travelScaleThirdItemOpenEndedDayRule": false,
+    "travelScaleNumericDurationForbidden": false,
+    "travelScaleDayCountForbidden": false,
+    "travelScaleDurationUnitsForbidden": [
+      "泊",
+      "週",
+      "週間"
+    ],
+    "travelScaleThirdItemOpenEndedDayRule": true,
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
     "crossSectionTopicKeyUniqueAcross": [
@@ -112,7 +116,8 @@
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
-    "forestShareExplicitFlag": "exceptionalShare"
+    "forestShareExplicitFlag": "exceptionalShare",
+    "travelScaleDayNotationRequired": true
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,

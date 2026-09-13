@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
 Updated: 2026-09-13
-Current policy patch: 4
+Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. Patch 4 preserves the post-image fast path and Image Policy 7.2 controls, and advances new Country editorial production to Content QA v3.
+Protocol 2.0 is the default for **new Country production**. Patch 5 preserves the post-image fast path and Image Policy 7.2 controls, keeps Content QA v3 topic-separation rules, and restores the shared day-based Travel Scale contract.
 
 ## Production shape
 
@@ -49,7 +49,7 @@ Before Hero generation, finish everything that does not require the final raster
 - sources/source dates;
 - current Content QA.
 
-New Countries created under policy patch 4 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
+New Countries created under policy patch 5 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
 Existing v2 Countries remain on the v2 editorial contract unless explicitly migrated.
 
 `preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
