@@ -46,6 +46,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/tajikistan-pamir-content-patch.yml
-          git add data/countries/tajikistan.json
+          git add -f data/countries/tajikistan.json
           git commit -m "Add Pamir highland overview to Tajikistan"
           git push origin HEAD:country/tajikistan
