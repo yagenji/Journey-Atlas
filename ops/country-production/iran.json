@@ -5,16 +5,16 @@
   "contentRef": "country/iran",
   "stateRef": "country/iran",
   "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-13T13:46:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-13T13:47:00+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REGENERATE",
     "asset": "assets/images/iran/approved/hero-naqsh-e-jahan-isfahan.webp",
     "contentId": "naqsh-e-jahan-isfahan",
     "promptSeries": 2,
-    "promptSeriesRejectCount": 0,
-    "rejectedGenerationIds": ["eb94fd29-f5f7-49ad-99e2-57f9bfb885d4"],
+    "promptSeriesRejectCount": 1,
+    "rejectedGenerationIds": ["eb94fd29-f5f7-49ad-99e2-57f9bfb885d4", "219ed681-df06-41f4-959e-13156c62574c"],
     "promptSeriesReset": true,
     "promptSeriesResetAt": "2026-09-13T13:45:00+09:00",
     "renderPacket": {
@@ -36,13 +36,11 @@
       "style": "real-place recognizability, refined realistic detail with quiet watercolor texture, premium adult travel-atlas illustration, approximately photo 6 watercolor 4, restrained natural saturation, soft clear late-afternoon light, elegant rather than poster-like",
       "negativeConstraints": ["generic Persian mosque complex", "two grand mosque portals side by side", "duplicate blue domes", "extra minarets", "dramatic mountain backdrop", "photographic snapshot", "hyperreal HDR", "fantasy Persian city", "invented mosque geometry", "anime", "oil painting", "tourism poster", "added lettering", "readable signage", "flag", "map", "UI", "collage", "split panel", "montage", "inset image", "people as main subject"]
     },
-    "generationReservation": {
-      "reservationId": "HERO-series2-attempt1-20260913T134600+0900",
-      "asset": "HERO",
-      "contentId": "naqsh-e-jahan-isfahan",
-      "promptSeries": 2,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-13T13:46:00+09:00"
+    "candidateVisualQa": {
+      "targetIdentity": "FAIL",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS",
+      "reason": "Wrong-target carryover: the generated candidate depicted Persepolis rather than Naqsh-e Jahan Square."
     }
   },
   "scenes": [
@@ -69,7 +67,7 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"HERO","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
@@ -79,5 +77,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
