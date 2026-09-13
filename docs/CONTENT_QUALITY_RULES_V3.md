@@ -5,11 +5,11 @@ Updated: 2026-09-13
 This specification applies to new Country JSON files with `contentQaVersion: 3`.
 Existing v2 Countries remain valid under the v2 rules unless intentionally migrated.
 
-## 1. Travel Scale uses travel scope, not day counts
+## 1. Travel Scale keeps day ranges; only the route example excludes day counts
 
-`travelScale` remains a three-step UI, but it must no longer recommend or imply a number of days.
+`travelScale` remains a three-step UI for **旅の目安日程**. The duration/day guidance is part of the section and must remain visible.
 
-Each item still contains:
+Each item contains:
 
 - `duration`
 - `title`
@@ -17,29 +17,25 @@ Each item still contains:
 - fixed icon sequence `city` / `map` / `compass`
 - a concrete itinerary/example introduced by `例：`
 
-For v3, `duration` is a route-scope label, not a numeric duration.
-Recommended pattern:
+For v3:
 
-- `一都市中心`
-- `地域をつなぐ`
-- `広域周遊`
+- `duration` uses Country-specific day notation such as `3〜4日` or `7〜10日`;
+- the third item remains open-ended and must use `○日以上`;
+- the actual ranges are editorially flexible by Country size, dispersal, transport burden and realistic trip composition;
+- **only the content after `例：` is forbidden from containing day/stay/week counts.**
 
-The exact wording may vary by Country, but numeric stay/day/week counts are forbidden in `duration`, `title`, and `text`.
+Correct:
 
-Forbidden examples include:
+- `duration: 3〜4日`
+- `text: 首都と近郊に絞る。例：A → B → A。`
 
-- `3日`
-- `4〜5日`
-- `7日以上`
-- `2泊3日`
-- `1週間`
-- `日帰り`
-- equivalent Japanese-numeral forms such as `三日`
+Incorrect:
 
-The section should explain **how to compose the trip**, not how many days the reader should stay.
-Use geography, route shape, regional contrast, transport burden, and thematic breadth instead.
+- `text: 首都と近郊に絞る。例：Aを2日 → Bを1日 → A。`
+- `text: 広域を巡る。例：A → B → Cを1週間。`
 
-The example remains required because the reader should still be able to picture a representative route.
+The `例：` portion exists to show a representative **route**, not to repeat or prescribe the number of days at each stop.
+Do not remove the duration/day guidance from the Travel Scale itself.
 
 ## 2. Signature Facts / Beyond the Scenery / Travel Trivia must not repeat topics
 
@@ -95,7 +91,7 @@ python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
 The filename is retained for workflow compatibility, but the script routes rules by `contentQaVersion`:
 
 - v2 Country → v2 rules
-- v3 Country → v3 rules
+- v3 Country → v3 rules, including the example-only day-count ban
 
 New Country scaffolds created by `scripts/new_country.py` use `contentQaVersion: 3`.
 
