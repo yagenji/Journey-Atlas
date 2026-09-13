@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "protocolId": "2.0",
   "policyPatch": 4,
-  "updatedAt": "2026-09-13T08:54:00+09:00",
+  "updatedAt": "2026-09-13T22:13:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -47,11 +47,11 @@
     "signatureFactsComplete": true,
     "sourcesComplete": true,
     "editorialQaV2Passed": true,
-    "editorialQaCurrentVersion": 3
+    "editorialQaCurrentVersion": 4
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
-    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
+    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT_OR_EXPLICIT_USER_REVISION",
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
     "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
@@ -88,15 +88,18 @@
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
   "contentQuality": {
-    "version": 3,
+    "version": 4,
     "validator": "scripts/validate_country_editorial_v2.py",
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
-    "travelScaleNumericDurationForbidden": true,
-    "travelScaleDayCountForbidden": true,
-    "travelScaleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
-    "travelScaleThirdItemOpenEndedDayRule": false,
+    "travelScaleNumericDurationForbidden": false,
+    "travelScaleDayCountForbidden": false,
+    "travelScaleDayNotationRequired": true,
+    "travelScaleDurationUnitsAllowed": ["日"],
+    "travelScaleDurationUnitsForbidden": ["泊", "週", "週間"],
+    "travelScaleThirdItemOpenEndedDayRule": true,
+    "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
     "crossSectionTopicKeyUniqueAcross": [
