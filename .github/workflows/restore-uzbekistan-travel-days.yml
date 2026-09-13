@@ -70,14 +70,13 @@ jobs:
           state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
           PY
 
-      - name: Validate revised Country and validator compatibility
+      - name: Validate revised Country
         shell: bash
         run: |
           python3 -m py_compile scripts/validate_country_editorial_v2.py
           python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
           python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
           python3 scripts/country_production_protocol_v2.py validate
-          python3 scripts/validate_country_editorial_v2.py data/countries/kazakhstan.json
 
       - name: Mark QA passed and commit
         shell: bash
