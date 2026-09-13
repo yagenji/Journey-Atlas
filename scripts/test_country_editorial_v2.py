@@ -98,6 +98,27 @@ def test_v4_final_open_ended() -> None:
     assert any("final travelScale duration" in e for e in errors), errors
 
 
+def test_v4_day_count_inside_example_fails() -> None:
+    data = v4()
+    data["travelScale"]["items"][1]["text"] = "地域を結ぶ。例：Aを2日 → Bを3日 → C。"
+    errors = editorial.validate_data(data, "v4-example-days.json")
+    assert any("only inside the '例：' route example" in e for e in errors), errors
+
+
+def test_v4_week_count_inside_example_fails() -> None:
+    data = v4()
+    data["travelScale"]["items"][2]["text"] = "広域を巡る。例：A → B → Cを1週間。"
+    errors = editorial.validate_data(data, "v4-example-week.json")
+    assert any("only inside the '例：' route example" in e for e in errors), errors
+
+
+def test_v4_day_count_before_example_remains_valid() -> None:
+    data = v4()
+    data["travelScale"]["items"][1]["text"] = "5〜7日なら主要地域をつなぐ。例：A → B → C。"
+    errors = editorial.validate_data(data, "v4-days-before-example.json")
+    assert not errors, errors
+
+
 def test_forest_rule() -> None:
     data = travel(2, ("3日","5日","8日以上"))
     data["signatureFacts"][0] = {"topicKey":"forest-share-52","label":"森林","value":"52%","note":"国土の約半分。","exceptionalShare":True}
@@ -119,6 +140,9 @@ if __name__ == "__main__":
     test_v4_qualitative_fails()
     test_v4_bad_units_fail()
     test_v4_final_open_ended()
+    test_v4_day_count_inside_example_fails()
+    test_v4_week_count_inside_example_fails()
+    test_v4_day_count_before_example_remains_valid()
     test_forest_rule()
     test_cross_section_duplication()
-    print("Editorial Content QA regression tests passed for v2/v3/v4 routing")
+    print("Editorial Content QA regression tests passed for v2/v3/v4 routing and v4 example-only day ban")
