@@ -1,0 +1,86 @@
+name: Fix Uzbekistan travel scale
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/fix-uzbekistan-travel-scale.yml"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Update continuous realistic travel scale
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('data/countries/uzbekistan.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          items = d['travelScale']['items']
+          items[0] = {
+              'duration': '4〜5日',
+              'title': 'タシケントからサマルカンド、ブハラへつなぐ',
+              'text': '高速鉄道を軸に、首都の市場や地下鉄を見たあと、サマルカンドの王朝建築、ブハラの旧市街へ西へ進む。三都市を急ぎすぎずに結ぶ、初回の短い旅として組みやすい。例：タシケント → サマルカンド → ブハラ。',
+              'icon': 'city'
+          }
+          items[1] = {
+              'duration': '6〜8日',
+              'title': '三都市にヒヴァを加え、古都の違いをたどる',
+              'text': 'タシケント、サマルカンド、ブハラを軸に、西のヒヴァまで広げる。王朝建築、宗教都市、城郭都市を順に歩き、砂漠を挟む都市間の距離も旅の一部として感じられる。例：タシケント → サマルカンド → ブハラ → ヒヴァ。',
+              'icon': 'map'
+          }
+          items[2] = {
+              'duration': '9日以上',
+              'title': '古都から、興味に合わせて別地域へ広げる',
+              'text': '三つの古都を軸に、フェルガナの工芸、チャルヴァクの山地、ヌクス・ムイナクとアラル海などから、関心に合わせて地域を追加する。すべてを一度に詰め込まず、移動距離を見ながら一地域ずつ広げる。例：三古都＋フェルガナ、または三古都＋ヌクス・ムイナク。',
+              'icon': 'compass'
+          }
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          sp = Path('ops/country-production/uzbekistan.json')
+          s = json.loads(sp.read_text(encoding='utf-8'))
+          s['stateRevision'] = int(s.get('stateRevision', 0)) + 1
+          s['updatedAt'] = '2026-09-13T22:56:00+09:00'
+          s['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED'
+          }
+          s['next'] = {'action': 'DEPLOY_REVIEW_PREVIEW', 'asset': None}
+          sp.write_text(json.dumps(s, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
+          python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
+          python3 scripts/country_production_protocol_v2.py validate
+
+      - name: Commit correction and remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-uzbekistan-travel-scale.yml
+          git add -f data/countries/uzbekistan.json ops/country-production/uzbekistan.json
+          git commit -m "Fix Uzbekistan travel scale realism"
+          git push origin HEAD:country/uzbekistan
+
+      - name: Dispatch corrected Country preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            repos/${{ github.repository }}/actions/workflows/deploy-country-preview.yml/dispatches \
+            -f ref='country/uzbekistan' \
+            -f inputs[slug]='uzbekistan'
