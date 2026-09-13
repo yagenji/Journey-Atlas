@@ -5,8 +5,8 @@
   "contentRef": "country/oman",
   "stateRef": "country/oman",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-13T14:30:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-13T14:33:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -44,12 +44,13 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": "assets/images/oman/approved/wadi-shab.webp",
       "contentId": "wadi-shab",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": ["64077707-73a0-49b4-aa27-0a7659f4f649"],
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER",
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "wadi-shab",
@@ -66,13 +67,11 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "oman-S01-20260913T143000+0900",
-        "asset": "S01",
-        "contentId": "wadi-shab",
-        "promptSeries": 1,
-        "generationContextEpoch": 1,
-        "reservedAt": "2026-09-13T14:30:00+09:00"
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "notes": "The S01 generation carried the approved Muscat/fort Hero visual family into a Wadi Shab target instead of depicting Wadi Shab. Automatically rejected as WRONG_TARGET_CARRYOVER under Image Policy 7.2."
       }
     },
     {
@@ -332,7 +331,7 @@
     "allPriorCountryAssetComparisonRequired":true,
     "targetEpochBindingRequired":true
   },
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
   "productionProtocolRef": "main:ops/country-production-policy.json",
@@ -370,5 +369,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"RECONCILE_GENERATION","asset":"S01"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
