@@ -1,0 +1,58 @@
+name: Reopen Uzbekistan review preview
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/reopen-uzbekistan-review-preview.yml"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  reopen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Mark review preview stale after content correction
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p = Path('ops/country-production/uzbekistan.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          d['stateRevision'] = int(d.get('stateRevision', 0)) + 1
+          d['updatedAt'] = '2026-09-13T22:48:00+09:00'
+          d['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED'
+          }
+          d['next'] = {'action': 'DEPLOY_REVIEW_PREVIEW', 'asset': None}
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          python3 scripts/country_production_protocol_v2.py validate ops/country-production/uzbekistan.json
+
+      - name: Remove one-time workflow and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/reopen-uzbekistan-review-preview.yml
+          git add -f ops/country-production/uzbekistan.json
+          git commit -m "Reopen Uzbekistan preview after travel scale correction"
+          git push origin HEAD:country/uzbekistan
+
+      - name: Dispatch corrected Country preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            repos/${{ github.repository }}/actions/workflows/deploy-country-preview.yml/dispatches \
+            -f ref='country/uzbekistan' \
+            -f inputs[slug]='uzbekistan'
