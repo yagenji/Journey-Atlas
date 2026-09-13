@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-# Temporary CI trigger for validating the shared Travel Scale validator fix.
 import json
 import os
 import subprocess
