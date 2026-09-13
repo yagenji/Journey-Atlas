@@ -18,6 +18,24 @@ jobs:
           ref: country/uzbekistan
           fetch-depth: 0
 
+      - name: Align Content QA v3 travel duration contract
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/validate_country_editorial_v2.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace(
+              '- no numeric stay/day/week counts in Travel Scale;\n',
+              '- numeric day ranges are allowed in travelScale.duration; numeric stay/day/week counts remain forbidden in title/text;\n',
+          )
+          old = '''def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:\n    items = validate_common_travel_scale(errors, filename, data)\n    for index, item in enumerate(items, 1):\n        owner = f"{filename}: travelScale.items[{index}]"\n        for key in ("duration", "title", "text"):\n            value = text(item.get(key))\n            if contains_forbidden_duration(value):\n                fail(\n                    errors,\n                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",\n                )\n'''
+          new = '''def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:\n    items = validate_common_travel_scale(errors, filename, data)\n    if len(items) != 3:\n        return\n\n    numeric_duration_flags: list[bool] = []\n    for index, item in enumerate(items, 1):\n        owner = f"{filename}: travelScale.items[{index}]"\n        duration = text(item.get("duration"))\n        has_numeric_duration = contains_forbidden_duration(duration)\n        numeric_duration_flags.append(has_numeric_duration)\n        if has_numeric_duration and ("週間" in duration or "週" in duration or "泊" in duration or "日" not in duration):\n            fail(errors, f"{owner}.duration must use day notation when numeric: {duration!r}")\n\n        for key in ("title", "text"):\n            value = text(item.get(key))\n            if contains_forbidden_duration(value):\n                fail(\n                    errors,\n                    f"{owner}.{key}: Content QA v3 allows numeric day ranges only in duration; title/text must remain non-numeric: {value!r}",\n                )\n\n    if any(numeric_duration_flags):\n        if not all(numeric_duration_flags):\n            fail(errors, f"{filename}: travelScale.duration labels must be consistently day-based or consistently qualitative")\n            return\n        final_duration = text(items[2].get("duration"))\n        if not re.fullmatch(r"\\d+日以上", final_duration):\n            fail(errors, f"{filename}: final numeric travelScale duration must be '○日以上': {final_duration!r}")\n'''
+          if old not in s:
+              raise SystemExit('target validator block not found')
+          p.write_text(s.replace(old, new), encoding='utf-8')
+          PY
+
       - name: Restore day-based travel scale
         shell: bash
         run: |
@@ -52,12 +70,14 @@ jobs:
           state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
           PY
 
-      - name: Validate revised Country
+      - name: Validate revised Country and validator compatibility
         shell: bash
         run: |
+          python3 -m py_compile scripts/validate_country_editorial_v2.py
           python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
           python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
           python3 scripts/country_production_protocol_v2.py validate
+          python3 scripts/validate_country_editorial_v2.py data/countries/kazakhstan.json
 
       - name: Mark QA passed and commit
         shell: bash
@@ -78,6 +98,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/restore-uzbekistan-travel-days.yml
+          git add scripts/validate_country_editorial_v2.py
           git add -f data/countries/uzbekistan.json ops/country-production/uzbekistan.json
           git commit -m "Restore Uzbekistan day-based travel scale"
           git push origin HEAD:country/uzbekistan
