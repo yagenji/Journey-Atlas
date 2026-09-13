@@ -1,0 +1,199 @@
+name: Refresh Uzbekistan editorial review
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/refresh-uzbekistan-editorial.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Apply reviewed editorial changes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          country_path = Path('data/countries/uzbekistan.json')
+          data = json.loads(country_path.read_text(encoding='utf-8'))
+          data['contentQaVersion'] = 3
+
+          data['signatureFacts'] = [
+              {
+                  'topicKey': 'uzbekistan-double-landlocked',
+                  'label': '二重内陸国',
+                  'value': '世界で2か国',
+                  'note': '海に出るまで必ず二つ以上の国境を越える二重内陸国は、ウズベキスタンとリヒテンシュタインだけ。5つの隣国もすべて海を持たない。',
+                  'icon': 'globe',
+              },
+              {
+                  'topicKey': 'uzbekistan-west-east-span',
+                  'label': '東西の長さ',
+                  'value': '1,425 km',
+                  'note': '西のカラカルパクスタンから東のフェルガナ盆地まで国土が長く伸びる。古都だけを回る旅と、全国を横断する旅で必要な移動の感覚が大きく違う。',
+                  'icon': 'map',
+              },
+              {
+                  'topicKey': 'uzbekistan-afrosiyob-speed',
+                  'label': '高速鉄道Afrosiyob',
+                  'value': '最高250 km/h',
+                  'note': 'タシケントとサマルカンドを結ぶ高速列車Afrosiyobの最高速度。東西に長い国で、歴史都市どうしを鉄道でつなぐ旅のしやすさを象徴する数字。',
+                  'icon': 'road',
+              },
+          ]
+
+          data['travelTrivia'] = [
+              {
+                  'topicKey': 'uzbekistan-tashkent-metro-first-central-asia',
+                  'categoryEn': 'CITY',
+                  'categoryJa': '都市',
+                  'title': 'タシケント地下鉄は、中央アジアで最初に開業した地下鉄',
+                  'text': 'タシケント地下鉄は1977年に開業した中央アジア初の地下鉄。駅ごとに石材、陶器、金属、照明などの意匠が異なり、移動しながら首都の20世紀後半のデザインを見ることができる。',
+                  'icon': 'city',
+                  'sourceKey': 'tashkentMetro',
+              },
+              {
+                  'topicKey': 'uzbekistan-palov-unesco-2016',
+                  'categoryEn': 'FOOD',
+                  'categoryJa': '食',
+                  'title': 'パロフは料理だけでなく、つくって分け合う文化として登録されている',
+                  'text': 'UNESCOは2016年にPalov culture and traditionを無形文化遺産代表一覧へ登録した。日常の食事だけでなく、結婚式や祝い、弔いなど人が集まる場と結びつく料理として見ると意味が分かりやすい。',
+                  'icon': 'food',
+                  'sourceKey': 'palov',
+              },
+              {
+                  'topicKey': 'uzbekistan-suzani-embroidery-schools',
+                  'categoryEn': 'CRAFT',
+                  'categoryJa': '工芸',
+                  'title': 'スザニ刺繍は、町ごとに模様と縫い方の系統が違う',
+                  'text': 'ウズベキスタンの刺繍文化には、ヌラタ、サマルカンド、シャフリサブス、タシケント、フェルガナ、ブハラなど地域ごとの系統がある。市場では完成品だけでなく、土地ごとの色や模様の違いを見るのも面白い。',
+                  'icon': 'culture',
+                  'sourceKey': 'suzani',
+              },
+              {
+                  'topicKey': 'uzbekistan-lazgi-khorezm',
+                  'categoryEn': 'PERFORMANCE',
+                  'categoryJa': '芸能',
+                  'title': 'ホラズム地方のラズギ舞踊は、手・肩・首の細かな動きが特徴',
+                  'text': 'ヒヴァを含むホラズム地方に根づくラズギは、細かな身体の動きと強い表情を伴う舞踊。建築だけを見て終わらず、地域文化を現在の表現から知る入口になる。',
+                  'icon': 'users',
+                  'sourceKey': 'lazgi',
+              },
+              {
+                  'topicKey': 'uzbekistan-navruz-sumalak',
+                  'categoryEn': 'FESTIVAL',
+                  'categoryJa': '祭り',
+                  'title': '3月のナウルーズでは、スマラクを囲んで春を迎える',
+                  'text': 'ナウルーズの中心日は3月21日。街や地域で春を祝う行事が続き、小麦を使ったスマラクなどの料理もつくられる。春に旅するなら、季節そのものが暮らしの景色に入り込む時期。',
+                  'icon': 'sun',
+                  'sourceKey': 'navruz',
+              },
+          ]
+
+          data['encounters'] = [
+              {'title': '青いタイルのドーム', 'icon': 'landmark'},
+              {'title': '煉瓦のミナレット', 'icon': 'landmark'},
+              {'title': '市場に積まれた丸いパン', 'icon': 'food'},
+              {'title': '青い陶器の工房', 'icon': 'culture'},
+              {'title': '絹織物の工房', 'icon': 'culture'},
+              {'title': '綿花畑と果樹園', 'icon': 'leaf'},
+              {'title': '装飾された地下鉄駅', 'icon': 'city'},
+              {'title': 'ソ連期のモダニズム建築', 'icon': 'city'},
+          ]
+
+          related = []
+          for item in data.get('relatedCountries', []):
+              if item.get('slug') != 'iran':
+                  related.append(item)
+          related.append({
+              'slug': 'kazakhstan',
+              'nameEn': 'KAZAKHSTAN',
+              'nameJa': 'カザフスタン',
+              'flag': '🇰🇿',
+              'reason': '中央アジアの旅を続けながら、トルキスタンのイスラム建築から草原、山地、現代都市まで、より大きな地理のスケールへ視野を広げたいなら。',
+          })
+          data['relatedCountries'] = related
+
+          data['travelScale'] = {
+              'kicker': 'TRAVEL SCALE',
+              'title': '旅の広げ方',
+              'intro': '',
+              'items': [
+                  {
+                      'duration': '二都市中心',
+                      'title': 'サマルカンドとブハラで、二つのオアシス都市を見る',
+                      'text': '高速鉄道を軸に、レギスタンの大きな王朝建築と、街路の中に宗教建築が続くブハラを比較する。初回の短い旅なら都市を増やしすぎず、違いを歩いて見る構成にしやすい。例：タシケント → サマルカンド → ブハラ。',
+                      'icon': 'city',
+                  },
+                  {
+                      'duration': '東西をつなぐ',
+                      'title': 'サマルカンド、ブハラ、ヒヴァを一本の軸でつなぐ',
+                      'text': '三つの歴史都市に首都を加え、鉄道や国内線で国土を横断する。建築の色だけでなく、都市の大きさ、街路、砂漠を挟んだ距離感まで見えてくる。例：タシケント → サマルカンド → ブハラ → ヒヴァ。',
+                      'icon': 'map',
+                  },
+                  {
+                      'duration': '広域周遊',
+                      'title': '山地・フェルガナ・アラル海まで国の幅を広げる',
+                      'text': '主要古都に加え、東部の山地や工芸の町、西部のムイナクまで範囲を広げる。長距離移動が増えるため、列車・車・国内線を組み合わせ、地域ごとに滞在の余白を持たせる。例：タシケント → チャルヴァク → リシタン → サマルカンド → ブハラ → ヒヴァ → ムイナク。',
+                      'icon': 'compass',
+                  },
+              ],
+          }
+
+          sources = data.setdefault('sources', {})
+          sources['afrosiyob'] = 'Uzbekistan Railways: Afrosiyob high-speed train on the Tashkent–Samarkand corridor has a maximum speed of 250 km/h.'
+          sources['tashkentMetro'] = 'Tashkent Metro official history: the system opened in 1977 and was the first metro system in Central Asia; stations use distinct architectural and decorative treatments.'
+          sources['suzani'] = 'Uzbekistan Travel: traditional artistic embroidery schools developed in Nurata, Samarkand, Shakhrisabz, Tashkent, Fergana and Bukhara, with regional differences in technique and pattern.'
+          sources['navruz'] = 'Uzbekistan Travel: Navruz is centered on 21 March; celebrations include preparation of sumalak and other seasonal foods and public festivities.'
+          data.setdefault('sourceDates', {})['editorialReview'] = '2026-09-13'
+          data['updatedAt'] = '2026-09-13'
+
+          country_path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          state_path = Path('ops/country-production/uzbekistan.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+          state['qa'] = {'state': 'NOT_STARTED', 'productionState': 'NOT_STARTED'}
+          state['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED',
+              'deployedAt': None,
+          }
+          state['finalApproval'] = {'state': 'PENDING'}
+          state.setdefault('productionMetrics', {})['canonicalReviewReadyAt'] = None
+          state['next'] = {'action': 'RUN_COUNTRY_QA', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate revised Uzbekistan content
+        shell: bash
+        run: |
+          python3 scripts/validate_country_editorial_v2.py data/countries/uzbekistan.json
+          python3 scripts/validate_country.py --strict data/countries/uzbekistan.json
+          python3 scripts/country_production_protocol_v2.py validate
+
+      - name: Commit revised editorial content and remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/refresh-uzbekistan-editorial.yml
+          git add data/countries/uzbekistan.json ops/country-production/uzbekistan.json
+          git commit -m "Refine Uzbekistan facts trivia encounters and related countries"
+          git push origin HEAD:country/uzbekistan
