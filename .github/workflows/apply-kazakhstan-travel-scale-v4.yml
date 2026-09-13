@@ -1,0 +1,39 @@
+name: Apply Kazakhstan Travel Scale v4
+
+on:
+  push:
+    branches:
+      - fix/kazakhstan-travel-scale-v4
+    paths:
+      - 'scripts/migrate_kazakhstan_travel_scale_v4.py'
+      - '.github/workflows/apply-kazakhstan-travel-scale-v4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kazakhstan-travel-scale-v4
+      - name: Migrate Kazakhstan Travel Scale
+        run: python3 scripts/migrate_kazakhstan_travel_scale_v4.py
+      - name: Run focused validation
+        run: |
+          python3 scripts/test_country_editorial_v2.py
+          python3 scripts/validate_country_editorial_v2.py data/countries/kazakhstan.json
+          python3 scripts/validate_country.py --strict data/countries/kazakhstan.json
+          python3 scripts/build_country_preview_targeted.py --slugs kazakhstan
+      - name: Commit Kazakhstan migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f data/countries/kazakhstan.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Restore Kazakhstan Travel Scale day ranges under Content QA v4'
+          git push origin HEAD:fix/kazakhstan-travel-scale-v4
