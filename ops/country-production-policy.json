@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 3,
-  "updatedAt": "2026-09-12T00:30:00+09:00",
+  "policyPatch": 4,
+  "updatedAt": "2026-09-13T08:54:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -46,7 +46,8 @@
     "travelScaleComplete": true,
     "signatureFactsComplete": true,
     "sourcesComplete": true,
-    "editorialQaV2Passed": true
+    "editorialQaV2Passed": true,
+    "editorialQaCurrentVersion": 3
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
@@ -87,9 +88,27 @@
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
   "contentQuality": {
-    "version": 2,
+    "version": 3,
+    "validator": "scripts/validate_country_editorial_v2.py",
+    "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
+    "travelScaleNumericDurationForbidden": true,
+    "travelScaleDayCountForbidden": true,
+    "travelScaleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
+    "travelScaleThirdItemOpenEndedDayRule": false,
+    "crossSectionSemanticDuplicationForbidden": true,
+    "crossSectionCanonicalTopicKeyRequired": true,
+    "crossSectionTopicKeyUniqueAcross": [
+      "signatureFacts",
+      "atlasExtras",
+      "travelTrivia"
+    ],
+    "crossSectionRoles": {
+      "signatureFacts": "NUMERIC_FACTS_ONLY",
+      "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
+      "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
+    },
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
