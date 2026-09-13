@@ -27,7 +27,7 @@ jobs:
           p = Path('ops/country-production/uzbekistan.json')
           d = json.loads(p.read_text(encoding='utf-8'))
           d['stateRevision'] = int(d.get('stateRevision', 0)) + 1
-          d['updatedAt'] = '2026-09-13T22:48:00+09:00'
+          d['updatedAt'] = '2026-09-13T22:50:00+09:00'
           d['reviewPreview'] = {
               'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
               'state': 'NOT_STARTED',
@@ -37,7 +37,7 @@ jobs:
           d['next'] = {'action': 'DEPLOY_REVIEW_PREVIEW', 'asset': None}
           p.write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
           PY
-          python3 scripts/country_production_protocol_v2.py validate ops/country-production/uzbekistan.json
+          python3 scripts/country_production_protocol_v2.py validate
 
       - name: Remove one-time workflow and commit
         run: |
