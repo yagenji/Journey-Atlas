@@ -59,15 +59,19 @@ jobs:
           bash scripts/http_fetch_retry.sh "$SITE_URL/sitemap.xml?qa=$GITHUB_RUN_ID" /tmp/sitemap.xml
           test -s /tmp/tajikistan.html
           test -s /tmp/tajikistan.json
-          grep -q 'data-country="tajikistan"' /tmp/tajikistan.html
-          if grep -Eqi '<meta[^>]+name=["'"']robots["'"'][^>]+content=["'"'][^"'"']*noindex' /tmp/tajikistan.html; then
-            echo 'Tajikistan production page is still noindex'
-            exit 1
-          fi
           grep -q 'https://atlas.yagenji.com/countries/tajikistan/' /tmp/sitemap.xml
           python3 - <<'PY'
           import json
+          import re
           from pathlib import Path
+
+          html = Path('/tmp/tajikistan.html').read_text(encoding='utf-8')
+          assert 'data-country="tajikistan"' in html
+          for tag in re.findall(r'<meta\b[^>]*>', html, flags=re.I):
+              if re.search(r'\bname\s*=\s*["\']robots["\']', tag, flags=re.I):
+                  content = re.search(r'\bcontent\s*=\s*["\']([^"\']*)', tag, flags=re.I)
+                  if content and 'noindex' in content.group(1).lower():
+                      raise SystemExit('Tajikistan production page is still noindex')
 
           country = json.loads(Path('/tmp/tajikistan.json').read_text(encoding='utf-8'))
           assert country.get('slug') == 'tajikistan'
