@@ -4,31 +4,62 @@
   "countryName": "QATAR",
   "contentRef": "country/qatar",
   "stateRef": "country/qatar",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-13T09:46:00+09:00",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-13T10:10:40+09:00",
   "hero": {
     "state": "NOT_STARTED",
-    "asset": null,
-    "contentId": null
+    "asset": "assets/images/qatar/approved/hero-doha-corniche-skyline.webp",
+    "contentId": "doha-corniche-skyline-hero",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "doha-corniche-skyline-hero",
+      "identity": "Real Doha Corniche looking across calm Doha Bay toward the recognisable West Bay skyline: Doha Tower's cylindrical lattice form and other real West Bay towers at natural scale, broad 3:2 horizontal composition, quiet bay water in the foreground and enough open sky/water for page copy, skyline remains recognisable in a mobile crop, soft late-afternoon to early-blue-hour light, muted sand-beige and blue palette, realistic architecture with restrained quiet watercolor treatment. No invented towers, Dubai-like skyline substitution, giant moon, fireworks, crowds, oversized dhow, poster sunset, fantasy haze, readable signs or text.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    }
   },
   "scenes": [
-    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id":"S01","state":"NOT_STARTED","asset":"assets/images/qatar/approved/al-zubarah-archaeological-site.webp","contentId":"al-zubarah-archaeological-site"},
+    {"id":"S02","state":"NOT_STARTED","asset":"assets/images/qatar/approved/zekreet-limestone-formations.webp","contentId":"zekreet-limestone-formations"},
+    {"id":"S03","state":"NOT_STARTED","asset":"assets/images/qatar/approved/purple-island-mangroves.webp","contentId":"purple-island-mangroves"},
+    {"id":"S04","state":"NOT_STARTED","asset":"assets/images/qatar/approved/al-jassasiya-rock-art.webp","contentId":"al-jassasiya-rock-art"},
+    {"id":"S05","state":"NOT_STARTED","asset":"assets/images/qatar/approved/souq-waqif.webp","contentId":"souq-waqif"},
+    {"id":"S06","state":"NOT_STARTED","asset":"assets/images/qatar/approved/souq-al-wakrah-seafront.webp","contentId":"souq-al-wakrah-seafront"},
+    {"id":"S07","state":"NOT_STARTED","asset":"assets/images/qatar/approved/khor-al-adaid-inland-sea.webp","contentId":"khor-al-adaid-inland-sea"},
+    {"id":"S08","state":"NOT_STARTED","asset":"assets/images/qatar/approved/dahl-al-misfir.webp","contentId":"dahl-al-misfir"}
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id":"FOOD01","state":"NOT_STARTED","asset":"assets/images/qatar/approved/food-machboos.webp","contentId":"machboos"},
+    {"id":"FOOD02","state":"NOT_STARTED","asset":"assets/images/qatar/approved/food-harees.webp","contentId":"harees"},
+    {"id":"FOOD03","state":"NOT_STARTED","asset":"assets/images/qatar/approved/food-balaleet.webp","contentId":"balaleet"},
+    {"id":"FOOD04","state":"NOT_STARTED","asset":"assets/images/qatar/approved/food-luqaimat.webp","contentId":"luqaimat"}
   ],
-  "map": {"state": "NOT_STARTED", "asset": null},
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/qatar/map-atlas-v1.svg",
+    "qa": {
+      "canvas": "1200x760",
+      "projection": "local-equirectangular-fit-v1",
+      "geometry": "PASS",
+      "sceneCoordinates": "PASS",
+      "labelCollision": "PASS",
+      "styleBaseline": "Iceland/Norway map language",
+      "approvedAt": "2026-09-13T10:10:40+09:00"
+    }
+  },
   "implementation": {"state": "NOT_STARTED"},
   "qa": {"state": "NOT_STARTED", "productionState": "NOT_STARTED"},
   "reviewDeployment": {"state": "NOT_STARTED", "url": null},
@@ -100,19 +131,19 @@
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
   "preVisualBuild": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "checks": {
-      "countryJsonEditorialComplete": "PENDING",
-      "finalExpectedImagePathsDeclared": "PENDING",
-      "sceneCoordinatesFinal": "PENDING",
-      "mapBuiltAndQaPassed": "PENDING",
-      "taxonomyComplete": "PENDING",
-      "relatedCountriesComplete": "PENDING",
-      "nextRoutesResolved": "PENDING",
-      "travelScaleComplete": "PENDING",
-      "signatureFactsComplete": "PENDING",
-      "sourcesComplete": "PENDING",
-      "editorialQaV2Passed": "PENDING"
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
     }
   },
   "assetHandoff": {
@@ -144,5 +175,5 @@
     "tasteBatchApprovedAt": null,
     "canonicalReviewReadyAt": null
   },
-  "next": {"action": "COMPLETE_CONTENT_DESIGN", "asset": null}
+  "next": {"action": "GENERATE_HERO", "asset": "HERO"}
 }
