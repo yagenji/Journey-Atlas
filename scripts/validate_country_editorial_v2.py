@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """JOURNEY ATLAS editorial content validator.
 
-The filename is retained for CI/backward compatibility. Content QA v2 rules remain
-valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- numeric day ranges are allowed in travelScale.duration; numeric stay/day/week counts remain forbidden in title/text;
-- canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
-- a conservative near-duplicate text guard across those three sections.
+The filename is retained for CI/backward compatibility.
+- Content QA v2: day-notation Travel Scale.
+- Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
+- Content QA v4: restores day-notation Travel Scale while retaining v3 topic separation.
 """
 from __future__ import annotations
 
@@ -20,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 CONTENT_QA_V2 = 2
 CONTENT_QA_V3 = 3
+CONTENT_QA_V4 = 4
 FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
@@ -93,17 +93,21 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+def validate_day_notation_travel_scale(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
     if len(items) != 3:
         return
     for index, item in enumerate(items, 1):
         duration = text(item.get("duration"))
-        if "週間" in duration or "日" not in duration:
-            fail(errors, f"{filename}: travelScale.items[{index}].duration must use day notation: {duration!r}")
+        if "週間" in duration or "週" in duration or "泊" in duration or "日" not in duration:
+            fail(errors, f"{filename}: travelScale.items[{index}].duration must use day notation only: {duration!r}")
     final_duration = text(items[2].get("duration"))
     if not re.fullmatch(r"\d+日以上", final_duration):
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
+
+
+def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    validate_day_notation_travel_scale(errors, filename, data)
 
 
 def contains_forbidden_duration(value: str) -> bool:
@@ -112,33 +116,19 @@ def contains_forbidden_duration(value: str) -> bool:
 
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
-    if len(items) != 3:
-        return
-
-    numeric_duration_flags: list[bool] = []
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
-        duration = text(item.get("duration"))
-        has_numeric_duration = contains_forbidden_duration(duration)
-        numeric_duration_flags.append(has_numeric_duration)
-        if has_numeric_duration and ("週間" in duration or "週" in duration or "泊" in duration or "日" not in duration):
-            fail(errors, f"{owner}.duration must use day notation when numeric: {duration!r}")
-
-        for key in ("title", "text"):
+        for key in ("duration", "title", "text"):
             value = text(item.get(key))
             if contains_forbidden_duration(value):
                 fail(
                     errors,
-                    f"{owner}.{key}: Content QA v3 allows numeric day ranges only in duration; title/text must remain non-numeric: {value!r}",
+                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
                 )
 
-    if any(numeric_duration_flags):
-        if not all(numeric_duration_flags):
-            fail(errors, f"{filename}: travelScale.duration labels must be consistently day-based or consistently qualitative")
-            return
-        final_duration = text(items[2].get("duration"))
-        if not re.fullmatch(r"\d+日以上", final_duration):
-            fail(errors, f"{filename}: final numeric travelScale duration must be '○日以上': {final_duration!r}")
+
+def validate_travel_scale_v4(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    validate_day_notation_travel_scale(errors, filename, data)
 
 
 def forest_related(item: dict[str, Any]) -> bool:
@@ -260,7 +250,7 @@ def validate_cross_section_topics(errors: list[str], filename: str, data: dict[s
     for section in sections:
         items = data.get(section)
         if not isinstance(items, list):
-            fail(errors, f"{filename}: Content QA v3 requires {section} list")
+            fail(errors, f"{filename}: Content QA v3+ requires {section} list")
             continue
         for index, item in enumerate(items, 1):
             owner = f"{section}[{index}]"
@@ -305,7 +295,11 @@ def validate_data(data: dict[str, Any], filename: str, *, force: bool = False) -
     if not force and version < CONTENT_QA_V2:
         return []
     errors: list[str] = []
-    if version >= CONTENT_QA_V3:
+    if version >= CONTENT_QA_V4:
+        validate_travel_scale_v4(errors, filename, data)
+        validate_signature_facts(errors, filename, data)
+        validate_cross_section_topics(errors, filename, data)
+    elif version >= CONTENT_QA_V3:
         validate_travel_scale_v3(errors, filename, data)
         validate_signature_facts(errors, filename, data)
         validate_cross_section_topics(errors, filename, data)
@@ -348,7 +342,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3 routed by contentQaVersion)")
+    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3/v4 routed by contentQaVersion)")
     return 0
 
 
