@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Qatar with Doha locator and Doha inset" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
-<metadata>Basemap intermediate-resolution GSHHS/GSHHG coastline and countries_i political boundary data, WGS84; Qatar coastline joined to the Saudi land boundary; Doha-core inset from the same GSHHS intermediate coastline; locator box and guide show the Doha-core inset position on the national map; JOURNEY ATLAS map-v3 clean background.</metadata>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Qatar with Doha locator and detailed Doha Bay inset" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+<metadata>Basemap intermediate-resolution GSHHS/GSHHG coastline and countries_i political boundary data, WGS84; Qatar coastline joined to the Saudi land boundary; Doha-core inset shoreline refined from higher-resolution Doha coastal geometry and cross-checked against the documented crescent form of Doha Bay/Corniche; locator box and guide show the Doha-core inset position on the national map; JOURNEY ATLAS map-v3 clean background.</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
 <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
@@ -12,6 +12,10 @@
   <rect x="720.5" y="386.5" width="20.5" height="22" rx="2.5" stroke-width="1.35"/>
   <path d="M 741,397.5 L 782,397.5 L 805,420" stroke-width="1.1" opacity=".82"/>
 </g>
-<g clip-path="url(#doha-clip)"><rect x="805" y="420" width="360" height="270" fill="#e7eeee"/><path d="M 805,420 L 877.9,420.0 L 873.6,520.2 L 1107.1,591.6 L 1165,690 L 805,690 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.4" stroke-linejoin="round"/></g>
+<text x="713" y="380" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1.2" fill="#4f6875">DOHA</text>
+<g clip-path="url(#doha-clip)">
+  <rect x="805" y="420" width="360" height="270" fill="#e7eeee"/>
+  <path d="M 805,420 L 953.6,420.0 L 934.6,431.4 L 904.2,440.4 L 839.4,471.0 L 813.0,526.8 L 825.8,544.2 L 849.0,562.2 L 888.2,577.2 L 929.8,567.0 L 961.8,577.8 L 977.0,569.4 L 981.8,546.0 L 997.8,542.4 L 1009.0,549.6 L 1037.8,544.2 L 1049.8,551.4 L 1064.2,578.4 L 1057.8,598.2 L 1083.4,615.6 L 1120.2,627.0 L 1137.8,627.0 L 1165.0,601.4 L 1165,690 L 805,690 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
 <rect x="805" y="420" width="360" height="270" fill="none" stroke="#8aa0aa" stroke-width="1.2" opacity=".85"/>
 </svg>
