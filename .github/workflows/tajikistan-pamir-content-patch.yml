@@ -1,0 +1,51 @@
+name: Apply Tajikistan Pamir overview patch
+
+on:
+  push:
+    branches: ["country/tajikistan"]
+    paths:
+      - ".github/workflows/tajikistan-pamir-content-patch.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/tajikistan
+
+      - name: Update Pamir overview
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/countries/tajikistan.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          target = next(item for item in data['atlasExtras'] if item.get('topicKey') == 'tajikistan-pamir-fauna')
+          target.update({
+              'topicKey': 'tajikistan-pamir-highland-system',
+              'themeEn': 'EARTH',
+              'themeJa': '地球の風景',
+              'title': 'パミールは、ユーラシアの高山帯が集まる「結び目」',
+              'text': 'タジキスタン東部のパミールは、単一の平坦な高原ではない。東部には高い台地、西部には7,000mを超える峰、深い谷、氷河が連なり、ヒマラヤ、カラコルム、ヒンドゥークシュ、崑崙、天山へ続く巨大山系が集まる「パミール・ノット」の中心にある。標高と乾燥が道路、集落、生態系の形を大きく左右している。',
+              'points': [
+                  '東部は高原、西部は7,000m級の峰と深い谷が中心',
+                  'タジク国立公園は約261万haを占め、氷河・湖・高山性動物を含む'
+              ]
+          })
+          path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit content and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tajikistan-pamir-content-patch.yml
+          git add data/countries/tajikistan.json
+          git commit -m "Add Pamir highland overview to Tajikistan"
+          git push origin HEAD:country/tajikistan
