@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
 Updated: 2026-09-13
-Current new-Country protocol: 2.0 / policy patch 4
+Current new-Country protocol: 2.0 / policy patch 5
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
 Current content policy: Content QA v3
 
@@ -58,11 +58,14 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 【Content QA v3】
 - 新規Countryは `contentQaVersion: 3` を使用してください。
 - Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
-- 旅の目安日程に具体的な日数・泊数・週数を入れてはいけません。`3日` / `4〜5日` / `7日以上` / `2泊3日` / `1週間` / `日帰り` 等は禁止です。
-- Travel Scaleは日数ではなく、旅の広がり・地域の組み合わせ・移動の組み立て方で表現してください。基本ラベルは `一都市中心 / 地域をつなぐ / 広域周遊` とします。
+- 旅の目安日程は `日` 表記に統一してください。例：`2日` / `3〜4日` / `5日以上`。
+- `泊` / `週` / `週間` をdurationに混在させないでください。
+- 最終段階は `○日以上` とし、上限を閉じないでください。
+- 日数だけでなく、各段階でどの地域を組み合わせるか、どの順序で巡るか、都市・自然・文化をどう組み合わせるかを説明してください。
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
 - 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
 - 単語が違っていても、読者が「さっきと同じ話」と感じる場合は重複です。数値は数字だからこそ面白い特徴、景色の向こうへは背景・意味の深掘り、トリビアは短い発見に役割を分けてください。
+- Signature Factsは3件とも、必要に応じて内容に合う明示的な `icon` を設定し、同一fallbackアイコンの連続を避けてください。
 - 森林・樹林地の割合は通常のSignature Factに使用しません。
 - 森林率を使えるのは国の極端な特徴である場合だけです。機械基準は10%以下または70%以上かつ `exceptionalShare:true` です。
 - 数字が取得できること自体を採用理由にしないでください。
@@ -112,6 +115,7 @@ Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユ�
 
 【画像後工程】
 画像承認後にMapや本文を作り始めてはいけません。Pre-visual buildで完成済みであることが前提です。
+ユーザーから最終レビュー中の明示的な編集指示が入った場合は、その編集だけを行い、承認済み画像をロックしたままtarget-only QA / Previewを再実行してください。
 ユーザーの画像格納後は原則として以下だけを1本で実行してください。
 1. 13画像Batch verification
 2. 必要な一括変換・dimensions/path/hygiene QA

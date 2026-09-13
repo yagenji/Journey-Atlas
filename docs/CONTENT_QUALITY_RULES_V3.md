@@ -5,11 +5,12 @@ Updated: 2026-09-13
 This specification applies to new Country JSON files with `contentQaVersion: 3`.
 Existing v2 Countries remain valid under the v2 rules unless intentionally migrated.
 
-## 1. Travel Scale uses travel scope, not day counts
+## 1. Travel Scale uses day notation and route scope together
 
-`travelScale` remains a three-step UI, but it must no longer recommend or imply a number of days.
+`travelScale` remains a three-step UI and the visible `duration` must use days.
+The purpose is not to prescribe an exact trip, but to give the reader a practical stay-length reference while showing how the geographic scope changes.
 
-Each item still contains:
+Each item contains:
 
 - `duration`
 - `title`
@@ -17,29 +18,15 @@ Each item still contains:
 - fixed icon sequence `city` / `map` / `compass`
 - a concrete itinerary/example introduced by `例：`
 
-For v3, `duration` is a route-scope label, not a numeric duration.
-Recommended pattern:
+Day notation rules:
 
-- `一都市中心`
-- `地域をつなぐ`
-- `広域周遊`
+- use `日` rather than weeks or nights;
+- the first two levels may be a single day count or a day range such as `2日` / `3〜4日`;
+- the third level is open-ended and must use `○日以上`;
+- do not mix `泊`, `週`, or `週間` into the duration labels;
+- the route text should explain geography, sequence, regional contrast, transport burden, and thematic breadth rather than merely repeating the day count.
 
-The exact wording may vary by Country, but numeric stay/day/week counts are forbidden in `duration`, `title`, and `text`.
-
-Forbidden examples include:
-
-- `3日`
-- `4〜5日`
-- `7日以上`
-- `2泊3日`
-- `1週間`
-- `日帰り`
-- equivalent Japanese-numeral forms such as `三日`
-
-The section should explain **how to compose the trip**, not how many days the reader should stay.
-Use geography, route shape, regional contrast, transport burden, and thematic breadth instead.
-
-The example remains required because the reader should still be able to picture a representative route.
+The example remains required because the reader should be able to picture a representative route.
 
 ## 2. Signature Facts / Beyond the Scenery / Travel Trivia must not repeat topics
 
@@ -77,6 +64,8 @@ This is a backstop, not permission to bypass the editorial rule with rewritten w
 `signatureFacts` contains exactly three distinctive numbers/facts.
 
 Avoid generic statistics selected only because data is available.
+Every Signature Fact should also carry an explicit icon when the default label mapping would not provide a distinctive icon.
+
 Forest/woodland coverage remains non-default and may be used only when:
 
 1. `exceptionalShare: true` is explicit; and
@@ -86,7 +75,7 @@ Even then, use it only if it is one of the strongest three numerical ways to exp
 
 ## 5. Validation
 
-Run before Hero generation:
+Run before Hero generation and again after any explicit editorial revision during final review:
 
 ```bash
 python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
@@ -95,7 +84,7 @@ python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
 The filename is retained for workflow compatibility, but the script routes rules by `contentQaVersion`:
 
 - v2 Country → v2 rules
-- v3 Country → v3 rules
+- v3 Country → v3 rules with day-notation Travel Scale plus cross-section duplication controls
 
 New Country scaffolds created by `scripts/new_country.py` use `contentQaVersion: 3`.
 
@@ -104,5 +93,3 @@ Regression tests:
 ```bash
 python3 scripts/test_country_editorial_v2.py
 ```
-
-A new Country must not leave the CONTENT / pre-visual stage until the current editorial validator passes.

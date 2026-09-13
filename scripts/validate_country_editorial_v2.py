@@ -3,7 +3,7 @@
 
 The filename is retained for CI/backward compatibility. Content QA v2 rules remain
 valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- no numeric stay/day/week counts in Travel Scale;
+- day-notation Travel Scale with an open-ended final tier;
 - canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
 - a conservative near-duplicate text guard across those three sections.
 """
@@ -24,10 +24,6 @@ FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
 TRAVEL_ICONS = ("city", "map", "compass")
-DURATION_COUNT_RE = re.compile(
-    r"(?:\d+(?:\.\d+)?|[一二三四五六七八九十百千万数半]+)\s*(?:日|泊|週間|週)"
-)
-DURATION_WORDS = ("日帰り",)
 TOPIC_SUFFIXES = {
     "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
     "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
@@ -93,34 +89,27 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+def validate_day_notation_travel_scale(
+    errors: list[str], filename: str, data: dict[str, Any]
+) -> None:
     items = validate_common_travel_scale(errors, filename, data)
     if len(items) != 3:
         return
     for index, item in enumerate(items, 1):
         duration = text(item.get("duration"))
-        if "週間" in duration or "日" not in duration:
-            fail(errors, f"{filename}: travelScale.items[{index}].duration must use day notation: {duration!r}")
+        if "週間" in duration or "週" in duration or "泊" in duration or "日" not in duration:
+            fail(errors, f"{filename}: travelScale.items[{index}].duration must use day notation only: {duration!r}")
     final_duration = text(items[2].get("duration"))
     if not re.fullmatch(r"\d+日以上", final_duration):
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
 
 
-def contains_forbidden_duration(value: str) -> bool:
-    return bool(DURATION_COUNT_RE.search(value)) or any(word in value for word in DURATION_WORDS)
+def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    validate_day_notation_travel_scale(errors, filename, data)
 
 
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    items = validate_common_travel_scale(errors, filename, data)
-    for index, item in enumerate(items, 1):
-        owner = f"{filename}: travelScale.items[{index}]"
-        for key in ("duration", "title", "text"):
-            value = text(item.get(key))
-            if contains_forbidden_duration(value):
-                fail(
-                    errors,
-                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
-                )
+    validate_day_notation_travel_scale(errors, filename, data)
 
 
 def forest_related(item: dict[str, Any]) -> bool:

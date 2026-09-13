@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
 Updated: 2026-09-13
-Current policy patch: 4
+Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. Patch 4 preserves the post-image fast path and Image Policy 7.2 controls, and advances new Country editorial production to Content QA v3.
+Protocol 2.0 is the default for **new Country production**. Patch 5 preserves the post-image fast path and Image Policy 7.2 controls, keeps Content QA v3 topic-deduplication rules, and restores practical day notation to Travel Scale.
 
 ## Production shape
 
@@ -49,7 +49,7 @@ Before Hero generation, finish everything that does not require the final raster
 - sources/source dates;
 - current Content QA.
 
-New Countries created under policy patch 4 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
+New Countries created under policy patch 5 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
 Existing v2 Countries remain on the v2 editorial contract unless explicitly migrated.
 
 `preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
@@ -150,6 +150,8 @@ python3 scripts/build_country_preview_targeted.py --slugs {slug}
 Full-Country build/QA is reserved for shared template/CSS/JS/build-system changes, explicit Full QA, and the real final production deployment.
 
 The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build. This removes the previous duplicate targeted package build.
+
+If the user requests an editorial revision during final review, update only the requested content, reset target QA/reviewPreview state, and rerun the target-only post-visual path. Approved image assets remain locked.
 
 ## 6. One pre-main Review PR triggers Preview automatically
 
@@ -259,8 +261,10 @@ See `docs/CONTENT_QUALITY_RULES_V3.md` for new Countries.
 Hard rules include:
 
 - every Travel Scale item contains a concrete `例：`;
-- Travel Scale must not contain concrete stay/day/week counts such as `3日`, `4〜5日`, `7日以上`, `2泊3日`, `1週間`, or `日帰り`;
-- Travel Scale differentiates route scope / regional combination rather than duration;
+- Travel Scale `duration` uses day notation such as `2日`, `3〜4日`, `5日以上`;
+- weeks and night-count notation are not used in the duration labels;
+- the third Travel Scale duration is open-ended and uses `○日以上`;
+- route text explains geographic scope / regional combination rather than merely repeating the day count;
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
 - canonical `topicKey` is required across those three sections, and generic suffix changes do not make the same underlying topic distinct;
 - forest/woodland percentage is not a routine Signature Fact; it requires `exceptionalShare:true` and must be <=10% or >=70%.

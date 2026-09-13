@@ -38,11 +38,11 @@ def valid_v3_data() -> dict:
         "travelScale": {
             "kicker": "DURATION",
             "title": "旅の目安日程",
-            "intro": "日数ではなく旅の広がりで選ぶ。",
+            "intro": "滞在日数と旅の広がりをあわせて選ぶ。",
             "items": [
-                {"duration": "一都市中心", "title": "街を深く見る", "text": "拠点を絞る。例：Aを歩き、近郊Bを加える。", "icon": "city"},
-                {"duration": "地域をつなぐ", "title": "主要地域を巡る", "text": "性格の違う地域を結ぶ。例：A → B → C。", "icon": "map"},
-                {"duration": "広域周遊", "title": "国の幅を見る", "text": "遠い地域やテーマを組み合わせる。例：A → B → C → D。", "icon": "compass"},
+                {"duration": "3日", "title": "街を深く見る", "text": "拠点を絞る。例：Aを歩き、近郊Bを加える。", "icon": "city"},
+                {"duration": "5〜7日", "title": "主要地域を巡る", "text": "性格の違う地域を結ぶ。例：A → B → C。", "icon": "map"},
+                {"duration": "10日以上", "title": "国の幅を見る", "text": "遠い地域やテーマを組み合わせる。例：A → B → C → D。", "icon": "compass"},
             ],
         },
         "signatureFacts": [
@@ -66,12 +66,6 @@ def valid_v3_data() -> dict:
 def test_v2_valid() -> None:
     errors = editorial.validate_data(valid_v2_data(), "valid-v2.json")
     assert not errors, errors
-
-
-def test_v2_still_allows_day_counts() -> None:
-    data = valid_v2_data()
-    errors = editorial.validate_data(data, "v2-days-remain-valid.json")
-    assert not any("forbids numeric stay/day/week counts" in error for error in errors), errors
 
 
 def test_v2_missing_example_fails() -> None:
@@ -125,25 +119,26 @@ def test_v3_valid() -> None:
     assert not errors, errors
 
 
-def test_v3_day_count_in_duration_fails() -> None:
+def test_v3_qualitative_duration_fails() -> None:
     data = valid_v3_data()
-    data["travelScale"]["items"][0]["duration"] = "3日"
-    errors = editorial.validate_data(data, "v3-day-duration.json")
-    assert any("forbids numeric stay/day/week counts" in error for error in errors), errors
+    data["travelScale"]["items"][0]["duration"] = "一都市中心"
+    errors = editorial.validate_data(data, "v3-qualitative-duration.json")
+    assert any("must use day notation only" in error for error in errors), errors
 
 
-def test_v3_day_count_in_body_fails() -> None:
+def test_v3_week_or_night_notation_fails() -> None:
+    for value in ("1週間", "2泊3日"):
+        data = valid_v3_data()
+        data["travelScale"]["items"][1]["duration"] = value
+        errors = editorial.validate_data(data, f"v3-bad-unit-{value}.json")
+        assert any("must use day notation only" in error for error in errors), errors
+
+
+def test_v3_final_must_be_open_ended() -> None:
     data = valid_v3_data()
-    data["travelScale"]["items"][1]["text"] = "5〜7日で主要地域をつなぐ。例：A → B → C。"
-    errors = editorial.validate_data(data, "v3-day-body.json")
-    assert any("forbids numeric stay/day/week counts" in error for error in errors), errors
-
-
-def test_v3_week_count_fails() -> None:
-    data = valid_v3_data()
-    data["travelScale"]["items"][2]["title"] = "2週間で広域周遊"
-    errors = editorial.validate_data(data, "v3-week-title.json")
-    assert any("forbids numeric stay/day/week counts" in error for error in errors), errors
+    data["travelScale"]["items"][2]["duration"] = "8〜10日"
+    errors = editorial.validate_data(data, "v3-final-range.json")
+    assert any("final travelScale duration must be '○日以上'" in error for error in errors), errors
 
 
 def test_v3_duplicate_topic_across_sections_fails() -> None:
@@ -181,16 +176,15 @@ def test_v3_near_duplicate_copy_fails() -> None:
 
 if __name__ == "__main__":
     test_v2_valid()
-    test_v2_still_allows_day_counts()
     test_v2_missing_example_fails()
     test_moderate_forest_share_fails()
     test_extreme_forest_share_requires_flag()
     test_extreme_forest_share_passes_with_flag()
     test_v3_valid()
-    test_v3_day_count_in_duration_fails()
-    test_v3_day_count_in_body_fails()
-    test_v3_week_count_fails()
+    test_v3_qualitative_duration_fails()
+    test_v3_week_or_night_notation_fails()
+    test_v3_final_must_be_open_ended()
     test_v3_duplicate_topic_across_sections_fails()
     test_v3_renamed_same_topic_fails()
     test_v3_near_duplicate_copy_fails()
-    print("Editorial Content QA regression tests passed for v2 fixture compatibility and v3 rules")
+    print("Editorial Content QA regression tests passed for v2 compatibility and v3 day-notation/topic-separation rules")
