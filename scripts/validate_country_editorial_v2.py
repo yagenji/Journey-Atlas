@@ -3,7 +3,7 @@
 
 The filename is retained for CI/backward compatibility. Content QA v2 rules remain
 valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- no numeric stay/day/week counts in Travel Scale;
+- numeric day ranges are allowed in travelScale.duration; numeric stay/day/week counts remain forbidden in title/text;
 - canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
 - a conservative near-duplicate text guard across those three sections.
 """
@@ -112,15 +112,33 @@ def contains_forbidden_duration(value: str) -> bool:
 
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
+    if len(items) != 3:
+        return
+
+    numeric_duration_flags: list[bool] = []
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
-        for key in ("duration", "title", "text"):
+        duration = text(item.get("duration"))
+        has_numeric_duration = contains_forbidden_duration(duration)
+        numeric_duration_flags.append(has_numeric_duration)
+        if has_numeric_duration and ("週間" in duration or "週" in duration or "泊" in duration or "日" not in duration):
+            fail(errors, f"{owner}.duration must use day notation when numeric: {duration!r}")
+
+        for key in ("title", "text"):
             value = text(item.get(key))
             if contains_forbidden_duration(value):
                 fail(
                     errors,
-                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
+                    f"{owner}.{key}: Content QA v3 allows numeric day ranges only in duration; title/text must remain non-numeric: {value!r}",
                 )
+
+    if any(numeric_duration_flags):
+        if not all(numeric_duration_flags):
+            fail(errors, f"{filename}: travelScale.duration labels must be consistently day-based or consistently qualitative")
+            return
+        final_duration = text(items[2].get("duration"))
+        if not re.fullmatch(r"\d+日以上", final_duration):
+            fail(errors, f"{filename}: final numeric travelScale duration must be '○日以上': {final_duration!r}")
 
 
 def forest_related(item: dict[str, Any]) -> bool:
