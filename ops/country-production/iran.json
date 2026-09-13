@@ -5,11 +5,11 @@
   "contentRef": "country/iran",
   "stateRef": "country/iran",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-13T13:45:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-13T13:46:00+09:00",
   "hero": {
     "id": "HERO",
-    "state": "REGENERATE",
+    "state": "GENERATING",
     "asset": "assets/images/iran/approved/hero-naqsh-e-jahan-isfahan.webp",
     "contentId": "naqsh-e-jahan-isfahan",
     "promptSeries": 2,
@@ -36,11 +36,13 @@
       "style": "real-place recognizability, refined realistic detail with quiet watercolor texture, premium adult travel-atlas illustration, approximately photo 6 watercolor 4, restrained natural saturation, soft clear late-afternoon light, elegant rather than poster-like",
       "negativeConstraints": ["generic Persian mosque complex", "two grand mosque portals side by side", "duplicate blue domes", "extra minarets", "dramatic mountain backdrop", "photographic snapshot", "hyperreal HDR", "fantasy Persian city", "invented mosque geometry", "anime", "oil painting", "tourism poster", "added lettering", "readable signage", "flag", "map", "UI", "collage", "split panel", "montage", "inset image", "people as main subject"]
     },
-    "candidateVisualQa": {
-      "targetIdentity": "FAIL",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS",
-      "reason": "The candidate rendered a generic/invented Persian mosque complex with two major tiled portals and an implausible dominant mountain backdrop, so Naqsh-e Jahan Square was not reliably recognisable."
+    "generationReservation": {
+      "reservationId": "HERO-series2-attempt1-20260913T134600+0900",
+      "asset": "HERO",
+      "contentId": "naqsh-e-jahan-isfahan",
+      "promptSeries": 2,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-13T13:46:00+09:00"
     }
   },
   "scenes": [
@@ -77,5 +79,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"GENERATE_HERO","asset":"HERO"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
 }
