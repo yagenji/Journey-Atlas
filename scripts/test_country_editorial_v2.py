@@ -55,7 +55,7 @@ def v3() -> dict:
 
 
 def v4() -> dict:
-    data = travel(4, ("3日","5〜7日","10日以上"))
+    data = travel(4, ("3〜4日","5〜7日","8日以上"))
     data["atlasExtras"], data["travelTrivia"] = contextual()
     return data
 
@@ -75,8 +75,53 @@ def test_v3_day_count_still_fails() -> None:
     assert any("forbids numeric stay/day/week counts" in e for e in errors), errors
 
 
-def test_v4_day_notation_valid() -> None:
+def test_v4_continuous_ranges_valid() -> None:
     assert not editorial.validate_data(v4(), "v4.json")
+
+
+def test_v4_single_first_tier_fails() -> None:
+    data = v4(); data["travelScale"]["items"][0]["duration"] = "3日"
+    errors = editorial.validate_data(data, "v4-single-first.json")
+    assert any("must be a day range" in e for e in errors), errors
+
+
+def test_v4_single_second_tier_fails() -> None:
+    data = v4(); data["travelScale"]["items"][1]["duration"] = "5日"
+    errors = editorial.validate_data(data, "v4-single-second.json")
+    assert any("must be a day range" in e for e in errors), errors
+
+
+def test_v4_zero_width_range_fails() -> None:
+    data = v4(); data["travelScale"]["items"][0]["duration"] = "3〜3日"
+    errors = editorial.validate_data(data, "v4-zero-width.json")
+    assert any("must have real width" in e for e in errors), errors
+
+
+def test_v4_gap_between_first_and_second_fails() -> None:
+    data = v4()
+    data["travelScale"]["items"][0]["duration"] = "2〜3日"
+    data["travelScale"]["items"][1]["duration"] = "6〜8日"
+    data["travelScale"]["items"][2]["duration"] = "9日以上"
+    errors = editorial.validate_data(data, "v4-gap-1-2.json")
+    assert any("must be continuous" in e for e in errors), errors
+
+
+def test_v4_gap_before_final_fails() -> None:
+    data = v4()
+    data["travelScale"]["items"][0]["duration"] = "2〜3日"
+    data["travelScale"]["items"][1]["duration"] = "4〜6日"
+    data["travelScale"]["items"][2]["duration"] = "8日以上"
+    errors = editorial.validate_data(data, "v4-gap-final.json")
+    assert any("final tier must start at 7日" in e for e in errors), errors
+
+
+def test_v4_overlap_fails() -> None:
+    data = v4()
+    data["travelScale"]["items"][0]["duration"] = "2〜4日"
+    data["travelScale"]["items"][1]["duration"] = "4〜6日"
+    data["travelScale"]["items"][2]["duration"] = "7日以上"
+    errors = editorial.validate_data(data, "v4-overlap.json")
+    assert any("must be continuous" in e for e in errors), errors
 
 
 def test_v4_qualitative_fails() -> None:
@@ -136,7 +181,13 @@ if __name__ == "__main__":
     test_v2_day_notation()
     test_v3_legacy_qualitative_still_valid()
     test_v3_day_count_still_fails()
-    test_v4_day_notation_valid()
+    test_v4_continuous_ranges_valid()
+    test_v4_single_first_tier_fails()
+    test_v4_single_second_tier_fails()
+    test_v4_zero_width_range_fails()
+    test_v4_gap_between_first_and_second_fails()
+    test_v4_gap_before_final_fails()
+    test_v4_overlap_fails()
     test_v4_qualitative_fails()
     test_v4_bad_units_fail()
     test_v4_final_open_ended()
@@ -145,4 +196,4 @@ if __name__ == "__main__":
     test_v4_day_count_before_example_remains_valid()
     test_forest_rule()
     test_cross_section_duplication()
-    print("Editorial Content QA regression tests passed for v2/v3/v4 routing and v4 example-only day ban")
+    print("Editorial Content QA regression tests passed for v2/v3/v4 routing, continuous v4 day ranges, and v4 example-only day ban")

@@ -1,6 +1,6 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
-Updated: 2026-09-13
+Updated: 2026-09-14
 Current policy patch: 4
 
 Machine-readable authority: `ops/country-production-policy.json`.
@@ -259,9 +259,13 @@ See `docs/CONTENT_QUALITY_RULES_V4.md` for new Countries. Existing v3 Countries 
 Hard rules for v4 include:
 
 - every Travel Scale item contains a concrete `例：`;
-- Travel Scale `duration` uses day notation such as `2日`, `3〜4日`, `5日以上`;
+- Travel Scale `duration` uses day notation;
+- the first and second durations must both be real ranges written `○〜○日`; single counts such as `2日` are forbidden;
+- the second range starts exactly one day after the first range ends;
+- the third Travel Scale duration is open-ended and uses `○日以上`, starting exactly one day after the second range ends;
+- gaps and overlaps between the three tiers are forbidden; for example `2〜3日 → 4〜6日 → 7日以上` is valid, while `2〜3日 → 6〜8日 → 9日以上` is invalid;
 - weeks and night-count notation are not used in duration labels;
-- the third Travel Scale duration is open-ended and uses `○日以上`;
+- the content after `例：` is route-only and must not contain day/night/week counts;
 - route text explains geographic scope / regional combination rather than merely repeating the day count;
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
 - canonical `topicKey` is required across those three sections;
