@@ -5,16 +5,17 @@
   "contentRef": "country/oman",
   "stateRef": "country/oman",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-13T14:19:54+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-13T14:21:41+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REGENERATE",
     "asset": "assets/images/oman/approved/hero-wadi-shab.webp",
     "contentId": "wadi-shab",
     "promptSeries": 1,
-    "promptSeriesRejectCount": 0,
-    "rejectedGenerationIds": [],
+    "promptSeriesRejectCount": 1,
+    "rejectedGenerationIds": ["1e91be65-6317-43ea-9449-a007ce96939b"],
+    "lastFailureReason": "STYLE_MISMATCH",
     "renderPacket": {
       "kind": "HERO",
       "contentId": "wadi-shab",
@@ -31,13 +32,12 @@
       "forbidInsetImages": true,
       "singleSceneOnly": true
     },
-    "generationReservation": {
-      "reservationId": "886adba4-5cb0-4961-b6c4-f111093df804",
-      "asset": "HERO",
-      "contentId": "wadi-shab",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-13T14:19:54+09:00"
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS",
+      "styleConsistency": "FAIL",
+      "notes": "Wadi Shab identity and single-frame constraints passed, but the output was materially too photographic for the JOURNEY ATLAS photo-6 / quiet-watercolor-4 baseline and was automatically rejected before user review."
     }
   },
   "scenes": [
@@ -169,5 +169,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next": {"action":"GENERATE_HERO","asset":"HERO"}
 }
