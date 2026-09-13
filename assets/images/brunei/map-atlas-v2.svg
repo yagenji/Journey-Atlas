@@ -1,18 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Brunei Darussalam and surrounding Sarawak" data-map-style="journey-atlas-map-v1" data-map-projection="local-equirectangular-fit-v1">
-<metadata>Rebuilt from scratch from GSHHS/GSHHG intermediate coastline and Basemap political boundary data, WGS84. Canvas 1200x760; bounds W113.95 E115.45 S3.95 N5.15. Surrounding Malaysia is intentionally de-emphasized toward the outer edges while the central Sarawak corridor remains legible. Shared Country template renders Hero and scene markers.</metadata>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Brunei Darussalam" data-map-style="journey-atlas-map-v1" data-map-projection="local-equirectangular-fit-v1">
+<metadata>Brunei-only map rebuilt from GSHHS/GSHHG intermediate coastline and Basemap political boundary data, WGS84. Canvas 1200x760; bounds W113.95 E115.45 S3.95 N5.15. Surrounding countries are intentionally omitted. Shared Country template renders Hero and scene markers.</metadata>
 <defs>
-  <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
-  <linearGradient id="context-land" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#edf0ec"/>
-    <stop offset=".42" stop-color="#e9ede8"/>
-    <stop offset=".56" stop-color="#d7ded4"/>
-    <stop offset=".72" stop-color="#d7ded4"/>
-    <stop offset=".86" stop-color="#e9ede8"/>
-    <stop offset="1" stop-color="#edf0ec"/>
+  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f1f2ee"/>
+    <stop offset=".55" stop-color="#eceee9"/>
+    <stop offset="1" stop-color="#e7eae5"/>
   </linearGradient>
-  <linearGradient id="country" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+  <linearGradient id="country" x1=".12" y1=".08" x2=".88" y2=".92">
+    <stop offset="0" stop-color="#e2dbad"/>
+    <stop offset=".52" stop-color="#d4cc9b"/>
+    <stop offset="1" stop-color="#c8bf8a"/>
+  </linearGradient>
 </defs>
-<rect width="1200" height="760" fill="url(#sea)"/>
-<path d="M 135.16,517.77 L 130.97,497.18 L 145.16,479.77 L 155.68,438.07 L 134.16,355.72 L 155.69,361.00 L 140.17,347.56 L 274.86,353.36 L 355.88,336.48 L 434.82,307.98 L 533.74,238.86 L 541.09,242.02 L 542.92,230.67 L 584.23,191.90 L 697.33,111.13 L 824.11,63.63 L 863.30,65.48 L 834.09,74.68 L 825.77,96.37 L 809.13,95.00 L 820.23,112.47 L 792.35,155.75 L 802.62,142.85 L 800.75,176.88 L 808.67,173.69 L 800.26,185.32 L 806.57,199.55 L 798.13,206.42 L 814.14,224.11 L 813.15,206.15 L 827.84,224.11 L 832.03,197.20 L 849.94,189.79 L 856.78,196.14 L 862.04,180.31 L 872.34,183.74 L 850.22,161.57 L 885.72,149.70 L 889.42,156.01 L 912.81,137.29 L 913.61,115.35 L 933.33,116.18 L 943.60,147.07 L 977.82,149.71 L 993.59,163.42 L 1026.72,154.46 L 1048.55,113.01 L 1055.65,118.01 L 1055.13,108.53 L 1073.50,102.74 L 1073.50,760.00 L 126.50,760.00 L 126.50,534.52 L 135.16,517.77 Z" fill="url(#context-land)" fill-rule="evenodd" stroke="#c4cbc4" stroke-width="1.05" stroke-linejoin="round"/>
+<rect width="1200" height="760" fill="url(#background)"/>
 <path d="M 355.88,336.48 L 434.82,307.98 L 533.74,238.86 L 541.09,242.02 L 542.92,230.67 L 584.23,191.90 L 697.33,111.13 L 824.11,63.63 L 863.30,65.48 L 834.09,74.68 L 825.77,96.37 L 809.13,95.00 L 820.23,112.47 L 792.35,155.75 L 802.62,142.85 L 801.62,160.99 L 801.33,160.97 L 776.42,201.61 L 698.74,217.62 L 682.25,244.19 L 650.86,260.55 L 650.51,279.19 L 671.20,297.49 L 673.26,319.51 L 675.62,344.73 L 677.98,369.95 L 680.34,395.18 L 682.70,420.40 L 685.06,445.62 L 711.53,454.24 L 712.76,481.16 L 705.40,503.32 L 666.29,551.88 L 669.27,560.50 L 693.47,551.88 L 666.99,603.60 L 666.46,638.26 L 601.05,698.60 L 562.82,716.37 L 543.18,710.74 L 541.60,691.56 L 475.66,635.62 L 444.80,562.61 L 398.50,565.96 L 365.88,556.45 L 354.65,456.53 L 313.44,397.94 L 271.70,365.75 L 217.86,354.49 L 218.02,350.92 L 274.86,353.36 L 355.88,336.48 Z M 813.15,206.15 L 827.84,224.11 L 832.03,197.20 L 849.94,189.79 L 856.78,196.14 L 862.04,180.31 L 872.34,183.74 L 850.22,161.57 L 879.63,151.73 L 881.29,156.75 L 884.28,172.76 L 904.27,183.14 L 930.22,218.50 L 942.67,280.95 L 967.75,340.95 L 956.35,385.63 L 962.32,444.21 L 1013.87,505.61 L 1009.49,529.36 L 950.57,514.94 L 930.22,500.16 L 907.60,502.80 L 852.89,486.26 L 835.70,391.44 L 806.24,312.44 L 800.62,258.08 L 806.46,215.61 L 814.14,224.11 L 813.15,206.15 Z" fill="url(#country)" fill-rule="evenodd" stroke="#31576a" stroke-width="2.0" stroke-linejoin="round"/>
 </svg>
