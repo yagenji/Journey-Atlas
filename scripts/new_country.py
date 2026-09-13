@@ -114,7 +114,7 @@ def main() -> int:
     output.write_text(json.dumps(scaffold(destination, region_label), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
     print(f"Region taxonomy label locked: {region_label}")
-    print("Content QA v4 locked: Travel Scale uses day notation with an open-ended final tier; Signature Facts / Beyond the Scenery / Travel Trivia must use distinct canonical topics.")
+    print("Content QA v4 locked: Travel Scale keeps day notation with an open-ended final tier; the content after 例： is route-only and contains no day/night/week counts; Signature Facts / Beyond the Scenery / Travel Trivia use distinct canonical topics.")
     print("Hero / Scene / Taste final approved-path placeholders are present so the page can be prebuilt before image generation.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
     print("Before Hero production: complete editorial content + Map and run python3 scripts/validate_country_editorial_v2.py <country-json>.")
