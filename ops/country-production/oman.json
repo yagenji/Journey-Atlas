@@ -5,8 +5,8 @@
   "contentRef": "country/oman",
   "stateRef": "country/oman",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-13T14:33:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-13T15:19:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -331,7 +331,7 @@
     "allPriorCountryAssetComparisonRequired":true,
     "targetEpochBindingRequired":true
   },
-  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S01","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
+  "generationContext": {"state":"CLEAN","epoch":2,"lastResetAt":"2026-09-13T15:19:00+09:00","lastFailureAsset":null,"lastFailureReason":null},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
   "productionProtocolRef": "main:ops/country-production-policy.json",
@@ -369,5 +369,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
+  "next": {"action":"GENERATE_SCENE","asset":"S02"}
 }
