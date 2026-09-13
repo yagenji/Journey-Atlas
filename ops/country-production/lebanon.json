@@ -4,119 +4,117 @@
   "countryName": "LEBANON",
   "contentRef": "country/lebanon",
   "stateRef": "country/lebanon",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-13T15:47:00+09:00",
+  "phase": "TASTE",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-13T18:13:30+09:00",
   "hero": {
-    "state": "NOT_STARTED",
-    "asset": null,
-    "contentId": null
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/lebanon/approved/hero-baalbek-temple-bacchus.webp",
+    "contentId": "baalbek-temple-bacchus",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "baalbek-temple-bacchus",
+      "identity": "Baalbek Temple of Bacchus in Lebanon, monumental Roman temple and surrounding ruins with Lebanon mountains behind, one continuous 3:2 golden-hour view; photo 6 quiet watercolor 4.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    },
+    "approvedGenerationId": "9a28dfc1-db65-439f-a991-33e79c069a36",
+    "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},
+    "userApprovedAt": "2026-09-13T18:03:00+09:00"
   },
   "scenes": [
-    {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S04","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S05","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S06","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S07","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S08","state":"NOT_STARTED","asset":null,"contentId":null}
+    {
+      "id":"S01","state":"APPROVED","asset":"assets/images/lebanon/approved/beirut-raouche-pigeon-rocks.webp","contentId":"beirut-raouche-pigeon-rocks","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"SCENE","contentId":"beirut-raouche-pigeon-rocks","identity":"Beirut Raouche Pigeon Rocks with the two limestone sea stacks and Beirut coastal skyline, one continuous 3:2 golden-hour view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"87845793-3f65-4cdf-97c1-fd31f00856f2"
+    },
+    {
+      "id":"S02","state":"APPROVED","asset":"assets/images/lebanon/approved/byblos-old-harbor-castle.webp","contentId":"byblos-old-harbor-castle","promptSeries":2,"promptSeriesRejectCount":1,"rejectedGenerationIds":["c6bd1a35-5419-4b31-bf79-670cf42ea18d"],
+      "renderPacket":{"kind":"SCENE","contentId":"byblos-old-harbor-castle","identity":"Byblos old harbor and castle on the Lebanese Mediterranean coast, stone waterfront, small boats and historic fortifications, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"ecfda781-ed5e-4df2-aff3-c586d2f775ee"
+    },
+    {
+      "id":"S03","state":"APPROVED","asset":"assets/images/lebanon/approved/qadisha-valley-bsharri.webp","contentId":"qadisha-valley-bsharri","promptSeries":2,"promptSeriesRejectCount":2,"rejectedGenerationIds":["23ef1ed4-62d7-476f-bebb-13a77ba69595","9a216833-eb78-4cdd-adc4-7177fbb60d33"],
+      "renderPacket":{"kind":"SCENE","contentId":"qadisha-valley-bsharri","identity":"Qadisha Valley and Bsharri in Lebanon, deep limestone gorge with steep cliffs, mountain village and terraced slopes, no sea or harbor, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"8f22d525-901b-4124-8efe-f5304edfa7e7"
+    },
+    {
+      "id":"S04","state":"APPROVED","asset":"assets/images/lebanon/approved/cedars-of-god-bsharri.webp","contentId":"cedars-of-god-bsharri","promptSeries":2,"promptSeriesRejectCount":1,"rejectedGenerationIds":["bc5fb554-d124-4dee-8c2a-262edadfb856"],
+      "renderPacket":{"kind":"SCENE","contentId":"cedars-of-god-bsharri","identity":"Cedars of God near Bsharri, ancient Lebanon cedar trees with massive trunks and broad horizontal branches on a rocky high mountain plateau, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"a3748685-19ff-478b-a97e-05044056fb35"
+    },
+    {
+      "id":"S05","state":"APPROVED","asset":"assets/images/lebanon/approved/tripoli-old-city.webp","contentId":"tripoli-old-city","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"SCENE","contentId":"tripoli-old-city","identity":"Tripoli old city in northern Lebanon, dense Mamluk-era stone urban fabric with mosque domes and minarets viewed across rooftops toward the hills, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"a15ed348-ee20-41a9-bd66-56d12dd35584"
+    },
+    {
+      "id":"S06","state":"APPROVED","asset":"assets/images/lebanon/approved/anjar-umayyad-ruins.webp","contentId":"anjar-umayyad-ruins","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"SCENE","contentId":"anjar-umayyad-ruins","identity":"Anjar Umayyad archaeological city in the Bekaa Valley, colonnaded stone avenue and arches with open valley and mountains behind, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"c9619c33-7e71-4c3a-9f42-9700489794bb"
+    },
+    {
+      "id":"S07","state":"APPROVED","asset":"assets/images/lebanon/approved/beiteddine-palace-chouf.webp","contentId":"beiteddine-palace-chouf","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"SCENE","contentId":"beiteddine-palace-chouf","identity":"Beiteddine Palace in the Chouf mountains, elegant Lebanese stone courtyard with arcades, red tile roofs and mountain backdrop, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"43e7b041-055a-41ea-9ab8-d08868c09d69"
+    },
+    {
+      "id":"S08","state":"APPROVED","asset":"assets/images/lebanon/approved/tyre-old-harbor.webp","contentId":"tyre-old-harbor","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"SCENE","contentId":"tyre-old-harbor","identity":"Tyre old harbor in southern Lebanon, quiet blue Mediterranean water, small fishing boats and low weathered stone waterfront remains, one continuous 3:2 view; photo 6 quiet watercolor 4.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},"approvedGenerationId":"52948a52-9eb8-481e-82f0-ece07eb32c81"
+    }
   ],
   "taste": [
-    {"id":"FOOD01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD04","state":"NOT_STARTED","asset":null,"contentId":null}
+    {
+      "id":"FOOD01","state":"GENERATING","asset":"assets/images/lebanon/approved/food-tabbouleh.webp","contentId":"tabbouleh","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],
+      "renderPacket":{"kind":"TASTE","contentId":"tabbouleh","identity":"One Lebanese tabbouleh serving centered on a plain warm ivory background: finely chopped parsley-dominant salad with tomato, mint, a restrained amount of bulgur, lemon and olive oil; single dish only, no props, no extra foods, no table setting.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "generationEpoch":2
+    },
+    {"id":"FOOD02","state":"NOT_STARTED","asset":"assets/images/lebanon/approved/food-kibbeh.webp","contentId":"kibbeh"},
+    {"id":"FOOD03","state":"NOT_STARTED","asset":"assets/images/lebanon/approved/food-manouche-zaatar.webp","contentId":"manouche-zaatar"},
+    {"id":"FOOD04","state":"NOT_STARTED","asset":"assets/images/lebanon/approved/food-knefeh.webp","contentId":"knefeh"}
   ],
-  "map": {"state":"NOT_STARTED","asset":null},
+  "map": {"state":"APPROVED","asset":"assets/images/lebanon/map-atlas-v1.svg","qa":{"canvas":"1200x760","projection":"local-equirectangular-fit-v1","geometry":"PASS","sceneCoordinates":"PASS","labelCollision":"PASS","contextLand":"PASS","styleBaseline":"Iceland/Norway map language","approvedAt":"2026-09-13T18:13:30+09:00"}},
   "implementation": {"state":"NOT_STARTED"},
   "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {
-    "heroApproval":"INDIVIDUAL",
-    "sceneApproval":"BATCH_ONLY",
-    "tasteApproval":"BATCH_ONLY",
-    "autoContinueImageRounds":true,
-    "userPromptBetweenSceneTargets":false,
-    "userPromptBetweenTasteTargets":false,
-    "runtimeBoundaryCreatesApprovalGate":false,
-    "roundIntentPersistsAcrossTurnBoundary":true,
-    "waitForStateOnlyCI":false,
-    "assetDeliveryMode":"USER_HANDOFF",
-    "repositoryMaterializationOwner":"USER",
-    "batchMaterialization":true,
-    "autoPostVisualPipeline":true,
-    "postVisualPipeline":"SINGLE_PASS",
-    "singleReviewIntegration":true
+    "heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true
   },
   "imageGenerationPolicyRef":"main:ops/image-generation-policy.json",
-  "generationContext": {
-    "state":"CLEAN",
-    "epoch":1,
-    "lastResetAt":null,
-    "lastFailureAsset":null,
-    "lastFailureReason":null
-  },
+  "generationContext": {"state":"CLEAN","epoch":2,"lastResetAt":"2026-09-13T18:09:00+09:00","lastFailureAsset":"S03","lastFailureReason":"wrong-target carryover reset before accepted regeneration"},
   "imageGenerationPolicy": {
-    "revision":7,
-    "sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE",
-    "tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE",
-    "sceneReview":"BATCH_ONLY",
-    "tasteReview":"BATCH_ONLY",
-    "mandatoryNoAddedText":true,
-    "rejectTypographyImmediately":true,
-    "rejectCollageImmediately":true,
-    "rejectPreviousAssetRepeatImmediately":true,
-    "candidateVisualQaRequired":true,
-    "batchPerceptualDuplicateGate":true,
-    "preGenerationReservationRequired":true,
-    "reconcileBeforeNextGeneration":true,
-    "maxSameAssetGenerationsPerTurn":1,
-    "differentTargetSameTurnContinuation":true,
-    "reservationBlocksOnlyUnreconciledTarget":true,
-    "freshTextToImageRequired":true,
-    "previousImageReferenceForbidden":true,
-    "repeatFailureRequiresRenderPacketRefresh":true,
-    "singleFrameContractRequired":true,
-    "collageFailureContaminatesContext":true,
-    "repeatFailureContaminatesContext":true,
-    "wrongTargetCarryoverContaminatesContext":true,
-    "contextResetRequiresSeparateTurn":true,
-    "batchLanguageForbiddenInGenerationTurn":true,
-    "multiTargetPromptForbidden":true,
-    "maxConsecutiveHardFailuresPerPromptSeries":2,
-    "requireRenderPacketRefreshAfterLimit":true,
-    "approvedAssetRegeneration":false,
-    "runtimeContinuation":"TO_BATCH_BOUNDARY",
-    "batchApprovalProvenanceRequired":true,
-    "regenBatchApprovalRequired":true,
-    "allPriorCountryAssetComparisonRequired":true,
-    "targetEpochBindingRequired":true
+    "revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true
   },
-  "sceneBatchReview":{"approval":"PENDING","rounds":[]},
+  "sceneBatchReview": {
+    "approval":"APPROVED",
+    "rounds":[{
+      "round":1,"reviewBoundary":true,"approvedAt":"2026-09-13T18:13:00+09:00","scope":["S01","S02","S03","S04","S05","S06","S07","S08"],
+      "approvedGenerations":{"S01":"87845793-3f65-4cdf-97c1-fd31f00856f2","S02":"ecfda781-ed5e-4df2-aff3-c586d2f775ee","S03":"8f22d525-901b-4124-8efe-f5304edfa7e7","S04":"a3748685-19ff-478b-a97e-05044056fb35","S05":"a15ed348-ee20-41a9-bd66-56d12dd35584","S06":"c9619c33-7e71-4c3a-9f42-9700489794bb","S07":"43e7b041-055a-41ea-9ab8-d08868c09d69","S08":"52948a52-9eb8-481e-82f0-ece07eb32c81"},
+      "regenerate":[]
+    }]
+  },
   "tasteBatchReview":{"approval":"PENDING","rounds":[]},
   "productionProtocolRef":"main:ops/country-production-policy.json",
   "productionProtocolId":"2.0",
-  "preVisualBuild": {
-    "state":"NOT_STARTED",
-    "checks": {
-      "countryJsonEditorialComplete":"PENDING",
-      "finalExpectedImagePathsDeclared":"PENDING",
-      "sceneCoordinatesFinal":"PENDING",
-      "mapBuiltAndQaPassed":"PENDING",
-      "taxonomyComplete":"PENDING",
-      "relatedCountriesComplete":"PENDING",
-      "nextRoutesResolved":"PENDING",
-      "travelScaleComplete":"PENDING",
-      "signatureFactsComplete":"PENDING",
-      "sourcesComplete":"PENDING",
-      "editorialQaV2Passed":"PENDING"
-    }
-  },
+  "preVisualBuild": {"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
-  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"COMPLETE_CONTENT_DESIGN","asset":null}
+  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
+  "next":{"action":"GENERATE_TASTE","asset":"FOOD01"}
 }
