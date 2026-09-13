@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+# Diagnostic-only comment: force full-scope CI without changing build behavior.
 import json
 import os
 import subprocess
