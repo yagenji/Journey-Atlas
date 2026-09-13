@@ -1,0 +1,33 @@
+name: Apply Travel Scale validator v3 fix
+
+on:
+  push:
+    branches:
+      - fix/travel-scale-published-validator-v3
+    paths:
+      - 'scripts/apply_travel_scale_validator_v3_fix.py'
+      - '.github/workflows/apply-travel-scale-validator-v3-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out fix branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/travel-scale-published-validator-v3
+      - name: Apply shared validator fix
+        run: python3 scripts/apply_travel_scale_validator_v3_fix.py
+      - name: Commit patched validator
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/validate_country.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'Align published Travel Scale validator with Content QA v3'
+          git push origin HEAD:fix/travel-scale-published-validator-v3
