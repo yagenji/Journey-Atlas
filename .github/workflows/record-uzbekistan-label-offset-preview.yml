@@ -1,0 +1,49 @@
+name: Record Uzbekistan label offset preview
+on:
+  push:
+    paths:
+      - '.github/workflows/record-uzbekistan-label-offset-preview.yml'
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+      - name: Record successful preview
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p = Path('ops/country-production/uzbekistan.json')
+          s = json.loads(p.read_text(encoding='utf-8'))
+          now = datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          s['stateRevision'] = int(s.get('stateRevision', 0)) + 1
+          s['updatedAt'] = now
+          s['reviewPreview'] = {
+            'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+            'state': 'DONE',
+            'url': 'https://yagenji.github.io/Journey-Atlas/reviews/uzbekistan/countries/uzbekistan/',
+            'browserQa': 'PASS',
+            'deployedAt': now
+          }
+          m = s.setdefault('productionMetrics', {})
+          m['reviewPreviewDeployments'] = int(m.get('reviewPreviewDeployments', 0)) + 1
+          m['browserQaCycles'] = int(m.get('browserQaCycles', 0)) + 1
+          m['canonicalReviewReadyAt'] = now
+          s['next'] = {'action': 'REVIEW_CANONICAL_URL', 'asset': None}
+          p.write_text(json.dumps(s, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+      - name: Commit state and remove recorder
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f ops/country-production/uzbekistan.json
+          git rm .github/workflows/record-uzbekistan-label-offset-preview.yml
+          git commit -m 'Record Uzbekistan Tashkent label offset preview'
+          git push origin HEAD:country/uzbekistan
