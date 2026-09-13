@@ -1,7 +1,7 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
 Updated: 2026-09-13
-Current new-Country protocol: 2.0 / policy patch 4
+Current new-Country protocol: 2.0 / policy patch 5
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
 Current content policy: Content QA v4
 
@@ -57,10 +57,14 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 
 【Content QA v4】
 - 新規Countryは `contentQaVersion: 4` を使用してください。
-- Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
-- 旅の目安日程は `日` 表記に統一してください。例：`2日` / `3〜4日` / `5日以上`。
+- Travel Scale（旅の目安日程）は3段階とも日数表示を残します。
+- `duration` は各国の規模・見どころの分散・移動負荷に合わせて `2日` / `3〜4日` / `5〜7日` のように設定してください。
 - `泊` / `週` / `週間` をdurationに混在させないでください。
 - 最終段階は `○日以上` とし、上限を閉じないでください。
+- Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
+- **日数・泊数・週数を禁止するのは `例：` より後ろのルート例の中だけです。** `例：Aを2日 → Bを3日` / `例：A → Bを1週間` のような表記は禁止です。
+- `例：` は `A → B → C` のように代表的な旅の流れだけを示し、日数は上の `duration` で示してください。
+- `例：` より前の説明文では、必要ならその段階の日数を補足しても構いません。
 - 日数だけでなく、各段階でどの地域を組み合わせるか、どの順序で巡るか、都市・自然・文化をどう組み合わせるかを説明してください。
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
 - 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
@@ -69,7 +73,7 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - 森林・樹林地の割合は通常のSignature Factに使用しません。
 - 森林率を使えるのは国の極端な特徴である場合だけです。機械基準は10%以下または70%以上かつ `exceptionalShare:true` です。
 - 数字が取得できること自体を採用理由にしないでください。
-- 既存 `contentQaVersion: 3` Countryはv3のroute-scope/no-day-count契約を維持し、意図的に移行する場合だけv4へ上げてください。
+- 既存 `contentQaVersion: 3` Countryはlegacy互換のためvalidator上は有効ですが、誤って日数なし仕様で制作された進行中Countryはv4へ移行し、日数表示を復元してください。
 
 【画像生成】
 画像生成は現在のmain image policyに従ってください。
