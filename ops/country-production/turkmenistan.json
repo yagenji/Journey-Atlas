@@ -5,8 +5,8 @@
   "contentRef": "country/turkmenistan",
   "stateRef": "country/turkmenistan",
   "phase": "QA",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-13T23:24:25+09:00",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-13T23:37:43+09:00",
   "hero": {"id":"HERO","state":"APPROVED","asset":"assets/images/turkmenistan/approved/hero-darvaza-crater.webp","contentId":"darvaza-gas-crater","approvedGenerationId":"085d0f31-c9e5-4fa6-8376-ced8a5d66058"},
   "scenes": [
     {"id":"S01","state":"APPROVED","asset":"assets/images/turkmenistan/approved/scene-01-ashgabat-white-marble.webp","contentId":"ashgabat-white-marble-axis","approvedGenerationId":"1d959122-8438-44a4-b5aa-40f507f573ab"},
@@ -41,7 +41,7 @@
   "productionProtocolId":"2.0",
   "preVisualBuild":{"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-13T23:03:00+09:00","verificationBasis":"Approved asset directory contains exactly Hero + 8 Scenes + 4 Taste assets after removal of superseded scene-06-darvaza-crater.webp. The new Yangykala WebP Git blob SHA fa04ac54246d19ac4bc0d63575cb52f1779ca052 exactly matches the approved handoff file; prior 12 approved assets had already passed handoff verification."},
-  "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":"https://yagenji.github.io/Journey-Atlas/reviews/turkmenistan/countries/turkmenistan/","browserQa":"NOT_STARTED","deployedAt":null},
-  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":1,"sceneBatchReviews":2,"tasteBatchReviews":1,"assetHandoffs":2,"reviewPackageIntegrations":1,"reviewPreviewDeployments":1,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":3,"tasteBatchApprovedAt":"2026-09-13T13:00:00+09:00","canonicalReviewReadyAt":null},
-  "next":{"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}
+  "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"DONE","url":"https://yagenji.github.io/Journey-Atlas/reviews/turkmenistan/countries/turkmenistan/","browserQa":"PASS","sourceCommit":"5dc6452a3570f5b5a72b08f6f23770eebe54a90e","deployRunId":34763166965,"browserQaArtifactId":10320006065,"deployedAt":"2026-09-13T23:37:43+09:00"},
+  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":1,"sceneBatchReviews":2,"tasteBatchReviews":1,"assetHandoffs":2,"reviewPackageIntegrations":1,"reviewPreviewDeployments":2,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":4,"tasteBatchApprovedAt":"2026-09-13T13:00:00+09:00","canonicalReviewReadyAt":"2026-09-13T23:37:43+09:00"},
+  "next":{"action":"REVIEW_CANONICAL_URL","asset":null}
 }
