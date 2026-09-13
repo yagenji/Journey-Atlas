@@ -1,0 +1,54 @@
+name: Advance Uzbekistan QA state
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths:
+      - ".github/workflows/advance-uzbekistan-qa.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 1
+
+      - name: Advance QA after successful target validation
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+          import importlib.util
+
+          path = Path('ops/country-production/uzbekistan.json')
+          state = json.loads(path.read_text(encoding='utf-8'))
+          state['phase'] = 'QA'
+          state['qa']['state'] = 'PASS'
+          state['qa']['productionState'] = 'CI_GATED'
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+
+          spec = importlib.util.spec_from_file_location('protocol2', 'scripts/country_production_protocol_v2.py')
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          state['next'] = mod.protocol_next(state)['next']
+          path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          rm .github/workflows/advance-uzbekistan-qa.yml
+
+      - name: Commit QA state
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/country-production/uzbekistan.json .github/workflows/advance-uzbekistan-qa.yml
+          git commit -m "Mark Uzbekistan targeted QA passed"
+          git push origin HEAD:country/uzbekistan
