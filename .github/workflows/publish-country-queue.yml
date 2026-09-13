@@ -116,6 +116,16 @@ jobs:
             exit 0
           fi
 
+          slug="${HEAD_REF#country/}"
+          slug="${slug%-renewal}"
+          shared_snapshot="/tmp/${slug}-publication-shared-ssot.json"
+          shared_files=(
+            "data/atlas-destinations.json"
+            "data/atlas-destinations-editorial.json"
+            "data/country-renewal-status.json"
+            "data/theme-taxonomy.json"
+          )
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -129,6 +139,135 @@ jobs:
             git fetch --no-tags origin "+refs/heads/main:refs/remotes/origin/main"
           }
 
+          snapshot_country_shared_state() {
+            python3 - "$slug" "$shared_snapshot" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug, output = sys.argv[1:3]
+          data = Path("data")
+          snapshot = {"registryRows": {}, "statusRow": None, "themes": []}
+
+          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+              path = data / name
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              row = next((row for row in payload.get("destinations", []) if row.get("slug") == slug), None)
+              if row is not None:
+                  snapshot["registryRows"][name] = row
+
+          status_path = data / "country-renewal-status.json"
+          status = json.loads(status_path.read_text(encoding="utf-8"))
+          snapshot["statusRow"] = next(
+              (row for row in status.get("countries", []) if row.get("slug") == slug),
+              None,
+          )
+
+          taxonomy_path = data / "theme-taxonomy.json"
+          taxonomy = json.loads(taxonomy_path.read_text(encoding="utf-8"))
+          snapshot["themes"] = [
+              theme.get("id")
+              for theme in taxonomy.get("themes", [])
+              if slug in theme.get("examples", [])
+          ]
+
+          Path(output).write_text(
+              json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(f"Saved shared SSOT snapshot for {slug}: themes={snapshot['themes']}")
+          PY
+          }
+
+          restore_country_shared_state() {
+            python3 - "$slug" "$shared_snapshot" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug, snapshot_path = sys.argv[1:3]
+          data = Path("data")
+          snapshot = json.loads(Path(snapshot_path).read_text(encoding="utf-8"))
+
+          for name, saved_row in snapshot.get("registryRows", {}).items():
+              path = data / name
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows = payload.get("destinations", [])
+              for index, row in enumerate(rows):
+                  if row.get("slug") == slug:
+                      rows[index] = saved_row
+                      break
+              else:
+                  rows.append(saved_row)
+              path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          saved_status = snapshot.get("statusRow")
+          if saved_status is not None:
+              path = data / "country-renewal-status.json"
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows = payload.get("countries", [])
+              for index, row in enumerate(rows):
+                  if row.get("slug") == slug:
+                      rows[index] = saved_status
+                      break
+              else:
+                  rows.append(saved_status)
+              path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          wanted_themes = set(snapshot.get("themes", []))
+          path = data / "theme-taxonomy.json"
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          for theme in payload.get("themes", []):
+              examples = [item for item in theme.get("examples", []) if item != slug]
+              if theme.get("id") in wanted_themes:
+                  examples.append(slug)
+              theme["examples"] = examples
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(f"Restored shared SSOT state for {slug}: themes={sorted(wanted_themes)}")
+          PY
+          }
+
+          synchronize_main_preserving_country_state() {
+            snapshot_country_shared_state
+            set +e
+            git merge --no-edit origin/main
+            merge_status=$?
+            set -e
+
+            if [ "$merge_status" -ne 0 ]; then
+              mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+              for path in "${conflicts[@]}"; do
+                allowed=false
+                for shared in "${shared_files[@]}"; do
+                  if [ "$path" = "$shared" ]; then
+                    allowed=true
+                    break
+                  fi
+                done
+                if [ "$allowed" != "true" ]; then
+                  echo "Unexpected merge conflict outside shared Country SSOT: $path"
+                  git merge --abort || true
+                  exit 1
+                fi
+              done
+
+              for path in "${conflicts[@]}"; do
+                echo "Resolving shared SSOT conflict from latest main: $path"
+                git checkout --theirs -- "$path"
+                git add "$path"
+              done
+              restore_country_shared_state
+              git add "${shared_files[@]}"
+              git commit --no-edit
+            else
+              restore_country_shared_state
+              if ! git diff --quiet -- "${shared_files[@]}"; then
+                git add "${shared_files[@]}"
+                git commit -m "Reconcile $slug publication metadata after main sync"
+              fi
+            fi
+          }
+
           for cycle in $(seq 1 5); do
             echo "Publication queue cycle $cycle"
             fetch_queue_refs
@@ -136,7 +275,7 @@ jobs:
 
             if ! git merge-base --is-ancestor origin/main HEAD; then
               echo "Synchronizing latest main into $HEAD_REF before required checks."
-              git merge --no-edit origin/main
+              synchronize_main_preserving_country_state
               git push origin "HEAD:refs/heads/$HEAD_REF"
             fi
 

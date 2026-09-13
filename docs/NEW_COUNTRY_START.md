@@ -1,8 +1,9 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
-Updated: 2026-09-12
-Current new-Country protocol: 2.0 / policy patch 3
+Updated: 2026-09-13
+Current new-Country protocol: 2.0 / policy patch 4
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
+Current content policy: Content QA v3
 
 ## Copy / paste start prompt
 
@@ -18,7 +19,7 @@ GitHub：
 PROJECT MASTER INSTRUCTIONSとGitHub `main` の最新仕様を使用してください。
 
 最初に以下を確認してください。
-1. `main:ops/country-production-policy.json` の最新 protocolId / policyPatch
+1. `main:ops/country-production-policy.json` の最新 protocolId / policyPatch / contentQuality.version
 2. `main:ops/image-generation-policy.json` の最新 revision / patch / policyId
 3. `ops/country-production/{slug}.json` と `stateRef` / `contentRef`
 
@@ -48,13 +49,20 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - Next Routes
 - Travel Scale
 - Signature Facts
+- 景色の向こうへ / Travel Trivia
 - sources / sourceDates
-- Content QA v2
+- current Content QA
 
 `python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json` がPASSし、MapがAPPROVEDになるまでHeroへ進まないでください。
 
-【Content QA v2】
+【Content QA v3】
+- 新規Countryは `contentQaVersion: 3` を使用してください。
 - Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
+- 旅の目安日程に具体的な日数・泊数・週数を入れてはいけません。`3日` / `4〜5日` / `7日以上` / `2泊3日` / `1週間` / `日帰り` 等は禁止です。
+- Travel Scaleは日数ではなく、旅の広がり・地域の組み合わせ・移動の組み立て方で表現してください。基本ラベルは `一都市中心 / 地域をつなぐ / 広域周遊` とします。
+- `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
+- 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
+- 単語が違っていても、読者が「さっきと同じ話」と感じる場合は重複です。数値は数字だからこそ面白い特徴、景色の向こうへは背景・意味の深掘り、トリビアは短い発見に役割を分けてください。
 - 森林・樹林地の割合は通常のSignature Factに使用しません。
 - 森林率を使えるのは国の極端な特徴である場合だけです。機械基準は10%以下または70%以上かつ `exceptionalShare:true` です。
 - 数字が取得できること自体を採用理由にしないでください。
@@ -157,7 +165,7 @@ For a Protocol 2 new Country, use this order:
 4. `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. `docs/CONTENT_QUALITY_RULES_V2.md`
+7. `docs/CONTENT_QUALITY_RULES_V3.md` for `contentQaVersion: 3`; v2 spec only for legacy v2 Countries
 8. Scene / Taste / Map / Country template specifications
 9. chat history
 
