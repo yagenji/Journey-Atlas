@@ -1,0 +1,68 @@
+name: Normalize Uzbekistan delivery assets
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths:
+      - ".github/workflows/normalize-uzbekistan-delivery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Normalize Uzbekistan approved rasters only
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          import normalize_country_image_delivery as delivery
+
+          slugs = ['uzbekistan']
+          plans = delivery.build_plan(slugs)
+          delivery.print_plan(plans)
+          if len(plans) != 13:
+              raise SystemExit(f'Expected 13 Uzbekistan normalization targets, got {len(plans)}')
+          for plan in plans:
+              source = delivery.ROOT / plan.source
+              target = delivery.ROOT / plan.target
+              delivery.webp_save(source, target, plan.new_size)
+              if target != source:
+                  source.unlink()
+          remaining = delivery.build_plan(slugs)
+          if remaining:
+              delivery.print_plan(remaining)
+              raise SystemExit(f'Normalization incomplete: {len(remaining)} target(s) remain')
+          print('Uzbekistan raster normalization: PASS (13/13)')
+          PY
+
+      - name: Commit normalized rasters
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/uzbekistan/approved/*.webp
+          if git diff --cached --quiet; then
+            echo "No raster changes to commit"
+            exit 0
+          fi
+          git commit -m "Normalize Uzbekistan approved image delivery"
+          git push origin HEAD:country/uzbekistan
