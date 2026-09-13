@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """JOURNEY ATLAS editorial content validator.
 
-The filename is retained for CI/backward compatibility. Content QA v2 rules remain
-valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- day-notation Travel Scale with an open-ended final tier;
-- canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
-- a conservative near-duplicate text guard across those three sections.
+The filename is retained for CI/backward compatibility.
+- Content QA v2: day-notation Travel Scale.
+- Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
+- Content QA v4: restores day-notation Travel Scale while retaining v3 topic separation.
 """
 from __future__ import annotations
 
@@ -20,10 +19,15 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 CONTENT_QA_V2 = 2
 CONTENT_QA_V3 = 3
+CONTENT_QA_V4 = 4
 FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
 TRAVEL_ICONS = ("city", "map", "compass")
+DURATION_COUNT_RE = re.compile(
+    r"(?:\d+(?:\.\d+)?|[一二三四五六七八九十百千万数半]+)\s*(?:日|泊|週間|週)"
+)
+DURATION_WORDS = ("日帰り",)
 TOPIC_SUFFIXES = {
     "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
     "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
@@ -89,9 +93,7 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_day_notation_travel_scale(
-    errors: list[str], filename: str, data: dict[str, Any]
-) -> None:
+def validate_day_notation_travel_scale(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
     if len(items) != 3:
         return
@@ -108,7 +110,24 @@ def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, A
     validate_day_notation_travel_scale(errors, filename, data)
 
 
+def contains_forbidden_duration(value: str) -> bool:
+    return bool(DURATION_COUNT_RE.search(value)) or any(word in value for word in DURATION_WORDS)
+
+
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    items = validate_common_travel_scale(errors, filename, data)
+    for index, item in enumerate(items, 1):
+        owner = f"{filename}: travelScale.items[{index}]"
+        for key in ("duration", "title", "text"):
+            value = text(item.get(key))
+            if contains_forbidden_duration(value):
+                fail(
+                    errors,
+                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
+                )
+
+
+def validate_travel_scale_v4(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     validate_day_notation_travel_scale(errors, filename, data)
 
 
@@ -231,7 +250,7 @@ def validate_cross_section_topics(errors: list[str], filename: str, data: dict[s
     for section in sections:
         items = data.get(section)
         if not isinstance(items, list):
-            fail(errors, f"{filename}: Content QA v3 requires {section} list")
+            fail(errors, f"{filename}: Content QA v3+ requires {section} list")
             continue
         for index, item in enumerate(items, 1):
             owner = f"{section}[{index}]"
@@ -276,7 +295,11 @@ def validate_data(data: dict[str, Any], filename: str, *, force: bool = False) -
     if not force and version < CONTENT_QA_V2:
         return []
     errors: list[str] = []
-    if version >= CONTENT_QA_V3:
+    if version >= CONTENT_QA_V4:
+        validate_travel_scale_v4(errors, filename, data)
+        validate_signature_facts(errors, filename, data)
+        validate_cross_section_topics(errors, filename, data)
+    elif version >= CONTENT_QA_V3:
         validate_travel_scale_v3(errors, filename, data)
         validate_signature_facts(errors, filename, data)
         validate_cross_section_topics(errors, filename, data)
@@ -319,7 +342,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3 routed by contentQaVersion)")
+    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3/v4 routed by contentQaVersion)")
     return 0
 
 

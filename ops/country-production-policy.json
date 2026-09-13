@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 5,
+  "policyPatch": 4,
   "updatedAt": "2026-09-13T22:13:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
@@ -47,7 +47,7 @@
     "signatureFactsComplete": true,
     "sourcesComplete": true,
     "editorialQaV2Passed": true,
-    "editorialQaCurrentVersion": 3
+    "editorialQaCurrentVersion": 4
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
@@ -88,7 +88,7 @@
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
   "contentQuality": {
-    "version": 3,
+    "version": 4,
     "validator": "scripts/validate_country_editorial_v2.py",
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
@@ -99,6 +99,7 @@
     "travelScaleDurationUnitsAllowed": ["日"],
     "travelScaleDurationUnitsForbidden": ["泊", "週", "週間"],
     "travelScaleThirdItemOpenEndedDayRule": true,
+    "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
     "crossSectionTopicKeyUniqueAcross": [
