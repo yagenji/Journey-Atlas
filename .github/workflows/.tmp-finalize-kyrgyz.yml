@@ -1,0 +1,80 @@
+name: Temporary finalize Kyrgyzstan publication metadata
+
+on:
+  push:
+    branches: ["country/kyrgyz"]
+    paths:
+      - '.github/workflows/.tmp-finalize-kyrgyz.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/kyrgyz
+          fetch-depth: 0
+      - name: Update Kyrgyzstan publication metadata only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          slug = "kyrgyz"
+          data = Path("data")
+
+          registry_path = data / "atlas-destinations.json"
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          row = next((x for x in registry.get("destinations", []) if x.get("slug") == slug), None)
+          if row is None:
+              raise SystemExit("Kyrgyzstan registry row missing")
+          row["atlasPublished"] = True
+          row["href"] = "countries/kyrgyz/"
+          row["image"] = "assets/images/kyrgyz/approved/hero-song-kol.webp"
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+          status_path = data / "country-renewal-status.json"
+          status = json.loads(status_path.read_text(encoding="utf-8"))
+          status["updatedAt"] = "2026-09-13"
+          rows = status.setdefault("countries", [])
+          new_row = {
+              "slug": slug,
+              "nameJa": "キルギス",
+              "wave": 9,
+              "published": True,
+              "auditState": "AUDITED",
+              "renewalClass": "UNCLASSIFIED",
+              "content": "DONE",
+              "visual": "DONE",
+              "map": "DONE",
+              "sources": "DONE",
+              "qa": "PASS",
+              "production": "CI_GATED",
+              "hardImageGate": True,
+              "notes": [
+                  "New Kyrgyzstan Country production completed to current Reference standard on 2026-09-13.",
+                  "User instructed publication after final QA passed. Persistent review deployment, Content QA v2, strict Country validation, approved Hero / eight Scenes / four Taste assets / Map, final Signature Facts / Encounters / cross-section de-duplication / Tajikistan related-country / Travel Scale revisions, and Desktop / Tablet / Mobile Browser QA passed with zero blocking failures.",
+                  "Protocol 2 policyPatch 4 terminal publication uses CI_GATED production verification; post-merge Cloudflare production verification is authoritative."
+              ],
+              "automatedAudit": "DONE"
+          }
+          for i, existing in enumerate(rows):
+              if existing.get("slug") == slug:
+                  rows[i] = new_row
+                  break
+          else:
+              rows.append(new_row)
+          status_path.write_text(json.dumps(status, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+          PY
+
+          rm .github/workflows/.tmp-finalize-kyrgyz.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/atlas-destinations.json data/country-renewal-status.json .github/workflows/.tmp-finalize-kyrgyz.yml
+          git commit -m "Finalize Kyrgyzstan publication registry"
+          git push origin HEAD:country/kyrgyz
