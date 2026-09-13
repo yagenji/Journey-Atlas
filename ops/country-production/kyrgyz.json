@@ -4,9 +4,9 @@
   "countryName": "KYRGYZSTAN",
   "contentRef": "country/kyrgyz",
   "stateRef": "country/kyrgyz",
-  "phase": "ASSET_QA",
-  "stateRevision": 36,
-  "updatedAt": "2026-09-13T15:35:07+09:00",
+  "phase": "IMPLEMENTATION",
+  "stateRevision": 37,
+  "updatedAt": "2026-09-13T15:36:48+09:00",
   "hero": {"id":"HERO","state":"APPROVED","asset":"assets/images/kyrgyz/approved/hero-song-kol.webp","contentId":"song-kol-summer-pasture","approvedGenerationId":"10620e4e-a9cf-4f75-bdd1-f7efdaa91992"},
   "scenes": [
     {"id":"S01","state":"APPROVED","asset":"assets/images/kyrgyz/approved/bishkek-ala-too-square.webp","contentId":"bishkek-ala-too-square","approvedGenerationId":"c5f5e236-bb2d-4e82-b31d-a836d140614f"},
@@ -42,5 +42,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-13T15:35:07+09:00","verificationBasis":"All 13 repository WebP blobs exactly match the approved handoff ZIP by Git blob SHA; all handoff files fully decode as WebP at 1200x800, and the approved directory contains exactly the 13 expected rasters with no extra assets."},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":5,"sceneBatchReviews":1,"tasteBatchReviews":2,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":"2026-09-13T15:17:31+09:00","canonicalReviewReadyAt":null},
-  "next": {"action":"VERIFY_APPROVED_ASSETS","asset":null}
+  "next": {"action":"IMPLEMENT_COUNTRY_PAGE","asset":null}
 }
