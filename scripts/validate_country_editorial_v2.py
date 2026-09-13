@@ -4,7 +4,7 @@
 The filename is retained for CI/backward compatibility.
 - Content QA v2: day-notation Travel Scale.
 - Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
-- Content QA v4: restores day-notation Travel Scale while retaining v3 topic separation.
+- Content QA v4: continuous day-range Travel Scale + route-only examples + v3 topic separation.
 """
 from __future__ import annotations
 
@@ -28,6 +28,8 @@ DURATION_COUNT_RE = re.compile(
     r"(?:\d+(?:\.\d+)?|[一二三四五六七八九十百千万数半]+)\s*(?:日|泊|週間|週)"
 )
 DURATION_WORDS = ("日帰り",)
+DAY_RANGE_RE = re.compile(r"(\d+)〜(\d+)日")
+OPEN_ENDED_DAY_RE = re.compile(r"(\d+)日以上")
 TOPIC_SUFFIXES = {
     "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
     "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
@@ -93,10 +95,12 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_day_notation_travel_scale(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+def validate_day_notation_travel_scale(
+    errors: list[str], filename: str, data: dict[str, Any]
+) -> list[dict[str, Any]]:
     items = validate_common_travel_scale(errors, filename, data)
     if len(items) != 3:
-        return
+        return items
     for index, item in enumerate(items, 1):
         duration = text(item.get("duration"))
         if "週間" in duration or "週" in duration or "泊" in duration or "日" not in duration:
@@ -104,6 +108,7 @@ def validate_day_notation_travel_scale(errors: list[str], filename: str, data: d
     final_duration = text(items[2].get("duration"))
     if not re.fullmatch(r"\d+日以上", final_duration):
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
+    return items
 
 
 def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
@@ -127,8 +132,64 @@ def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, A
                 )
 
 
+def validate_v4_duration_ranges(
+    errors: list[str], filename: str, items: list[dict[str, Any]]
+) -> None:
+    if len(items) != 3:
+        return
+
+    parsed_ranges: list[tuple[int, int] | None] = []
+    for index in range(2):
+        duration = text(items[index].get("duration"))
+        match = DAY_RANGE_RE.fullmatch(duration)
+        if not match:
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index + 1}].duration must be a day range such as '2〜3日', not a single count: {duration!r}",
+            )
+            parsed_ranges.append(None)
+            continue
+        start, end = int(match.group(1)), int(match.group(2))
+        if start < 1 or end <= start:
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index + 1}].duration must have real width with start < end: {duration!r}",
+            )
+            parsed_ranges.append(None)
+            continue
+        parsed_ranges.append((start, end))
+
+    final_duration = text(items[2].get("duration"))
+    final_match = OPEN_ENDED_DAY_RE.fullmatch(final_duration)
+    final_start = int(final_match.group(1)) if final_match else None
+
+    first = parsed_ranges[0] if len(parsed_ranges) > 0 else None
+    second = parsed_ranges[1] if len(parsed_ranges) > 1 else None
+    if first and second and second[0] != first[1] + 1:
+        fail(
+            errors,
+            f"{filename}: Travel Scale must be continuous with no gap or overlap: second tier must start at {first[1] + 1}日 after first tier {text(items[0].get('duration'))!r}, got {text(items[1].get('duration'))!r}",
+        )
+    if second and final_start is not None and final_start != second[1] + 1:
+        fail(
+            errors,
+            f"{filename}: Travel Scale must be continuous with no gap or overlap: final tier must start at {second[1] + 1}日 after second tier {text(items[1].get('duration'))!r}, got {final_duration!r}",
+        )
+
+
 def validate_travel_scale_v4(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    validate_day_notation_travel_scale(errors, filename, data)
+    items = validate_day_notation_travel_scale(errors, filename, data)
+    validate_v4_duration_ranges(errors, filename, items)
+    for index, item in enumerate(items, 1):
+        body = text(item.get("text"))
+        if "例：" not in body:
+            continue
+        example = body.split("例：", 1)[1].strip()
+        if contains_forbidden_duration(example):
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index}].text: Content QA v4 forbids day/stay/week counts only inside the '例：' route example: {example!r}",
+            )
 
 
 def forest_related(item: dict[str, Any]) -> bool:
