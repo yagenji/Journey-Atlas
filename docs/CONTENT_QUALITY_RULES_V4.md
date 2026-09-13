@@ -1,11 +1,11 @@
 # JOURNEY ATLAS — Content Quality Rules v4
 
-Updated: 2026-09-13
+Updated: 2026-09-14
 
 This specification applies to new Country JSON files with `contentQaVersion: 4`.
 Existing v3 Countries remain valid under the v3 route-scope/no-day-count rules unless intentionally migrated.
 
-## 1. Travel Scale keeps day notation; `例：` shows route only
+## 1. Travel Scale uses continuous day ranges; `例：` shows route only
 
 `travelScale` remains a three-step UI and the visible `duration` must use days.
 The purpose is to give the reader a practical stay-length reference while showing how the geographic scope changes.
@@ -18,13 +18,31 @@ Each item contains:
 - fixed icon sequence `city` / `map` / `compass`
 - a concrete itinerary/example introduced by `例：`
 
-Day notation rules:
+Day-range rules:
 
 - use `日` for the visible duration rather than weeks or nights;
-- the first two levels may be a single day count or a day range such as `2日` / `3〜4日`;
+- **the first and second levels must both be ranges with real width**, written as `○〜○日`;
+- single counts such as `2日` or `5日` are not allowed for the first two levels;
 - the third level is open-ended and must use `○日以上`;
+- the three levels must be **continuous with no gaps and no overlaps**;
+- the second level starts exactly one day after the first level ends;
+- the third level starts exactly one day after the second level ends;
 - do not mix `泊`, `週`, or `週間` into the duration labels;
 - the route text should explain geography, sequence, regional contrast, transport burden, and thematic breadth rather than merely repeating the day count.
+
+Correct:
+
+- `2〜3日 → 4〜6日 → 7日以上`
+- `4〜5日 → 6〜9日 → 10日以上`
+
+Incorrect:
+
+- `2日 → 3〜5日 → 6日以上` — the first level has no width;
+- `2〜3日 → 6〜8日 → 9日以上` — there is a gap at 4〜5日;
+- `2〜4日 → 4〜6日 → 7日以上` — the first and second levels overlap;
+- `2〜3日 → 4〜6日 → 8日以上` — there is a gap before the open-ended level.
+
+The exact ranges remain country-specific. Choose them from the country's scale, attraction dispersion, transport burden, terrain, island/mountain conditions, and realistic route scope. Continuity is a presentation contract, not a reason to force an unrealistic itinerary.
 
 The `例：` portion has a separate rule: **it is a route example, so it must not contain a number of days, nights, or weeks.**
 
@@ -95,7 +113,7 @@ The filename is retained for workflow compatibility, but the script routes rules
 
 - v2 Country → v2 day-notation rules
 - v3 Country → legacy v3 route-scope/no-day-count rules
-- v4 Country → day-notation rules + route-only `例：` + cross-section duplication controls
+- v4 Country → continuous day ranges + route-only `例：` + cross-section duplication controls
 
 New Country scaffolds created by `scripts/new_country.py` use `contentQaVersion: 4`.
 
