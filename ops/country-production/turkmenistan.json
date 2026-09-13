@@ -5,8 +5,8 @@
   "contentRef": "country/turkmenistan",
   "stateRef": "country/turkmenistan",
   "phase": "SCENES_REGEN",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-13T14:07:00+09:00",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-13T15:00:00+09:00",
   "hero": {"id":"HERO","state":"APPROVED","asset":"assets/images/turkmenistan/approved/hero-darvaza-crater.webp","contentId":"darvaza-gas-crater","approvedGenerationId":"085d0f31-c9e5-4fa6-8376-ced8a5d66058"},
   "scenes": [
     {"id":"S01","state":"APPROVED","asset":"assets/images/turkmenistan/approved/scene-01-ashgabat-white-marble.webp","contentId":"ashgabat-white-marble-axis","approvedGenerationId":"1d959122-8438-44a4-b5aa-40f507f573ab"},
@@ -32,7 +32,7 @@
   "publication":{"state":"DRAFT","atlasPublished":false},
   "executionPolicy":{"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef":"main:ops/image-generation-policy.json",
-  "generationContext":{"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"S06","lastFailureReason":"COLLAGE_OR_MULTIPANEL"},
+  "generationContext":{"state":"CLEAN","epoch":2,"lastResetAt":"2026-09-13T15:00:00+09:00","lastFailureAsset":null,"lastFailureReason":null},
   "imageGenerationPolicy":{"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview":{"approval":"PENDING","rounds":[{"round":1,"reviewBoundary":true,"approvedAt":"2026-09-13T12:52:00+09:00","scope":["S01","S02","S03","S04","S05","S06","S07","S08"],"approvedGenerations":{"S01":"1d959122-8438-44a4-b5aa-40f507f573ab","S02":"78649971-6894-4fab-9b58-3af462571793","S03":"58942ae3-18f0-4293-b3a1-f02144a5a13f","S04":"13d9f13d-57fe-472d-a6c9-6c597b69e834","S05":"53402c5a-9d6d-40d3-9bbe-9aef5945cbd8","S06":"4321854a-db1f-4ee9-993b-d10d5695286a","S07":"3926befe-467b-4231-8c85-e79af18a8483","S08":"3d8a9eb9-5f00-4aa2-84f8-16385e43e90d"},"regenerate":[]}]},
   "tasteBatchReview":{"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"approvedAt":"2026-09-13T13:00:00+09:00","scope":["FOOD01","FOOD02","FOOD03","FOOD04"],"approvedGenerations":{"FOOD01":"bce97c38-cf7b-4eb0-8113-a918d0829e6a","FOOD02":"627f57ca-9a4c-4d4f-af8f-5358136212f0","FOOD03":"2ab69f49-e44f-471a-a539-a750324946a4","FOOD04":"8abc2d86-4e12-49fa-9f8e-b504547d03d0"},"regenerate":[]}]},
@@ -43,5 +43,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":12,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":"https://yagenji.github.io/Journey-Atlas/reviews/turkmenistan/countries/turkmenistan/","browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":1,"sceneBatchReviews":1,"tasteBatchReviews":1,"assetHandoffs":1,"reviewPackageIntegrations":1,"reviewPreviewDeployments":1,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":2,"tasteBatchApprovedAt":"2026-09-13T13:00:00+09:00","canonicalReviewReadyAt":null},
-  "next":{"action":"RESET_GENERATION_CONTEXT","asset":null}
+  "next":{"action":"GENERATE_SCENE","asset":"S06"}
 }
