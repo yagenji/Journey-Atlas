@@ -227,6 +227,83 @@ jobs:
           PY
           }
 
+          ensure_terminal_status_row() {
+            python3 - "$slug" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          slug = sys.argv[1]
+          data = Path("data")
+          state_path = Path("ops/country-production") / f"{slug}.json"
+          country_path = data / "countries" / f"{slug}.json"
+          status_path = data / "country-renewal-status.json"
+
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          publication = state.get("publication") or {}
+          final_approval = state.get("finalApproval") or {}
+          if not all([
+              state.get("productionProtocolId") == "2.0",
+              state.get("phase") == "COMPLETE",
+              (state.get("qa") or {}).get("state") == "PASS",
+              final_approval.get("state") == "APPROVED",
+              publication.get("state") == "PUBLISHED",
+              publication.get("atlasPublished") is True,
+          ]):
+              raise SystemExit(f"{slug}: terminal Protocol 2 publication state is required before status registration")
+
+          country = json.loads(country_path.read_text(encoding="utf-8"))
+          payload = json.loads(status_path.read_text(encoding="utf-8"))
+          rows = payload.setdefault("countries", [])
+          existing = next((row for row in rows if row.get("slug") == slug), None)
+          publication_date = str(state.get("updatedAt") or publication.get("requestedAt") or "")[:10] or payload.get("updatedAt")
+          note = (
+              f"New {country.get('nameEn') or slug} Country production completed under Protocol 2. "
+              f"User final page approval received on {publication_date}. Terminal publication metadata, "
+              "discovery linkage and indexability are CI-gated; post-merge Cloudflare production verification is authoritative."
+          )
+          normalized = {
+              "slug": slug,
+              "nameJa": country.get("nameJa") or slug,
+              "wave": 9,
+              "published": True,
+              "auditState": "AUDITED",
+              "renewalClass": "UNCLASSIFIED",
+              "content": "DONE",
+              "visual": "DONE",
+              "map": "DONE",
+              "sources": "DONE",
+              "qa": "PASS",
+              "production": "CI_GATED",
+              "hardImageGate": True,
+              "notes": [note],
+              "automatedAudit": "DONE",
+          }
+          if existing is None:
+              rows.append(normalized)
+              print(f"Registered {slug} in published-country renewal status")
+          else:
+              existing_notes = existing.get("notes") if isinstance(existing.get("notes"), list) else []
+              normalized["notes"] = existing_notes or [note]
+              existing.clear()
+              existing.update(normalized)
+              print(f"Normalized existing published-country status for {slug}")
+
+          if publication_date:
+              payload["updatedAt"] = max(str(payload.get("updatedAt") or ""), publication_date)
+          status_path.write_text(
+              json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+            if ! git diff --quiet -- data/country-renewal-status.json; then
+              git add data/country-renewal-status.json
+              git commit -m "Register $slug in published Country status"
+              git push origin "HEAD:refs/heads/$HEAD_REF"
+            fi
+          }
+
           synchronize_main_preserving_country_state() {
             snapshot_country_shared_state
             set +e
@@ -278,6 +355,8 @@ jobs:
               synchronize_main_preserving_country_state
               git push origin "HEAD:refs/heads/$HEAD_REF"
             fi
+
+            ensure_terminal_status_row
 
             sha="$(git rev-parse HEAD)"
             echo "Waiting for required checks on $sha"
