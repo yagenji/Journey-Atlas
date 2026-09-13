@@ -4,7 +4,7 @@
 The filename is retained for CI/backward compatibility.
 - Content QA v2: day-notation Travel Scale.
 - Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
-- Content QA v4: restores day-notation Travel Scale while retaining v3 topic separation.
+- Content QA v4: day-notation Travel Scale + route-only examples + v3 topic separation.
 """
 from __future__ import annotations
 
@@ -93,10 +93,12 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_day_notation_travel_scale(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+def validate_day_notation_travel_scale(
+    errors: list[str], filename: str, data: dict[str, Any]
+) -> list[dict[str, Any]]:
     items = validate_common_travel_scale(errors, filename, data)
     if len(items) != 3:
-        return
+        return items
     for index, item in enumerate(items, 1):
         duration = text(item.get("duration"))
         if "週間" in duration or "週" in duration or "泊" in duration or "日" not in duration:
@@ -104,6 +106,7 @@ def validate_day_notation_travel_scale(errors: list[str], filename: str, data: d
     final_duration = text(items[2].get("duration"))
     if not re.fullmatch(r"\d+日以上", final_duration):
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
+    return items
 
 
 def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
@@ -128,7 +131,17 @@ def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, A
 
 
 def validate_travel_scale_v4(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    validate_day_notation_travel_scale(errors, filename, data)
+    items = validate_day_notation_travel_scale(errors, filename, data)
+    for index, item in enumerate(items, 1):
+        body = text(item.get("text"))
+        if "例：" not in body:
+            continue
+        example = body.split("例：", 1)[1].strip()
+        if contains_forbidden_duration(example):
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index}].text: Content QA v4 forbids day/stay/week counts only inside the '例：' route example: {example!r}",
+            )
 
 
 def forest_related(item: dict[str, Any]) -> bool:
