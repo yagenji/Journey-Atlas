@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 3,
+  "slug": "iran",
+  "nameEn": "IRAN",
+  "nameJa": "イラン",
+  "region": "WEST ASIA / MIDDLE EAST / 33°N",
+  "seo": {
+    "description": "サファヴィー朝のイスファハーン、アケメネス朝のペルセポリス、風塔のヤズド、アルボルズの城塞と火山、カスピ海南岸の緑、ルート砂漠、ホルムズ島の色彩地形まで。イランの8つの景色と地図から、高原国家の広がりをたどる。"
+  },
+  "capital": {
+    "nameEn": "Tehran",
+    "nameJa": "テヘラン",
+    "coordinates": {"latitude": 35.6892, "longitude": 51.389},
+    "labelPosition": "left",
+    "mapOffset": {"x": -1.5, "y": 1.5}
+  },
+  "hero": {
+    "lead": "中央高原の都市では、青いタイルのドーム、長いアーケード、水面、庭園が一つの都市景観をつくる。そこから北の湿潤な山麓、乾いた砂漠、南の島まで進むと、イランが一色の乾燥地ではないことが見えてくる。",
+    "image": "assets/images/iran/approved/hero-naqsh-e-jahan-isfahan.webp",
+    "location": "Naqsh-e Jahan Square / Isfahan",
+    "coordinates": {"latitude": 32.65745, "longitude": 51.67778},
+    "labelPosition": "right",
+    "mapOffset": {"x": -0.5, "y": 0.0}
+  },
+  "map": {
+    "bounds": {"north": 40.5, "south": 24.5, "west": 43.5, "east": 64.0},
+    "svg": "assets/images/iran/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth country boundary data, WGS84, rendered in JOURNEY ATLAS map-v3 clean-background language."
+  },
+  "scenes": [
+    {"id":"persepolis-achaemenid-terrace","name":"ペルセポリス / アケメネス朝のテラス","nameLocal":"Persepolis / Achaemenid Terrace","mapLabel":"Persepolis","description":"クー・エ・ラフマト山麓の巨大なテラスに、列柱、門、浮彫が残る。紀元前6世紀末から整えられた王都の構成は、現在の都市景観とは異なる古代ペルシアの政治空間を地形ごと見せる。","coordinates":{"latitude":29.93444,"longitude":52.89028},"image":"assets/images/iran/approved/persepolis-achaemenid-terrace.webp","labelPosition":"left"},
+    {"id":"lut-desert-kaluts","name":"ルート砂漠 / カルート","nameLocal":"Lut Desert / Kaluts","mapLabel":"Lut Desert","description":"風と砂が刻んだ長い稜線状のヤルダンが並び、乾いた盆地の中に巨大な侵食地形が続く。都市や農地から離れた南東部では、地質と風が景観の主役になる。","coordinates":{"latitude":30.21611,"longitude":58.83889},"image":"assets/images/iran/approved/lut-desert-kaluts.webp","labelPosition":"right"},
+    {"id":"yazd-windcatchers-old-city","name":"ヤズド / 風塔の旧市街","nameLocal":"Yazd / Windcatchers","mapLabel":"Yazd","description":"土色の屋根の上に風塔が立ち、細い路地と中庭住宅が乾燥地の気候に応答する。砂漠の縁にある都市では、風を取り込み日射を避ける工夫が街並みそのものになっている。","coordinates":{"latitude":31.90139,"longitude":54.36917},"image":"assets/images/iran/approved/yazd-windcatchers-old-city.webp","labelPosition":"right"},
+    {"id":"masuleh-stepped-village","name":"マースーレ / 山腹の段状集落","nameLocal":"Masuleh / Stepped Village","mapLabel":"Masuleh","description":"カスピ海南岸の湿潤な山地では、緑の斜面に家々が段状に重なる。下の家の屋根が上の通路になる密な集落構造が、高原中央部とは違う雨の多い北部の暮らしを見せる。","coordinates":{"latitude":37.1551,"longitude":48.99},"image":"assets/images/iran/approved/masuleh-stepped-village.webp","labelPosition":"left"},
+    {"id":"damavand-alborz","name":"ダマーヴァンド山 / アルボルズ山脈","nameLocal":"Mount Damavand / Alborz","mapLabel":"Damavand","description":"アルボルズ山脈から、円錐形の火山ダマーヴァンドが独立して立ち上がる。カスピ海側と中央高原を隔てる山地の存在を、一つの峰の大きさから実感できる北部の地形景観。","coordinates":{"latitude":35.95528,"longitude":52.10917},"image":"assets/images/iran/approved/damavand-alborz.webp","labelPosition":"right","mapOffset":{"x":2.0,"y":0.0}},
+    {"id":"hormuz-rainbow-valley","name":"ホルムズ島 / レインボー・バレー","nameLocal":"Hormuz Island / Rainbow Valley","mapLabel":"Hormuz","description":"ホルムズ海峡の島では、赤、黄、白を帯びる鉱物質の地層が裸地に現れる。北部の森林や中央高原の土色とは異なる、塩と火山性・堆積性の地質がつくる南部の景観。","coordinates":{"latitude":27.05309,"longitude":56.43749},"image":"assets/images/iran/approved/hormuz-rainbow-valley.webp","labelPosition":"right"},
+    {"id":"kandovan-rock-village","name":"カンドヴァン / 岩窟住居の村","nameLocal":"Kandovan / Rock Village","mapLabel":"Kandovan","description":"サハンド山麓では、凝灰岩の円錐状地形を掘り込んだ住居が斜面に集まる。自然の岩塔と生活空間が重なり、北西部の寒冷な山地で建築が地質に直接入り込む。","coordinates":{"latitude":37.795,"longitude":46.2493},"image":"assets/images/iran/approved/kandovan-rock-village.webp","labelPosition":"left"},
+    {"id":"alamut-castle-alborz","name":"アラムート城 / アルボルズ西部","nameLocal":"Alamut Castle / Alborz","mapLabel":"Alamut","description":"深い谷を見下ろす岩稜の頂に城塞遺構が残る。道路や平地から切り離された高所の立地そのものが、中世の山岳政治と防御のあり方を伝える。","coordinates":{"latitude":36.44472,"longitude":50.58611},"image":"assets/images/iran/approved/alamut-castle-alborz.webp","labelPosition":"left","mapOffset":{"x":-2.0,"y":0.0}}
+  ],
+  "encounters": [
+    {"title":"青いタイルのドーム","icon":"landmark"},
+    {"title":"土色の路地と中庭","icon":"city"},
+    {"title":"屋根付きのバザール","icon":"culture"},
+    {"title":"パンを焼く店先","icon":"food"},
+    {"title":"山を越える幹線道路","icon":"road"},
+    {"title":"色鮮やかな香辛料と果実","icon":"food"},
+    {"title":"雪を残す高峰","icon":"landscape"},
+    {"title":"乾いた高原と砂漠","icon":"landscape"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"persian-garden-chahar-bagh","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"庭園では、水路と四分割の構成が乾燥地の空間を組み立てる","text":"ペルシャ庭園では、壁に囲まれた敷地を水路や軸線で分ける「チャハール・バーグ」の考え方が繰り返し現れる。水は灌漑だけでなく、影、音、反射をつくる建築要素でもある。","points":["異なる気候の地域に合わせて庭園の構成が変わる","水路・樹木・建築が一体で設計される"]},
+    {"topicKey":"pahlevani-zoorkhaneh-ritual","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"鍛錬の場では、運動と太鼓と詩が同じ儀礼に入っている","text":"ゾールハーネでは、低く掘られた八角形の場で身体鍛錬が行われ、モルシェドが太鼓を打ちながら叙事詩や神秘詩を唱える。スポーツ施設というより、倫理や物語も含む共同体の文化空間に近い。","points":["鍛錬は音楽と語りに合わせて進む","身体技法と文学・精神文化が結びつく"]},
+    {"topicKey":"fars-carpet-weaving-skills","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ファールスの絨毯は、設計図より手と記憶で模様が生まれる","text":"ファールスでは、地元の羊毛や自然染料を使い、水平織機で絨毯を織る伝統が受け継がれてきた。模様や色の知識は家族や共同体の中で、口伝と実演を通して伝えられる。","points":["地元の羊毛と自然染料を使う伝統がある","模様の知識は実演を通して継承される"]},
+    {"topicKey":"hafez-poetry-home-divination","themeEn":"HISTORY","themeJa":"時をたどる","title":"ハーフェズの詩は、文学作品だけでなく日常の言葉にも残る","text":"14世紀シーラーズの詩人ハーフェズの詩集は家庭にも広く置かれ、句がことわざのように引用される。詩集を偶然開いて答えを読む占いにも使われ、古典詩が現在の生活に接続している。","points":["詩句が日常表現として引用される","詩集を開いて吉凶や示唆を読む習慣がある"]},
+    {"topicKey":"tabriz-bazaar-living-system","themeEn":"CITY","themeJa":"街を歩く","title":"バザールは、店の列ではなく都市機能が連結した一つの仕組み","text":"タブリーズの歴史的バザールでは、商業空間だけでなく、宗教、教育、社会的な集まりの場所が屋根付きの通路で結ばれる。建築と職業の組織が重なり、都市の内部にもう一つの都市があるように機能してきた。","points":["用途の異なる建物が通路で連結する","交易と社会活動が同じ都市組織に組み込まれる"]},
+    {"topicKey":"zagros-seasonal-pastoral-mobility","themeEn":"ROAD","themeJa":"道の先へ","title":"ザグロスでは、季節で高地と低地を移る暮らしが地理を結ぶ","text":"バフティヤーリーやカシュガイなどの牧畜文化では、暑い低地と涼しい高地を季節に合わせて移動してきた。山脈は境界ではなく、放牧地をつなぐ移動の軸でもある。","points":["高地の夏営地と低地の冬営地を使い分ける","移動経路は峠・水・牧草地の条件に左右される"]}
+  ],
+  "travelTrivia": [
+    {"topicKey":"nowruz-spring-new-year","categoryEn":"CUSTOMS","categoryJa":"習慣","title":"新年は、春分を起点に始まる","text":"ノウルーズは春の始まりと結びつく新年行事。家を整え、家族で集まり、地域ごとの食や儀礼を重ねるため、春の街では季節の節目が暮らしの中に見える。","icon":"calendar","sourceKey":"nowruz"},
+    {"topicKey":"taarof-politeness-exchange","categoryEn":"ETIQUETTE","categoryJa":"マナー","title":"「どうぞ」と「いえいえ」が一度で終わらないことがある","text":"タアーロフは、招待、支払い、席の譲り合いなどで現れる儀礼的な礼節。最初の申し出や辞退が、そのまま最終意思とは限らない場面があると知っておくと、会話の間合いを読みやすい。","icon":"users","sourceKey":"taarof"},
+    {"topicKey":"ayeneh-kari-mirror-work","categoryEn":"CRAFT","categoryJa":"工芸","title":"鏡は、姿を見る道具ではなく光を砕く建築素材にもなる","text":"アーイネ・カーリーでは、小さく切った鏡片を幾何学や有機的な模様に組み、壁や天井を覆う。光が細かく反射するため、宮殿や聖廟では空間そのものの明るさが変わる。","icon":"spark","sourceKey":"ayenehKari"},
+    {"topicKey":"persian-tea-sugar-lump","categoryEn":"EVERYDAY","categoryJa":"日常","title":"紅茶は、小さなガラスと角砂糖で飲む姿がよく似合う","text":"黒い紅茶は日常的な飲み物で、チューリップ形のガラスで出されることが多い。角砂糖を口に含み、その上から茶を飲む方法も知られている。","icon":"food","sourceKey":"tea"},
+    {"topicKey":"sangak-hot-pebbles","categoryEn":"FOOD","categoryJa":"食","title":"サンギャクの裏面には、小石の跡が残る","text":"サンギャクは、熱した小石を敷いた炉床で焼く薄いパン。名前も小石に由来し、焼き上がりの表面には石の凹凸がそのまま残る。","icon":"food","sourceKey":"sangak"}
+  ],
+  "taste": {
+    "kicker": "TASTE OF IRAN",
+    "title": "香草、果実、米がつくるペルシア料理",
+    "intro": "酸味と香りを重ねる煮込み、香り高い米料理、豆や麺の濃いスープ。地域差を持ちながら、果実・香草・ナッツを料理の中心に使う。",
+    "items": [
+      {"id":"ghormeh-sabzi","name":"ゴルメ・サブジ","nameLocal":"Ghormeh Sabzi","text":"香草、豆、肉を煮込み、乾燥ライムの酸味を効かせる濃い緑色の煮込み。","image":"assets/images/iran/approved/food-ghormeh-sabzi.webp","imageState":"PENDING"},
+      {"id":"fesenjan","name":"フェセンジャン","nameLocal":"Fesenjan","text":"くるみとザクロを煮詰め、鶏などを合わせる甘酸っぱい濃色の煮込み。","image":"assets/images/iran/approved/food-fesenjan.webp","imageState":"PENDING"},
+      {"id":"zereshk-polo-ba-morgh","name":"ゼレシュク・ポロ・バー・モルグ","nameLocal":"Zereshk Polo ba Morgh","text":"サフランの香る米に赤いバーベリーを散らし、鶏料理を合わせる米料理。","image":"assets/images/iran/approved/food-zereshk-polo-ba-morgh.webp","imageState":"PENDING"},
+      {"id":"ash-reshteh","name":"アーシュ・レシュテ","nameLocal":"Ash Reshteh","text":"豆、香草、麺を煮込む濃いスープ。発酵乳製品のカシュクを合わせる。","image":"assets/images/iran/approved/food-ash-reshteh.webp","imageState":"PENDING"}
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "日数ではなく、旅の広がりと組み合わせ方で選ぶ。現在は外務省がイラン全土に危険レベル4を発出しており、以下は地理理解のための構成例であって渡航を勧めるものではない。",
+    "items": [
+      {"duration":"一都市中心","title":"都市の層を一つずつ見る","text":"同じ都市の広場、バザール、庭園、宗教建築をつなげる構成。例：イスファハーンでナクシェ・ジャハーン広場を軸に周辺の街路と庭園を見る。","icon":"city"},
+      {"duration":"地域をつなぐ","title":"中央高原の都市を結ぶ","text":"乾燥地の都市構造がどう変わるかを比較する構成。例：テヘラン→カーシャーン→イスファハーン→ヤズドの順で、高原の都市景観をつなぐ。","icon":"map"},
+      {"duration":"広域周遊","title":"山地・高原・南部を比べる","text":"気候帯と地形の切り替わりを軸に複数地域を見る構成。例：アルボルズ山脈周辺→中央高原→ファールス→ケルマーン方面へ、山・都市・砂漠を対比する。","icon":"compass"}
+    ]
+  },
+  "seasons": [
+    {"months":"3〜5月","color":"#9bb69d","text":"中央高原では寒さが緩み、標高の高い都市でも屋外の景観が変わり始める。北部山地には雪が残ることがある。"},
+    {"months":"6〜8月","color":"#d7b36a","text":"内陸の低地や砂漠は高温になりやすい一方、カスピ海南岸と高山域では気候が大きく異なる。地域差が最もはっきり出る季節。"},
+    {"months":"9〜11月","color":"#b88e69","text":"高原では暑さが和らぎ、山地では色づきが進む。北部と南部、都市と山地で季節の進み方がずれる。"},
+    {"months":"12〜2月","color":"#9fb6c4","text":"アルボルズやザグロスでは積雪があり、テヘランなど高原の都市も冷え込む。南岸やホルムズ海峡沿岸とは気温差が大きい。"}
+  ],
+  "transport": {
+    "title": "国内移動は距離と地形を先に見る",
+    "text": "高原の主要都市は道路・鉄道で結ばれ、国土が広いため空路が使われる区間もある。ただし2026年9月13日時点で日本の外務省はイラン全土を危険レベル4としており、国際線の減便・停止や通信障害も起こり得る。現状では実旅行の移動計画を組まず、公式情報を優先する。"
+  },
+  "personas": [
+    {"title":"都市と建築を読みたい人","text":"広場、モスク、庭園、バザール、土の旧市街を、王朝史と都市構造の両方から見たい人。"},
+    {"title":"地形の幅を比べたい人","text":"カスピ海南岸の緑、雪山、高原、砂漠、色彩地形の島まで、一つの国の気候差を地図で追いたい人。"},
+    {"title":"暮らしの背景まで知りたい人","text":"絨毯、詩、礼節、食、鍛錬文化など、景観の奥にある日常と歴史の連続を知りたい人。"}
+  ],
+  "facts": [
+    {"label":"地域","value":"西アジア / 中東"},
+    {"label":"首都","value":"テヘラン"},
+    {"label":"人口","value":"約9,200万人"},
+    {"label":"面積","value":"約164.8万km²"},
+    {"label":"言語","value":"ペルシア語"},
+    {"label":"主な宗教","value":"イスラム教（主にシーア派）"},
+    {"label":"通貨","value":"イラン・リアル（IRR）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"persian-caravanserai-components","label":"ペルシャのキャラバンサライ","value":"54か所","note":"世界遺産の連続資産を構成するキャラバンサライの数。古い街道沿いの異なる気候・地理に分散し、旅人と商人を受け入れる道路網の厚みを示す。","icon":"road"},
+    {"topicKey":"persian-qanat-components","label":"ペルシャのカナート","value":"11本","note":"世界遺産として代表されるカナートの数。谷頭の地下水を重力だけで長距離に導き、乾燥地の集落と農業を支える水のインフラを具体的に見せる。","icon":"landmark"},
+    {"topicKey":"hyrcanian-forest-deep-time","label":"ヒルカニア森林の歴史","value":"2500万〜5000万年","note":"カスピ海南岸の広葉樹林がたどる歴史の長さ。氷期を経ても残った森林生態系が、乾燥した中央高原とは対照的な北部の景観をつくる。","icon":"landscape"}
+  ],
+  "tips": [
+    {"topicKey":"mofa-level-four-iran","title":"現在、全土が危険レベル4","text":"2026年9月13日時点で外務省はイラン全土に「退避してください。渡航は止めてください。」の危険情報を発出している。このページのルートや季節情報は地理理解のための編集情報であり、現時点の渡航提案ではない。"},
+    {"topicKey":"current-flight-connectivity-disruption","title":"通信と国際線は急変を前提にする","text":"外務省はインターネット・国際電話の障害や国際便の減便・停止に注意を促している。状況が変化した場合も、航空会社・外務省・現地当局など一次情報を先に確認する。"},
+    {"topicKey":"sensitive-site-photography","title":"撮影対象には強い注意が必要","text":"軍・治安関連施設、政治的な集会などの撮影は拘束につながるおそれがある。一般の都市景観でも、現在の治安状況と現地の規制を確認し、判断できない対象は撮らない。"}
+  ],
+  "nextRoutes": null,
+  "relatedCountries": [
+    {"slug":"armenia","nameEn":"ARMENIA","nameJa":"アルメニア","flag":"🇦🇲","reason":"コーカサス南縁の高地と修道院景観を通して、イラン北西部と連続する山岳地理と古い交易圏を比較できる。"},
+    {"slug":"turkey","nameEn":"TÜRKIYE","nameJa":"トルコ","flag":"🇹🇷","reason":"高原、バザール、イスラム建築、帝国史が重なりながら、アナトリアとイラン高原で異なる都市文化へ分かれていく。"},
+    {"slug":"oman","nameEn":"OMAN","nameJa":"オマーン","flag":"🇴🇲","reason":"ホルムズ海峡の向こう側から、乾燥山地、海上交易、土色の集落を別のアラビア半島側の視点で見比べられる。"}
+  ],
+  "updatedAt": "2026-09-13",
+  "sourcesVerifiedAt": "2026-09-13",
+  "sourceDates": {"population":"2024","safety":"2026-09-13"},
+  "sources": {
+    "population":"https://data.worldbank.org/?locations=IR",
+    "area":"https://unstats.un.org/unsd/environment/envpdf/Country%20Snapshots_apr2007/Iran%28Islamic%20Republic%20of%29.pdf",
+    "safety":"https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_046.html",
+    "caravanserai":"https://whc.unesco.org/en/list/1668",
+    "qanat":"https://whc.unesco.org/en/list/1506",
+    "hyrcanian":"https://whc.unesco.org/en/list/1584",
+    "persianGarden":"https://whc.unesco.org/en/list/1372",
+    "pahlevani":"https://ich.unesco.org/en/RL/pahlevani-and-zoorkhanei-rituals-00378",
+    "farsCarpet":"https://ich.unesco.org/en/RL/traditional-skills-of-carpet-weaving-in-fars-00382",
+    "hafez":"https://www.iranicaonline.org/articles/hafez-i/",
+    "tabrizBazaar":"https://whc.unesco.org/en/list/1346",
+    "pastoralMobility":"https://www.iranicaonline.org/articles/baktiari-tribe/baktiari-tribe-i-ethnography/",
+    "nowruz":"https://ich.unesco.org/en/decisions/4.COM/13.03",
+    "taarof":"https://www.iranicaonline.org/articles/taarof/",
+    "ayenehKari":"https://ich.unesco.org/en/RL/ayeneh-kari-the-art-of-mirror-work-in-persian-architecture-02319?RL=02319",
+    "tea":"https://www.iranicaonline.org/articles/cay-tea/",
+    "sangak":"https://www.iranicaonline.org/articles/bread-persian-nan/",
+    "fesenjan":"https://www.iranicaonline.org/articles/fesanjan/",
+    "hero":"https://whc.unesco.org/en/list/115",
+    "persepolis":"https://whc.unesco.org/en/list/114",
+    "lut":"https://whc.unesco.org/en/list/1505",
+    "yazd":"https://whc.unesco.org/en/list/1544",
+    "alamut":"https://whc.unesco.org/en/list/1770",
+    "masulehCoordinates":"https://www.geonames.org/",
+    "kandovanCoordinates":"https://www.geonames.org/",
+    "hormuzCoordinates":"https://www.openstreetmap.org/",
+    "damavandCoordinates":"https://www.wikidata.org/wiki/Q40758"
+  }
+}
