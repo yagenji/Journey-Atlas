@@ -1,0 +1,40 @@
+.photo-credits {
+  margin: 28px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(57, 67, 62, 0.14);
+  color: #73756e;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.photo-credits summary {
+  width: fit-content;
+  cursor: pointer;
+  font-family: "Spline Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  color: #666b66;
+}
+
+.photo-credits ul {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo-credits li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.photo-credits a {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+
+.photo-credits a:hover {
+  color: #333a36;
+}

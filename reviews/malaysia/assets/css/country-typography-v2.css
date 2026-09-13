@@ -1,0 +1,101 @@
+/* JOURNEY ATLAS — shared Country typography normalization.
+   Keep the established hierarchy: section 22 / subsection 17 / card title 14 / body 13.
+   Kicker, metadata and map-legend text intentionally remain compact. */
+
+/* Encounters: readable vocabulary chips, still visually secondary to the section title. */
+.encounter-list b{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+
+/* Taste: card titles already match the shared 14px scale; restore body copy to reading size. */
+.taste-card p{
+  font-size:13px!important;
+  line-height:1.68!important;
+}
+
+/* Beyond the Scenery: supporting bullets should remain secondary without dropping to microcopy size. */
+.atlas-extra li{
+  font-size:11.5px!important;
+  line-height:1.6!important;
+}
+
+/* Travel Trivia: five-column cards remain compact, but body copy must stay readable. */
+.travel-trivia__item p{
+  font-size:12.5px!important;
+  line-height:1.72!important;
+}
+
+/* Travel planning: use the shared subsection / card / body hierarchy. */
+.travel-planning__block>h3,
+.travel-scale__head h3{
+  font-size:17px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+}
+.travel-scale__item strong,
+.travel-planning__block--season .season-list article>b{
+  font-size:11.5px!important;
+  line-height:1.5!important;
+}
+.travel-scale__item h4,
+.travel-planning__block--transport .transport h4,
+.travel-guidance .persona-list h3,
+.travel-guidance .tip-list h3{
+  font-size:14px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+}
+.travel-scale__item p,
+.travel-planning__block--season .season-list p,
+.travel-planning__block--transport .transport p,
+.travel-guidance .persona-list p,
+.travel-guidance .tip-list p{
+  font-size:13px!important;
+  line-height:1.68!important;
+}
+
+/* Next Routes is primary travel content, not footnote-scale metadata. */
+.next-routes__head h2{
+  font-size:22px!important;
+  line-height:1.42!important;
+}
+.next-routes__head>p{
+  font-size:12px!important;
+  line-height:1.68!important;
+}
+.next-route-card__country strong{
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+.next-route-card__country small{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+.next-route-card__path{
+  font-size:11.5px!important;
+  line-height:1.6!important;
+}
+.next-route-card__description{
+  font-size:13px!important;
+  line-height:1.68!important;
+}
+
+/* Next Destinations: do not shrink readable copy on mobile. */
+.related-copy h3{
+  font-size:13px!important;
+}
+.related-copy b,
+.related-copy p{
+  font-size:12px!important;
+}
+
+@media(max-width:760px){
+  .travel-planning__block>h3,
+  .travel-scale__head h3{
+    font-size:17px!important;
+  }
+  .next-routes__head h2{
+    font-size:22px!important;
+  }
+}

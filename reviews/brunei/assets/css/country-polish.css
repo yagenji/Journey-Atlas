@@ -1,0 +1,210 @@
+/* JOURNEY ATLAS — country page structural polish */
+
+:root{
+  --country-title-lg:22px;
+  --country-title-md:17px;
+  --country-card-title:14px;
+  --country-body:13px;
+  --country-small:10.5px;
+  --country-kicker:9px;
+}
+
+/* Shared editorial kicker used consistently across country-page sections. */
+.section-kicker-en{
+  display:block;
+  margin:0 0 5px;
+  color:#8a6b55;
+  font-family:var(--meta);
+  font-size:var(--country-kicker);
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+/* Hero location: searchable, but treated as a quiet editorial caption. */
+.hero-location{
+  position:absolute;
+  right:clamp(18px,3.6vw,52px);
+  bottom:12px;
+  z-index:4;
+  max-width:min(520px,62vw);
+  margin:0;
+  padding:3px 7px 4px;
+  border:0;
+  border-radius:3px;
+  background:rgba(7,27,43,.24);
+  color:rgba(255,255,255,.92);
+  text-shadow:0 1px 2px rgba(0,0,0,.28);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  font-size:10px;
+  line-height:1.45;
+  letter-spacing:.01em;
+  text-align:right;
+}
+.hero-location span{display:none;}
+.hero-location strong{font-weight:400;}
+
+/* No visible loading / production-note copy inside artwork. */
+.hero-art .art-placeholder,
+.map-placeholder{
+  display:none!important;
+}
+
+/* Country Profile is defined only in country-icon-system.css. */
+
+/* Map is for spatial relationship: numbered pins only. */
+.map-marker span{display:none!important;}
+.map-marker b{
+  width:27px!important;
+  height:27px!important;
+  font-size:11px!important;
+}
+
+/* Major heading typography: one hierarchy across the page. */
+.panel-title,
+.scenes-heading h2,
+.atlas-extras h2,
+.journey-footer h2{
+  font-size:var(--country-title-lg)!important;
+  line-height:1.45!important;
+  font-weight:600!important;
+  letter-spacing:.01em!important;
+}
+.info-section h2,
+.encounter-strip h3{
+  font-size:var(--country-title-md)!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+  letter-spacing:.01em!important;
+}
+.scenes-heading p,
+.atlas-extras__intro,
+.map-disclaimer{
+  font-size:11.5px!important;
+  line-height:1.7!important;
+}
+.scene-copy h3,
+.atlas-extra h3,
+.persona-list h3,
+.tip-list h3{
+  font-size:var(--country-card-title)!important;
+  line-height:1.5!important;
+  font-weight:500!important;
+}
+.scene-copy p,
+.atlas-extra p,
+.season-list p,
+.transport p,
+.persona-list p,
+.tip-list p{
+  font-size:var(--country-body)!important;
+  line-height:1.7!important;
+}
+
+/* Keep English section kickers aligned with the Japanese titles. */
+.panel-title-wrap,
+.scenes-title-wrap{
+  min-width:0;
+}
+.panel-title-wrap .panel-title,
+.scenes-title-wrap h2{
+  margin:0;
+}
+.scenes-heading{
+  align-items:flex-end!important;
+}
+
+/* Detailed information: three equal editorial columns. */
+.travel-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.travel-grid .info-section{
+  min-width:0;
+  padding:23px 22px!important;
+}
+.travel-grid .info-section:last-child{border-right:0!important;}
+.travel-grid .section-kicker-en{margin-bottom:4px;}
+
+/* The thematic section is intentionally six complementary themes. */
+.atlas-extras__kicker{
+  font-size:var(--country-kicker)!important;
+}
+.atlas-extra__theme{
+  font-size:9.5px!important;
+}
+
+/* Match the top-page JOURNEY ATLAS colophon. */
+.atlas-colophon{
+  margin-top:38px;
+  padding:clamp(38px,6vh,62px) clamp(18px,5vw,80px);
+  border-top:1px solid var(--line);
+  background:var(--paper);
+  color:var(--navy-deep);
+}
+.atlas-colophon .colophon-grid{
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:34px;
+  flex-wrap:wrap;
+}
+.atlas-colophon .mark{
+  color:var(--navy);
+  font-family:var(--display);
+  font-size:.95rem;
+  font-weight:700;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+.atlas-colophon .mark-tag{
+  display:block;
+  margin-top:9px;
+  color:#657485;
+  font-family:var(--body);
+  font-size:.84rem;
+  font-weight:400;
+  line-height:1.6;
+  letter-spacing:.04em;
+  text-transform:none;
+}
+.atlas-colophon .meta{
+  color:#667483;
+  font-family:var(--display);
+  font-size:.66rem;
+  line-height:1.95;
+  letter-spacing:.07em;
+  text-align:right;
+}
+.atlas-colophon .meta-note{opacity:.68;}
+.atlas-colophon .meta-links{
+  display:inline-flex;
+  gap:22px;
+  justify-content:flex-end;
+}
+.atlas-colophon a{color:inherit;}
+.atlas-colophon a:hover{color:var(--navy-deep);}
+
+@media(max-width:900px){
+  .travel-grid{grid-template-columns:1fr!important;}
+  .travel-grid .info-section{
+    border-right:0!important;
+    border-bottom:1px solid var(--line);
+  }
+  .travel-grid .info-section:last-child{border-bottom:0!important;}
+}
+
+@media(max-width:700px){
+  .hero-location{
+    right:12px;
+    bottom:9px;
+    max-width:calc(100% - 24px);
+    font-size:9px;
+  }
+  .atlas-colophon .colophon-grid{display:block;}
+  .atlas-colophon .meta{margin-top:24px;text-align:left;}
+  .atlas-colophon .meta-links{justify-content:flex-start;}
+}
