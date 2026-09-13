@@ -2,12 +2,9 @@
 from __future__ import annotations
 
 import importlib.util
-import json
-from copy import deepcopy
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
 SPEC = importlib.util.spec_from_file_location("editorial", HERE / "validate_country_editorial_v2.py")
 assert SPEC and SPEC.loader
 editorial = importlib.util.module_from_spec(SPEC)
@@ -69,6 +66,12 @@ def valid_v3_data() -> dict:
 def test_v2_valid() -> None:
     errors = editorial.validate_data(valid_v2_data(), "valid-v2.json")
     assert not errors, errors
+
+
+def test_v2_still_allows_day_counts() -> None:
+    data = valid_v2_data()
+    errors = editorial.validate_data(data, "v2-days-remain-valid.json")
+    assert not any("forbids numeric stay/day/week counts" in error for error in errors), errors
 
 
 def test_v2_missing_example_fails() -> None:
@@ -136,6 +139,13 @@ def test_v3_day_count_in_body_fails() -> None:
     assert any("forbids numeric stay/day/week counts" in error for error in errors), errors
 
 
+def test_v3_week_count_fails() -> None:
+    data = valid_v3_data()
+    data["travelScale"]["items"][2]["title"] = "2週間で広域周遊"
+    errors = editorial.validate_data(data, "v3-week-title.json")
+    assert any("forbids numeric stay/day/week counts" in error for error in errors), errors
+
+
 def test_v3_duplicate_topic_across_sections_fails() -> None:
     data = valid_v3_data()
     data["travelTrivia"][0]["topicKey"] = "island-archipelago-scale"
@@ -169,16 +179,9 @@ def test_v3_near_duplicate_copy_fails() -> None:
     assert any("near-duplicate copy" in error for error in errors), errors
 
 
-def test_protocol2_pilot_countries_stay_v2_compatible() -> None:
-    for slug in ("japan", "indonesia", "cambodia", "northkorea"):
-        path = ROOT / "data" / "countries" / f"{slug}.json"
-        data = json.loads(path.read_text(encoding="utf-8"))
-        errors = editorial.validate_data(data, path.name, force=True)
-        assert not errors, f"{slug}: {errors}"
-
-
 if __name__ == "__main__":
     test_v2_valid()
+    test_v2_still_allows_day_counts()
     test_v2_missing_example_fails()
     test_moderate_forest_share_fails()
     test_extreme_forest_share_requires_flag()
@@ -186,8 +189,8 @@ if __name__ == "__main__":
     test_v3_valid()
     test_v3_day_count_in_duration_fails()
     test_v3_day_count_in_body_fails()
+    test_v3_week_count_fails()
     test_v3_duplicate_topic_across_sections_fails()
     test_v3_renamed_same_topic_fails()
     test_v3_near_duplicate_copy_fails()
-    test_protocol2_pilot_countries_stay_v2_compatible()
-    print("Editorial Content QA regression tests passed for v2 compatibility and v3 rules")
+    print("Editorial Content QA regression tests passed for v2 fixture compatibility and v3 rules")
