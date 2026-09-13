@@ -5,8 +5,8 @@
   "contentRef": "country/tajikistan",
   "stateRef": "country/tajikistan",
   "phase": "QA",
-  "stateRevision": 12,
-  "updatedAt": "2026-09-13T22:33:05+09:00",
+  "stateRevision": 13,
+  "updatedAt": "2026-09-13T22:51:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -37,20 +37,12 @@
   },
   "implementation": {"state":"DONE","completedAt":"2026-09-13T13:42:00+09:00","sharedTemplate":true,"countrySpecificCss":false},
   "qa": {
-    "state": "PASS",
+    "state": "NOT_STARTED",
     "productionState": "NOT_STARTED",
-    "sourceCommit": "473cec9ead9ff63f975ae39e678dee51051b3492",
-    "validateRunId": 34743351037,
-    "browserQaRunId": 34743351045,
-    "checks": [
-      "targeted-content-qa",
-      "targeted-strict-country-json",
-      "image-delivery-budget",
-      "approved-image-audit",
-      "perceptual-duplicate-gate",
-      "targeted-build",
-      "desktop-tablet-mobile-browser-qa"
-    ]
+    "sourceCommit": null,
+    "validateRunId": null,
+    "browserQaRunId": null,
+    "checks": []
   },
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
@@ -114,7 +106,7 @@
     }
   },
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-13T13:31:50+09:00"},
-  "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"DONE","url":"https://yagenji.github.io/Journey-Atlas/reviews/tajikistan/countries/tajikistan/","browserQa":"PASS","deployedAt":"2026-09-13T22:33:02+09:00"},
+  "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {
     "perImageApprovalPrompts":0,
     "userContinuationNudges":0,
@@ -128,7 +120,7 @@
     "productionIntegrations":0,
     "browserQaCycles":3,
     "tasteBatchApprovedAt":"2026-09-13T13:08:00+09:00",
-    "canonicalReviewReadyAt":"2026-09-13T22:33:02+09:00"
+    "canonicalReviewReadyAt":null
   },
-  "next":{"action":"REVIEW_CANONICAL_URL","asset":null}
+  "next":{"action":"RUN_COUNTRY_QA","asset":null}
 }
