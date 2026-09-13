@@ -136,14 +136,18 @@ def main() -> None:
         "east": round(east, 5),
     }
     data["map"]["source"] = source_note
-    data["hero"]["mapOffset"] = {"x": 0, "y": 0}
 
-    # Keep nearby southeast markers legible without moving them outside the country.
+    # Hero stays on its true projected coordinate. Nearby labels/markers absorb the collision spacing.
+    data["hero"]["mapOffset"] = {"x": 0, "y": 0}
+    data["capital"]["mapOffset"] = {"x": -2.5, "y": -1.2}
+
     for scene in data.get("scenes", []):
         if scene.get("id") == "charyn-canyon-valley-of-castles":
-            scene["mapOffset"] = {"x": 1.0, "y": -2.0}
+            scene["mapOffset"] = {"x": 3.0, "y": -3.0}
+        elif scene.get("id") == "astana-baiterek":
+            scene["mapOffset"] = {"x": 2.5, "y": 1.2}
         elif scene.get("id") == "altyn-emel-singing-dune":
-            scene["mapOffset"] = {"x": 0, "y": 0}
+            scene["mapOffset"] = {"x": -2.0, "y": -3.0}
 
     sources = data.setdefault("sources", {})
     sources["map"] = (
@@ -162,7 +166,7 @@ def main() -> None:
         tuple(round(value, 5) for value in geometry.bounds),
         tuple(round(value, 5) for value in bounds),
     )
-    print("Hero offset reset to 0/0; all capital/Hero/scene displayed markers remain inside Kazakhstan")
+    print("Hero remains at 0/0; all displayed capital/Hero/scene markers remain inside Kazakhstan")
 
 
 if __name__ == "__main__":
