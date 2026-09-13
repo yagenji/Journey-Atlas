@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
-Updated: 2026-09-12
-Current policy patch: 3
+Updated: 2026-09-13
+Current policy patch: 4
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. Patch 3 preserves the post-image fast path and adds stricter image-round interaction and Taste controls based on the Philippines / Singapore / Thailand / Vietnam / Brunei production review.
+Protocol 2.0 is the default for **new Country production**. Patch 4 preserves the post-image fast path and Image Policy 7.2 controls, and advances new Country editorial production to Content QA v3.
 
 ## Production shape
 
@@ -45,8 +45,12 @@ Before Hero generation, finish everything that does not require the final raster
 - Next Routes or intentional omission;
 - Travel Scale;
 - Signature Facts;
+- Beyond the Scenery / Travel Trivia;
 - sources/source dates;
-- Content QA v2.
+- current Content QA.
+
+New Countries created under policy patch 4 use `contentQaVersion: 3` and must follow `docs/CONTENT_QUALITY_RULES_V3.md`.
+Existing v2 Countries remain on the v2 editorial contract unless explicitly migrated.
 
 `preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
 
@@ -76,7 +80,7 @@ python3 scripts/country_production_protocol_v2.py next {slug}
 
 The assistant must not require `approve`, `進めて`, `next`, `生成` or equivalent between valid Scene/Taste targets. A platform-forced turn boundary is tracked separately from a user continuation nudge; only the latter is a workflow defect.
 
-Protocol 2 Patch 3 metrics:
+Protocol 2 metrics:
 
 - `productionMetrics.perImageApprovalPrompts` target `0`;
 - `productionMetrics.userContinuationNudges` target `0`;
@@ -168,7 +172,7 @@ The PR remains open through final user review. It is reused for publication afte
 
 ## 7. Persistent Country review URLs
 
-GitHub Pages is one deployment surface, but each Country now lives in its own persistent subtree:
+GitHub Pages is one deployment surface, but each Country lives in its own persistent subtree:
 
 ```text
 /reviews/{slug}/countries/{slug}/
@@ -248,14 +252,20 @@ This matches the repository Ruleset's strict up-to-date requirement while preven
 
 Country production can remain parallel; **main publication is intentionally serial**.
 
-## 10. Content QA v2
+## 10. Content QA v3
 
-See `docs/CONTENT_QUALITY_RULES_V2.md`.
+See `docs/CONTENT_QUALITY_RULES_V3.md` for new Countries.
 
 Hard rules include:
 
 - every Travel Scale item contains a concrete `例：`;
+- Travel Scale must not contain concrete stay/day/week counts such as `3日`, `4〜5日`, `7日以上`, `2泊3日`, `1週間`, or `日帰り`;
+- Travel Scale differentiates route scope / regional combination rather than duration;
+- `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
+- canonical `topicKey` is required across those three sections, and generic suffix changes do not make the same underlying topic distinct;
 - forest/woodland percentage is not a routine Signature Fact; it requires `exceptionalShare:true` and must be <=10% or >=70%.
+
+The validator filename remains `scripts/validate_country_editorial_v2.py` for workflow compatibility, but it routes by `contentQaVersion`. Existing v2 Countries keep v2 rules; new Country scaffolds use v3.
 
 For Country-only work, Content QA targets the Country. Full Content QA is reserved for shared/full-scope changes.
 
@@ -309,5 +319,6 @@ When Protocol 2 applies:
 4. this document
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. image/content/map specifications
-8. chat history
+7. current content-quality rules (`CONTENT_QUALITY_RULES_V3.md` for new v3 Countries; v2 for legacy v2 Countries)
+8. image/content/map specifications
+9. chat history
