@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "afghanistan",
+  "nameEn": "AFGHANISTAN",
+  "nameJa": "アフガニスタン",
+  "region": "SOUTH ASIA / 34°N",
+  "seo": {
+    "description": "深い青のバンド・エ・アミールから、バーミヤンの仏教遺跡、ヘラートとマザーリシャリーフの建築、ヒンドゥークシュ、ワハン回廊、ヌーリスターンの森へ。山地と交易路が重ねてきた地理と歴史をたどる。"
+  },
+  "capital": {
+    "nameEn": "Kabul",
+    "nameJa": "カブール",
+    "coordinates": {"latitude": 34.5553, "longitude": 69.2075},
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "石灰岩の高原に深い青の湖が連なり、その先には仏教遺跡の谷、イスラム建築、ヒンドゥークシュとワハンの山地が広がる。山脈と交易路が幾層もの歴史を重ねてきた内陸国。",
+    "image": "assets/images/afghanistan/approved/hero-band-e-haybat.webp",
+    "location": "Band-e Amir / Band-e Haybat",
+    "coordinates": {"latitude": 34.83238, "longitude": 67.20839},
+    "mapOffset": {"x": -0.5, "y": 0.5}
+  },
+  "map": {
+    "bounds": {"north": 38.9718350601, "south": 28.888722496, "west": 59.8558921051, "east": 75.5854988861},
+    "svg": "assets/images/afghanistan/map-atlas-v1.svg",
+    "route": null,
+    "source": "Basemap countries_i political boundary data in cylindrical geographic coordinates; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {"id":"bamiyan-buddha-niches-valley","name":"バーミヤン / 大仏龕と谷","nameLocal":"Bamiyan / Buddha Niches & Valley","mapLabel":"Bamiyan","description":"崖面には、2001年に破壊された高さ55mと38mの大仏の空洞と、僧院・礼拝所として使われた多数の洞窟が残る。緑の耕地が広がる谷と向き合うことで、山岳地帯がかつて仏教文化の重要な通路だったことが見えてくる。","coordinates":{"latitude":34.84694,"longitude":67.82525},"image":"assets/images/afghanistan/approved/bamiyan-buddha-niches-valley.webp","labelPosition":"left","mapOffset":{"x":1.5,"y":-3.5}},
+    {"id":"herat-friday-mosque-courtyard","name":"ヘラート / 金曜モスク","nameLocal":"Herat / Friday Mosque","mapLabel":"Herat","description":"広い中庭を囲むイーワーンと、青・白・黄のタイル装飾が西部の古都に残る。ヘラートでは、イラン高原と中央アジアを結んだ都市文化を、宗教建築の色と幾何学から読み取れる。","coordinates":{"latitude":34.34306,"longitude":62.19583},"image":"assets/images/afghanistan/approved/herat-friday-mosque-courtyard.webp","labelPosition":"right"},
+    {"id":"mazar-blue-mosque-courtyard","name":"マザーリシャリーフ / ブルーモスク","nameLocal":"Mazar-i-Sharif / Blue Mosque","mapLabel":"Mazar-i-Sharif","description":"鮮やかな青のタイルで覆われた聖廟が、北部平原の都市景観の中心に立つ。乾いた山地が多い国の中で、広い中庭と装飾建築がつくる都市の顔を見せる場所。","coordinates":{"latitude":36.70896,"longitude":67.1109},"image":"assets/images/afghanistan/approved/mazar-blue-mosque-courtyard.webp","labelPosition":"left"},
+    {"id":"panjshir-valley-bazarak","name":"パンジシール渓谷 / バザラク","nameLocal":"Panjshir Valley / Bazarak","mapLabel":"Panjshir","description":"ヒンドゥークシュの急な斜面の間を川と集落、細い耕地が続く。高い山脈が国土を隔てる一方、谷が人の居住と移動の軸になってきたことを視覚的に理解できる。","coordinates":{"latitude":35.375,"longitude":69.5106},"image":"assets/images/afghanistan/approved/panjshir-valley-bazarak.webp","labelPosition":"right"},
+    {"id":"wakhan-sarhad-e-broghil","name":"ワハン回廊 / サルハッド・エ・ブロギル","nameLocal":"Wakhan Corridor / Sarhad-e Broghil","mapLabel":"Wakhan","description":"細長い回廊の東部では、広い高地の谷をパミールとヒンドゥークシュの稜線が囲む。国土の北東端がタジキスタン、パキスタン、中国の山地へ伸びていく地理を、そのまま景観として見る場所。","coordinates":{"latitude":37.00185,"longitude":73.44412},"image":"assets/images/afghanistan/approved/wakhan-sarhad-e-broghil.webp","labelPosition":"left"},
+    {"id":"jam-minaret-hari-rud-valley","name":"ジャム / ミナレットと渓谷","nameLocal":"Jam / Minaret & Hari Rud Valley","mapLabel":"Jam","description":"12世紀の焼成煉瓦の塔が、町から遠い山間の川谷に単独で立つ。高さ65mの細い塔と険しい地形の組み合わせから、ゴール朝の建築文化が山岳内陸まで広がっていたことが分かる。","coordinates":{"latitude":34.39642,"longitude":64.51589},"image":"assets/images/afghanistan/approved/jam-minaret-hari-rud-valley.webp","labelPosition":"right"},
+    {"id":"kabul-bagh-e-babur-terraces","name":"カブール / バーブル庭園","nameLocal":"Kabul / Bagh-e Babur","mapLabel":"Bagh-e Babur","description":"山の斜面に15段のテラスが軸線上に並び、上段から庭園越しにカブール盆地と雪山を望む。ムガル朝初代バーブルと結びつく庭園は、首都を城壁や道路だけではなく、地形を利用した造園から見る視点を与える。","coordinates":{"latitude":34.50261,"longitude":69.15848},"image":"assets/images/afghanistan/approved/kabul-bagh-e-babur-terraces.webp","labelPosition":"left","mapOffset":{"x":-4.3,"y":2.5}},
+    {"id":"nuristan-parun-forest-valley","name":"ヌーリスターン / パルーン渓谷","nameLocal":"Nuristan / Parun Valley","mapLabel":"Parun","description":"東部の急な谷では、乾燥した高原とは異なり、針葉樹を含む森林が斜面を覆う。山村、川、濃い緑の斜面が近接し、アフガニスタンの景観が砂色の山地だけではないことを示す。","coordinates":{"latitude":35.42064,"longitude":70.92261},"image":"assets/images/afghanistan/approved/nuristan-parun-forest-valley.webp","labelPosition":"right"}
+  ],
+  "encounters": [
+    {"title":"青い高地湖","icon":"landscape"},{"title":"岩山の谷","icon":"landscape"},{"title":"タイル建築","icon":"landmark"},{"title":"煉瓦の塔","icon":"landmark"},{"title":"段々の庭園","icon":"leaf"},{"title":"果樹園","icon":"leaf"},{"title":"羊の群れ","icon":"wildlife"},{"title":"山あいの市場","icon":"city"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"afghanistan-hindu-kush-valleys","themeEn":"GEOGRAPHY","themeJa":"地理","title":"国土の骨格は、ヒンドゥークシュとその谷で見えてくる","text":"国土の多くは起伏の大きい山地で、北と南西には平原が広がる。人口は山脈そのものより、その周縁や谷に集まりやすく、地図上の距離だけでは分からない地域の分断と接続をつくっている。","points":["山脈が国土中央を横切る","居住地と農地は谷や山麓に集まりやすい"]},
+    {"topicKey":"afghanistan-bamiyan-buddhist-crossroads","themeEn":"HISTORY","themeJa":"時をたどる","title":"バーミヤンは、山の中に残った仏教文化の交差点","text":"3〜5世紀を中心に築かれた洞窟寺院と大仏龕は、この谷が東西交流の外側ではなく、文化が行き交う通路だったことを示す。破壊された像そのものだけでなく、崖全体に広がる洞窟群を見ると歴史の層が分かる。","points":["大仏龕と多数の洞窟が同じ崖面に残る","谷そのものが仏教文化の通路だった歴史を伝える"]},
+    {"topicKey":"afghanistan-ghurid-jam","themeEn":"HISTORY","themeJa":"時をたどる","title":"ゴール朝の時代は、山間のジャムに細い煉瓦塔を残した","text":"中世のジャムのミナレットは、焼成煉瓦の表面を幾何学文様と碑文が覆う。現在は遠隔の谷に立つが、その存在は政治と建築の中心が現在の大都市だけに限られていなかったことを伝える。","points":["焼成煉瓦の幾何学文様と碑文が塔を覆う","遠隔の谷にも政治と建築の中心が存在した"]},
+    {"topicKey":"afghanistan-herat-persianate-city","themeEn":"HISTORY","themeJa":"時をたどる","title":"ヘラートでは、イラン高原と中央アジアの文化圏が重なる","text":"西部のヘラートは長く交易と学芸の結節点となり、モスク、廟、城塞、タイル装飾に複数時代の痕跡が残る。国境線より広い文化圏から見ると、アフガニスタン西部の位置づけが理解しやすい。","points":["西へ進むとイラン高原につながる","イスラム建築のタイル装飾が都市景観をつくる"]},
+    {"topicKey":"afghanistan-bagh-e-babur-garden","themeEn":"CULTURE","themeJa":"文化に触れる","title":"カブールでは、庭園が山の斜面と都市を一つの軸に結ぶ","text":"バーブル庭園は、テラスと水路を中央軸に配し、斜面の高低差そのものを庭園設計に取り込んでいる。平面的な公園ではなく、カブールの地形を使った都市景観として見ると面白い。","points":["高低差を庭園設計に取り込む","上段からカブール盆地と山並みを望む"]},
+    {"topicKey":"afghanistan-wakhan-conservation","themeEn":"GEOGRAPHY","themeJa":"地理","title":"ワハン回廊は、二つの大山系に挟まれた高地の生活圏","text":"北東部のワハン回廊では、パミールとヒンドゥークシュに挟まれた細長い谷に集落と放牧地が続く。保全対象となる高地生態系と人の暮らしが、同じ山岳景観の中に重なっている。","points":["高地生態系と集落が同じ谷に共存する","山脈の間の細長い地形が独自の生活圏をつくる"]}
+  ],
+  "travelTrivia": [
+    {"topicKey":"afghanistan-lapis-hindu-kush","categoryEn":"MATERIAL","categoryJa":"素材","title":"ラピスラズリの青はヒンドゥークシュから","text":"アフガニスタン北東部のヒンドゥークシュは、古くからラピスラズリの重要な産地。Smithsonianは、この青い石が6,000年以上にわたり装飾石や顔料として使われ、多くがアフガニスタンの山地から採掘されてきたと紹介している。","icon":"landscape","sourceKey":"smithsonianLapis"},
+    {"topicKey":"afghanistan-rubab-intangible","categoryEn":"MUSIC","categoryJa":"音楽","title":"ラバーブは国境を越えて共有される楽器文化","text":"弦楽器ラバーブの製作と演奏の文化は、アフガニスタン、イラン、タジキスタン、ウズベキスタンの共同要素として2024年にUNESCO無形文化遺産へ登録された。","icon":"culture","sourceKey":"unescoIchAfghanistan"},
+    {"topicKey":"afghanistan-behzad-miniature","categoryEn":"ART","categoryJa":"美術","title":"ベフザード様式の細密画も無形文化遺産","text":"ヘラートと深く結びつく画家カマールッディーン・ベフザードに連なる細密画の様式は、2025年にアフガニスタンの無形文化遺産としてUNESCO代表一覧へ加わった。","icon":"culture","sourceKey":"unescoIchAfghanistan"},
+    {"topicKey":"afghanistan-balkh-bactria","categoryEn":"HISTORY","categoryJa":"歴史","title":"バルフは古代バクトリアの都市","text":"マザーリシャリーフの西にあるバルフは、古代バクトリアの中心都市として知られる。UNESCO暫定一覧にも登録され、現在の国境よりはるかに古い中央アジアの都市史につながる。","icon":"landmark","sourceKey":"unescoBalkh"},
+    {"topicKey":"afghanistan-yalda-chella","categoryEn":"LIFE","categoryJa":"暮らし","title":"冬至の夜を祝うヤルダーも共有文化","text":"冬至の長い夜を家族や友人と過ごすヤルダー／チェッラは、イランとアフガニスタンの共同要素として2022年にUNESCO無形文化遺産へ登録された。","icon":"culture","sourceKey":"unescoIchAfghanistan"}
+  ],
+  "taste": {
+    "kicker":"TASTE OF AFGHANISTAN","title":"米、パン、ヨーグルト、香辛料が重なる食卓","intro":"山地と乾燥地の暮らしを背景に、米料理、詰め物をしたパン、野菜とヨーグルト、乳を使う甘味が並ぶ。香りは重ねるが、料理ごとの輪郭ははっきりしている。",
+    "items":[
+      {"id":"qabuli-pulao","name":"カブリ・プラオ","nameLocal":"Qabuli Pulao","text":"長粒米に肉、細切りのにんじん、レーズンを重ねる代表的な炊き込みご飯。香辛料と甘みのある具材が同じ皿にまとまる。","image":"assets/images/afghanistan/approved/food-qabuli-pulao.webp","imageState":"APPROVED"},
+      {"id":"bolani","name":"ボラニ","nameLocal":"Bolani","text":"薄い生地にじゃがいもや青菜などの具を包み、平たく焼くパン料理。食事にも軽食にも現れる、具入りの平焼きパン。","image":"assets/images/afghanistan/approved/food-bolani.webp","imageState":"APPROVED"},
+      {"id":"borani-banjan","name":"ボラニ・バンジャン","nameLocal":"Borani Banjan","text":"なすにトマトや玉ねぎのソースを重ね、にんにくを効かせたヨーグルトを合わせる料理。野菜と酸味のある乳製品を一皿で組み立てる。","image":"assets/images/afghanistan/approved/food-borani-banjan.webp","imageState":"APPROVED"},
+      {"id":"firni","name":"フィルニ","nameLocal":"Firni","text":"牛乳をでんぷんでとろりと固め、カルダモンなどで香りをつけて冷やす甘味。ラマダンのイフタールや祝祭時にも作られる。","image":"assets/images/afghanistan/approved/food-firni.webp","imageState":"APPROVED"}
+    ]
+  },
+  "travelScale": {
+    "kicker":"DURATION","title":"旅の目安日程","intro":"以下は治安状況が改善し、通常の観光渡航が可能になった将来を想定した地理的スケールの目安。2026年9月12日現在、日本外務省はアフガニスタン全土をレベル4（退避勧告）としており、渡航は止めるよう求めている。",
+    "items":[
+      {"duration":"3日","title":"一つの地域に絞る","text":"広域移動を前提にせず、将来安全に訪問できる状況でも一つの都市・谷を深く見る日程。例：カブール＋バーブル庭園。","icon":"city"},
+      {"duration":"5日","title":"中央高地の位置関係を見る","text":"移動条件と安全が十分に確保された将来に、中央高地で歴史と自然を組み合わせる目安。例：カブール → バーミヤン → バンド・エ・アミール。","icon":"map"},
+      {"duration":"8日以上","title":"地域差まで見る","text":"国土が広く山岳移動の制約も大きいため、複数地域を見るなら余白が必要。例：カブール → バーミヤン／バンド・エ・アミール → ヘラート。","icon":"compass"}
+    ]
+  },
+  "seasons": [
+    {"months":"3–5月","color":"spring","text":"春。低地や谷では気温が上がり、山地では雪解けが進む。高標高部では冬の条件が残るため、地域差が大きい。"},
+    {"months":"6–8月","color":"summer","text":"夏。低地と南西部は暑く乾燥しやすい一方、高地は比較的涼しい。標高差による気温の違いが最も分かりやすい季節。"},
+    {"months":"9–11月","color":"autumn","text":"秋。乾いた空気の中で山地は早く冷え込み、谷の農地や果樹園では収穫期が重なる。高地では冬への移行が早い。"},
+    {"months":"12–2月","color":"winter","text":"冬。ヒンドゥークシュや中央高地、北東部では厳しい寒さと積雪がある。峠道や遠隔地の移動条件は大きく変わる。"}
+  ],
+  "transport": {"title":"移動は「距離」より山脈と安全状況で考える","text":"山地が国土を分け、道路・航空便・国境通過の条件は地域と時期で変わる。2026年9月現在は全土への渡航を推奨できないため、具体的な移動ルートや国境越えは案内しない。将来状況が改善した場合も、最新の公的安全情報と運行状況を個別に確認する前提となる。","icon":"road"},
+  "personas": [
+    {"title":"山地の地理を景色から理解したい人","text":"ヒンドゥークシュ、中央高地、ワハン、東部の森林まで、標高と谷の違いが国の輪郭をつくる。"},
+    {"title":"シルクロード以前・以後の歴史を重ねて見たい人","text":"バーミヤンの仏教文化、ゴール朝、ヘラート、ムガル朝につながる庭園まで、異なる時代が一国の中に並ぶ。"},
+    {"title":"建築と地形の関係を見るのが好きな人","text":"崖の洞窟、山間の煉瓦塔、タイルのモスク、斜面の庭園など、建築が周囲の地形と強く結びついている。"}
+  ],
+  "facts": [
+    {"label":"地域","value":"南アジア / 内陸国"},{"label":"首都","value":"カブール"},{"label":"人口","value":"約4,384万人（2025年）"},{"label":"面積","value":"約65.3万km²（日本の約1.7倍）"},{"label":"言語","value":"ダリー語、パシュトー語など"},{"label":"主な宗教","value":"イスラム教"},{"label":"通貨","value":"アフガニ（AFN）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"afghanistan-six-neighbours","label":"接する国","value":"6か国","note":"イラン、パキスタン、トルクメニスタン、ウズベキスタン、タジキスタン、中国と国境を接する。南アジアと中央アジア、イラン高原の接点にある。","icon":"map"},
+    {"topicKey":"afghanistan-noshaq-7492","label":"最高地点","value":"7,492m","note":"ヒンドゥークシュのノシャック山。アフガニスタン最高峰で、国土の大きな標高差を象徴する。","icon":"landscape"},
+    {"topicKey":"afghanistan-two-heritage-both-danger","label":"世界遺産","value":"2件 / 2件とも危機遺産","note":"バーミヤンとジャムの2件はいずれも、2026年のUNESCO決定で危機遺産リストへの継続掲載が確認されている。","icon":"landmark"}
+  ],
+  "tips": [
+    {"topicKey":"afghanistan-level4-2026","title":"2026年9月現在、全土がレベル4","text":"日本外務省は全土に「退避してください。渡航は止めてください」とするレベル4を継続している。観光目的を含め、現時点では渡航を計画する段階ではない。"},
+    {"topicKey":"afghanistan-border-crossings-volatile","title":"隣国とのつながりと実際の越境は分けて考える","text":"NEXT ROUTESは、地理・文化の連続性を示すための隣国候補。現在の渡航勧告下で実際に越境できることを意味せず、検問所や交通手段は案内しない。"},
+    {"topicKey":"afghanistan-heritage-fragility","title":"遺産は「残っているもの」と保全状況を一緒に見る","text":"バーミヤンとジャムはどちらも危機遺産。景観として消費するだけでなく、破壊、侵食、保存上の課題を含めて現在の姿を理解したい。"}
+  ],
+  "relatedCountries": [
+    {"slug":"tajikistan","nameEn":"TAJIKISTAN","nameJa":"タジキスタン","flag":"🇹🇯","reason":"ワハンの北でパミール高原が続き、高地の谷と山岳交通という共通の地理を比較できる。"},
+    {"slug":"iran","nameEn":"IRAN","nameJa":"イラン","flag":"🇮🇷","reason":"西部ヘラートの建築・言語文化はイラン高原と深くつながり、国境を越えた文化圏として見ると理解しやすい。"},
+    {"slug":"pakistan","nameEn":"PAKISTAN","nameJa":"パキスタン","flag":"🇵🇰","reason":"ヒンドゥークシュと国境山地が連続し、アフガニスタン東部・南部の地理を広域で捉える手がかりになる。"}
+  ],
+  "nextRoutes": [
+    {"flag":"🇹🇯","countryEn":"TAJIKISTAN","countryJa":"タジキスタン","path":"Wakhan → Pamir Highlands","description":"ワハンの北側でパミール高原の地形が続く。高地の谷と山岳文化を比較する隣国としてつながりが見えやすい。現時点の越境ルートを示すものではない。"},
+    {"flag":"🇮🇷","countryEn":"IRAN","countryJa":"イラン","path":"Herat → Khorasan","description":"ヘラートから西を見ると、言語、詩、建築、交易の歴史がイラン高原へ連続する。国境線より広いペルシア語文化圏としてたどる組み合わせ。"},
+    {"flag":"🇵🇰","countryEn":"PAKISTAN","countryJa":"パキスタン","path":"Hindu Kush → Northwest Pakistan","description":"ヒンドゥークシュと国境山地の向こうにパキスタン北西部が続き、山岳地形と交易史を南アジア側から見直せる。現時点の越境ルートを示すものではない。"}
+  ],
+  "updatedAt": "2026-09-12",
+  "sourcesVerifiedAt": "2026-09-12",
+  "sourceDates": {
+    "population":"2025","surfaceArea":"2023","worldHeritage":"2026","travelAdvisory":"2026-09-12","currency":"2026-09-12"
+  },
+  "sources": {
+    "population":"World Bank — World Development Indicators, Afghanistan population 2025: https://databank.worldbank.org/reports.aspx?country=AFG&source=2",
+    "surfaceArea":"World Bank — World Development Indicators, Afghanistan surface area 2023: https://databank.worldbank.org/reports.aspx?country=AFG&source=2",
+    "worldHeritage":"UNESCO World Heritage Centre — Afghanistan and Decision 48 COM 8C.2 (2026): https://whc.unesco.org/en/statesparties/af",
+    "travelAdvisory":"外務省 海外安全ホームページ — アフガニスタン: https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_041.html",
+    "worldBankWdi":"World Bank — World Development Indicators, Afghanistan (population 2025; surface area 2023): https://databank.worldbank.org/reports.aspx?country=AFG&source=2",
+    "worldBankGeography":"World Bank — Afghanistan geography, demographics, and economy: https://documents1.worldbank.org/curated/en/099151502022339685/pdf/P1722860cde58709908c5909993c5ecb1f1.pdf",
+    "unescoAfghanistan":"UNESCO World Heritage Centre — Afghanistan: https://whc.unesco.org/en/statesparties/af",
+    "unescoDanger2026":"UNESCO World Heritage Centre — Decision 48 COM 8C.2 (2026): https://whc.unesco.org/en/decisions/9208",
+    "unescoBamiyan":"UNESCO World Heritage Centre — Cultural Landscape and Archaeological Remains of the Bamiyan Valley: https://whc.unesco.org/en/list/208",
+    "unescoJam":"UNESCO World Heritage Centre — Minaret and Archaeological Remains of Jam: https://whc.unesco.org/en/list/211",
+    "unescoBandAmir":"UNESCO World Heritage Centre — Band-E-Amir Tentative List: https://whc.unesco.org/en/tentativelists/1946",
+    "unescoBaghBabur":"UNESCO World Heritage Centre — Bagh-e Babur Tentative List: https://whc.unesco.org/en/tentativelists/5469",
+    "unescoBalkh":"UNESCO World Heritage Centre — City of Balkh (antique Bactria) Tentative List: https://whc.unesco.org/en/tentativelists/1928",
+    "unescoIchAfghanistan":"UNESCO Intangible Cultural Heritage — Afghanistan: https://ich.unesco.org/en-state/afghanistan-AF",
+    "smithsonianLapis":"Smithsonian National Museum of Natural History — Lapis lazuli from Afghanistan’s Hindu Kush and its long use as ornamental stone and pigment: https://naturalhistory.si.edu/explore/collections/geogallery/10026651",
+    "unepProtectedAreas":"UN Environment Programme — Afghanistan landscape ecology and physical science (Band-e Amir 2009; Wakhan 2014): https://www.unep.org/topics/disasters-and-conflicts/country-presence/afghanistan/landscape-ecology-and-physical-science",
+    "mofaSafety":"外務省 海外安全ホームページ — アフガニスタン: https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_041.html",
+    "fcdoSafety":"UK FCDO — Afghanistan travel advice: https://www.gov.uk/foreign-travel-advice/afghanistan",
+    "currency":"Da Afghanistan Bank — Afghanistan currency is the Afghani: https://dab.gov.af/index.php/node/7035",
+    "noshaq":"ITU — Roadmap for the transition from analogue to digital terrestrial television broadcasting in Afghanistan (Noshaq 7,492m): https://www.itu.int/net4/ITU-D/CDS/projects/document_open.asp?doc=959&prj=9RAS13044",
+    "foodways":"Library of Congress — Afghan Food and Women’s Empowerment / Qabuli Pulao and Bolani: https://blogs.loc.gov/folklife/2022/11/afcs-homegrown-foodways-film-premiere-afghan-food-and-womens-empowerment-with-nasrin-rafiq/",
+    "afghanaidRecipes":"Afghanaid — Afghan Recipe Book (Qabuli Pulao, Firni, Borani Banjan): https://www.afghanaid.org.uk/Pages/Category/recipe-book",
+    "nextRoutes":"Geographic and cultural continuity with Tajikistan, Iran and Pakistan; route copy is conceptual only and does not describe an operable border crossing under the current travel advisory."
+  }
+}

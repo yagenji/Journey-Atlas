@@ -179,10 +179,6 @@ def protocol_next(state: dict[str, Any]) -> dict[str, Any]:
             nxt = {"action": "HANDOFF_APPROVED_IMAGES_TO_USER", "asset": "ALL_13_RASTERS"}
             return {"next": nxt, "interaction": interaction_for_next(nxt)}
 
-    # Protocol 2 review fast path: open one pre-main review PR after target QA.
-    # Opening/synchronizing that PR automatically drives the persistent targeted
-    # GitHub Pages preview. The same PR is finalized and serialized for
-    # publication after explicit canonical approval; a second PR is forbidden.
     phase = state.get("phase")
     qa = state.get("qa") if isinstance(state.get("qa"), dict) else {}
     preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else None
@@ -414,7 +410,7 @@ def print_errors(errors: list[str]) -> int:
 def self_test() -> int:
     policy = protocol_policy()
     assert policy["protocolId"] == PROTOCOL_ID
-    assert policy["policyPatch"] == 3
+    assert policy["policyPatch"] == 4
 
     state = new_state({"slug": "test-slug", "nameEn": "Test Slug"})
     assert state["productionProtocolId"] == PROTOCOL_ID

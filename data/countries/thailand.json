@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 2,
+  "slug": "thailand",
+  "nameEn": "THAILAND",
+  "nameJa": "タイ",
+  "region": "SOUTHEAST ASIA / 13°N",
+  "seo": {
+    "description": "チャオプラヤ川の寺院から、古都アユタヤ、北部の石灰岩山地、東北部のクメール遺跡とメコン、森林の滝、南部のカルスト湖、アンダマン海、湿地へ。8つの景色と地図からタイの地理の幅をたどる。"
+  },
+  "capital": {
+    "nameEn": "Bangkok",
+    "nameJa": "バンコク",
+    "coordinates": {"latitude": 13.7563, "longitude": 100.5018},
+    "labelPosition": "right",
+    "mapOffset": {"x": -2.0, "y": 1.5}
+  },
+  "hero": {
+    "lead": "チャオプラヤ川の対岸にワット・アルンの仏塔が立つ首都から、古都、北の山地、メコン沿いの台地、森林、細長い半島、二つの海へ。寺院と食だけでは捉えきれないタイの地理をたどる。",
+    "image": "assets/images/thailand/approved/hero-wat-arun-chao-phraya-dawn.webp",
+    "location": "Wat Arun / Chao Phraya River, Bangkok",
+    "coordinates": {"latitude": 13.7437, "longitude": 100.4889},
+    "mapOffset": {"x": 2.0, "y": 1.5}
+  },
+  "map": {
+    "bounds": {"north": 21.0, "south": 5.2, "west": 96.8, "east": 106.2},
+    "svg": "assets/images/thailand/map-atlas-v1.svg",
+    "route": null,
+    "source": "WGS84 geographic-data composite: Basemap/WDBII country-border linework and GSHHS/GSHHG intermediate coastline data, constrained by Natural Earth country geometry; Phuket retained from GSHHS; JOURNEY ATLAS map-v3 clean background."
+  },
+  "scenes": [
+    {"id":"ayutthaya-wat-chaiwatthanaram","name":"アユタヤ / ワット・チャイワッタナーラーム","nameLocal":"Ayutthaya / Wat Chaiwatthanaram","mapLabel":"Ayutthaya","description":"チャオプラヤ水系の平原に築かれた古都で、中央のプラーンと回廊が低い地平線の上に立つ。現在のバンコクより前の王都と、川に囲まれた中央平原の歴史が同じ景観に重なる。","coordinates":{"latitude":14.3447,"longitude":100.5414},"image":"assets/images/thailand/approved/ayutthaya-wat-chaiwatthanaram.webp","labelPosition":"right","mapOffset":{"x":0.0,"y":-3.0}},
+    {"id":"doi-luang-chiang-dao-rice-fields","name":"ドイ・ルアン・チェンダオ / 山麓の田園","nameLocal":"Doi Luang Chiang Dao / Foothill Fields","mapLabel":"Chiang Dao","description":"北部の平地から、石灰岩のドイ・ルアン・チェンダオが急に立ち上がる。中央平原とは異なる山地の輪郭と、山麓の農地・集落が近距離で接する北タイの地形。","coordinates":{"latitude":19.408,"longitude":98.924},"image":"assets/images/thailand/approved/doi-luang-chiang-dao-rice-fields.webp","labelPosition":"right"},
+    {"id":"phanom-rung-volcanic-ridge-temple","name":"パノム・ルン / 火山丘のクメール寺院","nameLocal":"Phanom Rung / Khmer Temple on a Volcanic Ridge","mapLabel":"Phanom Rung","description":"東北部の火山性の丘の頂に、砂岩とラテライトのクメール寺院が東西軸で並ぶ。アンコール文化圏とのつながりと、コーラート台地の広がりを同時に読める景観。","coordinates":{"latitude":14.532,"longitude":102.941},"image":"assets/images/thailand/approved/phanom-rung-volcanic-ridge-temple.webp","labelPosition":"right"},
+    {"id":"sam-phan-bok-mekong-rock-basins","name":"サム・パン・ボーク / メコン川の岩床","nameLocal":"Sam Phan Bok / Mekong Rock Basins","mapLabel":"Sam Phan Bok","description":"乾季に水位が下がると、メコン川の岩床に大小の甌穴と水溜まりが現れる。国境をなす大河が季節によって河床そのものを見せる、東北端の地形景観。","coordinates":{"latitude":15.795,"longitude":105.391},"image":"assets/images/thailand/approved/sam-phan-bok-mekong-rock-basins.webp","labelPosition":"left"},
+    {"id":"erawan-waterfall-kanchanaburi","name":"エラワン滝 / カンチャナブリー","nameLocal":"Erawan Waterfall / Kanchanaburi","mapLabel":"Erawan Falls","description":"石灰岩の森を流れる水が段ごとに青緑の滝壺をつくる。ミャンマー国境に近い西部では、中央平原から短い距離で山地と森林の地形へ切り替わる。","coordinates":{"latitude":14.373,"longitude":99.144},"image":"assets/images/thailand/approved/erawan-waterfall-kanchanaburi.webp","labelPosition":"left","mapOffset":{"x":-2.0,"y":1.0}},
+    {"id":"khao-sok-cheow-lan-karst-lake","name":"カオソック / チャオラン湖","nameLocal":"Khao Sok / Cheow Lan Lake","mapLabel":"Khao Sok","description":"南部の内陸では、熱帯林に覆われた石灰岩峰が湖面から連続して立ち上がる。海辺の島とは別の形で、半島部のカルスト地形と湿潤な森林が見える。","coordinates":{"latitude":8.938,"longitude":98.82},"image":"assets/images/thailand/approved/khao-sok-cheow-lan-karst-lake.webp","labelPosition":"right","mapOffset":{"x":2.2,"y":-2.0}},
+    {"id":"phang-nga-bay-limestone-islets","name":"パンガー湾 / 石灰岩の島々","nameLocal":"Phang Nga Bay / Limestone Islets","mapLabel":"Phang Nga Bay","description":"アンダマン海の浅い湾に、垂直な石灰岩の島や岩塔が点在する。内陸のカルストが海へ続き、タイ南西部が島と海岸線の複雑な地理を持つことを示す。","coordinates":{"latitude":8.27,"longitude":98.5},"image":"assets/images/thailand/approved/phang-nga-bay-limestone-islets.webp","labelPosition":"left","mapOffset":{"x":-2.2,"y":2.0}},
+    {"id":"thale-noi-lotus-wetlands","name":"タレー・ノーイ / 湿地と蓮","nameLocal":"Thale Noi / Lotus Wetlands","mapLabel":"Thale Noi","description":"タイ湾側の湖沼地帯では、浅い水面に蓮や水草が広がり、漁や放牧の暮らしが湿地と接している。アンダマン側の岩島とは異なる、半島東側の静かな水の景観。","coordinates":{"latitude":7.78,"longitude":100.13},"image":"assets/images/thailand/approved/thale-noi-lotus-wetlands.webp","labelPosition":"right"}
+  ],
+  "encounters":[{"title":"寺院の屋根","icon":"landmark"},{"title":"朝の市場","icon":"users"},{"title":"屋台","icon":"food"},{"title":"僧侶","icon":"culture"},{"title":"川船","icon":"sea"},{"title":"トゥクトゥク","icon":"road"},{"title":"南国の果物","icon":"food"},{"title":"ロングテールボート","icon":"shore"}],
+  "atlasExtras":[
+    {"topicKey":"theravada-temples-merit-making","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"寺院は、観光地である前に日常の信仰が続く場所","text":"タイの上座部仏教寺院では、僧侶の生活、托鉢、寄進、法要、地域行事が現在も重なる。建築だけでなく、人がどう寺院を使っているかを見ると街の時間が変わって見える。","points":["2024年の仏教寺院は全国44,035か所","礼拝空間では服装や振る舞いへの配慮が必要"]},
+    {"topicKey":"songkran-traditional-new-year","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ソンクラーンは水かけだけではなく、家族と寺院を結ぶ新年行事","text":"4月のソンクラーンでは水をかけ合う街の光景が知られる一方、仏像への灌水、年長者への敬意、家族の集まりなど複数の実践が重なる。2023年にユネスコ無形文化遺産へ登録された。","points":["伝統的なタイの新年行事","地域によって祝い方と日程の濃淡が異なる"]},
+    {"topicKey":"khon-masked-dance-drama","themeEn":"CULTURE","themeJa":"文化に触れる","title":"仮面劇コーンでは、身ぶり・衣装・音楽でラーマキエンを語る","text":"コーンは仮面や精緻な衣装、舞踊、語り、音楽が組み合わさる舞台芸術。王宮文化と結びつきながら継承され、2018年にユネスコ無形文化遺産へ登録された。","points":["物語の中心はタイ版ラーマーヤナのラーマキエン","舞台上では役柄ごとに身体表現が異なる"]},
+    {"topicKey":"thai-script-and-tones","themeEn":"LANGUAGE","themeJa":"ことば","title":"タイ文字は子音・母音・声調記号が組み合わさって見える","text":"タイ語は独自の文字体系を使い、声調も意味を区別する。街の看板では英字併記も多いが、タイ文字の形を少し見分けられるだけで駅名や地名の見え方が変わる。","points":["公用語はタイ語","日常の表記ではタイ文字が中心"]},
+    {"topicKey":"muay-thai-ring-culture","themeEn":"CULTURE","themeJa":"文化に触れる","title":"ムエタイは競技だけでなく、儀礼と音楽を伴うリング文化を持つ","text":"試合前のワイクルーや演奏など、ムエタイは打撃技術だけで完結しない。地方の会場から大都市のスタジアムまで、観客の声とリング周辺の所作を含めて一つの文化として見える。","points":["試合前にワイクルーを行う","伝統楽器の演奏が試合のリズムと重なる"]},
+    {"topicKey":"chao-phraya-klong-water-city","themeEn":"CITY","themeJa":"街を歩く","title":"バンコクは道路の街であると同時に、川と運河の都市でもある","text":"チャオプラヤ川とクローンは、都市の形成、物流、寺院や市場の立地に長く関わってきた。高架鉄道の下を歩く現在の街でも、水路から見ると別の都市構造が現れる。","points":["川船が現在も公共交通として使われる","寺院や古い地区が水際に連なる"]}
+  ],
+  "travelTrivia":[
+    {"topicKey":"wai-greeting-context","categoryEn":"ETIQUETTE","categoryJa":"マナー","title":"ワイは相手や場面によって高さが変わる","text":"両手を合わせる挨拶のワイは、相手との関係や場面で形が少し変わる。旅行者は無理に細かな型をまねるより、返礼として穏やかに合わせると自然。","icon":"users","sourceKey":"etiquette"},
+    {"topicKey":"shoes-off-indoor-spaces","categoryEn":"CUSTOMS","categoryJa":"習慣","title":"寺院や一部の家・店では入口で靴を脱ぐ","text":"靴が並んでいる入口は、その先が靴を脱ぐ空間である分かりやすい合図。寺院建築だけでなく、日常の屋内空間でも目にする習慣。","icon":"home","sourceKey":"etiquette"},
+    {"topicKey":"buddhist-era-calendar-543","categoryEn":"LOCAL TIP","categoryJa":"現地のコツ","title":"タイの年号は西暦より543年先","text":"公的文書や施設の案内では仏暦（B.E.）を見ることがあり、西暦2026年は仏暦2569年。年号が大きく見えたら、543を引くと西暦になる。","icon":"calendar","sourceKey":"buddhistCalendar"},
+    {"topicKey":"spice-level-ordering","categoryEn":"FOOD","categoryJa":"食","title":"辛さは料理名だけでは決まらない","text":"同じ料理でも店や地域、注文で辛さが大きく変わる。辛さを控えたいときは注文時に伝える方が、見た目だけで判断するより確実。","icon":"food","sourceKey":"foodCulture"},
+    {"topicKey":"royal-and-buddhist-calendar-holidays","categoryEn":"LOCAL TIP","categoryJa":"現地のコツ","title":"祝日や仏教行事で営業時間や酒類販売が変わることがある","text":"仏教上の重要日や選挙日などでは酒類販売が制限される場合がある。旅程中に祝祭日が重なるときは、現地の最新告知を確認するとよい。","icon":"calendar","sourceKey":"holidays"}
+  ],
+  "taste":{"kicker":"TASTE OF THAILAND","title":"タイで食べたいもの","intro":"北部の麺、東北由来の青パパイヤ料理、日常の炒め物、南アジア・イスラム圏との接点を感じるカレーまで、地域と味の幅を4品からたどる。","items":[
+    {"id":"khao-soi","name":"カオソーイ","nameLocal":"Khao Soi","text":"ココナツミルクを使うカレー風味のスープに卵麺を合わせ、揚げ麺を重ねる北部の麺料理。","image":"assets/images/thailand/approved/food-khao-soi.webp","imageState":"PENDING"},
+    {"id":"som-tam","name":"ソムタム","nameLocal":"Som Tam","text":"青いパパイヤを細く刻み、唐辛子、ライム、魚醤などを搗き合わせる料理。東北部との結びつきが強く、各地で食べられる。","image":"assets/images/thailand/approved/food-som-tam.webp","imageState":"PENDING"},
+    {"id":"pad-krapao","name":"パット・ガパオ","nameLocal":"Pad Krapao","text":"肉や魚介をホーリーバジルと唐辛子で強火炒めにし、ご飯と合わせる日常的な一皿。","image":"assets/images/thailand/approved/food-pad-krapao.webp","imageState":"PENDING"},
+    {"id":"massaman-curry","name":"マッサマンカレー","nameLocal":"Massaman Curry","text":"ココナツミルクに香辛料、肉、じゃがいもなどを合わせるカレー。南部やイスラム文化との歴史的な接点を感じる味。","image":"assets/images/thailand/approved/food-massaman-curry.webp","imageState":"PENDING"}
+  ]},
+  "travelScale":{"kicker":"DURATION","title":"旅の目安日程","intro":"南北に長く、地域を替えると移動距離と景観が大きく変わる。短期は一つの軸に絞り、日数が増えるほど地域を足す。","items":[
+    {"duration":"4日","title":"バンコクと中央平原を見る","text":"首都の川・寺院・市場に、アユタヤを加えて中央部を一つのまとまりとして見る。例：バンコク → アユタヤ → バンコク。","icon":"city"},
+    {"duration":"7日","title":"首都に一つの地方を加える","text":"バンコクを起点に、北部の山地・古都、または南部の海とカルストなど、一地域へ移動する。例：バンコク → チェンマイ → チェンダオ。","icon":"map"},
+    {"duration":"12日以上","title":"複数地域をつないで地理の差を見る","text":"中央部に北部・東北部・南部のうち二つ以上を組み合わせ、長距離移動そのものを旅程に含める。例：バンコク → チェンマイ → カオソック → パンガー湾。","icon":"compass"}
+  ]},
+  "seasons":[
+    {"months":"11〜2月","color":"#7894a2","text":"北部・中央部は比較的乾燥し、朝晩が涼しくなる時期。アンダマン側は海の旅を組み込みやすい一方、南部のタイ湾側は雨の時期がずれるため地域別に確認する。"},
+    {"months":"3〜4月","color":"#c69763","text":"一年の中でも暑さが強まりやすい時期。4月にはソンクラーンがあり、都市や地方で道路・寺院・公共空間の使われ方が通常と変わる。"},
+    {"months":"5〜8月","color":"#6f9278","text":"南西モンスーンの影響が広がり、内陸は緑が濃くなる。短時間の強い雨もあるため、山道やボート移動を含む日は余裕を持たせる。"},
+    {"months":"9〜10月","color":"#6f8791","text":"雨季後半で河川や滝の水量が増える地域がある。アンダマン海とタイ湾では風・波・降雨のピークが同じではないため、島や沿岸は現地予報を確認する。"}
+  ],
+  "transport":{"title":"鉄道・長距離バス・国内線・フェリー","text":"バンコクを中心に長距離鉄道とバスが各地方へ伸び、北部・南部など距離の長い区間では国内線も使われる。島や湾岸ではフェリーやボートを組み合わせる。鉄道は移動時間が長い一方、中央平原から北・東北・南へ地形が変わる過程を見やすい。","icon":"road"},
+  "personas":[
+    {"title":"都市・寺院・市場を歩きながら暮らしを見たい人","text":"バンコクや地方都市で、寺院だけを巡るのではなく、市場、川船、屋台、住宅地まで同じ街の中でつなげて見たい人。"},
+    {"title":"一つの国で山・川・森・海まで景観を変えたい人","text":"北部の山地、メコン、中央平原、南部のカルストと二つの海を移動し、地域ごとの地形差を旅の軸にしたい人。"},
+    {"title":"食を地域の違いから知りたい人","text":"一括りのタイ料理ではなく、北部、東北部、中央部、南部で香草、辛味、麺、カレーの組み合わせがどう変わるかを食べ比べたい人。"}
+  ],
+  "facts":[{"label":"地域","value":"東南アジア"},{"label":"首都","value":"バンコク"},{"label":"人口","value":"約6,710万人"},{"label":"面積","value":"約51.3万km²（日本の約1.36倍）"},{"label":"言語","value":"タイ語"},{"label":"主な宗教","value":"仏教（主に上座部仏教）"},{"label":"通貨","value":"バーツ（THB）"}],
+  "signatureFacts":[
+    {"topicKey":"buddhist-temples-2024","label":"仏教寺院","value":"44,035か所","note":"タイ国家統計局の2024年集計。都市から農村まで寺院が日常景観に現れる背景を示す数字。","icon":"landmark"},
+    {"topicKey":"never-formally-colonized-by-european-power","label":"欧州列強による正式な植民地化","value":"なし","note":"東南アジアで唯一、欧州列強による正式な植民地支配を受けなかった国。英領ビルマと仏領インドシナの間で外交と領土譲歩を重ねながら独立を維持した。","icon":"history"},
+    {"topicKey":"two-seas-peninsula","label":"半島を挟む海","value":"2つ","note":"南部は西のアンダマン海と東のタイ湾に面し、海岸景観と季節風の影響が左右で異なる。","icon":"sea"}
+  ],
+  "tips":[
+    {"topicKey":"temple-dress-and-sacred-space","title":"寺院では肌の露出と礼拝空間への入り方を確認する","text":"主要寺院では肩や膝を覆う服装を求める場所がある。建物ごとに靴を脱ぐ区画や撮影制限が異なるため、入口表示に従う。"},
+    {"topicKey":"regional-monsoon-differences","title":"雨季を全国一つのカレンダーで考えない","text":"南部はアンダマン側とタイ湾側で降雨の時期がずれ、北部・中央部とも条件が異なる。海路を含む旅では地域別予報を見る。"},
+    {"topicKey":"long-distance-transfer-buffer","title":"南北移動には到着日の余白を残す","text":"国土が南北に長く、夜行列車・長距離バス・国内線の乗り継ぎで半日以上を使うことがある。離島や山地へ続く日は接続を詰めすぎない。"}
+  ],
+  "nextRoutes":[
+    {"flag":"🇱🇦","countryEn":"LAOS","countryJa":"ラオス","path":"Bangkok → Nong Khai → Vientiane","description":"バンコクから東北部を縦断し、メコンを越えてビエンチャンへ。2024年に直通旅客列車が始まり、中央平原からイサーン、ラオスへ地続きの変化を追える。"},
+    {"flag":"🇲🇾","countryEn":"MALAYSIA","countryJa":"マレーシア","path":"Bangkok → Hat Yai → Padang Besar","description":"南部の細長い半島を鉄道で下り、国境駅パダン・ブサールからマレー半島をさらに南へつなぐ。タイ南部からマレーシア北部へ景観と食文化が連続する周遊方向。"},
+    {"flag":"🇰🇭","countryEn":"CAMBODIA","countryJa":"カンボジア","path":"Bangkok → Aranyaprathet → Siem Reap","description":"バンコクから東へ進み、アンコールへつなぐ代表的な周遊軸。ただし2026年9月12日現在、タイ—カンボジア間の陸路国境・国境検問所は停止中で、国境周辺には渡航勧告も出ている。再開までは陸路では利用できないため、最新情報の確認が必要。"}
+  ],
+  "relatedCountries":[
+    {"slug":"laos","nameEn":"LAOS","nameJa":"ラオス","flag":"🇱🇦","reason":"メコン川、上座部仏教、山地の暮らしを、タイ東北部からさらに静かな密度でたどれる。"},
+    {"slug":"cambodia","nameEn":"CAMBODIA","nameJa":"カンボジア","flag":"🇰🇭","reason":"クメール建築とメコン地域の歴史を、タイ東北部の遺跡からアンコールへ広げて比較できる。"},
+    {"slug":"malaysia","nameEn":"MALAYSIA","nameJa":"マレーシア","flag":"🇲🇾","reason":"同じマレー半島で、熱帯の海・都市・食・宗教の組み合わせが南へ移るほど変わる。"}
+  ],
+  "updatedAt":"2026-09-12","sourcesVerifiedAt":"2026-09-12",
+  "sourceDates":{"population":"2026","area":"2024","temples":"2024","colonialHistory":"2021","buddhistCalendar":"2026-09-12","nextRoutes":"2026-09-12","seasons":"2026-09-11"},
+  "sources":{
+    "population":"Thailand National Statistical Office, Statistical Yearbook Thailand 2025, Table 1.8: 2026 population projection 67,143.3 thousand persons (1 July).",
+    "area":"Thailand National Statistical Office, Statistical Yearbook Thailand 2025, Table 1.23: whole-kingdom area 513,139.54 km² as of 31 Dec 2024.",
+    "temples":"Thailand National Statistical Office, Statistical Yearbook Thailand 2025, Table 4.1: 44,035 Buddhist temples in 2024.",
+    "colonialHistory":"CIA World Factbook historical Thailand profile: Thailand is the only Southeast Asian country never colonized by a European power; modern histories note the role of diplomacy, territorial concessions and its buffer position between British and French empires.",
+    "geography":"Thailand NSO geographic overview and official tourism geography: Thailand is bordered by the Andaman Sea to the west and the Gulf of Thailand to the south/east of the peninsula.",
+    "scenes":"Place coordinates and geographic identities cross-checked against official Thai tourism / national-park references and geographic datasets; image viewpoints are editorially fixed before generation.",
+    "taste":"Tourism Authority of Thailand culinary references and widely documented regional Thai food traditions for Khao Soi, Som Tam, Pad Krapao and Massaman Curry.",
+    "seasons":"Tourism Authority of Thailand regional climate guidance; monsoon timing varies between the Andaman coast, Gulf coast, north and central Thailand.",
+    "nextRoutes":"State Railway of Thailand 2026 timetable for Bangkok–Vientiane and Bangkok–Padang Besar links; UK FCDO Thailand/Cambodia travel advice current 2026-09-12 states Thailand–Cambodia land borders and crossings remain suspended, with border-area travel restrictions.",
+    "etiquette":"Tourism Authority of Thailand / official visitor etiquette guidance for wai, footwear and temple behavior.",
+    "buddhistCalendar":"Thailand Ministry of Foreign Affairs archival reference: Thai documents use the Buddhist Era, which is 543 years ahead of the Christian/Gregorian year.",
+    "foodCulture":"Tourism Authority of Thailand culinary guidance; spice levels and recipes vary by dish, region and vendor.",
+    "holidays":"Thai government public notices and tourism guidance: alcohol-sale restrictions can apply on specified Buddhist holy days and other legally designated dates.",
+    "songkran":"UNESCO Intangible Cultural Heritage: Songkran in Thailand, traditional Thai New Year festival, inscribed 2023.",
+    "khon":"UNESCO Intangible Cultural Heritage: Khon, masked dance drama in Thailand, inscribed 2018.",
+    "muayThai":"Thailand cultural and sports authority references on Wai Kru, traditional music and Muay Thai practice.",
+    "language":"Thailand official information: Thai is the official language and Thai script is the primary national writing system.",
+    "transport":"State Railway of Thailand, Thai transport authorities and current domestic transport patterns; route-specific services should be verified for travel dates.",
+    "map":"WGS84 map geometry derived from geographic datasets: Basemap/WDBII political borders, GSHHS/GSHHG intermediate coastline, Natural Earth country mask; JOURNEY ATLAS 1200×760 map-v3 styling."
+  }
+}
