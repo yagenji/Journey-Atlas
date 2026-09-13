@@ -1,0 +1,106 @@
+name: Tajikistan production QA
+
+on:
+  push:
+    branches: ["ops/tajikistan-production-qa"]
+    paths:
+      - ".github/workflows/tajikistan-production-qa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  production-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Browser QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+
+      - name: Verify live build includes Tajikistan publication
+        env:
+          SITE_URL: https://atlas.yagenji.com
+          TAJIKISTAN_PUBLICATION_SHA: ec0a941657581ebc24dda1a8d51c345d67321dea
+        run: |
+          set -euo pipefail
+          live_sha=""
+          for attempt in $(seq 1 30); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            echo "attempt=$attempt live=$live_sha"
+            [ -n "$live_sha" ] && break
+            sleep 2
+          done
+          [ -n "$live_sha" ]
+          git fetch origin main --quiet
+          git fetch origin "$live_sha" --quiet || true
+          git cat-file -e "$live_sha^{commit}"
+          git merge-base --is-ancestor "$TAJIKISTAN_PUBLICATION_SHA" "$live_sha"
+          echo "Production build includes Tajikistan publication: $live_sha"
+
+      - name: Verify Tajikistan production route, indexability, sitemap and registry
+        env:
+          SITE_URL: https://atlas.yagenji.com
+        run: |
+          set -euo pipefail
+          bash scripts/http_fetch_retry.sh "$SITE_URL/countries/tajikistan/?qa=$GITHUB_RUN_ID" /tmp/tajikistan.html
+          bash scripts/http_fetch_retry.sh "$SITE_URL/data/countries/tajikistan.json?qa=$GITHUB_RUN_ID" /tmp/tajikistan.json
+          bash scripts/http_fetch_retry.sh "$SITE_URL/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" /tmp/atlas-destinations.json
+          bash scripts/http_fetch_retry.sh "$SITE_URL/sitemap.xml?qa=$GITHUB_RUN_ID" /tmp/sitemap.xml
+          test -s /tmp/tajikistan.html
+          test -s /tmp/tajikistan.json
+          grep -q 'data-country="tajikistan"' /tmp/tajikistan.html
+          if grep -Eqi '<meta[^>]+name=["'"']robots["'"'][^>]+content=["'"'][^"'"']*noindex' /tmp/tajikistan.html; then
+            echo 'Tajikistan production page is still noindex'
+            exit 1
+          fi
+          grep -q 'https://atlas.yagenji.com/countries/tajikistan/' /tmp/sitemap.xml
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          country = json.loads(Path('/tmp/tajikistan.json').read_text(encoding='utf-8'))
+          assert country.get('slug') == 'tajikistan'
+          assert len(country.get('scenes', [])) == 8
+          taste = country.get('taste') or {}
+          items = taste.get('items', []) if isinstance(taste, dict) else taste
+          assert len(items) == 4
+          assert any(
+              x.get('topicKey') == 'tajikistan-pamir-highland-system' and
+              x.get('title') == 'パミールは、ユーラシアの高山帯が集まる「結び目」'
+              for x in country.get('atlasExtras', [])
+          )
+
+          registry = json.loads(Path('/tmp/atlas-destinations.json').read_text(encoding='utf-8'))
+          row = next(x for x in registry.get('destinations', []) if x.get('slug') == 'tajikistan')
+          assert row.get('atlasPublished') is True
+          assert row.get('href') == 'countries/tajikistan/'
+          print('Tajikistan production publication metadata verified.')
+          PY
+
+      - name: Run Tajikistan custom-domain Browser QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-browser-tajikistan-production
+          QA_SCOPE: published
+          QA_SLUGS: tajikistan
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Upload Tajikistan production Browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tajikistan-production-browser-qa
+          path: qa-browser-tajikistan-production/
+          if-no-files-found: warn
+          retention-days: 3
