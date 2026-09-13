@@ -3,7 +3,7 @@
 
 The filename is retained for CI/backward compatibility. Content QA v2 rules remain
 valid for existing v2 Countries. Content QA v3 applies to new Countries and adds:
-- no numeric stay/day/week counts in Travel Scale;
+- Travel Scale keeps day-based duration labels, while `例：` route examples must not contain day/stay/week counts;
 - canonical topic separation across Signature Facts / Beyond the Scenery / Trivia;
 - a conservative near-duplicate text guard across those three sections.
 """
@@ -93,8 +93,7 @@ def validate_common_travel_scale(
     return normalized
 
 
-def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    items = validate_common_travel_scale(errors, filename, data)
+def validate_day_duration_labels(errors: list[str], filename: str, items: list[dict[str, Any]]) -> None:
     if len(items) != 3:
         return
     for index, item in enumerate(items, 1):
@@ -106,21 +105,29 @@ def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, A
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
 
 
+def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    items = validate_common_travel_scale(errors, filename, data)
+    validate_day_duration_labels(errors, filename, items)
+
+
 def contains_forbidden_duration(value: str) -> bool:
     return bool(DURATION_COUNT_RE.search(value)) or any(word in value for word in DURATION_WORDS)
 
 
 def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
+    validate_day_duration_labels(errors, filename, items)
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
-        for key in ("duration", "title", "text"):
-            value = text(item.get(key))
-            if contains_forbidden_duration(value):
-                fail(
-                    errors,
-                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
-                )
+        body = text(item.get("text"))
+        if "例：" not in body:
+            continue
+        example = body.split("例：", 1)[1].strip()
+        if contains_forbidden_duration(example):
+            fail(
+                errors,
+                f"{owner}.text: Content QA v3 forbids day/stay/week counts inside the '例：' route example only: {example!r}",
+            )
 
 
 def forest_related(item: dict[str, Any]) -> bool:
