@@ -5,11 +5,11 @@
   "contentRef": "country/turkmenistan",
   "stateRef": "country/turkmenistan",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-13T12:48:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-13T12:49:00+09:00",
   "hero": {
     "id": "HERO",
-    "state": "NOT_STARTED",
+    "state": "GENERATING",
     "asset": "assets/images/turkmenistan/approved/hero-yangykala-canyon.webp",
     "contentId": "yangykala-canyon",
     "promptSeries": 1,
@@ -32,6 +32,14 @@
       "composition": "wide 3:2 atlas hero; elevated overlook across layered canyon ridges; strongest sculpted cliffs center-right; open pale sky and calmer plateau space upper-left for page typography; subject remains recognizable in mobile crop",
       "style": "real-place recognizability, restrained realistic detail with quiet watercolor texture, premium travel-atlas illustration, approximately photo 6 watercolor 4, natural low saturation, dry clear daylight",
       "negativeConstraints": ["photographic snapshot", "hyperreal HDR", "fantasy canyon", "Monument Valley-style buttes", "anime", "oil painting", "tourism poster", "added lettering", "map", "UI", "people as main subject"]
+    },
+    "generationReservation": {
+      "reservationId": "HERO-series1-attempt2-20260913T124900+0900",
+      "asset": "HERO",
+      "contentId": "yangykala-canyon",
+      "promptSeries": 1,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-13T12:49:00+09:00"
     }
   },
   "scenes": [
@@ -68,5 +76,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":1,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"GENERATE_HERO","asset":"HERO"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
 }
