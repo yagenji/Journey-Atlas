@@ -21,6 +21,7 @@ STATUS_PATH = "data/country-renewal-status.json"
 COUNTRY_SHARED_FILES = {
     "country.html",
     "assets/js/app.js",
+    "assets/icons/atlas-icons.svg",
     "assets/css/style.css",
     "assets/css/country.css",
     "assets/css/atlas-overrides.css",
@@ -278,6 +279,7 @@ def self_test() -> int:
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
     assert "country.html" in COUNTRY_SHARED_FILES
+    assert "assets/icons/atlas-icons.svg" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
     assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
     assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
