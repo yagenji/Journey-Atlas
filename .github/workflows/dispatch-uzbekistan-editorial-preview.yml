@@ -1,0 +1,33 @@
+name: Dispatch updated Uzbekistan review preview
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/dispatch-uzbekistan-editorial-preview.yml"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+      - name: Remove one-time dispatcher
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/dispatch-uzbekistan-editorial-preview.yml
+          git commit -m "Remove Uzbekistan editorial preview dispatcher"
+          git push origin HEAD:country/uzbekistan
+      - name: Dispatch canonical Country preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: gh workflow run deploy-country-preview.yml --ref country/uzbekistan -f slug=uzbekistan
