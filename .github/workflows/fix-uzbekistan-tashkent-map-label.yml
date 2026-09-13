@@ -1,0 +1,68 @@
+name: Fix Uzbekistan Tashkent map label
+
+on:
+  push:
+    branches: ["country/uzbekistan"]
+    paths: [".github/workflows/fix-uzbekistan-tashkent-map-label.yml"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Uzbekistan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/uzbekistan
+          fetch-depth: 0
+
+      - name: Move Tashkent label away from scene 4
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          country_path = Path('data/countries/uzbekistan.json')
+          country = json.loads(country_path.read_text(encoding='utf-8'))
+          country['capital']['labelPosition'] = 'left'
+          country_path.write_text(json.dumps(country, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          state_path = Path('ops/country-production/uzbekistan.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          now = datetime.now(ZoneInfo('Asia/Tokyo')).replace(microsecond=0).isoformat()
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = now
+          state['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED'
+          }
+          state['next'] = {'action': 'DEPLOY_REVIEW_PREVIEW', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          PY
+          python3 scripts/country_production_protocol_v2.py validate
+          python3 scripts/validate_country.py data/countries/uzbekistan.json
+
+      - name: Commit correction and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-uzbekistan-tashkent-map-label.yml
+          git add -f data/countries/uzbekistan.json ops/country-production/uzbekistan.json
+          git commit -m "Fix Tashkent map label collision"
+          git push origin HEAD:country/uzbekistan
+
+      - name: Dispatch corrected Country preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            repos/${{ github.repository }}/actions/workflows/deploy-country-preview.yml/dispatches \
+            -f ref='country/uzbekistan' \
+            -f inputs[slug]='uzbekistan'
