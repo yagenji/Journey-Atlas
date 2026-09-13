@@ -205,12 +205,32 @@ def normalize_copy(value: str) -> str:
     return value
 
 
+def character_ngrams(value: str, n: int = 3) -> set[str]:
+    normalized = normalize_copy(value)
+    if len(normalized) < n:
+        return {normalized} if normalized else set()
+    return {normalized[index : index + n] for index in range(len(normalized) - n + 1)}
+
+
 def near_duplicate(a: str, b: str) -> bool:
     na = normalize_copy(a)
     nb = normalize_copy(b)
     if min(len(na), len(nb)) < 24:
         return False
-    return SequenceMatcher(None, na, nb).ratio() >= 0.72
+
+    shorter, longer = (na, nb) if len(na) <= len(nb) else (nb, na)
+    if shorter in longer:
+        return True
+
+    if SequenceMatcher(None, na, nb).ratio() >= 0.66:
+        return True
+
+    grams_a = character_ngrams(na)
+    grams_b = character_ngrams(nb)
+    if not grams_a or not grams_b:
+        return False
+    overlap = len(grams_a & grams_b) / min(len(grams_a), len(grams_b))
+    return overlap >= 0.70
 
 
 def validate_cross_section_topics(errors: list[str], filename: str, data: dict[str, Any]) -> None:
