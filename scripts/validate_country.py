@@ -767,7 +767,10 @@ def main() -> int:
             travel_items = travel_scale.get("items") if isinstance(travel_scale.get("items"), list) else []
             if len(travel_items) != 3:
                 fail(errors, f"{path.name}: travelScale は3段階必要です")
-            else:
+            elif data.get("contentQaVersion", 1) < 3:
+                # Content QA v3 intentionally uses qualitative travel-scope labels.
+                # Its no-duration-count rule is enforced by validate_country_editorial_v2.py.
+                # Keep the legacy published day-format gate only for v1/v2 Countries.
                 final_duration = travel_items[2].get("duration") if isinstance(travel_items[2], dict) else None
                 durations = [
                     item.get("duration") if isinstance(item, dict) else None
