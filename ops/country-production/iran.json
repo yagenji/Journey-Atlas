@@ -4,52 +4,79 @@
   "countryName": "IRAN",
   "contentRef": "country/iran",
   "stateRef": "country/iran",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-13T09:45:00+09:00",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-13T13:44:00+09:00",
   "hero": {
-    "state": "NOT_STARTED",
-    "asset": null,
-    "contentId": null
+    "id": "HERO",
+    "state": "GENERATING",
+    "asset": "assets/images/iran/approved/hero-naqsh-e-jahan-isfahan.webp",
+    "contentId": "naqsh-e-jahan-isfahan",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "naqsh-e-jahan-isfahan",
+      "identity": "ONE SINGLE STANDALONE WIDE LANDSCAPE IMAGE of the real Naqsh-e Jahan Square (Imam Square) in Isfahan, Iran. Show the immense elongated Safavid square with the Imam Mosque at the south end clearly recognisable by its turquoise-blue tiled portal, dome and minarets; Ali Qapu Palace on the west side and Sheikh Lotfollah Mosque on the east side visible at natural relative scale where the viewpoint allows; continuous two-storey arcades framing the square; central lawns, paths and reflecting water elements. Architecture must remain geographically and historically plausible, not a generic Persian fantasy complex.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "singleSceneOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "composition": "wide 3:2 atlas Hero; slightly elevated long-axis view across the square, with the Imam Mosque as the unmistakable distant anchor and enough calm open sky / square space for page typography; human figures remain small and natural; composition must remain readable in a mobile center crop",
+      "style": "real-place recognizability, refined realistic detail with quiet watercolor texture, premium adult travel-atlas illustration, approximately photo 6 watercolor 4, restrained natural saturation, soft clear late-afternoon light, elegant rather than poster-like",
+      "negativeConstraints": ["photographic snapshot", "hyperreal HDR", "fantasy Persian city", "invented mosque geometry", "anime", "oil painting", "tourism poster", "added lettering", "readable signage", "flag", "map", "UI", "collage", "split panel", "montage", "inset image", "people as main subject"]
+    },
+    "generationReservation": {
+      "reservationId": "HERO-series1-attempt1-20260913T134400+0900",
+      "asset": "HERO",
+      "contentId": "naqsh-e-jahan-isfahan",
+      "promptSeries": 1,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-13T13:44:00+09:00"
+    }
   },
   "scenes": [
-    {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S04", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S05", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S06", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S07", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id":"S01","state":"NOT_STARTED","asset":"assets/images/iran/approved/persepolis-achaemenid-terrace.webp","contentId":"persepolis-achaemenid-terrace","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S02","state":"NOT_STARTED","asset":"assets/images/iran/approved/lut-desert-kaluts.webp","contentId":"lut-desert-kaluts","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S03","state":"NOT_STARTED","asset":"assets/images/iran/approved/yazd-windcatchers-old-city.webp","contentId":"yazd-windcatchers-old-city","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S04","state":"NOT_STARTED","asset":"assets/images/iran/approved/masuleh-stepped-village.webp","contentId":"masuleh-stepped-village","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S05","state":"NOT_STARTED","asset":"assets/images/iran/approved/damavand-alborz.webp","contentId":"damavand-alborz","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S06","state":"NOT_STARTED","asset":"assets/images/iran/approved/hormuz-rainbow-valley.webp","contentId":"hormuz-rainbow-valley","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S07","state":"NOT_STARTED","asset":"assets/images/iran/approved/kandovan-rock-village.webp","contentId":"kandovan-rock-village","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"S08","state":"NOT_STARTED","asset":"assets/images/iran/approved/alamut-castle-alborz.webp","contentId":"alamut-castle-alborz","promptSeries":1,"promptSeriesRejectCount":0}
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": null},
-    {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": null}
+    {"id":"FOOD01","state":"NOT_STARTED","asset":"assets/images/iran/approved/food-ghormeh-sabzi.webp","contentId":"ghormeh-sabzi","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"FOOD02","state":"NOT_STARTED","asset":"assets/images/iran/approved/food-fesenjan.webp","contentId":"fesenjan","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"FOOD03","state":"NOT_STARTED","asset":"assets/images/iran/approved/food-zereshk-polo-ba-morgh.webp","contentId":"zereshk-polo-ba-morgh","promptSeries":1,"promptSeriesRejectCount":0},
+    {"id":"FOOD04","state":"NOT_STARTED","asset":"assets/images/iran/approved/food-ash-reshteh.webp","contentId":"ash-reshteh","promptSeries":1,"promptSeriesRejectCount":0}
   ],
   "map": {
-    "state": "NOT_STARTED",
-    "asset": null
+    "state": "APPROVED",
+    "asset": "assets/images/iran/map-atlas-v1.svg",
+    "qa": {
+      "canvas": "1200x760",
+      "projection": "local-equirectangular-fit-v1",
+      "geometry": "PASS",
+      "sceneCoordinates": "PASS",
+      "labelCollision": "PASS",
+      "xmlParse": "PASS",
+      "styleBaseline": "Iceland/Norway map-v3 clean-background language",
+      "approvedAt": "2026-09-13T13:44:00+09:00"
+    }
   },
-  "implementation": {
-    "state": "NOT_STARTED"
-  },
-  "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
-  },
-  "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
-  },
-  "finalApproval": {
-    "state": "PENDING"
-  },
-  "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
-  },
+  "implementation": {"state":"NOT_STARTED"},
+  "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
+  "reviewDeployment": {"state":"NOT_STARTED","url":null},
+  "finalApproval": {"state":"PENDING"},
+  "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
     "sceneApproval": "BATCH_ONLY",
@@ -68,6 +95,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
   "imageGenerationPolicy": {
     "revision": 7,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
@@ -104,70 +132,28 @@
     "allPriorCountryAssetComparisonRequired": true,
     "targetEpochBindingRequired": true
   },
-  "generationContext": {
-    "state": "CLEAN",
-    "epoch": 1,
-    "lastResetAt": null,
-    "lastFailureAsset": null,
-    "lastFailureReason": null
-  },
-  "sceneBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
-  },
-  "tasteBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
-  },
+  "sceneBatchReview": {"approval":"PENDING","rounds":[]},
+  "tasteBatchReview": {"approval":"PENDING","rounds":[]},
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
   "preVisualBuild": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "checks": {
-      "countryJsonEditorialComplete": "PENDING",
-      "finalExpectedImagePathsDeclared": "PENDING",
-      "sceneCoordinatesFinal": "PENDING",
-      "mapBuiltAndQaPassed": "PENDING",
-      "taxonomyComplete": "PENDING",
-      "relatedCountriesComplete": "PENDING",
-      "nextRoutesResolved": "PENDING",
-      "travelScaleComplete": "PENDING",
-      "signatureFactsComplete": "PENDING",
-      "sourcesComplete": "PENDING",
-      "editorialQaV2Passed": "PENDING"
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
     }
   },
-  "assetHandoff": {
-    "mode": "USER_HANDOFF",
-    "state": "PENDING",
-    "expectedRasterCount": 13,
-    "verifiedRasterCount": 0,
-    "verifiedAt": null
-  },
-  "reviewPreview": {
-    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
-  },
-  "productionMetrics": {
-    "perImageApprovalPrompts": 0,
-    "userContinuationNudges": 0,
-    "runtimeForcedImageTurnBoundaries": 0,
-    "sceneBatchReviews": 0,
-    "tasteBatchReviews": 0,
-    "assetHandoffs": 0,
-    "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 0,
-    "preCanonicalMainIntegrations": 0,
-    "productionIntegrations": 0,
-    "browserQaCycles": 0,
-    "tasteBatchApprovedAt": null,
-    "canonicalReviewReadyAt": null
-  },
-  "next": {
-    "action": "COMPLETE_CONTENT_DESIGN",
-    "asset": null
-  }
+  "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
+  "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
+  "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
+  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
 }
