@@ -5,8 +5,8 @@
   "contentRef": "country/kyrgyz",
   "stateRef": "country/kyrgyz",
   "phase": "QA",
-  "stateRevision": 38,
-  "updatedAt": "2026-09-13T15:39:01+09:00",
+  "stateRevision": 39,
+  "updatedAt": "2026-09-13T15:51:29+09:00",
   "hero": {"id":"HERO","state":"APPROVED","asset":"assets/images/kyrgyz/approved/hero-song-kol.webp","contentId":"song-kol-summer-pasture","approvedGenerationId":"10620e4e-a9cf-4f75-bdd1-f7efdaa91992"},
   "scenes": [
     {"id":"S01","state":"APPROVED","asset":"assets/images/kyrgyz/approved/bishkek-ala-too-square.webp","contentId":"bishkek-ala-too-square","approvedGenerationId":"c5f5e236-bb2d-4e82-b31d-a836d140614f"},
@@ -26,7 +26,7 @@
   ],
   "map": {"state":"APPROVED","asset":"assets/images/kyrgyz/map-atlas-v1.svg"},
   "implementation": {"state":"DONE","completedAt":"2026-09-13T15:39:01+09:00","files":["data/countries/kyrgyz.json","data/theme-taxonomy.json","assets/images/kyrgyz/map-atlas-v1.svg","assets/images/kyrgyz/approved/"],"themeTaxonomy":["earth","life","road"],"sharedTemplate":true,"countrySpecificCss":false,"notes":"Kyrgyzstan package is connected through the shared Country template contract on country/kyrgyz. Existing contentQaVersion 2 is retained because production began before Protocol 2 patch 4; no post-visual content migration was introduced."},
-  "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
+  "qa": {"state":"PASS","productionState":"NOT_STARTED","verifiedAt":"2026-09-13T15:51:29+09:00","checks":{"countryData":"PASS","contentQaV2":"PASS","imageDelivery":"PASS","imageAudit":"PASS","mapMarkerCollision":"PASS","themeTaxonomy":"PASS","productionState":"PASS","imagePolicy":"PASS","browserPullRequestQa":"PASS"},"sourceCommit":"29bb66dd02eaf3f5fa80fd14aa8f057d8dd8cafe","runs":{"countryData":34743700652,"browserQa":34743700610,"productionState":34743700601,"imagePolicy":34743700629}},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
   "finalApproval": {"state":"PENDING"},
   "publication": {"state":"DRAFT","atlasPublished":false},
@@ -41,6 +41,6 @@
   "preVisualBuild": {"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-13T15:35:07+09:00","verificationBasis":"All 13 repository WebP blobs exactly match the approved handoff ZIP by Git blob SHA; all handoff files fully decode as WebP at 1200x800, and the approved directory contains exactly the 13 expected rasters with no extra assets."},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
-  "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":5,"sceneBatchReviews":1,"tasteBatchReviews":2,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":"2026-09-13T15:17:31+09:00","canonicalReviewReadyAt":null},
-  "next": {"action":"RUN_COUNTRY_QA","asset":null}
+  "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":5,"sceneBatchReviews":1,"tasteBatchReviews":2,"assetHandoffs":1,"reviewPackageIntegrations":1,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":1,"tasteBatchApprovedAt":"2026-09-13T15:17:31+09:00","canonicalReviewReadyAt":null},
+  "next": {"action":"OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW","asset":null}
 }
