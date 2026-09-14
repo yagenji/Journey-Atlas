@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 4,
-  "updatedAt": "2026-09-13T08:54:00+09:00",
+  "policyPatch": 5,
+  "updatedAt": "2026-09-14T13:39:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -40,6 +40,7 @@
     "finalExpectedImagePathsDeclared": true,
     "sceneCoordinatesFinal": true,
     "mapBuiltAndQaPassed": true,
+    "mapCapitalLabelCollisionQaPassed": true,
     "taxonomyComplete": true,
     "relatedCountriesComplete": true,
     "nextRoutesResolved": true,
@@ -47,11 +48,11 @@
     "signatureFactsComplete": true,
     "sourcesComplete": true,
     "editorialQaV2Passed": true,
-    "editorialQaCurrentVersion": 3
+    "editorialQaCurrentVersion": 5
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
-    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
+    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT_OR_EXPLICIT_USER_REVISION",
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
     "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
@@ -88,15 +89,29 @@
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
   "contentQuality": {
-    "version": 3,
+    "version": 5,
     "validator": "scripts/validate_country_editorial_v2.py",
+    "supplementalValidator": "scripts/validate_country_quality_v5.py",
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
-    "travelScaleNumericDurationForbidden": true,
-    "travelScaleDayCountForbidden": true,
-    "travelScaleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
-    "travelScaleThirdItemOpenEndedDayRule": false,
+    "travelScaleNumericDurationForbidden": false,
+    "travelScaleDayCountForbidden": false,
+    "travelScaleDayNotationRequired": true,
+    "travelScaleDurationUnitsAllowed": ["日"],
+    "travelScaleDurationUnitsForbidden": ["泊", "週", "週間"],
+    "travelScaleFirstTwoTiersMustBeRanges": true,
+    "travelScaleRangeSeparator": "〜",
+    "travelScaleRangeMustHaveWidth": true,
+    "travelScaleRangesMustBeContinuous": true,
+    "travelScaleContinuityRule": "NEXT_START_EQUALS_PREVIOUS_END_PLUS_ONE",
+    "travelScaleGapsForbidden": true,
+    "travelScaleOverlapsForbidden": true,
+    "travelScaleThirdItemOpenEndedDayRule": true,
+    "travelScaleExampleDayCountForbidden": true,
+    "travelScaleExampleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
+    "travelScaleExamplesAreRouteOnly": true,
+    "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
     "crossSectionTopicKeyUniqueAcross": [
@@ -109,10 +124,29 @@
       "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
       "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
     },
+    "signatureFactSelectionPolicy": "READER_INTEREST_FIRST",
+    "signatureFactInterestReasonRequired": true,
+    "signatureFactInterestReasonField": "interestReason",
+    "worldHeritageCountSignatureFactPolicy": "EXCEPTION_ONLY",
+    "worldHeritageCountMinimumExceptionalCount": 25,
+    "worldHeritageCountExplicitFlag": "exceptionalHeritageCount",
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
     "forestShareExplicitFlag": "exceptionalShare"
+  },
+  "mapQuality": {
+    "validator": "scripts/validate_country_quality_v5.py",
+    "capitalNameSceneNumberOverlapForbidden": true,
+    "capitalLabelMustRemainInsideCanvas": true,
+    "capitalLabelPositionsAllowed": ["left", "right"],
+    "capitalLabelOffsetMaximumPx": 80,
+    "coordinateMutationForCollisionAvoidance": "FORBIDDEN",
+    "collisionResolutionOrder": [
+      "capital.labelPosition",
+      "capital.labelOffset",
+      "MINIMAL_mapOffset"
+    ]
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,
