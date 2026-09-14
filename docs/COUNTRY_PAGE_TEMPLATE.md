@@ -90,7 +90,7 @@ Country最終QAでは、次を確認する。
 
 同じ人物・出来事・伝統・食・移動・文化・制度・場所・自然現象を、セクションをまたいで繰り返すことは禁止する。「数値版」「深掘り版」「短縮版」に言い換えただけでも重複とする。
 
-Content QA v3では3セクションの全itemに `topicKey` を持たせ、`topicKey` は内部IDではなく**題材そのもののcanonical subject key**として扱う。セクションをまたいで同じ `topicKey` を使ってはいけない。`-count` / `-history` / `-trivia` / `-share` / `-fact` などの汎用suffixを変えるだけで同じ題材を別物扱いすることも禁止する。
+Content QA v4では3セクションの全itemに `topicKey` を持たせ、`topicKey` は内部IDではなく**題材そのもののcanonical subject key**として扱う。セクションをまたいで同じ `topicKey` を使ってはいけない。`-count` / `-history` / `-trivia` / `-share` / `-fact` などの汎用suffixを変えるだけで同じ題材を別物扱いすることも禁止する。
 
 Country最終QAでは次を確認する。
 
@@ -102,14 +102,17 @@ Country最終QAでは次を確認する。
 
 ### travelScale
 
-旅の目安日程は3段階のUI構造を共通化するが、**具体的な滞在日数・泊数・週数は表示しない。**
+旅の目安日程は3段階のUI構造を共通化し、**各段階の日数目安を表示する。**
 
 - 固定：3項目、`DURATION`、`旅の目安日程`、`city / map / compass` の順。
-- `duration` は日数ではなく旅の広がりを示すラベルにする。基本形は `一都市中心 / 地域をつなぐ / 広域周遊`。
-- `3日`、`4〜5日`、`7日以上`、`2泊3日`、`1週間`、`日帰り`などの具体的な期間表記は禁止する。日本語数字による `三日` 等も同様。
-- 日数を別表現へ置き換えるのではなく、どの地域を組み合わせるか、どの順で巡るか、都市・自然・文化をどう組み合わせるか、移動距離や地理的な広がりをどう捉えるかで3段階を分ける。
+- `duration` は各国の規模・見どころの分散・地域差・島嶼／山岳条件・国内移動負荷・実際に成立する旅程に合わせて、`2日` / `3〜4日` / `5〜7日` のような日数で設定する。
+- `duration` は `日` 表記に統一し、`泊` / `週` / `週間` を混在させない。
+- 第3段階は上限を固定せず `○日以上` とする。
 - 各段階の `例：` は必須。網羅リストではなく、旅の流れを理解するための代表ルートに絞る。原則3〜6地点程度とし、8景や主要スポットをすべて詰め込まない。
-- 面積だけでなく、見どころの分散、地域差、島嶼・山岳、国内移動負荷、実際に成立する旅程で構成を決める。
+- **日数・泊数・週数を禁止するのは `例：` より後ろのルート例だけ。** `例：Aを2日 → Bを3日` や `例：A → Bを1週間` のような表記は禁止する。
+- 日数は `duration` で示し、`例：` は `A → B → C` のようにルートだけを示す。
+- `例：` より前の説明文は、必要ならその段階の日数を補足してよい。
+- 面積だけでなく、見どころの分散、地域差、島嶼・山岳、国内移動負荷、実際に成立する旅程で日数と構成を決める。
 
 ### seasons
 4区分を基本とし、季節差が弱い国では雨季 / 乾季など現地の実態に合わせて再定義する。
@@ -186,7 +189,7 @@ Dead controlsを置かない。
 5. map source記載。
 6. populationなど時点依存データにsourceまたはupdatedAtを持つ。
 7. `region` が `data/region-taxonomy.json` の `labelEn` と一致し、`{TAXONOMY LABEL} / {整数緯度}°N|S` 形式で、代表緯度がmap boundsと矛盾しない。
-8. Content QA v3では、Travel Scaleの日数表記がなく、`signatureFacts / atlasExtras / travelTrivia` にtopic duplicationがない。
+8. Content QA v4では、Travel Scaleの日数表示があり、第3段階が `○日以上` で、`例：` 内に日数・泊数・週数がなく、`signatureFacts / atlasExtras / travelTrivia` にtopic duplicationがない。
 9. pre-main Review Previewでは `atlasPublished:false` を維持し、ユーザー承認後のterminal publicationのみ `true` にする。
 
 ## 11. Production sequence
@@ -203,8 +206,8 @@ Under Protocol 2, all non-raster Country content, Scene coordinates, Map, taxono
 
 After all visual batches are approved, the normal post-image chain is:
 
-`13-image USER_HANDOFF verification → target-only asset/path QA → target-only strict validation → target-only Preview Build → target-only Desktop / Tablet / Mobile Browser QA → country/{slug} GitHub Pages Review Preview → final user approval → one terminal publication PR/main integration → one production deployment → target-only production verification`
+`13-image USER_HANDOFF verification → target-only asset/path QA → target-only strict validation → target-only Preview Build → target-only Desktop / Tablet / Mobile Browser QA → sync latest main → one pre-main Review PR → persistent country/{slug} GitHub Pages Review Preview → final user approval → finalize the same PR → serialized publication queue → one main integration → one production deployment → target-only production verification`
 
-Do not integrate to `main` merely to create the review URL. Protocol 2 keeps `phase: QA` and `contentRef/stateRef: country/{slug}` while `reviewPreview` is active. The legacy `REVIEW` phase remains a main-authority representation for older/already-integrated states.
+Do not integrate to `main` merely to create the review URL. Protocol 2 keeps `phase: QA` and `contentRef/stateRef: country/{slug}` while `reviewPreview` is active. The same pre-main Review PR is reused after final approval; a second publication PR is forbidden.
 
 The pre-main Review Preview keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion. Only explicit final user approval may switch to `atlasPublished:true`, indexing, sitemap inclusion, and formal discovery links.
