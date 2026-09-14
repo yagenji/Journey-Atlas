@@ -135,6 +135,68 @@ jobs:
         if: steps.target.outputs.should_preview == 'true'
         run: python -m pip install --disable-pip-version-check --quiet pillow selenium
 
+      - name: Normalize target Country image delivery
+        if: steps.target.outputs.should_preview == 'true'
+        shell: bash
+        env:
+          SLUG: ${{ steps.target.outputs.slug }}
+        run: |
+          set -euo pipefail
+          python3 - "$SLUG" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          import normalize_country_image_delivery as delivery
+
+          slug = sys.argv[1]
+          plans = delivery.build_plan([slug])
+          delivery.print_plan(plans)
+          replacements = {}
+          for plan in plans:
+              source = delivery.ROOT / plan.source
+              target = delivery.ROOT / plan.target
+              delivery.webp_save(source, target, plan.new_size)
+              if target != source:
+                  source.unlink()
+                  replacements[plan.source] = plan.target
+
+          if replacements:
+              country_path = delivery.COUNTRY_DIR / f"{slug}.json"
+              text = country_path.read_text(encoding="utf-8")
+              updated = text
+              for old, new in replacements.items():
+                  updated = updated.replace(
+                      json.dumps(old, ensure_ascii=False),
+                      json.dumps(new, ensure_ascii=False),
+                  )
+              if updated != text:
+                  country_path.write_text(updated, encoding="utf-8")
+
+          errors = delivery.audit_delivery([slug])
+          if errors:
+              for error in errors:
+                  print(f"- {error}")
+              raise SystemExit(1)
+          print(f"TARGET NORMALIZATION PASS slug={slug} assets={len(plans)}")
+          PY
+
+          if git diff --quiet -- "assets/images/$SLUG" "data/countries/$SLUG.json"; then
+            echo "Target Country images already satisfy delivery dimensions."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "assets/images/$SLUG" "data/countries/$SLUG.json"
+          git commit -m "Normalize $SLUG image delivery"
+
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [[ "$GITHUB_REF_NAME" == country/* ]]; then
+            git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          else
+            echo "Normalization applied to QA workspace; source persistence is handled on the Country branch push run."
+          fi
+
       - name: Validate source syntax
         if: steps.target.outputs.should_preview == 'true'
         run: |
