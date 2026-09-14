@@ -49,6 +49,7 @@ QA_SHARED_FILES = {
     "scripts/externalize_review_preview_images.py",
     ".github/workflows/browser-country-qa.yml",
     ".github/workflows/deploy-country-preview.yml",
+    ".github/workflows/verify-production.yml",
 }
 
 PRODUCTION_PREFIXES = (
@@ -72,6 +73,7 @@ PRODUCTION_EXACT = {
     "scripts/build_site.py",
     "scripts/package_site.py",
     "scripts/build_cloudflare.py",
+    ".github/workflows/verify-production.yml",
 }
 
 COUNTRY_JSON_RE = re.compile(r"^data/countries/([^/]+)\.json$")
@@ -274,6 +276,7 @@ def self_test() -> int:
     assert COUNTRY_IMAGE_RE.match("assets/images/czechia/approved/a.webp").group(1) == "czechia"
     assert is_production_file("data/countries/ukraine.json")
     assert is_production_file("assets/css/country.css")
+    assert is_production_file(".github/workflows/verify-production.yml")
     assert not is_production_file("ops/country-production/ukraine.json")
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
@@ -283,6 +286,7 @@ def self_test() -> int:
     assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
     assert "scripts/externalize_review_preview_images.py" in QA_SHARED_FILES
     assert ".github/workflows/deploy-country-preview.yml" in QA_SHARED_FILES
+    assert ".github/workflows/verify-production.yml" in QA_SHARED_FILES
     assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0
