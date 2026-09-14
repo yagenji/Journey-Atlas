@@ -75,9 +75,9 @@ def scaffold(destination: dict, region_label: str) -> dict:
     slug = destination["slug"]
     today = date.today().isoformat()
     return {
-        "schemaVersion":2,"contentQaVersion":4,"slug":slug,"nameEn":destination.get("nameEn",""),"nameJa":destination.get("nameJa",""),"region":region_label,
+        "schemaVersion":2,"contentQaVersion":5,"slug":slug,"nameEn":destination.get("nameEn",""),"nameJa":destination.get("nameJa",""),"region":region_label,
         "seo":{"description":""},
-        "capital":{"nameEn":"","nameJa":"","coordinates":{"latitude":None,"longitude":None}},
+        "capital":{"nameEn":"","nameJa":"","coordinates":{"latitude":None,"longitude":None},"labelPosition":"right","labelOffset":{"x":0,"y":0}},
         "hero":{"lead":"","image":f"assets/images/{slug}/approved/hero.webp","location":"","coordinates":{"latitude":None,"longitude":None}},
         "map":{"bounds":{"north":None,"south":None,"west":None,"east":None},"svg":f"assets/images/{slug}/map-atlas-v1.svg","route":None,"source":""},
         "scenes":[blank_scene(index,slug) for index in range(1,9)],
@@ -90,7 +90,7 @@ def scaffold(destination: dict, region_label: str) -> dict:
         "transport":{"title":"","text":""},
         "personas":[blank_persona() for _ in range(3)],
         "facts":[{"label":"地域","value":""},{"label":"首都","value":""},{"label":"人口","value":""},{"label":"面積","value":""},{"label":"言語","value":""},{"label":"主な宗教","value":""},{"label":"通貨","value":""}],
-        "signatureFacts":[{"topicKey":"","label":"","value":"","note":"","icon":""} for _ in range(3)],
+        "signatureFacts":[{"topicKey":"","label":"","value":"","note":"","icon":"","interestReason":""} for _ in range(3)],
         "tips":[blank_tip() for _ in range(3)],
         "relatedCountries":[blank_related() for _ in range(3)],
         "updatedAt":today,"sourcesVerifiedAt":today,"sourceDates":{},"sources":{},
@@ -114,10 +114,10 @@ def main() -> int:
     output.write_text(json.dumps(scaffold(destination, region_label), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
     print(f"Region taxonomy label locked: {region_label}")
-    print("Content QA v4 locked: Travel Scale uses two continuous day ranges followed immediately by an open-ended final tier; the content after 例： is route-only and contains no day/night/week counts; Signature Facts / Beyond the Scenery / Travel Trivia use distinct canonical topics.")
+    print("Content QA v5 locked: continuous Travel Scale ranges; reader-interest Signature Facts; generic World Heritage counts and ordinary forest shares are rejected; capital-name / Scene-number map overlap is forbidden.")
     print("Hero / Scene / Taste final approved-path placeholders are present so the page can be prebuilt before image generation.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
-    print("Before Hero production: complete editorial content + Map and run python3 scripts/validate_country_editorial_v2.py <country-json>.")
+    print("Before Hero production: complete editorial content + Map, then run both scripts/validate_country_editorial_v2.py and scripts/validate_country_quality_v5.py for the Country JSON.")
     return 0
 
 

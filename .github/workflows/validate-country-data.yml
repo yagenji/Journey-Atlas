@@ -10,6 +10,8 @@ on:
       - 'scripts/classify_country_impact.py'
       - 'scripts/validate_country_editorial_v2.py'
       - 'scripts/test_country_editorial_v2.py'
+      - 'scripts/validate_country_quality_v5.py'
+      - 'scripts/test_country_quality_v5.py'
       - 'scripts/build_country_preview_targeted.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -46,6 +48,8 @@ on:
       - 'scripts/validate_lens_slugs.py'
       - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
       - 'docs/CONTENT_QUALITY_RULES_V2.md'
+      - 'docs/CONTENT_QUALITY_RULES_V5.md'
+      - 'docs/MAP_SYSTEM.md'
       - 'docs/NEW_COUNTRY_START.md'
       - '.github/workflows/validate-country-data.yml'
       - '.github/workflows/deploy-country-preview.yml'
@@ -58,6 +62,8 @@ on:
       - 'scripts/classify_country_impact.py'
       - 'scripts/validate_country_editorial_v2.py'
       - 'scripts/test_country_editorial_v2.py'
+      - 'scripts/validate_country_quality_v5.py'
+      - 'scripts/test_country_quality_v5.py'
       - 'scripts/build_country_preview_targeted.py'
       - 'scripts/manage_review_preview_site.py'
       - 'scripts/externalize_review_preview_images.py'
@@ -94,6 +100,8 @@ on:
       - 'scripts/validate_lens_slugs.py'
       - 'docs/COUNTRY_PRODUCTION_PROTOCOL_2.md'
       - 'docs/CONTENT_QUALITY_RULES_V2.md'
+      - 'docs/CONTENT_QUALITY_RULES_V5.md'
+      - 'docs/MAP_SYSTEM.md'
       - 'docs/NEW_COUNTRY_START.md'
       - '.github/workflows/validate-country-data.yml'
       - '.github/workflows/deploy-country-preview.yml'
@@ -158,6 +166,8 @@ jobs:
             scripts/validate_country.py \
             scripts/validate_country_editorial_v2.py \
             scripts/test_country_editorial_v2.py \
+            scripts/validate_country_quality_v5.py \
+            scripts/test_country_quality_v5.py \
             scripts/country_production_protocol_v2.py \
             scripts/audit_country_region_labels.py \
             scripts/normalize_country_region_labels.py \
@@ -181,10 +191,13 @@ jobs:
           python3 scripts/country_production_protocol_v2.py validate
           python3 scripts/manage_review_preview_site.py self-test
 
-      - name: Run Content QA v2 regression tests
+      - name: Run Content QA v2-v4 regression tests
         run: python3 scripts/test_country_editorial_v2.py
 
-      - name: Run targeted Content QA v2
+      - name: Run Content QA v5 regression tests
+        run: python3 scripts/test_country_quality_v5.py
+
+      - name: Run targeted Content QA v2-v4
         if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
         env:
           TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
@@ -197,9 +210,26 @@ jobs:
             python3 scripts/validate_country_editorial_v2.py --force "data/countries/$slug.json"
           done
 
-      - name: Run full Content QA v2
+      - name: Run targeted Content QA v5
+        if: steps.impact.outputs.target_slugs != '' && steps.impact.outputs.browser_scope != 'all'
+        env:
+          TARGET_SLUGS: ${{ steps.impact.outputs.target_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -n "$slug" ] || continue
+            [ -f "data/countries/$slug.json" ] || continue
+            python3 scripts/validate_country_quality_v5.py "data/countries/$slug.json"
+          done
+
+      - name: Run full Content QA v2-v4
         if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
         run: python3 scripts/validate_country_editorial_v2.py
+
+      - name: Run full Content QA v5
+        if: steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all'
+        run: python3 scripts/validate_country_quality_v5.py
 
       - name: Enforce full Country image delivery budget
         if: steps.impact.outputs.production_changed == 'true' && (steps.impact.outputs.target_slugs == '' || steps.impact.outputs.browser_scope == 'all')

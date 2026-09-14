@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
 Updated: 2026-09-14
-Current policy patch: 4
+Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v4; existing v3 Countries remain valid under their v3 Travel Scale contract unless intentionally migrated.
+Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v5; existing v4/v3/v2 Countries remain valid under their prior editorial contracts unless intentionally migrated.
 
 ## Production shape
 
@@ -39,7 +39,7 @@ Before Hero generation, finish everything that does not require the final raster
 - Country JSON editorial content;
 - final Hero / S01–S08 / FOOD01–04 paths;
 - Scene coordinates;
-- Map build and QA;
+- Map build and QA, including capital-name / Scene-number collision QA;
 - taxonomy;
 - Related Countries;
 - Next Routes or intentional omission;
@@ -49,10 +49,17 @@ Before Hero generation, finish everything that does not require the final raster
 - sources/source dates;
 - current Content QA.
 
-New Countries use `contentQaVersion: 4` and must follow `docs/CONTENT_QUALITY_RULES_V4.md`.
-Existing v3 Countries remain on the v3 editorial contract unless explicitly migrated; existing v2 Countries remain on v2 unless intentionally migrated.
+New Countries use `contentQaVersion: 5` and must follow `docs/CONTENT_QUALITY_RULES_V5.md` plus `docs/MAP_SYSTEM.md`.
+Existing v4/v3/v2 Countries remain on their prior editorial contracts unless explicitly migrated.
 
-`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
+Before leaving CONTENT, run both:
+
+```bash
+python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
+python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
+```
+
+`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`, including the capital-name / Scene-number non-overlap gate.
 
 ## 2. One image is not one user gate
 
@@ -252,26 +259,65 @@ The queue has one global concurrency lane. For each ready Country it:
 
 Country production can remain parallel; **main publication is intentionally serial**.
 
-## 10. Content QA v4
+## 10. Content QA v5
 
-See `docs/CONTENT_QUALITY_RULES_V4.md` for new Countries. Existing v3 Countries continue to use `docs/CONTENT_QUALITY_RULES_V3.md`.
+See `docs/CONTENT_QUALITY_RULES_V5.md` for new Countries. Existing v4/v3/v2 Countries continue to use their prior content-quality contracts until intentionally migrated.
 
-Hard rules for v4 include:
+### Travel Scale
+
+v5 inherits the v4 Travel Scale contract:
 
 - every Travel Scale item contains a concrete `例：`;
-- Travel Scale `duration` uses day notation;
-- the first and second durations must both be real ranges written `○〜○日`; single counts such as `2日` are forbidden;
+- duration uses day notation;
+- the first and second durations are real ranges written `○〜○日`; single counts such as `2日` are forbidden;
 - the second range starts exactly one day after the first range ends;
-- the third Travel Scale duration is open-ended and uses `○日以上`, starting exactly one day after the second range ends;
-- gaps and overlaps between the three tiers are forbidden; for example `2〜3日 → 4〜6日 → 7日以上` is valid, while `2〜3日 → 6〜8日 → 9日以上` is invalid;
+- the third duration is open-ended `○日以上`, starting exactly one day after the second range ends;
+- gaps and overlaps are forbidden;
 - weeks and night-count notation are not used in duration labels;
-- the content after `例：` is route-only and must not contain day/night/week counts;
-- route text explains geographic scope / regional combination rather than merely repeating the day count;
-- `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）must use different subjects;
-- canonical `topicKey` is required across those three sections;
-- forest/woodland percentage is not a routine Signature Fact; it requires `exceptionalShare:true` and must be <=10% or >=70%.
+- the content after `例：` is route-only and must not contain day/night/week counts.
 
-The validator filename remains `scripts/validate_country_editorial_v2.py` for workflow compatibility and routes by `contentQaVersion`.
+### Signature Facts — reader interest first
+
+`signatureFacts` has only three slots. A statistic is not selected because it is available; it is selected because **the number materially changes how the reader imagines the Country**.
+
+Hard rules:
+
+- every v5 Signature Fact includes non-rendered `interestReason` explaining why the number deserves one of the three slots;
+- World Heritage property count is exception-only: use it only at **25 or more properties** and with `exceptionalHeritageCount:true`;
+- even at 25+, prefer another number if it explains the Country more vividly;
+- forest / woodland share is exception-only: use it only at **10% or less or 70% or more** and with `exceptionalShare:true`;
+- passing an exception threshold is permission, not a recommendation;
+- ordinary World Heritage counts or moderate forest shares belong in another section when editorially useful, or should be replaced entirely;
+- `signatureFacts` / `atlasExtras` / `travelTrivia` continue to use different canonical subjects.
+
+### Map label collision
+
+Existing marker-center collision QA is not sufficient because the visible capital-name label can cover a numbered Scene circle even when marker centers are separated.
+
+Content QA v5 therefore adds a second map gate:
+
+- project the capital and all Scene markers onto the same 1200×760 canvas;
+- estimate the actual capital label box using the shared CSS geometry;
+- reject any overlap between the capital-name label and Scene 1–8 number circles;
+- reject a capital label that leaves the map canvas;
+- allow `capital.labelPosition` only as `left` / `right`;
+- allow `capital.labelOffset` only when necessary and within ±80px per axis;
+- never change real coordinates for collision avoidance.
+
+Resolve collisions in this order:
+
+1. `capital.labelPosition`;
+2. minimal `capital.labelOffset`;
+3. minimal `mapOffset` only if still necessary.
+
+Validation commands:
+
+```bash
+python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
+python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
+python3 scripts/test_country_editorial_v2.py
+python3 scripts/test_country_quality_v5.py
+```
 
 ## 11. State initialization
 
@@ -321,6 +367,7 @@ When Protocol 2 applies:
 4. this document
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. current content-quality rules (`CONTENT_QUALITY_RULES_V4.md` for new v4 Countries; v3/v2 for legacy versions)
-8. image/content/map specifications
-9. chat history
+7. `docs/CONTENT_QUALITY_RULES_V5.md` for new v5 Countries; v4/v3/v2 specs for legacy versions
+8. `docs/MAP_SYSTEM.md`
+9. image/content/map specifications
+10. chat history
