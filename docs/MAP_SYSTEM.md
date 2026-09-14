@@ -49,7 +49,6 @@
 国ページ内のマーカーとの整合を優先し、基本は equirectangular（緯度経度の線形投影）を使用する。
 地図SVGを生成したboundsと、ページ上のマーカー計算に使うboundsを必ず一致させる。
 
-
 ### 離島・群島を持つ国のmulti-region map
 本土と遠隔群島を一つのglobal boundsへ無理に収めると、主要地域が小さくなりmarker可読性が落ちる場合がある。
 
@@ -87,6 +86,25 @@
 これを下回る場合はvalidation failureとし、公開しない。
 marker中心はcanvas端から18px以上離す。
 
+### Capital name label collision — Content QA v5
+marker中心間距離だけでは、首都markerの横に表示する**首都名ラベル**とScene番号が重なることを防げない。
+そのためContent QA v5では `scripts/validate_country_quality_v5.py` が首都名ラベルの矩形領域まで検査する。
+
+Hard rules:
+- 首都名ラベルとScene 1〜8の番号circleは重ねない。
+- 首都名ラベル自体も1200×760 map canvasからはみ出さない。
+- `capital.labelPosition` は `left` / `right` のどちらか。
+- `capital.labelOffset: {x, y}` は必要な場合だけ使用し、各軸±80px以内。
+- 衝突回避のために実緯度経度を変更することは禁止。
+
+解決順序:
+1. `capital.labelPosition` を left / right で切り替える。
+2. `capital.labelOffset` を最小量だけ調整する。
+3. それでも解けない場合のみ、CapitalまたはSceneの `mapOffset` を最小補正する。
+4. boundsを不自然に拡大して衝突を隠さない。
+
+Content QA v5では、このラベル衝突が残るCountryはHero生成へ進めない。
+
 ### 補正の順序
 1. まずboundsが不必要に広すぎないか確認する。
 2. 実座標のまま十分に読める場合は補正しない。
@@ -108,8 +126,9 @@ marker中心はcanvas端から18px以上離す。
 7. SVGをGitHubへ配置する。
 8. GitHub上のファイル末尾・サイズ・SHAなどを確認し、途中欠損がないことを確認する。
 9. 国別map configから対象SVGを参照する。
-10. 公開ページで地図表示、番号位置、Hero位置を確認する。
-11. 必要な場合だけmarkerOffsetsを追加する。
+10. `scripts/validate_country.py` と、Content QA v5では `scripts/validate_country_quality_v5.py` を実行する。
+11. 公開ページで地図表示、番号位置、Hero位置、首都名ラベルと番号の非重複を確認する。
+12. 必要な場合だけmarkerOffsets / capital.labelOffsetを追加する。
 
 ## Release Gate
 ユーザーに確認を依頼する前に、以下をすべて通す。
@@ -132,6 +151,7 @@ marker中心はcanvas端から18px以上離す。
 - 地図本体が表示される
 - 1〜8等のマーカーが地図上に収まる
 - マーカー同士が読める
+- **首都名と1〜8の番号マーカーが重ならない**
 - Hero地点が地図と一致する
 - 国名や不要記号が重複していない
 - 配色・線・余白がJOURNEY ATLASの世界観と一致する
@@ -153,7 +173,6 @@ Icelandは新Map Systemの最初の基準国。
 
 今後の国はこのIceland地図を正確性・情報量・デザイン・QAの基準として展開する。
 
-
 ## Map Quality Benchmark（2026-08）
 
 公開CountryではIceland / Norway / Denmarkを最低比較基準とする。
@@ -169,5 +188,6 @@ Sweden / Finlandは2026-08に詳細境界へ更新し、この水準へ統一し
 - strokeの視認性
 - markerの分離
 - Hero / Capital / 8景の地理的一貫性
+- Capital name label / Scene numberの非重複
 
 粗さを回避するために独自の手描き補完は行わず、source geometryの解像度を上げて解決する。
