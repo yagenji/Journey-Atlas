@@ -41,21 +41,22 @@
    as visual discovery cues rather than undifferentiated metadata chips. */
 .country-theme-chip{
   --country-theme-accent:#6c8190;
-  --country-theme-wash:rgba(108,129,144,.10);
+  --country-theme-border:rgba(108,129,144,.38);
+  --country-theme-bg:rgba(108,129,144,.09);
   gap:7px!important;
-  border-color:color-mix(in srgb,var(--country-theme-accent) 38%, transparent)!important;
-  background:color-mix(in srgb,var(--country-theme-accent) 9%, rgba(251,248,240,.98))!important;
+  border-color:var(--country-theme-border)!important;
+  background:linear-gradient(180deg,var(--country-theme-bg),rgba(251,248,240,.98))!important;
   color:var(--country-theme-accent)!important;
-  box-shadow:inset 0 2px 0 color-mix(in srgb,var(--country-theme-accent) 72%, transparent),0 1px 2px rgba(18,54,92,.05)!important;
+  box-shadow:inset 0 2px 0 var(--country-theme-border),0 1px 2px rgba(18,54,92,.05)!important;
 }
-.country-theme-chip[data-theme="earth"]{--country-theme-accent:#667e58;--country-theme-wash:rgba(102,126,88,.10);}
-.country-theme-chip[data-theme="history"]{--country-theme-accent:#956748;--country-theme-wash:rgba(149,103,72,.10);}
-.country-theme-chip[data-theme="life"]{--country-theme-accent:#617c72;--country-theme-wash:rgba(97,124,114,.10);}
-.country-theme-chip[data-theme="city"]{--country-theme-accent:#607991;--country-theme-wash:rgba(96,121,145,.10);}
-.country-theme-chip[data-theme="wildlife"]{--country-theme-accent:#6d8458;--country-theme-wash:rgba(109,132,88,.10);}
-.country-theme-chip[data-theme="sea"]{--country-theme-accent:#567f8a;--country-theme-wash:rgba(86,127,138,.10);}
-.country-theme-chip[data-theme="food"]{--country-theme-accent:#9b6856;--country-theme-wash:rgba(155,104,86,.10);}
-.country-theme-chip[data-theme="road"]{--country-theme-accent:#6f706d;--country-theme-wash:rgba(111,112,109,.10);}
+.country-theme-chip[data-theme="earth"]{--country-theme-accent:#667e58;--country-theme-border:rgba(102,126,88,.42);--country-theme-bg:rgba(102,126,88,.10);}
+.country-theme-chip[data-theme="history"]{--country-theme-accent:#956748;--country-theme-border:rgba(149,103,72,.42);--country-theme-bg:rgba(149,103,72,.10);}
+.country-theme-chip[data-theme="life"]{--country-theme-accent:#617c72;--country-theme-border:rgba(97,124,114,.42);--country-theme-bg:rgba(97,124,114,.10);}
+.country-theme-chip[data-theme="city"]{--country-theme-accent:#607991;--country-theme-border:rgba(96,121,145,.42);--country-theme-bg:rgba(96,121,145,.10);}
+.country-theme-chip[data-theme="wildlife"]{--country-theme-accent:#6d8458;--country-theme-border:rgba(109,132,88,.42);--country-theme-bg:rgba(109,132,88,.10);}
+.country-theme-chip[data-theme="sea"]{--country-theme-accent:#567f8a;--country-theme-border:rgba(86,127,138,.42);--country-theme-bg:rgba(86,127,138,.10);}
+.country-theme-chip[data-theme="food"]{--country-theme-accent:#9b6856;--country-theme-border:rgba(155,104,86,.42);--country-theme-bg:rgba(155,104,86,.10);}
+.country-theme-chip[data-theme="road"]{--country-theme-accent:#6f706d;--country-theme-border:rgba(111,112,109,.42);--country-theme-bg:rgba(111,112,109,.10);}
 .country-theme-chip__icon{
   width:17px;
   height:17px;
@@ -163,9 +164,9 @@
   width:max-content;
   margin-bottom:9px;
   padding:4px 8px;
-  border:1px solid color-mix(in srgb,var(--theme-accent) 32%, transparent);
+  border:1px solid rgba(138,107,85,.28);
   border-radius:999px;
-  background:color-mix(in srgb,var(--theme-accent) 8%, white);
+  background:rgba(138,107,85,.06);
   color:var(--theme-accent);
   font-family:var(--meta);
   font-size:10px;
