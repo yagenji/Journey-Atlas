@@ -5,8 +5,8 @@
   "contentRef": "country/bahrain",
   "stateRef": "country/bahrain",
   "phase": "QA",
-  "stateRevision": 20,
-  "updatedAt": "2026-09-15T01:02:44+09:00",
+  "stateRevision": 21,
+  "updatedAt": "2026-09-15T02:15:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -193,12 +193,12 @@
     "asset": "assets/images/bahrain/map-atlas-v2.svg",
     "qa": {
       "canvas": "1200x760",
-      "projection": "local-equirectangular-fit-v1",
+      "projection": "multi-region-local-equirectangular-v1",
       "geometry": "PASS",
       "sceneCoordinates": "PASS",
       "labelCollision": "PASS",
       "styleBaseline": "Iceland/Norway map language",
-      "approvedAt": "2026-09-13T16:35:44+09:00"
+      "approvedAt": "2026-09-15T02:15:00+09:00"
     }
   },
   "implementation": {
@@ -372,12 +372,9 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/bahrain/countries/bahrain/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-15T01:02:44+09:00",
-    "sourceCommit": "a06f7621de45074b5c00e9bf01031b71261b8002",
-    "runId": 34865151156,
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
     "pipelineVersion": 2
   },
   "productionMetrics": {
@@ -397,7 +394,7 @@
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2
