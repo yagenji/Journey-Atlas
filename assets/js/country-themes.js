@@ -31,7 +31,19 @@
     const visual = themeVisuals[themeId] || { icon: 'compass', accent: 'default' };
     span.className = 'country-theme-chip';
     span.dataset.theme = visual.accent;
-    span.innerHTML = `<svg class="country-theme-chip__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="assets/icons/atlas-icons.svg#${visual.icon}"></use></svg><span>${label}</span>`;
+    span.replaceChildren();
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('class', 'country-theme-chip__icon');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', `assets/icons/atlas-icons.svg#${visual.icon}`);
+    icon.append(use);
+
+    const text = document.createElement('span');
+    text.textContent = label;
+    span.append(icon, text);
   };
 
   const decorateExisting = (list) => {
