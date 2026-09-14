@@ -5,65 +5,15 @@
 
   let themes = [];
 
-  const themeVisuals = {
-    earth: { icon: 'landscape', accent: 'earth' },
-    city: { icon: 'city', accent: 'city' },
-    history: { icon: 'history', accent: 'history' },
-    life: { icon: 'home', accent: 'life' },
-    wildlife: { icon: 'wildlife', accent: 'wildlife' },
-    sea: { icon: 'sea', accent: 'sea' },
-    food: { icon: 'food', accent: 'food' },
-    road: { icon: 'road', accent: 'road' },
-  };
-
-  const labelToTheme = {
-    '地球の風景': 'earth',
-    '街を歩く': 'city',
-    '時をたどる': 'history',
-    '暮らしに出会う': 'life',
-    '野生に会う': 'wildlife',
-    '海の世界へ': 'sea',
-    '食をめぐる': 'food',
-    '道の先へ': 'road',
-  };
-
-  const decorateChip = (span, themeId, label) => {
-    const visual = themeVisuals[themeId] || { icon: 'compass', accent: 'default' };
-    span.className = 'country-theme-chip';
-    span.dataset.theme = visual.accent;
-    span.replaceChildren();
-
-    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    icon.setAttribute('class', 'country-theme-chip__icon');
-    icon.setAttribute('aria-hidden', 'true');
-    icon.setAttribute('viewBox', '0 0 24 24');
-    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-    use.setAttribute('href', `assets/icons/atlas-icons.svg#${visual.icon}`);
-    icon.append(use);
-
-    const text = document.createElement('span');
-    text.textContent = label;
-    span.append(icon, text);
-  };
-
-  const decorateExisting = (list) => {
-    list.querySelectorAll('.country-theme-chip').forEach((span) => {
-      if (span.dataset.theme) return;
-      const label = span.textContent.trim();
-      decorateChip(span, labelToTheme[label] || 'default', label);
-    });
-  };
-
   const render = () => {
     const section = document.querySelector('#country-theme-context');
     const list = document.querySelector('#country-theme-list');
     if (!section || !list) return false;
 
-    // Generated Country HTML already contains taxonomy chips. Decorate and keep
-    // them visible immediately so the theme row never depends on a second request.
+    // Generated Country HTML already contains taxonomy chips. Keep those visible
+    // immediately so the theme row never depends on a second network request.
     if (!themes.length) {
       if (list.querySelector('.country-theme-chip')) {
-        decorateExisting(list);
         section.hidden = false;
         return true;
       }
@@ -72,14 +22,16 @@
 
     const matches = themes.filter((theme) => Array.isArray(theme.examples) && theme.examples.includes(slug));
     if (!matches.length) {
-      decorateExisting(list);
+      // Preserve any server-rendered taxonomy chips rather than hiding a valid
+      // row because a runtime taxonomy response is stale or temporarily empty.
       section.hidden = !list.querySelector('.country-theme-chip');
       return true;
     }
 
     list.replaceChildren(...matches.map((theme) => {
       const span = document.createElement('span');
-      decorateChip(span, theme.id || labelToTheme[theme.label] || 'default', theme.label || '');
+      span.className = 'country-theme-chip';
+      span.textContent = theme.label;
       if (theme.definition) span.title = theme.definition;
       return span;
     }));
@@ -96,10 +48,11 @@
 
   if (observer && host) observer.observe(host, { childList: true, subtree: true });
 
+  // First try the generated chips as soon as the Country template is mounted.
   render();
 
   const taxonomyUrl = new URL('data/theme-taxonomy.json', document.baseURI);
-  taxonomyUrl.searchParams.set('v', '20260914-theme-visual-v4');
+  taxonomyUrl.searchParams.set('v', '20260911-theme-context-v3');
 
   fetch(taxonomyUrl.href, { cache: 'no-store' })
     .then((response) => {
@@ -111,6 +64,7 @@
       if (render() && observer) observer.disconnect();
     })
     .catch(() => {
+      // The build-time injected chips remain the authoritative fallback.
       render();
     });
 })();
