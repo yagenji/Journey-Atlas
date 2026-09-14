@@ -315,7 +315,13 @@ html{scroll-padding-top:96px!important;}
     margin-bottom:0;
   }
   .country-theme-context__list{
-    gap:8px;
+    width:100%;
+    flex-wrap:wrap;
+    gap:10px 8px;
+  }
+  .country-theme-chip{
+    max-width:100%;
+    box-sizing:border-box;
   }
 
   .panel-title-wrap,
@@ -458,7 +464,7 @@ html{scroll-padding-top:96px!important;}
 
   .country-page .country-theme-context{
     margin-top:20px!important;
-    margin-bottom:6px!important;
+    margin-bottom:18px!important;
   }
 
   .country-page .hero-location{
