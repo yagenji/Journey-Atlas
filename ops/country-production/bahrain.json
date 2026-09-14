@@ -5,8 +5,8 @@
   "contentRef": "country/bahrain",
   "stateRef": "country/bahrain",
   "phase": "QA",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-14T23:01:53+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-15T00:46:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -210,7 +210,7 @@
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "babe494bb4dea1e22bc58c37a028332faaeafb35",
+    "sourceCommit": "8da1b05fe0dd2adefdc8b34bcb6893780b07c7bc",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -372,12 +372,9 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/bahrain/countries/bahrain/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-14T23:01:53+09:00",
-    "sourceCommit": "babe494bb4dea1e22bc58c37a028332faaeafb35",
-    "runId": 34852475415,
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
     "pipelineVersion": 2
   },
   "productionMetrics": {
@@ -392,12 +389,11 @@
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
     "browserQaCycles": 1,
-    "tasteBatchApprovedAt": "2026-09-14T21:19:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-14T23:01:53+09:00"
+    "tasteBatchApprovedAt": "2026-09-14T21:19:00+09:00"
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2
