@@ -5,8 +5,8 @@
   "contentRef": "country/oman",
   "stateRef": "country/oman",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-14T14:06:00+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-14T14:07:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -214,12 +214,13 @@
     },
     {
       "id": "S07",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": "assets/images/oman/approved/ras-al-jinz-green-turtle.webp",
       "contentId": "ras-al-jinz-green-turtle",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": ["56e0376e-8254-4c32-b68c-6fbc46517bd6"],
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER",
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "ras-al-jinz-green-turtle",
@@ -236,13 +237,12 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "S07-series1-attempt1-epoch4-20260914T1406",
-        "asset": "S07",
-        "contentId": "ras-al-jinz-green-turtle",
-        "promptSeries": 1,
-        "generationContextEpoch": 4,
-        "reservedAt": "2026-09-14T14:06:00+09:00"
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "FAIL",
+        "collageTypography": "PASS",
+        "styleConsistency": "FAIL",
+        "notes": "The S07 generation repeated the lush Wadi Darbat waterfall-valley visual family instead of depicting the Ras Al Jinz nesting beach and green turtle. Automatically rejected as WRONG_TARGET_CARRYOVER."
       }
     },
     {
@@ -352,7 +352,7 @@
     "allPriorCountryAssetComparisonRequired":true,
     "targetEpochBindingRequired":true
   },
-  "generationContext": {"state":"CLEAN","epoch":4,"lastResetAt":"2026-09-13T22:36:00+09:00","lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":4,"lastResetAt":"2026-09-13T22:36:00+09:00","lastFailureAsset":"S07","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
   "productionProtocolRef": "main:ops/country-production-policy.json",
@@ -390,5 +390,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"RECONCILE_GENERATION","asset":"S07"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
