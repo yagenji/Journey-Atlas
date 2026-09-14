@@ -147,6 +147,7 @@ jobs:
           import sys
           from pathlib import Path
 
+          sys.path.insert(0, str(Path("scripts").resolve()))
           import normalize_country_image_delivery as delivery
 
           slug = sys.argv[1]
