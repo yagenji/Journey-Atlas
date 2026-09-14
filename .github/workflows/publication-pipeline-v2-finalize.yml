@@ -15,21 +15,19 @@ permissions:
   pull-requests: write
   actions: write
 
-concurrency:
-  # Share the exact final-main lane with the legacy publication queue so old
-  # Countries and Pipeline v2 Countries can safely coexist during migration.
-  group: country-publication-main
-  cancel-in-progress: false
-
 jobs:
-  publish:
+  resolve:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 5
+    outputs:
+      ready: ${{ steps.target.outputs.ready }}
+      slug: ${{ steps.target.outputs.slug }}
+      head_ref: ${{ steps.target.outputs.head_ref }}
     steps:
       - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -66,13 +64,34 @@ jobs:
           fi
           echo "ready=true" >> "$GITHUB_OUTPUT"
 
+  publish:
+    needs: resolve
+    if: needs.resolve.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      # Share the exact final-main lane with the legacy publication queue so
+      # in-flight legacy Countries and v2 Countries cannot race into main.
+      group: country-publication-main
+      cancel-in-progress: false
+    steps:
+      - name: Checkout Country branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Ensure reusable review PR exists
-        if: steps.target.outputs.ready == 'true'
         id: pr
         env:
           GH_TOKEN: ${{ github.token }}
-          HEAD_REF: ${{ steps.target.outputs.head_ref }}
-          SLUG: ${{ steps.target.outputs.slug }}
+          HEAD_REF: ${{ needs.resolve.outputs.head_ref }}
+          SLUG: ${{ needs.resolve.outputs.slug }}
         shell: bash
         run: |
           set -euo pipefail
@@ -90,12 +109,11 @@ jobs:
           echo "Publication PR: #$pr"
 
       - name: Synchronize, validate and merge from the serialized publication lane
-        if: steps.target.outputs.ready == 'true'
         id: merge
         env:
           GH_TOKEN: ${{ github.token }}
-          HEAD_REF: ${{ steps.target.outputs.head_ref }}
-          SLUG: ${{ steps.target.outputs.slug }}
+          HEAD_REF: ${{ needs.resolve.outputs.head_ref }}
+          SLUG: ${{ needs.resolve.outputs.slug }}
           PR_NUMBER: ${{ steps.pr.outputs.number }}
         shell: bash
         run: |
@@ -154,7 +172,6 @@ jobs:
           from pathlib import Path
           slug = sys.argv[1]
           country = json.loads((Path('data/countries') / f'{slug}.json').read_text(encoding='utf-8'))
-          state = json.loads((Path('ops/country-production') / f'{slug}.json').read_text(encoding='utf-8'))
           path = Path('data/country-renewal-status.json')
           payload = json.loads(path.read_text(encoding='utf-8'))
           rows = payload.setdefault('countries', [])
@@ -261,9 +278,9 @@ jobs:
           echo "Merged $SLUG at $merged_sha"
 
       - name: Fast Cloudflare live smoke verification
-        if: steps.target.outputs.ready == 'true' && steps.merge.outputs.merged_sha != ''
+        if: steps.merge.outputs.merged_sha != ''
         env:
-          SLUG: ${{ steps.target.outputs.slug }}
+          SLUG: ${{ needs.resolve.outputs.slug }}
           EXPECTED_SHA: ${{ steps.merge.outputs.merged_sha }}
           SITE_URL: https://atlas.yagenji.com
         shell: bash
