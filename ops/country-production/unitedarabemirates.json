@@ -5,22 +5,19 @@
   "contentRef": "country/unitedarabemirates",
   "stateRef": "country/unitedarabemirates",
   "phase": "HERO",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-14T20:10:29+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-14T20:15:00+09:00",
   "hero": {
-    "state": "REGENERATE",
-    "asset": "assets/images/unitedarabemirates/approved/hero-sheikh-zayed-grand-mosque.webp",
-    "contentId": "sheikh-zayed-grand-mosque-abu-dhabi",
-    "promptSeries": 1,
-    "promptSeriesRejectCount": 1,
+    "state": "GENERATING",
+    "asset": "assets/images/unitedarabemirates/approved/hero-dubai-skyline-burj-khalifa.webp",
+    "contentId": "dubai-skyline-burj-khalifa",
+    "promptSeries": 2,
+    "promptSeriesRejectCount": 0,
     "rejectedGenerationIds": ["c9daed3b-6fe5-4a0a-8f35-2c56116a7abe"],
-    "lastFailureReason": "WRONG_TARGET_CARRYOVER",
-    "failureReason": "Hard reject: Hero generation produced a Dubai / Burj Khalifa coastal skyline instead of Sheikh Zayed Grand Mosque in Abu Dhabi.",
-    "consecutiveFailureCount": 1,
     "renderPacket": {
       "kind": "HERO",
-      "contentId": "sheikh-zayed-grand-mosque-abu-dhabi",
-      "identity": "Real Sheikh Zayed Grand Mosque in Abu Dhabi, UAE, recognizable white marble complex with four slender minarets, repeated onion domes and reflective pools, viewed in one wide horizontal 3:2 composition from the outer colonnade/pool side at calm late-afternoon to early-evening light; faithful real architecture and proportions; quiet premium travel-atlas watercolor treatment with photographic geographic precision, low saturation, soft paper texture, no fantasy, no invented buildings, no dominant people, clear mobile-readable silhouette and restrained negative space for page typography.",
+      "contentId": "dubai-skyline-burj-khalifa",
+      "identity": "Real Dubai skyline in the United Arab Emirates with the Burj Khalifa unmistakably identifiable as the central vertical landmark, viewed across a calm urban waterfront at golden-hour light. The composition should communicate contemporary UAE cityscape at first glance: real Downtown Dubai proportions and recognizable tower silhouette, one wide horizontal 3:2 scene, restrained low-saturation palette, quiet premium travel-atlas watercolor over photographic geographic precision, no fantasy skyline, no invented signature towers, no oversized sun, no dominant people, no text, spacious foreground and sky so the subject remains clear on mobile.",
       "independentGeneration": true,
       "forbidPreviousAssetReuse": true,
       "noAddedText": true,
@@ -32,10 +29,18 @@
       "forbidMontage": true,
       "forbidInsetImages": true,
       "singleSceneOnly": true
+    },
+    "generationReservation": {
+      "reservationId": "HERO-series2-attempt1",
+      "asset": "HERO",
+      "contentId": "dubai-skyline-burj-khalifa",
+      "promptSeries": 2,
+      "generationContextEpoch": 2,
+      "reservedAt": "2026-09-14T20:15:00+09:00"
     }
   },
   "scenes": [
-    {"id":"S01","state":"NOT_STARTED","asset":"assets/images/unitedarabemirates/approved/burj-khalifa-downtown-dubai.webp","contentId":"burj-khalifa-downtown-dubai","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"SCENE","contentId":"burj-khalifa-downtown-dubai","identity":"Real Burj Khalifa and Downtown Dubai from a grounded elevated urban viewpoint at soft morning light, the 828 m tower unmistakably slender and centered within the real dense low-and-mid-rise city fabric, one continuous 3:2 view, quiet photo-6 watercolor-4 travel-atlas style, faithful architecture, restrained palette, no fantasy skyline.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true}},
+    {"id":"S01","state":"NOT_STARTED","asset":"assets/images/unitedarabemirates/approved/sheikh-zayed-grand-mosque.webp","contentId":"sheikh-zayed-grand-mosque-abu-dhabi","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"SCENE","contentId":"sheikh-zayed-grand-mosque-abu-dhabi","identity":"Real Sheikh Zayed Grand Mosque in Abu Dhabi, UAE, recognizable white marble complex with four slender minarets, repeated onion domes and reflective pools, viewed from the outer colonnade and pool side at calm soft light, faithful real architecture and proportions, one continuous 3:2 composition, restrained quiet watercolor travel-atlas realism, no fantasy, no invented buildings, no dominant people.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true}},
     {"id":"S02","state":"NOT_STARTED","asset":"assets/images/unitedarabemirates/approved/al-ain-oasis-falaj.webp","contentId":"al-ain-oasis-falaj","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"SCENE","contentId":"al-ain-oasis-falaj","identity":"Real Al Ain Oasis, shaded date-palm groves with a visible traditional falaj irrigation channel and working agricultural paths, warm filtered daylight, one continuous 3:2 human-eye-level scene, recognizable oasis rather than generic tropical garden, quiet watercolor travel-atlas realism.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true}},
     {"id":"S03","state":"NOT_STARTED","asset":"assets/images/unitedarabemirates/approved/liwa-empty-quarter-dunes.webp","contentId":"liwa-empty-quarter-dunes","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"SCENE","contentId":"liwa-empty-quarter-dunes","identity":"Real Liwa region at the northern edge of the Rub' al Khali, immense layered orange-red dunes with strong natural ridgelines and sparse desert floor, no city, no fantasy caravan, low warm sun emphasizing scale, one continuous 3:2 landscape, restrained quiet watercolor realism.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true}},
     {"id":"S04","state":"NOT_STARTED","asset":"assets/images/unitedarabemirates/approved/jebel-jais-hajar-mountains.webp","contentId":"jebel-jais-hajar-mountains","promptSeries":1,"promptSeriesRejectCount":0,"rejectedGenerationIds":[],"renderPacket":{"kind":"SCENE","contentId":"jebel-jais-hajar-mountains","identity":"Real Jebel Jais in Ras Al Khaimah, rugged brown-grey Hajar Mountain ridges and deep wadis with a recognizable winding paved mountain road, clear dry atmosphere, one continuous 3:2 elevated landscape, geologically credible and subdued watercolor realism.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true}},
@@ -68,5 +73,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"REFRESH_RENDER_PACKET","asset":"HERO"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
 }
