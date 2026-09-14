@@ -5,8 +5,8 @@
   "contentRef": "country/oman",
   "stateRef": "country/oman",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 16,
-  "updatedAt": "2026-09-14T14:05:00+09:00",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-14T14:06:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -181,12 +181,13 @@
     },
     {
       "id": "S06",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": "assets/images/oman/approved/wadi-darbat-khareef.webp",
       "contentId": "wadi-darbat-khareef",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": ["47c5eba8-3239-4b84-bb9b-d92bd6c7c77a"],
+      "lastFailureReason": "TARGET_IDENTITY_MISMATCH",
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "wadi-darbat-khareef",
@@ -203,18 +204,17 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "S06-series1-attempt1-epoch4-20260914T1405",
-        "asset": "S06",
-        "contentId": "wadi-darbat-khareef",
-        "promptSeries": 1,
-        "generationContextEpoch": 4,
-        "reservedAt": "2026-09-14T14:05:00+09:00"
+      "candidateVisualQa": {
+        "targetIdentity": "FAIL",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS",
+        "styleConsistency": "FAIL",
+        "notes": "The output is far denser and more tropical/fantastical than real Wadi Darbat during Khareef, with multiple large waterfalls, dense forest and a vivid turquoise pool replacing the gentler rolling green hills and calm wadi character. Rejected as TARGET_IDENTITY_MISMATCH."
       }
     },
     {
       "id": "S07",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": "assets/images/oman/approved/ras-al-jinz-green-turtle.webp",
       "contentId": "ras-al-jinz-green-turtle",
       "promptSeries": 1,
@@ -235,6 +235,14 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "generationReservation": {
+        "reservationId": "S07-series1-attempt1-epoch4-20260914T1406",
+        "asset": "S07",
+        "contentId": "ras-al-jinz-green-turtle",
+        "promptSeries": 1,
+        "generationContextEpoch": 4,
+        "reservedAt": "2026-09-14T14:06:00+09:00"
       }
     },
     {
@@ -382,5 +390,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next": {"action":"RECONCILE_GENERATION","asset":"S06"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"S07"}
 }
