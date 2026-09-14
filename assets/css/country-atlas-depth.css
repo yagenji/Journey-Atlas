@@ -82,20 +82,65 @@
   border-left:1px solid var(--line);
 }
 .atlas-extra{
+  --theme-accent:#8a6b55;
+  --theme-wash:rgba(138,107,85,.08);
   min-height:142px;
   padding:16px 17px 17px;
   border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.18);
+  background:linear-gradient(180deg,var(--theme-wash),rgba(255,255,255,.16) 44%);
+  box-shadow:inset 0 3px 0 var(--theme-accent);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#history"]){
+  --theme-accent:#9a6a48;
+  --theme-wash:rgba(154,106,72,.09);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#home"]){
+  --theme-accent:#607c72;
+  --theme-wash:rgba(96,124,114,.09);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#landscape"]){
+  --theme-accent:#71835d;
+  --theme-wash:rgba(113,131,93,.10);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#city"]){
+  --theme-accent:#697d93;
+  --theme-wash:rgba(105,125,147,.09);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#wildlife"]){
+  --theme-accent:#6d8458;
+  --theme-wash:rgba(109,132,88,.10);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#food"]){
+  --theme-accent:#a06d59;
+  --theme-wash:rgba(160,109,89,.09);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#road"]){
+  --theme-accent:#75736d;
+  --theme-wash:rgba(117,115,109,.09);
+}
+.atlas-extra:has(.atlas-extra__theme use[href$="#sea"]){
+  --theme-accent:#597f8a;
+  --theme-wash:rgba(89,127,138,.09);
 }
 .atlas-extra__theme{
-  display:block;
-  margin-bottom:7px;
-  color:#8a6b55;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  width:max-content;
+  margin-bottom:9px;
+  padding:4px 8px;
+  border:1px solid color-mix(in srgb,var(--theme-accent) 32%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--theme-accent) 8%, white);
+  color:var(--theme-accent);
   font-family:var(--meta);
   font-size:10px;
-  font-weight:500;
+  font-weight:600;
   letter-spacing:.06em;
+}
+.atlas-extra__theme .ui-icon{
+  color:var(--theme-accent)!important;
 }
 .atlas-extra h3{
   margin:0;
