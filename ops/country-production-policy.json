@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "protocolId": "2.0",
   "policyPatch": 5,
-  "updatedAt": "2026-09-14T13:39:00+09:00",
+  "updatedAt": "2026-09-14T16:32:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -87,6 +87,39 @@
     "waitForStateOnlyCi": false,
     "pauseForProgressConfirmation": false,
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
+  },
+  "publicationAutomation": {
+    "version": 2,
+    "activationField": "publicationPipelineVersion",
+    "activationValue": 2,
+    "defaultForNewCountryScaffold": true,
+    "legacyCountryAutoMigration": false,
+    "legacyCountriesContinueUnchanged": true,
+    "review": {
+      "trigger": "ASSET_HANDOFF_PASS_13",
+      "autoOpenReusablePr": true,
+      "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
+      "checksMode": "review",
+      "browserQaPassesTarget": 1,
+      "duplicateBrowserQaAfterPreview": "FORBIDDEN_UNLESS_SHARED_RENDERING_CHANGED",
+      "autoDeployPersistentPreview": true,
+      "autoReconcileProductionState": true,
+      "nextUserGate": "CANONICAL_PAGE_APPROVAL"
+    },
+    "publication": {
+      "trigger": "FINAL_APPROVAL_APPROVED",
+      "latestMainSync": true,
+      "sharedMetadataConflictPolicy": "LATEST_MAIN_PLUS_TARGET_COUNTRY_ROW",
+      "serializationGroup": "country-publication-main",
+      "maxMainSyncCycles": 3,
+      "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
+      "checksMode": "publish",
+      "reuseReviewBrowserQaWhenSharedRenderingUnchanged": true,
+      "mergeMethod": "squash",
+      "secondPublicationPr": "FORBIDDEN",
+      "postMergeVerification": "FAST_CLOUDFLARE_SHA_AND_TARGET_ROUTE_SMOKE",
+      "assistantPollingRequired": false
+    }
   },
   "contentQuality": {
     "version": 5,
