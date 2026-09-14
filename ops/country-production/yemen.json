@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "yemen",
   "countryName": "YEMEN",
-  "contentRef": "country/yemen",
-  "stateRef": "country/yemen",
-  "phase": "QA",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-14T23:56:30+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-15T00:01:35+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -128,8 +128,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/yemen/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -137,8 +139,16 @@
     "basis": "User instructed QA and publication after the corrected Yemen review page passed final QA."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T00:01:35+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/yemen/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -309,7 +319,7 @@
     "canonicalReviewReadyAt": "2026-09-14T21:22:17+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   }
 }
