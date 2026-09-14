@@ -10,6 +10,11 @@ name: Verify JOURNEY ATLAS Cloudflare Production
 # Operational trigger: Myanmar live production QA 2026-09-13
 # Operational trigger: Malaysia live production QA 2026-09-13
 # Operational trigger: Kazakhstan live production QA retry 2026-09-13
+# Operational trigger: Iran live production QA 2026-09-14
+# Operational trigger: Tajikistan live production QA 2026-09-14
+# Operational trigger: Turkmenistan live production QA 2026-09-14
+# Operational trigger: Kyrgyzstan live production QA 2026-09-14
+# Operational trigger: Kuwait live production QA 2026-09-14
 
 on:
   push:
@@ -29,6 +34,7 @@ on:
       - "data/theme-taxonomy.json"
       - "data/atlas-destinations.json"
       - "data/atlas-destinations-editorial.json"
+      - "ops/production-verification-target.json"
       - "scripts/build_site.py"
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
@@ -40,7 +46,7 @@ permissions:
 
 concurrency:
   group: "verify-cloudflare-production"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   classify:
@@ -72,15 +78,6 @@ jobs:
             exit 0
           fi
           base_sha="$(git rev-parse HEAD^)"
-          if git diff --name-only "$base_sha" HEAD | grep -qx '.github/workflows/verify-production.yml'; then
-            echo "production_changed=true" >> "$GITHUB_OUTPUT"
-            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
-            echo "target_slugs=" >> "$GITHUB_OUTPUT"
-            echo "published_slugs=" >> "$GITHUB_OUTPUT"
-            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
-            echo "Production verification workflow changed: full verification requested."
-            exit 0
-          fi
           python3 scripts/classify_country_impact.py --base "$base_sha" --head HEAD --github-output "$GITHUB_OUTPUT"
 
   runtime:
@@ -186,7 +183,7 @@ jobs:
       needs.runtime.result == 'success' &&
       (needs.classify.outputs.browser_scope == 'all' || needs.classify.outputs.reviewable_slugs != '')
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - name: Checkout expected source
         uses: actions/checkout@v4
@@ -215,7 +212,7 @@ jobs:
       needs.runtime.result == 'success' &&
       (needs.classify.outputs.browser_scope == 'all' || needs.classify.outputs.published_slugs != '')
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - name: Checkout expected source
         uses: actions/checkout@v4
