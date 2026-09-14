@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 3,
+  "slug": "jordan",
+  "nameEn": "JORDAN",
+  "nameJa": "ヨルダン",
+  "region": "WEST ASIA / MIDDLE EAST / 31°N",
+  "seo": {"description": "ペトラの砂岩都市から、ジェラシュ、死海、ダナ、ワディ・ラム、アカバの紅海、アズラク湿地、アッ＝サルト、ウンム・カイスへ。交易路と乾燥地の地理が重なるヨルダンを、8つの景色と地図からたどる。"},
+  "capital": {"nameEn":"Amman","nameJa":"アンマン","coordinates":{"latitude":31.9539,"longitude":35.9106},"labelPosition":"right","mapOffset":{"x":1.5,"y":0.0}},
+  "hero": {"lead":"赤い砂岩の峡谷にナバテア人の都市が刻まれ、北には古代都市と石灰岩の丘陵、東には砂漠の湿地、南には砂岩砂漠と紅海が続く。短い南北軸の中で、交易路と乾燥地の地理が重なる国。","image":"assets/images/jordan/approved/hero-petra-al-khazneh-siq.webp","location":"Petra / Al-Khazneh from the Siq","coordinates":{"latitude":30.32221,"longitude":35.45154},"labelPosition":"left","mapOffset":{"x":-1.0,"y":0.0}},
+  "map": {"bounds":{"north":33.5,"south":29.1,"west":34.75,"east":39.45},"svg":"assets/images/jordan/map-atlas-v1.svg","route":null,"source":"Basemap countries_i political boundary segments combined with GSHHS intermediate-resolution coastline (basemap-data 2.0.0), WGS84; Jordan land geometry uses intermediate-resolution political boundaries with the Gulf of Aqaba and Dead Sea shorelines cut from GSHHS; local equirectangular fit with longitude scaled by cos(31.30°); JOURNEY ATLAS map-v3 clean background."},
+  "scenes": [
+    {"id":"jerash-oval-plaza","name":"ジェラシュ / 楕円形広場","nameLocal":"Jerash / Oval Plaza","mapLabel":"Jerash","description":"列柱に囲まれた楕円形広場からカルドへ石畳の軸が伸びる。古代ゲラサの都市構造がまとまって残り、ローマ帝国東部の地方都市がどのように人を集め、通りを組み立てたかを歩いて読める景観。","coordinates":{"latitude":32.2803,"longitude":35.8911},"image":"assets/images/jordan/approved/jerash-oval-plaza.webp","labelPosition":"right","mapOffset":{"x":1.0,"y":-0.5}},
+    {"id":"azraq-wetland-reserve","name":"アズラク / 湿地保護区","nameLocal":"Azraq / Wetland Reserve","mapLabel":"Azraq","description":"東部砂漠の中に葦原、池、泥地が残るオアシス。石灰岩砂漠と玄武岩砂漠の間に水が集まり、乾いた国土の中で渡り鳥と人の移動を支えてきた水辺が突然現れる。","coordinates":{"latitude":31.833,"longitude":36.817},"image":"assets/images/jordan/approved/azraq-wetland-reserve.webp","labelPosition":"right","mapOffset":{"x":1.0,"y":0.5}},
+    {"id":"wadi-rum-jebel-khazali","name":"ワディ・ラム / ジェベル・ハザリ","nameLocal":"Wadi Rum / Jebel Khazali","mapLabel":"Wadi Rum","description":"赤い砂の平原から砂岩の山塊が切り立ち、細い峡谷に岩刻や碑文が残る。砂漠を空白ではなく、地形と水場、遊牧と交易の痕跡が重なる生活圏として見せる南部の景観。","coordinates":{"latitude":29.573,"longitude":35.434},"image":"assets/images/jordan/approved/wadi-rum-jebel-khazali.webp","labelPosition":"right","mapOffset":{"x":1.0,"y":-0.5}},
+    {"id":"dead-sea-suweimeh-shore","name":"死海 / スウェイメ沿岸","nameLocal":"Dead Sea / Suweimeh Shore","mapLabel":"Dead Sea","description":"青い水面の縁に塩の結晶と乾いた斜面が重なる。ヨルダン地溝帯の底にあるため、海面より大きく低い陸地を景色として実感でき、国土の高低差を一目で理解できる場所。","coordinates":{"latitude":31.559,"longitude":35.473},"image":"assets/images/jordan/approved/dead-sea-suweimeh-shore.webp","labelPosition":"left","mapOffset":{"x":-1.0,"y":0.5}},
+    {"id":"dana-village-wadi-dana","name":"ダナ / ワディ・ダナ","nameLocal":"Dana / Wadi Dana","mapLabel":"Dana","description":"石造りの村から深い谷が西へ落ち、標高の違いに沿って植生と岩肌が切り替わる。地中海性の高地から乾燥した低地へ連続するため、ヨルダンの自然を一つの谷で縦に見ることができる。","coordinates":{"latitude":30.674,"longitude":35.61},"image":"assets/images/jordan/approved/dana-village-wadi-dana.webp","labelPosition":"right","mapOffset":{"x":1.0,"y":0.0}},
+    {"id":"aqaba-marine-reserve","name":"アカバ / 海洋保護区","nameLocal":"Aqaba / Marine Reserve","mapLabel":"Aqaba","description":"紅海北端の澄んだ浅海にサンゴ礁と海草藻場が続き、その背後に乾いた山地が迫る。砂漠国家の南端に熱帯性の海洋生態系が接していることを、海と山を同じ視野で示す景観。","coordinates":{"latitude":29.4297,"longitude":34.9756},"image":"assets/images/jordan/approved/aqaba-marine-reserve.webp","labelPosition":"right","mapOffset":{"x":1.5,"y":0.0}},
+    {"id":"as-salt-historic-core","name":"アッ＝サルト / 歴史地区","nameLocal":"As-Salt / Historic Core","mapLabel":"As-Salt","description":"黄褐色の石造住宅が急斜面に重なり、階段路と細い街路が丘をつなぐ。19世紀末から20世紀初頭の交易で育った都市の密度が、宗教施設だけでなく住宅と公共空間の形に残る。","coordinates":{"latitude":32.0392,"longitude":35.7272},"image":"assets/images/jordan/approved/as-salt-historic-core.webp","labelPosition":"left","mapOffset":{"x":-2.0,"y":0.5}},
+    {"id":"umm-qais-gadara","name":"ウンム・カイス / 古代ガダラ","nameLocal":"Umm Qais / Ancient Gadara","mapLabel":"Umm Qais","description":"黒い玄武岩の列柱や劇場跡の向こうに、ヨルダン渓谷とガリラヤ湖方面の緑が広がる。南部の砂岩景観とは異なり、北西部が地中海性の丘陵へつながることを遺跡越しに見せる。","coordinates":{"latitude":32.655,"longitude":35.684},"image":"assets/images/jordan/approved/umm-qais-gadara.webp","labelPosition":"right","mapOffset":{"x":1.0,"y":-0.5}}
+  ],
+  "encounters": [
+    {"title":"砂岩の峡谷","icon":"landscape"},{"title":"列柱の古代都市","icon":"landmark"},{"title":"丘に重なる石造住宅","icon":"city"},{"title":"砂漠のテント","icon":"home"},{"title":"アラビックコーヒー","icon":"food"},{"title":"モザイク工房","icon":"culture"},{"title":"塩の岸","icon":"landscape"},{"title":"紅海のサンゴ礁","icon":"sea"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"petra-nabataean-water-engineering","themeEn":"HISTORY","themeJa":"時をたどる","title":"ペトラは、岩を刻む技術だけでなく水を運ぶ技術で都市になった","text":"乾燥した谷に都市を維持できた背景には、水路、貯水槽、ダムを組み合わせたナバテア人の水管理がある。岩窟建築を見るときに水の流れも追うと、ペトラが交易都市として成立した理由が地形から見えてくる。","points":["峡谷の水を制御して都市へ取り込んだ","建築とインフラが同じ岩山の中に組み込まれている"]},
+    {"topicKey":"as-salt-urban-hospitality","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"アッ＝サルトでは、商業都市の成長と隣人関係が同じ街路に残る","text":"オスマン帝国末期の交易で繁栄した丘の街では、イスラム教徒とキリスト教徒が近接して暮らし、家や階段路、公共空間を共有してきた。世界遺産が評価するのは建物だけでなく、都市の中で続いた寛容と客人を迎える文化でもある。","points":["黄褐色の石造住宅が急斜面の街路を形づくる","宗教の違いを越えた近隣関係が都市文化の一部になった"]},
+    {"topicKey":"arabic-coffee-hospitality","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"小さなコーヒーカップには、客を迎える順序まで決まっている","text":"アラビックコーヒーはヨルダンで日常と儀礼の両方に使われ、2024年にはヨルダンを含む文化としてユネスコ無形文化遺産に登録された。年長者や客を先に給仕し、飲み終えた人はカップを振って合図するなど、飲み物以上に対話の作法を含む。","points":["右手で注ぎ、年長者や客を先に迎える","飲み終わりはカップを軽く振って示す"]},
+    {"topicKey":"madaba-mosaic-tradition","themeEn":"HISTORY","themeJa":"時をたどる","title":"マダバでは、古代のモザイクが現在の手仕事につながっている","text":"ビザンツ・ウマイヤ朝期のモザイクで知られるマダバでは、教会や遺跡の床だけでなく、現在も地域でモザイク制作が続く。古い図像を保存物として見るだけでなく、石を並べる技術が今の工房へつながる街として歩ける。","points":["宗教施設と考古遺跡にモザイクが集中する","同じ素材と技法が現代の工房にも受け継がれる"]},
+    {"topicKey":"al-maghtas-pilgrimage-landscape","themeEn":"HISTORY","themeJa":"時をたどる","title":"ヨルダン川東岸には、今も続く巡礼の地理がある","text":"死海の北、ヨルダン川東岸のアル＝マグタスには、洗礼池、教会、修道院、隠修者の洞窟などが残る。考古遺構だけでなく、現在も洗礼と巡礼が続くため、古代宗教史と現代の信仰実践が同じ河岸に重なっている。","points":["ローマ・ビザンツ期の宗教遺構が河岸に残る","現在も巡礼と洗礼の実践が続く"]},
+    {"topicKey":"mansaf-social-practice","themeEn":"FOOD","themeJa":"食をめぐる","title":"マンサフは料理名だけでなく、人が集まる場のつくり方でもある","text":"羊や山羊の肉をジャミードのソースで煮て米やブルグルと盛るマンサフは、祝い事や弔事など社会的な集まりと結びつく。2022年にユネスコ無形文化遺産へ登録され、調理、語らい、共同で食べることまで含めて継承されている。","points":["大皿を囲むこと自体が社会的な儀礼になる","調理の知識と作法が世代を越えて伝えられる"]}
+  ],
+  "travelTrivia": [
+    {"topicKey":"jordan-flag-seven-point-star","categoryEn":"SYMBOL","categoryJa":"国旗","title":"白い星には7つの角がある","text":"国旗の赤い三角形にある七芒星は、クルアーン冒頭章アル＝ファーティハの7節を示すとヨルダン外務省が説明している。","icon":"culture","sourceKey":"jordanFlagMfa"},
+    {"topicKey":"jordan-dinar-subunits","categoryEn":"MONEY","categoryJa":"通貨","title":"1ディナールには二つの細かい数え方がある","text":"ヨルダン・ディナールは100キルシュ、または1,000フィルスに分けられる。価格表示では単位の違いを知っていると理解しやすい。","icon":"money","sourceKey":"jordanPmCurrency"},
+    {"topicKey":"amman-philadelphia-name","categoryEn":"CITY","categoryJa":"都市","title":"アンマンはかつて「フィラデルフィア」と呼ばれた","text":"ヘレニズム期にプトレマイオス2世フィラデルフォスにちなむ名で呼ばれ、その後もローマ都市として発展した。現在の首都名の下に古い都市名が重なる。","icon":"city","sourceKey":"visitJordanAmman"},
+    {"topicKey":"umm-qais-best-tourism-village","categoryEn":"VILLAGE","categoryJa":"村","title":"ウンム・カイスは2022年の「Best Tourism Villages」に選ばれた","text":"古代ガダラの遺跡だけでなく、地域コミュニティと持続可能な観光への取り組みが評価され、国連世界観光機関の選定を受けた。","icon":"home","sourceKey":"visitJordanUmmQais"},
+    {"topicKey":"quseir-amra-zodiac-dome","categoryEn":"ART","categoryJa":"壁画","title":"砂漠の浴場の天井に、星空の地図が描かれている","text":"ウマイヤ朝期のクサイル・アムラでは、温浴室のドームに黄道十二宮と天空図が残る。ドーム上に描かれた現存最古級の天空図の一つとされる。","icon":"history","sourceKey":"unescoQuseirAmra"}
+  ],
+  "taste": {"kicker":"TASTE OF JORDAN","title":"ヨルダンで味わう4つの料理","intro":"乾燥地の乳製品、米と肉、地下窯の調理、街の甘味から、食卓と客人を迎える文化を見る。","items":[
+    {"id":"mansaf","name":"マンサフ","nameLocal":"Mansaf","text":"羊肉、米、薄いパンに、乾燥ヨーグルトのジャミードを使ったソースを合わせる国を代表する料理。","image":"assets/images/jordan/approved/food-mansaf.webp","imageState":"PENDING"},
+    {"id":"maqluba","name":"マクルーバ","nameLocal":"Maqluba","text":"米、鶏肉、ナスやカリフラワーなどを鍋で炊き、仕上げに鍋を返して円形に盛る家庭料理。","image":"assets/images/jordan/approved/food-maqluba.webp","imageState":"PENDING"},
+    {"id":"zarb","name":"ザルブ","nameLocal":"Zarb","text":"ワディ・ラムなどで、肉と野菜を地中の窯で蒸し焼きにするベドウィン系の調理法から生まれる料理。","image":"assets/images/jordan/approved/food-zarb.webp","imageState":"PENDING"},
+    {"id":"knafeh","name":"クナーファ","nameLocal":"Knafeh","text":"チーズと細い生地を焼き、シロップを含ませる菓子。アンマンの菓子店でも日常的に見かける。","image":"assets/images/jordan/approved/food-knafeh.webp","imageState":"PENDING"}
+  ]},
+  "travelScale": {"kicker":"DURATION","title":"旅の目安日程","intro":"日数ではなく、旅の広がりと組み合わせ方で選ぶ。","items":[
+    {"duration":"一都市中心","title":"アンマンから北西部の歴史を読む","text":"首都を起点に、近郊の古代都市と丘の街を組み合わせる。例：アンマン → ジェラシュ → アッ＝サルト","icon":"city"},
+    {"duration":"地域をつなぐ","title":"高地から砂岩地形へ南下する","text":"中央高地から古代交易路沿いに南へ進み、都市遺跡と砂漠を連続させる。例：アンマン → マダバ → ダナ → ペトラ → ワディ・ラム","icon":"map"},
+    {"duration":"広域周遊","title":"北の丘陵から紅海まで縦断する","text":"北部の緑と古代都市、地溝帯、南部の砂岩砂漠、紅海を一つの地理としてつなぐ。例：ウンム・カイス → ジェラシュ → 死海 → ペトラ → ワディ・ラム → アカバ","icon":"compass"}
+  ]},
+  "seasons": [
+    {"months":"3〜5月","color":"#8ea06d","text":"高地では気温が穏やかになり、北部の丘陵やダナで緑と花が増える。ペトラやワディ・ラムは日中と朝晩の寒暖差が残るため、重ね着を前提にしたい。"},
+    {"months":"6〜8月","color":"#d9c79b","text":"乾燥した暑さが強まり、ヨルダン渓谷、死海、アカバでは特に高温になりやすい。遺跡や砂漠では日差しを避ける時間帯と給水を意識する。"},
+    {"months":"9〜11月","color":"#ad794b","text":"夏の暑さが和らぎ、都市・遺跡・砂漠を組み合わせやすくなる。後半は高地で朝晩が冷え始め、雨季への移行に伴ってワディの状況も変わる。"},
+    {"months":"12〜2月","color":"#758e9e","text":"アンマンなど高地は冷え込み、雨や雪になることもある一方、死海やアカバは比較的温暖。ワディ・ラムでは夜間の冷え込みが大きい。"}
+  ],
+  "transport": {"title":"道路を軸に、高地・砂漠・紅海をつなぐ","text":"アンマンから北部、死海、ペトラ、ワディ・ラム、アカバへは道路移動が旅の骨格になる。レンタカー、長距離バス、専用車を区間ごとに使い分け、南北の主要軸からダナやアズラクなどへ枝分かれすると地理を理解しやすい。","icon":"road"},
+  "personas": [
+    {"title":"古代都市を、文明名ではなく地形と交易路から理解したい人","text":"ペトラ、ジェラシュ、ウンム・カイスなどを比べ、砂岩の峡谷、丘陵、街路、水管理が都市の成立にどう関わったかを見たい人。"},
+    {"title":"一つの国で、湿地・地溝帯・砂漠・紅海まで景観を変えたい人","text":"アズラク、死海、ダナ、ワディ・ラム、アカバをつなぎ、乾燥地の中にも大きな地形と生態系の差があることを旅で確かめたい人。"},
+    {"title":"移動しながら、客人を迎える文化や食卓にも触れたい人","text":"遺跡だけで完結せず、アッ＝サルトの街路、コーヒー、マンサフ、モザイク工房など、現在の暮らしへ歴史が続く場面を拾いたい人。"}
+  ],
+  "facts": [
+    {"label":"地域","value":"西アジア / 中東"},{"label":"首都","value":"アンマン"},{"label":"人口","value":"約1,152万人（2025年）"},{"label":"面積","value":"89,213 km²（日本の約24%）"},{"label":"言語","value":"アラビア語（公用語）"},{"label":"主な宗教","value":"イスラム教（国教）"},{"label":"通貨","value":"ヨルダン・ディナール（JOD）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"jordan-trail-length","label":"国土を縦につなぐJordan Trail","value":"650km超","note":"公式観光サイトが案内する、ウンム・カイスからアカバまで国土を縦につなぐ長距離トレイル。北部の丘陵からペトラ、ワディ・ラム、紅海まで景観を切り替える。","icon":"road"},
+    {"topicKey":"red-sea-coastline","label":"紅海に面する海岸線","value":"約25km","note":"政府資料が示すヨルダンの紅海沿岸の長さ。国土の海への出口は、南端のアカバ湾に集中する。","icon":"sea"},
+    {"topicKey":"renewable-internal-freshwater","label":"再生可能な内水資源","value":"約61m³/人","note":"World Bank / FAO AQUASTATの2022年値。乾燥地国家としての水の制約が、都市・農業・インフラの前提になる。","icon":"landscape"}
+  ],
+  "tips": [
+    {"topicKey":"wadi-rain-closures","title":"ワディは天候で状況が急変する","text":"乾いて見える谷でも上流の雨で増水することがある。ワディ・ムジブなど峡谷を歩く日は、現地の開放状況と天気を確認する。"},
+    {"topicKey":"desert-temperature-range","title":"砂漠は暑さだけでなく寒暖差を見る","text":"ワディ・ラムやペトラ周辺は日差しが強い一方、朝晩は冷えやすい。帽子・日差し対策と、脱ぎ着できる層を両方用意する。"},
+    {"topicKey":"religious-site-etiquette","title":"宗教施設と家庭では服装と撮影に配慮する","text":"モスクや宗教的な場所、家庭を訪れる場面では露出を控え、人物を撮る前には一声かける。地域の習慣を現地の案内に合わせる。"}
+  ],
+  "nextRoutes": [
+    {"flag":"🇪🇬","countryEn":"EGYPT","countryJa":"エジプト","path":"Aqaba → Nuweiba → Sinai","description":"アカバから紅海を船で渡り、シナイ半島へつなぐ周遊軸。砂岩砂漠と紅海という共通項を持ちながら、次はシナイとナイル文明へ地理を広げられる。"},
+    {"flag":"🇸🇦","countryEn":"SAUDI ARABIA","countryJa":"サウジアラビア","path":"Aqaba → Durra → Haql → Tabuk → AlUla","description":"ヨルダン南端からアカバ湾東岸を南へつなぎ、サウジ北西部の砂岩地形と古代交易路へ続く陸路の周遊軸。国境条件は渡航時の最新情報を確認する。"}
+  ],
+  "relatedCountries": [
+    {"slug":"egypt","nameEn":"EGYPT","nameJa":"エジプト","flag":"🇪🇬","reason":"砂漠と紅海、古代文明を同じ旅の中でつなげたいなら。"},
+    {"slug":"saudiarabia","nameEn":"SAUDI ARABIA","nameJa":"サウジアラビア","flag":"🇸🇦","reason":"ナバテア人の交易圏と北西アラビアの砂岩地形をさらに追いたいなら。"},
+    {"slug":"lebanon","nameEn":"LEBANON","nameJa":"レバノン","flag":"🇱🇧","reason":"レヴァントの古代都市と石造の街を、地中海側の景観と比べたいなら。"}
+  ],
+  "updatedAt": "2026-09-13",
+  "sourcesVerifiedAt": "2026-09-13",
+  "sourceDates": {"profilePopulation":"2025","profileArea":"2026-09-13","constitution":"2026-09-13","petra":"2026-09-13","asSalt":"2026-09-13","arabicCoffee":"2024","mansaf":"2022","jordanTrail":"2026-09-13","azraq":"2026-09-13","aqabaMarine":"2026","water":"2022","flag":"2026-09-13","quseirAmra":"2026-09-13","nextRoutes":"2026-09-13","baptismSite":"2026-09-13"},
+  "sources": {
+    "jordanGovernment":"https://jordan.gov.jo/AR/Pages/%D8%B9%D9%86_%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86",
+    "jordanMfaArea":"https://www.mfa.gov.jo/content/Total-Area",
+    "worldBankPopulation":"https://data.worldbank.org/country/jordan",
+    "worldBankWater":"https://data.worldbank.org/indicator/ER.H2O.INTR.PC?locations=JO",
+    "jordanConstitution":"https://www.kinghussein.gov.jo/const_ch1-3.html",
+    "jordanFlagMfa":"https://www.mfa.gov.jo/content/Flag-of-Jordan-and-the-National-Anthem-",
+    "jordanPmCurrency":"https://pm.gov.jo/AR/Pages/%D8%B9%D9%86_%D8%A7%D9%84%D8%A7%D8%B1%D8%AF%D9%86",
+    "unescoPetra":"https://whc.unesco.org/en/list/326",
+    "unescoWadiRum":"https://whc.unesco.org/en/list/1377",
+    "unescoAsSalt":"https://whc.unesco.org/en/list/689",
+    "unescoAqabaMarine":"https://whc.unesco.org/en/list/1742",
+    "unescoQuseirAmra":"https://whc.unesco.org/en/list/327",
+    "unescoArabicCoffee":"https://ich.unesco.org/en/RL/arabic-coffee-a-symbol-of-generosity-02111",
+    "unescoMansaf":"https://ich.unesco.org/en/RL/al-mansaf-in-jordan-a-festive-banquet-and-its-social-and-cultural-meanings-01849",
+    "unescoBaptismSite":"https://whc.unesco.org/en/list/1446",
+    "visitJordanJerash":"https://international.visitjordan.com/wheretogo/jerash/",
+    "visitJordanUmmQais":"https://international.visitjordan.com/wheretogo/umm-qais/",
+    "visitJordanDana":"https://international.visitjordan.com/wheretogo/dana-feynan/",
+    "visitJordanMadaba":"https://international.visitjordan.com/wheretogo/madaba/",
+    "visitJordanAmman":"https://international.visitjordan.com/Wheretogo/Amman",
+    "visitJordanTrail":"https://international.visitjordan.com/whattodo/the-jordan-trail/",
+    "visitJordanFood":"https://edutravel.visitjordan.com/en/page/79/Food-and-Drinks",
+    "rscnAzraq":"https://www.rscn.org.jo/public/?lang=en",
+    "visitJordanBorder":"https://international.visitjordan.com/page/21/border/",
+    "abMaritime":"https://www.abmaritime.com.jo/"
+  }
+}
