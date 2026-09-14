@@ -5,8 +5,8 @@
   "contentRef": "country/bahrain",
   "stateRef": "country/bahrain",
   "phase": "QA",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-15T02:15:00+09:00",
+  "stateRevision": 22,
+  "updatedAt": "2026-09-15T02:34:25+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -203,14 +203,14 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T01:02:44+09:00",
+    "completedAt": "2026-09-15T02:34:25+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "a06f7621de45074b5c00e9bf01031b71261b8002",
+    "sourceCommit": "0434ae597db10c9cfbd26ce17fdd5e6f56ba6fbb",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -372,9 +372,12 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/bahrain/countries/bahrain/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T02:34:25+09:00",
+    "sourceCommit": "0434ae597db10c9cfbd26ce17fdd5e6f56ba6fbb",
+    "runId": 34874470374,
     "pipelineVersion": 2
   },
   "productionMetrics": {
@@ -385,16 +388,16 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 2,
+    "reviewPreviewDeployments": 3,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 2,
+    "browserQaCycles": 3,
     "tasteBatchApprovedAt": "2026-09-14T21:19:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-15T01:02:44+09:00"
+    "canonicalReviewReadyAt": "2026-09-15T02:34:25+09:00"
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
