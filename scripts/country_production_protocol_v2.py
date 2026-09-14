@@ -410,7 +410,7 @@ def print_errors(errors: list[str]) -> int:
 def self_test() -> int:
     policy = protocol_policy()
     assert policy["protocolId"] == PROTOCOL_ID
-    assert policy["policyPatch"] == 4
+    assert policy["policyPatch"] == 5
 
     state = new_state({"slug": "test-slug", "nameEn": "Test Slug"})
     assert state["productionProtocolId"] == PROTOCOL_ID
