@@ -1,9 +1,9 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
-Updated: 2026-09-13
-Current new-Country protocol: 2.0 / policy patch 4
+Updated: 2026-09-14
+Current new-Country protocol: 2.0 / policy patch 5
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
-Current content policy: Content QA v3
+Current content policy: Content QA v5
 
 ## Copy / paste start prompt
 
@@ -53,19 +53,45 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - sources / sourceDates
 - current Content QA
 
-`python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json` がPASSし、MapがAPPROVEDになるまでHeroへ進まないでください。
+以下2つがPASSし、MapがAPPROVEDになるまでHeroへ進まないでください。
+`python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json`
+`python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json`
 
-【Content QA v3】
-- 新規Countryは `contentQaVersion: 3` を使用してください。
+【Content QA v5】
+- 新規Countryは `contentQaVersion: 5` を使用してください。
 - Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
-- 旅の目安日程に具体的な日数・泊数・週数を入れてはいけません。`3日` / `4〜5日` / `7日以上` / `2泊3日` / `1週間` / `日帰り` 等は禁止です。
-- Travel Scaleは日数ではなく、旅の広がり・地域の組み合わせ・移動の組み立て方で表現してください。基本ラベルは `一都市中心 / 地域をつなぐ / 広域周遊` とします。
+- 旅の目安日程は `日` 表記に統一してください。
+- 第1段階と第2段階は、必ず幅のある `○〜○日` のレンジにしてください。`2日` や `5日` のような単独日数は禁止です。
+- 第3段階は `○日以上` とし、上限を閉じないでください。
+- 3段階は必ず連続させ、空白日・重複日を作らないでください。
+- 第2段階の開始日は、第1段階の終了日の翌日にしてください。
+- 第3段階の開始日は、第2段階の終了日の翌日にしてください。
+- 例：`2〜3日 → 4〜6日 → 7日以上`、`4〜5日 → 6〜9日 → 10日以上`。
+- `2〜3日 → 6〜8日 → 9日以上` のような飛び、`2〜4日 → 4〜6日 → 7日以上` のような重複は禁止です。
+- `泊` / `週` / `週間` をdurationに混在させないでください。
+- 日数・泊数・週数を禁止するのは `例：` より後ろのルート例の中だけです。`例：Aを2日 → Bを3日` / `例：A → Bを1週間` のような表記は禁止です。
+- `例：` は `A → B → C` のように代表的な旅の流れだけを示し、日数は上の `duration` で示してください。
+- `例：` より前の説明文では、必要ならその段階の日数を補足しても構いません。
+- 日数だけでなく、各段階でどの地域を組み合わせるか、どの順序で巡るか、都市・自然・文化をどう組み合わせるかを説明してください。
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
 - 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
-- 単語が違っていても、読者が「さっきと同じ話」と感じる場合は重複です。数値は数字だからこそ面白い特徴、景色の向こうへは背景・意味の深掘り、トリビアは短い発見に役割を分けてください。
-- 森林・樹林地の割合は通常のSignature Factに使用しません。
-- 森林率を使えるのは国の極端な特徴である場合だけです。機械基準は10%以下または70%以上かつ `exceptionalShare:true` です。
+- Signature Factsは「取得できる数字」ではなく、**その数字を知ると読者の国の見え方が変わるもの**を3件選んでください。
+- 各Signature Factに内部メタデータ `interestReason` を必須とし、なぜその数字が3枠の一つに値するかを説明してください。
+- 世界遺産の件数は通常のSignature Factに使いません。例外は25件以上かつ `exceptionalHeritageCount:true` の場合だけです。25件以上でも、もっとその国らしい数字があるならそちらを優先してください。
+- 森林・樹林地の割合も通常のSignature Factに使いません。例外は10%以下または70%以上かつ `exceptionalShare:true` の場合だけです。
+- 世界遺産数・森林率が例外基準を満たさない場合は、Travel Trivia / Beyond the Sceneryへ移すか、別の数値へ差し替えてください。
 - 数字が取得できること自体を採用理由にしないでください。
+- Signature Factsは必要に応じて内容に合う明示的な `icon` を設定し、異なる題材が同一fallbackアイコンへ潰れないよう確認してください。
+
+【Map QA v5】
+- 首都名ラベルとS01〜S08の番号circleを重ねてはいけません。
+- `validate_country_quality_v5.py` が1200×760 canvas上で首都名ラベルの矩形と8景番号を検査します。
+- 衝突時は、実緯度経度を変更せず、まず `capital.labelPosition` の left / right を切り替えてください。
+- 次に必要最小限の `capital.labelOffset: {x, y}` を使ってください。各軸±80px以内です。
+- それでも解けない場合だけ最小の `mapOffset` を使ってください。
+- 首都名ラベルがmap canvas外へ出ることも不可です。
+
+既存 `contentQaVersion: 4` 以下のCountryは自動的にはv5で失格にしません。新規制作および意図的にv5へ移行したCountryに適用します。
 
 【画像生成】
 画像生成は現在のmain image policyに従ってください。
@@ -112,6 +138,7 @@ Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユ�
 
 【画像後工程】
 画像承認後にMapや本文を作り始めてはいけません。Pre-visual buildで完成済みであることが前提です。
+ユーザーから最終レビュー中の明示的な編集指示が入った場合は、その編集だけを行い、承認済み画像をロックしたままtarget-only QA / Previewを再実行してください。
 ユーザーの画像格納後は原則として以下だけを1本で実行してください。
 1. 13画像Batch verification
 2. 必要な一括変換・dimensions/path/hygiene QA
@@ -165,8 +192,9 @@ For a Protocol 2 new Country, use this order:
 4. `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. `docs/CONTENT_QUALITY_RULES_V3.md` for `contentQaVersion: 3`; v2 spec only for legacy v2 Countries
-8. Scene / Taste / Map / Country template specifications
-9. chat history
+7. `docs/CONTENT_QUALITY_RULES_V5.md` for new `contentQaVersion: 5`; v4/v3/v2 specs for legacy versions
+8. `docs/MAP_SYSTEM.md`
+9. Scene / Taste / Map / Country template specifications
+10. chat history
 
 The start prompt intentionally stays compact. Detailed rules live in the repository and must not be duplicated into an ever-growing per-Country prompt.
