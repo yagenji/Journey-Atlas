@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 4,
-  "updatedAt": "2026-09-14T20:00:00+09:00",
+  "policyPatch": 5,
+  "updatedAt": "2026-09-14T13:39:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -40,6 +40,7 @@
     "finalExpectedImagePathsDeclared": true,
     "sceneCoordinatesFinal": true,
     "mapBuiltAndQaPassed": true,
+    "mapCapitalLabelCollisionQaPassed": true,
     "taxonomyComplete": true,
     "relatedCountriesComplete": true,
     "nextRoutesResolved": true,
@@ -47,7 +48,7 @@
     "signatureFactsComplete": true,
     "sourcesComplete": true,
     "editorialQaV2Passed": true,
-    "editorialQaCurrentVersion": 4
+    "editorialQaCurrentVersion": 5
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
@@ -88,8 +89,9 @@
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
   "contentQuality": {
-    "version": 4,
+    "version": 5,
     "validator": "scripts/validate_country_editorial_v2.py",
+    "supplementalValidator": "scripts/validate_country_quality_v5.py",
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
@@ -122,10 +124,29 @@
       "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
       "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
     },
+    "signatureFactSelectionPolicy": "READER_INTEREST_FIRST",
+    "signatureFactInterestReasonRequired": true,
+    "signatureFactInterestReasonField": "interestReason",
+    "worldHeritageCountSignatureFactPolicy": "EXCEPTION_ONLY",
+    "worldHeritageCountMinimumExceptionalCount": 25,
+    "worldHeritageCountExplicitFlag": "exceptionalHeritageCount",
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
     "forestShareExplicitFlag": "exceptionalShare"
+  },
+  "mapQuality": {
+    "validator": "scripts/validate_country_quality_v5.py",
+    "capitalNameSceneNumberOverlapForbidden": true,
+    "capitalLabelMustRemainInsideCanvas": true,
+    "capitalLabelPositionsAllowed": ["left", "right"],
+    "capitalLabelOffsetMaximumPx": 80,
+    "coordinateMutationForCollisionAvoidance": "FORBIDDEN",
+    "collisionResolutionOrder": [
+      "capital.labelPosition",
+      "capital.labelOffset",
+      "MINIMAL_mapOffset"
+    ]
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,

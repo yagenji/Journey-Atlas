@@ -1,9 +1,9 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
 Updated: 2026-09-14
-Current new-Country protocol: 2.0 / policy patch 4
+Current new-Country protocol: 2.0 / policy patch 5
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
-Current content policy: Content QA v4
+Current content policy: Content QA v5
 
 ## Copy / paste start prompt
 
@@ -53,10 +53,12 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - sources / sourceDates
 - current Content QA
 
-`python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json` がPASSし、MapがAPPROVEDになるまでHeroへ進まないでください。
+以下2つがPASSし、MapがAPPROVEDになるまでHeroへ進まないでください。
+`python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json`
+`python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json`
 
-【Content QA v4】
-- 新規Countryは `contentQaVersion: 4` を使用してください。
+【Content QA v5】
+- 新規Countryは `contentQaVersion: 5` を使用してください。
 - Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
 - 旅の目安日程は `日` 表記に統一してください。
 - 第1段階と第2段階は、必ず幅のある `○〜○日` のレンジにしてください。`2日` や `5日` のような単独日数は禁止です。
@@ -73,12 +75,23 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - 日数だけでなく、各段階でどの地域を組み合わせるか、どの順序で巡るか、都市・自然・文化をどう組み合わせるかを説明してください。
 - `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
 - 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
-- 単語が違っていても、読者が「さっきと同じ話」と感じうる内容は重複です。数値は数字だからこそ面白い特徴、景色の向こうへは背景・意味の深掘り、トリビアは短い発見に役割を分けてください。
-- Signature Factsは必要に応じて内容に合う明示的な `icon` を設定し、異なる題材が同一fallbackアイコンへ潰れないよう確認してください。
-- 森林・樹林地の割合は通常のSignature Factに使用しません。
-- 森林率を使えるのは国の極端な特徴である場合だけです。機械基準は10%以下または70%以上かつ `exceptionalShare:true` です。
+- Signature Factsは「取得できる数字」ではなく、**その数字を知ると読者の国の見え方が変わるもの**を3件選んでください。
+- 各Signature Factに内部メタデータ `interestReason` を必須とし、なぜその数字が3枠の一つに値するかを説明してください。
+- 世界遺産の件数は通常のSignature Factに使いません。例外は25件以上かつ `exceptionalHeritageCount:true` の場合だけです。25件以上でも、もっとその国らしい数字があるならそちらを優先してください。
+- 森林・樹林地の割合も通常のSignature Factに使いません。例外は10%以下または70%以上かつ `exceptionalShare:true` の場合だけです。
+- 世界遺産数・森林率が例外基準を満たさない場合は、Travel Trivia / Beyond the Sceneryへ移すか、別の数値へ差し替えてください。
 - 数字が取得できること自体を採用理由にしないでください。
-- 既存 `contentQaVersion: 3` Countryはv3のroute-scope/no-day-count契約を維持し、意図的に移行する場合だけv4へ上げてください。
+- Signature Factsは必要に応じて内容に合う明示的な `icon` を設定し、異なる題材が同一fallbackアイコンへ潰れないよう確認してください。
+
+【Map QA v5】
+- 首都名ラベルとS01〜S08の番号circleを重ねてはいけません。
+- `validate_country_quality_v5.py` が1200×760 canvas上で首都名ラベルの矩形と8景番号を検査します。
+- 衝突時は、実緯度経度を変更せず、まず `capital.labelPosition` の left / right を切り替えてください。
+- 次に必要最小限の `capital.labelOffset: {x, y}` を使ってください。各軸±80px以内です。
+- それでも解けない場合だけ最小の `mapOffset` を使ってください。
+- 首都名ラベルがmap canvas外へ出ることも不可です。
+
+既存 `contentQaVersion: 4` 以下のCountryは自動的にはv5で失格にしません。新規制作および意図的にv5へ移行したCountryに適用します。
 
 【画像生成】
 画像生成は現在のmain image policyに従ってください。
@@ -179,8 +192,9 @@ For a Protocol 2 new Country, use this order:
 4. `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. `docs/CONTENT_QUALITY_RULES_V4.md` for new `contentQaVersion: 4`; v3/v2 specs for legacy versions
-8. Scene / Taste / Map / Country template specifications
-9. chat history
+7. `docs/CONTENT_QUALITY_RULES_V5.md` for new `contentQaVersion: 5`; v4/v3/v2 specs for legacy versions
+8. `docs/MAP_SYSTEM.md`
+9. Scene / Taste / Map / Country template specifications
+10. chat history
 
 The start prompt intentionally stays compact. Detailed rules live in the repository and must not be duplicated into an ever-growing per-Country prompt.
