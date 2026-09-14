@@ -54,7 +54,13 @@
 
 /* Country Profile is defined only in country-icon-system.css. */
 
-/* Map is for spatial relationship: numbered pins only. */
+/* Map is for spatial relationship: numbered pins only. Keep the runtime marker
+   layer explicitly above the SVG artwork so 1–8 remain visible in every map. */
+.map-art{isolation:isolate;}
+.map-base{z-index:0;}
+.map-grid{z-index:1;}
+.map-markers{z-index:4;pointer-events:none;}
+.map-marker{pointer-events:auto;}
 .map-marker span{display:none!important;}
 .map-marker b{
   width:27px!important;
