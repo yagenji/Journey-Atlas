@@ -1,0 +1,168 @@
+name: Publication Pipeline v2 checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: Country slug
+        required: true
+        type: string
+      mode:
+        description: review or publish
+        required: true
+        type: choice
+        options:
+          - review
+          - publish
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Country branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image validation dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+
+      - name: Validate Publication Pipeline v2 target
+        env:
+          SLUG: ${{ inputs.slug }}
+          MODE: ${{ inputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "data/countries/$SLUG.json"
+          test -f "ops/country-production/$SLUG.json"
+          python3 scripts/publication_pipeline_v2.py self-test
+          if [ "$MODE" = "review" ]; then
+            python3 scripts/publication_pipeline_v2.py assert-review-ready "$SLUG"
+          else
+            python3 scripts/publication_pipeline_v2.py assert-publish-ready "$SLUG"
+          fi
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country.py --strict "data/countries/$SLUG.json"
+          python3 scripts/audit_country_image_delivery_targeted.py --slug "$SLUG"
+          python3 scripts/validate_images.py --mode audit --slug "$SLUG"
+          python3 scripts/validate_images.py --duplicates-only --slug "$SLUG"
+          if [ "$MODE" = "publish" ]; then
+            python3 scripts/validate_production_state_routed.py
+          fi
+
+  browser-qa:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout Country branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decide whether review Browser QA can be reused
+        id: reuse
+        env:
+          SLUG: ${{ inputs.slug }}
+          MODE: ${{ inputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          reuse=false
+          if [ "$MODE" = "publish" ]; then
+            source_commit="$(python3 - "$SLUG" <<'PY'
+          import json, sys
+          from pathlib import Path
+          state = json.loads((Path('ops/country-production') / f'{sys.argv[1]}.json').read_text(encoding='utf-8'))
+          preview = state.get('reviewPreview') or {}
+          if preview.get('state') == 'DONE' and preview.get('browserQa') == 'PASS':
+              print(preview.get('sourceCommit') or '')
+          PY
+            )"
+            if [ -n "$source_commit" ] && git cat-file -e "$source_commit^{commit}" 2>/dev/null; then
+              shared_changed=false
+              while IFS= read -r path; do
+                case "$path" in
+                  country.html|assets/js/app.js|assets/js/top.js|assets/css/*|scripts/build_site.py|scripts/build_country_preview_targeted.py|scripts/qa_published_browser.py)
+                    shared_changed=true
+                    break
+                    ;;
+                esac
+              done < <(git diff --name-only "$source_commit"..HEAD)
+              if [ "$shared_changed" = "false" ]; then
+                reuse=true
+              fi
+            fi
+          fi
+          echo "reuse=$reuse" >> "$GITHUB_OUTPUT"
+          echo "Reuse review Browser QA: $reuse"
+
+      - name: Reuse previously passed review Browser QA
+        if: steps.reuse.outputs.reuse == 'true'
+        run: echo "No shared rendering code changed after the validated review source; reusing the passed Desktop/Tablet/Mobile review QA."
+
+      - name: Install browser QA dependency
+        if: steps.reuse.outputs.reuse != 'true'
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+
+      - name: Build targeted Country package
+        if: steps.reuse.outputs.reuse != 'true'
+        env:
+          TARGET_SLUGS: ${{ inputs.slug }}
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: python3 scripts/build_country_preview_targeted.py
+
+      - name: Start targeted package
+        if: steps.reuse.outputs.reuse != 'true'
+        run: |
+          python3 -m http.server 4173 --directory dist >/tmp/publication-v2-http.log 2>&1 &
+          echo $! > /tmp/publication-v2-http.pid
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/publication-v2-http.log || true
+          exit 1
+
+      - name: Run Desktop Tablet Mobile Browser QA
+        if: steps.reuse.outputs.reuse != 'true'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-publication-v2-output
+          QA_SCOPE: ${{ inputs.mode == 'review' && 'unpublished-reviewable' || 'reviewable' }}
+          QA_SLUGS: ${{ inputs.slug }}
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Stop targeted package
+        if: always() && steps.reuse.outputs.reuse != 'true'
+        run: |
+          if [ -f /tmp/publication-v2-http.pid ]; then
+            kill "$(cat /tmp/publication-v2-http.pid)" 2>/dev/null || true
+          fi
+
+      - name: Upload Browser QA report
+        if: always() && steps.reuse.outputs.reuse != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-v2-browser-qa-${{ inputs.slug }}-${{ inputs.mode }}
+          path: qa-publication-v2-output/
+          if-no-files-found: warn
+          retention-days: 3
