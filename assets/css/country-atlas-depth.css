@@ -37,6 +37,39 @@
   transform:translateX(-50%)!important;
 }
 
+/* Primary travel themes: use icons and a quiet theme-specific accent so they read
+   as visual discovery cues rather than undifferentiated metadata chips. */
+.country-theme-chip{
+  --country-theme-accent:#6c8190;
+  --country-theme-wash:rgba(108,129,144,.10);
+  gap:7px!important;
+  border-color:color-mix(in srgb,var(--country-theme-accent) 38%, transparent)!important;
+  background:color-mix(in srgb,var(--country-theme-accent) 9%, rgba(251,248,240,.98))!important;
+  color:var(--country-theme-accent)!important;
+  box-shadow:inset 0 2px 0 color-mix(in srgb,var(--country-theme-accent) 72%, transparent),0 1px 2px rgba(18,54,92,.05)!important;
+}
+.country-theme-chip[data-theme="earth"]{--country-theme-accent:#667e58;--country-theme-wash:rgba(102,126,88,.10);}
+.country-theme-chip[data-theme="history"]{--country-theme-accent:#956748;--country-theme-wash:rgba(149,103,72,.10);}
+.country-theme-chip[data-theme="life"]{--country-theme-accent:#617c72;--country-theme-wash:rgba(97,124,114,.10);}
+.country-theme-chip[data-theme="city"]{--country-theme-accent:#607991;--country-theme-wash:rgba(96,121,145,.10);}
+.country-theme-chip[data-theme="wildlife"]{--country-theme-accent:#6d8458;--country-theme-wash:rgba(109,132,88,.10);}
+.country-theme-chip[data-theme="sea"]{--country-theme-accent:#567f8a;--country-theme-wash:rgba(86,127,138,.10);}
+.country-theme-chip[data-theme="food"]{--country-theme-accent:#9b6856;--country-theme-wash:rgba(155,104,86,.10);}
+.country-theme-chip[data-theme="road"]{--country-theme-accent:#6f706d;--country-theme-wash:rgba(111,112,109,.10);}
+.country-theme-chip__icon{
+  width:17px;
+  height:17px;
+  flex:0 0 17px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.country-theme-chip>span{
+  color:#173a5d;
+}
+
 /* Keep the detailed thematic layer quiet: more breadth, not visual clutter. */
 .atlas-extras{
   margin-top:14px;
@@ -166,4 +199,5 @@
   .atlas-extras__grid{grid-template-columns:1fr;}
   .atlas-extra{min-height:0;}
   .map-marker span{max-width:105px!important;font-size:9px!important;}
+  .country-theme-chip__icon{width:16px;height:16px;flex-basis:16px;}
 }
