@@ -5,15 +5,18 @@
   "contentRef": "country/unitedarabemirates",
   "stateRef": "country/unitedarabemirates",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-13T18:01:00+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-14T20:01:00+09:00",
   "hero": {
-    "state": "GENERATING",
+    "state": "REGENERATE",
     "asset": "assets/images/unitedarabemirates/approved/hero-sheikh-zayed-grand-mosque.webp",
     "contentId": "sheikh-zayed-grand-mosque-abu-dhabi",
     "promptSeries": 1,
-    "promptSeriesRejectCount": 0,
-    "rejectedGenerationIds": [],
+    "promptSeriesRejectCount": 1,
+    "rejectedGenerationIds": ["c9daed3b-6fe5-4a0a-8f35-2c56116a7abe"],
+    "lastFailureReason": "WRONG_TARGET_CARRYOVER",
+    "failureReason": "Hard reject: Hero generation produced a Dubai / Burj Khalifa coastal skyline instead of Sheikh Zayed Grand Mosque in Abu Dhabi.",
+    "consecutiveFailureCount": 1,
     "renderPacket": {
       "kind": "HERO",
       "contentId": "sheikh-zayed-grand-mosque-abu-dhabi",
@@ -29,14 +32,6 @@
       "forbidMontage": true,
       "forbidInsetImages": true,
       "singleSceneOnly": true
-    },
-    "generationReservation": {
-      "reservationId": "HERO-series1-attempt1",
-      "asset": "HERO",
-      "contentId": "sheikh-zayed-grand-mosque-abu-dhabi",
-      "promptSeries": 1,
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-13T18:01:00+09:00"
     }
   },
   "scenes": [
@@ -63,7 +58,7 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {"state":"CONTAMINATED","epoch":1,"lastResetAt":null,"lastFailureAsset":"HERO","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"PENDING","rounds":[]},
   "tasteBatchReview": {"approval":"PENDING","rounds":[]},
@@ -73,5 +68,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next": {"action":"RESET_GENERATION_CONTEXT","asset":null}
 }
