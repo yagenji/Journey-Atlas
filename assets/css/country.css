@@ -52,11 +52,20 @@
   font-weight: 500;
   letter-spacing: .03em;
 }
+
+/* Keep Hero-level themes visually separate from the Country Profile band. */
+.country-page .hero:has(.country-theme-context .country-theme-chip) {
+  margin-bottom: 28px;
+}
+
 @media (max-width: 700px) {
   .country-theme-context {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
     margin-top: 18px;
+  }
+  .country-page .hero:has(.country-theme-context .country-theme-chip) {
+    margin-bottom: 20px;
   }
 }
