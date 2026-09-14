@@ -5,17 +5,17 @@
   "contentRef": "country/unitedarabemirates",
   "stateRef": "country/unitedarabemirates",
   "phase": "HERO",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-14T20:20:00+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-14T20:22:00+09:00",
   "hero": {
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": "assets/images/unitedarabemirates/approved/hero-dubai-skyline-burj-khalifa.webp",
     "contentId": "dubai-skyline-burj-khalifa",
     "promptSeries": 2,
     "promptSeriesRejectCount": 1,
     "rejectedGenerationIds": ["c9daed3b-6fe5-4a0a-8f35-2c56116a7abe", "a5e97756-d5bc-4137-8205-11f396fe275e"],
-    "lastFailureReason": "DIMENSION_MISMATCH",
-    "failureReason": "Rejected by user: generated Hero used a panoramic aspect ratio instead of the JOURNEY ATLAS standard 3:2 Hero format.",
+    "candidateGenerationId": "f7e13e10-fa04-43ae-8e30-9a569b4d9bef",
+    "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS","dimensions":"PASS_1536x1024_3:2"},
     "renderPacket": {
       "kind": "HERO",
       "contentId": "dubai-skyline-burj-khalifa",
@@ -31,14 +31,6 @@
       "forbidMontage": true,
       "forbidInsetImages": true,
       "singleSceneOnly": true
-    },
-    "generationReservation": {
-      "reservationId": "HERO-series2-attempt2",
-      "asset": "HERO",
-      "contentId": "dubai-skyline-burj-khalifa",
-      "promptSeries": 2,
-      "generationContextEpoch": 2,
-      "reservedAt": "2026-09-14T20:20:00+09:00"
     }
   },
   "scenes": [
@@ -75,5 +67,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next": {"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
