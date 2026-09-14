@@ -17,6 +17,7 @@ REGISTRY_PATHS = [
 ]
 THEME_PATH = "data/theme-taxonomy.json"
 STATUS_PATH = "data/country-renewal-status.json"
+VERIFICATION_TARGET_PATH = "ops/production-verification-target.json"
 
 COUNTRY_SHARED_FILES = {
     "country.html",
@@ -49,6 +50,7 @@ QA_SHARED_FILES = {
     "scripts/externalize_review_preview_images.py",
     ".github/workflows/browser-country-qa.yml",
     ".github/workflows/deploy-country-preview.yml",
+    ".github/workflows/verify-production.yml",
 }
 
 PRODUCTION_PREFIXES = (
@@ -72,6 +74,8 @@ PRODUCTION_EXACT = {
     "scripts/build_site.py",
     "scripts/package_site.py",
     "scripts/build_cloudflare.py",
+    ".github/workflows/verify-production.yml",
+    VERIFICATION_TARGET_PATH,
 }
 
 COUNTRY_JSON_RE = re.compile(r"^data/countries/([^/]+)\.json$")
@@ -162,6 +166,15 @@ def changed_status_slugs(base: str, head: str) -> set[str]:
     return {slug for slug in slugs if before.get(slug) != after.get(slug)}
 
 
+def verification_target_slugs() -> set[str]:
+    payload = current_json(VERIFICATION_TARGET_PATH)
+    raw = payload.get("slugs")
+    if isinstance(raw, list):
+        return {slug for slug in raw if isinstance(slug, str) and slug.strip()}
+    slug = payload.get("slug")
+    return {slug} if isinstance(slug, str) and slug.strip() else set()
+
+
 def is_production_file(path: str) -> bool:
     if path in PRODUCTION_EXACT:
         return True
@@ -180,6 +193,7 @@ def classify(base: str, head: str) -> dict:
     files = changed_files(base, head)
     target_slugs: set[str] = set()
     browser_scope = "none"
+    explicit_verification_target = VERIFICATION_TARGET_PATH in files
 
     for path in files:
         match = COUNTRY_JSON_RE.match(path)
@@ -201,8 +215,13 @@ def classify(base: str, head: str) -> dict:
     if STATUS_PATH in files:
         target_slugs |= changed_status_slugs(base, head)
 
+    if explicit_verification_target:
+        target_slugs |= verification_target_slugs()
+
     if any(path in COUNTRY_SHARED_FILES for path in files):
         browser_scope = "all"
+    elif explicit_verification_target:
+        browser_scope = "targeted"
     elif any(path in QA_SHARED_FILES for path in files):
         # QA/review infrastructure changes need one real Country smoke test,
         # not a full regression of every published Country.
@@ -274,6 +293,8 @@ def self_test() -> int:
     assert COUNTRY_IMAGE_RE.match("assets/images/czechia/approved/a.webp").group(1) == "czechia"
     assert is_production_file("data/countries/ukraine.json")
     assert is_production_file("assets/css/country.css")
+    assert is_production_file(".github/workflows/verify-production.yml")
+    assert is_production_file(VERIFICATION_TARGET_PATH)
     assert not is_production_file("ops/country-production/ukraine.json")
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
@@ -283,6 +304,7 @@ def self_test() -> int:
     assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
     assert "scripts/externalize_review_preview_images.py" in QA_SHARED_FILES
     assert ".github/workflows/deploy-country-preview.yml" in QA_SHARED_FILES
+    assert ".github/workflows/verify-production.yml" in QA_SHARED_FILES
     assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
     print("Impact classifier self-test passed.")
     return 0

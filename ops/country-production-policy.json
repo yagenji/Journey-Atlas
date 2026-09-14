@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "protocolId": "2.0",
-  "policyPatch": 3,
-  "updatedAt": "2026-09-12T00:30:00+09:00",
+  "policyPatch": 5,
+  "updatedAt": "2026-09-14T16:32:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -40,17 +40,19 @@
     "finalExpectedImagePathsDeclared": true,
     "sceneCoordinatesFinal": true,
     "mapBuiltAndQaPassed": true,
+    "mapCapitalLabelCollisionQaPassed": true,
     "taxonomyComplete": true,
     "relatedCountriesComplete": true,
     "nextRoutesResolved": true,
     "travelScaleComplete": true,
     "signatureFactsComplete": true,
     "sourcesComplete": true,
-    "editorialQaV2Passed": true
+    "editorialQaV2Passed": true,
+    "editorialQaCurrentVersion": 5
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
-    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
+    "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT_OR_EXPLICIT_USER_REVISION",
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
     "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
@@ -86,14 +88,98 @@
     "pauseForProgressConfirmation": false,
     "canonicalReviewIsNextUserGateAfterAssetHandoff": true
   },
-  "contentQuality": {
+  "publicationAutomation": {
     "version": 2,
+    "activationField": "publicationPipelineVersion",
+    "activationValue": 2,
+    "defaultForNewCountryScaffold": true,
+    "legacyCountryAutoMigration": false,
+    "legacyCountriesContinueUnchanged": true,
+    "review": {
+      "trigger": "ASSET_HANDOFF_PASS_13",
+      "autoOpenReusablePr": true,
+      "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
+      "checksMode": "review",
+      "browserQaPassesTarget": 1,
+      "duplicateBrowserQaAfterPreview": "FORBIDDEN_UNLESS_SHARED_RENDERING_CHANGED",
+      "autoDeployPersistentPreview": true,
+      "autoReconcileProductionState": true,
+      "nextUserGate": "CANONICAL_PAGE_APPROVAL"
+    },
+    "publication": {
+      "trigger": "FINAL_APPROVAL_APPROVED",
+      "latestMainSync": true,
+      "sharedMetadataConflictPolicy": "LATEST_MAIN_PLUS_TARGET_COUNTRY_ROW",
+      "serializationGroup": "country-publication-main",
+      "maxMainSyncCycles": 3,
+      "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
+      "checksMode": "publish",
+      "reuseReviewBrowserQaWhenSharedRenderingUnchanged": true,
+      "mergeMethod": "squash",
+      "secondPublicationPr": "FORBIDDEN",
+      "postMergeVerification": "FAST_CLOUDFLARE_SHA_AND_TARGET_ROUTE_SMOKE",
+      "assistantPollingRequired": false
+    }
+  },
+  "contentQuality": {
+    "version": 5,
+    "validator": "scripts/validate_country_editorial_v2.py",
+    "supplementalValidator": "scripts/validate_country_quality_v5.py",
+    "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
+    "travelScaleNumericDurationForbidden": false,
+    "travelScaleDayCountForbidden": false,
+    "travelScaleDayNotationRequired": true,
+    "travelScaleDurationUnitsAllowed": ["日"],
+    "travelScaleDurationUnitsForbidden": ["泊", "週", "週間"],
+    "travelScaleFirstTwoTiersMustBeRanges": true,
+    "travelScaleRangeSeparator": "〜",
+    "travelScaleRangeMustHaveWidth": true,
+    "travelScaleRangesMustBeContinuous": true,
+    "travelScaleContinuityRule": "NEXT_START_EQUALS_PREVIOUS_END_PLUS_ONE",
+    "travelScaleGapsForbidden": true,
+    "travelScaleOverlapsForbidden": true,
+    "travelScaleThirdItemOpenEndedDayRule": true,
+    "travelScaleExampleDayCountForbidden": true,
+    "travelScaleExampleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
+    "travelScaleExamplesAreRouteOnly": true,
+    "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
+    "crossSectionSemanticDuplicationForbidden": true,
+    "crossSectionCanonicalTopicKeyRequired": true,
+    "crossSectionTopicKeyUniqueAcross": [
+      "signatureFacts",
+      "atlasExtras",
+      "travelTrivia"
+    ],
+    "crossSectionRoles": {
+      "signatureFacts": "NUMERIC_FACTS_ONLY",
+      "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
+      "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
+    },
+    "signatureFactSelectionPolicy": "READER_INTEREST_FIRST",
+    "signatureFactInterestReasonRequired": true,
+    "signatureFactInterestReasonField": "interestReason",
+    "worldHeritageCountSignatureFactPolicy": "EXCEPTION_ONLY",
+    "worldHeritageCountMinimumExceptionalCount": 25,
+    "worldHeritageCountExplicitFlag": "exceptionalHeritageCount",
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
     "forestShareExplicitFlag": "exceptionalShare"
+  },
+  "mapQuality": {
+    "validator": "scripts/validate_country_quality_v5.py",
+    "capitalNameSceneNumberOverlapForbidden": true,
+    "capitalLabelMustRemainInsideCanvas": true,
+    "capitalLabelPositionsAllowed": ["left", "right"],
+    "capitalLabelOffsetMaximumPx": 80,
+    "coordinateMutationForCollisionAvoidance": "FORBIDDEN",
+    "collisionResolutionOrder": [
+      "capital.labelPosition",
+      "capital.labelOffset",
+      "MINIMAL_mapOffset"
+    ]
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,
