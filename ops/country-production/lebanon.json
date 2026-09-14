@@ -5,8 +5,8 @@
   "contentRef": "country/lebanon",
   "stateRef": "country/lebanon",
   "phase": "TASTE_INITIAL",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-14T20:03:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-14T20:05:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -59,7 +59,7 @@
   "publication": {"state":"DRAFT","atlasPublished":false},
   "executionPolicy": {"heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true},
   "imageGenerationPolicyRef":"main:ops/image-generation-policy.json",
-  "generationContext": {"state":"CONTAMINATED","epoch":2,"lastResetAt":"2026-09-13T18:09:00+09:00","lastFailureAsset":"FOOD02","lastFailureReason":"WRONG_TARGET_CARRYOVER"},
+  "generationContext": {"state":"CLEAN","epoch":3,"lastResetAt":"2026-09-14T20:05:00+09:00","lastFailureAsset":null,"lastFailureReason":null},
   "imageGenerationPolicy": {"revision":7,"sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true},
   "sceneBatchReview": {"approval":"APPROVED","rounds":[{"round":1,"reviewBoundary":true,"approvedAt":"2026-09-13T18:13:00+09:00","scope":["S01","S02","S03","S04","S05","S06","S07","S08"],"approvedGenerations":{"S01":"87845793-3f65-4cdf-97c1-fd31f00856f2","S02":"ecfda781-ed5e-4df2-aff3-c586d2f775ee","S03":"8f22d525-901b-4124-8efe-f5304edfa7e7","S04":"a3748685-19ff-478b-a97e-05044056fb35","S05":"a15ed348-ee20-41a9-bd66-56d12dd35584","S06":"c9619c33-7e71-4c3a-9f42-9700489794bb","S07":"43e7b041-055a-41ea-9ab8-d08868c09d69","S08":"52948a52-9eb8-481e-82f0-ece07eb32c81"},"regenerate":[]}]},
   "tasteBatchReview":{"approval":"PENDING","rounds":[]},
@@ -69,5 +69,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"RESET_GENERATION_CONTEXT","asset":null}
+  "next":{"action":"GENERATE_TASTE","asset":"FOOD03"}
 }
