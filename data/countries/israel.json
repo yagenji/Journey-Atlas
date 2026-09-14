@@ -35,7 +35,7 @@
     },
     "svg": "assets/images/israel/map-atlas-v1.svg",
     "route": null,
-    "source": "Natural Earth 1:10m Admin-0 de facto/disputed-boundary representation (public domain), WGS84; boundary depiction is for geographic orientation and does not express a legal position on disputed territorial status; illustrated treatment: JOURNEY ATLAS map-v3 clean background."
+    "source": "Natural Earth 1:50m Admin-0 de facto/disputed-boundary representation (public domain), WGS84; boundary depiction is for geographic orientation and does not express a legal position on disputed territorial status; illustrated treatment: JOURNEY ATLAS map-v3 clean background."
   },
   "scenes": [
     {
@@ -64,7 +64,7 @@
       "image": "assets/images/israel/approved/acre-old-city-harbor.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -2.0,
+        "x": -3.6,
         "y": -1.5
       }
     },
@@ -81,8 +81,8 @@
       "image": "assets/images/israel/approved/haifa-bahai-terraces.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 2.0,
-        "y": 1.5
+        "x": 2.5,
+        "y": 1.3
       }
     },
     {
@@ -96,7 +96,11 @@
         "longitude": 35.5
       },
       "image": "assets/images/israel/approved/mount-arbel-sea-of-galilee.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 2.0,
+        "y": -0.2
+      }
     },
     {
       "id": "beit-guvrin-bell-caves",
@@ -109,7 +113,11 @@
         "longitude": 34.8987
       },
       "image": "assets/images/israel/approved/beit-guvrin-bell-caves.webp",
-      "labelPosition": "left"
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.1,
+        "y": 0
+      }
     },
     {
       "id": "makhtesh-ramon-rim",
@@ -148,7 +156,11 @@
         "longitude": 34.8919
       },
       "image": "assets/images/israel/approved/caesarea-roman-theater-coast.webp",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0.5
+      }
     }
   ],
   "encounters": [
@@ -311,7 +323,7 @@
         "nameLocal": "Sabich",
         "text": "揚げナス、ゆで卵、タヒニ、アンバ、刻み野菜などをピタに詰める。イラク系ユダヤ人の食文化と結びつき、現在は都市部の軽食として広く見かける。",
         "image": "assets/images/israel/approved/sabich.webp",
-        "imageState": "PENDING"
+        "imageState": "APPROVED"
       },
       {
         "id": "jachnun",
@@ -319,7 +331,7 @@
         "nameLocal": "Jachnun",
         "text": "薄く重ねた生地を巻き、低温で長時間焼くイエメン系ユダヤ人の料理。ゆで卵、すりおろしトマト、辛いソースと組み合わせるのが一般的。",
         "image": "assets/images/israel/approved/jachnun.webp",
-        "imageState": "PENDING"
+        "imageState": "APPROVED"
       },
       {
         "id": "shakshuka",
@@ -327,7 +339,7 @@
         "nameLocal": "Shakshuka",
         "text": "トマトと唐辛子・パプリカなどを煮たソースに卵を落とす北アフリカ系の料理。イスラエルでも朝食や軽食として定着している。",
         "image": "assets/images/israel/approved/shakshuka.webp",
-        "imageState": "PENDING"
+        "imageState": "APPROVED"
       },
       {
         "id": "bourekas",
@@ -335,7 +347,7 @@
         "nameLocal": "Bourekas",
         "text": "チーズ、じゃがいも、ほうれん草などを包む層状の焼き菓子。オスマン・バルカン・セファルディ系の食文化につながり、ベーカリーで日常的に見かける。",
         "image": "assets/images/israel/approved/bourekas.webp",
-        "imageState": "PENDING"
+        "imageState": "APPROVED"
       }
     ]
   },
@@ -497,13 +509,13 @@
       "reason": "古代遺跡と現代都市、地中海沿岸の生活を組み合わせたいなら。海上交易と古典古代のネットワークをより西側から見直せる。"
     }
   ],
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-15",
   "sourcesVerifiedAt": "2026-09-13",
   "sourceDates": {
     "population": "2026-09-09",
     "area": "2024",
     "travelSafety": "2026-09-10",
-    "worldHeritage": "2026"
+    "unesco": "2026"
   },
   "sources": {
     "population": "Israel Central Bureau of Statistics — Israel in Numbers, eve of Rosh Hashana 5787 (9 Sep 2026): population estimated at 10.305 million. https://www.cbs.gov.il/he/mediarelease/DocLib/2026/282/11_26_282b.pdf",
@@ -526,6 +538,6 @@
     "parksReservation": "Israel Nature and Parks Authority — Makhtesh Ramon page and reservation system. https://en.parks.org.il/reserve-park/makhtesh-ramon-nature-reserve-and-visitors-center/",
     "multilingualNames": "Israel government core documents and public signage use Hebrew, Arabic and English naming conventions; Knesset Basic Law establishes Hebrew and Arabic status. https://main.knesset.gov.il/EN/activity/documents/BasicLawsPDF/BasicLawNationState.pdf",
     "travelSafety": "Ministry of Foreign Affairs of Japan — Israel/Palestinian Territories travel advisory, updated 10 Sep 2026. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2026T085.html",
-    "map": "Natural Earth 1:10m Admin-0 country geometry (public domain), via AshKyd/geojson-regions; Natural Earth documents de facto/disputed-boundary handling. https://github.com/AshKyd/geojson-regions"
+    "map": "Natural Earth 1:50m Admin-0 country geometry (public domain), via AshKyd/geojson-regions; Natural Earth documents de facto/disputed-boundary handling. https://github.com/AshKyd/geojson-regions"
   }
 }
