@@ -14,6 +14,9 @@ on:
         options:
           - review
           - publish
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -22,6 +25,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      slug: ${{ steps.target.outputs.slug }}
+      mode: ${{ steps.target.outputs.mode }}
+      active: ${{ steps.target.outputs.active }}
     steps:
       - name: Checkout Country branch
         uses: actions/checkout@v4
@@ -33,13 +40,77 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Resolve Publication Pipeline v2 target
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          HEAD_REF: ${{ github.head_ref }}
+          DISPATCH_SLUG: ${{ inputs.slug }}
+          DISPATCH_MODE: ${{ inputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          slug=""
+          mode=""
+          active=false
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            slug="$DISPATCH_SLUG"
+            mode="$DISPATCH_MODE"
+          else
+            case "$HEAD_REF" in
+              country/*) slug="${HEAD_REF#country/}" ;;
+              *)
+                echo "Non-Country PR; Publication Pipeline v2 required checks are a compatibility no-op."
+                echo "slug=" >> "$GITHUB_OUTPUT"
+                echo "mode=" >> "$GITHUB_OUTPUT"
+                echo "active=false" >> "$GITHUB_OUTPUT"
+                exit 0
+                ;;
+            esac
+          fi
+
+          if [ -f "data/countries/$slug.json" ] && [ -f "ops/country-production/$slug.json" ]; then
+            active="$(python3 - "$slug" <<'PY'
+          import json, sys
+          from pathlib import Path
+          slug = sys.argv[1]
+          country = json.loads((Path('data/countries') / f'{slug}.json').read_text(encoding='utf-8'))
+          print('true' if country.get('publicationPipelineVersion') == 2 else 'false')
+          PY
+            )"
+          fi
+
+          if [ "$active" = "true" ] && [ -z "$mode" ]; then
+            mode="$(python3 - "$slug" <<'PY'
+          import json, sys
+          from pathlib import Path
+          slug = sys.argv[1]
+          state = json.loads((Path('ops/country-production') / f'{slug}.json').read_text(encoding='utf-8'))
+          approval = state.get('finalApproval') if isinstance(state.get('finalApproval'), dict) else {}
+          print('publish' if approval.get('state') == 'APPROVED' else 'review')
+          PY
+            )"
+          fi
+
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "active=$active" >> "$GITHUB_OUTPUT"
+          echo "Resolved Pipeline v2 target: slug=$slug mode=$mode active=$active"
+
+      - name: Compatibility pass for non-v2 PR
+        if: steps.target.outputs.active != 'true'
+        run: echo "Publication Pipeline v2 is not active for this PR; required check passes without changing legacy routing."
+
       - name: Install image validation dependency
+        if: steps.target.outputs.active == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow
 
       - name: Validate Publication Pipeline v2 target
+        if: steps.target.outputs.active == 'true'
         env:
-          SLUG: ${{ inputs.slug }}
-          MODE: ${{ inputs.mode }}
+          SLUG: ${{ steps.target.outputs.slug }}
+          MODE: ${{ steps.target.outputs.mode }}
         shell: bash
         run: |
           set -euo pipefail
@@ -66,21 +137,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
+      - name: Compatibility pass for non-v2 PR
+        if: needs.validate.outputs.active != 'true'
+        run: echo "Publication Pipeline v2 is not active for this PR; Browser QA context passes without changing legacy routing."
+
       - name: Checkout Country branch
+        if: needs.validate.outputs.active == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
+        if: needs.validate.outputs.active == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Decide whether review Browser QA can be reused
+        if: needs.validate.outputs.active == 'true'
         id: reuse
         env:
-          SLUG: ${{ inputs.slug }}
-          MODE: ${{ inputs.mode }}
+          SLUG: ${{ needs.validate.outputs.slug }}
+          MODE: ${{ needs.validate.outputs.mode }}
         shell: bash
         run: |
           set -euo pipefail
@@ -114,22 +192,22 @@ jobs:
           echo "Reuse review Browser QA: $reuse"
 
       - name: Reuse previously passed review Browser QA
-        if: steps.reuse.outputs.reuse == 'true'
+        if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse == 'true'
         run: echo "No shared rendering code changed after the validated review source; reusing the passed Desktop/Tablet/Mobile review QA."
 
       - name: Install browser QA dependency
-        if: steps.reuse.outputs.reuse != 'true'
+        if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
       - name: Build targeted Country package
-        if: steps.reuse.outputs.reuse != 'true'
+        if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         env:
-          TARGET_SLUGS: ${{ inputs.slug }}
+          TARGET_SLUGS: ${{ needs.validate.outputs.slug }}
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_country_preview_targeted.py
 
       - name: Start targeted package
-        if: steps.reuse.outputs.reuse != 'true'
+        if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         run: |
           python3 -m http.server 4173 --directory dist >/tmp/publication-v2-http.log 2>&1 &
           echo $! > /tmp/publication-v2-http.pid
@@ -143,26 +221,26 @@ jobs:
           exit 1
 
       - name: Run Desktop Tablet Mobile Browser QA
-        if: steps.reuse.outputs.reuse != 'true'
+        if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-publication-v2-output
-          QA_SCOPE: ${{ inputs.mode == 'review' && 'unpublished-reviewable' || 'reviewable' }}
-          QA_SLUGS: ${{ inputs.slug }}
+          QA_SCOPE: ${{ needs.validate.outputs.mode == 'review' && 'unpublished-reviewable' || 'reviewable' }}
+          QA_SLUGS: ${{ needs.validate.outputs.slug }}
         run: python3 scripts/qa_published_browser.py
 
       - name: Stop targeted package
-        if: always() && steps.reuse.outputs.reuse != 'true'
+        if: always() && needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         run: |
           if [ -f /tmp/publication-v2-http.pid ]; then
             kill "$(cat /tmp/publication-v2-http.pid)" 2>/dev/null || true
           fi
 
       - name: Upload Browser QA report
-        if: always() && steps.reuse.outputs.reuse != 'true'
+        if: always() && needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: publication-v2-browser-qa-${{ inputs.slug }}-${{ inputs.mode }}
+          name: publication-v2-browser-qa-${{ needs.validate.outputs.slug }}-${{ needs.validate.outputs.mode }}
           path: qa-publication-v2-output/
           if-no-files-found: warn
           retention-days: 3
