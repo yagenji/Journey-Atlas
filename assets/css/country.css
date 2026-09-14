@@ -59,9 +59,30 @@
     gap: 8px;
     margin-top: 18px;
   }
+}
 
-  /* Keep the Hero's theme selector visually separate from COUNTRY PROFILE. */
-  .country-page .atlas-body {
-    margin-top: 32px !important;
-  }
+/* Map stacking contract: map artwork stays below interactive numbered pins. */
+.map-art {
+  isolation: isolate;
+}
+.map-art .map-base {
+  z-index: 1 !important;
+}
+.map-art .map-markers {
+  z-index: 5 !important;
+  pointer-events: none;
+}
+.map-art .map-marker,
+.map-art .map-capital-marker,
+.map-art .map-hero-marker {
+  z-index: 6 !important;
+}
+.map-art .map-marker {
+  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.map-art .map-marker b {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
