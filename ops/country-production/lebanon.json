@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "lebanon",
   "countryName": "LEBANON",
-  "contentRef": "country/lebanon",
-  "stateRef": "country/lebanon",
-  "phase": "QA",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-15T01:40:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-15T01:52:27+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -174,8 +174,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/lebanon/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -183,8 +185,16 @@
     "basis": "User instructed: QAして問題なければ公開して. Review QA was PASS immediately before publication approval."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T01:52:27+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/lebanon/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -365,7 +375,7 @@
     }
   ],
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   }
 }
