@@ -31,7 +31,6 @@ jobs:
 
           slug = "syria"
           now = datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
-          approved_at = now
           source_sha = "6c46cbc91c9123d450f043d67a5ce15e809e2312"
           review_url = "https://yagenji.github.io/Journey-Atlas/reviews/syria/countries/syria/"
           published_url = "https://atlas.yagenji.com/countries/syria/"
@@ -69,7 +68,7 @@ jobs:
           state["reviewDeployment"] = {"state": "DONE", "url": published_url}
           state["finalApproval"] = {
               "state": "APPROVED",
-              "approvedAt": approved_at,
+              "approvedAt": now,
               "basis": (
                   "User instruction: シリアの公開を進めて完成させて。 "
                   "Final Syria review package passed validation and Browser QA after the requested Theme spacing, "
@@ -80,7 +79,7 @@ jobs:
               "state": "PUBLISHED",
               "atlasPublished": True,
               "productionVerification": "CI_GATED",
-              "requestedAt": approved_at,
+              "requestedAt": now,
               "publishedUrl": published_url,
               "robots": "index,follow",
               "sitemapListed": True,
@@ -102,19 +101,26 @@ jobs:
           if not hero:
               raise SystemExit("Syria Hero asset missing from State")
 
+          primary_found = False
           for filename in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
               path = Path("data") / filename
               payload = json.loads(path.read_text(encoding="utf-8"))
               rows = payload.get("destinations", [])
               row = next((r for r in rows if r.get("slug") == slug), None)
               if row is None:
-                  raise SystemExit(f"Syria registry row missing in {filename}")
+                  if filename == "atlas-destinations.json":
+                      raise SystemExit("Syria registry row missing in atlas-destinations.json")
+                  continue
+              if filename == "atlas-destinations.json":
+                  primary_found = True
               row["atlasPublished"] = True
               row["href"] = "countries/syria/"
               row["image"] = hero
               if "updatedAt" in payload:
                   payload["updatedAt"] = now[:10]
               path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+          if not primary_found:
+              raise SystemExit("Syria primary registry publication was not applied")
           PY
 
           rm -f .github/workflows/syria-finalize-once.yml
