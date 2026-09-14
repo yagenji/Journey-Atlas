@@ -45,7 +45,7 @@ permissions:
 
 concurrency:
   group: "verify-cloudflare-production"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   classify:
