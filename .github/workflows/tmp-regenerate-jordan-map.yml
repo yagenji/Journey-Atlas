@@ -78,7 +78,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm .github/workflows/tmp-regenerate-jordan-map.yml
-          git add data/countries/jordan.json ops/country-production/jordan.json
+          git add -f data/countries/jordan.json
+          git add ops/country-production/jordan.json
           git diff --cached --check
           git commit -m 'Integrate refined Jordan map and rerun QA'
           git push origin HEAD:country/jordan
