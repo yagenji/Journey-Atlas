@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import json.decoder
+import json.scanner
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,26 +35,18 @@ v72 = load_module("journey_atlas_v72_state", SCRIPTS / "image_policy_v72.py")
 protocol2 = load_module("journey_atlas_protocol2_state", SCRIPTS / "country_production_protocol_v2.py")
 
 
-def uae_s03_snapshot(state: dict, label: str) -> None:
+class PurePythonJSONDecoder(json.JSONDecoder):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.parse_string = json.decoder.py_scanstring
+        self.scan_once = json.scanner.py_make_scanner(self)
+
+
+def s03_values(state: dict):
     scenes = {str(item.get("id")): item for item in state.get("scenes", []) if isinstance(item, dict)}
     item_id = scenes.get("S03", {}).get("approvedGenerationId")
-    rounds = state.get("sceneBatchReview", {}).get("rounds", [])
-    ledger_id = None
-    for entry in rounds:
-        approved = entry.get("approvedGenerations") or {}
-        if "S03" in approved:
-            ledger_id = approved["S03"]
-            break
-    print(
-        "UAE_LEDGER_BOUNDARY", label,
-        "item_len=", len(item_id),
-        "ledger_len=", len(ledger_id),
-        "item_hex=", item_id.encode("utf-8").hex(),
-        "ledger_hex=", ledger_id.encode("utf-8").hex(),
-        "equal=", item_id == ledger_id,
-        "item_hash=", hash(item_id),
-        "ledger_hash=", hash(ledger_id),
-    )
+    ledger_id = state.get("sceneBatchReview", {}).get("rounds", [{}])[0].get("approvedGenerations", {}).get("S03")
+    return item_id, ledger_id
 
 
 def validate() -> list[str]:
@@ -61,18 +55,21 @@ def validate() -> list[str]:
 
     for path in sorted(STATE_DIR.glob("*.json")):
         try:
-            state = json.loads(path.read_text(encoding="utf-8"))
+            text = path.read_text(encoding="utf-8")
+            state = json.loads(text)
         except Exception as exc:
             errors.append(f"{path.name}: cannot parse JSON: {exc}")
             continue
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
             if path.name == "unitedarabemirates.json":
-                uae_s03_snapshot(state, "AFTER_JSON_LOAD")
-            v7_errors = v7.validate_state_dict(state, path.name)
-            if path.name == "unitedarabemirates.json":
-                uae_s03_snapshot(state, "AFTER_V7_VALIDATE")
-            errors.extend(v7_errors)
+                default_item, default_ledger = s03_values(state)
+                pure_state = json.loads(text, cls=PurePythonJSONDecoder)
+                pure_item, pure_ledger = s03_values(pure_state)
+                print("UAE_JSON_DIAGNOSTIC default=", len(default_item), len(default_ledger), default_item == default_ledger)
+                print("UAE_JSON_DIAGNOSTIC pure_python=", len(pure_item), len(pure_ledger), pure_item == pure_ledger)
+                print("UAE_JSON_DIAGNOSTIC pure_hex=", pure_item.encode("utf-8").hex(), pure_ledger.encode("utf-8").hex())
+            errors.extend(v7.validate_state_dict(state, path.name))
             errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
         else:
