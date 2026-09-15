@@ -1,0 +1,112 @@
+name: Temporary regenerate Jordan map
+
+on:
+  push:
+    branches:
+      - country/jordan
+    paths:
+      - '.github/workflows/tmp-regenerate-jordan-map.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Jordan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/jordan
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install map dependencies
+        run: pip install shapely cairosvg pillow
+
+      - name: Regenerate Jordan map with detailed geoBoundaries geometry
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import re
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          from shapely.geometry import shape
+          from shapely.ops import unary_union
+
+          from scripts.generate_country_map import polygon_path
+
+          SOURCE_URL = 'https://raw.githubusercontent.com/KristjanESPERANTO/MapCraft/57d132faa6c7c012635147bc8455458b39f49413/public/data/gbOpen/JOR/ADM0/geoBoundaries-JOR-ADM0.geojson'
+          EXPECTED_SHA256 = '9234e16ba454e5f5ffc43d34a5941c2f98c7727f2d559c4195006f7d86b72c7d'
+          BOUNDS = (34.75, 29.1, 39.45, 33.5)
+          SIMPLIFY = 0.0007
+
+          data = urllib.request.urlopen(SOURCE_URL, timeout=30).read()
+          digest = hashlib.sha256(data).hexdigest()
+          if digest != EXPECTED_SHA256:
+              raise SystemExit(f'geoBoundaries mirror checksum mismatch: {digest}')
+
+          geojson = json.loads(data)
+          geometries = [shape(feature['geometry']) for feature in geojson['features']]
+          geometry = unary_union(geometries)
+          land_path = polygon_path(geometry, BOUNDS, SIMPLIFY)
+          if not land_path:
+              raise SystemExit('Generated empty Jordan land path')
+
+          old_path = Path('assets/images/jordan/map-atlas-v1.svg')
+          svg = old_path.read_text(encoding='utf-8')
+          svg = svg.replace('aria-label="Map of Jordan"', 'aria-label="Map of Jordan"', 1)
+          metadata = (
+              'geoBoundaries gbOpen JOR ADM0 detailed boundary, boundary year 2016, '
+              'build 2023-12-12, CC BY 4.0, shapeID 64752131B76849546124065; '
+              'official dataset SHA256 9234e16ba454e5f5ffc43d34a5941c2f98c7727f2d559c4195006f7d86b72c7d; '
+              'WGS84; local equirectangular fit with longitude scaled by cos(31.30 degrees); '
+              'existing GSHHS inland-water treatment retained; JOURNEY ATLAS map-v3 clean background.'
+          )
+          svg = re.sub(r'<metadata>.*?</metadata>', f'<metadata>{metadata}</metadata>', svg, count=1, flags=re.S)
+          pattern = r'(<path\s+d=")[^"]+("\s+fill="url\(#land\)"[^>]*/>)'
+          svg, count = re.subn(pattern, lambda m: m.group(1) + land_path + m.group(2), svg, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit(f'Expected to replace one land path; replaced {count}')
+
+          output = Path('assets/images/jordan/map-atlas-v2.svg')
+          output.write_text(svg, encoding='utf-8')
+          ET.parse(output)
+          print(f'Wrote {output} ({output.stat().st_size} bytes)')
+          print(f'Land geometry vertices source checksum: {digest}')
+          PY
+
+      - name: Render SVG QA preview
+        run: |
+          python - <<'PY'
+          import cairosvg
+          from PIL import Image
+          cairosvg.svg2png(url='assets/images/jordan/map-atlas-v2.svg', write_to='/tmp/jordan-map-v2.png', output_width=1200, output_height=760)
+          with Image.open('/tmp/jordan-map-v2.png') as im:
+              assert im.size == (1200, 760)
+              im.verify()
+          print('Rendered 1200x760 PNG successfully')
+          PY
+
+      - name: Commit generated map
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/images/jordan/map-atlas-v2.svg
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refine Jordan map boundary geometry'
+          git push origin HEAD:country/jordan
+
+      - name: Upload map QA preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: jordan-map-v2-preview
+          path: /tmp/jordan-map-v2.png
+          retention-days: 3
