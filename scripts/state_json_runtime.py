@@ -48,13 +48,7 @@ def install_json_loads_guard() -> None:
 
 
 def install_v7_ledger_guard(v7_module: Any) -> None:
-    """Patch a loaded Revision-7 module with byte-stable ledger coverage checks.
-
-    The original validator still runs first. Only its specific
-    ``is not covered by immutable batch ledger`` error is removed, and only when
-    an independent UTF-8-byte comparison proves that the approved Generation ID
-    is present in the immutable ledger. Genuine missing-ledger errors remain.
-    """
+    """Patch a loaded Revision-7 module with byte-stable ledger coverage checks."""
     original = getattr(v7_module, "validate_ledger", None)
     if original is None or getattr(original, "_journey_atlas_byte_guarded", False):
         return
@@ -105,22 +99,32 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             if raw is not None and raw in covered.get(asset_id, set()):
                 proven_covered_assets.add(asset_id)
 
+        added = errors[start:]
+        if any("immutable batch ledger" in error for error in added):
+            print(
+                "LEDGER_GUARD_TRACE",
+                filename,
+                kind,
+                "proven=",
+                sorted(proven_covered_assets),
+                "covered_sizes=",
+                {asset_id: sorted(len(raw) for raw in values) for asset_id, values in covered.items()},
+            )
+
         if not proven_covered_assets:
             return
 
         suffix = b" is not covered by immutable batch ledger"
-        added = errors[start:]
         filtered: list[str] = []
         for error in added:
             error_bytes = stable_text_bytes(error)
             suppress = False
             if error_bytes is not None and error_bytes.endswith(suffix):
                 for asset_id in proven_covered_assets:
-                    prefix = (
-                        f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8")
-                    )
+                    prefix = f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8")
                     if error_bytes.startswith(prefix):
                         suppress = True
+                        print("LEDGER_GUARD_TRACE suppress=", filename, kind, asset_id)
                         break
             if not suppress:
                 filtered.append(error)
