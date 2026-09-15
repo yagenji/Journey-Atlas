@@ -5,8 +5,8 @@
   "contentRef": "country/jordan",
   "stateRef": "country/jordan",
   "phase": "QA",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-15T09:12:10+09:00",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-15T09:50:20+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -111,11 +111,11 @@
   ],
   "map": {
     "state": "APPROVED",
-    "asset": "assets/images/jordan/map-atlas-v1.svg"
+    "asset": "assets/images/jordan/map-atlas-v2.svg"
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T09:12:10+09:00",
+    "completedAt": "2026-09-15T09:50:20+09:00",
     "countryJson": "data/countries/jordan.json",
     "themeTaxonomy": [
       "earth",
@@ -125,14 +125,8 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "PASS",
-    "productionState": "CI_GATED",
-    "sourceCommit": "0459c9677b6d119836cb027446a36f231157ac91",
-    "checks": [
-      "publication-v2-targeted-validation",
-      "publication-v2-image-audit",
-      "publication-v2-desktop-tablet-mobile-browser-qa"
-    ]
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -300,13 +294,10 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/jordan/countries/jordan/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-15T09:12:10+09:00",
-    "sourceCommit": "0459c9677b6d119836cb027446a36f231157ac91",
-    "runId": 34911993346,
-    "pipelineVersion": 2
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
+    "deployedAt": null
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -321,10 +312,10 @@
     "productionIntegrations": 0,
     "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-14T20:12:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-15T09:12:10+09:00"
+    "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "publicationPipelineVersion": 2
