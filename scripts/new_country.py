@@ -57,7 +57,7 @@ def blank_tip() -> dict:
 
 
 def blank_related() -> dict:
-    return {"slug":"","nameEn":"","nameJa":"","flag":"","reason":""}
+    return {"slug":"","nameEn":"","nameJa":"","flag":"","reason":"","affinityType":""}
 
 
 def blank_travel_scale() -> dict:
@@ -73,18 +73,20 @@ def blank_travel_scale() -> dict:
 
 def scaffold(destination: dict, region_label: str) -> dict:
     slug = destination["slug"]
+    name_en = destination.get("nameEn", "")
+    name_ja = destination.get("nameJa", "")
     today = date.today().isoformat()
     return {
-        "schemaVersion":2,"contentQaVersion":5,"publicationPipelineVersion":2,"slug":slug,"nameEn":destination.get("nameEn",""),"nameJa":destination.get("nameJa",""),"region":region_label,
+        "schemaVersion":2,"contentQaVersion":6,"publicationPipelineVersion":2,"slug":slug,"nameEn":name_en,"nameJa":name_ja,"region":region_label,
         "seo":{"description":""},
         "capital":{"nameEn":"","nameJa":"","coordinates":{"latitude":None,"longitude":None},"labelPosition":"right","labelOffset":{"x":0,"y":0}},
         "hero":{"lead":"","image":f"assets/images/{slug}/approved/hero.webp","location":"","coordinates":{"latitude":None,"longitude":None}},
         "map":{"bounds":{"north":None,"south":None,"west":None,"east":None},"svg":f"assets/images/{slug}/map-atlas-v1.svg","route":None,"source":""},
         "scenes":[blank_scene(index,slug) for index in range(1,9)],
-        "encounters":[{"title":""} for _ in range(8)],
+        "encounters":[{"title":"","category":""} for _ in range(8)],
         "atlasExtras":[blank_extra() for _ in range(6)],
         "travelTrivia":[{"topicKey":"","categoryEn":"","categoryJa":"","title":"","text":"","icon":"","sourceKey":""} for _ in range(5)],
-        "taste":{"kicker":f"TASTE OF {destination.get('nameEn','').upper()}","title":"","intro":"","items":[blank_taste(index,slug) for index in range(1,5)]},
+        "taste":{"kicker":f"TASTE OF {name_en.upper()}","title":f"{name_ja}で食べたいもの","intro":"","items":[blank_taste(index,slug) for index in range(1,5)]},
         "travelScale":blank_travel_scale(),
         "seasons":[{"months":"","color":"","text":""} for _ in range(4)],
         "transport":{"title":"","text":""},
@@ -92,6 +94,7 @@ def scaffold(destination: dict, region_label: str) -> dict:
         "facts":[{"label":"地域","value":""},{"label":"首都","value":""},{"label":"人口","value":""},{"label":"面積","value":""},{"label":"言語","value":""},{"label":"主な宗教","value":""},{"label":"通貨","value":""}],
         "signatureFacts":[{"topicKey":"","label":"","value":"","note":"","icon":"","interestReason":""} for _ in range(3)],
         "tips":[blank_tip() for _ in range(3)],
+        "nextRoutes":[],
         "relatedCountries":[blank_related() for _ in range(3)],
         "updatedAt":today,"sourcesVerifiedAt":today,"sourceDates":{},"sources":{},
     }
@@ -114,11 +117,12 @@ def main() -> int:
     output.write_text(json.dumps(scaffold(destination, region_label), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Created {output.relative_to(ROOT)}")
     print(f"Region taxonomy label locked: {region_label}")
-    print("Content QA v5 locked: continuous Travel Scale ranges; reader-interest Signature Facts; generic World Heritage counts and ordinary forest shares are rejected; capital-name / Scene-number map overlap is forbidden.")
+    print("Content QA v6 locked: one-pass editorial selection gate for cross-section subjects, Signature Facts, ENCOUNTERS, Taste headings, NEXT ROUTES, NEXT DESTINATIONS, Travel Scale and capital-label collision safety.")
+    print("Run-to-gate policy locked: deterministic non-gate NEXT ACTIONS must continue without asking the user to say 進めて.")
     print("Publication Pipeline v2 locked for this new Country: post-handoff targeted QA, persistent review deployment, State reconciliation and post-approval publication are automated.")
     print("Hero / Scene / Taste final approved-path placeholders are present so the page can be prebuilt before image generation.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
-    print("Before Hero production: complete editorial content + Map, then run both scripts/validate_country_editorial_v2.py and scripts/validate_country_quality_v5.py for the Country JSON.")
+    print("Before Hero production: complete editorial content + Map, then run scripts/validate_country_editorial_v2.py and scripts/validate_country_quality_v5.py for the Country JSON.")
     return 0
 
 
