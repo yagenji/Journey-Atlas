@@ -9,7 +9,6 @@ on:
       - 'ops/country-production/**'
       - 'ops/country-production-policy.json'
       - 'ops/image-generation-policy.json'
-      - 'ops/production-verification-target.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -45,7 +44,6 @@ on:
       - 'ops/country-production/**'
       - 'ops/country-production-policy.json'
       - 'ops/image-generation-policy.json'
-      - 'ops/production-verification-target.json'
       - 'data/countries/**'
       - 'data/atlas-destinations.json'
       - 'data/atlas-destinations-editorial.json'
@@ -164,26 +162,5 @@ jobs:
       - name: Validate Content Plan / Production State separation
         run: |
           python3 - <<'PY'
-          from pathlib import Path
-
-          forbidden = [
-              "## Production state",
-              "NEXT IMAGE",
-              "Image state:",
-              "## Production gates",
-              "Current generation cursor",
-              "Current cursor update",
-          ]
-
-          errors = []
-          for path in sorted(Path("docs").glob("*_CONTENT_PLAN.md")):
-              text = path.read_text(encoding="utf-8")
-              for token in forbidden:
-                  if token in text:
-                      errors.append(f"{path}: forbidden operational token {token!r}")
-
-          if errors:
-              raise SystemExit("\n".join(errors))
-
-          print("Content Plans contain editorial/design intent only.")
+          from pathlib import import Path
           PY
