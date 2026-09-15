@@ -48,7 +48,14 @@ def validate() -> list[str]:
             # Protocol 2 is a Revision 7 state. Validate the current state with
             # all current layers, but do not also apply the incompatible legacy
             # executionPolicy contract.
-            errors.extend(v7.validate_state_dict(state, path.name))
+            v7_errors = v7.validate_state_dict(state, path.name)
+            if path.name == "unitedarabemirates.json" and v7_errors:
+                scenes = {str(item.get("id")): item for item in state.get("scenes", []) if isinstance(item, dict)}
+                rounds = state.get("sceneBatchReview", {}).get("rounds", [])
+                print("UAE_LEDGER_DIAGNOSTIC scene_s03=", repr(scenes.get("S03", {}).get("approvedGenerationId")))
+                print("UAE_LEDGER_DIAGNOSTIC rounds=", repr(rounds))
+                print("UAE_LEDGER_DIAGNOSTIC v7_module=", str(Path(v7.__file__).resolve()))
+            errors.extend(v7_errors)
             errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
         else:
