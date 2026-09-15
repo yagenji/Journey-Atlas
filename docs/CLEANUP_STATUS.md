@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-16
-Current continuation base: `5f6355f12d480acae25710906c5f8336aab904da` (`main`, PR #818).
+Current continuation base: `a1fc905c7b1cbf7e1b8b19c2c9004de085246af1` (`main`, PR #819).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -40,14 +40,15 @@ been retired.
 | [#816](https://github.com/yagenji/Journey-Atlas/pull/816) | Duplicate `data/atlas-scope.json` retired; destination scope, registry, and publication state consolidated onto canonical `data/atlas-destinations.json` |
 | [#817](https://github.com/yagenji/Journey-Atlas/pull/817) | Cleanup handoff synchronized after #816 and deployed successfully from `main` |
 | [#818](https://github.com/yagenji/Journey-Atlas/pull/818) | Remote publish/review/tmp branch audit recorded; deletion-safe refs separated from redundant refs whose squash-merge-era intermediate history remains retained |
+| [#819](https://github.com/yagenji/Journey-Atlas/pull/819) | Common ops branch audit recorded; Protocol 2 / published QA / Image Policy ops refs separated from divergent Tajikistan legacy history |
 
 ## Current follow-up
 
 - Continue the remote branch inventory using open-PR ownership plus main
   containment/equivalent-tree evidence; do not bulk-delete by naming pattern.
 - Continue the remaining Country-specific `ops/*` production-verification audit.
-  Most have merged operational PR provenance, but each ref still needs main
-  containment or equivalent-tree evidence before unconditional deletion-safe status.
+  The first ten Country ops refs below are now deletion-safe; remaining refs still
+  require the same branch-head/equivalent-tree evidence.
 - For old sync/backup branches whose commits are ancestors of merged Country
   branches, preserve the intermediate history until an archive-tag or canonical
   Country-branch retention decision makes deletion provenance explicit.
@@ -111,7 +112,7 @@ PR ownership and unique-history status have been checked.
 
 ### Deletion-safe from a content-preservation perspective
 
-- All `cleanup/*` work branches through #818 have main containment or an equivalent
+- All `cleanup/*` work branches through #819 have main containment or an equivalent
   merged tree. The cleanup connector still cannot delete branches.
 - `cleanup/remove-completed-renewal-docs` is an ancestor of current `main` with no
   branch-unique commits.
@@ -137,6 +138,18 @@ PR ownership and unique-history status have been checked.
   and #644 respectively; each branch-head tree matches its squash-merge tree.
 - `ops/brunei-production-verification` has no direct PR ownership, but its head
   is an ancestor of current `main` with zero branch-unique commits.
+- The following Country production-verification refs are preserved by merged PRs,
+  with branch-head and squash-merge trees confirmed identical:
+  - `ops/afghanistan-production-verify` — PR #727
+  - `ops/armenia-production-verification` — PR #800
+  - `ops/bahrain-production-verification` — PR #802
+  - `ops/bangladesh-production-verify` — PR #730
+  - `ops/bhutan-production-verification` — PR #739
+  - `ops/india-production-verification-trigger` — PR #726
+  - `ops/iran-production-verify` — PR #765
+  - `ops/iraq-production-verification` — PR #783
+  - `ops/kazakhstan-production-retry` — PR #749
+  - `ops/kuwait-live-production-qa` — PR #771
 
 ### Redundant refs whose intermediate history is still retained
 
