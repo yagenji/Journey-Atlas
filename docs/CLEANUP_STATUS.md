@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-15
-Current continuation base: `c6744bd94d69c5f011dc8bb63e69502cb302976a` (`main`, PR #813).
+Current continuation base: `7bc39a2d0ff2a1519c00416a7b5c4d856a89129a` (`main`, PR #814).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -18,8 +18,8 @@ been retired.
   publication/approval state, and the established UI.
 - Check live references before deletion. Age, filename, and publication alone
   are insufficient evidence that a file or branch can be removed.
-- Preserve deleted historical plans in Git history. Do not create duplicate
-  archive files or rewrite approval provenance to make a deletion possible.
+- Preserve deleted historical plans and audits in Git history. Do not create
+  duplicate archive files or rewrite approval provenance to make a deletion possible.
 - Do not delete a branch only because its name contains `tmp`, `temp`, `backup`,
   `review`, or `publish`; confirm main containment or an equivalent merged tree.
 
@@ -35,6 +35,20 @@ been retired.
 | #811 | 17 unreferenced published-Country content plans removed; documentation index and branch-hygiene behavior cleaned up |
 | #812 | Unused top `theme-icons.svg` removed and obsolete PRs #610, #714, #715 closed |
 | [#813](https://github.com/yagenji/Journey-Atlas/pull/813) | Stale icon, typography, and State-recovery maintenance reconstructed on latest main and merged after current validation and full Browser QA |
+| [#814](https://github.com/yagenji/Journey-Atlas/pull/814) | Cleanup handoff synchronized with the completed #813 reconciliation and branch-audit rules |
+
+## Current follow-up
+
+- Retire `docs/PUBLISHED_COUNTRY_AUDIT_20260903.md`. It is a one-time automated
+  baseline from the start of the then-28-country renewal program, has no surviving
+  repository references outside itself, and is not a current source of truth.
+  Current renewal status remains `data/country-renewal-status.json`; the historical
+  audit remains available in Git history.
+- Keep `docs/REQUIRED_PR_GATES.md`: although it is not listed in the documentation
+  index, its `validate` / `browser-qa`, squash-only, deletion, non-fast-forward,
+  and review-thread rules match the active `Protect main` repository ruleset.
+- Keep Content QA v2-v5 and Image Policy Revision 7 / 7.1 compatibility documents.
+  Active workflows and current authority documents still reference those versions.
 
 ## #813 reconciliation complete
 
@@ -60,11 +74,11 @@ been retired.
 Branch cleanup is still in progress. No branch should be removed until its open
 PR ownership and unique-history status have been checked.
 
-Deletion-safe candidates already established by containment or equivalent-tree
-checks include merged cleanup/sync branches, several merged publish/review
-branches, the duplicated Iraq `country/iraq-temp*` set, and several no-op/tmp
-branches whose heads are already ancestors of `main`. The merged #811, #812, and
-#813 work branches are also content-preserved on `main`.
+All eight pre-existing `cleanup/*` work branches through #814 have been checked
+for main containment or an equivalent merged tree and are deletion-safe from a
+content-preservation perspective. Other deletion-safe candidates include several
+merged publish/review branches, the duplicated Iraq `country/iraq-temp*` set,
+and several no-op/tmp branches whose heads are already ancestors of `main`.
 
 Do **not** delete the following merely by name: Iran `country/iran-fix-tmp*`,
 `country/bangladesh-sync-temp`, Philippines backup branches, Iraq pre-policy
@@ -83,7 +97,7 @@ safe have not been deleted through this cleanup session.
 | Romania plan and legacy publication path | Main State is `REVIEW`, final approval is `PENDING`, and Render Packets reference the plan. Do not auto-migrate, publish, or remove dependencies as cleanup |
 | Russia plan | Published, but main State Render Packets still reference it. Retain provenance |
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
-| Renewal plans/audits and reference briefs | Separate renewal/reference evidence; not covered by the completed-production-plan deletion decision |
+| Renewal plans/audits and reference briefs | Separate renewal/reference evidence; remove only an audit proven obsolete and unreferenced, such as the retired 2026-09-03 initial baseline |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
 | Remote branch inventory | Continue auditing by open-PR ownership plus main containment/equivalent-tree evidence; do not bulk-delete by branch naming pattern |
 | Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
