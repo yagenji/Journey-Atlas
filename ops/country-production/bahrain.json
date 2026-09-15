@@ -5,8 +5,8 @@
   "contentRef": "country/bahrain",
   "stateRef": "country/bahrain",
   "phase": "QA",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-15T11:27:22+09:00",
+  "stateRevision": 25,
+  "updatedAt": "2026-09-15T16:38:08+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -190,27 +190,27 @@
   ],
   "map": {
     "state": "APPROVED",
-    "asset": "assets/images/bahrain/map-atlas-v2.svg",
+    "asset": "assets/images/bahrain/map-atlas-v3.svg",
     "qa": {
       "canvas": "1200x760",
       "projection": "multi-region-local-equirectangular-v1",
       "geometry": "PASS",
       "sceneCoordinates": "PASS",
       "labelCollision": "PASS",
-      "styleBaseline": "Iceland/Norway map language",
-      "approvedAt": "2026-09-15T02:15:00+09:00"
+      "styleBaseline": "Iceland/Norway map language; Qatar-style Hawar locator/inset",
+      "approvedAt": "2026-09-15T16:38:08+09:00"
     }
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T11:27:22+09:00",
+    "completedAt": "2026-09-15T16:38:08+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "a7f29d5e7afd28d879da3d77e6266b48d65f43fc",
+    "sourceCommit": "a9b546757cbabc9b72fb6364530f3cc7deec86a6",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -222,7 +222,9 @@
     "url": null
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-15T16:38:08+09:00",
+    "basis": "User explicitly requested completion through publication after reviewing the current Bahrain canonical preview."
   },
   "publication": {
     "state": "DRAFT",
@@ -375,9 +377,9 @@
     "state": "DONE",
     "url": "https://yagenji.github.io/Journey-Atlas/reviews/bahrain/countries/bahrain/",
     "browserQa": "PASS",
-    "deployedAt": "2026-09-15T11:27:22+09:00",
-    "sourceCommit": "a7f29d5e7afd28d879da3d77e6266b48d65f43fc",
-    "runId": 34921058379,
+    "deployedAt": "2026-09-15T16:38:08+09:00",
+    "sourceCommit": "a9b546757cbabc9b72fb6364530f3cc7deec86a6",
+    "runId": 34925885296,
     "pipelineVersion": 2
   },
   "productionMetrics": {
@@ -388,16 +390,16 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 4,
+    "reviewPreviewDeployments": 5,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 4,
+    "browserQaCycles": 5,
     "tasteBatchApprovedAt": "2026-09-14T21:19:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-15T11:27:22+09:00"
+    "canonicalReviewReadyAt": "2026-09-15T16:38:08+09:00"
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "PUBLISH",
     "asset": null
   },
   "publicationPipelineVersion": 2
