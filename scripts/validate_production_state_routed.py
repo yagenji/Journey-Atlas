@@ -13,7 +13,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-from state_json_runtime import install_v7_ledger_guard
+from state_json_runtime import install_v7_ledger_guard, _source_generation_matches_ledger
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
@@ -43,6 +43,20 @@ def validate() -> list[str]:
     errors: list[str] = []
     registry = legacy.registry_map()
 
+    print(
+        "LEDGER_GUARD_ROUTE",
+        "v7=",
+        bool(getattr(v7.validate_ledger, "_journey_atlas_source_guarded", False)),
+        "v72=",
+        bool(
+            getattr(
+                getattr(getattr(v72, "v7", None), "validate_ledger", None),
+                "_journey_atlas_source_guarded",
+                False,
+            )
+        ),
+    )
+
     for path in sorted(STATE_DIR.glob("*.json")):
         try:
             state = json.loads(path.read_text(encoding="utf-8"))
@@ -51,7 +65,21 @@ def validate() -> list[str]:
             continue
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
-            errors.extend(v7.validate_state_dict(state, path.name))
+            v7_errors = v7.validate_state_dict(state, path.name)
+            if v7_errors:
+                for kind, key in (("scene", "scenes"), ("taste", "taste")):
+                    for item in state.get(key, []):
+                        if isinstance(item, dict) and item.get("state") == "APPROVED":
+                            asset_id = str(item.get("id") or "")
+                            if asset_id:
+                                print(
+                                    "LEDGER_SOURCE_PROBE",
+                                    path.name,
+                                    kind,
+                                    asset_id,
+                                    _source_generation_matches_ledger(path.name, kind, asset_id),
+                                )
+            errors.extend(v7_errors)
             errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
         else:
