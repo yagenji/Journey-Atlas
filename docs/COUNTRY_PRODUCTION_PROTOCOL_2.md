@@ -1,12 +1,14 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
-Updated: 2026-09-14
+Updated: 2026-09-15
 Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
-Image-generation authority remains `ops/image-generation-policy.json`.
+Image-generation authority: `ops/image-generation-policy.json`.
+Content-quality authority for new Countries: `docs/CONTENT_QUALITY_RULES_V6.md`.
+Publication automation authority: `docs/PUBLICATION_PIPELINE_V2.md` plus the current Pipeline v2 workflows.
 
-Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v5; existing v4/v3/v2 Countries remain valid under their prior editorial contracts unless intentionally migrated.
+Protocol 2.0 is the default for **new Country production**. New Countries use Content QA v6 and Publication Pipeline v2. Existing in-flight Countries are not automatically migrated from their prior content/publication contracts.
 
 ## Production shape
 
@@ -20,17 +22,17 @@ CONTENT + PRE-VISUAL BUILD
 → Taste REGEN round only when required
 → one 13-image USER_HANDOFF
 → one batch asset verification
-→ target Country QA
-→ sync latest main once
-→ open ONE pre-main review PR
-→ PR automatically triggers target-only Browser QA + persistent GitHub Pages review
+→ Pipeline v2 review automation
+→ latest-main + target-Country overlay validation
+→ target-only Browser QA + persistent GitHub Pages review
 → final Country-page user approval
-→ finalize THE SAME PR to terminal publication State
-→ serialized publication queue syncs latest main, waits required checks and squash-merges
-→ one Cloudflare production deployment + targeted production verification
+→ Pipeline v2 finalization on latest-main + target-Country overlay
+→ checks on the exact terminal branch SHA
+→ squash-merge the same reusable PR
+→ inline Cloudflare SHA + target-route smoke verification
 ```
 
-**Main is not the review environment. A second publication PR is forbidden.**
+**Main is not the review environment. A second publication PR and a separate production-verification PR are forbidden for Pipeline v2 Countries.**
 
 ## 1. Pre-visual build is mandatory
 
@@ -41,16 +43,18 @@ Before Hero generation, finish everything that does not require the final raster
 - Scene coordinates;
 - Map build and QA, including capital-name / Scene-number collision QA;
 - taxonomy;
-- Related Countries;
-- Next Routes or intentional omission;
+- Related Countries / NEXT DESTINATIONS;
+- NEXT ROUTES or intentional omission;
 - Travel Scale;
 - Signature Facts;
+- ENCOUNTERS;
 - Beyond the Scenery / Travel Trivia;
+- Taste heading and four dishes;
 - sources/source dates;
 - current Content QA.
 
-New Countries use `contentQaVersion: 5` and must follow `docs/CONTENT_QUALITY_RULES_V5.md` plus `docs/MAP_SYSTEM.md`.
-Existing v4/v3/v2 Countries remain on their prior editorial contracts unless explicitly migrated.
+New Countries use `contentQaVersion: 6` and must follow `docs/CONTENT_QUALITY_RULES_V6.md` plus `docs/MAP_SYSTEM.md`.
+Existing v5/v4/v3/v2 Countries remain on their prior editorial contracts unless explicitly migrated.
 
 Before leaving CONTENT, run both:
 
@@ -59,7 +63,9 @@ python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
 python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
 ```
 
-`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`, including the capital-name / Scene-number non-overlap gate.
+The retained `validate_country_quality_v5.py` filename is intentional. It routes v5/v6 behavior from `contentQaVersion`.
+
+`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`, including the v6 capital-label safety gate and the self-contained / coordinate-on-land requirements defined by current policy.
 
 ## 2. One image is not one user gate
 
@@ -87,15 +93,15 @@ python3 scripts/country_production_protocol_v2.py next {slug}
 
 The assistant must not require `approve`, `進めて`, `next`, `生成` or equivalent between valid Scene/Taste targets. A platform-forced turn boundary is tracked separately from a user continuation nudge; only the latter is a workflow defect.
 
-Protocol 2 metrics:
+Protocol 2 metrics include:
 
 - `productionMetrics.perImageApprovalPrompts` target `0`;
 - `productionMetrics.userContinuationNudges` target `0`;
-- `productionMetrics.runtimeForcedImageTurnBoundaries` is measured but allowed.
+- runtime-forced image turn boundaries are measured but allowed.
 
 ## 3. Taste first-pass and REGEN are separate rounds
 
-Taste follows Image Policy 7.2.
+Taste follows Image Policy 7.2 and the current `ops/image-generation-policy.json`.
 
 If a FOOD target fails during `TASTE_INITIAL`:
 
@@ -144,7 +150,7 @@ For a normal Country-only change:
 
 1. verify the 13 approved assets once;
 2. validate only the target Country JSON/images;
-3. run target Desktop / Tablet / Mobile Browser QA once;
+3. let Publication Pipeline v2 run the target Desktop / Tablet / Mobile Browser QA once;
 4. do not build or QA unrelated Countries;
 5. do not run Cloudflare production before final page approval.
 
@@ -156,28 +162,24 @@ python3 scripts/build_country_preview_targeted.py --slugs {slug}
 
 Full-Country build/QA is reserved for shared template/CSS/JS/build-system changes, explicit Full QA, and the real final production deployment.
 
-The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build.
+If the user requests an editorial revision during final review, update only the requested content, keep approved image assets locked, reset the target QA/review state as required by current State logic, and rerun the target-only review path.
 
-If the user requests an editorial revision during final review, update only the requested content, keep approved image assets locked, reset target QA/reviewPreview state, and rerun the target-only post-visual path.
+## 6. Pipeline v2 review uses latest-main overlay, not a branch merge
 
-## 6. One pre-main Review PR triggers Preview automatically
+For new Countries, `publicationPipelineVersion: 2` is the default scaffold. Once the 13-raster handoff is verified and review-ready:
 
-After `phase: QA` and target QA `PASS`, Protocol 2 NEXT returns:
+1. `.github/workflows/publication-pipeline-v2-review.yml` resolves the target Country;
+2. it asserts Country-only scope against current `main`;
+3. it ensures **one reusable review/publication PR** exists;
+4. `.github/workflows/publication-pipeline-v2-checks.yml` runs targeted validation/image audit/Browser QA;
+5. the review package is built from **latest `main` + the target Country overlay**;
+6. the persistent GitHub Pages review is deployed at `/reviews/{slug}/countries/{slug}/`;
+7. the successful result is reconciled into authoritative Production State;
+8. the next user gate is the final canonical page approval.
 
-```text
-OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW
-```
+Do **not** merge latest `main` directly into a long-running Country branch merely to prepare review. Shared runtime authority during review is latest `main`; Country-specific files remain authoritative from the Country branch overlay.
 
-Before opening the PR, sync the Country branch with current `main` once. Then open **one** PR from `country/{slug}` to `main` while:
-
-- `atlasPublished:false`;
-- `phase: QA`;
-- `stateRef/contentRef: country/{slug}`;
-- `finalApproval.state: PENDING`.
-
-Opening or synchronizing that PR automatically triggers `.github/workflows/deploy-country-preview.yml`. No `.github/preview-trigger/**` commit and no manual dispatch is needed in the normal path.
-
-The PR remains open through final user review. It is reused for publication after approval.
+The PR remains open through final user review and is reused for publication after approval.
 
 ## 7. Persistent Country review URLs
 
@@ -187,8 +189,6 @@ GitHub Pages is one deployment surface, but each Country lives in its own persis
 /reviews/{slug}/countries/{slug}/
 ```
 
-A later Country review therefore does not overwrite the earlier Country URL.
-
 Implementation rules:
 
 - snapshot branch: `review-previews`;
@@ -197,120 +197,62 @@ Implementation rules:
 - other active review subtrees are preserved;
 - already-published previews are pruned when the next review snapshot is staged;
 - oldest snapshots beyond the retained maximum are pruned;
-- target raster URLs are rewritten to the immutable `raw.githubusercontent.com/.../{commit}/assets/images/...` origin;
+- target raster URLs are rewritten to the immutable raw commit origin;
 - the `review-previews` branch is a generated review cache, never production authority.
 
-After the Pages deployment and Browser QA pass, record:
-
-```json
-"reviewPreview": {
-  "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-  "state": "DONE",
-  "url": "https://.../reviews/{slug}/countries/{slug}/",
-  "browserQa": "PASS"
-}
-```
-
-Protocol NEXT then returns `REVIEW_CANONICAL_URL` as the final user gate.
+Protocol NEXT reaches `REVIEW_CANONICAL_URL` only after the target review result is reconciled successfully.
 
 ## 8. Final approval reuses the same PR
 
-After explicit user approval, Protocol NEXT returns:
+After explicit user approval, record `finalApproval.state: APPROVED`. For Pipeline v2 Countries, `.github/workflows/publication-pipeline-v2-finalize.yml` performs finalization.
 
-```text
-FINALIZE_REVIEW_PR_FOR_PUBLICATION
-```
+The workflow:
 
-Do **not** create another PR.
+1. enters the shared `country-publication-main` serialization lane;
+2. captures the target Country overlay;
+3. fetches current `main`;
+4. resets the working branch to latest `main` and reapplies only the target Country overlay;
+5. finalizes terminal publication State and `atlasPublished:true` metadata;
+6. runs Pipeline v2 publish checks on that exact terminal SHA;
+7. retries from a newer `main` when `main` advances during the cycle, up to the configured limit;
+8. squash-merges the **same reusable PR**;
+9. waits for Cloudflare to expose the merged SHA;
+10. smoke-tests the target Country route and JSON.
 
-Finalize the existing Country branch/PR to the normal terminal publication representation, including:
+Directly merging latest `main` into the long-running Country branch is forbidden for this v2 path. A second publication PR is forbidden. A separate production-verification PR is also forbidden because the inline Cloudflare SHA/route smoke is authoritative.
 
-- `finalApproval.state: APPROVED`;
-- `publication.state: PUBLISHED`;
-- `publication.atlasPublished: true`;
-- matching destination-registry `atlasPublished:true`;
-- terminal `phase: COMPLETE`;
-- `stateRef: main` and `contentRef: main`;
-- supported CI-gated production verification fields required by the legacy State validator.
+## 9. Publication serialization
 
-Because this final commit is publication metadata/state only, local PR Browser QA may skip redundant rendering work; the already-passed persistent review remains the visual approval source.
+Country production and review QA may run in parallel. Final integration into `main` is intentionally serialized through the `country-publication-main` concurrency group so Pipeline v2 and legacy publication paths cannot race each other.
 
-## 9. Serialized publication queue
+A publish cycle stops only for a concrete blocker such as:
 
-`.github/workflows/publish-country-queue.yml` is the final integration queue.
+- validation or Browser QA failure;
+- unexpected conflict outside the known shared Country metadata scope;
+- latest-main churn that does not stabilize within the configured cycles;
+- merge rejection;
+- Cloudflare failing to expose the merged SHA within the smoke window.
 
-It acts only when all of the following are true:
+A successful external step must be reconciled into State by automation. ChatGPT is not the callback mechanism.
 
-- Protocol 2 State;
-- final approval is explicit;
-- persistent review is `DONE` with Browser QA `PASS`;
-- terminal publication State is complete;
-- registry and State both say `atlasPublished:true`.
+## 10. Content QA v6
 
-The queue has one global concurrency lane. For each ready Country it:
+See `docs/CONTENT_QUALITY_RULES_V6.md`. v6 inherits the Travel Scale contract from v4 and the Signature Facts / map-label rules from v5, then adds one-pass editorial settlement before Hero production.
 
-1. fetches latest `main`;
-2. merges latest `main` into the Country branch when needed;
-3. pushes the synchronized branch;
-4. waits for repository-required `validate` and `browser-qa` checks on that exact head;
-5. confirms `main` has not advanced again;
-6. squash-merges the existing PR;
-7. retries synchronization if `main` advanced while checks were running.
+Important v6 gates include:
 
-Country production can remain parallel; **main publication is intentionally serial**.
+- Signature Facts / Beyond the Scenery / Travel Trivia use different canonical subjects;
+- Signature Facts must be distinctive and immediately understandable;
+- ordinary population / area / density require `exceptionalScale:true` to be eligible;
+- World Heritage and forest-share exception thresholds remain enforced;
+- capital labels have an additional safety margin beyond the v5 geometric collision test;
+- NEXT ROUTES preserves genuine traveler routes while recording current restriction status separately;
+- Taste heading is fixed from the Country name;
+- NEXT DESTINATIONS is affinity-based, not proximity-based, and requires `affinityType`;
+- ENCOUNTERS must be broad, observable, and span at least four categories;
+- deterministic `userGate:false` actions continue automatically to the next real gate.
 
-## 10. Content QA v5
-
-See `docs/CONTENT_QUALITY_RULES_V5.md` for new Countries. Existing v4/v3/v2 Countries continue to use their prior content-quality contracts until intentionally migrated.
-
-### Travel Scale
-
-v5 inherits the v4 Travel Scale contract:
-
-- every Travel Scale item contains a concrete `例：`;
-- duration uses day notation;
-- the first and second durations are real ranges written `○〜○日`; single counts such as `2日` are forbidden;
-- the second range starts exactly one day after the first range ends;
-- the third duration is open-ended `○日以上`, starting exactly one day after the second range ends;
-- gaps and overlaps are forbidden;
-- weeks and night-count notation are not used in duration labels;
-- the content after `例：` is route-only and must not contain day/night/week counts.
-
-### Signature Facts — reader interest first
-
-`signatureFacts` has only three slots. A statistic is not selected because it is available; it is selected because **the number materially changes how the reader imagines the Country**.
-
-Hard rules:
-
-- every v5 Signature Fact includes non-rendered `interestReason` explaining why the number deserves one of the three slots;
-- World Heritage property count is exception-only: use it only at **25 or more properties** and with `exceptionalHeritageCount:true`;
-- even at 25+, prefer another number if it explains the Country more vividly;
-- forest / woodland share is exception-only: use it only at **10% or less or 70% or more** and with `exceptionalShare:true`;
-- passing an exception threshold is permission, not a recommendation;
-- ordinary World Heritage counts or moderate forest shares belong in another section when editorially useful, or should be replaced entirely;
-- `signatureFacts` / `atlasExtras` / `travelTrivia` continue to use different canonical subjects.
-
-### Map label collision
-
-Existing marker-center collision QA is not sufficient because the visible capital-name label can cover a numbered Scene circle even when marker centers are separated.
-
-Content QA v5 therefore adds a second map gate:
-
-- project the capital and all Scene markers onto the same 1200×760 canvas;
-- estimate the actual capital label box using the shared CSS geometry;
-- reject any overlap between the capital-name label and Scene 1–8 number circles;
-- reject a capital label that leaves the map canvas;
-- allow `capital.labelPosition` only as `left` / `right`;
-- allow `capital.labelOffset` only when necessary and within ±80px per axis;
-- never change real coordinates for collision avoidance.
-
-Resolve collisions in this order:
-
-1. `capital.labelPosition`;
-2. minimal `capital.labelOffset`;
-3. minimal `mapOffset` only if still necessary.
-
-Validation commands:
+Validation commands remain:
 
 ```bash
 python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
@@ -327,16 +269,14 @@ For a new Country:
 python3 scripts/country_production_protocol_v2.py init {slug}
 ```
 
-Protocol 2 intentionally stays in legacy `phase: QA` during pre-main review because legacy `REVIEW` requires `main` authority.
+New scaffolds use Publication Pipeline v2. Existing completed/already-integrated States and in-flight legacy Countries are not retroactively migrated unless migration is explicitly planned.
 
-Validate with:
+Validate the production and image-policy machinery with:
 
 ```bash
 python3 scripts/country_production_protocol_v2.py validate
 python3 scripts/image_policy_v72.py validate
 ```
-
-Existing completed/already-integrated States are not retroactively migrated. Active production follows the current main policy before another new step occurs.
 
 ## 12. Productivity targets
 
@@ -348,11 +288,12 @@ Normal new-Country targets:
 - Scene Batch reviews: 1;
 - Taste Batch reviews: 1 unless a genuine REGEN batch is required;
 - image handoffs: 1;
-- Review PRs: 1;
+- reusable Review/Publication PRs: 1;
 - pre-canonical main integrations: 0;
 - persistent review deployment: 1;
-- targeted Browser QA cycle: 1;
-- publication PRs created after approval: 0 — reuse the Review PR;
+- targeted Browser QA cycle: 1 under normal Country-only conditions;
+- second publication PRs: 0;
+- separate production-verification PRs: 0;
 - final production integrations: 1;
 - Country-only full-Country builds before approval: 0;
 - Country-only full-Country Browser QA before approval: 0.
@@ -367,7 +308,8 @@ When Protocol 2 applies:
 4. this document
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. `docs/CONTENT_QUALITY_RULES_V5.md` for new v5 Countries; v4/v3/v2 specs for legacy versions
-8. `docs/MAP_SYSTEM.md`
-9. image/content/map specifications
-10. chat history
+7. `docs/CONTENT_QUALITY_RULES_V6.md` for new v6 Countries; prior specs for legacy content versions
+8. `docs/PUBLICATION_PIPELINE_V2.md` for v2 publication behavior
+9. `docs/MAP_SYSTEM.md`
+10. image/content/map specifications
+11. chat history
