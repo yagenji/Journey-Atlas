@@ -14,7 +14,6 @@ COUNTRY_DIR = ROOT / "data" / "countries"
 IMAGE_POLICY_PATH = ROOT / "ops" / "image-generation-policy.json"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 
 PHASES = {

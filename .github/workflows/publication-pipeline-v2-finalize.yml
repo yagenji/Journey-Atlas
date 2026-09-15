@@ -116,7 +116,7 @@ jobs:
           else: row.update(base)
           payload['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat(); status.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n')
           PY
-            git add "data/countries/$SLUG.json" "ops/country-production/$SLUG.json" "assets/images/$SLUG" data/atlas-destinations.json data/atlas-destinations-editorial.json data/country-renewal-status.json data/theme-taxonomy.json
+            git add "data/countries/$SLUG.json" "ops/country-production/$SLUG.json" "assets/images/$SLUG" data/atlas-destinations.json data/country-renewal-status.json data/theme-taxonomy.json
             git commit -m "Finalize $SLUG publication via latest-main overlay" || true
             sha="$(git rev-parse HEAD)"
             git push --force-with-lease="refs/heads/$HEAD_REF:$(git rev-parse origin/$HEAD_REF)" origin "HEAD:refs/heads/$HEAD_REF"

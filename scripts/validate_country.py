@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 
 REQUIRED_TOP_LEVEL = {

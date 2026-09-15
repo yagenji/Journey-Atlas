@@ -11,7 +11,6 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 TAXONOMY_PATH = ROOT / "data" / "region-taxonomy.json"
 REGION_RE = re.compile(r"^(.+?) / (\d{1,2})°([NS])$")

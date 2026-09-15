@@ -23,7 +23,6 @@ DIST = ROOT / "dist"
 COUNTRY_DIR = ROOT / "data" / "countries"
 RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
-    "atlas-destinations-editorial.json",
     "region-taxonomy.json",
     "theme-taxonomy.json",
 ]

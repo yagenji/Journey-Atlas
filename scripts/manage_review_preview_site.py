@@ -14,7 +14,6 @@ from externalize_review_preview_images import self_test as externalize_images_se
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 DEFAULT_MAX_PREVIEWS = 8
 

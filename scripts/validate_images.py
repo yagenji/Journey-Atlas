@@ -28,7 +28,6 @@ COUNTRY_DIR = ROOT / "data" / "countries"
 RENEWAL_STATUS = ROOT / "data" / "country-renewal-status.json"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 RASTER_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 SCENE_MIN = (1200, 800)

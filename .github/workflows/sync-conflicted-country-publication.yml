@@ -100,7 +100,7 @@ jobs:
           slug, output = sys.argv[1:3]
           data = Path("data")
           snapshot = {"registryRows": {}, "statusRow": None, "themes": []}
-          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+          for name in ("atlas-destinations.json",):
               payload = json.loads((data / name).read_text(encoding="utf-8"))
               row = next((row for row in payload.get("destinations", []) if row.get("slug") == slug), None)
               if row is not None:
@@ -125,7 +125,6 @@ jobs:
 
           shared_files=(
             "data/atlas-destinations.json"
-            "data/atlas-destinations-editorial.json"
             "data/country-renewal-status.json"
             "data/theme-taxonomy.json"
           )

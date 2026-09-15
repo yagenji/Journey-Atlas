@@ -23,7 +23,6 @@ STATUS_PATH = ROOT / "data" / "country-renewal-status.json"
 COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRY_PATHS = (
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 )
 BASE_URL = os.environ.get("QA_BASE_URL", "https://atlas.yagenji.com").rstrip("/")
 QA_SCOPE = os.environ.get("QA_SCOPE", "published").strip().lower()
@@ -533,7 +532,7 @@ def verify_unpublished_reviewability(countries: list[tuple[str, str]]) -> list[s
         return [f"sitemap fetch failed: {exc}"]
 
     runtime_rows: dict[str, dict] = {}
-    for registry_name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+    for registry_name in ("atlas-destinations.json",):
         try:
             req = urllib.request.Request(
                 f"{BASE_URL}/data/{registry_name}?qa={int(time.time())}",

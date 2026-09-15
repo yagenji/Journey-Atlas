@@ -34,7 +34,6 @@ Iceland / NorwayをCountry Pageの基準とし、国ごとの新しいデザイ�
 
 - `../data/atlas-scope.json` — canonical 201 destinationsの範囲
 - `../data/atlas-destinations.json` — canonical 201-entry Destination registry / publication state。香港・マカオを含む
-- `../data/atlas-destinations-editorial.json` — legacy compatibility file。deprecatedであり、destinationsは空のまま維持する
 - `../data/countries/{slug}.json` — Country固有情報
 - `../data/theme-taxonomy.json` — TRAVEL THEMES
 - `../data/region-taxonomy.json` — Region taxonomy。Asiaは49 destinations

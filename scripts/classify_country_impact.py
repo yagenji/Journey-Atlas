@@ -13,7 +13,6 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRY_PATHS = [
     "data/atlas-destinations.json",
-    "data/atlas-destinations-editorial.json",
 ]
 THEME_PATH = "data/theme-taxonomy.json"
 STATUS_PATH = "data/country-renewal-status.json"
@@ -69,7 +68,6 @@ PRODUCTION_EXACT = {
     "_redirects",
     "data/theme-taxonomy.json",
     "data/atlas-destinations.json",
-    "data/atlas-destinations-editorial.json",
     "scripts/build_site.py",
     "scripts/package_site.py",
     "scripts/build_cloudflare.py",

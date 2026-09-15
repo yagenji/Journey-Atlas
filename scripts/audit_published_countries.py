@@ -14,7 +14,6 @@ STATUS = ROOT / "data" / "country-renewal-status.json"
 COUNTRY_DIR = ROOT / "data" / "countries"
 REGISTRIES = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 THEMES = ROOT / "data" / "theme-taxonomy.json"
 

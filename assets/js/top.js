@@ -180,13 +180,9 @@ if(alphabetHost){
 
 const coreRegistryPromise=fetch('data/atlas-destinations.json')
   .then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();});
-const editorialRegistryPromise=fetch('data/atlas-destinations-editorial.json')
-  .then((response)=>{if(!response.ok) throw new Error('Editorial destination registry not found');return response.json();});
-
-Promise.all([coreRegistryPromise,editorialRegistryPromise])
-  .then(([core, editorial])=>{
-    const items=[...(core.destinations||[]),...(editorial.destinations||[])];
-    destinations=sortForDisplay(items);
+coreRegistryPromise
+  .then((core)=>{
+    destinations=sortForDisplay(core.destinations||[]);
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);renderGrid(destinations);
     if(activeTheme)renderThemeResults();

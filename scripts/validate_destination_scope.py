@@ -10,7 +10,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "atlas-destinations.json"
-COMPAT_REGISTRY = ROOT / "data" / "atlas-destinations-editorial.json"
 SCOPE = ROOT / "data" / "atlas-scope.json"
 REGIONS = ROOT / "data" / "region-taxonomy.json"
 EXPECTED_COUNT = 201
@@ -25,7 +24,6 @@ def load(path: Path) -> dict:
 def main() -> int:
     errors: list[str] = []
     registry = load(REGISTRY)
-    compat = load(COMPAT_REGISTRY)
     scope = load(SCOPE)
     regions = load(REGIONS)
 
@@ -80,13 +78,6 @@ def main() -> int:
     for key in ("taiwan", "hongKong", "macao", "antarctica"):
         if scope.get("counts", {}).get(key) != 1:
             errors.append(f"atlas-scope.json counts.{key} must be 1")
-
-    if compat.get("count") != 0 or compat.get("destinations") not in ([], None):
-        errors.append("atlas-destinations-editorial.json must remain an empty compatibility registry")
-    if compat.get("deprecated") is not True:
-        errors.append("atlas-destinations-editorial.json must be marked deprecated")
-    if compat.get("canonicalRegistry") != "data/atlas-destinations.json":
-        errors.append("compatibility registry must point to data/atlas-destinations.json")
 
     top_level_codes: list[str] = []
     for region in regions.get("regions", []):

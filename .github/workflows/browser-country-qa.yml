@@ -104,7 +104,7 @@ jobs:
 
           root = Path("dist")
           rows = {}
-          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+          for name in ("atlas-destinations.json",):
               path = root / "data" / name
               if not path.exists():
                   continue
