@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
-Updated: 2026-09-15
-Current continuation base: `8cbd3b7561f303694a841522601b62a0d01b1bfb` (`main`, PR #816).
+Updated: 2026-09-16
+Current continuation base: `5246a8b30e881e020ff8c4968d36c82236e8a1a8` (`main`, PR #817).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -38,11 +38,15 @@ been retired.
 | [#814](https://github.com/yagenji/Journey-Atlas/pull/814) | Cleanup handoff synchronized with the completed #813 reconciliation and branch-audit rules |
 | [#815](https://github.com/yagenji/Journey-Atlas/pull/815) | Obsolete 2026-09-03 published-Country renewal baseline removed after confirming no surviving repository references; current renewal authority retained |
 | [#816](https://github.com/yagenji/Journey-Atlas/pull/816) | Duplicate `data/atlas-scope.json` retired; destination scope, registry, and publication state consolidated onto canonical `data/atlas-destinations.json` |
+| [#817](https://github.com/yagenji/Journey-Atlas/pull/817) | Cleanup handoff synchronized after #816 and deployed successfully from `main` |
 
 ## Current follow-up
 
 - Continue the remote branch inventory using open-PR ownership plus main
   containment/equivalent-tree evidence; do not bulk-delete by naming pattern.
+- For old sync/backup branches whose commits are ancestors of merged Country
+  branches, preserve the intermediate history until an archive-tag or canonical
+  Country-branch retention decision makes deletion provenance explicit.
 - Reconcile older general design/workflow documentation only after confirming
   current authority and active implementation references. Do not change the design
   contract as part of cleanup.
@@ -101,17 +105,44 @@ been retired.
 Branch cleanup is still in progress. No branch should be removed until its open
 PR ownership and unique-history status have been checked.
 
-All pre-existing `cleanup/*` work branches through #816 have been checked for
-main containment or an equivalent merged tree and are deletion-safe from a
-content-preservation perspective. Other deletion-safe candidates include several
-merged publish/review branches, the duplicated Iraq `country/iraq-temp*` set,
-and several no-op/tmp branches whose heads are already ancestors of `main`.
+### Deletion-safe from a content-preservation perspective
 
-Do **not** delete the following merely by name: Iran `country/iran-fix-tmp*`,
-`country/bangladesh-sync-temp`, Philippines backup branches, Iraq pre-policy
-backup, or other branches where comparison still shows branch-unique history.
-Those require equivalent-tree / merged-PR provenance checks or an archive-tag
-decision first.
+- All `cleanup/*` work branches through #817 have main containment or an equivalent
+  merged tree. The cleanup connector still cannot delete branches.
+- `cleanup/remove-completed-renewal-docs` is an ancestor of current `main` with no
+  branch-unique commits.
+- Cambodia's obsolete `publish/cambodia-20260911` branch is superseded by merged
+  PR #688; PR #687 and #688 carry the same three-file publication diff.
+- `publish/china-20260910`, `publish/northkorea-20260911-v2`, and
+  `publish/russia-20260910` are preserved by merged PRs #637, #662, and #622;
+  each branch head and its squash-merge commit have identical tree SHAs.
+- All eight audited Cambodia `review/*` branches are either ancestors of `main` or
+  have branch-head trees preserved by their merged PRs (#676, #678, #679, #681,
+  #684, #685, #686).
+- `tmp-delete-me-singapore`, `tmp-delete-me-singapore-2`, `tmp-do-not-use`,
+  `tmp-noop`, `tmp-noop2`, and `tmp-sync-not-needed` are all ancestors of `main`
+  with no branch-unique history.
+- The duplicated Iraq `country/iraq-temp*` set was previously audited as safe and
+  remains a deletion-safe candidate.
+
+### Redundant refs whose intermediate history is still retained
+
+The following branches are not active sources of truth. Their heads are ancestors
+of the corresponding canonical Country branches, and those Country branches were
+subsequently merged through the listed PRs. However, because the repository uses
+squash merge, the intermediate commit identities are not necessarily reachable
+from `main`. Keep these refs until an archive-tag or explicit canonical-branch
+retention decision closes that history-preservation question.
+
+| Redundant branch/ref | Preservation evidence |
+| --- | --- |
+| `country/iran-fix-tmp`, `tmp2`, `tmp3`, `tmp4` | All four refs point to `c85249fcdf564288d3687cea3a1573a4da4c0112`; that head is an ancestor of `country/iran`, which merged in PR #750 |
+| `country/bangladesh-sync-temp` | Head `1595a936a859e030a595cdc37ace3ea7f57beacf` is an ancestor of `country/bangladesh`, which merged in PR #723 |
+| `country/philippines-sync-backup`, `country/philippines-sync-backup-2` | Both refs point to `0036174f03450b539de752e8d8703f796cd90d23`; that head is an ancestor of `country/philippines`, which merged in PR #697 |
+| `backup/iraq-pre-policy5-sync` | Head `bedb7612a0bd876b8e7bb454afa1b16079492b1d` is an ancestor of `country/iraq`, which merged in PR #781 |
+
+These refs are therefore proven redundant as working branches, but are not yet
+classified as unconditional deletion-safe archival history.
 
 The current GitHub connector does not expose branch deletion, so branches judged
 safe have not been deleted through this cleanup session.
@@ -126,7 +157,8 @@ safe have not been deleted through this cleanup session.
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; remove only an audit proven obsolete and unreferenced |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
-| Remote branch inventory | Continue auditing by open-PR ownership plus main containment/equivalent-tree evidence; do not bulk-delete by branch naming pattern |
+| Remote branch inventory | Continue auditing remaining production-verification and other `ops/*` branches; do not bulk-delete by naming pattern |
+| Intermediate sync/backup history | Decide archive-tag or canonical Country-branch retention policy before deleting refs whose commits are not directly reachable from `main` after squash merge |
 | Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
 
 ## Audit boundaries
