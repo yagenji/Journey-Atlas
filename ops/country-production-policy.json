@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "protocolId": "2.0",
   "policyPatch": 5,
-  "updatedAt": "2026-09-15T18:15:00+09:00",
+  "updatedAt": "2026-09-15T18:11:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -26,12 +26,7 @@
     "perImageApproveProceedGeneratePrompt": "FORBIDDEN",
     "tasteInitialFailureHandling": "PARK_FAILED_TARGET_AND_FINISH_FIRST_PASS_BEFORE_BATCH_REVIEW",
     "tasteRegenStart": "ONLY_AFTER_BATCH_REVIEW_BOUNDARY",
-    "explicitUserGates": [
-      "HERO_APPROVAL",
-      "SCENE_BATCH_APPROVAL",
-      "TASTE_BATCH_APPROVAL",
-      "CANONICAL_PAGE_APPROVAL"
-    ]
+    "explicitUserGates": ["HERO_APPROVAL", "SCENE_BATCH_APPROVAL", "TASTE_BATCH_APPROVAL", "CANONICAL_PAGE_APPROVAL"]
   },
   "assetDelivery": {
     "mode": "USER_HANDOFF",
@@ -52,6 +47,8 @@
     "sceneCoordinatesFinal": true,
     "mapBuiltAndQaPassed": true,
     "mapCapitalLabelCollisionQaPassed": true,
+    "mapSvgSelfContainedQaPassed": true,
+    "mapSceneCoordinatesInsideRenderedLandQaPassed": true,
     "taxonomyComplete": true,
     "relatedCountriesComplete": true,
     "nextRoutesResolved": true,
@@ -66,7 +63,7 @@
     "contentRewriteAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT_OR_EXPLICIT_USER_REVISION",
     "mapBuildAfterVisualApproval": "FORBIDDEN_UNLESS_BLOCKING_DEFECT",
     "assetVerificationPassesTarget": 1,
-    "previewBuildModeForCountryOnlyChange": "TARGETED_COUNTRY_ONLY",
+    "previewBuildModeForCountryOnlyChange": "LATEST_MAIN_PLUS_TARGET_COUNTRY_OVERLAY",
     "targetedPreviewBuildCommand": "python3 scripts/build_country_preview_targeted.py --slugs {slug}",
     "reviewDeploymentMode": "PERSISTENT_TARGETED_GITHUB_PAGES",
     "reviewPrMode": "ONE_REUSABLE_PRE_MAIN_PR",
@@ -77,7 +74,10 @@
     "reviewOverwritePolicy": "PRESERVE_OTHER_ACTIVE_REVIEW_URLS",
     "reviewImageDelivery": "IMMUTABLE_RAW_COMMIT_ORIGIN",
     "mainIntegrationBeforeCanonicalReview": false,
-    "countryBranchRemainsAuthoritativeThroughReview": true,
+    "countryBranchRemainsAuthoritativeForCountrySpecificFilesThroughReview": true,
+    "sharedRuntimeAuthorityDuringReview": "LATEST_MAIN",
+    "countryPrSharedUiMutation": "FORBIDDEN",
+    "sharedFixesRequireSeparateSystemPr": true,
     "secondPublicationPr": "FORBIDDEN",
     "reuseReviewPrForPublication": true,
     "productionIntegrationTiming": "AFTER_CANONICAL_APPROVAL",
@@ -87,13 +87,7 @@
     "reviewPreviewDeploymentsTarget": 1,
     "fullCountryBuildDuringCountryOnlyChange": "FORBIDDEN",
     "fullCountryBrowserQaDuringCountryOnlyChange": "FORBIDDEN",
-    "fullBuildAllowedFor": [
-      "SHARED_TEMPLATE_CHANGE",
-      "SHARED_CSS_OR_JS_CHANGE",
-      "PRODUCTION_BUILD_SYSTEM_CHANGE",
-      "MANUAL_FULL_QA",
-      "FINAL_PRODUCTION_DEPLOYMENT"
-    ],
+    "fullBuildAllowedFor": ["SHARED_TEMPLATE_CHANGE", "SHARED_CSS_OR_JS_CHANGE", "PRODUCTION_BUILD_SYSTEM_CHANGE", "MANUAL_FULL_QA", "FINAL_PRODUCTION_DEPLOYMENT"],
     "targetedBrowserQaCyclesTarget": 1,
     "waitForStateOnlyCi": false,
     "pauseForProgressConfirmation": false,
@@ -111,15 +105,20 @@
       "autoOpenReusablePr": true,
       "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
       "checksMode": "review",
+      "validationSource": "LATEST_MAIN_PLUS_TARGET_COUNTRY_OVERLAY",
+      "countryScopeGuard": "SHARED_UI_BUILD_WORKFLOW_MUTATION_FORBIDDEN",
       "browserQaPassesTarget": 1,
       "duplicateBrowserQaAfterPreview": "FORBIDDEN_UNLESS_SHARED_RENDERING_CHANGED",
       "autoDeployPersistentPreview": true,
       "autoReconcileProductionState": true,
+      "recordReviewedMainBaseCommit": true,
       "nextUserGate": "CANONICAL_PAGE_APPROVAL"
     },
     "publication": {
       "trigger": "FINAL_APPROVAL_APPROVED",
       "latestMainSync": true,
+      "latestMainSyncMode": "RECONSTRUCT_FROM_LATEST_MAIN_PLUS_TARGET_COUNTRY_OVERLAY",
+      "directMainMergeIntoLongRunningCountryBranch": "FORBIDDEN",
       "sharedMetadataConflictPolicy": "LATEST_MAIN_PLUS_TARGET_COUNTRY_ROW",
       "serializationGroup": "country-publication-main",
       "maxMainSyncCycles": 3,
@@ -128,7 +127,8 @@
       "reuseReviewBrowserQaWhenSharedRenderingUnchanged": true,
       "mergeMethod": "squash",
       "secondPublicationPr": "FORBIDDEN",
-      "postMergeVerification": "FAST_CLOUDFLARE_SHA_AND_TARGET_ROUTE_SMOKE",
+      "postMergeVerification": "AUTHORITATIVE_INLINE_CLOUDFLARE_SHA_AND_TARGET_ROUTE_SMOKE",
+      "separateProductionVerificationPr": "FORBIDDEN",
       "assistantPollingRequired": false
     }
   },
@@ -159,17 +159,9 @@
     "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
-    "crossSectionTopicKeyUniqueAcross": [
-      "signatureFacts",
-      "atlasExtras",
-      "travelTrivia"
-    ],
+    "crossSectionTopicKeyUniqueAcross": ["signatureFacts", "atlasExtras", "travelTrivia"],
     "crossSectionTopicTokenOverlapGate": true,
-    "crossSectionRoles": {
-      "signatureFacts": "NUMERIC_FACTS_ONLY",
-      "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
-      "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
-    },
+    "crossSectionRoles": {"signatureFacts": "NUMERIC_FACTS_ONLY", "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT", "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"},
     "signatureFactSelectionPolicy": "READER_INTEREST_AND_PLAIN_MEANING",
     "signatureFactInterestReasonRequired": true,
     "signatureFactInterestReasonField": "interestReason",
@@ -199,17 +191,18 @@
   },
   "mapQuality": {
     "validator": "scripts/validate_country_quality_v5.py",
+    "supplementalV6Validator": "scripts/validate_country_map_v6.py",
     "capitalNameSceneNumberOverlapForbidden": true,
     "capitalLabelMustRemainInsideCanvas": true,
     "capitalLabelPositionsAllowed": ["left", "right"],
     "capitalLabelOffsetMaximumPx": 80,
     "coordinateMutationForCollisionAvoidance": "FORBIDDEN",
-    "collisionResolutionOrder": [
-      "capital.labelPosition",
-      "capital.labelOffset",
-      "MINIMAL_mapOffset"
-    ],
-    "v6AdditionalCollisionSafetyMarginPx": 6
+    "collisionResolutionOrder": ["capital.labelPosition", "capital.labelOffset", "MINIMAL_mapOffset"],
+    "v6AdditionalCollisionSafetyMarginPx": 6,
+    "svgMustBeSelfContained": true,
+    "svgExternalImageUseHrefForbidden": true,
+    "sceneRealCoordinateMustProjectInsideRenderedCountryLand": true,
+    "mapOffsetMayNotHideCoordinateGeometryError": true
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,
@@ -220,6 +213,7 @@
     "tasteBatchUserReviewCountTarget": 1,
     "assetHandoffCountTarget": 1,
     "reviewPrCountTarget": 1,
+    "productionVerificationPrCountTarget": 0,
     "preCanonicalMainIntegrationsTarget": 0,
     "productionIntegrationsTarget": 1,
     "reviewPreviewDeploymentsTarget": 1,
