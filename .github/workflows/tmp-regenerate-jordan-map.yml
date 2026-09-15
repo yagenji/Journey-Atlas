@@ -28,10 +28,9 @@ jobs:
       - name: Install map dependencies
         run: pip install shapely cairosvg pillow
 
-      - name: Regenerate Jordan map with detailed geoBoundaries geometry
+      - name: Regenerate Jordan map with official geoBoundaries geometry
         run: |
           python - <<'PY'
-          import hashlib
           import json
           import re
           import urllib.request
@@ -40,21 +39,30 @@ jobs:
 
           from shapely.geometry import shape
           from shapely.ops import unary_union
-
           from scripts.generate_country_map import polygon_path
 
-          SOURCE_URL = 'https://raw.githubusercontent.com/KristjanESPERANTO/MapCraft/57d132faa6c7c012635147bc8455458b39f49413/public/data/gbOpen/JOR/ADM0/geoBoundaries-JOR-ADM0.geojson'
-          EXPECTED_SHA256 = '9234e16ba454e5f5ffc43d34a5941c2f98c7727f2d559c4195006f7d86b72c7d'
+          API_URL = 'https://www.geoboundaries.org/api/current/gbOpen/JOR/ADM0/'
           BOUNDS = (34.75, 29.1, 39.45, 33.5)
           SIMPLIFY = 0.0007
 
-          data = urllib.request.urlopen(SOURCE_URL, timeout=30).read()
-          digest = hashlib.sha256(data).hexdigest()
-          if digest != EXPECTED_SHA256:
-              raise SystemExit(f'geoBoundaries mirror checksum mismatch: {digest}')
+          with urllib.request.urlopen(API_URL, timeout=30) as response:
+              metadata = json.load(response)
+          if metadata.get('boundaryID') != 'JOR-ADM0-64752131':
+              raise SystemExit(f"Unexpected geoBoundaries dataset: {metadata.get('boundaryID')}")
+          if metadata.get('boundaryLicense') != 'Creative Commons Attribution 4.0 International (CC BY 4.0)':
+              raise SystemExit(f"Unexpected geoBoundaries license: {metadata.get('boundaryLicense')}")
 
-          geojson = json.loads(data)
-          geometries = [shape(feature['geometry']) for feature in geojson['features']]
+          source_url = metadata['gjDownloadURL']
+          request = urllib.request.Request(source_url, headers={'User-Agent': 'Journey-Atlas-map-build/1.0'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              raw = response.read()
+          if raw.startswith(b'version https://git-lfs.github.com/spec/v1'):
+              raise SystemExit('Official geoBoundaries download returned only a Git LFS pointer')
+          geojson = json.loads(raw)
+
+          geometries = [shape(feature['geometry']) for feature in geojson.get('features', [])]
+          if not geometries:
+              raise SystemExit('Official geoBoundaries dataset contains no features')
           geometry = unary_union(geometries)
           land_path = polygon_path(geometry, BOUNDS, SIMPLIFY)
           if not land_path:
@@ -62,15 +70,15 @@ jobs:
 
           old_path = Path('assets/images/jordan/map-atlas-v1.svg')
           svg = old_path.read_text(encoding='utf-8')
-          svg = svg.replace('aria-label="Map of Jordan"', 'aria-label="Map of Jordan"', 1)
-          metadata = (
-              'geoBoundaries gbOpen JOR ADM0 detailed boundary, boundary year 2016, '
-              'build 2023-12-12, CC BY 4.0, shapeID 64752131B76849546124065; '
-              'official dataset SHA256 9234e16ba454e5f5ffc43d34a5941c2f98c7727f2d559c4195006f7d86b72c7d; '
+          source_note = (
+              'geoBoundaries gbOpen JOR ADM0 detailed boundary; '
+              f"boundaryID={metadata.get('boundaryID')}; boundaryYear={metadata.get('boundaryYearRepresented')}; "
+              f"buildDate={metadata.get('buildDate')}; source={metadata.get('boundarySource')}; "
+              f"license={metadata.get('boundaryLicense')}; sourceURL={source_url}; "
               'WGS84; local equirectangular fit with longitude scaled by cos(31.30 degrees); '
-              'existing GSHHS inland-water treatment retained; JOURNEY ATLAS map-v3 clean background.'
+              'existing GSHHS intermediate-resolution inland-water treatment retained; JOURNEY ATLAS map-v3 clean background.'
           )
-          svg = re.sub(r'<metadata>.*?</metadata>', f'<metadata>{metadata}</metadata>', svg, count=1, flags=re.S)
+          svg = re.sub(r'<metadata>.*?</metadata>', f'<metadata>{source_note}</metadata>', svg, count=1, flags=re.S)
           pattern = r'(<path\s+d=")[^"]+("\s+fill="url\(#land\)"[^>]*/>)'
           svg, count = re.subn(pattern, lambda m: m.group(1) + land_path + m.group(2), svg, count=1, flags=re.S)
           if count != 1:
@@ -80,7 +88,7 @@ jobs:
           output.write_text(svg, encoding='utf-8')
           ET.parse(output)
           print(f'Wrote {output} ({output.stat().st_size} bytes)')
-          print(f'Land geometry vertices source checksum: {digest}')
+          print(f"Source vertices: {metadata.get('meanVertices')}; simplify={SIMPLIFY}")
           PY
 
       - name: Render SVG QA preview
