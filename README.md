@@ -4,14 +4,15 @@
 
 ## Source of truth
 
-- Destination scope: `data/atlas-scope.json` — canonical 201 destinations
-- Destination registry / publication state: `data/atlas-destinations.json` — canonical 201-entry registry including Hong Kong and Macao
+- Destination scope / registry / publication state: `data/atlas-destinations.json` — canonical 201-entry registry including Taiwan, Hong Kong, Macao and Antarctica
 - Country content: `data/countries/{slug}.json`
 - Published-country renewal status: `data/country-renewal-status.json`
 - Travel themes: `data/theme-taxonomy.json`
 - Region taxonomy: `data/region-taxonomy.json`
 - Shared Country template: `country.html`
 - Country map generator: `scripts/generate_country_map.py`
+
+台湾・香港・マカオ・南極を独立destinationとして扱うのは、旅行先として独立して探せるようにするためのJOURNEY ATLAS独自の編集上の区分であり、国家承認に関する立場を示すものではありません。201 destinationsの定義と一覧は `data/atlas-destinations.json` に一本化します。
 
 Country固有情報はCountry JSONへ置き、共通UIはCountry Templateで共有します。公開済みCountryの改修は `docs/PUBLISHED_COUNTRY_RENEWAL.md` に従います。Reference v3は、Iceland / Norwayをビジュアル言語、Spainを現行構造・情報密度・UIの実装基準として役割分担します。Norwayの旧低解像度Sceneは現行画像解像度の基準ではありません。
 
@@ -36,7 +37,7 @@ Production packageにはブラウザ実行に必要なruntime dataとreviewable 
 
 ## Validation
 
-Country JSON、201-destination scope、公開Registry、Map、Theme、production packageを検証します。
+Country JSON、canonical 201-destination registry、Map、Theme、production packageを検証します。
 
 ```bash
 python3 scripts/validate_destination_scope.py

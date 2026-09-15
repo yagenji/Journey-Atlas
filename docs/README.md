@@ -48,12 +48,13 @@ Reference v3の役割分担は `PUBLISHED_COUNTRY_RENEWAL.md` に従います。
 
 ## Data source of truth
 
-- `../data/atlas-scope.json` — canonical 201 destinationsの範囲
-- `../data/atlas-destinations.json` — canonical 201-entry Destination registry / publication state。香港・マカオを含む
+- `../data/atlas-destinations.json` — canonical 201 destinationsの範囲・Destination registry・publication state。台湾・香港・マカオ・南極を含む単一正本
 - `../data/countries/{slug}.json` — Country固有情報
 - `../data/theme-taxonomy.json` — TRAVEL THEMES
 - `../data/region-taxonomy.json` — Region taxonomy。Asiaは49 destinations
 - `../data/illustration-briefs.json` — 201 destination illustration planning reference
+
+台湾・香港・マカオ・南極を独立destinationとして扱うのは旅行先としての探索性を目的とした編集上の区分であり、国家承認に関する立場を示すものではありません。
 
 ## Do not use as source of truth
 
@@ -63,4 +64,4 @@ Reference v3の役割分担は `PUBLISHED_COUNTRY_RENEWAL.md` に従います。
 - published Countryの過去制作計画
 - CI successだけを完成判定に使うこと
 
-Production / review stateはRegistryとCountry JSON、実ページのQAで判断します。Destination scopeは `scripts/validate_destination_scope.py` で201件・Asia 49件・香港/マカオ包含を機械検証します。
+Production / review stateはRegistryとCountry JSON、実ページのQAで判断します。Destination scopeは `scripts/validate_destination_scope.py` でcanonical registryの201件・Asia 49件・台湾/香港/マカオ/南極包含を機械検証します。

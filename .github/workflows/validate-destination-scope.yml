@@ -4,13 +4,11 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'data/atlas-scope.json'
       - 'data/atlas-destinations.json'
       - 'data/region-taxonomy.json'
       - 'scripts/validate_destination_scope.py'
   pull_request:
     paths:
-      - 'data/atlas-scope.json'
       - 'data/atlas-destinations.json'
       - 'data/region-taxonomy.json'
       - 'scripts/validate_destination_scope.py'
