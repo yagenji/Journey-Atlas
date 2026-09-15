@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-16
-Current continuation base: `ee091193937716157727d913cb6eabfa1021d409` (`main`, PR #820).
+Current continuation base: `0b46964f32f59c2880669947ef102cebbfe39112` (`main`, PR #821).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -42,12 +42,22 @@ been retired.
 | [#818](https://github.com/yagenji/Journey-Atlas/pull/818) | Remote publish/review/tmp branch audit recorded; deletion-safe refs separated from redundant refs whose squash-merge-era intermediate history remains retained |
 | [#819](https://github.com/yagenji/Journey-Atlas/pull/819) | Common ops branch audit recorded; Protocol 2 / published QA / Image Policy ops refs separated from divergent Tajikistan legacy history |
 | [#820](https://github.com/yagenji/Journey-Atlas/pull/820) | First Country production-verification ops batch recorded after branch-head / squash-merge tree equivalence checks |
+| [#821](https://github.com/yagenji/Journey-Atlas/pull/821) | Completed the surviving `ops/*` inventory: 34 refs individually classified, 33 content-preservation-safe and legacy `ops/tajikistan-production-qa` retained |
 
 ## Current follow-up
 
-- Continue the remote branch inventory outside the now-completed `ops/*` audit;
+- Continue the remote branch inventory outside the completed `ops/*` audit;
   do not bulk-delete by naming pattern.
-- All 34 surviving `ops/*` refs have now been individually classified. Thirty-three
+- The noncanonical Country-slug branch batch has been audited against the canonical
+  201-entry registry. Five alias refs are ancestors of their canonical Country
+  branches with zero branch-unique commits; `country/myanmar` remains retained
+  because its one unique commit identity is not reachable through the canonical
+  branch even though all 13 uploaded image blobs are preserved byte-for-byte under
+  `assets/images/myanmarburma/approved/`.
+- Next audit the remaining Country lifecycle families such as Hong Kong,
+  Indonesia, Japan, Bahrain renewal, Pakistan repair, Singapore clean, and
+  Taiwan publish without assuming safety from branch naming alone.
+- All 34 surviving `ops/*` refs have been individually classified. Thirty-three
   are deletion-safe from a content-preservation perspective; only
   `ops/tajikistan-production-qa` remains retained for divergent branch-unique history.
 - For old sync/backup branches whose commits are ancestors of merged Country
@@ -113,7 +123,7 @@ PR ownership and unique-history status have been checked.
 
 ### Deletion-safe from a content-preservation perspective
 
-- All `cleanup/*` work branches through #820 have main containment or an equivalent
+- All `cleanup/*` work branches through #821 have main containment or an equivalent
   merged tree. The cleanup connector still cannot delete branches.
 - `cleanup/remove-completed-renewal-docs` is an ancestor of current `main` with no
   branch-unique commits.
@@ -130,6 +140,13 @@ PR ownership and unique-history status have been checked.
   with no branch-unique history.
 - The duplicated Iraq `country/iraq-temp*` set was previously audited as safe and
   remains a deletion-safe candidate.
+- The following noncanonical Country-slug refs are ancestors of the canonical
+  Country branches shown, with zero branch-unique commits:
+  - `country/kyrgyzstan` → `country/kyrgyz`
+  - `country/saudi-arabia` → `country/saudiarabia`
+  - `country/sri-lanka` → `country/srilanka`
+  - `country/turkey` → `country/turkiye`
+  - `country/united-arab-emirates` → `country/unitedarabemirates`
 - `ops/country-production-protocol-2` is preserved by merged PR #692; branch-head
   and squash-merge trees are identical.
 - `ops/full-published-country-qa-20260913` is preserved by merged PR #744;
@@ -177,12 +194,11 @@ PR ownership and unique-history status have been checked.
 
 ### Redundant refs whose intermediate history is still retained
 
-The following branches are not active sources of truth. Their heads are ancestors
-of the corresponding canonical Country branches, and those Country branches were
-subsequently merged through the listed PRs. However, because the repository uses
-squash merge, the intermediate commit identities are not necessarily reachable
-from `main`. Keep these refs until an archive-tag or explicit canonical-branch
-retention decision closes that history-preservation question.
+The following branches are not active sources of truth. Their content is preserved
+by the corresponding canonical Country branch or merged Country work, but their
+intermediate commit identities are not necessarily reachable from `main` because
+the repository uses squash merge. Keep these refs until an archive-tag or explicit
+canonical-branch retention decision closes that history-preservation question.
 
 | Redundant branch/ref | Preservation evidence |
 | --- | --- |
@@ -190,6 +206,7 @@ retention decision closes that history-preservation question.
 | `country/bangladesh-sync-temp` | Head `1595a936a859e030a595cdc37ace3ea7f57beacf` is an ancestor of `country/bangladesh`, which merged in PR #723 |
 | `country/philippines-sync-backup`, `country/philippines-sync-backup-2` | Both refs point to `0036174f03450b539de752e8d8703f796cd90d23`; that head is an ancestor of `country/philippines`, which merged in PR #697 |
 | `backup/iraq-pre-policy5-sync` | Head `bedb7612a0bd876b8e7bb454afa1b16079492b1d` is an ancestor of `country/iraq`, which merged in PR #781 |
+| `country/myanmar` | Unique head `57f817e48f38f03f0a03e225417d0b7e21a0ce78` adds 13 approved images under the obsolete `assets/images/myanmar/` path; all 13 filename-matched blobs have identical Git blob SHAs under the canonical `assets/images/myanmarburma/approved/` path, but the unique commit itself is not reachable through `country/myanmarburma` |
 
 These refs are therefore proven redundant as working branches, but are not yet
 classified as unconditional deletion-safe archival history.
@@ -216,7 +233,7 @@ safe have not been deleted through this cleanup session.
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; remove only an audit proven obsolete and unreferenced |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
-| Remote branch inventory | `ops/*` is fully audited; continue other branch families without bulk deletion by naming pattern |
+| Remote branch inventory | `ops/*` and noncanonical Country-slug aliases are audited; continue Country lifecycle branch families without bulk deletion by naming pattern |
 | Intermediate sync/backup history | Decide archive-tag or canonical Country-branch retention policy before deleting refs whose commits are not directly reachable from `main` after squash merge |
 | Tajikistan legacy ops history | `ops/tajikistan-production-qa` remains divergent and is retained pending explicit provenance classification |
 | Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
