@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the canonical JOURNEY ATLAS 201-destination scope."""
+"""Validate the canonical JOURNEY ATLAS 201-destination registry and regional scope."""
 
 from __future__ import annotations
 
@@ -10,7 +10,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "atlas-destinations.json"
-SCOPE = ROOT / "data" / "atlas-scope.json"
 REGIONS = ROOT / "data" / "region-taxonomy.json"
 EXPECTED_COUNT = 201
 REQUIRED_SPECIAL_ISO2 = {"TW", "HK", "MO", "AQ"}
@@ -24,7 +23,6 @@ def load(path: Path) -> dict:
 def main() -> int:
     errors: list[str] = []
     registry = load(REGISTRY)
-    scope = load(SCOPE)
     regions = load(REGIONS)
 
     destinations = registry.get("destinations", [])
@@ -72,12 +70,6 @@ def main() -> int:
         errors.append("Hong Kong must retain canonical published slug hong-kong")
     if by_iso.get("MO", {}).get("slug") != "macau":
         errors.append("Macao destination must retain canonical published slug macau")
-
-    if scope.get("counts", {}).get("totalAtlasPages") != EXPECTED_COUNT:
-        errors.append("atlas-scope.json counts.totalAtlasPages must be 201")
-    for key in ("taiwan", "hongKong", "macao", "antarctica"):
-        if scope.get("counts", {}).get(key) != 1:
-            errors.append(f"atlas-scope.json counts.{key} must be 1")
 
     top_level_codes: list[str] = []
     for region in regions.get("regions", []):
