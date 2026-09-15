@@ -4,27 +4,27 @@
   "countryName": "EL SALVADOR",
   "contentRef": "country/elsalvador",
   "stateRef": "country/elsalvador",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-16T02:29:00+09:00",
-  "hero": {"state":"NOT_STARTED","asset":null,"contentId":null},
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-16T08:20:00+09:00",
+  "hero": {"id":"HERO","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/hero-cerro-verde-izalco.webp","contentId":"cerro-verde-izalco"},
   "scenes": [
-    {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S04","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S05","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S06","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S07","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S08","state":"NOT_STARTED","asset":null,"contentId":null}
+    {"id":"S01","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/santa-ana-volcano-crater.webp","contentId":"santa-ana-volcano-crater"},
+    {"id":"S02","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/lake-coatepeque.webp","contentId":"lake-coatepeque"},
+    {"id":"S03","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/joya-de-ceren.webp","contentId":"joya-de-ceren"},
+    {"id":"S04","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/suchitoto.webp","contentId":"suchitoto-historic-town"},
+    {"id":"S05","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/el-tunco.webp","contentId":"el-tunco-pacific-coast"},
+    {"id":"S06","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/el-imposible.webp","contentId":"el-imposible-forest"},
+    {"id":"S07","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/bahia-de-jiquilisco.webp","contentId":"bahia-de-jiquilisco"},
+    {"id":"S08","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/conchagua-gulf-of-fonseca.webp","contentId":"conchagua-gulf-of-fonseca"}
   ],
   "taste": [
-    {"id":"FOOD01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"FOOD04","state":"NOT_STARTED","asset":null,"contentId":null}
+    {"id":"FOOD01","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/food-pupusas.webp","contentId":"pupusas"},
+    {"id":"FOOD02","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/food-yuca-con-chicharron.webp","contentId":"yuca-con-chicharron"},
+    {"id":"FOOD03","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/food-sopa-de-gallina.webp","contentId":"sopa-de-gallina"},
+    {"id":"FOOD04","state":"NOT_STARTED","asset":"assets/images/elsalvador/approved/food-mariscada.webp","contentId":"mariscada"}
   ],
-  "map": {"state":"NOT_STARTED","asset":null},
+  "map": {"state":"APPROVED","asset":"assets/images/elsalvador/map-atlas-v1.svg","qa":{"canvas":"1200x760","projection":"local-equirectangular-fit-v1","geometry":"PASS","sceneCoordinates":"PASS","labelCollision":"PASS","contextLand":"PASS","styleBaseline":"Iceland/Norway map language","approvedAt":"2026-09-16T08:20:00+09:00"}},
   "implementation": {"state":"NOT_STARTED"},
   "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
@@ -45,11 +45,11 @@
   "productionProtocolPolicyPatch": 5,
   "publicationPipelineVersion": 2,
   "preVisualBuild": {
-    "state":"NOT_STARTED",
-    "checks":{"countryJsonEditorialComplete":"PENDING","finalExpectedImagePathsDeclared":"PENDING","sceneCoordinatesFinal":"PENDING","mapBuiltAndQaPassed":"PENDING","taxonomyComplete":"PENDING","relatedCountriesComplete":"PENDING","nextRoutesResolved":"PENDING","travelScaleComplete":"PENDING","signatureFactsComplete":"PENDING","sourcesComplete":"PENDING","editorialQaV2Passed":"PENDING"}
+    "state":"PASS",
+    "checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}
   },
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"COMPLETE_CONTENT_DESIGN","asset":null}
+  "next": {"action":"GENERATE_HERO","asset":"HERO"}
 }
