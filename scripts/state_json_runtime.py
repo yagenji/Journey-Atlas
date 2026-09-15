@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Runtime guards for production-state validators.
 
-GitHub-hosted Python 3.12 runners have exhibited a rare decoded-str inconsistency
-where two UUID-shaped Generation IDs expose identical UTF-8 bytes but disagree on
-len/hash/equality. Revision 7 ledger validation requires exact ID identity, so the
-guard below preserves every existing validation rule while suppressing only a
-ledger-missing error that is demonstrably false when the two IDs have identical
-UTF-8 bytes.
+GitHub-hosted Python 3.12 runners have exhibited a rare decoded-value inconsistency
+where two UUID-shaped Generation IDs serialize to the same UTF-8 content while
+Python reports inconsistent object length/hash/equality. Revision 7 ledger
+validation requires exact ID identity, so the guard below preserves every existing
+validation rule while suppressing only a ledger-missing error that is demonstrably
+false from an independent hexadecimal serialization of the Generation IDs.
 
 This is deliberately generic: no Country, asset, or Generation ID is special-cased.
 """
@@ -17,16 +17,16 @@ import json
 from typing import Any
 
 
-def stable_text_bytes(value: Any) -> bytes | None:
+def stable_text_fingerprint(value: Any) -> str | None:
     if not isinstance(value, str):
         return None
-    return str.encode(value, "utf-8")
+    return str.encode(value, "utf-8").hex()
 
 
-def same_text_bytes(left: Any, right: Any) -> bool:
-    left_bytes = stable_text_bytes(left)
-    right_bytes = stable_text_bytes(right)
-    return left_bytes is not None and left_bytes == right_bytes
+def same_text_fingerprint(left: Any, right: Any) -> bool:
+    left_fp = stable_text_fingerprint(left)
+    right_fp = stable_text_fingerprint(right)
+    return left_fp is not None and left_fp == right_fp
 
 
 def canonicalize_json_strings(value: Any) -> Any:
@@ -48,9 +48,9 @@ def install_json_loads_guard() -> None:
 
 
 def install_v7_ledger_guard(v7_module: Any) -> None:
-    """Patch a loaded Revision-7 module with byte-stable ledger coverage checks."""
+    """Patch a loaded Revision-7 module with serialization-stable ledger checks."""
     original = getattr(v7_module, "validate_ledger", None)
-    if original is None or getattr(original, "_journey_atlas_byte_guarded", False):
+    if original is None or getattr(original, "_journey_atlas_fingerprint_guarded", False):
         return
 
     def guarded_validate_ledger(
@@ -73,7 +73,7 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
         if not isinstance(rounds, list):
             return
 
-        covered: dict[str, set[bytes]] = {asset_id: set() for asset_id in ids}
+        covered: dict[str, list[str]] = {asset_id: [] for asset_id in ids}
         for entry in rounds:
             if not isinstance(entry, dict):
                 continue
@@ -81,9 +81,9 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             if not isinstance(approved, dict):
                 continue
             for asset_id, generation_id in approved.items():
-                raw = stable_text_bytes(generation_id)
-                if asset_id in covered and raw is not None:
-                    covered[asset_id].add(raw)
+                fp = stable_text_fingerprint(generation_id)
+                if asset_id in covered and fp is not None:
+                    covered[asset_id].append(fp)
 
         by_id = {
             str(item.get("id")): item
@@ -95,8 +95,8 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             item = by_id.get(asset_id, {})
             if item.get("state") != "APPROVED":
                 continue
-            raw = stable_text_bytes(item.get("approvedGenerationId"))
-            if raw is not None and raw in covered.get(asset_id, set()):
+            fp = stable_text_fingerprint(item.get("approvedGenerationId"))
+            if fp is not None and any(fp == candidate for candidate in covered.get(asset_id, [])):
                 proven_covered_assets.add(asset_id)
 
         added = errors[start:]
@@ -107,22 +107,22 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                 kind,
                 "proven=",
                 sorted(proven_covered_assets),
-                "covered_sizes=",
-                {asset_id: sorted(len(raw) for raw in values) for asset_id, values in covered.items()},
+                "fingerprint_lengths=",
+                {asset_id: [len(fp) for fp in values] for asset_id, values in covered.items()},
             )
 
         if not proven_covered_assets:
             return
 
-        suffix = b" is not covered by immutable batch ledger"
+        suffix_hex = " is not covered by immutable batch ledger".encode("utf-8").hex()
         filtered: list[str] = []
         for error in added:
-            error_bytes = stable_text_bytes(error)
+            error_fp = stable_text_fingerprint(error)
             suppress = False
-            if error_bytes is not None and error_bytes.endswith(suffix):
+            if error_fp is not None and error_fp.endswith(suffix_hex):
                 for asset_id in proven_covered_assets:
-                    prefix = f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8")
-                    if error_bytes.startswith(prefix):
+                    prefix_hex = f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8").hex()
+                    if error_fp.startswith(prefix_hex):
                         suppress = True
                         print("LEDGER_GUARD_TRACE suppress=", filename, kind, asset_id)
                         break
@@ -130,16 +130,16 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                 filtered.append(error)
         errors[start:] = filtered
 
-    guarded_validate_ledger._journey_atlas_byte_guarded = True
+    guarded_validate_ledger._journey_atlas_fingerprint_guarded = True
     v7_module.validate_ledger = guarded_validate_ledger
 
 
 def self_test() -> None:
     good = "3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
-    assert same_text_bytes(good, good)
-    assert not same_text_bytes(good, other)
-    assert stable_text_bytes(good) == b"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"
+    assert same_text_fingerprint(good, good)
+    assert not same_text_fingerprint(good, other)
+    assert stable_text_fingerprint(good) == "33646462343639332d373063382d343162392d623261622d623265326335653232353239"
 
 
 if __name__ == "__main__":
