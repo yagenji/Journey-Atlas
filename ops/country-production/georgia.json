@@ -155,7 +155,8 @@
     "url": null
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "basis": "User instruction: QAして問題なければ公開して. Latest Georgia review source a3187c241ef91e7f8636767a07db20fdacbd365f passed Publication Pipeline v2 targeted validation, image audit, and Desktop / Tablet / Mobile Browser QA; the subsequent branch commit only reconciled that QA result into Production State."
   },
   "publication": {
     "state": "DRAFT",
@@ -332,7 +333,7 @@
     "canonicalReviewReadyAt": "2026-09-15T11:42:14+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "FINALIZE_REVIEW_PR_FOR_PUBLICATION",
     "asset": null
   },
   "publicationPipelineVersion": 2
