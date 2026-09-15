@@ -13,6 +13,8 @@ import importlib.util
 import json
 from pathlib import Path
 
+from state_json_runtime import install_v7_ledger_guard
+
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 STATE_DIR = ROOT / "ops" / "country-production"
@@ -32,6 +34,10 @@ v7 = load_module("journey_atlas_v7_state", SCRIPTS / "country_production_state_v
 v72 = load_module("journey_atlas_v72_state", SCRIPTS / "image_policy_v72.py")
 protocol2 = load_module("journey_atlas_protocol2_state", SCRIPTS / "country_production_protocol_v2.py")
 
+install_v7_ledger_guard(v7)
+if getattr(v72, "v7", None) is not None:
+    install_v7_ledger_guard(v72.v7)
+
 
 def validate() -> list[str]:
     errors: list[str] = []
@@ -45,9 +51,6 @@ def validate() -> list[str]:
             continue
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
-            # Protocol 2 is a Revision 7 state. Validate the current state with
-            # all current layers, but do not also apply the incompatible legacy
-            # executionPolicy contract.
             errors.extend(v7.validate_state_dict(state, path.name))
             errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
