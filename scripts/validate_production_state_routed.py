@@ -39,6 +39,29 @@ if getattr(v72, "v7", None) is not None:
     install_v7_ledger_guard(v72.v7)
 
 
+def _debug_s03_source(path: Path) -> None:
+    data = path.read_bytes()
+    needle = b"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"
+    positions: list[int] = []
+    cursor = 0
+    while True:
+        pos = data.find(needle, cursor)
+        if pos < 0:
+            break
+        positions.append(pos)
+        cursor = pos + 1
+    print("S03_RAW_EXACT_COUNT", len(positions), "POSITIONS", positions)
+    cursor = 0
+    fragments: list[str] = []
+    while True:
+        pos = data.find(b"3ddb", cursor)
+        if pos < 0:
+            break
+        fragments.append(data[max(0, pos - 16):pos + 64].hex())
+        cursor = pos + 1
+    print("S03_RAW_FRAGMENTS", fragments)
+
+
 def validate() -> list[str]:
     errors: list[str] = []
     registry = legacy.registry_map()
@@ -51,7 +74,10 @@ def validate() -> list[str]:
             continue
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
-            errors.extend(v7.validate_state_dict(state, path.name))
+            v7_errors = v7.validate_state_dict(state, path.name)
+            if path.name == "unitedarabemirates.json" and any("S03 generation" in error for error in v7_errors):
+                _debug_s03_source(path)
+            errors.extend(v7_errors)
             errors.extend(v72.validate_state_dict(state, path.name))
             errors.extend(protocol2.validate_protocol_state(state, path.name))
         else:
