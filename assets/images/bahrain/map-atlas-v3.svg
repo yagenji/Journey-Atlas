@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 760" role="img" aria-label="Map of Bahrain with Hawar Islands detail inset" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="multi-region-local-equirectangular-v1">
+  <metadata>Base geometry: assets/images/bahrain/map-atlas-v2.svg, geoBoundaries gbOpen ADM0 BHR-ADM0-88433195, OpenStreetMap/Wambacher, ODbL 1.0. This presentation layer preserves the approved Bahrain and Hawar geometry and adopts the Qatar locator/inset visual language: square inset frame, locator cue, guide line, and compact uppercase label.</metadata>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ef"/>
+      <stop offset=".55" stop-color="#e4eceb"/>
+      <stop offset="1" stop-color="#dce7e7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Preserve the previously approved high-resolution geography. -->
+  <image href="map-atlas-v2.svg" xlink:href="map-atlas-v2.svg" x="0" y="0" width="1200" height="760" preserveAspectRatio="xMidYMid meet"/>
+
+  <!-- Remove the former rounded-card treatment around the Hawar inset. -->
+  <path d="M986 468H1194V480H986Z M986 740H1194V750H986Z M986 480H995V740H986Z M1185 480H1194V740H1185Z" fill="url(#sea)"/>
+
+  <!-- Qatar-style locator cue. Hawar lies beyond the south-east edge of the main-detail bounds. -->
+  <g aria-hidden="true" fill="none" stroke="#6f8997" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="948" y="704" width="25" height="28" rx="2.5" stroke-width="1.35"/>
+    <path d="M973 718 L985 718 L995 690" stroke-width="1.1" opacity=".82"/>
+  </g>
+  <text x="906" y="697" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1.2" fill="#4f6875">HAWAR</text>
+
+  <!-- Qatar-style square inset frame; underlying approved Hawar geometry remains unchanged. -->
+  <rect x="995" y="480" width="190" height="260" fill="none" stroke="#8aa0aa" stroke-width="1.2" opacity=".85"/>
+</svg>
