@@ -113,6 +113,9 @@ PR ownership and unique-history status have been checked.
   branch-unique commits.
 - Cambodia's obsolete `publish/cambodia-20260911` branch is superseded by merged
   PR #688; PR #687 and #688 carry the same three-file publication diff.
+- `publish/china-20260910`, `publish/northkorea-20260911-v2`, and
+  `publish/russia-20260910` are preserved by merged PRs #637, #662, and #622;
+  each branch head and its squash-merge commit have identical tree SHAs.
 - All eight audited Cambodia `review/*` branches are either ancestors of `main` or
   have branch-head trees preserved by their merged PRs (#676, #678, #679, #681,
   #684, #685, #686).
@@ -154,7 +157,7 @@ safe have not been deleted through this cleanup session.
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; remove only an audit proven obsolete and unreferenced |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
-| Remote branch inventory | Continue auditing remaining publish/review/ops branches; do not bulk-delete by naming pattern |
+| Remote branch inventory | Continue auditing remaining production-verification and other `ops/*` branches; do not bulk-delete by naming pattern |
 | Intermediate sync/backup history | Decide archive-tag or canonical Country-branch retention policy before deleting refs whose commits are not directly reachable from `main` after squash merge |
 | Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
 
