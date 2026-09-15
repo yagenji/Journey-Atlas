@@ -12,9 +12,6 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
 SPRITE_PATH = ROOT / "assets" / "icons" / "atlas-icons.svg"
 
-TRAVEL_SCALE_ICONS = ["city", "map", "compass"]
-TRANSPORT_ICON = "road"
-
 # Shared renderer fallbacks and theme-derived icons in assets/js/app.js.
 # These must remain present even when a Country JSON intentionally omits `icon`.
 RENDERER_FALLBACK_ICONS = {
@@ -102,26 +99,15 @@ def main() -> int:
                     f"{country_path.name}: {json_path} references missing sprite symbol '{icon}'"
                 )
 
+        # Travel Trivia cards are rendered from explicit semantic icons rather than
+        # a section-level fallback, so every card must name a valid shared symbol.
         trivia = data.get("travelTrivia") if isinstance(data.get("travelTrivia"), list) else []
         for index, item in enumerate(trivia, 1):
             if not isinstance(item, dict) or not isinstance(item.get("icon"), str) or not item.get("icon", "").strip():
                 errors.append(f"{country_path.name}: travelTrivia[{index}] requires an explicit icon")
 
-        travel_scale = data.get("travelScale") if isinstance(data.get("travelScale"), dict) else {}
-        travel_items = travel_scale.get("items") if isinstance(travel_scale.get("items"), list) else []
-        if travel_scale or travel_items:
-            actual = [item.get("icon") if isinstance(item, dict) else None for item in travel_items]
-            if actual != TRAVEL_SCALE_ICONS:
-                errors.append(
-                    f"{country_path.name}: travelScale icons must be {TRAVEL_SCALE_ICONS}, got {actual}"
-                )
-
-        transport = data.get("transport") if isinstance(data.get("transport"), dict) else {}
-        if transport and transport.get("icon") != TRANSPORT_ICON:
-            errors.append(
-                f"{country_path.name}: transport.icon must be '{TRANSPORT_ICON}', got {transport.get('icon')!r}"
-            )
-
+        # Other sections may intentionally rely on renderer fallbacks. Report that
+        # usage for visibility, but do not invent fixed per-section icon contracts.
         for section in OPTIONAL_ICON_SECTIONS:
             value = data.get(section)
             if isinstance(value, list):
