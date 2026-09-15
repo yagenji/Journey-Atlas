@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "armenia",
   "countryName": "ARMENIA",
-  "contentRef": "country/armenia",
-  "stateRef": "country/armenia",
-  "phase": "QA",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-15T09:22:58+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-15T09:40:38+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -185,16 +185,26 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/armenia/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "APPROVED",
     "basis": "User instruction: QAして公開して. Latest Armenia review source 683d7ea18b961d38d7c3ad9e1a8e3b63543fb304 passed Publication Pipeline v2 targeted validation, image audit, and Desktop / Tablet / Mobile Browser QA; the subsequent branch commit only reconciled that QA result into Production State."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T09:40:38+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/armenia/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -402,7 +412,7 @@
     "canonicalReviewReadyAt": "2026-09-15T09:22:58+09:00"
   },
   "next": {
-    "action": "FINALIZE_REVIEW_PR_FOR_PUBLICATION",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
