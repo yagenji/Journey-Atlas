@@ -1,11 +1,13 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-15
-Audit base: `047698450a7b179b265e223fd763bcb4442dcb68` (`main`, PR #810).
+Current continuation base: `c6744bd94d69c5f011dc8bb63e69502cb302976a` (`main`, PR #813).
+Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
 The cleanup remains in progress. A merged cleanup PR does not establish that
-all obsolete data, documentation, or compatibility paths have been retired.
+all obsolete data, documentation, compatibility paths, or stale branches have
+been retired.
 
 ## Scope and preservation rules
 
@@ -15,11 +17,13 @@ all obsolete data, documentation, or compatibility paths have been retired.
 - Preserve Country content, approved assets, maps, theme assignments,
   publication/approval state, and the established UI.
 - Check live references before deletion. Age, filename, and publication alone
-  are insufficient evidence that a file can be removed.
+  are insufficient evidence that a file or branch can be removed.
 - Preserve deleted historical plans in Git history. Do not create duplicate
   archive files or rewrite approval provenance to make a deletion possible.
+- Do not delete a branch only because its name contains `tmp`, `temp`, `backup`,
+  `review`, or `publish`; confirm main containment or an equivalent merged tree.
 
-## Completed on the audit base
+## Completed cleanup
 
 | PR | Completed cleanup |
 | --- | --- |
@@ -28,47 +32,48 @@ all obsolete data, documentation, or compatibility paths have been retired.
 | [#808](https://github.com/yagenji/Journey-Atlas/pull/808) | Obsolete static production-verification target and references removed |
 | [#809](https://github.com/yagenji/Journey-Atlas/pull/809) | Conflict-sync workflow restricted to the legacy publication path |
 | [#810](https://github.com/yagenji/Journey-Atlas/pull/810) | Editorial compatibility registry retired; consumers use canonical registry; image versioning preserved |
+| #811 | 17 unreferenced published-Country content plans removed; documentation index and branch-hygiene behavior cleaned up |
+| #812 | Unused top `theme-icons.svg` removed and obsolete PRs #610, #714, #715 closed |
+| [#813](https://github.com/yagenji/Journey-Atlas/pull/813) | Stale icon, typography, and State-recovery maintenance reconstructed on latest main and merged after current validation and full Browser QA |
 
-## This follow-up change
+## #813 reconciliation complete
 
-- Remove 17 published-Country content plans that have no remaining repository
-  references outside the old documentation index: Belarus, China, Hong Kong,
-  Hungary, Indonesia, Japan, Macao, Moldova, Mongolia, Nepal, North Korea,
-  Poland, Serbia, South Korea, Spain, Taiwan, and Tajikistan.
-- Where a Country Production State exists, its phase is `COMPLETE`; all 17
-  canonical registry rows are published. No open PR targets their production
-  branches at the audit time.
-- Update the documentation index to current authority documents and actual
-  retained plans; remove the stale description of Tajikistan as unfinished.
-- Remove the historical push-triggered branch deletion and its hard-coded
-  target from `branch-hygiene.yml`. Explicit manual branch selection and the
-  existing main-branch protection remain. This change deletes no Git branch.
+- #813 merged to `main` as `c6744bd94d69c5f011dc8bb63e69502cb302976a`.
+- Before merge, the current head passed Country data validation, Publication
+  Pipeline v2 checks, Production State routing, the Country icon integrity audit,
+  all unpublished reviewable Country Browser QA, and all published Country
+  Browser QA.
+- #647 was superseded by the current icon-integrity audit and shared sprite fixes.
+  Stale fixed Travel Scale / `transport.icon=road` constraints were intentionally
+  not restored because they are not part of the current Country contract.
+- #651 was superseded by the current Transport typography ownership fix without
+  changing rendered typography values.
+- #656 was superseded by `STATE_RECOVERY_MIGRATION.md` rewritten for Image Policy
+  7.2 / Protocol 2. Recovery metadata remains audit provenance, not a validator
+  bypass or raster-materialization path.
+- #647, #651, and #656 were each annotated as superseded and closed without merge.
+- No Country images, Maps, Theme assignments, Country page structure, or
+  publication state were changed by #813.
 
-## Subsequent cleanup
+## Branch cleanup audit
 
-- Remove `assets/images/top/theme-icons.svg`. No HTML, CSS, JavaScript, JSON,
-  workflow, documentation, or build input references the file. The top page
-  renders its theme controls from HTML/CSS, while `scripts/package_site.py`
-  otherwise copies every file under `assets/images/top/` into production.
-- Close obsolete PRs #610, #714, and #715. Russia is already complete with a
-  later approved FOOD03 generation, and the two old publication/QA trigger PRs
-  were superseded by later full published-Country QA and Pipeline v2 cleanup.
+Branch cleanup is still in progress. No branch should be removed until its open
+PR ownership and unique-history status have been checked.
 
-## Active latest-main reconciliation
+Deletion-safe candidates already established by containment or equivalent-tree
+checks include merged cleanup/sync branches, several merged publish/review
+branches, the duplicated Iraq `country/iraq-temp*` set, and several no-op/tmp
+branches whose heads are already ancestors of `main`. The merged #811, #812, and
+#813 work branches are also content-preserved on `main`.
 
-- PR #813 reconstructs the still-useful parts of stale PRs #647, #651, and #656
-  from current `main` instead of merging their 176–183-commit-old heads.
-- #647 intent is retained through a current icon-integrity audit, a real shared
-  `clock` symbol, Vatican City's redundant `earth` reference normalized to the
-  existing `landscape` symbol, and shared-rendering classification for the icon
-  sprite. The retired editorial destination registry is not restored.
-- #651 intent is retained by separating typography selectors from Transport
-  layout ownership without changing the rendered typography values.
-- #656 intent is retained through `STATE_RECOVERY_MIGRATION.md` rewritten for
-  Image Policy 7.2 / Protocol 2. Recovery metadata remains audit provenance,
-  not a validator bypass or raster-materialization path.
-- Keep #647, #651, and #656 open until #813 passes current validation and merges;
-  then close them as superseded before deleting their old branches.
+Do **not** delete the following merely by name: Iran `country/iran-fix-tmp*`,
+`country/bangladesh-sync-temp`, Philippines backup branches, Iraq pre-policy
+backup, or other branches where comparison still shows branch-unique history.
+Those require equivalent-tree / merged-PR provenance checks or an archive-tag
+decision first.
+
+The current GitHub connector does not expose branch deletion, so branches judged
+safe have not been deleted through this cleanup session.
 
 ## Retained dependencies and outstanding review
 
@@ -79,16 +84,15 @@ all obsolete data, documentation, or compatibility paths have been retired.
 | Russia plan | Published, but main State Render Packets still reference it. Retain provenance |
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; not covered by the completed-production-plan deletion decision |
-| Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this follow-up |
-| PR #813 and stale PRs #647, #651, #656 | Validate #813 on current main; if it merges, close the three old PRs as superseded rather than merging their stale heads |
-| Remote branch inventory | 218 branches at the current audit. Delete only after checking open PR ownership and whether unique history requires an archive tag |
-| Production deployment / live QA after #810 | Separate from pre-merge Browser QA; not verified by this repository cleanup |
+| Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
+| Remote branch inventory | Continue auditing by open-PR ownership plus main containment/equivalent-tree evidence; do not bulk-delete by branch naming pattern |
+| Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
 
 ## Audit boundaries
 
-- No duplicate keys were found in tracked JSON on the audit base.
+- No duplicate keys were found in tracked JSON on the original cleanup audit base.
 - No retired editorial registry or static verification-target path references
-  were found in current tracked sources on the audit base.
+  were found in current tracked sources on that audit base.
 - An exact full-path image search is not sufficient to prove an orphan:
   `world-map-watercolor.svg` is referenced through a relative CSS URL. The
   removed `theme-icons.svg` was also checked by basename and relative-path
@@ -96,4 +100,4 @@ all obsolete data, documentation, or compatibility paths have been retired.
   production payload despite the absence of a runtime reference.
 - Repository validation proves source consistency only. It does not establish
   visual approval, production deployment success, or completion of the wider
-  cleanup. Continue from the outstanding items above using the latest main.
+  cleanup. Continue from the outstanding items above using the latest `main`.
