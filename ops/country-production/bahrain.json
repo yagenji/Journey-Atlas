@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "bahrain",
   "countryName": "BAHRAIN",
-  "contentRef": "country/bahrain",
-  "stateRef": "country/bahrain",
-  "phase": "QA",
-  "stateRevision": 25,
-  "updatedAt": "2026-09-15T16:38:08+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-15T16:39:53+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -218,8 +218,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/bahrain/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -227,8 +229,16 @@
     "basis": "User explicitly requested completion through publication after reviewing the current Bahrain canonical preview."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T16:39:53+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/bahrain/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -399,7 +409,7 @@
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "PUBLISH",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
