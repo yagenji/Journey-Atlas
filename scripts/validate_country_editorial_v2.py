@@ -1,18 +1,40 @@
 #!/usr/bin/env python3
+"""JOURNEY ATLAS editorial content validator.
+
+The filename is retained for CI/backward compatibility.
+- Content QA v2: day-notation Travel Scale.
+- Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
+- Content QA v4: continuous day-range Travel Scale + route-only examples + v3 topic separation.
+"""
 from __future__ import annotations
 
 import json
 import re
 import sys
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data" / "countries"
-CONTENT_QA_VERSION = 2
+CONTENT_QA_V2 = 2
+CONTENT_QA_V3 = 3
+CONTENT_QA_V4 = 4
 FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
+TRAVEL_ICONS = ("city", "map", "compass")
+DURATION_COUNT_RE = re.compile(
+    r"(?:\d+(?:\.\d+)?|[一二三四五六七八九十百千万数半]+)\s*(?:日|泊|週間|週)"
+)
+DURATION_WORDS = ("日帰り",)
+DAY_RANGE_RE = re.compile(r"(\d+)〜(\d+)日")
+OPEN_ENDED_DAY_RE = re.compile(r"(\d+)日以上")
+TOPIC_SUFFIXES = {
+    "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
+    "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
+    "overview", "story", "system", "culture", "context", "figure", "figures",
+}
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -23,11 +45,18 @@ def text(value: object) -> str:
     return value.strip() if isinstance(value, str) else ""
 
 
-def validate_travel_scale(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+def qa_version(data: dict[str, Any]) -> int:
+    value = data.get("contentQaVersion", 1)
+    return value if isinstance(value, int) else 1
+
+
+def validate_common_travel_scale(
+    errors: list[str], filename: str, data: dict[str, Any]
+) -> list[dict[str, Any]]:
     scale = data.get("travelScale")
     if not isinstance(scale, dict):
-        fail(errors, f"{filename}: Content QA v2 requires travelScale object")
-        return
+        fail(errors, f"{filename}: Content QA requires travelScale object")
+        return []
     if scale.get("kicker") != "DURATION":
         fail(errors, f"{filename}: travelScale.kicker must be DURATION")
     if scale.get("title") != "旅の目安日程":
@@ -36,8 +65,9 @@ def validate_travel_scale(errors: list[str], filename: str, data: dict[str, Any]
     items = scale.get("items")
     if not isinstance(items, list) or len(items) != 3:
         fail(errors, f"{filename}: travelScale must contain exactly 3 items")
-        return
+        return []
 
+    normalized: list[dict[str, Any]] = []
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
         if not isinstance(item, dict):
@@ -47,24 +77,119 @@ def validate_travel_scale(errors: list[str], filename: str, data: dict[str, Any]
         title = text(item.get("title"))
         body = text(item.get("text"))
         icon = text(item.get("icon"))
-        if not duration or "週間" in duration or "日" not in duration:
-            fail(errors, f"{owner}.duration must use day notation: {duration!r}")
+        if not duration:
+            fail(errors, f"{owner}.duration is required")
         if not title:
             fail(errors, f"{owner}.title is required")
         if not body:
             fail(errors, f"{owner}.text is required")
-        if not icon:
-            fail(errors, f"{owner}.icon is required")
+        if icon != TRAVEL_ICONS[index - 1]:
+            fail(errors, f"{owner}.icon must be {TRAVEL_ICONS[index - 1]!r}")
         if "例：" not in body:
             fail(errors, f"{owner}.text must include a concrete example introduced by '例：'")
         else:
             example = body.split("例：", 1)[1].strip().rstrip("。")
             if len(example) < 4:
                 fail(errors, f"{owner}.text has an empty/too-short example")
+        normalized.append(item)
+    return normalized
 
-    final_duration = text(items[2].get("duration") if isinstance(items[2], dict) else None)
+
+def validate_day_notation_travel_scale(
+    errors: list[str], filename: str, data: dict[str, Any]
+) -> list[dict[str, Any]]:
+    items = validate_common_travel_scale(errors, filename, data)
+    if len(items) != 3:
+        return items
+    for index, item in enumerate(items, 1):
+        duration = text(item.get("duration"))
+        if "週間" in duration or "週" in duration or "泊" in duration or "日" not in duration:
+            fail(errors, f"{filename}: travelScale.items[{index}].duration must use day notation only: {duration!r}")
+    final_duration = text(items[2].get("duration"))
     if not re.fullmatch(r"\d+日以上", final_duration):
         fail(errors, f"{filename}: final travelScale duration must be '○日以上': {final_duration!r}")
+    return items
+
+
+def validate_travel_scale_v2(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    validate_day_notation_travel_scale(errors, filename, data)
+
+
+def contains_forbidden_duration(value: str) -> bool:
+    return bool(DURATION_COUNT_RE.search(value)) or any(word in value for word in DURATION_WORDS)
+
+
+def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    items = validate_common_travel_scale(errors, filename, data)
+    for index, item in enumerate(items, 1):
+        owner = f"{filename}: travelScale.items[{index}]"
+        for key in ("duration", "title", "text"):
+            value = text(item.get(key))
+            if contains_forbidden_duration(value):
+                fail(
+                    errors,
+                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
+                )
+
+
+def validate_v4_duration_ranges(
+    errors: list[str], filename: str, items: list[dict[str, Any]]
+) -> None:
+    if len(items) != 3:
+        return
+
+    parsed_ranges: list[tuple[int, int] | None] = []
+    for index in range(2):
+        duration = text(items[index].get("duration"))
+        match = DAY_RANGE_RE.fullmatch(duration)
+        if not match:
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index + 1}].duration must be a day range such as '2〜3日', not a single count: {duration!r}",
+            )
+            parsed_ranges.append(None)
+            continue
+        start, end = int(match.group(1)), int(match.group(2))
+        if start < 1 or end <= start:
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index + 1}].duration must have real width with start < end: {duration!r}",
+            )
+            parsed_ranges.append(None)
+            continue
+        parsed_ranges.append((start, end))
+
+    final_duration = text(items[2].get("duration"))
+    final_match = OPEN_ENDED_DAY_RE.fullmatch(final_duration)
+    final_start = int(final_match.group(1)) if final_match else None
+
+    first = parsed_ranges[0] if len(parsed_ranges) > 0 else None
+    second = parsed_ranges[1] if len(parsed_ranges) > 1 else None
+    if first and second and second[0] != first[1] + 1:
+        fail(
+            errors,
+            f"{filename}: Travel Scale must be continuous with no gap or overlap: second tier must start at {first[1] + 1}日 after first tier {text(items[0].get('duration'))!r}, got {text(items[1].get('duration'))!r}",
+        )
+    if second and final_start is not None and final_start != second[1] + 1:
+        fail(
+            errors,
+            f"{filename}: Travel Scale must be continuous with no gap or overlap: final tier must start at {second[1] + 1}日 after second tier {text(items[1].get('duration'))!r}, got {final_duration!r}",
+        )
+
+
+def validate_travel_scale_v4(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    items = validate_day_notation_travel_scale(errors, filename, data)
+    validate_v4_duration_ranges(errors, filename, items)
+    for index, item in enumerate(items, 1):
+        body = text(item.get("text"))
+        if "例：" not in body:
+            continue
+        example = body.split("例：", 1)[1].strip()
+        if contains_forbidden_duration(example):
+            fail(
+                errors,
+                f"{filename}: travelScale.items[{index}].text: Content QA v4 forbids day/stay/week counts only inside the '例：' route example: {example!r}",
+            )
 
 
 def forest_related(item: dict[str, Any]) -> bool:
@@ -116,12 +241,132 @@ def validate_signature_facts(errors: list[str], filename: str, data: dict[str, A
             )
 
 
+def canonical_topic_key(value: str) -> str:
+    parts = [part for part in re.split(r"[-_\s]+", value.strip().lower()) if part]
+    while len(parts) > 1 and parts[-1] in TOPIC_SUFFIXES:
+        parts.pop()
+    return "-".join(parts)
+
+
+def item_copy_text(section: str, item: dict[str, Any]) -> str:
+    values: list[str] = []
+    if section == "signatureFacts":
+        keys = ("label", "value", "note")
+    elif section == "atlasExtras":
+        keys = ("title", "text")
+    else:
+        keys = ("categoryJa", "title", "text")
+    for key in keys:
+        value = item.get(key)
+        if isinstance(value, str):
+            values.append(value)
+    if section == "atlasExtras":
+        points = item.get("points")
+        if isinstance(points, list):
+            values.extend(str(point) for point in points if isinstance(point, str))
+    return " ".join(values)
+
+
+def normalize_copy(value: str) -> str:
+    value = value.lower()
+    value = re.sub(r"\s+", "", value)
+    value = re.sub(r"[\W_]+", "", value, flags=re.UNICODE)
+    return value
+
+
+def character_ngrams(value: str, n: int = 3) -> set[str]:
+    normalized = normalize_copy(value)
+    if len(normalized) < n:
+        return {normalized} if normalized else set()
+    return {normalized[index : index + n] for index in range(len(normalized) - n + 1)}
+
+
+def near_duplicate(a: str, b: str) -> bool:
+    na = normalize_copy(a)
+    nb = normalize_copy(b)
+    if min(len(na), len(nb)) < 24:
+        return False
+
+    shorter, longer = (na, nb) if len(na) <= len(nb) else (nb, na)
+    if shorter in longer:
+        return True
+
+    if SequenceMatcher(None, na, nb).ratio() >= 0.66:
+        return True
+
+    grams_a = character_ngrams(na)
+    grams_b = character_ngrams(nb)
+    if not grams_a or not grams_b:
+        return False
+    overlap = len(grams_a & grams_b) / min(len(grams_a), len(grams_b))
+    return overlap >= 0.70
+
+
+def validate_cross_section_topics(errors: list[str], filename: str, data: dict[str, Any]) -> None:
+    sections = ("signatureFacts", "atlasExtras", "travelTrivia")
+    seen_exact: dict[str, str] = {}
+    seen_canonical: dict[str, str] = {}
+    records: list[tuple[str, str, str]] = []
+
+    for section in sections:
+        items = data.get(section)
+        if not isinstance(items, list):
+            fail(errors, f"{filename}: Content QA v3+ requires {section} list")
+            continue
+        for index, item in enumerate(items, 1):
+            owner = f"{section}[{index}]"
+            if not isinstance(item, dict):
+                fail(errors, f"{filename}: {owner} must be an object")
+                continue
+            key = text(item.get("topicKey")).lower()
+            if not key:
+                fail(errors, f"{filename}: {owner}.topicKey is required for cross-section deduplication")
+                continue
+            canonical = canonical_topic_key(key)
+            prior = seen_exact.get(key)
+            if prior and prior.split("[", 1)[0] != section:
+                fail(errors, f"{filename}: duplicate topicKey {key!r} across {prior} and {owner}")
+            else:
+                seen_exact[key] = owner
+            prior_canonical = seen_canonical.get(canonical)
+            if prior_canonical and prior_canonical.split("[", 1)[0] != section:
+                fail(
+                    errors,
+                    f"{filename}: semantic topic collision {canonical!r} across {prior_canonical} and {owner}; "
+                    "数値 / 景色の向こうへ / トリビア must use different subjects, not renamed versions of the same subject.",
+                )
+            else:
+                seen_canonical[canonical] = owner
+            records.append((section, owner, item_copy_text(section, item)))
+
+    for i, (section_a, owner_a, copy_a) in enumerate(records):
+        for section_b, owner_b, copy_b in records[i + 1 :]:
+            if section_a == section_b:
+                continue
+            if near_duplicate(copy_a, copy_b):
+                fail(
+                    errors,
+                    f"{filename}: near-duplicate copy across {owner_a} and {owner_b}; "
+                    "数値 / 景色の向こうへ / トリビア must provide different information value.",
+                )
+
+
 def validate_data(data: dict[str, Any], filename: str, *, force: bool = False) -> list[str]:
-    if not force and data.get("contentQaVersion", 1) < CONTENT_QA_VERSION:
+    version = qa_version(data)
+    if not force and version < CONTENT_QA_V2:
         return []
     errors: list[str] = []
-    validate_travel_scale(errors, filename, data)
-    validate_signature_facts(errors, filename, data)
+    if version >= CONTENT_QA_V4:
+        validate_travel_scale_v4(errors, filename, data)
+        validate_signature_facts(errors, filename, data)
+        validate_cross_section_topics(errors, filename, data)
+    elif version >= CONTENT_QA_V3:
+        validate_travel_scale_v3(errors, filename, data)
+        validate_signature_facts(errors, filename, data)
+        validate_cross_section_topics(errors, filename, data)
+    else:
+        validate_travel_scale_v2(errors, filename, data)
+        validate_signature_facts(errors, filename, data)
     return errors
 
 
@@ -148,16 +393,17 @@ def main() -> int:
         except Exception as exc:
             errors.append(f"{path.name}: cannot read JSON: {exc}")
             continue
-        if force or data.get("contentQaVersion", 1) >= CONTENT_QA_VERSION:
+        version = qa_version(data)
+        if force or version >= CONTENT_QA_V2:
             checked += 1
             errors.extend(validate_data(data, path.name, force=True))
 
     if errors:
-        print("Editorial Content QA v2: FAIL")
+        print("Editorial Content QA: FAIL")
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Editorial Content QA v2: PASS ({checked} file(s))")
+    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3/v4 routed by contentQaVersion)")
     return 0
 
 

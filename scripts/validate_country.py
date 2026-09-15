@@ -34,7 +34,6 @@ MAX_MARKER_OFFSET_PERCENT = 5.0
 MARKER_EDGE_MARGIN = {"scene": 18.0, "hero": 18.0, "capital": 18.0}
 
 
-
 def fail(errors: list[str], message: str) -> None:
     errors.append(message)
 
@@ -212,7 +211,7 @@ def validate_coordinates(errors: list[str], owner: str, coordinates: object, bou
 
 def marker_min_distance(kind_a: str, kind_b: str) -> float:
     kinds = {kind_a, kind_b}
-    # Intrinsic-canvas distances equivalent to the 320px mobile map.
+    # Intrinsic-canvas collision distances. Hero / Capital follows MAP_SYSTEM.md.
     if kind_a == kind_b == "scene":
         return 71.0
     if kinds == {"scene", "hero"}:
@@ -220,7 +219,7 @@ def marker_min_distance(kind_a: str, kind_b: str) -> float:
     if kinds == {"scene", "capital"}:
         return 55.0
     if kinds == {"hero", "capital"}:
-        return 47.0
+        return 28.0
     return 0.0
 
 
@@ -768,7 +767,10 @@ def main() -> int:
             travel_items = travel_scale.get("items") if isinstance(travel_scale.get("items"), list) else []
             if len(travel_items) != 3:
                 fail(errors, f"{path.name}: travelScale は3段階必要です")
-            else:
+            elif data.get("contentQaVersion", 1) < 3:
+                # Content QA v3 intentionally uses qualitative travel-scope labels.
+                # Its no-duration-count rule is enforced by validate_country_editorial_v2.py.
+                # Keep the legacy published day-format gate only for v1/v2 Countries.
                 final_duration = travel_items[2].get("duration") if isinstance(travel_items[2], dict) else None
                 durations = [
                     item.get("duration") if isinstance(item, dict) else None

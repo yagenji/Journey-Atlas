@@ -1,12 +1,12 @@
 # JOURNEY ATLAS — Country Production Protocol 2.0
 
-Updated: 2026-09-12
-Current policy patch: 3
+Updated: 2026-09-14
+Current policy patch: 5
 
 Machine-readable authority: `ops/country-production-policy.json`.
 Image-generation authority remains `ops/image-generation-policy.json`.
 
-Protocol 2.0 is the default for **new Country production**. Patch 3 preserves the post-image fast path and adds stricter image-round interaction and Taste controls based on the Philippines / Singapore / Thailand / Vietnam / Brunei production review.
+Protocol 2.0 is the default for **new Country production**. The current patch preserves the post-image fast path and Image Policy 7.2 controls. New Country editorial production now uses Content QA v5; existing v4/v3/v2 Countries remain valid under their prior editorial contracts unless intentionally migrated.
 
 ## Production shape
 
@@ -39,16 +39,27 @@ Before Hero generation, finish everything that does not require the final raster
 - Country JSON editorial content;
 - final Hero / S01–S08 / FOOD01–04 paths;
 - Scene coordinates;
-- Map build and QA;
+- Map build and QA, including capital-name / Scene-number collision QA;
 - taxonomy;
 - Related Countries;
 - Next Routes or intentional omission;
 - Travel Scale;
 - Signature Facts;
+- Beyond the Scenery / Travel Trivia;
 - sources/source dates;
-- Content QA v2.
+- current Content QA.
 
-`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`.
+New Countries use `contentQaVersion: 5` and must follow `docs/CONTENT_QUALITY_RULES_V5.md` plus `docs/MAP_SYSTEM.md`.
+Existing v4/v3/v2 Countries remain on their prior editorial contracts unless explicitly migrated.
+
+Before leaving CONTENT, run both:
+
+```bash
+python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
+python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
+```
+
+`preVisualBuild.state` and every required check must be `PASS` before leaving CONTENT. Map must already be `APPROVED`, including the capital-name / Scene-number non-overlap gate.
 
 ## 2. One image is not one user gate
 
@@ -76,7 +87,7 @@ python3 scripts/country_production_protocol_v2.py next {slug}
 
 The assistant must not require `approve`, `進めて`, `next`, `生成` or equivalent between valid Scene/Taste targets. A platform-forced turn boundary is tracked separately from a user continuation nudge; only the latter is a workflow defect.
 
-Protocol 2 Patch 3 metrics:
+Protocol 2 metrics:
 
 - `productionMetrics.perImageApprovalPrompts` target `0`;
 - `productionMetrics.userContinuationNudges` target `0`;
@@ -145,7 +156,9 @@ python3 scripts/build_country_preview_targeted.py --slugs {slug}
 
 Full-Country build/QA is reserved for shared template/CSS/JS/build-system changes, explicit Full QA, and the real final production deployment.
 
-The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build. This removes the previous duplicate targeted package build.
+The `Validate country data` workflow does **not** rebuild the targeted preview package when `browser-country-qa` already owns that build.
+
+If the user requests an editorial revision during final review, update only the requested content, keep approved image assets locked, reset target QA/reviewPreview state, and rerun the target-only post-visual path.
 
 ## 6. One pre-main Review PR triggers Preview automatically
 
@@ -168,7 +181,7 @@ The PR remains open through final user review. It is reused for publication afte
 
 ## 7. Persistent Country review URLs
 
-GitHub Pages is one deployment surface, but each Country now lives in its own persistent subtree:
+GitHub Pages is one deployment surface, but each Country lives in its own persistent subtree:
 
 ```text
 /reviews/{slug}/countries/{slug}/
@@ -184,7 +197,7 @@ Implementation rules:
 - other active review subtrees are preserved;
 - already-published previews are pruned when the next review snapshot is staged;
 - oldest snapshots beyond the retained maximum are pruned;
-- target raster URLs are rewritten to the immutable `raw.githubusercontent.com/.../{commit}/assets/images/...` origin so the persistent Pages snapshot does not duplicate all Country image bytes;
+- target raster URLs are rewritten to the immutable `raw.githubusercontent.com/.../{commit}/assets/images/...` origin;
 - the `review-previews` branch is a generated review cache, never production authority.
 
 After the Pages deployment and Browser QA pass, record:
@@ -244,20 +257,67 @@ The queue has one global concurrency lane. For each ready Country it:
 6. squash-merges the existing PR;
 7. retries synchronization if `main` advanced while checks were running.
 
-This matches the repository Ruleset's strict up-to-date requirement while preventing multiple Countries from repeatedly invalidating each other's final checks.
-
 Country production can remain parallel; **main publication is intentionally serial**.
 
-## 10. Content QA v2
+## 10. Content QA v5
 
-See `docs/CONTENT_QUALITY_RULES_V2.md`.
+See `docs/CONTENT_QUALITY_RULES_V5.md` for new Countries. Existing v4/v3/v2 Countries continue to use their prior content-quality contracts until intentionally migrated.
 
-Hard rules include:
+### Travel Scale
+
+v5 inherits the v4 Travel Scale contract:
 
 - every Travel Scale item contains a concrete `例：`;
-- forest/woodland percentage is not a routine Signature Fact; it requires `exceptionalShare:true` and must be <=10% or >=70%.
+- duration uses day notation;
+- the first and second durations are real ranges written `○〜○日`; single counts such as `2日` are forbidden;
+- the second range starts exactly one day after the first range ends;
+- the third duration is open-ended `○日以上`, starting exactly one day after the second range ends;
+- gaps and overlaps are forbidden;
+- weeks and night-count notation are not used in duration labels;
+- the content after `例：` is route-only and must not contain day/night/week counts.
 
-For Country-only work, Content QA targets the Country. Full Content QA is reserved for shared/full-scope changes.
+### Signature Facts — reader interest first
+
+`signatureFacts` has only three slots. A statistic is not selected because it is available; it is selected because **the number materially changes how the reader imagines the Country**.
+
+Hard rules:
+
+- every v5 Signature Fact includes non-rendered `interestReason` explaining why the number deserves one of the three slots;
+- World Heritage property count is exception-only: use it only at **25 or more properties** and with `exceptionalHeritageCount:true`;
+- even at 25+, prefer another number if it explains the Country more vividly;
+- forest / woodland share is exception-only: use it only at **10% or less or 70% or more** and with `exceptionalShare:true`;
+- passing an exception threshold is permission, not a recommendation;
+- ordinary World Heritage counts or moderate forest shares belong in another section when editorially useful, or should be replaced entirely;
+- `signatureFacts` / `atlasExtras` / `travelTrivia` continue to use different canonical subjects.
+
+### Map label collision
+
+Existing marker-center collision QA is not sufficient because the visible capital-name label can cover a numbered Scene circle even when marker centers are separated.
+
+Content QA v5 therefore adds a second map gate:
+
+- project the capital and all Scene markers onto the same 1200×760 canvas;
+- estimate the actual capital label box using the shared CSS geometry;
+- reject any overlap between the capital-name label and Scene 1–8 number circles;
+- reject a capital label that leaves the map canvas;
+- allow `capital.labelPosition` only as `left` / `right`;
+- allow `capital.labelOffset` only when necessary and within ±80px per axis;
+- never change real coordinates for collision avoidance.
+
+Resolve collisions in this order:
+
+1. `capital.labelPosition`;
+2. minimal `capital.labelOffset`;
+3. minimal `mapOffset` only if still necessary.
+
+Validation commands:
+
+```bash
+python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json
+python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
+python3 scripts/test_country_editorial_v2.py
+python3 scripts/test_country_quality_v5.py
+```
 
 ## 11. State initialization
 
@@ -276,7 +336,7 @@ python3 scripts/country_production_protocol_v2.py validate
 python3 scripts/image_policy_v72.py validate
 ```
 
-Existing completed/already-integrated States are not retroactively migrated. Active image production must follow the current main policy before another image generation occurs.
+Existing completed/already-integrated States are not retroactively migrated. Active production follows the current main policy before another new step occurs.
 
 ## 12. Productivity targets
 
@@ -284,7 +344,7 @@ Normal new-Country targets:
 
 - per-image approval prompts: 0;
 - user continuation nudges during Scene/Taste rounds: 0;
-- runtime-forced image turn boundaries: measured separately, not treated as approvals;
+- runtime-forced image turn boundaries: measured separately;
 - Scene Batch reviews: 1;
 - Taste Batch reviews: 1 unless a genuine REGEN batch is required;
 - image handoffs: 1;
@@ -297,8 +357,6 @@ Normal new-Country targets:
 - Country-only full-Country builds before approval: 0;
 - Country-only full-Country Browser QA before approval: 0.
 
-Measure Taste Batch approval → review URL ready, publication queue synchronization cycles, and final main integration count.
-
 ## 13. Authority
 
 When Protocol 2 applies:
@@ -309,5 +367,7 @@ When Protocol 2 applies:
 4. this document
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. image/content/map specifications
-8. chat history
+7. `docs/CONTENT_QUALITY_RULES_V5.md` for new v5 Countries; v4/v3/v2 specs for legacy versions
+8. `docs/MAP_SYSTEM.md`
+9. image/content/map specifications
+10. chat history

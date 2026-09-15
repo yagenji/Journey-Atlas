@@ -191,6 +191,16 @@ html{scroll-padding-top:96px!important;}
   }
 }
 
+/* Keep Hero-level themes visually separate from the Country Profile band. */
+.country-page .hero:has(.country-theme-context .country-theme-chip){
+  margin-bottom:28px;
+}
+@media(max-width:760px){
+  .country-page .hero:has(.country-theme-context .country-theme-chip){
+    margin-bottom:20px;
+  }
+}
+
 /* ---------- TOP PAGE: SAME-LEVEL HEADINGS ---------- */
 .countries .section-head h2,
 .detail-heading h2,
