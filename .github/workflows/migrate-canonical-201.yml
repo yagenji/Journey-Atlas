@@ -1,0 +1,76 @@
+name: Migrate canonical 201 destination registry
+
+on:
+  push:
+    branches: ["fix/canonical-201-destinations"]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/canonical-201-destinations
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Canonicalize registry to 201 destinations
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          core_path = Path('data/atlas-destinations.json')
+          editorial_path = Path('data/atlas-destinations-editorial.json')
+          core = json.loads(core_path.read_text(encoding='utf-8'))
+          editorial = json.loads(editorial_path.read_text(encoding='utf-8'))
+
+          merged = list(core.get('destinations', []))
+          by_iso = {item.get('iso2'): item for item in merged}
+          for item in editorial.get('destinations', []):
+              iso2 = item.get('iso2')
+              if iso2 not in by_iso:
+                  merged.append(item)
+                  by_iso[iso2] = item
+
+          merged.sort(key=lambda item: int(item.get('order', 9999)))
+          if len(merged) != 201:
+              raise SystemExit(f'Expected canonical 201 destinations, found {len(merged)}')
+          if {'HK', 'MO'} - {item.get('iso2') for item in merged}:
+              raise SystemExit('Hong Kong and Macao/Macau must be present in canonical registry')
+
+          core['updatedAt'] = '2026-09-15'
+          core['definition'] = 'UN Member States 193 + Vatican City + Kosovo + Cook Islands + Niue + Taiwan + Hong Kong + Macao + Antarctica = 201 JOURNEY ATLAS destinations.'
+          core['count'] = 201
+          core['behavior'] = 'Render all 201 destinations on the top page from the beginning. Only atlasPublished=true entries are links.'
+          core['destinations'] = merged
+          for item in core.get('journeyLensRegistryExceptions', []):
+              if isinstance(item, dict) and isinstance(item.get('reason'), str):
+                  item['reason'] = item['reason'].replace('199 destination scope', '201 destination scope')
+          core_path.write_text(json.dumps(core, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          editorial_compat = {
+              'updatedAt': '2026-09-15',
+              'definition': 'Compatibility registry retained for older readers. The canonical 201 destinations, including Hong Kong and Macao, now live in data/atlas-destinations.json.',
+              'count': 0,
+              'destinations': [],
+              'deprecated': True,
+              'canonicalRegistry': 'data/atlas-destinations.json'
+          }
+          editorial_path.write_text(json.dumps(editorial_compat, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/atlas-destinations.json data/atlas-destinations-editorial.json
+          if git diff --cached --quiet; then
+            echo "Registry already canonical at 201."
+            exit 0
+          fi
+          git commit -m "Canonicalize JOURNEY ATLAS at 201 destinations"
+          git push origin HEAD:fix/canonical-201-destinations
