@@ -15,6 +15,7 @@ SCOPE = ROOT / "data" / "atlas-scope.json"
 REGIONS = ROOT / "data" / "region-taxonomy.json"
 EXPECTED_COUNT = 201
 REQUIRED_SPECIAL_ISO2 = {"TW", "HK", "MO", "AQ"}
+CANONICAL_SLUG_EXCEPTIONS = {"hong-kong"}
 
 
 def load(path: Path) -> dict:
@@ -46,6 +47,16 @@ def main() -> int:
     if set(orders) != set(range(1, EXPECTED_COUNT + 1)):
         errors.append("destination order values must be exactly 1..201")
 
+    declared_slug_exceptions = {
+        item.get("slug")
+        for item in registry.get("slugPolicy", {}).get("exceptions", [])
+        if isinstance(item, dict) and isinstance(item.get("slug"), str)
+    }
+    if declared_slug_exceptions != CANONICAL_SLUG_EXCEPTIONS:
+        errors.append(
+            "slugPolicy.exceptions must declare exactly the existing Hong Kong route exception: hong-kong"
+        )
+
     missing_special = sorted(REQUIRED_SPECIAL_ISO2 - set(iso2))
     if missing_special:
         errors.append("canonical registry is missing required travel destinations: " + ", ".join(missing_special))
@@ -59,6 +70,10 @@ def main() -> int:
             errors.append(f"{code} must remain atlasPublished:true in the canonical 201 registry")
         if not item.get("href") or not item.get("image"):
             errors.append(f"{code} must retain its published href and hero image")
+    if by_iso.get("HK", {}).get("slug") != "hong-kong":
+        errors.append("Hong Kong must retain canonical published slug hong-kong")
+    if by_iso.get("MO", {}).get("slug") != "macau":
+        errors.append("Macao destination must retain canonical published slug macau")
 
     if scope.get("counts", {}).get("totalAtlasPages") != EXPECTED_COUNT:
         errors.append("atlas-scope.json counts.totalAtlasPages must be 201")
