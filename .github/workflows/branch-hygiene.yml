@@ -1,10 +1,6 @@
 name: Branch hygiene
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/branch-hygiene.yml"
   workflow_dispatch:
     inputs:
       branches:
@@ -17,24 +13,18 @@ permissions:
 
 jobs:
   cleanup:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'Run merged branch cleanup')
     runs-on: ubuntu-latest
     steps:
       - name: Delete selected non-main branches
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          EVENT_NAME: ${{ github.event_name }}
           MANUAL_BRANCHES: ${{ inputs.branches }}
         shell: bash
         run: |
           set -euo pipefail
 
-          if [ "$EVENT_NAME" = "push" ]; then
-            targets="ops/collage-contamination-guard-v6"
-          else
-            targets="$MANUAL_BRANCHES"
-          fi
+          targets="$MANUAL_BRANCHES"
 
           IFS=',' read -ra branches <<< "$targets"
           for raw in "${branches[@]}"; do
