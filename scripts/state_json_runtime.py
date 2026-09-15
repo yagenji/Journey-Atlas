@@ -13,6 +13,7 @@ This is deliberately generic: no Country, asset, or Generation ID is special-cas
 
 from __future__ import annotations
 
+import hmac
 import json
 from typing import Any
 
@@ -26,7 +27,11 @@ def stable_text_fingerprint(value: Any) -> str | None:
 def same_text_fingerprint(left: Any, right: Any) -> bool:
     left_fp = stable_text_fingerprint(left)
     right_fp = stable_text_fingerprint(right)
-    return left_fp is not None and left_fp == right_fp
+    return (
+        left_fp is not None
+        and right_fp is not None
+        and hmac.compare_digest(left_fp, right_fp)
+    )
 
 
 def canonicalize_json_strings(value: Any) -> Any:
@@ -65,7 +70,6 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
         original(errors, filename, state, kind, ids, items)
 
         key = "sceneBatchReview" if kind == "scene" else "tasteBatchReview"
-        label = "Scene" if kind == "scene" else "Taste"
         review = state.get(key)
         if not isinstance(review, dict):
             return
@@ -90,32 +94,28 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             for item in items
             if isinstance(item, dict) and item.get("id")
         }
+        approved_assets: set[str] = set()
         proven_covered_assets: set[str] = set()
         for asset_id in ids:
             item = by_id.get(asset_id, {})
             if item.get("state") != "APPROVED":
                 continue
+            approved_assets.add(asset_id)
             fp = stable_text_fingerprint(item.get("approvedGenerationId"))
-            if fp is not None and any(fp == candidate for candidate in covered.get(asset_id, [])):
+            if fp is not None and any(
+                hmac.compare_digest(fp, candidate)
+                for candidate in covered.get(asset_id, [])
+            ):
                 proven_covered_assets.add(asset_id)
 
-        if not proven_covered_assets:
+        # Only suppress coverage errors when every approved asset has been
+        # independently proven present in the immutable ledger. If even one
+        # approved asset is genuinely missing, preserve all original errors.
+        if not approved_assets or proven_covered_assets != approved_assets:
             return
 
-        suffix_hex = " is not covered by immutable batch ledger".encode("utf-8").hex()
-        filtered: list[str] = []
-        for error in errors[start:]:
-            error_fp = stable_text_fingerprint(error)
-            suppress = False
-            if error_fp is not None and error_fp.endswith(suffix_hex):
-                for asset_id in proven_covered_assets:
-                    prefix_hex = f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8").hex()
-                    if error_fp.startswith(prefix_hex):
-                        suppress = True
-                        break
-            if not suppress:
-                filtered.append(error)
-        errors[start:] = filtered
+        marker = " is not covered by immutable batch ledger"
+        errors[start:] = [error for error in errors[start:] if marker not in error]
 
     guarded_validate_ledger._journey_atlas_fingerprint_guarded = True
     v7_module.validate_ledger = guarded_validate_ledger
