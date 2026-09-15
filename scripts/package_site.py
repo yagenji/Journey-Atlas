@@ -182,6 +182,7 @@ def package_data(slugs: list[str]) -> None:
         source = DATA_DIR / name
         if not source.exists():
             raise FileNotFoundError(f"Runtime data missing: {source}")
+        if name == "atlas-destinations.json":
             write_runtime_json(source, target / source.name)
         else:
             copy_path(source, target / source.name)
