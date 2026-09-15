@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-16
-Current continuation base: `a1fc905c7b1cbf7e1b8b19c2c9004de085246af1` (`main`, PR #819).
+Current continuation base: `ee091193937716157727d913cb6eabfa1021d409` (`main`, PR #820).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -41,14 +41,15 @@ been retired.
 | [#817](https://github.com/yagenji/Journey-Atlas/pull/817) | Cleanup handoff synchronized after #816 and deployed successfully from `main` |
 | [#818](https://github.com/yagenji/Journey-Atlas/pull/818) | Remote publish/review/tmp branch audit recorded; deletion-safe refs separated from redundant refs whose squash-merge-era intermediate history remains retained |
 | [#819](https://github.com/yagenji/Journey-Atlas/pull/819) | Common ops branch audit recorded; Protocol 2 / published QA / Image Policy ops refs separated from divergent Tajikistan legacy history |
+| [#820](https://github.com/yagenji/Journey-Atlas/pull/820) | First Country production-verification ops batch recorded after branch-head / squash-merge tree equivalence checks |
 
 ## Current follow-up
 
-- Continue the remote branch inventory using open-PR ownership plus main
-  containment/equivalent-tree evidence; do not bulk-delete by naming pattern.
-- Continue the remaining Country-specific `ops/*` production-verification audit.
-  The first ten Country ops refs below are now deletion-safe; remaining refs still
-  require the same branch-head/equivalent-tree evidence.
+- Continue the remote branch inventory outside the now-completed `ops/*` audit;
+  do not bulk-delete by naming pattern.
+- All 34 surviving `ops/*` refs have now been individually classified. Thirty-three
+  are deletion-safe from a content-preservation perspective; only
+  `ops/tajikistan-production-qa` remains retained for divergent branch-unique history.
 - For old sync/backup branches whose commits are ancestors of merged Country
   branches, preserve the intermediate history until an archive-tag or canonical
   Country-branch retention decision makes deletion provenance explicit.
@@ -112,7 +113,7 @@ PR ownership and unique-history status have been checked.
 
 ### Deletion-safe from a content-preservation perspective
 
-- All `cleanup/*` work branches through #819 have main containment or an equivalent
+- All `cleanup/*` work branches through #820 have main containment or an equivalent
   merged tree. The cleanup connector still cannot delete branches.
 - `cleanup/remove-completed-renewal-docs` is an ancestor of current `main` with no
   branch-unique commits.
@@ -150,6 +151,29 @@ PR ownership and unique-history status have been checked.
   - `ops/iraq-production-verification` — PR #783
   - `ops/kazakhstan-production-retry` — PR #749
   - `ops/kuwait-live-production-qa` — PR #771
+  - `ops/kyrgyz-production-verify` — PR #770
+  - `ops/malaysia-production-verification` — PR #742
+  - `ops/maldives-production-verification` — PR #737
+  - `ops/myanmar-production-verification` — PR #741
+  - `ops/nepal-production-verification` — PR #738
+  - `ops/srilanka-production-verification` — PR #735
+  - `ops/syria-production-verification` — PR #784
+  - `ops/tajikistan-live-production-qa` — PR #766
+  - `ops/thailand-production-verification-trigger` — PR #734
+  - `ops/timorleste-production-verification` — PR #736
+  - `ops/turkiye-production-verification` — PR #780
+  - `ops/turkmenistan-production-verify` — PR #769
+  - `ops/uae-production-verification` — PR #801
+  - `ops/vietnam-production-verification-trigger` — PR #713
+  - `ops/yemen-production-verification` — PR #792
+- `ops/laos-production-verification` was attached to closed, unmerged PR #715.
+  Its only content diff is one trailing blank line after `data/theme-taxonomy.json`;
+  it carries no semantic taxonomy change and is deletion-safe from a content-
+  preservation perspective.
+- `ops/vietnam-production-browser-qa-trigger` was attached to closed, unmerged
+  PR #714. Its only content diff is one trailing blank line after
+  `assets/css/photo-credits.css`; it carries no visual or semantic change and is
+  deletion-safe from a content-preservation perspective.
 
 ### Redundant refs whose intermediate history is still retained
 
@@ -172,14 +196,12 @@ classified as unconditional deletion-safe archival history.
 
 ### Ops refs retained pending stronger provenance
 
-- `ops/tajikistan-production-qa` is not an ancestor of `main`. It retains branch-
-  unique commits, and comparison with the later merged
+- The `ops/*` inventory is complete: all 34 surviving refs were checked individually.
+- `ops/tajikistan-production-qa` is the only retained ops ref. It is not an ancestor
+  of `main`, retains branch-unique commits, and comparison with the later merged
   `ops/tajikistan-live-production-qa` branch still shows divergent history rather
   than full containment. Keep it until its unique commits are classified as
   obsolete/equivalent or archived explicitly.
-- The remaining Country-specific `ops/*` production-verification refs have mostly
-  been mapped to merged operational PRs, but are not yet marked deletion-safe in
-  bulk. Verify branch-head containment or equivalent squash-merge trees first.
 
 The current GitHub connector does not expose branch deletion, so branches judged
 safe have not been deleted through this cleanup session.
@@ -194,7 +216,7 @@ safe have not been deleted through this cleanup session.
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; remove only an audit proven obsolete and unreferenced |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this cleanup |
-| Remote branch inventory | Continue auditing remaining Country production-verification and other `ops/*` branches; do not bulk-delete by naming pattern |
+| Remote branch inventory | `ops/*` is fully audited; continue other branch families without bulk deletion by naming pattern |
 | Intermediate sync/backup history | Decide archive-tag or canonical Country-branch retention policy before deleting refs whose commits are not directly reachable from `main` after squash merge |
 | Tajikistan legacy ops history | `ops/tajikistan-production-qa` remains divergent and is retained pending explicit provenance classification |
 | Production deployment / live QA after cleanup | Separate from pre-merge Browser QA; repository validation alone does not establish live production correctness |
