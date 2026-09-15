@@ -191,8 +191,8 @@ def test_v6_fixed_taste_heading() -> None:
 
 def test_v6_cross_section_subject_overlap() -> None:
     data = v6_data()
-    data["signatureFacts"][0]["topicKey"] = "silk-road-length"
-    data["atlasExtras"][0]["topicKey"] = "silk-road-caravan-history"
+    data["signatureFacts"][0]["topicKey"] = "silk-road-count"
+    data["atlasExtras"][0]["topicKey"] = "silk-road-history"
     errors = quality.validate_data(data, "subject-overlap.json")
     assert any("likely subject reuse" in error for error in errors), errors
 
