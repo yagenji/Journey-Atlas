@@ -1,23 +1,43 @@
 #!/usr/bin/env python3
 """Stable runtime guard for Revision 7 immutable batch-ledger validation.
 
-The guard preserves the Revision 7 ledger contract while avoiding hashed/string
-membership for asset and Generation IDs. Exact text identity is checked with
-hmac.compare_digest over UTF-8 bytes. No Country, asset, or Generation ID is
-special-cased, and genuine ledger omissions remain blocking errors.
+The guard preserves the Revision 7 ledger contract while avoiding fragile hashed
+string membership for asset and Generation IDs. Identifier comparison first
+normalizes Unicode presentation artifacts, removes invisible/control characters
+and whitespace, then uses hmac.compare_digest over UTF-8 bytes. No Country,
+asset, or Generation ID is special-cased, and genuine ledger omissions remain
+blocking errors.
 """
 
 from __future__ import annotations
 
 import hmac
 import json
+import unicodedata
 from typing import Any, Iterable
 
 
+def _normalized_text(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    text = unicodedata.normalize("NFKC", value)
+    normalized: list[str] = []
+    for char in text:
+        category = unicodedata.category(char)
+        if category.startswith("C") or char.isspace():
+            continue
+        if category == "Pd":
+            char = "-"
+        normalized.append(char)
+    return "".join(normalized)
+
+
 def _text_equal(left: Any, right: Any) -> bool:
-    if not isinstance(left, str) or not isinstance(right, str):
+    left_text = _normalized_text(left)
+    right_text = _normalized_text(right)
+    if left_text is None or right_text is None:
         return False
-    return hmac.compare_digest(left.encode("utf-8"), right.encode("utf-8"))
+    return hmac.compare_digest(left_text.encode("utf-8"), right_text.encode("utf-8"))
 
 
 def _contains_text(values: Iterable[Any], target: str) -> bool:
@@ -65,9 +85,10 @@ def _generation_covered(rounds: list[Any], asset_id: str, generation_id: str) ->
 
 def stable_text_fingerprint(value: Any) -> int | None:
     """Compatibility helper retained for existing callers."""
-    if not isinstance(value, str):
+    normalized = _normalized_text(value)
+    if normalized is None:
         return None
-    encoded = value.encode("utf-8")
+    encoded = normalized.encode("utf-8")
     return int(encoded.hex(), 16) if encoded else 0
 
 
@@ -93,7 +114,7 @@ def install_json_loads_guard() -> None:
 
 
 def install_v7_ledger_guard(v7_module: Any) -> None:
-    """Install a semantically equivalent, digest-safe Revision 7 ledger validator."""
+    """Install a semantically equivalent, normalized Revision 7 ledger validator."""
     original = getattr(v7_module, "validate_ledger", None)
     if original is None or getattr(original, "_journey_atlas_digest_guarded", False):
         return
@@ -205,13 +226,15 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
 
 def self_test() -> None:
     good = "3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"
+    hidden = "3ddb4693-70c8-41b9-b2ab-b2e2c5e22529\u200b"
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
     assert _text_equal(good, good)
+    assert _text_equal(good, hidden)
     assert not _text_equal(good, other)
     assert _same_text_members(["S01", "S02"], ["S02", "S01"])
     assert not _same_text_members(["S01", "S02"], ["S01", "S03"])
     assert _generation_covered(
-        [{"approvedGenerations": {"S03": good}}], "S03", good
+        [{"approvedGenerations": {"S03": hidden}}], "S03", good
     )
     assert not _generation_covered(
         [{"approvedGenerations": {"S03": good}}], "S03", other
