@@ -52,7 +52,18 @@ def validate() -> list[str]:
             if path.name == "unitedarabemirates.json" and v7_errors:
                 scenes = {str(item.get("id")): item for item in state.get("scenes", []) if isinstance(item, dict)}
                 rounds = state.get("sceneBatchReview", {}).get("rounds", [])
+                direct_covered = {asset_id: set() for asset_id in v7.SCENE_IDS}
+                for entry in rounds:
+                    for asset_id, generation_id in (entry.get("approvedGenerations") or {}).items():
+                        if asset_id in direct_covered:
+                            direct_covered[asset_id].add(generation_id)
+                probe_errors: list[str] = []
+                v7.validate_ledger(probe_errors, path.name, state, "scene", v7.SCENE_IDS, state.get("scenes", []))
+                print("UAE_LEDGER_DIAGNOSTIC scene_ids=", repr(v7.SCENE_IDS))
                 print("UAE_LEDGER_DIAGNOSTIC scene_s03=", repr(scenes.get("S03", {}).get("approvedGenerationId")))
+                print("UAE_LEDGER_DIAGNOSTIC covered_s03=", repr(direct_covered.get("S03")))
+                print("UAE_LEDGER_DIAGNOSTIC membership=", scenes.get("S03", {}).get("approvedGenerationId") in direct_covered.get("S03", set()))
+                print("UAE_LEDGER_DIAGNOSTIC probe_errors=", repr(probe_errors))
                 print("UAE_LEDGER_DIAGNOSTIC rounds=", repr(rounds))
                 print("UAE_LEDGER_DIAGNOSTIC v7_module=", str(Path(v7.__file__).resolve()))
             errors.extend(v7_errors)
