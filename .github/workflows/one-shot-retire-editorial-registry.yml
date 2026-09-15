@@ -23,7 +23,14 @@ jobs:
         with:
           python-version: '3.12'
       - name: Apply canonical registry migration
-        run: python3 .github/migrations/retire_editorial_registry.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          # The running workflow is already loaded by Actions. Remove its checked-out
+          # copy before the zero-reference assertion so the temporary helper does not
+          # count its own guard strings as production references.
+          rm .github/workflows/one-shot-retire-editorial-registry.yml
+          python3 .github/migrations/retire_editorial_registry.py
       - name: Validate migrated source
         shell: bash
         run: |
@@ -43,7 +50,6 @@ jobs:
         run: |
           set -euo pipefail
           rm .github/migrations/retire_editorial_registry.py
-          rm .github/workflows/one-shot-retire-editorial-registry.yml
           rmdir .github/migrations 2>/dev/null || true
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
