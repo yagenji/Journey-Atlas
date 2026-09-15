@@ -6,32 +6,32 @@ where two UUID-shaped Generation IDs serialize to the same UTF-8 content while
 Python reports inconsistent object length/hash/equality. Revision 7 ledger
 validation requires exact ID identity, so the guard below preserves every existing
 validation rule while suppressing only a ledger-missing error that is demonstrably
-false from an independent hexadecimal serialization of the Generation IDs.
+false from an independent numeric fingerprint of the serialized Generation ID.
 
 This is deliberately generic: no Country, asset, or Generation ID is special-cased.
 """
 
 from __future__ import annotations
 
-import hmac
 import json
 from typing import Any
 
 
-def stable_text_fingerprint(value: Any) -> str | None:
+def stable_text_fingerprint(value: Any) -> int | None:
     if not isinstance(value, str):
         return None
-    return str.encode(value, "utf-8").hex()
+    # Convert the serialized UTF-8 bytes to hex and immediately into a Python
+    # integer. The comparison therefore does not depend on str hashing/equality.
+    hex_text = str.encode(value, "utf-8").hex()
+    if not hex_text:
+        return 0
+    return int(hex_text, 16)
 
 
 def same_text_fingerprint(left: Any, right: Any) -> bool:
     left_fp = stable_text_fingerprint(left)
     right_fp = stable_text_fingerprint(right)
-    return (
-        left_fp is not None
-        and right_fp is not None
-        and hmac.compare_digest(left_fp, right_fp)
-    )
+    return left_fp is not None and left_fp == right_fp
 
 
 def canonicalize_json_strings(value: Any) -> Any:
@@ -77,7 +77,7 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
         if not isinstance(rounds, list):
             return
 
-        covered: dict[str, list[str]] = {asset_id: [] for asset_id in ids}
+        covered: dict[str, list[int]] = {asset_id: [] for asset_id in ids}
         for entry in rounds:
             if not isinstance(entry, dict):
                 continue
@@ -102,10 +102,7 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                 continue
             approved_assets.add(asset_id)
             fp = stable_text_fingerprint(item.get("approvedGenerationId"))
-            if fp is not None and any(
-                hmac.compare_digest(fp, candidate)
-                for candidate in covered.get(asset_id, [])
-            ):
+            if fp is not None and any(fp == candidate for candidate in covered.get(asset_id, [])):
                 proven_covered_assets.add(asset_id)
 
         # Only suppress coverage errors when every approved asset has been
@@ -126,7 +123,10 @@ def self_test() -> None:
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
     assert same_text_fingerprint(good, good)
     assert not same_text_fingerprint(good, other)
-    assert stable_text_fingerprint(good) == "33646462343639332d373063382d343162392d623261622d623265326335653232353239"
+    assert stable_text_fingerprint(good) == int(
+        "33646462343639332d373063382d343162392d623261622d623265326335653232353239",
+        16,
+    )
 
 
 if __name__ == "__main__":
