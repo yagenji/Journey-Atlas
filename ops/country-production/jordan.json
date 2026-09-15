@@ -5,8 +5,8 @@
   "contentRef": "country/jordan",
   "stateRef": "country/jordan",
   "phase": "QA",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-15T11:52:29+09:00",
+  "stateRevision": 16,
+  "updatedAt": "2026-09-15T11:55:08+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -125,14 +125,10 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "PASS",
-    "productionState": "CI_GATED",
-    "sourceCommit": "fd3c55cc363daa6aa38268f01cd82c4c39e7721d",
-    "checks": [
-      "publication-v2-targeted-validation",
-      "publication-v2-image-audit",
-      "publication-v2-desktop-tablet-mobile-browser-qa"
-    ]
+    "state": "PENDING",
+    "productionState": "INVALIDATED_BY_CONTENT_CHANGE",
+    "sourceCommit": null,
+    "checks": []
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -300,11 +296,11 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
+    "state": "STALE",
     "url": "https://yagenji.github.io/Journey-Atlas/reviews/jordan/countries/jordan/",
-    "browserQa": "PASS",
+    "browserQa": "PENDING",
     "deployedAt": "2026-09-15T11:52:29+09:00",
-    "sourceCommit": "fd3c55cc363daa6aa38268f01cd82c4c39e7721d",
+    "sourceCommit": null,
     "runId": 34922662531,
     "pipelineVersion": 2
   },
