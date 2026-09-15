@@ -1,0 +1,76 @@
+name: Temporary adjust Jordan Amman label
+
+on:
+  push:
+    branches:
+      - country/jordan
+    paths:
+      - '.github/workflows/tmp-jordan-amman-label.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  adjust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Jordan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/jordan
+          fetch-depth: 0
+
+      - name: Move Amman label upward and invalidate stale QA
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          country_path = Path('data/countries/jordan.json')
+          state_path = Path('ops/country-production/jordan.json')
+
+          country = json.loads(country_path.read_text(encoding='utf-8'))
+          country['capital']['mapOffset']['y'] = -0.8
+          country['updatedAt'] = '2026-09-15'
+          country_path.write_text(json.dumps(country, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+
+          now = datetime.now(ZoneInfo('Asia/Tokyo')).isoformat(timespec='seconds')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = now
+          state['phase'] = 'QA'
+          state['qa'] = {'state': 'NOT_STARTED', 'productionState': 'NOT_STARTED'}
+          state['reviewDeployment'] = {'state': 'NOT_STARTED', 'url': None}
+          state['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED',
+              'deployedAt': None
+          }
+          state.setdefault('productionMetrics', {})['canonicalReviewReadyAt'] = None
+          state['finalApproval'] = {'state': 'PENDING'}
+          state['publication'] = {'state': 'DRAFT', 'atlasPublished': False}
+          state['next'] = {'action': 'RUN_COUNTRY_QA', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('Moved Amman label upward to y=-0.8 and invalidated stale QA')
+          PY
+
+      - name: Commit adjustment and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/tmp-jordan-amman-label.yml
+          git add -f data/countries/jordan.json ops/country-production/jordan.json
+          git diff --cached --check
+          git commit -m 'Move Jordan Amman map label upward'
+          git push origin HEAD:country/jordan
+
+      - name: Dispatch fresh Jordan review pipeline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publication-pipeline-v2-review.yml --ref country/jordan
