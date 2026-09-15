@@ -1,7 +1,7 @@
 # Data and compatibility cleanup
 
 Updated: 2026-09-15
-Current continuation base: `1901d4a2b5fbbc8ea6f073334da5bdabf8ff61af` (`main`, PR #815).
+Current continuation base: `8cbd3b7561f303694a841522601b62a0d01b1bfb` (`main`, PR #816).
 Original cleanup base: PR #810.
 
 This is a maintenance handoff, not Country content or publication authority.
@@ -37,6 +37,7 @@ been retired.
 | [#813](https://github.com/yagenji/Journey-Atlas/pull/813) | Stale icon, typography, and State-recovery maintenance reconstructed on latest main and merged after current validation and full Browser QA |
 | [#814](https://github.com/yagenji/Journey-Atlas/pull/814) | Cleanup handoff synchronized with the completed #813 reconciliation and branch-audit rules |
 | [#815](https://github.com/yagenji/Journey-Atlas/pull/815) | Obsolete 2026-09-03 published-Country renewal baseline removed after confirming no surviving repository references; current renewal authority retained |
+| [#816](https://github.com/yagenji/Journey-Atlas/pull/816) | Duplicate `data/atlas-scope.json` retired; destination scope, registry, and publication state consolidated onto canonical `data/atlas-destinations.json` |
 
 ## Current follow-up
 
@@ -83,12 +84,24 @@ been retired.
   were explicitly retained because they still match or are referenced by active contracts/workflows.
 - No Country JSON, images, Maps, Themes, UI, or publication state changed in #815.
 
+## #816 duplicate destination scope retired
+
+- #816 merged to `main` as `8cbd3b7561f303694a841522601b62a0d01b1bfb`.
+- `data/atlas-scope.json` was removed after its remaining repository consumers were
+  migrated to the canonical 201-entry `data/atlas-destinations.json` registry.
+- `scripts/validate_destination_scope.py` now validates count, ordering, special
+  destinations, region membership, Hong Kong/Macao route-publication contracts,
+  and Asia=49 directly from the canonical registry plus `region-taxonomy.json`.
+- The editorial-neutrality note for Taiwan, Hong Kong, Macao, and Antarctica was
+  preserved in documentation rather than duplicated as a second data registry.
+- No Country content, approved assets, Maps, Themes, UI, or publication state changed.
+
 ## Branch cleanup audit
 
 Branch cleanup is still in progress. No branch should be removed until its open
 PR ownership and unique-history status have been checked.
 
-All pre-existing `cleanup/*` work branches through #815 have been checked for
+All pre-existing `cleanup/*` work branches through #816 have been checked for
 main containment or an equivalent merged tree and are deletion-safe from a
 content-preservation perspective. Other deletion-safe candidates include several
 merged publish/review branches, the duplicated Iraq `country/iraq-temp*` set,
