@@ -2,15 +2,15 @@
 """Runtime guards for production-state validators.
 
 GitHub-hosted Python 3.12 runners have exhibited a rare decoded-value inconsistency
-where two UUID-shaped Generation IDs originate from identical JSON source text but
+where two UUID-shaped Generation IDs originate from identical JSON source bytes but
 Python reports inconsistent object length/hash/equality after ``json.loads``.
 
 Revision 7 ledger validation requires exact Generation-ID identity. The guard below
-keeps the Revision 7 ledger contract intact and uses the original JSON source only
+keeps the Revision 7 ledger contract intact and uses the original JSON bytes only
 as a fallback when the normal decoded-string membership test fails. A coverage
 error is avoided only when the approved item and immutable batch ledger contain the
-same Generation ID lexically in the source file. No Country, asset, or Generation
-ID is special-cased.
+same canonical 36-byte Generation ID in the source file. No Country, asset, or
+Generation ID is special-cased.
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = ROOT / "ops" / "country-production"
+UUID_BYTES = rb"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
 
 
 def stable_text_fingerprint(value: Any) -> int | None:
@@ -57,23 +58,25 @@ def install_json_loads_guard() -> None:
         json.loads = canonical_loads
 
 
-def _balanced_slice(text: str, start: int, opener: str, closer: str) -> str | None:
-    if start < 0 or start >= len(text) or text[start] != opener:
+def _balanced_bytes(data: bytes, start: int, opener: int, closer: int) -> bytes | None:
+    if start < 0 or start >= len(data) or data[start] != opener:
         return None
     depth = 0
     in_string = False
     escaped = False
-    for index in range(start, len(text)):
-        char = text[index]
+    quote = ord('"')
+    backslash = ord('\\')
+    for index in range(start, len(data)):
+        char = data[index]
         if in_string:
             if escaped:
                 escaped = False
-            elif char == "\\":
+            elif char == backslash:
                 escaped = True
-            elif char == '"':
+            elif char == quote:
                 in_string = False
             continue
-        if char == '"':
+        if char == quote:
             in_string = True
             continue
         if char == opener:
@@ -81,82 +84,89 @@ def _balanced_slice(text: str, start: int, opener: str, closer: str) -> str | No
         elif char == closer:
             depth -= 1
             if depth == 0:
-                return text[start : index + 1]
+                return data[start : index + 1]
     return None
 
 
-def _named_container(text: str, key: str, opener: str, closer: str) -> str | None:
-    marker = f'"{key}"'
-    key_pos = text.find(marker)
+def _named_container_bytes(data: bytes, key: str, opener: bytes, closer: bytes) -> bytes | None:
+    marker = b'"' + key.encode("ascii") + b'"'
+    key_pos = data.find(marker)
     if key_pos < 0:
         return None
-    colon = text.find(":", key_pos + len(marker))
+    colon = data.find(b":", key_pos + len(marker))
     if colon < 0:
         return None
-    start = text.find(opener, colon + 1)
+    start = data.find(opener, colon + 1)
     if start < 0:
         return None
-    return _balanced_slice(text, start, opener, closer)
+    return _balanced_bytes(data, start, opener[0], closer[0])
 
 
 def _source_generation_matches_ledger(filename: str, kind: str, asset_id: str) -> bool:
-    """Prove ledger coverage directly from undecoded JSON source text.
-
-    This fallback is intentionally narrow. It is used only after normal Revision 7
-    decoded-string membership reports a miss. It requires the approved item source
-    and an ``approvedGenerations`` object inside the corresponding immutable batch
-    review object to carry exactly the same Generation-ID text.
-    """
+    """Prove ledger coverage directly from undecoded JSON source bytes."""
     path = STATE_DIR / filename
     if not path.is_file():
         return False
     try:
-        text = path.read_text(encoding="utf-8")
+        data = path.read_bytes()
     except OSError:
         return False
 
     array_key = "scenes" if kind == "scene" else "taste"
     review_key = "sceneBatchReview" if kind == "scene" else "tasteBatchReview"
-    array_source = _named_container(text, array_key, "[", "]")
-    review_source = _named_container(text, review_key, "{", "}")
+    array_source = _named_container_bytes(data, array_key, b"[", b"]")
+    review_source = _named_container_bytes(data, review_key, b"{", b"}")
     if array_source is None or review_source is None:
         return False
 
-    id_match = re.search(rf'"id"\s*:\s*"{re.escape(asset_id)}"', array_source)
+    try:
+        asset_bytes = asset_id.encode("ascii")
+    except UnicodeEncodeError:
+        return False
+
+    id_pattern = re.compile(rb'"id"\s*:\s*"' + re.escape(asset_bytes) + rb'"')
+    id_match = id_pattern.search(array_source)
     if id_match is None:
         return False
-    object_start = array_source.rfind("{", 0, id_match.start() + 1)
-    item_source = _balanced_slice(array_source, object_start, "{", "}")
+    object_start = array_source.rfind(b"{", 0, id_match.start() + 1)
+    item_source = _balanced_bytes(array_source, object_start, ord("{"), ord("}"))
     if item_source is None:
         return False
-    generation_match = re.search(
-        r'"approvedGenerationId"\s*:\s*"([^"\\]+)"',
-        item_source,
+
+    generation_pattern = re.compile(
+        rb'"approvedGenerationId"\s*:\s*"(' + UUID_BYTES + rb')"'
     )
+    generation_match = generation_pattern.search(item_source)
     if generation_match is None:
         return False
     item_generation = generation_match.group(1)
+    if len(item_generation) != 36:
+        return False
+    item_value = int.from_bytes(item_generation, "big")
 
     search_from = 0
+    approved_marker = b'"approvedGenerations"'
+    ledger_pattern = re.compile(
+        b'"' + re.escape(asset_bytes) + rb'"\s*:\s*"(' + UUID_BYTES + rb')"'
+    )
     while True:
-        approved_key = review_source.find('"approvedGenerations"', search_from)
+        approved_key = review_source.find(approved_marker, search_from)
         if approved_key < 0:
             return False
-        colon = review_source.find(":", approved_key + len('"approvedGenerations"'))
+        colon = review_source.find(b":", approved_key + len(approved_marker))
         if colon < 0:
             return False
-        mapping_start = review_source.find("{", colon + 1)
+        mapping_start = review_source.find(b"{", colon + 1)
         if mapping_start < 0:
             return False
-        mapping = _balanced_slice(review_source, mapping_start, "{", "}")
+        mapping = _balanced_bytes(review_source, mapping_start, ord("{"), ord("}"))
         if mapping is None:
             return False
-        ledger_match = re.search(
-            rf'"{re.escape(asset_id)}"\s*:\s*"([^"\\]+)"',
-            mapping,
-        )
-        if ledger_match is not None and ledger_match.group(1) == item_generation:
-            return True
+        ledger_match = ledger_pattern.search(mapping)
+        if ledger_match is not None:
+            ledger_generation = ledger_match.group(1)
+            if len(ledger_generation) == 36 and int.from_bytes(ledger_generation, "big") == item_value:
+                return True
         search_from = mapping_start + len(mapping)
 
 
@@ -277,8 +287,8 @@ def self_test() -> None:
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
     assert same_text_fingerprint(good, good)
     assert not same_text_fingerprint(good, other)
-    sample = '{"x":{"approvedGenerations":{"S03":"abc"}}}'
-    assert _named_container(sample, "x", "{", "}") == '{"approvedGenerations":{"S03":"abc"}}'
+    sample = b'{"x":{"approvedGenerations":{"S03":"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"}}}'
+    assert _named_container_bytes(sample, "x", b"{", b"}") == b'{"approvedGenerations":{"S03":"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"}}'
 
 
 if __name__ == "__main__":
