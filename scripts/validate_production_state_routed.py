@@ -44,7 +44,7 @@ def _bytes(value: Any) -> bytes | None:
     return value.encode("utf-8") if isinstance(value, str) else None
 
 
-def _proven_ledger_coverage(state: dict[str, Any], kind: str) -> set[str]:
+def _ledger_view(state: dict[str, Any], kind: str) -> tuple[dict[str, dict[str, Any]], dict[str, list[bytes]]]:
     ids = v7.SCENE_IDS if kind == "scene" else v7.FOOD_IDS
     items_key = "scenes" if kind == "scene" else "taste"
     review_key = "sceneBatchReview" if kind == "scene" else "tasteBatchReview"
@@ -69,6 +69,12 @@ def _proven_ledger_coverage(state: dict[str, Any], kind: str) -> set[str]:
         for item in items
         if isinstance(item, dict) and item.get("id")
     }
+    return by_id, ledger
+
+
+def _proven_ledger_coverage(state: dict[str, Any], kind: str) -> set[str]:
+    ids = v7.SCENE_IDS if kind == "scene" else v7.FOOD_IDS
+    by_id, ledger = _ledger_view(state, kind)
     proven: set[str] = set()
     for asset_id in ids:
         item = by_id.get(asset_id, {})
@@ -80,16 +86,33 @@ def _proven_ledger_coverage(state: dict[str, Any], kind: str) -> set[str]:
     return proven
 
 
-def _stable_v7_errors(state: dict[str, Any], filename: str) -> list[str]:
-    """Preserve Revision 7 validation while removing only proven false ledger misses.
+def _diagnose_unproven(state: dict[str, Any], kind: str, proven: set[str]) -> None:
+    ids = v7.SCENE_IDS if kind == "scene" else v7.FOOD_IDS
+    by_id, ledger = _ledger_view(state, kind)
+    for asset_id in ids:
+        item = by_id.get(asset_id, {})
+        if item.get("state") != "APPROVED" or asset_id in proven:
+            continue
+        approved = _bytes(item.get("approvedGenerationId"))
+        candidates = ledger.get(asset_id, [])
+        print(
+            "LEDGER_BYTE_DIAG",
+            kind,
+            asset_id,
+            "approved=",
+            approved.hex() if approved is not None else None,
+            "ledger=",
+            [candidate.hex() for candidate in candidates],
+        )
 
-    The normal validator remains authoritative. A ledger-missing error is filtered
-    only when the APPROVED generation ID and immutable ledger ID are byte-for-byte
-    identical in UTF-8. Genuine omissions or mismatches remain blocking errors.
-    """
+
+def _stable_v7_errors(state: dict[str, Any], filename: str) -> list[str]:
+    """Preserve Revision 7 validation while removing only proven false ledger misses."""
     raw = v7.validate_state_dict(state, filename)
     scene_proven = _proven_ledger_coverage(state, "scene")
     taste_proven = _proven_ledger_coverage(state, "taste")
+    _diagnose_unproven(state, "scene", scene_proven)
+    _diagnose_unproven(state, "taste", taste_proven)
     suffix = b" is not covered by immutable batch ledger"
 
     filtered: list[str] = []
