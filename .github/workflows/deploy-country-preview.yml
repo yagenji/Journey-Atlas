@@ -101,7 +101,6 @@ jobs:
                       state.get("phase") == "QA"
                       and (state.get("qa") or {}).get("state") == "PASS"
                       and (state.get("assetHandoff") or {}).get("state") == "PASS"
-                      and (state.get("reviewPreview") or {}).get("state") != "DONE"
                   )
 
           should_preview = ready and not published

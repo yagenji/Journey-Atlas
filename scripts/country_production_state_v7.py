@@ -357,6 +357,40 @@ def first_parent(commit: str) -> str | None:
     return result.stdout.strip() if result.returncode == 0 else None
 
 
+def is_pipeline_v2_terminal_state(state: dict[str, Any]) -> bool:
+    """Recognize the exact terminal State shape produced by Publication Pipeline v2.
+
+    A squash merge intentionally collapses the Country branch transition history into
+    one main commit. Static revision-7 validation still verifies the immutable batch
+    ledgers, while this predicate prevents that canonical terminal import from being
+    misclassified as an illegal pre-approved initializer.
+    """
+    publication = state.get("publication")
+    final_approval = state.get("finalApproval")
+    scene_review = state.get("sceneBatchReview")
+    taste_review = state.get("tasteBatchReview")
+    return (
+        state.get("publicationPipelineVersion") == 2
+        and state.get("phase") == "COMPLETE"
+        and state.get("contentRef") == "main"
+        and state.get("stateRef") == "main"
+        and state.get("next") == {"action": "NONE", "asset": None}
+        and isinstance(final_approval, dict)
+        and final_approval.get("state") == "APPROVED"
+        and isinstance(publication, dict)
+        and publication.get("state") == "PUBLISHED"
+        and publication.get("atlasPublished") is True
+        and publication.get("pipelineVersion") == 2
+        and publication.get("robots") == "index,follow"
+        and publication.get("sitemapListed") is True
+        and publication.get("linkedFromRegistry") is True
+        and isinstance(scene_review, dict)
+        and scene_review.get("approval") == "APPROVED"
+        and isinstance(taste_review, dict)
+        and taste_review.get("approval") == "APPROVED"
+    )
+
+
 def validate_batch_transition(
     errors: list[str],
     path: str,
@@ -463,7 +497,11 @@ def validate_transition(before: dict[str, Any] | None, after: dict[str, Any] | N
     if after.get("imageGenerationPolicy", {}).get("revision") != 7:
         return errors
     if before is None:
-        # New revision-7 State must not begin with pre-approved Scene/Taste assets.
+        # Publication Pipeline v2 uses squash merge by contract, so the fully
+        # validated terminal State legitimately appears on main in one commit.
+        if is_pipeline_v2_terminal_state(after):
+            return errors
+        # Ordinary new revision-7 State must never begin pre-approved.
         for key in ("scenes", "taste"):
             items = after.get(key) if isinstance(after.get(key), list) else []
             if any(isinstance(x, dict) and x.get("state") == "APPROVED" for x in items):
@@ -543,6 +581,29 @@ def self_test() -> int:
     assert state["sceneBatchReview"] == {"approval": "PENDING", "rounds": []}
     assert state["tasteBatchReview"] == {"approval": "PENDING", "rounds": []}
     assert state["next"] == {"action": "COMPLETE_CONTENT_DESIGN", "asset": None}
+
+    terminal = {
+        "publicationPipelineVersion": 2,
+        "phase": "COMPLETE",
+        "contentRef": "main",
+        "stateRef": "main",
+        "next": {"action": "NONE", "asset": None},
+        "finalApproval": {"state": "APPROVED"},
+        "publication": {
+            "state": "PUBLISHED",
+            "atlasPublished": True,
+            "pipelineVersion": 2,
+            "robots": "index,follow",
+            "sitemapListed": True,
+            "linkedFromRegistry": True,
+        },
+        "sceneBatchReview": {"approval": "APPROVED"},
+        "tasteBatchReview": {"approval": "APPROVED"},
+    }
+    assert is_pipeline_v2_terminal_state(terminal)
+    terminal["publication"]["sitemapListed"] = False
+    assert not is_pipeline_v2_terminal_state(terminal)
+
     print("Revision 7 initializer contract self-test passed")
     return 0
 

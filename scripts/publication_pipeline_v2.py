@@ -180,6 +180,12 @@ def reconcile_review(slug: str, source_commit: str, review_url: str, run_id: str
 
 
 def update_registry_published(slug: str) -> int:
+    state = state_for_slug(slug)
+    hero = state.get("hero") if isinstance(state.get("hero"), dict) else {}
+    hero_asset = hero.get("asset")
+    if not isinstance(hero_asset, str) or not hero_asset.startswith("assets/images/"):
+        raise ValueError(f"{slug}: approved Hero asset path is missing from Production State")
+
     updated = 0
     for path in REGISTRY_PATHS:
         payload = load_json(path)
@@ -188,6 +194,8 @@ def update_registry_published(slug: str) -> int:
             if isinstance(row, dict) and row.get("slug") == slug:
                 row["atlasPublished"] = True
                 row["href"] = f"countries/{slug}/"
+                if path.name == "atlas-destinations.json":
+                    row["image"] = hero_asset
                 changed = True
                 updated += 1
                 break
@@ -200,16 +208,17 @@ def finalize(slug: str) -> None:
     _, state_path = paths_for_slug(slug)
     state = state_for_slug(slug)
     errors = publish_ready_errors(slug, state)
-    publication = state.get("publication") if isinstance(state.get("publication"), dict) else {}
-    if publication.get("state") == "PUBLISHED" and publication.get("atlasPublished") is True:
-        print(f"{slug}: terminal publication state already prepared")
-        return
     if errors:
         raise ValueError("; ".join(errors))
 
     registry_updates = update_registry_published(slug)
     if registry_updates == 0:
         raise ValueError(f"{slug}: destination registry row not found")
+
+    publication = state.get("publication") if isinstance(state.get("publication"), dict) else {}
+    if publication.get("state") == "PUBLISHED" and publication.get("atlasPublished") is True:
+        print(f"{slug}: terminal publication state already prepared; registry reconciled")
+        return
 
     timestamp = now_iso()
     production_url = f"https://atlas.yagenji.com/countries/{slug}/"
