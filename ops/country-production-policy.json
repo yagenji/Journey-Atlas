@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "protocolId": "2.0",
   "policyPatch": 5,
-  "updatedAt": "2026-09-14T16:32:00+09:00",
+  "updatedAt": "2026-09-15T18:15:00+09:00",
   "authority": "main",
   "appliesTo": "NEW_COUNTRY_PRODUCTION",
   "imagePolicyRef": "main:ops/image-generation-policy.json",
@@ -14,13 +14,24 @@
     "userPromptBetweenSceneTargets": "FORBIDDEN",
     "userPromptBetweenTasteTargets": "FORBIDDEN",
     "userContinuationNudgeBetweenImageTargets": "FORBIDDEN",
+    "userContinuationNudgeOutsideExplicitGate": "FORBIDDEN",
+    "deterministicNextActionAutoExecutionRequired": true,
+    "stopOnlyAtExplicitUserGateUserRequiredHandoffOrHardBlocker": true,
+    "statusOnlyTurnWhenExecutableNextActionExists": "FORBIDDEN",
+    "afterSuccessfulToolActionContinueToGate": true,
     "runtimeBoundaryCreatesApprovalGate": false,
     "runtimeForcedBoundaryMustResumeWithoutApproval": true,
     "roundIntentPersistsAcrossTurnBoundary": true,
     "resumeBehaviorDuringActiveRound": "CONTINUE_TO_BATCH_BOUNDARY",
     "perImageApproveProceedGeneratePrompt": "FORBIDDEN",
     "tasteInitialFailureHandling": "PARK_FAILED_TARGET_AND_FINISH_FIRST_PASS_BEFORE_BATCH_REVIEW",
-    "tasteRegenStart": "ONLY_AFTER_BATCH_REVIEW_BOUNDARY"
+    "tasteRegenStart": "ONLY_AFTER_BATCH_REVIEW_BOUNDARY",
+    "explicitUserGates": [
+      "HERO_APPROVAL",
+      "SCENE_BATCH_APPROVAL",
+      "TASTE_BATCH_APPROVAL",
+      "CANONICAL_PAGE_APPROVAL"
+    ]
   },
   "assetDelivery": {
     "mode": "USER_HANDOFF",
@@ -48,7 +59,7 @@
     "signatureFactsComplete": true,
     "sourcesComplete": true,
     "editorialQaV2Passed": true,
-    "editorialQaCurrentVersion": 5
+    "editorialQaCurrentVersion": 6
   },
   "postVisual": {
     "mode": "SINGLE_PASS",
@@ -122,9 +133,10 @@
     }
   },
   "contentQuality": {
-    "version": 5,
+    "version": 6,
     "validator": "scripts/validate_country_editorial_v2.py",
     "supplementalValidator": "scripts/validate_country_quality_v5.py",
+    "supplementalValidatorMode": "V5_AND_V6_ROUTED_BY_CONTENT_QA_VERSION",
     "validatorFilenameRetainedForBackwardCompatibility": true,
     "travelScaleExampleRequiredForEveryItem": true,
     "travelScaleExampleMarker": "例：",
@@ -152,21 +164,38 @@
       "atlasExtras",
       "travelTrivia"
     ],
+    "crossSectionTopicTokenOverlapGate": true,
     "crossSectionRoles": {
       "signatureFacts": "NUMERIC_FACTS_ONLY",
       "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
       "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
     },
-    "signatureFactSelectionPolicy": "READER_INTEREST_FIRST",
+    "signatureFactSelectionPolicy": "READER_INTEREST_AND_PLAIN_MEANING",
     "signatureFactInterestReasonRequired": true,
     "signatureFactInterestReasonField": "interestReason",
+    "genericProfileSignatureFactPolicy": "EXCEPTION_ONLY",
+    "genericProfileSignatureFactTerms": ["人口", "面積", "人口密度"],
+    "genericProfileSignatureFactExplicitFlag": "exceptionalScale",
     "worldHeritageCountSignatureFactPolicy": "EXCEPTION_ONLY",
     "worldHeritageCountMinimumExceptionalCount": 25,
     "worldHeritageCountExplicitFlag": "exceptionalHeritageCount",
     "forestShareSignatureFactPolicy": "EXTREME_ONLY_WITH_EXPLICIT_FLAG",
     "forestShareLowMaximumPercent": 10,
     "forestShareHighMinimumPercent": 70,
-    "forestShareExplicitFlag": "exceptionalShare"
+    "forestShareExplicitFlag": "exceptionalShare",
+    "tasteHeadingPolicy": "FIXED_FROM_COUNTRY_NAME",
+    "tasteKickerPattern": "TASTE OF {NAME_EN_UPPER}",
+    "tasteTitlePattern": "{NAME_JA}で食べたいもの",
+    "nextRoutesSelectionPolicy": "ESTABLISHED_TRAVELER_ROUTE_INDEPENDENT_OF_TEMPORARY_STATUS",
+    "nextRoutesTemporaryRestrictionDoesNotRemoveRoute": true,
+    "nextRoutesStatusField": "status",
+    "nextRoutesStatusNoteRequiredWhenNotOpen": true,
+    "relatedCountriesSelectionPolicy": "AFFINITY_NOT_PROXIMITY",
+    "relatedCountryAffinityTypeRequired": true,
+    "encountersSelectionPolicy": "BROAD_REPEATED_OBSERVABLE_TRAVEL_EXPERIENCE",
+    "encountersCategoryRequired": true,
+    "encountersMinimumDistinctCategories": 4,
+    "encountersExplanationRequiredLocalTermsForbidden": true
   },
   "mapQuality": {
     "validator": "scripts/validate_country_quality_v5.py",
@@ -179,11 +208,13 @@
       "capital.labelPosition",
       "capital.labelOffset",
       "MINIMAL_mapOffset"
-    ]
+    ],
+    "v6AdditionalCollisionSafetyMarginPx": 6
   },
   "metrics": {
     "perImageApprovalPromptsTarget": 0,
     "userContinuationNudgesTarget": 0,
+    "nonGateContinuationNudgesTarget": 0,
     "measureRuntimeForcedImageTurnBoundaries": true,
     "sceneBatchUserReviewCountTarget": 1,
     "tasteBatchUserReviewCountTarget": 1,
