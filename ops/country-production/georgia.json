@@ -5,8 +5,8 @@
   "contentRef": "country/georgia",
   "stateRef": "country/georgia",
   "phase": "QA",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-15T11:31:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-15T11:42:14+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -19,20 +19,104 @@
     "userApprovedAt": "2026-09-15T01:42:00+09:00"
   },
   "scenes": [
-    {"id":"S01","state":"APPROVED","asset":"assets/images/georgia/approved/scene-01-tbilisi-old-town-narikala.webp","contentId":"tbilisi-old-town-narikala","approvedGenerationId":"f253fb92-04cf-4c92-94ce-f0e4dc231a7e","rejectedGenerationIds":[]},
-    {"id":"S02","state":"APPROVED","asset":"assets/images/georgia/approved/scene-02-ushguli-shkhara.webp","contentId":"ushguli-shkhara","approvedGenerationId":"edbbae5e-a07f-46c0-bdaa-849fd7bd2e5d","rejectedGenerationIds":[]},
-    {"id":"S03","state":"APPROVED","asset":"assets/images/georgia/approved/scene-03-jvari-mtskheta-confluence.webp","contentId":"jvari-mtskheta-confluence","approvedGenerationId":"3616bce9-8a2d-4e4d-adc5-9471c309021e","rejectedGenerationIds":[]},
-    {"id":"S04","state":"APPROVED","asset":"assets/images/georgia/approved/scene-04-sighnaghi-alazani-valley.webp","contentId":"sighnaghi-alazani-valley","approvedGenerationId":"f2949662-b29f-43b9-818c-58ac5d301262","rejectedGenerationIds":[]},
-    {"id":"S05","state":"APPROVED","asset":"assets/images/georgia/approved/scene-05-vardzia-cave-monastery.webp","contentId":"vardzia-cave-monastery","approvedGenerationId":"2dbe200a-158b-4819-8d05-32f548efcbff","rejectedGenerationIds":[]},
-    {"id":"S06","state":"APPROVED","asset":"assets/images/georgia/approved/scene-06-martvili-canyon.webp","contentId":"martvili-canyon","approvedGenerationId":"f7f569bb-1767-4848-af8e-298c66227d9d","rejectedGenerationIds":[]},
-    {"id":"S07","state":"APPROVED","asset":"assets/images/georgia/approved/scene-07-batumi-black-sea.webp","contentId":"batumi-black-sea","approvedGenerationId":"8be0353c-3b41-4ba9-84cd-66f0f503a0c7","rejectedGenerationIds":[]},
-    {"id":"S08","state":"APPROVED","asset":"assets/images/georgia/approved/scene-08-vashlovani-badlands.webp","contentId":"vashlovani-badlands","approvedGenerationId":"050fdd1f-3ff1-4e5c-a5e4-2f4f16a9d799","rejectedGenerationIds":[]}
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-01-tbilisi-old-town-narikala.webp",
+      "contentId": "tbilisi-old-town-narikala",
+      "approvedGenerationId": "f253fb92-04cf-4c92-94ce-f0e4dc231a7e",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-02-ushguli-shkhara.webp",
+      "contentId": "ushguli-shkhara",
+      "approvedGenerationId": "edbbae5e-a07f-46c0-bdaa-849fd7bd2e5d",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-03-jvari-mtskheta-confluence.webp",
+      "contentId": "jvari-mtskheta-confluence",
+      "approvedGenerationId": "3616bce9-8a2d-4e4d-adc5-9471c309021e",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-04-sighnaghi-alazani-valley.webp",
+      "contentId": "sighnaghi-alazani-valley",
+      "approvedGenerationId": "f2949662-b29f-43b9-818c-58ac5d301262",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-05-vardzia-cave-monastery.webp",
+      "contentId": "vardzia-cave-monastery",
+      "approvedGenerationId": "2dbe200a-158b-4819-8d05-32f548efcbff",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-06-martvili-canyon.webp",
+      "contentId": "martvili-canyon",
+      "approvedGenerationId": "f7f569bb-1767-4848-af8e-298c66227d9d",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-07-batumi-black-sea.webp",
+      "contentId": "batumi-black-sea",
+      "approvedGenerationId": "8be0353c-3b41-4ba9-84cd-66f0f503a0c7",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/scene-08-vashlovani-badlands.webp",
+      "contentId": "vashlovani-badlands",
+      "approvedGenerationId": "050fdd1f-3ff1-4e5c-a5e4-2f4f16a9d799",
+      "rejectedGenerationIds": []
+    }
   ],
   "taste": [
-    {"id":"FOOD01","state":"APPROVED","asset":"assets/images/georgia/approved/food-adjarian-khachapuri.webp","contentId":"adjarian-khachapuri","approvedGenerationId":"f1fd65bd-589d-48bb-8392-81b9a4447518","rejectedGenerationIds":[]},
-    {"id":"FOOD02","state":"APPROVED","asset":"assets/images/georgia/approved/food-khinkali.webp","contentId":"khinkali","approvedGenerationId":"18346d03-9351-447a-874e-a19c886c3f08","rejectedGenerationIds":[]},
-    {"id":"FOOD03","state":"APPROVED","asset":"assets/images/georgia/approved/food-badrijani-nigvzit.webp","contentId":"badrijani-nigvzit","approvedGenerationId":"b1db042f-896a-485c-ac16-ac0f0d801447","rejectedGenerationIds":[]},
-    {"id":"FOOD04","state":"APPROVED","asset":"assets/images/georgia/approved/food-churchkhela.webp","contentId":"churchkhela","approvedGenerationId":"d6cd666b-79c8-4842-85c3-cf7a255a88df","rejectedGenerationIds":[]}
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/food-adjarian-khachapuri.webp",
+      "contentId": "adjarian-khachapuri",
+      "approvedGenerationId": "f1fd65bd-589d-48bb-8392-81b9a4447518",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/food-khinkali.webp",
+      "contentId": "khinkali",
+      "approvedGenerationId": "18346d03-9351-447a-874e-a19c886c3f08",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/food-badrijani-nigvzit.webp",
+      "contentId": "badrijani-nigvzit",
+      "approvedGenerationId": "b1db042f-896a-485c-ac16-ac0f0d801447",
+      "rejectedGenerationIds": []
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/georgia/approved/food-churchkhela.webp",
+      "contentId": "churchkhela",
+      "approvedGenerationId": "d6cd666b-79c8-4842-85c3-cf7a255a88df",
+      "rejectedGenerationIds": []
+    }
   ],
   "map": {
     "state": "APPROVED",
@@ -52,51 +136,204 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T09:23:38+09:00",
+    "completedAt": "2026-09-15T11:42:14+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED",
-    "sourceCommit": null,
-    "checks": []
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "a3187c241ef91e7f8636767a07db20fdacbd365f",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
   },
-  "reviewDeployment": {"state":"NOT_STARTED","url":null},
-  "finalApproval": {"state":"PENDING"},
-  "publication": {"state":"DRAFT","atlasPublished":false},
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
   "executionPolicy": {
-    "heroApproval":"INDIVIDUAL","sceneApproval":"BATCH_ONLY","tasteApproval":"BATCH_ONLY","autoContinueImageRounds":true,"userPromptBetweenSceneTargets":false,"userPromptBetweenTasteTargets":false,"runtimeBoundaryCreatesApprovalGate":false,"roundIntentPersistsAcrossTurnBoundary":true,"waitForStateOnlyCI":false,"assetDeliveryMode":"USER_HANDOFF","repositoryMaterializationOwner":"USER","batchMaterialization":true,"autoPostVisualPipeline":true,"postVisualPipeline":"SINGLE_PASS","singleReviewIntegration":true
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "imageGenerationPolicy": {
-    "revision":7,"patch":2,"policyId":"7.2","sceneMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","tasteMode":"ONE_TARGET_ONE_STANDALONE_IMAGE","sceneReview":"BATCH_ONLY","tasteReview":"BATCH_ONLY","mandatoryNoAddedText":true,"rejectTypographyImmediately":true,"rejectCollageImmediately":true,"rejectPreviousAssetRepeatImmediately":true,"candidateVisualQaRequired":true,"batchPerceptualDuplicateGate":true,"preGenerationReservationRequired":true,"reconcileBeforeNextGeneration":true,"maxSameAssetGenerationsPerTurn":1,"differentTargetSameTurnContinuation":true,"reservationBlocksOnlyUnreconciledTarget":true,"freshTextToImageRequired":true,"previousImageReferenceForbidden":true,"repeatFailureRequiresRenderPacketRefresh":true,"singleFrameContractRequired":true,"collageFailureContaminatesContext":true,"repeatFailureContaminatesContext":true,"wrongTargetCarryoverContaminatesContext":true,"contextResetRequiresSeparateTurn":true,"batchLanguageForbiddenInGenerationTurn":true,"multiTargetPromptForbidden":true,"maxConsecutiveHardFailuresPerPromptSeries":2,"requireRenderPacketRefreshAfterLimit":true,"approvedAssetRegeneration":false,"runtimeContinuation":"TO_BATCH_BOUNDARY","batchApprovalProvenanceRequired":true,"regenBatchApprovalRequired":true,"allPriorCountryAssetComparisonRequired":true,"targetEpochBindingRequired":true
+    "revision": 7,
+    "patch": 2,
+    "policyId": "7.2",
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
   },
-  "generationContext": {"state":"CLEAN","epoch":1,"lastResetAt":null,"lastFailureAsset":null,"lastFailureReason":null},
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 1,
+    "lastResetAt": null,
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
   "sceneBatchReview": {
-    "approval":"APPROVED",
-    "rounds":[{"round":1,"reviewBoundary":true,"scope":["S01","S02","S03","S04","S05","S06","S07","S08"],"approvedGenerations":{"S01":"f253fb92-04cf-4c92-94ce-f0e4dc231a7e","S02":"edbbae5e-a07f-46c0-bdaa-849fd7bd2e5d","S03":"3616bce9-8a2d-4e4d-adc5-9471c309021e","S04":"f2949662-b29f-43b9-818c-58ac5d301262","S05":"2dbe200a-158b-4819-8d05-32f548efcbff","S06":"f7f569bb-1767-4848-af8e-298c66227d9d","S07":"8be0353c-3b41-4ba9-84cd-66f0f503a0c7","S08":"050fdd1f-3ff1-4e5c-a5e4-2f4f16a9d799"},"regenerate":[],"approvedAt":"2026-09-15T01:42:00+09:00"}]
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "f253fb92-04cf-4c92-94ce-f0e4dc231a7e",
+          "S02": "edbbae5e-a07f-46c0-bdaa-849fd7bd2e5d",
+          "S03": "3616bce9-8a2d-4e4d-adc5-9471c309021e",
+          "S04": "f2949662-b29f-43b9-818c-58ac5d301262",
+          "S05": "2dbe200a-158b-4819-8d05-32f548efcbff",
+          "S06": "f7f569bb-1767-4848-af8e-298c66227d9d",
+          "S07": "8be0353c-3b41-4ba9-84cd-66f0f503a0c7",
+          "S08": "050fdd1f-3ff1-4e5c-a5e4-2f4f16a9d799"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-15T01:42:00+09:00"
+      }
+    ]
   },
   "tasteBatchReview": {
-    "approval":"APPROVED",
-    "rounds":[{"round":1,"reviewBoundary":true,"scope":["FOOD01","FOOD02","FOOD03","FOOD04"],"approvedGenerations":{"FOOD01":"f1fd65bd-589d-48bb-8392-81b9a4447518","FOOD02":"18346d03-9351-447a-874e-a19c886c3f08","FOOD03":"b1db042f-896a-485c-ac16-ac0f0d801447","FOOD04":"d6cd666b-79c8-4842-85c3-cf7a255a88df"},"regenerate":[],"approvedAt":"2026-09-15T01:42:00+09:00"}]
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "f1fd65bd-589d-48bb-8392-81b9a4447518",
+          "FOOD02": "18346d03-9351-447a-874e-a19c886c3f08",
+          "FOOD03": "b1db042f-896a-485c-ac16-ac0f0d801447",
+          "FOOD04": "d6cd666b-79c8-4842-85c3-cf7a255a88df"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-15T01:42:00+09:00"
+      }
+    ]
   },
-  "productionProtocolRef":"main:ops/country-production-policy.json",
-  "productionProtocolId":"2.0",
-  "productionProtocolPolicyPatch":5,
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "productionProtocolPolicyPatch": 5,
   "preVisualBuild": {
-    "state":"PASS",
-    "checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","mapCapitalLabelCollisionQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "mapCapitalLabelCollisionQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
   },
   "assetHandoff": {
-    "mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-15T09:00:00+09:00","verificationBasis":"All 13 final-path repository rasters match the approved handoff blobs; the approved directory contains exactly the 13 expected WebP rasters and no handoff manifest."
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-15T09:00:00+09:00",
+    "verificationBasis": "All 13 final-path repository rasters match the approved handoff blobs; the approved directory contains exactly the 13 expected WebP rasters and no handoff manifest."
   },
   "reviewPreview": {
-    "mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null,"sourceCommit":null,"runId":null,"pipelineVersion":2
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/georgia/countries/georgia/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T11:42:14+09:00",
+    "sourceCommit": "a3187c241ef91e7f8636767a07db20fdacbd365f",
+    "runId": 34922022294,
+    "pipelineVersion": 2
   },
   "productionMetrics": {
-    "perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":1,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":1,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":1,"tasteBatchApprovedAt":"2026-09-15T01:42:00+09:00","canonicalReviewReadyAt":null
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 2,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 2,
+    "tasteBatchApprovedAt": "2026-09-15T01:42:00+09:00",
+    "canonicalReviewReadyAt": "2026-09-15T11:42:14+09:00"
   },
-  "next": {"action":"RUN_COUNTRY_QA","asset":null},
-  "publicationPipelineVersion":2
+  "next": {
+    "action": "REVIEW_CANONICAL_URL",
+    "asset": null
+  },
+  "publicationPipelineVersion": 2
 }
