@@ -1,0 +1,73 @@
+name: Temporary refine Jordan Amman label
+
+on:
+  push:
+    branches:
+      - country/jordan
+    paths:
+      - .github/workflows/tmp-jordan-amman-label-v2.yml
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  adjust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Jordan branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/jordan
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Move only Amman text upward and invalidate stale QA
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          country_path = Path('data/countries/jordan.json')
+          data = json.loads(country_path.read_text())
+          capital = data['capital']
+          # Restore the actual capital marker to its real projected point adjustment,
+          # then move only the text label upward in pixels.
+          capital['mapOffset'] = {'x': 1.5, 'y': 0.0}
+          capital['labelOffset'] = {'x': 0, 'y': -28}
+          country_path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n')
+
+          state_path = Path('ops/country-production/jordan.json')
+          state = json.loads(state_path.read_text())
+          now = datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = now
+          state['qa'] = {
+              'state': 'PENDING',
+              'productionState': 'INVALIDATED_BY_CONTENT_CHANGE',
+              'sourceCommit': None,
+              'checks': []
+          }
+          if 'reviewPreview' in state:
+              state['reviewPreview']['state'] = 'STALE'
+              state['reviewPreview']['browserQa'] = 'PENDING'
+              state['reviewPreview']['sourceCommit'] = None
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Commit adjustment and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/tmp-jordan-amman-label-v2.yml
+          git add -f data/countries/jordan.json ops/country-production/jordan.json .github/workflows/tmp-jordan-amman-label-v2.yml
+          git commit -m "Separate Jordan Amman label from scene 2"
+          git push origin HEAD:country/jordan
+
+      - name: Dispatch fresh Jordan review pipeline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SHA=$(git rev-parse HEAD)
+          gh workflow run publication-pipeline-v2-review.yml --ref country/jordan -f slug=jordan -f commit_sha="$SHA"
