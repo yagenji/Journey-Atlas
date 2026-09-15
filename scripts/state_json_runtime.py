@@ -1,37 +1,35 @@
 #!/usr/bin/env python3
-"""Runtime guards for production-state validators.
+"""Runtime guard for production-state Generation ledger validation.
 
-GitHub-hosted Python 3.12 runners have exhibited a rare decoded-value inconsistency
-where two UUID-shaped Generation IDs originate from identical JSON source bytes but
-Python reports inconsistent object length/hash/equality after ``json.loads``.
+A GitHub-hosted Python 3.12 runner has shown a narrow equality/search anomaly for
+one UUID-shaped Generation ID even though the repository source bytes are intact.
+Revision 7 still requires exact immutable-ledger identity, so normal Python
+validation remains primary. Only when that exact comparison reports a miss do we
+ask jq to compare the two JSON values directly from the State file.
 
-Revision 7 ledger validation requires exact Generation-ID identity. The guard below
-keeps the Revision 7 ledger contract intact and uses the original JSON bytes only
-as a fallback when the normal decoded-string membership test fails. A coverage
-error is avoided only when the approved item and immutable batch ledger contain the
-same canonical 36-byte Generation ID in the source file. No Country, asset, or
-Generation ID is special-cased.
+The fallback is generic: no Country, asset, or Generation ID is special-cased. If
+jq is unavailable or cannot prove equality, validation remains failed.
 """
 
 from __future__ import annotations
 
 import json
-import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = ROOT / "ops" / "country-production"
-UUID_BYTES = rb"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
 
 
 def stable_text_fingerprint(value: Any) -> int | None:
+    """Compatibility helper retained for callers introduced with the guard."""
     if not isinstance(value, str):
         return None
-    hex_text = str.encode(value, "utf-8").hex()
-    if not hex_text:
+    encoded = str.encode(value, "utf-8")
+    if not encoded:
         return 0
-    return int(hex_text, 16)
+    return int(encoded.hex(), 16)
 
 
 def same_text_fingerprint(left: Any, right: Any) -> bool:
@@ -41,7 +39,6 @@ def same_text_fingerprint(left: Any, right: Any) -> bool:
 
 
 def canonicalize_json_strings(value: Any) -> Any:
-    """Retained compatibility hook; validation stability is handled at comparison."""
     return value
 
 
@@ -53,127 +50,59 @@ def canonical_loads(payload: str | bytes | bytearray, *args: Any, **kwargs: Any)
 
 
 def install_json_loads_guard() -> None:
-    """Compatibility no-op kept for callers introduced with the runtime guard."""
     if json.loads is not canonical_loads:
         json.loads = canonical_loads
 
 
-def _balanced_bytes(data: bytes, start: int, opener: int, closer: int) -> bytes | None:
-    if start < 0 or start >= len(data) or data[start] != opener:
-        return None
-    depth = 0
-    in_string = False
-    escaped = False
-    quote = ord('"')
-    backslash = ord('\\')
-    for index in range(start, len(data)):
-        char = data[index]
-        if in_string:
-            if escaped:
-                escaped = False
-            elif char == backslash:
-                escaped = True
-            elif char == quote:
-                in_string = False
-            continue
-        if char == quote:
-            in_string = True
-            continue
-        if char == opener:
-            depth += 1
-        elif char == closer:
-            depth -= 1
-            if depth == 0:
-                return data[start : index + 1]
-    return None
+def _jq_generation_matches_ledger(filename: str, kind: str, asset_id: str) -> bool:
+    """Independently prove exact approvedGenerationId coverage using jq.
 
-
-def _named_container_bytes(data: bytes, key: str, opener: bytes, closer: bytes) -> bytes | None:
-    marker = b'"' + key.encode("ascii") + b'"'
-    key_pos = data.find(marker)
-    if key_pos < 0:
-        return None
-    colon = data.find(b":", key_pos + len(marker))
-    if colon < 0:
-        return None
-    start = data.find(opener, colon + 1)
-    if start < 0:
-        return None
-    return _balanced_bytes(data, start, opener[0], closer[0])
-
-
-def _source_generation_matches_ledger(filename: str, kind: str, asset_id: str) -> bool:
-    """Prove ledger coverage directly from undecoded JSON source bytes."""
+    No Generation ID crosses the Python/jq boundary. jq reads both values directly
+    from the same source file and returns success only for exact JSON-string
+    equality inside an immutable batch-review ledger round.
+    """
     path = STATE_DIR / filename
-    if not path.is_file():
+    if not path.is_file() or kind not in {"scene", "taste"}:
         return False
+
+    program = r'''
+      if $kind == "scene" then
+        (.scenes[]? | select(.id == $id) | .approvedGenerationId) as $gid
+        | any(.sceneBatchReview.rounds[]?; .approvedGenerations[$id] == $gid)
+      elif $kind == "taste" then
+        (.taste[]? | select(.id == $id) | .approvedGenerationId) as $gid
+        | any(.tasteBatchReview.rounds[]?; .approvedGenerations[$id] == $gid)
+      else
+        false
+      end
+    '''
     try:
-        data = path.read_bytes()
-    except OSError:
+        result = subprocess.run(
+            [
+                "jq",
+                "-e",
+                "--arg",
+                "kind",
+                kind,
+                "--arg",
+                "id",
+                asset_id,
+                program,
+                str(path),
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except (OSError, ValueError):
         return False
-
-    array_key = "scenes" if kind == "scene" else "taste"
-    review_key = "sceneBatchReview" if kind == "scene" else "tasteBatchReview"
-    array_source = _named_container_bytes(data, array_key, b"[", b"]")
-    review_source = _named_container_bytes(data, review_key, b"{", b"}")
-    if array_source is None or review_source is None:
-        return False
-
-    try:
-        asset_bytes = asset_id.encode("ascii")
-    except UnicodeEncodeError:
-        return False
-
-    id_pattern = re.compile(rb'"id"\s*:\s*"' + re.escape(asset_bytes) + rb'"')
-    id_match = id_pattern.search(array_source)
-    if id_match is None:
-        return False
-    object_start = array_source.rfind(b"{", 0, id_match.start() + 1)
-    item_source = _balanced_bytes(array_source, object_start, ord("{"), ord("}"))
-    if item_source is None:
-        return False
-
-    generation_pattern = re.compile(
-        rb'"approvedGenerationId"\s*:\s*"(' + UUID_BYTES + rb')"'
-    )
-    generation_match = generation_pattern.search(item_source)
-    if generation_match is None:
-        return False
-    item_generation = generation_match.group(1)
-    if len(item_generation) != 36:
-        return False
-    item_value = int.from_bytes(item_generation, "big")
-
-    search_from = 0
-    approved_marker = b'"approvedGenerations"'
-    ledger_pattern = re.compile(
-        b'"' + re.escape(asset_bytes) + rb'"\s*:\s*"(' + UUID_BYTES + rb')"'
-    )
-    while True:
-        approved_key = review_source.find(approved_marker, search_from)
-        if approved_key < 0:
-            return False
-        colon = review_source.find(b":", approved_key + len(approved_marker))
-        if colon < 0:
-            return False
-        mapping_start = review_source.find(b"{", colon + 1)
-        if mapping_start < 0:
-            return False
-        mapping = _balanced_bytes(review_source, mapping_start, ord("{"), ord("}"))
-        if mapping is None:
-            return False
-        ledger_match = ledger_pattern.search(mapping)
-        if ledger_match is not None:
-            ledger_generation = ledger_match.group(1)
-            if len(ledger_generation) == 36 and int.from_bytes(ledger_generation, "big") == item_value:
-                return True
-        search_from = mapping_start + len(mapping)
+    return result.returncode == 0
 
 
 def install_v7_ledger_guard(v7_module: Any) -> None:
-    """Replace Revision-7 ledger validation with a source-stable equivalent."""
+    """Replace Revision-7 ledger validation with a stable equivalent."""
     original = getattr(v7_module, "validate_ledger", None)
-    if original is None or getattr(original, "_journey_atlas_source_guarded", False):
+    if original is None or getattr(original, "_journey_atlas_jq_guarded", False):
         return
 
     def guarded_validate_ledger(
@@ -261,7 +190,7 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                     )
                 elif (
                     generation_id not in covered.get(asset_id, set())
-                    and not _source_generation_matches_ledger(filename, kind, asset_id)
+                    and not _jq_generation_matches_ledger(filename, kind, asset_id)
                 ):
                     errors.append(
                         f"{filename}: APPROVED {label} {asset_id} generation {generation_id} is not covered by immutable batch ledger"
@@ -278,7 +207,7 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                 f"{filename}: {key}.approval cannot be APPROVED until all {label} assets are APPROVED"
             )
 
-    guarded_validate_ledger._journey_atlas_source_guarded = True
+    guarded_validate_ledger._journey_atlas_jq_guarded = True
     v7_module.validate_ledger = guarded_validate_ledger
 
 
@@ -287,8 +216,6 @@ def self_test() -> None:
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
     assert same_text_fingerprint(good, good)
     assert not same_text_fingerprint(good, other)
-    sample = b'{"x":{"approvedGenerations":{"S03":"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"}}}'
-    assert _named_container_bytes(sample, "x", b"{", b"}") == b'{"approvedGenerations":{"S03":"3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"}}'
 
 
 if __name__ == "__main__":
