@@ -1,9 +1,12 @@
 # JOURNEY ATLAS — NEW COUNTRY START
 
-Updated: 2026-09-14
+Updated: 2026-09-15
 Current new-Country protocol: 2.0 / policy patch 5
 Current image policy: Revision 7 / Patch 2 / policyId 7.2
-Current content policy: Content QA v5
+Current content policy: Content QA v6
+Current publication path: Publication Pipeline v2
+
+Hardcoded values in this document are descriptive only. Before starting or resuming a Country, read the current values from `main:ops/country-production-policy.json` and `main:ops/image-generation-policy.json`.
 
 ## Copy / paste start prompt
 
@@ -17,16 +20,20 @@ GitHub：
 `yagenji/Journey-Atlas`
 
 PROJECT MASTER INSTRUCTIONSとGitHub `main` の最新仕様を使用してください。
+チャット内の古い説明より、現在の `main` を優先してください。
 
 最初に以下を確認してください。
-1. `main:ops/country-production-policy.json` の最新 protocolId / policyPatch / contentQuality.version
+1. `main:ops/country-production-policy.json` の最新 protocolId / policyPatch / contentQuality.version / publicationAutomation.version
 2. `main:ops/image-generation-policy.json` の最新 revision / patch / policyId
-3. `ops/country-production/{slug}.json` と `stateRef` / `contentRef`
+3. `main:docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`
+4. `main:docs/CONTENT_QUALITY_RULES_V6.md` と `main:docs/MAP_SYSTEM.md`
+5. `ops/country-production/{slug}.json` と `stateRef` / `contentRef` / `publicationPipelineVersion`
 
 新規CountryでStateが存在しない場合は、`country/{slug}` branchを作成し、現在のProtocol 2 initializerを使用してください。
 `python3 scripts/country_production_protocol_v2.py init {slug}`
 
 既存Stateがある場合はゼロから作り直さず、authoritative Stateから再開してください。
+既存in-flight Countryは自動的にContent QA v6 / Publication Pipeline v2へ移行させないでください。明示的なmigrationがない限り既存contractを維持してください。
 
 以後、進行判断にはProtocol 2のNEXTを使用してください。
 `python3 scripts/country_production_protocol_v2.py next {slug}`
@@ -34,22 +41,24 @@ PROJECT MASTER INSTRUCTIONSとGitHub `main` の最新仕様を使用してくだ
 NEXTが返す `interaction.userGate` を承認要否の正本としてください。
 - `userGate:false` の時にユーザーへ approve / 進めて / 生成 / next を要求してはいけません。
 - Scene / Tasteの途中画像は承認ゲートではありません。
-- 画像ランタイムやカード表示によってturnが区切られても、それを承認ゲートへ変換してはいけません。次のユーザーメッセージでは前画像の承認を求めず、reconcileして同じroundをBatch boundaryまで継続してください。
-- ユーザーに途中継続指示を要求した場合は `productionMetrics.userContinuationNudges` として記録対象となり、目標値は0です。
+- runtime / tool / turn boundaryを承認ゲートへ変換してはいけません。
+- 成功したtool actionの後に実行可能なnon-gate NEXT ACTIONが残っているなら、statusだけで停止せず次の本当のgateまで進めてください。
 
 【Hero前に必ず完了すること】
 `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md` のPre-visual buildを完了してください。
-Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
+Hero生成前に画像以外のCountry Pageをほぼ完成させます。
 - Country JSON本文
-- S01〜S08の選定・座標・最終画像パス
+- S01〜S08の選定・実座標・最終画像パス
 - FOOD01〜04の選定・最終画像パス
 - Map制作・QA
 - taxonomy
-- Related Countries
-- Next Routes
+- NEXT DESTINATIONS / Related Countries
+- NEXT ROUTES
 - Travel Scale
 - Signature Facts
-- 景色の向こうへ / Travel Trivia
+- ENCOUNTERS
+- Beyond the Scenery / Travel Trivia
+- Taste heading
 - sources / sourceDates
 - current Content QA
 
@@ -57,41 +66,24 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 `python3 scripts/validate_country_editorial_v2.py data/countries/{slug}.json`
 `python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json`
 
-【Content QA v5】
-- 新規Countryは `contentQaVersion: 5` を使用してください。
-- Travel Scaleは3段階すべてに具体的な `例：` を必須とします。
-- 旅の目安日程は `日` 表記に統一してください。
-- 第1段階と第2段階は、必ず幅のある `○〜○日` のレンジにしてください。`2日` や `5日` のような単独日数は禁止です。
-- 第3段階は `○日以上` とし、上限を閉じないでください。
-- 3段階は必ず連続させ、空白日・重複日を作らないでください。
-- 第2段階の開始日は、第1段階の終了日の翌日にしてください。
-- 第3段階の開始日は、第2段階の終了日の翌日にしてください。
-- 例：`2〜3日 → 4〜6日 → 7日以上`、`4〜5日 → 6〜9日 → 10日以上`。
-- `2〜3日 → 6〜8日 → 9日以上` のような飛び、`2〜4日 → 4〜6日 → 7日以上` のような重複は禁止です。
-- `泊` / `週` / `週間` をdurationに混在させないでください。
-- 日数・泊数・週数を禁止するのは `例：` より後ろのルート例の中だけです。`例：Aを2日 → Bを3日` / `例：A → Bを1週間` のような表記は禁止です。
-- `例：` は `A → B → C` のように代表的な旅の流れだけを示し、日数は上の `duration` で示してください。
-- `例：` より前の説明文では、必要ならその段階の日数を補足しても構いません。
-- 日数だけでなく、各段階でどの地域を組み合わせるか、どの順序で巡るか、都市・自然・文化をどう組み合わせるかを説明してください。
-- `signatureFacts`（数値）/ `atlasExtras`（景色の向こうへ）/ `travelTrivia`（トリビア）は同じ内容・同じ題材を使い回してはいけません。
-- 上記3セクションの `topicKey` は題材そのものを表すcanonical keyとし、セクションをまたいで重複させないでください。`-count` / `-history` / `-trivia` 等を付けて同じ題材を別物扱いすることも禁止です。
-- Signature Factsは「取得できる数字」ではなく、**その数字を知ると読者の国の見え方が変わるもの**を3件選んでください。
-- 各Signature Factに内部メタデータ `interestReason` を必須とし、なぜその数字が3枠の一つに値するかを説明してください。
-- 世界遺産の件数は通常のSignature Factに使いません。例外は25件以上かつ `exceptionalHeritageCount:true` の場合だけです。25件以上でも、もっとその国らしい数字があるならそちらを優先してください。
-- 森林・樹林地の割合も通常のSignature Factに使いません。例外は10%以下または70%以上かつ `exceptionalShare:true` の場合だけです。
-- 世界遺産数・森林率が例外基準を満たさない場合は、Travel Trivia / Beyond the Sceneryへ移すか、別の数値へ差し替えてください。
-- 数字が取得できること自体を採用理由にしないでください。
-- Signature Factsは必要に応じて内容に合う明示的な `icon` を設定し、異なる題材が同一fallbackアイコンへ潰れないよう確認してください。
+`validate_country_quality_v5.py` というfilenameは互換性のため残されています。`contentQaVersion` に応じてv5/v6をrouteします。
 
-【Map QA v5】
-- 首都名ラベルとS01〜S08の番号circleを重ねてはいけません。
-- `validate_country_quality_v5.py` が1200×760 canvas上で首都名ラベルの矩形と8景番号を検査します。
-- 衝突時は、実緯度経度を変更せず、まず `capital.labelPosition` の left / right を切り替えてください。
-- 次に必要最小限の `capital.labelOffset: {x, y}` を使ってください。各軸±80px以内です。
-- それでも解けない場合だけ最小の `mapOffset` を使ってください。
-- 首都名ラベルがmap canvas外へ出ることも不可です。
+【Content QA v6】
+新規Countryは `contentQaVersion: 6` を使用してください。
+v6の詳細は `docs/CONTENT_QUALITY_RULES_V6.md` を正本とし、ここでは最低限のproduction gateだけ確認します。
 
-既存 `contentQaVersion: 4` 以下のCountryは自動的にはv5で失格にしません。新規制作および意図的にv5へ移行したCountryに適用します。
+- Signature Facts / Beyond the Scenery / Travel Triviaで同じcanonical subjectを使い回さない。
+- Signature Factsは、その数字が国の見え方を変える3件だけを選び、`interestReason` を持たせる。
+- 一般的な人口・面積・人口密度は例外的scaleで `exceptionalScale:true` の場合だけ候補にする。
+- World Heritage件数・forest shareはcurrent policyのexception thresholdを満たす場合だけ候補にする。
+- NEXT ROUTESは「代表的なtraveler routeか」と「現在のborder/service status」を分離する。temporary restrictionだけでrouteを削除しない。
+- NEXT DESTINATIONSは近さではなくaffinityで選び、`affinityType` を持たせる。
+- ENCOUNTERSは旅行者が広く直接観察できる体験とし、最低4categoryへ分散する。
+- Taste headingはCountry名から固定生成し、Countryごとの創作見出しを作らない。
+- Mapは首都ラベルとScene番号のcollisionだけでなくv6 safety marginも満たす。実緯度経度をlayout調整目的で変更しない。
+- Pre-visual gate通過後はblocking defectまたはユーザーの明示修正がない限り、画像承認後に本文選定をやり直さない。
+
+Travel Scale等の継承ルールを含む詳細条件は `docs/CONTENT_QUALITY_RULES_V6.md` とmachine policyを直接参照してください。
 
 【画像生成】
 画像生成は現在のmain image policyに従ってください。
@@ -104,72 +96,53 @@ Hero生成前に、画像以外のCountry Pageをほぼ完成させます。
 - `PREVIOUS_ASSET_REPEAT` / `WRONG_TARGET_CARRYOVER` は1回目からRender Packet / prompt familyをrefreshし、同じpromptSeriesで再試行しない
 
 Heroは1枚生成後に1回承認を求めます。
+Hero承認後はS01〜S08を独立生成し、途中承認なしでScene Batch boundaryまで進めます。
+Scene Batch承認後はFOOD01〜FOOD04を独立生成し、途中承認なしでTaste Batch boundaryまで進めます。
 
-Hero承認後、SCENES_INITIALを自動開始してください。
-S01〜S08を8つの独立生成callとしてBatch boundaryまで進めます。
-正常なSceneの途中でユーザー承認や「進めて」を求めてはいけません。
-8景が揃ってから1回だけScene Batch Reviewを求めます。
-
-Scene Batch承認後、Taste roundを自動開始してください。
-FOOD01〜FOOD04を4つの独立生成callとしてBatch boundaryまで進めます。
-料理の途中でユーザー承認や「進めて」を求めてはいけません。
-
-Tasteの構成ルール：
-- 料理を成立・認識させるために必要なタレ、ディップ、スープ、wrapper、serving elementは入れてよい
-- それらはFOOD Render Packetの `integralAccompaniments` / `integralServingElements` に事前明記する
-- 装飾目的のハーブ、材料、食器、箸、ナプキン、飲み物、花、店内・厨房・風景などは不可
-- `decorativeProps` は必ず `[]`
-- 背景は `PLAIN_PALE_BEIGE_OR_WARM_IVORY`
-- Taste candidateは `dishIdentity / singleDish / integralComponentsOnly / plainBackground / decorativePropsAbsent` を含む7.2 QAをすべてPASSしてからREVIEW_CANDIDATEにする
-
-TASTE_INITIALで1枚が失敗しても、その料理をすぐ再生成してはいけません。
-失敗Targetは `REGENERATE` にparkし、未生成のFOODをFOOD04まで先に一巡してください。
-全4Targetを一度attemptしてから1回だけTaste Batch Reviewを行い、そのBatch ReviewでNG確定したTargetだけをTASTE_REGENへ進めます。
-Taste Batch Review前に `TASTE_REGEN` へ移ることは禁止です。
-
-REGENも同じです。対象画像をすべて独立生成した後に1回のREGEN Batch Reviewを行い、1枚ごとの承認は禁止です。
+TASTE_INITIALで失敗Targetがあっても、その場で再生成せず `REGENERATE` にparkして未生成Targetを先に一巡してください。
+全4Targetのfirst pass後に1回だけTaste Batch Reviewを行い、NG確定TargetだけをTASTE_REGENへ進めます。
+REGENも対象画像を独立生成した後にBatch Reviewを行います。
 
 【画像の格納方法】
 画像格納は `USER_HANDOFF` に一本化します。
 Assistant側で生成画像をGitHubへ復元・格納しようとしないでください。
 Hero + 8 Scenes + 4 Tasteがすべて承認されたら、13枚を一度にユーザーへ渡し、generation ID / 内容 / 最終格納パスをまとめたmanifestを提示してください。
-ユーザーが13枚を格納し「格納した」と伝えた後、Repository上の13画像を一度だけBatch verificationしてください。
-これは承認ゲートではなく作業上のhandoffです。
+ユーザーが13枚を格納した後、Repository上の13画像を一度だけBatch verificationしてください。
+画像handoffは承認ゲートではありません。
 
-【画像後工程】
-画像承認後にMapや本文を作り始めてはいけません。Pre-visual buildで完成済みであることが前提です。
-ユーザーから最終レビュー中の明示的な編集指示が入った場合は、その編集だけを行い、承認済み画像をロックしたままtarget-only QA / Previewを再実行してください。
-ユーザーの画像格納後は原則として以下だけを1本で実行してください。
-1. 13画像Batch verification
-2. 必要な一括変換・dimensions/path/hygiene QA
-3. Country JSONとのpath一致確認
-4. target Countryだけstrict validation
-5. target CountryだけPreview Build / targeted Desktop・Tablet・Mobile Browser QA
-6. 最新mainをCountry branchへ1回同期
-7. **1つだけ** pre-main Review PRを `country/{slug}` → `main` で開く
-8. PR open/synchronizeをトリガーとしてPersistent GitHub Pages Reviewを自動deploy
-9. `/reviews/{slug}/countries/{slug}/` の固定Review URLを提示し、最終ページ承認を求める
-10. 最終承認後、**同じPR**をterminal publication Stateへ更新する。2本目のPRは禁止
-11. serialized publication queueに任せ、latest main同期 → required `validate` / `browser-qa` → squash mergeを自動実行
-12. production deploy後、対象国だけproduction verification
+【Publication Pipeline v2】
+新規Country scaffoldでは `publicationPipelineVersion: 2` を使用します。
+13画像handoffがPASSした後は、通常のCountry-only pathを自動で進めてください。
 
-**Final Country Page review前にReview Packageをmainへ統合してはいけません。**
-Protocol 2では、target QA後もlegacy `REVIEW` phaseへ移らず `phase: QA` のまま `reviewPreview` を使います。
-`contentRef/stateRef: country/{slug}` を維持し、main統合は最終ページ承認後の一度だけです。
+Review path：
+1. target Countryだけをstrict validation / image auditする
+2. `publication-pipeline-v2-review.yml` がreusable PRを1本だけ確保する
+3. `publication-pipeline-v2-checks.yml` がtargeted Desktop / Tablet / Mobile Browser QAを実行する
+4. Review sourceは **latest main + target Country overlay** から構築する
+5. `/reviews/{slug}/countries/{slug}/` へpersistent reviewをdeployする
+6. review結果をauthoritative Stateへreconcileする
+7. canonical review URLをユーザーへ提示し、最終ページ承認を求める
 
-通常のReview Previewでは `.github/preview-trigger/**` の専用commitや手動dispatchを作りません。Review PR自体がPreview triggerです。
+Review準備のためにlatest `main`を長期Country branchへmergeしないでください。
+Country固有差分はCountry branch overlayを正本とし、shared runtimeはlatest `main`を使用します。
+Country PRにshared UI/build/workflow変更を混ぜないでください。共通修正が必要なら別system PRにしてください。
 
-GitHub Pagesは共有面ですが、各Countryは `/reviews/{slug}/` に保持されます。別CountryのReview deploymentで既存Review URLを上書きしてはいけません。最大8件のreview snapshotを保持し、画像はimmutable commitのraw URLを利用します。
+Final approval後：
+1. `finalApproval.state: APPROVED` を記録する
+2. `publication-pipeline-v2-finalize.yml` に任せる
+3. workflowがlatest `main`を取得し、target Country overlayを再構築する
+4. terminal publication State / `atlasPublished:true` を準備する
+5. exact terminal SHAでpublish checksを実行する
+6. 同じreusable PRをsquash mergeする
+7. Cloudflare上のmerge SHAを確認し、target Country route / JSONをinline smoke testする
 
-通常のCountry-only reviewで以下を実行してはいけません。
-- 全reviewable Country validation
-- 全published image audit / hard gate
-- 全Country static build/package
-- 全published Country Browser QA
-- ユーザー最終承認前のCloudflare production build
+以下は禁止です。
+- final canonical review前のmain統合
+- latest mainを長期Country branchへ直接mergeするv2運用
 - Review用PRとは別のPublication PR
-
-Blocking defectがない限り、途中で進行確認を求めたり、複数のReview deployment / Browser QA cycleを作らないでください。
+- Pipeline v2 publish後の別production-verification PR
+- Country-only変更での全Country Browser QA / full build
+- 実行可能なnon-gate NEXT ACTIONがある状態での進行確認待ち
 
 通常のユーザー承認ゲートは以下のみです。
 1. Hero
@@ -177,9 +150,7 @@ Blocking defectがない限り、途中で進行確認を求めたり、複数�
 3. 4-Taste Batch
 4. Final Country Page / Publish
 
-画像handoffは承認ゲートではありません。
-
-私が「進めて」と指示した場合は、その時点のProtocol 2 NEXTを実行してください。
+私が「進めて」と指示した場合は、その時点のProtocol 2 NEXTを実行し、次の明示gateまで自動継続してください。
 ```
 
 ## Repository authority
@@ -192,9 +163,10 @@ For a Protocol 2 new Country, use this order:
 4. `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`
 5. current image-policy revision docs
 6. authoritative Country Production State
-7. `docs/CONTENT_QUALITY_RULES_V5.md` for new `contentQaVersion: 5`; v4/v3/v2 specs for legacy versions
-8. `docs/MAP_SYSTEM.md`
-9. Scene / Taste / Map / Country template specifications
-10. chat history
+7. `docs/CONTENT_QUALITY_RULES_V6.md` for new `contentQaVersion: 6`; prior specs for legacy versions
+8. `docs/PUBLICATION_PIPELINE_V2.md`
+9. `docs/MAP_SYSTEM.md`
+10. Scene / Taste / Map / Country template specifications
+11. chat history
 
-The start prompt intentionally stays compact. Detailed rules live in the repository and must not be duplicated into an ever-growing per-Country prompt.
+The start prompt intentionally avoids duplicating every detailed rule. Machine policy and current repository documents remain authoritative so the prompt does not drift when QA or publication automation changes.
