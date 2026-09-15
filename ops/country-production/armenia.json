@@ -5,8 +5,8 @@
   "contentRef": "country/armenia",
   "stateRef": "country/armenia",
   "phase": "QA",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-15T08:49:00+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-15T09:22:58+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -159,7 +159,7 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T01:41:54+09:00",
+    "completedAt": "2026-09-15T09:22:58+09:00",
     "files": [
       "data/countries/armenia.json",
       "data/theme-taxonomy.json",
@@ -175,10 +175,14 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "PENDING",
-    "sourceCommit": null,
-    "checks": []
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "683d7ea18b961d38d7c3ad9e1a8e3b63543fb304",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -373,9 +377,13 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED"
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/armenia/countries/armenia/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T09:22:58+09:00",
+    "sourceCommit": "683d7ea18b961d38d7c3ad9e1a8e3b63543fb304",
+    "runId": 34912778158,
+    "pipelineVersion": 2
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -385,15 +393,15 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 1,
+    "reviewPreviewDeployments": 2,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-15T00:49:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-15T01:41:54+09:00"
+    "canonicalReviewReadyAt": "2026-09-15T09:22:58+09:00"
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
