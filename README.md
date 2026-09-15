@@ -4,8 +4,9 @@
 
 ## Source of truth
 
-- Destination scope: `data/atlas-scope.json`
-- Destination registries: `data/atlas-destinations.json` / `data/atlas-destinations-editorial.json`
+- Destination scope: `data/atlas-scope.json` — canonical 201 destinations
+- Destination registry / publication state: `data/atlas-destinations.json` — canonical 201-entry registry including Hong Kong and Macao
+- Legacy compatibility registry: `data/atlas-destinations-editorial.json` — deprecated, must remain empty
 - Country content: `data/countries/{slug}.json`
 - Published-country renewal status: `data/country-renewal-status.json`
 - Travel themes: `data/theme-taxonomy.json`
@@ -36,9 +37,10 @@ Production packageにはブラウザ実行に必要なruntime dataとreviewable 
 
 ## Validation
 
-Country JSON、公開Registry、Map、Theme、production packageを検証します。
+Country JSON、201-destination scope、公開Registry、Map、Theme、production packageを検証します。
 
 ```bash
+python3 scripts/validate_destination_scope.py
 python3 scripts/validate_country.py --reviewable
 python3 scripts/validate_country.py --published
 python3 scripts/audit_published_countries.py
@@ -49,6 +51,7 @@ python3 scripts/build_cloudflare.py
 
 GitHub Actions:
 
+- `.github/workflows/validate-destination-scope.yml`
 - `.github/workflows/validate-country-data.yml`
 - `.github/workflows/deploy-pages.yml`
 

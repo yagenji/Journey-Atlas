@@ -32,12 +32,12 @@ Iceland / NorwayをCountry Pageの基準とし、国ごとの新しいデザイ�
 
 ## Data source of truth
 
-- `../data/atlas-scope.json` — 201 destinationsの範囲
-- `../data/atlas-destinations.json`
-- `../data/atlas-destinations-editorial.json` — Destination registry / publication state
+- `../data/atlas-scope.json` — canonical 201 destinationsの範囲
+- `../data/atlas-destinations.json` — canonical 201-entry Destination registry / publication state。香港・マカオを含む
+- `../data/atlas-destinations-editorial.json` — legacy compatibility file。deprecatedであり、destinationsは空のまま維持する
 - `../data/countries/{slug}.json` — Country固有情報
 - `../data/theme-taxonomy.json` — TRAVEL THEMES
-- `../data/region-taxonomy.json` — Region taxonomy
+- `../data/region-taxonomy.json` — Region taxonomy。Asiaは49 destinations
 - `../data/illustration-briefs.json` — 201 destination illustration planning reference
 
 ## Do not use as source of truth
@@ -48,4 +48,4 @@ Iceland / NorwayをCountry Pageの基準とし、国ごとの新しいデザイ�
 - published Countryの過去制作計画
 - CI successだけを完成判定に使うこと
 
-Production / review stateはRegistryとCountry JSON、実ページのQAで判断します。
+Production / review stateはRegistryとCountry JSON、実ページのQAで判断します。Destination scopeは `scripts/validate_destination_scope.py` で201件・Asia 49件・香港/マカオ包含を機械検証します。

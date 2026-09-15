@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate JOURNEY LENS RSS slugs against the ATLAS destination registry."""
+"""Validate JOURNEY LENS RSS slugs against the canonical ATLAS registry."""
 
 from __future__ import annotations
 
@@ -17,6 +17,10 @@ RSS_URL = "https://journey.yagenji.com/rss.xml"
 ARTICLE_URL_RE = re.compile(r"^https://journey\.yagenji\.com/([a-z]+)(\d+)/$")
 LEGACY_URL_RE = re.compile(r"^https://journey\.yagenji\.com/([a-z]+)/$")
 SLUG_RE = re.compile(r"^[a-z]+$")
+# Hong Kong predates the letters-only slug contract and keeps its canonical
+# published ATLAS route. New destination slugs must still follow SLUG_RE.
+ATLAS_SLUG_EXCEPTIONS = {"hong-kong"}
+CANONICAL_DESTINATION_COUNT = 201
 
 
 def load_rss() -> bytes:
@@ -43,10 +47,23 @@ def main() -> int:
     destinations = registry.get("destinations", [])
     slugs = [item.get("slug") for item in destinations]
 
-    if len(destinations) != 199:
-        fail(errors, f"Expected 199 core destinations, found {len(destinations)}")
-    if any(not isinstance(slug, str) or not SLUG_RE.fullmatch(slug) for slug in slugs):
-        invalid = [slug for slug in slugs if not isinstance(slug, str) or not SLUG_RE.fullmatch(slug)]
+    if registry.get("count") != CANONICAL_DESTINATION_COUNT:
+        fail(
+            errors,
+            f"Registry count must be {CANONICAL_DESTINATION_COUNT}, found {registry.get('count')!r}",
+        )
+    if len(destinations) != CANONICAL_DESTINATION_COUNT:
+        fail(
+            errors,
+            f"Expected {CANONICAL_DESTINATION_COUNT} canonical destinations, found {len(destinations)}",
+        )
+    invalid = [
+        slug
+        for slug in slugs
+        if not isinstance(slug, str)
+        or (not SLUG_RE.fullmatch(slug) and slug not in ATLAS_SLUG_EXCEPTIONS)
+    ]
+    if invalid:
         fail(errors, f"Invalid registry slug(s): {invalid}")
     if len(set(slugs)) != len(slugs):
         fail(errors, "Duplicate slug(s) in atlas-destinations.json")
@@ -118,7 +135,8 @@ def main() -> int:
         print(f"WARNING: legacy LENS article URL is temporarily allowed: {url}")
 
     print(
-        f"Validated {item_count} LENS RSS item(s), {len(rss_slugs)} unique slug(s), "
+        f"Validated canonical {CANONICAL_DESTINATION_COUNT}-destination ATLAS registry; "
+        f"{item_count} LENS RSS item(s), {len(rss_slugs)} unique slug(s), "
         f"{len(declared_published)} mapped journeyLensPublished destination(s)."
     )
     return 0
