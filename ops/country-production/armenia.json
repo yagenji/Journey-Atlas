@@ -5,8 +5,8 @@
   "contentRef": "country/armenia",
   "stateRef": "country/armenia",
   "phase": "QA",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-15T01:41:54+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-15T08:49:00+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -175,14 +175,10 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "PASS",
-    "productionState": "CI_GATED",
-    "sourceCommit": "aafc38c90e9fd650f040938dc43e4f64e68e787d",
-    "checks": [
-      "publication-v2-targeted-validation",
-      "publication-v2-image-audit",
-      "publication-v2-desktop-tablet-mobile-browser-qa"
-    ]
+    "state": "NOT_STARTED",
+    "productionState": "PENDING",
+    "sourceCommit": null,
+    "checks": []
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -377,13 +373,9 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/armenia/countries/armenia/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-15T01:41:54+09:00",
-    "sourceCommit": "aafc38c90e9fd650f040938dc43e4f64e68e787d",
-    "runId": 34867858660,
-    "pipelineVersion": 2
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED"
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -401,7 +393,7 @@
     "canonicalReviewReadyAt": "2026-09-15T01:41:54+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "RUN_COUNTRY_QA",
     "asset": null
   },
   "publicationPipelineVersion": 2
