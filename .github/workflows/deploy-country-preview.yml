@@ -82,7 +82,7 @@ jobs:
 
           slug = sys.argv[1]
           published = False
-          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+          for name in ("atlas-destinations.json",):
               path = Path("data") / name
               payload = json.loads(path.read_text(encoding="utf-8"))
               for row in payload.get("destinations", []):

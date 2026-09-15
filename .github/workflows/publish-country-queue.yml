@@ -61,7 +61,7 @@ jobs:
               raise SystemExit
 
           registry_published = False
-          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+          for name in ("atlas-destinations.json",):
               payload = json.loads((Path("data") / name).read_text(encoding="utf-8"))
               for row in payload.get("destinations", []):
                   if row.get("slug") == slug:
@@ -121,7 +121,6 @@ jobs:
           shared_snapshot="/tmp/${slug}-publication-shared-ssot.json"
           shared_files=(
             "data/atlas-destinations.json"
-            "data/atlas-destinations-editorial.json"
             "data/country-renewal-status.json"
             "data/theme-taxonomy.json"
           )
@@ -149,7 +148,7 @@ jobs:
           data = Path("data")
           snapshot = {"registryRows": {}, "statusRow": None, "themes": []}
 
-          for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+          for name in ("atlas-destinations.json",):
               path = data / name
               payload = json.loads(path.read_text(encoding="utf-8"))
               row = next((row for row in payload.get("destinations", []) if row.get("slug") == slug), None)
