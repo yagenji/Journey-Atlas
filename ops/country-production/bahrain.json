@@ -5,8 +5,8 @@
   "contentRef": "country/bahrain",
   "stateRef": "country/bahrain",
   "phase": "QA",
-  "stateRevision": 22,
-  "updatedAt": "2026-09-15T02:34:25+09:00",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-15T09:55:22+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -372,12 +372,9 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "DONE",
-    "url": "https://yagenji.github.io/Journey-Atlas/reviews/bahrain/countries/bahrain/",
-    "browserQa": "PASS",
-    "deployedAt": "2026-09-15T02:34:25+09:00",
-    "sourceCommit": "0434ae597db10c9cfbd26ce17fdd5e6f56ba6fbb",
-    "runId": 34874470374,
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
     "pipelineVersion": 2
   },
   "productionMetrics": {
@@ -397,7 +394,7 @@
   },
   "recoveryNote": "Recovery adopts the actually generated and user-approved Hero, S01-S08 and FOOD01-FOOD04 without regenerating them.",
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2
