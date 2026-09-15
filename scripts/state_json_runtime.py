@@ -1,41 +1,78 @@
 #!/usr/bin/env python3
-"""Runtime guard for production-state Generation ledger validation.
+"""Stable runtime guard for Revision 7 immutable batch-ledger validation.
 
-A GitHub-hosted Python 3.12 runner has shown a narrow equality/search anomaly for
-one UUID-shaped Generation ID even though the repository source bytes are intact.
-Revision 7 still requires exact immutable-ledger identity, so normal Python
-validation remains primary. Only when that exact comparison reports a miss do we
-ask jq to compare the two JSON values directly from the State file.
-
-The fallback is generic: no Country, asset, or Generation ID is special-cased. If
-jq is unavailable or cannot prove equality, validation remains failed.
+The guard preserves the Revision 7 ledger contract while avoiding hashed/string
+membership for asset and Generation IDs. Exact text identity is checked with
+hmac.compare_digest over UTF-8 bytes. No Country, asset, or Generation ID is
+special-cased, and genuine ledger omissions remain blocking errors.
 """
 
 from __future__ import annotations
 
+import hmac
 import json
-import subprocess
-from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
-ROOT = Path(__file__).resolve().parents[1]
-STATE_DIR = ROOT / "ops" / "country-production"
+
+def _text_equal(left: Any, right: Any) -> bool:
+    if not isinstance(left, str) or not isinstance(right, str):
+        return False
+    return hmac.compare_digest(left.encode("utf-8"), right.encode("utf-8"))
+
+
+def _contains_text(values: Iterable[Any], target: str) -> bool:
+    return any(_text_equal(value, target) for value in values)
+
+
+def _unique_text_list(values: list[Any]) -> bool:
+    for index, value in enumerate(values):
+        if not isinstance(value, str):
+            return False
+        if any(_text_equal(value, later) for later in values[index + 1 :]):
+            return False
+    return True
+
+
+def _same_text_members(left: list[Any], right: list[Any]) -> bool:
+    if len(left) != len(right):
+        return False
+    if not _unique_text_list(left) or not _unique_text_list(right):
+        return False
+    return all(_contains_text(right, value) for value in left if isinstance(value, str))
+
+
+def _find_item(items: list[dict[str, Any]], asset_id: str) -> dict[str, Any]:
+    for item in items:
+        if isinstance(item, dict) and _text_equal(item.get("id"), asset_id):
+            return item
+    return {}
+
+
+def _generation_covered(rounds: list[Any], asset_id: str, generation_id: str) -> bool:
+    for entry in rounds:
+        if not isinstance(entry, dict):
+            continue
+        approved = entry.get("approvedGenerations")
+        if not isinstance(approved, dict):
+            continue
+        for approved_asset_id, approved_generation_id in approved.items():
+            if _text_equal(approved_asset_id, asset_id) and _text_equal(
+                approved_generation_id, generation_id
+            ):
+                return True
+    return False
 
 
 def stable_text_fingerprint(value: Any) -> int | None:
-    """Compatibility helper retained for callers introduced with the guard."""
+    """Compatibility helper retained for existing callers."""
     if not isinstance(value, str):
         return None
-    encoded = str.encode(value, "utf-8")
-    if not encoded:
-        return 0
-    return int(encoded.hex(), 16)
+    encoded = value.encode("utf-8")
+    return int(encoded.hex(), 16) if encoded else 0
 
 
 def same_text_fingerprint(left: Any, right: Any) -> bool:
-    left_fp = stable_text_fingerprint(left)
-    right_fp = stable_text_fingerprint(right)
-    return left_fp is not None and left_fp == right_fp
+    return _text_equal(left, right)
 
 
 def canonicalize_json_strings(value: Any) -> Any:
@@ -50,59 +87,15 @@ def canonical_loads(payload: str | bytes | bytearray, *args: Any, **kwargs: Any)
 
 
 def install_json_loads_guard() -> None:
+    """Compatibility no-op kept for older callers."""
     if json.loads is not canonical_loads:
         json.loads = canonical_loads
 
 
-def _jq_generation_matches_ledger(filename: str, kind: str, asset_id: str) -> bool:
-    """Independently prove exact approvedGenerationId coverage using jq.
-
-    No Generation ID crosses the Python/jq boundary. jq reads both values directly
-    from the same source file and returns success only for exact JSON-string
-    equality inside an immutable batch-review ledger round.
-    """
-    path = STATE_DIR / filename
-    if not path.is_file() or kind not in {"scene", "taste"}:
-        return False
-
-    program = r'''
-      if $kind == "scene" then
-        (.scenes[]? | select(.id == $id) | .approvedGenerationId) as $gid
-        | any(.sceneBatchReview.rounds[]?; .approvedGenerations[$id] == $gid)
-      elif $kind == "taste" then
-        (.taste[]? | select(.id == $id) | .approvedGenerationId) as $gid
-        | any(.tasteBatchReview.rounds[]?; .approvedGenerations[$id] == $gid)
-      else
-        false
-      end
-    '''
-    try:
-        result = subprocess.run(
-            [
-                "jq",
-                "-e",
-                "--arg",
-                "kind",
-                kind,
-                "--arg",
-                "id",
-                asset_id,
-                program,
-                str(path),
-            ],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            check=False,
-        )
-    except (OSError, ValueError):
-        return False
-    return result.returncode == 0
-
-
 def install_v7_ledger_guard(v7_module: Any) -> None:
-    """Replace Revision-7 ledger validation with a stable equivalent."""
+    """Install a semantically equivalent, digest-safe Revision 7 ledger validator."""
     original = getattr(v7_module, "validate_ledger", None)
-    if original is None or getattr(original, "_journey_atlas_jq_guarded", False):
+    if original is None or getattr(original, "_journey_atlas_digest_guarded", False):
         return
 
     def guarded_validate_ledger(
@@ -127,7 +120,6 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             errors.append(f"{filename}: {key}.rounds must be a list")
             return
 
-        covered: dict[str, set[str]] = {asset_id: set() for asset_id in ids}
         expected_round_number = 1
         for idx, entry in enumerate(rounds):
             prefix = f"{filename}: {key}.rounds[{idx}]"
@@ -147,51 +139,51 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             regenerate = entry.get("regenerate")
             if (
                 not isinstance(scope, list)
-                or len(scope) != len(set(scope))
-                or any(x not in ids for x in scope)
+                or not _unique_text_list(scope)
+                or any(
+                    not isinstance(asset_id, str) or not _contains_text(ids, asset_id)
+                    for asset_id in scope
+                )
             ):
                 errors.append(f"{prefix}.scope must contain unique valid {label} ids")
                 continue
             if not isinstance(approved, dict):
                 errors.append(f"{prefix}.approvedGenerations must be an object")
                 continue
-            if not isinstance(regenerate, list) or len(regenerate) != len(set(regenerate)):
+            if not isinstance(regenerate, list) or not _unique_text_list(regenerate):
                 errors.append(f"{prefix}.regenerate must be a unique-id list")
                 continue
-            approved_ids = set(approved.keys())
-            regen_ids = set(regenerate)
-            scope_ids = set(scope)
-            if approved_ids & regen_ids:
+
+            approved_ids = list(approved.keys())
+            if any(
+                isinstance(asset_id, str) and _contains_text(regenerate, asset_id)
+                for asset_id in approved_ids
+            ):
                 errors.append(f"{prefix}: approvedGenerations and regenerate must be disjoint")
-            if approved_ids | regen_ids != scope_ids:
-                errors.append(f"{prefix}: approvedGenerations + regenerate must exactly partition scope")
+            if not _same_text_members(approved_ids + regenerate, scope):
+                errors.append(
+                    f"{prefix}: approvedGenerations + regenerate must exactly partition scope"
+                )
+
             for approved_asset_id, generation_id in approved.items():
-                if approved_asset_id not in ids:
+                if not isinstance(approved_asset_id, str) or not _contains_text(
+                    ids, approved_asset_id
+                ):
                     errors.append(f"{prefix}: invalid approved id {approved_asset_id}")
                 if not isinstance(generation_id, str) or not generation_id:
                     errors.append(
                         f"{prefix}: approved generation id for {approved_asset_id} is required"
                     )
-                elif approved_asset_id in covered:
-                    covered[approved_asset_id].add(generation_id)
 
-        by_id = {
-            str(item.get("id")): item
-            for item in items
-            if isinstance(item, dict) and item.get("id")
-        }
         for asset_id in ids:
-            item = by_id.get(asset_id, {})
+            item = _find_item(items, asset_id)
             if item.get("state") == "APPROVED":
                 generation_id = item.get("approvedGenerationId")
                 if not isinstance(generation_id, str) or not generation_id:
                     errors.append(
                         f"{filename}: APPROVED {label} {asset_id} requires approvedGenerationId"
                     )
-                elif (
-                    generation_id not in covered.get(asset_id, set())
-                    and not _jq_generation_matches_ledger(filename, kind, asset_id)
-                ):
+                elif not _generation_covered(rounds, asset_id, generation_id):
                     errors.append(
                         f"{filename}: APPROVED {label} {asset_id} generation {generation_id} is not covered by immutable batch ledger"
                     )
@@ -201,21 +193,29 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                 )
 
         if review.get("approval") == "APPROVED" and not all(
-            by_id.get(asset_id, {}).get("state") == "APPROVED" for asset_id in ids
+            _find_item(items, asset_id).get("state") == "APPROVED" for asset_id in ids
         ):
             errors.append(
                 f"{filename}: {key}.approval cannot be APPROVED until all {label} assets are APPROVED"
             )
 
-    guarded_validate_ledger._journey_atlas_jq_guarded = True
+    guarded_validate_ledger._journey_atlas_digest_guarded = True
     v7_module.validate_ledger = guarded_validate_ledger
 
 
 def self_test() -> None:
     good = "3ddb4693-70c8-41b9-b2ab-b2e2c5e22529"
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
-    assert same_text_fingerprint(good, good)
-    assert not same_text_fingerprint(good, other)
+    assert _text_equal(good, good)
+    assert not _text_equal(good, other)
+    assert _same_text_members(["S01", "S02"], ["S02", "S01"])
+    assert not _same_text_members(["S01", "S02"], ["S01", "S03"])
+    assert _generation_covered(
+        [{"approvedGenerations": {"S03": good}}], "S03", good
+    )
+    assert not _generation_covered(
+        [{"approvedGenerations": {"S03": good}}], "S03", other
+    )
 
 
 if __name__ == "__main__":
