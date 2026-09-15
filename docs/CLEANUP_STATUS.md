@@ -54,6 +54,22 @@ all obsolete data, documentation, or compatibility paths have been retired.
   later approved FOOD03 generation, and the two old publication/QA trigger PRs
   were superseded by later full published-Country QA and Pipeline v2 cleanup.
 
+## Active latest-main reconciliation
+
+- PR #813 reconstructs the still-useful parts of stale PRs #647, #651, and #656
+  from current `main` instead of merging their 176–183-commit-old heads.
+- #647 intent is retained through a current icon-integrity audit, a real shared
+  `clock` symbol, Vatican City's redundant `earth` reference normalized to the
+  existing `landscape` symbol, and shared-rendering classification for the icon
+  sprite. The retired editorial destination registry is not restored.
+- #651 intent is retained by separating typography selectors from Transport
+  layout ownership without changing the rendered typography values.
+- #656 intent is retained through `STATE_RECOVERY_MIGRATION.md` rewritten for
+  Image Policy 7.2 / Protocol 2. Recovery metadata remains audit provenance,
+  not a validator bypass or raster-materialization path.
+- Keep #647, #651, and #656 open until #813 passes current validation and merges;
+  then close them as superseded before deleting their old branches.
+
 ## Retained dependencies and outstanding review
 
 | Item | Evidence / next decision |
@@ -64,8 +80,8 @@ all obsolete data, documentation, or compatibility paths have been retired.
 | Legacy State/ledger helpers | Still imported by active validators. No removal or identifier-normalization changes in this cleanup |
 | Renewal plans/audits and reference briefs | Separate renewal/reference evidence; not covered by the completed-production-plan deletion decision |
 | Older general design/workflow documentation | Further authority and implementation reconciliation is needed; no design contract is changed by this follow-up |
-| Open PRs #647, #651, #656 | Their unique changes are not on main. Revalidate against current icon, CSS-ownership, and State-recovery contracts before integration or closure |
-| Remote branch inventory | Far above the `WORKFLOW.md` steady-state rule. Delete only after checking open PR ownership and whether unique history requires an archive tag |
+| PR #813 and stale PRs #647, #651, #656 | Validate #813 on current main; if it merges, close the three old PRs as superseded rather than merging their stale heads |
+| Remote branch inventory | 218 branches at the current audit. Delete only after checking open PR ownership and whether unique history requires an archive tag |
 | Production deployment / live QA after #810 | Separate from pre-merge Browser QA; not verified by this repository cleanup |
 
 ## Audit boundaries
