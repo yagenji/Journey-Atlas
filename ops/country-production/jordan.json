@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "slug": "jordan",
+  "countryName": "JORDAN",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-15T12:22:05+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/jordan/approved/hero-petra-al-khazneh-siq.webp",
+    "contentId": "petra-al-khazneh-siq",
+    "approvedGenerationId": "01dcea29-f98d-44a8-98ad-c903a654e115"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/jerash-oval-plaza.webp",
+      "contentId": "jerash-oval-plaza",
+      "approvedGenerationId": "6aaf6384-1f43-4dbc-a0e6-0b02cbcfd245",
+      "rejectedGenerationIds": [
+        "40c6de46-3e0f-4fa4-9002-8207754c9a35",
+        "6624c5e8-79d3-4cc9-82f5-e0e48fc796a7"
+      ]
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/azraq-wetland-reserve.webp",
+      "contentId": "azraq-wetland-reserve",
+      "approvedGenerationId": "a3d5be91-48b7-4015-ad26-4d53307a2585"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/wadi-rum-jebel-khazali.webp",
+      "contentId": "wadi-rum-jebel-khazali",
+      "approvedGenerationId": "4be97fd6-c6e3-4c6b-b773-318aab16e8d2"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/dead-sea-suweimeh-shore.webp",
+      "contentId": "dead-sea-suweimeh-shore",
+      "approvedGenerationId": "df6a91af-a0be-4f23-a9a7-215e2cdf48fd"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/dana-village-wadi-dana.webp",
+      "contentId": "dana-village-wadi-dana",
+      "approvedGenerationId": "f6eb73de-1e30-49b1-9d93-2cf34e74d043"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/aqaba-marine-reserve.webp",
+      "contentId": "aqaba-marine-reserve",
+      "approvedGenerationId": "0ba476cf-5159-47df-a233-9cced1ffd349"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/as-salt-historic-core.webp",
+      "contentId": "as-salt-historic-core",
+      "approvedGenerationId": "9872e540-14bf-4f27-9fad-ca3626e19962"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/umm-qais-gadara.webp",
+      "contentId": "umm-qais-gadara",
+      "approvedGenerationId": "dfec45d6-db34-403c-919b-275df13c5fe1"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/food-mansaf.webp",
+      "contentId": "mansaf",
+      "approvedGenerationId": "f946c134-1415-430f-a8fb-c1b93b492b55",
+      "rejectedGenerationIds": [
+        "dcf53725-9d9b-4736-a5e0-ed5764e7fd8a"
+      ]
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/food-maqluba.webp",
+      "contentId": "maqluba",
+      "approvedGenerationId": "66980ce8-e880-4861-8d51-7c80eb846f4c"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/food-zarb.webp",
+      "contentId": "zarb",
+      "approvedGenerationId": "e61629bb-eb1e-4e98-8f11-f4ad667aee52"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/jordan/approved/food-knafeh.webp",
+      "contentId": "knafeh",
+      "approvedGenerationId": "9c1685c2-6116-468d-b73e-388c4ab916ad"
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/jordan/map-atlas-v2.svg"
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-15T12:06:03+09:00",
+    "countryJson": "data/countries/jordan.json",
+    "themeTaxonomy": [
+      "earth",
+      "history"
+    ],
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "b4e2a3198ccf514fdfe90789aff5dd19db2e1184",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/jordan/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-15T12:20:04+09:00",
+    "basis": "User instructed: QAして問題なければ公開して. Latest Jordan Content QA v5 and Desktop/Tablet/Mobile Browser QA passed after the Amman label correction."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T12:22:05+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/jordan/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 3,
+    "lastResetAt": "2026-09-14T20:02:00+09:00",
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "6aaf6384-1f43-4dbc-a0e6-0b02cbcfd245",
+          "S02": "a3d5be91-48b7-4015-ad26-4d53307a2585",
+          "S03": "4be97fd6-c6e3-4c6b-b773-318aab16e8d2",
+          "S04": "df6a91af-a0be-4f23-a9a7-215e2cdf48fd",
+          "S05": "f6eb73de-1e30-49b1-9d93-2cf34e74d043",
+          "S06": "0ba476cf-5159-47df-a233-9cced1ffd349",
+          "S07": "9872e540-14bf-4f27-9fad-ca3626e19962",
+          "S08": "dfec45d6-db34-403c-919b-275df13c5fe1"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-13T18:11:00+09:00"
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "f946c134-1415-430f-a8fb-c1b93b492b55",
+          "FOOD02": "66980ce8-e880-4861-8d51-7c80eb846f4c",
+          "FOOD03": "e61629bb-eb1e-4e98-8f11-f4ad667aee52",
+          "FOOD04": "9c1685c2-6116-468d-b73e-388c4ab916ad"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-14T20:12:00+09:00"
+      }
+    ]
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "productionProtocolPolicyPatch": 5,
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-14T20:36:00+09:00",
+    "verificationBasis": "Repository contains exactly the 13 expected approved Jordan WebP rasters; all GitHub blob SHAs exactly match the supplied handoff package. Because the matched package was fully decoded and verified at 1200x800 before handoff, byte identity carries that decode/dimension verification to the stored repository assets."
+  },
+  "assetVerification": {
+    "state": "PASS",
+    "repositoryBranch": "country/jordan",
+    "verifiedRasterCount": 13,
+    "gitBlobMatch": "PASS",
+    "fullDecode": "PASS",
+    "format": "WEBP",
+    "dimensions": "1200x800",
+    "nearDuplicatePairs": 0,
+    "verifiedAt": "2026-09-14T20:36:00+09:00"
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/jordan/countries/jordan/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T12:06:03+09:00",
+    "sourceCommit": "b4e2a3198ccf514fdfe90789aff5dd19db2e1184",
+    "runId": 34923515612,
+    "pipelineVersion": 2
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 1,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 1,
+    "reviewPreviewDeployments": 4,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 5,
+    "tasteBatchApprovedAt": "2026-09-14T20:12:00+09:00",
+    "canonicalReviewReadyAt": "2026-09-15T12:06:03+09:00"
+  },
+  "next": {
+    "action": "NONE",
+    "asset": null
+  },
+  "publicationPipelineVersion": 2
+}
