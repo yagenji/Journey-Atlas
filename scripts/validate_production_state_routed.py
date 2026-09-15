@@ -45,9 +45,6 @@ def validate() -> list[str]:
             continue
 
         if state.get("productionProtocolId") == protocol2.PROTOCOL_ID:
-            # Protocol 2 is a Revision 7 state. Validate the current state with
-            # all current layers, but do not also apply the incompatible legacy
-            # executionPolicy contract.
             v7_errors = v7.validate_state_dict(state, path.name)
             if path.name == "unitedarabemirates.json" and v7_errors:
                 scenes = {str(item.get("id")): item for item in state.get("scenes", []) if isinstance(item, dict)}
@@ -57,14 +54,16 @@ def validate() -> list[str]:
                     for asset_id, generation_id in (entry.get("approvedGenerations") or {}).items():
                         if asset_id in direct_covered:
                             direct_covered[asset_id].add(generation_id)
+                item_id = scenes.get("S03", {}).get("approvedGenerationId")
+                ledger_id = next(iter(direct_covered.get("S03", set())), None)
                 probe_errors: list[str] = []
                 v7.validate_ledger(probe_errors, path.name, state, "scene", v7.SCENE_IDS, state.get("scenes", []))
                 print("UAE_LEDGER_DIAGNOSTIC scene_ids=", repr(v7.SCENE_IDS))
-                print("UAE_LEDGER_DIAGNOSTIC scene_s03=", repr(scenes.get("S03", {}).get("approvedGenerationId")))
-                print("UAE_LEDGER_DIAGNOSTIC covered_s03=", repr(direct_covered.get("S03")))
-                print("UAE_LEDGER_DIAGNOSTIC membership=", scenes.get("S03", {}).get("approvedGenerationId") in direct_covered.get("S03", set()))
+                print("UAE_LEDGER_DIAGNOSTIC item=", repr(item_id), "type=", type(item_id).__name__, "len=", len(item_id) if isinstance(item_id, str) else None, "hex=", item_id.encode("utf-8").hex() if isinstance(item_id, str) else None, "hash=", hash(item_id) if isinstance(item_id, str) else None)
+                print("UAE_LEDGER_DIAGNOSTIC ledger=", repr(ledger_id), "type=", type(ledger_id).__name__, "len=", len(ledger_id) if isinstance(ledger_id, str) else None, "hex=", ledger_id.encode("utf-8").hex() if isinstance(ledger_id, str) else None, "hash=", hash(ledger_id) if isinstance(ledger_id, str) else None)
+                print("UAE_LEDGER_DIAGNOSTIC equality=", item_id == ledger_id)
+                print("UAE_LEDGER_DIAGNOSTIC membership=", item_id in direct_covered.get("S03", set()))
                 print("UAE_LEDGER_DIAGNOSTIC probe_errors=", repr(probe_errors))
-                print("UAE_LEDGER_DIAGNOSTIC rounds=", repr(rounds))
                 print("UAE_LEDGER_DIAGNOSTIC v7_module=", str(Path(v7.__file__).resolve()))
             errors.extend(v7_errors)
             errors.extend(v72.validate_state_dict(state, path.name))
