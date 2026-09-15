@@ -26,9 +26,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # The running workflow is already loaded by Actions. Remove its checked-out
-          # copy before the zero-reference assertion so the temporary helper does not
-          # count its own guard strings as production references.
+          # Actions has already loaded this workflow. Remove only its checked-out
+          # copy so the zero-reference assertion does not count the temporary helper.
           rm .github/workflows/one-shot-retire-editorial-registry.yml
           python3 .github/migrations/retire_editorial_registry.py
       - name: Validate migrated source
@@ -45,10 +44,27 @@ jobs:
             exit 1
           fi
           test ! -e data/atlas-destinations-editorial.json
-      - name: Commit migration and remove one-shot helpers
+      - name: Commit non-workflow migration and stage workflow payloads
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p migration-output/workflows
+          for path in \
+            .github/workflows/validate-destination-scope.yml \
+            .github/workflows/validate-production-state.yml \
+            .github/workflows/publish-country-queue.yml \
+            .github/workflows/validate-country-data.yml \
+            .github/workflows/browser-country-qa.yml \
+            .github/workflows/verify-production.yml \
+            .github/workflows/sync-conflicted-country-publication.yml \
+            .github/workflows/deploy-country-preview.yml \
+            .github/workflows/publication-pipeline-v2-finalize.yml
+          do
+            cp "$path" "migration-output/workflows/$(basename "$path")"
+          done
+          # GITHUB_TOKEN cannot push workflow-file edits. Restore all workflows in
+          # the commit, then apply the already-validated payloads via GitHub API.
+          git checkout HEAD -- .github/workflows
           rm .github/migrations/retire_editorial_registry.py
           rmdir .github/migrations 2>/dev/null || true
           git config user.name 'github-actions[bot]'
