@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "azerbaijan",
   "countryName": "AZERBAIJAN",
-  "contentRef": "country/azerbaijan",
-  "stateRef": "country/azerbaijan",
-  "phase": "QA",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-15T12:42:07+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-15T12:51:28+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -168,15 +168,25 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/azerbaijan/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "APPROVED"
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-15T12:51:28+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/azerbaijan/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -355,7 +365,7 @@
     "canonicalReviewReadyAt": "2026-09-15T12:42:07+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
