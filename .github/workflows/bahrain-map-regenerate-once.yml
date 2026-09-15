@@ -11,116 +11,56 @@ permissions:
   contents: write
 
 jobs:
-  regenerate-map:
+  finalize-map-metadata:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: country/bahrain
           fetch-depth: 0
-      - name: Regenerate Bahrain map from geoBoundaries
+      - name: Update Bahrain map source and reset review preview
         shell: bash
         run: |
           python - <<'PY'
           import json
-          import urllib.request
+          from datetime import datetime
           from pathlib import Path
+          from zoneinfo import ZoneInfo
 
-          WIDTH, HEIGHT = 1200, 760
-          URL = 'https://www.geoboundaries.org/api/current/gbOpen/BHR/ADM0/'
-          with urllib.request.urlopen(URL) as r:
-              meta = json.load(r)
-          with urllib.request.urlopen(meta['gjDownloadURL']) as r:
-              gj = json.load(r)
-
-          geom = gj['features'][0]['geometry']
-          polygons = geom['coordinates'] if geom['type'] == 'MultiPolygon' else [geom['coordinates']]
-
-          regions = {
-              'main': {
-                  'bounds': {'north': 26.30, 'south': 25.78, 'west': 50.37, 'east': 50.69},
-                  'rect': {'x': 10, 'y': 0, 'width': 970, 'height': 760},
-              },
-              'hawar': {
-                  'bounds': {'north': 25.77, 'south': 25.565, 'west': 50.725, 'east': 50.83},
-                  'rect': {'x': 995, 'y': 480, 'width': 190, 'height': 260},
-              },
-          }
-
-          def region_for(poly):
-              ring = poly[0]
-              lon = sum(p[0] for p in ring) / len(ring)
-              lat = sum(p[1] for p in ring) / len(ring)
-              return 'hawar' if lat < 25.78 and lon > 50.70 else 'main'
-
-          def project(lon, lat, spec):
-              b, r = spec['bounds'], spec['rect']
-              x = r['x'] + (lon - b['west']) / (b['east'] - b['west']) * r['width']
-              y = r['y'] + (b['north'] - lat) / (b['north'] - b['south']) * r['height']
-              return round(x, 1), round(y, 1)
-
-          def ring_path(ring, spec):
-              pts = []
-              prev = None
-              for lon, lat in ring:
-                  pt = project(lon, lat, spec)
-                  if pt != prev:
-                      pts.append(pt)
-                      prev = pt
-              if len(pts) < 3:
-                  return ''
-              return 'M ' + ' L '.join(f'{x:.1f},{y:.1f}' for x, y in pts) + ' Z'
-
-          paths = {'main': [], 'hawar': []}
-          counts = {'main': 0, 'hawar': 0}
-          vertices = {'main': 0, 'hawar': 0}
-          for poly in polygons:
-              rid = region_for(poly)
-              spec = regions[rid]
-              dparts = []
-              for ring in poly:
-                  d = ring_path(ring, spec)
-                  if d:
-                      dparts.append(d)
-                      vertices[rid] += len(ring)
-              if dparts:
-                  paths[rid].append(' '.join(dparts))
-                  counts[rid] += 1
-
-          main_d = ' '.join(paths['main'])
-          hawar_d = ' '.join(paths['hawar'])
-          source_note = (
-              f"geoBoundaries gbOpen ADM0 | boundaryID={meta.get('boundaryID')} | "
-              f"source={meta.get('boundarySource')} | license={meta.get('boundaryLicense')} | "
-              f"vertices={meta.get('meanVertices')} | buildDate={meta.get('buildDate')}"
+          country_path = Path('data/countries/bahrain.json')
+          country = json.loads(country_path.read_text(encoding='utf-8'))
+          country['map']['source'] = (
+              'geoBoundaries gbOpen ADM0 (BHR), sourced from OpenStreetMap / Wambacher under ODbL 1.0. '
+              'The full-resolution coastline and island geometry is projected into the existing JOURNEY ATLAS '
+              'multi-region local-equirectangular layout; only subpixel SVG coordinate rounding is applied. '
+              'Main Bahrain and Hawar remain separate map.regions so WGS84 coordinates stay authoritative.'
           )
+          country['sourceDates']['geometry'] = '2026-09-15'
+          country['sources']['geometry'] = (
+              'geoBoundaries gbOpen BHR ADM0, boundary BHR-ADM0-88433195; source OpenStreetMap / Wambacher; '
+              'Open Data Commons Open Database License 1.0. Source geometry reports 10,579 mean vertices. '
+              'JOURNEY ATLAS projects the full-resolution geometry into the Bahrain main/Hawar map regions '
+              'and reduces only duplicate/subpixel SVG coordinates for display.'
+          )
+          country_path.write_text(json.dumps(country, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
 
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Bahrain" data-map-style="journey-atlas-map-v3-highres" data-map-projection="multi-region-local-equirectangular-v1">
-          <metadata>{source_note}</metadata>
-          <defs>
-            <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
-            <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
-            <filter id="land-shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
-            <filter id="inset-shadow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="b"/><feOffset in="b" dy="1.5" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .10 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
-            <clipPath id="clip-main"><rect x="10" y="0" width="970" height="760"/></clipPath>
-            <clipPath id="clip-hawar"><rect x="995" y="480" width="190" height="260" rx="18"/></clipPath>
-          </defs>
-          <rect width="1200" height="760" fill="url(#sea)"/>
-          <g clip-path="url(#clip-main)"><path d="{main_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#land-shadow)"/></g>
-          <rect x="986" y="468" width="208" height="282" rx="18" fill="#f4f6f3" fill-opacity=".30" stroke="#6f8e9c" stroke-opacity=".13" stroke-width="1"/>
-          <g clip-path="url(#clip-hawar)"><path d="{hawar_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#inset-shadow)"/></g>
-          </svg>'''
-
-          out = Path('assets/images/bahrain/map-atlas-v2.svg')
-          out.write_text(svg, encoding='utf-8')
-          print('source:', source_note)
-          print('polygons:', counts, 'vertices:', vertices, 'svg bytes:', len(svg.encode()))
-          if sum(vertices.values()) < 5000:
-              raise SystemExit('Refusing low-density Bahrain geometry')
+          state_path = Path('ops/country-production/bahrain.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['stateRevision'] = int(state.get('stateRevision', 0)) + 1
+          state['updatedAt'] = datetime.now(ZoneInfo('Asia/Tokyo')).isoformat(timespec='seconds')
+          state['reviewPreview'] = {
+              'mode': 'TARGETED_COUNTRY_BRANCH_PREVIEW',
+              'state': 'NOT_STARTED',
+              'url': None,
+              'browserQa': 'NOT_STARTED',
+              'pipelineVersion': 2,
+          }
+          state['next'] = {'action': 'OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW', 'asset': None}
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/images/bahrain/map-atlas-v2.svg
+          git add data/countries/bahrain.json ops/country-production/bahrain.json
           git diff --cached --quiet && exit 0
-          git commit -m "Regenerate Bahrain map with high-resolution geoBoundaries geometry"
+          git commit -m "Record Bahrain high-resolution map source and reset review"
           git push origin HEAD:country/bahrain
