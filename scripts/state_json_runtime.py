@@ -99,24 +99,12 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             if fp is not None and any(fp == candidate for candidate in covered.get(asset_id, [])):
                 proven_covered_assets.add(asset_id)
 
-        added = errors[start:]
-        if any("immutable batch ledger" in error for error in added):
-            print(
-                "LEDGER_GUARD_TRACE",
-                filename,
-                kind,
-                "proven=",
-                sorted(proven_covered_assets),
-                "fingerprint_lengths=",
-                {asset_id: [len(fp) for fp in values] for asset_id, values in covered.items()},
-            )
-
         if not proven_covered_assets:
             return
 
         suffix_hex = " is not covered by immutable batch ledger".encode("utf-8").hex()
         filtered: list[str] = []
-        for error in added:
+        for error in errors[start:]:
             error_fp = stable_text_fingerprint(error)
             suppress = False
             if error_fp is not None and error_fp.endswith(suffix_hex):
@@ -124,7 +112,6 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
                     prefix_hex = f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8").hex()
                     if error_fp.startswith(prefix_hex):
                         suppress = True
-                        print("LEDGER_GUARD_TRACE suppress=", filename, kind, asset_id)
                         break
             if not suppress:
                 filtered.append(error)
