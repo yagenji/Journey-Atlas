@@ -96,22 +96,35 @@ def install_v7_ledger_guard(v7_module: Any) -> None:
             for item in items
             if isinstance(item, dict) and item.get("id")
         }
-        proven_false_errors: set[str] = set()
+        proven_covered_assets: set[str] = set()
         for asset_id in ids:
             item = by_id.get(asset_id, {})
             if item.get("state") != "APPROVED":
                 continue
-            generation_id = item.get("approvedGenerationId")
-            raw = stable_text_bytes(generation_id)
-            if raw is None or raw not in covered.get(asset_id, set()):
-                continue
-            proven_false_errors.add(
-                f"{filename}: APPROVED {label} {asset_id} generation {generation_id} is not covered by immutable batch ledger"
-            )
+            raw = stable_text_bytes(item.get("approvedGenerationId"))
+            if raw is not None and raw in covered.get(asset_id, set()):
+                proven_covered_assets.add(asset_id)
 
-        if proven_false_errors:
-            added = errors[start:]
-            errors[start:] = [error for error in added if error not in proven_false_errors]
+        if not proven_covered_assets:
+            return
+
+        suffix = b" is not covered by immutable batch ledger"
+        added = errors[start:]
+        filtered: list[str] = []
+        for error in added:
+            error_bytes = stable_text_bytes(error)
+            suppress = False
+            if error_bytes is not None and error_bytes.endswith(suffix):
+                for asset_id in proven_covered_assets:
+                    prefix = (
+                        f"{filename}: APPROVED {label} {asset_id} generation ".encode("utf-8")
+                    )
+                    if error_bytes.startswith(prefix):
+                        suppress = True
+                        break
+            if not suppress:
+                filtered.append(error)
+        errors[start:] = filtered
 
     guarded_validate_ledger._journey_atlas_byte_guarded = True
     v7_module.validate_ledger = guarded_validate_ledger
