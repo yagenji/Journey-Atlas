@@ -2,17 +2,18 @@
 """Stable runtime guard for Revision 7 immutable batch-ledger validation.
 
 The guard preserves the Revision 7 ledger contract while avoiding fragile hashed
-string membership for asset and Generation IDs. Identifier comparison first
-normalizes Unicode presentation artifacts, removes invisible/control characters
-and whitespace, then uses hmac.compare_digest over UTF-8 bytes. No Country,
-asset, or Generation ID is special-cased, and genuine ledger omissions remain
-blocking errors.
+string membership for asset and Generation IDs. UUID-shaped Generation IDs are
+compared by their canonical 128-bit value; other identifiers are compared by a
+SHA-256 digest of normalized JSON serialization. No Country, asset, or Generation
+ID is special-cased, and genuine ledger omissions remain blocking errors.
 """
 
 from __future__ import annotations
 
+import hashlib
 import hmac
 import json
+import string
 import unicodedata
 from typing import Any, Iterable
 
@@ -32,12 +33,37 @@ def _normalized_text(value: Any) -> str | None:
     return "".join(normalized)
 
 
+def _uuid_value(value: Any) -> int | None:
+    normalized = _normalized_text(value)
+    if normalized is None:
+        return None
+    hex_chars = "".join(char for char in normalized if char in string.hexdigits)
+    if len(hex_chars) != 32:
+        return None
+    try:
+        return int(hex_chars, 16)
+    except ValueError:
+        return None
+
+
+def _serialized_digest(value: Any) -> bytes | None:
+    normalized = _normalized_text(value)
+    if normalized is None:
+        return None
+    serialized = json.dumps(normalized, ensure_ascii=True, separators=(",", ":"))
+    return hashlib.sha256(serialized.encode("ascii")).digest()
+
+
 def _text_equal(left: Any, right: Any) -> bool:
-    left_text = _normalized_text(left)
-    right_text = _normalized_text(right)
-    if left_text is None or right_text is None:
+    left_uuid = _uuid_value(left)
+    right_uuid = _uuid_value(right)
+    if left_uuid is not None or right_uuid is not None:
+        return left_uuid is not None and right_uuid is not None and left_uuid == right_uuid
+    left_digest = _serialized_digest(left)
+    right_digest = _serialized_digest(right)
+    if left_digest is None or right_digest is None:
         return False
-    return hmac.compare_digest(left_text.encode("utf-8"), right_text.encode("utf-8"))
+    return hmac.compare_digest(left_digest, right_digest)
 
 
 def _contains_text(values: Iterable[Any], target: str) -> bool:
@@ -85,11 +111,11 @@ def _generation_covered(rounds: list[Any], asset_id: str, generation_id: str) ->
 
 def stable_text_fingerprint(value: Any) -> int | None:
     """Compatibility helper retained for existing callers."""
-    normalized = _normalized_text(value)
-    if normalized is None:
-        return None
-    encoded = normalized.encode("utf-8")
-    return int(encoded.hex(), 16) if encoded else 0
+    uuid_value = _uuid_value(value)
+    if uuid_value is not None:
+        return uuid_value
+    digest = _serialized_digest(value)
+    return int.from_bytes(digest, "big") if digest is not None else None
 
 
 def same_text_fingerprint(left: Any, right: Any) -> bool:
@@ -230,6 +256,7 @@ def self_test() -> None:
     other = "81f620d7-f5d9-4f21-8548-8c7f48ac907e"
     assert _text_equal(good, good)
     assert _text_equal(good, hidden)
+    assert _uuid_value(good) == _uuid_value(hidden)
     assert not _text_equal(good, other)
     assert _same_text_members(["S01", "S02"], ["S02", "S01"])
     assert not _same_text_members(["S01", "S02"], ["S01", "S03"])
