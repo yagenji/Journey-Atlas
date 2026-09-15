@@ -4,8 +4,7 @@
 The filename is retained for CI/backward compatibility.
 - Content QA v2: day-notation Travel Scale.
 - Content QA v3: route-scope Travel Scale without numeric day/week counts + topic separation.
-- Content QA v4/v5: continuous day-range Travel Scale + route-only examples + topic separation.
-- Content QA v6: route-scope Travel Scale with no stay-duration counts, while retaining v5 quality gates.
+- Content QA v4: continuous day-range Travel Scale + route-only examples + v3 topic separation.
 """
 from __future__ import annotations
 
@@ -21,7 +20,6 @@ COUNTRY_DIR = ROOT / "data" / "countries"
 CONTENT_QA_V2 = 2
 CONTENT_QA_V3 = 3
 CONTENT_QA_V4 = 4
-CONTENT_QA_V6 = 6
 FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
@@ -121,9 +119,7 @@ def contains_forbidden_duration(value: str) -> bool:
     return bool(DURATION_COUNT_RE.search(value)) or any(word in value for word in DURATION_WORDS)
 
 
-def validate_route_scope_travel_scale(
-    errors: list[str], filename: str, data: dict[str, Any], *, version_label: str
-) -> None:
+def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
     items = validate_common_travel_scale(errors, filename, data)
     for index, item in enumerate(items, 1):
         owner = f"{filename}: travelScale.items[{index}]"
@@ -132,16 +128,8 @@ def validate_route_scope_travel_scale(
             if contains_forbidden_duration(value):
                 fail(
                     errors,
-                    f"{owner}.{key}: {version_label} forbids stay/day/week counts in 旅の目安日程: {value!r}",
+                    f"{owner}.{key}: Content QA v3 forbids numeric stay/day/week counts in 旅の目安日程: {value!r}",
                 )
-
-
-def validate_travel_scale_v3(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    validate_route_scope_travel_scale(errors, filename, data, version_label="Content QA v3")
-
-
-def validate_travel_scale_v6(errors: list[str], filename: str, data: dict[str, Any]) -> None:
-    validate_route_scope_travel_scale(errors, filename, data, version_label="Content QA v6")
 
 
 def validate_v4_duration_ranges(
@@ -368,11 +356,7 @@ def validate_data(data: dict[str, Any], filename: str, *, force: bool = False) -
     if not force and version < CONTENT_QA_V2:
         return []
     errors: list[str] = []
-    if version >= CONTENT_QA_V6:
-        validate_travel_scale_v6(errors, filename, data)
-        validate_signature_facts(errors, filename, data)
-        validate_cross_section_topics(errors, filename, data)
-    elif version >= CONTENT_QA_V4:
+    if version >= CONTENT_QA_V4:
         validate_travel_scale_v4(errors, filename, data)
         validate_signature_facts(errors, filename, data)
         validate_cross_section_topics(errors, filename, data)
@@ -419,7 +403,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3/v4-v5/v6 routed by contentQaVersion)")
+    print(f"Editorial Content QA: PASS ({checked} file(s); v2/v3/v4 routed by contentQaVersion)")
     return 0
 
 
