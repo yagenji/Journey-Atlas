@@ -20,13 +20,11 @@ DATA_DIR = ROOT / "data"
 COUNTRY_DIR = DATA_DIR / "countries"
 REGISTRY_PATHS = [
     DATA_DIR / "atlas-destinations.json",
-    DATA_DIR / "atlas-destinations-editorial.json",
 ]
 ROOT_FILES = ["index.html", "404.html", "_redirects", "sitemap.xml", "robots.txt"]
 STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
 RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
-    "atlas-destinations-editorial.json",
     "region-taxonomy.json",
     "theme-taxonomy.json",
 ]
@@ -184,7 +182,6 @@ def package_data(slugs: list[str]) -> None:
         source = DATA_DIR / name
         if not source.exists():
             raise FileNotFoundError(f"Runtime data missing: {source}")
-        if name in {"atlas-destinations.json", "atlas-destinations-editorial.json"}:
             write_runtime_json(source, target / source.name)
         else:
             copy_path(source, target / source.name)
@@ -281,7 +278,7 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
     if packaged != sorted(slugs):
         raise ValueError(f"Packaged country JSON mismatch: expected {sorted(slugs)}, found {packaged}")
 
-    for registry_name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+    for registry_name in ("atlas-destinations.json",):
         payload = json.loads((DIST / "data" / registry_name).read_text(encoding="utf-8"))
         assert_versioned_runtime_images(payload, f"data/{registry_name}")
     for slug in slugs:

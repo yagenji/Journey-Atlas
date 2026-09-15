@@ -18,7 +18,6 @@ COUNTRY_DIR = ROOT / "data" / "countries"
 STATE_DIR = ROOT / "ops" / "country-production"
 REGISTRY_PATHS = [
     ROOT / "data" / "atlas-destinations.json",
-    ROOT / "data" / "atlas-destinations-editorial.json",
 ]
 STATUS_PATH = ROOT / "data" / "country-renewal-status.json"
 THEME_PATH = ROOT / "data" / "theme-taxonomy.json"

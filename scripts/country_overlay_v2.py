@@ -16,7 +16,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_SHARED_METADATA = {
     "data/atlas-destinations.json",
-    "data/atlas-destinations-editorial.json",
     "data/country-renewal-status.json",
     "data/theme-taxonomy.json",
 }
@@ -76,7 +75,7 @@ def capture(slug: str, out: Path) -> None:
         shutil.copytree(img, out / "assets/images" / slug)
 
     manifest = {"registryRows": {}, "themes": [], "statusRow": None}
-    for name in ("atlas-destinations.json", "atlas-destinations-editorial.json"):
+    for name in ("atlas-destinations.json",):
         path = ROOT / "data" / name
         if not path.exists():
             continue

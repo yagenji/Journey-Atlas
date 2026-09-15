@@ -6,7 +6,6 @@
 
 - Destination scope: `data/atlas-scope.json` — canonical 201 destinations
 - Destination registry / publication state: `data/atlas-destinations.json` — canonical 201-entry registry including Hong Kong and Macao
-- Legacy compatibility registry: `data/atlas-destinations-editorial.json` — deprecated, must remain empty
 - Country content: `data/countries/{slug}.json`
 - Published-country renewal status: `data/country-renewal-status.json`
 - Travel themes: `data/theme-taxonomy.json`

@@ -533,11 +533,10 @@
     fetch(MAP).then(r => r.text()),
     fetch(ANT).then(r => r.text()),
     fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
-    fetch('data/atlas-destinations.json?v=20260825-0128').then(r => r.json()),
-    fetch('data/atlas-destinations-editorial.json?v=20260825-0128').then(r => r.json())
-  ]).then(([m, a, rd, core, editorial]) => {
+    fetch('data/atlas-destinations.json?v=20260825-0128').then(r => r.json())
+  ]).then(([m, a, rd, core]) => {
     regions = rd.regions || [];
-    dest = [...(core.destinations || []), ...(editorial.destinations || [])];
+    dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));
     lookup(); build(m, a); setRegion('world', false);
   }).catch(e => {

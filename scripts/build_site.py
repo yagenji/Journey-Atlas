@@ -15,7 +15,6 @@ from urllib.parse import urljoin
 ROOT = Path(__file__).resolve().parents[1]
 SITE_CONFIG_PATH = ROOT / "data/site.json"
 CORE_REGISTRY_PATH = ROOT / "data/atlas-destinations.json"
-EDITORIAL_REGISTRY_PATH = ROOT / "data/atlas-destinations-editorial.json"
 THEME_TAXONOMY_PATH = ROOT / "data/theme-taxonomy.json"
 
 
@@ -120,7 +119,7 @@ def bundle_css(output: str, sources: list[str]) -> None:
 
 def load_registries() -> list[tuple[Path, dict]]:
     registries: list[tuple[Path, dict]] = []
-    for path in (CORE_REGISTRY_PATH, EDITORIAL_REGISTRY_PATH):
+    for path in (CORE_REGISTRY_PATH,):
         if not path.exists():
             continue
         registries.append((path, json.loads(path.read_text(encoding="utf-8"))))
