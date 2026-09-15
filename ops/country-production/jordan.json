@@ -5,8 +5,8 @@
   "contentRef": "country/jordan",
   "stateRef": "country/jordan",
   "phase": "QA",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-15T11:49:44+09:00",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-15T11:52:29+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -115,7 +115,7 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T09:54:16+09:00",
+    "completedAt": "2026-09-15T11:52:29+09:00",
     "countryJson": "data/countries/jordan.json",
     "themeTaxonomy": [
       "earth",
@@ -125,8 +125,14 @@
     "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "fd3c55cc363daa6aa38268f01cd82c4c39e7721d",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -294,10 +300,13 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/jordan/countries/jordan/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T11:52:29+09:00",
+    "sourceCommit": "fd3c55cc363daa6aa38268f01cd82c4c39e7721d",
+    "runId": 34922662531,
+    "pipelineVersion": 2
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -307,15 +316,15 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 1,
-    "reviewPreviewDeployments": 2,
+    "reviewPreviewDeployments": 3,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 3,
+    "browserQaCycles": 4,
     "tasteBatchApprovedAt": "2026-09-14T20:12:00+09:00",
-    "canonicalReviewReadyAt": null
+    "canonicalReviewReadyAt": "2026-09-15T11:52:29+09:00"
   },
   "next": {
-    "action": "RUN_COUNTRY_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
