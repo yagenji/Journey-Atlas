@@ -5,8 +5,8 @@
   "contentRef": "country/azerbaijan",
   "stateRef": "country/azerbaijan",
   "phase": "QA",
-  "stateRevision": 17,
-  "updatedAt": "2026-09-15T12:28:00+09:00",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-15T12:42:07+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -153,14 +153,14 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-15T09:28:39+09:00",
+    "completedAt": "2026-09-15T12:42:07+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "aee02300b12b05e0916aea1b4d4860fd48f74bd0",
+    "sourceCommit": "37df4b05980fb2b02bdf568f15acefb85884717e",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -331,10 +331,13 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/azerbaijan/countries/azerbaijan/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-15T12:42:07+09:00",
+    "sourceCommit": "37df4b05980fb2b02bdf568f15acefb85884717e",
+    "runId": 34925761949,
+    "pipelineVersion": 2
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -344,15 +347,15 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 1,
-    "reviewPreviewDeployments": 1,
+    "reviewPreviewDeployments": 2,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-15T08:49:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-15T09:28:39+09:00"
+    "canonicalReviewReadyAt": "2026-09-15T12:42:07+09:00"
   },
   "next": {
-    "action": "OPEN_REVIEW_PR_FOR_TARGETED_PREVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
