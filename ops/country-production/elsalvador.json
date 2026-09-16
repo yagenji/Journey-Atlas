@@ -5,16 +5,18 @@
   "contentRef": "country/elsalvador",
   "stateRef": "country/elsalvador",
   "phase": "HERO",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-16T08:36:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-16T09:33:00+09:00",
   "hero": {
     "id":"HERO",
-    "state":"REVIEW_CANDIDATE",
+    "state":"GENERATING",
     "asset":"assets/images/elsalvador/approved/hero-cerro-verde-izalco.webp",
     "contentId":"cerro-verde-izalco",
-    "candidateGenerationId":"75cbeee2-49ac-4546-9330-91603ccde72c",
-    "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS","notes":"Single wide frame; recognizable steep dark Izalco cone from a high forested Cerro Verde-style viewpoint; quiet watercolor treatment; no text, collage, UI or focal people; left-side negative space and mobile-retainable volcano silhouette are suitable for Hero review."},
-    "generationReservation":{"reservationId":"HERO-series1-attempt1","asset":"HERO","contentId":"cerro-verde-izalco","promptSeries":1,"generationContextEpoch":1,"reservedAt":"2026-09-16T08:32:00+09:00"},
+    "rejectedGenerationIds":["75cbeee2-49ac-4546-9330-91603ccde72c"],
+    "lastFailureReason":"DIMENSION_MISMATCH",
+    "promptSeries":1,
+    "promptSeriesRejectCount":1,
+    "generationReservation":{"reservationId":"HERO-series1-attempt2","asset":"HERO","contentId":"cerro-verde-izalco","promptSeries":1,"generationContextEpoch":1,"reservedAt":"2026-09-16T09:33:00+09:00"},
     "renderPacket":{
       "kind":"HERO",
       "contentId":"cerro-verde-izalco",
@@ -30,11 +32,12 @@
       "forbidContactSheet":true,
       "forbidMontage":true,
       "forbidInsetImages":true,
+      "targetDimensions":"1536x1024",
       "realPlace":"Parque Recreativo Cerro Verde / Izalco Volcano, Santa Ana, El Salvador",
       "viewpoint":"High forested Cerro Verde viewpoint looking outward toward Izalco; recognizable steep dark volcanic cone, no invented peaks or buildings",
       "season":"Dry season",
       "light":"Soft clear morning light with restrained atmospheric haze; no dramatic sunset",
-      "composition":"Wide horizontal Hero composition; Izalco cone slightly right of center, forested foreground and lower slopes, generous quiet sky and distant landscape on the left for title safe area; volcano remains identifiable in mobile crop",
+      "composition":"Wide horizontal Hero composition within the required 3:2-ish 1536x1024 canvas; Izalco cone slightly right of center, forested foreground and lower slopes, generous quiet sky and distant landscape on the left for title safe area; volcano remains identifiable in mobile crop",
       "style":"Recognizable real place rendered with restrained quiet watercolor realism and premium travel-atlas finish; subtle paper texture and transparent washes; natural muted greens, charcoal volcanic earth and pale blue-grey sky",
       "avoid":"photo look, hyperrealism, oil paint, anime, fantasy, high saturation, tourism-poster drama, artificial cloud sea, invented architecture, roads or extra volcanoes, people as focal subjects, text, maps, labels, logos, UI"
     }
@@ -75,5 +78,5 @@
   "assetHandoff": {"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview": {"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics": {"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next": {"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
+  "next": {"action":"RECONCILE_GENERATION","asset":"HERO"}
 }
