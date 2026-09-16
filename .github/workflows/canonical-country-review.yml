@@ -156,9 +156,15 @@ jobs:
           PY
           )"
           [ -n "$reviewed_source" ] && git cat-file -e "$reviewed_source^{commit}"
-          if ! git diff --quiet "$reviewed_source" "$source_sha" -- "assets/images/$SLUG" "data/countries/$SLUG.json" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then
-            echo 'Reviewed Country content or approved assets changed: a new preview QA is needed.' >&2
+          # Approved image/map files must still be the exact previewed bytes.
+          # Editorial JSON may change after staging: current-target validation and
+          # Desktop/Tablet/Mobile QA below must then recheck the latest version.
+          if ! git diff --quiet "$reviewed_source" "$source_sha" -- "assets/images/$SLUG"; then
+            echo 'Approved visual files changed after preview: a new visual review is required.' >&2
             exit 1
+          fi
+          if ! git diff --quiet "$reviewed_source" "$source_sha" -- "data/countries/$SLUG.json" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then
+            echo 'Editorial or taxonomy data changed after preview: validating latest content and responsive rendering.'
           fi
           python3 - "$SLUG" <<'PY'
           import json,subprocess,sys
