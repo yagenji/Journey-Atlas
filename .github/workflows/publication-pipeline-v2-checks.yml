@@ -152,6 +152,7 @@ jobs:
         env:
           SLUG: ${{ needs.validate.outputs.slug }}
           MODE: ${{ needs.validate.outputs.mode }}
+          SOURCE_SHA: ${{ needs.validate.outputs.source_sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -173,8 +174,35 @@ jobs:
               [ "$shared" = false ] && reuse=true
             fi
           fi
-          echo "reuse=$reuse" >> "$GITHUB_OUTPUT"
-      - name: Reuse review Browser QA
+          if [ "$MODE" = review ]; then
+          reviewed_source="$(python3 - "$SLUG" <<'REVIEW_SOURCE'
+        import json,sys
+        from pathlib import Path
+        state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+        preview=state.get('reviewPreview') or {}
+        if preview.get('state') == 'DONE' and preview.get('browserQa') == 'PASS':
+            print(preview.get('sourceCommit') or '')
+        REVIEW_SOURCE
+          )"
+          reviewed_main="$(python3 - "$SLUG" <<'REVIEW_MAIN'
+        import json,sys
+        from pathlib import Path
+        state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+        print((state.get('reviewPreview') or {}).get('mainBaseCommit') or '')
+        REVIEW_MAIN
+          )"
+          if [ -n "$reviewed_source" ] && [ -n "$reviewed_main" ] && git cat-file -e "$reviewed_source^{commit}" 2>/dev/null && git cat-file -e "$reviewed_main^{commit}" 2>/dev/null; then
+            shared=false
+            while IFS= read -r path; do
+              case "$path" in country.html|assets/js/*|assets/css/*|scripts/build_site.py|scripts/build_country_preview_targeted.py|scripts/qa_published_browser.py) shared=true; break;; esac
+            done < <(git diff --name-only "$reviewed_main"..origin/main)
+            if [ "$shared" = false ] && git diff --quiet "$reviewed_source" "$SOURCE_SHA" -- "data/countries/$SLUG.json" "assets/images/$SLUG" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then
+              reuse=true
+            fi
+          fi
+        fi
+        echo "reuse=$reuse" >> "$GITHUB_OUTPUT"
+          - name: Reuse review Browser QA
         if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse == 'true'
         run: echo "Shared rendering unchanged since reviewed main base; reusing review Browser QA."
       - name: Install Browser QA dependency
