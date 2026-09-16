@@ -1,20 +1,4 @@
 name: Verify JOURNEY ATLAS Cloudflare Production
-# Operational trigger: India live production QA 2026-09-12
-# Operational trigger: Bangladesh live production QA 2026-09-12
-# Operational trigger: Thailand live production QA 2026-09-12
-# Operational trigger: Sri Lanka live production QA 2026-09-12
-# Operational trigger: Timor-Leste live production QA 2026-09-13
-# Operational trigger: Maldives live production QA 2026-09-13
-# Operational trigger: Nepal live production QA 2026-09-13
-# Operational trigger: Bhutan live production QA 2026-09-13
-# Operational trigger: Myanmar live production QA 2026-09-13
-# Operational trigger: Malaysia live production QA 2026-09-13
-# Operational trigger: Kazakhstan live production QA retry 2026-09-13
-# Operational trigger: Iran live production QA 2026-09-14
-# Operational trigger: Tajikistan live production QA 2026-09-14
-# Operational trigger: Turkmenistan live production QA 2026-09-14
-# Operational trigger: Kyrgyzstan live production QA 2026-09-14
-# Operational trigger: Kuwait live production QA 2026-09-14
 
 on:
   push:
@@ -38,6 +22,11 @@ on:
       - "scripts/build_cloudflare.py"
       - ".github/workflows/verify-production.yml"
   workflow_dispatch:
+    inputs:
+      slug:
+        description: "Published Country slug for targeted live QA; blank verifies all"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -64,9 +53,35 @@ jobs:
       - name: Classify production impact
         id: impact
         shell: bash
+        env:
+          REQUESTED_SLUG: ${{ inputs.slug }}
         run: |
           set -euo pipefail
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            slug="${REQUESTED_SLUG:-}"
+            if [ -n "$slug" ]; then
+              python3 - "$slug" <<'PY'
+          import json
+          import re
+          import sys
+          from pathlib import Path
+          slug = sys.argv[1]
+          if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
+              raise SystemExit('Invalid Country slug')
+          registry = json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          if not any(row.get('slug') == slug and row.get('atlasPublished') is True for row in registry.get('destinations', [])):
+              raise SystemExit(f'{slug}: targeted live QA requires a published canonical destination')
+          if not (Path('data/countries') / f'{slug}.json').is_file():
+              raise SystemExit(f'{slug}: Country JSON is missing')
+          PY
+              echo "production_changed=true" >> "$GITHUB_OUTPUT"
+              echo "browser_scope=targeted" >> "$GITHUB_OUTPUT"
+              echo "target_slugs=$slug" >> "$GITHUB_OUTPUT"
+              echo "published_slugs=$slug" >> "$GITHUB_OUTPUT"
+              echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+              echo "Manual targeted published Country verification: $slug"
+              exit 0
+            fi
             echo "production_changed=true" >> "$GITHUB_OUTPUT"
             echo "browser_scope=all" >> "$GITHUB_OUTPUT"
             echo "target_slugs=" >> "$GITHUB_OUTPUT"

@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "slug": "canada",
+  "countryName": "CANADA",
+  "contentRef": "main",
+  "stateRef": "main",
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/canada/map-atlas-v1.svg",
+    "qa": {
+      "canvas": "1200x760",
+      "projection": "local-equirectangular-fit-v1",
+      "geometry": "PASS",
+      "sceneCoordinates": "PASS",
+      "labelCollision": "PASS",
+      "contextLand": "PASS",
+      "styleBaseline": "Iceland/Norway map language",
+      "approvedAt": "2026-09-16T10:17:00+09:00"
+    }
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-16T15:02:21+09:00",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "008f7b145ca11c7538e7d6707fe5db7b350eb8af",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/canada/",
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-16T17:09:45+09:00",
+    "userInstruction": "QAして問題なければ公開して",
+    "approvalBasis": "Canada preview source 008f7b145ca11c7538e7d6707fe5db7b350eb8af passed Content QA, image audit, Desktop/Tablet/Mobile Browser QA and preview deployment in run 35063202464; the following e005a14 commit changed Production State only; production-state validation run 35071467345 passed."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-16T17:11:39+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/canada/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 1,
+    "lastResetAt": null,
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "productionProtocolPolicyPatch": 5,
+  "publicationPipelineVersion": 2,
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-16T14:27:00+09:00",
+    "verifiedCommit": "46c09c3f59cb435d427b2c69c79ccb6fb1ceaa97",
+    "verificationBasis": "GitHub contains exactly the 13 expected Canada WebP rasters; repository blob SHAs and byte sizes exactly match the approved handoff package. The matched handoff package passed full decode, WEBP format verification and 1200x800 dimension checks for all 13 rasters."
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/canada/countries/canada/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-16T15:20:43+09:00",
+    "sourceCommit": "008f7b145ca11c7538e7d6707fe5db7b350eb8af",
+    "runId": 35063202464,
+    "pipelineVersion": 2,
+    "mainBaseCommit": "135685fcc46f7b60080769e5740f082437c6481d"
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 2,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 2,
+    "tasteBatchApprovedAt": "2026-09-16T12:15:00+09:00",
+    "canonicalReviewReadyAt": "2026-09-16T15:20:43+09:00"
+  },
+  "phase": "COMPLETE",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-16T17:11:39+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/canada/approved/hero-moraine-lake-rockpile.webp",
+    "contentId": "moraine-lake-rockpile",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [
+      "8bdd2f33-450a-4e17-8808-f4e4548a3e1f"
+    ],
+    "approvedGenerationId": "8317f8e0-6aa3-45f8-847e-0a44b120a506",
+    "approvedAt": "2026-09-16T12:13:00+09:00"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/icefields-parkway-big-bend.webp",
+      "contentId": "icefields-parkway-big-bend",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "6e54a061-a7c4-44cc-ab33-85751365b0e3"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/pacific-rim-wickaninnish-beach.webp",
+      "contentId": "pacific-rim-wickaninnish-beach",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "5be2c97c-7bd6-4a94-a8d9-c677820f78e1"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/grasslands-killdeer-badlands.webp",
+      "contentId": "grasslands-killdeer-badlands",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "e8d4ed02-6359-4da1-a7e3-4738c9376746"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/algonquin-canoe-lake.webp",
+      "contentId": "algonquin-canoe-lake",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "1a000e32-c947-4f14-aee1-65c9546ab45a"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/old-quebec-upper-town.webp",
+      "contentId": "old-quebec-upper-town",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "8024973f-f3ff-4bf3-ab57-1734ff3c11d8"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/gros-morne-tablelands.webp",
+      "contentId": "gros-morne-tablelands",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "c7824e11-8c26-479f-84f4-13c4679e4c33"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/auyuittuq-mount-thor.webp",
+      "contentId": "auyuittuq-mount-thor",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "ec20f999-346b-4efb-bdfe-3223a22e9f1a"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/niagara-horseshoe-falls.webp",
+      "contentId": "niagara-horseshoe-falls",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "26382692-2445-4e97-81ed-22480ab7ba32"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/poutine.webp",
+      "contentId": "poutine",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "ed8d207d-ca28-49d8-b2ed-17f5b1607830"
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/tourtiere.webp",
+      "contentId": "tourtiere",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "6d7a508a-24d2-46b3-9e82-8a5b199ccd08"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/butter-tart.webp",
+      "contentId": "butter-tart",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "e3580be2-0836-4a24-8838-3adab1dd4f88"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/canada/approved/nanaimo-bar.webp",
+      "contentId": "nanaimo-bar",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "c0a80426-602a-46bb-9e3d-a4dcdc1899cc"
+    }
+  ],
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "6e54a061-a7c4-44cc-ab33-85751365b0e3",
+          "S02": "5be2c97c-7bd6-4a94-a8d9-c677820f78e1",
+          "S03": "e8d4ed02-6359-4da1-a7e3-4738c9376746",
+          "S04": "1a000e32-c947-4f14-aee1-65c9546ab45a",
+          "S05": "8024973f-f3ff-4bf3-ab57-1734ff3c11d8",
+          "S06": "c7824e11-8c26-479f-84f4-13c4679e4c33",
+          "S07": "ec20f999-346b-4efb-bdfe-3223a22e9f1a",
+          "S08": "26382692-2445-4e97-81ed-22480ab7ba32"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-16T12:14:00+09:00",
+        "recoveryMigrationId": "canada-scenes-recovery-20260916"
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "ed8d207d-ca28-49d8-b2ed-17f5b1607830",
+          "FOOD02": "6d7a508a-24d2-46b3-9e82-8a5b199ccd08",
+          "FOOD03": "e3580be2-0836-4a24-8838-3adab1dd4f88",
+          "FOOD04": "c0a80426-602a-46bb-9e3d-a4dcdc1899cc"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-16T12:15:00+09:00",
+        "recoveryMigrationId": "canada-taste-recovery-20260916"
+      }
+    ]
+  },
+  "recoveryMigrations": [
+    {
+      "id": "canada-scenes-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "SCENE",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC",
+      "scope": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "recoveredGenerations": {
+        "S01": "6e54a061-a7c4-44cc-ab33-85751365b0e3",
+        "S02": "5be2c97c-7bd6-4a94-a8d9-c677820f78e1",
+        "S03": "e8d4ed02-6359-4da1-a7e3-4738c9376746",
+        "S04": "1a000e32-c947-4f14-aee1-65c9546ab45a",
+        "S05": "8024973f-f3ff-4bf3-ab57-1734ff3c11d8",
+        "S06": "c7824e11-8c26-479f-84f4-13c4679e4c33",
+        "S07": "ec20f999-346b-4efb-bdfe-3223a22e9f1a",
+        "S08": "26382692-2445-4e97-81ed-22480ab7ba32"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-16T12:13:00+09:00",
+      "userInstruction": "approve.進めて。",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "appliedAt": "2026-09-16T12:14:00+09:00"
+    },
+    {
+      "id": "canada-taste-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "TASTE",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "recoveredGenerations": {
+        "FOOD01": "ed8d207d-ca28-49d8-b2ed-17f5b1607830",
+        "FOOD02": "6d7a508a-24d2-46b3-9e82-8a5b199ccd08",
+        "FOOD03": "e3580be2-0836-4a24-8838-3adab1dd4f88",
+        "FOOD04": "c0a80426-602a-46bb-9e3d-a4dcdc1899cc"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-16T12:13:00+09:00",
+      "userInstruction": "approve.進めて。",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "appliedAt": "2026-09-16T12:15:00+09:00"
+    }
+  ],
+  "next": {
+    "action": "NONE",
+    "asset": null
+  }
+}
