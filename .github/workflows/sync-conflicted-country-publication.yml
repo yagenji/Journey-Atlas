@@ -10,10 +10,11 @@ permissions:
   pull-requests: read
 
 # This pre-sync runs in the trusted base-branch context, so it can run even
-# when GitHub cannot create the normal pull_request merge ref because the PR
-# currently conflicts with main. It is restricted to same-repository legacy
-# Country branches and terminal publication state only. Publication Pipeline v2
-# uses latest-main overlay and must never merge main into the Country branch.
+# when GitHub cannot merge a Country PR because strict required checks demand
+# that its head already contain latest main. It is restricted to same-repository
+# Country branches whose publication State is already terminal and explicitly
+# user-approved. This includes Publication Pipeline v2 terminal overlays; review
+# branches and unpublished Countries are never eligible.
 concurrency:
   group: "country-publication-main"
   cancel-in-progress: false
@@ -61,7 +62,6 @@ jobs:
           publication = state.get("publication") or {}
           ready = all([
               state.get("productionProtocolId") == "2.0",
-              state.get("publicationPipelineVersion") != 2,
               state.get("phase") == "COMPLETE",
               state.get("stateRef") == "main",
               state.get("contentRef") == "main",
@@ -75,7 +75,7 @@ jobs:
           )"
 
           if [ "$ready" != "true" ]; then
-            echo "$slug is not an eligible terminal legacy publication; no conflict sync needed."
+            echo "$slug is not an eligible terminal publication; no main sync needed."
             exit 0
           fi
 

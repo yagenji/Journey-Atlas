@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -93,13 +94,44 @@ def review_ready_errors(slug: str, state: dict[str, Any]) -> list[str]:
     handoff = state.get("assetHandoff") if isinstance(state.get("assetHandoff"), dict) else {}
     if handoff.get("state") != "PASS" or handoff.get("verifiedRasterCount") != 13:
         errors.append("assetHandoff must PASS with 13 verified rasters")
-    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-    if preview.get("state") == "DONE" and preview.get("browserQa") == "PASS" and preview.get("url"):
-        errors.append("review preview is already complete")
     publication = state.get("publication") if isinstance(state.get("publication"), dict) else {}
     if publication.get("atlasPublished") is True:
         errors.append("Country is already published")
     return errors
+
+
+def review_needed(slug: str, state: dict[str, Any]) -> bool:
+    """Only re-review if the target's material changed after its validated preview.
+
+    State reconciliation and approval-only commits are not a reason to
+    redeploy or rerun Browser QA. Unknown/expired source commits fail
+    open toward a fresh QA, never toward an unverified publication.
+    """
+    if (state.get("finalApproval") or {}).get("state") == "APPROVED":
+        return False
+    if (state.get("publication") or {}).get("atlasPublished") is True:
+        return False
+    preview = state.get("reviewPreview") or {}
+    if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
+        return True
+    source = preview.get("sourceCommit")
+    if not isinstance(source, str) or not source:
+        return True
+    paths = [
+        f"data/countries/{slug}.json",
+        f"assets/images/{slug}",
+        "data/theme-taxonomy.json",
+        "data/atlas-destinations.json",
+        "data/country-renewal-status.json",
+    ]
+    try:
+        subprocess.run(["git", "cat-file", "-e", f"{source}^{{commit}}"],
+                       cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        diff = subprocess.run(["git", "diff", "--quiet", source, "HEAD", "--", *paths],
+                              cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except (OSError, subprocess.CalledProcessError):
+        return True
+    return diff.returncode != 0
 
 
 def publish_ready_errors(slug: str, state: dict[str, Any]) -> list[str]:
@@ -374,7 +406,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="command", required=True)
 
-    for name in ("status", "assert-review-ready", "assert-publish-ready", "finalize"):
+    for name in ("status", "review-needed", "assert-review-ready", "assert-publish-ready", "finalize"):
         p = sub.add_parser(name)
         p.add_argument("slug")
 
@@ -398,6 +430,10 @@ def main() -> int:
     try:
         if args.command == "status":
             print(json.dumps(status(args.slug), ensure_ascii=False))
+        elif args.command == "review-needed":
+            needed = review_needed(args.slug, state_for_slug(args.slug))
+            print(f"{args.slug}: review {'required' if needed else 'already current'}")
+            return 0 if needed else 2
         elif args.command == "assert-review-ready":
             errors = review_ready_errors(args.slug, state_for_slug(args.slug))
             if errors:
