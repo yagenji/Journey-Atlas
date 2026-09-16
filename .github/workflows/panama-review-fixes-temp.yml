@@ -83,7 +83,6 @@ jobs:
                   'icon': 'compass'
               }
 
-          # Source note for Japan comparison and Darien scale.
           sources = data.setdefault('sources', {})
           sources['japanArea'] = 'Statistics Bureau of Japan, Statistical Handbook of Japan 2023: surface area 377,974 km² (source: Geospatial Information Authority of Japan). https://www.stat.go.jp/english/data/handbook/'
           sources['darienArea'] = 'UNESCO World Heritage Centre, Darien National Park: property 579,000 ha; the park is Panama’s largest protected area. https://whc.unesco.org/en/list/159/'
@@ -93,6 +92,6 @@ jobs:
           rm .github/workflows/panama-review-fixes-temp.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/countries/panama.json .github/workflows/panama-review-fixes-temp.yml
+          git add -f data/countries/panama.json .github/workflows/panama-review-fixes-temp.yml
           git commit -m "Apply Panama review corrections"
           git push origin HEAD:country/panama
