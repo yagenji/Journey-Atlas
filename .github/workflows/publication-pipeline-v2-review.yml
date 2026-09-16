@@ -55,6 +55,22 @@ jobs:
           [ -f "data/countries/$slug.json" ] && [ -f "ops/country-production/$slug.json" ] || exit 0
           active="$(python3 scripts/publication_pipeline_v2.py status "$slug" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("active",False)).lower())')"
           [ "$active" = true ] || exit 0
+          # A ready Country is promoted to the real noindex URL by the canonical
+          # integration lane. The legacy Pages preview must not start again on
+          # its State-only reconciliation or branch sync commits.
+          if python3 - "$slug" <<'PY'
+          import json,sys
+          from pathlib import Path
+          state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+          deployment=state.get('reviewDeployment') or {}
+          if deployment.get('url') == f'https://atlas.yagenji.com/countries/{sys.argv[1]}/' and deployment.get('state') in ('DEPLOYING','DONE'):
+              print('Canonical review is active; duplicate Pages review suppressed.')
+              raise SystemExit(0)
+          raise SystemExit(1)
+          PY
+          then
+            exit 0
+          fi
           if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
             if ! python3 scripts/publication_pipeline_v2.py review-needed "$slug"; then
               echo "No target content changed since its validated review; State-only push requires no new preview."
@@ -91,8 +107,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # A Country SHA can have multiple dispatch runs. Record existing IDs so
-          # this job never watches a previous failed run while its new run starts.
           previous_ids="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
           gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
           run_id=""
