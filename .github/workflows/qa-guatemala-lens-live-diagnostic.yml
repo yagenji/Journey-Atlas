@@ -1,0 +1,79 @@
+name: Branch-only JOURNEY LENS live photo diagnostic
+on:
+  push:
+    branches: [qa/guatemala-lens-live-check]
+permissions:
+  contents: read
+jobs:
+  live-lens-photo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Diagnose actual production photo at desktop, tablet and mobile
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python3 - <<'PY'
+          import json, time, urllib.request
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait
+          from shutil import which
+          base='https://atlas.yagenji.com'
+          url=base+'/countries/guatemala/?lens-live-qa='+str(int(time.time()))
+          try:
+              with urllib.request.urlopen(urllib.request.Request(base+'/build-meta.json',headers={'Cache-Control':'no-cache'}),timeout=20) as r:
+                  print('LIVE_BUILD_META',r.read(4096).decode('utf-8'))
+          except Exception as exc:
+              print('BUILD_META_ERROR',repr(exc))
+          opts=Options()
+          for arg in ('--headless=new','--no-sandbox','--disable-dev-shm-usage','--disable-gpu','--lang=ja-JP'):
+              opts.add_argument(arg)
+          opts.set_capability('goog:loggingPrefs',{'browser':'ALL'})
+          driver=webdriver.Chrome(service=Service(which('chromedriver')) if which('chromedriver') else Service(),options=opts)
+          driver.set_page_load_timeout(50)
+          driver.set_script_timeout(24)
+          failures=[]
+          try:
+              for label,width,height in [('desktop',1440,950),('tablet',834,1112),('mobile',390,844)]:
+                  driver.set_window_size(width,height)
+                  try:
+                      driver.get(url)
+                      WebDriverWait(driver,40).until(lambda d: len(d.find_elements(By.CSS_SELECTOR,'.scene-card'))==8)
+                      WebDriverWait(driver,40).until(lambda d: d.execute_script("const el=document.querySelector('#country-lens-bridge'); return Boolean(el && !el.hidden && el.querySelector('#country-lens-link')?.href?.includes('journey.yagenji.com'));"))
+                      WebDriverWait(driver,40).until(lambda d: d.execute_script("return Boolean(document.querySelector('#country-lens-thumb')?.classList.contains('has-image'));"))
+                      data=driver.execute_async_script('''
+                        const done=arguments[arguments.length-1];
+                        const section=document.querySelector('#country-lens-bridge');
+                        const thumb=document.querySelector('#country-lens-thumb');
+                        if(!section||!thumb){done({error:'missing lens elements'});return;}
+                        const bg=getComputedStyle(thumb).backgroundImage;
+                        const src=bg.slice(bg.indexOf('(')+1,bg.lastIndexOf(')')).replace(/^['\"]|['\"]$/g,'');
+                        const image=new Image();
+                        const timer=setTimeout(()=>done({error:'image load timeout',src,bg}),18000);
+                        image.onload=()=>{clearTimeout(timer);done({src,bg,ok:true,width:image.naturalWidth,height:image.naturalHeight,visible:!!thumb.getBoundingClientRect().width&&getComputedStyle(thumb).visibility!=='hidden',story:section.querySelector('#country-lens-link')?.href,heading:section.querySelector('h2')?.textContent});};
+                        image.onerror=()=>{clearTimeout(timer);done({src,bg,ok:false,visible:!!thumb.getBoundingClientRect().width,story:section.querySelector('#country-lens-link')?.href});};
+                        image.src=src;
+                      ''')
+                      print('LENS_PHOTO_'+label.upper(),json.dumps(data,ensure_ascii=False))
+                      if not(data.get('ok') and data.get('width',0)>0 and data.get('height',0)>0 and data.get('visible') and data.get('story','').startswith('https://journey.yagenji.com/')):
+                          failures.append(label+': '+repr(data))
+                      driver.save_screenshot('/tmp/lens-'+label+'.png')
+                  except Exception as exc:
+                      print('LENS_PHOTO_'+label.upper()+'_ERROR',repr(exc))
+                      print('DOM_SNAPSHOT',driver.execute_script("return JSON.stringify({title:document.title,slug:document.documentElement.dataset.country,lens:(()=>{const e=document.querySelector('#country-lens-bridge');const t=document.querySelector('#country-lens-thumb');return {exists:!!e,hidden:e?.hidden,enhancement:e?.dataset.lensImageEnhancement,thumbClass:t?.className,background:t?getComputedStyle(t).backgroundImage:'',link:e?.querySelector('a')?.href};})(),scripts:[...document.scripts].map(s=>s.src).filter(Boolean)});"))
+                      print('BROWSER_LOGS',json.dumps(driver.get_log('browser')[-12:],ensure_ascii=False))
+                      failures.append(label+': '+repr(exc))
+              print('LIVE_LENS_QA_SUMMARY',json.dumps({'passed':not failures,'failures':failures},ensure_ascii=False))
+              if failures: raise SystemExit(1)
+          finally:
+              driver.quit()
+          PY
