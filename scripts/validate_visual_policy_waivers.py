@@ -107,7 +107,7 @@ def validate_waiver(state: dict[str, Any], waiver: dict[str, Any], filename: str
 
     scope = waiver.get("scope")
     generations = waiver.get("generations")
-    if not isinstance(scope, list) or not scope or len(scope) != len(set(scope)) or not all(isinstance(x, str) and x for x in scope):
+    if not isinstance(scope, list) or not scope or not all(isinstance(x, str) and x for x in scope) or len(scope) != len(set(scope)):
         errors.append(f"{prefix}: scope must be a non-empty unique string list")
         scope = []
     if not isinstance(generations, dict):
@@ -118,6 +118,22 @@ def validate_waiver(state: dict[str, Any], waiver: dict[str, Any], filename: str
     generation_values = [value for value in generations.values() if isinstance(value, str) and value]
     if len(generation_values) != len(generations) or len(set(generation_values)) != len(generation_values):
         errors.append(f"{prefix}: generation IDs must be non-empty and unique")
+
+    # This newly permitted provenance defect is not a new generation mode.
+    # Only the four exact, already-generated, user-selected El Salvador outputs qualify.
+    if violation == "MULTIPLE_OUTPUTS_ONE_REQUEST":
+        case_id = waiver.get("closedHistoricalCaseId")
+        cases = cfg.get("closedHistoricalCases") or {}
+        case = cases.get(case_id) if isinstance(cases, dict) and isinstance(case_id, str) else None
+        if not isinstance(case, dict):
+            errors.append(f"{prefix}: closedHistoricalCaseId must identify an existing, exact historical case")
+        else:
+            if (state.get("slug") != case.get("slug") or kind != case.get("kind")
+                    or violation != case.get("violationCode") or scope != case.get("scope")
+                    or generations != case.get("generations")):
+                errors.append(f"{prefix}: closedHistoricalCaseId does not match exact country, kind, scope and generation IDs")
+    elif waiver.get("closedHistoricalCaseId") is not None:
+        errors.append(f"{prefix}: closedHistoricalCaseId is reserved for closed historical exceptions")
 
     qa = waiver.get("hardVisualQa")
     if not isinstance(qa, dict):
@@ -178,6 +194,7 @@ def validate_state_dict(state: dict[str, Any], filename: str) -> list[str]:
         return [f"{filename}: visualPolicyWaivers must be a list"]
     errors: list[str] = []
     ids: set[str] = set()
+    used_closed_cases: set[str] = set()
     for index, waiver in enumerate(waivers):
         if not isinstance(waiver, dict):
             errors.append(f"{filename}: visualPolicyWaivers[{index}] must be an object")
@@ -189,6 +206,12 @@ def validate_state_dict(state: dict[str, Any], filename: str) -> list[str]:
             errors.append(f"{filename}: duplicate visualPolicyWaiver id {waiver_id}")
         else:
             ids.add(waiver_id)
+        if waiver.get("violationCode") == "MULTIPLE_OUTPUTS_ONE_REQUEST":
+            case_id = waiver.get("closedHistoricalCaseId")
+            if isinstance(case_id, str) and case_id in used_closed_cases:
+                errors.append(f"{filename}: duplicate closedHistoricalCaseId {case_id}")
+            if isinstance(case_id, str):
+                used_closed_cases.add(case_id)
         errors.extend(validate_waiver(state, waiver, filename))
     return errors
 
