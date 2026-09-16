@@ -4,13 +4,33 @@
   "countryName": "PANAMA",
   "contentRef": "country/panama",
   "stateRef": "country/panama",
-  "phase": "CONTENT",
-  "stateRevision": 1,
-  "updatedAt": "2026-09-16T08:18:00+09:00",
+  "phase": "HERO",
+  "stateRevision": 2,
+  "updatedAt": "2026-09-16T09:36:00+09:00",
   "hero": {
+    "id": "HERO",
     "state": "NOT_STARTED",
     "asset": null,
-    "contentId": null
+    "contentId": "agua-clara-gatun-locks",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "agua-clara-gatun-locks",
+      "identity": "Agua Clara Locks on the Atlantic side of the Panama Canal, viewed from the elevated Agua Clara Visitor Center: one Neopanamax container ship moving through the expanded lock chamber, recognizable lock gates and concrete chambers, broad Gatun Lake behind, and continuous humid tropical forest beyond; soft dry-season morning light, restrained natural color, wide horizontal composition with clear depth and uncluttered breathing room for page title; one continuous single scene; photo 6 quiet watercolor 4.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    }
   },
   "scenes": [
     {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
@@ -28,7 +48,24 @@
     {"id":"FOOD03","state":"NOT_STARTED","asset":null,"contentId":null},
     {"id":"FOOD04","state":"NOT_STARTED","asset":null,"contentId":null}
   ],
-  "map": {"state":"NOT_STARTED","asset":null},
+  "map": {
+    "state":"APPROVED",
+    "asset":"assets/images/panama/map-atlas-v1.svg",
+    "source":"geoBoundaries gbOpen PAN ADM0, boundary source: CIA World Factbook, represented 2022, Public Domain; WGS84; JOURNEY ATLAS map-v3 clean background.",
+    "qa": {
+      "canvas":"1200x760",
+      "projection":"local-equirectangular-fit-v1",
+      "geometry":"PASS",
+      "sceneCoordinates":"PASS",
+      "sceneCoordinatesInsideRenderedLand":"PASS",
+      "markerCollision":"PASS",
+      "labelCollision":"PASS",
+      "capitalLabelCollision":"PASS",
+      "svgSelfContained":"PASS",
+      "styleBaseline":"Iceland/Norway map-v3",
+      "approvedAt":"2026-09-16T09:36:00+09:00"
+    }
+  },
   "implementation": {"state":"NOT_STARTED"},
   "qa": {"state":"NOT_STARTED","productionState":"NOT_STARTED"},
   "reviewDeployment": {"state":"NOT_STARTED","url":null},
@@ -93,20 +130,24 @@
   "tasteBatchReview":{"approval":"PENDING","rounds":[]},
   "productionProtocolRef":"main:ops/country-production-policy.json",
   "productionProtocolId":"2.0",
+  "productionProtocolPolicyPatch":5,
   "preVisualBuild": {
-    "state":"NOT_STARTED",
+    "state":"PASS",
     "checks": {
-      "countryJsonEditorialComplete":"PENDING",
-      "finalExpectedImagePathsDeclared":"PENDING",
-      "sceneCoordinatesFinal":"PENDING",
-      "mapBuiltAndQaPassed":"PENDING",
-      "taxonomyComplete":"PENDING",
-      "relatedCountriesComplete":"PENDING",
-      "nextRoutesResolved":"PENDING",
-      "travelScaleComplete":"PENDING",
-      "signatureFactsComplete":"PENDING",
-      "sourcesComplete":"PENDING",
-      "editorialQaV2Passed":"PENDING"
+      "countryJsonEditorialComplete":"PASS",
+      "finalExpectedImagePathsDeclared":"PASS",
+      "sceneCoordinatesFinal":"PASS",
+      "mapBuiltAndQaPassed":"PASS",
+      "mapCapitalLabelCollisionQaPassed":"PASS",
+      "mapSvgSelfContainedQaPassed":"PASS",
+      "mapSceneCoordinatesInsideRenderedLandQaPassed":"PASS",
+      "taxonomyComplete":"PASS",
+      "relatedCountriesComplete":"PASS",
+      "nextRoutesResolved":"PASS",
+      "travelScaleComplete":"PASS",
+      "signatureFactsComplete":"PASS",
+      "sourcesComplete":"PASS",
+      "editorialQaV2Passed":"PASS"
     }
   },
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
@@ -126,5 +167,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next":{"action":"COMPLETE_CONTENT_DESIGN","asset":null}
+  "next":{"action":"GENERATE_HERO","asset":"HERO"}
 }
