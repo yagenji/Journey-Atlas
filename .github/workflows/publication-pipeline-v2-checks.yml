@@ -117,8 +117,13 @@ jobs:
           python3 scripts/validate_images.py --duplicates-only --slug "$SLUG"
           if [ "$MODE" = publish ]; then python3 scripts/validate_production_state_routed.py; fi
 
+  # The review workflow already dispatches and waits for one targeted QA run.
+  # On PR synchronization retain the validation check, but do not run a second
+  # identical Desktop/Tablet/Mobile Browser QA cycle. Publish is also dispatched
+  # explicitly by the finalize workflow after the latest-main overlay.
   browser-qa:
     needs: validate
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -152,6 +157,7 @@ jobs:
         env:
           SLUG: ${{ needs.validate.outputs.slug }}
           MODE: ${{ needs.validate.outputs.mode }}
+          SOURCE_SHA: ${{ needs.validate.outputs.source_sha }}
         shell: bash
         run: |
           set -euo pipefail
@@ -171,6 +177,19 @@ jobs:
                 case "$path" in country.html|assets/js/*|assets/css/*|scripts/build_site.py|scripts/build_country_preview_targeted.py|scripts/qa_published_browser.py) shared=true; break;; esac
               done < <(git diff --name-only "$review_main"..origin/main)
               [ "$shared" = false ] && reuse=true
+            fi
+          fi
+          if [ "$MODE" = review ]; then
+            reviewed_source="$(python3 -c 'import json,sys; s=json.load(open("ops/country-production/"+sys.argv[1]+".json")); p=s.get("reviewPreview") or {}; print(p.get("sourceCommit","") if p.get("state")=="DONE" and p.get("browserQa")=="PASS" else "")' "$SLUG")"
+            reviewed_main="$(python3 -c 'import json,sys; s=json.load(open("ops/country-production/"+sys.argv[1]+".json")); print((s.get("reviewPreview") or {}).get("mainBaseCommit") or "")' "$SLUG")"
+            if [ -n "$reviewed_source" ] && [ -n "$reviewed_main" ] && git cat-file -e "$reviewed_source^{commit}" 2>/dev/null && git cat-file -e "$reviewed_main^{commit}" 2>/dev/null; then
+              shared=false
+              while IFS= read -r path; do
+                case "$path" in country.html|assets/js/*|assets/css/*|scripts/build_site.py|scripts/build_country_preview_targeted.py|scripts/qa_published_browser.py) shared=true; break;; esac
+              done < <(git diff --name-only "$reviewed_main"..origin/main)
+              if [ "$shared" = false ] && git diff --quiet "$reviewed_source" "$SOURCE_SHA" -- "data/countries/$SLUG.json" "assets/images/$SLUG" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then
+                reuse=true
+              fi
             fi
           fi
           echo "reuse=$reuse" >> "$GITHUB_OUTPUT"
@@ -209,4 +228,3 @@ jobs:
           name: publication-v2-browser-qa-${{ needs.validate.outputs.slug }}-${{ needs.validate.outputs.mode }}
           path: qa-publication-v2-output/
           if-no-files-found: warn
-          retention-days: 3
