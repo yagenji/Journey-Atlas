@@ -508,10 +508,12 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/unitedstates/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "LIVE_BROWSER_QA_PASS",
+    "atlasPublished": false,
+    "browserQa": "PASS",
+    "verifiedAt": "2026-09-16T16:44:45.662048+00:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -691,7 +693,7 @@
     "canonicalReviewReadyAt": "2026-09-16T20:36:27+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   }
 }
