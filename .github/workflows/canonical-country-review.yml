@@ -1,0 +1,281 @@
+name: Canonical unpublished Country review
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/canonical-country-review.yml'
+      - 'scripts/canonical_review_v2.py'
+      - 'scripts/test_canonical_review_v2.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/canonical-country-review.yml'
+  workflow_run:
+    workflows: ['Publication Pipeline v2 review']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Reviewed unpublished Country slug; blank selects all ready Countries'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  tests:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test canonical review guard
+        run: python3 scripts/test_canonical_review_v2.py
+
+  discover:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.ready.outputs.matrix }}
+      available: ${{ steps.ready.outputs.available }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select reviewed unpublished v2 Countries
+        id: ready
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_SLUG: ${{ inputs.slug }}
+          EVENT_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          EVENT_NAME: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json, os, re, subprocess
+          def gh(*args):
+              return subprocess.check_output(['gh', *args], text=True)
+          repo = os.environ['GITHUB_REPOSITORY']
+          prs = json.loads(gh('pr', 'list', '--repo', repo, '--state', 'open', '--limit', '100', '--json', 'number,headRefName'))
+          requested = os.environ.get('REQUESTED_SLUG') or ''
+          event_branch = os.environ.get('EVENT_BRANCH') or ''
+          published = {r['slug'] for r in json.load(open('data/atlas-destinations.json'))['destinations'] if r.get('atlasPublished')}
+          selected = []
+          for pr in prs:
+              branch = pr['headRefName']
+              if not branch.startswith('country/'):
+                  continue
+              slug = branch.removeprefix('country/').removesuffix('-renewal')
+              if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
+                  continue
+              if requested and slug != requested:
+                  continue
+              if os.environ['EVENT_NAME'] == 'workflow_run' and event_branch != branch:
+                  continue
+              if slug in published or os.path.exists(f'data/countries/{slug}.json'):
+                  continue
+              try:
+                  def branch_json(path):
+                      response = json.loads(gh('api', f'repos/{repo}/contents/{path}?ref={branch}'))
+                      return json.loads(base64.b64decode(response['content']).decode())
+                  state = branch_json(f'ops/country-production/{slug}.json')
+                  country = branch_json(f'data/countries/{slug}.json')
+              except (subprocess.CalledProcessError, KeyError, ValueError) as exc:
+                  print(f'{slug}: cannot inspect source: {exc}', flush=True)
+                  continue
+              preview = state.get('reviewPreview') or {}
+              deployment = state.get('reviewDeployment') or {}
+              handoff = state.get('assetHandoff') or {}
+              if country.get('publicationPipelineVersion') != 2 or state.get('productionProtocolId') != '2.0':
+                  continue
+              if handoff.get('state') != 'PASS' or handoff.get('verifiedRasterCount') != 13:
+                  continue
+              if preview.get('state') != 'DONE' or preview.get('browserQa') != 'PASS':
+                  continue
+              if (state.get('finalApproval') or {}).get('state') == 'APPROVED':
+                  continue
+              if (state.get('publication') or {}).get('atlasPublished') is not False:
+                  continue
+              if deployment.get('state') in ('DEPLOYING', 'DONE'):
+                  continue
+              selected.append({'slug': slug, 'branch': branch, 'pr': pr['number']})
+          selected.sort(key=lambda x: x['pr'])
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('matrix=' + json.dumps({'include': selected}, separators=(',', ':')) + '\n')
+              out.write('available=' + str(bool(selected)).lower() + '\n')
+          print('Canonical review candidates:', [r['slug'] for r in selected])
+          PY
+
+  promote:
+    needs: discover
+    if: needs.discover.outputs.available == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.discover.outputs.matrix) }}
+    concurrency:
+      group: country-publication-main
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SLUG: ${{ matrix.slug }}
+      HEAD_REF: ${{ matrix.branch }}
+      PR_NUMBER: ${{ matrix.pr }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install targeted QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
+      - name: Reconstruct approved Country on latest main
+        id: stage
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_sha="$(git rev-parse HEAD)"
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          main_sha="$(git rev-parse origin/main)"
+          git show 'origin/main:scripts/country_overlay_v2.py' > scripts/country_overlay_v2.py
+          reviewed_source="$(python3 - "$SLUG" <<'PY'
+          import json,sys
+          from pathlib import Path
+          state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+          print((state.get('reviewPreview') or {}).get('sourceCommit') or '')
+          PY
+          )"
+          [ -n "$reviewed_source" ] && git cat-file -e "$reviewed_source^{commit}"
+          if ! git diff --quiet "$reviewed_source" "$source_sha" -- "assets/images/$SLUG" "data/countries/$SLUG.json" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then
+            echo 'Reviewed Country content or approved assets changed: a new preview QA is needed.' >&2
+            exit 1
+          fi
+          python3 - "$SLUG" <<'PY'
+          import json,subprocess,sys
+          registry=json.loads(subprocess.check_output(['git','show','origin/main:data/atlas-destinations.json'],text=True))
+          rows=[r for r in registry['destinations'] if r.get('slug')==sys.argv[1]]
+          assert len(rows)==1 and rows[0].get('atlasPublished') is False, 'Review target is not an unpublished canonical destination'
+          PY
+          python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/canonical-overlay
+          git reset --hard "$main_sha"
+          python3 scripts/country_overlay_v2.py apply "$SLUG" /tmp/canonical-overlay
+          python3 scripts/canonical_review_v2.py prepare "$SLUG"
+          python3 scripts/test_canonical_review_v2.py
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country_map_v6.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country.py --strict "data/countries/$SLUG.json"
+          python3 scripts/audit_country_image_delivery_targeted.py --slug "$SLUG"
+          python3 scripts/validate_images.py --mode audit --slug "$SLUG"
+          python3 scripts/audit_icons.py
+          python3 scripts/audit_country_region_labels.py
+          python3 scripts/validate_production_state_routed.py
+          git add "data/countries/$SLUG.json" "ops/country-production/$SLUG.json" "assets/images/$SLUG" data/atlas-destinations.json data/theme-taxonomy.json data/country-renewal-status.json
+          tree="$(git write-tree)"
+          commit="$(printf 'Stage %s for canonical noindex review\n' "$SLUG" | git commit-tree "$tree" -p "$source_sha" -p "$main_sha")"
+          git push origin "$commit:refs/heads/$HEAD_REF"
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+          echo "main_sha=$main_sha" >> "$GITHUB_OUTPUT"
+      - name: Run authoritative targeted review QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          previous="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
+          gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
+          run_id=''
+          for attempt in $(seq 1 40); do
+            matches="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"${{ steps.stage.outputs.commit }}\") | .databaseId")"
+            while IFS= read -r candidate; do
+              [ -n "$candidate" ] || continue
+              if ! printf '%s\n' "$previous" | grep -Fxq "$candidate"; then run_id="$candidate"; break; fi
+            done <<< "$matches"
+            [ -n "$run_id" ] && break
+            sleep 2
+          done
+          [ -n "$run_id" ] || { echo 'Targeted QA never started.' >&2; exit 1; }
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+      - name: Merge only the unpublished review PR
+        id: merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual_head="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq '.head.sha')"
+          [ "$actual_head" = '${{ steps.stage.outputs.commit }}' ] || { echo 'Country advanced: do not merge stale QA.' >&2; exit 1; }
+          current_main="$(git ls-remote origin refs/heads/main | cut -f1)"
+          [ "$current_main" = '${{ steps.stage.outputs.main_sha }}' ] || { echo 'main advanced: a fresh overlay and QA are required.' >&2; exit 1; }
+          timeout 420 gh pr checks "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --required --watch
+          merged="$(gh api --method PUT "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" -f merge_method=squash -f sha="$actual_head" --jq '.sha')"
+          [ -n "$merged" ] || exit 1
+          echo "sha=$merged" >> "$GITHUB_OUTPUT"
+      - name: Verify canonical noindex site and live Browser QA
+        env:
+          MERGED_SHA: ${{ steps.merge.outputs.sha }}
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: ${{ matrix.slug }}
+          QA_OUT_DIR: qa-canonical-review-output
+        shell: bash
+        run: |
+          set -euo pipefail
+          live_sha=''
+          for attempt in $(seq 1 90); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "https://atlas.yagenji.com/build-meta.json?review=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            [ "$live_sha" != "$MERGED_SHA" ] || break
+            sleep 5
+          done
+          [ "$live_sha" = "$MERGED_SHA" ] || { echo 'Live Cloudflare commit does not match merged review.' >&2; exit 1; }
+          curl -fsS --retry 3 "https://atlas.yagenji.com/countries/$SLUG/" > /tmp/canonical-country.html
+          curl -fsS --retry 3 'https://atlas.yagenji.com/sitemap.xml' > /tmp/canonical-sitemap.xml
+          curl -fsS --retry 3 'https://atlas.yagenji.com/data/atlas-destinations.json' > /tmp/canonical-registry.json
+          python3 - "$SLUG" <<'PY'
+          import json,sys
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Robots(HTMLParser):
+              def __init__(self): super().__init__(); self.values=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag=='meta' and a.get('name','').lower()=='robots': self.values.append(a.get('content','').lower())
+          slug=sys.argv[1]
+          html=Path('/tmp/canonical-country.html').read_text()
+          p=Robots(); p.feed(html)
+          assert f'data-country="{slug}"' in html, 'Wrong Country page'
+          assert any('noindex' in v and 'follow' in v for v in p.values), 'Missing noindex,follow'
+          assert f'/countries/{slug}/' not in Path('/tmp/canonical-sitemap.xml').read_text(), 'Unapproved Country entered sitemap'
+          registry=json.loads(Path('/tmp/canonical-registry.json').read_text())
+          row=next(x for x in registry['destinations'] if x.get('slug')==slug)
+          assert row.get('atlasPublished') is False, 'Country became published without approval'
+          PY
+          python3 scripts/qa_published_browser.py
+      - name: Reconcile verified review State on Country branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "+refs/heads/$HEAD_REF:refs/remotes/origin/$HEAD_REF"
+          head="$(git rev-parse "origin/$HEAD_REF")"
+          [ "$head" = '${{ steps.stage.outputs.commit }}' ] || { echo 'State advanced: do not overwrite.' >&2; exit 1; }
+          git checkout --detach "$head"
+          python3 scripts/canonical_review_v2.py verified "$SLUG"
+          git add "ops/country-production/$SLUG.json"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Record $SLUG canonical noindex review QA"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          echo "Canonical Country review: https://atlas.yagenji.com/countries/$SLUG/" >> "$GITHUB_STEP_SUMMARY"
+          echo 'No final publication approval has been recorded.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload live Browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canonical-review-${{ matrix.slug }}-${{ github.run_id }}
+          path: qa-canonical-review-output/
+          if-no-files-found: warn
+          retention-days: 3
