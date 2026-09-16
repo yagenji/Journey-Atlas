@@ -55,6 +55,6 @@ jobs:
           git diff --numstat -- data/countries/unitedstates.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/countries/unitedstates.json
+          git add -f -- data/countries/unitedstates.json
           git commit -m 'Correct United States source date and source key metadata'
           git push origin HEAD:refs/heads/country/unitedstates
