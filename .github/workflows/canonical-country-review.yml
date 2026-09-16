@@ -115,6 +115,7 @@ jobs:
     if: needs.discover.outputs.available == 'true'
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix: ${{ fromJSON(needs.discover.outputs.matrix) }}
     concurrency:
       group: country-publication-main
@@ -141,6 +142,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           source_sha="$(git rev-parse HEAD)"
           git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
           main_sha="$(git rev-parse origin/main)"
