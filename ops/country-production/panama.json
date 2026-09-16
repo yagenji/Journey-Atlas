@@ -4,13 +4,13 @@
   "countryName": "PANAMA",
   "contentRef": "country/panama",
   "stateRef": "country/panama",
-  "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-16T09:36:00+09:00",
+  "phase": "SCENES_INITIAL",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-16T11:41:00+09:00",
   "hero": {
     "id": "HERO",
-    "state": "NOT_STARTED",
-    "asset": null,
+    "state": "APPROVED",
+    "asset": "assets/images/panama/approved/hero-agua-clara-gatun.webp",
     "contentId": "agua-clara-gatun-locks",
     "promptSeries": 1,
     "promptSeriesRejectCount": 0,
@@ -30,17 +30,108 @@
       "forbidMontage": true,
       "forbidInsetImages": true,
       "singleSceneOnly": true
-    }
+    },
+    "approvedGenerationId": "9dd09ea0-30e0-4bc1-bf5b-790190ff3c00",
+    "approvedAt": "2026-09-16T11:41:00+09:00",
+    "approvalBasis": "User explicitly approved the generated Hero in this production conversation."
   },
   "scenes": [
-    {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S02","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S03","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S04","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S05","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S06","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S07","state":"NOT_STARTED","asset":null,"contentId":null},
-    {"id":"S08","state":"NOT_STARTED","asset":null,"contentId":null}
+    {
+      "id": "S01",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s01-casco-antiguo-paseo-esteban-huertas.webp",
+      "contentId": "casco-antiguo-paseo-esteban-huertas",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"casco-antiguo-paseo-esteban-huertas","identity":"Casco Antiguo from the Paseo Esteban Huertas area, with historic roofs and walls in the foreground and Panama Bay plus the modern Panama City skyline beyond in dry-season afternoon light.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "7f569e30-3ef4-4a98-ab3b-3ce4e9e780b3",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S02",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s02-gunayala-rio-cangandi.webp",
+      "contentId": "gunayala-rio-cangandi",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"gunayala-rio-cangandi","identity":"Río Cangandí in Guna Yala, with a tropical river, dense forest and a modest Guna riverside settlement showing mainland life beyond island-beach imagery.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "85e131f7-3a4b-40ce-b684-a6d83f3ef59b",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S03",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s03-volcan-baru-summit.webp",
+      "contentId": "volcan-baru-summit",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"volcan-baru-summit","identity":"Volcán Barú summit ridge in Chiriquí with volcanic ground, high-elevation grasses and shrubs, cloud layers and distant lowlands in early morning light.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "f6187008-8ad0-4530-99c7-0ea7623ed28f",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S04",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s04-darien-cerro-pirre.webp",
+      "contentId": "darien-cerro-pirre",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"darien-cerro-pirre","identity":"Darién National Park around Cerro Pirre, showing broad layered rainforest-covered hills, humid mist and a river or lowland opening through the forest under diffused light.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "39a3a8b4-9de2-404f-8265-c8efd942b752",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S05",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s05-coiba-granito-de-oro.webp",
+      "contentId": "coiba-granito-de-oro",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"coiba-granito-de-oro","identity":"Coiba National Park near Granito de Oro, with a small sandy islet, clear shallow Pacific water and a larger densely forested island mass beyond in calm morning light.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "746a77a0-cb02-488b-a1e9-9e4663bb03d1",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S06",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s06-san-lorenzo-chagres.webp",
+      "contentId": "san-lorenzo-chagres",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"san-lorenzo-chagres","identity":"Castillo de San Lorenzo above the Chagres River mouth, with weathered stone fortifications, water and surrounding Caribbean tropical forest under soft daylight.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "40177180-9e7d-4b94-b470-36ebd3c480d4",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S07",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s07-el-valle-de-anton-caldera.webp",
+      "contentId": "el-valle-de-anton-caldera",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"el-valle-de-anton-caldera","identity":"El Valle de Antón seen from the old volcanic crater rim, with the lived-in town spread across the green caldera floor and crater walls enclosing the valley.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "cb535eb2-b87d-495d-84aa-90feb441c334",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    },
+    {
+      "id": "S08",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/panama/approved/s08-bocas-town-isla-colon.webp",
+      "contentId": "bocas-town-isla-colon",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "renderPacket": {"kind":"SCENE","contentId":"bocas-town-isla-colon","identity":"Bocas Town on Isla Colón as a lived-in Caribbean waterfront town with low-rise wooden buildings, piers, small boats and green island vegetation in calm morning light.","independentGeneration":true,"forbidPreviousAssetReuse":true,"noAddedText":true,"singleFrameOnly":true,"forbidCollage":true,"forbidPanels":true,"forbidGrid":true,"forbidContactSheet":true,"forbidMontage":true,"forbidInsetImages":true,"singleSceneOnly":true},
+      "candidateGenerationId": "2e755f69-4334-4932-af68-26d916bb44ef",
+      "candidateVisualQa": {"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"}
+    }
   ],
   "taste": [
     {"id":"FOOD01","state":"NOT_STARTED","asset":null,"contentId":null},
@@ -128,6 +219,59 @@
   },
   "sceneBatchReview":{"approval":"PENDING","rounds":[]},
   "tasteBatchReview":{"approval":"PENDING","rounds":[]},
+  "recoveryMigrations": [
+    {
+      "id":"panama-scenes-recovery-20260916",
+      "type":"USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind":"SCENE",
+      "reasonCode":"ORCHESTRATION_STATE_DESYNC_WITH_POLICY_WAIVER",
+      "scope":["S01","S02","S03","S04","S05","S06","S07","S08"],
+      "recoveredGenerations":{
+        "S01":"7f569e30-3ef4-4a98-ab3b-3ce4e9e780b3",
+        "S02":"85e131f7-3a4b-40ce-b684-a6d83f3ef59b",
+        "S03":"f6187008-8ad0-4530-99c7-0ea7623ed28f",
+        "S04":"39a3a8b4-9de2-404f-8265-c8efd942b752",
+        "S05":"746a77a0-cb02-488b-a1e9-9e4663bb03d1",
+        "S06":"40177180-9e7d-4b94-b470-36ebd3c480d4",
+        "S07":"cb535eb2-b87d-495d-84aa-90feb441c334",
+        "S08":"2e755f69-4334-4932-af68-26d916bb44ef"
+      },
+      "authorizedBy":"USER_EXPLICIT",
+      "authorizedAt":"2026-09-16T11:41:00+09:00",
+      "userInstruction":"8景は承認済みです。再作成の必要なし。",
+      "preserveExistingImages":true,
+      "regenerationForbidden":true,
+      "status":"STAGED"
+    }
+  ],
+  "visualPolicyWaivers": [
+    {
+      "id":"panama-scenes-previous-image-reference-waiver-20260916",
+      "type":"USER_APPROVED_VISUAL_POLICY_WAIVER",
+      "violationCode":"PREVIOUS_IMAGE_REFERENCE_USED",
+      "kind":"SCENE",
+      "scope":["S01","S02","S03","S04","S05","S06","S07","S08"],
+      "generations":{
+        "S01":"7f569e30-3ef4-4a98-ab3b-3ce4e9e780b3",
+        "S02":"85e131f7-3a4b-40ce-b684-a6d83f3ef59b",
+        "S03":"f6187008-8ad0-4530-99c7-0ea7623ed28f",
+        "S04":"39a3a8b4-9de2-404f-8265-c8efd942b752",
+        "S05":"746a77a0-cb02-488b-a1e9-9e4663bb03d1",
+        "S06":"40177180-9e7d-4b94-b470-36ebd3c480d4",
+        "S07":"cb535eb2-b87d-495d-84aa-90feb441c334",
+        "S08":"2e755f69-4334-4932-af68-26d916bb44ef"
+      },
+      "authorizedBy":"USER_EXPLICIT",
+      "authorizedAt":"2026-09-16T11:41:00+09:00",
+      "userInstruction":"8景は承認済みです。再作成の必要なし。",
+      "preserveExistingImages":true,
+      "regenerationRequired":false,
+      "hardVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},
+      "stateDesynchronized":true,
+      "recoveryMigrationId":"panama-scenes-recovery-20260916",
+      "status":"STAGED"
+    }
+  ],
   "productionProtocolRef":"main:ops/country-production-policy.json",
   "productionProtocolId":"2.0",
   "productionProtocolPolicyPatch":5,
@@ -167,5 +311,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next":{"action":"GENERATE_HERO","asset":"HERO"}
+  "next":{"action":"BATCH_REVIEW_SCENES","asset":null}
 }
