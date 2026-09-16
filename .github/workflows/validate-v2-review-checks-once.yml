@@ -1,0 +1,64 @@
+name: Validate v2 checks YAML once
+on:
+  push:
+    branches: [fix/publication-v2-review-idempotency-20260916]
+    paths: [.github/workflows/validate-v2-review-checks-once.yml]
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/publication-v2-review-idempotency-20260916
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fix indentation and check YAML and shell syntax
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pyyaml
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import yaml
+          p=Path('.github/workflows/publication-pipeline-v2-checks.yml')
+          source=p.read_text(encoding='utf-8')
+          start=source.index('          if [ "$MODE" = review ]; then\n')
+          end=source.index('      - name: Reuse review Browser QA\n',start)
+          lines=[
+            'if [ "$MODE" = review ]; then',
+            '  reviewed_source="$(python3 -c \'import json,sys; s=json.load(open("ops/country-production/"+sys.argv[1]+".json")); p=s.get("reviewPreview") or {}; print(p.get("sourceCommit","") if p.get("state")=="DONE" and p.get("browserQa")=="PASS" else "")\' "$SLUG")"',
+            '  reviewed_main="$(python3 -c \'import json,sys; s=json.load(open("ops/country-production/"+sys.argv[1]+".json")); print((s.get("reviewPreview") or {}).get("mainBaseCommit") or "")\' "$SLUG")"',
+            '  if [ -n "$reviewed_source" ] && [ -n "$reviewed_main" ] && git cat-file -e "$reviewed_source^{commit}" 2>/dev/null && git cat-file -e "$reviewed_main^{commit}" 2>/dev/null; then',
+            '    shared=false',
+            '    while IFS= read -r path; do',
+            '      case "$path" in country.html|assets/js/*|assets/css/*|scripts/build_site.py|scripts/build_country_preview_targeted.py|scripts/qa_published_browser.py) shared=true; break;; esac',
+            '    done < <(git diff --name-only "$reviewed_main"..origin/main)',
+            '    if [ "$shared" = false ] && git diff --quiet "$reviewed_source" "$SOURCE_SHA" -- "data/countries/$SLUG.json" "assets/images/$SLUG" data/theme-taxonomy.json data/atlas-destinations.json data/country-renewal-status.json; then',
+            '      reuse=true',
+            '    fi',
+            '  fi',
+            'fi',
+            'echo "reuse=$reuse" >> "$GITHUB_OUTPUT"',
+          ]
+          source=source[:start]+''.join('          '+line+'\n' for line in lines)+source[end:]
+          parsed=yaml.safe_load(source)
+          steps=parsed['jobs']['browser-qa']['steps']
+          names=[step.get('name') for step in steps]
+          assert 'Reuse review Browser QA' in names, names
+          run=next(step['run'] for step in steps if step.get('id')=='reuse')
+          assert 'SOURCE_SHA' in run and 'reviewed_source' in run and 'echo "reuse=$reuse"' in run
+          subprocess.run(['bash','-n'],input=run,text=True,check=True)
+          p.write_text(source,encoding='utf-8')
+          print('PASS: YAML parses, Browser QA reuse step exists, Bash syntax passes.')
+          PY
+          python3 - <<'PY' | gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" --input - --jq .sha | sed 's/^/CORRECTED_CHECKS_BLOB /'
+          import json
+          from pathlib import Path
+          print(json.dumps({'content':Path('.github/workflows/publication-pipeline-v2-checks.yml').read_text(encoding='utf-8'),'encoding':'utf-8'}))
+          PY
