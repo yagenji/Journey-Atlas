@@ -1,0 +1,35 @@
+name: QA live JOURNEY LENS photo delivery
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/qa_lens_photo_delivery.py'
+      - '.github/workflows/qa-lens-photo-delivery.yml'
+      - 'assets/js/top.js'
+      - 'assets/js/app.js'
+
+permissions:
+  contents: read
+
+jobs:
+  lens-photo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify actual RSS CORS and photo rendering
+        run: python3 scripts/qa_lens_photo_delivery.py
+      - name: Upload diagnostic reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-lens-photo-qa
+          path: qa-lens-photo-output/
+          if-no-files-found: warn
+          retention-days: 3
