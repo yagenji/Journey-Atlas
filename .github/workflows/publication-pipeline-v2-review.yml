@@ -85,13 +85,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # A Country SHA can have multiple dispatch runs. Record existing IDs so
+          # this job never watches a previous failed run while its new run starts.
+          previous_ids="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
           gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
           run_id=""
           for attempt in $(seq 1 30); do
-            run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 20 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -n1)"
+            candidates="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId")"
+            while IFS= read -r candidate; do
+              [ -n "$candidate" ] || continue
+              if ! printf '%s\n' "$previous_ids" | grep -Fxq "$candidate"; then
+                run_id="$candidate"; break
+              fi
+            done <<< "$candidates"
             [ -n "$run_id" ] && break; sleep 2
           done
           [ -n "$run_id" ] || exit 1
+          echo "Watching freshly dispatched targeted QA run: $run_id"
           gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
       - name: Build deployable review from latest main plus Country overlay
         if: steps.target.outputs.ready == 'true'
