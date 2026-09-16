@@ -1,0 +1,60 @@
+name: One-time United States source metadata correction
+
+on:
+  push:
+    branches:
+      - ops/one-shot-unitedstates-source-metadata-20260916
+    paths:
+      - .github/workflows/one-shot-unitedstates-source-metadata.yml
+
+permissions:
+  contents: write
+
+jobs:
+  correct-source-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout the Country branch, not the temporary workflow branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/unitedstates
+          fetch-depth: 0
+      - name: Correct precisely two source metadata fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/countries/unitedstates.json')
+          original = path.read_text(encoding='utf-8')
+          data = json.loads(original)
+          assert data['slug'] == 'unitedstates'
+          assert data['sourceDates']['religion'] == '2023-2024'
+          assert data['sourceDates']['languageUse'] == '2024'
+          assert data['sources']['languages'].startswith('U.S. Census Bureau')
+          edits = {
+              '"religion":"2023-2024"': '"religion":"2024"',
+              '"languageUse":"2024"': '"languages":"2024"',
+          }
+          revised = original
+          for old, new in edits.items():
+              assert revised.count(old) == 1, f'Expected exactly one occurrence of {old}'
+              revised = revised.replace(old, new, 1)
+          result = json.loads(revised)
+          assert result['sourceDates']['religion'] == '2024'
+          assert result['sourceDates']['languages'] == '2024'
+          assert 'languageUse' not in result['sourceDates']
+          assert len(result['scenes']) == 8 and len(result['taste']['items']) == 4
+          assert result['publicationPipelineVersion'] == 2
+          path.write_text(revised, encoding='utf-8')
+          print('Two exact source metadata corrections completed; all remaining content preserved')
+          PY
+          git diff --check
+          git diff --numstat -- data/countries/unitedstates.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/countries/unitedstates.json
+          git commit -m 'Correct United States source date and source key metadata'
+          git push origin HEAD:refs/heads/country/unitedstates
