@@ -100,18 +100,41 @@ def parse_polygons(d: str):
 
 
 def contains(poly, p):
-    px, py = p; inside = False
+    """Strict polygon interior; tolerance must NOT participate in even-odd parity."""
+    px, py = p
+    inside = False
     for i in range(len(poly)):
-        x1, y1 = poly[i]; x2, y2 = poly[(i + 1) % len(poly)]
-        dx, dy = x2-x1, y2-y1
-        if dx or dy:
-            u = max(0.0, min(1.0, ((px-x1)*dx + (py-y1)*dy)/(dx*dx+dy*dy)))
-            if math.hypot(px-(x1+u*dx), py-(y1+u*dy)) <= 4.0:
-                return True
+        x1, y1 = poly[i]
+        x2, y2 = poly[(i + 1) % len(poly)]
         if (y1 > py) != (y2 > py):
-            xin = (x2-x1)*(py-y1)/(y2-y1) + x1
-            if px < xin: inside = not inside
+            xin = (x2 - x1) * (py - y1) / (y2 - y1) + x1
+            if px < xin:
+                inside = not inside
     return inside
+
+
+def near_boundary(poly, p, tolerance=4.0):
+    """Allow coarse coastlines once, after the exact even-odd fill is evaluated."""
+    px, py = p
+    for i in range(len(poly)):
+        x1, y1 = poly[i]
+        x2, y2 = poly[(i + 1) % len(poly)]
+        dx, dy = x2 - x1, y2 - y1
+        if not (dx or dy):
+            continue
+        u = max(0.0, min(1.0, ((px - x1) * dx + (py - y1) * dy) / (dx * dx + dy * dy)))
+        if math.hypot(px - (x1 + u * dx), py - (y1 + u * dy)) <= tolerance:
+            return True
+    return False
+
+
+def on_land_in_path(group, p):
+    # SVG fill-rule="evenodd" uses exact subpath crossings. Applying the
+    # coastline tolerance to each subpath first cancels nearby mainland/island
+    # hits, even though the renderer visibly fills the scene's location.
+    if sum(contains(poly, p) for poly in group) % 2:
+        return True
+    return any(near_boundary(poly, p) for poly in group)
 
 
 def validate(path: Path):
@@ -151,13 +174,7 @@ def validate(path: Path):
         p = scene_point(scene, map_data)
         if p is None:
             continue
-        # Each SVG path is treated as an even-odd filled geometry; any filled path may contain the real point.
-        on_land = False
-        for group in path_groups:
-            parity = sum(1 for poly in group if contains(poly, p)) % 2
-            if parity:
-                on_land = True; break
-        if not on_land:
+        if not any(on_land_in_path(group, p) for group in path_groups):
             errors.append(f"{path.name}: Scene {idx} real coordinate projects outside rendered country land geometry; correct coordinates/map geometry, never hide it with mapOffset")
     return errors
 
