@@ -100,7 +100,9 @@ jobs:
                   continue
               if (state.get('publication') or {}).get('atlasPublished') is not False:
                   continue
-              if deployment.get('state') in ('DEPLOYING', 'DONE'):
+              # DONE means canonical live QA already passed. DEPLOYING means a prior
+              # attempt did not finish and must remain eligible for safe revalidation.
+              if deployment.get('state') == 'DONE':
                   continue
               selected.append({'slug': slug, 'branch': branch, 'pr': pr['number']})
           selected.sort(key=lambda x: x['pr'])
