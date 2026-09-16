@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 1,
+  "slug": "elsalvador",
+  "countryName": "EL SALVADOR",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-16T20:33:21+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/elsalvador/approved/hero-cerro-verde-izalco.webp",
+    "contentId": "cerro-verde-izalco",
+    "approvedGenerationId": "2f131569-5186-470d-b0f9-c73da350f05e"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/santa-ana-volcano-crater.webp",
+      "contentId": "santa-ana-volcano-crater",
+      "approvedGenerationId": "1a58f284-0e67-487a-90e0-c7b5393182c3"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/lake-coatepeque.webp",
+      "contentId": "lake-coatepeque",
+      "approvedGenerationId": "c9a3b1db-6393-4d15-8179-b8ea403118f6"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/joya-de-ceren.webp",
+      "contentId": "joya-de-ceren",
+      "approvedGenerationId": "4baed477-63ed-4c40-9b5b-3eb15f05b709"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/suchitoto.webp",
+      "contentId": "suchitoto-historic-town",
+      "approvedGenerationId": "4d0ff4c8-01ad-4cbe-946d-d040f75e564b"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/el-tunco.webp",
+      "contentId": "el-tunco-pacific-coast",
+      "approvedGenerationId": "99896f54-47a3-4149-9719-9bd7b33342fc"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/el-imposible.webp",
+      "contentId": "el-imposible-forest",
+      "approvedGenerationId": "bd59f2f4-29fd-4f8a-97d6-fbef277a7183"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/bahia-de-jiquilisco.webp",
+      "contentId": "bahia-de-jiquilisco",
+      "approvedGenerationId": "8f75b95e-252d-4055-9599-2c01d66b96c5"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/conchagua-gulf-of-fonseca.webp",
+      "contentId": "conchagua-gulf-of-fonseca",
+      "approvedGenerationId": "5f59cff5-b7e2-4d2a-ba1d-dcd7ad0f6484"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/food-pupusas.webp",
+      "contentId": "pupusas",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "3e651110-a243-478a-bc5e-331cf92cfa12"
+      ],
+      "lastFailureReason": "BACKGROUND_PROPS",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "pupusas",
+        "identity": "Salvadoran pupusas: one simple serving on one plate",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "decorativePropsForbidden": true,
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY",
+        "integralAccompaniments": [
+          "curtido",
+          "thin tomato salsa"
+        ],
+        "integralServingElements": [
+          "plain low ceramic plate"
+        ],
+        "decorativeProps": [],
+        "targetDimensions": "1200x800",
+        "style": "Quiet watercolor realism, premium travel-atlas food illustration; one isolated dish only on a completely plain warm-ivory background, soft neutral studio light, no scene or table.",
+        "avoid": "text, labels, logos, utensils, napkins, table, scenery, landscape, flowers, garnish-only herbs, side dishes not listed, extra bowls or plates, decorative props, people, collage, grid, panels, inset images, dramatic lighting, photorealism."
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "62f73c11-5a66-435b-87a5-74e1bd4032a7"
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/food-yuca-con-chicharron.webp",
+      "contentId": "yuca-con-chicharron",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "b35dd700-be29-4729-81cb-e742309d2ed8"
+      ],
+      "lastFailureReason": "COLLAGE_OR_MULTIPANEL",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "yuca-con-chicharron",
+        "identity": "Salvadoran yuca con chicharrón: one serving of cassava with crisp pork pieces",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "decorativePropsForbidden": true,
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY",
+        "integralAccompaniments": [
+          "curtido",
+          "thin tomato salsa"
+        ],
+        "integralServingElements": [
+          "plain low ceramic plate"
+        ],
+        "decorativeProps": [],
+        "targetDimensions": "1200x800",
+        "style": "Quiet watercolor realism, premium travel-atlas food illustration; one isolated dish only on a completely plain warm-ivory background, soft neutral studio light, no scene or table.",
+        "avoid": "text, labels, logos, utensils, napkins, table, scenery, landscape, flowers, garnish-only herbs, side dishes not listed, extra bowls or plates, decorative props, people, collage, grid, panels, inset images, dramatic lighting, photorealism."
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "bed1193a-49e3-426e-8dce-bff160c3ef4c"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/food-sopa-de-gallina.webp",
+      "contentId": "sopa-de-gallina",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "f60370a5-f309-4d19-8ac4-8bda8c1b9f30"
+      ],
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER",
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "sopa-de-gallina",
+        "identity": "Salvadoran sopa de gallina india: one bowl of golden country-hen soup with chicken and vegetables",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "decorativePropsForbidden": true,
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY",
+        "integralAccompaniments": [
+          "country hen",
+          "potato",
+          "carrot",
+          "chayote or squash",
+          "corn segment"
+        ],
+        "integralServingElements": [
+          "plain ceramic soup bowl"
+        ],
+        "decorativeProps": [],
+        "targetDimensions": "1200x800",
+        "style": "Quiet watercolor realism, premium travel-atlas food illustration; one isolated dish only on a completely plain warm-ivory background, soft neutral studio light, no scene or table.",
+        "avoid": "text, labels, logos, utensils, napkins, table, scenery, landscape, flowers, garnish-only herbs, side dishes not listed, extra bowls or plates, decorative props, people, collage, grid, panels, inset images, photorealism."
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "bc405aff-996c-4daf-9352-0b2a6a1581b5"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/elsalvador/approved/food-mariscada.webp",
+      "contentId": "mariscada",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "mariscada",
+        "identity": "Salvadoran mariscada: one bowl of seafood soup with Pacific shrimp, shellfish and fish pieces",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "decorativePropsForbidden": true,
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY",
+        "integralAccompaniments": [
+          "shrimp",
+          "shellfish",
+          "fish pieces",
+          "light broth"
+        ],
+        "integralServingElements": [
+          "plain ceramic soup bowl"
+        ],
+        "decorativeProps": [],
+        "targetDimensions": "1200x800",
+        "style": "Quiet watercolor realism, premium travel-atlas food illustration; one isolated dish only on a completely plain warm-ivory background, soft neutral studio light, no scene or table.",
+        "avoid": "text, labels, logos, utensils, napkins, table, scenery, landscape, flowers, garnish-only herbs, side dishes not listed, extra bowls or plates, decorative props, people, collage, grid, panels, inset images, dramatic lighting, photorealism."
+      },
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "approvedGenerationId": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/elsalvador/map-atlas-v1.svg"
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-16T18:46:11+09:00",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "e0f8c1f2192af9889712572201a44d0ecc3505d9",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/elsalvador/",
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-16T20:29:37+09:00",
+    "approvalBasis": "User instruction: QAして問題なければ公開して。 Latest targeted Country validation and Desktop/Tablet/Mobile Browser QA passed after Taste imageState and area citation reconciliation."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-16T20:33:21+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/elsalvador/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 3,
+    "lastResetAt": "2026-09-16T16:38:00+09:00",
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "approvedAt": "2026-09-16T09:35:00+09:00",
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "1a58f284-0e67-487a-90e0-c7b5393182c3",
+          "S02": "c9a3b1db-6393-4d15-8179-b8ea403118f6",
+          "S03": "4baed477-63ed-4c40-9b5b-3eb15f05b709",
+          "S04": "4d0ff4c8-01ad-4cbe-946d-d040f75e564b",
+          "S05": "99896f54-47a3-4149-9719-9bd7b33342fc",
+          "S06": "bd59f2f4-29fd-4f8a-97d6-fbef277a7183",
+          "S07": "8f75b95e-252d-4055-9599-2c01d66b96c5",
+          "S08": "5f59cff5-b7e2-4d2a-ba1d-dcd7ad0f6484"
+        },
+        "regenerate": [],
+        "approvalBasis": "User explicit Scene batch approval in conversation."
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "approvedAt": "2026-09-16T17:57:00+09:00",
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+          "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+          "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+          "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+        },
+        "regenerate": [],
+        "approvalBasis": "User explicitly approved four distinct existing Taste images and instructed 採用 after the grouped-generation defect was explained; exact one-off waiver PR #837 and staged State recovery."
+      }
+    ]
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "productionProtocolPolicyPatch": 5,
+  "publicationPipelineVersion": 2,
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-16T18:31:17+09:00",
+    "sourceCommit": "a23a5973de839324409fdf4db1a9ad2bb7ac1053",
+    "verifiedGitTreeSha": "13e6a32deab41e443191b9091722df01a9dec68f",
+    "verification": "All 13 repository Git blob object IDs exactly match user handoff ZIP bytes. Full WebP decode, declared dimensions, SHA-256 manifest and 13 exact Country image paths pass."
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/elsalvador/countries/elsalvador/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-16T18:46:11+09:00",
+    "sourceCommit": "e0f8c1f2192af9889712572201a44d0ecc3505d9",
+    "runId": 35090024962,
+    "pipelineVersion": 2,
+    "mainBaseCommit": "d0f007503b0e4548dd161a082fde450ae67b88e3"
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 1,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 1,
+    "tasteBatchApprovedAt": "2026-09-16T17:57:00+09:00",
+    "canonicalReviewReadyAt": "2026-09-16T18:46:11+09:00"
+  },
+  "workflowDeviationLog": [
+    {
+      "at": "2026-09-16T17:10:48+09:00",
+      "stage": "TASTE",
+      "code": "SINGLE_REQUEST_MULTIPLE_FOOD_TARGETS_AND_UNRESERVED_GENERATION",
+      "detail": "Four visually distinct Taste outputs were produced in one image-generation request, without four independent per-target reservations and reconciliations. The user explicitly approved their appearance and then instructed preservation without regeneration. Current Image Policy 7.2 requires one independent request per FOOD and the existing visual-policy waiver contract does not allow an exception for this violation. Retain the outputs and their user visual acceptance for reference, but do not classify them as production-APPROVED, create a Taste batch ledger or trigger 13-raster handoff unless a compliant path is established.",
+      "visuallyAcceptedGenerations": {
+        "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+        "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+        "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+        "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+      },
+      "userVisualApproval": "2026-09-16: approve, followed by 進めて with preservation of existing four images",
+      "productionEligibility": "BLOCKED_BY_GENERATION_PROVENANCE",
+      "assetHandoffAllowed": false
+    },
+    {
+      "at": "2026-09-16T17:37:00+09:00",
+      "stage": "TASTE",
+      "code": "USER_AUTHORIZED_CLOSED_HISTORICAL_WAIVER",
+      "detail": "User explicitly said 採用 for the four existing images after the single-request/four-output defect was disclosed. System PR #837 merged a closed waiver bound to exactly these four target/generation pairs; only the generation provenance is excepted, with hard visual QA still required. Recovery is staged at the actual Taste batch boundary; no retroactive reservations or historical ledger fabricated.",
+      "generations": {
+        "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+        "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+        "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+        "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+      }
+    }
+  ],
+  "recoveryMigrations": [
+    {
+      "id": "elsalvador-taste-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "TASTE",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC_WITH_POLICY_WAIVER",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "recoveredGenerations": {
+        "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+        "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+        "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+        "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-16",
+      "userInstruction": "採用",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "appliedAt": "2026-09-16T17:57:00+09:00"
+    }
+  ],
+  "visualPolicyWaivers": [
+    {
+      "id": "elsalvador-taste-four-20260916",
+      "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+      "closedHistoricalCaseId": "elsalvador-taste-four-20260916",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "kind": "TASTE",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "generations": {
+        "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+        "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+        "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+        "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-16",
+      "userInstruction": "採用",
+      "preserveExistingImages": true,
+      "regenerationRequired": false,
+      "hardVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "stateDesynchronized": true,
+      "recoveryMigrationId": "elsalvador-taste-recovery-20260916",
+      "status": "APPLIED"
+    }
+  ],
+  "next": {
+    "action": "NONE",
+    "asset": null
+  }
+}
