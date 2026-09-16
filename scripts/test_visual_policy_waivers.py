@@ -15,66 +15,36 @@ def base_state() -> dict:
     generation = "scene-generation-1"
     return {
         "hero": {"state": "APPROVED", "approvedGenerationId": "hero-generation"},
-        "scenes": [
-            {"id": "S01", "state": "APPROVED", "approvedGenerationId": generation},
-        ],
+        "scenes": [{"id": "S01", "state": "APPROVED", "approvedGenerationId": generation}],
         "taste": [],
-        "sceneBatchReview": {
-            "approval": "APPROVED",
-            "rounds": [
-                {
-                    "round": 1,
-                    "reviewBoundary": True,
-                    "scope": ["S01"],
-                    "approvedGenerations": {"S01": generation},
-                    "regenerate": [],
-                    "approvedAt": "2026-09-16T11:34:00+09:00",
-                }
-            ],
-        },
-        "recoveryMigrations": [
-            {
-                "id": "test-scene-recovery",
-                "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
-                "kind": "SCENE",
-                "reasonCode": "ORCHESTRATION_STATE_DESYNC_WITH_POLICY_WAIVER",
-                "scope": ["S01"],
-                "recoveredGenerations": {"S01": generation},
-                "authorizedBy": "USER_EXPLICIT",
-                "authorizedAt": "2026-09-16T11:34:00+09:00",
-                "preserveExistingImages": True,
-                "status": "APPLIED",
-            }
-        ],
-        "visualPolicyWaivers": [
-            {
-                "id": "test-scene-waiver",
-                "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
-                "violationCode": "PREVIOUS_IMAGE_REFERENCE_USED",
-                "kind": "SCENE",
-                "scope": ["S01"],
-                "generations": {"S01": generation},
-                "authorizedBy": "USER_EXPLICIT",
-                "authorizedAt": "2026-09-16T11:34:00+09:00",
-                "userInstruction": "Keep the already approved scene; do not regenerate it.",
-                "preserveExistingImages": True,
-                "regenerationRequired": False,
-                "hardVisualQa": {
-                    "targetIdentity": "PASS",
-                    "previousAssetRepeat": "PASS",
-                    "collageTypography": "PASS",
-                },
-                "stateDesynchronized": True,
-                "recoveryMigrationId": "test-scene-recovery",
-                "status": "APPLIED",
-            }
-        ],
+        "sceneBatchReview": {"approval": "APPROVED", "rounds": [{
+            "round": 1, "reviewBoundary": True, "scope": ["S01"],
+            "approvedGenerations": {"S01": generation}, "regenerate": [],
+            "approvedAt": "2026-09-16T11:34:00+09:00",
+        }]},
+        "recoveryMigrations": [{
+            "id": "test-scene-recovery", "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+            "kind": "SCENE", "reasonCode": "ORCHESTRATION_STATE_DESYNC_WITH_POLICY_WAIVER",
+            "scope": ["S01"], "recoveredGenerations": {"S01": generation},
+            "authorizedBy": "USER_EXPLICIT", "authorizedAt": "2026-09-16T11:34:00+09:00",
+            "preserveExistingImages": True, "status": "APPLIED",
+        }],
+        "visualPolicyWaivers": [{
+            "id": "test-scene-waiver", "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+            "violationCode": "PREVIOUS_IMAGE_REFERENCE_USED", "kind": "SCENE",
+            "scope": ["S01"], "generations": {"S01": generation},
+            "authorizedBy": "USER_EXPLICIT", "authorizedAt": "2026-09-16T11:34:00+09:00",
+            "userInstruction": "Keep the already approved scene; do not regenerate it.",
+            "preserveExistingImages": True, "regenerationRequired": False,
+            "hardVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"},
+            "stateDesynchronized": True, "recoveryMigrationId": "test-scene-recovery",
+            "status": "APPLIED",
+        }],
     }
 
 
 def test_good_applied_waiver() -> None:
-    state = base_state()
-    errors = waiver.validate_state_dict(state, "test.json")
+    errors = waiver.validate_state_dict(base_state(), "test.json")
     assert not errors, errors
 
 
@@ -101,13 +71,51 @@ def test_applied_generation_must_be_in_batch_ledger() -> None:
 
 def test_staged_candidate_contract() -> None:
     state = base_state()
-    generation = "scene-generation-1"
-    state["scenes"][0] = {"id": "S01", "state": "REVIEW_CANDIDATE", "candidateGenerationId": generation}
+    state["scenes"][0] = {"id": "S01", "state": "REVIEW_CANDIDATE", "candidateGenerationId": "scene-generation-1"}
     state["sceneBatchReview"] = {"approval": "PENDING", "rounds": []}
     state["recoveryMigrations"][0]["status"] = "STAGED"
     state["visualPolicyWaivers"][0]["status"] = "STAGED"
     errors = waiver.validate_state_dict(state, "test.json")
     assert not errors, errors
+
+
+def historical_taste_state() -> dict:
+    case = waiver.policy()["closedHistoricalCases"]["elsalvador-taste-four-20260916"]
+    generations = dict(case["generations"])
+    scope = list(case["scope"])
+    return {
+        "slug": "elsalvador",
+        "taste": [{"id": target, "state": "REVIEW_CANDIDATE", "candidateGenerationId": generations[target]} for target in scope],
+        "tasteBatchReview": {"approval": "PENDING", "rounds": []},
+        "recoveryMigrations": [{
+            "id": "elsalvador-taste-recovery", "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+            "kind": "TASTE", "scope": scope, "recoveredGenerations": generations,
+            "authorizedBy": "USER_EXPLICIT", "status": "STAGED",
+        }],
+        "visualPolicyWaivers": [{
+            "id": "elsalvador-taste-waiver", "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+            "closedHistoricalCaseId": "elsalvador-taste-four-20260916",
+            "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST", "kind": "TASTE",
+            "scope": scope, "generations": generations,
+            "authorizedBy": "USER_EXPLICIT", "authorizedAt": "2026-09-16T17:00:00+09:00",
+            "userInstruction": "採用", "preserveExistingImages": True, "regenerationRequired": False,
+            "hardVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"},
+            "stateDesynchronized": True, "recoveryMigrationId": "elsalvador-taste-recovery", "status": "STAGED",
+        }],
+    }
+
+
+def test_closed_historical_taste_waiver() -> None:
+    state = historical_taste_state()
+    assert not waiver.validate_state_dict(state, "test.json")
+    state["slug"] = "another-country"
+    assert any("exact country" in e for e in waiver.validate_state_dict(state, "test.json"))
+    state = historical_taste_state()
+    state["visualPolicyWaivers"][0]["generations"]["FOOD04"] = "another-generation"
+    assert any("exact country" in e for e in waiver.validate_state_dict(state, "test.json"))
+    state = historical_taste_state()
+    state["visualPolicyWaivers"][0]["closedHistoricalCaseId"] = "nonexistent"
+    assert any("closedHistoricalCaseId" in e for e in waiver.validate_state_dict(state, "test.json"))
 
 
 def main() -> int:
@@ -116,6 +124,7 @@ def main() -> int:
     test_unknown_violation_is_rejected()
     test_applied_generation_must_be_in_batch_ledger()
     test_staged_candidate_contract()
+    test_closed_historical_taste_waiver()
     print("Visual policy waiver tests: PASS")
     return 0
 
