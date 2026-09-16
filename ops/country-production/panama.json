@@ -139,10 +139,12 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/panama/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "LIVE_BROWSER_QA_PASS",
+    "atlasPublished": false,
+    "browserQa": "PASS",
+    "verifiedAt": "2026-09-16T16:44:45.630409+00:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -434,7 +436,7 @@
     "canonicalReviewReadyAt": "2026-09-16T15:28:45+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
