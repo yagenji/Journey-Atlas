@@ -2,23 +2,32 @@
   "schemaVersion": 1,
   "authority": "main",
   "policyId": "USER_APPROVED_VISUAL_POLICY_WAIVER_V1",
-  "updatedAt": "2026-09-16T11:34:00+09:00",
+  "updatedAt": "2026-09-16",
   "normalImagePolicyRef": "ops/image-generation-policy.json",
   "stateRecoveryRef": "docs/STATE_RECOVERY_MIGRATION.md",
-  "purpose": "Define a narrow post-generation waiver path for an already-created visual that the user explicitly approves even though its generation provenance violated one allowed non-visual generation rule. The normal image-generation policy remains unchanged for all future generation.",
+  "purpose": "Allow an explicitly approved existing image to be kept despite a narrowly enumerated non-visual generation-provenance defect; never authorize future non-compliant generation.",
   "scope": {
     "postGenerationOnly": true,
     "mayAuthorizeFutureNonCompliantGeneration": false,
     "requiresExplicitUserApproval": true,
     "allowedKinds": ["HERO", "SCENE", "TASTE"],
-    "allowedViolationCodes": ["PREVIOUS_IMAGE_REFERENCE_USED"],
-    "hardFailuresNeverWaivable": [
-      "TARGET_IDENTITY_FAIL",
-      "PREVIOUS_ASSET_REPEAT",
-      "WRONG_TARGET_CARRYOVER",
-      "COLLAGE_OR_MULTIPANEL",
-      "TYPOGRAPHY_ADDED"
-    ]
+    "allowedViolationCodes": ["PREVIOUS_IMAGE_REFERENCE_USED", "MULTIPLE_OUTPUTS_ONE_REQUEST"],
+    "hardFailuresNeverWaivable": ["TARGET_IDENTITY_FAIL", "PREVIOUS_ASSET_REPEAT", "WRONG_TARGET_CARRYOVER", "COLLAGE_OR_MULTIPANEL", "TYPOGRAPHY_ADDED"]
+  },
+  "closedHistoricalCases": {
+    "elsalvador-taste-four-20260916": {
+      "slug": "elsalvador",
+      "kind": "TASTE",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "scope": ["FOOD01", "FOOD02", "FOOD03", "FOOD04"],
+      "generations": {
+        "FOOD01": "62f73c11-5a66-435b-87a5-74e1bd4032a7",
+        "FOOD02": "bed1193a-49e3-426e-8dce-bff160c3ef4c",
+        "FOOD03": "bc405aff-996c-4daf-9352-0b2a6a1581b5",
+        "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
+      },
+      "authorization": "User explicitly approved the four displayed dishes, then explicitly selected 採用 after being told that one image request returned four separate outputs. This exemption is limited to those four exact generation IDs."
+    }
   },
   "requirements": {
     "exactGenerationIdsRequired": true,
@@ -29,30 +38,13 @@
     "regenerationRequired": false,
     "normalBatchApprovalStillRequiredForSceneTaste": true,
     "stateRecoveryRequiredWhenProductionStateIsDesynchronized": true,
-    "requiredVisualQaPasses": [
-      "targetIdentity",
-      "previousAssetRepeat",
-      "collageTypography"
-    ]
+    "requiredVisualQaPasses": ["targetIdentity", "previousAssetRepeat", "collageTypography"]
   },
   "stateContract": {
     "array": "visualPolicyWaivers",
     "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
-    "requiredFields": [
-      "id",
-      "type",
-      "violationCode",
-      "kind",
-      "scope",
-      "generations",
-      "authorizedBy",
-      "authorizedAt",
-      "userInstruction",
-      "preserveExistingImages",
-      "regenerationRequired",
-      "hardVisualQa",
-      "status"
-    ],
+    "requiredFields": ["id", "type", "violationCode", "kind", "scope", "generations", "authorizedBy", "authorizedAt", "userInstruction", "preserveExistingImages", "regenerationRequired", "hardVisualQa", "status"],
+    "closedHistoricalCaseIdRequiredFor": ["MULTIPLE_OUTPUTS_ONE_REQUEST"],
     "allowedStatuses": ["STAGED", "APPLIED"],
     "recoveryMigrationIdOptionalWhenStateAlreadyTracked": true,
     "recoveryMigrationIdRequiredWhenStateDesynchronized": true
