@@ -20,6 +20,7 @@ STATUS_PATH = "data/country-renewal-status.json"
 COUNTRY_SHARED_FILES = {
     "country.html",
     "assets/js/app.js",
+    "assets/js/country-themes.js",
     "assets/icons/atlas-icons.svg",
     "assets/css/style.css",
     "assets/css/country.css",
@@ -157,8 +158,8 @@ def status_rows(payload: dict) -> dict[str, dict]:
 
 
 def changed_status_slugs(base: str, head: str) -> set[str]:
-    before = status_rows(show_json(base, STATUS_PATH))
-    after = status_rows(show_json(head, STATUS_PATH))
+    before = status_rows(show_json(base, path))
+    after = status_rows(show_json(head, path))
     slugs = set(before) | set(after)
     return {slug for slug in slugs if before.get(slug) != after.get(slug)}
 
@@ -281,6 +282,7 @@ def self_test() -> int:
     assert not is_production_file("docs/COUNTRY_PRODUCTION_STATE.md")
     assert set(REGISTRY_PATHS) | {STATUS_PATH}
     assert "country.html" in COUNTRY_SHARED_FILES
+    assert "assets/js/country-themes.js" in COUNTRY_SHARED_FILES
     assert "assets/icons/atlas-icons.svg" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
     assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
