@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "authority": "main",
+  "policyId": "USER_APPROVED_VISUAL_POLICY_WAIVER_V1",
+  "updatedAt": "2026-09-16T11:34:00+09:00",
+  "normalImagePolicyRef": "ops/image-generation-policy.json",
+  "stateRecoveryRef": "docs/STATE_RECOVERY_MIGRATION.md",
+  "purpose": "Define a narrow post-generation waiver path for an already-created visual that the user explicitly approves even though its generation provenance violated one allowed non-visual generation rule. The normal image-generation policy remains unchanged for all future generation.",
+  "scope": {
+    "postGenerationOnly": true,
+    "mayAuthorizeFutureNonCompliantGeneration": false,
+    "requiresExplicitUserApproval": true,
+    "allowedKinds": ["HERO", "SCENE", "TASTE"],
+    "allowedViolationCodes": ["PREVIOUS_IMAGE_REFERENCE_USED"],
+    "hardFailuresNeverWaivable": [
+      "TARGET_IDENTITY_FAIL",
+      "PREVIOUS_ASSET_REPEAT",
+      "WRONG_TARGET_CARRYOVER",
+      "COLLAGE_OR_MULTIPANEL",
+      "TYPOGRAPHY_ADDED"
+    ]
+  },
+  "requirements": {
+    "exactGenerationIdsRequired": true,
+    "existingOutputsRequired": true,
+    "targetMappingMustBeUnambiguous": true,
+    "userAuthorizationValue": "USER_EXPLICIT",
+    "preserveExistingImages": true,
+    "regenerationRequired": false,
+    "normalBatchApprovalStillRequiredForSceneTaste": true,
+    "stateRecoveryRequiredWhenProductionStateIsDesynchronized": true,
+    "requiredVisualQaPasses": [
+      "targetIdentity",
+      "previousAssetRepeat",
+      "collageTypography"
+    ]
+  },
+  "stateContract": {
+    "array": "visualPolicyWaivers",
+    "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+    "requiredFields": [
+      "id",
+      "type",
+      "violationCode",
+      "kind",
+      "scope",
+      "generations",
+      "authorizedBy",
+      "authorizedAt",
+      "userInstruction",
+      "preserveExistingImages",
+      "regenerationRequired",
+      "hardVisualQa",
+      "status"
+    ],
+    "allowedStatuses": ["STAGED", "APPLIED"],
+    "recoveryMigrationIdOptionalWhenStateAlreadyTracked": true,
+    "recoveryMigrationIdRequiredWhenStateDesynchronized": true
+  }
+}
