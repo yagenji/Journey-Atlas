@@ -1,0 +1,61 @@
+name: QA live JOURNEY LENS photograph
+on:
+  pull_request:
+    paths:
+      - .github/workflows/qa-lens-photo-live.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  photo-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install browser dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify real photograph on published Mexico page
+        run: |
+          python3 - <<'PY'
+          import json, re, shutil, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          url = 'https://atlas.yagenji.com/countries/mexico/'
+          opts = Options()
+          for arg in ('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'):
+              opts.add_argument(arg)
+          opts.set_capability('goog:loggingPrefs', {'browser':'ALL'})
+          path = shutil.which('chromedriver')
+          driver = webdriver.Chrome(service=Service(path) if path else Service(), options=opts)
+          driver.set_page_load_timeout(40)
+          driver.set_script_timeout(25)
+          failed = False
+          try:
+              for viewport, width, height in [('desktop',1440,1000),('tablet',834,1112),('mobile',390,844)]:
+                  driver.set_window_size(width,height)
+                  driver.get(url + '?qa=lens-photo-' + str(time.time_ns()))
+                  WebDriverWait(driver, 40).until(lambda d: d.execute_script("return document.querySelector('#country-lens-bridge') && document.querySelector('.scene-card')"))
+                  try:
+                      WebDriverWait(driver, 40).until(lambda d: d.execute_script("return document.querySelector('#country-lens-thumb')?.classList.contains('has-image')"))
+                  except Exception:
+                      pass
+                  status = driver.execute_script("const sec=document.querySelector('#country-lens-bridge');const thumb=document.querySelector('#country-lens-thumb');const link=document.querySelector('#country-lens-link');return {sectionHidden:sec?.hidden,hasImage:thumb?.classList.contains('has-image'),background:thumb?.style.backgroundImage||'',link:link?.href,scriptLoaded:!![...document.scripts].find(x=>x.src.includes('country-themes.js'))};")
+                  match = re.search(r'url\([\"\']?(.*?)[\"\']?\)', status['background'])
+                  image_url = match.group(1) if match else ''
+                  if image_url:
+                      image = driver.execute_async_script("const done=arguments[arguments.length-1];const img=new Image();img.onload=()=>done({ok:true,w:img.naturalWidth,h:img.naturalHeight});img.onerror=()=>done({ok:false,w:0,h:0});img.src=arguments[0];",image_url)
+                  else:
+                      image = {'ok':False,'w':0,'h':0}
+                  valid = (not status['sectionHidden'] and status['hasImage'] and image['ok'] and image['w'] >= 200 and 'journey.yagenji.com' in image_url)
+                  print(json.dumps({'viewport':viewport,'valid':valid,'status':status,'image':image},ensure_ascii=False),flush=True)
+                  if not valid:
+                      failed=True
+                      print('Browser console: '+json.dumps(driver.get_log('browser')[-6:],ensure_ascii=False),flush=True)
+          finally:
+              driver.quit()
+          if failed:
+              raise SystemExit('FAIL: JOURNEY LENS photo is not actually rendered')
+          print('PASS: JOURNEY LENS live photograph decodes on desktop/tablet/mobile',flush=True)
+          PY
