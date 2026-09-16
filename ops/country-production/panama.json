@@ -5,8 +5,8 @@
   "contentRef":"country/panama",
   "stateRef":"country/panama",
   "phase":"MAP",
-  "stateRevision":6,
-  "updatedAt":"2026-09-16T11:44:00+09:00",
+  "stateRevision":7,
+  "updatedAt":"2026-09-16T11:45:00+09:00",
   "hero":{"id":"HERO","state":"APPROVED","asset":"assets/images/panama/approved/hero-agua-clara-gatun.webp","contentId":"agua-clara-gatun-locks","approvedGenerationId":"9dd09ea0-30e0-4bc1-bf5b-790190ff3c00","approvedAt":"2026-09-16T11:41:00+09:00","approvalBasis":"User explicitly approved the generated Hero in this production conversation."},
   "scenes":[
     {"id":"S01","state":"APPROVED","asset":"assets/images/panama/approved/s01-casco-antiguo-paseo-esteban-huertas.webp","contentId":"casco-antiguo-paseo-esteban-huertas","approvedGenerationId":"7f569e30-3ef4-4a98-ab3b-3ce4e9e780b3"},
@@ -45,8 +45,8 @@
   "productionProtocolId":"2.0",
   "productionProtocolPolicyPatch":5,
   "preVisualBuild":{"state":"PASS","checks":{"countryJsonEditorialComplete":"PASS","finalExpectedImagePathsDeclared":"PASS","sceneCoordinatesFinal":"PASS","mapBuiltAndQaPassed":"PASS","mapCapitalLabelCollisionQaPassed":"PASS","mapSvgSelfContainedQaPassed":"PASS","mapSceneCoordinatesInsideRenderedLandQaPassed":"PASS","taxonomyComplete":"PASS","relatedCountriesComplete":"PASS","nextRoutesResolved":"PASS","travelScaleComplete":"PASS","signatureFactsComplete":"PASS","sourcesComplete":"PASS","editorialQaV2Passed":"PASS"}},
-  "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
+  "assetHandoff":{"mode":"USER_HANDOFF","state":"PASS","expectedRasterCount":13,"verifiedRasterCount":13,"verifiedAt":"2026-09-16T11:45:00+09:00","verification":{"gitBlobMatch":"PASS","fullDecode":"PASS","format":"WEBP","dimensions":"PASS","expectedDimensions":"Hero 1536x1024; Scenes/Taste 1200x800","source":"User-uploaded 13-raster handoff verified against the exact assistant-generated handoff bytes."}},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
-  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":1,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":"2026-09-16T11:44:00+09:00","canonicalReviewReadyAt":null},
+  "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":1,"tasteBatchReviews":1,"assetHandoffs":1,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":"2026-09-16T11:44:00+09:00","canonicalReviewReadyAt":null},
   "next":{"action":"VERIFY_APPROVED_ASSETS","asset":null}
 }
