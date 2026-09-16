@@ -1,4 +1,4 @@
-name: One-time United States source metadata correction
+name: One-time United States approved Scene delivery normalization
 
 on:
   push:
@@ -11,50 +11,55 @@ permissions:
   contents: write
 
 jobs:
-  correct-source-metadata:
+  normalize-eight-scenes:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Checkout the Country branch, not the temporary workflow branch
+      - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
           ref: country/unitedstates
           fetch-depth: 0
-      - name: Correct precisely two source metadata fields
+      - name: Install original image delivery dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+      - name: Normalize only the eight approved Scenes and fully verify output
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json
+          import json,sys,subprocess
           from pathlib import Path
-          path = Path('data/countries/unitedstates.json')
-          original = path.read_text(encoding='utf-8')
-          data = json.loads(original)
-          assert data['slug'] == 'unitedstates'
-          assert data['sourceDates']['religion'] == '2023-2024'
-          assert data['sourceDates']['languageUse'] == '2024'
-          assert data['sources']['languages'].startswith('U.S. Census Bureau')
-          edits = {
-              '"religion":"2023-2024"': '"religion":"2024"',
-              '"languageUse":"2024"': '"languages":"2024"',
-          }
-          revised = original
-          for old, new in edits.items():
-              assert revised.count(old) == 1, f'Expected exactly one occurrence of {old}'
-              revised = revised.replace(old, new, 1)
-          result = json.loads(revised)
-          assert result['sourceDates']['religion'] == '2024'
-          assert result['sourceDates']['languages'] == '2024'
-          assert 'languageUse' not in result['sourceDates']
-          assert len(result['scenes']) == 8 and len(result['taste']['items']) == 4
-          assert result['publicationPipelineVersion'] == 2
-          path.write_text(revised, encoding='utf-8')
-          print('Two exact source metadata corrections completed; all remaining content preserved')
+          from PIL import Image
+          sys.path.insert(0,'scripts')
+          import normalize_country_image_delivery as delivery
+          slug='unitedstates'
+          data=json.loads((Path('data/countries')/f'{slug}.json').read_text())
+          assert len(data['scenes'])==8 and len(data['taste']['items'])==4
+          expected={scene['image'] for scene in data['scenes']}
+          assert len(expected)==8
+          assert not delivery.published_registry_hero_mismatches(), 'Refusing to touch unrelated registry data'
+          plans=delivery.build_plan([slug])
+          delivery.print_plan(plans)
+          assert len(plans)==8 and {p.source for p in plans}==expected
+          assert all(p.source==p.target and p.new_size==(1200,800) and p.old_size==(1536,1024) for p in plans)
+          before,after,updates=delivery.apply(plans,[slug])
+          assert updates==0
+          assert not delivery.audit_delivery([slug])
+          for path in expected:
+              with Image.open(path) as im:
+                  im.load()
+                  assert im.format=='WEBP' and im.size==(1200,800),path
+          for item in [data['hero'], *data['taste']['items']]:
+              with Image.open(item['image']) as im:
+                  im.load()
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          assert changed==expected,f'Unexpected changed paths: {changed.symmetric_difference(expected)}'
+          print(f'PASS: exactly {len(expected)} approved Scenes downsampled, fully decoded; bytes {before} -> {after}; no other tracked changes')
           PY
           git diff --check
-          git diff --numstat -- data/countries/unitedstates.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f -- data/countries/unitedstates.json
-          git commit -m 'Correct United States source date and source key metadata'
+          git add -f -- assets/images/unitedstates/approved/*.webp
+          git diff --cached --check
+          git commit -m 'Normalize eight approved United States Scenes to 1200x800'
           git push origin HEAD:refs/heads/country/unitedstates
