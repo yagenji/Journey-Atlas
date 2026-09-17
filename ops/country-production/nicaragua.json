@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "nicaragua",
   "countryName": "NICARAGUA",
-  "contentRef": "country/nicaragua",
-  "stateRef": "country/nicaragua",
-  "phase": "QA",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-17T17:10:20+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-17T21:16:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/nicaragua/approved/hero-ometepe-punta-jesus-maria.webp",
@@ -445,14 +445,14 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-17T17:10:20+09:00",
+    "completedAt": "2026-09-17T19:00:26+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "d18e027fed362c3ff46e55ea35319c4a1d75ba3f",
+    "sourceCommit": "f69ec073a357adbe3b55b58ee6e9de4e36b9ed00",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -460,17 +460,29 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/nicaragua/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-17T21:16:00+09:00",
+    "userInstruction": "公開して",
+    "approvalBasis": "Explicit final Country-page publication approval from the user after review corrections were merged to main."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-17T21:36:45+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/nicaragua/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -620,11 +632,11 @@
     "state": "DONE",
     "url": "https://yagenji.github.io/Journey-Atlas/reviews/nicaragua/countries/nicaragua/",
     "browserQa": "PASS",
-    "deployedAt": "2026-09-17T17:10:20+09:00",
-    "sourceCommit": "d18e027fed362c3ff46e55ea35319c4a1d75ba3f",
-    "runId": 35197998604,
+    "deployedAt": "2026-09-17T19:00:26+09:00",
+    "sourceCommit": "f69ec073a357adbe3b55b58ee6e9de4e36b9ed00",
+    "runId": 35207743925,
     "pipelineVersion": 2,
-    "mainBaseCommit": "d2a825f3f539e1bb3eda571ee67d0ae5c7cc6334"
+    "mainBaseCommit": "7674f4949d7ec375f1e8bdda3338420cddbc3599"
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -634,15 +646,15 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 1,
+    "reviewPreviewDeployments": 2,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-17T16:47:06+09:00",
-    "canonicalReviewReadyAt": "2026-09-17T17:10:20+09:00"
+    "canonicalReviewReadyAt": "2026-09-17T19:00:26+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "PUBLISH",
     "asset": null
   },
   "publicationPipelineVersion": 2
