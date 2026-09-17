@@ -1,0 +1,30 @@
+name: Nicaragua data repair one-time
+on:
+  push:
+    branches: [country/nicaragua]
+    paths: [.github/workflows/nicaragua-data-repair-once.yml]
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Print only target schema fields for editorial repair
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('data/countries/nicaragua.json').read_text()); r=json.loads(Path('data/atlas-destinations.json').read_text())
+          print('NEXT_ROUTES',json.dumps(c.get('nextRoutes'),ensure_ascii=False))
+          print('SOURCE_KEYS',json.dumps(c.get('sources'),ensure_ascii=False))
+          print('SOURCE_DATES',json.dumps(c.get('sourceDates'),ensure_ascii=False))
+          for i in c.get('nextRoutes') or []:
+              if isinstance(i,dict):
+                  matches=[x for x in r.get('destinations',[]) if x.get('slug')==i.get('slug') or x.get('nameJa')==i.get('country') or x.get('nameJa')==i.get('countryJa')]
+                  print('REGISTRY_MATCH',json.dumps(matches,ensure_ascii=False))
+          PY
