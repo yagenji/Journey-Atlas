@@ -20,7 +20,20 @@ class CanonicalImportAudit(unittest.TestCase):
         assert isinstance(cls.original, dict), "historical Costa Rica state is missing"
 
     def test_audited_real_import(self):
-        self.assertTrue(audit.canonical_import(IMPORTED, PATH, self.original))
+        valid = audit.canonical_import(IMPORTED, PATH, self.original)
+        if not valid:
+            source = self.original["reviewPreview"].get("sourceCommit")
+            prior = v7.git_json(source, PATH) if source else None
+            self.fail(
+                "historical canonical import rejected: "
+                f"source={source} sourcePresent={isinstance(prior, dict)} "
+                f"sourceStateErrors={v7.validate_state_dict(prior, PATH) if prior else 'missing'} "
+                f"importedStateErrors={v7.validate_state_dict(self.original, PATH)} "
+                f"approvedFieldsUnchanged="
+                f"{all(self.original.get(key) == (prior or {}).get(key) for key in ('hero', 'scenes', 'taste', 'sceneBatchReview', 'tasteBatchReview', 'recoveryMigrations', 'assetHandoff'))} "
+                f"assetTreesEqual={audit.immutable_assets(source, 'costarica') == audit.immutable_assets(IMPORTED, 'costarica') if source else False} "
+                f"importedAssetCount={len([x for x in audit.immutable_assets(IMPORTED, 'costarica') if '/approved/' in x])}"
+            )
         self.assertEqual(audit.validate_range(BASE, IMPORTED), [])
 
     def test_source_provenance_is_not_optional(self):
