@@ -1,5 +1,8 @@
 name: Verify JOURNEY ATLAS Cloudflare Production
 
+# This workflow file intentionally remains outside Cloudflare Build watch exclusions.
+# A mixed docs + verifier change must force a real Pages build and exact-SHA QA.
+
 on:
   push:
     branches: ["main"]
