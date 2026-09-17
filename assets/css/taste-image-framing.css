@@ -46,9 +46,9 @@
   object-fit: contain;
 }
 
-/* The four approved US Taste illustrations have a native 4:3 paper ground.
-   Match the image frame to avoid the contrasting card backing, then enlarge
-   gently within their outer paper margin. Keep every complete dish visible. */
+/* Approved US food artwork has an integral 4:3 paper ground. Match that frame
+   to eliminate the second backing color; trim only a minimal outer paper
+   margin so the full bowl rims, bowl bases, and pizza crust stay visible. */
 .taste-card__image:has(> .taste-card__img[src*="/unitedstates/approved/food-"]) {
   aspect-ratio: 4 / 3;
 }
@@ -57,12 +57,5 @@
   height: 100%;
   object-fit: contain;
   object-position: center;
-  transform: scale(1.08);
-}
-/* Preserve the raised pizza crust at the top and the gumbo bowl rim. */
-.taste-card__img[src*="/unitedstates/approved/food-new-york-style-pizza.webp"] {
-  transform: translateY(2%) scale(1.08);
-}
-.taste-card__img[src*="/unitedstates/approved/food-louisiana-gumbo.webp"] {
-  transform: translateY(1.5%) scale(1.08);
+  transform: scale(1.04);
 }
