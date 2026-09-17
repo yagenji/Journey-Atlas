@@ -5,8 +5,8 @@
   "contentRef": "country/antiguabarbuda-recovery",
   "stateRef": "country/antiguabarbuda-recovery",
   "phase": "QA",
-  "stateRevision": 19,
-  "updatedAt": "2026-09-17T18:30:48+09:00",
+  "stateRevision": 20,
+  "updatedAt": "2026-09-17T19:46:34+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -488,14 +488,14 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-17T18:30:48+09:00",
+    "completedAt": "2026-09-17T19:46:34+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "7e4c98e761abc340a83801f7eda00fac253edc91",
+    "sourceCommit": "39a64c29e2fc3abc01f813b6d87f4ac719ecf0b8",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -799,11 +799,11 @@
     "state": "DONE",
     "url": "https://yagenji.github.io/Journey-Atlas/reviews/antiguabarbuda/countries/antiguabarbuda/",
     "browserQa": "PASS",
-    "deployedAt": "2026-09-17T18:30:48+09:00",
-    "sourceCommit": "7e4c98e761abc340a83801f7eda00fac253edc91",
-    "runId": 35205245565,
+    "deployedAt": "2026-09-17T19:46:34+09:00",
+    "sourceCommit": "39a64c29e2fc3abc01f813b6d87f4ac719ecf0b8",
+    "runId": 35211963294,
     "pipelineVersion": 2,
-    "mainBaseCommit": "7674f4949d7ec375f1e8bdda3338420cddbc3599"
+    "mainBaseCommit": "67c46a055616a68d0567fd7e9524259aeff1bccb"
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -813,15 +813,15 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 2,
+    "reviewPreviewDeployments": 3,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 2,
+    "browserQaCycles": 3,
     "tasteBatchApprovedAt": "2026-09-16T20:25:00+09:00",
-    "canonicalReviewReadyAt": "2026-09-17T18:30:48+09:00"
+    "canonicalReviewReadyAt": "2026-09-17T19:46:34+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
