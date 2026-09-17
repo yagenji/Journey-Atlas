@@ -1,0 +1,88 @@
+name: One-time United States map inset relocation
+
+on:
+  push:
+    branches:
+      - fix/unitedstates-left-insets-20260917
+    paths:
+      - .github/workflows/us-left-insets-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: us-left-insets-once
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/unitedstates-left-insets-20260917
+          persist-credentials: true
+      - name: Reposition existing map shapes, frames, labels, and projected markers together
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          svg_path = Path('assets/images/unitedstates/map-atlas-v1.svg')
+          json_path = Path('data/countries/unitedstates.json')
+          svg = svg_path.read_text(encoding='utf-8')
+          country = json.loads(json_path.read_text(encoding='utf-8'))
+          assert country['slug'] == 'unitedstates'
+          assert country.get('atlasPublished') is False, 'Never publish without user approval'
+          assert country['map']['svg'] == svg_path.as_posix()
+
+          def replace_exact(old, new):
+              global svg
+              count = svg.count(old)
+              assert count == 1, f'Expected exactly one {old!r}, got {count}'
+              svg = svg.replace(old, new, 1)
+
+          # Preserve every original coastline vertex and the 1200 x 760 canvas.
+          replace_exact('<g data-map-region="lower48">', '<g data-map-region="lower48" transform="translate(245 0)">')
+          replace_exact('<g data-map-region="alaska">', '<g data-map-region="alaska" transform="translate(-906 0)">')
+          replace_exact('<g data-map-region="hawaii">', '<g data-map-region="hawaii" transform="translate(-896 0)">')
+          replace_exact('<g data-map-inset-frame="alaska"><rect x="941"', '<g data-map-inset-frame="alaska"><rect x="35"')
+          replace_exact('<g data-map-inset-frame="hawaii"><rect x="931"', '<g data-map-inset-frame="hawaii"><rect x="35"')
+
+          before, marker, labels = svg.partition('<g data-map-inset-explanation="true"')
+          assert marker and labels.endswith('</svg>'), 'Missing inset explanation'
+          for old, new in [('x="950"', 'x="44"'), ('x="957"', 'x="51"'), ('x="941"', 'x="45"'), ('x="948"', 'x="52"')]:
+              assert labels.count(old) == 1, f'Expected exactly one label attribute {old}'
+              labels = labels.replace(old, new, 1)
+          svg = before + marker + labels
+          assert 'viewBox="0 0 1200 760"' in svg
+          assert '位置・縮尺を変えた別枠表示' in svg
+          ET.fromstring(svg)
+
+          expected = {'lower48': (30, 275), 'alaska': (955, 49), 'hawaii': (935, 39)}
+          regions = country['map']['regions']
+          assert {region['id'] for region in regions} == set(expected)
+          for region in regions:
+              old_x, new_x = expected[region['id']]
+              assert region['rect']['x'] == old_x, f'Unexpected {region["id"]} projection'
+              region['rect']['x'] = new_x
+          assert country['map']['insetNote']
+          assert country['atlasPublished'] is False
+          svg_path.write_text(svg, encoding='utf-8')
+          json_path.write_text(json.dumps(country, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          print('Preserved coastline geometry; shifted mainland +245, Alaska -906, Hawaii -896; moved both inset frames and labels and projection rectangles.')
+          PY
+          python3 scripts/validate_country.py --strict data/countries/unitedstates.json
+      - name: Commit only the two finished assets and remove this one-time workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f assets/images/unitedstates/map-atlas-v1.svg data/countries/unitedstates.json
+          git rm .github/workflows/us-left-insets-once.yml
+          git diff --cached --check
+          git diff --cached --name-only
+          git commit -m 'Move Alaska and Hawaii map insets to the left with synchronized markers'
+          git push origin HEAD:fix/unitedstates-left-insets-20260917
