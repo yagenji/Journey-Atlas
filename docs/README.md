@@ -1,18 +1,25 @@
 # Documentation index
 
-JOURNEY ATLASの現行仕様を参照するための索引です。公開済みCountryの過去制作計画は、現行State・仕様・実装から参照されていないことを確認して削除し、Git履歴を過去記録とします。未公開Countryの作業資料と承認記録の参照先は維持します。
+JOURNEY ATLASの現行仕様への索引です。公開済みCountryの過去制作計画は、現行State・仕様・実装から参照されていないことを確認して削除し、Git履歴を過去記録とします。未公開Countryの作業資料と承認記録の参照先は維持します。
 
-## Current source-of-truth documents
+## New Country: read only what is needed
 
-- `../ops/country-production-policy.json` — Country制作の機械可読な正本
-- `../ops/image-generation-policy.json` — 画像制作の機械可読な正本
-- `COUNTRY_PRODUCTION_PROTOCOL_2.md` — 新規Countryの制作手順
+制作開始時の人間向け正本は **`COUNTRY_PRODUCTION_RULES.md` 1本**です。共通の技術的不変条件は `../AGENTS.md`、再開点は対象CountryのJSONとProduction Stateです。初回から以下の全資料を読まないでください。State transition・画像生成・Content QA・Map QA・review/publishなど、現在の工程で必要になったものだけ対応する機械正本・仕様を参照します。
+
+`COUNTRY_PRODUCTION_PROTOCOL_2.md` は旧文書からの互換参照であり、新規国の制作指示書ではありません。旧方式で進行中のCountryは無断移行しません。
+
+## Source-of-truth and phase-specific references
+
+- `COUNTRY_PRODUCTION_RULES.md` — **新規Countryの人間向け制作ルールの唯一の正本**
+- `../AGENTS.md` — Repository全体の技術的不変条件
+- `../ops/country-production-policy.json` — Country制作の機械可読な正本（必要時のみ）
+- `../ops/image-generation-policy.json` — 画像制作の機械可読な正本（必要時のみ）
+- `COUNTRY_PRODUCTION_PROTOCOL_2.md` — Protocol 2の技術的互換参照。新規国の起動時には読まない
 - `PUBLICATION_PIPELINE_V2.md` — Review / publication automation
 - `CONTENT_QUALITY_RULES_V6.md` — 新規CountryのContent QA。既存Countryは宣言済みversionに従う
-- `IMAGE_POLICY_REVISION_7_2.md` — 現行画像制作ルール
+- `IMAGE_POLICY_REVISION_7_2.md` — 現行画像制作の詳細
 - `COUNTRY_PRODUCTION_STATE.md` — Country Production Stateの契約
-- `../AGENTS.md` — Repository共通の制作・実装ルール
-- `../WORKFLOW.md` — Design lock、実装、Branch lifecycle
+- `../WORKFLOW.md` — 固有のDesign lock、トップページ、Branch lifecycle。Country制作手順は保持しない
 - `COUNTRY_TEMPLATE.md` — Country JSON / Template / release contract
 - `COUNTRY_PAGE_TEMPLATE.md` — Country Pageの情報構成と表示要件
 - `MAP_SYSTEM.md` — Country Mapの共通仕様とQA
