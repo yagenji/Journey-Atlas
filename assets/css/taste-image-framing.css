@@ -25,12 +25,17 @@
   transform: translateY(-5%);
 }
 
-/* Antigua & Barbuda's approved 3:2 Taste artwork has substantial internal safe
-   margins. Enlarge inside the existing clipped card, without editing approved art. */
+/* Antigua & Barbuda's approved 3:2 illustrations have integral paper grounds.
+   The previous 125% scale cut off the bottoms of the dishes. Retain a modest
+   enlargement, center each image, and keep the lower food silhouette visible. */
 .taste-card__img[src*="/antiguabarbuda/approved/food-"] {
-  width: 125%;
-  height: 125%;
+  width: 110%;
+  height: 110%;
+  justify-self: center;
+  align-self: center;
   object-fit: contain;
+  object-position: center;
+  transform: translateY(-1%);
 }
 
 /* Nicaragua's approved 1200x800 Taste illustrations include a warm paper ground
