@@ -30,6 +30,7 @@ jobs:
       main_sha: ${{ steps.overlay.outputs.main_sha }}
     steps:
       - name: Checkout Country branch
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
         uses: actions/checkout@v4
         with:
           # Most pull requests are not active Pipeline v2 Country targets.
@@ -37,6 +38,7 @@ jobs:
           # only if a real Country overlay comparison is required.
           fetch-depth: 1
       - uses: actions/setup-python@v5
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
         with:
           python-version: '3.12'
       - name: Resolve Publication Pipeline v2 target
