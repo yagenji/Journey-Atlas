@@ -6,25 +6,49 @@ on:
 permissions:
   contents: write
 jobs:
-  inspect:
+  repair:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Print only target schema fields for editorial repair
+      - name: Repair only seven schema references using authoritative existing data
+        shell: bash
         run: |
+          set -euo pipefail
           python3 - <<'PY'
           import json
           from pathlib import Path
-          c=json.loads(Path('data/countries/nicaragua.json').read_text()); r=json.loads(Path('data/atlas-destinations.json').read_text())
-          print('NEXT_ROUTES',json.dumps(c.get('nextRoutes'),ensure_ascii=False))
-          print('SOURCE_KEYS',json.dumps(c.get('sources'),ensure_ascii=False))
-          print('SOURCE_DATES',json.dumps(c.get('sourceDates'),ensure_ascii=False))
-          for i in c.get('nextRoutes') or []:
-              if isinstance(i,dict):
-                  matches=[x for x in r.get('destinations',[]) if x.get('slug')==i.get('slug') or x.get('nameJa')==i.get('country') or x.get('nameJa')==i.get('countryJa')]
-                  print('REGISTRY_MATCH',json.dumps(matches,ensure_ascii=False))
+          p=Path('data/countries/nicaragua.json'); c=json.loads(p.read_text(encoding='utf-8'))
+          registry=json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          by_ja={x['nameJa']:x for x in registry['destinations']}
+          routes=c['nextRoutes']
+          assert len(routes)==2 and [x['countryJa'] for x in routes]==['ホンジュラス','コスタリカ']
+          for item in routes:
+              target=by_ja[item['countryJa']]
+              assert target['slug'] in {'honduras','costarica'} and not item.get('flag') and not item.get('countryEn')
+              item['flag']=target['flag']
+              item['countryEn']=target['nameEn']
+          dates=c['sourceDates'];sources=c['sources']
+          for stale,authoritative in [('worldHeritage','leonCathedral'),('rioSanJuanMab','rioSanJuan'),('routes','nextRoutes')]:
+              assert stale in dates and authoritative in sources and authoritative not in dates,(stale,authoritative)
+              dates[authoritative]=dates.pop(stale)
+          assert all(key in sources for key in dates)
+          assert c['publicationPipelineVersion']==2 and c['slug']=='nicaragua'
+          p.write_text(json.dumps(c,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('REFERENCES_REPAIRED',[(x['countryJa'],x['countryEn'],x['flag']) for x in routes],flush=True)
           PY
+          python3 scripts/validate_country.py --strict data/countries/nicaragua.json
+          python3 scripts/validate_country_editorial_v2.py --force data/countries/nicaragua.json
+          python3 scripts/validate_country_quality_v5.py data/countries/nicaragua.json
+          python3 scripts/validate_country_map_v6.py data/countries/nicaragua.json
+          git config user.name 'journey-atlas-recovery'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/countries/nicaragua.json
+          git commit -m 'Repair Nicaragua next-route and source-date schema references'
+          git push origin HEAD:refs/heads/country/nicaragua
+          echo 'NICARAGUA_JSON_REPAIR_PUSHED'
