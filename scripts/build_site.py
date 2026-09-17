@@ -79,6 +79,7 @@ COUNTRY_CSS_SOURCES = [
     "assets/css/country-icon-system.css",
     "assets/css/country-trivia.css",
     "assets/css/country-discovery-v3.css",
+    "assets/css/taste-image-framing.css",
     "assets/css/photo-credits.css",
     "assets/css/site-unify.css",
     "assets/css/site-footer.css",
@@ -291,6 +292,12 @@ def prepare_generic_country_page() -> None:
     page = re.sub(
         r'assets/js/app\.js\?v=[^"\']+',
         f'assets/js/app.js?v={BUILD_VERSION}',
+        page,
+        count=1,
+    )
+    page = re.sub(
+        r'assets/js/country-themes\.js\?v=[^"\']+',
+        f'assets/js/country-themes.js?v={BUILD_VERSION}',
         page,
         count=1,
     )
