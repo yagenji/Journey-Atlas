@@ -1,0 +1,31 @@
+name: One-time Antigua visible-English audit
+on:
+  push:
+    branches: ['country/antiguabarbuda-renewal']
+    paths: ['.github/workflows/one-time-antigua-language-audit-20260917.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Identify remaining Latin text in visible Country fields
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          d=json.loads(Path('data/countries/antiguabarbuda.json').read_text())
+          def walk(x,p=''):
+            if isinstance(x,dict):
+              for k,v in x.items():
+                if k in {'sources','source','sourceDates','coordinates','bounds','rect','map','image','icon','topicKey','id','slug','color','updatedAt','sourcesVerifiedAt','seo'}:continue
+                if k in {'nameEn','themeEn','categoryEn','nameLocal','mapLabel','flag','affinityType','mapRegion','imageState'}:continue
+                walk(v,p+'.'+k)
+            elif isinstance(x,list):
+              for i,v in enumerate(x):walk(v,p+f'[{i}]')
+            elif isinstance(x,str) and re.search('[A-Za-z]{2,}',x):
+              print(p,repr(x[:240]))
+          walk(d)
+          PY
