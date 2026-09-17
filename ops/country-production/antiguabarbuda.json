@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "antiguabarbuda",
   "countryName": "ANTIGUA & BARBUDA",
-  "contentRef": "country/antiguabarbuda-recovery",
-  "stateRef": "country/antiguabarbuda-recovery",
-  "phase": "QA",
-  "stateRevision": 21,
-  "updatedAt": "2026-09-17T20:47:14+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 23,
+  "updatedAt": "2026-09-17T22:34:14+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -503,17 +503,28 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/antiguabarbuda/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-17T13:15:37.999165+00:00",
+    "approvalEvidence": "User explicitly requested formal Antigua and Barbuda publication with 公開完了して on 2026-09-17."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-17T22:34:14+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/antiguabarbuda/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -821,7 +832,7 @@
     "canonicalReviewReadyAt": "2026-09-17T20:47:14+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
