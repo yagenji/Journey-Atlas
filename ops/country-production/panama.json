@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "panama",
   "countryName": "PANAMA",
-  "contentRef": "country/panama",
-  "stateRef": "country/panama",
-  "phase": "QA",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-16T15:28:45+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-17T17:03:52+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -141,17 +141,26 @@
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/panama/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "atlasPublished": false,
-    "browserQa": "PASS",
-    "verifiedAt": "2026-09-16T16:44:45.630409+00:00"
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvalBasis": "User explicitly requested QA and formal publication of the corrected Panama page: これでQAして公開して",
+    "approvedAt": "2026-09-17T16:58:15+09:00"
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-17T17:03:52+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/panama/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -436,7 +445,7 @@
     "canonicalReviewReadyAt": "2026-09-16T15:28:45+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
