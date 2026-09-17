@@ -21,6 +21,8 @@ Any other changed file, a mixed runtime/non-runtime commit, or an empty/unknown 
 4. Dispatch `.github/workflows/verify-production.yml` on the latest `main` with no slug. Its SHA guard may accept only the latest SHA or a consecutive, proven non-runtime ancestor; the full published and unpublished QA checks must pass. If Cloudflare did build this safe commit despite the prefix, the latest SHA is equally valid.
 5. Repeat with a mixed code/State change in an ordinary **non-skipped** PR: the SHA guard must require an exact deployed SHA; no commit-message skip is permitted. A true Country publication requires separate explicit user approval and cannot be used as a disposable skip test.
 
+When **only this runbook** changes in a `[CF-Pages-Skip]`-prefixed `main` commit, `.github/workflows/verify-cloudflare-noop-skip.yml` automatically dispatches the existing full production verifier. Confirm that the dispatch job succeeds, its separate live-QA workflow finishes, and the live SHA matches a proven safe ancestor; never count a skipped Pages check alone as a QA pass.
+
 ## Optional project-wide Build watch paths
 
 Cloudflare account authorization is required. **Do not assume** the Pages dashboard has any particular current setting. Once authorized, inspect `journey-atlas` Build settings, production branch, preview branch and existing watch paths before changes. Begin with a narrow allowlist of exclusions, not `.github/*` or every `ops/*`. Cloudflare's rule evaluates excludes first and builds when any remaining changed path matches the includes. Never disable automatic production branch deployment.
