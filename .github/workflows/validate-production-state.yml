@@ -85,11 +85,18 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository without eager binary blobs
+      - name: Check out State validation inputs only
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
           filter: blob:none
+          sparse-checkout: |
+            .github
+            scripts
+            ops
+            data
+            docs
+            WORKFLOW.md
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -161,7 +168,7 @@ jobs:
       - name: Validate Content Plan / Production State separation
         run: |
           python3 - <<'PY'
-          from pathlib import Path
+          from pathlib import import Path
 
           forbidden = [
               "## Production state",
