@@ -8,14 +8,9 @@ on:
       - "assets/js/app.js"
       - "scripts/audit_icons.py"
       - ".github/workflows/audit-icons.yml"
-  push:
-    branches: ["main"]
-    paths:
-      - "data/countries/**"
-      - "assets/icons/atlas-icons.svg"
-      - "assets/js/app.js"
-      - "scripts/audit_icons.py"
-      - ".github/workflows/audit-icons.yml"
+  # The PR check remains the gate. Publication v2 and canonical review also
+  # audit icons before integration; repeat audits on every main merge add
+  # Actions runs without an additional pre-merge safety check.
   workflow_dispatch:
 
 permissions:

@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "slug": "costarica",
+  "countryName": "COSTA RICA",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-17T14:14:50+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/costarica/approved/hero-manuel-antonio-sloth.webp",
+    "contentId": "manuel-antonio-sloth",
+    "approvedGenerationId": "e0706cac-0dc0-4606-8bc7-0ba9213ce29a",
+    "approvedAt": "2026-09-16T09:55:57+09:00",
+    "approvalBasis": "User explicitly approved the existing Hero in chat; exact generation identity recovered from the original generated file metadata."
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/los-quetzales-resplendent-quetzal.webp",
+      "contentId": "los-quetzales-resplendent-quetzal",
+      "approvedGenerationId": "75757df8-92a4-4cff-8b68-95a2ae1e997b"
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/la-selva-red-eyed-tree-frog.webp",
+      "contentId": "la-selva-red-eyed-tree-frog",
+      "approvedGenerationId": "d7f6a862-c756-4d08-8129-7457e484e792"
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/arenal-volcano.webp",
+      "contentId": "arenal-volcano",
+      "approvedGenerationId": "5de6fa50-e9ea-4e6b-9267-9ea348864803"
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/rio-celeste.webp",
+      "contentId": "rio-celeste",
+      "approvedGenerationId": "4b71afea-7cf8-459c-af1f-4195e9adca05"
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/tortuguero-canals.webp",
+      "contentId": "tortuguero-canals",
+      "approvedGenerationId": "0ad53438-26db-411a-8dea-1606a4c75b83"
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/marino-ballena-whale-tail.webp",
+      "contentId": "marino-ballena-whale-tail",
+      "approvedGenerationId": "d8fd5578-142e-4c53-9624-405ed3d39c19"
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/orosi-valley.webp",
+      "contentId": "orosi-valley",
+      "approvedGenerationId": "58d3a653-3d17-498b-bc01-9036ec41809b"
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/san-jose-national-theatre.webp",
+      "contentId": "san-jose-national-theatre",
+      "approvedGenerationId": "7f97d3b8-6ada-444a-b76e-c77b42255b74"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/food-gallo-pinto.webp",
+      "contentId": "gallo-pinto",
+      "approvedGenerationId": "3da0389d-525e-4552-94c0-27ec76d87f9b"
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/food-casado.webp",
+      "contentId": "casado",
+      "approvedGenerationId": "07b5d89d-d416-4faa-9955-c33aa8f93799"
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/food-olla-de-carne.webp",
+      "contentId": "olla-de-carne",
+      "approvedGenerationId": "967dded1-318e-4ecd-9561-ddef6344fa8b"
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/costarica/approved/food-caribbean-rice-and-beans.webp",
+      "contentId": "caribbean-rice-and-beans",
+      "approvedGenerationId": "cfa14dc5-fe85-4bee-ba6a-796ea42077e6"
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/costarica/map-atlas-v1.svg",
+    "qa": {
+      "canvas": "1200x760",
+      "projection": "local-equirectangular-fit-v1",
+      "geometry": "PASS",
+      "sceneCoordinates": "PASS",
+      "labelCollision": "PASS",
+      "xmlParse": "PASS",
+      "styleBaseline": "Iceland/Norway map language",
+      "approvedAt": "2026-09-16T09:36:00+09:00"
+    }
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-16T10:33:07+09:00",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "da4f4bc74b3883dbc0ff5efe5aec768d888db225",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/costarica/",
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-17T13:45:24+09:00",
+    "basis": "User explicitly instructed '公開して' for Costa Rica in the Country production chat after canonical page review."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-17T14:14:50+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/costarica/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 1,
+    "lastResetAt": null,
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "75757df8-92a4-4cff-8b68-95a2ae1e997b",
+          "S02": "d7f6a862-c756-4d08-8129-7457e484e792",
+          "S03": "5de6fa50-e9ea-4e6b-9267-9ea348864803",
+          "S04": "4b71afea-7cf8-459c-af1f-4195e9adca05",
+          "S05": "0ad53438-26db-411a-8dea-1606a4c75b83",
+          "S06": "d8fd5578-142e-4c53-9624-405ed3d39c19",
+          "S07": "58d3a653-3d17-498b-bc01-9036ec41809b",
+          "S08": "7f97d3b8-6ada-444a-b76e-c77b42255b74"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-16T09:58:37+09:00",
+        "recoveryMigrationId": "costarica-scenes-recovery-20260916"
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "3da0389d-525e-4552-94c0-27ec76d87f9b",
+          "FOOD02": "07b5d89d-d416-4faa-9955-c33aa8f93799",
+          "FOOD03": "967dded1-318e-4ecd-9561-ddef6344fa8b",
+          "FOOD04": "cfa14dc5-fe85-4bee-ba6a-796ea42077e6"
+        },
+        "regenerate": [],
+        "approvedAt": "2026-09-16T10:03:30+09:00",
+        "recoveryMigrationId": "costarica-taste-recovery-20260916"
+      }
+    ]
+  },
+  "recoveryMigrations": [
+    {
+      "id": "costarica-hero-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_ASSET_RECOVERY",
+      "kind": "HERO",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC",
+      "scope": [
+        "HERO"
+      ],
+      "recoveredGenerations": {
+        "HERO": "e0706cac-0dc0-4606-8bc7-0ba9213ce29a"
+      },
+      "userAuthorizationBasis": "User explicitly approved the existing Hero in chat and instructed '進めて' after the State provenance gap was explained.",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "stagedAt": "2026-09-16T09:54:28+09:00",
+      "appliedAt": "2026-09-16T09:55:57+09:00"
+    },
+    {
+      "id": "costarica-scenes-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "SCENE",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC",
+      "scope": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "recoveredGenerations": {
+        "S01": "75757df8-92a4-4cff-8b68-95a2ae1e997b",
+        "S02": "d7f6a862-c756-4d08-8129-7457e484e792",
+        "S03": "5de6fa50-e9ea-4e6b-9267-9ea348864803",
+        "S04": "4b71afea-7cf8-459c-af1f-4195e9adca05",
+        "S05": "0ad53438-26db-411a-8dea-1606a4c75b83",
+        "S06": "d8fd5578-142e-4c53-9624-405ed3d39c19",
+        "S07": "58d3a653-3d17-498b-bc01-9036ec41809b",
+        "S08": "7f97d3b8-6ada-444a-b76e-c77b42255b74"
+      },
+      "userAuthorizationBasis": "User explicitly approved the completed 8-scene batch in chat and instructed '進めて' after the State provenance gap was explained.",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "stagedAt": "2026-09-16T09:57:19+09:00",
+      "appliedAt": "2026-09-16T09:58:37+09:00"
+    },
+    {
+      "id": "costarica-taste-recovery-20260916",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "TASTE",
+      "reasonCode": "ORCHESTRATION_STATE_DESYNC",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "recoveredGenerations": {
+        "FOOD01": "3da0389d-525e-4552-94c0-27ec76d87f9b",
+        "FOOD02": "07b5d89d-d416-4faa-9955-c33aa8f93799",
+        "FOOD03": "967dded1-318e-4ecd-9561-ddef6344fa8b",
+        "FOOD04": "cfa14dc5-fe85-4bee-ba6a-796ea42077e6"
+      },
+      "userAuthorizationBasis": "User explicitly approved the completed four-Taste batch in chat and instructed '進めて' after the State provenance gap was explained.",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "stagedAt": "2026-09-16T10:00:53+09:00",
+      "appliedAt": "2026-09-16T10:03:30+09:00"
+    }
+  ],
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "productionProtocolPolicyPatch": 5,
+  "publicationPipelineVersion": 2,
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-16T10:25:00+09:00"
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/costarica/countries/costarica/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-16T10:33:07+09:00",
+    "sourceCommit": "da4f4bc74b3883dbc0ff5efe5aec768d888db225",
+    "runId": 35044341452,
+    "pipelineVersion": 2,
+    "mainBaseCommit": "bbd57c46cfce7801baf1ac1e8bc8d93ba5624d5c"
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 1,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 1,
+    "tasteBatchApprovedAt": "2026-09-16T10:03:30+09:00",
+    "canonicalReviewReadyAt": "2026-09-16T10:33:07+09:00"
+  },
+  "next": {
+    "action": "NONE",
+    "asset": null
+  }
+}

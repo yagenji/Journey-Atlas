@@ -1,0 +1,44 @@
+name: Validate visual policy waivers
+
+on:
+  pull_request:
+    paths:
+      - "ops/country-production/**"
+      - "ops/visual-policy-waiver-policy.json"
+      - "scripts/validate_visual_policy_waivers.py"
+      - "scripts/test_visual_policy_waivers.py"
+      - "docs/USER_APPROVED_VISUAL_POLICY_WAIVER.md"
+      - "docs/STATE_RECOVERY_MIGRATION.md"
+      - ".github/workflows/validate-visual-policy-waivers.yml"
+  # The pull-request run is the integration gate before protected main.
+  # Keep branch-push validation while a Country/fix branch is being produced,
+  # but do not repeat the same waiver validation after the reviewed PR merges.
+  push:
+    branches:
+      - "country/**"
+      - "fix/**"
+    paths:
+      - "ops/country-production/**"
+      - "ops/visual-policy-waiver-policy.json"
+      - "scripts/validate_visual_policy_waivers.py"
+      - "scripts/test_visual_policy_waivers.py"
+      - "docs/USER_APPROVED_VISUAL_POLICY_WAIVER.md"
+      - "docs/STATE_RECOVERY_MIGRATION.md"
+      - ".github/workflows/validate-visual-policy-waivers.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate visual policy waivers
+        run: python3 scripts/validate_visual_policy_waivers.py
+      - name: Test visual policy waiver contract
+        run: python3 scripts/test_visual_policy_waivers.py
