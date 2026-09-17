@@ -22,7 +22,6 @@ on:
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/IMAGE_POLICY_REVISION_7_1.md'
       - 'docs/IMAGE_POLICY_REVISION_7_2.md'
-      - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
   pull_request:
@@ -43,7 +42,6 @@ on:
       - 'docs/IMAGE_POLICY_REVISION_7.md'
       - 'docs/IMAGE_POLICY_REVISION_7_1.md'
       - 'docs/IMAGE_POLICY_REVISION_7_2.md'
-      - 'docs/NEW_COUNTRY_START.md'
       - 'docs/SCENE_IMAGE_PRODUCTION.md'
       - 'docs/TASTE_IMAGE_PRODUCTION.md'
 
@@ -55,10 +53,11 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/country/')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout full history
+      - name: Checkout history without image blobs
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          filter: blob:none
 
       - name: Validate pushed revision 7 and 7.2 transition range
         if: github.event.before != '0000000000000000000000000000000000000000'
@@ -79,10 +78,11 @@ jobs:
     if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout full history
+      - name: Checkout history without image blobs
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          filter: blob:none
 
       - name: Compile validators
         run: |
@@ -128,9 +128,8 @@ jobs:
           BASE_REF: ${{ github.base_ref }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          # Checkout already has full history. Do not shallow-fetch a moving base
-          # branch here: marking the updated main tip as shallow can make
-          # merge-base fail when Country work and main advance concurrently.
+          # Checkout retains commit history. Do not shallow-fetch a moving base
+          # branch here: marking updated main shallow can break merge-base.
           git fetch origin "$BASE_REF"
           BASE_SHA="$(git merge-base "$HEAD_SHA" "origin/$BASE_REF")"
           python3 scripts/validate_canonical_import_v7.py "$BASE_SHA" "$HEAD_SHA"

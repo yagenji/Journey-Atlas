@@ -28,7 +28,9 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || startsWith(github.head_ref, 'country/')
+    # Publication approval branches do not need this legacy Pages preview.
+    # Skip before allocating a runner or trying to derive a Country slug.
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || startsWith(github.head_ref, 'country/')) && (github.event_name == 'workflow_dispatch' || !contains(github.head_ref || github.ref_name, '-approval-'))
     # Keep review previews separate from the production-oriented github-pages
     # environment so country/* review branches are not rejected before a runner
     # starts by the github-pages deployment branch protection rule.
