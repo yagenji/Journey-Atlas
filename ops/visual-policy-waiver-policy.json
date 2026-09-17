@@ -27,6 +27,36 @@
         "FOOD04": "c69cf83c-74a9-4aa5-8aed-6ee8aabfae05"
       },
       "authorization": "User explicitly approved the four displayed dishes, then explicitly selected 採用 after being told that one image request returned four separate outputs. This exemption is limited to those four exact generation IDs."
+    },
+    "antiguabarbuda-scenes-eight-20260916": {
+      "slug": "antiguabarbuda",
+      "kind": "SCENE",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "scope": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"],
+      "generations": {
+        "S01": "95975cca-cffb-4e73-bd1c-faaa81dc8a3b",
+        "S02": "b25a3d4f-9ca1-47d1-81d5-45d90101f1d4",
+        "S03": "4833881b-e384-4fd7-aba8-5424f519f205",
+        "S04": "d5d104c9-a891-4219-8f7e-6cb920c1580d",
+        "S05": "4390fa75-2021-4d64-b0f4-b778665e5620",
+        "S06": "48eb395d-6364-4912-befe-31a005a15a12",
+        "S07": "7d91ef20-263c-48ad-b02d-2ed707e80a06",
+        "S08": "7184180a-59e2-4969-b907-9b6600a95fef"
+      },
+      "authorization": "Eight individually identifiable single-scene outputs were returned in one image-generation request. User approved the existing scene batch and explicitly authorized retaining these twelve Antigua outputs after the grouping violation was explained on 2026-09-16. Only these eight exact generations qualify."
+    },
+    "antiguabarbuda-taste-four-20260916": {
+      "slug": "antiguabarbuda",
+      "kind": "TASTE",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "scope": ["FOOD01", "FOOD02", "FOOD03", "FOOD04"],
+      "generations": {
+        "FOOD01": "e89a98ba-6c93-4dd1-8bbc-d903f2e2aea9",
+        "FOOD02": "3b0a8427-bce3-4373-8653-c8ed36e117d8",
+        "FOOD03": "70641eb1-ebd8-460a-bb48-49629230151d",
+        "FOOD04": "ee6e4369-60b2-4c4d-96ca-817f73fa4688"
+      },
+      "authorization": "Four individually identifiable single-dish outputs were returned in one image-generation request. User approved the displayed food batch and explicitly authorized retaining these twelve Antigua outputs after the grouping violation was explained on 2026-09-16. Only these four exact generations qualify."
     }
   },
   "requirements": {

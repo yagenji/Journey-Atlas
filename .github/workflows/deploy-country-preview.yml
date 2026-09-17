@@ -103,7 +103,9 @@ jobs:
                       and (state.get("assetHandoff") or {}).get("state") == "PASS"
                   )
 
-          should_preview = ready and not published
+          country_path = Path("data/countries") / f"{slug}.json"
+          v2_country = country_path.exists() and json.loads(country_path.read_text(encoding="utf-8")).get("publicationPipelineVersion") == 2
+          should_preview = ready and not published and not v2_country
           print(json.dumps({
               "published": published,
               "protocol2": protocol2,
