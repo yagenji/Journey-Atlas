@@ -1,0 +1,63 @@
+name: One-time SVG transform validator repair
+on:
+  push:
+    branches: [fix/map-v6-svg-group-transforms-20260917]
+    paths: ['.github/workflows/map-v6-transform-fix-once.yml']
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/map-v6-svg-group-transforms-20260917
+          persist-credentials: true
+      - name: Repair validator without changing approved SVG or scene coordinates
+        run: |
+          python3 - <<'PY'
+          import json,re,xml.etree.ElementTree as ET
+          from pathlib import Path
+          countries=Path('data/countries')
+          tr=re.compile(r'\s*translate\(\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+))(?:[\s,]+([+-]?(?:\d+(?:\.\d*)?|\.\d+)))?\s*\)\s*')
+          unsupported=[]
+          for cp in countries.glob('*.json'):
+              data=json.loads(cp.read_text())
+              if int(data.get('contentQaVersion') or 1)<6:continue
+              svg=(data.get('map') or {}).get('svg')
+              if not svg or not Path(svg).exists():continue
+              for el in ET.parse(svg).iter():
+                  value=el.attrib.get('transform')
+                  if value and not tr.fullmatch(value):unsupported.append((cp.stem,value))
+          print('OTHER_TRANSFORMS',unsupported[:30],flush=True)
+          if unsupported:raise SystemExit('Non-translation transforms exist; implement comprehensive affine parser first')
+          p=Path('scripts/validate_country_map_v6.py')
+          s=p.read_text()
+          anchor='\ndef validate(path: Path):\n'
+          assert s.count(anchor)==1 and 'collect_transformed_land_paths' not in s
+          helper='''\n# Land-path coordinates in an SVG inherit transforms from every ancestor group.\n# The atlas map generator uses translate(x y) to position geographic insets.\n# Reject unsupported transforms rather than silently checking untransformed land.\nSVG_TRANSLATE_RE = re.compile(\n    r"\\s*translate\\(\\s*([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+))"\n    r"(?:[\\s,]+([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)))?\\s*\\)\\s*"\n)\n\ndef collect_transformed_land_paths(root):\n    groups, unsupported = [], []\n\n    def walk(element, dx=0.0, dy=0.0):\n        transform = element.attrib.get("transform", "").strip()\n        if transform:\n            match = SVG_TRANSLATE_RE.fullmatch(transform)\n            if match is None:\n                unsupported.append(transform)\n                return\n            dx += float(match.group(1))\n            dy += float(match.group(2) or 0)\n        if element.tag.rsplit("}", 1)[-1] == "path":\n            polygons = parse_polygons(element.attrib.get("d", ""))\n            if polygons:\n                groups.append([[(x + dx, y + dy) for x, y in poly] for poly in polygons])\n        for child in element:\n            walk(child, dx, dy)\n\n    walk(root)\n    return groups, unsupported\n'''
+          s=s.replace(anchor,helper+anchor)
+          old='''    path_groups = []\n    for el in root.iter():\n        if el.tag.rsplit("}", 1)[-1] != "path":\n            continue\n        d = el.attrib.get("d", "")\n        polys = parse_polygons(d)\n        if polys:\n            path_groups.append(polys)\n'''
+          new='''    path_groups, unsupported_transforms = collect_transformed_land_paths(root)\n    if unsupported_transforms:\n        errors.append(f"{path.name}: unsupported SVG land transform(s): {unsupported_transforms[:5]}")\n'''
+          assert s.count(old)==1
+          p.write_text(s.replace(old,new))
+          t=Path('scripts/test_country_map_v6_transforms.py')
+          assert not t.exists()
+          t.write_text('''#!/usr/bin/env python3\n"""Regression: SVG group translations must affect land geometry during map QA."""\nimport unittest\nimport xml.etree.ElementTree as ET\nfrom validate_country_map_v6 import collect_transformed_land_paths, on_land_in_path\n\nclass TranslatedLandTest(unittest.TestCase):\n    def test_nested_group_translation_and_negative_offsets(self):\n        root = ET.fromstring(\"<svg><g transform='translate(10 20)'><g transform='translate(-3 5)'><path d='M0 0 L10 0 L10 10 L0 10 Z'/></g></g></svg>\")\n        groups, errors = collect_transformed_land_paths(root)\n        self.assertEqual(errors, [])\n        self.assertEqual(len(groups), 1)\n        self.assertTrue(on_land_in_path(groups[0], (12, 30)))\n        self.assertFalse(on_land_in_path(groups[0], (2, 3)))\n    def test_untranslated_land_still_valid(self):\n        root = ET.fromstring(\"<svg><path d='M0 0 L10 0 L10 10 L0 10 Z'/></svg>\")\n        groups, errors = collect_transformed_land_paths(root)\n        self.assertEqual(errors, [])\n        self.assertTrue(on_land_in_path(groups[0], (5, 5)))\n    def test_unsupported_transform_fails_closed(self):\n        root = ET.fromstring(\"<svg><g transform='rotate(10)'><path d='M0 0 L10 0 L10 10 L0 10 Z'/></g></svg>\")\n        groups, errors = collect_transformed_land_paths(root)\n        self.assertFalse(groups)\n        self.assertEqual(errors, ['rotate(10)'])\n\nif __name__ == '__main__':\n    unittest.main()\n''')
+          PY
+      - name: Run transform unit tests and entire Content QA v6 map suite
+        run: |
+          python3 scripts/test_country_map_v6_transforms.py
+          python3 scripts/validate_country_map_v6.py data/countries/unitedstates.json
+          python3 scripts/validate_country_map_v6.py
+          python3 -m py_compile scripts/validate_country_map_v6.py
+      - name: Commit only common validator and regression tests
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/validate_country_map_v6.py scripts/test_country_map_v6_transforms.py
+          git rm .github/workflows/map-v6-transform-fix-once.yml
+          git commit -m 'Honor SVG group translations in Content QA v6 map land checks'
+          git push origin HEAD:fix/map-v6-svg-group-transforms-20260917
