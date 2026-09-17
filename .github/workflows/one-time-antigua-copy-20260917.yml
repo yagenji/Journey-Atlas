@@ -1,0 +1,79 @@
+name: One-time Antigua copy correction
+on:
+  push:
+    branches: ['fix/antigua-copy-taste-20260917']
+    paths: ['.github/workflows/one-time-antigua-copy-20260917.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/antigua-copy-taste-20260917
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply audited Country copy changes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('data/countries/antiguabarbuda.json')
+          data=json.loads(path.read_text(encoding='utf-8'))
+          assert data['slug']=='antiguabarbuda' and data.get('atlasPublished') is False
+          assert len(data['scenes'])==8 and len(data['taste']['items'])==4
+          areas=[x for x in data['facts'] if x['label']=='面積']
+          assert len(areas)==1 and areas[0]['value']=='442.6 km²',areas
+          areas[0]['value']='442.6 km²（日本の約0.12％）'
+          populations=[x for x in data['facts'] if x['label']=='人口']
+          assert len(populations)==1
+          populations[0]['value']=populations[0]['value'].replace('World Bank','世界銀行')
+          assert 'https://www.paho.org/en/antigua-and-barbuda' in data['sources']['area']
+          data['sources']['area']+=' 日本比の分母：国土地理院「全国都道府県市区町村別面積調」2026年4月1日 377,974.87 km²。https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm ; 442.6÷377974.87×100≒0.12%。'
+          replacement=[('Redonda Ecosystem Reserve','レドンダ生態系保護区'),('Frigate Bird Sanctuary','グンカンドリ保護区'),('Antigua Black pineapple','アンティグア・ブラック・パイナップル'),('Antigua Sailing Week','アンティグア・セーリング・ウィーク'),('Falmouth Harbour','ファルマス・ハーバー'),('English Harbour','イングリッシュ・ハーバー'),('Codrington Lagoon','コドリントン潟湖'),('Two Foot Bay','トゥー・フット・ベイ'),('Betty’s Hope','ベティーズ・ホープ'),('Indian Cave','インディアン洞窟'),('Cades Bay','ケイズ・ベイ'),('Low Bay','ロウ・ベイ'),('St. John’s','セントジョンズ'),('Codrington','コドリントン'),('barrier land','砂州'),('World Bank','世界銀行'),('UNESCO','ユネスコ'),('Barbuda','バーブーダ'),('Antigua','アンティグア'),('Redonda','レドンダ')]
+          changed=[]
+          def localize(s,key):
+            if not isinstance(s,str):return s
+            original=s
+            for before,after in replacement:s=s.replace(before,after)
+            if original!=s:changed.append(key)
+            return s
+          for i,v in enumerate(data['scenes']):v['description']=localize(v['description'],f'scene{i}')
+          for i,v in enumerate(data['atlasExtras']):
+            for k in ('title','text'):v[k]=localize(v[k],f'extra{i}.{k}')
+            v['points']=[localize(s,f'extra{i}.points') for s in v.get('points',[])]
+          for i,v in enumerate(data['travelTrivia']):
+            for k in ('title','text'):v[k]=localize(v[k],f'trivia{i}.{k}')
+          for k in ('title','intro'):data['taste'][k]=localize(data['taste'][k],f'taste.{k}')
+          for i,v in enumerate(data['taste']['items']):v['text']=localize(v['text'],f'taste{i}')
+          data['travelScale']['intro']=localize(data['travelScale']['intro'],'scale.intro')
+          for i,v in enumerate(data['travelScale']['items']):
+            for k in ('title','text'):v[k]=localize(v[k],f'scale{i}.{k}')
+          for i,v in enumerate(data['seasons']):v['text']=localize(v['text'],f'season{i}')
+          for k in ('title','text'):data['transport'][k]=localize(data['transport'][k],f'transport.{k}')
+          for i,v in enumerate(data['personas']):
+            for k in ('title','text'):v[k]=localize(v[k],f'persona{i}.{k}')
+          for i,v in enumerate(data['signatureFacts']):
+            for k in ('note','interestReason'):v[k]=localize(v[k],f'signature{i}.{k}')
+            if v['value']=='11 miles':v['value']='約18 km'
+          for i,v in enumerate(data['tips']):
+            for k in ('title','text'):v[k]=localize(v[k],f'tip{i}.{k}')
+          for i,v in enumerate(data['relatedCountries']):v['reason']=localize(v['reason'],f'related{i}')
+          assert len(set(changed))>=20,(len(set(changed)),changed)
+          assert areas[0]['value']=='442.6 km²（日本の約0.12％）'
+          assert data['taste']['items'][0]['image'].endswith('food-fungee.webp')
+          path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('Localized fields',len(set(changed)),'area',areas[0]['value'])
+          PY
+          git rm .github/workflows/one-time-antigua-copy-20260917.yml
+          git add data/countries/antiguabarbuda.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Add Japan area ratio and localize Antigua prose'
+          git push origin HEAD:refs/heads/fix/antigua-copy-taste-20260917
