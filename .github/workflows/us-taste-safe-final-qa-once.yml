@@ -1,0 +1,87 @@
+name: One-time US Taste safe-scale live QA
+on:
+  push:
+    branches: [fix/unitedstates-taste-safe-scale-20260917]
+    paths: ['.github/workflows/us-taste-safe-final-qa-once.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify deployed CSS and capture real US food artwork in three viewports
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, shutil, time, urllib.request
+          from pathlib import Path
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait
+          base='https://atlas.yagenji.com'; out=Path('us-taste-safe-live');out.mkdir(exist_ok=True)
+          for attempt in range(24):
+            try:
+              req=urllib.request.Request(base+'/assets/css/taste-image-framing.css?qa=safe-4x3-20260917',headers={'Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=25) as r:css=r.read().decode('utf-8')
+              us=css.split('/* Approved US food artwork has an integral 4:3 paper ground.',1)[-1]
+              if 'aspect-ratio: 4 / 3;' in us and 'transform: scale(1.04);' in us:
+                print('US_TASTE_DEPLOYED_CSS_CONFIRMED',flush=True);break
+            except Exception as e:print('CSS pending:',repr(e),flush=True)
+            if attempt==23:raise RuntimeError('4% US Taste CSS is not deployed')
+            time.sleep(12)
+          failures=[];results=[]
+          for name,w,h,mobile in [('desktop',1440,1000,False),('tablet',834,1112,False),('mobile',390,844,True)]:
+            d=None
+            try:
+              options=Options()
+              for flag in ('--headless=new','--no-sandbox','--disable-dev-shm-usage','--disable-gpu','--hide-scrollbars'):options.add_argument(flag)
+              options.page_load_strategy='eager'
+              service=Service(shutil.which('chromedriver')) if shutil.which('chromedriver') else Service()
+              d=webdriver.Chrome(service=service,options=options)
+              d.set_page_load_timeout(45)
+              d.set_window_size(w,h)
+              d.execute_cdp_cmd('Emulation.setDeviceMetricsOverride',{'width':w,'height':h,'deviceScaleFactor':1,'mobile':mobile,'screenWidth':w,'screenHeight':h})
+              d.get(base+'/countries/unitedstates/?qa=us-taste-safe-'+name)
+              WebDriverWait(d,55).until(lambda x:len(x.find_elements(By.CSS_SELECTOR,'.taste-card'))==4)
+              cards=d.find_elements(By.CSS_SELECTOR,'.taste-card')
+              for card in cards:
+                d.execute_script('arguments[0].scrollIntoView({block:"center"})',card)
+                time.sleep(.3)
+              deadline=time.monotonic()+25
+              while time.monotonic()<deadline:
+                if d.execute_script('return [...document.querySelectorAll(".taste-card img")].every(i=>i.complete&&i.naturalWidth>0)'):break
+                time.sleep(.5)
+              grid=d.find_element(By.CSS_SELECTOR,'#taste-grid')
+              d.execute_script('arguments[0].scrollIntoView({block:"center"})',grid)
+              time.sleep(1)
+              audit=d.execute_script('return [...document.querySelectorAll(".taste-card")].map(c=>{let i=c.querySelector("img"),f=c.querySelector(".taste-card__image"),a=i.getBoundingClientRect(),b=f.getBoundingClientRect(),s=getComputedStyle(i);return {name:i.alt,src:i.currentSrc,loaded:i.complete&&i.naturalWidth>0,nw:i.naturalWidth,nh:i.naturalHeight,fit:s.objectFit,transform:s.transform,ratio:b.width/b.height,scaleWidth:a.width/b.width,scaleHeight:a.height/b.height,error:c.classList.contains("taste-card--image-error")}})')
+              robots=d.execute_script('return document.querySelector("meta[name=robots]")?.content||""')
+              grid.screenshot(str(out/(name+'-taste-grid.png')))
+              results.append({'viewport':name,'robots':robots,'cards':audit})
+              if 'noindex' not in robots:failures.append(name+':noindex missing')
+              for c in audit:
+                if not(c['loaded'] and c['nw']==1448 and c['nh']==1086 and c['fit']=='contain' and abs(c['ratio']-4/3)<.025 and 1.03<c['scaleWidth']<1.055 and 1.03<c['scaleHeight']<1.055 and not c['error']):failures.append(name+':bad image '+repr(c))
+              print('US_TASTE_FINAL',name,'PASS' if not any(s.startswith(name+':') for s in failures) else 'FAIL',flush=True)
+            except Exception as e:
+              failures.append(name+':'+repr(e));print('US_TASTE_FINAL_ERROR',name,repr(e),flush=True)
+              if d:
+                try:d.save_screenshot(str(out/(name+'-error.png')))
+                except Exception:pass
+            finally:
+              if d:d.quit()
+          (out/'report.json').write_text(json.dumps({'results':results,'failures':failures},ensure_ascii=False,indent=2))
+          print('US_TASTE_FINAL_SUMMARY',json.dumps({'pass':not failures,'failures':failures},ensure_ascii=False),flush=True)
+          if failures:raise SystemExit(1)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: us-taste-safe-final-live-qa
+          path: us-taste-safe-live/
+          retention-days: 3
