@@ -43,6 +43,7 @@ jobs:
           assert 'workflow_dispatch' in workflow['on']
           assert workflow['permissions']['contents'] == 'write'
           PYTEST
+          python3 scripts/test_expected_cloudflare_commit.py
           python3 scripts/test_canonical_review_v2.py
           python3 scripts/validate_production_state_routed.py
 
@@ -111,19 +112,24 @@ jobs:
         if: steps.targets.outputs.available == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
-      - name: Require the exact current main commit on Cloudflare
+      - name: Require a current or proven equivalent Cloudflare commit
         if: steps.targets.outputs.available == 'true'
         run: |
           set -euo pipefail
           current_main="$(git ls-remote origin refs/heads/main | cut -f1)"
           [ "$current_main" = "$GITHUB_SHA" ] || { echo 'main advanced; do not reconcile a stale run' >&2; exit 1; }
+          python3 scripts/expected_cloudflare_commit.py --head "$GITHUB_SHA" --candidate-file /tmp/cloudflare-allowed-shas.txt
           live_sha=''
           for attempt in $(seq 1 60); do
             meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "https://atlas.yagenji.com/build-meta.json?reconcile=$GITHUB_RUN_ID-$attempt" || true)"
             live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
-            [ "$live_sha" != "$GITHUB_SHA" ] && sleep 5 || break
+            if [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/cloudflare-allowed-shas.txt; then
+              echo "Cloudflare serves an equivalent source commit: $live_sha"
+              break
+            fi
+            sleep 5
           done
-          [ "$live_sha" = "$GITHUB_SHA" ] || { echo "Cloudflare commit mismatch: expected=$GITHUB_SHA, live=$live_sha" >&2; exit 1; }
+          [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/cloudflare-allowed-shas.txt || { echo "Cloudflare commit mismatch: main=$GITHUB_SHA live=$live_sha" >&2; exit 1; }
 
       - name: Run authoritative live QA and unpublished discovery checks
         if: steps.targets.outputs.available == 'true'

@@ -99,8 +99,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout expected source
+      - name: Checkout expected source and first-parent history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Verify shared Country CSS architecture
         run: |
@@ -110,23 +112,27 @@ jobs:
           transport_structure_sources="$(grep -l '^\.travel-planning__block--transport \.transport{$' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
           test "$transport_structure_sources" = "assets/css/country-discovery-v3.css"
 
-      - name: Wait for atlas.yagenji.com to serve this commit
+      - name: Test deployable SHA equivalence guard
+        run: python3 scripts/test_expected_cloudflare_commit.py
+
+      - name: Wait for a current or proven equivalent Cloudflare commit
         env:
           SITE_URL: https://atlas.yagenji.com
           EXPECTED_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
+          python3 scripts/expected_cloudflare_commit.py --head "$EXPECTED_SHA" --candidate-file /tmp/cloudflare-allowed-shas.txt
           for attempt in $(seq 1 120); do
             meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
             live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
             echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
-            if [ "$live_sha" = "$EXPECTED_SHA" ]; then
-              echo "Cloudflare production is serving the expected commit."
+            if [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/cloudflare-allowed-shas.txt; then
+              echo "Cloudflare production serves the expected or an equivalent non-runtime commit."
               exit 0
             fi
             sleep 5
           done
-          echo "atlas.yagenji.com did not reach expected commit within the 10-minute verification window: $EXPECTED_SHA"
+          echo "atlas.yagenji.com did not reach an allowed source commit within the 10-minute verification window: $EXPECTED_SHA"
           exit 1
 
       - name: Verify production runtime baseline
