@@ -9,3 +9,11 @@
   object-fit: contain;
   object-position: center;
 }
+
+/* The regenerated 3:2 Sancocho artwork already includes safe space around its bowl.
+   Do not inset it a second time: the inset exposes a differently colored card backing. */
+.taste-card__img[src*="/panama/approved/food01-sancocho.webp"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
