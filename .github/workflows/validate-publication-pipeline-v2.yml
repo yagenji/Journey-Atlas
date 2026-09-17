@@ -39,6 +39,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          filter: blob:none
+          # Helper self-tests read code, workflow YAML, and machine policy only.
+          # Real Country/image checks continue in their own workflows.
+          sparse-checkout: |
+            .github
+            ops
+            scripts
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
