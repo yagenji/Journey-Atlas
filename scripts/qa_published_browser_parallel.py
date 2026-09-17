@@ -7,12 +7,10 @@ import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-
-import qa_published_browser as qa
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output"))
-VIEWPORT_ORDER = {name: index for index, name in enumerate(qa.VIEWPORTS)}
 
 
 def partition(items: list[tuple[str, str]], workers: int) -> list[list[tuple[str, str]]]:
@@ -49,11 +47,16 @@ def run_shard(index: int, group: list[tuple[str, str]], base_env: dict[str, str]
     return index, proc.returncode, proc.stdout
 
 
-def merge_reports(groups: list[list[tuple[str, str]]], shard_codes: dict[int, int]) -> int:
+def merge_reports(
+    qa: Any,
+    groups: list[list[tuple[str, str]]],
+    shard_codes: dict[int, int],
+) -> int:
     results: list[dict] = []
     failures: list[dict] = []
     countries: list[str] = []
     viewports = qa.VIEWPORTS
+    viewport_order = {name: index for index, name in enumerate(viewports)}
     missing_reports: list[str] = []
 
     for index, group in enumerate(groups):
@@ -75,8 +78,8 @@ def merge_reports(groups: list[list[tuple[str, str]]], shard_codes: dict[int, in
             }
         )
 
-    results.sort(key=lambda row: (row.get("slug", ""), VIEWPORT_ORDER.get(row.get("viewport", ""), 99)))
-    failures.sort(key=lambda row: (row.get("slug", ""), VIEWPORT_ORDER.get(row.get("viewport", ""), 99)))
+    results.sort(key=lambda row: (row.get("slug", ""), viewport_order.get(row.get("viewport", ""), 99)))
+    failures.sort(key=lambda row: (row.get("slug", ""), viewport_order.get(row.get("viewport", ""), 99)))
     merged = {
         "baseUrl": qa.BASE_URL,
         "countries": sorted(countries),
@@ -129,6 +132,8 @@ def main() -> int:
     if requested or scope != "published":
         return run_original(base_env)
 
+    import qa_published_browser as qa
+
     countries = qa.load_countries()
     if len(countries) <= 1:
         return run_original(base_env)
@@ -153,7 +158,7 @@ def main() -> int:
             print(f"\n===== published QA shard {index:02d} (exit={code}) =====", flush=True)
             print(output, end="" if output.endswith("\n") else "\n", flush=True)
 
-    return merge_reports(groups, shard_codes)
+    return merge_reports(qa, groups, shard_codes)
 
 
 if __name__ == "__main__":
