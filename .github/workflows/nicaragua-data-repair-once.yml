@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Repair only seven schema references using authoritative existing data
+      - name: Repair seven schema references and push target Country JSON
         shell: bash
         run: |
           set -euo pipefail
@@ -31,8 +31,7 @@ jobs:
           for item in routes:
               target=by_ja[item['countryJa']]
               assert target['slug'] in {'honduras','costarica'} and not item.get('flag') and not item.get('countryEn')
-              item['flag']=target['flag']
-              item['countryEn']=target['nameEn']
+              item['flag']=target['flag'];item['countryEn']=target['nameEn']
           dates=c['sourceDates'];sources=c['sources']
           for stale,authoritative in [('worldHeritage','leonCathedral'),('rioSanJuanMab','rioSanJuan'),('routes','nextRoutes')]:
               assert stale in dates and authoritative in sources and authoritative not in dates,(stale,authoritative)
@@ -48,7 +47,7 @@ jobs:
           python3 scripts/validate_country_map_v6.py data/countries/nicaragua.json
           git config user.name 'journey-atlas-recovery'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/countries/nicaragua.json
+          git add -f data/countries/nicaragua.json
           git commit -m 'Repair Nicaragua next-route and source-date schema references'
           git push origin HEAD:refs/heads/country/nicaragua
           echo 'NICARAGUA_JSON_REPAIR_PUSHED'
