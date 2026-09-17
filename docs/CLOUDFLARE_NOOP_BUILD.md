@@ -27,4 +27,6 @@ When **only this runbook** changes in a `[CF-Pages-Skip]`-prefixed `main` commit
 
 Cloudflare account authorization is required. **Do not assume** the Pages dashboard has any particular current setting. Once authorized, inspect `journey-atlas` Build settings, production branch, preview branch and existing watch paths before changes. Begin with a narrow allowlist of exclusions, not `.github/*` or every `ops/*`. Cloudflare's rule evaluates excludes first and builds when any remaining changed path matches the includes. Never disable automatic production branch deployment.
 
+Permanent Build watch path verification started on 2026-09-17 after dashboard configuration was confirmed.
+
 Official references: https://developers.cloudflare.com/pages/configuration/build-watch-paths/ and https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/ .
