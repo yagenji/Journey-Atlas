@@ -1,219 +1,105 @@
-# JOURNEY ATLAS Development Rules
+# JOURNEY ATLAS — Development Rules
 
-このファイルは、JOURNEY ATLASを変更するCodexおよび開発者が必ず守るルールを定義する。リポジトリ全体に適用する。
+This file contains **repository-wide technical invariants only**. Do not duplicate Country production procedure here.
 
-## 1. プロジェクトの目的
+For a new Country, human production behavior is defined in `docs/COUNTRY_PRODUCTION_RULES.md`. Detailed machine contracts remain in the current validators/policies and should be read only when the active task requires them.
 
-- JOURNEY ATLASは、大人向けの旅のビジュアルアトラスである。
-- 国について網羅的に勉強する図鑑ではなく、ページを見た人に「この国に行きたい」と思わせることを目的とする。
-- 1国につき1ページを基本単位とする。
-- 日本語を主体とし、静かで洗練された旅の世界観をつくる。
-- JOURNEY LENSと世界観およびフォント体系を共通化する。ただし、各国ページにJOURNEY LENSへのリンクは置かない。
-- 広告的、扇情的、子ども向け、過度にポップな表現を避ける。
+## 1. Product invariant
 
-## 2. 技術構成
+JOURNEY ATLAS is a quiet, adult travel atlas designed to make people want to know and visit a country through scenery and geography. Preserve the shared visual system and avoid advertising-style, sensational, childish or excessively decorative treatment.
 
-原則として次の構成を維持する。
+## 2. Technical stack
 
-- HTML
-- CSS
-- Vanilla JavaScript
-- 国別JSON
-- 必要な場合のみPythonスクリプト
+Keep the existing simple architecture unless an explicit system change is approved:
+- HTML;
+- CSS;
+- Vanilla JavaScript;
+- Country JSON;
+- Python only where build/QA automation needs it.
 
-以下は、明示的な承認なしに導入しない。
+Do not introduce React/Next/Vue, unnecessary package systems, build frameworks or external libraries merely for one Country.
 
-- React、Next.js、Vueなどのフレームワーク
-- 不要なビルドシステム
-- パッケージ管理を前提とする依存関係
-- 国ページの量産に不要な外部ライブラリ
+## 3. File responsibilities
 
-## 3. ファイルの責務
+- shared templates/UI belong in common HTML/CSS/JS;
+- Country-specific editorial content, coordinates and image references belong in `data/countries/{slug}.json`;
+- Theme assignment belongs in `data/theme-taxonomy.json`;
+- canonical destination scope/publication discovery belongs in `data/atlas-destinations.json`;
+- Country production progress belongs in `ops/country-production/{slug}.json` where applicable;
+- approved Country assets belong under `assets/images/{slug}/` according to the current asset contract.
 
-```text
-index.html
-  全ての国ページで使用する共通テンプレート
+Do not copy common UI into Country-specific files or create Country-specific CSS/JS as a workaround for a shared problem.
 
-assets/css/style.css
-  デザイントークン、共通コンポーネント、レスポンシブ指定
+## 4. Country data and geography
 
-assets/js/app.js
-  JSON読込、DOM生成、地点投影、連動操作、端末内保存
+- Scene map markers and Scene cards derive from the same Country Scene data.
+- Use real coordinates and reliable geographic data; never infer national borders, islands, roads, mountains, rivers or routes from memory or appearance.
+- Visual label offsets may resolve collisions; real coordinates must not be falsified to make a Map look cleaner.
+- Do not invent buildings, terrain, vegetation or landmarks in Country imagery.
+- Unverified facts remain unfilled/TBD rather than guessed.
 
-data/countries/*.json
-  国固有の文章、地点、座標、画像、旅行情報
+## 5. Factual data
 
-docs/DESIGN_SPEC.md
-  確定済みのデザイン仕様
-```
+Use reliable sources for population, area, language, religion, currency, geography, history, transport, seasonal operation and other factual claims.
 
-- 国固有の内容を`index.html`や`app.js`へ直接ハードコードしない。
-- 新しい国は、原則として国別JSONを追加するだけで共通テンプレートから表示できるようにする。
-- 共通化できる構造や挙動はテンプレート、CSS、JavaScript側へ置く。
-- 国ごとの差異を理由に、共通構造を安易に複製しない。
+For changing numerical data:
+- `sourcesVerifiedAt` records when the source was checked;
+- `sourceDates` records the period/date the displayed value describes;
+- do not substitute `updatedAt` for either.
 
-## 4. 国別JSONの基本契約
+## 6. Shared design system
 
-国別JSONは、少なくとも次の情報群を持つ。
+Do not create a new design language per Country. Use the existing tokens/components and `docs/DESIGN_SPEC.md` when exact typography or shared component detail is required.
 
-- `slug`
-- `nameEn`
-- `nameJa`
-- `region`
-- `hero`
-- `map`
-- `scenes`
-- `encounters`
-- `seasons`
-- `transport`
-- `personas`
-- `facts`
-- `tips`
-- `relatedCountries`
+Maintain the established font roles and readable text sizes. Do not solve layout problems by shrinking body text below the existing system.
 
-### scenes
+Images contain no baked-in page text, map labels, buttons, cards or UI unless the asset contract explicitly requires it.
 
-- 原則8件とする。件数変更が必要な場合は、先に仕様をTBDとして提示し承認を得る。
-- 地図上の番号と景色カードの番号は、同じ`scenes`配列から生成する。
-- 各項目は、安定した`id`、日本語名、現地語・英語名、説明、座標、画像パスを持つ。
-- 長い日本語名に優先改行位置が必要な場合は、任意の`nameBreaks`へ`name`の文字位置を配列で指定する。表示名を改行用文字列として重複登録しない。
-- 表示順がそのまま①〜⑧の番号になる。
-- 地図だけ、またはカードだけに独立した地点情報を作らない。
+## 7. Responsive and accessibility
 
-### map
+Country pages must remain usable on Desktop, Tablet and Mobile.
 
-- `bounds`は地点投影に使う正確な範囲を保持する。
-- `svg`は正確な国土データから作成した地図のみを指定する。
-- `route`は必須ではない。正確な実在道路または検証済みの実旅程として表現できる場合のみ設定する。
-- 未設定値は空文字、`null`など、既存のデータ契約に合う形で明示する。
+Maintain:
+- semantic headings and link/button behavior;
+- keyboard/focus behavior;
+- touch interaction;
+- `alt` / ARIA where required;
+- non-color-only selected states;
+- contrast;
+- `prefers-reduced-motion` for added motion.
 
-## 5. 地理情報の正確性
+## 8. Change discipline
 
-- 国土、海岸線、島、地点、緯度経度は、信頼できる地理データを使う。
-- 国土形状を記憶や見た目から推測して描かない。
-- 架空の道路、建物、山、川、湖、島、地形、旅程ルートを追加しない。
-- 装飾目的だけのルート線を描かない。
-- 地域を1点で示す場合は、代表地点なのか範囲の中心なのかをデータまたは仕様で明確にする。
-- 地図データがない場合は、正確なSVGの差し替え領域を表示し、推測による地図で埋めない。
-- 地理情報を追加・変更するときは、出典と確認日を追跡できる状態にする。保存方法が未確定の場合はTBDとする。
+- Check current `main` and existing work before editing.
+- Preserve unrelated user/branch changes.
+- Change only files needed by the task.
+- Prefer a shared fix for a proven shared defect; do not hide it in one Country.
+- Do not change URL architecture, dependencies, common design, publication state or approved assets as an incidental workaround.
+- Avoid destructive Git operations.
+- Do not treat a CI pass as proof of visual correctness.
 
-## 6. 画像・イラスト制作
+## 9. QA principle
 
-- Heroおよび8景のイラストは、実景の特徴を忠実に表現する。
-- 実在しない道路、建物、山、地形、植生、ランドマークを、構図上の都合で追加しない。
-- 季節、天候、光、植生など、時期で変わる要素は素材の前提と矛盾させない。
-- 実景を確認できない場合は、想像で完成素材を作らずプレースホルダーを維持する。
-- 画像内に見出し、本文、番号、ボタン、カード、地図UIを焼き込まない。
-- 文字、カード、番号、ボタン、地図マーカーはHTML/CSS/JavaScriptで実装する。
-- 画像を差し替えても、文字の可読性と主要被写体の安全領域が保たれる構図にする。
+Use the smallest QA scope that proves the actual change while preserving hard gates:
+- Country-only change → target Country validation/Browser QA;
+- shared rendering/build change → broader regression;
+- asset change → identity/path/decode/dimension/duplicate checks;
+- Map change → geometry/coordinate/label checks;
+- production deployment → actual deployed route/SHA verification.
 
-## 7. コンテンツ制作
+The actual rendered page is authoritative for visual QA.
 
-- 事実を並べるだけでなく、旅に出たくなる景色や体験を短く伝える。
-- 誇張、断定しすぎる表現、広告コピーのような煽りを避ける。
-- 文章は日本語主体とし、現地語・英語名を補助情報として扱う。
-- 景色カードは、名称と短い説明で完結させる。
-- 人口、通貨、時差、交通、季節、規制など変化しうる情報は、公開前に最新情報を確認する。
-- 変動しうる数値は、表示値だけでなく実データの基準時点を `sourceDates` に記録する。公開国では人口の基準時点を必須とし、年次のエネルギー比率・宗教比率・会員数・土地利用なども基準期間が分かる場合は記録する。
-- `sourcesVerifiedAt` は出典確認日、`sourceDates` は数値そのものの基準時点として分離し、`updatedAt` で代用しない。
-- 未確認の事実を推測で埋めない。
-- 未確定事項は勝手に決めず、必ず`TBD`と記載する。
+## 10. Reading strategy
 
-## 8. JOURNEY LENSと共通のフォント体系
+Do not preload the entire repository rule set into an assistant context.
 
-次の5書体を役割別に使用する。
+At task start read only:
+1. this file;
+2. the task-specific human authority (`docs/COUNTRY_PRODUCTION_RULES.md` for a new Country);
+3. the target Country JSON/State/branch information actually needed.
 
-- Hanken Grotesk：ブランドロゴ、大きな英字見出し
-- Newsreader：英語のセリフ体、補助的なエディトリアル表現
-- Shippori Mincho：Hero導入文など、情緒を出したい短い日本語コピー。必要な場合のみCTA
-- Zen Kaku Gothic New：日本語国名、日本語見出し、景色カード、通常本文、旅行情報、UI
-- Spline Sans Mono：地域、番号、月、座標、メタ情報
+Open detailed Content, Map, Image, State or Publication machine documents only when entering that phase or diagnosing a concrete validator/workflow result. Do not repeatedly reread unchanged long files in the same work period.
 
-- CSSでは`--serif`をNewsreader、`--mincho`をShippori Minchoとして分離する。
-- 日本語見出しは原則としてZen Kaku Gothic Newを使用し、Shippori Minchoを広範囲に使わない。
-- 本文には`-webkit-font-smoothing: antialiased`と`font-feature-settings: "palt"`を適用する。
+## 11. Completion
 
-文字サイズの原則：
-
-- 通常本文：14〜16pxを基本とする。
-- 景色カード本文：13〜14pxを下限とする。
-- カード見出し：14〜16pxを基本とする。
-- メタ情報、英語地名など：11〜12pxまで使用できる。
-- 重要な導入文：16〜20pxを基本とする。
-- 情報量を収めるために文字を極端に小さくしない。
-- 収まりは、余白、カードサイズ、レイアウト、文章量の調整で解決する。
-
-詳細は`docs/DESIGN_SPEC.md`を参照する。
-
-## 9. UIとインタラクション
-
-- 地図マーカーと8景カードは双方向に連動させる。
-- PCではhoverとkeyboard focus、タッチ端末ではtapで操作できるようにする。
-- 選択状態を色だけに依存させない。
-- `aria-label`、`aria-pressed`、`role="status"`などを適切に使用する。
-- 「この国に行きたい」は、現状では端末内の`localStorage`へ保存する。
-- 外部送信、アカウント同期、永続DBはTBDであり、勝手に追加しない。
-- 動きを追加する場合は`prefers-reduced-motion`に対応する。
-
-## 10. レスポンシブ
-
-- PCとスマートフォンの両方を必須対応とする。
-- PCでは地図と8景を左右に配置し、一覧性を保つ。
-- タブレットでは地図と8景を上下に分割できる。
-- スマートフォンでは読み順を維持して縦積みにする。
-- 「1ページで俯瞰する」は「1画面に全て詰め込む」という意味ではない。
-- 情報密度を維持しつつ、Webとして自然にスクロールできる長さにする。
-- スマートフォン対応を理由に本文を基準未満へ縮小しない。
-
-## 11. 開発手順
-
-作業前：
-
-1. `AGENTS.md`、`README.md`、`docs/DESIGN_SPEC.md`を読む。
-2. `git status --short`で既存変更を確認する。
-3. 対象国のJSONと共通テンプレートを確認する。
-4. 未確定事項があればTBDとして提示し、勝手に仕様化しない。
-
-ローカル確認：
-
-```bash
-python3 -m http.server 8000
-```
-
-Icelandの確認URL：
-
-```text
-http://localhost:8000/?country=iceland
-```
-
-変更後：
-
-1. JSON構文を確認する。
-2. JavaScript構文を確認する。
-3. HTML構造を確認する。
-4. PCとスマートフォンの表示を確認する。
-5. hover、focus、tap、保存操作を確認する。
-6. 地図と8景が同じデータから生成されていることを確認する。
-7. 事実、座標、画像に架空の要素がないことを確認する。
-
-## 12. 変更管理
-
-- ユーザーの既存変更や未コミット変更を上書きしない。
-- 依頼と無関係なファイルを変更しない。
-- 大規模な構成変更、依存追加、URL設計変更は、承認前にTBDとして提案する。
-- コミット、push、デプロイは明示的に依頼された場合のみ行う。
-- コミットには依頼対象の変更だけを含める。
-- 破壊的なGit操作を行わない。
-
-## 13. 完了条件
-
-- 国固有の内容がJSONに分離されている。
-- 1国1ページの共通テンプレートが維持されている。
-- 地図と8景が同じ`scenes`データから生成される。
-- 国土、地点、画像表現に架空の要素がない。
-- PC、タブレット、スマートフォンで読める。
-- 本文と補助情報が規定サイズを下回らない。
-- hover、focus、tapが機能する。
-- 構文エラーがない。
-- README、AGENTS.md、DESIGN_SPEC.mdと実装が矛盾しない。
-- 未確定事項が`TBD`として明示されている。
+A repository change is complete only when its relevant syntax/data checks pass and the affected real behavior is verified. Country-page completion additionally follows `docs/COUNTRY_PRODUCTION_RULES.md` and cannot be inferred from file existence, Build success or CI success alone.
