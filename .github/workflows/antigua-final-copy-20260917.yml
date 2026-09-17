@@ -1,0 +1,51 @@
+name: Antigua final Japanese copy and cleanup
+on:
+  push:
+    branches: ['country/antiguabarbuda-renewal']
+    paths: ['.github/workflows/antigua-final-copy-20260917.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/antiguabarbuda-renewal
+          persist-credentials: true
+      - name: Correct remaining English and remove all temporary workflow files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/countries/antiguabarbuda.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['slug']=='antiguabarbuda' and d.get('atlasPublished',False) is False
+          assert len(d['scenes'])==8 and len(d['taste']['items'])==4
+          hero=d['hero']
+          assert hero['location'] in ('Shirley Heights Lookout / English Harbour','シャーリー・ハイツ展望台／イングリッシュ・ハーバー')
+          hero['location']='シャーリー・ハイツ展望台／イングリッシュ・ハーバー'
+          for i,en,ja in ((0,'Devil’s Bridge','デビルズ・ブリッジ'),(1,'Wallings','ウォーリングス自然保護区')):
+            v=d['travelScale']['items'][i]['text']
+            assert en in v or ja in v,(i,v)
+            d['travelScale']['items'][i]['text']=v.replace(en,ja)
+          trivia=d['travelTrivia'][4]
+          trivia['title']=trivia['title'].replace('ECドル','東カリブ・ドル')
+          trivia['text']=trivia['text'].replace('ECドル','東カリブ・ドル')
+          assert 'English Harbour' not in hero['location']
+          assert 'Devil’s Bridge' not in d['travelScale']['items'][0]['text']
+          assert 'Wallings' not in d['travelScale']['items'][1]['text']
+          assert d['facts'][3]['value']=='442.6 km²（日本の約0.12％）'
+          p.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('PASS: localized remaining visible names, area unchanged, publication false')
+          PY
+          git rm -f --ignore-unmatch .github/workflows/antigua-final-copy-20260917.yml .github/workflows/antigua-apply-copy-cleanup-20260917.yml .github/workflows/one-time-antigua-apply-20260917.yml .github/workflows/one-time-antigua-language-audit-20260917.yml
+          git add data/countries/antiguabarbuda.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Finish Antigua Japanese copy and remove temporary workflows'
+          git push origin HEAD:refs/heads/country/antiguabarbuda-renewal || { git pull --rebase origin country/antiguabarbuda-renewal; git push origin HEAD:refs/heads/country/antiguabarbuda-renewal; }
