@@ -32,7 +32,10 @@ jobs:
       - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # Most pull requests are not active Pipeline v2 Country targets.
+          # Resolve that cheap compatibility path from one commit; fetch history
+          # only if a real Country overlay comparison is required.
+          fetch-depth: 1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -87,6 +90,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+            git fetch --no-tags --unshallow origin
+          fi
           git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
           python3 scripts/country_overlay_v2.py assert-scope "$SLUG" origin/main "$SOURCE_SHA"
           python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/country-overlay

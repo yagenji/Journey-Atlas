@@ -38,7 +38,10 @@ jobs:
       - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          # Most Country pushes are still in content/visual production and exit
+          # before review. Keep that hot path shallow; deepen only after the
+          # 13-raster review gate has actually passed.
+          fetch-depth: 1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -91,6 +94,9 @@ jobs:
           fi
           python3 scripts/publication_pipeline_v2.py assert-review-ready "$slug" || exit 0
           source_sha="$(git rev-parse HEAD)"
+          if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+            git fetch --no-tags --unshallow origin
+          fi
           git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
           main_sha="$(git rev-parse origin/main)"
           python3 scripts/country_overlay_v2.py assert-scope "$slug" origin/main "$source_sha"
