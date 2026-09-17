@@ -137,6 +137,36 @@ def on_land_in_path(group, p):
     return any(near_boundary(poly, p) for poly in group)
 
 
+# Land-path coordinates in an SVG inherit transforms from every ancestor group.
+# The atlas map generator uses translate(x y) to position geographic insets.
+# Reject unsupported transforms rather than silently checking untransformed land.
+SVG_TRANSLATE_RE = re.compile(
+    r"\s*translate\(\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+))"
+    r"(?:[\s,]+([+-]?(?:\d+(?:\.\d*)?|\.\d+)))?\s*\)\s*"
+)
+
+def collect_transformed_land_paths(root):
+    groups, unsupported = [], []
+
+    def walk(element, dx=0.0, dy=0.0):
+        transform = element.attrib.get("transform", "").strip()
+        if transform:
+            match = SVG_TRANSLATE_RE.fullmatch(transform)
+            if match is None:
+                unsupported.append(transform)
+                return
+            dx += float(match.group(1))
+            dy += float(match.group(2) or 0)
+        if element.tag.rsplit("}", 1)[-1] == "path":
+            polygons = parse_polygons(element.attrib.get("d", ""))
+            if polygons:
+                groups.append([[(x + dx, y + dy) for x, y in poly] for poly in polygons])
+        for child in element:
+            walk(child, dx, dy)
+
+    walk(root)
+    return groups, unsupported
+
 def validate(path: Path):
     data = json.loads(path.read_text(encoding="utf-8"))
     if int(data.get("contentQaVersion") or 1) < 6:
@@ -156,14 +186,9 @@ def validate(path: Path):
         root = ET.fromstring(text)
     except ET.ParseError as exc:
         return errors + [f"{path.name}: invalid map SVG XML: {exc}"]
-    path_groups = []
-    for el in root.iter():
-        if el.tag.rsplit("}", 1)[-1] != "path":
-            continue
-        d = el.attrib.get("d", "")
-        polys = parse_polygons(d)
-        if polys:
-            path_groups.append(polys)
+    path_groups, unsupported_transforms = collect_transformed_land_paths(root)
+    if unsupported_transforms:
+        errors.append(f"{path.name}: unsupported SVG land transform(s): {unsupported_transforms[:5]}")
     if not path_groups:
         errors.append(f"{path.name}: map SVG has no parseable closed land path geometry")
         return errors
