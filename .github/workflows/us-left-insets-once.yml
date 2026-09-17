@@ -32,10 +32,13 @@ jobs:
 
           svg_path = Path('assets/images/unitedstates/map-atlas-v1.svg')
           json_path = Path('data/countries/unitedstates.json')
+          state_path = Path('ops/country-production/unitedstates.json')
           svg = svg_path.read_text(encoding='utf-8')
           country = json.loads(json_path.read_text(encoding='utf-8'))
-          assert country['slug'] == 'unitedstates'
-          assert country.get('atlasPublished') is False, 'Never publish without user approval'
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          assert country['slug'] == state['slug'] == 'unitedstates'
+          assert state['publication']['atlasPublished'] is False, 'Never publish without user approval'
+          assert state['finalApproval']['state'] == 'PENDING'
           assert country['map']['svg'] == svg_path.as_posix()
 
           def replace_exact(old, new):
@@ -52,7 +55,7 @@ jobs:
           replace_exact('<g data-map-inset-frame="hawaii"><rect x="931"', '<g data-map-inset-frame="hawaii"><rect x="35"')
 
           before, marker, labels = svg.partition('<g data-map-inset-explanation="true"')
-          assert marker and labels.endswith('</svg>'), 'Missing inset explanation'
+          assert marker and labels.rstrip().endswith('</svg>'), 'Missing inset explanation'
           for old, new in [('x="950"', 'x="44"'), ('x="957"', 'x="51"'), ('x="941"', 'x="45"'), ('x="948"', 'x="52"')]:
               assert labels.count(old) == 1, f'Expected exactly one label attribute {old}'
               labels = labels.replace(old, new, 1)
@@ -69,7 +72,7 @@ jobs:
               assert region['rect']['x'] == old_x, f'Unexpected {region["id"]} projection'
               region['rect']['x'] = new_x
           assert country['map']['insetNote']
-          assert country['atlasPublished'] is False
+          assert state['publication']['atlasPublished'] is False
           svg_path.write_text(svg, encoding='utf-8')
           json_path.write_text(json.dumps(country, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
           print('Preserved coastline geometry; shifted mainland +245, Alaska -906, Hawaii -896; moved both inset frames and labels and projection rectangles.')
