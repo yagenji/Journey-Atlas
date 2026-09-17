@@ -25,12 +25,11 @@
   transform: translateY(-5%);
 }
 
-/* Antigua & Barbuda's approved 3:2 Taste illustrations already carry their own
-   background and safe margins. Fill the card image area so the shared 80% inset
-   does not expose a second backing colour around the artwork. */
+/* Antigua & Barbuda's approved 3:2 Taste artwork has substantial internal safe
+   margins. Enlarge inside the existing clipped card, without editing approved art. */
 .taste-card__img[src*="/antiguabarbuda/approved/food-"] {
-  width: 100%;
-  height: 100%;
+  width: 125%;
+  height: 125%;
   object-fit: contain;
 }
 
