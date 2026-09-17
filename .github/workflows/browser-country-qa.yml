@@ -12,14 +12,24 @@ permissions:
   contents: read
 
 jobs:
-  browser-qa:
+  classify:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    outputs:
+      production_changed: ${{ steps.impact.outputs.production_changed }}
+      publication_metadata_only: ${{ steps.impact.outputs.publication_metadata_only }}
+      browser_scope: ${{ steps.impact.outputs.browser_scope }}
+      target_slugs: ${{ steps.impact.outputs.target_slugs }}
+      published_slugs: ${{ steps.impact.outputs.published_slugs }}
+      reviewable_slugs: ${{ steps.impact.outputs.reviewable_slugs }}
     steps:
-      - name: Check out repository
+      - name: Check out classification inputs only
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          filter: blob:none
+          sparse-checkout: |
+            scripts
+            data
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -48,25 +58,48 @@ jobs:
             --head HEAD \
             --github-output "$GITHUB_OUTPUT"
 
+  browser-qa:
+    needs: classify
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Browser QA not required
+        if: needs.classify.outputs.browser_scope == 'none' || needs.classify.outputs.publication_metadata_only == 'true'
+        run: |
+          echo "No local Country-rendering QA required."
+          echo "Publication metadata-only changes are verified after merge by production QA."
+
+      - name: Check out repository for rendering QA
+        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install browser QA dependencies
-        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
       - name: Build targeted Country preview package
-        if: steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.publication_metadata_only != 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
-          TARGET_SLUGS: ${{ steps.impact.outputs.published_slugs }},${{ steps.impact.outputs.reviewable_slugs }}
+          TARGET_SLUGS: ${{ needs.classify.outputs.published_slugs }},${{ needs.classify.outputs.reviewable_slugs }}
         run: python3 scripts/build_country_preview_targeted.py
 
       - name: Build full production package
-        if: steps.impact.outputs.browser_scope == 'all' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: needs.classify.outputs.browser_scope == 'all' && needs.classify.outputs.publication_metadata_only != 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
 
       - name: Start local production package
-        if: steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
         run: |
           python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser-qa-http.log 2>&1 &
           echo $! > /tmp/journey-atlas-browser-qa-http.pid
@@ -80,9 +113,9 @@ jobs:
           exit 1
 
       - name: Validate targeted published package metadata
-        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.published_slugs != ''
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
         env:
-          PUBLISHED_SLUGS: ${{ steps.impact.outputs.published_slugs }}
+          PUBLISHED_SLUGS: ${{ needs.classify.outputs.published_slugs }}
         run: |
           python3 - <<'PY'
           import json
@@ -143,25 +176,25 @@ jobs:
           PY
 
       - name: Run targeted unpublished reviewable Country QA
-        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.reviewable_slugs != ''
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.reviewable_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
           QA_SCOPE: unpublished-reviewable
-          QA_SLUGS: ${{ steps.impact.outputs.reviewable_slugs }}
+          QA_SLUGS: ${{ needs.classify.outputs.reviewable_slugs }}
         run: python3 scripts/qa_published_browser.py
 
       - name: Run targeted published Country QA
-        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'targeted' && steps.impact.outputs.published_slugs != ''
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: reviewable
-          QA_SLUGS: ${{ steps.impact.outputs.published_slugs }}
+          QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
         run: python3 scripts/qa_published_browser.py
 
       - name: Run all unpublished reviewable Country QA
-        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'all'
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
@@ -169,28 +202,22 @@ jobs:
         run: python3 scripts/qa_published_browser.py
 
       - name: Run all published Country QA
-        if: steps.impact.outputs.publication_metadata_only != 'true' && steps.impact.outputs.browser_scope == 'all'
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
         run: python3 scripts/qa_published_browser.py
 
-      - name: Browser QA not required
-        if: steps.impact.outputs.browser_scope == 'none' || steps.impact.outputs.publication_metadata_only == 'true'
-        run: |
-          echo "No local Country-rendering QA required."
-          echo "Publication metadata-only changes are verified after merge by production QA."
-
       - name: Stop local server
-        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: always() && needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
         run: |
           if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
             kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
           fi
 
       - name: Upload browser QA report
-        if: always() && steps.impact.outputs.browser_scope != 'none' && steps.impact.outputs.publication_metadata_only != 'true'
+        if: always() && needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: country-browser-qa
