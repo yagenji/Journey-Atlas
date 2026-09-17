@@ -1,122 +1,94 @@
 name: One-time United States canonical review corrections
-
 on:
   push:
-    branches:
-      - ops/one-shot-us-review-feedback-20260917
-    paths:
-      - .github/workflows/one-shot-us-review-feedback-20260917.yml
-
+    branches: [ops/one-shot-us-review-feedback-20260917]
+    paths: ['.github/workflows/one-shot-us-review-feedback-20260917.yml']
 permissions:
   contents: write
-
 jobs:
   apply-reviewed-feedback:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout dedicated fix branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: fix/unitedstates-review-feedback-20260917
           fetch-depth: 0
-      - name: Correct the three issues without changing existing map geometry
+      - name: Apply three corrections and preserve approved visuals
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json
-          import re
-          import xml.etree.ElementTree as ET
+          import json, re, xml.etree.ElementTree as ET
           from pathlib import Path
-
-          country_path = Path('data/countries/unitedstates.json')
-          original = country_path.read_text(encoding='utf-8')
-          country = json.loads(original)
-          assert country['slug'] == 'unitedstates'
-          assert country['publicationPipelineVersion'] == 2
-          assert country['travelScale']['items'][0]['text'].startswith('例：')
-          assert len(country['travelScale']['items']) == 3
-          assert next(f['value'] for f in country['facts'] if f['label'] == '面積') == '9,833,517 km²'
-          assert country['map']['svg'] == 'assets/images/unitedstates/map-atlas-v1.svg'
-          assert len(country['scenes']) == 8 and len(country['taste']['items']) == 4
-          assert abs(9_833_517 / 377_930 - 26.02) < 0.01
-          old = '"label":"面積","value":"9,833,517 km²"'
-          assert original.count(old) == 1
-          revised = original.replace(old, '"label":"面積","value":"9,833,517 km²（日本の約26倍）"', 1)
-          intro_old = '"intro":"国全体を一度に回るのではなく、地域を選び、距離に応じて旅を組み立てる。"'
-          intro_new = '"intro":"国全体を一度に回ろうとせず、滞在日数に合わせて地域を選ぶ。都市間の移動だけで一日を使うこともあるため、移動日を含めて考えたい。"'
-          assert revised.count(intro_old) == 1
-          revised = revised.replace(intro_old, intro_new, 1)
-          replacements = [
-            ('例：ニューヨーク→ワシントンD.C. / サンフランシスコ→ヨセミテ', 'ニューヨークを拠点に首都まで足を延ばすか、西海岸ならサンフランシスコとヨセミテに絞る。訪問先を増やしすぎず、一つの地域で街と自然の違いを見る日程。例：ニューヨーク→ワシントンD.C. / サンフランシスコ→ヨセミテ'),
-            ('例：サンフランシスコ→ヨセミテ→ロサンゼルス→グランドキャニオン', '西部なら都市と国立公園を一つの旅に組み合わせられる。長距離の車移動と滞在日を分け、景色の変化を急がずたどりたい。例：サンフランシスコ→ヨセミテ→ロサンゼルス→グランドキャニオン'),
-            ('例：東海岸→南部→西部 / 本土→アラスカまたはハワイ', '離れた地域を国内線でつなぎ、都市・大地・海の違いを見比べる。アラスカやハワイを加える場合は本土との往復に移動日を取り、訪問地域を絞る。例：東海岸→南部→西部 / 本土→アラスカまたはハワイ'),
+          p = Path('data/countries/unitedstates.json')
+          old = p.read_text(encoding='utf-8')
+          data = json.loads(old)
+          assert data['slug'] == 'unitedstates' and data['publicationPipelineVersion'] == 2
+          assert len(data['scenes']) == 8 and len(data['taste']['items']) == 4
+          assert next(x['value'] for x in data['facts'] if x['label'] == '面積') == '9,833,517 km²'
+          assert abs(9833517 / 377930 - 26.02) < .01
+          pairs = [
+              ('"label":"面積","value":"9,833,517 km²"', '"label":"面積","value":"9,833,517 km²（日本の約26倍）"'),
+              ('"intro":"国全体を一度に回るのではなく、地域を選び、距離に応じて旅を組み立てる。"', '"intro":"国全体を一度に回ろうとせず、滞在日数に合わせて地域を選ぶ。都市間の移動だけで一日を使うこともあるため、移動日を含めて考えたい。"'),
+              ('例：ニューヨーク→ワシントンD.C. / サンフランシスコ→ヨセミテ', 'ニューヨークを拠点に首都まで足を延ばすか、西海岸ならサンフランシスコとヨセミテに絞る。訪問先を増やしすぎず、一つの地域で街と自然の違いを見る日程。例：ニューヨーク→ワシントンD.C. / サンフランシスコ→ヨセミテ'),
+              ('例：サンフランシスコ→ヨセミテ→ロサンゼルス→グランドキャニオン', '西部なら都市と国立公園を一つの旅に組み合わせられる。長距離の車移動と滞在日を分け、景色の変化を急がずたどりたい。例：サンフランシスコ→ヨセミテ→ロサンゼルス→グランドキャニオン'),
+              ('例：東海岸→南部→西部 / 本土→アラスカまたはハワイ', '離れた地域を国内線でつなぎ、都市・大地・海の違いを見比べる。アラスカやハワイを加える場合は本土との往復に移動日を取り、訪問地域を絞る。例：東海岸→南部→西部 / 本土→アラスカまたはハワイ'),
+              ('"svg":"assets/images/unitedstates/map-atlas-v1.svg","route":null', '"svg":"assets/images/unitedstates/map-atlas-v1.svg","insetNote":"※ アラスカとハワイは、実際の位置関係・縮尺と異なる別枠表示です。","route":null'),
           ]
-          for before, after in replacements:
-              assert revised.count('"text":"' + before + '"') == 1, before
-              revised = revised.replace('"text":"' + before + '"', '"text":"' + after + '"', 1)
-          revised = revised.replace('"svg":"assets/images/unitedstates/map-atlas-v1.svg","route":null', '"svg":"assets/images/unitedstates/map-atlas-v1.svg","insetNote":"※ アラスカとハワイは、実際の位置関係・縮尺と異なる別枠表示です。","route":null', 1)
-          assert revised != original
-          updated = json.loads(revised)
-          assert updated['facts'][3]['value'].endswith('日本の約26倍）')
-          assert all(len(i['text']) > 65 and i['text'].count('例：') == 1 for i in updated['travelScale']['items'])
-          assert updated['map']['insetNote'].startswith('※ アラスカ')
-          assert updated['hero'] == country['hero'] and updated['scenes'] == country['scenes'] and updated['taste'] == country['taste']
-          country_path.write_text(revised, encoding='utf-8')
-
-          js_path = Path('assets/js/app.js')
-          js = js_path.read_text(encoding='utf-8')
-          needle = '  mapArt.prepend(image);\n}\n\nfunction applyBackground(element, image) {'
-          replacement = '''  mapArt.prepend(image);
-  // Country data supplies this only for inset maps. Keep the explanation
-  // legible below the SVG even on narrow screens, without Country-specific CSS.
-  if (typeof mapData.insetNote === 'string' && mapData.insetNote.trim()) {
-    const legend = fragment.querySelector('.map-legend--below');
-    if (legend) {
-      const note = document.createElement('span');
-      note.className = 'map-legend__inset-note';
-      note.textContent = mapData.insetNote;
-      note.style.flexBasis = '100%';
-      note.style.textAlign = 'left';
-      legend.append(note);
-      legend.setAttribute('aria-label', '地図記号と別枠表示の説明');
-    }
-  }
-}
-
-function applyBackground(element, image) {'''
-          assert js.count(needle) == 1
-          js_path.write_text(js.replace(needle, replacement, 1), encoding='utf-8')
-
-          svg_path = Path('assets/images/unitedstates/map-atlas-v1.svg')
-          svg = svg_path.read_text(encoding='utf-8')
-          assert 'viewBox="0 0 1200 760"' in svg
-          assert 'data-map-inset-frame' not in svg
-          assert svg.count('<g data-map-region="lower48">') == 1
-          assert svg.count('<g data-map-region="alaska">') == 1
-          assert svg.count('<g data-map-region="hawaii">') == 1
-          paths_before = re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg)
-          assert len(paths_before) > 10
-          alaska_frame = '<g data-map-inset-frame="alaska"><rect x="941" y="65" width="242" height="329" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>'
-          hawaii_frame = '<g data-map-inset-frame="hawaii"><rect x="931" y="474" width="252" height="224" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>'
-          svg = svg.replace('<g data-map-region="alaska">', alaska_frame + '<g data-map-region="alaska">', 1)
-          svg = svg.replace('<g data-map-region="hawaii">', hawaii_frame + '<g data-map-region="hawaii">', 1)
-          svg = svg.replace('aria-label="Map of the United States"', 'aria-label="Map of the United States: Alaska and Hawaii shown as separate insets, not at actual relative positions or the same scale"', 1)
-          overlay = '''<g data-map-inset-explanation="true" font-family="Zen Kaku Gothic New, sans-serif" fill="#405c65">
-          <rect x="950" y="365" width="122" height="23" rx="4" fill="#edf1ed" fill-opacity=".94"/>
-          <text x="957" y="381" font-size="13" font-weight="600">ALASKA · 別枠</text>
-          <rect x="941" y="666" width="123" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/>
-          <text x="948" y="683" font-size="13" font-weight="600">HAWAII · 別枠</text>
-          <text x="36" y="739" font-size="12">※ アラスカ・ハワイは位置・縮尺を変えた別枠表示です。</text>
-          </g>'''
+          updated = old
+          for a, b in pairs:
+              assert updated.count(a) == 1, a
+              updated = updated.replace(a, b, 1)
+          result = json.loads(updated)
+          assert result['hero'] == data['hero'] and result['scenes'] == data['scenes'] and result['taste'] == data['taste']
+          assert all(len(x['text']) > 65 and x['text'].count('例：') == 1 for x in result['travelScale']['items'])
+          p.write_text(updated, encoding='utf-8')
+          js_file = Path('assets/js/app.js')
+          js = js_file.read_text(encoding='utf-8')
+          target = '  mapArt.prepend(image);\n}\n\nfunction applyBackground(element, image) {'
+          note_code = '\n'.join([
+              '  mapArt.prepend(image);',
+              '  if (typeof mapData.insetNote === "string" && mapData.insetNote.trim()) {',
+              '    const legend = fragment.querySelector(".map-legend--below");',
+              '    if (legend) {',
+              '      const note = document.createElement("span");',
+              '      note.className = "map-legend__inset-note";',
+              '      note.textContent = mapData.insetNote;',
+              '      note.style.flexBasis = "100%";',
+              '      note.style.textAlign = "left";',
+              '      legend.append(note);',
+              '      legend.setAttribute("aria-label", "地図記号と別枠表示の説明");',
+              '    }',
+              '  }',
+              '}',
+              '',
+              'function applyBackground(element, image) {',
+          ])
+          assert js.count(target) == 1
+          js_file.write_text(js.replace(target, note_code, 1), encoding='utf-8')
+          svg_file = Path('assets/images/unitedstates/map-atlas-v1.svg')
+          svg = svg_file.read_text(encoding='utf-8')
+          assert 'viewBox="0 0 1200 760"' in svg and 'data-map-inset-frame=' not in svg
+          original_paths = re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg)
+          assert len(original_paths) > 10
+          frames = {
+              'alaska': '<g data-map-inset-frame="alaska"><rect x="941" y="65" width="242" height="329" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>',
+              'hawaii': '<g data-map-inset-frame="hawaii"><rect x="931" y="474" width="252" height="224" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>',
+          }
+          for region, frame in frames.items():
+              token = '<g data-map-region="' + region + '">'
+              assert svg.count(token) == 1, region
+              svg = svg.replace(token, frame + token, 1)
+          svg = svg.replace('aria-label="Map of the United States"', 'aria-label="Map of the United States: Alaska and Hawaii shown in separate insets, not at actual relative positions or the same scale"', 1)
+          explanation = '<g data-map-inset-explanation="true" font-family="sans-serif" fill="#405c65"><rect x="950" y="365" width="122" height="23" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="957" y="381" font-size="13" font-weight="600">ALASKA · 別枠</text><rect x="941" y="666" width="123" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="948" y="683" font-size="13" font-weight="600">HAWAII · 別枠</text><text x="36" y="739" font-size="12">※ アラスカ・ハワイは位置・縮尺を変えた別枠表示です。</text></g>'
           assert svg.count('</svg>') == 1
-          svg = svg.replace('</svg>', overlay + '</svg>', 1)
-          assert re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg) == paths_before, 'Original geography path geometry changed'
-          assert len(ET.fromstring(svg).findall('.//{http://www.w3.org/2000/svg}rect')) >= 3
+          svg = svg.replace('</svg>', explanation + '</svg>', 1)
+          assert re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg) == original_paths
+          ET.fromstring(svg)
           assert svg.count('data-map-inset-frame=') == 2
-          svg_path.write_text(svg, encoding='utf-8')
-          print('PASS: country area ratio, three prose travel descriptions, responsive inset notice; land paths unchanged; valid 1200x760 SVG')
+          svg_file.write_text(svg, encoding='utf-8')
+          print('PASS area ratio, three substantive duration descriptions, Alaska/Hawaii inset framing; unchanged map geometry')
           PY
           node --check assets/js/app.js
           python3 scripts/validate_country_editorial_v2.py --force data/countries/unitedstates.json
