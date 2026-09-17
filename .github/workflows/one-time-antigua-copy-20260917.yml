@@ -14,10 +14,7 @@ jobs:
         with:
           ref: fix/antigua-copy-taste-20260917
           persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Apply audited Country copy changes
+      - name: Apply scoped Country editorial fixes
         shell: bash
         run: |
           python3 - <<'PY'
@@ -25,50 +22,39 @@ jobs:
           from pathlib import Path
           path=Path('data/countries/antiguabarbuda.json')
           data=json.loads(path.read_text(encoding='utf-8'))
-          assert data['slug']=='antiguabarbuda' and data.get('atlasPublished') is False
+          assert data['slug']=='antiguabarbuda' and data.get('atlasPublished',False) is False
           assert len(data['scenes'])==8 and len(data['taste']['items'])==4
-          areas=[x for x in data['facts'] if x['label']=='面積']
-          assert len(areas)==1 and areas[0]['value']=='442.6 km²',areas
-          areas[0]['value']='442.6 km²（日本の約0.12％）'
-          populations=[x for x in data['facts'] if x['label']=='人口']
-          assert len(populations)==1
-          populations[0]['value']=populations[0]['value'].replace('World Bank','世界銀行')
+          area=[x for x in data['facts'] if x['label']=='面積']
+          assert len(area)==1 and area[0]['value']=='442.6 km²',area
+          area[0]['value']='442.6 km²（日本の約0.12％）'
+          population=[x for x in data['facts'] if x['label']=='人口']
+          assert len(population)==1
+          population[0]['value']=population[0]['value'].replace('World Bank','世界銀行')
           assert 'https://www.paho.org/en/antigua-and-barbuda' in data['sources']['area']
-          data['sources']['area']+=' 日本比の分母：国土地理院「全国都道府県市区町村別面積調」2026年4月1日 377,974.87 km²。https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm ; 442.6÷377974.87×100≒0.12%。'
-          replacement=[('Redonda Ecosystem Reserve','レドンダ生態系保護区'),('Frigate Bird Sanctuary','グンカンドリ保護区'),('Antigua Black pineapple','アンティグア・ブラック・パイナップル'),('Antigua Sailing Week','アンティグア・セーリング・ウィーク'),('Falmouth Harbour','ファルマス・ハーバー'),('English Harbour','イングリッシュ・ハーバー'),('Codrington Lagoon','コドリントン潟湖'),('Two Foot Bay','トゥー・フット・ベイ'),('Betty’s Hope','ベティーズ・ホープ'),('Indian Cave','インディアン洞窟'),('Cades Bay','ケイズ・ベイ'),('Low Bay','ロウ・ベイ'),('St. John’s','セントジョンズ'),('Codrington','コドリントン'),('barrier land','砂州'),('World Bank','世界銀行'),('UNESCO','ユネスコ'),('Barbuda','バーブーダ'),('Antigua','アンティグア'),('Redonda','レドンダ')]
-          changed=[]
-          def localize(s,key):
+          data['sources']['area']+=' 日本との比較は国土地理院「全国都道府県市区町村別面積調」2026年4月1日 377,974.87 km²を分母とする。https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm ; 442.6/377974.87×100≒0.12%。'
+          replacements=[('Redonda Ecosystem Reserve','レドンダ生態系保護区'),('Frigate Bird Sanctuary','グンカンドリ保護区'),('Antigua Black pineapple','アンティグア・ブラック・パイナップル'),('Antigua Sailing Week','アンティグア・セーリング・ウィーク'),('Falmouth Harbour','ファルマス・ハーバー'),('English Harbour','イングリッシュ・ハーバー'),('Codrington Lagoon','コドリントン潟湖'),('Two Foot Bay','トゥー・フット・ベイ'),('Betty’s Hope','ベティーズ・ホープ'),('Indian Cave','インディアン洞窟'),('Cades Bay','ケイズ・ベイ'),('Low Bay','ロウ・ベイ'),('St. John’s','セントジョンズ'),('Codrington','コドリントン'),('barrier land','砂州'),('World Bank','世界銀行'),('UNESCO','ユネスコ'),('Antigua Carnival','アンティグアのカーニバル'),('Barbuda','バーブーダ'),('Antigua','アンティグア'),('Redonda','レドンダ')]
+          modified=[]
+          def localize(s):
             if not isinstance(s,str):return s
-            original=s
-            for before,after in replacement:s=s.replace(before,after)
-            if original!=s:changed.append(key)
+            old=s
+            for before,after in replacements:s=s.replace(before,after)
+            if s!=old:modified.append(old)
             return s
-          for i,v in enumerate(data['scenes']):v['description']=localize(v['description'],f'scene{i}')
-          for i,v in enumerate(data['atlasExtras']):
-            for k in ('title','text'):v[k]=localize(v[k],f'extra{i}.{k}')
-            v['points']=[localize(s,f'extra{i}.points') for s in v.get('points',[])]
-          for i,v in enumerate(data['travelTrivia']):
-            for k in ('title','text'):v[k]=localize(v[k],f'trivia{i}.{k}')
-          for k in ('title','intro'):data['taste'][k]=localize(data['taste'][k],f'taste.{k}')
-          for i,v in enumerate(data['taste']['items']):v['text']=localize(v['text'],f'taste{i}')
-          data['travelScale']['intro']=localize(data['travelScale']['intro'],'scale.intro')
-          for i,v in enumerate(data['travelScale']['items']):
-            for k in ('title','text'):v[k]=localize(v[k],f'scale{i}.{k}')
-          for i,v in enumerate(data['seasons']):v['text']=localize(v['text'],f'season{i}')
-          for k in ('title','text'):data['transport'][k]=localize(data['transport'][k],f'transport.{k}')
-          for i,v in enumerate(data['personas']):
-            for k in ('title','text'):v[k]=localize(v[k],f'persona{i}.{k}')
-          for i,v in enumerate(data['signatureFacts']):
-            for k in ('note','interestReason'):v[k]=localize(v[k],f'signature{i}.{k}')
-            if v['value']=='11 miles':v['value']='約18 km'
-          for i,v in enumerate(data['tips']):
-            for k in ('title','text'):v[k]=localize(v[k],f'tip{i}.{k}')
-          for i,v in enumerate(data['relatedCountries']):v['reason']=localize(v['reason'],f'related{i}')
-          assert len(set(changed))>=20,(len(set(changed)),changed)
-          assert areas[0]['value']=='442.6 km²（日本の約0.12％）'
+          def visit(obj):
+            if isinstance(obj,list):
+              for item in obj:visit(item)
+            elif isinstance(obj,dict):
+              for key,value in obj.items():
+                if key in ('description','text','intro','reason','note','interestReason','title') and isinstance(value,str):obj[key]=localize(value)
+                elif key=='points' and isinstance(value,list):obj[key]=[localize(s) for s in value]
+                elif isinstance(value,(dict,list)):visit(value)
+          for root in ('scenes','atlasExtras','travelTrivia','taste','travelScale','seasons','transport','personas','signatureFacts','tips','relatedCountries'):visit(data[root])
+          for item in data['signatureFacts']:
+            if item['value']=='11 miles':item['value']='約18 km'
+          assert len(modified)>=20,len(modified)
           assert data['taste']['items'][0]['image'].endswith('food-fungee.webp')
           path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
-          print('Localized fields',len(set(changed)),'area',areas[0]['value'])
+          print('Localized fields:',len(modified),'area:',area[0]['value'])
           PY
           git rm .github/workflows/one-time-antigua-copy-20260917.yml
           git add data/countries/antiguabarbuda.json
