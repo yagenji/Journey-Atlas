@@ -55,18 +55,30 @@ jobs:
           [ -f "data/countries/$slug.json" ] && [ -f "ops/country-production/$slug.json" ] || exit 0
           active="$(python3 scripts/publication_pipeline_v2.py status "$slug" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("active",False)).lower())')"
           [ "$active" = true ] || exit 0
-          # A ready Country is promoted to the real noindex URL by the canonical
-          # integration lane. The legacy Pages preview must not start again on
-          # its State-only reconciliation or branch sync commits.
+          # Suppress duplicate Pages previews while canonical review is active only
+          # when the already-reviewed Country material is unchanged. If an approved
+          # visual/map changes after preview (for example user review feedback), a
+          # fresh Pages preview is required before canonical promotion can continue.
           if python3 - "$slug" <<'PY'
-          import json,sys
+          import json,subprocess,sys
           from pathlib import Path
-          state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+          slug=sys.argv[1]
+          state=json.loads((Path('ops/country-production')/f'{slug}.json').read_text())
           deployment=state.get('reviewDeployment') or {}
-          if deployment.get('url') == f'https://atlas.yagenji.com/countries/{sys.argv[1]}/' and deployment.get('state') in ('DEPLOYING','DONE'):
-              print('Canonical review is active; duplicate Pages review suppressed.')
-              raise SystemExit(0)
-          raise SystemExit(1)
+          active=(deployment.get('url') == f'https://atlas.yagenji.com/countries/{slug}/'
+                  and deployment.get('state') in ('DEPLOYING','DONE'))
+          if not active:
+              raise SystemExit(1)
+          changed=subprocess.run(
+              ['python3','scripts/publication_pipeline_v2.py','review-needed',slug],
+              stdout=subprocess.DEVNULL,
+              stderr=subprocess.DEVNULL,
+          ).returncode == 0
+          if changed:
+              print('Canonical review is active, but reviewed Country material changed; refreshing Pages review first.')
+              raise SystemExit(1)
+          print('Canonical review is active and reviewed material is unchanged; duplicate Pages review suppressed.')
+          raise SystemExit(0)
           PY
           then
             exit 0

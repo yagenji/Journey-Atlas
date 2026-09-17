@@ -211,6 +211,18 @@ function renderMapBase(fragment, mapData) {
   });
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
+  if (typeof mapData.insetNote === "string" && mapData.insetNote.trim()) {
+    const legend = fragment.querySelector(".map-legend--below");
+    if (legend) {
+      const note = document.createElement("span");
+      note.className = "map-legend__inset-note";
+      note.textContent = mapData.insetNote;
+      note.style.flexBasis = "100%";
+      note.style.textAlign = "left";
+      legend.append(note);
+      legend.setAttribute("aria-label", "地図記号と別枠表示の説明");
+    }
+  }
 }
 
 function applyBackground(element, image) {
