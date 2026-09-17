@@ -1,0 +1,39 @@
+name: One-time Antigua prose audit
+on:
+  push:
+    branches: ['audit/antigua-prose-20260917']
+    paths: ['.github/workflows/one-time-antigua-prose-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find Latin letters in reader-facing Japanese prose
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          data=json.loads(Path('data/countries/antiguabarbuda.json').read_text(encoding='utf-8'))
+          offenders=[]
+          prose_keys={'description','text','intro','reason','note','interestReason'}
+          def walk(obj,path='root'):
+            if isinstance(obj,list):
+              for i,v in enumerate(obj): walk(v,f'{path}[{i}]')
+            elif isinstance(obj,dict):
+              for k,v in obj.items():
+                p=f'{path}.{k}'
+                if k in prose_keys and isinstance(v,str) and re.search(r'[A-Za-z]',v): offenders.append((p,v))
+                elif k=='points' and isinstance(v,list):
+                  for i,s in enumerate(v):
+                    if isinstance(s,str) and re.search(r'[A-Za-z]',s): offenders.append((f'{p}[{i}]',s))
+                elif isinstance(v,(dict,list)): walk(v,p)
+          for root in ('scenes','atlasExtras','travelTrivia','taste','travelScale','seasons','transport','personas','signatureFacts','tips','relatedCountries'):
+            walk(data[root],root)
+          print('OFFENDER_COUNT',len(offenders))
+          for p,v in offenders: print('OFFENDER',p,'=>',v)
+          if offenders: raise SystemExit(2)
+          PY
