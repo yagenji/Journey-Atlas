@@ -10,9 +10,11 @@ on:
       - "docs/USER_APPROVED_VISUAL_POLICY_WAIVER.md"
       - "docs/STATE_RECOVERY_MIGRATION.md"
       - ".github/workflows/validate-visual-policy-waivers.yml"
+  # The pull-request run is the integration gate before protected main.
+  # Keep branch-push validation while a Country/fix branch is being produced,
+  # but do not repeat the same waiver validation after the reviewed PR merges.
   push:
     branches:
-      - main
       - "country/**"
       - "fix/**"
     paths:

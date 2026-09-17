@@ -55,6 +55,28 @@ jobs:
           [ -f "data/countries/$slug.json" ] && [ -f "ops/country-production/$slug.json" ] || exit 0
           active="$(python3 scripts/publication_pipeline_v2.py status "$slug" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("active",False)).lower())')"
           [ "$active" = true ] || exit 0
+          # A ready Country is promoted to the real noindex URL by the canonical
+          # integration lane. The legacy Pages preview must not start again on
+          # its State-only reconciliation or branch sync commits.
+          if python3 - "$slug" <<'PY'
+          import json,sys
+          from pathlib import Path
+          state=json.loads((Path('ops/country-production')/f'{sys.argv[1]}.json').read_text())
+          deployment=state.get('reviewDeployment') or {}
+          if deployment.get('url') == f'https://atlas.yagenji.com/countries/{sys.argv[1]}/' and deployment.get('state') in ('DEPLOYING','DONE'):
+              print('Canonical review is active; duplicate Pages review suppressed.')
+              raise SystemExit(0)
+          raise SystemExit(1)
+          PY
+          then
+            exit 0
+          fi
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+            if ! python3 scripts/publication_pipeline_v2.py review-needed "$slug"; then
+              echo "No target content changed since its validated review; State-only push requires no new preview."
+              exit 0
+            fi
+          fi
           python3 scripts/publication_pipeline_v2.py assert-review-ready "$slug" || exit 0
           source_sha="$(git rev-parse HEAD)"
           git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
@@ -85,13 +107,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          previous_ids="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
           gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
           run_id=""
           for attempt in $(seq 1 30); do
-            run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 20 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -n1)"
+            candidates="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId")"
+            while IFS= read -r candidate; do
+              [ -n "$candidate" ] || continue
+              if ! printf '%s\n' "$previous_ids" | grep -Fxq "$candidate"; then
+                run_id="$candidate"; break
+              fi
+            done <<< "$candidates"
             [ -n "$run_id" ] && break; sleep 2
           done
           [ -n "$run_id" ] || exit 1
+          echo "Watching freshly dispatched targeted QA run: $run_id"
           gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
       - name: Build deployable review from latest main plus Country overlay
         if: steps.target.outputs.ready == 'true'

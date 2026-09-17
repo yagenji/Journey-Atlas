@@ -1,20 +1,7 @@
 name: Verify JOURNEY ATLAS Cloudflare Production
-# Operational trigger: India live production QA 2026-09-12
-# Operational trigger: Bangladesh live production QA 2026-09-12
-# Operational trigger: Thailand live production QA 2026-09-12
-# Operational trigger: Sri Lanka live production QA 2026-09-12
-# Operational trigger: Timor-Leste live production QA 2026-09-13
-# Operational trigger: Maldives live production QA 2026-09-13
-# Operational trigger: Nepal live production QA 2026-09-13
-# Operational trigger: Bhutan live production QA 2026-09-13
-# Operational trigger: Myanmar live production QA 2026-09-13
-# Operational trigger: Malaysia live production QA 2026-09-13
-# Operational trigger: Kazakhstan live production QA retry 2026-09-13
-# Operational trigger: Iran live production QA 2026-09-14
-# Operational trigger: Tajikistan live production QA 2026-09-14
-# Operational trigger: Turkmenistan live production QA 2026-09-14
-# Operational trigger: Kyrgyzstan live production QA 2026-09-14
-# Operational trigger: Kuwait live production QA 2026-09-14
+
+# This workflow file intentionally remains outside Cloudflare Build watch exclusions.
+# A mixed docs + verifier change must force a real Pages build and exact-SHA QA.
 
 on:
   push:
@@ -36,8 +23,14 @@ on:
       - "scripts/build_site.py"
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
+      - "scripts/qa_published_browser_parallel.py"
       - ".github/workflows/verify-production.yml"
   workflow_dispatch:
+    inputs:
+      slug:
+        description: "Published Country slug for targeted live QA; blank verifies all"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -64,9 +57,35 @@ jobs:
       - name: Classify production impact
         id: impact
         shell: bash
+        env:
+          REQUESTED_SLUG: ${{ inputs.slug }}
         run: |
           set -euo pipefail
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            slug="${REQUESTED_SLUG:-}"
+            if [ -n "$slug" ]; then
+              python3 - "$slug" <<'PY'
+          import json
+          import re
+          import sys
+          from pathlib import Path
+          slug = sys.argv[1]
+          if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
+              raise SystemExit('Invalid Country slug')
+          registry = json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          if not any(row.get('slug') == slug and row.get('atlasPublished') is True for row in registry.get('destinations', [])):
+              raise SystemExit(f'{slug}: targeted live QA requires a published canonical destination')
+          if not (Path('data/countries') / f'{slug}.json').is_file():
+              raise SystemExit(f'{slug}: Country JSON is missing')
+          PY
+              echo "production_changed=true" >> "$GITHUB_OUTPUT"
+              echo "browser_scope=targeted" >> "$GITHUB_OUTPUT"
+              echo "target_slugs=$slug" >> "$GITHUB_OUTPUT"
+              echo "published_slugs=$slug" >> "$GITHUB_OUTPUT"
+              echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
+              echo "Manual targeted published Country verification: $slug"
+              exit 0
+            fi
             echo "production_changed=true" >> "$GITHUB_OUTPUT"
             echo "browser_scope=all" >> "$GITHUB_OUTPUT"
             echo "target_slugs=" >> "$GITHUB_OUTPUT"
@@ -84,8 +103,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout expected source
+      - name: Checkout expected source and first-parent history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Verify shared Country CSS architecture
         run: |
@@ -95,23 +116,30 @@ jobs:
           transport_structure_sources="$(grep -l '^\.travel-planning__block--transport \.transport{$' assets/css/*.css | sort | tr '\n' ' ' | sed 's/ $//')"
           test "$transport_structure_sources" = "assets/css/country-discovery-v3.css"
 
-      - name: Wait for atlas.yagenji.com to serve this commit
+      - name: Test deployable SHA equivalence guard
+        run: python3 scripts/test_expected_cloudflare_commit.py
+
+      - name: Test published browser QA partitioning
+        run: python3 scripts/qa_published_browser_parallel.py --self-test
+
+      - name: Wait for a current or proven equivalent Cloudflare commit
         env:
           SITE_URL: https://atlas.yagenji.com
           EXPECTED_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
+          python3 scripts/expected_cloudflare_commit.py --head "$EXPECTED_SHA" --candidate-file /tmp/cloudflare-allowed-shas.txt
           for attempt in $(seq 1 120); do
             meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
             live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
             echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
-            if [ "$live_sha" = "$EXPECTED_SHA" ]; then
-              echo "Cloudflare production is serving the expected commit."
+            if [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/cloudflare-allowed-shas.txt; then
+              echo "Cloudflare production serves the expected or an equivalent non-runtime commit."
               exit 0
             fi
             sleep 5
           done
-          echo "atlas.yagenji.com did not reach expected commit within the 10-minute verification window: $EXPECTED_SHA"
+          echo "atlas.yagenji.com did not reach an allowed source commit within the 10-minute verification window: $EXPECTED_SHA"
           exit 1
 
       - name: Verify production runtime baseline
@@ -222,7 +250,8 @@ jobs:
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
           QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
-        run: python3 scripts/qa_published_browser.py
+          QA_PARALLEL_WORKERS: "4"
+        run: python3 scripts/qa_published_browser_parallel.py
       - name: Upload published browser QA report
         if: always()
         uses: actions/upload-artifact@v4

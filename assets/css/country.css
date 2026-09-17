@@ -11,6 +11,7 @@
 @import url("country-icon-system.css");
 @import url("country-trivia.css");
 @import url("country-discovery-v3.css");
+@import url("taste-image-framing.css");
 @import url("photo-credits.css");
 @import url("site-unify.css");
 @import url("site-footer.css");
@@ -85,17 +86,4 @@
 .map-art .map-marker b {
   opacity: 1 !important;
   visibility: visible !important;
-}
-
-/* Taste artwork is produced as a single dish on a plain 3:2 field.
-   Keep a small shared breathing margin so plates and bowls stay fully visible. */
-.taste-card__image {
-  display: grid;
-  place-items: center;
-}
-.taste-card__img {
-  width: 92%;
-  height: 92%;
-  object-fit: contain;
-  object-position: center;
 }

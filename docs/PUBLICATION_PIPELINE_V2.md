@@ -1,91 +1,33 @@
 # JOURNEY ATLAS — Publication Pipeline v2
 
-Updated: 2026-09-14
+Updated: 2026-09-16. Canonical review amendment: `docs/CANONICAL_UNPUBLISHED_REVIEW.md` and `ops/country-production-policy.json` (`canonicalReviewAmendment:1`).
 
-Publication Pipeline v2 shortens the path from the approved 13-raster handoff to live publication while preserving the existing user approval gates.
+Publication Pipeline v2 retains all approval gates and the verified 13-raster handoff. The GitHub Pages review is a staging QA surface, **not** the final Country review URL. The final page review takes place on the unpublished canonical production URL, with `atlasPublished:false`, `noindex,follow`, no normal discovery links, and no sitemap entry. Formal publication remains a separate post-approval action.
 
-## Activation
+## Activation and compatibility
 
-The pipeline is opt-in and machine-readable:
-
-```json
-"publicationPipelineVersion": 2
-```
-
-`new_country.py` adds this field to newly scaffolded Countries.
-
-Existing Countries without the field remain on the legacy Protocol 2 publication path. They are **not** auto-migrated. This allows Countries already in production to finish without a workflow change beneath them.
+A new Country opts into v2 via `publicationPipelineVersion:2` in its Country JSON. Existing Countries without this field remain on their legacy path and are not automatically migrated. Do not add v2 to an in-flight legacy Country without an explicitly reviewed migration.
 
 ## User gates
 
-Pipeline v2 does not remove editorial approval gates. The intended user gates remain:
-
-1. Hero approval;
-2. Scene Batch Review;
-3. Taste Batch Review;
-4. final canonical Country page approval.
-
-There is no additional user continuation gate between the 13-raster handoff and the canonical review URL.
+The only editorial approval gates are Hero, the eight-scene batch, the four-Taste batch, and the final canonical Country page. The 13-image repository handoff is a distinct required operational action, not a request to approve each image again. No `進めて` or additional ChatGPT polling is required between deterministic steps.
 
 ## After the 13-raster handoff
 
-Once `assetHandoff.state=PASS` with 13 verified rasters:
+1. `publication-pipeline-v2-review.yml` ensures one staging review PR, runs targeted Country/asset validation and Desktop / Tablet / Mobile Browser QA, deploys its persistent GitHub Pages staging preview, and reconciles successful staging QA into the Country branch State.
+2. `canonical-country-review.yml` takes only a reviewed, unchanged, still-unpublished v2 Country. In the `country-publication-main` serialization lane it applies its Country-only overlay to latest main, corrects only validated mechanical metadata defects, and runs strict editorial, map, image, icon, State and targeted Browser QA. Approved rasters are not regenerated or changed.
+3. Once required PR checks pass, the staging review PR is merged while `atlasPublished:false` and final approval remains pending. The production build includes that Country at `https://atlas.yagenji.com/countries/{slug}/`, but excludes it from discovery and sitemap and emits `noindex,follow`.
+4. The canonical review workflow verifies the exact Cloudflare deployed SHA, the actual Country route, runtime registry, noindex and sitemap exclusion, and performs live Desktop / Tablet / Mobile Browser QA. Only successful verification is recorded in the Country branch State; a CI success or queued deploy alone does not count as reviewed.
+5. The user reviews the real canonical Country URL and can request fixes there.
 
-1. `publication-pipeline-v2-review.yml` detects the v2 Country;
-2. one reusable review/publication PR is created automatically if needed;
-3. `publication-pipeline-v2-checks.yml` runs targeted Country validation, image audit and Desktop / Tablet / Mobile Browser QA once;
-4. the validated source is packaged without running Browser QA a second time;
-5. only the shared GitHub Pages deployment step is serialized;
-6. the persistent `/reviews/{slug}/countries/{slug}/` page is deployed;
-7. the successful preview result is reconciled into authoritative Production State automatically;
-8. `NEXT` becomes `REVIEW_CANONICAL_URL`.
-
-The expensive QA/build portion can run in parallel across Countries. Only the shared Pages deployment surface is serialized.
-
-## Browser QA reuse
-
-A passed review Browser QA is reusable during final publication when no shared rendering code changed after the validated review source.
-
-Shared rendering changes include Country template, shared JS, shared CSS and the targeted build/browser QA implementation. If one of those changed while the Country waited for approval, Pipeline v2 runs targeted Browser QA again after syncing latest `main`.
-
-State-only, registry-only, unrelated-Country and publication-metadata changes do not invalidate a passed Country review Browser QA.
+The staging preview Browser QA can be reused only when reviewed Country content and shared rendering remain unchanged. The canonical integration checks and live Browser QA are separate required gates because they verify the actual production host. The workflow stops on changed approved content, failed validation, unexpected branch/main movement, deployment mismatch, or failed live QA.
 
 ## After final canonical approval
 
-A single explicit `finalApproval.state=APPROVED` write triggers the finalization workflow. No additional ChatGPT polling or `進めて` message is part of the pipeline contract.
+Only an explicit `finalApproval.state=APPROVED` on the Country branch permits final publication. Because the unpublished review PR was already merged, the serialized v2 finalizer opens a publication PR as needed, rebuilds a Country-only overlay on latest main, applies terminal State and `atlasPublished:true`, runs publish checks on the exact terminal head, and squash-merges. Cloudflare must expose the merged SHA and pass the target-route and JSON smoke test. Only then may the Country be reported as published.
 
-The workflow:
+Browser QA may be reused during final publication only if the reviewed source and shared rendering remain eligible. Changes to shared Country template, CSS, JS, build, or QA code invalidate that reuse. State-only changes do not.
 
-1. enters the shared `country-publication-main` serialization lane;
-2. snapshots the target Country's shared registry/theme metadata;
-3. syncs the latest `main`;
-4. resolves only known shared Country metadata conflicts while preserving the target Country's intended row/assignments;
-5. prepares terminal publication State and `atlasPublished:true` registry metadata;
-6. runs v2 publish checks on the exact terminal branch SHA;
-7. reuses review Browser QA when shared rendering is unchanged, otherwise runs one targeted Browser QA;
-8. squash-merges the same reusable PR;
-9. waits for Cloudflare to expose the merge SHA and smoke-tests the target Country route and JSON.
+## Failure and legacy coexistence
 
-The merge lane is shared with the legacy publication queue, so legacy and v2 Countries cannot race each other into `main`.
-
-## Failure behavior
-
-Pipeline v2 stops only on a concrete blocking condition:
-
-- validation or Browser QA failure;
-- unexpected merge conflict outside the known shared Country metadata files;
-- latest-main churn that cannot stabilize within the configured merge cycles;
-- branch-protection/merge rejection after required checks;
-- Cloudflare failing to expose the merged SHA within the smoke-verification window.
-
-A successful external step must be reconciled into State by the workflow itself. ChatGPT is not the callback mechanism.
-
-## Legacy coexistence
-
-During migration, old and new Countries can run together:
-
-- legacy Country: no `publicationPipelineVersion:2` → existing Protocol 2 workflows;
-- new Country: `publicationPipelineVersion:2` → Publication Pipeline v2;
-- final `main` integration for both uses the same serialization group.
-
-Do not add `publicationPipelineVersion:2` to a Country already in flight unless an explicit migration is planned and reviewed.
+A failed step is a hard blocker with its actual error and run ID; no tool or assistant may report completion in its place. Review integration does not grant publication permission. The `country-publication-main` queue serializes canonical review integration and formal publication so simultaneous Countries do not overwrite shared metadata. Legacy Countries continue through their existing workflows and use the same final merge lane.
