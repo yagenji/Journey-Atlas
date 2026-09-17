@@ -10,9 +10,10 @@
   object-position: center;
 }
 
-/* Panama's approved 3:2 Taste illustrations include their own safe margins.
-   Do not inset them again or expose a different card backing. */
-.taste-card__img[src*="/panama/approved/food0"] {
+/* These approved 3:2 illustrations contain their own background and safe margins.
+   Avoid a second inset that exposes the Taste card's different backing. */
+.taste-card__img[src*="/panama/approved/food0"],
+.taste-card__img[src*="/antiguabarbuda/approved/food-"] {
   width: 100%;
   height: 100%;
   object-fit: contain;
