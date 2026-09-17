@@ -42,6 +42,10 @@ The account owner confirmed the saved `journey-atlas` dashboard settings above. 
 - **Mixed excluded + runtime:** PR #873 changed this excluded runbook together with a harmless comment-only change to non-excluded `404.html`. Cloudflare created and successfully deployed exact merge SHA `0e092597b53ada90324648fd933970bdeb78c94b`. Production verification run `35172868131` passed; the live `/build-meta.json` SHA was exactly `0e092597b53ada90324648fd933970bdeb78c94b`, so the strict runtime gate did not rely on ancestor equivalence.
 - **Cleanup:** PR #874 removed the temporary `404.html` test comment, restoring its pre-test content. Cloudflare successfully deployed cleanup SHA `ee0afc601743631c8ad695dfdc3af4bca5608269`, and the production runtime verification passed against that cleanup commit.
 
-This final docs-only evidence commit is intentionally merged with `[CF-Pages-Skip]` so the existing no-op verification dispatcher runs a full production check without requiring a new Pages build. Closure requires that final full published and unpublished-reviewable browser QA succeeds against the safely equivalent deployed cleanup SHA.
+The final docs-only proof in #875 triggered full production QA against the safely equivalent deployed cleanup SHA; production runtime, published browser QA, and unpublished-reviewable browser QA succeeded in run `35173403625`.
+
+## Published Country QA productivity acceptance
+
+PR #876 adds a bounded four-worker wrapper for **full published** Country browser QA while retaining the existing Country, Desktop/Tablet/Mobile, accessibility, image and map checks. Targeted and unpublished-reviewable QA retain the original runner. The PR's targeted smoke check does not exercise the full four-worker path. This docs-only `[CF-Pages-Skip]` proof triggers a separate full production verifier after #876's exact-SHA deployment to verify that all published Countries pass using the parallel runner, the merged report contains no failures, and unpublished-reviewable QA remains green. Do not call the parallel optimization completed until the full run finishes successfully.
 
 Official references: https://developers.cloudflare.com/pages/configuration/build-watch-paths/ and https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/ .
