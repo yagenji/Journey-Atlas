@@ -43,6 +43,8 @@ def main() -> int:
     run(sys.executable, "scripts/package_site.py", env=env)
 
     dist = ROOT / "dist"
+    # Stamp the actual deployment commit: mixed docs + runtime changes must
+    # deploy at this exact SHA; only proven docs-only ancestors may be reused.
     commit_sha = (
         env.get("CF_PAGES_COMMIT_SHA")
         or env.get("GITHUB_SHA")
