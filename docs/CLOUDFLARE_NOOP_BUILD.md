@@ -37,4 +37,4 @@ This docs-only change deliberately uses a **normal merge title without `[CF-Page
 
 **Observation to verify against the live site:** unprefixed docs-only PR #868 was squash-merged as `447ad4df6c647abedc21fad12bc0c5c804659878`; the immediate and repeated GitHub commit-check snapshots showed no Cloudflare Pages check. This additional docs-only PR deliberately uses the `[CF-Pages-Skip]` prefix solely to trigger the existing full live production verifier. The live `/build-meta.json` SHA must establish whether the earlier unprefixed PR #868 actually skipped a build; the absence of a check alone is insufficient.
 
-The final mixed-path proof pairs this excluded runbook with the non-excluded `.github/workflows/verify-production.yml`. It must build on Cloudflare and the production verifier must require the exact deployed SHA.
+The final mixed-path proof pairs this excluded runbook with a harmless comment-only change in `404.html`, which is a non-excluded production path. That push must trigger a real Cloudflare Pages deployment at the exact merge SHA and the normal production verifier must pass.
