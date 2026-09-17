@@ -168,7 +168,7 @@ jobs:
       - name: Validate Content Plan / Production State separation
         run: |
           python3 - <<'PY'
-          from pathlib import import Path
+          from pathlib import Path
 
           forbidden = [
               "## Production state",
