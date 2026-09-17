@@ -1,0 +1,12 @@
+/* Shared Taste artwork framing.
+   Keep approved single-dish artwork fully visible inside the fixed 3:2 card slot. */
+.taste-card__image {
+  display: grid;
+  place-items: center;
+}
+.taste-card__img {
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+  object-position: center;
+}
