@@ -19,6 +19,10 @@ ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data/countries"
 W, H = 1200.0, 760.0
 TOKEN_RE = re.compile(r"[MmLlHhVvZz]|[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
+TRANSLATE_RE = re.compile(
+    r"translate\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)"
+    r"(?:[\s,]+([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?))?\s*\)"
+)
 
 
 def project(coords: dict, bounds: dict, rect=(0.0, 0.0, W, H)):
@@ -99,6 +103,54 @@ def parse_polygons(d: str):
     return polys
 
 
+def translate_offset(transform: str):
+    """Return the cumulative SVG translate() offset, or None for other transforms.
+
+    Country map insets commonly move already-authored path geometry with translate.
+    The validator must test the same rendered geometry rather than the raw path d.
+    """
+    if not transform or not transform.strip():
+        return 0.0, 0.0
+    dx = dy = 0.0
+    pos = 0
+    for match in TRANSLATE_RE.finditer(transform):
+        if transform[pos:match.start()].strip(" ,\t\r\n"):
+            return None
+        dx += float(match.group(1))
+        dy += float(match.group(2) or 0.0)
+        pos = match.end()
+    if transform[pos:].strip(" ,\t\r\n"):
+        return None
+    return dx, dy
+
+
+def collect_path_groups(root):
+    """Collect closed path polygons in rendered coordinates.
+
+    Translation on a path or any ancestor is accumulated. Unsupported transform
+    types retain the historical raw-coordinate behavior instead of silently
+    inventing geometry; current Country map contracts use translate for insets.
+    """
+    groups = []
+
+    def walk(el, dx=0.0, dy=0.0):
+        shift = translate_offset(el.attrib.get("transform", ""))
+        if shift is not None:
+            dx += shift[0]
+            dy += shift[1]
+        if el.tag.rsplit("}", 1)[-1] == "path":
+            polys = parse_polygons(el.attrib.get("d", ""))
+            if polys:
+                if dx or dy:
+                    polys = [[(x + dx, y + dy) for x, y in poly] for poly in polys]
+                groups.append(polys)
+        for child in el:
+            walk(child, dx, dy)
+
+    walk(root)
+    return groups
+
+
 def contains(poly, p):
     """Strict polygon interior; tolerance must NOT participate in even-odd parity."""
     px, py = p
@@ -156,14 +208,7 @@ def validate(path: Path):
         root = ET.fromstring(text)
     except ET.ParseError as exc:
         return errors + [f"{path.name}: invalid map SVG XML: {exc}"]
-    path_groups = []
-    for el in root.iter():
-        if el.tag.rsplit("}", 1)[-1] != "path":
-            continue
-        d = el.attrib.get("d", "")
-        polys = parse_polygons(d)
-        if polys:
-            path_groups.append(polys)
+    path_groups = collect_path_groups(root)
     if not path_groups:
         errors.append(f"{path.name}: map SVG has no parseable closed land path geometry")
         return errors
