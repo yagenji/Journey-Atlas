@@ -1,0 +1,71 @@
+name: One-time United States left-insets live verification
+
+on:
+  push:
+    branches:
+      - fix/unitedstates-left-insets-20260917
+    paths:
+      - .github/workflows/us-left-insets-live-qa-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/unitedstates-left-insets-20260917
+          persist-credentials: true
+      - name: Confirm actual production JSON, map artwork, and noindex
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, time, urllib.request
+          from urllib.error import HTTPError, URLError
+
+          base = 'https://atlas.yagenji.com'
+          def get(path):
+              request = urllib.request.Request(base + path, headers={'User-Agent':'JourneyAtlas-US-left-insets-live-QA/1.0', 'Cache-Control':'no-cache'})
+              with urllib.request.urlopen(request, timeout=25) as response:
+                  assert response.status == 200, (path, response.status)
+                  return response.read().decode('utf-8'), response.headers
+          for attempt in range(24):
+              try:
+                  country_raw, _ = get('/data/countries/unitedstates.json?qa=us-left-insets-20260917')
+                  country = json.loads(country_raw)
+                  rects = {row['id']: row['rect']['x'] for row in country['map']['regions']}
+                  svg, _ = get('/assets/images/unitedstates/map-atlas-v1.svg?qa=us-left-insets-20260917')
+                  if rects == {'lower48':290,'alaska':49,'hawaii':39} and all(token in svg for token in ('data-map-region="lower48" transform="translate(260 0)"','data-map-region="alaska" transform="translate(-906 0)"','data-map-region="hawaii" transform="translate(-896 0)"','data-map-inset-frame="alaska"><rect x="35"','data-map-inset-frame="hawaii"><rect x="35"')):
+                      page, headers = get('/countries/unitedstates/?qa=us-left-insets-20260917')
+                      assert 'noindex' in page.lower() or 'noindex' in headers.get('X-Robots-Tag','').lower(), 'Review page must remain noindex'
+                      assert country['map']['insetNote']
+                      print('LIVE_PRODUCTION_US_INSETS_PASS: source map and Country JSON are synchronized, Alaska/Hawaii are left, review page returns 200 and noindex.')
+                      break
+                  print(f'Attempt {attempt+1}/24: previous production revision; projection={rects}; waiting for Cloudflare deployment...', flush=True)
+              except (OSError, HTTPError, URLError, ValueError) as exc:
+                  print(f'Attempt {attempt+1}/24: production not ready: {exc}', flush=True)
+              if attempt == 23:
+                  raise SystemExit('Production has not yet deployed the merged United States inset revision')
+              time.sleep(20)
+          PY
+      - name: Check actual live page in desktop tablet and mobile browser
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: unitedstates
+          QA_OUT_DIR: qa-browser-us-left-insets-live
+        shell: bash
+        run: |
+          python3 -m pip install --disable-pip-version-check --quiet selenium
+          python3 scripts/qa_published_browser.py
+      - name: Remove one-time QA workflow from working branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/us-left-insets-live-qa-once.yml
+          git commit -m 'Remove completed one-time United States live QA workflow'
+          git push origin HEAD:fix/unitedstates-left-insets-20260917
