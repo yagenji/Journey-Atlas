@@ -1,4 +1,4 @@
-/* Shared Country Taste artwork framing. Keep each approved single-dish illustration fully visible in its 3:2 card; this stylesheet is part of the production Country CSS bundle. */
+/* Shared Country Taste artwork framing. Keep each approved single-dish illustration fully visible in its card; this stylesheet is part of the production Country CSS bundle. */
 .taste-card__image {
   display: grid;
   place-items: center;
@@ -26,16 +26,16 @@
 }
 
 /* Antigua & Barbuda's approved 3:2 illustrations have integral paper grounds.
-   The previous 125% scale cut off the bottoms of the dishes. Retain a modest
-   enlargement, center each image, and keep the lower food silhouette visible. */
+   Enlarge only slightly beyond the frame and keep each image exactly centered so
+   the complete dish remains visible while the surrounding paper margin is reduced. */
 .taste-card__img[src*="/antiguabarbuda/approved/food-"] {
-  width: 110%;
-  height: 110%;
+  width: 108%;
+  height: 108%;
   justify-self: center;
   align-self: center;
   object-fit: contain;
-  object-position: center;
-  transform: translateY(-1%);
+  object-position: center center;
+  transform: none;
 }
 
 /* Nicaragua's approved 1200x800 Taste illustrations include a warm paper ground
@@ -46,12 +46,16 @@
   object-fit: contain;
 }
 
-/* United States approved 4:3 Taste artwork has an integral ivory background.
-   Crop only its outer paper margins to fill the 3:2 card; all four dishes remain
-   visible, with no exposed blue backing or changes to approved image files. */
+/* Approved US food artwork has an integral 4:3 paper ground. Match that frame
+   to eliminate the second backing color; trim only a minimal outer paper
+   margin so the full bowl rims, bowl bases, and pizza crust stay visible. */
+.taste-card__image:has(> .taste-card__img[src*="/unitedstates/approved/food-"]) {
+  aspect-ratio: 4 / 3;
+}
 .taste-card__img[src*="/unitedstates/approved/food-"] {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  transform: scale(1.04);
 }
