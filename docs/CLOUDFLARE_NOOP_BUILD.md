@@ -23,18 +23,25 @@ Any other changed file, a mixed runtime/non-runtime commit, or an empty/unknown 
 
 When **only this runbook** changes in a `[CF-Pages-Skip]`-prefixed `main` commit, `.github/workflows/verify-cloudflare-noop-skip.yml` automatically dispatches the existing full production verifier. Confirm that the dispatch job succeeds, its separate live-QA workflow finishes, and the live SHA matches a proven safe ancestor; never count a skipped Pages check alone as a QA pass.
 
-## Optional project-wide Build watch paths
+## Permanent project-wide Build watch paths
 
-Cloudflare account authorization is required. **Do not assume** the Pages dashboard has any particular current setting. Once authorized, inspect `journey-atlas` Build settings, production branch, preview branch and existing watch paths before changes. Begin with a narrow allowlist of exclusions, not `.github/*` or every `ops/*`. Cloudflare's rule evaluates excludes first and builds when any remaining changed path matches the includes. Never disable automatic production branch deployment.
+The production Pages project `journey-atlas` uses production branch `main`, automatic production deployment remains enabled, Include paths is `*`, and these four Exclude paths are configured:
+
+- `docs/*`
+- `ops/country-production/*`
+- `.github/workflows/audit-icons.yml`
+- `.github/workflows/validate-visual-policy-waivers.yml`
+
+Do not broaden these exclusions to all `.github/*`, `ops/*`, `data/*`, or `scripts/*`. Cloudflare evaluates excludes first, while any remaining included path in the same change must still trigger a build. These rules intentionally mirror the SHA-equivalence safe allowlist.
+
+## 2026-09-17 permanent-setting proof
+
+The account owner confirmed the saved `journey-atlas` dashboard settings above. Real production behavior was then tested without changing any Country approval or publication state:
+
+- **Excluded-only:** ordinary, unprefixed docs-only PR #868 merged as `447ad4df6c647abedc21fad12bc0c5c804659878` and did not create a Cloudflare Pages deployment for that commit. A subsequent production verifier confirmed the live runtime remained on the proven deployable ancestor while the non-runtime SHA guard accepted only the documented safe chain.
+- **Mixed excluded + runtime:** PR #873 changed this excluded runbook together with a harmless comment-only change to non-excluded `404.html`. Cloudflare created and successfully deployed exact merge SHA `0e092597b53ada90324648fd933970bdeb78c94b`. Production verification run `35172868131` passed; the live `/build-meta.json` SHA was exactly `0e092597b53ada90324648fd933970bdeb78c94b`, so the strict runtime gate did not rely on ancestor equivalence.
+- **Cleanup:** PR #874 removed the temporary `404.html` test comment, restoring its pre-test content. Cloudflare successfully deployed cleanup SHA `ee0afc601743631c8ad695dfdc3af4bca5608269`, and the production runtime verification passed against that cleanup commit.
+
+This final docs-only evidence commit is intentionally merged with `[CF-Pages-Skip]` so the existing no-op verification dispatcher runs a full production check without requiring a new Pages build. Closure requires that final full published and unpublished-reviewable browser QA succeeds against the safely equivalent deployed cleanup SHA.
 
 Official references: https://developers.cloudflare.com/pages/configuration/build-watch-paths/ and https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/ .
-
-## 2026-09-17 permanent-watch verification
-
-The account owner supplied a Cloudflare Pages `journey-atlas` Settings screenshot after saving: production branch `main`, automatic deploy enabled, Include `*`, and four separately listed Exclude paths: `docs/*`, `ops/country-production/*`, `.github/workflows/audit-icons.yml`, `.github/workflows/validate-visual-policy-waivers.yml`. This is a dashboard screenshot confirmation, **not** a Cloudflare API settings read. Do not change the publication flag or assume the skip works merely because the paths appear.
-
-This docs-only change deliberately uses a **normal merge title without `[CF-Pages-Skip]`**. Its purpose is to test the saved project-wide Build watch paths. After merge, inspect the Cloudflare check/deployment record and use the existing production verifier to compare the deployed SHA with the source through the approved non-runtime guard. Next, test a mixed docs + non-excluded verification-workflow change with a normal merge title: it must create a real Pages deployment at the exact new SHA and pass live runtime/browser QA. Do not close issue #863 before actual results are recorded.
-
-**Observation to verify against the live site:** unprefixed docs-only PR #868 was squash-merged as `447ad4df6c647abedc21fad12bc0c5c804659878`; the immediate and repeated GitHub commit-check snapshots showed no Cloudflare Pages check. This additional docs-only PR deliberately uses the `[CF-Pages-Skip]` prefix solely to trigger the existing full live production verifier. The live `/build-meta.json` SHA must establish whether the earlier unprefixed PR #868 actually skipped a build; the absence of a check alone is insufficient.
-
-The final mixed-path proof pairs this excluded runbook with a harmless comment-only change in `404.html`, which is a non-excluded production path. That push must trigger a real Cloudflare Pages deployment at the exact merge SHA and the normal production verifier must pass.
