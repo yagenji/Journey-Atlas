@@ -1,4 +1,4 @@
-/* Shared Country Taste artwork framing. Keep each approved single-dish illustration fully visible in its 3:2 card; this stylesheet is part of the production Country CSS bundle. */
+/* Shared Country Taste artwork framing. Keep each approved single-dish illustration fully visible in its card; this stylesheet is part of the production Country CSS bundle. */
 .taste-card__image {
   display: grid;
   place-items: center;
@@ -41,12 +41,15 @@
   object-fit: contain;
 }
 
-/* United States approved 4:3 Taste artwork has an integral ivory background.
-   Crop only its outer paper margins to fill the 3:2 card; all four dishes remain
-   visible, with no exposed blue backing or changes to approved image files. */
+/* The four approved United States Taste images are 4:3, unlike the shared 3:2
+   frame. Match their native ratio so both their paper ground and each entire
+   dish reach the card edges without a contrasting backing or clipped bowls. */
+.taste-card__image:has(> .taste-card__img[src*="/unitedstates/approved/food-"]) {
+  aspect-ratio: 4 / 3;
+}
 .taste-card__img[src*="/unitedstates/approved/food-"] {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
