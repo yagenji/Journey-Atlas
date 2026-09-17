@@ -18,9 +18,9 @@
   object-fit: contain;
 }
 
-/* Sancocho's bowl reads smaller than the other dishes at 100%.
-   Enlarge its approved artwork without reintroducing the two-tone inset. */
+/* Sancocho's approved bowl needs a slightly higher crop at 126% to retain its base. */
 .taste-card__img[src*="/panama/approved/food01-sancocho.webp"] {
   width: 126%;
   height: 126%;
+  transform: translateY(-5%);
 }
