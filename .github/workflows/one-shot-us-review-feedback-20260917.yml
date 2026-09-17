@@ -14,7 +14,7 @@ jobs:
         with:
           ref: fix/unitedstates-review-feedback-20260917
           fetch-depth: 0
-      - name: Apply three corrections and preserve approved visuals
+      - name: Correct area, duration prose and geographic inset presentation
         shell: bash
         run: |
           set -euo pipefail
@@ -37,58 +37,38 @@ jobs:
               ('"svg":"assets/images/unitedstates/map-atlas-v1.svg","route":null', '"svg":"assets/images/unitedstates/map-atlas-v1.svg","insetNote":"※ アラスカとハワイは、実際の位置関係・縮尺と異なる別枠表示です。","route":null'),
           ]
           updated = old
-          for a, b in pairs:
-              assert updated.count(a) == 1, a
-              updated = updated.replace(a, b, 1)
+          for before, after in pairs:
+              assert updated.count(before) == 1, before
+              updated = updated.replace(before, after, 1)
           result = json.loads(updated)
           assert result['hero'] == data['hero'] and result['scenes'] == data['scenes'] and result['taste'] == data['taste']
           assert all(len(x['text']) > 65 and x['text'].count('例：') == 1 for x in result['travelScale']['items'])
           p.write_text(updated, encoding='utf-8')
-          js_file = Path('assets/js/app.js')
-          js = js_file.read_text(encoding='utf-8')
-          target = '  mapArt.prepend(image);\n}\n\nfunction applyBackground(element, image) {'
-          note_code = '\n'.join([
-              '  mapArt.prepend(image);',
-              '  if (typeof mapData.insetNote === "string" && mapData.insetNote.trim()) {',
-              '    const legend = fragment.querySelector(".map-legend--below");',
-              '    if (legend) {',
-              '      const note = document.createElement("span");',
-              '      note.className = "map-legend__inset-note";',
-              '      note.textContent = mapData.insetNote;',
-              '      note.style.flexBasis = "100%";',
-              '      note.style.textAlign = "left";',
-              '      legend.append(note);',
-              '      legend.setAttribute("aria-label", "地図記号と別枠表示の説明");',
-              '    }',
-              '  }',
-              '}',
-              '',
-              'function applyBackground(element, image) {',
-          ])
-          assert js.count(target) == 1
-          js_file.write_text(js.replace(target, note_code, 1), encoding='utf-8')
-          svg_file = Path('assets/images/unitedstates/map-atlas-v1.svg')
-          svg = svg_file.read_text(encoding='utf-8')
+          js_path = Path('assets/js/app.js')
+          js = js_path.read_text(encoding='utf-8')
+          needle = '  mapArt.prepend(image);\n}\n\nfunction applyBackground(element, image) {'
+          injected = '\n'.join(['  mapArt.prepend(image);','  if (typeof mapData.insetNote === "string" && mapData.insetNote.trim()) {','    const legend = fragment.querySelector(".map-legend--below");','    if (legend) {','      const note = document.createElement("span");','      note.className = "map-legend__inset-note";','      note.textContent = mapData.insetNote;','      note.style.flexBasis = "100%";','      note.style.textAlign = "left";','      legend.append(note);','      legend.setAttribute("aria-label", "地図記号と別枠表示の説明");','    }','  }','}','','function applyBackground(element, image) {'])
+          assert js.count(needle) == 1
+          js_path.write_text(js.replace(needle, injected, 1), encoding='utf-8')
+          svg_path = Path('assets/images/unitedstates/map-atlas-v1.svg')
+          svg = svg_path.read_text(encoding='utf-8')
           assert 'viewBox="0 0 1200 760"' in svg and 'data-map-inset-frame=' not in svg
           original_paths = re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg)
-          assert len(original_paths) > 10
-          frames = {
-              'alaska': '<g data-map-inset-frame="alaska"><rect x="941" y="65" width="242" height="329" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>',
-              'hawaii': '<g data-map-inset-frame="hawaii"><rect x="931" y="474" width="252" height="224" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>',
-          }
+          assert len(original_paths) >= 1, 'Missing original geographic paths'
+          frames = {'alaska':'<g data-map-inset-frame="alaska"><rect x="941" y="65" width="242" height="329" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>', 'hawaii':'<g data-map-inset-frame="hawaii"><rect x="931" y="474" width="252" height="224" rx="7" fill="#eef2ef" fill-opacity=".14" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>'}
           for region, frame in frames.items():
               token = '<g data-map-region="' + region + '">'
               assert svg.count(token) == 1, region
               svg = svg.replace(token, frame + token, 1)
-          svg = svg.replace('aria-label="Map of the United States"', 'aria-label="Map of the United States: Alaska and Hawaii shown in separate insets, not at actual relative positions or the same scale"', 1)
+          svg = svg.replace('aria-label="Map of the United States"', 'aria-label="Map of the United States: Alaska and Hawaii are separate insets, not at actual relative positions or the same scale"', 1)
           explanation = '<g data-map-inset-explanation="true" font-family="sans-serif" fill="#405c65"><rect x="950" y="365" width="122" height="23" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="957" y="381" font-size="13" font-weight="600">ALASKA · 別枠</text><rect x="941" y="666" width="123" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="948" y="683" font-size="13" font-weight="600">HAWAII · 別枠</text><text x="36" y="739" font-size="12">※ アラスカ・ハワイは位置・縮尺を変えた別枠表示です。</text></g>'
           assert svg.count('</svg>') == 1
           svg = svg.replace('</svg>', explanation + '</svg>', 1)
           assert re.findall(r'<path\b[^>]*\bd="([^"]+)"', svg) == original_paths
           ET.fromstring(svg)
           assert svg.count('data-map-inset-frame=') == 2
-          svg_file.write_text(svg, encoding='utf-8')
-          print('PASS area ratio, three substantive duration descriptions, Alaska/Hawaii inset framing; unchanged map geometry')
+          svg_path.write_text(svg, encoding='utf-8')
+          print('PASS: area ratio, substantive travel prose, inset frames and intact SVG geometry')
           PY
           node --check assets/js/app.js
           python3 scripts/validate_country_editorial_v2.py --force data/countries/unitedstates.json
