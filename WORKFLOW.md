@@ -1,96 +1,25 @@
-# JOURNEY ATLAS — Design & Implementation Workflow
+# JOURNEY ATLAS — Design lock and branch discipline
 
-## Purpose
-Reduce rework. Once a design is approved, implementation must reproduce that approved design rather than reinterpret it.
+Scope: This document retains **approved cross-site design decisions** and branch discipline. It is **not** an alternative Country production, image-generation, QA or publication protocol.
 
-## Core rule
-**Approved = locked.**
+For a **new Country**, use `docs/COUNTRY_PRODUCTION_RULES.md` as the sole human production authority. Follow the active Country State and current machine validators/policies for exact transitions. For a published Country renewal, use `docs/PUBLISHED_COUNTRY_RENEWAL.md`. Do not read the former long Country workflow from Git history as startup guidance.
 
-After the user approves a design, do not change its visual direction, motif, composition, crop, color balance, or interaction model during implementation unless the user explicitly asks for a change.
+## Design lock
 
----
+**Approved = locked.** Once the user approves a design, implementation reproduces it; do not reinterpret the motif, composition, crop, colors, labels, or interaction. Change a locked design only when the user requests it.
 
-## Standard process
+1. Create a wireframe/mockup only when layout or information architecture is unresolved; otherwise make the production asset directly. Do not design the same approved visual twice.
+2. Confirm that approved, implementation-ready individual assets and the exact labels/copy exist before coding. A composite concept image is not a substitute for production assets.
+3. Keep the source visual/specification, approved copy, asset list, and target component identifiable.
+4. Make only neutral technical adjustments necessary for responsive behavior or accessibility. Do not replace artwork with easier-to-code symbols or introduce another visual direction.
+5. Compare the implemented result with the approved design on the affected viewports, including crop, hierarchy, type, spacing and interaction; correct actual mismatches, not speculative redesigns. Country pages additionally follow the full Desktop/Tablet/Mobile and canonical-review gates in their own authority.
 
-### 1. Decide whether a mockup is actually needed
-Use the cheapest artifact that can answer the current question.
+**Fast path:** need → production-ready visual → user approval → lock → implement the same asset → compare. Avoid concept → approval → new design → repeated reimplementation.
 
-- Layout / information architecture uncertain → create a simple wireframe or UI mockup.
-- Visual asset itself is needed → create the production asset directly.
-- Existing approved design already answers the question → do not create another concept.
+## Approved top page — LOCKED 2026-08-23
 
-**Avoid:** creating a polished composite mockup and then separately redesigning the same visual again for implementation.
+The top page is the production baseline; do not initiate another visual redesign cycle. Its section order is:
 
-### 2. Create implementation-ready assets
-Before coding, confirm that every approved visual needed by the component exists in a form that can actually be used in the site.
-
-For illustration/icon work:
-- create individual assets, not only one combined presentation sheet;
-- keep one master visual style;
-- use consistent framing, crop, background treatment, and dimensions;
-- name files by final theme / component id.
-
-If the approved design exists only inside a composite mockup, derive/crop/export the required assets first. Do not reinterpret them in code.
-
-### 3. Design lock
-When the user says OK / good / use this / implement this, record the design as locked.
-
-A locked component has four items:
-1. source-of-truth visual or specification;
-2. exact labels/copy;
-3. exact asset list;
-4. target page/component.
-
-From this point, implementation is reproduction, not design exploration.
-
-### 4. Implement without redesign
-Implementation may change only what is technically necessary for responsive behavior or accessibility.
-
-Allowed:
-- responsive resizing;
-- spacing adjustments required by viewport size;
-- semantic HTML / accessibility labels;
-- file optimization that does not visibly alter the asset.
-
-Not allowed without user instruction:
-- changing motifs;
-- replacing illustrations with symbols;
-- changing card proportions or visual hierarchy;
-- changing colors because they are easier to code;
-- generating a new stylistic version during implementation.
-
-### 5. Compare once, then ship
-After implementation, compare the result against the locked design on the main desktop view and one mobile view.
-
-Check only:
-- visual hierarchy;
-- asset identity/crop;
-- typography scale;
-- spacing;
-- intended interaction.
-
-If they match, finish. Do not start another design iteration automatically.
-
----
-
-## Fast path for JOURNEY ATLAS
-
-For future visual components, use this sequence:
-
-**Need → production-ready visual → user approval → lock → implement same asset → one comparison**
-
-Not:
-
-**Need → concept image → user approval → new implementation design → correction → reimplementation**
-
----
-
-## Current application
-
-### Top page — LOCKED 2026-08-23
-The top page is now the production baseline. Do not start another visual redesign cycle.
-
-Locked order:
 1. Header
 2. Hero
 3. Three discovery entrances
@@ -109,227 +38,46 @@ Locked Hero copy:
 - `201の国・地域を、イラストとともに`
 - `めぐる世界図鑑です。`
 
-The 201 destination registry is part of the top page from the beginning, but completion of 201 final illustrations is **not** a release blocker for the top page. Missing destination art may use the existing neutral fallback and be replaced progressively as approved illustrations are completed.
+The 201-destination registry is present from the beginning, but all 201 final illustrations are **not** a top-page release blocker. The existing neutral fallback may be used until approved art replaces it. Top-page changes are limited to verified bugs, broken links/controls, accessibility, responsive defects and approved-art replacement unless the user requests a redesign.
 
-From this point, top-page work is limited to:
-- clear bugs;
-- broken links or controls;
-- accessibility fixes;
-- responsive defects;
-- replacement of fallback art with approved production art.
+## Approved theme section
 
-### Theme section
-The approved visual direction is the illustrated eight-theme set:
-- 地球の風景
-- 街を歩く
-- 時をたどる
-- 暮らしに出会う
-- 野生に会う
-- 海の世界へ
-- 食をめぐる
-- 道の先へ
+Keep the illustrated eight-theme language and motifs; do not replace them with abstract symbols. `data/theme-taxonomy.json` remains the authority for Country assignments.
 
-The approved motifs are:
-- mountain/lake;
-- town/architecture;
-- ruins;
-- market;
-- elephant/wildlife;
-- tropical island/sea;
-- food dish;
-- mountain road.
+| Theme | Approved motif |
+| --- | --- |
+| 地球の風景 | Mountain / lake |
+| 街を歩く | Town / architecture |
+| 時をたどる | Ruins |
+| 暮らしに出会う | Market |
+| 野生に会う | Elephant / wildlife |
+| 海の世界へ | Tropical island / sea |
+| 食をめぐる | Food dish |
+| 道の先へ | Mountain road |
 
-Implementation must use these motifs and the same illustrated/editorial visual language rather than replacing them with abstract symbols.
+## Approved map discovery baseline
 
-### Map section — LOCKED BASELINE
-Use the current production interaction and framing as the baseline. Future changes must be bug fixes or explicit user requests.
+Preserve the current map interaction and framing: **World → Region → optional Subregion → Country**. Country geometry is the primary spatial target; the right-side country list may support hover, selection and accessibility but must not replace the map as the core discovery experience. Do not create a second framing script; map framing belongs in `assets/js/map-regions.js` only.
 
-Interaction hierarchy:
-**World → Region → optional Subregion → Country**
+## Country and image production — pointer only
 
-Country geometry remains the primary spatial target. The right-side country list may support hover/selection and accessibility, but must not replace the map itself as the core discovery experience.
+- New Country: `docs/COUNTRY_PRODUCTION_RULES.md` for human behavior and user approval gates.
+- Current production progress: `ops/country-production/{slug}.json` and the current `next` action; use the State/branch authority applicable to that Country, not an old example from this document.
+- Exact image-generation reservations and safety checks: current `ops/image-generation-policy.json` and its validator, only when performing or diagnosing the relevant operation.
+- Exact review/publish automation: active Publication Pipeline and its validator. Canonical unpublished review and formal publication are distinct; final publication requires explicit user approval.
+- In-flight legacy Countries stay on their recorded contract until explicitly migrated. Do not apply a new-Country procedure to them implicitly.
 
-Do not reintroduce a second framing script. Map framing belongs in `assets/js/map-regions.js` only.
-
-### Country / destination illustrations — LOCKED STYLE
-JOURNEY ATLAS artwork must be visibly different from JOURNEY LENS photography.
-
-Production target:
-- approximately **photo 60 / illustration 40**;
-- real, named landscapes or places;
-- real geography / architecture / vegetation relationships;
-- painterly simplification that is clearly visible on inspection;
-- no photoreal stock-photo look;
-- no watercolor wash or child-oriented picture-book look;
-- no landmark collage;
-- no text, flags, labels, frames, UI, or watermarks inside the image.
-
-One destination = one coherent real-world scene for country-card artwork.
-
-Country-page scene artwork follows the same visual language. A country page may contain multiple scene illustrations, but every individual scene must still represent one real place rather than a synthetic collage.
-
-### Taste images — HARD RULE
-
-Taste visual production must follow `docs/TASTE_IMAGE_PRODUCTION.md` together with the current main image policy.
-
-The critical lock is:
-
-- one image = one dish;
-- one generation request = one dish;
-- four-image Taste “batch” means four independent sequential generations, never one collage;
-- plain pale beige / warm ivory background;
-- no extra table styling or background props;
-- no cutlery, napkins, drinks, ingredients, second plates, restaurant/kitchen scenery, hands or people;
-- regenerate only the failed dish; never regenerate already-approved Taste images.
-
-Any Taste image that violates the above is automatically NG and must not enter the approved production asset folder.
-
-### Country production state — GLOBAL LOCK
-
-Parallel Country production uses the operational state machine in `docs/COUNTRY_PRODUCTION_STATE.md`, but image execution is governed first by the current `ops/image-generation-policy.json` on `main` and its revision guide.
-
-Authoritative progress state:
-
-`ops/country-production/{slug}.json`, resolved by `stateRef`: `country/{slug}` during active production and `main` from legacy `REVIEW` onward.
-
-**Protocol 2 exception:** a new Country does not enter legacy `REVIEW` merely to obtain a final-page preview. After target QA passes it remains `phase: QA` with `contentRef/stateRef: country/{slug}` and uses `reviewPreview` as the pre-main final-page review gate. `main` becomes authoritative only after explicit final page approval and the terminal publication integration.
-
-Authoritative image-generation policy:
-
-`ops/image-generation-policy.json` on `main` only. Country branches must never downgrade or override it.
-
-For policyId 7.1 or later, `docs/IMAGE_POLICY_REVISION_7_1.md` supersedes older per-action re-read instructions in lower-priority documents.
-
-At the start of a new assistant turn:
-
-1. read `ops/image-generation-policy.json` from `main`;
-2. resolve `stateRef` and read the authoritative Country State;
-3. execute the deterministic `next.action / next.asset`.
-
-For image generation:
-
-1. before the first image, reserve the exact target as `GENERATING` on the authoritative working branch;
-2. only one unreconciled `GENERATING` target may exist;
-3. after a valid generation, reconcile that target and run target/all-prior/collage QA;
-4. if the next different target is available and generation context is CLEAN, reconcile the current target **and reserve the next target in the same State update**;
-5. after GitHub accepts a State write using the expected blob SHA, the exact content just written plus the returned new blob SHA is authoritative within that same assistant turn; do not re-fetch merely to confirm your own successful write;
-6. generate the already-reserved next target immediately;
-7. re-fetch State only on a new assistant turn, SHA conflict, possible external modification, or genuine uncertainty.
-
-Do not infer NEXT from chat memory when a state file exists. Same-turn State chaining uses the exact State content written by the assistant, not conversational guesses.
-
-Important:
-- one Country = one state file, so parallel Country chats do not edit the same record;
-- use the current blob SHA when updating State; on conflict re-fetch instead of force-overwriting;
-- during initial Scene/Taste rounds, finish later `NOT_STARTED` assets before retrying `REGENERATE` assets;
-- APPROVED assets never move backward unless the user explicitly requests regeneration;
-- published/complete Countries have `phase: COMPLETE` and `next.action: NONE`;
-- legacy review-deployed unpublished Countries may have `phase: REVIEW` on `main`;
-- Protocol 2 pre-main final-page review remains `phase: QA` with a completed `reviewPreview` on `country/{slug}`;
-- a successful per-image State write does not require waiting for CI before continuing to the next different target.
-
-For Revision 7 state operations use:
-
-`python3 scripts/country_production_state_v7.py next {slug}`
-
-and:
-
-`python3 scripts/country_production_state_v7.py validate`
-
-For Protocol 2 stage decisions use:
-
-`python3 scripts/country_production_protocol_v2.py next {slug}`
-
-Legacy states may still be inspected with `scripts/country_production_state.py` where appropriate.
-
-### Impact-aware QA — GLOBAL LOCK
-
-Country production and publication use risk-based QA. Quality gates remain mandatory, but the test scope must match the change scope.
-
-Classify every change as:
-
-- **NO COUNTRY RENDER IMPACT** — docs, production-state metadata, or other non-rendering operational changes. Run only the relevant lightweight validation. Do not deploy or run Browser QA.
-- **QA INFRASTRUCTURE IMPACT** — Browser QA script / classifier / Browser QA workflow changes without shared rendering changes. Run one real Spain baseline Browser QA smoke test; do not regress every published Country.
-- **TARGETED COUNTRY IMPACT** — one or more Country JSON files, Country assets, publication-state rows, or theme assignments. Run validation plus Desktop / Tablet / Mobile Browser QA only for the affected Country slugs.
-- **SHARED COUNTRY IMPACT** — shared Country template, shared Country CSS, shared Country JS, or Country build/package logic. Run all unpublished-reviewable and all published Country Browser QA.
-
-Use `scripts/classify_country_impact.py` as the canonical classifier.
-
-Publication rule:
-
-- Publishing one Country must not trigger all-Country browser regression unless shared rendering code changed in the same change.
-- Final production verification for a Country-only publish is the affected Country at Desktop / Tablet / Mobile plus production route/payload checks.
-- All-Country regression is reserved for shared Country-system changes.
-- For Protocol 2 new Countries, GitHub Pages is the normal **non-production pre-main review surface**. It must use the targeted Country preview package and must not trigger a production Cloudflare build.
-- The shared GitHub Pages deployment queue remains serialized to prevent Country preview overwrite races; each deployment is kept short by building only the target Country.
-- Production State updates do not trigger the heavy Country data/image/build validation; they use lightweight production-state transition validation.
-
-This is a productivity rule, not a relaxation of Definition of Done. The affected surface still requires actual-page verification.
-
-### Country production throughput — GLOBAL LOCK
-
-Country production execution is governed by:
-
-1. current `ops/image-generation-policy.json` on `main`;
-2. `docs/IMAGE_POLICY_REVISION_7_1.md` when policyId is 7.1 or later;
-3. `docs/IMAGE_POLICY_REVISION_7.md` for Revision 7 batch/target rules;
-4. `docs/COUNTRY_PRODUCTION_STATE.md` for sequencing rules not superseded above.
-
-Non-negotiable principles:
-- operational State remains `ops/country-production/{slug}.json`; active-production cursor writes live on `country/{slug}`, not `main`;
-- State updates prevent duplicate work but do not create user interaction gates;
-- one image = one independent generation request; one image does not equal one user approval;
-- different targets continue in the same assistant turn after successful reconciliation when the image tool returns control;
-- the same Hero / Scene / Taste asset may be generated at most once per assistant turn;
-- at most one unreconciled `GENERATING` target exists;
-- use atomic `reconcile current + reserve next` State transitions during clean normal rounds instead of separate commits;
-- use same-turn authoritative State chaining after successful GitHub writes instead of redundant confirmation re-fetches;
-- validate complete Scene/Taste Render Packet sets at round start; do not re-read unchanged Content Plans before every image;
-- every generation uses a one-target single-frame envelope; batch/series/set language is forbidden in the generation prompt;
-- collage/multi-panel, repeat/restage, or wrong-target carryover contaminates generation context and routes to RESET before another image;
-- production image calls are fresh independent text-to-image generations; the previous output is never used as the edit/reference source;
-- intermediate State writes do not trigger deployment and do not require CI waiting;
-- country-branch image-policy CI is transition-only; full regression remains on PR/main;
-- after images are verified, deploy one **targeted Country review preview from `country/{slug}`**; do not integrate to `main` to create the review URL;
-- after final Country-page approval, create the one terminal publication PR directly and integrate to production once;
-- do not create a State-only approval PR or a pre-approval production deployment.
-
----
+Do **not** reinstate obsolete instructions to reread every machine policy on every turn, to use GitHub Pages as the final user review URL, or to create extra approval/verification PRs. These are not the current new-Country human contract.
 
 ## Branch lifecycle
 
-Keep the repository branch list intentionally small.
+- Use one working branch per active Country, plus a short-lived shared branch for a proven common-system fix where necessary.
+- Do not create ad hoc Country-specific QA/deployment workflows or derivative branches merely to work around a problem. Where the current automated publication pipeline requires a managed branch/PR, follow that pipeline rather than this general shorthand.
+- Preserve others' changes and approved assets. After merge and verification, retire obsolete work branches through the normal authorized GitHub process; retain unique history when necessary.
+- `main` is the shared implementation baseline. Never treat a review deployment as formal publication or change an unapproved Country to `atlasPublished:true`.
 
-- Use **one working branch per active country**.
-- Continue review fixes, QA fixes, and publish preparation on that same country branch.
-- Do not create derivative branches such as `*-review-fix`, `*-publish`, `publish-*`, or `qa-*`.
-- Shared fixes may use one clearly named common branch only while the work is active.
-- After the work is merged into `main` and no further country-specific work remains, delete the working branch.
-- If an old branch contains unique history that should be preserved, create an archive tag first, then delete the branch.
-- Deployment and validation must use the shared workflows on `main`; do not add country-specific deployment or QA workflows.
-- Normal steady state should be: `main` + only currently active country/common work branches.
+## Published Country renewal
 
-## Decision rule
-If implementation requires a visual choice that was not decided in the approved design:
-- make the smallest neutral technical choice if it does not alter the design;
-- if it would visibly alter the design, resolve that one point before coding;
-- do not create an unsolicited alternative design.
+Already-published Country Pages use `docs/PUBLISHED_COUNTRY_RENEWAL.md`; status lives in `data/country-renewal-status.json`. Run the current renewal audit and image hard gate appropriate to that Country. A legacy published page does not meet the current production standard merely because it is live.
 
----
-
-## Published Country Renewal
-
-Already-published Country Pages use a separate renewal workflow.
-
-- Protocol: `docs/PUBLISHED_COUNTRY_RENEWAL.md`
-- Status source of truth: `data/country-renewal-status.json`
-- Audit: `scripts/audit_published_countries.py`
-- Image migration QA: `scripts/validate_images.py --mode audit`
-- Renewed-country hard gate: `scripts/validate_images.py --mode hard`
-
-Do not treat a legacy published page as passing the current production standard merely because it is live. During renewal, legacy issues are recorded by AUDIT; once a country is renewed, set `hardImageGate: true` and that country becomes blocking.
-
-Reference v3 responsibilities:
-- Iceland / Norway: visual language and series character.
-- Spain: current shared structure, information density, responsive UI and JOURNEY LENS handoff.
-- Current image rule: the production specification, not Norway's legacy low-resolution files.
+Iceland / Norway remain the visual-series references; Spain supplies the approved Taste-series reference and current shared page-structure comparison where applicable. The current image policy, not legacy low-resolution assets, determines production asset requirements.
