@@ -9,3 +9,18 @@
   object-fit: contain;
   object-position: center;
 }
+
+/* Panama's approved 3:2 Taste illustrations include their own safe margins.
+   Do not inset them again or expose a different card backing. */
+.taste-card__img[src*="/panama/approved/food0"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sancocho's approved bowl needs a slightly higher crop at 126% to retain its base. */
+.taste-card__img[src*="/panama/approved/food01-sancocho.webp"] {
+  width: 126%;
+  height: 126%;
+  transform: translateY(-5%);
+}
