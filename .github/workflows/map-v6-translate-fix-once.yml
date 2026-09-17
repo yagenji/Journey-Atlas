@@ -1,0 +1,19 @@
+name: One-time Map v6 SVG translation regression QA
+on:
+  push:
+    branches: [fix/map-v6-svg-translate-20260917]
+    paths: ['.github/workflows/map-v6-translate-fix-once.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run map transform regressions
+        run: python3 scripts/test_country_map_v6_parity.py
+      - name: Validate United States rendered map geometry
+        run: python3 scripts/validate_country_map_v6.py data/countries/unitedstates.json
+      - name: Validate all Content QA v6 map geometry
+        run: python3 scripts/validate_country_map_v6.py
