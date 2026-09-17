@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "costarica",
   "countryName": "COSTA RICA",
-  "contentRef": "country/costarica",
-  "stateRef": "country/costarica",
-  "phase": "QA",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-16T10:33:07+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-17T14:14:50+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -137,17 +137,26 @@
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/costarica/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "atlasPublished": false,
-    "browserQa": "PASS",
-    "verifiedAt": "2026-09-16T16:44:45.599345+00:00"
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-17T13:45:24+09:00",
+    "basis": "User explicitly instructed '公開して' for Costa Rica in the Country production chat after canonical page review."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-17T14:14:50+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/costarica/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -393,7 +402,7 @@
     "canonicalReviewReadyAt": "2026-09-16T10:33:07+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   }
 }
