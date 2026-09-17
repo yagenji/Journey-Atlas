@@ -23,6 +23,7 @@ on:
       - "scripts/build_site.py"
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
+      - "scripts/qa_published_browser_parallel.py"
       - ".github/workflows/verify-production.yml"
   workflow_dispatch:
     inputs:
@@ -117,6 +118,9 @@ jobs:
 
       - name: Test deployable SHA equivalence guard
         run: python3 scripts/test_expected_cloudflare_commit.py
+
+      - name: Test published browser QA partitioning
+        run: python3 scripts/qa_published_browser_parallel.py --self-test
 
       - name: Wait for a current or proven equivalent Cloudflare commit
         env:
@@ -246,7 +250,8 @@ jobs:
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
           QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
-        run: python3 scripts/qa_published_browser.py
+          QA_PARALLEL_WORKERS: "4"
+        run: python3 scripts/qa_published_browser_parallel.py
       - name: Upload published browser QA report
         if: always()
         uses: actions/upload-artifact@v4
