@@ -1,0 +1,47 @@
+name: Panama review correction (temporary)
+on:
+  push:
+    branches:
+      - fix/panama-review-20260917
+    paths:
+      - .github/workflows/panama-review-once.yml
+permissions:
+  contents: write
+jobs:
+  correct-panama:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove Colombia from Panama discovery links
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/countries/panama.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          assert d['slug'] == 'panama'
+          assert d.get('atlasPublished') is False
+          for field in ('nextRoutes', 'relatedCountries'):
+              rows = d[field]
+              matches = [r for r in rows if r.get('slug') == 'colombia' or r.get('countryEn') == 'COLOMBIA']
+              assert len(matches) == 1, (field, matches)
+              d[field] = [r for r in rows if r not in matches]
+              assert all(r.get('slug') != 'colombia' and r.get('countryEn') != 'COLOMBIA' for r in d[field])
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+          print('Removed Colombia from nextRoutes and relatedCountries; kept travel safety note intact.')
+          PY
+      - name: Save original Sancocho for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: panama-sancocho-source-oneoff
+          path: assets/images/panama/approved/food01-sancocho.webp
+          if-no-files-found: error
+          retention-days: 1
+      - name: Commit reviewed editorial correction
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/countries/panama.json
+          git diff --cached --check
+          git commit -m 'Remove Colombia from Panama discovery links'
+          git push origin HEAD:fix/panama-review-20260917
