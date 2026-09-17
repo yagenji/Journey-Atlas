@@ -1,0 +1,52 @@
+name: One-time Antigua approved Hero dimension normalization
+on:
+  push:
+    branches: [country/antiguabarbuda-renewal]
+    paths: [.github/workflows/antiguabarbuda-hero-size-oneoff.yml]
+permissions:
+  contents: write
+jobs:
+  normalize-approved-hero:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --quiet pillow
+      - name: Resize existing approved raster without changing composition
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          p=Path('assets/images/antiguabarbuda/approved/hero-shirley-heights.webp')
+          assert p.exists(), 'Approved Hero is missing'
+          with Image.open(p) as im:
+              im.load()
+              assert im.format == 'WEBP', im.format
+              assert im.size == (1672,941), f'Unexpected Hero source: {im.size}'
+              profile=im.info.get('icc_profile')
+              resized=im.convert('RGB').resize((1536,864),Image.Resampling.LANCZOS)
+              options={'quality':90,'method':6}
+              if profile: options['icc_profile']=profile
+              resized.save(p.with_suffix('.tmp.webp'),'WEBP',**options)
+          tmp=p.with_suffix('.tmp.webp')
+          with Image.open(tmp) as check:
+              check.verify()
+          with Image.open(tmp) as check:
+              check.load()
+              assert check.format=='WEBP' and check.size==(1536,864)
+          tmp.replace(p)
+          print(f'Normalized existing approved Hero: {p} -> 1536x864')
+          PY
+      - name: Commit only the normalized approved Hero
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- assets/images/antiguabarbuda/approved/hero-shirley-heights.webp
+          git diff --cached --exit-code && exit 1 || true
+          git commit -m 'Normalize approved Antigua Hero WebP to 1536x864'
+          git push origin HEAD:country/antiguabarbuda-renewal
