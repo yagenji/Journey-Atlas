@@ -1,0 +1,76 @@
+name: Nicaragua review repair (temporary)
+on:
+  push:
+    branches: [fix/nicaragua-review-three-issues-20260917]
+    paths: [.github/workflows/nicaragua-review-repair-once.yml]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Repair missing area comparison and Japanese reader-facing prose
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          path=Path('data/countries/nicaragua.json')
+          raw=path.read_text(encoding='utf-8')
+          data=json.loads(raw)
+          assert data['slug']=='nicaragua' and len(data['scenes'])==8 and len(data['taste'])==4
+          assert next(f['value'] for f in data['facts'] if f['label']=='面積')=='約130,373 km²（水域含む）'
+          next(f for f in data['facts'] if f['label']=='面積')['value']='約130,373 km²（水域含む、日本の約35%）'
+          substitutions=[
+            ('Río Coco UNESCO Global Geopark','リオ・ココ・ユネスコ世界ジオパーク'),
+            ('Great Corn Island','グレート・コーン島'),('Little Corn Island','リトル・コーン島'),
+            ('Great Corn','グレート・コーン島'),('Little Corn','リトル・コーン島'),
+            ('Blowing Rock','ブローイング・ロック'),('Ometepe Island','オメテペ島'),
+            ('Corn Islands','コーン諸島'),('Río San Juan','サン・フアン川'),
+            ('Río Coco','リオ・ココ'),('Mayo Ya','マヨ・ヤ'),('Bluefields','ブルーフィールズ'),
+            ('Concepción','コンセプシオン'),('Cerro Negro','セロ・ネグロ'),
+            ('San Jorge','サン・ホルヘ'),('Managua','マナグア'),('León','レオン'),
+            ('Granada','グラナダ'),('Ometepe','オメテペ島'),('Somoto','ソモト峡谷'),
+            ('Matagalpa','マタガルパ'),('Apoyo','アポヨ湖'),('Bosawás','ボサワス'),
+            ('Guasaule','グアサウレ'),('UNESCO','ユネスコ'),('INTUR','ニカラグア観光庁'),
+            ('INETER','ニカラグア国土調査庁'),('Hero','冒頭')]
+          n=0
+          def localize(node,parent=''):
+            global n
+            if isinstance(node,dict):
+              for key,value in node.items():
+                if isinstance(value,str) and key in ('text','title','note','description','reason','interestReason','lead'):
+                  corrected=value
+                  for old,new in substitutions:
+                    corrected=corrected.replace(old,new)
+                  if corrected!=value:
+                    print('LOCALIZED',parent+'.'+key,repr(value[:125]),'->',repr(corrected[:125]))
+                    node[key]=corrected;n+=1
+                else:localize(value,parent+'.'+key)
+            elif isinstance(node,list):
+              for i,value in enumerate(node):localize(value,parent+f'[{i}]')
+          localize(data)
+          assert n>=15,f'Unexpectedly few localized strings: {n}'
+          for section in ('scenes','travelTrivia','travelScale','seasons','transport','personas','signatureFacts','tips','nextRoutes'):
+            node=data.get(section)
+            def audit(v,p=''):
+              if isinstance(v,dict):
+                for k,x in v.items():
+                  if isinstance(x,str) and k in ('text','title','note','description','reason','interestReason','lead') and re.search(r'[A-Za-z]{2,}',x):
+                    raise AssertionError(f'Unlocalized prose: {section}{p}.{k}: {x}')
+                  elif isinstance(x,(dict,list)):audit(x,p+'.'+k)
+              elif isinstance(v,list):
+                for i,x in enumerate(v):audit(x,p+f'[{i}]')
+            audit(node)
+          output=json.dumps(data,ensure_ascii=False,separators=(',',':'))
+          path.write_text(output+ ('\n' if raw.endswith('\n') else ''),encoding='utf-8')
+          print('AREA',next(f['value'] for f in data['facts'] if f['label']=='面積'))
+          print('LOCALIZED COUNT',n)
+          print('UNCHANGED APPROVED IMAGES',data['hero']['image'],len(data['scenes']),len(data['taste']))
+          PY
+          git diff --check
+          git add -f data/countries/nicaragua.json
+          git config user.name 'journey-atlas-review-repair'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Add Nicaragua Japan area ratio and localize Japanese page prose'
+          git push origin HEAD:fix/nicaragua-review-three-issues-20260917
