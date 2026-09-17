@@ -1,0 +1,37 @@
+name: Nicaragua review diagnostics (temporary)
+on:
+  push:
+    branches: [fix/nicaragua-review-three-issues-20260917]
+    paths: [.github/workflows/nicaragua-review-diagnostics-once.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --quiet Pillow
+      - name: Inspect Nicaragua data, mixed-language copy, and Taste image edges
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          from PIL import Image
+          data=json.loads(Path('data/countries/nicaragua.json').read_text())
+          print('FACTS',repr(data.get('facts')))
+          print('SIGNATURE',repr(data.get('signatureFacts'))[:1800])
+          print('KEYS',sorted(data.keys()))
+          def walk(x,p=''):
+            if isinstance(x,dict):
+              for k,v in x.items():walk(v,p+'.'+k)
+            elif isinstance(x,list):
+              for i,v in enumerate(x):walk(v,p+f'[{i}]')
+            elif isinstance(x,str) and re.search(r'[A-Za-z]{2,}',x) and any(t in p for t in ['.text','.title','.lead','.description','.value','.note','.reason','.nameJa','.label','.hero.location']):
+              print('LATIN',p,repr(x[:300]))
+          walk(data)
+          for f in sorted(Path('assets/images/nicaragua/approved').glob('food-*.webp')):
+            with Image.open(f) as im:
+              im.load(); im=im.convert('RGB'); w,h=im.size
+              pts=[im.getpixel((x,y)) for x,y in [(0,0),(w-1,0),(0,h-1),(w-1,h-1),(w//2,0),(0,h//2),(w//2,h-1),(w-1,h//2)]]
+              print('FOOD',f.name,(w,h),'edge RGB:',pts)
+          PY
