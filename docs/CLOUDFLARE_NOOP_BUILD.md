@@ -28,3 +28,9 @@ When **only this runbook** changes in a `[CF-Pages-Skip]`-prefixed `main` commit
 Cloudflare account authorization is required. **Do not assume** the Pages dashboard has any particular current setting. Once authorized, inspect `journey-atlas` Build settings, production branch, preview branch and existing watch paths before changes. Begin with a narrow allowlist of exclusions, not `.github/*` or every `ops/*`. Cloudflare's rule evaluates excludes first and builds when any remaining changed path matches the includes. Never disable automatic production branch deployment.
 
 Official references: https://developers.cloudflare.com/pages/configuration/build-watch-paths/ and https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/ .
+
+## 2026-09-17 permanent-watch verification
+
+The account owner supplied a Cloudflare Pages `journey-atlas` Settings screenshot after saving: production branch `main`, automatic deploy enabled, Include `*`, and four separately listed Exclude paths: `docs/*`, `ops/country-production/*`, `.github/workflows/audit-icons.yml`, `.github/workflows/validate-visual-policy-waivers.yml`. This is a dashboard screenshot confirmation, **not** a Cloudflare API settings read. Do not change the publication flag or assume the skip works merely because the paths appear.
+
+This docs-only change deliberately uses a **normal merge title without `[CF-Pages-Skip]`**. Its purpose is to test the saved project-wide Build watch paths. After merge, inspect the Cloudflare check/deployment record and use the existing production verifier to compare the deployed SHA with the source through the approved non-runtime guard. Next, test a mixed docs + non-excluded verification-workflow change with a normal merge title: it must create a real Pages deployment at the exact new SHA and pass live runtime/browser QA. Do not close issue #863 before actual results are recorded.
