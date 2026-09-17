@@ -1,11 +1,11 @@
 name: Deploy Country Preview to GitHub Pages
 
 on:
-  # A Country branch push already builds the persistent review preview before a
-  # PR can be opened. Re-running the same deployment on PR opened/reopened was
-  # redundant and created an extra workflow run for every Country integration.
   push:
     branches: ["country/**"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, reopened]
   workflow_dispatch:
     inputs:
       slug:
@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || startsWith(github.head_ref, 'country/')
     # Keep review previews separate from the production-oriented github-pages
     # environment so country/* review branches are not rejected before a runner
     # starts by the github-pages deployment branch protection rule.
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout Country source
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -53,9 +53,11 @@ jobs:
         shell: bash
         env:
           INPUT_SLUG: ${{ inputs.slug }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          ref="$GITHUB_REF_NAME"
+          ref="${PR_HEAD_REF:-$GITHUB_REF_NAME}"
           slug="${INPUT_SLUG:-}"
           if [ -z "$slug" ]; then
             slug="${ref#country/}"
@@ -66,7 +68,7 @@ jobs:
             exit 1
           fi
 
-          source_sha="$GITHUB_SHA"
+          source_sha="${PR_HEAD_SHA:-$GITHUB_SHA}"
           repo_name="${GITHUB_REPOSITORY#*/}"
           pages_base="https://${GITHUB_REPOSITORY_OWNER}.github.io/${repo_name}/"
           review_root="${pages_base%/}/reviews/$slug/"
