@@ -79,3 +79,20 @@
   object-fit: contain;
   object-position: center;
 }
+
+/* Belize's delivered 3:2 illustrations already contain their own paper ground.
+   Size the frame to the delivered image (also safe if the original 4:3 loads),
+   rather than shrinking it to 80% and revealing a contrasting backing. */
+.taste-card__image:has(> .taste-card__img[src*="/belize/approved/food-"]) {
+  display: block;
+  aspect-ratio: auto;
+  background: transparent;
+}
+.taste-card__img[src*="/belize/approved/food-"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
