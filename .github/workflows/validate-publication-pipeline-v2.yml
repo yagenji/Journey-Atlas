@@ -79,10 +79,13 @@ jobs:
           checks = Path('.github/workflows/publication-pipeline-v2-checks.yml').read_text()
           review = Path('.github/workflows/publication-pipeline-v2-review.yml').read_text()
           final = Path('.github/workflows/publication-pipeline-v2-finalize.yml').read_text()
+          legacy_queue = Path('.github/workflows/publish-country-queue.yml').read_text()
           if 'country_overlay_v2.py' not in checks or 'country_overlay_v2.py' not in review or 'country_overlay_v2.py' not in final:
               raise SystemExit('latest-main Country overlay must be used by review/checks/finalize')
           if 'separateVerificationPrRequired' not in final or 'No follow-up verification PR is required' not in final:
               raise SystemExit('v2 publication must forbid the old verification-only PR')
+          if '.get("publicationPipelineVersion") == 2' not in legacy_queue:
+              raise SystemExit('Legacy publication queue must reject v2-owned Countries')
           if 'validate_country_map_v6.py' not in checks:
               raise SystemExit('Content QA v6 map hard gate must run in the existing validation cycle')
           if 'slug="${slug%-renewal}"' not in checks:
