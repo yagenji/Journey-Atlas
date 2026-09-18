@@ -1,0 +1,68 @@
+name: Grenada scene wrong-target rejection (temporary)
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-reject-scene-temporary.yml]
+permissions:
+  contents: write
+jobs:
+  reject-s01:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reject incorrect S01 output and latch contaminated generation context
+        run: |
+          python3 - <<'PY'
+          import json,sys
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import country_production_protocol_v2 as protocol
+          p=Path('ops/country-production/grenada.json')
+          s=json.loads(p.read_text(encoding='utf-8'))
+          assert s['slug']=='grenada' and s['phase']=='SCENES_INITIAL'
+          assert s['hero']['state']=='APPROVED' and s['hero']['approvedGenerationId']=='52d178e2-b911-4f65-8fde-32869a1c62f5'
+          assert s['next']=={'action':'RECONCILE_GENERATION','asset':'S01'}
+          item=s['scenes'][0]
+          assert item['id']=='S01' and item['contentId']=='grand-etang-crater-lake' and item['state']=='GENERATING'
+          assert item['generationReservation']['reservationId']=='8ed23921-582d-4c7c-a0f4-028cb770a5fd'
+          assert item['generationReservation']['contentId']==item['contentId']
+          assert s['generationContext']['state']=='CLEAN' and s['generationContext']['epoch']==1
+          assert not any(x['state']=='GENERATING' for x in s['scenes'][1:])
+          gid='84d3260a-f491-4bcf-8a0e-5a6816b3b70b'
+          assert gid not in item['rejectedGenerationIds']
+          item['rejectedGenerationIds'].append(gid)
+          item['state']='REGENERATE'
+          item['promptSeriesRejectCount']+=1
+          item['lastFailureReason']='WRONG_TARGET_CARRYOVER'
+          item.pop('generationReservation')
+          item.pop('candidateGenerationId',None)
+          item.pop('candidateVisualQa',None)
+          s['generationContext']['state']='CONTAMINATED'
+          s['generationContext']['lastFailureAsset']='S01'
+          s['generationContext']['lastFailureReason']='WRONG_TARGET_CARRYOVER'
+          s['next']=protocol.legacy.derive_next(s)
+          assert s['next']=={'action':'RESET_GENERATION_CONTEXT','asset':None},s['next']
+          s['stateRevision']+=1
+          s['updatedAt']=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          assert s['publication']['atlasPublished'] is False and s['finalApproval']['state']=='PENDING'
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('REJECTED_WRONG_TARGET_S01',gid,'NEXT',s['next'],'HERO_UNCHANGED',s['hero']['approvedGenerationId'])
+          PY
+      - name: Validate rejected generation and generation-context latch
+        run: |
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+      - name: Commit only rejected S01 State on the Country branch
+        run: |
+          test "${GITHUB_REF_NAME}" = country/grenada
+          git config user.name 'JOURNEY ATLAS image QA'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/grenada.json
+          git diff --cached --check
+          git commit -m 'Reject wrong-target Grenada S01 and latch generation context reset'
+          git push origin HEAD:country/grenada
