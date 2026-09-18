@@ -3,6 +3,10 @@ name: Publication Pipeline v2 finalize
 on:
   push:
     branches: ["country/**"]
+    # Publication readiness changes only through the Country State approval gate.
+    # Content/image-only pushes must not launch a publication decision job.
+    paths:
+      - 'ops/country-production/**'
   workflow_dispatch:
     inputs:
       slug:
