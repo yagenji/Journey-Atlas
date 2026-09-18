@@ -1,0 +1,63 @@
+name: Apply Honduras affinity-card correction once
+on:
+  push:
+    branches: [fix/honduras-related-belize-20260918]
+    paths: [.github/workflows/honduras-related-cards-once.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: true
+      - name: Apply guarded Country-only correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 8e5c4b79992616fff8dc43503e0c7ab20aac61f2
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 8e5c4b79992616fff8dc43503e0c7ab20aac61f2
+          test "$(git hash-object data/countries/honduras.json)" = 98b5c71b9ead21ac803c154ae32d52437656eb1d
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          cp=Path('data/countries/honduras.json'); sp=Path('ops/country-production/honduras.json')
+          country=json.loads(cp.read_text(encoding='utf-8'))
+          state=json.loads(sp.read_text(encoding='utf-8'))
+          registry=json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          rows={x['slug']: x for x in registry['destinations']}
+          assert rows['honduras']['atlasPublished'] is False
+          assert rows['guatemala']['atlasPublished'] is True
+          print('AFFINITY_REGISTRY', [(x,rows[x]['atlasPublished']) for x in ('guatemala','belize','nicaragua')])
+          assert [x['slug'] for x in country['relatedCountries']]==['guatemala','elsalvador','nicaragua']
+          assert [x['countryEn'] for x in country['nextRoutes']]==['GUATEMALA','EL SALVADOR','NICARAGUA']
+          assert state['reviewDeployment']['state']=='DONE' and state['finalApproval']['state']=='PENDING'
+          assert state['publication']['atlasPublished'] is False
+          country['relatedCountries']=[
+            country['relatedCountries'][0],
+            {'slug':'belize','nameEn':'BELIZE','nameJa':'ベリーズ','flag':'🇧🇿','reason':'ロアタン島の珊瑚礁に惹かれた人へ。ベリーズの堡礁と沖合の環礁・小島を通して、同じカリブ海に広がる海の地形を別の場所から知る。','affinityType':'COAST'},
+            {'slug':'nicaragua','nameEn':'NICARAGUA','nameJa':'ニカラグア','flag':'🇳🇮','reason':'ヨホア湖や内陸の地形に惹かれた人へ。ニカラグア湖に二つの火山が並ぶオメテペ島を通して、湖と火山がつくる別の景色を知る。','affinityType':'LANDSCAPE'}
+          ]
+          country['sources']['relatedBelize']='UNESCO World Heritage Centre: Belize Barrier Reef Reserve System, offshore atolls and sand cays. https://whc.unesco.org/en/list/764 (checked 2026-09-18).'
+          country['sources']['relatedNicaragua']='UNESCO MAB: Ometepe Island in Lake Nicaragua, volcanoes Maderas and Concepcion. https://www.unesco.org/en/mab/ometepe-island (checked 2026-09-18).'
+          state['reviewDeployment']={'state':'DEPLOYING','url':'https://atlas.yagenji.com/countries/honduras/','productionVerification':'PENDING','atlasPublished':False}
+          state['next']={'action':'VERIFY_CANONICAL_REVIEW','asset':None}
+          cp.write_text(json.dumps(country,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          sp.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('STAGED_COUNTRY', [x['slug'] for x in country['relatedCountries']]); print('NEXT_ROUTES_UNCHANGED',[x['countryEn'] for x in country['nextRoutes']])
+          PY
+          python3 scripts/validate_country_quality_v5.py data/countries/honduras.json
+          python3 scripts/validate_country_editorial_v2.py --force data/countries/honduras.json
+          python3 scripts/validate_production_state_routed.py
+          python3 scripts/country_production_protocol_v2.py validate
+          git rm .github/workflows/honduras-related-cards-once.yml
+          git add data/countries/honduras.json ops/country-production/honduras.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Connect Honduras affinity cards to Maya sites, Belize reef and Ometepe'
+          git push origin HEAD:refs/heads/fix/honduras-related-belize-20260918
