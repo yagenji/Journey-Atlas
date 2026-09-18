@@ -1,0 +1,44 @@
+name: Complete Honduras signature fact editorial contract once
+on:
+  push:
+    branches: [fix/honduras-next-routes-signature-facts-20260918]
+    paths: [.github/workflows/honduras-signature-v5-fix-once.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/honduras-next-routes-signature-facts-20260918
+          fetch-depth: 2
+      - name: Fix Rio Platano Signature Fact text and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '7e2c95f448c4bbe0a3d349c06c1abb73c642cc63'
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/countries/honduras.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          item=d['signatureFacts'][1]
+          assert item['topicKey']=='rio-platano-biosphere-share-of-country'
+          old='リオ・プラタノ生物圏保護区は832,280ha（約8,323km²）。ホンジュラスの面積112,492km²との比較では国土の約7.4%に相当し、山地の熱帯林から海岸の湿地まで含む。世界遺産の登録区域350,000haとは範囲が異なる。'
+          assert item['note']==old, item['note']
+          item['note']='リオ・プラタノ生物圏保護区は832,280ha（約8,323km²）。ホンジュラス112,492km²と比べると国土の約7.4%。山地の熱帯林からカリブ海岸の湿地まで含む。'
+          assert '350,000 ha' in d['sources']['rioPlatanoBiosphere']
+          assert [r['countryEn'] for r in d['nextRoutes']]==['GUATEMALA','EL SALVADOR','NICARAGUA']
+          p.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          PY
+          python3 scripts/validate_country_quality_v5.py data/countries/honduras.json
+          python3 scripts/validate_country.py --strict data/countries/honduras.json
+          python3 scripts/country_production_protocol_v2.py validate
+          git rm .github/workflows/honduras-signature-v5-fix-once.yml
+          git add data/countries/honduras.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Clarify Honduras biosphere share without misleading heritage count'
+          git push origin HEAD:refs/heads/fix/honduras-next-routes-signature-facts-20260918
