@@ -95,7 +95,7 @@ def run(scope: str, output_root: Path, workers: int) -> int:
                 report = json.loads(report_path.read_text(encoding='utf-8'))
                 pairs = Counter((row['slug'], row['viewport']) for row in report['results'])
                 expected = Counter((slug, viewport) for slug in bucket for viewport in VIEWPORTS)
-                complete = (report['countries'] == bucket and pairs == expected)
+                complete = (sorted(report['countries']) == sorted(bucket) and pairs == expected)
                 success = code == 0 and report['pass'] is True and not report['failures'] and complete
             except (OSError, ValueError, KeyError, TypeError) as exc:
                 success = False
