@@ -7,18 +7,18 @@
   "nameJa": "ジャマイカ",
   "region": "CARIBBEAN / 18°N",
   "seo": {"description": "川が海に注ぐ東の小さな入り江から、ブルーマウンテンズ、石灰岩の丘、南岸の漁村、古い港町へ。ジャマイカを8つの景色と地図から知る。"},
-  "capital": {"nameEn": "Kingston", "nameJa": "キングストン", "coordinates": {"latitude": 17.99702, "longitude": -76.79358}, "labelPosition": "right", "labelOffset": {"x": 0, "y": 0}},
+  "capital": {"nameEn": "Kingston", "nameJa": "キングストン", "coordinates": {"latitude": 17.99702, "longitude": -76.79358}, "labelPosition": "right", "labelOffset": {"x": -7, "y": 0}, "mapOffset": {"x": 2.2, "y": 2.3}},
   "hero": {"lead": "東の海辺では、森の中から流れてきた川が短い砂浜でカリブ海に出会う。島を西へたどれば、山の尾根、石灰岩の窪地、湿地と港町へ、同じ海に囲まれた土地の表情が変わっていく。", "image": "assets/images/jamaica/approved/hero-frenchmans-cove.webp", "location": "Frenchman’s Cove / Portland", "coordinates": {"latitude": 18.175472, "longitude": -76.399972}},
-  "map": {"bounds": {"north": 20.2, "south": 17.15, "west": -79.0, "east": -74.0}, "svg": "assets/images/jamaica/map-atlas-v1.svg", "route": null, "source": "PENDING_MAP_QA: Jamaica coastline and surrounding land to be rendered from separately verified geographic boundaries and GSHHS context with the shared 1200×760 contextual map generator. Do not publish before verified."},
+  "map": {"bounds": {"north": 20.2, "south": 17.15, "west": -79.0, "east": -74.0}, "svg": "assets/images/jamaica/map-atlas-v1.svg", "route": null, "source": "Jamaica coastline and surrounding Caribbean land from GSHHS/GSHHG intermediate via Basemap; target island identified against Natural Earth 1:110m ADM0 Jamaica (JAM). WGS84 lon/lat, local aspect-fit to 1200×760; geographic context shown for Cuba and western Hispaniola. Local SVG candidate pending shared-generator and target browser QA."},
   "scenes": [
     {"id": "negril-west-end", "name": "ネグリル / ウェスト・エンドの断崖", "nameLocal": "Negril / West End Limestone Cliffs", "mapLabel": "Negril", "description": "島の西端では、砂浜の北側とは異なる石灰岩の崖が海に面する。低い崖の縁から見る深い青の水面は、東部の川のある入り江とは別の海岸の輪郭を見せる。", "coordinates": {"latitude": 18.25398, "longitude": -78.3632}, "image": "assets/images/jamaica/approved/negril-west-end.webp"},
     {"id": "treasure-beach-calabash-bay", "name": "トレジャー・ビーチ / カラバッシュ湾", "nameLocal": "Treasure Beach / Calabash Bay", "mapLabel": "Calabash Bay", "description": "南岸のカラバッシュ湾では、暗褐色の砂浜の西側に漁のための海岸がある。静かな海辺というだけでなく、舟と漁業の営みを通して、北岸とは異なる浜の役割が見えてくる。", "coordinates": {"latitude": 17.876778, "longitude": -77.759889}, "image": "assets/images/jamaica/approved/treasure-beach-calabash-bay.webp"},
     {"id": "black-river-mangroves", "name": "ブラック・リバー / マングローブ", "nameLocal": "Black River / Lower Morass", "mapLabel": "Black River", "description": "南西部の川を小舟で進むと、川岸に根を伸ばすマングローブと水鳥のいる湿地が続く。海岸の砂浜や山地の森とは違う、淡水と海がつながる景観である。", "coordinates": {"latitude": 18.023, "longitude": -77.8463}, "image": "assets/images/jamaica/approved/black-river-mangroves.webp", "mapOffset": {"x": -3.5, "y": -0.5}},
     {"id": "cockpit-country-windsor", "name": "コックピット・カントリー / ウィンザー", "nameLocal": "Cockpit Country / Windsor Great Cave", "mapLabel": "Windsor", "description": "北西部の内陸では、雨水に削られた石灰岩が丸い丘と閉じた窪地を繰り返す。ウィンザーの洞窟入口に近づくと、起伏の多いカルスト地形の内部にも水と生き物の環境が続いている。", "coordinates": {"latitude": 18.35136, "longitude": -77.64747}, "image": "assets/images/jamaica/approved/cockpit-country-windsor.webp"},
     {"id": "dunns-river-falls", "name": "ダンズ・リバー / 滝", "nameLocal": "Dunn’s River Falls", "mapLabel": "Dunn’s River", "description": "オーチョ・リオスの西では、段々になった石灰華の岩肌を水が広く流れ下る。海へ向かう川の流れと、水で形づくられた明るい岩の段差が近い距離で重なる。", "coordinates": {"latitude": 18.41676, "longitude": -77.13992}, "image": "assets/images/jamaica/approved/dunns-river-falls.webp"},
-    {"id": "blue-mountains-holywell", "name": "ブルーマウンテンズ / ホーリーウェル", "nameLocal": "Blue Mountains / Holywell", "mapLabel": "Holywell", "description": "キングストンの背後では、山の尾根が折り重なり、標高が上がるにつれて霧を含んだ森が広がる。海辺と首都から近い場所に、熱帯の山地の冷涼な空気がある。", "coordinates": {"latitude": 18.08755, "longitude": -76.72788}, "image": "assets/images/jamaica/approved/blue-mountains-holywell.webp", "mapOffset": {"x": -2, "y": -4.5}},
-    {"id": "port-royal-fort-charles", "name": "ポート・ロイヤル / フォート・チャールズ", "nameLocal": "Port Royal / Fort Charles", "mapLabel": "Port Royal", "description": "キングストン湾の入口、細長い砂州の先に古い砦と港町が残る。陸と海の境目に立つと、船の航路と17世紀の都市の歴史が同じ湾の地形から読み取れる。", "coordinates": {"latitude": 17.93504, "longitude": -76.84254}, "image": "assets/images/jamaica/approved/port-royal-fort-charles.webp"},
-    {"id": "rio-grande-rafting", "name": "リオ・グランデ / 河口近くの竹筏", "nameLocal": "Rio Grande / Rafter’s Rest", "mapLabel": "Rio Grande", "description": "東部ポートランドを下る川では、竹を束ねた筏が緑の岸辺をゆっくり進む。かつて農産物を運んだ水路が、今も川と集落を結ぶ移動の風景になっている。", "coordinates": {"latitude": 18.20141, "longitude": -76.50788}, "image": "assets/images/jamaica/approved/rio-grande-rafting.webp", "mapOffset": {"x": -3.5, "y": 2.5}}
+    {"id": "blue-mountains-holywell", "name": "ブルーマウンテンズ / ホーリーウェル", "nameLocal": "Blue Mountains / Holywell", "mapLabel": "Holywell", "description": "キングストンの背後では、山の尾根が折り重なり、標高が上がるにつれて霧を含んだ森が広がる。海辺と首都から近い場所に、熱帯の山地の冷涼な空気がある。", "coordinates": {"latitude": 18.08755, "longitude": -76.72788}, "image": "assets/images/jamaica/approved/blue-mountains-holywell.webp", "mapOffset": {"x": 0, "y": -2.0}},
+    {"id": "port-royal-fort-charles", "name": "ポート・ロイヤル / フォート・チャールズ", "nameLocal": "Port Royal / Fort Charles", "mapLabel": "Port Royal", "description": "キングストン湾の入口、細長い砂州の先に古い砦と港町が残る。陸と海の境目に立つと、船の航路と17世紀の都市の歴史が同じ湾の地形から読み取れる。", "coordinates": {"latitude": 17.93504, "longitude": -76.84254}, "image": "assets/images/jamaica/approved/port-royal-fort-charles.webp", "mapOffset": {"x": -1.5, "y": 0.4}},
+    {"id": "morant-point-lighthouse", "name": "モラント・ポイント / 灯台", "nameLocal": "Morant Point Lighthouse", "mapLabel": "Morant Point", "description": "島の東端に、1841年に建てられた白と赤の帯の鋳鉄製灯台が立つ。低い海岸と海へ向かう塔の姿から、入り江の風景とは異なる島の端を確かめられる。", "coordinates": {"latitude": 17.9183684667, "longitude": -76.1843640846}, "image": "assets/images/jamaica/approved/morant-point-lighthouse.webp"}
   ],
   "encounters": [
     {"title": "海へ注ぐ小さな川", "category": "LANDSCAPE", "icon": "landscape"},
@@ -78,7 +78,7 @@
     {"label": "通貨", "value": "ジャマイカドル（JMD）"}
   ],
   "signatureFacts": [
-    {"topicKey": "blue-mountain-elevation", "label": "島の最高峰の標高", "value": "2,256 m", "note": "ブルーマウンテンズの高地は、海辺とは異なる冷涼な山の環境をつくる。", "icon": "landscape", "interestReason": "海に囲まれた島の中に高い山と山地の森林があることを一目で伝える。"},
+    {"topicKey": "mountain-summit-elevation", "label": "島の最高峰の標高", "value": "2,256 m", "note": "ブルーマウンテンズの高地は、海辺とは異なる冷涼な山の環境をつくる。", "icon": "landscape", "interestReason": "海に囲まれた島の中に高い山と山地の森林があることを一目で伝える。"},
     {"topicKey": "cockpit-protected-karst-hectares", "label": "石灰岩の保護区", "value": "約78,000 ha", "note": "コックピット・カントリー保護区は、丘と窪地が続く広大なカルスト地形を守る。", "icon": "landscape", "interestReason": "沿岸だけでは見えない内陸の石灰岩地形の広がりを具体的に想像できる。"},
     {"topicKey": "port-royal-earthquake-year", "label": "港町を変えた地震", "value": "1692年", "note": "ポート・ロイヤルの一部が地震で水没し、陸と水中に都市の遺構が残った。", "icon": "history", "interestReason": "海岸の今の景色と、水中に残る17世紀の都市史を結ぶ出来事を示す。"}
   ],
@@ -95,10 +95,11 @@
   ],
   "updatedAt": "2026-09-18",
   "sourcesVerifiedAt": "2026-09-18",
-  "sourceDates": {"population": "2024", "japanArea": "2026-04-01", "jamaicaAreaSourceUpdated": "2026-03-16", "cockpitTentativeList": "2025", "portRoyalInscription": "2025", "travelSafety": "2026-05-22"},
+  "sourceDates": {"population": "2024", "japanArea": "2026-04-01", "cockpitCountry": "2025", "portRoyal": "2025", "travelSafety": "2026-05-22"},
   "sources": {
-    "profile": {"label": "日本国外務省 ジャマイカ基礎データ（2026年3月16日更新、人口は2024年世銀）", "url": "https://www.mofa.go.jp/mofaj/area/jamaica/data.html", "areaKm2": 10990, "population": 2839000},
-    "japanArea": {"label": "国土地理院 全国都道府県市区町村別面積調（2026年4月1日現在）", "url": "https://web1.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm", "areaKm2": 377974.87, "ratioPercent": 2.9},
+    "profile": {"label": "日本国外務省 ジャマイカ基礎データ（2026年3月16日更新、面積は世銀、人口は2024年世銀）", "url": "https://www.mofa.go.jp/mofaj/area/jamaica/data.html", "areaKm2": 10990, "population": 2839000},
+    "population": "https://www.mofa.go.jp/mofaj/area/jamaica/data.html",
+    "japanArea": {"label": "国土地理院 全国都道府県市区町村別面積調（2026年4月1日現在）", "url": "https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm", "areaKm2": 377974.87, "ratioPercent": 2.9},
     "frenchmansCove": "https://websitearchive2020.nepa.gov.jm/new/services_products/subsites/beach_guide/beaches/frenchmans_cove.php",
     "calabashBay": "https://websitearchive2020.nepa.gov.jm/new/services_products/subsites/beach_guide/beaches/calabash_bay.php",
     "blueMountains": "https://whc.unesco.org/en/list/1356",
@@ -111,6 +112,8 @@
     "negrilCliffs": "https://mapcarta.com/N3601085697",
     "windsorCave": "https://www.jamaicancaves.org/windsor_050404.htm",
     "fortCharles": "https://mapcarta.com/19327686",
+    "morantLighthouse": "https://www.jnht.com/site_morant_point_lighthouse.php",
+    "morantCoordinates": "https://chanceht.org/lighthouse/morant-point-lighthouse/",
     "kingston": "https://www.geonames.org/search.html?country=JM&q=",
     "food": "https://www.visitjamaica.com/best-of-jamaica/food/",
     "music": "https://www.visitjamaica.com/experiences/things-to-do/history-museums/",
