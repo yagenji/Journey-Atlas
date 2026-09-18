@@ -1,0 +1,36 @@
+name: Honduras coastline source geometry one-time repair
+
+on:
+  push:
+    branches: ['country/honduras']
+    paths: ['.github/workflows/honduras-coastline-once.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/honduras'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/honduras
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geographic polygonizer
+        run: python3 -m pip install --disable-pip-version-check --quiet 'shapely>=2,<3'
+      - name: Repair Honduras map from real coastline and run strict country QA
+        run: python3 scripts/honduras_fix_coastline_once.py
+      - name: Commit only validated Country JSON and SVG
+        run: |
+          git diff --check
+          git add data/countries/honduras.json assets/images/honduras/map-atlas-v1.svg
+          git diff --cached --quiet && { echo 'Expected geographic repair produced no changes'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Correct Honduras islands using source-derived OSM coastlines'
+          git push origin HEAD:country/honduras
