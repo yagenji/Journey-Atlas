@@ -191,7 +191,7 @@ def status_rows(payload: dict) -> dict[str, dict]:
 
 def changed_status_slugs(base: str, head: str) -> set[str]:
     before = status_rows(show_json(base, STATUS_PATH))
-    after = status_rows(show_json(head))
+    after = status_rows(show_json(head, STATUS_PATH))
     slugs = set(before) | set(after)
     return {slug for slug in slugs if before.get(slug) != after.get(slug)}
 
