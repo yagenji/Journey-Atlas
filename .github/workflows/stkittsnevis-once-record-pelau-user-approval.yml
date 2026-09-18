@@ -1,0 +1,55 @@
+name: One-off FOOD03 approval evidence
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-once-record-pelau-user-approval.yml]
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Record user acceptance and true outstanding image QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('ops/country-production/stkittsnevis.json')
+          state=json.loads(p.read_text(encoding='utf-8'))
+          assert state['slug']=='stkittsnevis' and state['stateRevision']==27 and state['phase']=='TASTE_REGEN'
+          food1,food2,food3,food4=state['taste']
+          assert food1['state']=='REVIEW_CANDIDATE' and food1['candidateGenerationId']=='641eaa2f-c782-4a01-86e5-7be16cd488ec'
+          assert food2['state']==food4['state']=='APPROVED'
+          gid='27a312c7-9854-4183-a997-edb0142fa4e6'
+          assert food3['state']=='REGENERATE' and gid in food3['rejectedGenerationIds']
+          assert food3.get('approvedGenerationId') is None and food3.get('candidateGenerationId') is None
+          assert state['next']=={'action':'GENERATE_FOOD','asset':'FOOD03'}
+          food3['userApprovalEvidence']={
+            'generationId':gid,
+            'basis':'User replied approve to the immediately preceding FOOD03 rice-and-beans/chicken image after the assistant had reported it noncompliant; do not discard or regenerate this user-accepted visual without new instruction.',
+            'visualApprovalReceived':True,
+            'unresolvedVisualQa':{
+              'specifiedPigeonPeas':'NOT_CONFIRMED; visibly larger dark-red beans',
+              'integralComponentsOnly':'FAIL; extra plantain and cabbage-carrot slaw not named in the pre-generation Render Packet'
+            },
+            'formalApprovalStatus':'PENDING_COMPLIANT_QA_OR_EXPLICIT_PRODUCTION_EXCEPTION',
+            'generationProvenanceNote':'Keep the original generation ID and historical rejection; do not invent a pre-generation reservation, change earlier QA, or backfill the immutable Taste approval ledger.'
+          }
+          state['stateRevision']+=1
+          state['updatedAt']=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          p.write_text(json.dumps(state,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('Recorded informed FOOD03 image acceptance',gid,'without modifying QA or ledger')
+          PY
+          python scripts/country_production_state_v7.py validate
+          git add ops/country-production/stkittsnevis.json
+          git rm .github/workflows/stkittsnevis-once-record-pelau-user-approval.yml
+          git commit -m 'Record informed FOOD03 visual approval and outstanding Taste QA'
+          git push
