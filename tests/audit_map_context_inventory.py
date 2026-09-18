@@ -20,12 +20,12 @@ COLORS = ('#eaf2f4', '#dcebf0', '#d0e3eb')
 
 
 def original_paths(root):
-    """Serialize every original path, excluding migration context descendants."""
+    """Serialize every original path, excluding generated context descendants."""
     parents = {child: parent for parent in root.iter() for child in parent}
     result = []
     for path in root.iter(NS + 'path'):
         cursor = path
-        excluded = path.attrib.get('data-map-context-legacy') is not None
+        excluded = any(key.startswith('data-map-context') for key in path.attrib)
         while cursor is not None and not excluded:
             if cursor.attrib.get('id') == 'geographic-context':
                 excluded = True
@@ -78,19 +78,21 @@ def main():
     summary = {'git_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                'shard': args.shard, 'shards': args.shards, 'registry_count': len(destinations),
                'published_count': len(published), 'selected_count': len(selected),
-               'in_flight': {}, 'countries': [], 'counts': {}}
+               'production_state': {}, 'countries': [], 'counts': {}}
+    state_by_slug = {}
     for slug in ('belize', 'honduras'):
         p = ROOT / 'ops/country-production' / (slug + '.json')
         state = json.loads(p.read_text()) if p.exists() else {}
+        state_by_slug[slug] = state
         entry = next(d for d in destinations if d['slug'] == slug)
-        summary['in_flight'][slug] = {'phase': state.get('phase'), 'published': entry['atlasPublished'], 'excluded': True}
+        summary['production_state'][slug] = {'phase': state.get('phase'), 'published': entry['atlasPublished']}
     thumbs = []
     for d in selected:
         slug = d['slug']
         record = {'slug': slug, 'published': True}
         summary['countries'].append(record)
-        if slug in ('belize', 'honduras'):
-            record.update(status='in_flight_hold', reason='excluded until agreed completion gate')
+        if slug in state_by_slug and state_by_slug[slug].get('phase') != 'COMPLETE':
+            record.update(status='in_flight_hold', reason='published registry entry is not COMPLETE; fail closed')
             continue
         try:
             country_path = ROOT / 'data/countries' / (slug + '.json')
