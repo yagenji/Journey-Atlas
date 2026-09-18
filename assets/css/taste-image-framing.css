@@ -79,3 +79,20 @@
   object-fit: contain;
   object-position: center;
 }
+
+/* Belize's delivered Taste WebPs are 3:2, unlike the 4:3 approved candidates.
+   Derive the frame height from each delivered image, so the 4:3-only JS rule
+   cannot leave the 80% inset and blue backing visible. Do not crop the dish. */
+.taste-card__image:has(> .taste-card__img[src*="/belize/approved/food-"]) {
+  display: block;
+  aspect-ratio: auto;
+  background: transparent;
+}
+.taste-card__img[src*="/belize/approved/food-"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
