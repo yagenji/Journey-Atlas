@@ -1,0 +1,120 @@
+name: One-off St Kitts Nevis factual and map QA repair
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-once-fix-country-qa.yml]
+permissions:
+  contents: write
+jobs:
+  target-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install only target QA dependencies
+        run: python -m pip install --disable-pip-version-check --quiet pillow selenium
+      - name: Correct documented numeric format and minimally separate map markers without altering real coordinates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json,math
+          p=Path('data/countries/stkittsnevis.json')
+          t=p.read_text(encoding='utf-8')
+          changes=[
+          ('"labelPosition":"left","labelOffset":{"x":-1.8,"y":-0.6}', '"labelPosition":"right","labelOffset":{"x":0.0,"y":0.0},"mapOffset":{"x":0.97,"y":0.0}'),
+          ('"longitude":-62.83722},"image"', '"longitude":-62.83722},"mapOffset":{"x":-1.84,"y":-1.19},"image"'),
+          ('"longitude":-62.80322},"image"', '"longitude":-62.80322},"mapOffset":{"x":0.03,"y":1.50},"image"'),
+          ('"longitude":-62.78032},"image"', '"longitude":-62.78032},"mapOffset":{"x":0.21,"y":-0.50},"image"'),
+          ('"mapOffset":{"x":2.0,"y":2.0}', '"mapOffset":{"x":-3.78,"y":0.04}'),
+          ('"longitude":-62.80106},"image"', '"longitude":-62.80106},"mapOffset":{"x":0.09,"y":2.43},"image"'),
+          ('"longitude":-62.5832},"image"', '"longitude":-62.5832},"mapOffset":{"x":0.30,"y":-0.10},"image"'),
+          ('"longitude":-62.62162},"image"', '"longitude":-62.62162},"mapOffset":{"x":-0.47,"y":2.11},"image"'),
+          ('"longitude":-62.62422},"image"', '"longitude":-62.62422},"mapOffset":{"x":0.17,"y":-2.02},"image"'),
+          ('約4.7万人（2025年、国連推計）', '約47,000人（2025年、国連推計）'),
+          ('"area":"UNdata country profile, accessed 2026-09-18"', '"area":"2026-09-18"'),
+          ]
+          for old,new in changes:
+              assert t.count(old)==1,(old,t.count(old))
+              t=t.replace(old,new,1)
+          d=json.loads(t)
+          assert d['hero']['coordinates']=={'latitude':17.281332,'longitude':-62.6792}
+          assert d['capital']['coordinates']=={'latitude':17.296,'longitude':-62.7223}
+          assert [(s['coordinates']['latitude'],s['coordinates']['longitude']) for s in d['scenes']]==[(17.34694,-62.83722),(17.36899,-62.80322),(17.40101,-62.78032),(17.29606,-62.72232),(17.32569,-62.80106),(17.15009,-62.5832),(17.1394,-62.62162),(17.16669,-62.62422)]
+          assert all(math.hypot(s['mapOffset']['x'],s['mapOffset']['y'])<=5 for s in d['scenes'])
+          assert d['facts'][3]['value']=='261 km²（日本の約0.069%）'
+          p.write_text(t,encoding='utf-8')
+          print('PASS: actual coordinates unchanged; nine marker offsets within 5%; population and area access date formatted')
+          PY
+      - name: Strict Country, editorial, Map and delivered image QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate_country_editorial_v2.py data/countries/stkittsnevis.json
+          python scripts/validate_country.py --strict data/countries/stkittsnevis.json
+          python scripts/validate_country_quality_v5.py data/countries/stkittsnevis.json
+          python scripts/validate_country_map_v6.py data/countries/stkittsnevis.json
+          python scripts/audit_country_image_delivery_targeted.py --slug stkittsnevis
+          python scripts/validate_images.py --mode audit --slug stkittsnevis
+          python scripts/validate_images.py --duplicates-only --slug stkittsnevis
+          python scripts/country_production_state_v7.py validate
+      - name: Targeted actual uploaded-file desktop tablet mobile browser QA
+        shell: bash
+        env:
+          TARGET_SLUGS: stkittsnevis
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          JOURNEY_ATLAS_BUILD_VERSION: ${{ github.sha }}
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-stkittsnevis-corrected
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: stkittsnevis
+        run: |
+          set -euo pipefail
+          python scripts/build_country_preview_targeted.py
+          test -f dist/countries/stkittsnevis/index.html
+          python -m http.server 4173 --directory dist >/tmp/stkittsnevis-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for _ in $(seq 1 25); do
+            curl -fsS http://127.0.0.1:4173/countries/stkittsnevis/ >/dev/null && break
+            sleep 1
+          done
+          python scripts/qa_published_browser.py
+          echo 'PASS: three-viewport browser validation on exact uploaded images; FOOD03 editorial discrepancy recorded separately'
+      - name: Upload target screenshots and evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stkittsnevis-corrected-browser-evidence
+          path: qa-stkittsnevis-corrected/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Commit Country-only corrections only after all target QA passes
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/countries/stkittsnevis.json
+          git commit -m 'Resolve St Kitts Nevis marker spacing and source date QA'
+          git push
+      - name: Remove one-off QA workflow, never commit unvalidated changes
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git restore data/countries/stkittsnevis.json 2>/dev/null || true
+          git rm -f --ignore-unmatch .github/workflows/stkittsnevis-once-fix-country-qa.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Remove completed one-off St Kitts Nevis QA workflow'
+            git push
+          fi
