@@ -44,6 +44,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          # New Pipeline v2 branches still trigger this legacy workflow. Avoid
+          # downloading the full asset tree just to decide it is inapplicable.
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            data/countries/
+            data/atlas-destinations.json
+            ops/country-production/
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -129,6 +137,10 @@ jobs:
           echo "should_preview=$should_preview" >> "$GITHUB_OUTPUT"
           echo "published=$published" >> "$GITHUB_OUTPUT"
           echo "Target Country: $slug; source=$source_sha; readiness=$readiness"
+
+      - name: Expand legacy preview sources only when actually required
+        if: steps.target.outputs.should_preview == 'true'
+        run: git sparse-checkout disable
 
       - name: Preview not required
         if: steps.target.outputs.should_preview != 'true'

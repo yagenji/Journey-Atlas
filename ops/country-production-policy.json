@@ -28,7 +28,12 @@
     "perImageApproveProceedGeneratePrompt": "FORBIDDEN",
     "tasteInitialFailureHandling": "PARK_FAILED_TARGET_AND_FINISH_FIRST_PASS_BEFORE_BATCH_REVIEW",
     "tasteRegenStart": "ONLY_AFTER_BATCH_REVIEW_BOUNDARY",
-    "explicitUserGates": ["HERO_APPROVAL", "SCENE_BATCH_APPROVAL", "TASTE_BATCH_APPROVAL", "CANONICAL_PAGE_APPROVAL"]
+    "explicitUserGates": [
+      "HERO_APPROVAL",
+      "SCENE_BATCH_APPROVAL",
+      "TASTE_BATCH_APPROVAL",
+      "CANONICAL_PAGE_APPROVAL"
+    ]
   },
   "assetDelivery": {
     "mode": "USER_HANDOFF",
@@ -89,12 +94,18 @@
     "reuseReviewPrForPublication": false,
     "productionIntegrationTiming": "UNPUBLISHED_CANONICAL_REVIEW_THEN_POST_APPROVAL_PUBLICATION",
     "publicationQueueMode": "SERIALIZED_STRICT_UP_TO_DATE",
-    "publicationQueueWorkflow": ".github/workflows/publish-country-queue.yml",
+    "publicationQueueWorkflow": ".github/workflows/publication-pipeline-v2-finalize.yml",
     "productionIntegrationsTarget": 2,
     "reviewPreviewDeploymentsTarget": 1,
     "fullCountryBuildDuringCountryOnlyChange": "FORBIDDEN",
     "fullCountryBrowserQaDuringCountryOnlyChange": "FORBIDDEN",
-    "fullBuildAllowedFor": ["SHARED_TEMPLATE_CHANGE", "SHARED_CSS_OR_JS_CHANGE", "PRODUCTION_BUILD_SYSTEM_CHANGE", "MANUAL_FULL_QA", "FINAL_PRODUCTION_DEPLOYMENT"],
+    "fullBuildAllowedFor": [
+      "SHARED_TEMPLATE_CHANGE",
+      "SHARED_CSS_OR_JS_CHANGE",
+      "PRODUCTION_BUILD_SYSTEM_CHANGE",
+      "MANUAL_FULL_QA",
+      "FINAL_PRODUCTION_DEPLOYMENT"
+    ],
     "targetedBrowserQaCyclesTarget": 2,
     "waitForStateOnlyCi": false,
     "pauseForProgressConfirmation": false,
@@ -109,7 +120,7 @@
     "legacyCountriesContinueUnchanged": true,
     "review": {
       "trigger": "ASSET_HANDOFF_PASS_13",
-      "autoOpenReusablePr": true,
+      "autoOpenReusablePr": false,
       "checksWorkflow": ".github/workflows/publication-pipeline-v2-checks.yml",
       "checksMode": "review",
       "validationSource": "LATEST_MAIN_PLUS_TARGET_COUNTRY_OVERLAY",
@@ -153,8 +164,14 @@
     "travelScaleNumericDurationForbidden": false,
     "travelScaleDayCountForbidden": false,
     "travelScaleDayNotationRequired": true,
-    "travelScaleDurationUnitsAllowed": ["日"],
-    "travelScaleDurationUnitsForbidden": ["泊", "週", "週間"],
+    "travelScaleDurationUnitsAllowed": [
+      "日"
+    ],
+    "travelScaleDurationUnitsForbidden": [
+      "泊",
+      "週",
+      "週間"
+    ],
     "travelScaleFirstTwoTiersMustBeRanges": true,
     "travelScaleRangeSeparator": "〜",
     "travelScaleRangeMustHaveWidth": true,
@@ -164,19 +181,36 @@
     "travelScaleOverlapsForbidden": true,
     "travelScaleThirdItemOpenEndedDayRule": true,
     "travelScaleExampleDayCountForbidden": true,
-    "travelScaleExampleDurationUnitsForbidden": ["日", "泊", "週", "週間"],
+    "travelScaleExampleDurationUnitsForbidden": [
+      "日",
+      "泊",
+      "週",
+      "週間"
+    ],
     "travelScaleExamplesAreRouteOnly": true,
     "legacyContentQaV3TravelScalePolicy": "ROUTE_SCOPE_WITHOUT_DAY_COUNTS",
     "crossSectionSemanticDuplicationForbidden": true,
     "crossSectionCanonicalTopicKeyRequired": true,
-    "crossSectionTopicKeyUniqueAcross": ["signatureFacts", "atlasExtras", "travelTrivia"],
+    "crossSectionTopicKeyUniqueAcross": [
+      "signatureFacts",
+      "atlasExtras",
+      "travelTrivia"
+    ],
     "crossSectionTopicTokenOverlapGate": true,
-    "crossSectionRoles": {"signatureFacts": "NUMERIC_FACTS_ONLY", "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT", "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"},
+    "crossSectionRoles": {
+      "signatureFacts": "NUMERIC_FACTS_ONLY",
+      "atlasExtras": "BEYOND_THE_SCENERY_DEEP_CONTEXT",
+      "travelTrivia": "LIGHT_DISCOVERY_TRIVIA"
+    },
     "signatureFactSelectionPolicy": "READER_INTEREST_AND_PLAIN_MEANING",
     "signatureFactInterestReasonRequired": true,
     "signatureFactInterestReasonField": "interestReason",
     "genericProfileSignatureFactPolicy": "EXCEPTION_ONLY",
-    "genericProfileSignatureFactTerms": ["人口", "面積", "人口密度"],
+    "genericProfileSignatureFactTerms": [
+      "人口",
+      "面積",
+      "人口密度"
+    ],
     "genericProfileSignatureFactExplicitFlag": "exceptionalScale",
     "worldHeritageCountSignatureFactPolicy": "EXCEPTION_ONLY",
     "worldHeritageCountMinimumExceptionalCount": 25,
@@ -204,10 +238,17 @@
     "supplementalV6Validator": "scripts/validate_country_map_v6.py",
     "capitalNameSceneNumberOverlapForbidden": true,
     "capitalLabelMustRemainInsideCanvas": true,
-    "capitalLabelPositionsAllowed": ["left", "right"],
+    "capitalLabelPositionsAllowed": [
+      "left",
+      "right"
+    ],
     "capitalLabelOffsetMaximumPx": 80,
     "coordinateMutationForCollisionAvoidance": "FORBIDDEN",
-    "collisionResolutionOrder": ["capital.labelPosition", "capital.labelOffset", "MINIMAL_mapOffset"],
+    "collisionResolutionOrder": [
+      "capital.labelPosition",
+      "capital.labelOffset",
+      "MINIMAL_mapOffset"
+    ],
     "v6AdditionalCollisionSafetyMarginPx": 6,
     "svgMustBeSelfContained": true,
     "svgExternalImageUseHrefForbidden": true,

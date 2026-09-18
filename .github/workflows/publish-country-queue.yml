@@ -60,6 +60,14 @@ jobs:
               print("false")
               raise SystemExit
 
+          # Pipeline v2 has its own guarded finalizer. Never let the older
+          # publication queue race it for the same approved Country PR.
+          country_path = Path("data/countries") / f"{slug}.json"
+          if (country_path.exists() and
+                  json.loads(country_path.read_text(encoding="utf-8")).get("publicationPipelineVersion") == 2):
+              print("false")
+              raise SystemExit
+
           registry_published = False
           for name in ("atlas-destinations.json",):
               payload = json.loads((Path("data") / name).read_text(encoding="utf-8"))

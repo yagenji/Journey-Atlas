@@ -49,7 +49,7 @@ CONTENT + MAP
 
 Do not create extra phases or approval gates.
 
-**Keep the Country branch without a main-targeting PR during CONTENT + MAP, HERO, SCENES and TASTE.** Open or reuse one PR only after all 13 approved rasters are handed off and verified, when entering implementation/review QA. State-transition checks still run on Country pushes; PR-only checks must not be triggered by per-image progress. Do not open a PR for each image or State update.
+**Keep the Country branch without a main-targeting PR during CONTENT + MAP, HERO, SCENES and TASTE.** Open one unpublished-review PR only after all 13 approved rasters are handed off and verified, when entering implementation/review QA. The canonical noindex review merges that PR before final page approval. After explicit final approval, create a separate publication PR from the retained Country branch; do not create image-by-image, State-only, or verification-only PRs. State-transition checks still run on Country pushes; PR-only checks must not be triggered by per-image progress.
 
 ## 5. CONTENT + MAP
 
@@ -176,7 +176,7 @@ A staging/Pages preview may support technical QA but is not the user’s final r
 
 Only explicit final page approval authorizes formal publication. Publication then changes discoverability/indexing and must verify the deployed production SHA and actual Country route. Automatic finalization runs only when `ATLAS_AUTO_PUBLISH=enabled` and an independently authorized `ATLAS_PUBLICATION_TOKEN` is configured in repository Actions settings; the GitHub Actions `GITHUB_TOKEN` is not a substitute for this credential. The token must have permission to update the Country branch, run Actions and merge its PR. Do not put an access token in chat or commit it to the repository.
 
-Until that external identity is enabled and the end-to-end path is verified, use the connected GitHub account to finalize the **existing owner-authored Country PR** on latest main after final approval, preserve all publication gates, wait for the actual required `validate` and `browser-qa` checks on its current PR head, squash merge, and verify the deployed SHA and canonical page. Do not create another PR, use Actions-bot commits to force PR checks, or add empty commits to trigger checks. A skipped automatic finalizer is not a publication success.
+Automatic review State reconciliation and canonical promotion also require `ATLAS_PUBLICATION_TOKEN`; if it is missing, the workflows stop before making Actions-bot changes to a Country PR. Until an independent identity is configured and the full path verified, use the connected GitHub account to perform each guarded stage: merge the **unpublished-review PR** only after its genuine required PR checks, confirm the canonical noindex page and live browser QA, record the verified review State, and—only after explicit final page approval—create the **separate publication PR** on latest main. Wait for actual `validate` and `browser-qa` checks on that PR head, squash merge and verify the deployed SHA and canonical page. Do not use Actions-bot commits or empty commits to force checks. A skipped or blocked automatic workflow is not a review or publication success.
 
 Never treat review deployment as formal publication.
 

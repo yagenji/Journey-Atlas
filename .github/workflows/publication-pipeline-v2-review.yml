@@ -130,6 +130,16 @@ jobs:
             exit 1
           fi
           echo "Reusing Country PR #$pr"
+      - name: Require an independently authorized Country State writer before review QA
+        if: steps.target.outputs.ready == 'true'
+        env:
+          PUBLISH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
+        shell: bash
+        run: |
+          if [ -z "$PUBLISH_TOKEN" ]; then
+            echo '::error::ATLAS_PUBLICATION_TOKEN is required to reconcile review State on a Country PR. No QA, Pages deployment or GITHUB_TOKEN branch push was started. Configure the repository Actions secret, or complete the guarded review using the connected GitHub account.'
+            exit 1
+          fi
       - name: Wait for the authoritative target QA on this exact Country revision
         if: steps.target.outputs.ready == 'true'
         env:
@@ -216,7 +226,7 @@ jobs:
           fetch-depth: 0
           # The deploy job reconciles review State on the open Country PR.
           # An external identity triggers real PR checks; GITHUB_TOKEN does not.
-          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN || github.token }}
+          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

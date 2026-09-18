@@ -495,6 +495,14 @@ function renderTaste(fragment, data = {}) {
     article.innerHTML = `<div class="taste-card__image media-slot"><img class="taste-card__img" alt="${escapeHtml(item.name || '')}" decoding="async"></div><div class="taste-card__copy"><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p></div>`;
     const image = article.querySelector('.taste-card__img');
     image.addEventListener('load', () => {
+      // New Country assets opt in; unchanged legacy Country images keep the
+      // exact approved framing rather than inheriting a global visual change.
+      if (item.imageFraming === 'SOURCE_ASPECT' && image.naturalWidth > 0 &&
+          image.naturalHeight > 0 &&
+          Math.abs(image.naturalWidth / image.naturalHeight - 3 / 2) < 0.005) {
+        article.querySelector('.taste-card__image').classList.add('taste-card__image--source-3x2');
+        image.classList.add('taste-card__img--source-3x2');
+      }
       // Match approved 4:3 artwork with integral paper ground to its own frame.
       if (image.naturalWidth > 0 && image.naturalHeight > 0 &&
           Math.abs(image.naturalWidth / image.naturalHeight - 4 / 3) < 0.005) {

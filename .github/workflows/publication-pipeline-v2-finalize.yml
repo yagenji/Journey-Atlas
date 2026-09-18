@@ -84,7 +84,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Ensure reusable review PR exists
+      - name: Find existing post-approval publication PR
         id: pr
         env:
           GH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
@@ -94,10 +94,8 @@ jobs:
         run: |
           set -euo pipefail
           pr="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$HEAD_REF" --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$pr" ]; then
-            echo '::error::Open the reusable owner-authored Country PR before final approval. Publishing must not create a new PR.'
-            exit 1
-          fi
+          # Canonical review merged its PR BEFORE user approval. A distinct
+          # publication PR will be created only AFTER finalization has been staged.
           echo "number=$pr" >> "$GITHUB_OUTPUT"
       - name: Rebuild on latest main, validate and squash merge
         id: merge
@@ -142,6 +140,10 @@ jobs:
             git commit -m "Finalize $SLUG publication via latest-main overlay" || true
             sha="$(git rev-parse HEAD)"
             git push --force-with-lease="refs/heads/$HEAD_REF:$(git rev-parse origin/$HEAD_REF)" origin "HEAD:refs/heads/$HEAD_REF"
+            if [ -z "$PR_NUMBER" ]; then
+              PR_NUMBER="$(gh api --method POST "repos/$GITHUB_REPOSITORY/pulls" -f head="$HEAD_REF" -f base=main -f title="Publish approved $SLUG Country" -f body="Formal publication after explicit Country-page approval recorded in Production State. This PR follows the already-merged unpublished canonical review PR; retain all required checks and post-merge live verification." --jq '.number')"
+              [ -n "$PR_NUMBER" ] || { echo 'Publication PR creation failed.' >&2; exit 1; }
+            fi
             gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=publish
             run_id=""
             for attempt in $(seq 1 30); do
@@ -150,6 +152,9 @@ jobs:
             [ -n "$run_id" ] || exit 1; gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
             git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
             if [ "$(git rev-parse origin/main)" != "$latest_main" ]; then echo "main advanced; retrying latest overlay"; continue; fi
+            # A workflow_dispatch QA success is not a substitute for required
+            # checks on the real publication PR's current head revision.
+            timeout 420 gh pr checks "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --required --watch
             response="$(gh api --method PUT "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" -f merge_method=squash -f sha="$sha")"
             if [ "$(printf '%s' "$response" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("merged",False)).lower())')" = true ]; then merged_sha="$(printf '%s' "$response" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("sha",""))')"; break; fi
           done

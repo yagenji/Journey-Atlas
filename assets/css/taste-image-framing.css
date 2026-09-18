@@ -10,6 +10,19 @@
   object-position: center;
 }
 
+/* Future Country 3:2 artwork uses its real source aspect and integral paper
+   ground. Legacy artwork has no opt-in and is rendered exactly as approved. */
+.taste-card__image--source-3x2 {
+  aspect-ratio: 3 / 2;
+  background: transparent;
+}
+.taste-card__img--source-3x2 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Panama's approved 3:2 Taste illustrations include their own safe margins.
    Do not inset them again or expose a different card backing. */
 .taste-card__img[src*="/panama/approved/food0"] {
