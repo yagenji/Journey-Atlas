@@ -87,7 +87,9 @@ jobs:
               raise SystemExit('Content QA v6 map hard gate must run in the existing validation cycle')
           if 'slug="${slug%-renewal}"' not in checks:
               raise SystemExit('Country renewal PR must resolve the real Country slug, not compatibility-pass')
-          if checks.count('ref: ${{ github.event.pull_request.head.sha || github.sha }}') < 2:
+          # Construct the expression at runtime; Actions must not interpolate it in this test script.
+          expected_ref = 'ref: ' + chr(36) + '{{ github.event.pull_request.head.sha || github.sha }}'
+          if checks.count(expected_ref) < 2:
               raise SystemExit('Both PR validation and browser QA must inspect the actual Country head')
           if "needs.validate.outputs.mode == 'review'" not in checks or "github.event_name == 'pull_request'" not in checks:
               raise SystemExit('A new Country review PR must execute real targeted Browser QA')
