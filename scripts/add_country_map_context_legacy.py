@@ -79,15 +79,19 @@ def _insert_after(svg: str, match, markup: str) -> str:
 
 
 def _split_context_geometry(bounds, resolution):
-    """Fetch a single unwrapped world cycle as <=180° verified GSHHS pieces.
+    """Fetch one unwrapped world cycle as <=180° verified GSHHS pieces.
 
-    Local projections can expose horizontal sidebands wider than 360° at high
-    latitude. Repeating a second copy of the world would invent geography, so
-    migration uses at most one 360° cycle centered on the requested canvas.
+    Local projections can expose sidebands outside the geographic poles or wider
+    than a full longitude cycle. Latitude is clipped to the GSHHS-safe polar
+    limit; longitude is limited to one cycle so geography is never duplicated.
     """
     west, south, east, north = bounds
-    if not all(math.isfinite(v) for v in bounds) or not (west < east and -89 <= south < north <= 89):
+    if not all(math.isfinite(v) for v in bounds) or not west < east or not south < north:
         raise ValueError("Unsupported wide map extent")
+    south = max(south, -89.0)
+    north = min(north, 89.0)
+    if not south < north:
+        return None
     span = east - west
     if span > 360:
         center = (west + east) / 2
@@ -141,8 +145,10 @@ def _hong_kong(svg: str, config: dict, resolution: str) -> str:
     uses = [u for u in root.iter(SVG_NS + "use")
             if (u.attrib.get("href") or u.attrib.get(XLINK_HREF)) == "#land-shape"
             and u.attrib.get("fill") == "url(#land)"]
-    if shape is None or len(list(shape.iter(SVG_NS + "path"))) < 1 or len(uses) != 1:
+    if shape is None or len(list(shape.iter(SVG_NS + "path"))) < 1 or len(uses) < 1:
         raise ValueError("Hong Kong referenced land-shape layout changed")
+    if any((u.attrib.get("href") or u.attrib.get(XLINK_HREF)) != "#land-shape" for u in uses):
+        raise ValueError("Hong Kong land references no longer share one reviewed geometry")
     return _simple_context(svg, config, resolution)
 
 
