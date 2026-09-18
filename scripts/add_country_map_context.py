@@ -116,17 +116,48 @@ def make_context_path(geometry, bounds, simplify, rect=None):
     return " ".join(part for part in paths if part)
 
 
-def validate_single_target(root, bounds):
+def approved_land_paths(root):
+    """Find rendered target paths by SVG fill inheritance without mutating SVG."""
     parents = {child: parent for parent in root.iter() for child in parent}
-    targets = [node for node in root.iter(SVG_NS + "path") if node.attrib.get("fill") == "url(#land)"]
-    if len(targets) != 1:
-        raise ValueError("Expected exactly one explicit target-country path with fill=url(#land)")
-    transforms = []
-    cursor = targets[0]
-    while cursor is not None:
-        if "transform" in cursor.attrib:
-            transforms.append(cursor.attrib["transform"])
-        cursor = parents.get(cursor)
+    targets = []
+    for node in root.iter(SVG_NS + "path"):
+        cursor = node
+        fill = None
+        while cursor is not None:
+            # Inline CSS and external styles require their own rendering review.
+            if "style" in cursor.attrib or "class" in cursor.attrib:
+                raise ValueError("Styled SVG path/group requires explicit rendering review")
+            if "fill" in cursor.attrib:
+                fill = cursor.attrib["fill"]
+                break
+            cursor = parents.get(cursor)
+        if fill != "url(#land)":
+            continue
+        cursor = node
+        while cursor is not None:
+            if cursor.tag in (SVG_NS + "defs", SVG_NS + "clipPath", SVG_NS + "mask"):
+                raise ValueError("Target land path inside a non-rendering SVG definition")
+            cursor = parents.get(cursor)
+        targets.append(node)
+    if not targets:
+        raise ValueError("No approved target-country path with effective fill=url(#land)")
+    return targets, parents
+
+
+def validate_single_target(root, bounds):
+    targets, parents = approved_land_paths(root)
+    all_transforms = []
+    for target in targets:
+        transforms = []
+        cursor = target
+        while cursor is not None:
+            if "transform" in cursor.attrib:
+                transforms.append(cursor.attrib["transform"])
+            cursor = parents.get(cursor)
+        all_transforms.append(tuple(transforms))
+    if len(set(all_transforms)) != 1:
+        raise ValueError("Approved target paths have different transforms; review projection")
+    transforms = all_transforms[0]
     if not transforms:
         return
     # Legacy single-country canvases used a uniform lon/lat raster and then a
