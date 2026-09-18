@@ -1,0 +1,54 @@
+name: One-off St Kitts Nevis FOOD01 evidence and FOOD03 reservation
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-oneoff-food01-food03-reserve.yml]
+permissions:
+  contents: write
+jobs:
+  reconcile-and-reserve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Preserve user approval evidence and reserve distinct Pelau target
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python - <<'PY'
+          import json, uuid
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p = Path('ops/country-production/stkittsnevis.json')
+          s = json.loads(p.read_text(encoding='utf-8'))
+          f1, f2, f3, f4 = s['taste']
+          assert s['slug'] == 'stkittsnevis'
+          assert s['phase'] == 'TASTE_REGEN' and s['next'] == {'action':'GENERATE_FOOD','asset':'FOOD01'}
+          assert f1['id'] == 'FOOD01' and f1['state'] == 'REGENERATE'
+          assert f3['id'] == 'FOOD03' and f3['state'] == 'REGENERATE'
+          assert f2['state'] == f4['state'] == 'APPROVED'
+          assert s['generationContext']['state'] == 'CLEAN'
+          assert s['tasteBatchReview']['rounds'] and s['tasteBatchReview']['approval'] == 'PENDING'
+          assert not any(x['state'] == 'GENERATING' for x in s['taste'])
+          now = datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          gid = '641eaa2f-c782-4a01-86e5-7be16cd488ec'
+          assert gid not in f1.get('rejectedGenerationIds', [])
+          f1['state'] = 'REVIEW_CANDIDATE'
+          f1['candidateGenerationId'] = gid
+          f1['candidateVisualQa'] = {k:'PASS' for k in ('targetIdentity','dishIdentity','singleDish','integralComponentsOnly','plainBackground','decorativePropsAbsent','previousAssetRepeat','collageTypography')}
+          f1['userApprovalEvidence'] = {'generationId':gid,'basis':'User replied approve to the immediately preceding FOOD01 saltfish, plantain, breadfruit and coconut dumplings image','generationProvenanceNote':'The preceding generation was not pre-reserved; do not backdate a generation reservation. Formal approvedGenerationId awaits the next valid Taste batch boundary.'}
+          f3['state'] = 'GENERATING'
+          f3['generationReservation'] = {'reservationId':str(uuid.uuid4()),'asset':'FOOD03','contentId':f3['contentId'],'promptSeries':f3['promptSeries'],'generationContextEpoch':s['generationContext']['epoch'],'reservedAt':now}
+          s['next'] = {'action':'RECONCILE_GENERATION','asset':'FOOD03'}
+          s['stateRevision'] += 1
+          s['updatedAt'] = now
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('FOOD01 approved candidate',gid,'FOOD03 reservation',f3['generationReservation']['reservationId'],'epoch',s['generationContext']['epoch'])
+          PY
+          python scripts/country_production_state_v7.py validate
+          git add ops/country-production/stkittsnevis.json
+          git rm .github/workflows/stkittsnevis-oneoff-food01-food03-reserve.yml
+          git commit -m 'Record accepted saltfish and reserve independent Pelau generation'
+          git push
