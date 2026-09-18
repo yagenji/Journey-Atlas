@@ -5,8 +5,8 @@
   "contentRef": "country/grenada",
   "stateRef": "country/grenada",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-18T22:09:33+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-18T22:12:31+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/grenada/approved/hero-st-georges-carenage.webp",
@@ -41,12 +41,14 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "GENERATING",
+      "state": "REGENERATE",
       "asset": null,
       "contentId": "grand-etang-crater-lake",
       "promptSeries": 1,
-      "promptSeriesRejectCount": 0,
-      "rejectedGenerationIds": [],
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "84d3260a-f491-4bcf-8a0e-5a6816b3b70b"
+      ],
       "renderPacket": {
         "kind": "SCENE",
         "contentId": "grand-etang-crater-lake",
@@ -63,14 +65,7 @@
         "forbidInsetImages": true,
         "singleSceneOnly": true
       },
-      "generationReservation": {
-        "reservationId": "8ed23921-582d-4c7c-a0f4-028cb770a5fd",
-        "asset": "S01",
-        "contentId": "grand-etang-crater-lake",
-        "promptSeries": 1,
-        "generationContextEpoch": 1,
-        "reservedAt": "2026-09-18T22:09:33+09:00"
-      }
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER"
     },
     {
       "id": "S02",
@@ -315,11 +310,11 @@
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
   "generationContext": {
-    "state": "CLEAN",
+    "state": "CONTAMINATED",
     "epoch": 1,
     "lastResetAt": null,
-    "lastFailureAsset": null,
-    "lastFailureReason": null
+    "lastFailureAsset": "S01",
+    "lastFailureReason": "WRONG_TARGET_CARRYOVER"
   },
   "imageGenerationPolicy": {
     "revision": 7,
@@ -413,7 +408,7 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "RECONCILE_GENERATION",
-    "asset": "S01"
+    "action": "RESET_GENERATION_CONTEXT",
+    "asset": null
   }
 }
