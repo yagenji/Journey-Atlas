@@ -1,0 +1,117 @@
+name: Grenada one-time scoped QA corrections
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-once-qa-corrections.yml]
+permissions:
+  contents: write
+jobs:
+  correct:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/grenada'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image QA dependency
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+      - name: Reframe only eight approved Scenes, adjust labels, verify and remove this workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime, hashlib, json, math, subprocess
+          from pathlib import Path
+          from PIL import Image, ImageOps
+
+          target=Path('data/countries/grenada.json')
+          state_path=Path('ops/country-production/grenada.json')
+          one_off=Path('.github/workflows/grenada-once-qa-corrections.yml')
+          expected_scene_blobs=[
+              '650dd2a4f43da7508f110f296436b5a2edf79f58',
+              'fd649315ddf1cef5c154420820ca465424a21541',
+              '509f3436e11c2b3bc536aaa7e6f15bfda7f72546',
+              'ea2813c98b03618c265f7e69540b4f50a2f73150',
+              'e9446b4413abb163172e4633a8cd942ccca9e3ac',
+              'dc70b2f007f2217a18ec91bb102849c598cb5ef7',
+              'fb18ac83dfa02d7f7cff260bd3f5eb65095f757a',
+              '94789b911eed421c90fdce4fb38c6fa79d3c629a',
+          ]
+          def git_blob(data):
+              return hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+          def run(*args):
+              print('+',' '.join(args),flush=True)
+              subprocess.run(args,check=True)
+          assert subprocess.check_output(['git','rev-parse','HEAD^'],text=True).strip()=='8f7895582395264e285664a91fa8b287cdd5102c','Unexpected starting branch'
+          assert git_blob(target.read_bytes())=='338eb857f46f8d70350af75c97e258741d27dc77','Unexpected Country JSON'
+          assert git_blob(state_path.read_bytes())=='09a5146e3e71fd8b60554212b97451b22ce31419','Unexpected State'
+          country=json.loads(target.read_text(encoding='utf-8'))
+          state=json.loads(state_path.read_text(encoding='utf-8'))
+          assert len(country['scenes'])==len(state['scenes'])==8
+          assert state['stateRevision']==13 and state['assetHandoff']['state']=='PASS' and state['phase']=='ASSET_QA'
+          assert state['finalApproval']['state']=='PENDING' and state['publication']['atlasPublished'] is False
+          assert state['sceneBatchReview']['approval']==state['tasteBatchReview']['approval']=='APPROVED'
+          original_approval_ids=[x['approvedGenerationId'] for x in state['scenes']]
+          # The eight approved standalone originals are 4:3. The approved scene content
+          # was checked against the centered 3:2 frames before this delivery-only trim.
+          for idx,(scene,approved,expected_blob) in enumerate(zip(country['scenes'],state['scenes'],expected_scene_blobs),1):
+              assert approved['state']=='APPROVED' and approved['asset']==scene['image']
+              p=Path(scene['image']); raw=p.read_bytes(); assert git_blob(raw)==expected_blob,(idx,git_blob(raw))
+              with Image.open(p) as im: im.verify()
+              with Image.open(p) as im:
+                  im.load(); assert im.format=='WEBP' and im.size==(1448,1086),(idx,im.size)
+                  icc=im.info.get('icc_profile')
+                  frame=ImageOps.fit(im.convert('RGB'),(1200,800),method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
+                  args={'format':'WEBP','quality':92,'method':6}
+                  if icc:args['icc_profile']=icc
+                  tmp=p.with_suffix('.webp.tmp');frame.save(tmp,**args)
+              with Image.open(tmp) as im: im.verify()
+              with Image.open(tmp) as im:
+                  im.load(); assert im.format=='WEBP' and im.size==(1200,800)
+              tmp.replace(p)
+              print('SCENE_3_2_CENTER_FRAME',idx,expected_blob,git_blob(p.read_bytes()),flush=True)
+
+          offsets=[(-1.75,-1.5),(3.1,.75),(1.15,-1.05),(-1.15,.85),(-2.8,-1.2),(-2.95,2.3),(-1.5,0),(1.5,0)]
+          for scene,(x,y) in zip(country['scenes'],offsets):
+              assert math.hypot(x,y)<=5
+              scene['mapOffset']={'x':x,'y':y}
+          country['hero']['mapOffset']={'x':2.55,'y':1.45}
+          # A left-aligned capital name remains clear of the shifted scene numbers and Hero.
+          country['capital']['labelPosition']='left'
+          country['sourceDates']['countryArea']='2026-09-18' # source checked this date; underlying measurement year not stated in sources.countryArea
+          pop=[f for f in country['facts'] if f.get('label')=='人口']
+          assert len(pop)==1 and pop[0]['value']=='約10.9万人（2021年国勢調査・暫定値109,021人）'
+          pop[0]['value']='約11万人（2021年国勢調査・暫定値109,021人）'
+          target.write_text(json.dumps(country,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          stamp=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+          state['assetHandoff']['verifiedAt']=stamp
+          state['updatedAt']=stamp
+          state['stateRevision']+=1
+          state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          run('python','scripts/validate_country_editorial_v2.py','--force',str(target))
+          run('python','scripts/validate_country_quality_v5.py',str(target))
+          run('python','scripts/validate_country_map_v6.py',str(target))
+          run('python','scripts/validate_country.py','--strict',str(target))
+          run('python','scripts/audit_country_image_delivery_targeted.py','--slug','grenada')
+          run('python','scripts/validate_images.py','--mode','audit','--slug','grenada')
+          run('python','scripts/validate_images.py','--duplicates-only','--slug','grenada')
+          run('python','scripts/country_production_protocol_v2.py','validate')
+          run('python','scripts/validate_production_state_routed.py')
+          run('python','scripts/publication_pipeline_v2.py','assert-review-ready','grenada')
+          assert [x['approvedGenerationId'] for x in state['scenes']]==original_approval_ids
+          run('git','config','user.name','github-actions[bot]')
+          run('git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
+          parent=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          run('git','rm',str(one_off))
+          run('git','add',str(target),str(state_path),*[x['image'] for x in country['scenes']])
+          run('git','commit','-m','Grenada: deliver approved scenes in 3:2 and correct map labels and source dates')
+          run('python','scripts/country_production_state_v7.py','validate-range',parent,'HEAD')
+          run('git','push','origin','HEAD:country/grenada')
+          print('GRENADA_SCENE_AND_MAP_QA_PASS_TEMP_WORKFLOW_REMOVED',flush=True)
+          PY
