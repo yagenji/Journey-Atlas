@@ -1,4 +1,4 @@
-name: Grenada one-time verified asset handoff reconciliation
+name: Grenada one-time approved asset delivery normalization
 on:
   push:
     branches: [country/grenada]
@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
       - name: Install image verification dependency
         run: python -m pip install --disable-pip-version-check --quiet pillow
-      - name: Verify 13 delivered assets and finish one State transition
+      - name: Normalize only five approved rasters and verify Country handoff
         shell: bash
         run: |
           set -euo pipefail
@@ -28,67 +28,75 @@ jobs:
           import datetime, hashlib, json, subprocess
           from pathlib import Path
           from PIL import Image
+          from scripts import normalize_country_image_delivery as norm
 
-          path = Path('ops/country-production/grenada.json')
-          temporary = Path('.github/workflows/grenada-once-visual-qa.yml')
+          path=Path('ops/country-production/grenada.json')
+          temporary=Path('.github/workflows/grenada-once-visual-qa.yml')
           def run(*args):
               print('+', ' '.join(args), flush=True)
               subprocess.run(args, check=True)
+          actual=subprocess.check_output(['git','hash-object',str(path)],text=True).strip()
+          assert actual=='6abc7878c4b95d7fffe994cabb0077ad7919d02f', ('State changed; abort',actual)
+          state=json.loads(path.read_text(encoding='utf-8'))
+          assert state['slug']=='grenada' and state['stateRevision']==12 and state['phase']=='ASSET_QA'
+          assert state['assetHandoff']['state']=='VERIFIED' and state['assetHandoff']['verifiedRasterCount']==13
+          assert state['next']=={'action':'VERIFY_APPROVED_ASSETS','asset':None}
+          assert state['publication']['atlasPublished'] is False and state['finalApproval']['state']=='PENDING'
+          assert state['sceneBatchReview']['approval']==state['tasteBatchReview']['approval']=='APPROVED'
+          country=json.loads(Path('data/countries/grenada.json').read_text(encoding='utf-8'))
+          requested=[country['hero']['image']]+[x['image'] for x in country['scenes']]+[x['image'] for x in country['taste']['items']]
+          recorded=[state['hero']['asset']]+[x['asset'] for x in state['scenes']]+[x['asset'] for x in state['taste']]
+          assert requested==recorded and len(requested)==len(set(requested))==13
+          assert requested[-4]=='assets/images/grenada/approved/food-1.webp'
+          assert state['taste'][0]['approvedGenerationId']=='96db9404-802f-465d-a2ed-ab9a5e924ab6'
+          def verify_assets():
+              seen=set()
+              for asset in requested:
+                  f=Path(asset); assert f.is_file(),asset
+                  data=f.read_bytes()
+                  blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+                  assert blob not in seen,('Duplicate raster',asset)
+                  seen.add(blob)
+                  with Image.open(f) as im: im.verify()
+                  with Image.open(f) as im:
+                      im.load()
+                      assert im.format=='WEBP' and min(im.size)>=800,(asset,im.size)
+                  print('VERIFIED',asset,blob,flush=True)
+              assert len(seen)==13
+          verify_assets()
+          raw_food=Path(requested[-4]).read_bytes()
+          raw_food_blob=hashlib.sha1(b'blob '+str(len(raw_food)).encode()+b'\0'+raw_food).hexdigest()
+          assert raw_food_blob=='3c495ea90c3b0ba689bec5d516a6a99c1b74e139','Wrong FOOD01 source variant'
 
-          expected = '6abc7878c4b95d7fffe994cabb0077ad7919d02f'
-          actual = subprocess.check_output(['git','hash-object',str(path)],text=True).strip()
-          assert actual == expected, ('Unexpected Country State: abort', actual)
-          state = json.loads(path.read_text(encoding='utf-8'))
-          assert state['slug'] == 'grenada' and state['stateRevision'] == 12
-          assert state['phase'] == 'ASSET_QA'
-          assert state['assetHandoff']['state'] == 'VERIFIED'
-          assert state['assetHandoff']['verifiedRasterCount'] == 13
-          assert state['next'] == {'action':'VERIFY_APPROVED_ASSETS','asset':None}
-          assert state['finalApproval']['state'] == 'PENDING'
-          assert state['publication']['atlasPublished'] is False
-          assert state['tasteBatchReview']['approval'] == 'APPROVED'
-          assert state['sceneBatchReview']['approval'] == 'APPROVED'
-          country = json.loads(Path('data/countries/grenada.json').read_text(encoding='utf-8'))
-          food = country['taste']['items']
-          requested = [country['hero']['image']] + [x['image'] for x in country['scenes']] + [x['image'] for x in food]
-          recorded = [state['hero']['asset']] + [x['asset'] for x in state['scenes']] + [x['asset'] for x in state['taste']]
-          assert requested == recorded and len(requested) == 13 and len(set(requested)) == 13
-          assert requested[-4] == 'assets/images/grenada/approved/food-1.webp'
-          assert state['taste'][0]['approvedGenerationId'] == '96db9404-802f-465d-a2ed-ab9a5e924ab6'
-          seen = set()
-          for name in requested:
-              f = Path(name)
-              assert f.is_file(), name
-              data = f.read_bytes()
-              blob = hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
-              assert blob not in seen, ('Duplicate image', name)
-              seen.add(blob)
-              with Image.open(f) as im:
-                  im.verify()
-              with Image.open(f) as im:
-                  im.load()
-                  assert im.format == 'WEBP' and min(im.size) >= 800, (name,im.size)
-              if f.name == 'food-1.webp':
-                  assert blob == '3c495ea90c3b0ba689bec5d516a6a99c1b74e139', 'Unexpected shrimp variant'
-              print('VERIFIED_IMAGE',name,blob,flush=True)
+          plans=norm.build_plan(['grenada'])
+          expected={requested[0],*requested[-4:]}
+          assert len(plans)==5 and {p.source for p in plans}==expected,[(p.source,p.new_size) for p in plans]
+          assert all(p.source==p.target for p in plans),'File references must remain unchanged'
+          for plan in plans:
+              assert plan.new_size==((1536,973) if plan.source==requested[0] else (1200,800)),(plan.source,plan.new_size)
+              norm.webp_save(Path(plan.source),Path(plan.target),plan.new_size)
+              print('NORMALIZED',plan.source,plan.old_size,plan.new_size,flush=True)
+          assert norm.build_plan(['grenada'])==[],'Noncompliant raster remains'
+          verify_assets()
           run('python','scripts/audit_country_image_delivery_targeted.py','--slug','grenada')
           run('python','scripts/validate_images.py','--mode','audit','--slug','grenada')
           run('python','scripts/validate_images.py','--duplicates-only','--slug','grenada')
-          stamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+
+          stamp=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
           state['assetHandoff'].update(state='PASS',verifiedRasterCount=13,verifiedAt=stamp)
-          state['productionMetrics']['assetHandoffs'] = 1
-          state['stateRevision'] += 1
-          state['updatedAt'] = stamp
+          state['productionMetrics']['assetHandoffs']=1
+          state['stateRevision']+=1
+          state['updatedAt']=stamp
           path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           run('python','scripts/country_production_protocol_v2.py','validate')
           run('python','scripts/validate_production_state_routed.py')
           run('python','scripts/publication_pipeline_v2.py','assert-review-ready','grenada')
-          parent = subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          parent=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           run('git','config','user.name','github-actions[bot]')
           run('git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
           run('git','rm',str(temporary))
-          run('git','add',str(path))
-          run('git','commit','-m','Grenada: verify all 13 delivered assets and remove temporary visual QA workflow')
+          run('git','add',str(path),*expected)
+          run('git','commit','-m','Grenada: normalize five approved rasters and verify asset handoff')
           run('python','scripts/country_production_state_v7.py','validate-range',parent,'HEAD')
           run('git','push','origin','HEAD:country/grenada')
           print('GRENADA_ASSET_HANDOFF_PASS_AND_TEMP_WORKFLOW_REMOVED',flush=True)
