@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Preview sea and GSHHS context around approved Country-map paths.
+"""Preview approved sea and GSHHS surrounding-land context without changing target SVGs.
 
-Existing target SVG paths and markers stay byte-for-byte unchanged. Supports the
-canonical single-region projection, its checked legacy aspect-fit matrix, and
-explicit map.regions. Unsupported layouts fail closed; output is preview-only.
+Supports the canonical single-region local projection (including a checked legacy
+aspect-fit matrix) and explicit map.regions. Existing target paths and markers
+remain byte-for-byte intact; unsupported projection/layouts fail closed.
 """
 from __future__ import annotations
 
@@ -46,7 +46,7 @@ def frame(bounds, rect=None):
 
 
 def canvas_bounds(bounds, rect=None):
-    """Full pixel rect includes projected sidebands, avoiding inland cutoffs."""
+    """Full pixel rect includes projected sidebands, avoiding internal cutoffs."""
     x, y, width, height = rect or (0, 0, mapgen.WIDTH, mapgen.HEIGHT)
     factor, scale, origin_x, origin_y = frame(bounds, rect)
     west, south, east, north = bounds
@@ -57,8 +57,9 @@ def canvas_bounds(bounds, rect=None):
 
 
 def context_geometry(bounds, resolution):
-    """GSHHS land/lake nesting; allow normalized longitude such as Alaska -190."""
+    """GSHHS level 1/3 land minus level 2/4 water, preserving dateline bounds."""
     from mpl_toolkits.basemap import Basemap
+
     west, south, east, north = bounds
     if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
         raise ValueError("Unsupported longitude span or polar canvas; use verified regional projection")
@@ -128,8 +129,9 @@ def validate_single_target(root, bounds):
         cursor = parents.get(cursor)
     if not transforms:
         return
-    # Accept only the exact legacy longitude-aspect correction used by approved
-    # Iceland-like SVGs. A free transform has no reliable geographic inverse.
+    # Legacy single-country canvases used a uniform lon/lat raster and then a
+    # single matrix to correct physical aspect ratio. Accept ONLY that exact
+    # checked matrix; arbitrary transforms cannot be georeferenced from JSON.
     if len(transforms) != 1:
         raise ValueError("Unrecognized target transform chain; review geographic projection")
     match = MATRIX.fullmatch(transforms[0].strip())
@@ -174,7 +176,7 @@ def validate_regions(root, regions):
 
 
 def add_context(svg, bounds, path, resolution, regions=None):
-    """Insert context underneath original target paths without rewriting them."""
+    """Insert context under original target paths; no mutation of target SVG bytes."""
     root = ET.fromstring(svg)
     if root.tag != SVG_NS + "svg" or root.attrib.get("viewBox") != "0 0 1200 760":
         raise ValueError("Expected an SVG with the canonical 1200 x 760 viewBox")
@@ -209,18 +211,61 @@ def add_context(svg, bounds, path, resolution, regions=None):
             raise ValueError("Missing SVG defs for region clips")
         clips = []
         layers = []
+        inline_layers = []
         for region in regions:
             identifier = region["id"]
             x, y, w, h = (float(region["rect"][key]) for key in ("x", "y", "width", "height"))
+            def fmt(value):
+                return f"{value:g}"
             clips.append(f'<clipPath id="map-context-clip-{identifier}" clipPathUnits="userSpaceOnUse">'
-                         f'<rect x="{x:g}" y="{y:g}" width="{w:g}" height="{h:g}"/></clipPath>')
-            if path[identifier]:
+                         f'<rect x="{fmt(x)}" y="{fmt(y)}" width="{fmt(w)}" height="{fmt(h)}"/></clipPath>')
+            if not path[identifier]:
+                continue
+            group = next(g for g in root.iter(SVG_NS + "g") if g.attrib.get("data-map-region") == identifier)
+            background = next((child for child in group if child.tag == SVG_NS + "rect" and
+                               child.attrib.get("fill", "none") != "none"), None)
+            if background is None:
+                if group.attrib.get("clip-path"):
+                    raise ValueError("Region clip without known inset background needs visual projection review")
                 layers.append(f'<path data-map-context-region="{identifier}" d="{path[identifier]}" '
                               f'clip-path="url(#map-context-clip-{identifier})"/>')
+                continue
+            if group.attrib.get("transform"):
+                raise ValueError("Transformed inset background needs explicit reviewed inverse transform")
+            clip_ref = re.fullmatch(r"url\(#([A-Za-z][A-Za-z0-9_-]*)\)", group.attrib.get("clip-path", ""))
+            if not clip_ref:
+                raise ValueError("Inset background must have a known rectangular clip")
+            clip = root.find(f".//*[@id='{clip_ref.group(1)}']")
+            if clip is None or clip.tag != SVG_NS + "clipPath" or len(clip) != 1 or clip[0].tag != SVG_NS + "rect":
+                raise ValueError("Inset clip must contain one rectangle")
+            for key in ("x", "y", "width", "height"):
+                if abs(float(background.attrib[key]) - float(clip[0].attrib[key])) > 0.01:
+                    raise ValueError("Inset background and clip rectangle differ")
+            if background.attrib.get("fill") not in ("#e7eeee", "#eef2ef", SEA_COLORS[1]):
+                raise ValueError("Inset sea background palette requires visual review")
+            inline_layers.append((identifier, f'<path data-map-context-region="{identifier}" d="{path[identifier]}" '
+                                             f'fill="{CONTEXT_FILL}" fill-rule="evenodd" stroke="{CONTEXT_STROKE}" '
+                                             'stroke-width="1" stroke-linejoin="round"/>'))
         svg = svg[:defs.start()] + "".join(clips) + svg[defs.start():]
+        for identifier, layer in inline_layers:
+            # Place context after the inset's opaque sea background, before the
+            # approved target path. Parent clip remains authoritative. Other
+            # regions continue to render below their untouched target groups.
+            match = re.search(r'<g\b(?=[^>]*\bdata-map-region="' + re.escape(identifier) +
+                              r'")[^>]*>\s*<rect\b[^>]*/>', svg)
+            if not match or match.group().count('<rect') != 1:
+                raise ValueError("Inset background is not the first region element")
+            existing = match.group()
+            if 'fill="#e7eeee"' in existing:
+                updated = existing.replace('fill="#e7eeee"', f'fill="{SEA_COLORS[1]}"', 1)
+            elif 'fill="#eef2ef"' in existing:
+                updated = existing.replace('fill="#eef2ef"', f'fill="{SEA_COLORS[1]}"', 1)
+            else:
+                updated = existing
+            svg = svg[:match.start()] + updated + layer + svg[match.end():]
         markup = (f'<g id="geographic-context" fill="{CONTEXT_FILL}" fill-rule="evenodd" '
                   f'stroke="{CONTEXT_STROKE}" stroke-width="1" stroke-linejoin="round">'
-                  + "".join(layers) + "</g>") if layers else ""
+                  + "".join(layers) + "</g>") if layers or inline_layers else ""
     else:
         if not isinstance(path, str):
             raise ValueError("Single-region map expects one context path")
