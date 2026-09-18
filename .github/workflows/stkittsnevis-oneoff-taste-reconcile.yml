@@ -1,0 +1,46 @@
+name: One-off St Kitts Nevis Taste reconciliation
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-oneoff-taste-reconcile.yml]
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Record user-approved FOOD04 candidate without backdating generation provenance
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone, timedelta
+          from pathlib import Path
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(p.read_text())
+          assert s['slug']=='stkittsnevis' and s['stateRevision']==20, 'State changed; abort for safety'
+          assert s['taste'][1]['id']=='FOOD02' and s['taste'][1]['state']=='APPROVED'
+          f=s['taste'][3]
+          assert f['id']=='FOOD04' and f['state']=='REGENERATE'
+          f['state']='REVIEW_CANDIDATE'
+          f['candidateGenerationId']='16aac1a2-47f5-4665-b448-432dda306d30'
+          f['candidateVisualQa']={k:'PASS' for k in ('targetIdentity','dishIdentity','singleDish','integralComponentsOnly','plainBackground','decorativePropsAbsent','previousAssetRepeat','collageTypography')}
+          f['userApprovalEvidence']={'generationId':'16aac1a2-47f5-4665-b448-432dda306d30','basis':'User explicitly replied approve to the displayed standalone conch-fritters image','formalBatchLedger':'PENDING_ROUND_BOUNDARY'}
+          f['generationProvenanceNote']='FOOD04 generated in a previous turn without the required prior State generation reservation; this fact is retained, not backdated.'
+          now=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          s['generationContext'].update({'state':'CLEAN','epoch':5,'lastResetAt':now,'lastFailureAsset':None,'lastFailureReason':None})
+          s['next']={'action':'GENERATE_TASTE','asset':'FOOD03'}
+          s['stateRevision']+=1
+          s['updatedAt']=now
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('FOOD04 user-approved candidate reconciled; next FOOD03; State revision',s['stateRevision'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/stkittsnevis.json
+          git rm .github/workflows/stkittsnevis-oneoff-taste-reconcile.yml
+          git commit -m 'Record conch fritter approval evidence and reset Taste context'
+          git push
