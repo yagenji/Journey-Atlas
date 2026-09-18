@@ -43,6 +43,7 @@ jobs:
     outputs:
       matrix: ${{ steps.ready.outputs.matrix }}
       available: ${{ steps.ready.outputs.available }}
+      authorized: ${{ steps.auth.outputs.authorized }}
     steps:
       - uses: actions/checkout@v4
       - name: Select reviewed unpublished v2 Countries
@@ -112,9 +113,22 @@ jobs:
           print('Canonical review candidates:', [r['slug'] for r in selected])
           PY
 
+      - name: Require authorized Country PR writer for automatic canonical promotion
+        id: auth
+        env:
+          PUBLISH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
+        shell: bash
+        run: |
+          if [ -n "$PUBLISH_TOKEN" ]; then
+            echo 'authorized=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'authorized=false' >> "$GITHUB_OUTPUT"
+            echo 'Canonical promotion is paused: configure ATLAS_PUBLICATION_TOKEN or perform the guarded unpublished merge and live QA using the connected GitHub account. No Actions-bot PR update was attempted.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   promote:
     needs: discover
-    if: needs.discover.outputs.available == 'true'
+    if: needs.discover.outputs.available == 'true' && needs.discover.outputs.authorized == 'true'
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -125,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 50
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
       SLUG: ${{ matrix.slug }}
       HEAD_REF: ${{ matrix.branch }}
       PR_NUMBER: ${{ matrix.pr }}
@@ -134,6 +148,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
+          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
