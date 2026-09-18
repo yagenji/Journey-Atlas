@@ -199,6 +199,9 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.head_ref }}
           fetch-depth: 0
+          # The deploy job reconciles review State on the open Country PR.
+          # An external identity triggers real PR checks; GITHUB_TOKEN does not.
+          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN || github.token }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
