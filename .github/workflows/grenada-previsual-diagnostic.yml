@@ -4,7 +4,7 @@ on:
     branches: [country/grenada]
     paths: [.github/workflows/grenada-previsual-diagnostic.yml]
 permissions:
-  contents: read
+  contents: write
 jobs:
   inspect:
     runs-on: ubuntu-latest
@@ -14,46 +14,90 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run existing Grenada editorial checks
-        continue-on-error: true
-        run: |
-          python3 scripts/validate_country_editorial_v2.py data/countries/grenada.json
-          python3 scripts/validate_country_quality_v5.py data/countries/grenada.json
-      - name: Install existing map generation dependencies
+      - name: Install current map-generation dependencies
         run: python3 -m pip install --disable-pip-version-check 'shapely>=2,<3' 'basemap==2.0.0' 'basemap-data==2.0.0' 'cairosvg' 'pillow'
-      - name: Generate official ADM0 contextual map
-        continue-on-error: true
+      - name: Generate canonical ADM0 map through shared wrapper
         run: |
           mkdir -p /tmp/grenada-map-check
           python3 scripts/generate_country_map_with_context.py --country-json data/countries/grenada.json --source geoboundaries --iso GRD --admin-level ADM0 --map-name Grenada --simplify 0.001 --output /tmp/grenada-map-check/adm0.svg
-      - name: Generate official ADM1 dissolved contextual map
-        continue-on-error: true
-        run: |
-          python3 scripts/generate_country_map_with_context.py --country-json data/countries/grenada.json --source geoboundaries --iso GRD --admin-level ADM1 --map-name Grenada --simplify 0.001 --output /tmp/grenada-map-check/adm1.svg
-      - name: Fully decode both map candidates and report dimensions
-        continue-on-error: true
+      - name: Verify official map geometry, full decode and preview
         run: |
           python3 - <<'PY'
-          import io
+          import hashlib, io
           from pathlib import Path
           from xml.etree import ElementTree as ET
           import cairosvg
           from PIL import Image
-          for path in sorted(Path('/tmp/grenada-map-check').glob('*.svg')):
-              data=path.read_bytes()
-              root=ET.fromstring(data)
-              assert root.get('viewBox')=='0 0 1200 760', (path,root.get('viewBox'))
-              png=cairosvg.svg2png(bytestring=data,output_width=1200,output_height=760)
-              image=Image.open(io.BytesIO(png)); image.load()
-              assert image.size==(1200,760)
-              path.with_suffix('.png').write_bytes(png)
-              print('DECODE_PASS',path.name,'SVG_BYTES',len(data),'PNG_BYTES',len(png),'SIZE',image.size)
+          source=Path('/tmp/grenada-map-check/adm0.svg');data=source.read_bytes()
+          root=ET.fromstring(data)
+          assert root.get('viewBox')=='0 0 1200 760'
+          metadata=root.find('{http://www.w3.org/2000/svg}metadata').text
+          assert 'geoBoundaries gbOpen ADM0' in metadata and 'Open Database License 1.0' in metadata
+          target=[e for e in root if e.tag.endswith('path') and e.get('fill')=='url(#land)']
+          assert len(target)==1 and target[0].get('d','').count('M')>=4
+          context=[e for e in root if e.get('id')=='geographic-context']
+          assert len(context)==1 and list(context[0])
+          png=cairosvg.svg2png(bytestring=data,output_width=1200,output_height=760)
+          im=Image.open(io.BytesIO(png));im.load();assert im.size==(1200,760)
+          source.with_suffix('.png').write_bytes(png)
+          print('ADM0_GEOMETRY_AND_DECODE_PASS',len(data),hashlib.sha256(data).hexdigest(),im.size,'territory_parts',target[0].get('d').count('M'))
           PY
-      - name: Upload diagnostic previews (not production assets)
+      - name: Apply exact Grenada-only editorial and source corrections
+        run: |
+          python3 - <<'PY'
+          import json,shutil
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          path=Path('data/countries/grenada.json');raw=path.read_text(encoding='utf-8');country=json.loads(raw)
+          assert country['slug']=='grenada' and country.get('contentQaVersion')==6
+          assert [i['duration'] for i in country['travelScale']['items']]==['3〜4日','6〜7日','10日以上']
+          for before,after in [('"duration": "6〜7日"','"duration": "5〜7日"'),('"duration": "10日以上"','"duration": "8日以上"')]:
+              assert raw.count(before)==1,before
+              raw=raw.replace(before,after,1)
+          svg=Path('/tmp/grenada-map-check/adm0.svg')
+          metadata=ET.parse(svg).getroot().find('{http://www.w3.org/2000/svg}metadata').text
+          source=(metadata+' | Geographic context: GSHHS intermediate via Basemap 2.0.0; WGS84; 1200×760; '+
+                  'scripts/generate_country_map_with_context.py --source geoboundaries --iso GRD --admin-level ADM0 --simplify 0.001. '+
+                  'National outlines are administrative data, not GSHHS coastline guesses. Map source checked 2026-09-18.')
+          original_source=country['map']['source']
+          def replace_json_string(raw,before,after):
+              before=json.dumps(before,ensure_ascii=False);after=json.dumps(after,ensure_ascii=False)
+              assert raw.count(before)==1,before[:70]
+              return raw.replace(before,after,1)
+          raw=replace_json_string(raw,original_source,source)
+          original_geometry=country['sources']['geometry']
+          geometry=(metadata+' | Surrounding land from GSHHS intermediate; map generated and decoded at 1200×760 on 2026-09-18. '+
+                    'Scene and capital points retain separately sourced WGS84 coordinates (OSM/Mapcarta); markers use visual offsets only.')
+          raw=replace_json_string(raw,original_geometry,geometry)
+          assert raw.count('"geometry": "2026-09-18"')==1
+          raw=raw.replace('"geometry": "2026-09-18"','"geometry": "2017"',1)
+          revised=json.loads(raw)
+          assert revised['map']['svg']=='assets/images/grenada/map-atlas-v1.svg'
+          assert revised['sourceDates']['geometry']=='2017'
+          assert [i['duration'] for i in revised['travelScale']['items']]==['3〜4日','5〜7日','8日以上']
+          path.write_text(raw,encoding='utf-8')
+          shutil.copyfile(svg,revised['map']['svg'])
+          print('GRENADA_ONLY_CONTENT_AND_MAP_STAGED',path,revised['map']['svg'])
+          PY
+      - name: Run existing editorial and quality validators before commit
+        run: |
+          python3 scripts/validate_country_editorial_v2.py data/countries/grenada.json
+          python3 scripts/validate_country_quality_v5.py data/countries/grenada.json
+      - name: Commit verified Country-only source and map (never main)
+        run: |
+          test "${GITHUB_REF_NAME}" = country/grenada
+          git config user.name 'JOURNEY ATLAS previsual QA'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/countries/grenada.json assets/images/grenada/map-atlas-v1.svg
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m 'Generate Grenada contextual map from verified ADM0 and close editorial tier gaps'
+          git push origin HEAD:country/grenada
+      - name: Upload QA preview for final human comparison
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: grenada-previsual-map-diagnostics
+          name: grenada-verified-adm0-preview
           path: /tmp/grenada-map-check/
           if-no-files-found: warn
           retention-days: 2
