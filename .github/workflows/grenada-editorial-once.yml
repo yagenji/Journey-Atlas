@@ -1,0 +1,63 @@
+name: One-time Grenada review-feedback correction
+on:
+  push:
+    branches: [country/grenada-review-fixes]
+    paths: ['.github/workflows/grenada-editorial-once.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/grenada-review-fixes'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Apply exact Grenada Country JSON edits only
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import json
+          from pathlib import Path
+          path = Path('data/countries/grenada.json')
+          d = json.loads(path.read_text(encoding='utf-8'))
+          assert d['slug'] == 'grenada' and d.get('publicationPipelineVersion') == 2
+          assert d['map'].get('japanAreaComparison', '').startswith('グレナダの国土面積344 km²')
+          assert [f['topicKey'] for f in d['signatureFacts']] == ['grenada-three-main-inhabited-islands', 'grand-etang-crater-lake-elevation', 'molinere-original-sculpture-installation']
+          assert [r['countryEn'] for r in d['nextRoutes']] == ['SAINT VINCENT AND THE GRENADINES', 'TRINIDAD AND TOBAGO']
+          assert len(d['scenes']) == 8 and len(d['taste']['items']) == 4
+          assert d.get('atlasPublished', False) is False
+          d['map'].pop('japanAreaComparison')
+          s1, s5 = d['scenes'][0], d['scenes'][4]
+          assert s1['id'] == 'grand-etang-crater-lake' and s5['id'] == 'molinere-sculpture-park'
+          s1['description'] = '島の中央部、標高約530mの高地に火口湖が収まる。静かな湖面の向こうにクアクア山が見え、海辺の港町とは異なる火山島の森と地形が現れる。'
+          s5['description'] = '島の西岸で、2006年から設置された海底の彫刻が魚や海藻と同じ水中にある。人のつくった形が海の環境とともに変わっていく、陸上とは違う文化と自然の接点。'
+          d['signatureFacts'][1] = {'topicKey': 'flag-seven-stars-six-parishes', 'label': '国旗に描かれる星', 'value': '7つ', 'note': '赤い縁の6つは6教区、中央の1つは首都セントジョージズを表す。国旗から島の行政と町の位置が見えてくる。', 'icon': 'culture', 'interestReason': '国旗の模様から6教区と首都の関係が分かる、グレナダ固有の数字。'}
+          d['signatureFacts'][2] = {'topicKey': 'one-fruit-two-spice-products', 'label': '一つの実から生まれる香辛料', 'value': '2種類', 'note': 'ナツメグは種子、メースはそれを包む赤い仮種皮。同じ実の異なる部分が、それぞれ香辛料になる。', 'icon': 'food', 'interestReason': '香辛料の島という呼び名を、果実のつくりと農業の仕事につなぐ数字。'}
+          items = d['travelScale']['items']
+          assert len(items) == 3 and all(x['text'].startswith('例：') for x in items)
+          items[0]['text'] = '港町を拠点に、南西部の砂浜と中央の森へ足を延ばす。本島の異なる地形を短い滞在で感じられる。例：セントジョージズ → グランド・アンス → グラン・エタン → セントジョージズ。'
+          items[1]['text'] = '北東部の農園と北岸の湿地まで訪れるなら、山道の移動や歩く時間も確保したい。例：セントジョージズ → モリネール → グラン・エタン → ベルモント → レヴェラ → セントジョージズ。'
+          items[2]['text'] = '本島に加え、船で北の二島へ渡って暮らしの違いをたどる。島間の便や天候に合わせ、移動日には余裕を持たせる。例：セントジョージズ → 本島の山地・北岸 → カリアク島 → プティ・マルティニーク島 → セントジョージズ。'
+          d['nextRoutes'] = []
+          d['updatedAt'] = '2026-09-19'
+          d['sourcesVerifiedAt'] = '2026-09-19'
+          d['sourceDates'].update({'flag': '2026-09-19', 'nutmegMace': '2026-09-19', 'nextRoutes': '2026-09-19'})
+          d['sources']['flag'] = 'Embassy of Grenada in China, About Grenada: six border stars represent six parishes; central star represents capital St George’s; checked 2026-09-19. https://gndembassyprc.mofa.gov.gd/about/'
+          d['sources']['nutmegMace'] = 'FAO, Production, handling and processing of nutmeg and mace and their culinary uses: the single fruit yields distinct nutmeg (seed kernel) and mace (aril); checked 2026-09-19. https://www.fao.org/4/x5047e/x5047E03.htm'
+          d['sources']['nextRoutes'] = 'International nextRoutes omitted as of 2026-09-19: Grenada–Trinidad item previously required flying (excluded), and an operating, bookable Carriacou–Union Island international passenger service could not be independently confirmed. Domestic Grenada–Carriacou–Petite Martinique Osprey service remains described in transport/travelScale: https://www.ospreylines.com/ . The absence of a verified itinerary does not assert that no private charter exists.'
+          assert d['nextRoutes'] == [] and len(d['signatureFacts']) == 3
+          assert d['facts'][3]['value'].startswith('344 km²')
+          assert [x['image'] for x in d['taste']['items']] == [f'assets/images/grenada/approved/food-{i}.webp' for i in range(1, 5)]
+          assert all(x['text'].count('例：') == 1 for x in items)
+          path.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('grenada editorial correction PASS: 2 signature facts, 2 scene descriptions, map caption, 3 travel texts, 0 unsupported international routes')
+          PYCODE
+          git diff --check
+          git diff --name-only | grep -Fx 'data/countries/grenada.json'
+          test "$(git diff --name-only | wc -l)" -eq 1
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/countries/grenada.json
+          git commit -m 'Correct Grenada signature facts, route context and travel text'
+          git push origin HEAD:country/grenada-review-fixes
