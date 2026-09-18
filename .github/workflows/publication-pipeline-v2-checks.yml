@@ -33,9 +33,9 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
         uses: actions/checkout@v4
         with:
-          # Most pull requests are not active Pipeline v2 Country targets.
-          # Resolve that cheap compatibility path from one commit; fetch history
-          # only if a real Country overlay comparison is required.
+          # Compare the real PR head, not GitHub's synthetic PR merge commit.
+          # Fetch history only for a real Country overlay comparison.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
       - uses: actions/setup-python@v5
         if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'country/')
@@ -56,7 +56,7 @@ jobs:
             slug="$DISPATCH_SLUG"; mode="$DISPATCH_MODE"
           else
             case "$HEAD_REF" in
-              country/*) slug="${HEAD_REF#country/}" ;;
+              country/*) slug="${HEAD_REF#country/}"; slug="${slug%-renewal}" ;;
               *)
                 echo "slug=" >> "$GITHUB_OUTPUT"; echo "mode=" >> "$GITHUB_OUTPUT"; echo "active=false" >> "$GITHUB_OUTPUT"; echo "source_sha=$GITHUB_SHA" >> "$GITHUB_OUTPUT"; exit 0 ;;
             esac
@@ -125,13 +125,12 @@ jobs:
           python3 scripts/validate_images.py --duplicates-only --slug "$SLUG"
           if [ "$MODE" = publish ]; then python3 scripts/validate_production_state_routed.py; fi
 
-  # The review workflow already dispatches and waits for one targeted QA run.
-  # On PR synchronization retain the validation check, but do not run a second
-  # identical Desktop/Tablet/Mobile Browser QA cycle. Publish is also dispatched
-  # explicitly by the finalize workflow after the latest-main overlay.
+  # On a Country review PR, this is the authoritative QA reused by the review
+  # deployment workflow. Explicit dispatch still checks publish/review overlays.
+  # Avoid a second dispatch of the same review QA on PR synchronization.
   browser-qa:
     needs: validate
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && needs.validate.outputs.active == 'true' && needs.validate.outputs.mode == 'review')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -142,6 +141,7 @@ jobs:
         if: needs.validate.outputs.active == 'true'
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - uses: actions/setup-python@v5
         if: needs.validate.outputs.active == 'true'

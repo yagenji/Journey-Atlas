@@ -72,7 +72,7 @@ jobs:
                   raise SystemExit(f'{name}: invalid workflow structure')
               print(f'{name}: YAML parse PASS')
           PY
-      - name: Verify overlay and no-follow-up-PR contract
+      - name: Verify overlay, review QA and no-follow-up-PR contract
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -85,7 +85,17 @@ jobs:
               raise SystemExit('v2 publication must forbid the old verification-only PR')
           if 'validate_country_map_v6.py' not in checks:
               raise SystemExit('Content QA v6 map hard gate must run in the existing validation cycle')
-          print('Pipeline v2 speed/hardening contract PASS')
+          if 'slug="${slug%-renewal}"' not in checks:
+              raise SystemExit('Country renewal PR must resolve the real Country slug, not compatibility-pass')
+          # Construct the expression at runtime; Actions must not interpolate it in this test script.
+          expected_ref = 'ref: ' + chr(36) + '{{ github.event.pull_request.head.sha || github.sha }}'
+          if checks.count(expected_ref) < 2:
+              raise SystemExit('Both PR validation and browser QA must inspect the actual Country head')
+          if "needs.validate.outputs.mode == 'review'" not in checks or "github.event_name == 'pull_request'" not in checks:
+              raise SystemExit('A new Country review PR must execute real targeted Browser QA')
+          if '--event pull_request' not in review or 'gh run watch "$run_id"' not in review:
+              raise SystemExit('Review must wait for its existing PR QA rather than silently skip checks')
+          print('Pipeline v2 overlay, real PR QA and no-follow-up-PR contract PASS')
           PY
       - name: Verify new Country scaffold opt-in and legacy non-migration contract
         run: |
