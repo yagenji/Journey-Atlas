@@ -1,0 +1,84 @@
+name: Grenada Hero approval checkpoint (temporary)
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-hero-approval-temporary.yml]
+permissions:
+  contents: write
+jobs:
+  accept-hero:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reconcile actual user-approved Hero and prepare distinct scene targets
+        run: |
+          python3 - <<'PY'
+          import json,sys
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import country_production_protocol_v2 as protocol
+          p=Path('ops/country-production/grenada.json')
+          s=json.loads(p.read_text(encoding='utf-8'))
+          c=json.loads(Path('data/countries/grenada.json').read_text(encoding='utf-8'))
+          h=s['hero']
+          assert s['phase']=='HERO' and h['state']=='GENERATING'
+          assert s['next']=={'action':'RECONCILE_GENERATION','asset':'HERO'}
+          assert h['contentId']=='st-georges-carenage-fort-george'
+          assert h['generationReservation']=={'reservationId':'3a258b42-d00d-41e0-8c42-0bea9f776f6b','asset':'HERO','contentId':'st-georges-carenage-fort-george','promptSeries':1,'generationContextEpoch':1,'reservedAt':'2026-09-18T21:59:45+09:00'}
+          assert c['hero']['image']=='assets/images/grenada/approved/hero-st-georges-carenage.webp'
+          assert s['preVisualBuild']['state']=='PASS' and s['map']['state']=='APPROVED'
+          assert s['assetHandoff']['mode']=='USER_HANDOFF' and s['assetHandoff']['verifiedRasterCount']==0
+          h['state']='APPROVED'
+          h['asset']=c['hero']['image']
+          h['approvedGenerationId']='52d178e2-b911-4f65-8fde-32869a1c62f5'
+          h['approvedAt']=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          h['candidateVisualQa']={'targetIdentity':'PASS','previousAssetRepeat':'PASS','collageTypography':'PASS'}
+          h.pop('generationReservation')
+          # Each scene is a single independent real location; keep geographic identification and the series' restrained watercolor.
+          identities=[
+            'Real Grand Etang crater lake in Grenada central highlands: a placid green-blue crater lake encircled by dense tropical montane forest and low rounded volcanic slopes, humid cloud-soft daylight. An identifiable natural lake rather than a seashore, fantasy caldera, or invented tall mountains.',
+            'Real Seven Sisters Waterfalls area near Grand Etang, Grenada: a modest natural waterfall tumbling down dark volcanic rocks into a forest pool, tropical foliage, wet stones and a narrow forest setting. A true single forest cascade, not a giant fantasy cliff or seven invented parallel streams.',
+            'Real Levera Beach on Grenada north shore, with Sugar Loaf Island offshore: wide natural sand, quiet shorebreak, low coastal vegetation, the small offshore island and northern coastal contours. Preserve real coastline and island size, no Maldives-style resort or invented mountains.',
+            'Real Belmont Estate in northeastern Grenada: working cacao plantation and its modest traditional processing courtyard, cacao pods and natural wooden drying trays under tropical shade. One geographically plausible working agricultural scene, no manufactured luxury architecture or illegible decorative signs.',
+            'Real Molinere Underwater Sculpture Park off Grenada west shore: respectful underwater view of recognizable human-figure sculptures on the seabed at actual human scale, filtered Caribbean sunlight, modest reef life and clear but natural sea water. No fantasy statues, fabricated monumental buildings or theme-park installation.',
+            'Real Grand Anse Beach south of St Georges, Grenada: gently curving pale sand and clear Caribbean sea, sparse local beach vegetation and low green Grenadian headlands. Quiet plausible lived-in shore, no oversized cruise ship, impossible mountain, or tourist-poster embellishment.',
+            'Real Windward village in Carriacou, Grenada: traditional wooden boatbuilding on the natural shore, an unfinished wooden sloop hull and modest boatyard amid small houses and low Caribbean island hills. Boat proportions, coastal village and carpentry tools natural and real, no luxury marina or fictional skyline.',
+            'Real Petite Martinique island, Grenada: the small inhabited island shoreline with a few modest coastal houses, local fishing boats pulled onto the shore and a green conical low hill behind. Distinguish it clearly from Carriacou and Grenada main island; no exaggerated cliffs or fictional architecture.'
+          ]
+          assert len(s['scenes'])==len(c['scenes'])==len(identities)==8
+          for i,(item,content,identity) in enumerate(zip(s['scenes'],c['scenes'],identities),1):
+              assert item['id']==f'S{i:02d}' and item['state']=='NOT_STARTED' and item['contentId'] is None
+              assert content['image']==f'assets/images/grenada/approved/scene-{i}.webp'
+              item['contentId']=content['id']
+              item['promptSeries']=1
+              item['promptSeriesRejectCount']=0
+              item['rejectedGenerationIds']=[]
+              item['renderPacket']={'kind':'SCENE','contentId':content['id'],'identity':identity+' Wide horizontal standalone image, realistic place and geography 60% with subdued fine watercolor softness 40%; preserve both wide desktop and center-cropped mobile visual identity. No added readable text or invented landmarks.','independentGeneration':True,'forbidPreviousAssetReuse':True,'noAddedText':True,'singleFrameOnly':True,'forbidCollage':True,'forbidPanels':True,'forbidGrid':True,'forbidContactSheet':True,'forbidMontage':True,'forbidInsetImages':True,'singleSceneOnly':True}
+          s['phase']='SCENES_INITIAL'
+          s['stateRevision']+=1
+          s['updatedAt']=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          s['next']=protocol.legacy.derive_next(s)
+          assert s['next']=={'action':'GENERATE_SCENE','asset':'S01'},s['next']
+          assert s['publication']['atlasPublished'] is False and s['finalApproval']['state']=='PENDING'
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('HERO_APPROVED_AND_SCENE_ROUND_READY',s['next'],h['approvedGenerationId'])
+          print('RASTER_HANDOFF_STILL_PENDING',h['asset'])
+          PY
+      - name: Validate image policy and production protocol
+        run: |
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+      - name: Commit only the Grenada Production State
+        run: |
+          test "${GITHUB_REF_NAME}" = country/grenada
+          git config user.name 'JOURNEY ATLAS production checkpoint'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/grenada.json
+          git diff --cached --check
+          git commit -m 'Record approved Grenada Hero and prepare eight standalone scenes'
+          git push origin HEAD:country/grenada
