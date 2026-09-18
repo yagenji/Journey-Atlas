@@ -21,6 +21,7 @@ import add_country_map_context as core
 import generate_country_map as mapgen
 
 SVG_NS = "{http://www.w3.org/2000/svg}"
+XLINK_HREF = "{http://www.w3.org/1999/xlink}href"
 LEGACY_SLUGS = {
     "antiguabarbuda", "bahrain", "brunei", "hong-kong", "maldives", "qatar", "russia"
 }
@@ -78,12 +79,24 @@ def _insert_after(svg: str, match, markup: str) -> str:
 
 
 def _split_context_geometry(bounds, resolution):
-    """Fetch wide longitude spans as <=180° verified GSHHS pieces."""
+    """Fetch a single unwrapped world cycle as <=180° verified GSHHS pieces.
+
+    Local projections can expose horizontal sidebands wider than 360° at high
+    latitude. Repeating a second copy of the world would invent geography, so
+    migration uses at most one 360° cycle centered on the requested canvas.
+    """
     west, south, east, north = bounds
-    if east - west <= 180:
-        return core.context_geometry(bounds, resolution)
-    if not (-360 <= west < east <= 360 and east - west <= 360 and -89 <= south < north <= 89):
+    if not all(math.isfinite(v) for v in bounds) or not (west < east and -89 <= south < north <= 89):
         raise ValueError("Unsupported wide map extent")
+    span = east - west
+    if span > 360:
+        center = (west + east) / 2
+        west, east = center - 180, center + 180
+        span = 360
+    if span <= 180:
+        return core.context_geometry((west, south, east, north), resolution)
+    if not (-360 <= west < east <= 360 and span <= 360):
+        raise ValueError("Unwrapped world cycle exceeds supported longitude range")
     pieces = []
     start = west
     while start < east - 1e-9:
@@ -124,9 +137,10 @@ def _brunei(svg: str, config: dict, resolution: str) -> str:
 
 def _hong_kong(svg: str, config: dict, resolution: str) -> str:
     root = ET.fromstring(svg)
-    shape = root.find(f".//*[@id='land-shape']")
+    shape = next((node for node in root.iter() if node.attrib.get("id") == "land-shape"), None)
     uses = [u for u in root.iter(SVG_NS + "use")
-            if u.attrib.get("href") == "#land-shape" and u.attrib.get("fill") == "url(#land)"]
+            if (u.attrib.get("href") or u.attrib.get(XLINK_HREF)) == "#land-shape"
+            and u.attrib.get("fill") == "url(#land)"]
     if shape is None or len(list(shape.iter(SVG_NS + "path"))) < 1 or len(uses) != 1:
         raise ValueError("Hong Kong referenced land-shape layout changed")
     return _simple_context(svg, config, resolution)
