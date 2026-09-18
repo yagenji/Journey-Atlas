@@ -74,7 +74,10 @@
 }
 
 /* Honduras's approved 1200x800 illustrations already include their paper ground.
-   Show the whole 3:2 artwork without the shared 80% inset and contrasting card backing. */
+   Fill the 3:2 frame without the shared inset or an extra contrasting backing. */
+.taste-card__image:has(> .taste-card__img[src*="/honduras/approved/food-"]) {
+  background: transparent;
+}
 .taste-card__img[src*="/honduras/approved/food-"] {
   width: 100%;
   height: 100%;
