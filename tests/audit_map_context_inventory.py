@@ -19,8 +19,7 @@ COLORS = ('#eaf2f4', '#dcebf0', '#d0e3eb')
 
 
 def target_paths(root):
-    return [ET.tostring(p, encoding='unicode') for p in root.iter(NS + 'path')
-            if p.attrib.get('fill') == 'url(#land)']
+    return [ET.tostring(p, encoding='unicode') for p in ctx.approved_land_paths(root)[0]]
 
 
 def status_for(source, config):
@@ -90,7 +89,7 @@ def main():
                           input_sha256=hashlib.sha256(source.encode()).hexdigest(),
                           projection=root.get('data-map-projection'),
                           regions=[r['id'] for r in config['map'].get('regions', [])],
-                          target_path_count=len(target_paths(root)))
+                          target_path_count=len(target_paths(root)) if status != 'needs_review' else None)
             if status != 'previewable' or args.no_previews:
                 continue
             output_svg = args.output / (slug + '.svg')
@@ -113,7 +112,7 @@ def main():
                     raise AssertionError(f'PNG dimensions {img.size}')
                 thumb = ImageOps.contain(img.convert('RGB'), (300, 190))
             thumbs.append((slug, thumb))
-            record.update(status='preview_pass', reason='target paths identical; full raster decode passed',
+            record.update(status='preview_pass', reason='all approved land paths identical; full raster decode passed',
                           output_sha256=hashlib.sha256(result.encode()).hexdigest(), png_bytes=png.stat().st_size)
         except Exception as exc:
             record.update(status='blocked', reason=(type(exc).__name__ + ': ' + str(exc))[:500])
