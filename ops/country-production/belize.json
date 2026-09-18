@@ -541,8 +541,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DEPLOYING",
+    "url": "https://atlas.yagenji.com/countries/belize/",
+    "productionVerification": "PENDING",
+    "atlasPublished": false
   },
   "finalApproval": {
     "state": "PENDING"
@@ -667,7 +669,7 @@
     ]
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "VERIFY_CANONICAL_REVIEW",
     "asset": null
   },
   "productionProtocolRef": "main:ops/country-production-policy.json",
