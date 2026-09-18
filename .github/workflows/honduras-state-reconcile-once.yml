@@ -1,0 +1,53 @@
+name: Record verified Honduras canonical review once
+on:
+  push:
+    branches: [system/honduras-live-review-state-20260918]
+    paths: [.github/workflows/honduras-state-reconcile-once.yml]
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: system/honduras-live-review-state-20260918
+          persist-credentials: true
+      - name: Confirm deployed exact source and record previous successful live QA
+        run: |
+          set -euo pipefail
+          expected=a8677ed75b2621f7d556128af1dcec57cdae0915
+          test "$(git rev-parse HEAD^)" = "$expected"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$expected"
+          meta="$(curl -fsS --retry 4 --retry-delay 2 --max-time 20 -H 'Cache-Control: no-cache' "https://atlas.yagenji.com/build-meta.json?review-state=$GITHUB_RUN_ID")"
+          LIVE_META="$meta" EXPECTED="$expected" python3 - <<'PY'
+          import json, os
+          live=json.loads(os.environ['LIVE_META']).get('commit')
+          assert live==os.environ['EXPECTED'], f'Live source mismatch: {live!r}'
+          print('Cloudflare live exact source confirmed:',live)
+          PY
+          # Live Country QA on this exact commit already passed in GitHub Actions run 35305931528:
+          # production unpublished-reviewable desktop/tablet/mobile, sitemap, registry and robots.
+          python3 scripts/canonical_review_v2.py verified honduras
+          python3 scripts/validate_production_state_routed.py
+          python3 scripts/country_production_protocol_v2.py validate
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('ops/country-production/honduras.json').read_text())
+          assert s['reviewDeployment']['state']=='DONE'
+          assert s['reviewDeployment']['productionVerification']=='LIVE_BROWSER_QA_PASS'
+          assert s['reviewDeployment']['browserQa']=='PASS'
+          assert s['reviewDeployment']['atlasPublished'] is False
+          assert s['finalApproval']['state']=='PENDING'
+          assert s['publication']['atlasPublished'] is False
+          assert s['next']['action']=='REVIEW_CANONICAL_URL'
+          print('Verified State only; publication and final approval unchanged')
+          PY
+          git rm .github/workflows/honduras-state-reconcile-once.yml
+          git add ops/country-production/honduras.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Record verified live Honduras canonical review State'
+          git push origin HEAD:refs/heads/system/honduras-live-review-state-20260918
