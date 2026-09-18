@@ -46,7 +46,10 @@ jobs:
           preview = Path('/tmp/new-country-map-context-smoke.svg')
           ns = '{http://www.w3.org/2000/svg}'
           before = [dict(node.attrib) for node in ET.fromstring(source.read_bytes()).iter(ns + 'path')]
-          after = [dict(node.attrib) for node in ET.fromstring(preview.read_bytes()).iter(ns + 'path') if node.get('data-map-context') is None and node.get('data-map-context-legacy') is None]
+          root = ET.fromstring(preview.read_bytes())
+          context = next(node for node in root.iter(ns + 'g') if node.get('id') == 'geographic-context')
+          context_nodes = {id(node) for node in context.iter(ns + 'path')}
+          after = [dict(node.attrib) for node in root.iter(ns + 'path') if id(node) not in context_nodes]
           assert before == after, 'Existing country paths changed'
           png = cairosvg.svg2png(bytestring=preview.read_bytes(), output_width=1200, output_height=760)
           image = Image.open(BytesIO(png))
