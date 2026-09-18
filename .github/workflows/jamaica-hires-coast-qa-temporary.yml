@@ -17,43 +17,106 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install high-resolution NOAA GSHHS dataset and geometry tools
-        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' basemap-data-hires 'shapely>=2,<3'
-      - name: Pin target country identity to independently verified Natural Earth ADM0
+      - name: Install existing shared map dependencies and NOAA full coastline
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' basemap-data-hires 'shapely>=2,<3' 'geopandas>=1,<2' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Fetch pinned target-country ADM0 identity
         run: |
           curl --fail --location --retry 3 --silent --show-error \
             https://raw.githubusercontent.com/AshKyd/geojson-regions/main/public/countries/10m/JAM.geojson \
             --output /tmp/JAM-10m.geojson
           test "$(git hash-object /tmp/JAM-10m.geojson)" = 'c12c1433a0a8a5684d051ebd0f015b723eea8461'
-      - name: Measure exact scene coordinates against high and full GSHHS coastlines
+      - name: Identify Jamaica island against ADM0 and preserve exact full-resolution coastline
         run: |
           python - <<'PY'
-          import json,hashlib
+          import json, hashlib
           from pathlib import Path
           from mpl_toolkits.basemap import Basemap
-          from shapely.geometry import Point,Polygon,shape
-          from shapely.ops import unary_union
-          adm=shape(json.loads(Path('/tmp/JAM-10m.geojson').read_text())['geometry'])
+          from shapely.geometry import Point, Polygon, shape, mapping
+          adm_data=json.loads(Path('/tmp/JAM-10m.geojson').read_text())
+          assert adm_data['properties']['adm0_a3']=='JAM' and adm_data['properties']['admin']=='Jamaica'
+          adm=shape(adm_data['geometry'])
+          m=Basemap(projection='cyl',llcrnrlon=-79,llcrnrlat=17.15,urcrnrlon=-74,urcrnrlat=20.2,resolution='f',area_thresh=0.01)
+          parts=[]
+          for (xs,ys),kind in zip(m.coastpolygons,m.coastpolygontypes):
+              if kind!=1: continue
+              p=Polygon(zip(xs,ys))
+              if not p.is_valid: p=p.buffer(0)
+              if p.area>0.3 and p.intersection(adm).area/p.area>0.9: parts.append(p)
+          assert len(parts)==1, 'Country outline cannot be identified unambiguously by verified administrative geometry'
+          island=parts[0]
+          assert island.is_valid and island.intersection(adm).area/adm.area>0.98
           points={'capital':(-76.79358,17.99702),'hero':(-76.7936,17.9719),'S01':(-78.3632,18.25398),'S02':(-77.759889,17.876778),'S03':(-77.8463,18.023),'S04':(-77.64747,18.35136),'S05':(-77.13992,18.41676),'S06':(-76.72788,18.08755),'S07':(-76.84254,17.93504),'S08':(-76.50788,18.20141)}
-          reports=[]
-          for resolution in ('h','f'):
-              m=Basemap(projection='cyl',llcrnrlon=-79,llcrnrlat=17.15,urcrnrlon=-74,urcrnrlat=20.2,resolution=resolution,area_thresh=0.01)
-              parts=[]
-              for (xs,ys),kind in zip(m.coastpolygons,m.coastpolygontypes):
-                  if kind!=1:continue
-                  p=Polygon(zip(xs,ys))
-                  if not p.is_valid:p=p.buffer(0)
-                  if p.area > 0.3 and p.intersection(adm).area/p.area > 0.9:parts.append(p)
-              assert len(parts)==1, f'Cannot identify Jamaica island unambiguously: {resolution}: {len(parts)}'
-              jam=parts[0]
-              flags={k:{'on_land':jam.covers(Point(xy)),'coast_distance_m_approx':round(jam.boundary.distance(Point(xy))*111000,1)} for k,xy in points.items()}
-              reports.append({'resolution':resolution,'area_deg2':jam.area,'vertices':len(jam.exterior.coords),'overlapADM0':jam.intersection(adm).area/adm.area,'markers':flags})
-              print('NOAA GSHHS',resolution,'all markers inside?',all(x['on_land'] for x in flags.values()),'flags',flags)
-          Path('/tmp/jamaica-hires-coast-evidence.json').write_text(json.dumps({'NaturalEarth10mSourceGitBlob':'c12c1433a0a8a5684d051ebd0f015b723eea8461','source':'GSHHS via basemap-data-hires','reports':reports},ensure_ascii=False,indent=2))
+          assert all(island.contains(Point(*xy)) for xy in points.values()), 'Real point is offshore in full-resolution shoreline'
+          geo={'type':'FeatureCollection','features':[{'type':'Feature','properties':{'ADMIN':'Jamaica','source':'NOAA GSHHS full coastline, selected against Natural Earth 1:10m JAM ADM0 identity'},'geometry':mapping(island)}]}
+          Path('/tmp/jamaica-noaa-full-verified.geojson').write_text(json.dumps(geo,separators=(',',':')))
+          evidence={'NaturalEarth10mSourceGitBlob':'c12c1433a0a8a5684d051ebd0f015b723eea8461','coastline':'NOAA GSHHS f via basemap-data-hires','vertices':len(island.exterior.coords),'adm0Coverage':island.intersection(adm).area/adm.area,'sourceSha256':hashlib.sha256(Path('/tmp/jamaica-noaa-full-verified.geojson').read_bytes()).hexdigest(),'markers':{k:{'onLand':island.contains(Point(*xy)),'distanceToCoastDegrees':island.boundary.distance(Point(*xy))} for k,xy in points.items()}}
+          Path('/tmp/jamaica-noaa-full-evidence.json').write_text(json.dumps(evidence,indent=2))
+          print('PASS verified Jamaica target identity, one island, all ten real coordinates inside NOAA full coastline, vertices',len(island.exterior.coords))
           PY
-      - uses: actions/upload-artifact@v4
+      - name: Generate separate common-wrapper map with unmodified coordinates and full-resolution shoreline
+        run: |
+          python scripts/generate_country_map_with_context.py \
+            --country-json data/countries/jamaica.json \
+            --source natural-earth --dataset /tmp/jamaica-noaa-full-verified.geojson \
+            --country-name Jamaica --simplify 0 \
+            --output /tmp/jamaica-noaa-full-review.svg
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('/tmp/jamaica-noaa-full-review.svg')
+          data=p.read_text()
+          old=re.search(r'<metadata>.*?</metadata>',data,re.S)
+          assert old and 'Natural Earth 1:10m' in old.group(0)
+          note='<metadata>Target country Jamaica: NOAA GSHHS full-resolution coastline via Basemap 2.0.0, geographically identified against pinned Natural Earth 1:10m Jamaica ADM0 (JAM), source Git blob c12c1433a0a8a5684d051ebd0f015b723eea8461. Surrounding land: GSHHS intermediate. WGS84; local-equirectangular-fit-v1. No imaginary land or altered markers.</metadata>'
+          data=data[:old.start()]+note+data[old.end():]
+          p.write_text(data)
+          print('Source annotation corrected to reflect actual target coastline; path and projection unchanged')
+          PY
+      - name: Validate actual SVG geometry and PNG decode without writing Country assets
+        run: |
+          python - <<'PY'
+          import importlib.util,json,sys,tempfile
+          from io import BytesIO
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          import cairosvg
+          from PIL import Image
+          root=Path.cwd()
+          svg=Path('/tmp/jamaica-noaa-full-review.svg').read_text()
+          el=ET.fromstring(svg)
+          ns='{http://www.w3.org/2000/svg}'
+          assert el.get('viewBox')=='0 0 1200 760' and el.get('data-map-projection')=='local-equirectangular-fit-v1'
+          context=[g for g in el.iter(ns+'g') if g.get('id')=='geographic-context']
+          target=[e for e in el.iter(ns+'path') if e.get('fill')=='url(#land)']
+          assert len(context)==1 and len(target)==1 and context[0][0].get('d')
+          sys.path.insert(0,str(root/'scripts'))
+          from generate_country_map_with_context import strip_redundant_island_context
+          assert strip_redundant_island_context(svg)==(svg,0), 'Redundant GSHHS target island remains in context'
+          spec=importlib.util.spec_from_file_location('map_v6',root/'scripts/validate_country_map_v6.py')
+          validator=importlib.util.module_from_spec(spec);spec.loader.exec_module(validator)
+          data=json.loads((root/'data/countries/jamaica.json').read_text())
+          strict=validator.parse_polygons(target[0].get('d'))
+          assert len(strict)>=1
+          for name,coordinates in [('capital',data['capital']['coordinates']),('hero',data['hero']['coordinates'])]+[(f'S{i:02d}',scene['coordinates']) for i,scene in enumerate(data['scenes'],1)]:
+              pos=validator.project(coordinates,data['map']['bounds'])
+              assert sum(validator.contains(poly,pos) for poly in strict)%2==1, f'{name} outside actual SVG filled target country: {pos}'
+          with tempfile.TemporaryDirectory() as temp:
+              base=Path(temp);rel=Path(data['map']['svg']);out=base/rel;out.parent.mkdir(parents=True);out.write_text(svg)
+              patched=base/'data/countries/jamaica.json';patched.parent.mkdir(parents=True);patched.write_text(json.dumps(data))
+              validator.ROOT=base
+              assert not validator.validate(patched),'Country v6 map validator failed'
+          png=cairosvg.svg2png(bytestring=svg.encode(),output_width=1200,output_height=760)
+          image=Image.open(BytesIO(png));image.load();assert image.size==(1200,760)
+          Path('/tmp/jamaica-noaa-full-review.png').write_bytes(png)
+          print('PASS 10 real marker coordinates strictly INSIDE rendered target SVG, map v6, single coastline, 1200x760 full PNG decode')
+          PY
+      - name: Upload standalone geometry and QA evidence for inspection
+        uses: actions/upload-artifact@v4
         with:
-          name: jamaica-highres-coast-coordinate-check
-          path: /tmp/jamaica-hires-coast-evidence.json
+          name: jamaica-noaa-full-map-reviewed-candidate
+          path: |
+            /tmp/jamaica-noaa-full-review.svg
+            /tmp/jamaica-noaa-full-review.png
+            /tmp/jamaica-noaa-full-evidence.json
           if-no-files-found: error
           retention-days: 3
