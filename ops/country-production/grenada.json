@@ -4,9 +4,9 @@
   "countryName": "GRENADA",
   "contentRef": "country/grenada",
   "stateRef": "country/grenada",
-  "phase": "TASTE_REVIEW",
-  "stateRevision": 11,
-  "updatedAt": "2026-09-19T00:00:36+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 12,
+  "updatedAt": "2026-09-19T00:00:39+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/grenada/approved/hero-st-georges-carenage.webp",
@@ -254,8 +254,8 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/grenada/approved/food-1.webp",
       "contentId": "oil-down",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -288,22 +288,12 @@
           "one plain bowl"
         ]
       },
-      "candidateGenerationId": "96db9404-802f-465d-a2ed-ab9a5e924ab6",
-      "candidateVisualQa": {
-        "targetIdentity": "PASS",
-        "dishIdentity": "PASS",
-        "singleDish": "PASS",
-        "integralComponentsOnly": "PASS",
-        "plainBackground": "PASS",
-        "decorativePropsAbsent": "PASS",
-        "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS"
-      }
+      "approvedGenerationId": "96db9404-802f-465d-a2ed-ab9a5e924ab6"
     },
     {
       "id": "FOOD02",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/grenada/approved/food-2.webp",
       "contentId": "fried-bake-saltfish",
       "promptSeries": 2,
       "promptSeriesRejectCount": 0,
@@ -338,22 +328,12 @@
           "one plain plate"
         ]
       },
-      "candidateGenerationId": "ea621355-6fa7-4e16-9326-7f794c62af36",
-      "candidateVisualQa": {
-        "targetIdentity": "PASS",
-        "dishIdentity": "PASS",
-        "singleDish": "PASS",
-        "integralComponentsOnly": "PASS",
-        "plainBackground": "PASS",
-        "decorativePropsAbsent": "PASS",
-        "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS"
-      }
+      "approvedGenerationId": "ea621355-6fa7-4e16-9326-7f794c62af36"
     },
     {
       "id": "FOOD03",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/grenada/approved/food-3.webp",
       "contentId": "callaloo-soup",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -384,22 +364,12 @@
           "one plain bowl"
         ]
       },
-      "candidateGenerationId": "34aee302-df2b-4855-8c9d-b9f85498c2f7",
-      "candidateVisualQa": {
-        "targetIdentity": "PASS",
-        "dishIdentity": "PASS",
-        "singleDish": "PASS",
-        "integralComponentsOnly": "PASS",
-        "plainBackground": "PASS",
-        "decorativePropsAbsent": "PASS",
-        "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS"
-      }
+      "approvedGenerationId": "34aee302-df2b-4855-8c9d-b9f85498c2f7"
     },
     {
       "id": "FOOD04",
-      "state": "REVIEW_CANDIDATE",
-      "asset": null,
+      "state": "APPROVED",
+      "asset": "assets/images/grenada/approved/food-4.webp",
       "contentId": "nutmeg-ice-cream",
       "promptSeries": 1,
       "promptSeriesRejectCount": 0,
@@ -430,17 +400,7 @@
           "one plain bowl"
         ]
       },
-      "candidateGenerationId": "80d9e4c5-8d73-43b5-a933-e791e3ffa747",
-      "candidateVisualQa": {
-        "targetIdentity": "PASS",
-        "dishIdentity": "PASS",
-        "singleDish": "PASS",
-        "integralComponentsOnly": "PASS",
-        "plainBackground": "PASS",
-        "decorativePropsAbsent": "PASS",
-        "previousAssetRepeat": "PASS",
-        "collageTypography": "PASS"
-      }
+      "approvedGenerationId": "80d9e4c5-8d73-43b5-a933-e791e3ffa747"
     }
   ],
   "map": {
@@ -558,8 +518,27 @@
     ]
   },
   "tasteBatchReview": {
-    "approval": "PENDING",
-    "rounds": []
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "approvedAt": "2026-09-19T00:00:39+09:00",
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "96db9404-802f-465d-a2ed-ab9a5e924ab6",
+          "FOOD02": "ea621355-6fa7-4e16-9326-7f794c62af36",
+          "FOOD03": "34aee302-df2b-4855-8c9d-b9f85498c2f7",
+          "FOOD04": "80d9e4c5-8d73-43b5-a933-e791e3ffa747"
+        },
+        "regenerate": []
+      }
+    ]
   },
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
@@ -581,10 +560,10 @@
   },
   "assetHandoff": {
     "mode": "USER_HANDOFF",
-    "state": "PENDING",
+    "state": "VERIFIED",
     "expectedRasterCount": 13,
-    "verifiedRasterCount": 0,
-    "verifiedAt": null
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-19T00:00:39+09:00"
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
@@ -598,18 +577,18 @@
     "userContinuationNudges": 0,
     "runtimeForcedImageTurnBoundaries": 0,
     "sceneBatchReviews": 1,
-    "tasteBatchReviews": 0,
+    "tasteBatchReviews": 1,
     "assetHandoffs": 0,
     "reviewPackageIntegrations": 0,
     "reviewPreviewDeployments": 0,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
     "browserQaCycles": 0,
-    "tasteBatchApprovedAt": null,
+    "tasteBatchApprovedAt": "2026-09-19T00:00:39+09:00",
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "WAIT_TASTE_BATCH_REVIEW",
+    "action": "VERIFY_APPROVED_ASSETS",
     "asset": null
   }
 }
