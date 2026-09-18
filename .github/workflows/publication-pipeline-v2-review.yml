@@ -130,7 +130,7 @@ jobs:
             exit 1
           fi
           echo "Reusing Country PR #$pr"
-      - name: Dispatch one authoritative targeted QA run
+      - name: Wait for the authoritative target QA on this exact Country revision
         if: steps.target.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -140,21 +140,36 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          previous_ids="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
-          gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
           run_id=""
-          for attempt in $(seq 1 30); do
-            candidates="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId")"
-            while IFS= read -r candidate; do
-              [ -n "$candidate" ] || continue
-              if ! printf '%s\n' "$previous_ids" | grep -Fxq "$candidate"; then
-                run_id="$candidate"; break
-              fi
-            done <<< "$candidates"
-            [ -n "$run_id" ] && break; sleep 2
-          done
-          [ -n "$run_id" ] || exit 1
-          echo "Watching freshly dispatched targeted QA run: $run_id"
+          if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
+            # The same Country PR already triggers publication-pipeline-v2-checks.
+            # Wait for that exact head SHA instead of starting identical QA again.
+            for attempt in $(seq 1 45); do
+              run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event pull_request --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId" | head -n1)"
+              [ -n "$run_id" ] && break
+              sleep 2
+            done
+          else
+            # Explicit review retries are not PR events, so dispatch one run.
+            previous_ids="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId --jq '.[].databaseId')"
+            gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=review
+            for attempt in $(seq 1 30); do
+              candidates="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow publication-pipeline-v2-checks.yml --branch "$HEAD_REF" --event workflow_dispatch --limit 100 --json databaseId,headSha --jq ".[] | select(.headSha == \"$SOURCE_SHA\") | .databaseId")"
+              while IFS= read -r candidate; do
+                [ -n "$candidate" ] || continue
+                if ! printf '%s\n' "$previous_ids" | grep -Fxq "$candidate"; then
+                  run_id="$candidate"; break
+                fi
+              done <<< "$candidates"
+              [ -n "$run_id" ] && break
+              sleep 2
+            done
+          fi
+          if [ -z "$run_id" ]; then
+            echo "::error::No matching target QA run for $SLUG at $SOURCE_SHA; do not deploy an unvalidated review."
+            exit 1
+          fi
+          echo "Reusing target QA run $run_id for $SLUG at $SOURCE_SHA"
           gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
       - name: Build deployable review from latest main plus Country overlay
         if: steps.target.outputs.ready == 'true'
