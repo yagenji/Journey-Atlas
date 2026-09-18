@@ -1,0 +1,39 @@
+name: Temporary Jamaica verified SVG blob handoff
+on:
+  push:
+    paths:
+      - '.github/workflows/jamaica-byte-exact-map-handoff-temp.yml'
+permissions:
+  actions: read
+  contents: write
+jobs:
+  exact-blob:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get exact QA-approved map artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: jamaica-full-coast-verified-preview
+          run-id: 35370900530
+          github-token: ${{ github.token }}
+          path: /tmp/jamaica-verified
+      - name: Verify byte-for-byte and stage unreferenced Git blob only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          file=/tmp/jamaica-verified/jamaica-full-coast-review.svg
+          test "$(git hash-object "$file")" = 'bef562dc42240b75eedc7ccaad2386858520bec3'
+          python - <<'PY'
+          import base64,json
+          from pathlib import Path
+          p=Path('/tmp/jamaica-verified/jamaica-full-coast-review.svg')
+          Path('/tmp/jamaica-blob-payload.json').write_text(json.dumps({'content':base64.b64encode(p.read_bytes()).decode('ascii'),'encoding':'base64'}))
+          print('Expected Git blob:',__import__('hashlib').sha1(f'blob {p.stat().st_size}\0'.encode()+p.read_bytes()).hexdigest())
+          PY
+          actual=$(gh api --method POST "repos/${GITHUB_REPOSITORY}/git/blobs" --input /tmp/jamaica-blob-payload.json --jq .sha)
+          test "$actual" = 'bef562dc42240b75eedc7ccaad2386858520bec3'
+          printf 'VERIFIED_MAP_BLOB_SHA=%s\n' "$actual"
+          echo 'PASS: Exact artifact bytes staged as unreferenced blob; no Country branch commit or publication.'
