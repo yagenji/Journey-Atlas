@@ -63,6 +63,22 @@ Before Hero generation, finish the content that does not require final raster by
 - scene coordinates and Map;
 - Theme assignment.
 
+**Maps for Countries newly initialized after the shared geographic-context implementation is merged must show real surrounding land from the start.** Follow Azerbaijan's approved sea/surrounding-land palette on the common 1200×760 canvas. Preserve the target country's geographic identity and map-marker coordinates. Do not draw fictional neighboring terrain, borders or roads, or omit land to make an exclave appear to be an island.
+
+For a new **single-region** Country, use the shared wrapper with verified target-specific administrative geometry; GSHHS coastlines alone cannot define a national border. The output must be a *new* preview path, not an existing approved asset. Example (replace placeholders with the actual Country, verified source and location):
+
+```bash
+python3 scripts/generate_country_map_with_context.py \
+  --country-json data/countries/COUNTRY_SLUG.json \
+  --source natural-earth --dataset /path/to/verified/admin0.geojson \
+  --country-name 'VERIFIED COUNTRY NAME' \
+  --output /tmp/COUNTRY_SLUG-map-context-review.svg
+```
+
+The wrapper also accepts `--source geoboundaries --iso VERIFIED_ISO3` when that verified source is appropriate. Record the actual boundary/coast source and license, assess coastline alignment, islands/exclaves, canvas edges and labels, and fully decode the rendered SVG at 1200×760 before handing it off. Do not use the old clean-background generator as a fallback for a new Country.
+
+**Multi-region / inset Countries:** the single-region wrapper deliberately rejects `map.regions`. Use a verified region-aware map construction with the Country JSON's real region bounds, then apply the common `scripts/add_country_map_context.py` stage to a separate SVG preview. Check each region's clipping and inset projection individually. If the actual SVG layout is unsupported, resolve the common map-generation path before completing CONTENT + MAP; do not invent a Country-specific shortcut or silently produce a map without surrounding land. Do not retrofit a Country already in progress unless explicitly requested.
+
 Use the current Country schema and current Content QA. Machine validators determine field-level contract details; do not copy their full rule set into chat context.
 
 ## 6. HERO
