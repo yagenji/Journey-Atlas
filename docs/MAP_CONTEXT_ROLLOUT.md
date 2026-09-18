@@ -1,71 +1,63 @@
 # Map geographic context — rollout handoff
 
-Status: **PREPARATION ONLY**. No approved map asset, Country JSON, Production State or publication setting is changed. This does not replace `docs/MAP_SYSTEM.md` and does not authorize release.
+Status (2026-09-18): **TECHNICAL PREPARATION COMPLETE; NOT RELEASED.** The preparation branch changes only opt-in preview/migration scripts, tests, CI and this handoff. The normal generator, existing production SVG/JSON, Country Production States and publication/index/sitemap flags are untouched. Keep PR #935 DRAFT and unmerged until the separate release gates below are satisfied. This document does not replace `docs/MAP_SYSTEM.md`.
 
-## Approved appearance
+## Approved map language
 
-Azerbaijan's published SVG is the visual reference: sea gradient `#eaf2f4` → `#dcebf0` → `#d0e3eb`, surrounding land `#e4e0ce`, subtle coastline `#b6bbaf`, approved target-country geometry, 1200×760 canvas. Surrounding land reaches the frame edge without artificial inland cutoffs; no fictional borders or neighboring-country labels. The main country stays the visual focus.
+Azerbaijan's published map is the visual reference: sea `#eaf2f4` → `#dcebf0` → `#d0e3eb`, surrounding land `#e4e0ce`, subtle coastline `#b6bbaf`, and the original target-country geometry. The canvas remains 1200×760. Context reaches the frame edge without artificial inland cutoffs; do not invent coastlines, international boundaries or neighboring-country labels. Keep the target country legible and dominant.
 
-## Opt-in preview generation
+## Prepared tools
 
-For a new **single-region** Country, `scripts/generate_country_map_with_context.py` runs the existing `generate_country_map.py` and then the context stage. It uses bounds from Country JSON and a country-specific Natural Earth/geoBoundaries administrative boundary; GSHHS alone does not identify the target country's national border. This is an opt-in wrapper, not the default generator used by in-flight Countries.
+- `scripts/generate_country_map_with_context.py`: opt-in wrapper for **new single-region Countries**. It invokes the current generator using a verified national boundary and adds separate real-geography GSHHS surrounding land. It does not alter the generator used by currently in-flight Countries. The actual target boundary comes from verified Natural Earth/geoBoundaries data, not from GSHHS alone.
+- `scripts/add_country_map_context.py`: shared preview adapter for supported existing approved SVGs; retains all target-country path bytes, map bounds and marker geometry. A separate file is mandatory.
+- `scripts/add_country_map_context_existing.py` and `scripts/add_country_map_context_legacy.py`: migration-only dispatch and verified historical SVG layouts. The legacy adapter covers Brunei, Hong Kong, Maldives, Antigua & Barbuda, Bahrain, Qatar and Russia without converting those maps to a new projection. Region/inset clips, raw-grid matrices, shared Hong Kong target `<use>` references and the single valid world cycle in Russia are handled separately; unsupported layouts fail closed.
+- `scripts/stage_map_context_rollout.py`: derives the latest completed roster from **`data/atlas-destinations.json` plus Production States**, stages output outside the repository and records each source/output SHA-256 in `manifest.json`. Published Countries and genuinely `COMPLETE` unpublished Countries are eligible; QA/in-progress Countries are excluded. Azerbaijan's already approved context is copied unchanged.
+
+Example preview (not an instruction to modify a production asset):
+
+```bash
+python3 scripts/add_country_map_context_existing.py \
+  --country-json data/countries/example.json \
+  --input assets/images/example/map-atlas-v1.svg \
+  --output /tmp/example-context-preview.svg
+```
+
+New Country example, with a separately verified national boundary dataset:
 
 ```bash
 python3 scripts/generate_country_map_with_context.py \
   --country-json data/countries/example.json \
   --source natural-earth --dataset /path/to/verified/admin0.geojson \
   --country-name 'Example Country' \
-  --output /tmp/example-map-context-review.svg
+  --output /tmp/example-context-preview.svg
 ```
 
-For an **existing approved SVG**, `scripts/add_country_map_context.py` preserves existing target path bytes, bounds and markers, changes the sea palette and inserts GSHHS context below the target. It uses the complete map/region canvas including aspect-fit margins and always creates a distinct preview file:
+Batch preparation on a **fresh checkout of the intended main**:
 
 ```bash
-python3 scripts/add_country_map_context.py \
-  --country-json data/countries/example.json \
-  --input assets/images/example/map-atlas-v1.svg \
-  --output /tmp/example-map-context-review.svg
+python3 scripts/stage_map_context_rollout.py \
+  --output-dir /tmp/journey-atlas-map-context-rollout-stage
 ```
 
-The placeholder example is not a Country to create. Azerbaijan's existing SVG already includes context; the tool rejects adding it again.
+The output directory must be new or empty and outside the repository. The sample paths above are placeholders, not destinations to create.
 
-### Supported in preparation
+## Verified baseline and evidence
 
-- Single-region local-equirectangular maps with one or more approved `url(#land)` target paths, including inherited parent-group fills. All target paths must use the same verified transform chain. The accepted legacy aspect-fit `matrix(...)` is checked against Country JSON bounds; arbitrary transforms and CSS-dependent styling fail closed. The inventory now compares **all** effective approved land paths, not just paths with an explicit `fill` attribute.
-- Multi-region maps with `map.regions`, exactly matching SVG `data-map-region` groups, valid non-overlapping canvas rectangles, and paths inside the declared groups. GSHHS context is projected **per region**, clipped to its rectangle and placed below untouched target geometry. No global-bounds flattening.
-- Alaska-style normalized WGS84 longitude bounds such as −190° to −129° when the actual coast dataset resolves correctly. Ambiguous longitude spans, unsupported polar canvases and incompatible layout formats are rejected.
+- Initial 2026-09-18 baseline: 201 canonical destinations and 103 published Countries, 87 previews, one already approved Azerbaijan and 15 legacy-format holds. [Initial audit](https://github.com/yagenji/Journey-Atlas/actions/runs/35309348351).
+- After inherited-fill and multipart-target checks: 95 previews, one approved Azerbaijan and seven remaining historical formats. [Intermediate audit](https://github.com/yagenji/Journey-Atlas/actions/runs/35310624987).
+- **Final technical audit:** 104 published Countries in the checkout, **103 successful separate previews + one unchanged Azerbaijan**, zero held formats. Every staged source country's approved shape/path markup remains unchanged and published SVG previews fully rasterize at 1200×760. [Four-shard full inventory](https://github.com/yagenji/Journey-Atlas/actions/runs/35314444444). Honduras had reached `COMPLETE` and is included; Belize was still `QA` and is excluded.
+- **Final end-to-end staging rehearsal:** 18 focused tests PASS, real Iceland/Portugal/United States/Kuwait source checks PASS, 104 maps staged to `/tmp` with a SHA-256 manifest and no edits to source assets. Manifest records **104 published / zero completed-unpublished; 103 new previews / one preserved Azerbaijan**. [Successful preflight and manifest artifact](https://github.com/yagenji/Journey-Atlas/actions/runs/35314795607). The rehearsal `sourceCommit` was the PR test merge `ac3f54ffdbf75917f7e482957ae6c3e90de1e981`, **not a permanent release SHA**; recompute on latest main before applying.
+- The full-size visual review has included exceptional geography/layout examples, but the contact sheets and successful machine audit do **not** constitute per-Country full-size geographic approval or live Desktop/Tablet/Mobile page QA for every affected Country. These remain explicit release gates.
 
-The source-data dependency in local preparation is Basemap 2.0.0 with `basemap-data` 2.0.0 (package license LGPL-3.0-or-later); identify and record the actual GSHHS source/version/license at the release gate. Intermediate resolution `i` is the default. Do not invent missing source details.
+For audit reproducibility, the Python preview environment used Basemap/basemap-data 2.0.0, shapely 2.x, CairoSVG and Pillow. The basemap-data package declares LGPL-3.0-or-later; confirm the underlying coast dataset's actual GSHHS/GSHHG version and redistribution license at the release gate, rather than inferring them from package licensing.
 
-## Published-Country inventory — 2026-09-18 snapshot
+## Release gate — only after Belize finishes
 
-[Initial read-only four-shard audit](https://github.com/yagenji/Journey-Atlas/actions/runs/35309348351) used the canonical registry and actual Country JSON/SVG in the PR checkout. Scope: **201 destinations; 103 published at that snapshot**. Belize and Honduras had Production State `phase: QA` and `atlasPublished: false`; neither was modified or counted as published.
+1. Recheck **latest main**, the canonical 201-destination registry and every relevant Production State. Wait until Belize's existing Country workflow reaches `COMPLETE`; do not modify its active QA branch. Recompute the entire roster, do not reuse the rehearsal's 104-country manifest or merge SHA. Keep each Country's current publication state.
+2. Rebase/merge the preparation branch safely against latest main and resolve any PR mergeability issue; check that no concurrent Country assets or common changes are overwritten. Rerun shared tests, all-Country inventory, full decode and shape parity for the final roster. Confirm source/version/license and country-to-context coastline alignment, islands, exclaves, insets, labels and antimeridian/polar behavior.
+3. Inspect **every changed map individually at full 1200×760**, not only contact sheets, against the original and the Azerbaijan/Iceland/Norway series. Check the detailed Singapore shoreline especially. Do not equate target-path byte equality with geographic alignment of the new surrounding layer.
+4. On the actual Country pages, verify **every affected Country** at Desktop/Tablet/Mobile, accessibility and relevant shared regressions. CI success alone does not approve visual quality.
+5. Apply the reviewed assets as one coordinated migration. Preserve JSON, coordinates, all approved land geometry and `atlasPublished`/robots/navigation/sitemap states. Verify final deployment success, deployed SHA, live URL rendering, cache and navigation. Never publish a Country without its own final user approval.
+6. Once the shared implementation and release are verified, update `docs/COUNTRY_PRODUCTION_RULES.md` so *future* Country maps use the context generator from the start. Do not silently migrate any still-in-flight Country.
 
-Initial audit: 87 separate previews with original explicit target paths identical and fully decoded 1200×760 PNGs; Azerbaijan already had approved context; 15 were held for incompatible SVG formats. [Detailed source SVG diagnostics](https://github.com/yagenji/Journey-Atlas/actions/runs/35309610744) recorded each exception's projection, bounds, actual path fills, transforms and declared regions. No original production SVG was declared defective or overwritten.
-
-### Follow-up: verified new behavior, technical preflight only
-
-[Updated four-shard audit](https://github.com/yagenji/Journey-Atlas/actions/runs/35310624987) rechecked all 103 published Country SVGs using the shared inherited/multipart path validator and checked that **every approved target-country path** remains identical. Updated result: **95 previews generated and fully decoded at 1200×760; 1 already approved (Azerbaijan); 7 held**. The newly previewable eight are Cambodia, Norway, Japan, Singapore, Myanmar, Bangladesh, Indonesia and Malaysia. CI also passed [focused map-context regression and real-source preview checks](https://github.com/yagenji/Journey-Atlas/actions/runs/35310625008).
-
-The new eight are technically previewable, **not visually approved**. In particular, compare Singapore's detailed source coastline and islands against the GSHHS context at full size: small-scale coast geometry and joining at the target shoreline need explicit inspection. Full-size geography, marker positioning, inset alignment, license and final page render QA remain release gates for every Country.
-
-| Remaining format | Countries | Required evidence before safe conversion |
-| --- | --- | --- |
-| Different `background` / `country` gradients | Brunei | Verify the exact original sea rectangle and country path, update the shared palette adapter only if target geometry and rendering are preserved. |
-| Land paths lack a `url(#land)` fill | Hong Kong | Verify the actual target group and its rendering including inherited/default SVG fill; never treat all unrelated SVG paths as national territory. |
-| Noncanonical historical transform | Maldives | Establish the true matrix-to-bounds relationship and atoll framing rather than forcing the canonical matrix. |
-| Noncanonical inset projection / missing region groups | Antigua & Barbuda, Bahrain, Qatar | Prove per-region projection and clipping from the actual SVG before a shared adapter. |
-| Longitude span exceeds the 180° guard | Russia | Resolve with authoritative unwrapped/cyclic regional geography; do not guess around the antimeridian. |
-
-The audit's success means **the audit ran**. It does not certify either the seven held maps or final visual acceptance of the other 95.
-
-## Migration gate after Belize and Honduras complete
-
-1. Recheck latest main and current Production States; rederive the completed-Country roster (published plus genuinely finished unpublished reviewable Countries). Do not assume all 201 destinations are complete or automatically migrate either in-flight Country.
-2. Resolve the seven structural blockers in the shared stage with focused tests; rerun the full inventory and preview raster/parity checks for every target. Preserve existing bounds, target geometry and marker coordinates. Classify any newly observed format rather than bypassing checks.
-3. Verify authoritative geographic source/version/license, country boundary and coast alignment, islands/exclaves, region inset positioning, label/marker positions, edge continuity, full raster decode and visual series quality for every Country; compare with Iceland/Norway and the approved Azerbaijan reference. Contact sheets are triage, not full-size per-Country review.
-4. Run actual Desktop/Tablet/Mobile browser QA on **every** changed Country page and shared regression tests. CI success alone is insufficient.
-5. Integrate as one reviewed batch on latest main; retain all publication/robots/index/sitemap states. Verify production SHA, real URLs and asset delivery after deployment. Do not publish an unapproved Country.
-6. Only after shared behavior and rollout are verified, update the human new-Country procedure to use the context generator at CONTENT + MAP. Never silently migrate legacy in-flight Countries.
-
-The preparation PR remains **draft and unmerged** until the full inventory's blockers and above review gates are resolved; no Country or publication changes belong in this preparation PR.
+**Do not merge PR #935 or copy any staged SVG to production solely because the technical rehearsal is green.**
