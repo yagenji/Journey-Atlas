@@ -1,0 +1,86 @@
+name: Temporary Jamaica ADM0 map preflight
+
+on:
+  push:
+    paths:
+      - '.github/workflows/jamaica-map-qa-temporary.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  jamaica-map-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out unchanged Jamaica source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install current shared map dependencies
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2,<3' 'geopandas>=1,<2' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Download and verify pinned Jamaica 1:10m administrative geometry
+        run: |
+          curl --fail --location --retry 3 --silent --show-error \
+            https://raw.githubusercontent.com/AshKyd/geojson-regions/main/public/countries/10m/JAM.geojson \
+            --output /tmp/JAM-10m.geojson
+          echo 'c12c1433a0a8a5684d051ebd0f015b723eea8461  /tmp/JAM-10m.geojson' | git hash-object --stdin >/dev/null
+          test "$(git hash-object /tmp/JAM-10m.geojson)" = 'c12c1433a0a8a5684d051ebd0f015b723eea8461'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from shapely.geometry import shape
+          data = json.loads(Path('/tmp/JAM-10m.geojson').read_text())
+          assert data['properties']['adm0_a3'] == 'JAM'
+          assert data['properties']['admin'] == 'Jamaica'
+          geom = shape(data['geometry'])
+          assert geom.is_valid and not geom.is_empty
+          assert geom.area > 0.5
+          assert -79 < geom.bounds[0] < -78 and 17 < geom.bounds[1] < 18
+          assert -76 < geom.bounds[2] < -75 and 18 < geom.bounds[3] < 19
+          print('PASS exact 1:10m ADM0 blob, JAM identity, valid geometry, bounds:', geom.bounds)
+          PY
+      - name: Generate standalone preview via unchanged shared wrapper
+        run: |
+          python scripts/generate_country_map_with_context.py \
+            --country-json data/countries/jamaica.json \
+            --source natural-earth \
+            --dataset /tmp/JAM-10m.geojson \
+            --country-name Jamaica \
+            --output /tmp/jamaica-map-context-review.svg
+      - name: Parse and completely render SVG at canonical dimensions
+        run: |
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          import cairosvg
+          from PIL import Image
+          path = Path('/tmp/jamaica-map-context-review.svg')
+          root = ET.fromstring(path.read_bytes())
+          ns = '{http://www.w3.org/2000/svg}'
+          assert root.tag == ns + 'svg' and root.get('viewBox') == '0 0 1200 760'
+          assert root.get('data-map-projection') == 'local-equirectangular-fit-v1'
+          assert len([e for e in root.iter(ns + 'g') if e.get('id') == 'geographic-context']) == 1
+          assert len([e for e in root.iter(ns + 'path') if e.get('fill') == 'url(#land)']) >= 1
+          png = cairosvg.svg2png(bytestring=path.read_bytes(), output_width=1200, output_height=760)
+          image = Image.open(BytesIO(png))
+          image.load()
+          assert image.size == (1200,760)
+          Path('/tmp/jamaica-map-context-review.png').write_bytes(png)
+          Path('/tmp/jamaica-map-source-proof.txt').write_text('Country branch: ' + __import__('os').environ['GITHUB_SHA'] + '\nNatural Earth 10m source Git blob: c12c1433a0a8a5684d051ebd0f015b723eea8461\nSVG rendered and fully decoded at 1200x760.\nThis is a preview, not map approval or Browser QA.\n')
+          print('PASS shared wrapper, distinct country/context paths, 1200x760 complete render; preview only')
+          PY
+      - name: Upload temporary map candidate for human and coordinate QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: jamaica-map-context-preflight
+          path: |
+            /tmp/jamaica-map-context-review.svg
+            /tmp/jamaica-map-context-review.png
+            /tmp/jamaica-map-source-proof.txt
+          if-no-files-found: error
+          retention-days: 3
