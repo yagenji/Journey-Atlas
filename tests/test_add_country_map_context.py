@@ -48,12 +48,33 @@ class GeographicContextTest(unittest.TestCase):
     def test_transformed_and_unknown_geometry_fail_closed(self):
         with self.assertRaisesRegex(ValueError, 'Transformed target'):
             add_context(SAMPLE.replace('id="country"', 'id="country" transform="translate(10,0)"'), BOUNDS, 'M 0,0 Z', 'i')
-        with self.assertRaisesRegex(ValueError, 'exactly one explicit target'):
+        with self.assertRaisesRegex(ValueError, 'No approved target-country path'):
             add_context(SAMPLE.replace('fill="url(#land)" stroke=', 'fill="#e2dbad" stroke='), BOUNDS, 'M 0,0 Z', 'i')
         with self.assertRaisesRegex(ValueError, 'Unrecognized sea palette'):
             add_context(SAMPLE.replace('#eef2ef', '#faffff'), BOUNDS, 'M 0,0 Z', 'i')
         with self.assertRaisesRegex(ValueError, 'Unknown map projection'):
             add_context(SAMPLE.replace('local-equirectangular-fit-v1', 'other'), BOUNDS, 'M 0,0 Z', 'i')
+
+    def test_inherited_and_multiple_target_paths_keep_original_markup(self):
+        source = SAMPLE.replace('<path id="country" d="M10 10 L20 10 L20 20Z" fill="url(#land)" stroke="#31576a"/>',
+                                '<g fill="url(#land)"><path id="one" d="M10 10 L20 10 L20 20Z"/>'
+                                '<path id="two" d="M30 10 L40 10 L40 20Z"/></g>'
+                                '<g fill="url(#sea)"><path id="water" d="M50 10 L60 10 L60 20Z"/></g>')
+        root = ET.fromstring(source)
+        result = add_context(source, BOUNDS, 'M 0,0 L 1200,0 L 1200,760 Z', 'i')
+        after = ET.fromstring(result)
+        for name in ('one', 'two', 'water'):
+            self.assertEqual(root.find(f'.//*[@id="{name}"]').attrib,
+                             after.find(f'.//*[@id="{name}"]').attrib)
+        self.assertLess(result.index('id="geographic-context"'), result.index('id="one"'))
+
+    def test_mixed_target_transforms_and_css_fail_closed(self):
+        source = SAMPLE.replace('</svg>', '<path d="M50 50 L60 50 Z" fill="url(#land)" transform="translate(1,1)"/></svg>')
+        with self.assertRaisesRegex(ValueError, 'different transforms'):
+            add_context(source, BOUNDS, 'M 0,0 Z', 'i')
+        with self.assertRaisesRegex(ValueError, 'Styled SVG'):
+            add_context(SAMPLE.replace('id="country"', 'id="country" style="fill:url(#land)"'),
+                        BOUNDS, 'M 0,0 Z', 'i')
 
     def test_context_path_uses_real_geometry_and_canvas_fit(self):
         viewport = canvas_bounds(BOUNDS)
