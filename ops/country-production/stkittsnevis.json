@@ -5,15 +5,17 @@
   "contentRef":"country/stkittsnevis",
   "stateRef":"country/stkittsnevis",
   "phase":"HERO",
-  "stateRevision":3,
-  "updatedAt":"2026-09-18T21:13:01+09:00",
+  "stateRevision":4,
+  "updatedAt":"2026-09-18T21:18:38+09:00",
   "hero":{
-    "state":"REVIEW_CANDIDATE",
+    "state":"APPROVED",
     "asset":"assets/images/stkittsnevis/approved/hero-timothy-hill.webp",
     "contentId":"timothy-hill-overlook",
     "promptSeries":1,
     "promptSeriesRejectCount":0,
-    "candidateGenerationId":"d6a4106d-1855-4546-ba5f-94b897afda7d",
+    "approvedGenerationId":"d6a4106d-1855-4546-ba5f-94b897afda7d",
+    "userApprovedAt":"2026-09-18T21:18:38+09:00",
+    "approvalBasis":"User explicitly replied approve to the displayed Timothy Hill Hero candidate",
     "rejectedGenerationIds":[],
     "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},
     "renderPacket":{
@@ -67,5 +69,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
+  "next":{"action":"START_SCENES","asset":null}
 }
