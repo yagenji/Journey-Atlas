@@ -1,0 +1,100 @@
+name: Grenada scene round checkpoint (temporary)
+on:
+  push:
+    branches: [country/grenada]
+    paths: [ops/grenada-scene-event-temp.json]
+permissions:
+  contents: write
+jobs:
+  checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Checkpoint one image target under image policy v7
+        run: |
+          python3 - <<'PY'
+          import json,sys
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import country_production_protocol_v2 as protocol
+          p=Path('ops/country-production/grenada.json')
+          state=json.loads(p.read_text(encoding='utf-8'))
+          c=json.loads(Path('data/countries/grenada.json').read_text(encoding='utf-8'))
+          event=json.loads(Path('ops/grenada-scene-event-temp.json').read_text(encoding='utf-8'))
+          assert state['slug']==c['slug']=='grenada' and state['phase']=='SCENES_INITIAL'
+          assert state['hero']['state']=='APPROVED' and state['hero']['approvedGenerationId']=='52d178e2-b911-4f65-8fde-32869a1c62f5'
+          assert state['preVisualBuild']['state']=='PASS' and state['map']['state']=='APPROVED'
+          assert state['publication']['atlasPublished'] is False and state['finalApproval']['state']=='PENDING'
+          assert event['asset'] in [f'S{i:02d}' for i in range(1,9)]
+          i=int(event['asset'][1:])-1
+          item=state['scenes'][i]
+          assert item['id']==event['asset'] and item['contentId']==c['scenes'][i]['id']
+          assert item['renderPacket']['contentId']==item['contentId']
+          assert state['generationContext']['state']=='CLEAN'
+          assert all(x['state']!='GENERATING' for x in state['taste'])
+          now=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          if event['action']=='reserve':
+              assert item['state']=='NOT_STARTED' and state['next']=={'action':'GENERATE_SCENE','asset':event['asset']}
+              assert not any(x['state']=='GENERATING' for x in state['scenes'])
+              item['state']='GENERATING'
+              item['generationReservation']={'reservationId':event['reservationId'],'asset':event['asset'],'contentId':item['contentId'],'promptSeries':item['promptSeries'],'generationContextEpoch':state['generationContext']['epoch'],'reservedAt':now}
+              state['next']={'action':'RECONCILE_GENERATION','asset':event['asset']}
+              print('RESERVED',event['asset'],item['contentId'],item['generationReservation'])
+          elif event['action']=='reconcile':
+              assert item['state']=='GENERATING' and state['next']=={'action':'RECONCILE_GENERATION','asset':event['asset']}
+              assert item['generationReservation']['reservationId']==event['reservationId']
+              assert item['generationReservation']['asset']==event['asset'] and item['generationReservation']['contentId']==item['contentId']
+              assert item['generationReservation']['generationContextEpoch']==state['generationContext']['epoch']
+              gid=event['generationId']
+              assert isinstance(gid,str) and len(gid)>10
+              existing=[state['hero'].get('approvedGenerationId')]
+              for x in [*state['scenes'],*state['taste']]:
+                  existing.extend([x.get('approvedGenerationId'),x.get('candidateGenerationId'),*(x.get('rejectedGenerationIds') or [])])
+              assert gid not in existing
+              assert event['visualQa']=={'targetIdentity':'PASS','previousAssetRepeat':'PASS','collageTypography':'PASS'}
+              item['state']='REVIEW_CANDIDATE'
+              item['asset']=c['scenes'][i]['image']
+              item['candidateGenerationId']=gid
+              item['candidateVisualQa']=event['visualQa']
+              item['candidateAt']=now
+              item.pop('generationReservation')
+              next_action=protocol.legacy.derive_next(state)
+              next_id=event.get('reserveNext')
+              if next_id is not None:
+                  assert next_action=={'action':'GENERATE_SCENE','asset':next_id},next_action
+                  assert next_id==f'S{i+2:02d}'
+                  nxt=state['scenes'][i+1]
+                  assert nxt['state']=='NOT_STARTED' and nxt['id']==next_id
+                  assert event['nextReservationId']!=event['reservationId']
+                  nxt['state']='GENERATING'
+                  nxt['generationReservation']={'reservationId':event['nextReservationId'],'asset':next_id,'contentId':nxt['contentId'],'promptSeries':nxt['promptSeries'],'generationContextEpoch':state['generationContext']['epoch'],'reservedAt':now}
+                  state['next']={'action':'RECONCILE_GENERATION','asset':next_id}
+                  print('CANDIDATE_ACCEPTED_AND_NEXT_RESERVED',event['asset'],gid,next_id)
+              else:
+                  assert i==7 and next_action=={'action':'BATCH_REVIEW_SCENES','asset':None},next_action
+                  state['next']=next_action
+                  print('EIGHT_SCENE_CANDIDATES_READY_FOR_BATCH_REVIEW')
+          else:
+              raise ValueError('unsupported checkpoint action')
+          state['stateRevision']+=1
+          state['updatedAt']=now
+          p.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Validate actual scene checkpoint and protocol
+        run: |
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+      - name: Commit only Grenada Production State
+        run: |
+          test "${GITHUB_REF_NAME}" = country/grenada
+          git config user.name 'JOURNEY ATLAS scene production checkpoint'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/grenada.json
+          git diff --cached --check
+          git commit -m 'Checkpoint one Grenada scene image against its State reservation'
+          git push origin HEAD:country/grenada
