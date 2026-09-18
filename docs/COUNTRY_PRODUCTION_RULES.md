@@ -174,7 +174,9 @@ During canonical review it remains:
 
 A staging/Pages preview may support technical QA but is not the user’s final review URL.
 
-Only explicit final page approval authorizes formal publication. Publication then changes discoverability/indexing through the current automated pipeline and must verify the deployed production SHA and actual Country route.
+Only explicit final page approval authorizes formal publication. Publication then changes discoverability/indexing and must verify the deployed production SHA and actual Country route. Automatic finalization runs only when `ATLAS_AUTO_PUBLISH=enabled` and an independently authorized `ATLAS_PUBLICATION_TOKEN` is configured in repository Actions settings; the GitHub Actions `GITHUB_TOKEN` is not a substitute for this credential. The token must have permission to update the Country branch, run Actions and merge its PR. Do not put an access token in chat or commit it to the repository.
+
+Until that external identity is enabled and the end-to-end path is verified, use the connected GitHub account to finalize the **existing owner-authored Country PR** on latest main after final approval, preserve all publication gates, wait for the actual required `validate` and `browser-qa` checks on its current PR head, squash merge, and verify the deployed SHA and canonical page. Do not create another PR, use Actions-bot commits to force PR checks, or add empty commits to trigger checks. A skipped automatic finalizer is not a publication success.
 
 Never treat review deployment as formal publication.
 
