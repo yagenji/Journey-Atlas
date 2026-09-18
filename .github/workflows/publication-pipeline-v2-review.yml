@@ -1,8 +1,18 @@
 name: Publication Pipeline v2 review
 
+# New Countries do not open a PR until the 13 approved rasters are handed off.
+# Trigger review from that PR, never from the individual image/State pushes.
+# Keep dispatch for explicitly requested review retries.
 on:
-  push:
-    branches: ["country/**"]
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+    paths:
+      - 'data/countries/**'
+      - 'ops/country-production/**'
+      - 'assets/images/**'
+      - 'data/atlas-destinations.json'
+      - 'data/theme-taxonomy.json'
   workflow_dispatch:
     inputs:
       slug:
@@ -18,7 +28,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: publication-v2-review-${{ github.ref_name }}
+  group: publication-v2-review-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -38,9 +48,9 @@ jobs:
       - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
-          # Most Country pushes are still in content/visual production and exit
-          # before review. Keep that hot path shallow; deepen only after the
-          # 13-raster review gate has actually passed.
+          # PR workflows normally check out a synthetic merge commit. The
+          # Country-only overlay must instead use the exact authored head.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
       - uses: actions/setup-python@v5
         with:
@@ -49,10 +59,12 @@ jobs:
         id: target
         env:
           INPUT_SLUG: ${{ inputs.slug }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
         shell: bash
         run: |
           set -euo pipefail
-          head_ref="$GITHUB_REF_NAME"; slug="${INPUT_SLUG:-}"
+          head_ref="$HEAD_REF"; slug="${INPUT_SLUG:-}"
+          case "$head_ref" in country/*) ;; *) echo "Not a Country PR; review inactive."; exit 0 ;; esac
           [ -n "$slug" ] || slug="${head_ref#country/}"; slug="${slug%-renewal}"
           echo "slug=$slug" >> "$GITHUB_OUTPUT"; echo "head_ref=$head_ref" >> "$GITHUB_OUTPUT"; echo "ready=false" >> "$GITHUB_OUTPUT"
           [ -f "data/countries/$slug.json" ] && [ -f "ops/country-production/$slug.json" ] || exit 0
@@ -88,7 +100,7 @@ jobs:
           fi
           if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
             if ! python3 scripts/publication_pipeline_v2.py review-needed "$slug"; then
-              echo "No target content changed since its validated review; State-only push requires no new preview."
+              echo "No target content changed since its validated review; no new preview required."
               exit 0
             fi
           fi
@@ -104,17 +116,20 @@ jobs:
           review_root="${pages_base%/}/reviews/$slug/"; review_url="${review_root}countries/$slug/"
           echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"; echo "main_sha=$main_sha" >> "$GITHUB_OUTPUT"; echo "review_root=$review_root" >> "$GITHUB_OUTPUT"; echo "review_url=$review_url" >> "$GITHUB_OUTPUT"
           echo "image_origin=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${source_sha}/" >> "$GITHUB_OUTPUT"; echo "ready=true" >> "$GITHUB_OUTPUT"
-      - name: Ensure one reusable review PR exists
+      - name: Require the reusable owner-authored Country PR
         if: steps.target.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           HEAD_REF: ${{ steps.target.outputs.head_ref }}
-          SLUG: ${{ steps.target.outputs.slug }}
         shell: bash
         run: |
           set -euo pipefail
           pr="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$HEAD_REF" --base main --state open --json number --jq '.[0].number // empty')"
-          [ -n "$pr" ] || gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$HEAD_REF" --title "Add ${SLUG^} Country Page" --body "Publication Pipeline v2 reusable review/publication PR. Review is validated against latest main plus Country-only overlay. Do not merge before explicit final page approval."
+          if [ -z "$pr" ]; then
+            echo '::error::Open one Country PR with the connected GitHub account before dispatching v2 review. GITHUB_TOKEN must not create a PR.'
+            exit 1
+          fi
+          echo "Reusing Country PR #$pr"
       - name: Dispatch one authoritative targeted QA run
         if: steps.target.outputs.ready == 'true'
         env:
