@@ -15,7 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Collect legacy map SVGs and Country JSON for offline QA
         run: |
-          mkdir -p /tmp/map-context-source-review
+          mkdir -p /tmp/map-context-source-review/shared
+          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
+          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
           python3 - <<'PY'
           import json, pathlib, shutil
           root=pathlib.Path('.')
