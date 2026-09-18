@@ -1,0 +1,98 @@
+name: One-time legacy Taste delivery repair
+on:
+  push:
+    branches: [fix/legacy-taste-3x2-delivery-20260918]
+    paths: [.github/workflows/_legacy-eight-taste-delivery-once.yml]
+permissions:
+  contents: write
+jobs:
+  convert-eight-existing-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --disable-pip-version-check --quiet pillow
+      - name: Preserve all approved image content, extend lateral background and normalize delivery geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, subprocess
+          from pathlib import Path
+          from PIL import Image, ImageFilter, ImageStat
+          root = Path('assets/images')
+          targets = {
+              'antiguabarbuda/approved/food-ducana.webp': ('e4005df336775ec6b94de1b80cfffadde7fe25a7', (1200, 900)),
+              'antiguabarbuda/approved/food-fungee.webp': ('e6ec743b90eb7aba1faa29933b41442833c9a88e', (1200, 900)),
+              'antiguabarbuda/approved/food-goat-water.webp': ('8131a5029099ca75af7ff6db216295390970e8ab', (1200, 900)),
+              'antiguabarbuda/approved/food-pepperpot.webp': ('908ca93e6745084cc0cd1d257eaae70e2415cf3c', (1200, 900)),
+              'unitedstates/approved/food-louisiana-gumbo.webp': ('2e6bafe0830d198c40f174086e4950af83b339b9', (1448, 1086)),
+              'unitedstates/approved/food-new-england-clam-chowder.webp': ('669bdb7a486c7df0a0f22f59b9a98fc91fc170b9', (1448, 1086)),
+              'unitedstates/approved/food-new-york-style-pizza.webp': ('686ecc3d4f0c432cc31bbd0f9b756f2e7f02a78d', (1448, 1086)),
+              'unitedstates/approved/food-texas-smoked-brisket.webp': ('baff666c8c5df2b9360bff0403c871abfd3455c3', (1448, 1086)),
+          }
+          for relative, (expected_blob, expected_size) in targets.items():
+              path = root / relative
+              actual_blob = subprocess.check_output(['git', 'hash-object', str(path)], text=True).strip()
+              assert actual_blob == expected_blob, f'Source changed, stop without overwrite: {path}'
+              with Image.open(path) as source:
+                  source.load()
+                  assert source.size == expected_size and source.format == 'WEBP', str(path)
+                  original = source.convert('RGB')
+              width, height = original.size
+              canvas_width = height * 3 // 2
+              assert canvas_width > width and canvas_width * 2 == height * 3
+              left_width = (canvas_width - width) // 2
+              right_width = canvas_width - width - left_width
+              canvas = Image.new('RGB', (canvas_width, height))
+              # Extend only the original outer-edge paper/background; never crop the plate or dish.
+              edge = min(24, width // 20)
+              left = original.crop((0, 0, edge, height)).resize((left_width, height), Image.Resampling.BICUBIC)
+              right = original.crop((width - edge, 0, width, height)).resize((right_width, height), Image.Resampling.BICUBIC)
+              canvas.paste(left.filter(ImageFilter.GaussianBlur(radius=4)), (0, 0))
+              canvas.paste(original, (left_width, 0))
+              canvas.paste(right.filter(ImageFilter.GaussianBlur(radius=4)), (left_width + width, 0))
+              delivered = canvas.resize((1200, 800), Image.Resampling.LANCZOS)
+              delivered.save(path, 'WEBP', quality=90, method=6)
+              with Image.open(path) as test:
+                  test.load()
+                  assert test.size == (1200, 800) and test.format == 'WEBP'
+                  assert test.getbbox() is not None
+              print(f'{relative}: {width}x{height} -> 1200x800; full approved content preserved; sha256={hashlib.sha256(path.read_bytes()).hexdigest()}')
+          PY
+      - name: Check full original image hard gate without changing validators
+        run: |
+          python3 scripts/normalize_country_image_delivery.py --audit
+          python3 scripts/validate_images.py --mode hard
+      - name: Commit exactly eight delivery files and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- .github/workflows/_legacy-eight-taste-delivery-once.yml
+          git add -- assets/images/antiguabarbuda/approved/food-*.webp assets/images/unitedstates/approved/food-*.webp
+          git diff --cached --check
+          python3 - <<'PY'
+          import subprocess
+          files=set(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines())
+          expected={
+              'assets/images/antiguabarbuda/approved/food-ducana.webp',
+              'assets/images/antiguabarbuda/approved/food-fungee.webp',
+              'assets/images/antiguabarbuda/approved/food-goat-water.webp',
+              'assets/images/antiguabarbuda/approved/food-pepperpot.webp',
+              'assets/images/unitedstates/approved/food-louisiana-gumbo.webp',
+              'assets/images/unitedstates/approved/food-new-england-clam-chowder.webp',
+              'assets/images/unitedstates/approved/food-new-york-style-pizza.webp',
+              'assets/images/unitedstates/approved/food-texas-smoked-brisket.webp',
+          }
+          assert files == expected, (files ^ expected)
+          print('SCOPE_PASS: only eight image delivery files; source art and publication metadata unchanged')
+          PY
+          git commit -m 'Normalize eight pre-existing Taste deliveries without cropping approved art'
+          git push origin HEAD:refs/heads/fix/legacy-taste-3x2-delivery-20260918
