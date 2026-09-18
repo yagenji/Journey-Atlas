@@ -47,6 +47,7 @@ COUNTRY_SHARED_FILES = {
 
 QA_SHARED_FILES = {
     "scripts/qa_published_browser.py",
+    "scripts/run_country_browser_qa_parallel.py",
     "scripts/classify_country_impact.py",
     "scripts/build_country_preview_targeted.py",
     "scripts/manage_review_preview_site.py",
@@ -234,10 +235,11 @@ def classify(base: str, head: str) -> dict:
     if STATUS_PATH in files:
         target_slugs |= changed_status_slugs(base, head)
 
-    # Always classify a bundled Country stylesheet as shared rendering, even
-    # when it was recently added and not yet listed in COUNTRY_SHARED_FILES.
+    # Run the complete audited Country set when changing its own sharding:
+    # a targeted smoke test cannot detect missing or duplicated Country coverage.
+    # Ordinary QA infrastructure changes still use the targeted smoke test.
     shared_files = COUNTRY_SHARED_FILES | bundled_country_stylesheets()
-    if any(path in shared_files for path in files):
+    if "scripts/run_country_browser_qa_parallel.py" in files or any(path in shared_files for path in files):
         browser_scope = "all"
     elif any(path in QA_SHARED_FILES for path in files):
         # QA/review infrastructure changes need one real Country smoke test,
@@ -319,6 +321,7 @@ def self_test() -> int:
     assert "assets/js/country-themes.js" in COUNTRY_SHARED_FILES
     assert "assets/icons/atlas-icons.svg" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
+    assert "scripts/run_country_browser_qa_parallel.py" in QA_SHARED_FILES
     assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
     assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
     assert "scripts/externalize_review_preview_images.py" in QA_SHARED_FILES
