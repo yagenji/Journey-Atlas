@@ -5,15 +5,17 @@
   "contentRef":"country/stkittsnevis",
   "stateRef":"country/stkittsnevis",
   "phase":"HERO",
-  "stateRevision":2,
-  "updatedAt":"2026-09-18T21:09:53+09:00",
+  "stateRevision":3,
+  "updatedAt":"2026-09-18T21:13:01+09:00",
   "hero":{
-    "state":"GENERATING",
+    "state":"REVIEW_CANDIDATE",
     "asset":"assets/images/stkittsnevis/approved/hero-timothy-hill.webp",
     "contentId":"timothy-hill-overlook",
     "promptSeries":1,
     "promptSeriesRejectCount":0,
+    "candidateGenerationId":"d6a4106d-1855-4546-ba5f-94b897afda7d",
     "rejectedGenerationIds":[],
+    "candidateVisualQa":{"targetIdentity":"PASS","previousAssetRepeat":"PASS","collageTypography":"PASS"},
     "renderPacket":{
       "kind":"HERO",
       "contentId":"timothy-hill-overlook",
@@ -29,14 +31,6 @@
       "forbidContactSheet":true,
       "forbidMontage":true,
       "forbidInsetImages":true
-    },
-    "generationReservation":{
-      "reservationId":"stkittsnevis-HERO-20260918T210953-01",
-      "asset":"HERO",
-      "contentId":"timothy-hill-overlook",
-      "promptSeries":1,
-      "generationContextEpoch":1,
-      "reservedAt":"2026-09-18T21:09:53+09:00"
     }
   },
   "scenes":[
@@ -73,5 +67,5 @@
   "assetHandoff":{"mode":"USER_HANDOFF","state":"PENDING","expectedRasterCount":13,"verifiedRasterCount":0,"verifiedAt":null},
   "reviewPreview":{"mode":"TARGETED_COUNTRY_BRANCH_PREVIEW","state":"NOT_STARTED","url":null,"browserQa":"NOT_STARTED","deployedAt":null},
   "productionMetrics":{"perImageApprovalPrompts":0,"userContinuationNudges":0,"runtimeForcedImageTurnBoundaries":0,"sceneBatchReviews":0,"tasteBatchReviews":0,"assetHandoffs":0,"reviewPackageIntegrations":0,"reviewPreviewDeployments":0,"preCanonicalMainIntegrations":0,"productionIntegrations":0,"browserQaCycles":0,"tasteBatchApprovedAt":null,"canonicalReviewReadyAt":null},
-  "next":{"action":"RECONCILE_GENERATION","asset":"HERO"}
+  "next":{"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
