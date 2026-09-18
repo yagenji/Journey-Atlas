@@ -5,8 +5,8 @@
   "contentRef": "country/grenada",
   "stateRef": "country/grenada",
   "phase": "SCENES_INITIAL",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-18T22:07:23+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-18T22:09:33+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/grenada/approved/hero-st-georges-carenage.webp",
@@ -41,7 +41,7 @@
   "scenes": [
     {
       "id": "S01",
-      "state": "NOT_STARTED",
+      "state": "GENERATING",
       "asset": null,
       "contentId": "grand-etang-crater-lake",
       "promptSeries": 1,
@@ -62,6 +62,14 @@
         "forbidMontage": true,
         "forbidInsetImages": true,
         "singleSceneOnly": true
+      },
+      "generationReservation": {
+        "reservationId": "8ed23921-582d-4c7c-a0f4-028cb770a5fd",
+        "asset": "S01",
+        "contentId": "grand-etang-crater-lake",
+        "promptSeries": 1,
+        "generationContextEpoch": 1,
+        "reservedAt": "2026-09-18T22:09:33+09:00"
       }
     },
     {
@@ -405,7 +413,7 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "GENERATE_SCENE",
+    "action": "RECONCILE_GENERATION",
     "asset": "S01"
   }
 }
