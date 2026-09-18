@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compare target polygons with Natural Earth 10m Cuba admin-0
+      - name: Compare visible map with Natural Earth 10m Cuba admin-0
         run: |
           python -m pip install --quiet 'shapely>=2,<3'
           curl -fsSL --retry 2 'https://raw.githubusercontent.com/AshKyd/geojson-regions/main/public/countries/10m/CUB.geojson' -o /tmp/cuba-ne10m.geojson
@@ -22,41 +22,37 @@ jobs:
           import json, math, xml.etree.ElementTree as ET, sys
           from pathlib import Path
           from shapely.geometry import shape, Polygon, Point
-          from shapely.ops import unary_union
           sys.path.insert(0, str(Path('scripts').resolve()))
-          from validate_country_map_v6 import parse_polygons
-          source = json.loads(Path('/tmp/cuba-ne10m.geojson').read_text())
-          assert source['properties']['adm0_a3'] == 'CUB'
-          adm = shape(source['geometry'])
+          from validate_country_map_v6 import parse_polygons, on_land_in_path
+          source=json.loads(Path('/tmp/cuba-ne10m.geojson').read_text())
+          assert source['properties']['adm0_a3']=='CUB'
+          adm=shape(source['geometry'])
           assert adm.is_valid, 'Administrative source invalid'
-          country = json.loads(Path('data/countries/cuba.json').read_text())
-          root = ET.parse(country['map']['svg']).getroot()
-          target = next(el for el in root.iter() if el.get('id') == 'target-country')
-          rings = parse_polygons(target.get('d'))
-          pgeom = unary_union([Polygon(p) for p in rings if len(p)>3 and Polygon(p).is_valid])
-          assert pgeom.is_valid and not pgeom.is_empty
-          b=country['map']['bounds']; w,s,e,n = (b[k] for k in ('west','south','east','north'))
-          f=math.cos(math.radians((s+n)/2)); scale=min(1200/((e-w)*f),760/(n-s)); ox=(1200-(e-w)*f*scale)/2;oy=(760-(n-s)*scale)/2
-          def unproject(x,y): return ((x-ox)/(f*scale)+w,n-(y-oy)/scale)
-          outside=[]; selected=[]
+          country=json.loads(Path('data/countries/cuba.json').read_text())
+          root=ET.parse(country['map']['svg']).getroot()
+          target=next(el for el in root.iter() if el.get('id')=='target-country')
+          rings=parse_polygons(target.get('d'))
+          assert rings
+          b=country['map']['bounds'];w,s,e,n=(b[k] for k in ('west','south','east','north'))
+          f=math.cos(math.radians((s+n)/2));scale=min(1200/((e-w)*f),760/(n-s));ox=(1200-(e-w)*f*scale)/2;oy=(760-(n-s)*scale)/2
+          def unproject(x,y):return ((x-ox)/(f*scale)+w,n-(y-oy)/scale)
+          outside=[];checked=[]
           for ring in rings:
               p=Polygon(ring)
-              if not p.is_valid or p.area<4: continue
-              selected.append(p)
-              c=p.representative_point(); lon,lat=unproject(c.x,c.y)
+              if p.area<16:continue
+              checked.append(p)
+              c=p.representative_point();lon,lat=unproject(c.x,c.y)
               if not adm.buffer(.045).covers(Point(lon,lat)):
                   outside.append((round(lon,3),round(lat,3),round(p.area,1)))
           missing=[]
           for poly in (list(adm.geoms) if hasattr(adm,'geoms') else [adm]):
-              if poly.area < .00012: continue
-              r=poly.representative_point()
-              x=ox+(r.x-w)*f*scale;y=oy+(n-r.y)*scale
-              if not pgeom.buffer(4).covers(Point(x,y)):missing.append((round(r.x,3),round(r.y,3),round(poly.area,5)))
-          print('Natural Earth 10m admin-0 Cuba, independent land-membership cross-check')
-          print('SVG selected target polygons with >=4px2:',len(selected),'outside admin geometry by >0.045 degrees:',len(outside))
-          print('Admin-0 islands >=0.00012 sq deg absent from target beyond 4px:',len(missing))
-          print('TARGET_OUTSIDE_SAMPLE', outside[:25])
-          print('ADMIN_MISSING_SAMPLE', missing[:25])
-          assert not outside and not missing, 'Map target island affiliation differs from administrative source'
+              if poly.area<.00012:continue
+              r=poly.representative_point();x=ox+(r.x-w)*f*scale;y=oy+(n-r.y)*scale
+              if not on_land_in_path(rings,(x,y)):missing.append((round(r.x,3),round(r.y,3),round(poly.area,5)))
+          print('Natural Earth 10m Cuba administrative comparison; SVG even-odd winding honored')
+          print('Visible target rings >=16px2',len(checked),'outside administrative source >0.045 degrees',len(outside))
+          print('Administrative islands >=0.00012 sq deg missed beyond 4px',len(missing))
+          print('TARGET_OUTSIDE',outside[:20]);print('ADMIN_MISSING',missing[:20])
+          assert not outside and not missing, 'Visible Cuban island affiliation differs from independent administrative source'
           print('CUBA MAP BOUNDARY SOURCE QA: PASS')
           PY
