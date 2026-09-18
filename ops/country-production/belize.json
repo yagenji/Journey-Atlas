@@ -5,8 +5,8 @@
   "contentRef": "country/belize",
   "stateRef": "country/belize",
   "phase": "QA",
-  "stateRevision": 18,
-  "updatedAt": "2026-09-18T10:46:29+09:00",
+  "stateRevision": 19,
+  "updatedAt": "2026-09-18T11:09:03+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/belize/approved/hero.webp",
@@ -526,14 +526,14 @@
   },
   "implementation": {
     "state": "DONE",
-    "completedAt": "2026-09-18T10:46:29+09:00",
+    "completedAt": "2026-09-18T11:09:03+09:00",
     "sharedTemplate": true,
     "countrySpecificCss": false
   },
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "19d051d1cbacd04929fe3cb87652e88976ee620b",
+    "sourceCommit": "e02d0b79a0587f8e51f40aba7edb768aa746c213",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -669,7 +669,7 @@
     ]
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "productionProtocolRef": "main:ops/country-production-policy.json",
@@ -702,9 +702,9 @@
     "state": "DONE",
     "url": "https://yagenji.github.io/Journey-Atlas/reviews/belize/countries/belize/",
     "browserQa": "PASS",
-    "deployedAt": "2026-09-18T10:46:29+09:00",
-    "sourceCommit": "19d051d1cbacd04929fe3cb87652e88976ee620b",
-    "runId": 35296448504,
+    "deployedAt": "2026-09-18T11:09:03+09:00",
+    "sourceCommit": "e02d0b79a0587f8e51f40aba7edb768aa746c213",
+    "runId": 35297954152,
     "pipelineVersion": 2,
     "mainBaseCommit": "643b09204b7fd7132762ba08e93d8e0a94d4cd30"
   },
@@ -716,12 +716,12 @@
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 1,
+    "reviewPreviewDeployments": 2,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-18T02:48:36+09:00",
-    "canonicalReviewReadyAt": "2026-09-18T10:46:29+09:00"
+    "canonicalReviewReadyAt": "2026-09-18T11:09:03+09:00"
   },
   "publicationPipelineVersion": 2
 }
