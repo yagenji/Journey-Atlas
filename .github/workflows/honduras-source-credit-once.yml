@@ -1,0 +1,47 @@
+name: Honduras one-time map attribution QA
+
+on:
+  push:
+    branches: ['country/honduras']
+    paths: ['.github/workflows/honduras-source-credit-once.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  source-credit:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/honduras'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/honduras
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Correct exact map attribution without changing geography
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/countries/honduras.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          old = 'Basemap GSHHS intermediate-resolution mainland and Isla del Tigre, with Roatán and Cayos Cochinos actual OpenStreetMap coastline ways (© OpenStreetMap contributors, ODbL), projected from WGS84 at 1200×760; Cayos Cochinos Scene anchor lies on actual Cayo Cochino Mayor land.'
+          new = 'GSHHS intermediate-resolution mainland coastline; Natural Earth 1:10m Isla del Tigre polygon; Roatán and Cayos Cochinos coastlines from OpenStreetMap ways (© OpenStreetMap contributors, ODbL); WGS84 projected to 1200×760. Cayos Cochinos Scene anchor is on Cayo Cochino Mayor.'
+          assert d['slug'] == 'honduras' and d['map']['source'] == old
+          assert d['scenes'][1]['coordinates'] == {'latitude': 15.973193, 'longitude': -86.474441}
+          d['map']['source'] = new
+          p.write_text(json.dumps(d, ensure_ascii=False, separators=(',',':')) + '\n', encoding='utf-8')
+          PY
+          python3 scripts/validate_country_map_v6.py data/countries/honduras.json
+          python3 scripts/validate_country.py --strict data/countries/honduras.json
+      - name: Persist validated source-credit correction only
+        run: |
+          git diff --check
+          git add data/countries/honduras.json
+          git diff --cached --quiet && exit 1
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Credit Natural Earth and OSM correctly on Honduras map'
+          git push origin HEAD:country/honduras
