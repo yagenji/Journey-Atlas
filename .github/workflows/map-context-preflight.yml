@@ -4,9 +4,13 @@ on:
   pull_request:
     paths:
       - 'scripts/add_country_map_context.py'
+      - 'scripts/add_country_map_context_existing.py'
+      - 'scripts/add_country_map_context_legacy.py'
       - 'scripts/generate_country_map_with_context.py'
+      - 'scripts/stage_map_context_rollout.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_generate_country_map_with_context.py'
+      - 'tests/test_map_context_legacy.py'
       - 'tests/test_map_context_regions.py'
       - 'tests/smoke_map_context_real.py'
       - 'tests/diagnose_map_context_blockers.py'
@@ -18,7 +22,7 @@ permissions:
 jobs:
   preview-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,19 +32,41 @@ jobs:
           python-version: '3.12'
       - name: Install map preview QA dependencies
         run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
-      - name: Check opt-in map generator syntax and focused tests
+      - name: Check map migration syntax and focused tests
         run: |
-          python -m py_compile scripts/add_country_map_context.py scripts/generate_country_map_with_context.py
+          python -m py_compile \
+            scripts/add_country_map_context.py \
+            scripts/add_country_map_context_existing.py \
+            scripts/add_country_map_context_legacy.py \
+            scripts/generate_country_map_with_context.py \
+            scripts/stage_map_context_rollout.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
       - name: Generate and fully decode real approved Country previews
         run: python tests/smoke_map_context_real.py
-      - name: Diagnose incompatible legacy-map structures
+      - name: Diagnose legacy-map source structures
         run: python tests/diagnose_map_context_blockers.py
-      - name: Save preview-only images and report
+      - name: Exercise completed-Country batch stager outside repository
+        run: |
+          rm -rf /tmp/journey-atlas-map-context-rollout-stage
+          python scripts/stage_map_context_rollout.py --output-dir /tmp/journey-atlas-map-context-rollout-stage
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
+          data = json.loads(p.read_text())
+          assert data['selectedCount'] == len(data['entries']) and data['selectedCount'] > 0
+          assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
+          assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
+          assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
+          print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit']})
+          PY
+      - name: Save preview-only images, reports and rollout manifest
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: map-context-preflight-real-svgs
-          path: /tmp/journey-atlas-map-context-real-previews/
+          path: |
+            /tmp/journey-atlas-map-context-real-previews/
+            /tmp/journey-atlas-map-context-rollout-stage/manifest.json
           if-no-files-found: warn
           retention-days: 3
