@@ -111,7 +111,7 @@
         return response.text();
       })
       .then((xmlText) => {
-        const stories = window.parseCountryLensFeed(xmlText);
+        const stories = window.parseCountryLensFeed(xmlText, data.slug);
         if (!stories.length) return null;
 
         const first = stories[0];
