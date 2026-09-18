@@ -1,0 +1,31 @@
+name: Temporary Belize Taste asset inspection
+on:
+  push:
+    branches:
+      - fix/belize-taste-actual-delivery-ratio-20260918
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect delivered approved Taste images
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          for index in range(1, 5):
+              path = Path(f'assets/images/belize/approved/food-{index}.webp')
+              with Image.open(path) as im:
+                  im.load()
+                  print(f'{path}: size={im.size}, format={im.format}, corner={im.convert("RGB").getpixel((0, 0))}')
+          PY
+      - name: Export actual approved raster bytes for visual inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: temporary-belize-taste-source
+          path: assets/images/belize/approved/food-*.webp
+          if-no-files-found: error
+          retention-days: 1
