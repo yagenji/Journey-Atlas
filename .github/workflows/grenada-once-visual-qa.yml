@@ -1,0 +1,76 @@
+name: Grenada one-time final-asset visual QA
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-once-visual-qa.yml]
+permissions:
+  contents: read
+jobs:
+  visual:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/grenada'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser QA and image dependencies
+        run: python -m pip install --quiet selenium pillow
+      - name: Build page using delivered assets
+        env:
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          TARGET_SLUGS: grenada
+        run: python scripts/build_country_preview_targeted.py
+      - name: Capture three widths and key sections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --directory dist >/tmp/grenada-visual-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/countries/grenada/ >/dev/null; then break; fi
+            sleep 1
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from selenium.webdriver.common.by import By
+          from scripts.qa_published_browser import make_driver,set_viewport,wait_for_country,scroll_entire_page,full_page_screenshot,VIEWPORTS
+          from PIL import Image
+          out=Path('grenada-visual-qa'); out.mkdir(exist_ok=True)
+          manifest=[]
+          for name,cfg in VIEWPORTS.items():
+              driver=make_driver()
+              try:
+                  set_viewport(driver,cfg)
+                  driver.get('http://127.0.0.1:4173/countries/grenada/')
+                  wait_for_country(driver)
+                  scroll_entire_page(driver)
+                  p=out/f'{name}-full.jpg'
+                  full_page_screenshot(driver,p)
+                  if not p.exists():
+                      raise RuntimeError('Full page screenshot absent: '+str(p))
+                  for label,selector in [('hero','.hero'),('map','#country-map-art'),('taste','#taste-section')]:
+                      element=driver.find_element(By.CSS_SELECTOR,selector)
+                      element.screenshot(str(out/f'{name}-{label}.png'))
+                  for f in sorted(out.glob(f'{name}-*')):
+                      with Image.open(f) as im:
+                          im.verify()
+                      with Image.open(f) as im:
+                          im.load(); sz=im.size
+                      manifest.append({'name':f.name,'width':sz[0],'height':sz[1],'bytes':f.stat().st_size})
+                      print('CAPTURED', f, sz,flush=True)
+              finally:
+                  driver.quit()
+          assert len(manifest)==12,len(manifest)
+          (out/'manifest.json').write_text(json.dumps({'sourceCommit':'${{ github.sha }}','captures':manifest},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grenada-final-asset-visual-qa
+          path: grenada-visual-qa/
+          retention-days: 2
