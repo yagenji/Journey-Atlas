@@ -5,21 +5,21 @@
   "contentRef": "country/cuba",
   "stateRef": "country/cuba",
   "phase": "HERO",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-18T21:29:22+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-18T21:32:07+09:00",
   "hero": {
     "id": "HERO",
-    "state": "GENERATING",
+    "state": "REVIEW_CANDIDATE",
     "asset": "assets/images/cuba/approved/hero-havana-morro-harbour.webp",
     "contentId": "havana-morro-harbour",
     "promptSeries": 1,
     "promptSeriesRejectCount": 0,
     "rejectedGenerationIds": [],
-    "generationReservation": {
-      "asset": "HERO",
-      "contentId": "havana-morro-harbour",
-      "generationContextEpoch": 1,
-      "reservedAt": "2026-09-18T21:29:22+09:00"
+    "candidateGenerationId": "129cbedc-a6ae-4e69-aa62-94731d4fff2e",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
     },
     "renderPacket": {
       "kind": "HERO",
@@ -78,7 +78,8 @@
     "revision": 7, "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
     "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE", "sceneReview": "BATCH_ONLY",
     "tasteReview": "BATCH_ONLY", "mandatoryNoAddedText": true,
-    "rejectTypographyImmediately": true, "rejectCollageImmediately": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
     "rejectPreviousAssetRepeatImmediately": true,
     "candidateVisualQaRequired": true,
     "batchPerceptualDuplicateGate": true,
@@ -108,7 +109,7 @@
   },
   "sceneBatchReview": {"approval": "PENDING", "rounds": []},
   "tasteBatchReview": {"approval": "PENDING", "rounds": []},
-  "next": {"action": "RECONCILE_GENERATION", "asset": "HERO"},
+  "next": {"action": "WAIT_HERO_APPROVAL", "asset": "HERO"},
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
   "preVisualBuild": {
@@ -136,9 +137,11 @@
     "url": null, "browserQa": "NOT_STARTED", "deployedAt": null
   },
   "productionMetrics": {
-    "perImageApprovalPrompts": 0, "userContinuationNudges": 0,
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
     "runtimeForcedImageTurnBoundaries": 0,
-    "sceneBatchReviews": 0, "tasteBatchReviews": 0,
+    "sceneBatchReviews": 0,
+    "tasteBatchReviews": 0,
     "assetHandoffs": 0,
     "reviewPackageIntegrations": 0,
     "reviewPreviewDeployments": 0,
