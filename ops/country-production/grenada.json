@@ -5,12 +5,39 @@
   "contentRef": "country/grenada",
   "stateRef": "country/grenada",
   "phase": "HERO",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-18T21:54:10+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-18T21:59:45+09:00",
   "hero": {
-    "state": "NOT_STARTED",
+    "state": "GENERATING",
     "asset": null,
-    "contentId": null
+    "contentId": "st-georges-carenage-fort-george",
+    "promptSeries": 1,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [],
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "st-georges-carenage-fort-george",
+      "identity": "GRENADA HERO ONLY: true view from Fort George across the sheltered horseshoe-shaped Carenage inner harbour in St. George's, Grenada. An elevated but natural viewpoint: low red terra-cotta tiled roofs and aged stone or pastel plaster buildings in the foreground, a real curved waterfront with modest moored sailboats and small working craft, a hillside of tightly scattered low houses among tropical greenery rising beyond the inlet, and a calm partly clouded Caribbean sky. Respect the actual relative position of harbour, foreground roofs and green hill, realistic Caribbean architecture and scale; no invented landmarks, impossible cliffs, dense skyscrapers, oversized cruise ship, fantasy water channels or altered terrain. Wide horizontal single scene with the recognizable curved harbor clearly legible on desktop and center-cropped mobile; leave quiet sky and water in the upper/left for separate website text. Gentle early-morning natural diffused daylight. About 60% photographic place realism and 40% fine quiet watercolor softness, restrained color and subtle paper texture, not a photo or painterly fantasy. No text within image, no readable signs, names, letters, titles, logos, maps, UI, captions, frames, grids, collage, panels or decorative elements. One standalone natural landscape image only.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true,
+      "singleSceneOnly": true
+    },
+    "generationReservation": {
+      "reservationId": "3a258b42-d00d-41e0-8c42-0bea9f776f6b",
+      "asset": "HERO",
+      "contentId": "st-georges-carenage-fort-george",
+      "promptSeries": 1,
+      "generationContextEpoch": 1,
+      "reservedAt": "2026-09-18T21:59:45+09:00"
+    }
   },
   "scenes": [
     {
@@ -227,7 +254,7 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "GENERATE_HERO",
+    "action": "RECONCILE_GENERATION",
     "asset": "HERO"
   }
 }
