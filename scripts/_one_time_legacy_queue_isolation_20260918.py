@@ -42,7 +42,7 @@ new = old + "          legacy_queue = Path('.github/workflows/publish-country-qu
 assert text.count(old) == 1, 'Pipeline v2 validator anchor changed'
 text = text.replace(old, new, 1)
 old = "          if 'validate_country_map_v6.py' not in checks:\n"
-new = ("          if 'publicationPipelineVersion' not in legacy_queue or 'publicationPipelineVersion') == 2' not in legacy_queue:\n"
+new = ("          if '.get(\"publicationPipelineVersion\") == 2' not in legacy_queue:\n"
        "              raise SystemExit('Legacy publication queue must reject v2-owned Countries')\n" + old)
 assert text.count(old) == 1, 'Pipeline v2 map validator anchor changed'
 checks.write_text(text.replace(old, new, 1), encoding='utf-8')
