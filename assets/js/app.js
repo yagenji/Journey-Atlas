@@ -211,6 +211,15 @@ function renderMapBase(fragment, mapData) {
   });
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
+  if (typeof mapData.japanAreaComparison === 'string' && mapData.japanAreaComparison.trim()) {
+    const legend = fragment.querySelector('.map-legend--below');
+    if (legend) {
+      const comparison = document.createElement('span');
+      comparison.className = 'map-legend__area-comparison';
+      comparison.textContent = mapData.japanAreaComparison;
+      legend.prepend(comparison);
+    }
+  }
   if (typeof mapData.insetNote === "string" && mapData.insetNote.trim()) {
     const legend = fragment.querySelector(".map-legend--below");
     if (legend) {
@@ -485,6 +494,15 @@ function renderTaste(fragment, data = {}) {
     article.className = 'taste-card';
     article.innerHTML = `<div class="taste-card__image media-slot"><img class="taste-card__img" alt="${escapeHtml(item.name || '')}" decoding="async"></div><div class="taste-card__copy"><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p></div>`;
     const image = article.querySelector('.taste-card__img');
+    image.addEventListener('load', () => {
+      // Match approved 4:3 artwork with integral paper ground to its own frame.
+      if (image.naturalWidth > 0 && image.naturalHeight > 0 &&
+          Math.abs(image.naturalWidth / image.naturalHeight - 4 / 3) < 0.005) {
+        const frame = article.querySelector('.taste-card__image');
+        frame.classList.add('taste-card__image--source-4x3');
+        image.classList.add('taste-card__img--source-4x3');
+      }
+    }, { once: true });
     image.addEventListener('error', () => {
       article.classList.add('taste-card--image-error');
     }, { once: true });

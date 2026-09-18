@@ -59,3 +59,15 @@
   object-position: center;
   transform: scale(1.04);
 }
+
+/* Shared 4:3 Taste framing: use the artwork's own complete paper ground. */
+.taste-card__image--source-4x3 {
+  aspect-ratio: 4 / 3;
+  background: transparent;
+}
+.taste-card__img--source-4x3 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
