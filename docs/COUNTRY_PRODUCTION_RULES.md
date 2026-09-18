@@ -139,6 +139,10 @@ Run the narrowest QA that proves the change:
 - image bytes → decode/dimension/path/duplicate checks;
 - Map → map/coordinate/label checks.
 
+Before the first canonical review, inspect the **rendered page built from the final delivered asset bytes**, not only approved image candidates or placeholder dimensions. At Desktop, Tablet and Mobile, check Hero crop, all eight Scenes, all four Taste cards (image-to-frame sizing, full dish visibility and backing), Map/labels, facts, related destinations and next routes together. Fix problems found in that pass before inviting the user to review; a load/decode PASS alone does not establish visual correctness.
+
+For review feedback, reproduce each reported issue against the exact live build SHA and delivered assets. Consolidate related corrections into one minimal change, check the affected components locally at all three widths, then run only the relevant PR QA. After required checks pass, advance the PR through its guarded merge/deploy path and verify the exact canonical live SHA and affected rendering; do not restart full-country QA or create a separate PR merely to repeat checks already proved for unchanged bytes. Preserve any State update actually required by the publication pipeline and the final user-approval gate.
+
 Do not equate CI success with visual completion. The actual rendered Country page must be checked at Desktop, Tablet and Mobile.
 
 ## 12. Review and publication
