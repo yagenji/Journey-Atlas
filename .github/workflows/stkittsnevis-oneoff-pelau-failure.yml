@@ -1,0 +1,55 @@
+name: One-off St Kitts Nevis Pelau wrong-target reconciliation
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-oneoff-pelau-failure.yml]
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Record wrong-target output, refresh Pelau packet, and block contaminated generation
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(p.read_text(encoding='utf-8'))
+          f1,f2,f3,f4=s['taste']
+          assert s['slug']=='stkittsnevis' and s['phase']=='TASTE_REGEN'
+          assert s['next']=={'action':'RECONCILE_GENERATION','asset':'FOOD03'}
+          assert f1['state']=='REVIEW_CANDIDATE' and f1['candidateGenerationId']=='641eaa2f-c782-4a01-86e5-7be16cd488ec'
+          assert f2['state']==f4['state']=='APPROVED'
+          assert f3['state']=='GENERATING'
+          assert f3['generationReservation']['asset']=='FOOD03' and f3['generationReservation']['contentId']==f3['contentId']
+          assert f3['generationReservation']['generationContextEpoch']==s['generationContext']['epoch']
+          assert s['generationContext']['state']=='CLEAN'
+          gid='d1353bf9-1c52-4eda-8ca7-057584d06c27'
+          assert gid not in f3.get('rejectedGenerationIds',[])
+          f3['rejectedGenerationIds'].append(gid)
+          f3['state']='REGENERATE'
+          f3.pop('generationReservation',None)
+          f3['lastFailureReason']='WRONG_TARGET_CARRYOVER'
+          f3['promptSeries']+=1
+          f3['promptSeriesRejectCount']=0
+          f3['renderPacket']['identity']='FOOD03 PELAU ONLY: ONE shallow white ceramic plate with a mound of brown, caramel-seasoned COOKED RICE, tiny round green-brown PIGEON PEAS clearly mixed throughout, and small browned chicken or beef pieces cooked into that same rice. Rice grains and peas must occupy most of the visible plate. Entire plate against empty flat warm ivory background. NO fish, saltfish, plantain, breadfruit, dumplings, conch fritters, soups, separate sides, cutlery, garnishes, text or divided frames. Single independently generated horizontal image; quiet restrained watercolor-photorealism.'
+          s['generationContext'].update({'state':'CONTAMINATED','lastFailureAsset':'FOOD03','lastFailureReason':'WRONG_TARGET_CARRYOVER'})
+          s['next']={'action':'RESET_GENERATION_CONTEXT','asset':None}
+          s['stateRevision']+=1
+          s['updatedAt']=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          print('FOOD03 rejected output:',gid,'context epoch:',s['generationContext']['epoch'])
+          PY
+          python scripts/country_production_state_v7.py validate
+          git add ops/country-production/stkittsnevis.json
+          git rm .github/workflows/stkittsnevis-oneoff-pelau-failure.yml
+          git commit -m 'Reject wrong-target Pelau output and preserve approved Taste assets'
+          git push
