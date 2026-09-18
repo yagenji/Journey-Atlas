@@ -111,7 +111,7 @@
         return response.text();
       })
       .then((xmlText) => {
-        const stories = window.parseCountryLensFeed(xmlText, data.slug);
+        const stories = window.parseCountryLensFeed(xmlText);
         if (!stories.length) return null;
 
         const first = stories[0];
@@ -234,3 +234,10 @@
       render();
     });
 })();
+
+// Country Profile is rendered after this deferred script starts. A separate
+// shared module adds the sourced Japan-area comparison without modifying
+// country-specific JSON or the unrelated theme/LENS rendering logic.
+import('./country-area-comparison.js').catch((error) => {
+  console.error('Country area comparison module could not load', error);
+});
