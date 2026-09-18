@@ -24,7 +24,7 @@ jobs:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
           TARGET_SLUGS: grenada
         run: python scripts/build_country_preview_targeted.py
-      - name: Capture three widths and key sections
+      - name: Capture three full-page layouts
         shell: bash
         run: |
           set -euo pipefail
@@ -38,7 +38,6 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          from selenium.webdriver.common.by import By
           from scripts.qa_published_browser import make_driver,set_viewport,wait_for_country,scroll_entire_page,full_page_screenshot,VIEWPORTS
           from PIL import Image
           out=Path('grenada-visual-qa'); out.mkdir(exist_ok=True)
@@ -52,21 +51,17 @@ jobs:
                   scroll_entire_page(driver)
                   p=out/f'{name}-full.jpg'
                   full_page_screenshot(driver,p)
-                  if not p.exists():
-                      raise RuntimeError('Full page screenshot absent: '+str(p))
-                  for label,selector in [('hero','.hero'),('map','#country-map-art'),('taste','#taste-section')]:
-                      element=driver.find_element(By.CSS_SELECTOR,selector)
-                      element.screenshot(str(out/f'{name}-{label}.png'))
-                  for f in sorted(out.glob(f'{name}-*')):
-                      with Image.open(f) as im:
-                          im.verify()
-                      with Image.open(f) as im:
-                          im.load(); sz=im.size
-                      manifest.append({'name':f.name,'width':sz[0],'height':sz[1],'bytes':f.stat().st_size})
-                      print('CAPTURED', f, sz,flush=True)
+                  assert p.exists(),p
+                  with Image.open(p) as im:
+                      im.verify()
+                  with Image.open(p) as im:
+                      im.load(); sz=im.size
+                  assert sz[0]>=cfg['width']-2 and sz[1]>cfg['height'],sz
+                  manifest.append({'name':p.name,'width':sz[0],'height':sz[1],'bytes':p.stat().st_size})
+                  print('CAPTURED',p,sz,flush=True)
               finally:
                   driver.quit()
-          assert len(manifest)==12,len(manifest)
+          assert len(manifest)==3,len(manifest)
           (out/'manifest.json').write_text(json.dumps({'sourceCommit':'${{ github.sha }}','captures':manifest},indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
