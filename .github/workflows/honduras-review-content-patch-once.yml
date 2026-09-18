@@ -1,0 +1,96 @@
+name: Apply Honduras review content correction once
+on:
+  push:
+    branches: [fix/honduras-next-routes-signature-facts-20260918]
+    paths: [.github/workflows/honduras-review-content-patch-once.yml]
+permissions:
+  contents: write
+jobs:
+  update-country:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/honduras-next-routes-signature-facts-20260918
+          fetch-depth: 2
+          persist-credentials: true
+      - name: Correct only verified Honduras content and reset review verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = '21a77318ff7513b9d40b8414a744c8ebf0945bbd'
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('data/countries/honduras.json')
+          country=json.loads(path.read_text(encoding='utf-8'))
+          statepath=Path('ops/country-production/honduras.json')
+          state=json.loads(statepath.read_text(encoding='utf-8'))
+          registry=json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          honduras=[r for r in registry['destinations'] if r.get('slug')=='honduras']
+          assert len(honduras)==1 and honduras[0]['atlasPublished'] is False
+          assert country['slug']=='honduras' and country['publicationPipelineVersion']==2
+          assert state['finalApproval']['state']=='PENDING' and state['publication']['atlasPublished'] is False
+          assert state['reviewDeployment']['state']=='DONE' and state['reviewDeployment']['atlasPublished'] is False
+          assert len(country['nextRoutes'])==1 and country['nextRoutes'][0]['countryEn']=='GUATEMALA'
+          original=country['signatureFacts']
+          assert len(original)==3 and [r['value'] for r in original]==['1,800字超','2,849 m','43 m'], original
+          existing=country['nextRoutes'][0]
+          assert round(832280/100/112492*100,1)==7.4
+          country['nextRoutes']=[
+            existing,
+            {'flag':'🇸🇻','countryEn':'EL SALVADOR','countryJa':'エルサルバドル',
+             'path':'Tegucigalpa → El Amatillo → San Salvador',
+             'description':'首都から南へ向かい、エル・アマティージョ国境を越えてエルサルバドルの内陸都市へ。Tica Busが案内する陸路の周遊方向。国境手続きと運行状況は出発前に確認する。',
+             'travelerRoute':True,'status':'CHECK_CURRENT_CONDITIONS',
+             'statusNote':'2026-09-18にTica Bus公式経路表を確認。運行と入国条件は変動する。'},
+            {'flag':'🇳🇮','countryEn':'NICARAGUA','countryJa':'ニカラグア',
+             'path':'Tegucigalpa → El Guasaule → Managua',
+             'description':'首都から南部を通り、エル・グアスレ国境を越えてマナグアへ。Tica Busが案内する代表的な陸路接続で、海辺・高地から隣国の内陸へ旅を延ばす方向になる。入国条件と運行状況は出発前に確認する。',
+             'travelerRoute':True,'status':'CHECK_CURRENT_CONDITIONS',
+             'statusNote':'2026-09-18にTica Bus公式経路表を確認。運行と入国条件は変動する。'},
+          ]
+          country['signatureFacts']=[
+            {'topicKey':'mesoamerican-reef-four-country-length',
+             'label':'4か国の海を結ぶ珊瑚礁','value':'約1,000 km',
+             'note':'ロアタン島周辺の珊瑚礁は、メキシコ・ベリーズ・グアテマラ・ホンジュラスにまたがる中米の珊瑚礁系の南端にある。約1,000kmは4か国全体の延長で、ホンジュラスだけの長さではない。',
+             'icon':'sea',
+             'interestReason':'一つの島で見える珊瑚礁が、中央アメリカの国境を越えて続く海の生態系につながっていると分かるため。'},
+            {'topicKey':'rio-platano-biosphere-share-of-country',
+             'label':'一つの保護区が占める国土','value':'約7.4%',
+             'note':'リオ・プラタノ生物圏保護区は832,280ha（約8,323km²）。ホンジュラスの面積112,492km²との比較では国土の約7.4%に相当し、山地の熱帯林から海岸の湿地まで含む。世界遺産の登録区域350,000haとは範囲が異なる。',
+             'icon':'leaf',
+             'interestReason':'山の源流からカリブ海岸まで続く大きな自然環境の広がりを、国土全体との比較で想像できるため。'},
+            {'topicKey':'copan-sixteen-ruler-dynasty',
+             'label':'コパンに刻まれた王朝の時間','value':'16代',
+             'note':'コパンでは427年に始まったマヤの王朝が16代続いた。広場の石碑や祭壇は、その歴史を伝える彫刻でもある。',
+             'icon':'history',
+             'interestReason':'広場の石彫を単なる装飾ではなく、代々の王の記録として読めることを示す数字だから。'},
+          ]
+          country['sources'].update({
+            'mesoamericanReef':'UNEP, 25 February 2025: Mesoamerican Reef 1,000 km spanning Belize, Guatemala, Honduras and Mexico; MAR Fund describes Bay Islands as southern reach. https://caribbean.un.org/en/290025-inside-effort-save-iconic-caribbean-coral-reef ; https://marfund.org/en/inicio/',
+            'rioPlatanoBiosphere':'UNESCO Man and the Biosphere Programme Rio Platano profile: biosphere reserve 832,280 ha; UNESCO World Heritage Centre site no.196: distinct World Heritage property 350,000 ha. Country denominator UNData Honduras 112,492 km2. 832,280 ha / 100 / 112,492 km2 = 7.4% (rounded). https://www.unesco.org/en/mab/rio-platano ; https://whc.unesco.org/en/list/196 ; https://data.un.org/en/iso/hn.html',
+            'copanDynasty':'UNESCO World Heritage Centre Maya Site of Copan: Yax Kuk Mo arrived in 427 AD and started a dynasty of 16 rulers; stelae and altars stand in the Great Plaza. https://whc.unesco.org/en/list/129',
+            'elAmatillo':'Tica Bus official routes: Tegucigalpa Honduras to El Salvador via El Amatillo (checked 2026-09-18); actual services, entry conditions and security may change. https://www.ticabus.com/rutas-horarios-y-tarifas ; 2026-07-31 Salvadoran border information https://www.elsalvador.com/noticias/nacional/horarios-fronteras-vacaciones-agostinas/1286232/2026/',
+            'elGuasaule':'Tica Bus official routes: Tegucigalpa Honduras to Managua Nicaragua via El Guasaule (checked 2026-09-18); Nicaragua tourism land-border listing. Actual services, entry conditions and security may change. https://www.ticabus.com/rutas-horarios-y-tarifas ; https://www.mapanicaragua.com/faq-items/estan-abiertas-las-fronteras-terrestres/',
+          })
+          assert len(country['nextRoutes'])==3 and len(country['signatureFacts'])==3
+          assert [r['countryEn'] for r in country['nextRoutes']]==['GUATEMALA','EL SALVADOR','NICARAGUA']
+          assert country['facts'][3]['label']=='面積' and '日本の約30%' in country['facts'][3]['value']
+          country['updatedAt']='2026-09-18'
+          country['sourcesVerifiedAt']='2026-09-18'
+          path.write_text(json.dumps(country,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          state['reviewDeployment']={'state':'DEPLOYING','url':'https://atlas.yagenji.com/countries/honduras/','productionVerification':'PENDING','atlasPublished':False}
+          state['next']={'action':'VERIFY_CANONICAL_REVIEW','asset':None}
+          statepath.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('Honduras: three verified next routes and three geographical/historical numbers; live review reset for fresh verification.')
+          PY
+          python3 scripts/validate_country.py --strict data/countries/honduras.json
+          python3 scripts/country_production_protocol_v2.py validate
+          git rm .github/workflows/honduras-review-content-patch-once.yml
+          git add data/countries/honduras.json ops/country-production/honduras.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Correct actual Honduras next routes and reshape signature facts'
+          git push origin HEAD:refs/heads/fix/honduras-next-routes-signature-facts-20260918
