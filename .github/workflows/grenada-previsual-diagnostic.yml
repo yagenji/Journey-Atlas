@@ -1,0 +1,59 @@
+name: Grenada previsual diagnostic (temporary)
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-previsual-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run existing Grenada editorial checks
+        continue-on-error: true
+        run: |
+          python3 scripts/validate_country_editorial_v2.py data/countries/grenada.json
+          python3 scripts/validate_country_quality_v5.py data/countries/grenada.json
+      - name: Install existing map generation dependencies
+        run: python3 -m pip install --disable-pip-version-check 'shapely>=2,<3' 'basemap==2.0.0' 'basemap-data==2.0.0' 'cairosvg' 'pillow'
+      - name: Generate official ADM0 contextual map
+        continue-on-error: true
+        run: |
+          mkdir -p /tmp/grenada-map-check
+          python3 scripts/generate_country_map_with_context.py --country-json data/countries/grenada.json --source geoboundaries --iso GRD --admin-level ADM0 --map-name Grenada --simplify 0.001 --output /tmp/grenada-map-check/adm0.svg
+      - name: Generate official ADM1 dissolved contextual map
+        continue-on-error: true
+        run: |
+          python3 scripts/generate_country_map_with_context.py --country-json data/countries/grenada.json --source geoboundaries --iso GRD --admin-level ADM1 --map-name Grenada --simplify 0.001 --output /tmp/grenada-map-check/adm1.svg
+      - name: Fully decode both map candidates and report dimensions
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import io
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          import cairosvg
+          from PIL import Image
+          for path in sorted(Path('/tmp/grenada-map-check').glob('*.svg')):
+              data=path.read_bytes()
+              root=ET.fromstring(data)
+              assert root.get('viewBox')=='0 0 1200 760', (path,root.get('viewBox'))
+              png=cairosvg.svg2png(bytestring=data,output_width=1200,output_height=760)
+              image=Image.open(io.BytesIO(png)); image.load()
+              assert image.size==(1200,760)
+              path.with_suffix('.png').write_bytes(png)
+              print('DECODE_PASS',path.name,'SVG_BYTES',len(data),'PNG_BYTES',len(png),'SIZE',image.size)
+          PY
+      - name: Upload diagnostic previews (not production assets)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grenada-previsual-map-diagnostics
+          path: /tmp/grenada-map-check/
+          if-no-files-found: warn
+          retention-days: 2
