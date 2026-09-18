@@ -49,6 +49,8 @@ CONTENT + MAP
 
 Do not create extra phases or approval gates.
 
+**Keep the Country branch without a main-targeting PR during CONTENT + MAP, HERO, SCENES and TASTE.** Open or reuse one PR only after all 13 approved rasters are handed off and verified, when entering implementation/review QA. State-transition checks still run on Country pushes; PR-only checks must not be triggered by per-image progress. Do not open a PR for each image or State update.
+
 ## 5. CONTENT + MAP
 
 Before Hero generation, finish the content that does not require final raster bytes:
