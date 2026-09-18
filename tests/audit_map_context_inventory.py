@@ -13,13 +13,27 @@ from xml.etree import ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import add_country_map_context as ctx
+import add_country_map_context_legacy as legacy
 
 NS = '{http://www.w3.org/2000/svg}'
 COLORS = ('#eaf2f4', '#dcebf0', '#d0e3eb')
 
 
-def target_paths(root):
-    return [ET.tostring(p, encoding='unicode') for p in ctx.approved_land_paths(root)[0]]
+def original_paths(root):
+    """Serialize every original path, excluding migration context descendants."""
+    parents = {child: parent for parent in root.iter() for child in parent}
+    result = []
+    for path in root.iter(NS + 'path'):
+        cursor = path
+        excluded = path.attrib.get('data-map-context-legacy') is not None
+        while cursor is not None and not excluded:
+            if cursor.attrib.get('id') == 'geographic-context':
+                excluded = True
+                break
+            cursor = parents.get(cursor)
+        if not excluded:
+            result.append(ET.tostring(path, encoding='unicode'))
+    return result
 
 
 def status_for(source, config):
@@ -30,6 +44,8 @@ def status_for(source, config):
     palette = tuple(re.findall(r'stop-color="(#[0-9a-fA-F]{6})"', match.group())) if match else ()
     if palette == COLORS and ('Surrounding land:' in source or 'id="geographic-context"' in source):
         return 'existing_context', 'approved palette and existing context; do not regenerate', root
+    if config.get('slug') in legacy.LEGACY_SLUGS:
+        return 'previewable', 'reviewed migration-only legacy adapter', root
     bounds = config['map']['bounds']
     b = tuple(float(bounds[k]) for k in ('west', 'south', 'east', 'north'))
     regions = config['map'].get('regions')
@@ -89,33 +105,38 @@ def main():
                           input_sha256=hashlib.sha256(source.encode()).hexdigest(),
                           projection=root.get('data-map-projection'),
                           regions=[r['id'] for r in config['map'].get('regions', [])],
-                          target_path_count=len(target_paths(root)) if status != 'needs_review' else None)
+                          original_path_count=len(original_paths(root)),
+                          adapter=('legacy' if slug in legacy.LEGACY_SLUGS else 'canonical'))
             if status != 'previewable' or args.no_previews:
                 continue
             output_svg = args.output / (slug + '.svg')
-            command = [sys.executable, str(ROOT / 'scripts/add_country_map_context.py'),
+            command = [sys.executable, str(ROOT / 'scripts/add_country_map_context_existing.py'),
                        '--country-json', str(country_path), '--input', str(svg_path), '--output', str(output_svg)]
-            completed = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=120)
+            completed = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=180)
             if completed.returncode:
-                raise RuntimeError('map generation: ' + (completed.stderr or completed.stdout)[-350:])
+                raise RuntimeError('map generation: ' + (completed.stderr or completed.stdout)[-500:])
             result = output_svg.read_text(encoding='utf-8')
             parsed = ET.fromstring(result)
-            if target_paths(parsed) != target_paths(root):
-                raise AssertionError('approved target path changed')
+            if original_paths(parsed) != original_paths(root):
+                raise AssertionError('approved/original SVG path geometry changed')
             if parsed.get('viewBox') != root.get('viewBox'):
                 raise AssertionError('canvas changed')
+            if parsed.find(".//*[@id='geographic-context']") is None:
+                raise AssertionError('geographic context missing')
             png = args.output / (slug + '.png')
             cairosvg.svg2png(bytestring=result.encode(), write_to=str(png), output_width=1200, output_height=760)
             with Image.open(png) as img:
                 img.load()
                 if img.size != (1200, 760):
                     raise AssertionError(f'PNG dimensions {img.size}')
+                if img.getbbox() is None:
+                    raise AssertionError('empty raster')
                 thumb = ImageOps.contain(img.convert('RGB'), (300, 190))
             thumbs.append((slug, thumb))
-            record.update(status='preview_pass', reason='all approved land paths identical; full raster decode passed',
+            record.update(status='preview_pass', reason='all original SVG paths identical; full raster decode passed',
                           output_sha256=hashlib.sha256(result.encode()).hexdigest(), png_bytes=png.stat().st_size)
         except Exception as exc:
-            record.update(status='blocked', reason=(type(exc).__name__ + ': ' + str(exc))[:500])
+            record.update(status='blocked', reason=(type(exc).__name__ + ': ' + str(exc))[:700])
     if thumbs:
         sheet = Image.new('RGB', (1200, ((len(thumbs) + 3) // 4) * 220), '#ffffff')
         draw = ImageDraw.Draw(sheet)
