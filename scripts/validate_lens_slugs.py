@@ -20,6 +20,11 @@ SLUG_RE = re.compile(r"^[a-z]+$")
 # Hong Kong predates the letters-only slug contract and keeps its canonical
 # published ATLAS route. New destination slugs must still follow SLUG_RE.
 ATLAS_SLUG_EXCEPTIONS = {"hong-kong"}
+# The published Hill of Crosses article predates numbered JOURNEY LENS story
+# routes. Preserve its actual canonical URL; do not permit other unnumbered URLs.
+VERIFIED_LEGACY_ARTICLE_URLS = {
+    "https://journey.yagenji.com/lithuania/": "lithuania",
+}
 CANONICAL_DESTINATION_COUNT = 201
 
 
@@ -53,10 +58,7 @@ def main() -> int:
             f"Registry count must be {CANONICAL_DESTINATION_COUNT}, found {registry.get('count')!r}",
         )
     if len(destinations) != CANONICAL_DESTINATION_COUNT:
-        fail(
-            errors,
-            f"Expected {CANONICAL_DESTINATION_COUNT} canonical destinations, found {len(destinations)}",
-        )
+        fail(errors, f"Expected {CANONICAL_DESTINATION_COUNT} canonical destinations, found {len(destinations)}")
     invalid = [
         slug
         for slug in slugs
@@ -79,6 +81,10 @@ def main() -> int:
         for item in registry.get("journeyLensLegacyUrlExceptions", [])
         if isinstance(item, dict) and isinstance(item.get("url"), str)
     }
+    for url, slug in VERIFIED_LEGACY_ARTICLE_URLS.items():
+        if url in legacy_url_exceptions and legacy_url_exceptions[url] != slug:
+            fail(errors, f"Conflicting legacy URL exception: {url} -> {legacy_url_exceptions[url]}")
+        legacy_url_exceptions.setdefault(url, slug)
 
     try:
         root = ET.fromstring(load_rss())
