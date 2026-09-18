@@ -519,8 +519,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DEPLOYING",
+    "url": "https://atlas.yagenji.com/countries/honduras/",
+    "productionVerification": "PENDING",
+    "atlasPublished": false
   },
   "finalApproval": {
     "state": "PENDING"
@@ -714,7 +716,7 @@
     "canonicalReviewReadyAt": "2026-09-18T12:04:29+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "VERIFY_CANONICAL_REVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2
