@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "honduras",
   "countryName": "HONDURAS",
-  "contentRef": "country/honduras",
-  "stateRef": "country/honduras",
-  "phase": "QA",
-  "stateRevision": 24,
-  "updatedAt": "2026-09-18T12:04:29+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 26,
+  "updatedAt": "2026-09-18T14:11:52+09:00",
   "hero": {
     "id": "HERO",
     "state": "APPROVED",
@@ -519,17 +519,28 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/honduras/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-18T14:08:54+09:00",
+    "basis": "User 2026-09-18: 修正して、QAが問題なければ公開してください。 Corrected affinity cards pass exact deployed live desktop/tablet/mobile QA; Guatemala and Nicaragua link correctly; Belize remains unlinked COMING SOON. Country Content QA, image QA, and canonical live QA passed."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-18T14:11:52+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/honduras/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -716,7 +727,7 @@
     "canonicalReviewReadyAt": "2026-09-18T12:04:29+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
