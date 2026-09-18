@@ -1,0 +1,129 @@
+name: Grenada one-time approved taste reconciliation
+on:
+  push:
+    branches: [country/grenada]
+    paths: [.github/workflows/grenada-once-reconcile.yml]
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    if: github.repository == 'yagenji/Journey-Atlas' && github.ref == 'refs/heads/country/grenada'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pillow
+      - name: Verify approved bytes and reconcile two distinct State transitions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime, hashlib, json, subprocess
+          from pathlib import Path
+          from PIL import Image
+
+          path = Path('ops/country-production/grenada.json')
+          expected_blob = 'd56df04dd2eeabf297ab7c424f568351810e2c25'
+          def run(*args):
+              print('+', ' '.join(args), flush=True)
+              subprocess.run(args, check=True)
+          def now():
+              return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='seconds')
+          def write(state):
+              path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          def commit(message):
+              parent = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+              run('python', 'scripts/country_production_state_v7.py', 'validate')
+              run('git', 'add', str(path))
+              run('git', 'commit', '-m', message)
+              run('python', 'scripts/country_production_state_v7.py', 'validate-range', parent, 'HEAD')
+              run('git', 'push', 'origin', 'HEAD:country/grenada')
+
+          actual_blob = subprocess.check_output(['git', 'hash-object', str(path)], text=True).strip()
+          assert actual_blob == expected_blob, (actual_blob, 'State changed; abort')
+          state = json.loads(path.read_text(encoding='utf-8'))
+          assert state['stateRevision'] == 10 and state['phase'] == 'TASTE_INITIAL'
+          assert state['next'] == {'action': 'RESET_GENERATION_CONTEXT', 'asset': None}
+          assert state['publication']['atlasPublished'] is False
+          assert state['finalApproval']['state'] == 'PENDING'
+          assert state['tasteBatchReview'] == {'approval': 'PENDING', 'rounds': []}
+
+          root = Path('assets/images/grenada/approved')
+          files = [root / 'hero-st-georges-carenage.webp'] + [root / f'scene-{i}.webp' for i in range(1, 9)] + [root / f'food-{i}.webp' for i in range(1, 5)]
+          assert len(files) == 13
+          blobs = set()
+          for f in files:
+              data = f.read_bytes()
+              blob = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              assert blob not in blobs, ('duplicate raster', str(f))
+              blobs.add(blob)
+              with Image.open(f) as im:
+                  im.verify()
+              with Image.open(f) as im:
+                  im.load()
+                  assert im.format == 'WEBP' and min(im.size) >= 800, (str(f), im.size)
+              if f.name == 'food-1.webp':
+                  assert blob == '3c495ea90c3b0ba689bec5d516a6a99c1b74e139', 'Wrong food-1 variant'
+              print('DECODED', f, blob, flush=True)
+
+          foods = {f['id']: f for f in state['taste']}
+          assert foods['FOOD01']['candidateGenerationId'] == '96db9404-802f-465d-a2ed-ab9a5e924ab6'
+          assert foods['FOOD02']['state'] == 'REGENERATE'
+          for n, gid in [('FOOD02', 'ea621355-6fa7-4e16-9326-7f794c62af36'),
+                         ('FOOD03', '34aee302-df2b-4855-8c9d-b9f85498c2f7'),
+                         ('FOOD04', '80d9e4c5-8d73-43b5-a933-e791e3ffa747')]:
+              item = foods[n]
+              item['state'] = 'REVIEW_CANDIDATE'
+              item['candidateGenerationId'] = gid
+              item['candidateVisualQa'] = {k: 'PASS' for k in
+                  ('targetIdentity', 'dishIdentity', 'singleDish', 'integralComponentsOnly',
+                   'plainBackground', 'decorativePropsAbsent', 'previousAssetRepeat', 'collageTypography')}
+              item.pop('lastFailureReason', None)
+              if n == 'FOOD02':
+                  item['promptSeries'] = 2
+                  item['promptSeriesRejectCount'] = 0
+          if '6fa43599-55df-4828-9ab2-f69c2d0af133' not in foods['FOOD01']['rejectedGenerationIds']:
+              foods['FOOD01']['rejectedGenerationIds'].append('6fa43599-55df-4828-9ab2-f69c2d0af133')
+          state['phase'] = 'TASTE_REVIEW'
+          state['stateRevision'] = 11
+          state['updatedAt'] = now()
+          context = state['generationContext']
+          assert context['state'] == 'CONTAMINATED'
+          context.update(state='CLEAN', epoch=context['epoch'] + 1, lastResetAt=now(), lastFailureAsset=None, lastFailureReason=None)
+          state['next'] = {'action': 'WAIT_TASTE_BATCH_REVIEW', 'asset': None}
+          write(state)
+          commit('Grenada: reconcile four Taste candidates at batch boundary')
+
+          ledger = state['tasteBatchReview']
+          assert ledger == {'approval': 'PENDING', 'rounds': []}
+          approved = {}
+          for i in range(1, 5):
+              item = foods[f'FOOD{i:02d}']
+              assert item['state'] == 'REVIEW_CANDIDATE'
+              gid = item.pop('candidateGenerationId')
+              item.pop('candidateVisualQa', None)
+              item['state'] = 'APPROVED'
+              item['asset'] = f'assets/images/grenada/approved/food-{i}.webp'
+              item['approvedGenerationId'] = gid
+              approved[f'FOOD{i:02d}'] = gid
+          stamp = now()
+          ledger['rounds'].append({'round': 1, 'reviewBoundary': True, 'approvedAt': stamp,
+              'scope': [f'FOOD{i:02d}' for i in range(1, 5)], 'approvedGenerations': approved, 'regenerate': []})
+          ledger['approval'] = 'APPROVED'
+          state['phase'] = 'ASSET_QA'
+          state['stateRevision'] = 12
+          state['updatedAt'] = stamp
+          state['next'] = {'action': 'VERIFY_APPROVED_ASSETS', 'asset': None}
+          state['assetHandoff'].update(state='VERIFIED', verifiedRasterCount=13, verifiedAt=stamp)
+          state['productionMetrics']['tasteBatchReviews'] = 1
+          state['productionMetrics']['tasteBatchApprovedAt'] = stamp
+          assert state['publication']['atlasPublished'] is False
+          write(state)
+          commit('Grenada: record approved Taste batch and verify 13 delivered rasters')
+          print('GRENADA_STATE_RECONCILIATION_SUCCESS', flush=True)
+          PY
