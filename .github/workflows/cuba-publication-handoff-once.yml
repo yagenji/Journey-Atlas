@@ -1,0 +1,32 @@
+name: One-time Cuba publication handoff
+on:
+  push:
+    branches: [ops/cuba-publication-approval-20260919]
+    paths: ['.github/workflows/cuba-publication-handoff-once.yml']
+permissions:
+  contents: write
+jobs:
+  stage-approved-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout isolated handoff code
+        uses: actions/checkout@v4
+        with:
+          ref: ops/cuba-publication-approval-20260919
+          path: handoff
+      - name: Checkout latest-main Cuba publication branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/cuba-publication-20260919
+          path: site
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+      - name: Verify real canonical QA and stage authorized Cuba publication
+        working-directory: site
+        run: python3 ../handoff/scripts/_cuba_publication_once.py
