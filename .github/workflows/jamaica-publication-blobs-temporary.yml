@@ -1,86 +1,86 @@
-name: Temporary Jamaica publication blob preparation
+name: Temporary Jamaica post-publication search and navigation QA
 on:
   push:
     branches: [qa/jamaica-publish-blob-preparation-20260919]
     paths: ['.github/workflows/jamaica-publication-blobs-temporary.yml']
 permissions:
-  contents: write
+  contents: read
 jobs:
-  prepare:
+  jamaica-live-publishing:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          ref: a51a4a0e10c914bc6622b6cbc8371f14ab5915da
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate Jamaica terminal content on latest main and stage byte-exact GitHub blobs, never commit
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
+      - name: Verify live release SHA, canonical indexing, sitemap, and canonical destination registry
         run: |
-          set -euo pipefail
-          git fetch --quiet --no-tags origin '+refs/heads/main:refs/remotes/origin/main' '+refs/heads/country/jamaica:refs/remotes/origin/country/jamaica'
-          source_sha="$(git rev-parse origin/country/jamaica)"
-          test "$source_sha" = '0ac0d8cd51dc5050bc6a272bc3443b835aeb2d65'
-          main_sha="$(git rev-parse origin/main)"
-          python scripts/country_overlay_v2.py assert-scope jamaica origin/main "$source_sha"
-          git checkout -q -B jamaica-source "$source_sha"
-          python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-publication-overlay
-          git checkout -q -B jamaica-publication-prep "$main_sha"
-          python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-publication-overlay
-          test -z "$(git diff --name-only origin/main -- data/countries/jamaica.json assets/images/jamaica)"
-          python scripts/publication_pipeline_v2.py assert-publish-ready jamaica
-          python scripts/publication_pipeline_v2.py finalize jamaica
           python - <<'PY'
-          import json
-          from pathlib import Path
-          from datetime import datetime,timezone,timedelta
-          path=Path('data/country-renewal-status.json'); content=json.loads(path.read_text())
-          country=json.loads(Path('data/countries/jamaica.json').read_text())
-          records=content.setdefault('countries',[])
-          record=next((x for x in records if isinstance(x,dict) and x.get('slug')=='jamaica'),None)
-          if record is None:
-              record={'slug':'jamaica'};records.append(record)
-          record.update({'nameJa':country['nameJa'],'wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Jamaica exact-asset closed provenance exception retained; approved live QA verified. Final live deployment SHA, sitemap and index checks after merge.']})
-          content['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
-          path.write_text(json.dumps(content,ensure_ascii=False,separators=(',',':'))+'\n')
-          s=json.loads(Path('ops/country-production/jamaica.json').read_text())
-          assert s['phase']=='COMPLETE' and s['finalApproval']['state']=='APPROVED'
-          assert s['publication']['atlasPublished'] and s['publication']['state']=='PUBLISHED'
-          assert s['closedProvenanceException']['id']=='jamaica-preserve-13-20260919'
-          assert all(x['state']=='NOT_STARTED' and x['asset'] is None for x in s['scenes']+s['taste'])
-          reg=json.loads(Path('data/atlas-destinations.json').read_text())
-          jam=next(x for x in reg['destinations'] if x['slug']=='jamaica')
-          assert jam['atlasPublished'] and jam['href']=='countries/jamaica/' and jam['image']==s['hero']['asset']
-          assert len(reg['destinations'])==reg['count']==201
-          print('PASS user final approval, exact exception, 201 destinations and unchanged thirteen rasters')
+          import json,re,time,urllib.request
+          from html.parser import HTMLParser
+          from xml.etree import ElementTree as ET
+          BASE='https://atlas.yagenji.com';URL=BASE+'/countries/jamaica/'
+          def fetch(path):
+              req=urllib.request.Request(BASE+path+('?' if '?' not in path else '&')+'postpub='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'JOURNEY-ATLAS-Post-Publication-QA/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as response:
+                  assert response.status==200,(path,response.status)
+                  return response.read().decode('utf-8')
+          live_sha=json.loads(fetch('/build-meta.json'))['commit']
+          assert live_sha=='a51a4a0e10c914bc6622b6cbc8371f14ab5915da',live_sha
+          print('PASS exact deployed Cloudflare SHA:',live_sha)
+          class Head(HTMLParser):
+              def __init__(self):super().__init__();self.robots=[];self.canonical=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag=='meta' and a.get('name','').lower()=='robots':self.robots.append(a.get('content',''))
+                  if tag=='link' and a.get('rel')=='canonical':self.canonical.append(a.get('href',''))
+          html=fetch('/countries/jamaica/')
+          head=Head();head.feed(html)
+          assert URL in head.canonical,head.canonical
+          assert all('noindex' not in x.lower() for x in head.robots),head.robots
+          print('PASS public canonical URL and index-eligible robots meta:',head.robots)
+          sitemap=fetch('/sitemap.xml')
+          urls=[(loc.text or '').strip() for loc in ET.fromstring(sitemap).iter() if loc.tag.endswith('loc')]
+          assert URL in urls,('Jamaica missing from sitemap',urls[:5],len(urls))
+          print('PASS Jamaica indexed in live sitemap:',URL)
+          registry=json.loads(fetch('/data/atlas-destinations.json'))
+          items=[x for x in registry['destinations'] if x.get('slug')=='jamaica']
+          assert len(items)==1 and items[0]['atlasPublished'] is True,items
+          assert items[0]['href']=='countries/jamaica/',items
+          assert items[0]['image']=='assets/images/jamaica/approved/hero-ward-theatre.webp',items
+          assert len(registry['destinations'])==201
+          print('PASS live canonical registry Jamaica public and linked, 201 total destinations')
+          homepage=fetch('/')
+          links=[x for x in re.findall(r'href=["\']([^"\']+)["\']',homepage) if '/countries/jamaica/' in x or x=='countries/jamaica/']
+          print('Homepage static Jamaica link count:',len(links))
           PY
-          python scripts/validate_production_state_routed.py
-          python scripts/run_state_validator.py scripts/country_production_state_v7.py validate
-          python scripts/validate_country.py --strict data/countries/jamaica.json
-          python scripts/validate_country_map_v6.py data/countries/jamaica.json
-          git diff --name-only origin/main | tee /tmp/jamaica-publish-changes.txt
+      - name: Verify Jamaica appears in a normal live UI navigation surface
+        run: |
+          python -m pip install --disable-pip-version-check --quiet selenium
           python - <<'PY'
-          from pathlib import Path
-          changed=set(Path('/tmp/jamaica-publish-changes.txt').read_text().splitlines())
-          allowed={'data/atlas-destinations.json','data/country-renewal-status.json','ops/country-production/jamaica.json'}
-          assert changed==allowed,(changed,allowed)
-          print('PASS Jamaica-only three-file publication diff')
+          import time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from shutil import which
+          options=Options()
+          for flag in ['--headless=new','--no-sandbox','--disable-dev-shm-usage']:options.add_argument(flag)
+          driver=webdriver.Chrome(service=Service(which('chromedriver')) if which('chromedriver') else Service(),options=options)
+          try:
+              found=[]
+              for path in ['/','/countries/']:
+                  driver.get('https://atlas.yagenji.com'+path+'?postpub='+str(time.time_ns()))
+                  for attempt in range(30):
+                      links=driver.execute_script('''return [...document.querySelectorAll('a[href]')].map(a=>a.href).filter(s=>/\/countries\/jamaica\/?(?:[?#].*)?$/.test(s));''')
+                      if links:found=links;break
+                      time.sleep(.35)
+                  print('Live normal navigation',path,'links:',len(links))
+                  if found:break
+              assert found,'No Jamaica Country link visible in normal homepage / countries directory DOM'
+              print('PASS real normal-page Jamaica navigation link:',found[0])
+          finally:
+              driver.quit()
           PY
-          echo "PREPARED_MAIN_SHA $main_sha"
-          echo "APPROVED_COUNTRY_SHA $source_sha"
-          for path in data/atlas-destinations.json data/country-renewal-status.json ops/country-production/jamaica.json; do
-            python - "$path" <<'PY'
-          import json,sys
-          from pathlib import Path
-          text=Path(sys.argv[1]).read_text(encoding='utf-8')
-          Path('/tmp/jamaica-exact-blob-request.json').write_text(json.dumps({'content':text,'encoding':'utf-8'},ensure_ascii=False),encoding='utf-8')
-          PY
-            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" --input /tmp/jamaica-exact-blob-request.json --jq '.sha')"
-            test "$sha" = "$(git hash-object "$path")"
-            echo "VERIFIED_REMOTE_BLOB $path $sha"
-          done
-          echo 'NO BRANCH REF UPDATED; NO COMMIT CREATED BY ACTIONS'
