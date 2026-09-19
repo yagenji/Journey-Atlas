@@ -50,11 +50,11 @@ jobs:
           assert isinstance(row,str) or row.get('atlasPublished') is False
           print('INSPECTION ONLY: FOOD03 QA unresolved, no approval or publication mutation')
           PY
-      - name: Build actual single-Country page and run local desktop tablet mobile QA
+      - name: Build local single-Country page and run desktop tablet mobile QA
         shell: bash
         env:
           TARGET_SLUGS: stkittsnevis
-          JOURNEY_ATLAS_SITE_URL: https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
           JOURNEY_ATLAS_BUILD_VERSION: ${{ github.sha }}
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-stkittsnevis-inspection
@@ -74,9 +74,10 @@ jobs:
             sleep 1
           done
           python scripts/qa_published_browser.py
+          JOURNEY_ATLAS_SITE_URL='https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/' python scripts/build_country_preview_targeted.py
           python scripts/externalize_review_preview_images.py \
             --dist dist \
-            --site-url "$JOURNEY_ATLAS_SITE_URL" \
+            --site-url 'https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/' \
             --image-origin "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/"
           python - <<'PY'
           import json
