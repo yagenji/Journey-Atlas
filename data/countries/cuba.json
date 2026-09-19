@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "publicationPipelineVersion": 2,
+  "slug": "cuba",
+  "nameEn": "CUBA",
+  "nameJa": "キューバ",
+  "region": "CARIBBEAN / 22°N",
+  "seo": {"description": "ハバナの港と旧市街から、ビニャーレスの石灰岩丘陵、サパタの湿地、北岸の島々、トリニダー、南東部の海岸段丘、東端の森へ。キューバの地理と暮らしを8つの景色と地図から知る。"},
+  "capital": {"nameEn": "Havana", "nameJa": "ハバナ", "coordinates": {"latitude": 23.13652, "longitude": -82.35208}, "labelPosition": "right", "labelOffset": {"x": 0, "y": 0}},
+  "hero": {"lead": "ハバナの港に面した旧市街から西の石灰岩の谷、南の湿地、北岸の島々、東の山と森へ。細長い島を地図でたどると、海の色だけではないキューバの地形と、そこに重なる暮らしが見えてくる。", "image": "assets/images/cuba/approved/hero-havana-classic-car.webp", "location": "Havana / El Capitolio & Classic Cars", "coordinates": {"latitude": 23.1353, "longitude": -82.3594}, "mapOffset": {"x": -2.6, "y": 0}},
+  "map": {"bounds": {"north": 26.4, "south": 17.3, "west": -88.3, "east": -71.0}, "svg": "assets/images/cuba/map-atlas-v1.svg", "route": null, "source": "Cuba target coastline and cays: GSHHS intermediate-resolution polygons via Basemap; nearby land: GSHHS low-resolution polygons via Basemap; Cuba affiliation cross-checked against Natural Earth 1:110m admin-0 reference with proximity heuristic. WGS84 local-equirectangular, 1200×760. Minor cay affiliation still requires final geographic QA."},
+  "scenes": [
+    {"id": "vinales-valley-mogotes", "name": "ビニャーレス / 石灰岩の谷", "nameLocal": "Viñales Valley / Mogotes", "mapLabel": "Viñales", "description": "西部の谷の平地から、丸みのある石灰岩の丘モゴーテが急に立ち上がる。畑と農家がその間に点在し、地形と耕作が重なる景観が続く。", "coordinates": {"latitude": 22.6167, "longitude": -83.7167}, "image": "assets/images/cuba/approved/s01-vinales-valley.webp"},
+    {"id": "cienaga-de-zapata-wetland", "name": "サパタ湿地 / マングローブと水辺", "nameLocal": "Ciénaga de Zapata / Wetlands", "mapLabel": "Zapata", "description": "南西部の低地には、マングローブや湿原、水路と沿岸のラグーンが広がる。岩の谷とは対照的に、水と陸の境目が入り組むキューバの風景。保護区では現地の訪問条件を確認したい。", "coordinates": {"latitude": 22.4622, "longitude": -81.4046}, "mapOffset": {"x": -0.7, "y": 0}, "image": "assets/images/cuba/approved/s02-zapata-wetland.webp"},
+    {"id": "cienfuegos-jose-marti-square", "name": "シエンフエゴス / ホセ・マルティ広場", "nameLocal": "Cienfuegos / Parque José Martí", "mapLabel": "Cienfuegos", "description": "南岸の湾に面した都市の中心で、広場を囲む公共建築と整った街路が続く。ハバナの港町とも異なる、19世紀の都市計画を現在の街歩きの中で読み取れる。", "coordinates": {"latitude": 22.14589, "longitude": -80.45218}, "mapOffset": {"x": 0, "y": -3.0}, "image": "assets/images/cuba/approved/s03-cienfuegos-square.webp"},
+    {"id": "trinidad-plaza-mayor", "name": "トリニダー / マヨール広場", "nameLocal": "Trinidad / Plaza Mayor", "mapLabel": "Trinidad", "description": "中央南部の町には、石畳の道と瓦屋根、色の異なる低層家屋が続く。かつて周辺のサトウキビ農園と結ばれた都市が、今も生活の場として残っている。", "coordinates": {"latitude": 21.80306, "longitude": -79.98444}, "mapOffset": {"x": 1.5, "y": 1.0}, "image": "assets/images/cuba/approved/s04-trinidad-plaza-mayor.webp"},
+    {"id": "cayo-coco-playa-flamenco", "name": "カヨ・ココ / フラメンコ浜", "nameLocal": "Cayo Coco / Playa Flamenco", "mapLabel": "Cayo Coco", "description": "中央北岸の島では、白い砂浜の外側に遠浅の青い海が続く。背後の低い植生や珊瑚礁を、内陸の町や湿地とは別の海の地形として眺めたい。", "coordinates": {"latitude": 22.54408, "longitude": -78.43155}, "image": "assets/images/cuba/approved/s05-cayo-coco-playa-flamenco.webp"},
+    {"id": "camaguey-historic-streets", "name": "カマグエイ / 旧市街の路地", "nameLocal": "Camagüey / Historic Centre", "mapLabel": "Camagüey", "description": "東部へ向かう内陸都市では、入り組む街路が小さな広場につながる。低い建物や中庭が集まり、海辺の直線的な街並みとは異なる歩く尺度をつくる。", "coordinates": {"latitude": 21.37861, "longitude": -77.91861}, "image": "assets/images/cuba/approved/s06-camaguey-streets.webp"},
+    {"id": "desembarco-granma-terraces", "name": "グランマ上陸記念国立公園 / 海岸段丘", "nameLocal": "Desembarco del Granma / Cabo Cruz Marine Terraces", "mapLabel": "Granma", "description": "南東部の海岸では、隆起した石灰岩が段を重ねて海へ落ちる。波と地殻変動が刻んだ崖と海面の境界が、平坦な砂浜とは異なる島の輪郭を見せる。", "coordinates": {"latitude": 19.88333, "longitude": -77.63333}, "image": "assets/images/cuba/approved/s07-granma-terraces.webp"},
+    {"id": "alejandro-humboldt-forest", "name": "アレハンドロ・デ・フンボルト国立公園 / 湿潤な森", "nameLocal": "Alejandro de Humboldt National Park / Eastern Forest", "mapLabel": "Humboldt", "description": "東部の山には、川と谷を包む濃い森が広がる。複雑な地質と多雨の環境が固有の動植物を育み、西部の乾いた石灰岩の谷とは別の緑が続く。", "coordinates": {"latitude": 20.45, "longitude": -75.0}, "image": "assets/images/cuba/approved/s08-humboldt-forest.webp"}
+  ],
+  "encounters": [
+    {"title": "港を見渡す石の要塞", "category": "ARCHITECTURE", "icon": "history"},
+    {"title": "低い家並みの路地", "category": "CITY", "icon": "city"},
+    {"title": "畑の向こうの石灰岩丘", "category": "LANDSCAPE", "icon": "landscape"},
+    {"title": "潮と森が交わる湿地", "category": "NATURE", "icon": "landscape"},
+    {"title": "浅瀬と珊瑚礁", "category": "NATURE", "icon": "sea"},
+    {"title": "広場から聞こえる音楽", "category": "CULTURE", "icon": "culture"},
+    {"title": "市場の米と豆の料理", "category": "FOOD", "icon": "food"},
+    {"title": "乗合車と町の移動", "category": "MOVEMENT", "icon": "road"}
+  ],
+  "atlasExtras": [
+    {"topicKey": "havana-harbour-defensive-urban-history", "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "ハバナの港は、街路と要塞を一緒に見ると立体的になる", "text": "旧ハバナの広場と通りは、港に出入りする船と結びついて発展した。湾の入口に残る石造りの要塞は、港を守るために築かれたもの。城壁側と海側を行き来すると、街の形が港の地形に沿っていることが分かる。", "points": ["旧市街には異なる時代の広場と家屋が重なる", "湾口の要塞群と街は一つの港湾景観をつくる"]},
+    {"topicKey": "trinidad-sugar-valley-labour", "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "トリニダーの美しい街並みには、砂糖産業の歴史も重なる", "text": "周囲のロス・インヘニオス渓谷では、かつてサトウキビ栽培と製糖が町の富を支えた。その生産は奴隷化された人々の労働に依存していた。広場の建築と谷の遺構をあわせて見て、都市の景観が生まれた背景にも目を向けたい。", "points": ["都市と製糖所跡は同じ文化的景観を構成する", "建物の繁栄と強制労働の歴史を切り離さない"]},
+    {"topicKey": "cuban-rumba-community-practice", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "ルンバは、人が集まる場で受け継がれる音楽と踊り", "text": "キューバのルンバは、太鼓や歌、踊りを通じて地域の人々が参加する文化。アフリカ系の表現を軸に、島の多様な文化的要素が重なってきた。UNESCOは2016年に無形文化遺産へ登録した。", "points": ["演奏と踊り、周囲の参加が結びつく", "舞台だけでなく地域の集まりにも受け継がれる"]},
+    {"topicKey": "baracoa-cocoa-coconut-farming", "themeEn": "WORK", "themeJa": "仕事と土地", "title": "東のバラコアでは、カカオとココナツが土地の仕事につながる", "text": "バラコア周辺にはカカオを育て、発酵・乾燥から加工へつなぐ農園や地域の仕事がある。ココナツの栽培と加工も、この湿潤な東部の暮らしを形づくる。産地では栽培から食卓までの工程を知ることができる。", "points": ["湿潤な東部は西部の農業景観とは異なる", "農園と加工の工程が地域内でつながる"]},
+    {"topicKey": "island-transport-fuel-resilience", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "細長い国土の移動には、いまの生活条件も関わる", "text": "ハバナと東部の町を結ぶ移動は距離が長く、燃料や電力の供給状況が交通・宿泊・通信に影響することがある。旅程を考えるときは景色の間の距離だけでなく、移動手段の運行確認と余裕の日程を組み込みたい。", "points": ["長距離移動は日程に余白を置く", "燃料・停電状況は出発直前に公的情報を確認する"]},
+    {"topicKey": "camaguey-courtyards-street-network", "themeEn": "CITY", "themeJa": "街を歩く", "title": "カマグエイの路地は、曲がった先で広場に出る", "text": "カマグエイの旧市街は、直交する道路だけでなく曲がる道や大小の広場が組み合わさる。家の中庭や街区の奥行きを歩いて確かめると、キューバの都市にも場所ごとの形の違いがあると分かる。", "points": ["直線の格子ではない街路が続く", "広場と住居の中庭が歩く景観に変化を与える"]}
+  ],
+  "travelTrivia": [
+    {"topicKey": "cuban-son-2025-intangible", "categoryEn": "MUSIC", "categoryJa": "音楽", "title": "ソンは2025年に無形文化遺産へ登録された", "text": "歌と楽器、踊りを結びつけるソンは、日常を歌う詞と即興性を持つ伝統。家族やバンド、地域の集まりでも受け継がれている。", "icon": "culture", "sourceKey": "son"},
+    {"topicKey": "central-cuba-parrandas-festival", "categoryEn": "FESTIVAL", "categoryJa": "祭り", "title": "中部の町では、地区ごとに祝祭を準備する", "text": "レメディオスを起点とするパランダスでは、町の地区が山車や飾りを長い時間をかけて作り、年末の祝祭を迎える。", "icon": "calendar", "sourceKey": "parrandas"},
+    {"topicKey": "caribbean-cassava-casabe", "categoryEn": "FOOD", "categoryJa": "食", "title": "カサベは、キャッサバから作る薄いパン", "text": "すりおろしたキャッサバの粉を焼く伝統は、キューバを含むカリブの複数の国で共有され、2024年に無形文化遺産へ登録された。", "icon": "food", "sourceKey": "casabe"},
+    {"topicKey": "cienfuegos-planned-urban-layout", "categoryEn": "CITY", "categoryJa": "街", "title": "シエンフエゴスでは街路が整った形で交わる", "text": "19世紀に計画された都市の中心部には、規則的な道路と広場が残る。ハバナの古い港町やカマグエイの曲がる道と歩き比べられる。", "icon": "city", "sourceKey": "cienfuegos"},
+    {"topicKey": "zapata-two-crocodile-species", "categoryEn": "NATURE", "categoryJa": "自然", "title": "サパタの湿地には2種類のワニが生息する", "text": "キューバワニとアメリカワニが生息する水域があり、湿地は多様な生物の生息地となっている。観察は保護区の規則を守って行いたい。", "icon": "landscape", "sourceKey": "zapata"}
+  ],
+  "taste": {"kicker": "TASTE OF CUBA", "title": "キューバで食べたいもの", "intro": "煮込んだ肉、豆と米、根菜のスープ、柑橘とにんにくで食べるキャッサバ。見た目も食感も異なる、島の食卓の4品を選ぶ。", "items": [
+    {"id": "ropa-vieja", "name": "ロパ・ビエハ", "nameLocal": "Ropa Vieja", "text": "細くほぐした牛肉をトマトやピーマン、玉ねぎなどと煮込む料理。赤みのある肉の繊維と野菜が残り、米や豆料理と一緒に食卓へ並ぶ。", "image": "assets/images/cuba/approved/food01-ropa-vieja.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "arroz-congri", "name": "コングリ", "nameLocal": "Arroz Congrí", "text": "豆と米を一緒に炊き、豆の色と香りを米全体に移す料理。地域や家庭で豆の種類や味つけが異なり、日常の主食としてほかの料理を支える。", "image": "assets/images/cuba/approved/food02-congri.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "ajiaco-criollo", "name": "アヒアコ", "nameLocal": "Ajiaco Criollo", "text": "根菜やトウモロコシ、肉などをじっくり煮込むスープ。具材の形が残る深い器で供され、さまざまな食材が一つの鍋に集まる。", "image": "assets/images/cuba/approved/food03-ajiaco.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "yuca-con-mojo", "name": "ユカ・コン・モホ", "nameLocal": "Yuca con Mojo", "text": "ゆでたキャッサバに、にんにくや柑橘を使ったモホソースをかける料理。白い根菜と香りのあるソースの組み合わせが、肉や米料理とは別の食感を生む。", "image": "assets/images/cuba/approved/food04-yuca-con-mojo.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"}
+  ]},
+  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "島の西部から東部まで距離があり、陸路の移動日は観光日とは別に余裕を見込みたい。以下は交通を確保できる場合の目安。運休や燃料事情によっては訪問地域を減らす。", "items": [
+    {"duration": "4〜6日", "title": "ハバナと西部の谷をめぐる", "text": "旧ハバナの広場や港周辺を歩いた後、西のビニャーレスで石灰岩の丘と畑を訪ねる。往復の陸路移動を含めて首都と西部の二地域に絞る。例：ハバナ → ビニャーレス → ハバナ。", "icon": "city"},
+    {"duration": "7〜11日", "title": "南岸の歴史都市まで足を延ばす", "text": "ハバナから南岸のシエンフエゴスを経てトリニダーへ。計画的な港町と石畳の旧市街を歩き比べるには、都市間の陸路移動と運休時の予備日を見込む。例：ハバナ → シエンフエゴス → トリニダー → ハバナ。", "icon": "map"},
+    {"duration": "12日以上", "title": "中部を越えて東部へ進む", "text": "中部の町に加えてカマグエイ以東へ進むと、内陸の街路から東部の山地へ景色が変わる。長い陸路移動に余裕を取り、バラコアまで延ばす場合はさらに滞在日を確保する。例：ハバナ → シエンフエゴス → トリニダー → カマグエイ → サンティアゴ・デ・クーバ。", "icon": "compass"}
+  ]},
+  "seasons": [
+    {"months": "12〜2月", "color": "#a9bdc6", "text": "比較的乾いた時期。都市歩きや西部の谷を訪ねやすい季節だが、北からの寒気による風や雨の日もある。"},
+    {"months": "3〜4月", "color": "#c7d4b6", "text": "乾季の終わり。日差しが強まるため、街歩きと日陰での休憩を組み合わせたい。"},
+    {"months": "5〜8月", "color": "#d7c89a", "text": "雨季に入り、暑さとスコールが増える。6月からは大西洋のハリケーンシーズンにも入るため、交通の変更に備える。"},
+    {"months": "9〜11月", "color": "#c5b082", "text": "雨や熱帯低気圧の影響が残り、地域によって海況・道路状況が変わる。11月へ向かうにつれて比較的乾いた季節に移る。"}
+  ],
+  "transport": {"title": "都市間の移動は運行状況を確認して組み合わせる", "text": "ハバナと中部・東部は長距離バス、鉄道、車、利用可能な航空便を組み合わせる。2026年9月時点で燃料・電力不足による運休や遅れがあり得るため、交通の存在と実際の運行を分けて確認し、移動日に余裕を置く。", "icon": "road"},
+  "personas": [
+    {"title": "港町の街並みと歴史を歩いて知りたい人", "text": "旧ハバナ、シエンフエゴス、トリニダー、カマグエイを比べ、広場、街路、港との関係が場所ごとにどう変わるかを見たい人。"},
+    {"title": "石灰岩の谷から島の森まで景色を変えたい人", "text": "ビニャーレスの岩山、サパタの湿地、カヨ・ココの浅い海、東部の山地を通じて、同じ島の地理的な幅を感じたい人。"},
+    {"title": "音楽・食・日常の営みに触れたい人", "text": "街角の音楽や地域の食卓、農業と加工の仕事を、景色だけでは分からない暮らしへの入口にしたい人。"}
+  ],
+  "facts": [
+    {"label": "地域", "value": "カリブ海／大アンティル諸島"},
+    {"label": "首都", "value": "ハバナ"},
+    {"label": "人口", "value": "約1,093万人（2025年、世界銀行／日本国外務省）"},
+    {"label": "面積", "value": "109,884 km²（日本の約0.29倍）"},
+    {"label": "言語", "value": "スペイン語"},
+    {"label": "主な宗教", "value": "カトリックなど／信教は原則自由"},
+    {"label": "通貨", "value": "キューバ・ペソ（CUP）"}
+  ],
+  "signatureFacts": [
+    {"topicKey": "cuban-archipelago-4000-cays", "label": "群島をつくる小島・岩礁", "value": "4,000以上", "note": "本島と青年の島の周囲には、多くの小島や岩礁が広がる。地図を広げると、本島だけではない海の輪郭が見えてくる。", "icon": "sea", "interestReason": "細長い本島の周りに4,000以上の小島があると知ることで、海岸の景観と地図の読み方が変わるため。"},
+    {"topicKey": "vinales-mogotes-300-metre", "label": "ビニャーレスの石灰岩丘", "value": "高さ最大約300 m", "note": "平らな農地から、丸みのある石灰岩の丘モゴーテが急に立ち上がる。", "icon": "landscape", "interestReason": "平地から立ち上がる約300mの岩山を想像することで、西部の谷の地形が一度に伝わるため。"},
+    {"topicKey": "southeast-historic-coffee-estates-171", "label": "南東部に残る古いコーヒー農園跡", "value": "171か所", "note": "シエラ・マエストラ山麓に広がる農園と加工施設の遺構。山道や水路も含めて産業の景観が残る。", "icon": "history", "interestReason": "一軒の農園ではなく171か所の遺構が山地に広がると知り、暮らしと地形が結びついた規模を想像できるため。"}
+  ],
+  "tips": [
+    {"topicKey": "cuba-fuel-power-flight-disruption-2026", "title": "燃料・停電と航空便の変更を出発直前に確認する", "text": "2026年9月時点、燃料・電力不足が交通、宿泊、通信、航空便に影響している。日本国外務省は不要不急の渡航延期を勧めている。予約済みでも運航会社と宿泊先に確認し、外務省の最新情報を優先する。"},
+    {"topicKey": "cuba-hurricane-season", "title": "6〜11月は熱帯低気圧の進路を確認する", "text": "大西洋のハリケーンシーズンには、海辺や東部山地の天候で交通と現地ツアーが変わり得る。旅程に予備日を持ち、現地当局の警報を確認する。"},
+    {"topicKey": "cuba-national-park-local-access", "title": "保護区の訪問は管理者の案内と入域条件に従う", "text": "サパタ湿地や東部の国立公園では、立入可能区域、ガイドや交通手段を事前に確認する。野生動物への接近や植生への立ち入りを避ける。"}
+  ],
+  "relatedCountries": [
+    {"slug": "dominicanrepublic", "nameEn": "DOMINICAN REPUBLIC", "nameJa": "ドミニカ共和国", "flag": "🇩🇴", "reason": "同じ大アンティル諸島で、歴史都市と海岸、山地を一つの島の中で見比べられる。", "affinityType": "ISLAND"},
+    {"slug": "jamaica", "nameEn": "JAMAICA", "nameJa": "ジャマイカ", "flag": "🇯🇲", "reason": "カリブの音楽文化と島の暮らしを、キューバとは別の表現や言語を通してたどれる。", "affinityType": "CULTURE"},
+    {"slug": "mexico", "nameEn": "MEXICO", "nameJa": "メキシコ", "flag": "🇲🇽", "reason": "歴史都市と半島の石灰岩地形、食と街の文化の広がりを別の規模で歩いて比較できる。", "affinityType": "HISTORY"}
+  ],
+  "nextRoutes": [],
+  "updatedAt": "2026-09-19",
+  "sourcesVerifiedAt": "2026-09-18",
+  "sourceDates": {"population": "2025", "cubaArea": "2026-09-04", "japanArea": "2026-04-01", "worldHeritage": "2026-09-18", "intangibleHeritage": "2026-09-18", "tourism": "2026-09-18", "travelAdvisory": "2026-09-18"},
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan, Cuba basic facts, 2026-09-04: area 109,884 km²; population about 10.93 million (2025 World Bank); capital Havana; Spanish; currency Cuban peso. https://www.mofa.go.jp/mofaj/area/cuba/data.html",
+    "population": "Ministry of Foreign Affairs of Japan, Cuba basic facts, reporting World Bank 2025 population of about 10.93 million; checked 2026-09-18. https://www.mofa.go.jp/mofaj/area/cuba/data.html",
+    "cubaArea": "Ministry of Foreign Affairs of Japan, Cuba basic facts, 109,884 km²; updated 2026-09-04. https://www.mofa.go.jp/mofaj/area/cuba/data.html",
+    "japanArea": "Geospatial Information Authority of Japan, area of Japan as of 2026-04-01: 377,974.87 km² (released 2026-06-26). Cuba/Japan = 109884/377974.87 = 0.2907. https://web1.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "worldHeritage": "UNESCO World Heritage Centre, Cuba properties, checked 2026-09-18. https://whc.unesco.org/en/statesparties/cu",
+    "intangibleHeritage": "UNESCO Intangible Cultural Heritage, Rumba in Cuba (2016), Cuban Son (2025), Las Parrandas (2018), and cassava bread traditions (2024); checked 2026-09-18. https://ich.unesco.org/en/RL/rumba-in-cuba-a-festive-combination-of-music-and-dances-and-all-the-practices-associated-01185 ; https://ich.unesco.org/en/RL/the-practice-of-cuban-son-02299 ; https://ich.unesco.org/en/RL/festivity-of-las-parrandas-in-the-centre-of-cuba-01405 ; https://ich.unesco.org/en/RL/traditional-knowledge-and-practices-for-the-making-and-consumption-of-cassava-bread-02118",
+    "tourism": "CubaTravel official geography, destination, gastronomy and seasonal travel guides, checked 2026-09-18. https://www.cuba.travel/sobre-cuba/geografia-de-cuba ; https://www.cuba.travel/en/touristservices/gastronomy ; https://www.cuba.travel/en/destinations/guantanamo-baracoa/geography",
+    "havana": "UNESCO World Heritage Centre, Old Havana and its Fortification System, including Morro Castle and city centre locations. https://whc.unesco.org/en/list/204",
+    "capitolio": "GeoNames National Capitol of Cuba coordinate 23.1353,-82.3594; accessed 2026-09-18. https://www.geonames.org/6956651",
+    "vinales": "UNESCO World Heritage Centre, Viñales Valley, mogotes up to 300m and tobacco farming. https://whc.unesco.org/en/list/840",
+    "zapata": "UNESCO MAB, Ciénaga de Zapata Biosphere Reserve, coordinates 22.4622,-81.4046 and ecosystems incl. two crocodile species. https://www.unesco.org/en/mab/cienaga-de-zapata",
+    "cienfuegos": "UNESCO World Heritage Centre, Urban Historic Centre of Cienfuegos. https://whc.unesco.org/en/list/1202",
+    "trinidad": "UNESCO World Heritage Centre, Trinidad and the Valley de los Ingenios, sugar and historic urban fabric. https://whc.unesco.org/en/list/460",
+    "cayoCoco": "CubaTravel, Playa Flamenco and cays in Jardines del Rey. https://www.cuba.travel/en/destinations/ciego-de-avila/sun-and-beach ; Playa Flamenco 22.54408,-78.43155 via OpenStreetMap/GeoNames map record https://mapcarta.com/35955300",
+    "camaguey": "UNESCO World Heritage Centre, Historic Centre of Camagüey. https://whc.unesco.org/en/list/1270",
+    "granma": "UNESCO World Heritage Centre, Desembarco del Granma National Park, 19.88333,-77.63333, coastal terraces. https://whc.unesco.org/en/list/889",
+    "humboldt": "UNESCO World Heritage Centre, Alejandro de Humboldt National Park, 20.45,-75.0. https://whc.unesco.org/en/list/839",
+    "geography": "CubaTravel, Geography of Cuba: main island, Isla de la Juventud, over 4,000 cays; Sierra Maestra elevation. https://www.cuba.travel/sobre-cuba/geografia-de-cuba",
+    "coffeePlantations": "UNESCO World Heritage Centre, Archaeological Landscape of the First Coffee Plantations in the South-East of Cuba: remains of 171 estates. https://whc.unesco.org/en/list/1008",
+    "rumba": "UNESCO Intangible Cultural Heritage, Rumba in Cuba (2016). https://ich.unesco.org/en/RL/rumba-in-cuba-a-festive-combination-of-music-and-dances-and-all-the-practices-associated-01185",
+    "son": "UNESCO Intangible Cultural Heritage, The practice of Cuban Son, inscribed 2025. https://ich.unesco.org/en/RL/the-practice-of-cuban-son-02299",
+    "parrandas": "UNESCO Intangible Cultural Heritage, Festivity of Las Parrandas in the centre of Cuba, inscribed 2018. https://ich.unesco.org/en/RL/festivity-of-las-parrandas-in-the-centre-of-cuba-01405",
+    "casabe": "UNESCO Intangible Cultural Heritage, Traditional knowledge and practices for the making and consumption of cassava bread, 2024, including Cuba. https://ich.unesco.org/en/RL/traditional-knowledge-and-practices-for-the-making-and-consumption-of-cassava-bread-02118",
+    "baracoa": "CubaTravel, Baracoa cocoa and coconut agriculture. https://www.cuba.travel/en/destinations/baracoa-guantanamo/what-to-do/ecotourism",
+    "gastronomy": "CubaTravel official gastronomy guides, ropa vieja, congri, ajiaco, yuca con mojo. https://www.cuba.travel/en/touristservices/gastronomy ; https://www.cuba.travel/en/destinations/la-havana-cuba/restaurants-in-havana",
+    "climate": "CubaTravel, Baracoa geography, dry Nov-Apr, rainy May-Oct and hurricane Jun-Nov. https://www.cuba.travel/en/destinations/guantanamo-baracoa/geography",
+    "travelAdvisory": "Japan Ministry of Foreign Affairs, Cuba 2026 fuel and power shortages, advice to postpone non-essential travel; checked 2026-09-18. https://www.anzen.mofa.go.jp/info/pcspotinfo_2026C011.html ; UK FCDO Cuba travel advice updated 2026-07-16, current 2026-09-18. https://www.gov.uk/foreign-travel-advice/cuba",
+    "mapGeometry": "GSHHS intermediate coast polygons for Cuba target and local cays; GSHHS low-resolution polygons for surrounding land; Natural Earth 1:110m Cuba admin-0 reference used as coarse membership cross-check. WGS84, local-equirectangular projection; generated 2026-09-18. Minor cay affiliation pending final QA. https://www.soest.hawaii.edu/pwessel/gshhg/ ; https://www.naturalearthdata.com/"
+  }
+}
