@@ -18,11 +18,11 @@ jobs:
           python-version: '3.12'
       - name: Apply exact-marker patch only to existing State and publication functions
         run: python scripts/_apply_jamaica_exception_patch_temp.py
-      - name: Test policy fail-closed behavior and compile both changed validators
+      - name: Test policy fail-closed behavior, canonical publication gate and compile changes
         run: |
           python -m unittest discover -s scripts -p 'test_jamaica_closed_provenance_exception.py' -v
+          python -m unittest discover -s scripts -p 'test_canonical_review_publication_gate.py' -v
           python -m py_compile scripts/country_production_state.py scripts/publication_pipeline_v2.py scripts/jamaica_closed_provenance_exception.py
-          python scripts/country_production_state.py validate
       - name: Commit reviewed code only and remove temporary patch machinery
         run: |
           rm scripts/_apply_jamaica_exception_patch_temp.py .github/workflows/jamaica-closed-case-patch-temporary.yml
