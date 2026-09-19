@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "grenada",
   "countryName": "GRENADA",
-  "contentRef": "country/grenada",
-  "stateRef": "country/grenada",
-  "phase": "ASSET_QA",
-  "stateRevision": 14,
-  "updatedAt": "2026-09-19T00:38:01+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 15,
+  "updatedAt": "2026-09-19T09:48:22+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/grenada/approved/hero-st-georges-carenage.webp",
@@ -408,15 +408,20 @@
     "asset": "assets/images/grenada/map-atlas-v1.svg"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE"
   },
   "qa": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "productionState": "NOT_STARTED"
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/grenada/",
+    "productionVerification": "LIVE_BROWSER_QA_PASS",
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "verifiedAt": "2026-09-19T02:42:13+09:00",
+    "verificationBasis": "Cloudflare current/equivalent SHA verified by Actions run 35375638056 for correction commit 417ddabc2e1f3cdc81ca2b0387a64501b677fc2a; canonical unpublished-reviewable Desktop/Tablet/Mobile QA PASS, 0 failures."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -588,7 +593,7 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "VERIFY_APPROVED_ASSETS",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   }
 }
