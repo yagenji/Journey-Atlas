@@ -314,6 +314,17 @@ def validate_protocol_state(state: dict[str, Any], filename: str) -> list[str]:
                 if preview.get("browserQa") != "PASS":
                     errors.append(f"{filename}: completed reviewPreview requires browserQa PASS")
 
+    # A canonical-reviewed v2 Country must retain evidence from real live Browser QA.
+    if (state.get("productionProtocolId") == "2.0" and phase == "REVIEW"
+            and state.get("contentRef") == "main" and state.get("stateRef") == "main"):
+        review = state.get("reviewDeployment") or {}
+        expected_url = f"https://atlas.yagenji.com/countries/{state.get('slug')}/"
+        if not (review.get("state") == "DONE"
+                and review.get("url") == expected_url
+                and review.get("productionVerification") == "LIVE_BROWSER_QA_PASS"
+                and (state.get("publication") or {}).get("atlasPublished") is False):
+            errors.append(f"{filename}: v2 REVIEW requires verified unpublished canonical Browser QA")
+
     metrics = state.get("productionMetrics") if isinstance(state.get("productionMetrics"), dict) else {}
     per_image_prompts = metrics.get("perImageApprovalPrompts")
     if isinstance(per_image_prompts, int) and per_image_prompts != 0:
