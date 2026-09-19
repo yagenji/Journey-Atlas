@@ -1,0 +1,289 @@
+name: New Country production milestone QA
+
+# Replaces per-Country temporary QA workflow files. No Country PR is needed
+# before the 13 approved rasters are delivered. No State or approval is written.
+on:
+  push:
+    branches:
+      - 'country/**'
+    paths:
+      - 'data/countries/**'
+      - 'ops/country-production/**'
+      - 'assets/images/**'
+  pull_request:
+    paths:
+      - '.github/workflows/country-production-milestone-qa.yml'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Unpublished new Country slug (run on its country/<slug> branch)'
+        required: true
+        type: string
+      stage:
+        description: 'Which milestone to recheck'
+        required: true
+        type: choice
+        options: [content-map, delivered]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: country-milestone-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      slug: ${{ steps.target.outputs.slug }}
+      previsual: ${{ steps.target.outputs.previsual }}
+      delivered: ${{ steps.target.outputs.delivered }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Select the exact Country and completed milestone
+        id: target
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BRANCH: ${{ github.ref_name }}
+          REQUESTED_SLUG: ${{ inputs.slug }}
+          REQUESTED_STAGE: ${{ inputs.stage }}
+          BEFORE_SHA: ${{ github.event.before }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          from pathlib import Path
+
+          event = os.environ['EVENT_NAME']
+          branch = os.environ['BRANCH']
+          if event == 'pull_request':
+              # One existing, unpublished, final-asset Country exercises both
+              # stages when this common workflow changes; no Country is edited.
+              slug = 'grenada'
+          elif event == 'workflow_dispatch':
+              slug = os.environ['REQUESTED_SLUG']
+              if branch not in (f'country/{slug}', f'country/{slug}-renewal'):
+                  raise SystemExit('Dispatch must run on the requested Country branch')
+          else:
+              if not branch.startswith('country/'):
+                  raise SystemExit('Country push required')
+              slug = branch.removeprefix('country/').removesuffix('-renewal')
+          if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
+              raise SystemExit('Invalid Country slug')
+
+          country_path = Path('data/countries') / f'{slug}.json'
+          state_path = Path('ops/country-production') / f'{slug}.json'
+          result = {'slug': slug, 'previsual': 'false', 'delivered': 'false'}
+          if not country_path.exists() or not state_path.exists():
+              if event != 'push':
+                  raise SystemExit(f'Missing Country JSON or Production State for {slug}')
+          else:
+              country = json.loads(country_path.read_text(encoding='utf-8'))
+              state = json.loads(state_path.read_text(encoding='utf-8'))
+              if country.get('publicationPipelineVersion') != 2 or state.get('productionProtocolId') != '2.0':
+                  if event != 'push':
+                      raise SystemExit('This workflow is for protocol-2 new Countries only')
+              else:
+                  registry = json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+                  rows = [r for r in registry['destinations'] if r.get('slug') == slug]
+                  if len(rows) != 1 or rows[0].get('atlasPublished') is not False:
+                      raise SystemExit('Target must be exactly one unpublished canonical destination')
+
+                  before = os.environ.get('BEFORE_SHA', '')
+                  if not re.fullmatch(r'[0-9a-f]{40}', before) or before == '0' * 40:
+                      before = 'HEAD^'
+                  def git(*args):
+                      return subprocess.run(['git', *args], capture_output=True, text=True)
+                  old_state = {}
+                  previous = git('show', f'{before}:{state_path}')
+                  if previous.returncode == 0:
+                      old_state = json.loads(previous.stdout)
+                  changed_result = git('diff', '--name-only', before, 'HEAD')
+                  changed = set(changed_result.stdout.splitlines()) if changed_result.returncode == 0 else set()
+                  if event == 'push' and changed_result.returncode != 0:
+                      raise SystemExit('Cannot determine Country push changes; no QA gate may be silently skipped')
+
+                  previsual = (state.get('preVisualBuild') or {}).get('state') == 'PASS'
+                  map_ok = (state.get('map') or {}).get('state') == 'APPROVED'
+                  prior_previsual = (old_state.get('preVisualBuild') or {}).get('state') == 'PASS'
+                  editorial_changed = str(country_path) in changed
+                  map_changed = any(p.startswith(f'assets/images/{slug}/') and p.endswith('.svg') for p in changed)
+                  previsual_needed = previsual and map_ok and state.get('phase') in ('CONTENT', 'HERO') and (
+                      event != 'push' or not prior_previsual or editorial_changed or map_changed)
+                  if event == 'workflow_dispatch' and os.environ['REQUESTED_STAGE'] != 'content-map':
+                      previsual_needed = False
+
+                  def approved(s):
+                      return (s.get('hero') or {}).get('state') == 'APPROVED' and (
+                          s.get('sceneBatchReview') or {}).get('approval') == 'APPROVED' and (
+                          s.get('tasteBatchReview') or {}).get('approval') == 'APPROVED' and
+                          len(s.get('scenes') or []) == 8 and len(s.get('taste') or []) == 4 and
+                          all(x.get('state') == 'APPROVED' for x in s['scenes'] + s['taste']))
+                  image_paths = [country.get('hero', {}).get('image')]
+                  image_paths += [x.get('image') for x in country.get('scenes', [])]
+                  image_paths += [x.get('image') for x in (country.get('taste') or {}).get('items', [])]
+                  all_delivered = len(image_paths) == 13 and all(
+                      isinstance(p, str) and p.startswith(f'assets/images/{slug}/approved/')
+                      and p.endswith('.webp') and Path(p).is_file() for p in image_paths)
+                  raster_changed = any(p.startswith(f'assets/images/{slug}/') and p.endswith('.webp') for p in changed)
+                  delivered_needed = approved(state) and all_delivered and (
+                      event != 'push' or not approved(old_state) or raster_changed or editorial_changed)
+                  if event == 'workflow_dispatch' and os.environ['REQUESTED_STAGE'] != 'delivered':
+                      delivered_needed = False
+                  if event == 'workflow_dispatch' and not (previsual_needed or delivered_needed):
+                      raise SystemExit('Requested milestone is not ready; preserve existing gates')
+                  result['previsual'] = str(bool(previsual_needed)).lower()
+                  result['delivered'] = str(bool(delivered_needed)).lower()
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+              for key, value in result.items():
+                  out.write(f'{key}={value}\n')
+          print('Country milestone QA:', result)
+          PY
+
+  previsual:
+    needs: select
+    if: needs.select.outputs.previsual == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Map rendering dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Validate final editorial and geographic Map before Hero
+        env:
+          SLUG: ${{ needs.select.outputs.slug }}
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country_map_v6.py "data/countries/$SLUG.json"
+          python3 - "$SLUG" <<'PY'
+          import json, sys
+          from io import BytesIO
+          from pathlib import Path
+          import cairosvg
+          from PIL import Image
+          slug = sys.argv[1]
+          country = json.loads((Path('data/countries') / f'{slug}.json').read_text(encoding='utf-8'))
+          svg_path = country.get('map', {}).get('svg')
+          if not isinstance(svg_path, str) or not svg_path.startswith(f'assets/images/{slug}/') or not svg_path.endswith('.svg'):
+              raise SystemExit('Missing or non-Country geographic Map SVG')
+          source = Path(svg_path)
+          png = cairosvg.svg2png(bytestring=source.read_bytes(), output_width=1200, output_height=760)
+          with Image.open(BytesIO(png)) as image:
+              image.load()
+              assert image.size == (1200, 760)
+          out = Path('qa-milestone-output')
+          out.mkdir(exist_ok=True)
+          (out / f'{slug}-map.png').write_bytes(png)
+          print(f'{slug}: actual 1200x760 Map fully decoded')
+          PY
+      - name: Keep Map preview for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: country-milestone-map-${{ needs.select.outputs.slug }}
+          path: qa-milestone-output/
+          if-no-files-found: warn
+          retention-days: 3
+
+  delivered:
+    needs: select
+    if: needs.select.outputs.delivered == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install delivered-image and Browser QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow selenium
+      - name: Rebuild exact Country bytes on latest main
+        if: github.event_name != 'pull_request'
+        env:
+          SLUG: ${{ needs.select.outputs.slug }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          python3 scripts/country_overlay_v2.py assert-scope "$SLUG" origin/main HEAD
+          python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/country-milestone-overlay
+          git reset --hard origin/main
+          python3 scripts/country_overlay_v2.py apply "$SLUG" /tmp/country-milestone-overlay
+      - name: Verify 13 final rasters and exact target Content and Map
+        env:
+          SLUG: ${{ needs.select.outputs.slug }}
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country_map_v6.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country.py --strict "data/countries/$SLUG.json"
+          python3 scripts/audit_country_image_delivery_targeted.py --slug "$SLUG"
+          python3 scripts/validate_images.py --mode audit --slug "$SLUG"
+          python3 scripts/validate_images.py --duplicates-only --slug "$SLUG"
+      - name: Build target-only preview and inspect all three rendered widths
+        env:
+          SLUG: ${{ needs.select.outputs.slug }}
+          TARGET_SLUGS: ${{ needs.select.outputs.slug }}
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-milestone-browser
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: ${{ needs.select.outputs.slug }}
+        run: |
+          set -euo pipefail
+          python3 scripts/build_country_preview_targeted.py
+          python3 -m http.server 4173 --directory dist >/tmp/country-milestone-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          python3 scripts/qa_published_browser.py
+          python3 - "$SLUG" <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          import qa_published_browser as qa
+          slug = sys.argv[1]
+          out = Path('qa-milestone-output')
+          out.mkdir(exist_ok=True)
+          for name, viewport in qa.VIEWPORTS.items():
+              driver = qa.make_driver()
+              try:
+                  qa.set_viewport(driver, viewport)
+                  driver.get(f'http://127.0.0.1:4173/countries/{slug}/')
+                  qa.wait_for_country(driver)
+                  qa.scroll_entire_page(driver)
+                  qa.full_page_screenshot(driver, out / f'{slug}-{name}.jpg')
+                  print(f'{slug}: captured final-byte {name} page')
+              finally:
+                  driver.quit()
+          PY
+      - name: Keep delivered-asset Browser QA and all-width visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: country-milestone-delivered-${{ needs.select.outputs.slug }}
+          path: |
+            qa-milestone-browser/
+            qa-milestone-output/
+          if-no-files-found: warn
+          retention-days: 3
