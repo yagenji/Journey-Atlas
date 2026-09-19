@@ -85,13 +85,12 @@ jobs:
           assert 'finalApproval must be APPROVED' in publish_ready_errors('jamaica',s)
           print('PASS ready to open UNPUBLISHED review PR; formal publication still requires verified canonical review and final approval')
           PY
-      - name: Preserve all concurrent main changes and original Country history in one non-destructive merge
+      - name: Preserve all concurrent main changes and original Country history in a verified two-parent commit
         working-directory: site
         run: |
           test "$(git rev-parse HEAD)" = 'a0e833dc8c53a9e4cfab00e9b1e708f2d88eb0e3'
           git fetch origin country/jamaica
           test "$(git rev-parse FETCH_HEAD)" = '34cf8a3db3dfbd3d1df2102b4f73df2268110862'
-          git merge -s ours --no-ff --no-commit 34cf8a3db3dfbd3d1df2102b4f73df2268110862
           git add data/countries/jamaica.json data/theme-taxonomy.json data/atlas-destinations.json assets/images/jamaica/ ops/country-production/jamaica.json
           git diff --cached --name-only | tee /tmp/jamaica-review-stage-paths.txt
           python - <<'PY'
@@ -100,10 +99,12 @@ jobs:
           allowed={'data/countries/jamaica.json','ops/country-production/jamaica.json','data/theme-taxonomy.json','data/atlas-destinations.json'}
           assert paths and all(p in allowed or p.startswith('assets/images/jamaica/') for p in paths),paths
           assert not any(p.startswith('scripts/') or p.startswith('.github/') or p.startswith('assets/css/') for p in paths)
-          print('PASS Jamaica-only overlay; main's other destination changes retained')
+          print('PASS Jamaica-only overlay; main other destinations retained')
           PY
+          tree=$(git write-tree)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Integrate exact Jamaica rasters on latest main with user-authorized closed provenance case'
-          git push origin HEAD:refs/heads/country/jamaica
-          git rev-parse HEAD
+          merge_commit=$(printf '%s\n' 'Integrate exact Jamaica rasters on latest main with user-authorized closed provenance case' | git commit-tree "$tree" -p a0e833dc8c53a9e4cfab00e9b1e708f2d88eb0e3 -p 34cf8a3db3dfbd3d1df2102b4f73df2268110862)
+          test "$(git rev-list --parents -n 1 "$merge_commit" | wc -w)" -eq 3
+          git push origin "$merge_commit":refs/heads/country/jamaica
+          echo "JAMAICA_INTEGRATION_COMMIT=$merge_commit"
