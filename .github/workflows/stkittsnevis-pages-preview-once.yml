@@ -1,0 +1,104 @@
+name: One-off refreshed St Kitts Nevis Pages preview
+on:
+  push:
+    branches: [ops/stkittsnevis-review-merge-stage-970]
+    paths: ['.github/workflows/stkittsnevis-pages-preview-once.yml']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: country-review-pages
+  cancel-in-progress: false
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: country-review-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout exact approved Country branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/stkittsnevis
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild approved Country on latest main for staging, no publication
+        id: target
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_sha="$(git rev-parse HEAD)"
+          test "$source_sha" = '22084e6eace4a079da5929154ff9028069c7fb3b'
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          python3 scripts/publication_pipeline_v2.py assert-review-ready stkittsnevis
+          python3 scripts/country_overlay_v2.py assert-scope stkittsnevis origin/main "$source_sha"
+          python3 scripts/country_overlay_v2.py capture stkittsnevis /tmp/stkittsnevis-pages-overlay
+          git reset --hard origin/main
+          python3 scripts/country_overlay_v2.py apply stkittsnevis /tmp/stkittsnevis-pages-overlay
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          s=json.loads(Path('ops/country-production/stkittsnevis.json').read_text())
+          assert s['publication']['atlasPublished'] is False and s['finalApproval']['state']=='PENDING'
+          assert hashlib.sha256(Path('assets/images/stkittsnevis/approved/food-3.webp').read_bytes()).hexdigest()=='01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932'
+          PY
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
+      - name: Build, check and externalize the exact staging Country
+        env:
+          TARGET_SLUGS: stkittsnevis
+          JOURNEY_ATLAS_SITE_URL: https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/
+          JOURNEY_ATLAS_BUILD_VERSION: ${{ steps.target.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pillow selenium
+          python3 scripts/build_country_preview_targeted.py
+          python3 scripts/externalize_review_preview_images.py --dist dist --site-url 'https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/' --image-origin "https://raw.githubusercontent.com/yagenji/Journey-Atlas/${{ steps.target.outputs.source_sha }}/"
+          test -f dist/countries/stkittsnevis/index.html
+          test -f dist/preview-build-meta.json
+          test ! -d dist/assets/images
+          grep -qi noindex dist/countries/stkittsnevis/index.html
+      - name: Checkout and update persistent staging snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: review-previews
+          path: review-cache
+          fetch-depth: 1
+      - name: Preserve other previews and stage only St Kitts Nevis
+        run: |
+          set -euo pipefail
+          python3 scripts/manage_review_preview_site.py stage --root review-cache --source dist --slug stkittsnevis --review-url 'https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/' --source-sha '${{ steps.target.outputs.source_sha }}' --max-previews 8
+          git -C review-cache config user.name 'github-actions[bot]'
+          git -C review-cache config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C review-cache add -A
+          tree="$(git -C review-cache write-tree)"
+          commit="$(printf 'Update approved St Kitts Nevis review preview\n' | git -C review-cache commit-tree "$tree")"
+          git -C review-cache push --force origin "$commit:refs/heads/review-previews"
+          echo "REVIEW_SNAPSHOT_COMMIT=$commit"
+      - name: Prepare GitHub Pages deployment
+        run: |
+          mkdir -p pages-site
+          rsync -a --exclude='.git/' review-cache/ pages-site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-site
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify actual new staging URL, noindex and exact latest FOOD03 image
+        shell: bash
+        run: |
+          set -euo pipefail
+          page='https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/'
+          for n in $(seq 1 12); do
+            if curl --max-time 20 -fsSL "$page" -o /tmp/stkittsnevis-live.html && grep -qi 'noindex' /tmp/stkittsnevis-live.html; then break; fi
+            sleep 5
+          done
+          grep -qi noindex /tmp/stkittsnevis-live.html
+          curl --max-time 30 -fsSL 'https://raw.githubusercontent.com/yagenji/Journey-Atlas/${{ steps.target.outputs.source_sha }}/assets/images/stkittsnevis/approved/food-3.webp' -o /tmp/stkittsnevis-live-food03.webp
+          printf '01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932  /tmp/stkittsnevis-live-food03.webp\n' | sha256sum -c -
+          echo "VERIFIED_REVIEW_URL=$page"
+          echo "VERIFIED_REVIEW_SOURCE=${{ steps.target.outputs.source_sha }}"
