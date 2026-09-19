@@ -5,10 +5,18 @@ on:
     paths: ['.github/workflows/jamaica-page-preview-qa-temporary.yml']
 permissions:
   contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: country-review-pages
+  cancel-in-progress: false
 jobs:
   preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    environment:
+      name: country-review-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,14 +29,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply only Jamaica data and existing assets to current shared template
+      - name: Apply only Jamaica data and existing assets to shared main
         run: |
           test "$(git -C country-source rev-parse HEAD)" = 34cf8a3db3dfbd3d1df2102b4f73df2268110862
           (cd country-source && python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-page-overlay)
           (cd site && python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-page-overlay)
-      - name: Install standard target browser QA dependencies
+      - name: Install browser QA tools
         run: python -m pip install --quiet pillow selenium
-      - name: Build actual Country page
+      - name: Build and validate actual local Country page
         working-directory: site
         env:
           TARGET_SLUGS: jamaica
@@ -38,7 +46,7 @@ jobs:
           test -f dist/countries/jamaica/index.html
           test "$(find dist/assets/images/jamaica/approved -name '*.webp' -type f | wc -l | tr -d ' ')" = 13
           grep -iq noindex dist/countries/jamaica/index.html
-      - name: Render actual Desktop Tablet Mobile preview
+      - name: Verify Desktop Tablet and Mobile in a real browser
         working-directory: site
         env:
           QA_BASE_URL: http://127.0.0.1:4173
@@ -52,17 +60,50 @@ jobs:
             sleep 1
           done
           python scripts/qa_published_browser.py
-      - name: Upload real Country HTML and images
+      - name: Upload responsive screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jamaica-real-page-preview
-          path: site/dist/
-          if-no-files-found: warn
-      - name: Upload responsive visual screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jamaica-real-page-responsive-screens
+          name: jamaica-responsive-page-screens
           path: site/qa-jamaica-visual/
           if-no-files-found: warn
+      - name: Build noindex review page with all original image bytes
+        working-directory: site
+        env:
+          TARGET_SLUGS: jamaica
+          JOURNEY_ATLAS_SITE_URL: https://yagenji.github.io/Journey-Atlas/reviews/jamaica/
+          JOURNEY_ATLAS_BUILD_VERSION: 34cf8a3db3dfbd3d1df2102b4f73df2268110862
+        run: |
+          python scripts/build_country_preview_targeted.py
+          test -f dist/countries/jamaica/index.html
+          grep -iq noindex dist/countries/jamaica/index.html
+          if grep -q 'countries/jamaica/' dist/sitemap.xml; then exit 1; fi
+      - name: Read existing Pages preview snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: review-previews
+          path: review-cache
+      - name: Assemble Pages snapshot without changing repository history
+        run: |
+          python site/scripts/manage_review_preview_site.py stage \
+            --root review-cache --source site/dist --slug jamaica \
+            --review-url https://yagenji.github.io/Journey-Atlas/reviews/jamaica/countries/jamaica/ \
+            --source-sha 34cf8a3db3dfbd3d1df2102b4f73df2268110862 --max-previews 1000
+          mkdir -p pages-site
+          rsync -a --exclude='.git/' review-cache/ pages-site/
+          test -f pages-site/reviews/jamaica/countries/jamaica/index.html
+          test "$(find pages-site/reviews/jamaica/assets/images/jamaica/approved -name '*.webp' -type f | wc -l | tr -d ' ')" = 13
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-site
+      - name: Deploy noindex technical review on GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Check preview route and robots metadata after deployment
+        run: |
+          curl --fail --location --retry 8 --retry-delay 2 \
+            https://yagenji.github.io/Journey-Atlas/reviews/jamaica/countries/jamaica/ \
+            -o /tmp/jamaica-live.html
+          grep -iq noindex /tmp/jamaica-live.html
+          echo 'Technical preview (not canonical final review): https://yagenji.github.io/Journey-Atlas/reviews/jamaica/countries/jamaica/' >> "$GITHUB_STEP_SUMMARY"
