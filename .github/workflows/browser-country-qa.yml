@@ -197,6 +197,36 @@ jobs:
           QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
         run: python3 scripts/qa_published_browser.py
 
+      - name: Capture targeted published Country pages at all three viewports
+        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
+        env:
+          PUBLISHED_SLUGS: ${{ needs.classify.outputs.published_slugs }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, 'scripts')
+          import qa_published_browser as qa
+
+          slugs = [s.strip() for s in os.environ['PUBLISHED_SLUGS'].split(',') if s.strip()]
+          output = Path('qa-browser-visual-output')
+          output.mkdir(exist_ok=True)
+          for slug in slugs:
+              for name, viewport in qa.VIEWPORTS.items():
+                  driver = qa.make_driver()
+                  try:
+                      qa.set_viewport(driver, viewport)
+                      driver.get(f'http://127.0.0.1:4173/countries/{slug}/')
+                      qa.wait_for_country(driver)
+                      qa.scroll_entire_page(driver)
+                      qa.full_page_screenshot(driver, output / f'{slug}-{name}.jpg')
+                      print(f'Captured {slug} {name} full-page visual QA evidence')
+                  finally:
+                      driver.quit()
+          PY
+
       - name: Run all unpublished reviewable Country QA
         if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
         env:
@@ -228,5 +258,6 @@ jobs:
           path: |
             qa-browser-output/
             qa-browser-reviewable-output/
+            qa-browser-visual-output/
           if-no-files-found: warn
           retention-days: 3
