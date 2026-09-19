@@ -1,0 +1,94 @@
+name: One-off St Kitts Nevis published live QA
+on:
+  push:
+    branches: [ops/stkittsnevis-published-live-check-982]
+    paths: [.github/workflows/stkittsnevis-published-live-qa-once.yml]
+permissions:
+  contents: read
+jobs:
+  live-published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_BASE_URL: https://atlas.yagenji.com
+      QA_SCOPE: published
+      QA_SLUGS: stkittsnevis
+      QA_OUT_DIR: qa-stkittsnevis-published
+    steps:
+      - name: Checkout merged publication source
+        uses: actions/checkout@v4
+        with:
+          ref: 24a9556fb39cb39feb12f93e3b58dbdb61179658
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install live browser QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify Cloudflare deployed SHA, indexability and discovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          main_sha="$(git rev-parse origin/main)"
+          git merge-base --is-ancestor 24a9556fb39cb39feb12f93e3b58dbdb61179658 "$main_sha"
+          python3 scripts/expected_cloudflare_commit.py --head "$main_sha" --candidate-file /tmp/stkittsnevis-allowed-live-shas.txt
+          live_sha=''
+          for attempt in $(seq 1 100); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "https://atlas.yagenji.com/build-meta.json?stkittsnevis-published=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            if [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/stkittsnevis-allowed-live-shas.txt && git merge-base --is-ancestor 24a9556fb39cb39feb12f93e3b58dbdb61179658 "$live_sha" 2>/dev/null; then break; fi
+            sleep 5
+          done
+          [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/stkittsnevis-allowed-live-shas.txt
+          git merge-base --is-ancestor 24a9556fb39cb39feb12f93e3b58dbdb61179658 "$live_sha"
+          echo "Deployed Cloudflare SHA: $live_sha; publication SHA: 24a9556fb39cb39feb12f93e3b58dbdb61179658"
+          curl -fsS --retry 3 'https://atlas.yagenji.com/countries/stkittsnevis/' > /tmp/stkittsnevis-published.html
+          curl -fsS --retry 3 'https://atlas.yagenji.com/sitemap.xml' > /tmp/stkittsnevis-published-sitemap.xml
+          curl -fsS --retry 3 'https://atlas.yagenji.com/data/atlas-destinations.json' > /tmp/stkittsnevis-published-registry.json
+          python3 - <<'PY'
+          import json
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Robots(HTMLParser):
+              def __init__(self): super().__init__(); self.values=[]
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if tag=='meta' and a.get('name','').lower()=='robots': self.values.append(a.get('content','').lower())
+          html=Path('/tmp/stkittsnevis-published.html').read_text()
+          parser=Robots(); parser.feed(html)
+          assert 'data-country="stkittsnevis"' in html, 'Canonical Country route is incorrect'
+          assert not any('noindex' in x for x in parser.values), ('Still noindex',parser.values)
+          assert any('index' in x and 'follow' in x for x in parser.values), ('Missing index,follow',parser.values)
+          assert '/countries/stkittsnevis/' in Path('/tmp/stkittsnevis-published-sitemap.xml').read_text(), 'Missing sitemap entry'
+          rows=json.loads(Path('/tmp/stkittsnevis-published-registry.json').read_text())['destinations']
+          row=next(r for r in rows if r.get('slug')=='stkittsnevis')
+          assert row.get('atlasPublished') is True and row.get('href')=='countries/stkittsnevis/', 'Registry not published/linkable'
+          assert row.get('image')=='assets/images/stkittsnevis/approved/hero-timothy-hill.webp', 'Published hero mismatch'
+          print('PASS canonical route, index/follow, sitemap inclusion and canonical destination link')
+          PY
+          curl -fsS --retry 3 'https://atlas.yagenji.com/assets/images/stkittsnevis/approved/food-3.webp' -o /tmp/stkittsnevis-food-3.webp
+          echo '01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932  /tmp/stkittsnevis-food-3.webp' | sha256sum -c -
+      - name: Run actual Desktop Tablet Mobile published Browser QA
+        run: python3 scripts/qa_published_browser.py
+      - name: Require 3 viewports and zero errors
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('qa-stkittsnevis-published/report.json').read_text())
+          assert r['pass'] and not r['failures'],r.get('failures')
+          assert set(r['countries'])=={'stkittsnevis'},r['countries']
+          rows=[x for x in r['results'] if x['slug']=='stkittsnevis']
+          assert {x['viewport'] for x in rows}=={'desktop','tablet','mobile'},rows
+          assert all(not x['errors'] for x in rows),rows
+          print('PASS published live Desktop Tablet Mobile browser QA; zero failures')
+          PY
+      - name: Upload published live QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stkittsnevis-published-live-qa-${{ github.run_id }}
+          path: qa-stkittsnevis-published/
+          if-no-files-found: warn
+          retention-days: 3
