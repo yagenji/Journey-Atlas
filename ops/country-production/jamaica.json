@@ -4,10 +4,10 @@
   "countryName": "JAMAICA",
   "contentRef": "country/jamaica",
   "stateRef": "country/jamaica",
-  "phase": "CONTENT",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-19T02:28:46+09:00",
-  "hero": {"state": "NOT_STARTED", "asset": null, "contentId": null},
+  "phase": "HERO",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-19T09:44:00+09:00",
+  "hero": {"state":"REVIEW_CANDIDATE","asset":"assets/images/jamaica/approved/hero-ward-theatre.webp","contentId":"ward-theatre-kingston","candidateGenerationId":"91cc1acf-ce3d-4fb5-b4bf-9596070b4d94"},
   "scenes": [
     {"id":"S01","state":"NOT_STARTED","asset":null,"contentId":null},
     {"id":"S02","state":"NOT_STARTED","asset":null,"contentId":null},
@@ -122,5 +122,5 @@
     "tasteBatchApprovedAt":null,
     "canonicalReviewReadyAt":null
   },
-  "next":{"action":"COMPLETE_CONTENT_DESIGN","asset":null}
+  "next":{"action":"WAIT_HERO_APPROVAL","asset":"HERO"}
 }
