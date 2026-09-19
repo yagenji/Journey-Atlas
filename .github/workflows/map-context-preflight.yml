@@ -6,10 +6,12 @@ on:
       - 'scripts/add_country_map_context.py'
       - 'scripts/add_country_map_context_existing.py'
       - 'scripts/add_country_map_context_legacy.py'
+      - 'scripts/filter_duplicate_target_context.py'
       - 'scripts/generate_country_map_with_context.py'
       - 'scripts/stage_map_context_rollout.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_generate_country_map_with_context.py'
+      - 'tests/test_filter_duplicate_target_context.py'
       - 'tests/test_map_context_legacy.py'
       - 'tests/test_map_context_regions.py'
       - 'tests/smoke_map_context_real.py'
@@ -38,9 +40,11 @@ jobs:
             scripts/add_country_map_context.py \
             scripts/add_country_map_context_existing.py \
             scripts/add_country_map_context_legacy.py \
+            scripts/filter_duplicate_target_context.py \
             scripts/generate_country_map_with_context.py \
             scripts/stage_map_context_rollout.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
+          python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
       - name: Generate and fully decode real approved Country previews
         run: python tests/smoke_map_context_real.py
       - name: Diagnose legacy-map source structures
