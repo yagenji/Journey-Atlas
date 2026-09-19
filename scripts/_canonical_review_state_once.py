@@ -5,7 +5,7 @@ p = Path('scripts/country_production_protocol_v2.py')
 text = p.read_text(encoding='utf-8')
 needle = '    metrics = state.get("productionMetrics") if isinstance(state.get("productionMetrics"), dict) else {}\n'
 replacement = '''    # A canonical-reviewed v2 Country must retain evidence from real live Browser QA.
-    if (state.get("publicationPipelineVersion") == 2 and phase == "REVIEW"
+    if (state.get("productionProtocolId") == "2.0" and phase == "REVIEW"
             and state.get("contentRef") == "main" and state.get("stateRef") == "main"):
         review = state.get("reviewDeployment") or {}
         expected_url = f"https://atlas.yagenji.com/countries/{state.get('slug')}/"
