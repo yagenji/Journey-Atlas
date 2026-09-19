@@ -12,59 +12,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: a0e833dc8c53a9e4cfab00e9b1e708f2d88eb0e3
+          ref: b2994638b3f4bb8ef68f46c472c3e7c766b20ce9
           fetch-depth: 0
           path: site
       - uses: actions/checkout@v4
         with:
-          ref: 34cf8a3db3dfbd3d1df2102b4f73df2268110862
+          ref: 60409ef3a2621ac10f3ea7dd85a09eea5eb7c710
           path: original-jamaica
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Capture only original Country assets and overlay on verified latest main
+      - name: Apply Jamaica-only overlay on newest main, preserve concurrent St Kitts data
         run: |
           (cd original-jamaica && python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-authorized-overlay)
           (cd site && python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-authorized-overlay)
           python -m pip install --disable-pip-version-check --quiet 'pillow>=10,<13'
-      - name: Verify original file hashes and record real operational handoff, not generation approvals
+      - name: Verify exact asset identity, preserved provenance and unpublished state
         working-directory: site
         run: |
           python - <<'PY'
           import json,sys
-          from datetime import datetime,timedelta,timezone
           from pathlib import Path
           sys.path.insert(0,'scripts')
           from jamaica_closed_provenance_exception import CASE_ID,CASE_PATH,CASE_GIT_BLOB,blob_sha
-          manifest=Path(CASE_PATH)
-          assert blob_sha(manifest.read_bytes())==CASE_GIT_BLOB
-          case=json.loads(manifest.read_text())
+          case_file=Path(CASE_PATH)
+          assert blob_sha(case_file.read_bytes())==CASE_GIT_BLOB
+          case=json.loads(case_file.read_text())
           for item in case['assets'].values():
-              file=Path('assets/images/jamaica/approved')/item['filename']
-              assert file.is_file() and blob_sha(file.read_bytes())==item['gitBlobSha'],file
-          path=Path('ops/country-production/jamaica.json')
-          state=json.loads(path.read_text())
-          assert state['stateRevision']==6 and state['phase']=='SCENES_INITIAL'
+              image=Path('assets/images/jamaica/approved')/item['filename']
+              assert image.is_file() and blob_sha(image.read_bytes())==item['gitBlobSha'],image
+          state=json.loads(Path('ops/country-production/jamaica.json').read_text())
+          assert state['stateRevision']==7 and state['phase']=='QA'
+          assert state['closedProvenanceException']['id']==CASE_ID
+          assert state['closedProvenanceException']['status']=='APPLIED'
+          assert state['assetHandoff']['state']=='PASS' and state['assetHandoff']['verifiedRasterCount']==13
           assert state['hero']['state']=='APPROVED'
-          assert all(x['state']=='NOT_STARTED' for x in state['scenes']+state['taste'])
+          assert all(i['state']=='NOT_STARTED' for i in state['scenes']+state['taste'])
           assert state['sceneBatchReview']=={'approval':'PENDING','rounds':[]}
           assert state['tasteBatchReview']=={'approval':'PENDING','rounds':[]}
-          now=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
-          state['closedProvenanceException']={'id':CASE_ID,'status':'APPLIED','sourceCommit':'34cf8a3db3dfbd3d1df2102b4f73df2268110862','authorizationDate':'2026-09-19'}
-          state['assetHandoff']={'mode':'USER_HANDOFF','state':'PASS','expectedRasterCount':13,'verifiedRasterCount':13,'verifiedAt':now}
-          state['phase']='QA'
-          state['implementation']={'state':'DONE','completedAt':now,'sharedTemplate':True,'countrySpecificCss':False}
-          state['qa']={'state':'NOT_STARTED','productionState':'NOT_STARTED'}
-          state['next']={'action':'RUN_COUNTRY_QA','asset':None}
-          state['stateRevision']=7
-          state['updatedAt']=now
-          state['productionMetrics']['assetHandoffs']=1
-          state['productionMetrics']['reviewPackageIntegrations']=1
-          assert state['publication']['atlasPublished'] is False and state['finalApproval']['state']=='PENDING'
-          path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n')
-          print('Recorded genuine 13-raster physical handoff, preserved unrecovered Scene/Taste generation State and noindex publication gate')
+          assert state['finalApproval']['state']=='PENDING'
+          assert state['publication']['atlasPublished'] is False
+          print('PASS original raster hashes and unchanged explicit unknown generation histories; still unpublished')
           PY
-      - name: Run exact exception, image, Country and current production protocols
+      - name: Validate exact exception, images, geography, editorial and v2 publication readiness
         working-directory: site
         run: |
           python scripts/jamaica_closed_provenance_exception.py
@@ -80,31 +70,30 @@ jobs:
           sys.path.insert(0,'scripts')
           from publication_pipeline_v2 import review_ready_errors,publish_ready_errors,state_for_slug
           s=state_for_slug('jamaica')
-          ready=review_ready_errors('jamaica',s)
-          assert not ready, f'Unpublished review must be genuinely ready: {ready}'
+          assert not review_ready_errors('jamaica',s),review_ready_errors('jamaica',s)
           assert 'finalApproval must be APPROVED' in publish_ready_errors('jamaica',s)
-          print('PASS ready to open UNPUBLISHED review PR; formal publication still requires verified canonical review and final approval')
+          print('PASS unpublished review ready; formal publish blocked without user final approval')
           PY
-      - name: Preserve all concurrent main changes and original Country history in a verified two-parent commit
+      - name: Commit Jamaica-only reviewed tree with both parent histories, fast-forward Country branch
         working-directory: site
         run: |
-          test "$(git rev-parse HEAD)" = 'a0e833dc8c53a9e4cfab00e9b1e708f2d88eb0e3'
+          test "$(git rev-parse HEAD)" = 'b2994638b3f4bb8ef68f46c472c3e7c766b20ce9'
           git fetch origin country/jamaica
-          test "$(git rev-parse FETCH_HEAD)" = '34cf8a3db3dfbd3d1df2102b4f73df2268110862'
+          test "$(git rev-parse FETCH_HEAD)" = '60409ef3a2621ac10f3ea7dd85a09eea5eb7c710'
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 'b2994638b3f4bb8ef68f46c472c3e7c766b20ce9'
           git add data/countries/jamaica.json data/theme-taxonomy.json data/atlas-destinations.json assets/images/jamaica/ ops/country-production/jamaica.json
-          git diff --cached --name-only | tee /tmp/jamaica-review-stage-paths.txt
+          git diff --cached --name-only | tee /tmp/jamaica-rebase-paths.txt
           python - <<'PY'
           from pathlib import Path
-          paths=Path('/tmp/jamaica-review-stage-paths.txt').read_text().splitlines()
+          paths=Path('/tmp/jamaica-rebase-paths.txt').read_text().splitlines()
           allowed={'data/countries/jamaica.json','ops/country-production/jamaica.json','data/theme-taxonomy.json','data/atlas-destinations.json'}
           assert paths and all(p in allowed or p.startswith('assets/images/jamaica/') for p in paths),paths
-          assert not any(p.startswith('scripts/') or p.startswith('.github/') or p.startswith('assets/css/') for p in paths)
-          print('PASS Jamaica-only overlay; main other destinations retained')
+          print('PASS Jamaica-only overlay; concurrent St Kitts and all other destinations untouched')
           PY
           tree=$(git write-tree)
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          merge_commit=$(printf '%s\n' 'Integrate exact Jamaica rasters on latest main with user-authorized closed provenance case' | git commit-tree "$tree" -p a0e833dc8c53a9e4cfab00e9b1e708f2d88eb0e3 -p 34cf8a3db3dfbd3d1df2102b4f73df2268110862)
+          merge_commit=$(printf '%s\n' 'Restage exact Jamaica review on newest main while preserving St Kitts' | git commit-tree "$tree" -p b2994638b3f4bb8ef68f46c472c3e7c766b20ce9 -p 60409ef3a2621ac10f3ea7dd85a09eea5eb7c710)
           test "$(git rev-list --parents -n 1 "$merge_commit" | wc -w)" -eq 3
           git push origin "$merge_commit":refs/heads/country/jamaica
-          echo "JAMAICA_INTEGRATION_COMMIT=$merge_commit"
+          echo "JAMAICA_REBASED_COMMIT=$merge_commit"
