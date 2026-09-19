@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Prepare exact owner-approved Jamaica publication blobs without committing
+      - name: Validate Jamaica terminal content on latest main and stage byte-exact GitHub blobs, never commit
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -38,27 +38,25 @@ jobs:
           import json
           from pathlib import Path
           from datetime import datetime,timezone,timedelta
-          slug='jamaica'
-          path=Path('data/country-renewal-status.json')
-          content=json.loads(path.read_text())
+          path=Path('data/country-renewal-status.json'); content=json.loads(path.read_text())
           country=json.loads(Path('data/countries/jamaica.json').read_text())
           records=content.setdefault('countries',[])
-          record=next((x for x in records if isinstance(x,dict) and x.get('slug')==slug),None)
+          record=next((x for x in records if isinstance(x,dict) and x.get('slug')=='jamaica'),None)
           if record is None:
-              record={'slug':slug};records.append(record)
-          record.update({'nameJa':country['nameJa'],'wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Jamaica exact-asset closed provenance exception retained; canonical live QA verified. Final deployed SHA and live publishing checks required after merge.']})
+              record={'slug':'jamaica'};records.append(record)
+          record.update({'nameJa':country['nameJa'],'wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Jamaica exact-asset closed provenance exception retained; approved live QA verified. Final live deployment SHA, sitemap and index checks after merge.']})
           content['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
           path.write_text(json.dumps(content,ensure_ascii=False,separators=(',',':'))+'\n')
-          state=json.loads(Path('ops/country-production/jamaica.json').read_text())
-          assert state['phase']=='COMPLETE' and state['finalApproval']['state']=='APPROVED'
-          assert state['publication']['atlasPublished'] and state['publication']['state']=='PUBLISHED'
-          assert state['closedProvenanceException']['id']=='jamaica-preserve-13-20260919'
-          assert all(x['state']=='NOT_STARTED' and x['asset'] is None for x in state['scenes']+state['taste'])
-          registry=json.loads(Path('data/atlas-destinations.json').read_text())
-          jam=next(x for x in registry['destinations'] if x['slug']=='jamaica')
-          assert jam['atlasPublished'] and jam['href']=='countries/jamaica/' and jam['image']==state['hero']['asset']
-          assert len(registry['destinations'])==registry['count']==201
-          print('PASS approval, scoped provenance, original Country and rasters unchanged, 201 destination registry')
+          s=json.loads(Path('ops/country-production/jamaica.json').read_text())
+          assert s['phase']=='COMPLETE' and s['finalApproval']['state']=='APPROVED'
+          assert s['publication']['atlasPublished'] and s['publication']['state']=='PUBLISHED'
+          assert s['closedProvenanceException']['id']=='jamaica-preserve-13-20260919'
+          assert all(x['state']=='NOT_STARTED' and x['asset'] is None for x in s['scenes']+s['taste'])
+          reg=json.loads(Path('data/atlas-destinations.json').read_text())
+          jam=next(x for x in reg['destinations'] if x['slug']=='jamaica')
+          assert jam['atlasPublished'] and jam['href']=='countries/jamaica/' and jam['image']==s['hero']['asset']
+          assert len(reg['destinations'])==reg['count']==201
+          print('PASS user final approval, exact exception, 201 destinations and unchanged thirteen rasters')
           PY
           python scripts/validate_production_state_routed.py
           python scripts/run_state_validator.py scripts/country_production_state_v7.py validate
@@ -67,15 +65,21 @@ jobs:
           git diff --name-only origin/main | tee /tmp/jamaica-publish-changes.txt
           python - <<'PY'
           from pathlib import Path
-          allowed={'data/atlas-destinations.json','data/country-renewal-status.json','ops/country-production/jamaica.json'}
           changed=set(Path('/tmp/jamaica-publish-changes.txt').read_text().splitlines())
+          allowed={'data/atlas-destinations.json','data/country-renewal-status.json','ops/country-production/jamaica.json'}
           assert changed==allowed,(changed,allowed)
-          print('PASS exactly three Country publication metadata files changed')
+          print('PASS Jamaica-only three-file publication diff')
           PY
           echo "PREPARED_MAIN_SHA $main_sha"
           echo "APPROVED_COUNTRY_SHA $source_sha"
           for path in data/atlas-destinations.json data/country-renewal-status.json ops/country-production/jamaica.json; do
-            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" -f content="$(cat "$path")" -f encoding=utf-8 --jq '.sha')"
+            python - "$path" <<'PY'
+          import json,sys
+          from pathlib import Path
+          text=Path(sys.argv[1]).read_text(encoding='utf-8')
+          Path('/tmp/jamaica-exact-blob-request.json').write_text(json.dumps({'content':text,'encoding':'utf-8'},ensure_ascii=False),encoding='utf-8')
+          PY
+            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" --input /tmp/jamaica-exact-blob-request.json --jq '.sha')"
             test "$sha" = "$(git hash-object "$path")"
             echo "VERIFIED_REMOTE_BLOB $path $sha"
           done
