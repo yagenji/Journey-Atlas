@@ -141,8 +141,24 @@ def publish_ready_errors(slug: str, state: dict[str, Any]) -> list[str]:
     if state.get("productionProtocolId") != "2.0":
         errors.append("productionProtocolId must be 2.0")
     preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-    if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-        errors.append("reviewPreview must be DONE with Browser QA PASS")
+    preview_verified = preview.get("state") == "DONE" and preview.get("browserQa") == "PASS" and bool(preview.get("url"))
+    deployment = state.get("reviewDeployment") or {}
+    publication = state.get("publication") or {}
+    # A Country reviewed on its verified canonical noindex URL has no branch preview.
+    canonical_verified = (
+        state.get("phase") in {"REVIEW", "COMPLETE"}
+        and state.get("contentRef") == "main" and state.get("stateRef") == "main"
+        and (state.get("qa") or {}).get("state") == "PASS"
+        and deployment.get("state") == "DONE"
+        and deployment.get("url") == f"https://atlas.yagenji.com/countries/{slug}/"
+        and (
+            deployment.get("productionVerification") == "LIVE_BROWSER_QA_PASS"
+            or deployment.get("prePublicationReviewVerification") == "LIVE_BROWSER_QA_PASS"
+        )
+        and (publication.get("atlasPublished") is False or publication.get("pipelineVersion") == 2)
+    )
+    if not (preview_verified or canonical_verified):
+        errors.append("verified review preview or canonical noindex Browser QA required")
     approval = state.get("finalApproval") if isinstance(state.get("finalApproval"), dict) else {}
     if approval.get("state") != "APPROVED":
         errors.append("finalApproval must be APPROVED")
@@ -266,11 +282,16 @@ def finalize(slug: str) -> None:
         "state": "PASS",
         "productionState": "CI_GATED",
     }
+    previous_review = state.get("reviewDeployment") or {}
     state["reviewDeployment"] = {
         "state": "DONE",
         "url": production_url,
         "productionVerification": "CI_GATED",
         "pipelineVersion": 2,
+        **({"prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+            "prePublicationReviewVerifiedAt": previous_review.get("verifiedAt"),
+            "prePublicationReviewBasis": previous_review.get("verificationBasis")}
+           if previous_review.get("productionVerification") == "LIVE_BROWSER_QA_PASS" else {}),
     }
     state["publication"] = {
         "state": "PUBLISHED",
