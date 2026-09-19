@@ -1,0 +1,28 @@
+name: Jamaica page visual QA
+on:
+  push:
+    branches: [qa/jamaica-page-visual-review-20260919]
+    paths: ['.github/workflows/jamaica-page-preview-qa-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/jamaica
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build actual Country page
+        env:
+          TARGET_SLUGS: jamaica
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: python scripts/build_country_preview_targeted.py
+      - name: Upload HTML preview package
+        uses: actions/upload-artifact@v4
+        with:
+          name: jamaica-real-page-preview
+          path: dist/
+          if-no-files-found: error
