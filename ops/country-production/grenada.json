@@ -4,9 +4,9 @@
   "countryName": "GRENADA",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 15,
-  "updatedAt": "2026-09-19T09:48:22+09:00",
+  "phase": "COMPLETE",
+  "stateRevision": 17,
+  "updatedAt": "2026-09-19T10:35:33+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/grenada/approved/hero-st-georges-carenage.webp",
@@ -412,23 +412,33 @@
   },
   "qa": {
     "state": "PASS",
-    "productionState": "NOT_STARTED"
+    "productionState": "CI_GATED"
   },
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/grenada/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "atlasPublished": false,
-    "linkedFromRegistry": false,
-    "verifiedAt": "2026-09-19T02:42:13+09:00",
-    "verificationBasis": "Cloudflare current/equivalent SHA verified by Actions run 35375638056 for correction commit 417ddabc2e1f3cdc81ca2b0387a64501b677fc2a; canonical unpublished-reviewable Desktop/Tablet/Mobile QA PASS, 0 failures."
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-19T02:42:13+09:00",
+    "prePublicationReviewBasis": "Cloudflare current/equivalent SHA verified by Actions run 35375638056 for correction commit 417ddabc2e1f3cdc81ca2b0387a64501b677fc2a; canonical unpublished-reviewable Desktop/Tablet/Mobile QA PASS, 0 failures."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-19T10:35:32+09:00",
+    "basis": "User requested QA and publication of Grenada in this conversation on 2026-09-19; verified canonical unpublished Desktop/Tablet/Mobile QA passed before approval."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-19T10:35:33+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/grenada/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -593,7 +603,8 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
-  }
+  },
+  "publicationPipelineVersion": 2
 }
