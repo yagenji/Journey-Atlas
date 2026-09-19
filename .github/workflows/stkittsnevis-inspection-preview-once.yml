@@ -1,0 +1,150 @@
+name: One-off St Kitts Nevis inspection page
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-inspection-preview-once.yml]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: country-review-pages
+  cancel-in-progress: false
+jobs:
+  inspection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: country-review-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout unchanged Country source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate available review material without changing editorial approvals
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet pillow selenium
+          python scripts/validate_country_editorial_v2.py data/countries/stkittsnevis.json
+          python scripts/validate_country.py --strict data/countries/stkittsnevis.json
+          python scripts/audit_country_image_delivery_targeted.py --slug stkittsnevis
+          python scripts/validate_images.py --mode audit --slug stkittsnevis
+          python scripts/validate_images.py --duplicates-only --slug stkittsnevis
+          python scripts/country_production_state_v7.py validate
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('ops/country-production/stkittsnevis.json').read_text())
+          c=json.loads(Path('data/countries/stkittsnevis.json').read_text())
+          r=json.loads(Path('data/atlas-destinations.json').read_text())
+          assert s['assetHandoff']['state']=='PASS' and s['assetHandoff']['verifiedRasterCount']==13
+          assert s['finalApproval']['state']=='PENDING'
+          assert s['taste'][2]['state']=='REGENERATE' and s['taste'][2]['userApprovalEvidence']['visualApprovalReceived'] is True
+          assert all(x.get('imageFraming')=='SOURCE_ASPECT' for x in c['taste']['items'])
+          row=next(x for x in r['destinations'] if (x if isinstance(x,str) else x.get('slug'))=='stkittsnevis')
+          assert isinstance(row,str) or row.get('atlasPublished') is False
+          print('INSPECTION ONLY: FOOD03 QA unresolved, no approval or publication mutation')
+          PY
+      - name: Build actual single-Country page and run local desktop tablet mobile QA
+        shell: bash
+        env:
+          TARGET_SLUGS: stkittsnevis
+          JOURNEY_ATLAS_SITE_URL: https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/
+          JOURNEY_ATLAS_BUILD_VERSION: ${{ github.sha }}
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-stkittsnevis-inspection
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: stkittsnevis
+        run: |
+          set -euo pipefail
+          python scripts/build_country_preview_targeted.py
+          test -s dist/countries/stkittsnevis/index.html
+          test -s dist/data/countries/stkittsnevis.json
+          grep -qi 'noindex,follow' dist/countries/stkittsnevis/index.html
+          python -m http.server 4173 --directory dist >/tmp/stkittsnevis-inspection.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 25); do
+            if curl -fsS http://127.0.0.1:4173/countries/stkittsnevis/ >/dev/null; then break; fi
+            sleep 1
+          done
+          python scripts/qa_published_browser.py
+          python scripts/externalize_review_preview_images.py \
+            --dist dist \
+            --site-url "$JOURNEY_ATLAS_SITE_URL" \
+            --image-origin "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path('dist/data/countries/stkittsnevis.json').read_text())
+          assert j['hero']['image'].startswith('https://raw.githubusercontent.com/')
+          assert not Path('dist/assets/images').exists()
+          print('INSPECTION_PACKAGE_SHA',j['hero']['image'].split('/')[4])
+          PY
+      - name: Checkout persistent Pages review snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: review-previews
+          path: review-cache
+          fetch-depth: 1
+      - name: Stage only St Kitts Nevis inspection page while preserving other reviews
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/manage_review_preview_site.py stage \
+            --root review-cache --source dist --slug stkittsnevis \
+            --review-url https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/ \
+            --source-sha "$GITHUB_SHA" --max-previews 8
+          git -C review-cache config user.name 'github-actions[bot]'
+          git -C review-cache config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C review-cache add -A
+          tree="$(git -C review-cache write-tree)"
+          commit="$(printf 'Stage inspection page for stkittsnevis\n' | git -C review-cache commit-tree "$tree")"
+          git -C review-cache push --force origin "$commit:refs/heads/review-previews"
+          rm -rf pages-site
+          mkdir pages-site
+          rsync -a --exclude='.git/' review-cache/ pages-site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-site
+      - name: Deploy unchanged Country inspection page
+        uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Verify public inspection route, noindex and a real approved image
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/'
+          for attempt in $(seq 1 30); do
+            if curl -fsSL --max-time 15 "$url" -o /tmp/stkittsnevis-live-inspection.html && grep -qi 'noindex,follow' /tmp/stkittsnevis-live-inspection.html; then break; fi
+            sleep 2
+          done
+          grep -qi 'noindex,follow' /tmp/stkittsnevis-live-inspection.html
+          grep -qi 'stkittsnevis' /tmp/stkittsnevis-live-inspection.html
+          curl -fsSL --max-time 20 "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/assets/images/stkittsnevis/approved/hero-timothy-hill.webp" -o /tmp/stkittsnevis-live-hero.webp
+          python - <<'PY'
+          from PIL import Image
+          with Image.open('/tmp/stkittsnevis-live-hero.webp') as im:
+            im.load()
+            assert im.format=='WEBP' and im.size==(1536,1024)
+          print('LIVE_INSPECTION_PASS https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/')
+          PY
+          echo "Inspection URL: $url" >> "$GITHUB_STEP_SUMMARY"
+          echo 'FOOD03 visual approval retained; production QA unresolved; no canonical publication.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove one-off inspection workflow after successful deployment
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm --ignore-unmatch .github/workflows/stkittsnevis-inspection-preview-once.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Remove one-off St Kitts Nevis inspection workflow'
+            git push origin HEAD:country/stkittsnevis
+          fi
