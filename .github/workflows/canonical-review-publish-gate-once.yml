@@ -16,117 +16,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply narrowly scoped compatibility patch and regression test
+      - name: Apply exact-source patch and run focused tests
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('scripts/publication_pipeline_v2.py')
-          text=p.read_text(encoding='utf-8')
-          old='''    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-              if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-                  errors.append("reviewPreview must be DONE with Browser QA PASS")'''
-          # Locate only the publish gate, never the review gate with similar code.
-          start=text.index('def publish_ready_errors(')
-          end=text.index('\ndef increment_metric(',start)
-          part=text[start:end]
-          old='''    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-              if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-                  errors.append("reviewPreview must be DONE with Browser QA PASS")'''
-          needle='''    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-              if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-                  errors.append("reviewPreview must be DONE with Browser QA PASS")'''
-          # Dedentation from YAML run block produces the exact Python source below.
-          needle='''    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-    if preview.get("state") != "DONE" or preview.get("browserQa") != "PASS" or not preview.get("url"):
-        errors.append("reviewPreview must be DONE with Browser QA PASS")'''
-          replacement='''    preview = state.get("reviewPreview") if isinstance(state.get("reviewPreview"), dict) else {}
-    preview_verified = preview.get("state") == "DONE" and preview.get("browserQa") == "PASS" and bool(preview.get("url"))
-    deployment = state.get("reviewDeployment") or {}
-    publication = state.get("publication") or {}
-    # A Country already reviewed on its canonical noindex URL has no branch preview.
-    # Retain the independently verified canonical evidence through publication.
-    canonical_verified = (
-        state.get("phase") in {"REVIEW", "COMPLETE"}
-        and state.get("contentRef") == "main" and state.get("stateRef") == "main"
-        and (state.get("qa") or {}).get("state") == "PASS"
-        and deployment.get("state") == "DONE"
-        and deployment.get("url") == f"https://atlas.yagenji.com/countries/{slug}/"
-        and (
-            deployment.get("productionVerification") == "LIVE_BROWSER_QA_PASS"
-            or deployment.get("prePublicationReviewVerification") == "LIVE_BROWSER_QA_PASS"
-        )
-        and (publication.get("atlasPublished") is False or publication.get("pipelineVersion") == 2)
-    )
-    if not (preview_verified or canonical_verified):
-        errors.append("reviewPreview Browser QA PASS or verified canonical noindex review required")'''
-          assert part.count(needle)==1, 'publish-gate source changed; do not guess'
-          part=part.replace(needle,replacement)
-          text=text[:start]+part+text[end:]
-          original='''    state["reviewDeployment"] = {
-        "state": "DONE",
-        "url": production_url,
-        "productionVerification": "CI_GATED",
-        "pipelineVersion": 2,
-    }'''
-          updated='''    previous_review = state.get("reviewDeployment") or {}
-    state["reviewDeployment"] = {
-        "state": "DONE",
-        "url": production_url,
-        "productionVerification": "CI_GATED",
-        "pipelineVersion": 2,
-        **({"prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
-            "prePublicationReviewVerifiedAt": previous_review.get("verifiedAt"),
-            "prePublicationReviewBasis": previous_review.get("verificationBasis")}
-           if previous_review.get("productionVerification") == "LIVE_BROWSER_QA_PASS" else {}),
-    }'''
-          assert text.count(original)==1, 'finalizer review-deployment source changed; do not guess'
-          text=text.replace(original,updated)
-          p.write_text(text,encoding='utf-8')
-          t=Path('scripts/test_canonical_review_publication_gate.py')
-          t.write_text('''import unittest
-from unittest.mock import patch
-import publication_pipeline_v2 as pipeline
-
-class CanonicalReviewPublicationGate(unittest.TestCase):
-    def setUp(self):
-        self.base = {"phase":"REVIEW", "contentRef":"main", "stateRef":"main",
-                     "productionProtocolId":"2.0", "qa":{"state":"PASS"},
-                     "reviewPreview":{"state":"NOT_STARTED","browserQa":"NOT_STARTED","url":None},
-                     "reviewDeployment":{"state":"DONE","url":"https://atlas.yagenji.com/countries/grenada/",
-                                         "productionVerification":"LIVE_BROWSER_QA_PASS","atlasPublished":False},
-                     "publication":{"state":"DRAFT","atlasPublished":False},
-                     "finalApproval":{"state":"APPROVED"}}
-    @patch.object(pipeline,'is_active',return_value=True)
-    def test_verified_canonical_review(self,_active):
-        self.assertEqual(pipeline.publish_ready_errors('grenada',self.base),[])
-        complete={**self.base,'phase':'COMPLETE',
-                  'publication':{'state':'PUBLISHED','atlasPublished':True,'pipelineVersion':2},
-                  'reviewDeployment':{**self.base['reviewDeployment'],'productionVerification':'CI_GATED',
-                                      'prePublicationReviewVerification':'LIVE_BROWSER_QA_PASS'}}
-        self.assertEqual(pipeline.publish_ready_errors('grenada',complete),[])
-    @patch.object(pipeline,'is_active',return_value=True)
-    def test_unverified_canonical_review_rejected(self,_active):
-        for override in ({'productionVerification':'PENDING'}, {'url':'https://atlas.yagenji.com/countries/other/'},
-                         {'state':'NOT_STARTED'}):
-            state={**self.base,'reviewDeployment':{**self.base['reviewDeployment'],**override}}
-            self.assertTrue(pipeline.publish_ready_errors('grenada',state))
-    @patch.object(pipeline,'is_active',return_value=True)
-    def test_user_approval_remains_required(self,_active):
-        state={**self.base,'finalApproval':{'state':'PENDING'}}
-        self.assertIn('finalApproval must be APPROVED',pipeline.publish_ready_errors('grenada',state))
-
-if __name__=='__main__': unittest.main()
-''',encoding='utf-8')
-          PY
+          python3 scripts/_canonical_gate_patch_once.py
           python3 -m py_compile scripts/publication_pipeline_v2.py scripts/test_canonical_review_publication_gate.py
           python3 scripts/test_canonical_review_publication_gate.py
           python3 scripts/publication_pipeline_v2.py self-test
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          rm .github/workflows/canonical-review-publish-gate-once.yml
-          git add scripts/publication_pipeline_v2.py scripts/test_canonical_review_publication_gate.py .github/workflows/canonical-review-publish-gate-once.yml
+          rm .github/workflows/canonical-review-publish-gate-once.yml scripts/_canonical_gate_patch_once.py
+          git add scripts/publication_pipeline_v2.py scripts/test_canonical_review_publication_gate.py .github/workflows/canonical-review-publish-gate-once.yml scripts/_canonical_gate_patch_once.py
           git diff --cached --name-only
           git commit -m 'Accept verified canonical noindex review as v2 publication gate'
           git push origin HEAD:fix/canonical-reviewed-v2-publish-gate
