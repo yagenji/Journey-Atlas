@@ -25,16 +25,24 @@ class WrapperTest(unittest.TestCase):
                 '--dataset', 'coast.geojson', '--country-name', 'Azerbaijan', *extra]
 
     def test_wrapper_uses_json_bounds_and_targeted_source(self):
-        with patch.object(sys, 'argv', self.arguments()), patch.object(wrapper.subprocess, 'run') as run:
+        svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" '
+               'data-map-projection="local-equirectangular-fit-v1">'
+               '<g id="geographic-context"><path d=""/></g>'
+               '<path d="M 0,0 L 10,0 L 10,10 L 0,10 Z" fill="url(#land)"/></svg>')
+        def run(command, *, check):
+            if 'add_country_map_context.py' in command[1]:
+                self.output.write_text(svg, encoding='utf8')
+        with patch.object(sys, 'argv', self.arguments()), patch.object(wrapper.subprocess, 'run', side_effect=run) as subprocess_run:
             wrapper.main()
-        self.assertEqual(run.call_count, 2)
-        generating = run.call_args_list[0].args[0]
-        context = run.call_args_list[1].args[0]
+        self.assertEqual(subprocess_run.call_count, 2)
+        generating = subprocess_run.call_args_list[0].args[0]
+        context = subprocess_run.call_args_list[1].args[0]
         self.assertEqual(generating[generating.index('--bounds') + 1:generating.index('--bounds') + 5],
                          ['44.45', '38.05', '50.72', '42.12'])
         self.assertIn('generate_country_map.py', generating[1])
         self.assertIn('add_country_map_context.py', context[1])
         self.assertEqual(context[context.index('--output') + 1], str(self.output))
+        self.assertEqual(self.output.read_text(), svg)
 
     def test_rejects_uncertain_geometry_and_region_overwrites(self):
         with patch.object(sys, 'argv', self.arguments('--bounds', '0', '0', '1', '1')):
