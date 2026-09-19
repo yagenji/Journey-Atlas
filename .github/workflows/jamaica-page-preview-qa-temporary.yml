@@ -8,21 +8,61 @@ permissions:
 jobs:
   preview:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: country/jamaica
+          ref: main
+          path: site
+      - uses: actions/checkout@v4
+        with:
+          ref: 34cf8a3db3dfbd3d1df2102b4f73df2268110862
+          path: country-source
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Apply only Jamaica data and existing assets to current shared template
+        run: |
+          test "$(git -C country-source rev-parse HEAD)" = 34cf8a3db3dfbd3d1df2102b4f73df2268110862
+          (cd country-source && python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-page-overlay)
+          (cd site && python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-page-overlay)
+      - name: Install standard target browser QA dependencies
+        run: python -m pip install --quiet pillow selenium
       - name: Build actual Country page
+        working-directory: site
         env:
           TARGET_SLUGS: jamaica
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
-        run: python scripts/build_country_preview_targeted.py
-      - name: Upload HTML preview package
+        run: |
+          python scripts/build_country_preview_targeted.py
+          test -f dist/countries/jamaica/index.html
+          test "$(find dist/assets/images/jamaica/approved -name '*.webp' -type f | wc -l | tr -d ' ')" = 13
+          grep -iq noindex dist/countries/jamaica/index.html
+      - name: Render actual Desktop Tablet Mobile preview
+        working-directory: site
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: jamaica
+          QA_OUT_DIR: qa-jamaica-visual
+        run: |
+          python -m http.server 4173 --directory dist >/tmp/jamaica-page-http.log 2>&1 &
+          for attempt in $(seq 1 25); do
+            curl -fsS http://127.0.0.1:4173/countries/jamaica/ >/dev/null && break
+            sleep 1
+          done
+          python scripts/qa_published_browser.py
+      - name: Upload real Country HTML and images
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: jamaica-real-page-preview
-          path: dist/
-          if-no-files-found: error
+          path: site/dist/
+          if-no-files-found: warn
+      - name: Upload responsive visual screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jamaica-real-page-responsive-screens
+          path: site/qa-jamaica-visual/
+          if-no-files-found: warn
