@@ -27,7 +27,7 @@
     "bounds": {"north": 14.45, "south": 13.55, "west": -61.25, "east": -60.7},
     "svg": "assets/images/saintlucia/map-atlas-v1.svg",
     "route": null,
-    "source": "SOURCE RESERVED; MAP NOT YET GENERATED OR QA-APPROVED. Planned geoBoundaries gbOpen LCA ADM0: https://www.geoboundaries.org/api/current/gbOpen/LCA/ADM0/ ; nearby land: GSHHS intermediate, WGS84, common 1200x760. Bounds preliminary pending verified geometry and rendered marker/capital collision QA."
+    "source": "Natural Earth 1:10m Admin-0 Saint Lucia country outline | https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/ | surrounding land: GSHHS intermediate via Basemap 2.0.0 | WGS84; common local-equirectangular 1200×760; scripts/generate_country_map_with_context.py --source natural-earth --country-name 'Saint Lucia' --simplify 0.003; redundant island context removed by shared wrapper, Martinique neighboring land retained. Checked 2026-09-19."
   },
   "scenes": [
     {
@@ -58,7 +58,7 @@
       "description": "南西岸の小さな湾では砂浜のすぐ沖にサンゴ礁が広がる。緑の斜面から海中へと続く、生きもののいる海岸を知る場所。",
       "coordinates": {"latitude": 13.86521, "longitude": -61.07947},
       "image": "assets/images/saintlucia/approved/scene-3.webp",
-      "mapOffset": {"x": 0, "y": 0}
+      "mapOffset": {"x": -2, "y": -2}
     },
     {
       "id": "soufriere-waterfront",
@@ -68,7 +68,7 @@
       "description": "山の斜面が海に近づく湾岸に、色の異なる家並みと漁船が寄り添う。二つのピトンの足元には、歩いて知ることのできる日常の町がある。",
       "coordinates": {"latitude": 13.8541, "longitude": -61.0586},
       "image": "assets/images/saintlucia/approved/scene-4.webp",
-      "mapOffset": {"x": 0, "y": 0}
+      "mapOffset": {"x": -1, "y": -1}
     },
     {
       "id": "sulphur-springs-geothermal",
@@ -78,7 +78,7 @@
       "description": "スフリエールの内陸で、灰色の岩肌と鉱物の色の間から蒸気が立つ。海辺の山容の内側で、火山由来の熱が地表に現れている。",
       "coordinates": {"latitude": 13.838205, "longitude": -61.046909},
       "image": "assets/images/saintlucia/approved/scene-5.webp",
-      "mapOffset": {"x": 0, "y": 0}
+      "mapOffset": {"x": 1.7, "y": 2.1}
     },
     {
       "id": "diamond-falls-botanical-gardens",
@@ -88,7 +88,7 @@
       "description": "南西部の植物園で、鉱物を含む水が岩を流れ落ちる。水筋と岩肌の色は堆積物によって生まれ、周囲には熱帯の葉が重なる。",
       "coordinates": {"latitude": 13.85011, "longitude": -61.04787},
       "image": "assets/images/saintlucia/approved/scene-6.webp",
-      "mapOffset": {"x": 0, "y": 0}
+      "mapOffset": {"x": 1.5, "y": -1.5}
     },
     {
       "id": "mount-gimie-rainforest",
@@ -98,7 +98,7 @@
       "description": "島の内陸の高い山を湿った熱帯林が覆う。木々の間の登山道と雲のかかる稜線は、日差しの強い沿岸とは別のセントルシアを見せる。",
       "coordinates": {"latitude": 13.86346, "longitude": -61.0111},
       "image": "assets/images/saintlucia/approved/scene-7.webp",
-      "mapOffset": {"x": 0, "y": 0}
+      "mapOffset": {"x": 3, "y": -1}
     },
     {
       "id": "dennery-fishing-village",
@@ -237,7 +237,7 @@
   "updatedAt": "2026-09-19",
   "sourcesVerifiedAt": "2026-09-19",
   "sourceDates": {
-    "census": "2022", "countryArea": "verified 2026-09-19", "pitons": "2004", "nobel": "2025-01-14", "countryName": "2021-03-08", "independence": "1979-02-22", "ferry": "2026-09-19", "tourism": "2026-09-19", "rainforest": "2026-09-19", "food": "2026-09-19", "climate": "2026-09-19", "geometry": "NOT_GENERATED", "religion": "2010", "carnival": "2026-07"
+    "census": "2022", "countryArea": "verified 2026-09-19", "pitons": "2004", "nobel": "2025-01-14", "countryName": "2021-03-08", "independence": "1979-02-22", "ferry": "2026-09-19", "tourism": "2026-09-19", "rainforest": "2026-09-19", "food": "2026-09-19", "climate": "2026-09-19", "geometry": "2026-09-19", "religion": "2010", "carnival": "2026-07"
   },
   "sources": {
     "census": "Saint Lucia Central Statistical Office, 2022 Population and Housing Census Provisional Report, resident population 172,948 as of census night 12/13 March 2022; not a current estimate. https://stats.gov.lc/wp-content/uploads/2024/08/StLucia-Provisional-Census-Report-2022-Release-1Rev1.pdf",
@@ -256,7 +256,7 @@
     "religion": "CIA World Factbook 2021 archive, 2010 religious shares indicate Christianity predominant, not a current 2026 distribution. https://www.cia.gov/the-world-factbook/about/archives/2021/static/3361f37c83fa0da66e787b15f4640268/ST-summary.pdf",
     "airports": "Saint Lucia Tourism Authority official map: Hewanorra International Airport in Vieux Fort (south), George F.L. Charles Airport in Castries (north). https://stlucia.org/wp-content/themes/stlucia/assets/map/map.html",
     "carnival": "Saint Lucia Tourism Authority, Events & Festivals, Saint Lucia Carnival July 1–22, 2026; future edition's dates not assumed. https://stlucia.org/en_uk/things-to-do/festivals/",
-    "sceneCoordinates": "WGS84 location points: OpenStreetMap/GeoNames as shown at https://mapcarta.com/19498652 (Fort Rodney), https://mapcarta.com/Marigot_Bay (Marigot Bay), https://mapcarta.com/19499284 (Anse Chastanet bay), https://mapcarta.com/Soufriere (Soufriere), https://www.odyssea.eu/data/index.php?markerID=26183 (Sulphur Springs), https://mapcarta.com/N1042617329 (Diamond Falls), https://mapcarta.com/19499084 (Mount Gimie), https://www.geonames.org/advanced-search.html?country=LC&featureClass=A&q=Dennery&startRow=0 (Dennery Village). Capital https://mapcarta.com/Castries ; Hero uses UNESCO designated reference coordinate for area, not camera position. All points to be rechecked against verified raster map before Hero gate.",
-    "geometry": "geoBoundaries gbOpen LCA ADM0 metadata: https://www.geoboundaries.org/api/current/gbOpen/LCA/ADM0/ ; map generation and raster QA not performed; proposed GSHHS contextual land + WGS84 common SVG 1200x760; no geometry fabricated."
+    "sceneCoordinates": "WGS84 location points: OpenStreetMap/GeoNames as shown at https://mapcarta.com/19498652 (Fort Rodney), https://mapcarta.com/Marigot_Bay (Marigot Bay), https://mapcarta.com/19499284 (Anse Chastanet bay), https://mapcarta.com/Soufriere (Soufriere), https://www.odyssea.eu/data/index.php?markerID=26183 (Sulphur Springs), https://mapcarta.com/N1042617329 (Diamond Falls), https://mapcarta.com/19499084 (Mount Gimie), https://www.geonames.org/advanced-search.html?country=LC&featureClass=A&q=Dennery&startRow=0 (Dennery Village). Capital https://mapcarta.com/Castries ; Hero uses UNESCO designated reference coordinate for area, not camera position. All geographic coordinates stay true; mapOffset only separates crowded visual labels/number markers.",
+    "geometry": "Natural Earth 1:10m Admin-0 Saint Lucia outline, https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/ ; GSHHS intermediate via Basemap 2.0.0 for neighboring land; WGS84, 1200×760 SVG generated by current shared scripts/generate_country_map_with_context.py and fully decoded 2026-09-19. Neighboring Martinique retained; target-context duplicate removed by shared wrapper."
   }
 }
