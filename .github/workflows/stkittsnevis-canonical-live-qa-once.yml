@@ -1,0 +1,94 @@
+name: One-off St Kitts Nevis canonical live QA
+
+on:
+  push:
+    branches: [ops/stkittsnevis-live-review-970]
+
+permissions:
+  contents: read
+
+jobs:
+  live-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_BASE_URL: https://atlas.yagenji.com
+      QA_SCOPE: unpublished-reviewable
+      QA_SLUGS: stkittsnevis
+      QA_OUT_DIR: qa-stkittsnevis-live-review
+    steps:
+      - name: Checkout exact merged Country source
+        uses: actions/checkout@v4
+        with:
+          ref: b2994638b3f4bb8ef68f46c472c3e7c766b20ce9
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install live Browser QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify canonical deployed commit and unpublished invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          main_sha="$(git rev-parse origin/main)"
+          git merge-base --is-ancestor b2994638b3f4bb8ef68f46c472c3e7c766b20ce9 "$main_sha"
+          python3 scripts/expected_cloudflare_commit.py --head "$main_sha" --candidate-file /tmp/stkittsnevis-allowed-shas.txt
+          live_sha=''
+          for attempt in $(seq 1 90); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "https://atlas.yagenji.com/build-meta.json?stkittsnevis-review=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            if [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/stkittsnevis-allowed-shas.txt; then break; fi
+            sleep 5
+          done
+          [ -n "$live_sha" ] && grep -Fxq "$live_sha" /tmp/stkittsnevis-allowed-shas.txt || { echo "Cloudflare mismatch: main=$main_sha live=$live_sha" >&2; exit 1; }
+          echo "Verified live Cloudflare SHA: $live_sha (merged Country b2994638b3f4bb8ef68f46c472c3e7c766b20ce9)"
+          curl -fsS --retry 3 'https://atlas.yagenji.com/countries/stkittsnevis/' > /tmp/stkittsnevis-review.html
+          curl -fsS --retry 3 'https://atlas.yagenji.com/sitemap.xml' > /tmp/stkittsnevis-sitemap.xml
+          curl -fsS --retry 3 'https://atlas.yagenji.com/data/atlas-destinations.json' > /tmp/stkittsnevis-registry.json
+          python3 - <<'PY'
+          import json
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Robots(HTMLParser):
+              def __init__(self): super().__init__(); self.values=[]
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if tag=='meta' and a.get('name','').lower()=='robots': self.values.append(a.get('content','').lower())
+          html=Path('/tmp/stkittsnevis-review.html').read_text()
+          p=Robots(); p.feed(html)
+          assert 'data-country="stkittsnevis"' in html, 'Incorrect canonical Country route'
+          assert any('noindex' in v and 'follow' in v for v in p.values), 'Missing noindex,follow'
+          assert '/countries/stkittsnevis/' not in Path('/tmp/stkittsnevis-sitemap.xml').read_text(), 'Premature sitemap entry'
+          rows=json.loads(Path('/tmp/stkittsnevis-registry.json').read_text())['destinations']
+          row=next(r for r in rows if r.get('slug')=='stkittsnevis')
+          assert row.get('atlasPublished') is False and not row.get('href'), 'Premature normal discovery/publication'
+          print('PASS canonical route, noindex/follow, sitemap exclusion, registry unpublished')
+          PY
+          curl -fsS --retry 3 'https://atlas.yagenji.com/assets/images/stkittsnevis/approved/food-3.webp' -o /tmp/stkittsnevis-food-3.webp
+          echo '01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932  /tmp/stkittsnevis-food-3.webp' | sha256sum -c -
+      - name: Run live desktop tablet and mobile Country Browser QA
+        run: python3 scripts/qa_published_browser.py
+      - name: Require three live viewport results with no failures
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('qa-stkittsnevis-live-review/report.json').read_text())
+          assert report['pass'] and not report['failures'], report.get('failures')
+          assert set(report['countries']) == {'stkittsnevis'}, report['countries']
+          rows=[r for r in report['results'] if r['slug']=='stkittsnevis']
+          assert {r['viewport'] for r in rows} == {'desktop','tablet','mobile'}, rows
+          assert all(not r['errors'] for r in rows), rows
+          print('PASS live Desktop Tablet Mobile Browser QA; 0 failures')
+          PY
+      - name: Upload live review QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stkittsnevis-canonical-live-qa-${{ github.run_id }}
+          path: qa-stkittsnevis-live-review/
+          if-no-files-found: warn
+          retention-days: 3
