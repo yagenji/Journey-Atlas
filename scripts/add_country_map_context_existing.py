@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 import add_country_map_context_legacy as legacy
+from filter_duplicate_target_context import remove_target_land_context
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -31,12 +32,16 @@ def main():
     slug = data.get("slug")
     if slug in legacy.LEGACY_SLUGS:
         legacy.generate(args.country_json, args.input, args.output, args.resolution)
-        print(f"Created reviewed legacy preview: {args.output}")
-        return
-    command = [sys.executable, str(ROOT / "scripts" / "add_country_map_context.py"),
-               "--country-json", str(args.country_json), "--input", str(args.input),
-               "--output", str(args.output), "--resolution", args.resolution]
-    subprocess.run(command, cwd=ROOT, check=True)
+    else:
+        command = [sys.executable, str(ROOT / "scripts" / "add_country_map_context.py"),
+                   "--country-json", str(args.country_json), "--input", str(args.input),
+                   "--output", str(args.output), "--resolution", args.resolution]
+        subprocess.run(command, cwd=ROOT, check=True)
+    preview = args.output.read_text(encoding="utf-8")
+    filtered, removed = remove_target_land_context(preview)
+    if removed:
+        args.output.write_text(filtered, encoding="utf-8")
+    print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings")
 
 
 if __name__ == "__main__":
