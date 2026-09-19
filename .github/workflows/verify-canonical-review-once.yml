@@ -1,0 +1,64 @@
+name: One-time canonical review State invariant
+on:
+  push:
+    branches: [fix/canonical-reviewed-v2-publish-gate]
+    paths: ['.github/workflows/verify-canonical-review-once.yml']
+permissions:
+  contents: write
+jobs:
+  validate-and-stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/canonical-reviewed-v2-publish-gate
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require genuine canonical live review evidence in v2 REVIEW State
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/country_production_protocol_v2.py')
+          text=p.read_text(encoding='utf-8')
+          needle='''    metrics = state.get("productionMetrics") if isinstance(state.get("productionMetrics"), dict) else {}
+'''
+          replacement='''    # Canonical-review Countries must carry actual live noindex QA evidence.
+    # This also verifies the alternative to the targeted branch preview gate.
+    if (state.get("publicationPipelineVersion") == 2 and phase == "REVIEW"
+            and state.get("contentRef") == "main" and state.get("stateRef") == "main"):
+        review = state.get("reviewDeployment") or {}
+        expected_url = f"https://atlas.yagenji.com/countries/{state.get('slug')}/"
+        if not (review.get("state") == "DONE"
+                and review.get("url") == expected_url
+                and review.get("productionVerification") == "LIVE_BROWSER_QA_PASS"
+                and (state.get("publication") or {}).get("atlasPublished") is False):
+            errors.append(f"{filename}: v2 REVIEW requires verified unpublished canonical Browser QA")
+
+''' + needle
+          assert text.count(needle)==1, 'protocol source changed; refuse speculative patch'
+          p.write_text(text.replace(needle,replacement),encoding='utf-8')
+          PY
+          python3 -m py_compile scripts/country_production_protocol_v2.py scripts/publication_pipeline_v2.py
+          python3 - <<'PY'
+          import json,sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import country_production_protocol_v2 as protocol
+          s=json.loads(Path('ops/country-production/grenada.json').read_text())
+          assert not protocol.validate_protocol_state(s,'grenada.json'), 'verified Grenada REVIEW is not valid'
+          s['reviewDeployment']['productionVerification']='PENDING'
+          assert any('verified unpublished canonical Browser QA' in e for e in protocol.validate_protocol_state(s,'grenada.json'))
+          print('Canonical REVIEW evidence positive/negative invariant PASS')
+          PY
+          python3 scripts/validate_production_state_routed.py
+          python3 scripts/test_canonical_review_publication_gate.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/country_production_protocol_v2.py
+          git diff --cached --name-only
+          git commit -m 'Validate canonical live-review evidence before v2 publication'
+          git push origin HEAD:fix/canonical-reviewed-v2-publish-gate
