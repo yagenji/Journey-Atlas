@@ -30,3 +30,4 @@ jobs:
       - name: Verify real canonical QA and stage authorized Cuba publication
         working-directory: site
         run: python3 ../handoff/scripts/_cuba_publication_curl_wrapper.py
+# The isolated wrapper fast-forwards a clean Country checkout before QA.
