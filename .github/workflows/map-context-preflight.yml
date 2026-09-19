@@ -64,6 +64,67 @@ jobs:
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
           print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit']})
           PY
+      - name: Compare Monaco against IGN-derived French land (diagnostic only)
+        run: |
+          python - <<'PY'
+          import hashlib, json, re, sys, urllib.request
+          from io import BytesIO
+          from pathlib import Path
+          import cairosvg
+          from PIL import Image
+          from shapely.geometry import shape, box
+          from shapely.ops import unary_union
+          sys.path.insert(0, 'scripts')
+          from add_country_map_context import canvas_bounds, make_context_path
+          source_url = 'https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements/06-alpes-maritimes/communes-06-alpes-maritimes.geojson'
+          with urllib.request.urlopen(urllib.request.Request(source_url, headers={'User-Agent':'JourneyAtlasMapQADiagnostic/1.0'}), timeout=45) as response:
+              raw = response.read()
+          features = json.loads(raw)['features']
+          country = json.loads(Path('data/countries/monaco.json').read_text())
+          bounds = country['map']['bounds']
+          bound = tuple(float(bounds[k]) for k in ('west','south','east','north'))
+          canvas = canvas_bounds(bound)
+          window = box(*canvas)
+          parts = [shape(f['geometry']) for f in features if f.get('geometry') and shape(f['geometry']).intersects(window)]
+          if not parts:
+              raise RuntimeError('French source has no land in Monaco frame; refuse fabricated land')
+          french_land = unary_union(parts).intersection(window)
+          if french_land.is_empty or not french_land.is_valid:
+              raise RuntimeError('French land polygons invalid/empty')
+          path = make_context_path(french_land, canvas, 0)
+          if not path:
+              raise RuntimeError('French source yielded no SVG path')
+          original = Path('/tmp/journey-atlas-map-context-rollout-stage/monaco.svg').read_text()
+          pattern = r'(<g id="geographic-context"><path d=")([^"]+)(")'
+          candidate, count = re.subn(pattern, lambda m: m.group(1)+path+m.group(3), original)
+          if count != 1:
+              raise RuntimeError('Cannot uniquely substitute generated context path')
+          out = Path('/tmp/journey-atlas-monaco-source-qa')
+          out.mkdir(exist_ok=True)
+          for name, source in (('gshhg-i', original), ('france-communes-diagnostic', candidate)):
+              svg = out/(name+'.svg')
+              svg.write_text(source)
+              png_bytes = cairosvg.svg2png(bytestring=source.encode(),output_width=1200,output_height=760)
+              with Image.open(BytesIO(png_bytes)) as im:
+                  im.load()
+                  assert im.size == (1200,760)
+              (out/(name+'.png')).write_bytes(png_bytes)
+          from xml.etree import ElementTree as ET
+          s = '{http://www.w3.org/2000/svg}'
+          def noncontext(svg):
+              root=ET.fromstring(svg)
+              group=root.find('.//*[@id="geographic-context"]')
+              root.remove(group)
+              return ET.tostring(root)
+          assert noncontext(original) == noncontext(candidate), 'Approved map markup changed'
+          report={'sourceUrl':source_url,'sourceSha256':hashlib.sha256(raw).hexdigest(),
+                  'sourceFeatures':len(features),'intersectingFeatures':len(parts),
+                  'frenchPolygonType':french_land.geom_type,'canvasWgs84':canvas,
+                  'sourceDescription':'IGN Admin Express-derived French commune polygons, 25% simplification by third-party mirror; diagnostic only, not authorized production data',
+                  'approvedNonContextElementsUnchanged':True,'pngDimensions':[1200,760]}
+          (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
       - name: Save preview-only images, reports and rollout manifest
         if: always()
         uses: actions/upload-artifact@v4
@@ -72,5 +133,6 @@ jobs:
           path: |
             /tmp/journey-atlas-map-context-real-previews/
             /tmp/journey-atlas-map-context-rollout-stage/manifest.json
+            /tmp/journey-atlas-monaco-source-qa/
           if-no-files-found: warn
           retention-days: 3
