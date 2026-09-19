@@ -5,8 +5,8 @@
   "contentRef": "country/saintlucia",
   "stateRef": "country/saintlucia",
   "phase": "CONTENT",
-  "stateRevision": 2,
-  "updatedAt": "2026-09-19T20:42:00+09:00",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-19T21:21:39+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/saintlucia/approved/hero-pitons.webp",
@@ -30,7 +30,7 @@
     {"id": "S08", "state": "NOT_STARTED", "asset": null, "contentId": null}
   ],
   "taste": [
-    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": null},
+    {"id": "FOOD01", "state": "NOT_STARTED", "asset": null, "contentId": null, "rejectedGenerationIds": ["5a5cd56d-aa04-4e65-9ec7-28756bf04e92"]},
     {"id": "FOOD02", "state": "NOT_STARTED", "asset": null, "contentId": null},
     {"id": "FOOD03", "state": "NOT_STARTED", "asset": null, "contentId": null},
     {"id": "FOOD04", "state": "NOT_STARTED", "asset": null, "contentId": null}
@@ -59,7 +59,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state": "CLEAN", "epoch": 1, "lastResetAt": null, "lastFailureAsset": null, "lastFailureReason": null},
+  "generationContext": {"state": "CONTAMINATED", "epoch": 1, "lastResetAt": null, "lastFailureAsset": "FOOD01", "lastFailureReason": "COLLAGE_OR_MULTIPANEL"},
   "imageGenerationPolicy": {
     "revision": 7,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
@@ -133,5 +133,5 @@
     "tasteBatchApprovedAt": null,
     "canonicalReviewReadyAt": null
   },
-  "next": {"action": "COMPLETE_CONTENT_DESIGN", "asset": null}
+  "next": {"action": "RESET_GENERATION_CONTEXT", "asset": null}
 }
