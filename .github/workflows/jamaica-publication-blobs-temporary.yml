@@ -1,0 +1,80 @@
+name: Temporary Jamaica publication blob preparation
+on:
+  push:
+    branches: [qa/jamaica-publish-blob-preparation-20260919]
+    paths: ['.github/workflows/jamaica-publication-blobs-temporary.yml']
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare exact latest-main Jamaica overlay and publication metadata, no commits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main' '+refs/heads/country/jamaica:refs/remotes/origin/country/jamaica'
+          source_sha="$(git rev-parse origin/country/jamaica)"
+          test "$source_sha" = '0ac0d8cd51dc5050bc6a272bc3443b835aeb2d65'
+          main_sha="$(git rev-parse origin/main)"
+          python scripts/country_overlay_v2.py assert-scope jamaica origin/main "$source_sha"
+          git checkout -B jamaica-source "$source_sha"
+          python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-publication-overlay
+          git checkout -B jamaica-publication-prep "$main_sha"
+          python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-publication-overlay
+          test -z "$(git diff --name-only origin/main -- data/countries/jamaica.json assets/images/jamaica)"
+          python scripts/publication_pipeline_v2.py assert-publish-ready jamaica
+          python scripts/publication_pipeline_v2.py finalize jamaica
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime,timezone,timedelta
+          slug='jamaica'
+          path=Path('data/country-renewal-status.json'); content=json.loads(path.read_text())
+          country=json.loads(Path('data/countries/jamaica.json').read_text())
+          records=content.setdefault('countries',[])
+          record=next((x for x in records if isinstance(x,dict) and x.get('slug')==slug),None)
+          if record is None:
+              record={'slug':slug};records.append(record)
+          record.update({'nameJa':country['nameJa'],'wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Jamaica exact-asset closed provenance exception is retained; approved canonical live Desktop/Tablet/Mobile QA. Publication deployment SHA and live checks must be verified after merge.']})
+          content['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
+          path.write_text(json.dumps(content,ensure_ascii=False,separators=(',',':'))+'\n')
+          state=json.loads(Path('ops/country-production/jamaica.json').read_text())
+          assert state['phase']=='COMPLETE' and state['finalApproval']['state']=='APPROVED'
+          assert state['publication']['atlasPublished'] and state['publication']['state']=='PUBLISHED'
+          assert state['closedProvenanceException']['id']=='jamaica-preserve-13-20260919'
+          assert all(x['state']=='NOT_STARTED' and x['asset'] is None for x in state['scenes']+state['taste']), 'Do not invent missing generation IDs'
+          registry=json.loads(Path('data/atlas-destinations.json').read_text())
+          jam=next(x for x in registry['destinations'] if x['slug']=='jamaica')
+          assert jam['atlasPublished'] and jam['href']=='countries/jamaica/' and jam['image']==state['hero']['asset']
+          assert len(registry['destinations'])==registry['count']==201
+          print('PASS approval, exact exception, all 13 existing assets unmodified, canonical route, 201 registry entries')
+          PY
+          python scripts/country_production_state.py validate
+          python scripts/validate_country.py --strict data/countries/jamaica.json
+          python scripts/validate_country_map_v6.py data/countries/jamaica.json
+          git diff --name-only origin/main | tee /tmp/jamaica-publish-changes.txt
+          python - <<'PY'
+          from pathlib import Path
+          allowed={'data/atlas-destinations.json','data/country-renewal-status.json','ops/country-production/jamaica.json'}
+          changed=set(Path('/tmp/jamaica-publish-changes.txt').read_text().splitlines())
+          assert changed==allowed,(changed,allowed)
+          print('PASS exactly three Jamaica publication metadata files changed, no shared UI, Country JSON or raster edits')
+          PY
+          echo "PREPARED_MAIN_SHA $main_sha"
+          echo "APPROVED_COUNTRY_SHA $source_sha"
+          for path in data/atlas-destinations.json data/country-renewal-status.json ops/country-production/jamaica.json; do
+            sha="$(gh api --method POST "repos/$GITHUB_REPOSITORY/git/blobs" -f content="$(cat "$path")" -f encoding=utf-8 --jq '.sha')"
+            test "$sha" = "$(git hash-object "$path")"
+            echo "VERIFIED_REMOTE_BLOB $path $sha"
+          done
+          echo 'NO BRANCH REF WAS UPDATED AND NO COMMIT WAS CREATED BY ACTIONS'
