@@ -1,0 +1,77 @@
+name: One-off stage St Kitts Nevis reviewed State
+on:
+  push:
+    branches: [ops/stkittsnevis-review-merge-stage-970]
+    paths: ['.github/workflows/stkittsnevis-stage-review-state-once.yml']
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/stkittsnevis
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Confirm deployed staging has exact approved Country build and noindex
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = '22084e6eace4a079da5929154ff9028069c7fb3b'
+          curl --max-time 25 -fsSL 'https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/preview-build-meta.json' -o /tmp/atlas-review-meta.json
+          python3 - <<'PY'
+          import json
+          m=json.load(open('/tmp/atlas-review-meta.json'))
+          assert m['targets']==['stkittsnevis'] and m['buildVersion']=='22084e6eace4a079',m
+          print('DEPLOYED_STAGING_SOURCE_MATCH',m['buildVersion'])
+          PY
+          curl --max-time 25 -fsSL 'https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/' -o /tmp/atlas-review.html
+          grep -qi noindex /tmp/atlas-review.html
+          grep -q '22084e6eace4a079da5929154ff9028069c7fb3b' /tmp/atlas-review.html
+          echo 'DEPLOYED_STAGING_NO_INDEX_AND_APPROVED_IMAGE_ORIGIN_PASS'
+      - name: Stage only verified preview reconciliation and canonical noindex preparation
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="$(git rev-parse HEAD)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          import sys
+          sys.path.insert(0,'scripts')
+          import publication_pipeline_v2 as pub
+          import canonical_review_v2 as canon
+          s=json.loads(Path('ops/country-production/stkittsnevis.json').read_text())
+          assert s['stateRevision']==33 and s['phase']=='ASSET_QA'
+          assert s['assetHandoff']['state']=='PASS' and s['tasteBatchReview']['approval']=='APPROVED'
+          assert s['finalApproval']['state']=='PENDING' and s['publication']['atlasPublished'] is False
+          before=hashlib.sha256(Path('data/countries/stkittsnevis.json').read_bytes()).hexdigest()
+          pub.reconcile_review('stkittsnevis','22084e6eace4a079da5929154ff9028069c7fb3b','https://yagenji.github.io/Journey-Atlas/reviews/stkittsnevis/countries/stkittsnevis/','35413404640')
+          canon.prepare('stkittsnevis')
+          after=hashlib.sha256(Path('data/countries/stkittsnevis.json').read_bytes()).hexdigest()
+          assert before==after,'Canonical preparation changed Country content; separate targeted QA required'
+          s=json.loads(Path('ops/country-production/stkittsnevis.json').read_text())
+          assert s['reviewPreview']['state']=='DONE' and s['reviewPreview']['browserQa']=='PASS'
+          assert s['reviewPreview']['sourceCommit']=='22084e6eace4a079da5929154ff9028069c7fb3b'
+          assert s['reviewDeployment']['state']=='DEPLOYING' and s['reviewDeployment']['url']=='https://atlas.yagenji.com/countries/stkittsnevis/'
+          assert s['publication']['atlasPublished'] is False and s['finalApproval']['state']=='PENDING'
+          print('STAGED_STATE_REVISION',s['stateRevision'],'CANONICAL_REVIEW_NOT_PUBLISHED',s['reviewDeployment'])
+          PY
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+          python3 scripts/validate_production_state_routed.py
+          python3 scripts/publication_pipeline_v2.py assert-review-ready stkittsnevis
+          test "$(git diff --name-only)" = 'ops/country-production/stkittsnevis.json'
+          git add ops/country-production/stkittsnevis.json
+          git commit -m 'Record verified St Kitts Nevis Pages review and stage canonical noindex review'
+          python3 scripts/country_production_state_v7.py validate-range "$base" HEAD
+          git push origin HEAD:refs/heads/ops/stkittsnevis-review-state-stage-970
+          echo "STAGED_PARENT=$base"
+          echo "STAGED_STATE_TREE=$(git rev-parse HEAD^{tree})"
+          echo "STAGED_STATE_SHA=$(git rev-parse HEAD)"
