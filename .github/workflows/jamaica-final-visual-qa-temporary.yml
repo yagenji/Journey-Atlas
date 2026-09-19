@@ -1,0 +1,99 @@
+name: Jamaica final visual QA evidence
+on:
+  push:
+    branches: [qa/jamaica-page-visual-review-20260919]
+    paths: ['.github/workflows/jamaica-final-visual-qa-temporary.yml']
+permissions:
+  contents: read
+jobs:
+  jamaica-final-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+      - uses: actions/checkout@v4
+        with:
+          ref: 34cf8a3db3dfbd3d1df2102b4f73df2268110862
+          path: country-source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stage unmodified Jamaica content on latest shared template
+        run: |
+          (cd country-source && python scripts/country_overlay_v2.py capture jamaica /tmp/jamaica-final-overlay)
+          (cd site && python scripts/country_overlay_v2.py apply jamaica /tmp/jamaica-final-overlay)
+          python -m pip install --disable-pip-version-check --quiet pillow selenium
+      - name: Recheck original images, Map, editorial data and current publication readiness
+        working-directory: site
+        run: |
+          python scripts/validate_country.py --strict data/countries/jamaica.json
+          python scripts/validate_country_editorial_v2.py --force data/countries/jamaica.json
+          python scripts/validate_country_quality_v5.py data/countries/jamaica.json
+          python scripts/validate_country_map_v6.py data/countries/jamaica.json
+          python scripts/validate_images.py --mode hard --slug jamaica
+          python scripts/validate_images.py --duplicates-only --slug jamaica
+          python - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          from publication_pipeline_v2 import review_ready_errors,state_for_slug,publish_ready_errors
+          state=state_for_slug('jamaica')
+          review=review_ready_errors('jamaica',state)
+          publication=publish_ready_errors('jamaica',state)
+          print('Review gate:',review or 'PASS')
+          print('Publication gate:',publication or 'PASS')
+          if review:
+              assert 'Hero + 8 Scenes + 4 Taste assets must be batch-approved' in review
+          assert not state['publication']['atlasPublished']
+          PY
+      - name: Build and inspect a complete actual 3-width Country page in headless Chrome
+        working-directory: site
+        env:
+          TARGET_SLUGS: jamaica
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: |
+          python scripts/build_country_preview_targeted.py
+          python -m http.server 4173 --directory dist >/tmp/jamaica-final-qa-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/countries/jamaica/ >/dev/null && break; sleep 1; done
+          mkdir -p /tmp/jamaica-final-qa/screens
+          python - <<'PY'
+          import base64,json,time
+          from pathlib import Path
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait
+          from shutil import which
+          opts=Options()
+          for flag in ('--headless=new','--no-sandbox','--disable-dev-shm-usage','--hide-scrollbars','--force-device-scale-factor=1'):opts.add_argument(flag)
+          service=Service(which('chromedriver')) if which('chromedriver') else Service()
+          driver=webdriver.Chrome(service=service,options=opts)
+          reports=[]
+          try:
+              for label,width,height,mobile in [('desktop',1440,1000,False),('tablet',834,1112,False),('mobile',390,844,True)]:
+                  driver.set_window_size(width,height)
+                  driver.execute_cdp_cmd('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':mobile})
+                  driver.get('http://127.0.0.1:4173/countries/jamaica/')
+                  WebDriverWait(driver,35).until(lambda d: len(d.find_elements(By.CSS_SELECTOR,'.scene-card'))==8 and len(d.find_elements(By.CSS_SELECTOR,'.taste-card'))==4)
+                  time.sleep(1.1)
+                  audit=driver.execute_script('''const images=[...document.querySelectorAll('img')]; return {viewport:innerWidth,scroll:document.documentElement.scrollWidth,scenes:document.querySelectorAll('.scene-card').length,taste:document.querySelectorAll('.taste-card').length,broken:images.filter(i=>!i.complete||i.naturalWidth===0).map(i=>i.currentSrc),map:!!document.querySelector('#country-map-art'),robots:document.querySelector('meta[name=robots]')?.content};''')
+                  assert audit['scenes']==8 and audit['taste']==4 and not audit['broken'] and audit['scroll']<=width+2 and audit['map'] and 'noindex' in audit['robots'],(label,audit)
+                  payload=driver.execute_cdp_cmd('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True,'fromSurface':True})['data']
+                  Path('/tmp/jamaica-final-qa/screens/'+label+'.png').write_bytes(base64.b64decode(payload))
+                  audit['name']=label;reports.append(audit)
+                  print(label,'PASS',audit)
+          finally:
+              driver.quit()
+          Path('/tmp/jamaica-final-qa/summary.json').write_text(json.dumps(reports,indent=2))
+          PY
+      - name: Upload actual rendered screenshots and gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jamaica-final-visual-qa-evidence
+          path: /tmp/jamaica-final-qa/
+          if-no-files-found: warn
+          retention-days: 3
