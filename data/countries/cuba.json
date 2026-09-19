@@ -51,10 +51,10 @@
     {"id": "ajiaco-criollo", "name": "アヒアコ", "nameLocal": "Ajiaco Criollo", "text": "根菜やトウモロコシ、肉などをじっくり煮込むスープ。具材の形が残る深い器で供され、さまざまな食材が一つの鍋に集まる。", "image": "assets/images/cuba/approved/food03-ajiaco.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
     {"id": "yuca-con-mojo", "name": "ユカ・コン・モホ", "nameLocal": "Yuca con Mojo", "text": "ゆでたキャッサバに、にんにくや柑橘を使ったモホソースをかける料理。白い根菜と香りのあるソースの組み合わせが、肉や米料理とは別の食感を生む。", "image": "assets/images/cuba/approved/food04-yuca-con-mojo.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"}
   ]},
-  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "ハバナを中心にするか、中部へ延ばすか、東部の山地まで含めるかで、必要な移動の余裕が大きく変わる。運行・燃料事情は出発前に確認する。", "items": [
-    {"duration": "3〜4日", "title": "ハバナと西部の谷を歩く", "text": "旧ハバナと港を起点に、道路条件を確かめてビニャーレスへ。例：ハバナ → ビニャーレス → ハバナ。", "icon": "city"},
-    {"duration": "5〜7日", "title": "中部の町まで延ばす", "text": "ハバナから南岸のシエンフエゴス、トリニダーへ移動する。例：ハバナ → シエンフエゴス → トリニダー → ハバナ。", "icon": "map"},
-    {"duration": "8日以上", "title": "中部から東部へ別区間を加える", "text": "移動条件と入域条件を確認しながら中部・東部の景観を組み合わせる。例：ハバナ → トリニダー → カマグエイ → サンティアゴ・デ・クーバ → バラコア。", "icon": "compass"}
+  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "島の西部から東部まで距離があり、陸路の移動日は観光日とは別に余裕を見込みたい。以下は交通を確保できる場合の目安。運休や燃料事情によっては訪問地域を減らす。", "items": [
+    {"duration": "4〜6日", "title": "ハバナと西部の谷をめぐる", "text": "旧ハバナの広場や港周辺を歩いた後、西のビニャーレスで石灰岩の丘と畑を訪ねる。往復の陸路移動を含めて首都と西部の二地域に絞る。例：ハバナ → ビニャーレス → ハバナ。", "icon": "city"},
+    {"duration": "7〜11日", "title": "南岸の歴史都市まで足を延ばす", "text": "ハバナから南岸のシエンフエゴスを経てトリニダーへ。計画的な港町と石畳の旧市街を歩き比べるには、都市間の陸路移動と運休時の予備日を見込む。例：ハバナ → シエンフエゴス → トリニダー → ハバナ。", "icon": "map"},
+    {"duration": "12日以上", "title": "中部を越えて東部へ進む", "text": "中部の町に加えてカマグエイ以東へ進むと、内陸の街路から東部の山地へ景色が変わる。長い陸路移動に余裕を取り、バラコアまで延ばす場合はさらに滞在日を確保する。例：ハバナ → シエンフエゴス → トリニダー → カマグエイ → サンティアゴ・デ・クーバ。", "icon": "compass"}
   ]},
   "seasons": [
     {"months": "12〜2月", "color": "#a9bdc6", "text": "比較的乾いた時期。都市歩きや西部の谷を訪ねやすい季節だが、北からの寒気による風や雨の日もある。"},
@@ -92,14 +92,10 @@
     {"slug": "jamaica", "nameEn": "JAMAICA", "nameJa": "ジャマイカ", "flag": "🇯🇲", "reason": "カリブの音楽文化と島の暮らしを、キューバとは別の表現や言語を通してたどれる。", "affinityType": "CULTURE"},
     {"slug": "mexico", "nameEn": "MEXICO", "nameJa": "メキシコ", "flag": "🇲🇽", "reason": "歴史都市と半島の石灰岩地形、食と街の文化の広がりを別の規模で歩いて比較できる。", "affinityType": "HISTORY"}
   ],
-  "nextRoutes": [
-    {"flag": "🇲🇽", "countryEn": "MEXICO", "countryJa": "メキシコ", "path": "Havana → Mexico City", "description": "ハバナからメキシコシティへ空路で移る、現在も航空会社が販売する旅の続き方。運航変更があり得るため便の有無は出発直前に確認する。", "travelerRoute": true, "status": "CHECK_CURRENT_CONDITIONS", "statusNote": "2026年9月時点でキューバ発着便全般に変更の可能性がある。"},
-    {"flag": "🇵🇦", "countryEn": "PANAMA", "countryJa": "パナマ", "path": "Havana → Panama City", "description": "ハバナとパナマシティを空路でつなぎ、カリブ海の島から運河と本土の都市へ景観を変える。運航は直前に確認する。", "travelerRoute": true, "status": "CHECK_CURRENT_CONDITIONS", "statusNote": "2026年9月時点で燃料・航空便の変更に注意が必要。"},
-    {"flag": "🇨🇴", "countryEn": "COLOMBIA", "countryJa": "コロンビア", "path": "Havana → Panama City → Cartagena", "description": "パナマで航空便を乗り継ぎ、カリブ海沿岸のカルタヘナへ。島の港町と本土の港町を比べる旅の軸。乗継条件と運航は確認する。", "travelerRoute": true, "status": "CHECK_CURRENT_CONDITIONS", "statusNote": "乗継便・燃料・航空便の状況により経路が変わるため、予約時に確認する。"}
-  ],
-  "updatedAt": "2026-09-18",
+  "nextRoutes": [],
+  "updatedAt": "2026-09-19",
   "sourcesVerifiedAt": "2026-09-18",
-  "sourceDates": {"population": "2025", "cubaArea": "2026-09-04", "japanArea": "2026-04-01", "worldHeritage": "2026-09-18", "intangibleHeritage": "2026-09-18", "tourism": "2026-09-18", "travelAdvisory": "2026-09-18", "airRoute": "2026-09-18"},
+  "sourceDates": {"population": "2025", "cubaArea": "2026-09-04", "japanArea": "2026-04-01", "worldHeritage": "2026-09-18", "intangibleHeritage": "2026-09-18", "tourism": "2026-09-18", "travelAdvisory": "2026-09-18"},
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan, Cuba basic facts, 2026-09-04: area 109,884 km²; population about 10.93 million (2025 World Bank); capital Havana; Spanish; currency Cuban peso. https://www.mofa.go.jp/mofaj/area/cuba/data.html",
     "population": "Ministry of Foreign Affairs of Japan, Cuba basic facts, reporting World Bank 2025 population of about 10.93 million; checked 2026-09-18. https://www.mofa.go.jp/mofaj/area/cuba/data.html",
@@ -128,7 +124,6 @@
     "gastronomy": "CubaTravel official gastronomy guides, ropa vieja, congri, ajiaco, yuca con mojo. https://www.cuba.travel/en/touristservices/gastronomy ; https://www.cuba.travel/en/destinations/la-havana-cuba/restaurants-in-havana",
     "climate": "CubaTravel, Baracoa geography, dry Nov-Apr, rainy May-Oct and hurricane Jun-Nov. https://www.cuba.travel/en/destinations/guantanamo-baracoa/geography",
     "travelAdvisory": "Japan Ministry of Foreign Affairs, Cuba 2026 fuel and power shortages, advice to postpone non-essential travel; checked 2026-09-18. https://www.anzen.mofa.go.jp/info/pcspotinfo_2026C011.html ; UK FCDO Cuba travel advice updated 2026-07-16, current 2026-09-18. https://www.gov.uk/foreign-travel-advice/cuba",
-    "airRoute": "Aeromexico Cuba flights, 2026 Sep/Oct Havana–Mexico City listings https://www.aeromexico.com/en_mx/flights-to-cuba ; Copa Havana–Panama City flight listings https://www.copaair.com/en/flights-from-havana-to-panama-city ; Copa Havana–Cartagena via Panama flight listings https://www.copaair.com/en/flights-from-havana-to-cartagena",
     "mapGeometry": "GSHHS intermediate coast polygons for Cuba target and local cays; GSHHS low-resolution polygons for surrounding land; Natural Earth 1:110m Cuba admin-0 reference used as coarse membership cross-check. WGS84, local-equirectangular projection; generated 2026-09-18. Minor cay affiliation pending final QA. https://www.soest.hawaii.edu/pwessel/gshhg/ ; https://www.naturalearthdata.com/"
   }
 }
