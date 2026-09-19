@@ -1,0 +1,32 @@
+name: One-time Grenada publication handoff
+on:
+  push:
+    branches: [ops/grenada-publication-approval-20260919]
+    paths: ['.github/workflows/grenada-publication-handoff-once.yml']
+permissions:
+  contents: write
+jobs:
+  stage-approved-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout isolated authorized handoff
+        uses: actions/checkout@v4
+        with:
+          ref: ops/grenada-publication-approval-20260919
+          path: handoff
+      - name: Checkout canonical Country publication branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/grenada-renewal
+          path: site
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image validation dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+      - name: Confirm approval provenance, fully decode images, validate, and stage publication PR content
+        working-directory: site
+        run: python3 ../handoff/scripts/_grenada_publication_once.py
