@@ -1,0 +1,197 @@
+name: New Country production milestone QA
+
+# Optional on-demand checks before the single Country review PR. This workflow
+# never changes Country assets, Production State, approval or publication.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Unpublished Country slug; run on country/<slug>'
+        required: true
+        type: string
+      stage:
+        description: 'Completed milestone to verify'
+        required: true
+        type: choice
+        options: [content-map, delivered]
+  pull_request:
+    paths:
+      - '.github/workflows/country-production-milestone-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  milestone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Guard target and milestone
+        env:
+          EVENT: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_SLUG: ${{ inputs.slug }}
+          INPUT_STAGE: ${{ inputs.stage }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+
+          test = os.environ['EVENT'] == 'pull_request'
+          slug = 'grenada' if test else os.environ['INPUT_SLUG']
+          if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
+              raise SystemExit('Invalid Country slug')
+          if not test and os.environ['REF_NAME'] != f'country/{slug}':
+              raise SystemExit('Select the exact country/<slug> branch for manual QA')
+          country = json.loads((Path('data/countries') / f'{slug}.json').read_text(encoding='utf-8'))
+          state = json.loads((Path('ops/country-production') / f'{slug}.json').read_text(encoding='utf-8'))
+          registry = json.loads(Path('data/atlas-destinations.json').read_text(encoding='utf-8'))
+          rows = [row for row in registry['destinations'] if row.get('slug') == slug]
+          if len(rows) != 1 or country.get('slug') != slug or state.get('slug') != slug:
+              raise SystemExit('Country must match exactly one canonical registry row and State')
+          if country.get('schemaVersion') != 2 or state.get('productionProtocolId') != '2.0':
+              raise SystemExit('This QA is only for protocol-2 schema-2 Countries')
+          # The PR test exercises both real stages against an unchanged, already
+          # published Country; manual use strictly requires an unpublished one.
+          if (test and (slug != 'grenada' or rows[0].get('atlasPublished') is not True)) or (
+              not test and rows[0].get('atlasPublished') is not False
+          ):
+              raise SystemExit('Invalid QA fixture or published manual target')
+          previsual = state.get('preVisualBuild') or {}
+          if test or os.environ['INPUT_STAGE'] == 'content-map':
+              if previsual.get('state') != 'PASS' or (state.get('map') or {}).get('state') != 'APPROVED':
+                  raise SystemExit('CONTENT + MAP must be approved before QA')
+              if not test and state.get('phase') not in ('CONTENT', 'HERO'):
+                  raise SystemExit('Content/Map milestone is not at the pre-Hero stage')
+          if test or os.environ['INPUT_STAGE'] == 'delivered':
+              approved = (state.get('hero') or {}).get('state') == 'APPROVED'
+              approved &= len(state.get('scenes') or []) == 8 and all(x.get('state') == 'APPROVED' for x in state['scenes'])
+              approved &= len(state.get('taste') or []) == 4 and all(x.get('state') == 'APPROVED' for x in state['taste'])
+              approved &= (state.get('sceneBatchReview') or {}).get('approval') == 'APPROVED'
+              approved &= (state.get('tasteBatchReview') or {}).get('approval') == 'APPROVED'
+              handoff = state.get('assetHandoff') or {}
+              approved &= handoff.get('state') == 'PASS' and handoff.get('verifiedRasterCount') == 13
+              paths = [country.get('hero', {}).get('image')]
+              paths += [s.get('image') for s in country.get('scenes', [])]
+              paths += [s.get('image') for s in (country.get('taste') or {}).get('items', [])]
+              if not approved or len(paths) != 13 or len(set(paths)) != 13 or not all(
+                  isinstance(p, str) and p.startswith(f'assets/images/{slug}/approved/')
+                  and p.endswith('.webp') and Path(p).is_file() for p in paths
+              ):
+                  raise SystemExit('13 distinct approved, delivered WebPs and verified handoff are required')
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as out:
+              out.write(f'SLUG={slug}\n')
+          print(f'Milestone target verified: {slug}; PR regression={test}')
+          PY
+      - name: Install QA dependencies
+        run: python3 -m pip install --disable-pip-version-check --quiet 'pillow>=10,<13' 'cairosvg>=2.7,<3' selenium
+      - name: Validate CONTENT + MAP and decode 1200x760 SVG
+        if: github.event_name == 'pull_request' || inputs.stage == 'content-map'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country_map_v6.py "data/countries/$SLUG.json"
+          python3 - <<'PY'
+          import json, os
+          from io import BytesIO
+          from pathlib import Path
+          import cairosvg
+          from PIL import Image
+          slug = os.environ['SLUG']
+          country = json.loads((Path('data/countries') / f'{slug}.json').read_text(encoding='utf-8'))
+          svg = country['map']['svg']
+          if not svg.startswith(f'assets/images/{slug}/') or not svg.endswith('.svg'):
+              raise SystemExit('Invalid target Map SVG')
+          png = cairosvg.svg2png(bytestring=Path(svg).read_bytes(), output_width=1200, output_height=760)
+          with Image.open(BytesIO(png)) as image:
+              image.load()
+              if image.size != (1200, 760):
+                  raise SystemExit('Map dimensions mismatch')
+          Path('qa-milestone-output').mkdir(exist_ok=True)
+          (Path('qa-milestone-output') / f'{slug}-map.png').write_bytes(png)
+          print('CONTENT + MAP PASS: fully decoded 1200x760 SVG')
+          PY
+      - name: Rebuild approved Country on latest main
+        if: github.event_name == 'workflow_dispatch' && inputs.stage == 'delivered'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          python3 scripts/country_overlay_v2.py assert-scope "$SLUG" origin/main HEAD
+          python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/country-milestone-overlay
+          git reset --hard origin/main
+          python3 scripts/country_overlay_v2.py apply "$SLUG" /tmp/country-milestone-overlay
+      - name: Validate all delivered images and Country data
+        if: github.event_name == 'pull_request' || inputs.stage == 'delivered'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_country_editorial_v2.py --force "data/countries/$SLUG.json"
+          python3 scripts/validate_country_quality_v5.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country_map_v6.py "data/countries/$SLUG.json"
+          python3 scripts/validate_country.py --strict "data/countries/$SLUG.json"
+          python3 scripts/audit_country_image_delivery_targeted.py --slug "$SLUG"
+          python3 scripts/validate_images.py --mode audit --slug "$SLUG"
+          python3 scripts/validate_images.py --duplicates-only --slug "$SLUG"
+      - name: Run final-asset Desktop Tablet Mobile Browser QA and screenshots
+        if: github.event_name == 'pull_request' || inputs.stage == 'delivered'
+        env:
+          TARGET_SLUGS: ${{ env.SLUG }}
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-milestone-browser
+          QA_SCOPE: ${{ github.event_name == 'pull_request' && 'reviewable' || 'unpublished-reviewable' }}
+          QA_SLUGS: ${{ env.SLUG }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/build_country_preview_targeted.py
+          python3 -m http.server 4173 --directory dist >/tmp/country-milestone-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          python3 scripts/qa_published_browser.py
+          python3 - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          import qa_published_browser as qa
+          slug = os.environ['SLUG']
+          out = Path('qa-milestone-output')
+          out.mkdir(exist_ok=True)
+          for name, viewport in qa.VIEWPORTS.items():
+              driver = qa.make_driver()
+              try:
+                  qa.set_viewport(driver, viewport)
+                  driver.get(f'http://127.0.0.1:4173/countries/{slug}/')
+                  qa.wait_for_country(driver)
+                  qa.scroll_entire_page(driver)
+                  qa.full_page_screenshot(driver, out / f'{slug}-{name}.jpg')
+                  print(f'Captured {slug} {name} final-asset page')
+              finally:
+                  driver.quit()
+          PY
+      - name: Preserve QA reports and all viewport captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: country-milestone-${{ github.run_id }}
+          path: |
+            qa-milestone-output/
+            qa-milestone-browser/
+          if-no-files-found: ignore
+          retention-days: 3
