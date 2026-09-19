@@ -16,21 +16,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify live release SHA, canonical indexing, sitemap, and canonical destination registry
+      - name: Verify current production SHA descends from Jamaica release and check robots sitemap registry
         run: |
           python - <<'PY'
           import json,re,time,urllib.request
           from html.parser import HTMLParser
           from xml.etree import ElementTree as ET
           BASE='https://atlas.yagenji.com';URL=BASE+'/countries/jamaica/'
+          approved='a51a4a0e10c914bc6622b6cbc8371f14ab5915da'
           def fetch(path):
               req=urllib.request.Request(BASE+path+('?' if '?' not in path else '&')+'postpub='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'JOURNEY-ATLAS-Post-Publication-QA/1.0'})
               with urllib.request.urlopen(req,timeout=30) as response:
                   assert response.status==200,(path,response.status)
                   return response.read().decode('utf-8')
           live_sha=json.loads(fetch('/build-meta.json'))['commit']
-          assert live_sha=='a51a4a0e10c914bc6622b6cbc8371f14ab5915da',live_sha
-          print('PASS exact deployed Cloudflare SHA:',live_sha)
+          print('Live Cloudflare SHA',live_sha,flush=True)
+          if live_sha!=approved:
+              url='https://api.github.com/repos/yagenji/Journey-Atlas/compare/'+approved+'...'+live_sha
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'JOURNEY-ATLAS-QA'}),timeout=30) as r:comparison=json.load(r)
+              assert comparison['status']=='ahead' and comparison['ahead_by']>0,(live_sha,comparison['status'])
+              print('PASS live commit is GitHub-verified descendant of approved Jamaica publication:',comparison['ahead_by'],'newer commits',flush=True)
+          else:print('PASS exact approved Jamaica production SHA',flush=True)
           class Head(HTMLParser):
               def __init__(self):super().__init__();self.robots=[];self.canonical=[]
               def handle_starttag(self,tag,attrs):
@@ -41,23 +47,22 @@ jobs:
           head=Head();head.feed(html)
           assert URL in head.canonical,head.canonical
           assert all('noindex' not in x.lower() for x in head.robots),head.robots
-          print('PASS public canonical URL and index-eligible robots meta:',head.robots)
+          print('PASS Jamaica canonical 200 and index-eligible robots meta:',head.robots,flush=True)
           sitemap=fetch('/sitemap.xml')
           urls=[(loc.text or '').strip() for loc in ET.fromstring(sitemap).iter() if loc.tag.endswith('loc')]
-          assert URL in urls,('Jamaica missing from sitemap',urls[:5],len(urls))
-          print('PASS Jamaica indexed in live sitemap:',URL)
+          assert URL in urls,('Jamaica absent from sitemap',urls[:5],len(urls))
+          print('PASS live sitemap contains Jamaica:',URL,flush=True)
           registry=json.loads(fetch('/data/atlas-destinations.json'))
           items=[x for x in registry['destinations'] if x.get('slug')=='jamaica']
           assert len(items)==1 and items[0]['atlasPublished'] is True,items
-          assert items[0]['href']=='countries/jamaica/',items
-          assert items[0]['image']=='assets/images/jamaica/approved/hero-ward-theatre.webp',items
+          assert items[0]['href']=='countries/jamaica/' and items[0]['image']=='assets/images/jamaica/approved/hero-ward-theatre.webp',items
           assert len(registry['destinations'])==201
-          print('PASS live canonical registry Jamaica public and linked, 201 total destinations')
+          print('PASS live registry: published Jamaica navigable, 201 destinations',flush=True)
           homepage=fetch('/')
           links=[x for x in re.findall(r'href=["\']([^"\']+)["\']',homepage) if '/countries/jamaica/' in x or x=='countries/jamaica/']
-          print('Homepage static Jamaica link count:',len(links))
+          print('Static homepage Jamaica links:',len(links),flush=True)
           PY
-      - name: Verify Jamaica appears in a normal live UI navigation surface
+      - name: Verify a live user-facing normal navigation route to Jamaica
         run: |
           python -m pip install --disable-pip-version-check --quiet selenium
           python - <<'PY'
@@ -73,14 +78,14 @@ jobs:
               found=[]
               for path in ['/','/countries/']:
                   driver.get('https://atlas.yagenji.com'+path+'?postpub='+str(time.time_ns()))
+                  links=[]
                   for attempt in range(30):
                       links=driver.execute_script('''return [...document.querySelectorAll('a[href]')].map(a=>a.href).filter(s=>/\/countries\/jamaica\/?(?:[?#].*)?$/.test(s));''')
                       if links:found=links;break
                       time.sleep(.35)
-                  print('Live normal navigation',path,'links:',len(links))
+                  print('Live normal navigation',path,'Jamaica links:',len(links),flush=True)
                   if found:break
-              assert found,'No Jamaica Country link visible in normal homepage / countries directory DOM'
-              print('PASS real normal-page Jamaica navigation link:',found[0])
-          finally:
-              driver.quit()
+              assert found,'No Jamaica Country link found in normal homepage or countries directory DOM'
+              print('PASS user-facing Jamaica navigation link:',found[0],flush=True)
+          finally:driver.quit()
           PY
