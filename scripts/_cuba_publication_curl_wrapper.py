@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Use the same curl transport as production verification for live ATLAS GETs."""
+"""Use production curl transport and fast-forward clean Country checkout to latest main."""
 import io
 import runpy
 import subprocess
 import urllib.request
 
+# Only a clean, not-yet-staged Country checkout may be rebased to moving main.
+subprocess.run(['git', 'diff', '--quiet'], check=True)
+subprocess.run(['git', 'diff', '--cached', '--quiet'], check=True)
+subprocess.run(['git', 'fetch', '--no-tags', 'origin', '+refs/heads/main:refs/remotes/origin/main'], check=True)
+subprocess.run(['git', 'merge-base', '--is-ancestor', 'HEAD', 'origin/main'], check=True)
+subprocess.run(['git', 'merge', '--ff-only', 'origin/main'], check=True)
 original_urlopen = urllib.request.urlopen
 
 def verified_site_urlopen(request, *args, **kwargs):
