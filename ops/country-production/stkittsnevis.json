@@ -542,10 +542,12 @@
     ]
   },
   "reviewDeployment": {
-    "state": "DEPLOYING",
+    "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/stkittsnevis/",
-    "productionVerification": "PENDING",
-    "atlasPublished": false
+    "productionVerification": "LIVE_BROWSER_QA_PASS",
+    "atlasPublished": false,
+    "browserQa": "PASS",
+    "verifiedAt": "2026-09-19T02:11:27.573304+00:00"
   },
   "finalApproval": {
     "state": "PENDING"
@@ -740,7 +742,7 @@
     "canonicalReviewReadyAt": "2026-09-19T10:44:09+09:00"
   },
   "next": {
-    "action": "VERIFY_CANONICAL_REVIEW",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2
