@@ -1,0 +1,97 @@
+name: One-off St Kitts Nevis FOOD03 approval reconciliation
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: [.github/workflows/stkittsnevis-food03-approval-once.yml]
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconcile the reserved image, then record actual user approvals at the batch boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          base="$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime,timezone,timedelta
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(p.read_text())
+          t=s['taste'][2]
+          gid='11eacd5f-9470-4af7-bae5-7c58480023b9'
+          assert s['stateRevision']==30 and s['phase']=='TASTE_REGEN'
+          assert s['next']=={'action':'RECONCILE_GENERATION','asset':'FOOD03'}
+          assert t['state']=='GENERATING' and t['generationReservation']['asset']=='FOOD03'
+          assert t['generationReservation']['generationContextEpoch']==s['generationContext']['epoch']==6
+          assert s['finalApproval']['state']=='PENDING' and s['publication']['atlasPublished'] is False
+          assert all(s['taste'][i]['state']=='APPROVED' for i in (1,3))
+          now=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          t['state']='REVIEW_CANDIDATE'
+          t.pop('generationReservation')
+          t.pop('lastFailureReason',None)
+          t['candidateGenerationId']=gid
+          t['candidateVisualQa']={k:'PASS' for k in ('targetIdentity','dishIdentity','singleDish','integralComponentsOnly','plainBackground','decorativePropsAbsent','previousAssetRepeat','collageTypography')}
+          t['userApprovalEvidence']={'generationId':gid,'basis':'User replied approve to the new single-plate rice, peas and chicken pelau generated after explicitly requesting regeneration of the earlier nonconforming FOOD03.','visualApprovalReceived':True,'expectedImageSha256':'01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932','previousAcceptedGenerationId':'27a312c7-9854-4183-a997-edb0142fa4e6','formalApprovalStatus':'PENDING_TRUE_REGEN_BATCH_BOUNDARY'}
+          s['stateRevision']+=1
+          s['updatedAt']=now
+          s['next']={'action':'BATCH_REVIEW_TASTE','asset':None}
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('RESERVATION_RECONCILED',gid,'NEXT',s['next'])
+          PY
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+          git add ops/country-production/stkittsnevis.json
+          git commit -m 'Reconcile reserved new FOOD03 image as user-approved review candidate'
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime,timezone,timedelta
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(p.read_text())
+          t=s['taste']
+          assert s['phase']=='TASTE_REGEN' and s['stateRevision']==31
+          assert s['next']=={'action':'BATCH_REVIEW_TASTE','asset':None}
+          assert s['tasteBatchReview']['approval']=='PENDING' and len(s['tasteBatchReview']['rounds'])==1
+          assert [x['id'] for x in t if x['state']!='APPROVED']==['FOOD01','FOOD03']
+          assert t[0]['userApprovalEvidence']['generationId']=='641eaa2f-c782-4a01-86e5-7be16cd488ec'
+          assert t[2]['userApprovalEvidence']['generationId']=='11eacd5f-9470-4af7-bae5-7c58480023b9'
+          assert s['assetHandoff']['state']=='PASS'
+          now=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          approved={}
+          for i in (0,2):
+            item=t[i]
+            approved[item['id']]=item.pop('candidateGenerationId')
+            item['approvedGenerationId']=approved[item['id']]
+            item['state']='APPROVED'
+          t[2]['userApprovalEvidence']['formalApprovalStatus']='APPROVED_AT_REGEN_BATCH_BOUNDARY'
+          s['tasteBatchReview']['rounds'].append({'round':2,'reviewBoundary':True,'scope':['FOOD01','FOOD03'],'approvedGenerations':approved,'regenerate':[],'approvedAt':now,'approvalBasis':'User explicitly approved FOOD01 in an earlier turn and the regenerated FOOD03 in the current turn; FOOD02 and FOOD04 were approved in the immutable first Taste review round. No prior reservation or approval is backdated.'})
+          s['tasteBatchReview']['approval']='APPROVED'
+          s['assetHandoff'].update({'state':'PENDING','verifiedRasterCount':0,'verifiedAt':None})
+          s['productionMetrics']['tasteBatchReviews']+=1
+          s['productionMetrics']['tasteBatchApprovedAt']=now
+          s['stateRevision']+=1
+          s['updatedAt']=now
+          s['next']={'action':'BATCH_REVIEW_TASTE','asset':None}
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('TASTE_BATCH_APPROVED',approved,'HANDOFF_PENDING_ONLY_NEW_FOOD03')
+          PY
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+          git add ops/country-production/stkittsnevis.json
+          git commit -m 'Approve FOOD01 and regenerated FOOD03 at genuine Taste batch boundary'
+          python3 scripts/country_production_state_v7.py validate-range "$base" HEAD
+          git rm .github/workflows/stkittsnevis-food03-approval-once.yml
+          git commit -m 'Remove temporary FOOD03 approval reconciliation runner'
+          git push origin HEAD:refs/heads/country/stkittsnevis
