@@ -1,0 +1,29 @@
+name: One-time validate trigger reconciliation
+on:
+  push:
+    branches: [fix/canonical-reviewed-v2-publish-gate]
+    paths: ['.github/workflows/canonical-validation-trigger-once.yml']
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/canonical-reviewed-v2-publish-gate
+      - name: Apply exact-source workflow trigger correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/_country_validation_trigger_once.py
+          python3 -m py_compile scripts/publication_pipeline_v2.py scripts/test_canonical_review_publication_gate.py
+          python3 scripts/test_canonical_review_publication_gate.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/canonical-validation-trigger-once.yml scripts/_country_validation_trigger_once.py
+          git add .github/workflows/validate-country-data.yml .github/workflows/canonical-validation-trigger-once.yml scripts/_country_validation_trigger_once.py
+          git diff --cached --name-only
+          git commit -m 'Run standard PR validation for v2 publication gate changes'
+          git push origin HEAD:fix/canonical-reviewed-v2-publish-gate
