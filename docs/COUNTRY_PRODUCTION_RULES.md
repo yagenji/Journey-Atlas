@@ -49,6 +49,8 @@ CONTENT + MAP
 
 Do not create extra phases or approval gates.
 
+**Keep the Country branch without a main-targeting PR during CONTENT + MAP, HERO, SCENES and TASTE.** Open one unpublished-review PR only after all 13 approved rasters are handed off and verified, when entering implementation/review QA. The canonical noindex review merges that PR before final page approval. After explicit final approval, create a separate publication PR from the retained Country branch; do not create image-by-image, State-only, or verification-only PRs. State-transition checks still run on Country pushes; PR-only checks must not be triggered by per-image progress.
+
 ## 5. CONTENT + MAP
 
 Before Hero generation, finish the content that does not require final raster bytes:
@@ -60,6 +62,22 @@ Before Hero generation, finish the content that does not require final raster by
 - sources and source dates;
 - scene coordinates and Map;
 - Theme assignment.
+
+**Maps for Countries newly initialized after the shared geographic-context implementation is merged must show real surrounding land from the start.** Follow Azerbaijan's approved sea/surrounding-land palette on the common 1200×760 canvas. Preserve the target country's geographic identity and map-marker coordinates. Do not draw fictional neighboring terrain, borders or roads, or omit land to make an exclave appear to be an island.
+
+For a new **single-region** Country, use the shared wrapper with verified target-specific administrative geometry; GSHHS coastlines alone cannot define a national border. The output must be a *new* preview path, not an existing approved asset. Example (replace placeholders with the actual Country, verified source and location):
+
+```bash
+python3 scripts/generate_country_map_with_context.py \
+  --country-json data/countries/COUNTRY_SLUG.json \
+  --source natural-earth --dataset /path/to/verified/admin0.geojson \
+  --country-name 'VERIFIED COUNTRY NAME' \
+  --output /tmp/COUNTRY_SLUG-map-context-review.svg
+```
+
+The wrapper also accepts `--source geoboundaries --iso VERIFIED_ISO3` when that verified source is appropriate. Record the actual boundary/coast source and license, assess coastline alignment, islands/exclaves, canvas edges and labels, and fully decode the rendered SVG at 1200×760 before handing it off. Do not use the old clean-background generator as a fallback for a new Country.
+
+**Multi-region / inset Countries:** the single-region wrapper deliberately rejects `map.regions`. Use a verified region-aware map construction with the Country JSON's real region bounds, then apply the common `scripts/add_country_map_context.py` stage to a separate SVG preview. Check each region's clipping and inset projection individually. If the actual SVG layout is unsupported, resolve the common map-generation path before completing CONTENT + MAP; do not invent a Country-specific shortcut or silently produce a map without surrounding land. Do not retrofit a Country already in progress unless explicitly requested.
 
 Use the current Country schema and current Content QA. Machine validators determine field-level contract details; do not copy their full rule set into chat context.
 
@@ -137,6 +155,10 @@ Run the narrowest QA that proves the change:
 - image bytes → decode/dimension/path/duplicate checks;
 - Map → map/coordinate/label checks.
 
+Before the first canonical review, inspect the **rendered page built from the final delivered asset bytes**, not only approved image candidates or placeholder dimensions. At Desktop, Tablet and Mobile, check Hero crop, all eight Scenes, all four Taste cards (image-to-frame sizing, full dish visibility and backing), Map/labels, facts, related destinations and next routes together. Fix problems found in that pass before inviting the user to review; a load/decode PASS alone does not establish visual correctness.
+
+For review feedback, reproduce each reported issue against the exact live build SHA and delivered assets. Consolidate related corrections into one minimal change, check the affected components locally at all three widths, then run only the relevant PR QA. After required checks pass, advance the PR through its guarded merge/deploy path and verify the exact canonical live SHA and affected rendering; do not restart full-country QA or create a separate PR merely to repeat checks already proved for unchanged bytes. Preserve any State update actually required by the publication pipeline and the final user-approval gate.
+
 Do not equate CI success with visual completion. The actual rendered Country page must be checked at Desktop, Tablet and Mobile.
 
 ## 12. Review and publication
@@ -152,7 +174,9 @@ During canonical review it remains:
 
 A staging/Pages preview may support technical QA but is not the user’s final review URL.
 
-Only explicit final page approval authorizes formal publication. Publication then changes discoverability/indexing through the current automated pipeline and must verify the deployed production SHA and actual Country route.
+Only explicit final page approval authorizes formal publication. Publication then changes discoverability/indexing and must verify the deployed production SHA and actual Country route. Automatic finalization runs only when `ATLAS_AUTO_PUBLISH=enabled` and an independently authorized `ATLAS_PUBLICATION_TOKEN` is configured in repository Actions settings; the GitHub Actions `GITHUB_TOKEN` is not a substitute for this credential. The token must have permission to update the Country branch, run Actions and merge its PR. Do not put an access token in chat or commit it to the repository.
+
+Automatic review State reconciliation and canonical promotion also require `ATLAS_PUBLICATION_TOKEN`; if it is missing, the workflows stop before making Actions-bot changes to a Country PR. Until an independent identity is configured and the full path verified, use the connected GitHub account to perform each guarded stage: merge the **unpublished-review PR** only after its genuine required PR checks, confirm the canonical noindex page and live browser QA, record the verified review State, and—only after explicit final page approval—create the **separate publication PR** on latest main. Wait for actual `validate` and `browser-qa` checks on that PR head, squash merge and verify the deployed SHA and canonical page. Do not use Actions-bot commits or empty commits to force checks. A skipped or blocked automatic workflow is not a review or publication success.
 
 Never treat review deployment as formal publication.
 

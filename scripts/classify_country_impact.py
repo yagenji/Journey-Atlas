@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import re
 import subprocess
@@ -34,6 +35,8 @@ COUNTRY_SHARED_FILES = {
     "assets/css/country-icon-system.css",
     "assets/css/country-trivia.css",
     "assets/css/country-discovery-v3.css",
+    "assets/css/taste-image-framing.css",
+    "assets/css/country-typography-v2.css",
     "assets/css/photo-credits.css",
     "assets/css/site-unify.css",
     "assets/css/site-footer.css",
@@ -44,6 +47,7 @@ COUNTRY_SHARED_FILES = {
 
 QA_SHARED_FILES = {
     "scripts/qa_published_browser.py",
+    "scripts/run_country_browser_qa_parallel.py",
     "scripts/classify_country_impact.py",
     "scripts/build_country_preview_targeted.py",
     "scripts/manage_review_preview_site.py",
@@ -78,6 +82,34 @@ PRODUCTION_EXACT = {
 
 COUNTRY_JSON_RE = re.compile(r"^data/countries/([^/]+)\.json$")
 COUNTRY_IMAGE_RE = re.compile(r"^assets/images/([^/]+)/")
+
+
+def bundled_country_stylesheets() -> set[str]:
+    """Derive the Country CSS impact list from the actual production bundle.
+
+    The Browser QA classifier checks out scripts/data only, not CSS bytes. Read
+    the literal list in build_site.py rather than a second, drifting file list.
+    Fail closed when it cannot be read, so an unknown CSS change never skips QA.
+    """
+    source = ROOT / "scripts" / "build_site.py"
+    try:
+        tree = ast.parse(source.read_text(encoding="utf-8"), filename=str(source))
+        for node in tree.body:
+            if isinstance(node, ast.Assign) and any(
+                isinstance(target, ast.Name) and target.id == "COUNTRY_CSS_SOURCES"
+                for target in node.targets
+            ):
+                values = ast.literal_eval(node.value)
+                if not isinstance(values, list) or not values or not all(
+                    isinstance(value, str) and value.startswith("assets/css/") for value in values
+                ):
+                    break
+                return set(values)
+    except (OSError, SyntaxError, ValueError, TypeError):
+        pass
+    # A missing/unparseable bundle is a QA classifier failure, not evidence
+    # that changed CSS cannot affect Country rendering.
+    raise RuntimeError("Cannot resolve COUNTRY_CSS_SOURCES from scripts/build_site.py")
 
 
 def run_git(*args: str) -> str:
@@ -203,7 +235,11 @@ def classify(base: str, head: str) -> dict:
     if STATUS_PATH in files:
         target_slugs |= changed_status_slugs(base, head)
 
-    if any(path in COUNTRY_SHARED_FILES for path in files):
+    # Run the complete audited Country set when changing its own sharding:
+    # a targeted smoke test cannot detect missing or duplicated Country coverage.
+    # Ordinary QA infrastructure changes still use the targeted smoke test.
+    shared_files = COUNTRY_SHARED_FILES | bundled_country_stylesheets()
+    if "scripts/run_country_browser_qa_parallel.py" in files or any(path in shared_files for path in files):
         browser_scope = "all"
     elif any(path in QA_SHARED_FILES for path in files):
         # QA/review infrastructure changes need one real Country smoke test,
@@ -285,12 +321,16 @@ def self_test() -> int:
     assert "assets/js/country-themes.js" in COUNTRY_SHARED_FILES
     assert "assets/icons/atlas-icons.svg" in COUNTRY_SHARED_FILES
     assert "scripts/qa_published_browser.py" in QA_SHARED_FILES
+    assert "scripts/run_country_browser_qa_parallel.py" in QA_SHARED_FILES
     assert "scripts/build_country_preview_targeted.py" in QA_SHARED_FILES
     assert "scripts/manage_review_preview_site.py" in QA_SHARED_FILES
     assert "scripts/externalize_review_preview_images.py" in QA_SHARED_FILES
     assert ".github/workflows/deploy-country-preview.yml" in QA_SHARED_FILES
     assert ".github/workflows/verify-production.yml" in QA_SHARED_FILES
     assert "scripts/qa_published_browser.py" not in COUNTRY_SHARED_FILES
+    css_sources = bundled_country_stylesheets()
+    assert "assets/css/taste-image-framing.css" in css_sources
+    assert css_sources <= COUNTRY_SHARED_FILES, "Country CSS bundle and impact classifier diverged"
     print("Impact classifier self-test passed.")
     return 0
 

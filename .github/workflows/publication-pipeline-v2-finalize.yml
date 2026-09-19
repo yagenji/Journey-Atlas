@@ -3,6 +3,10 @@ name: Publication Pipeline v2 finalize
 on:
   push:
     branches: ["country/**"]
+    # Publication readiness changes only through the Country State approval gate.
+    # Content/image-only pushes must not launch a publication decision job.
+    paths:
+      - 'ops/country-production/**'
   workflow_dispatch:
     inputs:
       slug:
@@ -45,49 +49,65 @@ jobs:
           [ "$active" = true ] || exit 0
           python3 scripts/publication_pipeline_v2.py assert-publish-ready "$slug" || exit 0
           echo "ready=true" >> "$GITHUB_OUTPUT"
+      - name: Explain manual handoff when external publish identity is not enabled
+        if: steps.target.outputs.ready == 'true' && vars.ATLAS_AUTO_PUBLISH != 'enabled'
+        run: |
+          echo 'Automatic publication is disabled until a separate, authorized publishing identity is configured.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Use the connected GitHub account to finalize the approved Country on one owner-authored PR, wait for required PR checks, then merge and verify the deployed SHA. No GITHUB_TOKEN Country push or PR creation was attempted.' >> "$GITHUB_STEP_SUMMARY"
 
   publish:
     needs: resolve
-    if: needs.resolve.outputs.ready == 'true'
+    # GITHUB_TOKEN PR creation/updates do not supply required PR checks and have
+    # previously created empty failure runs. Do not mutate an approved Country
+    # branch until an external identity is explicitly configured and enabled.
+    if: needs.resolve.outputs.ready == 'true' && vars.ATLAS_AUTO_PUBLISH == 'enabled'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     concurrency:
       group: country-publication-main
       cancel-in-progress: false
     steps:
+      - name: Require independently authorized publishing token
+        env:
+          PUBLISH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
+        run: |
+          if [ -z "$PUBLISH_TOKEN" ]; then
+            echo '::error::ATLAS_AUTO_PUBLISH is enabled but ATLAS_PUBLICATION_TOKEN is missing. No Country branch was modified.'
+            exit 1
+          fi
       - name: Checkout Country branch
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.resolve.outputs.head_ref }}
           fetch-depth: 0
+          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Ensure reusable review PR exists
+      - name: Find existing post-approval publication PR
         id: pr
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
           HEAD_REF: ${{ needs.resolve.outputs.head_ref }}
           SLUG: ${{ needs.resolve.outputs.slug }}
         shell: bash
         run: |
           set -euo pipefail
           pr="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$HEAD_REF" --base main --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$pr" ]; then
-            url="$(gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$HEAD_REF" --title "Add ${SLUG^} Country Page" --body "Publication Pipeline v2 reusable review/publication PR. Final approval recorded; latest-main Country overlay and serialized squash publication are authorized.")"; pr="${url##*/}"
-          fi
+          # Canonical review merged its PR BEFORE user approval. A distinct
+          # publication PR will be created only AFTER finalization has been staged.
           echo "number=$pr" >> "$GITHUB_OUTPUT"
       - name: Rebuild on latest main, validate and squash merge
         id: merge
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
           HEAD_REF: ${{ needs.resolve.outputs.head_ref }}
           SLUG: ${{ needs.resolve.outputs.slug }}
           PR_NUMBER: ${{ steps.pr.outputs.number }}
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "journey-atlas-publisher"; git config user.email "journey-atlas-publisher@users.noreply.github.com"
           merged_sha=""
           for cycle in $(seq 1 3); do
             git fetch --no-tags origin "+refs/heads/$HEAD_REF:refs/remotes/origin/$HEAD_REF" "+refs/heads/main:refs/remotes/origin/main"
@@ -120,6 +140,10 @@ jobs:
             git commit -m "Finalize $SLUG publication via latest-main overlay" || true
             sha="$(git rev-parse HEAD)"
             git push --force-with-lease="refs/heads/$HEAD_REF:$(git rev-parse origin/$HEAD_REF)" origin "HEAD:refs/heads/$HEAD_REF"
+            if [ -z "$PR_NUMBER" ]; then
+              PR_NUMBER="$(gh api --method POST "repos/$GITHUB_REPOSITORY/pulls" -f head="$HEAD_REF" -f base=main -f title="Publish approved $SLUG Country" -f body="Formal publication after explicit Country-page approval recorded in Production State. This PR follows the already-merged unpublished canonical review PR; retain all required checks and post-merge live verification." --jq '.number')"
+              [ -n "$PR_NUMBER" ] || { echo 'Publication PR creation failed.' >&2; exit 1; }
+            fi
             gh workflow run publication-pipeline-v2-checks.yml --repo "$GITHUB_REPOSITORY" --ref "$HEAD_REF" -f slug="$SLUG" -f mode=publish
             run_id=""
             for attempt in $(seq 1 30); do
@@ -128,6 +152,9 @@ jobs:
             [ -n "$run_id" ] || exit 1; gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
             git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
             if [ "$(git rev-parse origin/main)" != "$latest_main" ]; then echo "main advanced; retrying latest overlay"; continue; fi
+            # A workflow_dispatch QA success is not a substitute for required
+            # checks on the real publication PR's current head revision.
+            timeout 420 gh pr checks "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --required --watch
             response="$(gh api --method PUT "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" -f merge_method=squash -f sha="$sha")"
             if [ "$(printf '%s' "$response" | python3 -c 'import json,sys; print(str(json.load(sys.stdin).get("merged",False)).lower())')" = true ]; then merged_sha="$(printf '%s' "$response" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("sha",""))')"; break; fi
           done

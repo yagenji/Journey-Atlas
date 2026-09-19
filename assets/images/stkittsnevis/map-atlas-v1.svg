@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of St. Kitts and Nevis with surrounding land" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+<metadata>Country selection: Natural Earth Admin-0 1:10m Saint Kitts and Nevis KNA via AshKyd/geojson-regions CC0, public/countries/10m/KNA.geojson; coastline for both target and surrounding land: NOAA GSHHS/GSHHG intermediate via Basemap; WGS84; 2026-09-18; illustrated treatment JOURNEY ATLAS.</metadata>
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
+<linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+</defs>
+<rect width="1200" height="760" fill="url(#sea)"/>
+<g id="geographic-context" aria-label="surrounding land" fill="#e4e0ce" stroke="#b6bbaf" stroke-width="1.2" stroke-linejoin="round"><path d="M 157.3,42.3 L 209.9,87.4 L 205.0,115.3 L 160.9,118.4 L 157.3,111.8 L 157.3,42.3 Z" fill-rule="evenodd"/></g>
+<path d="M 320.0,259.7 L 320.0,257.1 L 359.3,195.7 L 447.6,210.9 L 522.0,271.1 L 586.1,388.9 L 667.2,443.4 L 667.2,478.9 L 620.6,499.7 L 603.6,412.3 L 543.1,376.8 L 451.2,373.0 L 320.0,259.7 Z M 655.1,623.2 L 656.3,621.9 L 689.5,511.1 L 740.3,509.8 L 783.2,545.9 L 793.0,602.9 L 773.0,659.4 L 700.5,680.9 L 655.1,623.2 Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
+</svg>

@@ -72,20 +72,33 @@ jobs:
                   raise SystemExit(f'{name}: invalid workflow structure')
               print(f'{name}: YAML parse PASS')
           PY
-      - name: Verify overlay and no-follow-up-PR contract
+      - name: Verify overlay, review QA and no-follow-up-PR contract
         run: |
           python3 - <<'PY'
           from pathlib import Path
           checks = Path('.github/workflows/publication-pipeline-v2-checks.yml').read_text()
           review = Path('.github/workflows/publication-pipeline-v2-review.yml').read_text()
           final = Path('.github/workflows/publication-pipeline-v2-finalize.yml').read_text()
+          legacy_queue = Path('.github/workflows/publish-country-queue.yml').read_text()
           if 'country_overlay_v2.py' not in checks or 'country_overlay_v2.py' not in review or 'country_overlay_v2.py' not in final:
               raise SystemExit('latest-main Country overlay must be used by review/checks/finalize')
           if 'separateVerificationPrRequired' not in final or 'No follow-up verification PR is required' not in final:
               raise SystemExit('v2 publication must forbid the old verification-only PR')
+          if '.get("publicationPipelineVersion") == 2' not in legacy_queue:
+              raise SystemExit('Legacy publication queue must reject v2-owned Countries')
           if 'validate_country_map_v6.py' not in checks:
               raise SystemExit('Content QA v6 map hard gate must run in the existing validation cycle')
-          print('Pipeline v2 speed/hardening contract PASS')
+          if 'slug="${slug%-renewal}"' not in checks:
+              raise SystemExit('Country renewal PR must resolve the real Country slug, not compatibility-pass')
+          # Construct the expression at runtime; Actions must not interpolate it in this test script.
+          expected_ref = 'ref: ' + chr(36) + '{{ github.event.pull_request.head.sha || github.sha }}'
+          if checks.count(expected_ref) < 2:
+              raise SystemExit('Both PR validation and browser QA must inspect the actual Country head')
+          if "needs.validate.outputs.mode == 'review'" not in checks or "github.event_name == 'pull_request'" not in checks:
+              raise SystemExit('A new Country review PR must execute real targeted Browser QA')
+          if '--event pull_request' not in review or 'gh run watch "$run_id"' not in review:
+              raise SystemExit('Review must wait for its existing PR QA rather than silently skip checks')
+          print('Pipeline v2 overlay, real PR QA and no-follow-up-PR contract PASS')
           PY
       - name: Verify new Country scaffold opt-in and legacy non-migration contract
         run: |

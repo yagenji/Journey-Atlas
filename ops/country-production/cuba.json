@@ -1,0 +1,850 @@
+{
+  "schemaVersion": 1,
+  "slug": "cuba",
+  "countryName": "CUBA",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 18,
+  "updatedAt": "2026-09-19T11:11:04+09:00",
+  "hero": {
+    "id": "HERO",
+    "state": "APPROVED",
+    "asset": "assets/images/cuba/approved/hero-havana-classic-car.webp",
+    "contentId": "havana-classic-car-capitolio",
+    "promptSeries": 2,
+    "promptSeriesRejectCount": 0,
+    "rejectedGenerationIds": [
+      "129cbedc-a6ae-4e69-aa62-94731d4fff2e"
+    ],
+    "approvedGenerationId": "1ac16553-aa66-4d32-bd2a-c28f8df6b0d1",
+    "userApprovedAt": "2026-09-18T21:54:00+09:00",
+    "approvalBasis": "User requested Havana classic-car Hero instead of Morro fortress, then explicitly replied approve to the separately generated Havana classic-car and Capitolio image.",
+    "candidateVisualQa": {
+      "targetIdentity": "PASS",
+      "previousAssetRepeat": "PASS",
+      "collageTypography": "PASS"
+    },
+    "renderPacket": {
+      "kind": "HERO",
+      "contentId": "havana-classic-car-capitolio",
+      "identity": "A real Havana city street with a recognizable mid-century blue American classic car in the foreground and the identifiable dome of El Capitolio in the distance; weathered pastel historic Havana facades and arcades, a coherent street-level perspective, restrained warm daylight, believable street alignment and historic architecture. Single wide composition for desktop and mobile crops, quiet watercolor with photographic place fidelity. No text, invented landmarks, panels or collage.",
+      "independentGeneration": true,
+      "forbidPreviousAssetReuse": true,
+      "noAddedText": true,
+      "singleFrameOnly": true,
+      "singleSceneOnly": true,
+      "forbidCollage": true,
+      "forbidPanels": true,
+      "forbidGrid": true,
+      "forbidContactSheet": true,
+      "forbidMontage": true,
+      "forbidInsetImages": true
+    }
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s01-vinales-valley.webp",
+      "contentId": "vinales-valley-mogotes",
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "05e097b7-e660-4ef8-8bd2-6fc6079e0272"
+      ],
+      "failureReason": "WRONG_TARGET_CARRYOVER",
+      "failureNote": "Earlier independently requested Viñales image instead showed Havana; its generation remains rejected. This distinct later candidate was produced in the disclosed grouped request without reservation.",
+      "approvedGenerationId": "af261fbf-bc1c-46ea-8210-99653828ce74",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "vinales-valley-mogotes",
+        "identity": "Real Viñales Valley in western Cuba: flat red-brown cultivated tobacco fields, several isolated round sheer-sided limestone mogotes, small rural farmhouses and palms. Slightly elevated view, natural light, 3:2 quiet watercolor; no city or sea.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S02",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s02-zapata-wetland.webp",
+      "contentId": "cienaga-de-zapata-wetland",
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "c8968f5d-1109-4bb9-bb6d-b703eb6f0e5b"
+      ],
+      "failureReason": "COLLAGE_OR_MULTIPANEL",
+      "failureNote": "Assistant's earlier eight-panel collage was rejected; no reservation was persisted. This distinct later standalone wetland image was returned in the disclosed grouped request without reservation.",
+      "approvedGenerationId": "deb8131c-ca07-4209-bc0a-c9296da99607",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "cienaga-de-zapata-wetland",
+        "identity": "Real Ciénaga de Zapata in southern Cuba: completely flat wetland with shallow dark-green channels, mangroves, marsh grass and distant level horizon, viewed from water level in subdued daylight. 3:2 quiet watercolor, no waterfall, beach or mountains.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S03",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s03-cienfuegos-square.webp",
+      "contentId": "cienfuegos-jose-marti-square",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "8b8d8d11-4e82-4a75-9e10-630560408cf7",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "cienfuegos-jose-marti-square",
+        "identity": "Actual inland Parque José Martí, Cienfuegos, Cuba: spacious square, Teatro Tomás Terry, white and cream neoclassical buildings, red-domed Palacio de Gobierno, shade trees and regular streets. Eye-level view, natural daylight, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S04",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s04-trinidad-plaza-mayor.webp",
+      "contentId": "trinidad-plaza-mayor",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "98d17beb-4634-41a4-92da-d767815f337f",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "trinidad-plaza-mayor",
+        "identity": "Actual Plaza Mayor in Trinidad, Cuba: sloping cobblestone plaza, low pastel colonial houses, terracotta roofs, cream Santísima Trinidad church, garden railing and palms. Eye-level natural perspective, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S05",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s05-cayo-coco-playa-flamenco.webp",
+      "contentId": "cayo-coco-playa-flamenco",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "dada55af-c885-4931-95df-82c4f33529ed",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "cayo-coco-playa-flamenco",
+        "identity": "Actual Playa Flamenco, Cayo Coco, Cuba: long low pale sandy beach, shallow turquoise sea, flat dune vegetation and sparse palms. Oblique shore-level view, authentic low horizon, soft light, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S06",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s06-camaguey-streets.webp",
+      "contentId": "camaguey-historic-streets",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "9b2c5bc6-66c8-4138-bc43-70e37852aba2",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "camaguey-historic-streets",
+        "identity": "Real Camagüey historic centre, Cuba: irregular narrow cobbled street turns into a small plaza, low pastel homes with barred windows, terracotta roofs and an authentic clay tinajón jar. Pedestrian view, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S07",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s07-granma-terraces.webp",
+      "contentId": "desembarco-granma-terraces",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "0b240b24-fe50-49af-83d0-e89646f70e9e",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "desembarco-granma-terraces",
+        "identity": "Real marine terraces in Desembarco del Granma National Park near Cabo Cruz, southeastern Cuba: successive raised flat limestone benches step down through pale cliffs to deep open sea, sparse scrub and rocky surf. Oblique coastal view, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    },
+    {
+      "id": "S08",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/s08-humboldt-forest.webp",
+      "contentId": "alejandro-humboldt-forest",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "0752a07b-ac17-43cf-8262-e28e4ef23732",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "SCENE",
+        "contentId": "alejandro-humboldt-forest",
+        "identity": "Real Alejandro de Humboldt National Park in far-eastern Cuba: dense humid tropical evergreen forest covering steep rolling mountains, deep narrow river valley, misty layered green ridges and dark natural stream. Inland view, 3:2 quiet watercolor.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "noAddedText": true,
+        "singleFrameOnly": true,
+        "singleSceneOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true
+      }
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/food01-ropa-vieja.webp",
+      "contentId": "ropa-vieja",
+      "promptSeries": 2,
+      "promptSeriesRejectCount": 1,
+      "rejectedGenerationIds": [
+        "d4ee08b8-af22-40f9-a739-ccbb4c39bdba",
+        "be7fcf99-083b-440f-9d16-10e6e6bf527f"
+      ],
+      "lastFailureReason": "WRONG_TARGET_CARRYOVER",
+      "failureReason": "WRONG_TARGET_CARRYOVER",
+      "failureNote": "Earlier reserved FOOD01 request generated a Viñales landscape and was rejected; another later FOOD01 output included unapproved rice, plantains, herbs and restaurant props and was also rejected without a saved reservation. Both failures remain rejected and were not repurposed. Current valid FOOD01 belongs to the separate user-approved grouped four-output request, recovered under the exact closed case.",
+      "approvedGenerationId": "932f87ae-0124-4826-bdec-a371b54c56f9",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "ropa-vieja",
+        "identity": "ONLY ONE CUBAN FOOD DISH, ROPA VIEJA, filling the frame: clearly visible SHREDDED BRAISED BEEF in tomato sauce with tender red bell peppers and onion, on ONE plain plate against an EMPTY PALE BEIGE backdrop. This must be edible beef stew, no landscapes, fields, mountains, karsts, palms, buildings, cars or travel scenery. Quiet watercolor food still life, one dish, no text or decorative props.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "integralAccompaniments": [
+          "braised tomato sauce",
+          "softened bell pepper and onion integrated in the stew"
+        ],
+        "integralServingElements": [
+          "one simple plain ceramic plate"
+        ],
+        "decorativePropsForbidden": true,
+        "decorativeProps": [],
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY"
+      }
+    },
+    {
+      "id": "FOOD02",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/food02-congri.webp",
+      "contentId": "arroz-congri",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "48b9435f-09f0-4850-9e7a-9cc771466a02",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "arroz-congri",
+        "identity": "One authentic Cuban arroz congrí: a single mound of rice cooked together with small beans so rice is uniformly brownish with visible whole dark beans, modest naturally moist loose grains. No separate side dishes or meat, no decorative herbs. Quiet watercolor food atlas cut on a plain pale beige or warm ivory background.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "integralAccompaniments": [
+          "beans cooked into the rice"
+        ],
+        "integralServingElements": [
+          "one simple plain ceramic plate"
+        ],
+        "decorativePropsForbidden": true,
+        "decorativeProps": [],
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY"
+      }
+    },
+    {
+      "id": "FOOD03",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/food03-ajiaco.webp",
+      "contentId": "ajiaco-criollo",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "3d23e9c3-66ac-44ad-9a6c-e698c545cc50",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "ajiaco-criollo",
+        "identity": "One authentic Cuban ajiaco criollo: thick rustic soup with clearly identifiable chunks of cassava and other root vegetables, pieces of corn on the cob and small meat pieces simmered in a warm golden broth. One deep modest serving bowl only, no extra dishes. Quiet watercolor food atlas cut on a plain pale beige or warm ivory background.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "integralAccompaniments": [
+          "corn and root vegetables cooked in soup",
+          "meat chunks integrated in broth"
+        ],
+        "integralServingElements": [
+          "one plain deep ceramic soup bowl"
+        ],
+        "decorativePropsForbidden": true,
+        "decorativeProps": [],
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY"
+      }
+    },
+    {
+      "id": "FOOD04",
+      "state": "APPROVED",
+      "asset": "assets/images/cuba/approved/food04-yuca-con-mojo.webp",
+      "contentId": "yuca-con-mojo",
+      "promptSeries": 1,
+      "promptSeriesRejectCount": 0,
+      "rejectedGenerationIds": [],
+      "approvedGenerationId": "51158bec-972b-43ee-abdf-a09a4a38d779",
+      "candidateVisualQa": {
+        "targetIdentity": "PASS",
+        "dishIdentity": "PASS",
+        "singleDish": "PASS",
+        "integralComponentsOnly": "PASS",
+        "plainBackground": "PASS",
+        "decorativePropsAbsent": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "renderPacket": {
+        "kind": "TASTE",
+        "contentId": "yuca-con-mojo",
+        "identity": "One authentic Cuban yuca con mojo: chunky wedges of tender boiled white cassava, coated lightly in garlic and citrus mojo with a few cooked onion slivers. Single small portion, no meat or rice, no decorative greenery. Quiet watercolor food atlas cut on a plain pale beige or warm ivory background.",
+        "independentGeneration": true,
+        "forbidPreviousAssetReuse": true,
+        "singleDishOnly": true,
+        "cleanNeutralBackground": true,
+        "singleFrameOnly": true,
+        "forbidCollage": true,
+        "forbidPanels": true,
+        "forbidGrid": true,
+        "forbidContactSheet": true,
+        "forbidMontage": true,
+        "forbidInsetImages": true,
+        "integralAccompanimentsOnly": true,
+        "integralAccompaniments": [
+          "garlic and citrus mojo dressing",
+          "cooked onion slivers in the mojo"
+        ],
+        "integralServingElements": [
+          "one simple plain ceramic plate"
+        ],
+        "decorativePropsForbidden": true,
+        "decorativeProps": [],
+        "plainBackgroundRequired": true,
+        "backgroundStyle": "PLAIN_PALE_BEIGE_OR_WARM_IVORY"
+      }
+    }
+  ],
+  "map": {
+    "state": "APPROVED",
+    "asset": "assets/images/cuba/map-atlas-v1.svg"
+  },
+  "implementation": {
+    "state": "DONE",
+    "completedAt": "2026-09-19T11:11:04+09:00",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
+  },
+  "qa": {
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "d407cd77cfb3ca253ab4016a6e191129f4ad9772",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "production-live-desktop-tablet-mobile-browser-qa"
+    ],
+    "runId": 35411631678
+  },
+  "reviewDeployment": {
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/cuba/",
+    "productionVerification": "CI_GATED",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-19T01:09:00Z",
+    "prePublicationReviewBasis": "https://github.com/yagenji/Journey-Atlas/actions/runs/35411631678/job/105812411633"
+  },
+  "finalApproval": {
+    "state": "APPROVED",
+    "approvedAt": "2026-09-19T11:11:04+09:00",
+    "basis": "User explicitly requested QA and formal Cuba publication repeatedly on 2026-09-19, after reviewing the corrected unpublished canonical page. The unchanged Cuba files passed live Desktop/Tablet/Mobile QA at run 35411631678."
+  },
+  "publication": {
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "CI_GATED",
+    "requestedAt": "2026-09-19T11:11:04+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/cuba/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge."
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 4,
+    "lastResetAt": "2026-09-19T00:04:40+09:00",
+    "lastFailureAsset": "FOOD01",
+    "lastFailureReason": "WRONG_TARGET_CARRYOVER"
+  },
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "sceneBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "approvedAt": "2026-09-18T23:07:40+09:00",
+        "scope": [
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08"
+        ],
+        "approvedGenerations": {
+          "S01": "af261fbf-bc1c-46ea-8210-99653828ce74",
+          "S02": "deb8131c-ca07-4209-bc0a-c9296da99607",
+          "S03": "8b8d8d11-4e82-4a75-9e10-630560408cf7",
+          "S04": "98d17beb-4634-41a4-92da-d767815f337f",
+          "S05": "dada55af-c885-4931-95df-82c4f33529ed",
+          "S06": "9b2c5bc6-66c8-4138-bc43-70e37852aba2",
+          "S07": "0b240b24-fe50-49af-83d0-e89646f70e9e",
+          "S08": "0752a07b-ac17-43cf-8262-e28e4ef23732"
+        },
+        "regenerate": []
+      }
+    ]
+  },
+  "tasteBatchReview": {
+    "approval": "APPROVED",
+    "rounds": [
+      {
+        "round": 1,
+        "reviewBoundary": true,
+        "approvedAt": "2026-09-19T00:07:50+09:00",
+        "scope": [
+          "FOOD01",
+          "FOOD02",
+          "FOOD03",
+          "FOOD04"
+        ],
+        "approvedGenerations": {
+          "FOOD01": "932f87ae-0124-4826-bdec-a371b54c56f9",
+          "FOOD02": "48b9435f-09f0-4850-9e7a-9cc771466a02",
+          "FOOD03": "3d23e9c3-66ac-44ad-9a6c-e698c545cc50",
+          "FOOD04": "51158bec-972b-43ee-abdf-a09a4a38d779"
+        },
+        "regenerate": []
+      }
+    ]
+  },
+  "next": {
+    "action": "NONE",
+    "asset": null
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "preVisualBuild": {
+    "state": "PASS",
+    "checks": {
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PASS",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-19T00:07:50+09:00"
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
+    "deployedAt": null
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 1,
+    "tasteBatchReviews": 1,
+    "assetHandoffs": 1,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 0,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 0,
+    "tasteBatchApprovedAt": "2026-09-19T00:07:50+09:00",
+    "canonicalReviewReadyAt": null
+  },
+  "recoveryMigrations": [
+    {
+      "id": "cuba-scenes-eight-20260918-recovery",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "SCENE",
+      "reasonCode": "ASSISTANT_ORCHESTRATION_MISSING_PER_TARGET_RESERVATIONS_AND_RECONCILIATION",
+      "scope": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "recoveredGenerations": {
+        "S01": "af261fbf-bc1c-46ea-8210-99653828ce74",
+        "S02": "deb8131c-ca07-4209-bc0a-c9296da99607",
+        "S03": "8b8d8d11-4e82-4a75-9e10-630560408cf7",
+        "S04": "98d17beb-4634-41a4-92da-d767815f337f",
+        "S05": "dada55af-c885-4931-95df-82c4f33529ed",
+        "S06": "9b2c5bc6-66c8-4138-bc43-70e37852aba2",
+        "S07": "0b240b24-fe50-49af-83d0-e89646f70e9e",
+        "S08": "0752a07b-ac17-43cf-8262-e28e4ef23732"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-18T23:00:29+09:00",
+      "userInstruction": "User explicitly replied approve to the eight individually displayed Cuba Scene outputs after directing one scene per image and repeatedly requiring retention of visually correct approved images instead of unnecessary regeneration.",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "appliedAt": "2026-09-18T23:07:40+09:00"
+    },
+    {
+      "id": "cuba-taste-four-20260919-recovery",
+      "type": "USER_APPROVED_EXISTING_BATCH_RECOVERY",
+      "kind": "TASTE",
+      "reasonCode": "ASSISTANT_ORCHESTRATION_MISSING_PER_TARGET_RESERVATIONS_AND_RECONCILIATION",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "recoveredGenerations": {
+        "FOOD01": "932f87ae-0124-4826-bdec-a371b54c56f9",
+        "FOOD02": "48b9435f-09f0-4850-9e7a-9cc771466a02",
+        "FOOD03": "3d23e9c3-66ac-44ad-9a6c-e698c545cc50",
+        "FOOD04": "51158bec-972b-43ee-abdf-a09a4a38d779"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-19T00:04:40+09:00",
+      "userInstruction": "User explicitly approved the displayed four Taste outputs, asked that visually correct images not be regenerated for procedural reasons, and personally delivered the exact approved 13-image archive to country/cuba. Four image outputs came from one request; no per-target reservations are claimed.",
+      "preserveExistingImages": true,
+      "status": "APPLIED",
+      "appliedAt": "2026-09-19T00:07:50+09:00"
+    }
+  ],
+  "visualPolicyWaivers": [
+    {
+      "id": "cuba-scenes-eight-grouping-20260918",
+      "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "kind": "SCENE",
+      "scope": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "generations": {
+        "S01": "af261fbf-bc1c-46ea-8210-99653828ce74",
+        "S02": "deb8131c-ca07-4209-bc0a-c9296da99607",
+        "S03": "8b8d8d11-4e82-4a75-9e10-630560408cf7",
+        "S04": "98d17beb-4634-41a4-92da-d767815f337f",
+        "S05": "dada55af-c885-4931-95df-82c4f33529ed",
+        "S06": "9b2c5bc6-66c8-4138-bc43-70e37852aba2",
+        "S07": "0b240b24-fe50-49af-83d0-e89646f70e9e",
+        "S08": "0752a07b-ac17-43cf-8262-e28e4ef23732"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-18T23:00:29+09:00",
+      "userInstruction": "approve; retain the eight visually correct single-scene outputs instead of regenerating merely to correct grouped-request provenance.",
+      "preserveExistingImages": true,
+      "regenerationRequired": false,
+      "hardVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "status": "APPLIED",
+      "appliedAt": "2026-09-18T23:07:40+09:00",
+      "closedHistoricalCaseId": "cuba-scenes-eight-20260918",
+      "stateDesynchronized": true,
+      "recoveryMigrationId": "cuba-scenes-eight-20260918-recovery"
+    },
+    {
+      "id": "cuba-taste-four-grouping-20260918",
+      "type": "USER_APPROVED_VISUAL_POLICY_WAIVER",
+      "violationCode": "MULTIPLE_OUTPUTS_ONE_REQUEST",
+      "kind": "TASTE",
+      "scope": [
+        "FOOD01",
+        "FOOD02",
+        "FOOD03",
+        "FOOD04"
+      ],
+      "generations": {
+        "FOOD01": "932f87ae-0124-4826-bdec-a371b54c56f9",
+        "FOOD02": "48b9435f-09f0-4850-9e7a-9cc771466a02",
+        "FOOD03": "3d23e9c3-66ac-44ad-9a6c-e698c545cc50",
+        "FOOD04": "51158bec-972b-43ee-abdf-a09a4a38d779"
+      },
+      "authorizedBy": "USER_EXPLICIT",
+      "authorizedAt": "2026-09-19T00:04:40+09:00",
+      "userInstruction": "approve; retain the four visually correct single-dish outputs personally delivered to country/cuba; do not falsely claim one tool call per dish or saved reservations.",
+      "preserveExistingImages": true,
+      "regenerationRequired": false,
+      "hardVisualQa": {
+        "targetIdentity": "PASS",
+        "previousAssetRepeat": "PASS",
+        "collageTypography": "PASS"
+      },
+      "status": "APPLIED",
+      "appliedAt": "2026-09-19T00:07:50+09:00",
+      "closedHistoricalCaseId": "cuba-taste-four-20260918",
+      "stateDesynchronized": true,
+      "recoveryMigrationId": "cuba-taste-four-20260919-recovery"
+    }
+  ],
+  "publicationPipelineVersion": 2
+}

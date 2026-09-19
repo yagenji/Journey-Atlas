@@ -85,6 +85,10 @@ jobs:
         if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
+      - name: Verify full Country QA partition
+        if: needs.classify.outputs.browser_scope == 'all' && needs.classify.outputs.publication_metadata_only != 'true'
+        run: python3 scripts/run_country_browser_qa_parallel.py --self-test
+
       - name: Build targeted Country preview package
         if: needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.publication_metadata_only != 'true'
         env:
@@ -199,7 +203,7 @@ jobs:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-reviewable-output
           QA_SCOPE: unpublished-reviewable
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/run_country_browser_qa_parallel.py --scope unpublished-reviewable --workers 2
 
       - name: Run all published Country QA
         if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
@@ -207,7 +211,7 @@ jobs:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/run_country_browser_qa_parallel.py --scope published --workers 2
 
       - name: Stop local server
         if: always() && needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'

@@ -41,7 +41,7 @@ def blank_scene(index: int, slug: str) -> dict:
 
 
 def blank_taste(index: int, slug: str) -> dict:
-    return {"id":f"food-{index}","name":"","nameLocal":"","text":"","image":f"assets/images/{slug}/approved/food-{index}.webp","imageState":"PENDING"}
+    return {"id":f"food-{index}","name":"","nameLocal":"","text":"","image":f"assets/images/{slug}/approved/food-{index}.webp","imageState":"PENDING","imageFraming":"SOURCE_ASPECT"}
 
 
 def blank_extra() -> dict:
@@ -119,7 +119,7 @@ def main() -> int:
     print(f"Region taxonomy label locked: {region_label}")
     print("Content QA v6 locked: one-pass editorial selection gate for cross-section subjects, Signature Facts, ENCOUNTERS, Taste headings, NEXT ROUTES, NEXT DESTINATIONS, Travel Scale and capital-label collision safety.")
     print("Run-to-gate policy locked: deterministic non-gate NEXT ACTIONS must continue without asking the user to say 進めて.")
-    print("Publication Pipeline v2 locked for this new Country: post-handoff targeted QA, persistent review deployment, State reconciliation and post-approval publication are automated.")
+    print("Publication Pipeline v2: independent ATLAS_PUBLICATION_TOKEN is needed for automated State reconciliation and canonical review; final page approval remains mandatory.")
     print("Hero / Scene / Taste final approved-path placeholders are present so the page can be prebuilt before image generation.")
     print("After map.bounds is final: run python3 scripts/normalize_country_region_labels.py, then python3 scripts/audit_country_region_labels.py.")
     print("Before Hero production: complete editorial content + Map, then run scripts/validate_country_editorial_v2.py and scripts/validate_country_quality_v5.py for the Country JSON.")
