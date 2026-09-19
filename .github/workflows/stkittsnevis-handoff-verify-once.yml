@@ -1,0 +1,86 @@
+name: One-off St Kitts Nevis delivered image handoff QA
+on:
+  push:
+    branches: [country/stkittsnevis]
+    paths: ['.github/workflows/stkittsnevis-handoff-verify-once.yml']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify actual approved pixels and targeted Country QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          from PIL import Image
+          slug='stkittsnevis'
+          s=json.loads(Path(f'ops/country-production/{slug}.json').read_text())
+          c=json.loads(Path(f'data/countries/{slug}.json').read_text())
+          assert s['tasteBatchReview']['approval']=='APPROVED'
+          assert s['finalApproval']['state']=='PENDING' and s['publication']['atlasPublished'] is False
+          assert s['assetHandoff']['state']=='PENDING'
+          items=[s['hero']]+s['scenes']+s['taste']
+          refs=[c['hero']['image']]+[x['image'] for x in c['scenes']]+[x['image'] for x in c['taste']['items']]
+          assert len(items)==len(refs)==13
+          for i,(item,ref) in enumerate(zip(items,refs)):
+              assert item['state']=='APPROVED' and item['asset'].lstrip('/')==ref.lstrip('/'), (i,ref)
+              p=Path(item['asset']); assert p.is_file(),p
+              with Image.open(p) as im:
+                  assert im.format=='WEBP' and im.width>=1200 and im.height>=800,(p,im.size)
+                  if i>0: assert im.size==(1200,800),(p,im.size)
+                  im.verify()
+              with Image.open(p) as im: im.load()
+          p=Path('assets/images/stkittsnevis/approved/food-3.webp')
+          digest=hashlib.sha256(p.read_bytes()).hexdigest()
+          assert digest=='01926718a4ae8fa50bdc8ab342ff32e4b49d4c3bd75dcc2d8af62be9726d6932',digest
+          print('DELIVERED FOOD03 SHA256',digest)
+          print('ASSET HANDOFF COMPLETE DECODE PASS 13/13')
+          PY
+          python3 scripts/validate_country_editorial_v2.py --force data/countries/stkittsnevis.json
+          python3 scripts/validate_country_quality_v5.py data/countries/stkittsnevis.json
+          python3 scripts/validate_country_map_v6.py data/countries/stkittsnevis.json
+          python3 scripts/validate_country.py --strict data/countries/stkittsnevis.json
+          python3 scripts/audit_country_image_delivery_targeted.py --slug stkittsnevis
+          python3 scripts/validate_images.py --mode audit --slug stkittsnevis
+          python3 scripts/validate_images.py --duplicates-only --slug stkittsnevis
+      - name: Reconcile verified handoff and remove this one-off audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('ops/country-production/stkittsnevis.json');s=json.loads(p.read_text())
+          assert s['tasteBatchReview']['approval']=='APPROVED'
+          assert s['assetHandoff']['state']=='PENDING'
+          assert s['publication']['atlasPublished'] is False and s['finalApproval']['state']=='PENDING'
+          now=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec='seconds')
+          s['assetHandoff'].update(state='PASS',expectedRasterCount=13,verifiedRasterCount=13,verifiedAt=now)
+          s['phase']='ASSET_QA'
+          s['next']={'action':'VERIFY_APPROVED_ASSETS','asset':None}
+          s['stateRevision']+=1;s['updatedAt']=now
+          p.write_text(json.dumps(s,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('VERIFIED_HOFF',s['stateRevision'],s['next'])
+          PY
+          python3 scripts/country_production_state_v7.py validate
+          python3 scripts/country_production_protocol_v2.py validate
+          python3 scripts/publication_pipeline_v2.py assert-review-ready stkittsnevis
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/stkittsnevis.json
+          git rm .github/workflows/stkittsnevis-handoff-verify-once.yml
+          git commit -m 'Record verified St Kitts Nevis delivered assets and remove one-off audit'
+          git push origin HEAD:refs/heads/country/stkittsnevis
