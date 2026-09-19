@@ -1,0 +1,59 @@
+name: One-off St Kitts Nevis verified review State
+
+on:
+  push:
+    branches: [ops/stkittsnevis-verified-state-970]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require successful independent canonical live QA and unchanged approved content
+        shell: bash
+        run: |
+          set -euo pipefail
+          [ "$(gh api repos/$GITHUB_REPOSITORY/actions/runs/35414756959 --jq '.conclusion')" = success ]
+          [ "$(gh api repos/$GITHUB_REPOSITORY/actions/runs/35414756959 --jq '.head_sha')" = 52ab13298dc81dbb0369bbc6fc89af9ebe5717be ]
+          git diff --quiet ce11a00d45fa664425844a4f17ebe18376e76792 HEAD -- assets/images/stkittsnevis data/countries/stkittsnevis.json ops/country-production/stkittsnevis.json data/theme-taxonomy.json
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git merge-base --is-ancestor b2994638b3f4bb8ef68f46c472c3e7c766b20ce9 origin/main
+          echo 'Canonical live QA passed for merged approved Country material.'
+      - name: Record verified canonical review without granting publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/canonical_review_v2.py verified stkittsnevis
+          python3 scripts/validate_production_state_routed.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(p.read_text())
+          d=s['reviewDeployment']
+          assert d['state']=='DONE' and d['productionVerification']=='LIVE_BROWSER_QA_PASS'
+          assert d['url']=='https://atlas.yagenji.com/countries/stkittsnevis/'
+          assert s['finalApproval']['state']=='PENDING' and s['publication']['atlasPublished'] is False
+          assert s['next']['action']=='REVIEW_CANONICAL_URL'
+          print('Verified review State PASS, final approval PENDING, atlasPublished false')
+          PY
+          [ "$(git diff --name-only | wc -l | tr -d ' ')" = 1 ]
+          [ "$(git diff --name-only)" = ops/country-production/stkittsnevis.json ]
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ops/country-production/stkittsnevis.json
+          git commit -m 'Stage verified canonical St Kitts Nevis review State'
+          git push origin HEAD:refs/heads/ops/stkittsnevis-verified-state-970
+          echo 'Verified State staged on temporary branch only; no Actions-bot Country push.' >> "$GITHUB_STEP_SUMMARY"
