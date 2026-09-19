@@ -1,0 +1,58 @@
+name: Diagnose city-scale geographic coastlines
+
+on:
+  pull_request:
+    paths:
+      - 'tests/diagnose_city_scale_osm_coastline.py'
+      - '.github/workflows/map-context-independent-coastline.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  independent-coastline-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install map QA data and rasterizer
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'basemap-data-hires==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Check independent diagnostic syntax
+        run: python -m py_compile tests/diagnose_city_scale_osm_coastline.py
+      - name: Build GSHHG full-resolution reference maps without modifying approved SVGs
+        run: |
+          mkdir -p /tmp/atlas-map-osm-comparison/reference
+          for slug in singapore macau; do
+            python scripts/add_country_map_context_existing.py \
+              --country-json "data/countries/$slug.json" \
+              --input "assets/images/$slug/map-atlas-v1.svg" \
+              --output "/tmp/atlas-map-osm-comparison/reference/$slug.svg" \
+              --resolution f
+          done
+      - name: Compare independent Singapore coastline with approved target and GSHHG
+        continue-on-error: true
+        timeout-minutes: 7
+        run: |
+          python tests/diagnose_city_scale_osm_coastline.py \
+            --country-json data/countries/singapore.json \
+            --preview-svg /tmp/atlas-map-osm-comparison/reference/singapore.svg \
+            --output-dir /tmp/atlas-map-osm-comparison/singapore
+      - name: Compare independent Macau coastline with approved target and GSHHG
+        continue-on-error: true
+        timeout-minutes: 7
+        run: |
+          python tests/diagnose_city_scale_osm_coastline.py \
+            --country-json data/countries/macau.json \
+            --preview-svg /tmp/atlas-map-osm-comparison/reference/macau.svg \
+            --output-dir /tmp/atlas-map-osm-comparison/macau
+      - name: Preserve diagnostics only, never publish map changes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: city-scale-independent-shoreline-diagnostics
+          path: /tmp/atlas-map-osm-comparison/
+          if-no-files-found: warn
+          retention-days: 3
