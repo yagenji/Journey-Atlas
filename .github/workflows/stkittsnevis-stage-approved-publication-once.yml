@@ -1,0 +1,103 @@
+name: One-off St Kitts Nevis guarded publication staging
+on:
+  push:
+    branches: [ops/stkittsnevis-publication-stage-970]
+    paths: [.github/workflows/stkittsnevis-stage-approved-publication-once.yml]
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify latest main and unchanged approved Country
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main' '+refs/heads/country/stkittsnevis:refs/remotes/origin/country/stkittsnevis'
+          base="$(git rev-parse HEAD^)"
+          current="$(git rev-parse origin/main)"
+          [ "$base" = "$current" ] || { echo 'main advanced, re-stage from latest main' >&2; exit 1; }
+          git diff --quiet "$base" origin/country/stkittsnevis -- data/countries/stkittsnevis.json assets/images/stkittsnevis || { echo 'Approved Country content/images differ from reviewed main' >&2; exit 1; }
+          git show origin/country/stkittsnevis:ops/country-production/stkittsnevis.json >/tmp/stkittsnevis-source-state.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s=json.loads(Path('/tmp/stkittsnevis-source-state.json').read_text())
+          assert s['slug']=='stkittsnevis' and s['phase']=='QA'
+          assert s['finalApproval']['state']=='PENDING'
+          assert s['publication']['atlasPublished'] is False
+          assert s['reviewDeployment']['productionVerification']=='LIVE_BROWSER_QA_PASS'
+          assert s['reviewDeployment']['url']=='https://atlas.yagenji.com/countries/stkittsnevis/'
+          assert s['reviewPreview']['browserQa']=='PASS' and s['assetHandoff']['verifiedRasterCount']==13
+          r=json.loads(Path('data/atlas-destinations.json').read_text())
+          row=next(x for x in r['destinations'] if x['slug']=='stkittsnevis')
+          assert row['atlasPublished'] is False and not row['href']
+          print('Reviewed source, 13 images and unpublished registry gate: PASS')
+          PY
+      - name: Record explicit final Country page approval in State only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'yagenji'; git config user.email 'makoto.yagenji@gmail.com'
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          p=Path('ops/country-production/stkittsnevis.json')
+          s=json.loads(Path('/tmp/stkittsnevis-source-state.json').read_text())
+          now=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
+          s['finalApproval']={'state':'APPROVED','approvedAt':now,'approvalBasis':'User replied 「完了させて」 after the canonical unpublished Country URL and final approval request in the 2026-09-19 conversation; authorization to complete formal publication. No claim of personal viewport inspection.'}
+          s['next']={'action':'FINALIZE_REVIEW_PR_FOR_PUBLICATION','asset':None}
+          s['stateRevision']=int(s.get('stateRevision') or 0)+1
+          s['updatedAt']=now
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          PY
+          python3 scripts/publication_pipeline_v2.py assert-publish-ready stkittsnevis
+          python3 scripts/validate_production_state_routed.py
+          git add ops/country-production/stkittsnevis.json
+          [ "$(git diff --cached --name-only)" = 'ops/country-production/stkittsnevis.json' ]
+          git commit -m 'Record explicit St Kitts Nevis canonical page approval'
+          git push origin HEAD:refs/heads/ops/stkittsnevis-approval-970
+          echo "Approval-only commit: $(git rev-parse HEAD)"
+      - name: Prepare exact terminal publication candidate on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          [ "$(git rev-parse HEAD~2)" = "$(git ls-remote origin refs/heads/main | cut -f1)" ] || { echo 'main advanced; do not prepare stale publication' >&2; exit 1; }
+          python3 scripts/publication_pipeline_v2.py finalize stkittsnevis
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          slug='stkittsnevis'; p=Path('ops/country-production')/f'{slug}.json'; s=json.loads(p.read_text())
+          for key in ('publication','reviewDeployment'):
+              s.setdefault(key,{})['productionVerification']='PIPELINE_V2_INLINE_SMOKE'
+          s.setdefault('publication',{})['separateVerificationPrRequired']=False
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          country=json.loads((Path('data/countries')/f'{slug}.json').read_text())
+          status=Path('data/country-renewal-status.json'); payload=json.loads(status.read_text()); rows=payload.setdefault('countries',[])
+          row=next((x for x in rows if isinstance(x,dict) and x.get('slug')==slug),None)
+          base={'slug':slug,'nameJa':country.get('nameJa') or slug,'wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Publication Pipeline v2 inline Cloudflare smoke is authoritative; no separate verification PR is required.']}
+          if row is None: rows.append(base)
+          else: row.update(base)
+          payload['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
+          status.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n')
+          r=json.loads(Path('data/atlas-destinations.json').read_text()); x=next(x for x in r['destinations'] if x['slug']==slug)
+          assert x['atlasPublished'] is True and x['href']==f'countries/{slug}/'
+          assert s['finalApproval']['state']=='APPROVED' and s['phase']=='COMPLETE'
+          PY
+          python3 scripts/validate_production_state_routed.py
+          python3 scripts/country_production_protocol_v2.py validate
+          git add ops/country-production/stkittsnevis.json data/atlas-destinations.json data/country-renewal-status.json
+          git diff --cached --name-only
+          [ "$(git diff --cached --name-only | wc -l)" -eq 3 ]
+          git commit -m 'Stage approved St Kitts Nevis terminal publication metadata'
+          git push origin HEAD:refs/heads/ops/stkittsnevis-publication-stage-970
+          echo "Terminal candidate commit: $(git rev-parse HEAD)"
