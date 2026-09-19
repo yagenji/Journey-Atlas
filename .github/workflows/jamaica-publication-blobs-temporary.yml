@@ -1,4 +1,4 @@
-name: Temporary Jamaica post-publication search and navigation QA
+name: Temporary Jamaica post-publication verification
 on:
   push:
     branches: [qa/jamaica-publish-blob-preparation-20260919]
@@ -13,79 +13,76 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: a51a4a0e10c914bc6622b6cbc8371f14ab5915da
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Verify current production SHA descends from Jamaica release and check robots sitemap registry
+      - name: Verify Jamaica release ancestry, public canonical, sitemap, and registry
         run: |
-          python - <<'PY'
-          import json,re,time,urllib.request
+          python3 - <<'PY'
+          import json,time,urllib.request
           from html.parser import HTMLParser
           from xml.etree import ElementTree as ET
-          BASE='https://atlas.yagenji.com';URL=BASE+'/countries/jamaica/'
+          from urllib.parse import urlsplit
+          base='https://atlas.yagenji.com';url=base+'/countries/jamaica/'
           approved='a51a4a0e10c914bc6622b6cbc8371f14ab5915da'
           def fetch(path):
-              req=urllib.request.Request(BASE+path+('?' if '?' not in path else '&')+'postpub='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'JOURNEY-ATLAS-Post-Publication-QA/1.0'})
-              with urllib.request.urlopen(req,timeout=30) as response:
-                  assert response.status==200,(path,response.status)
-                  return response.read().decode('utf-8')
-          live_sha=json.loads(fetch('/build-meta.json'))['commit']
-          print('Live Cloudflare SHA',live_sha,flush=True)
-          if live_sha!=approved:
-              url='https://api.github.com/repos/yagenji/Journey-Atlas/compare/'+approved+'...'+live_sha
-              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'JOURNEY-ATLAS-QA'}),timeout=30) as r:comparison=json.load(r)
-              assert comparison['status']=='ahead' and comparison['ahead_by']>0,(live_sha,comparison['status'])
-              print('PASS live commit is GitHub-verified descendant of approved Jamaica publication:',comparison['ahead_by'],'newer commits',flush=True)
-          else:print('PASS exact approved Jamaica production SHA',flush=True)
+              req=urllib.request.Request(base+path+('?' if '?' not in path else '&')+'qa='+str(time.time_ns()),headers={'Cache-Control':'no-cache','User-Agent':'Journey-Atlas-Jamaica-Post-Publish-QA'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  assert r.status==200,(path,r.status)
+                  return r.read().decode('utf-8')
+          live=json.loads(fetch('/build-meta.json'))['commit']
+          if live!=approved:
+              compare='https://api.github.com/repos/yagenji/Journey-Atlas/compare/'+approved+'...'+live
+              with urllib.request.urlopen(urllib.request.Request(compare,headers={'User-Agent':'Journey-Atlas-QA'}),timeout=30) as r:result=json.load(r)
+              assert result['status']=='ahead' and result['ahead_by']>0,(live,result['status'])
+          print('PASS deployed SHA is Jamaica publication or its descendant:',live,flush=True)
           class Head(HTMLParser):
-              def __init__(self):super().__init__();self.robots=[];self.canonical=[]
+              def __init__(self): super().__init__();self.robots=[];self.canonical=[]
               def handle_starttag(self,tag,attrs):
                   a=dict(attrs)
                   if tag=='meta' and a.get('name','').lower()=='robots':self.robots.append(a.get('content',''))
                   if tag=='link' and a.get('rel')=='canonical':self.canonical.append(a.get('href',''))
-          html=fetch('/countries/jamaica/')
-          head=Head();head.feed(html)
-          assert URL in head.canonical,head.canonical
-          assert all('noindex' not in x.lower() for x in head.robots),head.robots
-          print('PASS Jamaica canonical 200 and index-eligible robots meta:',head.robots,flush=True)
-          sitemap=fetch('/sitemap.xml')
-          urls=[(loc.text or '').strip() for loc in ET.fromstring(sitemap).iter() if loc.tag.endswith('loc')]
-          assert URL in urls,('Jamaica absent from sitemap',urls[:5],len(urls))
-          print('PASS live sitemap contains Jamaica:',URL,flush=True)
+          head=Head();head.feed(fetch('/countries/jamaica/'))
+          assert url in head.canonical,head.canonical
+          assert head.robots and all('noindex' not in v.lower() for v in head.robots),head.robots
+          print('PASS live Jamaica canonical and robots:',head.robots,flush=True)
+          xml=ET.fromstring(fetch('/sitemap.xml'))
+          assert url in [(e.text or '').strip() for e in xml.iter() if e.tag.endswith('loc')]
+          print('PASS Jamaica in sitemap',flush=True)
           registry=json.loads(fetch('/data/atlas-destinations.json'))
-          items=[x for x in registry['destinations'] if x.get('slug')=='jamaica']
-          assert len(items)==1 and items[0]['atlasPublished'] is True,items
-          assert items[0]['href']=='countries/jamaica/' and items[0]['image']=='assets/images/jamaica/approved/hero-ward-theatre.webp',items
-          assert len(registry['destinations'])==201
-          print('PASS live registry: published Jamaica navigable, 201 destinations',flush=True)
-          homepage=fetch('/')
-          links=[x for x in re.findall(r'href=["\']([^"\']+)["\']',homepage) if '/countries/jamaica/' in x or x=='countries/jamaica/']
-          print('Static homepage Jamaica links:',len(links),flush=True)
+          jam=[x for x in registry['destinations'] if x.get('slug')=='jamaica']
+          assert len(registry['destinations'])==201 and len(jam)==1,jam
+          row=jam[0]
+          assert row['atlasPublished'] is True and row['href']=='countries/jamaica/',row
+          assert urlsplit(row['image']).path=='assets/images/jamaica/approved/hero-ward-theatre.webp',row
+          print('PASS canonical 201 registry, public Jamaica href, approved cache-busted Hero',flush=True)
           PY
-      - name: Verify a live user-facing normal navigation route to Jamaica
+      - name: Verify visible Jamaica navigation from live homepage
         run: |
-          python -m pip install --disable-pip-version-check --quiet selenium
-          python - <<'PY'
+          python3 -m pip install --disable-pip-version-check --quiet selenium
+          python3 - <<'PY'
           import time
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
           from shutil import which
           options=Options()
-          for flag in ['--headless=new','--no-sandbox','--disable-dev-shm-usage']:options.add_argument(flag)
+          for arg in ('--headless=new','--no-sandbox','--disable-dev-shm-usage'): options.add_argument(arg)
           driver=webdriver.Chrome(service=Service(which('chromedriver')) if which('chromedriver') else Service(),options=options)
           try:
-              found=[]
-              for path in ['/','/countries/']:
-                  driver.get('https://atlas.yagenji.com'+path+'?postpub='+str(time.time_ns()))
-                  links=[]
-                  for attempt in range(30):
-                      links=driver.execute_script('''return [...document.querySelectorAll('a[href]')].map(a=>a.href).filter(s=>/\/countries\/jamaica\/?(?:[?#].*)?$/.test(s));''')
-                      if links:found=links;break
-                      time.sleep(.35)
-                  print('Live normal navigation',path,'Jamaica links:',len(links),flush=True)
-                  if found:break
-              assert found,'No Jamaica Country link found in normal homepage or countries directory DOM'
-              print('PASS user-facing Jamaica navigation link:',found[0],flush=True)
+              driver.get('https://atlas.yagenji.com/?qa='+str(time.time_ns()))
+              for _ in range(35):
+                  links=driver.find_elements(By.CSS_SELECTOR,'a[href*="countries/jamaica/"]')
+                  shown=[a for a in links if a.is_displayed()]
+                  if shown:break
+                  time.sleep(.4)
+              if not shown:
+                  toggle=driver.find_element(By.ID,'all-countries-toggle')
+                  driver.execute_script('arguments[0].click()',toggle)
+                  for _ in range(20):
+                      shown=[a for a in driver.find_elements(By.CSS_SELECTOR,'a[href*="countries/jamaica/"]') if a.is_displayed()]
+                      if shown:break
+                      time.sleep(.3)
+              assert shown,'Jamaica not visible in homepage Country navigation even after opening all countries'
+              assert any(a.get_attribute('href').split('?')[0].rstrip('/')=='https://atlas.yagenji.com/countries/jamaica' for a in shown)
+              print('PASS visible ordinary homepage Country navigation:',shown[0].get_attribute('href'),flush=True)
           finally:driver.quit()
           PY
