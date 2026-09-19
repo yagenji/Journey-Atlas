@@ -64,6 +64,82 @@ jobs:
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
           print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit']})
           PY
+      - name: Compare 2025 IGN-derived French land with Monaco (diagnostic, not production)
+        run: |
+          python - <<'PY'
+          import hashlib, io, json, sys, urllib.request
+          from pathlib import Path
+          import cairosvg
+          import numpy as np
+          from PIL import Image, ImageDraw, ImageChops
+          from shapely.geometry import box, shape
+          from shapely.ops import unary_union
+          from xml.etree import ElementTree as ET
+          sys.path.insert(0, 'scripts')
+          import add_country_map_context as ctx
+          out=Path('/tmp/journey-atlas-monaco-2025'); out.mkdir(parents=True,exist_ok=True)
+          def fetch(url,limit):
+              req=urllib.request.Request(url,headers={'User-Agent':'JourneyAtlas-readonly-map-source-QA/1.0','Accept':'application/json,*/*'})
+              with urllib.request.urlopen(req,timeout=180) as response:
+                  data=response.read(limit+1)
+              if len(data)>limit: raise ValueError('Source over size limit')
+              return data
+          meta_url='https://www.data.gouv.fr/api/1/datasets/685ab87ea35cf447867fd96a/'
+          metadata=json.loads(fetch(meta_url,2000000))
+          resources=[r for r in metadata['resources'] if r.get('title','').lower().endswith('a_com2025.geojson')]
+          if len(resources)!=1: raise ValueError(f'Expected one 2025 municipality GeoJSON; found {[(r.get("title"),r.get("url")) for r in resources]}')
+          resource=resources[0]
+          source_url=resource['url']
+          if not source_url.startswith('https://static.data.gouv.fr/'):
+              raise ValueError('Unexpected geography source domain; inspect before fetching: '+source_url)
+          raw=fetch(source_url,75000000)
+          source_sha=hashlib.sha256(raw).hexdigest()
+          data=json.loads(raw)
+          config=json.loads(Path('data/countries/monaco.json').read_text())['map']
+          b=config['bounds']; bounds=tuple(b[k] for k in ('west','south','east','north'))
+          canvas=ctx.canvas_bounds(bounds); viewport=box(*canvas)
+          pieces=[]; names=[]
+          for feature in data['features']:
+              if not feature.get('geometry'): continue
+              geom=shape(feature['geometry'])
+              if geom.is_empty or not geom.intersects(viewport): continue
+              clipped=geom.intersection(viewport)
+              if not clipped.is_empty:
+                  pieces.append(clipped)
+                  names.append(feature.get('properties',{}).get('nom') or feature.get('properties',{}).get('name') or str(feature.get('id')))
+          if not pieces: raise ValueError('No nearby 2025 French municipal polygons: inspect source')
+          land=unary_union(pieces)
+          original=Path(config['svg']).read_text(encoding='utf-8')
+          path=ctx.make_context_path(land,bounds,0.0)
+          if not path: raise ValueError('No projected 2025 French land')
+          updated=ctx.add_context(original,bounds,path,'i')
+          updated=updated.replace('<!-- Geographic context: GSHHS via Basemap; resolution=i; WGS84; canvas-fit bounds. -->',
+              '<!-- QA ONLY: 2025 IGN Admin Express COG PLUS French communes via data.gouv.fr; '+source_sha+'; not approved for production. -->')
+          baseline=Path('/tmp/journey-atlas-map-context-rollout-stage/monaco.svg').read_text(encoding='utf-8')
+          def approved(svg):
+              root=ET.fromstring(svg)
+              return [dict(n.attrib) for n in ctx.approved_land_paths(root)[0]]
+          assert approved(original)==approved(updated)==approved(baseline), 'Approved Monaco land path changed'
+          (out/'monaco-2025-ign-diagnostic.svg').write_text(updated,encoding='utf-8')
+          for filename,svg in [('monaco-2025-ign-diagnostic',updated),('monaco-gshhg-i-baseline',baseline)]:
+              cairosvg.svg2png(bytestring=svg.encode('utf-8'),write_to=str(out/(filename+'.png')),output_width=1200,output_height=760)
+              with Image.open(out/(filename+'.png')) as image:
+                  image.load(); assert image.size==(1200,760)
+          with Image.open(out/'monaco-gshhg-i-baseline.png') as im: old=im.convert('RGB')
+          with Image.open(out/'monaco-2025-ign-diagnostic.png') as im: new=im.convert('RGB')
+          side=Image.new('RGB',(2400,796),'white'); side.paste(old,(0,36));side.paste(new,(1200,36))
+          draw=ImageDraw.Draw(side);draw.text((14,12),'GSHHG intermediate baseline (NOT approved)',fill='black');draw.text((1214,12),'IGN-derived 2025 municipal land (QA ONLY)',fill='black')
+          side.save(out/'monaco-2025-ign-comparison.png')
+          report={'dataset':meta_url,'resource':source_url,'datasetLicence':metadata.get('license'), 'resourceSha256':source_sha,
+                  'resourceBytes':len(raw),'featureCount':len(data['features']),'intersectingFeatureCount':len(pieces),
+                  'intersectingFeatureNames':names,'canvasBounds':canvas,'approvedLandAttributesIdentical':True,
+                  'baselineSvgSha256':hashlib.sha256(baseline.encode()).hexdigest(),
+                  'candidateSvgSha256':hashlib.sha256(updated.encode()).hexdigest(),
+                  'pngDimensions':[1200,760], 'productionMutations':False,
+                  'status':'diagnostic-only; geographic alignment and source compatibility need human QA'}
+          (out/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
       - name: Save preview-only images, reports and rollout manifest
         if: always()
         uses: actions/upload-artifact@v4
@@ -72,5 +148,6 @@ jobs:
           path: |
             /tmp/journey-atlas-map-context-real-previews/
             /tmp/journey-atlas-map-context-rollout-stage/manifest.json
+            /tmp/journey-atlas-monaco-2025/
           if-no-files-found: warn
           retention-days: 3
