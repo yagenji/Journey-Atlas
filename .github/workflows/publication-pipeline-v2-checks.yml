@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   validate:
@@ -159,6 +160,66 @@ jobs:
           python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/country-overlay
           git reset --hard origin/main
           python3 scripts/country_overlay_v2.py apply "$SLUG" /tmp/country-overlay
+      - name: Reuse matching required Country Browser QA when its report proves coverage
+        if: github.event_name == 'pull_request' && needs.validate.outputs.active == 'true' && needs.validate.outputs.mode == 'review'
+        id: requiredqa
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLUG: ${{ needs.validate.outputs.slug }}
+          SOURCE_SHA: ${{ needs.validate.outputs.source_sha }}
+          HEAD_REF: ${{ github.head_ref }}
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'reuse=false' >> "$GITHUB_OUTPUT"
+          # The required workflow uses the PR merge tree; a different main
+          # would make its rendered output non-equivalent to this v2 overlay.
+          if [ "$(git rev-parse origin/main)" != "$EVENT_BASE_SHA" ]; then
+            echo 'main advanced; run independent v2 Browser QA.'
+            exit 0
+          fi
+          for attempt in $(seq 1 40); do
+            match="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow browser-country-qa.yml --branch "$HEAD_REF" --event pull_request --limit 40 --json databaseId,headSha,status,conclusion | jq -cr --arg sha "$SOURCE_SHA" '[.[] | select(.headSha == $sha)] | first // empty')"
+            if [ -z "$match" ]; then sleep 2; continue; fi
+            status="$(jq -r .status <<< "$match")"
+            if [ "$status" != completed ]; then sleep 2; continue; fi
+            conclusion="$(jq -r .conclusion <<< "$match")"
+            if [ "$conclusion" != success ]; then
+              echo "Required Country Browser QA ended $conclusion; do not replace its failure with a pass." >&2
+              exit 1
+            fi
+            run_id="$(jq -r .databaseId <<< "$match")"
+            if ! gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name country-browser-qa --dir /tmp/required-country-qa; then
+              echo 'Required QA artifact unavailable; run independent v2 Browser QA.'
+              exit 0
+            fi
+            if python3 - "$SLUG" <<'PY'
+          import json, sys
+          from collections import Counter
+          from pathlib import Path
+          slug = sys.argv[1]
+          reports = [p for p in Path('/tmp/required-country-qa').rglob('report.json')
+                     if p.parent.name == 'qa-browser-reviewable-output']
+          if len(reports) != 1:
+              raise SystemExit('Expected one unpublished-reviewable QA report')
+          report = json.loads(reports[0].read_text(encoding='utf-8'))
+          if report.get('pass') is not True or report.get('failures') or slug not in report.get('countries', []):
+              raise SystemExit('Required QA did not pass for this unpublished Country')
+          rows = [r for r in report.get('results', []) if r.get('slug') == slug]
+          counts = Counter(r.get('viewport') for r in rows if not r.get('errors'))
+          if counts != Counter({'desktop': 1, 'tablet': 1, 'mobile': 1}) or len(rows) != 3:
+              raise SystemExit('Required QA is missing a clean Desktop/Tablet/Mobile result')
+          print(f'Reusing required Browser QA for {slug}: all three viewports PASS')
+          PY
+            then
+              echo 'reuse=true' >> "$GITHUB_OUTPUT"
+            else
+              echo 'Required QA report did not establish coverage; run independent v2 Browser QA.'
+            fi
+            exit 0
+          done
+          echo 'Matching required QA did not finish in time; run independent v2 Browser QA.'
       - name: Decide whether review Browser QA can be reused
         if: needs.validate.outputs.active == 'true'
         id: reuse
@@ -169,6 +230,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ '${{ steps.requiredqa.outputs.reuse }}' = true ]; then
+            echo 'reuse=true' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           reuse=false
           if [ "$MODE" = publish ]; then
             review_main="$(python3 - "$SLUG" <<'PY'
@@ -203,7 +268,7 @@ jobs:
           echo "reuse=$reuse" >> "$GITHUB_OUTPUT"
       - name: Reuse review Browser QA
         if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse == 'true'
-        run: echo "Shared rendering unchanged since reviewed main base; reusing review Browser QA."
+        run: echo "Reusing verified required Country QA or unchanged previously reviewed render."
       - name: Install Browser QA dependency
         if: needs.validate.outputs.active == 'true' && steps.reuse.outputs.reuse != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
