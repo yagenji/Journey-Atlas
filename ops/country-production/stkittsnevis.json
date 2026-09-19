@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "stkittsnevis",
   "countryName": "ST. KITTS & NEVIS",
-  "contentRef": "country/stkittsnevis",
-  "stateRef": "country/stkittsnevis",
-  "phase": "QA",
-  "stateRevision": 35,
-  "updatedAt": "2026-09-19T12:01:32+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 36,
+  "updatedAt": "2026-09-19T12:01:36+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/stkittsnevis/approved/hero-timothy-hill.webp",
@@ -544,10 +544,11 @@
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/stkittsnevis/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "atlasPublished": false,
-    "browserQa": "PASS",
-    "verifiedAt": "2026-09-19T02:11:27.573304+00:00"
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-19T02:11:27.573304+00:00",
+    "prePublicationReviewBasis": null
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -555,8 +556,17 @@
     "approvalBasis": "User replied 「完了させて」 after the canonical unpublished Country URL and final approval request in the 2026-09-19 conversation; authorization to complete formal publication. No claim of personal viewport inspection."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-19T12:01:36+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/stkittsnevis/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -744,7 +754,7 @@
     "canonicalReviewReadyAt": "2026-09-19T10:44:09+09:00"
   },
   "next": {
-    "action": "FINALIZE_REVIEW_PR_FOR_PUBLICATION",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2
