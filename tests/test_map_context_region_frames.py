@@ -146,7 +146,7 @@ class FrameUnframedRegionsTest(unittest.TestCase):
                         output_height=760))) as image:
                     image.load()
                     self.assertEqual(image.size, (1200, 760))
-                    images.append(image.convert('RGBA'))
+                    images.append(image.convert('RGB'))
             self.assertIsNotNone(ImageChops.difference(*images).getbbox(),
                                  'Region frames must be visible at native size')
 
