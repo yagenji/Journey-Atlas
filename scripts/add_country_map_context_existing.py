@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -63,8 +64,11 @@ def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
                 or len(matched[0]) != 1 or matched[0][0].tag != ns + "rect"):
             raise ValueError("Generated region context is not clipped to its declared viewport")
         clip_rect = matched[0][0]
-        if any(abs(float(clip_rect.get(k, "nan")) - float(rect[k])) > 0.01
-               for k in ("x", "y", "width", "height")):
+        keys = ("x", "y", "width", "height")
+        clip_values = [float(clip_rect.get(k, "nan")) for k in keys]
+        if (not all(math.isfinite(value) for value in clip_values)
+                or any(abs(actual - float(rect[key])) > 0.01
+                       for actual, key in zip(clip_values, keys))):
             raise ValueError("Generated region clip rectangle does not match Country JSON")
         outlines.append(
             f'<rect data-map-context-frame="{identifier}" '
