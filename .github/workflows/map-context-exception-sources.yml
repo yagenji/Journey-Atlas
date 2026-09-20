@@ -22,7 +22,7 @@ jobs:
           import json, pathlib, shutil
           root=pathlib.Path('.')
           output=pathlib.Path('/tmp/map-context-source-review')
-          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco'):
+          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
               p=root/'data'/'countries'/f'{slug}.json'
               if not p.is_file():
                   continue
