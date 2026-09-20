@@ -34,38 +34,7 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
-      - name: Collect independent OSM Monaco coastline ways for geographic diagnostics only
-        run: |
-          python3 - <<'PY'
-          import datetime, hashlib, json, pathlib, urllib.parse, urllib.request
-          output = pathlib.Path('/tmp/map-context-source-review/monaco')
-          output.mkdir(parents=True, exist_ok=True)
-          # Generous buffer: coastlines crossing the map must extend past its edges.
-          query = '[out:json][timeout:90];way["natural"="coastline"](43.705,7.385,43.765,7.460);out geom;'
-          request = urllib.request.Request(
-              'https://overpass-api.de/api/interpreter',
-              data=urllib.parse.urlencode({'data': query}).encode(),
-              headers={'User-Agent':'Journey-Atlas-map-context-geography-review/1.0'},
-              method='POST',
-          )
-          with urllib.request.urlopen(request, timeout=120) as response:
-              content = response.read()
-          payload = json.loads(content)
-          ways = [row for row in payload.get('elements', []) if row.get('type') == 'way'
-                  and row.get('tags', {}).get('natural') == 'coastline' and row.get('geometry')]
-          if not ways:
-              raise SystemExit('No Monaco coastline ways returned; no inferred geometry permitted')
-          (output / 'osm-coastline-ways.json').write_bytes(content)
-          report = {'source':'OpenStreetMap coastline ways, ODbL, diagnostic only',
-                    'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    'endpoint':'https://overpass-api.de/api/interpreter',
-                    'query':query,'sha256':hashlib.sha256(content).hexdigest(),
-                    'ways':len(ways),'points':sum(len(row['geometry']) for row in ways)}
-          (output / 'osm-coastline-provenance.json').write_text(json.dumps(report,indent=2)+'\n')
-          print(report)
-          PY
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
           name: legacy-map-qa-source-bundle
           path: /tmp/map-context-source-review/
