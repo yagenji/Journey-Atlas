@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from xml.etree import ElementTree as ET
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from shapely.geometry import box
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
 import add_country_map_context_legacy as legacy
 
 
@@ -40,6 +45,42 @@ class LegacyMapContextTests(unittest.TestCase):
     def test_wide_canvas_does_not_accept_nonfinite_extent(self):
         with self.assertRaises(ValueError):
             legacy._split_context_geometry((float('nan'), 0, 10, 10), "i")
+
+    def test_legacy_region_sampling_clips_extended_query_to_original_viewport(self):
+        bounds = (-61.91, 16.97, -61.66, 17.185)
+        with patch.object(legacy, "_split_context_geometry", side_effect=lambda b, r: box(*b)) as sampled:
+            actual = legacy._sample_region_beyond_viewport(bounds, "i")
+        self.assertTrue(actual.equals(box(*bounds)))
+        query = sampled.call_args.args[0]
+        self.assertLess(query[0], bounds[0])
+        self.assertLess(query[1], bounds[1])
+        self.assertGreater(query[2], bounds[2])
+        self.assertGreater(query[3], bounds[3])
+
+    def test_legacy_region_rects_still_reject_actual_overlap(self):
+        def region(x, y, w, h):
+            return {"bounds": {"west": 0, "south": 0, "east": 1, "north": 1},
+                    "rect": {"x": x, "y": y, "width": w, "height": h}}
+        legacy._validate_region_rects([region(0, 0, 100, 100), region(0, 101, 100, 100)])
+        with self.assertRaisesRegex(ValueError, "overlap"):
+            legacy._validate_region_rects([region(0, 0, 100, 100), region(50, 50, 100, 100)])
+
+    def test_real_antigua_inset_removes_false_edge_wedge_without_changing_approved_paths(self):
+        source = ROOT / "assets/images/antiguabarbuda/map-atlas-v1.svg"
+        country = ROOT / "data/countries/antiguabarbuda.json"
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "antigua-preview.svg"
+            legacy.generate(country, source, output, "i")
+            before = ET.fromstring(source.read_text(encoding="utf-8"))
+            after = ET.fromstring(output.read_text(encoding="utf-8"))
+            namespace = "{http://www.w3.org/2000/svg}"
+            approved = lambda root: [p.get("d") for p in root.iter(namespace + "path")
+                                     if p.get("fill") == "url(#land)"]
+            self.assertTrue(approved(before))
+            self.assertEqual(approved(before), approved(after))
+            context = after.find(".//*[@id='geographic-context']")
+            self.assertIsNotNone(context)
+            self.assertNotIn("M 760.0,401.0 L 717.8,395.0", " ".join(p.get("d", "") for p in context))
 
 
 if __name__ == "__main__":
