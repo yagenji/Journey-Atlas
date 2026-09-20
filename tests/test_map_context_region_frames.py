@@ -48,6 +48,12 @@ class FrameUnframedRegionsTest(unittest.TestCase):
             'id="geographic-context"', 'id="other"'), REGIONS),
             SVG.replace('id="geographic-context"', 'id="other"'))
 
+    def test_legacy_composite_without_region_context_paths_is_not_reframed(self):
+        legacy = SVG.replace('data-map-context-region="mainland"', 'data-legacy-region="mainland"')
+        legacy = legacy.replace('data-map-context-region="azores"', 'data-legacy-region="azores"')
+        legacy = legacy.replace('data-map-context-region="madeira"', 'data-legacy-region="madeira"')
+        self.assertEqual(frame_unframed_region_context(legacy, REGIONS), legacy)
+
     def test_fail_closed_on_mismatched_region_and_outside_canvas(self):
         with self.assertRaisesRegex(ValueError, 'do not match'):
             frame_unframed_region_context(SVG.replace(
