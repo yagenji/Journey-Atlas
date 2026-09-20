@@ -86,6 +86,70 @@ class FrameUnframedRegionsTest(unittest.TestCase):
                 '<path data-map-context-region="mainland"',
                 '<path data-map-context-region="azores"'), REGIONS)
 
+    def test_real_portugal_preview_preserves_approved_paths_and_renders_frames(self):
+        """Use the real Country JSON/SVG, not just a synthetic three-region fixture."""
+        import json
+        import re
+        import subprocess
+        import tempfile
+        from io import BytesIO
+
+        import cairosvg
+        from PIL import Image, ImageChops
+
+        repository = Path(__file__).resolve().parents[1]
+        country_json = repository / 'data/countries/portugal.json'
+        country = json.loads(country_json.read_text(encoding='utf-8'))
+        source_path = repository / country['map']['svg']
+        original = ET.fromstring(source_path.read_text(encoding='utf-8'))
+        namespace = '{http://www.w3.org/2000/svg}'
+
+        with tempfile.TemporaryDirectory(prefix='portugal-map-context-') as directory:
+            preview_path = Path(directory) / 'portugal-preview.svg'
+            subprocess.run(
+                [sys.executable, str(repository / 'scripts/add_country_map_context_existing.py'),
+                 '--country-json', str(country_json), '--input', str(source_path),
+                 '--output', str(preview_path)],
+                cwd=repository, check=True, capture_output=True, text=True, timeout=180)
+            preview = preview_path.read_text(encoding='utf-8')
+            result = ET.fromstring(preview)
+            self.assertEqual(original.get('viewBox'), '0 0 1200 760')
+            self.assertEqual(result.get('viewBox'), original.get('viewBox'))
+
+            # Compare every previously approved path, including islands and markers.
+            context = result.find(".//*[@id='geographic-context']")
+            self.assertIsNotNone(context)
+            added_paths = set(context.iter(namespace + 'path'))
+            original_paths = [ET.tostring(path) for path in original.iter(namespace + 'path')]
+            result_paths = [ET.tostring(path) for path in result.iter(namespace + 'path')
+                            if path not in added_paths]
+            self.assertEqual(result_paths, original_paths)
+
+            frames = [item for item in result.iter(namespace + 'rect')
+                      if item.get('data-map-context-frame')]
+            self.assertEqual({frame.get('data-map-context-frame') for frame in frames},
+                             {region['id'] for region in country['map']['regions']})
+            for frame in frames:
+                rect = next(region['rect'] for region in country['map']['regions']
+                            if region['id'] == frame.get('data-map-context-frame'))
+                for key in ('x', 'y', 'width', 'height'):
+                    self.assertEqual(float(frame.get(key)), float(rect[key]))
+
+            frame_markup = re.search(
+                r'<g id="geographic-context-region-frames">.*?</g>', preview)
+            self.assertIsNotNone(frame_markup)
+            unframed = preview.replace(frame_markup.group(), '', 1)
+            images = []
+            for svg in (unframed, preview):
+                with Image.open(BytesIO(cairosvg.svg2png(
+                        bytestring=svg.encode('utf-8'), output_width=1200,
+                        output_height=760))) as image:
+                    image.load()
+                    self.assertEqual(image.size, (1200, 760))
+                    images.append(image.convert('RGBA'))
+            self.assertIsNotNone(ImageChops.difference(*images).getbbox(),
+                                 'Region frames must be visible at native size')
+
 
 if __name__ == '__main__':
     unittest.main()
