@@ -73,9 +73,7 @@ class LegacyMapContextTests(unittest.TestCase):
             legacy.generate(country, source, output, "i")
             before = ET.fromstring(source.read_text(encoding="utf-8"))
             after = ET.fromstring(output.read_text(encoding="utf-8"))
-            namespace = "{http://www.w3.org/2000/svg}"
-            approved = lambda root: [p.get("d") for p in root.iter(namespace + "path")
-                                     if p.get("fill") == "url(#land)"]
+            approved = lambda root: [ET.tostring(p) for p in legacy.core.approved_land_paths(root)[0]]
             self.assertTrue(approved(before))
             self.assertEqual(approved(before), approved(after))
             context = after.find(".//*[@id='geographic-context']")
