@@ -38,6 +38,8 @@ def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
     expected = {item["id"] for item in regions}
     drawn = {el.get("data-map-context-region") for el in root.iter()
              if el.get("data-map-context-region")}
+    if not drawn:
+        return svg  # Legacy composite paths do not expose individual region clips.
     clip_ids = {el.get("id") for el in root.iter() if el.tag == ns + "clipPath"}
     if drawn != expected or any(f"map-context-clip-{key}" not in clip_ids for key in expected):
         raise ValueError("Unframed multi-region context/clip IDs do not match Country JSON")
