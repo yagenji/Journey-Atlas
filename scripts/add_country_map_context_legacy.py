@@ -58,7 +58,7 @@ def _replace_gradient(svg: str, gradient_id: str, accepted: tuple[tuple[str, str
 
 
 def _sea_rect(svg: str, fill_id: str = "sea"):
-    pattern = re.compile(r'<rect\b(?=[^>]*\bfill="url\(#' + re.escape(fill_id) + r'\)\")[^>]*/>')
+    pattern = re.compile(r'<rect\b(?=[^>]*\bfill="url\(#' + re.escape(fill_id) + r'\)")[^>]*/>')
     matches = list(pattern.finditer(svg))
     if len(matches) != 1:
         raise ValueError(f"Expected exactly one {fill_id} background rectangle")
@@ -114,13 +114,13 @@ def _split_context_geometry(bounds, resolution):
 
 
 def _sample_region_beyond_viewport(bounds, resolution):
-    """Avoid GSHHS coastline closure artifacts on tightly cropped legacy insets.
+    """Sample GSHHS beyond legacy inset edges and clip to the original viewport.
 
-    GSHHS constructs polygons using its query extent; at a coast-intersecting
-    inset edge that can create a false triangular ring. Sample the same licensed
-    source outside the viewport, then clip back to its *unchanged* georeferenced
-    bounds. This never extrapolates or draws a coastline and applies to every
-    legacy loose multi-region inset, not any named Country's source geometry.
+    GSHHS can close a cropped coastline against its query edge and create a
+    spurious triangular ring. A surrounding query removes that false closure
+    without inventing coastlines; the original geographic viewport is retained.
+    Applies to all legacy loose multi-region insets, not any Country-specific
+    target geometry. The same GSHHS source and licence remain in use.
     """
     west, south, east, north = bounds
     if east - west > 2 or north - south > 2:
@@ -234,7 +234,7 @@ def _validate_region_rects(regions):
             raise ValueError("Legacy region rectangle outside canvas")
         core.frame(_bounds(region["bounds"]), rect)
         for ox, oy, ow, oh in rects:
-            if x < ox + ow and ox < x + w and y < oy + h:
+            if x < ox + ow and ox < x + w and y < oy + oh and oy < y + h:
                 raise ValueError("Legacy region rectangles overlap")
         rects.append(rect)
 
