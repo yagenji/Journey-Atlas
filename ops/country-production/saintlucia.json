@@ -5,19 +5,15 @@
   "contentRef": "country/saintlucia",
   "stateRef": "country/saintlucia",
   "phase": "CONTENT",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-19T21:21:39+09:00",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-20T12:23:28+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/saintlucia/approved/hero-pitons.webp",
     "contentId": "pitons-offshore-view",
     "approvedGenerationId": "9b73a16c-17ee-41d0-b380-f06e09def64a",
     "approvedAt": "2026-09-19T20:42:00+09:00",
-    "candidateVisualQa": {
-      "targetIdentity": "PASS",
-      "previousAssetRepeat": "PASS",
-      "collageTypography": "PASS"
-    }
+    "candidateVisualQa": {"targetIdentity": "PASS", "previousAssetRepeat": "PASS", "collageTypography": "PASS"}
   },
   "scenes": [
     {"id": "S01", "state": "NOT_STARTED", "asset": null, "contentId": null},
@@ -59,7 +55,7 @@
     "singleReviewIntegration": true
   },
   "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
-  "generationContext": {"state": "CONTAMINATED", "epoch": 1, "lastResetAt": null, "lastFailureAsset": "FOOD01", "lastFailureReason": "COLLAGE_OR_MULTIPANEL"},
+  "generationContext": {"state": "CLEAN", "epoch": 2, "lastResetAt": "2026-09-20T12:23:28+09:00", "lastFailureAsset": null, "lastFailureReason": null},
   "imageGenerationPolicy": {
     "revision": 7,
     "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
@@ -133,5 +129,5 @@
     "tasteBatchApprovedAt": null,
     "canonicalReviewReadyAt": null
   },
-  "next": {"action": "RESET_GENERATION_CONTEXT", "asset": null}
+  "next": {"action": "COMPLETE_CONTENT_DESIGN", "asset": null}
 }
