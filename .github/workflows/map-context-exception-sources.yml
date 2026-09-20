@@ -34,7 +34,36 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
+      - name: Collect independent expanded OSM coastline ways for diagnostic topology only
+        run: |
+          python3 - <<'PY'
+          import datetime, hashlib, json, pathlib, time, urllib.parse, urllib.request
+          root = pathlib.Path('/tmp/map-context-source-review')
+          bounds = {'singapore': (1.0, 103.4, 1.7, 104.3), 'macau': (21.99, 113.4, 22.36, 113.75)}
+          for slug, (s, w, n, e) in bounds.items():
+              query = f'[out:json][timeout:90];way["natural"="coastline"]({s},{w},{n},{e});out geom;'
+              request = urllib.request.Request('https://overpass-api.de/api/interpreter', data=urllib.parse.urlencode({'data':query}).encode(), headers={'User-Agent':'Journey-Atlas-map-context-source-diagnostic/1.0'}, method='POST')
+              last = None
+              for attempt in range(3):
+                  try:
+                      with urllib.request.urlopen(request, timeout=120) as response: content = response.read()
+                      payload = json.loads(content)
+                      ways = [x for x in payload.get('elements',[]) if x.get('type')=='way' and x.get('tags',{}).get('natural')=='coastline' and len(x.get('geometry',[])) >= 2]
+                      if not ways: raise ValueError('No coastline ways returned')
+                      break
+                  except Exception as exc:
+                      last = exc
+                      if attempt == 2: raise
+                      time.sleep(3 * (attempt + 1))
+              output = root/'osm-coastline-diagnostic'/slug
+              output.mkdir(parents=True, exist_ok=True)
+              (output/'ways.json').write_bytes(content)
+              provenance = {'source':'OpenStreetMap natural=coastline ways; ODbL; diagnostics only; not a verified land polygon', 'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(), 'endpoint':'https://overpass-api.de/api/interpreter', 'query':query, 'sha256':hashlib.sha256(content).hexdigest(), 'ways':len(ways), 'points':sum(len(x['geometry']) for x in ways)}
+              (output/'provenance.json').write_text(json.dumps(provenance, indent=2)+'\n')
+              print(slug, provenance)
+          PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: legacy-map-qa-source-bundle
           path: /tmp/map-context-source-review/
