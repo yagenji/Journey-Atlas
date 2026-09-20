@@ -25,7 +25,7 @@ permissions:
 jobs:
   preview-only:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,6 +65,51 @@ jobs:
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
           print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit']})
           PY
+      - name: Substitute staged SVGs in this disposable runner only
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path.cwd().resolve()
+          staged = Path('/tmp/journey-atlas-map-context-rollout-stage')
+          manifest = json.loads((staged / 'manifest.json').read_text(encoding='utf-8'))
+          for entry in manifest['entries']:
+              if entry['action'] == 'preserve-existing-context':
+                  continue
+              assert entry['action'] == 'stage-context-preview'
+              source = (root / entry['mapRef']).resolve()
+              if root not in source.parents or not source.is_file():
+                  raise RuntimeError(f"Invalid map source: {entry['slug']}")
+              preview = (staged / f"{entry['slug']}.svg").read_bytes()
+              digest = lambda b: hashlib.sha256(b).hexdigest()
+              if digest(source.read_bytes()) != entry['sourceSha256'] or digest(preview) != entry['stagedSha256']:
+                  raise RuntimeError(f"Map source or preview changed after staging: {entry['slug']}")
+              source.write_bytes(preview)
+          print('Disposable runner only: all staged SVGs substituted; repository branch unchanged')
+          PY
+      - name: Build real Country pages with staged map previews
+        env:
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: python scripts/build_cloudflare.py
+      - name: Install existing browser QA dependencies
+        run: python -m pip install --disable-pip-version-check --quiet selenium
+      - name: Run published Country browser QA against the staged maps
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-map-context-browser-output
+          QA_SCOPE: published
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --directory dist >/tmp/journey-atlas-map-context-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          python scripts/run_country_browser_qa_parallel.py --scope published --workers 2
       - name: Save preview-only images, reports and rollout manifest
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,5 +118,6 @@ jobs:
           path: |
             /tmp/journey-atlas-map-context-real-previews/
             /tmp/journey-atlas-map-context-rollout-stage/manifest.json
+            qa-map-context-browser-output/
           if-no-files-found: warn
           retention-days: 3
