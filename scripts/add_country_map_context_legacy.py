@@ -15,6 +15,7 @@ import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from shapely.geometry import box
 from shapely.ops import unary_union
 
 import add_country_map_context as core
@@ -57,7 +58,7 @@ def _replace_gradient(svg: str, gradient_id: str, accepted: tuple[tuple[str, str
 
 
 def _sea_rect(svg: str, fill_id: str = "sea"):
-    pattern = re.compile(r'<rect\b(?=[^>]*\bfill="url\(#' + re.escape(fill_id) + r'\)")[^>]*/>')
+    pattern = re.compile(r'<rect\b(?=[^>]*\bfill="url\(#' + re.escape(fill_id) + r'\)\")[^>]*/>')
     matches = list(pattern.finditer(svg))
     if len(matches) != 1:
         raise ValueError(f"Expected exactly one {fill_id} background rectangle")
@@ -110,6 +111,27 @@ def _split_context_geometry(bounds, resolution):
             pieces.append(piece)
         start = stop
     return unary_union(pieces) if pieces else None
+
+
+def _sample_region_beyond_viewport(bounds, resolution):
+    """Avoid GSHHS coastline closure artifacts on tightly cropped legacy insets.
+
+    GSHHS constructs polygons using its query extent; at a coast-intersecting
+    inset edge that can create a false triangular ring. Sample the same licensed
+    source outside the viewport, then clip back to its *unchanged* georeferenced
+    bounds. This never extrapolates or draws a coastline and applies to every
+    legacy loose multi-region inset, not any named Country's source geometry.
+    """
+    west, south, east, north = bounds
+    if east - west > 2 or north - south > 2:
+        return _split_context_geometry(bounds, resolution)
+    margin = max(0.004, 0.02 * max(east - west, north - south))
+    extended = (west - margin, south - margin, east + margin, north + margin)
+    if not (-360 <= extended[0] < extended[2] <= 360
+            and -89 <= extended[1] < extended[3] <= 89):
+        return _split_context_geometry(bounds, resolution)
+    sampled = _split_context_geometry(extended, resolution)
+    return sampled.intersection(box(*bounds)) if sampled is not None else None
 
 
 def _simple_context(svg: str, config: dict, resolution: str, *, fill_id: str = "sea", gradient_id: str = "sea") -> str:
@@ -212,7 +234,7 @@ def _validate_region_rects(regions):
             raise ValueError("Legacy region rectangle outside canvas")
         core.frame(_bounds(region["bounds"]), rect)
         for ox, oy, ow, oh in rects:
-            if x < ox + ow and ox < x + w and y < oy + oh and oy < y + h:
+            if x < ox + ow and ox < x + w and y < oy + h:
                 raise ValueError("Legacy region rectangles overlap")
         rects.append(rect)
 
@@ -238,7 +260,7 @@ def _loose_multi_region(svg: str, config: dict, resolution: str) -> str:
         x, y, w, h = rect
         clip_id = f"map-context-legacy-{rid}"
         clips.append(f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse"><rect x="{_fmt(x)}" y="{_fmt(y)}" width="{_fmt(w)}" height="{_fmt(h)}"/></clipPath>')
-        geometry = _split_context_geometry(core.canvas_bounds(rb, rect), resolution)
+        geometry = _sample_region_beyond_viewport(core.canvas_bounds(rb, rect), resolution)
         d = core.make_context_path(geometry, rb, 0.003, rect)
         paths.append(f'<path data-map-context-legacy="{rid}" d="{d}" clip-path="url(#{clip_id})"/>')
     svg = svg[:defs.start()] + "".join(clips) + svg[defs.start():]
