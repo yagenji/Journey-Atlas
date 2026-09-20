@@ -15,10 +15,13 @@ REGIONS = [
 ]
 SVG = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" '
        'data-map-projection="multi-region-local-equirectangular-fit-v1">'
-       '<defs>' + ''.join(f'<clipPath id="map-context-clip-{r["id"]}"><rect/></clipPath>'
-                        for r in REGIONS) + '</defs>'
+       '<defs>' + ''.join(f'<clipPath id="map-context-clip-{r["id"]}">'
+                        f'<rect x="{r["rect"]["x"]}" y="{r["rect"]["y"]}" '
+                        f'width="{r["rect"]["width"]}" height="{r["rect"]["height"]}"/>'
+                        '</clipPath>' for r in REGIONS) + '</defs>'
        '<g id="geographic-context">'
-       + ''.join(f'<path data-map-context-region="{r["id"]}" d="M0 0Z"/>'
+       + ''.join(f'<path data-map-context-region="{r["id"]}" '
+                 f'clip-path="url(#map-context-clip-{r["id"]})" d="M0 0Z"/>'
                  for r in REGIONS) + '</g>'
        '<path id="approved-land" d="M1 2L3 4Z" fill="url(#land)"/>'
        '<g id="approved-markers"><circle cx="3" cy="4" r="2"/></g></svg>')
@@ -63,6 +66,25 @@ class FrameUnframedRegionsTest(unittest.TestCase):
         invalid[0] = {**invalid[0], 'rect': {**invalid[0]['rect'], 'x': 900}}
         with self.assertRaisesRegex(ValueError, 'outside'):
             frame_unframed_region_context(SVG, invalid)
+
+    def test_incorrect_context_clips_are_never_dressed_as_valid_frames(self):
+        with self.assertRaisesRegex(ValueError, 'not clipped'):
+            frame_unframed_region_context(SVG.replace(
+                'clip-path="url(#map-context-clip-mainland)"',
+                'clip-path="url(#map-context-clip-azores)"'), REGIONS)
+        with self.assertRaisesRegex(ValueError, 'clip rectangle'):
+            frame_unframed_region_context(SVG.replace(
+                '<rect x="520" y="35"', '<rect x="521" y="35"'), REGIONS)
+        with self.assertRaisesRegex(ValueError, 'clip rectangle'):
+            frame_unframed_region_context(SVG.replace(
+                '<rect x="520" y="35"', '<rect y="35"'), REGIONS)
+        with self.assertRaisesRegex(ValueError, 'clip rectangle'):
+            frame_unframed_region_context(SVG.replace(
+                '<rect x="520" y="35"', '<rect x="nan" y="35"'), REGIONS)
+        with self.assertRaisesRegex(ValueError, 'do not match'):
+            frame_unframed_region_context(SVG.replace(
+                '<path data-map-context-region="mainland"',
+                '<path data-map-context-region="azores"'), REGIONS)
 
 
 if __name__ == '__main__':
