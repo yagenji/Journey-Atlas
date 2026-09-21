@@ -19,38 +19,20 @@ jobs:
           cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
           cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
           python3 - <<'PY'
-          import json,pathlib,shutil
-          root=pathlib.Path('.');output=pathlib.Path('/tmp/map-context-source-review')
+          import json, pathlib, shutil
+          root=pathlib.Path('.')
+          output=pathlib.Path('/tmp/map-context-source-review')
           for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
               p=root/'data'/'countries'/f'{slug}.json'
-              if not p.is_file():continue
-              config=json.loads(p.read_text());target=output/slug;target.mkdir(parents=True,exist_ok=True)
-              shutil.copy2(p,target/'country.json');source=root/config['map']['svg']
-              if source.is_file():shutil.copy2(source,target/'source.svg')
-          PY
-      - name: Capture primary OSM Macao-neighbor Xiangzhou source for geography QA only
-        run: |
-          python3 - <<'PY'
-          import datetime,hashlib,json,pathlib,urllib.request,xml.etree.ElementTree as ET
-          out=pathlib.Path('/tmp/map-context-source-review/macau-neighbor-osm');out.mkdir(parents=True,exist_ok=True)
-          rid=5405551
-          request=urllib.request.Request(f'https://api.openstreetmap.org/api/0.6/relation/{rid}/full',headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
-          try:
-              with urllib.request.urlopen(request,timeout=110) as response:raw=response.read()
-              root=ET.fromstring(raw)
-              nodes={int(x.get('id')):(float(x.get('lon')),float(x.get('lat'))) for x in root.findall('node')}
-              ways={int(x.get('id')):[int(y.get('ref')) for y in x.findall('nd')] for x in root.findall('way')}
-              relation=next(x for x in root.findall('relation') if int(x.get('id'))==rid)
-              members=[]
-              for member in relation.findall('member'):
-                  if member.get('type')=='way':
-                      members.append({'ref':int(member.get('ref')),'role':member.get('role'),'tags':{t.get('k'):t.get('v') for t in next(x for x in root.findall('way') if x.get('id')==member.get('ref')).findall('tag')},'geometry':[{'lon':nodes[n][0],'lat':nodes[n][1]} for n in ways[int(member.get('ref'))]]})
-              data={'id':rid,'tags':{t.get('k'):t.get('v') for t in relation.findall('tag')},'members':members}
-              (out/f'{rid}.json').write_text(json.dumps(data,separators=(',',':')))
-              print('MACAU_NEIGHBOR',len(raw),'source_sha256',hashlib.sha256(raw).hexdigest(),'members',len(members),flush=True)
-          except Exception as exc:
-              (out/'source-error.txt').write_text(repr(exc)+'\n');print('SOURCE_ERROR',repr(exc),flush=True)
-          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL primary API relation full; diagnostic only','relation':rid},indent=2)+'\n')
+              if not p.is_file():
+                  continue
+              config=json.loads(p.read_text())
+              target=output/slug
+              target.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(p,target/'country.json')
+              source=root/config['map']['svg']
+              if source.is_file():
+                  shutil.copy2(source,target/'source.svg')
           PY
       - uses: actions/upload-artifact@v4
         with:
