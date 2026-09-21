@@ -34,6 +34,33 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
+      - name: Capture primary Singapore administrative boundary and official coastline dataset (diagnostic only)
+        run: |
+          python3 - <<'PY'
+          import json,hashlib,pathlib,urllib.parse,urllib.request,datetime
+          out=pathlib.Path('/tmp/map-context-source-review/singapore-boundary-diagnostic');out.mkdir(parents=True,exist_ok=True)
+          headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0 (diagnostic only)'}
+          def request(url,body=None):
+              with urllib.request.urlopen(urllib.request.Request(url,data=body,headers=headers),timeout=180) as res:return res.read()
+          sources={}
+          try:
+              query=b'[out:json][timeout:150];rel(536780);out geom;'
+              raw=request('https://overpass.kumi.systems/api/interpreter',query)
+              json.loads(raw)
+              (out/'singapore-osm-admin-relation.json').write_bytes(raw)
+              sources['osm536780']={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)}
+          except Exception as exc:sources['osm536780']={'error':repr(exc)}
+          try:
+              meta=json.loads(request('https://api-open.data.gov.sg/v1/public/api/datasets/d_29f066d67df3eae91df8a42f443863c8/poll-download'))
+              url=meta['data']['url']
+              raw=request(url)
+              json.loads(raw)
+              (out/'sla-national-map-polygon-2025.geojson').write_bytes(raw)
+              sources['sla2025']={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'datasetId':'d_29f066d67df3eae91df8a42f443863c8'}
+          except Exception as exc:sources['sla2025']={'error':repr(exc)}
+          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sources':sources,'diagnosticOnly':True},indent=2)+'\n')
+          print(sources,flush=True)
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: legacy-map-qa-source-bundle
