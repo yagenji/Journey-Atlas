@@ -34,29 +34,6 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
-      - name: Capture source OSM administrative boundary relations for independent geography review only
-        run: |
-          python3 - <<'PY'
-          import datetime,hashlib,json,pathlib,time,urllib.parse,urllib.request
-          output=pathlib.Path('/tmp/map-context-source-review/osm-administrative-diagnostic')
-          output.mkdir(parents=True,exist_ok=True)
-          for name,rid in [('macau',1867188),('singapore',536780),('monaco',36990)]:
-              query=f'[out:json][timeout:120];relation({rid});out geom;'
-              url='https://overpass-api.de/api/interpreter?'+urllib.parse.urlencode({'data':query})
-              req=urllib.request.Request(url,headers={'User-Agent':'JourneyAtlas-Geography-QA/1.0 (read-only source comparison)'})
-              try:
-                  with urllib.request.urlopen(req,timeout=150) as response: raw=response.read()
-                  data=json.loads(raw)
-                  if not data.get('elements') or data['elements'][0].get('id')!=rid:
-                      raise ValueError('Expected OSM boundary relation missing')
-                  (output/f'{name}-relation.json').write_bytes(raw)
-                  print(name,rid,'bytes',len(raw),'sha256',hashlib.sha256(raw).hexdigest(),'members',len(data['elements'][0].get('members',[])))
-              except Exception as exc:
-                  (output/f'{name}-error.txt').write_text(repr(exc)+'\n')
-                  print('SOURCE_NOT_CAPTURED',name,repr(exc))
-              time.sleep(3)
-          (output/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL, Overpass API, relation out geom; diagnostic only','relations':{'macau':1867188,'singapore':536780,'monaco':36990}},indent=2)+'\n')
-          PY
       - uses: actions/upload-artifact@v4
         with:
           name: legacy-map-qa-source-bundle
