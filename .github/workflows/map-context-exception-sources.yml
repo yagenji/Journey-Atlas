@@ -6,64 +6,112 @@ on:
       - '.github/workflows/map-context-exception-sources.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   review-source:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'system/map-context-shared-preparation'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Collect legacy map SVGs and Country JSON for offline QA
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible geometry and SVG decoding tools
+        run: python -m pip install 'shapely==2.1.1' 'cairosvg==2.8.2' 'pillow==11.3.0'
+      - name: Stage matched-source French land against unchanged approved Monaco outline
         run: |
-          mkdir -p /tmp/map-context-source-review/shared
-          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
-          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
-          python3 - <<'PY'
-          import json, pathlib, shutil
-          root=pathlib.Path('.')
-          output=pathlib.Path('/tmp/map-context-source-review')
-          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
-              p=root/'data'/'countries'/f'{slug}.json'
-              if not p.is_file():
-                  continue
-              config=json.loads(p.read_text())
-              target=output/slug
-              target.mkdir(parents=True,exist_ok=True)
-              shutil.copy2(p,target/'country.json')
-              source=root/config['map']['svg']
-              if source.is_file():
-                  shutil.copy2(source,target/'source.svg')
+          python - <<'PY'
+          import hashlib,json,math,re,urllib.request,xml.etree.ElementTree as ET
+          from pathlib import Path
+          from shapely.geometry import LineString,Polygon,box
+          from shapely.ops import polygonize,unary_union
+          from PIL import Image
+          import cairosvg
+          source=Path('assets/images/monaco/map-atlas-v1.svg');original=source.read_text()
+          assert hashlib.sha256(source.read_bytes()).hexdigest()=='227e9e6b3e26bb4be53add3c81b85efc98898fd0d3efdfc87c1a5674567176fa'
+          assert 'id="geographic-context"' not in original
+          config=json.loads(Path('data/countries/monaco.json').read_text())
+          b=config['map']['bounds'];w,s,e,n=(b[k] for k in ('west','south','east','north'))
+          f=math.cos(math.radians((s+n)/2));scale=min(1200/((e-w)*f),760/(n-s))
+          ox=(1200-(e-w)*f*scale)/2;oy=(760-(n-s)*scale)/2
+          q=lambda pt:(ox+(pt['lon']-w)*f*scale,oy+(n-pt['lat'])*scale)
+          expected={174558:'77f2e87316f479cf3359efbe49607c393d88f56e141c9f733c17edec58154150',174562:'f0a8414523e0f2d38dbb99aea3425afa3448865ca59cff9d73807b84c74dfaed',174956:'424f11d80fe465e1ea0b786cde7311cfebef4b93906e53c8579971c4c09cb598',174958:'d4ded0b0f4f0b1c550cdfa3bf1372e7a46754d923f4f56ee89ab2e5717c0c9b4',174959:'c0a8acf8c59d8ec4c27c7f88d83ede721343cf0471bf0687bb1d3a5f87369ed0'}
+          lands=[]
+          for rid,sha in expected.items():
+              request=urllib.request.Request(f'https://api.openstreetmap.org/api/0.6/relation/{rid}/full',headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
+              with urllib.request.urlopen(request,timeout=75) as response: raw=response.read()
+              root=ET.fromstring(raw)
+              nodes={int(x.get('id')):(float(x.get('lon')),float(x.get('lat'))) for x in root.findall('node')}
+              ways={int(x.get('id')):[int(y.get('ref')) for y in x.findall('nd')] for x in root.findall('way')}
+              relation=next(x for x in root.findall('relation') if int(x.get('id'))==rid)
+              members=[]
+              for x in relation.findall('member'):
+                  if x.get('type')=='way':members.append({'ref':int(x.get('ref')),'role':x.get('role'),'geometry':[{'lon':nodes[i][0],'lat':nodes[i][1]} for i in ways[int(x.get('ref'))]]})
+              data={'id':rid,'tags':{t.get('k'):t.get('v') for t in relation.findall('tag')},'members':members}
+              assert hashlib.sha256(json.dumps(data,separators=(',',':')).encode()).hexdigest()==sha,f'OSM relation {rid} source changed; stop for re-review'
+              assert data['tags']['boundary']=='administrative'
+              boundaries=[]
+              for member in members:
+                  assert member['role']=='outer','Unreviewed inner boundary'
+                  boundaries.append(LineString([q(v) for v in member['geometry']]))
+              merged=unary_union(boundaries);polys=list(polygonize(merged))
+              assert polys and merged.difference(unary_union([p.boundary for p in polys])).length<.01
+              lands.append(unary_union(polys).intersection(box(0,0,1200,760)))
+          france=unary_union(lands)
+          root=ET.fromstring(original)
+          target_path=next(p.get('d') for p in root.iter() if p.tag.endswith('path') and p.get('fill')=='url(#land)')
+          parts=[]
+          for frag in target_path.split('M ')[1:]:
+              vals=list(map(float,re.findall(r'[-+]?\d*\.\d+|[-+]?\d+',frag)))
+              parts.append(Polygon(list(zip(vals[::2],vals[1::2]))))
+          target=unary_union(parts)
+          assert france.intersection(target).area<20 and france.boundary.intersection(target.boundary.buffer(.2)).length>1100
+          assert 428000<france.area<431000
+          def path(geometry,close):
+              if geometry.geom_type in ('Polygon','LineString','LinearRing'):geoms=[geometry]
+              else:geoms=list(geometry.geoms)
+              output=[]
+              for shape in geoms:
+                  rings=[shape.exterior,*shape.interiors] if shape.geom_type=='Polygon' else [shape] if shape.geom_type in ('LineString','LinearRing') else []
+                  for ring in rings:
+                      points=[]
+                      for x,y in ring.coords:
+                          xy=(round(x,2),round(y,2))
+                          if not points or points[-1]!=xy:points.append(xy)
+                      if len(points)>=(3 if close else 2):output.append('M '+' L '.join(f'{x:.2f},{y:.2f}' for x,y in points)+(' Z' if close else ''))
+              return ' '.join(output)
+          coastline=france.boundary.intersection(box(.1,.1,1199.9,759.9)).difference(target.boundary.buffer(.25))
+          fill_d=path(france,True);coast_d=path(coastline,False)
+          assert fill_d and coast_d and coastline.length<800
+          markup=f'<g id="geographic-context"><desc>Surrounding French land: OpenStreetMap contributors, ODbL 1.0, relation IDs 174558, 174562, 174956, 174958, 174959; original Monaco silhouette unchanged. https://www.openstreetmap.org/copyright</desc><path d="{fill_d}" fill="#e4e0ce" fill-rule="evenodd" stroke="none"/><path d="{coast_d}" fill="none" stroke="#b6bbaf" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/></g>'
+          new=original
+          for old,current in [('#eef2ef','#eaf2f4'),('#e4eceb','#dcebf0'),('#dce7e7','#d0e3eb')]:
+              assert new.count(f'stop-color="{old}"')==1
+              new=new.replace(f'stop-color="{old}"',f'stop-color="{current}"',1)
+          bg=re.search(r'<rect\b(?=[^>]*\bfill="url\(#sea\)")[^>]*/>',new)
+          assert bg and new.count('fill="url(#sea)"')==1
+          new=new[:bg.end()]+'\n'+markup+new[bg.end():]
+          undo=new.replace('\n'+markup,'',1)
+          for current,old in [('#eaf2f4','#eef2ef'),('#dcebf0','#e4eceb'),('#d0e3eb','#dce7e7')]:undo=undo.replace(f'stop-color="{current}"',f'stop-color="{old}"',1)
+          assert undo==original,'Approved SVG content changed beyond background and generated context'
+          assert ET.fromstring(new).attrib['viewBox']=='0 0 1200 760'
+          out=Path('/tmp/monaco-reviewed-1200x760.png')
+          cairosvg.svg2png(bytestring=new.encode(),write_to=str(out),output_width=1200,output_height=760)
+          with Image.open(out) as image:image.load();assert image.size==(1200,760)
+          assert hashlib.sha256(new.encode()).hexdigest()=='421160abe660c39221cd2a2a3e08c229248459a82325e9c0e948dc3919fd7b99'
+          source.write_text(new)
+          print('MONACO_CONTEXT_SOURCE_AND_DECODE_QA_PASSED',hashlib.sha256(new.encode()).hexdigest(),flush=True)
           PY
-      - name: Capture primary OSM API commune relation geometry adjoining Monaco (diagnostic only)
-        run: |
-          python3 - <<'PY'
-          import datetime,hashlib,json,pathlib,urllib.request,xml.etree.ElementTree as ET
-          out=pathlib.Path('/tmp/map-context-source-review/monaco-neighbor-osm')
-          out.mkdir(parents=True,exist_ok=True)
-          ids=(174562,174956,174558,174958,174959)
-          for rid in ids:
-              req=urllib.request.Request(f'https://api.openstreetmap.org/api/0.6/relation/{rid}/full',headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
-              try:
-                  with urllib.request.urlopen(req,timeout=75) as response:raw=response.read()
-                  root=ET.fromstring(raw)
-                  nodes={int(el.get('id')):(float(el.get('lon')),float(el.get('lat'))) for el in root.findall('node')}
-                  ways={int(el.get('id')):[int(n.get('ref')) for n in el.findall('nd')] for el in root.findall('way')}
-                  relation=next(el for el in root.findall('relation') if int(el.get('id'))==rid)
-                  members=[]
-                  for m in relation.findall('member'):
-                      if m.get('type')!='way':continue
-                      refs=ways[int(m.get('ref'))]
-                      members.append({'ref':int(m.get('ref')),'role':m.get('role'),'geometry':[{'lon':nodes[n][0],'lat':nodes[n][1]} for n in refs]})
-                  result={'id':rid,'tags':{t.get('k'):t.get('v') for t in relation.findall('tag')},'members':members}
-                  (out/f'{rid}.json').write_text(json.dumps(result,separators=(',',':')))
-                  print(rid,'member_ways',len(members),'source_sha256',hashlib.sha256(raw).hexdigest(),flush=True)
-              except Exception as exc:
-                  (out/f'{rid}-error.txt').write_text(repr(exc)+'\n')
-                  print(rid,'SOURCE_ERROR',repr(exc),flush=True)
-          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL primary OSM API relation full; geographic QA only','relationIds':ids},indent=2)+'\n')
-          PY
+          git diff --check
+          test "$(git diff --name-only)" = 'assets/images/monaco/map-atlas-v1.svg'
+          git -c user.name='Journey Atlas Map QA' -c user.email='map-qa@users.noreply.github.com' add assets/images/monaco/map-atlas-v1.svg
+          git -c user.name='Journey Atlas Map QA' -c user.email='map-qa@users.noreply.github.com' commit -m 'Stage source-reconciled Monaco surrounding land on draft migration PR'
+          git push origin HEAD:system/map-context-shared-preparation
       - uses: actions/upload-artifact@v4
         with:
-          name: legacy-map-qa-source-bundle
-          path: /tmp/map-context-source-review/
-          retention-days: 1
+          name: verified-monaco-map-preview-only
+          path: /tmp/monaco-reviewed-1200x760.png
+          retention-days: 2
