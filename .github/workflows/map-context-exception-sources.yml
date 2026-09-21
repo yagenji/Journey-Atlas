@@ -34,25 +34,33 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
-      - name: Capture OSM French commune land boundaries adjoining Monaco (diagnostic only)
+      - name: Capture primary OSM API commune relation geometry adjoining Monaco (diagnostic only)
         run: |
           python3 - <<'PY'
-          import datetime,hashlib,json,pathlib,urllib.parse,urllib.request
+          import datetime,hashlib,json,pathlib,urllib.request,xml.etree.ElementTree as ET
           out=pathlib.Path('/tmp/map-context-source-review/monaco-neighbor-osm')
           out.mkdir(parents=True,exist_ok=True)
-          ids=(174562,174956,174558,174958,36990)
-          query='[out:json][timeout:120];('+''.join(f'relation({rid});' for rid in ids)+');out geom;'
-          request=urllib.request.Request('https://overpass-api.de/api/interpreter?'+urllib.parse.urlencode({'data':query}),headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
-          try:
-              with urllib.request.urlopen(request,timeout=145) as response:raw=response.read()
-              data=json.loads(raw)
-              if len(data.get('elements',[]))!=len(ids):raise ValueError(f'Expected {len(ids)} relations, received {len(data.get("elements",[]))}')
-              (out/'relations.json').write_bytes(raw)
-              print('source elements',len(data['elements']),'bytes',len(raw),'sha256',hashlib.sha256(raw).hexdigest(),flush=True)
-          except Exception as exc:
-              (out/'error.txt').write_text(repr(exc)+'\n')
-              print('SOURCE_ERROR',repr(exc),flush=True)
-          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL; original-country border alignment diagnostic, not production data','relationIds':ids},indent=2)+'\n')
+          ids=(174562,174956,174558,174958)
+          for rid in ids:
+              req=urllib.request.Request(f'https://api.openstreetmap.org/api/0.6/relation/{rid}/full',headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
+              try:
+                  with urllib.request.urlopen(req,timeout=75) as response:raw=response.read()
+                  root=ET.fromstring(raw)
+                  nodes={int(el.get('id')):(float(el.get('lon')),float(el.get('lat'))) for el in root.findall('node')}
+                  ways={int(el.get('id')):[int(n.get('ref')) for n in el.findall('nd')] for el in root.findall('way')}
+                  relation=next(el for el in root.findall('relation') if int(el.get('id'))==rid)
+                  members=[]
+                  for m in relation.findall('member'):
+                      if m.get('type')!='way':continue
+                      refs=ways[int(m.get('ref'))]
+                      members.append({'ref':int(m.get('ref')),'role':m.get('role'),'geometry':[{'lon':nodes[n][0],'lat':nodes[n][1]} for n in refs]})
+                  result={'id':rid,'tags':{t.get('k'):t.get('v') for t in relation.findall('tag')},'members':members}
+                  (out/f'{rid}.json').write_text(json.dumps(result,separators=(',',':')))
+                  print(rid,'member_ways',len(members),'source_sha256',hashlib.sha256(raw).hexdigest(),flush=True)
+              except Exception as exc:
+                  (out/f'{rid}-error.txt').write_text(repr(exc)+'\n')
+                  print(rid,'SOURCE_ERROR',repr(exc),flush=True)
+          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL primary OSM API relation full; geographic QA only','relationIds':ids},indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
         with:
