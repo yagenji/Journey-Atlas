@@ -34,27 +34,25 @@ jobs:
               if source.is_file():
                   shutil.copy2(source,target/'source.svg')
           PY
-      - name: Capture historical Monaco coastline source for original-date boundary reconciliation (diagnostic only)
+      - name: Capture OSM French commune land boundaries adjoining Monaco (diagnostic only)
         run: |
           python3 - <<'PY'
-          import datetime, hashlib, json, pathlib, urllib.parse, urllib.request
-          out=pathlib.Path('/tmp/map-context-source-review/monaco-historical-osm')
+          import datetime,hashlib,json,pathlib,urllib.parse,urllib.request
+          out=pathlib.Path('/tmp/map-context-source-review/monaco-neighbor-osm')
           out.mkdir(parents=True,exist_ok=True)
-          for key,date in [('historical','2026-09-01T12:00:00Z'),('current',None)]:
-              prefix=f'[out:json][timeout:100][date:"{date}"];' if date else '[out:json][timeout:100];'
-              query=prefix+'(way["natural"="coastline"](43.69,7.36,43.79,7.49);relation(36990););out geom;'
-              url='https://overpass-api.de/api/interpreter?'+urllib.parse.urlencode({'data':query})
-              request=urllib.request.Request(url,headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
-              try:
-                  with urllib.request.urlopen(request,timeout=140) as response: data=response.read()
-                  decoded=json.loads(data)
-                  if not decoded.get('elements'):raise ValueError('Empty OSM source response')
-                  (out/f'{key}.json').write_bytes(data)
-                  print(key,'elements',len(decoded['elements']),'sha256',hashlib.sha256(data).hexdigest(),flush=True)
-              except Exception as exc:
-                  (out/f'{key}-error.txt').write_text(repr(exc)+'\n')
-                  print(key,'SOURCE_ERROR',repr(exc),flush=True)
-          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap / Overpass ODbL; comparison only','historicalDate':'2026-09-01T12:00:00Z','bbox':[43.69,7.36,43.79,7.49],'relation':36990},indent=2)+'\n')
+          ids=(174562,174956,174558,174958,36990)
+          query='[out:json][timeout:120];('+''.join(f'relation({rid});' for rid in ids)+');out geom;'
+          request=urllib.request.Request('https://overpass-api.de/api/interpreter?'+urllib.parse.urlencode({'data':query}),headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
+          try:
+              with urllib.request.urlopen(request,timeout=145) as response:raw=response.read()
+              data=json.loads(raw)
+              if len(data.get('elements',[]))!=len(ids):raise ValueError(f'Expected {len(ids)} relations, received {len(data.get("elements",[]))}')
+              (out/'relations.json').write_bytes(raw)
+              print('source elements',len(data['elements']),'bytes',len(raw),'sha256',hashlib.sha256(raw).hexdigest(),flush=True)
+          except Exception as exc:
+              (out/'error.txt').write_text(repr(exc)+'\n')
+              print('SOURCE_ERROR',repr(exc),flush=True)
+          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'OpenStreetMap ODbL; original-country border alignment diagnostic, not production data','relationIds':ids},indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
         with:
