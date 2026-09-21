@@ -40,7 +40,7 @@ jobs:
           import datetime,hashlib,json,pathlib,urllib.request,xml.etree.ElementTree as ET
           out=pathlib.Path('/tmp/map-context-source-review/monaco-neighbor-osm')
           out.mkdir(parents=True,exist_ok=True)
-          ids=(174562,174956,174558,174958)
+          ids=(174562,174956,174558,174958,174959)
           for rid in ids:
               req=urllib.request.Request(f'https://api.openstreetmap.org/api/0.6/relation/{rid}/full',headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0'})
               try:
