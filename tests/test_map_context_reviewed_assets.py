@@ -23,6 +23,12 @@ APPROVED_LAND_PATH = {
     "monaco": "6338d1de050b6cf8ae063e5c6e64cf582500b0f6117f84ad69976690691171fe",
 }
 
+# Multi-path Singapore target is a source-approved group fill, not a direct path fill.
+APPROVED_EXCEPTION_PATHS = {
+    "singapore": (5, "237292bac3e9c90204fa4e2169d588deb3709916c823dac254cd4383f69121a5", "Singapore Land Authority"),
+    "macau": (1, "44bdca23d43ee30484e9fcf911a2b373c86030c54638edbe0810875d60d35eb1", "Xiangzhou"),
+}
+
 
 class ReviewedMapContextAssets(unittest.TestCase):
     def test_approved_land_path_is_unchanged(self):
@@ -37,6 +43,31 @@ class ReviewedMapContextAssets(unittest.TestCase):
                 context = [g for g in root.iter(SVG + "g") if g.get("id") == "geographic-context"]
                 self.assertEqual(len(context), 1)
                 self.assertTrue(any(p.get("fill") == "#e4e0ce" for p in context[0].iter(SVG + "path")))
+                for color in (b"#eaf2f4", b"#dcebf0", b"#d0e3eb"):
+                    self.assertIn(color, source)
+
+    def test_reconciled_shoreline_context_preserves_all_approved_country_paths(self):
+        for slug, (count, approved_hash, source_name) in APPROVED_EXCEPTION_PATHS.items():
+            with self.subTest(country=slug):
+                source = (ROOT / "assets/images" / slug / "map-atlas-v1.svg").read_bytes()
+                root = ET.fromstring(source)
+                self.assertEqual(root.get("viewBox"), "0 0 1200 760")
+                parents = {child: parent for parent in root.iter() for child in parent}
+                originals = []
+                for node in root.iter(SVG + "path"):
+                    ancestor = node
+                    while ancestor is not None and "fill" not in ancestor.attrib:
+                        ancestor = parents.get(ancestor)
+                    if ancestor is not None and ancestor.get("fill") == "url(#land)":
+                        originals.append(node.get("d", ""))
+                self.assertEqual(len(originals), count)
+                self.assertEqual(hashlib.sha256("\n".join(originals).encode()).hexdigest(), approved_hash)
+                contexts = [g for g in root.iter(SVG + "g") if g.get("id") == "geographic-context"]
+                self.assertEqual(len(contexts), 1)
+                self.assertTrue(any(p.get("fill") == "#e4e0ce" for p in contexts[0].iter(SVG + "path")))
+                description = "".join(contexts[0].itertext())
+                self.assertIn("OpenStreetMap", description)
+                self.assertIn(source_name, description)
                 for color in (b"#eaf2f4", b"#dcebf0", b"#d0e3eb"):
                     self.assertIn(color, source)
 
