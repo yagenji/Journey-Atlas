@@ -6,63 +6,56 @@ on:
       - '.github/workflows/map-context-exception-sources.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   review-source:
+    if: github.event.pull_request.number == 935 && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Collect legacy map SVGs and Country JSON for offline QA
-        run: |
-          mkdir -p /tmp/map-context-source-review/shared
-          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
-          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
-          python3 - <<'PY'
-          import json, pathlib, shutil
-          root=pathlib.Path('.')
-          output=pathlib.Path('/tmp/map-context-source-review')
-          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
-              p=root/'data'/'countries'/f'{slug}.json'
-              if not p.is_file():
-                  continue
-              config=json.loads(p.read_text())
-              target=output/slug
-              target.mkdir(parents=True,exist_ok=True)
-              shutil.copy2(p,target/'country.json')
-              source=root/config['map']['svg']
-              if source.is_file():
-                  shutil.copy2(source,target/'source.svg')
-          PY
-      - name: Capture primary Singapore administrative boundary and official coastline dataset (diagnostic only)
-        run: |
-          python3 - <<'PY'
-          import json,hashlib,pathlib,urllib.parse,urllib.request,datetime
-          out=pathlib.Path('/tmp/map-context-source-review/singapore-boundary-diagnostic');out.mkdir(parents=True,exist_ok=True)
-          headers={'User-Agent':'JourneyAtlas-GeographicSourceReview/1.0 (diagnostic only)'}
-          def request(url,body=None):
-              with urllib.request.urlopen(urllib.request.Request(url,data=body,headers=headers),timeout=180) as res:return res.read()
-          sources={}
-          try:
-              query=b'[out:json][timeout:150];rel(536780);out geom;'
-              raw=request('https://overpass.kumi.systems/api/interpreter',query)
-              json.loads(raw)
-              (out/'singapore-osm-admin-relation.json').write_bytes(raw)
-              sources['osm536780']={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)}
-          except Exception as exc:sources['osm536780']={'error':repr(exc)}
-          try:
-              meta=json.loads(request('https://api-open.data.gov.sg/v1/public/api/datasets/d_29f066d67df3eae91df8a42f443863c8/poll-download'))
-              url=meta['data']['url']
-              raw=request(url)
-              json.loads(raw)
-              (out/'sla-national-map-polygon-2025.geojson').write_bytes(raw)
-              sources['sla2025']={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'datasetId':'d_29f066d67df3eae91df8a42f443863c8'}
-          except Exception as exc:sources['sla2025']={'error':repr(exc)}
-          (out/'provenance.json').write_text(json.dumps({'retrievedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sources':sources,'diagnosticOnly':True},indent=2)+'\n')
-          print(sources,flush=True)
-          PY
-      - uses: actions/upload-artifact@v4
         with:
-          name: legacy-map-qa-source-bundle
-          path: /tmp/map-context-source-review/
-          retention-days: 1
+          ref: system/map-context-shared-preparation
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download previously verified, SHA-pinned geographic source snapshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 35515580822 --repo "$GITHUB_REPOSITORY" --name legacy-map-qa-source-bundle --dir /tmp/journey-atlas-coast-snapshot
+          gh run download 35588002840 --repo "$GITHUB_REPOSITORY" --name legacy-map-qa-source-bundle --dir /tmp/journey-atlas-xiangzhou-snapshot
+          gh run download 35597759286 --repo "$GITHUB_REPOSITORY" --name legacy-map-qa-source-bundle --dir /tmp/journey-atlas-sla-snapshot
+          test -f /tmp/journey-atlas-coast-snapshot/osm-coastline-diagnostic/singapore/ways.json
+          test -f /tmp/journey-atlas-coast-snapshot/osm-coastline-diagnostic/macau/ways.json
+          test -f /tmp/journey-atlas-xiangzhou-snapshot/macau-neighbor-osm/5405551.json
+          test -f /tmp/journey-atlas-sla-snapshot/singapore-boundary-diagnostic/sla-national-map-polygon-2025.geojson
+      - name: Generate validated draft-only Singapore and Macau SVGs
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet 'shapely>=2,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+          python -m py_compile scripts/reconcile_exception_map_context.py
+          python scripts/reconcile_exception_map_context.py \
+            --repo . \
+            --coast /tmp/journey-atlas-coast-snapshot/osm-coastline-diagnostic \
+            --sla /tmp/journey-atlas-sla-snapshot/singapore-boundary-diagnostic/sla-national-map-polygon-2025.geojson \
+            --xiangzhou /tmp/journey-atlas-xiangzhou-snapshot/macau-neighbor-osm/5405551.json
+          python -m unittest discover -s tests -p test_map_context_reviewed_assets.py -v
+          git diff --check
+          python - <<'PY'
+          import subprocess
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          allowed={'assets/images/singapore/map-atlas-v1.svg','assets/images/macau/map-atlas-v1.svg'}
+          assert set(changed)==allowed, changed
+          print('Only the two approved-country-preserving context SVGs changed:',changed)
+          PY
+      - name: Commit validated maps to the draft PR branch only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/images/singapore/map-atlas-v1.svg assets/images/macau/map-atlas-v1.svg
+          git commit -m 'Add source-reconciled Singapore and Macau surrounding land previews'
+          git push origin HEAD:system/map-context-shared-preparation
