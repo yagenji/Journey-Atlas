@@ -109,3 +109,14 @@
   object-position: center;
   transform: none;
 }
+
+/* Dominica's delivered 3:2 dishes sit too close to the image frame at full
+   bleed. Retain the approved image bytes and the shared card dimensions, but
+   show the entire bowl, shell or bread with a quiet inset at every viewport. */
+.taste-card__img[src*="/dominica/approved/food-"] {
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
