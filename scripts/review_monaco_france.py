@@ -15,7 +15,6 @@ from xml.etree import ElementTree as ET
 import cairosvg
 from PIL import Image
 from shapely.geometry import Polygon
-from shapely.ops import unary_union
 
 ROOT=Path(__file__).resolve().parents[1]
 NS='{http://www.w3.org/2000/svg}'
@@ -50,9 +49,10 @@ def main():
     if not ('OpenStreetMap' in desc and 'ODbL' in desc):
         raise RuntimeError('Monaco French-land provenance/visible-credit input missing')
     contextual=[p for p in context.iter(NS+'path') if p.get('d')]
-    if len(contextual)!=1:raise RuntimeError('Unexpected French-land source layout')
-    france=contextual[0].get('d')
-    # Catch the old 5-vertex rectangular/diagonal GSHHG fallback.
+    if not contextual:raise RuntimeError('Missing actual French-land source geometry')
+    # Monaco's reviewed French context has several separately sourced path pieces.
+    # Catch the old 5-vertex rectangular/diagonal GSHHG fallback, regardless of count.
+    france=' '.join(p.get('d') for p in contextual)
     if len(france)<15000:raise RuntimeError('Only the stale coarse GSHHG diagonal context was found')
     image=cairosvg.svg2png(bytestring=raw,output_width=1200,output_height=760)
     with Image.open(io.BytesIO(image)) as im:
@@ -65,7 +65,8 @@ def main():
     report={'status':'HOLD: OSM target/French land rendered; independently review coastal seams',
             'sourceSha256':hashlib.sha256(raw).hexdigest(),
             'originalMonacoPathSha256':TARGET_SHA,'protectedPaths':1,
-            'source':desc,'contextRingCount':len(french_rings),
+            'source':desc,'contextPathCount':len(contextual),
+            'contextRingCount':len(french_rings),
             'targetRingCount':len(target_rings),'fullRaster':[1200,760]}
     (out/'report.json').write_text(json.dumps(report,indent=2))
     print(json.dumps(report,indent=2),flush=True)
