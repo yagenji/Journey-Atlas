@@ -48,7 +48,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm .github/workflows/migrate-stlucia-asset-path-once.yml
-          git add data/countries/stlucia.json ops/country-production/stlucia.json assets/images/saintlucia assets/images/stlucia
+          git add -A -- data/countries/stlucia.json ops/country-production/stlucia.json assets/images
           git diff --cached --name-status
           git commit -m 'Use canonical stlucia asset path without raster regeneration'
           git push origin HEAD:country/saintlucia-recovery-clean-v3
