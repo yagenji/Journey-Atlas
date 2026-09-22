@@ -14,8 +14,10 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+SVG = "{http://www.w3.org/2000/svg}"
 
 
 def sha256(path: Path) -> str:
@@ -24,6 +26,20 @@ def sha256(path: Path) -> str:
 
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def contains_generated_context_geometry(path: Path) -> bool:
+    """Distinguish real generated surrounding land from a palette-only preview.
+
+    The generator sometimes creates an empty geographic-context group where the
+    approved viewport contains only its original islands. Do not replace an
+    approved map just to recolor the sea; preserve the exact source bytes.
+    """
+    root = ET.parse(path).getroot()
+    context = [g for g in root.iter(SVG + "g") if g.get("id") == "geographic-context"]
+    if len(context) != 1:
+        raise RuntimeError(f"Expected exactly one generated geographic-context group: {path}")
+    return any((node.get("d") or "").strip() for node in context[0].iter(SVG + "path"))
 
 
 def derive_roster() -> list[dict]:
@@ -92,7 +108,11 @@ def main():
             command = [sys.executable, str(dispatcher), "--country-json", str(item["country_file"]),
                        "--input", str(source), "--output", str(staged), "--resolution", args.resolution]
             subprocess.run(command, cwd=ROOT, check=True, timeout=240)
-            action = "stage-context-preview"
+            if contains_generated_context_geometry(staged):
+                action = "stage-context-preview"
+            else:
+                staged.write_bytes(source.read_bytes())
+                action = "preserve-no-foreign-land"
         manifest["entries"].append({
             "slug": slug,
             "published": item["published"],
