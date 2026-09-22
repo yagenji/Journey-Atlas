@@ -6,68 +6,36 @@ on:
       - '.github/workflows/map-context-exception-sources.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   review-source:
-    if: github.event.pull_request.number == 935
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: system/map-context-shared-preparation
-          persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install map geometry and decode dependencies
-        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
-      - name: Correct Doha self-land and verify approved paths
+      - name: Collect legacy map SVGs and Country JSON for offline QA
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          from xml.etree import ElementTree as ET
-          import hashlib, json, re, subprocess
-          import cairosvg
-          from PIL import Image
-          source = Path('assets/images/qatar/map-atlas-v1.svg')
-          original = source.read_bytes()
-          assert hashlib.sha256(original).hexdigest() == 'b1edcadd3e5af4b83361792e7c72147184dae548322b618a769520b2600ac94b', 'Qatar approved SVG changed; stop'
-          cfg = json.loads(Path('data/countries/qatar.json').read_text())
-          assert len(cfg['map']['regions']) == 1
-          region = cfg['map']['regions'][0]
-          assert region['id'] == 'doha-core' and region['bounds'] == {'north': 25.32, 'south': 25.275, 'west': 51.515, 'east': 51.56}
-          adapter = Path('scripts/add_country_map_context_legacy.py')
-          text = adapter.read_text()
-          old = '''        d = core.make_context_path(_split_context_geometry(core.canvas_bounds(rb, rect), resolution), rb, 0.003, rect)\n'''
-          assert text.count(old) == 1, 'Adapter changed; stop'
-          text = text.replace(old, '', 1)
-          old = '''        layer = (f'<path data-map-context-legacy="{rid}" d="{d}" fill="{core.CONTEXT_FILL}" fill-rule="evenodd" '\n                 f'stroke="{core.CONTEXT_STROKE}" stroke-width="1" stroke-linejoin="round"/>')\n        svg = svg[:match.start()] + existing + layer + svg[match.end():]\n'''
-          new = '''        # This reviewed Doha urban zoom is entirely inside Qatar. GSHHG land\n        # sampled here is Qatar itself, not a foreign neighbor; its coastline\n        # vintage conflicts with the preserved, approved inset shoreline.\n        if rid != "doha-core":\n            raise ValueError("Unreviewed Qatar inset; geographical QA required")\n        svg = svg[:match.start()] + existing + svg[match.end():]\n'''
-          assert text.count(old) == 1, 'Inset injection changed; stop'
-          adapter.write_text(text.replace(old, new, 1))
-          subprocess.run(['python','scripts/add_country_map_context_existing.py','--country-json','data/countries/qatar.json','--input',str(source),'--output','/tmp/qatar-stage2-reviewed.svg'],check=True)
-          result = Path('/tmp/qatar-stage2-reviewed.svg').read_bytes()
-          svg = '{http://www.w3.org/2000/svg}'
-          def originals(blob):
-              root = ET.fromstring(blob)
-              return [(p.get('d'),p.get('fill')) for p in root.iter(svg+'path') if p.get('fill') == 'url(#land)']
-          assert len(originals(original)) == 2 and originals(original) == originals(result), 'Approved Qatar silhouettes changed'
-          root = ET.fromstring(result)
-          context = [p for p in root.iter(svg+'path') if p.get('data-map-context-legacy')]
-          assert len(context) == 1 and context[0].get('data-map-context-legacy') == 'national-base', 'Foreign land in Doha inset'
-          assert b'fill="#e7eeee"' not in result and b'fill="#dcebf0"' in result
-          png = cairosvg.svg2png(bytestring=result,output_width=1200,output_height=760)
-          Path('/tmp/qatar-stage2-reviewed.png').write_bytes(png)
-          with Image.open('/tmp/qatar-stage2-reviewed.png') as image:
-              image.load()
-              assert image.size == (1200,760)
-          source.write_bytes(result)
-          print('Qatar PASS: national and inset original land paths unchanged, no Doha foreign context, 1200x760 full decode')
+          mkdir -p /tmp/map-context-source-review/shared
+          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
+          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
+          python3 - <<'PY'
+          import json, pathlib, shutil
+          root=pathlib.Path('.')
+          output=pathlib.Path('/tmp/map-context-source-review')
+          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
+              p=root/'data'/'countries'/f'{slug}.json'
+              if not p.is_file():
+                  continue
+              config=json.loads(p.read_text())
+              target=output/slug
+              target.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(p,target/'country.json')
+              source=root/config['map']['svg']
+              if source.is_file():
+                  shutil.copy2(source,target/'source.svg')
           PY
-          python -m unittest discover -s tests -p 'test_*map_context*.py' -q
-          git config user.name 'Journey Atlas map review'
-          git config user.email 'actions@users.noreply.github.com'
-          git add assets/images/qatar/map-atlas-v1.svg scripts/add_country_map_context_legacy.py
-          git commit -m 'Remove Qatar self-land from Doha inset context preview'
-          git push origin HEAD:system/map-context-shared-preparation
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacy-map-qa-source-bundle
+          path: /tmp/map-context-source-review/
+          retention-days: 1
