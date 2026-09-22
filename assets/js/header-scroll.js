@@ -52,62 +52,14 @@
     syncBrandCollision(header);
   }
 
-  // Historic Country JSON may describe only its approved national outline while
-  // the newly staged SVG adds OSM-derived surrounding land. Read the actual SVG
-  // provenance instead of changing approved Country data or showing false credit.
-  function syncMapSourceCredit() {
-    const image = document.querySelector('#country-map-art .map-base');
-    if (!image || image.dataset.sourceCreditBound === '1') return;
-    image.dataset.sourceCreditBound = '1';
-    let requested = false;
-    async function inspectSource() {
-      const legend = document.querySelector('.map-legend--below');
-      if (requested || !legend || legend.querySelector('.map-legend__source-credit')) return;
-      const url = image.currentSrc || image.src;
-      if (!url || !new URL(url, location.href).pathname.endsWith('.svg')) return;
-      requested = true;
-      try {
-        const response = await fetch(url, { cache: 'force-cache' });
-        if (!response.ok) return;
-        const xml = new DOMParser().parseFromString(await response.text(), 'image/svg+xml');
-        if (xml.querySelector('parsererror')) return;
-        const provenance = [xml.querySelector('#geographic-context desc'), ...xml.querySelectorAll('metadata')];
-        if (!provenance.some((node) => /OpenStreetMap|\bODbL\b/i.test(node?.textContent || ''))) return;
-        if (legend.querySelector('.map-legend__source-credit')) return;
-        const credit = document.createElement('a');
-        credit.className = 'map-legend__source-credit';
-        credit.href = 'https://www.openstreetmap.org/copyright';
-        credit.target = '_blank';
-        credit.rel = 'noopener noreferrer';
-        credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
-        credit.style.flexBasis = '100%';
-        credit.style.textAlign = 'left';
-        credit.style.color = 'inherit';
-        credit.style.fontSize = '11px';
-        credit.style.lineHeight = '1.5';
-        credit.style.textDecoration = 'underline';
-        credit.style.textUnderlineOffset = '2px';
-        legend.append(credit);
-      } catch (error) {
-        console.warn('Map source attribution could not be inspected', error);
-      }
-    }
-    image.addEventListener('load', inspectSource, { once: true });
-    if (image.complete && image.naturalWidth > 0) void inspectSource();
-  }
-
   function initHeader() {
     syncHeader();
-    syncMapSourceCredit();
     window.addEventListener('scroll', syncHeader, { passive: true });
     window.addEventListener('resize', syncHeader);
 
     const app = document.querySelector('#app');
     if (app && 'MutationObserver' in window) {
-      const observer = new MutationObserver(() => {
-        syncHeader();
-        syncMapSourceCredit();
-      });
+      const observer = new MutationObserver(syncHeader);
       observer.observe(app, { childList: true, subtree: false });
     }
   }
