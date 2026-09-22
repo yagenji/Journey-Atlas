@@ -1,38 +1,27 @@
-# Saint Vincent and the Grenadines — unpublished review build
+# Saint Vincent and the Grenadines — unpublished review evidence
 
-## Confirmed repository facts (2026-09-22)
+## Canonical repository and status (checked 2026-09-22)
 
-- Canonical registry `data/atlas-destinations.json`: ISO2 `VC`; slug **`stvincentgrenadines`**; `atlasPublished:false`. Old branch name `saintvincentandthegrenadines` is not the canonical page slug.
-- Working branch `country/saintvincent-review-build` retains 13 WebP files under `assets/images/saint-vincent/`. `IMAGE_MANIFEST.txt` records filenames, reported sizes and SHA-256. The prior `HANDOFF_README.txt` says these are byte-identical to an earlier candidate ZIP, **not** that each is an approved output.
-- No `data/countries/stvincentgrenadines.json`, `ops/country-production/stvincentgrenadines.json`, or corresponding verified 1200×760 map SVG has been found on this branch. Canonical review deployment remains unverified.
+- Destination registry: `data/atlas-destinations.json`; slug `stvincentgrenadines`; `atlasPublished:false`. Branch `country/saintvincent-review-build` has 13 WebP assets under `assets/images/saint-vincent/` and their `IMAGE_MANIFEST.txt`.
+- `HANDOFF_README.txt` explicitly calls these WebPs byte-identical to an *earlier candidate ZIP*, not verified copies of each approved image.
+- The target `data/countries/stvincentgrenadines.json`, `ops/country-production/stvincentgrenadines.json` and complete, validated 1200×760 SVG map were absent when checked. There is no verified canonical preview deployment.
 
-## Visual audit of the exact 13-image review sheet
+## Original scenic-place proposal independently recovered from prior production conversation
 
-Inspected the saved `saint_vincent_13_image_review.jpg` contact sheet dated 2026-09-22 (see user's JOURNEY ATLAS Library). This is a visual review of the contact sheet, **not** a full decode of the GitHub WebP bytes or an approval ledger check.
+The September 19 production discussion named **eight distinct proposed sites**: (1) La Soufrière volcano, (2) Dark View Falls, (3) the view from Fort Charlotte above Kingstown, (4) Owia Salt Pond, (5) Bequia, (6) Mayreau and its surrounding islands, (7) Union Island, and (8) the St Vincent Botanical Gardens. **This is a recovered proposal, not evidence of final S01–S08 ordering, eight individually approved generated outputs or their association with `scene_01.webp`–`scene_08.webp`.** An earlier Hero candidate was Tobago Cays, but the current saved `hero.webp` visually shows a volcanic crater; do not replace an approved Hero or label its location based only on this early candidate.
 
-| Existing asset | What is directly visible in the contact sheet | What is still unverified |
-|---|---|---|
-| `hero.webp` | Rugged green volcanic crater / summit | Exact location and approved original image identity; not a Tobago Cays coastal Hero |
-| `scene_01.webp` | Mountainous populated bay with yachts | Named bay and location |
-| `scene_02.webp` | Steep conical mountain above coastal town and bay | Exact mountain / town |
-| `scene_03.webp` | Very similar conical mountain and bay | Whether distinct from scene 02 or geographically attributable |
-| `scene_04.webp` | White sand, islets and shallow turquoise reef | Exact cay and photo viewpoint |
-| `scene_05.webp` | Islets and turquoise lagoon | Whether distinct from scene 04 and exact viewpoint |
-| `scene_06.webp` | Same broad conical-mountain / populated-bay visual family as scenes 02–03 | Distinct geographical site and identity |
-| `scene_07.webp` | Waterfall in dense green forest | Exact waterfall (Dark View cannot be inferred solely from appearance) |
-| `scene_08.webp` | Sandy cay and turquoise water | Exact cay and distinctness from scenes 04–05 |
-| Four `taste_*.webp` | Fish with breadfruit; bakes and saltfish mixture; leafy green soup; filled/leaf-wrapped preparation | Original batch approval provenance and precise dish identity |
+Primary-source site verification: National Parks Authority https://nationalparks.gov.vc/nationalparks/index.php/visitors-sites and https://nationalparks.gov.vc/nationalparks/index.php/recreation/17-recreation-site-seeing/16-owia-salt-pond-recreational-site and https://nationalparks.gov.vc/nationalparks/index.php/sites/15-hiking-and-adventure/11-dark-view-falls ; Ministry of Tourism https://tourism.gov.vc/tourism/index.php/national-sites-of-svg ; checked 2026-09-22.
 
-**Blocking content-quality observation:** 02, 03 and 06 have strikingly similar high conical mountain/coastal-bay compositions; 04, 05 and 08 repeat reef-islet imagery. The original ordered scene targets and their approval ledger must be recovered and checked before claiming these eight files represent eight geographically distinct, accurate places. In particular, do not attach guessed location names or coordinates to these generic filenames.
+## Exact saved 13-image contact-sheet visual cross-check
 
-## Primary-source editorial groundwork — not an approved scene/image mapping
+The user’s saved `saint_vincent_13_image_review.jpg` (September 22) shows one crater Hero, **four bay/steep-green-mountain views** (`scene_01,02,03,06`), **three pale-sand/turquoise-cay views** (`scene_04,05,08`), **one forest waterfall** (`scene_07`), and four plated dishes. In particular `scene_02`, `scene_03` and `scene_06` depict highly similar mountain-and-bay settings, while `scene_04`, `scene_05` and `scene_08` depict reef-islet settings. No saved scene clearly depicts a botanical garden or Owia Salt Pond; neither can be truthfully identified by assigning those names to an arbitrary bay or cay image. The waterfall can be described generically but its identity as Dark View Falls is not established by visual appearance alone.
 
-The tourism ministry places Kingstown on Saint Vincent's southwest coast and the Grenadines to its south; Bequia, Mustique, Canouan and Union Island are among the larger islands. Tobago Cays lie east of Mayreau and include five islets, lagoons and reefs. Source https://tourism.gov.vc/tourism/index.php/svg-facts/72-essentials (checked 2026-09-22). The National Parks authority documents La Soufrière, Dark View Falls, the Botanical Gardens and Owia Salt Pond, while the ministry documents Fort Charlotte above Kingstown. Sources https://nationalparks.gov.vc/nationalparks/index.php/visitors-sites ; https://tourism.gov.vc/tourism/index.php/national-sites-of-svg (checked 2026-09-22). These are *research leads*, not a verified order of the saved scene images. Government describes the national dish as roasted breadfruit and fried jackfish: https://www.gov.vc/index.php/visitors/culture-festivals (checked 2026-09-22).
+This establishes an actual **site-coverage/provenance blocker**, not merely a missing user-supplied list. Do not fabricate scene labels, coordinates, historical approval ledger, generated-image IDs or duplicate-site distinctness. The contact sheet is a visual audit, not a full WebP byte decode or hash comparison.
 
-## Required next work before a genuine review page
+## Path to genuine, unpublished Country review
 
-1. Recover original approved images / prompt-specific site identities, ordered scene list and Taste batch approval records; verify all 13 GitHub WebP files by hash and complete decode against their actual approved targets. If the 8 scenes do not meet eight-site diversity, follow the established image approval procedure rather than silently assigning false captions.
-2. Build canonical-slug Country JSON with sourced copy, coordinates, taxonomy and common 1200×760 accurate SVG, without copying shared UI per country. Complete required editorial and geographic QA.
-3. Only after verification, run targeted preview and real Desktop / Tablet / Mobile QA, merge unpublished review according to current main production rules, and verify `https://atlas.yagenji.com/countries/stvincentgrenadines/`. Keep `atlasPublished:false`, `noindex,follow`, no links in ordinary navigation and no sitemap entry until explicit final page approval.
+1. Independently cross-check the previously approved original image outputs or source prompt/approval log against the 13 delivered WebP hashes, preserving genuinely approved files. For image targets that cannot be attributed to their proposed sites, handle replacements via existing Scene batch approval procedure; do not re-generate good approved images simply to satisfy a filename convention.
+2. Produce the canonical-slug Country JSON and geographically sourced common 1200×760 SVG, with factual references, actual scene coordinates, theme taxonomy and shared-template validation. Do not promote this audit into a new workflow or Country-specific UI.
+3. Validate final image bytes, run target editorial/map and actual Desktop/Tablet/Mobile browser QA, and promote only via the normal unpublished-review process. During review keep `atlasPublished:false`, `noindex,follow`, no sitemap inclusion or normal navigation link. Final publication requires the user's separate approval.
 
-**Current status: assets staged; canonical Country review page is NOT complete or verified live.** This audit is not an additional approval gate or a substitute for the production workflow.
+**Status: review page not built; no claim of live canonical review or of completed QA.**
