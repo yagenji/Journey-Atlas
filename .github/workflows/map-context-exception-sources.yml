@@ -6,66 +6,36 @@ on:
       - '.github/workflows/map-context-exception-sources.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   review-source:
-    if: github.event.pull_request.head.repo.full_name == 'yagenji/Journey-Atlas' && github.event.pull_request.head.ref == 'system/map-context-shared-preparation'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 1
-          persist-credentials: true
-      - name: Align map attribution with existing legibility and JS formatting
+      - name: Collect legacy map SVGs and Country JSON for offline QA
         run: |
+          mkdir -p /tmp/map-context-source-review/shared
+          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
+          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
           python3 - <<'PY'
-          import subprocess
-          from pathlib import Path
-          p=Path('assets/js/app.js')
-          assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()=='b434f2e06ee793b739ebffc3c7b7531183182981'
-          text=p.read_text(encoding='utf-8')
-          start=text.index("  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';\n")
-          end=text.index("  if (typeof mapData.japanAreaComparison",start)
-          replacement='''  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
-            if (/OpenStreetMap|\\bODbL\\b/i.test(mapSource)) {
-              const legend = fragment.querySelector('.map-legend--below');
-              if (legend) {
-                const credit = document.createElement('a');
-                credit.className = 'map-legend__source-credit';
-                credit.href = 'https://www.openstreetmap.org/copyright';
-                credit.target = '_blank';
-                credit.rel = 'noopener noreferrer';
-                credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
-                credit.style.flexBasis = '100%';
-                credit.style.textAlign = 'left';
-                credit.style.color = 'inherit';
-                credit.style.fontSize = '11px';
-                credit.style.lineHeight = '1.5';
-                credit.style.textDecoration = 'underline';
-                credit.style.textUnderlineOffset = '2px';
-                legend.append(credit);
-              }
-            }
-          '''
-          replacement='\n'.join(line[8:] if line.startswith('        ') else line for line in replacement.split('\n'))
-          # Preserve indentation expected by renderMapBase, not whitespace inside a string.
-          replacement='\n'.join(('  '+line if i and line else line) for i,line in enumerate(replacement.split('\n')))
-          # Canonicalize the resulting block with two-space indentation, keeping line one unchanged.
-          lines=replacement.splitlines()
-          assert lines[0].startswith('  const mapSource')
-          assert '11px' in replacement and '0.78em' not in replacement
-          result=text[:start]+replacement+text[end:]
-          assert result.count("className = 'map-legend__source-credit'")==1
-          p.write_text(result,encoding='utf-8')
+          import json, pathlib, shutil
+          root=pathlib.Path('.')
+          output=pathlib.Path('/tmp/map-context-source-review')
+          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
+              p=root/'data'/'countries'/f'{slug}.json'
+              if not p.is_file():
+                  continue
+              config=json.loads(p.read_text())
+              target=output/slug
+              target.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(p,target/'country.json')
+              source=root/config['map']['svg']
+              if source.is_file():
+                  shutil.copy2(source,target/'source.svg')
           PY
-          node --check assets/js/app.js
-          git diff --check
-      - name: Commit attribution legibility only to draft PR
-        run: |
-          git add assets/js/app.js
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Keep OSM map credits legible at all viewport widths'
-          git push origin HEAD:refs/heads/system/map-context-shared-preparation
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacy-map-qa-source-bundle
+          path: /tmp/map-context-source-review/
+          retention-days: 1
