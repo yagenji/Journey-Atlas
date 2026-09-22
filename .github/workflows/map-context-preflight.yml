@@ -10,6 +10,9 @@ on:
       - 'scripts/generate_country_map_with_context.py'
       - 'scripts/stage_map_context_rollout.py'
       - 'scripts/review_hk_shenzhen.py'
+      - 'scripts/review_brunei_malaysia.py'
+      - 'scripts/review_monaco_france.py'
+      - 'tests/test_map_context_priority_geography.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_generate_country_map_with_context.py'
       - 'tests/test_filter_duplicate_target_context.py'
@@ -49,9 +52,19 @@ jobs:
             scripts/generate_country_map_with_context.py \
             scripts/stage_map_context_rollout.py \
             scripts/review_hk_shenzhen.py \
+            scripts/review_brunei_malaysia.py \
+            scripts/review_monaco_france.py \
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
+      - name: Save Brunei and Monaco priority source review before long browser run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brunei-monaco-priority-source-review
+          path: /tmp/journey-atlas-map-context-real-previews/priority-review/
+          if-no-files-found: warn
+          retention-days: 3
       - name: Generate and fully decode real approved Country previews
         run: python tests/smoke_map_context_real.py
       - name: Diagnose legacy-map source structures
@@ -77,7 +90,7 @@ jobs:
           p = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
           data = json.loads(p.read_text())
           assert data['selectedCount'] == len(data['entries']) and data['selectedCount'] > 0
-          assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
+          assert len({e['slug'] for e in data['entries']) == data['selectedCount']
           assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
           assert all(e['geographicQaStatus'] == 'HOLD' and e['promotionEligible'] is False
