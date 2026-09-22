@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from selenium.common.exceptions import TimeoutException, WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -38,6 +39,27 @@ def source_provenance(slug: str, map_ref: str) -> tuple[bool, bool]:
     provenance = ''.join(desc.itertext()) if desc is not None else ''
     has_osm = bool(OSM.search(source + ' ' + provenance + ' ' + metadata))
     return has_osm, bool(OSM.search(source))
+
+
+def capture_supplementary_screenshot(driver, slug: str, viewport: str) -> None:
+    """Screenshot is evidence only: renderer timeout must not mask valid credit QA.
+
+    The complete published-Country browser audit above independently captures
+    full-page screenshots for all 109 Countries at all three viewports.
+    """
+    SCREENSHOTS.mkdir(parents=True, exist_ok=True)
+    path = SCREENSHOTS / f'{slug}-{viewport}.png'
+    try:
+        driver.find_element(By.CSS_SELECTOR, '.map-column').screenshot(str(path))
+    except (TimeoutException, WebDriverException) as exc:
+        print(f'SUPPLEMENTARY MAP SCREENSHOT: element capture unavailable {slug}/{viewport}: {type(exc).__name__}', flush=True)
+        try:
+            if driver.save_screenshot(str(path)):
+                print(f'SUPPLEMENTARY MAP SCREENSHOT: viewport fallback saved {slug}/{viewport}', flush=True)
+            else:
+                print(f'SUPPLEMENTARY MAP SCREENSHOT: viewport fallback unavailable {slug}/{viewport}', flush=True)
+        except (TimeoutException, WebDriverException) as fallback:
+            print(f'SUPPLEMENTARY MAP SCREENSHOT: no capture {slug}/{viewport}: {type(fallback).__name__}', flush=True)
 
 
 def main() -> None:
@@ -74,10 +96,9 @@ def main() -> None:
                     assert 'OpenStreetMap contributors' in credit.text and 'ODbL 1.0' in credit.text
                     assert driver.execute_script('const e=arguments[0],r=e.getBoundingClientRect();return r.width>60&&r.height>0&&getComputedStyle(e).visibility==="visible"', credit)
                     assert credit.get_attribute('tabindex') is None, f'{slug}/{name}: source link focus order changed'
-                if slug in CAPTURE:
-                    SCREENSHOTS.mkdir(parents=True, exist_ok=True)
-                    driver.find_element(By.CSS_SELECTOR, '.map-column').screenshot(str(SCREENSHOTS / f'{slug}-{name}.png'))
                 print(f'SOURCE CREDIT PASS {slug}/{name}: expected={expected}', flush=True)
+                if slug in CAPTURE:
+                    capture_supplementary_screenshot(driver, slug, name)
     finally:
         driver.quit()
 
