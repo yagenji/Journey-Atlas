@@ -46,10 +46,11 @@ def main() -> None:
     assert len(entries) == manifest['selectedCount'] and len(entries) == len({row['slug'] for row in entries})
     attribution = {row['slug']: source_provenance(row['slug'], row['mapRef']) for row in entries}
     assert all(slug in attribution for slug in CAPTURE)
-    assert attribution['singapore'] == (True, False) and attribution['macau'] == (True, False), attribution
+    assert attribution['singapore'] == (True, True) and attribution['macau'] == (True, True), attribution
     assert attribution['bahrain'][0] and not attribution['iceland'][0], attribution
     osm_slugs = sorted(slug for slug, (osm, _) in attribution.items() if osm)
     mismatch = sorted(slug for slug in osm_slugs if not attribution[slug][1])
+    assert 'antiguabarbuda' in mismatch, 'Historic Antigua source should exercise SVG-provenance fallback'
     print(f'OSM provenance audit: {len(osm_slugs)} of {len(entries)} maps; SVG-only/JSON mismatch: {mismatch}', flush=True)
     samples = osm_slugs + ['iceland']
     driver = make_driver()
