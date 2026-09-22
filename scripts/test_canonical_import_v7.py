@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import subprocess
 import unittest
+from unittest import mock
 
 import country_production_state_v7 as v7
 import validate_canonical_import_v7 as audit
@@ -76,6 +77,45 @@ class CanonicalImportAudit(unittest.TestCase):
         self.assertFalse(audit.canonical_import(IMPORTED, PATH, state))
         errors = v7.validate_transition(None, state, PATH)
         self.assertTrue(any("cannot initialize with APPROVED scenes" in e for e in errors))
+
+    def test_audited_slug_migration_preserves_entire_state(self):
+        old_path = "ops/country-production/oldslug.json"
+        new_path = "ops/country-production/newslug.json"
+        old_state = copy.deepcopy(self.original)
+        old_state["slug"] = "oldslug"
+        new_state = copy.deepcopy(old_state)
+        new_state["slug"] = "newslug"
+        registry = {"destinations": [{"slug": "newslug", "atlasPublished": False}]}
+        country = {"slug": "newslug", "publicationPipelineVersion": 2}
+
+        def fake_git_json(commit, path):
+            if commit == "parent" and path == old_path:
+                return old_state
+            if commit == "commit" and path == old_path:
+                return None
+            if commit == "commit" and path == "data/atlas-destinations.json":
+                return registry
+            if commit == "commit" and path == "data/countries/newslug.json":
+                return country
+            return None
+
+        def fake_git(*args):
+            if args and args[0] == "diff-tree":
+                return f"D\t{old_path}\nA\t{new_path}"
+            if args and args[0] == "diff":
+                return ""
+            raise AssertionError(args)
+
+        with (
+            mock.patch.object(v7, "first_parent", return_value="parent"),
+            mock.patch.object(v7, "git_json", side_effect=fake_git_json),
+            mock.patch.object(v7, "validate_state_dict", return_value=[]),
+            mock.patch.object(audit, "git", side_effect=fake_git),
+        ):
+            self.assertTrue(audit.canonical_slug_migration("commit", new_path, new_state))
+            changed = copy.deepcopy(new_state)
+            changed["taste"][0]["approvedGenerationId"] = "fabricated"
+            self.assertFalse(audit.canonical_slug_migration("commit", new_path, changed))
 
 
 if __name__ == "__main__":

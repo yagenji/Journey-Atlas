@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Validate every revision-7 transition, including audited canonical review imports.
+"""Validate every revision-7 transition, including audited canonical imports.
 
 Squash-merging an already approved Country into main adds its State in one commit.
 The existing v7 validator correctly forbids a *new* pre-approved initializer;
-this wrapper recognizes only the separately reviewed, unpublished v2 import
-whose approvals and exact asset bytes are independently present in Git history.
-It never grants new approval, skips an ordinary transition, or publishes a page.
+this wrapper recognizes only separately auditable cases whose approvals and exact
+asset bytes already exist in Git history. It never grants a new approval, skips
+an ordinary transition, or publishes a page.
 """
 from __future__ import annotations
 
+import copy
 import json
 import re
 import subprocess
@@ -104,6 +105,79 @@ def canonical_import(commit: str, path: str, after: dict[str, Any]) -> bool:
     return True
 
 
+def canonical_slug_migration(commit: str, path: str, after: dict[str, Any]) -> bool:
+    """Allow only a same-commit State-path rename to the canonical registry slug.
+
+    This is intentionally narrower than an ordinary State transition. The previous
+    State must be deleted in the same commit, and its complete production record
+    must be byte-for-JSON identical except for the top-level ``slug`` field. No
+    image asset may change in the migration commit. The destination slug must
+    already be the sole unpublished canonical registry row and Country JSON slug.
+    """
+    new_slug = Path(path).stem
+    if after.get("slug") != new_slug or after.get("imageGenerationPolicy", {}).get("revision") != 7:
+        return False
+    parent = v7.first_parent(commit)
+    if not parent:
+        return False
+    try:
+        status = git(
+            "diff-tree", "--no-commit-id", "--name-status", "-r", parent, commit,
+            "--", "ops/country-production",
+        )
+        deleted_paths = []
+        for line in status.splitlines():
+            fields = line.split("\t")
+            if len(fields) == 2 and fields[0] == "D":
+                deleted_paths.append(fields[1])
+        candidates: list[tuple[str, dict[str, Any]]] = []
+        for old_path in deleted_paths:
+            old_state = v7.git_json(parent, old_path)
+            if not isinstance(old_state, dict):
+                continue
+            if Path(old_path).stem != old_state.get("slug"):
+                continue
+            if v7.git_json(commit, old_path) is not None:
+                continue
+            old_cmp = copy.deepcopy(old_state)
+            new_cmp = copy.deepcopy(after)
+            old_cmp.pop("slug", None)
+            new_cmp.pop("slug", None)
+            if old_cmp == new_cmp:
+                candidates.append((old_path, old_state))
+        if len(candidates) != 1:
+            return False
+
+        old_path, old_state = candidates[0]
+        old_slug = str(old_state.get("slug") or "")
+        if not old_slug or old_slug == new_slug:
+            return False
+
+        registry = v7.git_json(commit, "data/atlas-destinations.json")
+        country = v7.git_json(commit, f"data/countries/{new_slug}.json")
+        if not isinstance(registry, dict) or not isinstance(country, dict):
+            return False
+        rows = [row for row in registry.get("destinations", []) if row.get("slug") == new_slug]
+        if len(rows) != 1 or rows[0].get("atlasPublished") is not False:
+            return False
+        if any(row.get("slug") == old_slug for row in registry.get("destinations", [])):
+            return False
+        if country.get("slug") != new_slug or country.get("publicationPipelineVersion") != 2:
+            return False
+
+        # A slug migration may not be used to smuggle image or approval changes.
+        changed_assets = git("diff", "--name-only", parent, commit, "--", "assets/images")
+        if changed_assets.strip():
+            return False
+        if v7.validate_state_dict(old_state, Path(old_path).name):
+            return False
+        if v7.validate_state_dict(after, Path(path).name):
+            return False
+    except (subprocess.CalledProcessError, ValueError, TypeError):
+        return False
+    return True
+
+
 def validate_range(base: str, head: str) -> list[str]:
     errors: list[str] = []
     for commit in git("rev-list", "--reverse", "--ancestry-path", f"{base}..{head}").splitlines():
@@ -111,7 +185,10 @@ def validate_range(base: str, head: str) -> list[str]:
         for path in v7.changed_state_paths(commit):
             before = v7.git_json(parent, path) if parent else None
             after = v7.git_json(commit, path)
-            if before is None and isinstance(after, dict) and canonical_import(commit, path, after):
+            if before is None and isinstance(after, dict) and (
+                canonical_import(commit, path, after)
+                or canonical_slug_migration(commit, path, after)
+            ):
                 # The ordinary static validator has already checked every batch ledger.
                 errors.extend(f"{commit[:8]} {e}" for e in v7.validate_state_dict(after, Path(path).name))
             else:
