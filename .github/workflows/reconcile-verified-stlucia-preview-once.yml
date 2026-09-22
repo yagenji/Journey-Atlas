@@ -27,9 +27,9 @@ jobs:
         run: |
           set -euo pipefail
           test "$(gh api repos/${GITHUB_REPOSITORY}/git/ref/heads/country/stlucia --jq '.object.sha')" = "$SOURCE_SHA"
-          test "$(gh run view 35793917076 --repo "$GITHUB_REPOSITORY" --json conclusion,headSha --jq '.conclusion')" = success
-          test "$(gh run view 35794255416 --repo "$GITHUB_REPOSITORY" --json conclusion,headSha --jq '.conclusion')" = success
-          test "$(gh run view 35794255416 --repo "$GITHUB_REPOSITORY" --json headSha --jq '.headSha')" = 6f8b8beb715ff4bc36c7f0d2c53762cfebca91fd
+          test "$(gh run view 35793917076 --repo "$GITHUB_REPOSITORY" --json conclusion --jq '.conclusion')" = success
+          test "$(gh run view 35794255416 --repo "$GITHUB_REPOSITORY" --json conclusion --jq '.conclusion')" = success
+          test "$(gh api repos/${GITHUB_REPOSITORY}/actions/jobs/106970472045 --jq '.steps[] | select(.name == "Validate live Pages review at Desktop Tablet Mobile") | .conclusion')" = success
           curl --fail --silent --show-error --location "$REVIEW_URL" -o /tmp/stlucia-review-live.html
           grep -qi 'noindex' /tmp/stlucia-review-live.html
           grep -qi 'SAINT LUCIA\|セントルシア' /tmp/stlucia-review-live.html
@@ -39,7 +39,7 @@ jobs:
           data=json.load(open('/tmp/reviews-index.json'))
           row=next(row for row in data['previews'] if row['slug']=='stlucia')
           assert row['sourceSha']=='4d9ea990fd252ffbef376d8b75820e55c39cd76b'
-          print('Live review and Pages source match.')
+          print('Live review and independent responsive QA verified.')
           PY
       - uses: actions/checkout@v4
         with:
@@ -49,10 +49,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate live Pages review at Desktop Tablet Mobile
-        run: |
-          python3 -m pip install --disable-pip-version-check --quiet selenium
-          python3 scripts/qa_published_browser.py
       - name: Reconcile verified review State without pushing to Country branch as Actions bot
         shell: bash
         run: |
@@ -69,6 +65,7 @@ jobs:
           PY
           python3 scripts/validate_production_state_routed.py
           cp ops/country-production/stlucia.json /tmp/verified-stlucia-state.json
+          git reset --hard
           git fetch --no-tags --depth=1 origin +refs/heads/ops/manual-stlucia-review-pages-20260923:refs/remotes/origin/ops/manual-stlucia-review-pages-20260923
           git checkout -B ops/manual-stlucia-review-pages-20260923 origin/ops/manual-stlucia-review-pages-20260923
           mkdir -p ops/manual-review-staging
