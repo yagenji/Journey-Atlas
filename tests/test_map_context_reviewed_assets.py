@@ -79,6 +79,15 @@ class ReviewedMapContextAssets(unittest.TestCase):
         context = [p.get("data-map-context-region") for p in root.iter(SVG + "path") if p.get("data-map-context-region")]
         self.assertEqual(context, ["country"])
 
+    def test_qatar_doha_inset_has_no_duplicate_national_context(self):
+        root = ET.parse(ROOT / "assets/images/qatar/map-atlas-v1.svg").getroot()
+        self.assertEqual(root.get("viewBox"), "0 0 1200 760")
+        country = [p.get("d", "") for p in root.iter(SVG + "path") if p.get("fill") == "url(#land)"]
+        self.assertEqual(len(country), 2)
+        self.assertEqual(hashlib.sha256("\n".join(country).encode()).hexdigest(), "bceb87afccf7706ddcefa5f03d0c5756779b9b18ca40da173ffe4788e42fdff2")
+        context = [p.get("data-map-context-legacy") for p in root.iter(SVG + "path") if p.get("data-map-context-legacy")]
+        self.assertEqual(context, ["national-base"])
+
     def test_landlocked_context_covers_full_canvas_without_a_fake_coast(self):
         for slug in ("andorra", "liechtenstein", "sanmarino", "vaticancity"):
             with self.subTest(country=slug):
