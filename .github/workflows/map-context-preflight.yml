@@ -79,16 +79,20 @@ jobs:
           staged = Path('/tmp/journey-atlas-map-context-rollout-stage')
           manifest = json.loads((staged / 'manifest.json').read_text(encoding='utf-8'))
           for entry in manifest['entries']:
-              if entry['action'] == 'preserve-existing-context':
-                  continue
-              assert entry['action'] == 'stage-context-preview'
               source = (root / entry['mapRef']).resolve()
               if root not in source.parents or not source.is_file():
                   raise RuntimeError(f"Invalid map source: {entry['slug']}")
               preview = (staged / f"{entry['slug']}.svg").read_bytes()
               digest = lambda b: hashlib.sha256(b).hexdigest()
-              if digest(source.read_bytes()) != entry['sourceSha256'] or digest(preview) != entry['stagedSha256']:
+              original = source.read_bytes()
+              if digest(original) != entry['sourceSha256'] or digest(preview) != entry['stagedSha256']:
                   raise RuntimeError(f"Map source or preview changed after staging: {entry['slug']}")
+              if entry['action'] in ('preserve-existing-context', 'preserve-no-foreign-land'):
+                  if original != preview:
+                      raise RuntimeError(f"Preserved map was modified: {entry['slug']}")
+                  continue
+              if entry['action'] != 'stage-context-preview':
+                  raise RuntimeError(f"Unknown map stage action: {entry['slug']}")
               source.write_bytes(preview)
           print('Disposable runner only: all staged SVGs substituted; repository branch unchanged')
           PY
