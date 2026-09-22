@@ -17,6 +17,9 @@ on:
       - 'tests/test_map_context_region_frames.py'
       - 'tests/smoke_map_context_real.py'
       - 'tests/diagnose_map_context_blockers.py'
+      - 'tests/qa_map_source_credit.py'
+      - 'assets/js/map-source-credit.js'
+      - 'country.html'
       - '.github/workflows/map-context-preflight.yml'
 
 permissions:
@@ -43,7 +46,8 @@ jobs:
             scripts/add_country_map_context_legacy.py \
             scripts/filter_duplicate_target_context.py \
             scripts/generate_country_map_with_context.py \
-            scripts/stage_map_context_rollout.py
+            scripts/stage_map_context_rollout.py \
+            tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
       - name: Generate and fully decode real approved Country previews
@@ -110,6 +114,7 @@ jobs:
           done
           curl -fsS http://127.0.0.1:4173/ >/dev/null
           python scripts/run_country_browser_qa_parallel.py --scope published --workers 2
+          python tests/qa_map_source_credit.py
       - name: Save preview-only images, reports and rollout manifest
         if: always()
         uses: actions/upload-artifact@v4
