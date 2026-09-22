@@ -1,0 +1,134 @@
+name: Manual unpublished Country review Pages delivery once
+on:
+  push:
+    branches: [ops/manual-stlucia-review-pages-20260923]
+    paths: [.github/workflows/manual-country-review-pages-once.yml]
+permissions:
+  contents: write
+  actions: read
+  pages: write
+  id-token: write
+concurrency:
+  group: country-review-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: country-review-pages
+      url: https://yagenji.github.io/Journey-Atlas/reviews/stlucia/countries/stlucia/
+    env:
+      SLUG: stlucia
+      SOURCE_SHA: 4d9ea990fd252ffbef376d8b75820e55c39cd76b
+      QA_RUN_ID: '35793917076'
+      REVIEW_ROOT: https://yagenji.github.io/Journey-Atlas/reviews/stlucia/
+      REVIEW_URL: https://yagenji.github.io/Journey-Atlas/reviews/stlucia/countries/stlucia/
+    steps:
+      - name: Verify exact source and independently completed QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh api repos/${GITHUB_REPOSITORY}/git/ref/heads/country/stlucia --jq '.object.sha')" = "$SOURCE_SHA"
+          test "$(gh run view "$QA_RUN_ID" --repo "$GITHUB_REPOSITORY" --json headSha --jq '.headSha')" = "$SOURCE_SHA"
+          test "$(gh run view "$QA_RUN_ID" --repo "$GITHUB_REPOSITORY" --json conclusion --jq '.conclusion')" = success
+          echo "Verified source $SOURCE_SHA, validated QA run $QA_RUN_ID"
+      - name: Checkout validated Country source
+        uses: actions/checkout@v4
+        with:
+          ref: 4d9ea990fd252ffbef376d8b75820e55c39cd76b
+          fetch-depth: 1
+          filter: blob:none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build verified Country overlay on latest main without publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/country_overlay_v2.py capture "$SLUG" /tmp/stlucia-review-overlay
+          git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+          test "$(git rev-parse origin/main)" = 44cf916c6dfe7f1c8607e3409fda5c08f67939cb
+          git reset --hard origin/main
+          python3 scripts/country_overlay_v2.py apply "$SLUG" /tmp/stlucia-review-overlay
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/countries/stlucia.json').read_text())
+          s=json.loads(Path('ops/country-production/stlucia.json').read_text())
+          r=json.loads(Path('data/atlas-destinations.json').read_text())
+          assert d['slug']=='stlucia' and d['publicationPipelineVersion']==2
+          assert s['slug']=='stlucia' and s['finalApproval']['state']=='PENDING'
+          assert s['publication']['atlasPublished'] is False
+          assert next(x for x in r['destinations'] if x['slug']=='stlucia')['atlasPublished'] is False
+          PY
+          python3 -m pip install --disable-pip-version-check --quiet pillow
+          TARGET_SLUGS="$SLUG" JOURNEY_ATLAS_SITE_URL="$REVIEW_ROOT" JOURNEY_ATLAS_BUILD_VERSION="$SOURCE_SHA" python3 scripts/build_country_preview_targeted.py
+          python3 scripts/externalize_review_preview_images.py --dist dist --site-url "$REVIEW_ROOT" --image-origin "https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$SOURCE_SHA/"
+          test -f "dist/countries/$SLUG/index.html"
+          test -f "dist/data/countries/$SLUG.json"
+      - name: Checkout existing persistent Pages previews without replacing other countries
+        uses: actions/checkout@v4
+        with:
+          ref: review-previews
+          path: review-cache
+          fetch-depth: 1
+      - name: Stage only Saint Lucia; preserve every existing review
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,shutil,sys
+          from pathlib import Path
+          from datetime import datetime,timezone
+          sys.path.insert(0,'scripts')
+          from manage_review_preview_site import write_landing
+          root=Path('review-cache'); slug='stlucia'
+          target=root/'reviews'/slug
+          if target.exists(): shutil.rmtree(target)
+          shutil.copytree('dist',target)
+          idx=root/'reviews'/'index.json'
+          data=json.loads(idx.read_text(encoding='utf-8'))
+          entries=[x for x in data['previews'] if x.get('slug')!=slug]
+          entries.insert(0,dict(slug=slug,reviewUrl='https://yagenji.github.io/Journey-Atlas/reviews/stlucia/countries/stlucia/',sourceSha='4d9ea990fd252ffbef376d8b75820e55c39cd76b',updatedAt=datetime.now(timezone.utc).isoformat(timespec='seconds')))
+          data['previews']=entries
+          data['maxPreviews']=max(int(data.get('maxPreviews',8)),len(entries))
+          data['updatedAt']=datetime.now(timezone.utc).isoformat(timespec='seconds')
+          idx.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          write_landing(root,entries)
+          assert all((root/'reviews'/x['slug']).is_dir() for x in entries)
+          PY
+          git -C review-cache config user.name 'github-actions[bot]'
+          git -C review-cache config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C review-cache add -- reviews/stlucia reviews/index.json index.html
+          git -C review-cache commit -m 'Add independently reviewed Saint Lucia Pages preview'
+          git -C review-cache push origin HEAD:review-previews
+      - name: Prepare persistent Pages package
+        run: |
+          mkdir -p pages-site
+          rsync -a --exclude='.git/' review-cache/ pages-site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-site
+      - name: Deploy GitHub Pages review
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify delivered noindex review URL and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 12); do
+            if curl --fail --location --silent --show-error "$REVIEW_URL" -o /tmp/stlucia-live.html; then break; fi
+            sleep 5
+          done
+          test -s /tmp/stlucia-live.html
+          grep -qi 'noindex' /tmp/stlucia-live.html
+          grep -qi 'SAINT LUCIA\|セントルシア' /tmp/stlucia-live.html
+          echo "Verified noindex Saint Lucia review: $REVIEW_URL"
+          echo "Verified SHA: $SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "Review URL: $REVIEW_URL" >> "$GITHUB_STEP_SUMMARY"
+          echo "Final publication remains unapproved." >> "$GITHUB_STEP_SUMMARY"
