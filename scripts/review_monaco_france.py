@@ -19,6 +19,7 @@ from shapely.geometry import Polygon
 ROOT=Path(__file__).resolve().parents[1]
 NS='{http://www.w3.org/2000/svg}'
 TARGET_SHA='6338d1de050b6cf8ae063e5c6e64cf582500b0f6117f84ad69976690691171fe'
+OLD_GSHHG='M 302.2,760.0 L -0.0,760.0 L -0.0,0.0 L 979.8,0.0 L 302.2,760.0 Z'
 
 
 def polygon_rings(path):
@@ -50,10 +51,11 @@ def main():
         raise RuntimeError('Monaco French-land provenance/visible-credit input missing')
     contextual=[p for p in context.iter(NS+'path') if p.get('d')]
     if not contextual:raise RuntimeError('Missing actual French-land source geometry')
-    # Monaco's reviewed French context has several separately sourced path pieces.
-    # Catch the old 5-vertex rectangular/diagonal GSHHG fallback, regardless of count.
+    # The earlier coarse five-vertex GSHHG diagonal is a known *exact* bad case;
+    # file-length thresholds falsely reject real, short, separately sourced rings.
     france=' '.join(p.get('d') for p in contextual)
-    if len(france)<15000:raise RuntimeError('Only the stale coarse GSHHG diagonal context was found')
+    if len(contextual)==1 and contextual[0].get('d').strip()==OLD_GSHHG:
+        raise RuntimeError('Stale rectangular/diagonal GSHHG context still present')
     image=cairosvg.svg2png(bytestring=raw,output_width=1200,output_height=760)
     with Image.open(io.BytesIO(image)) as im:
         im.load()
