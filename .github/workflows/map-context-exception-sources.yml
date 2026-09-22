@@ -6,36 +6,90 @@ on:
       - '.github/workflows/map-context-exception-sources.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   review-source:
+    if: github.event.pull_request.head.repo.full_name == 'yagenji/Journey-Atlas' && github.event.pull_request.head.ref == 'system/map-context-shared-preparation'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Collect legacy map SVGs and Country JSON for offline QA
-        run: |
-          mkdir -p /tmp/map-context-source-review/shared
-          cp scripts/add_country_map_context.py /tmp/map-context-source-review/shared/add_country_map_context.py
-          cp tests/audit_map_context_inventory.py /tmp/map-context-source-review/shared/audit_map_context_inventory.py
-          python3 - <<'PY'
-          import json, pathlib, shutil
-          root=pathlib.Path('.')
-          output=pathlib.Path('/tmp/map-context-source-review')
-          for slug in ('brunei','hong-kong','maldives','antiguabarbuda','bahrain','qatar','russia','belize','honduras','monaco','singapore','macau','portugal'):
-              p=root/'data'/'countries'/f'{slug}.json'
-              if not p.is_file():
-                  continue
-              config=json.loads(p.read_text())
-              target=output/slug
-              target.mkdir(parents=True,exist_ok=True)
-              shutil.copy2(p,target/'country.json')
-              source=root/config['map']['svg']
-              if source.is_file():
-                  shutil.copy2(source,target/'source.svg')
-          PY
-      - uses: actions/upload-artifact@v4
         with:
-          name: legacy-map-qa-source-bundle
-          path: /tmp/map-context-source-review/
-          retention-days: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Apply source-accurate visible OSM credit without altering map geometry
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+          root = Path('.')
+          expected = {
+              'assets/js/app.js': 'fc03d467f41bafa5abb514f75fab2b55aa704082',
+              'data/countries/singapore.json': '198268f85552281c9edf0fc92fa893b6d9fdff4a',
+              'data/countries/macau.json': '2d9d83ec502ee310bc1d17ec33cd8ce5a0c04af3',
+          }
+          for name, sha in expected.items():
+              assert subprocess.check_output(['git','hash-object',name],text=True).strip()==sha, name
+          app=root/'assets/js/app.js'
+          original=app.read_text(encoding='utf-8')
+          target='  mapArt.prepend(image);\n'
+          assert original.count(target)==1 and 'map-legend__source-credit' not in original
+          insert='''  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
+          if (/OpenStreetMap|\\bODbL\\b/i.test(mapSource)) {
+            const legend = fragment.querySelector('.map-legend--below');
+            if (legend) {
+              const credit = document.createElement('a');
+              credit.className = 'map-legend__source-credit';
+              credit.href = 'https://www.openstreetmap.org/copyright';
+              credit.target = '_blank';
+              credit.rel = 'noopener noreferrer';
+              credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
+              credit.style.flexBasis = '100%';
+              credit.style.textAlign = 'left';
+              credit.style.color = 'inherit';
+              credit.style.fontSize = '0.78em';
+              credit.style.textDecoration = 'underline';
+              credit.style.textUnderlineOffset = '2px';
+              legend.append(credit);
+            }
+          }
+          '''
+          # A single shared map legend component is used by every Country; no slug-specific rendering.
+          app.write_text(original.replace(target,target+insert,1),encoding='utf-8')
+          credit_details={
+            'singapore': ' Surrounding Malaysia/Indonesia land: OpenStreetMap coastline ways (2026-09-20), ODbL 1.0, © OpenStreetMap contributors; https://www.openstreetmap.org/copyright.',
+            'macau': ' Surrounding Zhuhai land: OpenStreetMap coastline ways (2026-09-20) intersected with Xiangzhou administrative relation 5405551 (2026-09-21), ODbL 1.0, © OpenStreetMap contributors; https://www.openstreetmap.org/copyright.',
+          }
+          for slug, detail in credit_details.items():
+              p=root/'data/countries'/f'{slug}.json'
+              text=p.read_text(encoding='utf-8')
+              data=json.loads(text)
+              before=data['map']['source']
+              assert 'OpenStreetMap' not in before and 'ODbL' not in before
+              old=json.dumps(before,ensure_ascii=False)
+              assert text.count(old)==1
+              updated=text.replace(old,json.dumps(before+detail,ensure_ascii=False),1)
+              after=json.loads(updated)
+              assert after['map']['source']==before+detail
+              after['map']['source']=before
+              assert after==data, slug
+              p.write_text(updated,encoding='utf-8')
+          print('Shared map legend OSM credit added; only SG/Macau map.source metadata expanded')
+          PY
+          node --check assets/js/app.js
+          python3 -m json.tool data/countries/singapore.json >/dev/null
+          python3 -m json.tool data/countries/macau.json >/dev/null
+          git diff --check
+          git diff --stat
+      - name: Commit only map source/credit corrections to draft branch
+        run: |
+          git add assets/js/app.js data/countries/singapore.json data/countries/macau.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Show OSM/ODbL attribution on source-backed map legends'
+          git push origin HEAD:refs/heads/system/map-context-shared-preparation
