@@ -24,20 +24,19 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
+          import math
           path=Path('data/countries/stlucia.json')
           d=json.loads(path.read_text(encoding='utf-8'))
           assert d['slug']=='stlucia' and d['publicationPipelineVersion']==2
           assert d['map']['bounds']=={'north':14.45,'south':13.55,'west':-61.25,'east':-60.7}
           assert len(d['scenes'])==8 and len(d['taste']['items'])==4
           assert d['capital']['nameEn']=='Castries'
-          # Display offsets are percentages of 1200x760. Real lat/lon remain unchanged.
-          # Layout solved against the existing 55/64/71px marker clearance rules,
-          # with <5% radial offset for every marker and >0.5px headroom.
+          # All offsets are display-only percentages of the 1200x760 canvas.
+          # Real geographic coordinates and approved map geometry are unchanged.
           offsets=[(-0.9271,-4.3960),(0.9344,4.8610),(-0.0498,-4.1295),
                    (3.5970,0.2526),(-2.7157,-4.1385),(1.7997,-4.6112),
                    (-4.4166,2.2352),(3.2563,3.7282),(4.4498,-2.1683),
                    (0.2507,-4.2714)]
-          import math
           assert all(math.hypot(x,y)<5 for x,y in offsets)
           d['capital']['labelPosition']='right'
           d['capital']['labelOffset']={'x':0,'y':0}
@@ -48,6 +47,7 @@ jobs:
                   assert '172,948' in item['value']
                   item['value']='172,948人（2022年国勢調査・常住人口）'
           d['sourceDates']['population']='2022'
+          d['sources']['population']=d['sources']['census']
           d['sourceDates']['countryArea']='2026-09-19'
           for item in d['taste']['items']:
               item['imageState']='APPROVED'
