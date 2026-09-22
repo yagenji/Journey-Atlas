@@ -1,0 +1,54 @@
+name: Migrate Saint Lucia asset path once
+on:
+  push:
+    branches: [country/saintlucia-recovery-clean-v3]
+    paths: [.github/workflows/migrate-stlucia-asset-path-once.yml]
+permissions:
+  contents: write
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: country/saintlucia-recovery-clean-v3
+          fetch-depth: 2
+      - name: Move existing approved bytes and update references
+        run: |
+          set -euo pipefail
+          test ! -e assets/images/stlucia
+          test -f assets/images/saintlucia/map-atlas-v1.svg
+          test "$(find assets/images/saintlucia/approved -maxdepth 1 -type f -name '*.webp' | wc -l)" -eq 13
+          git mv assets/images/saintlucia assets/images/stlucia
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          for path in (Path('data/countries/stlucia.json'), Path('ops/country-production/stlucia.json')):
+              body=path.read_text(encoding='utf-8')
+              assert 'assets/images/saintlucia/' in body
+              changed=body.replace('assets/images/saintlucia/', 'assets/images/stlucia/')
+              assert 'assets/images/saintlucia/' not in changed
+              data=json.loads(changed)
+              assert data['slug']=='stlucia'
+              assert data.get('publication',{}).get('atlasPublished') is not True
+              path.write_text(changed,encoding='utf-8')
+          PY
+      - name: Validate source, approved assets, and Country State
+        run: |
+          python3 -m pip install --disable-pip-version-check --quiet pillow
+          python3 scripts/validate_country.py --strict data/countries/stlucia.json
+          python3 scripts/validate_country_quality_v5.py --force data/countries/stlucia.json
+          python3 scripts/validate_country_map_v6.py data/countries/stlucia.json
+          python3 scripts/audit_country_image_delivery_targeted.py --slug stlucia
+          python3 scripts/validate_images.py --mode audit --slug stlucia
+          python3 scripts/validate_production_state_routed.py
+      - name: Commit only Country relocation and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/migrate-stlucia-asset-path-once.yml
+          git add data/countries/stlucia.json ops/country-production/stlucia.json assets/images/saintlucia assets/images/stlucia
+          git diff --cached --name-status
+          git commit -m 'Use canonical stlucia asset path without raster regeneration'
+          git push origin HEAD:country/saintlucia-recovery-clean-v3
