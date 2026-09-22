@@ -17,9 +17,9 @@
   },
   "map": {
     "bounds": {"north": 15.94, "south": 15.04, "west": -61.67, "east": -61.06},
-    "svg": "assets/images/dominica/map-atlas-v1.svg",
+    "svg": "assets/images/dominica/map-atlas-v2.svg",
     "route": null,
-    "source": "Map candidate, not yet rendered or QA-approved. Verified administrative boundary metadata: geoBoundaries gbOpen DMA ADM0, boundaryID DMA-ADM0-26965486, represented year 2005, source geoBoundaries/Wikimedia Commons, license CC BY 2.5, https://www.geoboundaries.org/api/current/gbOpen/DMA/ADM0/ ; actual geometry https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DMA/ADM0/geoBoundaries-DMA-ADM0.geojson . Build with scripts/generate_country_map_with_context.py and true nearby land on 1200×760, verify coastline, alignment, marker collisions and complete SVG decode before approval. Coordinates WGS84. Candidate checked 2026-09-19."
+    "source": "Dominica administrative identity from Natural Earth 1:10m Admin-0 DMA, public domain, via LonnyGomes/CountryGeoJSONCollection geojson/DMA.geojson. The target single-island physical coastline is refined from real WGS84 GSHHG/GSHHS intermediate shoreline segment 389 distributed with Basemap 2.0.0; GSHHG v2.3.7 (2017), Wessel and Smith, LGPL v3 or later, https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html . Nearby island context also from GSHHS intermediate. ADM0 identifies and confirms the country; GSHHS is used for the shoreline only, never to infer a land-border identity. Map projection local-equirectangular-fit-v1, 1200x760. All eight real scene coordinates independently checked against the rendered geographic geometry (coastal tolerance 4px), SVG full render/decode checked 2026-09-22."
   },
   "scenes": [
     {"id":"boiling-lake","name":"ボイリング・レイク / 火山の湖","nameLocal":"Boiling Lake","mapLabel":"Boiling Lake","description":"モルヌ・トロワ・ピトン国立公園の山中。深い谷を歩いた先に灰色がかった湖面と立ちのぼる蒸気が現れ、島の地下にある熱を地表で感じる。","coordinates":{"latitude":15.31841,"longitude":-61.29443},"image":"assets/images/dominica/approved/scene-1.webp","mapOffset":{"x":2.93,"y":-0.25}},
@@ -115,7 +115,7 @@
   ],
   "updatedAt":"2026-09-19",
   "sourcesVerifiedAt":"2026-09-19",
-  "sourceDates":{"population":"2025","area":"2025","profile":"2025-05-27","religion":"2011","unesco":"1997","climate":"2026-09-19","trail":"2026-09-19","kalinago":"2026-09-19","geometry":"2005","coordinates":"2026-09-19","ferry":"2026-09-19","food":"2026-09-19","whales":"2026-09-19"},
+  "sourceDates":{"population":"2025","area":"2025","profile":"2025-05-27","religion":"2011","unesco":"1997","climate":"2026-09-19","trail":"2026-09-19","kalinago":"2026-09-19","geometry":"2017","coordinates":"2026-09-19","ferry":"2026-09-19","food":"2026-09-19","whales":"2026-09-19"},
   "sources": {
     "population":"World Bank, Dominica population total 65,871 (2025 estimate), checked 2026-09-19. https://data.worldbank.org/country/dominica",
     "area":"UNData Dominica country profile, area 750 km², 2025 table, checked 2026-09-19. https://data.un.org/en/iso/dm.html",
@@ -125,7 +125,7 @@
     "climate":"Dominica Meteorological Service, Climate: dry Dec-May, wet Jun-Nov; local orographic rainfall variation; checked 2026-09-19. https://www.weather.gov.dm/climate ; official hurricane season June 1–November 30: https://www.weather.gov.dm/",
     "trail":"Waitukubuli National Trail official FAQ, 14 segments from Scott's Head to Cabrits, access and pass subject to current confirmation. https://waitukubulitrail.dm/resources/faq/ ; Dominica Forestry tourism site segments: https://sitepass.forestry.gov.dm/",
     "kalinago":"Government of Dominica Division of Culture, Kalinago Barana Autê at Salybia, craft, canoe, visitor practices. https://www.divisionofculture.gov.dm/culture2/cultural-institutions-and-groups/10-kalinago-barana-aute",
-    "geometry":"geoBoundaries API gbOpen DMA ADM0: year represented 2005, boundaryID DMA-ADM0-26965486, source geoBoundaries/Wikimedia Commons, CC BY 2.5. https://www.geoboundaries.org/api/current/gbOpen/DMA/ADM0/ ; GeoJSON https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/DMA/ADM0/geoBoundaries-DMA-ADM0.geojson . Source identified, final map rendering/QA pending.",
+    "geometry":"Natural Earth 1:10m Admin-0 DMA, public domain, https://github.com/LonnyGomes/CountryGeoJSONCollection/blob/main/geojson/DMA.geojson ; shoreline and surrounding islands: GSHHG/GSHHS intermediate WGS84 coastline, Wessel and Smith (1996), dataset version 2.3.7 (2017), LGPL v3 or later, https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html ; independently verified near-shore Kalinago village coordinates from OpenStreetMap node 3663484602 and the Dominica Division of Culture, checked 2026-09-22. National identity from Natural Earth ADM0; GSHHS alone does not identify international borders. Rendered v2 verified 1200x760 with eight real scene points, checked 2026-09-22.",
     "coordinates":"OpenStreetMap point locations as indexed by Mapcarta, checked 2026-09-19: https://mapcarta.com/W222116259 (Boiling Lake); https://mapcarta.com/N1912911656 (Emerald Pool); https://mapcarta.com/W750939951 (Fort Shirley); https://mapcarta.com/N4650862491 (Champagne Reef); https://mapcarta.com/W157617070 (Batibou Bay); https://mapcarta.com/W361451994 (Roseau Old Market). Kalinago, Indian River, Scotts Head and capital require final feature-point cross-check during map QA.",
     "ferry":"FRS Express des Îles, Dominica timetables 2026: Roseau–Fort-de-France and Roseau–Pointe-à-Pitre representative international passenger links; operating days vary, no fare/timetable guarantees. https://www.frs-express.com/en/timetable-rates/dominica-timetables-fares",
     "food":"Discover Dominica Authority, A Taste of the Island, callaloo soup, crab back, codfish sancoche, traditional Kalinago cassava bread; checked 2026-09-19. https://legacy.discoverdominica.com/en/posts/42/a-taste-of-the-island-dominicas-delicious-culinary-experiences",
