@@ -26,23 +26,34 @@ def targets(svg: str):
             if node.attrib.get("fill") == "url(#land)"]
 
 
-for slug in ("iceland", "portugal", "unitedstates", "kuwait"):
+for slug in ("iceland", "portugal", "unitedstates", "kuwait", "qatar"):
     country_file = ROOT / "data" / "countries" / f"{slug}.json"
     country = json.loads(country_file.read_text(encoding="utf-8"))
     source_file = ROOT / country["map"]["svg"]
     assert source_file.is_file(), source_file
-    source = source_file.read_text(encoding="utf-8")
+    original_bytes = source_file.read_bytes()
+    source = original_bytes.decode("utf-8")
     output = OUTPUT / f"{slug}.svg"
-    command = [sys.executable, str(ROOT / "scripts" / "add_country_map_context.py"),
-               "--country-json", str(country_file), "--input", str(source_file),
-               "--output", str(output)]
-    subprocess.run(command, check=True)
-    preview = output.read_text(encoding="utf-8")
+    original_root = ET.fromstring(source)
+    already_context = original_root.find(f".//*[@id='geographic-context']") is not None
+    if already_context:
+        # An individually reviewed source is itself the preview. Never try to insert
+        # context twice or regenerate/alter its approved target and adjacent land.
+        output.write_bytes(original_bytes)
+    else:
+        command = [sys.executable, str(ROOT / "scripts" / "add_country_map_context.py"),
+                   "--country-json", str(country_file), "--input", str(source_file),
+                   "--output", str(output)]
+        subprocess.run(command, check=True)
+    preview_bytes = output.read_bytes()
+    preview = preview_bytes.decode("utf-8")
+    if already_context:
+        assert preview_bytes == original_bytes, f"Reviewed context changed: {slug}"
     assert targets(source) == targets(preview), f"Approved geometry changed: {slug}"
     root = ET.fromstring(preview)
     assert root.attrib["viewBox"] == "0 0 1200 760"
     assert root.find(f".//*[@id='geographic-context']") is not None, f"Missing context: {slug}"
-    png = cairosvg.svg2png(bytestring=preview.encode("utf-8"), output_width=1200, output_height=760)
+    png = cairosvg.svg2png(bytestring=preview_bytes, output_width=1200, output_height=760)
     with Image.open(io.BytesIO(png)) as image:
         image.load()
         assert image.size == (1200, 760)
@@ -50,9 +61,10 @@ for slug in ("iceland", "portugal", "unitedstates", "kuwait"):
     (OUTPUT / f"{slug}.png").write_bytes(png)
     REPORT.append({"slug": slug, "map": str(country["map"]["svg"]),
                    "regions": [region["id"] for region in country["map"].get("regions", [])],
-                   "source_bytes": len(source.encode("utf-8")),
-                   "preview_bytes": len(preview.encode("utf-8")),
+                   "source_bytes": len(original_bytes),
+                   "preview_bytes": len(preview_bytes),
                    "approved_paths": len(targets(source)), "png_bytes": len(png),
+                   "action": "preserve-reviewed-existing-context" if already_context else "generate-preview-context",
                    "status": "PARSE_DECODE_TARGET_GEOMETRY_PASS; visual QA still required"})
 
 REPORT_FILE = OUTPUT / "report.json"
