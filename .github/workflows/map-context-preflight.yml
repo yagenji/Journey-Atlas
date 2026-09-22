@@ -17,6 +17,7 @@ on:
       - 'tests/test_map_context_region_frames.py'
       - 'tests/smoke_map_context_real.py'
       - 'tests/diagnose_map_context_blockers.py'
+      - 'tests/diagnose_portugal_spain_source.py'
       - 'tests/qa_map_source_credit.py'
       - 'assets/js/map-source-credit.js'
       - 'country.html'
@@ -54,6 +55,16 @@ jobs:
         run: python tests/smoke_map_context_real.py
       - name: Diagnose legacy-map source structures
         run: python tests/diagnose_map_context_blockers.py
+      - name: Compare Portugal and Spain same-source country geography (disposable)
+        run: python tests/diagnose_portugal_spain_source.py
+      - name: Save Portugal-Spain geographic comparison before long browser run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portugal-spain-natural-earth-comparison
+          path: /tmp/journey-atlas-portugal-spain-diagnostic/
+          if-no-files-found: warn
+          retention-days: 3
       - name: Exercise completed-Country batch stager outside repository
         run: |
           rm -rf /tmp/journey-atlas-map-context-rollout-stage
