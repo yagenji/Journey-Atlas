@@ -307,8 +307,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DEPLOYING",
+    "url": "https://atlas.yagenji.com/countries/stlucia/",
+    "productionVerification": "PENDING",
+    "atlasPublished": false
   },
   "finalApproval": {
     "state": "PENDING"
@@ -556,7 +558,7 @@
     }
   ],
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "VERIFY_CANONICAL_REVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2
