@@ -133,6 +133,56 @@ def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
     return result
 
 
+def remove_reviewed_portugal_ocean_self_land(svg: str, config: dict, source: Path, resolution: str) -> str:
+    """Discard only duplicate own-island GSHHG paths in two ocean-only insets.
+
+    The fixed WGS84 viewports include the Portuguese Azores and Madeira islands,
+    not foreign land. Native-size mask review found the added inset context
+    overlaps the approved islands (Azores 747/781 px; Madeira 105/153 px);
+    the remainder is a source-vintage halo, not independently verified land.
+    Keep all original target paths, mainland Spain context and three inset frames.
+    This historic-map migration correction fails closed on source/bounds changes.
+    """
+    original = source.read_bytes()
+    git_blob = hashlib.sha1(f'blob {len(original)}\0'.encode() + original).hexdigest()
+    if git_blob != '99af7a02646ec33a5ebc093f64bc13edeaaa8646' or resolution != 'i':
+        raise ValueError('Portugal approved source or GSHHG resolution changed; re-review ocean insets')
+    regions = config.get('map', {}).get('regions') or []
+    expected = {
+        'mainland': ({'north': 42.3, 'south': 36.8, 'west': -9.7, 'east': -6},
+                     {'x': 520, 'y': 35, 'width': 430, 'height': 690}),
+        'azores': ({'north': 40, 'south': 36.7, 'west': -31.5, 'east': -24.4},
+                   {'x': 40, 'y': 80, 'width': 380, 'height': 260}),
+        'madeira': ({'north': 33.2, 'south': 32.4, 'west': -17.4, 'east': -15.6},
+                    {'x': 95, 'y': 500, 'width': 300, 'height': 170}),
+    }
+    if len(regions) != 3 or {r['id']: (r['bounds'], r['rect']) for r in regions} != expected:
+        raise ValueError('Portugal region geography changed; review against approved source')
+    before = ET.fromstring(svg)
+    if before.get('viewBox') != '0 0 1200 760':
+        raise ValueError('Portugal map canvas changed')
+    approved = [dict(p.attrib) for p in before.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
+    if len(approved) != 15:
+        raise ValueError('Portugal approved national paths changed')
+    paths = [p.get('data-map-context-region') for p in before.iter(SVG_NS + 'path')
+             if p.get('data-map-context-region')]
+    if sorted(paths) != ['azores', 'madeira', 'mainland']:
+        raise ValueError('Portugal context region set changed')
+    for identifier in ('azores', 'madeira'):
+        pattern = re.compile(r'<path\b(?=[^>]*\bdata-map-context-region="' + identifier + r'")[^>]*/>')
+        svg, removed = pattern.subn('', svg)
+        if removed != 1:
+            raise ValueError(f'Expected one separate generated {identifier} context path')
+    after = ET.fromstring(svg)
+    if [dict(p.attrib) for p in after.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)'] != approved:
+        raise ValueError('Portugal migration changed approved national land paths')
+    retained = [p.get('data-map-context-region') for p in after.iter(SVG_NS + 'path')
+                if p.get('data-map-context-region')]
+    if retained != ['mainland']:
+        raise ValueError('Portugal mainland context was not preserved')
+    return svg
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--country-json", required=True, type=Path)
@@ -156,6 +206,8 @@ def main():
     clarified = frame_unframed_region_context(filtered, data.get("map", {}).get("regions"))
     if slug == 'bahrain':
         clarified = reconcile_reviewed_bahrain_hawar(clarified, args.resolution)
+    if slug == 'portugal':
+        clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
     if clarified != preview:
         args.output.write_text(clarified, encoding="utf-8")
     print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings")
