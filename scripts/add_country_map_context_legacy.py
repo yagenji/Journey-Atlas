@@ -288,7 +288,6 @@ def _qatar(svg: str, config: dict, resolution: str) -> str:
         rb = _bounds(region["bounds"])
         rect = _rect(region["rect"])
         x, y, w, h = rect
-        d = core.make_context_path(_split_context_geometry(core.canvas_bounds(rb, rect), resolution), rb, 0.003, rect)
         pattern = re.compile(r'(<g\b[^>]*clip-path="url\(#[^)]+\)"[^>]*>\s*<rect\b[^>]*x="' + re.escape(_fmt(x)) + r'"[^>]*y="' + re.escape(_fmt(y)) + r'"[^>]*width="' + re.escape(_fmt(w)) + r'"[^>]*height="' + re.escape(_fmt(h)) + r'"[^>]*/>)')
         match = pattern.search(svg)
         if not match:
@@ -296,9 +295,12 @@ def _qatar(svg: str, config: dict, resolution: str) -> str:
         existing = match.group(1)
         if 'fill="#e7eeee"' in existing:
             existing = existing.replace('fill="#e7eeee"', f'fill="{SEA[1]}"', 1)
-        layer = (f'<path data-map-context-legacy="{rid}" d="{d}" fill="{core.CONTEXT_FILL}" fill-rule="evenodd" '
-                 f'stroke="{core.CONTEXT_STROKE}" stroke-width="1" stroke-linejoin="round"/>')
-        svg = svg[:match.start()] + existing + layer + svg[match.end():]
+        # This reviewed Doha urban zoom is entirely inside Qatar. GSHHG land
+        # sampled here is Qatar itself, not a foreign neighbor; its coastline
+        # vintage conflicts with the preserved, approved inset shoreline.
+        if rid != "doha-core":
+            raise ValueError("Unreviewed Qatar inset; geographical QA required")
+        svg = svg[:match.start()] + existing + svg[match.end():]
     return svg
 
 
