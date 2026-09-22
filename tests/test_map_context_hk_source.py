@@ -42,8 +42,19 @@ class HongKongSourceReview(unittest.TestCase):
         ctx=after.find('.//*[@id="geographic-context"]')
         self.assertIsNotNone(ctx)
         self.assertIn('OpenStreetMap', ''.join(ctx.itertext()))
-        self.assertEqual([p.get('d') for p in ctx.iter(NS+'path')],
+        # The clip is generated context, not an extra approved source path.
+        self.assertEqual([p.get('d') for p in ctx.findall(NS+'path')],
                          [pinned_mainland_path()])
+        clip=ctx.find(NS+'clipPath')
+        self.assertIsNotNone(clip)
+        self.assertEqual(clip.get('id'),'hong-kong-foreign-only')
+        self.assertEqual(len(clip.findall(NS+'path')),1)
+        self.assertEqual(clip.find(NS+'path').get('d'),
+                         'M 0,0 L 1200,0 L 1200,760 L 0,760 Z '
+                         + ' '.join(p['d'] for p in approved(src)))
+        # The generated clip must not appear among the original map paths.
+        from audit_map_context_inventory import original_paths
+        self.assertEqual(original_paths(after),original_paths(before))
         output=cairosvg.svg2png(bytestring=updated.encode(),
                                output_width=1200,output_height=760)
         with Image.open(io.BytesIO(output)) as image:
