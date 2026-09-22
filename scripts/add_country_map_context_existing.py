@@ -20,6 +20,7 @@ from xml.etree import ElementTree as ET
 import add_country_map_context_legacy as legacy
 from filter_duplicate_target_context import remove_target_land_context
 from reconcile_brunei_foreign import reconcile as reconcile_brunei_foreign
+from reconcile_hong_kong_foreign import reconcile as reconcile_hong_kong_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_NS = '{http://www.w3.org/2000/svg}'
@@ -253,6 +254,8 @@ def main():
         clarified = reconcile_reviewed_bahrain_hawar(clarified, args.resolution)
     if slug == 'brunei':
         clarified = reconcile_brunei_foreign(clarified, args.input, args.resolution)
+    if slug == 'hong-kong':
+        clarified = reconcile_hong_kong_foreign(clarified, args.input, args.resolution)
     if slug == 'portugal':
         clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
         clarified = reconcile_reviewed_portugal_spain_coast(clarified, args.input, args.resolution)
