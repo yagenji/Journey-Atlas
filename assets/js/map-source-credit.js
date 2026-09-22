@@ -15,7 +15,8 @@
     const url = new URL(rawUrl, document.baseURI);
     if (url.origin !== location.origin || !/\.svg$/i.test(url.pathname)) return;
 
-    fetch(url.href, { cache: 'no-store' })
+    // Reuse the image's HTTP cache where possible: never bypass it just for credit.
+    fetch(url.href)
       .then((response) => {
         if (!response.ok) throw new Error('Map SVG provenance unavailable');
         return response.text();
