@@ -8,8 +8,10 @@ production assets; callers must provide a new output path.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -19,6 +21,52 @@ import add_country_map_context_legacy as legacy
 from filter_duplicate_target_context import remove_target_land_context
 
 ROOT = Path(__file__).resolve().parents[1]
+SVG_NS = '{http://www.w3.org/2000/svg}'
+
+
+def reconcile_reviewed_bahrain_hawar(svg: str, resolution: str) -> str:
+    """Keep verified Qatar land, not the GSHHG duplicates of Bahrain's Hawar.
+
+    Native 1200×760 source reconciliation compared all five Hawar GSHHG rings
+    with the approved Qatar national path transformed using both Country maps'
+    unchanged WGS84 projection/rects. Only rings 1–2 match Qatar: Hausdorff
+    distance <=0.21 SVG px and >99.9% polygon overlap. Rings 3–5 do not touch
+    Qatar and overlap the approved Hawar shapes (77%, 68%, 12% respectively).
+    Exact source/path checks deliberately fail closed if the geometry changes;
+    this does NOT authorize editing either country's approved national paths.
+    """
+    if resolution != 'i':
+        raise ValueError('Reviewed Hawar geometry requires intermediate GSHHG resolution')
+    digest = lambda value: hashlib.sha256(value.encode('utf-8')).hexdigest()
+    qatar = ET.fromstring((ROOT / 'assets/images/qatar/map-atlas-v1.svg').read_text(encoding='utf-8'))
+    qatar_land = [p for p in qatar.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
+    if (len(qatar_land) != 2 or digest(qatar_land[0].get('d', ''))
+            != '4b52e0846f789da8fa8587457b2bb6d566f17f93f81203f032f81d62e47a38bd'):
+        raise ValueError('Approved Qatar source changed; recheck Hawar land attribution')
+    original = ET.fromstring(svg)
+    approved = [p.get('d') for p in original.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
+    if (len(approved) != 2 or digest(approved[1])
+            != '76260d123f7ff16fa79cb47d81fe6f5363730a77b3592f700e30af17b79e501a'):
+        raise ValueError('Approved Bahrain Hawar source changed; recheck geometry')
+    pattern = re.compile(r'(<path\s+data-map-context-legacy="hawar"\s+d=")([^"]+)("[^>]*/>)')
+    matches = list(pattern.finditer(svg))
+    if (len(matches) != 1 or digest(matches[0].group(2))
+            != 'fd53b089230739e2a8b38670510635cd4762001c1df28bf6cea21e7adba522ac'):
+        raise ValueError('Generated Hawar context changed; independent geographic review needed')
+    rings = [part for part in re.split(r'(?=\bM\s)', matches[0].group(2)) if part.strip()]
+    verified_qatar = (
+        '148f9e7f1adf9f6f7cb2e9a094529822c419b3358783a57046ca05276bda0c0d',
+        'fc1b95a745eabc293ffe4a3241daeaca0ff4afc222b39f5afd5cc5c1f5f0f036',
+    )
+    if len(rings) != 5 or tuple(digest(ring) for ring in rings[:2]) != verified_qatar:
+        raise ValueError('Hawar foreign land no longer matches reviewed Qatar source')
+    # Replace only generated context's path data, never the national shapes.
+    reviewed = svg[:matches[0].start(2)] + ''.join(rings[:2]).strip() + svg[matches[0].end(2):]
+    changed = ET.fromstring(reviewed)
+    after = [p.get('d') for p in changed.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
+    if after != approved:
+        raise ValueError('Reviewed Hawar context changed an approved national path')
+    return reviewed
 
 
 def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
@@ -106,6 +154,8 @@ def main():
     preview = args.output.read_text(encoding="utf-8")
     filtered, removed = remove_target_land_context(preview)
     clarified = frame_unframed_region_context(filtered, data.get("map", {}).get("regions"))
+    if slug == 'bahrain':
+        clarified = reconcile_reviewed_bahrain_hawar(clarified, args.resolution)
     if clarified != preview:
         args.output.write_text(clarified, encoding="utf-8")
     print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings")
