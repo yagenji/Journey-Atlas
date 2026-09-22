@@ -67,7 +67,10 @@ jobs:
           assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
           assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
-          print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit']})
+          assert all(e['geographicQaStatus'] == 'HOLD' and e['promotionEligible'] is False
+                     for e in data['entries']), 'Staging output is not geographic QA approval'
+          print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit'],
+                 'promotionEligible': False})
           PY
       - name: Substitute staged SVGs in this disposable runner only
         run: |
