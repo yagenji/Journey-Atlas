@@ -79,22 +79,22 @@ def reconcile(svg: str, source_path: Path, resolution: str) -> str:
     new = pinned_mainland_path()
     if svg.count('d="' + old + '"') != 1 or svg.count('</defs>') != 1:
         raise ValueError('Unexpected HK context SVG markup')
-    # Exclude all original approved HK land from added foreign mainland, keeping
-    # contiguous Shenzhen land where the independent OSM coastline supports it.
+    # Exclude approved HK land from foreign mainland, preserving source coastline.
+    # Place the generated clip *inside geographic-context*, not the root defs:
+    # inventory treats every path outside that group as approved national geometry.
     clip = ('<clipPath id="hong-kong-foreign-only" clipPathUnits="userSpaceOnUse">'
             '<path fill-rule="evenodd" clip-rule="evenodd" d="'
             'M 0,0 L 1200,0 L 1200,760 L 0,760 Z '
             + ' '.join(p['d'] for p in before) + '"/></clipPath>')
-    output = svg.replace('</defs>', clip + '</defs>', 1)
     group = '<g id="geographic-context">'
     note = ('<desc>Shenzhen and Pearl River Delta mainland coast: OpenStreetMap '
             'natural=coastline, contributors, ODbL 1.0; Overpass source snapshot '
             'SHA-256 ' + OSM_SNAPSHOT_SHA + '; WGS84; 0.6 SVG-px source-line '
             'simplification, fixed 1200x760 projection. Approved Hong Kong '
             'national paths unchanged. https://www.openstreetmap.org/copyright</desc>')
-    if output.count(group) != 1:
+    if svg.count(group) != 1:
         raise ValueError('HK context group changed')
-    output = output.replace(group, group + note, 1)
+    output = svg.replace(group, group + clip + note, 1)
     output = output.replace('d="' + old + '"',
                             'clip-path="url(#hong-kong-foreign-only)" d="' + new + '"', 1)
     checked = ET.fromstring(output)
