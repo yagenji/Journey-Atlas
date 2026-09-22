@@ -5,6 +5,10 @@ Read-only with respect to production assets. The command derives its roster from
 the canonical destination registry plus Country Production State, generates each
 map into a new staging directory, and records source/output hashes in a manifest.
 It never changes Country JSON, Production State, publication flags, or source SVGs.
+
+A staged technical preview is NEVER geographic approval or a promotion allowlist.
+Every manifest entry is marked geographicQaStatus=HOLD and promotionEligible=false
+until separate independent, per-map geography/source/license QA is documented.
 """
 from __future__ import annotations
 
@@ -122,11 +126,15 @@ def main():
             "sourceSha256": sha256(source),
             "stagedSha256": sha256(staged),
             "stagedBytes": staged.stat().st_size,
+            # A preserved image or a technically valid preview is NOT source-backed
+            # geographic QA. Do not infer approvals from the staging action.
+            "geographicQaStatus": "HOLD",
+            "promotionEligible": False,
         })
     manifest_path = output / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Staged {len(roster)} Country maps outside the repository: {output}")
-    print(f"Manifest: {manifest_path}")
+    print(f"Manifest: {manifest_path}; all entries geographic QA HOLD / NOT PROMOTABLE")
 
 
 if __name__ == "__main__":
