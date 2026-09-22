@@ -23,11 +23,23 @@
   object-position: center;
 }
 
-/* Dominica's approved 3:2 Taste illustrations need a little more breathing room
-   inside the shared frame so the complete bowls, shells and flatbread remain visible. */
+/* Dominica's approved artwork needs visibly smaller dishes and the original
+   source aspect. Keep the complete image inside the unchanged 3:2 Taste frame;
+   never crop or scale the source beyond its natural proportions. */
+.taste-card__image:has(> .taste-card__img[src*="/dominica/approved/food-"]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+}
 .taste-card__img[src*="/dominica/approved/food-"] {
-  width: 88%;
-  height: 88%;
+  display: block;
+  flex: 0 1 auto;
+  width: 76%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: center;
   transform: none;
