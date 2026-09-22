@@ -90,7 +90,7 @@ jobs:
           p = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
           data = json.loads(p.read_text())
           assert data['selectedCount'] == len(data['entries']) and data['selectedCount'] > 0
-          assert len({e['slug'] for e in data['entries']) == data['selectedCount']
+          assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
           assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
           assert all(e['geographicQaStatus'] == 'HOLD' and e['promotionEligible'] is False
