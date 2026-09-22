@@ -9,13 +9,16 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
-from qa_published_browser import BASE_URL, ROOT, VIEWPORTS, make_driver, set_viewport, wait_for_country
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from qa_published_browser import BASE_URL, VIEWPORTS, make_driver, set_viewport, wait_for_country
 
 SAMPLES = ("singapore", "macau", "bahrain", "iceland")
 COPYRIGHT = "https://www.openstreetmap.org/copyright"
@@ -27,13 +30,15 @@ def expected_osm(slug: str) -> bool:
     source = str(country["map"].get("source") or "")
     root = ET.parse(ROOT / country["map"]["svg"]).getroot()
     context = next((g for g in root.iter(NS + "g") if g.get("id") == "geographic-context"), None)
-    desc = "".join(context.iter(NS + "desc").__next__().itertext()) if context is not None and any(True for _ in context.iter(NS + "desc")) else ""
-    return bool(re.search(r"OpenStreetMap|\bODbL\b", source + " " + desc, re.I))
+    description = next(context.iter(NS + "desc"), None) if context is not None else None
+    provenance = "".join(description.itertext()) if description is not None else ""
+    return bool(re.search(r"OpenStreetMap|\bODbL\b", source + " " + provenance, re.I))
 
 
 def main() -> None:
     expected = {slug: expected_osm(slug) for slug in SAMPLES}
     assert expected["singapore"] and expected["macau"] and expected["bahrain"], expected
+    assert not expected["iceland"], expected
     driver = make_driver()
     try:
         for slug in SAMPLES:
