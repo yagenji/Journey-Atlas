@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -66,12 +67,27 @@ class LegacyMapContextTests(unittest.TestCase):
             legacy._validate_region_rects([region(0, 0, 100, 100), region(50, 50, 100, 100)])
 
     def test_real_antigua_inset_removes_false_edge_wedge_without_changing_approved_paths(self):
-        source = ROOT / "assets/images/antiguabarbuda/map-atlas-v1.svg"
+        """Exercise the legacy adapter against the exact pre-migration source, not the promoted output."""
+        promoted = (ROOT / "assets/images/antiguabarbuda/map-atlas-v1.svg").read_text(encoding="utf-8")
+        marker = '<g id="geographic-context"><desc>'
+        self.assertEqual(promoted.count(marker), 1)
+        pre_context = promoted
+        for new, old in (("#eaf2f4", "#eef2ef"), ("#dcebf0", "#e4eceb"), ("#d0e3eb", "#dce7e7")):
+            self.assertEqual(pre_context.count('stop-color="' + new + '"'), 1)
+            pre_context = pre_context.replace('stop-color="' + new + '"', 'stop-color="' + old + '"', 1)
+        begin = pre_context.index('<g id="geographic-context"><desc>')
+        end = pre_context.index('</g>', begin) + len('</g>')
+        pre_context = pre_context[:begin] + pre_context[end + 1:]
+        # Reconstructed fixture must be identical to the source at the approved main baseline.
+        self.assertEqual(hashlib.sha256(pre_context.encode()).hexdigest(),
+                         "6501d8cbe95eb151ba05eee867cf81c69baa032031f4057b51148a7e56ba8939")
         country = ROOT / "data/countries/antiguabarbuda.json"
         with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "approved-original.svg"
+            source.write_text(pre_context, encoding="utf-8")
             output = Path(folder) / "antigua-preview.svg"
             legacy.generate(country, source, output, "i")
-            before = ET.fromstring(source.read_text(encoding="utf-8"))
+            before = ET.fromstring(pre_context)
             after = ET.fromstring(output.read_text(encoding="utf-8"))
             approved = lambda root: [ET.tostring(p) for p in legacy.core.approved_land_paths(root)[0]]
             self.assertTrue(approved(before))
