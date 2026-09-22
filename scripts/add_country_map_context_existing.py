@@ -19,6 +19,7 @@ from xml.etree import ElementTree as ET
 
 import add_country_map_context_legacy as legacy
 from filter_duplicate_target_context import remove_target_land_context
+from reconcile_brunei_foreign import reconcile as reconcile_brunei_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_NS = '{http://www.w3.org/2000/svg}'
@@ -60,7 +61,6 @@ def reconcile_reviewed_bahrain_hawar(svg: str, resolution: str) -> str:
     )
     if len(rings) != 5 or tuple(digest(ring) for ring in rings[:2]) != verified_qatar:
         raise ValueError('Hawar foreign land no longer matches reviewed Qatar source')
-    # Replace only generated context's path data, never the national shapes.
     reviewed = svg[:matches[0].start(2)] + ''.join(rings[:2]).strip() + svg[matches[0].end(2):]
     changed = ET.fromstring(reviewed)
     after = [p.get('d') for p in changed.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
@@ -83,14 +83,14 @@ def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
     ns = "{http://www.w3.org/2000/svg}"
     if any(el.tag == ns + "rect" and el.get("stroke") not in (None, "", "none")
            for el in root.iter()):
-        return svg  # Preserve existing U.S. and Kuwait inset frames.
+        return svg
     context = root.find(".//*[@id='geographic-context']")
     if context is None:
         return svg
     paths = [el for el in context.iter(ns + "path")
              if el.get("data-map-context-region") is not None]
     if not paths:
-        return svg  # Legacy composite paths do not expose individual region clips.
+        return svg
     expected = {item["id"] for item in regions}
     drawn = [el.get("data-map-context-region") for el in paths]
     if (len(expected) != len(regions) or len(paths) != len(regions)
@@ -251,6 +251,8 @@ def main():
     clarified = frame_unframed_region_context(filtered, data.get("map", {}).get("regions"))
     if slug == 'bahrain':
         clarified = reconcile_reviewed_bahrain_hawar(clarified, args.resolution)
+    if slug == 'brunei':
+        clarified = reconcile_brunei_foreign(clarified, args.input, args.resolution)
     if slug == 'portugal':
         clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
         clarified = reconcile_reviewed_portugal_spain_coast(clarified, args.input, args.resolution)
