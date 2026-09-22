@@ -23,6 +23,8 @@ MANIFEST = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
 COPYRIGHT = 'https://www.openstreetmap.org/copyright'
 NS = '{http://www.w3.org/2000/svg}'
 OSM = re.compile(r'OpenStreetMap|\bODbL\b', re.I)
+CAPTURE = {'singapore', 'macau', 'bahrain', 'iceland'}
+SCREENSHOTS = ROOT / 'qa-map-context-browser-output' / 'source-credit'
 
 
 def source_provenance(slug: str, map_ref: str) -> tuple[bool, bool]:
@@ -43,7 +45,7 @@ def main() -> None:
     entries = manifest['entries']
     assert len(entries) == manifest['selectedCount'] and len(entries) == len({row['slug'] for row in entries})
     attribution = {row['slug']: source_provenance(row['slug'], row['mapRef']) for row in entries}
-    assert all(slug in attribution for slug in ('singapore', 'macau', 'bahrain', 'iceland'))
+    assert all(slug in attribution for slug in CAPTURE)
     assert attribution['singapore'] == (True, False) and attribution['macau'] == (True, False), attribution
     assert attribution['bahrain'][0] and not attribution['iceland'][0], attribution
     osm_slugs = sorted(slug for slug, (osm, _) in attribution.items() if osm)
@@ -71,6 +73,9 @@ def main() -> None:
                     assert 'OpenStreetMap contributors' in credit.text and 'ODbL 1.0' in credit.text
                     assert driver.execute_script('const e=arguments[0],r=e.getBoundingClientRect();return r.width>60&&r.height>0&&getComputedStyle(e).visibility==="visible"', credit)
                     assert credit.get_attribute('tabindex') is None, f'{slug}/{name}: source link focus order changed'
+                if slug in CAPTURE:
+                    SCREENSHOTS.mkdir(parents=True, exist_ok=True)
+                    driver.find_element(By.CSS_SELECTOR, '.map-column').screenshot(str(SCREENSHOTS / f'{slug}-{name}.png'))
                 print(f'SOURCE CREDIT PASS {slug}/{name}: expected={expected}', flush=True)
     finally:
         driver.quit()
