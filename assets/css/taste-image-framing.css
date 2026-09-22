@@ -23,6 +23,16 @@
   object-position: center;
 }
 
+/* Dominica's approved 3:2 Taste illustrations need a little more breathing room
+   inside the shared frame so the complete bowls, shells and flatbread remain visible. */
+.taste-card__img[src*="/dominica/approved/food-"] {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
 /* Panama's approved 3:2 Taste illustrations include their own safe margins.
    Do not inset them again or expose a different card backing. */
 .taste-card__img[src*="/panama/approved/food0"] {
