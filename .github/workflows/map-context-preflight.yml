@@ -9,6 +9,7 @@ on:
       - 'scripts/filter_duplicate_target_context.py'
       - 'scripts/generate_country_map_with_context.py'
       - 'scripts/stage_map_context_rollout.py'
+      - 'scripts/review_hk_shenzhen.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_generate_country_map_with_context.py'
       - 'tests/test_filter_duplicate_target_context.py'
@@ -47,6 +48,7 @@ jobs:
             scripts/filter_duplicate_target_context.py \
             scripts/generate_country_map_with_context.py \
             scripts/stage_map_context_rollout.py \
+            scripts/review_hk_shenzhen.py \
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
@@ -54,6 +56,17 @@ jobs:
         run: python tests/smoke_map_context_real.py
       - name: Diagnose legacy-map source structures
         run: python tests/diagnose_map_context_blockers.py
+      - name: Hong Kong and Shenzhen source-backed preview (HOLD until independent QA)
+        continue-on-error: true
+        run: python scripts/review_hk_shenzhen.py --output-dir /tmp/journey-atlas-map-context-real-previews/hk-source
+      - name: Save Hong Kong source comparison before long browser run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hong-kong-shenzhen-source-review
+          path: /tmp/journey-atlas-map-context-real-previews/hk-source/
+          if-no-files-found: warn
+          retention-days: 3
       - name: Exercise completed-Country batch stager outside repository
         run: |
           rm -rf /tmp/journey-atlas-map-context-rollout-stage
