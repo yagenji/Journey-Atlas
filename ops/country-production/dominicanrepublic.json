@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "dominicanrepublic",
   "countryName": "DOMINICAN REPUBLIC",
-  "contentRef": "country/dominicanrepublic",
-  "stateRef": "country/dominicanrepublic",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-23T22:50:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "REVIEW",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-23T23:49:06+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/dominicanrepublic/approved/hero-los-haitises.webp",
@@ -192,15 +192,37 @@
     "asset": "assets/images/dominicanrepublic/map-atlas-v1.svg"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "integratedSha": "f019df789ee9bd9aa4c5fe8bf97e9d8b5074d244",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "f019df789ee9bd9aa4c5fe8bf97e9d8b5074d244",
+    "requiredChecks": {
+      "validate": "PASS",
+      "browser-qa": "PASS"
+    },
+    "viewports": [
+      "desktop",
+      "tablet",
+      "mobile"
+    ],
+    "liveBrowserQaRunId": 35876358601
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/dominicanrepublic/",
+    "productionVerification": "LIVE_BROWSER_QA_PASS",
+    "verifiedAt": "2026-09-23T23:49:06+09:00",
+    "verificationBasis": "Exact deployed merge SHA f019df789ee9bd9aa4c5fe8bf97e9d8b5074d244 and live Desktop/Tablet/Mobile unpublished-reviewable Browser QA run 35876358601 passed on September 23, 2026.",
+    "robots": "noindex,follow",
+    "sitemapListed": false,
+    "atlasPublished": false,
+    "linkedFromRegistry": false,
+    "pipelineVersion": 2
   },
   "finalApproval": {
     "state": "PENDING"
@@ -365,16 +387,16 @@
     "sceneBatchReviews": 1,
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
-    "reviewPackageIntegrations": 0,
+    "reviewPackageIntegrations": 1,
     "reviewPreviewDeployments": 0,
-    "preCanonicalMainIntegrations": 0,
+    "preCanonicalMainIntegrations": 1,
     "productionIntegrations": 0,
-    "browserQaCycles": 0,
+    "browserQaCycles": 1,
     "tasteBatchApprovedAt": "2026-09-22T21:49:00+09:00",
-    "canonicalReviewReadyAt": null
+    "canonicalReviewReadyAt": "2026-09-23T23:49:06+09:00"
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "recoveryMigrations": [
