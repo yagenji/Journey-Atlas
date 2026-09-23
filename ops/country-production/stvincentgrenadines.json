@@ -4,9 +4,9 @@
   "countryName": "ST. VINCENT & GRENADINES",
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
-  "phase": "ASSET_QA",
-  "stateRevision": 6,
-  "updatedAt": "2026-09-24T00:20:00+09:00",
+  "phase": "QA",
+  "stateRevision": 7,
+  "updatedAt": "2026-09-24T01:03:21+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
@@ -93,11 +93,20 @@
     "asset": "assets/images/stvincentgrenadines/map-atlas-v1.svg"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "completedAt": "2026-09-24T01:03:21+09:00",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "122e15919ba33b7544561273e3e864a607cd7ef3",
+    "checks": [
+      "publication-v2-targeted-validation",
+      "publication-v2-image-audit",
+      "publication-v2-desktop-tablet-mobile-browser-qa"
+    ]
   },
   "reviewDeployment": {
     "state": "NOT_STARTED",
@@ -209,10 +218,14 @@
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
-    "state": "NOT_STARTED",
-    "url": null,
-    "browserQa": "NOT_STARTED",
-    "deployedAt": null
+    "state": "DONE",
+    "url": "https://yagenji.github.io/Journey-Atlas/reviews/stvincentgrenadines/countries/stvincentgrenadines/",
+    "browserQa": "PASS",
+    "deployedAt": "2026-09-24T01:03:21+09:00",
+    "sourceCommit": "122e15919ba33b7544561273e3e864a607cd7ef3",
+    "runId": 35885652577,
+    "pipelineVersion": 2,
+    "mainBaseCommit": "8b0244145ca16fd8e5837645e06e78a89abc5eb6"
   },
   "productionMetrics": {
     "perImageApprovalPrompts": 0,
@@ -222,15 +235,15 @@
     "tasteBatchReviews": 0,
     "assetHandoffs": 0,
     "reviewPackageIntegrations": 0,
-    "reviewPreviewDeployments": 0,
+    "reviewPreviewDeployments": 1,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 0,
+    "browserQaCycles": 1,
     "tasteBatchApprovedAt": null,
-    "canonicalReviewReadyAt": null
+    "canonicalReviewReadyAt": "2026-09-24T01:03:21+09:00"
   },
   "next": {
-    "action": "RUN_ASSET_QA",
+    "action": "REVIEW_CANONICAL_URL",
     "asset": null
   },
   "publicationPipelineVersion": 2,
