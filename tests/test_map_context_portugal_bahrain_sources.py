@@ -32,7 +32,7 @@ def generate(slug, folder):
                     '--country-json', str(ROOT/'data/countries'/(slug+'.json')),
                     '--input', str(ROOT/config['map']['svg']), '--output', str(target),
                     '--resolution', 'i'], cwd=ROOT, check=True, timeout=180)
-    return config, ET.parse(target).getroot()
+    return config, ET.parse(target).getroot(), target.read_bytes()
 
 
 class GeographicSourceRegressions(unittest.TestCase):
@@ -41,23 +41,28 @@ class GeographicSourceRegressions(unittest.TestCase):
         self.assertEqual(hashlib.sha256(pinned.encode()).hexdigest(),
                          '2c475f224a4bea0b3c83deacc006edf6a121b8e896badd2b10dcfb91f09e7356')
         with tempfile.TemporaryDirectory() as temp:
-            config, final = generate('portugal',Path(temp))
+            config, final, rendered = generate('portugal',Path(temp))
         source = ET.parse(ROOT/config['map']['svg']).getroot()
         original = [dict(p.attrib) for p in source.iter(SVG+'path') if p.get('fill') == 'url(#land)']
         targets = [dict(p.attrib) for p in final.iter(SVG+'path') if p.get('fill') == 'url(#land)']
         self.assertEqual(len(targets), 15)
         self.assertEqual(targets, original)
         self.assertEqual(final.get('viewBox'), '0 0 1200 760')
+        self.assertEqual(hashlib.sha256(rendered).hexdigest(),
+                         'bf26342c6bcb7aa60312efe4997c1e6c9eaf31d4db930abbdcc15f77c4941ea3')
         context = next(g for g in final.iter(SVG+'g') if g.get('id')=='geographic-context')
         parts = [p for p in context.iter(SVG+'path') if p.get('data-map-context-region')]
         self.assertEqual([(p.get('data-map-context-region'),p.get('d')) for p in parts], [('mainland',pinned)])
         note = ''.join(context.itertext())
         self.assertIn('01ec685ca5739b63292e01380ff36287413508b5',note)
         self.assertIn('ce02dabb0ea17eba11923f78ed1525d8989c9b58',note)
+        frames = [r.get('data-map-context-frame') for r in final.iter(SVG+'rect')
+                  if r.get('data-map-context-frame')]
+        self.assertEqual(frames, ['mainland', 'azores', 'madeira'])
 
     def test_bahrain_western_land_is_connected_to_saudi_mainland(self):
         with tempfile.TemporaryDirectory() as temp:
-            config, final = generate('bahrain',Path(temp))
+            config, final, _ = generate('bahrain',Path(temp))
         original = ET.parse(ROOT/config['map']['svg']).getroot()
         self.assertEqual([dict(p.attrib) for p in original.iter(SVG+'path') if p.get('fill')=='url(#land)'],
                          [dict(p.attrib) for p in final.iter(SVG+'path') if p.get('fill')=='url(#land)'])
