@@ -5,60 +5,60 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "ASSET_QA",
-  "stateRevision": 5,
-  "updatedAt": "2026-09-24T00:17:00+09:00",
+  "stateRevision": 6,
+  "updatedAt": "2026-09-24T00:20:00+09:00",
   "hero": {
     "state": "NOT_STARTED",
-    "asset": "assets/images/stvincentgrenadines/hero.webp",
+    "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
     "contentId": "la-soufriere-volcano"
   },
   "scenes": [
     {
       "id": "S01",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-1.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-1.webp",
       "contentId": "fort-charlotte-kingstown"
     },
     {
       "id": "S02",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-2.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-2.webp",
       "contentId": "dark-view-falls"
     },
     {
       "id": "S03",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-3.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-3.webp",
       "contentId": "bequia-admiralty-bay"
     },
     {
       "id": "S04",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-4.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-4.webp",
       "contentId": "union-island-clifton"
     },
     {
       "id": "S05",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-5.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-5.webp",
       "contentId": "tobago-cays-horseshoe-reef"
     },
     {
       "id": "S06",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-6.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-6.webp",
       "contentId": "mayreau-salt-whistle"
     },
     {
       "id": "S07",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-7.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-7.webp",
       "contentId": "canouan-charlestown-bay"
     },
     {
       "id": "S08",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/scene-8.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/scene-8.webp",
       "contentId": "mustique-britannia-bay"
     }
   ],
@@ -66,25 +66,25 @@
     {
       "id": "FOOD01",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/food-1.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/food-1.webp",
       "contentId": "roasted-breadfruit-fried-jackfish"
     },
     {
       "id": "FOOD02",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/food-2.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/food-2.webp",
       "contentId": "fried-bake-saltfish"
     },
     {
       "id": "FOOD03",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/food-3.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/food-3.webp",
       "contentId": "callaloo-soup"
     },
     {
       "id": "FOOD04",
       "state": "NOT_STARTED",
-      "asset": "assets/images/stvincentgrenadines/food-4.webp",
+      "asset": "assets/images/stvincentgrenadines/approved/food-4.webp",
       "contentId": "ducana"
     }
   ],
@@ -205,7 +205,7 @@
     "expectedRasterCount": 13,
     "verifiedRasterCount": 13,
     "verifiedAt": "2026-09-24T00:12:00+09:00",
-    "verificationBasis": "Exact user-handoff raster set from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 is preserved without regeneration. Canonical copies were matched by Git blob identity before delivery normalization. Six 1536x1024 files (Scene 2, Scene 8, Food 1-4) were deterministically resized only to 1200x800 with no crop; all thirteen final delivery blobs are pinned by scripts/stvincent_closed_provenance_exception.py. Missing original generation UUIDs are intentionally not fabricated."
+    "verificationBasis": "Exact user-handoff raster set from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 is preserved without regeneration. Canonical copies were matched by Git blob identity before delivery normalization. All production rasters now live under approved/. Six original 1672x941 Scene deliveries were centered-cropped only to the required 3:2 frame and resized to 1200x800; two 1536x1024 Scenes and four 1536x1024 Taste images were resized to 1200x800 without crop. The Hero remains its preserved 1536x1024 delivery. Missing original generation UUIDs are intentionally not fabricated. Final delivery blobs are pinned by the closed-provenance validator."
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
