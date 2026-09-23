@@ -5,8 +5,8 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "QA",
-  "stateRevision": 7,
-  "updatedAt": "2026-09-24T01:03:21+09:00",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-24T01:05:00+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
@@ -109,8 +109,10 @@
     ]
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DEPLOYING",
+    "url": "https://atlas.yagenji.com/countries/stvincentgrenadines/",
+    "productionVerification": "PENDING",
+    "atlasPublished": false
   },
   "finalApproval": {
     "state": "PENDING"
@@ -243,7 +245,7 @@
     "canonicalReviewReadyAt": "2026-09-24T01:03:21+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "VERIFY_CANONICAL_REVIEW",
     "asset": null
   },
   "publicationPipelineVersion": 2,
