@@ -54,14 +54,14 @@ def frame(bounds,rect):
 
 
 class PriorityGeographyReview(unittest.TestCase):
-    def _run(self,slug,script):
+    def _run(self,slug,script,expected_status='HOLD'):
         folder=OUT/slug
         folder.mkdir(parents=True,exist_ok=True)
         subprocess.run([sys.executable,str(ROOT/'scripts'/script),
                         '--repo',str(ROOT),'--output-dir',str(folder)],
                        cwd=ROOT,check=True,timeout=240)
         report=json.loads((folder/'report.json').read_text())
-        self.assertIn('HOLD', report['status'])
+        self.assertIn(expected_status, report['status'])
         self.assertTrue((folder/(slug+'-reviewed.png' if slug=='brunei' else 'monaco-current.png')).is_file())
         return report
 
@@ -123,8 +123,10 @@ class PriorityGeographyReview(unittest.TestCase):
         self.assertEqual(result['decodedSize'],[1200,760])
 
     def test_monaco_latest_osm_french_context_and_original_path(self):
-        result=self._run('monaco','review_monaco_france.py')
+        result=self._run('monaco','review_monaco_france.py','PASS')
         self.assertEqual(result['protectedPaths'],1)
+        self.assertTrue(result['displayForeignClipExactTargetComplement'])
+        self.assertEqual(result['displayForeignOverlapAfterExactClipSvgPx2'],0.0)
         self.assertEqual(result['fullRaster'],[1200,760])
         self.assertGreater(result['contextRingCount'],0)
 

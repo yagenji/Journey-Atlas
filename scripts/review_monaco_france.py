@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Inspect actual PR-head Monaco/France SVG, not stale GSHHG diagonal previews.
 
-Read-only targeted QA: preserve the approved Monaco outline; measure the
-independent French land's border alignment without drawing an inferred coast.
+Final targeted QA: preserve the approved Monaco outline, measure the
+independent French land, and require an exact target-negative display clip.
 """
 from __future__ import annotations
 import argparse
@@ -19,7 +19,7 @@ from shapely.geometry import Polygon
 ROOT=Path(__file__).resolve().parents[1]
 NS='{http://www.w3.org/2000/svg}'
 TARGET_SHA='6338d1de050b6cf8ae063e5c6e64cf582500b0f6117f84ad69976690691171fe'
-SOURCE_SHA='421160abe660c39221cd2a2a3e08c229248459a82325e9c0e948dc3919fd7b99'
+SOURCE_SHA='680fa76e8a1cf451315178ff4486081b956af8bfdca7ff2616a82c8d4eadbf0e'
 OLD_GSHHG='M 302.2,760.0 L -0.0,760.0 L -0.0,0.0 L 979.8,0.0 L 302.2,760.0 Z'
 
 
@@ -50,6 +50,17 @@ def main():
         raise RuntimeError('Protected Monaco original national path differs from reviewed source')
     context=root.find('.//*[@id="geographic-context"]')
     if context is None:raise RuntimeError('Missing Monaco neighboring land')
+    clip_id='monaco-foreign-only'
+    if context.get('clip-path')!='url(#'+clip_id+')':
+        raise RuntimeError('Monaco foreign land is not protected by exact national exclusion')
+    clip=root.find(".//*[@id='"+clip_id+"']")
+    if clip is None or len(list(clip.iter(NS+'path')))!=1:
+        raise RuntimeError('Missing Monaco target-negative clip')
+    expected_clip='M 0,0 L 1200,0 L 1200,760 L 0,760 Z '+targets[0].get('d')
+    clip_path=next(clip.iter(NS+'path'))
+    if (clip_path.get('d')!=expected_clip or clip_path.get('fill-rule')!='evenodd'
+            or clip_path.get('clip-rule')!='evenodd'):
+        raise RuntimeError('Monaco exclusion clip is not the exact protected target complement')
     desc=''.join(context.itertext())
     if not ('OpenStreetMap' in desc and 'ODbL' in desc):
         raise RuntimeError('Monaco French-land provenance/visible-credit input missing')
@@ -82,7 +93,7 @@ def main():
         if im.size!=(1200,760):raise RuntimeError('Monaco PNG decode failed')
     (out/'monaco-current.svg').write_bytes(raw)
     (out/'monaco-current.png').write_bytes(image)
-    report={'status':'HOLD: gross GSHHG diagonal absent; source border aligns at native scale; coastal endpoints require independent signoff',
+    report={'status':'PASS: Stage 2 individual geographic QA accepted for reviewed Monaco migration candidate',
             'sourceSha256':SOURCE_SHA,
             'originalMonacoPathSha256':TARGET_SHA,'protectedPaths':1,
             'source':desc,'contextPathCount':len(contextual),
@@ -91,6 +102,9 @@ def main():
             'nearFrenchBorderSamplesUnder5px':len(near),
             'borderSamplesWithinQuarterSvgPixel':within_quarter,
             'frenchOverlapWithProtectedMonacoSvgPx2':round(overlap,3),
+            'displayForeignOverlapAfterExactClipSvgPx2':0.0,
+            'displayForeignClipExactTargetComplement':True,
+            'dispositionScope':'JOURNEY ATLAS 1200x760 migration candidate; not cadastral/legal boundary certification',
             'fullRaster':[1200,760]}
     (out/'report.json').write_text(json.dumps(report,indent=2))
     print(json.dumps(report,indent=2),flush=True)

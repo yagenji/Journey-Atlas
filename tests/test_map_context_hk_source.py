@@ -1,4 +1,4 @@
-"""One approved historic HK map, source-matched cross-border geography review."""
+"""Final source-guarded Stage 2 geography regression for Hong Kong/Shenzhen."""
 from __future__ import annotations
 import hashlib
 import io
@@ -18,6 +18,7 @@ from filter_duplicate_target_context import remove_target_land_context
 from reconcile_hong_kong_foreign import pinned_mainland_path, reconcile, PINNED_MAINLAND_SHA
 
 NS='{http://www.w3.org/2000/svg}'
+EXPECTED_CANDIDATE_SHA='4304be66e354d8906501ea6e51e31ed60cd93f5f38ee20c7b47a56d3c8e7641e'
 
 
 class HongKongSourceReview(unittest.TestCase):
@@ -41,7 +42,9 @@ class HongKongSourceReview(unittest.TestCase):
         self.assertEqual(after.get('viewBox'),'0 0 1200 760')
         ctx=after.find('.//*[@id="geographic-context"]')
         self.assertIsNotNone(ctx)
-        self.assertIn('OpenStreetMap', ''.join(ctx.itertext()))
+        note=''.join(ctx.itertext())
+        self.assertIn('OpenStreetMap', note)
+        self.assertIn('ODbL', note)
         # The clip is generated context, not an extra approved source path.
         self.assertEqual([p.get('d') for p in ctx.findall(NS+'path')],
                          [pinned_mainland_path()])
@@ -55,6 +58,9 @@ class HongKongSourceReview(unittest.TestCase):
         # The generated clip must not appear among the original map paths.
         from audit_map_context_inventory import original_paths
         self.assertEqual(original_paths(after),original_paths(before))
+        self.assertEqual(hashlib.sha256(updated.encode()).hexdigest(),
+                         EXPECTED_CANDIDATE_SHA,
+                         'Reviewed HK migration candidate changed; repeat geographic QA')
         output=cairosvg.svg2png(bytestring=updated.encode(),
                                output_width=1200,output_height=760)
         with Image.open(io.BytesIO(output)) as image:
