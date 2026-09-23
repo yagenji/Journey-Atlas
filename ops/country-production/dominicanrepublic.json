@@ -4,8 +4,8 @@
   "countryName": "DOMINICAN REPUBLIC",
   "contentRef": "main",
   "stateRef": "main",
-  "phase": "REVIEW",
-  "stateRevision": 6,
+  "phase": "COMPLETE",
+  "stateRevision": 7,
   "updatedAt": "2026-09-24T00:58:00+09:00",
   "hero": {
     "state": "APPROVED",
@@ -215,14 +215,11 @@
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/dominicanrepublic/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "verifiedAt": "2026-09-24T00:22:58+09:00",
-    "verificationBasis": "Exact deployed merge SHA c0776c942c8de9abd16f18046db6bb89923e70ed and live Desktop/Tablet/Mobile unpublished-reviewable Browser QA run 35880714571 passed after area comparison, Haiti onward-route and Saona/Beata map corrections.",
-    "robots": "noindex,follow",
-    "sitemapListed": false,
-    "atlasPublished": false,
-    "linkedFromRegistry": false,
-    "pipelineVersion": 2
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-24T00:22:58+09:00",
+    "prePublicationReviewBasis": "Exact deployed merge SHA c0776c942c8de9abd16f18046db6bb89923e70ed and live Desktop/Tablet/Mobile unpublished-reviewable Browser QA run 35880714571 passed after area comparison, Haiti onward-route and Saona/Beata map corrections."
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -230,8 +227,17 @@
     "approvalBasis": "User explicitly requested QA and formal publication after reviewing the corrected canonical Dominican Republic page on 2026-09-24."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-24T00:58:00+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/dominicanrepublic/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -398,7 +404,7 @@
     "canonicalReviewReadyAt": "2026-09-24T00:22:58+09:00"
   },
   "next": {
-    "action": "PUBLISH_COUNTRY",
+    "action": "NONE",
     "asset": null
   },
   "recoveryMigrations": [
@@ -460,5 +466,6 @@
       "status": "APPLIED",
       "appliedAt": "2026-09-23T22:50:00+09:00"
     }
-  ]
+  ],
+  "publicationPipelineVersion": 2
 }
