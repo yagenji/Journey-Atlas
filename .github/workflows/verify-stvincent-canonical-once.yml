@@ -1,0 +1,85 @@
+name: Verify Saint Vincent canonical review once
+
+on:
+  push:
+    branches:
+      - qa/stvincent-canonical-live-20260924
+    paths:
+      - ".github/workflows/verify-stvincent-canonical-once.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout canonical main
+        uses: actions/checkout@v4
+        with:
+          ref: c4deafef9f21256a09fb9a327095690ad56d2404
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser QA dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+      - name: Verify exact Cloudflare commit and unpublished discovery contract
+        env:
+          SITE_URL: https://atlas.yagenji.com
+          EXPECTED_SHA: c4deafef9f21256a09fb9a327095690ad56d2404
+          SLUG: stvincentgrenadines
+        shell: bash
+        run: |
+          set -euo pipefail
+          live_sha=""
+          for attempt in $(seq 1 60); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?stvincent=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
+            [ "$live_sha" != "$EXPECTED_SHA" ] || break
+            sleep 5
+          done
+          [ "$live_sha" = "$EXPECTED_SHA" ] || { echo "Cloudflare commit mismatch" >&2; exit 1; }
+          curl -fsS --retry 3 "$SITE_URL/countries/$SLUG/?qa=$GITHUB_RUN_ID" > /tmp/country.html
+          curl -fsS --retry 3 "$SITE_URL/sitemap.xml?qa=$GITHUB_RUN_ID" > /tmp/sitemap.xml
+          curl -fsS --retry 3 "$SITE_URL/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" > /tmp/registry.json
+          python3 - "$SLUG" <<'PY'
+          import json,sys
+          from html.parser import HTMLParser
+          from pathlib import Path
+          slug=sys.argv[1]
+          class Robots(HTMLParser):
+              def __init__(self): super().__init__(); self.values=[]
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if tag=="meta" and a.get("name","").lower()=="robots":
+                      self.values.append(a.get("content","").lower())
+          html=Path("/tmp/country.html").read_text()
+          p=Robots(); p.feed(html)
+          assert f'data-country="{slug}"' in html, "wrong Country page"
+          assert any("noindex" in x and "follow" in x for x in p.values), "missing noindex,follow"
+          assert f"/countries/{slug}/" not in Path("/tmp/sitemap.xml").read_text(), "unpublished Country entered sitemap"
+          reg=json.loads(Path("/tmp/registry.json").read_text())
+          row=next(x for x in reg["destinations"] if x.get("slug")==slug)
+          assert row.get("atlasPublished") is False
+          assert not row.get("href")
+          print("Canonical discovery contract PASS")
+          PY
+      - name: Run live desktop tablet mobile QA
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_SCOPE: unpublished-reviewable
+          QA_SLUGS: stvincentgrenadines
+          QA_OUT_DIR: qa-stvincent-live
+        run: python3 scripts/qa_published_browser.py
+      - name: Upload live QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stvincent-canonical-live-qa
+          path: qa-stvincent-live/
+          if-no-files-found: warn
+          retention-days: 7
