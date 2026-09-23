@@ -64,11 +64,8 @@ jobs:
           context_d,target_d=cm.group(1),tm.group(1)
           bodies=rings(context_d)
           geonames=[
-              ('Petit Rameau',-61.35916,12.63783),
-              ('Jamesby',-61.36064,12.62859),
-              ('Baradal',-61.35512,12.63454),
               ('Petit Bateau',-61.36096,12.63351),
-              ('Petit Tobac',-61.34868621826172,12.622833872865966),
+              ('Jamesby',-61.36064,12.62859),
           ]
           selected=set()
           report=[]
@@ -80,11 +77,11 @@ jobs:
                   ranked.append((p.distance(pt),i,p))
               dist,i,p=min(ranked,key=lambda x:x[0])
               # At this canvas scale 8 px is roughly 1.2 km; reject anything farther.
-              if dist>12:
+              if dist>2:
                   raise SystemExit(f'{name}: no high-resolution GSHHS island coastline near verified coordinate (distance={dist:.2f}px)')
               selected.add(i)
               report.append((name,i,dist))
-          if len(selected)<4:
+          if len(selected)!=2:
               raise SystemExit(f'Tobago Cays coastline selection collapsed unexpectedly: {report}')
           promoted=' '.join(chunk(bodies[i]) for i in sorted(selected))
           retained=' '.join(chunk(body) for i,body in enumerate(bodies) if i not in selected)
