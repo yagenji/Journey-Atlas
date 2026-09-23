@@ -118,5 +118,80 @@ class CanonicalImportAudit(unittest.TestCase):
             self.assertFalse(audit.canonical_slug_migration("commit", new_path, changed))
 
 
+
+class ClosedProvenanceCanonicalImportTest(unittest.TestCase):
+    def state(self):
+        return {
+            "slug": "stvincentgrenadines",
+            "productionProtocolId": "2.0",
+            "publicationPipelineVersion": 2,
+            "phase": "QA",
+            "imageGenerationPolicy": {"revision": 7},
+            "finalApproval": {"state": "PENDING"},
+            "publication": {"state": "DRAFT", "atlasPublished": False},
+            "reviewPreview": {
+                "state": "DONE",
+                "browserQa": "PASS",
+                "sourceCommit": "a" * 40,
+            },
+            "reviewDeployment": {
+                "state": "DEPLOYING",
+                "productionVerification": "PENDING",
+                "atlasPublished": False,
+                "url": "https://atlas.yagenji.com/countries/stvincentgrenadines/",
+            },
+            "assetHandoff": {
+                "state": "PASS",
+                "expectedRasterCount": 13,
+                "verifiedRasterCount": 13,
+            },
+            "map": {"state": "APPROVED"},
+            "preVisualBuild": {"state": "PASS"},
+            "sceneBatchReview": {"approval": "PENDING", "rounds": []},
+            "tasteBatchReview": {"approval": "PENDING", "rounds": []},
+            "closedProvenanceException": {"id": "exact-case"},
+            "hero": {"state": "NOT_STARTED"},
+            "scenes": [{"id": f"S{i:02d}", "state": "NOT_STARTED"} for i in range(1, 9)],
+            "taste": [{"id": f"FOOD{i:02d}", "state": "NOT_STARTED"} for i in range(1, 5)],
+        }
+
+    def test_exact_closed_provenance_import_needs_no_synthetic_uuid_or_batch_approval(self):
+        after = self.state()
+        source = copy.deepcopy(after)
+        country = {"slug": "stvincentgrenadines", "publicationPipelineVersion": 2}
+        registry = {"destinations": [{"slug": "stvincentgrenadines", "atlasPublished": False}]}
+        assets = [f"100644 blob deadbeef\tassets/images/stvincentgrenadines/approved/{i}.webp" for i in range(13)]
+
+        def fake_json(commit, path):
+            if commit == "a" * 40 and path == "ops/country-production/stvincentgrenadines.json":
+                return source
+            if commit == "import" and path == "data/countries/stvincentgrenadines.json":
+                return country
+            if commit == "import" and path == "data/atlas-destinations.json":
+                return registry
+            return None
+
+        with (
+            mock.patch.object(v7, "git_json", side_effect=fake_json),
+            mock.patch.object(v7, "validate_state_dict", return_value=[]),
+            mock.patch.object(audit, "immutable_assets", return_value=assets),
+            mock.patch.object(audit, "verified_closed_provenance_exception", return_value=True),
+        ):
+            self.assertTrue(
+                audit.canonical_import(
+                    "import", "ops/country-production/stvincentgrenadines.json", after
+                )
+            )
+
+    def test_closed_provenance_import_fails_closed_without_exact_helper(self):
+        after = self.state()
+        with mock.patch.object(audit, "verified_closed_provenance_exception", return_value=False):
+            self.assertFalse(
+                audit.canonical_import(
+                    "import", "ops/country-production/stvincentgrenadines.json", after
+                )
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

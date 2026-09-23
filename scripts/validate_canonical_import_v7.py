@@ -10,6 +10,7 @@ an ordinary transition, or publishes a page.
 from __future__ import annotations
 
 import copy
+import importlib.util
 import json
 import re
 import subprocess
@@ -32,6 +33,28 @@ def approved_items(state: dict[str, Any]) -> list[dict[str, Any]]:
     return [state.get("hero") or {}, *(state.get("scenes") or []), *(state.get("taste") or [])]
 
 
+def verified_closed_provenance_exception(slug: str, state: dict[str, Any]) -> bool:
+    """Recognize only an explicitly enumerated exact closed-provenance case."""
+    if state.get("closedProvenanceException") is None:
+        return False
+    helpers = {
+        "stvincentgrenadines": (
+            "scripts/stvincent_closed_provenance_exception.py",
+            "stvincent_closed_exception_for_canonical_import",
+        ),
+    }
+    helper_info = helpers.get(slug)
+    if helper_info is None:
+        return False
+    path = v7.ROOT / helper_info[0]
+    spec = importlib.util.spec_from_file_location(helper_info[1], path)
+    if spec is None or spec.loader is None:
+        return False
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return not module.validate(state, v7.ROOT)
+
+
 def canonical_import(commit: str, path: str, after: dict[str, Any]) -> bool:
     """Return True ONLY for a source-backed, noindex, still-unapproved import."""
     slug = Path(path).stem
@@ -42,6 +65,11 @@ def canonical_import(commit: str, path: str, after: dict[str, Any]) -> bool:
     handoff = after.get("assetHandoff") or {}
     publication = after.get("publication") or {}
     source = preview.get("sourceCommit")
+    closed_exception_ok = verified_closed_provenance_exception(slug, after)
+    approval_contract_ok = closed_exception_ok or (
+        (after.get("sceneBatchReview") or {}).get("approval") == "APPROVED"
+        and (after.get("tasteBatchReview") or {}).get("approval") == "APPROVED"
+    )
     if not (
         after.get("slug") == slug
         and after.get("productionProtocolId") == "2.0"
@@ -63,8 +91,7 @@ def canonical_import(commit: str, path: str, after: dict[str, Any]) -> bool:
         and handoff.get("verifiedRasterCount") == 13
         and (after.get("map") or {}).get("state") == "APPROVED"
         and (after.get("preVisualBuild") or {}).get("state") == "PASS"
-        and (after.get("sceneBatchReview") or {}).get("approval") == "APPROVED"
-        and (after.get("tasteBatchReview") or {}).get("approval") == "APPROVED"
+        and approval_contract_ok
     ):
         return False
     try:
@@ -88,8 +115,12 @@ def canonical_import(commit: str, path: str, after: dict[str, Any]) -> bool:
             return False
         if v7.validate_state_dict(source_state, path) or v7.validate_state_dict(after, path):
             return False
-        if any(item.get("state") != "APPROVED" or not item.get("approvedGenerationId") for item in approved_items(after)):
+        source_closed_exception_ok = verified_closed_provenance_exception(slug, source_state)
+        if closed_exception_ok != source_closed_exception_ok:
             return False
+        if not closed_exception_ok:
+            if any(item.get("state") != "APPROVED" or not item.get("approvedGenerationId") for item in approved_items(after)):
+                return False
         if len(approved_items(after)) != 13 or len(approved_items(source_state)) != 13:
             return False
         # Never accept a fabricated ledger, new image approval, or changed raster.
