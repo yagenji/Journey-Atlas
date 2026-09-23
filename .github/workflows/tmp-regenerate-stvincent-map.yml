@@ -16,8 +16,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install geographic dependencies
-        run: python -m pip install --disable-pip-version-check --quiet shapely basemap
-      - name: Generate verified detailed ADM0 map
+        run: python -m pip install --disable-pip-version-check --quiet shapely basemap basemap-data-hires
+      - name: Generate detailed ADM1 map and promote verified Tobago Cays coastlines
         shell: bash
         run: |
           set -euo pipefail
@@ -27,9 +27,75 @@ jobs:
             --source geoboundaries \
             --iso VCT \
             --admin-level ADM1 \
+            --context-resolution h \
             --map-name 'Saint Vincent and the Grenadines' \
             --output "$out"
-          test -s "$out"
+          python3 - "$out" <<'PY'
+          import json, math, re, sys
+          from pathlib import Path
+          from shapely.geometry import Point, Polygon
+
+          path=Path(sys.argv[1])
+          svg=path.read_text(encoding='utf-8')
+          country=json.loads(Path('data/countries/stvincentgrenadines.json').read_text(encoding='utf-8'))
+          b=country['map']['bounds']; west,south,east,north=(b[k] for k in ('west','south','east','north'))
+          W,H=1200,760
+          lon_scale=math.cos(math.radians((south+north)/2))
+          canvas=min(W/((east-west)*lon_scale), H/(north-south))
+          draw_w=(east-west)*lon_scale*canvas; draw_h=(north-south)*canvas
+          ox=(W-draw_w)/2; oy=(H-draw_h)/2
+          def project(lon,lat):
+              return (ox+(lon-west)*lon_scale*canvas, oy+(north-lat)*canvas)
+          def rings(d):
+              return re.findall(r'M\s*([^M]*?)\s*Z', d, re.S)
+          def chunk(body):
+              return 'M '+body.strip()+' Z'
+          def poly(body):
+              pts=[]
+              for xy in re.split(r'\s*L\s*', body.strip()):
+                  x,y=map(float,xy.strip().split(','))
+                  pts.append((x,y))
+              p=Polygon(pts)
+              return p.buffer(0) if not p.is_valid else p
+
+          cm=re.search(r'<g id="geographic-context"><path d="([^"]*)"',svg)
+          tm=re.search(r'<path d="([^"]+)" fill="url\(#land\)"',svg)
+          if not cm or not tm: raise SystemExit('Expected shared map paths not found')
+          context_d,target_d=cm.group(1),tm.group(1)
+          bodies=rings(context_d)
+          geonames=[
+              ('Petit Rameau',-61.35916,12.63783),
+              ('Jamesby',-61.36064,12.62859),
+              ('Baradal',-61.35512,12.63454),
+              ('Petit Bateau',-61.36096,12.63351),
+              ('Petit Tobac',-61.34868621826172,12.622833872865966),
+          ]
+          selected=set()
+          report=[]
+          for name,lon,lat in geonames:
+              pt=Point(*project(lon,lat))
+              ranked=[]
+              for i,body in enumerate(bodies):
+                  p=poly(body)
+                  ranked.append((p.distance(pt),i,p))
+              dist,i,p=min(ranked,key=lambda x:x[0])
+              # At this canvas scale 8 px is roughly 1.2 km; reject anything farther.
+              if dist>8:
+                  raise SystemExit(f'{name}: no high-resolution GSHHS island coastline near verified coordinate (distance={dist:.2f}px)')
+              selected.add(i)
+              report.append((name,i,dist))
+          if len(selected)<4:
+              raise SystemExit(f'Tobago Cays coastline selection collapsed unexpectedly: {report}')
+          promoted=' '.join(chunk(bodies[i]) for i in sorted(selected))
+          retained=' '.join(chunk(body) for i,body in enumerate(bodies) if i not in selected)
+          svg=svg.replace('d="'+context_d+'"','d="'+retained+'"',1)
+          svg=svg.replace('d="'+target_d+'"','d="'+target_d+' '+promoted+'"',1)
+          oldmeta=re.search(r'<metadata>(.*?)</metadata>',svg,re.S)
+          note=(oldmeta.group(1) if oldmeta else '') + '; Tobago Cays micro-island coastlines supplemented from GSHHS high resolution via Basemap, matched to GeoNames named-island coordinates; no invented geometry'
+          if oldmeta: svg=svg[:oldmeta.start(1)]+note+svg[oldmeta.end(1):]
+          path.write_text(svg,encoding='utf-8')
+          print('Promoted GSHHS components:',report)
+          PY
           cp "$out" assets/images/stvincentgrenadines/map-atlas-v1.svg
           python3 scripts/validate_country_map_v6.py data/countries/stvincentgrenadines.json
       - name: Commit corrected map
@@ -40,5 +106,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/images/stvincentgrenadines/map-atlas-v1.svg
           git diff --cached --quiet && exit 0
-          git commit -m "Regenerate St Vincent map from detailed geoBoundaries ADM0"
+          git commit -m "Complete St Vincent map with verified Tobago Cays coastlines"
           git push origin HEAD:country/stvincentgrenadines
