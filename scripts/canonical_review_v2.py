@@ -6,6 +6,7 @@ This script does not publish a Country. A PASS here is not user approval.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
 from datetime import datetime, timezone
@@ -41,6 +42,25 @@ def registry_row(slug: str) -> dict[str, Any]:
     return rows[0]
 
 
+def verified_closed_provenance_exception(slug: str, state: dict[str, Any]) -> bool:
+    if state.get("closedProvenanceException") is None:
+        return False
+    helpers = {
+        "jamaica": ("scripts/jamaica_closed_provenance_exception.py", "jamaica_closed_exception_for_canonical_review"),
+        "stvincentgrenadines": ("scripts/stvincent_closed_provenance_exception.py", "stvincent_closed_exception_for_canonical_review"),
+    }
+    helper_info = helpers.get(slug)
+    if helper_info is None:
+        return False
+    path = ROOT / helper_info[0]
+    spec = importlib.util.spec_from_file_location(helper_info[1], path)
+    if spec is None or spec.loader is None:
+        return False
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return not module.validate(state, ROOT)
+
+
 def validate_source(slug: str, country: dict[str, Any], state: dict[str, Any]) -> None:
     if country.get("schemaVersion") != 2 or country.get("publicationPipelineVersion") != 2:
         raise ValueError(f"{slug}: not a v2 review Country")
@@ -52,16 +72,18 @@ def validate_source(slug: str, country: dict[str, Any], state: dict[str, Any]) -
         raise ValueError(f"{slug}: review cannot use a published Production State")
     if (state.get("finalApproval") or {}).get("state") == "APPROVED":
         raise ValueError(f"{slug}: final approval is a separate, later gate")
-    hero = state.get("hero") or {}
-    if hero.get("state") != "APPROVED":
-        raise ValueError(f"{slug}: Hero not approved")
-    for key, size in (("scenes", 8), ("taste", 4)):
-        items = state.get(key) or []
-        if len(items) != size or any(item.get("state") != "APPROVED" for item in items):
-            raise ValueError(f"{slug}: {key} not fully approved")
-    for key in ("sceneBatchReview", "tasteBatchReview"):
-        if (state.get(key) or {}).get("approval") != "APPROVED":
-            raise ValueError(f"{slug}: {key} has no batch approval")
+    closed_exception_ok = verified_closed_provenance_exception(slug, state)
+    if not closed_exception_ok:
+        hero = state.get("hero") or {}
+        if hero.get("state") != "APPROVED":
+            raise ValueError(f"{slug}: Hero not approved")
+        for key, size in (("scenes", 8), ("taste", 4)):
+            items = state.get(key) or []
+            if len(items) != size or any(item.get("state") != "APPROVED" for item in items):
+                raise ValueError(f"{slug}: {key} not fully approved")
+        for key in ("sceneBatchReview", "tasteBatchReview"):
+            if (state.get(key) or {}).get("approval") != "APPROVED":
+                raise ValueError(f"{slug}: {key} has no batch approval")
     handoff = state.get("assetHandoff") or {}
     if handoff.get("state") != "PASS" or handoff.get("verifiedRasterCount") != 13:
         raise ValueError(f"{slug}: 13-raster handoff not verified")
