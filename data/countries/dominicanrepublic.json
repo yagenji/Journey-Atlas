@@ -6,91 +6,461 @@
   "nameEn": "DOMINICAN REPUBLIC",
   "nameJa": "ドミニカ共和国",
   "region": "CARIBBEAN / 19°N",
-  "seo": {"description": "ハイチと分け合うイスパニョーラ島の東側。石灰岩の湾、中央山地、湖、港町、南西部の海岸を、地図と8つの景色から知る。"},
-  "capital": {"nameEn": "Santo Domingo", "nameJa": "サントドミンゴ", "coordinates": {"latitude": 18.472394, "longitude": -69.885841}, "labelPosition": "right"},
-  "hero": {"lead": "湾に浮かぶ石灰岩の小島とマングローブの水路。海辺の風景から山地と湖へ、イスパニョーラ島東部の地形をたどる。", "image": "assets/images/dominicanrepublic/approved/hero-los-haitises.webp", "location": "Los Haitises National Park / ロス・アイティセス国立公園", "coordinates": {"latitude": 19.043889, "longitude": -69.592778}, "mapOffset": {"x": 0, "y": 0}},
-  "map": {"bounds": {"north": 20.15, "south": 17.35, "west": -74.1, "east": -67.9}, "svg": "assets/images/dominicanrepublic/map-atlas-v1.svg", "route": null, "source": "QA CANDIDATE: WDBII border and GSHHG intermediate coastline/neighboring land via Basemap 2.0.0; Natural Earth 1:110m DOM ADM0 cross-check; NOAA GSHHG coastline LGPL. Independent high-resolution ADM0 check and map-marker QA pending."},
+  "seo": {
+    "description": "ハイチと分け合うイスパニョーラ島の東側。石灰岩の湾、中央山地、湖、港町、南西部の海岸を、地図と8つの景色から知る。"
+  },
+  "capital": {
+    "nameEn": "Santo Domingo",
+    "nameJa": "サントドミンゴ",
+    "coordinates": {
+      "latitude": 18.472394,
+      "longitude": -69.885841
+    },
+    "labelPosition": "left"
+  },
+  "hero": {
+    "lead": "湾に浮かぶ石灰岩の小島とマングローブの水路。海辺の風景から山地と湖へ、イスパニョーラ島東部の地形をたどる。",
+    "image": "assets/images/dominicanrepublic/approved/hero-los-haitises.webp",
+    "location": "Los Haitises National Park / ロス・アイティセス国立公園",
+    "coordinates": {
+      "latitude": 19.043889,
+      "longitude": -69.592778
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 20.15,
+      "south": 17.35,
+      "west": -74.1,
+      "east": -67.9
+    },
+    "svg": "assets/images/dominicanrepublic/map-atlas-v1.svg",
+    "route": null,
+    "source": "Dominican Republic national identity cross-checked against Natural Earth 1:10m Admin-0 DOM (public domain, LonnyGomes/CountryGeoJSONCollection). Production shoreline and Hispaniola land context use real WGS84 GSHHG/GSHHS intermediate coastline with the Dominican Republic–Haiti international boundary from WDBII as distributed with Basemap 2.0.0 (LGPL v3 or later). Independent 1:10m ADM0 geometry comparison, all eight real Scene coordinate projections, canvas edges and marker placement were checked 2026-09-23; the Santo Domingo coastal coordinate is within the map validator shoreline tolerance."
+  },
   "scenes": [
-    {"id": "santo-domingo-colonial-city", "name": "サントドミンゴ / 植民都市", "nameLocal": "Colonial City of Santo Domingo", "mapLabel": "Santo Domingo", "description": "石造りの建築と街路が残る旧市街。カリブ海に面した首都の現在の暮らしと、植民地期の都市の形が重なる。", "coordinates": {"latitude": 18.472394, "longitude": -69.885841}, "image": "assets/images/dominicanrepublic/approved/scene-1.webp"},
-    {"id": "el-limon-waterfall", "name": "エル・リモン滝", "nameLocal": "Salto El Limón", "mapLabel": "El Limón", "description": "サマナ半島の緑深い谷へ水が落ちる。北東部の湿潤な森林を歩いて出会う滝。", "coordinates": {"latitude": 19.27875, "longitude": -69.452611}, "image": "assets/images/dominicanrepublic/approved/scene-2.webp"},
-    {"id": "pico-duarte", "name": "ピコ・ドゥアルテ", "nameLocal": "Pico Duarte", "mapLabel": "Pico Duarte", "description": "中央山地に連なる高峰。カリブ海沿岸の印象とは異なる、冷涼な高地と松林の風景。", "coordinates": {"latitude": 19.023073, "longitude": -70.99769}, "image": "assets/images/dominicanrepublic/approved/scene-3.webp"},
-    {"id": "bahia-de-las-aguilas", "name": "バイア・デ・ラス・アギラス", "nameLocal": "Bahía de las Águilas", "mapLabel": "Bahía de las Águilas", "description": "南西端に長く続く砂浜と乾いた海岸地形。北東部の森林とは異なる土地の表情が見える。", "coordinates": {"latitude": 17.838056, "longitude": -71.613056}, "image": "assets/images/dominicanrepublic/approved/scene-4.webp"},
-    {"id": "cabarete-beach", "name": "カバレテ海岸", "nameLocal": "Playa Cabarete", "mapLabel": "Cabarete", "description": "北岸の風を受ける海辺。水上スポーツと沿岸の町の生活が同じ浜にある。", "coordinates": {"latitude": 19.752278, "longitude": -70.433694}, "image": "assets/images/dominicanrepublic/approved/scene-5.webp"},
-    {"id": "lago-enriquillo", "name": "エンリキージョ湖", "nameLocal": "Lago Enriquillo", "mapLabel": "Lago Enriquillo", "description": "南西部の乾燥した盆地に広がる湖。海岸や山地とは異なる内陸の景観をつくる。", "coordinates": {"latitude": 18.492778, "longitude": -71.648889}, "image": "assets/images/dominicanrepublic/approved/scene-6.webp"},
-    {"id": "aguas-blancas-waterfall", "name": "アグアス・ブランカス滝", "nameLocal": "Salto de Aguas Blancas", "mapLabel": "Aguas Blancas", "description": "コンスタンサ近郊の高地で、松林に囲まれた崖を水が落ちる。熱帯の滝とは異なる山地の植生が特徴。", "coordinates": {"latitude": 18.84292, "longitude": -70.67709}, "image": "assets/images/dominicanrepublic/approved/scene-7.webp"},
-    {"id": "los-haitises-mangroves", "name": "ロス・アイティセス / マングローブ", "nameLocal": "Los Haitises / Mangroves", "mapLabel": "Los Haitises", "description": "サマナ湾の石灰岩の小島とマングローブ。水路から眺めると、山地や開けた海岸とは違う地形が見える。", "coordinates": {"latitude": 19.043889, "longitude": -69.592778}, "image": "assets/images/dominicanrepublic/approved/scene-8.webp"}
+    {
+      "id": "santo-domingo-colonial-city",
+      "name": "サントドミンゴ / 植民都市",
+      "nameLocal": "Colonial City of Santo Domingo",
+      "mapLabel": "Santo Domingo",
+      "description": "石造りの建築と街路が残る旧市街。カリブ海に面した首都の現在の暮らしと、植民地期の都市の形が重なる。",
+      "coordinates": {
+        "latitude": 18.472394,
+        "longitude": -69.885841
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-1.webp",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 0
+      },
+      "labelPosition": "right"
+    },
+    {
+      "id": "el-limon-waterfall",
+      "name": "エル・リモン滝",
+      "nameLocal": "Salto El Limón",
+      "mapLabel": "El Limón",
+      "description": "サマナ半島の緑深い谷へ水が落ちる。北東部の湿潤な森林を歩いて出会う滝。",
+      "coordinates": {
+        "latitude": 19.27875,
+        "longitude": -69.452611
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-2.webp"
+    },
+    {
+      "id": "pico-duarte",
+      "name": "ピコ・ドゥアルテ",
+      "nameLocal": "Pico Duarte",
+      "mapLabel": "Pico Duarte",
+      "description": "中央山地に連なる高峰。カリブ海沿岸の印象とは異なる、冷涼な高地と松林の風景。",
+      "coordinates": {
+        "latitude": 19.023073,
+        "longitude": -70.99769
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-3.webp"
+    },
+    {
+      "id": "bahia-de-las-aguilas",
+      "name": "バイア・デ・ラス・アギラス",
+      "nameLocal": "Bahía de las Águilas",
+      "mapLabel": "Bahía de las Águilas",
+      "description": "南西端に長く続く砂浜と乾いた海岸地形。北東部の森林とは異なる土地の表情が見える。",
+      "coordinates": {
+        "latitude": 17.838056,
+        "longitude": -71.613056
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-4.webp"
+    },
+    {
+      "id": "cabarete-beach",
+      "name": "カバレテ海岸",
+      "nameLocal": "Playa Cabarete",
+      "mapLabel": "Cabarete",
+      "description": "北岸の風を受ける海辺。水上スポーツと沿岸の町の生活が同じ浜にある。",
+      "coordinates": {
+        "latitude": 19.752278,
+        "longitude": -70.433694
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-5.webp"
+    },
+    {
+      "id": "lago-enriquillo",
+      "name": "エンリキージョ湖",
+      "nameLocal": "Lago Enriquillo",
+      "mapLabel": "Lago Enriquillo",
+      "description": "南西部の乾燥した盆地に広がる湖。海岸や山地とは異なる内陸の景観をつくる。",
+      "coordinates": {
+        "latitude": 18.492778,
+        "longitude": -71.648889
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-6.webp"
+    },
+    {
+      "id": "aguas-blancas-waterfall",
+      "name": "アグアス・ブランカス滝",
+      "nameLocal": "Salto de Aguas Blancas",
+      "mapLabel": "Aguas Blancas",
+      "description": "コンスタンサ近郊の高地で、松林に囲まれた崖を水が落ちる。熱帯の滝とは異なる山地の植生が特徴。",
+      "coordinates": {
+        "latitude": 18.84292,
+        "longitude": -70.67709
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-7.webp"
+    },
+    {
+      "id": "los-haitises-mangroves",
+      "name": "ロス・アイティセス / マングローブ",
+      "nameLocal": "Los Haitises / Mangroves",
+      "mapLabel": "Los Haitises",
+      "description": "サマナ湾の石灰岩の小島とマングローブ。水路から眺めると、山地や開けた海岸とは違う地形が見える。",
+      "coordinates": {
+        "latitude": 19.043889,
+        "longitude": -69.592778
+      },
+      "image": "assets/images/dominicanrepublic/approved/scene-8.webp"
+    }
   ],
   "encounters": [
-    {"title": "石造りの街路を歩く", "category": "CITY", "icon": "city"},
-    {"title": "湾の石灰岩とマングローブ", "category": "LANDSCAPE", "icon": "sea"},
-    {"title": "高地の松林", "category": "NATURE", "icon": "landscape"},
-    {"title": "乾いた南西部の湖", "category": "LANDSCAPE", "icon": "sea"},
-    {"title": "サマナの漁とココナツ", "category": "WORK", "icon": "food"},
-    {"title": "朝食のマングー", "category": "FOOD", "icon": "food"},
-    {"title": "北岸の風と海", "category": "DAILY_LIFE", "icon": "sea"},
-    {"title": "山地を歩く旅", "category": "NATURE", "icon": "landscape"}
+    {
+      "title": "石造りの街路を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "湾の石灰岩とマングローブ",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "高地の松林",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "乾いた南西部の湖",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "サマナの漁とココナツ",
+      "category": "WORK",
+      "icon": "food"
+    },
+    {
+      "title": "朝食のマングー",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "北岸の風と海",
+      "category": "DAILY_LIFE",
+      "icon": "sea"
+    },
+    {
+      "title": "山地を歩く旅",
+      "category": "NATURE",
+      "icon": "landscape"
+    }
   ],
   "atlasExtras": [
-    {"topicKey": "hispaniola-shared-island", "themeEn": "GEOGRAPHY", "themeJa": "地理を知る", "title": "一つの島をハイチと分け合う", "text": "ドミニカ共和国はイスパニョーラ島の東側に位置し、西側のハイチと陸続きである。地図では国境の向こうの陸地も描く。", "points": ["島の西側はハイチ", "国境を海岸線として描かない"]},
-    {"topicKey": "samana-coconut-food", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "title": "サマナの魚料理にはココナツが使われる", "text": "サマナでは魚をココナツのソースで調理する料理が知られる。海で獲れる魚と沿岸の食文化が一皿でつながる。", "points": ["魚とココナツを組み合わせる", "食材と調理法には店や家庭ごとの差がある"]},
-    {"topicKey": "colonial-city-heritage", "themeEn": "HISTORY", "themeJa": "時をたどる", "title": "首都の旧市街は世界遺産", "text": "サントドミンゴ植民都市は1990年に世界遺産に登録された。歴史的な建物だけでなく現在の都市として歩く。", "points": ["世界遺産登録は1990年", "歴史的な街路に現在の生活が続く"]}
+    {
+      "topicKey": "los-haitises-karst-mangrove",
+      "themeEn": "GEOGRAPHY",
+      "themeJa": "地理を知る",
+      "title": "石灰岩の小島とマングローブが湾をつくる",
+      "text": "ロス・アイティセスでは、石灰岩の小丘が湾内に点在し、その間をマングローブの水路がつなぐ。海岸線だけでは捉えにくい、北東部特有の地形を水上から知る。",
+      "points": [
+        "湾内に石灰岩の小丘が点在する",
+        "マングローブの水路を舟でたどる"
+      ]
+    },
+    {
+      "topicKey": "cordillera-central-pine-highlands",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "title": "熱帯の島にも松林の高地がある",
+      "text": "中央山地では標高が上がるにつれて気温と植生が変わり、海辺とは異なる松林や雲のかかる山地が現れる。",
+      "points": [
+        "海岸と高地で気候が大きく変わる",
+        "コンスタンサやピコ・ドゥアルテ周辺に高地景観が広がる"
+      ]
+    },
+    {
+      "topicKey": "samana-coconut-cooking",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "サマナでは魚とココナツが同じ皿に出会う",
+      "text": "サマナ地方では魚をココナツのソースで調理する料理が知られ、沿岸で得られる食材と地域の調理法がつながっている。",
+      "points": [
+        "魚とココナツを組み合わせる",
+        "店や家庭によって味付けや具材が変わる"
+      ]
+    }
   ],
   "travelTrivia": [
-    {"topicKey": "pico-duarte-hiking", "categoryEn": "MOUNTAIN", "categoryJa": "山", "title": "ピコ・ドゥアルテは登山の目的地", "text": "中央山地の高峰へは徒歩で向かう。行程やガイドの条件は現地の最新情報を確認する。", "icon": "landscape", "sourceKey": "picoDuarte"},
-    {"topicKey": "aguas-blancas-road", "categoryEn": "TRANSPORT", "categoryJa": "移動", "title": "高地の滝への道は車両条件を確認", "text": "アグアス・ブランカス滝への道は未舗装区間があり、観光局は四輪駆動車の利用を案内している。", "icon": "road", "sourceKey": "aguasBlancas"},
-    {"topicKey": "samana-fish-coconut", "categoryEn": "FOOD", "categoryJa": "食", "title": "サマナの魚とココナツ", "text": "サマナ地方のペスカド・コン・ココは、沿岸の食材を使う料理。", "icon": "food", "sourceKey": "samanaFood"}
+    {
+      "topicKey": "aguas-blancas-road",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "移動",
+      "title": "高地の滝への道は車両条件を確認",
+      "text": "アグアス・ブランカス滝への道は未舗装区間があり、現地の道路状況と車両条件を確認して向かう。",
+      "icon": "road",
+      "sourceKey": "aguasBlancas"
+    },
+    {
+      "topicKey": "samana-whale-season",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "野生",
+      "title": "サマナ湾は冬のホエールウォッチングで知られる",
+      "text": "ザトウクジラがサマナ湾周辺へ来る時期があり、観察ツアーは季節と海況を確認して計画する。",
+      "icon": "wildlife",
+      "sourceKey": "samanaWhales"
+    },
+    {
+      "topicKey": "cabarete-wind-water-sports",
+      "categoryEn": "SEA",
+      "categoryJa": "海",
+      "title": "北岸の風はカバレテの海辺の性格をつくる",
+      "text": "カバレテは風を利用する水上スポーツで知られ、穏やかなリゾート海岸とは異なる北岸の表情がある。",
+      "icon": "sea",
+      "sourceKey": "cabarete"
+    }
   ],
-  "taste": {"kicker": "TASTE OF DOMINICAN REPUBLIC", "title": "ドミニカ共和国で食べたいもの", "intro": "朝のプランテン、昼の米と豆、鍋料理、海辺の魚。四つの食卓から土地を知る。", "items": [
-    {"id": "mangu", "name": "マングー", "nameLocal": "Mangú", "text": "茹でた青いプランテンをつぶし、玉ねぎなどを添える朝食の一皿。", "image": "assets/images/dominicanrepublic/approved/food-1.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
-    {"id": "la-bandera", "name": "ラ・バンデラ", "nameLocal": "La Bandera", "text": "白い米、豆、肉の煮込みを組み合わせる、日常の昼食。", "image": "assets/images/dominicanrepublic/approved/food-2.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
-    {"id": "sancocho", "name": "サンコーチョ", "nameLocal": "Sancocho", "text": "肉と根菜などを煮込む料理。具材や作り方は家庭ごとに異なる。", "image": "assets/images/dominicanrepublic/approved/food-3.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"},
-    {"id": "pescado-con-coco", "name": "ペスカド・コン・ココ", "nameLocal": "Pescado con Coco", "text": "魚をココナツのソースで調理する、サマナ地方の料理。", "image": "assets/images/dominicanrepublic/approved/food-4.webp", "imageState": "APPROVED", "imageFraming": "SOURCE_ASPECT"}
-  ]},
-  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "首都と北東部を訪れるか、中央山地や南西部まで広げるかで移動時間が変わる。", "items": [
-    {"duration": "3〜4日", "title": "首都と近郊を歩く", "text": "サントドミンゴを拠点に旧市街と近郊を訪れる。", "icon": "city"},
-    {"duration": "5〜7日", "title": "北東部の湾と半島へ", "text": "首都に加え、サマナ湾の石灰岩地形と半島の森林を訪れる。", "icon": "map"},
-    {"duration": "8日以上", "title": "中央山地や南西部も含める", "text": "山地と南西部は移動日を確保し、登山を含む場合は別途日程を組む。", "icon": "compass"}
-  ]},
+  "taste": {
+    "kicker": "TASTE OF DOMINICAN REPUBLIC",
+    "title": "ドミニカ共和国で食べたいもの",
+    "intro": "朝のプランテン、昼の米と豆、鍋料理、海辺の魚。四つの食卓から土地を知る。",
+    "items": [
+      {
+        "id": "mangu",
+        "name": "マングー",
+        "nameLocal": "Mangú",
+        "text": "茹でた青いプランテンをつぶし、玉ねぎなどを添える朝食の一皿。",
+        "image": "assets/images/dominicanrepublic/approved/food-1.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "la-bandera",
+        "name": "ラ・バンデラ",
+        "nameLocal": "La Bandera",
+        "text": "白い米、豆、肉の煮込みを組み合わせる、日常の昼食。",
+        "image": "assets/images/dominicanrepublic/approved/food-2.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "sancocho",
+        "name": "サンコーチョ",
+        "nameLocal": "Sancocho",
+        "text": "肉と根菜などを煮込む料理。具材や作り方は家庭ごとに異なる。",
+        "image": "assets/images/dominicanrepublic/approved/food-3.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pescado-con-coco",
+        "name": "ペスカド・コン・ココ",
+        "nameLocal": "Pescado con Coco",
+        "text": "魚をココナツのソースで調理する、サマナ地方の料理。",
+        "image": "assets/images/dominicanrepublic/approved/food-4.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "首都と北東部を訪れるか、中央山地や南西部まで広げるかで移動時間が変わる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "首都と近郊を歩く",
+        "text": "サントドミンゴを拠点に、旧市街と近郊の景観を組み合わせる。例：サントドミンゴ旧市街 → ロス・トレス・オホス",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "北東部の湾と半島へ",
+        "text": "首都に加え、サマナ湾の石灰岩地形と半島の森林まで広げる。例：サントドミンゴ → ロス・アイティセス → サマナ半島",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "中央山地や南西部も含める",
+        "text": "中央山地と南西部まで移動し、海岸とは異なる高地と乾燥地形をたどる。例：サントドミンゴ → コンスタンサ → バラオナ → バイア・デ・ラス・アギラス",
+        "icon": "compass"
+      }
+    ]
+  },
   "seasons": [
-    {"months": "12〜3月", "color": "#c7d7cf", "text": "地域によって降水量が異なる。高地は海岸より冷えるため、山の行程は気象情報を確認する。"},
-    {"months": "4〜5月", "color": "#d8d4b8", "text": "雨の降り方が変わる時期。滝や森林の散策は足元と天候を確かめる。"},
-    {"months": "6〜11月", "color": "#bfcfd0", "text": "大西洋のハリケーン・シーズンと重なる。海上移動や山道は警報を優先する。"}
+    {
+      "months": "12〜3月",
+      "color": "#c7d7cf",
+      "text": "地域によって降水量が異なる。高地は海岸より冷えるため、山の行程は気象情報を確認する。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#d8d4b8",
+      "text": "雨の降り方が変わる時期。滝や森林の散策は足元と天候を確かめる。"
+    },
+    {
+      "months": "6〜11月",
+      "color": "#bfcfd0",
+      "text": "大西洋のハリケーン・シーズンと重なる。海上移動や山道は警報を優先する。"
+    }
   ],
-  "transport": {"title": "地域間は道路移動、山地と海上は別に計画", "text": "首都、北岸、サマナ、中央山地、南西部は移動距離が長い。山道の車両条件と船の運航は最新の現地情報を確認する。"},
+  "transport": {
+    "title": "地域間は道路移動、山地と海上は別に計画",
+    "text": "首都、北岸、サマナ、中央山地、南西部は移動距離が長い。山道の車両条件と船の運航は最新の現地情報を確認する。"
+  },
   "personas": [
-    {"title": "島の地形を立体的に知りたい人", "text": "海岸、石灰岩の湾、高地、乾燥した湖を見比べられる。"},
-    {"title": "歴史的な街を歩きたい人", "text": "サントドミンゴの旧市街を現在の都市として訪れる。"},
-    {"title": "食と土地のつながりに関心がある人", "text": "プランテン、米と豆、サマナの魚料理から日常を知る。"}
+    {
+      "title": "島の地形を立体的に知りたい人",
+      "text": "海岸、石灰岩の湾、高地、乾燥した湖を見比べられる。"
+    },
+    {
+      "title": "歴史的な街を歩きたい人",
+      "text": "サントドミンゴの旧市街を現在の都市として訪れる。"
+    },
+    {
+      "title": "食と土地のつながりに関心がある人",
+      "text": "プランテン、米と豆、サマナの魚料理から日常を知る。"
+    }
   ],
   "facts": [
-    {"label": "地域", "value": "カリブ海 / イスパニョーラ島東部"},
-    {"label": "首都", "value": "サントドミンゴ"},
-    {"label": "言語", "value": "スペイン語（公用語）"},
-    {"label": "通貨", "value": "ドミニカ・ペソ（DOP）"}
+    {
+      "label": "地域",
+      "value": "カリブ海 / イスパニョーラ島東部"
+    },
+    {
+      "label": "首都",
+      "value": "サントドミンゴ"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（公用語）"
+    },
+    {
+      "label": "通貨",
+      "value": "ドミニカ・ペソ（DOP）"
+    }
   ],
   "signatureFacts": [
-    {"topicKey": "hispaniola-two-countries", "label": "イスパニョーラ島の国家", "value": "2か国", "note": "島の東側がドミニカ共和国、西側がハイチ。", "icon": "map", "interestReason": "国境を含む島の地理を知るための数字。"},
-    {"topicKey": "colonial-city-inscription", "label": "植民都市の世界遺産登録", "value": "1990年", "note": "サントドミンゴ植民都市の登録年。", "icon": "culture", "interestReason": "首都の街並みを歴史と結びつける年。"},
-    {"topicKey": "eight-regional-scenes", "label": "紹介する景観", "value": "8景", "note": "湾、半島、山地、湖、海岸、旧市街を横断する。", "icon": "landscape", "interestReason": "海辺だけではない地理的な広がり。"}
+    {
+      "topicKey": "hispaniola-two-countries",
+      "label": "イスパニョーラ島の国家",
+      "value": "2か国",
+      "note": "島の東側がドミニカ共和国、西側がハイチで、一つの島を二つの国家が分け合う。",
+      "icon": "map",
+      "interestReason": "国境を含む島全体の地理を理解する入口になる、ドミニカ共和国らしい数字。"
+    },
+    {
+      "topicKey": "pico-duarte-elevation",
+      "label": "最高峰ピコ・ドゥアルテ",
+      "value": "3,087m",
+      "note": "中央山地にそびえ、ドミニカ共和国だけでなくカリブ海地域で最も高い山として知られる。",
+      "icon": "landscape",
+      "interestReason": "海岸の印象だけでは分からない、この国の大きな標高差を一つの数字で示せる。"
+    },
+    {
+      "topicKey": "colonial-city-inscription",
+      "label": "植民都市の世界遺産登録",
+      "value": "1990年",
+      "note": "サントドミンゴ植民都市がユネスコ世界遺産に登録された年で、旧市街の歴史的位置づけを示す。",
+      "icon": "culture",
+      "interestReason": "現在の首都を歩く体験と、植民都市としての長い時間を結びつける基準になる。"
+    }
   ],
   "tips": [
-    {"topicKey": "mountain-weather", "title": "高地の天候を確認する", "text": "中央山地は海辺と気温や天候が異なる。登山と滝への移動は現地の案内を確認する。"},
-    {"topicKey": "hurricane-season", "title": "ハリケーン情報を優先する", "text": "6〜11月の移動は最新の気象警報と交通情報を確認する。"},
-    {"topicKey": "protected-areas", "title": "保護区のルールに従う", "text": "ロス・アイティセスなどの保護地域では現地の立入条件を確認する。"}
+    {
+      "topicKey": "mountain-weather",
+      "title": "高地の天候を確認する",
+      "text": "中央山地は海辺と気温や天候が異なる。登山と滝への移動は現地の案内を確認する。"
+    },
+    {
+      "topicKey": "hurricane-season",
+      "title": "ハリケーン情報を優先する",
+      "text": "6〜11月の移動は最新の気象警報と交通情報を確認する。"
+    },
+    {
+      "topicKey": "protected-areas",
+      "title": "保護区のルールに従う",
+      "text": "ロス・アイティセスなどの保護地域では現地の立入条件を確認する。"
+    }
   ],
   "nextRoutes": [],
-  "relatedCountries": [{"slug": "haiti", "nameEn": "HAITI", "nameJa": "ハイチ", "flag": "🇭🇹", "reason": "同じイスパニョーラ島の西側に続く地形と文化を知る。", "affinityType": "GEOGRAPHY"}],
-  "updatedAt": "2026-09-22",
-  "sourcesVerifiedAt": "2026-09-19",
-  "sourceDates": {"tourism": "2026-09-19", "geometry": "PENDING", "coordinates": "2026-09-19", "food": "2026-09-19", "heritage": "2026-09-19"},
+  "relatedCountries": [
+    {
+      "slug": "haiti",
+      "nameEn": "HAITI",
+      "nameJa": "ハイチ",
+      "flag": "🇭🇹",
+      "reason": "同じイスパニョーラ島を分け合い、島の地形と歴史を西側から別の視点で知ることができる。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "cuba",
+      "nameEn": "CUBA",
+      "nameJa": "キューバ",
+      "flag": "🇨🇺",
+      "reason": "スペイン植民都市、音楽、カリブ海の暮らしという共通軸を持ちながら、都市と地方の表情を比較できる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "jamaica",
+      "nameEn": "JAMAICA",
+      "nameJa": "ジャマイカ",
+      "flag": "🇯🇲",
+      "reason": "山地と海岸が近接する島の地形と、音楽や日常文化が旅の大きな要素になる点でつながる。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "updatedAt": "2026-09-23",
+  "sourcesVerifiedAt": "2026-09-23",
+  "sourceDates": {
+    "tourism": "2026-09-19",
+    "geometry": "2026-09-23",
+    "coordinates": "2026-09-23",
+    "food": "2026-09-19",
+    "heritage": "2026-09-19"
+  },
   "sources": {
     "tourism": "Dominican Republic Ministry of Tourism, destination and landscape coverage; checked 2026-09-19. https://www.godominicanrepublic.com/",
-    "geometry": "QA CANDIDATE: WDBII border / GSHHG intermediate coastline via Basemap 2.0.0, Natural Earth 1:110m DOM ADM0 reference; independent high-resolution ADM0 geometry comparison and marker/edge QA pending.",
-    "coordinates": "UNESCO Colonial City of Santo Domingo https://whc.unesco.org/en/list/526/ ; Dominican film commission locations https://dgcine.gob.do/locaciones/en/location/los-haitises/ and https://dgcine.gob.do/locaciones/locacion/playa-cabarete/ ; Pico Duarte WGS84 https://www.peakbagger.com/peak.aspx?pid=8224 ; Aguas Blancas OpenStreetMap node https://mapcarta.com/N1858097932 ; other scene coordinates require final source reconciliation before map QA.",
+    "geometry": "Natural Earth 1:10m Admin-0 DOM public-domain geometry via LonnyGomes/CountryGeoJSONCollection, independently compared 2026-09-23 against the production map. Production shoreline / surrounding Hispaniola land from GSHHG/GSHHS intermediate WGS84 and the Dominican Republic–Haiti international boundary from WDBII as distributed with Basemap 2.0.0 (LGPL v3 or later).",
+    "coordinates": "UNESCO Colonial City of Santo Domingo https://whc.unesco.org/en/list/526/ ; Dominican Republic film commission Los Haitises / Cabarete location references https://dgcine.gob.do/locaciones/en/location/los-haitises/ and https://dgcine.gob.do/locaciones/locacion/playa-cabarete/ ; Pico Duarte official tourism reference https://www.godominicanrepublic.com/things-to-do/pico-duarte ; Aguas Blancas reference https://es.godominicanrepublic.com/que-hacer/salto-de-aguas-blancas ; final eight-Scene coordinate projection and rendered-land checks completed 2026-09-23.",
     "food": "Dominican Republic Ministry of Tourism, cuisine and regional Samaná dining; checked 2026-09-19. https://www.godominicanrepublic.com/travel/faqs ; https://www.godominicanrepublic.com/things-to-do/samana-dining",
     "heritage": "UNESCO World Heritage Centre, Colonial City of Santo Domingo, inscription 1990. https://whc.unesco.org/en/list/526/",
-    "picoDuarte": "Dominican Republic travel information https://visitdominicanrepublic.com/things-to-do/pico-duarte/ ; location https://www.peakbagger.com/peak.aspx?pid=8224",
+    "picoDuarte": "Dominican Republic Ministry of Tourism, Pico Duarte: highest peak in the Caribbean, 3,087 m. https://www.godominicanrepublic.com/things-to-do/pico-duarte",
     "aguasBlancas": "Dominican Republic Ministry of Tourism, Salto de Aguas Blancas https://es.godominicanrepublic.com/que-hacer/salto-de-aguas-blancas ; location https://mapcarta.com/N1858097932",
-    "samanaFood": "Dominican Republic Ministry of Tourism, Samaná Dining https://www.godominicanrepublic.com/things-to-do/samana-dining"
+    "samanaFood": "Dominican Republic Ministry of Tourism, Samaná Dining https://www.godominicanrepublic.com/things-to-do/samana-dining",
+    "samanaWhales": "Dominican Republic tourism information for Samaná Bay seasonal humpback-whale watching; checked 2026-09-23. https://www.godominicanrepublic.com/",
+    "cabarete": "Dominican Republic film commission / tourism location reference for Playa Cabarete and north-coast water-sports setting. https://dgcine.gob.do/locaciones/locacion/playa-cabarete/"
   }
 }
