@@ -21,6 +21,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
+from reconcile_bahrain_hawar_sibling import reconcile as reconcile_hawar_sibling
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG = "{http://www.w3.org/2000/svg}"
@@ -107,9 +108,8 @@ def main():
         source = item["source"]
         staged = output / f"{slug}.svg"
         source_text = source.read_text(encoding="utf-8")
-        # These two already have context in the Draft branch. The regular
-        # preservation shortcut must not silently bypass their reviewed
-        # generated-context exclusion; transform only the disposable copy.
+        # Qatar/Kuwait already have context in the Draft branch. Their source-
+        # pinned fixes operate only on a disposable staged copy.
         if slug in ('qatar', 'kuwait'):
             staged.write_text(reconcile_gulf_foreign(source_text, source, slug, args.resolution),
                               encoding='utf-8')
@@ -121,6 +121,13 @@ def main():
             command = [sys.executable, str(dispatcher), "--country-json", str(item["country_file"]),
                        "--input", str(source), "--output", str(staged), "--resolution", args.resolution]
             subprocess.run(command, cwd=ROOT, check=True, timeout=240)
+            if slug == 'bahrain':
+                # The two former GSHHG Qatar rings are poor small-scale coastline
+                # triangles. Use source-pinned QAT gbOpen ADM0 from the exact same
+                # 2023 series as the unchanged approved Bahrain national paths.
+                # This is a Stage② preview only, not a geographic approval.
+                staged.write_text(reconcile_hawar_sibling(staged.read_text(encoding='utf-8'),
+                                                          source, args.resolution),encoding='utf-8')
             if contains_generated_context_geometry(staged):
                 action = "stage-context-preview"
             else:
