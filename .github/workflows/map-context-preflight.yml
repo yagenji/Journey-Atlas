@@ -11,6 +11,7 @@ on:
       - 'scripts/stage_map_context_rollout.py'
       - 'scripts/review_hk_shenzhen.py'
       - 'scripts/review_brunei_malaysia.py'
+      - 'scripts/review_brunei_pmb_current.py'
       - 'scripts/review_monaco_france.py'
       - 'tests/test_map_context_priority_geography.py'
       - 'tests/test_add_country_map_context.py'
@@ -53,10 +54,13 @@ jobs:
             scripts/stage_map_context_rollout.py \
             scripts/review_hk_shenzhen.py \
             scripts/review_brunei_malaysia.py \
+            scripts/review_brunei_pmb_current.py \
             scripts/review_monaco_france.py \
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
+      - name: Capture current Pulau Muara Besar OSM source
+        run: python scripts/review_brunei_pmb_current.py --output-dir /tmp/journey-atlas-map-context-real-previews/priority-review/brunei-pmb-source
       - name: Save Brunei and Monaco priority source review before long browser run
         if: always()
         uses: actions/upload-artifact@v4
