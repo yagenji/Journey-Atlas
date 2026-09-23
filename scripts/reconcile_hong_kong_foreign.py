@@ -17,7 +17,7 @@ APPROVED_SHA = '1259c39687bdc062882664cb6310745354d4c8c97126342751ab2549fe81172f
 RAW_CONTEXT_SHA = '270fbe81e517c5e59b8627cefa1a5007f4bbbf09898b9a8233c2a3a3686eaf08'
 PINNED_MAINLAND_SHA = 'd24687d3784f5d032cadd42d6cd359e86eaf697926358c4638a1b36fb0b2e3f9'
 OSM_SNAPSHOT_SHA = 'e573259c14d2b016bbe762c4fd3c46877cd65b5e256fb2e0ef45489448285b7d'
-DATA_PATH = Path(__file__).resolve().parents[1] / 'assets/images/hong-kong/shenzhen-osm-mainland-v1.b85'
+DATA_PATH = Path(__file__).resolve().parents[1] / 'ops/map-context-sources/hong-kong/shenzhen-osm-mainland-v1.b85'
 
 
 def pinned_mainland_path() -> str:
