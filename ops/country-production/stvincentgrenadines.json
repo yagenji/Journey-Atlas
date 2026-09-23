@@ -5,8 +5,8 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "ASSET_QA",
-  "stateRevision": 4,
-  "updatedAt": "2026-09-24T00:12:00+09:00",
+  "stateRevision": 5,
+  "updatedAt": "2026-09-24T00:17:00+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/hero.webp",
@@ -112,8 +112,8 @@
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
-    "sceneApproval": "BATCH",
-    "tasteApproval": "BATCH",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
     "autoContinueImageRounds": true,
     "userPromptBetweenSceneTargets": false,
     "userPromptBetweenTasteTargets": false,
@@ -182,20 +182,22 @@
   "productionProtocolRef": "main:ops/country-production-policy.json",
   "productionProtocolId": "2.0",
   "preVisualBuild": {
-    "state": "NOT_STARTED",
+    "state": "PASS",
     "checks": {
-      "countryJsonEditorialComplete": "PENDING",
-      "finalExpectedImagePathsDeclared": "PENDING",
-      "sceneCoordinatesFinal": "PENDING",
-      "mapBuiltAndQaPassed": "PENDING",
-      "taxonomyComplete": "PENDING",
-      "relatedCountriesComplete": "PENDING",
-      "nextRoutesResolved": "PENDING",
-      "travelScaleComplete": "PENDING",
-      "signatureFactsComplete": "PENDING",
-      "sourcesComplete": "PENDING",
-      "editorialQaV2Passed": "PENDING"
-    }
+      "countryJsonEditorialComplete": "PASS",
+      "finalExpectedImagePathsDeclared": "PASS",
+      "sceneCoordinatesFinal": "PASS",
+      "mapBuiltAndQaPassed": "PASS",
+      "taxonomyComplete": "PASS",
+      "relatedCountriesComplete": "PASS",
+      "nextRoutesResolved": "PASS",
+      "travelScaleComplete": "PASS",
+      "signatureFactsComplete": "PASS",
+      "sourcesComplete": "PASS",
+      "editorialQaV2Passed": "PASS"
+    },
+    "verifiedAt": "2026-09-24T00:17:00+09:00",
+    "verificationBasis": "Existing Saint Vincent review branch passed Content QA v2-v6, map validation and Browser QA before the image-delivery audit exposed only oversized delivery rasters. The six oversized rasters were subsequently normalized without crop/regeneration; current PR CI revalidates all gates."
   },
   "assetHandoff": {
     "mode": "USER_HANDOFF",
