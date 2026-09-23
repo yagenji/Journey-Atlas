@@ -5,7 +5,6 @@ import hashlib
 import io
 import json
 import re
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -70,18 +69,6 @@ class GulfForeignSourceReview(unittest.TestCase):
         self.assertIn('map-context-clip-country', updated)
         with self.assertRaisesRegex(ValueError,'source|Source|Unreviewed'):
             reconcile(updated,source,'kuwait','h')
-
-    def test_kuwait_northern_ring_country_attribution_source_audit(self):
-        """One-off original KWT/IRQ vector fetch; never promote based on the label."""
-        out=Path('/tmp/journey-atlas-map-context-real-previews/priority-review/kuwait-north')
-        out.mkdir(parents=True,exist_ok=True)
-        subprocess.run([sys.executable,str(ROOT/'scripts/review_kuwait_northern_island.py'),
-                        '--repo',str(ROOT),'--output-dir',str(out)],
-                       cwd=ROOT,check=True,timeout=180)
-        report=json.loads((out/'report.json').read_text())
-        self.assertIn('HOLD',report['status'])
-        self.assertTrue(report['originalNationalPathsIdentical'])
-        self.assertGreater(report['islandAreaPx2'],10)
 
     def test_rejects_unreviewed_source_without_modifying_it(self):
         with tempfile.TemporaryDirectory() as folder:
