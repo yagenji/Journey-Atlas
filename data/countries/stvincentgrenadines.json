@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "publicationPipelineVersion": 2,
+  "slug": "stvincentgrenadines",
+  "nameEn": "ST. VINCENT & GRENADINES",
+  "nameJa": "セントビンセント・グレナディーン",
+  "region": "CARIBBEAN / 13°N",
+  "seo": {
+    "description": "セントビンセントの火山と熱帯林から、キングスタウンの港、ベキア島、メイロー島、トバゴ・ケイズへ。海を隔てて続く島々の地形と暮らしを地図と八つの風景から知る。"
+  },
+  "capital": {
+    "nameEn": "Kingstown",
+    "nameJa": "キングスタウン",
+    "coordinates": {
+      "latitude": 13.15527,
+      "longitude": -61.22742
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 20,
+      "y": 18
+    }
+  },
+  "hero": {
+    "lead": "火口を縁取る荒々しい山肌に雲が流れる。北のセントビンセント島では活火山ラ・スフリエールが島の地形をつくり、その南には港町と小さな島々、珊瑚礁の浅い海が続いている。",
+    "image": "assets/images/stvincentgrenadines/approved/hero.webp",
+    "location": "La Soufrière / St. Vincent",
+    "coordinates": {
+      "latitude": 13.33,
+      "longitude": -61.18
+    },
+    "mapOffset": {
+      "x": 1.3,
+      "y": -0.8
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 13.48,
+      "south": 12.47,
+      "west": -61.65,
+      "east": -61.05
+    },
+    "svg": "assets/images/stvincentgrenadines/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target administrative geometry: geoBoundaries gbOpen VCT ADM1 dissolved, source OpenStreetMap / Wambacher, Open Data Commons Open Database License 1.0, https://www.geoboundaries.org/api/current/gbOpen/VCT/ADM1/ . Tobago Cays micro-island coastlines are supplemented only where matched to named islands (Petit Bateau and Jamesby) from GSHHS high resolution via Basemap; GeoNames coordinates are used for identity matching. Surrounding coastlines use GSHHS high resolution. WGS84; 1200×760. Sources checked 2026-09-24."
+  },
+  "scenes": [
+    {
+      "id": "fort-charlotte-kingstown",
+      "name": "フォート・シャーロット / キングスタウン港",
+      "nameLocal": "Fort Charlotte / Kingstown Harbour",
+      "mapLabel": "Fort Charlotte",
+      "description": "キングスタウン西側の高台から港と山の斜面を見渡す。海上交通の拠点と、山が海へ近づく首都の地形が一つの視界に収まる。",
+      "coordinates": {
+        "latitude": 13.15797,
+        "longitude": -61.24227
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-1.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": -3.75,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "dark-view-falls",
+      "name": "ダーク・ビュー / 熱帯林の滝",
+      "nameLocal": "Dark View Falls",
+      "mapLabel": "Dark View",
+      "description": "本島北西部の森で水が岩壁を落ちる。海沿いの集落から少し内陸へ入るだけで、雨の多い山地の水と植物に景色が変わる。",
+      "coordinates": {
+        "latitude": 13.29075,
+        "longitude": -61.22102
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-2.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": -2,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "bequia-admiralty-bay",
+      "name": "ベキア島 / アドミラルティ湾",
+      "nameLocal": "Bequia / Admiralty Bay",
+      "mapLabel": "Bequia",
+      "description": "ベキア島西岸の大きな湾に町と船が集まる。本島と南の島々を結ぶ海上移動が、港の風景として見えてくる。",
+      "coordinates": {
+        "latitude": 13.01131,
+        "longitude": -61.23527
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-3.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": 2,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "union-island-clifton",
+      "name": "ユニオン島 / クリフトン",
+      "nameLocal": "Union Island / Clifton",
+      "mapLabel": "Union Island",
+      "description": "南部グレナディーンのユニオン島では、急な緑の丘の下にクリフトンの港がある。低い珊瑚の小島とは異なる起伏を持つ島の姿が分かる。",
+      "coordinates": {
+        "latitude": 12.59706,
+        "longitude": -61.41739
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-4.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 3.25
+      }
+    },
+    {
+      "id": "tobago-cays-horseshoe-reef",
+      "name": "トバゴ・ケイズ / 珊瑚礁の浅い海",
+      "nameLocal": "Tobago Cays / Horseshoe Reef",
+      "mapLabel": "Tobago Cays",
+      "description": "五つの小島と珊瑚礁が集まり、浅瀬と外海で水の色が変わる。島そのものよりも、島と島の間に広がる海が風景の中心になる。",
+      "coordinates": {
+        "latitude": 12.63351,
+        "longitude": -61.36096
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-5.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": 3.4,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "mayreau-salt-whistle",
+      "name": "メイロー島 / ソルト・ウィッスル湾",
+      "nameLocal": "Mayreau / Salt Whistle Bay",
+      "mapLabel": "Mayreau",
+      "description": "小さなメイロー島の北側に、砂浜と穏やかな湾が弧を描く。南の島々を巡る旅で、陸地の小ささと海の広がりを実感する場所。",
+      "coordinates": {
+        "latitude": 12.64778,
+        "longitude": -61.39205
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-6.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": -3.3,
+        "y": -1
+      }
+    },
+    {
+      "id": "canouan-charlestown-bay",
+      "name": "カヌアン島 / チャールズタウン湾",
+      "nameLocal": "Canouan / Charlestown Bay",
+      "mapLabel": "Canouan",
+      "description": "カヌアン島西岸では、丘の起伏の下に湾と集落が続く。南北に連なるグレナディーンでも、島ごとに山の形と港の開き方が異なる。",
+      "coordinates": {
+        "latitude": 12.71608,
+        "longitude": -61.32581
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-7.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": 2.8,
+        "y": -2.2
+      }
+    },
+    {
+      "id": "mustique-britannia-bay",
+      "name": "マスティーク島 / ブリタニア湾",
+      "nameLocal": "Mustique / Britannia Bay",
+      "mapLabel": "Mustique",
+      "description": "マスティーク島西岸のブリタニア湾は、砂浜と青い海の向こうに緑の島影が続く。火山島の本島とは異なる、低い海辺の景色へ視点が移る。",
+      "coordinates": {
+        "latitude": 12.87845,
+        "longitude": -61.1896
+      },
+      "image": "assets/images/stvincentgrenadines/approved/scene-8.webp",
+      "imageState": "PENDING",
+      "mapOffset": {
+        "x": 2,
+        "y": 0.4
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山の火口と山に重なる雲",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "森の中を落ちる水",
+      "category": "NATURE",
+      "icon": "waterfall"
+    },
+    {
+      "title": "港で行き交う舟",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "珊瑚礁が囲む浅い海",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "小島をつなぐ船の移動",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "キングスタウンの市場と街路",
+      "category": "DAILY_LIFE",
+      "icon": "city"
+    },
+    {
+      "title": "植物園で育てられる樹木",
+      "category": "CULTURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "パンノキと魚の食卓",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "island-chain-and-sea-crossings",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "一つの国を、舟が島から島へつないでいる",
+      "text": "国の北には大きなセントビンセント島があり、南には人が暮らすグレナディーン諸島が続く。港で船を待つ時間も、島々の距離と日々の往来を知る入口になる。",
+      "points": [
+        "北の本島と南の諸島で風景が異なる",
+        "島間移動は海況と運航状況に左右される"
+      ]
+    },
+    {
+      "topicKey": "la-soufriere-volcano-and-2021",
+      "themeEn": "LANDSCAPE",
+      "themeJa": "地球の風景",
+      "title": "2021年の噴火を経た火山島の風景",
+      "text": "ラ・スフリエールは2021年にも噴火した活火山。山頂の形や植生を固定された観光風景として見るのではなく、地形が今も変わる島であることを知って歩きたい。",
+      "points": [
+        "ラ・スフリエールは本島北部の活火山",
+        "登山は当日の防災情報と現地の立入案内を確認する"
+      ]
+    },
+    {
+      "topicKey": "kingstown-port-and-fort",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "港の上の砦から、首都の地形を見る",
+      "text": "フォート・シャーロットはキングスタウンを見下ろす高台にある。港と丘の街路が近い距離で重なることが、首都を歩く前に見えてくる。",
+      "points": [
+        "首都はセントビンセント島の南西岸",
+        "砦と港は異なる高さから町を見せる"
+      ]
+    },
+    {
+      "topicKey": "breadfruit-and-local-food",
+      "themeEn": "FOOD",
+      "themeJa": "食を知る",
+      "title": "パンノキは国民食にも使われる",
+      "text": "焼いたパンノキと揚げたジャックフィッシュは国民食として紹介されている。パンノキは島の農業と食文化をつなぎ、8月には関連する催しも開かれる。",
+      "points": [
+        "焼きパンノキと魚は国民食",
+        "パンノキを使った料理には複数の形がある"
+      ]
+    },
+    {
+      "topicKey": "grenadines-habited-islands",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "観光用の小島だけでなく、有人島の町を歩く",
+      "text": "ベキア、カヌアン、ユニオンなどの島には港や集落がある。珊瑚礁の景色とともに、通学、仕事、貨物の往来も島の現在の暮らしをつくる。",
+      "points": [
+        "グレナディーンには複数の有人島がある",
+        "島の港は観光だけでなく日常の交通を支える"
+      ]
+    },
+    {
+      "topicKey": "coastal-reef-protection",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "title": "トバゴ・ケイズでは海そのものが保護の対象",
+      "text": "トバゴ・ケイズ海洋公園では島と珊瑚礁、浅瀬がつながる。砂浜だけを訪れるのではなく、水中の環境を傷つけない見学方法を確認したい。",
+      "points": [
+        "五つの小島と珊瑚礁の海域",
+        "遊泳や停泊は保護区の規則を確認する"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "national-bird-amazona-guildingii",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "野生",
+      "title": "国鳥はセントビンセント固有のオウム",
+      "text": "セントビンセント・アマゾンは本島の森に暮らす固有種で、国鳥でもある。海辺の島々だけでなく、本島の山地に固有の生態系が残ることを教えてくれる。",
+      "icon": "leaf",
+      "sourceKey": "wildlife"
+    },
+    {
+      "topicKey": "botanical-gardens-1765",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "キングスタウンには1765年創設の植物園がある",
+      "text": "セントビンセント植物園は1765年に設立された。島の自然林とは別に、人が持ち込み育ててきた熱帯植物の歴史をたどれる。",
+      "icon": "history",
+      "sourceKey": "parks"
+    },
+    {
+      "topicKey": "owia-wave-fed-pool",
+      "categoryEn": "NATURE",
+      "categoryJa": "自然",
+      "title": "オウィアの岩の池には海から水が入る",
+      "text": "北東岸の火山岩に囲まれた池は海とつながっている。波が高い日は利用状況と安全案内を確認する。",
+      "icon": "sea",
+      "sourceKey": "parks"
+    },
+    {
+      "topicKey": "interisland-ferry-schedules",
+      "categoryEn": "MOVEMENT",
+      "categoryJa": "移動",
+      "title": "島間の船は予定を固定しすぎない",
+      "text": "キングスタウンとベキアなどを結ぶ船がある。運航時刻や接続は変更されるため、出発前に事業者の案内を確かめる。",
+      "icon": "sea",
+      "sourceKey": "ferry"
+    },
+    {
+      "topicKey": "breadfruit-august",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "8月にはパンノキにまつわる催しがある",
+      "text": "パンノキの料理を紹介する催しが8月に行われてきた。開催日と会場は年ごとの公式情報を確認したい。",
+      "icon": "food",
+      "sourceKey": "food"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ST. VINCENT & GRENADINES",
+    "title": "セントビンセント・グレナディーンで食べたいもの",
+    "intro": "焼きパンノキと魚、揚げパンと塩漬け魚、葉物のスープ、葉で包む菓子。島々の食卓を四品から知る。",
+    "items": [
+      {
+        "id": "roasted-breadfruit-fried-jackfish",
+        "name": "焼きパンノキとジャックフィッシュ",
+        "nameLocal": "Roasted Breadfruit & Fried Jackfish",
+        "text": "火で焼いたパンノキに揚げた魚を合わせる、国民食として紹介される一皿。",
+        "image": "assets/images/stvincentgrenadines/approved/food-1.webp",
+        "imageState": "PENDING",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fried-bake-saltfish",
+        "name": "フライド・ベイクとソルトフィッシュ",
+        "nameLocal": "Fried Bake & Saltfish",
+        "text": "丸く揚げたパンに塩漬け魚を合わせる。朝食や日々の食事に近い組み合わせ。",
+        "image": "assets/images/stvincentgrenadines/approved/food-2.webp",
+        "imageState": "PENDING",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "callaloo-soup",
+        "name": "カラルー・スープ",
+        "nameLocal": "Callaloo Soup",
+        "text": "葉物を煮込む緑のスープ。野菜やココナツなどの組み合わせは作り手によって変わる。",
+        "image": "assets/images/stvincentgrenadines/approved/food-3.webp",
+        "imageState": "PENDING",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ducana",
+        "name": "ドゥカナ",
+        "nameLocal": "Ducana",
+        "text": "サツマイモとココナツなどを練り、葉に包んで火を通すカリブ海の料理。塩漬け魚と合わせることもある。",
+        "image": "assets/images/stvincentgrenadines/approved/food-4.webp",
+        "imageState": "PENDING",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "本島の山と港を見るか、南の島々まで海を渡るかで日程が変わる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "セントビンセント島の地形と町",
+        "text": "キングスタウンを拠点に港と植物園を歩き、天候を見て森や滝へ。例：キングスタウン → フォート・シャーロット → 植物園 → 西岸の滝。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "本島とベキア島を組み合わせる",
+        "text": "本島を歩いた後、船でベキアへ渡って湾と港町を知る。例：キングスタウン → ラ・スフリエール周辺 → ベキア → キングスタウン。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "南のグレナディーンまで広げる",
+        "text": "メイロー、ユニオン、トバゴ・ケイズへ範囲を広げる場合は、海況と移動日に余裕を持たせる。例：キングスタウン → ベキア → メイロー → ユニオン島。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#c7d7cf",
+      "text": "比較的雨が少ない時期。北東の貿易風で海が荒れる日もあり、島間の船は海況を確認する。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#d8d4b8",
+      "text": "比較的乾いた時期から雨の多い時期への移り目。本島の山間部は海辺より雨が多いことがある。"
+    },
+    {
+      "months": "6〜11月",
+      "color": "#bfcfd0",
+      "text": "雨の多い時期で、大西洋のハリケーン・シーズンとも重なる。船と山歩きは当日の安全情報を優先する。"
+    },
+    {
+      "months": "12月",
+      "color": "#cfd7b9",
+      "text": "雨の多い季節から乾いた季節へ移る頃。島間の運航と天気を旅程に合わせて確認する。"
+    }
+  ],
+  "transport": {
+    "title": "本島は道路、島々は船と飛行機",
+    "text": "本島内の町と山の入口は道路で結び、ベキアや南部のグレナディーンへは船や小型機を組み合わせる。便数や経路は時期・海況で変わるため、当日の事業者情報を確認する。"
+  },
+  "personas": [
+    {
+      "title": "一つの国で火山と珊瑚礁の両方を知りたい人",
+      "text": "北の火山島から南の浅い海へ、地形の変化を追える。"
+    },
+    {
+      "title": "港町や島の生活に関心がある人",
+      "text": "首都とグレナディーンの有人島を船でつなぐと、日常の往来が見えてくる。"
+    },
+    {
+      "title": "移動に余白を持って島を巡りたい人",
+      "text": "天候と船の運航に合わせ、海辺と小島の時間を重ねられる。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "カリブ海 / 小アンティル諸島"
+    },
+    {
+      "label": "首都",
+      "value": "キングスタウン"
+    },
+    {
+      "label": "人口",
+      "value": "約11万人（2021年・世界銀行、外務省掲載値）"
+    },
+    {
+      "label": "面積",
+      "value": "約390 km²（日本の約0.10%）"
+    },
+    {
+      "label": "言語",
+      "value": "英語（公用語）、セントビンセント・クレオール語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教など"
+    },
+    {
+      "label": "通貨",
+      "value": "東カリブ・ドル（XCD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "thirty-two-islands",
+      "label": "島々の数",
+      "value": "32",
+      "note": "観光省は32の島からなる国と紹介する。北の大きな本島と南の島々が一つの国を構成する。",
+      "icon": "sea",
+      "interestReason": "大きな本島だけでなく諸島全体を地図で見るための数字。"
+    },
+    {
+      "topicKey": "five-tobago-cays",
+      "label": "トバゴ・ケイズの小島",
+      "value": "5つ",
+      "note": "五つの小島とそれらを取り巻く珊瑚礁や浅瀬が海洋公園の風景を形づくる。",
+      "icon": "sea",
+      "interestReason": "地形と海の色の変化を具体的な島の数から理解できる。"
+    },
+    {
+      "topicKey": "soufriere-last-eruption",
+      "label": "ラ・スフリエール直近の噴火",
+      "value": "2021年",
+      "note": "火山は2021年に爆発的噴火を起こした。現在の入山可否は公的な防災情報で確認する。",
+      "icon": "landscape",
+      "interestReason": "火山島の地形が今も変わり得ることを示す時点。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "check-volcano-advisories",
+      "title": "火山を歩く前に立入情報を確かめる",
+      "text": "ラ・スフリエールは活火山。過去の旅行記を現在の安全情報として扱わず、防災当局とガイドの案内を確認する。"
+    },
+    {
+      "topicKey": "check-island-ferries",
+      "title": "船の接続は余裕を持って考える",
+      "text": "ベキアや南部の島への便は変更され得る。飛行機と船の同日接続は最新時刻と海況を確認する。"
+    },
+    {
+      "topicKey": "marine-park-protection",
+      "title": "海洋公園の環境と規則を尊重する",
+      "text": "トバゴ・ケイズでは珊瑚や海の生きものに触れず、停泊や遊泳は現地の保護ルールに従う。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "grenada",
+      "nameEn": "GRENADA",
+      "nameJa": "グレナダ",
+      "flag": "🇬🇩",
+      "reason": "島々の暮らしと海岸を、南のカリアク島やグレナダ島へ広げて見る。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "dominica",
+      "nameEn": "DOMINICA",
+      "nameJa": "ドミニカ国",
+      "flag": "🇩🇲",
+      "reason": "火山島の熱帯林と滝の風景を、別のカリブ海の島でもたどる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "stlucia",
+      "nameEn": "ST. LUCIA",
+      "nameJa": "セントルシア",
+      "flag": "🇱🇨",
+      "reason": "山が海に迫る地形と沿岸の町を、北隣の島でも見比べる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-24",
+  "sourcesVerifiedAt": "2026-09-24",
+  "sourceDates": {
+    "population": "2021",
+    "area": "2023-02-09",
+    "geography": "2026-09-22",
+    "volcano": "2021",
+    "parks": "2026-09-22",
+    "coordinates": "2026-09-24",
+    "food": "2026-09-24",
+    "climate": "2015",
+    "ferry": "2026-09-22",
+    "map": "2026-09-24",
+    "wildlife": "2026-09-23",
+    "sceneCoordinates": "2026-09-24"
+  },
+  "sources": {
+    "population": "Ministry of Foreign Affairs of Japan, SVG country profile (2023-02-09), World Bank 2021 population 112,000. https://www.mofa.go.jp/mofaj/area/svg/data.html",
+    "area": "Ministry of Foreign Affairs of Japan, SVG country profile (2023-02-09), land area 390 km²; measurement year unspecified. Japan comparison uses Geospatial Information Authority of Japan, National Land Area by Prefecture/Municipality, 2026-04-01 total 377,974.87 km²; 390 / 377,974.87 × 100 ≒ 0.10%. https://www.mofa.go.jp/mofaj/area/svg/data.html ; https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "geography": "SVG Ministry of Tourism, Geography, 32 islands, location of Kingstown, Bequia, Union, Mayreau and Tobago Cays. https://tourism.gov.vc/tourism/index.php/svg-facts/72-essentials",
+    "volcano": "Smithsonian Institution Global Volcanism Program, Soufrière St. Vincent, 2021 eruption, volcano center 13.33 N / -61.18 W. https://volcano.si.edu/volcano.cfm?vn=360150",
+    "parks": "SVG National Parks, Rivers and Beaches Authority, visitor sites, Dark View Falls, Botanical Gardens, Owia Salt Pond, La Soufrière. https://nationalparks.gov.vc/nationalparks/index.php/visitors-sites ; https://nationalparks.gov.vc/nationalparks/index.php/sites/15-hiking-and-adventure/11-dark-view-falls ; https://nationalparks.gov.vc/nationalparks/index.php/recreation/17-recreation-site-seeing/16-owia-salt-pond-recreational-site",
+    "coordinates": "OpenStreetMap feature location via Mapcarta checked 2026-09-22: Fort Charlotte https://mapcarta.com/19501548 ; Bequia Port Elizabeth https://mapcarta.com/19501366 ; Dark View Falls https://mapcarta.com/W1486396402 ; Owia https://mapcarta.com/N3883809284 ; Botanical Gardens https://mapcarta.com/W384984931 ; Mayreau Salt Whistle Bay https://mapcarta.com/fr/34908322 ; Kingstown https://geodatakit.com/datasets/st-vincent-grenadines-cities ; GeoNames checked 2026-09-24: Clifton, Union Island 12.59706,-61.41739 https://www.geonames.org/advanced-search.html?q=Clifton%2F ; Petit Bateau in Tobago Cays 12.63351,-61.36096 https://www.geonames.org/advanced-search.html?continentCode=NA&country=VC&featureClass=&q=Island ; GeoNames checked 2026-09-24: Canouan (Cannouan Island) land reference 12.71608,-61.32581 https://www.geonames.org/search.html?country=VC&q=Saint-Vincent-et-les-Grenadines&startRow=50 ; all map markers are site, settlement, island or named-islet coordinates, not claimed camera viewpoints.",
+    "food": "Government of Saint Vincent and the Grenadines / Ministry of Tourism: national dish and local food references, including roast breadfruit and fried jackfish, callaloo, saltfish preparations and local bakes; https://www.gov.vc/index.php/visitors/culture-festivals ; https://tourism.gov.vc/tourism/index.php/festivals-a-events/65-breadfruit-festival ; https://tourism.gov.vc/tourism/images/stories/PDF/Folk_Songs/vincentian%20local%20dish.pdf . The Vincentian local-food reporting documents fried bakes and stewed saltfish in Vincentian breakfast service: https://thevincentian.com/VincentianPDF-26-09-14.pdf . TasteAtlas documents ducana as eaten in Saint Vincent and the Grenadines: https://www.tasteatlas.com/ducana . Sources checked 2026-09-24.",
+    "climate": "SVG Second National Communication (2015/2016), wetter June-November, drier December-May; tourism ministry notes local rainfall May-October; descriptions are approximate, not a forecast. https://tourism.gov.vc/tourism/images/stories/vctnc2.pdf ; https://tourism.gov.vc/tourism/index.php/svg-facts/70-weather",
+    "ferry": "Bequia Tourism Association, ferry connectivity and schedules subject to change. https://www.bequiatourism.com/gethere.htm ; https://visitunionisland.com/plan-your-trip/",
+    "geometry": "Target administrative geometry: geoBoundaries gbOpen VCT ADM1 dissolved, source OpenStreetMap / Wambacher, Open Data Commons Open Database License 1.0, https://www.geoboundaries.org/api/current/gbOpen/VCT/ADM1/ . Tobago Cays micro-island coastlines are supplemented only where matched to named islands (Petit Bateau and Jamesby) from GSHHS high resolution via Basemap; GeoNames coordinates are used for identity matching. Surrounding coastlines use GSHHS high resolution. WGS84; 1200×760. Sources checked 2026-09-24.",
+    "sceneCoordinates": "OpenStreetMap feature location via Mapcarta checked 2026-09-22: Fort Charlotte https://mapcarta.com/19501548 ; Bequia Port Elizabeth https://mapcarta.com/19501366 ; Dark View Falls https://mapcarta.com/W1486396402 ; Owia https://mapcarta.com/N3883809284 ; Botanical Gardens https://mapcarta.com/W384984931 ; Mayreau Salt Whistle Bay https://mapcarta.com/fr/34908322 ; Kingstown https://geodatakit.com/datasets/st-vincent-grenadines-cities ; GeoNames checked 2026-09-24: Clifton, Union Island 12.59706,-61.41739 https://www.geonames.org/advanced-search.html?q=Clifton%2F ; Petit Bateau in Tobago Cays 12.63351,-61.36096 https://www.geonames.org/advanced-search.html?continentCode=NA&country=VC&featureClass=&q=Island ; GeoNames checked 2026-09-24: Canouan (Cannouan Island) land reference 12.71608,-61.32581 https://www.geonames.org/search.html?country=VC&q=Saint-Vincent-et-les-Grenadines&startRow=50 ; all map markers are site, settlement, island or named-islet coordinates, not claimed camera viewpoints. Canouan Charlestown Bay bounds: SVG Government Gazette marine areas (2014) via MarineRegions, https://www.marineregions.org/documents/VCT_2014_147_Gazette.pdf ; Mustique Britannia/Grand Bay: GeoNames/OpenStreetMap via Mapcarta, https://mapcarta.com/19501474.",
+    "wildlife": "SVG Ministry of Tourism, National Bird: St. Vincent Parrot (Amazona guildingii), and SVG National Parks biodiversity information; checked 2026-09-23. https://tourism.gov.vc/tourism/index.php/national-bird ; https://nationalparks.gov.vc/nationalparks/index.php/biodiversity",
+    "map": "Target administrative geometry: geoBoundaries gbOpen VCT ADM1 dissolved, source OpenStreetMap / Wambacher, Open Data Commons Open Database License 1.0, https://www.geoboundaries.org/api/current/gbOpen/VCT/ADM1/ . Tobago Cays micro-island coastlines are supplemented only where matched to named islands (Petit Bateau and Jamesby) from GSHHS high resolution via Basemap; GeoNames coordinates are used for identity matching. Surrounding coastlines use GSHHS high resolution. WGS84; 1200×760. Sources checked 2026-09-24."
+  }
+}
