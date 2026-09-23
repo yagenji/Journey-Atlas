@@ -16,16 +16,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: country/stlucia-map-zoom-review-20260923
-      - name: Install geographic layout solver
-        run: python3 -m pip install --disable-pip-version-check shapely scipy
-      - name: Preserve verified geometry; solve required marker spacing inland
+      - name: Install geometry checker
+        run: python3 -m pip install --disable-pip-version-check shapely
+      - name: Solve strict five-percent, 71px, inland, hero-safe constraints
         run: |
           python3 - <<'PY'
-          import json, math, re
+          import json, math, re, time
           from pathlib import Path
           from xml.etree import ElementTree as ET
-          import numpy as np
-          from scipy.optimize import linear_sum_assignment
           from shapely.geometry import Point,Polygon
           from shapely.ops import unary_union
           from shapely.affinity import affine_transform
@@ -33,86 +31,117 @@ jobs:
           json_path=Path('data/countries/stlucia.json')
           svg_path=Path('assets/images/stlucia/map-atlas-v1.svg')
           data=json.loads(json_path.read_text(encoding='utf-8'))
-          bounds=data['map']['bounds']
-          assert bounds=={'north':14.16,'south':13.68,'west':-61.19,'east':-60.79}
+          b=data['map']['bounds']
+          assert b=={'north':14.16,'south':13.68,'west':-61.19,'east':-60.79}
           NS='{http://www.w3.org/2000/svg}'
           root=ET.fromstring(svg_path.read_text(encoding='utf-8'))
           group=next(c for c in root if c.attrib.get('id')=='map-geography-zoom')
-          matrix=list(map(float,re.findall(r'-?\d+(?:\.\d+)?',group.attrib['transform'])))
-          assert len(matrix)==6 and matrix[0]>1.5 and matrix[3]>1.5
+          transform=list(map(float,re.findall(r'-?\d+(?:\.\d+)?',group.attrib['transform'])))
+          assert len(transform)==6
           target=next(c for c in group if c.tag==NS+'path')
-          polys=[]
-          for segment in re.findall(r'M\s*([^Z]+)Z',target.attrib['d']):
-              xy=[(float(x),float(y)) for x,y in re.findall(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)',segment)]
-              if len(xy)>2:polys.append(Polygon(xy))
-          assert polys and all(p.is_valid for p in polys)
-          land=affine_transform(unary_union(polys),matrix)
-          inland=land.buffer(-14)
-          assert not inland.is_empty
-          clat=(bounds['north']+bounds['south'])/2
-          c=math.cos(math.radians(clat))
-          s=min(1200/((bounds['east']-bounds['west'])*c),760/(bounds['north']-bounds['south']))
-          ox=(1200-(bounds['east']-bounds['west'])*c*s)/2
-          oy=(760-(bounds['north']-bounds['south'])*s)/2
-          def geo(c0):return (ox+(c0['longitude']-bounds['west'])*c*s,oy+(bounds['north']-c0['latitude'])*s)
-          def plotted(item):
-              x,y=geo(item['coordinates']);offset=item.get('mapOffset') or {}
-              return (x+12*float(offset.get('x',0)),y+7.6*float(offset.get('y',0)))
+          polygons=[]
+          for part in re.findall(r'M\s*([^Z]+)Z',target.attrib['d']):
+              points=[(float(x),float(y)) for x,y in re.findall(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)',part)]
+              if len(points)>2:polygons.append(Polygon(points))
+          assert polygons and all(p.is_valid for p in polygons)
+          land=affine_transform(unary_union(polygons),transform).buffer(-14)
+          assert not land.is_empty
+          c=math.cos(math.radians((b['north']+b['south'])/2))
+          s=min(1200/((b['east']-b['west'])*c),760/(b['north']-b['south']))
+          ox=(1200-(b['east']-b['west'])*c*s)/2
+          oy=(760-(b['north']-b['south'])*s)/2
+          def geo(coords):return ox+(coords['longitude']-b['west'])*c*s,oy+(b['north']-coords['latitude'])*s
+          def shown(item):
+              x,y=geo(item['coordinates']);o=item.get('mapOffset') or {}
+              return x+12*float(o.get('x',0)),y+7.6*float(o.get('y',0))
           scenes=data['scenes']
-          fixed=[plotted(data['capital'])]+[plotted(scenes[i]) for i in (0,1,7)]
-          assert all(inland.contains(Point(x,y)) for x,y in fixed)
+          fixed=[shown(data['capital'])]+[shown(scenes[i]) for i in (0,1,7)]
+          hero=shown(data['hero'])
+          assert all(land.contains(Point(x,y)) for x,y in fixed)
           assert all(math.hypot(x-x2,y-y2)>=71 for i,(x,y) in enumerate(fixed) for x2,y2 in fixed[i+1:])
-          indices=[2,3,4,5,6]
-          geographic=[geo(scenes[i]['coordinates']) for i in indices]
-          best=None
-          # The 78px lattice is a display-only collision solver: geographic points never move.
-          # Try 100 lattice translations; Hungarian assignment minimizes total displacement.
-          for ix in range(0,78,7):
-              for iy in range(0,78,7):
-                  slots=[]
-                  for x in range(454+ix,778,78):
-                      for y in range(346+iy,710,78):
-                          if not inland.contains(Point(x,y)):continue
-                          if any(math.hypot(x-fx,y-fy)<72 for fx,fy in fixed):continue
-                          slots.append((x,y))
-                  if len(slots)<len(indices):continue
-                  costs=np.array([[math.hypot(px-x,py-y)**2 for x,y in slots] for px,py in geographic])
-                  costs[costs>185**2]=1e9
-                  rows,cols=linear_sum_assignment(costs)
-                  if len(rows)!=5 or any(costs[r,c]>=1e9 for r,c in zip(rows,cols)):continue
-                  score=sum(float(costs[r,c]) for r,c in zip(rows,cols))
-                  chosen=[slots[cols[list(rows).index(r)]] for r in range(5)]
-                  if best is None or score<best[0]:best=(score,chosen)
-          assert best is not None,'No legal 71px-spaced inland layout; keep PR draft'
-          placements=list(fixed[1:3])+best[1]+[fixed[3]]
-          assert len(placements)==8
-          assert all(inland.contains(Point(x,y)) for x,y in placements)
-          assert all(math.hypot(x-x2,y-y2)>=71 for i,(x,y) in enumerate(placements) for x2,y2 in placements[i+1:])
-          assert all(math.hypot(x-cx,y-cy)>=71 for x,y in placements for cx,cy in fixed[:1])
-          for idx,(x,y) in enumerate(placements):
+          ids=(2,3,4,5,6)
+          candidate=[];costs=[]
+          for idx in ids:
               gx,gy=geo(scenes[idx]['coordinates'])
-              scenes[idx]['mapOffset']={'x':round((x-gx)/12,4),'y':round((y-gy)/7.6,4)}
-              print('Scene',idx+1,'badge',x,y,'offset_px',round(math.hypot(x-gx,y-gy),1))
-          # Where a visual badge is moved more than one normal map-marker gap,
-          # add a fine guide connecting it to the original real coordinates.
-          guides=ET.Element(NS+'g',{'id':'map-marker-leaders','fill':'none','stroke':'#31576a','stroke-width':'1.1','stroke-dasharray':'3 3','stroke-linecap':'round','opacity':'0.65'})
-          for idx,(x,y) in enumerate(placements):
-              gx,gy=geo(scenes[idx]['coordinates'])
-              if math.hypot(x-gx,y-gy)>60:
-                  ET.SubElement(guides,NS+'line',{'x1':f'{gx:.2f}','y1':f'{gy:.2f}','x2':str(x),'y2':str(y)})
-          if len(guides):root.append(guides)
-          data['map']['source']+=' Review marker layout: 71px minimum between the eight numbered scenes and capital, all numbered badges at least 14px inside verified land; dotted leader guides show original geographic anchors where offsets exceed 60px.'
+              options=[]
+              # Offset contract is Euclidean 5%, not per-axis 5%.
+              for dx in range(-60,61,5):
+                  for dy in range(-38,39,4):
+                      if (dx/12)**2+(dy/7.6)**2>4.95**2:continue
+                      x,y=gx+dx,gy+dy
+                      if not land.contains(Point(x,y)):continue
+                      if math.hypot(x-hero[0],y-hero[1])<64.5:continue
+                      if any(math.hypot(x-fx,y-fy)<71.5 for fx,fy in fixed):continue
+                      options.append((x,y,dx*dx+dy*dy))
+              options.sort(key=lambda a:(a[2],a[0],a[1]))
+              print('candidate count',idx+1,len(options),flush=True)
+              assert options, f'no feasible location for Scene {idx+1}'
+              candidate.append(options)
+          compatibility={}
+          for i in range(5):
+              for j in range(5):
+                  if i==j:continue
+                  compatibility[i,j]=[]
+                  for x,y,_ in candidate[i]:
+                      mask=0
+                      for k,(xx,yy,_) in enumerate(candidate[j]):
+                          if math.hypot(x-xx,y-yy)>=71.5:mask|=1<<k
+                      compatibility[i,j].append(mask)
+          initial=[(1<<len(x))-1 for x in candidate]
+          nodes=[0];start=time.monotonic()
+          def solve(domains,assigned):
+              nodes[0]+=1
+              if nodes[0]>260000 or time.monotonic()-start>42:
+                  return None
+              if len(assigned)==5:return assigned
+              remaining=[i for i in range(5) if i not in assigned]
+              i=min(remaining,key=lambda q:domains[q].bit_count())
+              m=domains[i]
+              while m:
+                  low=m & -m;idx=low.bit_length()-1;m-=low
+                  nxt=domains[:];nxt[i]=low
+                  good=True
+                  for j in remaining:
+                      if i==j:continue
+                      nxt[j]&=compatibility[i,j][idx]
+                      if not nxt[j]:good=False;break
+                  if good:
+                      ans=solve(nxt,{**assigned,i:idx})
+                      if ans is not None:return ans
+              return None
+          solution=solve(initial,{})
+          print('search nodes',nodes[0], 'seconds',round(time.monotonic()-start,1),flush=True)
+          assert solution is not None,'No feasible all-on-land 71px layout within 5% offsets; do not bypass map hard gates'
+          final=[shown(s) for s in scenes]
+          leaders=[]
+          for i,k in solution.items():
+              x,y,_=candidate[i][k]
+              scene_index=ids[i]
+              gx,gy=geo(scenes[scene_index]['coordinates'])
+              scenes[scene_index]['mapOffset']={'x':round((x-gx)/12,4),'y':round((y-gy)/7.6,4)}
+              final[scene_index]=(x,y)
+              if math.hypot(x-gx,y-gy)>52:
+                  leaders.append((gx,gy,x,y))
+              print('Scene',scene_index+1,'badge',round(x,1),round(y,1),'offset_percent',scenes[scene_index]['mapOffset'],flush=True)
+          assert all(land.contains(Point(x,y)) for x,y in final)
+          assert all(math.hypot(x-x2,y-y2)>=71.3 for k,(x,y) in enumerate(final) for x2,y2 in final[k+1:])
+          assert all(math.hypot(x-fx,y-fy)>=71.3 for x,y in final for fx,fy in fixed[:1])
+          assert all(math.hypot(x-hero[0],y-hero[1])>=64.3 for x,y in final)
+          guide=ET.Element(NS+'g',{'id':'map-marker-leaders','fill':'none','stroke':'#31576a','stroke-width':'1.1','stroke-dasharray':'3 3','stroke-linecap':'round','opacity':'0.65'})
+          for gx,gy,x,y in leaders:
+              ET.SubElement(guide,NS+'line',{'x1':f'{gx:.2f}','y1':f'{gy:.2f}','x2':f'{x:.2f}','y2':f'{y:.2f}'})
+          if leaders:root.append(guide)
+          data['map']['source']+=' User-requested marker repositioning keeps all eight numbered markers on actual land, at least 71px apart and within the validated 5% visual-offset contract; real coordinates unchanged.'
           ET.register_namespace('','http://www.w3.org/2000/svg')
           svg_path.write_text(ET.tostring(root,encoding='unicode')+'\n',encoding='utf-8')
           json_path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
-          print('all 8 inland; minimum 71px; leader guides',len(guides))
           PY
           python3 scripts/validate_country.py --strict data/countries/stlucia.json
-      - name: Commit revised map and remove temporary workflow
+      - name: Commit revised Country map and remove temporary workflow
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm .github/workflows/stlucia-marker-spacing-once.yml
           git add data/countries/stlucia.json assets/images/stlucia/map-atlas-v1.svg
-          git commit -m 'Space Saint Lucia map badges at least 71px apart on land'
+          git commit -m 'Fit Saint Lucia inland badges to strict 71px/5% map contract'
           git push origin HEAD:country/stlucia-map-zoom-review-20260923
