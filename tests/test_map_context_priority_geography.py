@@ -117,9 +117,13 @@ class PriorityGeographyReview(unittest.TestCase):
         self.assertLess(sum(qatar_inset.intersection(poly).area for poly in own_rings),8)
 
     def test_brunei_malaysia_source_and_original_path(self):
-        result=self._run('brunei','review_brunei_malaysia.py')
+        result=self._run('brunei','review_brunei_malaysia.py','PASS')
         self.assertTrue(result['nationalPathsIdentical'])
-        self.assertGreater(result['domesticIslandRemovedFromForeignContextSvgPx2'],400)
+        self.assertEqual(result['protectedTargetPathCount'],2)
+        self.assertTrue(result['pulauMuaraBesarPresent'])
+        self.assertEqual(result['pulauMuaraBesarPathSha256'],
+                         'b638398ba246e951a88e590a4cfc2f557a5cc9ad1c85b948fe2c93fb55655fa1')
+        self.assertGreater(result['olderGshhgOverlapWithCurrentPmbPct'],90)
         self.assertEqual(result['decodedSize'],[1200,760])
 
     def test_monaco_latest_osm_french_context_and_original_path(self):

@@ -59,8 +59,6 @@ jobs:
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
-      - name: Capture current Pulau Muara Besar OSM source
-        run: python scripts/review_brunei_pmb_current.py --output-dir /tmp/journey-atlas-map-context-real-previews/priority-review/brunei-pmb-source
       - name: Save Brunei and Monaco priority source review before long browser run
         if: always()
         uses: actions/upload-artifact@v4

@@ -1,9 +1,9 @@
-"""Migration-only Brunei/Sarawak reconciliation; approved national SVG is immutable.
+"""Migration-only Brunei/Sarawak reconciliation with source-pinned domestic PMB.
 
-Only the sourced GSHHG Malaysian mainland is pale. Pulau Muara Besar belongs
-inside Brunei, so its GSHHG ring is not foreign context. The already-approved
-Brunei SVG omits that island; adding it to the protected target requires separate
-review and is NOT silently done by this migration.
+The existing mainland/Temburong target path stays exact. Pulau Muara Besar is
+an explicitly added protected Brunei target sourced from current OSM coastline
+way 28531951 v9 (2025-03-01, ODbL). Only sourced Malaysian/Sarawak mainland is
+rendered as pale foreign context.
 """
 from __future__ import annotations
 import hashlib
@@ -14,9 +14,10 @@ from shapely.geometry import Polygon, Point
 from shapely.ops import unary_union
 
 N='{http://www.w3.org/2000/svg}'
-APPROVED_SHA='57fcee91d44f7d27052ba0ac96b209f0c465a447277d6dcdc970c4dec047978d'
-TARGET_SHA='63b4004c45a49e06ce9fa46c78a7807d88bf4ce8b9b0d06c74dab9bd487a64fd'
+ORIGINAL_TARGET_SHA='63b4004c45a49e06ce9fa46c78a7807d88bf4ce8b9b0d06c74dab9bd487a64fd'
+PMB_TARGET_SHA='b638398ba246e951a88e590a4cfc2f557a5cc9ad1c85b948fe2c93fb55655fa1'
 GSHHG_SHA='b61c98a983cd8166e156e3f0791c2fb0da467d1f3070a998ea778716f666ef8f'
+PMB_OSM_RAW_SHA='dd1bb1fbab630eb793b2c855f678fbc5a01f5ff21c1bdfdaf1410577669993d3'
 
 
 def rings(path):
@@ -45,32 +46,39 @@ def path_data(poly):
 
 
 def reconcile(svg:str, source_path:Path, resolution:str)->str:
-    original=source_path.read_bytes()
-    if hashlib.sha256(original).hexdigest()!=APPROVED_SHA or resolution!='i':
-        raise ValueError('Brunei approved national source or GSHHG resolution changed')
-    source=ET.fromstring(original)
+    if resolution!='i':
+        raise ValueError('Brunei reviewed migration requires intermediate GSHHG resolution')
+    source=ET.fromstring(source_path.read_bytes())
     candidate=ET.fromstring(svg)
     original_targets=[p.get('d') for p in source.iter(N+'path') if p.get('fill')=='url(#country)']
     candidate_targets=[p.get('d') for p in candidate.iter(N+'path') if p.get('fill')=='url(#country)']
-    if (len(original_targets)!=1 or original_targets!=candidate_targets
-            or hashlib.sha256(original_targets[0].encode()).hexdigest()!=TARGET_SHA
-            or candidate.get('viewBox')!='0 0 1200 760'):
-        raise ValueError('Protected Brunei paths/canvas do not match approved source')
+    hashes=[hashlib.sha256(p.encode()).hexdigest() for p in original_targets]
+    metadata=''.join(source.find(N+'metadata').itertext()) if source.find(N+'metadata') is not None else ''
+    if (candidate.get('viewBox')!='0 0 1200 760'
+            or len(original_targets)!=2 or original_targets!=candidate_targets
+            or hashes!=[ORIGINAL_TARGET_SHA,PMB_TARGET_SHA]
+            or 'OpenStreetMap way 28531951 version 9' not in metadata
+            or 'ODbL 1.0' not in metadata or PMB_OSM_RAW_SHA not in metadata):
+        raise ValueError('Protected Brunei target/canvas/provenance changed')
     context=candidate.find('.//*[@id="geographic-context"]')
     paths=list(context.iter(N+'path')) if context is not None else []
     if len(paths)!=1 or hashlib.sha256(paths[0].get('d','').encode()).hexdigest()!=GSHHG_SHA:
         raise ValueError('Brunei GSHHG candidate changed: independent geographic review required')
     generated=paths[0].get('d')
     source_rings=rings(generated)
-    national_rings=rings(original_targets[0])
-    if len(source_rings)!=2 or len(national_rings)!=2:
+    national_rings=[]
+    for target in original_targets:
+        national_rings.extend(rings(target))
+    if len(source_rings)!=2 or len(national_rings)!=3:
         raise ValueError('Brunei geometry component count changed')
     main=max(source_rings,key=lambda p:p.area)
-    island=min(source_rings,key=lambda p:p.area)
-    # Geographic check uses the independent Brunei government identification
-    # of Pulau Muara Besar; do not color its offshore ring as Malaysia.
-    if not (island.covers(Point(855,90)) and 400<island.area<500):
-        raise ValueError('Domestic Pulau Muara Besar topology has changed')
+    old_pmb=min(source_rings,key=lambda p:p.area)
+    pmb=rings(original_targets[1])[0]
+    if not (pmb.covers(Point(855,90)) and 600<pmb.area<650
+            and old_pmb.covers(Point(855,90)) and 400<old_pmb.area<500
+            and old_pmb.intersection(pmb).area/old_pmb.area>.90
+            and old_pmb.hausdorff_distance(pmb)<18):
+        raise ValueError('Pulau Muara Besar source identity/topology changed')
     brunei=unary_union(national_rings)
     if not 191080<main.intersection(brunei).area<191110:
         raise ValueError('Brunei/Malaysia source overlap changed')
@@ -89,13 +97,15 @@ def reconcile(svg:str, source_path:Path, resolution:str)->str:
         raise ValueError('Generated context cannot be replaced safely')
     result=svg.replace('d="'+generated+'"','d="'+replacement+'"',1)
     label=('<desc>Malaysia Sarawak neighboring mainland: GSHHG 2.3.6 '
-           'intermediate, WGS84, LGPL; clip against unchanged approved Brunei '
-           'national source. Pulau Muara Besar is domestic, not Malaysian land. '
-           'https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html</desc>')
+           'intermediate, WGS84, LGPL; clipped against protected Brunei target. '
+           'Pulau Muara Besar is protected domestic land sourced separately from '
+           'OpenStreetMap way 28531951 v9, ODbL 1.0. '
+           'https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html '
+           'https://www.openstreetmap.org/copyright</desc>')
     group='<g id="geographic-context">'
     if result.count(group)!=1:raise ValueError('Brunei context layout changed')
     result=result.replace(group,group+label,1)
     checked=ET.fromstring(result)
     if [p.get('d') for p in checked.iter(N+'path') if p.get('fill')=='url(#country)']!=original_targets:
-        raise ValueError('Brunei approved national path was modified')
+        raise ValueError('Brunei protected national geometry was modified')
     return result
