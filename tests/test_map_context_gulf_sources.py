@@ -1,10 +1,10 @@
-"""Qatar/Kuwait existing-map corrections; technical QA is not geography signoff."""
+"""Qatar/Kuwait source-guarded existing-context corrections; not geographic signoff."""
 from __future__ import annotations
 
 import hashlib
 import io
 import json
-import subprocess
+import re
 import sys
 import tempfile
 import unittest
@@ -29,14 +29,11 @@ class GulfForeignSourceReview(unittest.TestCase):
     def review(self, slug):
         config = json.loads((ROOT/'data/countries'/f'{slug}.json').read_text())
         original = ROOT/config['map']['svg']
-        original_root = ET.parse(original).getroot()
-        with tempfile.TemporaryDirectory() as folder:
-            candidate = Path(folder)/f'{slug}.svg'
-            subprocess.run([sys.executable, str(ROOT/'scripts/add_country_map_context_existing.py'),
-                            '--country-json', str(ROOT/'data/countries'/f'{slug}.json'),
-                            '--input', str(original), '--output', str(candidate), '--resolution', 'i'],
-                           cwd=ROOT, check=True, timeout=180)
-            updated = candidate.read_text()
+        source_text = original.read_text(encoding='utf-8')
+        original_root = ET.fromstring(source_text)
+        self.assertIsNotNone(original_root.find('.//*[@id="geographic-context"]'),
+                             'Qatar/Kuwait already have context in the Draft branch')
+        updated = reconcile(source_text, original, slug, 'i')
         actual = ET.fromstring(updated)
         self.assertEqual(actual.get('viewBox'), '0 0 1200 760')
         self.assertEqual(target_paths(actual), target_paths(original_root),
@@ -67,9 +64,8 @@ class GulfForeignSourceReview(unittest.TestCase):
         updated, context, source = self.review('kuwait')
         path = next(context.iter(NS+'path'))
         self.assertEqual(path.get('data-map-context-region'), 'country')
-        import re
         rings = [part for part in re.split(r'(?=\bM\s)', path.get('d')) if part.strip()]
-        self.assertEqual(len(rings),2, 'Keep original foreign mainland and the unassigned sixth ring')
+        self.assertEqual(len(rings),2, 'Keep foreign mainland and unassigned sixth ring')
         self.assertIn('map-context-clip-country', updated)
         with self.assertRaisesRegex(ValueError,'source|Source|Unreviewed'):
             reconcile(updated,source,'kuwait','h')
