@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "slug": "stvincentgrenadines",
+  "countryName": "ST. VINCENT & GRENADINES",
+  "contentRef": "country/stvincentgrenadines",
+  "stateRef": "country/stvincentgrenadines",
+  "phase": "CONTENT",
+  "stateRevision": 3,
+  "updatedAt": "2026-09-23T22:55:00+09:00",
+  "hero": {
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/stvincentgrenadines/hero.webp",
+    "contentId": "la-soufriere-volcano"
+  },
+  "scenes": [
+    {
+      "id": "S01",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-1.webp",
+      "contentId": "fort-charlotte-kingstown"
+    },
+    {
+      "id": "S02",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-2.webp",
+      "contentId": "dark-view-falls"
+    },
+    {
+      "id": "S03",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-3.webp",
+      "contentId": "bequia-admiralty-bay"
+    },
+    {
+      "id": "S04",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-4.webp",
+      "contentId": "union-island-clifton"
+    },
+    {
+      "id": "S05",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-5.webp",
+      "contentId": "tobago-cays-horseshoe-reef"
+    },
+    {
+      "id": "S06",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-6.webp",
+      "contentId": "mayreau-salt-whistle"
+    },
+    {
+      "id": "S07",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-7.webp",
+      "contentId": "canouan-charlestown-bay"
+    },
+    {
+      "id": "S08",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/scene-8.webp",
+      "contentId": "mustique-britannia-bay"
+    }
+  ],
+  "taste": [
+    {
+      "id": "FOOD01",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/food-1.webp",
+      "contentId": "roasted-breadfruit-fried-jackfish"
+    },
+    {
+      "id": "FOOD02",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/food-2.webp",
+      "contentId": "fried-bake-saltfish"
+    },
+    {
+      "id": "FOOD03",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/food-3.webp",
+      "contentId": "callaloo-soup"
+    },
+    {
+      "id": "FOOD04",
+      "state": "REVIEW_CANDIDATE",
+      "asset": "assets/images/stvincentgrenadines/food-4.webp",
+      "contentId": "ducana"
+    }
+  ],
+  "map": {
+    "state": "REVIEW_CANDIDATE",
+    "asset": "assets/images/stvincentgrenadines/map-atlas-v1.svg"
+  },
+  "implementation": {
+    "state": "NOT_STARTED"
+  },
+  "qa": {
+    "state": "NOT_STARTED",
+    "productionState": "NOT_STARTED"
+  },
+  "reviewDeployment": {
+    "state": "NOT_STARTED",
+    "url": null
+  },
+  "finalApproval": {
+    "state": "PENDING"
+  },
+  "publication": {
+    "state": "DRAFT",
+    "atlasPublished": false
+  },
+  "executionPolicy": {
+    "heroApproval": "INDIVIDUAL",
+    "sceneApproval": "BATCH_ONLY",
+    "tasteApproval": "BATCH_ONLY",
+    "autoContinueImageRounds": true,
+    "userPromptBetweenSceneTargets": false,
+    "userPromptBetweenTasteTargets": false,
+    "runtimeBoundaryCreatesApprovalGate": false,
+    "roundIntentPersistsAcrossTurnBoundary": true,
+    "waitForStateOnlyCI": false,
+    "assetDeliveryMode": "USER_HANDOFF",
+    "repositoryMaterializationOwner": "USER",
+    "batchMaterialization": true,
+    "autoPostVisualPipeline": true,
+    "postVisualPipeline": "SINGLE_PASS",
+    "singleReviewIntegration": true
+  },
+  "imageGenerationPolicyRef": "main:ops/image-generation-policy.json",
+  "imageGenerationPolicy": {
+    "revision": 7,
+    "sceneMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "tasteMode": "ONE_TARGET_ONE_STANDALONE_IMAGE",
+    "sceneReview": "BATCH_ONLY",
+    "tasteReview": "BATCH_ONLY",
+    "mandatoryNoAddedText": true,
+    "rejectTypographyImmediately": true,
+    "rejectCollageImmediately": true,
+    "rejectPreviousAssetRepeatImmediately": true,
+    "candidateVisualQaRequired": true,
+    "batchPerceptualDuplicateGate": true,
+    "preGenerationReservationRequired": true,
+    "reconcileBeforeNextGeneration": true,
+    "maxSameAssetGenerationsPerTurn": 1,
+    "differentTargetSameTurnContinuation": true,
+    "reservationBlocksOnlyUnreconciledTarget": true,
+    "freshTextToImageRequired": true,
+    "previousImageReferenceForbidden": true,
+    "repeatFailureRequiresRenderPacketRefresh": true,
+    "singleFrameContractRequired": true,
+    "collageFailureContaminatesContext": true,
+    "repeatFailureContaminatesContext": true,
+    "wrongTargetCarryoverContaminatesContext": true,
+    "contextResetRequiresSeparateTurn": true,
+    "batchLanguageForbiddenInGenerationTurn": true,
+    "multiTargetPromptForbidden": true,
+    "maxConsecutiveHardFailuresPerPromptSeries": 2,
+    "requireRenderPacketRefreshAfterLimit": true,
+    "approvedAssetRegeneration": false,
+    "runtimeContinuation": "TO_BATCH_BOUNDARY",
+    "batchApprovalProvenanceRequired": true,
+    "regenBatchApprovalRequired": true,
+    "allPriorCountryAssetComparisonRequired": true,
+    "targetEpochBindingRequired": true
+  },
+  "sceneBatchReview": {
+    "approval": "PENDING",
+    "rounds": []
+  },
+  "tasteBatchReview": {
+    "approval": "PENDING",
+    "rounds": []
+  },
+  "generationContext": {
+    "state": "CLEAN",
+    "epoch": 1,
+    "lastResetAt": null,
+    "lastFailureAsset": null,
+    "lastFailureReason": null
+  },
+  "productionProtocolRef": "main:ops/country-production-policy.json",
+  "productionProtocolId": "2.0",
+  "preVisualBuild": {
+    "state": "NOT_STARTED",
+    "checks": {
+      "countryJsonEditorialComplete": "PENDING",
+      "finalExpectedImagePathsDeclared": "PENDING",
+      "sceneCoordinatesFinal": "PENDING",
+      "mapBuiltAndQaPassed": "PENDING",
+      "taxonomyComplete": "PENDING",
+      "relatedCountriesComplete": "PENDING",
+      "nextRoutesResolved": "PENDING",
+      "travelScaleComplete": "PENDING",
+      "signatureFactsComplete": "PENDING",
+      "sourcesComplete": "PENDING",
+      "editorialQaV2Passed": "PENDING"
+    }
+  },
+  "assetHandoff": {
+    "mode": "USER_HANDOFF",
+    "state": "PENDING",
+    "expectedRasterCount": 13,
+    "verifiedRasterCount": 0,
+    "verifiedAt": null,
+    "verificationBasis": "The exact 13 generated WebP bytes from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 are reused byte-for-byte under the canonical slug folder. No regeneration. Approval-generation UUID mapping is not fabricated; full decode/dimension/duplicate/page-load checks are delegated to the normal review PR CI."
+  },
+  "reviewPreview": {
+    "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
+    "state": "NOT_STARTED",
+    "url": null,
+    "browserQa": "NOT_STARTED",
+    "deployedAt": null
+  },
+  "productionMetrics": {
+    "perImageApprovalPrompts": 0,
+    "userContinuationNudges": 0,
+    "runtimeForcedImageTurnBoundaries": 0,
+    "sceneBatchReviews": 0,
+    "tasteBatchReviews": 0,
+    "assetHandoffs": 0,
+    "reviewPackageIntegrations": 0,
+    "reviewPreviewDeployments": 0,
+    "preCanonicalMainIntegrations": 0,
+    "productionIntegrations": 0,
+    "browserQaCycles": 0,
+    "tasteBatchApprovedAt": null,
+    "canonicalReviewReadyAt": null
+  },
+  "next": {
+    "action": "COMPLETE_CONTENT_DESIGN",
+    "asset": null
+  }
+}
