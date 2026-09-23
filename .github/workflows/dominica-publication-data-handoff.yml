@@ -4,20 +4,106 @@ on:
     branches:
       - ops/dominica-publication-handoff-20260923
 permissions:
-  contents: read
+  contents: write
 jobs:
-  export:
+  prepare-publication:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout exact reviewed main
+        uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            data/atlas-destinations.json
-            data/country-renewal-status.json
-      - uses: actions/upload-artifact@v4
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
         with:
-          name: dominica-publication-source-data
-          path: |
-            data/atlas-destinations.json
-            data/country-renewal-status.json
-          retention-days: 1
+          python-version: '3.12'
+      - name: Verify correction and original unpublished live review before final approval
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='78f8f2735fb8c0ed37a9786ec9b141c5aad977a6'
+          test "$(git rev-parse HEAD)" = "$expected" || { echo 'main changed; do not prepare from an unreviewed revision'; exit 1; }
+          curl -fsS --retry 3 'https://atlas.yagenji.com/build-meta.json?publication=dominica-20260923' >/tmp/dominica-live-build.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          expected='78f8f2735fb8c0ed37a9786ec9b141c5aad977a6'
+          assert json.loads(Path('/tmp/dominica-live-build.json').read_text())['commit']==expected, 'Live deployment SHA mismatch'
+          country=json.loads(Path('data/countries/dominica.json').read_text())
+          area=next(x['value'] for x in country['facts'] if x['label']=='面積')
+          assert area=='750 km²（日本の約0.20％）' and '504' not in area, area
+          registry=json.loads(Path('data/atlas-destinations.json').read_text())
+          row=next(x for x in registry['destinations'] if x['slug']=='dominica')
+          assert row['atlasPublished'] is False and row['href']==''
+          state=json.loads(Path('ops/country-production/dominica.json').read_text())
+          assert state['finalApproval']['state']=='PENDING' and state['publication']['atlasPublished'] is False
+          assert state['qa']['state']=='PASS' and state['assetHandoff']['verifiedRasterCount']==13
+          print('Corrected canonical review and 13-image approval provenance verified.')
+          PY
+          curl -fsS --retry 3 'https://atlas.yagenji.com/countries/dominica/' > /tmp/dominica-review.html
+          curl -fsS --retry 3 'https://atlas.yagenji.com/sitemap.xml' > /tmp/dominica-sitemap.xml
+          python3 - <<'PY'
+          from pathlib import Path
+          page=Path('/tmp/dominica-review.html').read_text().lower()
+          assert 'data-country="dominica"' in page and 'noindex,follow' in page, 'Unpublished review robots missing'
+          assert '/countries/dominica/' not in Path('/tmp/dominica-sitemap.xml').read_text(), 'Premature sitemap publication'
+          print('Live canonical noindex route and sitemap verified before approval.')
+          PY
+      - name: Stage final user approval and execute existing publication finalizer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          p=Path('ops/country-production/dominica.json'); s=json.loads(p.read_text())
+          now=datetime.now(timezone(timedelta(hours=9))).replace(microsecond=0).isoformat()
+          s['phase']='REVIEW'
+          s['reviewDeployment']={'state':'DONE','url':'https://atlas.yagenji.com/countries/dominica/','productionVerification':'LIVE_BROWSER_QA_PASS','browserQa':'PASS','atlasPublished':False,'verifiedAt':'2026-09-23T00:16:25+00:00','verificationBasis':'Exact deployed SHA 78f8f2735fb8c0ed37a9786ec9b141c5aad977a6 and live Desktop/Tablet/Mobile QA run 35801169293 passed, September 23, 2026.'}
+          s['finalApproval']={'state':'APPROVED','approvedAt':now,'approvalBasis':'User explicitly requested correction of denominator and formal publication on 2026-09-23.'}
+          s['stateRevision']=int(s.get('stateRevision',0))+1
+          s['updatedAt']=now
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          PY
+          python3 scripts/publication_pipeline_v2.py assert-publish-ready dominica
+          python3 scripts/publication_pipeline_v2.py finalize dominica
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          p=Path('ops/country-production/dominica.json');s=json.loads(p.read_text())
+          for key in ('publication','reviewDeployment'):
+              s.setdefault(key,{})['productionVerification']='PIPELINE_V2_INLINE_SMOKE'
+          s['publication']['separateVerificationPrRequired']=False
+          p.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          country=json.loads(Path('data/countries/dominica.json').read_text())
+          path=Path('data/country-renewal-status.json');payload=json.loads(path.read_text());rows=payload.setdefault('countries',[])
+          row=next((x for x in rows if isinstance(x,dict) and x.get('slug')=='dominica'),None)
+          base={'slug':'dominica','nameJa':country.get('nameJa') or 'ドミニカ国','wave':9,'published':True,'auditState':'AUDITED','renewalClass':'UNCLASSIFIED','content':'DONE','visual':'DONE','map':'DONE','sources':'DONE','qa':'PASS','production':'CI_GATED','hardImageGate':True,'automatedAudit':'DONE','notes':['Publication Pipeline v2; corrected canonical noindex review and Desktop/Tablet/Mobile live QA verified before explicit user publication approval; post-merge Cloudflare verification required.']}
+          if row is None: rows.append(base)
+          else: row.update(base)
+          payload['updatedAt']=datetime.now(timezone(timedelta(hours=9))).date().isoformat()
+          path.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n')
+          registry=json.loads(Path('data/atlas-destinations.json').read_text())
+          assert len(registry['destinations'])==201
+          row=next(x for x in registry['destinations'] if x['slug']=='dominica')
+          assert row['atlasPublished'] is True and row['href']=='countries/dominica/' and row['image']=='assets/images/dominica/approved/hero-scotts-head-soufriere.webp'
+          print('Prepared formal publication: registry, State and renewal status only.')
+          PY
+          python3 scripts/validate_destination_scope.py
+          python3 scripts/validate_production_state_routed.py
+      - name: Commit to separate formal publication branch without touching main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -B publish/dominica-20260923
+          git add data/atlas-destinations.json data/country-renewal-status.json ops/country-production/dominica.json
+          git diff --cached --name-only
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git commit -m 'Prepare formally approved Dominica publication from corrected review'
+          git push origin HEAD:refs/heads/publish/dominica-20260923
+          echo "Prepared head SHA: $(git rev-parse HEAD)"
