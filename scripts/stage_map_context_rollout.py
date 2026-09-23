@@ -20,6 +20,8 @@ import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
+
 ROOT = Path(__file__).resolve().parents[1]
 SVG = "{http://www.w3.org/2000/svg}"
 
@@ -105,7 +107,14 @@ def main():
         source = item["source"]
         staged = output / f"{slug}.svg"
         source_text = source.read_text(encoding="utf-8")
-        if 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
+        # These two already have context in the Draft branch. The regular
+        # preservation shortcut must not silently bypass their reviewed
+        # generated-context exclusion; transform only the disposable copy.
+        if slug in ('qatar', 'kuwait'):
+            staged.write_text(reconcile_gulf_foreign(source_text, source, slug, args.resolution),
+                              encoding='utf-8')
+            action = "stage-context-preview"
+        elif 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
             staged.write_bytes(source.read_bytes())
             action = "preserve-existing-context"
         else:
