@@ -84,12 +84,19 @@ def all_visuals_approved(state: dict[str, Any]) -> bool:
     )
 
 
-def verified_closed_jamaica_exception(slug: str, state: dict[str, Any]) -> bool:
-    """Never bypass publication QA without the immutable, user-authorized 13-asset case."""
-    if slug != "jamaica" or state.get("closedProvenanceException") is None:
+def verified_closed_provenance_exception(slug: str, state: dict[str, Any]) -> bool:
+    """Validate only explicitly enumerated, immutable historical 13-asset cases."""
+    if state.get("closedProvenanceException") is None:
         return False
-    path = ROOT / "scripts/jamaica_closed_provenance_exception.py"
-    spec = importlib.util.spec_from_file_location("jamaica_closed_exception_for_publication", path)
+    helpers = {
+        "jamaica": ("scripts/jamaica_closed_provenance_exception.py", "jamaica_closed_exception_for_publication"),
+        "stvincentgrenadines": ("scripts/stvincent_closed_provenance_exception.py", "stvincent_closed_exception_for_publication"),
+    }
+    helper_info = helpers.get(slug)
+    if helper_info is None:
+        return False
+    path = ROOT / helper_info[0]
+    spec = importlib.util.spec_from_file_location(helper_info[1], path)
     if spec is None or spec.loader is None:
         return False
     module = importlib.util.module_from_spec(spec)
@@ -103,8 +110,8 @@ def review_ready_errors(slug: str, state: dict[str, Any]) -> list[str]:
         errors.append("publicationPipelineVersion is not 2")
     if state.get("productionProtocolId") != "2.0":
         errors.append("productionProtocolId must be 2.0")
-    if not (all_visuals_approved(state) or verified_closed_jamaica_exception(slug, state)):
-        errors.append("Hero + 8 Scenes + 4 Taste assets must be batch-approved, or match the exact authorized Jamaica closed-provenance exception")
+    if not (all_visuals_approved(state) or verified_closed_provenance_exception(slug, state)):
+        errors.append("Hero + 8 Scenes + 4 Taste assets must be batch-approved, or match an exact authorized closed-provenance exception")
     handoff = state.get("assetHandoff") if isinstance(state.get("assetHandoff"), dict) else {}
     if handoff.get("state") != "PASS" or handoff.get("verifiedRasterCount") != 13:
         errors.append("assetHandoff must PASS with 13 verified rasters")
@@ -150,8 +157,8 @@ def review_needed(slug: str, state: dict[str, Any]) -> bool:
 
 def publish_ready_errors(slug: str, state: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if state.get("closedProvenanceException") is not None and not verified_closed_jamaica_exception(slug, state):
-        errors.append("Exact authorized Jamaica legacy-provenance asset verification failed")
+    if state.get("closedProvenanceException") is not None and not verified_closed_provenance_exception(slug, state):
+        errors.append("Exact authorized closed-provenance asset verification failed")
     if not is_active(slug):
         errors.append("publicationPipelineVersion is not 2")
     if state.get("productionProtocolId") != "2.0":
