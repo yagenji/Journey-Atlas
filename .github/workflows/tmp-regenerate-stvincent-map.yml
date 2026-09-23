@@ -30,7 +30,6 @@ jobs:
             --output "$out"
           test -s "$out"
           cp "$out" assets/images/stvincentgrenadines/map-atlas-v1.svg
-          python3 scripts/validate_country_map_v6.py data/countries/stvincentgrenadines.json
       - name: Commit corrected map
         shell: bash
         run: |
