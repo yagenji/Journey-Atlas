@@ -26,8 +26,8 @@ SVG='{http://www.w3.org/2000/svg}'
 POINT=re.compile(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)')
 
 
-def rings(d):
-    """The reviewed Bahrain/Qatar national paths use only M/L/Z rings."""
+def rings(d, *, permit_approved_self_intersection=False):
+    """Read existing M/L/Z paths, without altering any approved SVG bytes."""
     parts=re.findall(r'M\s*[^M]+',d)
     result=[]
     for part in parts:
@@ -36,7 +36,11 @@ def rings(d):
             raise ValueError('Unreviewed country SVG path syntax')
         poly=Polygon(coords)
         if not poly.is_valid:
-            raise ValueError('Invalid source ring: independent source review required')
+            if not permit_approved_self_intersection:
+                raise ValueError('Invalid foreign/source ring: independent review required')
+            # Approved Hawar source contains an unmodified self-intersecting ring.
+            # Repair the temporary measurement geometry only; never write it to SVG.
+            poly=poly.buffer(0)
         result.append(poly)
     return result
 
@@ -62,10 +66,10 @@ class PriorityGeographyReview(unittest.TestCase):
         return report
 
     def test_bahrain_hawar_foreign_land_matches_approved_qatar(self):
-        """Independently compare the two retained Hawar rings to Qatar's national SVG.
+        """Independently compare retained Hawar context to Qatar's national SVG.
 
-        The small residual is source-vintage/simplification, not permission to
-        stretch approved Bahrain or Qatar coastlines to make the PNG seamless.
+        Small residual is source-vintage/simplification, not permission to
+        stretch approved Bahrain or Qatar coastlines for cosmetic continuity.
         """
         config=json.loads((ROOT/'data/countries/bahrain.json').read_text())
         qatar_config=json.loads((ROOT/'data/countries/qatar.json').read_text())
@@ -107,11 +111,10 @@ class PriorityGeographyReview(unittest.TestCase):
         foreign_union=unary_union(foreign)
         self.assertGreater(qatar_inset.area,3000)
         self.assertTrue(all(p.intersection(qatar_inset).area/p.area>.99 for p in foreign))
-        # Approximate source agreement at 1200x760, not an invented exact match.
         self.assertLess(foreign_union.symmetric_difference(qatar_inset).area,35)
         own_hawar=[p for p in before.iter(SVG+'path') if p.get('fill')=='url(#land)'][1]
-        own_rings=rings(own_hawar.get('d'))
-        self.assertLess(sum(qatar_inset.intersection(poly.buffer(0)).area for poly in own_rings),8)
+        own_rings=rings(own_hawar.get('d'),permit_approved_self_intersection=True)
+        self.assertLess(sum(qatar_inset.intersection(poly).area for poly in own_rings),8)
 
     def test_brunei_malaysia_source_and_original_path(self):
         result=self._run('brunei','review_brunei_malaysia.py')
