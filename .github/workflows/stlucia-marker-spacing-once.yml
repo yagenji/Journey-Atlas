@@ -1,4 +1,4 @@
-name: Saint Lucia marker spacing one-shot
+name: Saint Lucia southwest map inset one-shot
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  spacing:
+  inset:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -18,130 +18,142 @@ jobs:
           ref: country/stlucia-map-zoom-review-20260923
       - name: Install geometry checker
         run: python3 -m pip install --disable-pip-version-check shapely
-      - name: Solve strict five-percent, 71px, inland, hero-safe constraints
+      - name: Build southwest detail using the existing coast and validated projection
         run: |
           python3 - <<'PY'
-          import json, math, re, time
+          import json, math, re, time, copy
           from pathlib import Path
           from xml.etree import ElementTree as ET
-          from shapely.geometry import Point,Polygon
+          from shapely.geometry import Point,Polygon,box
           from shapely.ops import unary_union
           from shapely.affinity import affine_transform
 
-          json_path=Path('data/countries/stlucia.json')
-          svg_path=Path('assets/images/stlucia/map-atlas-v1.svg')
-          data=json.loads(json_path.read_text(encoding='utf-8'))
-          b=data['map']['bounds']
-          assert b=={'north':14.16,'south':13.68,'west':-61.19,'east':-60.79}
+          jp=Path('data/countries/stlucia.json')
+          sp=Path('assets/images/stlucia/map-atlas-v1.svg')
+          d=json.loads(jp.read_text(encoding='utf-8'))
+          main=d['map']['bounds']
+          assert main=={'north':14.16,'south':13.68,'west':-61.19,'east':-60.79}
+          old={'north':14.45,'south':13.55,'west':-61.25,'east':-60.7}
+          detail={'north':13.89,'south':13.815,'west':-61.095,'east':-60.992}
+          rect={'x':820,'y':168,'width':365,'height':522}
+          assert not d['map'].get('regions')
           NS='{http://www.w3.org/2000/svg}'
-          root=ET.fromstring(svg_path.read_text(encoding='utf-8'))
-          group=next(c for c in root if c.attrib.get('id')=='map-geography-zoom')
-          transform=list(map(float,re.findall(r'-?\d+(?:\.\d+)?',group.attrib['transform'])))
-          assert len(transform)==6
-          target=next(c for c in group if c.tag==NS+'path')
-          polygons=[]
+          root=ET.fromstring(sp.read_text(encoding='utf-8'))
+          assert root.attrib['viewBox']=='0 0 1200 760'
+          main_group=next(e for e in root if e.attrib.get('id')=='map-geography-zoom')
+          target=next(e for e in main_group if e.tag==NS+'path')
+          rings=[]
           for part in re.findall(r'M\s*([^Z]+)Z',target.attrib['d']):
-              points=[(float(x),float(y)) for x,y in re.findall(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)',part)]
-              if len(points)>2:polygons.append(Polygon(points))
-          assert polygons and all(p.is_valid for p in polygons)
-          land=affine_transform(unary_union(polygons),transform).buffer(-14)
-          assert not land.is_empty
-          c=math.cos(math.radians((b['north']+b['south'])/2))
-          s=min(1200/((b['east']-b['west'])*c),760/(b['north']-b['south']))
-          ox=(1200-(b['east']-b['west'])*c*s)/2
-          oy=(760-(b['north']-b['south'])*s)/2
-          def geo(coords):return ox+(coords['longitude']-b['west'])*c*s,oy+(b['north']-coords['latitude'])*s
-          def shown(item):
-              x,y=geo(item['coordinates']);o=item.get('mapOffset') or {}
-              return x+12*float(o.get('x',0)),y+7.6*float(o.get('y',0))
-          scenes=data['scenes']
-          fixed=[shown(data['capital'])]+[shown(scenes[i]) for i in (0,1,7)]
-          hero=shown(data['hero'])
-          assert all(land.contains(Point(x,y)) for x,y in fixed)
-          assert all(math.hypot(x-x2,y-y2)>=71 for i,(x,y) in enumerate(fixed) for x2,y2 in fixed[i+1:])
-          ids=(2,3,4,5,6)
-          candidate=[];costs=[]
+              pts=[(float(x),float(y)) for x,y in re.findall(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)',part)]
+              if len(pts)>2:rings.append(Polygon(pts))
+          assert rings and all(p.is_valid for p in rings)
+          country=unary_union(rings)
+          def fit(bounds,canvas):
+              c=math.cos(math.radians((bounds['north']+bounds['south'])/2))
+              scale=min(canvas['width']/((bounds['east']-bounds['west'])*c),canvas['height']/(bounds['north']-bounds['south']))
+              ox=canvas['x']+(canvas['width']-(bounds['east']-bounds['west'])*c*scale)/2
+              oy=canvas['y']+(canvas['height']-(bounds['north']-bounds['south'])*scale)/2
+              return c,scale,ox,oy
+          c0,s0,x0,y0=fit(old,{'x':0,'y':0,'width':1200,'height':760})
+          c,s,ox,oy=fit(detail,rect)
+          sx=s*c/(s0*c0);sy=s/s0
+          tx=ox+(old['west']-detail['west'])*s*c-sx*x0
+          ty=oy+(detail['north']-old['north'])*s-sy*y0
+          inset_transform=[sx,0,0,sy,tx,ty]
+          land=affine_transform(country,inset_transform)
+          safe=land.buffer(-14).intersection(box(rect['x']+18,rect['y']+18,rect['x']+rect['width']-18,rect['y']+rect['height']-18))
+          assert not safe.is_empty
+          def project(q):
+              return (ox+(q['longitude']-detail['west'])*c*s,oy+(detail['north']-q['latitude'])*s)
+          scenes=d['scenes'];ids=(2,3,4,5,6)
+          fixed=[]
+          def main_project(q,o):
+              mc,ms,mx,my=fit(main,{'x':0,'y':0,'width':1200,'height':760})
+              return mx+(q['longitude']-main['west'])*mc*ms+12*o.get('x',0),my+(main['north']-q['latitude'])*ms+7.6*o.get('y',0)
+          for item in [d['capital'],d['hero'],scenes[0],scenes[1],scenes[7]]:
+              fixed.append(main_project(item['coordinates'],item.get('mapOffset') or {}))
+          candidates=[]
           for idx in ids:
-              gx,gy=geo(scenes[idx]['coordinates'])
-              options=[]
-              # Offset contract is Euclidean 5%, not per-axis 5%.
-              for dx in range(-60,61,5):
-                  for dy in range(-38,39,4):
-                      if (dx/12)**2+(dy/7.6)**2>4.95**2:continue
+              item=scenes[idx];gx,gy=project(item['coordinates'])
+              assert detail['south']<=item['coordinates']['latitude']<=detail['north']
+              assert detail['west']<=item['coordinates']['longitude']<=detail['east']
+              opts=[]
+              for dx in range(-60,61,4):
+                  for dy in range(-38,39,3):
+                      if math.hypot(dx/12,dy/7.6)>4.85:continue
                       x,y=gx+dx,gy+dy
-                      if not land.contains(Point(x,y)):continue
-                      if math.hypot(x-hero[0],y-hero[1])<64.5:continue
-                      if any(math.hypot(x-fx,y-fy)<71.5 for fx,fy in fixed):continue
-                      options.append((x,y,dx*dx+dy*dy))
-              options.sort(key=lambda a:(a[2],a[0],a[1]))
-              print('candidate count',idx+1,len(options),flush=True)
-              assert options, f'no feasible location for Scene {idx+1}'
-              candidate.append(options)
-          compatibility={}
+                      if not safe.contains(Point(x,y)):continue
+                      if any(math.hypot(x-fx,y-fy)<75 for fx,fy in fixed):continue
+                      opts.append((x,y,dx*dx+dy*dy))
+              opts.sort(key=lambda a:(a[2],a[0],a[1]))
+              print('Scene',idx+1,'legal inset positions',len(opts),flush=True)
+              assert opts,'detail region too small; no legal inland badge'
+              candidates.append(opts)
+          compat={}
           for i in range(5):
               for j in range(5):
                   if i==j:continue
-                  compatibility[i,j]=[]
-                  for x,y,_ in candidate[i]:
+                  rows=[]
+                  for x,y,_ in candidates[i]:
                       mask=0
-                      for k,(xx,yy,_) in enumerate(candidate[j]):
-                          if math.hypot(x-xx,y-yy)>=71.5:mask|=1<<k
-                      compatibility[i,j].append(mask)
-          initial=[(1<<len(x))-1 for x in candidate]
-          nodes=[0];start=time.monotonic()
+                      for k,(xx,yy,_) in enumerate(candidates[j]):
+                          if math.hypot(x-xx,y-yy)>=75:mask|=1<<k
+                      rows.append(mask)
+                  compat[i,j]=rows
+          domains=[(1<<len(opts))-1 for opts in candidates]
+          count=[0];start=time.monotonic()
           def solve(domains,assigned):
-              nodes[0]+=1
-              if nodes[0]>260000 or time.monotonic()-start>42:
-                  return None
+              count[0]+=1
+              if count[0]>500000 or time.monotonic()-start>42:return None
               if len(assigned)==5:return assigned
-              remaining=[i for i in range(5) if i not in assigned]
-              i=min(remaining,key=lambda q:domains[q].bit_count())
-              m=domains[i]
-              while m:
-                  low=m & -m;idx=low.bit_length()-1;m-=low
-                  nxt=domains[:];nxt[i]=low
-                  good=True
-                  for j in remaining:
-                      if i==j:continue
-                      nxt[j]&=compatibility[i,j][idx]
-                      if not nxt[j]:good=False;break
-                  if good:
-                      ans=solve(nxt,{**assigned,i:idx})
-                      if ans is not None:return ans
+              free=[i for i in range(5) if i not in assigned]
+              i=min(free,key=lambda t:domains[t].bit_count())
+              options=domains[i]
+              while options:
+                  bit=options & -options; k=bit.bit_length()-1;options-=bit
+                  next_domains=domains[:];next_domains[i]=bit;valid=True
+                  for j in free:
+                      if j==i:continue
+                      next_domains[j]&=compat[i,j][k]
+                      if not next_domains[j]:valid=False;break
+                  if valid:
+                      solution=solve(next_domains,{**assigned,i:k})
+                      if solution is not None:return solution
               return None
-          solution=solve(initial,{})
-          print('search nodes',nodes[0], 'seconds',round(time.monotonic()-start,1),flush=True)
-          assert solution is not None,'No feasible all-on-land 71px layout within 5% offsets; do not bypass map hard gates'
-          final=[shown(s) for s in scenes]
-          leaders=[]
-          for i,k in solution.items():
-              x,y,_=candidate[i][k]
-              scene_index=ids[i]
-              gx,gy=geo(scenes[scene_index]['coordinates'])
-              scenes[scene_index]['mapOffset']={'x':round((x-gx)/12,4),'y':round((y-gy)/7.6,4)}
-              final[scene_index]=(x,y)
-              if math.hypot(x-gx,y-gy)>52:
-                  leaders.append((gx,gy,x,y))
-              print('Scene',scene_index+1,'badge',round(x,1),round(y,1),'offset_percent',scenes[scene_index]['mapOffset'],flush=True)
-          assert all(land.contains(Point(x,y)) for x,y in final)
-          assert all(math.hypot(x-x2,y-y2)>=71.3 for k,(x,y) in enumerate(final) for x2,y2 in final[k+1:])
-          assert all(math.hypot(x-fx,y-fy)>=71.3 for x,y in final for fx,fy in fixed[:1])
-          assert all(math.hypot(x-hero[0],y-hero[1])>=64.3 for x,y in final)
-          guide=ET.Element(NS+'g',{'id':'map-marker-leaders','fill':'none','stroke':'#31576a','stroke-width':'1.1','stroke-dasharray':'3 3','stroke-linecap':'round','opacity':'0.65'})
-          for gx,gy,x,y in leaders:
-              ET.SubElement(guide,NS+'line',{'x1':f'{gx:.2f}','y1':f'{gy:.2f}','x2':f'{x:.2f}','y2':f'{y:.2f}'})
-          if leaders:root.append(guide)
-          data['map']['source']+=' User-requested marker repositioning keeps all eight numbered markers on actual land, at least 71px apart and within the validated 5% visual-offset contract; real coordinates unchanged.'
+          chosen=solve(domains,{})
+          print('search nodes',count[0],'seconds',round(time.monotonic()-start,2),flush=True)
+          assert chosen is not None,'Cannot achieve safe inset placement; no forced pass'
+          for n,idx in enumerate(ids):
+              x,y,_=candidates[n][chosen[n]]
+              gx,gy=project(scenes[idx]['coordinates'])
+              scenes[idx]['mapRegion']='soufriere-detail'
+              scenes[idx]['mapOffset']={'x':round((x-gx)/12,4),'y':round((y-gy)/7.6,4)}
+              print('Scene',idx+1,'position',round(x,1),round(y,1),'offset',scenes[idx]['mapOffset'],flush=True)
+          d['map']['regions']=[{'id':'soufriere-detail','bounds':detail,'rect':rect}]
+          d['map']['insetNote']='南西部の近接する景色③〜⑦は、右側の地理座標に基づく拡大図に表示しています。'
+          d['map']['source']+=' Southwest inset 2026-09-23: original approved geoBoundaries ADM0 outline affinely reprojected into separate clipped frame, WGS84; no invented shoreline or shifted location coordinates.'
+          # Draw clipped inset to the right of the main island, using exactly the
+          # original path data, fill, boundary stroke, and shared map palette.
+          defs=next(e for e in root if e.tag==NS+'defs')
+          clip=ET.SubElement(defs,NS+'clipPath',{'id':'stlucia-sw-clip'})
+          ET.SubElement(clip,NS+'rect',{'x':str(rect['x']),'y':str(rect['y']),'width':str(rect['width']),'height':str(rect['height'])})
+          frame=ET.SubElement(root,NS+'g',{'id':'stlucia-southwest-inset'})
+          ET.SubElement(frame,NS+'rect',{'x':str(rect['x']-7),'y':str(rect['y']-34),'width':str(rect['width']+14),'height':str(rect['height']+41),'rx':'4','fill':'#eaf2f4','stroke':'#31576a','stroke-width':'1.3'})
+          ET.SubElement(frame,NS+'text',{'x':str(rect['x']+10),'y':str(rect['y']-12),'font-family':'Arial, sans-serif','font-size':'15','font-weight':'600','fill':'#31576a'}).text='SOUTHWEST / DETAIL'
+          clipped=ET.SubElement(frame,NS+'g',{'clip-path':'url(#stlucia-sw-clip)'})
+          ET.SubElement(clipped,NS+'rect',{'x':str(rect['x']),'y':str(rect['y']),'width':str(rect['width']),'height':str(rect['height']),'fill':'url(#sea)'})
+          geo_group=ET.SubElement(clipped,NS+'g',{'transform':f'matrix({sx:.12f} 0 0 {sy:.12f} {tx:.12f} {ty:.12f})'})
+          geo_group.append(copy.deepcopy(target))
           ET.register_namespace('','http://www.w3.org/2000/svg')
-          svg_path.write_text(ET.tostring(root,encoding='unicode')+'\n',encoding='utf-8')
-          json_path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+          sp.write_text(ET.tostring(root,encoding='unicode')+'\n',encoding='utf-8')
+          jp.write_text(json.dumps(d,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
           PY
           python3 scripts/validate_country.py --strict data/countries/stlucia.json
-      - name: Commit revised Country map and remove temporary workflow
+      - name: Commit new inset and remove one-shot workflow
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm .github/workflows/stlucia-marker-spacing-once.yml
           git add data/countries/stlucia.json assets/images/stlucia/map-atlas-v1.svg
-          git commit -m 'Fit Saint Lucia inland badges to strict 71px/5% map contract'
+          git commit -m 'Add geography-accurate southwest inset for dense Saint Lucia markers'
           git push origin HEAD:country/stlucia-map-zoom-review-20260923
