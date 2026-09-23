@@ -41,7 +41,7 @@ def reconcile(preview: str, source: Path, resolution: str) -> str:
     matches=list(HAWAR.finditer(preview))
     if len(matches)!=1 or hashlib.sha256(matches[0].group(2).encode()).hexdigest()!=OLD_CONTEXT_SHA:
         raise ValueError('Existing reviewed GSHHG Hawar context changed')
-    asset=(ROOT/'assets/images/bahrain/qatar-gbopen-2023-hawar-context.b85').read_bytes()
+    asset=(ROOT/'ops/map-context-sources/bahrain/qatar-gbopen-2023-hawar-context.b85').read_bytes()
     if blob_sha(asset)!=PINNED_ASSET_GIT_BLOB:
         raise ValueError('Same-vintage Qatar source path asset changed')
     path=zlib.decompress(base64.b85decode(asset.strip())).decode('utf-8')
