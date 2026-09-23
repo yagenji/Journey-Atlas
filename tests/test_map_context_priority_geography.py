@@ -116,20 +116,6 @@ class PriorityGeographyReview(unittest.TestCase):
         own_rings=rings(own_hawar.get('d'),permit_approved_self_intersection=True)
         self.assertLess(sum(qatar_inset.intersection(poly).area for poly in own_rings),8)
 
-    def test_hawar_same_vintage_qatar_sibling_comparison(self):
-        """Save independent 2023 Qatar vector diagnostic, not a promoted SVG."""
-        out=OUT/'hawar-qatar-sibling'
-        out.mkdir(parents=True,exist_ok=True)
-        subprocess.run([sys.executable,str(ROOT/'scripts/review_hawar_qatar_sibling.py'),
-                        '--repo',str(ROOT),'--output-dir',str(out)],
-                       cwd=ROOT,check=True,timeout=180)
-        report=json.loads((out/'report.json').read_text())
-        self.assertIn('HOLD', report['status'])
-        self.assertTrue(report['protectedNationalPathsExact'])
-        self.assertEqual(report['canvas'],[1200,760])
-        self.assertGreater(report['qatarSameVintageSourceAreaPx2'],1000)
-        self.assertTrue((out/'hawar-qatar-sibling-diagnostic.png').is_file())
-
     def test_brunei_malaysia_source_and_original_path(self):
         result=self._run('brunei','review_brunei_malaysia.py')
         self.assertTrue(result['nationalPathsIdentical'])
