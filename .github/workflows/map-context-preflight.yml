@@ -11,7 +11,6 @@ on:
       - 'scripts/stage_map_context_rollout.py'
       - 'scripts/review_hk_shenzhen.py'
       - 'scripts/review_brunei_malaysia.py'
-      - 'scripts/review_brunei_pmb_current.py'
       - 'scripts/review_monaco_france.py'
       - 'tests/test_map_context_priority_geography.py'
       - 'tests/test_add_country_map_context.py'
@@ -54,7 +53,6 @@ jobs:
             scripts/stage_map_context_rollout.py \
             scripts/review_hk_shenzhen.py \
             scripts/review_brunei_malaysia.py \
-            scripts/review_brunei_pmb_current.py \
             scripts/review_monaco_france.py \
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
