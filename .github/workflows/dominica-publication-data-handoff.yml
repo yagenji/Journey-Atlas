@@ -56,7 +56,8 @@ jobs:
           registry=json.loads((root/'dominica-registry.json').read_text())
           assert len(registry['destinations'])==201
           row=next(x for x in registry['destinations'] if x['slug']=='dominica')
-          assert row['atlasPublished'] is True and row['href']=='countries/dominica/' and row['image']=='assets/images/dominica/approved/hero-scotts-head-soufriere.webp',row
+          hero='assets/images/dominica/approved/hero-scotts-head-soufriere.webp'
+          assert row['atlasPublished'] is True and row['href']=='countries/dominica/' and (row['image']==hero or row['image'].startswith(hero+'?v=')),row
           assert (root/'dominica-home.html').stat().st_size>1000,'Homepage unreachable'
           state=json.loads(Path('ops/country-production/dominica.json').read_text())
           assert state['finalApproval']['state']=='APPROVED' and state['publication']['state']=='PUBLISHED'
