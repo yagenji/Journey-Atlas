@@ -21,6 +21,7 @@ import add_country_map_context_legacy as legacy
 from filter_duplicate_target_context import remove_target_land_context
 from reconcile_brunei_foreign import reconcile as reconcile_brunei_foreign
 from reconcile_hong_kong_foreign import reconcile as reconcile_hong_kong_foreign
+from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_NS = '{http://www.w3.org/2000/svg}'
@@ -252,6 +253,8 @@ def main():
     clarified = frame_unframed_region_context(filtered, data.get("map", {}).get("regions"))
     if slug == 'bahrain':
         clarified = reconcile_reviewed_bahrain_hawar(clarified, args.resolution)
+    if slug in ('qatar', 'kuwait'):
+        clarified = reconcile_gulf_foreign(clarified, args.input, slug, args.resolution)
     if slug == 'brunei':
         clarified = reconcile_brunei_foreign(clarified, args.input, args.resolution)
     if slug == 'hong-kong':
