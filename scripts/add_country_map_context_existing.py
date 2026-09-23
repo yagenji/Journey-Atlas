@@ -200,7 +200,7 @@ def reconcile_reviewed_portugal_spain_coast(svg: str, source: Path, resolution: 
     git_blob = hashlib.sha1(f'blob {len(original)}\0'.encode() + original).hexdigest()
     if git_blob != '99af7a02646ec33a5ebc093f64bc13edeaaa8646' or resolution != 'i':
         raise ValueError('Portugal national source or source resolution changed; re-review Spain context')
-    path = (ROOT / 'assets/images/portugal/spain-natural-earth-mainland-context.path').read_text(encoding='utf-8').rstrip('\n')
+    path = (ROOT / 'ops/map-context-sources/portugal/spain-natural-earth-mainland-context.path').read_text(encoding='utf-8').rstrip('\n')
     if hashlib.sha256(path.encode('utf-8')).hexdigest() != '2c475f224a4bea0b3c83deacc006edf6a121b8e896badd2b10dcfb91f09e7356':
         raise ValueError('Reviewed Natural Earth Spain path changed; recheck source SHA and coast')
     parsed = ET.fromstring(svg)
