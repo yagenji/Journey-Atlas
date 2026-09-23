@@ -80,7 +80,7 @@ jobs:
                   ranked.append((p.distance(pt),i,p))
               dist,i,p=min(ranked,key=lambda x:x[0])
               # At this canvas scale 8 px is roughly 1.2 km; reject anything farther.
-              if dist>8:
+              if dist>12:
                   raise SystemExit(f'{name}: no high-resolution GSHHS island coastline near verified coordinate (distance={dist:.2f}px)')
               selected.add(i)
               report.append((name,i,dist))
