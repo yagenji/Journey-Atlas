@@ -1,9 +1,4 @@
-"""El Salvador triage regression, not geographic approval.
-
-The current generator puts several genuine Salvadoran islands into the pale
-context while the approved target has no matching paths. Keep this candidate
-on Stage 2 HOLD; do not silently erase islands or recolor protected geometry.
-"""
+"""Source-pinned El Salvador island correction and staged foreign context."""
 from __future__ import annotations
 
 import hashlib
@@ -18,6 +13,9 @@ from xml.etree import ElementTree as ET
 
 from shapely.geometry import Point, Polygon
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
+from reconcile_elsalvador_foreign import reconcile
+
 ROOT = Path(__file__).resolve().parents[1]
 SVG = '{http://www.w3.org/2000/svg}'
 
@@ -28,21 +26,24 @@ def rings(path):
             for part in re.findall(r'M\s*([^M]+)', path.get('d', ''))]
 
 
-class ElSalvadorHold(unittest.TestCase):
-    def test_self_islands_in_pale_context_are_not_mistaken_for_foreign_land(self):
+class ElSalvadorSourceReview(unittest.TestCase):
+    def test_restored_islands_and_foreign_context_preserve_original_target(self):
         config = json.loads((ROOT/'data/countries/elsalvador.json').read_text(encoding='utf-8'))
         approved = ROOT/config['map']['svg']
         self.assertEqual(hashlib.sha256(approved.read_bytes()).hexdigest(),
-                         '37122f7a87b53c53bf651b1d281ffdf8b87114c7d34e4188d51a8a0f9b79f4cb')
+                         '28290dca64d3f04a3bc25e5ef1ac7f871d295eb239d21e8b4baf4fcb9eae44dc')
         with tempfile.TemporaryDirectory() as folder:
             output = Path(folder)/'elsalvador.svg'
             subprocess.run([sys.executable, str(ROOT/'scripts/add_country_map_context_existing.py'),
                             '--country-json', str(ROOT/'data/countries/elsalvador.json'),
                             '--input', str(approved), '--output', str(output), '--resolution', 'i'],
                            cwd=ROOT, check=True, capture_output=True, timeout=180)
-            rendered = output.read_bytes()
+            raw = output.read_text(encoding='utf-8')
+            rendered = reconcile(raw, approved).encode('utf-8')
+        self.assertEqual(hashlib.sha256(raw.encode('utf-8')).hexdigest(),
+                         'f6db6273cb5dd97de10ab783e8f415d3552da6035f8cc98c907d66d505ad223f')
         self.assertEqual(hashlib.sha256(rendered).hexdigest(),
-                         '29118519d584d2d36ce465ff0d896231b6cc7be77dd145ee99f16a4458029ea1')
+                         'ef2df0aba46eb8049f04a02714b2f44b22394fdeecf235c2ea4ec6cf99cdaa53')
         source = ET.parse(approved).getroot()
         candidate = ET.fromstring(rendered)
         self.assertEqual(candidate.get('viewBox'), '0 0 1200 760')
@@ -50,28 +51,30 @@ class ElSalvadorHold(unittest.TestCase):
                             if p.get('fill') == 'url(#land)']
         candidate_targets = [dict(p.attrib) for p in candidate.iter(SVG+'path')
                              if p.get('fill') == 'url(#land)']
-        self.assertEqual(len(original_targets), 1)
+        self.assertEqual(len(original_targets), 2)
         self.assertEqual(candidate_targets, original_targets)
+        self.assertEqual(hashlib.sha256(original_targets[0]['d'].encode()).hexdigest(),
+                         '8bb899b75af9b1563788a8ee25acfd685ff5d972133a5f3fcd1eeffe7eb4fab8')
+        self.assertEqual(hashlib.sha256(original_targets[1]['d'].encode()).hexdigest(),
+                         '76e90ff71a8128eef75d6b43c31a8e4735b702f95f146472794a419d6c25e0f6')
         pale = candidate.find(f".//{SVG}g[@id='geographic-context']/{SVG}path")
         self.assertIsNotNone(pale)
         context_rings = rings(pale)
-        self.assertEqual(len(context_rings), 22)
-        target_rings = rings(next(p for p in candidate.iter(SVG+'path')
-                                  if p.get('fill') == 'url(#land)'))
-        # Two detached pale rings overlap the independent Natural Earth 4.1.0
-        # SLV ADM0 polygon by 100%, yet have no approved target island path.
-        # The test locks the observable rendering, not a sovereignty finding.
+        self.assertEqual(len(context_rings), 13)
+        target_rings = [r for p in candidate.iter(SVG+'path')
+                        if p.get('fill') == 'url(#land)' for r in rings(p)]
+        self.assertEqual(len(target_rings), 10)
+        # Formerly omitted islands are now protected target, not foreign land.
         for x, y in [(807.8, 635.8), (713.2, 630.8)]:
+            point = Point(x, y)
+            self.assertTrue(any(r.covers(point) for r in target_rings), (x, y))
+            self.assertFalse(any(r.covers(point) for r in context_rings), (x, y))
+        # Source-backed Honduras/Nicaragua Gulf rings remain in pale context.
+        for x, y in [(1199.1, 758.3), (1198.0, 623.0),
+                     (1189.1, 598.1), (1198.0, 584.5)]:
             point = Point(x, y)
             self.assertTrue(any(r.covers(point) for r in context_rings), (x, y))
             self.assertFalse(any(r.covers(point) for r in target_rings), (x, y))
-        # Two Gulf islands ARE in the approved target but their GSHHG context
-        # rings protrude beyond those protected silhouettes (87.2%, 94.0%
-        # target overlap). This requires a source-matched context repair.
-        for i, expected in [(16, 0.872), (17, 0.940)]:
-            fraction = sum(context_rings[i].intersection(t).area for t in target_rings)
-            fraction /= context_rings[i].area
-            self.assertAlmostEqual(fraction, expected, delta=0.002)
 
 
 if __name__ == '__main__':

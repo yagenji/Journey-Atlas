@@ -22,6 +22,7 @@ from xml.etree import ElementTree as ET
 
 from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
 from reconcile_bahrain_hawar_sibling import reconcile as reconcile_hawar_sibling
+from reconcile_elsalvador_foreign import reconcile as reconcile_elsalvador_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG = "{http://www.w3.org/2000/svg}"
@@ -128,6 +129,10 @@ def main():
                 # This is a Stage② preview only, not a geographic approval.
                 staged.write_text(reconcile_hawar_sibling(staged.read_text(encoding='utf-8'),
                                                           source, args.resolution),encoding='utf-8')
+            if slug == 'elsalvador':
+                staged.write_text(reconcile_elsalvador_foreign(
+                    staged.read_text(encoding='utf-8'), source, args.resolution),
+                    encoding='utf-8')
             if contains_generated_context_geometry(staged):
                 action = "stage-context-preview"
             else:
