@@ -1,0 +1,67 @@
+name: Normalize Saint Vincent delivery once
+
+on:
+  push:
+    branches:
+      - country/stvincentgrenadines
+    paths:
+      - ".github/workflows/normalize-stvincent-delivery-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: country/stvincentgrenadines
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Pillow
+        run: pip install Pillow
+      - name: Resize only oversized Saint Vincent delivery rasters
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          targets = [
+              "assets/images/stvincentgrenadines/scene-2.webp",
+              "assets/images/stvincentgrenadines/scene-8.webp",
+              "assets/images/stvincentgrenadines/food-1.webp",
+              "assets/images/stvincentgrenadines/food-2.webp",
+              "assets/images/stvincentgrenadines/food-3.webp",
+              "assets/images/stvincentgrenadines/food-4.webp",
+          ]
+          for raw in targets:
+              path = Path(raw)
+              with Image.open(path) as im:
+                  if im.size != (1536, 1024):
+                      raise SystemExit(f"{raw}: unexpected source size {im.size}, refusing to alter")
+                  out = im.resize((1200, 800), Image.Resampling.LANCZOS)
+                  out.save(path, "WEBP", quality=92, method=6)
+              with Image.open(path) as check:
+                  if check.format != "WEBP" or check.size != (1200, 800):
+                      raise SystemExit(f"{raw}: verification failed: {check.format} {check.size}")
+              print(f"{raw}: 1536x1024 -> 1200x800")
+          PY
+      - name: Commit normalized delivery and retire this workflow
+        run: |
+          rm .github/workflows/normalize-stvincent-delivery-once.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/stvincentgrenadines/scene-2.webp \
+                  assets/images/stvincentgrenadines/scene-8.webp \
+                  assets/images/stvincentgrenadines/food-1.webp \
+                  assets/images/stvincentgrenadines/food-2.webp \
+                  assets/images/stvincentgrenadines/food-3.webp \
+                  assets/images/stvincentgrenadines/food-4.webp \
+                  .github/workflows/normalize-stvincent-delivery-once.yml
+          git commit -m "Normalize Saint Vincent delivery rasters"
+          git push origin HEAD:country/stvincentgrenadines
