@@ -57,7 +57,7 @@ def validate(state: dict[str, Any], root: Path | None = None) -> list[str]:
         "id": CASE_ID,
         "status": "APPLIED",
         "sourceCommit": SOURCE_COMMIT,
-        "authorizationDate": "2026-09-23",
+        "authorizationDate": "2026-09-24",
     }
     if state.get("closedProvenanceException") != expected_record:
         return ["Closed Saint Vincent exception requires its exact authorization record"]
