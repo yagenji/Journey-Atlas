@@ -4,60 +4,60 @@
   "countryName": "ST. VINCENT & GRENADINES",
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
-  "phase": "CONTENT",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-23T22:55:00+09:00",
+  "phase": "ASSET_QA",
+  "stateRevision": 4,
+  "updatedAt": "2026-09-24T00:12:00+09:00",
   "hero": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/hero.webp",
     "contentId": "la-soufriere-volcano"
   },
   "scenes": [
     {
       "id": "S01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-1.webp",
       "contentId": "fort-charlotte-kingstown"
     },
     {
       "id": "S02",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-2.webp",
       "contentId": "dark-view-falls"
     },
     {
       "id": "S03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-3.webp",
       "contentId": "bequia-admiralty-bay"
     },
     {
       "id": "S04",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-4.webp",
       "contentId": "union-island-clifton"
     },
     {
       "id": "S05",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-5.webp",
       "contentId": "tobago-cays-horseshoe-reef"
     },
     {
       "id": "S06",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-6.webp",
       "contentId": "mayreau-salt-whistle"
     },
     {
       "id": "S07",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-7.webp",
       "contentId": "canouan-charlestown-bay"
     },
     {
       "id": "S08",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/scene-8.webp",
       "contentId": "mustique-britannia-bay"
     }
@@ -65,31 +65,31 @@
   "taste": [
     {
       "id": "FOOD01",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/food-1.webp",
       "contentId": "roasted-breadfruit-fried-jackfish"
     },
     {
       "id": "FOOD02",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/food-2.webp",
       "contentId": "fried-bake-saltfish"
     },
     {
       "id": "FOOD03",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/food-3.webp",
       "contentId": "callaloo-soup"
     },
     {
       "id": "FOOD04",
-      "state": "REVIEW_CANDIDATE",
+      "state": "NOT_STARTED",
       "asset": "assets/images/stvincentgrenadines/food-4.webp",
       "contentId": "ducana"
     }
   ],
   "map": {
-    "state": "REVIEW_CANDIDATE",
+    "state": "APPROVED",
     "asset": "assets/images/stvincentgrenadines/map-atlas-v1.svg"
   },
   "implementation": {
@@ -112,8 +112,8 @@
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
-    "sceneApproval": "BATCH_ONLY",
-    "tasteApproval": "BATCH_ONLY",
+    "sceneApproval": "BATCH",
+    "tasteApproval": "BATCH",
     "autoContinueImageRounds": true,
     "userPromptBetweenSceneTargets": false,
     "userPromptBetweenTasteTargets": false,
@@ -199,11 +199,11 @@
   },
   "assetHandoff": {
     "mode": "USER_HANDOFF",
-    "state": "PENDING",
+    "state": "PASS",
     "expectedRasterCount": 13,
-    "verifiedRasterCount": 0,
-    "verifiedAt": null,
-    "verificationBasis": "The exact 13 generated WebP bytes from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 are reused byte-for-byte under the canonical slug folder. No regeneration. Approval-generation UUID mapping is not fabricated; full decode/dimension/duplicate/page-load checks are delegated to the normal review PR CI."
+    "verifiedRasterCount": 13,
+    "verifiedAt": "2026-09-24T00:12:00+09:00",
+    "verificationBasis": "Exact user-handoff raster set from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 is preserved without regeneration. Canonical copies were matched by Git blob identity before delivery normalization. Six 1536x1024 files (Scene 2, Scene 8, Food 1-4) were deterministically resized only to 1200x800 with no crop; all thirteen final delivery blobs are pinned by scripts/stvincent_closed_provenance_exception.py. Missing original generation UUIDs are intentionally not fabricated."
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
@@ -228,7 +228,14 @@
     "canonicalReviewReadyAt": null
   },
   "next": {
-    "action": "COMPLETE_CONTENT_DESIGN",
+    "action": "RUN_ASSET_QA",
     "asset": null
+  },
+  "publicationPipelineVersion": 2,
+  "closedProvenanceException": {
+    "id": "stvincentgrenadines-preserve-13-20260923",
+    "status": "APPLIED",
+    "sourceCommit": "ce673cdcfd63a194fcced6912b38c5a0c54fe567",
+    "authorizationDate": "2026-09-24"
   }
 }
