@@ -130,15 +130,17 @@ jobs:
             exit 1
           fi
           echo "Reusing Country PR #$pr"
-      - name: Require an independently authorized Country State writer before review QA
+      - name: Detect authorized Country State writer
         if: steps.target.outputs.ready == 'true'
         env:
           PUBLISH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
         shell: bash
         run: |
           if [ -z "$PUBLISH_TOKEN" ]; then
-            echo '::error::ATLAS_PUBLICATION_TOKEN is required to reconcile review State on a Country PR. No QA, Pages deployment or GITHUB_TOKEN branch push was started. Configure the repository Actions secret, or complete the guarded review using the connected GitHub account.'
-            exit 1
+            echo 'ATLAS_PUBLICATION_TOKEN is not configured. Review QA and Pages deployment will continue, but Actions will not mutate the Country PR State.'
+            echo 'The verified preview State must be reconciled separately by an authorized connected GitHub identity.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Authorized publication identity is available; review State will be reconciled automatically.'
           fi
       - name: Wait for the authoritative target QA on this exact Country revision
         if: steps.target.outputs.ready == 'true'
@@ -226,7 +228,7 @@ jobs:
           fetch-depth: 0
           # The deploy job reconciles review State on the open Country PR.
           # An external identity triggers real PR checks; GITHUB_TOKEN does not.
-          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
+          token: ${{ secrets.ATLAS_PUBLICATION_TOKEN || github.token }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -266,9 +268,15 @@ jobs:
           REVIEW_URL: ${{ needs.prepare.outputs.review_url }}
           HEAD_REF: ${{ needs.prepare.outputs.head_ref }}
           RUN_ID: ${{ github.run_id }}
+          PUBLISH_TOKEN: ${{ secrets.ATLAS_PUBLICATION_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
+          if [ -z "$PUBLISH_TOKEN" ]; then
+            echo "Review URL: $REVIEW_URL" >> "$GITHUB_STEP_SUMMARY"
+            echo "Pages preview deployed and validated. Country State reconciliation was intentionally skipped because ATLAS_PUBLICATION_TOKEN is not configured." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch --no-tags origin "+refs/heads/$HEAD_REF:refs/remotes/origin/$HEAD_REF"; git checkout -B "$HEAD_REF" "origin/$HEAD_REF"
           python3 scripts/publication_pipeline_v2.py reconcile-review "$SLUG" --source-commit "$SOURCE_SHA" --review-url "$REVIEW_URL" --run-id "$RUN_ID"

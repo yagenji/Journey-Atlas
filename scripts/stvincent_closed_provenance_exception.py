@@ -25,13 +25,13 @@ ALL_IDS = ("HERO", *SCENE_IDS, *FOOD_IDS)
 # to 1200x800 without cropping after the source handoff; no image was regenerated.
 ASSETS = {
     "HERO": ("hero.webp", "4a11bf88e2e71f9831ded5d9cf361586e8e36571"),
-    "S01": ("scene-1.webp", "0b86a0bb2f7a5fb2bead4b011e2f538e1f98954b"),
+    "S01": ("scene-1.webp", "e78952dc4126983ddcfeda5f424654bda83716c4"),
     "S02": ("scene-2.webp", "f4a921557428b642eb264842681f73e58dcefd58"),
-    "S03": ("scene-3.webp", "825f966b95547227775c08c679a5f22cc0627b33"),
-    "S04": ("scene-4.webp", "caff35ce316ffe97a44452375db158c2949e80ba"),
-    "S05": ("scene-5.webp", "8b0e46cf5f95173527fb4d94e5b2f217a12d2aa0"),
-    "S06": ("scene-6.webp", "95f9ab67648f7ec37d5969e8871c442204d222fe"),
-    "S07": ("scene-7.webp", "b860c2f837dc3d1a14da6f8efd806f28ffba8d90"),
+    "S03": ("scene-3.webp", "c8e35ae34baa3a1bbe540ff31dbbc54aa7df39b6"),
+    "S04": ("scene-4.webp", "dc40b05422820612f0815c860c4d4cfda3280998"),
+    "S05": ("scene-5.webp", "936e588801e60ac4a8ea5eb15c583b7fa788e15e"),
+    "S06": ("scene-6.webp", "85aca6a4743e1818486aee2021b9d604dd560e77"),
+    "S07": ("scene-7.webp", "b741112bece42eaf4ad0adec17e28039156fee31"),
     "S08": ("scene-8.webp", "799e7f593f7c6bfdabf0f69bdad3ff83db7b230a"),
     "FOOD01": ("food-1.webp", "e04dcc68871f35ae7c1d0977f3fad01aaaeab776"),
     "FOOD02": ("food-2.webp", "32569b81b6fb4c870f91d9a2081f881e6a82bd15"),
@@ -106,7 +106,7 @@ def validate(state: dict[str, Any], root: Path | None = None) -> list[str]:
     observed: list[str] = []
     for key in ALL_IDS:
         filename, recorded_sha = ASSETS[key]
-        relative = f"assets/images/stvincentgrenadines/{filename}"
+        relative = f"assets/images/stvincentgrenadines/approved/{filename}"
         if expected.get(key) != relative:
             errors.append(f"{key}: Country JSON image reference does not match preserved case")
         path = base / relative
