@@ -1,0 +1,23 @@
+name: Dominica publication data handoff
+on:
+  push:
+    branches:
+      - ops/dominica-publication-handoff-20260923
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/atlas-destinations.json
+            data/country-renewal-status.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dominica-publication-source-data
+          path: |
+            data/atlas-destinations.json
+            data/country-renewal-status.json
+          retention-days: 1
