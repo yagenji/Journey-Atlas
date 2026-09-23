@@ -9,6 +9,7 @@ New Countries must use the canonical shared generator instead.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -151,7 +152,12 @@ def _simple_context(svg: str, config: dict, resolution: str, *, fill_id: str = "
 def _brunei(svg: str, config: dict, resolution: str) -> str:
     root = ET.fromstring(svg)
     targets = [p for p in root.iter(SVG_NS + "path") if p.attrib.get("fill") == "url(#country)"]
-    if len(targets) != 1 or any("transform" in p.attrib for p in targets):
+    digests = [hashlib.sha256(p.attrib.get("d", "").encode()).hexdigest() for p in targets]
+    if (len(targets) != 2 or any("transform" in p.attrib for p in targets)
+            or digests != [
+                "63b4004c45a49e06ce9fa46c78a7807d88bf4ce8b9b0d06c74dab9bd487a64fd",
+                "b638398ba246e951a88e590a4cfc2f557a5cc9ad1c85b948fe2c93fb55655fa1",
+            ]):
         raise ValueError("Brunei legacy country geometry no longer matches reviewed layout")
     old = (("#f1f2ee", "#eceee9", "#e7eae5"),)
     svg = _replace_gradient(svg, "background", old)
