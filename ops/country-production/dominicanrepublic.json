@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "slug": "dominicanrepublic",
   "countryName": "DOMINICAN REPUBLIC",
-  "contentRef": "country/dominicanrepublic",
-  "stateRef": "country/dominicanrepublic",
-  "phase": "IMPLEMENTATION",
-  "stateRevision": 3,
-  "updatedAt": "2026-09-23T22:50:00+09:00",
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 8,
+  "updatedAt": "2026-09-24T01:04:00+09:00",
   "hero": {
     "state": "APPROVED",
     "asset": "assets/images/dominicanrepublic/approved/hero-los-haitises.webp",
@@ -192,22 +192,52 @@
     "asset": "assets/images/dominicanrepublic/map-atlas-v1.svg"
   },
   "implementation": {
-    "state": "NOT_STARTED"
+    "state": "DONE",
+    "integratedSha": "c0776c942c8de9abd16f18046db6bb89923e70ed",
+    "sharedTemplate": true,
+    "countrySpecificCss": false
   },
   "qa": {
-    "state": "NOT_STARTED",
-    "productionState": "NOT_STARTED"
+    "state": "PASS",
+    "productionState": "CI_GATED",
+    "sourceCommit": "c0776c942c8de9abd16f18046db6bb89923e70ed",
+    "requiredChecks": {
+      "validate": "PASS",
+      "browser-qa": "PASS"
+    },
+    "viewports": [
+      "desktop",
+      "tablet",
+      "mobile"
+    ],
+    "liveBrowserQaRunId": 35880714571
   },
   "reviewDeployment": {
-    "state": "NOT_STARTED",
-    "url": null
+    "state": "DONE",
+    "url": "https://atlas.yagenji.com/countries/dominicanrepublic/",
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-24T00:22:58+09:00",
+    "prePublicationReviewBasis": "Exact deployed merge SHA c0776c942c8de9abd16f18046db6bb89923e70ed and live Desktop/Tablet/Mobile unpublished-reviewable Browser QA run 35880714571 passed after area comparison, Haiti onward-route and Saona/Beata map corrections."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-24T00:58:00+09:00",
+    "approvalBasis": "User explicitly requested QA and formal publication after reviewing the corrected canonical Dominican Republic page on 2026-09-24."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-24T00:58:00+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/dominicanrepublic/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -365,16 +395,16 @@
     "sceneBatchReviews": 1,
     "tasteBatchReviews": 1,
     "assetHandoffs": 1,
-    "reviewPackageIntegrations": 0,
+    "reviewPackageIntegrations": 2,
     "reviewPreviewDeployments": 0,
-    "preCanonicalMainIntegrations": 0,
-    "productionIntegrations": 0,
-    "browserQaCycles": 0,
+    "preCanonicalMainIntegrations": 2,
+    "productionIntegrations": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": "2026-09-22T21:49:00+09:00",
-    "canonicalReviewReadyAt": null
+    "canonicalReviewReadyAt": "2026-09-24T00:22:58+09:00"
   },
   "next": {
-    "action": "IMPLEMENT_COUNTRY_PAGE",
+    "action": "NONE",
     "asset": null
   },
   "recoveryMigrations": [
@@ -436,5 +466,6 @@
       "status": "APPLIED",
       "appliedAt": "2026-09-23T22:50:00+09:00"
     }
-  ]
+  ],
+  "publicationPipelineVersion": 2
 }
