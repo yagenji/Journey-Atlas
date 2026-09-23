@@ -37,7 +37,7 @@ def generate(slug, folder):
 
 class GeographicSourceRegressions(unittest.TestCase):
     def test_portugal_uses_source_matched_spain_and_keeps_all_targets(self):
-        pinned = (ROOT/'assets/images/portugal/spain-natural-earth-mainland-context.path').read_text(encoding='utf-8').rstrip('\n')
+        pinned = (ROOT/'ops/map-context-sources/portugal/spain-natural-earth-mainland-context.path').read_text(encoding='utf-8').rstrip('\n')
         self.assertEqual(hashlib.sha256(pinned.encode()).hexdigest(),
                          '2c475f224a4bea0b3c83deacc006edf6a121b8e896badd2b10dcfb91f09e7356')
         with tempfile.TemporaryDirectory() as temp:
