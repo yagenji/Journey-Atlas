@@ -77,12 +77,9 @@ def main():
     poly=Polygon(projected)
     if not poly.is_valid or not (500<poly.area<900):
         raise RuntimeError(f'Unexpected projected PMB geometry area {poly.area}')
-    simplified=poly.simplify(.35,preserve_topology=True)
-    if not simplified.is_valid or simplified.geom_type!='Polygon':
-        raise RuntimeError('PMB simplification invalid')
-    if abs(simplified.area-poly.area)/poly.area>.003:
-        raise RuntimeError('PMB simplification changed area too much')
-    path=svg_path(simplified)
+    # Preserve the current OSM coastline exactly at source-node topology.
+    # Two-decimal SVG projection rounding is the only display quantization.
+    path=svg_path(poly)
     source=(repo/config['map']['svg']).read_text()
     root=ET.fromstring(source)
     if root.get('viewBox')!='0 0 1200 760':
@@ -108,7 +105,6 @@ def main():
         'tags':tags,
         'wgs84Bounds':{'west':min(lons),'south':min(lats),'east':max(lons),'north':max(lats)},
         'projectedAreaSvgPx2':round(poly.area,3),
-        'simplifiedAreaSvgPx2':round(simplified.area,3),
         'pathSha256':hashlib.sha256(path.encode()).hexdigest(),
         'path':path,
         'licence':'OpenStreetMap contributors, ODbL 1.0',
@@ -121,7 +117,6 @@ def main():
         'rawSha256':hashlib.sha256(raw).hexdigest(),
         'pathSha256':hashlib.sha256(path.encode()).hexdigest(),
         'projectedAreaSvgPx2':round(poly.area,3),
-        'simplifiedAreaSvgPx2':round(simplified.area,3),
         'decoded':[W,H]
     },indent=2))
 
