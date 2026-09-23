@@ -27,8 +27,8 @@
       "longitude": -69.592778
     },
     "mapOffset": {
-      "x": 2.0,
-      "y": 2.0
+      "x": 2,
+      "y": 2
     }
   },
   "map": {
@@ -40,7 +40,8 @@
     },
     "svg": "assets/images/dominicanrepublic/map-atlas-v1.svg",
     "route": null,
-    "source": "Dominican Republic national identity cross-checked against Natural Earth 1:10m Admin-0 DOM (public domain, LonnyGomes/CountryGeoJSONCollection). Production shoreline and Hispaniola land context use real WGS84 GSHHG/GSHHS intermediate coastline with the Dominican Republic–Haiti international boundary from WDBII as distributed with Basemap 2.0.0 (LGPL v3 or later). Independent 1:10m ADM0 geometry comparison, all eight real Scene coordinate projections, canvas edges and marker placement were checked 2026-09-23; the Santo Domingo coastal coordinate is within the map validator shoreline tolerance."
+    "source": "Dominican Republic national identity cross-checked against Natural Earth 1:10m Admin-0 DOM (public domain, LonnyGomes/CountryGeoJSONCollection). Production shoreline and Hispaniola land context use real WGS84 GSHHG/GSHHS intermediate coastline with the Dominican Republic–Haiti international boundary from WDBII as distributed with Basemap 2.0.0 (LGPL v3 or later). Independent 1:10m ADM0 geometry comparison, all eight real Scene coordinate projections, canvas edges and marker placement were checked 2026-09-23; Saona and Beata are included in the Dominican target fill as adjacent islands of the Dominican Republic; the Santo Domingo coastal coordinate is within the map validator shoreline tolerance.",
+    "japanAreaComparison": "国土面積は日本の約12.8%（ドミニカ共和国 48,442 km²）"
   },
   "scenes": [
     {
@@ -148,8 +149,8 @@
       },
       "image": "assets/images/dominicanrepublic/approved/scene-8.webp",
       "mapOffset": {
-        "x": -4.0,
-        "y": 3.0
+        "x": -4,
+        "y": 3
       }
     }
   ],
@@ -491,7 +492,18 @@
       "text": "ロス・アイティセスなどの保護地域では現地の立入条件を確認する。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇭🇹",
+      "countryEn": "HAITI",
+      "countryJa": "ハイチ",
+      "path": "Dominican Republic → Cap-Haïtien (air)",
+      "description": "同じイスパニョーラ島を分け合う隣国。2026年9月現在、旅行者向けの陸路・海路国境は閉鎖されているため、再開したカパイシャン（Cap-Haïtien）との航空接続を含め、最新の運航・入国条件を直前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在、ハイチとの陸路・海路国境は旅行者向け閉鎖。航空便と入国条件を直前に確認。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "haiti",
@@ -518,15 +530,17 @@
       "affinityType": "ISLAND"
     }
   ],
-  "updatedAt": "2026-09-23",
-  "sourcesVerifiedAt": "2026-09-23",
+  "updatedAt": "2026-09-24",
+  "sourcesVerifiedAt": "2026-09-24",
   "sourceDates": {
     "population": "2022",
     "tourism": "2026-09-19",
     "geometry": "2026-09-23",
     "coordinates": "2026-09-23",
     "food": "2026-09-19",
-    "heritage": "2026-09-19"
+    "heritage": "2026-09-19",
+    "japanArea": "2026-04-01",
+    "borderRoutes": "2026-09-24"
   },
   "sources": {
     "tourism": "Dominican Republic Ministry of Tourism, destination and landscape coverage; checked 2026-09-19. https://www.godominicanrepublic.com/",
@@ -540,7 +554,7 @@
     "samanaWhales": "Dominican Republic tourism information for Samaná Bay seasonal humpback-whale watching; checked 2026-09-23. https://www.godominicanrepublic.com/",
     "cabarete": "Dominican Republic film commission / tourism location reference for Playa Cabarete and north-coast water-sports setting. https://dgcine.gob.do/locaciones/locacion/playa-cabarete/",
     "population": "Dominican Republic Oficina Nacional de Estadística (ONE), X Censo Nacional de Población y Vivienda 2022; total population 10,760,028. https://www.one.gob.do/noticias/2023/one-informa-los-primeros-resultados-preliminares-del-x-censo-nacional-de-poblacion-y-vivienda/",
-        "factsPopulation": "Dominican Republic Oficina Nacional de Estadística (ONE), X Censo Nacional de Población y Vivienda 2022; total population 10,760,028. https://www.one.gob.do/noticias/2023/one-informa-los-primeros-resultados-preliminares-del-x-censo-nacional-de-poblacion-y-vivienda/",
+    "factsPopulation": "Dominican Republic Oficina Nacional de Estadística (ONE), X Censo Nacional de Población y Vivienda 2022; total population 10,760,028. https://www.one.gob.do/noticias/2023/one-informa-los-primeros-resultados-preliminares-del-x-censo-nacional-de-poblacion-y-vivienda/",
     "factsArea": "Dominican Republic Oficina Nacional de Estadística (ONE), national geographic characteristics; Dominican Republic area 48,442 km². https://www.one.gob.do/media/41sfi2xf/informe-general-enhogar-2024.pdf",
     "factsReligion": "U.S. Department of State, 2023 International Religious Freedom Report: Catholic and evangelical Protestant communities are the largest reported affiliations. https://2021-2025.state.gov/reports/2023-report-on-international-religious-freedom/dominican-republic/",
     "intangibleCulture": "UNESCO Intangible Cultural Heritage, Dominican Republic state list; five listed elements as of 2026-09-23, including merengue, bachata and cassava-bread practices. https://ich.unesco.org/en/state/dominican-republic-DO?info=elements-on-the-lists",
@@ -548,6 +562,9 @@
     "cocoa": "Dominican Republic Ministry of Tourism, Canducito Cocoa Route in Miches: organic cocoa production and artisanal processing. https://www.godominicanrepublic.com/things-to-do/canducito-cocoa-route",
     "baseball": "Dominican Republic Ministry of Tourism: baseball and golf are integral to the country's sporting and cultural life. https://www.godominicanrepublic.com/things-to-do/outdoor-recreation-and-sports",
     "damajagua": "Dominican Republic Ministry of Tourism, 27 Charcos de Damajagua: guided waterfall route, safety equipment, most excursions use seven falls. https://www.godominicanrepublic.com/things-to-do/27-charcos-de-damajagua",
-    "saona": "Dominican Republic Ministry of Tourism, Isla Saona: day trips by speedboat/catamaran, most departing Bayahíbe. https://www.godominicanrepublic.com/things-to-do/isla-saona"
+    "saona": "Dominican Republic Ministry of Tourism, Isla Saona: day trips by speedboat/catamaran, most departing Bayahíbe. https://www.godominicanrepublic.com/things-to-do/isla-saona",
+    "area": "Presidencia de la República Dominicana, Información y Estadística General: territorial area 48,442 km², including adjacent islands such as Beata, Catalina and Saona; checked 2026-09-24. https://presidencia.gob.do/acerca-de-rd/informacion-general",
+    "japanArea": "Japan Geospatial Information Authority / Cabinet Secretariat: Japan territory 377,974.87 km² as of 2026-04-01; used for the map area comparison. https://www.cas.go.jp/jp/ryodo/torikumi/giaj.html",
+    "nextRoutes": "Dominican Republic Presidency, 2026-04-20: air connections between Dominican airports and Cap-Haïtien were agreed to resume from May 2026. Current September 2026 travel advisories from Canada and France state land and sea borders are closed to travellers; route presentation therefore uses air and requires current-condition checks."
   }
 }
