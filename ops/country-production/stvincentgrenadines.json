@@ -5,8 +5,8 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "QA",
-  "stateRevision": 10,
-  "updatedAt": "2026-09-24T14:20:04+09:00",
+  "stateRevision": 11,
+  "updatedAt": "2026-09-24T14:36:57+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
@@ -120,7 +120,10 @@
     "verificationBasis": "Canonical unpublished page revalidated on the corrected main build after PR #1020: desktop, tablet and mobile Browser QA all PASS."
   },
   "finalApproval": {
-    "state": "PENDING"
+    "state": "APPROVED",
+    "approvedAt": "2026-09-24T14:36:57+09:00",
+    "userInstruction": "QAして問題なければ公開して",
+    "approvalBasis": "Corrected canonical Saint Vincent review on main commit 717be7cfb0bbb135e91b66c5f123c3b87ea28c0e passed live Desktop / Tablet / Mobile Browser QA with zero failures in run 35959315358. Image Policy 7, Country data, production-state routing and Publication Pipeline v2 checks also passed. The later main commit 16ada9079fd9b4978054aadc244b19d0b6fe4572 changed Production State verification metadata only and did not change page content or approved image bytes."
   },
   "publication": {
     "state": "DRAFT",
