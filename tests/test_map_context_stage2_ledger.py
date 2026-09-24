@@ -8,12 +8,21 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 
-from stage_map_context_rollout import derive_roster  # noqa: E402
+from stage_map_context_rollout import derive_roster, protected_target_paths  # noqa: E402
+from xml.etree import ElementTree as ET
 
 LEDGER=ROOT/'ops/map-context-stage2-review.json'
 
 
 class Stage2ReviewLedgerTest(unittest.TestCase):
+    def test_hong_kong_use_rendered_target_is_protected(self):
+        source = ROOT / 'assets/images/hong-kong/map-atlas-v1.svg'
+        root = ET.parse(source).getroot()
+        signatures = protected_target_paths(root)
+        self.assertEqual(len(signatures), 1)
+        self.assertTrue(signatures[0].startswith('use:land-shape:'))
+        self.assertIn('<ns0:path', signatures[0])
+
     def test_ledger_covers_exact_selected_roster(self):
         ledger=json.loads(LEDGER.read_text(encoding='utf-8'))
         self.assertEqual(ledger['stage'],'2')
