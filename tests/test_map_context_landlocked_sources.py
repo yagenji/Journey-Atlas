@@ -33,6 +33,18 @@ CASES = {
         'source_blob': '3e62dcbfef1399f4eb5d51ab8503a8eb57770def',
         'source_text': 'Basemap intermediate-resolution political boundary',
     },
+    'austria': {
+        'source_blob': '745ebe7624d7937034335845fa139f2fb77b1f5e',
+        'source_text': 'Natural Earth 1:10m',
+    },
+    'serbia': {
+        'source_blob': 'eaab1ae0f0b186cdac67534700db1efacf42f6ef',
+        'source_text': 'Natural Earth 1:10m',
+    },
+    'switzerland': {
+        'source_blob': '765b4d2b26324c70b6ac527b68d7c9590c8812bc',
+        'source_text': 'swisstopo swissBOUNDARIES3D',
+    },
 }
 
 
