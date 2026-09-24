@@ -405,6 +405,14 @@ def validate_next_routes_v6(errors: list[str], filename: str, data: dict[str, An
             continue
         if route.get("travelerRoute") is not True:
             fail(errors, f"{owner}.travelerRoute must be true; include routes because they are established traveler continuations, not because the border is currently open")
+        route_text = " ".join(
+            text(route.get(key)) for key in ("path", "description", "statusNote")
+        ).lower()
+        if (
+            re.search(r"\\b(?:air|flight|flights|airport|airports|airline|airlines)\\b", route_text)
+            or any(term in route_text for term in ("空路", "航空", "飛行機"))
+        ):
+            fail(errors, f"{owner} must not use air travel; nextRoutes are established land or sea continuations only")
         status = text(route.get("status"))
         if status not in NEXT_ROUTE_STATUSES:
             fail(errors, f"{owner}.status must be one of {sorted(NEXT_ROUTE_STATUSES)}")
