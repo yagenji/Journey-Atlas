@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 import xml.etree.ElementTree as ET
 
-from validate_country_map_v6 import collect_path_groups, on_land_in_path, translate_offset
+from validate_country_map_v6 import collect_path_groups, on_land_in_path, parse_transform_matrix, translate_offset
 
 
 class LandFillParityTest(unittest.TestCase):
@@ -65,6 +65,40 @@ class LandFillParityTest(unittest.TestCase):
         groups = collect_path_groups(root)
         self.assertTrue(on_land_in_path(groups[0], (140, 25)))
         self.assertFalse(on_land_in_path(groups[0], (10, 10)))
+
+    def test_matrix_transform_moves_land_geometry_into_rendered_position(self):
+        root = ET.fromstring(
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<g transform="matrix(2 0 0 2 100 50)">'
+            '<path d="M 0 0 L 20 0 L 20 20 L 0 20 Z"/>'
+            '</g></svg>'
+        )
+        groups = collect_path_groups(root)
+        self.assertEqual(len(groups), 1)
+        self.assertTrue(on_land_in_path(groups[0], (120, 70)))
+        self.assertFalse(on_land_in_path(groups[0], (10, 10)))
+
+    def test_nested_matrix_and_translate_are_composed(self):
+        root = ET.fromstring(
+            '<svg xmlns="http://www.w3.org/2000/svg">'
+            '<g transform="matrix(2 0 0 2 100 50)">'
+            '<g transform="translate(5 3)">'
+            '<path d="M 0 0 L 10 0 L 10 10 L 0 10 Z"/>'
+            '</g></g></svg>'
+        )
+        groups = collect_path_groups(root)
+        self.assertTrue(on_land_in_path(groups[0], (120, 66)))
+        self.assertFalse(on_land_in_path(groups[0], (110, 56)))
+
+    def test_matrix_parser_accepts_saint_lucia_affine_form(self):
+        matrix = parse_transform_matrix(
+            "matrix(2.123451850528 0 0 2.122641509434 -663.631870621822 -584.339622641506)"
+        )
+        self.assertIsNotNone(matrix)
+        self.assertAlmostEqual(matrix[0], 2.123451850528)
+        self.assertAlmostEqual(matrix[3], 2.122641509434)
+        self.assertAlmostEqual(matrix[4], -663.631870621822)
+        self.assertAlmostEqual(matrix[5], -584.339622641506)
 
 
 if __name__ == "__main__":
