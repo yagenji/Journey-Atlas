@@ -278,7 +278,11 @@ def main():
     if slug == 'portugal':
         clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
         clarified = reconcile_reviewed_portugal_spain_coast(clarified, args.input, args.resolution)
-    clarified = apply_exact_target_negative_clip(clarified)
+    # Bahrain and El Salvador receive an additional source-pinned staged
+    # reconciliation in stage_map_context_rollout.py; clip them only after that
+    # final reconciliation so hash-pinned source guards remain meaningful.
+    if slug not in ('bahrain', 'elsalvador'):
+        clarified = apply_exact_target_negative_clip(clarified)
     if clarified != preview:
         args.output.write_text(clarified, encoding="utf-8")
     print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings; exact target-negative clip applied where context remains")
