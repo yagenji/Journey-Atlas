@@ -211,6 +211,26 @@ function renderMapBase(fragment, mapData) {
   });
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
+  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
+    if (/OpenStreetMap|\bODbL\b/i.test(mapSource)) {
+      const legend = fragment.querySelector('.map-legend--below');
+      if (legend) {
+        const credit = document.createElement('a');
+        credit.className = 'map-legend__source-credit';
+        credit.href = 'https://www.openstreetmap.org/copyright';
+        credit.target = '_blank';
+        credit.rel = 'noopener noreferrer';
+        credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
+        credit.style.flexBasis = '100%';
+        credit.style.textAlign = 'left';
+        credit.style.color = 'inherit';
+        credit.style.fontSize = '11px';
+        credit.style.lineHeight = '1.5';
+        credit.style.textDecoration = 'underline';
+        credit.style.textUnderlineOffset = '2px';
+        legend.append(credit);
+      }
+    }
   if (typeof mapData.japanAreaComparison === 'string' && mapData.japanAreaComparison.trim()) {
     const legend = fragment.querySelector('.map-legend--below');
     if (legend) {

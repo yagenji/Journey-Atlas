@@ -85,14 +85,53 @@ jobs:
           files = Path("/tmp/country-changed-files.txt").read_text().splitlines()
           publication_only = files == ["data/atlas-destinations.json"]
 
-          slugs = set()
+          content_slugs = set()
+          map_asset_folders = set()
+          other_asset_folders = set()
+
           for path in files:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
               if match:
-                  slugs.add(match.group(1))
-              match = re.match(r"assets/images/([^/]+)/", path)
+                  content_slugs.add(match.group(1))
+                  continue
+              match = re.match(r"assets/images/([^/]+)/(.+)", path)
               if match:
-                  slugs.add(match.group(1))
+                  folder, relative = match.groups()
+                  if re.fullmatch(r"map-[^/]+\.svg", relative):
+                      map_asset_folders.add(folder)
+                  else:
+                      other_asset_folders.add(folder)
+
+          country_dir = Path("data/countries")
+
+          def owner_slugs(folder: str) -> set[str]:
+              prefix = f"assets/images/{folder}/"
+              matched = set()
+              direct = country_dir / f"{folder}.json"
+              if direct.exists():
+                  matched.add(folder)
+              for country_path in country_dir.glob("*.json"):
+                  try:
+                      payload = country_path.read_text(encoding="utf-8")
+                  except OSError:
+                      continue
+                  if prefix in payload:
+                      matched.add(country_path.stem)
+              if not matched:
+                  raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
+              return matched
+
+          for folder in other_asset_folders:
+              content_slugs.update(owner_slugs(folder))
+
+          map_slugs = set()
+          for folder in map_asset_folders:
+              map_slugs.update(owner_slugs(folder))
+
+          # Any Country whose JSON or non-map imagery changed must receive the
+          # complete finish-line QA; do not duplicate it in the map-only pass.
+          map_slugs.difference_update(content_slugs)
+          slugs = content_slugs | map_slugs
 
           if "data/atlas-destinations.json" in files:
               try:
@@ -104,6 +143,7 @@ jobs:
                   new_rows = {row.get("slug"): row for row in new.get("destinations", []) if row.get("slug")}
                   for slug in set(old_rows) | set(new_rows):
                       if old_rows.get(slug) != new_rows.get(slug):
+                          content_slugs.add(slug)
                           slugs.add(slug)
               except Exception:
                   publication_only = False
@@ -127,6 +167,8 @@ jobs:
 
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
+              handle.write("content_slugs=" + ",".join(sorted(content_slugs)) + "\n")
+              handle.write("map_slugs=" + ",".join(sorted(map_slugs)) + "\n")
               handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
               handle.write("publication_only=" + ("true" if publication_only else "false") + "\n")
           PY
@@ -157,16 +199,16 @@ jobs:
           python3 scripts/test_country_quality_v5.py
 
       - name: Run targeted finish-line QA
-        if: steps.target.outputs.slugs != '' && steps.target.outputs.publication_only != 'true'
+        if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
         env:
-          TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
+          TARGET_SLUGS: ${{ steps.target.outputs.content_slugs }}
         shell: bash
         run: |
           set -euo pipefail
           for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
             path="data/countries/$slug.json"
             [ -f "$path" ] || continue
-            echo "=== QA: $slug ==="
+            echo "=== FULL QA: $slug ==="
             python3 scripts/validate_country_editorial_v2.py --force "$path"
             python3 scripts/validate_country_quality_v5.py "$path"
             python3 scripts/validate_country_map_v6.py "$path"
@@ -174,6 +216,21 @@ jobs:
             python3 scripts/audit_country_image_delivery_targeted.py --slug "$slug"
             python3 scripts/validate_images.py --mode hard --slug "$slug"
             python3 scripts/validate_images.py --duplicates-only --slug "$slug"
+          done
+
+      - name: Run targeted map-only QA
+        if: steps.target.outputs.map_slugs != '' && steps.target.outputs.publication_only != 'true'
+        env:
+          TARGET_SLUGS: ${{ steps.target.outputs.map_slugs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            path="data/countries/$slug.json"
+            [ -f "$path" ] || continue
+            echo "=== MAP-ONLY QA: $slug ==="
+            python3 scripts/validate_country_map_v6.py "$path"
+            python3 scripts/validate_country.py --strict "$path"
           done
 
       - name: Run full Country QA
