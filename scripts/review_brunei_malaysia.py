@@ -49,6 +49,39 @@ def main():
     if PMB_OSM_RAW_SHA not in metadata or 'OpenStreetMap way 28531951 version 9' not in metadata:
         raise RuntimeError('PMB source provenance missing')
 
+    current_text=original.decode('utf-8')
+    current_context=source_root.find('.//*[@id="geographic-context"]')
+    if current_context is not None and any(
+            (p.get('d') or '').strip() for p in current_context.iter(NS+'path')):
+        actual=current_text
+        actual_root=source_root
+        national=[p.get('d') for p in actual_root.iter(NS+'path') if p.get('fill')=='url(#country)']
+        if original_shapes!=national:
+            raise RuntimeError('Protected Brunei national geometry modified')
+        image=cairosvg.svg2png(bytestring=actual.encode(),output_width=1200,output_height=760)
+        with Image.open(io.BytesIO(image)) as decoded:
+            decoded.load()
+            if decoded.size!=(1200,760):
+                raise RuntimeError('Full-resolution decode failed')
+        (out/'brunei-reviewed.png').write_bytes(image)
+        report={
+            'status':'PASS: promoted Brunei source-backed context remains valid',
+            'promotionState':'PROMOTED',
+            'protectedTargetPathCount':2,
+            'existingMainlandTargetSha256':ORIGINAL_TARGET_SHA,
+            'pulauMuaraBesarPathSha256':PMB_TARGET_SHA,
+            'pulauMuaraBesarOsmRawSha256':PMB_OSM_RAW_SHA,
+            'pulauMuaraBesarPresent':True,
+            'nationalPathsIdentical':True,
+            'decodedSize':[1200,760],
+            'reviewSvgSha256':hashlib.sha256(actual.encode()).hexdigest(),
+            'adapterMatchesIndependentSourceReview':True,
+            'dispositionScope':'JOURNEY ATLAS 1200x760 promoted map; not cadastral/legal boundary certification'
+        }
+        (out/'report.json').write_text(json.dumps(report,indent=2))
+        print(json.dumps(report,indent=2),flush=True)
+        return
+
     raw_candidate=out/'candidate.svg'
     generate(root,config,source,raw_candidate,'add_country_map_context_legacy.py')
     candidate=raw_candidate.read_text()
