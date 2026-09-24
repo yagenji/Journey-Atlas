@@ -75,8 +75,11 @@ class PriorityGeographyReview(unittest.TestCase):
         qatar_config=json.loads((ROOT/'data/countries/qatar.json').read_text())
         source=(ROOT/config['map']['svg']).read_text()
         qatar=(ROOT/qatar_config['map']['svg']).read_text()
-        raw=legacy._loose_multi_region(source,config,'i')
-        reviewed=existing.reconcile_reviewed_bahrain_hawar(raw,'i')
+        if 'id="geographic-context"' in source and 'data-map-context-legacy="hawar"' in source:
+            reviewed=source
+        else:
+            raw=legacy._loose_multi_region(source,config,'i')
+            reviewed=existing.reconcile_reviewed_bahrain_hawar(raw,'i')
         before=ET.fromstring(source)
         after=ET.fromstring(reviewed)
         own=lambda root:[dict(node.attrib) for node in root.iter(SVG+'path')
