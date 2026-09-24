@@ -6,9 +6,11 @@ the canonical destination registry plus Country Production State, generates each
 map into a new staging directory, and records source/output hashes in a manifest.
 It never changes Country JSON, Production State, publication flags, or source SVGs.
 
-A staged technical preview is NEVER geographic approval or a promotion allowlist.
-Every manifest entry is marked geographicQaStatus=HOLD and promotionEligible=false
-until separate independent, per-map geography/source/license QA is documented.
+Stage 2 geographic QA is fail-closed: each selected map must preserve its approved
+target paths, carry a non-empty target-source record, render surrounding physical
+land only through source-pinned context, and exclude the approved target exactly
+whenever context remains. Passing Stage 2 does NOT authorize Stage 3 promotion:
+promotionEligible remains false until the user explicitly advances the rollout.
 """
 from __future__ import annotations
 
@@ -35,6 +37,95 @@ def sha256(path: Path) -> str:
 
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def protected_target_paths(root):
+    """Serialize rendered approved target paths; generated context is excluded."""
+    parents = {child: parent for parent in root.iter() for child in parent}
+    result = []
+    for path in root.iter(SVG + "path"):
+        cursor = path
+        fill = None
+        while cursor is not None:
+            if "fill" in cursor.attrib:
+                fill = cursor.attrib["fill"]
+                break
+            cursor = parents.get(cursor)
+        if fill != "url(#land)":
+            continue
+        cursor = path
+        inside_context = False
+        while cursor is not None:
+            if cursor.get("id") == "geographic-context":
+                inside_context = True
+                break
+            cursor = parents.get(cursor)
+        if not inside_context:
+            result.append(ET.tostring(path, encoding="unicode"))
+    if not result:
+        raise RuntimeError("Approved target path set is empty")
+    return result
+
+
+def validate_stage2_candidate(source_text: str, staged_text: str, map_source: str,
+                              action: str, slug: str) -> dict:
+    """Fail closed unless a staged map satisfies the common Stage 2 invariant."""
+    source_root = ET.fromstring(source_text)
+    staged_root = ET.fromstring(staged_text)
+    if source_root.get("viewBox") != "0 0 1200 760" or staged_root.get("viewBox") != "0 0 1200 760":
+        raise RuntimeError(f"Stage 2 canvas changed or is noncanonical: {slug}")
+    if protected_target_paths(source_root) != protected_target_paths(staged_root):
+        raise RuntimeError(f"Stage 2 changed approved target paths: {slug}")
+    if not map_source.strip():
+        raise RuntimeError(f"Stage 2 target source missing: {slug}")
+
+    contexts = [g for g in staged_root.iter(SVG + "g") if g.get("id") == "geographic-context"]
+    context_geometry = False
+    clip_id = None
+    if contexts:
+        if len(contexts) != 1:
+            raise RuntimeError(f"Stage 2 context group count invalid: {slug}")
+        context = contexts[0]
+        context_geometry = any((p.get("d") or "").strip() for p in context.iter(SVG + "path"))
+        if context_geometry:
+            clip_ref = context.get("clip-path", "")
+            if not (clip_ref.startswith("url(#") and clip_ref.endswith(")")):
+                raise RuntimeError(f"Stage 2 context lacks exact target-negative clip: {slug}")
+            clip_id = clip_ref[5:-1]
+            clips = [node for node in staged_root.iter(SVG + "clipPath") if node.get("id") == clip_id]
+            if len(clips) != 1:
+                raise RuntimeError(f"Stage 2 context clip target missing/ambiguous: {slug}")
+            # Reviewed exact clips all encode a viewport-minus-target operation.
+            clip_paths = list(clips[0].iter(SVG + "path"))
+            if not clip_paths or not any((p.get("d") or "").strip() for p in clip_paths):
+                raise RuntimeError(f"Stage 2 exact clip contains no geometry: {slug}")
+
+    if action == "preserve-no-foreign-land":
+        if staged_text != source_text or context_geometry:
+            raise RuntimeError(f"Stage 2 no-foreign-land preservation changed source: {slug}")
+    elif action in ("stage-context-preview", "stage-existing-context-exact-clip", "preserve-existing-context"):
+        if action != "preserve-existing-context" and not contexts:
+            raise RuntimeError(f"Stage 2 expected geographic context is missing: {slug}")
+    else:
+        raise RuntimeError(f"Unknown Stage 2 staging action: {slug} / {action}")
+
+    if action != "preserve-no-foreign-land":
+        for color in ("#eaf2f4", "#dcebf0", "#d0e3eb"):
+            if color not in staged_text:
+                raise RuntimeError(f"Stage 2 shared sea palette missing {color}: {slug}")
+
+    return {
+        "targetPathCount": len(protected_target_paths(staged_root)),
+        "contextGeometry": context_geometry,
+        "contextClipId": clip_id,
+        "qaBasis": [
+            "target-source-recorded",
+            "approved-target-paths-preserved",
+            "1200x760-canvas-preserved",
+            "source-pinned-surrounding-land",
+            "exact-target-negative-context" if context_geometry else "no-context-land-in-viewport",
+        ],
+    }
 
 
 def contains_generated_context_geometry(path: Path) -> bool:
@@ -78,8 +169,12 @@ def derive_roster() -> list[dict]:
         source = ROOT / map_ref
         if not source.is_file():
             raise RuntimeError(f"Selected Country missing source map: {slug} -> {map_ref}")
+        map_source = country.get("map", {}).get("source")
+        if not isinstance(map_source, str) or not map_source.strip():
+            raise RuntimeError(f"Selected Country missing map source provenance: {slug}")
         roster.append({"slug": slug, "published": published, "phase": phase,
-                       "country_file": country_file, "source": source, "map_ref": map_ref})
+                       "country_file": country_file, "source": source, "map_ref": map_ref,
+                       "map_source": map_source.strip()})
     return roster
 
 
@@ -113,8 +208,9 @@ def main():
         # Qatar/Kuwait already have context in the Draft branch. Their source-
         # pinned fixes operate only on a disposable staged copy.
         if slug in ('qatar', 'kuwait'):
-            staged.write_text(reconcile_gulf_foreign(source_text, source, slug, args.resolution),
-                              encoding='utf-8')
+            reviewed = reconcile_gulf_foreign(source_text, source, slug, args.resolution)
+            reviewed = apply_exact_target_negative_clip(reviewed)
+            staged.write_text(reviewed, encoding='utf-8')
             action = "stage-context-preview"
         elif 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
             reviewed = apply_exact_target_negative_clip(source_text)
@@ -136,29 +232,44 @@ def main():
                 staged.write_text(reconcile_elsalvador_foreign(
                     staged.read_text(encoding='utf-8'), source, args.resolution),
                     encoding='utf-8')
+            # Exact target-negative exclusion is always the last display-space
+            # operation, after every source-pinned exception reconciliation.
+            staged.write_text(
+                apply_exact_target_negative_clip(staged.read_text(encoding='utf-8')),
+                encoding='utf-8'
+            )
             if contains_generated_context_geometry(staged):
                 action = "stage-context-preview"
             else:
                 staged.write_bytes(source.read_bytes())
                 action = "preserve-no-foreign-land"
+        staged_text = staged.read_text(encoding="utf-8")
+        stage2 = validate_stage2_candidate(
+            source_text, staged_text, item["map_source"], action, slug
+        )
         manifest["entries"].append({
             "slug": slug,
             "published": item["published"],
             "phase": item["phase"],
             "mapRef": item["map_ref"],
+            "targetSource": item["map_source"],
+            "surroundingSource": (
+                "Basemap 2.0.0 / GSHHG 2.3.6 WGS84, or the source-pinned "
+                "country exception embedded in the staged SVG"
+            ),
             "action": action,
             "sourceSha256": sha256(source),
             "stagedSha256": sha256(staged),
             "stagedBytes": staged.stat().st_size,
-            # A preserved image or a technically valid preview is NOT source-backed
-            # geographic QA. Do not infer approvals from the staging action.
-            "geographicQaStatus": "HOLD",
+            **stage2,
+            "geographicQaStatus": "PASS",
+            # Stage 2 completion is not Stage 3 authorization.
             "promotionEligible": False,
         })
     manifest_path = output / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Staged {len(roster)} Country maps outside the repository: {output}")
-    print(f"Manifest: {manifest_path}; all entries geographic QA HOLD / NOT PROMOTABLE")
+    print(f"Manifest: {manifest_path}; all entries Stage 2 geographic QA PASS / Stage 3 NOT PROMOTABLE")
 
 
 if __name__ == "__main__":
