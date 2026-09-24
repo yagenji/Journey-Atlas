@@ -47,7 +47,7 @@
     },
     "svg": "assets/images/bahamas/map-atlas-v1.svg",
     "route": null,
-    "source": "Target geometry: Natural Earth 1:10m cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection (BHS GeoJSON, WGS84). 1200×760 local-equirectangular fit; source checked 2026-09-24."
+    "source": "Primary target geometry: Natural Earth 1:10m BHS cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection. Hawksbill Cay (Scene 5) and Elbow Cay / Hope Town (Scene 6) shoreline geometry supplemented from GSHHG/GSHHS intermediate resolution via Basemap 2.0.0, matched to verified named-island coordinates; GSHHG license LGPL v3 or earlier. WGS84, local-equirectangular 1200×760; checked 2026-09-24."
   },
   "scenes": [
     {
@@ -115,14 +115,14 @@
       }
     },
     {
-      "id": "warderick-wells-exuma-park",
-      "name": "ワーダリック・ウェルズ島 / エグズーマ",
-      "nameLocal": "Warderick Wells Cay / Exuma Cays Land & Sea Park",
-      "mapLabel": "Warderick Wells",
-      "description": "細長い小島の周囲に砂州、浅瀬、珊瑚礁が重なる。陸と海を一体で守るエグズーマ・ケイズ陸海公園では、島の形よりも海の濃淡が風景の輪郭をつくる。",
+      "id": "hawksbill-cay-exuma-park",
+      "name": "ホークスビル・ケイ / エグズーマ陸海公園",
+      "nameLocal": "Hawksbill Cay / Exuma Cays Land & Sea Park",
+      "mapLabel": "Hawksbill Cay",
+      "description": "低い岩礁の小島の周囲に白い砂浜と浅いターコイズの海が広がる。エグズーマ・ケイズ陸海公園では、島と島の間の浅瀬や珊瑚礁まで一体で保護されている。",
       "coordinates": {
-        "latitude": 24.38705,
-        "longitude": -76.62374
+        "latitude": 24.47637,
+        "longitude": -76.76783
       },
       "image": "assets/images/bahamas/approved/scene-5.webp",
       "mapOffset": {
@@ -562,7 +562,7 @@
     "climate": "The Bahamas official tourism FAQ: year-round warm climate, May-June typically wetter, hurricane season June-November. https://www.bahamas.com/plan-your-trip/island-faq",
     "transport": "The Bahamas official tourism: 20 international airports and island hopping by scheduled/charter flights, private boats and Bahamas Ferries; checked 2026-09-24. https://www.bahamas.com/getting-here",
     "eleuthera": "The Bahamas official tourism: Harbour Island Pink Sands Beach and more than 35 miles of blush sands on mainland Eleuthera. https://www.bahamas.com/islands/eleuthera-harbour-island/getting-around",
-    "sceneCoordinates": "WGS84 feature points checked 2026-09-24: Dean's Blue Hole 23.10634,-75.00861; Pink Sands Beach 25.50547,-76.63161; Queen's Staircase 25.07314,-77.33767; Gold Rock Beach 26.59997,-78.40436; Warderick Wells Cay 24.38705,-76.62374; Elbow Reef Lighthouse 26.53974,-76.96210; Inagua National Park reference 21.0833,-73.3333; Captain Bill's Blue Hole 24.74215,-77.86188; Hero Glass Window Bridge 25.43758,-76.60419. Sources cross-checked against official destination pages plus OpenStreetMap/GeoNames, Ramsar/UNESCO and published field-study coordinates where applicable.",
-    "map": "Natural Earth 1:10m cultural vector geometry for Bahamas, generated from LonnyGomes/CountryGeoJSONCollection (derived from Natural Earth 1:10m; WGS84). Natural Earth data are public domain. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/about/terms-of-use/"
+    "sceneCoordinates": "WGS84 feature points checked 2026-09-24: Dean's Blue Hole 23.10634,-75.00861; Pink Sands Beach 25.50547,-76.63161; Queen's Staircase 25.07314,-77.33767; Gold Rock Beach 26.59997,-78.40436; Hawksbill Cay 24.47637,-76.76783 (GeoNames/Mapcarta); Elbow Reef Lighthouse 26.53974,-76.96210; Inagua National Park reference 21.0833,-73.3333; Captain Bill's Blue Hole 24.74215,-77.86188; Hero Glass Window Bridge 25.43758,-76.60419. Sources cross-checked against official destination pages plus OpenStreetMap/GeoNames, Ramsar/UNESCO and published field-study coordinates where applicable.",
+    "map": "Primary target geometry: Natural Earth 1:10m cultural vectors for Bahamas via LonnyGomes/CountryGeoJSONCollection, public domain. Small-island shoreline supplements for Hawksbill Cay and Elbow Cay / Hope Town use GSHHG/GSHHS intermediate resolution via Basemap 2.0.0; GSHHG licensed LGPL v3 or earlier. Named-island identity matched to verified coordinates. WGS84; 1200×760. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/about/terms-of-use/ ; https://github.com/GenericMappingTools/gshhg-gmt"
   }
 }
