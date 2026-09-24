@@ -28,6 +28,14 @@ from reconcile_timorleste_foreign import reconcile as reconcile_timorleste_forei
 ROOT = Path(__file__).resolve().parents[1]
 SVG_NS = '{http://www.w3.org/2000/svg}'
 
+INDIVIDUAL_SOURCE_REVIEW_SLUGS = {
+    'bahrain', 'hong-kong', 'brunei', 'monaco', 'portugal', 'qatar', 'kuwait',
+    'singapore', 'macau', 'antiguabarbuda', 'malta', 'andorra', 'liechtenstein',
+    'sanmarino', 'vaticancity', 'elsalvador', 'cyprus', 'timorleste', 'luxembourg',
+    'czechia', 'hungary', 'tajikistan', 'austria', 'serbia', 'switzerland',
+    'bhutan', 'mongolia', 'kyrgyz', 'nepal',
+}
+
 
 def reconcile_reviewed_bahrain_hawar(svg: str, resolution: str) -> str:
     """Keep verified Qatar land, not the GSHHG duplicates of Bahrain's Hawar.
@@ -252,7 +260,7 @@ def main():
             fixture,
             args.resolution,
         )
-        result = apply_exact_target_negative_clip(result)
+        # Timor-Leste already has its own exact source-aligned target-negative clip.
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(result, encoding='utf-8')
         print(f"Created existing-Country preview: {args.output}; Timor-Leste uses source-aligned Indonesia context")
@@ -278,10 +286,10 @@ def main():
     if slug == 'portugal':
         clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
         clarified = reconcile_reviewed_portugal_spain_coast(clarified, args.input, args.resolution)
-    # Bahrain and El Salvador receive an additional source-pinned staged
-    # reconciliation in stage_map_context_rollout.py; clip them only after that
-    # final reconciliation so hash-pinned source guards remain meaningful.
-    if slug not in ('bahrain', 'elsalvador'):
+    # Common exact clipping is only for the common-review cohort. Individually
+    # source-reviewed maps retain their already-reviewed output byte semantics.
+    # Bahrain/El Salvador also receive a later staged source reconciliation.
+    if slug not in INDIVIDUAL_SOURCE_REVIEW_SLUGS:
         clarified = apply_exact_target_negative_clip(clarified)
     if clarified != preview:
         args.output.write_text(clarified, encoding="utf-8")
