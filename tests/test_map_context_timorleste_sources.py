@@ -32,8 +32,8 @@ class TimorLesteContextSourceTest(unittest.TestCase):
         self.country_file = ROOT / 'data/countries/timorleste.json'
         self.country = json.loads(self.country_file.read_text(encoding='utf-8'))
         self.source = ROOT / self.country['map']['svg']
-        self.fixture = ROOT / 'tests/fixtures/map-context/timorleste-indonesia-ne10m-v4.1.0.geojson'
-        self.target_sibling = ROOT / 'tests/fixtures/map-context/timorleste-target-ne10m-v4.1.0.geojson'
+        self.fixture = ROOT / 'ops/map-context-sources/timorleste/indonesia-ne10m-v4.1.0.geojson'
+        self.target_sibling = ROOT / 'ops/map-context-sources/timorleste/timorleste-ne10m-v4.1.0.geojson'
 
     def test_pinned_source_and_exact_target_exclusion(self):
         self.assertEqual(self.country['map']['bounds'], EXPECTED_BOUNDS)
