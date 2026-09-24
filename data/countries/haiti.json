@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "publicationPipelineVersion": 2,
+  "slug": "haiti",
+  "nameEn": "HAITI",
+  "nameJa": "ハイチ",
+  "region": "CARIBBEAN / 19°N",
+  "seo": {
+    "description": "山頂のシタデル、独立期の宮殿跡、港町、南部の洞窟と滝、雲を抱く山地。ハイチの歴史と地形を、地図と八つの景色からたどる。"
+  },
+  "capital": {
+    "nameEn": "Port-au-Prince",
+    "nameJa": "ポルトープランス",
+    "coordinates": {
+      "latitude": 18.5392,
+      "longitude": -72.335
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "北部の山稜に、独立直後の国家防衛を託された巨大な石造要塞が立つ。海岸の都市から南部の洞窟と滝、高地の森まで、ハイチは急峻な地形と歴史が近い距離で重なる国だ。",
+    "image": "assets/images/haiti/approved/hero-citadelle-laferriere.webp",
+    "location": "Citadelle Laferrière / シタデル・ラフェリエール",
+    "coordinates": {
+      "latitude": 19.573611,
+      "longitude": -72.243889
+    },
+    "mapOffset": {
+      "x": -1.5,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 20.18,
+      "south": 17.78,
+      "west": -74.72,
+      "east": -71.38
+    },
+    "svg": "assets/images/haiti/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target national geometry: Natural Earth 1:10m Haiti (HTI), public-domain geometry via LonnyGomes/CountryGeoJSONCollection. Administrative identity cross-checked 2026-09-24 against geoBoundaries gbOpen HTI ADM0 (2017 boundary representation; source OpenStreetMap/Wambacher; ODbL 1.0). Surrounding Hispaniola context uses Natural Earth 1:10m Dominican Republic geometry. WGS84, local-equirectangular 1200×760 SVG. Eight Scene coordinates and capital/hero coordinates checked against authoritative/structured geographic references on 2026-09-24. Display-only marker offsets resolve label/marker collisions; the verified geographic coordinates are unchanged.",
+    "japanAreaComparison": "国土面積は日本の約7.3%（ハイチ 27,750 km²）"
+  },
+  "scenes": [
+    {
+      "id": "sans-souci-palace",
+      "name": "サン・スーシ宮殿 / 独立期の王宮跡",
+      "nameLocal": "Palais Sans-Souci",
+      "mapLabel": "Sans-Souci",
+      "description": "ミロの山麓に、アンリ1世が築いた王宮の石壁と大階段が残る。1842年の地震で大きく損傷したが、独立後の国家が描いた政治と建築の規模を今も伝える。",
+      "coordinates": {
+        "latitude": 19.604692,
+        "longitude": -72.218597
+      },
+      "image": "assets/images/haiti/approved/scene-1.webp",
+      "mapOffset": {
+        "x": 4,
+        "y": 0
+      }
+    },
+    {
+      "id": "cap-haitien-waterfront",
+      "name": "カパイシャン / 湾と山に挟まれた街",
+      "nameLocal": "Cap-Haïtien / Bay and City",
+      "mapLabel": "Cap-Haïtien",
+      "description": "北岸の湾に沿って街が広がり、その背後へ山が迫る。海上交通と植民地期から続く都市の歴史を、海・市街・山が近接する地形から読み取れる。",
+      "coordinates": {
+        "latitude": 19.76667,
+        "longitude": -72.21667
+      },
+      "image": "assets/images/haiti/approved/scene-2.webp",
+      "mapOffset": {
+        "x": -1.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "jacmel-historic-centre",
+      "name": "ジャクメル / 歴史地区の街路",
+      "nameLocal": "Centre historique de Jacmel",
+      "mapLabel": "Jacmel",
+      "description": "南東岸の港町では、1895年の大火後に再建された鉄や煉瓦の建築、バルコニー、直交する街路が続く。海と商業の歴史が歩ける尺度で残る。",
+      "coordinates": {
+        "latitude": 18.234194,
+        "longitude": -72.534694
+      },
+      "image": "assets/images/haiti/approved/scene-3.webp",
+      "mapOffset": {
+        "x": 2.2,
+        "y": 0
+      }
+    },
+    {
+      "id": "bassin-bleu",
+      "name": "バサン・ブルー / 石灰岩の青い淵",
+      "nameLocal": "Bassin Bleu",
+      "mapLabel": "Bassin Bleu",
+      "description": "ジャクメル北西の山地に、岩壁と森に囲まれた青緑色の天然プールと滝が点在する。海辺の町から短い距離で、南東部の内陸地形へ景色が切り替わる。",
+      "coordinates": {
+        "latitude": 18.23312,
+        "longitude": -72.60232
+      },
+      "image": "assets/images/haiti/approved/scene-4.webp",
+      "mapOffset": {
+        "x": -2.2,
+        "y": 0
+      }
+    },
+    {
+      "id": "saut-mathurine",
+      "name": "ソー・マチュリーヌ / カヴァイヨン川の滝",
+      "nameLocal": "Saut-Mathurine",
+      "mapLabel": "Saut-Mathurine",
+      "description": "南部カン・ペラン近郊で、カヴァイヨン川の水が幅広い岩棚を越えて落ちる。森林と農地の間を流れる川が、南部の山地から低地へ水を運ぶ。",
+      "coordinates": {
+        "latitude": 18.436111,
+        "longitude": -73.820278
+      },
+      "image": "assets/images/haiti/approved/scene-5.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "grotte-marie-jeanne",
+      "name": "マリー・ジャンヌ洞窟 / 地下の石灰岩景観",
+      "nameLocal": "Grotte Marie-Jeanne",
+      "mapLabel": "Grotte Marie-Jeanne",
+      "description": "ポール・ア・ピマン近郊の石灰岩地帯に洞窟網が広がり、鍾乳石や大きな空洞が続く。南部半島の風景が地表だけではないことを示す場所。",
+      "coordinates": {
+        "latitude": 18.253161,
+        "longitude": -74.094561
+      },
+      "image": "assets/images/haiti/approved/scene-6.webp",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 2
+      }
+    },
+    {
+      "id": "pic-macaya",
+      "name": "ピック・マカヤ / 雲を抱く高地林",
+      "nameLocal": "Pic Macaya",
+      "mapLabel": "Pic Macaya",
+      "description": "マシフ・ド・ラ・オットの高地では、湿った森が急な尾根を覆い、雲が稜線を流れる。海岸線の印象とは異なる、ハイチ南西部の山岳景観がある。",
+      "coordinates": {
+        "latitude": 18.3825,
+        "longitude": -74.025
+      },
+      "image": "assets/images/haiti/approved/scene-7.webp",
+      "mapOffset": {
+        "x": -2.5,
+        "y": -2
+      }
+    },
+    {
+      "id": "ile-a-vache",
+      "name": "イル・ア・ヴァシュ / 南岸の島",
+      "nameLocal": "Île-à-Vache",
+      "mapLabel": "Île-à-Vache",
+      "description": "レカイ沖のカリブ海に浮かぶ島では、入り江、砂浜、ヤシのある海岸と小舟が暮らしの近くにある。山地と歴史建築だけではないハイチの海の表情。",
+      "coordinates": {
+        "latitude": 18.071389,
+        "longitude": -73.63
+      },
+      "image": "assets/images/haiti/approved/scene-8.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "山頂に立つ独立期の要塞",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "宮殿跡の大階段と石壁",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "港町のバルコニーと街路",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "青い天然プールと滝",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "石灰岩の洞窟を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "雲の流れる高地林",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "独立の日に食べるスープ",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "島の入り江と小舟",
+      "category": "DAILY_LIFE",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "citadelle-ridge-defense",
+      "themeEn": "GEOGRAPHY",
+      "themeJa": "地理を知る",
+      "title": "シタデルは、山頂の視界そのものを防御に使った",
+      "text": "シタデル・ラフェリエールは北部の高い尾根に築かれ、周囲の平野や山地を広く見渡せる。厚い石壁だけでなく、近づく動きを遠くから捉えられる地形そのものが要塞の一部になっている。",
+      "points": [
+        "高い尾根から北部の広い範囲を見渡せる",
+        "要塞建築と山地の地形を一体として読める"
+      ]
+    },
+    {
+      "topicKey": "haitian-creole-french",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "title": "クレオール語とフランス語、二つの公用語がある",
+      "text": "憲法はハイチ・クレオール語とフランス語を公用語と定める。地名や日常会話に触れると、植民地期から独立後まで続く歴史と現在の社会が言葉の層として見えてくる。",
+      "points": [
+        "ハイチ・クレオール語とフランス語が公用語",
+        "クレオール語は共通言語として憲法に明記される"
+      ]
+    },
+    {
+      "topicKey": "joumou-independence-food",
+      "themeEn": "FOOD",
+      "themeJa": "食を知る",
+      "title": "スープ・ジュムは1月1日に自由の記憶を食べる料理",
+      "text": "カボチャを中心に野菜、肉、プランテン、パスタ、香辛料を煮込むスープ・ジュムは、独立記念日の1月1日に食べられる。UNESCOは2021年に無形文化遺産へ記載した。",
+      "points": [
+        "1月1日の独立記念日と結びつく",
+        "2021年にUNESCO無形文化遺産へ記載"
+      ]
+    },
+    {
+      "topicKey": "jacmel-port-architecture",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ジャクメルでは港の歴史が街路とバルコニーに残る",
+      "text": "ジャクメルは植民地期の港として発展し、1895年の火災後も従来の街路構成を保ちながら再建された。鉄や鋳鉄のバルコニーを持つ建物が、港町の都市景観を特徴づける。",
+      "points": [
+        "港町としての街路構成が残る",
+        "歴史地区はUNESCO暫定一覧に記載されている"
+      ]
+    },
+    {
+      "topicKey": "cassava-bread-practice",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "title": "カサベづくりは、カリブ地域を横断して受け継がれる",
+      "text": "キャッサバから薄いパンをつくる知識と実践は、ハイチを含むカリブ・中南米の複数国で共有される。UNESCOは2024年に代表一覧へ記載した。",
+      "points": [
+        "キャッサバの加工知識が食文化を支える",
+        "ハイチを含む複数国共同の無形文化遺産"
+      ]
+    },
+    {
+      "topicKey": "mountain-road-access",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "山が多い国では、道の状態が暮らしの距離を決める",
+      "text": "国土の多くを山地が占め、地方では道路状況が市場や医療、教育へのアクセスに直結する。景色として見る急斜面は、日常の移動条件でもある。",
+      "points": [
+        "山地が国土の大部分を占める",
+        "地方道路の接続性は生活サービスへのアクセスに影響する"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "citadelle-altitude",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "シタデルは標高約900mの山頂に築かれた",
+      "text": "要塞は北部山地の高所にあり、防衛上の視界と地形を利用する設計になっている。",
+      "icon": "history",
+      "sourceKey": "heritage"
+    },
+    {
+      "topicKey": "hispaniola-two-states",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "イスパニョーラ島の西側を占める",
+      "text": "ハイチはイスパニョーラ島西部にあり、東側のドミニカ共和国と国境を共有する。",
+      "icon": "map",
+      "sourceKey": "constitution"
+    },
+    {
+      "topicKey": "jacmel-creative-city",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "ジャクメルは工芸・民芸のUNESCO創造都市",
+      "text": "街の祭り、工芸、建築を通じて、南東部の文化表現を知る入口になる。",
+      "icon": "culture",
+      "sourceKey": "jacmel"
+    },
+    {
+      "topicKey": "hurricane-season",
+      "categoryEn": "WEATHER",
+      "categoryJa": "気象",
+      "title": "6〜11月は大西洋のハリケーン・シーズン",
+      "text": "強い雨や暴風は道路・航空・通信に影響するため、気象情報を優先して判断する。",
+      "icon": "landscape",
+      "sourceKey": "travelAdvice"
+    },
+    {
+      "topicKey": "current-travel-warning",
+      "categoryEn": "SAFETY",
+      "categoryJa": "安全",
+      "title": "現在は通常の観光旅行を前提にしない",
+      "text": "2026年9月24日時点で英国・カナダはハイチ全土への渡航中止を勧告している。渡航判断は各国政府の最新情報を確認する。",
+      "icon": "road",
+      "sourceKey": "travelAdvice"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF HAITI",
+    "title": "ハイチで食べたいもの",
+    "intro": "独立の日のスープ、揚げ豚、黒い米、北部のカシューナッツ料理。四つの皿から歴史と土地を知る。",
+    "items": [
+      {
+        "id": "soup-joumou",
+        "name": "スープ・ジュム",
+        "nameLocal": "Soup Joumou",
+        "text": "カボチャ、野菜、肉、プランテン、パスタなどを煮込む独立記念日のスープ。",
+        "image": "assets/images/haiti/approved/food-1.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "griot",
+        "name": "グリオ",
+        "nameLocal": "Griot",
+        "text": "豚肉を香味と柑橘で下味をつけ、柔らかく調理してから揚げる代表的な料理。",
+        "image": "assets/images/haiti/approved/food-2.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "diri-ak-djon-djon",
+        "name": "ディリ・アク・ジョンジョン",
+        "nameLocal": "Diri ak Djon Djon",
+        "text": "ジョンジョンと呼ばれる乾燥キノコの煮汁で炊き、濃い色と香りをつける米料理。",
+        "image": "assets/images/haiti/approved/food-3.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "poulet-noix-de-cajou",
+        "name": "鶏肉のカシューナッツソース",
+        "nameLocal": "Poulet aux noix de cajou",
+        "text": "北部で知られる、鶏肉とカシューナッツを合わせた煮込み料理。",
+        "image": "assets/images/haiti/approved/food-4.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "以下は地理的な旅程の形を示す目安。2026年9月24日時点では各国政府がハイチ全土への渡航中止を勧告しており、通常の観光旅行としての実行を前提としない。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "北部の歴史景観を結ぶ",
+        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Cap-Haïtien → Sans-Souci → Citadelle Laferrière",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "南東部の港町と山地へ",
+        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Jacmel → Bassin Bleu",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "南部半島の洞窟と高地まで",
+        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Les Cayes → Saut-Mathurine → Grotte Marie-Jeanne → Pic Macaya",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜3月",
+      "color": "#c7d7cf",
+      "text": "比較的雨が少ない時期だが、北岸・山地・南部で降水傾向は異なる。現在は季節より安全情報を優先して判断する。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#d8d4b8",
+      "text": "雨が増える時期。山道や河川周辺では局地的な強雨と道路状況を確認する。"
+    },
+    {
+      "months": "6〜10月",
+      "color": "#bfcfd0",
+      "text": "大西洋のハリケーン・シーズンと重なる。暴風雨が道路・航空・通信へ影響する可能性がある。"
+    },
+    {
+      "months": "11月",
+      "color": "#cfd7b9",
+      "text": "雨の多い時期の終盤。地域差があるため、気象情報と移動条件を分けて確認する。"
+    }
+  ],
+  "transport": {
+    "title": "現状は通常の観光移動を前提にしない",
+    "text": "2026年9月24日時点で英国・カナダは全土への渡航中止を勧告している。ドミニカ共和国との陸路・海路国境も旅行者には閉鎖されている。航空便、道路、国境条件は渡航判断の直前に公的情報で確認する。"
+  },
+  "personas": [
+    {
+      "title": "独立史を建築と地形から知りたい人",
+      "text": "シタデルとサン・スーシ宮殿から、1804年以後の国家形成を空間として読み解ける。"
+    },
+    {
+      "title": "カリブ海の山岳地形に関心がある人",
+      "text": "海岸、急峻な山地、洞窟、滝、高地林という地形の幅が大きい。"
+    },
+    {
+      "title": "食と文化の背景まで知りたい人",
+      "text": "スープ・ジュムやカサベなど、歴史と共同体に結びつく食文化がある。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "カリブ海 / イスパニョーラ島西部"
+    },
+    {
+      "label": "首都",
+      "value": "ポルトープランス"
+    },
+    {
+      "label": "人口",
+      "value": "11,906,095人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "27,750 km²"
+    },
+    {
+      "label": "言語",
+      "value": "ハイチ・クレオール語、フランス語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（プロテスタント、カトリックなど）。ヴードゥーは他の信仰と併せて実践される場合もある"
+    },
+    {
+      "label": "通貨",
+      "value": "グールド（HTG）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "haiti-independence-year",
+      "label": "独立",
+      "value": "1804年",
+      "note": "1804年1月1日に独立を宣言。奴隷制からの解放と植民地支配からの独立を経て成立した国家として世界史上重要な位置を占める。",
+      "icon": "history",
+      "interestReason": "シタデルやスープ・ジュムを含むページ全体の歴史的背景を理解する起点になる。"
+    },
+    {
+      "topicKey": "pic-la-selle-elevation",
+      "label": "最高峰ピック・ラ・セル",
+      "value": "2,680m",
+      "note": "イスパニョーラ島西部の山地に位置するハイチ最高峰。海岸の近くから標高が急に上がる国土の起伏を示す。",
+      "icon": "landscape",
+      "interestReason": "カリブ海の島という印象だけでは分からない、ハイチの大きな標高差を一つの数字で示せる。"
+    },
+    {
+      "topicKey": "haiti-ten-departments",
+      "label": "行政区分",
+      "value": "10県",
+      "note": "ハイチは10のdepartment（県）に分かれる。北部、南東部、南部など、旅で見る地形と都市の違いは行政地域ごとにも表情が変わる。",
+      "icon": "map",
+      "interestReason": "小さな国土の中に複数の地域性があることを、旅の地理へつなげる数字。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "current-security",
+      "title": "渡航中止勧告を最優先する",
+      "text": "2026年9月24日時点の公的渡航情報では通常旅行を勧められる状況ではない。安全状況が変化した場合も最新情報を確認する。"
+    },
+    {
+      "topicKey": "border-status",
+      "title": "国境条件を直前に確認する",
+      "text": "ドミニカ共和国との陸路・海路国境は旅行者に閉鎖されている。移動経路を過去情報だけで判断しない。"
+    },
+    {
+      "topicKey": "weather-road",
+      "title": "雨季と道路条件を分けて確認する",
+      "text": "山地の多い国土では強雨が道路状態に直結する。気象警報と道路情報の双方を確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "dominicanrepublic",
+      "nameEn": "DOMINICAN REPUBLIC",
+      "nameJa": "ドミニカ共和国",
+      "flag": "🇩🇴",
+      "reason": "同じイスパニョーラ島の東側にあり、島を二つの国家が分ける地理と歴史を比較できる。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "jamaica",
+      "nameEn": "JAMAICA",
+      "nameJa": "ジャマイカ",
+      "flag": "🇯🇲",
+      "reason": "山地と海岸が近接する大アンティルの島で、音楽や食、日常文化の違いを比較できる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "cuba",
+      "nameEn": "CUBA",
+      "nameJa": "キューバ",
+      "flag": "🇨🇺",
+      "reason": "植民地期の都市、独立史、カリブ海の暮らしを別の政治・文化史からたどれる。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-24",
+  "sourcesVerifiedAt": "2026-09-24",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025-03-31",
+    "heritage": "2026-09-24",
+    "intangibleCulture": "2026-09-24",
+    "coordinates": "2026-09-24",
+    "geometry": "2026-09-24",
+    "travelAdvice": "2026-09-24",
+    "currency": "2026-09-23",
+    "religion": "2017",
+    "departments": "2026-09-24",
+    "picLaSelle": "2026-09-24"
+  },
+  "sources": {
+    "population": "World Bank, Haiti country data: population 11,906,095 (2025). https://data.worldbank.org/country/haiti",
+    "area": "World Bank, Connecting Haiti for Increased Access to Social and Economic Services (2025): territory 27,750 km². https://www.worldbank.org/en/news/feature/2025/03/31/connecting-haiti-for-increased-access-to-social-and-economic-services",
+    "constitution": "Constitution of Haiti 1987 (rev. 2012), Articles 5–8: Haitian Creole and French official languages; gourde monetary unit; territorial definition. https://www.constituteproject.org/constitution/Haiti_2012",
+    "heritage": "UNESCO World Heritage Centre, National History Park – Citadel, Sans Souci, Ramiers, inscribed 1982. https://whc.unesco.org/en/list/180",
+    "intangibleCulture": "UNESCO Intangible Cultural Heritage, Haiti state list: Joumou soup (2021), cassava bread knowledge/practices (2024), Compas of Haiti (2025). https://ich.unesco.org/en/state/haiti-HT",
+    "jacmel": "UNESCO World Heritage Centre Tentative List, Centre historique de Jacmel; UNESCO Creative Cities Network references Jacmel as Crafts and Folk Art city. https://whc.unesco.org/en/tentativelists/1947/",
+    "religion": "U.S. Department of State, 2023 International Religious Freedom Report: 2017 government survey reported 52% Protestant/related Christian groups, 35% Catholic, 2% Vodou; practice may overlap. https://2021-2025.state.gov/reports/2023-report-on-international-religious-freedom/haiti/",
+    "currency": "Banque de la République d'Haïti; gourde exchange market and monetary authority, checked 2026-09-24. https://www.brh.ht/",
+    "travelAdvice": "UK FCDO Haiti travel advice, current 2026-09-24: advises against all travel. Government of Canada Haiti advisory, updated 2026-09-09: avoid all travel. Government of Canada Dominican Republic advisory: land and sea borders with Haiti closed to travellers. https://www.gov.uk/foreign-travel-advice/haiti ; https://travel.gc.ca/destinations/haiti ; https://travel.gc.ca/destinations/dominican-republic",
+    "coordinates": "Citadelle Laferrière and Scene coordinates cross-checked 2026-09-24 using UNESCO World Heritage geographic data and OpenStreetMap/GeoNames-backed structured records. Scene 2 uses the real Cap Haïtien cape coordinate 19.76667, -72.21667 (GeoNames ID 3723987), representing the bay-and-city viewpoint rather than the offshore port point.",
+    "geometry": "Natural Earth 1:10m HTI/DOM public-domain geometry via LonnyGomes/CountryGeoJSONCollection. Haiti national identity independently cross-checked against geoBoundaries gbOpen HTI ADM0 (boundary represented 2017; OpenStreetMap/Wambacher; ODbL 1.0), checked 2026-09-24.",
+    "japanArea": "Japan Geospatial Information Authority / Cabinet Secretariat: Japan territory 377,974.87 km² as of 2026-04-01; used for area comparison.",
+    "picLaSelle": "World Bank geographic reference: Pic la Selle is Haiti's highest point at 2,680 m. https://documents1.worldbank.org/curated/en/099439105092242185/pdf/IDU0ccefd1a201a7204dc50968c0709c4347da84.pdf",
+    "departments": "Haiti territorial division has 10 departments; referenced in national territorial-division data reproduced in Adaptation Fund Haiti documentation and IHSI coding. https://www.adaptation-fund.org/wp-content/uploads/2020/08/AFB.PPRC_.26.a-26.b.39-Proposal-for-Haiti.pdf"
+  }
+}
