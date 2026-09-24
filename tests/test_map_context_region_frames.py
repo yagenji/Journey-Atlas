@@ -116,14 +116,26 @@ class FrameUnframedRegionsTest(unittest.TestCase):
             self.assertEqual(original.get('viewBox'), '0 0 1200 760')
             self.assertEqual(result.get('viewBox'), original.get('viewBox'))
 
-            # Compare every previously approved path, including islands and markers.
+            # Compare every approved/non-context path, including islands and markers.
+            # After Stage 3 the source SVG already contains the reviewed context,
+            # so exclude context from both sides rather than assuming it is new.
             context = result.find(".//*[@id='geographic-context']")
             self.assertIsNotNone(context)
-            added_paths = set(context.iter(namespace + 'path'))
-            original_paths = [ET.tostring(path) for path in original.iter(namespace + 'path')]
-            result_paths = [ET.tostring(path) for path in result.iter(namespace + 'path')
-                            if path not in added_paths]
-            self.assertEqual(result_paths, original_paths)
+            def protected_paths(root):
+                parents={child:parent for parent in root.iter() for child in parent}
+                values=[]
+                for path in root.iter(namespace+'path'):
+                    cursor=path
+                    generated=False
+                    while cursor is not None:
+                        if cursor.get('id')=='geographic-context':
+                            generated=True
+                            break
+                        cursor=parents.get(cursor)
+                    if not generated:
+                        values.append(ET.tostring(path))
+                return values
+            self.assertEqual(protected_paths(result), protected_paths(original))
 
             frames = [item for item in result.iter(namespace + 'rect')
                       if item.get('data-map-context-frame')]
