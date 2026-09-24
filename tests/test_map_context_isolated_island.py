@@ -125,6 +125,41 @@ class IsolatedSelfLandTest(unittest.TestCase):
                 self.assertIn('1200.0,760.0', d)
                 self.assertIn('760.0', d)
 
+    def test_luxembourg_viewport_is_continuous_surrounding_land(self):
+        data = json.loads((ROOT / 'data/countries/luxembourg.json').read_text(encoding='utf-8'))
+        self.assertEqual(data['map']['bounds'], {
+            'north': 50.18, 'south': 49.38, 'west': 5.55, 'east': 6.55,
+        })
+        self.assertIn('Natural Earth 1:10m', data['map']['source'])
+        bounds = tuple(float(data['map']['bounds'][key]) for key in ('west', 'south', 'east', 'north'))
+        canvas = maps.canvas_bounds(bounds)
+        geometry = maps.context_geometry(canvas, 'i')
+
+        self.assertEqual(geometry.geom_type, 'Polygon')
+        self.assertEqual(len(geometry.interiors), 0)
+        for actual, expected in zip(geometry.bounds, canvas):
+            self.assertAlmostEqual(actual, expected, places=12)
+        expected_area = (canvas[2] - canvas[0]) * (canvas[3] - canvas[1])
+        self.assertAlmostEqual(geometry.area, expected_area, places=12)
+
+        source = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+        result = preview('luxembourg')
+        self.assertEqual(target_paths(source), target_paths(result))
+        self.assertEqual(len(target_paths(result)), 1)
+        context = ET.fromstring(result).find('.//*[@id="geographic-context"]')
+        self.assertIsNotNone(context)
+        paths = list(context.iter(SVG + 'path'))
+        self.assertEqual(len(paths), 1)
+        d = paths[0].get('d', '')
+        self.assertIn('1200.0,0.0', d)
+        self.assertIn('1200.0,760.0', d)
+        self.assertIn('-0.0,760.0', d)
+        with Image.open(BytesIO(cairosvg.svg2png(
+            bytestring=result.encode(), output_width=1200, output_height=760
+        ))) as png:
+            png.load()
+            self.assertEqual(png.size, (1200, 760))
+
     def test_timor_shared_island_keeps_real_neighbor(self):
         original = preview('timorleste')
         result, _ = remove_target_land_context(original)
