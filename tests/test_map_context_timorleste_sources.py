@@ -33,6 +33,7 @@ class TimorLesteContextSourceTest(unittest.TestCase):
         self.country = json.loads(self.country_file.read_text(encoding='utf-8'))
         self.source = ROOT / self.country['map']['svg']
         self.fixture = ROOT / 'tests/fixtures/map-context/timorleste-indonesia-ne10m-v4.1.0.geojson'
+        self.target_sibling = ROOT / 'tests/fixtures/map-context/timorleste-target-ne10m-v4.1.0.geojson'
 
     def test_pinned_source_and_exact_target_exclusion(self):
         self.assertEqual(self.country['map']['bounds'], EXPECTED_BOUNDS)
@@ -48,6 +49,23 @@ class TimorLesteContextSourceTest(unittest.TestCase):
         self.assertEqual(props['license'], 'Natural Earth public domain')
         self.assertEqual(payload['geometry']['type'], 'MultiPolygon')
         self.assertEqual(len(payload['geometry']['coordinates']), 5)
+        self.assertEqual(git_blob_sha(self.target_sibling.read_bytes()),
+                         '1c529b951e6d5c5af2a2ef3bbaaf2da0b3239719')
+
+        sibling = json.loads(self.target_sibling.read_text(encoding='utf-8'))
+        idn_segments = set()
+        for polygon in payload['geometry']['coordinates']:
+            for ring in polygon:
+                for a, b in zip(ring, ring[1:]):
+                    idn_segments.add((tuple(a), tuple(b)))
+                    idn_segments.add((tuple(b), tuple(a)))
+        shared = 0
+        for polygon in sibling['geometry']['coordinates']:
+            for ring in polygon:
+                for a, b in zip(ring, ring[1:]):
+                    if (tuple(a), tuple(b)) in idn_segments:
+                        shared += 1
+        self.assertEqual(shared, 101)
 
         source_text = self.source.read_text(encoding='utf-8')
         before = ET.fromstring(source_text)
