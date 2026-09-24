@@ -3,6 +3,7 @@
 No production SVG substitution or blanket geographic QA approval.
 """
 from __future__ import annotations
+import hashlib
 import json
 import math
 import re
@@ -21,6 +22,7 @@ OUT=Path('/tmp/journey-atlas-map-context-real-previews/priority-review')
 sys.path.insert(0,str(ROOT/'scripts'))
 import add_country_map_context_existing as existing
 import add_country_map_context_legacy as legacy
+import reconcile_bahrain_hawar_sibling as hawar_sibling
 
 SVG='{http://www.w3.org/2000/svg}'
 POINT=re.compile(r'(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)')
@@ -89,6 +91,21 @@ class PriorityGeographyReview(unittest.TestCase):
         hawar=[node for node in after.iter(SVG+'path')
                if node.get('data-map-context-legacy')=='hawar']
         self.assertEqual(len(hawar),1)
+
+        # Stage 3 promotes the independently pinned geoBoundaries QAT ADM0
+        # sibling source into the Hawar inset. Once promoted, verify that exact
+        # source path and provenance directly rather than comparing it to the
+        # separate approved Qatar national SVG (a different source/vintage).
+        if 'QAT-ADM0-15585745' in source:
+            self.assertEqual(
+                hashlib.sha256(hawar[0].get('d').encode()).hexdigest(),
+                hawar_sibling.PINNED_PATH_SHA,
+            )
+            self.assertIn(hawar_sibling.SOURCE_GEOJSON_SHA, source)
+            self.assertIn(hawar_sibling.SOURCE_URL, source)
+            self.assertIn('ODbL 1.0', source)
+            return
+
         foreign=rings(hawar[0].get('d'))
         self.assertGreaterEqual(len(foreign),1)
         qatar_root=ET.fromstring(qatar)
