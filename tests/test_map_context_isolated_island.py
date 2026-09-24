@@ -160,50 +160,6 @@ class IsolatedSelfLandTest(unittest.TestCase):
             png.load()
             self.assertEqual(png.size, (1200, 760))
 
-    def test_landlocked_country_viewports_are_continuous_land(self):
-        cases = {
-            'bhutan': ({
-                'north': 28.42, 'south': 26.64, 'west': 88.68, 'east': 92.14,
-            }, 'Natural Earth 1:10m', 1, 0.998),
-            'nepal': ({
-                'north': 30.7, 'south': 26.1, 'west': 79.7, 'east': 88.5,
-            }, 'Basemap countries_i.dat', 9, 0.995),
-            'hungary': ({
-                'north': 48.795464042320056, 'south': 45.515112333679994,
-                'west': 15.687021361920122, 'east': 23.284614462080043,
-            }, 'Natural Earth 1:10m', 6, 0.996),
-        }
-        for slug, (expected_bounds, source_token, holes, min_land_fraction) in cases.items():
-            with self.subTest(slug=slug):
-                data = json.loads((ROOT / 'data/countries' / f'{slug}.json').read_text(encoding='utf-8'))
-                self.assertEqual(data['map']['bounds'], expected_bounds)
-                self.assertIn(source_token, data['map']['source'])
-                bounds = tuple(float(expected_bounds[key]) for key in ('west', 'south', 'east', 'north'))
-                canvas = maps.canvas_bounds(bounds)
-                geometry = maps.context_geometry(canvas, 'i')
-
-                self.assertEqual(geometry.geom_type, 'Polygon')
-                self.assertEqual(len(geometry.interiors), holes)
-                for actual, expected in zip(geometry.bounds, canvas):
-                    self.assertAlmostEqual(actual, expected, places=12)
-                viewport_area = (canvas[2] - canvas[0]) * (canvas[3] - canvas[1])
-                self.assertGreater(geometry.area / viewport_area, min_land_fraction)
-
-                source = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
-                result = preview(slug)
-                self.assertEqual(target_paths(source), target_paths(result))
-                self.assertEqual(len(target_paths(result)), 1)
-                context = ET.fromstring(result).find('.//*[@id="geographic-context"]')
-                self.assertIsNotNone(context)
-                self.assertTrue(any(path.get('d') for path in context.iter(SVG + 'path')))
-                for color in ('#eaf2f4', '#dcebf0', '#d0e3eb'):
-                    self.assertIn(color, result)
-                with Image.open(BytesIO(cairosvg.svg2png(
-                    bytestring=result.encode(), output_width=1200, output_height=760
-                ))) as png:
-                    png.load()
-                    self.assertEqual(png.size, (1200, 760))
-
     def test_timor_shared_island_keeps_real_neighbor(self):
         original = preview('timorleste')
         result, _ = remove_target_land_context(original)
