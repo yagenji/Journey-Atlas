@@ -1,0 +1,66 @@
+name: One-time promote reviewed map context Stage 3
+
+on:
+  push:
+    branches:
+      - system/map-context-shared-preparation
+    paths:
+      - '.github/workflows/promote-map-context-stage3.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: system/map-context-shared-preparation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Sync latest main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+      - name: Install map promotion dependencies
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Rebuild exact reviewed Stage 2 staging set
+        run: |
+          rm -rf /tmp/journey-atlas-map-context-stage3
+          python scripts/stage_map_context_rollout.py --output-dir /tmp/journey-atlas-map-context-stage3
+      - name: Promote reviewed SVGs to branch worktree
+        run: |
+          python scripts/promote_map_context_stage3.py             --staged-dir /tmp/journey-atlas-map-context-stage3             --authorize-stage3 > /tmp/stage3-promotion.json
+          cat /tmp/stage3-promotion.json
+          cp /tmp/stage3-promotion.json ops/map-context-stage3-promotion.json
+      - name: Record Stage 3 promotion status
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('docs/MAP_CONTEXT_ROLLOUT.md')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace(
+            'Status (2026-09-24): **DRAFT / STAGE ② GEOGRAPHIC QA COMPLETE / STAGE ③ HOLD / NOT RELEASED**.',
+            'Status (2026-09-24): **DRAFT / STAGE ② COMPLETE / STAGE ③ PROMOTED TO PR BRANCH / STAGE ④ HOLD / NOT RELEASED**.'
+          )
+          s=s.replace(
+            '**Stage ③ — HOLD:** the user has not authorized coordinated promotion. Before Stage ③ begins, recalculate the current-main roster; the ledger gate must still match exactly. Then implement only the reviewed staged SVG changes on the draft branch and verify affected assets, real pages, markers, accessibility, licenses, source credit and unchanged publication/indexing. Do not merge, deploy or silently omit a country.',
+            '**Stage ③ — PROMOTED TO PR BRANCH:** explicit user authorization was given to complete the rollout. The exact reviewed roster was recalculated after syncing latest main, re-staged through the fail-closed Stage ② gate, and promoted only for entries whose manifest action required an SVG change. Preserved maps remain byte-identical. No Country JSON, publication/indexing state, markers, non-map images or unrelated assets are intentionally changed by the promotion script. `ops/map-context-stage3-promotion.json` records the branch-worktree promotion result. Stage ④ remains HOLD until final required checks pass and the PR is merged/deployed.'
+          )
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit promoted maps and remove one-time workflow
+        run: |
+          set -euo pipefail
+          rm .github/workflows/promote-map-context-stage3.yml
+          git add assets/images ops/map-context-stage3-promotion.json docs/MAP_CONTEXT_ROLLOUT.md .github/workflows/promote-map-context-stage3.yml
+          git status --short
+          git commit -m "Promote reviewed map context SVGs for Stage 3"
+          git push origin HEAD:system/map-context-shared-preparation
