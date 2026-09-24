@@ -268,9 +268,21 @@ def main():
         # Qatar/Kuwait already have source-pinned reviewed context in the Draft
         # branch. Keep that source-specific result; do not layer the common clip.
         if slug in ('qatar', 'kuwait'):
-            reviewed = reconcile_gulf_foreign(source_text, source, slug, args.resolution)
-            staged.write_text(reviewed, encoding='utf-8')
-            action = "stage-context-preview"
+            current_root = ET.fromstring(source_text)
+            current_context = current_root.find(".//*[@id='geographic-context']")
+            reviewed_clip = current_root.find(".//*[@id='map-context-reviewed-national-exclusion']")
+            if (current_context is not None
+                    and current_context.get('clip-path') == 'url(#map-context-reviewed-national-exclusion)'
+                    and reviewed_clip is not None):
+                # Stage 3 already promoted the source-pinned reviewed Gulf
+                # context. Preserve it byte-for-byte instead of re-running the
+                # pre-promotion source-SHA reconciler.
+                staged.write_bytes(source.read_bytes())
+                action = "preserve-existing-context"
+            else:
+                reviewed = reconcile_gulf_foreign(source_text, source, slug, args.resolution)
+                staged.write_text(reviewed, encoding='utf-8')
+                action = "stage-context-preview"
         elif 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
             if review_mode == "existing-context-source-review":
                 reviewed = apply_exact_target_negative_clip(source_text)
