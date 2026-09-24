@@ -360,7 +360,7 @@ Selection rationale:
 - avoids using borscht as a Russia-defining dish, where cultural attribution would create unnecessary ambiguity
 - national familiarity plus everyday-food range
 
-Taste generation must follow `docs/TASTE_IMAGE_PRODUCTION.md` exactly:
+Taste generation must follow `docs/IMAGE_QUALITY.md`:
 one dish per independent image, Spain Taste visual language, no props/collage.
 
 ## Travel Scale
@@ -509,6 +509,6 @@ All time-sensitive facts must be rechecked and `sourceDates` recorded when the f
 
 ## Operational handoff
 
-This Content Plan stores editorial and visual-design intent only. It does not store current sequencing, approval status, generation cursors, regeneration logs or publication state.
+This Content Plan stores editorial and visual-design intent only. It does not store approval history or publication state.
 
-Operational execution remains authoritative only in `ops/country-production/russia.json` on `main`. Approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.
+When Russia production resumes, use this plan as content input and follow `docs/COUNTRY_PRODUCTION_RULES.md`. Preserve any already approved final assets, then use the same lightweight Hero / Scene batch / Taste batch / finish-line QA flow as every other new Country.

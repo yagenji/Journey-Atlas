@@ -194,20 +194,20 @@ Dead controlsを置かない。
 
 ## 11. Production sequence
 
-Operational sequencing for new Countries is defined by `ops/country-production-policy.json`, `docs/COUNTRY_PRODUCTION_PROTOCOL_2.md`, and the authoritative `ops/country-production/{slug}.json` resolved by `stateRef`.
+The operational sequence is defined only by `docs/COUNTRY_PRODUCTION_RULES.md`.
 
 Normal user-facing gates are:
 1. Hero approval
 2. S01–S08 batch review
 3. FOOD01–FOOD04 batch review
-4. Final Country Page review / publication approval
+4. Final canonical Country Page approval
 
-Under Protocol 2, all non-raster Country content, Scene coordinates, Map, taxonomy, Travel Scale, Signature Facts and sources are completed and QA'd **before Hero generation**. Scenes and Taste are then generated as independent images without per-image user approval.
+The normal flow is:
 
-After all visual batches are approved, the normal post-image chain is:
+`PREP + MAP → HERO → 8 SCENES → 4 TASTE → ONE 13-IMAGE HANDOFF → IMPLEMENT → TARGET QA → UNPUBLISHED CANONICAL REVIEW → FINAL APPROVAL → PUBLISH → PRODUCTION SMOKE`
 
-`13-image USER_HANDOFF verification → target-only asset/path QA → target-only strict validation → target-only Preview Build → target-only Desktop / Tablet / Mobile Browser QA → sync latest main → one pre-main Review PR → persistent country/{slug} GitHub Pages Review Preview → final user approval → finalize the same PR → serialized publication queue → one main integration → one production deployment → target-only production verification`
+GitHub does not store intermediate production State. After the 13 final images are approved, implement the Country package once on one Country branch and open one review PR.
 
-Do not integrate to `main` merely to create the review URL. Protocol 2 keeps `phase: QA` and `contentRef/stateRef: country/{slug}` while `reviewPreview` is active. The same pre-main Review PR is reused after final approval; a second publication PR is forbidden.
+The review implementation remains `atlasPublished:false`, `noindex,follow`, absent from sitemap and normal discovery links. After review QA passes, merge the unpublished Country so the canonical URL can be reviewed.
 
-The pre-main Review Preview keeps `atlasPublished:false`, `noindex,follow`, sitemap exclusion, and normal-navigation exclusion. Only explicit final user approval may switch to `atlasPublished:true`, indexing, sitemap inclusion, and formal discovery links.
+Only explicit final user approval authorizes a separate, minimal publication PR that switches the already-reviewed Country to discoverable/indexable state. Do not rebuild or reapprove unchanged Country content during publication.
