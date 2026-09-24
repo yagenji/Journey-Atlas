@@ -22,6 +22,7 @@ from filter_duplicate_target_context import remove_target_land_context
 from reconcile_brunei_foreign import reconcile as reconcile_brunei_foreign
 from reconcile_hong_kong_foreign import reconcile as reconcile_hong_kong_foreign
 from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
+from reconcile_timorleste_foreign import reconcile as reconcile_timorleste_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG_NS = '{http://www.w3.org/2000/svg}'
@@ -241,6 +242,19 @@ def main():
         parser.error("Output must be a new separate preview file")
     data = json.loads(args.country_json.read_text(encoding="utf-8"))
     slug = data.get("slug")
+    if slug == 'timorleste':
+        fixture = ROOT / 'tests/fixtures/map-context/timorleste-indonesia-ne10m-v4.1.0.geojson'
+        result = reconcile_timorleste_foreign(
+            args.input.read_text(encoding='utf-8'),
+            args.input,
+            args.country_json,
+            fixture,
+            args.resolution,
+        )
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(result, encoding='utf-8')
+        print(f"Created existing-Country preview: {args.output}; Timor-Leste uses source-aligned Indonesia context")
+        return
     if slug in legacy.LEGACY_SLUGS:
         legacy.generate(args.country_json, args.input, args.output, args.resolution)
     else:
