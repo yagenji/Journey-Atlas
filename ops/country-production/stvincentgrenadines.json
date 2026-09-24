@@ -5,8 +5,8 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "QA",
-  "stateRevision": 9,
-  "updatedAt": "2026-09-24T09:27:00+09:00",
+  "stateRevision": 10,
+  "updatedAt": "2026-09-24T14:20:04+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
@@ -101,7 +101,7 @@
   "qa": {
     "state": "PASS",
     "productionState": "CI_GATED",
-    "sourceCommit": "122e15919ba33b7544561273e3e864a607cd7ef3",
+    "sourceCommit": "717be7cfb0bbb135e91b66c5f123c3b87ea28c0e",
     "checks": [
       "publication-v2-targeted-validation",
       "publication-v2-image-audit",
@@ -114,9 +114,10 @@
     "productionVerification": "LIVE_BROWSER_QA_PASS",
     "atlasPublished": false,
     "browserQa": "PASS",
-    "verifiedAt": "2026-09-23T16:28:27+00:00",
-    "canonicalBrowserQaRunId": 35888893911,
-    "canonicalDeployedCommit": "c4deafef9f21256a09fb9a327095690ad56d2404"
+    "verifiedAt": "2026-09-24T05:20:03+00:00",
+    "canonicalBrowserQaRunId": 35959315358,
+    "canonicalDeployedCommit": "717be7cfb0bbb135e91b66c5f123c3b87ea28c0e",
+    "verificationBasis": "Canonical unpublished page revalidated on the corrected main build after PR #1020: desktop, tablet and mobile Browser QA all PASS."
   },
   "finalApproval": {
     "state": "PENDING"
@@ -244,9 +245,9 @@
     "reviewPreviewDeployments": 1,
     "preCanonicalMainIntegrations": 0,
     "productionIntegrations": 0,
-    "browserQaCycles": 1,
+    "browserQaCycles": 2,
     "tasteBatchApprovedAt": null,
-    "canonicalReviewReadyAt": "2026-09-24T01:03:21+09:00"
+    "canonicalReviewReadyAt": "2026-09-24T14:20:03+09:00"
   },
   "next": {
     "action": "REVIEW_CANONICAL_URL",
