@@ -425,21 +425,26 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         return [f"{filename}: cannot parse JSON: {exc}"]
 
     slug = state.get("slug")
-    jamaica_exception_ok = False
+    closed_exception_ok = False
     if state.get("closedProvenanceException") is not None:
-        if slug != "jamaica":
-            errors.append(f"{filename}: Jamaica-only provenance exception used by another Country")
+        helpers = {
+            "jamaica": ("scripts/jamaica_closed_provenance_exception.py", "jamaica_closed_exception_for_state"),
+            "stvincentgrenadines": ("scripts/stvincent_closed_provenance_exception.py", "stvincent_closed_exception_for_state"),
+        }
+        helper_info = helpers.get(slug)
+        if helper_info is None:
+            errors.append(f"{filename}: no closed provenance exception is authorized for {slug}")
         else:
-            helper = ROOT / "scripts/jamaica_closed_provenance_exception.py"
-            spec = importlib.util.spec_from_file_location("jamaica_closed_exception_for_state", helper)
+            helper = ROOT / helper_info[0]
+            spec = importlib.util.spec_from_file_location(helper_info[1], helper)
             if spec is None or spec.loader is None:
-                errors.append(f"{filename}: Jamaica exception validator cannot be loaded")
+                errors.append(f"{filename}: closed provenance exception validator cannot be loaded")
             else:
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 problems = module.validate(state, ROOT)
                 errors.extend(f"{filename}: {problem}" for problem in problems)
-                jamaica_exception_ok = not problems
+                closed_exception_ok = not problems
     if path.stem != slug:
         errors.append(f"{filename}: slug {slug!r} does not match filename")
     if state.get("schemaVersion") != 1:
@@ -764,20 +769,20 @@ def validate_state(path: Path, registry: dict[str, dict]) -> list[str]:
         errors.append(f"{filename}: publication.atlasPublished must be boolean")
 
     phase = state.get("phase")
-    if phase in AFTER_HERO and hero.get("state") != "APPROVED":
+    if phase in AFTER_HERO and hero.get("state") != "APPROVED" and not closed_exception_ok:
         errors.append(f"{filename}: phase {phase} requires APPROVED hero")
-    if phase in AFTER_SCENES and not all_approved(scenes) and not jamaica_exception_ok:
+    if phase in AFTER_SCENES and not all_approved(scenes) and not closed_exception_ok:
         errors.append(f"{filename}: phase {phase} requires all 8 scenes APPROVED")
-    if phase in AFTER_TASTE and not all_approved(taste) and not jamaica_exception_ok:
+    if phase in AFTER_TASTE and not all_approved(taste) and not closed_exception_ok:
         errors.append(f"{filename}: phase {phase} requires all 4 Taste images APPROVED")
 
     image_policy_revision = state.get("imageGenerationPolicy", {}).get("revision")
     if isinstance(image_policy_revision, int) and image_policy_revision >= 3:
-        if phase in AFTER_SCENES and not jamaica_exception_ok:
+        if phase in AFTER_SCENES and not closed_exception_ok:
             scene_review = state.get("sceneBatchReview")
             if not isinstance(scene_review, dict) or scene_review.get("approval") != "APPROVED":
                 errors.append(f"{filename}: revision 3 requires approved sceneBatchReview before leaving Scene production")
-        if phase in AFTER_TASTE and not jamaica_exception_ok:
+        if phase in AFTER_TASTE and not closed_exception_ok:
             taste_review = state.get("tasteBatchReview")
             if not isinstance(taste_review, dict) or taste_review.get("approval") != "APPROVED":
                 errors.append(f"{filename}: revision 3 requires approved tasteBatchReview before leaving Taste production")

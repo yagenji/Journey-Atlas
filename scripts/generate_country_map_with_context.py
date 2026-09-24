@@ -47,12 +47,13 @@ def _linear_rings(d: str) -> list[tuple[str, Polygon]]:
 
 
 def strip_redundant_island_context(svg: str) -> tuple[str, int]:
-    """Remove ONLY GSHHS island components >=97% covered by ADM0 target.
+    """Remove GSHHS island components >=90% covered by ADM0 target.
 
-    GSHHS and Natural Earth have slightly different coastlines: drawing both
-    creates a second silhouette around isolated island Countries. Preserve
-    neighboring components and the authoritative ADM0 target path unchanged.
-    Connected continental context is intentionally left for separate QA.
+    Coastline datasets can differ by more than 3% for small islands: drawing both
+    creates a second silhouette. Only a context island mostly covered by the
+    verified administrative target is redundant. Preserve neighboring components
+    and the authoritative ADM0 path unchanged. Connected continental context
+    is intentionally left for separate QA.
     """
     root = ET.fromstring(svg)
     if root.tag != _SVG_NS + 'svg' or root.get('data-map-projection') != 'local-equirectangular-fit-v1':
@@ -72,7 +73,7 @@ def strip_redundant_island_context(svg: str) -> tuple[str, int]:
     redundant = []
     for component, polygon in components:
         ratio = polygon.intersection(target).area / polygon.area
-        if ratio >= 0.97:
+        if ratio >= 0.90:
             redundant.append(polygon)
     if not redundant:
         return svg, 0

@@ -12,6 +12,7 @@ spec.loader.exec_module(module)
 SEA = 'M 100,0 L 110,0 L 110,10 L 100,10 Z'
 ISLAND = 'M 0,0 L 10,0 L 10,10 L 0,10 Z'
 TARGET = 'M 0.04,0.04 L 9.96,0.04 L 9.96,9.96 L 0.04,9.96 Z'
+TARGET_COAST_VARIATION = 'M 0.1,0.1 L 9.9,0.1 L 9.9,9.9 L 0.1,9.9 Z'
 CONTINENT = 'M 0,0 L 100,0 L 100,10 L 0,10 Z'
 
 def sample(context: str, target: str=TARGET, projection='local-equirectangular-fit-v1'):
@@ -28,6 +29,16 @@ class IslandContextTests(unittest.TestCase):
         self.assertIn(SEA,clean)
         self.assertNotIn('d="'+ISLAND+' '+SEA+'"',clean)
         self.assertIn('d="'+TARGET+'"',clean)
+        self.assertEqual(module.strip_redundant_island_context(clean),(clean,0))
+
+    def test_island_coastline_variation_dropped_neighbors_remain(self):
+        # Approx. 96% overlap is not enough under the old 97% threshold;
+        # the remaining island context would create a visible doubled coastline.
+        svg=sample(ISLAND+' '+SEA, target=TARGET_COAST_VARIATION)
+        clean,count=module.strip_redundant_island_context(svg)
+        self.assertEqual(count,1)
+        self.assertIn(SEA,clean)
+        self.assertIn('d="'+TARGET_COAST_VARIATION+'"',clean)
         self.assertEqual(module.strip_redundant_island_context(clean),(clean,0))
 
     def test_connected_mainland_not_discarded(self):
