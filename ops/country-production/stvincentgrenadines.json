@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "slug": "stvincentgrenadines",
   "countryName": "ST. VINCENT & GRENADINES",
-  "contentRef": "country/stvincentgrenadines",
-  "stateRef": "country/stvincentgrenadines",
-  "phase": "QA",
-  "stateRevision": 11,
+  "contentRef": "main",
+  "stateRef": "main",
+  "phase": "COMPLETE",
+  "stateRevision": 12,
   "updatedAt": "2026-09-24T14:36:57+09:00",
   "hero": {
     "state": "NOT_STARTED",
@@ -111,13 +111,11 @@
   "reviewDeployment": {
     "state": "DONE",
     "url": "https://atlas.yagenji.com/countries/stvincentgrenadines/",
-    "productionVerification": "LIVE_BROWSER_QA_PASS",
-    "atlasPublished": false,
-    "browserQa": "PASS",
-    "verifiedAt": "2026-09-24T05:20:03+00:00",
-    "canonicalBrowserQaRunId": 35959315358,
-    "canonicalDeployedCommit": "717be7cfb0bbb135e91b66c5f123c3b87ea28c0e",
-    "verificationBasis": "Canonical unpublished page revalidated on the corrected main build after PR #1020: desktop, tablet and mobile Browser QA all PASS."
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "pipelineVersion": 2,
+    "prePublicationReviewVerification": "LIVE_BROWSER_QA_PASS",
+    "prePublicationReviewVerifiedAt": "2026-09-24T05:20:03+00:00",
+    "prePublicationReviewBasis": "Canonical unpublished page revalidated on the corrected main build after PR #1020: desktop, tablet and mobile Browser QA all PASS."
   },
   "finalApproval": {
     "state": "APPROVED",
@@ -126,8 +124,17 @@
     "approvalBasis": "Corrected canonical Saint Vincent review on main commit 717be7cfb0bbb135e91b66c5f123c3b87ea28c0e passed live Desktop / Tablet / Mobile Browser QA with zero failures in run 35959315358. Image Policy 7, Country data, production-state routing and Publication Pipeline v2 checks also passed. The later main commit 16ada9079fd9b4978054aadc244b19d0b6fe4572 changed Production State verification metadata only and did not change page content or approved image bytes."
   },
   "publication": {
-    "state": "DRAFT",
-    "atlasPublished": false
+    "state": "PUBLISHED",
+    "atlasPublished": true,
+    "productionVerification": "PIPELINE_V2_INLINE_SMOKE",
+    "requestedAt": "2026-09-24T14:36:57+09:00",
+    "publishedUrl": "https://atlas.yagenji.com/countries/stvincentgrenadines/",
+    "robots": "index,follow",
+    "sitemapListed": true,
+    "linkedFromRegistry": true,
+    "pipelineVersion": 2,
+    "note": "Publication Pipeline v2 terminal metadata is committed before the serialized merge. Live Cloudflare verification remains authoritative after merge.",
+    "separateVerificationPrRequired": false
   },
   "executionPolicy": {
     "heroApproval": "INDIVIDUAL",
@@ -253,7 +260,7 @@
     "canonicalReviewReadyAt": "2026-09-24T14:20:03+09:00"
   },
   "next": {
-    "action": "REVIEW_CANONICAL_URL",
+    "action": "NONE",
     "asset": null
   },
   "publicationPipelineVersion": 2,
