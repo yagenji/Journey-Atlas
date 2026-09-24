@@ -6,6 +6,7 @@ on:
       - 'scripts/add_country_map_context.py'
       - 'scripts/add_country_map_context_existing.py'
       - 'scripts/add_country_map_context_legacy.py'
+      - 'scripts/apply_exact_target_clip.py'
       - 'scripts/filter_duplicate_target_context.py'
       - 'scripts/generate_country_map_with_context.py'
       - 'scripts/stage_map_context_rollout.py'
@@ -13,6 +14,8 @@ on:
       - 'scripts/review_brunei_malaysia.py'
       - 'scripts/review_monaco_france.py'
       - 'tests/test_map_context_priority_geography.py'
+      - 'tests/test_map_context_stage2_exact_clip.py'
+      - 'tests/test_map_context_cuba_sources.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_generate_country_map_with_context.py'
       - 'tests/test_filter_duplicate_target_context.py'
@@ -48,6 +51,7 @@ jobs:
             scripts/add_country_map_context.py \
             scripts/add_country_map_context_existing.py \
             scripts/add_country_map_context_legacy.py \
+            scripts/apply_exact_target_clip.py \
             scripts/filter_duplicate_target_context.py \
             scripts/generate_country_map_with_context.py \
             scripts/stage_map_context_rollout.py \
@@ -93,10 +97,11 @@ jobs:
           assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
           assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
           assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
-          assert all(e['geographicQaStatus'] == 'HOLD' and e['promotionEligible'] is False
-                     for e in data['entries']), 'Staging output is not geographic QA approval'
+          assert all(e['geographicQaStatus'] == 'PASS' and e['promotionEligible'] is False
+                     for e in data['entries']), 'Stage 2 must pass for every selected map while Stage 3 remains locked'
+          assert all(e.get('targetSource') and e.get('qaBasis') for e in data['entries'])
           print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit'],
-                 'promotionEligible': False})
+                 'stage2': 'PASS', 'promotionEligible': False})
           PY
       - name: Substitute staged SVGs in this disposable runner only
         run: |
@@ -120,7 +125,7 @@ jobs:
                   if original != preview:
                       raise RuntimeError(f"Preserved map was modified: {entry['slug']}")
                   continue
-              if entry['action'] != 'stage-context-preview':
+              if entry['action'] not in ('stage-context-preview', 'stage-existing-context-exact-clip'):
                   raise RuntimeError(f"Unknown map stage action: {entry['slug']}")
               source.write_bytes(preview)
           print('Disposable runner only: all staged SVGs substituted; repository branch unchanged')
