@@ -89,20 +89,37 @@ class CubaCayAffiliationTest(unittest.TestCase):
         ref_expanded=np.asarray(
             Image.fromarray(ref_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(13))
         )>0
+        # Natural Earth 1:10m omits a number of very small Cuban cays that are
+        # visible in the approved GSHHS target. A second, still map-scale,
+        # nearshore tolerance (~0.12° at this viewport) is used only for
+        # components below 13 native pixels; larger islands must directly match.
+        ref_nearshore=np.asarray(
+            Image.fromarray(ref_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(19))
+        )>0
         target_expanded=np.asarray(
             Image.fromarray(target_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(13))
         )>0
 
-        # Every visible Cuban target component >=4 px must coincide with the
-        # independent 1:10m CUB polygon after a 6 px source-vintage tolerance.
-        checked=0
+        # Meaningful islands (>=13 native pixels) must directly coincide
+        # with Natural Earth 1:10m after the narrow source-vintage tolerance.
+        # Tiny cays (4-12 px) may be omitted by NE, but must remain immediately
+        # adjacent to the independently confirmed Cuba ADM0 geometry.
+        checked=large=small=0
         for pixels in components(target_mask):
             if len(pixels)<4:
                 continue
             checked+=1
-            covered=sum(ref_expanded[y,x] for y,x in pixels)/len(pixels)
-            self.assertGreaterEqual(covered,0.90)
-        self.assertGreaterEqual(checked,10)
+            if len(pixels)>=13:
+                large+=1
+                covered=sum(ref_expanded[y,x] for y,x in pixels)/len(pixels)
+                self.assertGreaterEqual(covered,0.90)
+            else:
+                small+=1
+                near=sum(ref_nearshore[y,x] for y,x in pixels)/len(pixels)
+                self.assertGreaterEqual(near,0.75)
+        self.assertGreaterEqual(large,10)
+        self.assertGreaterEqual(small,10)
+        self.assertGreaterEqual(checked,20)
 
         # Conversely, the pinned 1:10m reference's meaningful rendered land is
         # represented by the approved target at this map scale.
