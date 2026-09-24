@@ -251,6 +251,16 @@ def main():
         parser.error("Output must be a new separate preview file")
     data = json.loads(args.country_json.read_text(encoding="utf-8"))
     slug = data.get("slug")
+    source_text = args.input.read_text(encoding="utf-8")
+    if ('id="geographic-context"' in source_text
+            and all(color in source_text for color in ("#eaf2f4", "#dcebf0", "#d0e3eb"))):
+        # Promotion-safe idempotency: once a reviewed map has been promoted,
+        # the migration adapter must reproduce it byte-for-byte rather than
+        # trying to insert a second geographic-context group.
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(source_text, encoding="utf-8")
+        print(f"Existing-Country context already promoted; copied unchanged: {args.output}")
+        return
     if slug == 'timorleste':
         fixture = ROOT / 'ops/map-context-sources/timorleste/indonesia-ne10m-v4.1.0.geojson'
         result = reconcile_timorleste_foreign(
