@@ -36,14 +36,23 @@ def target_paths(svg):
 
 class IsolatedSelfLandTest(unittest.TestCase):
     def test_cyprus_compound_self_island_has_no_fake_neighbor_halo(self):
+        data = json.loads((ROOT / 'data/countries/cyprus.json').read_text(encoding='utf-8'))
+        self.assertEqual(data['map']['bounds'], {
+            'north': 35.836, 'south': 34.422, 'west': 32.07025, 'east': 34.79973,
+        })
+        self.assertIn('dtrihinas/cyprus-geojson', data['map']['source'])
+
         original = preview('cyprus')
         result, removed = remove_target_land_context(original)
         self.assertEqual(removed, 4)
         self.assertEqual(target_paths(original), target_paths(result))
+        self.assertEqual(len(target_paths(result)), 1)
         original_context = ET.fromstring(original).find('.//*[@id="geographic-context"]')
         filtered_context = ET.fromstring(result).find('.//*[@id="geographic-context"]')
         self.assertTrue(original_context[0].get('d'))
         self.assertEqual(filtered_context[0].get('d'), '')
+        for color in ('#eaf2f4', '#dcebf0', '#d0e3eb'):
+            self.assertIn(color, result)
         with Image.open(BytesIO(cairosvg.svg2png(bytestring=result.encode(), output_width=1200, output_height=760))) as png:
             png.load()
             self.assertEqual(png.size, (1200, 760))
