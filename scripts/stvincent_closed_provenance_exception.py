@@ -15,8 +15,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-CASE_ID = "stvincentgrenadines-preserve-13-20260923"
-SOURCE_COMMIT = "ce673cdcfd63a194fcced6912b38c5a0c54fe567"
+CASE_ID = "stvincentgrenadines-final-13-20260924"
+SOURCE_COMMIT = "1f308a1953a087f2fe959242a9745691872d5f82"
 SCENE_IDS = tuple(f"S{x:02d}" for x in range(1, 9))
 FOOD_IDS = tuple(f"FOOD{x:02d}" for x in range(1, 5))
 ALL_IDS = ("HERO", *SCENE_IDS, *FOOD_IDS)
@@ -25,18 +25,18 @@ ALL_IDS = ("HERO", *SCENE_IDS, *FOOD_IDS)
 # to 1200x800 without cropping after the source handoff; no image was regenerated.
 ASSETS = {
     "HERO": ("hero.webp", "4a11bf88e2e71f9831ded5d9cf361586e8e36571"),
-    "S01": ("scene-1.webp", "e78952dc4126983ddcfeda5f424654bda83716c4"),
-    "S02": ("scene-2.webp", "f4a921557428b642eb264842681f73e58dcefd58"),
-    "S03": ("scene-3.webp", "c8e35ae34baa3a1bbe540ff31dbbc54aa7df39b6"),
-    "S04": ("scene-4.webp", "dc40b05422820612f0815c860c4d4cfda3280998"),
-    "S05": ("scene-5.webp", "936e588801e60ac4a8ea5eb15c583b7fa788e15e"),
-    "S06": ("scene-6.webp", "85aca6a4743e1818486aee2021b9d604dd560e77"),
-    "S07": ("scene-7.webp", "b741112bece42eaf4ad0adec17e28039156fee31"),
-    "S08": ("scene-8.webp", "799e7f593f7c6bfdabf0f69bdad3ff83db7b230a"),
-    "FOOD01": ("food-1.webp", "e04dcc68871f35ae7c1d0977f3fad01aaaeab776"),
-    "FOOD02": ("food-2.webp", "32569b81b6fb4c870f91d9a2081f881e6a82bd15"),
-    "FOOD03": ("food-3.webp", "022b4ecfb60a2fce4fa2a092cb64a7a605cf533d"),
-    "FOOD04": ("food-4.webp", "e595f6866b256276b182ed17db7f57f8a42e69b5"),
+    "S01": ("scene-1.webp", "11b68d2e58ea2b0922a33630fcaa2fdcf601994e"),
+    "S02": ("scene-2.webp", "70e6de5ea071ca583e159f5d074a4e427d46c0e9"),
+    "S03": ("scene-3.webp", "5c96c176214489083b82cb3a7b571a69edf87f42"),
+    "S04": ("scene-4.webp", "5afb3bcbc48b1dd8f7c86e784f2ccafe6b1b8c0b"),
+    "S05": ("scene-5.webp", "3caafc226094e22a83a2745a1418c3b8e135c103"),
+    "S06": ("scene-6.webp", "2ed4f1dbda54477e503e24556932f93f3afe25c1"),
+    "S07": ("scene-7.webp", "b4c91966bbf9ef18dbc950b598a3a0c3a562aaaf"),
+    "S08": ("scene-8.webp", "6478239be33c921eb52dbdbe6e8dca1101965c20"),
+    "FOOD01": ("food-1.webp", "d290086294a33d0e0fad57d7baa75a4f79ccefac"),
+    "FOOD02": ("food-2.webp", "1b68c5f4ed4451f9437d884f86e1b6dbfa928604"),
+    "FOOD03": ("food-3.webp", "c4ef0ef36ebcbf7aa0c1f2f6f2f8fddb139ee50d"),
+    "FOOD04": ("food-4.webp", "e2d0fec0669e3f956f7c2ff96d48aee93aa6a690"),
 }
 
 
