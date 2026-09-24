@@ -24,6 +24,11 @@ def preview(slug):
     config = data['map']
     bounds = tuple(float(config['bounds'][key]) for key in ('west', 'south', 'east', 'north'))
     source = (ROOT / config['svg']).read_text(encoding='utf-8')
+    root = ET.fromstring(source)
+    existing = root.find('.//*[@id="geographic-context"]')
+    if existing is not None and any(
+            (path.get('d') or '').strip() for path in existing.iter(SVG + 'path')):
+        return source
     geometry = maps.context_geometry(maps.canvas_bounds(bounds), 'i')
     context = maps.make_context_path(geometry, bounds, 0.003)
     return maps.add_context(source, bounds, context, 'i')
