@@ -1,6 +1,7 @@
 name: Map context preview preflight
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - 'scripts/add_country_map_context.py'
