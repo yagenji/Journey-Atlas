@@ -71,13 +71,35 @@ jobs:
           base, output = sys.argv[1:]
           files = subprocess.check_output(["git", "diff", "--name-only", base, "HEAD"], text=True).splitlines() if base else []
           slugs = set()
+          asset_folders = set()
           for path in files:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
               if match:
                   slugs.add(match.group(1))
               match = re.match(r"assets/images/([^/]+)/", path)
               if match:
-                  slugs.add(match.group(1))
+                  asset_folders.add(match.group(1))
+
+          # Asset directory names are not guaranteed to equal canonical Country
+          # slugs (for example united-kingdom -> unitedkingdom). Resolve changed
+          # asset folders from actual Country JSON references before live QA.
+          country_dir = Path("data/countries")
+          for folder in sorted(asset_folders):
+              prefix = f"assets/images/{folder}/"
+              matched = set()
+              direct = country_dir / f"{folder}.json"
+              if direct.exists():
+                  matched.add(folder)
+              for country_path in country_dir.glob("*.json"):
+                  try:
+                      payload = country_path.read_text(encoding="utf-8")
+                  except OSError:
+                      continue
+                  if prefix in payload:
+                      matched.add(country_path.stem)
+              if not matched:
+                  raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
+              slugs.update(matched)
 
           if base and "data/atlas-destinations.json" in files:
               try:
