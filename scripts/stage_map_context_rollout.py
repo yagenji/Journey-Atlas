@@ -44,32 +44,68 @@ def load_json(path: Path):
 
 
 def protected_target_paths(root):
-    """Serialize rendered approved target paths; generated context is excluded."""
+    """Serialize rendered approved target geometry; generated context is excluded.
+
+    Most maps paint target paths directly (or via an ancestor fill). Hong Kong
+    intentionally defines its approved land geometry once in #land-shape and
+    renders it through <use href="#land-shape" fill="url(#land)">. Treat the
+    referenced paths as protected target geometry too, while de-duplicating the
+    shadow + visible uses of the same definition.
+    """
     parents = {child: parent for parent in root.iter() for child in parent}
+    by_id = {node.get("id"): node for node in root.iter() if node.get("id")}
     result = []
-    for path in root.iter(SVG + "path"):
-        cursor = path
-        fill = None
-        while cursor is not None:
-            if "fill" in cursor.attrib:
-                fill = cursor.attrib["fill"]
-                break
-            cursor = parents.get(cursor)
-        if fill not in ("url(#land)", "url(#country)"):
-            continue
-        cursor = path
-        inside_context = False
+
+    def inside_context(node):
+        cursor = node
         while cursor is not None:
             if cursor.get("id") == "geographic-context":
-                inside_context = True
-                break
+                return True
             cursor = parents.get(cursor)
-        if not inside_context:
-            result.append(ET.tostring(path, encoding="unicode"))
+        return False
+
+    def effective_fill(node):
+        cursor = node
+        while cursor is not None:
+            if "fill" in cursor.attrib:
+                return cursor.attrib["fill"]
+            cursor = parents.get(cursor)
+        return None
+
+    for path in root.iter(SVG + "path"):
+        if effective_fill(path) not in ("url(#land)", "url(#country)"):
+            continue
+        if not inside_context(path):
+            result.append("path:" + ET.tostring(path, encoding="unicode"))
+
+    referenced = {}
+    href_names = ("href", "{http://www.w3.org/1999/xlink}href")
+    for use in root.iter(SVG + "use"):
+        if effective_fill(use) not in ("url(#land)", "url(#country)"):
+            continue
+        if inside_context(use):
+            continue
+        href = next((use.get(name) for name in href_names if use.get(name)), None)
+        if not href or not href.startswith("#"):
+            raise RuntimeError("Approved target <use> has unsafe/non-local href")
+        target_id = href[1:]
+        target = by_id.get(target_id)
+        if target is None:
+            raise RuntimeError(f"Approved target <use> reference missing: {href}")
+        paths = [ET.tostring(path, encoding="unicode") for path in target.iter(SVG + "path")]
+        if not paths:
+            raise RuntimeError(f"Approved target <use> reference has no paths: {href}")
+        transform = use.get("transform", "")
+        signature = "use:" + target_id + ":transform=" + transform + ":" + "|".join(paths)
+        prior = referenced.get(target_id)
+        if prior is not None and prior != signature:
+            raise RuntimeError(f"Approved target <use> reference has inconsistent transforms: {href}")
+        referenced[target_id] = signature
+
+    result.extend(referenced[key] for key in sorted(referenced))
     if not result:
         raise RuntimeError("Approved target path set is empty")
     return result
-
 
 def validate_stage2_candidate(source_text: str, staged_text: str, map_source: str,
                               action: str, slug: str, review_mode: str) -> dict:
