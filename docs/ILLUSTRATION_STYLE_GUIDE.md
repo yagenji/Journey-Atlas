@@ -213,7 +213,7 @@ Icelandを新スタイルの最終ベンチマークとして再制作し、Hero
 5. S01–S08は独立画像として連続生成し、8枚完成後にbatch reviewする。画像ごとのユーザー承認は挟まない。
 6. 問題がある画像のみ再生成し、APPROVED画像は明示指示なしに再生成しない。
 7. approved画像のみサイトへ実装する。
-8. 実行順序と承認ゲートは `docs/COUNTRY_PRODUCTION_STATE.md` を正本とする。
-9. Hero / Sceneの生成直前プロンプト、文字・ポスター・コラージュの即NG判定、失敗系列リセットは `docs/SCENE_IMAGE_PRODUCTION.md` を必ず適用する。
+8. 実行順序と承認ゲートは `docs/COUNTRY_PRODUCTION_RULES.md` に従う。
+9. Hero / Scene / Tasteの品質基準は `docs/IMAGE_QUALITY.md` に従う。失敗画像はその対象だけ再生成し、生成履歴や予約StateをGitHubへ記録しない。
 
 旧Iceland画像は新スタイルの承認素材として扱わない。

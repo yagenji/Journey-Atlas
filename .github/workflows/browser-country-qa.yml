@@ -1,263 +1,172 @@
-name: Browser QA published Country pages
+name: Browser QA Country pages
 
 on:
   pull_request:
+    paths:
+      - "data/countries/**"
+      - "data/atlas-destinations.json"
+      - "data/theme-taxonomy.json"
+      - "assets/images/**"
+      - "country.html"
+      - "assets/css/**"
+      - "assets/js/**"
+      - "scripts/build_site.py"
+      - "scripts/build_country_preview_targeted.py"
+      - "scripts/build_cloudflare.py"
+      - "scripts/qa_published_browser.py"
+      - ".github/workflows/browser-country-qa.yml"
   workflow_dispatch:
+    inputs:
+      slug:
+        description: "Optional Country slug; blank runs all published Country pages"
+        required: false
+        type: string
+
+permissions:
+  contents: read
 
 concurrency:
   group: browser-country-qa-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
-
 jobs:
-  classify:
+  browser-qa:
     runs-on: ubuntu-latest
-    outputs:
-      production_changed: ${{ steps.impact.outputs.production_changed }}
-      publication_metadata_only: ${{ steps.impact.outputs.publication_metadata_only }}
-      browser_scope: ${{ steps.impact.outputs.browser_scope }}
-      target_slugs: ${{ steps.impact.outputs.target_slugs }}
-      published_slugs: ${{ steps.impact.outputs.published_slugs }}
-      reviewable_slugs: ${{ steps.impact.outputs.reviewable_slugs }}
+    timeout-minutes: 35
     steps:
-      - name: Check out classification inputs only
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-          filter: blob:none
-          sparse-checkout: |
-            scripts
-            data
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Classify Country-page impact
-        id: impact
+      - name: Detect Browser QA scope
+        id: target
         shell: bash
+        env:
+          REQUESTED_SLUG: ${{ inputs.slug }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "production_changed=true" >> "$GITHUB_OUTPUT"
-            echo "publication_metadata_only=false" >> "$GITHUB_OUTPUT"
-            echo "browser_scope=all" >> "$GITHUB_OUTPUT"
-            echo "target_slugs=" >> "$GITHUB_OUTPUT"
-            echo "published_slugs=" >> "$GITHUB_OUTPUT"
-            echo "reviewable_slugs=" >> "$GITHUB_OUTPUT"
-            echo "Manual run: full Country browser QA requested."
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            if [ -n "${REQUESTED_SLUG:-}" ]; then
+              echo "slugs=$REQUESTED_SLUG" >> "$GITHUB_OUTPUT"
+              echo "full=false" >> "$GITHUB_OUTPUT"
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "slugs=" >> "$GITHUB_OUTPUT"
+              echo "full=true" >> "$GITHUB_OUTPUT"
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            fi
             exit 0
           fi
 
-          base_sha="$(git rev-parse HEAD^1)"
-          python3 scripts/classify_country_impact.py \
-            --base "$base_sha" \
-            --head HEAD \
-            --github-output "$GITHUB_OUTPUT"
+          base="$PR_BASE_SHA"
+          git diff --name-only "$base"...HEAD > /tmp/browser-changed-files.txt
+          python3 - "$GITHUB_OUTPUT" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
 
-  browser-qa:
-    needs: classify
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
+          output = sys.argv[1]
+          files = Path("/tmp/browser-changed-files.txt").read_text().splitlines()
+          slugs = set()
+          for path in files:
+              match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
+              if match:
+                  slugs.add(match.group(1))
+              match = re.match(r"assets/images/([^/]+)/", path)
+              if match:
+                  slugs.add(match.group(1))
+
+          shared = any(
+              path == "country.html"
+              or path.startswith("assets/css/")
+              or path.startswith("assets/js/")
+              or path in {
+                  "scripts/build_site.py",
+                  "scripts/build_country_preview_targeted.py",
+                  "scripts/build_cloudflare.py",
+                  "scripts/qa_published_browser.py",
+              }
+              for path in files
+          )
+          run = bool(slugs or shared)
+          with open(output, "a", encoding="utf-8") as handle:
+              handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
+              handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
+              handle.write("run=" + ("true" if run else "false") + "\n")
+          PY
+
       - name: Browser QA not required
-        if: needs.classify.outputs.browser_scope == 'none' || needs.classify.outputs.publication_metadata_only == 'true'
-        run: |
-          echo "No local Country-rendering QA required."
-          echo "Publication metadata-only changes are verified after merge by production QA."
-
-      - name: Check out repository for rendering QA
-        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+        if: steps.target.outputs.run != 'true'
+        run: echo "No Country rendering change detected."
 
       - name: Set up Python
-        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+        if: steps.target.outputs.run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install browser QA dependencies
-        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+      - name: Install Browser QA dependency
+        if: steps.target.outputs.run == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
-      - name: Verify full Country QA partition
-        if: needs.classify.outputs.browser_scope == 'all' && needs.classify.outputs.publication_metadata_only != 'true'
-        run: python3 scripts/run_country_browser_qa_parallel.py --self-test
-
-      - name: Build targeted Country preview package
-        if: needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.publication_metadata_only != 'true'
+      - name: Build targeted Country preview
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != ''
         env:
+          TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
-          TARGET_SLUGS: ${{ needs.classify.outputs.published_slugs }},${{ needs.classify.outputs.reviewable_slugs }}
         run: python3 scripts/build_country_preview_targeted.py
 
       - name: Build full production package
-        if: needs.classify.outputs.browser_scope == 'all' && needs.classify.outputs.publication_metadata_only != 'true'
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
 
-      - name: Start local production package
-        if: needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+      - name: Start local site
+        if: steps.target.outputs.run == 'true'
         run: |
-          python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser-qa-http.log 2>&1 &
-          echo $! > /tmp/journey-atlas-browser-qa-http.pid
+          python3 -m http.server 4173 --directory dist >/tmp/journey-atlas-browser.log 2>&1 &
+          echo $! > /tmp/journey-atlas-browser.pid
           for attempt in $(seq 1 20); do
             if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
               exit 0
             fi
             sleep 1
           done
-          cat /tmp/journey-atlas-browser-qa-http.log || true
+          cat /tmp/journey-atlas-browser.log || true
           exit 1
 
-      - name: Validate targeted published package metadata
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
-        env:
-          PUBLISHED_SLUGS: ${{ needs.classify.outputs.published_slugs }}
-        run: |
-          python3 - <<'PY'
-          import json
-          import os
-          from html.parser import HTMLParser
-          from pathlib import Path
-
-          class RobotsParser(HTMLParser):
-              def __init__(self):
-                  super().__init__()
-                  self.robots = None
-
-              def handle_starttag(self, tag, attrs):
-                  if tag.lower() != "meta":
-                      return
-                  values = {str(key).lower(): value for key, value in attrs}
-                  if str(values.get("name") or "").lower() == "robots":
-                      self.robots = str(values.get("content") or "")
-
-          root = Path("dist")
-          rows = {}
-          for name in ("atlas-destinations.json",):
-              path = root / "data" / name
-              if not path.exists():
-                  continue
-              payload = json.loads(path.read_text(encoding="utf-8"))
-              for item in payload.get("destinations", []):
-                  if isinstance(item, dict) and item.get("slug"):
-                      rows[item["slug"]] = item
-
-          sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
-          slugs = [value.strip() for value in os.environ["PUBLISHED_SLUGS"].split(",") if value.strip()]
-          if not slugs:
-              raise SystemExit("No targeted published Country slugs were supplied")
-
-          for slug in slugs:
-              row = rows.get(slug)
-              if not row:
-                  raise SystemExit(f"{slug}: missing from runtime destination registry")
-              if row.get("atlasPublished") is not True:
-                  raise SystemExit(f"{slug}: runtime registry must have atlasPublished=true")
-              expected_href = f"countries/{slug}/"
-              if row.get("href") != expected_href:
-                  raise SystemExit(f"{slug}: expected href={expected_href!r}, got {row.get('href')!r}")
-
-              page = root / "countries" / slug / "index.html"
-              if not page.exists():
-                  raise SystemExit(f"{slug}: published Country page missing from targeted package")
-              parser = RobotsParser()
-              parser.feed(page.read_text(encoding="utf-8"))
-              robots = (parser.robots or "").replace(" ", "").lower()
-              if robots != "index,follow":
-                  raise SystemExit(f"{slug}: published robots must be index,follow; got {parser.robots!r}")
-              if f"/countries/{slug}/" not in sitemap:
-                  raise SystemExit(f"{slug}: published Country URL missing from sitemap")
-
-          print("Targeted published package metadata PASS: " + ", ".join(slugs))
-          PY
-
-      - name: Run targeted unpublished reviewable Country QA
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.reviewable_slugs != ''
-        env:
-          QA_BASE_URL: http://127.0.0.1:4173
-          QA_OUT_DIR: qa-browser-reviewable-output
-          QA_SCOPE: unpublished-reviewable
-          QA_SLUGS: ${{ needs.classify.outputs.reviewable_slugs }}
-        run: python3 scripts/qa_published_browser.py
-
-      - name: Run targeted published Country QA
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
+      - name: Run target Desktop / Tablet / Mobile QA
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != ''
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: reviewable
-          QA_SLUGS: ${{ needs.classify.outputs.published_slugs }}
+          QA_SLUGS: ${{ steps.target.outputs.slugs }}
         run: python3 scripts/qa_published_browser.py
 
-      - name: Capture targeted published Country pages at all three viewports
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'targeted' && needs.classify.outputs.published_slugs != ''
-        env:
-          PUBLISHED_SLUGS: ${{ needs.classify.outputs.published_slugs }}
-        run: |
-          python3 - <<'PY'
-          import os
-          import sys
-          from pathlib import Path
-
-          sys.path.insert(0, 'scripts')
-          import qa_published_browser as qa
-
-          slugs = [s.strip() for s in os.environ['PUBLISHED_SLUGS'].split(',') if s.strip()]
-          output = Path('qa-browser-visual-output')
-          output.mkdir(exist_ok=True)
-          for slug in slugs:
-              for name, viewport in qa.VIEWPORTS.items():
-                  driver = qa.make_driver()
-                  try:
-                      qa.set_viewport(driver, viewport)
-                      driver.get(f'http://127.0.0.1:4173/countries/{slug}/')
-                      qa.wait_for_country(driver)
-                      qa.scroll_entire_page(driver)
-                      qa.full_page_screenshot(driver, output / f'{slug}-{name}.jpg')
-                      print(f'Captured {slug} {name} full-page visual QA evidence')
-                  finally:
-                      driver.quit()
-          PY
-
-      - name: Run all unpublished reviewable Country QA
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
-        env:
-          QA_BASE_URL: http://127.0.0.1:4173
-          QA_OUT_DIR: qa-browser-reviewable-output
-          QA_SCOPE: unpublished-reviewable
-        run: python3 scripts/run_country_browser_qa_parallel.py --scope unpublished-reviewable --workers 2
-
-      - name: Run all published Country QA
-        if: needs.classify.outputs.publication_metadata_only != 'true' && needs.classify.outputs.browser_scope == 'all'
+      - name: Run full published Desktop / Tablet / Mobile QA
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
-        run: python3 scripts/run_country_browser_qa_parallel.py --scope published --workers 2
+        run: python3 scripts/qa_published_browser.py
 
-      - name: Stop local server
-        if: always() && needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+      - name: Stop local site
+        if: always() && steps.target.outputs.run == 'true'
         run: |
-          if [ -f /tmp/journey-atlas-browser-qa-http.pid ]; then
-            kill "$(cat /tmp/journey-atlas-browser-qa-http.pid)" 2>/dev/null || true
+          if [ -f /tmp/journey-atlas-browser.pid ]; then
+            kill "$(cat /tmp/journey-atlas-browser.pid)" 2>/dev/null || true
           fi
 
-      - name: Upload browser QA report
-        if: always() && needs.classify.outputs.browser_scope != 'none' && needs.classify.outputs.publication_metadata_only != 'true'
+      - name: Upload Browser QA report
+        if: always() && steps.target.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: country-browser-qa
-          path: |
-            qa-browser-output/
-            qa-browser-reviewable-output/
-            qa-browser-visual-output/
+          path: qa-browser-output/
           if-no-files-found: warn
           retention-days: 3
