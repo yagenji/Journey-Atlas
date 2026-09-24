@@ -18,6 +18,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import add_country_map_context_legacy as legacy
+from apply_exact_target_clip import apply_exact_target_negative_clip
 from filter_duplicate_target_context import remove_target_land_context
 from reconcile_brunei_foreign import reconcile as reconcile_brunei_foreign
 from reconcile_hong_kong_foreign import reconcile as reconcile_hong_kong_foreign
@@ -251,6 +252,7 @@ def main():
             fixture,
             args.resolution,
         )
+        result = apply_exact_target_negative_clip(result)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(result, encoding='utf-8')
         print(f"Created existing-Country preview: {args.output}; Timor-Leste uses source-aligned Indonesia context")
@@ -276,9 +278,10 @@ def main():
     if slug == 'portugal':
         clarified = remove_reviewed_portugal_ocean_self_land(clarified, data, args.input, args.resolution)
         clarified = reconcile_reviewed_portugal_spain_coast(clarified, args.input, args.resolution)
+    clarified = apply_exact_target_negative_clip(clarified)
     if clarified != preview:
         args.output.write_text(clarified, encoding="utf-8")
-    print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings")
+    print(f"Created existing-Country preview: {args.output}; excluded {removed} duplicate target-land rings; exact target-negative clip applied where context remains")
 
 
 if __name__ == "__main__":
