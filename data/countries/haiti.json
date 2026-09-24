@@ -48,8 +48,7 @@
     },
     "svg": "assets/images/haiti/map-atlas-v1.svg",
     "route": null,
-    "source": "Target national geometry: Natural Earth 1:10m Haiti (HTI), public-domain geometry via LonnyGomes/CountryGeoJSONCollection. Administrative identity cross-checked 2026-09-24 against geoBoundaries gbOpen HTI ADM0 (2017 boundary representation; source OpenStreetMap/Wambacher; ODbL 1.0). Surrounding Hispaniola context uses Natural Earth 1:10m Dominican Republic geometry. WGS84, local-equirectangular 1200×760 SVG. Eight Scene coordinates and capital/hero coordinates checked against authoritative/structured geographic references on 2026-09-24. Display-only marker offsets resolve label/marker collisions; the verified geographic coordinates are unchanged.",
-    "japanAreaComparison": "国土面積は日本の約7.3%（ハイチ 27,750 km²）"
+    "source": "Target national geometry: Natural Earth 1:10m Haiti (HTI), public-domain geometry via LonnyGomes/CountryGeoJSONCollection. Surrounding Hispaniola context uses Natural Earth 1:10m Dominican Republic geometry. WGS84, local-equirectangular 1200×760 SVG. Eight Scene coordinates and capital/hero coordinates checked against authoritative/structured geographic references on 2026-09-24. Display-only marker offsets resolve label/marker collisions; the verified geographic coordinates are unchanged."
   },
   "scenes": [
     {
@@ -384,24 +383,24 @@
   "travelScale": {
     "kicker": "DURATION",
     "title": "旅の目安日程",
-    "intro": "以下は地理的な旅程の形を示す目安。2026年9月24日時点では各国政府がハイチ全土への渡航中止を勧告しており、通常の観光旅行としての実行を前提としない。",
+    "intro": "北部、南東部、南部半島は離れているため、短期なら一地域、日数があれば複数地域を組み合わせる。実際の旅行可否は最新の安全情報を確認する。",
     "items": [
       {
         "duration": "3〜4日",
         "title": "北部の歴史景観を結ぶ",
-        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Cap-Haïtien → Sans-Souci → Citadelle Laferrière",
+        "text": "カパイシャンを拠点に、サン・スーシ宮殿とシタデル・ラフェリエールを結ぶ。例：Cap-Haïtien → Sans-Souci → Citadelle Laferrière",
         "icon": "city"
       },
       {
         "duration": "5〜7日",
         "title": "南東部の港町と山地へ",
-        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Jacmel → Bassin Bleu",
+        "text": "南東部では港町ジャクメルと内陸の滝を組み合わせる。例：Jacmel → Bassin Bleu",
         "icon": "map"
       },
       {
         "duration": "8日以上",
         "title": "南部半島の洞窟と高地まで",
-        "text": "安全に移動できる条件が整った場合の地理的な組み合わせ。例：Les Cayes → Saut-Mathurine → Grotte Marie-Jeanne → Pic Macaya",
+        "text": "南部半島まで広げ、滝、洞窟、高地林を地域ごとにたどる。例：Les Cayes → Saut-Mathurine → Grotte Marie-Jeanne → Pic Macaya",
         "icon": "compass"
       }
     ]
@@ -429,8 +428,8 @@
     }
   ],
   "transport": {
-    "title": "現状は通常の観光移動を前提にしない",
-    "text": "2026年9月24日時点で英国・カナダは全土への渡航中止を勧告している。ドミニカ共和国との陸路・海路国境も旅行者には閉鎖されている。航空便、道路、国境条件は渡航判断の直前に公的情報で確認する。"
+    "title": "国内移動は道路が中心、地域ごとに拠点を置く",
+    "text": "主要都市と各Sceneの間は道路移動が中心。北部ではカパイシャンからミロへ向かい、シタデルはミロ側のアクセス路から山地へ上がる。南部ではレカイを拠点にカン・ペランなどへ陸路で移動する。山地は道路状態で所要時間が変わりやすい。2026年9月25日時点では全土への渡航中止勧告が出ているため、実際の移動可否は最新の公的情報を優先する。"
   },
   "personas": [
     {
@@ -461,7 +460,7 @@
     },
     {
       "label": "面積",
-      "value": "27,750 km²"
+      "value": "27,750 km²（日本の約7.3%）"
     },
     {
       "label": "言語",
@@ -519,7 +518,18 @@
       "text": "山地の多い国土では強雨が道路状態に直結する。気象警報と道路情報の双方を確認する。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇩🇴",
+      "countryEn": "DOMINICAN REPUBLIC",
+      "countryJa": "ドミニカ共和国",
+      "path": "Cap-Haïtien → Dominican Republic (air)",
+      "description": "同じイスパニョーラ島の東側にある隣国。2026年9月25日時点で、ハイチ―ドミニカ共和国間の商用旅客航空便はカパイシャン空港から利用できる一方、陸路・海路国境は旅行者に閉鎖されている。運航と入国条件を直前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "空路はカパイシャン発着を確認。陸路・海路国境は旅行者に閉鎖。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "dominicanrepublic",
@@ -546,8 +556,8 @@
       "affinityType": "HISTORY"
     }
   ],
-  "updatedAt": "2026-09-24",
-  "sourcesVerifiedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
+  "sourcesVerifiedAt": "2026-09-25",
   "sourceDates": {
     "population": "2025",
     "area": "2025-03-31",
@@ -555,11 +565,12 @@
     "intangibleCulture": "2026-09-24",
     "coordinates": "2026-09-24",
     "geometry": "2026-09-24",
-    "travelAdvice": "2026-09-24",
+    "travelAdvice": "2026-09-25",
     "currency": "2026-09-23",
     "religion": "2017",
     "departments": "2026-09-24",
-    "picLaSelle": "2026-09-24"
+    "picLaSelle": "2026-09-24",
+    "nextRoutes": "2026-09-25"
   },
   "sources": {
     "population": "World Bank, Haiti country data: population 11,906,095 (2025). https://data.worldbank.org/country/haiti",
@@ -570,11 +581,12 @@
     "jacmel": "UNESCO World Heritage Centre Tentative List, Centre historique de Jacmel; UNESCO Creative Cities Network references Jacmel as Crafts and Folk Art city. https://whc.unesco.org/en/tentativelists/1947/",
     "religion": "U.S. Department of State, 2023 International Religious Freedom Report: 2017 government survey reported 52% Protestant/related Christian groups, 35% Catholic, 2% Vodou; practice may overlap. https://2021-2025.state.gov/reports/2023-report-on-international-religious-freedom/haiti/",
     "currency": "Banque de la République d'Haïti; gourde exchange market and monetary authority, checked 2026-09-24. https://www.brh.ht/",
-    "travelAdvice": "UK FCDO Haiti travel advice, current 2026-09-24: advises against all travel. Government of Canada Haiti advisory, updated 2026-09-09: avoid all travel. Government of Canada Dominican Republic advisory: land and sea borders with Haiti closed to travellers. https://www.gov.uk/foreign-travel-advice/haiti ; https://travel.gc.ca/destinations/haiti ; https://travel.gc.ca/destinations/dominican-republic",
+    "travelAdvice": "UK FCDO Haiti travel advice, current 2026-09-24: advises against all travel. Government of Canada Haiti advisory, updated 2026-09-09: avoid all travel; Dominican Republic air border with Haiti reopened 2026-05-30 while land and sea borders remain closed to travellers. France Diplomatie Haiti entry/stay guidance, updated 2026-09-21: commercial passenger air links between Haiti and the Dominican Republic operate from Cap-Haïtien only. https://www.gov.uk/foreign-travel-advice/haiti ; https://travel.gc.ca/destinations/haiti ; https://www.diplomatie.gouv.fr/fr/information-par-pays/haiti/conseils-aux-voyageurs-entree-sejour",
     "coordinates": "Citadelle Laferrière and Scene coordinates cross-checked 2026-09-24 using UNESCO World Heritage geographic data and OpenStreetMap/GeoNames-backed structured records. Scene 2 uses the real Cap Haïtien cape coordinate 19.76667, -72.21667 (GeoNames ID 3723987), representing the bay-and-city viewpoint rather than the offshore port point.",
     "geometry": "Natural Earth 1:10m HTI/DOM public-domain geometry via LonnyGomes/CountryGeoJSONCollection. Haiti national identity independently cross-checked against geoBoundaries gbOpen HTI ADM0 (boundary represented 2017; OpenStreetMap/Wambacher; ODbL 1.0), checked 2026-09-24.",
     "japanArea": "Japan Geospatial Information Authority / Cabinet Secretariat: Japan territory 377,974.87 km² as of 2026-04-01; used for area comparison.",
     "picLaSelle": "World Bank geographic reference: Pic la Selle is Haiti's highest point at 2,680 m. https://documents1.worldbank.org/curated/en/099439105092242185/pdf/IDU0ccefd1a201a7204dc50968c0709c4347da84.pdf",
-    "departments": "Haiti territorial division has 10 departments; referenced in national territorial-division data reproduced in Adaptation Fund Haiti documentation and IHSI coding. https://www.adaptation-fund.org/wp-content/uploads/2020/08/AFB.PPRC_.26.a-26.b.39-Proposal-for-Haiti.pdf"
+    "departments": "Haiti territorial division has 10 departments; referenced in national territorial-division data reproduced in Adaptation Fund Haiti documentation and IHSI coding. https://www.adaptation-fund.org/wp-content/uploads/2020/08/AFB.PPRC_.26.a-26.b.39-Proposal-for-Haiti.pdf",
+    "nextRoutes": "Government of Canada Haiti advisory: Dominican Republic air border reopened on 2026-05-30; land and sea borders remain closed to travellers. France Diplomatie Haiti entry/stay guidance, updated 2026-09-21: commercial passenger air connections with the Dominican Republic operate from Cap-Haïtien only. Dominican Republic Presidency, 2026 bilateral dialogue: air connectivity between Dominican airports and Cap-Haïtien was reopened from May 2026."
   }
 }
