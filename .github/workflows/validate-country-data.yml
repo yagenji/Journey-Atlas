@@ -131,13 +131,20 @@ jobs:
               except Exception:
                   pass
 
+          shared_validator_paths = {
+              "scripts/validate_country.py",
+              "scripts/validate_country_editorial_v2.py",
+              "scripts/validate_country_quality_v5.py",
+              "scripts/validate_country_map_v6.py",
+              "scripts/validate_images.py",
+          }
           shared = any(
               path == "country.html"
               or path.startswith("assets/css/")
               or path.startswith("assets/js/")
               or path == "data/theme-taxonomy.json"
               or path == "data/region-taxonomy.json"
-              or path.startswith("scripts/validate_")
+              or path in shared_validator_paths
               for path in files
           )
           with open(output, "a", encoding="utf-8") as handle:
