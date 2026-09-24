@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Audit published Country Pages against the renewal registry.
+"""Audit published Country Pages with optional legacy renewal metadata.
 
-This script does not rewrite country content. It validates registry coverage and
-prints a compact structural audit that can be used to plan renewal work.
+This script does not rewrite country content. The legacy renewal registry is
+treated as optional metadata for Countries that were tracked by the old renewal
+process; newly produced Countries are not required to add renewal-state rows.
 """
 from __future__ import annotations
 import argparse
@@ -54,8 +55,8 @@ def main() -> int:
     missing = sorted(set(published) - set(status_slugs))
     extra = sorted(set(status_slugs) - set(published))
     duplicates = sorted({slug for slug in status_slugs if status_slugs.count(slug) > 1 and slug})
-    if missing:
-        errors.append(f"renewal status missing published countries: {', '.join(missing)}")
+    # New Country production no longer writes legacy renewal-state rows.
+    # Missing legacy metadata is informational, not a publication failure.
     if extra:
         errors.append(f"renewal status contains non-published countries: {', '.join(extra)}")
     if duplicates:
@@ -73,8 +74,8 @@ def main() -> int:
         visible_facts = [f for f in data.get("facts", []) if f.get("label") != "地域"]
         row = {
             "slug": slug,
-            "auditState": by_status.get(slug, {}).get("auditState"),
-            "renewalClass": by_status.get(slug, {}).get("renewalClass"),
+            "auditState": by_status.get(slug, {}).get("auditState") or "N/A",
+            "renewalClass": by_status.get(slug, {}).get("renewalClass") or "N/A",
             "hardImageGate": bool(by_status.get(slug, {}).get("hardImageGate")),
             "visibleFacts": len(visible_facts),
             "scenes": len(data.get("scenes", [])),
@@ -89,7 +90,11 @@ def main() -> int:
         rows.append(row)
 
     if args.json:
-        print(json.dumps({"published": len(published), "rows": rows, "errors": errors}, ensure_ascii=False, indent=2))
+        print(json.dumps(
+            {"published": len(published), "rows": rows, "legacyUntracked": missing, "errors": errors},
+            ensure_ascii=False,
+            indent=2,
+        ))
     else:
         print(f"Published Country renewal audit: {len(published)} country page(s)")
         for row in rows:
@@ -98,6 +103,10 @@ def main() -> int:
                 f"gate={'Y' if row['hardImageGate'] else 'N'} facts={row['visibleFacts']} scenes={row['scenes']} "
                 f"enc={row['encounters']} beyond={row['beyond']} trivia={row['trivia']} themes={row['themes']}"
             )
+        if missing:
+            print("Legacy renewal metadata not required for:")
+            for slug in missing:
+                print(f"- {slug}")
         if errors:
             print("Registry errors:")
             for error in errors:
