@@ -97,7 +97,7 @@ def reconcile(source_text: str, source: Path, country_file: Path, fixture: Path,
     clip = (
         '<clipPath id="' + CLIP_ID + '" clipPathUnits="userSpaceOnUse">'
         '<path d="M 0,0 H 1200 V 760 H 0 Z ' + target_d +
-        '" fill-rule="evenodd"/></clipPath>'
+        '" fill-rule="evenodd" clip-rule="evenodd"/></clipPath>'
     )
     if result.count('</defs>') != 1:
         raise ValueError('Unexpected Timor-Leste defs structure')
