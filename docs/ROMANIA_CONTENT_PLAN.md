@@ -332,7 +332,7 @@ Do not use airport codes or repeat currency facts here.
 
 ## Taste
 
-Four dishes selected for national recognition and visual variety. All imagery must follow `docs/TASTE_IMAGE_PRODUCTION.md` exactly: one dish per independent image, plain pale beige / warm ivory background, no props, no drink, no utensils, no extra ingredients around the dish, no restaurant scenery, no people, no collage.
+Four dishes selected for national recognition and visual variety. All imagery must follow `docs/IMAGE_QUALITY.md`: one dish per independent image, plain pale beige / warm ivory background, no decorative props, no restaurant scenery, no people, no collage.
 
 ### FOOD01 — Sarmale cu mămăligă / サルマーレ・ク・ママリガ
 
@@ -545,6 +545,6 @@ All time-sensitive claims — population, road access, transport, delta access r
 
 ## Production handoff
 
-This Content Plan contains editorial and visual-design intent only. It must not store current PHASE, NEXT ACTION, NEXT ASSET, approval state, generation cursor, regeneration logs or publication state.
+This Content Plan contains editorial and visual-design intent only. It does not store approval history or publication state.
 
-Operational production state is authoritative only in `ops/country-production/romania.json` on `main`. Execution order, approval gates, batching, QA routing, review deployment and publication follow `docs/COUNTRY_PRODUCTION_STATE.md`.
+When Romania production resumes, use this plan as content input and follow `docs/COUNTRY_PRODUCTION_RULES.md`. Preserve any already approved final assets, then use the same lightweight Hero / Scene batch / Taste batch / finish-line QA flow as every other new Country.

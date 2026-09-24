@@ -2,7 +2,7 @@
 
 Scope: This document retains **approved cross-site design decisions** and branch discipline. It is **not** an alternative Country production, image-generation, QA or publication protocol.
 
-For a **new Country**, use `docs/COUNTRY_PRODUCTION_RULES.md` as the sole human production authority. Follow the active Country State and current machine validators/policies for exact transitions. For a published Country renewal, use `docs/PUBLISHED_COUNTRY_RENEWAL.md`. Do not read the former long Country workflow from Git history as startup guidance.
+For a **new Country**, use `docs/COUNTRY_PRODUCTION_RULES.md` as the sole human production authority. Production progress is not stored in a GitHub State machine. For a published Country renewal, use `docs/PUBLISHED_COUNTRY_RENEWAL.md`. Do not read retired production protocols from Git history as startup guidance.
 
 ## Design lock
 
@@ -61,18 +61,19 @@ Preserve the current map interaction and framing: **World → Region → optiona
 
 ## Country and image production — pointer only
 
-- New Country: `docs/COUNTRY_PRODUCTION_RULES.md` for human behavior and user approval gates.
-- Current production progress: `ops/country-production/{slug}.json` and the current `next` action; use the State/branch authority applicable to that Country, not an old example from this document.
-- Exact image-generation reservations and safety checks: current `ops/image-generation-policy.json` and its validator, only when performing or diagnosing the relevant operation.
-- Exact review/publish automation: active Publication Pipeline and its validator. Canonical unpublished review and formal publication are distinct; final publication requires explicit user approval.
-- In-flight legacy Countries stay on their recorded contract until explicitly migrated. Do not apply a new-Country procedure to them implicitly.
+- New Country production: `docs/COUNTRY_PRODUCTION_RULES.md`.
+- Image quality: `docs/IMAGE_QUALITY.md`.
+- Content quality: `docs/CONTENT_QUALITY.md`.
+- Map quality: `docs/MAP_QUALITY.md`.
+- GitHub stores finished Country assets and runs finish-line QA; it does not track generation history, approval ledgers or intermediate production State.
+- Canonical unpublished review and formal publication remain distinct. Final publication requires explicit user approval.
 
-Do **not** reinstate obsolete instructions to reread every machine policy on every turn, to use GitHub Pages as the final user review URL, or to create extra approval/verification PRs. These are not the current new-Country human contract.
+Do **not** recreate State machines, per-image Git commits, provenance ledgers, or extra approval/verification PRs as a workaround for one-off failures.
 
 ## Branch lifecycle
 
 - Use one working branch per active Country, plus a short-lived shared branch for a proven common-system fix where necessary.
-- Do not create ad hoc Country-specific QA/deployment workflows or derivative branches merely to work around a problem. Where the current automated publication pipeline requires a managed branch/PR, follow that pipeline rather than this general shorthand.
+- Do not create ad hoc Country-specific QA/deployment workflows or derivative branches merely to work around a problem. A normal new Country uses one review PR and, after final approval, one small publication PR.
 - Preserve others' changes and approved assets. After merge and verification, retire obsolete work branches through the normal authorized GitHub process; retain unique history when necessary.
 - `main` is the shared implementation baseline. Never treat a review deployment as formal publication or change an unapproved Country to `atlasPublished:true`.
 
@@ -80,4 +81,4 @@ Do **not** reinstate obsolete instructions to reread every machine policy on eve
 
 Already-published Country Pages use `docs/PUBLISHED_COUNTRY_RENEWAL.md`; status lives in `data/country-renewal-status.json`. Run the current renewal audit and image hard gate appropriate to that Country. A legacy published page does not meet the current production standard merely because it is live.
 
-Iceland / Norway remain the visual-series references; Spain supplies the approved Taste-series reference and current shared page-structure comparison where applicable. The current image policy, not legacy low-resolution assets, determines production asset requirements.
+Iceland / Norway remain the visual-series references; Spain supplies the approved Taste-series reference and current shared page-structure comparison where applicable. `docs/IMAGE_QUALITY.md`, not legacy low-resolution assets, defines current production image quality.
