@@ -45,6 +45,18 @@ CASES = {
         'source_blob': '765b4d2b26324c70b6ac527b68d7c9590c8812bc',
         'source_text': 'swisstopo swissBOUNDARIES3D',
     },
+    'bhutan': {
+        'source_blob': '11fba5dadee21372b0875874de9d79a9f7a3d154',
+        'source_text': 'Natural Earth 1:10m',
+    },
+    'mongolia': {
+        'source_blob': '8728a6871776c797174fa1bae42f694c986ac3f8',
+        'source_text': 'Natural Earth 1:10m',
+    },
+    'kyrgyz': {
+        'source_blob': '47199c97303c521170fce18b798a867b2ab10774',
+        'source_text': 'Basemap intermediate-resolution political-boundary',
+    },
 }
 
 
