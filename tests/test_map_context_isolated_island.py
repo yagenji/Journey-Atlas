@@ -72,6 +72,25 @@ class IsolatedSelfLandTest(unittest.TestCase):
         self.assertIsNotNone(context)
         self.assertEqual(list(context.iter(SVG + 'path')), [])
 
+    def test_malta_has_only_domestic_context_components(self):
+        data = json.loads((ROOT / 'data/countries/malta.json').read_text(encoding='utf-8'))
+        bounds = tuple(float(data['map']['bounds'][key]) for key in ('west', 'south', 'east', 'north'))
+        geometry = maps.context_geometry(maps.canvas_bounds(bounds), 'i')
+        parts = [geometry] if geometry.geom_type == 'Polygon' else list(geometry.geoms)
+
+        self.assertEqual(len(parts), 3)
+        centroids = sorted((round(part.centroid.x, 3), round(part.centroid.y, 3)) for part in parts)
+        self.assertEqual(centroids, [(14.252, 36.046), (14.333, 36.011), (14.438, 35.89)])
+
+        current = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+        root = ET.fromstring(current)
+        context = root.find('.//*[@id="geographic-context"]')
+        self.assertIsNotNone(context)
+        self.assertEqual(list(context.iter(SVG + 'path')), [])
+        self.assertIn('#eaf2f4', current)
+        self.assertIn('#dcebf0', current)
+        self.assertIn('#d0e3eb', current)
+
     def test_timor_shared_island_keeps_real_neighbor(self):
         original = preview('timorleste')
         result, _ = remove_target_land_context(original)
