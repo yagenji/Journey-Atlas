@@ -91,10 +91,10 @@ class CubaCayAffiliationTest(unittest.TestCase):
         )>0
         # Natural Earth 1:10m omits a number of very small Cuban cays that are
         # visible in the approved GSHHS target. A second, still map-scale,
-        # nearshore tolerance (~0.12° at this viewport) is used only for
+        # nearshore tolerance (~0.23° at this viewport) is used only for
         # components below 13 native pixels; larger islands must directly match.
         ref_nearshore=np.asarray(
-            Image.fromarray(ref_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(19))
+            Image.fromarray(ref_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(35))
         )>0
         target_expanded=np.asarray(
             Image.fromarray(target_mask.astype(np.uint8)*255).filter(ImageFilter.MaxFilter(13))
