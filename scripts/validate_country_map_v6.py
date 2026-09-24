@@ -23,6 +23,9 @@ TRANSLATE_RE = re.compile(
     r"translate\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)"
     r"(?:[\s,]+([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?))?\s*\)"
 )
+TRANSFORM_RE = re.compile(r"([A-Za-z]+)\s*\(([^)]*)\)")
+NUMBER_RE = re.compile(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
+IDENTITY = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
 
 
 def project(coords: dict, bounds: dict, rect=(0.0, 0.0, W, H)):
@@ -124,28 +127,81 @@ def translate_offset(transform: str):
     return dx, dy
 
 
-def collect_path_groups(root):
-    """Collect closed path polygons in rendered coordinates.
+def affine_multiply(left, right):
+    """Compose SVG affine matrices as left(right(point))."""
+    a, b, c, d, e, f = left
+    A, B, C, D, E, F = right
+    return (
+        a * A + c * B,
+        b * A + d * B,
+        a * C + c * D,
+        b * C + d * D,
+        a * E + c * F + e,
+        b * E + d * F + f,
+    )
 
-    Translation on a path or any ancestor is accumulated. Unsupported transform
-    types retain the historical raw-coordinate behavior instead of silently
-    inventing geometry; current Country map contracts use translate for insets.
+
+def parse_transform_matrix(transform: str):
+    """Parse the transform forms used by Country SVGs into one affine matrix.
+
+    Supported forms are translate() and matrix(). Multiple transforms are
+    composed in SVG list order. Unsupported transforms return None so the
+    validator fails closed rather than inventing rendered geometry.
+    """
+    if not transform or not transform.strip():
+        return IDENTITY
+    result = IDENTITY
+    pos = 0
+    for match in TRANSFORM_RE.finditer(transform):
+        if transform[pos:match.start()].strip(" ,\t\r\n"):
+            return None
+        name = match.group(1)
+        nums = [float(value) for value in NUMBER_RE.findall(match.group(2))]
+        if name == "translate" and len(nums) in (1, 2):
+            current = (1.0, 0.0, 0.0, 1.0, nums[0], nums[1] if len(nums) == 2 else 0.0)
+        elif name == "matrix" and len(nums) == 6:
+            current = tuple(nums)
+        else:
+            return None
+        result = affine_multiply(result, current)
+        pos = match.end()
+    if transform[pos:].strip(" ,\t\r\n"):
+        return None
+    return result
+
+
+def apply_affine(matrix, point):
+    a, b, c, d, e, f = matrix
+    x, y = point
+    return a * x + c * y + e, b * x + d * y + f
+
+
+def collect_path_groups(root):
+    """Collect closed path polygons in the same coordinates the SVG renders.
+
+    Country maps may position land with translate() in inset groups or with an
+    affine matrix() for a reviewed full-island zoom. Ancestor and path-local
+    transforms are composed exactly before Scene coordinates are tested.
+    Unsupported transforms are skipped instead of falling back to raw path
+    coordinates, because raw coordinates are not rendered geometry.
     """
     groups = []
 
-    def walk(el, dx=0.0, dy=0.0):
-        shift = translate_offset(el.attrib.get("transform", ""))
-        if shift is not None:
-            dx += shift[0]
-            dy += shift[1]
+    def walk(el, parent_matrix=IDENTITY):
+        local = parse_transform_matrix(el.attrib.get("transform", ""))
+        if local is None:
+            return
+        rendered_matrix = affine_multiply(parent_matrix, local)
         if el.tag.rsplit("}", 1)[-1] == "path":
             polys = parse_polygons(el.attrib.get("d", ""))
             if polys:
-                if dx or dy:
-                    polys = [[(x + dx, y + dy) for x, y in poly] for poly in polys]
+                polys = [
+                    [apply_affine(rendered_matrix, point) for point in poly]
+                    for poly in polys
+                ]
                 groups.append(polys)
         for child in el:
-            walk(child, dx, dy)
+            walk(child, rendered_matrix)
 
     walk(root)
     return groups
