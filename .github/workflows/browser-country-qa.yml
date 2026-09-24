@@ -50,6 +50,7 @@ jobs:
           base="$PR_BASE_SHA"
           git diff --name-only "$base"...HEAD > /tmp/browser-changed-files.txt
           python3 - "$GITHUB_OUTPUT" <<'PY'
+          import json
           import re
           import sys
           from pathlib import Path
@@ -57,13 +58,37 @@ jobs:
           output = sys.argv[1]
           files = Path("/tmp/browser-changed-files.txt").read_text().splitlines()
           slugs = set()
+          asset_folders = set()
+
           for path in files:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
               if match:
                   slugs.add(match.group(1))
               match = re.match(r"assets/images/([^/]+)/", path)
               if match:
-                  slugs.add(match.group(1))
+                  asset_folders.add(match.group(1))
+
+          # Asset folders are not always canonical Country slugs
+          # (e.g. assets/images/united-kingdom vs data/countries/unitedkingdom.json).
+          # Resolve them from actual Country JSON image/map references instead of
+          # treating the directory name as a slug.
+          country_dir = Path("data/countries")
+          for folder in sorted(asset_folders):
+              prefix = f"assets/images/{folder}/"
+              matched = set()
+              direct = country_dir / f"{folder}.json"
+              if direct.exists():
+                  matched.add(folder)
+              for country_path in country_dir.glob("*.json"):
+                  try:
+                      payload = country_path.read_text(encoding="utf-8")
+                  except OSError:
+                      continue
+                  if prefix in payload:
+                      matched.add(country_path.stem)
+              if not matched:
+                  raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
+              slugs.update(matched)
 
           shared = any(
               path == "country.html"
