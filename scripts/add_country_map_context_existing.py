@@ -243,7 +243,7 @@ def main():
     data = json.loads(args.country_json.read_text(encoding="utf-8"))
     slug = data.get("slug")
     if slug == 'timorleste':
-        fixture = ROOT / 'tests/fixtures/map-context/timorleste-indonesia-ne10m-v4.1.0.geojson'
+        fixture = ROOT / 'ops/map-context-sources/timorleste/indonesia-ne10m-v4.1.0.geojson'
         result = reconcile_timorleste_foreign(
             args.input.read_text(encoding='utf-8'),
             args.input,
