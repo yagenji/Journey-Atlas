@@ -1,0 +1,49 @@
+name: One-time normalize Saint Lucia food aspect
+
+on:
+  push:
+    branches:
+      - fix/stlucia-food-aspect
+    paths:
+      - '.github/workflows/fix-stlucia-food-aspect.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/stlucia-food-aspect
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check --quiet 'pillow>=10,<13'
+      - name: Center-crop four approved food images to exact 3:2
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          files = [Path(f'assets/images/stlucia/approved/food-{n}.webp') for n in range(1, 5)]
+          for path in files:
+              with Image.open(path) as image:
+                  image.load()
+                  if image.size != (1448, 1086):
+                      raise RuntimeError(f'unexpected source size {path}: {image.size}')
+                  # Preserve the visual center and remove only the excess for exact 3:2.
+                  cropped = image.crop((1, 61, 1447, 1025))
+                  if cropped.size != (1446, 964):
+                      raise RuntimeError(f'bad crop {path}: {cropped.size}')
+                  cropped.save(path, 'WEBP', quality=92, method=6)
+          PY
+      - name: Commit normalized images and remove this one-time workflow
+        run: |
+          rm .github/workflows/fix-stlucia-food-aspect.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/stlucia/approved/food-{1,2,3,4}.webp .github/workflows/fix-stlucia-food-aspect.yml
+          git commit -m "Normalize Saint Lucia food images to 3:2"
+          git push origin HEAD:fix/stlucia-food-aspect
