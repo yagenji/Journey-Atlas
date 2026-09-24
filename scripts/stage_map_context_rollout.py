@@ -30,6 +30,10 @@ from apply_exact_target_clip import apply_exact_target_negative_clip
 ROOT = Path(__file__).resolve().parents[1]
 SVG = "{http://www.w3.org/2000/svg}"
 
+# These Countries were produced after the new-Country surrounding-land spec
+# landed on main (#950). They are intentionally outside this legacy migration.
+NEW_COUNTRY_CONTEXT_SEPARATE = {'dominica', 'dominicanrepublic', 'stlucia'}
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -68,7 +72,7 @@ def protected_target_paths(root):
 
 
 def validate_stage2_candidate(source_text: str, staged_text: str, map_source: str,
-                              action: str, slug: str) -> dict:
+                              action: str, slug: str, review_mode: str) -> dict:
     """Fail closed unless a staged map satisfies the common Stage 2 invariant."""
     source_root = ET.fromstring(source_text)
     staged_root = ET.fromstring(staged_text)
@@ -87,7 +91,9 @@ def validate_stage2_candidate(source_text: str, staged_text: str, map_source: st
             raise RuntimeError(f"Stage 2 context group count invalid: {slug}")
         context = contexts[0]
         context_geometry = any((p.get("d") or "").strip() for p in context.iter(SVG + "path"))
-        if context_geometry:
+        if context_geometry and review_mode in (
+                "common-source-exact-clip-review",
+                "existing-context-source-review"):
             clip_ref = context.get("clip-path", "")
             if not (clip_ref.startswith("url(#") and clip_ref.endswith(")")):
                 raise RuntimeError(f"Stage 2 context lacks exact target-negative clip: {slug}")
@@ -95,7 +101,6 @@ def validate_stage2_candidate(source_text: str, staged_text: str, map_source: st
             clips = [node for node in staged_root.iter(SVG + "clipPath") if node.get("id") == clip_id]
             if len(clips) != 1:
                 raise RuntimeError(f"Stage 2 context clip target missing/ambiguous: {slug}")
-            # Reviewed exact clips all encode a viewport-minus-target operation.
             clip_paths = list(clips[0].iter(SVG + "path"))
             if not clip_paths or not any((p.get("d") or "").strip() for p in clip_paths):
                 raise RuntimeError(f"Stage 2 exact clip contains no geometry: {slug}")
@@ -123,7 +128,10 @@ def validate_stage2_candidate(source_text: str, staged_text: str, map_source: st
             "approved-target-paths-preserved",
             "1200x760-canvas-preserved",
             "source-pinned-surrounding-land",
-            "exact-target-negative-context" if context_geometry else "no-context-land-in-viewport",
+            ("source-specific-individual-review"
+             if review_mode == "individual-source-review"
+             else ("exact-target-negative-context" if context_geometry
+                   else "no-context-land-in-viewport")),
         ],
     }
 
@@ -156,6 +164,8 @@ def derive_roster() -> list[dict]:
         phase = state.get("phase") if state else None
         published = bool(entry.get("atlasPublished"))
         completed_unpublished = not published and phase == "COMPLETE"
+        if slug in NEW_COUNTRY_CONTEXT_SEPARATE:
+            continue
         if not (published or completed_unpublished):
             continue
         if published and state is not None and phase != "COMPLETE":
@@ -217,18 +227,23 @@ def main():
         source = item["source"]
         staged = output / f"{slug}.svg"
         source_text = source.read_text(encoding="utf-8")
-        # Qatar/Kuwait already have context in the Draft branch. Their source-
-        # pinned fixes operate only on a disposable staged copy.
+        review = ledger_by_slug[slug]
+        review_mode = review["reviewMode"]
+        # Qatar/Kuwait already have source-pinned reviewed context in the Draft
+        # branch. Keep that source-specific result; do not layer the common clip.
         if slug in ('qatar', 'kuwait'):
             reviewed = reconcile_gulf_foreign(source_text, source, slug, args.resolution)
-            reviewed = apply_exact_target_negative_clip(reviewed)
             staged.write_text(reviewed, encoding='utf-8')
             action = "stage-context-preview"
         elif 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
-            reviewed = apply_exact_target_negative_clip(source_text)
-            staged.write_text(reviewed, encoding='utf-8')
-            action = ("preserve-existing-context" if reviewed == source_text
-                      else "stage-existing-context-exact-clip")
+            if review_mode == "existing-context-source-review":
+                reviewed = apply_exact_target_negative_clip(source_text)
+                staged.write_text(reviewed, encoding='utf-8')
+                action = ("preserve-existing-context" if reviewed == source_text
+                          else "stage-existing-context-exact-clip")
+            else:
+                staged.write_bytes(source.read_bytes())
+                action = "preserve-existing-context"
         else:
             command = [sys.executable, str(dispatcher), "--country-json", str(item["country_file"]),
                        "--input", str(source), "--output", str(staged), "--resolution", args.resolution]
@@ -244,12 +259,13 @@ def main():
                 staged.write_text(reconcile_elsalvador_foreign(
                     staged.read_text(encoding='utf-8'), source, args.resolution),
                     encoding='utf-8')
-            # Exact target-negative exclusion is always the last display-space
-            # operation, after every source-pinned exception reconciliation.
-            staged.write_text(
-                apply_exact_target_negative_clip(staged.read_text(encoding='utf-8')),
-                encoding='utf-8'
-            )
+            # The common-review cohort gets an exact display-space exclusion.
+            # Individually source-reviewed maps keep their already-reviewed bytes.
+            if review_mode == "common-source-exact-clip-review":
+                staged.write_text(
+                    apply_exact_target_negative_clip(staged.read_text(encoding='utf-8')),
+                    encoding='utf-8'
+                )
             if contains_generated_context_geometry(staged):
                 action = "stage-context-preview"
             else:
@@ -257,9 +273,8 @@ def main():
                 action = "preserve-no-foreign-land"
         staged_text = staged.read_text(encoding="utf-8")
         stage2 = validate_stage2_candidate(
-            source_text, staged_text, item["map_source"], action, slug
+            source_text, staged_text, item["map_source"], action, slug, review_mode
         )
-        review = ledger_by_slug[slug]
         manifest["entries"].append({
             "slug": slug,
             "published": item["published"],
