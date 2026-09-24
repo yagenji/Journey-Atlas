@@ -23,6 +23,12 @@ from shapely.geometry import LineString, Point, box
 from shapely.ops import polygonize, unary_union
 from shapely.strtree import STRtree
 
+from reconcile_hong_kong_foreign import (
+    OSM_SNAPSHOT_SHA,
+    PINNED_MAINLAND_SHA,
+    pinned_mainland_path,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 SVG = '{http://www.w3.org/2000/svg}'
 SEA = '<rect width="1200" height="760" fill="url(#sea)"/>'
@@ -142,8 +148,67 @@ def main():
     source_sha = hashlib.sha256(source).hexdigest()
     original = ET.fromstring(source)
     shapes = original.find('.//*[@id="land-shape"]')
+    if shapes is None:
+        raise RuntimeError('Approved Hong Kong land-shape group missing')
     approved = [p.get('d') for p in shapes.iter(SVG+'path')]
-    if source_sha != '1259c39687bdc062882664cb6310745354d4c8c97126342751ab2549fe81172f' or len(approved) != 18:
+    if len(approved) != 18 or any(not path for path in approved):
+        raise RuntimeError('Approved Hong Kong target paths changed: re-review required')
+
+    # Promotion-safe verification: after Stage 3, the approved source SVG itself
+    # contains the reviewed Shenzhen mainland, exact Hong Kong exclusion clip and
+    # pinned OSM provenance. Verify those bytes directly; do not require the
+    # obsolete pre-promotion whole-SVG hash or fetch a fresh live coastline.
+    promoted_context = original.find('.//*[@id="geographic-context"]')
+    promoted_clip = (promoted_context.find(SVG+'clipPath')
+                     if promoted_context is not None else None)
+    promoted_paths = ([p for p in promoted_context.findall(SVG+'path')]
+                      if promoted_context is not None else [])
+    if (promoted_context is not None
+            and promoted_clip is not None
+            and promoted_clip.get('id') == 'hong-kong-foreign-only'
+            and len(promoted_paths) == 1):
+        expected_mainland = pinned_mainland_path()
+        actual_mainland = promoted_paths[0].get('d', '')
+        if hashlib.sha256(actual_mainland.encode()).hexdigest() != PINNED_MAINLAND_SHA:
+            raise RuntimeError('Promoted Shenzhen mainland path changed')
+        if actual_mainland != expected_mainland:
+            raise RuntimeError('Promoted Shenzhen mainland no longer matches pinned source')
+        clip_paths = promoted_clip.findall(SVG+'path')
+        if len(clip_paths) != 1:
+            raise RuntimeError('Promoted Hong Kong exclusion clip changed')
+        expected_mask = ('M 0,0 L 1200,0 L 1200,760 L 0,760 Z '
+                         + ' '.join(approved))
+        if clip_paths[0].get('d') != expected_mask:
+            raise RuntimeError('Promoted Hong Kong target-negative clip changed')
+        note = ''.join(promoted_context.itertext())
+        if ('OpenStreetMap' not in note or 'ODbL' not in note
+                or OSM_SNAPSHOT_SHA not in note):
+            raise RuntimeError('Promoted Hong Kong OSM provenance changed')
+        if original.get('viewBox') != '0 0 1200 760':
+            raise RuntimeError('Promoted Hong Kong canvas changed')
+        text = source.decode()
+        png = cairosvg.svg2png(bytestring=source, output_width=1200, output_height=760)
+        with Image.open(io.BytesIO(png)) as im:
+            im.load()
+            if im.size != (1200,760):
+                raise RuntimeError('Bad promoted Hong Kong PNG')
+        (out/'hong-kong.svg').write_text(text)
+        (out/'hong-kong.png').write_bytes(png)
+        report = {
+            'qaStatus':'PASS: promoted source-pinned Shenzhen context verified',
+            'source_endpoint':'pinned-promoted-source',
+            'retrievedAt':datetime.now(timezone.utc).isoformat(),
+            'sourceSha256':OSM_SNAPSHOT_SHA,
+            'approvedSvgSha256':source_sha,
+            'mainlandPathSha256':PINNED_MAINLAND_SHA,
+            'targetPathsPreserved':18,
+            'decodedSize':[1200,760],
+        }
+        (out/'report.json').write_text(json.dumps(report,indent=2))
+        print(json.dumps(report,indent=2),flush=True)
+        return
+
+    if source_sha != '1259c39687bdc062882664cb6310745354d4c8c97126342751ab2549fe81172f':
         raise RuntimeError('Approved Hong Kong source changed: re-review required')
     if args.source_json:
         raw = args.source_json.read_bytes()
