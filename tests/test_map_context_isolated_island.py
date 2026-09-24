@@ -13,6 +13,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import add_country_map_context as maps
+import add_country_map_context_legacy as legacy
 from filter_duplicate_target_context import remove_target_land_context
 
 SVG = '{http://www.w3.org/2000/svg}'
@@ -46,6 +47,30 @@ class IsolatedSelfLandTest(unittest.TestCase):
         with Image.open(BytesIO(cairosvg.svg2png(bytestring=result.encode(), output_width=1200, output_height=760))) as png:
             png.load()
             self.assertEqual(png.size, (1200, 760))
+
+    def test_antigua_edge_closure_is_not_foreign_land(self):
+        data = json.loads((ROOT / 'data/countries/antiguabarbuda.json').read_text(encoding='utf-8'))
+        region = next(item for item in data['map']['regions'] if item['id'] == 'antigua')
+        bounds = tuple(float(region['bounds'][key]) for key in ('west', 'south', 'east', 'north'))
+        rect = tuple(float(region['rect'][key]) for key in ('x', 'y', 'width', 'height'))
+        canvas = maps.canvas_bounds(bounds, rect)
+
+        direct = maps.context_geometry(canvas, 'i')
+        sampled = legacy._sample_region_beyond_viewport(canvas, 'i')
+        direct_parts = [direct] if direct.geom_type == 'Polygon' else list(direct.geoms)
+        sampled_parts = [sampled] if sampled.geom_type == 'Polygon' else list(sampled.geoms)
+
+        self.assertEqual(len(direct_parts), 2)
+        edge_fragment = min(direct_parts, key=lambda part: part.area)
+        self.assertLess(edge_fragment.area, 0.00001)
+        self.assertAlmostEqual(edge_fragment.bounds[2], canvas[2], places=9)
+        self.assertEqual(len(sampled_parts), 1)
+        self.assertAlmostEqual(sampled_parts[0].area, max(part.area for part in direct_parts), places=12)
+
+        current = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+        context = ET.fromstring(current).find('.//*[@id="geographic-context"]')
+        self.assertIsNotNone(context)
+        self.assertEqual(list(context.iter(SVG + 'path')), [])
 
     def test_timor_shared_island_keeps_real_neighbor(self):
         original = preview('timorleste')
