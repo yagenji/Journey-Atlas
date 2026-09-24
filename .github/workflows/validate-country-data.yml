@@ -66,14 +66,6 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install image QA dependency
-        run: python3 -m pip install --disable-pip-version-check --quiet pillow
-
       - name: Detect target Countries
         id: target
         shell: bash
@@ -90,6 +82,7 @@ jobs:
               echo "slugs=" >> "$GITHUB_OUTPUT"
               echo "full=true" >> "$GITHUB_OUTPUT"
             fi
+            echo "publication_only=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -98,6 +91,7 @@ jobs:
           else
             base="$(git rev-parse HEAD^)"
           fi
+
           git diff --name-only "$base"...HEAD > /tmp/country-changed-files.txt
           python3 - "$base" "$GITHUB_OUTPUT" <<'PY'
           import json
@@ -108,6 +102,8 @@ jobs:
 
           base, output = sys.argv[1:]
           files = Path("/tmp/country-changed-files.txt").read_text().splitlines()
+          publication_only = files == ["data/atlas-destinations.json"]
+
           slugs = set()
           for path in files:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
@@ -129,7 +125,7 @@ jobs:
                       if old_rows.get(slug) != new_rows.get(slug):
                           slugs.add(slug)
               except Exception:
-                  pass
+                  publication_only = False
 
           shared_validator_paths = {
               "scripts/validate_country.py",
@@ -147,19 +143,40 @@ jobs:
               or path in shared_validator_paths
               for path in files
           )
+
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
               handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
+              handle.write("publication_only=" + ("true" if publication_only else "false") + "\n")
           PY
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image QA dependency
+        if: steps.target.outputs.publication_only != 'true'
+        run: python3 -m pip install --disable-pip-version-check --quiet pillow
+
       - name: Validate tool syntax and regression contracts
+        if: steps.target.outputs.publication_only != 'true'
         run: |
-          python3 -m py_compile             scripts/new_country.py             scripts/validate_country.py             scripts/validate_country_editorial_v2.py             scripts/validate_country_quality_v5.py             scripts/validate_country_map_v6.py             scripts/validate_images.py             scripts/audit_country_image_delivery_targeted.py             scripts/audit_country_region_labels.py             scripts/audit_published_countries.py
+          python3 -m py_compile \
+            scripts/new_country.py \
+            scripts/validate_country.py \
+            scripts/validate_country_editorial_v2.py \
+            scripts/validate_country_quality_v5.py \
+            scripts/validate_country_map_v6.py \
+            scripts/validate_images.py \
+            scripts/audit_country_image_delivery_targeted.py \
+            scripts/audit_country_region_labels.py \
+            scripts/audit_published_countries.py
           python3 scripts/test_country_editorial_v2.py
           python3 scripts/test_country_quality_v5.py
 
       - name: Run targeted finish-line QA
-        if: steps.target.outputs.slugs != ''
+        if: steps.target.outputs.slugs != '' && steps.target.outputs.publication_only != 'true'
         env:
           TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
         shell: bash
@@ -179,7 +196,7 @@ jobs:
           done
 
       - name: Run full Country QA
-        if: steps.target.outputs.full == 'true'
+        if: steps.target.outputs.full == 'true' && steps.target.outputs.publication_only != 'true'
         run: |
           python3 scripts/validate_country_editorial_v2.py
           python3 scripts/validate_country_quality_v5.py
@@ -188,6 +205,12 @@ jobs:
           python3 scripts/validate_country.py --published
           python3 scripts/validate_images.py --mode audit
           python3 scripts/validate_images.py --mode hard
+
+      - name: Publication-only PR reuses reviewed Country QA
+        if: steps.target.outputs.publication_only == 'true'
+        run: |
+          echo "Only data/atlas-destinations.json changed."
+          echo "Country content, images and map were already reviewed; finish-line QA is not repeated."
 
       - name: Validate shared registries
         run: |
