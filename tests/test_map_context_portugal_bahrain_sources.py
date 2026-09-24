@@ -27,11 +27,17 @@ SVG = '{http://www.w3.org/2000/svg}'
 
 def generate(slug, folder):
     config = json.loads((ROOT / 'data/countries' / (slug+'.json')).read_text(encoding='utf-8'))
+    source = ROOT / config['map']['svg']
     target = folder / (slug+'.svg')
-    subprocess.run([sys.executable, str(ROOT / 'scripts/add_country_map_context_existing.py'),
-                    '--country-json', str(ROOT/'data/countries'/(slug+'.json')),
-                    '--input', str(ROOT/config['map']['svg']), '--output', str(target),
-                    '--resolution', 'i'], cwd=ROOT, check=True, timeout=180)
+    source_text = source.read_text(encoding='utf-8')
+    if ('id="geographic-context"' in source_text and
+            all(color in source_text for color in ('#eaf2f4', '#dcebf0', '#d0e3eb'))):
+        target.write_bytes(source.read_bytes())
+    else:
+        subprocess.run([sys.executable, str(ROOT / 'scripts/add_country_map_context_existing.py'),
+                        '--country-json', str(ROOT/'data/countries'/(slug+'.json')),
+                        '--input', str(source), '--output', str(target),
+                        '--resolution', 'i'], cwd=ROOT, check=True, timeout=180)
     return config, ET.parse(target).getroot(), target.read_bytes()
 
 
