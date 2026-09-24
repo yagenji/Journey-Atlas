@@ -76,6 +76,8 @@ class TimorLesteContextSourceTest(unittest.TestCase):
         self.assertIsNotNone(clip)
         clip_paths = list(clip.iter(SVG + 'path'))
         self.assertEqual(len(clip_paths), 1)
+        self.assertEqual(clip_paths[0].get('clip-rule'), 'evenodd')
+        self.assertEqual(clip_paths[0].get('fill-rule'), 'evenodd')
         self.assertIn(protected_before[0], clip_paths[0].get('d', ''))
 
         for color in ('#eaf2f4', '#dcebf0', '#d0e3eb'):
