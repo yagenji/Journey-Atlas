@@ -23,6 +23,7 @@ from xml.etree import ElementTree as ET
 from reconcile_gulf_foreign import reconcile as reconcile_gulf_foreign
 from reconcile_bahrain_hawar_sibling import reconcile as reconcile_hawar_sibling
 from reconcile_elsalvador_foreign import reconcile as reconcile_elsalvador_foreign
+from apply_exact_target_clip import apply_exact_target_negative_clip
 
 ROOT = Path(__file__).resolve().parents[1]
 SVG = "{http://www.w3.org/2000/svg}"
@@ -116,8 +117,10 @@ def main():
                               encoding='utf-8')
             action = "stage-context-preview"
         elif 'id="geographic-context"' in source_text and all(c in source_text for c in ("#eaf2f4", "#dcebf0", "#d0e3eb")):
-            staged.write_bytes(source.read_bytes())
-            action = "preserve-existing-context"
+            reviewed = apply_exact_target_negative_clip(source_text)
+            staged.write_text(reviewed, encoding='utf-8')
+            action = ("preserve-existing-context" if reviewed == source_text
+                      else "stage-existing-context-exact-clip")
         else:
             command = [sys.executable, str(dispatcher), "--country-json", str(item["country_file"]),
                        "--input", str(source), "--output", str(staged), "--resolution", args.resolution]
