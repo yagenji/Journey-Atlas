@@ -5,8 +5,8 @@
   "contentRef": "country/stvincentgrenadines",
   "stateRef": "country/stvincentgrenadines",
   "phase": "QA",
-  "stateRevision": 8,
-  "updatedAt": "2026-09-24T01:28:27+09:00",
+  "stateRevision": 9,
+  "updatedAt": "2026-09-24T09:27:00+09:00",
   "hero": {
     "state": "NOT_STARTED",
     "asset": "assets/images/stvincentgrenadines/approved/hero.webp",
@@ -219,8 +219,8 @@
     "state": "PASS",
     "expectedRasterCount": 13,
     "verifiedRasterCount": 13,
-    "verifiedAt": "2026-09-24T00:12:00+09:00",
-    "verificationBasis": "Exact user-handoff raster set from upload commit ce673cdcfd63a194fcced6912b38c5a0c54fe567 is preserved without regeneration. Canonical copies were matched by Git blob identity before delivery normalization. All production rasters now live under approved/. Six original 1672x941 Scene deliveries were centered-cropped only to the required 3:2 frame and resized to 1200x800; two 1536x1024 Scenes and four 1536x1024 Taste images were resized to 1200x800 without crop. The Hero remains its preserved 1536x1024 delivery. Missing original generation UUIDs are intentionally not fabricated. Final delivery blobs are pinned by the closed-provenance validator."
+    "verifiedAt": "2026-09-24T08:33:20+09:00",
+    "verificationBasis": "Final user-approved 13-raster review handoff is materialized in upload commit 1f308a1953a087f2fe959242a9745691872d5f82. Hero is preserved; all eight Scene and four Taste rasters are the approved replacements at the canonical approved/ paths. Exact final Git blob identities are pinned by the Saint Vincent closed-provenance validator; no generation UUIDs are fabricated."
   },
   "reviewPreview": {
     "mode": "TARGETED_COUNTRY_BRANCH_PREVIEW",
@@ -254,9 +254,9 @@
   },
   "publicationPipelineVersion": 2,
   "closedProvenanceException": {
-    "id": "stvincentgrenadines-preserve-13-20260923",
+    "id": "stvincentgrenadines-final-13-20260924",
     "status": "APPLIED",
-    "sourceCommit": "ce673cdcfd63a194fcced6912b38c5a0c54fe567",
+    "sourceCommit": "1f308a1953a087f2fe959242a9745691872d5f82",
     "authorizationDate": "2026-09-24"
   }
 }
