@@ -1,0 +1,33 @@
+name: One-time sync map-context rollout with main
+
+on:
+  push:
+    branches:
+      - system/map-context-shared-preparation
+    paths:
+      - '.github/workflows/sync-map-context-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: system/map-context-shared-preparation
+          fetch-depth: 0
+      - name: Merge latest main and remove one-time workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+          rm .github/workflows/sync-map-context-main.yml
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync map context rollout with latest main"
+          fi
+          git push origin HEAD:system/map-context-shared-preparation
