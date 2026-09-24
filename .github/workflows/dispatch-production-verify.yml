@@ -1,0 +1,32 @@
+name: Dispatch production verify for current main
+
+on:
+  push:
+    branches:
+      - system/map-context-shared-preparation
+    paths:
+      - '.github/workflows/dispatch-production-verify.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: system/map-context-shared-preparation
+      - name: Dispatch production verification on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run verify-production.yml --ref main
+      - name: Remove one-time dispatcher
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/dispatch-production-verify.yml
+          git add .github/workflows/dispatch-production-verify.yml
+          git commit -m "Remove temporary production verify dispatcher"
+          git push origin HEAD:system/map-context-shared-preparation
