@@ -19,16 +19,33 @@ jobs:
         with:
           ref: system/map-context-shared-preparation
           fetch-depth: 0
-      - name: Sync latest main and remove this workflow
+      - name: Sync latest main with reviewed conflict resolution
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
+          set +e
           git merge --no-edit origin/main
+          merge_status=$?
+          set -e
+          if [ "$merge_status" -ne 0 ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            if [ "$conflicts" != ".github/workflows/validate-country-data.yml" ]; then
+              echo "Unexpected merge conflicts:"
+              printf '%s\n' "$conflicts"
+              exit 1
+            fi
+            git checkout --theirs .github/workflows/validate-country-data.yml
+            git add .github/workflows/validate-country-data.yml
+          fi
           rm .github/workflows/sync-dispatch-map-final.yml
           git add -A
-          git commit -m "Sync final map rollout with latest main"
+          if git rev-parse -q --verify MERGE_HEAD >/dev/null; then
+            git commit --no-edit
+          else
+            git commit -m "Sync final map rollout with latest main"
+          fi
           git push origin HEAD:system/map-context-shared-preparation
           echo "FINAL_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - name: Dispatch official final checks
