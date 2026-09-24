@@ -32,7 +32,7 @@ SVG = "{http://www.w3.org/2000/svg}"
 
 # These Countries were produced after the new-Country surrounding-land spec
 # landed on main (#950). They are intentionally outside this legacy migration.
-NEW_COUNTRY_CONTEXT_SEPARATE = {'dominica', 'dominicanrepublic', 'stlucia'}
+NEW_COUNTRY_CONTEXT_SEPARATE = {'dominica', 'dominicanrepublic', 'stlucia', 'stvincentgrenadines'}
 
 
 def sha256(path: Path) -> str:
