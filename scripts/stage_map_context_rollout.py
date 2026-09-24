@@ -55,7 +55,7 @@ def protected_target_paths(root):
                 fill = cursor.attrib["fill"]
                 break
             cursor = parents.get(cursor)
-        if fill != "url(#land)":
+        if fill not in ("url(#land)", "url(#country)"):
             continue
         cursor = path
         inside_context = False
