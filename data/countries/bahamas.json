@@ -21,9 +21,10 @@
       "y": -18
     },
     "mapOffset": {
-      "x": -2.5,
-      "y": -1.5
-    }
+      "x": 0,
+      "y": 0
+    },
+    "mapRegion": "nassau"
   },
   "hero": {
     "lead": "細い石灰岩の陸地を境に、片側には深い大西洋の青、反対側には浅く明るいバンクの海が広がる。700を超える島と小島からなるバハマでは、海の深さと地形の違いがそのまま色になって現れる。",
@@ -47,7 +48,40 @@
     },
     "svg": "assets/images/bahamas/map-atlas-v1.svg",
     "route": null,
-    "source": "Primary target geometry: Natural Earth 1:10m BHS cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection. Hawksbill Cay (Scene 5) and Elbow Cay / Hope Town (Scene 6) shoreline geometry supplemented from GSHHG/GSHHS intermediate resolution via Basemap 2.0.0, matched to verified named-island coordinates; GSHHG license LGPL v3 or earlier. WGS84, local-equirectangular 1200×760; checked 2026-09-24."
+    "source": "Primary target geometry: Natural Earth 1:10m BHS cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection. Hawksbill Cay (Scene 5) and Elbow Cay / Hope Town (Scene 6) shoreline geometry supplemented from GSHHG/GSHHS intermediate resolution via Basemap 2.0.0. Nassau / New Providence detail inset uses the same Natural Earth WGS84 geometry; real coordinates are unchanged. 1200×760; reviewed 2026-09-25.",
+    "regions": [
+      {
+        "id": "main",
+        "bounds": {
+          "north": 27.35,
+          "south": 20.65,
+          "west": -80.1,
+          "east": -72.55
+        },
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 930,
+          "height": 760
+        }
+      },
+      {
+        "id": "nassau",
+        "bounds": {
+          "north": 25.085,
+          "south": 25.069,
+          "west": -77.348,
+          "east": -77.328
+        },
+        "rect": {
+          "x": 970,
+          "y": 550,
+          "width": 210,
+          "height": 190
+        }
+      }
+    ],
+    "insetNote": "ナッソー周辺は右下に拡大表示"
   },
   "scenes": [
     {
@@ -94,9 +128,10 @@
       },
       "image": "assets/images/bahamas/approved/scene-3.webp",
       "mapOffset": {
-        "x": 1.5,
-        "y": 3
-      }
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "nassau"
     },
     {
       "id": "gold-rock-beach",
@@ -513,7 +548,17 @@
       "text": "エグズーマ・ケイズ陸海公園など保護区ごとにルールがある。珊瑚や貝を採らず、停泊・遊泳・釣りは管理者の案内に従う。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇺🇸",
+      "countryEn": "UNITED STATES",
+      "countryJa": "アメリカ合衆国",
+      "path": "Bimini / Freeport → Fort Lauderdale",
+      "description": "ビミニまたはグランド・バハマから南フロリダへ定期フェリーで渡る。島国からアメリカの都市圏へ、海路のまま旅をつなげられる。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "belize",
@@ -548,7 +593,8 @@
     "transport": "2026-09-24",
     "climate": "2026-09-24",
     "map": "2026-09-24",
-    "sceneCoordinates": "2026-09-24"
+    "sceneCoordinates": "2026-09-24",
+    "nextRoutes": "2026-09-25"
   },
   "sources": {
     "countryProfile": "Ministry of Foreign Affairs of Japan, Bahamas basic data, updated 2025-05-27: area 13,880 km², capital Nassau, English official language, Christianity and Bahamian dollar. https://www.mofa.go.jp/mofaj/area/bahama/data.html",
@@ -563,6 +609,7 @@
     "transport": "The Bahamas official tourism: 20 international airports and island hopping by scheduled/charter flights, private boats and Bahamas Ferries; checked 2026-09-24. https://www.bahamas.com/getting-here",
     "eleuthera": "The Bahamas official tourism: Harbour Island Pink Sands Beach and more than 35 miles of blush sands on mainland Eleuthera. https://www.bahamas.com/islands/eleuthera-harbour-island/getting-around",
     "sceneCoordinates": "WGS84 feature points checked 2026-09-24: Dean's Blue Hole 23.10634,-75.00861; Pink Sands Beach 25.50547,-76.63161; Queen's Staircase 25.07314,-77.33767; Gold Rock Beach 26.59997,-78.40436; Hawksbill Cay 24.47637,-76.76783 (GeoNames/Mapcarta); Elbow Reef Lighthouse 26.53974,-76.96210; Inagua National Park reference 21.0833,-73.3333; Captain Bill's Blue Hole 24.74215,-77.86188; Hero Glass Window Bridge 25.43758,-76.60419. Sources cross-checked against official destination pages plus OpenStreetMap/GeoNames, Ramsar/UNESCO and published field-study coordinates where applicable.",
-    "map": "Primary target geometry: Natural Earth 1:10m cultural vectors for Bahamas via LonnyGomes/CountryGeoJSONCollection, public domain. Small-island shoreline supplements for Hawksbill Cay and Elbow Cay / Hope Town use GSHHG/GSHHS intermediate resolution via Basemap 2.0.0; GSHHG licensed LGPL v3 or earlier. Named-island identity matched to verified coordinates. WGS84; 1200×760. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/about/terms-of-use/ ; https://github.com/GenericMappingTools/gshhg-gmt"
+    "map": "Primary target geometry: Natural Earth 1:10m cultural vectors for Bahamas via LonnyGomes/CountryGeoJSONCollection, public domain. Small-island shoreline supplements for Hawksbill Cay and Elbow Cay / Hope Town use GSHHG/GSHHS intermediate resolution via Basemap 2.0.0; GSHHG licensed LGPL v3 or earlier. Named-island identity matched to verified coordinates. WGS84; 1200×760. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/about/terms-of-use/ ; https://github.com/GenericMappingTools/gshhg-gmt",
+    "nextRoutes": "The Bahamas official tourism lists international ferries from Bimini to Fort Lauderdale (W, F) and Freeport / Grand Bahama to Fort Lauderdale (Tu, Th, Sa); Baleària Caribbean currently lists Bimini–Fort Lauderdale and Grand Bahama–Fort Lauderdale routes. Checked 2026-09-25. https://www.bahamas.com/getting-here ; https://www.baleariacaribbean.com/en/routes-and-schedules"
   }
 }
