@@ -91,6 +91,31 @@ class IsolatedSelfLandTest(unittest.TestCase):
         self.assertIn('#dcebf0', current)
         self.assertIn('#d0e3eb', current)
 
+    def test_landlocked_microstates_have_full_land_context(self):
+        for slug in ('andorra', 'liechtenstein', 'sanmarino', 'vaticancity'):
+            with self.subTest(slug=slug):
+                data = json.loads((ROOT / 'data/countries' / f'{slug}.json').read_text(encoding='utf-8'))
+                bounds = tuple(float(data['map']['bounds'][key]) for key in ('west', 'south', 'east', 'north'))
+                canvas = maps.canvas_bounds(bounds)
+                geometry = maps.context_geometry(canvas, 'i')
+
+                self.assertEqual(geometry.geom_type, 'Polygon')
+                self.assertEqual(len(geometry.interiors), 0)
+                for actual, expected in zip(geometry.bounds, canvas):
+                    self.assertAlmostEqual(actual, expected, places=12)
+                expected_area = (canvas[2] - canvas[0]) * (canvas[3] - canvas[1])
+                self.assertAlmostEqual(geometry.area, expected_area, places=12)
+
+                current = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+                context = ET.fromstring(current).find('.//*[@id="geographic-context"]')
+                self.assertIsNotNone(context)
+                context_paths = list(context.iter(SVG + 'path'))
+                self.assertEqual(len(context_paths), 1)
+                d = context_paths[0].get('d', '')
+                self.assertIn('1200.0,0.0', d)
+                self.assertIn('1200.0,760.0', d)
+                self.assertIn('760.0', d)
+
     def test_timor_shared_island_keeps_real_neighbor(self):
         original = preview('timorleste')
         result, _ = remove_target_land_context(original)
