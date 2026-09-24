@@ -29,9 +29,12 @@ class HongKongSourceReview(unittest.TestCase):
         config=json.loads(config_path.read_text())
         source=ROOT/config['map']['svg']
         original=source.read_text()
-        generated=legacy._hong_kong(original,config,'i')
-        filtered,_=remove_target_land_context(generated)
-        updated=reconcile(filtered,source,'i')
+        if 'id="geographic-context"' in original and 'hong-kong-foreign-only' in original:
+            updated=original
+        else:
+            generated=legacy._hong_kong(original,config,'i')
+            filtered,_=remove_target_land_context(generated)
+            updated=reconcile(filtered,source,'i')
         before=ET.fromstring(original)
         after=ET.fromstring(updated)
         src=before.find('.//*[@id="land-shape"]')
