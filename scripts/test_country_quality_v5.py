@@ -218,6 +218,19 @@ def test_v6_restricted_route_requires_status_note() -> None:
     assert any("statusNote is required" in error for error in errors), errors
 
 
+def test_v6_air_next_route_is_rejected() -> None:
+    data = v6_data()
+    data["nextRoutes"] = [{
+        "countryJa": "隣国",
+        "path": "City → Neighbor (air)",
+        "description": "隣国への航空接続。",
+        "travelerRoute": True,
+        "status": "OPEN",
+    }]
+    errors = quality.validate_data(data, "air-route.json")
+    assert any("must not use air travel" in error for error in errors), errors
+
+
 def test_v6_related_country_requires_affinity() -> None:
     data = v6_data()
     data["relatedCountries"][0]["affinityType"] = ""
@@ -275,6 +288,7 @@ if __name__ == "__main__":
     test_v6_cross_section_subject_overlap()
     test_v6_temporarily_restricted_route_is_kept_with_note()
     test_v6_restricted_route_requires_status_note()
+    test_v6_air_next_route_is_rejected()
     test_v6_related_country_requires_affinity()
     test_v6_encounters_require_breadth()
     test_v6_generic_population_requires_exceptional_scale()
