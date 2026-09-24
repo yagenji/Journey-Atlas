@@ -191,6 +191,18 @@ def main():
         parser.error("Staging output directory must be new or empty")
     output.mkdir(parents=True, exist_ok=True)
     roster = derive_roster()
+    ledger = load_json(ROOT / "ops" / "map-context-stage2-review.json")
+    ledger_entries = ledger.get("entries") or []
+    ledger_by_slug = {entry.get("slug"): entry for entry in ledger_entries}
+    roster_slugs = {item["slug"] for item in roster}
+    if (ledger.get("stage") != "2" or ledger.get("stageStatus") != "COMPLETE"
+            or ledger.get("promotionEligible") is not False
+            or len(ledger_by_slug) != len(ledger_entries)
+            or set(ledger_by_slug) != roster_slugs):
+        raise RuntimeError("Stage 2 review ledger does not match the exact selected roster")
+    if any(entry.get("status") != "PASS" or entry.get("promotionEligible") is not False
+           for entry in ledger_entries):
+        raise RuntimeError("Stage 2 review ledger contains a non-PASS or promotable entry")
     manifest = {
         "schemaVersion": 1,
         "sourceCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
@@ -247,12 +259,14 @@ def main():
         stage2 = validate_stage2_candidate(
             source_text, staged_text, item["map_source"], action, slug
         )
+        review = ledger_by_slug[slug]
         manifest["entries"].append({
             "slug": slug,
             "published": item["published"],
             "phase": item["phase"],
             "mapRef": item["map_ref"],
             "targetSource": item["map_source"],
+            "reviewMode": review["reviewMode"],
             "surroundingSource": (
                 "Basemap 2.0.0 / GSHHG 2.3.6 WGS84, or the source-pinned "
                 "country exception embedded in the staged SVG"
