@@ -2,25 +2,6 @@ name: Validate country data
 
 on:
   pull_request:
-    paths:
-      - "data/countries/**"
-      - "data/atlas-destinations.json"
-      - "data/theme-taxonomy.json"
-      - "data/region-taxonomy.json"
-      - "assets/images/**"
-      - "country.html"
-      - "assets/css/**"
-      - "assets/js/**"
-      - "scripts/validate_country.py"
-      - "scripts/validate_country_editorial_v2.py"
-      - "scripts/validate_country_quality_v5.py"
-      - "scripts/validate_country_map_v6.py"
-      - "scripts/validate_images.py"
-      - "scripts/audit_country_image_delivery_targeted.py"
-      - "scripts/audit_country_region_labels.py"
-      - "scripts/audit_published_countries.py"
-      - "scripts/new_country.py"
-      - ".github/workflows/validate-country-data.yml"
   push:
     branches: ["main"]
     paths:
