@@ -17,8 +17,8 @@
     },
     "labelPosition": "left",
     "labelOffset": {
-      "x": -18,
-      "y": -18
+      "x": -12,
+      "y": -8
     },
     "mapOffset": {
       "x": 0,
@@ -48,40 +48,24 @@
     },
     "svg": "assets/images/bahamas/map-atlas-v1.svg",
     "route": null,
-    "source": "Primary target geometry: Natural Earth 1:10m BHS cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection. Hawksbill Cay (Scene 5) and Elbow Cay / Hope Town (Scene 6) shoreline geometry supplemented from GSHHG/GSHHS intermediate resolution via Basemap 2.0.0. Nassau / New Providence detail inset uses the same Natural Earth WGS84 geometry; real coordinates are unchanged. 1200×760; reviewed 2026-09-25.",
+    "source": "Primary target geometry: Natural Earth 1:10m BHS cultural vectors, public domain, via LonnyGomes/CountryGeoJSONCollection. Hawksbill Cay (Scene 5) and Elbow Cay / Hope Town (Scene 6) shoreline geometry supplemented from GSHHG/GSHHS intermediate resolution via Basemap 2.0.0. Nassau detail inset uses the established Qatar locator/inset presentation with the same WGS84 New Providence geometry; national-map geometry and real coordinates remain unchanged. 1200×760; reviewed 2026-09-25.",
     "regions": [
-      {
-        "id": "main",
-        "bounds": {
-          "north": 27.35,
-          "south": 20.65,
-          "west": -80.1,
-          "east": -72.55
-        },
-        "rect": {
-          "x": 0,
-          "y": 0,
-          "width": 930,
-          "height": 760
-        }
-      },
       {
         "id": "nassau",
         "bounds": {
-          "north": 25.085,
-          "south": 25.069,
-          "west": -77.348,
-          "east": -77.328
+          "north": 25.087,
+          "south": 25.059,
+          "west": -77.355,
+          "east": -77.325
         },
         "rect": {
-          "x": 970,
-          "y": 550,
-          "width": 210,
-          "height": 190
+          "x": 805,
+          "y": 420,
+          "width": 360,
+          "height": 270
         }
       }
-    ],
-    "insetNote": "ナッソー周辺は右下に拡大表示"
+    ]
   },
   "scenes": [
     {
@@ -129,7 +113,7 @@
       "image": "assets/images/bahamas/approved/scene-3.webp",
       "mapOffset": {
         "x": 0,
-        "y": 0
+        "y": 1.2
       },
       "mapRegion": "nassau"
     },
