@@ -2,11 +2,10 @@
 <metadata>Target land geometry: geoBoundaries gbOpen BRB ADM1 dissolved visually by shared-edge fill; source OpenStreetMap / Wambacher; Creative Commons Attribution 2.5 Generic in the pinned 2005 boundary release mirrored by tiny-atlas, source URL https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/BRB/ADM1/geoBoundaries-BRB-ADM1_simplified.geojson . WGS84; 1200×760; bounds W -59.69 S 13.00 E -59.39 N 13.37. Verified 2026-09-24.</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
-<linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
 <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
 </defs>
 <rect width="1200" height="760" fill="url(#sea)"/>
-<g filter="url(#shadow)" fill="url(#land)" fill-rule="evenodd">
+<g filter="url(#shadow)" fill="#d4cc9b" fill-rule="evenodd">
 <path d="M 667.2,480.0 L 623.8,420.7 L 609.8,402.3 L 599.9,388.5 L 592.5,395.9 L 574.2,413.8 L 574.1,413.9 L 553.6,421.6 L 517.8,435.5 L 516.1,436.2 L 518.8,446.5 L 524.7,472.6 L 531.2,500.0 L 534.5,514.4 L 537.9,529.0 L 541.0,542.3 L 545.2,560.3 L 545.2,560.3 L 657.3,504.3 L 667.2,480.0 Z"/>
 <path d="M 524.9,147.5 L 532.3,142.7 L 529.0,136.6 L 524.2,136.1 L 527.1,130.4 L 521.5,123.2 L 511.3,120.0 L 489.6,100.2 L 490.1,97.2 L 480.3,87.5 L 468.1,82.0 L 465.2,77.4 L 454.0,72.6 L 443.0,75.5 L 439.9,73.3 L 407.0,89.3 L 398.8,104.3 L 380.5,125.7 L 378.6,131.9 L 381.7,160.2 L 380.1,176.9 L 386.5,197.6 L 524.9,147.5 Z"/>
 <path d="M 595.9,278.4 L 588.0,264.2 L 570.3,242.7 L 547.1,196.9 L 543.9,175.7 L 533.4,156.7 L 492.3,215.9 L 479.8,272.3 L 479.8,272.3 L 484.9,314.7 L 530.8,339.4 L 530.9,339.4 L 539.7,327.0 L 546.7,317.0 L 553.9,307.2 L 595.9,278.4 Z"/>
