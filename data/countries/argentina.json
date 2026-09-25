@@ -510,9 +510,9 @@
   ],
   "tips": [
     {
-      "topicKey": "iguazu-devils-throat-current-access",
-      "title": "イグアスは訪問直前に開放回路を確認する",
-      "text": "2026年9月17日時点、アルゼンチン側では増水に備えて悪魔の喉笛回路の遊歩道を予防的に撤去している一方、上部・下部回路など他の主要エリアは運用中。水量で状況が変わるため公式情報を直前に確認する。"
+      "topicKey": "northwest-high-altitude-pacing",
+      "title": "北西部の高地は一気に詰め込まない",
+      "text": "オルノカルのミラドールは標高4,345m。低地から北西部へ移動した直後に高所を詰め込まず、移動日と観光日に余白を持たせて、体調に合わせて行程を調整する。"
     },
     {
       "topicKey": "aconcagua-reservation-before-arrival",
@@ -527,24 +527,35 @@
   ],
   "nextRoutes": [
     {
-      "flag": "🇺🇾",
-      "countryEn": "URUGUAY",
-      "countryJa": "ウルグアイ",
-      "path": "Buenos Aires → Colonia del Sacramento",
-      "description": "ブエノスアイレスからラ・プラタ川を定期フェリーで渡り、コロニア・デル・サクラメントへ約1時間15分でつなぐ。巨大都市から石畳の歴史都市へ、水上でそのまま旅を続けられる。",
+      "flag": "🇧🇴",
+      "countryEn": "BOLIVIA",
+      "countryJa": "ボリビア",
+      "path": "La Quiaca → Villazón",
+      "description": "フフイ州北端のラ・キアカから国際橋を越えてビジャソンへ。北西部アンデスの旅を、そのままボリビア高地へつなげられる代表的な陸路。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇨🇱",
+      "countryEn": "CHILE",
+      "countryJa": "チリ",
+      "path": "Mendoza → Los Andes / Santiago",
+      "description": "メンドーサからRN7とSistema Cristo Redentorでアンデスを越える代表的な陸路。降雪や強風で一時閉鎖されることがあるため、出発日に公式の開通状況を確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "山岳天候により一時閉鎖あり。出発日に公式情報を確認。"
+    },
+    {
+      "flag": "🇵🇾",
+      "countryEn": "PARAGUAY",
+      "countryJa": "パラグアイ",
+      "path": "Posadas → Encarnación",
+      "description": "ミシオネス州のポサーダスから国際橋を渡ってエンカルナシオンへ。北東部の旅から、グアラニー文化とパラナ川流域の都市へ自然に続けられる。",
       "travelerRoute": true,
       "status": "OPEN"
     }
   ],
   "relatedCountries": [
-    {
-      "slug": "bolivia",
-      "nameEn": "BOLIVIA",
-      "nameJa": "ボリビア",
-      "flag": "🇧🇴",
-      "reason": "北西部からアンデス高地をさらに北へ。アルティプラノ、塩湖、先住民文化まで高地の旅をつなげたい人へ。",
-      "affinityType": "LANDSCAPE"
-    },
     {
       "slug": "chile",
       "nameEn": "CHILE",
@@ -554,11 +565,19 @@
       "affinityType": "MOUNTAIN"
     },
     {
-      "slug": "paraguay",
-      "nameEn": "PARAGUAY",
-      "nameJa": "パラグアイ",
-      "flag": "🇵🇾",
-      "reason": "北東部からグアラニー文化と大河の地域へ。内陸南米の暮らしと歴史を続けて見たい人へ。",
+      "slug": "bolivia",
+      "nameEn": "BOLIVIA",
+      "nameJa": "ボリビア",
+      "flag": "🇧🇴",
+      "reason": "北西部の高地や色のある地層に惹かれたなら。アルティプラノ、塩湖、先住民文化までアンデス高地の旅をさらに北へ延ばせる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "uruguay",
+      "nameEn": "URUGUAY",
+      "nameJa": "ウルグアイ",
+      "flag": "🇺🇾",
+      "reason": "ブエノスアイレスのリオ・デ・ラ・プラタ文化、マテ、アサード、タンゴの文脈を、より小さな都市と大西洋岸で続けて見たい人へ。",
       "affinityType": "CULTURE"
     }
   ],
@@ -579,7 +598,6 @@
     "aconcagua": "2026-09-25",
     "losGlaciares": "2026-09-25",
     "ruta40": "2025-06-23",
-    "iguazuAccess": "2026-09-17",
     "tango": "2009",
     "unescoIntangible": "2026",
     "mate": "2026-09-25",
@@ -587,7 +605,9 @@
     "empanadas": "2026-09-25",
     "locro": "2026-09-25",
     "alfajores": "2026-09-25",
-    "ferry": "2026-09-25"
+    "borderBolivia": "2026-09-25",
+    "borderChile": "2026-09-25",
+    "borderParaguay": "2026-09-25"
   },
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan — Argentina basic data, updated 23 Apr 2026: area 2.78 million km², population approx. 45.54 million (World Bank 2023), capital Buenos Aires, Spanish, Catholic etc. https://www.mofa.go.jp/mofaj/area/argentine/data.html",
@@ -603,7 +623,6 @@
     "aconcagua": "Gobierno de Mendoza — Parque Provincial Aconcagua: 6,962 m; Horcones at 2,800 m; advance reservation and ticket required before travel. https://www.mendoza.gov.ar/aconcagua/",
     "losGlaciares": "Administración de Parques Nacionales — Parque Nacional Los Glaciares: Perito Moreno approximately 30 km long with a 4–5 km front; boardwalk circuit and visitor guidance. https://www.argentina.gob.ar/node/303780 | https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades",
     "ruta40": "Argentina.gob.ar — Ruta 40: 5,194 km along the Andean zone from Cabo Vírgenes to the Bolivia border at La Quiaca; 2025 updated tourism guide confirms its current role as an emblematic corridor. https://www.argentina.gob.ar/noticias/ruta-40-un-puente-al-conocimiento | https://www.argentina.gob.ar/node/470111",
-    "iguazuAccess": "Administración de Parques Nacionales, 17 Sep 2026 — Argentine Iguazú park remains open; Garganta del Diablo walkways had been preventively removed in August during extraordinary flow, while Upper, Lower and other circuits continued operating. https://www.argentina.gob.ar/noticias/parque-nacional-iguazu-abierto-todo-el-ano",
     "tango": "UNESCO Intangible Cultural Heritage — Tango, inscribed 2009, developed among urban lower classes in Buenos Aires and Montevideo in the Río de la Plata basin. https://ich.unesco.org/en/RL/tango-00258",
     "unescoIntangible": "UNESCO Intangible Cultural Heritage — Argentina State Party list, including Filete porteño (2015), Tango (2009), Chamamé (2020), Cuarteto (2025). https://ich.unesco.org/en/state/argentina-AR",
     "mate": "Argentina.gob.ar — Descubrir la historia del mate / El mate: a deeply rooted social-cultural ritual and national infusion. https://www.argentina.gob.ar/jefatura/turismo-y-ambiente/turismo/viaja-por-argentina/descubrir-la-historia-del-mate",
@@ -611,13 +630,15 @@
     "empanadas": "Argentina.gob.ar — Empanadas: national gastronomic identity with distinct regional forms in Tucumán, Salta, Mendoza, Patagonia and elsewhere. https://www.argentina.gob.ar/node/488397",
     "locro": "Argentina.gob.ar — Locro: emblematic Argentine dish with Andean roots based on corn, squash and beans, later incorporating meats and regional variations. https://www.argentina.gob.ar/node/504764",
     "alfajores": "Argentina.gob.ar — Alfajores: classic Argentine sweet with regional variations and fillings including dulce de leche. https://www.argentina.gob.ar/node/493708",
-    "ferry": "Colonia Express — current schedules Sep–Oct 2026: Buenos Aires–Colonia ferry services, duration about 1 h 15 min. https://www.coloniaexpress.com/es/ar/mas-informacion/horarios-y-rutas/",
     "population": "Ministry of Foreign Affairs of Japan — Argentina basic data, updated 23 Apr 2026: population approx. 45.54 million (World Bank 2023). https://www.mofa.go.jp/mofaj/area/argentine/data.html",
     "gauchoCulture": "Argentina.gob.ar — Culturas Gauchas / San Antonio de Areco: gaucho and criollo traditions remain active through rural organizations, crafts, equestrian culture and community events. https://www.argentina.gob.ar/node/434311 | https://www.argentina.gob.ar/node/470674",
     "mendozaOasis": "Gobierno de Mendoza — Mendoza wine geography and irrigation: irrigation canals with roots in Indigenous water management underpin the province's agricultural oases and wine regions. https://www.mendoza.gov.ar/prensa/vendimia-y-feriado-xl-la-geografia-del-vino-dibuja-oasis-y-varietales-para-descubrir-en-mendoza/",
     "jesuitMissions": "UNESCO World Heritage Centre — Jesuit Missions of the Guaranis: four Argentine mission sites in Misiones preserve the remains of 17th–18th century Jesuit-Guarani settlements and their social/territorial system. https://whc.unesco.org/en/list/275",
     "welshChubut": "Chubut Patagonia official tourism — Welsh heritage in Chubut: settlement began in 1865 and remains visible in chapels, architecture, choral traditions, language and tea culture. https://chubutpatagonia.gob.ar/experiencia/galeses-en-chubut/ | https://chubutpatagonia.gob.ar/destino/gaiman/",
     "ibera": "Administración de Parques Nacionales — Esteros del Iberá / Parque Nacional Iberá: a 3.9-million-hectare wetland ecoregion with lagoons, marshes and grasslands; the national park protects 195,094 ha. https://www.argentina.gob.ar/parquesnacionales/ecorregiones/esteros-del-ibera | https://www.argentina.gob.ar/parquesnacionales/nea/parque-nacional-ibera/ficha-del-area-protegida",
-    "qhapaqNan": "Argentina.gob.ar / UNESCO — Qhapaq Ñan, Andean Road System: the pre-Hispanic Andean road network is shared by six countries; Argentina has 13 registered road segments across seven provinces. https://www.argentina.gob.ar/noticias/el-itinerario-cultural-qhapaq-nan-fue-seleccionado-dentro-de-los-25-sitios-del-watch-2025 | https://whc.unesco.org/en/qhapaqnan/"
+    "qhapaqNan": "Argentina.gob.ar / UNESCO — Qhapaq Ñan, Andean Road System: the pre-Hispanic Andean road network is shared by six countries; Argentina has 13 registered road segments across seven provinces. https://www.argentina.gob.ar/noticias/el-itinerario-cultural-qhapaq-nan-fue-seleccionado-dentro-de-los-25-sitios-del-watch-2025 | https://whc.unesco.org/en/qhapaqnan/",
+    "borderBolivia": "Argentina.gob.ar — Paso La Quiaca–Villazón: official international border crossing between Jujuy, Argentina and Villazón, Bolivia; current operating hours and status published by Argentine authorities. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/18/La-Quiaca-Villaz%C3%B3n",
+    "borderChile": "Argentina.gob.ar — Sistema Cristo Redentor: official Mendoza–Chile international crossing between Villa Las Cuevas and Los Andes; opening is subject to mountain weather and road conditions. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor",
+    "borderParaguay": "Argentina.gob.ar — Paso Posadas–Encarnación: official international crossing between Misiones, Argentina and Encarnación, Paraguay via the San Roque González de Santa Cruz bridge. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/1/Posadas-Encarnaci%C3%B3n"
   }
 }
