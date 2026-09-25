@@ -40,14 +40,14 @@
   },
   "map": {
     "bounds": {
-      "north": -29.75,
-      "south": -35.25,
-      "west": -58.8,
-      "east": -52.85
+      "north": -29.35,
+      "south": -35.45,
+      "west": -59.15,
+      "east": -52.45
     },
     "svg": "assets/images/uruguay/map-atlas-v1.svg",
     "route": null,
-    "source": "Target national geometry: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection URY.geojson blob c68478052600e4ac4825b3f5333b341b5058bd3f. Surrounding Argentina/Brazil land and coast context: GSHHG/GSHHS intermediate resolution via Basemap 2.0.0, GSHHG LGPL. 1200×760; generated and visually reviewed 2026-09-25; no invented coastlines, borders or coordinate changes."
+    "source": "Target national geometry: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection URY.geojson blob c68478052600e4ac4825b3f5333b341b5058bd3f. Surrounding Argentina and Brazil context: same Natural Earth 1:10m source family, ARG blob 6a71e590dc5f3b5be9b144ee8aeb74c6d3e5f8e9 and BRA blob 5f2ab91e160d23606c552dfaa65bfa927f9c78f6. WGS84; 1200×760; regenerated 2026-09-25 with expanded geographic breathing room; no invented coastlines, borders or coordinate changes."
   },
   "scenes": [
     {
@@ -94,7 +94,7 @@
       },
       "image": "assets/images/uruguay/approved/scene-3-punta-del-este-la-mano.webp",
       "mapOffset": {
-        "x": 1.0,
+        "x": 1,
         "y": 1.5
       }
     },
@@ -111,7 +111,7 @@
       "image": "assets/images/uruguay/approved/scene-4-casapueblo.webp",
       "mapOffset": {
         "x": -3.5,
-        "y": -1.0
+        "y": -1
       }
     },
     {
@@ -527,6 +527,15 @@
       "description": "コロニアからラ・プラタ川を定期フェリーで渡り、ブエノスアイレスへ約1時間強でつなぐ。歴史都市から大都市へ、そのまま水上で旅を続けられる。",
       "travelerRoute": true,
       "status": "OPEN"
+    },
+    {
+      "flag": "🇧🇷",
+      "countryEn": "BRAZIL",
+      "countryJa": "ブラジル",
+      "path": "Montevideo → Chuy / Chuí → Southern Brazil",
+      "description": "モンテビデオから東海岸沿いにChuyへ進み、隣接するブラジル側のChuíへ陸路で越境して南部へ旅を続ける。Chuy / Chuíは正式な国境通過点で、国際旅客道路交通にも使われる。",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "relatedCountries": [
@@ -576,7 +585,8 @@
     "sceneCoordinates": "2026-09-25",
     "football": "1930",
     "lagunaGarzon": "2015-12-22",
-    "tourism": "2026-09-25"
+    "tourism": "2026-09-25",
+    "nextRoutes": "2026-09-25"
   },
   "sources": {
     "population": "Instituto Nacional de Estadística (Uruguay), Censo 2023: población total residente estimada al 31 de mayo de 2023 = 3,499,451. https://www5.ine.gub.uy/documents/CENSO%202023/Poblaci%C3%B3n%20estimada%2C%20crecimiento%20intercensal%20y%20estructura%20por%20sexo%20y%20edad.pdf",
@@ -597,6 +607,7 @@
     "sceneCoordinates": "WGS84 place coordinates checked 2026-09-25. Palacio Salvo / Plaza Independencia: OpenStreetMap/Mapcarta -34.90677,-56.19836. Calle de los Suspiros: -34.472917,-57.851167. Cabo Polonio Lighthouse: -34.40537,-53.77780. La Mano: -34.95789,-54.93729. Casapueblo: -34.90876,-55.04459. Quebrada de los Cuervos viewpoint/photo locality: -32.933993,-54.461620. Grutas del Palacio field locality: -33.280,-57.14344. Fray Bentos UNESCO property: S33 7 4 W58 19 54. Laguna Garzón Bridge: S34 48 1 W54 34 8. Coordinates represent real locations, not fabricated camera positions.",
     "football": "FIFA historical record: Uruguay hosted and won the inaugural FIFA World Cup in 1930; final in Montevideo. https://www.fifa.com/tournaments/mens/worldcup/1930uruguay",
     "lagunaGarzon": "Laguna Garzón bridge location and circular form cross-checked against OpenStreetMap/Wikidata and Rocha tourism protected-lagoon geography; bridge opened 22 Dec 2015. https://turismorocha.gub.uy/atractivos/lagunas/laguna-garzon",
-    "tourism": "Uruguay government tourism/country promotion checked 2026-09-25 for mate, candombe, tango, asado, chivito, beaches and travel identity. https://www.gub.uy/ministerio-relaciones-exteriores/embajada-republica-oriental-del-uruguay-colombia/conoce-uruguay"
+    "tourism": "Uruguay government tourism/country promotion checked 2026-09-25 for mate, candombe, tango, asado, chivito, beaches and travel identity. https://www.gub.uy/ministerio-relaciones-exteriores/embajada-republica-oriental-del-uruguay-colombia/conoce-uruguay",
+    "nextRoutes": "Argentina: Colonia Express official Colonia–Buenos Aires ferry schedules checked 2026-09-25. https://www.coloniaexpress.com/es/uy/mas-informacion/horarios-y-rutas . Brazil: Dirección Nacional de Aduanas lists Chuy among enabled border crossings with Brazil (20 Nov 2025); COT publishes current Montevideo–Chuy bus service; Brazil ANTT Decision SUPAS 1,188 of 4 Aug 2026 licensed the Florianópolis–Montevideo international passenger road line via Chuí/Chuy. https://www.aduanas.gub.uy/innovaportal/v/28038/1/innova.front/ ; https://www.cot.com.uy/horarios-tarifas.php ; https://anttlegis.antt.gov.br/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=9230&cod_modulo=623&numeroAto=00001188&orgao=SUPAS%2FANTT%2FMT&seqAto=000&tipo=DCS&valorAno=2026"
   }
 }
