@@ -1,0 +1,615 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "ecuador",
+  "nameEn": "ECUADOR",
+  "nameJa": "エクアドル",
+  "region": "SOUTH AMERICA / 2°S",
+  "seo": {
+    "description": "赤道上のアンデス、アマゾン、太平洋岸、ガラパゴス諸島。火山・歴史都市・固有生態系を8つの風景と地図でたどるエクアドルの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Quito",
+    "nameJa": "キト",
+    "coordinates": {
+      "latitude": -0.22016,
+      "longitude": -78.51233
+    },
+    "labelPosition": "right",
+    "mapRegion": "mainland"
+  },
+  "hero": {
+    "lead": "赤道上の小さな国土に、雪を抱く火山、アマゾン、太平洋岸、そしてガラパゴスが連なる。",
+    "image": "assets/images/ecuador/approved/hero.webp",
+    "location": "Laguna de Limpiopungo / Cotopaxi National Park",
+    "coordinates": {
+      "latitude": -0.615,
+      "longitude": -78.4747
+    },
+    "mapRegion": "mainland"
+  },
+  "map": {
+    "bounds": {
+      "north": 1.65,
+      "south": -5.25,
+      "west": -91.8,
+      "east": -75.0
+    },
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "north": 1.65,
+          "south": -5.25,
+          "west": -81.25,
+          "east": -75.0
+        },
+        "rect": {
+          "x": 45,
+          "y": 45,
+          "width": 805,
+          "height": 670
+        }
+      },
+      {
+        "id": "galapagos",
+        "bounds": {
+          "north": 0.85,
+          "south": -1.65,
+          "west": -91.8,
+          "east": -89.0
+        },
+        "rect": {
+          "x": 900,
+          "y": 425,
+          "width": 255,
+          "height": 270
+        }
+      }
+    ],
+    "svg": "assets/images/ecuador/map-atlas-v1.svg",
+    "insetNote": "※ ガラパゴス諸島は、本土と実際の位置関係・縮尺が異なる別枠表示です。",
+    "route": null,
+    "source": "Mainland administrative geometry: Natural Earth 1:110m Countries, WGS84, public domain. Galápagos target coastlines and surrounding coastlines: GSHHG/GSHHS via Basemap intermediate resolution, WGS84, GNU LGPL. Mainland and Galápagos rendered as separate local-equirectangular-fit insets on a 1200×760 canvas; sources checked 2026-09-25."
+  },
+  "scenes": [
+    {
+      "id": "quito-historic-centre",
+      "name": "キト旧市街",
+      "nameLocal": "Centro Histórico de Quito",
+      "mapLabel": "Quito",
+      "description": "アンデスの谷に広がる首都の旧市街。教会の塔やドーム、赤瓦の屋根が斜面に重なり、標高約2,850mの都市であることを地形そのものが伝える。",
+      "coordinates": {
+        "latitude": -0.22313,
+        "longitude": -78.49952
+      },
+      "image": "assets/images/ecuador/approved/scene-1.webp",
+      "mapRegion": "mainland",
+      "mapOffset": {
+        "x": -4.55,
+        "y": -2.0
+      }
+    },
+    {
+      "id": "quilotoa-crater-lake",
+      "name": "キロトア湖",
+      "nameLocal": "Laguna Quilotoa",
+      "mapLabel": "Quilotoa",
+      "description": "火山のカルデラを満たす湖を、火口縁から見下ろす。水の色は光や天候で変わり、乾いた高地の草地と急な火口壁が大きな輪郭をつくる。",
+      "coordinates": {
+        "latitude": -0.8592,
+        "longitude": -78.9043
+      },
+      "image": "assets/images/ecuador/approved/scene-2.webp",
+      "mapRegion": "mainland",
+      "mapOffset": {
+        "x": -2.0,
+        "y": 0
+      }
+    },
+    {
+      "id": "pailon-del-diablo",
+      "name": "パイロン・デル・ディアブロ",
+      "nameLocal": "Pailón del Diablo",
+      "mapLabel": "Pailón del Diablo",
+      "description": "バーニョス近郊の雲霧林で、狭い峡谷へ大量の水が落ちる。濡れた岩壁、濃い緑、水しぶきが重なり、アンデス東斜面の湿潤さを体感できる。",
+      "coordinates": {
+        "latitude": -1.40474,
+        "longitude": -78.29581
+      },
+      "image": "assets/images/ecuador/approved/scene-3.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "cuenca-turi",
+      "name": "クエンカ",
+      "nameLocal": "Santa Ana de los Ríos de Cuenca",
+      "mapLabel": "Cuenca",
+      "description": "トゥリの高台から眺めると、赤瓦の街並みと教会のドーム、その背後の山地が一続きに見える。植民都市の格子とアンデスの盆地が重なる景観。",
+      "coordinates": {
+        "latitude": -2.92232,
+        "longitude": -79.01007
+      },
+      "image": "assets/images/ecuador/approved/scene-4.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "cajas-laguna-toreadora",
+      "name": "カハス国立公園",
+      "nameLocal": "Parque Nacional Cajas / Laguna Toreadora",
+      "mapLabel": "Cajas",
+      "description": "標高の高い湿原に湖が点在し、草地と岩山へ低い雲が流れる。熱帯の国という先入観から離れた、冷涼なパラモの静かな風景。",
+      "coordinates": {
+        "latitude": -2.78346,
+        "longitude": -79.22232
+      },
+      "image": "assets/images/ecuador/approved/scene-5.webp",
+      "mapRegion": "mainland",
+      "mapOffset": {
+        "x": -3.6,
+        "y": -2.5
+      }
+    },
+    {
+      "id": "cuyabeno-laguna-grande",
+      "name": "クヤベノ野生生物保護区",
+      "nameLocal": "Reserva de Producción de Fauna Cuyabeno / Laguna Grande",
+      "mapLabel": "Cuyabeno",
+      "description": "アマゾン低地のラグーンを、森の反射と夕暮れが包む。水位によって姿を変える湿地と水路を舟でたどることが、ここでの移動そのものになる。",
+      "coordinates": {
+        "latitude": -0.01249,
+        "longitude": -76.17776
+      },
+      "image": "assets/images/ecuador/approved/scene-6.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "los-frailes",
+      "name": "ロス・フライレス",
+      "nameLocal": "Playa Los Frailes",
+      "mapLabel": "Los Frailes",
+      "description": "マナビの乾いた低木林を抜けると、白い砂浜と青い太平洋が弧を描く。アンデスやアマゾンとは異なる、乾季の色を持つエクアドル海岸部の景色。",
+      "coordinates": {
+        "latitude": -1.49336,
+        "longitude": -80.79617
+      },
+      "image": "assets/images/ecuador/approved/scene-7.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "punta-espinosa-marine-iguanas",
+      "name": "プンタ・エスピノサ",
+      "nameLocal": "Punta Espinosa / Isla Fernandina",
+      "mapLabel": "Punta Espinosa",
+      "description": "フェルナンディナ島の黒い溶岩海岸で、海イグアナが群れる。海で採餌する世界で唯一のイグアナと若い火山島が、ガラパゴスの進化と地質を同じ視界に置く。",
+      "coordinates": {
+        "latitude": -0.26769,
+        "longitude": -91.44704
+      },
+      "image": "assets/images/ecuador/approved/scene-8.webp",
+      "mapRegion": "galapagos"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山を見上げる",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "火口湖の縁を歩く",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "旧市街の石畳を歩く",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "雲霧林で鳥を探す",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "アマゾンを舟で進む",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "市場で果物を見る",
+      "icon": "food",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "海イグアナを観察する",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "高地の郷土料理を食べる",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "avenue-volcanoes-highland-corridor",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アンデスの縦軸を、火山が連続する",
+      "text": "キトから南へ進む高地では、コトパクシ、チンボラソなど大きな火山が谷の両側に現れる。都市、農地、パラモが火山の裾野に続き、移動するほど標高と植生が変わる。",
+      "points": [
+        "高地の主要都市は南北方向のアンデス回廊に並ぶ",
+        "晴天時は道路や町から複数の火山を望める"
+      ],
+      "sourceKey": "andes"
+    },
+    {
+      "topicKey": "amazon-waterway-community-travel",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "アマゾンでは、水路が旅の道になる",
+      "text": "クヤベノのような低地では、河川とラグーンをボートで移動する。Siona、Kichwa、Cofán、Secoya、Shuarなどのコミュニティが暮らし、森は観察対象だけでなく生活の場でもある。",
+      "points": [
+        "Laguna GrandeへはCuyabeno川をボートで進む",
+        "観光は保護区と地域コミュニティの管理の中で行われる"
+      ],
+      "sourceKey": "cuyabeno"
+    },
+    {
+      "topicKey": "azuay-market-craft-routines",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "クエンカの市場で、高地の日常に触れる",
+      "text": "クエンカでは歴史地区だけでなく、市場に入るとモテ、ホルナード、果物、花などが並ぶ。観光建築と日常の食卓が近い距離にあることが、この都市の歩きやすさにつながる。",
+      "points": [
+        "Mercado 10 de Agostoは郷土料理を知る入口になる",
+        "赤瓦の歴史地区から生活市場まで徒歩圏でつなぎやすい"
+      ],
+      "sourceKey": "food"
+    },
+    {
+      "topicKey": "esmeraldas-marimba-afro-heritage",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "太平洋岸には、アフロ系文化の音と踊りが根づく",
+      "text": "北西部のエスメラルダスでは、マリンバの音楽と踊りがアフロ・エクアドル文化の重要な表現になっている。アンデス中心のイメージだけでは見えない、太平洋岸の文化圏がある。",
+      "points": [
+        "音楽・踊り・共同体の祝祭が文化継承の場になる",
+        "コロンビア太平洋岸とも文化的な連続性を持つ"
+      ],
+      "sourceKey": "marimba"
+    },
+    {
+      "topicKey": "mindo-cloudforest-birding",
+      "themeEn": "NATURE",
+      "themeJa": "自然に入る",
+      "title": "アンデス西斜面で、雲霧林の密度が一気に増す",
+      "text": "キトから西へ標高を下げると、ミンド周辺では湿った雲霧林へ景観が切り替わる。短い距離で高地都市から鳥類の多い森林へ移れることが、エクアドルの標高差を実感させる。",
+      "points": [
+        "公式観光案内もMindoをバードウォッチングの代表地として紹介",
+        "双眼鏡を持ち、朝の森で静かに観察する旅と相性がよい"
+      ],
+      "sourceKey": "mindo"
+    },
+    {
+      "topicKey": "dollarization-everyday-economy",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "買い物では、米ドルがそのまま日常通貨になる",
+      "text": "エクアドルは2000年に米ドルを法定通貨として採用した。旅行者にとっては価格表示が米ドルで統一される一方、国内では米ドル硬貨と同額面のエクアドル独自の分数硬貨も流通する。",
+      "points": [
+        "2000年1月9日に米ドルを法定通貨として採用",
+        "中央銀行は国内の分数硬貨を鋳造できる"
+      ],
+      "sourceKey": "currency"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "unesco-quito-1978-first-inscriptions",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "キトは1978年、最初期の世界遺産として登録された",
+      "text": "世界遺産制度の初回登録年である1978年に、キト市街とガラパゴス諸島が登録された。エクアドルには現在5件の世界遺産がある。",
+      "icon": "history",
+      "sourceKey": "unesco"
+    },
+    {
+      "topicKey": "montecristi-straw-hat-origin",
+      "categoryEn": "CRAFT",
+      "categoryJa": "工芸",
+      "title": "「パナマ帽」と呼ばれる帽子は、エクアドルの工芸",
+      "text": "トキヤ草を編む伝統的な帽子づくりはエクアドルで受け継がれてきた。国際的にはPanama hatの名で知られるが、産地としてモンテクリスティなどが有名。",
+      "icon": "culture",
+      "sourceKey": "strawHat"
+    },
+    {
+      "topicKey": "nacional-cacao-fine-aroma",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "カカオは、海岸低地の景観と食文化をつなぐ",
+      "text": "エクアドルではカカオ栽培が長い歴史を持ち、Nacional系のファインアロマ・カカオが知られる。チョコレートだけでなく、農園を訪ねる旅の入口にもなる。",
+      "icon": "food",
+      "sourceKey": "cacao"
+    },
+    {
+      "topicKey": "nariz-diablo-railway-switchbacks",
+      "categoryEn": "RAIL",
+      "categoryJa": "鉄道",
+      "title": "「悪魔の鼻」は、急斜面に刻まれた鉄道区間",
+      "text": "アラウシ周辺のNariz del Diabloでは、アンデスの急斜面を越えるためスイッチバックを使った鉄道線が築かれた。運行状況は時期により変わるため、現地の最新情報確認が必要。",
+      "icon": "road",
+      "sourceKey": "railway"
+    },
+    {
+      "topicKey": "equatorial-daylength-near-twelve-hours",
+      "categoryEn": "LIGHT",
+      "categoryJa": "光",
+      "title": "赤道近くでは、一年を通して昼夜の長さが大きく変わらない",
+      "text": "国土を赤道が横切るため、季節による日照時間の振れ幅は高緯度地域ほど大きくない。旅の季節感は日長より、標高と降雨の違いに表れやすい。",
+      "icon": "sun",
+      "sourceKey": "equator"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ECUADOR",
+    "title": "エクアドルで食べたいもの",
+    "intro": "海岸、高地、アマゾンで主役になる食材が変わる。魚介、豚肉、青バナナ、川魚から、地域ごとの風景を食卓でたどる。",
+    "items": [
+      {
+        "id": "ecuadorian-ceviche",
+        "name": "セビーチェ",
+        "nameLocal": "Ceviche",
+        "text": "魚介をレモン、塩、胡椒、玉ねぎなどで合わせる人気料理。地域や店によって魚介と付け合わせが変わり、海岸部では特に身近な一皿。",
+        "image": "assets/images/ecuador/approved/food-1.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "hornado",
+        "name": "ホルナード",
+        "nameLocal": "Hornado",
+        "text": "豚肉を焼き上げ、モテや玉ねぎの付け合わせなどと食べるアンデスの料理。市場の食堂で大きな塊から切り分ける光景も印象に残る。",
+        "image": "assets/images/ecuador/approved/food-2.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "maito-de-pescado",
+        "name": "マイト・デ・ペスカード",
+        "nameLocal": "Maito de pescado",
+        "text": "川魚をビハオやバナナなどの葉で包み、炭火で蒸し焼きにするアマゾンの料理。葉の香りと魚の水分を閉じ込める古い調理法。",
+        "image": "assets/images/ecuador/approved/food-3.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "tigrillo",
+        "name": "ティグリージョ",
+        "nameLocal": "Tigrillo",
+        "text": "つぶした青バナナに卵とチーズを合わせる沿岸部エル・オロの料理。チチャロンを加えることもあり、朝食にも食べられる。",
+        "image": "assets/images/ecuador/approved/food-4.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "本土は比較的コンパクトだが、標高差とガラパゴスへの航空移動で旅の性格が大きく変わる。訪問地域を増やすより、山・森・島に時間を分けたい。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "アンデスを縦にたどる",
+        "text": "キトを起点にコトパクシやキロトアを組み合わせ、南へ行くならクエンカまで。高地では初日に余白を置き、移動距離より標高への順応を優先する。例：キト→コトパクシ→キロトア / キト→クエンカ",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜12日",
+        "title": "高地とアマゾンをつなぐ",
+        "text": "アンデスに加えてバーニョスやクヤベノへ入り、標高2,000m台の都市から低地熱帯林までの変化を見る。水路移動やロッジ滞在の日数を先に確保したい。例：キト→バーニョス→クヤベノ→クエンカ",
+        "icon": "map"
+      },
+      {
+        "duration": "13日以上",
+        "title": "本土とガラパゴスを分けて味わう",
+        "text": "本土のアンデス・アマゾンまたは海岸に、ガラパゴス滞在を加える。島では移動方法で見られる場所が大きく変わるため、クルーズか島滞在かを先に決める。例：キト→アンデス→ガラパゴス",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1–2月",
+      "color": "#7fa29b",
+      "text": "地域差が大きい時期。アンデスでは雨や雲が増える日があり、アマゾンは通年で降雨がある。高地と低地で服装を分け、天候による道路・航行条件を確認したい。"
+    },
+    {
+      "months": "3–5月",
+      "color": "#6f9878",
+      "text": "アンデスでは雨の多い時期にあたり、午後に雲が発達しやすい。緑は濃くなる一方、火山展望や高地ハイクは早朝を中心に余裕を持って組む。"
+    },
+    {
+      "months": "6–9月",
+      "color": "#c2a35f",
+      "text": "アンデスの乾季。公式観光案内でも晴れやすく、火山やトレッキングに向く時期とされる。海岸・ガラパゴスは高地と季節の現れ方が異なるため別に確認する。"
+    },
+    {
+      "months": "10–12月",
+      "color": "#9b8067",
+      "text": "アンデスでは再び雨が増える移行期。短時間の晴れと雨が入れ替わることもある。ガラパゴスは海況と野生動物の季節性が重要なので、目的種に合わせて計画する。"
+    }
+  ],
+  "transport": {
+    "title": "本土はバスと車、ガラパゴスは飛行機と船で分けて考える",
+    "text": "キト、バーニョス、クエンカなど本土の主要都市は長距離バスで結べるが、山岳道路は所要時間が地図以上に伸びることがある。ガラパゴスへはキトまたはグアヤキルから航空便で入り、島間は航空便または船を使う。国立公園・保護区内では登録ガイドや指定ルートが必要な場所があるため、現地公式情報を確認する。"
+  },
+  "personas": [
+    {
+      "title": "火山と高地の地形を歩きたい人",
+      "text": "コトパクシ、キロトア、カハスなど、標高と火山活動がつくった風景を移動しながら見比べたい。"
+    },
+    {
+      "title": "野生動物を環境ごと観察したい人",
+      "text": "ガラパゴスの固有種だけでなく、雲霧林やアマゾンまで、生態系が切り替わる旅をしたい。"
+    },
+    {
+      "title": "自然と歴史都市を同じ旅に入れたい人",
+      "text": "キトやクエンカの建築を歩きつつ、数時間から一日単位で火山、森、海へ景色を切り替えたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ / 赤道"
+    },
+    {
+      "label": "首都",
+      "value": "キト"
+    },
+    {
+      "label": "人口",
+      "value": "16,938,986（2022年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "約256,370 km²"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（公用語）／キチュア・シュアール等"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック、福音派・プロテスタント等）"
+    },
+    {
+      "label": "通貨",
+      "value": "米ドル（USD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "equator-zero-latitude",
+      "label": "赤道",
+      "value": "0°",
+      "note": "国名Ecuadorはスペイン語で「赤道」。首都キトの北側を含め、国土を緯度0度線が横切る。",
+      "icon": "map",
+      "interestReason": "国名そのものと地理的位置が直接結びつき、旅の起点で国の位置を一瞬で理解できるため。"
+    },
+    {
+      "topicKey": "galapagos-reptile-endemism",
+      "label": "ガラパゴスの爬虫類固有率",
+      "value": "80%超",
+      "note": "エクアドル観光省は、ガラパゴスの爬虫類の80%超が固有と案内する。海イグアナ、ゾウガメなど孤立した島々で進化した生き物が象徴的。",
+      "icon": "wildlife",
+      "interestReason": "ガラパゴスを単なる島景観ではなく、世界的に特異な進化の現場として見る理由になるため。"
+    },
+    {
+      "topicKey": "chimborazo-elevation-6263m",
+      "label": "チンボラソ標高",
+      "value": "6,263 m",
+      "note": "エクアドル中部に立つ国内最高峰級の火山。赤道近くのアンデスが、海岸低地から6,000m級まで急激な標高差を持つことを示す。",
+      "icon": "landscape",
+      "interestReason": "小さな国土の中で気候と植生が急変する理由を、ひとつの山の高さから理解できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "high-altitude-acclimatization",
+      "title": "キト到着日は標高に慣れる時間を取る",
+      "text": "キトは標高約2,850m。到着直後にさらに高い火山へ急がず、水分と休息を取りながら高地へ上がる日程にすると負担を抑えやすい。"
+    },
+    {
+      "topicKey": "galapagos-biosecurity-entry",
+      "title": "ガラパゴスは本土旅行と別の入域手順で考える",
+      "text": "航空移動に加え、通過管理カードや検疫・バイオセキュリティの手続きがある。料金や必要手続きは変更され得るため、出発前にGalápagos公式案内を確認する。"
+    },
+    {
+      "topicKey": "regional-rain-road-water-levels",
+      "title": "雨量と水位で移動条件が変わる",
+      "text": "アンデスの山道、アマゾンの水路、太平洋岸では同じ月でも条件が異なる。長距離移動や保護区訪問は、前日に道路・天候・運航情報を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇴",
+      "countryEn": "COLOMBIA",
+      "countryJa": "コロンビア",
+      "path": "Quito → Tulcán → Rumichaca → Ipiales",
+      "description": "北アンデスをそのまま陸路でコロンビアへつなぐ代表的な経路。国境施設の運用、入国条件、安全情報は渡航直前の公式案内で確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間・入国条件・安全情報を渡航直前に確認する。"
+    },
+    {
+      "flag": "🇵🇪",
+      "countryEn": "PERU",
+      "countryJa": "ペルー",
+      "path": "Cuenca / Guayaquil → Huaquillas → Tumbes",
+      "description": "エクアドル南部・海岸側からペルー北部へ続ける代表的な陸路。夜間移動を含め、利用する国境施設と交通会社の最新運行を事前確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設・バス運行・安全情報を渡航直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "peru",
+      "nameEn": "PERU",
+      "nameJa": "ペルー",
+      "flag": "🇵🇪",
+      "reason": "アンデス高地、太平洋岸、アマゾンという地理の連続性を保ちながら、より大きな国土で古代文明と高山景観を深くたどれる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "colombia",
+      "nameEn": "COLOMBIA",
+      "nameJa": "コロンビア",
+      "flag": "🇨🇴",
+      "reason": "北アンデスと太平洋・アマゾンを共有しつつ、植民都市、コーヒー地帯、カリブ海まで景観と文化の幅を北へ広げられる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "costarica",
+      "nameEn": "COSTA RICA",
+      "nameJa": "コスタリカ",
+      "flag": "🇨🇷",
+      "reason": "火山、雲霧林、熱帯の野生動物を観察する旅が強く、ガラパゴスとは異なる中米の保全地域で生態系を主役に旅できる。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-25",
+  "sourcesVerifiedAt": "2026-09-25",
+  "sourceDates": {
+    "population": "2022",
+    "religion": "2023",
+    "currency": "2000",
+    "worldHeritage": "2026"
+  },
+  "sources": {
+    "population": "Instituto Nacional de Estadística y Censos (INEC), Censo Ecuador 2022: población residente 16,938,986.",
+    "area": "INEC, ESPAC 2016 materials: territorio nacional 256,370 km².",
+    "languages": "Constitución de la República del Ecuador, Art. 2; Asamblea Nacional: castellano official; castellano, kichwa and shuar official for intercultural relations.",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: AmericasBarometer 2023 religious-demography summary.",
+    "currency": "Banco Central del Ecuador: U.S. dollar adopted as legal tender on 2000-01-09.",
+    "worldHeritage": "UNESCO World Heritage Centre, Ecuador State Party page: 5 properties (3 cultural, 2 natural), checked 2026-09-25.",
+    "unesco": "UNESCO World Heritage Centre: City of Quito and Galápagos Islands, inscriptions in 1978; Ecuador State Party list.",
+    "galapagosEndemism": "Ecuador Travel / Ministerio de Turismo: Galápagos page, endemic-species shares; checked 2026-09-25.",
+    "chimborazo": "Instituto Geofísico, Escuela Politécnica Nacional (IG-EPN): Chimborazo volcano profile; elevation 6,263 m.",
+    "andes": "Ecuador Travel / Ministerio de Turismo, Andes: highlands, volcanoes and June–September dry season guidance.",
+    "cuyabeno": "Ministerio del Ambiente / Cuyabeno official visitor material and GeoNames/OpenStreetMap cross-check for Laguna Grande.",
+    "food": "Ecuador Travel / Ministerio de Turismo food guides; GAD Municipal de Cuenca, Mercado 10 de Agosto gastronomy references.",
+    "marimba": "UNESCO Intangible Cultural Heritage: Marimba music, traditional chants and dances from the Colombia South Pacific region and Esmeraldas Province of Ecuador; Representative List, 2015.",
+    "mindo": "Ecuador Travel / Ministerio de Turismo, Qué hacer: Mindo cloud-forest birdwatching.",
+    "strawHat": "UNESCO Intangible Cultural Heritage: Traditional weaving of the Ecuadorian toquilla straw hat; Representative List, 2012.",
+    "cacao": "Ecuador government / tourism references on cacao Nacional and fine-aroma cacao.",
+    "railway": "Ecuador railway historical references for Nariz del Diablo; operating status should be checked before travel.",
+    "equator": "Geographic fact: Ecuador is crossed by latitude 0°; WGS84.",
+    "map": "Natural Earth 1:110m Countries (public domain) for mainland administrative geometry; GSHHG/GSHHS via Basemap intermediate resolution (WGS84, GNU LGPL) for Galápagos and surrounding coastlines; checked 2026-09-25.",
+    "sceneCoordinates": "OSM/GeoNames/Wikidata cross-checks: Itchimbía -0.22313,-78.49952; Quilotoa -0.8592,-78.9043; Pailón del Diablo -1.40474,-78.29581; Mirador de Turi -2.92232,-79.01007; Laguna Toreadora -2.78346,-79.22232; Laguna Grande Cuyabeno -0.01249,-76.17776; Los Frailes -1.49336,-80.79617; Punta Espinosa -0.26769,-91.44704.",
+    "heroCoordinates": "OSM/GeoNames: Laguna de Limpiopungo approximately -0.6150,-78.4747.",
+    "galapagosWildlife": "Ecuador Travel / Ministerio de Turismo: Punta Espinosa, Fernandina—black lava and hundreds of marine iguanas; Galápagos National Park marine-iguana information.",
+    "seasonsTransport": "Ecuador Travel / Ministerio de Turismo regional guides; Galápagos National Park visitor guidance. Regional conditions vary and current transport/entry rules require pre-trip verification.",
+    "nextRoutes": "Established Ecuador–Colombia Rumichaca and Ecuador–Peru Huaquillas overland corridors; operational and safety conditions marked CHECK_CURRENT_CONDITIONS."
+  }
+}
