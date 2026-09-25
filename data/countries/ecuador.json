@@ -15,8 +15,7 @@
       "latitude": -0.22016,
       "longitude": -78.51233
     },
-    "labelPosition": "right",
-    "mapRegion": "mainland"
+    "labelPosition": "right"
   },
   "hero": {
     "lead": "赤道上の小さな国土に、雪を抱く火山、アマゾン、太平洋岸、そしてガラパゴスが連なる。",
@@ -25,52 +24,18 @@
     "coordinates": {
       "latitude": -0.615,
       "longitude": -78.4747
-    },
-    "mapRegion": "mainland"
+    }
   },
   "map": {
     "bounds": {
-      "north": 1.65,
-      "south": -5.25,
-      "west": -91.8,
-      "east": -75.0
+      "north": 6,
+      "south": -9,
+      "west": -93,
+      "east": -73
     },
-    "regions": [
-      {
-        "id": "mainland",
-        "bounds": {
-          "north": 1.65,
-          "south": -5.25,
-          "west": -81.25,
-          "east": -75.0
-        },
-        "rect": {
-          "x": 45,
-          "y": 45,
-          "width": 805,
-          "height": 670
-        }
-      },
-      {
-        "id": "galapagos",
-        "bounds": {
-          "north": 0.85,
-          "south": -1.65,
-          "west": -91.8,
-          "east": -89.0
-        },
-        "rect": {
-          "x": 900,
-          "y": 425,
-          "width": 255,
-          "height": 270
-        }
-      }
-    ],
     "svg": "assets/images/ecuador/map-atlas-v1.svg",
-    "insetNote": "※ ガラパゴス諸島は、本土と実際の位置関係・縮尺が異なる別枠表示です。",
     "route": null,
-    "source": "Mainland administrative geometry: Natural Earth 1:110m Countries, WGS84, public domain. Galápagos target coastlines and surrounding coastlines: GSHHG/GSHHS via Basemap intermediate resolution, WGS84, GNU LGPL. Mainland and Galápagos rendered as separate local-equirectangular-fit insets on a 1200×760 canvas; sources checked 2026-09-25."
+    "source": "Ecuador mainland administrative geometry: Natural Earth 1:110m Countries, WGS84, public domain. Galápagos target coastlines: GSHHG/GSHHS via Basemap intermediate resolution, WGS84, GNU LGPL. Surrounding land/coastlines: GSHHG/GSHHS via Basemap low resolution, WGS84, GNU LGPL. Mainland and Galápagos are rendered in one geographic frame at real relative position and common scale on a 1200×760 canvas; sources checked 2026-09-25."
   },
   "scenes": [
     {
@@ -84,10 +49,9 @@
         "longitude": -78.49952
       },
       "image": "assets/images/ecuador/approved/scene-1.webp",
-      "mapRegion": "mainland",
       "mapOffset": {
-        "x": -4.55,
-        "y": -2.0
+        "x": -0.8,
+        "y": -1.2
       }
     },
     {
@@ -101,10 +65,9 @@
         "longitude": -78.9043
       },
       "image": "assets/images/ecuador/approved/scene-2.webp",
-      "mapRegion": "mainland",
       "mapOffset": {
-        "x": -2.0,
-        "y": 0
+        "x": -0.6,
+        "y": 0.4
       }
     },
     {
@@ -117,8 +80,7 @@
         "latitude": -1.40474,
         "longitude": -78.29581
       },
-      "image": "assets/images/ecuador/approved/scene-3.webp",
-      "mapRegion": "mainland"
+      "image": "assets/images/ecuador/approved/scene-3.webp"
     },
     {
       "id": "cuenca-turi",
@@ -130,8 +92,7 @@
         "latitude": -2.92232,
         "longitude": -79.01007
       },
-      "image": "assets/images/ecuador/approved/scene-4.webp",
-      "mapRegion": "mainland"
+      "image": "assets/images/ecuador/approved/scene-4.webp"
     },
     {
       "id": "cajas-laguna-toreadora",
@@ -144,10 +105,9 @@
         "longitude": -79.22232
       },
       "image": "assets/images/ecuador/approved/scene-5.webp",
-      "mapRegion": "mainland",
       "mapOffset": {
-        "x": -3.6,
-        "y": -2.5
+        "x": -0.8,
+        "y": -1
       }
     },
     {
@@ -160,8 +120,7 @@
         "latitude": -0.01249,
         "longitude": -76.17776
       },
-      "image": "assets/images/ecuador/approved/scene-6.webp",
-      "mapRegion": "mainland"
+      "image": "assets/images/ecuador/approved/scene-6.webp"
     },
     {
       "id": "los-frailes",
@@ -173,8 +132,7 @@
         "latitude": -1.49336,
         "longitude": -80.79617
       },
-      "image": "assets/images/ecuador/approved/scene-7.webp",
-      "mapRegion": "mainland"
+      "image": "assets/images/ecuador/approved/scene-7.webp"
     },
     {
       "id": "punta-espinosa-marine-iguanas",
@@ -186,8 +144,7 @@
         "latitude": -0.26769,
         "longitude": -91.44704
       },
-      "image": "assets/images/ecuador/approved/scene-8.webp",
-      "mapRegion": "galapagos"
+      "image": "assets/images/ecuador/approved/scene-8.webp"
     }
   ],
   "encounters": [
@@ -364,7 +321,8 @@
         "nameLocal": "Ceviche",
         "text": "魚介をレモン、塩、胡椒、玉ねぎなどで合わせる人気料理。地域や店によって魚介と付け合わせが変わり、海岸部では特に身近な一皿。",
         "image": "assets/images/ecuador/approved/food-1.webp",
-        "imageState": "APPROVED"
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
       },
       {
         "id": "hornado",
@@ -372,7 +330,8 @@
         "nameLocal": "Hornado",
         "text": "豚肉を焼き上げ、モテや玉ねぎの付け合わせなどと食べるアンデスの料理。市場の食堂で大きな塊から切り分ける光景も印象に残る。",
         "image": "assets/images/ecuador/approved/food-2.webp",
-        "imageState": "APPROVED"
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
       },
       {
         "id": "maito-de-pescado",
@@ -380,7 +339,8 @@
         "nameLocal": "Maito de pescado",
         "text": "川魚をビハオやバナナなどの葉で包み、炭火で蒸し焼きにするアマゾンの料理。葉の香りと魚の水分を閉じ込める古い調理法。",
         "image": "assets/images/ecuador/approved/food-3.webp",
-        "imageState": "APPROVED"
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
       },
       {
         "id": "tigrillo",
@@ -388,7 +348,8 @@
         "nameLocal": "Tigrillo",
         "text": "つぶした青バナナに卵とチーズを合わせる沿岸部エル・オロの料理。チチャロンを加えることもあり、朝食にも食べられる。",
         "image": "assets/images/ecuador/approved/food-4.webp",
-        "imageState": "APPROVED"
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
       }
     ]
   },
