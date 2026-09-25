@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "colombia",
+  "nameEn": "COLOMBIA",
+  "nameJa": "コロンビア",
+  "region": "SOUTH AMERICA / 4°N",
+  "seo": {
+    "description": "アンデス、カリブ海、コーヒー文化、色彩の川、密林の遺跡。8つの風景と地図で、地域ごとに表情を変えるコロンビアをたどる旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Bogotá",
+    "nameJa": "ボゴタ",
+    "coordinates": {
+      "latitude": 4.711,
+      "longitude": -74.0721
+    },
+    "labelPosition": "right"
+  },
+  "hero": {
+    "lead": "カリブ海の城壁都市からアンデスの高地、密林、色彩の川、島々へ。地域を越えるたび、国の表情が大きく変わる。",
+    "image": "assets/images/colombia/approved/hero.webp",
+    "location": "Cartagena de Indias / Ciudad Amurallada",
+    "coordinates": {
+      "latitude": 10.422626,
+      "longitude": -75.548885
+    },
+    "mapOffset": {
+      "x": -1,
+      "y": -1
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 13.7,
+      "south": -4.5,
+      "west": -82.3,
+      "east": -66.5
+    },
+    "svg": "assets/images/colombia/map-atlas-v1.svg",
+    "insetNote": null,
+    "route": null,
+    "source": "Target geometry: Natural Earth 1:10m Countries, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection; surrounding national context: Natural Earth-derived country GeoJSON, WGS84, public domain. Caribbean islands including San Andrés and Providencia and Pacific Malpelo are retained in the target geometry. Rendered in a single local-equirectangular-fit projection on a 1200×760 canvas; sources checked 2026-09-25."
+  },
+  "scenes": [
+    {
+      "id": "cocora-valley",
+      "name": "ココラ渓谷",
+      "nameLocal": "Valle del Cocora",
+      "mapLabel": "Cocora",
+      "description": "雲霧をまとったアンデスの谷に、コロンビアの国樹ワックスパームが細く高く立つ。草地と雲霧林の境界に、コーヒー地域を象徴する垂直のリズムが生まれる。",
+      "coordinates": {
+        "latitude": 4.6369,
+        "longitude": -75.4866
+      },
+      "image": "assets/images/colombia/approved/scene-1.webp",
+      "mapOffset": {
+        "x": -2.4,
+        "y": 0
+      }
+    },
+    {
+      "id": "cano-cristales",
+      "name": "カニョ・クリスタレス",
+      "nameLocal": "Caño Cristales",
+      "mapLabel": "Caño Cristales",
+      "description": "シエラ・デ・ラ・マカレナの浅い川床で、水生植物Macarenia clavigeraが赤を中心に色づく。透明な水、黒い岩盤、小さな瀬が重なり、「五色の川」と呼ばれる景観をつくる。",
+      "coordinates": {
+        "latitude": 2.25,
+        "longitude": -73.8167
+      },
+      "image": "assets/images/colombia/approved/scene-2.webp",
+      "mapOffset": {
+        "x": 0.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "piedra-del-penol",
+      "name": "ピエドラ・デル・ペニョル",
+      "nameLocal": "Piedra del Peñol / Guatapé",
+      "mapLabel": "Guatapé",
+      "description": "アンティオキア東部の巨大な一枚岩と、その周囲へ入り組む貯水池。岩上からは青い水面と緑の半島が複雑に連なり、高地の人工湖が独特の地形景観をつくる。",
+      "coordinates": {
+        "latitude": 6.22316,
+        "longitude": -75.17777
+      },
+      "image": "assets/images/colombia/approved/scene-3.webp"
+    },
+    {
+      "id": "tayrona-cabo-san-juan",
+      "name": "タイロナ国立自然公園",
+      "nameLocal": "Parque Nacional Natural Tayrona / Cabo San Juan del Guía",
+      "mapLabel": "Tayrona",
+      "description": "シエラ・ネバダ・デ・サンタ・マルタの山地がカリブ海へ落ちる場所。花崗岩の巨岩、ヤシ、熱帯林、青い入り江が近い距離に重なる。",
+      "coordinates": {
+        "latitude": 11.32802,
+        "longitude": -73.96424
+      },
+      "image": "assets/images/colombia/approved/scene-4.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": -4
+      }
+    },
+    {
+      "id": "ciudad-perdida",
+      "name": "シウダー・ペルディダ",
+      "nameLocal": "Ciudad Perdida / Teyuna",
+      "mapLabel": "Ciudad Perdida",
+      "description": "シエラ・ネバダの密林に、タイロナ文化が築いた円形テラス、石段、道、水路が残る。海岸の暑さから歩いて山へ入り、森の中で都市遺構に出会う場所。",
+      "coordinates": {
+        "latitude": 11.037,
+        "longitude": -73.925
+      },
+      "image": "assets/images/colombia/approved/scene-5.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 4
+      }
+    },
+    {
+      "id": "las-lajas-sanctuary",
+      "name": "ラス・ラハス教会",
+      "nameLocal": "Santuario de Las Lajas",
+      "mapLabel": "Las Lajas",
+      "description": "エクアドル国境に近いアンデス南部で、深いグアイタラ川峡谷をまたぐネオゴシックの聖堂。石造建築と急峻な緑の谷壁が一体になった景観。",
+      "coordinates": {
+        "latitude": 0.8055,
+        "longitude": -77.586
+      },
+      "image": "assets/images/colombia/approved/scene-6.webp"
+    },
+    {
+      "id": "tatacoa-desert",
+      "name": "タタコア砂漠",
+      "nameLocal": "Desierto de la Tatacoa",
+      "mapLabel": "Tatacoa",
+      "description": "ウイラの乾燥した熱帯林に、赤褐色と灰色の侵食地形が続く。アンデスと熱帯雨林のイメージから大きく離れた、乾いた谷とサボテンの風景。",
+      "coordinates": {
+        "latitude": 3.23,
+        "longitude": -75.17
+      },
+      "image": "assets/images/colombia/approved/scene-7.webp"
+    },
+    {
+      "id": "johnny-cay-san-andres",
+      "name": "ジョニー・ケイ",
+      "nameLocal": "Johnny Cay / San Andrés",
+      "mapLabel": "San Andrés",
+      "description": "本土から遠く離れた西カリブ海で、白砂、ヤシ、浅い礁湖が小さな島を囲む。San Andrésの海は水深と海底によって青の濃淡が大きく変わる。",
+      "coordinates": {
+        "latitude": 12.59945,
+        "longitude": -81.69034
+      },
+      "image": "assets/images/colombia/approved/scene-8.webp"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "城壁の上からカリブ海を見る",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "ワックスパームの谷を歩く",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "コーヒー農園で一杯の背景を知る",
+      "icon": "food",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "五色の川を歩いて観察する",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "密林の石段をたどる",
+      "icon": "history",
+      "category": "CULTURE"
+    },
+    {
+      "title": "カリブ海の入り江で泳ぐ",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "市場で地域ごとの果物を比べる",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "高地から熱帯低地へ気候をまたぐ",
+      "icon": "map",
+      "category": "MOVEMENT"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "coffee-cultural-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "コーヒーは、山の斜面と町の暮らしを同時につくる",
+      "text": "西部アンデスのコーヒー文化景観では、急斜面の小規模農園と丘上の町が一続きに見える。豆そのものだけでなく、農地、家屋、町並み、移動の仕方までがコーヒー生産と結びつく。",
+      "points": [
+        "UNESCO登録地は6つの生産景観と18の都市中心部で構成される",
+        "Quindío・Risaralda・Caldas・Valle del Caucaなどに景観が広がる"
+      ],
+      "sourceKey": "coffeeLandscape"
+    },
+    {
+      "topicKey": "three-andean-cordilleras",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アンデスが三つに分かれ、谷と都市を配置する",
+      "text": "コロンビア西部ではアンデス山系が西・中央・東の三つの山脈へ分かれる。山脈の間にマグダレナ川やカウカ川の谷が伸び、都市間移動でも標高差と曲がりくねった地形を実感しやすい。",
+      "points": [
+        "Bogotáは東部山脈の高原に位置する",
+        "Medellínはアブラ谷、Caliはカウカ川流域に展開する"
+      ],
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "caribbean-afro-indigenous-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "カリブ海岸では、先住民・アフリカ系・欧州由来の文化が重なる",
+      "text": "CartagenaからSanta Marta、Barranquillaへ続くカリブ海岸では、音楽、料理、祭礼、建築に複数の文化的ルーツが表れる。内陸のアンデスとは、街のリズムも食材も大きく変わる。",
+      "points": [
+        "Cartagenaでは植民都市の歴史と現代のカリブ文化が隣り合う",
+        "沿岸料理では魚、ココナツ、青バナナが頻繁に使われる"
+      ],
+      "sourceKey": "culture"
+    },
+    {
+      "topicKey": "amazon-leticia-river-life",
+      "themeEn": "NATURE",
+      "themeJa": "自然に入る",
+      "title": "アマゾンでは、道路より川が旅の軸になる",
+      "text": "南端のLeticia周辺では、アマゾン川と支流をボートで進み、森林や集落へ入る。国境線より大河の連続性の方が実感しやすく、ブラジル・ペルー側の町とも水上交通で結ばれる。",
+      "points": [
+        "河川水位は季節によって大きく変わる",
+        "森林散策と水路移動では必要な装備が異なる"
+      ],
+      "sourceKey": "amazon"
+    },
+    {
+      "topicKey": "san-andres-raizal-caribbean",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "San Andrésでは、本土と異なる島の文化圏に入る",
+      "text": "西カリブ海のSan Andrés・Providenciaでは、英語系クレオール文化を持つRaizalの歴史と、礁湖・珊瑚礁の海景が旅の中心になる。本土の都市と同じ国でありながら、島の時間と文化が明確に異なる。",
+      "points": [
+        "San Andrésは本土の北西約700kmのカリブ海に位置する",
+        "島内の海は浅瀬と珊瑚礁によって青の濃淡が変わる"
+      ],
+      "sourceKey": "sanAndres"
+    },
+    {
+      "topicKey": "bogota-highland-capital",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "首都は、熱帯の国にある標高2,600m級の高地都市",
+      "text": "Bogotáはアンデス高原に広がり、カリブ海岸とは気温も服装も違う。旧市街La Candelariaから博物館、現代地区まで、都市の密度を歩きながら標高と歴史の両方を感じられる。",
+      "points": [
+        "朝夕は年間を通して冷えやすい",
+        "都市滞在と高地への順応を同時に考えたい"
+      ],
+      "sourceKey": "bogota"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "cartagena-fortifications",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "Cartagenaには、南米で最も広範な要塞群のひとつが残る",
+      "text": "UNESCOはCartagenaの港・要塞・記念建造物群を1984年に登録。城壁都市はカリブ海航路の重要港として形成され、現在も旧市街の輪郭を明確に残す。",
+      "icon": "history",
+      "sourceKey": "cartagenaUnesco"
+    },
+    {
+      "topicKey": "unesco-nine-properties-2026",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は、文化・自然・複合を合わせて9件",
+      "text": "UNESCOの2026年時点の国別一覧では、コロンビアには文化6・自然2・複合1の計9件が登録されている。都市、考古遺跡、国立公園まで対象が幅広い。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "pacific-and-caribbean-coasts",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "南米で、太平洋とカリブ海の両方に海岸を持つ",
+      "text": "コロンビアは西に太平洋、北にカリブ海へ開く。二つの海側で降水、海流、沿岸文化が異なり、同じ国でも海岸の表情が大きく変わる。",
+      "icon": "map",
+      "sourceKey": "twoCoasts"
+    },
+    {
+      "topicKey": "guatape-reservoir-transformation",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "景観",
+      "title": "Guatapéの入り組んだ湖景は、1970年代の水力発電開発で生まれた",
+      "text": "現在のEl Peñol貯水池周辺では、旧集落の一部が移転し、水面と半島が複雑に入り組む景観へ変化した。巨大岩からその地形を一望できる。",
+      "icon": "map",
+      "sourceKey": "guatape"
+    },
+    {
+      "topicKey": "tatacoa-not-true-desert",
+      "categoryEn": "GEOLOGY",
+      "categoryJa": "地形",
+      "title": "Tatacoaは名前に「砂漠」と付くが、実態は乾燥した熱帯林",
+      "text": "赤や灰色の侵食地形が砂漠のように見える一方、Colombia Travelはこの地域をdry tropical forestとして説明している。サボテンと深い浸食溝が特徴。",
+      "icon": "landscape",
+      "sourceKey": "tatacoa"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF COLOMBIA",
+    "title": "コロンビアで食べたいもの",
+    "intro": "高地、コーヒー地方、カリブ海岸で食材とボリュームが変わる。豆、じゃがいも、とうもろこし、ココナツ、魚から地域差を味わう。",
+    "items": [
+      {
+        "id": "bandeja-paisa",
+        "name": "バンデハ・パイサ",
+        "nameLocal": "Bandeja paisa",
+        "text": "Antioquiaを代表する大皿料理。豆、白米、挽肉、チチャロン、チョリソ、目玉焼き、アボカド、アレパ、甘いプランテンなどを一皿に盛る。",
+        "image": "assets/images/colombia/approved/food-1.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ajiaco-santafereno",
+        "name": "アヒアコ・サンタフェレーニョ",
+        "nameLocal": "Ajiaco santafereño",
+        "text": "Bogotáの高地で親しまれる、複数のじゃがいも、鶏肉、とうもろこし、グアスカを使う濃いスープ。ケッパーやクリームを添えることも多い。",
+        "image": "assets/images/colombia/approved/food-2.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "arepa-de-huevo",
+        "name": "アレパ・デ・ウエボ",
+        "nameLocal": "Arepa de huevo",
+        "text": "カリブ海岸の揚げアレパ。とうもろこし生地を一度揚げて卵を入れ、再び揚げるため、外側は香ばしく中に卵が収まる。",
+        "image": "assets/images/colombia/approved/food-3.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pescado-frito-arroz-coco",
+        "name": "魚の丸揚げとココナツライス",
+        "nameLocal": "Pescado frito con arroz de coco y patacón",
+        "text": "Cartagenaなどカリブ海岸で定番の組み合わせ。魚を丸ごと揚げ、甘みのあるココナツライスと潰して揚げた青バナナを添える。",
+        "image": "assets/images/colombia/approved/food-4.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土が広く山地も多いため、地図上の距離以上に移動時間がかかる。地域を欲張るより、国内線を使いながら2〜3地域を深く組み合わせたい。",
+    "items": [
+      {
+        "duration": "6〜8日",
+        "title": "都市とカリブ海をつなぐ",
+        "text": "BogotáまたはMedellínにCartagenaを組み合わせ、Guatapéなど近郊を一日入れる。初訪問なら都市文化、歴史、カリブ海の違いを短期間で捉えやすい。例：Bogotá→Medellín / Guatapé→Cartagena",
+        "icon": "city"
+      },
+      {
+        "duration": "9〜13日",
+        "title": "コーヒー地方と北海岸まで広げる",
+        "text": "Coffee Axisで農園・Cocora Valleyを歩き、CartagenaまたはTayronaへ移動する。長距離は国内線を使い、山地の道路移動には余白を残す。例：Bogotá→Salento→Medellín→Cartagena→Tayrona",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "遠隔地を一つ加える",
+        "text": "基本ルートにCaño Cristales、San Andrés、Amazonasのいずれかを加える。いずれも季節・航空便・現地手配の影響が大きいため、遠隔地を複数詰め込まない方が旅が安定する。 例：Bogotá→Medellín→Salento→Cartagena→San Andrés",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12–3月",
+      "color": "#c2a35f",
+      "text": "全国一律ではないが、アンデスの多くとカリブ海岸では比較的乾きやすい時期。都市歩きや山地移動を組みやすく、Caribbeanでは晴天の日が増える。"
+    },
+    {
+      "months": "4–5月",
+      "color": "#6f9878",
+      "text": "アンデスでは雨の多い時期のひとつ。午後の雨や道路条件を考え、山地移動には時間の余裕を置く。Amazonでは水位が高まる季節に入り、水上移動の景色が変わる。"
+    },
+    {
+      "months": "6–9月",
+      "color": "#7fa29b",
+      "text": "7〜8月はアンデスで比較的乾く時期がある一方、Llanosは雨季。Caño Cristalesは水量とMacarenia clavigeraの状態が合う時期に色彩が見やすく、運用期間を公式情報で確認したい。"
+    },
+    {
+      "months": "10–11月",
+      "color": "#9b8067",
+      "text": "アンデスの多くで再び雨が増える。Caribbeanでも降雨が出やすく、海況・道路・公園運用を直前確認したい。地域差が大きいため、都市ごとの天候を見るのが前提。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は国内線、地域内はバスと車を組み合わせる",
+    "text": "Bogotá、Medellín、Cartagena、Caliなど主要都市間は航空移動が効率的。山地を横切る長距離バスは景色を楽しめる一方、道路・天候で所要時間が変わりやすい。San Andrés、Amazonas、Caño Cristalesなど遠隔地は航空便に依存し、自然地域ではボートや4WD、徒歩を組み合わせる。"
+  },
+  "personas": [
+    {
+      "title": "一国の中で景観を大きく切り替えたい人",
+      "text": "アンデスの高地、乾燥地形、密林、カリブ海、島嶼まで、地域を移るたびに気候と植生が変わる旅をしたい。"
+    },
+    {
+      "title": "歴史都市と地域文化を歩いて知りたい人",
+      "text": "Cartagenaの城壁、Bogotáの旧市街、コーヒー地域の町など、建築と日常生活が近い場所を歩きたい。"
+    },
+    {
+      "title": "食と自然を同じ旅で深く見たい人",
+      "text": "豆と肉の高地料理、Bogotáのスープ、Caribbeanの魚とココナツなど、地域差を風景と一緒に味わいたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ北西部"
+    },
+    {
+      "label": "首都",
+      "value": "ボゴタ"
+    },
+    {
+      "label": "人口",
+      "value": "52,695,952（2025年・DANE）"
+    },
+    {
+      "label": "面積",
+      "value": "1,141,748 km²（陸地）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（公用語）／民族集団の言語・方言は各地域で公用"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック、プロテスタント等）／無宗教ほか"
+    },
+    {
+      "label": "通貨",
+      "value": "コロンビア・ペソ（COP）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "wax-palm-60m",
+      "label": "ワックスパーム",
+      "value": "最大約60 m",
+      "note": "Cocora Valleyで見られるPalma de Ceraはコロンビアの国樹で、Colombia Travelは最大60mに達すると案内する。",
+      "icon": "landscape",
+      "interestReason": "遠景でも国を識別できるほど独特な植物景観で、コーヒー地方の自然と文化を同時に象徴するため。"
+    },
+    {
+      "topicKey": "sierra-nevada-coastal-peak-5775m",
+      "label": "海岸山地の最高点",
+      "value": "5,775 m",
+      "note": "Sierra Nevada de Santa MartaのColón峰は標高5,775m。カリブ海岸から約42kmの距離で雪を抱く高峰へ立ち上がる。",
+      "icon": "landscape",
+      "interestReason": "熱帯のカリブ海岸と5,000m超の高山が極めて近接する、コロンビア北部の地形の振れ幅を一つの数字で理解できるため。"
+    },
+    {
+      "topicKey": "bird-diversity-over-1900-species",
+      "label": "確認される鳥類",
+      "value": "1,900種超",
+      "note": "Colombia Travelは国内に1,900種を超える鳥類が生息すると案内し、世界でも鳥類多様性が特に高い国として紹介している。",
+      "icon": "wildlife",
+      "interestReason": "アンデス、チョコ、カリブ海岸、アマゾンなど異なる生態系を一国でまたぐ意味を、野鳥の多様性から直感的に捉えられるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mountain-road-time",
+      "title": "山地の移動は距離より所要時間で考える",
+      "text": "アンデスでは都市間距離が短く見えても峠道や交通で時間が延びる。長距離区間は国内線も比較し、到着日に詰め込みすぎない。"
+    },
+    {
+      "topicKey": "regional-climate",
+      "title": "全国共通の「ベストシーズン」を決めない",
+      "text": "Caribbean、Andes、Pacific、Amazon、Llanosで雨のリズムが異なる。複数地域を回る場合は、各目的地の天候・道路・海況を個別に確認する。"
+    },
+    {
+      "topicKey": "remote-area-operations",
+      "title": "自然地域は運用期間と入域条件を直前確認する",
+      "text": "Caño Cristales、Tayrona、San Andrésなどは季節、保全措置、運航、入域手続きが旅程に影響することがある。現地公式情報を出発前に確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇪🇨",
+      "countryEn": "ECUADOR",
+      "countryJa": "エクアドル",
+      "path": "Cali / Pasto → Ipiales → Rumichaca → Tulcán / Quito",
+      "description": "南アンデスをそのまま陸路でエクアドルへつなぐ代表的な国境ルート。国境施設の運用時間、入国条件、安全情報は渡航直前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設・交通・安全情報を渡航直前に確認する。"
+    },
+    {
+      "flag": "🇻🇪",
+      "countryEn": "VENEZUELA",
+      "countryJa": "ベネズエラ",
+      "path": "Bogotá → Cúcuta → Puente Internacional Simón Bolívar → San Antonio",
+      "description": "東部国境の主要回廊。政治・治安・国境運用の変化を受けやすいため、利用可否と移動時間は必ず最新の公的情報で確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用・入国条件・安全情報の最新確認が必須。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "ecuador",
+      "nameEn": "ECUADOR",
+      "nameJa": "エクアドル",
+      "flag": "🇪🇨",
+      "reason": "北アンデス、太平洋岸、アマゾンが地理的に連続し、火山・高地都市・熱帯林をよりコンパクトな国土でたどれる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "panama",
+      "nameEn": "PANAMA",
+      "nameJa": "パナマ",
+      "flag": "🇵🇦",
+      "reason": "カリブ海と太平洋の両側を持ち、熱帯雨林・島・植民都市を組み合わせる旅を中米側へつなげられる。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "brazil",
+      "nameEn": "BRAZIL",
+      "nameJa": "ブラジル",
+      "flag": "🇧🇷",
+      "reason": "アマゾンと大都市文化という共通点をさらに大きなスケールで体験でき、コロンビア南部から続く熱帯圏の広がりを比較できる。",
+      "affinityType": "NATURE"
+    }
+  ],
+  "updatedAt": "2026-09-25",
+  "sourcesVerifiedAt": "2026-09-25",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2023",
+    "worldHeritage": "2026",
+    "currency": "2026"
+  },
+  "sources": {
+    "population": "Departamento Administrativo Nacional de Estadística (DANE), national population projections based on CNPV 2018, updated 2025; DANE indicator total national 2025: 52,695,952.",
+    "area": "Ministerio de Relaciones Exteriores de Colombia / Cancillería: land area 1,141,748 km².",
+    "languages": "Constitución Política de Colombia, Art. 10: castellano official; languages and dialects of ethnic groups also official in their territories.",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Colombia; Latinobarómetro 2023 summary (64% Roman Catholic, 17% Protestant, 14% no religion, 2% atheist/agnostic).",
+    "currency": "Banco de la República: Colombian legal currency; Law 31 of 1992 identifies the peso as Colombia's monetary and accounting unit.",
+    "worldHeritage": "UNESCO World Heritage Centre, Colombia State Party page: 9 properties (6 cultural, 2 natural, 1 mixed), checked 2026-09-25.",
+    "cartagenaUnesco": "UNESCO World Heritage Centre, Port, Fortresses and Group of Monuments, Cartagena; inscription 1984 and fortification significance.",
+    "coffeeLandscape": "UNESCO World Heritage Centre, Coffee Cultural Landscape of Colombia: six farming landscapes and eighteen urban centres; inscription 2011.",
+    "cocora": "Colombia Travel / ProColombia, Visit the Cocora Valley: wax palm is Colombia's national tree and can reach about 60 m.",
+    "canoCristales": "Colombia Travel / ProColombia, Caño Cristales: River of Five Colors; Macarenia clavigera coloration and seasonal visibility.",
+    "guatape": "Colombia Travel / ProColombia, Guatapé and Piedra del Peñol: 220 m monolith and reservoir landscape.",
+    "tayrona": "Colombia Travel / ProColombia, Tayrona National Natural Park: Cabo San Juan and Caribbean beaches at Sierra Nevada foothills.",
+    "ciudadPerdida": "Colombia Travel / ProColombia, Ciudad Perdida: Tayrona archaeological site, circular plazas, stairs, paths and stone channels.",
+    "lasLajas": "Colombia Travel / ProColombia, Ipiales / Sanctuary of Las Lajas: neo-Gothic sanctuary spanning a deep rocky gorge.",
+    "tatacoa": "Colombia Travel / ProColombia, Tatacoa Desert: red, grey and ochre erosion landscape; dry tropical forest rather than a true desert.",
+    "sanAndres": "Colombia Travel / ProColombia, San Andrés Island and Johnny Cay Regional Park: white sand, palms, corals and island culture.",
+    "food": "Colombia Travel / ProColombia practical and gastronomy guides: Bandeja paisa, Ajiaco, Arepa de huevo, fried fish with coconut rice and patacón.",
+    "geography": "Colombia Travel / ProColombia regional and climate guides; Cancillería national geography references.",
+    "culture": "Colombia Travel / ProColombia regional culture and gastronomy guides for Greater Colombian Caribbean.",
+    "amazon": "Colombia Travel / ProColombia Amazon-Orinoco regional and climate guides; river-based mobility and seasonal water levels.",
+    "bogota": "Colombia Travel / ProColombia Andes and climate guides for Bogotá highland conditions.",
+    "seasonsTransport": "Colombia Travel / ProColombia, Climate and Seasons; Transportation and Mobility in Colombia, checked 2026-09-25.",
+    "sceneCoordinates": "OpenStreetMap/GeoNames/Wikidata cross-checks: Cocora 4.6369,-75.4866; Caño Cristales approx 2.25,-73.8167; Piedra del Peñol 6.22316,-75.17777; Cabo San Juan 11.32802,-73.96424; Ciudad Perdida 11.0370,-73.9250; Las Lajas 0.8055,-77.5860; Tatacoa approx 3.23,-75.17; Johnny Cay 12.59945,-81.69034.",
+    "heroCoordinates": "Wikidata/Wikimedia cross-check for Puerta/Torre del Reloj, Cartagena: approximately 10.422626,-75.548885.",
+    "map": "Natural Earth 1:10m Countries, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection for Colombia target geometry, with surrounding country context from Natural Earth-derived public-domain GeoJSON; checked 2026-09-25.",
+    "nextRoutes": "Colombia–Ecuador Rumichaca corridor and Colombia–Venezuela Cúcuta/San Antonio corridor; both marked CHECK_CURRENT_CONDITIONS and require current border, entry and safety checks.",
+    "sierraNevada": "Parques Nacionales Naturales de Colombia / Colombia Travel: Sierra Nevada de Santa Marta rises from the Caribbean coast to peaks around 5,775 m, about 42 km from the sea; checked 2026-09-25.",
+    "birdDiversity": "Colombia Travel, Birdwatching: more than 1,900 bird species in Colombia and the country described as having the world’s highest bird diversity; checked 2026-09-25.",
+    "twoCoasts": "Colombia Travel practical geography: Colombia has Pacific and Caribbean/Atlantic coasts; checked 2026-09-25."
+  }
+}
