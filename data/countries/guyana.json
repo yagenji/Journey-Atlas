@@ -15,10 +15,10 @@
       "latitude": 6.8013,
       "longitude": -58.1551
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 7,
-      "y": -10
+      "x": -20,
+      "y": -35
     },
     "mapOffset": {
       "x": 1,
@@ -192,7 +192,7 @@
     },
     {
       "title": "大河の島に残る煉瓦の要塞",
-      "category": "HISTORY",
+      "category": "ARCHITECTURE",
       "icon": "history"
     },
     {
@@ -202,7 +202,7 @@
     },
     {
       "title": "サバンナに点在する村",
-      "category": "LIFE",
+      "category": "DAILY_LIFE",
       "icon": "home"
     },
     {
@@ -212,7 +212,7 @@
     },
     {
       "title": "岩棚を刻む褐色の川",
-      "category": "EARTH",
+      "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
@@ -306,22 +306,22 @@
       "sourceKey": "language"
     },
     {
-      "topicKey": "kaieteur-one-drop",
-      "categoryEn": "EARTH",
-      "categoryJa": "地形",
-      "title": "カイエトゥールは226mを一気に落ちる",
-      "text": "カイエトゥール滝はポタロ川が約226m落下する一段の大瀑布。高さだけでなく、大きな水量と周囲に都市開発のない峡谷が同時に見えることが特徴になっている。",
-      "icon": "landscape",
-      "sourceKey": "kaieteur"
+      "topicKey": "guyana-name-many-waters",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "ことば",
+      "title": "国名は「多くの水の土地」を意味する",
+      "text": "Guyana Lands and Surveys Commissionは、Guyanaを先住民語に由来する「Land of many Waters」と説明している。大河と支流が国土を縦横に走る景観に、その名の由来が重なる。",
+      "icon": "language",
+      "sourceKey": "nameMeaning"
     },
     {
-      "topicKey": "shell-beach-shell-fragments",
-      "categoryEn": "NATURE",
-      "categoryJa": "自然",
-      "title": "「シェルビーチ」の名は浜をつくる貝殻片から",
-      "text": "保護区の海岸には細かな砂だけでなく、二枚貝や巻貝などの砕けた殻が堆積する。海側の泥干潟から内陸のマングローブ、湿地林まで環境が連続する。",
-      "icon": "sea",
-      "sourceKey": "shellBeach"
+      "topicKey": "caricom-headquarters-georgetown",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "CARICOMの本部はジョージタウンにある",
+      "text": "Caribbean Community（CARICOM）の事務局本部はジョージタウンのTurkeyenに置かれている。南米の国でありながら英語圏カリブとの結びつきが強いことを、都市の役割からも感じられる。",
+      "icon": "city",
+      "sourceKey": "caricom"
     },
     {
       "topicKey": "victoria-amazonica-national-flower",
@@ -500,12 +500,13 @@
       "exceptionalScale": true
     },
     {
-      "topicKey": "population-2022-growth",
-      "label": "2022年国勢調査人口",
-      "value": "878,674人",
-      "note": "Bureau of Statisticsの2022年国勢調査速報値。2012年の746,955人から17.63%増えた。",
-      "icon": "users",
-      "interestReason": "広い国土に対して人口規模が小さく、海岸部と広大な内陸で旅の密度が大きく異なる背景を理解できる。"
+      "topicKey": "forest-cover-85-percent",
+      "label": "森林が占める国土",
+      "value": "約85%",
+      "note": "Guyana Forestry Commissionの2024年資料では、森林は国土のおよそ85%を覆う。",
+      "icon": "leaf",
+      "interestReason": "海岸低地から内陸へ入ると長大な森林が続く理由を、国土スケールの数字として実感できる。",
+      "exceptionalShare": true
     }
   ],
   "tips": [
@@ -552,7 +553,7 @@
       "nameJa": "スリナム",
       "flag": "🇸🇷",
       "reason": "ギアナ地方の熱帯林と低い大西洋岸という地理を共有しながら、オランダ語圏の都市文化へ視点を移したい人へ。",
-      "affinityType": "GEOGRAPHY"
+      "affinityType": "NATURE"
     },
     {
       "slug": "brazil",
@@ -560,7 +561,7 @@
       "nameJa": "ブラジル",
       "flag": "🇧🇷",
       "reason": "ルプヌニから陸路でつながり、さらに巨大なアマゾン流域と北部ブラジルの都市・自然へ旅を広げたい人へ。",
-      "affinityType": "ROAD"
+      "affinityType": "LANDSCAPE"
     },
     {
       "slug": "trinidadtobago",
@@ -593,7 +594,10 @@
     "brazilRoute": "2023-03",
     "geometry": "2026-09-25",
     "sceneCoordinates": "2026-09-25",
-    "nextRoutes": "2026-09-25"
+    "nextRoutes": "2026-09-25",
+    "forest": "2024-04",
+    "nameMeaning": "2026-09-25",
+    "caricom": "2026-09-25"
   },
   "sources": {
     "population": "Bureau of Statistics Guyana, 2022 Population and Housing Census preliminary count: 878,674 persons on census night, 15 Sep 2022; landmass approximately 214,999 km². https://statisticsguyana.gov.gy/census/",
@@ -615,6 +619,9 @@
     "brazilRoute": "IOM Guyana DTM Round 5, March 2023: Lethem borders Bonfim, Brazil; official Guyana–Brazil entry/exit point uses the Takutu River bridge. https://dtm.iom.int/sites/g/files/tmzbdl1461/files/reports/DTM%20Report%20Guyana-V5-Updated_%2029.09.2023.pdf",
     "geometry": "Target national geometry: Natural Earth Admin-0 WGS84, public domain, via sutcliffemax/sutcliffemax.github.io southamerica.geojson commit 9d9d83dce024553e417a98eaacae496ed7a22214. Surrounding land/coast context: GSHHS intermediate via Basemap 2.0.0; generated 2026-09-25; no invented geometry.",
     "sceneCoordinates": "WGS84 real-location coordinates checked 2026-09-25. Kaieteur: OSM/Mapcarta 5.17494,-59.48065. Stabroek Market: OSM/Mapcarta 6.80987,-58.1678. Fort Zeelandia: OSM/Mapcarta 6.78276,-58.5083. Shell Beach/Almond Beach representative protected-coast point from Guyana DPI no-netting-zone coordinates 8°29'22.24N,59°41'56.11W. Iwokrama Canopy Walkway: Wikimedia camera/location evidence 4.124674,-59.011301. Surama: NGA 4.166667,-59.083333. Karanambu/Karinambo locality: OSM/Mapcarta 3.7529,-59.31026. Orinduik Falls: OSM/Mapcarta 4.71916,-60.03602. Mahaica River–Baiabu birding locality: Cornell Macaulay/eBird 6.5328564,-57.8803861.",
-    "nextRoutes": "Brazil: IOM Guyana DTM March 2023 identifies Lethem–Bonfim/Takutu River Bridge as official crossing. Suriname: Guyana GovPortal identifies Canawaima Moleson Creek–South Drain crossing and DPI confirmed service resumed 28 Aug 2026. Sources checked 2026-09-25."
+    "nextRoutes": "Brazil: IOM Guyana DTM March 2023 identifies Lethem–Bonfim/Takutu River Bridge as official crossing. Suriname: Guyana GovPortal identifies Canawaima Moleson Creek–South Drain crossing and DPI confirmed service resumed 28 Aug 2026. Sources checked 2026-09-25.",
+    "forest": "Guyana Forestry Commission, REDD+ Third Summary of Information (2024): Guyana has approximately 85% forest cover. https://forestry.gov.gy/wp-content/uploads/2024/04/Third-Summary-of-Information-for-Guyana_for-public-consultation_April-2024.pdf",
+    "nameMeaning": "Guyana Lands and Surveys Commission, Fact Page on the Geography of Guyana: Guyana is an Amerindian word meaning 'Land of many Waters'. https://factpage.glsc.gov.gy/",
+    "caricom": "Caribbean Community (CARICOM), CARICOM Secretariat: Article 23 provides for the Secretariat headquarters in Georgetown, Guyana; current headquarters at Turkeyen, Georgetown. https://caricom.org/caricom-secretariat/"
   }
 }
