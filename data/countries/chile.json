@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "chile",
+  "nameEn": "CHILE",
+  "nameJa": "チリ",
+  "region": "SOUTH AMERICA / 33°S",
+  "seo": {
+    "description": "アタカマの乾燥高原、アンデス、港町、湖と火山、チロエ、パタゴニア、ラパ・ヌイ。南北に長いチリを8つの風景と地図でたどる旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Santiago",
+    "nameJa": "サンティアゴ",
+    "coordinates": {
+      "latitude": -33.4489,
+      "longitude": -70.6693
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": 38
+    },
+    "mapRegion": "mainland"
+  },
+  "hero": {
+    "lead": "北の乾燥高原から湖と火山、氷河のパタゴニア、そして遠いラパ・ヌイまで、南北に長い国土が風景を大きく変えていく。",
+    "image": "assets/images/chile/approved/hero-lago-pehoe-cuernos-del-paine.webp",
+    "location": "Lago Pehoé / Cuernos del Paine",
+    "coordinates": {
+      "latitude": -51.082767,
+      "longitude": -73.077964
+    },
+    "mapRegion": "mainland"
+  },
+  "map": {
+    "bounds": {
+      "north": -17.2,
+      "south": -56.2,
+      "west": -109.48,
+      "east": -66
+    },
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "north": -17.2,
+          "south": -56.2,
+          "west": -81,
+          "east": -66
+        },
+        "rect": {
+          "x": 300,
+          "y": 35,
+          "width": 860,
+          "height": 690
+        }
+      },
+      {
+        "id": "rapanui",
+        "bounds": {
+          "north": -27.03,
+          "south": -27.23,
+          "west": -109.48,
+          "east": -109.18
+        },
+        "rect": {
+          "x": 45,
+          "y": 500,
+          "width": 235,
+          "height": 190
+        }
+      }
+    ],
+    "svg": "assets/images/chile/map-atlas-v1.svg",
+    "insetNote": "※ ラパ・ヌイは、チリ本土との実際の位置関係・縮尺が異なる別枠表示です。",
+    "route": null,
+    "source": "Mainland target and neighboring context: Natural Earth 1:10m Admin 0 Countries v5.1.1, WGS84, public domain. Rapa Nui target coastline: Natural Earth 1:10m Admin 0 Countries v5.1.1, WGS84, public domain. Mainland and Rapa Nui are rendered as separate local-equirectangular-fit regions on a 1200×760 canvas; Rapa Nui is a separate inset. Sources checked 2026-09-25."
+  },
+  "scenes": [
+    {
+      "id": "valle-de-la-luna",
+      "name": "月の谷",
+      "nameLocal": "Valle de la Luna",
+      "mapLabel": "Valle de la Luna",
+      "description": "サン・ペドロ・デ・アタカマ近郊で、塩と岩の稜線、砂地、乾いた谷が連なる。低い夕日が起伏を強調し、北部チリの極端な乾燥景観を体感できる。",
+      "coordinates": {
+        "latitude": -22.93515,
+        "longitude": -68.23309
+      },
+      "image": "assets/images/chile/approved/scene-1-valle-de-la-luna.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "lago-chungara",
+      "name": "チュンガラ湖",
+      "nameLocal": "Lago Chungará / Parque Nacional Lauca",
+      "mapLabel": "Chungará",
+      "description": "標高約4,500mのアルティプラノに広がる高原湖。水面の向こうにパリナコータ山とポメラペ山が立ち、ボフェダルではビクーニャや高地の鳥類にも出会える。",
+      "coordinates": {
+        "latitude": -18.24865,
+        "longitude": -69.15127
+      },
+      "image": "assets/images/chile/approved/scene-2-lago-chungara.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "valparaiso-historic-quarter",
+      "name": "バルパライソ",
+      "nameLocal": "Valparaíso",
+      "mapLabel": "Valparaíso",
+      "description": "太平洋の港を囲む丘に、色の異なる家々と急坂が重なる。歴史的なアセンソールで海辺と丘を結びながら、港町の立体的な街並みを歩ける。",
+      "coordinates": {
+        "latitude": -33.04064,
+        "longitude": -71.628
+      },
+      "image": "assets/images/chile/approved/scene-3-valparaiso.webp",
+      "mapOffset": {
+        "x": -4.5,
+        "y": -1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "santiago-cerro-san-cristobal",
+      "name": "サンティアゴ",
+      "nameLocal": "Santiago / Cerro San Cristóbal",
+      "mapLabel": "Santiago",
+      "description": "サン・クリストバルの高台から首都の市街を見渡すと、都市の背後にアンデスが大きく連なる。大都市と6,000m級の山脈が近接するチリ中央部らしい眺め。",
+      "coordinates": {
+        "latitude": -33.425277,
+        "longitude": -70.63361
+      },
+      "image": "assets/images/chile/approved/scene-4-santiago-san-cristobal.webp",
+      "mapOffset": {
+        "x": 4.5,
+        "y": 1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "frutillar-lago-llanquihue",
+      "name": "リャンキウエ湖",
+      "nameLocal": "Frutillar / Lago Llanquihue",
+      "mapLabel": "Llanquihue",
+      "description": "フルティジャールの湖岸から、静かなリャンキウエ湖越しに端正なオソルノ山を望む。北部の乾燥地とは対照的な、湖・森林・火山が結びつく南部の風景。",
+      "coordinates": {
+        "latitude": -41.13345,
+        "longitude": -73.02666
+      },
+      "image": "assets/images/chile/approved/scene-5-lago-llanquihue-osorno.webp",
+      "mapOffset": {
+        "x": 3.5,
+        "y": -1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "castro-palafitos",
+      "name": "カストロのパラフィトス",
+      "nameLocal": "Palafitos de Castro / Chiloé",
+      "mapLabel": "Castro",
+      "description": "チロエ島の入江に、木造家屋が長い杭で水際へ張り出す。潮が満ち引きする海辺と暮らしが直接つながる、カストロを象徴する日常景観。",
+      "coordinates": {
+        "latitude": -42.47694,
+        "longitude": -73.75984
+      },
+      "image": "assets/images/chile/approved/scene-6-castro-palafitos.webp",
+      "mapOffset": {
+        "x": -3.5,
+        "y": 1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "capillas-de-marmol",
+      "name": "マーブル・ケーブ",
+      "nameLocal": "Capillas de Mármol / Lago General Carrera",
+      "mapLabel": "Capillas",
+      "description": "ヘネラル・カレーラ湖の青い水が長い時間をかけて大理石を削り、縞模様の洞窟やアーチをつくった。プエルト・リオ・トランキーロから舟で水面近くへ入る。",
+      "coordinates": {
+        "latitude": -46.649507,
+        "longitude": -72.645962
+      },
+      "image": "assets/images/chile/approved/scene-7-capillas-de-marmol.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "ahu-tongariki",
+      "name": "アフ・トンガリキ",
+      "nameLocal": "Ahu Tongariki / Rapa Nui",
+      "mapLabel": "Tongariki",
+      "description": "ラパ・ヌイ東岸で、復元された大きな祭祀壇の上に15体のモアイが海を背に並ぶ。南米本土とは異なるポリネシア文化圏に属するチリのもう一つの顔。",
+      "coordinates": {
+        "latitude": -27.12577,
+        "longitude": -109.27699
+      },
+      "image": "assets/images/chile/approved/scene-8-ahu-tongariki.webp",
+      "mapRegion": "rapanui"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "砂漠の稜線を歩く",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "高原湖で野生動物を見る",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "港町の坂を上る",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "アンデスを背に街を見る",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "湖畔で火山を望む",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "潮に沿う暮らしを見る",
+      "icon": "culture",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "大理石の洞窟を舟で進む",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "モアイの列と向き合う",
+      "icon": "history",
+      "category": "CULTURE"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "atacama-salt-rock-dunes",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アタカマでは、塩と岩と砂が地形を刻む",
+      "text": "サン・ペドロ・デ・アタカマ周辺では、乾燥した盆地に塩の地表、砂丘、侵食された岩稜が並ぶ。Valle de la Lunaでは、同じ谷の中でも斜光によって凹凸の表情が大きく変わる。",
+      "points": [
+        "Valle de la Lunaはサン・ペドロから約15km",
+        "日差しと乾燥が強く、水と日射対策が欠かせない"
+      ],
+      "sourceKey": "atacama"
+    },
+    {
+      "topicKey": "carretera-austral-patagonian-road",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "南へ行くほど、道路そのものが旅になる",
+      "text": "Ruta 7、通称Carretera Australは、ロス・ラゴス南部からアイセンを縦につなぐ。森、フィヨルド、氷河湖の間を進み、一部ではバルサを挟むため、移動が単なる接続ではなく旅の中心になる。",
+      "points": [
+        "全体で1,200kmを超える南北ルート",
+        "区間によって舗装、未舗装、バルサが組み合わさる"
+      ],
+      "sourceKey": "carreteraAustral"
+    },
+    {
+      "topicKey": "chiloe-tidal-stilt-houses",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "チロエでは、潮の満ち引きが家の足元まで来る",
+      "text": "カストロのパラフィトスは、水際に長い杭を立てて建てた木造家屋。満潮と干潮で家の下の景色が変わり、島の暮らしと内海の環境が近い距離で結びついている。",
+      "points": [
+        "カストロはチロエ群島の中心都市",
+        "パラフィトスは住宅や宿、飲食店としても使われる"
+      ],
+      "sourceKey": "chiloe"
+    },
+    {
+      "topicKey": "maipo-cabernet-vineyard-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "首都の近くで、アンデスとワイン畑が重なる",
+      "text": "マイポ渓谷はチリを代表する歴史あるワイン産地の一つ。アンデス山脈と海岸山脈に挟まれた谷にぶどう畑が広がり、サンティアゴから日帰り圏で農地と醸造文化に触れられる。",
+      "points": [
+        "Cabernet Sauvignonで特に知られる産地",
+        "サンティアゴから南へ続く中央谷に位置する"
+      ],
+      "sourceKey": "maipo"
+    },
+    {
+      "topicKey": "rnvv-monitoring-network",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "火山は景観であると同時に、現在進行形の地質でもある",
+      "text": "チリのSERNAGEOMINは、地質学的に活動的と分類する87〜92の火山系をリスク評価し、そのうち優先度の高い43火山を24時間体制で監視している。火山帯を旅する国ならではのインフラだ。",
+      "points": [
+        "技術警戒レベルは緑・黄・橙・赤で運用",
+        "Villarricaなど主要火山は常時監視対象"
+      ],
+      "sourceKey": "volcanoMonitoring"
+    },
+    {
+      "topicKey": "chinchorro-coastal-desert-culture",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "北端の海岸には、砂漠と海に適応した古い文化が残る",
+      "text": "アリカ周辺のチンチョーロ文化は、乾燥した海岸で海の資源を利用して暮らした狩猟採集社会だった。遺跡からは、世界で最も古い人工的な遺体のミイラ化を示す考古学的証拠が確認されている。",
+      "points": [
+        "世界遺産はArica市内2地点とCamarones河口の3構成資産",
+        "文化はおよそ紀元前5450年から紀元前890年に及ぶ"
+      ],
+      "sourceKey": "chinchorro"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "unesco-seven-cultural-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "チリの世界遺産は、現在7件すべてが文化遺産",
+      "text": "Rapa Nui、Valparaíso、Chiloéの教会群、Qhapaq Ñanなど7件が登録されている。自然景観の印象が強い国だが、登録資産はすべて文化遺産に分類される。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "valparaiso-historic-funiculars",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "バルパライソでは、斜面を上るアセンソールが街の動線になる",
+      "text": "Concepción、El Peral、Reina Victoriaなどの歴史的なアセンソールが港側と丘を結ぶ。急斜面の都市を歩くとき、眺望だけでなく移動手段そのものが街の個性になる。",
+      "icon": "city",
+      "sourceKey": "valparaiso"
+    },
+    {
+      "topicKey": "punihuil-dual-penguin-colony",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "野生動物",
+      "title": "チロエ北部では、2種のペンギンが同じ岩場で繁殖する",
+      "text": "Ancud近郊のPuñihuilでは、フンボルトペンギンとマゼランペンギンが同じ岩礁で営巣する場所として公式観光案内でも紹介されている。",
+      "icon": "wildlife",
+      "sourceKey": "punihuil"
+    },
+    {
+      "topicKey": "general-carrera-1850-square-km",
+      "categoryEn": "LAKE",
+      "categoryJa": "湖",
+      "title": "ヘネラル・カレーラ湖は、チリ最大の湖",
+      "text": "公式観光案内では面積1,850km²。アルゼンチン側へ続く巨大な氷河湖で、チリ側の青い水面にはCapillas de Mármolがある。",
+      "icon": "landscape",
+      "sourceKey": "generalCarrera"
+    },
+    {
+      "topicKey": "rano-raraku-nearly-400-moai",
+      "categoryEn": "ARCHAEOLOGY",
+      "categoryJa": "考古",
+      "title": "モアイの多くは、ラノ・ララクの石切場でつくられた",
+      "text": "Rapa NuiのRano Rarakuは「モアイの工場」と呼ばれ、公式観光案内では制作途中を含む約400体のモアイを見ることができると案内されている。",
+      "icon": "history",
+      "sourceKey": "ranoRaraku"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CHILE",
+    "title": "チリで食べたいもの",
+    "intro": "中央部の家庭料理、焼き菓子、チロエの海産物まで、長い国土に合わせて食材と調理法も変わる。土地の気候と暮らしが見える4皿。",
+    "items": [
+      {
+        "id": "pastel-de-choclo",
+        "name": "パステル・デ・チョクロ",
+        "nameLocal": "Pastel de choclo",
+        "text": "牛肉と玉ねぎのpino、鶏肉、卵、オリーブなどに、とうもろこしのペーストを重ねて焼く料理。素焼きの器で香ばしい焼き色をつける。",
+        "image": "assets/images/chile/approved/food-1-pastel-de-choclo.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "empanada-de-pino",
+        "name": "エンパナーダ・デ・ピノ",
+        "nameLocal": "Empanada de pino",
+        "text": "牛肉と玉ねぎを中心にしたpinoに、卵、オリーブ、レーズンなどを包んで焼くチリ定番のエンパナーダ。家庭や店で具の配合が少しずつ異なる。",
+        "image": "assets/images/chile/approved/food-2-empanada-de-pino.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "curanto",
+        "name": "クラント",
+        "nameLocal": "Curanto",
+        "text": "チロエを代表する料理。貝類、肉、じゃがいもなどを重ねて加熱し、伝統的には地面に掘った穴と熱した石を使う。現在は鍋でつくるcuranto en ollaもある。",
+        "image": "assets/images/chile/approved/food-3-curanto.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "cazuela",
+        "name": "カスエラ",
+        "nameLocal": "Cazuela",
+        "text": "鶏肉や牛肉を、じゃがいも、かぼちゃ、とうもろこしなどと煮込む家庭的なスープ料理。大きな具材と澄んだスープを一つの器で食べる。",
+        "image": "assets/images/chile/approved/food-4-cazuela.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南北に非常に長く、Rapa Nuiも遠い。全国を薄く回るより、北部・中央部・湖沼地方・Patagoniaなどを大きな地域単位で組み立てる方が、移動と滞在のバランスを取りやすい。",
+    "items": [
+      {
+        "duration": "6〜8日",
+        "title": "中央部を一つの旅にする",
+        "text": "サンティアゴを基点に、港町とワイン谷を組み合わせる。都市間の移動が比較的短く、最初のチリ旅行でも景観と街を両方見やすい。例：Santiago→Valparaíso→Maipo Valley",
+        "icon": "city"
+      },
+      {
+        "duration": "9〜13日",
+        "title": "湖と島まで南へ伸ばす",
+        "text": "中央部に加えてLos LagosとChiloéへ入り、火山湖から湿潤な島の暮らしへ景観を切り替える。南北移動は航空と陸路を組み合わせる。例：Santiago→Puerto Varas→Frutillar→Chiloé",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "北部かPatagoniaを深く加える",
+        "text": "AtacamaまたはPatagoniaを大きな軸にし、長距離移動日も旅程に含める。Carretera Australを走るなら道路・バルサ・天候の余白を優先する。例：Santiago→Atacama→Carretera Austral→Torres del Paine",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12–2月",
+      "color": "#c2a35f",
+      "text": "南半球の夏。Patagoniaや湖沼地方は日が長く動きやすい一方、人気地域は混みやすい。Atacamaでは強い日差しと昼夜の寒暖差に備える。"
+    },
+    {
+      "months": "3–5月",
+      "color": "#a77e5f",
+      "text": "秋。中央部から南部で気温が下がり、森林の色も変わる。Patagoniaでは風・雨・雪の変化が増えるため、移動日とハイクに余白を置く。"
+    },
+    {
+      "months": "6–8月",
+      "color": "#7c96a3",
+      "text": "冬。中央アンデスは雪の季節になり、南部は寒く日照時間も短い。PatagoniaやCarretera Australでは季節休業や道路条件を個別に確認したい。"
+    },
+    {
+      "months": "9–11月",
+      "color": "#7fa07c",
+      "text": "春。中央部は穏やかになり、南部は夏へ向けて移動条件が整っていく。高地では季節にかかわらず朝晩の冷え込みと紫外線対策が必要。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は航空、地域内はバスと車でつなぐ",
+    "text": "サンティアゴを中心に国内線が北部・南部の主要都市を結び、都市間には長距離バスも多い。Atacama、湖沼地方、Patagoniaではレンタカーが旅程の自由度を上げるが、Carretera Australには未舗装区間やバルサを含む。Rapa Nuiは本土とは別の航空移動として組み立て、便や入域条件は出発前に最新情報を確認する。"
+  },
+  "personas": [
+    {
+      "title": "地形の振れ幅を旅したい人",
+      "text": "砂漠、高原、火山湖、温帯林、氷河、海の島まで、一つの国で景観が大きく切り替わる旅を求める人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "長い道を走ることが好きな人",
+      "text": "Carretera Australや湖沼地方など、目的地だけでなく道路、フェリー、途中の小さな町を含めて移動を楽しみたい人。",
+      "icon": "road"
+    },
+    {
+      "title": "風景の奥に文化も見たい人",
+      "text": "Valparaíso、Chiloé、Chinchorro、Rapa Nuiなど、自然景観と異なる歴史・暮らしを同じ旅の中でたどりたい人。",
+      "icon": "culture"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ / 南太平洋"
+    },
+    {
+      "label": "首都",
+      "value": "サンティアゴ"
+    },
+    {
+      "label": "人口",
+      "value": "18,480,432人（2024年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "約756,096 km²（南米・島嶼部）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック54.0%／福音派・プロテスタント16.3%（15歳以上、2024年）"
+    },
+    {
+      "label": "通貨",
+      "value": "チリ・ペソ（CLP）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "north-south-length-4300km",
+      "label": "南北の長さ",
+      "value": "約4,300 km",
+      "note": "政府案内では世界でも特に南北に長い国の一つで、平均幅は約180km。北部からPatagoniaまで気候と景観が大きく変わる。",
+      "icon": "map",
+      "interestReason": "地図で見える細長さが、実際の移動距離と地域差を生むチリ旅行の基本構造そのものだから。"
+    },
+    {
+      "topicKey": "rapanui-distance-3700km",
+      "label": "本土からRapa Nui",
+      "value": "約3,700 km",
+      "note": "UNESCOはRapa Nuiをチリ本土海岸から約3,700km離れた島と説明する。南米本土とは別のポリネシア文化圏に位置する。",
+      "icon": "compass",
+      "interestReason": "一つのCountryページの中に本土と遠隔のポリネシア文化が共存する、チリ特有の地理を端的に示すため。"
+    },
+    {
+      "topicKey": "ojos-del-salado-6879m",
+      "label": "Ojos del Salado",
+      "value": "6,879 m",
+      "note": "チリとアルゼンチンの国境に立つNevados Ojos del Saladoは、Smithsonian Global Volcanism Programが世界最高の活火山とする。",
+      "icon": "landscape",
+      "interestReason": "アンデス火山帯のスケールが世界最高地点級まで達することを、一つの具体的な標高で理解できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "regional-route-splitting",
+      "title": "全国を一度に詰め込まず、地域で旅程を分ける",
+      "text": "北端からPatagoniaまでの距離が大きい。国内線を使っても移動日は発生するため、Atacama、中央部、湖沼地方、Patagoniaを別ブロックとして考える。"
+    },
+    {
+      "topicKey": "altiplano-acclimatization",
+      "title": "北部高原は標高への順応を優先する",
+      "text": "Lago Chungaráは標高約4,500m。海岸やSan Pedroから急に高地へ上がる行程では、体調を見ながら水分と休息を取り、高度を急ぎすぎない。"
+    },
+    {
+      "topicKey": "patagonia-weather-ferry-check",
+      "title": "南部は天候・道路・バルサを直前にも確認する",
+      "text": "Carretera AustralやPatagoniaでは、風雨、道路工事、バルサ運航で所要時間が変わりやすい。長距離区間は固定しすぎず、最新の交通情報を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇦🇷",
+      "countryEn": "ARGENTINA",
+      "countryJa": "アルゼンチン",
+      "path": "Santiago → Los Andes → Paso Los Libertadores → Mendoza",
+      "description": "中央アンデスを越えてMendozaへ抜ける代表的な陸路。高山国境のため、冬季を中心に雪や強風による一時閉鎖があり、通行状況を直前確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Paso Los Libertadoresの道路・天候・国境運用を直前に確認する。"
+    },
+    {
+      "flag": "🇧🇴",
+      "countryEn": "BOLIVIA",
+      "countryJa": "ボリビア",
+      "path": "San Pedro de Atacama → Hito Cajón → Laguna Colorada → Uyuni",
+      "description": "Atacamaからボリビア南西部の高原とUyuniへ連続して進む旅行者定番の陸路。高標高の未舗装区間を含むため、現地ツアー運行と国境条件を確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "高原ルートの国境運用・道路・天候・ツアー運行を直前に確認する。"
+    },
+    {
+      "flag": "🇵🇪",
+      "countryEn": "PERU",
+      "countryJa": "ペルー",
+      "path": "Arica → Chacalluta → Santa Rosa → Tacna",
+      "description": "チリ北端AricaからTacnaへ続く短い陸路で、南米西岸を北へ旅する際の代表的な国境越え。利用時間や入国条件は出発前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間・入国条件・交通情報を出発前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "argentina",
+      "nameEn": "ARGENTINA",
+      "nameJa": "アルゼンチン",
+      "flag": "🇦🇷",
+      "reason": "アンデスとPatagoniaを国境の反対側からたどれ、氷河、山岳、草原をより広いスケールで比較しながら旅できる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "bolivia",
+      "nameEn": "BOLIVIA",
+      "nameJa": "ボリビア",
+      "flag": "🇧🇴",
+      "reason": "Atacamaから続くアルティプラノ、火山、塩湖の景観が強く、北部チリの高地旅をさらに内陸へ深められる。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "newzealand",
+      "nameEn": "NEW ZEALAND",
+      "nameJa": "ニュージーランド",
+      "flag": "🇳🇿",
+      "reason": "南北に長い国土をロードトリップしながら、火山、湖、氷河、フィヨルドをつなぐ旅の組み立て方に高い親和性がある。",
+      "affinityType": "TRAVEL_STYLE"
+    }
+  ],
+  "updatedAt": "2026-09-25",
+  "sourcesVerifiedAt": "2026-09-25",
+  "sourceDates": {
+    "population": "2024",
+    "religion": "2024",
+    "volcanoMonitoring": "2026-09-22",
+    "worldHeritage": "2026"
+  },
+  "sources": {
+    "population": "Instituto Nacional de Estadísticas de Chile (INE), Censo 2024: población censada 18,480,432.",
+    "area": "Chile official/BCN territorial statistics: continental and insular area approximately 756,096 km², excluding the Chilean Antarctic claim.",
+    "languages": "Chile government/official national references: Spanish is the predominant national language; indigenous languages are also used by their communities.",
+    "religion": "INE Censo 2024, población de 15 años o más: Católica 54.0%, Evangélica o protestante 16.3%, ninguna religión o credo 25.8%.",
+    "currency": "Banco Central de Chile / national monetary system: Chilean peso (CLP).",
+    "geography": "Gobierno de Chile, Nuestro País: Chile is about 4,300 km long with an average width of about 180 km; continental strip 17°29'57 S–56°32'12 S.",
+    "worldHeritage": "UNESCO World Heritage Centre, Chile State Party page: 7 inscribed properties, all cultural; checked 2026-09-25.",
+    "rapaNui": "UNESCO World Heritage Centre, Rapa Nui National Park: Easter Island is about 3,700 km from continental Chile; inscribed 1995.",
+    "ojosDelSalado": "Smithsonian Institution Global Volcanism Program, Nevados Ojos del Salado: elevation 6,879 m; world's highest active volcano.",
+    "volcanoMonitoring": "SERNAGEOMIN Red Nacional de Vigilancia Volcánica: 87–92 geologically active volcanic systems classified; 43 prioritized volcanoes monitored instrumentally 24/7; page updated 2026-09-22.",
+    "atacama": "Chile Travel / SERNATUR, Valle de la Luna: dunes, craters and salt/rock ridges near San Pedro de Atacama; page updated 2026-02-09.",
+    "lauca": "Chile Travel / SERNATUR, Parque Nacional Lauca: Lago Chungará at about 4,500 m, with Parinacota and Pomerape; page updated 2026-01-07.",
+    "valparaiso": "Chile Travel / SERNATUR, Ruta Ascensores and Valparaíso destination: historic ascensores link port and hills; updated 2026.",
+    "santiago": "Chile Travel / SERNATUR, Cerro San Cristóbal: viewpoints over Santiago and the Andes; page updated 2026-01-07.",
+    "llanquihue": "Chile Travel / SERNATUR, Lago Llanquihue: Chile's second-largest lake, framed by Osorno, Calbuco and Puntiagudo; page updated 2026-01-23.",
+    "chiloe": "Chile Travel / SERNATUR, Ancud y Castro / Chiloé: Castro's colorful palafitos built over the water; updated 2026-02-16.",
+    "generalCarrera": "Chile Travel / SERNATUR, Lago General Carrera y Capillas de Mármol: 1,850 km² lake and water-eroded marble formations; page updated 2026-01-07.",
+    "tongariki": "Chile Travel / SERNATUR, Rapa Nui itinerary: Ahu Tongariki is the island's largest ceremonial platform with 15 moai; 2026 itinerary.",
+    "ranoRaraku": "Chile Travel / SERNATUR, Rapa Nui itinerary: Rano Raraku quarry has nearly 400 moai in different stages of production.",
+    "carreteraAustral": "Chile Travel / SERNATUR, Carretera Austral: Ruta 7 exceeds 1,200 km through Los Lagos and Aysén and includes barge crossings; checked 2026-09-25.",
+    "maipo": "Chile Travel / SERNATUR, Valle del Maipo: historic Chilean wine region framed by Andes and Coastal ranges; page updated 2026-01-07.",
+    "chinchorro": "UNESCO World Heritage Centre, Settlement and Artificial Mummification of the Chinchorro Culture: three components, ca. 5450 BCE–890 BCE, oldest known archaeological evidence of artificial mummification.",
+    "punihuil": "Chile Travel / SERNATUR, Ancud y Castro: Puñihuil is presented as a site where Humboldt and Magellanic penguins nest on the same rocks.",
+    "food": "Chile Travel / SERNATUR, Día de la cocina chilena: pastel de choclo, cazuela, curanto and empanada de pino are part of Chilean culinary culture.",
+    "map": "Natural Earth 1:10m Admin 0 Countries v5.1.1, public domain, WGS84; Chile, Argentina, Bolivia and Peru geometry used for target and surrounding context. Rapa Nui target coastline comes from the Chile feature.",
+    "sceneCoordinates": "Cross-checks with official attraction geography plus OSM/GeoNames/Wikimedia: Valle de la Luna -22.93515,-68.23309; Lago Chungará -18.24865,-69.15127; Valparaíso -33.04064,-71.62800; Cerro San Cristóbal -33.425277,-70.633610; Frutillar -41.13345,-73.02666; Palafitos de Castro viewpoint -42.47694,-73.75984; Capillas de Mármol -46.649507,-72.645962; Ahu Tongariki -27.12577,-109.27699.",
+    "heroCoordinates": "Lago Pehoé / Cuernos del Paine viewpoint cross-check: approximately -51.082767,-73.077964.",
+    "seasonsTransport": "Chile Travel / SERNATUR regional destination guides. Weather, road, ferry and operational conditions vary and require current checks.",
+    "nextRoutes": "Established Chile–Argentina Los Libertadores, Chile–Bolivia Hito Cajón/Uyuni, and Chile–Peru Chacalluta/Santa Rosa overland traveler corridors; operational conditions marked CHECK_CURRENT_CONDITIONS."
+  }
+}
