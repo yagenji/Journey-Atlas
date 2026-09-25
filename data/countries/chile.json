@@ -18,7 +18,7 @@
     "labelPosition": "left",
     "labelOffset": {
       "x": 0,
-      "y": 38
+      "y": 8
     },
     "mapRegion": "mainland"
   },
@@ -132,10 +132,11 @@
       },
       "image": "assets/images/chile/approved/scene-4-santiago-san-cristobal.webp",
       "mapOffset": {
-        "x": 4.5,
-        "y": 1.5
+        "x": -0.6,
+        "y": 1.15
       },
-      "mapRegion": "mainland"
+      "mapRegion": "mainland",
+      "labelPosition": "right"
     },
     {
       "id": "frutillar-lago-llanquihue",
@@ -200,58 +201,58 @@
   ],
   "encounters": [
     {
-      "title": "砂漠の稜線を歩く",
+      "title": "砂漠と高原を歩く",
       "icon": "landscape",
       "category": "LANDSCAPE"
     },
     {
-      "title": "高原湖で野生動物を見る",
-      "icon": "wildlife",
-      "category": "WILDLIFE"
-    },
-    {
-      "title": "港町の坂を上る",
-      "icon": "city",
-      "category": "CITY"
-    },
-    {
-      "title": "アンデスを背に街を見る",
-      "icon": "city",
-      "category": "CITY"
-    },
-    {
-      "title": "湖畔で火山を望む",
+      "title": "アンデスと火山を見上げる",
       "icon": "landscape",
       "category": "LANDSCAPE"
     },
     {
-      "title": "潮に沿う暮らしを見る",
+      "title": "港町と丘の街を歩く",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "ワイン産地を訪ねる",
+      "icon": "food",
+      "category": "CULTURE"
+    },
+    {
+      "title": "湖と温帯林をたどる",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "太平洋の島文化に触れる",
       "icon": "culture",
-      "category": "DAILY_LIFE"
+      "category": "CULTURE"
     },
     {
-      "title": "大理石の洞窟を舟で進む",
-      "icon": "map",
+      "title": "パタゴニアの道を進む",
+      "icon": "road",
       "category": "MOVEMENT"
     },
     {
-      "title": "モアイの列と向き合う",
-      "icon": "history",
-      "category": "CULTURE"
+      "title": "海辺で野生動物を見る",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
     }
   ],
   "atlasExtras": [
     {
-      "topicKey": "atacama-salt-rock-dunes",
+      "topicKey": "chajnantor-alma-high-dry-sky",
       "themeEn": "EARTH",
       "themeJa": "地球の風景",
-      "title": "アタカマでは、塩と岩と砂が地形を刻む",
-      "text": "サン・ペドロ・デ・アタカマ周辺では、乾燥した盆地に塩の地表、砂丘、侵食された岩稜が並ぶ。Valle de la Lunaでは、同じ谷の中でも斜光によって凹凸の表情が大きく変わる。",
+      "title": "乾燥した高地の空は、世界の天文学を支える",
+      "text": "アタカマ北部のチャナントール高原にはALMAがあり、標高約5,000mの高く乾燥した環境を利用してミリ波・サブミリ波で宇宙を観測する。砂漠の「乾き」は景観だけでなく、観測条件にもなっている。",
       "points": [
-        "Valle de la Lunaはサン・ペドロから約15km",
-        "日差しと乾燥が強く、水と日射対策が欠かせない"
+        "66基の高精度アンテナで構成される",
+        "サン・ペドロ・デ・アタカマから東へ約50km"
       ],
-      "sourceKey": "atacama"
+      "sourceKey": "astronomy"
     },
     {
       "topicKey": "carretera-austral-patagonian-road",
@@ -266,16 +267,16 @@
       "sourceKey": "carreteraAustral"
     },
     {
-      "topicKey": "chiloe-tidal-stilt-houses",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "title": "チロエでは、潮の満ち引きが家の足元まで来る",
-      "text": "カストロのパラフィトスは、水際に長い杭を立てて建てた木造家屋。満潮と干潮で家の下の景色が変わり、島の暮らしと内海の環境が近い距離で結びついている。",
+      "topicKey": "alerce-andino-temperate-rainforest",
+      "themeEn": "NATURE",
+      "themeJa": "自然に入る",
+      "title": "南部では、湖の外側に温帯雨林が続く",
+      "text": "プエルト・モント近郊のアレルセ・アンディーノ国立公園には、常緑林、山地の湖沼、アレルセの森が広がる。湖と火山だけでなく、湿潤な温帯雨林もチリ南部の重要な自然景観だ。",
       "points": [
-        "カストロはチロエ群島の中心都市",
-        "パラフィトスは住宅や宿、飲食店としても使われる"
+        "公園面積は39,255ha",
+        "アレルセ林は約2万haに広がる"
       ],
-      "sourceKey": "chiloe"
+      "sourceKey": "nativeForest"
     },
     {
       "topicKey": "maipo-cabernet-vineyard-culture",
@@ -316,49 +317,49 @@
   ],
   "travelTrivia": [
     {
-      "topicKey": "unesco-seven-cultural-properties",
-      "categoryEn": "HERITAGE",
-      "categoryJa": "世界遺産",
-      "title": "チリの世界遺産は、現在7件すべてが文化遺産",
-      "text": "Rapa Nui、Valparaíso、Chiloéの教会群、Qhapaq Ñanなど7件が登録されている。自然景観の印象が強い国だが、登録資産はすべて文化遺産に分類される。",
-      "icon": "history",
-      "sourceKey": "worldHeritage"
+      "topicKey": "valdivia-1960-magnitude-95",
+      "categoryEn": "EARTH",
+      "categoryJa": "地球",
+      "title": "観測史上最大の地震は、1960年にチリで起きた",
+      "text": "1960年5月22日のチリ地震はマグニチュード9.5。USGSは、地震計で観測された世界最大の地震としている。",
+      "icon": "landscape",
+      "sourceKey": "earthquake1960"
     },
     {
-      "topicKey": "valparaiso-historic-funiculars",
-      "categoryEn": "CITY",
-      "categoryJa": "街",
-      "title": "バルパライソでは、斜面を上るアセンソールが街の動線になる",
-      "text": "Concepción、El Peral、Reina Victoriaなどの歴史的なアセンソールが港側と丘を結ぶ。急斜面の都市を歩くとき、眺望だけでなく移動手段そのものが街の個性になる。",
-      "icon": "city",
-      "sourceKey": "valparaiso"
+      "topicKey": "two-literature-nobel-laureates",
+      "categoryEn": "LITERATURE",
+      "categoryJa": "文学",
+      "title": "チリから、2人のノーベル文学賞受賞者が生まれた",
+      "text": "ガブリエラ・ミストラルは1945年、パブロ・ネルーダは1971年にノーベル文学賞を受賞した。詩がチリ文化を知る入口の一つになる。",
+      "icon": "history",
+      "sourceKey": "literature"
     },
     {
       "topicKey": "punihuil-dual-penguin-colony",
       "categoryEn": "WILDLIFE",
       "categoryJa": "野生動物",
       "title": "チロエ北部では、2種のペンギンが同じ岩場で繁殖する",
-      "text": "Ancud近郊のPuñihuilでは、フンボルトペンギンとマゼランペンギンが同じ岩礁で営巣する場所として公式観光案内でも紹介されている。",
+      "text": "アンクー近郊のプニウイルでは、フンボルトペンギンとマゼランペンギンが同じ岩礁で営巣する場所として公式観光案内でも紹介されている。",
       "icon": "wildlife",
       "sourceKey": "punihuil"
     },
     {
-      "topicKey": "general-carrera-1850-square-km",
-      "categoryEn": "LAKE",
-      "categoryJa": "湖",
-      "title": "ヘネラル・カレーラ湖は、チリ最大の湖",
-      "text": "公式観光案内では面積1,850km²。アルゼンチン側へ続く巨大な氷河湖で、チリ側の青い水面にはCapillas de Mármolがある。",
-      "icon": "landscape",
-      "sourceKey": "generalCarrera"
+      "topicKey": "cueca-national-dance-1979",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "クエカは1979年に国の踊りと定められた",
+      "text": "国立図書館の資料では、1979年9月18日の政令でクエカがチリの国民舞踊に指定された。地域によって音楽や踊り方に違いがある。",
+      "icon": "culture",
+      "sourceKey": "cueca"
     },
     {
-      "topicKey": "rano-raraku-nearly-400-moai",
-      "categoryEn": "ARCHAEOLOGY",
-      "categoryJa": "考古",
-      "title": "モアイの多くは、ラノ・ララクの石切場でつくられた",
-      "text": "Rapa NuiのRano Rarakuは「モアイの工場」と呼ばれ、公式観光案内では制作途中を含む約400体のモアイを見ることができると案内されている。",
+      "topicKey": "humberstone-saltpeter-towns",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "産業遺産",
+      "title": "アタカマには、硝石産業の町がそのまま残る",
+      "text": "ハンバーストーンとサンタ・ラウラには、かつて200を超えた硝石事業所群の代表的な遺構が残る。工場だけでなく、住居や公共施設も当時の産業都市の姿を伝える。",
       "icon": "history",
-      "sourceKey": "ranoRaraku"
+      "sourceKey": "saltpeter"
     }
   ],
   "taste": {
@@ -407,24 +408,24 @@
   "travelScale": {
     "kicker": "DURATION",
     "title": "旅の目安日程",
-    "intro": "南北に非常に長く、Rapa Nuiも遠い。全国を薄く回るより、北部・中央部・湖沼地方・Patagoniaなどを大きな地域単位で組み立てる方が、移動と滞在のバランスを取りやすい。",
+    "intro": "南北に非常に長く、ラパ・ヌイも遠い。全国を薄く回るより、北部・中央部・湖沼地方・パタゴニアなどを大きな地域単位で組み立てる方が、移動と滞在のバランスを取りやすい。",
     "items": [
       {
         "duration": "6〜8日",
         "title": "中央部を一つの旅にする",
-        "text": "サンティアゴを基点に、港町とワイン谷を組み合わせる。都市間の移動が比較的短く、最初のチリ旅行でも景観と街を両方見やすい。例：Santiago→Valparaíso→Maipo Valley",
+        "text": "サンティアゴを基点に、港町とワイン谷を組み合わせる。都市間の移動が比較的短く、最初のチリ旅行でも景観と街を両方見やすい。例：サンティアゴ→バルパライソ→マイポ渓谷",
         "icon": "city"
       },
       {
         "duration": "9〜13日",
         "title": "湖と島まで南へ伸ばす",
-        "text": "中央部に加えてLos LagosとChiloéへ入り、火山湖から湿潤な島の暮らしへ景観を切り替える。南北移動は航空と陸路を組み合わせる。例：Santiago→Puerto Varas→Frutillar→Chiloé",
+        "text": "中央部に加えてロス・ラゴスとチロエへ入り、火山湖から湿潤な島の暮らしへ景観を切り替える。南北移動は航空と陸路を組み合わせる。例：サンティアゴ→プエルト・バラス→フルティジャール→チロエ",
         "icon": "map"
       },
       {
         "duration": "14日以上",
         "title": "北部かPatagoniaを深く加える",
-        "text": "AtacamaまたはPatagoniaを大きな軸にし、長距離移動日も旅程に含める。Carretera Australを走るなら道路・バルサ・天候の余白を優先する。例：Santiago→Atacama→Carretera Austral→Torres del Paine",
+        "text": "アタカマまたはパタゴニアを大きな軸にし、長距離移動日も旅程に含める。カレテラ・アウストラルを走るなら道路・バルサ・天候の余白を優先する。例：サンティアゴ→アタカマ→カレテラ・アウストラル→トーレス・デル・パイネ",
         "icon": "compass"
       }
     ]
@@ -453,7 +454,7 @@
   ],
   "transport": {
     "title": "長距離は航空、地域内はバスと車でつなぐ",
-    "text": "サンティアゴを中心に国内線が北部・南部の主要都市を結び、都市間には長距離バスも多い。Atacama、湖沼地方、Patagoniaではレンタカーが旅程の自由度を上げるが、Carretera Australには未舗装区間やバルサを含む。Rapa Nuiは本土とは別の航空移動として組み立て、便や入域条件は出発前に最新情報を確認する。"
+    "text": "サンティアゴを中心に国内線が北部・南部の主要都市を結び、都市間には長距離バスも多い。アタカマ、湖沼地方、パタゴニアではレンタカーが旅程の自由度を上げるが、カレテラ・アウストラルには未舗装区間やバルサを含む。ラパ・ヌイは本土とは別の航空移動として組み立て、便や入域条件は出発前に最新情報を確認する。"
   },
   "personas": [
     {
@@ -487,7 +488,7 @@
     },
     {
       "label": "面積",
-      "value": "約756,096 km²（南米・島嶼部）"
+      "value": "約756,096 km²（日本の約2.0倍）"
     },
     {
       "label": "言語",
@@ -609,7 +610,15 @@
     "population": "2024",
     "religion": "2024",
     "volcanoMonitoring": "2026-09-22",
-    "worldHeritage": "2026"
+    "worldHeritage": "2026",
+    "area": "2026-09-25",
+    "japanArea": "2026-04-01",
+    "astronomy": "2026-09-25",
+    "nativeForest": "2026-09-25",
+    "earthquake1960": "1960-05-22",
+    "literature": "1945 / 1971",
+    "cueca": "1979-09-18",
+    "saltpeter": "2005"
   },
   "sources": {
     "population": "Instituto Nacional de Estadísticas de Chile (INE), Censo 2024: población censada 18,480,432.",
@@ -640,6 +649,13 @@
     "sceneCoordinates": "Cross-checks with official attraction geography plus OSM/GeoNames/Wikimedia: Valle de la Luna -22.93515,-68.23309; Lago Chungará -18.24865,-69.15127; Valparaíso -33.04064,-71.62800; Cerro San Cristóbal -33.425277,-70.633610; Frutillar -41.13345,-73.02666; Palafitos de Castro viewpoint -42.47694,-73.75984; Capillas de Mármol -46.649507,-72.645962; Ahu Tongariki -27.12577,-109.27699.",
     "heroCoordinates": "Lago Pehoé / Cuernos del Paine viewpoint cross-check: approximately -51.082767,-73.077964.",
     "seasonsTransport": "Chile Travel / SERNATUR regional destination guides. Weather, road, ferry and operational conditions vary and require current checks.",
-    "nextRoutes": "Established Chile–Argentina Los Libertadores, Chile–Bolivia Hito Cajón/Uyuni, and Chile–Peru Chacalluta/Santa Rosa overland traveler corridors; operational conditions marked CHECK_CURRENT_CONDITIONS."
+    "nextRoutes": "Established Chile–Argentina Los Libertadores, Chile–Bolivia Hito Cajón/Uyuni, and Chile–Peru Chacalluta/Santa Rosa overland traveler corridors; operational conditions marked CHECK_CURRENT_CONDITIONS.",
+    "japanArea": "国土地理院『全国都道府県市区町村別面積調』：2026年4月1日時点の日本国土面積377,974.87 km²。https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "astronomy": "European Southern Observatory (ESO), ALMA: Chajnantor plateau in northern Chile; 66 high-precision antennas; site around 5,000 m altitude and about 50 km east of San Pedro de Atacama. Checked 2026-09-25. https://www.eso.org/public/chile/teles-instr/alma/",
+    "nativeForest": "Corporación Nacional Forestal (CONAF), Parque Nacional Alerce Andino: 39,255 ha; alerce occurs across nearly 20,000 ha; evergreen forest and mountain lagoons. Checked 2026-09-25. https://www.conaf.cl/parque_nacionales/parque-nacional-alerce-andino/",
+    "earthquake1960": "U.S. Geological Survey (USGS), Earthquake Facts: magnitude 9.5 Chile earthquake on 22 May 1960, the largest earthquake recorded by seismic instruments. https://www.usgs.gov/programs/earthquake-hazards/earthquake-facts-earthquake-fantasy",
+    "literature": "NobelPrize.org: Gabriela Mistral, Nobel Prize in Literature 1945; Pablo Neruda, Nobel Prize in Literature 1971. https://www.nobelprize.org/prizes/literature/1945/summary/ ; https://www.nobelprize.org/prizes/literature/1971/neruda/facts/",
+    "cueca": "Biblioteca Nacional de Chile, Memoria Chilena, La cueca: Decreto N°23 of 18 September 1979 declared cueca the national dance; regional forms vary across Chile. https://www.memoriachilena.gob.cl/temas/index.asp?id_ut=lacueca",
+    "saltpeter": "UNESCO World Heritage Centre, Humberstone and Santa Laura Saltpeter Works: representative remains of more than 200 former saltpeter works and company towns; inscribed 2005. https://whc.unesco.org/en/list/1178"
   }
 }
