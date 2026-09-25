@@ -17,8 +17,8 @@
     },
     "labelPosition": "left",
     "labelOffset": {
-      "x": -20,
-      "y": -35
+      "x": 0,
+      "y": -14
     },
     "mapOffset": {
       "x": -0.7,
@@ -393,19 +393,19 @@
       {
         "duration": "3〜4日",
         "title": "首都とカイエトゥールを見る",
-        "text": "ジョージタウンを歩き、天候を見ながら小型機でカイエトゥールへ。例：Georgetown → Kaieteur Falls → Georgetown。",
+        "text": "ジョージタウンを歩き、天候を見ながら小型機でカイエトゥールへ。例：ジョージタウン → カイエトゥール滝 → ジョージタウン。",
         "icon": "city"
       },
       {
         "duration": "5〜7日",
         "title": "熱帯林までつなぐ",
-        "text": "首都と滝に、イウォクラマやスラマの森林・サバンナ滞在を加える。例：Georgetown → Kaieteur → Iwokrama → Surama。",
+        "text": "首都と滝に、イウォクラマやスラマの森林・サバンナ滞在を加える。例：ジョージタウン → カイエトゥール滝 → イウォクラマ → スラマ。",
         "icon": "map"
       },
       {
         "duration": "8日以上",
         "title": "ルプヌニと水辺へ広げる",
-        "text": "内陸を南西へ進み、カランアンブの湿地やLethem方面まで組み合わせる。海岸のMahaicaやShell Beachは別方向のため、さらに余裕を持たせたい。例：Georgetown → Iwokrama → Surama → Karanambu → Lethem。",
+        "text": "内陸を南西へ進み、カランアンブの湿地やレセム方面まで組み合わせる。海岸のマハイカ川やシェルビーチは別方向のため、さらに余裕を持たせたい。例：ジョージタウン → イウォクラマ → スラマ → カランアンブ → レセム。",
         "icon": "compass"
       }
     ]
@@ -500,13 +500,13 @@
       "exceptionalScale": true
     },
     {
-      "topicKey": "forest-cover-85-percent",
-      "label": "森林が占める国土",
-      "value": "約85%",
-      "note": "Guyana Forestry Commissionの2024年資料では、森林は国土のおよそ85%を覆う。",
-      "icon": "leaf",
-      "interestReason": "海岸低地から内陸へ入ると長大な森林が続く理由を、国土スケールの数字として実感できる。",
-      "exceptionalShare": true
+      "topicKey": "mount-roraima-2810m",
+      "label": "ロライマ山の標高",
+      "value": "2,810 m",
+      "note": "Guyana Lands and Surveys Commissionは、パカライマ山地のロライマ山を標高2,810mでガイアナ最高地点としている。",
+      "icon": "mountain",
+      "interestReason": "低い大西洋岸から、2,800mを超えるテプイの高地まで国土の高低差が大きいことを一つの数字で実感できる。",
+      "exceptionalScale": true
     }
   ],
   "tips": [
@@ -521,9 +521,9 @@
       "text": "Georgetown–Lethem方面の道路は未舗装区間を含み、雨季は移動時間が延びやすい。宿や車両の手配時に直近の道路状況を確認する。"
     },
     {
-      "topicKey": "remote-cash-connectivity",
-      "title": "内陸へ入る前に現金と通信条件を確認する",
-      "text": "遠隔地ではカード決済や携帯通信を都市部と同じ前提にしない。宿泊施設・ツアー会社に支払い方法と通信環境を事前確認して準備する。"
+      "topicKey": "venezuela-border-no-official-crossing",
+      "title": "ベネズエラとは接するが、公式の陸路越境地点はない",
+      "text": "ガイアナは西側でベネズエラと接するが、2026年9月時点で旅行者が使える公式の陸上国境検問所はない。NEXT ROUTESは実際に旅程をつなげられるブラジルとスリナムだけを掲載している。"
     }
   ],
   "nextRoutes": [
@@ -595,9 +595,10 @@
     "geometry": "2026-09-25",
     "sceneCoordinates": "2026-09-25",
     "nextRoutes": "2026-09-25",
-    "forest": "2024-04",
     "nameMeaning": "2026-09-25",
-    "caricom": "2026-09-25"
+    "caricom": "2026-09-25",
+    "roraima": "2026-09-25",
+    "venezuelaBorder": "2026-09-25"
   },
   "sources": {
     "population": "Bureau of Statistics Guyana, 2022 Population and Housing Census preliminary count: 878,674 persons on census night, 15 Sep 2022; landmass approximately 214,999 km². https://statisticsguyana.gov.gy/census/",
@@ -619,9 +620,10 @@
     "brazilRoute": "IOM Guyana DTM Round 5, March 2023: Lethem borders Bonfim, Brazil; official Guyana–Brazil entry/exit point uses the Takutu River bridge. https://dtm.iom.int/sites/g/files/tmzbdl1461/files/reports/DTM%20Report%20Guyana-V5-Updated_%2029.09.2023.pdf",
     "geometry": "Target national geometry: Natural Earth Admin-0 WGS84, public domain, via sutcliffemax/sutcliffemax.github.io southamerica.geojson commit 9d9d83dce024553e417a98eaacae496ed7a22214. Surrounding land/coast context: GSHHS intermediate via Basemap 2.0.0; generated 2026-09-25; no invented geometry.",
     "sceneCoordinates": "WGS84 real-location coordinates checked 2026-09-25. Kaieteur: OSM/Mapcarta 5.17494,-59.48065. Stabroek Market: OSM/Mapcarta 6.80987,-58.1678. Fort Zeelandia: OSM/Mapcarta 6.78276,-58.5083. Shell Beach / Almond Beach: Smithsonian field record, behind Almond Beach sea turtle monitoring camp, 8°23′57″N 59°45′14″W (8.3991667,-59.7538889), 1 Apr 2001, via U.S. GovInfo publication. Iwokrama Canopy Walkway: Wikimedia camera/location evidence 4.124674,-59.011301. Surama: NGA 4.166667,-59.083333. Karanambu/Karinambo locality: OSM/Mapcarta 3.7529,-59.31026. Orinduik Falls: OSM/Mapcarta 4.71916,-60.03602. Mahaica River–Baiabu birding locality: Cornell Macaulay/eBird 6.5328564,-57.8803861. https://www.govinfo.gov/content/pkg/GOVPUB-SI-PURL-gpo156661/pdf/GOVPUB-SI-PURL-gpo156661.pdf",
-    "nextRoutes": "Brazil: IOM Guyana DTM March 2023 identifies Lethem–Bonfim/Takutu River Bridge as official crossing. Suriname: Guyana GovPortal identifies Canawaima Moleson Creek–South Drain crossing and DPI confirmed service resumed 28 Aug 2026. Sources checked 2026-09-25.",
-    "forest": "Guyana Forestry Commission, REDD+ Third Summary of Information (2024): Guyana has approximately 85% forest cover. https://forestry.gov.gy/wp-content/uploads/2024/04/Third-Summary-of-Information-for-Guyana_for-public-consultation_April-2024.pdf",
+    "nextRoutes": "Brazil: IOM Guyana DTM March 2023 identifies Lethem–Bonfim/Takutu River Bridge as an official crossing. Suriname: Guyana GovPortal identifies Canawaima Moleson Creek–South Drain crossing and DPI confirmed service resumed 28 Aug 2026. Venezuela is not listed because there is no official land border crossing for travelers. Sources checked 2026-09-25.",
     "nameMeaning": "Guyana Lands and Surveys Commission, Fact Page on the Geography of Guyana: Guyana is an Amerindian word meaning 'Land of many Waters'. https://factpage.glsc.gov.gy/",
-    "caricom": "Caribbean Community (CARICOM), CARICOM Secretariat: Article 23 provides for the Secretariat headquarters in Georgetown, Guyana; current headquarters at Turkeyen, Georgetown. https://caricom.org/caricom-secretariat/"
+    "caricom": "Caribbean Community (CARICOM), CARICOM Secretariat: Article 23 provides for the Secretariat headquarters in Georgetown, Guyana; current headquarters at Turkeyen, Georgetown. https://caricom.org/caricom-secretariat/",
+    "roraima": "Guyana Lands and Surveys Commission Fact Page, Mountain Ranges: Mount Roraima 2,810 m is identified as the highest elevation in Guyana. https://factpage.glsc.gov.gy/mountain-ranges/",
+    "venezuelaBorder": "Government of Canada Travel Advice for Guyana, checked 2026-09-25: there are no official border crossings with Venezuela; use official crossings with Brazil and Suriname. Guyana Embassy in Caracas lists the main ports of entry as the two Georgetown-area international airports, Guyana-Suriname ferry crossing and Guyana-Brazil border crossing. https://travel.gc.ca/destinations/guyana ; https://caracas.mission.gov.gy/"
   }
 }
