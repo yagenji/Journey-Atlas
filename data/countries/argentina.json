@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "argentina",
+  "nameEn": "ARGENTINA",
+  "nameJa": "アルゼンチン",
+  "region": "SOUTH AMERICA / 34°S",
+  "seo": {
+    "description": "ブエノスアイレスからイグアス、北西部アンデス、アコンカグア、湖水地方、氷河、ティエラ・デル・フエゴへ。南北に長い国土を、都市・高地・滝・パタゴニアの景観でたどるアルゼンチン。"
+  },
+  "capital": {
+    "nameEn": "Buenos Aires",
+    "nameJa": "ブエノスアイレス",
+    "coordinates": {
+      "latitude": -34.6037,
+      "longitude": -58.3816
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 8,
+      "y": -10
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "パタゴニアの朝、ラグーナ・カプリの向こうでフィッツ・ロイの花崗岩峰が赤く染まる。ここから北へたどると、氷河と湖、乾いたアンデス高地、亜熱帯の大瀑布、そして巨大都市ブエノスアイレスまで、ひとつの国の中で地形と気候が大きく切り替わる。",
+    "image": "assets/images/argentina/approved/hero-fitz-roy-laguna-capri.webp",
+    "location": "Laguna Capri / El Chaltén",
+    "coordinates": {
+      "latitude": -49.30285,
+      "longitude": -72.92968
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -21.0,
+      "south": -55.4,
+      "west": -74.8,
+      "east": -52.8
+    },
+    "svg": "assets/images/argentina/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target national geometry: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection ARG.geojson blob 6a71e590dc5f3b5be9b144ee8aeb74c6d3e5f8e9. Les Éclaireurs islet supplement: OpenStreetMap way 312649836 (ODbL), WGS84, retrieved 2026-09-25, used only so the real Scene point is represented at national-map scale. Surrounding Chile, Bolivia, Paraguay, Brazil and Uruguay land: Natural Earth 1:10m from the same collection. Natural Earth de facto boundary depiction is used for geographic orientation only and does not express a legal position on territorial status. 1200×760; no invented coastlines, borders or coordinate changes."
+  },
+  "scenes": [
+    {
+      "id": "buenos-aires-plaza-de-mayo",
+      "name": "ブエノスアイレス / 五月広場",
+      "nameLocal": "Buenos Aires / Plaza de Mayo",
+      "mapLabel": "Buenos Aires",
+      "description": "五月広場はブエノスアイレスの歴史的中心で、周囲にカビルド、メトロポリタン大聖堂、カサ・ロサダが並ぶ。植民地期から独立、近現代の社会運動まで、国の政治史が同じ都市空間に積み重なる。",
+      "coordinates": {
+        "latitude": -34.6083,
+        "longitude": -58.3719
+      },
+      "image": "assets/images/argentina/approved/scene-1-buenos-aires-plaza-de-mayo.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "iguazu-garganta-del-diablo",
+      "name": "イグアス / 悪魔の喉笛",
+      "nameLocal": "Iguazú / Garganta del Diablo",
+      "mapLabel": "Iguazú",
+      "description": "ミシオネス州の亜熱帯林で、イグアス川が無数の瀑布へ分かれ、最大級の落差帯である悪魔の喉笛へ集中する。深い緑と大量の水が接する北東端は、乾燥した西部や南部とはまったく異なるアルゼンチンを見せる。",
+      "coordinates": {
+        "latitude": -25.6953,
+        "longitude": -54.4367
+      },
+      "image": "assets/images/argentina/approved/scene-2-iguazu-garganta-del-diablo.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "serrania-hornocal",
+      "name": "セラニア・デル・オルノカル / 14色の山",
+      "nameLocal": "Serranía del Hornocal / Cerro de Catorce Colores",
+      "mapLabel": "Hornocal",
+      "description": "ウマワカから未舗装路を上った高地の展望地で、褶曲した地層が赤、黄、灰、紫を帯びて連なる。標高4,000mを超える乾いたプーナ周辺の光が、北西部アンデスの地質そのものを大きな模様として浮かび上がらせる。",
+      "coordinates": {
+        "latitude": -23.20952,
+        "longitude": -65.19832
+      },
+      "image": "assets/images/argentina/approved/scene-3-serrania-hornocal.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "aconcagua-horcones",
+      "name": "アコンカグア / オルコネス",
+      "nameLocal": "Aconcagua / Horcones",
+      "mapLabel": "Aconcagua",
+      "description": "オルコネス谷から、西半球最高峰のアコンカグアを見上げる。植生の少ない褐色の谷、崩れた岩稜、残雪をまとった巨大な山体が重なり、中央アンデスの乾燥と標高を一つの視界で感じられる。",
+      "coordinates": {
+        "latitude": -32.80534,
+        "longitude": -69.94116
+      },
+      "image": "assets/images/argentina/approved/scene-4-aconcagua-horcones.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "bariloche-circuito-chico",
+      "name": "バリローチェ / シルキート・チコ",
+      "nameLocal": "Bariloche / Circuito Chico",
+      "mapLabel": "Bariloche",
+      "description": "シルキート・チコの展望地から、モレノ湖、リャオ・リャオ半島、森林に覆われた山並みを見渡す。乾いたアンデス高地から南へ下ると、氷河地形がつくった湖と温帯林が連続する湖水地方へ景観が変わる。",
+      "coordinates": {
+        "latitude": -41.2498,
+        "longitude": -71.72799
+      },
+      "image": "assets/images/argentina/approved/scene-5-bariloche-circuito-chico.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "perito-moreno-glacier",
+      "name": "ペリト・モレノ氷河 / 展望歩道",
+      "nameLocal": "Perito Moreno Glacier / Boardwalks",
+      "mapLabel": "Perito Moreno",
+      "description": "マガジャネス半島の展望歩道から、湖へ押し出す青白い氷河前面を正面に見る。長さ約30km、前面幅4〜5kmの巨大な氷体には深い亀裂が走り、パタゴニア南部に残る氷河作用を間近で観察できる。",
+      "coordinates": {
+        "latitude": -50.4688,
+        "longitude": -73.03216
+      },
+      "image": "assets/images/argentina/approved/scene-6-perito-moreno-glacier.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "caleta-valdes-punta-cantor",
+      "name": "カレタ・バルデス / プンタ・カントール",
+      "nameLocal": "Caleta Valdés / Punta Cantor",
+      "mapLabel": "Caleta Valdés",
+      "description": "バルデス半島の東岸では、乾いたパタゴニア・ステップの崖下に細長い入り江と礫浜が伸びる。プンタ・カントール周辺ではミナミゾウアザラシが海岸を利用し、内陸の乾燥地と南大西洋の生態系が接する。",
+      "coordinates": {
+        "latitude": -42.51145,
+        "longitude": -63.59943
+      },
+      "image": "assets/images/argentina/approved/scene-7-caleta-valdes.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "les-eclaireurs-beagle-channel",
+      "name": "ビーグル海峡 / レ・ゼクレルール灯台",
+      "nameLocal": "Beagle Channel / Les Éclaireurs Lighthouse",
+      "mapLabel": "Les Éclaireurs",
+      "description": "ウシュアイア沖のビーグル海峡で、小さな岩礁に赤白の灯台が立つ。背後には雪を残すフエゴ島の山並みが続き、島、海鳥、海峡、亜南極の山地が同じ視界に入る南端らしい景観。",
+      "coordinates": {
+        "latitude": -54.87155,
+        "longitude": -68.08325
+      },
+      "image": "assets/images/argentina/approved/scene-8-les-eclaireurs.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "五月広場の歴史を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "亜熱帯林で滝音に包まれる",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "14色の地層を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "アンデス高地へ標高を上げる",
+      "category": "MOVEMENT",
+      "icon": "mountain"
+    },
+    {
+      "title": "湖と森林の道を走る",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "氷河前面の亀裂を見る",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "ステップと海岸を歩く",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "ビーグル海峡を船で進む",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "pampas-gaucho-open-plain",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "title": "パンパでは、平らな草原が牧畜とガウチョ文化の背景になる",
+      "text": "ブエノスアイレス州からラ・パンパ州に広がる平坦な草原は、牛の放牧と農業を支えてきた。アサード、マテ、馬を扱う文化を都市の外へたどると、食卓の背景にある土地の広さが見えてくる。",
+      "points": [
+        "広い平原では地平線が景観の主役になる",
+        "牧畜文化はアサードやガウチョのイメージと結びつく"
+      ]
+    },
+    {
+      "topicKey": "southern-patagonia-steppe-ice-contrast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "南部では、乾いたステップのすぐ先に氷河と森林が現れる",
+      "text": "サンタクルス州を横断すると、風の強い乾燥ステップからアンデス東斜面の森林、巨大な氷河へ景観が切り替わる。パタゴニアを単純な『雪山の土地』ではなく、水分量と標高で変わる地理として見られる。",
+      "points": [
+        "エル・カラファテ周辺ではステップから氷河へ短距離で移る",
+        "アンデス側では南部ブナ類の森林が現れる"
+      ]
+    },
+    {
+      "topicKey": "northwest-folded-sedimentary-colors",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "北西部の色は、塗られた山ではなく傾いた地層そのもの",
+      "text": "フフイのオルノカルでは、長い地質史で傾き侵食された堆積層が繰り返し露出する。乾いた空気と強い日射の下で色の差が際立ち、アンデス東縁の褶曲地形を遠景から読み取れる。",
+      "points": [
+        "ミラドールは標高4,345mにある",
+        "ウマワカから約27kmの山道で高地へ上る"
+      ]
+    },
+    {
+      "topicKey": "buenosaires-civic-axis-urban-layer",
+      "themeEn": "CITY",
+      "themeJa": "街を知る",
+      "title": "ブエノスアイレスでは、広場と大通りが国家の歴史を都市の軸にする",
+      "text": "五月広場の周囲にはカビルド、カサ・ロサダ、大聖堂が集まり、西へはアベニーダ・デ・マヨが延びる。建物を個別に見るより、植民地都市から近代首都へ再編された軸として歩くと都市の層が分かる。",
+      "points": [
+        "五月広場は都市の歴史的・象徴的中心",
+        "19世紀末の都市改造で現在の大きな軸が形づくられた"
+      ]
+    },
+    {
+      "topicKey": "misiones-atlantic-forest-water-system",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "title": "イグアスでは、滝だけでなく亜熱帯林と川を一つの系として見る",
+      "text": "イグアス川の瀑布群は大水量だけで成立しているのではなく、周囲の大西洋岸森林と湿潤な気候の中にある。展望路では水煙の向こうに密生する森が見え、北東部が生物多様性の高い環境であることが分かる。",
+      "points": [
+        "瀑布群はアルゼンチンとブラジルの国境に位置する",
+        "園内には上部・下部の回路と森林トレイルがある"
+      ]
+    },
+    {
+      "topicKey": "beagle-channel-islands-subantarctic-edge",
+      "themeEn": "SEA",
+      "themeJa": "海を知る",
+      "title": "ビーグル海峡では、海が山地の間を東西に切り分ける",
+      "text": "ウシュアイア沖では、フエゴ島の山並みの前を島と岩礁が連なり、船で灯台や海鳥・海獣の生息地へ近づく。海辺というより、山地の内部に海が入り込んだような南端特有の距離感がある。",
+      "points": [
+        "ウシュアイア港から定期的な観光航路が出る",
+        "クラシックな航路にはレ・ゼクレルール灯台が含まれる"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "mate-shared-social-ritual",
+      "categoryEn": "DAILY LIFE",
+      "categoryJa": "暮らし",
+      "title": "マテは一人で飲むより、回して共有する時間になる",
+      "text": "アルゼンチンではマテは国民的な飲み物で、同じ容器に湯を足しながら人と共有する習慣が日常に根付く。広場、職場、長距離移動でもマテと魔法瓶を持つ姿を見かける。",
+      "icon": "food",
+      "sourceKey": "mate"
+    },
+    {
+      "topicKey": "tango-rio-de-la-plata-urban-roots",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "タンゴはブエノスアイレスだけでなく、ラ・プラタ川両岸の文化",
+      "text": "UNESCOはタンゴを、ブエノスアイレスとモンテビデオの都市下層社会から発展したアルゼンチン・ウルグアイ共同の伝統として登録している。国境より先に都市圏の文化として見ると背景が分かる。",
+      "icon": "culture",
+      "sourceKey": "tango"
+    },
+    {
+      "topicKey": "regional-empanada-repulgues-fillings",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "エンパナーダは州ごとに形と中身が変わる",
+      "text": "トゥクマン、サルタ、メンドーサ、パタゴニアなどで、肉の切り方、じゃがいもの有無、香辛料、焼き方まで違う。半月形という共通点の中に地域性が現れる料理。",
+      "icon": "food",
+      "sourceKey": "empanadas"
+    },
+    {
+      "topicKey": "alfajor-regional-variations",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "アルファホールにも、土地ごとの『正解』がある",
+      "text": "ドゥルセ・デ・レチェ入りの定番だけでなく、サンタフェ、コルドバ、パタゴニア、クージョなどで生地やフィリングが変わる。小さな菓子から地域の素材を比べられる。",
+      "icon": "food",
+      "sourceKey": "alfajores"
+    },
+    {
+      "topicKey": "filete-porteno-painted-city-style",
+      "categoryEn": "ART",
+      "categoryJa": "アート",
+      "title": "看板の曲線装飾『フィレテ・ポルテーニョ』も都市文化の一部",
+      "text": "ブエノスアイレスで発達した装飾絵画の技法は、2015年にUNESCO無形文化遺産へ登録された。文字、花、リボン状の線を組み合わせる意匠は、市場や看板、車両など都市の日常から生まれた。",
+      "icon": "culture",
+      "sourceKey": "unescoIntangible"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ARGENTINA",
+    "title": "アルゼンチンで食べたいもの",
+    "intro": "火を囲むアサード、州ごとに違うエンパナーダ、アンデス起源のロクロ、ドゥルセ・デ・レチェを挟むアルファホール。大平原、移民文化、北西部の食材が同じ国の食卓に重なる。",
+    "items": [
+      {
+        "id": "asado",
+        "name": "アサード",
+        "nameLocal": "Asado",
+        "text": "牛肉を中心にさまざまな部位を炭火や薪火で焼く、食事と集まりが一体になった文化。パンパの牧畜文化と結びつき、家族や友人が火を囲む時間そのものが重要になる。",
+        "image": "assets/images/argentina/approved/food-1-asado.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "empanadas",
+        "name": "エンパナーダ",
+        "nameLocal": "Empanadas",
+        "text": "肉や玉ねぎ、卵などの具を生地で包んで焼く、または揚げる料理。サルタでは小ぶりで香辛料が効き、トゥクマンでは肉やねぎの配合が異なるなど、州ごとの個性が強い。",
+        "image": "assets/images/argentina/approved/food-2-empanadas.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "locro",
+        "name": "ロクロ",
+        "nameLocal": "Locro",
+        "text": "トウモロコシ、豆、カボチャを土台に肉類を煮込む濃厚なシチュー。アンデスの先住民料理を起源とし、現在は5月の祝日など国家的な行事でも食べられる。",
+        "image": "assets/images/argentina/approved/food-3-locro.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "alfajores",
+        "name": "アルファホール",
+        "nameLocal": "Alfajores",
+        "text": "二枚の生地でドゥルセ・デ・レチェなどを挟む菓子。チョコレートで覆うもの、ココナッツをまぶすもの、地域の果物やワインを使うものまで各地に多様な形がある。",
+        "image": "assets/images/argentina/approved/food-4-alfajores.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "アルゼンチンは南北に非常に長く、都市間距離も大きい。短い旅では地域を絞り、日数が増えたら国内線で離れた景観をつなぐ。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ブエノスアイレスと一地域に絞る",
+        "text": "首都を軸に、イグアスまたはメンドーサなど一つの遠方地域を国内線で組み合わせる。例：ブエノスアイレス → イグアス → ブエノスアイレス。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "首都とアンデスかパタゴニアを深く見る",
+        "text": "移動日を確保して一つの大地域を連続して歩く。例：ブエノスアイレス → バリローチェ → エル・カラファテ / ペリト・モレノ → エル・チャルテン。",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "北部と南部を国内線でつなぐ",
+        "text": "気候の異なる地域を大きく飛んで国土の振れ幅を見る。例：ブエノスアイレス → イグアス → フフイ → メンドーサ → エル・カラファテ → ウシュアイア。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#d8c49e",
+      "text": "南半球の夏。パタゴニアやティエラ・デル・フエゴは日が長く行動時間を取りやすい。一方、北部やブエノスアイレスでは暑さが強くなるため、地域ごとに装備を変える。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c6b39e",
+      "text": "秋。ブエノスアイレスやメンドーサは暑さが和らぎ、湖水地方では森林の色が変わる。南部では日照時間が短くなり始めるので長距離移動には余白を持たせる。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#aebfc7",
+      "text": "冬。アンデスと南部は雪と寒さが強まり、山岳道路やトレイルの条件が変わる。北西部は乾燥した晴天の日も多いが、高地では朝夕の冷え込みが大きい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#cbd0ac",
+      "text": "春。都市、ワイン産地、北西部を組み合わせやすくなり、南部もシーズンへ向かう。パタゴニアでは強風や急な天候変化を前提に装備を整える。"
+    }
+  ],
+  "transport": {
+    "title": "国内線で大きく飛び、地域内はバスと車でつなぐ",
+    "text": "主要観光地は国内線で結ばれ、長距離・中距離バス網も全州と主要観光地へ広がる。バリローチェやパタゴニア、メンドーサ周辺で複数地点を回るならレンタカーの自由度が高い。国土が広いため、地図上の近さより移動時間で旅程を組み、山岳路やパタゴニアでは道路・天候情報を当日に確認する。"
+  },
+  "personas": [
+    {
+      "title": "一つの国で地球規模の景観差を見たい人",
+      "text": "亜熱帯のイグアスから標高4,000m超の北西部、アンデス、氷河、亜南極の海峡まで、緯度と標高で風景が大きく変わる。"
+    },
+    {
+      "title": "ロードトリップと長距離移動そのものを楽しみたい人",
+      "text": "国道40号をはじめ、広大な平原とアンデス沿いの道路では、目的地だけでなく移動中に地形が切り替わる過程が旅になる。"
+    },
+    {
+      "title": "都市文化と食を自然景観と組み合わせたい人",
+      "text": "ブエノスアイレスの建築やタンゴ、アサードやエンパナーダを、山岳・湖・氷河の旅と同じ日程に組み込める。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ / 南部"
+    },
+    {
+      "label": "首都",
+      "value": "ブエノスアイレス"
+    },
+    {
+      "label": "人口",
+      "value": "約4,554万人（2023年、世界銀行）"
+    },
+    {
+      "label": "面積",
+      "value": "278万 km²（日本の約7.5倍）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック等"
+    },
+    {
+      "label": "通貨",
+      "value": "アルゼンチン・ペソ（ARS）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "aconcagua-altitude-6962m",
+      "label": "アコンカグア",
+      "value": "6,962m",
+      "note": "メンドーサ州政府は、アコンカグアを標高6,962mの西半球最高峰として案内している。",
+      "icon": "mountain",
+      "interestReason": "富士山の約1.8倍の標高まで陸地が上がることから、アルゼンチン西端のアンデスが持つ垂直スケールを具体的に想像できる。"
+    },
+    {
+      "topicKey": "national-route-forty-5194km",
+      "label": "国道40号",
+      "value": "5,194km",
+      "note": "国の公式情報では、アンデス沿いをパタゴニアのカボ・ビルヘネスからボリビア国境のラ・キアカまで結ぶ。2025年には旅行ガイドも更新された。",
+      "icon": "road",
+      "interestReason": "一つの道路だけで日本列島を大きく上回る距離を縦断することから、国土の南北方向の長さとロードトリップの規模が分かる。"
+    },
+    {
+      "topicKey": "perito-glacier-front-width",
+      "label": "ペリト・モレノ氷河前面",
+      "value": "4〜5km",
+      "note": "国立公園局は氷河の長さを約30km、湖に接する前面幅を4〜5kmとしている。",
+      "icon": "landscape",
+      "interestReason": "展望台の前に見える氷壁が単なる局所的な氷ではなく、数kmにわたる巨大な前面だと分かり、現地のスケール感が変わる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "iguazu-devils-throat-current-access",
+      "title": "イグアスは訪問直前に開放回路を確認する",
+      "text": "2026年9月17日時点、アルゼンチン側では増水に備えて悪魔の喉笛回路の遊歩道を予防的に撤去している一方、上部・下部回路など他の主要エリアは運用中。水量で状況が変わるため公式情報を直前に確認する。"
+    },
+    {
+      "topicKey": "aconcagua-reservation-before-arrival",
+      "title": "アコンカグアは入園予約を先に済ませる",
+      "text": "メンドーサ州は訪問枠の予約と入園券の事前購入を必須としており、入口では券を販売しない。オルコネスの短い観光回路でも、季節・気象と最新の予約条件を確認してから向かう。"
+    },
+    {
+      "topicKey": "patagonia-weather-road-check",
+      "title": "パタゴニアでは天気と道路を当日に確認する",
+      "text": "国立公園局は、南部では年間を通じて気象条件が急変し得るとして道路・トレイル状況の確認を勧めている。風、雪、氷を前提に移動日の余白と防寒・防水装備を持つ。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇺🇾",
+      "countryEn": "URUGUAY",
+      "countryJa": "ウルグアイ",
+      "path": "Buenos Aires → Colonia del Sacramento",
+      "description": "ブエノスアイレスからラ・プラタ川を定期フェリーで渡り、コロニア・デル・サクラメントへ約1時間15分でつなぐ。巨大都市から石畳の歴史都市へ、水上でそのまま旅を続けられる。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "chile",
+      "nameEn": "CHILE",
+      "nameJa": "チリ",
+      "flag": "🇨🇱",
+      "reason": "アンデスとパタゴニアを国境の反対側から見たい人へ。山岳、氷河、湖、南部フィヨルドを、より細長い太平洋側の地理で比較できる。",
+      "affinityType": "MOUNTAIN"
+    },
+    {
+      "slug": "bolivia",
+      "nameEn": "BOLIVIA",
+      "nameJa": "ボリビア",
+      "flag": "🇧🇴",
+      "reason": "北西部の高地や色のある地層に惹かれたなら。アルティプラノ、塩湖、先住民文化までアンデス高地の旅をさらに北へ延ばせる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "uruguay",
+      "nameEn": "URUGUAY",
+      "nameJa": "ウルグアイ",
+      "flag": "🇺🇾",
+      "reason": "ブエノスアイレスのリオ・デ・ラ・プラタ文化、マテ、アサード、タンゴの文脈を、より小さな都市と大西洋岸で続けて見たい人へ。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "updatedAt": "2026-09-25",
+  "sourcesVerifiedAt": "2026-09-25",
+  "sourceDates": {
+    "profile": "2026-04-23",
+    "population": "2023",
+    "transport": "2026-09-25",
+    "currency": "2026-09-25",
+    "geometry": "2026-09-25",
+    "sceneCoordinates": "2026-09-25",
+    "plazaMayo": "2026-09-25",
+    "hornocal": "2022",
+    "bariloche": "2026-09-25",
+    "caletaValdes": "2026-09-25",
+    "beagle": "2026-09-25",
+    "aconcagua": "2026-09-25",
+    "losGlaciares": "2026-09-25",
+    "ruta40": "2025-06-23",
+    "iguazuAccess": "2026-09-17",
+    "tango": "2009",
+    "unescoIntangible": "2026",
+    "mate": "2026-09-25",
+    "asado": "2026-09-25",
+    "empanadas": "2026-09-25",
+    "locro": "2026-09-25",
+    "alfajores": "2026-09-25",
+    "ferry": "2026-09-25"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Argentina basic data, updated 23 Apr 2026: area 2.78 million km², population approx. 45.54 million (World Bank 2023), capital Buenos Aires, Spanish, Catholic etc. https://www.mofa.go.jp/mofaj/area/argentine/data.html",
+    "transport": "Argentina.gob.ar — Cómo llegar: domestic air travel, car rental availability in major airports/tourist cities, and a broad long-/medium-distance bus network connecting all provinces and major tourism destinations. https://www.argentina.gob.ar/jefatura/turismo-y-ambiente/turismo/viaja-por-argentina/como-llegar",
+    "currency": "Administración de Parques Nacionales service information identifies the national currency as the Argentine peso; verified 25 Sep 2026. https://www.argentina.gob.ar/node/278886",
+    "geometry": "Natural Earth 1:10m Admin-0 ARG geometry via LonnyGomes/CountryGeoJSONCollection, commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b, blob 6a71e590dc5f3b5be9b144ee8aeb74c6d3e5f8e9 (public domain). Les Éclaireurs islet geometry: OpenStreetMap way 312649836, ODbL. https://github.com/LonnyGomes/CountryGeoJSONCollection/blob/5120290da88f3f205f74aa55f3c8fa1f19d1bc8b/geojson/ARG.geojson | https://www.openstreetmap.org/way/312649836",
+    "sceneCoordinates": "Scene coordinates were cross-checked against OpenStreetMap mapped places/viewpoints and official destination descriptions on 25 Sep 2026. Representative exact map links: https://www.openstreetmap.org/?mlat=-54.87155&mlon=-68.08325#map=16/-54.87155/-68.08325 | https://www.openstreetmap.org/?mlat=-50.4688&mlon=-73.03216#map=15/-50.4688/-73.03216 | https://www.openstreetmap.org/?mlat=-42.51145&mlon=-63.59943#map=15/-42.51145/-63.59943",
+    "plazaMayo": "Argentina.gob.ar — Plaza de Mayo / Revivir los sucesos de Mayo: the foundational civic square and the Casa Rosada/Cabildo/Cathedral setting. https://www.argentina.gob.ar/viaja-por-argentina/que-hacer/revivir-los-sucesos-de-mayo",
+    "hornocal": "Ministerio de Cultura y Turismo de Jujuy — Manual para Guías de Turismo Idóneos: Mirador del Hornocal 27 km from Humahuaca at 4,345 m; views across the Serranía del Hornocal. https://www.turismo.jujuy.gob.ar/wp-content/uploads/Manual-para-Guias-Idoneos_v5.pdf",
+    "bariloche": "Bariloche official tourism — Circuito Chico: km 40 panoramic point at 945 m with views of Lago Moreno and Península Llao Llao. https://www.barilocheturismo.gob.ar/es/circuito-chico",
+    "caletaValdes": "Chubut Patagonia official tourism — Caleta Valdés / Punta Cantor: protected-area viewpoint, elephant seals and seasonal Magellanic penguins. https://chubutpatagonia.gob.ar/en/experiencia/caleta-valdes-punta-cantor/",
+    "beagle": "Argentina.gob.ar — Navegar por el Canal de Beagle: classic Ushuaia routes include Isla de los Pájaros, Isla de los Lobos and Faro Les Eclaireurs. https://www.argentina.gob.ar/jefatura/turismo/viaja-por-argentina/navegar-por-el-canal-de-beagle",
+    "aconcagua": "Gobierno de Mendoza — Parque Provincial Aconcagua: 6,962 m; Horcones at 2,800 m; advance reservation and ticket required before travel. https://www.mendoza.gov.ar/aconcagua/",
+    "losGlaciares": "Administración de Parques Nacionales — Parque Nacional Los Glaciares: Perito Moreno approximately 30 km long with a 4–5 km front; boardwalk circuit and visitor guidance. https://www.argentina.gob.ar/node/303780 | https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades",
+    "ruta40": "Argentina.gob.ar — Ruta 40: 5,194 km along the Andean zone from Cabo Vírgenes to the Bolivia border at La Quiaca; 2025 updated tourism guide confirms its current role as an emblematic corridor. https://www.argentina.gob.ar/noticias/ruta-40-un-puente-al-conocimiento | https://www.argentina.gob.ar/node/470111",
+    "iguazuAccess": "Administración de Parques Nacionales, 17 Sep 2026 — Argentine Iguazú park remains open; Garganta del Diablo walkways had been preventively removed in August during extraordinary flow, while Upper, Lower and other circuits continued operating. https://www.argentina.gob.ar/noticias/parque-nacional-iguazu-abierto-todo-el-ano",
+    "tango": "UNESCO Intangible Cultural Heritage — Tango, inscribed 2009, developed among urban lower classes in Buenos Aires and Montevideo in the Río de la Plata basin. https://ich.unesco.org/en/RL/tango-00258",
+    "unescoIntangible": "UNESCO Intangible Cultural Heritage — Argentina State Party list, including Filete porteño (2015), Tango (2009), Chamamé (2020), Cuarteto (2025). https://ich.unesco.org/en/state/argentina-AR",
+    "mate": "Argentina.gob.ar — Descubrir la historia del mate / El mate: a deeply rooted social-cultural ritual and national infusion. https://www.argentina.gob.ar/jefatura/turismo-y-ambiente/turismo/viaja-por-argentina/descubrir-la-historia-del-mate",
+    "asado": "Argentina.gob.ar — Asado: central Argentine gastronomy and social ritual associated with Pampas/gaucho culture. https://www.argentina.gob.ar/node/487740",
+    "empanadas": "Argentina.gob.ar — Empanadas: national gastronomic identity with distinct regional forms in Tucumán, Salta, Mendoza, Patagonia and elsewhere. https://www.argentina.gob.ar/node/488397",
+    "locro": "Argentina.gob.ar — Locro: emblematic Argentine dish with Andean roots based on corn, squash and beans, later incorporating meats and regional variations. https://www.argentina.gob.ar/node/504764",
+    "alfajores": "Argentina.gob.ar — Alfajores: classic Argentine sweet with regional variations and fillings including dulce de leche. https://www.argentina.gob.ar/node/493708",
+    "ferry": "Colonia Express — current schedules Sep–Oct 2026: Buenos Aires–Colonia ferry services, duration about 1 h 15 min. https://www.coloniaexpress.com/es/ar/mas-informacion/horarios-y-rutas/"
+  }
+}
