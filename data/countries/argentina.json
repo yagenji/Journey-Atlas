@@ -8,23 +8,7 @@
   "seo": {
     "description": "ブエノスアイレスからイグアス、北西部アンデス、アコンカグア、湖水地方、氷河、ティエラ・デル・フエゴへ。南北に長い国土を、都市・高地・滝・パタゴニアの景観でたどるアルゼンチン。"
   },
-  "capital": {
-    "nameEn": "Buenos Aires",
-    "nameJa": "ブエノスアイレス",
-    "coordinates": {
-      "latitude": -34.6037,
-      "longitude": -58.3816
-    },
-    "labelPosition": "right",
-    "labelOffset": {
-      "x": 8,
-      "y": -40
-    },
-    "mapOffset": {
-      "x": 2.5,
-      "y": 0
-    }
-  },
+  "capital": null,
   "hero": {
     "lead": "パタゴニアの朝、フィッツ・ロイが赤く染まる。氷河、アンデス高地、イグアス、ブエノスアイレスへ、南北に長い国土で景観が大きく切り替わる。",
     "image": "assets/images/argentina/approved/hero-fitz-roy-laguna-capri.webp",
@@ -47,7 +31,7 @@
     },
     "svg": "assets/images/argentina/map-atlas-v1.svg",
     "route": null,
-    "source": "Target national geometry: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection ARG.geojson blob 6a71e590dc5f3b5be9b144ee8aeb74c6d3e5f8e9. Les Éclaireurs islet supplement: OpenStreetMap way 312649836 (ODbL), WGS84, retrieved 2026-09-25, used only so the real Scene point is represented at national-map scale. Surrounding Chile, Bolivia, Paraguay, Brazil and Uruguay land: Natural Earth 1:10m from the same collection. Natural Earth de facto boundary depiction is used for geographic orientation only and does not express a legal position on territorial status. 1200×760; no invented coastlines, borders or coordinate changes."
+    "source": "Target national geometry and surrounding Chile, Bolivia, Paraguay, Brazil and Uruguay land: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. 1200×760; no invented coastlines, borders or coordinate changes."
   },
   "scenes": [
     {
@@ -63,7 +47,7 @@
       "image": "assets/images/argentina/approved/scene-1-buenos-aires-plaza-de-mayo.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": -2.2,
+        "x": 0,
         "y": 0
       }
     },
@@ -530,29 +514,30 @@
       "flag": "🇧🇴",
       "countryEn": "BOLIVIA",
       "countryJa": "ボリビア",
-      "path": "La Quiaca → Villazón",
-      "description": "フフイ州北端のラ・キアカから国際橋を越えてビジャソンへ。北西部アンデスの旅を、そのままボリビア高地へつなげられる代表的な陸路。",
+      "path": "La Quiaca → Villazón → Tupiza → Uyuni",
+      "description": "北西部を北上してラ・キアカからビジャソンへ国境を越え、トゥピサを経てウユニへ抜ける。アルゼンチン北西部からボリビア南部の高地景観を連続してたどる陸路。",
       "travelerRoute": true,
       "status": "OPEN"
-    },
-    {
-      "flag": "🇨🇱",
-      "countryEn": "CHILE",
-      "countryJa": "チリ",
-      "path": "Mendoza → Los Andes / Santiago",
-      "description": "メンドーサからRN7とSistema Cristo Redentorでアンデスを越える代表的な陸路。降雪や強風で一時閉鎖されることがあるため、出発日に公式の開通状況を確認する。",
-      "travelerRoute": true,
-      "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "山岳天候により一時閉鎖あり。出発日に公式情報を確認。"
     },
     {
       "flag": "🇵🇾",
       "countryEn": "PARAGUAY",
       "countryJa": "パラグアイ",
-      "path": "Posadas → Encarnación",
-      "description": "ミシオネス州のポサーダスから国際橋を渡ってエンカルナシオンへ。北東部の旅から、グアラニー文化とパラナ川流域の都市へ自然に続けられる。",
+      "path": "Puerto Iguazú → Presidente Franco → Ciudad del Este",
+      "description": "イグアス滞在後、プエルト・イグアスからパラナ川のフェリーでプレシデンテ・フランコへ渡り、シウダー・デル・エステへ進む。ブラジルを経由せずパラグアイへ抜けられる国境ルート。",
       "travelerRoute": true,
-      "status": "OPEN"
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "フェリーの運航日・時間は変わるため出発前に確認。"
+    },
+    {
+      "flag": "🇨🇱",
+      "countryEn": "CHILE",
+      "countryJa": "チリ",
+      "path": "El Calafate → Río Don Guillermo → Puerto Natales",
+      "description": "南パタゴニアではエル・カラファテからリオ・ドン・ギジェルモ国境を越え、チリ側のプエルト・ナタレスへ。氷河の旅からトーレス・デル・パイネ方面へ自然につながる代表的な越境ルート。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "山岳天候と国境の開通状況を出発前に確認。"
     }
   ],
   "relatedCountries": [
@@ -606,8 +591,8 @@
     "locro": "2026-09-25",
     "alfajores": "2026-09-25",
     "borderBolivia": "2026-09-25",
-    "borderChile": "2026-09-25",
-    "borderParaguay": "2026-09-25"
+    "routeParaguayIguazu": "2026-09-25",
+    "routeChilePatagonia": "2026-09-25"
   },
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan — Argentina basic data, updated 23 Apr 2026: area 2.78 million km², population approx. 45.54 million (World Bank 2023), capital Buenos Aires, Spanish, Catholic etc. https://www.mofa.go.jp/mofaj/area/argentine/data.html",
@@ -637,8 +622,8 @@
     "welshChubut": "Chubut Patagonia official tourism — Welsh heritage in Chubut: settlement began in 1865 and remains visible in chapels, architecture, choral traditions, language and tea culture. https://chubutpatagonia.gob.ar/experiencia/galeses-en-chubut/ | https://chubutpatagonia.gob.ar/destino/gaiman/",
     "ibera": "Administración de Parques Nacionales — Esteros del Iberá / Parque Nacional Iberá: a 3.9-million-hectare wetland ecoregion with lagoons, marshes and grasslands; the national park protects 195,094 ha. https://www.argentina.gob.ar/parquesnacionales/ecorregiones/esteros-del-ibera | https://www.argentina.gob.ar/parquesnacionales/nea/parque-nacional-ibera/ficha-del-area-protegida",
     "qhapaqNan": "Argentina.gob.ar / UNESCO — Qhapaq Ñan, Andean Road System: the pre-Hispanic Andean road network is shared by six countries; Argentina has 13 registered road segments across seven provinces. https://www.argentina.gob.ar/noticias/el-itinerario-cultural-qhapaq-nan-fue-seleccionado-dentro-de-los-25-sitios-del-watch-2025 | https://whc.unesco.org/en/qhapaqnan/",
-    "borderBolivia": "Argentina.gob.ar — Paso La Quiaca–Villazón: official international border crossing between Jujuy, Argentina and Villazón, Bolivia; current operating hours and status published by Argentine authorities. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/18/La-Quiaca-Villaz%C3%B3n",
-    "borderChile": "Argentina.gob.ar — Sistema Cristo Redentor: official Mendoza–Chile international crossing between Villa Las Cuevas and Los Andes; opening is subject to mountain weather and road conditions. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/29/Sistema-Cristo-Redentor",
-    "borderParaguay": "Argentina.gob.ar — Paso Posadas–Encarnación: official international crossing between Misiones, Argentina and Encarnación, Paraguay via the San Roque González de Santa Cruz bridge. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/1/Posadas-Encarnaci%C3%B3n"
+    "borderBolivia": "Argentina.gob.ar — Paso La Quiaca–Villazón: official international crossing between Jujuy, Argentina and Villazón, Bolivia. Verified 25 Sep 2026. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/18/La-Quiaca-Villaz%C3%B3n",
+    "routeParaguayIguazu": "ABC Color / Balsa Iguazú — Puerto Iguazú–Presidente Franco ferry directly links Argentina and Paraguay at the Triple Frontier; tourist-vehicle operation was expanded in Sep 2026. https://www.abc.com.py/viajes/2026/09/08/balsa-entre-presidente-franco-y-puerto-iguazu-habilitara-el-paso-de-vehiculos-turisticos/ | https://excursioneseniguazu.com.ar/puerto-iguazu/balsa-iguazu/",
+    "routeChilePatagonia": "Argentina.gob.ar / CNRT — Paso Río Don Guillermo is the official Santa Cruz–Chile crossing; approved Sep 2026 passenger itinerary records El Calafate–Puerto Natales via Río Don Guillermo. https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/63/R%C3%ADo-Don-Guillermo | https://viajesocasionales.cnrt.gob.ar/verSolicitud?id=104072"
   }
 }
