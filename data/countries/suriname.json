@@ -173,19 +173,19 @@
   ],
   "encounters": [
     {
-      "title": "白い木造建築",
+      "title": "白い木造コロニアル建築",
       "category": "ARCHITECTURE",
       "icon": "city"
     },
     {
-      "title": "モスクとシナゴーグ",
+      "title": "隣り合うモスクとシナゴーグ",
       "category": "CULTURE",
       "icon": "history"
     },
     {
-      "title": "大河を進む細長いボート",
-      "category": "MOVEMENT",
-      "icon": "map"
+      "title": "オランダ語の看板",
+      "category": "LANGUAGE",
+      "icon": "language"
     },
     {
       "title": "川沿いのマルーン集落",
@@ -193,17 +193,12 @@
       "icon": "home"
     },
     {
-      "title": "熱帯雨林の鳥とサル",
-      "category": "WILDLIFE",
-      "icon": "wildlife"
-    },
-    {
-      "title": "多文化が混ざる食卓",
+      "title": "ロティとジャワ料理の食堂",
       "category": "FOOD",
       "icon": "food"
     },
     {
-      "title": "白砂を流れる黒いクリーク",
+      "title": "黒いクリークと白砂",
       "category": "NATURE",
       "icon": "landscape"
     },
@@ -211,6 +206,11 @@
       "title": "海岸に上がるウミガメ",
       "category": "WILDLIFE",
       "icon": "wildlife"
+    },
+    {
+      "title": "海岸平野の稲田と干拓地",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
     }
   ],
   "atlasExtras": [
@@ -491,12 +491,13 @@
       "interestReason": "植民地期の都市景観と現在の共和国をつなぐ、国の時間軸を端的に示す。"
     },
     {
-      "topicKey": "tafelberg-1026m",
-      "label": "ターフェルベルグ",
-      "value": "1,026m",
-      "note": "スリナム政府はターフェルベルグを標高1,026m、国内唯一のロライマ砂岩地形として紹介している。",
+      "topicKey": "forest-cover-93-percent",
+      "label": "森林被覆",
+      "value": "約93%",
+      "note": "スリナム政府の2026年報告では、国土の約93%が森林に覆われる。",
       "icon": "landscape",
-      "interestReason": "低い海岸平野だけでなく、内陸にテーブル状の高地がある地形の幅を示す。"
+      "interestReason": "人口が海岸部に集中する一方、国土の大半が森林として残るスリナムの空間構造を端的に示す。",
+      "exceptionalShare": true
     }
   ],
   "tips": [
@@ -562,8 +563,8 @@
       "affinityType": "CULTURE"
     }
   ],
-  "updatedAt": "2026-09-25",
-  "sourcesVerifiedAt": "2026-09-25",
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
   "sourceDates": {
     "population": "2025",
     "countryArea": "2020",
@@ -585,7 +586,7 @@
     "coastalDrainage": "2023-09-21",
     "populationDensity": "2024-12",
     "independence": "2026-09-26",
-    "tafelberg": "2022-10-06"
+    "encounters": "2026-09-26"
   },
   "sources": {
     "population": "World Bank, Suriname Data / World Development Indicators: population 639,850 in 2025. https://data.worldbank.org/country/suriname",
@@ -610,13 +611,13 @@
     "guyanaFerry": "Government of Suriname, 28 Aug 2026: Canawaima sailing ban lifted and regular Suriname–Guyana service resumed; Government of Guyana portal identifies South Drain–Moleson Creek official crossing. https://gov.sr/vaarverbod-m-v-canawaima-opgeheven-veerdienst-hervat/ ; https://portal.gov.gy/services/SVC-D4C1EE",
     "frenchGuianaBorder": "Préfecture de Guyane, official France–Suriname border posts: Saint-Laurent-du-Maroni international landing and Albina border post; France Diplomatie notes international ferry/pirogue crossings at Albina. https://www.guyane.gouv.fr/Actualites/Postes-frontiere-en-Guyane/Frontiere-avec-le-Suriname ; https://www.diplomatie.gouv.fr/fr/information-par-pays/suriname/conseils-aux-voyageurs-securite",
     "sceneCoordinates": "WGS84 real-location coordinates checked 2026-09-25. Hero Saint Peter and Paul Cathedral: Wikidata 5°49′43.25″N 55°9′14.72″W. Waterkant: Wikidata 5°49′30.83″N 55°9′11.20″W. Jodensavanne: UNESCO N5 25 52 W54 58 57.6. Brokopondo Reservoir: GeoNames/Mapcarta 4.75069,-55.06546. Voltzberg: Wikidata/GNS 4°40′39″N,56°11′3″W. Raleigh Vallen: GeoNames/Mapcarta 4.70507,-56.21029. Awarradam: OSM/Mapcarta 3.84504,-55.61324. Galibi Nature Reserve: OSM/Mapcarta 5.7907,-54.0186. Bigi Pan KBA central point 5.9483,-56.7538. Paramaribo capital: GeoNames 5.866378871,-55.166816711.",
-    "geometry": "Target national geometry: Natural Earth Admin-0 WGS84 public-domain geometry via sutcliffemax/sutcliffemax.github.io southamerica.geojson commit 9d9d83dce024553e417a98eaacae496ed7a22214. Surrounding land/coast context: GSHHS/GSHHG via Basemap intermediate resolution, WGS84, GNU LGPL; generated 2026-09-25.",
+    "geometry": "GADM 4.1 Admin-0, WGS84, via mammaldiversity/mammaldiversity.github.io at commit 749c2de16a949099cfc13ccbd2b86d427641e844. GADM license: free for academic and other non-commercial use. Suriname and visible neighboring land use the same boundary family to keep coastline and territory geometry aligned. JOURNEY ATLAS local-equirectangular-fit-v1, 1200×760.",
     "food": "Suriname Travel culture/food pages identify Creole pom, Hindustani roti and Javanese nasi as established parts of Surinamese cuisine; Heri Heri and Moksi Alesi are widely documented Surinamese dishes and are represented here in their recognizable traditional forms. https://suriname.travel/culture-flora-and-fauna/ ; https://suriname.travel/paramaribo/",
     "nextRoutes": "Guyana: Government of Suriname and Government of Guyana confirm Canawaima regular service resumed 28 Aug 2026 between South Drain and Moleson Creek. French Guiana: Préfecture de Guyane lists official border posts at Albina and Saint-Laurent-du-Maroni; France Diplomatie confirms international ferry/pirogue crossings. Sources checked 2026-09-25.",
     "sipaliwiniLandShare": "Algemeen Bureau voor de Statistiek (Suriname), Statistical Yearbook 2020–2022 (corrected Jan 2025): Suriname land area 163,820 km²; Sipaliwini 130,567 km² (79.7% of total). https://statistics-suriname.org/wp-content/uploads/2025/01/Statistisch-Jaarboek-Statistical-Yearbook-2020-2021-2022-dec-2023-corr-jan-2025.pdf",
     "coastalDrainage": "World Bank / Government of Suriname, Saramacca Canal System Rehabilitation Project ESIA/ESMP: approximately 87% of the population lives along the 386 km coastal plain; Greater Paramaribo relies on an extensive canal network for storm-water drainage. https://documents1.worldbank.org/curated/en/099090324150566664/pdf/P165973-986e3620-f2f0-48da-a223-5ce538f68d42.pdf",
     "populationDensity": "Algemeen Bureau voor de Statistiek (Suriname), Environmental Statistics 2024: estimated 2023 population 633,400; territory 163,820 km²; average population density approximately 3.9 inhabitants/km². https://statistics-suriname.org/wp-content/uploads/2024/12/Elfde-Milieustatistieken-pub-dec-2024.pdf",
     "independence": "Government of Suriname, Suriname / Historie: Suriname became independent on 25 November 1975. https://gov.sr/suriname/ ; https://www.gov.sr/ministeries/kabinet-van-de-president/historie/",
-    "tafelberg": "Government of Suriname, 'Tafelberg; enige Roraima zandsteenberg in Suriname': Tafelberg elevation 1,026 m and described as Suriname's only remnant of the Roraima sandstone formation. https://gov.sr/tafelberg-enige-roraima-zandsteenberg-in-suriname/"
+    "encounters": "Suriname Travel official destination pages: Paramaribo documents wooden colonial buildings and the adjacent mosque/synagogue; Facts About Suriname documents Dutch as the official language; Sipaliwini and Marowijne document Maroon river communities; Wanica and Culture, Flora and Fauna document Javanese food culture and roti; Para documents dark-water creeks over white savanna sand; Marowijne documents turtle nesting beaches; Nickerie documents coastal polders and rice fields. https://suriname.travel/paramaribo/ ; https://suriname.travel/facts-about-suriname/ ; https://suriname.travel/sipaliwini/ ; https://suriname.travel/marowijne/ ; https://suriname.travel/wanica/ ; https://suriname.travel/culture-flora-and-fauna/ ; https://suriname.travel/para/ ; https://suriname.travel/nickerie/"
   }
 }
