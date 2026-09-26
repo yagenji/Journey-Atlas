@@ -24,10 +24,6 @@
     "coordinates": {
       "latitude": 10.422626,
       "longitude": -75.548885
-    },
-    "mapOffset": {
-      "x": -1,
-      "y": -1
     }
   },
   "map": {
@@ -53,11 +49,7 @@
         "latitude": 4.6369,
         "longitude": -75.4866
       },
-      "image": "assets/images/colombia/approved/scene-1.webp",
-      "mapOffset": {
-        "x": -2.4,
-        "y": 0
-      }
+      "image": "assets/images/colombia/approved/scene-1.webp"
     },
     {
       "id": "cano-cristales",
@@ -69,11 +61,7 @@
         "latitude": 2.25,
         "longitude": -73.8167
       },
-      "image": "assets/images/colombia/approved/scene-2.webp",
-      "mapOffset": {
-        "x": 0.3,
-        "y": 0
-      }
+      "image": "assets/images/colombia/approved/scene-2.webp"
     },
     {
       "id": "piedra-del-penol",
@@ -97,11 +85,7 @@
         "latitude": 11.32802,
         "longitude": -73.96424
       },
-      "image": "assets/images/colombia/approved/scene-4.webp",
-      "mapOffset": {
-        "x": 0,
-        "y": -4
-      }
+      "image": "assets/images/colombia/approved/scene-4.webp"
     },
     {
       "id": "ciudad-perdida",
@@ -110,14 +94,10 @@
       "mapLabel": "Ciudad Perdida",
       "description": "シエラ・ネバダの密林に、タイロナ文化が築いた円形テラス、石段、道、水路が残る。海岸の暑さから歩いて山へ入り、森の中で都市遺構に出会う場所。",
       "coordinates": {
-        "latitude": 11.037,
-        "longitude": -73.925
+        "latitude": 11.03806,
+        "longitude": -73.92528
       },
-      "image": "assets/images/colombia/approved/scene-5.webp",
-      "mapOffset": {
-        "x": 0,
-        "y": 4
-      }
+      "image": "assets/images/colombia/approved/scene-5.webp"
     },
     {
       "id": "las-lajas-sanctuary",
@@ -158,44 +138,44 @@
   ],
   "encounters": [
     {
-      "title": "アンデスの高地都市と山の町を歩く",
-      "icon": "city",
-      "category": "CITY"
+      "title": "パラモでフライレホンの群落を歩く",
+      "icon": "landscape",
+      "category": "NATURE"
     },
     {
-      "title": "コーヒー農園で栽培から一杯までを知る",
+      "title": "コーヒー農園で収穫から精製までを見る",
       "icon": "food",
       "category": "DAILY_LIFE"
     },
     {
-      "title": "カリブ海岸で音楽と祭りの文化に触れる",
+      "title": "カリブ海岸でクンビアとバジェナートを聴く",
       "icon": "culture",
       "category": "CULTURE"
     },
     {
-      "title": "太平洋岸で熱帯雨林と海の野生を見る",
-      "icon": "sea",
-      "category": "NATURE"
-    },
-    {
-      "title": "山塊の考古遺跡と先住民文化に触れる",
-      "icon": "history",
-      "category": "CULTURE"
-    },
-    {
-      "title": "アマゾンの大河とオリノコの平原をたどる",
-      "icon": "map",
-      "category": "MOVEMENT"
-    },
-    {
-      "title": "森・湿地・高地で多様な野鳥を探す",
+      "title": "太平洋岸でザトウクジラを観察する",
       "icon": "wildlife",
       "category": "WILDLIFE"
     },
     {
-      "title": "地域ごとに変わる食材と食卓を味わう",
+      "title": "サン・アグスティンとティエラデントロの遺跡をたどる",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "リャノスでカピバラと水鳥を探す",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "アマゾンの大河を舟で進む",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "市場でルーロやグアナバナを味わう",
       "icon": "food",
-      "category": "FOOD"
+      "category": "DAILY_LIFE"
     }
   ],
   "atlasExtras": [
@@ -442,7 +422,7 @@
     },
     {
       "label": "面積",
-      "value": "1,141,748 km²（陸地）"
+      "value": "1,141,748 km²（陸地・日本の約3.0倍）"
     },
     {
       "label": "言語",
@@ -569,7 +549,7 @@
   },
   "sources": {
     "population": "Departamento Administrativo Nacional de Estadística (DANE), national population projections based on CNPV 2018, updated 2025; DANE indicator total national 2025: 52,695,952.",
-    "area": "Ministerio de Relaciones Exteriores de Colombia / Cancillería: land area 1,141,748 km².",
+    "area": "Ministerio de Relaciones Exteriores de Colombia / Cancillería: land area 1,141,748 km². Japan comparison uses Geospatial Information Authority of Japan (GSI), national area 377,973.68 km² as of 2026-07-01; ratio 3.0207, displayed as about 3.0 times.",
     "languages": "Constitución Política de Colombia, Art. 10: castellano official; languages and dialects of ethnic groups also official in their territories.",
     "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Colombia; Latinobarómetro 2023 summary (64% Roman Catholic, 17% Protestant, 14% no religion, 2% atheist/agnostic).",
     "currency": "Banco de la República: Colombian legal currency; Law 31 of 1992 identifies the peso as Colombia's monetary and accounting unit.",
@@ -590,13 +570,13 @@
     "amazon": "Colombia Travel / ProColombia Amazon-Orinoco regional and climate guides; river-based mobility and seasonal water levels.",
     "bogota": "Colombia Travel / ProColombia Andes and climate guides for Bogotá highland conditions.",
     "seasonsTransport": "Colombia Travel / ProColombia, Climate and Seasons; Transportation and Mobility in Colombia, checked 2026-09-25.",
-    "sceneCoordinates": "OpenStreetMap/GeoNames/Wikidata cross-checks: Cocora 4.6369,-75.4866; Caño Cristales approx 2.25,-73.8167; Piedra del Peñol 6.22316,-75.17777; Cabo San Juan 11.32802,-73.96424; Ciudad Perdida 11.0370,-73.9250; Las Lajas 0.8055,-77.5860; Tatacoa approx 3.23,-75.17; Johnny Cay 12.59945,-81.69034.",
+    "sceneCoordinates": "Open geographic cross-checks: Cocora Valley 4.6369,-75.4866 (GeoNames/OpenStreetMap-derived); Caño Cristales 2°15′N,73°49′W (Wikidata/GeoNames); Piedra del Peñol 6.22316,-75.17777 (GeoNames, cross-checked with OSM/Wikidata rock geometry); Cabo San Juan del Guía 11.32802,-73.96424 (OpenStreetMap); Ciudad Perdida archaeological site 11.03806,-73.92528 (Wikidata); Las Lajas 0.8055,-77.5860 (Wikidata/OSM); Tatacoa 3.23,-75.17 (Wikidata); Johnny Cay 12.59945,-81.69034 (OpenStreetMap). Checked 2026-09-26.",
     "heroCoordinates": "Wikidata/Wikimedia cross-check for Puerta/Torre del Reloj, Cartagena: approximately 10.422626,-75.548885.",
     "map": "Natural Earth 1:10m Countries, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection for Colombia target geometry and surrounding national context; Costa Rica and Nicaragua added west of Panama so Central American land continuity reaches the map frame instead of terminating at the Panama–Costa Rica border; checked 2026-09-26.",
     "nextRoutes": "Established Colombia–Ecuador Rumichaca and Colombia–Venezuela Cúcuta/San Antonio corridors; Colombia–Peru Amazon crossing via Leticia and Santa Rosa verified against Migración Colombia's Río Amazonas fluvial control point and Peru Migraciones' Santa Rosa border-control references; checked 2026-09-26. All are marked CHECK_CURRENT_CONDITIONS.",
     "sierraNevada": "Parques Nacionales Naturales de Colombia / Colombia Travel: Sierra Nevada de Santa Marta rises from the Caribbean coast to peaks around 5,775 m, about 42 km from the sea; checked 2026-09-25.",
     "birdDiversity": "Colombia Travel, Birdwatching: more than 1,900 bird species in Colombia and the country described as having the world’s highest bird diversity; checked 2026-09-25.",
     "twoCoasts": "Colombia Travel practical geography: Colombia has Pacific and Caribbean/Atlantic coasts; checked 2026-09-25.",
-    "encounters": "Colombia Travel / ProColombia official regional guides: six macroregions covering Greater Colombian Caribbean, Western Colombian Andes, Colombian Pacific, Eastern Colombian Andes, Colombian Massif, and Colombian Amazon-Orinoco; official birdwatching, coffee, culture, Pacific and Massif guides cross-checked 2026-09-26."
+    "encounters": "Colombia Travel / ProColombia official guides cross-checked 2026-09-26: Chingaza/Ocetá páramo and frailejones; Coffee Regions; Greater Colombian Caribbean music (cumbia/vallenato); Colombian Pacific humpback-whale watching; Colombian Massif and San Agustín/Tierradentro archaeology; Llanos wildlife and llanero culture; Amazon-Orinoco river landscapes; Colombian fruit and farmers-market guides."
   }
 }
