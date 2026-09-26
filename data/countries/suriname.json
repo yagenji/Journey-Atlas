@@ -36,14 +36,14 @@
   },
   "map": {
     "bounds": {
-      "north": 6.35,
-      "south": 1.55,
-      "west": -58.25,
-      "east": -53.65
+      "north": 6.6773,
+      "south": 1.2227,
+      "west": -58.5636,
+      "east": -53.3364
     },
     "svg": "assets/images/suriname/map-atlas-v1.svg",
     "route": null,
-    "source": "Target national geometry: Natural Earth Admin-0 WGS84 public-domain geometry via sutcliffemax/sutcliffemax.github.io southamerica.geojson at commit 9d9d83dce024553e417a98eaacae496ed7a22214. Surrounding land/coast context: GSHHS/GSHHG via Basemap intermediate resolution, WGS84, GNU LGPL. JOURNEY ATLAS local-equirectangular-fit-v1, 1200×760; generated 2026-09-25."
+    "source": "Target national geometry: Natural Earth Admin-0 WGS84 public-domain geometry via sutcliffemax/sutcliffemax.github.io southamerica.geojson at commit 9d9d83dce024553e417a98eaacae496ed7a22214. Surrounding land/coast context: GSHHS/GSHHG via Basemap intermediate resolution, WGS84, GNU LGPL. JOURNEY ATLAS local-equirectangular-fit-v1, 1200×760; review framing expanded 12% on 2026-09-26 to keep geographic context clear of the frame edge."
   },
   "scenes": [
     {
@@ -381,19 +381,19 @@
       {
         "duration": "3〜4日",
         "title": "パラマリボと近郊の歴史を見る",
-        "text": "パラマリボ旧市街を歩き、JodensavanneまたはCommewijne方面を日帰りで組み合わせる。例：パラマリボ → Waterkant → Jodensavanne → パラマリボ。",
+        "text": "パラマリボ旧市街を歩き、ジョデンサバンまたはコメワイネ方面を日帰りで組み合わせる。例：パラマリボ → ウォーターカント → ジョデンサバン → パラマリボ。",
         "icon": "city"
       },
       {
         "duration": "5〜7日",
         "title": "海岸か湖へ一方向に広げる",
-        "text": "首都にBrokopondo/Brownsberg、Galibi、Bigi Panのいずれかを加える。方向が分かれるため、全部を詰め込まず一つの自然圏に時間を置く。 例：パラマリボ → Brokopondo Reservoir → Brownsberg → パラマリボ。",
+        "text": "首都にブロコポンド湖／ブラウンズベルグ、ガリビ、ビギ・パンのいずれかを加える。方向が分かれるため、全部を詰め込まず一つの自然圏に時間を置く。例：パラマリボ → ブロコポンド湖 → ブラウンズベルグ自然公園 → パラマリボ。",
         "icon": "map"
       },
       {
         "duration": "8日以上",
         "title": "内陸の川と原生林へ入る",
-        "text": "Upper Suriname Riverの集落滞在やCentral Suriname Nature Reserveまで含める。道路の終点からボートや小型機へ乗り継ぐため、天候と移動日の余白を確保する。 例：パラマリボ → Atjoni → Upper Suriname River → パラマリボ。",
+        "text": "上スリナム川の集落滞在や中央スリナム自然保護区まで含める。道路の終点からボートや小型機へ乗り継ぐため、天候と移動日の余白を確保する。例：パラマリボ → アトジョニ → 上スリナム川 → パラマリボ。",
         "icon": "compass"
       }
     ]
@@ -470,32 +470,29 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "forest-cover-93",
-      "label": "森林被覆",
-      "value": "約93%",
-      "note": "スリナム政府の2026年報告は国土のおよそ93%が森林に覆われるとしている。",
-      "icon": "leaf",
-      "interestReason": "都市と海岸平野を離れると、国土の大部分が森林になるスリナムのスケールを一つの数字で示す。",
-      "exceptionalScale": true,
-      "exceptionalShare": true
+      "topicKey": "population-density-3-9",
+      "label": "人口密度",
+      "value": "約3.9人/km²",
+      "note": "ABSの2023年推計では、人口633,400人に対して平均人口密度は約3.9人/km²。",
+      "icon": "people",
+      "interestReason": "首都圏に人口が集中する一方、広大な内陸部が低密度である国土構造を一つの数字で示す。",
+      "exceptionalScale": true
     },
     {
-      "topicKey": "csnr-1592000ha",
-      "label": "中央スリナム自然保護区",
-      "value": "1,592,000 ha",
-      "note": "Central Suriname Nature Reserveは1,592,000haの連続した保護地域で、国土の約1割に相当する。",
+      "topicKey": "independence-1975",
+      "label": "独立",
+      "value": "1975年",
+      "note": "スリナムは1975年11月25日にオランダから独立し、主権国家となった。",
+      "icon": "history",
+      "interestReason": "植民地期の都市景観と現在の共和国をつなぐ、国の時間軸を端的に示す。"
+    },
+    {
+      "topicKey": "tafelberg-1026m",
+      "label": "ターフェルベルグ",
+      "value": "1,026m",
+      "note": "スリナム政府はTafelbergを標高1,026m、国内唯一のロライマ砂岩地形として紹介している。",
       "icon": "landscape",
-      "interestReason": "一つの自然保護区だけで国土の約1割規模を占める、内陸自然の大きさが分かる。",
-      "exceptionalScale": true
-    },
-    {
-      "topicKey": "sipaliwini-land-share-79-7",
-      "label": "Sipaliwiniの国土比",
-      "value": "79.7%",
-      "note": "ABSによると、内陸のSipaliwini地区は130,567 km²で、スリナム国土の79.7%を占める。",
-      "icon": "map",
-      "interestReason": "人口が集中する北部海岸から離れると、一つの内陸地区が国土の約8割を占めるという極端な地理構造が分かる。",
-      "exceptionalScale": true
+      "interestReason": "低い海岸平野だけでなく、内陸にテーブル状の高地がある地形の幅を示す。"
     }
   ],
   "tips": [
@@ -581,7 +578,10 @@
     "sceneCoordinates": "2026-09-25",
     "geometry": "2026-09-25",
     "sipaliwiniLandShare": "2022",
-    "coastalDrainage": "2023-09-21"
+    "coastalDrainage": "2023-09-21",
+    "populationDensity": "2024-12",
+    "independence": "2026-09-26",
+    "tafelberg": "2022-10-06"
   },
   "sources": {
     "population": "World Bank, Suriname Data / World Development Indicators: population 639,850 in 2025. https://data.worldbank.org/country/suriname",
@@ -610,6 +610,9 @@
     "food": "Suriname Travel culture/food pages identify Creole pom, Hindustani roti and Javanese nasi as established parts of Surinamese cuisine; Heri Heri and Moksi Alesi are widely documented Surinamese dishes and are represented here in their recognizable traditional forms. https://suriname.travel/culture-flora-and-fauna/ ; https://suriname.travel/paramaribo/",
     "nextRoutes": "Guyana: Government of Suriname and Government of Guyana confirm Canawaima regular service resumed 28 Aug 2026 between South Drain and Moleson Creek. French Guiana: Préfecture de Guyane lists official border posts at Albina and Saint-Laurent-du-Maroni; France Diplomatie confirms international ferry/pirogue crossings. Sources checked 2026-09-25.",
     "sipaliwiniLandShare": "Algemeen Bureau voor de Statistiek (Suriname), Statistical Yearbook 2020–2022 (corrected Jan 2025): Suriname land area 163,820 km²; Sipaliwini 130,567 km² (79.7% of total). https://statistics-suriname.org/wp-content/uploads/2025/01/Statistisch-Jaarboek-Statistical-Yearbook-2020-2021-2022-dec-2023-corr-jan-2025.pdf",
-    "coastalDrainage": "World Bank / Government of Suriname, Saramacca Canal System Rehabilitation Project ESIA/ESMP: approximately 87% of the population lives along the 386 km coastal plain; Greater Paramaribo relies on an extensive canal network for storm-water drainage. https://documents1.worldbank.org/curated/en/099090324150566664/pdf/P165973-986e3620-f2f0-48da-a223-5ce538f68d42.pdf"
+    "coastalDrainage": "World Bank / Government of Suriname, Saramacca Canal System Rehabilitation Project ESIA/ESMP: approximately 87% of the population lives along the 386 km coastal plain; Greater Paramaribo relies on an extensive canal network for storm-water drainage. https://documents1.worldbank.org/curated/en/099090324150566664/pdf/P165973-986e3620-f2f0-48da-a223-5ce538f68d42.pdf",
+    "populationDensity": "Algemeen Bureau voor de Statistiek (Suriname), Environmental Statistics 2024: estimated 2023 population 633,400; territory 163,820 km²; average population density approximately 3.9 inhabitants/km². https://statistics-suriname.org/wp-content/uploads/2024/12/Elfde-Milieustatistieken-pub-dec-2024.pdf",
+    "independence": "Government of Suriname, Suriname / Historie: Suriname became independent on 25 November 1975. https://gov.sr/suriname/ ; https://www.gov.sr/ministeries/kabinet-van-de-president/historie/",
+    "tafelberg": "Government of Suriname, 'Tafelberg; enige Roraima zandsteenberg in Suriname': Tafelberg elevation 1,026 m and described as Suriname's only remnant of the Roraima sandstone formation. https://gov.sr/tafelberg-enige-roraima-zandsteenberg-in-suriname/"
   }
 }
