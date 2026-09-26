@@ -1,0 +1,607 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "tunisia",
+  "nameEn": "TUNISIA",
+  "nameJa": "チュニジア",
+  "region": "NORTH AFRICA / 34°N",
+  "seo": {
+    "description": "青と白のシディ・ブ・サイド、カルタゴとドゥッガの古代都市、エル・ジェム、カイルアン、塩湖、洞窟住居、サハラ。地中海から砂漠までを8つの景色と地図でたどるチュニジアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Tunis",
+    "nameJa": "チュニス",
+    "coordinates": {
+      "latitude": 36.8065,
+      "longitude": 10.1815
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -4,
+      "y": -24
+    },
+    "mapOffset": {
+      "x": -2.6,
+      "y": -2.2
+    }
+  },
+  "hero": {
+    "lead": "地中海に面した白い街から、古代カルタゴとローマ都市、聖都、塩湖、ベルベルの集落、そしてサハラへ。南北に進むほど、歴史と地形が大きく切り替わる。",
+    "image": "assets/images/tunisia/approved/hero-sidi-bou-said.webp",
+    "location": "Village of Sidi Bou Saïd",
+    "coordinates": {
+      "latitude": 36.87103,
+      "longitude": 10.34864
+    },
+    "mapOffset": {
+      "x": 2.4,
+      "y": -1.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 38.4,
+      "south": 29.8,
+      "west": 6.5,
+      "east": 13.2
+    },
+    "svg": "assets/images/tunisia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290 (TUN/DZA/LBY/ITA GeoJSON). Shared JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-26."
+  },
+  "scenes": [
+    {
+      "id": "el-jem-amphitheatre",
+      "name": "エル・ジェムの円形闘技場",
+      "nameLocal": "Amphithéâtre d'El Jem",
+      "mapLabel": "El Jem",
+      "description": "平地に独立して立つ巨大な円形闘技場。3世紀に築かれ、最大約3万5千人を収容したとされる。アーチが幾層にも重なる外壁と地下通路を歩くと、ローマ属州アフリカの都市規模が立体的に見える。",
+      "coordinates": {
+        "latitude": 35.2964,
+        "longitude": 10.7069
+      },
+      "image": "assets/images/tunisia/approved/scene-1-el-jem.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "carthage-archaeological-site",
+      "name": "カルタゴ遺跡",
+      "nameLocal": "Carthage / Thermes d'Antonin",
+      "mapLabel": "Carthage",
+      "description": "チュニス湾を望む丘と海辺に、フェニキア・ポエニ時代からローマ時代までの遺構が点在する。古代地中海交易の中心だった都市が、港、住宅地、浴場、聖域へ分かれて残る。",
+      "coordinates": {
+        "latitude": 36.85278,
+        "longitude": 10.32331
+      },
+      "image": "assets/images/tunisia/approved/scene-2-carthage.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.2,
+        "y": 2.6
+      }
+    },
+    {
+      "id": "dougga-capitol",
+      "name": "ドゥッガ / カピトル",
+      "nameLocal": "Dougga / Thugga",
+      "mapLabel": "Dougga",
+      "description": "肥沃な谷を見下ろす丘の上に、ヌミディア、ポエニ、ローマの都市層がまとまって残る。カピトルの列柱、劇場、浴場、街路を一続きに歩くことで、小都市の日常と公共空間を読み取れる。",
+      "coordinates": {
+        "latitude": 36.42361,
+        "longitude": 9.22028
+      },
+      "image": "assets/images/tunisia/approved/scene-3-dougga.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "kairouan-great-mosque",
+      "name": "カイルアン / 大モスク",
+      "nameLocal": "Kairouan / Grande Mosquée",
+      "mapLabel": "Kairouan",
+      "description": "7世紀に始まる古都の中心で、広い中庭、列柱廊、三層の四角いミナレットが砂色の壁に囲まれる。マグレブのイスラム都市と建築が形づくられていく初期の歴史を、現役の宗教都市でたどれる。",
+      "coordinates": {
+        "latitude": 35.6814,
+        "longitude": 10.1043
+      },
+      "image": "assets/images/tunisia/approved/scene-4-kairouan.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "chott-el-jerid",
+      "name": "ショット・エル・ジェリド",
+      "nameLocal": "Chott El Jerid",
+      "mapLabel": "Chott El Jerid",
+      "description": "南西部に広がる巨大な塩性低地。乾いた季節には白や淡い桃色の塩殻が地平線まで続き、条件によって浅い水面や蜃気楼が現れる。北のステップから南の砂漠へ移る境界そのものが景観になる。",
+      "coordinates": {
+        "latitude": 33.74826,
+        "longitude": 8.2295
+      },
+      "image": "assets/images/tunisia/approved/scene-5-chott-el-jerid.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "chenini-tataouine",
+      "name": "シェニニ / タタウイヌ",
+      "nameLocal": "Chenini / Tataouine",
+      "mapLabel": "Chenini",
+      "description": "乾いた山腹に石と土の住居、穀倉、白いモスクが段状に重なる。南部の集落は地形を利用して熱と乾燥に適応してきた。丘の道を歩くと、サハラ周縁の暮らしと防御の考え方が見えてくる。",
+      "coordinates": {
+        "latitude": 32.91167,
+        "longitude": 10.26194
+      },
+      "image": "assets/images/tunisia/approved/scene-6-chenini.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "matmata-troglodyte",
+      "name": "マトマタの地下住居",
+      "nameLocal": "Matmata / Habitat troglodytique",
+      "mapLabel": "Matmata",
+      "description": "地面を円形に掘り下げた中庭の周囲に、横穴状の居室を開く地下住居。厚い土が外気の熱を和らげ、乾燥地の生活を支えてきた。地表からは見えにくい住空間が、南部の気候への適応を物語る。",
+      "coordinates": {
+        "latitude": 33.49781,
+        "longitude": 9.9885
+      },
+      "image": "assets/images/tunisia/approved/scene-7-matmata.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.3,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "ksar-ghilane-sahara",
+      "name": "クサール・ギレン / サハラ砂丘",
+      "nameLocal": "Ksar Ghilane / Grand Erg Oriental",
+      "mapLabel": "Ksar Ghilane",
+      "description": "オアシスの外へ進むと、グランド・エルグ・オリエンタルの砂丘が幾重にも続く。夕方は砂紋と稜線の陰影が深まり、地中海沿岸とはまったく異なるチュニジア南端のスケールが現れる。",
+      "coordinates": {
+        "latitude": 32.977,
+        "longitude": 9.6452
+      },
+      "image": "assets/images/tunisia/approved/scene-8-sahara.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.3,
+        "y": -1.1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ローマの円形闘技場を歩く",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "古代カルタゴの海辺をたどる",
+      "category": "HISTORY",
+      "icon": "landmark"
+    },
+    {
+      "title": "丘上の古代都市を歩く",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "マグレブの聖都に入る",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "塩の大地を横断する",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "山腹の集落を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "地下住居の中庭に立つ",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "サハラの砂丘を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "carthage-mediterranean-power",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "カルタゴでは、ポエニとローマの都市が同じ湾岸に重なる",
+      "text": "カルタゴはフェニキア人の拠点から地中海西部の大国へ成長し、ローマとの戦争後にはローマ都市として再建された。広い遺跡域を移動すると、港・丘・浴場・住宅地に異なる時代の都市構造が残る。",
+      "points": [
+        "ポエニ時代とローマ時代の遺構が同じ遺跡群に含まれる",
+        "チュニス湾を見渡す地形が海上交易都市の位置を実感させる"
+      ],
+      "sourceKey": "carthage"
+    },
+    {
+      "topicKey": "dougga-cultural-synthesis",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ドゥッガには、17世紀を超える都市史が一つの丘に残る",
+      "text": "ユネスコはドゥッガを、ヌミディア、ポエニ、ヘレニズム、ローマの文化が重なる保存状態のよい都市として評価する。約75haの遺跡内で公共建築と住宅街路が連続し、小都市の全体像を追える。",
+      "points": [
+        "遺跡域は約75ha",
+        "ヌミディアの都市構造にローマの公共建築が組み込まれた"
+      ],
+      "sourceKey": "dougga"
+    },
+    {
+      "topicKey": "kairouan-early-maghreb-city",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "カイルアンは、670年に始まるマグレブ最古級のイスラム都市",
+      "text": "カイルアンは670年に築かれ、イフリーキヤの政治・宗教の中心として発展した。大モスク、曲がる街路、城壁、貯水池を一緒に見ると、宗教施設だけでなく都市全体の成立過程が見える。",
+      "points": [
+        "大モスクは後のマグレブのモスク建築に影響した",
+        "メディナと郊外、アグラブ朝の貯水池が世界遺産を構成する"
+      ],
+      "sourceKey": "kairouan"
+    },
+    {
+      "topicKey": "chott-steppe-desert-transition",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ショット・エル・ジェリドは、ステップとサハラの境界に広がる",
+      "text": "ショット・エル・ジェリドは約58.6万haの塩性低地で、北の山地・ステップと南の砂漠の間に位置する。水がほとんど消える時期と浅く広がる時期で、同じ場所の色と質感が大きく変わる。",
+      "points": [
+        "ラムサール登録面積は586,187ha",
+        "トズールとケビリの間を道路が横断する"
+      ],
+      "sourceKey": "chottJerid"
+    },
+    {
+      "topicKey": "southern-troglodyte-ksour-adaptation",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "南部では、地下住居とクスールが乾燥地への適応を伝える",
+      "text": "マトマタの地下住居やタタウイヌ周辺のクスールは、暑さ、貯蔵、防御、限られた資源に対応してきた建築文化の一部である。観光用の奇景ではなく、土地の条件から生まれた生活技術として見たい。",
+      "points": [
+        "地下住居は掘り下げた中庭を核に居室を配置する",
+        "南部のクスール群はユネスコ暫定一覧にも記載される"
+      ],
+      "sourceKey": "southernHabitat"
+    },
+    {
+      "topicKey": "djerba-settlement-water-pattern",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ジェルバ島では、水と土地の条件が分散型の集落をつくった",
+      "text": "2023年に世界遺産となったジェルバ島の文化的景観は、乾燥した島で限られた水と農地を使うため、住宅や宗教施設が分散する独特の定住パターンを育てた。都市型のメディナとは別の生活景観がある。",
+      "points": [
+        "Djerba: Testimony to a settlement pattern in an island territory は2023年登録",
+        "集落・宗教施設・農地の配置そのものが価値の一部"
+      ],
+      "sourceKey": "worldHeritage"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "sidi-bou-said-unesco-2026",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "シディ・ブ・サイドは2026年に世界遺産へ加わった",
+      "text": "地中海を見下ろす丘に形成された聖地集落は、スーフィーの聖者を核に発展し、のちに宮廷層や芸術家を惹きつけた文化景観として評価された。",
+      "icon": "history",
+      "sourceKey": "sidiBouSaid"
+    },
+    {
+      "topicKey": "harissa-intangible-heritage",
+      "categoryEn": "FOOD",
+      "categoryJa": "食文化",
+      "title": "ハリッサの知識と食文化はユネスコ無形文化遺産",
+      "text": "唐辛子を乾燥・粉砕し、香辛料や油と合わせるハリッサは、家庭や地域で受け継がれる知識・技能・社会的慣習として2022年に登録された。",
+      "icon": "food",
+      "sourceKey": "harissa"
+    },
+    {
+      "topicKey": "dougga-two-thousand-inscriptions",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "碑文",
+      "title": "ドゥッガでは2,000点を超える碑文が都市史を補う",
+      "text": "ユネスコはリビア語、ポエニ語、二言語、ギリシャ語、ラテン語を含む2,000点超の碑文群を紹介している。建物だけでなく文字資料からも古代の社会を読める。",
+      "icon": "history",
+      "sourceKey": "dougga"
+    },
+    {
+      "topicKey": "kairouan-mosque-courtyard-scale",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "カイルアン大モスクは約135m×80mの四辺形",
+      "text": "広い中庭と17列の礼拝空間を持ち、北側には三層の角形ミナレットが立つ。外からは要塞のように見えるが、内部には列柱の反復が広がる。",
+      "icon": "landmark",
+      "sourceKey": "kairouan"
+    },
+    {
+      "topicKey": "medina-tunis-property-area",
+      "categoryEn": "CITY",
+      "categoryJa": "旧市街",
+      "title": "チュニスのメディナは世界遺産区域だけで約296ha",
+      "text": "モスク、スーク、住宅街路、旧宮殿が密集する歴史地区で、1979年に世界遺産へ登録された。大通りではなく細い路地の連続が街の構造をつくる。",
+      "icon": "city",
+      "sourceKey": "medinaTunis"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF TUNISIA",
+    "title": "チュニジアで食べたいもの",
+    "intro": "クスクス、薄皮のブリック、トマトと卵のオジャ、デーツを包むマクルード。地中海の野菜と穀物に、唐辛子やオリーブオイルを重ねる4品。",
+    "items": [
+      {
+        "id": "couscous-tunisien",
+        "name": "チュニジア風クスクス",
+        "nameLocal": "Couscous tunisien",
+        "text": "細かなセモリナ粒に、羊肉や鶏肉、ひよこ豆、にんじん、ズッキーニなどをトマト系の煮汁と合わせる代表料理。地域によって魚介を使う形もある。",
+        "image": "assets/images/tunisia/approved/food-1-couscous.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "brik-a-loeuf",
+        "name": "ブリック・ア・ルフ",
+        "nameLocal": "Brik à l'œuf",
+        "text": "薄いマルスーカ生地で卵、ツナ、パセリ、ケッパーなどを包み、外側を香ばしく揚げる定番の軽食。半熟の黄身と薄皮の食感を一緒に味わう。",
+        "image": "assets/images/tunisia/approved/food-2-brik.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ojja-merguez",
+        "name": "オジャ",
+        "nameLocal": "Ojja merguez",
+        "text": "トマトと唐辛子を煮込んだソースに卵を落とす料理。メルゲーズを加える形も多く、パンでソースをすくいながら食べる。",
+        "image": "assets/images/tunisia/approved/food-3-ojja.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "makroudh",
+        "name": "マクルード",
+        "nameLocal": "Maqroudh / Makroudh",
+        "text": "セモリナ生地でデーツのペーストを包み、揚げたり焼いたりした後に蜂蜜やシロップをまとわせる菓子。カイルアンの名物として特に知られる。",
+        "image": "assets/images/tunisia/approved/food-4-makroudh.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "北の地中海沿岸と南のサハラでは景観も移動条件も大きく異なる。歴史都市だけなら北中部でまとまるが、塩湖と砂漠まで見るなら南下する日数を確保したい。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "チュニス周辺と古代都市を軸にする",
+        "text": "首都を起点にシディ・ブ・サイド、カルタゴを見て、エル・ジェムまたはカイルアンへ足を延ばす。例：チュニス → カルタゴ → シディ・ブ・サイド → エル・ジェム",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "北部からジェリドまで南下する",
+        "text": "古代都市と聖都に、トズール周辺とショット・エル・ジェリドを加える。景観が地中海から乾燥地へ切り替わる過程を陸路で追える。例：チュニス → ドゥッガ → カイルアン → トズール",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "南部集落とサハラまでつなぐ",
+        "text": "ジェリドからマトマタ、タタウイヌ、クサール・ギレンへ進み、地下住居、山腹集落、砂丘まで見る。長距離移動の前後に余白を置いて組みたい。例：チュニス → カイルアン → トズール → マトマタ → タタウイヌ → クサール・ギレン",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#b8aa83",
+      "text": "春は気温が穏やかで、公式観光情報では平均気温の目安が約25℃。北部の遺跡歩きから南部の乾燥地まで組み合わせやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#d4b16b",
+      "text": "沿岸は海風がある一方、内陸と南部は乾燥して暑い。公式観光情報では夏の平均は約31℃で、最南部では40℃を超えることもある。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b89b72",
+      "text": "秋もおおむね穏やかで、春と同様に25℃前後が目安。海岸と遺跡、砂漠を一度の旅でつなぎやすい時期。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#8fa1a6",
+      "text": "北部は涼しく湿潤、南部は比較的温和で乾燥する。公式観光情報の冬の平均は約16℃。砂漠の朝晩は冷えるため防寒を用意したい。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道で主要都市をつなぎ、南部の集落と砂漠は道路移動を組み合わせる",
+    "text": "SNCFTの幹線はチュニスからスース、スファックス、ガベス、トズール方面を結び、エル・ジェムにも駅がある。カルタゴとシディ・ブ・サイドは首都圏の鉄道で訪れやすい。一方、マトマタ、シェニニ、クサール・ギレンは道路移動が中心。南部や国境越えは運行・道路状況を直前に確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "カルタゴからローマ、イスラム都市まで歴史を層で見たい人",
+      "text": "カルタゴ、ドゥッガ、エル・ジェム、カイルアン、チュニス旧市街をつなぎ、地中海世界の時代がどう重なったかを都市と建築から追いたい人。"
+    },
+    {
+      "title": "地中海から塩湖、サハラまで景観を大きく変えたい人",
+      "text": "青い海辺の街だけで終わらず、ショット・エル・ジェリド、マトマタ、南部の山地、砂丘へ進み、国土の南北差を体験したい人。"
+    },
+    {
+      "title": "旧市街の路地や食卓まで、現在の暮らしに触れたい人",
+      "text": "メディナ、山腹集落、地下住居、スーク、クスクスやブリックを通じて、遺跡の外に続く生活文化まで歩きたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北アフリカ / マグレブ / 地中海沿岸"
+    },
+    {
+      "label": "首都",
+      "value": "チュニス"
+    },
+    {
+      "label": "人口",
+      "value": "約1,239万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "163,610 km²（日本の約43%）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語（公用語）／フランス語も広く使用"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教スンニ派が多数"
+    },
+    {
+      "label": "通貨",
+      "value": "チュニジア・ディナール（TND）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "el-jem-capacity-35000",
+      "label": "エル・ジェムの収容規模",
+      "value": "約35,000人",
+      "note": "ユネスコはエル・ジェムを北アフリカ最大の円形闘技場とし、最大約3万5千人を収容したと説明する。",
+      "icon": "landmark",
+      "interestReason": "小さな現在の町に、数万人規模の観客施設が残ることでローマ属州都市の規模感を直感できる。"
+    },
+    {
+      "topicKey": "chott-jerid-ramsar-area",
+      "label": "ショット・エル・ジェリド",
+      "value": "586,187 ha",
+      "note": "ラムサール条約の登録情報では、ショット・エル・ジェリドは58万6,187haの塩性湿地。チュニジア南西部の巨大な地形単位である。",
+      "icon": "landscape",
+      "interestReason": "塩湖を写真の一場面ではなく、県境をまたぐ巨大な低地として想像できるため。"
+    },
+    {
+      "topicKey": "tunisia-world-heritage-ten",
+      "label": "世界遺産",
+      "value": "10件",
+      "note": "ユネスコの2026年国別一覧では、文化遺産9件と自然遺産1件の計10件。2026年にはシディ・ブ・サイドが新たに加わった。",
+      "icon": "history",
+      "interestReason": "古代都市、イスラム都市、島の集落、自然湖まで、国土の小ささに対して遺産の種類が非常に広いことを示す。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "summer-heat-south",
+      "title": "南部は夏の日中を避けて動く",
+      "text": "南部では40℃を超えることもある。砂丘、塩湖、遺跡は早朝や夕方を使い、帽子、日差し対策、十分な飲料水を前提にする。"
+    },
+    {
+      "topicKey": "rail-live-status-check",
+      "title": "鉄道は当日の運行状況まで確認する",
+      "text": "SNCFTはリアルタイムの運行情報を公開しており、遅延や運休が表示される。長距離列車は出発当日に列車番号と状況を確認する。"
+    },
+    {
+      "topicKey": "religious-medina-etiquette",
+      "title": "宗教施設と旧市街では撮影・服装に配慮する",
+      "text": "大モスクなど宗教施設では入場範囲や礼拝時間が異なる。人物や私有住宅を撮る場合も、現地の案内と許可を優先する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇩🇿",
+      "countryEn": "ALGERIA",
+      "countryJa": "アルジェリア",
+      "path": "Tunis → Ghardimaou → Souk Ahras → Annaba",
+      "description": "SNCFTの国際列車でチュニスから西へ進み、ガルディマウを経てアルジェリアのスーク・アフラス、アンナバへつなぐ陸路。マグレブの都市と地中海岸を鉄道で連続して旅できる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "SNCFTは2026年9月15日からアンナバ／チュニス国際列車の通常運行再開を告知。工事・国境手続き・ダイヤ変更があり得るため出発直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "algeria",
+      "nameEn": "ALGERIA",
+      "nameJa": "アルジェリア",
+      "flag": "🇩🇿",
+      "reason": "ローマ遺跡、サハラ、マグレブのイスラム都市を、より広い国土スケールで続けて見たいなら。チュニスからアンナバへ鉄道でもつながる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "morocco",
+      "nameEn": "MOROCCO",
+      "nameJa": "モロッコ",
+      "flag": "🇲🇦",
+      "reason": "メディナ、イスラム建築、ベルベル文化、砂漠という共通要素を、大西洋側の都市とアトラス山脈を加えて比較したいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "italy",
+      "nameEn": "ITALY",
+      "nameJa": "イタリア",
+      "flag": "🇮🇹",
+      "reason": "カルタゴとローマの関係、地中海都市、古代建築を北岸側からたどり、チュニジアの歴史を地中海全体の文脈で見直したいなら。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
+  "sourceDates": {
+    "population": "2025",
+    "worldHeritage": "2026",
+    "sidiBouSaid": "2026",
+    "transport": "2026-09-26",
+    "nextRoutes": "2026-09-26",
+    "map": "2026-09-26",
+    "sceneCoordinates": "2026-09-26"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Tunisia basic data, updated 26 Aug 2026: area 163,610 km², capital Tunis, Arabic/French, religion and Tunisian dinar. https://www.mofa.go.jp/mofaj/area/tunisia/data.html",
+    "population": "Ministry of Foreign Affairs of Japan — Tunisia basic data, citing World Bank 2025 population at approx. 12.39 million. https://www.mofa.go.jp/mofaj/area/tunisia/data.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Tunisia State Party list: 10 properties as checked 26 Sep 2026 (9 cultural, 1 natural), including Sidi Bou Saïd inscribed in 2026. https://whc.unesco.org/en/statesparties/tn",
+    "sidiBouSaid": "UNESCO World Heritage Committee 2026 nomination/inscription materials for Village of Sidi Bou Saïd: Hub of Cultural and Spiritual Inspiration in the Mediterranean, centre point N36 52 15.7 E10 20 55.1. https://whc.unesco.org/en/decisions/9021",
+    "elJem": "UNESCO World Heritage Centre — Amphitheatre of El Jem: 3rd-century monument, capacity about 35,000, among the world's largest amphitheatres. https://whc.unesco.org/en/list/38",
+    "carthage": "UNESCO World Heritage Centre — Archaeological Site of Carthage, serial property and mapped components around the Gulf of Tunis. https://whc.unesco.org/en/list/37",
+    "dougga": "UNESCO World Heritage Centre — Dougga/Thugga: approx. 75 ha, more than 17 centuries of history and over 2,000 inscriptions; centre N36 25 24.996 E9 13 13.008. https://whc.unesco.org/en/list/794",
+    "kairouan": "UNESCO World Heritage Centre — Kairouan: founded 670; Great Mosque about 135 m × 80 m with a massive square three-storey minaret. https://whc.unesco.org/en/list/499",
+    "medinaTunis": "UNESCO World Heritage Centre — Medina of Tunis: 296.41 ha, inscribed 1979, centre N36 49 0.012 E10 10 0.012. https://whc.unesco.org/en/list/36",
+    "chottJerid": "Ramsar Sites Information Service / UNESCO Tentative List — Chott El Jerid: 586,187 ha saline depression at the northern Sahara transition. https://rsis.ramsar.org/ris/1699 ; https://whc.unesco.org/en/tentativelists/5385/",
+    "southernHabitat": "UNESCO Tentative List — Habitat troglodytique et le monde des ksour du Sud tunisien; southern troglodyte and ksour cultural landscape. https://whc.unesco.org/en/tentativelists/6444/",
+    "chenini": "Tunisia Interior open-data-referenced Wikidata / mapped locality reference for Chenini, Tataouine Sud, coordinate 32°54′42″N 10°15′43″E, checked 26 Sep 2026. https://www.wikidata.org/wiki/Q2317502",
+    "matmata": "OpenStreetMap-mapped troglodyte dwelling locality near Matmata, checked 26 Sep 2026: 33.49781, 9.9885. https://www.openstreetmap.org/node/11794476909",
+    "ksarGhilane": "OpenStreetMap/GeoNames mapped locality for Ksar Ghilane, checked 26 Sep 2026: approx. 32.977, 9.6452. https://www.openstreetmap.org/node/264887592",
+    "harissa": "UNESCO Intangible Cultural Heritage — Harissa, knowledge, skills and culinary and social practices, inscribed 2022. https://ich.unesco.org/en/RL/harissa-knowledge-skills-and-culinary-and-social-practices-01710",
+    "food": "Tunisian National Tourist Office / Discover Tunisia — couscous, brik à l'œuf and Tunisian cuisine; Kairouan maqroudh; official tourism pages. https://www.discovertunisia.com/en/tunisie/flavours-tunisia ; https://www.discovertunisia.com/en/discover/around-kairouan ; https://www.discovertunisia.com/uk/en/node/316",
+    "climate": "Tunisian National Tourist Office / Discover Tunisia — Mediterranean climate, summer average about 31°C, winter about 16°C, spring/autumn around 25°C, far south can exceed 40°C. https://discovertunisia.com/en/infos-pratiques/weather",
+    "transport": "SNCFT official Main Lines and Stations pages, plus real-time train tracking; checked 26 Sep 2026. Main lines include Tunis–Sousse–Sfax–Gabes–Tozeur and Tunis–Ghardimaou–Annaba; El Jem is a listed station. https://www.sncft.com.tn/en/passengers/main-lines/ ; https://www.sncft.com.tn/en/the-sncft/stations/ ; https://www.sncft.com.tn/en/real-time-train-tracking/",
+    "nextRoutes": "SNCFT official notice dated 14 Sep 2026: normal Annaba/Tunis international train operation resumed from 15 Sep 2026. https://www.sncft.com.tn/ar/%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81-%D9%86%D8%B4%D8%A7%D8%B7-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D8%A8%D9%8A%D9%86-%D8%AA%D9%88%D9%86%D8%B3-%D9%88%D8%B9/",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; TUN target with DZA/LBY/ITA context; generated in JOURNEY ATLAS map-v3 style on 2026-09-26.",
+    "sceneCoordinates": "WGS84 real-location points checked 26 Sep 2026 against UNESCO property coordinates and mapped place references: Sidi Bou Saïd 36.87103,10.34864; El Jem 35.2964,10.7069; Carthage 36.85278,10.32331; Dougga 36.42361,9.22028; Kairouan Great Mosque 35.6814,10.1043; Chott El Jerid 33.74826,8.2295; Chenini 32.91167,10.26194; Matmata troglodyte locality 33.49781,9.9885; Ksar Ghilane 32.977,9.6452; Tunis 36.8065,10.1815."
+  }
+}
