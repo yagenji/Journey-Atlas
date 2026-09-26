@@ -18,7 +18,7 @@
     "labelPosition": "right",
     "labelOffset": {
       "x": 16,
-      "y": -12
+      "y": -35
     },
     "mapOffset": {
       "x": 0,
@@ -192,7 +192,7 @@
     },
     {
       "title": "古代都市の石畳",
-      "category": "HISTORY",
+      "category": "ARCHITECTURE",
       "icon": "history"
     },
     {
@@ -482,20 +482,21 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "mzab-five-ksour",
-      "label": "ムザブ谷のクスール",
-      "value": "5集落",
-      "note": "UNESCO世界遺産のムザブ谷は、ガルダイア、エル・アテフ、ブヌーラ、メリカ、ベニ・イスゲンの5つのクスールとヤシ園から成る。",
-      "icon": "city",
-      "interestReason": "サハラの都市が単独の町ではなく、複数の要塞化集落とオアシスの体系として成立していることが分かるため。"
+      "topicKey": "sahara-expanse",
+      "label": "サハラの広がり",
+      "value": "約200万 km²",
+      "note": "アルジェリア外務省の観光案内では、南部の砂漠は約200万km²に広がる。地中海沿岸から大サハラへ景観が切り替わる国のスケールを数字で実感できる。",
+      "icon": "landscape",
+      "interestReason": "北部の都市と南部の砂漠が同じ国に収まる距離感を、旅のスケールとして具体的に想像できるため。",
+      "exceptionalScale": true
     },
     {
-      "topicKey": "tassili-area",
-      "label": "タッシリ・ナジェール",
-      "value": "72,000 km²",
-      "note": "UNESCOは世界遺産タッシリ・ナジェールの範囲を72,000km²としている。侵食砂岩の地形と先史岩絵が同じ広大な文化・自然景観に含まれる。",
-      "icon": "landscape",
-      "interestReason": "一つの遺跡ではなく、地形・考古・文化が都道府県級の広さに展開する場所だと理解できるため。"
+      "topicKey": "mediterranean-coastline",
+      "label": "地中海の海岸線",
+      "value": "約1,200 km",
+      "note": "アルジェリア外務省の観光案内では、北側の地中海沿岸は約1,200kmに及ぶ。白い港町や海辺の遺跡と、内陸・サハラの風景差を一つの旅でたどれる。",
+      "icon": "sea",
+      "interestReason": "サハラの印象が強い国に長い地中海沿岸があることを、旅の入口となる距離感として直感的に示せるため。"
     },
     {
       "topicKey": "timgad-founded-100",
@@ -561,8 +562,8 @@
       "affinityType": "LANDSCAPE"
     }
   ],
-  "updatedAt": "2026-09-26",
-  "sourcesVerifiedAt": "2026-09-26",
+  "updatedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-27",
   "sourceDates": {
     "population": "2024",
     "area": "2023",
@@ -576,7 +577,8 @@
     "nextRoutes": "2026-03-12",
     "map": "2026-09-26",
     "sceneCoordinates": "2026-09-26",
-    "japanArea": "2026-07-01"
+    "japanArea": "2026-07-01",
+    "geographyScale": "2026-09-27"
   },
   "sources": {
     "population": "World Bank, Algeria Data: population 46,814,308 in 2024. https://data.worldbank.org/country/algeria",
@@ -599,6 +601,7 @@
     "nextRoutes": "Algerian Radio, 12 Mar 2026: new passenger bus line opened between Algiers Caroubier and Tunis Bab Alioua via Bordj Bou Arréridj, Sétif and Constantine. Tunisian Customs lists Melloula on the Algeria border as a 24-hour passenger crossing. https://news.radioalgerie.dz/ar/node/81463 ; https://www.douane.gov.tn/coordonnees-2/",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Kasbah of Algiers 36.78333,3.06028 (UNESCO); Tipasa west archaeological park 36.59397,2.44339 (UNESCO); Sidi M'Cid Bridge 36.37244,6.61422 (Wikidata/OSM); Timgad 35.48417,6.46886 (UNESCO); Tikjda 36.44917,4.12778 (geographic references); Tadrart Rouge 23.53333,10.88333 (Wikidata); Assekrem 23.25859,5.63581 (OSM/GeoNames); Timimoun 29.2605,0.2286 (GeoNames/OSM); hero Ksar Ghardaïa 32.48883,3.67423 (UNESCO); Algiers 36.7538,3.0588.",
     "map": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 DZA/MAR/TUN/LBY/NER/MLI/MRT/SAH, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling is used for sea, context land, target land, stroke and shadow. Natural Earth administrative depiction is reproduced as source geometry without asserting a position on disputed territory; generated and checked 2026-09-26.",
-    "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 2,381,740 / 377,973.68 ≒ 6.30, displayed as approximately 6.3 times Japan. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm"
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 2,381,740 / 377,973.68 ≒ 6.30, displayed as approximately 6.3 times Japan. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "geographyScale": "Ministry of Foreign Affairs of Algeria, Tourism: Mediterranean coastline about 1,200 km; southern desert nearly two million square kilometres. Checked 2026-09-27. https://www.mfa.gov.dz/discover-algeria/tourism"
   }
 }
