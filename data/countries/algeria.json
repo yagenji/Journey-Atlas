@@ -17,8 +17,8 @@
     },
     "labelPosition": "right",
     "labelOffset": {
-      "x": 16,
-      "y": -45
+      "x": 12,
+      "y": 30
     },
     "mapOffset": {
       "x": 0.9,
@@ -181,42 +181,42 @@
   ],
   "encounters": [
     {
-      "title": "白いカスバの路地",
+      "title": "アルジェの白いカスバと急坂",
       "category": "CITY",
       "icon": "city"
     },
     {
-      "title": "地中海の港と海風",
-      "category": "DAILY_LIFE",
-      "icon": "sea"
-    },
-    {
-      "title": "古代都市の石畳",
+      "title": "ティパサの海辺に残るローマ遺構",
       "category": "ARCHITECTURE",
       "icon": "history"
     },
     {
-      "title": "カビリーの山村と稜線",
+      "title": "コンスタンティーヌの峡谷と橋",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "カビリーの岩稜と山村",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "サハラの岩峰と砂",
+      "title": "タドラルト・ルージュの赤い岩塔",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "オアシスのナツメヤシ",
+      "title": "ムザブ谷のクスールとヤシ園",
       "category": "DAILY_LIFE",
       "icon": "culture"
     },
     {
-      "title": "アラビア語とタマジグト語の表記",
+      "title": "アラビア語とタマジグト語が並ぶ街角",
       "category": "CULTURE",
       "icon": "culture"
     },
     {
-      "title": "クスクスと麺料理",
+      "title": "レシュタとショルバ・フリック",
       "category": "FOOD",
       "icon": "food"
     }
@@ -491,12 +491,12 @@
       "exceptionalScale": true
     },
     {
-      "topicKey": "mediterranean-coastline",
-      "label": "地中海の海岸線",
-      "value": "約1,200 km",
-      "note": "アルジェリア外務省の観光案内では、北側の地中海沿岸は約1,200kmに及ぶ。白い港町や海辺の遺跡と、内陸・サハラの風景差を一つの旅でたどれる。",
-      "icon": "sea",
-      "interestReason": "サハラの印象が強い国に長い地中海沿岸があることを、旅の入口となる距離感として直感的に示せるため。"
+      "topicKey": "intangible-heritage-elements",
+      "label": "無形文化遺産の登録要素",
+      "value": "13件",
+      "note": "UNESCOの無形文化遺産リストには、アルジェリアに関係する登録要素が13件ある。ライ、クスクス、イムザド、セベイバ、トレムセンの婚礼衣装など、地域ごとに異なる生活文化が含まれる。",
+      "icon": "culture",
+      "interestReason": "遺跡や砂漠だけでは見えにくい、現在まで続く音楽・食・儀礼・工芸の厚みを一つの数字から把握できるため。"
     },
     {
       "topicKey": "timgad-founded-100",
@@ -529,11 +529,31 @@
       "flag": "🇹🇳",
       "countryEn": "TUNISIA",
       "countryJa": "チュニジア",
-      "path": "Algiers / Constantine → Oum Teboul → Melloula / Tabarka → Tunis",
-      "description": "2026年3月にアルジェ〜チュニス間の国際バス路線が開設され、コンスタンティーヌなどを経由して両国を陸路でつなぐ。チュニジア税関もMelloula国境を旅客向け24時間の陸路国境として掲載している。運行日・入国条件・安全情報は出発直前に再確認する。",
+      "path": "Annaba → international train → Tunis",
+      "description": "アンナバから国際列車で国境を越え、チュニスへつなぐ陸路。SNCFTは2026年9月15日から通常運行の再開を案内している。ダイヤと国境手続きは出発直前に再確認する。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "2026年3月に国際バス運行開始を確認。国境・運行・入国条件は変更され得るため直前確認が必要。"
+      "statusNote": "2026年9月15日の通常運行再開を確認。工事・ダイヤ・国境手続きの変更に備えて直前確認が必要。"
+    },
+    {
+      "flag": "🇪🇸",
+      "countryEn": "SPAIN",
+      "countryJa": "スペイン",
+      "path": "Algiers → ferry → Valencia",
+      "description": "アルジェ港から地中海を渡り、バレンシアへ向かう直行フェリー。Baleàriaがアルジェ〜バレンシア航路を運航しており、北アフリカからイベリア半島へ船で旅をつなげられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Baleàriaの現行航路を確認。出航日・季節運航・乗船条件は予約時に再確認する。"
+    },
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "Algiers → ferry → Marseille",
+      "description": "アルジェからマルセイユへ地中海を北上する国際フェリー。CORSICA lineaの2026年秋ダイヤでもアルジェ〜マルセイユ便が確認でき、港町から港町へ旅を連続させられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年秋ダイヤで運航を確認。出航日・港・季節運航は出発直前に再確認する。"
     }
   ],
   "relatedCountries": [
@@ -571,10 +591,10 @@
     "religion": "2020",
     "currency": "2026-09-26",
     "worldHeritage": "2026-09-26",
-    "intangibleHeritage": "2026-09-26",
+    "intangibleHeritage": "2026-09-27",
     "travelAdvice": "2025-03-28",
     "southVisa": "2026-09-26",
-    "nextRoutes": "2026-03-12",
+    "nextRoutes": "2026-09-27",
     "map": "2026-09-26",
     "sceneCoordinates": "2026-09-26",
     "japanArea": "2026-07-01",
@@ -598,7 +618,7 @@
     "food": "Algerian culinary references and regional food documentation consistently identify couscous, rechta, chakhchoukha and chorba frik as established Algerian dishes; couscous production and consumption knowledge was inscribed by UNESCO in 2020 for Algeria, Mauritania, Morocco and Tunisia. https://ich.unesco.org/en/RL/knowledge-know-how-and-practices-pertaining-to-the-production-and-consumption-of-couscous-01602",
     "travelAdvice": "Ministry of Foreign Affairs of Japan, Algeria Safety Information, current advice page checked 2026-09-26; hazard map dated 2025-03-28 lists Level 4 areas along Libya, Niger, Mali and Mauritania borders and other Level 3/2 regions. Safety basics advise air travel for long distances where possible and official guides in desert areas. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_091.html ; https://www.anzen.mofa.go.jp/info/pcsafetymeasure_091.html",
     "southVisa": "Embassy of Algeria in Tokyo, regularization visas (visa on arrival) for tourists travelling to southern Algeria through accredited Algerian travel agencies; authorization with QR code is arranged by the agency. https://embtokyo.mfa.gov.dz/announcements/introduction-of-regularization-visas-visas-upon-arrival-for-tourists-traveling-to-the-south-of-algeria",
-    "nextRoutes": "Algerian Radio, 12 Mar 2026: new passenger bus line opened between Algiers Caroubier and Tunis Bab Alioua via Bordj Bou Arréridj, Sétif and Constantine. Tunisian Customs lists Melloula on the Algeria border as a 24-hour passenger crossing. https://news.radioalgerie.dz/ar/node/81463 ; https://www.douane.gov.tn/coordonnees-2/",
+    "nextRoutes": "Current onward-route checks, verified 2026-09-27: SNCFT announced normal resumption of the Annaba–Tunis international train from 2026-09-15 (https://www.sncft.com.tn/ar/%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81-%D9%86%D8%B4%D8%A7%D8%B7-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D8%A8%D9%8A%D9%86-%D8%AA%D9%88%D9%86%D8%B3-%D9%88%D8%B9/); Baleària lists direct Algeria–Spain services including Algiers–Valencia (https://www.balearia.com/en/routes-timetables/ferry-algiers-valencia); CORSICA linea lists 2026 Algiers–Marseille sailings (https://www.corsicalinea.com/en/infos-lignes-horaires/). Timetables and border/boarding conditions remain subject to change.",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Kasbah of Algiers 36.78333,3.06028 (UNESCO); Tipasa west archaeological park 36.59397,2.44339 (UNESCO); Sidi M'Cid Bridge 36.37244,6.61422 (Wikidata/OSM); Timgad 35.48417,6.46886 (UNESCO); Tikjda 36.44917,4.12778 (geographic references); Tadrart Rouge 23.53333,10.88333 (Wikidata); Assekrem 23.25859,5.63581 (OSM/GeoNames); Timimoun 29.2605,0.2286 (GeoNames/OSM); hero Ksar Ghardaïa 32.48883,3.67423 (UNESCO); Algiers 36.7538,3.0588.",
     "map": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 DZA/MAR/TUN/LBY/NER/MLI/MRT/SAH, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling is used for sea, context land, target land, stroke and shadow. Natural Earth administrative depiction is reproduced as source geometry without asserting a position on disputed territory; generated and checked 2026-09-26.",
     "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 2,381,740 / 377,973.68 ≒ 6.30, displayed as approximately 6.3 times Japan. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
