@@ -22,6 +22,14 @@ Required:
 
 Unknown facts remain unfilled until verified. Do not guess.
 
+## Country Profile area comparison
+
+For the `面積` fact, include a Japan comparison when a reliable area basis is available.
+- If the country is smaller than Japan, express the comparison as a percentage: `日本の約○○%`.
+- If the country is larger than Japan, express the comparison as a multiple: `日本の約○○倍`.
+- Keep the same area basis for the country and Japan where practical, record the source/date, and avoid unnecessary decimal precision.
+- Do not switch a value above 100% into percentage form or a value below 1.0 into multiplier form merely because the arithmetic is equivalent.
+
 ## Source discipline
 
 Use reliable primary or authoritative secondary sources for:
