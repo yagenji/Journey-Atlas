@@ -1,0 +1,607 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "bolivia",
+  "nameEn": "BOLIVIA",
+  "nameJa": "ボリビア",
+  "region": "SOUTH AMERICA / 17°S",
+  "seo": {
+    "description": "鏡のようなウユニ塩湖、標高の高い都市と遺跡、チチカカ湖、火山、色彩の湖、アマゾン。アンデスから低地までを8つの風景と地図でたどるボリビアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "La Paz",
+    "nameJa": "ラパス",
+    "coordinates": {
+      "latitude": -16.489689,
+      "longitude": -68.119294
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 4,
+      "y": -34
+    }
+  },
+  "hero": {
+    "lead": "アンデスの高地に、塩の大地、古代文明の痕跡、火山、色彩の湖、そしてアマゾンが大きな標高差でつながる。",
+    "image": "assets/images/bolivia/approved/hero.webp",
+    "location": "Salar de Uyuni",
+    "coordinates": {
+      "latitude": -20.3333,
+      "longitude": -67.7
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -9.1,
+      "south": -23.2,
+      "west": -70.4,
+      "east": -56.6
+    },
+    "svg": "assets/images/bolivia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding administrative geometry: Natural Earth 1:10m Admin-0 BOL/PER/CHL/ARG/PRY/BRA, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; geometry rendered with the shared local-equirectangular-fit convention and checked 2026-09-26."
+  },
+  "scenes": [
+    {
+      "id": "la-paz-illimani",
+      "name": "ラパスとイリマニ",
+      "nameLocal": "La Paz / Illimani",
+      "mapLabel": "La Paz",
+      "description": "深く刻まれた谷を埋める赤褐色の市街と、その背後に立つ雪のイリマニを同じ視界に置く。標高差のある斜面都市そのものが、ボリビア西部の地形を伝える。",
+      "coordinates": {
+        "latitude": -16.49557,
+        "longitude": -68.12757
+      },
+      "image": "assets/images/bolivia/approved/scene-1-la-paz-illimani.webp",
+      "mapOffset": {
+        "x": -12,
+        "y": 12
+      }
+    },
+    {
+      "id": "isla-del-sol-titicaca",
+      "name": "太陽の島とチチカカ湖",
+      "nameLocal": "Isla del Sol / Lago Titicaca",
+      "mapLabel": "Isla del Sol",
+      "description": "濃い青のチチカカ湖に乾いた高地の島が浮かび、遠くに雪を抱く山並みが連なる。湖面と段々畑、石の道を歩くことで、アンデス高地の広がりを実感できる。",
+      "coordinates": {
+        "latitude": -16.0181,
+        "longitude": -69.1781
+      },
+      "image": "assets/images/bolivia/approved/scene-2-isla-del-sol.webp"
+    },
+    {
+      "id": "tiwanaku",
+      "name": "ティワナク",
+      "nameLocal": "Tiwanaku",
+      "mapLabel": "Tiwanaku",
+      "description": "チチカカ湖南岸のアルティプラノに、精密に加工された石造建築と祭祀空間が残る。都市は紀元500〜900年ごろに最盛期を迎え、南部アンデスへ大きな影響を広げた。",
+      "coordinates": {
+        "latitude": -16.555003,
+        "longitude": -68.673278
+      },
+      "image": "assets/images/bolivia/approved/scene-3-tiwanaku.webp",
+      "mapOffset": {
+        "x": 8,
+        "y": 2
+      }
+    },
+    {
+      "id": "sajama-national-park",
+      "name": "サハマ国立公園",
+      "nameLocal": "Parque Nacional Sajama / Nevado Sajama",
+      "mapLabel": "Sajama",
+      "description": "ボリビア最高峰サハマ山の裾に、高地草原と湿地が広がる。火山、雪、乾いた大地、ビクーニャが同じ風景に重なり、西部アルティプラノの厳しい自然を見せる。",
+      "coordinates": {
+        "latitude": -18.1,
+        "longitude": -68.88
+      },
+      "image": "assets/images/bolivia/approved/scene-4-sajama.webp"
+    },
+    {
+      "id": "laguna-colorada",
+      "name": "ラグナ・コロラダ",
+      "nameLocal": "Laguna Colorada",
+      "mapLabel": "Laguna Colorada",
+      "description": "南西部の高地で、赤みを帯びた浅い湖に白い鉱物質の縁とフラミンゴが重なる。乾燥した火山群に囲まれ、ウユニからさらに南へ進んだ先の色彩が現れる。",
+      "coordinates": {
+        "latitude": -22.20614,
+        "longitude": -67.77904
+      },
+      "image": "assets/images/bolivia/approved/scene-5-laguna-colorada.webp",
+      "mapOffset": {
+        "x": 5,
+        "y": -3
+      }
+    },
+    {
+      "id": "sucre-recoleta",
+      "name": "スクレ",
+      "nameLocal": "Sucre / La Recoleta",
+      "mapLabel": "Sucre",
+      "description": "ラ・レコレータの高台から、白い壁と赤瓦の歴史地区を見渡す。山に囲まれた盆地に教会の塔と植民都市の街路が広がり、政治史と建築の層が残る。",
+      "coordinates": {
+        "latitude": -19.05432,
+        "longitude": -65.25424
+      },
+      "image": "assets/images/bolivia/approved/scene-6-sucre-recoleta.webp"
+    },
+    {
+      "id": "potosi-cerro-rico",
+      "name": "ポトシとセロ・リコ",
+      "nameLocal": "Potosí / Cerro Rico",
+      "mapLabel": "Potosí",
+      "description": "赤褐色のセロ・リコが歴史都市ポトシの背後を占める。銀山と都市が一体となって発展した歴史が、鉱山の山肌、教会、密集した街並みに刻まれている。",
+      "coordinates": {
+        "latitude": -19.599112,
+        "longitude": -65.749813
+      },
+      "image": "assets/images/bolivia/approved/scene-7-potosi-cerro-rico.webp",
+      "mapOffset": {
+        "x": -5,
+        "y": 6
+      }
+    },
+    {
+      "id": "madidi-chalalan",
+      "name": "マディディ",
+      "nameLocal": "Madidi / Chalalán",
+      "mapLabel": "Madidi",
+      "description": "アンデス東斜面からアマゾン低地へ降りると、密林と河川・湖沼の世界へ風景が一変する。チャララン周辺では、水上移動と森林観察が旅の中心になる。",
+      "coordinates": {
+        "latitude": -14.42476,
+        "longitude": -67.92039
+      },
+      "image": "assets/images/bolivia/approved/scene-8-madidi.webp"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "塩の大地と空の境界を歩く",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "高地都市の斜面を見渡す",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "古代アンデスの石造遺跡を歩く",
+      "icon": "history",
+      "category": "CULTURE"
+    },
+    {
+      "title": "チチカカ湖を舟で渡る",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "高地湿原でビクーニャを探す",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "市場で高地の日常に触れる",
+      "icon": "culture",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "地方ごとの料理を味わう",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "アマゾンの森と水路に入る",
+      "icon": "wildlife",
+      "category": "NATURE"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "dual-seat-state-functions",
+      "themeEn": "CITY",
+      "themeJa": "都市を知る",
+      "title": "国の中枢は、ラパスとスクレの二都市に分かれる",
+      "text": "外務省は首都をラパスとしつつ、憲法上の首都をスクレとしている。行政・政治の中心である高地大都市と、歴史的・司法的な重みを持つ白い都市を行き来すると、国の成り立ちが立体的に見える。",
+      "points": [
+        "ラパスは政府機能が集まる高地の大都市",
+        "スクレは憲法上の首都として位置づけられる"
+      ],
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "tiwanaku-prehispanic-empire",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史をたどる",
+      "title": "ティワナクは、インカ以前の南部アンデスを動かした中心だった",
+      "text": "ユネスコによれば、ティワナクはチチカカ湖南岸の標高約3,850mに位置し、紀元500〜900年ごろに最盛期を迎えた。精密な石造建築と祭祀空間は、広域に影響した政治・宗教の中心を伝える。",
+      "points": [
+        "祭祀・公共建築が方位を意識して配置される",
+        "石造建築には地下排水など高度な技術が見られる"
+      ],
+      "sourceKey": "tiwanaku"
+    },
+    {
+      "topicKey": "cerro-rico-silver-network",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史をたどる",
+      "title": "セロ・リコの銀は、ポトシを世界史の交易網につないだ",
+      "text": "16世紀以降、ポトシはセロ・リコの銀を背景に急速に成長した。鉱山、造幣、宗教建築、都市の拡大が一つの景観をつくり、銀を通じて南米とヨーロッパの経済史が結びついた。",
+      "points": [
+        "ポトシは1987年に世界遺産へ登録",
+        "山と都市の双方が鉱業史の景観を形づくる"
+      ],
+      "sourceKey": "potosi"
+    },
+    {
+      "topicKey": "sucre-architectural-blending",
+      "themeEn": "ARCHITECTURE",
+      "themeJa": "建築を見る",
+      "title": "スクレの白い街並みには、地域と欧州の建築文化が重なる",
+      "text": "ユネスコはスクレ歴史地区を、地域の建築伝統と欧州由来の様式が融合した保存状態のよい都市として評価する。教会、修道院、格子状の街路を歩くと、その重なりを距離感ごと読める。",
+      "points": [
+        "歴史地区には16世紀に始まる宗教建築が残る",
+        "丘陵の地形と格子状の街路が同時に見える"
+      ],
+      "sourceKey": "sucre"
+    },
+    {
+      "topicKey": "madidi-andes-amazon-gradient",
+      "themeEn": "NATURE",
+      "themeJa": "自然に入る",
+      "title": "マディディでは、アンデスからアマゾンへ生態系が連続する",
+      "text": "マディディ周辺では高山帯から森林、河川低地へ大きく標高が変わる。ルレナバケを入口に水路や森へ入る旅は、乾いたアルティプラノとは別のボリビアを見せる。",
+      "points": [
+        "高地草原からアマゾン低地まで景観が切り替わる",
+        "地域コミュニティによる観光も旅の入口になる"
+      ],
+      "sourceKey": "madidi"
+    },
+    {
+      "topicKey": "qhapaq-nan-connectivity",
+      "themeEn": "MOVEMENT",
+      "themeJa": "道をたどる",
+      "title": "アンデスの道は、現在の国境より前から人と物を結んでいた",
+      "text": "ボリビアも構成国となるカパック・ニャンは、アンデスを縦横に結んだ大規模な道路網である。都市や生産地、宗教施設を接続した道の発想は、山岳地形の中で暮らしをつなぐ方法そのものだった。",
+      "points": [
+        "道路網全体は6か国にまたがる世界遺産",
+        "交易・行政・宗教を支える施設群と一体で構成される"
+      ],
+      "sourceKey": "qhapaqNan"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "oruro-carnival-procession",
+      "categoryEn": "FESTIVAL",
+      "categoryJa": "祭り",
+      "title": "オルロのカーニバルは、踊り手と音楽家が街を長時間進む",
+      "text": "ユネスコは、主要な行列が約4kmに及び、数万人規模の踊り手と音楽家が参加する祭礼として紹介している。先住民信仰とカトリックの要素が重なる。",
+      "icon": "culture",
+      "sourceKey": "oruroCarnival"
+    },
+    {
+      "topicKey": "alasita-ritual-journeys",
+      "categoryEn": "TRADITION",
+      "categoryJa": "伝統",
+      "title": "ラパスのアラシータでは、小さな品々に願いを託す",
+      "text": "ラパスで行われるアラシータの儀礼的な巡行は2017年にユネスコ無形文化遺産へ登録された。ミニチュアの品々と儀礼を通して、願いと交換の文化に触れられる。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "world-heritage-seven-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は7件あり、都市・遺跡・自然公園まで幅がある",
+      "text": "ユネスコの2026年時点の国別一覧では、文化遺産6件と自然遺産1件の計7件。ポトシ、スクレ、ティワナクに加え、ノエル・ケンプ・メルカード国立公園などが含まれる。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "landlocked-after-pacific-war",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "現在は内陸国だが、太平洋への出口は外交上の大きな論点であり続けた",
+      "text": "ボリビアは19世紀の太平洋戦争を経て現在の内陸国となった。外務省もチリとの関係で「海への出口」問題を外交上の論点として記している。",
+      "icon": "map",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "pujllay-ayarichi-seasonal-dances",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽と踊り",
+      "title": "ヤンパラ文化には、雨季と乾季で役割の異なる音楽と踊りがある",
+      "text": "ユネスコ無形文化遺産のプフリャイとアヤリチは互いを補完する表現で、プフリャイは雨季、アヤリチは乾季と結びつく。季節が文化のリズムにも現れる。",
+      "icon": "culture",
+      "sourceKey": "pujllayAyarichi"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF BOLIVIA",
+    "title": "ボリビアで食べたいもの",
+    "intro": "高地、谷、都市ごとに食材と食べ方が変わる。肉、じゃがいも、落花生、唐辛子、卵を使う料理から、地域の日常をたどる。",
+    "items": [
+      {
+        "id": "saltena",
+        "name": "サルテーニャ",
+        "nameLocal": "Salteña",
+        "text": "肉、じゃがいも、卵などを汁気のある具とともに包んで焼くボリビアを代表する軽食。朝から午前中に食べる習慣があり、街ごとに具や辛さが変わる。",
+        "image": "assets/images/bolivia/approved/food-1-saltena.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "sopa-de-mani",
+        "name": "ソパ・デ・マニ",
+        "nameLocal": "Sopa de maní",
+        "text": "すりつぶした落花生を使う濃厚なスープ。肉やじゃがいも、野菜などを合わせ、細い揚げじゃがいもをのせる形も広く見られる。",
+        "image": "assets/images/bolivia/approved/food-2-sopa-de-mani.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "silpancho",
+        "name": "シルパンチョ",
+        "nameLocal": "Silpancho",
+        "text": "薄く広げた肉に衣をつけて焼き、米、じゃがいも、目玉焼き、トマトや玉ねぎなどを合わせるコチャバンバの料理。皿いっぱいに重なる具材が特徴。",
+        "image": "assets/images/bolivia/approved/food-3-silpancho.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pique-macho",
+        "name": "ピケ・マチョ",
+        "nameLocal": "Pique macho",
+        "text": "牛肉、ソーセージ、フライドポテト、玉ねぎ、トマト、ロコトなどを豪快に盛るコチャバンバの料理。店ごとに辛さや具材の組み合わせが変わる。",
+        "image": "assets/images/bolivia/approved/food-4-pique-macho.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "標高差と陸路移動が大きいため、地図上の距離より移動時間と高地での余白を基準に組みたい。西部だけでも塩湖・湖・都市・遺跡で旅の性格が変わる。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "ラパスとチチカカ湖を軸にする",
+        "text": "高地都市を入口に、ティワナクとチチカカ湖へ広げる。到着直後は予定を詰めすぎず、街と湖を分けて見ると地形と文化の違いが分かりやすい。例：ラパス→ティワナク→コパカバーナ→太陽の島",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜11日",
+        "title": "ウユニと南西部までつなぐ",
+        "text": "ラパスからウユニへ移り、塩湖だけでなく南西部の色彩の湖や火山地帯まで進む。長距離移動の前後に余白を置き、スクレを加えると都市景観も変わる。例：ラパス→ウユニ→ラグナ・コロラダ→スクレ",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "アンデスとアマゾンを一つの旅にする",
+        "text": "西部高地の塩湖・湖・歴史都市に、ルレナバケ側からマディディを加える。標高と気候が大きく変わるため、国内移動を分けて設計すると国土の振れ幅を感じやすい。例：ラパス→チチカカ湖→ウユニ→スクレ→マディディ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "4〜5月",
+      "color": "#c9bd9e",
+      "text": "乾季へ移る時期。高地は雨が減り始め、道路移動と景観観察を組み合わせやすくなる。朝夕は標高の影響で冷えやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#b9c7cf",
+      "text": "高地では乾燥した晴天が多い一方、夜間の冷え込みが強い。ウユニやサハマなどでは防寒を前提にし、日中との温度差に備える。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#d5c7a8",
+      "text": "乾季の終盤。西部高地を回りやすい時期が続くが、地域によって気温と降水の変化が始まる。アマゾン側とは装備を分けたい。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#9fb6bd",
+      "text": "雨季。ウユニでは条件が合うと薄い水膜による鏡面景観が現れる一方、降雨で道路・高地ルートの状況が変わりやすい。低地も降水量が増える。"
+    }
+  ],
+  "transport": {
+    "title": "国内線と長距離バスを使い分け、高地の陸路は余白を持つ",
+    "text": "ラパス、スクレ、ウユニ、ルレナバケなどは空路を組み込め、主要都市間には長距離バスがある。ボリビア政府観光はラパス―ウユニの陸路やオルロ―ウユニの鉄道、ラパス―コパカバーナ、ラパス―ルレナバケなどの移動例を案内している。高地・南西部では天候や道路条件で所要時間が変わりやすいため、当日の交通情報を確認し、都市間の乗継ぎを詰め込みすぎない。"
+  },
+  "personas": [
+    {
+      "title": "塩湖と火山、高地の極端な地形を見たい人",
+      "text": "ウユニ、ラグナ・コロラダ、サハマ、チチカカ湖まで、乾燥高地の中でも水・塩・火山の組み合わせが大きく変わる。"
+    },
+    {
+      "title": "先住民文化と植民都市の歴史を同じ旅で知りたい人",
+      "text": "ティワナクの古代文明、ラパスの日常、スクレとポトシの歴史都市をつなぐと、異なる時代の文化が一つの国土に重なる。"
+    },
+    {
+      "title": "アンデスからアマゾンへの変化そのものを旅したい人",
+      "text": "標高の高い西部からマディディの低地森林へ移ることで、気候、植生、移動手段、暮らしが短い距離感の中で大きく切り替わる。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ / アンデス・アマゾン"
+    },
+    {
+      "label": "首都",
+      "value": "ラパス（憲法上の首都：スクレ）"
+    },
+    {
+      "label": "人口",
+      "value": "約1,258万人（2025年、世界銀行）"
+    },
+    {
+      "label": "面積",
+      "value": "110万 km²（日本の約3倍）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語、ケチュア語、アイマラ語ほか先住民言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリックが大多数"
+    },
+    {
+      "label": "通貨",
+      "value": "ボリビアーノ（BOB）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "uyuni-salt-flat-10582km2",
+      "label": "ウユニ塩湖",
+      "value": "10,582 km²",
+      "note": "ボリビア政府観光はウユニ塩湖の広さを10,582km²、平均標高を3,663mとしている。",
+      "icon": "landscape",
+      "interestReason": "一つの塩原だけで四国の半分を超える規模があり、地平線まで白い大地が続く理由を具体的な面積で想像できる。"
+    },
+    {
+      "topicKey": "sajama-summit-6542m",
+      "label": "サハマ山",
+      "value": "6,542m",
+      "note": "スミソニアンとボリビア政府観光は、サハマ山を標高6,542mのボリビア最高峰としている。",
+      "icon": "landscape",
+      "interestReason": "国の最高地点が6,500mを超えることで、西部アンデスの標高スケールと高地景観の厳しさが一気に分かる。"
+    },
+    {
+      "topicKey": "indigenous-languages-36",
+      "label": "先住民言語",
+      "value": "36言語",
+      "note": "外務省の2026年9月更新情報では、スペイン語に加え、ケチュア語・アイマラ語を中心とする先住民言語36言語が記載されている。",
+      "icon": "culture",
+      "interestReason": "旅行中に耳にする言葉がスペイン語だけではないことを数字で示し、多民族国家としての文化的な幅を想像しやすくする。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "high-altitude-pacing",
+      "title": "高地到着日は予定を詰めすぎない",
+      "text": "ラパスやティワナク、チチカカ湖、ウユニはいずれも高地にある。低地から到着した直後は移動と観光を重ねすぎず、体調に合わせて行程を調整する。"
+    },
+    {
+      "topicKey": "southwest-road-condition-check",
+      "title": "ウユニ南西部は道路と天候を当日に確認する",
+      "text": "ラグナ・コロラダ方面は標高の高い未舗装区間を含む旅になりやすい。雨季や寒冷期は条件が変わるため、登録事業者と最新の道路・気象情報を確認する。"
+    },
+    {
+      "topicKey": "region-specific-clothing",
+      "title": "高地とアマゾンで装備を分ける",
+      "text": "政府観光も地域による気候差を前提に汎用性のある服装を勧めている。高地の寒さと強い日差し、低地の暑さや降雨では必要な装備が大きく異なる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇵🇪",
+      "countryEn": "PERU",
+      "countryJa": "ペルー",
+      "path": "Copacabana → Kasani → Yunguyo → Puno",
+      "description": "チチカカ湖南岸からカサニ国境を越え、ペルー側のユングヨを経てプーノへつなぐ高地の定番陸路。国境施設の運用時間と交通状況は出発前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間と陸路交通は変更されるため、渡航直前に両国当局で確認。"
+    },
+    {
+      "flag": "🇨🇱",
+      "countryEn": "CHILE",
+      "countryJa": "チリ",
+      "path": "Uyuni → Laguna Verde → Hito Cajón → San Pedro de Atacama",
+      "description": "ウユニ南西部の高地ツアーをそのままチリ国境へつなぎ、アタカマ砂漠のサン・ペドロへ抜ける代表的な旅行者ルート。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "高地道路、国境施設、ツアー車両の運用条件を渡航直前に確認。"
+    },
+    {
+      "flag": "🇦🇷",
+      "countryEn": "ARGENTINA",
+      "countryJa": "アルゼンチン",
+      "path": "Tupiza → Villazón → La Quiaca → Jujuy",
+      "description": "南部のトゥピサからビジャソンへ進み、徒歩・車両でラ・キアカ国境を越えてアルゼンチン北西部へつなぐ代表的な陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の時間、バス運行、入国条件を渡航直前に確認。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "peru",
+      "nameEn": "PERU",
+      "nameJa": "ペルー",
+      "flag": "🇵🇪",
+      "reason": "チチカカ湖、インカ以前から続くアンデス文化、高地都市に惹かれた人へ。湖の対岸からクスコ方面へ、同じ高地文化圏を別の角度でたどれる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "chile",
+      "nameEn": "CHILE",
+      "nameJa": "チリ",
+      "flag": "🇨🇱",
+      "reason": "ウユニ南西部の火山、色彩の湖、乾燥高地が印象に残った人へ。国境を越えるとアタカマ砂漠へ地形が連続し、さらに乾燥した風景へ広がる。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "argentina",
+      "nameEn": "ARGENTINA",
+      "nameJa": "アルゼンチン",
+      "flag": "🇦🇷",
+      "reason": "ボリビア南部の高原と赤い山地に惹かれた人へ。フフイやサルタのアンデス北西部へ、色のある地層と高地文化を連続して追える。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
+  "sourceDates": {
+    "profile": "2026-09-09",
+    "population": "2025",
+    "currency": "2026-09-09",
+    "geometry": "2026-09-26",
+    "sceneCoordinates": "2026-09-26",
+    "uyuni": "2026-09-26",
+    "titicaca": "2026-09-26",
+    "tiwanaku": "2026",
+    "sajama": "2026-09-26",
+    "lagunaColorada": "2026-09-26",
+    "sucre": "2026",
+    "potosi": "2026",
+    "madidi": "2026-09-26",
+    "worldHeritage": "2026",
+    "intangibleHeritage": "2026",
+    "seasons": "2026-09-26",
+    "transport": "2026-09-26",
+    "food": "2026-09-26",
+    "nextRoutes": "2026-09-26"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Bolivia basic data, updated 9 Sep 2026: area 1.10 million km², population approx. 12.58 million (World Bank 2025), La Paz with constitutional capital Sucre, languages, religion and currency. https://www.mofa.go.jp/mofaj/area/bolivia/data.html",
+    "population": "Ministry of Foreign Affairs of Japan — Bolivia basic data, updated 9 Sep 2026; World Bank 2025 population cited as approx. 12.58 million. https://www.mofa.go.jp/mofaj/area/bolivia/data.html",
+    "currency": "Ministry of Foreign Affairs of Japan — Bolivia basic data: Bolivianos; page notes transition from fixed to floating exchange rate in Jun 2026. https://www.mofa.go.jp/mofaj/area/bolivia/data.html",
+    "geometry": "Natural Earth 1:10m Admin-0 BOL/PER/CHL/ARG/PRY/BRA via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b, WGS84, public domain. https://github.com/LonnyGomes/CountryGeoJSONCollection",
+    "sceneCoordinates": "Scene coordinates cross-checked 26 Sep 2026 against UNESCO property coordinates and mapped place/viewpoint references. Tiwanaku: -16.555003,-68.673278; Potosí UNESCO property: -19.599112,-65.749813; La Paz Killi Killi: -16.49557,-68.12757; Isla del Sol: -16.0181,-69.1781; Sajama: -18.1,-68.88; Laguna Colorada: -22.20614,-67.77904; Sucre Recoleta: -19.05432,-65.25424; Chalalán/Madidi: -14.42476,-67.92039.",
+    "uyuni": "Bolivia Travel — Salar de Uyuni y Laguna de Colores: Salar de Uyuni 10,582 km², average altitude 3,663 m; access by air/road/rail and mirror-season context. https://boliviatravel.gob.bo/salar-de-uyuni-y-lagunade-colores/",
+    "titicaca": "Bolivia Travel — Lago Titicaca: lake at 3,812 m, La Paz–Copacabana road access and Isla del Sol. https://boliviatravel.gob.bo/3lago-titicaca/",
+    "tiwanaku": "UNESCO World Heritage Centre — Tiwanaku: Spiritual and Political Centre of the Tiwanaku Culture; apogee 500–900 AD, Altiplano near Lake Titicaca at about 3,850 m. https://whc.unesco.org/en/list/567",
+    "sajama": "Bolivia Travel — Oruro–Sajama; Nevado Sajama 6,542 m and national-park attractions. Smithsonian Global Volcanism Program independently lists elevation 6,542 m and coordinates 18.1°S, 68.88°W. https://boliviatravel.gob.bo/14oruro-sajama/ | https://volcano.si.edu/volcano.cfm?vn=355809",
+    "lagunaColorada": "Bolivia Travel — Salar de Uyuni y Laguna de Colores / southwest Altiplano destination context; exact Laguna Colorada coordinate cross-checked against OpenStreetMap mapping on 26 Sep 2026. https://boliviatravel.gob.bo/salar-de-uyuni-y-lagunade-colores/",
+    "sucre": "UNESCO World Heritage Centre — Historic City of Sucre: preserved 16th-century religious architecture and blending of local and European traditions; Bolivia Travel confirms La Recoleta among city attractions. https://whc.unesco.org/en/list/566 | https://boliviatravel.gob.bo/10ciudad-historica-de-sucre/",
+    "potosi": "UNESCO World Heritage Centre — City of Potosí, property 2,210.93 ha and Cerro Rico mining-city heritage; Bolivia Travel destination guide cross-checked 26 Sep 2026. https://whc.unesco.org/en/list/420 | https://boliviatravel.gob.bo/11ciudad-de-potosi/",
+    "madidi": "Bolivia Travel — Rurrenabaque Madidi: PN-ANMI Madidi, Rurrenabaque gateway, community destinations and Andean/Amazon travel context. https://boliviatravel.gob.bo/2rurrenabaque-madidi/",
+    "qhapaqNan": "UNESCO World Heritage Centre — Qhapaq Ñan, Andean Road System: more than 30,000 km across six Andean countries including Bolivia. https://whc.unesco.org/en/list/1459",
+    "worldHeritage": "UNESCO World Heritage Centre — Bolivia State Party list: 7 properties (6 cultural, 1 natural) as checked 26 Sep 2026. https://whc.unesco.org/en/statesparties/bo",
+    "oruroCarnival": "UNESCO Intangible Cultural Heritage — Carnival of Oruro, inscribed 2008; procession approximately 4 km with tens of thousands of dancers/musicians. https://ich.unesco.org/en/lists?RL=00003",
+    "intangibleHeritage": "UNESCO Intangible Cultural Heritage — Bolivia elements list; Alasita ritual journeys inscribed 2017 and other listed elements, checked 26 Sep 2026. https://ich.unesco.org/en/state/bolivia-plurinational-state-of-BO?info=elements-on-the-lists",
+    "pujllayAyarichi": "UNESCO Intangible Cultural Heritage — Pujllay and Ayarichi, inscribed 2014; Pujllay associated with rainy season and Ayarichi with dry season. https://ich.unesco.org/en/RL/pujllay-and-ayarichi-music-and-dances-of-the-yampara-culture-00630",
+    "seasons": "Bolivia Travel — Recomendaciones: dry season generally most suitable from April to October; conditions and clothing vary by region. https://boliviatravel.gob.bo/recomendaciones/",
+    "transport": "Bolivia Travel destination pages — current examples for La Paz–Uyuni road, Oruro–Uyuni rail, La Paz–Copacabana road, La Paz–Rurrenabaque road/air and city connections; checked 26 Sep 2026. https://boliviatravel.gob.bo/salar-de-uyuni-y-lagunade-colores/ | https://boliviatravel.gob.bo/3lago-titicaca/ | https://boliviatravel.gob.bo/2rurrenabaque-madidi/",
+    "food": "Bolivia Ministry of Tourism / Conoce Bolivia gastronomy promotion: salteña and sopa de maní identified among representative dishes; official Cochabamba materials identify silpancho and pique macho as emblematic local dishes. https://conocebolivia.turismoyculturas.gob.bo/con-mucha-gula-de-espana/ | https://conocebolivia.turismoyculturas.gob.bo/wp-content/uploads/2025/11/P-BoliviaTeEspera.pdf",
+    "nextRoutes": "Bolivia Aduana / Argentina official international-crossing references checked 26 Sep 2026 for Kasani/Desaguadero, Hito Cajón and Villazón–La Quiaca corridors. Representative traveler continuations are marked CHECK_CURRENT_CONDITIONS because facility hours, road conditions and transport operations can change. https://www.aduana.gob.bo/ | https://www.argentina.gob.ar/seguridad/pasosinternacionales/detalle/ruta/18/La-Quiaca-Villaz%C3%B3n"
+  }
+}
