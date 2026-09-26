@@ -17,8 +17,8 @@
     },
     "labelPosition": "right",
     "labelOffset": {
-      "x": 12,
-      "y": 30
+      "x": -34,
+      "y": 42
     },
     "mapOffset": {
       "x": 0.9,
@@ -181,42 +181,42 @@
   ],
   "encounters": [
     {
-      "title": "アルジェの白いカスバと急坂",
+      "title": "白い旧市街の路地",
       "category": "CITY",
       "icon": "city"
     },
     {
-      "title": "ティパサの海辺に残るローマ遺構",
+      "title": "地中海の港と海風",
+      "category": "DAILY_LIFE",
+      "icon": "sea"
+    },
+    {
+      "title": "古代遺跡の石畳",
       "category": "ARCHITECTURE",
       "icon": "history"
     },
     {
-      "title": "コンスタンティーヌの峡谷と橋",
-      "category": "CITY",
-      "icon": "city"
-    },
-    {
-      "title": "カビリーの岩稜と山村",
+      "title": "岩山と山間の集落",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "タドラルト・ルージュの赤い岩塔",
+      "title": "サハラの岩峰と砂丘",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "ムザブ谷のクスールとヤシ園",
+      "title": "オアシスのナツメヤシ",
       "category": "DAILY_LIFE",
       "icon": "culture"
     },
     {
-      "title": "アラビア語とタマジグト語が並ぶ街角",
-      "category": "CULTURE",
+      "title": "アラビア語とタマジグト語の表記",
+      "category": "LANGUAGE",
       "icon": "culture"
     },
     {
-      "title": "レシュタとショルバ・フリック",
+      "title": "クスクスとスープの食卓",
       "category": "FOOD",
       "icon": "food"
     }
@@ -530,30 +530,30 @@
       "countryEn": "TUNISIA",
       "countryJa": "チュニジア",
       "path": "Annaba → international train → Tunis",
-      "description": "アンナバから国際列車で国境を越え、チュニスへつなぐ陸路。SNCFTは2026年9月15日から通常運行の再開を案内している。ダイヤと国境手続きは出発直前に再確認する。",
+      "description": "アンナバから国際列車で国境を越え、チュニスへつなぐ陸路。SNCFTは2026年9月15日から通常運行を再開している。ダイヤと国境手続きは出発直前に再確認する。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
       "statusNote": "2026年9月15日の通常運行再開を確認。工事・ダイヤ・国境手続きの変更に備えて直前確認が必要。"
     },
     {
-      "flag": "🇪🇸",
-      "countryEn": "SPAIN",
-      "countryJa": "スペイン",
-      "path": "Algiers → ferry → Valencia",
-      "description": "アルジェ港から地中海を渡り、バレンシアへ向かう直行フェリー。Baleàriaがアルジェ〜バレンシア航路を運航しており、北アフリカからイベリア半島へ船で旅をつなげられる。",
+      "flag": "🇲🇷",
+      "countryEn": "MAURITANIA",
+      "countryJa": "モーリタニア",
+      "path": "Tindouf → land border crossing → Zouérat",
+      "description": "南西部のティンドゥフから固定国境施設を通り、モーリタニア北部のズエラットへ進むサハラ越えの陸路。両国は2024年に固定国境施設を開設し、ティンドゥフ〜ズエラット道路の整備を進めている。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "Baleàriaの現行航路を確認。出航日・季節運航・乗船条件は予約時に再確認する。"
+      "statusNote": "国境施設は存在するが、道路整備は継続中で周辺は高リスク地域。通行条件・許可・安全情報を必ず直前確認する。"
     },
     {
-      "flag": "🇫🇷",
-      "countryEn": "FRANCE",
-      "countryJa": "フランス",
-      "path": "Algiers → ferry → Marseille",
-      "description": "アルジェからマルセイユへ地中海を北上する国際フェリー。CORSICA lineaの2026年秋ダイヤでもアルジェ〜マルセイユ便が確認でき、港町から港町へ旅を連続させられる。",
+      "flag": "🇳🇪",
+      "countryEn": "NIGER",
+      "countryJa": "ニジェール",
+      "path": "Tamanrasset → In Guezzam → Assamaka → Arlit",
+      "description": "タマンラセットからトランスサハラ街道を南下し、イン・ゲザム／アサマカ国境を経てニジェール北部へつなぐ陸路。国境地帯は遠隔で管理が厳しく、一般旅行では最新の通行可否と安全条件の確認が前提になる。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "2026年秋ダイヤで運航を確認。出航日・港・季節運航は出発直前に再確認する。"
+      "statusNote": "公式の国境拠点・越境軸だが、アルジェリア南部国境は各国政府が高い危険情報を出している。通行可否・許可・護衛条件を直前確認する。"
     }
   ],
   "relatedCountries": [
@@ -618,7 +618,7 @@
     "food": "Algerian culinary references and regional food documentation consistently identify couscous, rechta, chakhchoukha and chorba frik as established Algerian dishes; couscous production and consumption knowledge was inscribed by UNESCO in 2020 for Algeria, Mauritania, Morocco and Tunisia. https://ich.unesco.org/en/RL/knowledge-know-how-and-practices-pertaining-to-the-production-and-consumption-of-couscous-01602",
     "travelAdvice": "Ministry of Foreign Affairs of Japan, Algeria Safety Information, current advice page checked 2026-09-26; hazard map dated 2025-03-28 lists Level 4 areas along Libya, Niger, Mali and Mauritania borders and other Level 3/2 regions. Safety basics advise air travel for long distances where possible and official guides in desert areas. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_091.html ; https://www.anzen.mofa.go.jp/info/pcsafetymeasure_091.html",
     "southVisa": "Embassy of Algeria in Tokyo, regularization visas (visa on arrival) for tourists travelling to southern Algeria through accredited Algerian travel agencies; authorization with QR code is arranged by the agency. https://embtokyo.mfa.gov.dz/announcements/introduction-of-regularization-visas-visas-upon-arrival-for-tourists-traveling-to-the-south-of-algeria",
-    "nextRoutes": "Current onward-route checks, verified 2026-09-27: SNCFT announced normal resumption of the Annaba–Tunis international train from 2026-09-15 (https://www.sncft.com.tn/ar/%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81-%D9%86%D8%B4%D8%A7%D8%B7-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D8%A8%D9%8A%D9%86-%D8%AA%D9%88%D9%86%D8%B3-%D9%88%D8%B9/); Baleària lists direct Algeria–Spain services including Algiers–Valencia (https://www.balearia.com/en/routes-timetables/ferry-algiers-valencia); CORSICA linea lists 2026 Algiers–Marseille sailings (https://www.corsicalinea.com/en/infos-lignes-horaires/). Timetables and border/boarding conditions remain subject to change.",
+    "nextRoutes": "Africa-only onward routes checked 2026-09-27. Tunisia: SNCFT announced normal resumption of the Annaba–Tunis international train from 2026-09-15: https://www.sncft.com.tn/ar/%D8%A7%D8%B3%D8%AA%D8%A6%D9%86%D8%A7%D9%81-%D9%86%D8%B4%D8%A7%D8%B7-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D8%A8%D9%8A%D9%86-%D8%AA%D9%88%D9%86%D8%B3-%D9%88%D8%B9/ . Mauritania: Mauritanian News Agency records the 2024 inauguration of fixed Algeria–Mauritania land border facilities and launch of the 840 km Tindouf–Zouerate road project, with 2026 bilateral transport work continuing: https://www.ami.mr/archives/187869 ; https://ami.mr/en/archives/31185 . Niger: Algeria's Ministry of Interior identifies In Guezzam as the strategic gateway on the Trans-Saharan corridor and records continuing Algeria–Niger border and transport cooperation in 2026: https://www.interieur.gov.dz/index.php/ar/80-%D9%82%D8%B1%D8%A7%D8%A1%D8%A9-%D9%83%D9%84-%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/3987-%D9%88%D8%B2%D9%8A%D8%B1-%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9-%D9%88-%D8%A7%D9%84%D8%AC%D9%85%D8%A7%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%AD%D9%84%D9%8A%D8%A9-%D9%88-%D8%A7%D9%84%D8%AA%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D8%A7%D9%86%D9%8A%D8%A9-%D9%81%D9%8A-%D8%B2%D9%8A%D8%A7%D8%B1%D8%A9-%D8%B9%D9%85%D9%84-%D9%88-%D8%AA%D9%81%D9%82%D8%AF-%D8%A5%D9%84%D9%89-%D9%88%D9%84%D8%A7%D9%8A%D8%A9-%D8%A5%D9%86-%D9%82%D8%B2%D8%A7%D9%85.html ; https://interieur.gov.dz/2026/03/26/%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1-%D9%88%D8%A7%D9%84%D9%86%D9%8A%D8%AC%D8%B1-%D8%AA%D8%B9%D8%B2%D8%B2%D8%A7%D9%86-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%88%D9%86-%D8%A7%D9%84%D8%AB%D9%86%D8%A7/ . Safety cross-check: UK FCDO Algeria advice, current 2026-09-26, advises against travel near the Mauritania/Niger borders: https://www.gov.uk/foreign-travel-advice/algeria .",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Kasbah of Algiers 36.78333,3.06028 (UNESCO); Tipasa west archaeological park 36.59397,2.44339 (UNESCO); Sidi M'Cid Bridge 36.37244,6.61422 (Wikidata/OSM); Timgad 35.48417,6.46886 (UNESCO); Tikjda 36.44917,4.12778 (geographic references); Tadrart Rouge 23.53333,10.88333 (Wikidata); Assekrem 23.25859,5.63581 (OSM/GeoNames); Timimoun 29.2605,0.2286 (GeoNames/OSM); hero Ksar Ghardaïa 32.48883,3.67423 (UNESCO); Algiers 36.7538,3.0588.",
     "map": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 DZA/MAR/TUN/LBY/NER/MLI/MRT/SAH, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling is used for sea, context land, target land, stroke and shadow. Natural Earth administrative depiction is reproduced as source geometry without asserting a position on disputed territory; generated and checked 2026-09-26.",
     "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 2,381,740 / 377,973.68 ≒ 6.30, displayed as approximately 6.3 times Japan. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
