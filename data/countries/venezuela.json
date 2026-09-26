@@ -40,14 +40,14 @@
   },
   "map": {
     "bounds": {
-      "north": 16.2,
-      "south": 0.2,
-      "west": -74.2,
-      "east": -59
+      "north": 16.5,
+      "south": 0,
+      "west": -76.6,
+      "east": -56.2
     },
     "svg": "assets/images/venezuela/map-atlas-v1.svg",
     "route": null,
-    "source": "Target administrative geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection (VEN.geojson); surrounding coastline context: GSHHS/GSHHG via Basemap intermediate resolution. Natural Earth de facto boundary depiction is used without taking a position on territorial claims. Cayo de Agua is below national-canvas coastline resolution and is represented by a verified-location island symbol. Checked 2026-09-26."
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection (VEN/COL/BRA/GUY/TTO/GRD GeoJSON). Target and context use the same geometry family and local-equirectangular-fit-v1 projection so shared borders and coastlines align. Natural Earth de facto administrative depiction is used without taking a position on the Venezuela–Guyana territorial dispute. Bounds expanded west/east to avoid internal edge clipping. Cayo de Agua is below reliable national-scale coastline resolution and is shown by a cartographic island symbol centered on its verified Scene coordinate, without moving the coordinate; generated 2026-09-26."
   },
   "scenes": [
     {
@@ -78,7 +78,7 @@
       },
       "image": "assets/images/venezuela/approved/scene-2-cayo-de-agua.webp",
       "mapOffset": {
-        "x": -0.15,
+        "x": -0.4,
         "y": -0.15
       }
     },
@@ -427,8 +427,8 @@
     }
   ],
   "transport": {
-    "title": "長距離は航空、各地域では道路・舟を組み合わせる",
-    "text": "カラカスと主要都市・島・ギアナ高地方面は航空便を軸に考える方が現実的な区間が多い。カナイマ周辺では小型機と舟、ロス・ロケスでは航空便と島間ボート、オリノコ・デルタでは舟が重要になる。運航状況、道路事情、安全情報は変化し得るため、日程に余裕を置き、直前に公式情報と利用事業者を確認する。"
+    "title": "長距離は航空、地域内は道路・舟、国境では公式越境地点を使う",
+    "text": "カラカスと主要都市・島・ギアナ高地方面は航空便が移動の軸になる。カナイマ周辺では小型機と舟、ロス・ロケスでは航空便と島間ボート、オリノコ・デルタでは舟が重要。隣国へはコロンビアのCúcuta方面とブラジルのPacaraima方面に公式越境動線があるが、国境地域の治安・運用条件は変わりやすいため、出発直前に公的情報と交通事業者を確認する。ガイアナとの公式陸路越境地点はない。"
   },
   "personas": [
     {
@@ -459,7 +459,7 @@
     },
     {
       "label": "面積",
-      "value": "912,050 km²"
+      "value": "912,050 km²（日本の約2.4倍）"
     },
     {
       "label": "言語",
@@ -517,7 +517,28 @@
       "text": "カリブ海の強い日差し、アンデスの低温、リャノスやデルタの高温多湿では必要な服装が異なる。防雨、防虫、日差し対策と高地用の重ね着を行程に合わせる。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇴",
+      "countryEn": "COLOMBIA",
+      "countryJa": "コロンビア",
+      "path": "San Cristóbal → San Antonio del Táchira → Puente Internacional Simón Bolívar → Cúcuta",
+      "description": "タチラ州側からSimón Bolívar国際橋を渡ってCúcutaへつなぐ主要な公式国境回廊。コロンビア外務省は2026年1月に橋の交通が通常運行と発表している一方、国境地域には強い渡航注意が出ているため、利用可否・入国条件・治安情報を直前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境は稼働しているが、国境地域には強い渡航注意がある。運用・入国条件・安全情報の最新確認が必須。"
+    },
+    {
+      "flag": "🇧🇷",
+      "countryEn": "BRAZIL",
+      "countryJa": "ブラジル",
+      "path": "Santa Elena de Uairén → Pacaraima → Boa Vista / Manaus",
+      "description": "南東部Santa Elena de UairénからPacaraimaへ越境する公式陸路。ブラジルANTTは2026年8月、Pacaraima / Santa Elena経由のManaus–Caracas国際旅客路線を正式に許可している。国境手続きや運行時刻は直前確認が必要。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "公式越境・国際旅客路線は確認できるが、手続き・運行・安全条件を出発前に再確認する。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "brazil",
@@ -557,7 +578,9 @@
     "travelAdvice": "2026-06-27",
     "map": "2026-09-26",
     "sceneCoordinates": "2026-09-26",
-    "picoBolivar": "2026-09-26"
+    "picoBolivar": "2026-09-26",
+    "japanArea": "2026-07-01",
+    "nextRoutes": "2026-09-26"
   },
   "sources": {
     "population": "World Bank, Venezuela Data / World Development Indicators: population 28,405,543 in 2024. https://data.worldbank.org/country/venezuela",
@@ -575,9 +598,10 @@
     "losRoques": "Venezuela protected-area and geographic references: Los Roques is a Caribbean archipelago characterized by low cays, lagoons, coral reefs and white-sand shallows.",
     "food": "Venezuelan culinary references consistently identify arepas, pabellón criollo, cachapas with fresh cheese and hallacas as established national/regional dishes. Images depict one recognizable serving of each.",
     "travelAdvice": "U.S. Department of State, Venezuela Travel Advisory, 27 Jun 2026: Level 3 Reconsider Travel with specific Level 4 regions. UK FCDO regional risks: Colombia land-border crossing advised against; Brazil crossing can be lengthy; no official Venezuela–Guyana land crossing. https://travel.state.gov/en/international-travel/travel-advisories/venezuela.html ; https://www.gov.uk/foreign-travel-advice/venezuela/regional-risks",
-    "nextRoutes": "No routine international overland next-route cards are presented because current official travel advice makes the neighboring land-border context unsuitable for a normal traveler-route recommendation as of 2026-09-26.",
+    "nextRoutes": "Colombia: Colombian Ministry of Foreign Affairs reported normal traffic across Puente Internacional Simón Bolívar on 2026-01-05; DIAN lists Simón Bolívar and other Venezuela crossings as official border posts. Brazil: ANTT Decision SUPAS No. 1,240 of 2026-08-19 authorized Manaus–Caracas international passenger service via Pacaraima / Santa Elena de Uairén. UK FCDO currently advises avoiding Venezuela–Colombia land crossing and notes Brazil crossing can be lengthy; no official Venezuela–Guyana land crossing. Checked 2026-09-26. https://cancilleria.gov.co/sala-de-prensa/noticias/cancilleria-mantiene-presencia-institucional-en-la-frontera-con-venezuela-mientras-el-transito-se-desarrolla-con-normalidad ; https://www.dian.gov.co/aduanas/Paginas/Pasos-de-Frontera.aspx ; https://anttlegis.antt.gov.br/action/UrlPublicasAction.php?acao=abrirAtoPublico&cod_menu=9230&cod_modulo=623&num_ato=00001240&seq_ato=000&sgl_orgao=SUPAS%2FANTT%2FMT&sgl_tipo=DCS&vlr_ano=2026 ; https://www.gov.uk/foreign-travel-advice/venezuela/regional-risks",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Monte Roraima 5.14194,-60.76417; Cayo de Agua 11.83090,-66.95313 (Wikidata/GeoNames; island is subpixel at national map scale); Médanos de Coro 11.60640,-69.73760; Pico Bolívar 8.541944,-71.045833; Hotel Humboldt 10.54201,-66.87440; Hato El Cedral 7.43554,-69.31931; Puerto Concha / Catatumbo wetland gateway 9.025575,-72.749114 (published Lake Maracaibo field-study locality); Caño Mánamo locality 9.433333,-62.400000; hero Angel Falls 5.96754,-62.53554; Caracas 10.4806,-66.9036.",
-    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection (VEN.geojson) for target administrative geometry; GSHHS/GSHHG via Basemap intermediate resolution for surrounding coastline context. Natural Earth de facto boundary depiction used without taking a position on territorial claims; checked 2026-09-26.",
-    "picoBolivar": "Peakbagger, Pico Bolívar: 4,981 m, Venezuela national high point; 2026 ascent report notes a 2003 Venezuelan-government GNSS measurement of 4,980.0 m ±0.35 m. https://www.peakbagger.com/peak.aspx?pid=8344"
+    "map": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection (VEN/COL/BRA/GUY/TTO/GRD GeoJSON). Target and context use the same geometry family and local-equirectangular-fit-v1 projection so shared borders and coastlines align. Natural Earth de facto administrative depiction is used without taking a position on the Venezuela–Guyana territorial dispute. Bounds expanded west/east to avoid internal edge clipping. Cayo de Agua is below reliable national-scale coastline resolution and is shown by a cartographic island symbol centered on its verified Scene coordinate, without moving the coordinate; generated 2026-09-26.",
+    "picoBolivar": "Peakbagger, Pico Bolívar: 4,981 m, Venezuela national high point; 2026 ascent report notes a 2003 Venezuelan-government GNSS measurement of 4,980.0 m ±0.35 m. https://www.peakbagger.com/peak.aspx?pid=8344",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 912,050 / 377,973.68 ≒ 2.413, displayed as approximately 2.4 times Japan. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm"
   }
 }
