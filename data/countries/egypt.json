@@ -1,0 +1,612 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "egypt",
+  "nameEn": "EGYPT",
+  "nameJa": "エジプト",
+  "region": "NORTH AFRICA / NILE VALLEY / 27°N",
+  "seo": {
+    "description": "ギザのピラミッドから、ルクソールとアスワンのナイル、アブ・シンベル、白砂漠、シワ・オアシス、シナイ山地、アレクサンドリアへ。古代文明だけではないエジプトを、8つの景色と地図からたどる。"
+  },
+  "capital": {
+    "nameEn": "Cairo",
+    "nameJa": "カイロ",
+    "coordinates": {
+      "latitude": 30.0444,
+      "longitude": 31.2357
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": -24
+    },
+    "mapOffset": {
+      "x": 0.5,
+      "y": -0.3
+    }
+  },
+  "hero": {
+    "lead": "ナイルの緑の帯に巨大な石造建築が連なり、その外側には西方砂漠とシナイの岩山が広がる。地中海と紅海まで、一つの国の中で文明と地形が大きく切り替わる。",
+    "image": "assets/images/egypt/approved/hero.webp",
+    "location": "Giza Plateau / Great Pyramid of Khufu",
+    "coordinates": {
+      "latitude": 29.97917,
+      "longitude": 31.13417
+    },
+    "mapOffset": {
+      "x": -1.5,
+      "y": 0.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 33.4,
+      "south": 21.2,
+      "west": 23,
+      "east": 37.8
+    },
+    "svg": "assets/images/egypt/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290 (EGY/LBY/SDN/ISR/PSX/JOR/SAU GeoJSON). Shared JOURNEY ATLAS map-v3 clean-background styling; national outlines are cartographic context and not a statement on disputed political claims. Generated 2026-09-26."
+  },
+  "scenes": [
+    {
+      "id": "karnak-great-hypostyle-hall",
+      "name": "カルナック神殿 / 大列柱室",
+      "nameLocal": "Karnak Temple / Great Hypostyle Hall",
+      "mapLabel": "Karnak",
+      "description": "巨大な柱が密集する大列柱室は、幅約102m・奥行約53mの空間を134本の柱が支える。柱面の浮彫や彩色痕を追うと、古代テーベの宗教都市が持っていた建築のスケールを身体で感じられる。",
+      "coordinates": {
+        "latitude": 25.71858,
+        "longitude": 32.65792
+      },
+      "image": "assets/images/egypt/approved/scene-1-karnak-hypostyle-hall.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -1
+      }
+    },
+    {
+      "id": "abu-simbel-great-temple",
+      "name": "アブ・シンベル / 大神殿",
+      "nameLocal": "Abu Simbel / Great Temple",
+      "mapLabel": "Abu Simbel",
+      "description": "岩壁を穿った神殿正面にラムセス2世の巨像が並ぶ。アスワン・ハイ・ダム建設に伴う水没を避けるため、20世紀に神殿群が高所へ移設されたことで、古代建築と現代の保存技術が同じ場所に重なる。",
+      "coordinates": {
+        "latitude": 22.336292,
+        "longitude": 31.62553
+      },
+      "image": "assets/images/egypt/approved/scene-2-abu-simbel.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "hatshepsut-mortuary-temple",
+      "name": "ハトシェプスト女王葬祭殿",
+      "nameLocal": "Mortuary Temple of Hatshepsut",
+      "mapLabel": "Hatshepsut",
+      "description": "切り立つ石灰岩崖の前に三段のテラスと列柱廊が重なり、建築が山体へ溶け込む。東岸のカルナックとは対照的に、ナイル西岸の葬祭景観と王権の表現を一つの軸線で読める。",
+      "coordinates": {
+        "latitude": 25.738278,
+        "longitude": 32.606583
+      },
+      "image": "assets/images/egypt/approved/scene-3-hatshepsut-temple.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": 1
+      }
+    },
+    {
+      "id": "aswan-elephantine-nile",
+      "name": "アスワン / エレファンティネ島",
+      "nameLocal": "Aswan / Elephantine Island",
+      "mapLabel": "Aswan",
+      "description": "花崗岩の露頭と島々の間をナイルが抜け、ナツメヤシの緑と乾いた砂丘が向かい合う。白い帆のフェルーカで水上へ出ると、南部エジプトでは川そのものが移動路であり景観の骨格であることが分かる。",
+      "coordinates": {
+        "latitude": 24.082778,
+        "longitude": 32.886569
+      },
+      "image": "assets/images/egypt/approved/scene-4-aswan-nile.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "white-desert-protectorate",
+      "name": "白砂漠 / ファラフラ",
+      "nameLocal": "White Desert / Farafra",
+      "mapLabel": "White Desert",
+      "description": "白いチョーク質の地表から、風食で削られた柱やマッシュルーム状の奇岩が立ち上がる。古代の海底に由来する石灰岩と化石が、ナイル沿いとはまったく異なる西方砂漠の時間を見せる。",
+      "coordinates": {
+        "latitude": 27.2773,
+        "longitude": 28.2004
+      },
+      "image": "assets/images/egypt/approved/scene-5-white-desert.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "siwa-shali-fortress",
+      "name": "シワ・オアシス / シャリ旧市街",
+      "nameLocal": "Siwa Oasis / Shali Fortress",
+      "mapLabel": "Siwa",
+      "description": "塩と粘土を混ぜた伝統素材で築かれた旧市街が丘の上に重なり、その麓にはナツメヤシと泉のあるオアシスが広がる。西方砂漠の孤立した環境の中で育ったシワ固有の暮らしと建築を歩ける。",
+      "coordinates": {
+        "latitude": 29.201415,
+        "longitude": 25.519061
+      },
+      "image": "assets/images/egypt/approved/scene-6-siwa-shali.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "saint-catherine-monastery",
+      "name": "シナイ / 聖カタリナ修道院",
+      "nameLocal": "Sinai / Saint Catherine's Monastery",
+      "mapLabel": "St Catherine",
+      "description": "赤褐色の花崗岩山地の谷に、6世紀から続く修道院の石壁が収まる。古代エジプトの遺跡とは異なる宗教史がシナイ半島に続き、山岳景観と巡礼の場が同じ視野に入る。",
+      "coordinates": {
+        "latitude": 28.55594,
+        "longitude": 33.97595
+      },
+      "image": "assets/images/egypt/approved/scene-7-saint-catherine-monastery.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "alexandria-qaitbay-citadel",
+      "name": "アレクサンドリア / カイトベイ要塞",
+      "nameLocal": "Alexandria / Citadel of Qaitbay",
+      "mapLabel": "Alexandria",
+      "description": "地中海に突き出す15世紀の石造要塞は、古代アレクサンドリアのファロス灯台があった場所に建つ。ナイル文明だけでは捉えきれない、地中海港湾都市としてのエジプトの歴史が海辺に残る。",
+      "coordinates": {
+        "latitude": 31.21375,
+        "longitude": 29.8854
+      },
+      "image": "assets/images/egypt/approved/scene-8-qaitbay-citadel.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "巨大な石造建築を仰ぐ",
+      "category": "ARCHITECTURE",
+      "icon": "landmark"
+    },
+    {
+      "title": "列柱の間を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "ナイルを帆船で進む",
+      "category": "MOVEMENT",
+      "icon": "map"
+    },
+    {
+      "title": "白い砂漠を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "オアシスの集落を巡る",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "シナイの山地を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "地中海の港を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "豆と穀物の料理を味わう",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "nile-river-settlement-axis",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ナイルは、砂漠の国土に細長い生活圏をつくる",
+      "text": "エジプトの景観は、広大な乾燥地とナイル川沿いの耕地・都市が強く対照をなす。カイロからルクソール、アスワンへ南下すると、川の両岸に緑と集落が集中し、その外側ですぐ砂漠へ切り替わる地理を移動そのものから理解できる。",
+      "points": [
+        "ナイル渓谷とデルタが居住・農耕の主要な軸になる",
+        "川沿いの緑と西方・東方砂漠が短い距離で接する"
+      ]
+    },
+    {
+      "topicKey": "memphis-necropolis-pyramid-evolution",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ギザだけでなく、王墓の形が変化した道筋を地図で追える",
+      "text": "メンフィスのネクロポリスはギザからサッカラ、ダハシュールまで連なり、マスタバから階段ピラミッド、真正ピラミッドへ王墓の形式が変化した痕跡を含む。一つの有名建築ではなく、長い実験の連続としてピラミッドを見られる。",
+      "points": [
+        "サッカラには最初期の巨大石造建築と階段ピラミッドが残る",
+        "ギザからダハシュールまで複数の王墓群が連続する"
+      ]
+    },
+    {
+      "topicKey": "siwa-amazigh-oasis-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "シワでは、砂漠の孤立が独自の言語と暮らしを守ってきた",
+      "text": "シワは長く周囲から隔てられたオアシスで、アマジグ系の言語と習慣が現在まで受け継がれている。ナツメヤシ、オリーブ、泉、塩湖と集落が近接し、砂漠を空白ではなく生活圏として歩ける。",
+      "points": [
+        "シワの文化にはアマジグの系譜が残る",
+        "泉・農園・塩湖と集落が一つのオアシス景観をつくる"
+      ]
+    },
+    {
+      "topicKey": "saint-catherine-monastic-continuity",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "シナイには、6世紀から活動が続く修道院がある",
+      "text": "聖カタリナ修道院はシナイ山地の谷に築かれ、世界でも最古級の現役キリスト教修道院として知られる。ビザンツ建築、写本、聖像、周囲の山岳景観が重なり、ファラオ時代とは別の長い宗教史を伝える。",
+      "points": [
+        "6世紀にさかのぼる建築と修道生活が続く",
+        "キリスト教・イスラム教・ユダヤ教に関わる聖地景観の中に位置する"
+      ]
+    },
+    {
+      "topicKey": "historic-cairo-islamic-urban-fabric",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "カイロでは、記念建築だけでなく街路そのものに中世都市が残る",
+      "text": "歴史地区にはモスク、マドラサ、ハンマーム、泉、商業街路が密度高く残り、10世紀のファーティマ朝都市からマムルーク、オスマン期までの層が現在の市街地に組み込まれている。建物を点で見るより、路地と市場を歩くことで都市の時間がつながる。",
+      "points": [
+        "10世紀の都市核が後世の市街地拡張の基盤になった",
+        "宗教施設・市場・住宅街路がまとまった都市構造を保つ"
+      ]
+    },
+    {
+      "topicKey": "red-sea-coral-ecosystems",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "紅海側には、砂漠の山地とサンゴ礁が隣り合う",
+      "text": "エジプトの紅海には広いサンゴ礁域があり、乾いた東部砂漠の山地のすぐ先で熱帯性の海中景観へ切り替わる。古代遺跡を中心に組んだ旅でも、海岸へ出ると国土の別の表情が現れる。",
+      "points": [
+        "公式観光情報は紅海のサンゴ礁を約3,800 km²と案内する",
+        "海岸では砂漠景観と豊かな海洋生態系が近接する"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "white-desert-ancient-seabed-fossils",
+      "categoryEn": "GEOLOGY",
+      "categoryJa": "地質",
+      "title": "白砂漠は、かつて海底だった",
+      "text": "白いチョークと石灰岩の層にはウニ、軟体動物、甲殻類、サンゴなどの海洋化石が見られる。現在の乾燥した景観からは想像しにくい過去の海を、岩そのものが残している。",
+      "icon": "landscape",
+      "sourceKey": "whiteDesert"
+    },
+    {
+      "topicKey": "qaitbay-pharos-site",
+      "categoryEn": "HISTORY",
+      "categoryJa": "灯台",
+      "title": "カイトベイ要塞はファロス灯台の跡地に立つ",
+      "text": "15世紀の要塞は、古代世界七不思議の一つだったアレクサンドリアの灯台があった場所に築かれた。港の同じ地点に、古代と中世の防衛史が重なる。",
+      "icon": "history",
+      "sourceKey": "qaitbay"
+    },
+    {
+      "topicKey": "abu-simbel-rescue-relocation",
+      "categoryEn": "CONSERVATION",
+      "categoryJa": "保存",
+      "title": "アブ・シンベルは水没を避けて移設された",
+      "text": "アスワン・ハイ・ダム建設に伴う水位上昇から守るため、ユネスコの国際キャンペーンでアブ・シンベルを含むヌビアの重要建築群が高所へ移された。",
+      "icon": "landmark",
+      "sourceKey": "nubianCampaign"
+    },
+    {
+      "topicKey": "hatshepsut-punt-reliefs",
+      "categoryEn": "ART",
+      "categoryJa": "壁画",
+      "title": "ハトシェプスト葬祭殿にはプント遠征が描かれる",
+      "text": "デイル・エル・バハリの葬祭殿には、女王のプントへの遠征をたどる浮彫や壁画が残る。建築だけでなく、交易と王権の物語を視覚資料から読める。",
+      "icon": "culture",
+      "sourceKey": "ancientThebes"
+    },
+    {
+      "topicKey": "alexandria-kebda-specialty",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "アレクサンドリアにはスパイシーなレバーサンドがある",
+      "text": "牛レバーをニンニクやクミンと炒めてパンに挟むケブダは、公式観光サイトもアレクサンドリアの名物として紹介する。海辺の街には遺跡とは別の日常の味がある。",
+      "icon": "food",
+      "sourceKey": "gastronomy"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF EGYPT",
+    "title": "エジプトで食べたいもの",
+    "intro": "米、豆、パン、野菜を重ねる日常食から、祝いの席で食べる肉料理まで。身近な穀物と豆を組み合わせるエジプトの食卓を4品で見る。",
+    "items": [
+      {
+        "id": "koshari",
+        "name": "コシャリ",
+        "nameLocal": "Koshari",
+        "text": "米、レンズ豆、パスタ、ひよこ豆を重ね、トマトソースとカリカリのフライドオニオンをかける定番料理。",
+        "image": "assets/images/egypt/approved/food-1-koshari.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ful-medames",
+        "name": "フール・メダメス",
+        "nameLocal": "Ful Medames",
+        "text": "そら豆を柔らかく煮、オリーブオイルやレモン、香辛料などで味わう朝食の定番。バラディパンと一緒に食べる。",
+        "image": "assets/images/egypt/approved/food-2-ful-medames.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mahshi",
+        "name": "マハシ",
+        "nameLocal": "Mahshi",
+        "text": "ズッキーニ、ピーマン、ナス、ブドウの葉などに、香草を混ぜた米や肉入りの具を詰めて煮込む家庭料理。",
+        "image": "assets/images/egypt/approved/food-3-mahshi.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fatta",
+        "name": "ファッタ",
+        "nameLocal": "Fatta",
+        "text": "焼いたパンと米を重ね、牛肉や羊肉をのせ、ニンニクと酢をきかせたソースを合わせる祝いの席でも食べられる料理。",
+        "image": "assets/images/egypt/approved/food-4-fatta.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "主要都市はナイル沿いに連なる一方、シワ、白砂漠、シナイは大きく方向が分かれる。古代遺跡だけでなく地形の幅まで見るなら、移動軸を先に決めたい。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "カイロと地中海側を中心に見る",
+        "text": "首都圏のピラミッドと歴史地区を起点に、北の港町までつなぐ。例：カイロ → ギザ → アレクサンドリア",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "ナイル沿いに上エジプトまで南下する",
+        "text": "カイロからルクソール、アスワンへ進み、古代都市と川の景観を一本の軸でつなぐ。例：カイロ → ルクソール → アスワン → アブ・シンベル",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "砂漠かシナイを加えて景観を広げる",
+        "text": "ナイル沿いの主要地に、西方砂漠またはシナイ半島の別軸を加える。例：カイロ → 白砂漠 → ルクソール → アスワン",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜11月",
+      "color": "#ad8d66",
+      "text": "夏の強い暑さが和らぎ、カイロ、ルクソール、アスワン、砂漠を組み合わせやすくなる。南部は日中に暖かさが残るため、朝晩との寒暖差を見込む。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#7e98a6",
+      "text": "多くの遺跡を歩きやすい時期。北部や砂漠の夜は冷え、シナイ高地ではさらに気温が下がる。紅海や上エジプトは比較的温暖でも重ね着を用意したい。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#b79a70",
+      "text": "気温が上がり始める一方、春にはハムシーンと呼ばれる熱く乾いた風が砂塵を運ぶことがある。屋外遺跡や長距離移動では天気と視界を確認する。"
+    },
+    {
+      "months": "5〜9月",
+      "color": "#d2b06d",
+      "text": "暑く乾燥した夏で、特に内陸と南部では日中の高温が厳しい。屋外遺跡は早朝を活用し、日差し対策と十分な水分を前提に行程を組む。"
+    }
+  ],
+  "transport": {
+    "title": "ナイル沿いは鉄道・道路、遠隔地は区間ごとに移動手段を変える",
+    "text": "カイロ、アレクサンドリア、ルクソール、アスワンは鉄道や国内移動でつなぎやすい。アブ・シンベルはアスワンからの道路や航空、シワは長距離道路、白砂漠は許可・規則を確認した専門事業者の車両が実用的。シナイや国境地域は運用・安全条件が変わるため、出発前に公的情報を確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "古代文明を、王名だけでなく都市と地形から理解したい人",
+      "text": "ギザ、カルナック、ルクソール西岸、アブ・シンベルをつなぎ、ナイル、水運、砂漠、王墓の配置が文明の形にどう関わったかを見たい人。"
+    },
+    {
+      "title": "遺跡だけでなく、砂漠・オアシス・山・海まで景観を変えたい人",
+      "text": "白砂漠、シワ、シナイ、地中海を加え、ナイル文明という一つのイメージを超えて国土の幅を体験したい人。"
+    },
+    {
+      "title": "都市の路地や食卓まで、現在につながる文化を歩きたい人",
+      "text": "歴史地区の市場、アレクサンドリアの港町、シワの集落、コシャリやフールなどを通じ、遺跡の外に続く暮らしにも触れたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北アフリカ / ナイル川流域 / シナイ半島"
+    },
+    {
+      "label": "首都",
+      "value": "カイロ"
+    },
+    {
+      "label": "人口",
+      "value": "約1億1,837万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,001,450 km²（日本の約2.6倍）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教（国教）／キリスト教"
+    },
+    {
+      "label": "通貨",
+      "value": "エジプト・ポンド（EGP）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "giza-surviving-ancient-wonder",
+      "label": "古代七不思議の現存数",
+      "value": "1基",
+      "note": "古代世界七不思議のうち、現在まで残るのはギザのクフ王の大ピラミッドだけ。巨大建築が観光名所ではなく世界史の基準点でもある。",
+      "icon": "history",
+      "interestReason": "数千年前の七不思議の中で唯一実物を目の前にできることが、ギザの特別さを直感的に示すため。"
+    },
+    {
+      "topicKey": "karnak-hypostyle-columns",
+      "label": "大列柱室の柱",
+      "value": "134本",
+      "note": "カルナック神殿の大列柱室では、約5,000m²の空間を134本の巨大な柱が支える。遠景よりも、柱間を歩くことで規模を理解できる。",
+      "icon": "landmark",
+      "interestReason": "一つの広間だけで134本という数を知ると、古代テーベの建築スケールを身体感覚で想像しやすくなるため。"
+    },
+    {
+      "topicKey": "egypt-desert-land-share",
+      "label": "国土に占める砂漠",
+      "value": "93%",
+      "note": "エジプト観光局は国土の93%を砂漠と案内している。ナイル沿いに都市と農地が集中する理由を、国土全体の比率から理解できる。",
+      "icon": "landscape",
+      "interestReason": "遺跡や都市が目立つ一方、国土の大半が乾燥地であるという地理が旅の移動距離と景観の切り替わりを説明するため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "desert-permit-operator",
+      "title": "砂漠は許可と専門事業者を先に確認する",
+      "text": "白砂漠など西方砂漠の行程は、地域ごとに許可や規則がある。出発前に認可された旅行会社・ガイドへ最新条件を確認する。"
+    },
+    {
+      "topicKey": "heat-and-water",
+      "title": "遺跡歩きは暑さと日差しを行程に組み込む",
+      "text": "夏の内陸と南部は特に暑い。屋外遺跡では早い時間帯を使い、帽子、日差し対策、十分な飲料水を準備する。"
+    },
+    {
+      "topicKey": "religious-site-etiquette",
+      "title": "宗教施設では服装と撮影のルールを確認する",
+      "text": "モスク、教会、修道院では、露出を抑えた服装を基本に、礼拝や人物を撮影する前に現地の案内や許可を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇯🇴",
+      "countryEn": "JORDAN",
+      "countryJa": "ヨルダン",
+      "path": "Nuweiba → ferry → Aqaba",
+      "description": "シナイ半島のヌウェイバから紅海を船で渡り、アカバへつなぐ海路。エジプトのナイル・シナイから、ヨルダン南部の砂岩砂漠と古代交易路へ旅を続けられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "フェリーの運航日・時刻・出入国条件は変更されるため、運航会社と公的情報を直前に確認する。"
+    },
+    {
+      "flag": "🇮🇱",
+      "countryEn": "ISRAEL",
+      "countryJa": "イスラエル",
+      "path": "Taba → border crossing → Eilat",
+      "description": "シナイ東端のタバから陸路国境を越えてエイラートへつなぐ代表的な越境動線。紅海北端の海岸線を短い距離でつなげる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "タバ国境は運用や料金が短期間で変更されることがあり、地域情勢による閉鎖もあり得るため最新情報の確認が必須。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "jordan",
+      "nameEn": "JORDAN",
+      "nameJa": "ヨルダン",
+      "flag": "🇯🇴",
+      "reason": "砂岩の峡谷に刻まれた都市、古代交易路、乾燥地の宗教史を、エジプトとは異なる地形と建築でたどりたいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "peru",
+      "nameEn": "PERU",
+      "nameJa": "ペルー",
+      "flag": "🇵🇪",
+      "reason": "巨大石造遺構と高地・砂漠・海岸の地理を結びつけ、古代文明が自然条件とどう向き合ったかを別大陸で比較したいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "morocco",
+      "nameEn": "MOROCCO",
+      "nameJa": "モロッコ",
+      "flag": "🇲🇦",
+      "reason": "旧市街、砂漠、オアシス、イスラム建築を、より生活文化と街歩きに近い視点から深めたいなら。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2023",
+    "currency": "2026-07-01",
+    "nextRoutes": "2026-09-26",
+    "travelAdvice": "2026-09-26",
+    "map": "2026-09-26",
+    "sceneCoordinates": "2026-09-26"
+  },
+  "sources": {
+    "population": "World Bank, World Development Indicators: Egypt population 118,365,995 in 2025. https://databank.worldbank.org/reports.aspx?country=EGY&series=SP.POP.TOTL&source=2",
+    "area": "World Bank / FAO, Surface area: Egypt 1,001,450 km²; Japan 377,969.3 km² for 2023, so Egypt is about 2.65 times Japan. https://data.worldbank.org/indicator/AG.SRF.TOTL.K2?locations=EG ; https://databank.worldbank.org/reports.aspx?country=JPN&source=2",
+    "constitution": "Egypt State Information Service / 2014 Constitution, Article 2: Islam is the religion of the State and Arabic is its official language. https://sis.gov.eg/en/egypt/constitution-of-egypt/",
+    "currency": "Central Bank of Egypt, currency issuance and 2026 legal-tender clarification for pound/piastre denominations. https://www.cbe.org.eg/en/news-publications/news/2026/07/01/14/07/cbe-refutes-printing-of-new-25-piastres",
+    "tourismGeography": "Experience Egypt official tourism site: Egypt geography and official travel facts, including desert share and Red Sea reef area. https://www.experienceegypt.eg/en/home/about",
+    "gizaUnesco": "UNESCO World Heritage Centre, Memphis and its Necropolis: Great Pyramid of Khufu is the only surviving wonder of the ancient world; pyramid-field development from Giza to Dahshur. https://whc.unesco.org/en/list/86",
+    "ancientThebes": "UNESCO World Heritage Centre, Ancient Thebes with its Necropolis: Karnak Great Hypostyle Hall dimensions/134 columns and Hatshepsut temple/Punt reliefs. https://whc.unesco.org/en/list/87",
+    "nubianMonuments": "UNESCO World Heritage Centre, Nubian Monuments from Abu Simbel to Philae. https://whc.unesco.org/en/list/88",
+    "nubianCampaign": "UNESCO World Heritage Centre, International Campaign to Save the Monuments of Nubia: 22 architectural complexes moved/protected, including Abu Simbel and Philae. https://whc.unesco.org/en/news/2677",
+    "saintCatherine": "Experience Egypt / St Catherine: 6th-century monastery and continuing religious heritage. https://www.experienceegypt.eg/en/attraction-details/195/the-monastery",
+    "historicCairo": "UNESCO World Heritage Centre, Historic Cairo: 10th-century urban nucleus, mosques, madrasas, hammams, fountains and medieval street fabric. https://whc.unesco.org/en/list/89",
+    "siwa": "Experience Egypt official tourism site: Siwa Oasis and Siwan Amazigh culture. https://www.experienceegypt.eg/en/city/15/siwa-oasis",
+    "whiteDesert": "Egyptian Environmental Affairs Agency and Experience Egypt: White Desert chalk/limestone formations, fossils and ancient seabed context. https://www.eeaa.gov.eg/Topics/85/36/65/Details ; https://www.experienceegypt.eg/en/attraction-details/436/natural-protectorates",
+    "qaitbay": "Experience Egypt official tourism site: Qaitbay Citadel, 15th century, built on the site of the Lighthouse of Alexandria. https://www.experienceegypt.eg/en/attraction-details/141/graeco-roman-archaeological-sites-antiquities",
+    "gastronomy": "Experience Egypt official tourism site: koshari, ful medames, mahshi and Alexandrian kebda. https://www.experienceegypt.eg/en/attraction-details/315/gastronomy",
+    "fatta": "Cairo Travel culinary reference: Egyptian fatta layers rice, toasted bread and meat with garlic-vinegar sauce and is associated with festive meals. https://www.turismoelcairo.com/en/food-in-cairo/fattah",
+    "climate": "World Bank Climate Change Knowledge Portal / Egypt climatology and Experience Egypt official weather FAQ. https://climateknowledgeportal.worldbank.org/country/egypt-arab-republic/climate-data-historical ; https://www.experienceegypt.eg/en/home/faq",
+    "transport": "Experience Egypt official FAQ and destination guidance: rail, bus, road and licensed travel services; desert excursions require current permit/operator checks. https://www.experienceegypt.eg/en/home/faq ; https://www.experienceegypt.eg/en/attraction-details/617/desert-excursions",
+    "nextRoutes": "UK FCDO entry requirements: ferry services operate between Aqaba and Taba Heights/Nuweiba; Taba is the Egypt-Israel land crossing and operational details can change. Checked 2026-09-26. https://www.gov.uk/foreign-travel-advice/egypt/entry-requirements ; https://www.gov.uk/foreign-travel-advice/israel/entry-requirements",
+    "travelAdvice": "UK FCDO Egypt travel advice and entry requirements, checked 2026-09-26. https://www.gov.uk/foreign-travel-advice/egypt",
+    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; EGY target with LBY/SDN/ISR/PSX/JOR/SAU context; generated in JOURNEY ATLAS map-v3 style on 2026-09-26.",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Giza Great Pyramid 29.97917,31.13417; Karnak Great Hypostyle Hall 25.71858,32.65792; Abu Simbel Great Temple 22.336292,31.62553; Hatshepsut Temple 25.738278,32.606583; Elephantine/Aswan 24.082778,32.886569; White Desert 27.2773,28.2004; Shali Fortress 29.201415,25.519061; Saint Catherine Monastery 28.55594,33.97595; Qaitbay Citadel 31.21375,29.8854; Cairo 30.0444,31.2357. Cross-checked against OpenStreetMap/Wikidata/Wikimedia/GeoNames where available."
+  }
+}
