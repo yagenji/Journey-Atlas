@@ -1,0 +1,603 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "sudan",
+  "nameEn": "SUDAN",
+  "nameJa": "スーダン",
+  "region": "NORTH AFRICA / 15°N",
+  "seo": {
+    "description": "メロエのピラミッド、ジェベル・バルカル、ケルマ、旧ドンゴラ、スアキン、紅海のサンガネブ、ダルフールの火山高地、ディンデルの湿地。ナイルと砂漠を軸にスーダンの広がりをたどる。"
+  },
+  "capital": {
+    "nameEn": "Khartoum",
+    "nameJa": "ハルツーム",
+    "coordinates": {
+      "latitude": 15.5007,
+      "longitude": 32.5599
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -30,
+      "y": 18
+    },
+    "mapOffset": {
+      "x": -0.5,
+      "y": 0.5
+    }
+  },
+  "hero": {
+    "lead": "ナイル流域にクシュ王国のピラミッドと聖山が残り、東は紅海のサンゴ礁、西は火山高地、南東はサバンナと湿地へ風景が切り替わる。",
+    "image": "assets/images/sudan/approved/hero-meroe-pyramids.webp",
+    "location": "Royal Cemeteries of Meroe / Begrawiya",
+    "coordinates": {
+      "latitude": 16.937383,
+      "longitude": 33.75705
+    },
+    "mapOffset": {
+      "x": 0.5,
+      "y": -0.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 22.7,
+      "south": 8.2,
+      "west": 21.4,
+      "east": 38.9
+    },
+    "svg": "assets/images/sudan/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Sudan and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Sanganeb reef is below Natural Earth national-scale resolution; its rendered micro-footprint is generalized at the UNESCO World Heritage centre coordinate from UNESCO's documented maximum dimensions of 6.5 km north-south × 1.6 km east-west. Scene coordinates remain unchanged; checked 2026-09-26."
+  },
+  "scenes": [
+    {
+      "id": "gebel-barkal",
+      "name": "ジェベル・バルカル",
+      "nameLocal": "Gebel Barkal / Jabal Barkal",
+      "mapLabel": "Gebel Barkal",
+      "description": "ナイル河畔に平頂の砂岩山が立ち、その麓にアメン神殿などの遺構が広がる。ナパタ期とメロエ期の文化を伝える世界遺産の中核で、山そのものが古代から聖なる場所として扱われてきた。",
+      "coordinates": {
+        "latitude": 18.533333,
+        "longitude": 31.816667
+      },
+      "image": "assets/images/sudan/approved/scene-1-gebel-barkal.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": -0.8
+      }
+    },
+    {
+      "id": "kerma-western-deffufa",
+      "name": "ケルマ / 西デフファ",
+      "nameLocal": "Kerma / Western Deffufa",
+      "mapLabel": "Kerma",
+      "description": "第3瀑布近くのケルマには、紀元前3〜2千年紀の都市遺構と巨大な泥レンガ建築が残る。西デフファは約19mの高さまで保存され、初期クシュ王国の都市性を強い量感で伝える。",
+      "coordinates": {
+        "latitude": 19.600803,
+        "longitude": 30.409731
+      },
+      "image": "assets/images/sudan/approved/scene-2-kerma-western-deffufa.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": -1.1
+      }
+    },
+    {
+      "id": "old-dongola",
+      "name": "旧ドンゴラ",
+      "nameLocal": "Old Dongola / Tungul",
+      "mapLabel": "Old Dongola",
+      "description": "ナイル沿いの砂地に、教会、宮殿、住宅、モスクの遺構が重なる。7〜14世紀にキリスト教国マクリアの首都として栄え、ヌビアの歴史が古代王国だけでは終わらないことを示す。",
+      "coordinates": {
+        "latitude": 18.216667,
+        "longitude": 30.75
+      },
+      "image": "assets/images/sudan/approved/scene-3-old-dongola.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.8,
+        "y": 1.3
+      }
+    },
+    {
+      "id": "naqa",
+      "name": "ナカ遺跡",
+      "nameLocal": "Naqa / Naga'a",
+      "mapLabel": "Naqa",
+      "description": "現在の乾燥地に、アメン神殿、アペデマク神殿、ローマ風のキオスクなどがまとまって残る。メロエ王国がナイル流域と地中海・アフリカの文化を接続したことを建築の組み合わせから読める。",
+      "coordinates": {
+        "latitude": 16.268683,
+        "longitude": 33.273667
+      },
+      "image": "assets/images/sudan/approved/scene-4-naqa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.7,
+        "y": 2.8
+      }
+    },
+    {
+      "id": "suakin",
+      "name": "スアキン",
+      "nameLocal": "Suakin / Sawakin",
+      "mapLabel": "Suakin",
+      "description": "紅海沿岸の島と海辺に、サンゴ石を使った住宅やモスクの廃墟が残る。中世からオスマン帝国期に重要港として栄え、ナイルの内陸史とは別の海上交易のスーダンが見える。",
+      "coordinates": {
+        "latitude": 19.1,
+        "longitude": 37.333333
+      },
+      "image": "assets/images/sudan/approved/scene-5-suakin.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.6,
+        "y": 1.3
+      }
+    },
+    {
+      "id": "sanganeb",
+      "name": "サンガネブ海洋国立公園",
+      "nameLocal": "Sanganeb Marine National Park",
+      "mapLabel": "Sanganeb",
+      "description": "スーダン沖約25kmの紅海に、環礁状のサンゴ礁と深い青の外洋が浮かぶ。サンゴ礁、海草藻場、マングローブなどを含む世界遺産の海域で、砂漠国家という印象を海中から大きく変える。",
+      "coordinates": {
+        "latitude": 19.736111,
+        "longitude": 37.443056
+      },
+      "image": "assets/images/sudan/approved/scene-6-sanganeb.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.7,
+        "y": -1.7
+      }
+    },
+    {
+      "id": "deriba-caldera",
+      "name": "デリバ・カルデラ",
+      "nameLocal": "Deriba Caldera / Jebel Marra",
+      "mapLabel": "Deriba",
+      "description": "ダルフールのジェベル・マッラ高地に、幅約5kmの火山カルデラと火口湖がある。周囲の半砂漠から標高3,000m級へ上がると気候と植生が変わり、西部スーダンの地形の振れ幅を実感できる。",
+      "coordinates": {
+        "latitude": 12.95,
+        "longitude": 24.27
+      },
+      "image": "assets/images/sudan/approved/scene-7-deriba-caldera.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.6,
+        "y": 0
+      }
+    },
+    {
+      "id": "dinder",
+      "name": "ディンデル国立公園",
+      "nameLocal": "Dinder National Park / Biosphere Reserve",
+      "mapLabel": "Dinder",
+      "description": "エチオピア国境近くに、サバンナ、草地、季節湿地が広がる。乾季には水場が渡り鳥やレイヨウ類などを支え、北部の砂漠・遺跡とは異なるスーダン南東部の生態系を見せる。",
+      "coordinates": {
+        "latitude": 12.6785,
+        "longitude": 35.4217
+      },
+      "image": "assets/images/sudan/approved/scene-8-dinder.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.5,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "クシュ王国のピラミッド群を見る",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "聖山と神殿を同じ視界に置く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "泥レンガの古代都市を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "ヌビアのキリスト教史をたどる",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "紅海の港町の廃墟を見る",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "サンゴ礁の海へ入る",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "火山高地の火口湖を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "湿地で渡り鳥と草食獣を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "meroe-kush-heartland",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "メロエは、古代クシュ王国の政治と王墓の中心だった",
+      "text": "ユネスコはメロエ島の考古遺跡群を、紀元前8世紀から紀元4世紀まで古代世界で大きな力を持ったクシュ王国の中核と位置づける。都市、王墓、神殿、鉄生産の痕跡を一つの文化圏として見ると、ピラミッドだけではない国家の姿が見えてくる。",
+      "points": [
+        "メロエは紀元前3世紀以降、王の主要な居所となった",
+        "王墓群には急勾配のヌビア式ピラミッドが並ぶ"
+      ],
+      "sourceKey": "unescoMeroe"
+    },
+    {
+      "topicKey": "gebel-barkal-sacred-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "平頂の山は、都市景観ではなく信仰の核だった",
+      "text": "ジェベル・バルカルとナパタ地域の5遺跡は、ナイル流域に60km以上にわたって広がる。山は古代から宗教伝統と結びつき、その麓にアメン神殿など大規模な宗教建築が築かれた。",
+      "points": [
+        "世界遺産はジェベル・バルカル、エル・クル、ヌリ、サナム、ズマの5遺跡で構成",
+        "ナパタ文化とメロエ文化の双方を伝える"
+      ],
+      "sourceKey": "unescoGebelBarkal"
+    },
+    {
+      "topicKey": "kerma-early-urban-centre",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ケルマでは、石ではなく巨大な泥レンガが都市の記憶を残す",
+      "text": "ケルマは紀元前2500年ごろから発達した初期クシュ王国の中心で、宗教区、住居、倉庫、行政・生産施設を備えた都市だった。高さ約19mまで残る西デフファは、その都市規模を立体的に伝える。",
+      "points": [
+        "紀元前2500〜1500年ごろに王国の中心として繁栄",
+        "西デフファは泥レンガの大型宗教建築"
+      ],
+      "sourceKey": "unescoKerma"
+    },
+    {
+      "topicKey": "old-dongola-makuria",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ナイル中流には、キリスト教王国の首都もあった",
+      "text": "旧ドンゴラは7〜14世紀にマクリア王国の首都として栄えた。教会や宮殿、住宅、のちのモスクが同じ遺跡に重なり、スーダンのナイル史がクシュ王国の後も長く続いたことを示す。",
+      "points": [
+        "一部の建物には壁画が残る",
+        "宗教建築と都市生活の遺構が同じ場所に重なる"
+      ],
+      "sourceKey": "unescoOldDongola"
+    },
+    {
+      "topicKey": "suakin-red-sea-network",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "スアキンは、スーダンを紅海の交易圏へつないだ",
+      "text": "ユネスコの暫定一覧は、スアキンを中世からオスマン帝国期にかけて重要な紅海港だった都市として記録する。海辺に残る住宅やモスクを見ると、ナイルを軸にした内陸史とは異なる海上交流の層が見える。",
+      "points": [
+        "紅海の島と沿岸に歴史的市街の遺構が残る",
+        "一部の住宅やモスクは2階部分まで残る"
+      ],
+      "sourceKey": "unescoSuakin"
+    },
+    {
+      "topicKey": "sanganeb-reef-system",
+      "themeEn": "NATURE",
+      "themeJa": "自然に入る",
+      "title": "紅海では、砂漠の縁からサンゴ礁の世界へ切り替わる",
+      "text": "サンガネブとドゥンゴナブ湾・ムカワル島の海洋国立公園は、スーダン唯一の自然世界遺産。沖合のサンゴ礁、海草藻場、マングローブなどが連続し、陸上の乾燥景観とは対照的な生物多様性を支える。",
+      "points": [
+        "サンガネブは海岸から約25km沖の孤立したサンゴ礁",
+        "世界遺産は二つの海洋国立公園で構成される"
+      ],
+      "sourceKey": "unescoSanganeb"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "world-heritage-three-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は3件あり、2件が文化遺産、1件が自然遺産",
+      "text": "2026年時点のユネスコ国別一覧では、メロエ島の考古遺跡群、ジェベル・バルカルとナパタ地域、サンガネブとドゥンゴナブ湾の海洋国立公園群が登録されている。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "dinder-protection-history",
+      "categoryEn": "NATURE",
+      "categoryJa": "自然",
+      "title": "ディンデルは1935年に国立公園となり、1979年に生物圏保存地域になった",
+      "text": "長く保護されてきたサバンナと湿地は、乾季の野生動物と渡り鳥の重要な避難場所になっている。",
+      "icon": "wildlife",
+      "sourceKey": "unescoDinder"
+    },
+    {
+      "topicKey": "northern-erg-dunes",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "北部には、岩石砂漠と移動砂丘の両方が広がる",
+      "text": "スーダン北部・北東部の砂漠は一様な砂地ではなく、露岩や礫地に加えて、ergと呼ばれる移動砂丘の帯も含む。",
+      "icon": "landscape",
+      "sourceKey": "britannicaGeography"
+    },
+    {
+      "topicKey": "sorghum-table-staple",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "ソルガムは、キスラやアシーダとして日々の食卓に入る",
+      "text": "FAOはソルガムをスーダンの食文化と食料安全保障を支える主食作物と位置づける。薄い発酵パンのキスラや、練り上げるアシーダなど食べ方も異なる。",
+      "icon": "food",
+      "sourceKey": "faoSorghum"
+    },
+    {
+      "topicKey": "gezira-irrigated-plain",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "青ナイルと白ナイルの間には、ゲジラ平原が広がる",
+      "text": "二つのナイルに挟まれたゲジラは沖積土の農業地域で、大規模な灌漑農業でも知られる。大河は遺跡だけでなく現在の土地利用にもつながっている。",
+      "icon": "map",
+      "sourceKey": "britannicaGeography"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SUDAN",
+    "title": "スーダンで食べたいもの",
+    "intro": "ソルガム、小麦、雑穀、バナナまで、地域ごとに異なる主食の形を見る。薄い発酵パン、厚いパン、練り粥、東部の甘い料理を選んだ。",
+    "items": [
+      {
+        "id": "kisra-mullah",
+        "name": "キスラとムラ",
+        "nameLocal": "Kisra & Mullah / كسرة وملاح",
+        "text": "発酵させたソルガム生地を薄く焼くキスラを、肉、オクラ、発酵乳などを使うムラと合わせる。FAOもキスラとアシーダをスーダンのソルガム食の中心として紹介する。",
+        "image": "assets/images/sudan/approved/food-1-kisra-mullah.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "gurraasa",
+        "name": "グラーサ",
+        "nameLocal": "Gurraasa / قراصة",
+        "text": "小麦で作る厚く柔らかな円形のパン。北部でよく食べられ、肉やトマトを煮込む濃いソースを上からかけて一皿にする。",
+        "image": "assets/images/sudan/approved/food-2-gurraasa.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "aseeda-dukhun",
+        "name": "アシーダ・ドゥフン",
+        "nameLocal": "Aseeda Dukhun / عصيدة دخن",
+        "text": "西部で知られる雑穀ドゥフンを練って滑らかな山形にし、中央をくぼませてシチューを入れる。ダルフールやコルドファンでは地域の穀物とソースの組み合わせが食卓の基礎になる。",
+        "image": "assets/images/sudan/approved/food-3-aseeda-dukhun.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "moukhbaza",
+        "name": "ムハバザ",
+        "nameLocal": "Moukhbaza / مخباظة",
+        "text": "スーダン東部で親しまれる、バナナをつぶして作る甘い料理。ナイル流域のソルガムや小麦とは違う食材を使い、紅海側の地域色を一皿で見せる。",
+        "image": "assets/images/sudan/approved/food-4-moukhbaza.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月現在、日本外務省はスーダン全土を危険レベル4としている。以下は現在の渡航を勧める旅程ではなく、安全が回復した将来に国土の広がりを理解するための地理的なスケール感。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ナイル中流の遺跡群に絞る",
+        "text": "将来安全に訪問できる状況を想定し、メロエ、ナカなど一つの歴史軸に絞る。古代王国の都市と王墓を距離感の中で理解する。例：メロエ → ナカ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "北部ヌビアまで歴史を伸ばす",
+        "text": "メロエとナパタ地域にケルマ、旧ドンゴラを加え、初期クシュ王国から中世マクリアまでナイル流域の時代の変化を追う。例：メロエ → ジェベル・バルカル → ケルマ → 旧ドンゴラ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "紅海や西部・南東部を別地域として加える",
+        "text": "スアキンとサンガネブ、ジェベル・マッラ、ディンデルはナイル遺跡群から大きく離れる。将来の安全回復後も地域ごとに分けて見る。例：ナイル流域 → スアキン / サンガネブ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#8a9daa",
+      "text": "北部の砂漠は一年の中では比較的暑さが弱まり、朝晩は冷える。紅海沿岸や南部とは気温差があるため、国全体を一つの気候として見ない。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c8a35e",
+      "text": "北部・中央部では暑さが強まり、内陸では40℃を超えることもある。乾いた風と強い日差しが景観の主調になる。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#7f9d78",
+      "text": "南部や中央部、西部高地では雨季となり、サバンナや湿地の水量と緑が増える。北部砂漠は引き続き極めて乾燥している。"
+    },
+    {
+      "months": "10月",
+      "color": "#aa825d",
+      "text": "雨季が後退する移行期。南東部では水場が残り、北部では乾燥した季節へ戻る。同じ月でも緯度と標高による差が大きい。"
+    }
+  ],
+  "transport": {
+    "title": "現在は、具体的な移動計画を立てない",
+    "text": "2026年9月現在、日本外務省はポートスーダンを含むスーダン全土を危険レベル4としている。このページの地図と日程は国の地理的スケールを理解するためのもので、現在の航空便、道路、鉄道、海路、国境越えを案内するものではない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "エジプトの南側に続く古代ヌビアとクシュ文明を深く知りたい人",
+      "text": "メロエ、ジェベル・バルカル、ケルマをつなぎ、王墓・神殿・泥レンガ都市をナイル流域の地理と一緒に見たい人。",
+      "icon": "history"
+    },
+    {
+      "title": "砂漠だけではないスーダンの自然地理を知りたい人",
+      "text": "紅海のサンゴ礁、ダルフールの火山高地、南東部のサバンナと湿地まで、国土の景観差を一枚の地図から理解したい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "遺跡の保存と現在の状況も含めて場所を理解したい人",
+      "text": "古代遺産を完成した観光地として見るのではなく、紛争や自然災害の影響、保全の取り組みまで含めて背景を知りたい人。",
+      "icon": "culture"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北東アフリカ / ナイル・サハラ・紅海"
+    },
+    {
+      "label": "首都",
+      "value": "ハルツーム"
+    },
+    {
+      "label": "人口",
+      "value": "約5,166万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,886,068 km²（日本の約5.0倍）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語・英語（政府の作業言語として規定）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が多数（2020推計約91%）"
+    },
+    {
+      "label": "通貨",
+      "value": "スーダン・ポンド（SDG）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "khartoum-two-rivers",
+      "label": "ハルツームで合流",
+      "value": "2本",
+      "note": "ハルツームでは白ナイルと青ナイルが合流し、その下流が一つのナイル川として北へ流れる。",
+      "icon": "map",
+      "interestReason": "国の首都そのものがアフリカを代表する二大支流の合流点にあり、都市と大河の地理を一つの数字で理解できるため。"
+    },
+    {
+      "topicKey": "sanganeb-fish-diversity",
+      "label": "サンガネブ周辺の魚類",
+      "value": "300種超",
+      "note": "サンガネブ周辺の紅海海域はサンゴ礁や海草藻場など多様な環境を抱え、300種を超える魚類が記録される。",
+      "icon": "sea",
+      "interestReason": "砂漠の国という先入観から、世界的なサンゴ礁生態系を持つ国へ視点を切り替えられる数字だから。"
+    },
+    {
+      "topicKey": "deriba-caldera-width",
+      "label": "デリバ・カルデラ",
+      "value": "約5 km",
+      "note": "ジェベル・マッラ最高部にある火山カルデラの幅。約3,500年前の爆発的噴火で形成されたとユネスコ暫定一覧が説明する。",
+      "icon": "landscape",
+      "interestReason": "西部スーダンに巨大な火山地形と火口湖があることを、具体的なスケールで想像できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mofa-level-four-current-safety",
+      "title": "2026年9月現在、全土が危険レベル4",
+      "text": "日本外務省は全土に「退避してください。渡航は止めてください」とするレベル4を継続している。現時点では観光目的の渡航を計画する段階ではない。"
+    },
+    {
+      "topicKey": "heritage-current-conservation",
+      "title": "文化遺産は現在の保全状況も確認する",
+      "text": "ユネスコは2026年にもメロエとジェベル・バルカルの保全状況を審議している。歴史的価値と、紛争や環境変化による現在の状態を分けて確認したい。"
+    },
+    {
+      "topicKey": "climate-regional-differences",
+      "title": "砂漠・紅海・高地・湿地で気候を分けて見る",
+      "text": "北部砂漠、紅海沿岸、ジェベル・マッラ高地、南東部サバンナでは暑さと雨季の出方が異なる。季節情報は地域まで絞って確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "egypt",
+      "nameEn": "EGYPT",
+      "nameJa": "エジプト",
+      "flag": "🇪🇬",
+      "reason": "ナイルとヌビアの古代史を北へたどり、クシュと古代エジプトの関係を地理の連続として見たいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "ethiopia",
+      "nameEn": "ETHIOPIA",
+      "nameJa": "エチオピア",
+      "flag": "🇪🇹",
+      "reason": "ナイル水系、紅海周辺の歴史、高地とサバンナという北東アフリカの地理を別の角度から比べたいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "saudiarabia",
+      "nameEn": "SAUDI ARABIA",
+      "nameJa": "サウジアラビア",
+      "flag": "🇸🇦",
+      "reason": "紅海を挟んだ交易圏と乾燥地の景観を、アラビア半島側からさらにたどりたいなら。",
+      "affinityType": "COAST"
+    }
+  ],
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2019",
+    "language": "2005",
+    "religion": "2020",
+    "currency": "2025",
+    "safety": "2025-05-14",
+    "worldHeritage": "2026",
+    "map": "2026-09-26"
+  },
+  "sources": {
+    "population": "UNData Sudan profile — Population (000, 2025): 51,662; capital Khartoum; national currency Sudanese Pound (SDG): https://data.un.org/en/iso/sd.html",
+    "area": "United Nations Statistics Division / Sudan national presentation — area about 1,886,068 km²: https://unstats.un.org/capacity-development/meetings/DA9-regional-workshop-Addis-Ababa/documents/7-Sudan-Mainstreaming%20SDGS%20As%20Transformative%20Agenda1-1.pdf",
+    "japanArea": "Geospatial Information Authority of Japan, national land area: https://web1.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "language": "Interim National Constitution of the Republic of the Sudan (2005), language provisions: Arabic is widely spoken national language and Arabic/English are official working languages of the national government; constitutional order has changed since 2005 and the page therefore states this narrowly.",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Sudan — cites 2020 Pew estimates of 91% Muslim, 5.4% Christian and 2.8% followers of indigenous religions: https://www.state.gov/reports/2023-report-on-international-religious-freedom/sudan/",
+    "currency": "UNData Sudan profile: Sudanese Pound (SDG): https://data.un.org/en/iso/sd.html",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website — Sudan risk information, updated 2025-05-14 and current when checked 2026-09-26: Level 4 nationwide: https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2025T045.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Sudan State Party page, 3 properties as of 2026: https://whc.unesco.org/en/statesparties/sd",
+    "unescoMeroe": "UNESCO World Heritage Centre — Archaeological Sites of the Island of Meroe: https://whc.unesco.org/en/list/1336",
+    "unescoGebelBarkal": "UNESCO World Heritage Centre — Gebel Barkal and the Sites of the Napatan Region: https://whc.unesco.org/en/list/1073",
+    "unescoKerma": "UNESCO World Heritage Centre — The Monuments of the Kingdom of Kerma and Dokki Geil / Kerma tentative list: https://whc.unesco.org/en/tentativelists/6594 ; https://whc.unesco.org/en/tentativelists/651",
+    "unescoOldDongola": "UNESCO World Heritage Centre — Old Dongola tentative list: https://whc.unesco.org/en/tentativelists/652",
+    "unescoSuakin": "UNESCO World Heritage Centre — Suakin tentative list: https://whc.unesco.org/en/tentativelists/646",
+    "unescoSanganeb": "UNESCO World Heritage Centre — Sanganeb Marine National Park and Dungonab Bay – Mukkawar Island Marine National Park: https://whc.unesco.org/en/list/262",
+    "unescoDeriba": "UNESCO World Heritage Centre — Jebel Marra / Deriba Caldera tentative list: https://whc.unesco.org/en/tentativelists/6519",
+    "unescoDinder": "UNESCO Man and the Biosphere Programme — Dinder Biosphere Reserve: https://www.unesco.org/en/mab/dinder",
+    "faoSorghum": "FAO — Sudan: Sorghum, a staple crop sustaining food security and rural livelihoods; FAO Emergency and Resilience Around the Table pages describe kisra and asida as central sorghum foods: https://www.fao.org/one-country-one-priority-product/near-east-and-north-africa/Sudan/en ; https://www.fao.org/emergencies/where-we-work/around-the-table/en",
+    "foodRegions": "Embassy of Sudan cultural information — Northern wheat/gourrassa, eastern Moukhbaza from banana paste, western dukhun used for Aseedat Dukhun: https://sudanembassy.org/us-sudan-relations/",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Sudan plus Egypt, Libya, Chad, Central African Republic, South Sudan, Ethiopia and Eritrea.",
+    "sceneCoordinates": "UNESCO coordinates used where published: Gebel Barkal N18°32′ E31°49′; Kerma N19°36′2.89″ E30°24′35.03″; Old Dongola N18°13′ E30°45′; Suakin N19°06′ E37°20′; Sanganeb N19°44′10″ E37°26′35″; Dinder UNESCO MAB 12.6785,35.4217. Naqa/Meroe coordinates cross-checked against the UNESCO Meroe nomination maps; Deriba coordinate normalized from UNESCO’s decimal-style N12 95 / E24 27 notation and regional range.",
+    "heroCoordinates": "UNESCO Meroe property documentation, North/South royal cemeteries near Begrawiya; coordinate used 16.937383,33.757050.",
+    "britannicaKhartoum": "Encyclopaedia Britannica — Khartoum: the city lies just south of the confluence of the Blue and White Nile rivers: https://www.britannica.com/place/Khartoum",
+    "britannicaGeography": "Encyclopaedia Britannica — Sudan geography: after the White and Blue Niles meet at Khartoum the river flows north as the Nile; northern deserts include bare rock, waste and mobile-dune ergs; the Gezira lies between the two Niles and is an important alluvial/agricultural region: https://www.britannica.com/place/Sudan",
+    "sanganebMap": "UNESCO World Heritage Centre — Sanganeb Marine National Park maps / nomination: centre coordinate N19 44 10 E37 26 35; nomination text documents Sanganeb Atoll maximum length 6.5 km north-south and maximum width 1.6 km: https://whc.unesco.org/en/list/262/maps/ ; https://whc.unesco.org/document/169155"
+  }
+}
