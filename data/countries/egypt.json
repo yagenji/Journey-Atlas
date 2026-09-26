@@ -47,7 +47,7 @@
     },
     "svg": "assets/images/egypt/map-atlas-v1.svg",
     "route": null,
-    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290 (EGY/LBY/SDN/ISR/PSX/JOR/SAU GeoJSON). Shared JOURNEY ATLAS map-v3 clean-background styling; national outlines are cartographic context and not a statement on disputed political claims. Generated 2026-09-26."
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290 (EGY/LBY/SDN/ISR/PSX/JOR/SAU GeoJSON). Lake Nasser inland-water geometry: Natural Earth 1:50m lakes, WGS84, public domain, feature Q182796. Shared JOURNEY ATLAS map-v3 clean-background styling; national outlines are cartographic context and not a statement on disputed political claims. Updated 2026-09-27."
   },
   "scenes": [
     {
@@ -189,42 +189,42 @@
   ],
   "encounters": [
     {
-      "title": "巨大な石造建築を仰ぐ",
+      "title": "ピラミッドを見上げる",
       "category": "ARCHITECTURE",
       "icon": "landmark"
     },
     {
-      "title": "列柱の間を歩く",
-      "category": "ARCHITECTURE",
+      "title": "神殿の列柱と壁画をたどる",
+      "category": "HISTORY",
       "icon": "history"
     },
     {
-      "title": "ナイルを帆船で進む",
+      "title": "ナイルをフェルーカで進む",
       "category": "MOVEMENT",
       "icon": "map"
     },
     {
-      "title": "白い砂漠を歩く",
+      "title": "白砂漠の奇岩を歩く",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "オアシスの集落を巡る",
+      "title": "シワのオアシスで暮らしに触れる",
       "category": "DAILY_LIFE",
       "icon": "home"
     },
     {
-      "title": "シナイの山地を歩く",
+      "title": "シナイの岩山と修道院を訪ねる",
+      "category": "HISTORY",
+      "icon": "landmark"
+    },
+    {
+      "title": "紅海のサンゴ礁を見る",
       "category": "NATURE",
-      "icon": "landscape"
+      "icon": "sea"
     },
     {
-      "title": "地中海の港を歩く",
-      "category": "CITY",
-      "icon": "city"
-    },
-    {
-      "title": "豆と穀物の料理を味わう",
+      "title": "コシャリとフールを味わう",
       "category": "FOOD",
       "icon": "food"
     }
@@ -532,20 +532,40 @@
       "countryEn": "JORDAN",
       "countryJa": "ヨルダン",
       "path": "Nuweiba → ferry → Aqaba",
-      "description": "シナイ半島のヌウェイバから紅海を船で渡り、アカバへつなぐ海路。エジプトのナイル・シナイから、ヨルダン南部の砂岩砂漠と古代交易路へ旅を続けられる。",
+      "description": "シナイ半島のヌウェイバからアカバ湾を定期旅客船で渡り、ヨルダンのアカバへつなぐ海路。ナイルとシナイの旅から、ワディ・ラムやペトラへ地理を連続させやすい。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "フェリーの運航日・時刻・出入国条件は変更されるため、運航会社と公的情報を直前に確認する。"
+      "statusNote": "Arab Bridge MaritimeはAqaba–Nuweibaの定期旅客便を案内している。運航日・時刻、査証・出入国条件は出発直前に確認する。"
     },
     {
       "flag": "🇮🇱",
       "countryEn": "ISRAEL",
       "countryJa": "イスラエル",
       "path": "Taba → border crossing → Eilat",
-      "description": "シナイ東端のタバから陸路国境を越えてエイラートへつなぐ代表的な越境動線。紅海北端の海岸線を短い距離でつなげる。",
+      "description": "シナイ東端のタバから陸路国境を越えてエイラートへつなぐ紅海北端の越境動線。短い距離でシナイ半島からアカバ湾東側へ移れる。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "タバ国境は運用や料金が短期間で変更されることがあり、地域情勢による閉鎖もあり得るため最新情報の確認が必須。"
+      "statusNote": "Taba国境は運用中だが、料金・入境手続き・地域情勢による運用変更があり得るため最新情報を確認する。"
+    },
+    {
+      "flag": "🇸🇦",
+      "countryEn": "SAUDI ARABIA",
+      "countryJa": "サウジアラビア",
+      "path": "Safaga → passenger ferry → NEOM (Duba)",
+      "description": "紅海西岸のサファガから旅客・車両フェリーでサウジ北西部のドゥバーへ渡る海路。エジプトの紅海岸からタブーク、アルウラ方面へ旅をつなげられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "運航会社はSafaga–NEOM (Duba)の旅客・車両サービスを案内している。便の運航、予約、査証・入国条件を直前に確認する。"
+    },
+    {
+      "flag": "🇸🇩",
+      "countryEn": "SUDAN",
+      "countryJa": "スーダン",
+      "path": "Aswan → Qustul / Argeen → Wadi Halfa",
+      "description": "エジプト南部からクストゥルまたはアルギーンの国境を経てワジ・ハルファへつながる陸路。ナイル流域をそのまま南へ延ばす地理的な連続線だが、現在は通常の観光越境として扱いにくい。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "スーダン情勢のため強い渡航注意が続き、国境の状況も不透明。国境開閉、査証、安全情報を両国当局と最新の公的渡航情報で確認する。"
     }
   ],
   "relatedCountries": [
@@ -580,9 +600,9 @@
     "population": "2025",
     "area": "2023",
     "currency": "2026-07-01",
-    "nextRoutes": "2026-09-26",
+    "nextRoutes": "2026-09-27",
     "travelAdvice": "2026-09-26",
-    "map": "2026-09-26",
+    "map": "2026-09-27",
     "sceneCoordinates": "2026-09-26"
   },
   "sources": {
@@ -604,9 +624,9 @@
     "fatta": "Cairo Travel culinary reference: Egyptian fatta layers rice, toasted bread and meat with garlic-vinegar sauce and is associated with festive meals. https://www.turismoelcairo.com/en/food-in-cairo/fattah",
     "climate": "World Bank Climate Change Knowledge Portal / Egypt climatology and Experience Egypt official weather FAQ. https://climateknowledgeportal.worldbank.org/country/egypt-arab-republic/climate-data-historical ; https://www.experienceegypt.eg/en/home/faq",
     "transport": "Experience Egypt official FAQ and destination guidance: rail, bus, road and licensed travel services; desert excursions require current permit/operator checks. https://www.experienceegypt.eg/en/home/faq ; https://www.experienceegypt.eg/en/attraction-details/617/desert-excursions",
-    "nextRoutes": "UK FCDO entry requirements: ferry services operate between Aqaba and Taba Heights/Nuweiba; Taba is the Egypt-Israel land crossing and operational details can change. Checked 2026-09-26. https://www.gov.uk/foreign-travel-advice/egypt/entry-requirements ; https://www.gov.uk/foreign-travel-advice/israel/entry-requirements",
+    "nextRoutes": "Jordan: Arab Bridge Maritime confirms regular passenger service on Aqaba–Nuweiba and current passenger-document requirements. Israel: UK FCDO Egypt/Israel entry requirements state Taba border crossing operates, with conditions subject to change. Saudi Arabia: MENA Line lists Safaga–NEOM (Duba) ROPAX service for passengers, vehicles and cargo and publishes passenger requirements. Sudan: UK FCDO states the two main Egypt–Sudan land crossings are Qustul and Argeen, while the border situation remains unclear and Sudan carries severe travel warnings. Checked 2026-09-27. https://www.abmaritime.com.jo/ ; https://www.gov.uk/foreign-travel-advice/egypt/entry-requirements ; https://www.mena-lines.com/service-network ; https://www.mena-lines.com/en/service-information ; https://www.gov.uk/foreign-travel-advice/sudan/regional-risks",
     "travelAdvice": "UK FCDO Egypt travel advice and entry requirements, checked 2026-09-26. https://www.gov.uk/foreign-travel-advice/egypt",
-    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; EGY target with LBY/SDN/ISR/PSX/JOR/SAU context; generated in JOURNEY ATLAS map-v3 style on 2026-09-26.",
+    "map": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290. Lake Nasser inland-water geometry: Natural Earth 1:50m lakes (ne_50m_lakes.geojson), feature Q182796, WGS84, public domain. Updated in JOURNEY ATLAS map-v3 style on 2026-09-27.",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-26: Giza Great Pyramid 29.97917,31.13417; Karnak Great Hypostyle Hall 25.71858,32.65792; Abu Simbel Great Temple 22.336292,31.62553; Hatshepsut Temple 25.738278,32.606583; Elephantine/Aswan 24.082778,32.886569; White Desert 27.2773,28.2004; Shali Fortress 29.201415,25.519061; Saint Catherine Monastery 28.55594,33.97595; Qaitbay Citadel 31.21375,29.8854; Cairo 30.0444,31.2357. Cross-checked against OpenStreetMap/Wikidata/Wikimedia/GeoNames where available."
   }
 }
