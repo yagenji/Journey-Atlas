@@ -35,7 +35,7 @@
     },
     "mapOffset": {
       "x": -2,
-      "y": 4.2
+      "y": -4.5
     }
   },
   "map": {
@@ -81,7 +81,7 @@
       "labelPosition": "right",
       "mapOffset": {
         "x": 3.8,
-        "y": 0.5
+        "y": -4
       }
     },
     {
@@ -183,7 +183,7 @@
       "labelPosition": "left",
       "mapOffset": {
         "x": -3.5,
-        "y": 2
+        "y": -4.5
       }
     }
   ],
@@ -490,12 +490,12 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "ghana-coastline-540km",
-      "label": "海岸線",
-      "value": "約540 km",
-      "note": "ガーナ政府観光局は、南側の大西洋・ギニア湾に面する海岸線を約540kmと案内している。西部の砂浜から中央部の城塞都市、東部のラグーンまで長い沿岸帯が続く。",
+      "topicKey": "volta-reservoir-scale",
+      "label": "ボルタ湖",
+      "value": "8,502 km²",
+      "note": "ガーナ電力公社VRAは、ボルタ湖の面積を8,502km²と案内している。ガーナ政府観光局は、表面積では世界最大の貯水池として紹介している。",
       "icon": "sea",
-      "interestReason": "海辺の城塞だけでなく、漁村、砂浜、都市が一本の沿岸軸に連なることを国土スケールで理解できる。"
+      "interestReason": "一つの人工湖が国土東部を大きく占める規模を数字で把握でき、ガーナの地図の見え方そのものが変わる。"
     },
     {
       "topicKey": "mole-national-park-4840km2",
@@ -531,7 +531,38 @@
       "text": "都市部ではカードや配車アプリも使える一方、トロトロ、小規模な食堂、市場、地方交通では現金が使いやすい。高額紙幣だけにせず小額も持つ。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇹🇬",
+      "countryEn": "TOGO",
+      "countryJa": "トーゴ",
+      "path": "Accra → Aflao → Lomé",
+      "description": "アクラから東へ進み、ガーナ移民局が主要入国管理地点として挙げるAflaoを越えて、国境直後のロメへつなぐ西アフリカ沿岸の代表的な陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間、入国条件、乗合交通の運行は出発直前に公式情報で確認する。"
+    },
+    {
+      "flag": "🇨🇮",
+      "countryEn": "CÔTE D’IVOIRE",
+      "countryJa": "コートジボワール",
+      "path": "Takoradi → Elubo → Noé → Abidjan",
+      "description": "西部のタコラディからEluboへ進み、コートジボワール側Noéを経てアビジャン方面へつなぐ代表的な陸路。Eluboはガーナ移民局の主要入国管理地点の一つ。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間、入国条件、長距離バスや乗合交通の運行は直前に確認する。"
+    },
+    {
+      "flag": "🇧🇫",
+      "countryEn": "BURKINA FASO",
+      "countryJa": "ブルキナファソ",
+      "path": "Tamale → Bolgatanga → Paga → Pô",
+      "description": "北部のタマレからボルガタンガを経てPagaへ進み、ブルキナファソ南部Pôへつなぐ歴史的な南北陸路。Pagaはガーナ移民局が主要入国管理地点として挙げる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ブルキナファソ側とガーナ北部の治安状況が変動するため、国境運用と最新の安全情報を出発直前に必ず確認する。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "cotedivoire",
@@ -568,9 +599,10 @@
     "safety": "2026-01-14",
     "map": "2026-09-28",
     "sceneCoordinates": "2026-09-28",
-    "coastline": "2026-09-28",
     "cocoa": "2026-09-28",
-    "akwasidae": "2026-03-15"
+    "akwasidae": "2026-03-15",
+    "lakeVoltaScale": "2026-09-28",
+    "nextRoutes": "2026-09-28"
   },
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan — Ghana basic data, updated 21 Oct 2025: area 238,537 km², population approx. 34.43 million (World Bank 2024), capital Accra, English official language, religious composition and independence date. https://www.mofa.go.jp/mofaj/area/ghana/data.html",
@@ -587,8 +619,9 @@
     "mole": "UNESCO World Heritage Centre Tentative List — Mole National Park: approximately 4,840 km², northern Ghana savanna protected area. https://whc.unesco.org/en/tentativelists/1391",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-28: Elmina Castle 5.08266,-1.34813 (GeoNames/Wikidata); Kakum Canopy Walkway 5.35362,-1.38344 (OSM); Cape Coast Castle 5.10369,-1.24097 (Wikidata/OSM); Mole tourist area approx. 9.5,-2.0022 (Visit Ghana map); Wli Waterfalls 7.12475,0.59184; Lake Volta/Akosombo viewpoint 6.30649,0.05668 (Wikimedia geotag); Larabanga Mosque 9.22032,-1.85995 (OSM/Wikidata); Tongo Hills 10.67294,-0.81578 (Wikimedia geotag); Busua Beach 4.809,-1.93013 (OSM).",
     "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; GHA target with CIV/BFA/TGO context; rendered in JOURNEY ATLAS map-v3 style 2026-09-28.",
-    "coastline": "Ghana Tourism Authority / Visit Ghana — Getting Around Ghana: Ghana has a coastline of 540 km. Checked 2026-09-28. https://visitghana.com/getting-around-ghana/",
     "etiquette": "Ghana Tourism Authority / Visit Ghana — practical travel guidance and local customs, checked 2026-09-28. https://visitghana.com/",
-    "population": "Ministry of Foreign Affairs of Japan — Ghana basic data, updated 21 Oct 2025, citing World Bank 2024 population at approximately 34.43 million. https://www.mofa.go.jp/mofaj/area/ghana/data.html"
+    "population": "Ministry of Foreign Affairs of Japan — Ghana basic data, updated 21 Oct 2025, citing World Bank 2024 population at approximately 34.43 million. https://www.mofa.go.jp/mofaj/area/ghana/data.html",
+    "lakeVoltaScale": "Volta River Authority — Akosombo Hydro Plant: Lake Volta area 8,502 sq km; Ghana Tourism Authority / Visit Ghana describes Lake Volta as the world's largest reservoir by surface area. Checked 2026-09-28. https://vra.com/our_mandate/akosombo_hydro_plant.php ; https://visitghana.com/dodi-world/",
+    "nextRoutes": "Ghana Immigration Service — Operations identifies Paga, Elubo and Aflao among Ghana's five major entry controls; regional command pages confirm Aflao, Elubo and Paga border posts. Checked 2026-09-28. https://gis.gov.gh/command-post-and-operations/ ; https://gis.gov.gh/volta-region/ ; https://gis.gov.gh/western-region/ ; https://gis.gov.gh/upper-east-region/"
   }
 }
