@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "capeverde",
+  "nameEn": "CAPE VERDE",
+  "nameJa": "カーボベルデ",
+  "region": "WEST AFRICA / ATLANTIC / 16°N",
+  "seo": {
+    "description": "活火山Pico do Fogo、Santo Antãoの山岳集落、Mindeloの港、Salの塩田、Boa Vistaの砂丘、Cidade Velha。10の島を8つの景色と地図でたどるカーボベルデの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Praia",
+    "nameJa": "プライア",
+    "coordinates": {
+      "latitude": 14.9163,
+      "longitude": -23.5095
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 18,
+      "y": -22
+    },
+    "mapOffset": {
+      "x": 1.35,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "黒い溶岩原と活火山、緑の山岳集落、乾いた砂丘、塩田、港町。10の島を渡るたび、同じ群島の中で地形と暮らしの表情が大きく切り替わる。",
+    "image": "assets/images/capeverde/approved/hero-pico-do-fogo.webp",
+    "location": "Chã das Caldeiras / Pico do Fogo",
+    "coordinates": {
+      "latitude": 14.9672,
+      "longitude": -24.3669
+    },
+    "mapOffset": {
+      "x": 1.9,
+      "y": -0.7
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 17.35,
+      "south": 14.65,
+      "west": -25.45,
+      "east": -22.55
+    },
+    "svg": "assets/images/capeverde/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 CPV geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; Natural Earth 1:10m coastline from nvkelso/natural-earth-vector supplements Santa Luzia and Raso omitted from the Admin-0 polygon. 1200×760 local-equirectangular-fit-v1; reviewed 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "fontainhas-santo-antao",
+      "name": "フォンタイーニャス",
+      "nameLocal": "Fontainhas / Santo Antão",
+      "mapLabel": "Fontainhas",
+      "description": "Santo Antão北部の深い谷と岩稜に、小さな家々と段々畑が張り付く山岳集落。海から急に立ち上がる火山島の起伏と、その限られた斜面を使う暮らしが一つの視界に重なる。",
+      "coordinates": {
+        "latitude": 17.18801,
+        "longitude": -25.1041
+      },
+      "image": "assets/images/capeverde/approved/scene-1-fontainhas.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "mindelo-porto-grande",
+      "name": "ミンデロ / ポルト・グランデ湾",
+      "nameLocal": "Mindelo / Porto Grande",
+      "mapLabel": "Mindelo",
+      "description": "São Vicenteの乾いた山々に囲まれた天然港に、Mindeloの低層市街と港が広がる。大西洋航路の寄港地として育った街は、現在も北部の島々を結ぶ交通と文化の中心の一つになっている。",
+      "coordinates": {
+        "latitude": 16.8873,
+        "longitude": -24.9864
+      },
+      "image": "assets/images/capeverde/approved/scene-2-mindelo.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "monte-gordo-sao-nicolau",
+      "name": "モンテ・ゴルド",
+      "nameLocal": "Monte Gordo / São Nicolau",
+      "mapLabel": "Monte Gordo",
+      "description": "São Nicolauの中央部にそびえる山塊。深く刻まれた谷、雲を受ける緑の斜面、乾いた尾根が短い距離で切り替わり、平坦な東部の島々とは異なるカーボベルデの山岳景観を見せる。",
+      "coordinates": {
+        "latitude": 16.620833,
+        "longitude": -24.354167
+      },
+      "image": "assets/images/capeverde/approved/scene-3-monte-gordo.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "pedra-de-lume-salinas",
+      "name": "ペドラ・デ・ルメ塩田",
+      "nameLocal": "Salinas de Pedra de Lume / Sal",
+      "mapLabel": "Pedra de Lume",
+      "description": "Sal島東部の火山クレーター内に残る塩田。乾いた赤褐色の外輪山の内側に、白い塩面と色の異なる塩水池が幾何学的に並び、島名の由来となった塩の産業史を地形と一緒に見渡せる。",
+      "coordinates": {
+        "latitude": 16.7726,
+        "longitude": -22.9014
+      },
+      "image": "assets/images/capeverde/approved/scene-4-pedra-de-lume.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "deserto-de-viana",
+      "name": "ヴィアナ砂漠",
+      "nameLocal": "Deserto de Viana / Boa Vista",
+      "mapLabel": "Deserto de Viana",
+      "description": "Boa Vista内陸に淡い砂が薄く広がり、低い砂丘と風紋が連なる。巨大な砂海ではなく、乾いた火山性の土地の上を運ばれた砂がつくる静かな景観で、遠景には島の低い丘が残る。",
+      "coordinates": {
+        "latitude": 16.14327,
+        "longitude": -22.86481
+      },
+      "image": "assets/images/capeverde/approved/scene-5-deserto-de-viana.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "cidade-velha",
+      "name": "シダーデ・ヴェーリャ",
+      "nameLocal": "Cidade Velha / Ribeira Grande de Santiago",
+      "mapLabel": "Cidade Velha",
+      "description": "Santiago島南岸の谷口に残る旧都。石畳のRua Banana、教会跡、広場、要塞などが点在し、15世紀以降の大西洋交易と植民地支配、奴隷化された人々を含む複雑な歴史を現在の街の中でたどる。",
+      "coordinates": {
+        "latitude": 14.915139,
+        "longitude": -23.605194
+      },
+      "image": "assets/images/capeverde/approved/scene-6-cidade-velha.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.35,
+        "y": 0
+      }
+    },
+    {
+      "id": "sao-filipe-fogo",
+      "name": "サン・フィリペ",
+      "nameLocal": "São Filipe / Fogo",
+      "mapLabel": "São Filipe",
+      "description": "Fogo島西岸の斜面に、色のあるソブラードと呼ばれる歴史的な邸宅が並ぶ町。海へ下る石畳の道と火山島の高低差が、Chã das Caldeirasとは別のFogoの生活景観を形づくる。",
+      "coordinates": {
+        "latitude": 14.8953,
+        "longitude": -24.4969
+      },
+      "image": "assets/images/capeverde/approved/scene-7-sao-filipe.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.1,
+        "y": 0.6
+      }
+    },
+    {
+      "id": "nova-sintra-brava",
+      "name": "ノヴァ・シントラ",
+      "nameLocal": "Nova Sintra / Brava",
+      "mapLabel": "Nova Sintra",
+      "description": "Brava島の高地に広がる小さな町。白い家、赤い屋根、庭木や花が緑の丘に収まり、乾燥の強い東部の島とは異なる穏やかな表情を見せる。Fogoから海を渡った先で、群島の景観差を実感できる。",
+      "coordinates": {
+        "latitude": 14.87107,
+        "longitude": -24.69565
+      },
+      "image": "assets/images/capeverde/approved/scene-8-nova-sintra.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.75,
+        "y": 0.05
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "岩稜の山村を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "港町のリズムに触れる",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "火山島の尾根を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "火口の塩田を見下ろす",
+      "category": "WORK",
+      "icon": "landmark"
+    },
+    {
+      "title": "風紋の砂丘を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "大西洋の旧都をたどる",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "ソブラードの街を歩く",
+      "category": "CITY",
+      "icon": "landmark"
+    },
+    {
+      "title": "高原の庭園都市を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "fogo-volcanic-caldera",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "Fogoでは、火山の内側に集落と畑が続く",
+      "text": "Fogo Natural ParkにはPico do Fogoと広いカルデラ、近年の溶岩流、Chã das Caldeirasの集落と農地がまとまる。火山は遠くから眺める背景ではなく、道路、農業、集落配置まで決める生活の地形になっている。",
+      "points": [
+        "Pico do Fogo周辺は現在も火山活動の痕跡が明瞭",
+        "黒い溶岩原の中で葡萄などの農業が行われる"
+      ],
+      "sourceKey": "fogoPark"
+    },
+    {
+      "topicKey": "ribeira-grande-atlantic-port",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "Cidade Velhaは、大西洋世界の形成を伝える港町",
+      "text": "旧Ribeira Grandeは15世紀後半から大西洋航路の重要な拠点となった。ヨーロッパ植民地拡大と奴隷貿易の歴史、異なる文化が接触して生まれたクレオール社会を、一つの美しい旧市街だけに還元せずに見る場所である。",
+      "points": [
+        "2009年にユネスコ世界遺産へ登録",
+        "港・宗教建築・要塞・街路が歴史的都市景観を構成する"
+      ],
+      "sourceKey": "cidadeVelha"
+    },
+    {
+      "topicKey": "barlavento-sotavento-geography",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "群島は、風上と風下の二つの島群に分かれる",
+      "text": "カーボベルデの島々は北側のBarlaventoと南側のSotaventoに大別される。同じ群島でも、Santo Antãoの急峻な谷、SalやBoa Vistaの乾いた平地、Fogoの火山など地形差が大きく、島を替えること自体が旅の体験になる。",
+      "points": [
+        "北側と南側で島の並びと交通動線が分かれる",
+        "標高と地形の違いが降水や植生の差にもつながる"
+      ],
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "pedra-lume-industrial-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "Pedra de Lumeでは、火口そのものが塩田になった",
+      "text": "Sal島のPedra de Lumeでは、海面より低い火山クレーター内で塩が採られてきた。色の異なる塩水池と旧設備は、乾燥した島の地形を利用した産業景観として残る。",
+      "points": [
+        "塩田は火山クレーターの内側に形成された",
+        "Sal島の塩生産史を地形と同時に見られる"
+      ],
+      "sourceKey": "pedraLume"
+    },
+    {
+      "topicKey": "interisland-ferry-rhythm",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "島を渡る移動が、旅の時間感覚をつくる",
+      "text": "9つの有人島は一続きの陸路ではなく、フェリーや国内交通を組み合わせてつなぐ。短い海峡もあれば長い航路もあり、便数や海況によって予定が変わるため、移動日そのものに余白を持つことが群島旅行の基本になる。",
+      "points": [
+        "CV InterIlhasが複数の有人島を結ぶ",
+        "São Vicente–Santo Antão、Fogo–Bravaなど海路が重要な生活動線"
+      ],
+      "sourceKey": "ferries"
+    },
+    {
+      "topicKey": "sea-turtle-nesting",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に出会う",
+      "title": "東部の砂浜は、ウミガメの産卵地でもある",
+      "text": "Sal、Boa Vista、Maio、Santiagoなどの砂浜では、初夏から秋にかけてウミガメの産卵が見られる。観察は夜間の光や距離が生き物に影響するため、保護ルールと現地ガイドの指示に従うことが、景観を見ることと同じくらい重要になる。",
+      "points": [
+        "公式観光情報では主な産卵期を6〜10月としている",
+        "Boa VistaやSalなどで保護・調査活動が行われている"
+      ],
+      "sourceKey": "turtles"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "morna-unesco-inscription",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "モルナはユネスコ無形文化遺産",
+      "text": "歌、詩、音楽、踊りが重なるモルナは2019年にユネスコ無形文化遺産へ登録された。現在はカーボベルデ・クレオールで歌われることが多く、Mindeloをはじめ各島の文化を結ぶ表現になっている。",
+      "icon": "culture",
+      "sourceKey": "morna"
+    },
+    {
+      "topicKey": "santa-luzia-no-residents",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "島",
+      "title": "10島のうちSanta Luziaだけが無人島",
+      "text": "カーボベルデを構成する10の主要島のうち、定住人口を持たないのはSanta Luzia。9つの有人島すべてに同じ規模の都市や交通があるわけではない。",
+      "icon": "landscape",
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "escudo-fixed-euro-rate",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "エスクードはユーロとの固定相場",
+      "text": "カーボベルデ・エスクードはユーロに対して1ユーロ＝110.265エスクードの固定相場が設定されている。旅行中の換算基準が把握しやすい通貨制度である。",
+      "icon": "culture",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "nova-sintra-garden-character",
+      "categoryEn": "TOWN",
+      "categoryJa": "町",
+      "title": "Nova SintraはBrava高地の緑に包まれる",
+      "text": "乾燥した島のイメージとは対照的に、BravaのNova Sintraでは庭木や花のある家並みが高地に広がる。島ごとの標高と湿り気の違いが、町の見え方にも表れる。",
+      "icon": "home",
+      "sourceKey": "brava"
+    },
+    {
+      "topicKey": "santo-antao-grogue",
+      "categoryEn": "DRINK",
+      "categoryJa": "飲みもの",
+      "title": "Santo Antãoではサトウキビ蒸留酒grogueがつくられる",
+      "text": "Santo Antãoではサトウキビを原料にした蒸留酒grogueの生産が長く続き、Ribeira da CruzやCorda周辺などで製造工程に触れられる。山の農業景観と食文化がつながる一例である。",
+      "icon": "food",
+      "sourceKey": "grogue"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CAPE VERDE",
+    "title": "カーボベルデで食べたいもの",
+    "intro": "国民食のカチューパ、大西洋の魚を焼く一皿、蒸したトウモロコシ粉のクスクス、辛い肉餡を包むパステル。トウモロコシと海の恵みが、島の食卓を支える。",
+    "items": [
+      {
+        "id": "cachupa-rica",
+        "name": "カチューパ・リカ",
+        "nameLocal": "Cachupa rica",
+        "text": "トウモロコシと豆を土台に、豚肉や牛肉、ソーセージ、キャベツ、かぼちゃ、根菜などをゆっくり煮込む代表料理。島や家庭によって具材が変わる。",
+        "image": "assets/images/capeverde/approved/food-1-cachupa.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "peixe-grelhado",
+        "name": "魚のグリル",
+        "nameLocal": "Peixe grelhado",
+        "text": "大西洋でとれる魚をシンプルに焼き、野菜や米、芋類などと合わせる定番の食べ方。マグロ、ハタ、サワラ類など魚種は島や季節で変わる。",
+        "image": "assets/images/capeverde/approved/food-2-peixe-grelhado.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "cuscuz-cabo-verdiano",
+        "name": "カーボベルデのクスクス",
+        "nameLocal": "Cuscuz cabo-verdiano",
+        "text": "トウモロコシ粉を湿らせて蒸し、ケーキ状に仕上げる伝統食。朝食や軽食として食べられ、牛乳、バター、蜂蜜やサトウキビの糖蜜などを合わせることもある。",
+        "image": "assets/images/capeverde/approved/food-3-cuscuz-cabo-verdiano.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pastel-com-diabo-dentro",
+        "name": "パステル・コン・ディアボ・デントロ",
+        "nameLocal": "Pastel com diabo dentro",
+        "text": "香ばしく揚げたトウモロコシ系の生地に、唐辛子を効かせたツナ、玉ねぎ、トマトなどのフィリングを包む伝統的な軽食。名前は「中に悪魔がいるパステル」を意味し、辛味が特徴。",
+        "image": "assets/images/capeverde/approved/food-4-pastel-diabo-dentro.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "島ごとに景観が大きく変わる一方、移動には海路や国内交通の接続が必要になる。訪問島を増やすほど、観光時間より移動の余白が重要になる。",
+    "items": [
+      {
+        "duration": "5〜6日",
+        "title": "SantiagoとFogoを軸にする",
+        "text": "首都PraiaとCidade Velhaで歴史を見て、Fogoへ渡りSão FilipeとChã das Caldeirasを組み合わせる。例：Praia → Cidade Velha → São Filipe → Chã das Caldeiras",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "北の山岳島までつなぐ",
+        "text": "São Vicenteを入口にSanto Antãoの山村を歩き、南側ではSantiagoかFogoを加える。接続日に余裕を置く。例：Mindelo → Porto Novo → Fontainhas → Praia → Cidade Velha",
+        "icon": "map"
+      },
+      {
+        "duration": "11日以上",
+        "title": "島の地形差を横断する",
+        "text": "山岳のSanto Antão、港町São Vicente、乾燥したSalまたはBoa Vista、火山のFogoなど性格の違う島を選び、移動予備日も確保する。例：Mindelo → Santo Antão → Sal → Santiago → Fogo",
+        "icon": "compass"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ沖 / 大西洋 / マカロネシア"
+    },
+    {
+      "label": "首都",
+      "value": "プライア"
+    },
+    {
+      "label": "人口",
+      "value": "約53万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "4,033 km²（日本の約1.1%）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語（公用語）／カーボベルデ・クレオールも広く使用"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック中心）"
+    },
+    {
+      "label": "通貨",
+      "value": "カーボベルデ・エスクード（CVE）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "archipelago-ten-nine",
+      "label": "島の数",
+      "value": "10島 / 9有人島",
+      "note": "カーボベルデは10の主要島からなり、そのうち9島に定住者がいる。島ごとに標高、乾燥度、都市の規模が大きく違う。",
+      "icon": "landscape",
+      "interestReason": "一つの島国というより、性格の異なる島を渡って理解する旅先であることを最も端的に示す数字。"
+    },
+    {
+      "topicKey": "pico-fogo-height",
+      "label": "国内最高峰",
+      "value": "2,829 m",
+      "note": "Fogo島のPico do Fogoは標高2,829m。海面から急に立ち上がる火山が、小さな群島に大きな垂直方向のスケールを与える。",
+      "icon": "landscape",
+      "interestReason": "ビーチ中心の島国像とは異なる、活火山と高山地形が旅の核になることを示す。"
+    },
+    {
+      "topicKey": "africa-offshore-distance",
+      "label": "アフリカ大陸から",
+      "value": "約455 km",
+      "note": "群島は西アフリカ沖の大西洋上、アフリカ大陸から約455km離れた位置にある。海に隔てられた立地が独自のクレオール文化と島間交通を形づくってきた。",
+      "icon": "map",
+      "interestReason": "西アフリカに属しながら大西洋の島嶼国家である、カーボベルデの位置関係を一目で理解できる。"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#8fa1a6",
+      "text": "乾季の中でも比較的涼しく、貿易風を感じやすい時期。日中は穏やかでも山地や風の強い場所では体感温度が下がるため、薄手の上着が役立つ。"
+    },
+    {
+      "months": "3〜6月",
+      "color": "#c7ad79",
+      "text": "乾燥した晴天が続きやすく、山歩きや島内移動を組みやすい。標高の低いSalやBoa Vistaでは乾いた景観がより強く出る。"
+    },
+    {
+      "months": "7〜10月",
+      "color": "#7f9a78",
+      "text": "雨の可能性が高まる時期で、降水は短い日数に集中しやすい。Santo Antão、Fogo、Santiagoなど起伏の大きい島では、雨後に斜面の緑が目立つ。"
+    },
+    {
+      "months": "11月",
+      "color": "#b7a47d",
+      "text": "雨季から長い乾季へ移る頃。年間を通して気温差は比較的小さいが、島・標高・風で体感が変わるため、行程ごとに予報を確認したい。"
+    }
+  ],
+  "transport": {
+    "title": "島内移動より、島と島の接続に余白を持つ",
+    "text": "有人島はフェリーと国内交通でつながるが、すべての島間に毎日直行便があるわけではない。CV InterIlhasの現行スケジュールではSão Vicente–Santo Antão、Santiago–Fogo、Fogo–Bravaなどの航路が確認できる。海況や運航変更を前提に、乗継日には余白を置く。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "火山と山岳地形を歩きたい人",
+      "text": "Pico do Fogoのカルデラ、Santo Antãoの深い谷、São Nicolauの山稜をつなぎ、海から急に立ち上がる火山島の地形を自分の足で見たい人。"
+    },
+    {
+      "title": "島ごとの暮らしと文化の違いを見たい人",
+      "text": "Mindeloの音楽文化、Cidade Velhaの歴史、山村や港町の生活を通じて、同じ国の中で変化するクレオール文化と街の表情に触れたい人。"
+    },
+    {
+      "title": "一つの景観に絞らず島を渡りたい人",
+      "text": "緑の山、黒い溶岩、塩田、砂丘、港、海を組み合わせ、移動そのものに時間を使いながら群島を立体的に理解したい人。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "ferry-buffer",
+      "title": "フェリー接続日は予定を詰めすぎない",
+      "text": "島間航路は曜日や海況で変わる。CV InterIlhasの当日スケジュールを確認し、重要な乗継や国際線の直前に長い島間移動を置かない。"
+    },
+    {
+      "topicKey": "mountain-rain-trails",
+      "title": "山岳島では雨後の道を確認する",
+      "text": "Santo Antão、Fogo、Santiagoなど起伏の大きい島は、雨が少ない国の中でも局地的に湿りやすい。雨後は登山道や道路の状態を現地で確認する。"
+    },
+    {
+      "topicKey": "sun-wind-water",
+      "title": "乾燥と風、強い日差しを前提にする",
+      "text": "SalやBoa Vistaを中心に乾燥が強く、風で涼しく感じても日差しは強い。飲料水、帽子、日焼け対策を持ち、山歩きでは補給地点も確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "senegal",
+      "nameEn": "SENEGAL",
+      "nameJa": "セネガル",
+      "flag": "🇸🇳",
+      "reason": "西アフリカの大西洋岸という地理的背景を、島嶼国家ではなく大陸側の都市、音楽、海辺の文化から比較したいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "portugal",
+      "nameEn": "PORTUGAL",
+      "nameJa": "ポルトガル",
+      "flag": "🇵🇹",
+      "reason": "ポルトガル語、大西洋航路、植民地史という歴史的なつながりを、ヨーロッパ側の港町と島嶼文化からたどり直したいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "saotomeprincipe",
+      "nameEn": "SÃO TOMÉ & PRÍNCIPE",
+      "nameJa": "サントメ・プリンシペ",
+      "flag": "🇸🇹",
+      "reason": "同じポルトガル語圏のアフリカ島国を、より湿潤で熱帯的な火山島景観と農園文化の方向から比較したいなら。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2026-07-21",
+    "worldHeritage": "2026-09-27",
+    "morna": "2026-09-27",
+    "climate": "2026-09-27",
+    "ferries": "2026-09-27",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27",
+    "food": "2026-09-28",
+    "turtles": "2026-09-27",
+    "grogue": "2026-09-27"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Cabo Verde basic data, updated 21 Jul 2026: area 4,033 km², 2025 population approx. 527,000, capital Praia, Portuguese, Christianity and Cabo Verde escudo; fixed rate EUR 1 = CVE 110.265. https://www.mofa.go.jp/mofaj/area/capeverde/data.html",
+    "geography": "Visit Cabo Verde — About Cabo Verde / geography: volcanic Atlantic archipelago, 10 islands of which 9 are inhabited, about 455 km off the West African coast; checked 2026-09-27. https://www.visit-caboverde.com/en/about-cabo-verde",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used only as the comparison basis for the Country Profile area percentage; checked 2026-09-27. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "cidadeVelha": "UNESCO World Heritage Centre — Cidade Velha, Historic Centre of Ribeira Grande: inscribed 2009, property 209.1 ha; centre N14 54 54.5 W23 36 18.7; historical role in Atlantic trade and colonial expansion. https://whc.unesco.org/en/list/1310",
+    "worldHeritage": "UNESCO World Heritage Centre — Cabo Verde State Party list: Cidade Velha is the State Party's inscribed World Heritage property as checked 2026-09-27. https://whc.unesco.org/en/statesparties/cv",
+    "fogoPark": "UNESCO World Heritage Centre Tentative List — Fogo Natural Park – Chã das Caldeiras: Pico do Fogo 2,829m, volcanic caldera and active-volcano landscape. https://whc.unesco.org/en/tentativelists/6100/",
+    "pedraLume": "UNESCO World Heritage Centre Tentative List — Salinas de Pedra de Lume: saltworks in a volcanic crater on Sal, historical industrial landscape. https://whc.unesco.org/en/tentativelists/6101/",
+    "morna": "UNESCO Intangible Cultural Heritage — Morna, musical practice of Cabo Verde, inscribed 2019. https://ich.unesco.org/en/RL/morna-musical-practice-of-cabo-verde-01469",
+    "climate": "Visit Cabo Verde — climate overview: long dry season interrupted by roughly three wetter months; rugged islands receive more rain; checked 2026-09-27. https://www.visit-caboverde.com/en/about-cabo-verde",
+    "ferries": "CV InterIlhas official schedules and route information, checked 2026-09-27. https://www.cvinterilhas.cv/",
+    "food": "Cape Verdean food references cross-checked 2026-09-28: traditional pastel com diabo dentro uses a spicy tuna filling in a corn/sweet-potato style fried pastry; cachupa, grilled fish and cuscuz are representative Cape Verde foods. Supporting references: https://www.mofa.go.jp/mofaj/area/capeverde/data.html ; https://bakukitchen.com/pastel-com-diabo-dentro/ ; https://spintheglobeofficial.com/recipe/cape-verdean-pastel-com-diabo-dentro",
+    "brava": "Visit Cabo Verde — Brava Island: Nova Sintra, houses and gardens in the island highlands; checked 2026-09-27. https://visit-caboverde.com/en/islands/brava-island",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-27 against UNESCO property coordinates and OpenStreetMap/GeoNames mapped references: Chã das Caldeiras 14.9672,-24.3669; Fontainhas 17.18801,-25.1041; Mindelo 16.8873,-24.9864; Monte Gordo 16.620833,-24.354167; Pedra de Lume salt pans 16.7726,-22.9014; Deserto de Viana 16.14327,-22.86481; Cidade Velha 14.915139,-23.605194; São Filipe 14.8953,-24.4969; Nova Sintra 14.87107,-24.69565; Praia 14.9163,-23.5095.",
+    "map": "Natural Earth 1:10m Admin-0 CPV geometry, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Natural Earth 1:10m coastline from nvkelso/natural-earth-vector used to restore Santa Luzia and Raso omitted from the Admin-0 country polygon; WGS84; checked 2026-09-27.",
+    "turtles": "Instituto do Turismo de Cabo Verde — climate/nature pages: sea turtle nesting is observed mainly from June to October on Sal, Boa Vista, Maio and Santiago; checked 2026-09-27. https://www.visit-caboverde.com/en/about-cabo-verde/climate",
+    "grogue": "Instituto do Turismo de Cabo Verde — Santo Antão Island: grogue sugarcane spirit has been produced on the island for centuries; distilleries are found around Ribeira da Cruz and Corda; checked 2026-09-27. https://www.visit-caboverde.com/en/islands/santo-antao-island",
+    "population": "Ministry of Foreign Affairs of Japan — Cabo Verde basic data, updated 21 Jul 2026: 2025 population approx. 527,000; checked 2026-09-28. https://www.mofa.go.jp/mofaj/area/capeverde/data.html"
+  }
+}
