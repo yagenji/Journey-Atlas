@@ -52,19 +52,19 @@
   "scenes": [
     {
       "id": "S01",
-      "name": "Historic Town of Grand-Bassam",
-      "nameLocal": "Ville historique de Grand-Bassam",
-      "mapLabel": "Grand-Bassam",
-      "description": "ギニア湾とラグーンに挟まれた旧都。19世紀末〜20世紀初頭の都市計画と植民地期建築、N’zimaの漁村が同じ歴史地区に重なる。",
+      "name": "Waraniéné Weaving Village",
+      "nameLocal": "Waraniéné / village des tisserands",
+      "mapLabel": "Waraniéné",
+      "description": "コロゴ近郊で織物づくりが受け継がれるSénoufo文化圏の村。細長い織り機と糸、幾何学模様の布が並び、北部のサバンナで生活文化そのものが景観になる。",
       "coordinates": {
-        "latitude": 5.195833,
-        "longitude": -3.736389
+        "latitude": 9.42556,
+        "longitude": -5.66862
       },
-      "image": "assets/images/cotedivoire/approved/scene-01-grand-bassam.webp",
-      "labelPosition": "right",
+      "image": "assets/images/cotedivoire/approved/scene-01-waraniene.webp",
+      "labelPosition": "left",
       "mapOffset": {
-        "x": 2,
-        "y": 6
+        "x": -4,
+        "y": -4
       }
     },
     {
@@ -86,19 +86,19 @@
     },
     {
       "id": "S03",
-      "name": "Dent de Man",
-      "nameLocal": "Dent de Man",
-      "mapLabel": "Dent de Man",
-      "description": "西部マンを象徴する二つの頂をもつ岩峰。緑の山地と急な岩肌が、沿岸平野とは異なる西部の地形を見せる。",
+      "name": "Man Waterfall",
+      "nameLocal": "Les Cascades Naturelles de Man",
+      "mapLabel": "Man Waterfall",
+      "description": "マン郊外の濃い緑に包まれ、岩壁を白い水が落ちる天然の滝。西部山地の湿潤な森と起伏を、都市のすぐ外で体感できる。",
       "coordinates": {
-        "latitude": 7.456389,
-        "longitude": -7.543889
+        "latitude": 7.41205,
+        "longitude": -7.58638
       },
-      "image": "assets/images/cotedivoire/approved/scene-03-dent-de-man.webp",
+      "image": "assets/images/cotedivoire/approved/scene-03-man-waterfall.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -6,
-        "y": 0
+        "x": -4,
+        "y": 3
       }
     },
     {
@@ -120,19 +120,19 @@
     },
     {
       "id": "S05",
-      "name": "Mount Nimba Strict Nature Reserve",
-      "nameLocal": "Réserve naturelle intégrale du mont Nimba",
-      "mapLabel": "Mt Nimba",
-      "description": "ギニア国境にまたがる山岳保護区。低地の森林から高所の草原へ植生が切り替わり、西アフリカでは希少な山地景観をつくる。",
+      "name": "Mont Tonkoui",
+      "nameLocal": "Mont Tonkoui / Mont Tonkpi",
+      "mapLabel": "Mont Tonkoui",
+      "description": "マンの北西にそびえる西部の山。山腹の濃い森林を抜けて高所へ上がると、周囲の山並みが重なり、ギニア湾沿岸とは異なる高地のスケールが開ける。",
       "coordinates": {
-        "latitude": 7.603181,
-        "longitude": -8.390969
+        "latitude": 7.4541,
+        "longitude": -7.637
       },
-      "image": "assets/images/cotedivoire/approved/scene-05-mount-nimba.webp",
+      "image": "assets/images/cotedivoire/approved/scene-05-mont-tonkoui.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": 2,
-        "y": -3
+        "x": -5,
+        "y": -5
       }
     },
     {
@@ -189,9 +189,9 @@
   ],
   "encounters": [
     {
-      "title": "旧都の歴史地区を歩く",
-      "category": "CITY",
-      "icon": "city"
+      "title": "織り手の村で布づくりを見る",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
     },
     {
       "title": "都市の中の熱帯林へ入る",
@@ -199,7 +199,7 @@
       "icon": "landscape"
     },
     {
-      "title": "岩峰を見上げて歩く",
+      "title": "森の中の滝へ歩く",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
@@ -209,8 +209,8 @@
       "icon": "nature"
     },
     {
-      "title": "山地の植生変化を見る",
-      "category": "NATURE",
+      "title": "西部の山へ登る",
+      "category": "MOVEMENT",
       "icon": "mountain"
     },
     {
@@ -618,7 +618,10 @@
     "dentMan": "Wikidata / Geographic Names Server reference for Dent de Man, checked 27 Sep 2026: 7°27′23″N 7°32′38″W, elevation 881 m. https://www.wikidata.org/wiki/Q23211571",
     "abidjan": "Mapped real-location reference for St Paul’s Cathedral / Plateau anchor, checked 27 Sep 2026: 5°19′58.4″N 4°1′12.4″W; Le Plateau is Abidjan’s administrative/business centre above Ébrié Lagoon. https://www.wikidata.org/wiki/Q2441417",
     "basilica": "Real-location reference for Basilica of Our Lady of Peace, Yamoussoukro: 6°48′40.4″N 5°17′49.9″W from SAYPE Yamoussoukro project page; checked 27 Sep 2026. https://en.saype-artiste.com/yamoussoukro2020",
-    "sceneCoordinates": "WGS84 real-location points checked 27 Sep 2026 against UNESCO coordinates and mapped references: Grand-Bassam 5.195833,-3.736389; Banco 5.395175,-4.052743; Dent de Man 7.456389,-7.543889; Taï 5.648889,-7.095278; Mount Nimba 7.603181,-8.390969; Grande Mosquée de Kong 9.149167,-4.6095; Comoé 9.077,-3.758; St Paul’s/Plateau anchor 5.332889,-4.020111; Basilica hero 6.81122,-5.29719; Yamoussoukro 6.8276,-5.2893.",
-    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; CIV target with GHA/BFA/MLI/GIN/LBR context; generated in JOURNEY ATLAS map-v3 style on 2026-09-27."
+    "sceneCoordinates": "WGS84 real-location points checked 27 Sep 2026 against UNESCO, OSM/Wikidata and IUCN references: Waraniéné 9.42556,-5.66862; Banco 5.395175,-4.052743; Man Waterfall 7.41205,-7.58638; Taï 5.648889,-7.095278; Mont Tonkoui 7.4541,-7.637; Grande Mosquée de Kong 9.149167,-4.6095; Comoé 9.077,-3.758; St Paul’s/Plateau anchor 5.332889,-4.020111; Basilica hero 6.81122,-5.29719; Yamoussoukro 6.8276,-5.2893.",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; CIV target with GHA/BFA/MLI/GIN/LBR context; generated in JOURNEY ATLAS map-v3 style on 2026-09-27.",
+    "waraniene": "Waraniéné mapped village near Korhogo, noted for weavers: OpenStreetMap node 1626953635 / Wikidata Q3566248, 9.42556,-5.66862; checked 27 Sep 2026. https://www.openstreetmap.org/node/1626953635 ; Côte d’Ivoire tourism north-region guide describes Korhogo artisan villages and weaving culture. https://www.tourisme.ci/destinations/nord-de-la-cote-divoire/",
+    "manWaterfall": "Les Cascades Naturelles de Man real mapped waterfall, OpenStreetMap node 2747251631 / Wikidata Q120065331; 7.41205,-7.58638, checked 27 Sep 2026. https://www.openstreetmap.org/node/2747251631 ; https://www.wikidata.org/wiki/Q120065331",
+    "montTonkoui": "Mont Tonkoui / Mont Tonkpi real summit, OpenStreetMap node 2747243570 / Wikidata Q3322154; 7.4541,-7.637, checked 27 Sep 2026. https://www.openstreetmap.org/node/2747243570 ; https://www.wikidata.org/wiki/Q3322154"
   }
 }
