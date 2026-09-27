@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "libya",
+  "nameEn": "LIBYA",
+  "nameJa": "リビア",
+  "region": "NORTH AFRICA / 27°N",
+  "seo": {
+    "description": "レプティス・マグナ、サブラタ、キュレネ、ガダーミス、タドラルト・アカクス。地中海の古代都市からオアシス、岩山のサハラまでを8つの景色と地図でたどるリビアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Tripoli",
+    "nameJa": "トリポリ",
+    "coordinates": {
+      "latitude": 32.8872,
+      "longitude": 13.1913
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 15,
+      "y": -22
+    },
+    "mapOffset": {
+      "x": 1.2,
+      "y": -1
+    }
+  },
+  "hero": {
+    "lead": "地中海岸の古代都市から、山地の穀倉、サハラのオアシスと岩峰へ。北から南へ進むほど、ローマ世界と隊商都市、乾燥地の暮らしが切り替わる。",
+    "image": "assets/images/libya/approved/hero.webp",
+    "location": "Archaeological Site of Leptis Magna",
+    "coordinates": {
+      "latitude": 32.63833,
+      "longitude": 14.29306
+    },
+    "mapOffset": {
+      "x": 1.2,
+      "y": 1
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 35.5,
+      "south": 18,
+      "west": 7.5,
+      "east": 27.2
+    },
+    "svg": "assets/images/libya/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth country geometry in WGS84 via LonnyGomes/CountryGeoJSONCollection (LBY with DZA/TUN/EGY/NER/TCD/SDN context). Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "sabratha",
+      "name": "サブラタ",
+      "nameLocal": "Archaeological Site of Sabratha",
+      "mapLabel": "Sabratha",
+      "description": "地中海に面した古代都市で、フェニキア人の交易拠点からローマ都市へ発展した。海に近い劇場や神殿、街路を歩くと、北アフリカと地中海交易が結びついた都市の姿が見える。",
+      "coordinates": {
+        "latitude": 32.80528,
+        "longitude": 12.485
+      },
+      "image": "assets/images/libya/approved/scene-1-sabratha.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -1
+      }
+    },
+    {
+      "id": "cyrene",
+      "name": "キュレネ",
+      "nameLocal": "Archaeological Site of Cyrene",
+      "mapLabel": "Cyrene",
+      "description": "ジェベル・アフダルの高地に広がるギリシャ・ローマ都市遺跡。神殿、聖域、列柱、劇場が地中海を望む緑の丘陵に点在し、西部の乾燥景観とは異なるキレナイカの地形を見せる。",
+      "coordinates": {
+        "latitude": 32.825,
+        "longitude": 21.85833
+      },
+      "image": "assets/images/libya/approved/scene-2-cyrene.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "ghadames-old-town",
+      "name": "ガダーミス旧市街",
+      "nameLocal": "Old Town of Ghadamès",
+      "mapLabel": "Ghadamès",
+      "description": "サハラ北縁のオアシスに、白く塗られた土造住宅と覆われた路地が密集する。水源とヤシ園、日射を避ける都市構造が一体になり、厳しい乾燥環境への適応が街そのものに表れる。",
+      "coordinates": {
+        "latitude": 30.13333,
+        "longitude": 9.5
+      },
+      "image": "assets/images/libya/approved/scene-3-ghadames.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "tadrart-acacus",
+      "name": "タドラルト・アカクス",
+      "nameLocal": "Rock-Art Sites of Tadrart Acacus",
+      "mapLabel": "Tadrart Acacus",
+      "description": "フェザーン南西部で、砂丘の間から侵食された砂岩の塔や岩壁が立ち上がる。洞窟壁画と線刻は、現在の砂漠とは異なる環境と、人々の暮らしが長い時間の中で変化したことを伝える。",
+      "coordinates": {
+        "latitude": 24.83333,
+        "longitude": 10.33333
+      },
+      "image": "assets/images/libya/approved/scene-4-tadrart-acacus.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "sayeda-mariam-square",
+      "name": "サイエダ・マリアム広場 / トリポリ旧市街",
+      "nameLocal": "Sayeda Mariam Square / Old City of Tripoli",
+      "mapLabel": "Tripoli Old City",
+      "description": "トリポリ旧市街に残る歴史広場で、18世紀中頃には存在したことが史料で確認される。モスク、教会、旧領事館などが近接する旧市街を歩くと、地中海港湾都市の多層的な歴史が見える。",
+      "coordinates": {
+        "latitude": 32.89869,
+        "longitude": 13.17597
+      },
+      "image": "assets/images/libya/approved/scene-5-tripoli-old-city.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 1
+      }
+    },
+    {
+      "id": "qasr-al-haj",
+      "name": "カスル・アル・ハッジ",
+      "nameLocal": "Qasr Al-Haj",
+      "mapLabel": "Qasr Al-Haj",
+      "description": "ナフサ山地の麓にある円形の共同穀倉。中庭を囲んで小さな貯蔵室が幾層にも並び、穀物や油を保管する機能と共同体の仕組みが、建築の反復として見える。",
+      "coordinates": {
+        "latitude": 32.04,
+        "longitude": 12.16475
+      },
+      "image": "assets/images/libya/approved/scene-6-qasr-al-haj.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "ghirza",
+      "name": "ギルザ",
+      "nameLocal": "Archaeological Site of Ghirza",
+      "mapLabel": "Ghirza",
+      "description": "トリポリタニアの半砂漠地帯に、農業集落、要塞的建物、神殿、装飾された石造墓廟がまとまって残る。沿岸の大都市とは異なるローマ帝国辺境の生活と交易を伝える遺跡。",
+      "coordinates": {
+        "latitude": 30.94674,
+        "longitude": 14.55107
+      },
+      "image": "assets/images/libya/approved/scene-7-ghirza.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "awjila-ancient-mosque",
+      "name": "アウジラ古モスク",
+      "nameLocal": "The Ancient Mosque of Awjila",
+      "mapLabel": "Awjila",
+      "description": "東部サハラのオアシス都市アウジラに残る歴史的モスク。白い土造建築とドーム状の屋根がヤシ園の緑と重なり、古くからの隊商路とイスラム文化がオアシスに根付いた景観をつくる。",
+      "coordinates": {
+        "latitude": 29.12764,
+        "longitude": 21.29089
+      },
+      "image": "assets/images/libya/approved/scene-8-awjila.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "地中海岸のローマ都市を歩く",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "緑の丘陵に残るギリシャ都市を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "覆われたオアシスの路地を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "岩峰と砂丘のサハラを見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "トリポリ旧市街の広場を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "共同穀倉の中庭に入る",
+      "category": "ARCHITECTURE",
+      "icon": "landmark"
+    },
+    {
+      "title": "半砂漠の石造墓廟をたどる",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "オアシスの古モスクを見る",
+      "category": "FAITH",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "leptis-severan-city",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "レプティス・マグナでは、ローマ皇帝の故郷が帝国都市へ拡張された",
+      "text": "レプティス・マグナは当地出身の皇帝セプティミウス・セウェルスの時代に大きく拡張・装飾された。港、市場、公共建築、住宅地区まで残り、ローマ帝国と北アフリカの結びつきを都市規模でたどれる。",
+      "points": [
+        "大規模な公共建築と人工港が残る",
+        "1982年に世界遺産へ登録"
+      ],
+      "sourceKey": "leptis"
+    },
+    {
+      "topicKey": "ghadames-climate-urbanism",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ガダーミスでは、路地の暗さと水管理が砂漠都市の暮らしを支える",
+      "text": "旧市街は泉とヤシ園を核に発達し、住宅が互いに接続して覆われた通路をつくる。強い日差しを避け、限られた水を配る方法が、建築と街路の形に直接現れている。",
+      "points": [
+        "オアシスの泉とヤシ園が都市構造の核",
+        "住宅外壁が旧市街の外周防御も兼ねる"
+      ],
+      "sourceKey": "ghadames"
+    },
+    {
+      "topicKey": "acacus-long-environment-record",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アカクスの岩絵は、サハラが変化した一万年以上を映す",
+      "text": "タドラルト・アカクスには、紀元前約1万2000年から西暦100年頃までの多様な岩絵・線刻が残る。動物や狩猟、牧畜の表現から、気候と生態系、人の暮らしの変化を読み取れる。",
+      "points": [
+        "数千点規模の岩絵・線刻が残る",
+        "砂岩の岩峰と文化記録が同じ景観に重なる"
+      ],
+      "sourceKey": "acacus"
+    },
+    {
+      "topicKey": "cyrene-greek-africa",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "キュレネでは、ギリシャ都市文化が北アフリカの高地に根付いた",
+      "text": "キュレネは古代ギリシャ世界の重要都市の一つで、のちにローマ支配下でも発展した。ジェベル・アフダルの地形と神殿・聖域を一緒に見ると、海岸だけではないキレナイカの歴史地理が見えてくる。",
+      "points": [
+        "アポロン聖域など大規模宗教建築が残る",
+        "1982年に世界遺産へ登録"
+      ],
+      "sourceKey": "cyrene"
+    },
+    {
+      "topicKey": "ghirza-frontier-farms",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ギルザは、ローマ帝国の辺境で農業集落が成立した痕跡を残す",
+      "text": "ギルザには大小約40の構造物、神殿、二つの墓域がまとまり、装飾墓廟が際立つ。海岸都市から離れた半乾燥地でも農業と交易が成立していたことを示す。",
+      "points": [
+        "遺跡は約500m×300mの範囲",
+        "大小約40の構造物が確認される"
+      ],
+      "sourceKey": "ghirza"
+    },
+    {
+      "topicKey": "tripoli-port-city-layers",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "トリポリ旧市街では、地中海港湾都市の宗教と交易の層が重なる",
+      "text": "旧市街にはモスク、教会、スーク、旧領事館などが近い距離に残る。サイエダ・マリアム広場を起点に歩くと、オスマン期以降の港町が複数の共同体と交易を受け入れてきた歴史が見える。",
+      "points": [
+        "サイエダ・マリアム広場は18世紀中頃から記録される",
+        "旧市街は現在も首都中心部に残る"
+      ],
+      "sourceKey": "sayedaMariam"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "five-world-heritage",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "リビアの世界遺産は5件すべて文化遺産",
+      "text": "キュレネ、レプティス・マグナ、サブラタ、ガダーミス、タドラルト・アカクスの5件。古代都市、砂漠都市、岩絵まで性格が大きく異なる。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "all-five-in-danger",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "保全",
+      "title": "5件すべてが「危機遺産」リストに載る",
+      "text": "UNESCOは2016年にリビアの5世界遺産すべてを危機遺産リストへ記載した。旅の魅力と同時に、保全の難しさも知っておきたい。",
+      "icon": "history",
+      "sourceKey": "danger"
+    },
+    {
+      "topicKey": "qasr-al-haj-tentative",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "カスル・アル・ハッジは2026年に世界遺産暫定一覧へ追加",
+      "text": "円形の共同穀倉として知られる建築で、ナフサ山地周辺の共同体が食料を蓄える仕組みを空間として伝える。",
+      "icon": "landmark",
+      "sourceKey": "qasrAlHaj"
+    },
+    {
+      "topicKey": "awjila-tentative",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "アウジラ古モスクも2026年に暫定一覧へ追加",
+      "text": "現在残る古い部分は中世に遡るとされ、オアシス都市におけるイスラム建築の地域的な形を伝える。",
+      "icon": "culture",
+      "sourceKey": "awjila"
+    },
+    {
+      "topicKey": "sayeda-mariam-area",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "サイエダ・マリアム広場は約863㎡",
+      "text": "トリポリ旧市街の比較的小さな広場だが、教会や歴史建築に囲まれ、港湾都市の多文化的な層を見る入口になる。",
+      "icon": "city",
+      "sourceKey": "sayedaMariam"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF LIBYA",
+    "title": "リビアで食べたいもの",
+    "intro": "大麦や小麦、トマト、ひよこ豆、肉を使う温かな料理が中心。手でまとめる主食、スープ、パスタ、甘い粉ものという違いが見える4品。",
+    "items": [
+      {
+        "id": "bazin",
+        "name": "バジン",
+        "nameLocal": "Bazin",
+        "text": "大麦粉などを練って中央に丸く盛り、トマト系のソース、肉、卵などを周囲に添える代表的な家庭料理。濃いソースと弾力のある主食を一緒に食べる。",
+        "image": "assets/images/libya/approved/food-1-bazin.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "sharba-libiya",
+        "name": "シャルバ・リビヤ",
+        "nameLocal": "Sharba Libiya",
+        "text": "トマトを基調に、ひよこ豆、小さなパスタや穀物、香草、肉などを煮るリビア風スープ。家庭やラマダン期の食卓でも親しまれる。",
+        "image": "assets/images/libya/approved/food-2-sharba-libiya.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mbakbaka",
+        "name": "ムバクバカ",
+        "nameLocal": "Mbakbaka",
+        "text": "短いパスタをトマト、香辛料、肉などと一鍋で煮込み、ソースをしっかり吸わせる料理。北アフリカとイタリアの食文化が交差するリビアらしい一皿。",
+        "image": "assets/images/libya/approved/food-3-mbakbaka.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "asida",
+        "name": "アシーダ",
+        "nameLocal": "Asida",
+        "text": "小麦粉などを練って滑らかな塊にし、蜂蜜やデーツシロップ、油脂を合わせる料理。朝食や祝いの場でも食べられる、素朴で甘い粉もの。",
+        "image": "assets/images/libya/approved/food-4-asida.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月現在、日本外務省の危険情報ではリビアの大部分で渡航中止・退避を含む高い危険レベルが示されている。以下は渡航推奨ではなく、国土の広がりを理解するための地理的な移動スケール。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "トリポリタニア沿岸に絞る",
+        "text": "首都と西部沿岸の古代都市を一つの地理圏として見る想定。例：トリポリ → サブラタ → レプティス・マグナ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "東部キレナイカまで広げる",
+        "text": "西部沿岸から東部の高地へ視点を移し、古代都市の立地の違いを見る想定。例：トリポリ → レプティス・マグナ → キュレネ。",
+        "icon": "map"
+      },
+      {
+        "duration": "10日以上",
+        "title": "サハラを別ブロックとして捉える",
+        "text": "沿岸都市とガダーミス、フェザーン南西部を別の地理圏として組み合わせる想定。例：トリポリ周辺 → ガダーミス → タドラルト・アカクス。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#b8aa83",
+      "text": "北部では春で、地中海沿岸や高地が比較的穏やか。サハラでは日中の暑さが強まり始めるため、南へ行くほど朝夕中心の行動になる。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#d4b16b",
+      "text": "全国的に高温で乾燥し、内陸とサハラでは厳しい暑さになる。沿岸でも強い日差しが続き、長時間の屋外行動には向きにくい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b89b72",
+      "text": "北部の暑さが徐々に和らぎ、秋後半は乾燥地でも動きやすくなる。沿岸と砂漠では昼夜の温度差が大きくなる。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#8fa1a6",
+      "text": "地中海沿岸は涼しく雨が増え、高地はさらに冷える。サハラの日中は比較的穏やかでも、夜間は大きく冷え込む。"
+    }
+  ],
+  "transport": {
+    "title": "現在は通常の観光移動を前提にしない",
+    "text": "2026年9月現在、安全情勢の地域差と変化が大きく、道路・航空・国境越えを一般的な旅行手段として案内できる状況ではない。実際の移動を検討する場合は、外務省海外安全情報と現地の公的情報を最優先する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "地中海古代都市を一国の中で比較したい人",
+      "text": "レプティス・マグナ、サブラタ、キュレネをつなぎ、フェニキア・ギリシャ・ローマ世界が北アフリカでどう展開したかを地理と建築から見たい人。"
+    },
+    {
+      "title": "オアシス都市とサハラの環境適応に興味がある人",
+      "text": "ガダーミス、アウジラ、共同穀倉などを通じて、水、日射、保存、共同体の仕組みが乾燥地の建築をどう形づくったかを知りたい人。"
+    },
+    {
+      "title": "砂漠を空白ではなく長い人類史として見たい人",
+      "text": "タドラルト・アカクスの岩絵とギルザの辺境集落を並べ、サハラが気候・交易・生活の変化を記録する土地であることを読みたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北アフリカ / マグレブ / 地中海沿岸"
+    },
+    {
+      "label": "首都",
+      "value": "トリポリ"
+    },
+    {
+      "label": "人口",
+      "value": "約746万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "約176万 km²（日本の約4.7倍）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教（スンニ派が多数）"
+    },
+    {
+      "label": "通貨",
+      "value": "リビア・ディナール（LYD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "libya-five-world-heritage",
+      "label": "世界遺産",
+      "value": "5件",
+      "note": "リビアの世界遺産はキュレネ、レプティス・マグナ、サブラタ、ガダーミス、タドラルト・アカクスの5件で、すべて文化遺産。",
+      "icon": "history",
+      "interestReason": "地中海古代都市からサハラの岩絵・オアシス都市まで、5件だけで国土の歴史地理の振れ幅をつかめる。"
+    },
+    {
+      "topicKey": "acacus-time-depth",
+      "label": "アカクスの岩絵",
+      "value": "約1万2000年前から",
+      "note": "UNESCOはタドラルト・アカクスの岩絵・線刻の最古期を紀元前約1万2000年、最も新しいものを西暦100年頃としている。",
+      "icon": "history",
+      "interestReason": "現在は砂漠の場所に、気候と生態系、人の暮らしが変化した長い時間が記録されている。"
+    },
+    {
+      "topicKey": "ghirza-structures",
+      "label": "ギルザの遺構",
+      "value": "約40棟",
+      "note": "UNESCO暫定一覧では、ギルザに小規模建物から大型建築まで約40の構造物がまとまると説明される。",
+      "icon": "landmark",
+      "interestReason": "半砂漠の辺境集落が単独の墓ではなく、まとまった生活・宗教・防御空間だったことを数字で捉えられる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "safety-current",
+      "title": "旅程より先に最新の危険情報を確認する",
+      "text": "安全情勢は地域ごとの差と変化が大きい。地図や日程例は地理理解のためのもので、現時点の渡航可否や安全な経路を示すものではない。"
+    },
+    {
+      "topicKey": "desert-temperature-gap",
+      "title": "サハラでは暑さだけでなく夜の冷え込みも見る",
+      "text": "乾燥地では日射が強い一方、季節によって朝晩は大きく冷える。水、日差し対策、防寒を地域と季節に合わせて考える。"
+    },
+    {
+      "topicKey": "heritage-conservation",
+      "title": "遺跡は保全状態と立入範囲を現地で確認する",
+      "text": "リビアの5世界遺産は危機遺産リストに載る。遺跡内では最新の公開範囲と現地管理者の指示を優先し、脆弱な構造物や岩絵へ触れない。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇹🇳",
+      "countryEn": "TUNISIA",
+      "countryJa": "チュニジア",
+      "path": "Tripoli → Ras Jedir → Ben Guerdane → Tunis",
+      "description": "西へ視点を広げると、トリポリタニアからチュニジア南部、地中海沿岸へ地理と歴史が連続する。現在の越境可否・安全性を示すものではない。",
+      "travelerRoute": false,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用と安全情勢は変化するため、実際の移動は最新の公的情報を確認する。"
+    },
+    {
+      "flag": "🇪🇬",
+      "countryEn": "EGYPT",
+      "countryJa": "エジプト",
+      "path": "Cyrenaica → Sallum → Western Desert / Egypt",
+      "description": "東部キレナイカからエジプト西部砂漠へ視点を移すと、地中海岸と乾燥地の連続を国境を越えて比較できる。現在の越境可否を示すものではない。",
+      "travelerRoute": false,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "実際の国境通過・交通条件は最新の公的情報を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "tunisia",
+      "nameEn": "TUNISIA",
+      "nameJa": "チュニジア",
+      "flag": "🇹🇳",
+      "reason": "ローマ都市、地中海沿岸、マグレブの旧市街からサハラまで、共通する要素をよりコンパクトな国土で比較したいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "algeria",
+      "nameEn": "ALGERIA",
+      "nameJa": "アルジェリア",
+      "flag": "🇩🇿",
+      "reason": "サハラの岩山・岩絵、オアシス都市、ローマ遺跡をさらに広い地理スケールでつなげたいなら。",
+      "affinityType": "EARTH"
+    },
+    {
+      "slug": "egypt",
+      "nameEn": "EGYPT",
+      "nameJa": "エジプト",
+      "flag": "🇪🇬",
+      "reason": "北アフリカの古代文明と砂漠環境を、ナイル谷と地中海東部という異なる軸から比較したいなら。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-27",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2024-02-05",
+    "worldHeritage": "2026-09-27",
+    "danger": "2026",
+    "qasrAlHaj": "2026-04-15",
+    "awjila": "2026-04-15",
+    "sayedaMariam": "2026-04-17",
+    "safety": "2026-09-27",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — リビア国基礎データ: 面積176万km²、首都トリポリ、アラビア語、イスラム教、リビア・ディナール. https://www.mofa.go.jp/mofaj/area/libya/data.html",
+    "population": "World Bank — World Development Indicators, Libya population 2025: 7,458,555. https://data.worldbank.org/country/libya",
+    "worldHeritage": "UNESCO World Heritage Centre — Libya State Party page: 5 inscribed cultural properties and 6 Tentative List sites as checked 2026-09-27. https://whc.unesco.org/en/statesparties/ly",
+    "danger": "UNESCO World Heritage Centre — Libya's five World Heritage properties were inscribed on the List of World Heritage in Danger in 2016 and remain under conservation reporting. https://whc.unesco.org/en/decisions/6837",
+    "leptis": "UNESCO World Heritage Centre — Archaeological Site of Leptis Magna: N32 38 17.988 E14 17 35.016; Septimius Severus expansion and major public monuments. https://whc.unesco.org/en/list/183",
+    "sabratha": "UNESCO World Heritage Centre — Archaeological Site of Sabratha: Phoenician trading post later Romanized on the Mediterranean coast. https://whc.unesco.org/en/list/184",
+    "cyrene": "UNESCO World Heritage Centre — Archaeological Site of Cyrene: N32 49 30 E21 51 29.988. https://whc.unesco.org/en/list/190",
+    "ghadames": "UNESCO World Heritage Centre — Old Town of Ghadamès: N30 7 60 E9 30 0; desert urban settlement shaped by water management and climate. https://whc.unesco.org/en/list/362",
+    "acacus": "UNESCO World Heritage Centre — Rock-Art Sites of Tadrart Acacus: N24 49 59.988 E10 19 59.988; rock art from c. 12,000 BCE to 100 CE. https://whc.unesco.org/en/list/287",
+    "ghirza": "UNESCO Tentative List — Archaeological site of Ghirza: N30 56 48.25 E14 33 3.85; c.40 structures and two burial grounds. https://whc.unesco.org/en/tentativelists/6486",
+    "qasrAlHaj": "UNESCO Tentative List — Qasr Al-haj, submitted 15 Apr 2026, coordinates N32 2.40 E12 09 53.1. https://whc.unesco.org/en/tentativelists/7013/",
+    "awjila": "UNESCO Tentative List — The Ancient Mosque of Awjila, submitted 15 Apr 2026, coordinates N29 07 39.5 E21 17 27.2. https://whc.unesco.org/en/tentativelists/7014/",
+    "sayedaMariam": "UNESCO Tentative List — Sayeda Mariam Square, submitted 17 Apr 2026, coordinates N32 53 55.3 E13 10 33.5; area approx. 863.28 m². https://whc.unesco.org/en/tentativelists/7020/",
+    "food": "Traditional Libyan food identities used for editorial description: Bazin, Sharba Libiya, Mbakbaka and Asida; cross-checked against Libyan cultural and regional food references during production.",
+    "safety": "外務省 海外安全ホームページ — リビア危険情報; current status checked 2026-09-27. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_127.html",
+    "map": "Natural Earth country geometry in WGS84 via LonnyGomes/CountryGeoJSONCollection; LBY target with DZA/TUN/EGY/NER/TCD/SDN context; JOURNEY ATLAS map-v3 style; generated 2026-09-27.",
+    "sceneCoordinates": "WGS84 points checked 2026-09-27 against UNESCO property/tentative-list coordinates: Leptis Magna 32.63833,14.29306; Sabratha 32.80528,12.485; Cyrene 32.825,21.85833; Ghadamès 30.13333,9.5; Tadrart Acacus 24.83333,10.33333; Sayeda Mariam Square 32.89869,13.17597; Qasr Al-Haj 32.04,12.16475; Ghirza 30.94674,14.55107; Awjila 29.12764,21.29089; Tripoli 32.8872,13.1913."
+  }
+}
