@@ -190,17 +190,17 @@
   "encounters": [
     {
       "title": "野生動物を観察する",
-      "category": "NATURE",
+      "category": "WILDLIFE",
       "icon": "wildlife"
     },
     {
       "title": "川沿いの暮らしを見る",
-      "category": "LIFE",
+      "category": "DAILY_LIFE",
       "icon": "river"
     },
     {
       "title": "巨石遺構を歩く",
-      "category": "HISTORY",
+      "category": "CULTURE",
       "icon": "history"
     },
     {
@@ -210,7 +210,7 @@
     },
     {
       "title": "歴史遺構をたどる",
-      "category": "HISTORY",
+      "category": "CULTURE",
       "icon": "culture"
     },
     {
@@ -220,12 +220,12 @@
     },
     {
       "title": "広いサバンナを見渡す",
-      "category": "NATURE",
+      "category": "LANDSCAPE",
       "icon": "wildlife"
     },
     {
       "title": "滝と川の地形を見る",
-      "category": "EARTH",
+      "category": "LANDSCAPE",
       "icon": "water"
     }
   ],
@@ -314,20 +314,11 @@
       "sourceKey": "constitution"
     },
     {
-      "topicKey": "landlocked-six-neighbours",
-      "categoryEn": "GEOGRAPHY",
-      "categoryJa": "地理",
-      "title": "海を持たず、6か国と国境を接する",
-      "text": "カメルーン、チャド、スーダン、南スーダン、コンゴ民主共和国、コンゴ共和国に囲まれた内陸国。地域間の移動と物流は周辺国との接続に大きく左右される。",
-      "icon": "map",
-      "sourceKey": "profile"
-    },
-    {
-      "topicKey": "forest-share-2023",
+      "topicKey": "forest-share-2022",
       "categoryEn": "NATURE",
       "categoryJa": "森林",
       "title": "国土の約35.7%が森林",
-      "text": "世界銀行の2023年データでは森林面積は国土の35.7%。南西部の湿潤林から北部のサバンナへ、植生は大きく変化する。",
+      "text": "世界銀行の2022年データでは森林面積は国土の35.7%。南西部の湿潤林から北部のサバンナへ、植生は大きく変化する。",
       "icon": "forest",
       "sourceKey": "forest"
     },
@@ -341,13 +332,22 @@
       "sourceKey": "banguiRiver"
     },
     {
-      "topicKey": "three-climate-zones",
-      "categoryEn": "CLIMATE",
-      "categoryJa": "気候",
-      "title": "南北に3つの主要気候帯が並ぶ",
-      "text": "国連資料は南部のギニア森林・赤道型、中央部のスーダン・ギニア型、北部のスーダン・サヘル型という3区分を示している。",
-      "icon": "weather",
-      "sourceKey": "climate"
+      "topicKey": "natural-world-heritage-only",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産2件はいずれも自然遺産",
+      "text": "登録されているサンガ三国保護地域とマノヴォ＝グンダ・サン・フロリス国立公園は、いずれも自然遺産。森林とサバンナという異なる生態系が対象になっている。",
+      "icon": "wildlife",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "zinga-six-kilometre-railway",
+      "categoryEn": "HISTORY",
+      "categoryJa": "交通史",
+      "title": "ジンガには約6kmの短い鉄道があった",
+      "text": "1920年代、ウバンギ川の低水位期に船が通りにくい区間を迂回するため敷設され、1960年まで使われた。",
+      "icon": "road",
+      "sourceKey": "zinga"
     }
   ],
   "taste": {
@@ -490,28 +490,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "population-density-2025",
-      "label": "人口密度",
-      "value": "約9人 / km²",
-      "note": "2025年の人口約551万人と国土面積623,000 km²からみた概算。広い国土に対して人口が疎らな国のスケールを示す。",
-      "icon": "people",
-      "interestReason": "都市の規模ではなく、移動距離と居住密度の低さからこの国の空間感覚をつかめるため。"
-    },
-    {
-      "topicKey": "forest-cover-2023",
-      "label": "森林被覆",
-      "value": "35.7%",
-      "note": "世界銀行の2023年データ。南西部のコンゴ盆地森林が国土の大きな自然的特徴になっている。",
-      "icon": "forest",
-      "interestReason": "国土の3分の1超が森林という南北差を一つの数字で示せるため。"
+      "topicKey": "major-drainage-basins",
+      "label": "大河川流域",
+      "value": "2流域",
+      "note": "国土は北へ流れるシャリ川水系と、南へ流れるウバンギ川・コンゴ川水系の分水界にまたがる。",
+      "icon": "river",
+      "interestReason": "中央アフリカ共和国が内陸国でありながら、北のチャド湖側と南のコンゴ盆地側という二つの巨大水系を分ける高原であることが分かるため。"
     },
     {
       "topicKey": "climate-zone-count",
       "label": "主要気候帯",
       "value": "3帯",
-      "note": "国連資料は南部のギニア森林・赤道型、中央部のスーダン・ギニア型、北部のスーダン・サヘル型に区分している。",
+      "note": "南部の湿潤な森林帯、中央部のギニア・サバンナ帯、北部のより乾燥したサブサヘル帯に大きく分かれる。",
       "icon": "weather",
-      "interestReason": "熱帯林からサヘル寄りのサバンナまで、国土を縦断すると自然環境が段階的に変わることを端的に示せるため。"
+      "interestReason": "南西の熱帯林から北東の乾いたサバンナまで、国土を縦断すると自然環境が段階的に変わることを端的に示せるため。"
+    },
+    {
+      "topicKey": "land-border-count",
+      "label": "接する国",
+      "value": "6か国",
+      "note": "カメルーン、チャド、スーダン、南スーダン、コンゴ民主共和国、コンゴ共和国と国境を接する内陸国。",
+      "icon": "map",
+      "interestReason": "海への出口がなく、物流・河川・文化圏が六つの周辺国との接続によって形づくられる地理を一つの数字で示せるため。"
     }
   ],
   "tips": [
@@ -537,60 +537,20 @@
       "countryEn": "CAMEROON",
       "countryJa": "カメルーン",
       "path": "Bangui → Bouar → Béloko / Garoua-Boulaï",
-      "description": "西へ延びる主要物流軸。バンギからブアール、ベロコを経てカメルーンのガルア・ブライへ接続し、さらにドゥアラやクリビ方面へつながる内陸国の重要回廊。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "2026年9月現在、中央アフリカ共和国全土は日本外務省の危険レベル4。物流回廊としての説明であり、旅行ルートとして推奨しない。"
-    },
-    {
-      "flag": "🇹🇩",
-      "countryEn": "CHAD",
-      "countryJa": "チャド",
-      "path": "Northern CAR ↔ Chad border",
-      "description": "北部でチャドと接する陸上国境。サバンナと牧畜・交易圏が連続するが、現状は旅行者向けの具体的な越境経路として扱わない。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "両国側の治安と国境運用は変化し得る。中央アフリカ共和国側は全土危険レベル4。"
-    },
-    {
-      "flag": "🇸🇩",
-      "countryEn": "SUDAN",
-      "countryJa": "スーダン",
-      "path": "Birao → Am Dafock → Darfur",
-      "description": "北東部ビラオからアム・ダフォックを経てスーダンのダルフール側へ続く国境軸。人と物の往来がある一方、スーダン紛争の影響を直接受ける地域。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "2026年にMINUSCAが国境の不安定化を報告。中央アフリカ共和国とスーダン双方の最新危険情報を前提に、旅行ルートとはしない。"
-    },
-    {
-      "flag": "🇸🇸",
-      "countryEn": "SOUTH SUDAN",
-      "countryJa": "南スーダン",
-      "path": "Eastern CAR ↔ South Sudan border",
-      "description": "国土最東部で南スーダンと接する陸上国境。道路網が薄い遠隔地域で、地理上の隣国関係として示す。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "現在の旅行者向け越境路として案内できる安定した公的運用情報を確認できないため、地理的接続のみ記載。"
+      "description": "バンギからブアール、ベロコを経てカメルーンのガルア・ブライへ接続する主要陸路回廊。中央アフリカ共和国の輸入物流を支える代表的な西向きルート。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在、中央アフリカ共和国全土は日本外務省の危険レベル4。実際の旅行利用を勧めるものではなく、国境運用と治安を必ず最新情報で確認する。"
     },
     {
       "flag": "🇨🇩",
       "countryEn": "CONGO - KINSHASA",
       "countryJa": "コンゴ民主共和国",
       "path": "Bangui ↔ Zongo across the Ubangi River",
-      "description": "首都バンギの対岸がコンゴ民主共和国のゾンゴ。現在は恒久橋ではなく河川横断が基本で、アフリカ開発銀行は両岸を結ぶ橋梁計画を進めている。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "2026年時点で橋は計画・整備段階。中央アフリカ共和国全土の危険レベル4を前提に、現行の旅行手段として案内しない。"
-    },
-    {
-      "flag": "🇨🇬",
-      "countryEn": "CONGO - BRAZZAVILLE",
-      "countryJa": "コンゴ共和国",
-      "path": "Mongoumba area ↔ Republic of the Congo border",
-      "description": "南西部ロバイ州側でコンゴ共和国と接する国境。政府はモングンバ周辺を含む南部の河川・道路物流回廊を検討してきた。",
-      "travelerRoute": false,
-      "status": "NOT_FOR_CURRENT_TRAVEL",
-      "statusNote": "現在の旅行者向け越境運用を裏づける十分な最新公的情報がないため、地理・物流上の接続としてのみ記載。"
+      "description": "バンギと対岸のゾンゴをウバンギ川で結ぶ河川横断。恒久橋はまだ整備段階で、両岸の往来は船を使う国境接続として知られる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "中央アフリカ共和国全土の危険レベル4に加え、コンゴ民主共和国側の国境地域にも渡航警告がある。最新の運航・国境情報を確認する。"
     }
   ],
   "relatedCountries": [
@@ -599,15 +559,15 @@
       "nameEn": "CAMEROON",
       "nameJa": "カメルーン",
       "flag": "🇨🇲",
-      "reason": "西部のサバンナ高原と物流回廊が連続する隣国。",
-      "affinityType": "NEIGHBOR"
+      "reason": "熱帯林からサバンナへ切り替わる中央アフリカの植生帯と、高原・河川の地理を連続して見たいなら。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "slug": "congo",
       "nameEn": "CONGO - BRAZZAVILLE",
       "nameJa": "コンゴ共和国",
       "flag": "🇨🇬",
-      "reason": "サンガ三国保護地域の熱帯林を共有する隣国。",
+      "reason": "サンガ三国保護地域の熱帯林を国境の反対側からたどり、コンゴ盆地の森林生態系をより深く見たいなら。",
       "affinityType": "NATURE"
     },
     {
@@ -615,8 +575,8 @@
       "nameEn": "CONGO - KINSHASA",
       "nameJa": "コンゴ民主共和国",
       "flag": "🇨🇩",
-      "reason": "ウバンギ川を長く国境として共有し、バンギの対岸にゾンゴがある。",
-      "affinityType": "RIVER"
+      "reason": "ウバンギ川とコンゴ川水系、河川都市、広大な熱帯林という共通軸をさらに大きなスケールで見たいなら。",
+      "affinityType": "NATURE"
     }
   ],
   "updatedAt": "2026-09-28",
@@ -628,10 +588,11 @@
     "religion": "2019 estimates cited in 2023 report",
     "travelAdvice": "2025-08-04 / verified current 2026-09-28",
     "climate": "verified 2026-09-28",
-    "forest": "2023",
+    "forest": "2022",
     "worldHeritage": "verified 2026-09-28",
     "routes": "verified 2026-09-28",
-    "food": "cross-checked 2026-09-28"
+    "food": "cross-checked 2026-09-28",
+    "drainage": "verified 2026-09-28"
   },
   "sources": {
     "population": "https://data.worldbank.org/country/central-african-republic",
@@ -657,6 +618,8 @@
     "drcBridge": "https://www.afdb.org/fr/documents/rca-projet-de-construction-pont-oubangui-route-bangui-kisangani-bujumbura-phase-1-p-z1-d00-060",
     "congoCorridor": "https://www.finances.gouv.cf/actualite/320/vers-la-diversification-des-voies-dapprovisionnement-du-pays-en-plus-du-principal-axe",
     "food": "https://en.wikipedia.org/wiki/Cuisine_of_the_Central_African_Republic",
-    "foodCrosscheck": "https://travelfoodguide.com/country/central-african-republic"
+    "foodCrosscheck": "https://travelfoodguide.com/country/central-african-republic",
+    "drainage": "FAO — Central African Republic geography: the uplands form a watershed between the Chari Basin and the Oubangui/Zaire (Congo) Basin. https://www.fao.org/4/t0473e/T0473E02.htm",
+    "worldHeritage": "UNESCO World Heritage Centre — Central African Republic country list: Sangha Trinational and Manovo-Gounda St Floris National Park, both natural properties. https://whc.unesco.org/en/statesparties/cf"
   }
 }
