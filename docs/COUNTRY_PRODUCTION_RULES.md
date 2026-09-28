@@ -128,6 +128,13 @@ After Hero, Scenes and Taste are approved, hand off exactly 13 final rasters onc
 - 8 Scenes;
 - 4 Taste images.
 
+Before this handoff, normalize the approved rasters to the repository delivery contract:
+- Scene S01–S08: **exactly 1200 × 800 px, WebP**;
+- Taste FOOD01–FOOD04: **exactly 1200 × 800 px, WebP**;
+- Hero: follow the separate Hero normalization rule in `scripts/normalize_country_image_delivery.py` (landscape WebP; do not infer the Scene/Taste 1200 × 800 rule applies to Hero).
+
+Generated source dimensions are not the final repository dimensions. A larger 3:2 Scene/Taste image is still unfinished until normalized to 1200 × 800.
+
 Production folders contain final assets only. Rejected candidates and temporary files do not belong in the repository.
 
 ## 9. IMPLEMENT
