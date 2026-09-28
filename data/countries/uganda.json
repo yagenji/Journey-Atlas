@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "uganda",
+  "nameEn": "UGANDA",
+  "nameJa": "ウガンダ",
+  "region": "EAST AFRICA / EQUATOR",
+  "seo": {
+    "description": "マーチソン滝、ブウィンディの熱帯林、ルウェンゾリ山地、カジンガ水路、カスビ王墓、キデポのサバンナ、シピ滝、ブニョニ湖、ニエロ岩絵。赤道をまたぐウガンダの自然と文化をたどる。"
+  },
+  "capital": {
+    "nameEn": "Kampala",
+    "nameJa": "カンパラ",
+    "coordinates": {
+      "latitude": 0.316284,
+      "longitude": 32.582188
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 14,
+      "y": -16
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "ナイル川が岩の狭間を抜けて落ちるマーチソン滝を起点に、霧の森、高山、サバンナ、湖沼、王国文化へ。赤道をまたぐ国土の中で、景観が短い距離ごとに大きく切り替わる。",
+    "image": "assets/images/uganda/approved/hero-murchison-falls.webp",
+    "location": "Murchison Falls",
+    "coordinates": {
+      "latitude": 2.27754,
+      "longitude": 31.68385
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 4.65,
+      "south": -1.85,
+      "west": 28.65,
+      "east": 35.35
+    },
+    "svg": "assets/images/uganda/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Uganda and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (UGA/COD/SSD/KEN/TZA/RWA). Lake Victoria and other water are preserved as geographic background rather than fabricated land. JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "bwindi-impenetrable",
+      "name": "ブウィンディ原生国立公園",
+      "nameLocal": "Bwindi Impenetrable National Park",
+      "mapLabel": "Bwindi",
+      "description": "ウガンダ南西部の山地に、標高差のある湿潤な熱帯林が残る。世界遺産は32,092ヘクタールを占め、マウンテンゴリラを含む高い生物多様性で知られる。深い森そのものがこの国の重要な旅の目的になる。",
+      "coordinates": {
+        "latitude": -1.047,
+        "longitude": 29.692
+      },
+      "image": "assets/images/uganda/approved/scene-1-bwindi.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.2,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "rwenzori-mountains",
+      "name": "ルウェンゾリ山地",
+      "nameLocal": "Rwenzori Mountains National Park",
+      "mapLabel": "Rwenzori",
+      "description": "コンゴ民主共和国との国境に沿って高峰が連なり、赤道近くにありながら高山性の植生と岩峰、湿地、氷河地形が現れる。ウガンダの「熱帯」という印象を標高から反転させる世界遺産。",
+      "coordinates": {
+        "latitude": 0.223611,
+        "longitude": 29.924167
+      },
+      "image": "assets/images/uganda/approved/scene-2-rwenzori.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.7,
+        "y": -0.8
+      }
+    },
+    {
+      "id": "kazinga-channel-mweya",
+      "name": "カジンガ水路 / ムウェヤ",
+      "nameLocal": "Kazinga Channel / Mweya",
+      "mapLabel": "Kazinga",
+      "description": "クイーン・エリザベス国立公園でエドワード湖とジョージ湖を結ぶ水路。岸辺にカバや水鳥などが集まり、火山地形と大地溝帯の湖沼、サバンナの野生動物を同じ視界に重ねて見られる。",
+      "coordinates": {
+        "latitude": -0.194444,
+        "longitude": 29.899167
+      },
+      "image": "assets/images/uganda/approved/scene-3-kazinga-channel.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.8,
+        "y": 1.8
+      }
+    },
+    {
+      "id": "kasubi-tombs",
+      "name": "カスビ王墓",
+      "nameLocal": "Tombs of Buganda Kings at Kasubi",
+      "mapLabel": "Kasubi Tombs",
+      "description": "カンパラの丘に残るブガンダ王国の王墓。1882年に宮殿として建てられた場所が王家の埋葬地となり、木、茅、葦など有機素材による大規模な建築と儀礼文化を伝える。",
+      "coordinates": {
+        "latitude": 0.329714,
+        "longitude": 32.554211
+      },
+      "image": "assets/images/uganda/approved/scene-4-kasubi-tombs.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": -1.7
+      }
+    },
+    {
+      "id": "kidepo-valley",
+      "name": "キデポ・バレー国立公園",
+      "nameLocal": "Kidepo Valley National Park",
+      "mapLabel": "Kidepo",
+      "description": "北東端カラモジャの半乾燥地に、季節河川の谷、草原、岩山、山地が広がる。南西部の森林や西部の湖沼地帯とは異なる乾いた景観で、国土の北東端まで行く意味をはっきり見せる。",
+      "coordinates": {
+        "latitude": 3.85,
+        "longitude": 33.81
+      },
+      "image": "assets/images/uganda/approved/scene-5-kidepo.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.8,
+        "y": 0.7
+      }
+    },
+    {
+      "id": "sipi-falls",
+      "name": "シピ滝",
+      "nameLocal": "Sipi Falls",
+      "mapLabel": "Sipi Falls",
+      "description": "エルゴン山北西斜面の高地から水が落ちる複数の滝。主瀑の周囲には急な緑の斜面と崖が続き、眼下にはカラモジャ側の平原が開く。東部の高低差を一枚の風景で感じられる。",
+      "coordinates": {
+        "latitude": 1.33811,
+        "longitude": 34.37994
+      },
+      "image": "assets/images/uganda/approved/scene-6-sipi-falls.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.2,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "lake-bunyonyi",
+      "name": "ブニョニ湖",
+      "nameLocal": "Lake Bunyonyi",
+      "mapLabel": "Lake Bunyonyi",
+      "description": "南西部の高地に細長い湖面と小島が連なる。周囲の急斜面には段々畑が刻まれ、湖、島、耕作地が一体になった人の暮らしの風景が、国立公園とは別のウガンダを見せる。",
+      "coordinates": {
+        "latitude": -1.2833,
+        "longitude": 29.9181
+      },
+      "image": "assets/images/uganda/approved/scene-7-lake-bunyonyi.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.6,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "nyero-rock-paintings",
+      "name": "ニエロ岩絵",
+      "nameLocal": "Nyero Rock Paintings",
+      "mapLabel": "Nyero",
+      "description": "東部の花崗岩の岩陰に、白色顔料を中心とした幾何学模様の岩絵が残る。ヴィクトリア湖周辺に分布する幾何学岩絵群の一部としてユネスコ暫定一覧に含まれ、自然景観だけではない長い文化史を示す。",
+      "coordinates": {
+        "latitude": 1.460606,
+        "longitude": 33.847117
+      },
+      "image": "assets/images/uganda/approved/scene-8-nyero-rock-paintings.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.7,
+        "y": 1.5
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "大河が岩間を落ちる滝を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "霧の山地林を歩く",
+      "category": "NATURE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "高山の岩峰と湿地を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "サバンナで野生動物を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "湖と島の暮らしの風景を見る",
+      "category": "LIFE",
+      "icon": "life"
+    },
+    {
+      "title": "王国の建築と儀礼文化に触れる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "岩陰に残る古い図像を見る",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "市場や街角で日常の食に出会う",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "rift-lakes-and-relief",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "西部では、大地溝帯の高低差が湖と山を近接させる",
+      "text": "ウガンダ西部では、ルウェンゾリ山地、エドワード湖、ジョージ湖、アルバート湖が比較的近い範囲に並ぶ。高山、断層地形、湖、サバンナが接続するため、移動距離以上に風景が大きく変わる。",
+      "points": [
+        "西部国境沿いにルウェンゾリ山地が連なる",
+        "クイーン・エリザベス国立公園では二つの湖をカジンガ水路が結ぶ"
+      ],
+      "sourceKey": "uwaParks"
+    },
+    {
+      "topicKey": "buganda-royal-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "首都カンパラには、現代都市の中にブガンダ王国の王墓が残る",
+      "text": "カスビ王墓は、ブガンダ王国の歴代王と王家の文化を伝える場所。大きな茅葺き建築と儀礼空間は、現在の首都景観の中に植民地以前から続く政治・精神文化の層を残している。",
+      "points": [
+        "1882年に宮殿として建設",
+        "2001年に世界遺産登録"
+      ],
+      "sourceKey": "unescoKasubi"
+    },
+    {
+      "topicKey": "forest-primate-conservation",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "森林保全は、ゴリラやチンパンジーだけでなく山地林そのものを守る",
+      "text": "ブウィンディやキバレなどの森林保護区では、霊長類が大きな魅力になる一方、保全対象は森林生態系全体に及ぶ。観察体験は、野生動物との距離だけでなく生息地を守る仕組みとセットで見ると理解が深まる。",
+      "points": [
+        "UWAは10の国立公園を管理",
+        "ブウィンディは自然世界遺産"
+      ],
+      "sourceKey": "uwaParks"
+    },
+    {
+      "topicKey": "equator-country",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "赤道は、ウガンダ南部を横切る",
+      "text": "ウガンダは赤道をまたぐ国の一つ。南部では北半球と南半球の境界を地理そのものとして意識できる一方、標高差が大きいため、赤道直下でも高地は涼しく、山地では高山環境まで現れる。",
+      "points": [
+        "国土は北半球と南半球にまたがる",
+        "熱帯でも標高によって気候と植生が変わる"
+      ],
+      "sourceKey": "utbCatalogue"
+    },
+    {
+      "topicKey": "lake-water-country",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "湖と湿地が、内陸国の景観を大きく占める",
+      "text": "UBOSは国内の水域と湿地を41,743平方キロメートルとしている。ヴィクトリア湖、アルバート湖、エドワード湖、ジョージ湖、キョガ湖などが国土の輪郭と移動を大きく左右する。",
+      "points": [
+        "水域・湿地は41,743平方キロメートル",
+        "複数の大湖が国境や地域景観を形づくる"
+      ],
+      "sourceKey": "ubosProfile"
+    },
+    {
+      "topicKey": "uganda-street-and-home-food",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "バナナの主食と街角のロレックスが、家庭と都市の日常をつなぐ",
+      "text": "蒸した青バナナのマトケや、バナナ葉で包んで蒸し煮するルウォンボのような家庭料理と、チャパティで卵を巻くロレックスのような街角の食が並ぶ。食べる場所まで含めて料理の性格が異なる。",
+      "points": [
+        "マトケは蒸した青バナナ",
+        "ロレックスはチャパティと卵のストリートフード"
+      ],
+      "sourceKey": "culinary"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "three-world-heritage",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は3件",
+      "text": "カスビ王墓の文化遺産1件と、ブウィンディ原生国立公園、ルウェンゾリ山地国立公園の自然遺産2件が登録されている。",
+      "icon": "history",
+      "sourceKey": "unescoUganda"
+    },
+    {
+      "topicKey": "ten-national-parks",
+      "categoryEn": "NATURE",
+      "categoryJa": "自然",
+      "title": "UWAが管理する国立公園は10園",
+      "text": "森林、高山、サバンナ、火山地帯まで、10の国立公園が異なる生態系を保護している。",
+      "icon": "wildlife",
+      "sourceKey": "uwaParks"
+    },
+    {
+      "topicKey": "census-digital-first",
+      "categoryEn": "PEOPLE",
+      "categoryJa": "人口",
+      "title": "2024年国勢調査はウガンダ初のデジタル国勢調査",
+      "text": "UBOSは2024年国勢調査を同国初のデジタル国勢調査として実施し、確定人口45,905,417人を公表した。",
+      "icon": "life",
+      "sourceKey": "ubosCensus"
+    },
+    {
+      "topicKey": "two-rainy-seasons",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "気候",
+      "title": "多くの地域に二つの主要な雨季がある",
+      "text": "気象当局は3〜5月と9〜12月を主要な雨季とし、北部・東部では6〜8月にもまとまった雨があるとしている。",
+      "icon": "map",
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "swahili-second-official",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "英語に加えてスワヒリ語も公用語",
+      "text": "憲法は英語を公用語とし、スワヒリ語を第二公用語と定める。国内ではさらに多数の地域言語が使われる。",
+      "icon": "culture",
+      "sourceKey": "constitution"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF UGANDA",
+    "title": "ウガンダで食べたいもの",
+    "intro": "青バナナの主食、バナナ葉で蒸す料理、街角のロレックス、落花生のソース。食材だけでなく、調理法と食べる場面が異なる4品を選ぶ。",
+    "items": [
+      {
+        "id": "matooke",
+        "name": "マトケ",
+        "nameLocal": "Matooke",
+        "text": "青い調理用バナナを蒸してやわらかく仕上げる主食。肉や豆、落花生ソースなどと合わせ、なめらかな食感で煮込みを受け止める。",
+        "image": "assets/images/uganda/approved/food-1-matooke.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "chicken-luwombo",
+        "name": "チキン・ルウォンボ",
+        "nameLocal": "Chicken Luwombo",
+        "text": "鶏肉とソースをバナナの葉で包み、ゆっくり蒸し煮する料理。包みを開くと香りと煮汁が一つにまとまり、祝いの席にも家庭の食卓にもつながる。",
+        "image": "assets/images/uganda/approved/food-2-chicken-luwombo.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "rolex",
+        "name": "ロレックス",
+        "nameLocal": "Rolex",
+        "text": "薄いチャパティに、野菜を混ぜた卵焼きを重ねて巻くストリートフード。名前は時計ではなく「rolled eggs」に由来すると広く説明され、手早く食べられる都市の日常食になっている。",
+        "image": "assets/images/uganda/approved/food-3-rolex.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "binyebwa",
+        "name": "ビニェブワ",
+        "nameLocal": "Binyebwa",
+        "text": "落花生をすりつぶして作る濃厚なソース。マトケや米などに合わせ、豆類とは異なる香ばしさとクリーミーな口当たりを加える。",
+        "image": "assets/images/uganda/approved/food-4-binyebwa.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南西部の森林から北東部キデポまで距離が大きく、道路だけで全国を一度に回ると移動が旅の大半を占める。地域を絞るか、国内線を組み合わせて組み立てる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "カンパラと西部の自然に絞る",
+        "text": "カンパラの王国文化を見た後、クイーン・エリザベス国立公園など西部の一地域へ移る。例：カンパラ → カスビ王墓 → クイーン・エリザベス国立公園 → カンパラ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "南西部の森と湖までつなぐ",
+        "text": "西部のサバンナにブウィンディやブニョニ湖を加え、野生動物、山地林、高地の暮らしを切り替える。例：カンパラ → クイーン・エリザベス → ブウィンディ → ブニョニ湖。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "北部または東部を別軸で加える",
+        "text": "マーチソン滝、シピ滝、キデポなどを一つ追加し、国土の広がりを複数地域で見る。キデポは長距離なので航空移動も含めて計画する。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#c8ad78",
+      "text": "多くの地域で比較的乾いた時期。道路移動やサバンナの観察を組みやすい一方、高地と山地は朝晩が冷える。地域差が大きいため全国一律の乾季とは考えない。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#789a82",
+      "text": "主要な雨季の一つ。森林や高地は緑が濃くなるが、強い雨で未舗装路やトレッキング条件が変わる。山地では防水装備と日程の余白を持つ。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a7a57f",
+      "text": "南部では比較的雨が弱まる時期がある一方、北部・東部ではまとまった雨が続く地域がある。キデポとシピを同じ季節感で判断しない。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#829887",
+      "text": "第二の主要な雨季。2026年の気象情報も9〜12月を雨季として扱う。湖岸や低地では豪雨、山地では視界と路面状況を確認して動く。"
+    }
+  ],
+  "transport": {
+    "title": "都市間は長距離バスと車、遠隔地は国内線を組み合わせる",
+    "text": "カンパラを軸に主要都市へ道路網が伸びるが、国立公園や山地では最後の区間に車が必要になる。南西部と北東部を一つの旅に入れる場合は移動距離が大きく、キデポなどは航空便を組み合わせると現実的。国境地域は安全情報を先に確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "ゴリラだけでなく、森林・高山・サバンナまで生態系を切り替えたい人",
+      "text": "ブウィンディ、ルウェンゾリ、クイーン・エリザベス、キデポを比較し、同じ国の中で湿潤な森から半乾燥草原まで変わる自然を見たい。"
+    },
+    {
+      "title": "野生動物と王国文化を同じ旅の中で理解したい人",
+      "text": "国立公園だけで終わらず、カンパラのカスビ王墓や東部の岩絵までつなぎ、現在の国境より長い文化史を見たい。"
+    },
+    {
+      "title": "湖、滝、山、道路を移動しながら東アフリカの地形を体感したい人",
+      "text": "マーチソン滝、ブニョニ湖、シピ滝、西部大地溝帯を移動で結び、地図上の高低差と水系を現地の風景として理解したい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ / 赤道直下"
+    },
+    {
+      "label": "首都",
+      "value": "カンパラ"
+    },
+    {
+      "label": "人口",
+      "value": "45,905,417人（2024年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "241,550 km²（日本の約64%）"
+    },
+    {
+      "label": "言語",
+      "value": "英語・スワヒリ語（公用語）／各地域の諸言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が多数／イスラム教など"
+    },
+    {
+      "label": "通貨",
+      "value": "ウガンダ・シリング（UGX）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "equator-crossing",
+      "label": "国土を横切る緯線",
+      "value": "0°",
+      "note": "赤道がウガンダ南部を横切り、国土は北半球と南半球の両方にまたがる。高地が多いため、赤道直下でも気候は標高によって大きく変わる。",
+      "icon": "map",
+      "interestReason": "国の位置そのものを一つの数字で理解でき、熱帯と高山が同居する理由を地理から読み解けるため。"
+    },
+    {
+      "topicKey": "national-parks-ten",
+      "label": "国立公園",
+      "value": "10園",
+      "note": "Uganda Wildlife Authorityは、ブウィンディ、キデポ、マーチソン、クイーン・エリザベス、ルウェンゾリなど10の国立公園を管理している。",
+      "icon": "wildlife",
+      "interestReason": "森林、サバンナ、高山、火山地帯まで、国土の生態系の振れ幅が保護地域の数と分布に表れているため。"
+    },
+    {
+      "topicKey": "water-swamps-area",
+      "label": "水域・湿地",
+      "value": "41,743 km²",
+      "note": "UBOSは国内の水域と湿地を41,743平方キロメートルとしている。ヴィクトリア湖をはじめとする大湖、河川、湿地が内陸国の地形を大きく占める。",
+      "icon": "sea",
+      "interestReason": "海のない国でありながら、水が国土の景観と移動を強く決めるというウガンダらしい地理を数字で示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "west-border-security",
+      "title": "コンゴ民主共和国との国境地帯は旅程から切り離して判断する",
+      "text": "日本外務省は2025年8月18日付危険情報で、ホイマ県以南のコンゴ民主共和国との国境地帯をレベル3、周辺の複数県をレベル2としている。ブウィンディや西部国立公園へ行く場合も、目的地名だけでなく実際の移動経路を最新地図と照合する。"
+    },
+    {
+      "topicKey": "ebola-current-2026",
+      "title": "2026年はエボラ出血熱の最新情報も確認する",
+      "text": "日本外務省は2026年5月17日にウガンダへ感染症危険情報レベル1を発出した。流行状況は変化するため、渡航前に外務省と保健当局の最新情報、入国時の衛生措置を確認する。"
+    },
+    {
+      "topicKey": "park-road-and-distance",
+      "title": "国立公園間は地図上の直線距離より移動時間を長く見る",
+      "text": "西部、北部、北東部では目的地同士が大きく離れ、園内道路や山地アクセスも速度が出にくい。複数地域を回る場合は国内線、専用車、宿泊地を先に組み、日没後の長距離移動を避ける。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇰🇪",
+      "countryEn": "KENYA",
+      "countryJa": "ケニア",
+      "path": "Jinja → Busia → Kisumu",
+      "description": "東部ジンジャからBusia国境を越えてケニア西部へつなぐ代表的な陸路。ウガンダ入国管理当局はBusiaを正式な出入国地点として掲載している。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "査証・車両書類・国境運用時間は出発直前に両国の公式情報で確認する。"
+    },
+    {
+      "flag": "🇹🇿",
+      "countryEn": "TANZANIA",
+      "countryJa": "タンザニア",
+      "path": "Masaka → Mutukula → Bukoba",
+      "description": "ウガンダ南部からMutukula国境を越え、タンザニア北西部ブコバ方面へつなぐ陸路。ヴィクトリア湖西岸の地域を南北につなぐ。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "入国条件、国境運用、長距離交通の状況を出発直前に確認する。"
+    },
+    {
+      "flag": "🇷🇼",
+      "countryEn": "RWANDA",
+      "countryJa": "ルワンダ",
+      "path": "Kabale → Katuna / Gatuna → Kigali",
+      "description": "南西部カバレからKatuna国境を越えてキガリへ向かう主要陸路。ウガンダ入国管理当局はKatunaを南西部の正式な出入国地点として掲載する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用と入国条件は変更される可能性があるため、出発直前に確認する。"
+    },
+    {
+      "flag": "🇨🇩",
+      "countryEn": "DR CONGO",
+      "countryJa": "コンゴ民主共和国",
+      "path": "Kasese → Mpondwe → Kasindi",
+      "description": "西部カセセからMpondwe国境を越えてコンゴ民主共和国側Kasindiへつなぐ国境路。正式な出入国地点だが、現在は国境周辺の安全上の制約が大きい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "日本外務省はホイマ県以南の対コンゴ民主共和国国境地帯をレベル3としている。現在の観光移動ルートとして推奨しない。"
+    },
+    {
+      "flag": "🇸🇸",
+      "countryEn": "SOUTH SUDAN",
+      "countryJa": "南スーダン",
+      "path": "Gulu → Elegu → Nimule",
+      "description": "北部グルからEleguを経て南スーダンのNimuleへ向かう主要国境路。ウガンダ側ではEleguが正式な出入国地点として掲載されている。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "南スーダン側を含む治安状況が厳しいため、渡航勧告と国境運用を最優先し、現在の観光旅程には組み込まない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "rwanda",
+      "nameEn": "RWANDA",
+      "nameJa": "ルワンダ",
+      "flag": "🇷🇼",
+      "reason": "山地の景観、ゴリラ保全、大地溝帯の高地文化を、よりコンパクトな国土で比較したい人へ。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "ヴィクトリア湖と東アフリカのサバンナを、より広い国土と大規模な野生動物移動の文脈へ広げたい人へ。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "kenya",
+      "nameEn": "KENYA",
+      "nameJa": "ケニア",
+      "flag": "🇰🇪",
+      "reason": "東アフリカの高地、サバンナ、都市、国境を越える交通を、隣国側から続けて見たい人へ。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2023",
+    "worldHeritage": "2026-09-28",
+    "nationalParks": "2026-09-28",
+    "climate": "2026-09",
+    "safety": "2025-08-18",
+    "infectionSafety": "2026-05-17",
+    "borderPoints": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "map": "2026-09-28",
+    "food": "2026-09-28"
+  },
+  "sources": {
+    "ubosCensus": "Uganda Bureau of Statistics — National Population and Housing Census 2024 Final Results: total population 45,905,417, reference period May 2024; checked 2026-09-28. https://statistics.ubos.org/nphc/ ; https://www.ubos.org/nphc-2024-census-page/",
+    "ubosProfile": "Uganda Bureau of Statistics — Uganda Profile: Census 2024 population 45,905,417 and area under water and swamps 41,743 km²; checked 2026-09-28. https://www.ubos.org/uganda-profile/",
+    "worldBankArea": "World Bank World Development Indicators — Uganda surface area 241,550 km² (2023); checked 2026-09-28. https://databank.worldbank.org/reports.aspx?country=UGA&source=2",
+    "constitution": "Uganda Legal Information Institute — Constitution of the Republic of Uganda, official languages provisions: English official language and Swahili second official language; checked 2026-09-28. https://ulii.org/akn/ug/act/statute/1995/constitution",
+    "unescoUganda": "UNESCO World Heritage Centre — Uganda State Party: 3 World Heritage properties, Kasubi Tombs, Bwindi Impenetrable National Park and Rwenzori Mountains National Park; checked 2026-09-28. https://whc.unesco.org/en/statesparties/ug",
+    "unescoKasubi": "UNESCO World Heritage Centre — Tombs of Buganda Kings at Kasubi, property coordinates N0°19′46.97″ E32°33′15.16″, 26.8 ha; palace established 1882 and royal burial function; checked 2026-09-28. https://whc.unesco.org/en/list/1022 ; https://whc.unesco.org/en/list/1022/maps/",
+    "unescoBwindi": "UNESCO World Heritage Centre — Bwindi Impenetrable National Park, 32,092 ha, natural World Heritage property and biodiversity values; coordinates S1°2′49.2″ E29°41′31.2″. https://whc.unesco.org/en/list/682 ; https://whc.unesco.org/en/list/682/maps/",
+    "unescoRwenzori": "UNESCO World Heritage Centre — Rwenzori Mountains National Park, 99,600 ha natural World Heritage property, high-altitude landscapes near the equator; coordinates approximately N0°13′25″ E29°55′27″. https://whc.unesco.org/en/list/684",
+    "uwaParks": "Uganda Wildlife Authority — UWA manages 10 National Parks including Bwindi, Kidepo, Murchison Falls, Queen Elizabeth, Rwenzori, Kibale, Lake Mburo, Semuliki, Mount Elgon and Mgahinga; checked 2026-09-28. https://ugandawildlife.org/about-uwa/ ; https://ugandawildlife.org/national-parks/",
+    "kidepoKba": "Key Biodiversity Areas — Kidepo National Park KBA, central coordinates 3.85,33.81, area 1453.46825 km², semi-arid plains, hills and Narus/Kidepo seasonal valleys; assessment 2024. https://www.keybiodiversityareas.org/en/site/factsheet/7070",
+    "murchisonCoord": "NGA Geographical Names / GeoNames-derived mapping cross-check — Murchison Falls real waterfall coordinate approximately 2.27754,31.68385; checked 2026-09-28. https://geographic.org/geographic_names/name.php?c=uganda&fid=6452&uni=9194378 ; https://mapcarta.com/12811804",
+    "sipiCoord": "Wikidata/OpenStreetMap cross-check — Sipi Falls main waterfall around 1.33811,34.37994; checked 2026-09-28. https://www.wikidata.org/wiki/Q6672465 ; https://mapcarta.com/N2426094164",
+    "bunyonyiCoord": "Wikidata/OpenStreetMap cross-check — Lake Bunyonyi around -1.2833,29.9181; checked 2026-09-28. https://www.wikidata.org/wiki/Q1010056 ; https://mapcarta.com/Lake_Bunyonyi",
+    "nyero": "UNESCO World Heritage Centre Tentative List — Geometric rock art in Lake Victoria Region: Nyero component coordinates N1°27′38.18″ E33°50′49.62″; checked 2026-09-28. https://whc.unesco.org/en/tentativelists/6739",
+    "sceneCoordinates": "WGS84 points checked 2026-09-28 from UNESCO/UWA/KBA/OpenStreetMap/GeoNames/Wikidata: Murchison Falls 2.27754,31.68385; Bwindi -1.047,29.692; Rwenzori 0.223611,29.924167; Kazinga/Mweya -0.194444,29.899167; Kasubi 0.329714,32.554211; Kidepo 3.85,33.81; Sipi 1.33811,34.37994; Lake Bunyonyi -1.2833,29.9181; Nyero 1.460606,33.847117.",
+    "culinary": "Explore Uganda / Uganda tourism culinary guide — recognized Ugandan dishes include Rolex, Matooke, Luwombo, Posho, Binyebwa and Kikomando; checked 2026-09-28. https://exploreuganda.com/culinary/",
+    "utbCatalogue": "Explore Uganda Destination Catalogue 2025 — Uganda is crossed by the Equator, has extensive lakes/rivers/wetlands and highlights matooke, luwombo and Rolex; checked 2026-09-28. https://exploreuganda.com/wp-content/uploads/2025/07/UTB-Catalogue-Uganda-2025_Option-1.pdf",
+    "climate": "Uganda Ministry of Water and Environment, Department of Meteorological Services — Uganda generally has two major rainfall seasons, March-May and September-December; northern/eastern areas receive substantial June-August rainfall; SOND 2026 outlook issued Sep 2026. https://wids.mwe.go.ug/ ; https://mwe.go.ug/publications/meteorological/seasonal",
+    "safety": "Ministry of Foreign Affairs of Japan — Uganda danger information dated 2025-08-18: DRC border areas south of Hoima Level 3 and multiple western/northern border areas Level 2; checked 2026-09-28. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_093.html",
+    "infectionSafety": "Ministry of Foreign Affairs of Japan — Ebola infectious disease risk information Level 1 for Uganda issued 2026-05-17; checked 2026-09-28. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_093.html",
+    "borderPoints": "Uganda National Citizenship and Immigration Control — official border service points include Busia, Malaba, Katuna, Mutukula, Mpondwe and Elegu; checked 2026-09-28. https://www.immigration.go.ug/list-borders-according-regions ; https://www.immigration.go.ug/services/border-management",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (UGA/COD/SSD/KEN/TZA/RWA); JOURNEY ATLAS map-v3 clean-background styling, generated 2026-09-28."
+  }
+}
