@@ -487,6 +487,15 @@
   ],
   "signatureFacts": [
     {
+      "topicKey": "nigeria-population-scale",
+      "label": "人口",
+      "value": "約2.38億人",
+      "note": "世界銀行の2025年値は237,527,782人。ラゴスの巨大都市圏だけでなく、国内を移動するほど市場、交通、都市の密度が大きく変わる人口スケールを持つ。",
+      "icon": "city",
+      "interestReason": "一つの国に2億人を大きく超える人口が暮らすという規模そのものが、都市の密度や地域差を想像する出発点になるため。",
+      "exceptionalScale": true
+    },
+    {
       "topicKey": "nigeria-ethnic-groups",
       "label": "推定される民族数",
       "value": "250以上",
@@ -495,20 +504,12 @@
       "interestReason": "一つの国の中で複数の文化圏を旅する感覚が強く、景観と暮らしの多様性を端的に示す数字だから。"
     },
     {
-      "topicKey": "kano-wall-scale",
-      "label": "古代カノ城壁の規模",
-      "value": "半径約14 km",
-      "note": "ユネスコ暫定一覧は古代カノ城壁を半径14kmの土構造として説明し、ダラ丘、クルミ市場、首長宮殿を関連遺産に挙げる。",
-      "icon": "city",
-      "interestReason": "サハラ交易の市場都市カノが、単なる旧市街ではなく大規模な防御都市として発達したことを実感できるため。"
-    },
-    {
-      "topicKey": "cave-approach-steps",
-      "label": "洞窟へ下る階段",
-      "value": "約317段",
-      "note": "ユネスコ暫定一覧はオグブニケ洞窟へ谷を下る長い階段を約317段と記録する。熱帯雨林の上部から洞口まで、地形の落差を身体で感じるアプローチになる。",
-      "icon": "landscape",
-      "interestReason": "洞窟そのものだけでなく、森林の谷へ深く下って到達する場所の立体感を一つの数字で想像できるため。"
+      "topicKey": "nigeria-indigenous-languages",
+      "label": "先住言語",
+      "value": "525以上",
+      "note": "ナイジェリア国立文化指向研究所は、国内に525を超える先住言語があると紹介している。英語を共通語としながら、地域ごとに異なる言語世界が重なる。",
+      "icon": "culture",
+      "interestReason": "国境を越えなくても言語圏が何度も切り替わる、ナイジェリアの文化的な奥行きを数字で直感的に伝えられるため。"
     }
   ],
   "tips": [
@@ -538,6 +539,26 @@
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
       "statusNote": "ECOWASは2026年7月にもSeme–Krake共同国境施設の運用改善を報告。入国条件、交通手段、国境運用は出発直前に確認する。"
+    },
+    {
+      "flag": "🇨🇲",
+      "countryEn": "CAMEROON",
+      "countryJa": "カメルーン",
+      "path": "Calabar → Ikom → Mfum / Ekok → Mamfe",
+      "description": "クロスリバー州を東へ進み、Mfum–Ekok共同国境施設を通ってカメルーン西部へつなぐ陸路。西アフリカと中部アフリカを結ぶ回廊でもある。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ナイジェリア内務省はMfum国境が再開済みと説明し、ECOWASもMfum–Ekok共同国境施設の運用設備を確認している。地域の治安、査証、国境運用は直前に確認する。"
+    },
+    {
+      "flag": "🇳🇪",
+      "countryEn": "NIGER",
+      "countryJa": "ニジェール",
+      "path": "Sokoto → Illela → Birnin Konni",
+      "description": "ソコトから北へ進み、Illela国境を越えてニジェールのBirnin Konniへつなぐサヘル横断の陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ナイジェリア内務省はIllela国境が再開済みと説明している。北西部は治安状況が変化しやすいため、渡航勧告、査証、国境運用を必ず直前に確認する。"
     }
   ],
   "relatedCountries": [
@@ -566,8 +587,8 @@
       "affinityType": "LANDSCAPE"
     }
   ],
-  "updatedAt": "2026-09-27",
-  "sourcesVerifiedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
   "sourceDates": {
     "population": "2025",
     "profile": "2026-05-21",
@@ -576,9 +597,10 @@
     "climate": "2026",
     "rail": "2026-09-27",
     "safety": "2026-09-26",
-    "nextRoutes": "2026-07-08",
+    "nextRoutes": "2026-08-29",
     "map": "2026-09-27",
-    "sceneCoordinates": "2026-09-27"
+    "sceneCoordinates": "2026-09-27",
+    "languageDiversity": "2026-09-28"
   },
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan — Nigeria basic data, updated 21 May 2026: area 923,773 km², capital Abuja, 250+ ethnic groups, English and major ethnic languages, religion. https://www.mofa.go.jp/mofaj/area/nigeria/data.html",
@@ -597,8 +619,9 @@
     "rail": "Nigerian Railway Corporation official passenger services and schedules — Lagos–Ibadan, Abuja–Kaduna and Warri–Itakpe express passenger services; checked 27 Sep 2026. https://nrc.gov.ng/passenger-services/ ; https://nrc.gov.ng/schedules/",
     "climate": "Nigerian Meteorological Agency — 2026 Seasonal Climate Prediction, 10 Feb 2026; early-to-normal rainy-season onset, normal-to-late cessation, variable rainfall and above-normal temperatures in many areas. https://nimet.gov.ng/publication_detail?id=71",
     "safety": "UK FCDO Nigeria travel advice, current 26 Sep 2026: regional warnings include all travel to Adamawa and all-but-essential travel to Kano, Niger and Anambra, among other regions. https://www.gov.uk/foreign-travel-advice/nigeria ; https://www.gov.uk/foreign-travel-advice/nigeria/regional-risks",
-    "nextRoutes": "ECOWAS, 8 Jul 2026 — operational improvements and signage at Seme–Krake Joint Border Post between Benin and Nigeria. https://www.ecowas.int/ecowas-supports-ghana-togo-benin-and-nigeria-with-modern-directional-and-information-signage-at-the-akanu-noepe-and-seme-krake-joint-border-posts/",
+    "nextRoutes": "Nigeria Ministry of Interior, 29 Aug 2026 — Seme, Illela and Mfum are among reopened/operational land borders; https://interior.gov.ng/atikus-border-claim-were-the-borders-closed/ . ECOWAS, 8 Jul 2026 — Seme–Krake Joint Border Post operational improvements; https://www.ecowas.int/ecowas-supports-ghana-togo-benin-and-nigeria-with-modern-directional-and-information-signage-at-the-akanu-noepe-and-seme-krake-joint-border-posts/ . ECOWAS, 14 Oct 2024 — Mfum–Ekok Joint Border Post operational equipment; https://www.ecowas.int/ecowas-completes-the-equipping-of-ekok-mfum-joint-border-post-jbp-between-nigeria-and-cameroon-with-the-installation-of-acargo-scanner-and-weighbridge-station/ . Nigerian Shippers' Council — border information centres include Seme/Krake, Illela/Birnin Konni and Mfum/Ekok; checked 28 Sep 2026. https://shipperscouncil.gov.ng/border-information-centre-bic-2/",
     "sceneCoordinates": "WGS84 real-location points checked 27 Sep 2026: Zuma Rock 9.130416,7.233946 (Wikidata/OSM); Tafawa Balewa Square 6.44709,3.4011 (OSM/Wikidata mapped square); Olumo Rock Tourist Complex 7.16691,3.34201 (OSM mapped complex); Osun-Osogbo 7.75556,4.55222 (UNESCO); Idanre 7.103833,5.1015 (UNESCO); Kofar Mata Dye Pits 12.000853,8.526099 (Wikidata); Sukur 10.74056,13.57194 (UNESCO); Ogbunike Caves 6.18639,6.90583 (UNESCO); Alok/Ikom monolith cluster 6.3184,8.6504 (mapped reference within UNESCO-listed distribution); Abuja 9.0765,7.3986.",
-    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; NGA target with BEN/NER/TCD/CMR context; generated in JOURNEY ATLAS map-v3 style on 2026-09-27."
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; NGA target with BEN/NER/TCD/CMR context; generated in JOURNEY ATLAS map-v3 style on 2026-09-27.",
+    "languageDiversity": "National Institute for Cultural Orientation (Nigeria) — Languages in Nigeria: more than 525 indigenous languages. Checked 28 Sep 2026. https://nico.gov.ng/languages-in-nigeria/"
   }
 }
