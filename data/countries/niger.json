@@ -40,14 +40,14 @@
   },
   "map": {
     "bounds": {
-      "north": 24.7,
-      "south": 10.8,
-      "west": -1.2,
-      "east": 17.4
+      "north": 25.6477,
+      "south": 9.8523,
+      "west": -2.4682,
+      "east": 18.6682
     },
     "svg": "assets/images/niger/map-atlas-v1.svg",
     "route": null,
-    "source": "Administrative geometry and surrounding national context: Natural Earth 1:110m Admin-0 Countries, WGS84, public domain, packaged with pyogrio test fixtures and cross-checked against geoBoundaries gbOpen NER ADM0 metadata (boundaryID NER-ADM0-22259449). JOURNEY ATLAS 1200×760 local-equirectangular-fit styling; generated and checked 2026-09-27."
+    "source": "Administrative geometry and surrounding national context: Natural Earth 1:110m Admin-0 Countries, WGS84, public domain, cross-checked against geoBoundaries gbOpen NER ADM0 metadata (boundaryID NER-ADM0-22259449). JOURNEY ATLAS local-equirectangular-fit styling; review framing expanded 2026-09-28 without altering border geometry."
   },
   "scenes": [
     {
@@ -502,20 +502,20 @@
       "interestReason": "国土の大半が砂漠地帯であり、人の暮らしや農耕が南部へ大きく偏るニジェールの地理構造を一つの数字で捉えられるため。"
     },
     {
-      "topicKey": "agadez-minaret-height",
-      "label": "アガデス大モスクのミナレット",
-      "value": "27 m",
-      "note": "UNESCOは、歴史地区の泥レンガ製ミナレットを高さ27m、同種の泥レンガ構造として世界最高と説明している。",
-      "icon": "history",
-      "interestReason": "土だけで築かれた宗教建築が都市のスカイラインを支配する、アガデス固有の視覚的アイデンティティを伝えられるため。"
+      "topicKey": "land-border-neighbors",
+      "label": "接する国",
+      "value": "7か国",
+      "note": "ニジェールはアルジェリア、リビア、チャド、ナイジェリア、ベナン、ブルキナファソ、マリの7か国と国境を接する内陸国。サハラとサヘルをまたぐ広い国境網が国土の特徴になる。",
+      "icon": "map",
+      "interestReason": "北アフリカと西・中央アフリカの間に位置し、7方向へ国境が開くニジェールの地理的位置を一つの数字で捉えられるため。"
     },
     {
-      "topicKey": "idoukal-highest-elevation",
-      "label": "最高地点イドゥカル・ン・タゲス",
-      "value": "2,022 m",
-      "note": "アイル山地にあるニジェールの最高地点。低平な砂漠という印象に対し、北部に2,000m級の山岳地形があることを示す。",
-      "icon": "landscape",
-      "interestReason": "サハラの国という先入観から、岩山と高地を持つ国土へ視点を切り替えられる数字だから。"
+      "topicKey": "population-growth-2025",
+      "label": "人口増加率",
+      "value": "3.2%",
+      "note": "World Bankによる2025年の年間人口増加率。約2,792万人の人口が速いペースで増えており、都市・農村双方の暮らしや社会基盤を考えるうえで国全体を特徴づける指標になる。",
+      "icon": "users",
+      "interestReason": "特定の都市や観光地ではなく、国全体の人口動態を示し、現在のニジェール社会の大きな変化を数値で伝えられるため。"
     }
   ],
   "tips": [
@@ -594,7 +594,7 @@
     }
   ],
   "updatedAt": "2026-09-28",
-  "sourcesVerifiedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-28",
   "sourceDates": {
     "population": "2025",
     "area": "2025",
@@ -605,7 +605,9 @@
     "climate": "2026-09-28",
     "map": "2026-09-27",
     "desertShare": "2026-09-28",
-    "charter": "2025-03-26"
+    "charter": "2025-03-26",
+    "neighbors": "2026-09-28",
+    "populationGrowth": "2025"
   },
   "sources": {
     "population": "UNData Niger profile — population (2025): 27.918 million; capital Niamey; surface area 1,267,000 km²; currency CFA franc BCEAO (XOF): https://data.un.org/en/iso/ne.html",
@@ -633,6 +635,8 @@
     "climate": "FAO Niger country profile — continental Sahelian climate; rainy season June–September, dry season October–May, Harmattan October–February: https://www.fao.org/in-action/building-forward-better/countries/niger/about-the-country/en",
     "map": "Natural Earth 1:110m Admin-0 Countries, WGS84, public domain, packaged with pyogrio; target geometry cross-checked against geoBoundaries current gbOpen NER ADM0 metadata (NER-ADM0-22259449, source geometry attributed to geoBoundaries/OpenStreetMap under CC BY-SA 2.0).",
     "alkaki": "RECA Niger — local biscuits/sweets report and wheat value-chain note document Alkaki production in Niger; recipes vary by locality: https://reca-niger.org/IMG/pdf/fopat_-_rapport_phase_2_-_0604vf2.pdf ; https://reca-niger.org/IMG/pdf/note_de_suivi_production_de_ble_cra_maradi_2021.pdf",
-    "desertShare": "FAO, Niger country profile — three-quarters of the country is in the desert zone to the north: https://www.fao.org/in-action/building-forward-better/countries/niger/about-the-country/en"
+    "desertShare": "FAO, Niger country profile — three-quarters of the country is in the desert zone to the north: https://www.fao.org/in-action/building-forward-better/countries/niger/about-the-country/en",
+    "neighbors": "BCEAO Niger country presentation — landlocked Niger is bounded by Algeria and Libya to the north, Chad to the east, Nigeria and Benin to the south, and Burkina Faso and Mali to the west: https://www.bceao.int/index.php/en/etats-membres/niger",
+    "populationGrowth": "World Bank, Niger data — population growth (annual %) 3.2 in 2025; population 27,917,831 in 2025: https://data.worldbank.org/country/niger"
   }
 }
