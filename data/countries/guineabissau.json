@@ -189,42 +189,42 @@
   ],
   "encounters": [
     {
-      "title": "首都の広場で独立後の日常を見る",
+      "title": "街の広場を歩く",
       "category": "CITY",
       "icon": "city"
     },
     {
-      "title": "河口の要塞から大西洋史をたどる",
-      "category": "CULTURE",
-      "icon": "history"
-    },
-    {
-      "title": "島の旧行政都市を歩く",
+      "title": "歴史ある建築を訪ねる",
       "category": "ARCHITECTURE",
       "icon": "landmark"
     },
     {
-      "title": "潮で動く島の港に立つ",
+      "title": "島の暮らしに触れる",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "港の往来を見る",
       "category": "MOVEMENT",
       "icon": "sea"
     },
     {
-      "title": "マングローブと浅瀬の境界を見る",
+      "title": "水辺の森を歩く",
       "category": "NATURE",
       "icon": "landscape"
     },
     {
-      "title": "ウミガメの産卵地を保全の視点で知る",
+      "title": "野生動物に出会う",
       "category": "WILDLIFE",
       "icon": "wildlife"
     },
     {
-      "title": "南部の湿潤林に入る",
+      "title": "森の中を歩く",
       "category": "NATURE",
       "icon": "landscape"
     },
     {
-      "title": "内陸の岩場を流れる川を見る",
+      "title": "川辺の景色を見る",
       "category": "LANDSCAPE",
       "icon": "landscape"
     }
@@ -271,7 +271,7 @@
       "themeEn": "WILDLIFE",
       "themeJa": "野生に会う",
       "title": "オランゴ周辺では、カバが海水域を日常的に利用する",
-      "text": "UNESCOはビジャゴ諸島を、カバがほぼ常時海水環境を利用する特異な場所として説明する。島、マングローブ、水路の近接が行動を支える。",
+      "text": "世界遺産の評価資料では、ビジャゴ諸島はカバがほぼ常時海水環境を利用する特異な場所とされる。島、マングローブ、水路の近接が行動を支える。",
       "points": [
         "海の影響を受ける島環境に適応",
         "観察は距離と地域ルールを優先"
@@ -308,8 +308,8 @@
       "topicKey": "protected-area-network-share",
       "categoryEn": "CONSERVATION",
       "categoryJa": "自然保護",
-      "title": "国の保護地域システムは約47万ha",
-      "text": "IBAPによると国家保護地域システムは約47万haで、国土のおよそ15%をカバーする。",
+      "title": "国の保護地域システムは約47万ヘクタール",
+      "text": "国立生物多様性・保護地域研究所によると、国家保護地域システムは約47万ヘクタールで、国土のおよそ15%をカバーする。",
       "icon": "wildlife",
       "sourceKey": "ibapProtectedAreas"
     },
@@ -326,8 +326,8 @@
       "topicKey": "xof-shared-currency",
       "categoryEn": "MONEY",
       "categoryJa": "通貨",
-      "title": "通貨は西アフリカ8か国で共有するCFAフラン",
-      "text": "ポルトガル語圏の国でありながら、通貨は西アフリカ経済通貨同盟のCFAフラン（XOF）を使う。",
+      "title": "西アフリカ8か国で共通通貨を使う",
+      "text": "ポルトガル語を公用語とする国だが、通貨は周辺の西アフリカ7か国と共通している。",
       "icon": "map",
       "sourceKey": "undata"
     },
@@ -345,7 +345,7 @@
       "categoryEn": "FOOD",
       "categoryJa": "食文化",
       "title": "沿岸では牡蠣を米と合わせる料理がある",
-      "text": "Pitche-Patche de Ostrasは、米と牡蠣を一皿にする沿岸らしい料理。",
+      "text": "牡蠣のピッチェ・パッチェは、米と牡蠣を一皿にする沿岸らしい料理。",
       "icon": "food",
       "sourceKey": "gastronomyGuide"
     }
@@ -473,7 +473,7 @@
     },
     {
       "label": "面積",
-      "value": "36,125 km²（日本の約9.6%）"
+      "value": "36,125㎢（日本の約9.6%）"
     },
     {
       "label": "言語",
@@ -490,28 +490,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "bijagos-island-count",
-      "label": "ビジャゴ諸島の島・小島",
-      "value": "88",
-      "note": "UNESCO生物圏保存地域資料は88の島・小島から成る群島として紹介する。",
+      "topicKey": "cashew-export-dependence",
+      "label": "輸出に占めるカシューナッツ",
+      "value": "80%以上",
+      "note": "世界銀行は、カシューナッツが輸出の8割超を占める単一作物依存型の経済と説明している。",
+      "icon": "food",
+      "interestReason": "一つの農産物が国の輸出構造を大きく左右することが、ギニアビサウの暮らしと経済を端的に表すため。"
+    },
+    {
+      "topicKey": "mangrove-land-share",
+      "label": "国土に占めるマングローブ",
+      "value": "9.6%",
+      "note": "国連の水関連生態系データでは、マングローブが国土の9.6%を占める。",
+      "icon": "landscape",
+      "interestReason": "海岸だけでなく国土規模で潮とマングローブの影響が大きい国だとわかるため。"
+    },
+    {
+      "topicKey": "exclusive-economic-zone-scale",
+      "label": "排他的経済水域",
+      "value": "約10.7万㎢",
+      "note": "西アフリカ諸国経済共同体の水産統計では、排他的経済水域は107,301平方キロメートル。陸の国土の約3倍に広がる。",
       "icon": "sea",
-      "interestReason": "小さな国土に多数の島が広がる群島国家として想像し直せる数字だから。"
-    },
-    {
-      "topicKey": "migratory-shorebird-volume",
-      "label": "渡来するシギ・チドリ類など",
-      "value": "87万羽超",
-      "note": "UNESCOはビジャゴ諸島が87万羽を超える渡り性海岸鳥を支えると紹介する。",
-      "icon": "wildlife",
-      "interestReason": "干潟が大西洋の渡り経路を支える巨大な生態系だと実感できるため。"
-    },
-    {
-      "topicKey": "poilao-green-turtle-nests-2020",
-      "label": "ポイラン島のアオウミガメの巣",
-      "value": "6.2万超",
-      "note": "UNESCO評価では2020年にポイラン島だけで62,000を超える巣が記録された。",
-      "icon": "wildlife",
-      "interestReason": "小さな一島に世界的に重要な繁殖密度が集中することを直感的に伝えるため。"
+      "interestReason": "小さな陸地に対して、海の領域が大きく広がる国であることを直感的に伝えるため。"
     }
   ],
   "tips": [
@@ -541,6 +541,16 @@
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
       "statusNote": "2026年9月時点、カシェウ州とセネガル国境周辺には治安・地雷リスクがある。最新の国境運用と治安を確認する。"
+    },
+    {
+      "flag": "🇬🇳",
+      "countryEn": "GUINEA",
+      "countryJa": "ギニア",
+      "path": "Bissau → Gabú → Buruntuma → Saréboïdo → Koundara",
+      "description": "ビサウからガブを経て東部のブルントゥマ国境を越え、ギニアのサレボイドからクンダラへ進む陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年にも越境利用が確認されているが、未舗装区間があり、地雷リスクも残る。国境運用、道路状況、必要書類を直前に確認する。"
     }
   ],
   "relatedCountries": [
@@ -569,8 +579,8 @@
       "affinityType": "WILDLIFE"
     }
   ],
-  "updatedAt": "2026-09-27",
-  "sourcesVerifiedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
   "sourceDates": {
     "population": "2025",
     "area": "2025",
@@ -580,7 +590,10 @@
     "safety": "2026-03-16",
     "climate": "2024",
     "map": "2026-09-27",
-    "nextRoutes": "2026-09-27"
+    "nextRoutes": "2026-09-27",
+    "cashewExports": "2025",
+    "mangroveLandShare": "2021",
+    "exclusiveEconomicZone": "2020"
   },
   "sources": {
     "population": "UN Data Guinea-Bissau: https://data.un.org/en/iso/gw.html",
@@ -603,7 +616,10 @@
     "sceneCoordinates": "Bissau 11.86325,-15.58432; Cacheu 12.27703,-16.16726; Bolama 11.5776,-15.4753; Bubaque 11.30008,-15.83124; Orango 11.06582,-16.13805; João Vieira 11.03333,-15.63333; Cantanhez 11.26461,-15.0293; Saltinho 11.60889,-14.6775.",
     "heroCoordinates": "Rubane Island 11.33333,-15.81667 (GNS/GeoNames cross-check)",
     "map": "Natural Earth + GSHHS; geoBoundaries GNB ADM0 metadata cross-check: https://www.geoboundaries.org/api/current/gbOpen/GNB/ADM0/",
-    "nextRoutes": "France Diplomatie Guinea-Bissau, updated 2026-09-15; ECOWAS São Domingos–Mpack border activity; Japan MOFA safety information",
-    "worldHeritage": "UNESCO World Heritage Centre, inscribed 2025: https://whc.unesco.org/en/list/1431"
+    "nextRoutes": "France Diplomatie Guinea-Bissau, updated 2026-09-15; ECOWAS São Domingos–Mpack border activity; Guinea tourism guide for Gabú–Buruntuma–Saréboïdo–Koundara; 2026 cross-border activity at Buruntuma–Saréboïdo; Japan MOFA safety information",
+    "worldHeritage": "UNESCO World Heritage Centre, inscribed 2025: https://whc.unesco.org/en/list/1431",
+    "cashewExports": "World Bank Guinea-Bissau Economic Update: cashew nuts account for more than 80 percent of exports: https://www.worldbank.org/en/country/guineabissau/publication/economic-update-unpacking-tax-performance-in-guinea-bissau",
+    "mangroveLandShare": "UN SDG 6 Data, Guinea-Bissau: mangroves represent 9.6% of land area: https://www.sdg6data.org/en/country-or-area/Guinea-Bissau",
+    "exclusiveEconomicZone": "ECOWAS statistical factsheet on fishery and aquaculture: Guinea-Bissau EEZ 107,301 km²"
   }
 }
