@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "morocco",
+  "nameEn": "MOROCCO",
+  "nameJa": "モロッコ",
+  "region": "NORTH AFRICA / 32°N",
+  "seo": {
+    "description": "アイト・ベン・ハッドゥの土の城塞集落から、フェズとマラケシュのメディナ、青いシェフシャウエン、ヴォルビリス、アトラス山脈、エルグ・シェビの砂丘、エッサウィラの大西洋岸へ。モロッコを8つの景色と地図からたどる。"
+  },
+  "capital": {
+    "nameEn": "Rabat",
+    "nameJa": "ラバト",
+    "coordinates": {
+      "latitude": 34.0209,
+      "longitude": -6.8416
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": -20
+    },
+    "mapOffset": {
+      "x": 0.6,
+      "y": -0.4
+    }
+  },
+  "hero": {
+    "lead": "大西洋と地中海に面した都市から、リフとアトラスの山地、土の集落、サハラ縁辺の砂丘まで。モロッコでは、街を歩く旅と地形をたどる旅が短い距離の中で何度も切り替わる。",
+    "image": "assets/images/morocco/approved/hero.webp",
+    "location": "Ksar of Ait-Ben-Haddou",
+    "coordinates": {
+      "latitude": 31.04722,
+      "longitude": -7.12889
+    },
+    "mapOffset": {
+      "x": -1.2,
+      "y": 0.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 36.5,
+      "south": 27.2,
+      "west": -13.2,
+      "east": -0.8
+    },
+    "svg": "assets/images/morocco/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (MAR/SAH/DZA/ESP/PRT/MRT GeoJSON). Morocco target uses the MAR source geometry; Western Sahara is rendered separately as geographic context. Administrative depiction is reproduced as source geometry without asserting a position on disputed political claims. Generated and checked 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "chefchaouen-medina",
+      "name": "シェフシャウエン / メディナ",
+      "nameLocal": "Chefchaouen / Medina",
+      "mapLabel": "Chefchaouen",
+      "description": "リフ山地の斜面に、青く塗られた家々と細い階段路が重なる。旧市街を歩くと、青の濃淡だけでなく、山へ向かって折れ曲がる街路と白壁、木工や織物の店が一体になった都市景観が見えてくる。",
+      "coordinates": {
+        "latitude": 35.1688,
+        "longitude": -5.2636
+      },
+      "image": "assets/images/morocco/approved/scene-1-chefchaouen-medina.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.5,
+        "y": 0.2
+      }
+    },
+    {
+      "id": "fez-chouara-tannery",
+      "name": "フェズ / ショワラ皮なめし場",
+      "nameLocal": "Fez / Chouara Tannery",
+      "mapLabel": "Fez",
+      "description": "フェズ・エル・バリの密集した屋根の間に、石造の染色槽が幾何学模様のように並ぶ。革を洗い、染め、乾かす工程が旧市街の中で続き、迷路状の街路と手工業が今も結びついている。",
+      "coordinates": {
+        "latitude": 34.0647,
+        "longitude": -4.9731
+      },
+      "image": "assets/images/morocco/approved/scene-2-fez-chouara-tannery.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": -0.3
+      }
+    },
+    {
+      "id": "marrakech-koutoubia",
+      "name": "マラケシュ / クトゥビーヤ・モスク",
+      "nameLocal": "Marrakesh / Koutoubia Mosque",
+      "mapLabel": "Marrakesh",
+      "description": "12世紀のミナレットが旧市街の低い建物の上に立ち、ヤシや庭園の緑、その先のアトラス山脈まで視線が抜ける。赤褐色の城壁と都市の水平線を歩くことで、マラケシュのスケールを掴める。",
+      "coordinates": {
+        "latitude": 31.624,
+        "longitude": -7.9936
+      },
+      "image": "assets/images/morocco/approved/scene-3-marrakech-koutoubia.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "volubilis",
+      "name": "ヴォルビリス遺跡",
+      "nameLocal": "Archaeological Site of Volubilis",
+      "mapLabel": "Volubilis",
+      "description": "モーリタニア王国の都市からローマ帝国の拠点へ発展した遺跡で、列柱、凱旋門、モザイク床、街路が丘陵地に残る。イスラム都市とは異なる時代の地中海世界が、農地と山を背景に開ける。",
+      "coordinates": {
+        "latitude": 34.07389,
+        "longitude": -5.55694
+      },
+      "image": "assets/images/morocco/approved/scene-4-volubilis.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.4,
+        "y": 0.9
+      }
+    },
+    {
+      "id": "erg-chebbi",
+      "name": "メルズーガ / エルグ・シェビ",
+      "nameLocal": "Merzouga / Erg Chebbi",
+      "mapLabel": "Erg Chebbi",
+      "description": "サハラ北縁に連なる砂丘群では、風で刻まれた稜線が朝夕の低い光で立体的に浮かぶ。メルズーガを起点に砂丘へ入ると、アトラス山地やオアシスの景観から乾燥地へ変化する道筋を体感できる。",
+      "coordinates": {
+        "latitude": 31.1456,
+        "longitude": -3.9676
+      },
+      "image": "assets/images/morocco/approved/scene-5-erg-chebbi.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.8,
+        "y": 0.2
+      }
+    },
+    {
+      "id": "todra-gorge",
+      "name": "トドラ渓谷",
+      "nameLocal": "Todra Gorge",
+      "mapLabel": "Todra Gorge",
+      "description": "東部ハイ・アトラスを川が削り、垂直に近い石灰岩の壁が狭い谷を挟む。峡谷の底には水路とヤシが続き、乾いた高原と緑の谷底が数十メートルの幅で接する。",
+      "coordinates": {
+        "latitude": 31.5889,
+        "longitude": -5.59
+      },
+      "image": "assets/images/morocco/approved/scene-6-todra-gorge.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.6,
+        "y": -0.1
+      }
+    },
+    {
+      "id": "essaouira-skala",
+      "name": "エッサウィラ / スカラと城壁",
+      "nameLocal": "Essaouira / Skala de la Ville",
+      "mapLabel": "Essaouira",
+      "description": "18世紀の計画港湾都市の城壁が大西洋の岩礁に沿い、砲台の向こうへ白い旧市街が続く。内陸のメディナとは違い、強い海風と港、要塞建築が都市の輪郭そのものをつくっている。",
+      "coordinates": {
+        "latitude": 31.5133,
+        "longitude": -9.7724
+      },
+      "image": "assets/images/morocco/approved/scene-7-essaouira-skala.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0
+      }
+    },
+    {
+      "id": "hassan-ii-mosque",
+      "name": "カサブランカ / ハッサン2世モスク",
+      "nameLocal": "Casablanca / Hassan II Mosque",
+      "mapLabel": "Casablanca",
+      "description": "大西洋岸に巨大な礼拝堂と約200mのミナレットが立ち、水際まで建築が張り出す。旧市街中心のイメージとは異なる、20世紀末の国家的建築と現代都市カサブランカの海辺を同時に見られる。",
+      "coordinates": {
+        "latitude": 33.6084,
+        "longitude": -7.6327
+      },
+      "image": "assets/images/morocco/approved/scene-8-hassan-ii-mosque.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": -0.4
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "旧市街の路地を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "手仕事の工房を見る",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "山岳道路を越える",
+      "category": "MOVEMENT",
+      "icon": "map"
+    },
+    {
+      "title": "古代遺跡を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "砂丘の稜線を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "海辺の城壁を歩く",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "市場で工芸と香辛料を見る",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "郷土料理を味わう",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "medina-craft-urbanism",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "メディナでは、街路と手仕事が同じ空間に重なる",
+      "text": "フェズやマラケシュの旧市街は、モスク、住宅、スーク、工房が細い街路に高密度で集まる。道に迷うこと自体が都市構造を知る体験になり、革、木工、金工、織物などの仕事が観光地の外側ではなく街の内部に残る。",
+      "points": [
+        "フェズ・エル・バリは世界遺産の主要構成地区",
+        "スークと工房が住宅街路に入り込む"
+      ]
+    },
+    {
+      "topicKey": "atlas-crossing-landscape",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アトラス山脈を越えると、植生と建築素材が大きく変わる",
+      "text": "マラケシュ側からハイ・アトラスを越えてワルザザート方面へ進むと、山岳道路の先で乾燥が強まり、土を主要素材とするカスバやクサールが現れる。モロッコ南部では移動そのものが地理の変化を読む時間になる。",
+      "points": [
+        "北西側の都市・平野から高山帯を越える",
+        "南東側ではオアシスと乾燥地の土建築が増える"
+      ]
+    },
+    {
+      "topicKey": "ait-ben-haddou-earthen-architecture",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "アイト・ベン・ハッドゥは、土でつくられた共同体の形を残す",
+      "text": "アイト・ベン・ハッドゥは、周壁の内側に家屋や共同施設が集まる南モロッコのクサールの代表例。土、藁、木を組み合わせた建築は乾燥気候に適応し、谷と交易路の中で集落が防御と共同生活を両立させた構造を伝える。",
+      "points": [
+        "1987年に世界遺産登録",
+        "丘の斜面に住居・塔・共同空間が密集する"
+      ]
+    },
+    {
+      "topicKey": "atlantic-mediterranean-two-coasts",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "大西洋岸と地中海側では、港町の表情が変わる",
+      "text": "エッサウィラやカサブランカでは大西洋が都市景観を強く形づくり、北部のタンジェやテトゥアンでは地中海・ジブラルタル海峡との近さが前面に出る。内陸の帝都だけでなく、海との関係から都市史を見直せる。",
+      "points": [
+        "エッサウィラは18世紀の要塞港湾都市",
+        "タンジェは海峡を挟んで欧州と近い"
+      ]
+    },
+    {
+      "topicKey": "amazigh-cultural-continuity",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "アマジグ文化は山地・オアシス・食文化の中に続く",
+      "text": "モロッコではアラビア語とともにアマジグ語が公用語で、地域ごとに異なる言語・衣装・工芸・食文化がある。アトラス山地や南部を旅すると、地名や市場、建築、農耕の仕組みにその多様性が現れる。",
+      "points": [
+        "アマジグ語は公用語",
+        "クスクスなどの食文化にもアマジグの系譜がある"
+      ]
+    },
+    {
+      "topicKey": "volubilis-mediterranean-layers",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ヴォルビリスでは、ローマ以前からイスラム期までの層が重なる",
+      "text": "ヴォルビリスは紀元前から都市として発展し、ローマ帝国の西端の拠点となった。周辺にはムーレイ・イドリスがあり、古代地中海世界からイスラム王朝の成立へ、時代の異なる場所を短い距離でつなげられる。",
+      "points": [
+        "世界遺産の遺跡面積は42ha",
+        "都市計画とモザイク、公共建築が残る"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "unesco-nine-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "モロッコの世界遺産は9件、すべて文化遺産",
+      "text": "UNESCOの国別リストには、フェズ、マラケシュ、メクネス、エッサウィラ、ラバト、ヴォルビリス、アイト・ベン・ハッドゥなど9件が登録されている。",
+      "icon": "landmark",
+      "sourceKey": "unescoMorocco"
+    },
+    {
+      "topicKey": "marrakesh-medina-1018ha",
+      "categoryEn": "CITY",
+      "categoryJa": "旧市街",
+      "title": "マラケシュの世界遺産区域は1,018ha",
+      "text": "UNESCOの地図資料では、マラケシュのメディナとアグダル庭園を含む世界遺産区域は1,018ha。旧市街だけでなく庭園や城壁を含む大きな都市景観として保全されている。",
+      "icon": "city",
+      "sourceKey": "marrakesh"
+    },
+    {
+      "topicKey": "fez-medina-220ha",
+      "categoryEn": "CITY",
+      "categoryJa": "旧市街",
+      "title": "フェズ旧市街の世界遺産区域は220ha",
+      "text": "ユネスコの地図資料では、フェズ・エル・バリを中心とする世界遺産区域は220ha。細い街路、住宅、スーク、工房が一つの大きな都市空間として連続する。",
+      "icon": "city",
+      "sourceKey": "fez"
+    },
+    {
+      "topicKey": "volubilis-42ha",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "遺跡",
+      "title": "ヴォルビリスの世界遺産区域は42ha",
+      "text": "UNESCOによると、ヴォルビリスの登録区域は42ha。街路、凱旋門、邸宅、モザイクが広い丘陵地にまとまって残る。",
+      "icon": "history",
+      "sourceKey": "volubilis"
+    },
+    {
+      "topicKey": "couscous-friday",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "クスクスは金曜日に食べる習慣が広く残る",
+      "text": "モロッコ政府観光局は、アマジグの伝統に由来するクスクスを家庭や飲食店で広く食べる料理とし、金曜日の定番として紹介している。",
+      "icon": "food",
+      "sourceKey": "food"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MOROCCO",
+    "title": "モロッコで食べたいもの",
+    "intro": "香辛料の香りを重ねる煮込み、粒状のセモリナ、甘味と塩味を合わせるパイ、豆とトマトのスープ。家庭と市場の両方で出会える4品からモロッコの食卓を見る。",
+    "items": [
+      {
+        "id": "chicken-tagine",
+        "name": "チキン・タジン",
+        "nameLocal": "Chicken Tajine",
+        "text": "鶏肉を玉ねぎ、香辛料、オリーブ、塩漬けレモンなどと円錐形の土鍋で蒸し煮にする代表的なタジン。",
+        "image": "assets/images/morocco/approved/food-1-chicken-tagine.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "seven-vegetable-couscous",
+        "name": "7種野菜のクスクス",
+        "nameLocal": "Couscous aux Sept Légumes",
+        "text": "蒸したクスクスに、ニンジン、カボチャ、ズッキーニ、キャベツなどの野菜とひよこ豆、煮汁を重ねる定番料理。",
+        "image": "assets/images/morocco/approved/food-2-seven-vegetable-couscous.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pastilla",
+        "name": "パスティラ",
+        "nameLocal": "Pastilla",
+        "text": "薄い生地に鶏肉などの具を包み、シナモンや粉砂糖を合わせる甘味と塩味が重なるパイ状の料理。",
+        "image": "assets/images/morocco/approved/food-3-pastilla.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "harira",
+        "name": "ハリラ",
+        "nameLocal": "Harira",
+        "text": "トマトをベースにレンズ豆やひよこ豆、香草、細いパスタなどを煮込むスープ。ラマダン期にも親しまれる。",
+        "image": "assets/images/morocco/approved/food-4-harira.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "帝都と大西洋岸は鉄道でつなぎやすい一方、アトラス越えと砂漠は道路移動が中心になる。北部・中央部・南東部を一度に詰め込みすぎず、旅の軸を分けたい。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "マラケシュと大西洋岸を見る",
+        "text": "マラケシュを拠点に旧市街と庭園を歩き、エッサウィラまで足を延ばす。例：マラケシュ → エッサウィラ → マラケシュ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜9日",
+        "title": "帝都と北部の街を鉄道中心でつなぐ",
+        "text": "カサブランカ、ラバト、フェズを鉄道で結び、北へタンジェまたはシェフシャウエンを加える。例：カサブランカ → ラバト → フェズ → シェフシャウエン → タンジェ。",
+        "icon": "map"
+      },
+      {
+        "duration": "10日以上",
+        "title": "アトラスを越えて砂漠まで広げる",
+        "text": "マラケシュからアイト・ベン・ハッドゥ、トドラ渓谷を経てメルズーガへ。帰路はフェズ側へ抜け、都市と乾燥地を一本の旅にする。例：マラケシュ → アイト・ベン・ハッドゥ → トドラ渓谷 → メルズーガ → フェズ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "color": "#b8a878",
+      "text": "都市と山麓を歩きやすく、アトラス越えと南部を組み合わせやすい。高山部には残雪があり、砂漠は日中と朝晩の寒暖差が大きい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#d0a36a",
+      "text": "内陸と南部では強い暑さになる。マラケシュや砂漠は早朝・夕方中心にし、大西洋岸や北部との気温差を見込んで行程を組む。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#a78e70",
+      "text": "暑さが和らぎ、都市・山地・砂漠をつなぎやすい。秋後半は高地の冷え込みが強くなるため、海岸と山地で服装を切り替える。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#859ca8",
+      "text": "沿岸都市は比較的穏やかでも、アトラス山地では雪や低温がある。砂漠の朝晩も冷えるため、防寒を前提にする。"
+    }
+  ],
+  "transport": {
+    "title": "北部・主要都市は鉄道、アトラス以南は道路を組み合わせる",
+    "text": "ONCFの鉄道はタンジェ、ラバト、カサブランカ、フェズ、マラケシュなど主要都市を結び、Al Boraq高速鉄道はタンジェ〜カサブランカ間を走る。鉄道が届かないシェフシャウエン、エッサウィラ、ワルザザート、メルズーガ方面は長距離バス、Supratours、レンタカー、現地手配を組み合わせる。山岳・砂漠道路は距離だけで所要時間を見積もらない。"
+  },
+  "personas": [
+    {
+      "title": "メディナを歩き、街路と手仕事の密度を楽しみたい人",
+      "text": "フェズ、マラケシュ、シェフシャウエン、エッサウィラを歩き、色、路地、工房、スーク、宗教建築が重なる都市の時間を味わいたい。"
+    },
+    {
+      "title": "都市から山、土の集落、砂漠まで地形の変化を追いたい人",
+      "text": "アトラス山脈を越え、アイト・ベン・ハッドゥ、トドラ渓谷、メルズーガへ進み、短い距離で景観が切り替わる旅をしたい。"
+    },
+    {
+      "title": "北アフリカと地中海の文化が交差する場所を見たい人",
+      "text": "アマジグ、アラブ・イスラム、ローマ、アンダルシア、欧州との海上交流が、遺跡・食・工芸・都市にどう重なるか現地で比較したい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北アフリカ / 大西洋・地中海・アトラス"
+    },
+    {
+      "label": "首都",
+      "value": "ラバト"
+    },
+    {
+      "label": "人口",
+      "value": "約3,843万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "446,000 km²（日本の約1.2倍、西サハラ除く）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語／アマジグ語（公用語）、フランス語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教（国教、スンニ派が大多数）"
+    },
+    {
+      "label": "通貨",
+      "value": "モロッコ・ディルハム（MAD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "toubkal-4167m",
+      "label": "トゥブカル山",
+      "value": "4,167 m",
+      "note": "モロッコ政府観光局は、ハイ・アトラスのトゥブカル山を標高4,167m、北アフリカ最高峰として案内している。",
+      "icon": "landscape",
+      "interestReason": "旧市街や砂漠だけでなく、モロッコが高山国でもあることを一つの数字で示せる。"
+    },
+    {
+      "topicKey": "al-boraq-320kmh",
+      "label": "高速鉄道 Al Boraq",
+      "value": "320 km/h",
+      "note": "ONCFによると、タンジェ〜ケニトラ間の高速新線は営業最高速度320km/hで運行される。Al Boraqはアフリカ初の高速鉄道として2018年に営業運転を開始した。",
+      "icon": "map",
+      "interestReason": "伝統的なメディナや砂漠だけでなく、モロッコの現代的な交通インフラを象徴する数字だから。"
+    },
+    {
+      "topicKey": "hassan-ii-minaret",
+      "label": "ハッサン2世モスクのミナレット",
+      "value": "約200 m",
+      "note": "モロッコ政府観光局はハッサン2世モスクのミナレットを200mと案内する。",
+      "icon": "city",
+      "interestReason": "大西洋沿いの現代都市で、建築が水平線に対してどれほど大きな基準点になるか想像できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "medina-navigation",
+      "title": "メディナは徒歩前提で、目的地を点ではなく区域で考える",
+      "text": "フェズやマラケシュの旧市街は車が入れない細街路が多い。宿の入口、門、広場など確実な基準点を確認し、荷物が多い到着日は送迎やポーターの手配を検討する。"
+    },
+    {
+      "topicKey": "atlas-road-time",
+      "title": "アトラス越えは地図上の距離より時間に余裕を持つ",
+      "text": "山岳道路はカーブ、工事、天候の影響を受ける。ワルザザート、トドラ、メルズーガをつなぐ日は、都市間の距離だけでなく休憩と日没時刻を含めて計画する。"
+    },
+    {
+      "topicKey": "ramadan-hours",
+      "title": "ラマダン期は営業時間と食事時間を確認する",
+      "text": "宗教施設、飲食店、交通や観光施設の運用が通常期と異なることがある。政府観光局の案内と各施設の当日情報を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇪🇸",
+      "countryEn": "SPAIN",
+      "countryJa": "スペイン",
+      "path": "Tangier / Tanger Med → ferry → Tarifa / Algeciras",
+      "description": "タンジェ周辺からジブラルタル海峡を渡り、スペイン南部へつなぐ海路。タンジェ・ヴィル〜タリファは通年運航が確認できる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "便数・使用港・時刻は季節や海況で変わるため、予約時に最新情報を確認する。"
+    },
+    {
+      "flag": "🇩🇿",
+      "countryEn": "ALGERIA",
+      "countryJa": "アルジェリア",
+      "path": "Oujda → Morocco–Algeria land border → Tlemcen",
+      "description": "東側で接するアルジェリアへ向かう陸路だが、2026年9月現在、モロッコとアルジェリアの陸路・海路国境は閉鎖されている。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月現在、モロッコとアルジェリアの陸路・海路国境は閉鎖中。公式な再開を確認するまで越境経路として使用しない。"
+    },
+    {
+      "flag": "🇲🇷",
+      "countryEn": "MAURITANIA",
+      "countryJa": "モーリタニア",
+      "path": "Dakhla → Guerguerat → Nouadhibou",
+      "description": "南へ進み、西サハラを通ってゲルゲラート方面からモーリタニア北部へ向かう陸路。西サハラは係争地域で、国境周辺には地雷・不発弾などのリスクがある。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "西サハラとモーリタニア側の安全情報、国境運用、道路状況を出発直前に必ず確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "spain",
+      "nameEn": "SPAIN",
+      "nameJa": "スペイン",
+      "flag": "🇪🇸",
+      "reason": "アンダルシア建築とモロッコの都市文化を海峡の両側で比較し、フェリーで旅を連続させたいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "algeria",
+      "nameEn": "ALGERIA",
+      "nameJa": "アルジェリア",
+      "flag": "🇩🇿",
+      "reason": "マグリブの旧市街、アマジグ文化、サハラを、より広大な国土とローマ遺跡の文脈で比較したいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "tunisia",
+      "nameEn": "TUNISIA",
+      "nameJa": "チュニジア",
+      "flag": "🇹🇳",
+      "reason": "メディナ、ローマ遺跡、地中海沿岸、砂漠という共通要素を、よりコンパクトな国土で見比べたいなら。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "worldHeritage": "2026-09-27",
+    "transport": "2026-09-27",
+    "nextRoutes": "2026-09-28",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27",
+    "alBoraqSpeed": "2018"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Morocco basic data, updated 14 Aug 2026: area 446,000 km² excluding Western Sahara, population 38.43 million (World Bank 2025), capital Rabat, official languages Arabic and Amazigh, religion. https://www.mofa.go.jp/mofaj/area/morocco/data.html",
+    "currency": "Ministry of Foreign Affairs of Japan — Morocco basic data: Moroccan dirham (MAD). https://www.mofa.go.jp/mofaj/area/morocco/data.html",
+    "unescoMorocco": "UNESCO World Heritage Centre — Morocco State Party list: 9 inscribed properties, all cultural, checked 27 Sep 2026. https://whc.unesco.org/en/statesparties/ma",
+    "aitBenHaddou": "UNESCO World Heritage Centre — Ksar of Ait-Ben-Haddou: inscribed 1987, property 3.03 ha, buffer 16.32 ha, centre N31 2 49.992 W7 7 44.004. https://whc.unesco.org/en/list/444",
+    "fez": "UNESCO World Heritage Centre — Medina of Fez maps: Fès El Bali centre N34 03 45.3 W4 58 21.4, property 220 ha. https://whc.unesco.org/en/list/170/maps",
+    "marrakesh": "UNESCO World Heritage Centre — Medina of Marrakesh maps: Medina and Agdal centre N31 37 53 W7 59 12, property 1,018 ha. https://whc.unesco.org/en/list/331/maps",
+    "volubilis": "UNESCO World Heritage Centre — Archaeological Site of Volubilis: 42 ha, centre N34 4 26.004 W5 33 24.984. https://whc.unesco.org/en/list/836",
+    "chefchaouen": "Moroccan National Tourist Office — Chefchaouen: blue-rinsed medina on a mountainside in the Rif, checked 27 Sep 2026. https://www.visitmorocco.com/en/travel/chefchaouen",
+    "merzouga": "Moroccan National Tourist Office — Errachidia-Midelt-Merzouga: Erg Chebbi dunes and desert landscape, checked 27 Sep 2026. https://www.visitmorocco.com/en/travel/errachidia-midelt-merzouga",
+    "todragorge": "Moroccan National Tourist Office — Road to the Kasbahs / Great South: Todra gorges and southern route, checked 27 Sep 2026. https://www.visitmorocco.com/en/suggested-tours/road-kasbahs",
+    "hassanII": "Moroccan National Tourist Office — Historic landmarks / Casablanca: Hassan II Mosque on the Atlantic shore; minaret 200 m. https://www.visitmorocco.com/en/discover-morocco/historic-sites-must-be-visited",
+    "food": "Moroccan National Tourist Office — Food & Drinks: Harira, Couscous, Tajine and Pastilla as representative Moroccan dishes. https://www.visitmorocco.com/en/travel-info/food-drinks",
+    "transport": "Moroccan National Tourist Office — Getting around Morocco; ONCF — Al Boraq destinations: Tangier, Kenitra, Rabat, Casablanca, with conventional rail connections to Fez and Marrakech; checked 27 Sep 2026. https://www.visitmorocco.com/en/travel-info/getting-around-morocco ; https://www.oncf.ma/en/Al-boraq/Destinations-and-timetables/Destinations",
+    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; MAR target with SAH/DZA/ESP/PRT/MRT geographic context; checked 27 Sep 2026.",
+    "sceneCoordinates": "WGS84 scene points checked 27 Sep 2026 against UNESCO property coordinates, Moroccan National Tourist Office place references and mapped locality references. Ait-Ben-Haddou 31.04722,-7.12889; Chefchaouen 35.1688,-5.2636; Fez Chouara 34.0647,-4.9731; Koutoubia 31.6240,-7.9936; Volubilis 34.07389,-5.55694; Erg Chebbi 31.1456,-3.9676; Todra Gorge 31.5889,-5.5900; Essaouira Skala 31.5133,-9.7724; Hassan II Mosque 33.6084,-7.6327; Rabat 34.0209,-6.8416.",
+    "nextRoutes": "Spain: Tangier City Port — Tangier–Tarifa fast ferry operates year-round with multiple daily departures, checked 28 Sep 2026. https://www.tangerport.com/ferry/ ; Algeria: UK FCDO Morocco regional risks — Morocco–Algeria land and sea borders are closed, checked 28 Sep 2026. https://www.gov.uk/foreign-travel-advice/morocco/regional-risks ; Mauritania/Western Sahara: UK FCDO Western Sahara and Mauritania regional risks — disputed territory, Berm/mines risk, Mauritania–Western Sahara border risk guidance, checked 28 Sep 2026. https://www.gov.uk/foreign-travel-advice/western-sahara/regional-risks ; https://www.gov.uk/foreign-travel-advice/mauritania/regional-risks",
+    "ergChebbiHeight": "Moroccan National Tourist Office — official Ouarzazate / Merzouga travel material: Erg Chebbi dunes reach about 150 m. https://www.visitmorocco.com/sites/default/files/atoms/files/Ouarzazate%20ENG.pdf",
+    "tafilaletKsours": "Moroccan National Tourist Office — Medina in Errachidia-Midelt-Merzouga: Tafilalet is home to more than 400 ksours. Checked 27 Sep 2026. https://www.visitmorocco.com/en/travel/errachidia-midelt-merzouga/medina",
+    "toubkal": "Moroccan National Tourist Office — Geography of Morocco: Djbel Toubkal 4,167 m, highest peak in North Africa. Checked 27 Sep 2026. https://www.visitmorocco.com/en/discover-morocco/geography-morocco",
+    "population": "Ministry of Foreign Affairs of Japan — Morocco basic data, updated 14 Aug 2026: population 38.43 million (World Bank 2025). https://www.mofa.go.jp/mofaj/area/morocco/data.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Morocco State Party list: 9 inscribed properties, all cultural, checked 27 Sep 2026. https://whc.unesco.org/en/statesparties/ma",
+    "alBoraqSpeed": "ONCF — Tangier–Kenitra high-speed line is operated at 320 km/h; Al Boraq is Morocco and Africa's first high-speed train. https://www.oncf.ma/fr/Actualites/Grace-a-al-boraq-l-afrique-intergre-le-club-de-la-grande-vitesse-et-suscite-le-renforcement-de-la-cooperation-ferroviaire-sud-sud"
+  }
+}
