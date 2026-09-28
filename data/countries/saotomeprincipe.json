@@ -1,0 +1,592 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "saotomeprincipe",
+  "nameEn": "SÃO TOMÉ & PRÍNCIPE",
+  "nameJa": "サントメ・プリンシペ",
+  "region": "CENTRAL AFRICA / GULF OF GUINEA / EQUATOR",
+  "seo": {
+    "description": "ピコ・カン・グランデ、ラゴア・アズール、ロサ群、プライア・バナナ、オケ・ピピ滝。火山島、熱帯林、カカオ農園史が重なるサントメ・プリンシペを8景と地図でたどる。"
+  },
+  "capital": {
+    "nameEn": "São Tomé",
+    "nameJa": "サントメ",
+    "coordinates": {
+      "latitude": 0.33654,
+      "longitude": 6.72732
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 8,
+      "y": -16
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "赤道近くのギニア湾に、深い熱帯林をまとった二つの火山島が浮かぶ。鋭い岩峰、黒い海岸、カカオ農園のロサ、固有の生態系が、短い距離の中で濃く重なる。",
+    "image": "assets/images/saotomeprincipe/approved/hero-pico-cao-grande.webp",
+    "location": "Pico Cão Grande / São Tomé Island",
+    "coordinates": {
+      "latitude": 0.11819,
+      "longitude": 6.56636
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 1.78,
+      "south": -0.08,
+      "west": 6.4,
+      "east": 7.52
+    },
+    "svg": "assets/images/saotomeprincipe/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 STP geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. 1200×760 local-equirectangular-fit-v1; reviewed 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "lagoa-azul",
+      "name": "ラゴア・アズール",
+      "nameLocal": "Lagoa Azul / São Tomé",
+      "mapLabel": "Lagoa Azul",
+      "description": "サントメ島北部の乾いた海岸に、青い入り江と低い草地、火山岩が重なる。湿潤な南部の森とは対照的で、小さな島の中でも降水と植生が大きく変わることを一目で感じられる。",
+      "coordinates": {
+        "latitude": 0.4071,
+        "longitude": 6.61023
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-1-lagoa-azul.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -1.2
+      }
+    },
+    {
+      "id": "roca-diogo-vaz",
+      "name": "ロサ・ディオゴ・ヴァス",
+      "nameLocal": "Roça Diogo Vaz",
+      "mapLabel": "Diogo Vaz",
+      "description": "北西海岸に残るカカオ農園のロサ。歴史的な生産施設と住居群、現在のカカオ栽培が同じ土地に重なり、島の経済を長く支えたプランテーションの構造を景観として読める。",
+      "coordinates": {
+        "latitude": 0.317333,
+        "longitude": 6.498389
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-2-diogo-vaz.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "cascata-sao-nicolau",
+      "name": "サン・ニコラウ滝",
+      "nameLocal": "Cascata de São Nicolau",
+      "mapLabel": "São Nicolau",
+      "description": "島中央部の高地で、濃い熱帯植生の中から水が黒い火山岩を落ちる。海岸から短い距離で標高が上がり、雲と雨を受ける内陸部の湿潤さがサントメ島の水景観をつくる。",
+      "coordinates": {
+        "latitude": 0.28607,
+        "longitude": 6.62528
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-3-sao-nicolau-waterfall.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.2,
+        "y": 4.1
+      }
+    },
+    {
+      "id": "roca-agua-ize",
+      "name": "ロサ・アグア・イゼ",
+      "nameLocal": "Roça Água Izé",
+      "mapLabel": "Água Izé",
+      "description": "東海岸近くに広がる大規模ロサの遺構。農園施設、病院跡、線路や住居の痕跡が残り、カカオ生産と植民地期の強制移住・労働が結びついた歴史を現在の集落景観の中でたどる。",
+      "coordinates": {
+        "latitude": 0.218972,
+        "longitude": 6.727611
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-4-agua-ize.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.2,
+        "y": 2.2
+      }
+    },
+    {
+      "id": "praia-jale",
+      "name": "プライア・ジャレ",
+      "nameLocal": "Praia Jalé",
+      "mapLabel": "Praia Jalé",
+      "description": "サントメ島南端近くの長い砂浜。背後にココヤシと海岸植生が続き、沖へ開いた静かな海岸はウミガメの産卵地としても知られる。火山峰と農園とは異なる島の海辺の生態系が見える。",
+      "coordinates": {
+        "latitude": 0.04217,
+        "longitude": 6.51066
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-5-praia-jale.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "praia-banana",
+      "name": "プライア・バナナ",
+      "nameLocal": "Praia Banana / Príncipe",
+      "mapLabel": "Praia Banana",
+      "description": "プリンシペ島北東部の小さな弧状の浜。密な森が海際まで下り、淡い砂浜と透明な海が細い湾をつくる。島の規模の小ささと、森と海が直接つながる景観を象徴する場所の一つ。",
+      "coordinates": {
+        "latitude": 1.69039,
+        "longitude": 7.44201
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-6-praia-banana.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.8,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "roca-sundy",
+      "name": "ロサ・スンディ",
+      "nameLocal": "Roça Sundy / Príncipe",
+      "mapLabel": "Sundy",
+      "description": "プリンシペ島北部の歴史的ロサ。カカオ農園の建築群に加え、1919年の皆既日食観測で知られる場所でもある。農園史と科学史が同じ土地に折り重なる。",
+      "coordinates": {
+        "latitude": 1.669056,
+        "longitude": 7.383139
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-7-roca-sundy.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.8,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "oque-pipi",
+      "name": "オケ・ピピ滝",
+      "nameLocal": "Cascata Oquê Pipi / Príncipe",
+      "mapLabel": "Oquê Pipi",
+      "description": "プリンシペ島の森の奥で、黒い岩壁を細い水流が落ちる滝。短い島内移動の先に密度の高い森と渓流が現れ、海岸だけではないプリンシペの内陸景観を見せる。",
+      "coordinates": {
+        "latitude": 1.597778,
+        "longitude": 7.413889
+      },
+      "image": "assets/images/saotomeprincipe/approved/scene-8-oque-pipi.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.7,
+        "y": 3.5
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山島の岩峰を見上げる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "熱帯林の道を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "カカオ農園の歴史に触れる",
+      "category": "WORK",
+      "icon": "landmark"
+    },
+    {
+      "title": "海辺の集落を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "森と海が接する浜を見る",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "滝と渓流をたどる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "ロサの建築を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "二つの島を行き来する",
+      "category": "MOVEMENT",
+      "icon": "map"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "volcanic-gulf-islands",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "二つの主島は、ギニア湾に並ぶ火山島",
+      "text": "サントメ島とプリンシペ島は火山活動で形成された急峻な島。海岸から短い距離で山地へ上がり、岩峰、滝、黒い火山岩、深い谷が密集する。",
+      "points": [
+        "ピコ・カン・グランデは島南部の象徴的な火山岩峰",
+        "プリンシペ島も起伏の大きい火山地形を持つ"
+      ],
+      "sourceKey": "volcanicGeology"
+    },
+    {
+      "topicKey": "rocas-forced-migration-system",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ロサは、カカオの豊かさと強制移住の歴史を同時に残す",
+      "text": "2026年に世界遺産登録されたロサ群は、19世紀後半から20世紀半ばの大規模農園システムを伝える。生産施設だけでなく、住居や病院などを含む構造が、植民地支配と強制移住・労働の歴史を可視化する。",
+      "points": [
+        "世界遺産は6つのロサからなる連続資産",
+        "サントメ島とプリンシペ島の双方に構成資産がある"
+      ],
+      "sourceKey": "rocasWorldHeritage"
+    },
+    {
+      "topicKey": "island-endemism-laboratory",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "隔離された島は、固有種が生きる小さな自然実験室",
+      "text": "サントメ島の生物圏保存地域には多数の固有植物と固有動物が記録され、海岸では複数種のウミガメも産卵する。島の隔離と標高差が、小さな面積に高い生物多様性を生んだ。",
+      "points": [
+        "サントメ島の生物圏保存地域には約1,200種の植物",
+        "海岸は複数種のウミガメの産卵地"
+      ],
+      "sourceKey": "saoTomeBiosphere"
+    },
+    {
+      "topicKey": "cacao-landscape-rocas",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "カカオは、農園の遺構ではなく今も続く島の産業景観",
+      "text": "カカオは19世紀に導入され、ロサを中心に島の土地利用と輸出経済を大きく変えた。現在もディオゴ・ヴァスなどで栽培と加工が続き、歴史遺産と現在の農業が同じ景観の中にある。",
+      "points": [
+        "政府観光サイトはカカオ導入を1819年とする",
+        "現在もカカオとチョコレート生産が行われる"
+      ],
+      "sourceKey": "localIngredients"
+    },
+    {
+      "topicKey": "two-island-travel-rhythm",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "サントメとプリンシペでは、旅の密度が違う",
+      "text": "人口と都市機能の大半はサントメ島に集まり、プリンシペ島はより小さく森の比率が高い。国内線で島を替えると、同じ国の中でも道路、集落、海岸のスケールが一段変わる。",
+      "points": [
+        "国際線の玄関口はサントメ",
+        "二つの主島は国内航空で結ばれる"
+      ],
+      "sourceKey": "transportAccess"
+    },
+    {
+      "topicKey": "equatorial-rainfall-contrast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "赤道の島でも、北と南、高地と海岸で雨の表情が変わる",
+      "text": "年間を通じて温暖だが、標高と風向きの影響で島内の湿り方には差がある。北部のラゴア・アズールの乾いた景観と、南部・高地の濃い森を同じ旅で見比べられる。",
+      "points": [
+        "6〜9月は比較的乾くグラヴァナ",
+        "雨期には滝と森林の水量・緑が増す"
+      ],
+      "sourceKey": "climate"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "sundy-eclipse-1919",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "科学",
+      "title": "1919年の皆既日食観測がプリンシペ島で行われた",
+      "text": "ロサ・スンディ周辺では1919年の皆既日食が観測され、アーサー・エディントンらの観測は一般相対性理論を検証する歴史的な観測の一つとなった。",
+      "icon": "history",
+      "sourceKey": "principeTourism"
+    },
+    {
+      "topicKey": "independence-1975",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "ポルトガルから独立したのは1975年",
+      "text": "サントメ・プリンシペは1975年7月にポルトガルから独立した。",
+      "icon": "history",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "cacao-introduction-1819",
+      "categoryEn": "FOOD",
+      "categoryJa": "カカオ",
+      "title": "カカオの導入は1819年とされる",
+      "text": "政府観光サイトは、ブラジルのバイーアから1819年にカカオが導入されたと紹介する。のちにカカオは島の主要輸出作物になった。",
+      "icon": "food",
+      "sourceKey": "localIngredients"
+    },
+    {
+      "topicKey": "first-world-heritage-2026",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産への初登録は2026年",
+      "text": "2026年、6つのロサからなる連続資産が登録され、サントメ・プリンシペにとって最初の世界遺産となった。",
+      "icon": "history",
+      "sourceKey": "unescoNews2026"
+    },
+    {
+      "topicKey": "gravana-gravanita-names",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "乾きやすい時期には二つの呼び名がある",
+      "text": "6〜9月ごろの比較的乾いた時期はグラヴァナ、12〜2月ごろの短い乾きやすい時期はグラヴァニタと呼ばれる。",
+      "icon": "weather",
+      "sourceKey": "climate"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SÃO TOMÉ & PRÍNCIPE",
+    "title": "サントメ・プリンシペで食べたいもの",
+    "intro": "燻製魚と葉を煮込むカルル、パンノキの実と塩漬け魚、マタバラの揚げ物、プリンシペ島のモケカ。島の畑と海の食材が一皿で出会う。",
+    "items": [
+      {
+        "id": "calulu",
+        "name": "カルル",
+        "nameLocal": "Calúlú",
+        "text": "魚や肉、葉野菜、香草などをゆっくり煮合わせる代表的な料理。政府観光サイトでも伝統料理として紹介され、家庭や地域で材料の組み合わせが変わる。",
+        "image": "assets/images/saotomeprincipe/approved/food-1-calulu.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fruta-pao-peixe-salgado",
+        "name": "パンノキの実と塩漬け魚",
+        "nameLocal": "Fruta-pão com peixe salgado",
+        "text": "でんぷん質のパンノキの実と塩漬け魚を組み合わせる島の定番。畑の作物と保存の利く魚を合わせる、土地の食材構成が見える一皿。",
+        "image": "assets/images/saotomeprincipe/approved/food-2-fruta-pao-peixe-salgado.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pasteis-matabala",
+        "name": "マタバラの揚げ物",
+        "nameLocal": "Pastéis de matabala",
+        "text": "マタバラと呼ばれる根茎類を使った小さな揚げ物。軽食として食べやすく、島で身近な根菜を使う食文化を知る入口になる。",
+        "image": "assets/images/saotomeprincipe/approved/food-3-pasteis-matabala.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "moqueca-principe",
+        "name": "プリンシペのモケカ",
+        "nameLocal": "Moqueca / Príncipe",
+        "text": "プリンシペ島の伝統料理として紹介される魚介の煮込み。海に囲まれた島らしく、魚介を中心にした温かい一皿として食卓に並ぶ。",
+        "image": "assets/images/saotomeprincipe/approved/food-4-moqueca-principe.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は小さいが、山道と島間移動で時間の密度は高い。サントメ島だけでも北・中央高地・南で景観が変わり、プリンシペを加えると国内線の接続余白が必要になる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "サントメ島の地形をつかむ",
+        "text": "首都周辺から北の乾いた海岸、中央高地、南の火山景観までを一つの軸で見る。例：サントメ → ラゴア・アズール → サン・ニコラウ滝 → ピコ・カン・グランデ周辺",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "ロサと南部海岸まで広げる",
+        "text": "サントメ島を南北に移動し、カカオ農園史と海岸を組み合わせる。例：サントメ → ディオゴ・ヴァス → アグア・イゼ → ピコ・カン・グランデ周辺 → プライア・ジャレ",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "プリンシペ島まで渡る",
+        "text": "二つの主島をつなぎ、森、浜、ロサを比較する。島間移動日は予定を詰めすぎない。例：サントメ → プライア・ジャレ → プリンシペ → プライア・バナナ → オケ・ピピ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央アフリカ / ギニア湾 / 赤道周辺"
+    },
+    {
+      "label": "首都",
+      "value": "サントメ"
+    },
+    {
+      "label": "人口",
+      "value": "約23.6万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,001 km²（日本の約0.3%）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教"
+    },
+    {
+      "label": "通貨",
+      "value": "ドブラ（STN）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "whole-country-biosphere-first",
+      "label": "国全体が生物圏保存地域",
+      "value": "世界初",
+      "note": "2025年にサントメ島がユネスコ生物圏保存地域へ加わり、先行して指定されていたプリンシペ島と合わせて、国土全体が生物圏保存地域となった最初の主権国家になった。",
+      "icon": "wildlife",
+      "interestReason": "国境そのものが自然保全と暮らしを両立させる一つの対象になっている、非常に珍しい島国の性格を端的に示す。"
+    },
+    {
+      "topicKey": "equator-zero-degree",
+      "label": "赤道",
+      "value": "0°",
+      "note": "サントメ島南側のロラス島を赤道が通る。首都や山だけでなく、旅の途中で地球の緯度0度そのものに触れられる国。",
+      "icon": "map",
+      "interestReason": "『赤道の国』という位置関係を抽象的な説明ではなく、実際に渡れる島と0度という数字で想像できる。"
+    },
+    {
+      "topicKey": "maritime-scale-160x",
+      "label": "海の広がり",
+      "value": "陸地の約160倍",
+      "note": "政府観光サイトは、サントメ・プリンシペの海域を陸地面積のおよそ160倍と紹介する。小さな島国だが、海まで含めると旅と暮らしの基盤は大きく広がる。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "地図上では小さく見える国を、実際には海を中心とする国家として捉え直せる数字。"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "6〜9月",
+      "color": "#9aa69a",
+      "text": "比較的雨が少ないグラヴァナ。気温もやや穏やかで、山道や未舗装路を歩く計画を立てやすい。海岸と高地では雲や風の出方が異なる。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#7f9a78",
+      "text": "雨が増える時期。森の緑と滝の水量が強く出る一方、山道やぬかるみの条件は変わりやすい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#b6a77f",
+      "text": "グラヴァニタと呼ばれる短い乾きやすい時期を含む。高温になりやすいが、雨が全くないわけではなく、海と森の両方を組み合わせやすい。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#78936f",
+      "text": "雨の多い季節。熱帯林と滝は力強く見えるが、トレイル、道路、海況は直前に確認して余白を持つ。"
+    }
+  ],
+  "transport": {
+    "title": "サントメ島を道路で巡り、プリンシペへは国内航空でつなぐ",
+    "text": "国際線の玄関口はサントメ。サントメ島内は道路移動が基本で、山地や南部では所要時間が距離以上にかかる。プリンシペ島へは国内航空で結ばれるが、運航日や時刻は変更され得るため、島をまたぐ日は最新スケジュールを確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "火山島と熱帯林を歩きたい人",
+      "text": "ピコ・カン・グランデ、中央高地の滝、プリンシペの森をつなぎ、海から急に立ち上がる火山島の地形を近い距離で体感したい人。"
+    },
+    {
+      "title": "カカオ農園と植民地史を景観から読みたい人",
+      "text": "ディオゴ・ヴァス、アグア・イゼ、スンディなどのロサを歩き、建築、農業、強制移住の歴史を現在の暮らしと切り離さず見たい人。"
+    },
+    {
+      "title": "小さな島国で海と森の両方を見たい人",
+      "text": "長距離移動を重ねるより、二つの島で浜、森、滝、集落をゆっくり切り替えながら、赤道の島の密度を味わいたい人。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "trail-rain-condition",
+      "title": "山道は雨の後の状態を確認する",
+      "text": "熱帯林のトレイルは短時間の雨でも滑りやすくなる。滝や山地へ入る日は、現地で道路・登山道の状態を確認し、時間に余裕を持つ。"
+    },
+    {
+      "topicKey": "domestic-flight-buffer",
+      "title": "プリンシペ移動の前後に余白を置く",
+      "text": "島間は国内航空が中心で、便の時刻や運航条件は変わり得る。国際線と同日に厳しい接続を組まず、最新の運航情報を確認する。"
+    },
+    {
+      "topicKey": "roca-living-heritage",
+      "title": "ロサは遺跡だけでなく生活の場でもある",
+      "text": "歴史的建築の周囲に住民の暮らしや現在の農業が続く場所がある。人物、住居、作業風景を撮影する際は、その場で許可を確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "equatorialguinea",
+      "nameEn": "EQUATORIAL GUINEA",
+      "nameJa": "赤道ギニア",
+      "flag": "🇬🇶",
+      "reason": "同じギニア湾の火山島と大陸部を持ち、赤道周辺の森林と島嶼地形を別の国家構成から比較できる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "gabon",
+      "nameEn": "GABON",
+      "nameJa": "ガボン",
+      "flag": "🇬🇦",
+      "reason": "ギニア湾岸の熱帯林、生物多様性、海岸景観という共通軸を、大陸側の広い森林地帯からつなげて見られる。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "capeverde",
+      "nameEn": "CAPE VERDE",
+      "nameJa": "カーボベルデ",
+      "flag": "🇨🇻",
+      "reason": "同じポルトガル語圏のアフリカ島国を、乾燥した大西洋火山群島と湿潤な赤道火山島という対照から比べられる。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2024",
+    "profile": "2025-08-08",
+    "biosphere": "2025-09-27",
+    "worldHeritage": "2026-07-28",
+    "climate": "2026-09-28",
+    "transport": "2026-09-28",
+    "food": "2026-09-28",
+    "map": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "maritimeScale": "2026-09-28"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — São Tomé and Príncipe basic data, updated 2025-08-08: area 1,001 km², population 236,000 (2024, World Bank), capital São Tomé, Portuguese, Christianity. https://www.mofa.go.jp/mofaj/area/stp/data.html",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used only as the comparison basis for the Country Profile area percentage. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "currency": "UN Data — São Tomé and Príncipe profile: national currency Dobra (STN). https://data.un.org/en/iso/st.html",
+    "saoTomeBiosphere": "UNESCO Man and the Biosphere — Ilha de São Tomé Biosphere Reserve, nominated 2025; together with Príncipe forms the first whole-country biosphere reserve; biodiversity and turtle information. https://www.unesco.org/en/mab/ilha-de-sao-tome",
+    "wholeCountryBiosphere": "UNESCO — 26 new Biosphere Reserves, 2025-09-27: São Tomé and Príncipe became the first State to have its entire territory designated as a biosphere reserve. https://www.unesco.org/en/articles/26-new-biosphere-reserves-unescos-continues-unprecedented-expansion-its-global-network",
+    "rocasWorldHeritage": "UNESCO World Heritage Centre — The Roças of Sao Tome and Principe: Colonial Agricultural System and Forced Migration, inscribed 2026; serial property of Monte Café, Água Izé, Diogo Vaz, São João, Sundy and Belo Monte. https://whc.unesco.org/en/list/1750/",
+    "unescoNews2026": "UNESCO World Heritage Centre — 2026-07-28: São Tomé and Príncipe joined the World Heritage List for the first time. https://whc.unesco.org/en/news/2915",
+    "volcanicGeology": "UNESCO World Heritage Centre Tentative List — Volcanic and forested landscape context of São Tomé and Príncipe. https://whc.unesco.org/en/tentativelists/6645/",
+    "climate": "São Tomé and Príncipe official tourism — When is the best time to visit: Gravana June–September, Gravanita December–February, rainier periods around March–May and October–November. https://turismo.gov.st/en/guide-pratique/when-best-time-visit-sao-tome-and-principe",
+    "transportAccess": "São Tomé and Príncipe official tourism — How do I get there: international gateway at São Tomé and domestic air connection to Príncipe; schedules should be checked. https://turismo.gov.st/en/guide-pratique/how-do-i-get-there",
+    "traditionalDishes": "São Tomé and Príncipe official tourism — Traditional dishes: Calúlú, breadfruit with salted fish, matabala fritters, and Príncipe dishes including moqueca. https://turismo.gov.st/en/pourquoi-sao-tome-et-principe/culture-et-patrimoine/traditional-dishes",
+    "localIngredients": "São Tomé and Príncipe official tourism — Local ingredients: cacao introduced in 1819 and later became central to the islands' plantation economy. https://turismo.gov.st/en/pourquoi-sao-tome-et-principe/culture-et-patrimoine/local-ingredients",
+    "principeTourism": "São Tomé and Príncipe official tourism — Príncipe Island: Roça Sundy and the 1919 eclipse observation; Príncipe Biosphere Reserve. https://turismo.gov.st/en/principe-island",
+    "maritimeScale": "São Tomé and Príncipe official tourism / investment guidance — maritime territory approximately 160 times larger than land area. https://turismo.gov.st/en/guide-pratique/informations-utiles/investments",
+    "sceneCoordinates": "WGS84 points checked 2026-09-28 against UNESCO property coordinates and mapped geographic references: Lagoa Azul 0.40710,6.61023; Roça Diogo Vaz 0.317333,6.498389; Cascata de São Nicolau 0.28607,6.62528; Roça Água Izé 0.218972,6.727611; Praia Jalé 0.04217,6.51066; Praia Banana 1.69039,7.44201; Roça Sundy 1.669056,7.383139; Oquê Pipi 1.597778,7.413889; Pico Cão Grande 0.11819,6.56636; São Tomé 0.33654,6.72732. UNESCO: https://whc.unesco.org/en/list/1750/maps/ ; Oquê Pipi: https://link.springer.com/article/10.1007/s12371-023-00887-w ; other points cross-checked with OpenStreetMap/GeoNames.",
+    "map": "Natural Earth 1:10m Admin-0 STP geometry, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; checked 2026-09-28.",
+    "nextRoutes": "São Tomé and Príncipe official tourism access guidance checked 2026-09-28 describes international access by air and domestic air between the main islands; no regular international passenger ferry route was verified, so nextRoutes remains empty. https://turismo.gov.st/en/guide-pratique/how-do-i-get-there"
+  }
+}
