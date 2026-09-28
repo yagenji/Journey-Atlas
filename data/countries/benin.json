@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "benin",
+  "nameEn": "BENIN",
+  "nameJa": "ベナン",
+  "region": "WEST AFRICA / 9°N",
+  "seo": {
+    "description": "ガンヴィエの湖上都市、アボメ王宮、ウィダーの記憶の道、ポルトノボのアフロ・ブラジル建築、ダサの花崗岩丘陵、モノ河口、Koutammakou。南北に細長いベナンをたどる。"
+  },
+  "capital": {
+    "nameEn": "Porto-Novo",
+    "nameJa": "ポルトノボ",
+    "coordinates": {
+      "latitude": 6.4969,
+      "longitude": 2.6283
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 8,
+      "y": -42
+    },
+    "mapOffset": {
+      "x": -1.5,
+      "y": -0.2
+    }
+  },
+  "hero": {
+    "lead": "南のノコエ湖では、水上に家と市場が続くガンヴィエの暮らしが広がる。そこから内陸へ進むと、ダホメ王国の王宮、花崗岩の丘、北西部のBatammariba文化景観へと、土地と歴史が大きく切り替わる。",
+    "image": "assets/images/benin/approved/hero-ganvie.webp",
+    "location": "Ganvié, Lake Nokoué",
+    "coordinates": {
+      "latitude": 6.4681,
+      "longitude": 2.39
+    },
+    "mapOffset": {
+      "x": 1.6,
+      "y": -4.4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 12.55,
+      "south": 5.5,
+      "west": -0.2,
+      "east": 4.6
+    },
+    "svg": "assets/images/benin/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Benin and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (BEN/TGO/BFA/NER/NGA GeoJSON). Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated and checked 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "royal-palaces-abomey",
+      "name": "アボメ王宮群",
+      "nameLocal": "Palais royaux d’Abomey",
+      "mapLabel": "Abomey",
+      "description": "17世紀から19世紀末まで続いたダホメ王国の政治と儀礼の中心。土壁で囲まれた王宮群には中庭、門、彩色レリーフが重なり、王権の継承に合わせて都市空間が拡張された歴史を伝える。",
+      "coordinates": {
+        "latitude": 7.1875,
+        "longitude": 1.992222
+      },
+      "image": "assets/images/benin/approved/scene-1-abomey-palaces.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.7,
+        "y": -1.6
+      }
+    },
+    {
+      "id": "door-of-no-return-ouidah",
+      "name": "ウィダーの帰らずの扉",
+      "nameLocal": "Porte du Non-Retour, Ouidah",
+      "mapLabel": "Ouidah",
+      "description": "町から大西洋岸へ続く「奴隷の道」の終点に立つ記憶の場所。現在のルートは、奴隷化された人々が海へ送られた歴史を、町・記念碑・海岸をつなぎながらたどるためのメモリアル空間になっている。",
+      "coordinates": {
+        "latitude": 6.32425,
+        "longitude": 2.08958
+      },
+      "image": "assets/images/benin/approved/scene-2-ouidah-door.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.4,
+        "y": 4.7
+      }
+    },
+    {
+      "id": "grand-mosque-porto-novo",
+      "name": "ポルトノボ大モスク",
+      "nameLocal": "Grande Mosquée de Porto-Novo",
+      "mapLabel": "Grande Mosquée",
+      "description": "20世紀初頭に建てられた、色彩豊かなアフロ・ブラジル様式のモスク。細い塔、装飾的な外壁、教会建築を思わせる輪郭が、帰還したアフリカ系ブラジル人と交易都市ポルトノボの複層的な歴史を映す。",
+      "coordinates": {
+        "latitude": 6.470333,
+        "longitude": 2.626611
+      },
+      "image": "assets/images/benin/approved/scene-3-porto-novo-mosque.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4.8,
+        "y": -1
+      }
+    },
+    {
+      "id": "dassa-hills",
+      "name": "ダサの丘",
+      "nameLocal": "Collines de Dassa",
+      "mapLabel": "Dassa-Zoumè",
+      "description": "ダサ＝ズメの町を囲む花崗岩の丘陵。丸みを帯びた巨大な岩塊、洞窟、緑の斜面が連なり、自然景観と地域の信仰・巡礼の場所が同じ地形の中に重なる。",
+      "coordinates": {
+        "latitude": 7.75,
+        "longitude": 2.183333
+      },
+      "image": "assets/images/benin/approved/scene-4-dassa-hills.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.3,
+        "y": 0.1
+      }
+    },
+    {
+      "id": "bouche-du-roy-avloh",
+      "name": "ラ・ブーシュ・デュ・ロワ",
+      "nameLocal": "La Bouche du Roy / Avloh",
+      "mapLabel": "Avloh",
+      "description": "モノ川、ラグーン、マングローブ、砂浜が大西洋岸で接する南西部の水辺。Avlohの集落からカヌーで進むと、淡水と海水の境界に、漁業と湿地の生態系が共存する景観が現れる。",
+      "coordinates": {
+        "latitude": 6.2952,
+        "longitude": 1.8945
+      },
+      "image": "assets/images/benin/approved/scene-5-bouche-du-roy.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.2,
+        "y": 0.9
+      }
+    },
+    {
+      "id": "kpasse-sacred-forest",
+      "name": "クパセの聖なる森",
+      "nameLocal": "Forêt sacrée de Kpassè",
+      "mapLabel": "Kpassè",
+      "description": "ウィダー市街に残る小さな聖林で、Vodunの信仰、巨木、祭祀空間、現代彫刻が同じ森の中に置かれている。歴史展示ではなく、現在も意味を持つ宗教空間として向き合いたい場所。",
+      "coordinates": {
+        "latitude": 6.36484,
+        "longitude": 2.09637
+      },
+      "image": "assets/images/benin/approved/scene-6-kpasse-forest.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1.2,
+        "y": -4.1
+      }
+    },
+    {
+      "id": "koutammakou-benin",
+      "name": "Koutammakou",
+      "nameLocal": "Koutammakou, le pays des Batammariba",
+      "mapLabel": "Koutammakou",
+      "description": "ベナン北西部とトーゴ北東部に連続するBatammaribaの文化景観。土の塔状住居sikien、畑、聖なる森、儀礼空間が散在し、建築単体ではなく暮らしと土地の関係そのものが世界遺産を形づくる。",
+      "coordinates": {
+        "latitude": 10.391464,
+        "longitude": 1.058914
+      },
+      "image": "assets/images/benin/approved/scene-7-koutammakou.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.2,
+        "y": -0.3
+      }
+    },
+    {
+      "id": "amazon-monument-cotonou",
+      "name": "アマゾン記念碑",
+      "nameLocal": "Monument Amazone, Cotonou",
+      "mapLabel": "Cotonou",
+      "description": "コトヌの海岸軸に立つ高さ30mの現代記念碑。ダホメ王国で組織された女性兵士Agoodjié / Minonsを参照し、王国史を現代ベナンの公共空間へ結び直した都市ランドマーク。",
+      "coordinates": {
+        "latitude": 6.34899,
+        "longitude": 2.40757
+      },
+      "image": "assets/images/benin/approved/scene-8-amazon-monument.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.7,
+        "y": 4.1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "湖上都市をピローグで進む",
+      "category": "DAILY_LIFE",
+      "icon": "sea"
+    },
+    {
+      "title": "土壁の王宮と中庭をたどる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "大西洋奴隷交易の記憶を歩く",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "アフロ・ブラジル建築を見る",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "花崗岩の丘を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "マングローブの水路を進む",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "生きたVodunの宗教空間に触れる",
+      "category": "FAITH",
+      "icon": "history"
+    },
+    {
+      "title": "土の塔状住居と農地景観を知る",
+      "category": "DAILY_LIFE",
+      "icon": "history"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "ganvie-water-adaptation",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ガンヴィエでは、水面が道路であり生活の基盤でもある",
+      "text": "ノコエ湖上のガンヴィエでは、住宅、学校、市場、漁の場が水辺に展開し、移動の基本はピローグになる。水上集落は景観の珍しさだけでなく、湖を生活圏として使い続ける地域社会の仕組みとして見ると輪郭が深まる。",
+      "points": [
+        "住宅や市場が湖上に連続する",
+        "移動と漁にピローグが使われる"
+      ],
+      "sourceKey": "beninTourismWater"
+    },
+    {
+      "topicKey": "gelede-masked-oral-heritage",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "Gèlèdèは、仮面・歌・踊りでYoruba-Nago社会の記憶を伝える",
+      "text": "Gèlèdèはベナン、ナイジェリア、トーゴに広がるYoruba-Nagoの伝統で、彫刻された仮面、衣装、歌、踊りを組み合わせる。UNESCO無形文化遺産として、女性の役割や共同体の記憶を伝える実践として評価されている。",
+      "points": [
+        "2008年にUNESCO無形文化遺産代表一覧へ記載",
+        "ベナン・ナイジェリア・トーゴにまたがる伝統"
+      ],
+      "sourceKey": "gelede"
+    },
+    {
+      "topicKey": "ouidah-memory-diaspora",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ウィダーの海岸は、出発の記憶とディアスポラのつながりを伝える",
+      "text": "現在の「奴隷の道」は、町から大西洋へ向かう道筋に複数の記憶の場所を置き、最後に帰らずの扉へ至る。単一の記念碑ではなく、歩く距離そのものを通じて大西洋奴隷交易の歴史を考える構成になっている。",
+      "points": [
+        "ルートの終点は大西洋に面する帰らずの扉",
+        "徒歩・自転車・車で複数の記憶の地点をたどる"
+      ],
+      "sourceKey": "beninTourismSlaveRoute"
+    },
+    {
+      "topicKey": "porto-novo-afro-brazilian",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ポルトノボには、アフロ・ブラジルの都市文化が建築として残る",
+      "text": "ポルトノボでは、奴隷制廃止前後に大西洋の両岸を往来した人々の影響が住宅や宗教建築に残る。大モスクの色彩豊かな外観は、その複層的な都市史を最も視覚的に伝える建物の一つ。",
+      "points": [
+        "大モスクは20世紀初頭に建設",
+        "公式観光情報はアフロ・ブラジル建築を都市の特徴として紹介する"
+      ],
+      "sourceKey": "beninTourismPortoNovo"
+    },
+    {
+      "topicKey": "vodun-living-practice",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "Vodunは、博物館の中ではなく現在の祭祀と暮らしの中に続く",
+      "text": "OuidahのKpassè聖林やTemple of Pythonsでは、Vodunの儀礼と信仰が現在も実践されている。公式観光情報も、伝統を過去の再演ではなく日常と共同体の中で受け継がれる生きた文化として紹介する。",
+      "points": [
+        "OuidahはVodunの精神文化を伝える中心地の一つ",
+        "祭祀空間では撮影や立ち入りのルールを尊重する"
+      ],
+      "sourceKey": "vodunLiving"
+    },
+    {
+      "topicKey": "mono-delta-water-landscape",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "モノ川河口では、川・ラグーン・マングローブ・海が接続する",
+      "text": "Bouche du Royはベナン側のモノ越境生物圏保存地域の一部で、マングローブ、湿地、ラグーン、海岸が連続する。漁業や小規模農業など地域の暮らしも、この淡水と海水が混じる環境に支えられている。",
+      "points": [
+        "ベナン側Bouche du Royは約9,678ha",
+        "モノ生物圏保存地域は2017年に認定"
+      ],
+      "sourceKey": "monoBiosphere"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "three-world-heritage-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "ベナンには世界遺産が3件ある",
+      "text": "アボメ王宮群、Koutammakou、W-Arly-Pendjari Complexの3件。文化遺産2件と自然遺産1件で、KoutammakouとW-Arly-Pendjariは国境を越える資産でもある。",
+      "icon": "history",
+      "sourceKey": "unescoBenin"
+    },
+    {
+      "topicKey": "dual-capital-functions",
+      "categoryEn": "CITY",
+      "categoryJa": "都市",
+      "title": "首都はポルトノボ、実質的な首都機能はコトヌにある",
+      "text": "日本外務省の基礎データでは首都をポルトノボとしつつ、実質的首都機能はコトヌにあると記載する。二都市を歩くと、政治的首都と経済・行政機能の重なり方が見える。",
+      "icon": "city",
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "north-south-700km-shape",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "ベナンは南北に約700km伸びる",
+      "text": "大統領府の地理情報では、国土は南北約700km。大西洋岸の幅は約125kmで、北へ進むにつれて最大約325kmまで広がる。細長い形が気候と景観の南北差を生む。",
+      "icon": "map",
+      "sourceKey": "presidencyGeography"
+    },
+    {
+      "topicKey": "shared-cfa-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "CFAフランはベナンだけの通貨ではない",
+      "text": "ベナンは西アフリカ通貨同盟の8か国の一つで、BCEAOが発行するCFAフランを共通通貨として使う。トーゴ、ブルキナファソ、コートジボワールなどへ陸路をつなぐと、同じ通貨圏が国境を越えて続く。",
+      "icon": "map",
+      "sourceKey": "bceao"
+    },
+    {
+      "topicKey": "south-north-rainfall-pattern",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "気候",
+      "title": "南部は雨季が二回、中心・北部は一回",
+      "text": "ベナン大統領府の地理情報では、南部は4月〜7月半ばと9月半ば〜10月に雨季があり、中心・北部は6〜9月が雨季。細長い国土では同じ月でも移動先によって条件が変わる。",
+      "icon": "weather",
+      "sourceKey": "presidencyGeography"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF BENIN",
+    "title": "ベナンで食べたいもの",
+    "intro": "南部のトウモロコシ、米と豆、北部のヤムと牧畜文化まで、主食の形が地域で変わる。色・質感・材料が重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "amiwo-chicken",
+        "name": "アミウォ",
+        "nameLocal": "Amiwô / Djèwô",
+        "text": "トマトやパーム油で赤く色づけした味付きのトウモロコシ生地。鶏肉などと合わせることが多く、南部のFon・Goun文化圏を代表する一皿として知られる。",
+        "image": "assets/images/benin/approved/food-1-amiwo.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "atassi",
+        "name": "アタシ",
+        "nameLocal": "Atassi / Watché",
+        "text": "米と豆を一緒に炊く日常的な料理。南部ではAtassi、北部ではWatchéなどの名で呼ばれ、唐辛子や玉ねぎのソース、魚や卵などを添えて食べる。",
+        "image": "assets/images/benin/approved/food-2-atassi.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pounded-yam",
+        "name": "搗きヤム",
+        "nameLocal": "Igname pilée / Sokuru",
+        "text": "茹でたヤムを臼でなめらかになるまで搗き、まとまりのある主食にする。北部で特に根づき、落花生や葉野菜、オクラなどのソースと合わせる。",
+        "image": "assets/images/benin/approved/food-3-pounded-yam.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "wagasi",
+        "name": "ワガシのトマトソース煮",
+        "nameLocal": "Wagasi en sauce tomate",
+        "text": "北部のFulani系牧畜文化と結びつく牛乳のチーズWagasiを、軽く揚げてからトマト、玉ねぎ、唐辛子のソースで煮る。形を保つチーズの弾力と赤いソースが特徴の一皿。",
+        "image": "assets/images/benin/approved/food-4-wagasi.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南部の主要都市と歴史地域は比較的まとまるが、国土は南北に長い。2026年9月時点で北部には渡航中止勧告を含む地域があるため、北上は距離より先に最新の安全情報で可否を判断する。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "コトヌ周辺の水辺と歴史都市をつなぐ",
+        "text": "Ganvié、Ouidah、Porto-Novoを軸に、湖上生活、奴隷交易の記憶、アフロ・ブラジル建築を比較する。例：Cotonou → Ganvié → Ouidah → Porto-Novo。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "AbomeyとDassaまで内陸へ進む",
+        "text": "南部にAbomey王宮群とDassaの丘を加え、沿岸から中央部の岩山まで景観を変える。例：Cotonou → Ouidah → Abomey → Dassa-Zoumè → Porto-Novo。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "安全条件を満たす範囲で北西部を検討する",
+        "text": "Koutammakouを含むAtacora方面は、公的安全情報と現地状況を直前に照合して可否を判断する。北部の危険レベル2・3地域を旅程目的で無理に通過しない。例：Cotonou → Abomey → Dassa-Zoumèまでを基本線とし、北西部は安全条件を満たす場合のみ別途検討する。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜3月",
+      "color": "#c8b689",
+      "text": "南部では大きな乾季、中心・北部も乾季。北部ではハルマッタンの乾いた風と粉塵が出ることがあり、長距離移動では視界と朝晩の体感差にも備えたい。"
+    },
+    {
+      "months": "4〜7月半ば",
+      "color": "#8ea58a",
+      "text": "南部は主雨季。湖・湿地・丘陵は緑が濃くなる一方、強い雨で道路や水位条件が変わる。中心・北部も雨季へ移行する。"
+    },
+    {
+      "months": "7月半ば〜9月半ば",
+      "color": "#a7b29b",
+      "text": "南部は比較的雨が弱まる小乾季だが、中心・北部では雨季の中心。南北移動ではCotonouの天気だけで判断せず、区間ごとの予報を確認する。"
+    },
+    {
+      "months": "9月半ば〜10月",
+      "color": "#8ca28d",
+      "text": "南部では二度目の雨季。中心・北部は雨季の終盤から乾季へ向かう。海岸、中央、Atacoraで季節の進み方が異なる。"
+    }
+  ],
+  "transport": {
+    "title": "南部は道路とピローグを組み合わせ、北上は安全情報を先に確認する",
+    "text": "Cotonouを基点にOuidah、Porto-Novo、Abomey方面は道路移動が中心で、GanviéやMono河口ではピローグが景観と生活を理解する重要な移動手段になる。公式観光情報はLagos・Loméからの道路接続も案内している。北部は治安条件が地域ごとに異なるため、距離だけで縦断計画を立てない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "西アフリカの王国史と大西洋交易史を、現地の空間から考えたい人",
+      "text": "AbomeyとOuidahをつなぎ、ダホメ王国の政治空間と奴隷交易の記憶を別々の物語にせず、一つの歴史の中で読みたい。"
+    },
+    {
+      "title": "水上都市、湿地、岩山まで小さな国土の景観差を追いたい人",
+      "text": "Ganvié、Bouche du Roy、Dassaを通じ、ギニア湾岸の水辺から中央部の花崗岩景観まで大きく景色を変えたい。"
+    },
+    {
+      "title": "建築・信仰・暮らしが今も続く文化景観に触れたい人",
+      "text": "Porto-Novo、Kpassè、Koutammakouで、アフロ・ブラジル建築、Vodunの宗教空間、Batammaribaの住居文化を現在の生活として見たい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / ギニア湾"
+    },
+    {
+      "label": "首都",
+      "value": "ポルトノボ（実質的首都機能はコトヌ）"
+    },
+    {
+      "label": "人口",
+      "value": "約1,446万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "112,622 km²（日本の約3分の1）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）／各地域の諸言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教／キリスト教／Vodunなど伝統宗教"
+    },
+    {
+      "label": "通貨",
+      "value": "西アフリカCFAフラン（XOF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "abomey-twelve-kings",
+      "label": "アボメ王国の王",
+      "value": "12人",
+      "note": "UNESCOは、1625年から1900年までに12人の王がアボメ王国を治めたと説明する。王ごとに宮殿が築かれ、王宮都市の空間が継承されていった。",
+      "icon": "history",
+      "interestReason": "一つの王宮ではなく、12代の王が連続して都市空間を積み重ねた歴史を数字でイメージできるため。"
+    },
+    {
+      "topicKey": "koutammakou-inhabited-sikien",
+      "label": "ベナン側の居住中sikien",
+      "value": "1,400棟",
+      "note": "UNESCOはベナン側Koutammakouに、現在も居住に使われるsikienが1,400棟あると記載する。文化遺産が生活の外側ではなく現在の住居として続く規模を示す。",
+      "icon": "history",
+      "interestReason": "「保存された古民家」ではなく、多数の家が現在の暮らしの中で使われ続けていることが分かるため。",
+      "exceptionalScale": true
+    },
+    {
+      "topicKey": "amazon-monument-height",
+      "label": "アマゾン記念碑",
+      "value": "30 m",
+      "note": "コトヌのMonument Amazoneは台座を除いて高さ30m、金属構造にブロンズの外装を持つ。2022年に公開された現代ベナンの大型ランドマーク。",
+      "icon": "city",
+      "interestReason": "王国時代の女性兵士の記憶が、現代都市でどれほど大きな公共モニュメントになっているかを一目で想像できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "northern-security-2026",
+      "title": "北部は地域名だけでなく最新の危険情報地図で判断する",
+      "text": "日本外務省は2026年9月時点で北部の複数地区をレベル3またはレベル2としている。Atacora・Alibori周辺では他国政府の助言がさらに広い範囲を対象とする場合もあるため、Koutammakouなど北西部を含む計画は出発直前に公的情報を照合する。"
+    },
+    {
+      "topicKey": "permission-for-sacred-sites",
+      "title": "人物・儀礼・宗教空間は撮影前に許可を確認する",
+      "text": "Bénin Tourisme公式案内も、人物、儀礼、礼拝場所を撮影する前に必ず許可を求めるよう案内している。KpassèやKoutammakouでは観光地としてではなく生活・信仰の場所として扱いたい。"
+    },
+    {
+      "topicKey": "season-south-north",
+      "title": "南部と北部で雨季のリズムが違う",
+      "text": "南部は雨季が二回、中心・北部は一回。Cotonouの天候だけでDassaやAtacoraの道路・歩行条件を推測せず、移動区間ごとに予報を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇹🇬",
+      "countryEn": "TOGO",
+      "countryJa": "トーゴ",
+      "path": "Cotonou → Grand-Popo → Hilla-Condji / Sanvee-Condji → Aného → Lomé",
+      "description": "ギニア湾岸を西へ進み、Hilla-Condji／Sanvee-Condjiの共同国境施設を越えてAného、LoméへつなぐAbidjan–Lagos回廊の陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設・道路整備が進行中。出発前にビザ・入国条件と交通状況を確認する。"
+    },
+    {
+      "flag": "🇳🇬",
+      "countryEn": "NIGERIA",
+      "countryJa": "ナイジェリア",
+      "path": "Cotonou → Porto-Novo → Sèmè-Kraké border → Badagry → Lagos",
+      "description": "Cotonouから東へ進み、Sèmè-Kraké共同国境施設を越えてLagos方面へ続く主要沿岸回廊。2026年9月にも両国税関のシステム連携事業が開始されている。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "共同国境施設は稼働しているが、入国資格・ビザ・道路・手続きは直前に両国の公式情報で確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "togo",
+      "nameEn": "TOGO",
+      "nameJa": "トーゴ",
+      "flag": "🇹🇬",
+      "reason": "KoutammakouとVodun文化、ギニア湾岸の水辺を国境の両側から連続して見たい人へ。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "ghana",
+      "nameEn": "GHANA",
+      "nameJa": "ガーナ",
+      "flag": "🇬🇭",
+      "reason": "大西洋奴隷交易の記憶、沿岸都市、内陸の王国文化を西アフリカ沿岸の別の歴史から比較したい人へ。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "nigeria",
+      "nameEn": "NIGERIA",
+      "nameJa": "ナイジェリア",
+      "flag": "🇳🇬",
+      "reason": "ヨルバ文化圏やLagosとの結びつき、国境を越えて続く沿岸大都市圏をより大きなスケールで見たい人へ。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "updatedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-27",
+  "sourceDates": {
+    "population": "2024",
+    "mofaProfile": "2026-06-25",
+    "unescoBenin": "2026-09-27",
+    "unescoKoutammakou": "2025",
+    "travelAdvice": "2026-09-27",
+    "nigeriaBorder": "2026-09-11",
+    "presidencyGeography": "2026-09-27",
+    "bceao": "2026-09-27",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27"
+  },
+  "sources": {
+    "mofaProfile": "Ministry of Foreign Affairs of Japan — Benin basic data, updated 2026-06-25: area 112,622 km², population 14.46 million (World Bank 2024), capital Porto-Novo with de facto capital functions in Cotonou, French official language, religion and CFA franc. https://www.mofa.go.jp/mofaj/area/benin/data.html",
+    "unescoBenin": "UNESCO World Heritage Centre — Benin State Party: three World Heritage properties, checked 2026-09-27. https://whc.unesco.org/en/statesparties/bj",
+    "unescoAbomey": "UNESCO World Heritage Centre — Royal Palaces of Abomey: 47.6 ha, ten palaces; component coordinates N7°11′15″ E1°59′32″. https://whc.unesco.org/en/list/323/ ; https://whc.unesco.org/en/list/323/maps/",
+    "unescoKoutammakou": "UNESCO World Heritage Centre — Koutammakou: Benin component centre N10°23′29.27″ E1°03′32.09″, 240,658 ha; 1,400 sikien still inhabited in Benin; boundary extension approved 2023. https://whc.unesco.org/en/list/1140/ ; https://whc.unesco.org/en/list/1140/maps/",
+    "beninTourismWater": "Bénin Tourisme — On the Water: Ganvié on Lake Nokoué and La Bouche du Roy as key water landscapes; homes, schools and markets rise above the water in Ganvié. https://benintourisme.bj/en/experiences/on-the-water/",
+    "beninTourismSlaveRoute": "Bénin Tourisme — The Route of the Enslaved: Ouidah memorial route to the Atlantic ending at the Door of No Return. https://benintourisme.bj/en/destinations/the-route-of-the-enslaved/",
+    "beninTourismPortoNovo": "Bénin Tourisme — Porto-Novo and Grande Mosquée: political capital with Afro-Brazilian heritage; Grand Mosque built in the early 20th century with Afro-Brazilian inspiration. https://benintourisme.bj/en/cities/porto-novo/ ; https://benintourisme.bj/destinations/la-grande-mosquee-de-porto-novo/",
+    "beninTourismDassa": "Bénin Tourisme — Collines de Dassa: granite hills, caves, monumental rock formations, viewpoints and spiritual sites. https://benintourisme.bj/destinations/les-collines-de-dassa/",
+    "monoBiosphere": "UNESCO MAB — Mono Biosphere Reserve, recognised 2017, 142,498 ha transboundary reserve; Bouche du Roy Benin section about 9,678 ha. https://www.unesco.org/en/mab/mono ; https://www.boucheduroy.bj/presentation/3/",
+    "kpasse": "Bénin Tourisme Ouidah page lists Kpassè Sacred Forest; coordinate cross-check via OpenStreetMap/Wikidata at 6.36484,2.09637. https://benintourisme.bj/en/cities/ouidah/",
+    "amazonMonument": "Government of Benin — Monument Amazone: 30 m high excluding plinth, metal structure with bronze covering, referring to the Agoodjié/Minons; opened in 2022. https://www.gouv.bj/attraction/monument-amazone/ ; https://www.gouv.bj/article/1871/",
+    "presidencyGeography": "Presidency of Benin — Geography: south has two rainy seasons and centre/north one rainy season. https://presidence.bj/le-benin/geographie/",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan — Benin danger information and terrorism/kidnapping information, checked 2026-09-27; northern districts include Level 3 and Level 2 areas. UK FCDO current 2026-09-26 cross-checks broader northern cautions. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2025T084.html ; https://www.anzen.mofa.go.jp/info/pcterror_118.html ; https://www.gov.uk/foreign-travel-advice/benin/warnings-and-insurance",
+    "food": "Benin government/decentralisation and current Benin culinary references checked 2026-09-27: Parakou specialties include pounded yam Sokuru and Wagashi; current Cotonou food information identifies amiwo and atassi; Beninese recipe collections document Wagasi/Wagassi fried then finished in tomato sauce. https://cooperation.decentralisation.gouv.bj/commune/parakou/ ; https://benin.bj/en/news/tourism-in-cotonou-what-to-see-and-do-in-benins-economic-capital ; https://fongbebenin.com/recettes2/recettes2.html",
+    "transport": "Bénin Tourisme practical information — road connections from Lagos and Lomé; official water experience page for Ganvié/Mono. https://benintourisme.bj/en/infos-pratiques-2/ ; https://benintourisme.bj/en/experiences/on-the-water/",
+    "nigeriaBorder": "Benin Customs — 2026-09-11 launch of Benin–Nigeria customs data exchange pilot at Sèmè-Kraké Joint Control Post; ECOWAS 2026 signage work at Seme-Krake. https://douanes.gouv.bj/en/modernisation-de-la-frontiere-seme-krake-les-douanes-beninoises-et-nigerianes-lancent-un-systeme-dechange-de-donnees/ ; https://www.ecowas.int/",
+    "togoBorder": "Benin Customs and UEMOA/AfDB references confirm Hilla-Condji / Sanvee-Condji as the Benin–Togo coastal joint-border corridor. https://douanes.gouv.bj/en/ ; https://www.uemoa.int/",
+    "sceneCoordinates": "WGS84 points checked 2026-09-27: Ganvié 6.4681,2.3900; Abomey 7.1875,1.992222 (UNESCO); Door of No Return 6.32425,2.08958; Grande Mosquée 6.470333,2.626611; Dassa-Zoumè 7.75,2.183333; Avloh 6.2952,1.8945; Kpassè 6.36484,2.09637; Koutammakou 10.391464,1.058914 (UNESCO); Monument Amazone 6.34899,2.40757.",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (BEN/TGO/BFA/NER/NGA); JOURNEY ATLAS map-v3 styling, generated 2026-09-27.",
+    "bceao": "BCEAO — West African Monetary Union: Benin is one of eight WAMU member states using the common CFA franc issued by BCEAO. Checked 2026-09-27. https://www.bceao.int/en/content/presentation-wamu",
+    "population": "Ministry of Foreign Affairs of Japan — Benin basic data, updated 2026-06-25, citing World Bank 2024 population at approximately 14.46 million. https://www.mofa.go.jp/mofaj/area/benin/data.html",
+    "gelede": "UNESCO Intangible Cultural Heritage — Oral heritage of Gelede, inscribed in 2008 on the Representative List for Benin, Nigeria and Togo; Bénin Tourisme also presents Gèlèdè as a living tradition combining carved masks, costumes, songs, dance and music. https://ich.unesco.org/en/lists?RL=00002 ; https://benintourisme.bj/en/experiences/living-traditions/",
+    "vodunLiving": "Bénin Tourisme — Living Traditions and Ouidah: Vodun remains a living spiritual tradition; Kpassè Sacred Forest and Temple of Pythons are active heritage sites. Checked 2026-09-27. https://benintourisme.bj/en/experiences/living-traditions/ ; https://benintourisme.bj/en/cities/ouidah/"
+  }
+}
