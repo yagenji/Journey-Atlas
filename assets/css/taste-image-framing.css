@@ -1,0 +1,111 @@
+/* Shared Country Taste artwork framing. Keep each approved single-dish illustration fully visible in its card; this stylesheet is part of the production Country CSS bundle. */
+.taste-card__image {
+  display: grid;
+  place-items: center;
+}
+.taste-card__img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Future Country 3:2 artwork uses its real source aspect and integral paper
+   ground. Legacy artwork has no opt-in and is rendered exactly as approved. */
+.taste-card__image--source-3x2 {
+  aspect-ratio: 3 / 2;
+  background: transparent;
+}
+.taste-card__img--source-3x2 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Panama's approved 3:2 Taste illustrations include their own safe margins.
+   Do not inset them again or expose a different card backing. */
+.taste-card__img[src*="/panama/approved/food0"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sancocho's approved bowl needs a slightly higher crop at 126% to retain its base. */
+.taste-card__img[src*="/panama/approved/food01-sancocho.webp"] {
+  width: 126%;
+  height: 126%;
+  transform: translateY(-5%);
+}
+
+/* Antigua & Barbuda's approved 3:2 illustrations have integral paper grounds.
+   Enlarge only slightly beyond the frame and keep each image exactly centered so
+   the complete dish remains visible while the surrounding paper margin is reduced. */
+.taste-card__img[src*="/antiguabarbuda/approved/food-"] {
+  width: 108%;
+  height: 108%;
+  justify-self: center;
+  align-self: center;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+
+/* Nicaragua's approved 1200x800 Taste illustrations include a warm paper ground
+   and safe margins. Fill the matching 3:2 frame without exposing its blue backing. */
+.taste-card__img[src*="/nicaragua/approved/food-"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Approved US food artwork has an integral 4:3 paper ground. Match that frame
+   to eliminate the second backing color; trim only a minimal outer paper
+   margin so the full bowl rims, bowl bases, and pizza crust stay visible. */
+.taste-card__image:has(> .taste-card__img[src*="/unitedstates/approved/food-"]) {
+  aspect-ratio: 4 / 3;
+}
+.taste-card__img[src*="/unitedstates/approved/food-"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.04);
+}
+
+/* Honduras's approved 1200x800 illustrations already include their paper ground.
+   Show the whole 3:2 artwork without the shared 80% inset and contrasting card backing. */
+.taste-card__img[src*="/honduras/approved/food-"] {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Shared 4:3 Taste framing: use the artwork's own complete paper ground. */
+.taste-card__image--source-4x3 {
+  aspect-ratio: 4 / 3;
+  background: transparent;
+}
+.taste-card__img--source-4x3 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Belize's delivered 3:2 illustrations already contain their own paper ground.
+   Size the frame to the delivered image (also safe if the original 4:3 loads),
+   rather than shrinking it to 80% and revealing a contrasting backing. */
+.taste-card__image:has(> .taste-card__img[src*="/belize/approved/food-"]) {
+  display: block;
+  aspect-ratio: auto;
+  background: transparent;
+}
+.taste-card__img[src*="/belize/approved/food-"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}

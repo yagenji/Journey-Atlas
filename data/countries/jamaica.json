@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "publicationPipelineVersion": 2,
+  "slug": "jamaica",
+  "nameEn": "JAMAICA",
+  "nameJa": "ジャマイカ",
+  "region": "CARIBBEAN / 18°N",
+  "seo": {"description": "キングストンの歴史ある劇場と街路から、ブルーマウンテンズ、石灰岩の丘、南岸の漁村、川と湿地へ。ジャマイカを8つの景色と地図から知る。"},
+  "capital": {"nameEn": "Kingston", "nameJa": "キングストン", "coordinates": {"latitude": 17.99702, "longitude": -76.79358}, "labelPosition": "left", "labelOffset": {"x": -25, "y": -35}, "mapOffset": {"x": 2.2, "y": 2.3}},
+  "hero": {"lead": "首都キングストンでは、歴史ある劇場を囲む街路に人々の暮らしが続く。街の背後に連なる山々から、石灰岩の丘、南岸の漁村、湿地へ。ひとつの島の中で、風景と文化が重なり合う。", "image": "assets/images/jamaica/approved/hero-ward-theatre.webp", "location": "Ward Theatre / North Parade / Kingston", "coordinates": {"latitude": 17.9719, "longitude": -76.7936}, "mapOffset": {"x": 4.6, "y": 1.7}},
+  "map": {"bounds": {"north": 20.2, "south": 17.15, "west": -79.0, "east": -74.0}, "svg": "assets/images/jamaica/map-atlas-v1.svg", "route": null, "source": "Jamaica main island: NOAA GSHHS full-resolution shoreline via Basemap 2.0.0, selected against Natural Earth 1:10m JAM ADM0 (pinned GeoJSON Git blob c12c1433a0a8a5684d051ebd0f015b723eea8461). Surrounding land: GSHHS intermediate; WGS84; 1200×760 common geographic-context map; verified 2026-09-18. Sources: https://www.ngdc.noaa.gov/mgg/shorelines/ and https://www.naturalearthdata.com/."},
+  "scenes": [
+    {"id": "negril-west-end", "name": "ネグリル / ウェスト・エンドの断崖", "nameLocal": "Negril / West End Limestone Cliffs", "mapLabel": "Negril", "description": "島の西端では、砂浜の北側とは異なる石灰岩の崖が海に面する。低い崖の縁から見る深い青の水面は、東部の川のある入り江とは別の海岸の輪郭を見せる。", "coordinates": {"latitude": 18.25398, "longitude": -78.3632}, "image": "assets/images/jamaica/approved/negril-west-end.webp"},
+    {"id": "treasure-beach-calabash-bay", "name": "トレジャー・ビーチ / カラバッシュ湾", "nameLocal": "Treasure Beach / Calabash Bay", "mapLabel": "Calabash Bay", "description": "南岸のカラバッシュ湾では、暗褐色の砂浜の西側に漁のための海岸がある。静かな海辺というだけでなく、舟と漁業の営みを通して、北岸とは異なる浜の役割が見えてくる。", "coordinates": {"latitude": 17.876778, "longitude": -77.759889}, "image": "assets/images/jamaica/approved/treasure-beach-calabash-bay.webp"},
+    {"id": "black-river-mangroves", "name": "ブラック・リバー / マングローブ", "nameLocal": "Black River / Lower Morass", "mapLabel": "Black River", "description": "南西部の川を小舟で進むと、川岸に根を伸ばすマングローブと水鳥のいる湿地が続く。海岸の砂浜や山地の森とは違う、淡水と海がつながる景観である。", "coordinates": {"latitude": 18.023, "longitude": -77.8463}, "image": "assets/images/jamaica/approved/black-river-mangroves.webp", "mapOffset": {"x": -3.5, "y": -0.5}},
+    {"id": "cockpit-country-windsor", "name": "コックピット・カントリー / ウィンザー", "nameLocal": "Cockpit Country / Windsor Great Cave", "mapLabel": "Windsor", "description": "北西部の内陸では、雨水に削られた石灰岩が丸い丘と閉じた窪地を繰り返す。ウィンザーの洞窟入口に近づくと、起伏の多いカルスト地形の内部にも水と生き物の環境が続いている。", "coordinates": {"latitude": 18.35136, "longitude": -77.64747}, "image": "assets/images/jamaica/approved/cockpit-country-windsor.webp"},
+    {"id": "dunns-river-falls", "name": "ダンズ・リバー / 滝", "nameLocal": "Dunn’s River Falls", "mapLabel": "Dunn’s River", "description": "オーチョ・リオスの西では、段々になった石灰華の岩肌を水が広く流れ下る。海へ向かう川の流れと、水で形づくられた明るい岩の段差が近い距離で重なる。", "coordinates": {"latitude": 18.41676, "longitude": -77.13992}, "image": "assets/images/jamaica/approved/dunns-river-falls.webp"},
+    {"id": "blue-mountains-holywell", "name": "ブルーマウンテンズ / ホーリーウェル", "nameLocal": "Blue Mountains / Holywell", "mapLabel": "Holywell", "description": "キングストンの背後では、山の尾根が折り重なり、標高が上がるにつれて霧を含んだ森が広がる。海辺と首都から近い場所に、熱帯の山地の冷涼な空気がある。", "coordinates": {"latitude": 18.08755, "longitude": -76.72788}, "image": "assets/images/jamaica/approved/blue-mountains-holywell.webp", "mapOffset": {"x": 0, "y": -2}},
+    {"id": "port-royal-fort-charles", "name": "ポート・ロイヤル / フォート・チャールズ", "nameLocal": "Port Royal / Fort Charles", "mapLabel": "Port Royal", "description": "キングストン湾の入口、細長い砂州の先に古い砦と港町が残る。陸と海の境目に立つと、船の航路と17世紀の都市の歴史が同じ湾の地形から読み取れる。", "coordinates": {"latitude": 17.93504, "longitude": -76.84254}, "image": "assets/images/jamaica/approved/port-royal-fort-charles.webp", "mapOffset": {"x": -1.5, "y": 0.4}},
+    {"id": "rio-grande-rafting", "name": "リオ・グランデ / 竹筏", "nameLocal": "Rio Grande / Bamboo Rafting", "mapLabel": "Rio Grande", "description": "東部ポートランドを下る川では、竹を束ねた筏が緑の岸辺をゆっくり進む。かつて農産物を運んだ水路が、今も川と集落を結ぶ移動の風景になっている。", "coordinates": {"latitude": 18.20141, "longitude": -76.50788}, "image": "assets/images/jamaica/approved/rio-grande-rafting.webp", "mapOffset": {"x": 4.5, "y": 2}}
+  ],
+  "encounters": [
+    {"title": "海へ注ぐ小さな川", "category": "LANDSCAPE", "icon": "landscape"},
+    {"title": "石灰岩の丘と窪地", "category": "LANDSCAPE", "icon": "landscape"},
+    {"title": "山の霧と木々", "category": "NATURE", "icon": "landscape"},
+    {"title": "市場の果物屋台", "category": "DAILY_LIFE", "icon": "food"},
+    {"title": "港町の古い砦", "category": "ARCHITECTURE", "icon": "history"},
+    {"title": "川を進む竹の筏", "category": "MOVEMENT", "icon": "sea"},
+    {"title": "煙の立つ炭火料理", "category": "FOOD", "icon": "food"},
+    {"title": "通りに流れる音楽", "category": "CULTURE", "icon": "culture"}
+  ],
+  "atlasExtras": [
+    {"topicKey": "kingston-reggae-neighborhoods", "themeEn": "CULTURE", "themeJa": "文化に触れる", "icon": "culture", "title": "キングストンの音楽は、暮らしのある街で生まれた", "text": "レゲエ、スカ、ダブなどの音楽は、キングストンの地域社会や録音スタジオ、レコード店と結びついて発展した。トレンチ・タウンの文化施設や街の音楽史を訪ねると、音楽を記念品ではなく今の街につながる表現として捉えられる。", "points": ["地域コミュニティへの敬意と現地ガイドの案内を大切にする", "スタジオや路上の音楽が都市の文化を形づくっている"]},
+    {"topicKey": "maroon-mountain-autonomy", "themeEn": "HISTORY", "themeJa": "時をたどる", "icon": "history", "title": "山の険しさが、自由を求めた人々の歴史に結びつく", "text": "東部の山々は、奴隷制から逃れた人々が自立したコミュニティを築き、植民地支配に抵抗した場所だった。ムーア・タウンのマルーンの文化は、儀礼や伝承を含む現在の地域の営みとして受け継がれている。", "points": ["山道と森は移動や避難の地形でもあった", "文化に接する際は地域の意向と撮影の可否を尊重する"]},
+    {"topicKey": "jamaican-patwa-daily-voice", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "icon": "language", "title": "英語とパトワが日常の会話で重なる", "text": "公用語の英語に加え、ジャマイカ・クレオール語（パトワ）が日常生活や音楽の中で使われる。書かれた案内と人の声の違いにも耳を澄ますと、島の言葉の多層性が伝わる。", "points": ["公的な案内と日常の会話では言葉の使い方が異なる", "相手の言葉をまねるより、まず丁寧に聞く"]},
+    {"topicKey": "south-coast-fishing-work", "themeEn": "LIFE", "themeJa": "暮らしに出会う", "icon": "sea", "title": "南岸の浜には、漁をする人の作業場がある", "text": "トレジャー・ビーチのような南岸の集落では、海辺が遊泳や滞在だけでなく漁業の場所としても使われる。舟、道具、魚の販売を見れば、海が日々の仕事の場であることに気づく。", "points": ["漁業の設備や作業の妨げにならない距離で歩く", "同じ浜でも遊泳区域と漁業区域が分かれている"]},
+    {"topicKey": "blue-mountain-coffee-slopes", "themeEn": "WORK", "themeJa": "仕事と土地", "icon": "food", "title": "コーヒーの一杯の背後には山の斜面がある", "text": "東部のブルーマウンテンズでは、標高や霧、雨に応じてコーヒー栽培が営まれる。町で飲む一杯から産地の斜面に目を向けると、農業と土地の起伏がつながって見える。", "points": ["ブルーマウンテンという名は産地と結びついている", "農園訪問は受け入れ条件を確認する"]},
+    {"topicKey": "black-river-wetland-wildlife", "themeEn": "WILDLIFE", "themeJa": "野生に会う", "icon": "wildlife", "title": "南西部の湿地には、水鳥とワニが暮らす", "text": "ブラック・リバーの下流にはマングローブと淡水湿地が広がり、アメリカワニや水鳥の生息地になっている。船上から観察すると、川の流れと野生動物の居場所がつながっていることが分かる。", "points": ["野生動物には近づかずガイドの指示に従う", "水路の奥まで含めた湿地の保全が重要になる"]}
+  ],
+  "travelTrivia": [
+    {"topicKey": "independence-august-1962", "categoryEn": "HISTORY", "categoryJa": "歴史", "title": "独立記念日は8月6日", "text": "ジャマイカは1962年8月6日に英国から独立した。現在の国旗の黒・緑・金の三色も独立の年に掲げられた。", "icon": "history", "sourceKey": "independence"},
+    {"topicKey": "doctor-bird-national-symbol", "categoryEn": "NATURE", "categoryJa": "自然", "title": "長い尾を持つハチドリは国鳥", "text": "現地でドクター・バードと呼ばれるハチドリはジャマイカの固有種。庭や山地で小さな鳥の長い尾羽に気づくことがある。", "icon": "wildlife", "sourceKey": "nationalBird"},
+    {"topicKey": "portland-river-banana-cargo", "categoryEn": "MOVEMENT", "categoryJa": "移動", "title": "竹筏はかつてバナナの運搬に使われた", "text": "リオ・グランデでは、内陸から海へ農産物を運ぶために竹の筏が使われていた。今の川下りは、その水路の歴史とも重なる。", "icon": "sea", "sourceKey": "rioGrande"},
+    {"topicKey": "left-side-road-driving", "categoryEn": "ROAD", "categoryJa": "道", "title": "車は日本と同じ左側通行", "text": "ジャマイカの車は左側通行。山道には狭く曲がりくねった区間もあり、道の見た目だけで所要時間は読めない。", "icon": "road", "sourceKey": "driving"},
+    {"topicKey": "pilgrimage-watt-town-2024", "categoryEn": "CULTURE", "categoryJa": "文化", "title": "ワット・タウンの巡礼は2024年に無形文化遺産へ", "text": "ユネスコの無形文化遺産には音楽だけでなく、ワット・タウンの巡礼も登録されている。島の文化は異なる信仰と行事にも広がる。", "icon": "culture", "sourceKey": "intangible"}
+  ],
+  "taste": {"kicker": "TASTE OF JAMAICA", "title": "ジャマイカで食べたいもの", "intro": "朝の一皿、香る炭火、浜辺の魚、焼き立ての軽食。食べ物からも、島の暮らしの幅が見えてくる。", "items": [
+    {"id": "ackee-saltfish", "name": "アキー＆ソルトフィッシュ", "nameLocal": "Ackee and Saltfish", "text": "やわらかなアキーを塩漬けのタラ、玉ねぎ、トマトなどと炒める。朝食として親しまれるジャマイカの国民食。", "image": "assets/images/jamaica/approved/food-ackee-saltfish.webp", "imageState": "PENDING", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "jerk-chicken", "name": "ジャークチキン", "nameLocal": "Jerk Chicken", "text": "スパイスや香味野菜で味をつけた鶏肉を炭火で焼く。煙の香りと肉の焼き色が印象に残る料理。", "image": "assets/images/jamaica/approved/food-jerk-chicken.webp", "imageState": "PENDING", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "escovitch-fish", "name": "エスコヴィッチ・フィッシュ", "nameLocal": "Escoveitch Fish", "text": "揚げた魚に、酢で味つけした細切りの野菜を添える。海辺の魚を食べる文化が表れた一皿。", "image": "assets/images/jamaica/approved/food-escovitch-fish.webp", "imageState": "PENDING", "imageFraming": "SOURCE_ASPECT"},
+    {"id": "jamaican-patty", "name": "ジャマイカン・パティ", "nameLocal": "Jamaican Patty", "text": "香辛料をきかせた具を薄い生地で包んで焼く。店先で手軽に買える、日常の温かな軽食。", "image": "assets/images/jamaica/approved/food-jamaican-patty.webp", "imageState": "PENDING", "imageFraming": "SOURCE_ASPECT"}
+  ]},
+  "travelScale": {"kicker": "DURATION", "title": "旅の目安日程", "intro": "一つの海岸に留まるか、山と南岸まで広げるかで旅の距離が変わる。", "items": [
+    {"duration": "3〜4日", "title": "一つの地域を歩く", "text": "移動を抑え、街と近くの地域を歩く。例：キングストン周辺の街路と文化施設。", "icon": "city"},
+    {"duration": "5〜7日", "title": "山地と海岸をつなぐ", "text": "拠点を分けて島の東側をたどる。例：キングストン → ブルーマウンテンズ → ポート・アントニオ。", "icon": "map"},
+    {"duration": "8日以上", "title": "南岸と西端まで広げる", "text": "移動日を確保して地形の違いを比べる。例：キングストン → 南岸 → ネグリル → 北岸。", "icon": "compass"}
+  ]},
+  "seasons": [
+    {"months": "12〜3月", "color": "#b1c4ac", "text": "相対的に雨が少ない時期。山地と海岸で気温や天気は異なる。"},
+    {"months": "4〜6月", "color": "#b9c6aa", "text": "気温が上がり、5月ごろに降雨の山がある。雨天時の川や山道に注意する。"},
+    {"months": "7〜8月", "color": "#d8c7a3", "text": "暑い季節。公式のハリケーン期に含まれるため、移動計画に余裕を持つ。"},
+    {"months": "9〜11月", "color": "#b8c7cf", "text": "10月ごろに雨量が増えやすい。暴風雨情報や道路・施設の状況を確認する。"}
+  ],
+  "transport": {"title": "島内の移動", "text": "主要都市間には定期バスや長距離コーチがあり、地方の移動には認可タクシーや手配車を組み合わせる。山道は曲がりくねり、天候で所要時間が変わるため、島を横断する日は余裕を見込む。", "icon": "road"},
+  "personas": [
+    {"title": "山から海への変化を見たい人", "text": "東部の森と入り江、南岸や西端の異なる海岸線を地図でたどりたい人に。"},
+    {"title": "街の音楽と暮らしに触れたい人", "text": "キングストンの文化施設や市場と、地域の現在の営みに関心がある人に。"},
+    {"title": "自然をゆっくり観察したい人", "text": "川の筏や湿地、山地の散策など、少ない拠点で土地を深く知りたい人に。"}
+  ],
+  "facts": [
+    {"label": "地域", "value": "カリブ海 / 大アンティル諸島"},
+    {"label": "首都", "value": "キングストン"},
+    {"label": "人口", "value": "約284万人（2024年）"},
+    {"label": "面積", "value": "10,990 km²（日本の約2.9%）"},
+    {"label": "言語", "value": "英語（公用語）、ジャマイカ・クレオール語"},
+    {"label": "主な宗教", "value": "キリスト教（プロテスタントなど）"},
+    {"label": "通貨", "value": "ジャマイカドル（JMD）"}
+  ],
+  "signatureFacts": [
+    {"topicKey": "mountain-summit-elevation", "label": "島の最高峰の標高", "value": "2,256 m", "note": "ブルーマウンテンズの高地は、海辺とは異なる冷涼な山の環境をつくる。", "icon": "landscape", "interestReason": "海に囲まれた島の中に高い山と山地の森林があることを一目で伝える。"},
+    {"topicKey": "cockpit-protected-karst-hectares", "label": "石灰岩の保護区", "value": "約78,000 ha", "note": "コックピット・カントリー保護区は、丘と窪地が続く広大なカルスト地形を守る。", "icon": "landscape", "interestReason": "沿岸だけでは見えない内陸の石灰岩地形の広がりを具体的に想像できる。"},
+    {"topicKey": "port-royal-earthquake-year", "label": "港町を変えた地震", "value": "1692年", "note": "ポート・ロイヤルの一部が地震で水没し、陸と水中に都市の遺構が残った。", "icon": "history", "interestReason": "海岸の今の景色と、水中に残る17世紀の都市史を結ぶ出来事を示す。"}
+  ],
+  "tips": [
+    {"topicKey": "jamaica-mofa-regional-advisory", "title": "訪問地域の安全情報を確認", "text": "外務省の2026年5月22日付危険情報では、キングストンを含む一部の県がレベル2、その他は主にレベル1。出発前には地域別の最新情報を確認し、現地での移動方法も調整する。"},
+    {"topicKey": "jamaica-hurricane-weather-planning", "title": "暴風雨期の予定には余白を", "text": "公式のハリケーン・シーズンは6〜11月。雨量や道路の状況を事前に確認し、山と川を訪ねる日は代替日を用意する。"},
+    {"topicKey": "jamaica-local-transport-booking", "title": "島内移動は区間ごとに手配", "text": "都市間コーチの運行先と時刻を確認し、地方への区間は認可タクシーや手配車を検討する。夜間や長距離の移動を安易に組み込まない。"}
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {"slug": "cuba", "nameEn": "CUBA", "nameJa": "キューバ", "flag": "🇨🇺", "reason": "同じ大アンティルの島でも、歴史都市や街路、音楽文化の違いを比較しながら旅を広げられる。", "affinityType": "CULTURE"},
+    {"slug": "haiti", "nameEn": "HAITI", "nameJa": "ハイチ", "flag": "🇭🇹", "reason": "カリブ海の山地と、植民地支配・独立の歴史が現在の暮らしに重なる地域への関心をつなぐ。", "affinityType": "HISTORY"},
+    {"slug": "dominicanrepublic", "nameEn": "DOMINICAN REPUBLIC", "nameJa": "ドミニカ共和国", "flag": "🇩🇴", "reason": "山脈と熱帯の海岸をあわせ持つ別の大アンティルの島で、海辺から内陸への変化を比べられる。", "affinityType": "LANDSCAPE"}
+  ],
+  "updatedAt": "2026-09-18",
+  "sourcesVerifiedAt": "2026-09-18",
+  "sourceDates": {"population": "2024", "japanArea": "2026-04-01", "cockpitCountry": "2025", "portRoyal": "2025", "travelSafety": "2026-05-22"},
+  "sources": {
+    "profile": {"label": "日本国外務省 ジャマイカ基礎データ（2026年3月16日更新、面積は世銀、人口は2024年世銀）", "url": "https://www.mofa.go.jp/mofaj/area/jamaica/data.html", "areaKm2": 10990, "population": 2839000},
+    "population": "https://www.mofa.go.jp/mofaj/area/jamaica/data.html",
+    "japanArea": {"label": "国土地理院 全国都道府県市区町村別面積調（2026年4月1日現在）", "url": "https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm", "areaKm2": 377974.87, "ratioPercent": 2.9},
+    "wardTheatre": "https://www.ksamc.gov.jm/attractions/ward-theatre",
+    "wardTheatreCoordinates": "https://plizio.com/en/jamaica/jm-02/ward-theatre/",
+    "frenchmansCove": "https://websitearchive2020.nepa.gov.jm/new/services_products/subsites/beach_guide/beaches/frenchmans_cove.php",
+    "calabashBay": "https://websitearchive2020.nepa.gov.jm/new/services_products/subsites/beach_guide/beaches/calabash_bay.php",
+    "blueMountains": "https://whc.unesco.org/en/list/1356",
+    "cockpitCountry": "https://whc.unesco.org/en/tentativelists/6822",
+    "portRoyal": "https://whc.unesco.org/en/list/1595",
+    "blackRiver": "https://www.visitjamaica.com/experiences/natural-wonders/waterfalls-rivers/black-river/",
+    "rioGrande": "https://www.visitjamaica.com/experiences/natural-wonders/waterfalls-rivers/rio-grande-jamaica/",
+    "holywell": "https://mapcarta.com/W750267078",
+    "dunnsRiver": "https://mapcarta.com/26255440",
+    "negrilCliffs": "https://mapcarta.com/N3601085697",
+    "windsorCave": "https://www.jamaicancaves.org/windsor_050404.htm",
+    "fortCharles": "https://mapcarta.com/19327686",
+    "kingston": "https://www.geonames.org/search.html?country=JM&q=",
+    "food": "https://www.visitjamaica.com/best-of-jamaica/food/",
+    "music": "https://www.visitjamaica.com/experiences/things-to-do/history-museums/",
+    "maroon": "https://ich.unesco.org/en/RL/maroon-heritage-of-moore-town-00053",
+    "independence": "https://www.visitjamaica.com/discover-jamaica/people-heritage/history/",
+    "nationalBird": "https://www.visitjamaica.com/experiences/natural-wonders/animals-wildlife/",
+    "intangible": "https://ich.unesco.org/en/state/jamaica-JM",
+    "seasons": "https://metservice.gov.jm/wp-content/uploads/2022/11/Severe-weather-year-in-review-2021.pdf",
+    "driving": "https://www.visitjamaica.com/plan-your-adventure/getting-around/vehicle-rentals-transportation-services/",
+    "transport": "https://www.visitjamaica.com/plan-your-adventure/getting-around/public-transportation/",
+    "travelSafety": "https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2026T055.html"
+  }
+}

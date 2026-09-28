@@ -1,0 +1,31 @@
+.top-header{grid-template-columns:auto 1fr}
+.top-header nav{justify-content:flex-end;gap:clamp(20px,2.5vw,42px)}
+
+/* The detailed discovery sections are intentionally stacked vertically. */
+.explore-detail{grid-template-columns:1fr;gap:18px;padding-top:16px}
+.detail-panel{min-height:248px;display:grid;grid-template-columns:minmax(230px,.38fr) minmax(0,.62fr);grid-template-rows:auto auto;column-gap:34px;align-items:center;padding:22px 26px}
+.detail-panel .detail-heading{grid-column:1;grid-row:1;align-self:end}
+.detail-panel .detail-link{grid-column:1;grid-row:2;align-self:start}
+.map-panel .mini-map{grid-column:2;grid-row:1 / span 2;height:220px;margin:0}
+.theme-panel .theme-icons{grid-column:2;grid-row:1 / span 2;margin:0;grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* Keep the atlas name as the final visual element on the page. */
+.top-footer{min-height:126px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:24px 0 28px;border-top:1px solid var(--line)}
+.footer-links{width:100%;display:flex;justify-content:center;gap:24px;font-size:10px;color:#5f6d79}
+.footer-brand{display:block;font:700 clamp(20px,1.8vw,28px)/1 var(--sans);letter-spacing:.24em;text-align:center}
+
+@media(max-width:1050px){
+  .top-header nav{gap:18px;font-size:12px}
+  .detail-panel{grid-template-columns:minmax(210px,.4fr) minmax(0,.6fr)}
+}
+
+@media(max-width:760px){
+  .top-header{grid-template-columns:1fr auto}
+  .top-header nav a{display:none}
+  .top-header nav a:first-child{display:block}
+  .detail-panel{display:block;min-height:0;padding:18px}
+  .map-panel .mini-map{height:190px;margin-top:14px}
+  .theme-panel .theme-icons{margin-top:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .detail-panel .detail-link{margin-top:14px}
+  .top-footer{min-height:112px}
+}

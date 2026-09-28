@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 2,
+  "slug": "germany",
+  "nameEn": "GERMANY",
+  "nameJa": "ドイツ",
+  "region": "WESTERN EUROPE / 51°N",
+  "seo": {
+    "description": "ベルリン、ハンブルク、ライン川、バルト海の白亜断崖、ザクセンの砂岩、リューネブルクのヒース、ローテンブルク、黒い森。ドイツの8つの景色と地図から、都市・河川・森林・海岸・山地が切り替わる国土をたどる。"
+  },
+  "capital": {
+    "nameEn": "Berlin",
+    "nameJa": "ベルリン",
+    "coordinates": {
+      "latitude": 52.52,
+      "longitude": 13.405
+    },
+    "labelPosition": "left",
+    "mapOffset": {
+      "x": -2.5,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "アルプス前縁のノイシュヴァンシュタイン城から、ベルリンとハンブルク、ライン川、バルト海、砂岩の岩峰、北部のヒース、黒い森へ。地方ごとに建築と地形の組み合わせが大きく変わる国。",
+    "image": "assets/images/germany/approved/hero-neuschwanstein-marienbruecke.webp",
+    "location": "Neuschwanstein Castle / ノイシュヴァンシュタイン城（Bavaria）",
+    "coordinates": {
+      "latitude": 47.5575,
+      "longitude": 10.7494
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 55.4,
+      "south": 47,
+      "west": 5.4,
+      "east": 15.5
+    },
+    "svg": "assets/images/germany/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth-style 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection (DEU.geojson); WGS84; illustrated treatment: JOURNEY ATLAS"
+  },
+  "scenes": [
+    {
+      "id": "berlin-museum-island",
+      "name": "博物館島 / ボーデ博物館",
+      "nameLocal": "Museumsinsel / Bode-Museum",
+      "mapLabel": "Berlin",
+      "description": "シュプレー川と運河に囲まれたベルリン中心部の博物館島。北端ではボーデ博物館の大きなドームが水面に向かい、19〜20世紀初頭に形成された文化施設群と現代都市が同じ視界に重なる。",
+      "coordinates": {
+        "latitude": 52.522,
+        "longitude": 13.3942
+      },
+      "image": "assets/images/germany/approved/berlin-museum-island.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "hamburg-speicherstadt",
+      "name": "シュパイヒャーシュタット",
+      "nameLocal": "Speicherstadt / Wasserschloss",
+      "mapLabel": "Hamburg",
+      "description": "ハンブルク港に築かれた赤煉瓦の倉庫街。運河と橋の間に倉庫群が連なり、ヴァッサーシュロス周辺では水上交通と港湾都市の商業史が一つの景観として見える。",
+      "coordinates": {
+        "latitude": 53.5456,
+        "longitude": 10.0003
+      },
+      "image": "assets/images/germany/approved/hamburg-speicherstadt.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "bacharach-rhine-valley",
+      "name": "バッハラッハ / ライン渓谷",
+      "nameLocal": "Bacharach / Upper Middle Rhine Valley",
+      "mapLabel": "Bacharach",
+      "description": "ライン川沿いの斜面に葡萄畑と旧市街が重なる町。高台からは石造・木組みの家並み、教会の塔、川を行き交う船、対岸の丘陵までが連続し、中部ラインの文化景観を俯瞰できる。",
+      "coordinates": {
+        "latitude": 50.0605,
+        "longitude": 7.767
+      },
+      "image": "assets/images/germany/approved/bacharach-rhine-valley.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "rugen-jasmund",
+      "name": "ヤスムント / リューゲン島",
+      "nameLocal": "Jasmund National Park / Rügen",
+      "mapLabel": "Jasmund",
+      "description": "リューゲン島北東部のバルト海岸。白亜の断崖の上までブナ林が迫り、白い岩肌、濃い緑の森林、海の青が細長い海岸線に沿って切り替わる。",
+      "coordinates": {
+        "latitude": 54.5731,
+        "longitude": 13.6625
+      },
+      "image": "assets/images/germany/approved/rugen-jasmund-chalk-cliffs.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "saxon-switzerland-bastei",
+      "name": "バスタイ / ザクセン・スイス",
+      "nameLocal": "Bastei / Saxon Switzerland",
+      "mapLabel": "Bastei",
+      "description": "エルベ砂岩山地に立つ岩峰群とバスタイ橋。1851年完成の石橋が深い岩の谷をまたぎ、切り立った砂岩塔と森林が複雑に入り組む東部ドイツの地形を見せる。",
+      "coordinates": {
+        "latitude": 50.9619,
+        "longitude": 14.0725
+      },
+      "image": "assets/images/germany/approved/saxon-switzerland-bastei.webp",
+      "labelPosition": "left"
+    },
+    {
+      "id": "luneburg-heath-wilseder-berg",
+      "name": "ヴィルゼダー・ベルク / リューネブルク・ハイデ",
+      "nameBreaks": [
+        10
+      ],
+      "nameLocal": "Wilseder Berg / Lüneburg Heath",
+      "mapLabel": "Wilseder Berg",
+      "description": "北ドイツの内陸に広がるヒース景観。8〜9月には低いヒースが紫に染まり、砂地の小径、ジュニパー、白樺が平坦な地形に点在する。アルプスとは対照的な北部の広がりが分かる。",
+      "coordinates": {
+        "latitude": 53.1676,
+        "longitude": 9.9398
+      },
+      "image": "assets/images/germany/approved/luneburg-heath-wilseder-berg.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "rothenburg-ploenlein",
+      "name": "プレーンライン / ローテンブルク",
+      "nameLocal": "Plönlein / Rothenburg ob der Tauber",
+      "mapLabel": "Rothenburg",
+      "description": "中世の城壁都市ローテンブルクを象徴する小さな分岐広場。木組みの家と泉を中心に、ジーバー塔とコボルツェラー門へ道が分かれ、街路と防御施設が近い距離で重なる。",
+      "coordinates": {
+        "latitude": 49.3743,
+        "longitude": 10.1802
+      },
+      "image": "assets/images/germany/approved/rothenburg-ploenlein.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "black-forest-ravenna-viaduct",
+      "name": "ラヴェンナ高架橋 / 黒い森",
+      "nameLocal": "Ravennaviadukt / Black Forest",
+      "mapLabel": "Ravenna",
+      "description": "黒い森南部、ラヴェンナ峡谷を渡るヘレンタール鉄道の石造高架橋。9つのアーチが深い針葉樹林の谷を横切り、鉄道土木と山地の地形が一つの景色になる。",
+      "coordinates": {
+        "latitude": 47.9173,
+        "longitude": 8.0745
+      },
+      "image": "assets/images/germany/approved/black-forest-ravenna-viaduct.webp",
+      "labelPosition": "right"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "高速列車",
+      "icon": "road"
+    },
+    {
+      "title": "木組みの町",
+      "icon": "city"
+    },
+    {
+      "title": "街のパン屋",
+      "icon": "food"
+    },
+    {
+      "title": "ビアガーデン",
+      "icon": "food"
+    },
+    {
+      "title": "サッカースタジアム",
+      "icon": "culture"
+    },
+    {
+      "title": "城",
+      "icon": "landmark"
+    },
+    {
+      "title": "ライン川と葡萄畑",
+      "icon": "landscape"
+    },
+    {
+      "title": "森と山",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "都市ごとに「中心」のつくり方が違う",
+      "text": "ベルリンではシュプレー川と歴史地区、ハンブルクでは港と運河が都市の骨格になる。大都市を同じ基準で見るより、水辺、広場、駅、旧市街がどう接続しているかを見ると地域差が分かりやすい。",
+      "points": [
+        "ベルリンは川と歴史地区を歩いて20世紀の変化をたどる",
+        "ハンブルクは倉庫街から港湾都市としての構造を読む"
+      ],
+      "topicKey": "urban-water-structure"
+    },
+    {
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "中世から分断と再統一まで、時代が街に残る",
+      "text": "城壁都市やライン沿いの町、中世を再解釈した19世紀の城、20世紀のベルリンまで、ドイツでは異なる時代の建築が地域ごとに残る。歴史を一つの年代順ではなく、場所を移動しながら比較できる。",
+      "points": [
+        "ローテンブルクでは街路と門が中世都市の尺度を残す",
+        "ベルリンでは分断と再統一後の都市更新が同じ街に重なる"
+      ],
+      "topicKey": "historic-layering"
+    },
+    {
+      "topicKey": "regional-everyday-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "地方へ行くほど、日常の表情が変わる",
+      "text": "ベルリンやハンブルクの大都市から、ライン川沿い、フランケン、バイエルンへ移ると、家並み、言葉の響き、食、街の速度が変わる。国名だけでなく地域名を意識すると、同じドイツの中の違いが見えやすい。",
+      "points": [
+        "大都市だけでなく小都市や郊外に一泊すると地域差を感じやすい",
+        "州名や地域名を地図と結びつけると、建築や食文化の違いを追いやすい"
+      ]
+    },
+    {
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "バウハウスは都市を移りながら形を変えた",
+      "text": "1919年にワイマールで始まったバウハウスは1925年にデッサウへ移り、1932年にはベルリンへ移転した。建築や家具を単体で見るだけでなく、学校が置かれた都市と時代背景をたどると20世紀デザインの流れが見える。",
+      "points": [
+        "ワイマールでは出発点、デッサウでは建築と教育の展開を見る",
+        "機能と量産を意識したデザイン思想は世界の近代建築へ広がった"
+      ],
+      "topicKey": "bauhaus-migration"
+    },
+    {
+      "topicKey": "ruhr-football-regional-identity",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "サッカーを見ると、ルール地方の輪郭が見えてくる",
+      "text": "ドルトムントやゲルゼンキルヒェンでは、クラブ文化が炭鉱・工業地域の歴史と長く結びついてきた。試合そのものだけでなく、スタジアムへ向かう人の流れや街の色から、都市ごとの帰属意識が見えてくる。",
+      "points": [
+        "ルール地方では炭鉱労働者のコミュニティから生まれたクラブも多い",
+        "ドルトムントとゲルゼンキルヒェンは、地域を代表するサッカー都市として知られる"
+      ]
+    },
+    {
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "鉄道と街道で、地域差をつなぐ",
+      "text": "主要都市間はICEやICで結び、ライン川沿い、黒い森、ロマンティック街道などでは地域鉄道やバス、徒歩を足す。移動速度を落とす区間をつくると、大都市だけでは見えない国土の変化が分かる。",
+      "points": [
+        "都市間は高速鉄道、自然景観は地域交通へ切り替える",
+        "ロマンティック街道はヴュルツブルクからフュッセンまで南北の文化景観をつなぐ"
+      ],
+      "topicKey": "rail-road-regional-link"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "federal-states",
+      "categoryEn": "FEDERAL",
+      "categoryJa": "連邦制",
+      "title": "ドイツは16の州からできている",
+      "text": "連邦政府と16の州がそれぞれ役割を持つ。ベルリン、ハンブルク、ブレーメンは都市州で、旅先の州が変わると行政だけでなく地域の文化や歴史のまとまりも切り替わる。",
+      "icon": "city",
+      "sourceKey": "federalStates"
+    },
+    {
+      "topicKey": "german-unity-day",
+      "categoryEn": "UNITY",
+      "categoryJa": "再統一",
+      "title": "10月3日は「ドイツ統一の日」",
+      "text": "1990年10月3日に東西ドイツの統一が法的に成立し、この日が国民の祝日になった。ベルリンを歩くと、分断期の痕跡と再統一後の都市更新を同じ場所でたどれる。",
+      "icon": "history",
+      "sourceKey": "reunification"
+    },
+    {
+      "topicKey": "black-forest-cuckoo-clock",
+      "categoryEn": "CLOCK",
+      "categoryJa": "工芸",
+      "title": "カッコウ時計の故郷は黒い森",
+      "text": "黒い森では17世紀後半から時計づくりが広がり、カッコウ時計は地域を象徴する工芸になった。ドイツ観光局は1840年頃には黒い森に約1,000の時計工房があったと紹介している。",
+      "icon": "culture",
+      "sourceKey": "cuckooClock"
+    },
+    {
+      "topicKey": "striezelmarkt-1434",
+      "categoryEn": "CHRISTMAS",
+      "categoryJa": "冬の街",
+      "title": "ドレスデンのシュトリーツェルマルクトは1434年に始まった",
+      "text": "ドレスデン市はシュトリーツェルマルクトを1434年創設のドイツ最古のクリスマスマーケットと紹介している。冬の市場文化は、都市の広場が季節によって使われ方を変える例でもある。",
+      "icon": "culture",
+      "sourceKey": "striezelmarkt"
+    },
+    {
+      "topicKey": "half-timbered-route",
+      "categoryEn": "TIMBER",
+      "categoryJa": "木組み",
+      "title": "木組みの町を約3,900kmの街道がつなぐ",
+      "text": "ドイツ木組み街道は1990年に始まり、100を超える木組みの町を約3,900kmのルートで結ぶ。ローテンブルクだけでなく、地域ごとに異なる木組み建築を比較できる。",
+      "icon": "road",
+      "sourceKey": "halfTimberedRoad"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "4〜6月",
+      "color": "#7f9a61",
+      "text": "都市歩きとライン川、黒い森、ザクセンの自然を組み合わせやすい。日が長くなる一方、アルプス高地は残雪が残ることがあるため、山岳部は現地条件を確認する。"
+    },
+    {
+      "months": "7〜8月",
+      "color": "#aa9555",
+      "text": "北海・バルト海側から南部山地まで動きやすい時期。都市や主要観光地は混みやすい。8月後半からリューネブルク・ハイデではヒースの開花が旅の景観になる。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#b4764c",
+      "text": "ライン川沿いの葡萄畑や南部の森に秋色が入り、真夏より街歩きがしやすい。日没が早くなるため、自然景観と鉄道移動の時間配分を調整する。"
+    },
+    {
+      "months": "11〜3月",
+      "color": "#708da0",
+      "text": "都市の博物館や歴史建築を軸にしやすく、11月末以降は各地のクリスマスマーケットが前面に出る。南部は雪や凍結で山道・展望地点へのアクセス条件が変わる。"
+    }
+  ],
+  "transport": {
+    "title": "高速鉄道・地域鉄道・車",
+    "text": "主要都市間はICE・ICを軸に移動しやすい。地方へ入る区間ではRE・RB・S-Bahnやバスへ乗り継ぎ、黒い森や山地など公共交通だけでは回りにくい場所は車を組み合わせる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "都市と歴史を一つの旅で比較したい人",
+      "text": "ベルリン、ハンブルク、中世の町を移動し、近現代都市、港湾都市、城壁都市がどう違うかを歩いて見たい人。"
+    },
+    {
+      "title": "海岸・平原・岩山・森林まで地形の幅を見たい人",
+      "text": "リューゲン島の白亜断崖、北部のヒース、ザクセンの砂岩、黒い森、バイエルンのアルプス前縁を同じ国で比較したい人。"
+    },
+    {
+      "title": "鉄道や街道を使って地方へ入っていきたい人",
+      "text": "大都市だけで終わらず、ライン川沿いやローテンブルク、黒い森へ移動しながら地域差を追いたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中央ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "ベルリン"
+    },
+    {
+      "label": "人口",
+      "value": "約8,347万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "約357,683 km²（日本の約95%）"
+    },
+    {
+      "label": "言語",
+      "value": "ドイツ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教49.5%／無宗教・その他50.5%"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "oktoberfest-attendance",
+      "label": "オクトーバーフェスト",
+      "value": "約650万人",
+      "note": "2025年は16日間で約650万人が来場。会場では約650万 マース（1 マース＝1リットル）のビールが提供された。",
+      "icon": "food"
+    },
+    {
+      "topicKey": "autobahn-length",
+      "label": "アウトバーン",
+      "value": "13,259 km",
+      "note": "連邦長距離道路局の2026年1月1日時点統計。都市と地方を結ぶ長距離移動の大きな骨格になっている。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "bread-register",
+      "label": "パンの登録種類",
+      "value": "3,200種超",
+      "note": "ドイツパン研究所のパン登録簿には3,200を超えるパンの種類が登録されている。地域ごとの穀物と製法の違いが日常の食文化に残る。",
+      "icon": "food"
+    }
+  ],
+  "tips": [
+    {
+      "title": "ドイツは都市名より地域を組み合わせる",
+      "text": "ベルリン、ハンブルク、ライン地方、ザクセン、バイエルンは距離も景観も大きく違う。短期間なら2〜3地域に絞り、都市と自然を同じ地域で組み合わせる方が違いを理解しやすい。",
+      "topicKey": "regional-itinerary-scope"
+    },
+    {
+      "title": "長距離列車は直前変更も前提にする",
+      "text": "ICE・ICは便利だが、工事や遅延で接続が変わることがある。地方へ乗り継ぐ日は余裕を持ち、当日のDB情報を確認する。",
+      "topicKey": "train-disruption-buffer"
+    },
+    {
+      "title": "自然景観は季節ごとのアクセス条件を見る",
+      "text": "ノイシュヴァンシュタイン周辺の山道、ザクセンの岩場、黒い森の峡谷は雪・凍結・雨で歩きやすさが変わる。都市と同じ固定時間で組まず、現地条件を確認する。",
+      "topicKey": "weather-access-check"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "歴史都市とアルプス、ドイツ語圏の文化を一緒に楽しみたいなら。"
+    },
+    {
+      "slug": "czechia",
+      "nameEn": "CZECHIA",
+      "nameJa": "チェコ",
+      "flag": "🇨🇿",
+      "reason": "中世都市、城、森や岩山の景観が好きなら。"
+    },
+    {
+      "slug": "denmark",
+      "nameEn": "DENMARK",
+      "nameJa": "デンマーク",
+      "flag": "🇩🇰",
+      "reason": "北海・バルト海の港町と、平坦な風景に惹かれたなら。"
+    }
+  ],
+  "updatedAt": "2026-09-10",
+  "sourcesVerifiedAt": "2026-09-07",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2024-12-31",
+    "religion": "2025",
+    "autobahn": "2026-01-01",
+    "heathBloom": "2026-08-28",
+    "transport": "2026",
+    "nextRoutes": "2026-09-07"
+  },
+  "sources": {
+    "map": "CountryGeoJSONCollection DEU.geojson, WGS84; country boundary used for JOURNEY ATLAS illustrated map",
+    "population": "Statistisches Bundesamt (Destatis), population at 31 December 2025: 83,467,117",
+    "area": "Statistisches Bundesamt (Destatis), Germany total area 357,683 km² as of 31 December 2024; comparison uses Japan area 377,974.87 km². Germany/Japan = 94.63%, displayed as approximately 95%.",
+    "language": "Basic Law / federal information: German is the principal official language of the Federal Republic of Germany",
+    "religion": "Evangelische Kirche in Deutschland (EKD), 31 December 2025: Christians 41.343 million, 49.5% of Germany's 83.467 million population.",
+    "currency": "European Commission: Germany is a euro-area member; euro notes and coins introduced in 2002",
+    "federalStates": "deutschland.de / Federal Republic of Germany: federation of 16 Länder; Berlin, Bremen and Hamburg are city states",
+    "reunification": "German Federal Government: German reunification took legal effect on 3 October 1990; 3 October is the national holiday",
+    "bauhaus": "UNESCO World Heritage Centre / Stiftung Bauhaus Dessau: Bauhaus founded in Weimar in 1919, moved to Dessau in 1925 and Berlin in 1932",
+    "striezelmarkt": "City of Dresden: Striezelmarkt founded in 1434 and described as Germany's oldest Christmas market",
+    "halfTimberedRoad": "Deutsche Fachwerkstraße: founded in 1990; around 3,900 km and more than 100 member half-timbered towns.",
+    "autobahn": "Fernstraßen-Bundesamt, Längenstatistik, 1 January 2026: federal motorways 13,259 km.",
+    "neuschwanstein": "Bavarian Palace Administration / UNESCO: Neuschwanstein near Schwangau; Marienbrücke is the established viewpoint above the castle",
+    "berlinMuseumIsland": "UNESCO / Berlin.de: Museum Island lies between the Spree and Spree Canal; Bode Museum forms the northern end of the ensemble",
+    "hamburgSpeicherstadt": "Hamburg official tourism: Speicherstadt red-brick warehouse district and canal network; Wasserschloss is a key motif viewed from Poggenmühlenbrücke",
+    "bacharach": "City of Bacharach: Postenturm viewpoint, Wernerkapelle and historic town within the Upper Middle Rhine cultural landscape",
+    "jasmund": "Jasmund National Park: beech forests and white chalk coast on the Baltic Sea; UNESCO beech forest component",
+    "bastei": "Saxony Tourism: Bastei Bridge built in 1851 amid the Elbe Sandstone Mountains",
+    "heathBloom": "Lüneburger Heide GmbH: heather bloom in August and September; Wilseder Berg bloom status verified 28 August 2026",
+    "rothenburg": "Rothenburg Tourism Service: Plönlein ensemble with half-timbered house, fountain, Kobolzeller Tor and Siebersturm",
+    "ravenna": "Hochschwarzwald Tourismus: Ravenna Viaduct spans the gorge with nine arches; 224 m long, around 36–40 m high",
+    "transport": "Deutsche Bahn, Streckenkarten & Liniennetzpläne: ICE/IC Liniennetz 2026 and regional network maps; https://www.bahn.de/service/fahrplaene/streckennetz",
+    "bread": "Deutsches Brotinstitut, German Bread Register: more than 3,200 registered bread specialties.",
+    "oktoberfest2025": "Oktoberfest.de / City of Munich, preliminary final report for Oktoberfest 2025: around 6.5 million visitors over 16 days and around 6.5 million Maß beer served.",
+    "cuckooClock": "German National Tourist Board (Germany Travel): Black Forest cuckoo-clock tradition; around 1,000 clock workshops in the Black Forest by 1840.",
+    "currywurst": "visitBerlin, Berlin's Currywurst: sliced sausage with curry-flavoured tomato sauce, commonly served as a Berlin snack with chips; https://www.visitberlin.de/en/berlins-currywurst",
+    "maultaschen": "Tourismus Marketing GmbH Baden-Württemberg, Swabian Specialties & Baden Cuisine: Maultaschen are filled pasta pockets, served in broth or pan-fried with roasted onions; https://www.visit-bw.com/en/taste/typical-dishes",
+    "brezel": "Bavaria Travel, official tourism site: pretzels/Brezn are a characteristic Bavarian food and common beer-garden accompaniment; https://bavaria.travel/",
+    "blackForestGateau": "Tourismus Marketing GmbH Baden-Württemberg, typical dishes and Black Forest gateau: regional speciality associated with the Black Forest and Schwarzwälder Kirschwasser; https://www.visit-bw.com/en/taste/typical-dishes",
+    "ruhrFootball": "German National Tourist Board (Germany Travel), Football hotspots — Gelsenkirchen & Dortmund: football traditions in the Ruhr region developed over generations, including clubs founded from mining communities; https://www.germany.travel/en/cities-culture/football-cities.html",
+    "encounterBeerGardensMarkets": "Germany Travel: in warmer months beer gardens and regional/street-food markets become part of outdoor urban life; seasonal wine taverns open along wine regions.",
+    "encounterHalfTimber": "Germany Travel: the German Half-Timbered Houses Route links historic towns with distinctive regional timber-frame architecture.",
+    "encounterChristmasMarkets": "Germany Travel: Christmas markets are a major seasonal urban tradition across Germany.",
+    "nextRoutes": "DB international timetable connections toward Prague, Austria and Amsterdam, checked 2026-09-07."
+  },
+  "contentQaVersion": 1,
+  "taste": {
+    "kicker": "TASTE OF GERMANY",
+    "title": "ドイツで食べたいもの",
+    "intro": "街角の軽食から南西部の郷土料理、パン、菓子まで、地域の違いが見える4つ。",
+    "items": [
+      {
+        "id": "currywurst",
+        "name": "カリーヴルスト",
+        "nameLocal": "Currywurst",
+        "text": "焼いたソーセージを切り、トマトベースのカレーソースとカレー粉を合わせるベルリンの軽食。Imbissや売店で出会いやすく、戦後の都市食文化を知る入口になる。",
+        "image": "assets/images/germany/approved/food-currywurst.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "maultaschen",
+        "name": "マウルタッシェン",
+        "nameLocal": "Maultaschen",
+        "text": "肉などの具を幅広の生地で包むシュヴァーベンの料理。ブイヨンでゆでてそのまま食べるほか、焼いて玉ねぎと合わせる食べ方もあり、南西部の郷土料理として出会える。",
+        "image": "assets/images/germany/approved/food-maultaschen.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "brezel",
+        "name": "ブレーツェル",
+        "nameLocal": "Brezel",
+        "text": "独特の結び目形に焼くラウゲン製法のパン。南部、とくにバイエルンではBreznとも呼ばれ、パン屋やビアガーデンで日常的に出会える。",
+        "image": "assets/images/germany/approved/food-brezel.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "schwarzwaelder-kirschtorte",
+        "name": "シュヴァルツヴェルダー・キルシュトルテ",
+        "nameLocal": "Schwarzwälder Kirschtorte",
+        "text": "チョコレート生地、クリーム、サクランボを重ねる黒い森のケーキ。地域のサクランボとキルシュの文化につながる菓子として、カフェで味わいたい。",
+        "image": "assets/images/germany/approved/food-schwarzwaelder-kirschtorte.webp",
+        "imageState": "APPROVED"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ベルリンを拠点に近郊へ",
+        "text": "首都を歩き、近郊を一つ加えるくらいが現実的。例：ベルリン＋ポツダム。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "2〜3地域を鉄道でつなぐ",
+        "text": "ICEと地域鉄道を使い、北部・西部・南部から2〜3地域を選ぶと、都市と景観の違いを比較しやすい。例：ベルリン → ハンブルク → ライン渓谷。",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "北から南まで国土の幅をたどる",
+        "text": "港湾都市、ライン川、中部の歴史都市、南部のアルプス前縁までつなぐと、連邦国家としての地域差が見えてくる。例：ハンブルク → ベルリン → ライン渓谷 → ハイデルベルク → ミュンヘン。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "nextRoutes": [
+    {
+      "flag": "🇨🇿",
+      "countryEn": "CZECHIA",
+      "countryJa": "チェコ",
+      "path": "Berlin → Dresden → Prague",
+      "description": "ベルリンからエルベ川沿いを南へ進む中欧の代表ルート。大都市からザクセンの歴史都市を経て、プラハの旧市街へ建築の層が変わっていく。"
+    },
+    {
+      "flag": "🇦🇹",
+      "countryEn": "AUSTRIA",
+      "countryJa": "オーストリア",
+      "path": "Munich → Salzburg → Vienna",
+      "description": "南ドイツからオーストリアへつなぐ定番周遊。アルプスの山麓とザルツブルクを経て、ウィーンの帝都景観へ旅のスケールが広がる。"
+    },
+    {
+      "flag": "🇳🇱",
+      "countryEn": "NETHERLANDS",
+      "countryJa": "オランダ",
+      "path": "Cologne → Amsterdam",
+      "description": "ライン流域からオランダの低地へ向かう代表ルート。大聖堂の町ケルンから運河都市アムステルダムへ、地形も街並みも次第に平坦になる。"
+    }
+  ]
+}

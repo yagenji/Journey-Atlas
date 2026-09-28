@@ -1,0 +1,41 @@
+name: Inventory published map context previews
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/add_country_map_context.py'
+      - 'tests/audit_map_context_inventory.py'
+      - '.github/workflows/map-context-inventory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  published-map-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install preview-only dependencies
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Audit canonical published maps and rasterize supported previews
+        run: |
+          python -m py_compile tests/audit_map_context_inventory.py
+          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}
+      - name: Preserve report and preview images only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-context-inventory-shard-${{ matrix.shard }}
+          path: /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/
+          if-no-files-found: warn
+          retention-days: 3

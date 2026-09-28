@@ -1,0 +1,201 @@
+name: Verify JOURNEY ATLAS production
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "index.html"
+      - "country.html"
+      - "404.html"
+      - "_redirects"
+      - "assets/css/**"
+      - "assets/js/**"
+      - "assets/images/**"
+      - "data/countries/**"
+      - "data/theme-taxonomy.json"
+      - "data/atlas-destinations.json"
+      - "scripts/build_site.py"
+      - "scripts/package_site.py"
+      - "scripts/build_cloudflare.py"
+      - "scripts/qa_published_browser.py"
+      - ".github/workflows/verify-production.yml"
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Optional Country slug; blank verifies the current production change"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-cloudflare-production
+  cancel-in-progress: false
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed Countries
+        id: target
+        shell: bash
+        env:
+          REQUESTED_SLUG: ${{ inputs.slug }}
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ] && [ -n "${REQUESTED_SLUG:-}" ]; then
+            echo "slugs=$REQUESTED_SLUG" >> "$GITHUB_OUTPUT"
+            echo "full=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            base="$(git rev-parse HEAD^)"
+          else
+            base=""
+          fi
+          python3 - "$base" "$GITHUB_OUTPUT" <<'PY'
+          import json
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          base, output = sys.argv[1:]
+          files = subprocess.check_output(["git", "diff", "--name-only", base, "HEAD"], text=True).splitlines() if base else []
+          slugs = set()
+          asset_folders = set()
+          for path in files:
+              match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
+              if match:
+                  slugs.add(match.group(1))
+              match = re.match(r"assets/images/([^/]+)/", path)
+              if match:
+                  asset_folders.add(match.group(1))
+
+          # Asset directory names are not guaranteed to equal canonical Country
+          # slugs (for example united-kingdom -> unitedkingdom). Resolve changed
+          # asset folders from actual Country JSON references before live QA.
+          country_dir = Path("data/countries")
+          for folder in sorted(asset_folders):
+              prefix = f"assets/images/{folder}/"
+              matched = set()
+              direct = country_dir / f"{folder}.json"
+              if direct.exists():
+                  matched.add(folder)
+              for country_path in country_dir.glob("*.json"):
+                  try:
+                      payload = country_path.read_text(encoding="utf-8")
+                  except OSError:
+                      continue
+                  if prefix in payload:
+                      matched.add(country_path.stem)
+              if not matched:
+                  raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
+              slugs.update(matched)
+
+          if base and "data/atlas-destinations.json" in files:
+              try:
+                  old = json.loads(subprocess.check_output(
+                      ["git", "show", f"{base}:data/atlas-destinations.json"], text=True
+                  ))
+                  new = json.loads(Path("data/atlas-destinations.json").read_text(encoding="utf-8"))
+                  old_rows = {row.get("slug"): row for row in old.get("destinations", []) if row.get("slug")}
+                  new_rows = {row.get("slug"): row for row in new.get("destinations", []) if row.get("slug")}
+                  for slug in set(old_rows) | set(new_rows):
+                      if old_rows.get(slug) != new_rows.get(slug):
+                          slugs.add(slug)
+              except Exception:
+                  pass
+
+          shared = any(
+              path == "country.html"
+              or path.startswith("assets/css/")
+              or path.startswith("assets/js/")
+              or path in {"scripts/build_site.py", "scripts/package_site.py", "scripts/build_cloudflare.py"}
+              for path in files
+          )
+          with open(output, "a", encoding="utf-8") as handle:
+              handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
+              handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
+          PY
+
+      - name: Wait for Cloudflare to serve this commit
+        env:
+          SITE_URL: https://atlas.yagenji.com
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 120); do
+            meta="$(curl -fsS --max-time 15 -H 'Cache-Control: no-cache' "$SITE_URL/build-meta.json?qa=$GITHUB_RUN_ID-$attempt" || true)"
+            live_sha="$(printf '%s' "$meta" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("commit",""))' 2>/dev/null || true)"
+            echo "attempt=$attempt expected=$EXPECTED_SHA live=$live_sha"
+            if [ "$live_sha" = "$EXPECTED_SHA" ]; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Production did not reach expected commit: $EXPECTED_SHA"
+          exit 1
+
+      - name: Verify runtime baseline
+        run: |
+          set -euo pipefail
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/?qa=$GITHUB_RUN_ID" -o /tmp/top.html
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
+          test -s /tmp/top.html
+          test -s /tmp/app.js
+          test -s /tmp/country.css
+
+      - name: Verify changed Country routes
+        if: steps.target.outputs.slugs != ''
+        env:
+          TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
+        run: |
+          set -euo pipefail
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
+            [ -f "data/countries/$slug.json" ] || continue
+            curl -fsS --max-time 20 "https://atlas.yagenji.com/countries/$slug/?qa=$GITHUB_RUN_ID" -o "/tmp/$slug.html"
+            curl -fsS --max-time 20 "https://atlas.yagenji.com/data/countries/$slug.json?qa=$GITHUB_RUN_ID" -o "/tmp/$slug.json"
+            test -s "/tmp/$slug.html"
+            test -s "/tmp/$slug.json"
+            grep -q "data-country=\"$slug\"" "/tmp/$slug.html"
+          done
+
+      - name: Install Browser QA dependency
+        if: steps.target.outputs.slugs != '' || steps.target.outputs.full == 'true'
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+
+      - name: Run live target Desktop / Tablet / Mobile QA
+        if: steps.target.outputs.slugs != ''
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-production-browser-output
+          QA_SCOPE: reviewable
+          QA_SLUGS: ${{ steps.target.outputs.slugs }}
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Run full published live QA for shared rendering changes
+        if: steps.target.outputs.full == 'true'
+        env:
+          QA_BASE_URL: https://atlas.yagenji.com
+          QA_OUT_DIR: qa-production-browser-output
+          QA_SCOPE: published
+        run: python3 scripts/qa_published_browser.py
+
+      - name: Upload production Browser QA
+        if: always() && (steps.target.outputs.slugs != '' || steps.target.outputs.full == 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-country-browser-qa
+          path: qa-production-browser-output/
+          if-no-files-found: warn
+          retention-days: 3

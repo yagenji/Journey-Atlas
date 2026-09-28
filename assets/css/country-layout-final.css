@@ -1,0 +1,184 @@
+/* JOURNEY ATLAS country-page final layout refinements — 2026-08-24 */
+
+/* Give the hero a clean visual ending before the atlas panels begin. */
+.atlas-body{
+  margin-top:24px!important;
+}
+
+/*
+  The map and scene list are independent editorial panels.
+  This prevents the shorter map column from inheriting the full height of the scene list.
+*/
+.atlas-panel{
+  display:grid!important;
+  grid-template-columns:minmax(360px,.92fr) minmax(0,1.18fr)!important;
+  gap:14px!important;
+  align-items:start!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.map-column,
+.scenes-column{
+  align-self:start!important;
+  border:1px solid var(--line)!important;
+  border-radius:16px!important;
+  background:rgba(251,248,240,.97)!important;
+  box-shadow:0 8px 28px rgba(38,52,55,.055)!important;
+}
+
+.map-column{
+  position:sticky;
+  top:18px;
+  border-right:1px solid var(--line)!important;
+}
+
+.scenes-column{
+  padding:22px!important;
+}
+
+.scenes-heading{
+  margin-bottom:12px!important;
+}
+
+/*
+  Two compact scene cards per row on wide screens.
+  Each card reads vertically: title -> image -> copy.
+  Production scene art is presented at the locked 16:10 ratio.
+*/
+.scene-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:start!important;
+  grid-auto-rows:max-content!important;
+}
+
+.scene-card{
+  min-height:0!important;
+  height:auto!important;
+  display:grid!important;
+  grid-template-columns:30px minmax(0,1fr)!important;
+  grid-template-areas:
+    "number name"
+    "number local"
+    "image image"
+    "description description"!important;
+  column-gap:8px!important;
+  row-gap:0!important;
+  align-items:start!important;
+  padding:10px!important;
+  overflow:hidden!important;
+}
+
+.scene-image{
+  grid-area:image;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:16 / 10!important;
+  margin-top:8px!important;
+  align-self:start!important;
+  border-radius:8px!important;
+  overflow:hidden!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+
+.scene-image>b{
+  display:none!important;
+}
+
+.scene-copy,
+.scene-copy>div{
+  display:contents!important;
+}
+
+.scene-copy>strong{
+  grid-area:number;
+  margin:0!important;
+  color:var(--navy);
+  font-size:18px!important;
+  line-height:1.35!important;
+  align-self:start;
+}
+
+.scene-copy h3{
+  grid-area:name;
+  margin:0!important;
+  font-size:14.5px!important;
+  line-height:1.45!important;
+  word-break:normal!important;
+  overflow-wrap:anywhere!important;
+}
+
+.scene-copy small{
+  grid-area:local;
+  display:block!important;
+  margin:1px 0 0!important;
+  color:var(--muted)!important;
+  font-size:10.5px!important;
+  line-height:1.35!important;
+}
+
+.scene-copy p{
+  grid-area:description;
+  margin:8px 1px 1px!important;
+  max-width:none!important;
+  font-size:12.5px!important;
+  line-height:1.65!important;
+}
+
+@media(max-width:1180px){
+  .atlas-panel{
+    grid-template-columns:minmax(330px,.88fr) minmax(0,1.12fr)!important;
+  }
+  .scene-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(max-width:900px){
+  .atlas-body{
+    margin-top:18px!important;
+  }
+  .atlas-panel{
+    grid-template-columns:1fr!important;
+  }
+  .map-column{
+    position:static;
+  }
+  .scene-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+@media(max-width:650px){
+  .atlas-body{
+    margin-top:14px!important;
+  }
+  .scenes-column{
+    padding:17px!important;
+  }
+  .scene-grid{
+    grid-template-columns:1fr!important;
+  }
+  .scene-card{
+    grid-template-columns:26px minmax(0,1fr)!important;
+    padding:9px!important;
+  }
+  .scene-image{
+    aspect-ratio:16 / 10!important;
+  }
+  .scene-copy>strong{
+    font-size:18px!important;
+  }
+  .scene-copy h3{
+    font-size:14px!important;
+  }
+  .scene-copy p{
+    font-size:12.5px!important;
+  }
+}

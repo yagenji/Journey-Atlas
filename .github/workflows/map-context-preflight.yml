@@ -1,0 +1,171 @@
+name: Map context preview preflight
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/add_country_map_context.py'
+      - 'scripts/add_country_map_context_existing.py'
+      - 'scripts/add_country_map_context_legacy.py'
+      - 'scripts/apply_exact_target_clip.py'
+      - 'scripts/filter_duplicate_target_context.py'
+      - 'scripts/generate_country_map_with_context.py'
+      - 'scripts/stage_map_context_rollout.py'
+      - 'ops/map-context-sources/cuba/cuba-ne10m-v4.1.0.geojson'
+      - 'ops/map-context-stage2-review.json'
+      - 'scripts/review_hk_shenzhen.py'
+      - 'scripts/review_brunei_malaysia.py'
+      - 'scripts/review_monaco_france.py'
+      - 'tests/test_map_context_priority_geography.py'
+      - 'tests/test_map_context_stage2_exact_clip.py'
+      - 'tests/test_map_context_existing_source_backed.py'
+      - 'tests/test_map_context_stage2_ledger.py'
+      - 'tests/test_map_context_cuba_sources.py'
+      - 'tests/test_add_country_map_context.py'
+      - 'tests/test_generate_country_map_with_context.py'
+      - 'tests/test_filter_duplicate_target_context.py'
+      - 'tests/test_map_context_legacy.py'
+      - 'tests/test_map_context_regions.py'
+      - 'tests/test_map_context_region_frames.py'
+      - 'tests/smoke_map_context_real.py'
+      - 'tests/diagnose_map_context_blockers.py'
+      - 'tests/qa_map_source_credit.py'
+      - 'assets/js/map-source-credit.js'
+      - 'country.html'
+      - '.github/workflows/map-context-preflight.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preview-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install map preview QA dependencies
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
+      - name: Check map migration syntax and focused tests
+        run: |
+          python -m py_compile \
+            scripts/add_country_map_context.py \
+            scripts/add_country_map_context_existing.py \
+            scripts/add_country_map_context_legacy.py \
+            scripts/apply_exact_target_clip.py \
+            scripts/filter_duplicate_target_context.py \
+            scripts/generate_country_map_with_context.py \
+            scripts/stage_map_context_rollout.py \
+            scripts/review_hk_shenzhen.py \
+            scripts/review_brunei_malaysia.py \
+            scripts/review_monaco_france.py \
+            tests/qa_map_source_credit.py
+          python -m unittest discover -s tests -p 'test_*map_context*.py' -v
+          python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
+      - name: Save Brunei and Monaco priority source review before long browser run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brunei-monaco-priority-source-review
+          path: /tmp/journey-atlas-map-context-real-previews/priority-review/
+          if-no-files-found: warn
+          retention-days: 3
+      - name: Generate and fully decode real approved Country previews
+        run: python tests/smoke_map_context_real.py
+      - name: Diagnose legacy-map source structures
+        run: python tests/diagnose_map_context_blockers.py
+      - name: Hong Kong and Shenzhen source-backed preview (HOLD until independent QA)
+        continue-on-error: true
+        run: python scripts/review_hk_shenzhen.py --output-dir /tmp/journey-atlas-map-context-real-previews/hk-source
+      - name: Save Hong Kong source comparison before long browser run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hong-kong-shenzhen-source-review
+          path: /tmp/journey-atlas-map-context-real-previews/hk-source/
+          if-no-files-found: warn
+          retention-days: 3
+      - name: Exercise completed-Country batch stager outside repository
+        run: |
+          rm -rf /tmp/journey-atlas-map-context-rollout-stage
+          python scripts/stage_map_context_rollout.py --output-dir /tmp/journey-atlas-map-context-rollout-stage
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
+          data = json.loads(p.read_text())
+          assert data['selectedCount'] == len(data['entries']) and data['selectedCount'] > 0
+          assert len({e['slug'] for e in data['entries']}) == data['selectedCount']
+          assert all(len(e['sourceSha256']) == 64 and len(e['stagedSha256']) == 64 for e in data['entries'])
+          assert all((p.parent / f"{e['slug']}.svg").is_file() for e in data['entries'])
+          assert all(e['geographicQaStatus'] == 'PASS' and e['promotionEligible'] is False
+                     for e in data['entries']), 'Stage 2 must pass for every selected map while Stage 3 remains locked'
+          assert all(e.get('targetSource') and e.get('qaBasis') for e in data['entries'])
+          print({'selectedCount': data['selectedCount'], 'sourceCommit': data['sourceCommit'],
+                 'stage2': 'PASS', 'promotionEligible': False})
+          PY
+      - name: Substitute staged SVGs in this disposable runner only
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path.cwd().resolve()
+          staged = Path('/tmp/journey-atlas-map-context-rollout-stage')
+          manifest = json.loads((staged / 'manifest.json').read_text(encoding='utf-8'))
+          for entry in manifest['entries']:
+              source = (root / entry['mapRef']).resolve()
+              if root not in source.parents or not source.is_file():
+                  raise RuntimeError(f"Invalid map source: {entry['slug']}")
+              preview = (staged / f"{entry['slug']}.svg").read_bytes()
+              digest = lambda b: hashlib.sha256(b).hexdigest()
+              original = source.read_bytes()
+              if digest(original) != entry['sourceSha256'] or digest(preview) != entry['stagedSha256']:
+                  raise RuntimeError(f"Map source or preview changed after staging: {entry['slug']}")
+              if entry['action'] in ('preserve-existing-context', 'preserve-no-foreign-land'):
+                  if original != preview:
+                      raise RuntimeError(f"Preserved map was modified: {entry['slug']}")
+                  continue
+              if entry['action'] not in ('stage-context-preview', 'stage-existing-context-exact-clip'):
+                  raise RuntimeError(f"Unknown map stage action: {entry['slug']}")
+              source.write_bytes(preview)
+          print('Disposable runner only: all staged SVGs substituted; repository branch unchanged')
+          PY
+      - name: Build real Country pages with staged map previews
+        env:
+          JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
+        run: python scripts/build_cloudflare.py
+      - name: Install existing browser QA dependencies
+        run: python -m pip install --disable-pip-version-check --quiet selenium
+      - name: Run published Country browser QA against the staged maps
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-map-context-browser-output
+          QA_SCOPE: published
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --directory dist >/tmp/journey-atlas-map-context-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null
+          python scripts/run_country_browser_qa_parallel.py --scope published --workers 2
+          python tests/qa_map_source_credit.py
+      - name: Save preview-only images, reports and rollout manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-context-preflight-real-svgs
+          path: |
+            /tmp/journey-atlas-map-context-real-previews/
+            /tmp/journey-atlas-map-context-rollout-stage/manifest.json
+            qa-map-context-browser-output/
+          if-no-files-found: warn
+          retention-days: 3

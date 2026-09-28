@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1186 841" role="img" aria-label="Illustrated map of the Antarctic Peninsula journey">
+<defs>
+  <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf7fa"/><stop offset="1" stop-color="#c9e2e9"/></linearGradient>
+  <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbfb"/><stop offset=".55" stop-color="#dceef4"/><stop offset="1" stop-color="#b9d8e2"/></linearGradient>
+  <filter id="wash"><feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="3" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/><feGaussianBlur stdDeviation=".35"/></filter>
+  <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="2" seed="4" result="n"/><feComponentTransfer in="n"><feFuncA type="table" tableValues="0 .035"/></feComponentTransfer><feBlend in="SourceGraphic" in2="n" mode="multiply"/></filter>
+</defs>
+<rect width="1186" height="841" fill="url(#sea)"/>
+<g opacity=".24"><ellipse cx="270" cy="220" rx="210" ry="95" fill="#fff"/><ellipse cx="840" cy="610" rx="250" ry="120" fill="#d6edf3"/><ellipse cx="610" cy="410" rx="230" ry="100" fill="#fff"/></g>
+<g filter="url(#wash)">
+  <path d="M318 58 C365 126 387 204 420 265 C462 344 514 387 535 462 C554 531 552 600 602 675 C634 723 650 775 631 822 L791 822 C810 747 782 687 756 630 C721 554 705 496 705 432 C705 361 675 296 636 237 C594 173 560 118 552 52 Z" fill="url(#ice)" stroke="#9fbfca" stroke-width="7"/>
+  <path d="M365 115 C414 168 447 244 476 316 C507 391 544 425 562 486" fill="none" stroke="#8bb0bd" stroke-width="4" opacity=".55"/>
+  <path d="M511 135 C545 193 584 248 608 317 C633 391 633 464 662 532" fill="none" stroke="#ffffff" stroke-width="12" opacity=".75"/>
+</g>
+<g fill="#6e8790" opacity=".7">
+  <path d="M420 195l42-63 39 63z"/><path d="M462 211l55-83 50 83z"/><path d="M560 350l42-67 36 67z"/><path d="M594 375l53-79 48 79z"/><path d="M628 556l38-62 36 62z"/>
+</g>
+<g fill="#fff" opacity=".82"><path d="M442 183l20-30 16 30z"/><path d="M486 198l31-47 28 47z"/><path d="M612 363l35-49 30 49z"/></g>
+<g fill="#f6fbfc" stroke="#a9ccd7" stroke-width="2" opacity=".95">
+  <path d="M140 212l48-24 55 16 16 36-49 31-65-9z"/><path d="M860 186l61-22 70 20 15 42-70 36-74-20z"/><path d="M192 610l58-25 49 17 13 37-56 32-54-17z"/><path d="M913 645l52-18 43 13 10 31-50 27-46-14z"/>
+</g>
+<path d="M410 164 C467 253 519 332 562 421 C606 511 644 598 681 700" fill="none" stroke="#244d60" stroke-width="5" stroke-dasharray="10 12" opacity=".58"/>
+<g fill="#244d60" opacity=".72"><circle cx="412" cy="166" r="8"/><circle cx="517" cy="335" r="8"/><circle cx="607" cy="520" r="8"/><circle cx="682" cy="700" r="8"/></g>
+<rect width="1186" height="841" fill="none" filter="url(#paper)"/>
+</svg>

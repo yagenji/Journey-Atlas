@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "peru",
+  "nameEn": "PERU",
+  "nameJa": "ペルー",
+  "region": "SOUTH AMERICA / 12°S",
+  "seo": {
+    "description": "マチュ・ピチュからクスコ、チチカカ湖、ナスカ、海岸砂漠、コルカ渓谷、白いアンデス、アマゾンへ。標高と地形が大きく切り替わるペルーを景色と地図からたどる。"
+  },
+  "capital": {
+    "nameEn": "Lima",
+    "nameJa": "リマ",
+    "coordinates": {
+      "latitude": -12.0464,
+      "longitude": -77.0428
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": -2
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "雲がほどける山稜に、マチュ・ピチュの石組みと段々畑が現れる。太平洋岸の砂漠から6,000m級のアンデス、アマゾン低地まで、標高差が旅の風景を大きく変える。",
+    "image": "assets/images/peru/approved/hero-machu-picchu.webp",
+    "location": "Machu Picchu / Cusco",
+    "coordinates": {
+      "latitude": -13.16333,
+      "longitude": -72.54556
+    },
+    "mapOffset": {
+      "x": -4.0,
+      "y": -0.5
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 0.5,
+      "south": -18.7,
+      "west": -82.2,
+      "east": -68.0
+    },
+    "svg": "assets/images/peru/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Peru geometry and surrounding Ecuador, Colombia, Brazil, Bolivia and Chile land: Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. 1200×760 local equirectangular fit; no invented coastlines, borders or coordinate changes."
+  },
+  "scenes": [
+    {
+      "id": "cusco-plaza-de-armas",
+      "name": "クスコ / アルマス広場",
+      "nameLocal": "Cusco / Plaza de Armas",
+      "mapLabel": "Cusco",
+      "description": "標高約3,400mのクスコ旧市街で、インカ期の都市基盤の上にスペイン植民地期の教会や邸宅が重なる中心広場。石積み、赤い瓦屋根、山腹へ広がる市街から、アンデスの都が重ねてきた時代を歩いて読める。",
+      "coordinates": {
+        "latitude": -13.51677,
+        "longitude": -71.97878
+      },
+      "image": "assets/images/peru/approved/scene-1-cusco-plaza-de-armas.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.2,
+        "y": -0.8
+      }
+    },
+    {
+      "id": "vinicunca-rainbow-mountain",
+      "name": "ビニクンカ / レインボーマウンテン",
+      "nameLocal": "Vinicunca / Montaña de Siete Colores",
+      "mapLabel": "Vinicunca",
+      "description": "クスコ南東の高地で、鉱物を含む地層が赤、黄、緑、白などの帯として山肌に現れる。標高5,000m前後の乾いたプナに色の層が連なり、低地とはまったく異なるアンデス高地の地質と空気を感じる。",
+      "coordinates": {
+        "latitude": -13.86953,
+        "longitude": -71.30296
+      },
+      "image": "assets/images/peru/approved/scene-2-vinicunca.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.2,
+        "y": 1.5
+      }
+    },
+    {
+      "id": "uros-lake-titicaca",
+      "name": "チチカカ湖 / ウロスの浮島",
+      "nameLocal": "Lake Titicaca / Islas Flotantes de los Uros",
+      "mapLabel": "Uros",
+      "description": "標高約3,800mのチチカカ湖で、トトラを積み重ねた浮島に家や舟が並ぶ。湖面、葦、乾いた高原が一つの暮らしにつながり、水上に生活空間を維持してきたウロスの知恵を目で追える。",
+      "coordinates": {
+        "latitude": -15.81634,
+        "longitude": -69.97191
+      },
+      "image": "assets/images/peru/approved/scene-3-uros-titicaca.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "id": "colca-cruz-del-condor",
+      "name": "コルカ渓谷 / コンドル展望地",
+      "nameLocal": "Cañón del Colca / Cruz del Cóndor",
+      "mapLabel": "Colca",
+      "description": "アレキパ北方の深い渓谷を、クルス・デル・コンドルの展望地から見下ろす。朝の上昇気流にアンデスコンドルが乗ることがあり、急峻な谷壁と高地の農地が同じ視界に入る。",
+      "coordinates": {
+        "latitude": -15.61115,
+        "longitude": -71.90644
+      },
+      "image": "assets/images/peru/approved/scene-4-colca-cruz-del-condor.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "huacachina-oasis",
+      "name": "ワカチナ / 砂漠のオアシス",
+      "nameLocal": "Huacachina / Oasis",
+      "mapLabel": "Huacachina",
+      "description": "イカ郊外の海岸砂漠で、巨大な砂丘の底に小さな潟と町が収まる。乾いた砂の斜面と水辺の植生が鋭く切り替わり、ペルーの太平洋岸がアンデスやアマゾンとは別の景観帯であることが分かる。",
+      "coordinates": {
+        "latitude": -14.0875,
+        "longitude": -75.763
+      },
+      "image": "assets/images/peru/approved/scene-5-huacachina.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.8,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "nasca-hummingbird",
+      "name": "ナスカ / ハチドリの地上絵",
+      "nameLocal": "Nasca / Geoglifo del Colibrí",
+      "mapLabel": "Nasca",
+      "description": "南部海岸の乾燥した台地に、地表の石を除いて刻まれた巨大な線と図像が残る。ハチドリを含む地上絵は空から輪郭が明瞭になり、乾燥した大地そのものが考古学的な記録になっている。",
+      "coordinates": {
+        "latitude": -14.69207,
+        "longitude": -75.14887
+      },
+      "image": "assets/images/peru/approved/scene-6-nasca-hummingbird.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.8,
+        "y": 0.6
+      }
+    },
+    {
+      "id": "laguna-69-cordillera-blanca",
+      "name": "コルディエラ・ブランカ / ラグーナ69",
+      "nameLocal": "Cordillera Blanca / Laguna 69",
+      "mapLabel": "Laguna 69",
+      "description": "ワスカラン国立公園の高地で、氷河を抱く峰の下に青い湖が現れる。岩稜、残雪、氷河、ターコイズ色の水が近い距離で重なり、熱帯緯度に6,000m級の雪山が立つペルー北部アンデスを実感できる。",
+      "coordinates": {
+        "latitude": -9.0104,
+        "longitude": -77.61212
+      },
+      "image": "assets/images/peru/approved/scene-7-laguna-69.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "tambopata-national-reserve",
+      "name": "タンボパタ / アマゾン低地",
+      "nameLocal": "Reserva Nacional Tambopata / Amazonía",
+      "mapLabel": "Tambopata",
+      "description": "マドレ・デ・ディオスの低地熱帯林では、幅広い川と濃い森林が続く。水辺にはオオカワウソなどの野生動物が暮らし、乾いた西側斜面からアンデスを越えた先で、国土が湿潤なアマゾンへ切り替わる。",
+      "coordinates": {
+        "latitude": -12.90686,
+        "longitude": -69.41986
+      },
+      "image": "assets/images/peru/approved/scene-8-tambopata.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.0,
+        "y": -0.7
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石組みの都市を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "高地の色彩を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "葦の島で湖上の暮らしを見る",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "峡谷でコンドルを待つ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "砂丘とオアシスを歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "砂漠の地上絵を空から見る",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "氷河湖まで山道を歩く",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "熱帯林で水辺の動物を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "machupicchu-mixed-cultural-natural",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "マチュ・ピチュは、遺跡だけで完結しない",
+      "text": "マチュ・ピチュ歴史保護区は、インカの建築と土地利用だけでなく、アンデスとアマゾン盆地が接する自然環境も含む複合遺産。石造都市を周囲の急峻な山地と一体で見ると、立地そのものの意味が見えてくる。",
+      "points": [
+        "標高2,400mを超える山稜に考古遺跡が広がる",
+        "世界遺産では文化と自然の双方の価値が評価されている"
+      ],
+      "sourceKey": "machuPicchu"
+    },
+    {
+      "topicKey": "nasca-geoglyph-arid-plain",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ナスカでは、砂漠の地表そのものが巨大な図像になった",
+      "text": "ナスカとパルパの地上絵は、乾燥した海岸平原に長い線、幾何学模様、動植物などを刻んだもの。広い範囲に連続するため、単独の図柄ではなく景観全体を考古学的な空間として見る必要がある。",
+      "points": [
+        "UNESCOは地上絵群が広がる地域を約450km²と説明する",
+        "制作年代はおおむね紀元前500年から紀元500年にまたがる"
+      ],
+      "sourceKey": "nazca"
+    },
+    {
+      "topicKey": "andean-terraces-water-soil",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "title": "斜面の段々畑は、過去の遺構だけではない",
+      "text": "アンデスのアンデネスは、急斜面に耕作地を確保し、水や土を管理するための農業基盤。現在も各地で利用・修復が続き、景観の模様としてだけでなく、高地で暮らすための技術として残っている。",
+      "points": [
+        "政府機関はアンデネスを土壌と水利用を支える祖先由来の農業インフラとして位置づける",
+        "クスコのユカイでは2026年にも大規模な修復事業が進められている"
+      ],
+      "sourceKey": "andenes"
+    },
+    {
+      "topicKey": "qeswachaka-bridge-renewal",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "title": "一本の吊橋を、共同体が毎年つくり直す",
+      "text": "クスコ州のケスワチャカ橋には、植物繊維を用いて橋を毎年更新する知識と儀礼が受け継がれている。完成した物だけでなく、素材の準備、役割分担、共同作業そのものが文化として継承される。",
+      "points": [
+        "UNESCO無形文化遺産に登録された知識・技術・儀礼",
+        "橋の更新は地域共同体の協働によって行われる"
+      ],
+      "sourceKey": "qeswachaka"
+    },
+    {
+      "topicKey": "taquile-textile-art",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "title": "タキーレ島では、織物が暮らしと社会を語る",
+      "text": "チチカカ湖のタキーレ島では、手織りや編みの技術が衣服と日常の中に残り、色や意匠が社会的な意味を持つ。湖の景観だけでなく、島で受け継がれる手仕事から高地の生活文化を知る入口になる。",
+      "points": [
+        "タキーレとその織物芸術はUNESCO無形文化遺産に登録されている",
+        "技術は世代を超えて地域社会の中で受け継がれる"
+      ],
+      "sourceKey": "taquile"
+    },
+    {
+      "topicKey": "candelaria-puno-festival",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "title": "プーノでは、音楽と踊りが都市全体を動かす",
+      "text": "チチカカ湖畔のプーノで行われるカンデラリア祭は、宗教行事と地域の音楽・舞踊が重なる大規模な祝祭。湖上の静かな景観とは別に、衣装、楽隊、踊りが高地都市の文化を可視化する。",
+      "points": [
+        "カンデラリア祭はUNESCO無形文化遺産の代表一覧に登録されている",
+        "プーノ地域の多様な舞踊と音楽が集まる"
+      ],
+      "sourceKey": "candelaria"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "cusco-historical-capital",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "憲法はクスコを「歴史的首都」と定めている",
+      "text": "ペルー憲法49条は共和国の首都をリマとし、同時にクスコを歴史的首都と明記する。現在の政治首都とインカ帝国以来の歴史的中心が、制度上も分けて表現されている。",
+      "icon": "history",
+      "sourceKey": "constitution"
+    },
+    {
+      "topicKey": "scissors-dance-ritual-competition",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "ハサミ踊りは、技を競う儀礼でもある",
+      "text": "南中部アンデスのハサミ踊りは、金属片を鳴らしながら舞う競技的な儀礼。踊り手、バイオリン、ハープが組になり、乾季の農事暦と重なる時期に演じられる。",
+      "icon": "culture",
+      "sourceKey": "scissorsDance"
+    },
+    {
+      "topicKey": "peruvian-hairless-dog-national-heritage",
+      "categoryEn": "DAILY LIFE",
+      "categoryJa": "暮らし",
+      "title": "ペルー原産の無毛犬は、国の文化遺産",
+      "text": "ペルー原産の「ペルー・ヘアレス・ドッグ」は、先スペイン期からの文化との結びつきを背景に、2001年に国の文化遺産として認められた。考古資料にも犬の姿が残る。",
+      "icon": "wildlife",
+      "sourceKey": "hairlessDog"
+    },
+    {
+      "topicKey": "ceviche-intangible-practice",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "セビーチェは、料理法と食習慣まで遺産になった",
+      "text": "魚を柑橘と唐辛子などで調えるセビーチェは、2023年に調理と消費に関わる実践・意味がUNESCO無形文化遺産へ登録された。海岸だけでなく地域ごとに材料や添え物が変わる。",
+      "icon": "food",
+      "sourceKey": "cevicheUnesco"
+    },
+    {
+      "topicKey": "wititi-colca-dance",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "コルカ渓谷には、ウィティティの踊りがある",
+      "text": "コルカ渓谷のウィティティは、地域の祭礼や社会関係と結びつく伝統舞踊。渓谷をコンドルや地形だけでなく、人が暮らし続ける文化景観として見る手がかりになる。",
+      "icon": "culture",
+      "sourceKey": "wititi"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF PERU",
+    "title": "ペルーで食べたいもの",
+    "intro": "太平洋の魚、アンデスのじゃがいも、唐辛子、中国系移民の調理文化までが同じ食卓に重なる。地域と歴史の交差が見える4皿。",
+    "items": [
+      {
+        "id": "ceviche",
+        "name": "セビーチェ",
+        "nameLocal": "Ceviche",
+        "text": "新鮮な魚をライムなどの柑橘、唐辛子、赤玉ねぎで調える代表的な料理。とうもろこしやさつまいもなどを添える形も多く、酸味、辛味、魚の食感を短い調理で組み立てる。",
+        "image": "assets/images/peru/approved/food-1-ceviche.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "lomo-saltado",
+        "name": "ロモ・サルタード",
+        "nameLocal": "Lomo saltado",
+        "text": "牛肉、玉ねぎ、トマトなどを強火で炒め、しょうゆを使って仕上げる料理。フライドポテトと米を合わせる構成に、中国系移民がもたらした炒め調理とペルーの食材が重なる。",
+        "image": "assets/images/peru/approved/food-2-lomo-saltado.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "aji-de-gallina",
+        "name": "アヒ・デ・ガジーナ",
+        "nameLocal": "Ají de gallina",
+        "text": "ほぐした鶏肉を、黄色い唐辛子、牛乳、パンなどを使った濃厚なソースで煮る家庭料理。米、じゃがいも、ゆで卵、オリーブなどを添え、やさしいコクの中に唐辛子の香りが残る。",
+        "image": "assets/images/peru/approved/food-3-aji-de-gallina.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "causa",
+        "name": "カウサ",
+        "nameLocal": "Causa limeña",
+        "text": "黄色いじゃがいものマッシュを柑橘や唐辛子で調え、鶏肉、魚介、アボカドなどの具と層にする冷製料理。なめらかな芋と具材の食感を重ねる、リマを代表する一皿。",
+        "image": "assets/images/peru/approved/food-4-causa.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "主要地点はアンデスを挟んで離れ、標高差も大きい。短い旅ではクスコ周辺に軸を置き、日数が増えたら南部高地、海岸砂漠、北部山岳、アマゾンを大きな地域単位で加える。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "クスコ周辺を深く見る",
+        "text": "クスコで高地に慣れながら、マチュ・ピチュと聖なる谷を一つのまとまりとして回る。到着直後に高標高の長時間歩行を詰め込まず、遺跡と町に滞在時間を置く。例：リマ→クスコ→聖なる谷→マチュ・ピチュ",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜11日",
+        "title": "南部アンデスまでつなぐ",
+        "text": "クスコに加えてプーノやアレキパへ進み、インカの都市、湖、高原、渓谷を連続して見る。長距離移動と標高差を考え、都市ごとに一息置く。例：リマ→クスコ→プーノ→アレキパ→コルカ渓谷",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "砂漠かアマゾンを大きく加える",
+        "text": "南部アンデスを軸に、イカ・ナスカの海岸砂漠またはマドレ・デ・ディオスの熱帯林を加える。全国を薄く回るより、離れた景観帯を二つか三つ選ぶ。例：リマ→イカ→ナスカ→クスコ→タンボパタ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12–2月",
+      "color": "#c2a35f",
+      "text": "海岸部は夏で晴れ間が増える一方、アンデスとアマゾンは雨季。山道では強い雨や雲で移動条件が変わるため、高地の行程には余白を置く。"
+    },
+    {
+      "months": "3–5月",
+      "color": "#a77e5f",
+      "text": "アンデスでは雨が次第に弱まり、緑の残る移行期。高地は朝晩が冷え、標高の高い場所では日中との寒暖差が大きい。"
+    },
+    {
+      "months": "6–8月",
+      "color": "#7c96a3",
+      "text": "アンデス高地は乾季で晴天が多いが、夜間は冷え込む。リマなど中部海岸はガルーアと低い雲が出やすく、同じ時期でも地域で空の表情が異なる。"
+    },
+    {
+      "months": "9–11月",
+      "color": "#7fa07c",
+      "text": "高地は乾季から雨季へ移り、午後の雲や降雨が増えていく。アマゾンは年間を通じて高温多湿で、河川や道路条件は直前情報を確認したい。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は航空とバス、山岳部は鉄道と車を組み合わせる",
+    "text": "リマとクスコ、アレキパ、プーノ周辺など離れた地域は国内線や長距離バスでつなぐ。マチュ・ピチュ方面はオリャンタイタンボなどから鉄道と現地交通を組み合わせるのが一般的。山岳道路は雨季の天候や工事で所要時間が変わることがあるため、遠距離区間は余白を持たせる。"
+  },
+  "personas": [
+    {
+      "title": "文明と地形を一緒に見たい人",
+      "text": "インカの石造都市、地上絵、植民都市を、山稜、高原、砂漠という立地と切り離さずにたどりたい人。",
+      "icon": "history"
+    },
+    {
+      "title": "標高差のある風景を歩きたい人",
+      "text": "氷河湖、色の山、深い渓谷、高原湖など、アンデスの高度と地質がつくる景観を自分の足で見たい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "自然と食文化まで広げたい人",
+      "text": "アマゾンの野生動物や太平洋岸の魚介、じゃがいもと唐辛子の料理まで、一つの国の幅を体験したい人。",
+      "icon": "food"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南アメリカ / 太平洋岸・アンデス・アマゾン"
+    },
+    {
+      "label": "首都",
+      "value": "リマ"
+    },
+    {
+      "label": "人口",
+      "value": "34,157,732人（2025年国勢調査・推計補完を含む総人口）"
+    },
+    {
+      "label": "面積",
+      "value": "約1,285,216 km²（日本の約3.4倍）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語／地域によりケチュア語・アイマラ語ほか"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック76.0%／福音派14.1%（12歳以上、2017年）"
+    },
+    {
+      "label": "通貨",
+      "value": "ソル（PEN / S/）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "huascaran-6768m-highest-peak",
+      "label": "ワスカラン",
+      "value": "6,768 m",
+      "note": "コルディエラ・ブランカにそびえるペルー最高峰。熱帯緯度の国土に6,000m級の雪山が連なる、ペルーの大きな標高差を象徴する。",
+      "icon": "landscape",
+      "interestReason": "太平洋岸の砂漠やアマゾン低地と同じ国に6,000m級の氷雪山地があることを、具体的な高さで理解できるため。"
+    },
+    {
+      "topicKey": "indigenous-languages-48",
+      "label": "先住民言語",
+      "value": "48言語",
+      "note": "文化省が現在確認する先住民・原住民言語は48。うち4言語はアンデス、44言語はアマゾンで話され、国土の文化的な広がりを映す。",
+      "icon": "language",
+      "interestReason": "アンデスだけでなくアマゾンにも多様な言語圏が続くことを、一つの数字から想像できるため。"
+    },
+    {
+      "topicKey": "qhapaq-nan-30000km-network",
+      "label": "カパック・ニャン",
+      "value": "30,000 km超",
+      "note": "クスコ中央広場から伸びる4本の幹線を核に、インカの道路網はアンデス6か国へ広がった。UNESCOは全体を3万km超のネットワークと説明する。",
+      "icon": "road",
+      "interestReason": "クスコが単独の遺跡都市ではなく、アンデス各地を結ぶ巨大な交通網の中心だったことが分かるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "altitude-acclimatization-southern-andes",
+      "title": "クスコ到着後は、標高への順応を先に考える",
+      "text": "クスコ、チチカカ湖、ビニクンカは高地にある。到着直後から高標高の長時間歩行を重ねず、体調を見ながら水分、休息、行程の余白を優先する。"
+    },
+    {
+      "topicKey": "machupicchu-entry-train-reservation",
+      "title": "マチュ・ピチュは入場と移動を別々に確認する",
+      "text": "入場枠、ルート、鉄道やバスの運用は変更されることがある。希望日を決めたら、文化省の入場案内と利用交通機関の最新条件をそれぞれ確認する。"
+    },
+    {
+      "topicKey": "regional-weather-road-buffer",
+      "title": "高地と熱帯林では移動日の余白を残す",
+      "text": "雨季の山岳道路やアマゾンの河川・道路は天候の影響を受けやすい。都市間移動を詰め込みすぎず、現地の道路・気象・運航情報を直前にも確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇧🇴",
+      "countryEn": "BOLIVIA",
+      "countryJa": "ボリビア",
+      "path": "Puno → Desaguadero → La Paz",
+      "description": "チチカカ湖南岸からデサグアデロを越えてラパスへ続く代表的な陸路。高地の国境移動なので、施設の運用時間と入国条件、交通会社の運行を直前に確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Desaguaderoの国境施設・入国条件・陸上交通の最新運用を確認する。"
+    },
+    {
+      "flag": "🇨🇱",
+      "countryEn": "CHILE",
+      "countryJa": "チリ",
+      "path": "Tacna → Santa Rosa → Chacalluta → Arica",
+      "description": "タクナからサンタ・ロサ／チャカユタを通り、チリ北端のアリカへ抜ける南米西岸の主要な陸路。国境施設と地域交通の最新運用を確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Santa Rosa–Chacallutaの国境運用・入国条件・交通情報を直前に確認する。"
+    },
+    {
+      "flag": "🇪🇨",
+      "countryEn": "ECUADOR",
+      "countryJa": "エクアドル",
+      "path": "Tumbes → Aguas Verdes / CEBAF → Huaquillas",
+      "description": "ペルー北端のトゥンベスからアグアス・ベルデスを経て、エクアドルのウアキージャスへ続ける代表的な陸路。利用する国境施設の最新運用を確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Aguas Verdes–Huaquillasの国境施設・入国条件・交通情報を直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "bolivia",
+      "nameEn": "BOLIVIA",
+      "nameJa": "ボリビア",
+      "flag": "🇧🇴",
+      "reason": "チチカカ湖とアンデス高原を国境の反対側へつなげ、先住民文化、高地都市、塩原まで標高のある旅をさらに深く続けられる。",
+      "affinityType": "MOUNTAIN"
+    },
+    {
+      "slug": "ecuador",
+      "nameEn": "ECUADOR",
+      "nameJa": "エクアドル",
+      "flag": "🇪🇨",
+      "reason": "アンデスとアマゾンを共有しながら、火山列、雲霧林、太平洋の島々へ景観の振れ幅を北へ広げられる。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "mexico",
+      "nameEn": "MEXICO",
+      "nameJa": "メキシコ",
+      "flag": "🇲🇽",
+      "reason": "先スペイン期の大規模遺跡と植民都市、地域色の強い料理を同じ旅でたどれ、文明史と食を軸にする旅行との相性が高い。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-26",
+  "sourcesVerifiedAt": "2026-09-26",
+  "sourceDates": {
+    "population": "2025",
+    "religion": "2017",
+    "currency": "2015"
+  },
+  "sources": {
+    "population": "Instituto Nacional de Estadística e Informática (INEI), Primeros Resultados de los Censos Nacionales 2025, announced 2026-05-29: total population 34,157,732 including post-enumeration omission estimate.",
+    "area": "Instituto Nacional de Estadística e Informática / official Peru territorial statistics: continental territorial area 1,285,215.60 km².",
+    "languages": "Constitución Política del Perú, Art. 48; Ministerio de Cultura, Base de Datos Oficial de Pueblos Indígenas u Originarios (BDPI): 48 indigenous/original languages, 4 Andean and 44 Amazonian.",
+    "religion": "INEI, Censos Nacionales 2017, population age 12+: Catholic 76.0%, Evangelical 14.1%, other religions 4.8%, none 5.1%.",
+    "currency": "Banco Central de Reserva del Perú (BCRP), Del nuevo Sol al Sol: unit name changed from Nuevo Sol to Sol effective 2015-12-15; current symbol S/.",
+    "constitution": "Constitución Política del Perú, Arts. 48–49, Congreso de la República edition: Lima is the capital; Cusco is the historical capital.",
+    "machuPicchu": "UNESCO World Heritage Centre, Historic Sanctuary of Machu Picchu: mixed cultural/natural property at the Andes–Amazon transition, archaeological citadel above 2,400 m.",
+    "huascaran": "Instituto Geográfico Nacional / SERNANP official materials: Huascarán 6,768 m, Peru's highest elevation; Cordillera Blanca is the world's highest tropical mountain range.",
+    "qhapaqNan": "UNESCO World Heritage Centre, Qhapaq Ñan, Andean Road System: more than 30,000 km; four main routes originate from Cusco's central square; shared by six Andean countries.",
+    "cusco": "UNESCO World Heritage Centre, City of Cuzco; Peruvian Constitution Art. 49 for historical-capital status.",
+    "vinicunca": "Peru Travel / PROMPERÚ, Montaña de Siete Colores (Vinicunca): high-altitude Vilcanota landscape southeast of Cusco and mineral-coloured strata.",
+    "titicaca": "Peru Travel / PROMPERÚ, Lake Titicaca and Uros: high-altitude lake and floating islands made with totora reed.",
+    "colca": "Peru Travel / PROMPERÚ, Colca Canyon and Cruz del Cóndor: established condor-viewing point in the Colca Valley.",
+    "huacachina": "Peru Travel / PROMPERÚ, Huacachina: oasis and protected lagoon landscape in the coastal desert near Ica.",
+    "nazca": "UNESCO World Heritage Centre, Lines and Geoglyphs of Nasca and Palpa: arid coastal plain, about 450 km², created roughly 500 BCE–500 CE.",
+    "laguna69": "Dirección Regional de Comercio Exterior y Turismo de Áncash / official tourism inventory: Laguna 69 in Huascarán National Park, Cordillera Blanca, glacial setting.",
+    "tambopata": "SERNANP, Reserva Nacional Tambopata: protected lowland Amazon ecosystem in Madre de Dios with rich bird and mammal diversity including giant otter habitat.",
+    "food": "Peru Travel / PROMPERÚ, Gastronomía de Lima: ceviche, causa limeña, ají de gallina and lomo saltado descriptions and culinary influences.",
+    "andenes": "MIDAGRI / AGRO RURAL and Ministerio de Cultura: Andean agricultural terraces as ancestral soil/water-management infrastructure; 2026 restoration of Yucay terraces in Cusco.",
+    "qeswachaka": "UNESCO Intangible Cultural Heritage, knowledge, skills and rituals related to the annual renewal of the Q’eswachaka bridge.",
+    "taquile": "UNESCO Intangible Cultural Heritage, Taquile and its textile art.",
+    "candelaria": "UNESCO Intangible Cultural Heritage, Festivity of Virgen de la Candelaria of Puno.",
+    "scissorsDance": "UNESCO Intangible Cultural Heritage, Scissors dance, Representative List 2010.",
+    "hairlessDog": "Peruvian government / Law No. 27537 and Ministry of Culture references: Peruvian Hairless Dog recognized as native to Peru and national/cultural heritage.",
+    "cevicheUnesco": "UNESCO Intangible Cultural Heritage: Practices and meanings associated with the preparation and consumption of ceviche, inscribed 2023.",
+    "wititi": "UNESCO Intangible Cultural Heritage: Wititi dance of the Colca Valley.",
+    "seasonsTransport": "SENAMHI regional climate guidance and Peru Travel / PROMPERÚ destination access guidance; highlands/Amazon rainfall and coastal seasonality vary by region, with current road/rail/entry conditions requiring pre-trip verification.",
+    "nextRoutes": "Superintendencia Nacional de Migraciones and SUNAT border-control information checked 2026-09-26: Desaguadero (Peru–Bolivia), Santa Rosa/Chacalluta (Peru–Chile), and CEBAF Tumbes/Aguas Verdes–Huaquillas (Peru–Ecuador) are established land-border corridors; current conditions remain subject to verification.",
+    "map": "Natural Earth 1:10m cultural vectors, public domain, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Peru plus Ecuador, Colombia, Brazil, Bolivia and Chile.",
+    "sceneCoordinates": "OSM/GeoNames/Wikidata cross-checks: Cusco Plaza de Armas -13.51677,-71.97878; Vinicunca -13.86953,-71.30296; Uros -15.81634,-69.97191; Cruz del Cóndor -15.61115,-71.90644; Huacachina -14.08750,-75.76300; Nasca Hummingbird -14.69207,-75.14887; Laguna 69 -9.01040,-77.61212; Tambopata Reserve -12.90686,-69.41986.",
+    "heroCoordinates": "OSM/Wikidata cross-check: Machu Picchu archaeological site approximately -13.16333,-72.54556."
+  }
+}
