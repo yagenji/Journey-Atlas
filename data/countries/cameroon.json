@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "cameroon",
+  "nameEn": "CAMEROON",
+  "nameJa": "カメルーン",
+  "region": "CENTRAL AFRICA / 6°N",
+  "seo": {
+    "description": "大西洋へ落ちるロベ滝、カメルーン山、バムン王国の宮殿、マンダラ山地の石積み遺構、コンゴ盆地の熱帯雨林。海岸から高地、サバンナまでを8つの場所と地図でたどるカメルーンの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Yaoundé",
+    "nameJa": "ヤウンデ",
+    "coordinates": {
+      "latitude": 3.8667,
+      "longitude": 11.5167
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 9,
+      "y": -20
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "大西洋へ直接落ちるロベ滝から、火山、高原、乾いた北部、コンゴ盆地の深い森へ。海岸からチャド湖方面まで気候と文化が大きく変わる国土を、景観の切り替わりからたどる。",
+    "image": "assets/images/cameroon/approved/hero-lobe-falls.webp",
+    "location": "Lobé Falls, Kribi",
+    "coordinates": {
+      "latitude": 2.883464,
+      "longitude": 9.897814
+    },
+    "mapOffset": {
+      "x": -0.8,
+      "y": 0.8
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 14.1,
+      "south": 0.5,
+      "west": 7,
+      "east": 18
+    },
+    "svg": "assets/images/cameroon/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (CMR/NGA/TCD/CAF/GNQ/GAB/COG GeoJSON). Shared JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "mount-cameroon",
+      "name": "カメルーン山",
+      "nameLocal": "Mount Cameroon / Mount Fako",
+      "mapLabel": "Mount Cameroon",
+      "description": "ギニア湾に近い南西部から大きく立ち上がる活火山。森林帯から草原、黒い火山礫の斜面へ植生が切り替わり、海岸低地と高山が短い距離で隣り合うカメルーン西部の地形を象徴する。",
+      "coordinates": {
+        "latitude": 4.216667,
+        "longitude": 9.1725
+      },
+      "image": "assets/images/cameroon/approved/scene-1-mount-cameroon.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "foumban-royal-palace",
+      "name": "フンバン王宮",
+      "nameLocal": "Palais des Sultans Bamoun",
+      "mapLabel": "Foumban",
+      "description": "西部州フンバンに立つバムン王国の王宮。1917年に完成した煉瓦造りの建物には塔、回廊、急勾配の屋根が組み合わされ、王国史と地域独自の建築表現を都市の中心で見ることができる。",
+      "coordinates": {
+        "latitude": 5.732329,
+        "longitude": 10.900991
+      },
+      "image": "assets/images/cameroon/approved/scene-2-foumban-palace.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.5,
+        "y": -0.8
+      }
+    },
+    {
+      "id": "ekom-nkam-falls",
+      "name": "エコム・ンカム滝",
+      "nameLocal": "Chutes d'Ekom-Nkam",
+      "mapLabel": "Ekom-Nkam",
+      "description": "西部高地から流れるンカム川が森林の深い谷へ落ちる大滝。雨季には複数の水流が幅広い岩壁を覆い、乾季には岩肌と主流が際立つ。海岸低地から高原へ向かう途中で地形の落差を実感できる。",
+      "coordinates": {
+        "latitude": 5.06253,
+        "longitude": 10.02962
+      },
+      "image": "assets/images/cameroon/approved/scene-3-ekom-nkam.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.6,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "diy-gid-biy",
+      "name": "マンダラ山地 / ディ・ギド・ビィ",
+      "nameLocal": "Diy-Gid-Biy Cultural Landscape",
+      "mapLabel": "Diy-Gid-Biy",
+      "description": "極北州マンダラ山地に、乾式石積みの遺構と農業テラスが連なる文化的景観。16の考古遺跡が7つの村に分布し、石造遺構、畑、住居、墓、祭祀空間が山地社会の長い土地利用を伝える。",
+      "coordinates": {
+        "latitude": 10.903333,
+        "longitude": 13.795556
+      },
+      "image": "assets/images/cameroon/approved/scene-4-diy-gid-biy.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "dja-faunal-reserve",
+      "name": "ジャー動物保護区",
+      "nameLocal": "Dja Faunal Reserve",
+      "mapLabel": "Dja",
+      "description": "南部から東部に広がるコンゴ盆地の常緑熱帯雨林。世界遺産の登録区域は52万6,000haで、保護区の大部分をジャー川が取り囲む。河川と深い森林が一体となったカメルーン南部の自然景観を示す。",
+      "coordinates": {
+        "latitude": 3.125,
+        "longitude": 12.995
+      },
+      "image": "assets/images/cameroon/approved/scene-5-dja.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "lobeke-national-park",
+      "name": "ロベケ国立公園",
+      "nameLocal": "Parc National de Lobéké",
+      "mapLabel": "Lobéké",
+      "description": "南東端のコンゴ盆地に残る低地熱帯雨林。中央アフリカ共和国、コンゴ共和国と共有するサンガ川流域の世界遺産の一部で、森林内の開けたバイではゾウやゴリラなど森の動物が集まることがある。",
+      "coordinates": {
+        "latitude": 2.367222,
+        "longitude": 15.814167
+      },
+      "image": "assets/images/cameroon/approved/scene-6-lobeke.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.7,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "bimbia-slave-trade-site",
+      "name": "ビンビア旧奴隷貿易港",
+      "nameLocal": "Bimbia Slave Trade Site",
+      "mapLabel": "Bimbia",
+      "description": "リンベ近郊の海岸に残る大西洋奴隷貿易の記憶の場所。旧港とニコルズ島周辺に建物跡や関連遺構が残り、ギニア湾岸から大西洋世界へ人々が強制的に移送された歴史を海辺でたどる。",
+      "coordinates": {
+        "latitude": 3.954444,
+        "longitude": 9.245
+      },
+      "image": "assets/images/cameroon/approved/scene-7-bimbia.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "national-museum-yaounde",
+      "name": "ヤウンデ / 国立博物館",
+      "nameLocal": "Musée National du Cameroun",
+      "mapLabel": "Yaoundé",
+      "description": "旧大統領宮殿を利用した国立博物館。各地域の彫刻、仮面、楽器、王権に関わる品などを通して、多数の民族と地域文化を一つの首都で横断して見る入口になる。",
+      "coordinates": {
+        "latitude": 3.8625,
+        "longitude": 11.515556
+      },
+      "image": "assets/images/cameroon/approved/scene-8-national-museum.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.4,
+        "y": -0.5
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "海へ落ちる滝を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "火山の斜面を見上げる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "王国の宮殿文化に触れる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "石積みの山村景観を歩く",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "深い熱帯雨林に入る",
+      "category": "NATURE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "森の野生動物を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "大西洋岸の歴史をたどる",
+      "category": "HISTORY",
+      "icon": "history"
+    },
+    {
+      "title": "地域ごとの食文化を味わう",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "lobe-river-atlantic-cascade",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ロベ滝では、川の流れがそのまま大西洋へ落ちていく",
+      "text": "クリビ近郊のロベ川は、約1kmにわたって複数の瀬と滝をつくり、最後は海岸で直接大西洋へ落ちる。単なる滝ではなく、川・岩盤・砂浜・海が一画面で接続する景観が特徴になる。",
+      "points": [
+        "クリビから約6kmの大西洋岸",
+        "複数の瀬と滝が約1kmに連続する"
+      ],
+      "sourceKey": "lobe"
+    },
+    {
+      "topicKey": "dja-river-rainforest-ring",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ジャーでは、川が巨大な熱帯雨林を囲む",
+      "text": "ジャー動物保護区はコンゴ盆地の常緑林を守る世界遺産で、登録区域は52万6,000ha。保護区の約80%をジャー川が取り囲む地形が、森林のまとまりを保つ自然の境界にもなっている。",
+      "points": [
+        "世界遺産の登録区域は52万6,000ha",
+        "保護区の約80%をジャー川が囲む"
+      ],
+      "sourceKey": "dja"
+    },
+    {
+      "topicKey": "bamoun-royal-city",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "フンバンでは、王国の文化が現在の都市の中に残る",
+      "text": "フンバンの王宮はバムン王国の歴史を伝える中心的な建築で、現在の宮殿は20世紀初頭に完成した。王宮と博物館、工芸の街並みを合わせて見ると、王国文化が過去の遺跡ではなく都市の記憶として続いていることが分かる。",
+      "points": [
+        "現在の王宮は1917年完成",
+        "王宮周辺に王国史と工芸文化が集まる"
+      ],
+      "sourceKey": "foumban"
+    },
+    {
+      "topicKey": "sangha-three-country-rainforest",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "南東部の森は、国境を越えて一つの生態系につながる",
+      "text": "ロベケ国立公園は、中央アフリカ共和国のザンガ＝ンドキ、コンゴ共和国のヌアバレ＝ンドキとともにサンガ三国保護地域を構成する。行政国境よりも大きな単位で、コンゴ盆地の低地熱帯雨林が連続している。",
+      "points": [
+        "3か国にまたがる世界自然遺産",
+        "カメルーン側の登録区域は21万7,854ha"
+      ],
+      "sourceKey": "sangha"
+    },
+    {
+      "topicKey": "diy-gid-biy-stone-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "マンダラ山地では、石積みと段々畑が一つの文化景観をつくる",
+      "text": "ディ・ギド・ビィは2025年に登録されたカメルーン初の世界文化遺産。16の石造考古遺跡が7村に分布し、周囲の農業テラスや住居、墓、祭祀空間と結びついて山地の生活史を伝える。",
+      "points": [
+        "2025年に世界文化遺産へ登録",
+        "16の考古遺跡が7村に分布する"
+      ],
+      "sourceKey": "diyGidBiy"
+    },
+    {
+      "topicKey": "cameroon-climate-gradient",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "南の湿潤な森から北のサヘルまで、雨の量が大きく変わる",
+      "text": "世界銀行の気候資料は、南・中部では大西洋からのモンスーンが雨季をつくる一方、北部ではサハラ起源のハルマッタンの影響が強いと整理する。カメルーン山周辺は特に降水が多く、一国の中で気候帯が大きく変わる。",
+      "points": [
+        "南・中部は大西洋モンスーンの影響が強い",
+        "北部は乾季にハルマッタンの影響を受ける"
+      ],
+      "sourceKey": "climate"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "cameroon-name-river-shrimp",
+      "categoryEn": "NAME",
+      "categoryJa": "国名",
+      "title": "国名はポルトガル語の「エビ」に由来する",
+      "text": "15世紀にポルトガル人が河口で多くのエビを見て川をエビの川と呼んだことが、後の国名につながったとされる。",
+      "icon": "map",
+      "sourceKey": "gastronomy"
+    },
+    {
+      "topicKey": "reunification-1961",
+      "categoryEn": "HISTORY",
+      "categoryJa": "近現代史",
+      "title": "現在の国の枠組みは1961年に形成された",
+      "text": "旧フランス領カメルーンは1960年に独立し、翌1961年に旧英領カメルーン南部と連邦を形成した。フランス語と英語がともに公用語なのはこの歴史と結びつく。",
+      "icon": "history",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "world-heritage-three",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は現在3件",
+      "text": "2026年9月時点で、ジャー動物保護区、サンガ三国保護地域、ディ・ギド・ビィ文化的景観の3件。自然遺産2件と文化遺産1件で構成される。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "rail-yaounde-ngaoundere",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "鉄道",
+      "title": "夜行列車でヤウンデから北部へ向かえる",
+      "text": "カムレールはヤウンデ〜ンガウンデレ間約620kmで寝台を備えた旅客列車を運行する。時刻と運行日は公式情報を直前に確認したい。",
+      "icon": "road",
+      "sourceKey": "camrail"
+    },
+    {
+      "topicKey": "beac-headquarters-yaounde",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "中部アフリカ6か国の中央銀行本部がヤウンデにある",
+      "text": "CEMAC6か国の共通通貨を発行する中部アフリカ諸国銀行の本部はヤウンデに置かれている。カメルーンで使うCFAフランは周辺5か国でも流通する。",
+      "icon": "city",
+      "sourceKey": "currency"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CAMEROON",
+    "title": "カメルーンで食べたいもの",
+    "intro": "苦みのある葉野菜、森の葉、ココヤム、豆を使う料理まで、地域の素材と食感が異なる4品を選ぶ。",
+    "items": [
+      {
+        "id": "ndole",
+        "name": "ンドレ",
+        "nameLocal": "Ndolé",
+        "text": "苦みを抜いたンドレの葉を落花生のペーストで煮、肉や魚介を合わせる代表料理。沿岸部のサワ文化に結びつきながら、現在は全国の食堂や祝いの席でも広く出会える。",
+        "image": "assets/images/cameroon/approved/food-1-ndole.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "eru",
+        "name": "エル",
+        "nameLocal": "Eru",
+        "text": "細切りにした森の葉をウォーターリーフなどと煮、パーム油、肉や魚を加える濃厚な葉野菜料理。西部の英語圏を中心に食べられ、キャッサバ由来の付け合わせなどと合わせる。",
+        "image": "assets/images/cameroon/approved/food-2-eru.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "achu-yellow-soup",
+        "name": "アチュとイエロースープ",
+        "nameLocal": "Achu & Yellow Soup",
+        "text": "やわらかく搗いたココヤムを、パーム油と香辛料で作る黄色いスープにつけて食べる北西部由来の料理。滑らかな主食と鮮やかなソースの組み合わせが特徴。",
+        "image": "assets/images/cameroon/approved/food-3-achu-yellow-soup.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "koki",
+        "name": "コキ",
+        "nameLocal": "Koki / Ekoki",
+        "text": "豆をすりつぶしてパーム油などと合わせ、葉で包んで蒸す料理。切り分けると鮮やかな橙色の中身が現れ、主食や副菜として地域を越えて食べられる。",
+        "image": "assets/images/cameroon/approved/food-4-koki.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南北に長く、道路・鉄道・安全状況の差も大きい。現在の渡航勧告を優先し、短期はヤウンデ、ドゥアラ、クリビなど中南部を中心に組み、遠隔地は最新情報を確認して別旅程として考える。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "首都と大西洋岸をつなぐ",
+        "text": "ヤウンデで国の地域文化を概観し、ドゥアラ経由でクリビとロベ滝へ。例：ヤウンデ → ドゥアラ → クリビ → ロベ滝。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "西部高地と王国文化を加える",
+        "text": "中南部の旅にフンバンやエコム・ンカム周辺を加え、海岸低地と高原の景観差を見る。道路状況と地域の最新安全情報を確認して移動する。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "地域を分けて自然と文化を深く見る",
+        "text": "国土全体を一筆書きにせず、中南部、西部、南東部など複数の滞在圏に分ける。極北部・北西部・南西部は強い渡航勧告があるため、掲載景観を理由に通常旅程へ組み込まない。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#c4b28f",
+      "text": "全国平均では降水が少ない時期。北部はハルマッタンの乾いた風と砂塵の影響が強く、南部でも比較的乾きやすい。地域差が大きいため海岸と北部を同じ条件で考えない。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#9baa83",
+      "text": "南・中部で雨が増え始める。気温も高く、道路では強い雨による視界低下や路面状況の変化を見込む。高地では海岸低地より気温が下がる。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#78947d",
+      "text": "全国平均では雨量の多い時期で、特に西部・海岸側は湿潤になる。カメルーン山周辺は世界的にも降水の多い地域の一つで、山や滝は雲と強雨を前提に計画する。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#9f9b79",
+      "text": "南部では雨季から乾季へ移る一方、北部はより早く乾燥が進む。長距離移動では目的地ごとの降雨と道路状況を個別に確認したい。"
+    }
+  ],
+  "transport": {
+    "title": "南部の都市間は鉄道と道路、遠距離は区間ごとに移動手段を分ける",
+    "text": "カムレールはドゥアラ〜ヤウンデ間264kmと、ヤウンデ〜ンガウンデレ間620kmなどで旅客列車を運行する。全国を道路だけで横断する前提にせず、鉄道、国内線、信頼できる車両を地域ごとに組み合わせ、当日の運行情報と安全情報を確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "一つの国で気候と地形の大きな変化を見たい人",
+      "text": "大西洋岸、火山と高地、熱帯雨林、北部の乾燥景観まで、短い緯度差の中で自然環境が切り替わる国土を地理から理解したい人。"
+    },
+    {
+      "title": "王国文化と地域ごとの暮らしをたどりたい人",
+      "text": "フンバンの王宮、首都の博物館、山地の石積み景観、地域ごとの料理を通して、多民族国家を一つの文化にまとめず見たい人。"
+    },
+    {
+      "title": "コンゴ盆地の森と野生動物に関心がある人",
+      "text": "ジャーやロベケの熱帯雨林を軸に、河川、森林、生物多様性が国境を越えて続く中部アフリカの生態系を知りたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中部アフリカ / ギニア湾沿岸"
+    },
+    {
+      "label": "首都",
+      "value": "ヤウンデ"
+    },
+    {
+      "label": "人口",
+      "value": "約2,988万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "475,440 km²（日本の約1.3倍）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語・英語（公用語）／多数の現地語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教／イスラム教／伝統宗教など"
+    },
+    {
+      "label": "通貨",
+      "value": "中部アフリカCFAフラン（XAF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "cameroon-ethnic-groups",
+      "label": "民族集団",
+      "value": "約250",
+      "note": "外務省は、カメルーンには約250の民族集団が暮らすと紹介している。言語、王国文化、食、住居の違いが地域ごとに大きい。",
+      "icon": "culture",
+      "interestReason": "国土の地理的多様性だけでなく、人の暮らしも一つの型では捉えられないことを端的に示す数字だから。"
+    },
+    {
+      "topicKey": "cameroon-regions-ten",
+      "label": "行政地域",
+      "value": "10州",
+      "note": "カメルーンは10州からなり、大西洋岸から北部のサヘルまで異なる地形・気候・文化圏を含む。",
+      "icon": "map",
+      "interestReason": "「アフリカの縮図」と呼ばれる国土の多様性を、海岸・高地・森林・北部という旅の切り替わりと結びつけて理解しやすい数字だから。"
+    },
+    {
+      "topicKey": "cameroon-world-heritage-count",
+      "label": "世界遺産",
+      "value": "3件",
+      "note": "2026年9月時点で自然遺産2件、文化遺産1件。2025年にはマンダラ山地のディ・ギド・ビィが国内初の世界文化遺産になった。",
+      "icon": "history",
+      "interestReason": "コンゴ盆地の自然と山地社会の文化景観の両方が、国際的な遺産評価の対象になっていることを一つの数字で示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "cameroon-regional-security",
+      "title": "旅程は地域別の安全情報から組み立てる",
+      "text": "2026年9月時点で極北部、北西部、南西部、国境周辺などに強い渡航勧告がある。掲載地にも該当・近接する場所があるため、景観紹介と実際の訪問可否を分け、自国政府と現地当局の最新情報を優先する。"
+    },
+    {
+      "topicKey": "camrail-current-schedule",
+      "title": "鉄道は当日の運行情報を確認する",
+      "text": "ドゥアラ〜ヤウンデ、ヤウンデ〜ンガウンデレには旅客列車があるが、時刻、運休日、予約方法は変わり得る。カムレール公式情報で直前に再確認する。"
+    },
+    {
+      "topicKey": "cameroon-rain-road",
+      "title": "雨季は道路状況を距離以上に重視する",
+      "text": "降雨量は地域差が大きく、西部・海岸側では強い雨が移動時間に影響しやすい。長距離道路移動は明るい時間帯を基本にし、現地で路面と天候を確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "nigeria",
+      "nameEn": "NIGERIA",
+      "nameJa": "ナイジェリア",
+      "flag": "🇳🇬",
+      "reason": "マンダラ山地やギニア湾岸を国境の西側へ続け、多民族・多言語の文化圏と森林からサバンナへの地形変化を比較したいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "gabon",
+      "nameEn": "GABON",
+      "nameJa": "ガボン",
+      "flag": "🇬🇦",
+      "reason": "コンゴ盆地の熱帯雨林、野生動物、大西洋岸という自然の軸を、より人口密度の低い森林国で続けて見たいなら。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "congo",
+      "nameEn": "REPUBLIC OF THE CONGO",
+      "nameJa": "コンゴ共和国",
+      "flag": "🇨🇬",
+      "reason": "サンガ川流域の世界遺産を国境の南側へつなぎ、低地熱帯雨林と森の野生動物をさらに深く見たいなら。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2026-03-04",
+    "worldHeritage": "2026-09-28",
+    "climate": "2025",
+    "rail": "2026-09-28",
+    "safety": "2026-09-27",
+    "currency": "2026",
+    "map": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "food": "2024"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Cameroon basic data, updated 4 Mar 2026: area 475,440 km², capital Yaoundé, about 250 ethnic groups, French and English as official languages, religion and modern history. https://www.mofa.go.jp/mofaj/area/cameroon/data.html",
+    "population": "World Bank Data — Cameroon population 29,879,337 in 2025. https://data.worldbank.org/country/cameroon",
+    "worldHeritage": "UNESCO World Heritage Centre — Cameroon State Party list: 3 inscribed properties, Dja Faunal Reserve, Sangha Trinational and Diy-Gid-Biy Cultural Landscape of the Mandara Mountains. Checked 28 Sep 2026. https://whc.unesco.org/en/statesparties/cm",
+    "lobe": "UNESCO World Heritage Centre Tentative List — Le Paysage culturel des chutes de la Lobé: about 6 km from Kribi; cascades over about 1 km and falls directly into the Atlantic. https://whc.unesco.org/en/tentativelists/6330/",
+    "dja": "UNESCO World Heritage Centre — Dja Faunal Reserve: 526,000 ha, coordinates N3 7 30 E12 59 42; UNESCO conservation material notes about 80% is surrounded by the Dja River. https://whc.unesco.org/en/list/407",
+    "sangha": "UNESCO World Heritage Centre — Sangha Trinational maps: Cameroon component Parc National de Lobéké at N2 22 2 E15 48 51, property 217,854 ha. https://whc.unesco.org/en/list/1380/maps/",
+    "diyGidBiy": "UNESCO World Heritage Centre — Diy-Gid-Biy Cultural Landscape of the Mandara Mountains: inscribed 2025; 16 archaeological sites across 7 villages; coordinates N10 54 12 E13 47 44. https://whc.unesco.org/en/list/1745",
+    "foumban": "Visit Africa / African World Heritage Fund — Royal Palace of Foumban reference; current palace completed in 1917. Coordinate cross-check from mapped heritage records: 5.732329,10.900991. Checked 28 Sep 2026.",
+    "climate": "World Bank Climate Change Knowledge Portal — Climate Risk Country Profile: Cameroon, published 2025; ITCZ/West African monsoon, Mount Cameroon heavy rainfall and northern Harmattan influence. https://climateknowledgeportal.worldbank.org/sites/default/files/country-profiles/17253-WB_Cameroon%20Country%20Profile-WEB.pdf",
+    "camrail": "CAMRAIL official passenger transport — Douala–Yaoundé 264 km with passenger services; Yaoundé–Ngaoundéré 620 km sleeper/semi-direct service; checked 28 Sep 2026. https://www.camrail.net/offre-de-transport/",
+    "currency": "Banque des États de l'Afrique Centrale (BEAC) — Cameroon is one of six UMAC members; legal currency is the Central African CFA franc; BEAC headquarters in Yaoundé. Checked 28 Sep 2026. https://www.beac.int/en/faqs/ ; https://www.beac.int/beac/la-beac/",
+    "gastronomy": "WIPO/UPOV Cameroon gastronomic tourism project — documented traditions include Ndolé, Eru, Achu, Ekoki/Koki and other regional dishes; includes the origin of Cameroon’s name from Portuguese camarão. Checked 28 Sep 2026.",
+    "safety": "UK FCDO Cameroon regional risks, current 27 Sep 2026: strong travel warnings for Far North, Northwest, much of Southwest and several border zones. https://www.gov.uk/foreign-travel-advice/cameroon/regional-risks",
+    "sceneCoordinates": "WGS84 real-location points checked 28 Sep 2026: Lobé Falls 2.883464,9.897814 (Wikimedia geotag/UNESCO site area); Mount Cameroon 4.216667,9.1725 (Wikidata/OSM); Foumban Palace 5.732329,10.900991; Ekom-Nkam Falls 5.06253,10.02962 (mapped OSM/Wikimedia reference); Diy-Gid-Biy 10.903333,13.795556 (UNESCO); Dja 3.125,12.995 (UNESCO); Lobéké 2.367222,15.814167 (UNESCO); Bimbia 3.954444,9.245 (UNESCO tentative-list mapped centre); National Museum Yaoundé 3.8625,11.515556 (mapped museum record); Yaoundé 3.8667,11.5167.",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; CMR target with NGA/TCD/CAF/GNQ/GAB/COG context; JOURNEY ATLAS map-v3 style; generated 28 Sep 2026."
+  }
+}
