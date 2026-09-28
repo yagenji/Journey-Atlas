@@ -1,0 +1,642 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "niger",
+  "nameEn": "NIGER",
+  "nameJa": "ニジェール",
+  "region": "WEST AFRICA / 17°N",
+  "seo": {
+    "description": "アガデスの泥レンガ都市、アイル山地、ティミアのオアシス、テネレ砂漠、ビルマの塩田、ジャド高原、クレのキリン、ジンデル旧市街、ニジェール川。サヘルからサハラまでを8つの景色と地図でたどるニジェールの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Niamey",
+    "nameJa": "ニアメ",
+    "coordinates": {
+      "latitude": 13.5137,
+      "longitude": 2.1098
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 10,
+      "y": -55
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "ニジェール川のサヘルから、泥レンガの古都アガデス、アイルの岩山、テネレとビルマの砂漠へ。南北で、水・暮らし・地形の密度が大きく変わる。",
+    "image": "assets/images/niger/approved/hero-agadez-grand-mosque.webp",
+    "location": "Historic Centre of Agadez / Grand Mosque",
+    "coordinates": {
+      "latitude": 16.97361,
+      "longitude": 7.99139
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 25.6477,
+      "south": 9.8523,
+      "west": -2.4682,
+      "east": 18.6682
+    },
+    "svg": "assets/images/niger/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target administrative geometry: Natural Earth Admin-0 Countries, WGS84, public domain; target boundary cross-checked against geoBoundaries gbOpen NER ADM0 metadata (boundaryID NER-ADM0-22259449). Surrounding land context: GSHHS via Basemap resolution=i, WGS84. Regenerated from the shared JOURNEY ATLAS local-equirectangular-fit map pipeline on 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "idoukal-n-taghes-air",
+      "name": "イドゥカル・ン・タゲス / アイル山地",
+      "nameLocal": "Idoukal-n-Taghès / Aïr Mountains",
+      "mapLabel": "Idoukal-n-Taghès",
+      "description": "アイル山地の中央部で、黒褐色の岩塊と乾いた谷が連なる。ニジェール最高地点のイドゥカル・ン・タゲス周辺では、砂丘の海とは異なるサハラの山岳景観が現れる。",
+      "coordinates": {
+        "latitude": 17.8359,
+        "longitude": 8.7174
+      },
+      "image": "assets/images/niger/approved/scene-1-idoukal-n-taghes-air.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": -4.24,
+        "y": -2.64
+      }
+    },
+    {
+      "id": "timia-oasis",
+      "name": "ティミアのオアシス",
+      "nameLocal": "Timia Oasis",
+      "mapLabel": "Timia",
+      "description": "アイル山地の谷間に、ナツメヤシと果樹の緑、赤褐色の岩壁、土の集落がまとまって現れる。乾燥した山地の中で水が暮らしを成立させる構造を、風景として見られる場所だ。",
+      "coordinates": {
+        "latitude": 18.11432,
+        "longitude": 8.77917
+      },
+      "image": "assets/images/niger/approved/scene-2-timia-oasis.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 3,
+        "y": 2
+      }
+    },
+    {
+      "id": "tenere-dunes",
+      "name": "テネレ砂漠",
+      "nameLocal": "Ténéré / Aïr and Ténéré Natural Reserves",
+      "mapLabel": "Ténéré",
+      "description": "アイルの東側へ進むと、植生のほとんどない砂礫地と砂丘が大きく広がる。アイル・テネレ自然保護区は7.7百万haを超え、岩山から砂漠へ移るサハラのスケールを一つの保護地域に含む。",
+      "coordinates": {
+        "latitude": 19.07619,
+        "longitude": 9.662
+      },
+      "image": "assets/images/niger/approved/scene-3-tenere-dunes.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 2.5,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "bilma-salt-pans",
+      "name": "ビルマの塩田",
+      "nameLocal": "Bilma Salt Pans",
+      "mapLabel": "Bilma",
+      "description": "テネレ東端のオアシス都市ビルマでは、浅い塩田から塩を採る景観が続く。アイルから砂漠を横断して塩と穀物・ナツメヤシを交換してきた隊商交易の終点として、土地と交易の関係が見える。",
+      "coordinates": {
+        "latitude": 18.6867,
+        "longitude": 12.9192
+      },
+      "image": "assets/images/niger/approved/scene-4-bilma-salt-pans.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 2.3,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "djado-fort-plateau",
+      "name": "ジャド高原と城塞跡",
+      "nameLocal": "Plateau and Fort of Djado",
+      "mapLabel": "Djado",
+      "description": "北東部の孤立した高原に、泥と石で築かれた城塞・集落跡が残る。砂と岩の広い地形の中に建築の輪郭がまとまり、現在は人の少ないサハラ北東部にかつての定住と交易の痕跡を伝える。",
+      "coordinates": {
+        "latitude": 21.01602,
+        "longitude": 12.30846
+      },
+      "image": "assets/images/niger/approved/scene-5-djado-fort.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 2.2,
+        "y": -1.2
+      }
+    },
+    {
+      "id": "koure-giraffes",
+      "name": "クレの西アフリカキリン",
+      "nameLocal": "Kouré / West African Giraffe Zone",
+      "mapLabel": "Kouré",
+      "description": "ニアメ南東のサヘルでは、低木林と農地が混じる景観の中で西アフリカキリンが暮らす。砂漠の国という印象だけでは捉えられない、南部の植生と野生動物の環境が現れる。",
+      "coordinates": {
+        "latitude": 13.35389,
+        "longitude": 2.69611
+      },
+      "image": "assets/images/niger/approved/scene-6-koure-giraffes.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 2,
+        "y": 1.8
+      }
+    },
+    {
+      "id": "zinder-birni-palace",
+      "name": "ジンデル旧市街ビルニ",
+      "nameLocal": "Zinder Birni / Sultan's Palace",
+      "mapLabel": "Zinder",
+      "description": "旧首都ジンデルのビルニ地区には、土の壁、装飾を施した家々、スルタン宮殿が残る。サハラ交易とナイジェリア方面を結ぶ位置に発達し、アガデスとは異なるハウサ圏の都市文化を見せる。",
+      "coordinates": {
+        "latitude": 13.79388,
+        "longitude": 9.00199
+      },
+      "image": "assets/images/niger/approved/scene-7-zinder-birni.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": 1.7,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "niamey-niger-river",
+      "name": "ニアメとニジェール川",
+      "nameLocal": "Niamey / Niger River at Kennedy Bridge",
+      "mapLabel": "Niamey / Niger River",
+      "description": "首都ニアメでは大河ニジェールが市街を南北に分ける。ケネディ橋周辺からは、広い水面、砂州、河岸の緑と都市が同じ視界に入り、乾燥地の国を支える大河の存在感が分かる。",
+      "coordinates": {
+        "latitude": 13.50528,
+        "longitude": 2.10462
+      },
+      "image": "assets/images/niger/approved/scene-8-niamey-niger-river.webp",
+      "imageState": "APPROVED",
+      "mapOffset": {
+        "x": -5,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "泥レンガの街並み",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "岩山と乾いた谷",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "オアシスの緑",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "砂と風がつくる地形",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "隊商交易の痕跡",
+      "category": "MOVEMENT",
+      "icon": "history"
+    },
+    {
+      "title": "多言語が交わる街",
+      "category": "LANGUAGE",
+      "icon": "culture"
+    },
+    {
+      "title": "大河沿いの暮らし",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "雑穀と保存食の食卓",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "agadez-caravan-urban-form",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "アガデスでは、隊商都市の歴史が今も路地の形に残る",
+      "text": "15〜16世紀にアイルスルタン国が成立すると、トゥアレグの旧野営地の区画を受け継いで街が形成された。現在の不規則な街路と11の地区は、その定住化と交易の歴史を都市の形として残している。",
+      "points": [
+        "歴史地区は11の地区に分かれる",
+        "泥レンガの住宅・宮殿・宗教建築がまとまって残る"
+      ],
+      "sourceKey": "agadez"
+    },
+    {
+      "topicKey": "air-tenere-ecological-transition",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アイルとテネレは、山地と砂漠を一つの景観として見る場所",
+      "text": "アイル・テネレ自然保護区では、サハラの岩山、ワジ、砂礫地、砂丘が大きな連続体をつくる。乾燥地を「砂丘だけ」と捉えず、高度と地形で生態環境が変わることを理解できる。",
+      "points": [
+        "世界遺産の面積は7,736,000ha",
+        "1992年から危機遺産リストに記載"
+      ],
+      "sourceKey": "airTenere"
+    },
+    {
+      "topicKey": "bilma-salt-caravan-network",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ビルマの塩は、サハラ横断の交換経済を支えてきた",
+      "text": "アイルからテネレを横断してビルマの塩田へ至る塩の道では、塩とナツメヤシが穀物などと交換されてきた。砂漠の移動は景観鑑賞だけでなく、食料と資源をつなぐ生活の回路でもあった。",
+      "points": [
+        "UNESCO暫定リストに「塩の道」として記載",
+        "ビルマの塩田が交易ルートの目的地になる"
+      ],
+      "sourceKey": "saltRoute"
+    },
+    {
+      "topicKey": "zinder-hausa-urban-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ジンデルでは、旧首都とハウサ圏の都市文化が重なる",
+      "text": "ジンデルは1911〜1926年にニジェールの首都で、旧市街ビルニはサハラとナイジェリア方面を結ぶ交通・交易の結節点だった。土の建築とスルタン宮殿から、南東部の歴史をアガデスとは別の軸で見られる。",
+      "points": [
+        "ビルニ旧市街とスルタン宮殿が暫定リストに記載",
+        "1911〜1926年に首都だった"
+      ],
+      "sourceKey": "zinder"
+    },
+    {
+      "topicKey": "niger-river-sahel-life",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "国名と同じニジェール川は、乾燥地の西部に水の軸をつくる",
+      "text": "ニジェール川は国の最西部を流れ、ニアメの都市景観や農耕・漁労の基盤になる。北部のサハラへ視線を向けた後に川沿いへ戻ると、同じ国の中で水の密度がどれほど変わるかが分かる。",
+      "points": [
+        "ニジェール川は国土西端の主要水系",
+        "ニアメの市街は川の両岸に広がる"
+      ],
+      "sourceKey": "nigerRiver"
+    },
+    {
+      "topicKey": "imzad-tuareg-women",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "トゥアレグのイムザドは、女性が演奏と継承を担う",
+      "text": "一弦の擦弦楽器イムザドの音楽は、アルジェリア・マリ・ニジェールのトゥアレグ社会に共通する文化。女性奏者が演奏し、詩や歌と組み合わされ、国境を越えたサハラ文化の広がりを示す。",
+      "points": [
+        "2013年にUNESCO無形文化遺産へ登録",
+        "演奏・制作の知識は口承で継承される"
+      ],
+      "sourceKey": "imzad"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "joking-relationships-social-practice",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "「冗談関係」が社会的な緊張を和らげる文化として登録されている",
+      "text": "異なる共同体や親族関係の間で、互いをからかうやり取りを通じて連帯や共存を保つ慣習があり、2014年にUNESCO無形文化遺産へ登録された。",
+      "icon": "culture",
+      "sourceKey": "jokingRelationships"
+    },
+    {
+      "topicKey": "hausa-national-language-2025",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "2025年の基本法で、ハウサ語が「国語」とされた",
+      "text": "2025年3月の「再建憲章」第12条はハウサ語を国語、英語とフランス語を作業言語と規定する。法的位置づけは旧憲法期から変わっている。",
+      "icon": "culture",
+      "sourceKey": "charter"
+    },
+    {
+      "topicKey": "agadez-mudbrick-torons",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "アガデスの高いミナレットは、木材が壁面から突き出す泥レンガ構造",
+      "text": "大モスクの27mのミナレットは泥レンガで築かれ、壁面から多数の木材が突き出す独特の輪郭を持つ。旧市街の低い土の家並みの上に立つ姿が、アガデスを象徴する景観になる。",
+      "icon": "history",
+      "sourceKey": "agadez"
+    },
+    {
+      "topicKey": "harmattan-dry-season",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "季節",
+      "title": "乾季には北東からハルマッタンが吹く",
+      "text": "FAOは、10〜2月にサハラから乾いたハルマッタンが北東から南西へ吹き、乾季の水分不足を強めると説明している。",
+      "icon": "landscape",
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "kennedy-bridge-niamey",
+      "categoryEn": "CITY",
+      "categoryJa": "都市",
+      "title": "ニアメの代表的な橋には「ケネディ」の名が残る",
+      "text": "ニジェール川を渡るケネディ橋はニアメの両岸をつなぐ主要な景観要素の一つ。河岸から見ると、都市と大河の距離の近さが分かる。",
+      "icon": "city",
+      "sourceKey": "kennedyBridge"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF NIGER",
+    "title": "ニジェールで食べたいもの",
+    "intro": "雑穀や米、葉野菜、干し肉、ナツメヤシ。サヘルの日常食からアイルのトゥアレグ料理まで、材料と保存方法の違いが見える4品。",
+    "items": [
+      {
+        "id": "dambou-kopto",
+        "name": "ダンブーとコプト",
+        "nameLocal": "Dambou & Kopto",
+        "text": "米を粒状に蒸したクスクス状のダンブーに、モリンガの葉「コプト」を合わせる料理。家庭の食卓に近い穀物と葉野菜の組み合わせが一皿に現れる。",
+        "image": "assets/images/niger/approved/food-1-dambou-kopto.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "kilichi",
+        "name": "キリシ",
+        "nameLocal": "Kilichi",
+        "text": "牛などの肉を薄く切って天日で乾燥させ、落花生や香辛料を使うペーストを塗って再び乾燥・加熱する保存食。薄い肉片の香ばしさと辛味が特徴。",
+        "image": "assets/images/niger/approved/food-2-kilichi.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "tchoukoubouss",
+        "name": "チュクブス",
+        "nameLocal": "Tchoukoubouss",
+        "text": "アイルのトゥアレグに伝わる、雑穀にナツメヤシとチーズを合わせる料理。乾燥地で手に入る穀物・保存性の高い乳製品・果実が一つにまとまる。",
+        "image": "assets/images/niger/approved/food-3-tchoukoubouss.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "alkaki",
+        "name": "アルカキ",
+        "nameLocal": "Alkaki",
+        "text": "ハウサ圏で知られる甘い揚げ菓子。ニジェールの資料では小麦や雑穀を使う地域・レシピが確認され、輪や結び目状に成形して揚げ、砂糖などで甘く仕上げる。",
+        "image": "assets/images/niger/approved/food-4-alkaki.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月現在、日本外務省はニジェール全土を危険レベル4としている。以下は現在の渡航を勧める旅程ではなく、安全が回復した将来に国土の広がりを理解するための地理的な目安。",
+    "items": [
+      {
+        "duration": "4〜6日",
+        "title": "南西部の川とサヘルに絞る",
+        "text": "将来、安全に訪問できる状況を想定し、ニアメとニジェール川、クレ周辺など南西部に範囲を絞る。例：ニアメ → ニジェール川 → クレ。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "南部都市とアガデスを別の地域として見る",
+        "text": "南西部にジンデルやアガデスを加え、ハウサ圏の都市とサハラ入口の古都を比較する。長距離区間は当時の安全・交通状況を前提に分けて考える。例：ニアメ → ジンデル → アガデス。",
+        "icon": "map"
+      },
+      {
+        "duration": "11日以上",
+        "title": "アイル・テネレ・ビルマを独立した砂漠ブロックとして加える",
+        "text": "北部のアイル、ティミア、テネレ、ビルマは都市間移動とは別の遠隔地行程になる。将来の安全回復後も地域専門の手配を前提に考える。例：アガデス → ティミア → アイル / テネレ → ビルマ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜2月",
+      "color": "#a88b63",
+      "text": "長い乾季の前半。北東から乾いたハルマッタンが吹き、北部サハラでは朝晩の冷え込みも大きい。南部も雨は少なく、乾いた景観が続く。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c79656",
+      "text": "雨季前の高温期。内陸では日中の暑さが強まり、砂塵や乾燥への注意が必要になる。北部と南部で気温差はあるが、総じて厳しい暑さの時期。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#7f9d78",
+      "text": "短い雨季。FAOは国の雨季を6〜9月としており、降水は南ほど多い。南部のサヘルでは草地や農地の緑が増える一方、北部サハラは依然として乾燥が強い。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#9e845e",
+      "text": "南部で雨季が終わり、乾季へ移る時期。河川・植生には雨季の水分が残ることがあるが、北へ行くほど季節変化は小さくなる。"
+    }
+  ],
+  "transport": {
+    "title": "現在は、具体的な移動計画を立てない",
+    "text": "2026年9月現在、日本外務省は首都ニアメを含むニジェール全土を危険レベル4（退避勧告）としている。このページの地図と日程は国土の地理的スケールを理解するためのもので、現在の道路・航空便・国境越えを案内するものではない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "サハラを砂丘だけでなく、山地・オアシス・隊商都市まで立体的に見たい人",
+      "text": "アイルの岩山、ティミアの緑、テネレの砂、ビルマの塩田をつなぎ、乾燥地の中にある地形と暮らしの違いを理解したい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "泥レンガ建築とサヘルの歴史都市に関心がある人",
+      "text": "アガデスとジンデルを比較し、交易・スルタン制・土建築が都市の形にどう残るかを追いたい人。",
+      "icon": "history"
+    },
+    {
+      "title": "国境を越えて続くトゥアレグやハウサの文化圏を知りたい人",
+      "text": "イムザド、隊商交易、言語、食を通じて、現在の国境より広いサハラ・サヘルの文化のつながりを見たい人。",
+      "icon": "culture"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / サヘル・サハラ"
+    },
+    {
+      "label": "首都",
+      "value": "ニアメ"
+    },
+    {
+      "label": "人口",
+      "value": "約2,792万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,267,000 km²（日本の約3.4倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ハウサ語（国語）、英語・フランス語（作業言語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が98%以上（2023年時点の政府情報）"
+    },
+    {
+      "label": "通貨",
+      "value": "CFAフラン BCEAO（XOF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "desert-zone-share",
+      "label": "砂漠地帯",
+      "value": "約75%",
+      "note": "FAOは、ニジェール国土の4分の3が北部の砂漠地帯にあると説明している。南部のサヘル・スーダン帯との大きな環境差が国土の特徴になる。",
+      "icon": "landscape",
+      "interestReason": "国土の大半が砂漠地帯であり、人の暮らしや農耕が南部へ大きく偏るニジェールの地理構造を一つの数字で捉えられるため。"
+    },
+    {
+      "topicKey": "land-border-neighbors",
+      "label": "接する国",
+      "value": "7か国",
+      "note": "ニジェールはアルジェリア、リビア、チャド、ナイジェリア、ベナン、ブルキナファソ、マリの7か国と国境を接する内陸国。サハラとサヘルをまたぐ広い国境網が国土の特徴になる。",
+      "icon": "map",
+      "interestReason": "北アフリカと西・中央アフリカの間に位置し、7方向へ国境が開くニジェールの地理的位置を一つの数字で捉えられるため。"
+    },
+    {
+      "topicKey": "rainfed-agriculture-gdp-share",
+      "label": "天水農業の比重",
+      "value": "約40%",
+      "note": "World Bankは、雨に依存する農業がニジェールのGDPの約40%を占めると説明している。降水の少なさと年ごとの変動が、国全体の暮らしと経済に直結する構造を示す。",
+      "icon": "landscape",
+      "interestReason": "砂漠が国土の大半を占める一方、南部の雨に依存する農業が経済の大きな部分を支えるという、ニジェール全体の環境と暮らしの結びつきを数値で示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mofa-level-four-current-safety",
+      "title": "2026年9月現在、全土が危険レベル4",
+      "text": "日本外務省は2026年7月10日、ニアメをレベル4へ引き上げ、これにより全土がレベル4となった。現時点では観光目的の渡航を計画する段階ではない。"
+    },
+    {
+      "topicKey": "heritage-danger-status-air-tenere",
+      "title": "アイル・テネレは世界遺産であると同時に危機遺産",
+      "text": "自然保護区は1992年から「危機にさらされている世界遺産」に記載されている。景観価値だけでなく、密猟や利用圧など保全上の背景も合わせて理解したい。"
+    },
+    {
+      "topicKey": "regional-climate-differences",
+      "title": "季節は南部サヘルと北部サハラを分けて見る",
+      "text": "雨季は6〜9月だが、降水は南部ほど多く、北部は極度に乾燥する。同じ月でもニアメとアイル・テネレでは体感と景観が大きく異なる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇧🇯",
+      "countryEn": "BENIN",
+      "countryJa": "ベナン",
+      "path": "Niamey → Dosso → Gaya → Malanville",
+      "description": "ニジェール川流域から南へ進み、ガヤとマランヴィルを介してベナン北部へつながる地理的な南北軸。サヘルからより湿潤な西アフリカへ景観が変わる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在ニジェール全土が日本外務省の危険レベル4。国境運用も変化し得るため、現在の旅行ルートとしては扱わない。"
+    },
+    {
+      "flag": "🇳🇬",
+      "countryEn": "NIGERIA",
+      "countryJa": "ナイジェリア",
+      "path": "Maradi → Jibia → Katsina",
+      "description": "マラディから南へハウサ文化圏を連続してたどる国境軸。言語や市場文化が国境を越えて続くことを地理的に理解しやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在ニジェール全土が日本外務省の危険レベル4。現在の越境可否・治安は最新公的情報の確認が必要。"
+    },
+    {
+      "flag": "🇩🇿",
+      "countryEn": "ALGERIA",
+      "countryJa": "アルジェリア",
+      "path": "Agadez → Arlit → Assamaka / In Guezzam → Tamanrasset",
+      "description": "アイル北部からアルジェリア南部へ続くサハラ縦断の地理軸。トゥアレグ文化と乾燥地景観を国境の両側で比較できる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在ニジェール全土が日本外務省の危険レベル4。北部国境地帯の移動は現在の旅行案内として扱わない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "algeria",
+      "nameEn": "ALGERIA",
+      "nameJa": "アルジェリア",
+      "flag": "🇩🇿",
+      "reason": "アイルからホッガールへ続くサハラ山地とトゥアレグ文化を、国境を越えた広がりとして比較したいなら。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "mali",
+      "nameEn": "MALI",
+      "nameJa": "マリ",
+      "flag": "🇲🇱",
+      "reason": "サハラ交易、泥レンガ都市、トゥアレグ文化という共通軸を西側のサヘルへ伸ばして見たいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "nigeria",
+      "nameEn": "NIGERIA",
+      "nameJa": "ナイジェリア",
+      "flag": "🇳🇬",
+      "reason": "ハウサ語圏と南部都市のつながりを、国境の両側に広がる市場・言語・食文化から見たいなら。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025",
+    "religion": "2023",
+    "currency": "2025",
+    "safety": "2026-07-10",
+    "worldHeritage": "2026",
+    "climate": "2026-09-28",
+    "map": "2026-09-28",
+    "desertShare": "2026-09-28",
+    "charter": "2025-03-26",
+    "neighbors": "2026-09-28",
+    "rainfedAgriculture": "2026"
+  },
+  "sources": {
+    "population": "UNData Niger profile — population (2025): 27.918 million; capital Niamey; surface area 1,267,000 km²; currency CFA franc BCEAO (XOF): https://data.un.org/en/iso/ne.html",
+    "area": "UNData Niger profile — surface area 1,267,000 km²: https://data.un.org/en/iso/ne.html",
+    "japanArea": "Geospatial Information Authority of Japan, national land area: https://web1.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "charter": "Republic of Niger Presidency — Charte de la Refondation adopted/promulgated 26 March 2025; Article 12 text cross-checked against Journal Officiel reproduction: Hausa is the national language; English and French are working languages. https://presidence.ne/pages/refondation",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Niger — former Ministry of Interior figure: more than 98% Muslim: https://2021-2025.state.gov/reports/2023-report-on-international-religious-freedom/niger/",
+    "currency": "UNData Niger profile — CFA Franc BCEAO (XOF): https://data.un.org/en/iso/ne.html",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website — Niger risk information, updated 2026-07-10: Level 4 nationwide: https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2026T078.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Niger State Party page, 3 inscribed properties: https://whc.unesco.org/en/statesparties/ne",
+    "agadez": "UNESCO World Heritage Centre — Historic Centre of Agadez: 11 quarters, 27m mudbrick minaret, caravan crossroads; coordinates N16 58 25 E7 59 29: https://whc.unesco.org/en/list/1268",
+    "airTenere": "UNESCO World Heritage Centre — Air and Ténéré Natural Reserves: 7,736,000 ha; coordinates N19 4 34.293 E9 39 43.2; Danger List since 1992: https://whc.unesco.org/en/list/573",
+    "saltRoute": "UNESCO World Heritage Centre Tentative List — Itinéraires Culturels du Désert du Sahara: Route du sel: アイル–Ténéré–Bilma salt route: https://whc.unesco.org/en/tentativelists/5043/",
+    "djado": "UNESCO World Heritage Centre Tentative List — Plateau et Fortin du Djado (Ref. 5044); scene coordinate cross-checked against OpenStreetMap/Mapcarta point 21.01602, 12.30846: https://whc.unesco.org/en/tentativelists/5044/",
+    "zinder": "UNESCO World Heritage Centre Tentative List — La vieille ville de Zinder, quartier de Birni et le Sultanat; coordinates N13 47 E9 00 and historic capital context: https://whc.unesco.org/en/tentativelists/5040/",
+    "koure": "UNESCO World Heritage Centre Tentative List — Zone Giraphe (Ref. 5047); Kouré reserve point cross-checked with Wikidata/OSM at 13.35389, 2.69611: https://whc.unesco.org/en/tentativelists/5047/",
+    "nigerRiver": "UNESCO World Heritage Centre Tentative List — Le fleuve Niger, les îles et la vallée: https://whc.unesco.org/en/tentativelists/5053/",
+    "kennedyBridge": "Wikidata / OpenStreetMap cross-check — Kennedy Bridge, Niamey coordinate around 13.50528, 2.10462: https://www.wikidata.org/wiki/Q1101213",
+    "idoukal": "GeoNames geographic record — Idoukal-n-Taghès, elevation 2,022 m, approx. 17.8359, 8.7174; cross-checked with アイル mapping.",
+    "timia": "GeoNames/OpenStreetMap cross-check — Timia, approx. 18.11432, 8.77917.",
+    "imzad": "UNESCO Intangible Cultural Heritage — Practices and knowledge linked to the Imzad of the Tuareg communities of Algeria, Mali and Niger (2013): https://ich.unesco.org/en/RL/00891",
+    "jokingRelationships": "UNESCO Intangible Cultural Heritage — Practices and expressions of joking relationships in Niger (2014): https://ich.unesco.org/en/RL/01009",
+    "food": "ONEP Niger / Le Sahel — traditional Nigerien dishes and methods, 9 Jan 2026; dambou/kopto, fakou and related preparations: https://www.lesahel.org/gastronomie-ingredients-et-methode-de-preparation-de-certains-mets-traditionnels-du-niger/",
+    "foodHeritage": "ONEP Niger / Le Sahel — Direction du patrimoine culturel interview listing Tchoukoubouss (millet, dates and cheese), Alkaki, Kilichi and other traditional foods: https://www.lesahel.org/entretien-avec-le-directeur-general-du-patrimoine-culturel-des-arts-et-de-leconomie-culturelle-linscription-de-certaines-specialites-nigeriennes-au-patrimoine-culturel-imma/",
+    "climate": "FAO Niger country profile — continental Sahelian climate; rainy season June–September, dry season October–May, Harmattan October–February: https://www.fao.org/in-action/building-forward-better/countries/niger/about-the-country/en",
+    "map": "Natural Earth Admin-0 Countries, WGS84, public domain; target boundary cross-checked against geoBoundaries gbOpen NER ADM0 metadata NER-ADM0-22259449 (OpenStreetMap-derived source, CC BY-SA 2.0). Surrounding land context: GSHHS/GSHHG via Basemap resolution=i.",
+    "alkaki": "RECA Niger — local biscuits/sweets report and wheat value-chain note document Alkaki production in Niger; recipes vary by locality: https://reca-niger.org/IMG/pdf/fopat_-_rapport_phase_2_-_0604vf2.pdf ; https://reca-niger.org/IMG/pdf/note_de_suivi_production_de_ble_cra_maradi_2021.pdf",
+    "desertShare": "FAO, Niger country profile — three-quarters of the country is in the desert zone to the north: https://www.fao.org/in-action/building-forward-better/countries/niger/about-the-country/en",
+    "neighbors": "BCEAO Niger country presentation — landlocked Niger is bounded by Algeria and Libya to the north, Chad to the east, Nigeria and Benin to the south, and Burkina Faso and Mali to the west: https://www.bceao.int/index.php/en/etats-membres/niger",
+    "rainfedAgriculture": "World Bank Group, Niger overview — rainfed agriculture accounts for about 40% of GDP, leaving the economy highly exposed to climate shocks: https://www.worldbank.org/ext/en/country/niger"
+  }
+}
