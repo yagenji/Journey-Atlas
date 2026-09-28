@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "mauritania",
+  "nameEn": "MAURITANIA",
+  "nameJa": "モーリタニア",
+  "region": "WEST AFRICA / 20°N",
+  "seo": {
+    "description": "シンゲッティの隊商都市、リシャット構造、テルジットのオアシス、ベン・アメラ、鉱石鉄道、バン・ダルガン、ヌアクショットの魚市場、セネガル川デルタ。サハラと大西洋が接するモーリタニアをたどる。"
+  },
+  "capital": {
+    "nameEn": "Nouakchott",
+    "nameJa": "ヌアクショット",
+    "coordinates": {
+      "latitude": 18.08581,
+      "longitude": -15.9785
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -12,
+      "y": -22
+    },
+    "mapOffset": {
+      "x": -2,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "大西洋の浅海からサハラの砂丘と岩山へ、隊商都市、オアシス、地質の輪、鉱石鉄道が広い国土をつなぐ。乾燥地のスケールと、人が築いた交易・移動の道が重なる。",
+    "image": "assets/images/mauritania/approved/hero-chinguetti.webp",
+    "location": "Ancient Ksar of Chinguetti / Old Mosque",
+    "coordinates": {
+      "latitude": 20.463333,
+      "longitude": -12.366667
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 3
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 28,
+      "south": 14,
+      "west": -18,
+      "east": -4
+    },
+    "svg": "assets/images/mauritania/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Mauritania and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS map-v3 clean-background styling; generated and checked 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "ouadane-ksar",
+      "name": "ウアダンの古いクサール",
+      "nameLocal": "Ksar of Ouadane",
+      "mapLabel": "Ouadane",
+      "description": "岩山の斜面に石造りの旧市街が重なる。シンゲッティなどとともに世界遺産「ウアダン、シンゲッティ、ティシット、ワラタの古代クスール」を構成し、サハラ横断隊商の交易・宗教拠点だった都市構造を伝える。",
+      "coordinates": {
+        "latitude": 20.928889,
+        "longitude": -11.623611
+      },
+      "image": "assets/images/mauritania/approved/scene-1-ouadane.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "richat-structure",
+      "name": "リシャット構造",
+      "nameLocal": "Richat Structure / Guelb er Richât",
+      "mapLabel": "Richat",
+      "description": "サハラの台地に同心円状の岩層が約40kmにわたって現れる。NASAは、隆起した地質ドームが侵食され、硬さの異なる岩層が円環状の尾根として残った構造と説明している。",
+      "coordinates": {
+        "latitude": 21.123889,
+        "longitude": -11.401944
+      },
+      "image": "assets/images/mauritania/approved/scene-2-richat-structure.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 4,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "terjit-oasis",
+      "name": "テルジットのオアシス",
+      "nameLocal": "Terjit Oasis",
+      "mapLabel": "Terjit",
+      "description": "アドラールの乾いた谷にナツメヤシが密集し、岩壁の下に水と緑が現れる。周囲の砂と岩から急に植生の濃い水場へ切り替わる景観が、サハラのオアシスを立体的に見せる。",
+      "coordinates": {
+        "latitude": 20.257139,
+        "longitude": -13.094222
+      },
+      "image": "assets/images/mauritania/approved/scene-3-terjit-oasis.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 2
+      }
+    },
+    {
+      "id": "ben-amira",
+      "name": "ベン・アメラ",
+      "nameLocal": "Guelb Ben 'Amira",
+      "mapLabel": "Ben Amira",
+      "description": "平坦な砂漠から巨大な岩塊が孤立して立ち上がる。近くを鉱山鉄道が通る北部の景観で、建築物のない開けた地平線の中に岩山の輪郭が強く浮かぶ。",
+      "coordinates": {
+        "latitude": 21.23225,
+        "longitude": -13.66354
+      },
+      "image": "assets/images/mauritania/approved/scene-4-ben-amira.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -3.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "banc-arguin",
+      "name": "バン・ダルガン国立公園",
+      "nameLocal": "Banc d'Arguin National Park",
+      "mapLabel": "Banc d'Arguin",
+      "description": "大西洋岸に砂州、浅海、干潟、島が連なり、サハラの砂がそのまま海へ接する。120万haの世界遺産で、渡り鳥を支える広大な沿岸生態系が内陸の乾燥景観とは別の国の表情をつくる。",
+      "coordinates": {
+        "latitude": 20.23472,
+        "longitude": -16.10889
+      },
+      "image": "assets/images/mauritania/approved/scene-5-banc-arguin.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "choum-mineral-train",
+      "name": "シュムの鉱石列車",
+      "nameLocal": "SNIM Mineral Train / Choum",
+      "mapLabel": "Choum",
+      "description": "ズエラットの鉄鉱石をヌアディブ港へ運ぶ長大な貨物列車が、アドラール北縁のシュムを通過する。砂と岩の大地を連なる鉱石貨車が横切り、鉱業と国土の距離を一つの風景にする。",
+      "coordinates": {
+        "latitude": 21.29756,
+        "longitude": -13.05804
+      },
+      "image": "assets/images/mauritania/approved/scene-6-choum-train.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.5,
+        "y": -2.1
+      }
+    },
+    {
+      "id": "nouakchott-fish-market",
+      "name": "ヌアクショット魚市場",
+      "nameLocal": "Nouakchott Fish Market / Port de Pêche",
+      "mapLabel": "Fish Market",
+      "description": "大西洋の浜に細長い漁船が並び、漁から戻る船と魚の売買が連続する。砂漠国家の首都で、海が日々の仕事と食卓へ直接つながる都市の日常を見せる場所。",
+      "coordinates": {
+        "latitude": 18.103333,
+        "longitude": -16.026111
+      },
+      "image": "assets/images/mauritania/approved/scene-7-nouakchott-fish-market.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 0
+      }
+    },
+    {
+      "id": "diawling-national-park",
+      "name": "ディアウリング国立公園",
+      "nameLocal": "Parc National du Diawling",
+      "mapLabel": "Diawling",
+      "description": "セネガル川下流デルタに湿地、浅い水面、砂丘が広がる。ラムサール条約登録地で、北部サハラとは対照的な水辺と鳥類の景観がモーリタニア南西部の環境差を示す。",
+      "coordinates": {
+        "latitude": 16.3575,
+        "longitude": -16.376389
+      },
+      "image": "assets/images/mauritania/approved/scene-8-diawling.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "小さなグラスでミントティーを囲む",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "オアシスのナツメヤシを味わう",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "ラクダ乳のズリグを飲む",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "アラビア語と複数の国語の響きを聞く",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "家族図書館で古い写本を見る",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "金属彫刻などの手仕事を見る",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "クスクスを囲む食卓に触れる",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "セネガル川流域の水と農地を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "caravan-ksour-urban-form",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "四つの古都は、サハラ横断隊商の途中に生まれた",
+      "text": "ウアダン、シンゲッティ、ティシット、ワラタは、11〜12世紀以降にサハラ横断隊商を支える交易・宗教拠点として発達した。狭い路地、中庭型住居、モスクを中心とする都市組織は、乾燥地で人と物を受け止めた仕組みを今に残す。",
+      "points": [
+        "4都市は一つの世界遺産として登録されている",
+        "交易だけでなくイスラム文化と学問の拠点でもあった"
+      ],
+      "sourceKey": "ancientKsour"
+    },
+    {
+      "topicKey": "manuscript-family-libraries",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "古都には、家族が守ってきた写本の文化が残る",
+      "text": "シンゲッティやウアダンでは、宗教、法学、天文学などを扱う古い写本が私設図書館に伝わってきた。隊商路は物資だけでなく本と知識も運び、砂漠の都市を学術交流の場にした。",
+      "points": [
+        "シンゲッティでは歴史的な私設図書館が知られる",
+        "写本文化は隊商交易とイスラム学問の広がりを示す"
+      ],
+      "sourceKey": "adrar"
+    },
+    {
+      "topicKey": "imraguen-fishing-culture",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "大西洋岸では、イムラゲンの漁業文化が砂漠の暮らしと海を結ぶ",
+      "text": "バン・ダルガン沿岸のイムラゲンは、浅海の魚を季節に応じて利用してきた。魚を焼く、干す、加工する暮らしは、内陸の牧畜や穀物中心の食文化とは異なるモーリタニアの海側を見せる。",
+      "points": [
+        "砂漠と浅海が接する沿岸で漁業文化が続く",
+        "魚の利用法が内陸とは異なる食文化をつくる"
+      ],
+      "sourceKey": "imraguen"
+    },
+    {
+      "topicKey": "four-ecological-zones",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "国土は、サハラ・サヘル・セネガル川流域・海岸の四つの環境帯にまたがる",
+      "text": "政府観光局はモーリタニアの自然環境を、サハラ、サヘル、セネガル川流域、大西洋岸という四つの帯で説明している。北・東の乾燥地から南の水辺、西の浅海へ、移動するほど景観の基盤が切り替わる。",
+      "points": [
+        "北部・東部はサハラの乾燥地が大きな割合を占める",
+        "南西部と海岸では水と植生が景観を変える"
+      ],
+      "sourceKey": "ecology"
+    },
+    {
+      "topicKey": "mahadra-knowledge-system",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "マハドラは、共同体の中で知識を継承してきた学びの仕組み",
+      "text": "ユネスコは2023年、マハドラを伝統知識と口承表現を伝える共同体の仕組みとして無形文化遺産に登録した。固定した校舎だけに依存せず、宗教・言語・知識を世代間で受け渡してきた文化を示す。",
+      "points": [
+        "2023年にユネスコ無形文化遺産へ登録",
+        "伝統知識と口承表現を共同体で継承する"
+      ],
+      "sourceKey": "unescoIch"
+    },
+    {
+      "topicKey": "multilingual-south-north",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "北と南で、日常に聞こえる言語の組み合わせが変わる",
+      "text": "憲法ではアラビア語を公用語とし、プラール、ソニンケ、ウォロフも国語と定める。アラブ系住民の間ではハッサニーヤが広く話され、南部ではサヘル側の言語文化とのつながりがより強く見える。",
+      "points": [
+        "アラビア語が公用語",
+        "プラール・ソニンケ・ウォロフも国語として規定される"
+      ],
+      "sourceKey": "constitution"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "tea-three-j",
+      "categoryEn": "DAILY LIFE",
+      "categoryJa": "暮らし",
+      "title": "ミントティーには「三つのJ」という作法が語られる",
+      "text": "政府観光局は、茶を楽しむ条件を良い仲間、良い炭火、時間をかけることの三つとして紹介する。短い休憩というより、人と時間を共有する行為として茶が置かれている。",
+      "icon": "culture",
+      "sourceKey": "foodCulture"
+    },
+    {
+      "topicKey": "guetna-date-season",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "アタールでは、ナツメヤシが実る時期を「ゲトナ」と呼ぶ",
+      "text": "政府観光局は夏のナツメヤシの収穫期をゲトナとして紹介する。オアシスでは果実の成熟が人の移動や集まりを生む季節の目印になる。",
+      "icon": "calendar",
+      "sourceKey": "atar"
+    },
+    {
+      "topicKey": "zrig-camel-milk",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "ラクダ乳は、そのままだけでなく「ズリグ」にもなる",
+      "text": "発酵させたラクダ乳を水や砂糖と合わせるズリグは、政府観光局が紹介する日常の飲み物の一つ。牧畜文化が飲み物にも現れる。",
+      "icon": "food",
+      "sourceKey": "foodCulture"
+    },
+    {
+      "topicKey": "ich-nine-elements",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "ユネスコ無形文化遺産には、マハドラから金属彫刻まで複数の要素が並ぶ",
+      "text": "2026年9月時点のユネスコ国別一覧では、マハドラ、ナツメヤシ、クスクス、アラビア書道、金属彫刻、ヘナなど9要素が記載されている。",
+      "icon": "culture",
+      "sourceKey": "unescoIch"
+    },
+    {
+      "topicKey": "chinguit-name-history",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "「シンゲッティの地」という呼び名が、国全体を指すこともあった",
+      "text": "政府観光局は、巡礼隊の集合地だったシンゲッティの名から住民を「Ahl Chinguit」、地域を「Bilad Chinguit」と呼ぶ用法が広がった歴史を紹介している。",
+      "icon": "history",
+      "sourceKey": "chinguitty"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MAURITANIA",
+    "title": "モーリタニアで食べたいもの",
+    "intro": "マグレブとサブサハラの食文化が交わり、穀物と肉を軸にした料理が多い。政府観光局がモーリタニア固有の特色として挙げる料理を中心に4品を選んだ。",
+    "items": [
+      {
+        "id": "couscous-mauritanien",
+        "name": "モーリタニア風クスクス",
+        "nameLocal": "Couscous mauritanien",
+        "text": "キビ、小麦、大麦など地域の穀物を使い、肉や野菜と合わせる。クスクスの生産・消費に関する知識と実践は、モーリタニアを含む4か国の共同提案でユネスコ無形文化遺産に登録されている。",
+        "image": "assets/images/mauritania/approved/food-1-couscous.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "leksour",
+        "name": "レクスール",
+        "nameLocal": "Leksour",
+        "text": "モーリタニア北部で知られる料理で、薄いキビ入りのパンケーキ状の生地に、羊肉と野菜の煮込みを重ねる。政府観光局もモーリタニアならではの料理として挙げる。",
+        "image": "assets/images/mauritania/approved/food-2-leksour.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mechoui",
+        "name": "メシュイ",
+        "nameLocal": "Méchoui",
+        "text": "羊肉などを火でじっくり焼く料理。肉を焼く、煮る、乾燥させるなど多様に使うモーリタニアの食文化の中で、香ばしい焼き上がりをシンプルに味わう。",
+        "image": "assets/images/mauritania/approved/food-3-mechoui.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "benafa",
+        "name": "ベナファ",
+        "nameLocal": "Bénafa / Bonava",
+        "text": "肉とじゃがいもを煮込む家庭的な料理。政府観光局は、肉をじゃがいもとソースで煮る代表的な食べ方としてベナファを紹介している。",
+        "image": "assets/images/mauritania/approved/food-4-benafa.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月現在、日本外務省は地域により危険レベル1〜4を設定し、アドラール西部はレベル2、ワダン東側を含む東部はレベル3、国境地帯の一部はレベル4としている。以下は現在の渡航推奨ではなく、国土の広さを理解するための地理的な目安。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "ヌアクショット周辺の距離感を知る",
+        "text": "現時点でレベル1の首都を軸に、大西洋岸と都市の日常を見るスケール。例：ヌアクショット中心部 → 魚市場。実際の行動は最新の危険情報と現地状況を確認する。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜8日",
+        "title": "安全状況が改善した将来に、アドラールを一地域として加える",
+        "text": "シンゲッティ、テルジット、ウアダンは首都から離れ、砂漠移動の準備が必要になる。現在はレベル2〜3を含むため、ここでは将来の安全回復後を想定した地理的スケールとして示す。例：ヌアクショット → アタール → テルジット → シンゲッティ → ウアダン。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "北部・沿岸・南西デルタを別ブロックで考える",
+        "text": "バン・ダルガン、シュム／ベン・アメラ、ディアウリングは互いに離れている。現在の安全区分も異なるため、一続きの推奨旅程ではなく地域ごとに最新条件を確認する。例：首都圏 + 将来のアドラール / 北部鉄道回廊 / 南西デルタ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#9da7a0",
+      "text": "政府観光局が旅行に適した時期として挙げる季節で、日中はおおむね20〜25℃。内陸の砂漠では昼夜差が大きく、夜は強く冷え込むことがある。"
+    },
+    {
+      "months": "3〜6月",
+      "color": "#c7ad78",
+      "text": "乾燥が続き、内陸では気温が上がる。日差しと風、砂への対策をし、長距離の砂漠移動は早朝・夕方を使える日程にする。沿岸部は海と貿易風の影響で比較的穏やか。"
+    },
+    {
+      "months": "7〜10月",
+      "color": "#d0a36a",
+      "text": "雨季にあたり、降雨量は地域差が大きい。8〜10月は40℃を超えることがあり、雨後はワジや道路条件が変わる。内陸移動では現地の道路状況を直前に確認したい。"
+    },
+    {
+      "months": "通年・沿岸",
+      "color": "#89a5a7",
+      "text": "ヌアクショットからヌアディブの大西洋岸は、海と貿易風の影響で内陸より気温が穏やか。バン・ダルガンなどは鳥の季節性もあるため、目的に応じて時期を選ぶ。"
+    }
+  ],
+  "transport": {
+    "title": "長距離移動は、現在の危険区分を先に確認する",
+    "text": "2026年9月現在、首都以外にはレベル2〜4の地域が広く含まれる。砂漠道路や鉄道を旅行体験として扱う前に、日本外務省の地域別危険情報と現地当局の規制を確認する。鉱石列車は産業輸送が主目的で、通常の観光列車として一律に扱わない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "地形そのものを旅の主役にしたい人",
+      "text": "リシャット構造、孤立した岩山、オアシス、砂丘と浅海の境界まで、サハラの形が変わる瞬間を地図と景色で追いたい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "サハラ横断交易とイスラム学術文化をたどりたい人",
+      "text": "シンゲッティやウアダンの都市構造、写本、マハドラを通じて、砂漠が人と知識を隔てる場所ではなく結ぶ道でもあったことを知りたい人。",
+      "icon": "history"
+    },
+    {
+      "title": "鉄道・道路・海岸線から国土の大きさを感じたい人",
+      "text": "鉱山鉄道、長距離の砂漠移動、大西洋岸という移動軸から、広い国土を一枚の地図で理解したい人。",
+      "icon": "road"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / サヘル / サハラ / 大西洋沿岸"
+    },
+    {
+      "label": "首都",
+      "value": "ヌアクショット"
+    },
+    {
+      "label": "人口",
+      "value": "約532万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,030,700 km²（日本の約2.7倍）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語（公用語）／プラール・ソニンケ・ウォロフ（国語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教（国教）"
+    },
+    {
+      "label": "通貨",
+      "value": "ウギア（MRU）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "richat-diameter-km",
+      "label": "リシャット構造の直径",
+      "value": "約40 km",
+      "note": "NASA Earth Observatoryは、同心円状のリシャット構造を直径約40kmの地質ドームとして説明する。",
+      "icon": "landscape",
+      "interestReason": "一つの「目」に見える地形が、都市圏ほどの大きさを持つことを直感的に想像できるため。"
+    },
+    {
+      "topicKey": "banc-arguin-hectares",
+      "label": "バン・ダルガンの広さ",
+      "value": "120万 ha",
+      "note": "ユネスコの登録区域は1,200,000ha。砂丘、島、干潟、浅海を一体で含む。",
+      "icon": "wildlife",
+      "interestReason": "砂漠国家の中に、海と砂丘を同時に守る巨大な沿岸生態系があることを数字で示せるため。"
+    },
+    {
+      "topicKey": "snim-rail-ore-2023",
+      "label": "2023年の鉄道鉄鉱石輸送",
+      "value": "約1,400万 t",
+      "note": "SNIM年次報告によると、2023年に鉄道で輸送した鉄鉱石は14,006,522トン。",
+      "icon": "road",
+      "interestReason": "サハラを横切る鉱石列車が象徴的な風景だけでなく、実際に大規模な産業物流を担うことが分かるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mofa-current-risk-zones",
+      "title": "地域ごとの危険レベルを、地点単位で確認する",
+      "text": "2026年9月現在、日本外務省はヌアクショットなどをレベル1、アドラール西部などをレベル2、ワダン東側を含む東部などをレベル3、国境地帯の一部をレベル4としている。国名だけで安全性を判断しない。"
+    },
+    {
+      "topicKey": "desert-movement-prep",
+      "title": "安全上訪問可能な地域でも、砂漠移動は補給と通信を前提にする",
+      "text": "舗装路を外れる移動では水、燃料、通信手段、車両状態の余裕が重要になる。現地規制と道路状況を確認し、遠隔地を自己判断で横断しない。"
+    },
+    {
+      "topicKey": "heritage-and-ecosystem-respect",
+      "title": "古都と保護区では、景観だけでなく保存ルールを見る",
+      "text": "古代クスールは現在も人が暮らす歴史都市で、バン・ダルガンやディアウリングは保護生態系である。撮影や立入りは現地のルールを優先する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "morocco",
+      "nameEn": "MOROCCO",
+      "nameJa": "モロッコ",
+      "flag": "🇲🇦",
+      "reason": "サハラの隊商都市、オアシス、イスラム建築を、アトラス山脈と大西洋都市まで含む別の地形スケールで比較したいなら。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "senegal",
+      "nameEn": "SENEGAL",
+      "nameJa": "セネガル",
+      "flag": "🇸🇳",
+      "reason": "モーリタニア南部につながるセネガル川流域と西アフリカ沿岸の暮らしを、より緑の多いサヘル側から続けて見たいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "algeria",
+      "nameEn": "ALGERIA",
+      "nameJa": "アルジェリア",
+      "flag": "🇩🇿",
+      "reason": "巨大なサハラ、岩山、オアシス、交易史という共通軸を、ホガールやタッシリなど異なる砂漠景観とともに深めたいなら。",
+      "affinityType": "DESERT"
+    }
+  ],
+  "updatedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-27",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025",
+    "language": "2012",
+    "religion": "2012",
+    "currency": "2025",
+    "safety": "2025-12-09",
+    "worldHeritage": "2026",
+    "intangibleHeritage": "2026",
+    "snim": "2023",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27"
+  },
+  "sources": {
+    "population": "UNData Mauritania profile — Population (000, 2025): 5,315; capital Nouakchott; surface area 1,030,700 km²; currency Ouguiya (MRU). https://data.un.org/legacy/en/iso/mr.html",
+    "area": "UNData Mauritania profile — Surface area 1,030,700 km². https://data.un.org/legacy/en/iso/mr.html",
+    "japanArea": "Statistics Bureau of Japan / Statistical Handbook 2025 — Japan area 377,975.37 km²; comparison rounded to about 2.7×.",
+    "constitution": "WIPO Lex — Constitution of Mauritania (1991, revised 2012), Articles 5–7: Islam religion of people and State; Arabic official; Arabic, Pulaar, Soninke, Wolof national languages; Nouakchott capital. https://www.wipo.int/wipolex/en/legislation/details/14002",
+    "currency": "UNData Mauritania profile — Ouguiya (MRU). https://data.un.org/legacy/en/iso/mr.html",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website — Mauritania risk information, updated 2025-12-09 and current when checked 2026-09-27: regional Levels 1–4 including Level 2 western Adrar, Level 3 east from Ouadane, Level 4 selected border areas. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2025T110.html",
+    "ancientKsour": "UNESCO World Heritage Centre — Ancient Ksour of Ouadane, Chinguetti, Tichitt and Oualata: caravan trading and religious centres founded in the 11th–12th centuries. https://whc.unesco.org/en/list/750/",
+    "ksourCoordinates": "UNESCO World Heritage Centre — Ancient Ksour maps: Ouadane N20°55′44″ W11°37′25″; Chinguetti N20°27′48″ W12°22′00″. https://whc.unesco.org/en/list/750/maps/",
+    "chinguitty": "Office National du Tourisme de Mauritanie — Chinguetti: caravan, pilgrimage and manuscript history. https://visitmauritania.com/chinguitty/",
+    "richat": "NASA Earth Observatory — The Eye of the Sahara, 2022-07-10: Richat Structure about 40 km wide; uplifted geologic dome/anticline exposed by erosion. https://earthobservatory.nasa.gov/images/150060/the-eye-of-the-sahara",
+    "terjit": "Wikidata — Terjit oasis coordinate 20°15′25.7″N, 13°05′39.2″W; location cross-checked with Mauritania tourism Adrar/Atar descriptions. https://www.wikidata.org/wiki/Q3518370 ; https://visitmauritania.com/atar/",
+    "benAmira": "GeoNames / Wikidata — Guelb Ben Amira around 21.23225,-13.66354; Mauritania tourism identifies Ben Amira as a major Adrar/Tiris landscape. https://www.geonames.org/ ; https://www.wikidata.org/wiki/Q430848",
+    "bancArguin": "UNESCO World Heritage Centre — Banc d'Arguin National Park: 1,200,000 ha of dunes, coastal swamps, islands and shallow coastal waters supporting migratory birds. https://whc.unesco.org/en/list/506",
+    "bancCoordinates": "UNESCO World Heritage Centre — Banc d'Arguin property centre N20°14′4.992″ W16°06′32.004″. https://whc.unesco.org/en/list/506/maps/",
+    "snim": "SNIM Annual Report 2023 — iron ore transported by rail from mining sites toward Nouadhibou port; 14,006,522 tonnes in 2023. https://snim.com/sites/default/files/SNIM-Rapport-Activite-2023_FR.pdf",
+    "choumCoordinates": "OpenStreetMap/Wikidata mapped Choum railway station point cross-check: approximately 21.29756,-13.05804.",
+    "nouakchottFishMarket": "Wikidata — Nouakchott Fish Market coordinate 18°06′12″N, 16°01′34″W. https://www.wikidata.org/wiki/Q5454547",
+    "diawling": "Ramsar Sites Information Service — Parc National du Diawling, site 666, 15,600 ha; coordinates 16°21′27″N 16°22′35″W; saline floodplain in lower Senegal River delta. https://rsis.ramsar.org/",
+    "foodCulture": "Office National du Tourisme de Mauritanie — Saveurs: Mauritanian couscous, Leksour, méchoui, bénafa, camel milk / Zrig, mint tea. https://visitmauritania.com/saveurs/",
+    "leksour": "Office National du Tourisme names Leksour as a Mauritanian specialty; dish structure cross-checked with TasteAtlas description of lamb stew served over millet pancakes. https://visitmauritania.com/saveurs/ ; https://www.tasteatlas.com/leksour",
+    "unescoIch": "UNESCO Intangible Cultural Heritage — Mauritania country list, checked 2026-09-27: 9 inscribed elements including Mahadra (2023), date palm (2022), couscous (2020), Arabic calligraphy, metal engraving, henna and epics. https://ich.unesco.org/en/state/mauritania-MR",
+    "atar": "Office National du Tourisme de Mauritanie — Atar: summer Guetna date harvest season and oasis context. https://visitmauritania.com/atar/",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Mauritania plus surrounding national geometry; generated 2026-09-27.",
+    "adrar": "Office National du Tourisme de Mauritanie — Adrar / Chinguetti cultural heritage: historic ksour, manuscript libraries and Saharan learning traditions. https://visitmauritania.com/adrar-region/ ; https://visitmauritania.com/chinguitty/",
+    "imraguen": "UNESCO World Heritage Centre — Banc d'Arguin National Park and Mauritania tourism coastal heritage: Imraguen fishing communities live within the desert–marine landscape. https://whc.unesco.org/en/list/506 ; https://visitmauritania.com/parc-national-du-banc-darguin/",
+    "ecology": "Office National du Tourisme de Mauritanie — national geography overview describing Saharan, Sahelian, Senegal River valley and maritime ecological zones. https://visitmauritania.com/la-mauritanie-cest/",
+    "language": "WIPO Lex — Constitution of Mauritania (1991, revised 2012), Articles 5–7: Islam religion of people and State; Arabic official; Arabic, Pulaar, Soninke, Wolof national languages; Nouakchott capital. https://www.wipo.int/wipolex/en/legislation/details/14002",
+    "religion": "WIPO Lex — Constitution of Mauritania (1991, revised 2012), Articles 5–7: Islam religion of people and State; Arabic official; Arabic, Pulaar, Soninke, Wolof national languages; Nouakchott capital. https://www.wipo.int/wipolex/en/legislation/details/14002",
+    "worldHeritage": "UNESCO World Heritage Centre — Ancient Ksour of Ouadane, Chinguetti, Tichitt and Oualata: caravan trading and religious centres founded in the 11th–12th centuries. https://whc.unesco.org/en/list/750/",
+    "intangibleHeritage": "UNESCO Intangible Cultural Heritage — Mauritania country list, checked 2026-09-27: 9 inscribed elements including Mahadra (2023), date palm (2022), couscous (2020), Arabic calligraphy, metal engraving, henna and epics. https://ich.unesco.org/en/state/mauritania-MR",
+    "sceneCoordinates": "Scene coordinates checked 2026-09-27 against UNESCO World Heritage maps and mapped geodata sources cited per Scene: Ouadane/Chinguetti via UNESCO; Richat/Terjit/Ben Amira/Choum/Nouakchott/Diawling via the corresponding sources in this file."
+  }
+}
