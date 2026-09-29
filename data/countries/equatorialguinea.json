@@ -15,11 +15,12 @@
       "latitude": 1.591667,
       "longitude": 10.822222
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 8,
+      "x": -2,
       "y": -6
-    }
+    },
+    "mapRegion": "mainland"
   },
   "hero": {
     "lead": "火山の島から黒砂の海岸へ、赤道直下の森から大西洋の離島へ。小さな国土が、海を隔てて別々の風景をつなぐ。",
@@ -28,18 +29,67 @@
     "coordinates": {
       "latitude": 3.24854,
       "longitude": 8.56689
-    }
+    },
+    "mapRegion": "bioko"
   },
   "map": {
     "bounds": {
-      "north": 4.1,
-      "south": -1.75,
-      "west": 4.15,
-      "east": 13.4
+      "north": 3.9,
+      "south": -1.52,
+      "west": 5.56,
+      "east": 11.56
     },
     "svg": "assets/images/equatorialguinea/map-atlas-v1.svg",
     "route": null,
-    "source": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452 (2013, WGS84, CC BY 4.0), including Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. National outline cross-check: Natural Earth 1:10m GNQ. Geographic context: Natural Earth 1:10m Nigeria, Cameroon, Gabon and São Tomé & Príncipe via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Single shared local-equirectangular projection preserves real relative positions and common scale; checked 2026-09-29."
+    "source": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452 (2013, WGS84, CC BY 4.0), including Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. National outline cross-check: Natural Earth 1:10m GNQ. Geographic context for mainland and Bioko: Natural Earth 1:10m Cameroon and Gabon via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared three-region local-equirectangular map pattern; checked 2026-09-29.",
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "north": 2.52,
+          "south": 0.7,
+          "west": 9.1,
+          "east": 11.55
+        },
+        "rect": {
+          "x": 35,
+          "y": 35,
+          "width": 760,
+          "height": 690
+        }
+      },
+      {
+        "id": "bioko",
+        "bounds": {
+          "north": 4.05,
+          "south": 3,
+          "west": 8.25,
+          "east": 9.3
+        },
+        "rect": {
+          "x": 825,
+          "y": 45,
+          "width": 335,
+          "height": 320
+        }
+      },
+      {
+        "id": "annobon",
+        "bounds": {
+          "north": -1.33,
+          "south": -1.54,
+          "west": 5.53,
+          "east": 5.73
+        },
+        "rect": {
+          "x": 825,
+          "y": 405,
+          "width": 335,
+          "height": 300
+        }
+      }
+    ],
+    "insetNote": "※ ビオコ島とアンノボン島は、本土との実際の位置関係・縮尺が異なる別枠表示です。本土枠にはコリスコ島とエロベイ諸島も実位置で含めています。"
   },
   "scenes": [
     {
@@ -52,7 +102,8 @@
         "latitude": 3.75698,
         "longitude": 8.78276
       },
-      "image": "assets/images/equatorialguinea/approved/scene-1-malabo.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-1-malabo.webp",
+      "mapRegion": "bioko"
     },
     {
       "id": "pico-basile",
@@ -68,7 +119,8 @@
       "mapOffset": {
         "x": 0,
         "y": 5
-      }
+      },
+      "mapRegion": "bioko"
     },
     {
       "id": "batete-church",
@@ -80,7 +132,8 @@
         "latitude": 3.443706,
         "longitude": 8.506878
       },
-      "image": "assets/images/equatorialguinea/approved/scene-3-batete.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-3-batete.webp",
+      "mapRegion": "bioko"
     },
     {
       "id": "bata-atlantic-waterfront",
@@ -92,7 +145,8 @@
         "latitude": 1.86391,
         "longitude": 9.76582
       },
-      "image": "assets/images/equatorialguinea/approved/scene-4-bata.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-4-bata.webp",
+      "mapRegion": "mainland"
     },
     {
       "id": "monte-alen",
@@ -104,7 +158,8 @@
         "latitude": 1.816667,
         "longitude": 10.25
       },
-      "image": "assets/images/equatorialguinea/approved/scene-5-monte-alen.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-5-monte-alen.webp",
+      "mapRegion": "mainland"
     },
     {
       "id": "mbini-estuary",
@@ -116,7 +171,8 @@
         "latitude": 1.5827,
         "longitude": 9.6164
       },
-      "image": "assets/images/equatorialguinea/approved/scene-6-mbini.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-6-mbini.webp",
+      "mapRegion": "mainland"
     },
     {
       "id": "corisco-island",
@@ -128,7 +184,8 @@
         "latitude": 0.915746,
         "longitude": 9.318283
       },
-      "image": "assets/images/equatorialguinea/approved/scene-7-corisco.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-7-corisco.webp",
+      "mapRegion": "mainland"
     },
     {
       "id": "san-antonio-de-pale",
@@ -140,7 +197,8 @@
         "latitude": -1.404319,
         "longitude": 5.632161
       },
-      "image": "assets/images/equatorialguinea/approved/scene-8-annobon.webp"
+      "image": "assets/images/equatorialguinea/approved/scene-8-annobon.webp",
+      "mapRegion": "annobon"
     }
   ],
   "encounters": [
