@@ -39,6 +39,9 @@
       "west": 5.56,
       "east": 11.56
     },
+    "svg": "assets/images/equatorialguinea/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452 (2013, WGS84, CC BY 4.0), including Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. National outline cross-check: Natural Earth 1:10m GNQ. Geographic context for mainland and Bioko: Natural Earth 1:10m Cameroon and Gabon via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared three-region local-equirectangular map pattern; checked 2026-09-29.",
     "regions": [
       {
         "id": "mainland",
@@ -58,10 +61,10 @@
       {
         "id": "bioko",
         "bounds": {
-          "north": 3.9,
-          "south": 3.08,
-          "west": 8.28,
-          "east": 9.1
+          "north": 4.05,
+          "south": 3,
+          "west": 8.25,
+          "east": 9.3
         },
         "rect": {
           "x": 825,
@@ -73,10 +76,10 @@
       {
         "id": "annobon",
         "bounds": {
-          "north": -1.35,
-          "south": -1.52,
-          "west": 5.55,
-          "east": 5.72
+          "north": -1.33,
+          "south": -1.54,
+          "west": 5.53,
+          "east": 5.73
         },
         "rect": {
           "x": 825,
@@ -86,10 +89,7 @@
         }
       }
     ],
-    "svg": "assets/images/equatorialguinea/map-atlas-v1.svg",
-    "insetNote": "※ ビオコ島とアンノボン島は、本土との実際の位置関係・縮尺が異なる別枠表示です。本土枠にはコリスコ島とエロベイ諸島も実位置で含めています。",
-    "route": null,
-    "source": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452 (boundary year 2013; WGS84; CC BY 4.0), mirrored from pinned source metadata and dissolved visually by identical fill, including Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. Mainland surrounding-land context: Natural Earth 1:10m Cameroon and Gabon via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Three local-equirectangular-fit regions on a 1200×760 canvas; checked 2026-09-28."
+    "insetNote": "※ ビオコ島とアンノボン島は、本土との実際の位置関係・縮尺が異なる別枠表示です。本土枠にはコリスコ島とエロベイ諸島も実位置で含めています。"
   },
   "scenes": [
     {
@@ -116,11 +116,11 @@
         "longitude": 8.761944
       },
       "image": "assets/images/equatorialguinea/approved/scene-2-pico-basile.webp",
-      "mapRegion": "bioko",
       "mapOffset": {
         "x": 0,
         "y": 5
-      }
+      },
+      "mapRegion": "bioko"
     },
     {
       "id": "batete-church",
@@ -133,7 +133,11 @@
         "longitude": 8.506878
       },
       "image": "assets/images/equatorialguinea/approved/scene-3-batete.webp",
-      "mapRegion": "bioko"
+      "mapRegion": "bioko",
+      "mapOffset": {
+        "x": -2,
+        "y": 0
+      }
     },
     {
       "id": "bata-atlantic-waterfront",
