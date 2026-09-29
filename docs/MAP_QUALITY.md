@@ -23,6 +23,14 @@ Required:
 
 Record the actual geometry/coast source and license.
 
+### Inset notes
+
+When a Country map uses a separate inset, explain it consistently on the Country page:
+- detached territory shown at a non-geographic placement or different scale: `※ {地域名}は、実際の位置関係・縮尺と異なる別枠表示です。`
+- a detail inset that enlarges the same geography: `※ {地域名}は、同じ地域を拡大した別枠表示です。`
+
+Do not add directional wording such as “left/right”, or repeat implementation details that are already visible in the map.
+
 ## Construction
 
 Use the shared map tooling where supported:
