@@ -15,10 +15,10 @@
       "latitude": -8.8368,
       "longitude": 13.2343
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 10,
-      "y": -50
+      "x": -10,
+      "y": -14
     },
     "mapOffset": {
       "x": 0,
@@ -97,8 +97,8 @@
       "image": "assets/images/angola/approved/scene-3-miradouro-da-lua.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -3.5,
-        "y": 1.5
+        "x": 1,
+        "y": 5
       }
     },
     {
@@ -148,8 +148,8 @@
       "image": "assets/images/angola/approved/scene-6-baia-dos-tigres.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -2.5,
-        "y": -2.5
+        "x": 1.5,
+        "y": -5
       }
     },
     {
@@ -189,42 +189,42 @@
   ],
   "encounters": [
     {
-      "title": "大きな滝の水煙と轟音を体感する",
+      "title": "大きな滝の水しぶきと音を感じる",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "高原の断崖から低地を見渡す",
+      "title": "高原から広い低地を見渡す",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "砂漠と海が接する乾燥地をたどる",
+      "title": "砂地と海が接する風景を歩く",
       "category": "NATURE",
       "icon": "sea"
     },
     {
-      "title": "奇岩が立つ草原を歩く",
+      "title": "巨大な岩が点在する草原を歩く",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "古い王国の都市跡をたどる",
+      "title": "古い街の歴史をたどる",
       "category": "CULTURE",
       "icon": "history"
     },
     {
-      "title": "海岸都市の歴史建築を歩く",
+      "title": "街に残る歴史建築を見る",
       "category": "ARCHITECTURE",
       "icon": "city"
     },
     {
-      "title": "高低差の大きい山道を越える",
+      "title": "曲がりくねる山道を越える",
       "category": "MOVEMENT",
       "icon": "road"
     },
     {
-      "title": "乾燥地に適応した植物と動物を探す",
+      "title": "乾燥地の植物や動物を探す",
       "category": "WILDLIFE",
       "icon": "wildlife"
     }
@@ -533,21 +533,31 @@
       "flag": "🇳🇦",
       "countryEn": "NAMIBIA",
       "countryJa": "ナミビア",
-      "path": "オンジヴァ → サンタ・クララ国境 → オシカンゴ → オンダングワ",
-      "description": "アンゴラ南部からナミビア北中部へつなぐ主要な陸路国境。ナミビア側の公式情報でもオシカンゴ／サンタ・クララがアンゴラ国境の正式な通過地点として掲載されている。",
+      "path": "Ondjiva → Santa Clara Border → Oshikango → Ondangwa",
+      "description": "アンゴラ南部からナミビア北中部へつなぐ主要な陸路国境。Oshikango / Santa Claraは両国間の正式な国境通過地点として運用されている。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "国境は運用されているが、入国条件、営業時間、車両書類、アンゴラ側の危険情報を出発直前に確認する。"
+      "statusNote": "国境の営業時間、入国条件、車両書類、アンゴラ側の最新安全情報を出発直前に確認する。"
     },
     {
       "flag": "🇨🇩",
       "countryEn": "DR CONGO",
       "countryJa": "コンゴ民主共和国",
-      "path": "ムバンザ・コンゴ → ルヴォ国境 → コンゴ民主共和国西部",
-      "description": "ザイーレ州のムバンザ・コンゴから北東へ進み、2026年2月に新施設が開設されたルヴォ国境を越える西部の陸路。両国間の正式な旅客・貨物交通に使われる。",
+      "path": "Mbanza Kongo → Luvo Border → Western DR Congo",
+      "description": "Mbanza KongoからLuvo Borderを越えてコンゴ民主共和国西部へ続く陸路。国境施設は稼働しているが、現地交通と安全状況の変化が大きい。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "国境施設は稼働しているが、コンゴ民主共和国側の入国条件・安全情報・現地交通は必ず直前に確認する。"
+      "statusNote": "コンゴ民主共和国側の入国条件、安全情報、現地交通を必ず直前に確認する。"
+    },
+    {
+      "flag": "🇿🇦",
+      "countryEn": "SOUTH AFRICA",
+      "countryJa": "南アフリカ",
+      "path": "Ondjiva → Oshikango → Windhoek → Noordoewer → Cape Town",
+      "description": "アンゴラ南部からNamibiaを縦断してSouth Africaへ続く長距離の南下ルート。OshikangoでNamibiaへ入り、Windhoekを経てNoordoewerからSouth Africa側へ抜ける。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "NamibiaとSouth Africa双方の入国条件、国境営業時間、車両書類を出発直前に確認する。"
     }
   ],
   "relatedCountries": [
@@ -576,8 +586,8 @@
       "affinityType": "NATURE"
     }
   ],
-  "updatedAt": "2026-09-28",
-  "sourcesVerifiedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
   "sourceDates": {
     "population": "2024",
     "mofaProfile": "2026-06-03",
@@ -590,7 +600,8 @@
     "namibiaBorder": "2026-09-28",
     "luvoBorder": "2026-02-19",
     "sceneCoordinates": "2026-09-28",
-    "map": "2026-09-28"
+    "map": "2026-09-28",
+    "namibiaSouthAfricaBorder": "2026-09-29"
   },
   "sources": {
     "mofaProfile": "Ministry of Foreign Affairs of Japan — Angola basic data, updated 2026-06-03: area 1.247 million km², population 37.88 million (World Bank 2024), capital Luanda, Portuguese official language, religion, currency, independence and 2002 ceasefire. https://www.mofa.go.jp/mofaj/area/angola/data.html",
@@ -614,6 +625,7 @@
     "luvoBorder": "Government of Angola — new Luvo border post with DRC inaugurated 2026-02-19 in Zaire Province; ANTT confirms cross-border passenger and freight road-transport regime at Luvo. https://governo.gov.ao/noticias/2684/governo/zaire/novo-posto-fronteirico-do-luvo-impulsiona-comercio-formal-entre-angola-e-a-rdc ; https://www.antt.gov.ao/pt/noticias/Novo-regime-de-taxas-no-transporte-rodoviario-transfronteirico-entra-em-vigor-na-fronteira-do-Luvo",
     "sceneCoordinates": "WGS84 points checked 2026-09-28 using UNESCO for Mbanza Kongo and OpenStreetMap/GeoNames/Wikidata cross-checks for physical landmarks: Kalandula Falls -9.0741,16.0003; Tundavala -14.81758,13.38153; Iona -16.6667,12.3333; Miradouro da Lua -9.2212,13.0898; Mbanza Kongo -6.268889,14.249722; Pungo Andongo -9.66823,15.61612; Baía dos Tigres -16.60095,11.7227; Palácio de Ferro -8.812011,13.23555; Serra da Leba -15.07157,13.23616.",
     "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (AGO/COD/COG/ZMB/NAM/BWA); JOURNEY ATLAS map-v3 styling, generated 2026-09-28.",
-    "palacioFerro": "Medicare Angola tourism guide — Palácio de Ferro, Luanda: wrought-iron historic building of uncertain origin; restored in 2009; checked 2026-09-28. https://medicareclub.ao/index.php?province_content_id=39&route=club%2Fguide%2Fattraction"
+    "palacioFerro": "Medicare Angola tourism guide — Palácio de Ferro, Luanda: wrought-iron historic building of uncertain origin; restored in 2009; checked 2026-09-28. https://medicareclub.ao/index.php?province_content_id=39&route=club%2Fguide%2Fattraction",
+    "namibiaSouthAfricaBorder": "Namibia Ministry of Home Affairs, Immigration, Safety and Security — official ports of entry list: Oshikango on the Angola border and Noordoewer on the South Africa route are operating land border posts; checked 2026-09-29. https://mhaiss.gov.na/es/entries"
   }
 }
