@@ -1,0 +1,632 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "equatorialguinea",
+  "nameEn": "EQUATORIAL GUINEA",
+  "nameJa": "赤道ギニア",
+  "region": "CENTRAL AFRICA / 2°N",
+  "seo": {
+    "description": "ギニア湾の火山島ビオコ、熱帯雨林のリオ・ムニ、離島アンノボンとコリスコ。火山・森・海・都市を8つの実景と地図でたどる赤道ギニアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Ciudad de la Paz",
+    "nameJa": "シウダ・デ・ラ・パス",
+    "coordinates": {
+      "latitude": 1.591667,
+      "longitude": 10.822222
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -2,
+      "y": -6
+    },
+    "mapRegion": "mainland"
+  },
+  "hero": {
+    "lead": "火山の島から黒砂の海岸へ、赤道直下の森から大西洋の離島へ。小さな国土が、海を隔てて別々の風景をつなぐ。",
+    "image": "assets/images/equatorialguinea/approved/hero.webp",
+    "location": "ウレカ／ビオコ島南部",
+    "coordinates": {
+      "latitude": 3.24854,
+      "longitude": 8.56689
+    },
+    "mapRegion": "bioko"
+  },
+  "map": {
+    "bounds": {
+      "north": 3.9,
+      "south": -1.52,
+      "west": 5.56,
+      "east": 11.56
+    },
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "north": 2.52,
+          "south": 0.7,
+          "west": 9.1,
+          "east": 11.55
+        },
+        "rect": {
+          "x": 35,
+          "y": 35,
+          "width": 760,
+          "height": 690
+        }
+      },
+      {
+        "id": "bioko",
+        "bounds": {
+          "north": 3.9,
+          "south": 3.08,
+          "west": 8.28,
+          "east": 9.1
+        },
+        "rect": {
+          "x": 825,
+          "y": 45,
+          "width": 335,
+          "height": 320
+        }
+      },
+      {
+        "id": "annobon",
+        "bounds": {
+          "north": -1.35,
+          "south": -1.52,
+          "west": 5.55,
+          "east": 5.72
+        },
+        "rect": {
+          "x": 825,
+          "y": 405,
+          "width": 335,
+          "height": 300
+        }
+      }
+    ],
+    "svg": "assets/images/equatorialguinea/map-atlas-v1.svg",
+    "insetNote": "※ ビオコ島とアンノボン島は、本土との実際の位置関係・縮尺が異なる別枠表示です。本土枠にはコリスコ島とエロベイ諸島も実位置で含めています。",
+    "route": null,
+    "source": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452 (boundary year 2013; WGS84; CC BY 4.0), mirrored from pinned source metadata and dissolved visually by identical fill, including Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. Mainland surrounding-land context: Natural Earth 1:10m Cameroon and Gabon via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Three local-equirectangular-fit regions on a 1200×760 canvas; checked 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "malabo-historic-centre",
+      "name": "マラボ旧市街",
+      "nameLocal": "Malabo / Catedral de Santa Isabel",
+      "mapLabel": "Malabo",
+      "description": "ビオコ島北岸に広がる旧首都の中心部。赤い屋根、植民地期の街路、教会の塔が熱帯の緑の中に立ち、島の都市史を歩いて感じられる。",
+      "coordinates": {
+        "latitude": 3.75698,
+        "longitude": 8.78276
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-1-malabo.webp",
+      "mapRegion": "bioko"
+    },
+    {
+      "id": "pico-basile",
+      "name": "ピコ・バシレ",
+      "nameLocal": "Pico Basilé",
+      "mapLabel": "Pico Basilé",
+      "description": "ビオコ島北部にそびえる標高3,011メートルの国内最高峰。火山性の山体を湿潤な森が覆い、標高を上げるほど植生と雲の表情が変わる。",
+      "coordinates": {
+        "latitude": 3.587778,
+        "longitude": 8.761944
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-2-pico-basile.webp",
+      "mapRegion": "bioko",
+      "mapOffset": {
+        "x": 0,
+        "y": 5
+      }
+    },
+    {
+      "id": "batete-church",
+      "name": "バテテ",
+      "nameLocal": "Batete / Iglesia neogótica",
+      "mapLabel": "Batete",
+      "description": "ビオコ島南西部の高地集落に、1922〜1926年に建てられた木造のネオゴシック教会が立つ。濃い緑と湿潤な山地に、島の宗教建築と集落景観が重なる。",
+      "coordinates": {
+        "latitude": 3.443706,
+        "longitude": 8.506878
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-3-batete.webp",
+      "mapRegion": "bioko"
+    },
+    {
+      "id": "bata-atlantic-waterfront",
+      "name": "バタ",
+      "nameLocal": "Bata",
+      "mapLabel": "Bata",
+      "description": "リオ・ムニ本土最大の都市が大西洋岸に開く。海沿いのプロムナードと低い市街が続き、島国のように見える赤道ギニアに大きな本土都市があることを実感する。",
+      "coordinates": {
+        "latitude": 1.86391,
+        "longitude": 9.76582
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-4-bata.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "monte-alen",
+      "name": "モンテ・アレン国立公園",
+      "nameLocal": "Parque Nacional de Monte Alén",
+      "mapLabel": "Monte Alén",
+      "description": "リオ・ムニ内陸に残るギニア・コンゴ系の熱帯雨林。丘陵と谷を密林が覆い、湿った森の奥へ入ることで、本土の大部分を占める森林景観を体感できる。",
+      "coordinates": {
+        "latitude": 1.816667,
+        "longitude": 10.25
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-5-monte-alen.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "mbini-estuary",
+      "name": "ムビニ",
+      "nameLocal": "Mbini / Río Benito",
+      "mapLabel": "Mbini",
+      "description": "ベニト川がギニア湾へ開く河口の町。広い水面、低い海岸、川沿いの緑が重なり、山がちな内陸部とは異なる本土沿岸の水辺を見せる。",
+      "coordinates": {
+        "latitude": 1.5827,
+        "longitude": 9.6164
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-6-mbini.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "corisco-island",
+      "name": "コリスコ島",
+      "nameLocal": "Isla de Corisco / Mandji",
+      "mapLabel": "Corisco",
+      "description": "リオ・ムニ南西沖に浮かぶ小さな島。低い海岸線と淡い砂浜、穏やかなギニア湾の水が広がり、本土や火山性のビオコとは異なる水平な島景観をつくる。",
+      "coordinates": {
+        "latitude": 0.915746,
+        "longitude": 9.318283
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-7-corisco.webp",
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "san-antonio-de-pale",
+      "name": "サン・アントニオ・デ・パレ",
+      "nameLocal": "San Antonio de Palé / Annobón",
+      "mapLabel": "Annobón",
+      "description": "赤道より南に離れたアンノボン島の中心集落。火山島の急な斜面と大西洋に挟まれた町から、国内でも特に隔絶した島の暮らしと地形を感じる。",
+      "coordinates": {
+        "latitude": -1.404319,
+        "longitude": 5.632161
+      },
+      "image": "assets/images/equatorialguinea/approved/scene-8-annobon.webp",
+      "mapRegion": "annobon"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山の稜線を歩く",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "熱帯雨林に入る",
+      "icon": "wildlife",
+      "category": "NATURE"
+    },
+    {
+      "title": "黒砂の海岸を見る",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "離島の海辺を歩く",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "市場で魚を見る",
+      "icon": "food",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "木造建築を見る",
+      "icon": "culture",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "title": "海岸都市を歩く",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "森で野生動物を探す",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "bioko-mab-biodiversity",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に出会う",
+      "title": "ビオコ島全体が、生物多様性をつなぐ保全の舞台になる",
+      "text": "ビオコ島は2025年にユネスコ生物圏保存地域となった。低地の熱帯雨林から高地林、海域までを含み、霊長類や鳥類など島特有の生態系を一つの地域として守る。",
+      "points": [
+        "保存地域は陸域と海域を合わせて約22万ヘクタール",
+        "ピコ・バシレ国立公園とルバ・カルデラ科学保護区を含む"
+      ],
+      "sourceKey": "biokoMab"
+    },
+    {
+      "topicKey": "volcanic-gulf-geology",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "島々では、火山が国土の骨格をつくる",
+      "text": "ビオコ島とアンノボン島は火山性の島で、ビオコにはピコ・バシレとルバ・カルデラ、アンノボンには火口湖を伴う急峻な地形がある。海を隔てても地形の起源が旅をつなぐ。",
+      "points": [
+        "ピコ・バシレは標高3,011メートル",
+        "ルバ・カルデラは複数の火山性山塊を含む"
+      ],
+      "sourceKey": "unescoVolcanic"
+    },
+    {
+      "topicKey": "fang-bubi-combe-cultural-mosaic",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "本土と島で、異なる文化圏が隣り合う",
+      "text": "本土ではファン族、ビオコ島ではブビ族など、国土が海で分かれることは文化の分布にも表れる。都市だけでなく集落や市場を見ると、地域ごとの生活文化の違いが見えてくる。",
+      "points": [
+        "外務省はファン族、ブビ族、コンベ族などを主要民族として挙げる",
+        "島部と本土では地理だけでなく生活文化の背景も異なる"
+      ],
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "coastal-fishing-daily-life",
+      "themeEn": "SEA",
+      "themeJa": "海を感じる",
+      "title": "ギニア湾の海は、離れた国土を暮らしの側からつなぐ",
+      "text": "バタ、ムビニ、コリスコ、アンノボンでは、海岸や河口が町の輪郭を決める。魚を扱う市場や小舟を見ると、海が観光の背景ではなく日々の移動と食を支える空間だと分かる。",
+      "points": [
+        "本土沿岸には河口の町と長いギニア湾岸が続く",
+        "島部では海上移動の条件確認が旅程づくりの前提になる"
+      ],
+      "sourceKey": "geographyTransport"
+    },
+    {
+      "topicKey": "new-inland-capital-transition",
+      "themeEn": "CITY",
+      "themeJa": "都市を歩く",
+      "title": "首都は2026年、島から本土内陸へ移る転換期にある",
+      "text": "2026年1月にシウダ・デ・ラ・パスへの首都移転が宣言された一方、実質的な首都機能は引き続きマラボに残る。二つの都市を見ると、国家機能が移る途中の時間を感じられる。",
+      "points": [
+        "法定首都はシウダ・デ・ラ・パス",
+        "外務省は実質的首都機能がマラボに残ると案内している"
+      ],
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "cacao-oil-economic-layer",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史をたどる",
+      "title": "カカオの島から、石油産業の国へ経済の重心が変わった",
+      "text": "ビオコのカカオ栽培は植民地期から続く一方、1990年代以降は石油・天然ガスが国家経済の中心になった。農園景観と新しい都市基盤を同じ国で見ると、経済史の層が見えてくる。",
+      "points": [
+        "外務省は1992年の油田発見以降に石油生産が拡大したと説明する",
+        "カカオは現在も島の農業史を理解する手掛かりになる"
+      ],
+      "sourceKey": "mofaEconomy"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "tentative-list-six-sites-2026",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "遺産",
+      "title": "世界遺産は0件だが、2026年に6件が暫定一覧へ入った",
+      "text": "ルバ・カルデラ、アンノボン、モンテ・アレン、ピコ・バシレ、バテテの教会、コリスコ島の6件が2026年に暫定一覧へ加わった。登録済み世界遺産はまだない。",
+      "icon": "history",
+      "sourceKey": "unescoStateParty"
+    },
+    {
+      "topicKey": "highest-summit-3011m",
+      "categoryEn": "MOUNTAIN",
+      "categoryJa": "山",
+      "title": "国内最高峰は3,011メートル、しかも島の上にある",
+      "text": "ピコ・バシレはビオコ島にそびえる国内最高峰。海岸から短い水平距離で3,000メートル級まで立ち上がるため、島内でも標高によって景観が大きく変わる。",
+      "icon": "landscape",
+      "sourceKey": "picoBasile"
+    },
+    {
+      "topicKey": "opposite-rainfall-seasons",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "同じ国でも、島と本土で雨季のリズムが違う",
+      "text": "ビオコ島はおおむね4〜10月が雨季で、リオ・ムニ本土は雨季と乾季が二度ずつ現れる。アンノボンもビオコとは異なる季節になるため、国全体を一つの雨季で考えない。",
+      "icon": "sun",
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "annobon-remote-volcanic-scale",
+      "categoryEn": "ISLAND",
+      "categoryJa": "島",
+      "title": "アンノボンは約7キロ×2.5キロの小さな火山島",
+      "text": "本土から大きく南西へ離れたアンノボンは、火山地形が詰まった細長い島。中心部には火口湖があり、海岸の集落から内陸へ急に地形が立ち上がる。",
+      "icon": "map",
+      "sourceKey": "annobonUnesco"
+    },
+    {
+      "topicKey": "corisco-elobey-archipelago",
+      "categoryEn": "ISLAND",
+      "categoryJa": "島",
+      "title": "本土南西沖には、コリスコとエロベイの小島群がある",
+      "text": "コリスコ島の周囲にはエロベイ・グランデとエロベイ・チコがあり、赤道ギニアの島嶼部はビオコとアンノボンだけではない。地図では小島を省略せず確認したい。",
+      "icon": "map",
+      "sourceKey": "coriscoUnesco"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF EQUATORIAL GUINEA",
+    "title": "赤道ギニアで食べたいもの",
+    "intro": "魚、カニ、キャッサバ、落花生。海と森の食材を、スープ、殻詰め、葉包み、濃い煮込みで味わう。",
+    "items": [
+      {
+        "id": "pepe-sup",
+        "name": "ペペ・スップ",
+        "nameLocal": "Pepe sup",
+        "text": "魚または肉を唐辛子、玉ねぎ、トマト、香草などと煮る辛いスープ。資料では民族を越えて食べられる料理として紹介され、魚を使う形も広く記録されている。",
+        "image": "assets/images/equatorialguinea/approved/food-1-pepe-sup.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "metonga",
+        "name": "メトンガ",
+        "nameLocal": "Metonga",
+        "text": "カニの身をレモンや唐辛子で調味し、甲羅に詰めて火を通す料理。海の食材を殻ごと一皿に仕立てるため、ほかのスープ料理とは見た目も食感も異なる。",
+        "image": "assets/images/equatorialguinea/approved/food-2-metonga.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pishojo-jojondjo",
+        "name": "ピショホ・ホホンドヨ",
+        "nameLocal": "Pishojo Jojondj’o",
+        "text": "キャッサバとココナツミルクを合わせ、バナナの葉で包んで加熱する料理。根菜の密度と葉の香りが主役になり、魚や肉の料理とは違う素朴な一品。",
+        "image": "assets/images/equatorialguinea/approved/food-3-pishojo.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "sup-oguon",
+        "name": "スップ・オグオン",
+        "nameLocal": "Sup-Oguon",
+        "text": "炒った落花生を挽き、魚や鶏肉、トマト、唐辛子などと煮る濃いスープ。落花生の厚みのある味が、魚介中心の料理とは別の食卓の表情をつくる。",
+        "image": "assets/images/equatorialguinea/approved/food-4-sup-oguon.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土が海で分かれるため、日数より先に訪問地域を絞る。島を増やすほど移動の不確実性が大きくなるので、乗継ぎ日に余白を置きたい。",
+    "items": [
+      {
+        "duration": "3〜5日",
+        "title": "ビオコ島を一つの火山島として見る",
+        "text": "マラボを起点にピコ・バシレ、バテテ、南部海岸のうち条件のよい場所を組み合わせる。例：マラボ → ピコ・バシレ → バテテ",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜9日",
+        "title": "ビオコ島とリオ・ムニ本土を分けて歩く",
+        "text": "島部に加えてバタ、ムビニ、モンテ・アレン方面を組み合わせる。国内区間の運航と道路状況を確認し、移動日を詰め込みすぎない。例：マラボ → バタ → モンテ・アレン → ムビニ",
+        "icon": "map"
+      },
+      {
+        "duration": "10日以上",
+        "title": "離島はアクセスを確認してから加える",
+        "text": "コリスコやアンノボンまで広げる場合は、定期性の低い移動を前提に予備日を置く。すべての地域を一度に回ることを目的にしない。例：ビオコ島 → リオ・ムニ → コリスコ / アンノボン",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜3月",
+      "color": "#c8b689",
+      "text": "ビオコ島は乾季で、マラボや北部を歩きやすい時期。南部はもともと降水量が非常に多いため、島全体が同じ乾き方をするわけではない。"
+    },
+    {
+      "months": "4〜6月",
+      "color": "#8ea58a",
+      "text": "ビオコ島は雨季へ入り、本土では雨の多い時期。本土と島の道路や登山条件を同じ感覚で判断せず、区間ごとに天候を確認する。"
+    },
+    {
+      "months": "7〜10月",
+      "color": "#7f9d91",
+      "text": "ビオコ島は雨季の中心で、リオ・ムニ本土では7〜9月に比較的乾く時期がある。南部ビオコの海岸や山地では特に強い雨への備えが必要。"
+    },
+    {
+      "months": "11〜5月",
+      "color": "#9aa78f",
+      "text": "アンノボンではおおむね雨の多い時期。ビオコ島とは季節の区切りが異なるため、離島を加える旅ではアンノボン独自の天候を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "国土が海で分かれるため、区間ごとに移動手段を組み立てる",
+    "text": "ビオコ島、リオ・ムニ本土、アンノボンなどは海で離れている。主要道路は舗装が進む一方、本土の公共交通は非常に限られ、地方道は状態が悪いことがある。離島の移動や国内便は運航条件が変わりうるため、現地の最新情報を確認し、予備日を確保する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "火山と熱帯雨林を一つの国で見たい人",
+      "text": "ピコ・バシレ、ルバ・カルデラ、モンテ・アレンを通じ、島の火山地形と本土の密林を別々の自然ではなく一続きの旅として見たい。"
+    },
+    {
+      "title": "離島と海岸の静かな風景を探す人",
+      "text": "ビオコ、コリスコ、アンノボンで、黒砂、淡い砂浜、火山性の海岸を比べながら、ギニア湾の島々をゆっくり見たい。"
+    },
+    {
+      "title": "既成観光地より地理と文化を深く見たい人",
+      "text": "本土と島、旧首都と新首都、異なる民族文化を結び、国土が海で分かれることが暮らしや歴史にどう表れるかを考えたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中部アフリカ / ギニア湾"
+    },
+    {
+      "label": "首都",
+      "value": "シウダ・デ・ラ・パス（実質的首都機能はマラボ）"
+    },
+    {
+      "label": "人口",
+      "value": "約189万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "28,051平方キロメートル（日本の約7%）"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語／フランス語／ポルトガル語（公用語）ほか"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教／伝統宗教"
+    },
+    {
+      "label": "通貨",
+      "value": "中部アフリカCFAフラン（XAF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "forest-cover-share-2023",
+      "label": "森林率",
+      "value": "86.4%",
+      "note": "世界銀行の2023年データでは、国土の86.4%が森林。リオ・ムニ本土の大部分とビオコの斜面を覆う森が、国全体の景観を決める。",
+      "icon": "wildlife",
+      "interestReason": "都市や島の印象だけでは見えにくい、赤道ギニアの国土の圧倒的な森林性を一つの数字で示せるため。",
+      "exceptionalShare": true
+    },
+    {
+      "topicKey": "official-language-trio",
+      "label": "公用語",
+      "value": "3言語",
+      "note": "スペイン語、フランス語、ポルトガル語の3言語が公用語。中部アフリカで複数の欧州系言語制度が重なる国の歴史を表す。",
+      "icon": "culture",
+      "interestReason": "スペイン語圏としての独自性に加え、周辺地域との制度的なつながりまで短い数字で伝えられるため。"
+    },
+    {
+      "topicKey": "both-hemispheres-territory",
+      "label": "赤道の両側",
+      "value": "2半球",
+      "note": "本土、ビオコ、コリスコは北半球にあり、アンノボンは南半球にある。国名どおり、国土そのものが赤道の両側へ分かれる。",
+      "icon": "map",
+      "interestReason": "海で分かれた領土配置と国名の意味を、地図と同時に直感的に理解できる数字だから。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "documents-at-roadblocks",
+      "title": "地方移動では身分証と行程をすぐ示せるようにする",
+      "text": "警察や軍の道路検問は一般的で、旅券や車両書類、移動理由の提示を求められることがある。地方へ出る日は必要書類を携行し、現地の案内に従う。"
+    },
+    {
+      "topicKey": "cash-and-limited-transport",
+      "title": "現金と移動手段を都市部で先に整える",
+      "text": "国際カードを使える場所と現金自動預払機は限られ、本土の公共交通も非常に少ない。都市を離れる前に現金、車両、帰路の手段を確認しておく。"
+    },
+    {
+      "topicKey": "island-schedule-buffer",
+      "title": "島を増やす旅程ほど予備日を置く",
+      "text": "ビオコ、本土、アンノボンなどは海で離れ、運航や海況の影響を受ける。固定時刻だけを前提にせず、出発直前に運航状況を確認して日程に余白を持たせる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇲",
+      "countryEn": "CAMEROON",
+      "countryJa": "カメルーン",
+      "path": "エベビイン → キエ・オシ → カメルーン南部",
+      "description": "リオ・ムニ北東部のエベビインから、カメルーン側のキエ・オシへ抜ける陸路。両国国境の主要な通過点の一つ。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "カメルーン国境は急に閉鎖されることがある。出発直前に国境の開閉、ビザ・入国条件、安全情報を確認する。"
+    },
+    {
+      "flag": "🇬🇦",
+      "countryEn": "GABON",
+      "countryJa": "ガボン",
+      "path": "モンゴモ → キエ川国境 → ガボン北部",
+      "description": "リオ・ムニ東部のモンゴモからキエ川の国境橋を越え、ガボン北部へ続く陸路。両側に国境・税関施設が確認されている。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境手続きと通過可否は変更されうるため、ビザ・入国条件と現地の開閉状況を直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "gabon",
+      "nameEn": "GABON",
+      "nameJa": "ガボン",
+      "flag": "🇬🇦",
+      "reason": "ギニア・コンゴ系の熱帯雨林、海岸、霊長類の生息地を、より広い中部アフリカの森林景観として見比べたい人へ。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "saotomeprincipe",
+      "nameEn": "SÃO TOMÉ & PRÍNCIPE",
+      "nameJa": "サントメ・プリンシペ",
+      "flag": "🇸🇹",
+      "reason": "ギニア湾の火山島、カカオの歴史、熱帯の山地と海岸を、別の島国のスケールで比較したい人へ。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "cameroon",
+      "nameEn": "CAMEROON",
+      "nameJa": "カメルーン",
+      "flag": "🇨🇲",
+      "reason": "ビオコと地質・生態的につながるカメルーン山周辺や、熱帯雨林から高地までの大きな標高差を続けて見たい人へ。",
+      "affinityType": "MOUNTAIN"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "mofaProfile": "2026-03-06",
+    "capitalChange": "2026-01-02",
+    "unescoTentative": "2026-04-14",
+    "biokoMab": "2025",
+    "forestArea": "2023",
+    "travelAdvice": "2026-09-27",
+    "nationalCuisineStudy": "2004",
+    "nextRoutes": "2026-09-28",
+    "population": "2024"
+  },
+  "sources": {
+    "mofaProfile": "Ministry of Foreign Affairs of Japan — Equatorial Guinea basic data, updated 2026-03-06: area 28,051 km², population 1.893 million (World Bank 2024), capital Ciudad de la Paz with de facto capital functions still in Malabo, ethnic groups, official languages, religion and currency. https://www.mofa.go.jp/mofaj/area/eq_guinea/data.html",
+    "mofaEconomy": "Ministry of Foreign Affairs of Japan — Equatorial Guinea basic data and economy: oil discovery in 1992 followed by expansion of petroleum production; profile checked 2026-09-28. https://www.mofa.go.jp/mofaj/area/eq_guinea/data.html",
+    "unescoStateParty": "UNESCO World Heritage Centre — Equatorial Guinea State Party: 0 inscribed World Heritage properties and 6 Tentative List sites, all submitted in 2026; checked 2026-09-28. https://whc.unesco.org/en/statesparties/gq",
+    "picoBasile": "UNESCO World Heritage Centre — Parc National de Pico Basilé, Tentative List ref. 7005, submitted 2026-04-14: coordinates N3°35′16″ E8°45′43″ and summit elevation 3,011 m. https://whc.unesco.org/en/tentativelists/7005/",
+    "lubaCaldera": "UNESCO World Heritage Centre — Réserve Scientifique de la Caldera de Luba, Tentative List ref. 6945, submitted 2026-04-14: centre N3°21′12″ E8°30′47″, volcanic massifs and 62,900 ha reserve. https://whc.unesco.org/en/tentativelists/6945/",
+    "monteAlen": "UNESCO World Heritage Centre — Parc National de Monte Alén, Tentative List, submitted 2026-04-14; centre coordinates approximately N1°49′ E10°15′ and Guineo-Congolian rainforest landscape. https://whc.unesco.org/en/tentativelists/",
+    "annobonUnesco": "UNESCO World Heritage Centre — Réserve naturelle d'Annobón, Tentative List, submitted 2026-04-14: volcanic island approximately 7 km by 2.5 km with crater lake and steep relief. https://whc.unesco.org/en/tentativelists/",
+    "coriscoUnesco": "UNESCO World Heritage Centre — l'île de Corisco (Mandji), Tentative List, submitted 2026-04-14: Corisco and associated Elobey islands in the Gulf of Guinea. https://whc.unesco.org/en/tentativelists/",
+    "batete": "UNESCO World Heritage Centre — Église néogothique de Batete, Tentative List ref. 7006, submitted 2026-04-14: wooden neo-Gothic church built 1922–1926 in Bioko Sur. Scene coordinate 3.443706, 8.506878 is cross-checked against a published field record from the path behind the church (03°26′37.34″N, 08°30′24.76″E). https://whc.unesco.org/en/tentativelists/7006/ ; https://repositorio.pucrs.br/dspace/bitstream/10923/20510/2/Synopsis_of_the_Amphibians_of_Equatorial_Guinea_based_upon_the_Authors_Field_Work_and_Spanish_Natural_History.pdf",
+    "biokoMab": "UNESCO Man and the Biosphere Programme — Isla de Bioko Biosphere Reserve, nominated 2025: 220,054 ha total, including Luba Caldera Scientific Reserve and Pico Basilé National Park; centre 3.5209, 8.7126. https://www.unesco.org/en/mab/isla-de-bioko",
+    "forestArea": "World Bank Data — Forest area (% of land area), Equatorial Guinea: 86.4% in 2023, sourced from FAOSTAT. https://data.worldbank.org/indicator/AG.LND.FRST.ZS?locations=GQ",
+    "climate": "Government of Equatorial Guinea — El clima y el relieve: Bioko dry season roughly Nov-Mar/Apr and rainy Apr-Oct; Annobón dry Jun-Oct and wet Nov-May; continental region has two dry and two rainy periods. https://www.guineaecuatorialpress.com/noticias/el_clima_y_el_relieve ; FAO cross-check https://www.fao.org/4/x5474e/x5474e0o.htm",
+    "travelAdvice": "UK FCDO — Equatorial Guinea travel advice, current 2026-09-27: major roads on Bioko and Río Muni mostly paved, rural roads may be poor, mainland public transport extremely limited, roadblocks common, cards/ATMs limited, Gulf of Guinea sea travel risk. https://www.gov.uk/foreign-travel-advice/equatorial-guinea ; https://www.gov.uk/foreign-travel-advice/equatorial-guinea/safety-and-security",
+    "nationalCuisineStudy": "Igor Cusack, Arizona Journal of Hispanic Cultural Studies 8 (2004), 'Equatorial Guinea's National Cuisine is Simple and Tasty': records Pepe sup, Metonga, Pishojo Jojondj’o and Sup-Oguon with ingredients/preparation. JSTOR stable 20641706; DOI 10.1353/hcs.2011.0272. https://www.jstor.org/stable/20641706",
+    "geographyTransport": "FAO geography references describe Río Muni plus volcanic islands; current FCDO transport advice checked 2026-09-28. https://www.fao.org/4/t0360e/T0360E05.htm ; https://www.gov.uk/foreign-travel-advice/equatorial-guinea/safety-and-security",
+    "sceneCoordinates": "WGS84 scene/location points cross-checked 2026-09-28 against UNESCO records for Pico Basilé and Monte Alén; GeoNames/OpenStreetMap/Wikidata-derived named-place coordinates for Malabo, Batete, Bata, Mbini, Corisco, Ureka and San Antonio de Palé. Mbini additionally cross-checked against Esri/Michael Bauer Research sample report at 1.58270,9.61640. All pins represent named sites/settlements, not claimed camera viewpoints.",
+    "map": "Target geometry: geoBoundaries gbOpen GNQ ADM2 boundary GNQ-ADM2-11065452, boundary year 2013, WGS84, CC BY 4.0, source snapshot metadata mirrored in robit-man/tiny-atlas at bf892371c17a281d3d6764c61b8e85ce76d0c264. It includes Río Muni, Bioko, Annobón, Corisco, Elobey Grande and Elobey Chico. Mainland context: Natural Earth 1:10m Cameroon/Gabon via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b.",
+    "unescoVolcanic": "UNESCO World Heritage Centre — 2026 Tentative List records for Pico Basilé, Luba Caldera and Annobón document the volcanic relief of the island territories; checked 2026-09-28. https://whc.unesco.org/en/statesparties/gq",
+    "japanArea": "Geospatial Information Authority of Japan — national land area 377,973.68 km² as of 2026-07-01; 28,051 / 377,973.68 ≈ 7.4%, displayed as 日本の約7%. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "nextRoutes": "Cameroon: Kye-Ossi municipality and Cameroon National Shippers Council identify Kye-Ossi as the Cameroon–Equatorial Guinea border area; Canada travel advice warns this border can close unexpectedly. Gabon: ICJ case materials document the Mongomo–Assok-Medzeng border bridge with customs, immigration and health posts on both sides. Checked 2026-09-28. https://www.kye-ossi.cm/history/ ; https://www.cncc.cm/en/besc ; https://travel.gc.ca/destinations/equatorial-guinea.html ; https://www.icj-cij.org/node/204259",
+    "population": "Ministry of Foreign Affairs of Japan — Equatorial Guinea basic data, updated 2026-03-06: population 1.893 million (World Bank 2024). https://www.mofa.go.jp/mofaj/area/eq_guinea/data.html",
+    "capitalChange": "Government of Equatorial Guinea — Decree-Law No. 1/2026 of 2 January 2026 declaring Ciudad de la Paz, Djibloho, capital of the Republic of Equatorial Guinea. https://www.guineaecuatorialpress.com/noticias/decreto_ley_por_el_que_se_declara_la_ciudad_de_la_paz_djibloho_capital_de_la_republica_de_guinea_ecuatorial",
+    "unescoTentative": "UNESCO World Heritage Centre — Equatorial Guinea Tentative List: six sites submitted on 2026-04-14. https://whc.unesco.org/en/statesparties/gq"
+  }
+}
