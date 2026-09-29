@@ -279,18 +279,6 @@
       "sourceKey": "zimparksManaPools"
     },
     {
-      "topicKey": "kariba-reservoir-landscape",
-      "themeEn": "EARTH",
-      "themeJa": "地球の風景",
-      "title": "カリバ湖は巨大な水景であると同時に、人が地形を変えた歴史でもある",
-      "text": "カリバダム建設によってザンベジ川に巨大な貯水湖が生まれ、湖岸の生態系と移動経路が大きく変化した。現在の穏やかな湖面の背後には、住民移転と野生動物救出の歴史がある。",
-      "points": [
-        "湖は全長約282km",
-        "建設に伴い約57,000人のトンガ系住民が移転"
-      ],
-      "sourceKey": "zimparksKariba"
-    },
-    {
       "topicKey": "eastern-highlands-altitude",
       "themeEn": "EARTH",
       "themeJa": "地球の風景",
@@ -301,6 +289,18 @@
         "ムタラジ滝は落差762mとされる"
       ],
       "sourceKey": "zimparksNyanga"
+    },
+    {
+      "topicKey": "chinhoyi-karst-water",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "チンホイでは、高原の地下に青い水を抱く洞窟が開く",
+      "text": "チンホイ洞窟は石灰岩とドロマイトに形成された洞窟系で、主洞にはコバルトブルーのSleeping Poolがある。地表の乾いた高原景観から一転し、地下水と溶食地形が別の水の世界をつくる。",
+      "points": [
+        "2013年にラムサール条約湿地として登録",
+        "主洞の水面はChirorodzivaとも呼ばれる"
+      ],
+      "sourceKey": "chinhoyiCaves"
     }
   ],
   "travelTrivia": [
@@ -341,13 +341,13 @@
       "sourceKey": "unescoGreatZimbabwe"
     },
     {
-      "topicKey": "mana-four-pools",
-      "categoryEn": "NAME",
-      "categoryJa": "地名",
-      "title": "Mana PoolsのManaは「4」",
-      "text": "ジンバブエ公園当局によると、ショナ語のManaは「4」を意味し、Green、Chisasiko、Chine、Longの四つの池に由来する。",
-      "icon": "wildlife",
-      "sourceKey": "zimparksManaPools"
+      "topicKey": "harare-former-name",
+      "categoryEn": "CITY",
+      "categoryJa": "首都",
+      "title": "ハラレは1982年までソールズベリーと呼ばれた",
+      "text": "GeoNamesの名称履歴では、現在の首都ハラレは1890年から1982年4月18日までSalisburyの名で記録されている。独立後に現在の名称へ改称された。",
+      "icon": "city",
+      "sourceKey": "harareGeoNames"
     }
   ],
   "taste": {
@@ -398,7 +398,7 @@
         "duration": "4〜5日",
         "title": "ヴィクトリア滝とワンゲに集中する",
         "text": "ヴィクトリア・フォールズを拠点に滝とザンベジ峡谷を見て、ワンゲ国立公園へ足を延ばす。例：Victoria Falls → Hwange → Victoria Falls。",
-        "icon": "wildlife"
+        "icon": "city"
       },
       {
         "duration": "6〜10日",
@@ -409,7 +409,7 @@
       {
         "duration": "11日以上",
         "title": "ザンベジ北部か東部高地まで広げる",
-        "text": "マナ・プールズ、マツサドナ、ニャンガ、ゴナレゾウのうち一〜二地域を加える。遠隔地は季節アクセスと道路条件を確認し、移動日を独立させる。",
+        "text": "マナ・プールズ、マツサドナ、ニャンガ、ゴナレゾウのうち一〜二地域を加える。遠隔地は季節アクセスと道路条件を確認し、移動日を独立させる。例：Harare → Mana Pools → Harare → Nyanga → Mutare。",
         "icon": "compass"
       }
     ]
@@ -487,28 +487,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "world-heritage-count",
-      "label": "世界遺産",
-      "value": "5件",
-      "note": "文化遺産3件、自然遺産2件が登録され、大ジンバブエ、マトボ丘陵、マナ・プールズ、ヴィクトリア滝など国の異なる側面をつないでいる。",
-      "icon": "history",
-      "interestReason": "遺跡・文化景観・大河・野生というジンバブエの旅の核が、少数の代表地点に偏らず国土全体へ広がることを示せるため。"
-    },
-    {
-      "topicKey": "nyangani-altitude",
-      "label": "国内最高地点",
-      "value": "2,592m",
-      "note": "東部高地のニャンガニ山は標高2,592mで、近くにはムタラジ滝と冷涼な高地景観が広がる。",
+      "topicKey": "gonarezhou-lowest-point",
+      "label": "国内最低地点",
+      "value": "162m",
+      "note": "ゴナレゾウ国立公園のサベ川とルンデ川の合流点は、標高162mでジンバブエ国内の最低地点とされる。",
       "icon": "landscape",
-      "interestReason": "サバンナの印象だけでは見えにくい、高地国としての標高差と東部の気候・植生の違いを数字で示せるため。"
+      "interestReason": "高原国ジンバブエの南東端が大きく低下し、乾燥した低地景観へ切り替わることを一つの標高で示せるため。"
     },
     {
-      "topicKey": "hwange-area",
+      "topicKey": "hwange-park-area",
       "label": "最大の国立公園",
       "value": "14,650 km²",
       "note": "ワンゲ国立公園は北西部に14,650km²広がり、サバンナ、チーク林、モパネ林と多数の野生動物を抱える。",
       "icon": "wildlife",
       "interestReason": "ジンバブエで野生動物の旅が主要動機になる規模感を、一つの保護区の大きさで具体的に伝えられるため。"
+    },
+    {
+      "topicKey": "kariba-storage-volume",
+      "label": "カリバ湖の貯水量",
+      "value": "185 km³",
+      "note": "カリバ湖は満水時の貯水容量が約185km³に達し、ザンベジ川流域に巨大な内陸水景をつくる。",
+      "icon": "sea",
+      "interestReason": "海のない国に巨大な水平線と船移動の旅が存在する理由を、人工湖の圧倒的な水量で直感的に示せるため。"
     }
   ],
   "tips": [
@@ -622,6 +622,7 @@
     "sceneCoordinates": "WGS84 points checked 2026-09-29: Victoria Falls -17.92453,25.85539 (UNESCO/shared transboundary point); Great Zimbabwe -20.27117,30.93327 (UNESCO); Matobo Hills -20.5,28.5 (UNESCO); Hwange Main Camp -18.73206,26.95539 (OpenStreetMap/Mapcarta, cross-checked with ZimParks Main Camp); Mana Pools -15.81944,29.40806 (UNESCO property reference point); Chilojo Cliffs -21.44938,32.08209 (OpenStreetMap/Mapcarta, location cross-checked with ZimParks Gonarezhou plans); Mutarazi Falls -18.480272,32.792586 (GeoNames); Matusadona/Tashinga -16.813071,28.446178 (park operator); Chinhoyi Caves -17.35,30.125 (Government of Zimbabwe); Harare -17.82772,31.05337 (GeoNames).",
     "food": "Zimbabwe Ministry of Tourism and Hospitality Industry gastronomy materials (2026) identify sadza, haifiridzi, madora and chimukuyu chinedovi among traditional dishes; FAO Zimbabwe food references document sadza and peanut-based preparations. https://tourism.gov.zw/ ; https://www.fao.org/",
     "zimraBorders": "Zimbabwe Revenue Authority current contact directory lists Victoria Falls, Kazungula and Forbes border posts; Forbes has operated a 24-hour facility since 15 January 2024. https://www.zimra.co.zw/contact-us/contacts ; https://zimra.co.zw/news/2287-forbes-border-post-rolls-out-24-hour-facility",
-    "map": "Natural Earth 1:10m Admin-0 national geometry for Zimbabwe and regional context, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; ZWE/ZMB/BWA/ZAF/MOZ/NAM/MWI."
+    "map": "Natural Earth 1:10m Admin-0 national geometry for Zimbabwe and regional context, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; ZWE/ZMB/BWA/ZAF/MOZ/NAM/MWI.",
+    "harareGeoNames": "GeoNames, Harare (Geoname ID 890299): coordinates -17.82772,31.05337 and historical name Salisbury recorded until 18 April 1982. https://www.geonames.org/890299/harare.html"
   }
 }
