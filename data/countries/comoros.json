@@ -15,10 +15,10 @@
       "latitude": -11.70416,
       "longitude": 43.24024
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 8,
-      "y": -14
+      "x": 0,
+      "y": -44
     },
     "mapOffset": {
       "x": 0.6,
@@ -446,12 +446,13 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "karthala-summit-height",
-      "label": "島の最高地点",
-      "value": "2,361 m",
-      "note": "グランドコモロのカルタラ山は海岸から標高2,361メートルまで立ち上がる火山で、島の地形と植生の軸になっている。",
-      "icon": "landscape",
-      "interestReason": "小さな島の中で海面から2,000メートル超へ上がる、コモロの火山島らしさを端的に示す数字。"
+      "topicKey": "eez-land-ratio",
+      "label": "海の広さ",
+      "value": "陸地の約86倍",
+      "note": "世界銀行は、コモロの排他的経済水域（EEZ）を約16万km²とし、陸地面積の約86倍にあたると整理している。小さな島国だが、旅の地理は海の広がりまで含めて見るとスケールが変わる。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "陸地より圧倒的に広い海域を持つことが、コモロを『小さな島国』だけでは捉えきれない特徴として示せる。"
     },
     {
       "topicKey": "mwali-marine-share",
@@ -568,7 +569,8 @@
     "transport": "2026-09-29",
     "sceneCoordinates": "2026-09-29",
     "food": "2026-09-29",
-    "map": "2026-09-29"
+    "map": "2026-09-29",
+    "eez": "2024"
   },
   "sources": {
     "profile": "Ministry of Foreign Affairs of Japan — Comoros basic data, updated 2026-03-16: land area excluding Mayotte 1,862 km², capital Moroni, official languages, Islam, Comorian franc, main industries and independence. https://www.mofa.go.jp/mofaj/area/comoros/data.html",
@@ -586,6 +588,7 @@
     "japanRelations": "Ministry of Foreign Affairs of Japan — Japan–Comoros relations: Japanese teams conducted coelacanth surveys from the 1980s and underwater filming succeeded in 1986. https://www.mofa.go.jp/mofaj/area/comoros/data.html",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-29 against UNESCO/Ramsar and OpenStreetMap/GeoNames-backed mapping: Moroni Mosque -11.70373,43.25157; Lac Salé -11.3675,43.35278; Chomoni -11.64522,43.39555; Iconi -11.74519,43.23776; Nioumachoua -12.3645,43.7179; Itsamia -12.3699,43.8679; Mutsamudu -12.16885,44.39428; Dzialandzé -12.22549,44.43219; Karthala -11.75,43.333333; Moroni -11.70416,43.24024.",
     "map": "GSHHG v2.3.7 WGS84 intermediate-resolution coastline via Basemap, LGPL; target island scope cross-checked with geoBoundaries gbOpen COM ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0); checked 2026-09-29. https://www.ngdc.noaa.gov/mgg/shorelines/ ; https://www.geoboundaries.org/api/current/gbOpen/COM/ADM0/",
-    "nextRoutes": "No regular international passenger ferry was verified as a stable next-country route; nextRoutes remains empty. Checked 2026-09-29."
+    "nextRoutes": "No regular international passenger ferry was verified as a stable next-country route; nextRoutes remains empty. Checked 2026-09-29.",
+    "eez": "World Bank — Comoros National Water Resilience Project country context: land area about 1,860 km² and Exclusive Economic Zone about 160,000 km², approximately 86 times the land area; checked 2026-09-29. https://documents.worldbank.org/curated/en/099030924113019100/pdf/P50469117ded2a0d193531e40f5630a969.pdf"
   }
 }
