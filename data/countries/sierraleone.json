@@ -16,15 +16,16 @@
       "latitude": 8.48714,
       "longitude": -13.2356
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 60,
-      "y": -70
+      "x": 0,
+      "y": -28
     },
     "mapOffset": {
-      "x": 5,
-      "y": 5
-    }
+      "x": 2,
+      "y": 0
+    },
+    "mapRegion": "west"
   },
   "hero": {
     "lead": "大西洋の白砂から熱帯雨林へ。海と森が近接する風景の奥に、フリータウンの記憶と多層の暮らしが続いている。",
@@ -35,9 +36,10 @@
       "longitude": -13.19799
     },
     "mapOffset": {
-      "x": 5,
-      "y": 5
-    }
+      "x": 0,
+      "y": 0
+    },
+    "mapRegion": "west"
   },
   "map": {
     "bounds": {
@@ -48,7 +50,39 @@
     },
     "svg": "assets/images/sierraleone/map-atlas-v1.svg",
     "route": null,
-    "source": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; SLE target with GIN/LBR context; JOURNEY ATLAS map-v3 style."
+    "source": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; SLE target with GIN/LBR context. Country overview plus Western Area Peninsula detail region, with real coordinates preserved; JOURNEY ATLAS map-v3 style.",
+    "regions": [
+      {
+        "id": "country",
+        "bounds": {
+          "north": 10.2,
+          "south": 6.7,
+          "west": -13.6,
+          "east": -10.1
+        },
+        "rect": {
+          "x": 20,
+          "y": 35,
+          "width": 700,
+          "height": 690
+        }
+      },
+      {
+        "id": "west",
+        "bounds": {
+          "north": 8.52,
+          "south": 8.3,
+          "west": -13.3,
+          "east": -13.16
+        },
+        "rect": {
+          "x": 760,
+          "y": 95,
+          "width": 420,
+          "height": 570
+        }
+      }
+    ]
   },
   "scenes": [
     {
@@ -63,9 +97,10 @@
       },
       "image": "assets/images/sierraleone/approved/scene-01-leicester-peak.webp",
       "mapOffset": {
-        "x": 5,
+        "x": 0,
         "y": 0
-      }
+      },
+      "mapRegion": "west"
     },
     {
       "id": "kings-yard-gateway",
@@ -79,9 +114,10 @@
       },
       "image": "assets/images/sierraleone/approved/scene-02-kings-yard.webp",
       "mapOffset": {
-        "x": 0,
-        "y": -5
-      }
+        "x": -2,
+        "y": 0
+      },
+      "mapRegion": "west"
     },
     {
       "id": "tacugama",
@@ -95,9 +131,10 @@
       },
       "image": "assets/images/sierraleone/approved/scene-03-tacugama.webp",
       "mapOffset": {
-        "x": 5,
+        "x": 0,
         "y": 0
-      }
+      },
+      "mapRegion": "west"
     },
     {
       "id": "tiwai-island",
@@ -113,7 +150,8 @@
       "mapOffset": {
         "x": -1,
         "y": -1
-      }
+      },
+      "mapRegion": "country"
     },
     {
       "id": "outamba-kilimi",
@@ -125,7 +163,8 @@
         "latitude": 9.74357,
         "longitude": -12.03758
       },
-      "image": "assets/images/sierraleone/approved/scene-05-outamba-kilimi.webp"
+      "image": "assets/images/sierraleone/approved/scene-05-outamba-kilimi.webp",
+      "mapRegion": "country"
     },
     {
       "id": "mount-bintumani",
@@ -137,7 +176,8 @@
         "latitude": 9.2271,
         "longitude": -11.1157
       },
-      "image": "assets/images/sierraleone/approved/scene-06-bintumani.webp"
+      "image": "assets/images/sierraleone/approved/scene-06-bintumani.webp",
+      "mapRegion": "country"
     },
     {
       "id": "gola-south",
@@ -153,7 +193,8 @@
       "mapOffset": {
         "x": 1,
         "y": 1
-      }
+      },
+      "mapRegion": "country"
     },
     {
       "id": "bonthe",
@@ -165,7 +206,8 @@
         "latitude": 7.5316,
         "longitude": -12.519
       },
-      "image": "assets/images/sierraleone/approved/scene-08-bonthe.webp"
+      "image": "assets/images/sierraleone/approved/scene-08-bonthe.webp",
+      "mapRegion": "country"
     }
   ],
   "encounters": [
