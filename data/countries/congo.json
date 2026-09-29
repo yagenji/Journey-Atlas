@@ -1,0 +1,627 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "congo",
+  "nameEn": "CONGO - BRAZZAVILLE",
+  "nameJa": "コンゴ共和国",
+  "region": "CENTRAL AFRICA / 0°N",
+  "seo": {
+    "description": "コンゴ盆地の原生林、野生動物が集まるバイ、テケ高原、大西洋岸の赤い峡谷、ロアンゴ王国と奴隷交易の記憶。8つの場所と地図でたどるコンゴ共和国の旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Brazzaville",
+    "nameJa": "ブラザビル",
+    "coordinates": {
+      "latitude": -4.2634,
+      "longitude": 15.2429
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -8,
+      "y": -18
+    },
+    "mapOffset": {
+      "x": -4.8,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "コンゴ盆地の深い森から、テケ高原の草原、大西洋岸の赤い峡谷へ。水と森林がつなぐ中部アフリカの国土に、野生と王国史、都市の暮らしが重なる。",
+    "image": "assets/images/congo/approved/hero-diosso-gorge.webp",
+    "location": "Gorges de Diosso",
+    "coordinates": {
+      "latitude": -4.61889,
+      "longitude": 11.83528
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 4.25,
+      "south": -5.55,
+      "west": 10.25,
+      "east": 19.55
+    },
+    "svg": "assets/images/congo/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (COG/GAB/GNQ/CMR/CAF/COD/AGO). Shared JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "brazzaville-sainte-anne",
+      "name": "ブラザビル / サント・アンヌ大聖堂",
+      "nameLocal": "Basilique Sainte-Anne-du-Congo",
+      "mapLabel": "Brazzaville",
+      "description": "ブラザビル中心部に立つ20世紀の教会建築。緑色の瓦屋根と高い尖塔、煉瓦色の外壁が都市の樹木と重なり、コンゴ川沿いの首都に残る近代建築の輪郭を見せる。",
+      "coordinates": {
+        "latitude": -4.268456,
+        "longitude": 15.284511
+      },
+      "image": "assets/images/congo/approved/scene-1-brazzaville-sainte-anne.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "loango-slave-port",
+      "name": "ロアンゴ / 旧奴隷積出港",
+      "nameLocal": "Ancien port d’embarquement des esclaves de Loango",
+      "mapLabel": "Loango",
+      "description": "大西洋に面するロアンゴ王国旧都近くの歴史景観。交易の場、儀礼に関わる樹木、海へ向かう道などが残り、中部アフリカから大西洋世界へ人々が強制的に送られた歴史を伝える。",
+      "coordinates": {
+        "latitude": -3.3,
+        "longitude": 11.816944
+      },
+      "image": "assets/images/congo/approved/scene-2-loango-slave-port.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "conkouati-douli",
+      "name": "コンコアティ＝ドゥリ国立公園",
+      "nameLocal": "Parc National de Conkouati-Douli",
+      "mapLabel": "Conkouati-Douli",
+      "description": "ガボン国境に近い大西洋岸で、海、砂浜、ラグーン、湿地、熱帯林が連続する保護地域。海岸とコンゴ盆地の森林が接する南西端ならではの生態系の重なりを見られる。",
+      "coordinates": {
+        "latitude": -3.905,
+        "longitude": 11.47
+      },
+      "image": "assets/images/congo/approved/scene-3-conkouati-douli.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -2.2,
+        "y": 0
+      }
+    },
+    {
+      "id": "mbe-royal-domain",
+      "name": "ムベ王領",
+      "nameLocal": "Domaine royal de Mbé",
+      "mapLabel": "Mbé",
+      "description": "テケ高原に残るテケ王国の王領。王の居所や儀礼空間、村落と周囲の草原景観が結びつき、建物単体ではなく土地全体から現在まで続く王権文化を読み取る場所。",
+      "coordinates": {
+        "latitude": -3.3,
+        "longitude": 15.883056
+      },
+      "image": "assets/images/congo/approved/scene-4-mbe-royal-domain.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "lefini-lesio-louna",
+      "name": "レフィニ＝レシオ・ルナ / テケ高原",
+      "nameLocal": "Léfini & Lesio-Louna",
+      "mapLabel": "Téké Plateau",
+      "description": "起伏のある草原を河畔林が細く縫うテケ高原の保護地域。乾いた高原の草地、谷沿いの湿地林、岩の露頭が交互に現れ、南部の密林とは異なる国土の表情をつくる。",
+      "coordinates": {
+        "latitude": -2.91,
+        "longitude": 15.4024
+      },
+      "image": "assets/images/congo/approved/scene-5-lefini-lesio-louna.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "odzala-kokoua",
+      "name": "オザラ＝コクア森林地帯",
+      "nameLocal": "Forest Massif of Odzala-Kokoua",
+      "mapLabel": "Odzala-Kokoua",
+      "description": "コンゴ盆地北西部に広がる世界自然遺産。森林がサバンナを再び覆っていく多様な遷移景観と、湿地状の開けたバイが混在し、森林ゾウやニシローランドゴリラなどが生息する。",
+      "coordinates": {
+        "latitude": 1.335556,
+        "longitude": 14.860278
+      },
+      "image": "assets/images/congo/approved/scene-6-odzala-kokoua.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "mbeli-bai",
+      "name": "ムベリ・バイ / ヌアバレ＝ンドキ",
+      "nameLocal": "Mbeli Bai / Nouabalé-Ndoki",
+      "mapLabel": "Mbeli Bai",
+      "description": "原生林の中に湿地状の開けた空間が現れるバイ。森の奥からゴリラや森林ゾウなどが姿を見せることがあり、長期研究の拠点としても知られる北部の森林景観。",
+      "coordinates": {
+        "latitude": 2.2583,
+        "longitude": 16.4117
+      },
+      "image": "assets/images/congo/approved/scene-7-mbeli-bai.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ouesso-sangha-river",
+      "name": "ウェッソ / サンガ川",
+      "nameLocal": "Ouésso / Rivière Sangha",
+      "mapLabel": "Ouésso",
+      "description": "北部の森林地帯を流れるサンガ川沿いの都市。広い茶褐色の川面、木造の舟、対岸まで続く熱帯林が、道路だけでは見えにくい北部の水運と森林の暮らしを一つの風景にする。",
+      "coordinates": {
+        "latitude": 1.614,
+        "longitude": 16.0524
+      },
+      "image": "assets/images/congo/approved/scene-8-ouesso-sangha.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "街を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "歴史をたどる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "海辺の自然に触れる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "伝統文化に触れる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "草原を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "野生動物を観察する",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "森林の生態系に触れる",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "川辺の暮らしに触れる",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "odzala-forest-recolonization",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "オザラ＝コクアでは、森がサバンナを再び覆う長い時間が景観になっている",
+      "text": "ユネスコはこの森林地帯を、異なる年代の森林がサバンナへ再侵入していく過程を大規模に示す場所として評価している。密林だけを見るのではなく、草地、マランタ科植物の森、湿地、断崖の霧林が連続する変化そのものが特徴になる。",
+      "points": [
+        "世界遺産の登録範囲は1,179,376ha",
+        "2023年に世界自然遺産へ登録"
+      ],
+      "sourceKey": "odzalaUnesco"
+    },
+    {
+      "topicKey": "sangha-transboundary-forest",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "北部の森は、国境を越えて一つの生態系として守られている",
+      "text": "サンガ三国保護地域はコンゴ共和国、カメルーン、中央アフリカ共和国にまたがる世界自然遺産。ヌアバレ＝ンドキを含む連続した森林を、国境線ではなく動物の移動と生態系の広がりから捉えられる。",
+      "points": [
+        "3か国にまたがる自然遺産",
+        "コンゴ側にはヌアバレ＝ンドキ国立公園が含まれる"
+      ],
+      "sourceKey": "unescoCongo"
+    },
+    {
+      "topicKey": "loango-atlantic-slave-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ロアンゴの海岸には、大西洋奴隷交易の記憶が地形とともに残る",
+      "text": "ユネスコ暫定一覧では、旧積出港に交易の場、儀礼に関わる樹木、海へ向かう道や上陸地点の痕跡が残ると説明される。王国史と大西洋交易史を切り離さず、海岸の具体的な場所からたどることができる。",
+      "points": [
+        "2008年から世界遺産暫定一覧",
+        "ロアンゴ王国旧都ディオッソに隣接"
+      ],
+      "sourceKey": "loangoUnesco"
+    },
+    {
+      "topicKey": "mbe-teke-royal-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ムベでは、王権が建物ではなく土地全体の配置として続いている",
+      "text": "テケ王国の王領は、王の居所だけでなく儀礼の場、村落、道、草原を含む文化景観として捉えられる。歴史遺跡を見るというより、現在も文化的意味を持つ土地の使われ方を読みたい。",
+      "points": [
+        "ブラザビルから約200km",
+        "2008年から世界遺産暫定一覧"
+      ],
+      "sourceKey": "mbeUnesco"
+    },
+    {
+      "topicKey": "teke-plateau-mosaic",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "テケ高原では、草原の中を細い森が川に沿って伸びる",
+      "text": "レフィニとレシオ・ルナを含む重要生物多様性地域は、起伏のある草原と河畔林、湿地林、岩の露頭が混在する。コンゴ共和国を『熱帯雨林の国』だけで捉えると見落とす、南東部の大きな地形差だ。",
+      "points": [
+        "重要生物多様性地域は約5,239km²",
+        "標高は約300〜760m"
+      ],
+      "sourceKey": "lefiniKba"
+    },
+    {
+      "topicKey": "brazzaville-kinshasa-river-capitals",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "ブラザビルの対岸には、別の国の首都キンシャサがある",
+      "text": "両首都はコンゴ川を挟んで向かい合い、渡河フェリーが国境交通を担う。都市景観を見ながら、一つの大河が生活圏を結ぶ線であると同時に国境でもあることを実感できる。",
+      "points": [
+        "対岸はコンゴ民主共和国の首都キンシャサ",
+        "渡河便は天候や運用で変更・中止があり得る"
+      ],
+      "sourceKey": "travelAdvice"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "two-natural-world-heritage-sites",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は2件で、どちらも自然遺産",
+      "text": "オザラ＝コクア森林地帯と、カメルーン・中央アフリカ共和国にまたがるサンガ三国保護地域の2件。文化遺産の登録はまだない。",
+      "icon": "history",
+      "sourceKey": "unescoCongo"
+    },
+    {
+      "topicKey": "odzala-designated-1935",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "自然",
+      "title": "オザラ＝コクアは1935年から保護されてきた",
+      "text": "現在の国立公園につながる保護の歴史は1935年までさかのぼる。1977年には生物圏保存地域となり、2023年には森林地帯が世界遺産に登録された。",
+      "icon": "wildlife",
+      "sourceKey": "odzalaKba"
+    },
+    {
+      "topicKey": "lefini-kba-area",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "地形",
+      "title": "テケ高原の保護地域だけで約5,239平方キロメートル",
+      "text": "レフィニとレシオ・ルナを合わせた重要生物多様性地域の面積。草原、河畔林、湿地林が一つの高原景観の中で切り替わる。",
+      "icon": "landscape",
+      "sourceKey": "lefiniKba"
+    },
+    {
+      "topicKey": "brazzaville-pointe-noire-rail",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "移動",
+      "title": "ブラザビルとポワントノワールには旅客鉄道がある",
+      "text": "両都市を結ぶ旅客列車は運行されているが、英国外務・英連邦・開発省は遅延や不安定な運行を指摘している。実利用時は直前確認が必要。",
+      "icon": "road",
+      "sourceKey": "travelAdvice"
+    },
+    {
+      "topicKey": "ferry-no-sunday",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "国境",
+      "title": "キンシャサ行き渡河便は日曜運休と案内されている",
+      "text": "英国外務・英連邦・開発省は、ブラザビル―キンシャサの渡河便が午後遅くに終了し、日曜は運休、悪天候では中止され得るとしている。",
+      "icon": "road",
+      "sourceKey": "travelAdvice"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CONGO - BRAZZAVILLE",
+    "title": "コンゴ共和国で食べたいもの",
+    "intro": "キャッサバの葉、川魚、ヤシの実、落花生。森林と水辺の食材を使い、葉で包む、煮込む、濃いソースにする調理から、現地で広く知られる4品を選ぶ。",
+    "items": [
+      {
+        "id": "saka-saka",
+        "name": "サカサカ",
+        "nameLocal": "Saka Saka / Pondu",
+        "text": "細かくつぶしたキャッサバの葉を、パーム油、燻製魚、落花生などと煮込む料理。フフやクワンガ、プランテンと合わせて食べられる。",
+        "image": "assets/images/congo/approved/food-1-saka-saka.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "maboke",
+        "name": "マボケ",
+        "nameLocal": "Maboké",
+        "text": "ナマズなどの魚を青菜や唐辛子とともにマランタ科の葉で包んで加熱する魚料理。包みを開いたときに香りと汁気が立つ。",
+        "image": "assets/images/congo/approved/food-2-maboke.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "moambe-chicken",
+        "name": "モアンベ・チキン",
+        "nameLocal": "Poulet à la Moambe / Mossaka",
+        "text": "鶏肉を焼き、ヤシの実から取る濃厚なソースで煮る料理。共和国大使館も代表的なコンゴ料理の一つとして紹介している。",
+        "image": "assets/images/congo/approved/food-3-moambe-chicken.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "moukalou",
+        "name": "ムカロウ",
+        "nameLocal": "Moukalou",
+        "text": "魚を使った汁物で、ココナツの風味と落花生を合わせる。魚の旨味に油脂とナッツの厚みが重なる、海や川の魚を生かした一皿。",
+        "image": "assets/images/congo/approved/food-4-moukalou.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南部の都市・海岸と、北部の大規模保護地域では移動手段がまったく異なる。短期はブラザビル周辺か大西洋岸に絞り、北部の森林は独立した滞在として組む。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ブラザビルとテケ高原に絞る",
+        "text": "首都を歩き、ムベやレフィニ＝レシオ・ルナ方面を信頼できる手配で組み合わせる。都市と高原の文化・地形差を短い移動圏で見る。例：ブラザビル → ムベ → レフィニ周辺",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "大西洋岸まで南部をつなぐ",
+        "text": "ブラザビルから航空便や鉄道などでポワントノワール方面へ移動し、ディオッソ、ロアンゴ、沿岸景観を加える。鉄道は運行状況を直前確認する。例：ブラザビル → ポワントノワール → ディオッソ → ロアンゴ",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "北部の森林を別行程として加える",
+        "text": "オザラ＝コクアまたはヌアバレ＝ンドキを、現地の保護地域・専門事業者の手配を前提に組み込む。道路だけで無理につながず、アクセス条件と季節を優先する。例：ブラザビル → オザラ＝コクア",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜1月",
+      "color": "#78917f",
+      "text": "長い雨季。南部を中心に降雨が増え、未舗装路や遠隔地では移動条件が悪化しやすい。森林は湿度が高く、道路旅は直前の状況確認が重要。"
+    },
+    {
+      "months": "2〜3月",
+      "color": "#b9a77e",
+      "text": "短い乾季。ブラザビル周辺では雨がいったん弱まる時期だが、赤道に近い北部は南部と同じ季節変化にならないため、訪問地域ごとに天候を見る。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#829b83",
+      "text": "短い雨季。高温多湿になりやすく、遠隔地の道路は雨の影響を受ける。FCDOも11〜5月の雨季に地方道路条件が悪化しやすいと案内する。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#a49d7f",
+      "text": "長い乾季。南部では降雨が少なくなる時期で、都市や海岸部の移動を組みやすい。一方、北部の熱帯林では年間を通じて降雨があり、現地条件を別に確認する。"
+    }
+  ],
+  "transport": {
+    "title": "都市間は道路・鉄道・航空、北部の森林は現地手配を前提にする",
+    "text": "ブラザビルとポワントノワールには道路・旅客鉄道があるが、鉄道は遅延や不安定な運行がある。遠隔地の道路は雨季に悪化しやすく、FCDOは四輪駆動車、日中移動、十分な補給を推奨している。北部の保護地域はアクセス条件を個別に確認したい。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "熱帯林の野生を、動物園ではなく生態系の中で見たい人",
+      "text": "オザラ＝コクアやムベリ・バイで、森林、湿地状の開放地、野生動物の関係を時間をかけて観察したい。"
+    },
+    {
+      "title": "一つの国の中で森・草原・海岸の地形差を追いたい人",
+      "text": "北部のコンゴ盆地、テケ高原、大西洋岸の峡谷とラグーンをつなぎ、『熱帯雨林』だけではない景観の幅を見たい。"
+    },
+    {
+      "title": "王国史と大西洋交易史を現在の場所から考えたい人",
+      "text": "ムベとロアンゴを訪ね、テケ王国とロアンゴ王国、それぞれの文化景観と交易史を土地の配置から読みたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中部アフリカ / コンゴ盆地・大西洋"
+    },
+    {
+      "label": "首都",
+      "value": "ブラザビル"
+    },
+    {
+      "label": "人口",
+      "value": "約633万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "34万2,000平方キロメートル（日本の約90%）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）／リンガラ語／キトゥバ語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（約85%）ほか"
+    },
+    {
+      "label": "通貨",
+      "value": "中部アフリカCFAフラン（XAF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "five-land-neighbours",
+      "label": "接する隣国",
+      "value": "5か国",
+      "note": "ガボン、カメルーン、中央アフリカ共和国、コンゴ民主共和国、アンゴラ領カビンダと国境を接する。",
+      "icon": "map",
+      "interestReason": "海岸を持ちながら中部アフリカの5方向へ国境が開く、地域の結節点としての国土を一つの数字で示せるため。"
+    },
+    {
+      "topicKey": "oil-export-share",
+      "label": "輸出に占める石油",
+      "value": "約85%",
+      "note": "日本国外務省は、石油産業が歳入の約80%、輸出の約85%を占める経済構造と説明している。",
+      "icon": "money",
+      "interestReason": "森林国という旅の印象とは別に、現在の国家経済を大きく規定する石油依存の強さが分かるため。"
+    },
+    {
+      "topicKey": "equator-latitude",
+      "label": "国土を横切る赤道",
+      "value": "緯度0°",
+      "note": "国土北部を赤道が通り、南部の大西洋岸から北部の赤道周辺まで、一国の中で気候と植生が変化する。",
+      "icon": "compass",
+      "interestReason": "国名や面積だけでは見えない、赤道をまたぐ国土の位置と南北の景観差を直感的に理解できるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "current-regional-warning",
+      "title": "中央アフリカ共和国国境部の渡航情報を確認",
+      "text": "2026年9月26日時点、FCDOはリクアラ県の中央アフリカ共和国国境から50km以内への渡航を控えるよう勧告している。北部へ向かう場合は公的な最新情報を必ず確認する。"
+    },
+    {
+      "topicKey": "wet-season-road-risk",
+      "title": "雨季の地方道路は四輪駆動と日中移動を前提に考える",
+      "text": "遠隔地では11〜5月を中心に道路条件が悪化しやすい。車両状態、燃料・水、通信、現地手配を確認し、夜間の長距離移動を避けたい。"
+    },
+    {
+      "topicKey": "ferry-rail-check",
+      "title": "鉄道と国境渡河便は当日の運行確認をする",
+      "text": "ブラザビル―ポワントノワール鉄道は遅延・不安定運行があり、キンシャサへの渡河便も天候や国境運用で変更・中止され得る。固定時刻だけで旅程を組まない。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇩",
+      "countryEn": "CONGO - KINSHASA",
+      "countryJa": "コンゴ民主共和国",
+      "path": "ブラザビル → コンゴ川渡河 → キンシャサ",
+      "description": "二つの首都をコンゴ川の渡河便で直接つなぐ国境ルート。距離は短いが、出入国手続きと運航時間を含めて計画する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "渡河便は午後遅くに終了し、日曜運休、悪天候時の中止や国境の予告なし閉鎖があり得る。両国の入国条件も直前確認する。"
+    },
+    {
+      "flag": "🇬🇦",
+      "countryEn": "GABON",
+      "countryJa": "ガボン",
+      "path": "ブラザビル → ドリジー → ニャンガ／ドゥサラ国境 → ンデンデ → リーブルヴィル",
+      "description": "ブラザビル―リーブルヴィル回廊を西へつなぐ陸路。ドリジーからガボン国境を越え、ンデンデ方面へ入る。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境の開閉、道路状態、公共交通の運行、入国条件を直前確認する。雨季は道路条件が変わりやすい。"
+    },
+    {
+      "flag": "🇦🇴",
+      "countryEn": "ANGOLA",
+      "countryJa": "アンゴラ（カビンダ）",
+      "path": "ポワントノワール → チアンバ＝ンザシ国境 → マサビ → カビンダ",
+      "description": "ポワントノワール南側からアンゴラ領カビンダへ入る陸路国境。国境周辺では人と物資の往来がある。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "カビンダ州は安全上の注意が必要な地域。国境運用、査証・入国条件、現地の安全情報を直前確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "drcongo",
+      "nameEn": "CONGO - KINSHASA",
+      "nameJa": "コンゴ民主共和国",
+      "flag": "🇨🇩",
+      "reason": "コンゴ川を挟む二つの首都、リンガラ語圏、水運と大河の暮らしを対岸から比較できる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "cameroon",
+      "nameEn": "CAMEROON",
+      "nameJa": "カメルーン",
+      "flag": "🇨🇲",
+      "reason": "サンガ三国保護地域を共有し、コンゴ盆地の森林と野生動物を国境を越えた生態系としてたどれる。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "gabon",
+      "nameEn": "GABON",
+      "nameJa": "ガボン",
+      "flag": "🇬🇦",
+      "reason": "大西洋岸の森林、ラグーン、コンゴ盆地西縁の自然景観が連続し、中部アフリカの海と森を比較しやすい。",
+      "affinityType": "NATURE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2024",
+    "profile": "2025-12-02",
+    "unescoCongo": "2026-09-28",
+    "travelAdvice": "2026-09-29",
+    "currency": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "map": "2026-09-28",
+    "food": "2026-09-28",
+    "climate": "2026-09-28",
+    "countryBorders": "2026-09-29",
+    "equator": "2026-09-28"
+  },
+  "sources": {
+    "profile": "https://www.mofa.go.jp/mofaj/area/congokyo/data.html",
+    "unescoCongo": "https://whc.unesco.org/en/statesparties/cg",
+    "odzalaUnesco": "https://whc.unesco.org/en/list/692/",
+    "odzalaKba": "https://www.keybiodiversityareas.org/en/site/factsheet/6085",
+    "nouabaleWcs": "https://congo.wcs.org/Wild-Places/Nouabale-Ndoki-National-Park.aspx",
+    "loangoUnesco": "https://whc.unesco.org/en/tentativelists/5373/",
+    "mbeUnesco": "https://whc.unesco.org/en/tentativelists/5374/",
+    "conkouatiUnesco": "https://whc.unesco.org/en/tentativelists/5372/",
+    "lefiniKba": "https://www.keybiodiversityareas.org/en/site/factsheet/6086",
+    "travelAdvice": "https://www.gov.uk/foreign-travel-advice/congo/safety-and-security",
+    "regionalAdvice": "https://www.gov.uk/foreign-travel-advice/congo/regional-risks",
+    "currency": "https://www.beac.int/faqs",
+    "food": "https://ambacongo-us.org/index.php/en/about-congo/people-culture/people",
+    "sceneCoordinates": "WGS84 points checked 2026-09-28: Diosso Gorge -4.61889,11.83528 (GeoNames/Wikidata); Basilique Sainte-Anne -4.268456,15.284511 (Wikidata); Old Loango slave port -3.300000,11.816944 and Domaine royal de Mbé -3.300000,15.883056 (UNESCO tentative-list coordinates); Conkouati-Douli -3.905000,11.470000 (protected-area reference); Léfini–Lesio-Louna -2.910000,15.402400 and Odzala-Kokoua 0.978300,14.927200 KBA central coordinates, with UNESCO World Heritage representative coordinate 1.335556,14.860278 used for the Odzala Scene; Mbeli Bai 2.258300,16.411700 (published research locality); Ouésso 1.614000,16.052400 (GeoNames/Wikidata).",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (COG/GAB/GNQ/CMR/CAF/COD/AGO).",
+    "climate": "WHO Africa conference information for Brazzaville/Congo seasonal pattern (long rains Oct–Jan, short dry Feb–Mar, short rains Apr–May, long dry Jun–Sep) cross-checked with World Bank Climate Change Knowledge Portal climatology; regional variation noted in copy.",
+    "population": "https://www.mofa.go.jp/mofaj/area/congokyo/data.html",
+    "countryBorders": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (COG/GAB/GNQ/CMR/CAF/COD/AGO).",
+    "equator": "Natural Earth / WGS84 national geometry: Republic of the Congo spans the Equator, with territory on both sides of latitude 0°.",
+    "gabonCorridor": "African Development Bank — Brazzaville–Libreville Corridor: Dolisie–Nyanga / Ndendé–Doussala cross-border road corridor.",
+    "cabindaBorder": "UNICONGO — Frontière terrestre Pointe-Noire / Cabinda: Tchiamba-Nzassi land border and passenger/goods movement."
+  }
+}

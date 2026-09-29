@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "chad",
+  "nameEn": "CHAD",
+  "nameJa": "チャド",
+  "region": "CENTRAL AFRICA / 15°N",
+  "seo": {
+    "description": "エネディ山地の砂岩アーチと岩絵、サハラに残るウニアンガ湖群、ティベスティ山地の火山地形、ザクマ国立公園のサバンナ。北から南へ環境帯が大きく変わるチャドをたどる。"
+  },
+  "capital": {
+    "nameEn": "N'Djamena",
+    "nameJa": "ンジャメナ",
+    "coordinates": {
+      "latitude": 12.1348,
+      "longitude": 15.0557
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -10,
+      "y": -22
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "サハラの砂岩台地、地下水が支える湖群、ティベスティの火山地形から南東部のサバンナまで。広い内陸国を縦断すると、乾燥と水、岩と草原の境界が大きく切り替わる。",
+    "image": "assets/images/chad/approved/hero-aloba-arch.webp",
+    "location": "Aloba Arch / Ennedi Massif",
+    "coordinates": {
+      "latitude": 16.741756,
+      "longitude": 22.239439
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 25,
+      "south": 6,
+      "west": 11,
+      "east": 26
+    },
+    "svg": "assets/images/chad/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Chad and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Includes all six land neighbours plus additional countries intersecting the map frame so surrounding land is never rendered as sea. Shared JOURNEY ATLAS map-v3 clean-background styling; rendered 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "guelta-archei",
+      "name": "ゲルタ・ダルシェイ",
+      "nameLocal": "Guelta d'Archei",
+      "mapLabel": "Guelta d'Archei",
+      "description": "エネディ山地の狭い峡谷に恒久的な水場が残る。高い砂岩壁の間へ水とヤシが入り込み、乾いた台地の中で動物と人の移動を支えてきた水の存在を目で追える。",
+      "coordinates": {
+        "latitude": 16.90472,
+        "longitude": 21.77472
+      },
+      "image": "assets/images/chad/approved/scene-1-guelta-archei.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3.8,
+        "y": -1
+      }
+    },
+    {
+      "id": "lake-yoa",
+      "name": "ヨア湖",
+      "nameLocal": "Lake Yoa / Ounianga Kebir",
+      "mapLabel": "Lake Yoa",
+      "description": "世界遺産ウニアンガ湖群を構成する湖の一つ。年間降水量が2ミリ未満の超乾燥地域に恒久湖が残り、砂丘、塩性の水面、ヤシの緑が同じ視界に収まる。",
+      "coordinates": {
+        "latitude": 19.057189,
+        "longitude": 20.506339
+      },
+      "image": "assets/images/chad/approved/scene-2-lake-yoa.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": -2
+      }
+    },
+    {
+      "id": "emi-koussi",
+      "name": "エミ・クーシ",
+      "nameLocal": "Emi Koussi",
+      "mapLabel": "Emi Koussi",
+      "description": "ティベスティ山地にそびえる巨大な火山。標高3,400メートルを超えるチャド最高峰で、サハラの平坦な砂漠とは異なる高地の火山地形が北部の輪郭をつくる。",
+      "coordinates": {
+        "latitude": 19.79222,
+        "longitude": 18.54644
+      },
+      "image": "assets/images/chad/approved/scene-3-emi-koussi.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.2,
+        "y": 1
+      }
+    },
+    {
+      "id": "trou-au-natron",
+      "name": "トル・オ・ナトロン",
+      "nameLocal": "Trou au Natron",
+      "mapLabel": "Trou au Natron",
+      "description": "ティベスティ山地に口を開く大きな火山性カルデラ。白い鉱物質の地面と黒褐色の火山斜面が対比し、サハラ北部に火山活動が刻んだ地形を近い距離で見せる。",
+      "coordinates": {
+        "latitude": 20.975,
+        "longitude": 16.5675
+      },
+      "image": "assets/images/chad/approved/scene-4-trou-au-natron.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 1
+      }
+    },
+    {
+      "id": "zakouma-national-park",
+      "name": "ザクマ国立公園",
+      "nameLocal": "Zakouma National Park",
+      "mapLabel": "Zakouma",
+      "description": "南東部の氾濫原、川、湿地、サバンナが広がる保護区。乾季には水場の周辺へゾウ、キリン、バッファローなどが集まり、北部の砂漠とはまったく異なる生態系が現れる。",
+      "coordinates": {
+        "latitude": 10.847778,
+        "longitude": 19.647778
+      },
+      "image": "assets/images/chad/approved/scene-5-zakouma.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 2
+      }
+    },
+    {
+      "id": "ouara-ruins",
+      "name": "ウアラ遺跡",
+      "nameLocal": "Ruins of Ouara",
+      "mapLabel": "Ouara",
+      "description": "東部アベシェ近郊に残るワダイ王国の旧都。乾いた平原に土造建築の壁や宮殿跡が残り、サヘルを横切った政治・交易の歴史を風景の中でたどれる。",
+      "coordinates": {
+        "latitude": 14.226667,
+        "longitude": 20.672222
+      },
+      "image": "assets/images/chad/approved/scene-6-ouara.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    {
+      "id": "gaoui",
+      "name": "ガウイの村と博物館",
+      "nameLocal": "Gaoui / Musée de Gaoui",
+      "mapLabel": "Gaoui",
+      "description": "ンジャメナ近郊に土壁の家々が続き、旧首長宮殿を利用した博物館が地域の陶器や暮らしを伝える。大都市の外側で、土と手仕事から成る建築文化に触れられる。",
+      "coordinates": {
+        "latitude": 12.179077,
+        "longitude": 15.148781
+      },
+      "image": "assets/images/chad/approved/scene-7-gaoui.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4.2,
+        "y": -2
+      }
+    },
+    {
+      "id": "gauthiot-falls",
+      "name": "ゴティオ滝",
+      "nameLocal": "Gauthiot Falls / Chutes Gauthiot",
+      "mapLabel": "Gauthiot Falls",
+      "description": "南西部のマンダラ山地側で岩盤を水が落ちる。砂漠の印象が強い国の中に、雨季の水系と緑の濃い南部が存在することを、一つの水辺の風景として見せる。",
+      "coordinates": {
+        "latitude": 9.72425,
+        "longitude": 14.561056
+      },
+      "image": "assets/images/chad/approved/scene-8-gauthiot-falls.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "市場で穀物と落花生を見る",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "茶を囲んで人と時間を過ごす",
+      "category": "DAILY_LIFE",
+      "icon": "culture"
+    },
+    {
+      "title": "土壁建築の模様と質感を見る",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "放牧される家畜の群れに出会う",
+      "category": "DAILY_LIFE",
+      "icon": "landscape"
+    },
+    {
+      "title": "サバンナで野生動物を観察する",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "岩壁に残る古い絵や刻画を見る",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "乾燥地の水場と暮らしの関係を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "雨季の後に広がる草原の緑を見る",
+      "category": "SEASON",
+      "icon": "calendar"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "three-ecological-belts",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "北から南へ、サハラ・サヘル・スーダン型サバンナへ環境が切り替わる",
+      "text": "チャドは北部のサハラ砂漠、中央部の半乾燥サヘル、南部のより湿潤なサバンナへと大きく環境が変わる。南北に長い国土を移動すると、降水、植生、農牧業の形まで連続的に変化する。",
+      "points": [
+        "北部は極端に乾燥した砂漠と山地が中心",
+        "南部へ進むほど雨と植生が増える"
+      ],
+      "sourceKey": "faoLandscape"
+    },
+    {
+      "topicKey": "ennedi-rock-art",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "エネディの岩壁には、サハラで続いた人の暮らしが描かれている",
+      "text": "エネディ山地の洞窟、峡谷、岩陰には多数の岩絵と刻画が残る。現在の乾燥景観だけを見るのではなく、動物、牧畜、人の活動を描いた表現から、環境と暮らしが変化してきた長い時間を読み取れる。",
+      "points": [
+        "世界遺産は自然と文化の両方を評価する複合遺産",
+        "峡谷の恒久水が人と動植物を支えてきた"
+      ],
+      "sourceKey": "ennedi"
+    },
+    {
+      "topicKey": "kanem-lake-chad-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "チャド湖周辺は、長くサハラとサヘルを結ぶ政治・交易圏だった",
+      "text": "チャド湖周辺ではカネム・ボルヌなどの国家が長く発展し、サハラを越える交易とサヘル側の農牧社会を結んだ。現在の国境より前から、人・家畜・物資が湖盆を横断してきた歴史がある。",
+      "points": [
+        "湖は複数国にまたがる内陸流域の中心",
+        "北アフリカとサヘルの交易史を考える軸になる"
+      ],
+      "sourceKey": "lakeChadHistory"
+    },
+    {
+      "topicKey": "ouaddai-ouara",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "東部のウアラは、ワダイ王国の旧都として土造建築を残す",
+      "text": "ウアラの遺跡は、アベシェへ都が移る以前のワダイ王国の政治拠点を伝える。乾燥地に残る宮殿や防御的な建築跡から、東部チャドがスーダン側と結ばれてきた歴史をたどれる。",
+      "points": [
+        "ウアラはユネスコ世界遺産暫定一覧に記載",
+        "現在のアベシェ周辺へ続く東部の歴史を示す"
+      ],
+      "sourceKey": "ouaraUnesco"
+    },
+    {
+      "topicKey": "pastoral-mobility",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "雨と草を追う移動が、乾燥地の暮らしを支えてきた",
+      "text": "北部から中央部では、限られた水と季節ごとの草地を使う牧畜が重要な生活基盤になってきた。固定した一点だけでなく、季節に応じて人と家畜が移動すること自体がサヘルの土地利用を形づくる。",
+      "points": [
+        "乾季と雨季で使える水と草地が変わる",
+        "家畜と市場の動きが都市と農村を結ぶ"
+      ],
+      "sourceKey": "faoPastoral"
+    },
+    {
+      "topicKey": "zakouma-conservation",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "南東部では、乾季の水場が大型動物と鳥類を集める",
+      "text": "ザクマ国立公園では川、湿地、氾濫原が乾季にも野生動物を支える。保全管理の強化によりゾウやコルドファンキリンなどの個体群が回復し、砂漠国家という一面的な印象とは異なる南部の生物多様性が見えてくる。",
+      "points": [
+        "公園には約66種の哺乳類が確認される",
+        "乾季には水場周辺へ大型動物が集中する"
+      ],
+      "sourceKey": "zakoumaBiodiversity"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "flag-three-colors",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "国旗は青・黄・赤の縦三色",
+      "text": "憲法は国旗を青、金色、赤の同じ幅の縦帯と定める。隣り合うサヘル諸国とは異なる配色で、街の公的施設でも目に入る。",
+      "icon": "culture",
+      "sourceKey": "constitution"
+    },
+    {
+      "topicKey": "ndjamena-former-name",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "ンジャメナはかつてフォール・ラミと呼ばれた",
+      "text": "フランス植民地期にフォール・ラミと呼ばれた首都は、1973年にンジャメナへ改称された。都市名にも独立後の国づくりが表れている。",
+      "icon": "history",
+      "sourceKey": "ndjamenaHistory"
+    },
+    {
+      "topicKey": "zakouma-seasonal-closure",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "ザクマは雨季に観光活動を休止する",
+      "text": "雨季には道路が水に覆われるため、公園は観光活動を休止し、乾季の終わりから次の雨季までが通常の訪問期になる。",
+      "icon": "calendar",
+      "sourceKey": "zakoumaVisit"
+    },
+    {
+      "topicKey": "siniaka-minia-2024",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "自然",
+      "title": "シニアカ・ミニアは2024年に国立公園になった",
+      "text": "保護区だったシニアカ・ミニアは2024年に国立公園へ移行した。ザクマ周辺を含む広い生態系を一体で守る取り組みが進んでいる。",
+      "icon": "wildlife",
+      "sourceKey": "siniakaMinia"
+    },
+    {
+      "topicKey": "cemac-currency",
+      "categoryEn": "DAILY LIFE",
+      "categoryJa": "暮らし",
+      "title": "通貨は中部アフリカの共通通貨を使う",
+      "text": "チャドで使われる中部アフリカ・フランは、中部アフリカの複数国で共通して流通する。国境をまたぐ経済圏とのつながりが通貨にも表れる。",
+      "icon": "culture",
+      "sourceKey": "currency"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF CHAD",
+    "title": "チャドで食べたいもの",
+    "intro": "雑穀を練る主食、オクラや野菜の煮込み、落花生とキビの粥、肉のトマト煮。乾燥地の穀物と南部の野菜・豆類が同じ食卓に現れる。",
+    "items": [
+      {
+        "id": "boule",
+        "name": "ブール",
+        "nameLocal": "Boule",
+        "text": "トウモロコシやソルガム、キャッサバ、米などを練って厚い団子状にし、肉や魚、野菜のソースと合わせる主食。",
+        "image": "assets/images/chad/approved/food-1-boule.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "daraba",
+        "name": "ダラバ",
+        "nameLocal": "Daraba",
+        "text": "オクラや葉野菜、トマトなどを煮込み、落花生の風味を加える料理。穀物の主食と合わせて食べる。",
+        "image": "assets/images/chad/approved/food-2-daraba.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "la-bouillie",
+        "name": "ラ・ブイイ",
+        "nameLocal": "La bouillie",
+        "text": "キビなどの穀物をやわらかく煮、落花生や砂糖、酸味を加える粥。朝や軽い食事として食べられる。",
+        "image": "assets/images/chad/approved/food-3-bouillie.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "nashif",
+        "name": "ナシフ",
+        "nameLocal": "Nashif",
+        "text": "牛肉や山羊肉をトマトと香辛料で煮込み、薄い発酵生地のパンなどと合わせる肉料理。",
+        "image": "assets/images/chad/approved/food-4-nashif.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月現在、日本外務省はチャド全域にレベル3以上を設定しているため、以下は現時点の渡航推奨ではなく、国土の距離感を理解するための地理的な目安。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "首都周辺だけでも都市と郊外の距離感がある",
+        "text": "ンジャメナと近郊のガウイは同じ南西部にあるが、現在は首都を含め渡航中止勧告の対象。例：ンジャメナ → ガウイ。実際の行動計画には使用しない。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜7日",
+        "title": "東部・南東部は別の地域ブロックとして考える",
+        "text": "ウアラ／アベシェ方面とザクマ国立公園は首都から大きく離れる。例：西部都市圏 / 東部歴史圏 / 南東部サバンナを別々の距離単位として捉える。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "北部サハラはさらに独立した遠隔地域",
+        "text": "ウニアンガ湖群、ティベスティ、エネディは互いにも距離があり、補給・通信・許可・安全条件の確認が不可欠。現在は渡航中止または退避勧告地域を含むため、将来の安全回復後を想定した地理的スケールとして示す。例：ウニアンガ湖群 / ティベスティ / エネディを別々の遠隔地域として捉える。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#9da7a0",
+      "text": "乾季。南部は雨が少なくなり、ザクマでは道路整備後に通常の観光期が始まる。北部の砂漠では日中と夜の寒暖差が大きい。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#d0a36a",
+      "text": "暑さが強まる時期。ザクマでは3〜5月に40〜45℃へ達することがあり、乾季末には水場へ動物が集まりやすい。"
+    },
+    {
+      "months": "6〜10月",
+      "color": "#86a98a",
+      "text": "雨季。降水は南部ほど多く、未舗装路や河川周辺の通行条件が大きく変わる。ザクマは雨季に観光活動を休止する。"
+    },
+    {
+      "months": "通年・北部",
+      "color": "#c6b27d",
+      "text": "ウニアンガ湖群周辺のような北東部は年間降水量が極端に少ない超乾燥地。季節にかかわらず水、燃料、通信、気温差への備えが地理理解の前提になる。"
+    }
+  ],
+  "transport": {
+    "title": "現状は長距離移動を旅程化しない",
+    "text": "2026年9月現在、全域が日本外務省の渡航中止勧告以上で、国境地帯の多くは退避勧告。道路距離も長く、北部や東部には遠隔地が多い。安全状況が改善するまでは、地図上の移動軸を実際の旅行ルートとして扱わない。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "砂漠の地形と水の存在を一緒に見たい人",
+      "text": "砂岩アーチ、峡谷、火山、カルデラ、地下水に支えられた湖群まで、乾燥地に現れる地形と水の関係を追いたい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "サハラとサヘルの長い人類史をたどりたい人",
+      "text": "岩絵、旧都、交易圏、土造建築を通して、現在の国境より長い時間軸で人の移動と暮らしを見たい人。",
+      "icon": "history"
+    },
+    {
+      "title": "砂漠国家の中にあるサバンナの野生を知りたい人",
+      "text": "北部の乾燥景観だけでなく、南東部の湿地、氾濫原、草原と大型動物まで含めて国土の幅を理解したい人。",
+      "icon": "wildlife"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中部アフリカ / サハラ / サヘル"
+    },
+    {
+      "label": "首都",
+      "value": "ンジャメナ"
+    },
+    {
+      "label": "人口",
+      "value": "約2,100万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,284,000 km²（日本の約3.4倍）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語／アラビア語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教／キリスト教"
+    },
+    {
+      "label": "通貨",
+      "value": "中部アフリカCFAフラン（XAF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "six-land-neighbours",
+      "label": "接する隣国",
+      "value": "6か国",
+      "note": "チャドはリビア、スーダン、中央アフリカ共和国、カメルーン、ナイジェリア、ニジェールの6か国と陸上国境を接する。",
+      "icon": "map",
+      "interestReason": "内陸国でありながら北アフリカ、ナイル側、中部アフリカ、西アフリカへ接続する位置を、一つの数字で示せるため。"
+    },
+    {
+      "topicKey": "north-south-span",
+      "label": "南北の広がり",
+      "value": "約1,800km",
+      "note": "国境データでは国土がおよそ北緯7.4度から23.4度まで広がり、緯度差を距離に換算すると約1,800キロメートルになる。",
+      "icon": "landscape",
+      "interestReason": "北部サハラから南部サバンナまで環境が大きく変わる理由を、国土の縦の長さで直感的に理解できるため。",
+      "exceptionalScale": true
+    },
+    {
+      "topicKey": "agriculture-employment",
+      "label": "農業就業者の割合",
+      "value": "約69%",
+      "note": "国連データでは、就業者に占める農業分野の割合は約69%（2023年）とされる。",
+      "icon": "users",
+      "interestReason": "乾燥地と雨の多い南部で農牧業が暮らしを支える国の社会的な基盤を、人口ではなく仕事の構成から示すため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "mofa-level3-4",
+      "title": "現時点では、観光目的の渡航計画を立てない",
+      "text": "2026年9月現在、日本外務省は首都を含む大部分をレベル3、複数の国境地帯とチャド湖周辺などをレベル4としている。景勝地の情報と渡航可能性を分けて考える。"
+    },
+    {
+      "topicKey": "remote-desert-logistics",
+      "title": "安全状況が改善しても、北部の遠隔地は補給と通信を前提にする",
+      "text": "ティベスティ、ウニアンガ、エネディは都市間距離が長く、水・燃料・車両・通信の余裕が必要になる。許可や現地規制を事前に確認する。"
+    },
+    {
+      "topicKey": "heritage-community-respect",
+      "title": "岩絵、水場、村では保存と生活のルールを優先する",
+      "text": "エネディの岩絵や峡谷の水場、ガウイの集落は観光物だけではない。立入り、撮影、接触は保護ルールと地域の合意を優先する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇲",
+      "countryEn": "CAMEROON",
+      "countryJa": "カメルーン",
+      "path": "N'Djamena → Nguéli Bridge → Kousséri",
+      "description": "陸路。N'DjamenaからNguéli Bridgeを車両で渡り、対岸のKoussériへつなぐ。カメルーン側からはさらにMaroua方面へ道路が続く。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月現在、チャド側は渡航中止勧告以上。国境運用と安全情報は出発前に再確認する。"
+    },
+    {
+      "flag": "🇳🇪",
+      "countryEn": "NIGER",
+      "countryJa": "ニジェール",
+      "path": "Bol → Chad–Niger border → Nguigmi",
+      "description": "陸路。Bolからチャド湖の北側を西へ進み、Chad–Niger borderを越えてNguigmi方面へつなぐ。砂地を含むため車両移動が前提になる。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "国境地帯の運用・道路状況・安全情報を出発前に確認する。"
+    },
+    {
+      "flag": "🇸🇩",
+      "countryEn": "SUDAN",
+      "countryJa": "スーダン",
+      "path": "Abéché → Adré → El Geneina",
+      "description": "陸路。AbéchéからAdréへ進み、国境を車両で越えてスーダン側のEl Geneina方面へつなぐ東部の主要道路軸。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月現在、Sudan国境地帯は高い危険情報が出ているため、国境運用と安全情報を必ず再確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "cameroon",
+      "nameEn": "CAMEROON",
+      "nameJa": "カメルーン",
+      "flag": "🇨🇲",
+      "reason": "首都圏がシャリ川を挟んで近接し、サヘルからより湿潤な中部アフリカへ景観と暮らしの連続性を見たいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "niger",
+      "nameEn": "NIGER",
+      "nameJa": "ニジェール",
+      "flag": "🇳🇪",
+      "reason": "サハラとサヘル、遊牧、乾燥地の都市という共通テーマを、西側の広い内陸国で比較したいなら。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "sudan",
+      "nameEn": "SUDAN",
+      "nameJa": "スーダン",
+      "flag": "🇸🇩",
+      "reason": "東部の乾燥地、交易史、岩絵や考古遺産など、サハラ東側へ続く文化地理を比較したいなら。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025",
+    "religion": "2020",
+    "currency": "2025",
+    "safety": "2025-07-07",
+    "map": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "agricultureEmployment": "2023",
+    "nextRoutes": "2026-09-29"
+  },
+  "sources": {
+    "population": "UNData Chad profile — Population 21,004,000 (2025), capital N'Djamena, surface area 1,284,000 km², currency CFA Franc BEAC (XAF). https://data.un.org/legacy/en/iso/td.html",
+    "area": "UNData Chad profile — Surface area 1,284,000 km². https://data.un.org/legacy/en/iso/td.html",
+    "japanArea": "Statistics Bureau of Japan / Statistical Handbook 2025 — Japan area 377,975.37 km²; comparison rounded to about 3.4×.",
+    "constitution": "Constitute Project — Constitution of Chad (2018), Articles 8–9: N'Djamena is capital; French and Arabic are official languages. https://www.constituteproject.org/constitution/Chad_2018",
+    "religion": "Pew Research Center — Religious Composition by Country, 2020 estimates for Chad: Muslims 56.4%, Christians 38.9%. https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+    "currency": "UNData Chad profile — CFA Franc BEAC (XAF). https://data.un.org/legacy/en/iso/td.html",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website — Chad risk information, updated 2025-07-07 and current when checked 2026-09-28: Level 3 for most of the country including N'Djamena; Level 4 for specified border areas, Lac Region and Lake Chad surroundings. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2025T064.html",
+    "ounianga": "UNESCO World Heritage Centre — Lakes of Ounianga: 18 lakes in a hyperarid setting with under 2 mm rainfall/year; property centre N19°03′18″ E20°30′20″. https://whc.unesco.org/en/list/1400/",
+    "ennedi": "UNESCO World Heritage Centre — Ennedi Massif: sandstone plateau with canyons, natural arches, permanent water and thousands of rock-art images; property centre N17°02′30″ E21°51′46″. https://whc.unesco.org/en/list/1475/",
+    "zakoumaBiodiversity": "African Parks — Zakouma biodiversity conservation: around 66 mammal species; elephants, Kordofan giraffes, buffalo and major wetland bird habitat. https://www.africanparks.org/the-parks/zakouma/biodiversity-conservation",
+    "zakoumaVisit": "African Parks — Visit Zakouma: wet season May/June–October; park closes to tourist activity during the wet season; late dry season temperatures can reach 40–45°C. https://www.africanparks.org/the-parks/zakouma/visit-zakouma",
+    "siniakaMinia": "African Parks — Siniaka Minia National Park: upgraded to national-park status in 2024; 4,643 km². https://www.africanparks.org/the-parks/siniaka-minia",
+    "ouaraUnesco": "UNESCO World Heritage Centre Tentative List — Les ruines d'Ouara, Chad. https://whc.unesco.org/en/tentativelists/2052/",
+    "faoLandscape": "FAO — Chad landscape and food-security material describing the north-to-south transition from Sahara through Sahel to greener southern savannas. https://www.fao.org/chad/en/",
+    "faoPastoral": "FAO Chad — pastoralism and livestock are major livelihood systems across arid and semi-arid Chad. https://www.fao.org/chad/en/",
+    "lakeChadHistory": "Encyclopaedia Britannica — Chad history / Kanem-Bornu and Lake Chad basin. https://www.britannica.com/place/Chad/History",
+    "ndjamenaHistory": "Encyclopaedia Britannica — N'Djamena: founded as Fort-Lamy and renamed N'Djamena in 1973. https://www.britannica.com/place/NDjamena",
+    "foodCulture": "U.S. Government cultural field guide for Chad — dishes including boule, bouillie, nashif and daraba. https://www.govinfo.gov/",
+    "agricultureEmployment": "UNData Chad profile — Employment by economic activity, agriculture approximately 69.1% (2023 reference period). https://data.un.org/legacy/en/iso/td.html",
+    "alobaCoordinates": "Wikidata — Aloba Arch coordinate 16°44′30.32″N 22°14′21.98″E. https://www.wikidata.org/wiki/Q2826731",
+    "gueltaCoordinates": "Wikidata / mapped geodata — Guelta d'Archei approximately 16.90472, 21.77472. https://www.wikidata.org/",
+    "lakeYoaCoordinates": "Wikidata — Lake Yoa coordinate 19°03′25.88″N 20°30′22.82″E; cross-checked with UNESCO Ounianga property centre. https://www.wikidata.org/wiki/Q3215567",
+    "emiKoussiCoordinates": "GeoNames/Wikidata — Emi Koussi approximately 19.79222, 18.54644; elevation about 3,415 m. https://www.geonames.org/2439710/",
+    "trouNatronCoordinates": "Wikidata — Trou au Natron coordinate 20°58′30″N 16°34′03″E. https://www.wikidata.org/wiki/Q3538928",
+    "zakoumaCoordinates": "Wikidata / African Parks — Zakouma National Park approximately 10.84778, 19.64778. https://www.wikidata.org/wiki/Q1451774 ; https://www.africanparks.org/the-parks/zakouma",
+    "ouaraCoordinates": "UNESCO Tentative List / mapped geodata — Ouara ruins; UNESCO lists N14°11′ E20°42′ for the site. https://whc.unesco.org/en/tentativelists/2052/",
+    "gaouiCoordinates": "Wikidata — Musée de Gaoui approximately 12.179077, 15.148781. https://www.wikidata.org/wiki/Q111744967",
+    "gauthiotCoordinates": "Wikidata / GNS — Gauthiot Falls approximately 9.72425, 14.56106. https://www.wikidata.org/wiki/Q5527093",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Chad, all six land neighbours, and additional national geometry intersecting the approved map frame.",
+    "sceneCoordinates": "Scene coordinates checked 2026-09-28 against UNESCO-published property coordinates where available and mapped geodata sources cited per Scene.",
+    "nextRoutes": "World Bank / African Development Bank / Logistics Cluster road-corridor references checked 2026-09-29: N'Djamena–Kousséri via Nguéli/Chari bridge is a road corridor; Bol–Nguigmi is a road/4WD axis around the Lake Chad basin; Abéché–Adré is the principal eastern road axis to the Sudan border, with Adré an operational border entry point in 2026. https://documents.worldbank.org/ ; https://www.afdb.org/ ; https://logcluster.org/"
+  }
+}

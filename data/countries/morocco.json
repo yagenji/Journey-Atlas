@@ -21,8 +21,8 @@
       "y": -20
     },
     "mapOffset": {
-      "x": 0.6,
-      "y": -0.4
+      "x": 0.4,
+      "y": -1.6
     }
   },
   "hero": {
@@ -34,20 +34,20 @@
       "longitude": -7.12889
     },
     "mapOffset": {
-      "x": -1.2,
-      "y": 0.4
+      "x": 0.5,
+      "y": 0.8
     }
   },
   "map": {
     "bounds": {
-      "north": 36.5,
-      "south": 27.2,
-      "west": -13.2,
-      "east": -0.8
+      "north": 36.8,
+      "south": 25.4,
+      "west": -17.8,
+      "east": -0.5
     },
     "svg": "assets/images/morocco/map-atlas-v1.svg",
     "route": null,
-    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (MAR/SAH/DZA/ESP/PRT/MRT GeoJSON). Morocco target uses the MAR source geometry; Western Sahara is rendered separately as geographic context. Administrative depiction is reproduced as source geometry without asserting a position on disputed political claims. Generated and checked 2026-09-27."
+    "source": "Target Morocco geometry and Western Sahara surrounding context: Natural Earth 1:10m cultural vectors, WGS84, public domain. Morocco target uses MAR geometry north of the Natural Earth Western Saharan claim line. Visible Western Sahara context uses the same verified coastline/boundary geometry south of the disputed boundary, rendered in surrounding-land styling rather than target fill. Administrative depiction does not assert a position on disputed sovereignty. Boundary source: ne_10m_admin_0_boundary_lines_disputed_areas (FEATURECLA=Elusive frontier, NAME=Western Saharan claim)."
   },
   "scenes": [
     {
@@ -63,8 +63,8 @@
       "image": "assets/images/morocco/approved/scene-1-chefchaouen-medina.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 0.5,
-        "y": 0.2
+        "x": -1.1,
+        "y": -0.1
       }
     },
     {
@@ -80,8 +80,8 @@
       "image": "assets/images/morocco/approved/scene-2-fez-chouara-tannery.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 1.5,
-        "y": -0.3
+        "x": 2.5,
+        "y": -0.1
       }
     },
     {
@@ -97,8 +97,8 @@
       "image": "assets/images/morocco/approved/scene-3-marrakech-koutoubia.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -0.8,
-        "y": 0.5
+        "x": -1.6,
+        "y": 0.3
       }
     },
     {
@@ -114,8 +114,8 @@
       "image": "assets/images/morocco/approved/scene-4-volubilis.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -1.4,
-        "y": 0.9
+        "x": -0.9,
+        "y": 4.6
       }
     },
     {
@@ -131,8 +131,8 @@
       "image": "assets/images/morocco/approved/scene-5-erg-chebbi.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 0.8,
-        "y": 0.2
+        "x": 1.3,
+        "y": 0.5
       }
     },
     {
@@ -148,8 +148,8 @@
       "image": "assets/images/morocco/approved/scene-6-todra-gorge.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 0.6,
-        "y": -0.1
+        "x": 0.5,
+        "y": 0
       }
     },
     {
@@ -165,8 +165,8 @@
       "image": "assets/images/morocco/approved/scene-7-essaouira-skala.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -0.8,
-        "y": 0
+        "x": -2.2,
+        "y": 0.1
       }
     },
     {
@@ -182,8 +182,8 @@
       "image": "assets/images/morocco/approved/scene-8-hassan-ii-mosque.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -0.8,
-        "y": -0.4
+        "x": -1,
+        "y": 0.4
       }
     }
   ],
@@ -583,14 +583,14 @@
       "affinityType": "HISTORY"
     }
   ],
-  "updatedAt": "2026-09-28",
-  "sourcesVerifiedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
   "sourceDates": {
     "population": "2025",
     "worldHeritage": "2026-09-27",
     "transport": "2026-09-27",
     "nextRoutes": "2026-09-28",
-    "map": "2026-09-27",
+    "map": "2026-09-29",
     "sceneCoordinates": "2026-09-27",
     "alBoraqSpeed": "2018"
   },
@@ -608,7 +608,7 @@
     "hassanII": "Moroccan National Tourist Office — Historic landmarks / Casablanca: Hassan II Mosque on the Atlantic shore; minaret 200 m. https://www.visitmorocco.com/en/discover-morocco/historic-sites-must-be-visited",
     "food": "Moroccan National Tourist Office — Food & Drinks: Harira, Couscous, Tajine and Pastilla as representative Moroccan dishes. https://www.visitmorocco.com/en/travel-info/food-drinks",
     "transport": "Moroccan National Tourist Office — Getting around Morocco; ONCF — Al Boraq destinations: Tangier, Kenitra, Rabat, Casablanca, with conventional rail connections to Fez and Marrakech; checked 27 Sep 2026. https://www.visitmorocco.com/en/travel-info/getting-around-morocco ; https://www.oncf.ma/en/Al-boraq/Destinations-and-timetables/Destinations",
-    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; MAR target with SAH/DZA/ESP/PRT/MRT geographic context; checked 27 Sep 2026.",
+    "map": "Natural Earth 1:10m cultural vectors, WGS84, public domain; MAR target/coastline geometry plus the Natural Earth Western Saharan claim line. Western Sahara is shown as surrounding geographic context, not target fill.",
     "sceneCoordinates": "WGS84 scene points checked 27 Sep 2026 against UNESCO property coordinates, Moroccan National Tourist Office place references and mapped locality references. Ait-Ben-Haddou 31.04722,-7.12889; Chefchaouen 35.1688,-5.2636; Fez Chouara 34.0647,-4.9731; Koutoubia 31.6240,-7.9936; Volubilis 34.07389,-5.55694; Erg Chebbi 31.1456,-3.9676; Todra Gorge 31.5889,-5.5900; Essaouira Skala 31.5133,-9.7724; Hassan II Mosque 33.6084,-7.6327; Rabat 34.0209,-6.8416.",
     "nextRoutes": "Spain: Tangier City Port — Tangier–Tarifa fast ferry operates year-round with multiple daily departures, checked 28 Sep 2026. https://www.tangerport.com/ferry/ ; Algeria: UK FCDO Morocco regional risks — Morocco–Algeria land and sea borders are closed, checked 28 Sep 2026. https://www.gov.uk/foreign-travel-advice/morocco/regional-risks ; Mauritania/Western Sahara: UK FCDO Western Sahara and Mauritania regional risks — disputed territory, Berm/mines risk, Mauritania–Western Sahara border risk guidance, checked 28 Sep 2026. https://www.gov.uk/foreign-travel-advice/western-sahara/regional-risks ; https://www.gov.uk/foreign-travel-advice/mauritania/regional-risks",
     "ergChebbiHeight": "Moroccan National Tourist Office — official Ouarzazate / Merzouga travel material: Erg Chebbi dunes reach about 150 m. https://www.visitmorocco.com/sites/default/files/atoms/files/Ouarzazate%20ENG.pdf",

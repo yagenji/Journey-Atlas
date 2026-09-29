@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "mali",
+  "nameEn": "MALI",
+  "nameJa": "マリ",
+  "region": "WEST AFRICA / 18°N",
+  "seo": {
+    "description": "サヘルとサハラ、ニジェール川、土の建築、マリ帝国・ソンガイ帝国の記憶が重なる西アフリカの内陸国マリを、8つの実在景観と文化からたどる。"
+  },
+  "capital": {
+    "nameEn": "Bamako",
+    "nameJa": "バマコ",
+    "coordinates": {
+      "latitude": 12.6392,
+      "longitude": -8.0029
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 2,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "ニジェール内陸デルタの縁に、土で築き、土で守り続ける都市が立つ。",
+    "image": "assets/images/mali/approved/hero.webp",
+    "location": "Great Mosque of Djenné / Djenné",
+    "coordinates": {
+      "latitude": 13.905267,
+      "longitude": -4.555372
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 26.5,
+      "south": 9.5,
+      "west": -13.5,
+      "east": 5.5
+    },
+    "svg": "assets/images/mali/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and direct-neighbour geometry: Natural Earth / CountryGeoJSONCollection MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84. Additional visible land context within the map frame: MAR/SAH/GHA/TGO/BEN/SLE from the same source family. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; land/sea context corrected 2026-09-29."
+  },
+  "scenes": [
+    {
+      "id": "scene-1",
+      "name": "トンブクトゥ / ジンガリベリ・モスク",
+      "nameLocal": "Tombouctou",
+      "mapLabel": "ティンブクトゥ",
+      "description": "サハラ南縁の交易都市。ジンガレイベル、サンコーレ、シディ・ヤヒアのモスクと霊廟群が、15〜16世紀に学問と交易の拠点となった都市の輪郭を伝える。",
+      "coordinates": {
+        "latitude": 16.773333,
+        "longitude": -2.999444
+      },
+      "image": "assets/images/mali/approved/scene-1.webp"
+    },
+    {
+      "id": "scene-2",
+      "name": "バンディアガラの断崖",
+      "nameLocal": "Falaise de Bandiagara",
+      "mapLabel": "バンディアガラ",
+      "description": "砂岩の断崖、台地、平原に集落が連なるドゴンの文化的景観。自然地形と住居、穀倉、聖域などが長い時間をかけて結びついてきた。",
+      "coordinates": {
+        "latitude": 14.428208,
+        "longitude": -3.323594
+      },
+      "image": "assets/images/mali/approved/scene-2.webp",
+      "mapOffset": {
+        "x": 2.3,
+        "y": 3
+      }
+    },
+    {
+      "id": "scene-3",
+      "name": "アスキアの墓 / ガオ",
+      "nameLocal": "Tombeau des Askia",
+      "mapLabel": "アスキア墳墓",
+      "description": "ガオに残る高さ17mの土造りのピラミッド状墳墓。1495年にアスキア・モハメドが築いたとされ、ソンガイ帝国とサヘルの土の建築伝統を今に伝える。",
+      "coordinates": {
+        "latitude": 16.2898,
+        "longitude": 0.04456
+      },
+      "image": "assets/images/mali/approved/scene-3.webp"
+    },
+    {
+      "id": "scene-4",
+      "name": "ホンボリ・トンド",
+      "nameLocal": "Hombori Tondo",
+      "mapLabel": "オンボリ・トンド",
+      "description": "サヘルの平原から急に立ち上がる砂岩の山塊。標高約1,155mでマリ最高地点とされ、乾いた平原と岩壁の高度差が国土東部の地形を際立たせる。",
+      "coordinates": {
+        "latitude": 15.257,
+        "longitude": -1.6674
+      },
+      "image": "assets/images/mali/approved/scene-4.webp"
+    },
+    {
+      "id": "scene-5",
+      "name": "セグー / ニジェール川河畔",
+      "nameLocal": "Ségou",
+      "mapLabel": "セグー",
+      "description": "ニジェール川右岸に沿って広がるセグー。17〜19世紀のバンバラ王国の中心地として栄え、現在も川辺の町並みと舟の往来にニジェール流域の生活が見える。",
+      "coordinates": {
+        "latitude": 13.4317,
+        "longitude": -6.2157
+      },
+      "image": "assets/images/mali/approved/scene-5.webp"
+    },
+    {
+      "id": "scene-6",
+      "name": "マギ湖",
+      "nameLocal": "Lac Magui",
+      "mapLabel": "マギ湖",
+      "description": "カイ州のサヘルに広がる恒久的な淡水湿地。集水域から流れ込む水を受け、草本と樹木の湖岸が漁業・農業・放牧と水鳥の生息地を支える、西部マリの水辺景観。",
+      "coordinates": {
+        "latitude": 14.6443,
+        "longitude": -11.0272
+      },
+      "image": "assets/images/mali/approved/scene-6.webp",
+      "labelPosition": "right"
+    },
+    {
+      "id": "scene-7",
+      "name": "デボ湖",
+      "nameLocal": "Lac Débo",
+      "mapLabel": "デボ湖",
+      "description": "ニジェール内陸デルタの季節氾濫で広がる湖。水位に応じて水面と湿地の形が変わり、漁業、放牧、渡り鳥の生息地が同じ氾濫原に重なる。",
+      "coordinates": {
+        "latitude": 15.3132,
+        "longitude": -4.1008
+      },
+      "image": "assets/images/mali/approved/scene-7.webp"
+    },
+    {
+      "id": "scene-8",
+      "name": "シビ / カマンジャンのアーチ",
+      "nameLocal": "Arche de Kamandjan",
+      "mapLabel": "カマンジャンのアーチ",
+      "description": "シビ近郊のマンダン山地に開いた自然の岩窓。周囲の砂岩地形とともに、マリ帝国成立をめぐる口承史と結びつく文化的景観として国の文化遺産に指定されている。",
+      "coordinates": {
+        "latitude": 12.379438,
+        "longitude": -8.360157
+      },
+      "mapOffset": {
+        "x": -3.5,
+        "y": 3
+      },
+      "image": "assets/images/mali/approved/scene-8.webp"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "土壁と木の梁",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "title": "ニジェール川のピローグ",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "砂とサヘルの平原",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "市場の穀物と香辛料",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "バラフォンの響き",
+      "category": "CULTURE"
+    },
+    {
+      "title": "色鮮やかな布",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "牛群の季節移動",
+      "category": "WORK"
+    },
+    {
+      "title": "ミントティーの時間",
+      "category": "FOOD"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "mali-songhai-empires",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "川と交易路がつないだ二つの帝国",
+      "text": "13〜16世紀、西アフリカではマリ帝国からソンガイ帝国へと広域国家が展開した。ニジェール川の湾曲部とサハラ交易の接点にある都市が、金・塩・知識の流れを支えた。",
+      "points": [
+        "ティンブクトゥ、ガオ、ジェンネはそれぞれ異なる役割を持つ都市だった",
+        "現代国境より広い歴史圏として見ると、周辺国との文化の連続性が見えやすい"
+      ],
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "earthen-building-care",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "土の建物は「完成」ではなく、手入れで続く",
+      "text": "ジェンネやガオの建築は日干し煉瓦と泥の塗り直しによって維持される。材料の弱さではなく、地域の気候と共同作業を前提にした更新型の建築として理解すると見え方が変わる。",
+      "points": [
+        "ジェンネでは大モスクを含む多くの建物が土の日干し煉瓦と泥漆喰でできている",
+        "補修そのものが景観を次世代へつなぐ工程になる"
+      ],
+      "sourceKey": "djenne"
+    },
+    {
+      "topicKey": "inner-delta-transhumance",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "水位が変わると、人と牛の動線も変わる",
+      "text": "内陸ニジェール・デルタでは雨季の氾濫と乾季の後退に合わせて漁業、稲作、放牧が組み替わる。YaaralとDegalは、家畜が川と氾濫原を渡る季節移動を核にした文化空間としてUNESCOに登録されている。",
+      "points": [
+        "乾いたサヘルと氾濫原を牛群が季節的に移動する",
+        "祭りの日取りも牧草と川の水位に応じて決まる"
+      ],
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "balafon-practice",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "木琴の音が国境を越えて共有される",
+      "text": "バラフォンに関わる文化実践はマリ、ブルキナファソ、コートジボワール、インドネシアの共同要素として2024年にUNESCO無形文化遺産へ登録された。演奏だけでなく、製作、伝承、社会的な場まで含む文化である。",
+      "points": [
+        "音楽は専門家だけでなく祝い・集会・語りの場に結びつく",
+        "同じ楽器文化が西アフリカの複数国にまたがる"
+      ],
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "manden-charter",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "マンデン憲章は語り継がれる政治の記憶",
+      "text": "クルカン・フガで語られたとされるマンデン憲章は、マリ帝国成立をめぐる口承伝統の一部として2009年にUNESCO無形文化遺産へ登録された。文字史料だけでなく、語りの継承が歴史認識を支える。",
+      "points": [
+        "地域の歴史はグリオなどの語り手によって伝えられてきた",
+        "シビやカンガバの景観には建国伝承と結びつく場所が残る"
+      ],
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "timbuktu-scholarship",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ティンブクトゥは交易都市であり、学問都市でもあった",
+      "text": "15〜16世紀のティンブクトゥは交易だけでなくイスラム学問の拠点として知られた。モスクと教育の場、写本文化が結びつき、サハラを越えた知識のネットワークを形成した。",
+      "points": [
+        "サンコーレなどのモスクは宗教・学問史の核となった",
+        "砂漠の都市を「隊商の中継点」だけで捉えないことが重要"
+      ],
+      "sourceKey": "timbuktu"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "markala-puppets",
+      "categoryEn": "CULTURE",
+      "categoryJa": "文化",
+      "title": "マルカラでは仮面と大型人形がともに登場する",
+      "text": "バンバラ、ボゾ、マルカ、ソモノの共同体に伝わる祭礼では、仮面舞踊、太鼓、歌、人形遣いが一体となる。2014年にUNESCO無形文化遺産へ登録された。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "imzad-tradition",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "北部ではトゥアレグのイムザド文化が続く",
+      "text": "一弦の弓奏楽器イムザドに関する知識と実践は、アルジェリア・マリ・ニジェールのトゥアレグ共同体に共有され、2013年にUNESCO無形文化遺産へ登録された。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "mbolon-instrument",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "M’Bolonは低い響きを持つ伝統楽器",
+      "text": "M’Bolonに結びつく文化実践は2021年に「緊急に保護する必要がある無形文化遺産」に登録された。楽器の製作・演奏・社会的役割までが保護対象となっている。",
+      "icon": "culture",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "sanke-fishing",
+      "categoryEn": "RIVER",
+      "categoryJa": "川",
+      "title": "サンケ池には共同漁の儀礼がある",
+      "text": "サンケ・モンはサンケ池で行われる共同漁の儀礼で、2009年にUNESCOの緊急保護リストへ登録された。水辺の資源利用と共同体の行事が結びつく例である。",
+      "icon": "landscape",
+      "sourceKey": "intangibleHeritage"
+    },
+    {
+      "topicKey": "national-official-languages",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "2023年憲法で国語が公用語になった",
+      "text": "2023年憲法31条は「国語をマリの公用語」と定め、フランス語は作業言語とした。言語制度は旧来の説明から変更されているため、最新憲法で確認する必要がある。",
+      "icon": "culture",
+      "sourceKey": "constitution"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MALI",
+    "title": "マリで食べたいもの",
+    "intro": "米とミレット／ソルガムを軸に、トマト、葉物、オクラ、肉や魚を組み合わせる。地域によって主食とソースの組み合わせが大きく変わる。",
+    "items": [
+      {
+        "id": "to",
+        "name": "トー",
+        "nameLocal": "Tô",
+        "text": "ミレットやソルガムを練って固めた主食を、オクラや葉のソースと合わせる。マリ政府機関も代表料理として挙げ、FAOもミレット文化を伝える料理として紹介する。",
+        "image": "assets/images/mali/approved/food-1-to.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "riz-au-gras",
+        "name": "リ・オ・グラ",
+        "nameLocal": "Riz au gras",
+        "text": "米をトマトベースのソースと肉などで炊き込む料理。マリの食生活調査でも広い地域で食べられており、家庭の大皿料理として定着している。",
+        "image": "assets/images/mali/approved/food-2-riz-au-gras.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fakoye",
+        "name": "ファコイ",
+        "nameLocal": "Fakoi / Fakoye",
+        "text": "乾燥させたファコイの葉を調味に使い、米と合わせるティンブクトゥ地方のソンガイ系料理。葉の深い緑色のソースが米を覆う北部らしい一皿。",
+        "image": "assets/images/mali/approved/food-3-fakoye.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "dibi",
+        "name": "ディビ",
+        "nameLocal": "Dibi",
+        "text": "羊や牛などの肉を炭火で焼くグリル料理。串焼きのbrochettesとともにマリ政府機関が代表的な肉料理として挙げ、都市の食堂や屋台でも見られる。",
+        "image": "assets/images/mali/approved/food-4-dibi.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "現在、マリ全土には日本国外務省の危険レベル4（退避勧告）が出ているため、以下は渡航推奨ではなく、将来安全に旅行できる状況になった場合の国土スケールを理解する目安として示す。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "首都と南西部の文化圏を見る",
+        "text": "将来安全が確認できる状況を前提に、バマコとシビ／マンダン山地など南西部を組み合わせる規模。現時点では具体的な渡航計画を立てない。例：バマコ → シビ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "ニジェール川中流まで広げる",
+        "text": "将来の安全確保を前提に、バマコからセグー、ジェンネ周辺へと地域差を見る規模。距離だけでなく道路・治安・運行状況の確認が不可欠。例：バマコ → セグー → ジェンネ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "北部・東部を別ブロックとして考える",
+        "text": "ティンブクトゥ、ガオ、オンボリなどを含めるなら長距離移動を別ブロックとして考える規模。現状は全土レベル4のため実旅行のモデルではない。例：南部・中部と北部・東部を別ブロックで把握する。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#9ca8a8",
+      "text": "乾季の比較的涼しい時期。南部でも朝晩は過ごしやすくなる一方、北部・砂漠域は昼夜の寒暖差が大きい。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#d0a56d",
+      "text": "一年で最も暑さが強まりやすい時期。内陸部では日中の高温が厳しく、乾いたハルマッタンの影響も受ける。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#8fa78f",
+      "text": "南部から中部で雨季が進み、サヘルの景観が緑を増す。ニジェール川水系では上流の降雨を受けて水位が変化していく。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#a9a57d",
+      "text": "南部では雨季の終盤から乾季への移行期。内陸デルタでは氾濫域の水位が高まり、湖や湿地の広がりが季節で大きく変わる。"
+    }
+  ],
+  "transport": {
+    "title": "国内移動は道路交通が中心。内陸デルタでは舟運も使われる",
+    "text": "主要都市間の移動は道路が軸で、長距離バスや乗合車などの道路交通が中心。ニジェール川と内陸デルタでは、ピナスやピローグなどの舟も地域交通を担う。現在は全土で重大な治安リスクと幹線道路の封鎖・攻撃が報告されているため、ここでは移動手段の構造のみを示し、実際の渡航可否は最新の公的安全情報を優先する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "土の建築と西アフリカの都市史を見たい人",
+      "text": "ジェンネ、ティンブクトゥ、ガオを通して、土という素材が宗教建築、交易都市、帝国史とどう結びついたかを立体的に見たい。"
+    },
+    {
+      "title": "川とサヘルの地理を生活から理解したい人",
+      "text": "ニジェール川、内陸デルタ、セグー、デボ湖を手がかりに、水位の季節変化が漁業、放牧、移動、都市の立地へどう影響するかを知りたい。"
+    },
+    {
+      "title": "音楽・口承・地域文化の厚みを知りたい人",
+      "text": "バラフォン、イムザド、マンデン憲章、仮面と人形などを通して、遺跡だけでは見えない現在の文化継承に関心がある。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / サヘル・サハラ"
+    },
+    {
+      "label": "首都",
+      "value": "バマコ"
+    },
+    {
+      "label": "人口",
+      "value": "約2,520万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,240,192 km²（日本の約3.3倍）"
+    },
+    {
+      "label": "言語",
+      "value": "国民言語が公用語／フランス語は作業言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が多数"
+    },
+    {
+      "label": "通貨",
+      "value": "西アフリカCFAフラン（XOF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "djenne-house-count",
+      "label": "ジェンネの伝統家屋",
+      "value": "約2,000棟",
+      "note": "UNESCOは、ジェンネ旧市街に約2,000棟の伝統家屋が残るとする。都市全体が土の建築景観として続いている規模が分かる。",
+      "icon": "landmark",
+      "interestReason": "一つの記念建築ではなく、町全体に土の住居がまとまって残る密度を具体的に想像できるため。"
+    },
+    {
+      "topicKey": "seven-neighbouring-countries",
+      "label": "接する隣国",
+      "value": "7か国",
+      "note": "アルジェリア、ニジェール、ブルキナファソ、コートジボワール、ギニア、セネガル、モーリタニアの7か国と国境を接する。サハラとサヘル、西アフリカ沿岸圏をつなぐ内陸国として、国境の多さ自体が地理的な特徴になっている。",
+      "icon": "map",
+      "interestReason": "一つの方向に閉じた内陸国ではなく、7方向の隣国と文化・交易・移動圏が重なる国だと直感的に分かるため。"
+    },
+    {
+      "topicKey": "niger-wetland-hectares",
+      "label": "内陸ニジェール湿地",
+      "value": "411万ha超",
+      "note": "UNESCO暫定一覧のニジェール川流域（マルカラ〜デボ湖）は411万ha超。湖、氾濫原、河道、草地が季節的に連動する巨大な内陸湿地である。",
+      "icon": "landscape",
+      "interestReason": "乾燥国という第一印象の中に、広大な水域・氾濫原が同居する国土の振幅を数字で示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "level4-current",
+      "title": "現時点では渡航しない",
+      "text": "日本国外務省は2026年7月更新の安全情報でマリ全土をレベル4とし、目的を問わず渡航中止、滞在者には退避を勧告している。Country Pageの旅情報も現状では計画用に扱わない。"
+    },
+    {
+      "topicKey": "heritage-danger-status",
+      "title": "文化遺産の保全状況も最新情報で確認する",
+      "text": "ジェンネ、ティンブクトゥ、アスキア墳墓は現在も「危機にさらされている世界遺産」リストに掲載される。訪問可能性とは別に、保全状況やアクセス制約の変化を確認する。"
+    },
+    {
+      "topicKey": "language-update-2023",
+      "title": "言語説明は2023年憲法以後の制度を使う",
+      "text": "従来の旅行資料にはフランス語を公用語とする説明が残るが、2023年憲法では国語が公用語、フランス語は作業言語とされた。最新制度を優先する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇸🇳",
+      "countryEn": "SENEGAL",
+      "countryJa": "セネガル",
+      "path": "Bamako → Kayes → Diboli / Kidira → Tambacounda → Dakar",
+      "description": "西へカイを経由し、ディボリ／キディラ国境からセネガルへ入るダカール＝バマコ北部道路回廊。マリと大西洋岸を結ぶ主要な広域軸。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "現在はマリ全土への渡航中止勧告が出ており、陸路で隣国へ出る行動も危険とされる。これは地理・交通回廊の紹介であり、実移動を推奨するものではない。"
+    },
+    {
+      "flag": "🇨🇮",
+      "countryEn": "CÔTE D’IVOIRE",
+      "countryJa": "コートジボワール",
+      "path": "Bamako → Sikasso → Zégoua / Pogo → Korhogo → Abidjan",
+      "description": "シカソからゼグア／ポゴ国境を越え、コートジボワール北部へ抜けるアビジャン＝バマコ回廊。内陸国マリと港湾都市アビジャンを結ぶ主要物流軸。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用・道路状況・治安は変化し得る。現在の安全情報ではマリ国内の陸路移動自体が高リスクのため、実行前提の案内ではない。"
+    },
+    {
+      "flag": "🇬🇳",
+      "countryEn": "GUINEA",
+      "countryJa": "ギニア",
+      "path": "Bamako → Kangaba → Kourémalé → Siguiri → Conakry",
+      "description": "バマコ南西からクレマレ国境を越えてギニア北東部シギリへ入り、コナクリ方面へつなぐ陸路。マンデ文化圏をまたぐ地理的なつながりも見えやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "道路・国境・治安状況は変化し得る。現在はマリ全土への渡航中止勧告を優先し、実際の越境移動は行わない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "burkinafaso",
+      "nameEn": "BURKINA FASO",
+      "nameJa": "ブルキナファソ",
+      "flag": "🇧🇫",
+      "reason": "サヘルの土の建築、バラフォン文化、交易・王国史が連続し、マリの南東側に広がる文化圏を比較できる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "senegal",
+      "nameEn": "SENEGAL",
+      "nameJa": "セネガル",
+      "flag": "🇸🇳",
+      "reason": "マンデ系文化とサヘルから大西洋へ続く交易史を共有し、内陸マリとは異なる西アフリカの都市・食・音楽の展開を見比べられる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "niger",
+      "nameEn": "NIGER",
+      "nameJa": "ニジェール",
+      "flag": "🇳🇪",
+      "reason": "サヘルとサハラ、ソンガイ系の歴史、トゥアレグ文化が国境を越えてつながり、東部・北部マリの地理文化を比較しやすい。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2026-09-29",
+    "japanArea": "2026-07-01",
+    "language": "2023",
+    "religion": "2026-09-29",
+    "currency": "2026-09-29",
+    "safety": "2026-07-21",
+    "worldHeritage": "2026-09-29",
+    "map": "2026-09-29",
+    "sceneCoordinates": "2026-09-29"
+  },
+  "sources": {
+    "population": "World Bank, World Development Indicators: Mali population 25,198,821 in 2025. https://databank.worldbank.org/reports.aspx?country=MLI&source=2",
+    "area": "BCEAO, Mali country presentation: surface area 1,240,192 km² and capital Bamako. https://www.bceao.int/en/etats-membres/mali",
+    "japanArea": "Geospatial Information Authority of Japan: national land area 377,973.68 km² as of 2026-07-01. 1,240,192 / 377,973.68 ≒ 3.28. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "constitution": "Journal Officiel de la République du Mali, Constitution 2023, Articles 30–31: Bamako is capital; national languages are official languages; French is a working language. https://sgg-mali.ml/JO/2023/mali-jo-2023-05-sp-2.pdf",
+    "religion": "API-MALI, Diversité et richesse culturelle: Islam is the majority religion; page checked 2026-09-27. https://apimali.gov.ml/en/diversite-et-richesse-culturelle/",
+    "currency": "BCEAO / UMOA: Mali is a member state using the West African CFA franc (XOF). https://www.bceao.int/",
+    "worldHeritage": "UNESCO World Heritage Centre, Mali State Party: 4 properties—Old Towns of Djenné, Timbuktu, Tomb of Askia, Cliff of Bandiagara. https://whc.unesco.org/en/statesparties/ml",
+    "djenne": "UNESCO World Heritage Centre, Old Towns of Djenné: nearly 2,000 traditional houses; earthen architecture; Djenné component coordinates N13 54 18.96 W4 33 19.34. https://whc.unesco.org/en/list/116 ; https://whc.unesco.org/en/list/116/maps/",
+    "timbuktu": "UNESCO World Heritage Centre, Timbuktu: World Heritage property coordinates N16 46 24 W2 59 58 and historical role. https://whc.unesco.org/en/list/119 ; https://whc.unesco.org/en/list/119/maps/",
+    "bandiagara": "UNESCO World Heritage Centre, Cliff of Bandiagara: property coordinates N14 25 41.55 W3 19 24.94; cliff/plateau/Dogon cultural landscape. https://whc.unesco.org/en/list/516 ; https://whc.unesco.org/en/list/516/maps/",
+    "askia": "UNESCO World Heritage Centre, Tomb of Askia: 17 m pyramidal earthen structure built in 1495; coordinates N16 17 23.28 E0 2 40.416. https://whc.unesco.org/en/list/1139",
+    "hombori": "GeoNames/Wikidata-derived geographical reference for Hombori Tondo: approx. 15.2570,-1.6674 and elevation about 1,153–1,155 m; Mali Embassy geographical references also identify Hombori at 1,155 m as the highest point. https://mapcarta.com/N495422498",
+    "segou": "Getty Thesaurus of Geographic Names: Ségou coordinates 13.4317,-6.2157; historical Bambara kingdom capital and Niger River trade centre. http://vocab.getty.edu/page/tgn/7000470",
+    "lakeDebo": "GeoNames / Getty TGN: Lac Débo coordinates 15.3132,-4.1008. UNESCO Tentative List describes the Markala–Lake Débo Niger basin as over 4,119,500 ha with lakes, floodplains and flooded forests. https://www.geonames.org/advanced-search.html?country=ML ; https://whc.unesco.org/en/tentativelists/6271/",
+    "manden": "UNESCO Tentative List, Sites historiques et paysages culturels du Manden: Arch of Kamandjan at Siby and cultural landscape tied to Mali Empire traditions; Malian Official Journal Decree 2017-0954 classifies the site as national cultural heritage. https://whc.unesco.org/en/tentativelists/6280/ ; https://sgg-mali.ml/JO/2017/mali-jo-2017-51.pdf",
+    "intangibleHeritage": "UNESCO Intangible Cultural Heritage, Mali: listed elements include Yaaral and Degal, Manden Charter, Sanké mon, Imzad, Markala masks and puppets, M’Bolon, and Balafon practices. https://ich.unesco.org/en/state/mali-ML?info=elements-on-the-lists",
+    "food": "API-MALI lists riz au gras, tô, brochettes and dibi as emblematic foods. FAO documents Mali millet dishes including tô and n’gomi; FAO materials identify rice with fakoi as traditional in the Timbuktu region. https://apimali.gov.ml/en/diversite-et-richesse-culturelle/ ; https://www.fao.org/millets-2023/recipe-book/recipe-detail/mamoutou-traor%C3%A9/en ; https://www.fao.org/fileadmin/templates/mountain_partnership/doc/Report_finale_ENG.pdf",
+    "foodSurvey": "Mali INSTAT, ENSAN September 2023 final report: national household preparation frequencies include rice with sauce, tô, and riz au gras, with substantial regional variation. https://bibliostat.instat.ml/",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-29: Timbuktu 16.773333,-2.999444 (UNESCO); Bandiagara 14.428208,-3.323594 (UNESCO); Tomb of Askia 16.2898,0.04456 (UNESCO); Hombori Tondo 15.2570,-1.6674 (geographic reference); Ségou 13.4317,-6.2157 (Getty TGN); Lac Magui 14.6443,-11.0272 (Ramsar RSIS); Lac Débo 15.3132,-4.1008 (GeoNames/Getty); Arch of Kamandjan 12.379438,-8.360157 (inside the officially gazetted Siby site extent); hero Djenné 13.905267,-4.555372 (UNESCO).",
+    "map": "Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; no invented coastlines or borders.",
+    "safety": "Ministry of Foreign Affairs of Japan, Mali safety basics, updated 2026-07-21: all Mali Level 4; do not travel and residents advised to evacuate. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_121.html",
+    "lacMagui": "Ramsar Sites Information Service, Lac Magui (Site 2126): 24,740 ha; updated RIS centre coordinate 14.6443,-11.0272; Kayes Region wetland. https://rsis.ramsar.org/ris/2126",
+    "language": "Journal Officiel de la République du Mali, Constitution 2023, Articles 30–31: Bamako is capital; national languages are official languages; French is a working language. https://sgg-mali.ml/JO/2023/mali-jo-2023-05-sp-2.pdf",
+    "transportModes": "World Bank transport-sector references: road transport is the dominant mode in Mali; inland water transport on the Niger River uses pinnaces and pirogues and remains important for remote Inner Delta communities. https://documents1.worldbank.org/curated/en/886201498737629484/pdf/Mali-PAD-06262017.pdf ; https://documents1.worldbank.org/curated/en/766581468052446600/pdf/39308.pdf",
+    "transportSafety": "UK FCDO Mali travel advice, current 2026-09-26: advises against all travel; overland routes to neighbouring countries are considered too dangerous; major routes have experienced attacks and blockades. https://www.gov.uk/foreign-travel-advice/mali/warnings-and-insurance ; https://www.gov.uk/foreign-travel-advice/mali/safety-and-security",
+    "regionalCorridors": "AfDB/World Bank corridor references: Dakar–Bamako northern road corridor runs via Kidira/Diboli–Kayes–Bamako; Abidjan–Bamako corridor crosses Pogo/Zégoua. https://www.afdb.org/sites/default/files/documents/publications/smart_study_englishversion.pdf ; https://documents1.worldbank.org/curated/en/361201467810855287/pdf/PAD1854-PAD-P156900-OUO-9-IDA-R2016-0157-1-Box396267B.pdf"
+  }
+}
