@@ -18,7 +18,7 @@
     "labelPosition": "right",
     "labelOffset": {
       "x": 10,
-      "y": 10
+      "y": -30
     },
     "mapOffset": {
       "x": 0,
@@ -131,7 +131,7 @@
       "image": "assets/images/rwanda/approved/scene-5.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 5,
+        "x": -5,
         "y": 0
       }
     },
@@ -182,8 +182,8 @@
       "image": "assets/images/rwanda/approved/scene-8.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 6,
-        "y": 8
+        "x": 5,
+        "y": 0
       }
     }
   ],
@@ -202,7 +202,7 @@
     },
     {
       "title": "湖畔の漁とボート",
-      "category": "LIFE"
+      "category": "DAILY_LIFE"
     },
     {
       "title": "茶畑とコーヒーの乾燥棚",
@@ -210,7 +210,7 @@
     },
     {
       "title": "モトタクシーと坂道",
-      "category": "MOBILITY"
+      "category": "MOVEMENT"
     },
     {
       "title": "イニャンボ牛",
@@ -300,31 +300,31 @@
       "sourceKey": "languages"
     },
     {
-      "topicKey": "umuganda-day",
-      "categoryEn": "EVERYDAY",
-      "categoryJa": "日常",
-      "title": "月末土曜はウムガンダの日",
-      "text": "毎月最後の土曜日を中心に地域共同作業が行われる。午前の移動や営業状況が普段と異なることがあるため、旅程に重なる場合は現地で確認したい。",
-      "icon": "people",
-      "sourceKey": "umuganda"
+      "topicKey": "plastic-carry-bags",
+      "categoryEn": "LOCAL TIP",
+      "categoryJa": "現地のコツ",
+      "title": "使い捨てプラスチックには持込・使用規制がある",
+      "text": "レジ袋などのプラスチック製キャリーバッグと多くの使い捨てプラスチックは法律で規制される。旅行の荷造りでは再利用できる袋や容器を選ぶ。",
+      "icon": "leaf",
+      "sourceKey": "plasticRules"
     },
     {
-      "topicKey": "moto-helmet",
+      "topicKey": "moto-insurance",
       "categoryEn": "TRANSPORT",
       "categoryJa": "移動",
-      "title": "坂の街ではモトタクシーが日常の足",
-      "text": "キガリを含む都市部でモトタクシーは一般的。旅行保険がモトタクシー利用を補償しない場合があるため、利用条件を事前に確認する。",
+      "title": "モトタクシー利用は保険条件を先に確認",
+      "text": "都市部ではモトタクシーが一般的だが、Visit Rwandaも旅行保険が補償しない場合があると注意している。利用前に自分の保険条件を確認する。",
       "icon": "road",
       "sourceKey": "gettingAround"
     },
     {
-      "topicKey": "coffee-season",
-      "categoryEn": "FOOD",
-      "categoryJa": "食",
-      "title": "コーヒーの赤い実は主に2〜5月",
-      "text": "キブ湖沿岸などでコーヒー農園や洗浄所を訪ねられる。収穫期には赤いコーヒーチェリーと乾燥棚が、栽培から精製までの流れを見せる。",
-      "icon": "food",
-      "sourceKey": "coffee"
+      "topicKey": "tapgo-buses",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "移動",
+      "title": "キガリの路線バスはTap&Goカード方式",
+      "text": "キガリのバスではスマートカード式のTap&Goが使われる。短距離移動を公共交通で組むなら、現地でカードの購入・チャージ方法を確認する。",
+      "icon": "city",
+      "sourceKey": "gettingAround"
     },
     {
       "topicKey": "highland-weather",
@@ -347,7 +347,6 @@
         "nameLocal": "Isombe",
         "text": "キャッサバの葉を細かく搗き、落花生などと煮込む緑色の煮込み。豆や主食と組み合わせて食べる、ルワンダで広く知られる家庭料理。",
         "image": "assets/images/rwanda/approved/food-1.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -356,7 +355,6 @@
         "nameLocal": "Goat Brochettes",
         "text": "小さく切った山羊肉を串に刺して炭火で焼く料理。バーや食堂でも見かけやすく、焼きたてをシンプルな付け合わせと食べる。",
         "image": "assets/images/rwanda/approved/food-2.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -365,7 +363,6 @@
         "nameLocal": "Grilled Tilapia",
         "text": "キブ湖などの魚を丸ごと焼く料理。香ばしく焼いた魚そのものを主役にし、湖岸の食文化をわかりやすく伝える一皿。",
         "image": "assets/images/rwanda/approved/food-3.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -374,7 +371,6 @@
         "nameLocal": "Ibishyimbo n'ibitoke",
         "text": "やわらかく煮た豆と、甘くなる前の調理用バナナを合わせる日常的な組み合わせ。豆の濃さと青バナナのほくっとした食感で食べる、ルワンダの畑作を映す一皿。",
         "image": "assets/images/rwanda/approved/food-4.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       }
     ]
@@ -391,13 +387,13 @@
         "icon": "city"
       },
       {
-        "duration": "6〜8日",
+        "duration": "5〜8日",
         "title": "西の湖か東のサバンナを加える",
         "text": "北部にキブ湖またはアカゲラを足し、異なる生態系を一つの旅にする。例：キガリ → アカゲラ → ムサンゼ → キブエ → キガリ。",
         "icon": "map"
       },
       {
-        "duration": "10日以上",
+        "duration": "9日以上",
         "title": "ニュングウェまで南西部をつなぐ",
         "text": "北部・キブ湖・ニュングウェを線でつなぎ、必要ならアカゲラを別ブロックにする。例：キガリ → アカゲラ → ムサンゼ → キブエ → ニュングウェ → ニャンザ → キガリ。",
         "icon": "compass"
@@ -476,28 +472,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "population-density",
-      "label": "人口密度",
-      "value": "503人/km²",
-      "note": "2022年国勢調査の全国人口密度。起伏の大きい小国に1,300万人超が暮らし、農地と集落が丘陵を細かく覆う景観につながる。",
-      "icon": "people",
-      "interestReason": "『千の丘』が自然景観だけでなく、高密度な農村景観でもあることを数字で理解できるため。"
+      "topicKey": "canopy-walkway",
+      "label": "樹冠歩道",
+      "value": "160m / 高さ70m",
+      "note": "ニュングウェ国立公園のキャノピー・ウォークは全長160m、谷底から約70m上に架かる。高地林を樹冠の高さから見るための細い吊り橋。",
+      "icon": "landscape",
+      "interestReason": "森を地上から眺めるだけでなく、樹冠と谷の立体的な高さを一つの数字で想像できるため。"
     },
     {
       "topicKey": "altitude-span",
-      "label": "国土の標高差",
+      "label": "標高レンジ",
       "value": "950〜4,507m",
-      "note": "政府案内では最低地点はルシジ川約950m、最高地点はカリシンビ山4,507m。小さな国土の中で3,500m超の高度差がある。",
+      "note": "政府案内では最低地点はルシジ川約950m、最高地点はカリシンビ山4,507m。小さな国の中に3,500mを超える高度差がある。",
       "icon": "landscape",
       "interestReason": "火山林、茶畑、湖岸、東部低地が短距離で切り替わる理由を、一つの標高レンジで示せるため。"
     },
     {
-      "topicKey": "world-heritage-2023",
-      "label": "世界遺産",
-      "value": "2件",
-      "note": "ルワンダの世界遺産は、ニュングウェ国立公園と4つのジェノサイド記念地で構成される資産の2件。いずれも2023年に登録された。",
-      "icon": "history",
-      "interestReason": "自然と20世紀史という異なる二つの層が、国際的に保存される遺産として同時に見えるため。"
+      "topicKey": "northern-caves",
+      "label": "北部の洞窟",
+      "value": "52か所",
+      "note": "Visit Rwandaは北部州に52の洞窟があると案内する。火山地帯の地下にも溶岩活動がつくった地形が連続している。",
+      "icon": "compass",
+      "interestReason": "火山の国という印象を山頂だけでなく地下の地形まで広げ、北部の地質を立体的に想像できるため。"
     }
   ],
   "tips": [
@@ -609,6 +605,9 @@
     "travelAdvice": "Ministry of Foreign Affairs of Japan, Rwanda safety information checked 2026-09-30: Level 3 for the DRC border belt from Rubavu to Nyabihu; Level 2 for parts of Musanze and Rusizi DRC border areas; other areas Level 1. Page currently carries notice dated 2025-02-04. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_131.html",
     "nextRoutes": "Rwanda Directorate General of Immigration and Emigration, Border Services: active entry points include Gatuna on the Uganda border and Rusumo on the Tanzania border; Burundi border posts are listed administratively, but Japanese MOFA reports the Burundi side remained closed as of May 2026, so Burundi is intentionally excluded from representative next routes. https://www.migration.gov.rw/our-services/border-management ; https://www.anzen.mofa.go.jp/m/mbconsideration_127.html",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-30: Musanze -1.47795,29.58105 (GeoNames); Lake Burera -1.434,29.7754 and Lake Ruhondo -1.486271,29.749009 (GeoNames; scene marker midpoint -1.46,29.762); Uwinka Visitor Center -2.47836,29.19989 (OSM/Wikidata); Lake Ihema -1.883333,30.766667 (GeoNames/GNS); Kibuye -2.060278,29.347778 (GeoNames); Gisakura Tea Estate -2.45545,29.08652 (OSM); Gisozi UNESCO component approx -1.93094,30.06039 (UNESCO); King's Palace Museum -2.36022,29.73936 (OSM/GeoNames); Kigali -1.94995,30.05885 (GeoNames).",
-    "map": "Natural Earth 1:10m Admin-0 geometry for RWA, UGA, TZA, BDI and COD, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Bounds chosen to show all Rwanda and immediate surrounding land; no fictional border/coast geometry."
+    "map": "Natural Earth 1:10m Admin-0 geometry for RWA, UGA, TZA, BDI and COD, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Bounds chosen to show all Rwanda and immediate surrounding land; no fictional border/coast geometry.",
+    "canopyWalkway": "Visit Rwanda, Canopy Walkway: Nyungwe suspension bridge is 160m long and 70m high, accessed on a guided trail from the Uwinka area. https://visitrwanda.com/interests/canopy-walkway/",
+    "caves": "Visit Rwanda, Sports & Adventure: Northern Province has 52 caves; Musanze Cave is the best-known visitor cave. https://visitrwanda.com/tourism/interests/sports-adventure/",
+    "plasticRules": "Rwanda Environment Management Authority (REMA), current FAQ/service guidance for Law No. 17/2019: plastic carry bags and numerous single-use plastic items are prohibited except defined exemptions/authorisations. https://www.rema.gov.rw/resources/faqs ; https://www.rema.gov.rw/services/authorization-to-single-use-plastics-and-plastic-carry-bags"
   }
 }
