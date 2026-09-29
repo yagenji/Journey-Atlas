@@ -39,12 +39,12 @@
     },
     "svg": "assets/images/mali/map-atlas-v1.svg",
     "route": null,
-    "source": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated and checked 2026-09-27."
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated 2026-09-27; geometry and projection rechecked 2026-09-29."
   },
   "scenes": [
     {
       "id": "scene-1",
-      "name": "Timbuktu",
+      "name": "トンブクトゥ / ジンガリベリ・モスク",
       "nameLocal": "Tombouctou",
       "mapLabel": "ティンブクトゥ",
       "description": "サハラ南縁の交易都市。ジンガレイベル、サンコーレ、シディ・ヤヒアのモスクと霊廟群が、15〜16世紀に学問と交易の拠点となった都市の輪郭を伝える。",
@@ -56,7 +56,7 @@
     },
     {
       "id": "scene-2",
-      "name": "Cliff of Bandiagara",
+      "name": "バンディアガラの断崖",
       "nameLocal": "Falaise de Bandiagara",
       "mapLabel": "バンディアガラ",
       "description": "砂岩の断崖、台地、平原に集落が連なるドゴンの文化的景観。自然地形と住居、穀倉、聖域などが長い時間をかけて結びついてきた。",
@@ -68,7 +68,7 @@
     },
     {
       "id": "scene-3",
-      "name": "Tomb of Askia",
+      "name": "アスキアの墓 / ガオ",
       "nameLocal": "Tombeau des Askia",
       "mapLabel": "アスキア墳墓",
       "description": "ガオに残る高さ17mの土造りのピラミッド状墳墓。1495年にアスキア・モハメドが築いたとされ、ソンガイ帝国とサヘルの土の建築伝統を今に伝える。",
@@ -80,7 +80,7 @@
     },
     {
       "id": "scene-4",
-      "name": "Hombori Tondo",
+      "name": "ホンボリ・トンド",
       "nameLocal": "Hombori Tondo",
       "mapLabel": "オンボリ・トンド",
       "description": "サヘルの平原から急に立ち上がる砂岩の山塊。標高約1,155mでマリ最高地点とされ、乾いた平原と岩壁の高度差が国土東部の地形を際立たせる。",
@@ -92,7 +92,7 @@
     },
     {
       "id": "scene-5",
-      "name": "Ségou Riverfront",
+      "name": "セグー / ニジェール川河畔",
       "nameLocal": "Ségou",
       "mapLabel": "セグー",
       "description": "ニジェール川右岸に沿って広がるセグー。17〜19世紀のバンバラ王国の中心地として栄え、現在も川辺の町並みと舟の往来にニジェール流域の生活が見える。",
@@ -104,7 +104,7 @@
     },
     {
       "id": "scene-6",
-      "name": "Bamako and the Niger River",
+      "name": "バマコ / ニジェール川",
       "nameLocal": "Bamako",
       "mapLabel": "バマコ",
       "description": "ニジェール川が大きく湾曲する地点に広がる首都。市街地の背後にはマンダン山地が続き、川、橋、丘陵が一つの都市景観をつくる。",
@@ -120,7 +120,7 @@
     },
     {
       "id": "scene-7",
-      "name": "Lake Débo",
+      "name": "デボ湖",
       "nameLocal": "Lac Débo",
       "mapLabel": "デボ湖",
       "description": "ニジェール内陸デルタの季節氾濫で広がる湖。水位に応じて水面と湿地の形が変わり、漁業、放牧、渡り鳥の生息地が同じ氾濫原に重なる。",
@@ -132,7 +132,7 @@
     },
     {
       "id": "scene-8",
-      "name": "Arch of Kamandjan",
+      "name": "シビ / カマンジャンのアーチ",
       "nameLocal": "Arche de Kamandjan",
       "mapLabel": "カマンジャンのアーチ",
       "description": "シビ近郊のマンダン山地に開いた自然の岩窓。周囲の砂岩地形とともに、マリ帝国成立をめぐる口承史と結びつく文化的景観として国の文化遺産に指定されている。",
@@ -184,69 +184,75 @@
   "atlasExtras": [
     {
       "topicKey": "mali-songhai-empires",
-      "themeEn": "EMPIRES",
-      "themeJa": "帝国",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
       "title": "川と交易路がつないだ二つの帝国",
       "text": "13〜16世紀、西アフリカではマリ帝国からソンガイ帝国へと広域国家が展開した。ニジェール川の湾曲部とサハラ交易の接点にある都市が、金・塩・知識の流れを支えた。",
       "points": [
         "ティンブクトゥ、ガオ、ジェンネはそれぞれ異なる役割を持つ都市だった",
         "現代国境より広い歴史圏として見ると、周辺国との文化の連続性が見えやすい"
-      ]
+      ],
+      "sourceKey": "worldHeritage"
     },
     {
       "topicKey": "earthen-building-care",
-      "themeEn": "EARTH ARCHITECTURE",
-      "themeJa": "土の建築",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
       "title": "土の建物は「完成」ではなく、手入れで続く",
       "text": "ジェンネやガオの建築は日干し煉瓦と泥の塗り直しによって維持される。材料の弱さではなく、地域の気候と共同作業を前提にした更新型の建築として理解すると見え方が変わる。",
       "points": [
         "ジェンネでは大モスクを含む多くの建物が土の日干し煉瓦と泥漆喰でできている",
         "補修そのものが景観を次世代へつなぐ工程になる"
-      ]
+      ],
+      "sourceKey": "djenne"
     },
     {
       "topicKey": "inner-delta-transhumance",
-      "themeEn": "RIVER LIFE",
-      "themeJa": "川と放牧",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
       "title": "水位が変わると、人と牛の動線も変わる",
       "text": "内陸ニジェール・デルタでは雨季の氾濫と乾季の後退に合わせて漁業、稲作、放牧が組み替わる。YaaralとDegalは、家畜が川と氾濫原を渡る季節移動を核にした文化空間としてUNESCOに登録されている。",
       "points": [
         "乾いたサヘルと氾濫原を牛群が季節的に移動する",
         "祭りの日取りも牧草と川の水位に応じて決まる"
-      ]
+      ],
+      "sourceKey": "intangibleHeritage"
     },
     {
       "topicKey": "balafon-practice",
-      "themeEn": "SOUND",
-      "themeJa": "音",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
       "title": "木琴の音が国境を越えて共有される",
       "text": "バラフォンに関わる文化実践はマリ、ブルキナファソ、コートジボワール、インドネシアの共同要素として2024年にUNESCO無形文化遺産へ登録された。演奏だけでなく、製作、伝承、社会的な場まで含む文化である。",
       "points": [
         "音楽は専門家だけでなく祝い・集会・語りの場に結びつく",
         "同じ楽器文化が西アフリカの複数国にまたがる"
-      ]
+      ],
+      "sourceKey": "intangibleHeritage"
     },
     {
       "topicKey": "manden-charter",
-      "themeEn": "ORAL MEMORY",
-      "themeJa": "口承の記憶",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
       "title": "マンデン憲章は語り継がれる政治の記憶",
       "text": "クルカン・フガで語られたとされるマンデン憲章は、マリ帝国成立をめぐる口承伝統の一部として2009年にUNESCO無形文化遺産へ登録された。文字史料だけでなく、語りの継承が歴史認識を支える。",
       "points": [
         "地域の歴史はグリオなどの語り手によって伝えられてきた",
         "シビやカンガバの景観には建国伝承と結びつく場所が残る"
-      ]
+      ],
+      "sourceKey": "intangibleHeritage"
     },
     {
       "topicKey": "timbuktu-scholarship",
-      "themeEn": "KNOWLEDGE",
-      "themeJa": "学問",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
       "title": "ティンブクトゥは交易都市であり、学問都市でもあった",
       "text": "15〜16世紀のティンブクトゥは交易だけでなくイスラム学問の拠点として知られた。モスクと教育の場、写本文化が結びつき、サハラを越えた知識のネットワークを形成した。",
       "points": [
         "サンコーレなどのモスクは宗教・学問史の核となった",
         "砂漠の都市を「隊商の中継点」だけで捉えないことが重要"
-      ]
+      ],
+      "sourceKey": "timbuktu"
     }
   ],
   "travelTrivia": [
@@ -307,7 +313,6 @@
         "nameLocal": "Tô",
         "text": "ミレットやソルガムを練って固めた主食を、オクラや葉のソースと合わせる。マリ政府機関も代表料理として挙げ、FAOもミレット文化を伝える料理として紹介する。",
         "image": "assets/images/mali/approved/food-1-to.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -316,7 +321,6 @@
         "nameLocal": "Riz au gras",
         "text": "米をトマトベースのソースと肉などで炊き込む料理。マリの食生活調査でも広い地域で食べられており、家庭の大皿料理として定着している。",
         "image": "assets/images/mali/approved/food-2-riz-au-gras.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -325,7 +329,6 @@
         "nameLocal": "Fakoi / Fakoye",
         "text": "乾燥させたファコイの葉を調味に使い、米と合わせるティンブクトゥ地方のソンガイ系料理。葉の深い緑色のソースが米を覆う北部らしい一皿。",
         "image": "assets/images/mali/approved/food-3-fakoye.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       },
       {
@@ -334,7 +337,6 @@
         "nameLocal": "Dibi",
         "text": "羊や牛などの肉を炭火で焼くグリル料理。串焼きのbrochettesとともにマリ政府機関が代表的な肉料理として挙げ、都市の食堂や屋台でも見られる。",
         "image": "assets/images/mali/approved/food-4-dibi.webp",
-        "imageState": "PENDING",
         "imageFraming": "SOURCE_ASPECT"
       }
     ]
@@ -423,7 +425,7 @@
     },
     {
       "label": "言語",
-      "value": "国語が公用語／フランス語は作業言語"
+      "value": "国民言語が公用語／フランス語は作業言語"
     },
     {
       "label": "主な宗教",
@@ -480,7 +482,7 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "slug": "burkina-faso",
+      "slug": "burkinafaso",
       "nameEn": "BURKINA FASO",
       "nameJa": "ブルキナファソ",
       "flag": "🇧🇫",
@@ -504,13 +506,18 @@
       "affinityType": "HISTORY"
     }
   ],
-  "updatedAt": "2026-09-27",
-  "sourcesVerifiedAt": "2026-09-27",
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
   "sourceDates": {
     "population": "2025",
+    "area": "2026-09-29",
     "japanArea": "2026-07-01",
-    "security": "2026-07-21",
-    "constitution": "2023"
+    "language": "2023",
+    "religion": "2026-09-29",
+    "currency": "2026-09-29",
+    "safety": "2026-07-21",
+    "worldHeritage": "2026-09-29",
+    "map": "2026-09-29"
   },
   "sources": {
     "population": "World Bank, World Development Indicators: Mali population 25,198,821 in 2025. https://databank.worldbank.org/reports.aspx?country=MLI&source=2",
@@ -531,8 +538,8 @@
     "intangibleHeritage": "UNESCO Intangible Cultural Heritage, Mali: listed elements include Yaaral and Degal, Manden Charter, Sanké mon, Imzad, Markala masks and puppets, M’Bolon, and Balafon practices. https://ich.unesco.org/en/state/mali-ML?info=elements-on-the-lists",
     "food": "API-MALI lists riz au gras, tô, brochettes and dibi as emblematic foods. FAO documents Mali millet dishes including tô and n’gomi; FAO materials identify rice with fakoi as traditional in the Timbuktu region. https://apimali.gov.ml/en/diversite-et-richesse-culturelle/ ; https://www.fao.org/millets-2023/recipe-book/recipe-detail/mamoutou-traor%C3%A9/en ; https://www.fao.org/fileadmin/templates/mountain_partnership/doc/Report_finale_ENG.pdf",
     "foodSurvey": "Mali INSTAT, ENSAN September 2023 final report: national household preparation frequencies include rice with sauce, tô, and riz au gras, with substantial regional variation. https://bibliostat.instat.ml/",
-    "security": "Ministry of Foreign Affairs of Japan, Mali safety basics, updated 2026-07-21: all Mali Level 4; do not travel and residents advised to evacuate. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_121.html",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-27: Timbuktu 16.773333,-2.999444 (UNESCO); Bandiagara 14.428208,-3.323594 (UNESCO); Tomb of Askia 16.2898,0.04456 (UNESCO); Hombori Tondo 15.2570,-1.6674 (GeoNames/OSM); Ségou 13.4317,-6.2157 (Getty TGN); Bamako 12.6392,-8.0029; Lac Débo 15.3132,-4.1008 (GeoNames/Getty); Arch of Kamandjan 12.379438,-8.360157 (direct geolocated landmark record, inside the Malian Official Journal classified-site extent); hero Djenné 13.905267,-4.555372 (UNESCO).",
-    "map": "Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; no invented coastlines or borders."
+    "map": "Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; no invented coastlines or borders.",
+    "safety": "Ministry of Foreign Affairs of Japan, Mali safety basics, updated 2026-07-21: all Mali Level 4; do not travel and residents advised to evacuate. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_121.html"
   }
 }
