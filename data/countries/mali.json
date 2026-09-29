@@ -39,7 +39,7 @@
     },
     "svg": "assets/images/mali/map-atlas-v1.svg",
     "route": null,
-    "source": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated 2026-09-27; geometry and projection rechecked 2026-09-29."
+    "source": "Target and direct-neighbour geometry: Natural Earth / CountryGeoJSONCollection MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84. Additional visible land context within the map frame: MAR/SAH/GHA/TGO/BEN/SLE from the same source family. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; land/sea context corrected 2026-09-29."
   },
   "scenes": [
     {
@@ -390,8 +390,9 @@
     }
   ],
   "transport": {
-    "title": "現在は具体的な国内移動計画を立てない",
-    "text": "2026年9月時点、日本国外務省はマリ全土を危険レベル4としており、目的を問わず渡航中止と退避を勧告している。道路・都市間移動の実用情報より安全情報を優先し、状況が変わった場合も政府の危険情報と現地の運行状況を再確認する。"
+    "title": "国内移動は道路交通が中心。内陸デルタでは舟運も使われる",
+    "text": "主要都市間の移動は道路が軸で、長距離バスや乗合車などの道路交通が中心。ニジェール川と内陸デルタでは、ピナスやピローグなどの舟も地域交通を担う。現在は全土で重大な治安リスクと幹線道路の封鎖・攻撃が報告されているため、ここでは移動手段の構造のみを示し、実際の渡航可否は最新の公的安全情報を優先する。",
+    "icon": "road"
   },
   "personas": [
     {
@@ -447,12 +448,12 @@
       "interestReason": "一つの記念建築ではなく、町全体に土の住居がまとまって残る密度を具体的に想像できるため。"
     },
     {
-      "topicKey": "hombori-peak-height",
-      "label": "最高地点オンボリ",
-      "value": "約1,155m",
-      "note": "オンボリの山塊は標高約1,155m。平坦なサヘルの中から岩壁が立ち上がる、東部マリの地形差を示す数字である。",
-      "icon": "landscape",
-      "interestReason": "砂漠・サヘルの平坦な印象だけでは見落とす、マリ国内の垂直方向の地形変化を一目で理解できるため。"
+      "topicKey": "seven-neighbouring-countries",
+      "label": "接する隣国",
+      "value": "7か国",
+      "note": "アルジェリア、ニジェール、ブルキナファソ、コートジボワール、ギニア、セネガル、モーリタニアの7か国と国境を接する。サハラとサヘル、西アフリカ沿岸圏をつなぐ内陸国として、国境の多さ自体が地理的な特徴になっている。",
+      "icon": "map",
+      "interestReason": "一つの方向に閉じた内陸国ではなく、7方向の隣国と文化・交易・移動圏が重なる国だと直感的に分かるため。"
     },
     {
       "topicKey": "niger-wetland-hectares",
@@ -480,7 +481,38 @@
       "text": "従来の旅行資料にはフランス語を公用語とする説明が残るが、2023年憲法では国語が公用語、フランス語は作業言語とされた。最新制度を優先する。"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "flag": "🇸🇳",
+      "countryEn": "SENEGAL",
+      "countryJa": "セネガル",
+      "path": "Bamako → Kayes → Diboli / Kidira → Tambacounda → Dakar",
+      "description": "西へカイを経由し、ディボリ／キディラ国境からセネガルへ入るダカール＝バマコ北部道路回廊。マリと大西洋岸を結ぶ主要な広域軸。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "現在はマリ全土への渡航中止勧告が出ており、陸路で隣国へ出る行動も危険とされる。これは地理・交通回廊の紹介であり、実移動を推奨するものではない。"
+    },
+    {
+      "flag": "🇨🇮",
+      "countryEn": "CÔTE D’IVOIRE",
+      "countryJa": "コートジボワール",
+      "path": "Bamako → Sikasso → Zégoua / Pogo → Korhogo → Abidjan",
+      "description": "シカソからゼグア／ポゴ国境を越え、コートジボワール北部へ抜けるアビジャン＝バマコ回廊。内陸国マリと港湾都市アビジャンを結ぶ主要物流軸。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用・道路状況・治安は変化し得る。現在の安全情報ではマリ国内の陸路移動自体が高リスクのため、実行前提の案内ではない。"
+    },
+    {
+      "flag": "🇬🇳",
+      "countryEn": "GUINEA",
+      "countryJa": "ギニア",
+      "path": "Bamako → Kangaba → Kourémalé → Siguiri → Conakry",
+      "description": "バマコ南西からクレマレ国境を越えてギニア北東部シギリへ入り、コナクリ方面へつなぐ陸路。マンデ文化圏をまたぐ地理的なつながりも見えやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "道路・国境・治安状況は変化し得る。現在はマリ全土への渡航中止勧告を優先し、実際の越境移動は行わない。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "burkinafaso",
@@ -544,6 +576,9 @@
     "map": "Natural Earth 1:10m Admin-0 MLI/MRT/DZA/NER/BFA/CIV/GIN/SEN, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; no invented coastlines or borders.",
     "safety": "Ministry of Foreign Affairs of Japan, Mali safety basics, updated 2026-07-21: all Mali Level 4; do not travel and residents advised to evacuate. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_121.html",
     "lacMagui": "Ramsar Sites Information Service, Lac Magui (Site 2126): 24,740 ha; updated RIS centre coordinate 14.6443,-11.0272; Kayes Region wetland. https://rsis.ramsar.org/ris/2126",
-    "language": "Journal Officiel de la République du Mali, Constitution 2023, Articles 30–31: Bamako is capital; national languages are official languages; French is a working language. https://sgg-mali.ml/JO/2023/mali-jo-2023-05-sp-2.pdf"
+    "language": "Journal Officiel de la République du Mali, Constitution 2023, Articles 30–31: Bamako is capital; national languages are official languages; French is a working language. https://sgg-mali.ml/JO/2023/mali-jo-2023-05-sp-2.pdf",
+    "transportModes": "World Bank transport-sector references: road transport is the dominant mode in Mali; inland water transport on the Niger River uses pinnaces and pirogues and remains important for remote Inner Delta communities. https://documents1.worldbank.org/curated/en/886201498737629484/pdf/Mali-PAD-06262017.pdf ; https://documents1.worldbank.org/curated/en/766581468052446600/pdf/39308.pdf",
+    "transportSafety": "UK FCDO Mali travel advice, current 2026-09-26: advises against all travel; overland routes to neighbouring countries are considered too dangerous; major routes have experienced attacks and blockades. https://www.gov.uk/foreign-travel-advice/mali/warnings-and-insurance ; https://www.gov.uk/foreign-travel-advice/mali/safety-and-security",
+    "regionalCorridors": "AfDB/World Bank corridor references: Dakar–Bamako northern road corridor runs via Kidira/Diboli–Kayes–Bamako; Abidjan–Bamako corridor crosses Pogo/Zégoua. https://www.afdb.org/sites/default/files/documents/publications/smart_study_englishversion.pdf ; https://documents1.worldbank.org/curated/en/361201467810855287/pdf/PAD1854-PAD-P156900-OUO-9-IDA-R2016-0157-1-Box396267B.pdf"
   }
 }
