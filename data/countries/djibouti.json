@@ -1,0 +1,636 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "djibouti",
+  "nameEn": "DJIBOUTI",
+  "nameJa": "ジブチ",
+  "region": "EAST AFRICA / 12°N",
+  "seo": {
+    "description": "アッサル湖の塩原、アッベ湖の石灰岩煙突、リフト帯の溶岩原、高地林、マングローブ、港町まで。海面下の低地と紅海沿岸が凝縮したジブチを8つの景色と食文化からたどる。"
+  },
+  "capital": {
+    "nameEn": "Djibouti",
+    "nameJa": "ジブチ",
+    "coordinates": {
+      "latitude": 11.5890147,
+      "longitude": 43.1450272
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -3,
+      "y": -2
+    },
+    "mapOffset": {
+      "x": -1.5,
+      "y": -1.5
+    }
+  },
+  "hero": {
+    "lead": "白い塩、黒い溶岩、青緑の水面。海面下へ沈む大地に、地球の裂け目が見える。",
+    "image": "assets/images/djibouti/approved/hero-lake-assal.png",
+    "location": "Lake Assal",
+    "coordinates": {
+      "latitude": 11.664444,
+      "longitude": 42.401389
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 12.82,
+      "south": 10.78,
+      "west": 41.58,
+      "east": 43.62
+    },
+    "svg": "assets/images/djibouti/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Target Djibouti with immediate Eritrea, Ethiopia and Somaliland context polygons intersecting the viewport. Flat JOURNEY ATLAS palette: sea #e4eceb, context land #e4e0ce, target #d4cc9b; context outlines #b6bbaf at 1.0."
+  },
+  "scenes": [
+    {
+      "id": "lake-abbe",
+      "name": "アッベ湖",
+      "nameLocal": "Lac Abbé",
+      "mapLabel": "Lake Abbé",
+      "description": "エチオピア国境近くの低地に、温泉活動と炭酸塩の堆積で形成された巨大な石灰岩煙突が立ち並ぶ。乾いた平原と蒸気孔がつくる、ジブチ南西部を代表する地熱景観。",
+      "coordinates": {
+        "latitude": 11.22147,
+        "longitude": 41.87139
+      },
+      "image": "assets/images/djibouti/approved/scene-01-lake-abbe.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.4,
+        "y": -0.4
+      }
+    },
+    {
+      "id": "ardoukoba",
+      "name": "アルドゥコバ火山",
+      "nameLocal": "Ardoukôba",
+      "mapLabel": "Ardoukôba",
+      "description": "アッサル湖とグベットの間に延びるリフト帯の火山。1978年の噴火でできた新しい溶岩原と割れ目が残り、地殻が引き裂かれる過程を地表で追える。",
+      "coordinates": {
+        "latitude": 11.59972,
+        "longitude": 42.48306
+      },
+      "image": "assets/images/djibouti/approved/scene-02-ardoukoba.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "day-forest",
+      "name": "デイ森林国立公園",
+      "nameLocal": "Forêt du Day",
+      "mapLabel": "Day Forest",
+      "description": "乾燥国の高地に残るジブチ唯一の原生林の残存域。ゴダ山地の標高差が冷涼な環境を生み、ジュニパーを含む植生が低地の岩礫地とは対照的な景観をつくる。",
+      "coordinates": {
+        "latitude": 11.8,
+        "longitude": 42.683333
+      },
+      "image": "assets/images/djibouti/approved/scene-03-day-forest.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.6,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "grand-bara",
+      "name": "グラン・バラ",
+      "nameLocal": "Grand Bara",
+      "mapLabel": "Grand Bara",
+      "description": "南部に広がる平坦な乾燥盆地。白っぽい土と砂礫が地平線まで続き、雨の少ない季節には風と蜃気楼が輪郭を変える。道路が一直線に横切る広大な開放景観。",
+      "coordinates": {
+        "latitude": 11.24389,
+        "longitude": 42.60167
+      },
+      "image": "assets/images/djibouti/approved/scene-04-grand-bara.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.6,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "sables-blancs",
+      "name": "サーブル・ブラン",
+      "nameLocal": "Les Sables Blancs",
+      "mapLabel": "Sables Blancs",
+      "description": "タジュラ近郊、タジュラ湾に面する白砂の海岸。乾いた山地の色と透明度の高い海が接し、内陸の火山・塩湖景観とは異なる紅海側の表情を見せる。",
+      "coordinates": {
+        "latitude": 11.77897,
+        "longitude": 42.92403
+      },
+      "image": "assets/images/djibouti/approved/scene-05-sables-blancs.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.8,
+        "y": 1.6
+      }
+    },
+    {
+      "id": "godoria-mangrove",
+      "name": "ゴドリア・マングローブ",
+      "nameLocal": "Mangrove de Godoria",
+      "mapLabel": "Godoria",
+      "description": "オボック地方北部の入り江に広がる、国内最大級のマングローブ。細い水路と潮間帯の林が乾燥した海岸線の中に濃い緑をつくり、海からたどる景観として際立つ。",
+      "coordinates": {
+        "latitude": 12.15,
+        "longitude": 43.4
+      },
+      "image": "assets/images/djibouti/approved/scene-06-godoria.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "djibouti-historic-center",
+      "name": "ジブチ旧市街",
+      "nameLocal": "Historic Centre of Djibouti City",
+      "mapLabel": "Djibouti City",
+      "description": "港を起点に形成された首都の歴史地区。格子状の街路、イエメン系の建築要素、旧行政建築や商店が重なり、アフリカ・アラビア・インド洋交易の接点だった都市の層が残る。",
+      "coordinates": {
+        "latitude": 11.5890147,
+        "longitude": 43.1450272
+      },
+      "image": "assets/images/djibouti/approved/scene-07-djibouti-city.png",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.8,
+        "y": 3.2
+      }
+    },
+    {
+      "id": "obock",
+      "name": "オボック",
+      "nameLocal": "Obock",
+      "mapLabel": "Obock",
+      "description": "タジュラ湾の北東岸にある古い港町。乾いた山地が海へ落ち込み、低層の市街と青い湾が向き合う。北部海岸とバブ・エル・マンデブ方面へ旅を伸ばす拠点でもある。",
+      "coordinates": {
+        "latitude": 11.966927,
+        "longitude": 43.288347
+      },
+      "image": "assets/images/djibouti/approved/scene-08-obock.png",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.8,
+        "y": -0.5
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "塩原と溶岩の境目を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "石灰岩の煙突群を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "リフト帯の溶岩原を見る",
+      "category": "NATURE",
+      "icon": "culture"
+    },
+    {
+      "title": "高地の森へ入る",
+      "category": "NATURE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "乾いた盆地を横断する",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "白砂の海岸で海を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "マングローブを水路から見る",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "港町の市場と街路を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "road"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "ardoukoba-rift-event",
+      "themeEn": "RIFT / VOLCANO",
+      "themeJa": "リフト / 火山",
+      "title": "1978年、地表でリフトが開いた",
+      "text": "アッサル湖とグベットの間では1978年にアルドゥコバが噴火し、長い割れ目と新しい溶岩原が形成された。観光地の奇景ではなく、アファール低地で地殻が引き伸ばされる現場そのものだ。",
+      "points": [
+        "1978年の噴火",
+        "アッサル湖—グベット間のリフト",
+        "新しい玄武岩質溶岩原"
+      ],
+      "sourceKey": "tourismGeology"
+    },
+    {
+      "topicKey": "moucha-maskali-reef-uplift",
+      "themeEn": "REEF / ISLAND",
+      "themeJa": "礁 / 島",
+      "title": "島は隆起したサンゴ礁の上にある",
+      "text": "タジュラ湾口のムシャ島・マスカリ島は、更新世後期に形成されたサンゴ礁が隆起して海面上に現れた島々。乾燥した陸上景観と、サンゴ・マングローブを抱える海中景観が接している。",
+      "points": [
+        "隆起したサンゴ礁",
+        "湾口の小島群",
+        "マングローブと浅海生態系"
+      ],
+      "sourceKey": "unescoMoucha"
+    },
+    {
+      "topicKey": "djibouti-port-city-urban-grid",
+      "themeEn": "PORT / CITY",
+      "themeJa": "港 / 都市",
+      "title": "港と鉄道が首都の格子をつくった",
+      "text": "現在のジブチ市中心部は19世紀末に港湾機能と鉄道建設を背景に成長した。格子状街路、旧行政建築、イエメン系商人の建築が、紅海と内陸を結ぶ港町の成立過程を伝える。",
+      "points": [
+        "19世紀末の都市形成",
+        "格子状の街路",
+        "港と鉄道の結節"
+      ],
+      "sourceKey": "unescoDjiboutiCity"
+    },
+    {
+      "topicKey": "obock-mangrove-coast",
+      "themeEn": "COAST / MANGROVE",
+      "themeJa": "海岸 / マングローブ",
+      "title": "乾いた海岸に、潮の森が点在する",
+      "text": "オボック地方の北岸にはゴドリア、ホル・アンガル、ラス・シヤンなどのマングローブが点在する。降水の少ない国で、海水と潮汐がつくる緑の帯が海岸を支える。",
+      "points": [
+        "北部海岸のマングローブ",
+        "潮汐水路",
+        "乾燥地と海の境界"
+      ],
+      "sourceKey": "unescoObock"
+    },
+    {
+      "topicKey": "afar-somali-cultural-crossroads",
+      "themeEn": "PEOPLE / CROSSROADS",
+      "themeJa": "人びと / 交差点",
+      "title": "アファールとソマリの生活圏が重なる",
+      "text": "ジブチはアファールとソマリ系イッサを中心に複数の文化圏が接する。公用語のアラビア語・フランス語に加え、ソマリ語とアファル語が日常の風景をつくる。",
+      "points": [
+        "アファール文化圏",
+        "ソマリ系イッサ文化圏",
+        "アラビアとアフリカの接点"
+      ],
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "salt-caravan-highland-link",
+      "themeEn": "SALT / TRADE",
+      "themeJa": "塩 / 交易",
+      "title": "塩は湖から高原へ運ばれてきた",
+      "text": "アッサル湖では塩の採取が長く行われ、塩は内陸のエチオピア高原へ運ばれてきた。海面下の塩湖は、地形の名所であると同時に人と物が動く交易景観でもある。",
+      "points": [
+        "塩の採取",
+        "内陸高原との交易",
+        "湖岸の労働景観"
+      ],
+      "sourceKey": "tourismAssal"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-1977",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "独立日は1977年6月27日",
+      "text": "フランス統治下のアファール・イッサ地域は1977年6月27日に独立し、ジブチ共和国となった。",
+      "icon": "history",
+      "sourceKey": "independence"
+    },
+    {
+      "topicKey": "constitution-state-religion",
+      "categoryEn": "FAITH",
+      "categoryJa": "宗教",
+      "title": "憲法はイスラムを国教と定める",
+      "text": "ジブチ憲法第1条はイスラムを国教と定める一方、すべての信仰を尊重すると明記している。",
+      "icon": "culture",
+      "sourceKey": "constitution"
+    },
+    {
+      "topicKey": "unesco-tentative-ten",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "遺産",
+      "title": "暫定一覧には10件",
+      "text": "ユネスコ世界遺産の登録物件はまだないが、ジブチは自然・文化景観10件を暫定一覧に掲載している。",
+      "icon": "landmark",
+      "sourceKey": "unescoDjibouti"
+    },
+    {
+      "topicKey": "whale-shark-season",
+      "categoryEn": "SEA",
+      "categoryJa": "海",
+      "title": "ジンベエザメの季節がある",
+      "text": "タジュラ湾では概ね11月から2月にジンベエザメとのシュノーケリングが紹介されており、海の季節性が旅の目的を変える。",
+      "icon": "wildlife",
+      "sourceKey": "tourismWhaleShark"
+    },
+    {
+      "topicKey": "old-railway-station-1900",
+      "categoryEn": "TRANSPORT",
+      "categoryJa": "交通",
+      "title": "旧駅舎は1900年に開業",
+      "text": "ジブチ市の旧駅舎はエチオピアへ向かう鉄道の初期を伝える建築で、港と内陸を結ぶ都市発展の象徴になった。",
+      "icon": "road",
+      "sourceKey": "unescoDjiboutiCity"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF DJIBOUTI",
+    "title": "ジブチで食べたいもの",
+    "intro": "ソマリ、アファール、アラビア半島の食文化が交わる食卓。香辛料を利かせた米料理、肉のスープ、揚げ物、発酵生地まで、乾燥地と港町の交流が味に表れる。",
+    "items": [
+      {
+        "id": "iskudhexkaris",
+        "name": "イスクデヘカリス",
+        "nameLocal": "Iskudhexkaris",
+        "text": "肉、野菜、香辛料を米と炊き込む代表的な一皿。牛肉や鶏肉を使い、青唐辛子の辛いソースを添えることも多い。",
+        "image": "assets/images/djibouti/approved/food-1-iskudhexkaris.png",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fahfah",
+        "name": "ファファ",
+        "nameLocal": "Fahfah",
+        "text": "ヤギや羊、ラクダなどの肉を野菜と煮込み、コリアンダーを利かせる香り高いスープ。暑い土地の日常食として親しまれる。",
+        "image": "assets/images/djibouti/approved/food-2-fahfah.png",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "samboussa",
+        "name": "サンブーサ",
+        "nameLocal": "Samboussa",
+        "text": "香辛料を利かせた肉や野菜を薄い皮で包んで揚げる軽食。ラマダンの夕方には街角でも多く見られる。",
+        "image": "assets/images/djibouti/approved/food-3-samboussa.png",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "lahoh",
+        "name": "ラホー",
+        "nameLocal": "Lahoh / Canjeero",
+        "text": "発酵させた生地を片面で焼く、薄く柔らかなパン。表面の細かな穴に蜂蜜やギー、スープを含ませて朝食などで食べる。",
+        "image": "assets/images/djibouti/approved/food-4-lahoh.png",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は小さいが、主要景観は乾燥地・高地・海岸へ分散する。都市外は四輪駆動車や現地手配が前提になる場所も多いため、距離より道路条件と暑さを見て組み立てる。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "首都と西側の地形を見る",
+        "text": "首都を基点に、アッサル湖とリフト帯へ足を伸ばす。例：ジブチ市 → グベット周辺 → アッサル湖 → ジブチ市。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "湾の北岸まで広げる",
+        "text": "塩湖と火山地形に、タジュラ湾北岸の海と高地を組み合わせる。例：ジブチ市 → アッサル湖 → タジュラ → デイ森林 → ジブチ市。",
+        "icon": "map"
+      },
+      {
+        "duration": "6日以上",
+        "title": "南西部と北岸をつなぐ",
+        "text": "アッベ湖まで南西へ進み、内陸の乾燥地と北岸の海岸景観を一つの旅で比較する。例：ジブチ市 → アッベ湖 → グラン・バラ → アッサル湖 → タジュラ → オボック → ジブチ市。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#8fa5a8",
+      "text": "年間では比較的暑さが和らぐ時期。海ではジンベエザメ観察が紹介される季節と重なり、内陸移動も組みやすい。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#b6aa8b",
+      "text": "気温が上がり始める移行期。沿岸と内陸で体感差があり、日中の行動量を抑えつつ水分と日差し対策を優先したい。"
+    },
+    {
+      "months": "5〜9月",
+      "color": "#c3a47c",
+      "text": "強い暑さが旅程を左右する時期。塩湖・砂礫地・低地では特に熱負荷が大きく、早朝移動と十分な飲料水が重要。"
+    },
+    {
+      "months": "10月",
+      "color": "#a99f85",
+      "text": "暑季から比較的穏やかな季節へ移る時期。海・内陸とも条件が切り替わるため、現地の気温と道路状況を直前確認する。"
+    }
+  ],
+  "transport": {
+    "title": "首都を基点に道路で放射状へ、北岸は海路も使う",
+    "text": "主要景観はジブチ市から西・南西・北へ分散する。舗装幹線から外れる湖岸や地熱地帯では四輪駆動車と現地ガイドが実用的。タジュラ・オボック方面は道路に加え海上交通も選択肢になる。",
+    "icon": "traveler"
+  },
+  "personas": [
+    {
+      "title": "地球の裂け目を見たい人",
+      "text": "塩湖、溶岩原、断層、地熱地帯を短い移動圏で比較し、地殻変動を景色として体感したい人に。",
+      "icon": "landscape"
+    },
+    {
+      "title": "砂漠と海を同時に旅したい人",
+      "text": "乾いた盆地から白砂、マングローブ、タジュラ湾まで、極端に異なる景観を一つの国でつなぎたい人に。",
+      "icon": "compass"
+    },
+    {
+      "title": "小国をロードトリップしたい人",
+      "text": "首都を起点に四輪駆動車で内陸へ入り、遠隔地のキャンプや港町を自分のペースでつなぎたい人に。",
+      "icon": "road"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ / アフリカの角 / タジュラ湾"
+    },
+    {
+      "label": "首都",
+      "value": "ジブチ"
+    },
+    {
+      "label": "人口",
+      "value": "約118万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "23,200 km²（日本の約6%）"
+    },
+    {
+      "label": "言語",
+      "value": "アラビア語・フランス語（公用語）、ソマリ語、アファル語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教（多数）"
+    },
+    {
+      "label": "通貨",
+      "value": "ジブチ・フラン（DJF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "assal-below-sea-level",
+      "label": "最低地点",
+      "value": "海抜−153m",
+      "note": "アッサル湖は海面より約153m低く、アフリカ大陸で最も低い地点として知られる。",
+      "icon": "landscape",
+      "interestReason": "海岸国なのに国土の象徴的景観が海面より大きく低いという地形の極端さを一目で伝える数字だから。"
+    },
+    {
+      "topicKey": "national-average-rainfall",
+      "label": "年降水量",
+      "value": "約130mm",
+      "note": "世界銀行はジブチの平均年降水量を約130mmと紹介しており、旅の景観を支配する乾燥の強さが分かる。",
+      "icon": "weather",
+      "interestReason": "砂礫地や塩原が広がる理由を、旅行者が身近な雨量の尺度で直感的に想像できる数字だから。"
+    },
+    {
+      "topicKey": "abbe-limestone-chimneys",
+      "label": "石灰岩煙突",
+      "value": "最大約50m",
+      "note": "アッベ湖周辺では地熱活動に伴って形成された石灰岩の煙突が最大約50mまで立ち上がる。",
+      "icon": "landmark",
+      "interestReason": "平坦な低地から建物十数階分ほどの自然の塔が立つ異様なスケールを具体的に想像できる数字だから。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "heat-water-remote-driving",
+      "title": "低地では暑さと水を最優先にする",
+      "text": "アッサル湖やアッベ湖などの低地は高温・乾燥が厳しい。早朝行動、十分な飲料水、日射対策に加え、遠隔地では車両状態と予備燃料も確認する。"
+    },
+    {
+      "topicKey": "border-security-current",
+      "title": "北部国境と検問は最新情報を確認する",
+      "text": "2026年9月現在、ジブチ—エリトリア国境は渡航中止勧告対象。ソマリランド国境やタジュラ・オボック以北にも検問があり、当局の指示と最新安全情報を優先する。"
+    },
+    {
+      "topicKey": "photography-sensitive-sites",
+      "title": "軍事施設を撮影しない",
+      "text": "ジブチには各国の軍事施設があり、日本大使館も無許可撮影で問題が生じた事例を案内している。基地や警備施設の撮影は避け、人物撮影も事前に確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇪🇹",
+      "countryEn": "ETHIOPIA",
+      "countryJa": "エチオピア",
+      "path": "Djibouti City → Ali Sabieh → Dewele → Dire Dawa",
+      "description": "港湾都市ジブチから南西へ進み、デウェレ国境を越えてディレ・ダワ方面へつなぐ道路・鉄道回廊。紅海側の低地からエチオピア高原へ景観が大きく変わる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "エチオピア側の治安、道路・鉄道運行、国境手続きは出発直前に確認する。"
+    },
+    {
+      "flag": "🇸🇴",
+      "countryEn": "SOMALIA",
+      "countryJa": "ソマリア",
+      "path": "Djibouti City → Loyada → Borama → Hargeisa",
+      "description": "ジブチ市からロヤダ国境を越え、ソマリランド西部のボラマ、ハルゲイサへ続く陸路。アフリカの角の乾燥地とソマリ文化圏を連続してたどる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月現在、国境では検問・軍の承認が必要になる場合があり、ソマリランド側にも強い渡航注意情報がある。"
+    },
+    {
+      "flag": "🇪🇷",
+      "countryEn": "ERITREA",
+      "countryJa": "エリトリア",
+      "path": "Obock → northern coastal road → Djibouti–Eritrea border → Assab",
+      "description": "オボックから紅海沿岸を北へ進み、エリトリア南部アッサブ方面へ続く地理的な沿岸ルート。現在は通常の旅行ルートとして利用しない。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月現在、ジブチ—エリトリア国境はFCDOの渡航中止勧告対象で情勢も脆弱。通行を前提に旅程を組まない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "ethiopia",
+      "nameEn": "ETHIOPIA",
+      "nameJa": "エチオピア",
+      "flag": "🇪🇹",
+      "reason": "アファール低地、火山・塩原、高原へ続く地形の落差を国境の西側からさらに深く見たいなら。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "eritrea",
+      "nameEn": "ERITREA",
+      "nameJa": "エリトリア",
+      "flag": "🇪🇷",
+      "reason": "紅海沿岸の乾燥景観、火山地形、港町の歴史を北へ連続させて比較したいなら。",
+      "affinityType": "COAST"
+    },
+    {
+      "slug": "oman",
+      "nameEn": "OMAN",
+      "nameJa": "オマーン",
+      "flag": "🇴🇲",
+      "reason": "乾燥した山地と海、港町、アラビア半島との文化的な接点を別の安定した旅先で見比べたいなら。",
+      "affinityType": "TRAVEL_STYLE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2026-07-01",
+    "safety": "2026-09-29",
+    "worldHeritage": "2026-09-29",
+    "climate": "2026-09-29",
+    "map": "2026-09-29",
+    "sceneCoordinates": "2026-09-29",
+    "heroCoordinates": "2026-09-29"
+  },
+  "sources": {
+    "population": "World Bank Data — Djibouti population, total: 1,184,076 (2025): https://data.worldbank.org/country/djibouti",
+    "area": "World Bank / Japan MOFA — Djibouti area 23,200 km²; Japan comparison uses Geospatial Information Authority of Japan 2026-07-01 area 377,973.68 km²: https://www.worldbank.org/ext/en/country/djibouti ; https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "safety": "UK FCDO Djibouti travel advice, current 2026-09-29 — Eritrea border no-travel advice, Somaliland-border checkpoints and possible military approval, roadblocks north of Tadjoura/Obock: https://www.gov.uk/foreign-travel-advice/djibouti ; https://www.gov.uk/foreign-travel-advice/djibouti/regional-risks",
+    "worldHeritage": "UNESCO World Heritage Centre — Djibouti State Party: 0 inscribed properties and 10 Tentative List sites as of 2026-09-29: https://whc.unesco.org/en/statesparties/dj",
+    "climate": "World Bank Djibouti overview and Climate Change Knowledge Portal — strongly arid climate; World Bank overview cites average annual rainfall of 130 mm: https://www.worldbank.org/ext/en/country/djibouti ; https://climateknowledgeportal.worldbank.org/country/djibouti",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Djibouti plus immediate Eritrea, Ethiopia and Somaliland context.",
+    "sceneCoordinates": "GeoNames / Mapcarta coordinates for Lake Abbé viewpoint, Grand Bara, Tadjoura-area Sables Blancs, Djibouti City and Obock; UNESCO Tentative List coordinate for Forêt du Day; PERSGA mangrove survey coordinate for Godoria; geology locality coordinate for Ardoukôba.",
+    "heroCoordinates": "GeoNames/standard geographic coordinate for Lake Assal: 11.664444 N, 42.401389 E.",
+    "constitution": "Presidency of Djibouti, Constitution — Article 1: Islam is the state religion; Arabic and French are official languages: https://www.presidence.dj/page/constitution",
+    "mofaProfile": "Ministry of Foreign Affairs of Japan, Djibouti basic data — area, languages, religion and population profile: https://www.mofa.go.jp/mofaj/area/djibouti/data.html",
+    "independence": "Djibouti Ministry of Foreign Affairs / U.S. Office of the Historian — independence on 27 June 1977: https://diplomatie.gouv.dj/djibouti-historique ; https://history.state.gov/countries/djibouti",
+    "currency": "Djibouti Official Journal, Ordonnance n°77-070/PR — the Djibouti franc is legal tender: https://www.journalofficiel.dj/arabe/texte-juridique/ordonnance-n77-070-pr-portant-creation-de-la-banque-nationale-de-djibouti/",
+    "tourismAssal": "Agence Nationale du Tourisme de Djibouti — Lake Assal, lowest point in Africa at about 153 m below sea level and salt-trade landscape: https://guide.visitdjibouti.dj/explorer-ce-quil-faut-voir/explorer-3/sites-touristiques-naturels/le-lac-assal/",
+    "tourismGeology": "Agence Nationale du Tourisme de Djibouti — geology of Lake Assal–Ghoubbet rift and Ardoukôba 1978 eruption: https://guide.visitdjibouti.dj/a-savoir-informations-sur-le-pays/geologie/",
+    "unescoDay": "UNESCO World Heritage Centre Tentative List — Forêt du Day, coordinate N11 48 E42 41 and Djibouti's unique remnant primary forest: https://whc.unesco.org/en/tentativelists/5962/",
+    "unescoMoucha": "UNESCO World Heritage Centre Tentative List — Moucha and Maskali islands, emerged coral reefs and mangroves: https://whc.unesco.org/en/tentativelists/5960/",
+    "unescoDjiboutiCity": "UNESCO World Heritage Centre Tentative List — historic urban landscape of Djibouti City, port/rail urban development and station opened in 1900: https://whc.unesco.org/en/tentativelists/5958/",
+    "unescoObock": "UNESCO World Heritage Centre Tentative List — natural landscapes of Obock, including Godoria/Khor Angar/Ras Siyan mangroves: https://whc.unesco.org/en/tentativelists/5961/",
+    "unescoDjibouti": "UNESCO World Heritage Centre — Djibouti State Party and Tentative List: https://whc.unesco.org/en/statesparties/dj",
+    "tourismWhaleShark": "Djibouti tourism destination information — whale shark snorkelling season broadly November to February: https://djiboutitourism.com/",
+    "foodLaNation": "La Nation Djibouti — gastronomie djiboutienne; Iskudhexkaris, Fahfah and Samboussas as popular everyday foods: https://www.lanation.dj/la-gastronomie-djiboutienne-un-univers-gustatif-aux-mille-saveurs/",
+    "foodLahoh": "Journal of Ethnic Foods / regional food references summarized in Lahoh literature — lahoh/canjeero is eaten in Djibouti and the wider Horn of Africa: https://en.wikipedia.org/wiki/Lahoh",
+    "embassyPhoto": "Embassy of Japan in Djibouti — warning to avoid photographing military bases without authorization: https://www.dj.emb-japan.go.jp/",
+    "tourismAbbe": "Agence Nationale du Tourisme de Djibouti / UNESCO Tentative List — Lac Abbé limestone chimneys reach roughly 30–50 m and are associated with hot springs/fumaroles: https://guide.visitdjibouti.dj/le-lac-abbe-des-paysages-lunaires/ ; https://whc.unesco.org/en/tentativelists/5965/"
+  }
+}
