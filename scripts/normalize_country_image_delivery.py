@@ -373,7 +373,10 @@ def audit_delivery(slugs: list[str]) -> list[str]:
             ratio = width / height if height else 0
             if width >= 1200 and height >= 800 and math.isclose(ratio, RATIO_3_2, abs_tol=RATIO_TOLERANCE):
                 if (width, height) != (1200, 800):
-                    errors.append(f"oversized {role}: {asset} ({width}x{height})")
+                    errors.append(
+                        f"{role} delivery size must be exactly "
+                        f"{target[0]}x{target[1]}: {asset} ({width}x{height})"
+                    )
                 if fmt != "WEBP":
                     errors.append(f"{role} is not WebP: {asset} ({fmt})")
 

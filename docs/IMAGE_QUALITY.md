@@ -41,6 +41,8 @@ For each Scene define:
 - 3–6 identifying visual features;
 - 3:2 landscape composition.
 
+Generation output may be larger, but the **final repository delivery size is exactly 1200 × 800 px, WebP**. Normalize approved Scene images to 1200 × 800 before the one asset handoff / repository implementation. Do not treat 1200 × 800 as merely a minimum size.
+
 Generate S01→S08 independently, then review all eight once. Regenerate only rejected Scenes.
 
 ## Taste
@@ -55,6 +57,8 @@ Taste follows the established Spain visual language:
 - decorative props forbidden unless integral to the dish;
 - 3:2 landscape composition.
 
+Generation output may be larger, but the **final repository delivery size is exactly 1200 × 800 px, WebP**. Normalize approved Taste images to 1200 × 800 before the one asset handoff / repository implementation. Do not treat 1200 × 800 as merely a minimum size.
+
 Generate FOOD01→FOOD04 independently, then review all four once.
 
 ## Final asset QA
@@ -62,7 +66,7 @@ Generate FOOD01→FOOD04 independently, then review all four once.
 The repository checks the finished 13-image set for:
 - file existence;
 - complete raster decode;
-- expected dimensions/aspect ratio;
+- final delivery dimensions/aspect ratio (Scenes/Taste: exactly 1200 × 800 px, 3:2, WebP; Hero: separate Hero delivery rule);
 - Country JSON references;
 - duplicate/near-duplicate imagery;
 - unreferenced production files.
