@@ -47,7 +47,7 @@
     },
     "svg": "assets/images/kenya/map-atlas-v1.svg",
     "route": null,
-    "source": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 KEN/UGA/TZA/ETH/SOM/SDS, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection. Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 clean-background palette and target/context hierarchy. Checked 2026-09-29."
+    "source": "Target geometry and surrounding East African land context: Natural Earth 1:10m Admin-0 KEN/UGA/TZA/ETH/SOM/SDS/COD/RWA/BDI, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection. Western sidebands include verified DRC, Rwanda and Burundi land so the full 1200×760 projection does not render real land as sea. Checked 2026-09-29."
   },
   "scenes": [
     {
@@ -181,42 +181,42 @@
   ],
   "encounters": [
     {
-      "title": "サバンナの野生動物",
+      "title": "野生動物との出会い",
       "category": "WILDLIFE",
       "icon": "wildlife"
     },
     {
-      "title": "赤道高山の植生",
+      "title": "高山の植物",
       "category": "NATURE",
       "icon": "leaf"
     },
     {
-      "title": "大地溝帯の断崖と湖",
+      "title": "湖と断崖",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "乾燥地を流れる川",
+      "title": "川辺の風景",
       "category": "NATURE",
       "icon": "leaf"
     },
     {
-      "title": "スワヒリ海岸の街と遺構",
+      "title": "歴史ある街並み",
       "category": "ARCHITECTURE",
       "icon": "culture"
     },
     {
-      "title": "インド洋のサンゴ礁",
+      "title": "海辺の自然",
       "category": "NATURE",
       "icon": "sea"
     },
     {
-      "title": "市場と炭火の食",
+      "title": "炭火料理",
       "category": "FOOD",
       "icon": "food"
     },
     {
-      "title": "多言語の都市と地域文化",
+      "title": "多言語の暮らし",
       "category": "LANGUAGE",
       "icon": "culture"
     }
@@ -486,12 +486,12 @@
       "interestReason": "赤道国に5,000m級の高山があるという地形の振幅を直感的に伝えられるため。"
     },
     {
-      "topicKey": "indian-ocean-coastline",
-      "label": "インド洋岸",
-      "value": "536km",
-      "note": "KRAが示すケニアのインド洋岸の長さ。サバンナと高地だけでなく、港町とサンゴ礁を持つ海岸国家でもある。",
-      "icon": "sea",
-      "interestReason": "内陸サファリの印象が強い国に、500kmを超えるインド洋岸が続くことを一つの数字で示せるため。"
+      "topicKey": "great-migration-wildebeest",
+      "label": "ヌーの大移動",
+      "value": "約130万頭",
+      "note": "セレンゲティからマサイマラへ続くGreat Migrationの中心群。ケニア政府観光局は130万頭を超えるヌーの移動として紹介している。",
+      "icon": "wildlife",
+      "interestReason": "マサイマラを世界的に知られる場所にした、ケニアを象徴する野生動物のスケールを一つの数字で伝えられるため。"
     },
     {
       "topicKey": "rainfall-rhythm",
@@ -591,7 +591,8 @@
     "nextRoutes": "2026-09-29",
     "sceneCoordinates": "2026-09-29",
     "map": "2026-09-29",
-    "japanArea": "2026-04-01"
+    "japanArea": "2026-04-01",
+    "greatMigration": "2026"
   },
   "sources": {
     "population": "Kenya National Bureau of Statistics (KNBS), 2019 Kenya Population and Housing Census: total enumerated population 47,564,296. https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
@@ -614,8 +615,9 @@
     "travelAdvice": "Ministry of Foreign Affairs of Japan, Kenya safety information checked 2026-09-29. Regional risk levels vary; Somalia-border areas and parts of the north/coast carry higher advisories. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_100.html",
     "nextRoutes": "Kenya Revenue Authority, Gazetted Points of Entry and Exit: Namanga, Malaba, Busia and Moyale listed among land borders; seven land borders operate as OSBPs. https://www.kra.go.ke/individual/1891-gazetted-points-of-entry-and-exit-into-the-kenya-border-points",
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-29 against authoritative property/park pages and geographic references: Maasai Mara -1.490833,35.143889; Mount Kenya -0.155,37.315556; Lake Nakuru -0.366667,36.083333; Hell's Gate -0.9,36.316667; Samburu 0.616667,37.533333; Tsavo East -2.9,38.6; Gedi -3.310264,40.017264; Shimba Hills -4.257,39.371; hero Amboseli -2.648,37.260; Nairobi -1.286389,36.817223.",
-    "map": "Natural Earth 1:10m Admin-0 national geometry for Kenya and its five land-border neighbours, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection; KEN/UGA/TZA/ETH/SOM/SDS GeoJSON. Map checked against Kenya's five land neighbours: Tanzania, Uganda, South Sudan, Ethiopia and Somalia.",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection. Kenya plus UGA/TZA/ETH/SOM/SDS and additional western canvas context COD/RWA/BDI are rendered to preserve real surrounding land across the full projection.",
     "shimbaHills": "Kenya Wildlife Service, Shimba Hills National Reserve: coastal rainforest and rolling hills southwest of Mombasa; reserve area 192.5 km² and Kenya’s remaining breeding herd of sable antelope. https://kws.go.ke/park/shimba-hills-national-reserve/",
-    "tsavoEast": "Kenya Wildlife Service, Tsavo East National Park: Kenya’s largest national park, approx. 13,747 km²; semi-arid plains, Galana River, Yatta Plateau and red elephants. https://kws.go.ke/park/tsavo-east-national-park/"
+    "tsavoEast": "Kenya Wildlife Service, Tsavo East National Park: Kenya’s largest national park, approx. 13,747 km²; semi-arid plains, Galana River, Yatta Plateau and red elephants. https://kws.go.ke/park/tsavo-east-national-park/",
+    "greatMigration": "Magical Kenya / Kenya Tourism Board, Maasai Mara - Home of the Great Migration: around 1.3 million wildebeest gather in the Serengeti and move north as part of the annual migration, checked 2026-09-29. https://webmail.magicalkenya.com/default.nsf/features1/BB4BC3735EF6D65F43257457002CC68F?l=1&opendocument="
   }
 }
