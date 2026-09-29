@@ -1,0 +1,607 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "gabon",
+  "nameEn": "GABON",
+  "nameJa": "ガボン",
+  "region": "CENTRAL AFRICA / EQUATOR",
+  "seo": {
+    "description": "赤道をまたぐ熱帯雨林、大瀑布、森とサバンナの境界、大西洋岸に野生動物が現れる海辺へ。ガボンの8つの景色と地図から、中部アフリカの森林国家をたどる。"
+  },
+  "capital": {
+    "nameEn": "Libreville",
+    "nameJa": "リーブルビル",
+    "coordinates": {
+      "latitude": 0.4162,
+      "longitude": 9.4673
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -18,
+      "y": -18
+    }
+  },
+  "hero": {
+    "lead": "赤道をまたぐ国土の大半を熱帯雨林が覆い、黒い水の大河に巨大な滝が連なる。森とサバンナの境界、大西洋岸、洞窟や高原まで、ガボンでは森を軸に景観が大きく切り替わる。",
+    "image": "assets/images/gabon/approved/hero-kongou-falls.webp",
+    "imageState": "APPROVED",
+    "location": "Kongou Falls / コングー滝",
+    "coordinates": {
+      "latitude": 0.288056,
+      "longitude": 12.588056
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": -2
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 2.8,
+      "south": -4.3,
+      "west": 8.4,
+      "east": 15.2
+    },
+    "svg": "assets/images/gabon/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 countries, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; illustrated treatment: JOURNEY ATLAS map-v3 clean background. Context includes Equatorial Guinea, Cameroon and Republic of the Congo."
+  },
+  "scenes": [
+    {
+      "id": "loango-national-park-coast",
+      "name": "ロアンゴ国立公園 / 大西洋岸",
+      "nameLocal": "Loango National Park / Atlantic Coast",
+      "mapLabel": "Loango",
+      "description": "大西洋の砂浜のすぐ背後に、海岸林、サバンナ、潟湖が重なる。森林ゾウやバッファローなどが海辺まで現れることで知られ、コンゴ盆地の森が海へ直接つながるガボンらしい景観。",
+      "coordinates": {
+        "latitude": -2.15419,
+        "longitude": 9.58969
+      },
+      "image": "assets/images/gabon/approved/scene-01-loango-national-park-coast.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right"
+    },
+    {
+      "id": "lope-okanda-savanna-rainforest",
+      "name": "ロペ＝オカンダ / 森とサバンナ",
+      "nameLocal": "Lopé-Okanda / Savanna-Rainforest Mosaic",
+      "mapLabel": "Lopé-Okanda",
+      "description": "オゴウェ川流域で、密な熱帯雨林と古いサバンナが複雑な境界をつくる。気候変動に伴う森林と草原の移動を長い時間軸で残し、人の活動史も重なる世界遺産の文化的景観。",
+      "coordinates": {
+        "latitude": -0.5,
+        "longitude": 11.5
+      },
+      "image": "assets/images/gabon/approved/scene-02-lope-okanda-savanna-rainforest.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 0
+      }
+    },
+    {
+      "id": "langoue-bai-forest-clearing",
+      "name": "ランゲ・バイ / 森の開けた湿地",
+      "nameLocal": "Langoué Baï / Forest Clearing",
+      "mapLabel": "Langoué Baï",
+      "description": "イヴィンドの深い森の中に、川を伴う開けた湿地が現れる。森林ゾウ、ニシローランドゴリラ、シタツンガなどが利用する場所で、閉じた樹冠の森とは異なる野生動物の観察空間をつくる。",
+      "coordinates": {
+        "latitude": -0.18511,
+        "longitude": 12.55966
+      },
+      "image": "assets/images/gabon/approved/scene-03-langoue-bai.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1,
+        "y": 0
+      }
+    },
+    {
+      "id": "cirque-de-lekoni",
+      "name": "レコニの峡谷 / バテケ高原",
+      "nameLocal": "Cirque de Léconi / Batéké Plateau",
+      "mapLabel": "Cirque de Léconi",
+      "description": "南東部の砂質高原が浸食され、赤褐色や黄土色の壁と尖った稜線を刻む。周囲には開けたサバンナが続き、湿潤な森林国家という印象から大きく離れた乾いた地形が現れる。",
+      "coordinates": {
+        "latitude": -1.65,
+        "longitude": 14.283333
+      },
+      "image": "assets/images/gabon/approved/scene-04-cirque-de-lekoni.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left"
+    },
+    {
+      "id": "grotte-de-lipopa-lastoursville",
+      "name": "リポパ洞窟 / ラストゥールヴィル",
+      "nameLocal": "Grotte de Lipopa / Lastoursville",
+      "mapLabel": "Grotte de Lipopa",
+      "description": "ラストゥールヴィル周辺のドロマイト質の地層には多数の洞窟があり、リポパ洞窟もその一つ。森の下に広がる岩の空間は、地表の熱帯雨林とは別のガボンの地質景観を見せる。",
+      "coordinates": {
+        "latitude": -0.830972,
+        "longitude": 12.731233
+      },
+      "image": "assets/images/gabon/approved/scene-05-grotte-de-lipopa.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    {
+      "id": "ancien-hopital-albert-schweitzer",
+      "name": "旧アルベルト・シュヴァイツァー病院 / ランバレネ",
+      "nameLocal": "Ancien Hôpital Albert Schweitzer / Lambaréné",
+      "mapLabel": "Lambaréné",
+      "description": "オゴウェ川沿いのランバレネに、20世紀前半の病院施設群が残る。医療史と植民地期の社会を考える文化遺産で、自然保護区だけでは見えないガボン近代史の一面に触れられる。",
+      "coordinates": {
+        "latitude": -0.700329,
+        "longitude": 10.237681
+      },
+      "image": "assets/images/gabon/approved/scene-06-ancien-hopital-schweitzer.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right"
+    },
+    {
+      "id": "monts-de-cristal-mbe",
+      "name": "モン・ド・クリスタル国立公園 / ムベ地区",
+      "nameLocal": "Monts de Cristal National Park / Mbé Sector",
+      "mapLabel": "Monts de Cristal",
+      "description": "北西部では常緑雨林が起伏の大きな丘陵を覆い、標高が上がるにつれて海岸低地とは異なる森の表情になる。植物多様性の高い山地森林として保護される、ガボン北西部の地形軸。",
+      "coordinates": {
+        "latitude": 0.46394,
+        "longitude": 10.27856
+      },
+      "image": "assets/images/gabon/approved/scene-07-monts-de-cristal.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "right"
+    },
+    {
+      "id": "monts-birougou-national-park",
+      "name": "モン・ビルグ国立公園 / シャイユ山地",
+      "nameLocal": "Monts Birougou National Park / Chaillu Massif",
+      "mapLabel": "Monts Birougou",
+      "description": "南部のシャイユ山地では国土が大きく起伏し、標高900メートル前後まで森林の山並みが続く。海岸低地や東部サバンナとは異なる、山地性の熱帯雨林を示す南部の景観。",
+      "coordinates": {
+        "latitude": -1.4607,
+        "longitude": 12.1555
+      },
+      "image": "assets/images/gabon/approved/scene-08-monts-birougou.webp",
+      "imageState": "APPROVED",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "大瀑布と黒い川を見る",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "深い熱帯雨林を歩く",
+      "category": "NATURE"
+    },
+    {
+      "title": "海岸に現れる野生を見る",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "森とサバンナの境界を見る",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "森の開けた湿地で待つ",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "オゴウェ川沿いを移動する",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "洞窟と岩の地形に入る",
+      "category": "NATURE"
+    },
+    {
+      "title": "市場で森と海の食材を見る",
+      "category": "FOOD"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "ivindo-blackwater-waterfalls",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "黒い水の大河に、幅広い滝と急流が連なる",
+      "text": "イヴィンド国立公園では、森林に由来する有機物で色づいた川が原生林を横切り、コングーやミングリなどの滝と急流をつくる。川・滝・森林が一体になった景観が、この国の内陸部を象徴する。",
+      "points": [
+        "イヴィンド国立公園は赤道上の約30万ヘクタール",
+        "コングー滝は幅約2キロメートルに広がる区間を持つ"
+      ]
+    },
+    {
+      "topicKey": "lope-forest-savanna-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "森とサバンナの境界に、人の長い活動史も重なる",
+      "text": "ロペ＝オカンダでは、熱帯雨林と古いサバンナの境界が、過去の気候変動と植生変化を記録している。同時に岩絵や考古資料も残り、自然史と人の移動史を一つの景観から読むことができる。",
+      "points": [
+        "自然と文化の両方で評価された複合世界遺産",
+        "オゴウェ川流域の生態系と考古遺産を一体で保護"
+      ]
+    },
+    {
+      "topicKey": "loango-forest-meets-ocean",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "コンゴ盆地の大型哺乳類が、大西洋の砂浜まで出てくる",
+      "text": "ロアンゴ国立公園では海岸林、サバンナ、潟湖、砂浜が近接するため、森林ゾウやバッファローなどが海辺まで移動する。森と海が直接接することが、ガボンの野生動物観察を特徴づける。",
+      "points": [
+        "海岸・潟湖・サバンナ・森林が同じ保護区内で接する",
+        "海辺での動物観察は季節と個体の動きに左右される"
+      ]
+    },
+    {
+      "topicKey": "transgabonais-forest-axis",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "大西洋側から内陸へ、一本の鉄道が森林地帯を横切る",
+      "text": "トランスガボン鉄道はオウェンドとフランスヴィルを結び、ロペやブエ、ラストゥールヴィルなどを通る。道路だけでは見えにくい内陸の町と森林地帯が、旅客列車の一本の軸でつながっている。",
+      "points": [
+        "オウェンドからフランスヴィルまで約648キロメートル",
+        "沿線には24の駅がある"
+      ]
+    },
+    {
+      "topicKey": "lastoursville-cave-landscape",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "熱帯雨林の地下に、数十の洞窟が集まる地域がある",
+      "text": "ラストゥールヴィル周辺では、ドロマイトを含む地層に43の洞窟が確認されている。地表は濃い森林でも、その下では水と岩が長い時間をかけて地下空間をつくっている。",
+      "points": [
+        "確認された洞窟は43か所",
+        "国連教育科学文化機関の暫定一覧では9洞窟を重点的に記載"
+      ]
+    },
+    {
+      "topicKey": "forest-food-ingredients",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "森の果実や種が、日常のソースや付け合わせになる",
+      "text": "パーム果実から作るニェンブウェ、野生マンゴーの種を使うオディカ、アタンガと呼ばれる果実など、ガボンの食卓には森林由来の食材が多い。森は景観だけでなく、味にも直接つながっている。",
+      "points": [
+        "ニェンブウェはパーム果実を使う濃いソース",
+        "オディカは野生マンゴーの種を乾燥・焙煎して使う"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "equator-crosses-gabon",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "赤道が国土を横切る",
+      "text": "ガボンは赤道上に位置し、イヴィンド国立公園も赤道をまたぐ。国名の地域表示だけでなく、実際の旅の中で北半球と南半球を行き来する国。",
+      "icon": "globe",
+      "sourceKey": "ivindo"
+    },
+    {
+      "topicKey": "fixed-cfa-euro-rate",
+      "categoryEn": "EVERYDAY",
+      "categoryJa": "通貨",
+      "title": "CFAフランはユーロとの固定レート",
+      "text": "ガボンで使う中部アフリカCFAフランは、1ユーロ＝655.957CFAフランの固定レート。周辺の中部アフリカ諸国とも同じ通貨圏を共有する。",
+      "icon": "money",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "two-world-heritage-types",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "二つの世界遺産は「自然」と「複合」",
+      "text": "イヴィンド国立公園は自然遺産、ロペ＝オカンダは自然と文化をあわせた複合遺産。森林国家の自然史と人の活動史を異なる形で残している。",
+      "icon": "landmark",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "long-dry-season",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "気候",
+      "title": "6〜9月は長い乾季",
+      "text": "世界銀行の気候資料では、10〜5月が主な雨季で、6〜9月が長い乾季。森林地帯でも季節によって雨量が大きく変わる。",
+      "icon": "calendar",
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "independence-1960",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "1960年8月にフランスから独立",
+      "text": "ガボンは1960年8月にフランスから独立した。現在もフランス語が公用語で、近代史の制度や都市景観にもフランス統治期の影響が残る。",
+      "icon": "history",
+      "sourceKey": "profile"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF GABON",
+    "title": "ガボンで食べたいもの",
+    "intro": "パーム果実、野生マンゴーの種、キャッサバの葉、大西洋の魚。森と海から得る食材を、濃いソースや煮込み、炭火の一皿で味わう。",
+    "items": [
+      {
+        "id": "poulet-nyembwe",
+        "name": "プーレ・ニェンブウェ",
+        "nameLocal": "Poulet Nyembwe",
+        "text": "鶏肉を、パーム果実から取る濃いニェンブウェのソースで煮込む代表料理。プランテン、米、キャッサバなどを添えて食べる。",
+        "image": "assets/images/gabon/approved/food-01-poulet-nyembwe.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "poulet-odika",
+        "name": "プーレ・ア・ロディカ",
+        "nameLocal": "Poulet à l’Odika",
+        "text": "野生マンゴーの種を乾燥・焙煎して作るオディカを使い、鶏肉を濃い褐色のソースで煮る。森の食材が料理の輪郭そのものになる一皿。",
+        "image": "assets/images/gabon/approved/food-02-poulet-odika.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "feuilles-de-manioc-poisson-fume",
+        "name": "キャッサバの葉と燻製魚",
+        "nameLocal": "Feuilles de manioc au poisson fumé",
+        "text": "細かくしたキャッサバの葉を煮込み、燻製魚などを合わせる日常的な料理。地域や家庭によって油や味付けが変わり、米やキャッサバと食べる。",
+        "image": "assets/images/gabon/approved/food-03-feuilles-manioc-poisson.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "atanga-braise-manioc",
+        "name": "アタンガとキャッサバ",
+        "nameLocal": "Atanga braisé / Manioc",
+        "text": "アタンガと呼ばれる果実を加熱してやわらかくし、塩を添えてキャッサバなどと食べる。森の果実そのものの香りと油分を味わう素朴な組み合わせ。",
+        "image": "assets/images/gabon/approved/food-04-atanga-manioc.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "首都周辺だけでなく、鉄道で内陸へ進むか、海岸の国立公園へ入るかで必要日数が大きく変わる。保護区は移動と現地手配を含めて余白を取る。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "リーブルビルと近郊を見る",
+        "text": "首都を起点に市内とオゴウェ川側の一地域へ。例：リーブルビル → ランバレネ → リーブルビル。都市と川沿いの近代史に絞る。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜8日",
+        "title": "鉄道でロペまで足を延ばす",
+        "text": "オウェンドからトランスガボン鉄道で内陸へ入り、森とサバンナの境界を見る。例：リーブルビル → オウェンド → ロペ → リーブルビル。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "海岸か大瀑布を一つ加える",
+        "text": "ロアンゴまたはイヴィンドを主目的に据え、現地移動日を十分に確保する。例：リーブルビル → ロアンゴ → リーブルビル、またはリーブルビル → マコク → イヴィンド周辺。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "6〜9月",
+      "color": "#d8d4b8",
+      "text": "長い乾季。降雨が少なく、道路や保護区への移動を組みやすい時期。海岸と内陸をまたぐ長距離旅ではまず検討しやすい。"
+    },
+    {
+      "months": "10〜12月",
+      "color": "#bfcfd0",
+      "text": "雨季前半。森林の湿度と水量が増す。地方道路と河川移動は天候の影響を受けるため、固定日程を詰めすぎない。"
+    },
+    {
+      "months": "1〜2月",
+      "color": "#d8c7a8",
+      "text": "高温になりやすい時期。地域差が大きく短い乾燥傾向もあるため、海岸・内陸それぞれの直前予報を確認する。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#b8c8c9",
+      "text": "雨季後半。強い降雨を想定し、未舗装路や国立公園へのアクセスは現地の運営者に最新状況を確認して組み立てる。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道と道路を組み合わせ、保護区は現地手配を前提にする",
+    "text": "リーブルビル近郊のオウェンドからフランスヴィルまでトランスガボン鉄道が通り、ロペやラストゥールヴィルなど内陸へつながる。道路は主要都市間の軸になるが、国立公園や地方の景勝地は未舗装区間や船移動を含むことがあり、季節と現地手配を確認して組む。",
+    "icon": "map"
+  },
+  "personas": [
+    {
+      "title": "熱帯雨林と野生動物を旅の中心にしたい人",
+      "text": "原生林、森林の開けた湿地、海岸林まで、コンゴ盆地の異なる生態系を一国の中でつなげて見られる。"
+    },
+    {
+      "title": "森だけではない赤道アフリカの地形を見たい人",
+      "text": "大瀑布、サバンナ、赤い峡谷、洞窟、山地森林があり、国土の大半が森林でも景観は単調ではない。"
+    },
+    {
+      "title": "定番観光地より現地手配型の自然旅を好む人",
+      "text": "保護区はアクセスに時間がかかる場所が多い。移動日を含めて一地域ずつ深く見る旅と相性がいい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "中部アフリカ / 大西洋岸・赤道"
+    },
+    {
+      "label": "首都",
+      "value": "リーブルビル"
+    },
+    {
+      "label": "人口",
+      "value": "約259万人（2025）"
+    },
+    {
+      "label": "面積",
+      "value": "267,667平方キロメートル（日本の約71%）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）／各民族の言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教約75%、イスラム教約10%、伝統的宗教・その他約15%"
+    },
+    {
+      "label": "通貨",
+      "value": "中部アフリカCFAフラン"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "forest-share-2023",
+      "label": "森林が占める割合",
+      "value": "91.2%",
+      "note": "世界銀行の2023年データでは、国土の91.2%が森林に覆われている。",
+      "icon": "leaf",
+      "interestReason": "海岸、都市、サバンナを持ちながら国土のほぼ全体を森林が包む、ガボンの旅の前提を一つの数字でつかめる。",
+      "exceptionalShare": true
+    },
+    {
+      "topicKey": "national-parks-13",
+      "label": "国立公園の数",
+      "value": "13",
+      "note": "2002年に13の国立公園が一斉に設けられ、海岸から内陸・山地まで国全体の保護区網の骨格になった。",
+      "icon": "leaf",
+      "interestReason": "一つ二つの保護区ではなく、海岸から内陸・山地まで国全体に保護区が広がる自然保護のスケールを示す。"
+    },
+    {
+      "topicKey": "transgabonais-24-stations",
+      "label": "鉄道の駅数",
+      "value": "24駅",
+      "note": "オウェンドとフランスヴィルを結ぶ約648キロメートルのトランスガボン鉄道には24の駅がある。",
+      "icon": "map",
+      "interestReason": "道路中心に見える赤道アフリカで、大西洋岸から深い内陸まで一本の旅客鉄道が国土を横断する特徴を具体化できる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "park-access-local-arrangements",
+      "title": "国立公園は移動手段まで先に確認する",
+      "text": "イヴィンドやロアンゴなどは入口までの移動自体が旅程の一部になる。宿泊、船、四輪駆動車、ガイドの必要条件を運営者に確認してから日程を固定する。"
+    },
+    {
+      "topicKey": "rain-season-road-buffer",
+      "title": "雨季は未舗装路の時間を読まない",
+      "text": "10〜5月は雨量が増える。地方道路や保護区へのアクセスは所要時間が伸びる前提で、到着日と出発日に余白を持たせる。"
+    },
+    {
+      "topicKey": "border-current-conditions",
+      "title": "陸路国境は直前の運用を確認する",
+      "text": "ガボンの陸路国境は再開しているが、運用変更や一時的な混乱が起こり得る。査証、通過時間、車両乗継を出発前に公的情報と現地事業者で確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇨🇲",
+      "countryEn": "CAMEROON",
+      "countryJa": "カメルーン",
+      "path": "Libreville → Oyem → Bitam → Eboro / Abang-Minko → Ebolowa",
+      "description": "北へ国道2号をたどり、ビタムからエボロ／アバン・ミンコ国境を越えてカメルーン南部へつなぐ中部アフリカの陸路回廊。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境は再開済みだが、査証、車両手続き、当日の国境運用を出発直前に確認する。"
+    },
+    {
+      "flag": "🇬🇶",
+      "countryEn": "EQUATORIAL GUINEA",
+      "countryJa": "赤道ギニア",
+      "path": "Libreville → Oyem → Bitam → Meyo-Kyé / Ebebiyín",
+      "description": "北部ビタム周辺から三国国境地帯へ進み、メヨ・キエ／エベビインを通って赤道ギニア本土リオ・ムニへつなぐ陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "赤道ギニア側の査証と国境運用は変更があり得るため、出発直前に公式情報を確認する。"
+    },
+    {
+      "flag": "🇨🇬",
+      "countryEn": "REPUBLIC OF THE CONGO",
+      "countryJa": "コンゴ共和国",
+      "path": "Libreville → Mouila → Ndendé → Doussala → Dolisie",
+      "description": "南へンデンデまで進み、ドゥサラ国境からコンゴ共和国のドリシーへつなぐ陸路。リーブルビルとブラザビルを結ぶ地域回廊の一部。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ンデンデ〜ドゥサラ区間は2026年も道路工事中。路面、公共交通、国境手続きを直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "congo",
+      "nameEn": "REPUBLIC OF THE CONGO",
+      "nameJa": "コンゴ共和国",
+      "flag": "🇨🇬",
+      "reason": "コンゴ盆地の熱帯雨林と大型哺乳類、河川を軸にした自然旅を、より広い森林景観へつなげて見たいなら。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "cameroon",
+      "nameEn": "CAMEROON",
+      "nameJa": "カメルーン",
+      "flag": "🇨🇲",
+      "reason": "熱帯雨林から高地、海岸まで地形と生態系が大きく変化する中部アフリカの旅を、さらに広いスケールで比較したいなら。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "saotomeprincipe",
+      "nameEn": "SÃO TOMÉ & PRÍNCIPE",
+      "nameJa": "サントメ・プリンシペ",
+      "flag": "🇸🇹",
+      "reason": "ギニア湾の湿潤な森と海を、火山島の固有生態系や小さな島の旅へ切り替えて味わいたいなら。",
+      "affinityType": "NATURE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2025-12-02",
+    "forestArea": "2023",
+    "protectedAreas": "2026-09-28",
+    "worldHeritage": "2026-09-28",
+    "climate": "2026-09-28",
+    "rail": "2026-09-28",
+    "nextRoutes": "2026-09-28",
+    "map": "2026-09-28",
+    "sceneCoordinates": "2026-09-28"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Gabon basic data, updated 2 Dec 2025: area 267,667 km², capital Libreville, French official language, religion, CFA franc and fixed euro rate, independence. https://www.mofa.go.jp/mofaj/area/gabon/data.html",
+    "population": "World Bank Open Data — Gabon population 2,593,130 in 2025. https://data.worldbank.org/country/gabon",
+    "japanArea": "Statistics Bureau of Japan / current national area basis used for comparison; 267,667 km² is about 71% of Japan's roughly 378,000 km².",
+    "forestArea": "World Bank Open Data — Forest area (% of land area), Gabon: 91.2% in 2023. https://data.worldbank.org/country/gabon",
+    "protectedAreas": "Gabon Ministry of Water and Forests / government materials — 13 national parks created in 2002, covering about 11% of the national territory/ecosystems; checked 28 Sep 2026. https://www.eaux-forets.gouv.ga/",
+    "worldHeritage": "UNESCO World Heritage Centre — Gabon has two inscribed properties: Ivindo National Park (natural) and Ecosystem and Relict Cultural Landscape of Lopé-Okanda (mixed); checked 28 Sep 2026. https://whc.unesco.org/en/statesparties/ga",
+    "ivindo": "UNESCO World Heritage Centre — Ivindo National Park: equatorial rainforest, blackwater rivers, rapids and waterfalls; Kongou Falls is a principal attraction and stretches about 2 km in nomination material. https://whc.unesco.org/en/list/1653 ; https://whc.unesco.org/document/189285",
+    "lope": "UNESCO World Heritage Centre — Ecosystem and Relict Cultural Landscape of Lopé-Okanda: rainforest–savanna mosaic and archaeological/cultural evidence. https://whc.unesco.org/en/list/1147",
+    "loango": "WWF Gabon Conservation Environmental and Social Review — Loango National Park 151,000 ha; coastal habitat and Iguéla Lagoon; hippos, elephants, buffalo, gorillas and leopards occur along beaches. https://files.worldwildlife.org/wwfcmsprod/files/Publication/file/3ukwpnoyzp_GBFF_Gabon_CER.pdf",
+    "langoue": "Wildlife Conservation Society Gabon — Langoué Baï is a forest clearing used by forest elephants, gorillas, forest buffalo, red river hogs and sitatunga. Coordinate cross-checked against OpenStreetMap/Mapcarta at -0.18511,12.55966. https://gabon.wcs.org/en-us/Wild-Places/Gabons-Forests/Langou%C3%A9-Bai.aspx",
+    "lekoni": "Gabon Biodiversity / Wageningen herbarium occurrence — specimen locality 'slopes of cirque de Lékoni' at -1.65,14.283333, WGS84; tourism references describe eroded red/ochre sandy canyon on Batéké plateau. https://gabonbiota.org/",
+    "lastoursville": "UNESCO Tentative List — Grottes de Lastoursville: 43 known cavities; Lipopa central point UTM 33M X247503 Y9908080, converted to WGS84 -0.830972,12.731233. https://whc.unesco.org/en/tentativelists/6587",
+    "schweitzer": "UNESCO World Heritage Centre — Old Albert Schweitzer Hospital is Gabon's sole cultural property on the current Tentative List; Gabon official gazette classifies the historic hospital complex as national cultural heritage. Coordinate -0.700329,10.237681 cross-checked with Wikidata. https://whc.unesco.org/en/activities/1157",
+    "montsCristal": "UNEP-WCMC Protected Planet — Parc national des Monts de Cristal, IUCN II, 1,192 km², ANPN management; Mbé-sector field coordinate 0.46394,10.27856 from peer-reviewed botanical survey. https://www.protectedplanet.net/306237",
+    "birougou": "UNESCO Tentative List — Parc National des Monts Birougou, Chaillu Massif, about 69,000 ha, coordinates -1.4607,12.1555, peaks up to about 900 m. https://whc.unesco.org/en/tentativelists/6591",
+    "rail": "SETRAG — Transgabonais concession links Owendo and Franceville; official company material describes a 648 km line and 24 stations. https://setrag.ga/",
+    "climate": "World Bank Climate Change Knowledge Portal — Gabon Climate Risk Country Profile: main wet season October–May; 1991–2020 climatology. https://climateknowledgeportal.worldbank.org/sites/default/files/country-profiles/15858-WB_Gabon%20Country%20Profile-WEB_0.pdf",
+    "food": "Gabonese cuisine references checked 28 Sep 2026: Poulet Nyembwe widely identified as a Gabonese specialty; odika uses roasted/ground Irvingia kernels; cassava leaves and atanga are established foods. https://www.routard.com/fr/guide/a/gastronomie-ou-manger/afrique/gabon ; https://fr.wikipedia.org/wiki/Cuisine_gabonaise",
+    "neighbours": "U.S. State Department Gabon advisory — land borders with Equatorial Guinea, Cameroon and Republic of the Congo. https://travel.state.gov/en/international-travel/travel-advisories/gabon.html",
+    "nextRoutes": "UK FCDO Gabon travel advice — borders reopened after 2023 but disruption remains possible. World Bank CEMAC trade study documents Abang-Minko–Eboro Cameroon/Gabon crossing. INTERPOL I-CEMAC reports Gabon border posts including Eboro and Meyo-Kye equipped in 2024. Gabon debt authority and 2026 reporting document the Ndendé–Doussala–Dolisie corridor and ongoing works. https://www.gov.uk/foreign-travel-advice/gabon/safety-and-security ; https://documents.worldbank.org/curated/en/233071535650013216/pdf/127883-REPORT-CEMAC-Agriculture.pdf ; https://www.interpol.int/How-we-work/Border-management/Projects/Project-I-CEMAC ; https://www.dette.ga/accords/projets-finances/2014/route-ndjole-medoumane",
+    "sceneCoordinates": "WGS84 real-location points checked 28 Sep 2026: Loango -2.15419,9.58969 (WWF); Lopé-Okanda -0.5,11.5 (UNESCO reference point); Langoué Baï -0.18511,12.55966 (WCS + OSM); Cirque de Léconi -1.65,14.283333 (herbarium field locality); Lipopa Cave -0.830972,12.731233 (UNESCO UTM converted to WGS84); Old Albert Schweitzer Hospital -0.700329,10.237681 (heritage/Wikidata); Monts de Cristal Mbé 0.46394,10.27856 (peer-reviewed field point); Monts Birougou -1.4607,12.1555 (UNESCO).",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290; GAB target with GNQ/CMR/COG context; generated in JOURNEY ATLAS map-v3 clean style on 28 Sep 2026."
+  }
+}
