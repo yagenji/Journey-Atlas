@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "zambia",
+  "nameEn": "ZAMBIA",
+  "nameJa": "ザンビア",
+  "region": "EAST AFRICA / 14°S",
+  "seo": {
+    "description": "ヴィクトリア滝、サウス・ルアングワ、ローワー・ザンベジ、カフエのブサンガ平原、バングウェウル湿地、カサンカ、カランボ滝、タンガニーカ湖畔。水と野生動物の国ザンビアをたどる。"
+  },
+  "capital": {
+    "nameEn": "Lusaka",
+    "nameJa": "ルサカ",
+    "coordinates": {
+      "latitude": -15.4167,
+      "longitude": 28.2833
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 10,
+      "y": -12
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "南端のザンベジ川では、幅約1.7kmの水のカーテンが玄武岩の裂け目へ落ち、深い峡谷へつながる。そこから国土を北へたどると、サバンナ、氾濫原、湿地、湖岸へと、水が形を変えながら景観と野生動物の暮らしを支えている。",
+    "image": "assets/images/zambia/approved/hero-victoria-falls-knife-edge.webp",
+    "location": "Mosi-oa-Tunya / Victoria Falls, Livingstone",
+    "coordinates": {
+      "latitude": -17.92453,
+      "longitude": 25.85539
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -7.5,
+      "south": -18.8,
+      "west": 21.2,
+      "east": 34.5
+    },
+    "svg": "assets/images/zambia/map-atlas-v2.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (ZMB plus AGO/COD/TZA/MWI/MOZ/ZWE/BWA/NAM context). JOURNEY ATLAS map-v3 styling; Zambia and all eight land-border neighbours retained as real surrounding geography."
+  },
+  "scenes": [
+    {
+      "id": "south-luangwa-national-park",
+      "name": "サウス・ルアングワ国立公園",
+      "nameLocal": "South Luangwa National Park",
+      "mapLabel": "South Luangwa",
+      "description": "ルアングワ川が蛇行し、河岸林と氾濫原、三日月湖が連なる東部の大規模保護区。乾季には水場へ動物が集まり、川とサバンナが結びついたザンビアらしい野生景観を見せる。",
+      "coordinates": {
+        "latitude": -12.8297,
+        "longitude": 31.6956
+      },
+      "image": "assets/images/zambia/approved/scene-1-south-luangwa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "lower-zambezi-national-park",
+      "name": "ローワー・ザンベジ国立公園",
+      "nameLocal": "Lower Zambezi National Park",
+      "mapLabel": "Lower Zambezi",
+      "description": "ザンベジ川の北岸に広がる氾濫原と河岸林の国立公園。対岸のジンバブエ側の山並みを背景に、広い川面と中州、乾季に集まるゾウやカバなどを水上から見られる。",
+      "coordinates": {
+        "latitude": -15.569592,
+        "longitude": 29.734783
+      },
+      "image": "assets/images/zambia/approved/scene-2-lower-zambezi.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "busanga-plains",
+      "name": "ブサンガ平原",
+      "nameLocal": "Busanga Plains, Kafue National Park",
+      "mapLabel": "Busanga",
+      "description": "カフエ国立公園北部に広がる季節性の氾濫原。乾季には浅い水路と草原がモザイク状に残り、レチュエなどの草食動物と大型捕食者を開けた視界の中で観察できる。",
+      "coordinates": {
+        "latitude": -14.272017,
+        "longitude": 25.902577
+      },
+      "image": "assets/images/zambia/approved/scene-3-busanga-plains.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "bangweulu-wetlands",
+      "name": "バングウェウル湿地",
+      "nameLocal": "Bangweulu Wetlands",
+      "mapLabel": "Bangweulu",
+      "description": "湖、恒久湿地、季節性氾濫原、草原が連なる北東部の巨大な淡水湿地。水位によって景観が大きく変わり、ブラック・レチュエの群れやハシビロコウを支える。",
+      "coordinates": {
+        "latitude": -11.6,
+        "longitude": 30.083333
+      },
+      "image": "assets/images/zambia/approved/scene-4-bangweulu.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": -2
+      }
+    },
+    {
+      "id": "kasanka-national-park",
+      "name": "カサンカ国立公園",
+      "nameLocal": "Kasanka National Park",
+      "mapLabel": "Kasanka",
+      "description": "ミオンボ林、湿地林、ダンボ、パピルス湿地が近接する小さな国立公園。10〜12月にはストロー色のオオコウモリが湿地林に集まり、夕空を埋める大規模な移動が起きる。",
+      "coordinates": {
+        "latitude": -11.566667,
+        "longitude": 30.183333
+      },
+      "image": "assets/images/zambia/approved/scene-5-kasanka.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 2
+      }
+    },
+    {
+      "id": "kalambo-falls",
+      "name": "カランボ滝",
+      "nameLocal": "Kalambo Falls National Monument",
+      "mapLabel": "Kalambo Falls",
+      "description": "タンザニア国境のカランボ川が、タンガニーカ地溝帯の縁から深い峡谷へ落ちる北端の滝。周辺には長期にわたる人類活動を示す考古学層も残る。",
+      "coordinates": {
+        "latitude": -8.583333,
+        "longitude": 31.233333
+      },
+      "image": "assets/images/zambia/approved/scene-6-kalambo-falls.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "nsumbu-national-park",
+      "name": "ンスンブ国立公園",
+      "nameLocal": "Nsumbu National Park",
+      "mapLabel": "Nsumbu",
+      "description": "タンガニーカ湖南岸に面し、砂浜、岩の入り江、断崖、内陸の丘陵が一続きになる国立公園。大湖の青い水面と野生動物の生息地が直接接する、ザンビア北端の異質な景観。",
+      "coordinates": {
+        "latitude": -8.75,
+        "longitude": 30.4167
+      },
+      "image": "assets/images/zambia/approved/scene-7-nsumbu.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 1
+      }
+    },
+    {
+      "id": "barotse-floodplain",
+      "name": "バロツェ氾濫原",
+      "nameLocal": "Barotse Floodplain",
+      "mapLabel": "Barotse",
+      "description": "西部を流れる上流ザンベジ沿いの広大な氾濫原。雨季に水が広がり、乾季には草地と水路が現れる。ロジの人々の暮らしと季節移動を、水位変化そのものが形づくる。",
+      "coordinates": {
+        "latitude": -15.0332,
+        "longitude": 22.8834
+      },
+      "image": "assets/images/zambia/approved/scene-8-barotse.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "大瀑布の水煙と轟音を間近で感じる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "川辺で野生動物の動きを待つ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "大河を水上から静かに進む",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "季節で姿を変える氾濫原を眺める",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "夕空を埋めるコウモリの群れを見る",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "湿地で大型の水鳥を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "地溝帯の縁に落ちる滝を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "大湖の岸辺と岩の入り江を歩く",
+      "category": "NATURE",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "victoria-falls-basalt-gorges",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ヴィクトリア滝は、一枚の壁ではなく峡谷が後退してきた地形の現在形",
+      "text": "ザンベジ川は玄武岩の割れ目を侵食し、現在の滝の下流に8つの急峻な峡谷を刻んでいる。滝そのものだけでなく、流路が長い時間をかけて後退してきた地形として見ると、景観の成り立ちが見えてくる。",
+      "points": [
+        "世界遺産はザンビアとジンバブエにまたがる",
+        "滝幅は約1,708m、最深部は108m"
+      ],
+      "sourceKey": "unescoVictoria"
+    },
+    {
+      "topicKey": "luangwa-river-wildlife",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "ルアングワでは、川の蛇行がサファリの景色をつくる",
+      "text": "サウス・ルアングワでは本流、旧河道、ラグーン、河岸林が近接し、乾季には限られた水場へ動物が集まる。開けた草原だけではなく、水の配置そのものが観察体験を決める。",
+      "points": [
+        "国立公園面積は約9,050km²",
+        "ルアングワ川が公園景観の軸になる"
+      ],
+      "sourceKey": "southLuangwa"
+    },
+    {
+      "topicKey": "kasanka-bat-migration",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "カサンカでは、毎年コウモリが森林の一点へ集中する",
+      "text": "10〜12月、ストロー色のオオコウモリがカサンカの湿地林へ集まり、夕方に一斉に飛び立つ。大規模な移動が、わずかな森林域に高密度で現れることがこの場所の特徴。",
+      "points": [
+        "推定8〜10百万頭規模",
+        "湿地林の果実を求めて集まる"
+      ],
+      "sourceKey": "kasankaUnesco"
+    },
+    {
+      "topicKey": "barotse-seasonal-water",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "西部では、川の増水が人の移動時期まで決める",
+      "text": "バロツェ氾濫原では雨季にザンベジ川の水が広がり、ロジの伝統行事クオンボカは洪水原から高地へ移る季節の移動を象徴する。自然条件と文化が別々ではなく、同じ水位変化に結びついている。",
+      "points": [
+        "雨季の増水で広い氾濫原が水に覆われる",
+        "クオンボカは高地への移動を示す伝統行事"
+      ],
+      "sourceKey": "kuomboka"
+    },
+    {
+      "topicKey": "kalambo-archaeology",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "カランボ滝では、地形と長い人類史が同じ場所に重なる",
+      "text": "カランボ滝周辺には滝と峡谷だけでなく、約50万年に及ぶ人類活動を示す考古学的堆積が残る。地溝帯の大地形と、人が水辺を使ってきた時間を一度にたどれる場所。",
+      "points": [
+        "ユネスコ暫定一覧に2026年提出",
+        "北部州ムバラ地区に位置する"
+      ],
+      "sourceKey": "unescoKalambo"
+    },
+    {
+      "topicKey": "tanganyika-zambia-shore",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "北端では、ザンビアがタンガニーカ湖の大湖景観に接する",
+      "text": "ンスンブ国立公園はタンガニーカ湖南岸に約100kmの湖岸線を持ち、砂浜、岩の入り江、断崖、丘陵が続く。内陸国ザンビアの旅に、海のような大湖の水平線が加わる。",
+      "points": [
+        "国立公園は約2,020km²",
+        "湖岸と内陸丘陵が一つの保護区に入る"
+      ],
+      "sourceKey": "nsumbu"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "country-name-zambezi",
+      "categoryEn": "NAME",
+      "categoryJa": "国名",
+      "title": "国名はザンベジ川に由来する",
+      "text": "ザンビア観光庁の観光開発資料は、国名「ザンビア」が「ザンベジ」に由来すると説明している。国土を横断・縁取る大河が、国名にも残っている。",
+      "icon": "map",
+      "sourceKey": "zambiaTourismMasterPlan"
+    },
+    {
+      "topicKey": "left-hand-traffic",
+      "categoryEn": "ROAD",
+      "categoryJa": "道路",
+      "title": "車は左側通行",
+      "text": "ザンビアの道路交通規則では、対向車とすれ違う際に車両を道路中央線の左側で走行させることが定められている。レンタカーや陸路移動では日本と同じ左側通行になる。",
+      "icon": "road",
+      "sourceKey": "zambiaRoadLaw"
+    },
+    {
+      "topicKey": "independence-1964",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立は1964年10月24日",
+      "text": "旧北ローデシアは1964年10月24日にザンビアとして独立した。首都ルサカは独立前から行政中心地として発展し、その後も政治・交通の中心となっている。",
+      "icon": "history",
+      "sourceKey": "mofaZambia"
+    },
+    {
+      "topicKey": "official-language-english",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "公用語は英語",
+      "text": "憲法は英語を公用語と定める一方、国内には多様な現地語がある。旅では英語が広く行政・教育・観光で使われる。",
+      "icon": "city",
+      "sourceKey": "constitutionLanguage"
+    },
+    {
+      "topicKey": "kwacha-ngwee",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "1クワチャは100ングウェ",
+      "text": "通貨はザンビア・クワチャ。ザンビア銀行によると1クワチャは100ングウェで、紙幣と硬貨を中央銀行が発行する。",
+      "icon": "map",
+      "sourceKey": "bankZambia"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ZAMBIA",
+    "title": "ザンビアで食べたいもの",
+    "intro": "主食のシマ、落花生を使う青菜料理、小魚、野生ランの塊茎を使うチカンダまで、食感と役割が重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "nshima",
+        "name": "シマ",
+        "nameLocal": "Nshima",
+        "text": "白いトウモロコシ粉を水で練り上げる主食。手で小さく取り、野菜、豆、魚、肉などのレリッシュと一緒に食べる、日常の食卓の中心。",
+        "image": "assets/images/zambia/approved/food-1-nshima.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ifisashi",
+        "name": "イフィサシ",
+        "nameLocal": "Ifisashi",
+        "text": "葉野菜を落花生で煮た濃いレリッシュ。青菜の風味にナッツのコクが重なり、シマと合わせて食べる。",
+        "image": "assets/images/zambia/approved/food-2-ifisashi.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "chikanda",
+        "name": "チカンダ",
+        "nameLocal": "Chikanda",
+        "text": "野生ランの塊茎の粉と落花生などを練って加熱し、固める料理。切り分けてそのまま食べたり、トマトや玉ねぎと合わせてレリッシュにする。",
+        "image": "assets/images/zambia/approved/food-3-chikanda.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "kapenta",
+        "name": "カペンタ",
+        "nameLocal": "Kapenta",
+        "text": "湖でとれる小魚を乾燥させ、炒めたり煮たりして食べる。トマトや玉ねぎと合わせ、シマの塩味のあるレリッシュとして親しまれる。",
+        "image": "assets/images/zambia/approved/food-4-kapenta.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ザンビアは日本の約2倍の広さがあり、主要景観は南端・東部・中央部・北部に離れている。短期は地域を絞り、長距離は国内線と道路を組み合わせる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ヴィクトリア滝とザンベジ川に集中する",
+        "text": "リビングストンを拠点に滝とモシ・オ・トゥニャ周辺を見て、余裕があれば川沿いの体験を加える。例：ルサカ → リビングストン → ヴィクトリア滝 → ルサカ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜11日",
+        "title": "滝と一つのサファリ地域をつなぐ",
+        "text": "ヴィクトリア滝にサウス・ルアングワ、ローワー・ザンベジ、カフエのいずれかを組み合わせる。離れた保護区を欲張らず、移動日を明確に分ける。例：ルサカ → リビングストン → ヴィクトリア滝 → ムフウェ → サウス・ルアングワ → ルサカ。",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "湿地か北部の大湖まで加える",
+        "text": "主要サファリにバングウェウル、カサンカ、カランボ滝、ンスンブなど北部・北東部の一地域を加える。季節と道路条件に合わせて国内線や四輪駆動車を使う。例：ルサカ → ムフウェ → サウス・ルアングワ → カサンカ → バングウェウル → ルサカ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "5〜8月",
+      "color": "#c7b889",
+      "text": "涼しく乾いた時期。多くの国立公園で道路移動がしやすくなり、乾季が進むにつれて動物が水場へ集まりやすい。朝晩は高原やサファリ地域で冷える。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#d3a66f",
+      "text": "乾季後半で暑さが強まる。野生動物観察では水場が重要になり、ヴィクトリア滝は水量が下がって岩肌が見えやすくなる年もある。"
+    },
+    {
+      "months": "11〜12月",
+      "color": "#9dad83",
+      "text": "雨季の始まり。草原が緑へ変わり、カサンカではストロー色のオオコウモリの大規模な集結が見られる時期。道路条件は雨の進み方で変わる。"
+    },
+    {
+      "months": "1〜4月",
+      "color": "#7f9b82",
+      "text": "雨季の中心。北部や湿地は水量が増え、道路アクセスが難しくなる場所がある一方、ヴィクトリア滝は雨季後半から水量が増し、水煙の強い景観になる。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は国内線と道路を組み合わせ、遠隔地は季節と車両条件を確認する",
+    "text": "ルサカ、リビングストン、ムフウェなどを航空でつなぎ、国立公園内はサファリ車両を使う組み方が現実的。カフエ北部、バングウェウル、ンスンブ、カランボ滝などは道路距離が長く、雨季には未舗装区間や氾濫の影響を受ける。現地事業者に道路状況、燃料、四輪駆動車の要否を確認してから組む。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "大瀑布と大河を、地形として見たい人",
+      "text": "ヴィクトリア滝を単独の名所ではなく、ザンベジ川、玄武岩峡谷、下流の大河景観まで連続して見たい。"
+    },
+    {
+      "title": "混雑より、広い野生動物の生息地をじっくり見たい人",
+      "text": "ルアングワ、カフエ、ローワー・ザンベジで、川・氾濫原・サバンナの違いを感じながらサファリをしたい。"
+    },
+    {
+      "title": "湿地・大湖・季節移動まで旅の対象にしたい人",
+      "text": "バングウェウル、カサンカ、バロツェ、タンガニーカ湖岸まで足を延ばし、水位と季節で変わる風景を見たい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南部アフリカ"
+    },
+    {
+      "label": "首都",
+      "value": "ルサカ"
+    },
+    {
+      "label": "人口",
+      "value": "19,693,423人（2022年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "752,612 km²（日本の約2.0倍）"
+    },
+    {
+      "label": "言語",
+      "value": "英語（公用語）・多様な現地語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が多数"
+    },
+    {
+      "label": "通貨",
+      "value": "ザンビア・クワチャ（ZMW）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "national-park-count",
+      "label": "国立公園",
+      "value": "20か所",
+      "note": "ザンビア観光庁は国内に20の国立公園があると案内している。大河、氾濫原、湿地、大湖岸まで異なる生態系が保護区として連なる。",
+      "icon": "wildlife",
+      "interestReason": "野生動物を見る一地点の数字ではなく、国全体に広がる自然保護と旅の選択肢の厚みを示せるため。"
+    },
+    {
+      "topicKey": "land-neighbour-count",
+      "label": "陸続きの国",
+      "value": "8か国",
+      "note": "アンゴラ、コンゴ民主共和国、タンザニア、マラウイ、モザンビーク、ジンバブエ、ボツワナ、ナミビアと国境を接する。",
+      "icon": "map",
+      "interestReason": "ザンビアが南部アフリカ内陸の結節点に位置することを端的に表せるため。"
+    },
+    {
+      "topicKey": "central-plateau-altitude",
+      "label": "中央高原の標高",
+      "value": "1,000〜1,300m",
+      "note": "ザンビア統計当局の地理概説では、国土は中央アフリカの大高原上にあり、主要高原部はおよそ1,000〜1,300mに位置する。",
+      "icon": "landscape",
+      "interestReason": "熱帯の内陸国でありながら高原性の地形と気候が国土の基調になっていることを数字で捉えられるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "victoria-falls-water-level",
+      "title": "ヴィクトリア滝は水量で見え方が大きく変わる",
+      "text": "雨季後半から初冬にかけては水煙が強まり、乾季後半は岩壁が見えやすくなる。見たい景観とアクティビティに合わせて、その年のザンベジ川の水位を直前に確認する。"
+    },
+    {
+      "topicKey": "remote-park-season-access",
+      "title": "北部・湿地の訪問は季節アクセスを先に確認する",
+      "text": "バングウェウル、ンスンブ、ブサンガ平原などは雨季に道路や地上アクセスが制限される区間がある。宿泊地や保護区の最新運用、四輪駆動車の要否、ボート移動を先に確認する。"
+    },
+    {
+      "topicKey": "long-distance-road-buffer",
+      "title": "道路移動は距離だけで所要時間を決めない",
+      "text": "国土が広く、都市間の舗装路と国立公園内の未舗装路では移動速度が大きく異なる。日没前到着、給油地点、雨季の迂回を含めて余裕を持つ。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇿🇼",
+      "countryEn": "ZIMBABWE",
+      "countryJa": "ジンバブエ",
+      "path": "Livingstone → Victoria Falls Bridge → Victoria Falls",
+      "description": "リビングストンからヴィクトリア・フォールズ橋を渡り、同じ滝をジンバブエ側から見る代表的な陸路。国境手続きと入国条件は直前確認。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "モシ・オ・トゥニャ／ヴィクトリア滝は両国にまたがる世界遺産。国境条件は直前確認。"
+    },
+    {
+      "flag": "🇧🇼",
+      "countryEn": "BOTSWANA",
+      "countryJa": "ボツワナ",
+      "path": "Livingstone → Kazungula Bridge → Kasane",
+      "description": "リビングストンから南西へ進み、カズングラ橋でザンベジ川を越えてカサネへ入る陸路。チョベ地域へつなぎやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "橋・国境の運用と入国要件は出発前に確認。"
+    },
+    {
+      "flag": "🇲🇼",
+      "countryEn": "MALAWI",
+      "countryJa": "マラウイ",
+      "path": "Chipata → Mwami/Mchinji border → Lilongwe",
+      "description": "東部チパタからムワミ／ムチンジ国境を越え、リロングウェへ向かう陸路。サウス・ルアングワから次国へつなぐ際に使いやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "長距離バスや国境運用、入国条件は直前確認。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "zimbabwe",
+      "nameEn": "ZIMBABWE",
+      "nameJa": "ジンバブエ",
+      "flag": "🇿🇼",
+      "reason": "同じヴィクトリア滝を対岸から見て、ザンベジ峡谷と高原景観の連続性を比較したい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "botswana",
+      "nameEn": "BOTSWANA",
+      "nameJa": "ボツワナ",
+      "flag": "🇧🇼",
+      "reason": "川と氾濫原に集まる野生動物を、チョベやオカバンゴの水系でも続けて見たい人へ。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "タンガニーカ湖から大地溝帯、サバンナまで、東アフリカ側へ地形と野生動物の旅を広げたい人へ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2022",
+    "zamstatsArea": "2013",
+    "japanArea": "2026-04-01",
+    "constitutionLanguage": "2016",
+    "religion": "2022",
+    "bankZambia": "2026-09-29",
+    "unescoZambia": "2026-09-29",
+    "nationalParks": "2026-09-29",
+    "centralPlateau": "2013",
+    "zambiaRoadLaw": "2026-09-29",
+    "map": "2026-09-29",
+    "sceneCoordinates": "2026-09-29"
+  },
+  "sources": {
+    "population": "Zambia Statistics Agency, 2022 Census of Population and Housing / The Statistician 2024: total population 19,693,423 as at 8 September 2022. https://www.zamstats.gov.zm/",
+    "zamstatsArea": "Zambia Statistics Agency / Central Statistical Office official profile: area 752,612 km²; borders Angola, Namibia, Botswana, Zimbabwe, Mozambique, Malawi, Tanzania and DRC. https://www.zamstats.gov.zm/",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,974.87 km² as of 2026-04-01; 752,612 / 377,974.87 ≒ 1.99, displayed as approximately 2.0 times.",
+    "constitutionLanguage": "Constitution of Zambia (Amendment), official language provision: English is the official language. https://www.parliament.gov.zm/",
+    "religion": "Zambia Statistics Agency, 2022 Census National Analytical Report / Religion Descriptive Tables: Christian denominations form the overwhelming majority, with other religions and no religion also recorded. https://www.zamstats.gov.zm/",
+    "bankZambia": "Bank of Zambia, Currency Overview: Zambian Kwacha (ZMW) is official currency and legal tender; 100 ngwee = 1 kwacha. https://www.boz.zm/currency",
+    "unescoVictoria": "UNESCO World Heritage Centre, Mosi-oa-Tunya / Victoria Falls: transboundary property, width about 1,708m, deepest point 108m, eight downstream gorges; inscribed 1989. https://whc.unesco.org/en/list/509",
+    "unescoZambia": "UNESCO World Heritage Centre, Zambia State Party: 1 inscribed World Heritage property and 14 Tentative List sites as checked 2026-09-29. https://whc.unesco.org/en/statesparties/zm",
+    "southLuangwa": "Zambia Tourism Agency, South Luangwa National Park: 9,050 km²; Luangwa River, dry-season wildlife concentrations, 400+ bird species. https://www.zambia.travel/southluangwanp.html",
+    "lowerZambezi": "UNESCO World Heritage Centre Tentative List, Lower Zambezi National Park, submitted 2026-03-05; coordinates S15 34 10.531 E29 44 5.22. https://whc.unesco.org/en/tentativelists/6995/",
+    "kafue": "Zambia Tourism Agency, Kafue National Park: 22,500 km²; northern Busanga Plains seasonal floodplain and wildlife. https://www.zambia.travel/kafuenp.html",
+    "busangaCoordinates": "Zambia Tourism listing, Kasonso Busanga location -14.272017, 25.902577; seasonal Busanga Plains access. https://www.zambiatourism.com/listing/kasonso-busanga/",
+    "bangweulu": "UNESCO World Heritage Centre Tentative List, Bangweulu Wetlands, submitted 2026-03-05; coordinates S11 36 00 E30 05 00; freshwater wetland system. https://whc.unesco.org/en/tentativelists/6989/",
+    "kasankaUnesco": "UNESCO World Heritage Centre Tentative List, Kasanka National Park, submitted 2026-03-05; coordinates S11 34 00 E30 11 00; estimated 8–10 million straw-coloured fruit bats Oct–Dec. https://whc.unesco.org/en/tentativelists/6994/",
+    "unescoKalambo": "UNESCO World Heritage Centre Tentative List, Kalambo Falls National Monument, submitted 2026-03-05; coordinates S08 35 00 E031 14 00; long archaeological sequence. https://whc.unesco.org/en/tentativelists/6993/",
+    "nsumbu": "Zambia Tourism, Nsumbu National Park: approx. 2,020 km², coordinates 8.7500°S 30.4167°E, Lake Tanganyika shore, cliffs, coves and interior hills. https://www.zambiatourism.com/destinations/national-parks/nsumbu-national-park/",
+    "barotse": "Zambia Tourism, Barotse Floodplain: Western Zambia, coordinates -15.0332,22.8834; seasonal flooding and wetland ecology. https://www.zambiatourism.com/destinations/barotse-floodplain/",
+    "kuomboka": "Zambia Tourism Agency, Kuomboka Ceremony: Lozi ceremony at the end of the rainy season, moving from flooded plains to higher ground around Mongu. https://www.zambia.travel/kuomboka.html",
+    "food": "National Food and Nutrition Commission of Zambia, Zambia Food Composition Report; Zambia Ministry of Agriculture Food-Based Dietary Guidelines: nshima, kapenta, groundnuts, leafy vegetables and chikanda documented in national food references. https://www.nfnc.org.zm/ ; https://www.agriculture.gov.zm/",
+    "mofaZambia": "Ministry of Foreign Affairs of Japan, Zambia country profile: independence 24 October 1964 and basic country information. https://www.mofa.go.jp/mofaj/area/zambia/",
+    "sceneCoordinates": "WGS84 points checked 2026-09-29 against UNESCO/Zambia Tourism/GeoNames-linked references: Victoria Falls -17.92453,25.85539; South Luangwa -12.8297,31.6956; Lower Zambezi -15.569592,29.734783; Busanga -14.272017,25.902577; Bangweulu -11.6,30.083333; Kasanka -11.566667,30.183333; Kalambo -8.583333,31.233333; Nsumbu -8.75,30.4167; Barotse -15.0332,22.8834; Lusaka -15.4167,28.2833.",
+    "map": "Natural Earth 1:10m Admin-0 national geometry for Zambia and all eight land-border neighbours, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; ZMB/AGO/COD/TZA/MWI/MOZ/ZWE/BWA/NAM.",
+    "nationalParks": "Zambia Tourism Agency, National Parks: Zambia has 20 national wildlife parks; current page checked 2026-09-29. https://www.zambia.travel/nationalparks.html",
+    "centralPlateau": "Zambia Statistics Agency / Central Statistical Office census geography: Zambia lies on the great plateau of Central Africa, with altitudes around 1,000–1,300 metres over the main plateau. https://www.zamstats.gov.zm/",
+    "zambiaTourismMasterPlan": "Zambia Tourism Agency, Tourism Master Plan: the name Zambia is derived from Zambezi and the Zambezi is central to the country's tourism geography. https://www.zambia.travel/MarketingDownloads/master_plan.pdf",
+    "zambiaRoadLaw": "National Assembly of Zambia, Roads and Road Traffic (Traffic Signs) Regulations / Laws of Zambia: vehicles passing opposing traffic must be driven on the left-hand side of the carriageway centre line. https://www.parliament.gov.zm/sites/default/files/documents/acts/Roads%20and%20Road%20Traffic%20Act.pdf"
+  }
+}
