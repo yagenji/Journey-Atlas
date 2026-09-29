@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "angola",
+  "nameEn": "ANGOLA",
+  "nameJa": "アンゴラ",
+  "region": "CENTRAL AFRICA / 12°S",
+  "seo": {
+    "description": "カランドゥラ滝、トゥンダヴァラの断崖、イオナ国立公園の砂漠、旧コンゴ王国の都ムバンザ・コンゴ、プンゴ・アンドンゴの奇岩、バイア・ドス・ティグレス。広大なアンゴラをたどる。"
+  },
+  "capital": {
+    "nameEn": "Luanda",
+    "nameJa": "ルアンダ",
+    "coordinates": {
+      "latitude": -8.8368,
+      "longitude": 13.2343
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -10,
+      "y": -14
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "マランジェ高原では、ルカラ川が幅広い断崖を落ちるカランドゥラ滝が水煙を上げる。そこから南西へ進むと、高原の大断崖、ナミブ砂漠、大西洋岸へ景色が切り替わり、北では旧コンゴ王国の都が国の長い歴史を伝える。",
+    "image": "assets/images/angola/approved/hero-kalandula-falls.webp",
+    "location": "Kalandula Falls, Malanje",
+    "coordinates": {
+      "latitude": -9.0741,
+      "longitude": 16.0003
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -3.35,
+      "south": -19.1,
+      "west": 10.45,
+      "east": 25.35
+    },
+    "svg": "assets/images/angola/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (AGO/COD/COG/ZMB/NAM/BWA). Cabinda is preserved as detached Angolan territory and the intervening DRC land is rendered as real surrounding context. JOURNEY ATLAS map-v3 styling; generated 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "tundavala-gap",
+      "name": "トゥンダヴァラ",
+      "nameLocal": "Fenda da Tundavala",
+      "mapLabel": "Tundavala",
+      "description": "ルバンゴ近郊で中央高原が西の低地へ落ち込む大断崖。高原の岩壁と深い谷が一気に開き、アンゴラ内陸の標高差を視覚的に実感できる代表的な地形景観。",
+      "coordinates": {
+        "latitude": -14.81758,
+        "longitude": 13.38153
+      },
+      "image": "assets/images/angola/approved/scene-1-tundavala.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": -2
+      }
+    },
+    {
+      "id": "iona-national-park",
+      "name": "イオナ国立公園",
+      "nameLocal": "Parque Nacional do Iona",
+      "mapLabel": "Iona",
+      "description": "ナミベ州南西部に広がる乾燥地の国立公園。砂礫平原、砂丘、乾いた河床が大西洋側のナミブ砂漠へつながり、ウェルウィッチアやオリックスなど乾燥環境に適応した生物が生きる。",
+      "coordinates": {
+        "latitude": -16.6667,
+        "longitude": 12.3333
+      },
+      "image": "assets/images/angola/approved/scene-2-iona.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 2.5
+      }
+    },
+    {
+      "id": "miradouro-da-lua",
+      "name": "ミラドウロ・ダ・ルア",
+      "nameLocal": "Miradouro da Lua",
+      "mapLabel": "Miradouro da Lua",
+      "description": "ルアンダ南方の大西洋岸に続く、雨と風の浸食で刻まれた赤褐色と灰白色の崖。尖ったリッジと深い溝が連なり、都市近郊で乾いた海岸地形の造形を見せる。",
+      "coordinates": {
+        "latitude": -9.2212,
+        "longitude": 13.0898
+      },
+      "image": "assets/images/angola/approved/scene-3-miradouro-da-lua.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 1,
+        "y": 4.8
+      }
+    },
+    {
+      "id": "mbanza-kongo",
+      "name": "ムバンザ・コンゴ",
+      "nameLocal": "Mbanza Kongo",
+      "mapLabel": "Mbanza Kongo",
+      "description": "14世紀から19世紀にかけてコンゴ王国の政治・精神的中心だった高原都市。王宮跡、聖なる木、旧大聖堂跡などが、アフリカの王国とキリスト教・ポルトガル勢力が接触した歴史を伝える。",
+      "coordinates": {
+        "latitude": -6.268889,
+        "longitude": 14.249722
+      },
+      "image": "assets/images/angola/approved/scene-4-mbanza-kongo.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "pungo-andongo-black-rocks",
+      "name": "プンゴ・アンドンゴの黒い岩",
+      "nameLocal": "Pedras Negras de Pungo Andongo",
+      "mapLabel": "Pungo Andongo",
+      "description": "マランジェ州のサバンナから黒い岩塔が群れて立ち上がる奇岩地帯。巨大な岩塊と草地が強い対比をつくり、近くにはンドンゴ王国末期の中心地と植民地期の要塞跡も残る。",
+      "coordinates": {
+        "latitude": -9.66823,
+        "longitude": 15.61612
+      },
+      "image": "assets/images/angola/approved/scene-5-pungo-andongo.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -2.8,
+        "y": 2.5
+      }
+    },
+    {
+      "id": "baia-dos-tigres",
+      "name": "バイア・ドス・ティグレス",
+      "nameLocal": "Baía dos Tigres / São Martinho dos Tigres",
+      "mapLabel": "Baía dos Tigres",
+      "description": "ナミベ州最南部の乾燥海岸に残る旧集落。砂漠と大西洋の間に、放棄された建物群と砂地が現れ、かつて本土とつながっていた海岸集落の痕跡が孤立した景観をつくる。",
+      "coordinates": {
+        "latitude": -16.60095,
+        "longitude": 11.7227
+      },
+      "image": "assets/images/angola/approved/scene-6-baia-dos-tigres.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 1,
+        "y": -4.8
+      }
+    },
+    {
+      "id": "palacio-de-ferro",
+      "name": "鉄の宮殿",
+      "nameLocal": "Palácio de Ferro",
+      "mapLabel": "Palácio de Ferro",
+      "description": "ルアンダ中心部に残る錬鉄製の歴史建築。建物の正確な起源には不明点が残るため作者を断定せず、繊細な金属装飾と回廊を持つ都市建築として見る。内戦期の荒廃を経て2009年に修復された。",
+      "coordinates": {
+        "latitude": -8.812011,
+        "longitude": 13.23555
+      },
+      "image": "assets/images/angola/approved/scene-7-palacio-de-ferro.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4.5,
+        "y": -1.5
+      }
+    },
+    {
+      "id": "serra-da-leba",
+      "name": "セラ・ダ・レバ",
+      "nameLocal": "Serra da Leba",
+      "mapLabel": "Serra da Leba",
+      "description": "ルバンゴ高原からナミベ側の低地へ下る急斜面に、山道が幾重にも折り返す峠。高原と乾燥した低地を結ぶ高度差が、道路の線形そのものとして地形に刻まれている。",
+      "coordinates": {
+        "latitude": -15.07157,
+        "longitude": 13.23616
+      },
+      "image": "assets/images/angola/approved/scene-8-serra-da-leba.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": 2
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "大きな滝の水しぶきと音を感じる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "高原から広い低地を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "砂地と海が接する風景を歩く",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "巨大な岩が点在する草原を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "古い街の歴史をたどる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "街に残る歴史建築を見る",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "曲がりくねる山道を越える",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "乾燥地の植物や動物を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "iona-desert-adaptation",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "南西部では、ナミブ砂漠の乾燥環境が国境を越えて続く",
+      "text": "イオナ国立公園はアンゴラ南西端の乾燥地を保護し、砂丘、砂礫平原、乾いた河床、海岸側の砂漠生態系が連続する。降水が極端に少ない環境でも、ウェルウィッチアやオリックスなどが生きる。",
+      "points": [
+        "国立公園はアンゴラ南西部のナミベ州に位置する",
+        "砂漠・半砂漠と大西洋沿岸の環境が連続する"
+      ],
+      "sourceKey": "inbacIona"
+    },
+    {
+      "topicKey": "kongo-kingdom-capital",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ムバンザ・コンゴは、国境が引かれる前の広域王国の中心だった",
+      "text": "ムバンザ・コンゴは、現在のアンゴラ北部を越えて広い影響圏を持ったコンゴ王国の政治・精神的中心だった。15世紀以降のポルトガル人との接触とキリスト教受容も、都市の遺構と考古学層に残る。",
+      "points": [
+        "コンゴ王国の政治・精神的中心",
+        "2017年に世界遺産へ登録"
+      ],
+      "sourceKey": "unescoMbanza"
+    },
+    {
+      "topicKey": "giant-sable-conservation",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "ジャイアントセーブルは、アンゴラの生物多様性保全を象徴する",
+      "text": "アンゴラ政府はジャイアントセーブルの保護を国家の生物多様性施策の中で明示している。内戦後の調査と保全が続き、アンゴラ固有の自然を考える象徴的な存在になっている。",
+      "points": [
+        "政府が保護強化を明示する象徴種",
+        "中部の保護地域で保全が続く"
+      ],
+      "sourceKey": "giantSable"
+    },
+    {
+      "topicKey": "benguela-current-coast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "寒流が、熱帯の海岸を乾いた風景へ変える",
+      "text": "アンゴラ沿岸では寒冷なベンゲラ海流の影響が強く、特に南へ向かうほど降水が少なくなる。熱帯域にありながらナミベ沿岸に砂漠景観が広がる背景には、海流と高原地形の組み合わせがある。",
+      "points": [
+        "南西部は半乾燥から砂漠気候へ移る",
+        "高原と海岸で気温・降水の特徴が大きく異なる"
+      ],
+      "sourceKey": "governmentClimate"
+    },
+    {
+      "topicKey": "lobito-inland-corridor",
+      "themeEn": "MOVEMENT",
+      "themeJa": "道の先へ",
+      "title": "大西洋岸のロビトは、内陸アフリカへ伸びる回廊の出口になる",
+      "text": "ロビト港とベンゲラ鉄道は、アンゴラ内陸からコンゴ民主共和国、ザンビア方面へつながる交通軸を形づくる。海岸の港町を見ると、アンゴラが大西洋と内陸部を結ぶ位置にあることが分かる。",
+      "points": [
+        "ロビト港とベンゲラ鉄道が接続する",
+        "コンゴ民主共和国・ザンビア方面との広域物流軸"
+      ],
+      "sourceKey": "lobitoCorridor"
+    },
+    {
+      "topicKey": "staple-food-regionality",
+      "themeEn": "FOOD",
+      "themeJa": "食をめぐる",
+      "title": "キャッサバとトウモロコシが、地域ごとの主食の形をつくる",
+      "text": "アンゴラではキャッサバ、トウモロコシ、葉野菜、魚、肉などが広く使われ、民族集団ごとに料理の組み合わせが異なる。フンジの原料も地域や家庭によってキャッサバ粉とトウモロコシ粉が使い分けられる。",
+      "points": [
+        "フンジはキャッサバ粉またはトウモロコシ粉から作る",
+        "魚介・肉・葉野菜・パーム油の煮込みと組み合わせる"
+      ],
+      "sourceKey": "angolaEmbassyFood"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "twenty-one-provinces-2025",
+      "categoryEn": "ADMINISTRATION",
+      "categoryJa": "行政",
+      "title": "2025年から21州になった",
+      "text": "新しい政治行政区分が2025年に施行され、現在のアンゴラは21州。クアンド、イコロ・エ・ベンゴ、モシコ・レステなどが新しい州として加わった。",
+      "icon": "map",
+      "sourceKey": "governmentProvinces"
+    },
+    {
+      "topicKey": "independence-1975",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立記念日は11月11日",
+      "text": "ポルトガルからの独立は1975年11月11日。国旗や国名だけでなく、首都ルアンダや各地の記念空間にも独立後の国家形成の歴史が刻まれている。",
+      "icon": "history",
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "civil-war-ceasefire-2002",
+      "categoryEn": "HISTORY",
+      "categoryJa": "現代史",
+      "title": "内戦の停戦合意は2002年",
+      "text": "独立後に長く続いた内戦は、2002年4月の停戦合意で終結へ向かった。現在の道路・都市・観光インフラの多くは、その後の復興過程と切り離せない。",
+      "icon": "history",
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "kwanza-river-currency-name",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "通貨名はクワンザ川に由来する",
+      "text": "アンゴラの通貨はクワンザ。駐日アンゴラ大使館は、国内を流れる主要河川クワンザ川から通貨名が取られたと説明している。",
+      "icon": "map",
+      "sourceKey": "angolaEmbassy"
+    },
+    {
+      "topicKey": "one-world-heritage-property",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は現在1件",
+      "text": "ユネスコ世界遺産に登録されているのは、旧コンゴ王国の都ムバンザ・コンゴ。2017年にアンゴラ初の世界遺産として登録された。",
+      "icon": "history",
+      "sourceKey": "unescoAngola"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ANGOLA",
+    "title": "アンゴラで食べたいもの",
+    "intro": "キャッサバやトウモロコシの主食、魚や鶏の煮込み、パーム油で煮た豆まで、素材と食感が重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "muamba-de-galinha",
+        "name": "鶏のムアンバ",
+        "nameLocal": "Muamba de Galinha",
+        "text": "鶏肉をオクラ、トマト、落花生などと煮込む代表的な料理。フンジと組み合わせる食べ方が広く知られ、濃厚な煮汁とやわらかい鶏肉を一緒に味わう。",
+        "image": "assets/images/angola/approved/food-1-muamba-de-galinha.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "calulu-de-peixe",
+        "name": "魚のカルルー",
+        "nameLocal": "Calulu de Peixe",
+        "text": "干し魚と生魚を葉野菜、オクラ、トマト、パーム油などと煮込む料理。保存魚の旨味と青菜の風味が重なり、アンゴラの魚食文化を伝える。",
+        "image": "assets/images/angola/approved/food-2-calulu-de-peixe.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "funge-com-kizaca",
+        "name": "フンジとキザカ",
+        "nameLocal": "Funge com Kizaca",
+        "text": "キャッサバまたはトウモロコシ粉を練ったフンジに、味付けして煮たキャッサバの葉のキザカを添える組み合わせ。主食と葉野菜を一緒に食べる日常の形が分かる。",
+        "image": "assets/images/angola/approved/food-3-funge-kizaca.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "feijao-de-oleo-de-palma",
+        "name": "豆のパーム油煮",
+        "nameLocal": "Feijão de Óleo de Palma",
+        "text": "豆をパーム油で煮る家庭的な副菜。フンジとともに食べられる組み合わせとして駐日アンゴラ大使館も紹介しており、豆の粒感とパーム油のコクが主役になる。",
+        "image": "assets/images/angola/approved/food-4-feijao-oleo-palma.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "アンゴラは日本の約3.3倍の広さがあり、見どころは大きく離れる。国内移動は距離だけでなく道路状態と最新の危険情報で組み立て、危険レベル2の地域を観光目的で無理に通過しない。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ルアンダと北部の王国史をつなぐ",
+        "text": "首都の歴史建築と海岸景観を見てから、ムバンザ・コンゴで旧コンゴ王国の都市史へつなぐ。例：ルアンダ → ミラドウロ・ダ・ルア → ムバンザ・コンゴ → ルアンダ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "南西部の高原と海岸砂漠まで景観を変える",
+        "text": "国内線などを組み合わせてルバンゴ、モサメデス方面へ進み、高原の断崖と乾いた大西洋岸を比較する。例：ルアンダ → ルバンゴ → モサメデス → ルアンダ。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "マランジェを加え、広い国土を複数地域で見る",
+        "text": "安全情報と道路条件を確認できる範囲でマランジェ方面を加え、滝と奇岩を南西部とは別の景観軸として見る。例：ルアンダ → マランジェ → カランドゥラ周辺 → ルアンダ → ルバンゴ → モサメデス。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜12月",
+      "color": "#9eaa8c",
+      "text": "雨季の前半。内陸では緑が戻り始める一方、強い雨で未舗装区間や長距離道路の条件が変わる。南西部の乾燥地域は同じ季節でも降水が少ない。"
+    },
+    {
+      "months": "1〜4月",
+      "color": "#7f9b82",
+      "text": "雨季の中心で気温も高め。カランドゥラ周辺では水量のある景観を期待できるが、道路状況と局地的な豪雨を優先して旅程を調整する。"
+    },
+    {
+      "months": "5〜8月",
+      "color": "#c4b694",
+      "text": "乾季のカシンボ。高原では朝晩が冷え、政府情報では標高の高い地域で気温が10度を下回ることもある。道路移動は雨季より組みやすい区間が増える。"
+    },
+    {
+      "months": "9月",
+      "color": "#b9aa86",
+      "text": "乾季の終盤から雨季への移行期。北・中部では暑さが戻り、地域ごとに雨の始まり方が異なるため、全国一律の季節感で判断しない。"
+    }
+  ],
+  "transport": {
+    "title": "広い国土は国内線と道路を組み合わせ、長距離運転は余裕を持つ",
+    "text": "ルアンダから主要都市へは航空移動を組み合わせると距離を圧縮できる。道路は都市間で改善が進む一方、都市外では路面状態と緊急対応に差があり、長距離では四輪駆動車が適する区間もある。夜間運転を避け、危険レベル2の州・郊外は日本外務省の最新情報を先に確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "巨大な滝、断崖、砂漠、海まで一国の地形差を大きく変えたい人",
+      "text": "カランドゥラ、トゥンダヴァラ、ナミベをつなぎ、熱帯の内陸高原から寒流の影響を受ける乾燥海岸まで、地形と気候の切り替わりを追いたい。"
+    },
+    {
+      "title": "アフリカの王国史とポルトガル植民地史を同じ旅で考えたい人",
+      "text": "ムバンザ・コンゴとルアンダを結び、既存のアフリカ王国、キリスト教受容、植民地都市、独立後の国家形成を複数の時代から見たい。"
+    },
+    {
+      "title": "観光地を点で回るより、長い移動そのものから国土の広さを感じたい人",
+      "text": "高原から海岸へ下る道、内陸から大西洋へ伸びる交通軸、地域ごとに変わる植生を、移動のスケールと一緒に体験したい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "アフリカ南西部 / 大西洋岸"
+    },
+    {
+      "label": "首都",
+      "value": "ルアンダ"
+    },
+    {
+      "label": "人口",
+      "value": "約3,788万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,246,700平方キロメートル（日本の約3.3倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語（公用語）／ウンブンドゥ語など各地域の諸言語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が中心"
+    },
+    {
+      "label": "通貨",
+      "value": "クワンザ（AOA）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "highland-territory-share",
+      "label": "標高1000〜1600メートル",
+      "value": "約65%",
+      "note": "アンゴラ政府系情報では、国土のおよそ65%が標高1000〜1600メートルに位置する。海岸平野の背後に広い高原が続くことが、気候と景観の大きな差につながる。",
+      "icon": "landscape",
+      "interestReason": "アンゴラを海岸の熱帯国としてだけ捉えると見えない、高原国家としての地形スケールを一つの数字で伝えられるため。"
+    },
+    {
+      "topicKey": "atlantic-coastline-length",
+      "label": "大西洋岸の長さ",
+      "value": "約1,650キロメートル",
+      "note": "アンゴラ政府は大西洋に面する海岸線を約1,650キロメートルとしている。北のコンゴ川河口近くから南のナミブ砂漠まで、海岸景観と気候が大きく変わる。",
+      "icon": "sea",
+      "interestReason": "巨大な国土が大西洋と長く接し、港湾都市・寒流・砂漠海岸まで一続きの旅の軸になることを示せるため。"
+    },
+    {
+      "topicKey": "detached-cabinda-territory",
+      "label": "本土と離れた領域",
+      "value": "1州",
+      "note": "最北部のカビンダ州は、コンゴ民主共和国の領土によってアンゴラ本土から分離している。国の地図が一つの連続した輪郭ではないこと自体が、アンゴラの地理的特徴になっている。",
+      "icon": "map",
+      "interestReason": "カビンダ飛地を見落とさず、国土の形と隣国関係を直感的に理解するための特徴的な数字だから。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "current-security-zones",
+      "title": "州名だけでなく、州都・幹線道路まで含めて危険情報を読む",
+      "text": "日本外務省は2026年9月時点で、カビンダ州や東部諸州の全域に加え、マランジェ、ウイラ、クネネなどでも州都や主要幹線道路近郊を除く地域をレベル2としている。郊外の自然景勝地は都市名だけで安全と判断せず、直前の地図と移動経路を照合する。"
+    },
+    {
+      "topicKey": "road-condition-night-driving",
+      "title": "都市外の長距離移動は車両状態と日没前到着を優先する",
+      "text": "道路状態は都市外で大きく変わり、故障時の支援も限られる。長距離では整備状態の良い車両を選び、可能な限り夜間運転を避け、給油地点と予備時間を先に確保する。"
+    },
+    {
+      "topicKey": "cabinda-is-not-mainland-extension",
+      "title": "カビンダは本土から陸続きではない",
+      "text": "カビンダ州とアンゴラ本土の間にはコンゴ民主共和国がある。地図上の距離が近くても国内陸路として連続しないため、移動方法と国境手続きを本土の延長として考えない。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇳🇦",
+      "countryEn": "NAMIBIA",
+      "countryJa": "ナミビア",
+      "path": "Ondjiva → Santa Clara Border → Oshikango → Ondangwa",
+      "description": "アンゴラ南部からナミビア北中部へつなぐ主要な陸路国境。Oshikango / Santa Claraは両国間の正式な国境通過地点として運用されている。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境の営業時間、入国条件、車両書類、アンゴラ側の最新安全情報を出発直前に確認する。"
+    },
+    {
+      "flag": "🇨🇩",
+      "countryEn": "DR CONGO",
+      "countryJa": "コンゴ民主共和国",
+      "path": "Mbanza Kongo → Luvo Border → Western DR Congo",
+      "description": "Mbanza KongoからLuvo Borderを越えてコンゴ民主共和国西部へ続く陸路。国境施設は稼働しているが、現地交通と安全状況の変化が大きい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "コンゴ民主共和国側の入国条件、安全情報、現地交通を必ず直前に確認する。"
+    },
+    {
+      "flag": "🇿🇦",
+      "countryEn": "SOUTH AFRICA",
+      "countryJa": "南アフリカ",
+      "path": "Ondjiva → Oshikango → Windhoek → Noordoewer → Cape Town",
+      "description": "アンゴラ南部からNamibiaを縦断してSouth Africaへ続く長距離の南下ルート。OshikangoでNamibiaへ入り、Windhoekを経てNoordoewerからSouth Africa側へ抜ける。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "NamibiaとSouth Africa双方の入国条件、国境営業時間、車両書類を出発直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "namibia",
+      "nameEn": "NAMIBIA",
+      "nameJa": "ナミビア",
+      "flag": "🇳🇦",
+      "reason": "ナミブ砂漠と寒流の影響を受ける大西洋岸の乾燥景観を、国境の南側まで連続して見たい人へ。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "drcongo",
+      "nameEn": "CONGO - KINSHASA",
+      "nameJa": "コンゴ民主共和国",
+      "flag": "🇨🇩",
+      "reason": "コンゴ王国の歴史圏と現在の国境を越える交通・文化のつながりを、中央アフリカ側から広げて見たい人へ。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "zambia",
+      "nameEn": "ZAMBIA",
+      "nameJa": "ザンビア",
+      "flag": "🇿🇲",
+      "reason": "大河川、高原、内陸の野生地域と、ロビト回廊がつなぐ南部アフリカ内陸のスケールを続けて見たい人へ。",
+      "affinityType": "NATURE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2024",
+    "mofaProfile": "2026-06-03",
+    "governmentGeography": "2026-09-28",
+    "governmentClimate": "2026-09-28",
+    "governmentProvinces": "2026-09-28",
+    "unescoAngola": "2026-09-28",
+    "travelAdvice": "2026-09-28",
+    "roadAdvice": "2026-09-25",
+    "namibiaBorder": "2026-09-28",
+    "luvoBorder": "2026-02-19",
+    "sceneCoordinates": "2026-09-28",
+    "map": "2026-09-28",
+    "namibiaSouthAfricaBorder": "2026-09-29"
+  },
+  "sources": {
+    "mofaProfile": "Ministry of Foreign Affairs of Japan — Angola basic data, updated 2026-06-03: area 1.247 million km², population 37.88 million (World Bank 2024), capital Luanda, Portuguese official language, religion, currency, independence and 2002 ceasefire. https://www.mofa.go.jp/mofaj/area/angola/data.html",
+    "population": "World Bank — Angola population 37,885,849 in 2024, checked 2026-09-28. https://data.worldbank.org/country/angola",
+    "governmentGeography": "Government of Angola — country geography: 1,246,700 km² territory, 1,650 km Atlantic coastline, borders with Republic of Congo, DRC, Zambia and Namibia; checked 2026-09-28. https://governo.gov.ao/angola/dados-sobre-o-pa%C3%ADs",
+    "governmentProfile": "CIAM / Government of Angola — Angola profile: approximately 65% of territory at 1,000–1,600 m elevation, official language Portuguese and major national languages; checked 2026-09-28. https://ciam.gov.ao/ao/angola/perfil",
+    "governmentClimate": "Government of Angola — Climate: broad rainy season October–April and dry/cacimbo season May–September, with Benguela Current and altitude producing strong regional differences; checked 2026-09-28. https://governo.gov.ao/angola/clima",
+    "governmentProvinces": "Government of Angola — current administrative list of 21 provinces, including Cuando, Icolo e Bengo and Moxico Leste established 2025; checked 2026-09-28. https://governo.gov.ao/angola/provincias",
+    "angolaEmbassy": "Embassy of the Republic of Angola in Japan — Angola geography and culture: Cabinda is separated from mainland Angola by DRC; 1,650 km coastline; Kwanza currency takes its name from the Kwanza River; checked 2026-09-28. https://www.angola.or.jp/angola-en/",
+    "angolaEmbassyFood": "Embassy of the Republic of Angola in Japan — gastronomy: cassava, corn, yams, vegetables, fish, shellfish and meat; funge served with kizaka, palm-oil beans, muamba de galinha and calulu. https://www.angola.or.jp/angola-en/ ; https://www.angola.or.jp/ja/angola-ja/",
+    "muamba": "Embassy of the Republic of Angola in Japan — 2025-08-04: chicken muamba with corn funge described as one of the most famous Angolan dishes. https://www.angola.or.jp/2025/08/04/prato-angolano-feito-por-japoneses-2/",
+    "unescoAngola": "UNESCO World Heritage Centre — Angola State Party: one inscribed World Heritage property, Mbanza Kongo, checked 2026-09-28. https://whc.unesco.org/en/statesparties/ao",
+    "unescoMbanza": "UNESCO World Heritage Centre — Mbanza Kongo: political and spiritual capital of the Kingdom of Kongo from the 14th to 19th centuries; inscribed 2017; property coordinates S6°16′8″ E14°14′59″. https://whc.unesco.org/en/list/1511 ; https://whc.unesco.org/en/list/1511/maps/",
+    "inbacIona": "INBAC — Iona National Park: southwest Angola/Namibe, desert and coastal ecosystem, official conservation-area information; checked 2026-09-28. https://inbac.gov.ao/Site/areasConservacao/parque/7",
+    "giantSable": "Government of Angola — State of the Nation 2025: continued protection of the Giant Sable Antelope identified as a biodiversity priority. https://governo.gov.ao/noticias/2387/discurso/abertura-do-ano-parlamentar/discurso-sobre-o-estado-da-nacao-2025",
+    "tourism": "Government/Angolan tourism references — Kalandula, Tundavala, Pungo Andongo, Namibe and other national tourism landscapes; checked 2026-09-28. https://governo.gov.ao/angola/turismo ; https://www.angola.or.jp/angola-en/",
+    "lobitoCorridor": "Government of Angola — 2023 regional integration statement on the Lobito Corridor and Benguela Railway links toward DRC and Zambia. https://governo.gov.ao/noticias/808/governo/telecomunicacoes/ligacao-por-fibra-optica-com-paises-vizinhos-facilitara-comunicacao-com-mundo",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan — Angola danger information, current as checked 2026-09-28: Level 2 applies to Cabinda and several eastern/southern provinces and to rural areas of some provinces outside specified capitals/main roads; unexploded mines remain a concern. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_092.html ; https://www.anzen.mofa.go.jp/m/mbhazardinfo1_092.html",
+    "roadAdvice": "UK FCDO — Angola safety and security, current 2026-09-25: road conditions vary greatly outside major cities, 4WD may be appropriate, reputable roadworthy vehicles and avoiding night travel are advised. https://www.gov.uk/foreign-travel-advice/angola/safety-and-security",
+    "namibiaBorder": "Namibia Ministry of Home Affairs / Namibia tourism — Oshikango border post is on the Namibia–Angola border; current gate hours and official point-of-entry listing checked 2026-09-28. https://mha.gov.na/oshikango-border-post ; https://visitnamibia.com.na/border-posts-point-of-entry/",
+    "luvoBorder": "Government of Angola — new Luvo border post with DRC inaugurated 2026-02-19 in Zaire Province; ANTT confirms cross-border passenger and freight road-transport regime at Luvo. https://governo.gov.ao/noticias/2684/governo/zaire/novo-posto-fronteirico-do-luvo-impulsiona-comercio-formal-entre-angola-e-a-rdc ; https://www.antt.gov.ao/pt/noticias/Novo-regime-de-taxas-no-transporte-rodoviario-transfronteirico-entra-em-vigor-na-fronteira-do-Luvo",
+    "sceneCoordinates": "WGS84 points checked 2026-09-28 using UNESCO for Mbanza Kongo and OpenStreetMap/GeoNames/Wikidata cross-checks for physical landmarks: Kalandula Falls -9.0741,16.0003; Tundavala -14.81758,13.38153; Iona -16.6667,12.3333; Miradouro da Lua -9.2212,13.0898; Mbanza Kongo -6.268889,14.249722; Pungo Andongo -9.66823,15.61612; Baía dos Tigres -16.60095,11.7227; Palácio de Ferro -8.812011,13.23555; Serra da Leba -15.07157,13.23616.",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (AGO/COD/COG/ZMB/NAM/BWA); JOURNEY ATLAS map-v3 styling, generated 2026-09-28.",
+    "palacioFerro": "Medicare Angola tourism guide — Palácio de Ferro, Luanda: wrought-iron historic building of uncertain origin; restored in 2009; checked 2026-09-28. https://medicareclub.ao/index.php?province_content_id=39&route=club%2Fguide%2Fattraction",
+    "namibiaSouthAfricaBorder": "Namibia Ministry of Home Affairs, Immigration, Safety and Security — official ports of entry list: Oshikango on the Angola border and Noordoewer on the South Africa route are operating land border posts; checked 2026-09-29. https://mhaiss.gov.na/es/entries"
+  }
+}

@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "gambia",
+  "nameEn": "GAMBIA",
+  "nameJa": "ガンビア",
+  "region": "WEST AFRICA / 13°N",
+  "seo": {
+    "description": "国土を東西に貫くガンビア川、タンビのマングローブ、野鳥保護区、セネガンビアの石環、フォート・ブレンとジャンジャンブレの歴史。川に沿って細長く続く西アフリカの国を8つの景色と地図でたどるガンビアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Banjul",
+    "nameJa": "バンジュール",
+    "coordinates": {
+      "latitude": 13.45274,
+      "longitude": -16.57803
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 8,
+      "y": -24
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "大西洋へ注ぐ一本の川と、その両岸に続くマングローブ、湿地、サバンナ、集落。国土の形そのものをつくるガンビア川を、西から東へたどる。",
+    "location": "クンタ・キンテ島",
+    "coordinates": {
+      "latitude": 13.317642,
+      "longitude": -16.361353
+    },
+    "mapOffset": {
+      "x": 1.7,
+      "y": 2.4
+    },
+    "image": "assets/images/gambia/approved/hero-kunta-kinteh-island.webp"
+  },
+  "map": {
+    "bounds": {
+      "north": 14,
+      "south": 13,
+      "west": -17,
+      "east": -13.65
+    },
+    "svg": "assets/images/gambia/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target and surrounding national geometry: Natural Earth 1:10m cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (GMB/SEN GeoJSON). Shared JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-27."
+  },
+  "scenes": [
+    {
+      "id": "tanji-bird-reserve",
+      "name": "タンジ / 海岸と野鳥保護区",
+      "nameLocal": "Tanji Bird Reserve",
+      "mapLabel": "Tanji",
+      "description": "大西洋岸の砂浜と潟、低木地が連続し、漁船が並ぶタンジの海辺から野鳥保護区へ景観が切り替わる。沿岸漁業の生活感と、渡り鳥を支える湿地が近い距離で重なる。",
+      "coordinates": {
+        "latitude": 13.371533,
+        "longitude": -16.78285
+      },
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": 0.5
+      },
+      "image": "assets/images/gambia/approved/scene-1-tanji.webp"
+    },
+    {
+      "id": "abuko-nature-reserve",
+      "name": "アブコ自然保護区",
+      "nameLocal": "Abuko Nature Reserve",
+      "mapLabel": "Abuko",
+      "description": "ラミン川沿いに半常緑のギャラリーフォレストと池が残る小さな保護区。都市圏のすぐ外側ながら、270種を超える鳥類が記録され、森の密度と水辺の生物を歩いて観察できる。",
+      "coordinates": {
+        "latitude": 13.391389,
+        "longitude": -16.6525
+      },
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -1,
+        "y": 4
+      },
+      "image": "assets/images/gambia/approved/scene-2-abuko.webp"
+    },
+    {
+      "id": "fort-bullen-barra",
+      "name": "フォート・ブレン / バラ",
+      "nameLocal": "Fort Bullen / Barra",
+      "mapLabel": "Fort Bullen",
+      "description": "ガンビア川河口の北岸に残る19世紀の要塞跡。世界遺産「クンタ・キンテ島と関連遺跡」を構成する地点の一つで、奴隷貿易廃止後に河口を監視するため築かれた。川と大西洋が接する入口から交易史を見渡せる。",
+      "coordinates": {
+        "latitude": 13.485261,
+        "longitude": -16.547472
+      },
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -2
+      },
+      "image": "assets/images/gambia/approved/scene-3-fort-bullen.webp"
+    },
+    {
+      "id": "kiang-west-national-park",
+      "name": "キアン・ウェスト国立公園",
+      "nameLocal": "Kiang West National Park",
+      "mapLabel": "Kiang West",
+      "description": "ガンビア川南岸に、乾燥落葉林とギニアサバンナ、マングローブの水路、干潟が連続する。内陸の乾いた森林と潮汐湿地が同じ国立公園に入り、川沿いの生態系の幅を実感できる。",
+      "coordinates": {
+        "latitude": 13.3833,
+        "longitude": -15.9167
+      },
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.5,
+        "y": 0.5
+      },
+      "image": "assets/images/gambia/approved/scene-4-kiang-west.webp"
+    },
+    {
+      "id": "bao-bolong-wetland",
+      "name": "バオ・ボロン湿地保護区",
+      "nameLocal": "Bao Bolong Wetland Reserve",
+      "mapLabel": "Bao Bolong",
+      "description": "ガンビア川北岸に複数のボロンと呼ばれる支流・湿地が広がる。マングローブ、塩性湿地、ヨシ原がつながり、魚食性の猛禽や水鳥、カバやマナティーを含む水辺の生態系を支えている。",
+      "coordinates": {
+        "latitude": 13.51366,
+        "longitude": -15.85808
+      },
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": -1
+      },
+      "image": "assets/images/gambia/approved/scene-5-bao-bolong.webp"
+    },
+    {
+      "id": "wassu-stone-circles",
+      "name": "ワッスのストーン・サークル",
+      "nameLocal": "Wassu Stone Circles",
+      "mapLabel": "Wassu",
+      "description": "赤褐色のラテライト石柱が円形に立つセネガンビアの石環遺跡。世界遺産を構成する4群の一つで、周辺一帯には長い時期にわたる埋葬文化を示す石環と墳丘が密集する。",
+      "coordinates": {
+        "latitude": 13.692,
+        "longitude": -14.873
+      },
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.4,
+        "y": 0.8
+      },
+      "image": "assets/images/gambia/approved/scene-6-wassu.webp"
+    },
+    {
+      "id": "janjanbureh-historic-town",
+      "name": "ジャンジャンブレ / 旧ジョージタウン",
+      "nameLocal": "Janjanbureh / Historic Georgetown",
+      "mapLabel": "Janjanbureh",
+      "description": "ガンビア川中流の島に形成された旧ジョージタウン。19世紀以来の建物や街路が残り、沿岸の交易拠点とは異なる内陸河港の歴史を伝える。川を渡りながら町へ入る地形そのものが旅の一部になる。",
+      "coordinates": {
+        "latitude": 13.54,
+        "longitude": -14.76
+      },
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.4,
+        "y": -0.8
+      },
+      "image": "assets/images/gambia/approved/scene-7-janjanbureh.webp"
+    },
+    {
+      "id": "basse-santa-su",
+      "name": "バセ・サンタ・ス / ガンビア川上流部",
+      "nameLocal": "Basse Santa Su",
+      "mapLabel": "Basse",
+      "description": "国土東端に近い上流部の中心都市。市場と道路、川辺の往来が集まり、西部の都市圏から続く細長い国土の終盤を実感できる。上流へ進むほど海の影響が薄れ、内陸西アフリカの景観へ移る。",
+      "coordinates": {
+        "latitude": 13.30995,
+        "longitude": -14.213734
+      },
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.6,
+        "y": 0.4
+      },
+      "image": "assets/images/gambia/approved/scene-8-basse.webp"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "海辺で野鳥に出会う",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "森の木陰を歩く",
+      "category": "WILDLIFE",
+      "icon": "leaf"
+    },
+    {
+      "title": "歴史を残す建物に出会う",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "サバンナと湿地の境目を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "水辺の生きものを観察する",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "土地に残る石造文化に触れる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "川沿いの町の暮らしを見る",
+      "category": "DAILY_LIFE",
+      "icon": "city"
+    },
+    {
+      "title": "市場の活気に出会う",
+      "category": "DAILY_LIFE",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "river-country-shape",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ガンビアは、一本の川に沿って東西へ細長く続く",
+      "text": "国土は大西洋から内陸へガンビア川に沿って延び、川が移動・交易・湿地・集落の配置をまとめている。河口のマングローブから上流のサバンナまで、旅の軸を川に置くと国の構造が見えやすい。",
+      "points": [
+        "大西洋岸から内陸へ国土が川沿いに細長く延びる",
+        "道路だけでなくフェリーやボートも川との位置関係を意識して使う"
+      ],
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "tanbi-capital-wetland",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "首都圏のすぐ脇で、潮の満ち引きがマングローブの景観を変える",
+      "text": "タンビ湿地複合体はガンビア川河口の潮汐を受ける低地湿地で、都市域に隣接しながら広いマングローブ林が残る。干潮と満潮で水路や泥地の見え方が変わり、バンジュール周辺の都市景観と河口生態系が近接している。",
+      "points": [
+        "ラムサール資料では湿地の約80%をマングローブが占める",
+        "都市部から短い距離で潮汐水路とマングローブへ景観が切り替わる"
+      ],
+      "sourceKey": "tanbi"
+    },
+    {
+      "topicKey": "janjanbureh-inland-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "河口だけでなく、中流の島にも植民地期の河港史が残る",
+      "text": "ジャンジャンブレは旧ジョージタウンとしてガンビア川中流の島に形成され、沿岸拠点とは異なる内陸側の行政・交易の歴史を伝える。河口から川をさかのぼることで、ガンビア川が海岸と内陸を結んだ交通軸だったことが見えてくる。",
+      "points": [
+        "ジャンジャンブレは旧ジョージタウンとして知られる中流の歴史都市",
+        "ユネスコ暫定一覧では歴史都市ジョージタウンとして内陸進出の歴史的価値が説明される"
+      ],
+      "sourceKey": "historicGeorgetown"
+    },
+    {
+      "topicKey": "stone-circles-landscape",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "石環は一つの遺跡ではなく、約350kmに連なる葬送景観の一部",
+      "text": "世界遺産「セネガンビアのストーン・サークル群」は4群93基の石環で構成されるが、より広い地域には1,000を超える石造記念物が分布する。ワッスを訪れると、単独の石柱群ではなく地域全体の歴史として見えてくる。",
+      "points": [
+        "世界遺産の4群にはガンビアのワッスとケルバッチが含まれる",
+        "より広い分布域には1,000超の記念物が確認される"
+      ],
+      "sourceKey": "stoneCircles"
+    },
+    {
+      "topicKey": "protected-area-mosaic",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に出会う",
+      "title": "保護区ごとに、森林・サバンナ・ボロン・干潟の役割が変わる",
+      "text": "ガンビアの保護区は同じ自然景観の反復ではない。アブコではギャラリーフォレスト、キアン・ウェストではサバンナと潮汐湿地、バオ・ボロンでは支流とマングローブが主役になり、川に沿う短い国土の中で異なる生態系を比較できる。",
+      "points": [
+        "アブコは森林と池、キアン・ウェストは乾燥林・サバンナ・潮汐域が連続する",
+        "バオ・ボロンでは複数のボロンと湿地植生が水鳥や水生生物を支える"
+      ],
+      "sourceKey": "protectedAreas"
+    },
+    {
+      "topicKey": "kankurang-living-heritage",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "カンクランは、セネガンビアに続くマンディンカの生きた文化遺産",
+      "text": "カンクランはガンビアとセネガルのマンディンカ地域で行われる通過儀礼で、歌、踊り、知識の伝承を含む。2008年にユネスコ無形文化遺産の代表一覧へ記載され、現在も保護と継承の事業が続く。",
+      "points": [
+        "2008年に無形文化遺産の代表一覧へ記載",
+        "ガンビアとセネガルが共有する文化要素"
+      ],
+      "sourceKey": "kankurang"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "two-world-heritage-properties",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "ガンビアの世界遺産は2件",
+      "text": "「クンタ・キンテ島と関連遺跡」と「セネガンビアのストーン・サークル群」の2件はいずれも文化遺産。川の交易史と、内陸の葬送文化という異なる時間軸を伝える。",
+      "icon": "history",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "senegal-border-shape",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "国境",
+      "title": "大西洋側を除けば、国境の相手はセネガルだけ",
+      "text": "ガンビアはガンビア川に沿ってセネガル領内へ細長く延びるため、北・東・南の陸上国境はいずれもセネガルと接する。",
+      "icon": "map",
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "bolon-word",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言葉",
+      "title": "「ボロン」はマンディンカ語で支流を意味する",
+      "text": "バオ・ボロンなどの地名に現れる「ボロン」は、ガンビア川へつながる支流や水路を指す。地図上でこの語を知ると、湿地景観の読み方が変わる。",
+      "icon": "language",
+      "sourceKey": "protectedAreas"
+    },
+    {
+      "topicKey": "tanbi-mangrove-share",
+      "categoryEn": "NATURE",
+      "categoryJa": "湿地",
+      "title": "タンビの大部分はマングローブ湿地",
+      "text": "ラムサール情報では、タンビ湿地複合体は河川と海の堆積でできた低地で、約80%がマングローブ湿地と説明されている。",
+      "icon": "landscape",
+      "sourceKey": "tanbi"
+    },
+    {
+      "topicKey": "kankurang-one-element",
+      "categoryEn": "CULTURE",
+      "categoryJa": "無形文化",
+      "title": "ガンビアのユネスコ無形文化遺産登録要素はカンクラン",
+      "text": "ユネスコのガンビア国別一覧では、代表一覧への記載要素としてマンディンカの通過儀礼「カンクラン」が掲載されている。",
+      "icon": "culture",
+      "sourceKey": "kankurang"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF GAMBIA",
+    "title": "ガンビアで食べたいもの",
+    "intro": "落花生の濃い煮込み、鍋ひとつで炊く米料理、酸味のある玉ねぎソース、オクラのとろみ。米、魚、肉、野菜を一皿にまとめる4品。",
+    "items": [
+      {
+        "id": "domoda",
+        "name": "ドモダ",
+        "nameLocal": "Domoda",
+        "text": "落花生のペーストをベースに肉や魚、野菜を煮込み、米と合わせる代表的な料理。濃厚なナッツのコクと煮込みの旨味が中心になる。",
+        "image": "assets/images/gambia/approved/food-1-domoda.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "benachin",
+        "name": "ベナチン",
+        "nameLocal": "Benachin",
+        "text": "米をトマト、野菜、魚または肉と同じ鍋で炊き込む一鍋料理。西アフリカのジョロフ系統と重なりながら、ガンビアの日常食として広く食べられる。",
+        "image": "assets/images/gambia/approved/food-2-benachin.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "yassa",
+        "name": "ヤッサ",
+        "nameLocal": "Yassa",
+        "text": "鶏肉や魚をレモンなどでマリネし、たっぷりの玉ねぎを酸味のあるソースに仕上げて米と食べる。香ばしく焼いた主素材と柔らかな玉ねぎの対比が特徴。",
+        "image": "assets/images/gambia/approved/food-3-yassa.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "superkanja",
+        "name": "スーパー・カンジャ",
+        "nameLocal": "Superkanja",
+        "text": "オクラのとろみを中心に、魚や肉、パーム油、玉ねぎ、香辛料などを煮込む料理。米にかけて食べ、ドモダとは異なる粘りと青い風味が出る。",
+        "image": "assets/images/gambia/approved/food-4-superkanja.webp",
+        "imageState": "APPROVED",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "西部の都市圏だけなら短くまとまるが、ガンビアらしさは川沿いに東へ進むほど立体的になる。ワッスやジャンジャンブレ、バセまで行く場合は長距離の道路移動を前提に余白を置きたい。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "河口湿地と西海岸を軸にする",
+        "text": "バンジュール周辺を起点にタンビ、アブコ、タンジを組み合わせる。都市圏から湿地、森林、大西洋岸へ短い距離で景観を変える。例：バンジュール → タンビ → アブコ → タンジ",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "河口の歴史とキアン・ウェストまで広げる",
+        "text": "西部にフォート・ブレンの歴史とキアン・ウェストのサバンナ・湿地を加える。フェリーや橋、道路の組み合わせを確認しながら中流へ向かう。例：バンジュール → バラ → キアン・ウェスト → バオ・ボロン",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "ワッスからバセまで東西を通す",
+        "text": "ワッスの石環、ジャンジャンブレ、バセまで進み、海に近い河口部から内陸の上流域へ国土を横断する。例：バンジュール → キアン・ウェスト → ワッス → ジャンジャンブレ → バセ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜1月",
+      "color": "#9fa98b",
+      "text": "乾季の前半。政府観光案内も11〜2月を比較的涼しく旅しやすい時期として挙げる。湿度が下がり、町歩きや保護区の移動を組みやすい。"
+    },
+    {
+      "months": "2〜5月",
+      "color": "#c8ad78",
+      "text": "乾季後半は内陸ほど暑さが増す。政府環境情報では3〜5月にハルマッタンの影響で内陸が38℃を超えることがあるため、野外活動は朝夕を使いたい。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#7f9a83",
+      "text": "雨季。政府環境情報では雨季は6〜10月で、植生が濃くなる一方、未舗装路や保護区内の移動条件が変わりやすい。"
+    },
+    {
+      "months": "9〜10月",
+      "color": "#8fa190",
+      "text": "雨季後半。湿地と草地は水と緑が豊かだが、強い雨や道路状況を見ながら日程に余裕を持つ。10月を過ぎると乾季へ切り替わっていく。"
+    }
+  ],
+  "transport": {
+    "title": "道路を軸に、ガンビア川の横断は橋・フェリー・ボートを組み合わせる",
+    "text": "国土は川で南北に分かれるため、東西の幹線道路と河川横断を組み合わせる。セネガンビア橋は中流部の主要横断点で、バンジュール―バラでは国営フェリーが旅客・貨物の横断サービスを担う。川沿いの湿地や保護区では小型ボートを使う区間もある。フェリー運航や道路状況は出発直前に確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "国の形をつくる一本の川を、河口から内陸まで追いたい人",
+      "text": "タンビのマングローブ、キアン・ウェスト、ワッス、バセをつなぎ、ガンビア川が湿地・歴史・町の配置をどう形づくったかを地理として見たい人。"
+    },
+    {
+      "title": "小さな国土で野鳥、森林、湿地、サバンナを変えたい人",
+      "text": "タンジ、アブコ、バオ・ボロン、キアン・ウェストを組み合わせ、異なる保護区を移動しながら西アフリカの河川・沿岸生態系を観察したい人。"
+    },
+    {
+      "title": "河口交易史と石環、現在の町を同じ旅でたどりたい人",
+      "text": "フォート・ブレンの交易・奴隷貿易史、ワッスの石環、ジャンジャンブレの旧河港、バセの市場町をつなぎ、遺産だけでなく現在の暮らしまで見たい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / 大西洋岸 / セネガンビア"
+    },
+    {
+      "label": "首都",
+      "value": "バンジュール"
+    },
+    {
+      "label": "人口",
+      "value": "約282万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "11,300 km²（日本の約3%）"
+    },
+    {
+      "label": "言語",
+      "value": "英語（公用語）／マンディンカ語・ウォロフ語・フラ語など"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が約90%"
+    },
+    {
+      "label": "通貨",
+      "value": "ガンビア・ダラシ（GMD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "abuko-bird-species",
+      "label": "アブコの記録鳥類",
+      "value": "270種超",
+      "note": "ガンビア環境省の保護区情報では、アブコ自然保護区で270種を超える鳥類が記録されている。",
+      "icon": "wildlife",
+      "interestReason": "都市圏に近い小さな保護区でも、森林・池・サバンナが接することで高い鳥類多様性が見られる。"
+    },
+    {
+      "topicKey": "stone-circle-zone",
+      "label": "セネガンビアの石造記念物",
+      "value": "1,000超",
+      "note": "ユネスコはガンビア川沿い約350kmの広い分布域に、1,000を超える石造記念物があると説明する。",
+      "icon": "history",
+      "interestReason": "ワッスの石環を孤立した名所ではなく、長大な文化景観の一地点として捉えられる。"
+    },
+    {
+      "topicKey": "river-navigable-fatoto",
+      "label": "川を航行できる距離",
+      "value": "約477 km",
+      "note": "ガンビア国家交通政策2018–2027は、ガンビア川がバンジュールから約477km上流のファトトまで航行可能と記している。",
+      "icon": "map",
+      "interestReason": "国土を貫く川が景観だけでなく、内陸深くまで続く交通軸でもある規模を数字で捉えられる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "ferry-live-check",
+      "title": "バンジュール―バラは当日のフェリー状況を確認する",
+      "text": "国営フェリーは川の横断サービスを担うが、船舶の整備や運航条件で状況が変わり得る。出発前に公式の運航情報と現地案内を確認する。"
+    },
+    {
+      "topicKey": "wet-season-road-buffer",
+      "title": "雨季の内陸移動には時間の余白を置く",
+      "text": "6〜10月は雨季で、保護区内や支線道路の状態が乾季と変わる。長距離移動を詰めすぎず、宿やガイドに直近の道路状況を確認する。"
+    },
+    {
+      "topicKey": "wildlife-distance",
+      "title": "湿地と保護区では観察距離を優先する",
+      "text": "鳥やワニ、霊長類などを撮る場合も、ガイドの指示と保護区ルールを優先する。ボート上ではライフジャケットなど現地の安全装備を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇸🇳",
+      "countryEn": "SENEGAL",
+      "countryJa": "セネガル",
+      "path": "バンジュール → バラ → アムダライ → カオラック",
+      "description": "バンジュールからガンビア川をバラへ渡り、北側国境からセネガルへ抜ける代表的な陸路。ガンビアを取り囲むセネガルへそのまま旅をつなげられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境手続き、バンジュール―バラのフェリー運航、道路状況は出発直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "senegal",
+      "nameEn": "SENEGAL",
+      "nameJa": "セネガル",
+      "flag": "🇸🇳",
+      "reason": "国境をほぼ全周で接し、セネガンビアのストーン・サークル群やカンクランを共有する。ガンビアの文化と地理を広いセネガンビア地域として続けて見たいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "guinea-bissau",
+      "nameEn": "GUINEA-BISSAU",
+      "nameJa": "ギニアビサウ",
+      "flag": "🇬🇼",
+      "reason": "マングローブ、河口、島嶼と大西洋岸の生活文化を、より水域の比重が大きい景観で比較したいなら。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "sierra-leone",
+      "nameEn": "SIERRA LEONE",
+      "nameJa": "シエラレオネ",
+      "flag": "🇸🇱",
+      "reason": "西アフリカの大西洋岸で、河口湿地、森林、交易史と現在の都市を組み合わせて旅したいなら。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-27",
+  "sourcesVerifiedAt": "2026-09-27",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2025-09-26",
+    "worldHeritage": "2026-09-27",
+    "protectedAreas": "2021",
+    "kankurang": "2026-09-27",
+    "climate": "2026-09-27",
+    "transport": "2026-09-27",
+    "sceneCoordinates": "2026-09-27",
+    "map": "2026-09-27",
+    "food": "2026-09-27",
+    "areaComparison": "2023",
+    "riverTransportPolicy": "2018"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Gambia basic data, updated 26 Sep 2025: area 11,300 km², capital Banjul, English and local languages, religion, currency. https://www.mofa.go.jp/mofaj/area/gambia/data.html",
+    "population": "World Bank Data — Population, total, The Gambia: 2,822,093 (2025), checked 27 Sep 2026. https://data.worldbank.org/indicator/SP.POP.TOTL?locations=GM",
+    "geography": "Government of The Gambia — Tourist Information: River Gambia runs at the heart of the country; palm-fringed Atlantic coastline and river-bank camps. https://gambia.gov.gm/tourist-information/",
+    "worldHeritage": "UNESCO World Heritage Centre — Gambia State Party list: 2 cultural properties, Kunta Kinteh Island and Related Sites (2003) and Stone Circles of Senegambia (2006), checked 27 Sep 2026. https://whc.unesco.org/en/statesparties/gm",
+    "kuntaKinteh": "UNESCO World Heritage Centre — Kunta Kinteh Island and Related Sites; serial property of 7 components documenting Africa-Europe contact, trade, slavery and abolition. Component map includes Fort Bullen N13 29 6.94 W16 32 50.9. https://whc.unesco.org/en/list/761 ; https://whc.unesco.org/en/list/761/maps/",
+    "stoneCircles": "UNESCO World Heritage Centre — Stone Circles of Senegambia: four groups with 93 stone circles, part of a wider zone of more than 1,000 monuments along about 350 km of the River Gambia; Wassu centre N13 41 31.2 W14 52 22.8. https://whc.unesco.org/en/list/1226",
+    "historicGeorgetown": "UNESCO World Heritage Centre Tentative List — Historic Georgetown / Janjangbureh Island, submitted 2015, historic quarter with colonial-period and earlier buildings. https://whc.unesco.org/en/tentativelists/6064/",
+    "protectedAreas": "Ministry of Environment, Climate Change & Natural Resources, The Gambia — Information on protected areas: national parks/reserves total 89,851 ha, coverage 8.2%; Abuko >270 bird species; Kiang West 23,621 ha and mixed savannah/mangrove/tidal habitats; Bao Bolong wetland description. https://meccnar.gov.gm/information-protected-areas-gambia",
+    "tanbi": "Ramsar Sites Information Service — Tanbi Wetlands Complex, site 1657: 6,304 ha, coordinates 13°25′59″N 16°37′59″W, designated 2 Feb 2007; estuarine/intertidal wetland dominated by mangrove swamp. https://rsis.ramsar.org/",
+    "kankurang": "UNESCO Intangible Cultural Heritage — Kankurang, Manding initiatory rite, practised in Senegal and Gambia; inscribed on Representative List in 2008. https://ich.unesco.org/en/RL/kankurang-manding-initiatory-rite-00143 ; https://ich.unesco.org/en/state/gambia-GM",
+    "food": "Government of The Gambia FAQ — must-try dishes listed as Domoda, Benachin, Yassa, Superkanja and Chura-Gerté; checked 27 Sep 2026. https://gambia.gov.gm/faqs/",
+    "climate": "Government of The Gambia / Ministry of Environment climate information — rainy season June–October, dry season November–May; interior temperatures can exceed 38°C during Harmattan influence in March–May; checked 27 Sep 2026.",
+    "transport": "Gambia Ports Authority / Gambia Ferry Services — cross-river passenger and goods services including Banjul–Barra; Office of the President statement 12 Jun 2026 confirms Senegambia Bridge as a major mobility link. https://gambiaports.gm/gambia-ferry-service-co-ltd/ ; https://www.op.gov.gm/statement-his-excellency-mr-adama-barrow-president-republic-gambia-4th-senegalo-gambia-presidential",
+    "sceneCoordinates": "WGS84 real-location points checked 27 Sep 2026: Kunta Kinteh Island / James Island 13.317642,-16.361353 (UNESCO component coordinate 761-001); Tanji Bird Reserve 13.371533,-16.78285 (GeoNames); Abuko Nature Reserve 13.391389,-16.6525 (GeoNames/NGA); Fort Bullen 13.485261,-16.547472 (UNESCO component coordinate); Kiang West 13.3833,-15.9167 (GeoNames); Bao Bolong 13.51366,-15.85808 (GeoNames); Wassu 13.692,-14.873 (UNESCO); Janjanbureh approx. 13.54,-14.76 (GeoNames-mapped town); Basse Santa Su 13.30995,-14.213734 (GeoNames); Banjul 13.45274,-16.57803 (GeoNames).",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; GMB target with SEN context; generated in JOURNEY ATLAS map-v3 style on 2026-09-27.",
+    "areaComparison": "World Bank WDI surface area — The Gambia 11,300 km² (2023) and Japan 377,969.27 km² (2023); 11,300 / 377,969.27 = 2.99%, rounded to 日本の約3%. https://data.worldbank.org/indicator/AG.SRF.TOTL.K2?locations=GM-JP",
+    "riverTransportPolicy": "The Gambia National Transport Policy 2018–2027 — River Gambia remains navigable up to Fatoto, about 477 km from Banjul. Government of The Gambia policy document: https://policies.gov.gm/d/caa87e48-5bad-11ec-9b31-029254d29bb1"
+  }
+}

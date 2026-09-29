@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "togo",
+  "nameEn": "TOGO",
+  "nameJa": "トーゴ",
+  "region": "WEST AFRICA / 8°N",
+  "seo": {
+    "description": "クタマクの土の塔状住居、ロメの海辺、アネホとトーゴ湖、ウォメの滝、アグ山、ファザオ＝マルファカサ、アレジョの山地。細長い国土を南から北へたどる。"
+  },
+  "capital": {
+    "nameEn": "Lomé",
+    "nameJa": "ロメ",
+    "coordinates": {
+      "latitude": 6.1319,
+      "longitude": 1.2228
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 8,
+      "y": -24
+    },
+    "mapOffset": {
+      "x": 0.5,
+      "y": -1.3
+    }
+  },
+  "hero": {
+    "lead": "南北に細長い国土の北部では、アタコラ山地にバタマリバの集落と土の塔状住居タキエンタが残る。沿岸の首都から森林と山地へ進むにつれ、景観と暮らしが大きく切り替わる。",
+    "image": "assets/images/togo/approved/hero-koutammakou.webp",
+    "location": "クタマク／バタマリバの土地",
+    "coordinates": {
+      "latitude": 10.066667,
+      "longitude": 1.133333
+    },
+    "mapOffset": {
+      "x": -2.5,
+      "y": -0.3
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 11.45,
+      "south": 5.7,
+      "west": -0.9,
+      "east": 2.2
+    },
+    "svg": "assets/images/togo/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target Togo and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (TGO/GHA/BEN/BFA GeoJSON). Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 flat-color styling; revised and checked 2026-09-28."
+  },
+  "scenes": [
+    {
+      "id": "palais-de-lome",
+      "name": "ロメ宮殿",
+      "nameLocal": "Palais de Lomé",
+      "mapLabel": "Palais de Lomé",
+      "description": "海岸近くの約11ヘクタールの敷地に、旧総督府を修復した文化施設と熱帯の庭園が広がる。植民地期の行政建築を、閉じた権力の場所から公共の芸術・文化空間へ転換した現在のロメを象徴する場所。",
+      "coordinates": {
+        "latitude": 6.12021,
+        "longitude": 1.21229
+      },
+      "image": "assets/images/togo/approved/scene-1-palais-de-lome.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -2.3,
+        "y": 4.2
+      }
+    },
+    {
+      "id": "aneho-glidji",
+      "name": "アネホ＝グリジ",
+      "nameLocal": "Aného–Glidji",
+      "mapLabel": "Aného",
+      "description": "大西洋、トーゴ湖、モノ川に囲まれた歴史都市圏。海とラグーンの間の砂州に旧植民地建築が残り、グリジではギンの宗教文化と年中行事が続く。水辺と都市史が重なるトーゴ南東部の景観。",
+      "coordinates": {
+        "latitude": 6.22798,
+        "longitude": 1.5919
+      },
+      "image": "assets/images/togo/approved/scene-2-aneho-glidji.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 2.8,
+        "y": 2.3
+      }
+    },
+    {
+      "id": "wome-waterfall",
+      "name": "ウォメの滝",
+      "nameLocal": "Cascade de Womé",
+      "mapLabel": "Womé",
+      "description": "クロトの緑に包まれた岩壁を水が落ち、滝壺へ流れ込む。沿岸平野からパリメ周辺の湿潤な丘陵へ景観が変わることを、短い距離の中で実感できる場所。",
+      "coordinates": {
+        "latitude": 6.865494,
+        "longitude": 0.562991
+      },
+      "image": "assets/images/togo/approved/scene-3-wome-waterfall.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": 2.9
+      }
+    },
+    {
+      "id": "mount-agou",
+      "name": "アグ山",
+      "nameLocal": "Mont Agou / Pic d'Agou",
+      "mapLabel": "Mont Agou",
+      "description": "標高986メートルのトーゴ最高峰。パリメ南東のプラトー地域に立ち、山麓には農地と樹木が広がる。海岸低地だけではないトーゴの標高差と、ガーナ国境沿いの山地景観を見せる。",
+      "coordinates": {
+        "latitude": 6.866667,
+        "longitude": 0.766667
+      },
+      "image": "assets/images/togo/approved/scene-4-mount-agou.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4.1,
+        "y": -0.9
+      }
+    },
+    {
+      "id": "atakpame-hills",
+      "name": "アタクパメ",
+      "nameLocal": "Atakpamé",
+      "mapLabel": "Atakpamé",
+      "description": "プラトー地域の高まりに展開する「七つの丘の町」。海岸部から中央部へ向かう途中で、起伏のある市街と周囲の緑が現れ、平坦な沿岸景観から山地へ移る中間点になる。",
+      "coordinates": {
+        "latitude": 7.533333,
+        "longitude": 1.133333
+      },
+      "image": "assets/images/togo/approved/scene-5-atakpame-hills.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.6,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "fazao-malfakassa",
+      "name": "ファザオ＝マルファカサ国立公園",
+      "nameLocal": "Parc National de Fazao-Malfakassa",
+      "mapLabel": "Fazao-Malfakassa",
+      "description": "トーゴ山地中央部に、半落葉樹林、疎林、樹木サバンナ、河川が連続する国内最大級の保護区。南部の湿潤地と北部サバンナの間で植生が移り変わる国土の中間帯を見せる。",
+      "coordinates": {
+        "latitude": 8.7,
+        "longitude": 0.717
+      },
+      "image": "assets/images/togo/approved/scene-6-fazao-malfakassa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.1,
+        "y": -4.4
+      }
+    },
+    {
+      "id": "faille-aledjo",
+      "name": "アレジョ断層",
+      "nameLocal": "Faille d'Alédjo",
+      "mapLabel": "Alédjo",
+      "description": "トーゴ山地を横切る国道1号の岩壁の切通し。自然の峡谷ではなく道路のために山を切り開いた通過点で、南北に細長い国を一本の幹線がつなぐ地形的な節目として知られる。",
+      "coordinates": {
+        "latitude": 9.697333,
+        "longitude": 1.134333
+      },
+      "image": "assets/images/togo/approved/scene-7-faille-aledjo.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.4,
+        "y": 4.2
+      }
+    },
+    {
+      "id": "nok-cave-granaries",
+      "name": "ノク洞窟の穀物倉",
+      "nameLocal": "Greniers des grottes de Nok",
+      "mapLabel": "Nok",
+      "description": "ブンブアカの砂岩崖の高所に洞窟が開き、その内部に土造りの穀物倉が残る。17〜19世紀の不安定な時代に避難場所として使われた北部サバヌ地域の文化景観で、世界遺産暫定一覧にも載る。",
+      "coordinates": {
+        "latitude": 10.67113,
+        "longitude": 0.14094
+      },
+      "image": "assets/images/togo/approved/scene-8-nok-cave-granaries.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -0.6,
+        "y": -4.8
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "建築を見る",
+      "category": "ARCHITECTURE",
+      "icon": "history"
+    },
+    {
+      "title": "街を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "水辺を渡る",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "自然を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "山の景色を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "市場を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "歴史に触れる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "食文化に触れる",
+      "category": "FOOD",
+      "icon": "food"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "batammariba-takienta-living-architecture",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "タキエンタは、建物だけでなく暮らしと信仰を包む",
+      "text": "クタマクではバタマリバの人々が土の塔状住居タキエンタを築き、集落、農地、聖域を含む文化景観を形づくってきた。世界遺産では建築と土地利用、社会・儀礼の結びつきが評価されている。",
+      "points": [
+        "土、木、藁を使う塔状住居が景観の核になる",
+        "文化景観は2023年にベナン側へ拡張された"
+      ],
+      "sourceKey": "unescoKoutammakou"
+    },
+    {
+      "topicKey": "aneho-lagoon-ocean-city",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "アネホでは、海・湖・川が歴史都市を囲む",
+      "text": "アネホ＝グリジは大西洋、トーゴ湖、モノ川に囲まれ、海水と淡水が近接する。旧植民地建築とギンの宗教文化が残り、沿岸交易の歴史と現在の暮らしが同じ水辺に重なる。",
+      "points": [
+        "海とラグーンの間に砂州が伸びる",
+        "グリジはギンの宗教文化の中心の一つ"
+      ],
+      "sourceKey": "togoTourismAneho"
+    },
+    {
+      "topicKey": "lome-palace-public-reuse",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "旧総督府は、閉じた政治空間から文化施設へ変わった",
+      "text": "ロメ宮殿は植民地期の総督府として建てられ、その後政府施設などに使われた。長い閉鎖を経て修復され、2019年に芸術・文化施設として一般に開かれた。",
+      "points": [
+        "敷地は約11ヘクタールで海辺まで続く",
+        "2019年に文化施設として再開した"
+      ],
+      "sourceKey": "togoTourismPalais"
+    },
+    {
+      "topicKey": "aledjo-engineered-mountain-pass",
+      "themeEn": "MOVEMENT",
+      "themeJa": "道の先へ",
+      "title": "アレジョは自然の裂け目ではなく、南北交通のために切り開かれた",
+      "text": "アレジョの岩壁はトーゴ山地を越える道路のために切り開かれた通過点。現在は大型交通の一部が迂回するが、南北を結ぶ国道1号の歴史と山地の地形を同時に読める。",
+      "points": [
+        "カラ州アソリの山地に位置する",
+        "南北幹線の国道1号を象徴する通過点"
+      ],
+      "sourceKey": "republicTogoAledjo"
+    },
+    {
+      "topicKey": "togoville-faith-and-lake-crossing",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに出会う",
+      "title": "トーゴ湖の対岸では、複数の信仰と湖上交通が隣り合う",
+      "text": "トーゴヴィルではカトリック教会とヴォドゥンに関わる場所が近接し、湖を渡るピローグも日常の移動として残る。宗教を単純な二分法で見るより、地域の生活の中で重なっていることが見える。",
+      "points": [
+        "町はトーゴ湖北岸にある",
+        "対岸からピローグで渡る移動がある"
+      ],
+      "sourceKey": "togoTourismAgbodrafo"
+    },
+    {
+      "topicKey": "maize-yam-food-belt",
+      "themeEn": "FOOD",
+      "themeJa": "食卓を知る",
+      "title": "主食の軸は、南のトウモロコシから北のヤムへ重心が動く",
+      "text": "トーゴの食卓ではトウモロコシ、ヤム、米、豆が主食の核になる。南部ではアクメなどトウモロコシの生地が身近で、北部では搗いたヤムのフフが特に根づく。細長い国土の農作物の違いが一皿の形にも現れる。",
+      "points": [
+        "南部ではアクメが日常的な主食の一つ",
+        "北部ではヤムを搗くフフが代表的"
+      ],
+      "sourceKey": "food"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "unesco-extension-2023",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "トーゴ唯一の世界遺産は、2023年に国境を越える文化景観になった",
+      "text": "クタマクは2004年にトーゴの文化遺産として登録され、2023年にベナン側へ拡張された。現在は両国にまたがる一つの文化景観として登録されている。",
+      "icon": "history",
+      "sourceKey": "unescoKoutammakou"
+    },
+    {
+      "topicKey": "shared-cfa-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "西アフリカCFAフランはトーゴだけの通貨ではない",
+      "text": "トーゴは西アフリカ通貨同盟の8か国の一つで、西アフリカ諸国中央銀行が発行するCFAフランを共通通貨として使う。隣国ベナンやブルキナファソなどでも同じ通貨圏が続く。",
+      "icon": "map",
+      "sourceKey": "bceao"
+    },
+    {
+      "topicKey": "two-south-rainy-seasons",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "気候",
+      "title": "南部は雨季が二回、北部は一回という季節差がある",
+      "text": "南部はおおむね4〜7月と9月中旬〜10月末に雨が増える一方、北部は4〜10月が一つの雨季になる。細長い国土では季節の組み立ても南北で変わる。",
+      "icon": "weather",
+      "sourceKey": "togoClimate"
+    },
+    {
+      "topicKey": "slave-house-coastal-memory",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "アグボドラフォには大西洋奴隷交易の記憶を伝える家が残る",
+      "text": "奴隷の家は沿岸のアグボドラフォにあり、地域の奴隷交易史を伝える場所として公開されている。湖や海の穏やかな景観の中に重い歴史が残る。",
+      "icon": "history",
+      "sourceKey": "togoTourismAgbodrafo"
+    },
+    {
+      "topicKey": "country-shape-gulf-to-sahel",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "トーゴはギニア湾から北へ細長く伸びる",
+      "text": "南はギニア湾、東はベナン、西はガーナ、北はブルキナファソに接する。海岸から山地、中央部の森林・サバンナ、北部へ短い東西幅のまま景観が変わる。",
+      "icon": "map",
+      "sourceKey": "togoGeography"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF TOGO",
+    "title": "トーゴで食べたいもの",
+    "intro": "トウモロコシ、ヤム、米、落花生を軸に、主食とソースを組み合わせる食卓を見る。日常食から北部のヤム文化まで、見た目と材料が重ならない4皿を選んだ。",
+    "items": [
+      {
+        "id": "akoume-gboma",
+        "name": "アクメとグボマ・デシ",
+        "nameLocal": "Akoumé & Gboma Dessi",
+        "text": "トウモロコシ粉を練ったアクメを、葉野菜、トマト、魚や肉などを煮る濃いソースと合わせる。南部の日常食を代表する、主食とソースの組み合わせ。",
+        "image": "assets/images/togo/approved/food-1-akoume-gboma.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ayimolou",
+        "name": "アイモル",
+        "nameLocal": "Ayimolou / Ayimolu",
+        "text": "米と豆を一緒に炊き、唐辛子や玉ねぎのソースを添える日常の一皿。ロメなど南部の街路でも見かける、素朴で輪郭のはっきりした米料理。",
+        "image": "assets/images/togo/approved/food-2-ayimolou.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "djenkoume-chicken",
+        "name": "ジェンクメとローストチキン",
+        "nameLocal": "Djenkoumé au poulet",
+        "text": "トマトと香辛料を加えた赤いトウモロコシ生地を、ローストした鶏肉と合わせる。淡いアクメとは色と調理法が異なり、トーゴ料理の別のトウモロコシ表現が見える。",
+        "image": "assets/images/togo/approved/food-3-djenkoume-chicken.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fufu-peanut-sauce",
+        "name": "ヤムのフフと落花生ソース",
+        "nameLocal": "Foufou d'igname & sauce arachide",
+        "text": "茹でたヤムを臼で滑らかになるまで搗くフフを、落花生の濃厚なソースと食べる。北部で特に根づくヤムの主食文化を代表する一皿。",
+        "image": "assets/images/togo/approved/food-4-fufu-peanut-sauce.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "2026年9月時点、日本外務省はブルキナファソ国境をレベル3、サバヌ州（国境地帯を除く）とカラ州北部をレベル2としている。北部を含む日程は最新の安全情報を確認し、不要不急渡航中止地域を旅程から外す前提で考える。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ロメと南東部の水辺に絞る",
+        "text": "ロメを拠点に、アグボドラフォ、トーゴ湖、トーゴヴィル、アネホをつなぐ。海岸、湖、歴史都市を短距離で比較する。例：ロメ → アグボドラフォ → トーゴヴィル → アネホ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "パリメの山地を加える",
+        "text": "南西部にパリメ周辺を加え、ウォメの滝とアグ山で湿潤なプラトー地域を見る。北部の危険情報を避けながら、沿岸から山地への変化をたどる。例：ロメ → アネホ → パリメ → ウォメ → アグ山。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "安全情報を確認しながら中央部まで伸ばす",
+        "text": "最新の公的安全情報と現地手配を確認し、ファザオ＝マルファカサやアレジョ方面を候補にする。クタマクを含むカラ州北部へはレベル2区域を確認し、不要不急の渡航を行わない。例：ロメ → パリメ → アタクパメ → ファザオ周辺（安全条件を満たす範囲）。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜3月",
+      "color": "#cbbd8f",
+      "text": "全国的に乾季を軸に動きやすい時期。北部では乾いたハルマッタンの影響が出ることがあり、朝晩や粉塵への備えをしたい。"
+    },
+    {
+      "months": "4〜7月",
+      "color": "#8faa86",
+      "text": "南部は主要な雨季、北部も雨季へ入る。パリメ周辺は緑が濃くなる一方、強い雨で道路や遊歩道の状態が変わることがある。"
+    },
+    {
+      "months": "8〜9月前半",
+      "color": "#9bb5a0",
+      "text": "南部では比較的雨が弱まる小乾季。北部は引き続き雨季で、同じ国内でも移動先によって天候条件が大きく異なる。"
+    },
+    {
+      "months": "9月後半〜10月",
+      "color": "#8da58d",
+      "text": "南部では二度目の雨季。北部では雨季の終盤にあたり、その後11月から乾季へ移る。南北縦断は地域別予報を見て組みたい。"
+    }
+  ],
+  "transport": {
+    "title": "南部は道路と湖上移動、縦断は国道1号を軸に考える",
+    "text": "ロメからアネホ・パリメ方面は道路移動が中心で、トーゴ湖ではピローグが地域交通として残る。南北方向は国道1号が幹線だが、北部には危険レベル2・3地域があるため、距離だけで縦断計画を立てず、日本外務省の最新情報と現地の道路・治安状況を照合する。"
+  },
+  "personas": [
+    {
+      "title": "西アフリカの暮らしと建築を、観光名所だけでなく集落景観から見たい人",
+      "text": "クタマクのタキエンタ、トーゴヴィルの湖上交通、アネホの宗教文化を通じ、建築・信仰・生活が土地とどう結びつくかを見たい。"
+    },
+    {
+      "title": "小さな国土で海・湖・滝・山地・サバンナの変化を追いたい人",
+      "text": "ロメの海岸からトーゴ湖、ウォメ、アグ山、中央部の保護区まで、短い東西幅の中で南北の植生と地形が切り替わる旅をしたい。"
+    },
+    {
+      "title": "西アフリカ沿岸の歴史を、植民地建築と交易の記憶からたどりたい人",
+      "text": "ロメ宮殿、アネホ＝グリジ、アグボドラフォをつなぎ、沿岸交易、植民地支配、奴隷交易の記憶が現在の町にどう残るかを考えたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / ギニア湾"
+    },
+    {
+      "label": "首都",
+      "value": "ロメ"
+    },
+    {
+      "label": "人口",
+      "value": "約952万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "56,790 km²（日本の約15%）"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）／エウェ語・カビエ語など"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教／伝統宗教／イスラム教"
+    },
+    {
+      "label": "通貨",
+      "value": "西アフリカCFAフラン（XOF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "country-north-south-span",
+      "label": "南北に伸びる国土",
+      "value": "約600キロメートル",
+      "note": "トーゴ政府資料では、国土は南北に約600キロメートル伸び、東西幅はおよそ50〜150キロメートル。細長い国土を進むにつれて気候と景観が大きく変わる。",
+      "icon": "map",
+      "interestReason": "小さな面積でも、海岸からサバンナまで長い南北軸を持つ国の形を数字で想像できるため。"
+    },
+    {
+      "topicKey": "national-coastline-length",
+      "label": "大西洋への海岸線",
+      "value": "約50キロメートル",
+      "note": "トーゴ政府は2026年、国の海岸線を約50キロメートルとして沿岸保全を説明している。短い海岸に首都、港、漁業、産業が集中する。",
+      "icon": "sea",
+      "interestReason": "南北に長い国土に対して海への出口が非常に短く、トーゴの地理と経済の集中を一つの数字で捉えられるため。"
+    },
+    {
+      "topicKey": "national-phosphate-exports-2024",
+      "label": "リン鉱石輸出量",
+      "value": "約129万トン",
+      "note": "世界銀行の貿易統計では、トーゴは2024年に天然リン酸カルシウムなどを約129万トン輸出した。リン鉱石は現在もトーゴを代表する鉱物資源の一つ。",
+      "icon": "landscape",
+      "interestReason": "小国トーゴが世界市場へ送り出す代表的資源の規模を、年間輸出量として具体的に理解できるため。",
+      "exceptionalScale": true
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "northern-security-2026",
+      "title": "北部は県名ではなく危険情報の地図で確認する",
+      "text": "日本外務省はブルキナファソ国境をレベル3、サバヌ州（国境除く）とカラ州北部をレベル2としている。サバヌ州の非常事態宣言は2026年3月13日からさらに12か月延長された。北部の訪問計画は必ず最新情報と照合する。"
+    },
+    {
+      "topicKey": "rainfall-south-north",
+      "title": "南部と北部で雨季の数が違う",
+      "text": "南部は雨季が二回、北部は一回。ロメの天気だけでパリメや中央・北部の道路状態を判断せず、移動日ごとに地域予報を確認する。"
+    },
+    {
+      "topicKey": "site-guide-local-access",
+      "title": "滝や文化景観は現地の案内とルールを優先する",
+      "text": "ウォメやクタマクのように地域コミュニティと密接な場所では、現地ガイドや管理者の案内に従い、住居・祭祀・人物の撮影は許可を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇧🇯",
+      "countryEn": "BENIN",
+      "countryJa": "ベナン",
+      "path": "ロメ → アネホ → サンヴェ・コンジ／ヒラコンジ → グラン・ポポ → コトヌー",
+      "description": "ロメから海岸沿いを東へ進み、サンヴェ・コンジ／ヒラコンジの共同国境施設を越えてコトヌーへつなぐ陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年も国境施設・道路整備が進行中。出発前に入国条件と工事・運行状況を確認する。"
+    },
+    {
+      "flag": "🇬🇭",
+      "countryEn": "GHANA",
+      "countryJa": "ガーナ",
+      "path": "ロメ → アフラオ国境 → アクラ",
+      "description": "首都ロメの西側からアフラオ国境を越え、海岸沿いにアクラへ進む主要な陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境手続き・ビザ要件・運行状況は国籍と時期で変わるため、直前に公式情報を確認する。"
+    },
+    {
+      "flag": "🇧🇫",
+      "countryEn": "BURKINA FASO",
+      "countryJa": "ブルキナファソ",
+      "path": "ロメ → カラ → ダパオン → シンカセ → ビトゥ → ワガドゥグー",
+      "description": "国道1号を北上してシンカセ国境を越え、ブルキナファソのビトゥを経てワガドゥグーへ続く南北回廊。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "日本外務省はブルキナファソ国境地帯を危険レベル3としているため、現在は渡航中止対象。ルートの存在を示すのみで、旅行ルートとしては利用しない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "ghana",
+      "nameEn": "GHANA",
+      "nameJa": "ガーナ",
+      "flag": "🇬🇭",
+      "reason": "エウェ文化圏、ギニア湾岸、森林とサバンナの南北変化を、より大きな国土と都市圏で比較したい人へ。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "benin",
+      "nameEn": "BENIN",
+      "nameJa": "ベナン",
+      "flag": "🇧🇯",
+      "reason": "ヴォドゥン文化、沿岸の交易史、アタコラ山地へ続く文化景観を、国境を越えて連続的に見たい人へ。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "cotedivoire",
+      "nameEn": "CÔTE D’IVOIRE",
+      "nameJa": "コートジボワール",
+      "flag": "🇨🇮",
+      "reason": "ギニア湾岸の大都市と内陸の文化・自然景観を、西アフリカ沿岸の別のスケールで比べたい人へ。",
+      "affinityType": "TRAVEL_STYLE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2023",
+    "unescoKoutammakou": "2025",
+    "bceao": "2026-09-27",
+    "travelAdvice": "2026-03-09",
+    "map": "2026-09-27",
+    "sceneCoordinates": "2026-09-27",
+    "japanArea": "2026-07-01",
+    "togoClimate": "2026-09-27",
+    "countryShape": "2011",
+    "coastline2026": "2026-07-11",
+    "phosphateExports2024": "2024"
+  },
+  "sources": {
+    "population": "World Bank Sovereign ESG Data Portal, Togo: population 9.52 million in 2024. https://esgdata.worldbank.org/data/countries?iso3=TGO",
+    "area": "World Bank Sovereign ESG Data Portal, Togo: surface area 56,790 km² in 2023. https://esgdata.worldbank.org/data/countries?iso3=TGO",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,973.68 km² as of 2026-07-01; 56,790 / 377,973.68 ≒ 15.0%. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "unescoKoutammakou": "UNESCO World Heritage Centre, Koutammakou, the Land of the Batammariba: Togo component N10°04′00″ E1°08′00″, 31,168 ha; property expanded to Benin in 2023. https://whc.unesco.org/en/list/1140/ ; https://whc.unesco.org/en/list/1140/maps/",
+    "togoTourismPalais": "Ministry of Tourism, Culture and Arts of Togo, Palais de Lomé reopening as arts and culture centre, 2019; 11 ha grounds extending to seafront. https://tourisme.gouv.tg/ceremonie-dinauguration-officielle-du-premier-complexe-culturel-artistique-et-historique-dafrique-de-louest-denomme-palais-de-lome/",
+    "togoTourismAneho": "Ministry of Tourism, Culture and Arts of Togo, Aného-Glidji conservation survey: Atlantic Ocean to south, Lake Togo to north, Mono River to east; historic and cultural assets. https://tourisme.gouv.tg/tournee-devaluation-de-letat-de-conservation-du-site-daneho-glidji/",
+    "togoTourismAgbodrafo": "Ministry of Tourism, Culture and Arts of Togo, Maison des Esclaves at Agbodrafo and nearby Lake Togo/Togoville/Aného context. https://tourisme.gouv.tg/agbodrafo-la-maison-des-esclaves-plongee-au-coeur-de-lhistoire-togolaise/",
+    "wome": "Ministry of Tourism, Culture and Arts of Togo, Cascade de Womé site in Kloto; coordinates cross-checked with Wikidata/Wikimedia Commons. https://tourisme.gouv.tg/campagne-de-reboisement-sur-les-sites-touristiques-site-pilote-cascade-de-wome/ ; https://www.wikidata.org/wiki/Q123825254",
+    "mountAgou": "GeoNames, Mont Agou: 6.8666667, 0.7666667, elevation 986 m; cross-checked with OpenStreetMap. https://www.geonames.org/",
+    "fazao": "UNESCO World Heritage Centre Tentative List, Parc national Fazao-Malfakassa, coordinates range N8°19′–9°11′ E0°36′–1°27′; Togo Ministry of Tourism, 2025, approx. 2,000 km² and landscape description. https://whc.unesco.org/en/tentativelists/6604/ ; https://tourisme.gouv.tg/explorez-fazao-malfakassa-le-tresor-vert-du-togo-terre-des-elephants-et-des-aventuriers/",
+    "republicTogoAledjo": "République Togolaise, La faille d'Aledjo, 2026-09-15: 36 km north of Sokodé, Assoli/Kara, mountain road cut on the N1; coordinate cross-check from geotagged Wikimedia image 9.697333,1.134333. https://www.republicoftogo.com/toutes-les-rubriques/medias/la-faille-d-aledjo-prouesse-humaine-au-coeur-des-monts-togo",
+    "bceao": "BCEAO, West African Monetary Union: Togo is one of eight WAMU members using the CFA franc issued by BCEAO. https://www.bceao.int/en/content/presentation-wamu",
+    "language": "Constitution of Togo, Article 3: French is the official language; national languages include Ewe and Kabye. https://www.constituteproject.org/constitution/Togo_2007",
+    "religion": "U.S. Department of State, International Religious Freedom Report for Togo: Christianity, traditional beliefs, and Islam are major religious affiliations, with overlap in indigenous practices. https://www.state.gov/reports/2023-report-on-international-religious-freedom/togo/",
+    "togoClimate": "Togo tourism information: tropical climate; southern two-rainy-season pattern and northern single rainy season, checked 2026-09-27. https://www.togotourisme.tg/",
+    "togoGeography": "Togo official tourism geography: Gulf of Guinea, Ghana, Benin and Burkina Faso frame a narrow north-south country. https://www.togotourisme.tg/",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan, Togo safety information: Burkina Faso border Level 3; Savanes except border and northern Kara Level 2; other areas Level 1. Current page checked 2026-09-27. Embassy notice dated 2026-03-09 records extension of Savanes state of emergency from 2026-03-13 for 12 months. https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2024T031.html ; https://www.anzen.mofa.go.jp/od/ryojiMailDetail.html?keyCd=163465",
+    "food": "Togo by Nowadays, Food in Togo, updated 2026: Akoumé, Ayimolu, foufou, Djenkoumé and common accompaniments. https://www.togobynomadays.com/infos-pratiques/nourriture-au-togo",
+    "nextRoutes": "Benin/Togo: UEMOA Hillacondji-Sanvee-Condji joint border post on the Lomé-Cotonou corridor. Ghana: Aflao is the established coastal land continuation west of Lomé. Burkina Faso: verified Lomé-Ouagadougou corridor via Cinkassé; current northern travel restriction follows Japan MOFA safety information. https://www.uemoa.int/node/334 ; https://intercom.tg/institutions/corridors/lome-ouagadougou ; https://www.anzen.mofa.go.jp/info/pchazardspecificinfo_2024T031.html",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-27: Palais de Lomé 6.12021,1.21229 (OSM); Aného 6.22798,1.59190 (GeoNames); Womé waterfall 6.865494,0.562991 (Wikidata); Mont Agou 6.866667,0.766667 (GeoNames); Atakpamé 7.533333,1.133333 (GeoNames); Fazao-Malfakassa representative central point 8.700,0.717 within UNESCO stated bounds; Faille d'Alédjo 9.697333,1.134333 (geotagged Wikimedia/OSM area); Nok cave granaries 10.67113,0.14094 (OSM, within UNESCO coordinates N10°40′ E0°08′); Koutammakou UNESCO centre 10.066667,1.133333; Lomé 6.1319,1.2228.",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (TGO/GHA/BEN/BFA). Shared JOURNEY ATLAS map-v3 clean-background styling; generated 2026-09-27.",
+    "atakpame": "République Togolaise, Atakpamé is described as a city on seven hills; coordinates cross-checked with GeoNames at 7.5333333,1.1333333. https://www.republicoftogo.com/toutes-les-rubriques/medias/solide-comme-un-roc ; https://www.geonames.org/",
+    "nok": "UNESCO World Heritage Centre Tentative List, Greniers en série des grottes de Nok, Mamproug, Kouba et Bagou: Savanes/Tandjoaré, coordinates N10°40′ E0°08′ and cultural refuge/granary landscape. https://whc.unesco.org/en/tentativelists/6602/",
+    "countryShape": "République Togolaise, general country information: length about 600 km and width 50–150 km. https://www.republicoftogo.com/content/download/66638/1682661/1",
+    "coastline2026": "République Togolaise, 11 July 2026: approximately 50 km of national coastline and coastal protection context. https://www.republicoftogo.com/toutes-les-rubriques/environnement/50-km-de-cote-a-sauver-le-togo-durcit-son-arsenal-juridique",
+    "phosphateExports2024": "World Bank WITS / UN Comtrade, Togo exports of natural calcium phosphates and related phosphate rock in 2024: 1,293,260,000 kg. https://wits.worldbank.org/trade/comtrade/en/country/TGO/year/2024/tradeflow/Exports/partner/ALL/product/2510"
+  }
+}

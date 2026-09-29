@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "guineabissau",
+  "nameEn": "GUINEA-BISSAU",
+  "nameJa": "ギニアビサウ",
+  "region": "WEST AFRICA / 12°N",
+  "seo": {
+    "description": "潮汐がつくるビジャゴ諸島、マングローブ、ウミガメの島、オランゴ、カシェウとボラマ、南部森林、コルバル川。海と島の国ギニアビサウを8つの景色と地図でたどる。"
+  },
+  "capital": {
+    "nameEn": "Bissau",
+    "nameJa": "ビサウ",
+    "coordinates": {
+      "latitude": 11.85,
+      "longitude": -15.58333
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": -34,
+      "y": -14
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": -4
+    }
+  },
+  "hero": {
+    "lead": "大西洋岸に、川と海がつくる干潟、マングローブ、島々が連なる。ビジャゴ諸島から首都、森林、内陸河川まで、低く平らな国土を水の動きがつないでいる。",
+    "image": "assets/images/guineabissau/approved/hero-rubane-bijagos.webp",
+    "location": "Rubane Island / Bijagós Archipelago",
+    "coordinates": {
+      "latitude": 11.33333,
+      "longitude": -15.81667
+    },
+    "mapOffset": {
+      "x": -0.5,
+      "y": -4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 12.75,
+      "south": 10.55,
+      "west": -16.85,
+      "east": -13.35
+    },
+    "svg": "assets/images/guineabissau/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:110m Admin-0 public-domain geometry refined with GSHHS intermediate-resolution shoreline; offshore islands and surrounding context from GSHHS via Basemap; WGS84; generated 2026-09-27. geoBoundaries GNB ADM0 metadata cross-check: 2017 boundary, ODbL 1.0."
+  },
+  "scenes": [
+    {
+      "id": "bissau-praca-herois",
+      "name": "ビサウ / 英雄広場",
+      "nameLocal": "Praça dos Heróis Nacionais",
+      "mapLabel": "Bissau",
+      "description": "首都中心の広場。独立記念碑と公共建築が向き合い、植民地期の都市軸と独立後の日常が重なる。",
+      "coordinates": {
+        "latitude": 11.86325,
+        "longitude": -15.58432
+      },
+      "image": "assets/images/guineabissau/approved/scene-1-bissau-praca-herois.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.7,
+        "y": 4
+      }
+    },
+    {
+      "id": "cacheu-fort",
+      "name": "カシェウ要塞",
+      "nameLocal": "Fortaleza de Cacheu",
+      "mapLabel": "Cacheu",
+      "description": "カシェウ川河口近くの石造要塞。16世紀末から大西洋交易の拠点となった歴史を伝える。現在はカシェウ州の危険レベル3を前提に渡航判断と歴史理解を分けて見る。",
+      "coordinates": {
+        "latitude": 12.27703,
+        "longitude": -16.16726
+      },
+      "image": "assets/images/guineabissau/approved/scene-2-cacheu-fort.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "bolama-colonial-town",
+      "name": "ボラマの旧市街",
+      "nameLocal": "Bolama",
+      "mapLabel": "Bolama",
+      "description": "旧ポルトガル領ギニアの行政中心だった島の町。柱廊や木製バルコニーを持つ公共建築・商家が熱帯の植生の中で風化している。",
+      "coordinates": {
+        "latitude": 11.5776,
+        "longitude": -15.4753
+      },
+      "image": "assets/images/guineabissau/approved/scene-3-bolama.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.8,
+        "y": 0.7
+      }
+    },
+    {
+      "id": "bubaque-port",
+      "name": "ブバケ港",
+      "nameLocal": "Porto de Bubaque",
+      "mapLabel": "Bubaque",
+      "description": "ビジャゴ諸島の移動と物資の中心となる港町。船が潮に合わせて出入りし、市場と集落が海辺に続く。",
+      "coordinates": {
+        "latitude": 11.30008,
+        "longitude": -15.83124
+      },
+      "image": "assets/images/guineabissau/approved/scene-4-bubaque-port.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.3,
+        "y": 3
+      }
+    },
+    {
+      "id": "orango-tidal-wetland",
+      "name": "オランゴ国立公園",
+      "nameLocal": "Parque Nacional das Ilhas de Orango",
+      "mapLabel": "Orango",
+      "description": "島、マングローブ、浅い入り江、サバンナが接する保護地域。海水域を利用するカバでも知られ、陸と海の境界が曖昧な群島生態系を象徴する。",
+      "coordinates": {
+        "latitude": 11.06582,
+        "longitude": -16.13805
+      },
+      "image": "assets/images/guineabissau/approved/scene-5-orango.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.4,
+        "y": 0.3
+      }
+    },
+    {
+      "id": "joao-vieira-turtle-beach",
+      "name": "ジョアン・ヴィエイラ島 / ウミガメの浜",
+      "nameLocal": "Ilha de João Vieira",
+      "mapLabel": "João Vieira",
+      "description": "ジョアン・ヴィエイラ＝ポイラン海洋国立公園の主要島。低い森林と砂浜が続き、公園全体はアオウミガメの重要な繁殖地である。",
+      "coordinates": {
+        "latitude": 11.03333,
+        "longitude": -15.63333
+      },
+      "image": "assets/images/guineabissau/approved/scene-6-joao-vieira.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "cantanhez-forest",
+      "name": "カンタニェス国立公園",
+      "nameLocal": "Parque Nacional de Cantanhez",
+      "mapLabel": "Cantanhez",
+      "description": "南部に残る湿潤林と農村景観。上ギニア森林帯の生態系を残し、チンパンジーを含む野生動物の生息地でもある。",
+      "coordinates": {
+        "latitude": 11.26461,
+        "longitude": -15.0293
+      },
+      "image": "assets/images/guineabissau/approved/scene-7-cantanhez.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.4,
+        "y": 0
+      }
+    },
+    {
+      "id": "saltinho-corubal",
+      "name": "サルティーニョ / コルバル川",
+      "nameLocal": "Rápidos de Saltinho / Rio Corubal",
+      "mapLabel": "Saltinho",
+      "description": "東部のコルバル川で、乾季には岩盤と急流が川幅に現れる。海岸低地から内陸へ進むと水景が干潟から淡水河川へ切り替わる。",
+      "coordinates": {
+        "latitude": 11.60889,
+        "longitude": -14.6775
+      },
+      "image": "assets/images/guineabissau/approved/scene-8-saltinho.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "街の広場を歩く",
+      "category": "CITY",
+      "icon": "city"
+    },
+    {
+      "title": "歴史ある建築を訪ねる",
+      "category": "ARCHITECTURE",
+      "icon": "landmark"
+    },
+    {
+      "title": "島の暮らしに触れる",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "港の往来を見る",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "水辺の森を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "野生動物に出会う",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "森の中を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "川辺の景色を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "deltaic-archipelago-process",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ビジャゴ諸島は、アフリカ大西洋岸で唯一の活発なデルタ性群島",
+      "text": "島、干潟、砂州、水路が潮汐と堆積作用で変化する。海岸線を固定線ではなく、陸と海の境界が動く地形として見ると群島の特徴がわかる。",
+      "points": [
+        "世界遺産は2025年登録",
+        "マングローブ、泥干潟、砂州、浅海域が連続"
+      ],
+      "sourceKey": "unescoBijagos"
+    },
+    {
+      "topicKey": "cacheu-atlantic-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "カシェウは、河口交易と奴隷貿易の記憶を残す",
+      "text": "16世紀末にポルトガルの交易拠点が置かれた。要塞と川を一緒に見ると、上ギニア沿岸と大西洋を結んだ交易史が地理として見える。",
+      "points": [
+        "要塞の起源は1588年",
+        "河口交通と結びついた拠点"
+      ],
+      "sourceKey": "cacheuHistory"
+    },
+    {
+      "topicKey": "bolama-former-capital",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ボラマには、島が行政中心だった時代の都市骨格が残る",
+      "text": "ボラマは1879年から1941年までポルトガル領ギニアの首都だった。旧行政施設や商家に、ビサウへ中心が移った後の時間が残る。",
+      "points": [
+        "1941年に首都機能がビサウへ移転",
+        "公共建築が点在"
+      ],
+      "sourceKey": "touristGuide"
+    },
+    {
+      "topicKey": "marine-hippo-adaptation",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "オランゴ周辺では、カバが海水域を日常的に利用する",
+      "text": "世界遺産の評価資料では、ビジャゴ諸島はカバがほぼ常時海水環境を利用する特異な場所とされる。島、マングローブ、水路の近接が行動を支える。",
+      "points": [
+        "海の影響を受ける島環境に適応",
+        "観察は距離と地域ルールを優先"
+      ],
+      "sourceKey": "unescoBijagos"
+    },
+    {
+      "topicKey": "cantanhez-upper-guinean-ecosystem",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "南部には、上ギニア森林帯の湿潤林が残る",
+      "text": "カンタニェス周辺は森林、川、農地、集落がモザイク状に続く。海岸のマングローブとは違う森林景観と野生動物が残る。",
+      "points": [
+        "南部トンバリ州",
+        "森林保全と地域利用を両立する保護地域"
+      ],
+      "sourceKey": "ibapProtectedAreas"
+    },
+    {
+      "topicKey": "rice-mangrove-livelihood",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "沿岸では、潮と塩分を読みながら稲作が続いてきた",
+      "text": "沿岸低地ではマングローブ域を堤で区切り、雨水で塩分を下げて米を育てる農法が発達した。水路や堤は食と暮らしの技術でもある。",
+      "points": [
+        "米は日常食の中心",
+        "雨季と潮汐が農作業を左右"
+      ],
+      "sourceKey": "worldBankEnvironment"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "protected-area-network-share",
+      "categoryEn": "CONSERVATION",
+      "categoryJa": "自然保護",
+      "title": "国の保護地域システムは約47万ヘクタール",
+      "text": "国立生物多様性・保護地域研究所によると、国家保護地域システムは約47万ヘクタールで、国土のおよそ15%をカバーする。",
+      "icon": "wildlife",
+      "sourceKey": "ibapProtectedAreas"
+    },
+    {
+      "topicKey": "bissau-carnival-public-space",
+      "categoryEn": "CULTURE",
+      "categoryJa": "祭り",
+      "title": "ビサウのカーニバルでは、島と本土の文化表現が首都に集まる",
+      "text": "各地域の衣装、仮面、踊り、音楽が街路へ集まり、ビジャゴの文化表現も首都に現れる。",
+      "icon": "culture",
+      "sourceKey": "touristGuide"
+    },
+    {
+      "topicKey": "xof-shared-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "西アフリカ8か国で共通通貨を使う",
+      "text": "ポルトガル語を公用語とする国だが、通貨は周辺の西アフリカ7か国と共通している。",
+      "icon": "map",
+      "sourceKey": "undata"
+    },
+    {
+      "topicKey": "corubal-fouta-djallon-headwaters",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "コルバル川はギニア高地から国境を越えて流れる",
+      "text": "内陸の主要河川コルバルはギニア側の高地を源流域とし、ギニアビサウを横切ってゲバ水系へつながる。",
+      "icon": "landscape",
+      "sourceKey": "worldBankEnvironment"
+    },
+    {
+      "topicKey": "oyster-rice-coastal-food",
+      "categoryEn": "FOOD",
+      "categoryJa": "食文化",
+      "title": "沿岸では牡蠣を米と合わせる料理がある",
+      "text": "牡蠣のピッチェ・パッチェは、米と牡蠣を一皿にする沿岸らしい料理。",
+      "icon": "food",
+      "sourceKey": "gastronomyGuide"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF GUINEA-BISSAU",
+    "title": "ギニアビサウで食べたいもの",
+    "intro": "米、落花生、パーム油、魚介、レモン。沿岸と内陸の食材が交わる4品。",
+    "items": [
+      {
+        "id": "caldo-mancarra",
+        "name": "カルド・デ・マンカラ",
+        "nameLocal": "Caldo de Mancarra",
+        "text": "落花生をすりつぶした濃厚なソースで魚や肉を煮込み、米と合わせる代表料理。",
+        "image": "assets/images/guineabissau/approved/food-1-caldo-mancarra.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "caldo-chabeu",
+        "name": "カルド・デ・シャベウ",
+        "nameLocal": "Caldo de Chabéu",
+        "text": "赤いパーム油を基調に、オクラと魚または肉を煮込む。",
+        "image": "assets/images/guineabissau/approved/food-2-caldo-chabeu.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pitche-patche-ostras",
+        "name": "牡蠣のピッチェ・パッチェ",
+        "nameLocal": "Pitche-Patche de Ostras",
+        "text": "沿岸で採れる牡蠣を米と炊き合わせる料理。",
+        "image": "assets/images/guineabissau/approved/food-3-pitche-patche.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "cafriela",
+        "name": "カフリエラ",
+        "nameLocal": "Cafriela",
+        "text": "鶏肉などをレモン、唐辛子、玉ねぎで味付けして焼く料理。",
+        "image": "assets/images/guineabissau/approved/food-4-cafriela.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "本土と島では移動条件が大きく違う。島を加えるほど天候と潮への余白が必要。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ビサウと近郊に絞る",
+        "text": "首都と本土の一地点を組み合わせる。例：ビサウ → サルティーニョ",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "ビジャゴ諸島を一地域加える",
+        "text": "ビサウからブバケや周辺島へ進み、港と潮汐景観を見る。例：ビサウ → ブバケ → ルバネ",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "本土南部と島を分けて組む",
+        "text": "南部森林とビジャゴ諸島を別々の移動単位としてつなぐ。例：ビサウ → カンタニェス → ビサウ → ブバケ → オランゴ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜2月",
+      "color": "#9aa89a",
+      "text": "乾季の前半。雨が少なく、島と本土の移動を組みやすい。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c7a96d",
+      "text": "乾季後半。暑さと湿度が増し、雨季への移行が近づく。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#789778",
+      "text": "雨季の中心。強い雨で未舗装路や船の条件が変わりやすい。"
+    },
+    {
+      "months": "10月",
+      "color": "#a78f6b",
+      "text": "雨季が後退する移行期。道路・船の状況はその年の降雨に左右される。"
+    }
+  ],
+  "transport": {
+    "title": "本土の道路と島の船を別に考える",
+    "text": "本土主要都市は道路で結ばれるが、雨季は路面条件が悪化しやすい。ビジャゴ諸島へは船またはチャーター便が必要で、船は潮・天候・事業者事情で変わる。2026年9月現在、カシェウ州は危険レベル3、その他もレベル2。",
+    "icon": "sea"
+  },
+  "personas": [
+    {
+      "title": "島と干潟がつくる地形そのものを旅したい人",
+      "text": "マングローブ、泥干潟、潮汐水路、島の集落まで含めて群島を理解したい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "野生動物を保全の文脈まで含めて見たい人",
+      "text": "ウミガメ、海水域を使うカバ、水鳥、海洋生態系を保護活動まで含めて知りたい人。",
+      "icon": "wildlife"
+    },
+    {
+      "title": "西アフリカの大西洋史と現在の暮らしを一緒にたどりたい人",
+      "text": "カシェウやボラマの歴史から首都、島の港、食文化までつなげて見たい人。",
+      "icon": "history"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "西アフリカ / 大西洋岸・ビジャゴ諸島"
+    },
+    {
+      "label": "首都",
+      "value": "ビサウ"
+    },
+    {
+      "label": "人口",
+      "value": "約225万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "36,125㎢（日本の約9.6%）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語（公用語）・ギニアビサウ・クレオール語ほか"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教46.1%、民間信仰30.6%、キリスト教18.9%（2020推計）"
+    },
+    {
+      "label": "通貨",
+      "value": "西アフリカCFAフラン（XOF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "cashew-export-dependence",
+      "label": "輸出に占めるカシューナッツ",
+      "value": "80%以上",
+      "note": "世界銀行は、カシューナッツが輸出の8割超を占める単一作物依存型の経済と説明している。",
+      "icon": "food",
+      "interestReason": "一つの農産物が国の輸出構造を大きく左右することが、ギニアビサウの暮らしと経済を端的に表すため。"
+    },
+    {
+      "topicKey": "mangrove-land-share",
+      "label": "国土に占めるマングローブ",
+      "value": "9.6%",
+      "note": "国連の水関連生態系データでは、マングローブが国土の9.6%を占める。",
+      "icon": "landscape",
+      "interestReason": "海岸だけでなく国土規模で潮とマングローブの影響が大きい国だとわかるため。"
+    },
+    {
+      "topicKey": "exclusive-economic-zone-scale",
+      "label": "排他的経済水域",
+      "value": "約10.7万㎢",
+      "note": "西アフリカ諸国経済共同体の水産統計では、排他的経済水域は107,301平方キロメートル。陸の国土の約3倍に広がる。",
+      "icon": "sea",
+      "interestReason": "小さな陸地に対して、海の領域が大きく広がる国であることを直感的に伝えるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "current-safety-levels",
+      "title": "2026年9月現在、カシェウ州はレベル3、その他はレベル2",
+      "text": "日本外務省はカシェウ州に渡航中止勧告、その他に不要不急の渡航中止を継続。最新情報を先に確認する。"
+    },
+    {
+      "topicKey": "island-boat-conditions",
+      "title": "島への船は時刻表だけで確定しない",
+      "text": "潮、風、天候、運航事業者で所要時間や出航が変わる。信頼できる運航者と当日の条件を確認する。"
+    },
+    {
+      "topicKey": "protected-area-access-rules",
+      "title": "保護区ごとに入域・観察ルールを確認する",
+      "text": "産卵地や海洋保護区では上陸、接近、宿泊、ガイド同行などに制限がある。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇸🇳",
+      "countryEn": "SENEGAL",
+      "countryJa": "セネガル",
+      "path": "Bissau → São Domingos → Mpack → Ziguinchor",
+      "description": "ビサウからサン・ドミンゴス／ムパック国境を越え、カザマンスのジガンショールへ続く代表的陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年9月時点、カシェウ州とセネガル国境周辺には治安・地雷リスクがある。最新の国境運用と治安を確認する。"
+    },
+    {
+      "flag": "🇬🇳",
+      "countryEn": "GUINEA",
+      "countryJa": "ギニア",
+      "path": "Bissau → Gabú → Buruntuma → Saréboïdo → Koundara",
+      "description": "ビサウからガブを経て東部のブルントゥマ国境を越え、ギニアのサレボイドからクンダラへ進む陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "2026年にも越境利用が確認されているが、未舗装区間があり、地雷リスクも残る。国境運用、道路状況、必要書類を直前に確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "senegal",
+      "nameEn": "SENEGAL",
+      "nameJa": "セネガル",
+      "flag": "🇸🇳",
+      "reason": "カザマンスの河川・マングローブと沿岸文化圏を北へ連続して見たいなら。",
+      "affinityType": "COAST"
+    },
+    {
+      "slug": "guinea",
+      "nameEn": "GUINEA",
+      "nameJa": "ギニア",
+      "flag": "🇬🇳",
+      "reason": "コルバル川の源流域と上ギニア森林帯を、高地側からたどりたいなら。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "sierraleone",
+      "nameEn": "SIERRA LEONE",
+      "nameJa": "シエラレオネ",
+      "flag": "🇸🇱",
+      "reason": "湿潤林、マングローブ、野生動物保全の別の表情を比較したいなら。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025",
+    "religion": "2020",
+    "currency": "2025",
+    "worldHeritage": "2025",
+    "safety": "2026-03-16",
+    "climate": "2024",
+    "map": "2026-09-27",
+    "nextRoutes": "2026-09-27",
+    "cashewExports": "2025",
+    "mangroveLandShare": "2021",
+    "exclusiveEconomicZone": "2020"
+  },
+  "sources": {
+    "population": "UN Data Guinea-Bissau: https://data.un.org/en/iso/gw.html",
+    "area": "UN Data Guinea-Bissau: https://data.un.org/en/iso/gw.html",
+    "japanArea": "GSI Japan: https://web1.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "language": "CIA World Factbook Guinea-Bissau atlas profile",
+    "religion": "CIA World Factbook Guinea-Bissau, 2020 estimate",
+    "currency": "UN Data Guinea-Bissau: https://data.un.org/en/iso/gw.html",
+    "undata": "https://data.un.org/en/iso/gw.html",
+    "unescoBijagos": "UNESCO World Heritage Centre, Bijagós Archipelago – Omatí Minhô: https://whc.unesco.org/en/list/1431",
+    "unescoMab": "UNESCO MAB Bolama-Bijagós: https://www.unesco.org/en/mab/bolama-bijagos",
+    "ibapProtectedAreas": "IBAP Guinea-Bissau protected areas: https://ibapgbissau.org/areas-protegidas/",
+    "cacheuHistory": "EU/Afectos Guinea-Bissau tourism guide; Cacheu fort and Atlantic trade history",
+    "touristGuide": "EU/Afectos, Discovering Guinea-Bissau tourist guide",
+    "gastronomyGuide": "EU/Afectos Guinea-Bissau tourist guide, gastronomy section",
+    "worldBankEnvironment": "World Bank Guinea-Bissau environmental and land studies",
+    "climate": "World Bank 2024 Guinea-Bissau report",
+    "safety": "Japan MOFA Overseas Safety, Guinea-Bissau, updated 2026-03-16",
+    "ferry": "Consulmar Bissau route information, checked 2026-09-27",
+    "sceneCoordinates": "Bissau 11.86325,-15.58432; Cacheu 12.27703,-16.16726; Bolama 11.5776,-15.4753; Bubaque 11.30008,-15.83124; Orango 11.06582,-16.13805; João Vieira 11.03333,-15.63333; Cantanhez 11.26461,-15.0293; Saltinho 11.60889,-14.6775.",
+    "heroCoordinates": "Rubane Island 11.33333,-15.81667 (GNS/GeoNames cross-check)",
+    "map": "Natural Earth + GSHHS; geoBoundaries GNB ADM0 metadata cross-check: https://www.geoboundaries.org/api/current/gbOpen/GNB/ADM0/",
+    "nextRoutes": "France Diplomatie Guinea-Bissau, updated 2026-09-15; ECOWAS São Domingos–Mpack border activity; Guinea tourism guide for Gabú–Buruntuma–Saréboïdo–Koundara; 2026 cross-border activity at Buruntuma–Saréboïdo; Japan MOFA safety information",
+    "worldHeritage": "UNESCO World Heritage Centre, inscribed 2025: https://whc.unesco.org/en/list/1431",
+    "cashewExports": "World Bank Guinea-Bissau Economic Update: cashew nuts account for more than 80 percent of exports: https://www.worldbank.org/en/country/guineabissau/publication/economic-update-unpacking-tax-performance-in-guinea-bissau",
+    "mangroveLandShare": "UN SDG 6 Data, Guinea-Bissau: mangroves represent 9.6% of land area: https://www.sdg6data.org/en/country-or-area/Guinea-Bissau",
+    "exclusiveEconomicZone": "ECOWAS statistical factsheet on fishery and aquaculture: Guinea-Bissau EEZ 107,301 km²"
+  }
+}
