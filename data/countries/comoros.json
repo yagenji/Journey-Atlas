@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "comoros",
+  "nameEn": "COMOROS",
+  "nameJa": "コモロ",
+  "region": "EAST AFRICA / 12°S",
+  "seo": {
+    "description": "カルタラ山の火山地形、モロニの旧金曜モスク、モヘリの海洋生態系、アンジュアンの高地と旧市街。インド洋の三島からなるコモロを8景と地図でたどる。"
+  },
+  "capital": {
+    "nameEn": "Moroni",
+    "nameJa": "モロニ",
+    "coordinates": {
+      "latitude": -11.70416,
+      "longitude": 43.24024
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 8,
+      "y": -14
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "モザンビーク海峡北部に、三つの火山島が並ぶ。カルタラ山、珊瑚礁とウミガメの海、香料作物の畑、イスラム文化の町並みが、島ごとに異なる密度で重なる。",
+    "image": "assets/images/comoros/approved/hero-mount-karthala.webp",
+    "location": "Mount Karthala / Grande Comore",
+    "coordinates": {
+      "latitude": -11.75,
+      "longitude": 43.333333
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -11.28,
+      "south": -12.43,
+      "west": 43.12,
+      "east": 44.58
+    },
+    "svg": "assets/images/comoros/map-atlas-v1.svg",
+    "route": null,
+    "source": "GSHHG v2.3.7 intermediate-resolution WGS84 shorelines via Basemap; target scope cross-checked against geoBoundaries gbOpen COM ADM0; GSHHG LGPL; reviewed 2026-09-29."
+  },
+  "scenes": [
+    {
+      "id": "moroni-old-friday-mosque",
+      "name": "モロニ旧金曜モスク",
+      "nameLocal": "Ancienne Mosquée du Vendredi / Moroni",
+      "mapLabel": "Moroni Mosque",
+      "description": "首都モロニの海辺に立つ歴史的モスク。白い壁と細いミナレットの向こうにインド洋が開き、都市景観にイスラム文化が根づくことを目で追える。",
+      "coordinates": {
+        "latitude": -11.70373,
+        "longitude": 43.25157
+      },
+      "image": "assets/images/comoros/approved/scene-1-moroni-old-friday-mosque.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.8,
+        "y": 0.2
+      }
+    },
+    {
+      "id": "lac-sale",
+      "name": "ラック・サレ",
+      "nameLocal": "Lac Salé / Bangoi Kouni",
+      "mapLabel": "Lac Salé",
+      "description": "グランドコモロ北端近くの火山性の窪地に水をたたえる湖。黒い玄武岩の縁と海が近接し、火山島の地形と海岸線が一つの視界に重なる。",
+      "coordinates": {
+        "latitude": -11.3675,
+        "longitude": 43.35278
+      },
+      "image": "assets/images/comoros/approved/scene-2-lac-sale.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.7,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "chomoni-beach",
+      "name": "ショモニ海岸",
+      "nameLocal": "Plage de Chomoni",
+      "mapLabel": "Chomoni",
+      "description": "グランドコモロ東岸で、明るい砂浜と黒い溶岩、青い海が接する。火山島の海岸が一色ではなく、溶岩と珊瑚質の砂が隣り合うことがわかる。",
+      "coordinates": {
+        "latitude": -11.64522,
+        "longitude": 43.39555
+      },
+      "image": "assets/images/comoros/approved/scene-3-chomoni-beach.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.2,
+        "y": 0.6
+      }
+    },
+    {
+      "id": "iconi-palace",
+      "name": "イコニと旧スルタン宮殿",
+      "nameLocal": "Iconi / Palais Kapviridjohé",
+      "mapLabel": "Iconi",
+      "description": "グランドコモロ南西岸のイコニに残る旧スルタン宮殿の遺構。海を背にした町並みと火山斜面の間に、島の政治史と沿岸交易の記憶が残る。",
+      "coordinates": {
+        "latitude": -11.74519,
+        "longitude": 43.23776
+      },
+      "image": "assets/images/comoros/approved/scene-4-iconi-palace.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.5,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "nioumachoua",
+      "name": "ニウマシュワ",
+      "nameLocal": "Nioumachoua / Mohéli",
+      "mapLabel": "Nioumachoua",
+      "description": "モヘリ島南岸の村から、沖合の小島群と珊瑚礁の海を望む。陸と海を一体で守るモヘリの保全地域を、漁村の暮らしに近い距離から見る場所。",
+      "coordinates": {
+        "latitude": -12.3645,
+        "longitude": 43.7179
+      },
+      "image": "assets/images/comoros/approved/scene-5-nioumachoua.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.2,
+        "y": -0.8
+      }
+    },
+    {
+      "id": "itsamia-turtle-coast",
+      "name": "イツァミアの海岸",
+      "nameLocal": "Itsamia / Mohéli",
+      "mapLabel": "Itsamia",
+      "description": "モヘリ島東端のイツァミアでは、隣接する砂浜群がアオウミガメの重要な産卵地として長期調査されてきた。集落のすぐ外に保全と生活が接する海岸が続く。",
+      "coordinates": {
+        "latitude": -12.3699,
+        "longitude": 43.8679
+      },
+      "image": "assets/images/comoros/approved/scene-6-itsamia.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.3,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "mutsamudu-medina",
+      "name": "ムツァムドゥ旧市街",
+      "nameLocal": "Mutsamudu / Ndzuwani",
+      "mapLabel": "Mutsamudu",
+      "description": "アンジュアン島の中心都市。港から斜面へ細い道が入り込み、モスクや旧市街、城塞の痕跡が密集する。島の交易史と都市生活が重なる場所。",
+      "coordinates": {
+        "latitude": -12.16885,
+        "longitude": 44.39428
+      },
+      "image": "assets/images/comoros/approved/scene-7-mutsamudu.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.7,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "lake-dzialandze",
+      "name": "ジアランゼ湖",
+      "nameLocal": "Lac Dzialandzé / Mont Ntringui",
+      "mapLabel": "Dzialandzé",
+      "description": "アンジュアン島の高地にある火口湖。ントリンギ山地の森林に囲まれ、急峻な島の内部に淡水と湿潤な高地環境が残ることを示す景観。",
+      "coordinates": {
+        "latitude": -12.22549,
+        "longitude": 44.43219
+      },
+      "image": "assets/images/comoros/approved/scene-8-lake-dzialandze.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.2,
+        "y": 1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山の稜線を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "海辺の町を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "黒い溶岩と砂浜を見る",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "モスクのある街角を歩く",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "珊瑚礁の海を眺める",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "ウミガメの海岸を知る",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "高地の森と湖をたどる",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "島を渡って景観を比べる",
+      "category": "MOVEMENT",
+      "icon": "map"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "karthala-volcanic-gradient",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "カルタラ山は、海岸から2,361メートルまで立ち上がる火山",
+      "text": "グランドコモロ南部を占めるカルタラ山は標高2,361メートル。海岸から山頂部まで短い水平距離で高度が変わり、島の植生と地形に大きな勾配をつくる。",
+      "points": [
+        "2026年にユネスコ世界遺産暫定一覧へ提出",
+        "カルタラ国立公園は島の中央〜南部に広がる"
+      ],
+      "sourceKey": "karthala"
+    },
+    {
+      "topicKey": "mwali-land-sea-biosphere",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "モヘリは、島全体と周辺海域を一つの生物圏として見る",
+      "text": "モヘリの生物圏保存地域は島の陸域と周辺海域を含み、珊瑚礁、海草藻場、マングローブ、砂浜、小島を連続した生態系として扱う。",
+      "points": [
+        "総面積66,286ヘクタール",
+        "うち海域45,422ヘクタール"
+      ],
+      "sourceKey": "mwaliBiosphere"
+    },
+    {
+      "topicKey": "itsamia-community-turtles",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "イツァミアでは、村のそばの浜がウミガメ保全の現場になる",
+      "text": "モヘリ島東端のイツァミア周辺では5つの連続する浜でアオウミガメの産卵が長期的に調査され、地域活動と保全が結びついてきた。",
+      "points": [
+        "調査対象の浜は合計1.6km超",
+        "産卵痕跡のモニタリングは1999年から継続"
+      ],
+      "sourceKey": "itsamiaTurtles"
+    },
+    {
+      "topicKey": "ntringui-highland-water",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "アンジュアンの内部には、火口湖と高地林が残る",
+      "text": "ントリンギ山周辺のラムサール登録地にはジアランゼ湖と高地林が含まれる。海岸から急に標高を上げる島の内部で、淡水環境と希少生物の生息地が重なる。",
+      "points": [
+        "ラムサール登録地は3,000ヘクタール",
+        "ジアランゼ湖を含む高地湿地"
+      ],
+      "sourceKey": "ntringuiRamsar"
+    },
+    {
+      "topicKey": "lac-sale-sacred-landscape",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ラック・サレは、火山地形であると同時に信仰の場所でもある",
+      "text": "グランドコモロ北部のラック・サレと周辺の聖地は、火山性の地形と宗教的・文化的な意味が結びつく景観として、2026年に世界遺産暫定一覧へ提出された。",
+      "points": [
+        "海岸に近い火山性の窪地",
+        "Bangoi Kouni周辺の文化景観の一部"
+      ],
+      "sourceKey": "lacSaleUnesco"
+    },
+    {
+      "topicKey": "perfume-crop-economy",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "香りの作物が、島の農業と輸出を支える",
+      "text": "コモロではバニラ、丁字、イランイランが主要産業として挙げられる。火山島の農地で育つ香料・香辛料作物は、国の輸出と暮らしを結ぶ重要な作物群である。",
+      "points": [
+        "主要産業にバニラ・丁字・イランイラン",
+        "香料・香辛料作物が輸出につながる"
+      ],
+      "sourceKey": "profile"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-1975",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立は1975年7月",
+      "text": "コモロは1975年7月にフランスから独立した。現在のコモロ連合はグランドコモロ、アンジュアン、モヘリの3島から成る。",
+      "icon": "history",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "coelacanth-comoros-research",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "海洋研究",
+      "title": "コモロ沖はシーラカンス研究の重要な海域",
+      "text": "日本の調査隊も1980年代からコモロでシーラカンス調査を行い、1986年には生きた個体の水中撮影に成功したと外務省資料が紹介する。",
+      "icon": "wildlife",
+      "sourceKey": "japanRelations"
+    },
+    {
+      "topicKey": "moheli-marine-park-2001",
+      "categoryEn": "NATURE",
+      "categoryJa": "海洋保全",
+      "title": "モヘリの海洋保護区は2001年に設立",
+      "text": "モヘリ周辺では2001年に海洋公園が設立され、珊瑚礁、ウミガメ、海草藻場などを地域参加型で保全する取り組みが続いている。",
+      "icon": "sea",
+      "sourceKey": "moheliMarinePark"
+    },
+    {
+      "topicKey": "three-official-languages",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "公用語は3言語",
+      "text": "コモロ語、アラビア語、フランス語が公用語として使われる。インド洋交易と植民地史が言語環境にも重なる。",
+      "icon": "culture",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "karthala-tentative-2026",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "暫定一覧",
+      "title": "カルタラ山は2026年に世界遺産暫定一覧へ",
+      "text": "コモロは2026年3月、カルタラ山を自然遺産候補としてユネスコ世界遺産暫定一覧へ提出した。",
+      "icon": "landscape",
+      "sourceKey": "karthala"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF COMOROS",
+    "title": "コモロで食べたいもの",
+    "intro": "ココナツ、魚、バナナやキャッサバ、香辛料。東アフリカとアラブ・インド洋の食文化が重なり、主食と海の素材を香り高く組み合わせる。",
+    "items": [
+      {
+        "id": "mtsolola",
+        "name": "ムツォロラ",
+        "nameLocal": "M’tsolola",
+        "text": "魚と青いバナナをココナツミルクで煮込む料理。海の魚、島で育つバナナ、ココナツを一つの鍋で合わせる食材構成が見える。",
+        "image": "assets/images/comoros/approved/food-1-mtsolola.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mkatra-foutra",
+        "name": "ムカトラ・フートラ",
+        "nameLocal": "Mkatra foutra",
+        "text": "ココナツの風味を加えた平たいパン。朝食や軽食で食べられ、主菜や飲み物と合わせやすい日常的な粉もの。",
+        "image": "assets/images/comoros/approved/food-2-mkatra-foutra.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pilaou",
+        "name": "ピラウ",
+        "nameLocal": "Pilaou",
+        "text": "米に肉や香辛料を合わせて炊く料理。クローブやカルダモンなどの香りを使い、インド洋の交易圏とのつながりを食卓で感じられる。",
+        "image": "assets/images/comoros/approved/food-3-pilaou.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mataba",
+        "name": "マタバ",
+        "nameLocal": "Mataba",
+        "text": "キャッサバの葉を細かくして煮る料理。ココナツを合わせる調理もあり、島の畑作物を生かした濃厚な副菜として食べられる。",
+        "image": "assets/images/comoros/approved/food-4-mataba.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "距離そのものより島間移動の接続が旅程を左右する。訪問島を増やすほど、航空・船便の変更を吸収する余白が重要になる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "グランドコモロを一周する",
+        "text": "モロニを起点に北のラック・サレ、東岸のショモニ、南西のイコニ、カルタラ山周辺をつなぐ。例：モロニ → ラック・サレ → ショモニ → イコニ → モロニ",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "モヘリの海を加える",
+        "text": "グランドコモロにモヘリ島を加え、ニウマシュワとイツァミアで海洋保全と島の暮らしを見る。例：モロニ → グランドコモロ周遊 → モヘリ → ニウマシュワ → イツァミア",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "三島を渡って比べる",
+        "text": "アンジュアンまで足を延ばし、ムツァムドゥ旧市街とジアランゼ湖を加える。例：モロニ → モヘリ → ニウマシュワ → アンジュアン → ムツァムドゥ → ジアランゼ湖",
+        "icon": "compass"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ沖 / モザンビーク海峡北部 / インド洋"
+    },
+    {
+      "label": "首都",
+      "value": "モロニ"
+    },
+    {
+      "label": "人口",
+      "value": "約88万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,862 km²（日本の約0.5%）"
+    },
+    {
+      "label": "言語",
+      "value": "コモロ語・アラビア語・フランス語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教"
+    },
+    {
+      "label": "通貨",
+      "value": "コモロ・フラン（KMF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "karthala-summit-height",
+      "label": "島の最高地点",
+      "value": "2,361 m",
+      "note": "グランドコモロのカルタラ山は海岸から標高2,361メートルまで立ち上がる火山で、島の地形と植生の軸になっている。",
+      "icon": "landscape",
+      "interestReason": "小さな島の中で海面から2,000メートル超へ上がる、コモロの火山島らしさを端的に示す数字。"
+    },
+    {
+      "topicKey": "mwali-marine-share",
+      "label": "モヘリ生物圏の海域",
+      "value": "約69%",
+      "note": "モヘリ生物圏保存地域66,286ヘクタールのうち45,422ヘクタールが海域。島だけでなく周辺海域まで含めて保全する地域である。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "コモロの自然を陸地だけでなく、珊瑚礁や海草藻場を含む海の広がりとして理解できる。"
+    },
+    {
+      "topicKey": "perfume-crops-three",
+      "label": "香りの主要作物",
+      "value": "3種",
+      "note": "外務省はコモロの主要産業としてバニラ、丁字、イランイランを挙げる。香料・香辛料作物が島の農業と輸出に結びついている。",
+      "icon": "food",
+      "interestReason": "火山島の農業が、香水や香辛料の流通につながる国の個性を三つの作物で示せる。"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#78936f",
+      "text": "暑く雨の多い時期。荒天が移動に影響することがあるため、山歩きと島間移動には余裕を持つ。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#7f9a78",
+      "text": "雨季の後半で、湿度と降水が高い状態が続く。森林は濃く見える一方、未舗装路や登山道の状態は直前に確認したい。"
+    },
+    {
+      "months": "5〜8月",
+      "color": "#9aa69a",
+      "text": "比較的涼しく乾いた季節。南東からの風が卓越し、島内移動や高地を歩く計画を組みやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b6a77f",
+      "text": "乾季から雨季へ移る時期。月が進むにつれて暑さと雨が増えやすく、海況と運航情報を確認しながら行程を調整する。"
+    }
+  ],
+  "transport": {
+    "title": "三島を渡る日は、接続そのものを旅程に組み込む",
+    "text": "グランドコモロ、モヘリ、アンジュアンの間は航空・船便で移動するが、運航日や時刻は変更・休止があり得る。2026年9月にも一部海上区間の休止が案内されているため、国際線と同日の厳しい接続を避け、直前に運航会社の情報を確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "火山島の地形を近い距離で見たい人",
+      "text": "カルタラ山、ラック・サレ、黒い溶岩海岸をつなぎ、海面から高地まで急に変化する火山島の骨格を自分の足で確かめたい人。"
+    },
+    {
+      "title": "海洋保全と島の暮らしを一緒に見たい人",
+      "text": "ニウマシュワやイツァミアで、珊瑚礁、ウミガメ、漁村の生活が同じ海岸にあるモヘリの環境をゆっくり知りたい人。"
+    },
+    {
+      "title": "三島の町と景観の違いを比べたい人",
+      "text": "モロニ、ムツァムドゥ、高地の湖や村を渡りながら、同じ国の中で変わる都市、山、海のスケールを見比べたい人。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "interisland-buffer",
+      "title": "島間移動の前後に余白を置く",
+      "text": "航空・船便は運航変更があり得る。国際線の前日までに主島へ戻るなど、予定変更を吸収できる日程にする。"
+    },
+    {
+      "topicKey": "karthala-weather-guide",
+      "title": "カルタラ山は天候と登山条件を現地確認する",
+      "text": "山頂部は海岸と条件が大きく異なる。出発前に天候、ルート、必要装備を現地で確認し、無理のない行程にする。"
+    },
+    {
+      "topicKey": "protected-coast-rules",
+      "title": "保全海岸では現地ルールを優先する",
+      "text": "ウミガメの産卵地や海洋保護地域では、立入・観察・照明・撮影などのルールを現地の案内に従う。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "madagascar",
+      "nameEn": "MADAGASCAR",
+      "nameJa": "マダガスカル",
+      "flag": "🇲🇬",
+      "reason": "同じ西インド洋で、島の隔離が生んだ生態系を、はるかに大きな陸地スケールから比較したいなら。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "seychelles",
+      "nameEn": "SEYCHELLES",
+      "nameJa": "セーシェル",
+      "flag": "🇸🇨",
+      "reason": "西インド洋の島国を、珊瑚礁と海洋環境を軸にしながら、火山島中心のコモロとは異なる地質と観光空間から比べたいなら。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "スワヒリ圏とインド洋交易の文脈を、大陸岸とザンジバルの都市・海岸からつなげて見たいなら。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2026-03-16",
+    "karthala": "2026-03-19",
+    "mwaliBiosphere": "2020",
+    "ntringuiRamsar": "2026-09-29",
+    "climate": "2025",
+    "transport": "2026-09-29",
+    "sceneCoordinates": "2026-09-29",
+    "food": "2026-09-29",
+    "map": "2026-09-29"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Comoros basic data, updated 2026-03-16: land area excluding Mayotte 1,862 km², capital Moroni, official languages, Islam, Comorian franc, main industries and independence. https://www.mofa.go.jp/mofaj/area/comoros/data.html",
+    "population": "World Bank — Comoros population, 2025: 882,847; checked 2026-09-29. https://data.worldbank.org/country/comoros",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used for Country Profile area comparison; checked 2026-09-29. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "karthala": "UNESCO World Heritage Centre Tentative List — Mont Karthala, submitted 2026-03-19: summit 2,361 m, Karthala National Park approx. 26,000 ha and sea-to-summit ecological gradient. https://whc.unesco.org/en/tentativelists/",
+    "mwaliBiosphere": "UNESCO MAB — Mwali Biosphere Reserve: nominated 2020, 66,286 ha total, 20,864 ha terrestrial and 45,422 ha marine; coral reefs, seagrass, mangroves, beaches and islets. https://www.unesco.org/en/mab/mwali",
+    "moheliMarinePark": "UNESCO World Heritage Centre Tentative List — Mohéli Marine Park: established 2001; coral reefs, seagrass beds, turtle nesting beaches and community-based conservation. https://whc.unesco.org/en/tentativelists/",
+    "ntringuiRamsar": "Ramsar Sites Information Service — Le Mont Ntringui, site 1650, Anjouan: 3,000 ha; includes Mount Ntringui and Lake Dzialandzé. https://rsis.ramsar.org/ris/1650",
+    "lacSaleUnesco": "UNESCO World Heritage Centre Tentative List — Sacred cultural landscape of Lac Salé and the Chiouda Mosque, submitted 2026; volcanic depression near Bangoi Kouni. https://whc.unesco.org/en/tentativelists/",
+    "itsamiaTurtles": "Bourjea et al. — green turtle nesting monitoring at Itsamia, Mohéli: five contiguous beaches over 1.6 km, monitoring since 1999. https://www.int-res.com/abstracts/esr/v27/n3/p265-276/",
+    "climate": "World Bank Climate Knowledge Portal — Comoros: hot rainy season December–April and cooler drier season May–November; checked 2026-09-29. https://climateknowledgeportal.worldbank.org/country/comoros",
+    "transport": "SGTM current inter-island service notices/schedules checked 2026-09-29; schedules and suspensions can change. https://www.sgtm-comores.com/",
+    "food": "Comorian cuisine cross-checked 2026-09-29: M’tsolola, mkatra foutra, pilaou and mataba. https://www.worldtravelguide.net/guides/africa/comoros/food-and-drink/",
+    "japanRelations": "Ministry of Foreign Affairs of Japan — Japan–Comoros relations: Japanese teams conducted coelacanth surveys from the 1980s and underwater filming succeeded in 1986. https://www.mofa.go.jp/mofaj/area/comoros/data.html",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-29 against UNESCO/Ramsar and OpenStreetMap/GeoNames-backed mapping: Moroni Mosque -11.70373,43.25157; Lac Salé -11.3675,43.35278; Chomoni -11.64522,43.39555; Iconi -11.74519,43.23776; Nioumachoua -12.3645,43.7179; Itsamia -12.3699,43.8679; Mutsamudu -12.16885,44.39428; Dzialandzé -12.22549,44.43219; Karthala -11.75,43.333333; Moroni -11.70416,43.24024.",
+    "map": "GSHHG v2.3.7 WGS84 intermediate-resolution coastline via Basemap, LGPL; target island scope cross-checked with geoBoundaries gbOpen COM ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0); checked 2026-09-29. https://www.ngdc.noaa.gov/mgg/shorelines/ ; https://www.geoboundaries.org/api/current/gbOpen/COM/ADM0/",
+    "nextRoutes": "No regular international passenger ferry was verified as a stable next-country route; nextRoutes remains empty. Checked 2026-09-29."
+  }
+}
