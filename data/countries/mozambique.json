@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "mozambique",
+  "nameEn": "MOZAMBIQUE",
+  "nameJa": "モザンビーク",
+  "region": "SOUTHEAST AFRICA / 18°S",
+  "seo": {
+    "description": "モザンビーク島、バザルート諸島、ゴロンゴーザ、チマニマニ、マプト国立公園、ニアサ、カホラ・バッサ。インド洋の長い海岸と内陸の野生・山地をたどるモザンビーク。"
+  },
+  "capital": {
+    "nameEn": "Maputo",
+    "nameJa": "マプト",
+    "coordinates": {
+      "latitude": -25.9692,
+      "longitude": 32.5732
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -34,
+      "y": -20
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "インド洋に浮かぶモザンビーク島では、サンゴ石の城塞と石造りの街、マクティ屋根の居住区が細長い島に重なる。海岸を南へたどれば白い砂丘とサンゴ礁が続き、内陸ではサバンナ、花崗岩の岩山、ザンベジの大水面へ景色が大きく変わる。",
+    "image": "assets/images/mozambique/approved/hero-ilha-mocambique-sao-sebastiao.webp",
+    "location": "Island of Mozambique / Fortress of São Sebastião",
+    "coordinates": {
+      "latitude": -15.03417,
+      "longitude": 40.73583
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -10,
+      "south": -27.5,
+      "west": 29,
+      "east": 42
+    },
+    "svg": "assets/images/mozambique/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (MOZ plus TZA/MWI/ZMB/ZWE/ZAF/SWZ context). JOURNEY ATLAS local-equirectangular-fit map styling; real national geometry and surrounding land retained."
+  },
+  "scenes": [
+    {
+      "id": "bazaruto-island",
+      "name": "バザルート島",
+      "nameLocal": "Bazaruto Island",
+      "mapLabel": "Bazaruto",
+      "description": "バザルート諸島国立公園最大の島。巨大な白砂の砂丘、塩水ラグーン、浅いターコイズ色の海が並び、海草藻場にはジュゴンを含む海洋生物が暮らす。",
+      "coordinates": {
+        "latitude": -21.706667,
+        "longitude": 35.446944
+      },
+      "image": "assets/images/mozambique/approved/scene-1-bazaruto-island.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "gorongosa-national-park",
+      "name": "ゴロンゴーザ国立公園",
+      "nameLocal": "Gorongosa National Park",
+      "mapLabel": "Gorongosa",
+      "description": "ソファラ州の大地溝帯南端に位置する国立公園。ウレマ湖と沖積平野、アカシアのサバンナ、山地が近接し、乾季には広い草原で大型哺乳類を観察できる。",
+      "coordinates": {
+        "latitude": -18.95,
+        "longitude": 34.45
+      },
+      "image": "assets/images/mozambique/approved/scene-2-gorongosa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "pemba-bay",
+      "name": "ペンバ湾",
+      "nameLocal": "Pemba Bay",
+      "mapLabel": "Pemba",
+      "description": "北部カボ・デルガード州の大きな天然湾。半島の街から穏やかな湾面とヤシの海岸を望み、キリンバス諸島や北部沿岸へ向かう旅の入口になる。",
+      "coordinates": {
+        "latitude": -12.973,
+        "longitude": 40.517
+      },
+      "image": "assets/images/mozambique/approved/scene-3-pemba-bay.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "chimanimani-national-park",
+      "name": "チマニマニ国立公園",
+      "nameLocal": "Chimanimani National Park",
+      "mapLabel": "Chimanimani",
+      "description": "ジンバブエ国境に連なる山地の保護区。岩峰、草原、渓谷が入り組み、国内最高峰ビンガ山を含む高地には固有性の高い植物や鳥類が見られる。",
+      "coordinates": {
+        "latitude": -19.7917,
+        "longitude": 33.0908
+      },
+      "image": "assets/images/mozambique/approved/scene-4-chimanimani.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "maputo-national-park",
+      "name": "マプト国立公園",
+      "nameLocal": "Maputo National Park",
+      "mapLabel": "Maputo NP",
+      "description": "南端の海岸、湖、湿地、草原、森林が連なる保護区。2025年に南アフリカのイシマンガリソ湿地公園と一体の世界遺産へ拡張され、国境を越える沿岸生態系を守る。",
+      "coordinates": {
+        "latitude": -26.43639,
+        "longitude": 32.87056
+      },
+      "image": "assets/images/mozambique/approved/scene-5-maputo-national-park.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "niassa-special-reserve",
+      "name": "ニアサ特別保護区",
+      "nameLocal": "Niassa Special Reserve",
+      "mapLabel": "Niassa",
+      "description": "北部の広大な保護区。ミオンボ林、開けたサバンナ、ルゲンダ川、花崗岩のインゼルベルクが重なり、モザンビーク最大の保護地域として大きな野生空間を残す。",
+      "coordinates": {
+        "latitude": -11.83361,
+        "longitude": 36.88028
+      },
+      "image": "assets/images/mozambique/approved/scene-6-niassa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "cahora-bassa",
+      "name": "カホラ・バッサ",
+      "nameLocal": "Cahora Bassa",
+      "mapLabel": "Cahora Bassa",
+      "description": "テテ州のザンベジ川をせき止めた巨大な貯水湖と峡谷。乾いた丘陵の間に長い水面が伸び、インド洋沿岸とは異なる内陸の大河景観を見せる。",
+      "coordinates": {
+        "latitude": -15.56667,
+        "longitude": 32.83333
+      },
+      "image": "assets/images/mozambique/approved/scene-7-cahora-bassa.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "inhambane-waterfront",
+      "name": "イニャンバネ",
+      "nameLocal": "Inhambane",
+      "mapLabel": "Inhambane",
+      "description": "南部の湾に面した歴史ある港町。低層の街路、モスクや教会、海辺の市場と船着き場がまとまり、沿岸交易と日常の暮らしが近い距離で交わる。",
+      "coordinates": {
+        "latitude": -23.865,
+        "longitude": 35.383
+      },
+      "image": "assets/images/mozambique/approved/scene-8-inhambane.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "サンゴ石の城塞と街路を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "白い砂丘の向こうに浅い海を見る",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "沖積平野で野生動物を待つ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "ダウ船の残る海岸を眺める",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "山地の岩峰と草原を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "花崗岩の岩山が浮かぶミオンボ林を見る",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "ザンベジの大水面を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "港町の市場と海辺の日常に触れる",
+      "category": "DAILY_LIFE",
+      "icon": "city"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "island-mozambique-trade-city",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "モザンビーク島では、インド洋交易と植民地都市の層が一つの島に残る",
+      "text": "10世紀以降の交易拠点だった島は、のちにポルトガルのインド航路の要衝となった。北側の石造りの街と南側のマクティの居住区を歩くと、海上交易がつくった都市の重なりが見える。",
+      "points": [
+        "1991年に世界遺産登録",
+        "城塞都市とマクティ地区が同じ細長い島に並ぶ"
+      ],
+      "sourceKey": "unescoIsland"
+    },
+    {
+      "topicKey": "bazaruto-dugong-seagrass",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "バザルートでは、砂丘の外側に海草藻場と海洋生態系が広がる",
+      "text": "国立公園はジュゴンとウミガメの保全を目的の一つとして設立され、5島と周辺海域を含む。白い砂丘だけでなく、浅海、サンゴ、塩水ラグーンまでが一つの景観系をつくる。",
+      "points": [
+        "国立公園は1,583km²",
+        "Bazaruto・Benguerraなど5島を含む"
+      ],
+      "sourceKey": "anacBazaruto"
+    },
+    {
+      "topicKey": "gorongosa-rift-restoration",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "ゴロンゴーザでは、大地溝帯の地形と野生動物の回復を同時に見る",
+      "text": "ウレマ湖と沖積平野は大地溝帯の南端に位置し、サバンナと山地を結ぶ。2008年から政府と民間財団の共同管理が進み、野生動物の回復と地域の観光を組み合わせてきた。",
+      "points": [
+        "乾季の訪問適期は概ね4〜11月",
+        "ウレマ湖・沖積平野・ゴロンゴーザ山地が主要景観"
+      ],
+      "sourceKey": "anacGorongosa"
+    },
+    {
+      "topicKey": "quirimbas-land-sea-mosaic",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "キリンバスでは、サンゴ礁からミオンボ林まで海と陸が連続する",
+      "text": "国立公園は約7,500km²の海域と陸域を含み、キリンバス諸島27島のうち11島、サンゴ礁、マングローブ、乾燥ミオンボ林、内陸の岩山を一つの保護区で結ぶ。",
+      "points": [
+        "国立公園は2002年設立",
+        "海域と陸域を合わせ約7,500km²"
+      ],
+      "sourceKey": "anacQuirimbas"
+    },
+    {
+      "topicKey": "niassa-inselbergs-wilderness",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ニアサでは、ミオンボ林の海から花崗岩の岩山が立ち上がる",
+      "text": "ルブマ川とルゲンダ川に囲まれた大きな保護区には、ミオンボ林、河畔植生、草原とともにメクラ山・ジョド山や多数の花崗岩インゼルベルクが点在する。",
+      "points": [
+        "国内最大の保護地域",
+        "北側はルブマ川を挟んでタンザニアに接する"
+      ],
+      "sourceKey": "anacNiassa"
+    },
+    {
+      "topicKey": "chimanimani-highland-biodiversity",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "チマニマニでは、沿岸低地とは別の高地景観に入る",
+      "text": "国境山地の岩峰と高地草原には、モザンビーク最高峰ビンガ山がある。海岸線の長い国という印象から離れ、標高差が生む植物・鳥・爬虫類の多様性を見られる。",
+      "points": [
+        "ビンガ山は国内最高峰",
+        "岩山と高地生態系が旅の主役になる"
+      ],
+      "sourceKey": "anacChimanimani"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "portuguese-official-language",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "言語",
+      "title": "公用語はポルトガル語",
+      "text": "公用語はポルトガル語だが、マクア語、シャンガーナ語、チェワ語、セナ語など多様な言語が話される。地域を移動すると言語環境も大きく変わる。",
+      "icon": "city",
+      "sourceKey": "mofaMozambique"
+    },
+    {
+      "topicKey": "independence-june-25",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "国祭日は6月25日",
+      "text": "6月25日は独立記念日。モザンビークは1975年にポルトガルから独立し、この日を国祭日としている。",
+      "icon": "history",
+      "sourceKey": "mofaMozambique"
+    },
+    {
+      "topicKey": "metical-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "通貨はメティカル",
+      "text": "国内通貨はメティカル（MZN）。複数形はメティカイスで、モザンビーク銀行が通貨と為替情報を公表している。",
+      "icon": "map",
+      "sourceKey": "bankMozambique"
+    },
+    {
+      "topicKey": "xima-everyday-starch",
+      "categoryEn": "FOOD",
+      "categoryJa": "食卓",
+      "title": "シマはトウモロコシ粉やキャッサバ粉から作る",
+      "text": "Visit Mozambiqueはupshwa／ximaを代表的な付け合わせとして紹介している。魚、肉、野菜と合わせるため、地域の食卓を理解する入口になる。",
+      "icon": "food",
+      "sourceKey": "visitCuisine"
+    },
+    {
+      "topicKey": "coastal-seafood-piripiri",
+      "categoryEn": "FOOD",
+      "categoryJa": "海の食",
+      "title": "海岸では魚介にココナツとピリピリが重なる",
+      "text": "長い海岸沿いではエビ、ロブスター、カニ、イカなどが使われ、ココナツとピリピリが料理の味を形づくる。",
+      "icon": "food",
+      "sourceKey": "visitCuisine"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MOZAMBIQUE",
+    "title": "モザンビークで食べたいもの",
+    "intro": "キャッサバ葉と落花生のマタパ、主食のシマ、海辺の魚、ザンベジアのココナツチキンまで、地域と役割が重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "matapa",
+        "name": "マタパ",
+        "nameLocal": "Matapa / Mathapa",
+        "text": "キャッサバの葉を落花生ソースで煮る代表料理。カニやエビを加えることが多く、葉の青い風味とナッツのコクが重なる。",
+        "image": "assets/images/mozambique/approved/food-1-matapa.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "xima",
+        "name": "シマ",
+        "nameLocal": "Xima / Upshwa",
+        "text": "トウモロコシ粉またはキャッサバ粉を水で練る白い主食。魚、肉、野菜の煮込みやソースと合わせる。",
+        "image": "assets/images/mozambique/approved/food-2-xima.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "peixe-grelhado",
+        "name": "焼き魚",
+        "nameLocal": "Peixe grelhado",
+        "text": "新鮮な魚をシンプルに焼く沿岸の定番。ピリピリやレモンを添え、米、サラダ、ポテトなどと食べる。",
+        "image": "assets/images/mozambique/approved/food-3-peixe-grelhado.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "frango-zambeziana",
+        "name": "フランゴ・ア・ザンベジアナ",
+        "nameLocal": "Frango à Zambeziana",
+        "text": "鶏肉をココナツの風味で仕上げるザンベジア州の代表料理。海岸部に広いココナツ使いを、肉料理で味わえる。",
+        "image": "assets/images/mozambique/approved/food-4-frango-zambeziana.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は南北に長く、日本の約2.1倍。マプト、南部海岸、中部のゴロンゴーザ、北部のモザンビーク島やニアサは互いに遠いため、地域を絞るほど旅の密度が上がる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "マプトと南部海岸に集中する",
+        "text": "マプトを起点にマプト国立公園か南部の海岸を一つ組み合わせる。例：マプト → マプト国立公園 → マプト。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜10日",
+        "title": "海岸とゴロンゴーザを一つにつなぐ",
+        "text": "南部またはバザルート周辺に、中部のゴロンゴーザを加える。長距離は国内線を使い、地上移動を絞る。例：マプト → ヴィランクロス → バザルート → ベイラ → ゴロンゴーザ → マプト。",
+        "icon": "map"
+      },
+      {
+        "duration": "11日以上",
+        "title": "北部の島・保護区まで広げる",
+        "text": "モザンビーク島、ペンバ、キリンバス方面など北部を加え、南北の景観差をたどる。例：マプト → ヴィランクロス → ゴロンゴーザ → ナンプラ → モザンビーク島 → ペンバ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "5〜8月",
+      "color": "#c7b889",
+      "text": "乾季で比較的涼しい時期。南部から中部は朝晩が涼しく、ゴロンゴーザなど内陸の保護区も訪れやすい。海岸では乾いた晴天の日が増える。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#d3a66f",
+      "text": "乾季後半から暑さが増す時期。サファリでは水場周辺の観察がしやすく、海岸では水温も上がる。雨季入りの時期は地域差がある。"
+    },
+    {
+      "months": "12〜3月",
+      "color": "#7f9b82",
+      "text": "高温多湿の雨季。道路条件が悪化する地域があり、ゴロンゴーザは通常1〜3月に一般訪問を休止する。熱帯低気圧の影響もあり得るため最新情報を確認する。"
+    },
+    {
+      "months": "4月",
+      "color": "#9dad83",
+      "text": "雨季から乾季への移行期。緑が残り、水量の多い景観が見られる一方、道路や保護区の再開時期はその年の降雨条件で変わる。"
+    }
+  ],
+  "transport": {
+    "title": "南北の長距離は国内線を軸にし、保護区と島は最後の区間を別に組む",
+    "text": "マプト、ベイラ、ナンプラ、ペンバ、ヴィランクロスなどを航空でつなぎ、国立公園や島へは車・ボートを組み合わせる。道路は距離が長く、雨季は未舗装区間や橋の状況が変わりやすい。北部は安全状況も含め、出発前に現地事業者と公的情報で最新条件を確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "島とインド洋の景観を深く見たい人",
+      "text": "白砂、サンゴ礁、ダウ船、交易都市を海岸線でつなぎたい。"
+    },
+    {
+      "title": "野生動物と保全の現場を見たい人",
+      "text": "ゴロンゴーザやニアサで、広い生態系と保全の取り組みを体感したい。"
+    },
+    {
+      "title": "海だけでなく山地と大河まで見たい人",
+      "text": "チマニマニやカホラ・バッサまで足を延ばし、国土の立体感を知りたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南東部アフリカ"
+    },
+    {
+      "label": "首都",
+      "value": "マプト"
+    },
+    {
+      "label": "人口",
+      "value": "約3,463万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "799,000 km²（日本の約2.1倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語（公用語）・マクア語・シャンガーナ語・チェワ語・セナ語など"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教約60%・イスラム教約19%など（2017年）"
+    },
+    {
+      "label": "通貨",
+      "value": "メティカル（MZN）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "conservation-territory-share",
+      "label": "保全地域",
+      "value": "国土の25%",
+      "note": "ANACによると、国の保全地域システムは国土の25%を占め、海岸・湿地・サバンナ・山地まで多様な生態系を含む。",
+      "icon": "wildlife",
+      "interestReason": "海岸国という印象だけでは見えない、モザンビークの野生と保全の規模を一つの数字で捉えられるため。"
+    },
+    {
+      "topicKey": "bazaruto-island-count",
+      "label": "バザルート国立公園",
+      "value": "5島",
+      "note": "Bazaruto、Benguerra、Magaruque、Santa Carolina、Banguéの5島と周辺海域が国立公園を構成する。",
+      "icon": "sea",
+      "interestReason": "モザンビークの代表的な海景が、一つのビーチではなく島群と海域から成ることを具体的に示せるため。"
+    },
+    {
+      "topicKey": "land-neighbour-count",
+      "label": "陸続きの国",
+      "value": "6か国",
+      "note": "タンザニア、マラウイ、ザンビア、ジンバブエ、南アフリカ、エスワティニと国境を接する。",
+      "icon": "map",
+      "interestReason": "南北に長い国土が東アフリカと南部アフリカの双方につながる位置関係を端的に表せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "north-security-current",
+      "title": "北部は安全情報を旅程より先に確認する",
+      "text": "カボ・デルガード州では地域により治安状況が変化する。ペンバやキリンバス方面を含む北部旅行は、外務省などの最新危険情報と現地事業者の運行状況を確認してから組む。"
+    },
+    {
+      "topicKey": "rainy-season-road-access",
+      "title": "雨季は道路と保護区の開閉を個別に確認する",
+      "text": "雨季は道路条件が大きく変わり、ゴロンゴーザのように季節閉鎖がある保護区もある。移動日と代替ルートに余裕を持つ。"
+    },
+    {
+      "topicKey": "island-boat-weather",
+      "title": "島へのボート移動は風と海況を優先する",
+      "text": "バザルートなどの島はヴィランクロス周辺から船で入る行程が一般的。出航可否、所要時間、荷物制限は当日の海況と事業者条件を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇿🇦",
+      "countryEn": "SOUTH AFRICA",
+      "countryJa": "南アフリカ",
+      "path": "Maputo → Ressano Garcia / Lebombo → Mbombela",
+      "description": "マプトから西へ進み、レサノ・ガルシア／レボンボ国境を越えてムプマランガ州へ入る主要陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用、車両書類、入国条件は出発前に確認。"
+    },
+    {
+      "flag": "🇲🇼",
+      "countryEn": "MALAWI",
+      "countryJa": "マラウイ",
+      "path": "Tete → Zóbuè / Mwanza border → Blantyre",
+      "description": "テテ州からゾブエ／ムワンザ国境を越えてマラウイ南部へ入る陸路。南部マラウイとテテを結ぶ主要回廊の一つ。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用、長距離交通、入国条件を直前確認。"
+    },
+    {
+      "flag": "🇿🇼",
+      "countryEn": "ZIMBABWE",
+      "countryJa": "ジンバブエ",
+      "path": "Chimoio → Machipanda / Forbes border → Mutare",
+      "description": "中部チモイオから西へ進み、マチパンダ／フォーブス国境を越えてムタレへ入る陸路。チマニマニ地域からもつなぎやすい。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用と道路状況、入国条件を直前確認。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "インド洋沿岸とスワヒリ交易圏を北へたどり、島・海岸文化の連続性を見たい人へ。",
+      "affinityType": "COAST"
+    },
+    {
+      "slug": "malawi",
+      "nameEn": "MALAWI",
+      "nameJa": "マラウイ",
+      "flag": "🇲🇼",
+      "reason": "モザンビーク北西部から大地溝帯の湖景観へつなぎ、水辺の旅を内陸へ広げたい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "southafrica",
+      "nameEn": "SOUTH AFRICA",
+      "nameJa": "南アフリカ",
+      "flag": "🇿🇦",
+      "reason": "マプト国立公園から国境を越えてイシマンガリソまで、沿岸生態系の連続性を追いたい人へ。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-30",
+  "sourcesVerifiedAt": "2026-09-30",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2026-06-03",
+    "japanArea": "2026-04-01",
+    "languageReligion": "2017",
+    "currency": "2026-09-30",
+    "unescoIsland": "2026-09-30",
+    "unescoMaputo": "2025",
+    "conservation": "2026-09-30",
+    "sceneCoordinates": "2026-09-30",
+    "map": "2026-09-30"
+  },
+  "sources": {
+    "mofaMozambique": "Ministry of Foreign Affairs of Japan, Mozambique Basic Data, updated 2026-06-03: area 799,000 km²; population approx. 34.63 million (2024 World Bank); capital Maputo; Portuguese official language and major local languages; religion shares from 2017 census; national day 25 June. https://www.mofa.go.jp/mofaj/area/mozambique/data.html",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,974.87 km² as of 2026-04-01; 799,000 / 377,974.87 ≒ 2.11, displayed as approximately 2.1 times. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "bankMozambique": "Banco de Moçambique, official domestic currency and exchange-rate information; Metical (MZN), checked 2026-09-30. https://www.bancomoc.mz/",
+    "unescoIsland": "UNESCO World Heritage Centre, Island of Mozambique: inscribed 1991; intercontinental trading history and architectural unity; property coordinate S15 2 3.012 E40 44 8.988. https://whc.unesco.org/en/list/599/ ; https://whc.unesco.org/en/list/599/maps/",
+    "unescoMaputo": "UNESCO World Heritage Centre, iSimangaliso Wetland Park – Maputo National Park: Mozambique extension approved 2025; Maputo National Park coordinate S26 26 11 E32 52 14. https://whc.unesco.org/en/list/914/",
+    "anacConservation": "Mozambique National Administration of Conservation Areas (ANAC), Conservation Areas: conservation areas represent 25% of national territory. Checked 2026-09-30. https://www.anac.gov.mz/en/conservation-areas/",
+    "anacBazaruto": "ANAC, Bazaruto Archipelago National Park: established 1971; five islands; 1,583 km²; dugong/turtle conservation; dunes, lagoons and marine biodiversity. Checked 2026-09-30. https://www.anac.gov.mz/en/parques/bazaruto/",
+    "anacGorongosa": "ANAC, Gorongosa National Park: Sofala Province; wildlife restoration partnership since 2008; savannas, Lake Urema, alluvial prairies and mountains; dry-season visitor conditions. Checked 2026-09-30. https://www.anac.gov.mz/en/parques/gorongosa/",
+    "anacQuirimbas": "ANAC, Quirimbas National Park: established 2002; about 7,500 km² land and marine area; 11 of 27 archipelago islands plus reefs, mangroves, dry miombo and inselbergs. Checked 2026-09-30. https://www.anac.gov.mz/en/parques/quirimbas/",
+    "anacNiassa": "ANAC, Niassa Special/National Reserve: largest conservation area in Mozambique; Rovuma and Lugenda rivers; Mecula/Jodo mountains, granite inselbergs, miombo and wildlife. Checked 2026-09-30. https://www.anac.gov.mz/en/parques/niassa/",
+    "anacChimanimani": "ANAC, Chimanimani National Park: Sussundenga, Manica; Mount Binga, rocky highland ecosystems and cave-painting cultural interest. Checked 2026-09-30. https://www.anac.gov.mz/en/parques/chimanimani/",
+    "visitCuisine": "Visit Mozambique, Gastronomia: xima/upshwa from maize or cassava flour; matapa from cassava leaves and peanut sauce, often with crab/prawn; seafood, coconut, piri-piri; typical dishes include peixe grelhado and Frango à Zambeziana. Checked 2026-09-30. https://www.visitmozambique.gov.mz/o-que-fazer/gastronomia/",
+    "sceneCoordinates": "WGS84 points verified 2026-09-30 against UNESCO/ANAC and open geographic references: Bazaruto -21.706667,35.446944; Gorongosa -18.95,34.45 (park interior); Pemba -12.973,40.517; Chimanimani -19.7917,33.0908; Maputo NP -26.43639,32.87056; Niassa -11.83361,36.88028; Cahora Bassa -15.56667,32.83333; Inhambane -23.865,35.383; Ilha de Moçambique -15.03417,40.73583.",
+    "map": "Natural Earth 1:10m Admin-0 national geometry for Mozambique and TZA/MWI/ZMB/ZWE/ZAF/SWZ context, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b."
+  }
+}
