@@ -5,7 +5,6 @@ on:
   pull_request:
     paths:
       - 'scripts/add_country_map_context.py'
-      - 'scripts/add_country_border_context.py'
       - 'scripts/add_country_map_context_existing.py'
       - 'scripts/add_country_map_context_legacy.py'
       - 'scripts/apply_exact_target_clip.py'
@@ -23,8 +22,6 @@ on:
       - 'tests/test_map_context_stage2_ledger.py'
       - 'tests/test_map_context_cuba_sources.py'
       - 'tests/test_add_country_map_context.py'
-      - 'tests/test_add_country_border_context.py'
-      - 'tests/test_europe_asia_map_border_coverage.py'
       - 'tests/test_generate_country_map_with_context.py'
       - 'tests/test_filter_duplicate_target_context.py'
       - 'tests/test_map_context_legacy.py'
@@ -57,7 +54,6 @@ jobs:
         run: |
           python -m py_compile \
             scripts/add_country_map_context.py \
-            scripts/add_country_border_context.py \
             scripts/add_country_map_context_existing.py \
             scripts/add_country_map_context_legacy.py \
             scripts/apply_exact_target_clip.py \
@@ -69,8 +65,6 @@ jobs:
             scripts/review_monaco_france.py \
             tests/qa_map_source_credit.py
           python -m unittest discover -s tests -p 'test_*map_context*.py' -v
-          python -m unittest discover -s tests -p 'test_add_country_border_context.py' -v
-          python -m unittest discover -s tests -p 'test_europe_asia_map_border_coverage.py' -v
           python -m unittest discover -s tests -p 'test_filter_duplicate_target_context.py' -v
       - name: Save Brunei and Monaco priority source review before long browser run
         if: always()
