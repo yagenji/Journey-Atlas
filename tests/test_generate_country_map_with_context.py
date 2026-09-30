@@ -32,9 +32,17 @@ class WrapperTest(unittest.TestCase):
         def run(command, *, check):
             if 'add_country_map_context.py' in command[1]:
                 self.output.write_text(svg, encoding='utf8')
-        with patch.object(sys, 'argv', self.arguments()), patch.object(wrapper.subprocess, 'run', side_effect=run) as subprocess_run:
+        bordered_svg = svg.replace('</svg>', '<!-- borders --></svg>')
+        with patch.object(sys, 'argv', self.arguments()), \
+                patch.object(wrapper.subprocess, 'run', side_effect=run) as subprocess_run, \
+                patch.object(wrapper.borders, 'add_borders', return_value=bordered_svg) as add_borders:
             wrapper.main()
         self.assertEqual(subprocess_run.call_count, 2)
+        add_borders.assert_called_once_with(
+            svg,
+            {'west': 44.45, 'south': 38.05, 'east': 50.72, 'north': 42.12},
+            0.6,
+        )
         generating = subprocess_run.call_args_list[0].args[0]
         context = subprocess_run.call_args_list[1].args[0]
         self.assertEqual(generating[generating.index('--bounds') + 1:generating.index('--bounds') + 5],
@@ -42,7 +50,7 @@ class WrapperTest(unittest.TestCase):
         self.assertIn('generate_country_map.py', generating[1])
         self.assertIn('add_country_map_context.py', context[1])
         self.assertEqual(context[context.index('--output') + 1], str(self.output))
-        self.assertEqual(self.output.read_text(), svg)
+        self.assertEqual(self.output.read_text(), bordered_svg)
 
     def test_rejects_uncertain_geometry_and_region_overwrites(self):
         with patch.object(sys, 'argv', self.arguments('--bounds', '0', '0', '1', '1')):
