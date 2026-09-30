@@ -19,6 +19,8 @@ from xml.etree import ElementTree as ET
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
+import add_country_border_context as borders
+
 
 _SVG_NS = '{http://www.w3.org/2000/svg}'
 _SVG_RING = re.compile(r'M\s*([^M]*?)\s*Z', re.S)
@@ -132,6 +134,9 @@ def main() -> None:
         if count:
             args.output.write_text(cleaned, encoding='utf-8')
             print(f'Removed {count} redundant GSHHS island context rings; ADM0 target and neighbors unchanged')
+        bordered = borders.add_borders(args.output.read_text(encoding='utf-8'), config['bounds'],
+                                       args.context_resolution, 0.6)
+        args.output.write_text(bordered, encoding='utf-8')
 
 
 if __name__ == '__main__':
