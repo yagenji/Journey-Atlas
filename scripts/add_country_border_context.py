@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
 """Add source-backed surrounding-country borders to a JOURNEY ATLAS map SVG.
 
-This layer is intentionally separate from the highlighted target Country.
-It uses Basemap's intermediate-resolution countries_i boundary dataset, clips
-all linework to the exact visible canvas, projects it with the same local
-equirectangular fit as the map, and inserts the result below the target land.
+The highlighted Country geometry is never modified. This adds only Natural
+Earth 1:10m Admin-0 land-boundary linework below the target Country, projected
+with the same canonical local-equirectangular fit and clipped to the visible
+1200x760 canvas.
 """
-
 from __future__ import annotations
 
 import argparse
 import json
 import math
+import urllib.request
 from pathlib import Path
 
-import numpy as np
-from shapely.geometry import GeometryCollection, LineString, MultiLineString, box
-from mpl_toolkits import basemap
+from shapely.geometry import GeometryCollection, LineString, MultiLineString, box, shape
 
 WIDTH = 1200
 HEIGHT = 760
 GROUP_ID = "context-national-borders"
 STROKE = "#b6bbaf"
 STROKE_WIDTH = "1"
+NATURAL_EARTH_REF = "ca96624a56bd078437bca8184e78163e5039ad19"
+NATURAL_EARTH_URL = (
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
+    f"{NATURAL_EARTH_REF}/geojson/ne_10m_admin_0_boundary_lines_land.geojson"
+)
 
 
 def frame(bounds: dict[str, float]) -> tuple[float, float, float, float]:
@@ -55,19 +58,16 @@ def project(lon: float, lat: float, bounds: dict[str, float]) -> tuple[float, fl
     return ox + (lon - west) * factor * scale, oy + (north - lat) * scale
 
 
-def boundary_segments(resolution: str = "i"):
-    datadir = Path(basemap.basemap_datadir)
-    meta = datadir / f"countriesmeta_{resolution}.dat"
-    data = datadir / f"countries_{resolution}.dat"
-    if not meta.exists() or not data.exists():
-        raise FileNotFoundError(f"Basemap countries_{resolution} boundary data not installed")
-    with meta.open(encoding="utf-8") as mf, data.open("rb") as df:
-        for row in mf:
-            parts = row.split()
-            npts, offset, bytecount = int(parts[2]), int(parts[5]), int(parts[6])
-            df.seek(offset)
-            arr = np.frombuffer(df.read(bytecount), dtype="<f4").astype(float).reshape((npts, 2))
-            yield arr
+def load_boundaries(dataset: Path | None = None):
+    if dataset is not None:
+        source = json.loads(dataset.read_text(encoding="utf-8"))
+    else:
+        with urllib.request.urlopen(NATURAL_EARTH_URL) as response:
+            source = json.load(response)
+    for feature in source.get("features", []):
+        geometry = shape(feature["geometry"])
+        if not geometry.is_empty:
+            yield geometry
 
 
 def _line_parts(geometry):
@@ -86,34 +86,46 @@ def _fmt(value: float) -> str:
     return text[:-2] if text.endswith(".0") else text
 
 
-def make_border_path(bounds: dict[str, float], resolution: str = "i", simplify_px: float = 0.6) -> str:
+def make_border_path(
+    bounds: dict[str, float],
+    simplify_px: float = 0.6,
+    dataset: Path | None = None,
+) -> str:
     west, south, east, north = canvas_bounds(bounds)
     viewport = box(west, south, east, north)
     parts: list[str] = []
 
-    for arr in boundary_segments(resolution):
-        for shift in (-360.0, 0.0, 360.0):
-            xs = arr[:, 0] + shift
-            ys = arr[:, 1]
-            if xs.max() < west or xs.min() > east or ys.max() < south or ys.min() > north:
-                continue
-            clipped = LineString(np.column_stack((xs, ys))).intersection(viewport)
-            for line in _line_parts(clipped):
-                projected = LineString(project(lon, lat, bounds) for lon, lat in line.coords)
-                if simplify_px:
-                    projected = projected.simplify(simplify_px, preserve_topology=False)
-                coords: list[tuple[float, float]] = []
-                for x, y in projected.coords:
-                    x, y = round(x, 1), round(y, 1)
-                    if -0.2 <= x <= WIDTH + 0.2 and -0.2 <= y <= HEIGHT + 0.2:
-                        if not coords or coords[-1] != (x, y):
-                            coords.append((x, y))
-                if len(coords) >= 2:
-                    parts.append("M" + " ".join(f"{_fmt(x)},{_fmt(y)}" for x, y in coords))
+    for geometry in load_boundaries(dataset):
+        for line in _line_parts(geometry):
+            for shift in (-360.0, 0.0, 360.0):
+                shifted = LineString((lon + shift, lat) for lon, lat in line.coords)
+                if not shifted.bounds or (
+                    shifted.bounds[2] < west or shifted.bounds[0] > east
+                    or shifted.bounds[3] < south or shifted.bounds[1] > north
+                ):
+                    continue
+                clipped = shifted.intersection(viewport)
+                for piece in _line_parts(clipped):
+                    projected = LineString(project(lon, lat, bounds) for lon, lat in piece.coords)
+                    if simplify_px:
+                        projected = projected.simplify(simplify_px, preserve_topology=False)
+                    coords: list[tuple[float, float]] = []
+                    for x, y in projected.coords:
+                        x, y = round(x, 1), round(y, 1)
+                        if -0.2 <= x <= WIDTH + 0.2 and -0.2 <= y <= HEIGHT + 0.2:
+                            if not coords or coords[-1] != (x, y):
+                                coords.append((x, y))
+                    if len(coords) >= 2:
+                        parts.append("M" + " ".join(f"{_fmt(x)},{_fmt(y)}" for x, y in coords))
     return " ".join(parts)
 
 
-def add_borders(svg: str, bounds: dict[str, float], resolution: str = "i", simplify_px: float = 0.6) -> str:
+def add_borders(
+    svg: str,
+    bounds: dict[str, float],
+    simplify_px: float = 0.6,
+    dataset: Path | None = None,
+) -> str:
     if f'id="{GROUP_ID}"' in svg:
         raise ValueError("SVG already contains surrounding-country borders")
     if 'viewBox="0 0 1200 760"' not in svg:
@@ -121,12 +133,11 @@ def add_borders(svg: str, bounds: dict[str, float], resolution: str = "i", simpl
     if 'data-map-projection="local-equirectangular-fit-v1"' not in svg:
         raise ValueError("Only canonical single-region local projection is supported")
 
-    path = make_border_path(bounds, resolution, simplify_px)
+    path = make_border_path(bounds, simplify_px, dataset)
     if not path:
         return svg
 
-    target_fill = 'fill="url(#land)"'
-    target_index = svg.find(target_fill)
+    target_index = svg.find('fill="url(#land)"')
     if target_index < 0:
         raise ValueError("Approved target land is missing")
     insert_at = svg.rfind("<", 0, target_index)
@@ -134,8 +145,9 @@ def add_borders(svg: str, bounds: dict[str, float], resolution: str = "i", simpl
         raise ValueError("Cannot locate target land element")
 
     source = (
-        f'<!-- Surrounding national borders: Basemap countries_{resolution}.dat; '
-        'WGS84-equivalent political boundary linework; clipped to visible canvas. -->\n'
+        "<!-- Surrounding national borders: Natural Earth 1:10m Admin-0 boundary lines land; "
+        f"nvkelso/natural-earth-vector {NATURAL_EARTH_REF}; public domain; WGS84; "
+        "clipped to visible canvas. -->\n"
     )
     group = (
         f'<g id="{GROUP_ID}" fill="none" stroke="{STROKE}" stroke-width="{STROKE_WIDTH}" '
@@ -150,7 +162,7 @@ def main() -> None:
     parser.add_argument("--country-json", required=True, type=Path)
     parser.add_argument("--input", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
-    parser.add_argument("--resolution", choices=("c", "l", "i"), default="i")
+    parser.add_argument("--dataset", type=Path, help="Optional pinned Natural Earth boundary-lines GeoJSON")
     parser.add_argument("--simplify-px", type=float, default=0.6)
     args = parser.parse_args()
     if args.input.resolve() == args.output.resolve() or args.output.exists():
@@ -163,7 +175,7 @@ def main() -> None:
         parser.error("Multi-region maps require explicit region-aware review")
     bounds = country["map"]["bounds"]
     svg = args.input.read_text(encoding="utf-8")
-    result = add_borders(svg, bounds, args.resolution, args.simplify_px)
+    result = add_borders(svg, bounds, args.simplify_px, args.dataset)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(result, encoding="utf-8")
     print(f"Created {args.output} ({len(result.encode('utf-8'))} bytes)")
