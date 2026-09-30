@@ -24,7 +24,7 @@
       "x": -2,
       "y": 0.2
     },
-    "mapRegion": "mahe"
+    "mapRegion": "inner-islands"
   },
   "hero": {
     "lead": "赤道の南、西インド洋に115の島が散らばる。花崗岩の巨石と白砂、ココ・デ・メールの森、巨大ゾウガメ、遠隔の珊瑚環礁まで、陸地455km²の小国に異なる島の時間が重なる。",
@@ -38,7 +38,7 @@
       "x": -1.9,
       "y": 0.5
     },
-    "mapRegion": "inner-east"
+    "mapRegion": "inner-islands"
   },
   "map": {
     "bounds": {
@@ -49,36 +49,21 @@
     },
     "svg": "assets/images/seychelles/map-atlas-v1.svg",
     "route": null,
-    "source": "Natural Earth 1:10m Admin-0 Seychelles geometry via CountryGeoJSONCollection for the Inner Islands, with higher-detail Aldabra outline from the MIT-licensed lwwcas/laravel-countries Seychelles dataset; WGS84 display regions preserve real coordinates. Target scope cross-checked against geoBoundaries gbOpen SYC ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0); reviewed 2026-09-29.",
+    "source": "Natural Earth 1:10m Admin-0 Seychelles geometry via CountryGeoJSONCollection for the Inner Islands; Aldabra outline refined from lwwcas/laravel-countries Seychelles dataset (MIT). Mahé, Praslin, La Digue and Curieuse are rendered together in one geographic Inner Islands region; Aldabra is a separate inset following the shared United States multi-region map pattern. WGS84 coordinates remain authoritative; reviewed 2026-09-30.",
     "regions": [
       {
-        "id": "mahe",
-        "bounds": {
-          "north": -4.54,
-          "south": -4.82,
-          "west": 55.34,
-          "east": 55.56
-        },
-        "rect": {
-          "x": 25,
-          "y": 35,
-          "width": 405,
-          "height": 690
-        }
-      },
-      {
-        "id": "inner-east",
+        "id": "inner-islands",
         "bounds": {
           "north": -4.18,
-          "south": -4.44,
-          "west": 55.62,
+          "south": -4.82,
+          "west": 55.34,
           "east": 55.89
         },
         "rect": {
-          "x": 455,
-          "y": 35,
-          "width": 430,
-          "height": 690
+          "x": 290,
+          "y": 65,
+          "width": 900,
+          "height": 630
         }
       },
       {
@@ -90,14 +75,14 @@
           "east": 46.55
         },
         "rect": {
-          "x": 910,
-          "y": 410,
-          "width": 265,
-          "height": 270
+          "x": 49,
+          "y": 75,
+          "width": 220,
+          "height": 300
         }
       }
     ],
-    "insetNote": "※ マヘ島、プララン・ラ・ディーグ周辺、アルダブラ環礁は、実際の位置関係・縮尺と異なる別枠表示です。"
+    "insetNote": "※ アルダブラ環礁は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
     {
@@ -116,7 +101,7 @@
         "x": 2.8,
         "y": -1
       },
-      "mapRegion": "mahe"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "morne-blanc-viewpoint",
@@ -134,7 +119,7 @@
         "x": -2.3,
         "y": 0.5
       },
-      "mapRegion": "mahe"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "venns-town-mission-ruins",
@@ -152,7 +137,7 @@
         "x": 2,
         "y": 1.6
       },
-      "mapRegion": "mahe"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "vallee-de-mai",
@@ -170,7 +155,7 @@
         "x": -1,
         "y": 0.5
       },
-      "mapRegion": "inner-east"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "anse-lazio",
@@ -188,7 +173,7 @@
         "x": -1.1,
         "y": -0.8
       },
-      "mapRegion": "inner-east"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "veuve-special-reserve",
@@ -206,7 +191,7 @@
         "x": 3,
         "y": 0.1
       },
-      "mapRegion": "inner-east"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "curieuse-island",
@@ -224,7 +209,7 @@
         "x": 1.3,
         "y": -1.1
       },
-      "mapRegion": "inner-east"
+      "mapRegion": "inner-islands"
     },
     {
       "id": "aldabra-picard",
