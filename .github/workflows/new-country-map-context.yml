@@ -5,9 +5,11 @@ on:
     paths:
       - 'scripts/add_country_map_context.py'
       - 'scripts/add_country_border_context.py'
+      - 'scripts/generate_country_map.py'
       - 'scripts/generate_country_map_with_context.py'
       - 'tests/test_add_country_map_context.py'
       - 'tests/test_add_country_border_context.py'
+      - 'tests/test_europe_asia_map_border_coverage.py'
       - 'tests/test_generate_country_map_with_context.py'
       - '.github/workflows/new-country-map-context.yml'
   workflow_dispatch:
@@ -28,9 +30,10 @@ jobs:
         run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
       - name: Check isolated new-Country wrapper and shared context
         run: |
-          python -m py_compile scripts/add_country_map_context.py scripts/add_country_border_context.py scripts/generate_country_map_with_context.py
+          python -m py_compile scripts/add_country_map_context.py scripts/add_country_border_context.py scripts/generate_country_map.py scripts/generate_country_map_with_context.py
           python -m unittest discover -s tests -p 'test_add_country_map_context.py' -v
           python -m unittest discover -s tests -p 'test_add_country_border_context.py' -v
+          python -m unittest discover -s tests -p 'test_europe_asia_map_border_coverage.py' -v
           python -m unittest discover -s tests -p 'test_generate_country_map_with_context.py' -v
       - name: Render existing Iceland reference without writing approved assets
         run: |
