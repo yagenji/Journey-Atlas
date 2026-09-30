@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "madagascar",
+  "nameEn": "MADAGASCAR",
+  "nameJa": "マダガスカル",
+  "region": "EAST AFRICA / 19°S",
+  "seo": {
+    "description": "バオバブ街道からツィンギーの石灰岩地形、東部の熱帯雨林、南西部の乾燥地、北の島々へ。固有生物と高地文化が重なるマダガスカルをたどる旅。"
+  },
+  "capital": {
+    "nameEn": "Antananarivo",
+    "nameJa": "アンタナナリボ",
+    "coordinates": {
+      "latitude": -18.913676,
+      "longitude": 47.536125
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "mapOffset": {
+      "x": -2,
+      "y": 2
+    }
+  },
+  "hero": {
+    "lead": "巨大なバオバブが並ぶ西部の乾燥地から、奇岩の台地、湿潤な東部雨林、インド洋の島々へ。隔離された大地に、固有の生態系と暮らしが重なる。",
+    "image": "assets/images/madagascar/approved/hero-avenue-baobabs.webp",
+    "location": "Avenue of the Baobabs / Bekonazy / Morondava",
+    "coordinates": {
+      "latitude": -20.249767,
+      "longitude": 44.419548
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -10.8,
+      "south": -26.8,
+      "west": 40.5,
+      "east": 52.5
+    },
+    "svg": "assets/images/madagascar/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Natural Earth public domain; reviewed 2026-09-30."
+  },
+  "scenes": [
+    {
+      "id": "tsingy-bemaraha",
+      "name": "ツィンギー・ド・ベマラハ",
+      "nameLocal": "Tsingy de Bemaraha",
+      "mapLabel": "ツィンギー・ド・ベマラハ",
+      "description": "西部の石灰岩台地に鋭い塔状カルストが連なる世界遺産の一角。裂け目、峡谷、乾燥林が複雑に入り組み、島の地質そのものを体で読む場所になる。",
+      "coordinates": {
+        "latitude": -18.661578,
+        "longitude": 44.767386
+      },
+      "image": "assets/images/madagascar/approved/scene-1-tsingy-bemaraha.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": -3
+      }
+    },
+    {
+      "id": "ranomafana",
+      "name": "ラノマファナ国立公園",
+      "nameLocal": "Ranomafana National Park",
+      "mapLabel": "ラノマファナ",
+      "description": "東部高地の湿潤な森を歩く国立公園。急斜面を覆う常緑林、渓流、霧の中に、マダガスカル固有のキツネザルや植物が暮らす。",
+      "coordinates": {
+        "latitude": -21.09,
+        "longitude": 47.3
+      },
+      "image": "assets/images/madagascar/approved/scene-2-ranomafana.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -2
+      }
+    },
+    {
+      "id": "isalo",
+      "name": "イサロ国立公園",
+      "nameLocal": "Isalo National Park",
+      "mapLabel": "イサロ",
+      "description": "南西部の高原に砂岩の断崖と浸食谷が広がる。草地と乾いた岩壁、その間に現れる峡谷の緑が、東部雨林とは別の島の表情を見せる。",
+      "coordinates": {
+        "latitude": -22.558333,
+        "longitude": 45.4
+      },
+      "image": "assets/images/madagascar/approved/scene-3-isalo.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3,
+        "y": 2
+      }
+    },
+    {
+      "id": "ambohimanga",
+      "name": "アムブヒマンガの丘の王領地",
+      "nameLocal": "Royal Hill of Ambohimanga",
+      "mapLabel": "アムブヒマンガ",
+      "description": "中央高地の丘に王宮、聖域、墓所が残る世界遺産。メリナ王国の政治と信仰の記憶が重なり、現在も巡礼と礼拝の場として意味を持つ。",
+      "coordinates": {
+        "latitude": -18.75917,
+        "longitude": 47.56278
+      },
+      "image": "assets/images/madagascar/approved/scene-4-ambohimanga.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": -2
+      }
+    },
+    {
+      "id": "masoala",
+      "name": "マソアラ国立公園",
+      "nameLocal": "Masoala National Park",
+      "mapLabel": "マソアラ",
+      "description": "北東部の半島で熱帯雨林がインド洋へ迫る。濃い森、急な斜面、海岸が連続し、東部雨林の生態系と海の景観を同時に感じられる。",
+      "coordinates": {
+        "latitude": -15.614444,
+        "longitude": 50.177778
+      },
+      "image": "assets/images/madagascar/approved/scene-5-masoala.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3,
+        "y": -2
+      }
+    },
+    {
+      "id": "nosy-be",
+      "name": "ノシ・ベ",
+      "nameLocal": "Nosy Be",
+      "mapLabel": "ノシ・ベ",
+      "description": "北西岸沖の火山性の島。緑の丘陵と小さな湾、周囲の島々がつくる海景が、長大な本島とは異なるインド洋の島時間を見せる。",
+      "coordinates": {
+        "latitude": -13.31421,
+        "longitude": 48.25899
+      },
+      "image": "assets/images/madagascar/approved/scene-6-nosy-be.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2,
+        "y": 1
+      }
+    },
+    {
+      "id": "tsimanampesotse",
+      "name": "ツィマナンペツォツァ国立公園",
+      "nameLocal": "Tsimanampesotse National Park",
+      "mapLabel": "ツィマナンペツォツァ",
+      "description": "南西端の乾燥地に、塩性の湖と石灰岩台地、棘の多い植生が並ぶ。水辺と半乾燥地が接し、雨の多い東部とは対照的な環境が広がる。",
+      "coordinates": {
+        "latitude": -24.384919,
+        "longitude": 43.977331
+      },
+      "image": "assets/images/madagascar/approved/scene-7-tsimanampesotse.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": 0
+      }
+    },
+    {
+      "id": "ankarana",
+      "name": "アンカラナ特別保護区",
+      "nameLocal": "Ankarana Special Reserve",
+      "mapLabel": "アンカラナ",
+      "description": "北部の石灰岩地帯に、尖塔状のツィンギー、洞窟、乾燥林が組み合わさる。西部ベマラハとは異なる北部カルストのスケールを歩いて確かめられる。",
+      "coordinates": {
+        "latitude": -12.902064,
+        "longitude": 49.137094
+      },
+      "image": "assets/images/madagascar/approved/scene-8-ankarana.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -1
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石灰岩の迷路を歩く",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "霧の雨林で固有種を探す",
+      "category": "WILDLIFE",
+      "icon": "leaf"
+    },
+    {
+      "title": "砂岩の谷を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "高地王国の聖地をたどる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "雨林が海へ落ちる半島を見る",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "北西の島と湾をめぐる",
+      "category": "MOVEMENT",
+      "icon": "sea"
+    },
+    {
+      "title": "南西の乾燥地と湖を見る",
+      "category": "LANDSCAPE",
+      "icon": "compass"
+    },
+    {
+      "title": "北部カルストの洞窟と森を歩く",
+      "category": "NATURE",
+      "icon": "map"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "atsinanana-endemism",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "東部雨林では、長い隔離が高い固有性を育てた",
+      "text": "ユネスコは「アツィナナナの雨林」を、少なくとも6,000万〜8,000万年にわたり他の陸塊から隔離されてきたマダガスカルの生物進化を示す場所と説明する。構成地域では多くの生物群で約80〜90%という高い固有率が示される。",
+      "points": [
+        "世界遺産は東部の複数国立公園で構成",
+        "固有の霊長類を含む希少種の生息地"
+      ],
+      "sourceKey": "unescoAtsinanana"
+    },
+    {
+      "topicKey": "andrefana-karst",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "西部には、石灰岩が刃のように立つツィンギーがある",
+      "text": "世界遺産「アンドレファナの乾燥林群」は複数の保護地域からなり、ツィンギー・ド・ベマラハなどでは溶食された石灰岩が鋭い峰と深い裂け目をつくる。乾燥林とカルスト地形が一体になった景観だ。",
+      "points": [
+        "ベマラハを含む複数の乾燥林・カルスト地域",
+        "鋭い石灰岩峰と乾燥林が一体になった景観"
+      ],
+      "sourceKey": "unescoAndrefana"
+    },
+    {
+      "topicKey": "population-origins",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "title": "島の文化には、アフリカと東南アジア双方の系譜が重なる",
+      "text": "外務省の基礎データは、マダガスカルの住民をアフリカ大陸系とマレー系を起源とする約18の民族集団からなると説明する。インド洋を隔てた移動の歴史が、島の言語や暮らしの背景にある。",
+      "points": [
+        "約18の民族集団",
+        "アフリカ大陸系とマレー系の起源"
+      ],
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "ambohimanga-royal-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "中央高地には、王権と信仰が重なる聖なる丘が残る",
+      "text": "アムブヒマンガは15〜19世紀に発展したメリナ王国の王都・聖地で、王宮、墓所、儀礼空間が残る。ユネスコは政治史だけでなく、現在も続く信仰と巡礼の場としての価値も評価している。",
+      "points": [
+        "2001年に世界遺産登録",
+        "現在も礼拝・巡礼の場として機能"
+      ],
+      "sourceKey": "unescoAmbohimanga"
+    },
+    {
+      "topicKey": "climate-contrast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "同じ島でも、湿潤な東と乾燥した西・南では旅の条件が変わる",
+      "text": "マダガスカルは大きな島で、東部の湿潤な森林帯から西部・南西部の乾燥地、中央高地まで気候差が大きい。旅程は「国全体の季節」ではなく、訪れる地域ごとの雨量と道路条件で組む必要がある。",
+      "points": [
+        "東部は湿潤な森林帯",
+        "西部・南部はより乾燥した地域が広い"
+      ],
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "journey-scale-road",
+      "themeEn": "ROAD",
+      "themeJa": "道の先へ",
+      "title": "地図上の距離より、道路状態と季節が移動時間を決める",
+      "text": "英国政府の旅行情報は、道路状態が地域で大きく異なり、雨期には二次道路が4WDでも通れなくなる場合があると案内する。広い国土を一筆書きで急がず、空路と車移動を組み合わせる方が現実的だ。",
+      "points": [
+        "雨期は二次道路の通行性が低下",
+        "夜間の長距離運転は避けるよう案内"
+      ],
+      "sourceKey": "safety"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-1960",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立は1960年6月26日",
+      "text": "フランス統治を経て、1960年6月26日に独立した。",
+      "icon": "history",
+      "sourceKey": "mofaProfile"
+    },
+    {
+      "topicKey": "world-heritage-three",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は3件",
+      "text": "2026年9月時点で、文化遺産1件と自然遺産2件が世界遺産一覧に登録されている。",
+      "icon": "history",
+      "sourceKey": "unescoStateParty"
+    },
+    {
+      "topicKey": "andrefana-extension-2023",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "拡張",
+      "title": "西部の自然遺産は2023年に拡張",
+      "text": "旧「ツィンギー・ド・ベマラハ厳正自然保護区」は、複数の乾燥林地域を加えた「アンドレファナの乾燥林群」として2023年に拡張された。",
+      "icon": "landscape",
+      "sourceKey": "unescoAndrefana"
+    },
+    {
+      "topicKey": "atsinanana-danger-2025",
+      "categoryEn": "CONSERVATION",
+      "categoryJa": "保全",
+      "title": "東部雨林は2025年に危機遺産リストから外れた",
+      "text": "「アツィナナナの雨林」は2010年から危機遺産リストに掲載され、ユネスコは2025年に同リストからの解除を記録している。",
+      "icon": "leaf",
+      "sourceKey": "unescoAtsinanana"
+    },
+    {
+      "topicKey": "baobab-alley-protection",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "保護地",
+      "title": "バオバブ街道は法的な保護区域になっている",
+      "text": "モロンダバ近郊のバオバブ街道は、ベコナジ周辺のバオバブ群を対象とする保護区域として法令で位置と範囲が定められている。",
+      "icon": "landscape",
+      "sourceKey": "baobabDecree"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MADAGASCAR",
+    "title": "マダガスカルで食べたいもの",
+    "intro": "米を中心に、葉野菜や肉を煮込む家庭料理、キャッサバの葉、朝の米粉菓子、バナナと落花生を包んで蒸す甘味まで。高地の日常がよく表れる。",
+    "items": [
+      {
+        "id": "romazava",
+        "name": "ロマザヴァ",
+        "nameLocal": "Romazava",
+        "text": "肉と葉野菜を煮込む代表的な料理。マダガスカル観光局の食文化資料でも国を代表する一皿として紹介され、米と合わせて食べる。",
+        "image": "assets/images/madagascar/approved/food-1-romazava.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ravitoto",
+        "name": "ラヴィトト・シ・ヘナキスア",
+        "nameLocal": "Ravitoto sy henakisoa",
+        "text": "細かくしたキャッサバの葉を豚肉と煮込む料理。濃い緑の葉の煮込みを米と組み合わせる、家庭料理らしい一皿。",
+        "image": "assets/images/madagascar/approved/food-2-ravitoto.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "mofo-gasy",
+        "name": "モフォ・ガシ",
+        "nameLocal": "Mofo gasy",
+        "text": "米粉を使った発酵生地を丸い型で焼く高地由来の朝食・軽食。小さく丸い焼き菓子状の形が特徴で、朝の屋台でも見られる。",
+        "image": "assets/images/madagascar/approved/food-3-mofo-gasy.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "koba",
+        "name": "コバ",
+        "nameLocal": "Koba",
+        "text": "米粉、バナナ、落花生などを合わせ、バナナの葉で包んで加熱する甘味。高地の町や市場で切り分けて食べられる。",
+        "image": "assets/images/madagascar/approved/food-4-koba.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土が大きく、舗装状態や雨期の影響で地図上の距離がそのまま移動時間にならない。短い旅は地域を絞り、長い旅ほど国内線と専用車を組み合わせて組む。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "中央高地に集中する",
+        "text": "アンタナナリボを拠点に高地の街と王国史を見る。例：アンタナナリボ → アムブヒマンガ → アンタナナリボ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜11日",
+        "title": "一つの自然地域を深く加える",
+        "text": "中央高地に加え、西部、南部、東部雨林のいずれか一地域を選び、長距離移動を連ねすぎない。例：アンタナナリボ → モロンダバ → バオバブ街道 → モロンダバ。",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "空路と車で複数の生態系をつなぐ",
+        "text": "西部カルスト、東部雨林、南西部、北の島々から2〜3地域を選び、国内線と4WDを組み合わせる。例：アンタナナリボ → モロンダバ → アンタナナリボ → ノシ・ベ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "5〜10月",
+      "color": "#b9ad83",
+      "text": "多くの地域で比較的乾燥する時期。西部・南西部の陸路を組みやすくなる一方、地域ごとの道路状況は出発前に確認する。"
+    },
+    {
+      "months": "11〜4月",
+      "color": "#82988a",
+      "text": "雨の多い時期で、熱帯低気圧・サイクロンの影響も受けやすい。二次道路が冠水・損傷し、4WDでも通れない区間が出ることがある。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#9aa39a",
+      "text": "中央高地では朝晩が涼しくなる。海岸部や北部との体感差があるため、同じ旅程でも高地用の防寒と暑い地域向けの装備を分ける。"
+    },
+    {
+      "months": "通年",
+      "color": "#aa9b79",
+      "text": "東部の湿潤域、西部・南部の乾燥域、中央高地で条件が大きく異なる。『マダガスカル全体のベストシーズン』より訪問地域ごとに考える。"
+    }
+  ],
+  "transport": {
+    "title": "国内線と専用車を組み合わせ、地域ごとに旅を組む",
+    "text": "長距離道路は舗装や路面状態が一定でなく、雨期には二次道路が通れなくなることもある。遠隔地は4WDと現地手配を前提にし、夜間の長距離運転を避ける。国土横断を急ぐより、国内線で地域をつなぎ、各地域を車で回る形が現実的。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "固有の生態系を現地で見たい人",
+      "text": "キツネザルや固有植物だけでなく、雨林・乾燥林・カルストという生息環境ごと観察し、なぜこの島で独自の進化が起きたかを感じたい人。",
+      "icon": "leaf"
+    },
+    {
+      "title": "地形が大きく切り替わる旅が好きな人",
+      "text": "バオバブの乾燥地、ツィンギー、砂岩峡谷、湿潤な東部雨林、島の海景まで、一つの国で異なる地形をたどりたい人。",
+      "icon": "landscape"
+    },
+    {
+      "title": "移動も含めて長い旅を組みたい人",
+      "text": "国内線と4WDを組み合わせ、道路状況や天候に余白を持たせながら複数地域をゆっくりつなぐこと自体を楽しめる人。",
+      "icon": "map"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ / インド洋西部"
+    },
+    {
+      "label": "首都",
+      "value": "アンタナナリボ"
+    },
+    {
+      "label": "人口",
+      "value": "約3,196万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "587,295 km²（日本の約1.6倍）"
+    },
+    {
+      "label": "言語",
+      "value": "マダガスカル語、フランス語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教、伝統宗教、イスラム教"
+    },
+    {
+      "label": "通貨",
+      "value": "アリアリ（MGA）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "endemic-baobabs-six",
+      "label": "固有のバオバブ",
+      "value": "6種",
+      "note": "マダガスカル観光局の2024年資料は、世界に8種あるバオバブのうち6種がマダガスカル固有と紹介する。",
+      "icon": "landscape",
+      "exceptionalScale": true,
+      "interestReason": "一本の象徴的な木ではなく、複数の固有種を抱える島であることが、乾燥地の景観をより立体的に理解させる。"
+    },
+    {
+      "topicKey": "lemur-diversity",
+      "label": "キツネザル",
+      "value": "約100種",
+      "note": "マダガスカル観光局の2024年テーマ地図は、島に約100種のキツネザルがいると紹介する。",
+      "icon": "leaf",
+      "exceptionalScale": true,
+      "interestReason": "マダガスカルの旅が単なる『動物を見る旅』ではなく、島固有の霊長類多様性に触れる旅であることを示す。"
+    },
+    {
+      "topicKey": "island-north-south-length",
+      "label": "島の南北距離",
+      "value": "1,600km超",
+      "note": "マダガスカル観光局の2024年テーマ地図は、北端のカップ・ダンブルから南端のサント・マリー岬まで1,600kmを超えると示す。",
+      "icon": "map",
+      "exceptionalScale": true,
+      "interestReason": "一つの島の中で北部の熱帯域から南部の乾燥地まで大きく環境が変わる理由を、旅の距離感として直感的に捉えられる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "road-buffer",
+      "title": "道路移動に余白を持たせる",
+      "text": "幹線でも路面状態が一定ではなく、雨期は二次道路が通れないことがある。長距離移動日は到着時刻を詰めず、4WDが必要な区間を現地で再確認する。"
+    },
+    {
+      "topicKey": "avoid-night-driving",
+      "title": "夜間の長距離移動を避ける",
+      "text": "英国政府の旅行情報は、道路状態や車両・歩行者の視認性などから夜間運転を避けるよう案内している。到着が遅い便では空港送迎を事前手配する。"
+    },
+    {
+      "topicKey": "cyclone-season-check",
+      "title": "11〜4月は天候と道路情報を直前に確認する",
+      "text": "熱帯低気圧・サイクロンの時期は、大雨で道路や橋の状態が短期間で変わる。遠隔地へ向かう前に宿、現地事業者、公式の気象・道路情報を確認する。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "mauritius",
+      "nameEn": "MAURITIUS",
+      "nameJa": "モーリシャス",
+      "flag": "🇲🇺",
+      "reason": "同じ西インド洋の島国だが、火山島の地形と多文化社会が中心。大陸島マダガスカルの固有生態系と対照的に見比べられる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "comoros",
+      "nameEn": "COMOROS",
+      "nameJa": "コモロ",
+      "flag": "🇰🇲",
+      "reason": "マダガスカル北西側のモザンビーク海峡に位置する火山性の島々。西インド洋の島文化と海景を別のスケールでつなげられる。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "mozambique",
+      "nameEn": "MOZAMBIQUE",
+      "nameJa": "モザンビーク",
+      "flag": "🇲🇿",
+      "reason": "モザンビーク海峡の向こう側にあるアフリカ大陸の沿岸国。マダガスカルの乾燥西岸と海峡を挟んだ地理関係を比較できる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-30",
+  "sourcesVerifiedAt": "2026-09-30",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2026-05-14",
+    "language": "2026-05-14",
+    "religion": "2026-05-14",
+    "currency": "2026-05-14",
+    "worldHeritage": "2026-09-30",
+    "safety": "2026-09-30",
+    "climate": "2026-09-30",
+    "map": "2026-09-30",
+    "sceneCoordinates": "2026-09-30",
+    "heroCoordinates": "2026-09-30",
+    "food": "2026-09-30",
+    "biodiversity": "2024"
+  },
+  "sources": {
+    "population": "Ministry of Foreign Affairs of Japan — Madagascar basic data, updated 2026-05-14: population 31.96 million (2024, World Bank). https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "area": "Ministry of Foreign Affairs of Japan — Madagascar basic data, updated 2026-05-14: area 587,295 km². https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used as the comparison basis for the Country Profile area multiple. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "language": "Ministry of Foreign Affairs of Japan — Madagascar basic data: Malagasy and French. https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "religion": "Ministry of Foreign Affairs of Japan — Madagascar basic data: Christianity, traditional religion and Islam. https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "currency": "Ministry of Foreign Affairs of Japan — Madagascar basic data: Ariary. https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "mofaProfile": "Ministry of Foreign Affairs of Japan — Madagascar basic data, updated 2026-05-14: independence, population, area, language, religion and currency. https://www.mofa.go.jp/mofaj/area/madagascar/data.html",
+    "unescoStateParty": "UNESCO World Heritage Centre — Madagascar State Party: three inscribed properties, checked 2026-09-30. https://whc.unesco.org/en/statesparties/mg",
+    "unescoAndrefana": "UNESCO World Heritage Centre — Andrefana Dry Forests, including Tsingy de Bemaraha and other component protected areas; extended 2023. https://whc.unesco.org/en/list/494",
+    "unescoAtsinanana": "UNESCO World Heritage Centre — Rainforests of the Atsinanana: evolutionary isolation, endemism, component parks and 2010–2025 Danger List record. https://whc.unesco.org/en/list/1257",
+    "unescoAmbohimanga": "UNESCO World Heritage Centre — Royal Hill of Ambohimanga: royal city, sacred site and living place of worship; inscribed 2001. https://whc.unesco.org/en/list/950",
+    "tourismBiodiversity": "Office National du Tourisme de Madagascar — Carte Thématiques Madagascar 2024: around 100 lemur species and 6 endemic baobab species among 8 worldwide. https://madagascar-tourisme.com/wp-content/uploads/2024/10/Carte-Thematiques-VA.pdf",
+    "tourismFood": "Office National du Tourisme de Madagascar — tourism sales manual: Madagascar gastronomy including Romazava and Ravitoto. https://madagascar-tourisme.com/wp-content/uploads/2018/09/ONTM_Manuel-des-ventes-VF.pdf",
+    "foodLocal": "Madagascar Destination — Mofo gasy: highland Malagasy rice-flour specialty eaten at breakfast or as a snack. https://www.madagascar-destination.mg/culture-madagascar/gastronomie/mofo-gasy.html",
+    "foodKoba": "FHORM (Fédération des Hôteliers et Restaurateurs de Madagascar) — rural tourism visit centered on the renowned koba of Talata Volonondry. https://fhorm.mg/2023/08/10/tsidika-talata-volonondry/",
+    "baobabDecree": "Madagascar legal text D2015-760 — Allée des Baobabs protected area, Bekonazy/Morondava, including central coordinates used for the Hero. https://cnlegis.gov.mg/uploads/D2015-760.pdf",
+    "safety": "UK FCDO — Madagascar safety and security: road conditions, rainy-season access, night-driving and transport guidance; checked 2026-09-30. https://www.gov.uk/foreign-travel-advice/madagascar/safety-and-security",
+    "regionalRisks": "UK FCDO — Madagascar regional risks; checked 2026-09-30. https://www.gov.uk/foreign-travel-advice/madagascar/regional-risks",
+    "climate": "World Bank Climate Change Knowledge Portal — Madagascar climate resources and historical climatology; checked 2026-09-30. https://climateknowledgeportal.worldbank.org/country/madagascar/",
+    "heroCoordinates": "Madagascar legal text D2015-760 — central coordinate for the Allée des Baobabs protected area near Bekonazy: 20°14'59.161\"S, 44°25'10.371\"E (decimal -20.249767, 44.419548). https://cnlegis.gov.mg/uploads/D2015-760.pdf",
+    "sceneCoordinates": "UNESCO World Heritage Centre maps: Tsingy de Bemaraha -18.661578,44.767386; Ranomafana -21.090000,47.300000; Masoala -15.614444,50.177778; Tsimanampesotse -24.384919,43.977331; Ankarana -12.902064,49.137094; Royal Hill of Ambohimanga -18.759170,47.562780. Isalo National Park -22.558333,45.400000 and Nosy Be -13.314210,48.258990 checked against GeoNames. https://whc.unesco.org/en/list/494/maps/ ; https://whc.unesco.org/en/list/1257/maps/ ; https://whc.unesco.org/en/list/950 ; https://www.geonames.org/",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; Natural Earth public domain; reviewed 2026-09-30. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/",
+    "worldHeritage": "UNESCO World Heritage Centre — Madagascar State Party, checked 2026-09-30. https://whc.unesco.org/en/statesparties/mg",
+    "food": "Office National du Tourisme de Madagascar and Malagasy tourism/hospitality sources for Romazava, Ravitoto, Mofo gasy and Koba; checked 2026-09-30. https://madagascar-tourisme.com/wp-content/uploads/2018/09/ONTM_Manuel-des-ventes-VF.pdf ; https://www.madagascar-destination.mg/culture-madagascar/gastronomie/mofo-gasy.html ; https://fhorm.mg/2023/08/10/tsidika-talata-volonondry/",
+    "biodiversity": "Office National du Tourisme de Madagascar — Carte Thématiques Madagascar 2024. https://madagascar-tourisme.com/wp-content/uploads/2024/10/Carte-Thematiques-VA.pdf"
+  }
+}

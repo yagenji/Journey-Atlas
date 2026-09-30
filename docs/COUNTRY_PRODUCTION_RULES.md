@@ -54,6 +54,8 @@ There are exactly four normal user approval gates:
 3. four-Taste batch;
 4. final canonical Country page.
 
+Internal quality checks do not create additional user approval gates.
+
 If the next action is deterministic, continue without asking the user to say "進めて".
 
 ## 4. PREP + MAP
@@ -88,7 +90,15 @@ The Hero must:
 - preserve plausible geography, architecture, season and light;
 - be a quiet landscape composition with mobile-safe crop space;
 - use restrained natural color;
+- follow the Hero / Scene visual style and photorealism ceiling in `docs/IMAGE_QUALITY.md`;
 - contain no text, UI, collage or invented landmark.
+
+Before presenting the Hero for user approval, perform the internal style-band check in `docs/IMAGE_QUALITY.md`.
+
+- PASS → present the Hero for approval;
+- BORDERLINE or FAIL → regenerate that Hero before presenting it.
+
+This check does not create a new approval gate.
 
 The Hero has one explicit approval gate. After approval, continue to Scenes.
 
@@ -104,7 +114,13 @@ Each Scene brief contains only:
 - composition;
 - forbidden elements.
 
-Do not ask for per-image approval. After all eight candidates are ready, present one batch review. Regenerate only rejected Scenes.
+The shared Hero / Scene generation instruction and style band in `docs/IMAGE_QUALITY.md` apply to every Scene.
+
+Perform internal style QA on each generated Scene before the batch review:
+- PASS → keep the candidate;
+- BORDERLINE or FAIL → regenerate only that Scene.
+
+Do not ask for per-image approval. After all eight PASS candidates are ready, present one batch review. Regenerate only user-rejected Scenes.
 
 ## 7. FOUR TASTE IMAGES
 
@@ -118,6 +134,8 @@ Each image must show:
 - soft diffused daylight;
 - no decorative props unless integral to the dish;
 - no text, collage or multi-panel.
+
+Taste uses the separate Spain food-image language defined in `docs/IMAGE_QUALITY.md`; do not mechanically apply the Hero / Scene photorealism ceiling to food images.
 
 Review the four as one batch. Regenerate only rejected dishes.
 
@@ -147,6 +165,7 @@ Run finish-line QA only against the affected Country:
 - Content QA;
 - Country schema/data QA;
 - Image decode/dimensions/duplicate QA;
+- visual Image QA against the Hero / Scene style band and Taste language;
 - Map geometry/coordinate/label QA;
 - Desktop / Tablet / Mobile Browser QA.
 
@@ -195,6 +214,7 @@ Shared-system defects are fixed separately from Country content whenever practic
 A new Country is complete only when:
 - content and sources are final;
 - Hero + 8 Scenes + 4 Taste images are approved;
+- Hero + 8 Scenes pass the shared visual style band;
 - final map is geographically valid;
 - target Content / Image / Map QA passes;
 - actual Desktop / Tablet / Mobile rendering passes;
