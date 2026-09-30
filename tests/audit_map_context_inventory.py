@@ -78,22 +78,12 @@ def main():
     summary = {'git_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                'shard': args.shard, 'shards': args.shards, 'registry_count': len(destinations),
                'published_count': len(published), 'selected_count': len(selected),
-               'production_state': {}, 'countries': [], 'counts': {}}
-    state_by_slug = {}
-    for slug in ('belize', 'honduras'):
-        p = ROOT / 'ops/country-production' / (slug + '.json')
-        state = json.loads(p.read_text()) if p.exists() else {}
-        state_by_slug[slug] = state
-        entry = next(d for d in destinations if d['slug'] == slug)
-        summary['production_state'][slug] = {'phase': state.get('phase'), 'published': entry['atlasPublished']}
+               'countries': [], 'counts': {}}
     thumbs = []
     for d in selected:
         slug = d['slug']
         record = {'slug': slug, 'published': True}
         summary['countries'].append(record)
-        if slug in state_by_slug and state_by_slug[slug].get('phase') != 'COMPLETE':
-            record.update(status='in_flight_hold', reason='published registry entry is not COMPLETE; fail closed')
-            continue
         try:
             country_path = ROOT / 'data/countries' / (slug + '.json')
             config = json.loads(country_path.read_text())
