@@ -62,7 +62,14 @@ class EuropeAsiaMapBorderCoverageTest(unittest.TestCase):
                 continue
 
             border_at = svg.index('id="context-national-borders"')
-            target_at = svg.find('fill="url(#land)"')
+            target_candidates = [
+                pos for pos in (
+                    svg.find('fill="url(#land)"'),
+                    svg.find('fill="url(#country)"'),
+                )
+                if pos >= 0
+            ]
+            target_at = min(target_candidates) if target_candidates else -1
             if target_at < 0 or border_at > target_at:
                 wrong_layer_order.append(slug)
 
