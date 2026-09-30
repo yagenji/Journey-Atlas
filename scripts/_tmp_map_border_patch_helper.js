@@ -1,4 +1,4 @@
-function jaMapBorderHelpers(){
+globalThis.jaMapBorderHelpers=function(){
   const F=b=>{const f=Math.cos((b.south+b.north)*Math.PI/360),s=Math.min(1200/((b.east-b.west)*f),760/(b.north-b.south));return{f,s,x:(1200-(b.east-b.west)*f*s)/2,y:(760-(b.north-b.south)*s)/2}};
   const C=b=>{const q=F(b);return{w:b.west-q.x/(q.f*q.s),e:b.east+(1200-q.x-(b.east-b.west)*q.f*q.s)/(q.f*q.s),s:b.south-(760-q.y-(b.north-b.south)*q.s)/q.s,n:b.north+q.y/q.s}};
   const P=(p,b)=>{const q=F(b);return[q.x+(p[0]-b.west)*q.f*q.s,q.y+(b.north-p[1])*q.s]};
@@ -9,4 +9,4 @@ function jaMapBorderHelpers(){
   function path(geo,b){const r=C(b),o=[];for(const f of geo.features)for(const l of L(f.geometry))for(const sh of[-360,0,360]){let c=[];const q=()=>{if(c.length>1){const p=R(c);o.push("M"+p.map(v=>M(v[0])+","+M(v[1])).join(" "))}c=[]};for(let i=1;i<l.length;i++){const z=K([l[i-1][0]+sh,l[i-1][1]],[l[i][0]+sh,l[i][1]],r);if(!z){q();continue}const p0=P(z[0],b),p1=P(z[1],b),a=[Math.round(p0[0]*10)/10,Math.round(p0[1]*10)/10],d=[Math.round(p1[0]*10)/10,Math.round(p1[1]*10)/10];if(c.length&&(Math.abs(c[c.length-1][0]-a[0])>.11||Math.abs(c[c.length-1][1]-a[1])>.11))q();if(!c.length)c.push(a);c.push(d)}q()}return o.join(" ")}
   function patch(svg,b,ref){if(svg.includes('id="context-national-borders"'))return svg;const p=path(geoSource,b);if(!p)return svg;const i=svg.indexOf('fill="url(#land)"');if(i<0)throw Error("target missing");const at=svg.lastIndexOf("<",i),g='<!-- Surrounding national borders: Natural Earth 1:10m Admin-0 boundary lines land; nvkelso/natural-earth-vector '+ref+'; public domain; WGS84; clipped to visible canvas. -->\\n<g id="context-national-borders" fill="none" stroke="#b6bbaf" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="'+p+'"/></g>\\n';return svg.slice(0,at)+g+svg.slice(at)}
   return {path,patch};
-}
+};
