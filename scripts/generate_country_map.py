@@ -13,6 +13,8 @@ from xml.sax.saxutils import escape
 from shapely.geometry import GeometryCollection, MultiPolygon, Polygon, shape
 from shapely.ops import unary_union
 
+import add_country_border_context as borders
+
 WIDTH = 1200
 HEIGHT = 760
 STYLE_VERSION = "journey-atlas-map-v3-clean-background"
@@ -273,6 +275,11 @@ def main() -> None:
         args.include_lakes,
         map_name,
         source_note,
+    )
+    svg = borders.add_borders(
+        svg,
+        {"west": west, "south": south, "east": east, "north": north},
+        0.6,
     )
     byte_size = len(svg.encode("utf-8"))
     if args.max_bytes and byte_size > args.max_bytes:
