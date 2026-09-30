@@ -134,8 +134,9 @@ def main() -> None:
         if count:
             args.output.write_text(cleaned, encoding='utf-8')
             print(f'Removed {count} redundant GSHHS island context rings; ADM0 target and neighbors unchanged')
-        bordered = borders.add_borders(args.output.read_text(encoding='utf-8'), config['bounds'],
-                                       args.context_resolution, 0.6)
+        bordered = borders.add_borders(
+            args.output.read_text(encoding='utf-8'), config['bounds'], 0.6
+        )
         args.output.write_text(bordered, encoding='utf-8')
 
 
