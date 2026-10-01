@@ -62,7 +62,7 @@ Image generation uses a fast four-point gate only:
 3. not the same or near-same visual as an earlier current-Country image;
 4. Hero / Scene style is visibly photo 6 : watercolor 4, or Taste follows its separate food language.
 
-PASS → continue immediately to the next deterministic target.
+PASS → continue immediately to the next deterministic target. During S01→S08 and FOOD01→FOOD04, do not stop to report or request confirmation between passing images.
 FAIL → regenerate only that target with a fresh standalone prompt.
 
 Do not add State, ledger, reservation, provenance, reset workflow, extra PR or extra user approval to perform this check.
