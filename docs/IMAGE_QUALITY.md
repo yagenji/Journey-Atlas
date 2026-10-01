@@ -18,22 +18,44 @@ Required for every image:
 
 Rejected candidates are simply regenerated. Rejection history is not stored in Git.
 
+### Generation contract — mandatory on every image call
+
+Keep this contract short and repeat it on every Hero / Scene / Taste generation:
+
+**ONE GENERATION = ONE TARGET = ONE IMAGE.**
+
+- one standalone full-bleed frame only;
+- never request or produce a collage, grid, contact sheet, split panel, inset, comparison layout or multiple variants inside one image;
+- never include another Scene / FOOD target in the same generation prompt;
+- never use, edit, vary, restage, crop or reference a previous generated image for a different target;
+- each target starts from its own standalone text instruction.
+
+If a result is a collage, wrong target, or the same / near-same visual as an earlier current-Country image, reject only that result and regenerate only that target with a fresh standalone prompt. Do not create State, ledger, reservation, reset workflow or extra user approval for this recovery.
+
 ## 2. Hero / Scene visual style
 
 Hero and Scene imagery must use one shared JOURNEY ATLAS style.
 
-The shorthand `photo 6 : quiet watercolor 4` describes the balance of spatial realism to illustration. It does **not** permit a result that reads as a literal photograph.
+The target is **photo 6 : quiet watercolor 4 in the visible result**.
+
+Interpret the ratio as:
+- **photo 6** = realistic composition, perspective, geography, architecture, scale, light and believable spatial depth;
+- **watercolor 4** = clearly visible watercolor rendering across the image surface, not a barely perceptible filter.
+
+The image should first feel like a credible real travel scene, while still being visibly painted. A viewer should not need to zoom in to notice the watercolor treatment.
 
 The intended result is:
 - photographic credibility in composition, perspective and real-world geography;
-- clearly illustrated rendering at first glance;
+- clearly visible watercolor rendering across sky, water, vegetation, rock, architecture and atmospheric distance where appropriate;
 - refined editorial travel illustration rather than stock photography;
-- subtle watercolor transparency and tonal layering;
+- transparent watercolor tonal layering and gentle pigment variation that are visible at normal viewing size;
 - smooth matte surface with almost no visible paper grain;
 - softened micro-detail and simplified distant forms;
-- restrained broad brush character mainly in sky, water and atmospheric distance;
+- controlled brush character without becoming a loose painting;
 - clear main silhouettes and landmark forms;
 - natural low-to-medium saturation.
+
+Do **not** solve photographic drift by reducing geographic realism. Keep the real place accurate and increase visible watercolor rendering instead.
 
 The governing principle is:
 
@@ -74,7 +96,7 @@ At least several of these should remain visible in a good Hero / Scene image:
 
 Use the following visual direction as the common style instruction for Hero / Scene generation. Country-specific prompts add only the real place, viewpoint, light/season, identifying features, composition and forbidden elements.
 
-> A refined clean editorial watercolor travel illustration for an adult travel atlas. Accurate real-world geography, architecture, vegetation and natural lighting. Use photographic spatial credibility without photographic surface rendering. Preserve transparent luminosity and gentle watercolor tonal layering on a smooth matte surface with almost no visible paper grain. Soften micro-detail, simplify distant forms, and use subtle broad brush character mainly in sky, water and atmospheric distance. Keep key landforms, buildings, coastlines and silhouettes clear and recognizable. Clearly illustrated at first glance, not photorealistic, not hyperrealistic, not a photo filter, not stock photography, not hyper-detailed. Natural restrained color, low-to-medium saturation, one coherent real scene. No HDR, no strong lens effects, no shallow-depth-of-field glamour look, no over-sharpened AI micro-detail, no 3D render, no heavy gouache, no oil painting, no collage, no text, no flags, no logos, no watermark.
+> ONE GENERATION = ONE TARGET = ONE IMAGE. ONE SINGLE FULL-BLEED FRAME. ONE CONTINUOUS REAL VIEW. Create a refined adult travel-atlas image with a visible balance of photo 6 : quiet watercolor 4. Keep composition, perspective, geography, architecture, vegetation, scale and natural light photographically credible. Render the image surface with clearly visible but controlled watercolor treatment: transparent tonal layering, softened micro-detail, simplified distant forms and gentle pigment transitions that remain visible at normal viewing size. The result must not read as a literal photograph or stock travel photo, and must not become a loose or decorative painting. Natural restrained color, low-to-medium saturation. No collage, grid, split panel, contact sheet, inset, comparison layout, multiple variants, text, flags, logos or watermark. Do not reuse, edit, restage, crop, vary or reference any previous generated image.
 
 ## 3. Style band / internal visual QA
 
@@ -82,16 +104,17 @@ Judge every Hero and Scene against the same style band before it reaches a user 
 
 ### PASS
 
-- unmistakably a JOURNEY ATLAS illustration at first glance;
+- reads as a believable real travel scene with an obvious **photo 6 : watercolor 4** balance;
+- watercolor rendering is visible immediately at normal viewing size, not only on close inspection;
 - real place remains credible and recognizable;
-- photographic composition may be present, but photographic micro-detail is not;
-- painterly simplification is visible without becoming loose or decorative;
+- photographic composition and depth remain, but photographic micro-detail does not dominate;
+- painterly simplification is controlled rather than loose or decorative;
 - color and lighting remain natural and restrained.
 
 ### BORDERLINE
 
-- first impression is ambiguous between photograph and illustration;
-- painterly treatment becomes visible only on closer inspection;
+- first impression is essentially a photograph with only a light watercolor filter;
+- watercolor treatment becomes clear only on closer inspection;
 - some surfaces or reflections are too photographically detailed;
 - the image is otherwise geographically and compositionally correct.
 
@@ -133,7 +156,7 @@ For each Scene define:
 - 3:2 landscape composition;
 - forbidden elements.
 
-Generate S01→S08 independently.
+Generate S01→S08 independently: **one target, one image call, one output**. The current Scene prompt must not list the other Scene names/IDs or refer to any previous generated image.
 
 Each Scene must PASS the Hero / Scene style band before the eight-image batch is presented. Do not ask for per-image approval. After all eight passing candidates are ready, present one batch review. Regenerate only rejected Scenes.
 
@@ -153,7 +176,7 @@ Required:
 - no text, collage or multi-panel;
 - 3:2 landscape composition.
 
-Generate FOOD01→FOOD04 independently, then review all four once.
+Generate FOOD01→FOOD04 independently: **one named dish, one image call, one output**. The current FOOD prompt must not list the other dishes or refer to any previous generated image. Then review all four once.
 
 Do not apply the Hero / Scene photorealism ceiling mechanically to Taste. Taste is judged against the established Spain food-image language.
 

@@ -56,6 +56,17 @@ There are exactly four normal user approval gates:
 
 Internal quality checks do not create additional user approval gates.
 
+Image generation uses a fast four-point gate only:
+1. correct target;
+2. one standalone image — no collage / grid / split panel;
+3. not the same or near-same visual as an earlier current-Country image;
+4. Hero / Scene style is visibly photo 6 : watercolor 4, or Taste follows its separate food language.
+
+PASS → continue immediately to the next deterministic target. During S01→S08 and FOOD01→FOOD04, do not stop to report or request confirmation between passing images.
+FAIL → regenerate only that target with a fresh standalone prompt.
+
+Do not add State, ledger, reservation, provenance, reset workflow, extra PR or extra user approval to perform this check.
+
 If the next action is deterministic, continue without asking the user to say "進めて".
 
 ## 4. PREP + MAP
@@ -83,7 +94,7 @@ Drafting may happen outside GitHub. Do not create commits merely to record inter
 
 ## 5. HERO
 
-Generate one Hero candidate at a time.
+Generate one Hero candidate at a time: **one target, one image call, one output**.
 
 The Hero must:
 - show one real identifiable place;
@@ -106,6 +117,8 @@ The Hero has one explicit approval gate. After approval, continue to Scenes.
 
 Generate S01→S08 as eight independent image calls.
 
+For every Scene call, apply the fixed generation contract in `docs/IMAGE_QUALITY.md`: **one generation = one target = one image**. Do not put multiple Scene names/IDs into the same generation instruction and do not reference a previous generated image.
+
 Each Scene brief contains only:
 - place;
 - viewpoint;
@@ -125,6 +138,8 @@ Do not ask for per-image approval. After all eight PASS candidates are ready, pr
 ## 7. FOUR TASTE IMAGES
 
 Generate FOOD01→FOOD04 as four independent image calls.
+
+For every Taste call, apply the fixed generation contract in `docs/IMAGE_QUALITY.md`: **one generation = one named dish = one image**. Do not put multiple dishes into the same generation instruction and do not reference a previous generated image.
 
 Each image must show:
 - one authentic recognizable dish;
