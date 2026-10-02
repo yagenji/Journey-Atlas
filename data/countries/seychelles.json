@@ -1,0 +1,639 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "seychelles",
+  "nameEn": "SEYCHELLES",
+  "nameJa": "セーシェル",
+  "region": "EAST AFRICA / 4°S",
+  "seo": {
+    "description": "花崗岩の巨石海岸、ココ・デ・メールの原生林、巨大ゾウガメが暮らす島々、インド洋の遠隔環礁。115島からなるセーシェルを8景と地図でたどる。"
+  },
+  "capital": {
+    "nameEn": "Victoria",
+    "nameJa": "ヴィクトリア",
+    "coordinates": {
+      "latitude": -4.623208,
+      "longitude": 55.452359
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -8,
+      "y": -10
+    },
+    "mapOffset": {
+      "x": -1.5,
+      "y": -0.1
+    },
+    "mapRegion": "inner-islands"
+  },
+  "hero": {
+    "lead": "赤道の南、西インド洋に115の島が散らばる。花崗岩の巨石と白砂、ココ・デ・メールの森、巨大ゾウガメ、遠隔の珊瑚環礁まで、陸地455km²の小国に異なる島の時間が重なる。",
+    "image": "assets/images/seychelles/approved/hero-anse-source-dargent.webp",
+    "location": "Anse Source d’Argent / La Digue",
+    "coordinates": {
+      "latitude": -4.371575,
+      "longitude": 55.827223
+    },
+    "mapOffset": {
+      "x": -2,
+      "y": 0.5
+    },
+    "mapRegion": "inner-islands"
+  },
+  "map": {
+    "bounds": {
+      "north": -3.611111,
+      "south": -9.935548,
+      "west": 45.987367,
+      "east": 56.507446
+    },
+    "svg": "assets/images/seychelles/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 Seychelles geometry via CountryGeoJSONCollection for the Inner Islands; Aldabra outline refined from lwwcas/laravel-countries Seychelles dataset (MIT). Mahé, Praslin, La Digue and Curieuse are rendered together in one geographic Inner Islands region; Aldabra is a separate inset following the shared United States multi-region map pattern. WGS84 coordinates remain authoritative; reviewed 2026-09-30.",
+    "regions": [
+      {
+        "id": "inner-islands",
+        "bounds": {
+          "north": -4.18,
+          "south": -4.82,
+          "west": 55.34,
+          "east": 55.89
+        },
+        "rect": {
+          "x": 290,
+          "y": 65,
+          "width": 900,
+          "height": 630
+        }
+      },
+      {
+        "id": "aldabra",
+        "bounds": {
+          "north": -9.32,
+          "south": -9.78,
+          "west": 46.18,
+          "east": 46.55
+        },
+        "rect": {
+          "x": 49,
+          "y": 75,
+          "width": 220,
+          "height": 300
+        }
+      }
+    ],
+    "insetNote": "※ アルダブラ環礁は、実際の位置関係・縮尺と異なる別枠表示です。"
+  },
+  "scenes": [
+    {
+      "id": "victoria-clock-tower",
+      "name": "ヴィクトリア時計塔",
+      "nameLocal": "Victoria Clock Tower / Mahé",
+      "mapLabel": "Victoria",
+      "description": "マヘ島の首都中心部に立つ1903年建立の時計塔。市場や商店が集まる小さな中心街を歩くと、島国の行政・交易・日常生活が近い距離に重なる。",
+      "coordinates": {
+        "latitude": -4.623214,
+        "longitude": 55.452292
+      },
+      "image": "assets/images/seychelles/approved/scene-1-victoria-clock-tower.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.5,
+        "y": -2.1
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "morne-blanc-viewpoint",
+      "name": "モーン・ブラン展望地",
+      "nameLocal": "Morne Blanc / Mahé",
+      "mapLabel": "Morne Blanc",
+      "description": "モーン・セーシェロワ国立公園の湿潤な山地林を抜け、西岸を見下ろす展望地へ上がる。海だけでなく、急峻な花崗岩島の内部に森と高低差があることが見える。",
+      "coordinates": {
+        "latitude": -4.65712,
+        "longitude": 55.43233
+      },
+      "image": "assets/images/seychelles/approved/scene-2-morne-blanc.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -3.3,
+        "y": 0.7
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "venns-town-mission-ruins",
+      "name": "ヴェンズ・タウン宣教施設跡",
+      "nameLocal": "Mission Ruins of Venn’s Town / Mahé",
+      "mapLabel": "Venn’s Town",
+      "description": "マヘ島中部、標高約450mの尾根に残る19世紀の宣教施設跡。解放奴隷の子どもたちを受け入れた歴史と、森越しに西海岸を望む景観が同じ場所に重なる。",
+      "coordinates": {
+        "latitude": -4.65488,
+        "longitude": 55.44438
+      },
+      "image": "assets/images/seychelles/approved/scene-3-venns-town.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.8,
+        "y": 2.8
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "vallee-de-mai",
+      "name": "ヴァレ・ド・メ",
+      "nameLocal": "Vallée de Mai / Praslin",
+      "mapLabel": "Vallée de Mai",
+      "description": "プララン島中央部に残るヤシの原生林。巨大な種子をつけるココ・デ・メールを含む固有ヤシが密生し、島の隔離が育てた植生を森の内部から体感できる。",
+      "coordinates": {
+        "latitude": -4.331,
+        "longitude": 55.738
+      },
+      "image": "assets/images/seychelles/approved/scene-4-vallee-de-mai.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.9,
+        "y": 1.4
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "anse-lazio",
+      "name": "アンス・ラジオ",
+      "nameLocal": "Anse Lazio / Praslin",
+      "mapLabel": "Anse Lazio",
+      "description": "プララン島北西岸の弧状の砂浜。白い砂、透明度の高い海、両端の花崗岩と緑が一つの湾を形づくり、セーシェルの内諸島らしい海岸地形がよく見える。",
+      "coordinates": {
+        "latitude": -4.29358,
+        "longitude": 55.70137
+      },
+      "image": "assets/images/seychelles/approved/scene-5-anse-lazio.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.9,
+        "y": -1.1
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "veuve-special-reserve",
+      "name": "ヴーヴ特別保護区",
+      "nameLocal": "Veuve Special Reserve / La Digue",
+      "mapLabel": "Veuve Reserve",
+      "description": "ラ・ディーグ島西側の低地林に設けられた保護区。固有種セーシェル・クロサンコウチョウの繁殖・採餌環境を守り、海岸景観とは異なる島の生態系を森の中で見る。",
+      "coordinates": {
+        "latitude": -4.358,
+        "longitude": 55.83
+      },
+      "image": "assets/images/seychelles/approved/scene-6-veuve-reserve.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 3.1,
+        "y": 0.1
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "curieuse-island",
+      "name": "キュリーズ島",
+      "nameLocal": "Curieuse Island",
+      "mapLabel": "Curieuse",
+      "description": "プララン島の北に浮かぶ保護島。巨大ゾウガメが歩き、ココ・デ・メールやマングローブが残る。海岸、湿地、乾いた赤土の斜面が近い範囲で切り替わる。",
+      "coordinates": {
+        "latitude": -4.28424,
+        "longitude": 55.72837
+      },
+      "image": "assets/images/seychelles/approved/scene-7-curieuse.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": -1.7
+      },
+      "mapRegion": "inner-islands"
+    },
+    {
+      "id": "aldabra-picard",
+      "name": "アルダブラ環礁",
+      "nameLocal": "Aldabra Atoll / Picard",
+      "mapLabel": "Aldabra",
+      "description": "主島群から千km以上離れた西端の巨大な隆起珊瑚環礁。浅い礁湖と石灰岩の島々が広がり、世界最大規模のアルダブラゾウガメ個体群を支える遠隔の生態系が残る。",
+      "coordinates": {
+        "latitude": -9.40143,
+        "longitude": 46.20603
+      },
+      "image": "assets/images/seychelles/approved/scene-8-aldabra.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.7,
+        "y": -0.8
+      },
+      "mapRegion": "aldabra"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "巨石の海岸を歩く",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "森から海を見下ろす",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "市場と街角を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "ヤシの森を歩く",
+      "category": "NATURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "自転車で島を巡る",
+      "category": "MOVEMENT",
+      "icon": "map"
+    },
+    {
+      "title": "野生動物を観察する",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "礁湖と外洋を眺める",
+      "category": "LANDSCAPE",
+      "icon": "sea"
+    },
+    {
+      "title": "島ごとの風景を比べる",
+      "category": "MOVEMENT",
+      "icon": "compass"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "coco-de-mer-endemism",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ココ・デ・メールは、二つの島に自然分布が限られる",
+      "text": "巨大な種子で知られるココ・デ・メールは、自然分布がプララン島とキュリーズ島に限られる。ヴァレ・ド・メでは固有ヤシがつくる森林をまとまった形で見ることができる。",
+      "points": [
+        "自然分布はプララン島とキュリーズ島",
+        "ヴァレ・ド・メには6種の固有ヤシが生育"
+      ],
+      "sourceKey": "valleeDeMai"
+    },
+    {
+      "topicKey": "aldabra-remote-ecosystem",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "アルダブラは、遠隔性そのものが生態系を守ってきた",
+      "text": "アルダブラ環礁は主島群から遠く離れ、アクセスも厳しく管理される。巨大ゾウガメや海鳥を含む生態系は、人の常住と開発が極めて少ない環境の中で維持されてきた。",
+      "points": [
+        "1982年に世界自然遺産へ登録",
+        "アルダブラゾウガメは約10万頭規模"
+      ],
+      "sourceKey": "aldabra"
+    },
+    {
+      "topicKey": "creole-cultural-mix",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "クレオール文化は、インド洋を行き交った人々の重なりから生まれた",
+      "text": "セーシェルではクレオール語、英語、フランス語が使われ、食や音楽、日常の言葉にもアフリカ、ヨーロッパ、アジアとの接点が表れる。島国の文化は単一の起源では語り切れない。",
+      "points": [
+        "クレオール語・英語・フランス語が公用語",
+        "料理にもアフリカ・フランス・インドなどの影響"
+      ],
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "venns-town-history",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "山中の遺構から、奴隷制廃止後の歴史をたどる",
+      "text": "ヴェンズ・タウンは19世紀、解放されたアフリカ人の子どもたちを受け入れた宣教施設だった。現在は建物基礎と森に囲まれた展望地が残り、クレオール社会形成の一端を伝える。",
+      "points": [
+        "1870年代から1880年代に運営",
+        "ユネスコ世界遺産暫定一覧に掲載"
+      ],
+      "sourceKey": "vennsTown"
+    },
+    {
+      "topicKey": "granitic-coral-contrast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "同じ国に、花崗岩の島と低い珊瑚島が並存する",
+      "text": "人口が集中する内諸島の多くは古い花崗岩質の島々で、外諸島には低平な珊瑚島や環礁が広がる。マヘ島の山地とアルダブラの低い石灰岩景観は、同じ国でも成り立ちが異なる。",
+      "points": [
+        "内諸島には41の花崗岩質島",
+        "外諸島は珊瑚島・環礁が主体"
+      ],
+      "sourceKey": "islands"
+    },
+    {
+      "topicKey": "island-mobility-rhythm",
+      "themeEn": "SEA",
+      "themeJa": "海の世界へ",
+      "title": "旅程は距離より、島を渡るリズムで組み立てる",
+      "text": "マヘ、プララン、ラ・ディーグは定期フェリーでつながるが、乗船・乗換えと海況を含めて考える必要がある。島を増やすほど、移動日を単なる空白ではなく旅の一部として扱うと無理が少ない。",
+      "points": [
+        "マヘ〜プラランは高速船で約1時間強",
+        "プララン〜ラ・ディーグは約15分"
+      ],
+      "sourceKey": "ferry"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-1976",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立は1976年6月",
+      "text": "セーシェルは1976年6月29日に英国から独立した。フランス統治、英国統治を経た歴史が、言語や制度にも重なる。",
+      "icon": "history",
+      "sourceKey": "profile"
+    },
+    {
+      "topicKey": "clock-tower-1903",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "ヴィクトリアの時計塔は1903年建立",
+      "text": "首都中心部の時計塔は1903年に建てられ、百年以上にわたりヴィクトリアの目印となってきた。市場や商店へ歩く起点にもなる。",
+      "icon": "city",
+      "sourceKey": "clockTower"
+    },
+    {
+      "topicKey": "vallee-mai-1983",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "ヴァレ・ド・メは1983年に世界遺産登録",
+      "text": "プララン島のヴァレ・ド・メは1983年に世界自然遺産へ登録された。セーシェルにはアルダブラと合わせて二つの自然遺産がある。",
+      "icon": "landscape",
+      "sourceKey": "unesco"
+    },
+    {
+      "topicKey": "la-digue-bicycle",
+      "categoryEn": "MOVEMENT",
+      "categoryJa": "移動",
+      "title": "ラ・ディーグでは自転車が旅の足になる",
+      "text": "ラ・ディーグは空港がなく、島内は自転車で移動しやすい規模。港から海岸や集落へ、自分の速度で景観の変化を追いやすい。",
+      "icon": "map",
+      "sourceKey": "islands"
+    },
+    {
+      "topicKey": "seychelles-rupee",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "通貨はセーシェル・ルピー",
+      "text": "国内通貨はセーシェル・ルピー（SCR）。島内の市場や小規模な店では、現地通貨を使う場面もある。",
+      "icon": "culture",
+      "sourceKey": "profile"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SEYCHELLES",
+    "title": "セーシェルで食べたいもの",
+    "intro": "魚介、ココナツ、香辛料、バナナ。クレオール料理にはアフリカ、フランス、インドなどインド洋を渡った食文化が重なり、海の素材を香り高く仕立てる。",
+    "items": [
+      {
+        "id": "kari-zourit",
+        "name": "カリ・ズリ",
+        "nameLocal": "Kari Zourit",
+        "text": "タコをココナツミルクと香辛料で煮込むクレオールのカレー。やわらかなタコと濃いソースを米と合わせる、島の海産物と香辛料文化が重なる一皿。",
+        "image": "assets/images/seychelles/approved/food-1-kari-zourit.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pwason-griye",
+        "name": "プワソン・グリイェ",
+        "nameLocal": "Pwason Griye",
+        "text": "丸ごとの魚を香草や香辛料で味付けして焼く料理。新鮮な魚そのものを主役にし、ライムや唐辛子の風味を添える。",
+        "image": "assets/images/seychelles/approved/food-2-pwason-griye.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "satini-reken",
+        "name": "サティニ・レケン",
+        "nameLocal": "Satini Reken",
+        "text": "加熱したサメ肉を細かくほぐし、香味野菜や柑橘、香辛料と合わせるチャツネ。主菜に添える濃い風味のクレオール料理として知られる。",
+        "image": "assets/images/seychelles/approved/food-3-satini-reken.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ladob-bannann",
+        "name": "ラドブ・バナン",
+        "nameLocal": "Ladob Bannann",
+        "text": "熟したバナナをココナツミルク、砂糖、香辛料でゆっくり煮る甘いラドブ。果実とココナツを使う島の家庭的なデザート。",
+        "image": "assets/images/seychelles/approved/food-4-ladob-bannann.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は小さいが、島を渡るほど船・飛行機の接続が旅程を左右する。マヘだけで終えるか、プラランとラ・ディーグまでつなぐかで必要な余白が変わる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "マヘ島の海と山を知る",
+        "text": "ヴィクトリア、山地林、西岸・東岸の海岸をつなぎ、主島の地形と暮らしを一周する。例：ヴィクトリア → ヴェンズ・タウン → モーン・ブラン → 海岸部",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "プララン島まで渡る",
+        "text": "マヘにプラランを加え、ヴァレ・ド・メとアンス・ラジオで森と海岸の両方を見る。例：マヘ → プララン → ヴァレ・ド・メ → アンス・ラジオ",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "三つの主要島をゆっくり比べる",
+        "text": "ラ・ディーグとキュリーズまで加え、移動日にも余白を残しながら島ごとの速度と景観を比べる。例：マヘ → プララン → キュリーズ → ラ・ディーグ → マヘ",
+        "icon": "compass"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ沖 / 西インド洋"
+    },
+    {
+      "label": "首都",
+      "value": "ヴィクトリア"
+    },
+    {
+      "label": "人口",
+      "value": "約12万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "455 km²（日本の約0.12%）"
+    },
+    {
+      "label": "言語",
+      "value": "セーシェル・クレオール語、英語、フランス語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教"
+    },
+    {
+      "label": "通貨",
+      "value": "セーシェル・ルピー（SCR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "archipelago-island-count",
+      "label": "島の数",
+      "value": "115島",
+      "note": "セーシェルは西インド洋に散らばる115の島からなる。旅の中心になる内諸島から、遠隔の珊瑚環礁までが一つの国を構成する。",
+      "icon": "map",
+      "exceptionalScale": true,
+      "interestReason": "国の地理そのものを決める島の多さと分散を、一つの数字で示せる。"
+    },
+    {
+      "topicKey": "granitic-inner-islands",
+      "label": "花崗岩質の内諸島",
+      "value": "41島",
+      "note": "115島のうち41島は花崗岩質の内諸島。マヘ、プララン、ラ・ディーグの巨石海岸と山地は、この珍しい地質的まとまりの一部である。",
+      "icon": "landscape",
+      "exceptionalScale": true,
+      "interestReason": "熱帯の島国としては珍しい花崗岩島群が、セーシェルの景観を決定づけている。"
+    },
+    {
+      "topicKey": "ocean-land-scale",
+      "label": "海域と陸地の比",
+      "value": "約3,100倍",
+      "note": "国の島々が広がる海域は約140万km²、陸地は455km²。陸地面積だけでは見えない海洋国家としてのスケールがある。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "小さな陸地と巨大な海域の対比が、セーシェルの地理を直感的に伝える。"
+    }
+  ],
+  "seasons": [
+    {
+      "months": "12〜3月",
+      "color": "#78936f",
+      "text": "北西季節風の時期で、暑く湿度が高く雨も増える。短い強雨を見込み、海と山の行程に余白を置く。"
+    },
+    {
+      "months": "4〜5月",
+      "color": "#8f9f7d",
+      "text": "季節風が切り替わる時期。降水は次第に落ち着き、海況も比較的穏やかな日が増える。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#9aa69a",
+      "text": "南東貿易風が卓越し、比較的涼しく乾燥する。風上側の海は荒れやすいため、泳ぐ場所と船便は当日の条件を確認する。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#b6a77f",
+      "text": "南東風が弱まり、次の雨季へ移る時期。暑さと湿度は上がるが、島間移動を組みやすい穏やかな日もある。"
+    }
+  ],
+  "transport": {
+    "title": "三つの主要島は船でつなぎ、外島は別の旅として考える",
+    "text": "マヘ〜プララン、マヘ〜ラ・ディーグには毎日高速船が運航し、マヘ〜プラランは約1時間、マヘ〜ラ・ディーグ直行は約1時間10分が目安。プララン〜ラ・ディーグも定期船で結ばれる。時刻や運航条件は変わるため最新情報を確認し、アルダブラなど遠隔外島は通常の島巡りとは分けて考える。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "海岸だけでなく島の地形を見たい人",
+      "text": "花崗岩の巨石、山地林、ヤシの原生林、低い珊瑚環礁まで、島によって変わる地質と景観を比べたい人。"
+    },
+    {
+      "title": "固有種と保全の現場を訪ねたい人",
+      "text": "ココ・デ・メール、巨大ゾウガメ、海鳥など、長い隔離と保護によって残った生態系を現地で知りたい人。"
+    },
+    {
+      "title": "島を渡りながら旅の速度を落としたい人",
+      "text": "フェリーや自転車を使い、マヘ、プララン、ラ・ディーグそれぞれの暮らしと海岸を急がず見比べたい人。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "ferry-buffer",
+      "title": "フェリー接続に余白を置く",
+      "text": "海況や運航変更で到着時刻がずれることがある。国際線と同日の厳しい乗継ぎを避け、最新時刻表を確認する。"
+    },
+    {
+      "topicKey": "marine-conditions",
+      "title": "泳ぐ海岸は季節風と当日の海況で選ぶ",
+      "text": "同じ島でも風向きで波の強さが変わる。遊泳前に現地の旗・案内・宿泊先の情報を確認する。"
+    },
+    {
+      "topicKey": "protected-islands",
+      "title": "保護島では立入と観察ルールを優先する",
+      "text": "キュリーズやアルダブラなど保護地域では、指定ルート、ガイド、野生動物との距離など現地管理者の規則に従う。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "maldives",
+      "nameEn": "MALDIVES",
+      "nameJa": "モルディブ",
+      "flag": "🇲🇻",
+      "reason": "同じインド洋の島国でも、低い珊瑚環礁を中心とする地形と海の暮らしを対照的に見たいなら。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "mauritius",
+      "nameEn": "MAURITIUS",
+      "nameJa": "モーリシャス",
+      "flag": "🇲🇺",
+      "reason": "西インド洋のクレオール文化と島の自然を、火山島の都市・農地・海岸という別の構成から比べたいなら。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "madagascar",
+      "nameEn": "MADAGASCAR",
+      "nameJa": "マダガスカル",
+      "flag": "🇲🇬",
+      "reason": "西インド洋の隔離が生んだ固有生態系を、はるかに大きな島のスケールで続けて見たいなら。",
+      "affinityType": "NATURE"
+    }
+  ],
+  "updatedAt": "2026-09-30",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2025",
+    "profile": "2025-04-16",
+    "islands": "2026-08-06",
+    "valleeDeMai": "2026-09-29",
+    "aldabra": "2026-09-29",
+    "vennsTown": "2026-09-29",
+    "climate": "2026-09-29",
+    "ferry": "2026-09-29",
+    "food": "2026-08-20",
+    "sceneCoordinates": "2026-09-29",
+    "map": "2026-09-29",
+    "veuve": "2026-09-29"
+  },
+  "sources": {
+    "profile": "Ministry of Foreign Affairs of Japan — Seychelles basic data, updated 2025-04-16: capital, languages, religion, currency and independence. https://www.mofa.go.jp/mofaj/area/seychelles/data.html",
+    "population": "World Bank — Seychelles population, 2025: 122,730; checked 2026-09-29. https://data.worldbank.org/country/seychelles",
+    "islands": "Tourism Seychelles — The Islands / Getting to and around Seychelles, checked 2026-09-29: 115 islands, 455 km² landmass, roughly 1.4 million km² EEZ/ocean space, 41 granitic Inner Islands. https://www.seychelles.com/experience/theislands",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used for Country Profile area comparison; checked 2026-09-29. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "unesco": "UNESCO World Heritage Centre — Seychelles properties: Aldabra Atoll (1982) and Vallée de Mai Nature Reserve (1983); checked 2026-09-29. https://whc.unesco.org/en/statesparties/sc",
+    "valleeDeMai": "UNESCO World Heritage Centre — Vallée de Mai Nature Reserve: 19.5 ha palm forest on Praslin, coco de mer and endemic palms. https://whc.unesco.org/en/list/261/",
+    "aldabra": "UNESCO World Heritage Centre and Seychelles Islands Foundation — Aldabra Atoll: raised coral atoll, four main islands around a shallow lagoon, giant tortoise population about 100,000; checked 2026-09-29. https://whc.unesco.org/en/list/185/ ; https://www.sif.sc/aldabra",
+    "vennsTown": "UNESCO World Heritage Centre Tentative List — Mission Ruins of Venn's Town: Mahé, about 450 m altitude, history linked to children of liberated Africans. https://whc.unesco.org/en/tentativelists/5796/",
+    "curieuse": "Seychelles Parks and Gardens Authority — Curieuse: giant tortoises, Baie Laraie mangroves, turtle nesting and marked trails. https://www.spga.gov.sc/parks/curieuse",
+    "clockTower": "Tourism Seychelles — Victoria Clock Tower, erected in 1903; checked 2026-09-29. https://www.seychelles.com/",
+    "climate": "Seychelles Meteorological Authority climate outlooks — seasonal transition and southeast-trade-wind dry season patterns; checked 2026-09-29. https://www.meteo.sc/",
+    "ferry": "Tourism Seychelles — Getting to and around Seychelles, updated 2026-08-06: daily high-speed ferries connect Mahé, Praslin and La Digue; Mahé–Praslin about 1 hour and direct Mahé–La Digue about 1 hour 10 minutes; schedules and fares should be checked with operators. https://www.seychelles.com/blog-details/5129/highlights/your-journey-paradise-how-get-seychelles-islands",
+    "food": "Tourism Seychelles — authentic Creole recipes, updated 2026-08-20: Kari Zourit, Pwason Griye, Satini Reken, Ladob Bannann. https://www.seychelles.com/",
+    "sceneCoordinates": "WGS84 points checked 2026-09-29 against UNESCO, official park/tourism information and OpenStreetMap/GeoNames/KBA-backed mapping: Victoria Clock Tower -4.623214,55.452292; Morne Blanc -4.65712,55.43233; Venn's Town -4.65488,55.44438; Vallée de Mai -4.331,55.738; Anse Lazio -4.29358,55.70137; Veuve Special Reserve -4.358,55.83; Curieuse Island -4.28424,55.72837; Aldabra Research Station/Picard -9.40143,46.20603; Anse Source d’Argent -4.371575,55.827223.",
+    "map": "Natural Earth 1:10m Admin-0 Seychelles geometry via CountryGeoJSONCollection for the Inner Islands; Aldabra outline refined from lwwcas/laravel-countries Seychelles dataset (MIT) to avoid coarse-boundary displacement, with all WGS84 coordinates unchanged. Target scope cross-checked against geoBoundaries gbOpen SYC ADM0 metadata (OpenStreetMap/Wambacher, ODbL 1.0); checked 2026-09-29. https://www.naturalearthdata.com/ ; https://github.com/lwwcas/laravel-countries ; https://www.geoboundaries.org/api/current/gbOpen/SYC/ADM0/",
+    "nextRoutes": "No stable regular international passenger ferry was verified as a normal next-country route; nextRoutes remains empty. Checked 2026-09-29.",
+    "veuve": "Seychelles Parks and Gardens Authority — Veuve Special Reserve, La Digue: 21 ha reserve dedicated to protected breeding and feeding habitat for the endemic Seychelles Black Paradise Flycatcher; checked 2026-09-29. https://www.spga.gov.sc/parks/veuve-special-reserve"
+  }
+}
