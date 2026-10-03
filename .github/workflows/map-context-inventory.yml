@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'scripts/add_country_map_context.py'
+      - 'scripts/normalize_map_inland_water.py'
       - 'tests/audit_map_context_inventory.py'
       - '.github/workflows/map-context-inventory.yml'
 
@@ -29,8 +30,9 @@ jobs:
         run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
       - name: Audit canonical published maps and rasterize supported previews
         run: |
-          python -m py_compile tests/audit_map_context_inventory.py
-          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}
+          python -m py_compile tests/audit_map_context_inventory.py scripts/normalize_map_inland_water.py
+          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/inventory
+          python scripts/normalize_map_inland_water.py --scope all --shard ${{ matrix.shard }} --shards 4 --output-dir /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/normalized
       - name: Preserve report and preview images only
         if: always()
         uses: actions/upload-artifact@v4
