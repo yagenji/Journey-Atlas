@@ -83,7 +83,7 @@ function renderCountry(data, registry) {
     const titleLength = Array.from(normalizedTitle.replace(/\s+/g, '')).length;
     if (titleLength >= 12) heroTitle.classList.add('hero-title--long');
     if (titleLength >= 18) heroTitle.classList.add('hero-title--very-long');
-    if (!/\s/.test(normalizedTitle) && titleLength >= 10) {
+    if (!/\s/.test(normalizedTitle) && titleLength >= 8) {
       heroTitle.classList.add('hero-title--unbroken-long');
     }
   }
