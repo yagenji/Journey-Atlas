@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import re
 import urllib.request
 from pathlib import Path
 
@@ -29,11 +28,7 @@ NATURAL_EARTH_URL = (
     "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
     f"{NATURAL_EARTH_REF}/geojson/ne_10m_admin_0_boundary_lines_land.geojson"
 )
-_EXISTING_GROUP = re.compile(
-    r'<!-- Surrounding national borders:.*?-->\s*'
-    r'<g id="context-national-borders"[^>]*>.*?</g>\s*',
-    re.DOTALL,
-)
+COMMENT_PREFIX = "<!-- Surrounding national borders:"
 
 
 def frame(bounds: dict[str, float]) -> tuple[float, float, float, float]:
@@ -192,6 +187,31 @@ def add_borders(
     return svg[:insert_at] + source + group + svg[insert_at:]
 
 
+def _strip_existing_border_group(svg: str) -> str:
+    marker = f'<g id="{GROUP_ID}"'
+    if svg.count(marker) != 1:
+        raise ValueError("Expected exactly one generated surrounding-country border group")
+    group_start = svg.index(marker)
+    group_end = svg.find("</g>", group_start)
+    if group_end < 0:
+        raise ValueError("Generated surrounding-country border group is not closed")
+    group_end += len("</g>")
+
+    remove_start = group_start
+    comment_start = svg.rfind(COMMENT_PREFIX, 0, group_start)
+    if comment_start >= 0:
+        comment_end = svg.find("-->", comment_start, group_start)
+        if comment_end >= 0:
+            comment_end += len("-->")
+            between = svg[comment_end:group_start]
+            if not between.strip() or between.strip() == r"\n":
+                remove_start = comment_start
+
+    while group_end < len(svg) and svg[group_end] in "\r\n":
+        group_end += 1
+    return svg[:remove_start] + svg[group_end:]
+
+
 def replace_borders(
     svg: str,
     bounds: dict[str, float],
@@ -200,10 +220,7 @@ def replace_borders(
     target_iso3: str | None = None,
 ) -> str:
     """Replace only generated context border linework; preserve all other SVG bytes."""
-    matches = list(_EXISTING_GROUP.finditer(svg))
-    if len(matches) != 1:
-        raise ValueError("Expected exactly one generated surrounding-country border group")
-    stripped = svg[:matches[0].start()] + svg[matches[0].end():]
+    stripped = _strip_existing_border_group(svg)
     return add_borders(stripped, bounds, simplify_px, dataset, target_iso3)
 
 
