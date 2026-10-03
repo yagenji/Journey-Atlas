@@ -1,0 +1,711 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "southafrica",
+  "nameEn": "SOUTH AFRICA",
+  "nameJa": "南アフリカ",
+  "region": "SOUTHERN AFRICA / 29°S",
+  "seo": {
+    "description": "テーブルマウンテン、ケープ半島、フランシュフック、チチカマ、ドラケンスバーグ、ブライデ川峡谷、クルーガー、オーグラビーズ。海と山と野生、社会の歴史が重なる南アフリカをたどる。"
+  },
+  "capital": {
+    "nameEn": "Pretoria",
+    "nameJa": "プレトリア",
+    "coordinates": {
+      "latitude": -25.74486,
+      "longitude": 28.18783
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -12,
+      "y": -16
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "mapRegion": "mainland"
+  },
+  "hero": {
+    "lead": "海に向かう平らな山から、ブドウ畑、海岸の森、断崖、野生の川辺へ。景観の大きな変化に、移住と交易、民主化の歴史が重なる。",
+    "image": "assets/images/southafrica/approved/hero-table-mountain-blouberg.webp",
+    "location": "Table Mountain from Bloubergstrand, Cape Town",
+    "coordinates": {
+      "latitude": -33.9573139,
+      "longitude": 18.4031083
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "mapRegion": "cape-detail"
+  },
+  "map": {
+    "bounds": {
+      "west": 15.3,
+      "south": -36.5,
+      "east": 34.8,
+      "north": -20.5
+    },
+    "svg": "assets/images/southafrica/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 countries (South Africa including Prince Edward Islands and Lesotho interior boundary), WGS84, public domain; surrounding coastline GSHHS intermediate resolution via Basemap (GSHHG LGPL). Shared JOURNEY ATLAS local-equirectangular projection, palette and context tooling. https://www.naturalearthdata.com/about/terms-of-use/ ; https://www.soest.hawaii.edu/pwessel/gshhg/ Cape detail uses GSHHS high-resolution coastline at a finer display scale; verified bounds contain South African coastal land only; Prince Edward inset retains both island polygons with distinct real WGS84 bounds.",
+    "regions": [
+      {
+        "id": "mainland",
+        "bounds": {
+          "west": 15.3,
+          "south": -36.5,
+          "east": 34.8,
+          "north": -20.5
+        },
+        "rect": {
+          "x": 400,
+          "y": 0,
+          "width": 800,
+          "height": 550
+        }
+      },
+      {
+        "id": "cape-detail",
+        "bounds": {
+          "west": 18.15,
+          "south": -34.5,
+          "east": 19.35,
+          "north": -33.75
+        },
+        "rect": {
+          "x": 10,
+          "y": 460,
+          "width": 380,
+          "height": 285
+        }
+      },
+      {
+        "id": "prince-edward",
+        "bounds": {
+          "west": 37.35,
+          "south": -47.12,
+          "east": 38.25,
+          "north": -46.42
+        },
+        "rect": {
+          "x": 945,
+          "y": 560,
+          "width": 220,
+          "height": 165
+        }
+      }
+    ],
+    "note": "※ ケープ半島とフランシュフックは、同じ地域を拡大した別枠表示です。\n※ プリンス・エドワード諸島は、実際の位置関係・縮尺と異なる別枠表示です。"
+  },
+  "scenes": [
+    {
+      "id": "cape-point",
+      "name": "ケープ・ポイント",
+      "nameLocal": "Cape Point",
+      "mapLabel": "Cape Point",
+      "description": "ケープ半島の南端近くで岩の稜線が海へ突き出す岬。灯台へ続く道から、切り立つ斜面と海、低い灌木の植生を見渡せる。喜望峰とは隣り合う別の岬。",
+      "coordinates": {
+        "latitude": -34.356111,
+        "longitude": 18.496667
+      },
+      "image": "assets/images/southafrica/approved/scene-01-cape-point.webp",
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 12,
+        "y": 18
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "cape-detail"
+    },
+    {
+      "id": "boulders",
+      "name": "ボルダーズ・ビーチ",
+      "nameLocal": "Boulders",
+      "mapLabel": "Boulders",
+      "description": "サイモンズタウン近郊の入り江に花崗岩の巨岩と白い砂浜が重なる。遊歩道からアフリカペンギンの営巣地を観察でき、都市のすぐ近くに野生の暮らしが見える。",
+      "coordinates": {
+        "latitude": -34.131944,
+        "longitude": 18.448056
+      },
+      "image": "assets/images/southafrica/approved/scene-02-boulders.webp",
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 12,
+        "y": 0
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "cape-detail"
+    },
+    {
+      "id": "franschhoek",
+      "name": "フランシュフック",
+      "nameLocal": "Franschhoek",
+      "mapLabel": "Franschhoek",
+      "description": "西ケープの山に囲まれた谷に、ブドウ畑と農園、白い建物が点在する。ケープタウンから内陸へ入ると、海岸の景観は農業とワインづくりの風景へ変わる。",
+      "coordinates": {
+        "latitude": -33.9092,
+        "longitude": 19.1194
+      },
+      "image": "assets/images/southafrica/approved/scene-03-franschhoek.webp",
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": -12,
+        "y": -20
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "cape-detail"
+    },
+    {
+      "id": "storms-river",
+      "name": "ストームズ・リバー河口",
+      "nameLocal": "Storms River",
+      "mapLabel": "Storms River",
+      "description": "チチカマの海岸林を抜けると、深い岩の峡谷が海へ開く河口に出る。吊り橋から淡水の流れと砕ける波を見渡し、森と海の境目を歩ける。",
+      "coordinates": {
+        "latitude": -34.02212,
+        "longitude": 23.88591
+      },
+      "image": "assets/images/southafrica/approved/scene-04-storms-river.webp",
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 12,
+        "y": 20
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "amphitheatre",
+      "name": "ドラケンスバーグのアンフィシアター",
+      "nameLocal": "Amphitheatre",
+      "mapLabel": "Amphitheatre",
+      "description": "ロイヤル・ナタール周辺では、高い玄武岩の壁が弧を描き、緑の谷の奥に連なる。谷から大きな断崖を見上げる構図が、この山地の高さと規模を伝える。",
+      "coordinates": {
+        "latitude": -28.761389,
+        "longitude": 28.918611
+      },
+      "image": "assets/images/southafrica/approved/scene-05-amphitheatre.webp",
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": -12,
+        "y": 16
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "three-rondavels",
+      "name": "スリー・ロンダベルズ",
+      "nameLocal": "Three Rondavels",
+      "mapLabel": "Three Rondavels",
+      "description": "ムプマランガのブライデ川峡谷に、丸い屋根を思わせる三つの岩山が並ぶ。展望台から草に覆われた頂部と縞状の岩壁、深い緑の谷を一緒に見渡せる。",
+      "coordinates": {
+        "latitude": -24.57375,
+        "longitude": 30.79891
+      },
+      "image": "assets/images/southafrica/approved/scene-06-three-rondavels.webp",
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": -12,
+        "y": -24
+      },
+      "mapOffset": {
+        "x": -1.6,
+        "y": -1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "skukuza",
+      "name": "クルーガーのスククーザ周辺",
+      "nameLocal": "Skukuza",
+      "mapLabel": "Skukuza",
+      "description": "クルーガー国立公園南部のサビ川沿いでは、河畔林と乾いた草地が接する。スククーザを拠点に車で巡ると、水を求めるゾウなどの動物と植生の変化を観察できる。",
+      "coordinates": {
+        "latitude": -24.995278,
+        "longitude": 31.592778
+      },
+      "image": "assets/images/southafrica/approved/scene-07-skukuza.webp",
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 12,
+        "y": 20
+      },
+      "mapOffset": {
+        "x": 1.6,
+        "y": 1.5
+      },
+      "mapRegion": "mainland"
+    },
+    {
+      "id": "augrabies",
+      "name": "オーグラビーズ滝",
+      "nameLocal": "Augrabies",
+      "mapLabel": "Augrabies",
+      "description": "北ケープの乾燥した岩の大地で、オレンジ川が狭い峡谷へ落ち込む。花崗岩の断崖と白い水流が対照をつくり、東部の緑の谷とは異なる川の風景を見せる。",
+      "coordinates": {
+        "latitude": -28.591389,
+        "longitude": 20.340833
+      },
+      "image": "assets/images/southafrica/approved/scene-08-augrabies.webp",
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": -12,
+        "y": -16
+      },
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "mainland"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "岩の岬から海を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "海辺でペンギンを観察する",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "ブドウ畑の谷を歩く",
+      "category": "CULTURE",
+      "icon": "landscape"
+    },
+    {
+      "title": "海岸の森と吊り橋を歩く",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "山の断崖を見上げる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "峡谷の岩山を眺める",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "川辺で野生動物を待つ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "乾燥地の滝の音を聞く",
+      "category": "NATURE",
+      "icon": "waterfall"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "fynbos-fire",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ケープの低い灌木は、火とともに更新される",
+      "text": "ケープ植物区のフィンボスは、低い灌木がつくる多様な植生。火は一部の植物の発芽や更新に関わるが、燃える頻度の変化や外来植物は生態系への圧力にもなる。山の緑は、火を含む長い時間の中で保たれている。",
+      "points": [
+        "植物の姿だけでなく更新の仕組みに注目する",
+        "外来植物や火の管理も保全の課題"
+      ],
+      "sourceKey": "capeFloral"
+    },
+    {
+      "topicKey": "san-rock-art",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "山の岩陰には、サンの人々の世界観が残る",
+      "text": "ドラケンスバーグの岩陰には、動物や人を描いたサンの岩絵が残る。絵は狩猟の記録だけではなく、儀礼や信仰と結びつく表現でもある。高い断崖の景観に、山を生きた人々の精神世界が重なっている。",
+      "points": [
+        "岩絵は地域の文化的景観の一部",
+        "見学は公開された場所や案内に従う"
+      ],
+      "sourceKey": "drakensberg"
+    },
+    {
+      "topicKey": "robben-prison",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "湾の向こうの島は、隔離と抵抗の記憶を抱える",
+      "text": "ケープタウン沖のロベン島は、病院や軍事施設、政治犯の刑務所として使われた歴史を持つ。アパルトヘイト下の投獄の記憶は、海から見える静かな島の姿だけでは読み取れない。訪問は隔離と抵抗の歴史に触れる機会になる。",
+      "points": [
+        "ネルソン・マンデラも収監された",
+        "刑務所だけでない長い利用の歴史"
+      ],
+      "sourceKey": "robben"
+    },
+    {
+      "topicKey": "mapungubwe-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "北部の王国は、海の交易圏とつながっていた",
+      "text": "リンポポ川とシャシェ川の合流域に発展したマプングブエでは、金や象牙の交易が社会を支えた。出土したガラス玉や陶磁器は、東アフリカの港を介したインドや中国とのつながりを示す。内陸の風景にも海へ開く歴史がある。",
+      "points": [
+        "王国は南部アフリカの社会変化を物語る",
+        "丘と周囲の集落が文化的景観をつくる"
+      ],
+      "sourceKey": "mapungubwe"
+    },
+    {
+      "topicKey": "regional-rainfall",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "雨の季節は、西のケープと東の低地で異なる",
+      "text": "南西部のケープでは冬に雨が多く、北東部のクルーガーでは夏に雨が増える。国全体を一つの乾季・雨季で考えると、海岸とサファリの計画がずれやすい。標高による冷え込みもあるため、訪ねる地域ごとに季節を読む。",
+      "points": [
+        "ケープと北東部で雨の時期が異なる",
+        "山地では平地より冷え込みやすい"
+      ],
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "food-migration",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに触れる",
+      "title": "食卓には、移住と植民地支配の歴史が重なる",
+      "text": "ケープのスパイスを使う料理や、ダーバンのカレー入りパンには、異なる出身の人々が暮らしてきた歴史が映る。奴隷貿易や労働移民、地域の調理法が重なり、同じ国内でも食の表情が変わる。一皿から都市と人の移動をたどれる。",
+      "points": [
+        "ケープとダーバンで異なる食文化に触れる",
+        "料理名だけでなく土地との関係も知る"
+      ],
+      "sourceKey": "food"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "capitals-roles",
+      "categoryEn": "CITY",
+      "categoryJa": "都市",
+      "title": "首都の役割を複数の都市が担う",
+      "text": "プレトリアは行政、ケープタウンは立法、ブルームフォンテーンは司法の首都として知られる。最高控訴裁判所はブルームフォンテーン、憲法裁判所はヨハネスブルクに置かれている。",
+      "icon": "city",
+      "sourceKey": "government"
+    },
+    {
+      "topicKey": "agulhas-tip",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "大陸の最南端は喜望峰ではない",
+      "text": "アフリカ大陸の最南端はアガラス岬。ケープ半島の喜望峰やケープ・ポイントとは別の場所で、ケープタウンから東へ旅を広げると訪ねられる。",
+      "icon": "map",
+      "sourceKey": "agulhas"
+    },
+    {
+      "topicKey": "bunny-name",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "バニーチャウはウサギ料理ではない",
+      "text": "バニーチャウは、くり抜いたパンにカレーを入れるダーバンゆかりの料理。名前からウサギ肉を想像しやすいが、肉や豆などさまざまな具で作られる。",
+      "icon": "food",
+      "sourceKey": "food"
+    },
+    {
+      "topicKey": "left-driving",
+      "categoryEn": "MOVEMENT",
+      "categoryJa": "移動",
+      "title": "日本と同じ左側通行",
+      "text": "南アフリカの車は左側通行。ただし都市間の距離は長く、道路や照明の状況も地域で変わる。慣れた通行方向でも、余裕ある日程と明るい時間の移動が役立つ。",
+      "icon": "road",
+      "sourceKey": "driving"
+    },
+    {
+      "topicKey": "hemisphere-season",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "日本の冬は南アフリカの夏",
+      "text": "南半球にあるため、12〜2月は夏、6〜8月は冬にあたる。日本の服装感覚だけで荷造りせず、ケープの風や高地・サファリの朝晩の冷え込みも考えて準備する。",
+      "icon": "weather",
+      "sourceKey": "climate"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF SOUTH AFRICA",
+    "title": "南アフリカで食べたいもの",
+    "intro": "スパイス、煮込み、パン、甘い焼き菓子。土地ごとの暮らしが見える四つの味。",
+    "items": [
+      {
+        "id": "bobotie",
+        "name": "ボボティ",
+        "nameLocal": "Bobotie",
+        "text": "香辛料で味付けしたひき肉に卵とミルクの層を重ねて焼く、ケープにゆかりのある料理。肉の香ばしさとやわらかな卵の表面に、甘みやスパイスの香りが重なる。",
+        "image": "assets/images/southafrica/approved/food-01-bobotie.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "bunny-chow",
+        "name": "バニーチャウ",
+        "nameLocal": "Bunny chow",
+        "text": "くり抜いたパンにカレーを入れる、ダーバンゆかりの料理。肉や豆など具には幅があり、カレーを吸ったパンも一緒に味わう。写真は牛肉のカレー。",
+        "image": "assets/images/southafrica/approved/food-02-bunny-chow.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "potjiekos",
+        "name": "ポイキーコス",
+        "nameLocal": "Potjiekos",
+        "text": "丸い三本脚の鉄鍋で肉や野菜をゆっくり煮込む料理。火のそばで時間をかける調理が、屋外で食事を囲む楽しみにつながる。写真は牛肉と野菜の煮込み。",
+        "image": "assets/images/southafrica/approved/food-03-potjiekos.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "malva-pudding",
+        "name": "マルバプディング",
+        "nameLocal": "Malva pudding",
+        "text": "アプリコットジャムを使うスポンジに、バターやクリームの温かいソースをしみ込ませるデザート。焼き色のついた表面と、しっとりした生地の対照を楽しむ。",
+        "image": "assets/images/southafrica/approved/food-04-malva-pudding.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "滞在日数と、どこまで旅を広げるかで選ぶ。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "ケープとワインの谷に集中する",
+        "text": "ケープタウンに滞在し、山とケープ半島、ワインの谷を日帰りや一泊で組み合わせる。天候で山へ行けない日の余裕も確保する。例：ケープタウン → ケープ半島 → フランシュフック → ケープタウン。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜14日",
+        "title": "ケープとクルーガーをつなぐ",
+        "text": "国内線を使い、ケープの海岸景観とクルーガーのサファリをつなぐ。公園では連泊し、余裕があればブライデ川峡谷を加える。例：ケープタウン → ヨハネスブルク → スククーザ → スリー・ロンダベルズ。",
+        "icon": "map"
+      },
+      {
+        "duration": "15日以上",
+        "title": "海岸の森まで旅を広げる",
+        "text": "ガーデン・ルートを車で巡り、国内線で北東部へつなぐ。山地や北ケープは追加の日数を取り、海岸区間との入れ替えも考える。例：ケープタウン → フランシュフック → ストームズ・リバー → ヨハネスブルク → スククーザ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#d3a66f",
+      "text": "夏。ケープは乾燥した暖かい日が多く、北東部は雨と暑さが増える。山や海岸では風と天候の変化に注意し、公園の道路状況も確認する。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c7b889",
+      "text": "秋。夏の暑さがやわらぎ、北東部は乾季へ向かう。ケープでは冬の雨が近づくため、海岸の旅は雨や風の日を見込んで余裕を持つ。"
+    },
+    {
+      "months": "6〜8月",
+      "color": "#a8bdc1",
+      "text": "冬。クルーガーは乾季で植生が薄くなる一方、朝晩は冷える。ケープは雨や風が多く、山地は強い冷え込みや降雪の可能性がある。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#afbf9e",
+      "text": "春。ケープは暖かさが戻り、北東部は10月頃から雨季へ移る。地域ごとの雨と気温の差を考え、サファリも海岸も直前の予報を確認する。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は国内線、地域内は車を使い分ける",
+    "text": "都市間は国内線や長距離バス、地域内はレンタカー、送迎、現地ツアーを組み合わせる。公園では自走とガイド同行の選択肢があり、入園時間や車両条件を確認する。都市では信頼できる配車や宿の手配を使い、夜間の徒歩移動や長距離運転を避ける。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "一つの国で景観の幅を感じたい人",
+      "text": "海岸、ブドウ畑、森、断崖、乾燥地の川へ。地域を移るたびに変わる風景を、余裕ある日程でたどりたい人に向く。"
+    },
+    {
+      "title": "野生動物と環境の関係を見たい人",
+      "text": "動物の名前だけでなく、川辺や草地、海岸の営巣地を観察する。待つ時間を取り、生息地ごとの違いを楽しみたい人に。"
+    },
+    {
+      "title": "自然の奥にある社会の歴史を知りたい人",
+      "text": "山の岩絵、内陸の交易、ロベン島、地域の食文化。景観とともに、人々の暮らしや社会の変化にも触れたい人に。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "南部アフリカ"
+    },
+    {
+      "label": "首都",
+      "value": "プレトリア（行政）／ケープタウン（立法）／ブルームフォンテーン（司法）"
+    },
+    {
+      "label": "人口",
+      "value": "約6,400万人（2024年・世界銀行）"
+    },
+    {
+      "label": "面積",
+      "value": "約122万km²（日本の約3.2倍）"
+    },
+    {
+      "label": "言語",
+      "value": "ズールー語、コサ語、英語、アフリカーンス語、南アフリカ手話など12公用語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教、伝統的な信仰、ヒンドゥー教、イスラム教など"
+    },
+    {
+      "label": "通貨",
+      "value": "南アフリカ・ランド（ZAR）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "official-languages",
+      "label": "公用語",
+      "value": "12言語",
+      "note": "2023年に南アフリカ手話が加わり、12の公用語を持つ。",
+      "icon": "culture",
+      "interestReason": "多言語の社会を、旅先で聞く言葉と結びつけて理解できるため。"
+    },
+    {
+      "topicKey": "inclusive-election",
+      "label": "全人種参加の総選挙",
+      "value": "1994年",
+      "note": "1994年4月、初めて全人種が参加する総選挙が行われた。",
+      "icon": "history",
+      "interestReason": "現在の南アフリカを知る出発点となる社会の転換を伝えられるため。"
+    },
+    {
+      "topicKey": "cape-endemic-plants",
+      "label": "ケープ植物区の固有種",
+      "value": "約69%",
+      "note": "約9,000種とされる植物のうち、およそ69%がこの植物区に固有。",
+      "icon": "leaf",
+      "interestReason": "山と海の景観に、他の場所で見られない植物世界が重なることを伝えられるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "city-safety",
+      "title": "都市の移動は宿と相談して組み立てる",
+      "text": "犯罪情報と地域ごとの状況を渡航前に確認する。夜間の徒歩移動を避け、空港や宿への移動は信頼できる交通手段を手配する。車内にも貴重品を見える状態で残さない。"
+    },
+    {
+      "topicKey": "parks-mountains",
+      "title": "公園と山では現地のルールを優先する",
+      "text": "野生動物との距離、車外へ出られる場所、ゲート時間を守る。山歩きは風や霧で条件が変わるため、開放状況と天候を確認し、難しい区間はガイドを検討する。"
+    },
+    {
+      "topicKey": "health-border-prep",
+      "title": "地域別の健康対策と越境条件を確認する",
+      "text": "クルーガーなどを訪ねる場合は、マラリアを含む健康対策を渡航外来などに相談する。隣国へ進む場合は入国条件、国境の運用、レンタカーの越境許可を直前に確かめる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇳🇦",
+      "countryEn": "NAMIBIA",
+      "countryJa": "ナミビア",
+      "path": "スプリングボック → フィオールスドリフト／ノールドゥーワー → キートマンスフープ",
+      "description": "北ケープからオレンジ川の国境を越え、ナミビア南部の乾燥地へつなぐ陸路。海岸の旅とは異なる、長い距離と広い地平線の旅になる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "SARSの国境事務所一覧に掲載される通過地点。入国条件、営業時間、車両の越境許可は直前確認。"
+    },
+    {
+      "flag": "🇱🇸",
+      "countryEn": "LESOTHO",
+      "countryJa": "レソト",
+      "path": "レディブランド → マセル・ブリッジ → マセル",
+      "description": "フリーステート側からマセルへ向かい、南アフリカに囲まれた山岳国へつなぐ主要陸路。高地へ進む場合は道路と車両の条件も確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "SARSの国境事務所一覧に掲載される通過地点。入国条件、営業時間、車両の越境許可は直前確認。"
+    },
+    {
+      "flag": "🇲🇿",
+      "countryEn": "MOZAMBIQUE",
+      "countryJa": "モザンビーク",
+      "path": "コマティポート → レボンボ／レサノ・ガルシア → マプト",
+      "description": "クルーガー南部から国境を越え、モザンビークのマプト方面へ進む陸路。サファリから都市やインド洋側の景観へ旅の性格が変わる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "SARSの国境事務所一覧に掲載される通過地点。入国条件、営業時間、車両の越境許可は直前確認。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "namibia",
+      "nameEn": "NAMIBIA",
+      "nameJa": "ナミビア",
+      "flag": "🇳🇦",
+      "reason": "オーグラビーズの乾燥した岩と川に惹かれたなら、ナミブ砂漠の砂丘やフィッシュ・リバー・キャニオンで、水の少ない大地の地形をさらにたどれる。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "botswana",
+      "nameEn": "BOTSWANA",
+      "nameJa": "ボツワナ",
+      "flag": "🇧🇼",
+      "reason": "クルーガーの川辺で動物を待つ時間が印象に残ったなら、チョベやオカバンゴで、水が集まる場所と野生動物の関係を別の環境から見られる。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "newzealand",
+      "nameEn": "NEW ZEALAND",
+      "nameJa": "ニュージーランド",
+      "flag": "🇳🇿",
+      "reason": "海岸の森から山へ移る旅が気に入ったなら、ニュージーランドでも車で地域を巡り、海と山の距離の近さや景観の変化を楽しめる。",
+      "affinityType": "TRAVEL_STYLE"
+    }
+  ],
+  "updatedAt": "2026-10-03",
+  "sourcesVerifiedAt": "2026-10-03",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2026-05-26",
+    "religion": "2022",
+    "languages": "2023",
+    "borders": "2024-12-20",
+    "map": "2026-10-03",
+    "sceneCoordinates": "2026-10-02"
+  },
+  "sources": {
+    "mofa": "外務省・南アフリカ共和国基礎データ（2026-05-26）：人口約6,400万人（2024年・世界銀行）、面積122万km²と日本の約3.2倍、宗教（2022年国勢調査）、通貨、首都、1994年総選挙。 https://www.mofa.go.jp/mofaj/area/s_africa/data.html",
+    "languages": "Statistics South Africa, Mbalo Brief February 2026: 12 official languages including South African Sign Language added in 2023. https://www.statssa.gov.za/?p=19168",
+    "government": "South African government country overview; Australian DFAT profile for the three capitals; official court contacts for judicial distinction. https://www.gov.za/about-sa/south-africa-glance-1 ; https://www.dfat.gov.au/geo/south-africa ; https://www.concourt.org.za/ ; https://www.supremecourtofappeal.org.za/ https://www.gov.za/about-government/contact-directory/judicial-institution/constitutional-court",
+    "capeFloral": "UNESCO Cape Floral Region Protected Areas and Committee decision 39 COM 8B.14: around 9,000 species with 69% endemic, fynbos ecological/fire processes and threats. https://whc.unesco.org/en/list/1007/ ; https://whc.unesco.org/en/decisions/6352",
+    "drakensberg": "UNESCO Maloti-Drakensberg Park: basalt ramparts and sandstone cliffs; San rock art, ritual and spiritual associations. https://whc.unesco.org/en/list/985/",
+    "robben": "UNESCO Robben Island: prison, hospital and military use, resistance to apartheid. https://whc.unesco.org/en/list/916",
+    "mapungubwe": "UNESCO Mapungubwe Cultural Landscape: Limpopo-Shashe confluence, gold/ivory trade and links to India and China via East African ports. https://whc.unesco.org/en/list/1099/",
+    "climate": "SANParks Kruger: dry winter April–September and summer rains October–March; South African government explains Western Cape winter rainfall. https://www.sanparks.org/parks/kruger/explore/climate ; https://www.gov.za/news/media-statements/minister-gugile-nkwinti-briefs-media-west-coast-water-supply-situation-17-apr",
+    "food": "South African Tourism, iconic foods and Durban bunny chow; Big5 Cookware potjiekos recipe; Huletts malva recipe. https://www.southafrica.net/gl/en/travel/article/iconic-south-african-foods-taste-all-the-flavours-of-the-rainbow-nation ; https://www.southafrica.net/uk/en/travel/article/bunny-chow-101 ; https://www.big5cookware.co.za/pages/south-african-potjiekos-recipe-guide ; https://www.hulettssugar.co.za/recipe/malva-pudding/",
+    "agulhas": "SANParks Agulhas National Park: southernmost tip of Africa. https://www.sanparks.org/parks/agulhas",
+    "driving": "South African Tourism, getting around by car: left-hand traffic. https://www.southafrica.net/za/en/travel/category/what-you-need-to-know/getting-around-south-africa-by-car",
+    "borders": "South African Revenue Service border office directory (updated 2024-12-20): Vioolsdrift, Maseru Bridge, Lebombo. https://www.sars.gov.za/customs-and-excise/customs-offices-and-contacts/border-posts/",
+    "parks": "SANParks Table Mountain, Garden Route, Kruger and Augrabies official visitor information. https://www.sanparks.org/parks/table-mountain ; https://www.sanparks.org/parks/garden-route ; https://www.sanparks.org/parks/kruger ; https://www.sanparks.org/parks/augrabies-falls",
+    "safety": "外務省海外安全ホームページ・南アフリカの安全情報、国別感染症情報。 https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_122.html 医療情報とマラリアの地域別説明： https://www.mofa.go.jp/mofaj/toko/medi/africa/safrica.html",
+    "sceneCoordinates": "WGS84 points: Table Mountain -33.9573139,18.4031083 (Wikidata); image viewpoint Bloubergstrand -33.7973,18.461. Cape Point -34.356111,18.496667 and Boulders -34.131944,18.448056 (SANParks GPS waypoints); Franschhoek -33.9092,19.1194 (GeoNames/OSM); Storms River Mouth Rest Camp land reference -34.02212,23.88591 (OSM/Mapcarta); Amphitheatre -28.761389,28.918611 (Wikidata Q2844394); Three Rondavels viewpoint -24.57375,30.79891 (OSM/Mapcarta); Skukuza -24.995278,31.592778 (SANParks); Augrabies -28.591389,20.340833 (Wikidata Q39544); Pretoria -25.74486,28.18783 (GeoNames). https://www.sanparks.org/parks/table-mountain/travel/gps-waypoints ; https://www.sanparks.org/parks/kruger/travel/gps-waypoints ; https://www.wikidata.org/wiki/Q2844394 ; https://www.wikidata.org/wiki/Q39544 ; https://mapcarta.com/",
+    "map": "Natural Earth 1:10m Admin-0 countries (South Africa including Prince Edward Islands and Lesotho interior boundary), WGS84, public domain; surrounding coastline GSHHS intermediate resolution via Basemap (GSHHG LGPL). Shared JOURNEY ATLAS local-equirectangular projection, palette and context tooling. https://www.naturalearthdata.com/about/terms-of-use/ ; https://www.soest.hawaii.edu/pwessel/gshhg/ Cape detail uses GSHHS high-resolution coastline at a finer display scale; verified bounds contain South African coastal land only; Prince Edward inset retains both island polygons with distinct real WGS84 bounds. https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson",
+    "population": "外務省・南アフリカ共和国基礎データ（2026-05-26）：人口約6,400万人（2024年・世界銀行）、面積122万km²と日本の約3.2倍、宗教（2022年国勢調査）、通貨、首都、1994年総選挙。 https://www.mofa.go.jp/mofaj/area/s_africa/data.html",
+    "area": "外務省・南アフリカ共和国基礎データ（2026-05-26）：人口約6,400万人（2024年・世界銀行）、面積122万km²と日本の約3.2倍、宗教（2022年国勢調査）、通貨、首都、1994年総選挙。 https://www.mofa.go.jp/mofaj/area/s_africa/data.html",
+    "religion": "外務省・南アフリカ共和国基礎データ（2026-05-26）：人口約6,400万人（2024年・世界銀行）、面積122万km²と日本の約3.2倍、宗教（2022年国勢調査）、通貨、首都、1994年総選挙。 https://www.mofa.go.jp/mofaj/area/s_africa/data.html"
+  }
+}
