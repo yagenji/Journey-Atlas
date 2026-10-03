@@ -41,9 +41,14 @@ def _linear_rings(d: str) -> list[tuple[str, Polygon]]:
             if len(nums) != 2:
                 raise ValueError('Unsupported SVG coordinate in geographic context')
             vertices.append((float(nums[0]), float(nums[1])))
-        polygon = Polygon(vertices)
-        if not polygon.is_valid or polygon.area <= 0:
-            raise ValueError('Invalid generated polygon in geographic context')
+        polygon = Polygon(vertices) if len(vertices) >= 3 else None
+        if polygon is not None and not polygon.is_valid:
+            # Coordinate rounding can make a tiny ring self-touch. Repair it for
+            # the coverage measurement only; the original path text is kept.
+            polygon = polygon.buffer(0)
+        if polygon is None or polygon.is_empty or polygon.area <= 0:
+            # Degenerate sliver: never judged redundant, always retained as drawn.
+            polygon = None
         result.append((chunk.group(0), polygon))
     return result
 
@@ -70,10 +75,14 @@ def strip_redundant_island_context(svg: str) -> tuple[str, int]:
     target_paths = [p for p in root.iter(_SVG_NS + 'path') if p.get('fill') == 'url(#land)']
     if not target_paths:
         raise ValueError('Target administrative land path is missing')
-    target = unary_union([polygon for path in target_paths for _, polygon in _linear_rings(path.get('d', ''))])
+    target = unary_union([
+        polygon for path in target_paths for _, polygon in _linear_rings(path.get('d', '')) if polygon is not None
+    ])
     components = _linear_rings(original)
     redundant = []
     for component, polygon in components:
+        if polygon is None:
+            continue
         ratio = polygon.intersection(target).area / polygon.area
         if ratio >= 0.90:
             redundant.append(polygon)
@@ -81,7 +90,7 @@ def strip_redundant_island_context(svg: str) -> tuple[str, int]:
         return svg, 0
     omitted, retained = 0, []
     for component, polygon in components:
-        if any(polygon.intersection(island).area / polygon.area >= 0.97 for island in redundant):
+        if polygon is not None and any(polygon.intersection(island).area / polygon.area >= 0.97 for island in redundant):
             omitted += 1
         else:
             retained.append(component)
