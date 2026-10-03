@@ -50,6 +50,17 @@ def build_version() -> str:
 BUILD_VERSION = build_version()
 
 
+def resolve_manifest_image(value: str) -> str:
+    """Resolve authoring-only chunk manifests to their production image path."""
+    if not isinstance(value, str) or not value.endswith(".parts.json"):
+        return value
+    manifest = json.loads((ROOT / value).read_text(encoding="utf-8"))
+    output = manifest.get("output")
+    if not isinstance(output, str) or not output.startswith("assets/images/") or ".." in Path(output).parts:
+        raise ValueError(f"Image manifest output is missing/unsafe: {value}")
+    return output
+
+
 def versioned_approved_image(value: str) -> str:
     """Return a per-build URL for approved Country imagery.
 
@@ -322,9 +333,9 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
     description = data.get("seo", {}).get("description") or data.get("hero", {}).get("lead") or f"{data['nameJa']}を景色と地図からめぐるJOURNEY ATLAS。"
     canonical = urljoin(SITE_URL, f"countries/{slug}/")
-    hero_image = data.get("hero", {}).get("image", "")
+    hero_image = resolve_manifest_image(data.get("hero", {}).get("image", ""))
     versioned_hero_image = versioned_approved_image(hero_image)
-    og_source = data.get("seo", {}).get("ogImage") or hero_image
+    og_source = resolve_manifest_image(data.get("seo", {}).get("ogImage") or data.get("hero", {}).get("image", ""))
     versioned_og_source = versioned_approved_image(og_source)
     og_image = urljoin(SITE_URL, versioned_og_source) if versioned_og_source else urljoin(SITE_URL, "assets/icons/favicon.svg")
 
