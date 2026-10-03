@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Read-only sharded inventory and raster preflight of published Country maps."""
+"""Read-only sharded inventory, lake-consistency audit, and raster preflight of Country maps."""
 import argparse
 import hashlib
+import io
 import json
+import math
 import re
 import subprocess
 import sys
@@ -17,6 +19,10 @@ import add_country_map_context_legacy as legacy
 
 NS = '{http://www.w3.org/2000/svg}'
 COLORS = ('#eaf2f4', '#dcebf0', '#d0e3eb')
+MIN_LAKE_PIXELS = 64
+MIN_LAKE_WIDTH = 5
+MIN_LAKE_HEIGHT = 5
+LAKE_WATER_PASS = 0.78
 
 
 def original_paths(root):
@@ -57,12 +63,169 @@ def status_for(source, config):
     return 'previewable', 'preflight checks passed', root
 
 
+def _bounds_tuple(bounds):
+    return tuple(float(bounds[key]) for key in ('west', 'south', 'east', 'north'))
+
+
+def _rect_tuple(rect):
+    return tuple(float(rect[key]) for key in ('x', 'y', 'width', 'height'))
+
+
+def _map_frames(config):
+    """Return georeference frames that are safe for the shared local projection."""
+    regions = config.get('map', {}).get('regions')
+    if regions:
+        return [(region['id'], _bounds_tuple(region['bounds']), _rect_tuple(region['rect'])) for region in regions]
+    bounds = config.get('map', {}).get('bounds') or {}
+    return [('main', _bounds_tuple(bounds), None)]
+
+
+def _gshhs_lakes(bounds):
+    """Return GSHHS level-2 inland-water polygons intersecting the visible canvas bounds."""
+    from mpl_toolkits.basemap import Basemap
+    from shapely.geometry import Polygon, box
+    from shapely.ops import unary_union
+
+    west, south, east, north = bounds
+    if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
+        raise ValueError('unsupported lake-audit bounds')
+    basemap = Basemap(
+        projection='cyl',
+        llcrnrlon=west,
+        llcrnrlat=south,
+        urcrnrlon=east,
+        urcrnrlat=north,
+        resolution='i',
+        area_thresh=0.1,
+    )
+    lakes = []
+    for (xs, ys), level in zip(basemap.coastpolygons, basemap.coastpolygontypes):
+        if level != 2:
+            continue
+        poly = Polygon(zip(xs, ys))
+        if not poly.is_valid:
+            poly = poly.buffer(0)
+        if not poly.is_empty:
+            lakes.append(poly)
+    if not lakes:
+        return []
+    clipped = unary_union(lakes).intersection(box(*bounds))
+    return [poly for poly in ctx.mapgen.polygons_from_geometry(clipped) if not poly.is_empty]
+
+
+def _project_ring(coords, bounds, rect):
+    factor, scale, origin_x, origin_y = ctx.frame(bounds, rect)
+    west, south, east, north = bounds
+    return [
+        (
+            origin_x + (lon - west) * factor * scale,
+            origin_y + (north - lat) * scale,
+        )
+        for lon, lat in coords
+    ]
+
+
+def _lake_mask(poly, bounds, rect, image_module, image_draw_module):
+    mask = image_module.new('L', (ctx.mapgen.WIDTH, ctx.mapgen.HEIGHT), 0)
+    draw = image_draw_module.Draw(mask)
+    exterior = _project_ring(poly.exterior.coords, bounds, rect)
+    if len(exterior) >= 3:
+        draw.polygon(exterior, fill=255)
+    for interior in poly.interiors:
+        ring = _project_ring(interior.coords, bounds, rect)
+        if len(ring) >= 3:
+            draw.polygon(ring, fill=0)
+    return mask
+
+
+def _is_water_rgb(rgb):
+    r, g, b = rgb[:3]
+    # Shared sea gradients and the existing explicit lake fill are all cool,
+    # pale blue/blue-green. Target/context land is warmer and fails this gate.
+    return b >= 214 and g >= 220 and g - r >= 3 and b - r >= 4
+
+
+def audit_lakes(source, config, cairosvg, image_module, image_draw_module):
+    """Audit material GSHHS lakes against the rendered canonical SVG.
+
+    Only lake polygons that remain visibly meaningful at the 1200x760 product
+    scale are tested. Tiny water bodies are intentionally ignored.
+    """
+    frames = _map_frames(config)
+    candidates = []
+    seen = set()
+    for frame_id, bounds, rect in frames:
+        visible_bounds = ctx.canvas_bounds(bounds, rect)
+        for poly in _gshhs_lakes(visible_bounds):
+            mask = _lake_mask(poly, bounds, rect, image_module, image_draw_module)
+            bbox = mask.getbbox()
+            if bbox is None:
+                continue
+            width, height = bbox[2] - bbox[0], bbox[3] - bbox[1]
+            pixels = int(sum(mask.histogram()[1:]))
+            if pixels < MIN_LAKE_PIXELS or width < MIN_LAKE_WIDTH or height < MIN_LAKE_HEIGHT:
+                continue
+            lon, lat = poly.representative_point().coords[0]
+            key = (round(lon, 4), round(lat, 4), frame_id)
+            if key in seen:
+                continue
+            seen.add(key)
+            candidates.append({
+                'frame': frame_id,
+                'longitude': round(lon, 5),
+                'latitude': round(lat, 5),
+                'pixels': pixels,
+                'bbox': [int(v) for v in bbox],
+                '_mask': mask,
+            })
+    if not candidates:
+        return {'status': 'no_material_lakes', 'material_count': 0, 'missing_count': 0, 'lakes': []}
+
+    raster = cairosvg.svg2png(
+        bytestring=source.encode(),
+        output_width=ctx.mapgen.WIDTH,
+        output_height=ctx.mapgen.HEIGHT,
+    )
+    with image_module.open(io.BytesIO(raster)) as opened:
+        image = opened.convert('RGB')
+        px = image.load()
+        for candidate in candidates:
+            mask = candidate.pop('_mask')
+            bbox = candidate['bbox']
+            covered = water = 0
+            mp = mask.load()
+            for y in range(bbox[1], bbox[3]):
+                for x in range(bbox[0], bbox[2]):
+                    if not mp[x, y]:
+                        continue
+                    covered += 1
+                    if _is_water_rgb(px[x, y]):
+                        water += 1
+            coverage = water / covered if covered else 0.0
+            candidate['water_fraction'] = round(coverage, 4)
+            candidate['status'] = 'pass' if coverage >= LAKE_WATER_PASS else 'missing_or_partial'
+
+    missing = [lake for lake in candidates if lake['status'] != 'pass']
+    return {
+        'status': 'pass' if not missing else 'review',
+        'material_count': len(candidates),
+        'missing_count': len(missing),
+        'lakes': candidates,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--shard', type=int, required=True)
     parser.add_argument('--shards', type=int, default=4)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--no-previews', action='store_true')
+    parser.add_argument(
+        '--scope',
+        choices=('published', 'all'),
+        default='published',
+        help='Audit published registry entries or every Country JSON with a map SVG.',
+    )
     args = parser.parse_args()
     if not 0 <= args.shard < args.shards:
         parser.error('invalid shard')
@@ -73,12 +236,27 @@ def main():
     destinations = registry['destinations']
     if len(destinations) != registry['count'] or len({d['slug'] for d in destinations}) != len(destinations):
         raise SystemExit('Canonical registry count or unique slugs invalid')
-    published = [d for d in destinations if d.get('atlasPublished')]
-    selected = [d for idx, d in enumerate(published) if idx % args.shards == args.shard]
+    if args.scope == 'published':
+        audited = [d for d in destinations if d.get('atlasPublished')]
+    else:
+        audited = []
+        for d in destinations:
+            country_path = ROOT / 'data/countries' / (d['slug'] + '.json')
+            if not country_path.exists():
+                continue
+            try:
+                country = json.loads(country_path.read_text())
+            except (OSError, json.JSONDecodeError):
+                continue
+            svg = (country.get('map') or {}).get('svg')
+            if isinstance(svg, str) and svg.endswith('.svg'):
+                audited.append(d)
+    selected = [d for idx, d in enumerate(audited) if idx % args.shards == args.shard]
     summary = {'git_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-               'shard': args.shard, 'shards': args.shards, 'registry_count': len(destinations),
-               'published_count': len(published), 'selected_count': len(selected),
-               'production_state': {}, 'countries': [], 'counts': {}}
+               'shard': args.shard, 'shards': args.shards, 'scope': args.scope,
+               'registry_count': len(destinations), 'published_count': sum(bool(d.get('atlasPublished')) for d in destinations),
+               'audited_count': len(audited), 'selected_count': len(selected),
+               'production_state': {}, 'countries': [], 'counts': {}, 'lake_counts': {}}
     state_by_slug = {}
     for slug in ('belize', 'honduras'):
         p = ROOT / 'ops/country-production' / (slug + '.json')
@@ -89,9 +267,9 @@ def main():
     thumbs = []
     for d in selected:
         slug = d['slug']
-        record = {'slug': slug, 'published': True}
+        record = {'slug': slug, 'published': bool(d.get('atlasPublished'))}
         summary['countries'].append(record)
-        if slug in state_by_slug and state_by_slug[slug].get('phase') != 'COMPLETE':
+        if args.scope == 'published' and slug in state_by_slug and state_by_slug[slug].get('phase') != 'COMPLETE':
             record.update(status='in_flight_hold', reason='published registry entry is not COMPLETE; fail closed')
             continue
         try:
@@ -103,12 +281,23 @@ def main():
             svg_path = ROOT / relative
             source = svg_path.read_text(encoding='utf-8')
             status, reason, root = status_for(source, config)
+            try:
+                lake_audit = audit_lakes(source, config, cairosvg, Image, ImageDraw)
+            except Exception as lake_exc:
+                lake_audit = {
+                    'status': 'unsupported',
+                    'material_count': 0,
+                    'missing_count': 0,
+                    'reason': (type(lake_exc).__name__ + ': ' + str(lake_exc))[:400],
+                    'lakes': [],
+                }
             record.update(status=status, reason=reason, svg=relative,
                           input_sha256=hashlib.sha256(source.encode()).hexdigest(),
                           projection=root.get('data-map-projection'),
                           regions=[r['id'] for r in config['map'].get('regions', [])],
                           original_path_count=len(original_paths(root)),
-                          adapter=('legacy' if slug in legacy.LEGACY_SLUGS else 'canonical'))
+                          adapter=('legacy' if slug in legacy.LEGACY_SLUGS else 'canonical'),
+                          lake_audit=lake_audit)
             if status != 'previewable' or args.no_previews:
                 continue
             output_svg = args.output / (slug + '.svg')
@@ -148,11 +337,20 @@ def main():
             draw.text((x + 7, y + 193), slug, fill='#202020')
         sheet.save(args.output / 'contact-sheet.png')
     summary['counts'] = dict(sorted(Counter(r['status'] for r in summary['countries']).items()))
+    summary['lake_counts'] = dict(sorted(Counter(
+        (r.get('lake_audit') or {}).get('status', 'not_audited') for r in summary['countries']
+    ).items()))
     (args.output / 'report.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
-    print('MAP INVENTORY', json.dumps({k: summary[k] for k in ('git_sha','shard','published_count','selected_count','counts')}, ensure_ascii=False))
+    print('MAP INVENTORY', json.dumps(
+        {k: summary[k] for k in ('git_sha','shard','scope','audited_count','selected_count','counts','lake_counts')},
+        ensure_ascii=False,
+    ))
     for r in summary['countries']:
         if r['status'] not in ('preview_pass','existing_context'):
             print('REVIEW', r['slug'], r['status'], r.get('reason',''))
+        lake = r.get('lake_audit') or {}
+        if lake.get('status') == 'review':
+            print('LAKE REVIEW', r['slug'], lake.get('missing_count'), 'of', lake.get('material_count'))
 
 
 if __name__ == '__main__':
