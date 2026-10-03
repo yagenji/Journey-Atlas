@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """Add missing material inland-water geometry to an existing JOURNEY ATLAS map.
 
-The tool is conservative:
+The tool is deliberately conservative:
 - uses verified GSHHS/GSHHG level-2 inland-water geometry;
 - only considers lakes that visibly intersect the target Country geometry;
-- ignores water bodies too small to matter on the 1200x760 product canvas;
-- raster-checks the existing SVG first and leaves already-rendered lakes alone;
-- never changes coastline, island, administrative-boundary or marker coordinates.
+- limits automatic fixes to major water bodies that are clearly legible at 1200x760;
+- raster-checks the existing SVG and leaves already-rendered water alone;
+- never changes coastline, islands, administrative boundaries or marker coordinates;
+- never modifies maps that already contain a reviewed ``inland-water`` layer.
 
-It is intended as shared map tooling, not Country-specific production state.
+It is shared map tooling, not Country-specific production state.
 """
 from __future__ import annotations
 
 import argparse
 import io
 import json
-import math
 import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -30,10 +30,16 @@ import add_country_map_context as ctx
 SVG_NS = "{http://www.w3.org/2000/svg}"
 WIDTH = 1200
 HEIGHT = 760
-MIN_LAKE_PIXELS = 64.0
-MIN_LAKE_WIDTH = 5.0
-MIN_LAKE_HEIGHT = 5.0
-WATER_PASS = 0.78
+# Major-lake gate. Smaller water bodies remain a visual-review choice rather
+# than being forced into every map. This keeps the shared rule geographic and
+# legible instead of turning the map into a hydrography layer.
+MIN_LAKE_PIXELS = 1000.0
+MIN_LAKE_WIDTH = 10.0
+MIN_LAKE_HEIGHT = 10.0
+# Borders, shoreline antialiasing and reviewed water strokes can occupy part of
+# a true lake polygon. Seventy percent visible water is enough to treat it as
+# already represented and avoids double-drawing reviewed lakes.
+WATER_PASS = 0.70
 WATER_FILL = "#e5eceb"
 WATER_STROKE = "#6f8a92"
 FLOAT_RE = re.compile(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
@@ -91,18 +97,14 @@ def _target_geometry(root: ET.Element):
         if _effective_fill(node, parents) != "url(#land)":
             continue
         d = node.get("d", "")
-        if not d:
-            continue
-        targets.extend(_rings_from_d(d))
+        if d:
+            targets.extend(_rings_from_d(d))
     if not targets:
         raise ValueError("No linear target-country land geometry found")
-    # Target paths are overwhelmingly disjoint islands/parts. Union is sufficient
-    # for lake intersection; interior holes do not create false target overlap for
-    # the material lakes this tool considers.
     return unary_union(targets)
 
 
-def _frames(config: dict) -> list[tuple[str, tuple[float, float, float, float], tuple[float, float, float, float] | None]]:
+def _frames(config: dict):
     regions = (config.get("map") or {}).get("regions")
     if regions:
         result = []
@@ -119,7 +121,7 @@ def _frames(config: dict) -> list[tuple[str, tuple[float, float, float, float], 
     return [("main", tuple(float(b[key]) for key in ("west", "south", "east", "north")), None)]
 
 
-def _gshhs_lakes(bounds: tuple[float, float, float, float], resolution: str):
+def _gshhs_lakes(bounds, resolution: str):
     from mpl_toolkits.basemap import Basemap
 
     west, south, east, north = bounds
@@ -152,16 +154,12 @@ def _project_polygon(poly: Polygon, bounds, rect):
 
     def ring(coords):
         return [
-            (
-                origin_x + (lon - west) * factor * scale,
-                origin_y + (north - lat) * scale,
-            )
+            (origin_x + (lon - west) * factor * scale,
+             origin_y + (north - lat) * scale)
             for lon, lat in coords
         ]
 
-    shell = ring(poly.exterior.coords)
-    holes = [ring(interior.coords) for interior in poly.interiors]
-    projected = Polygon(shell, holes)
+    projected = Polygon(ring(poly.exterior.coords), [ring(interior.coords) for interior in poly.interiors])
     if not projected.is_valid:
         projected = projected.buffer(0)
     return projected
@@ -183,9 +181,9 @@ def _path_from_polygon(poly: Polygon) -> str:
     return " ".join(part for part in parts if part)
 
 
-def _mask(poly, image_module=Image, draw_module=ImageDraw):
-    mask = image_module.new("L", (WIDTH, HEIGHT), 0)
-    draw = draw_module.Draw(mask)
+def _mask(poly):
+    mask = Image.new("L", (WIDTH, HEIGHT), 0)
+    draw = ImageDraw.Draw(mask)
     exterior = [(round(x), round(y)) for x, y in poly.exterior.coords]
     if len(exterior) >= 3:
         draw.polygon(exterior, fill=255)
@@ -198,7 +196,8 @@ def _mask(poly, image_module=Image, draw_module=ImageDraw):
 
 def _is_water(rgb) -> bool:
     r, g, b = rgb[:3]
-    # Covers the shared sea gradient and both approved inland-water fills.
+    # Shared sea gradient and approved inland-water fills are pale cool tones;
+    # the warm target/context land palette fails this gate.
     return b >= 212 and g >= 218 and g - r >= 2 and b - r >= 3
 
 
@@ -236,7 +235,7 @@ def _clip_to_canvas(poly):
 
 
 def _insert_markup(source: str, markup: str) -> str:
-    # Put water above land but below reviewed boundary overlays whenever present.
+    # Put water above land but below reviewed national/border overlays whenever present.
     anchors = (
         '<path id="target-country-boundary-overlay"',
         '<path id="neighbor-borders"',
@@ -263,6 +262,13 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
     ):
         raise ValueError("Unsupported projection for shared lake normalization")
 
+    # Explicit inland-water geometry means the map has already had Country-level
+    # geographic review. Never stack an automatic layer on top of it.
+    if root.find(".//*[@id='inland-water']") is not None:
+        return source, {"changed": False, "missing_lakes": 0, "reason": "reviewed_inland_water"}
+    if root.find(".//*[@id='inland-water-auto']") is not None:
+        return source, {"changed": False, "missing_lakes": 0, "reason": "already_normalized"}
+
     target = _target_geometry(root)
     raster = cairosvg.svg2png(bytestring=source.encode("utf-8"), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
@@ -277,7 +283,9 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
                 if not _material(part):
                     continue
                 overlap = part.intersection(target).area
-                if overlap < 4.0:
+                # Require a meaningful overlap with target-country land; nearby
+                # lakes belonging only to surrounding countries are not patched.
+                if overlap < max(40.0, part.area * 0.08):
                     continue
                 rep = part.representative_point()
                 key = (frame_id, round(rep.x, 1), round(rep.y, 1), round(part.area, 1))
@@ -290,6 +298,7 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
                 missing.append({
                     "frame": frame_id,
                     "area_pixels": round(part.area, 1),
+                    "target_overlap_pixels": round(overlap, 1),
                     "water_fraction_before": round(water_fraction, 4),
                     "geometry": part,
                 })
@@ -297,8 +306,6 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
     if not missing:
         return source, {"changed": False, "missing_lakes": 0}
 
-    # One shared visual treatment. Existing reviewed inland-water groups are not
-    # replaced; this group only supplies geometry that is visibly missing.
     by_frame: dict[str, list] = {}
     for item in missing:
         by_frame.setdefault(item["frame"], []).append(item)
@@ -311,7 +318,7 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
             f'<path data-map-auto-lake="1" d="{_path_from_polygon(item["geometry"])}"/>'
             for item in items
         )
-        bounds, rect = frame_map[frame_id]
+        _bounds, rect = frame_map[frame_id]
         if rect is None:
             groups.append(paths)
         else:
