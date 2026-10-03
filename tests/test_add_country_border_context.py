@@ -19,16 +19,16 @@ class CountryBorderContextTest(unittest.TestCase):
         '<path d="M100,100 L200,100 L200,200 Z" fill="url(#land)"/></svg>'
     )
 
-    def _dataset(self, coordinates):
+    def _dataset(self, coordinates, properties=None):
+        return self._features_dataset([{
+            "type": "Feature",
+            "properties": properties or {},
+            "geometry": {"type": "LineString", "coordinates": coordinates},
+        }])
+
+    def _features_dataset(self, features):
         tmp = tempfile.NamedTemporaryFile("w", suffix=".geojson", delete=False, encoding="utf-8")
-        json.dump({
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {},
-                "geometry": {"type": "LineString", "coordinates": coordinates},
-            }],
-        }, tmp)
+        json.dump({"type": "FeatureCollection", "features": features}, tmp)
         tmp.close()
         self.addCleanup(Path(tmp.name).unlink)
         return Path(tmp.name)
@@ -46,6 +46,51 @@ class CountryBorderContextTest(unittest.TestCase):
     def test_no_visible_land_boundary_leaves_svg_unchanged(self):
         dataset = self._dataset([[30.0, 10.0], [31.0, 11.0]])
         self.assertEqual(self.SVG, borders.add_borders(self.SVG, self.BOUNDS, dataset=dataset))
+
+    def test_target_iso_omits_only_target_adjacent_boundary(self):
+        dataset = self._features_dataset([
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "GBR", "ADM0_A3_R": "IRL"},
+                "geometry": {"type": "LineString", "coordinates": [[10.2, 40.4], [10.4, 40.6]]},
+            },
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "AAA", "ADM0_A3_R": "BBB"},
+                "geometry": {"type": "LineString", "coordinates": [[11.2, 41.4], [11.4, 41.6]]},
+            },
+        ])
+        all_lines = borders.make_border_path(self.BOUNDS, dataset=dataset)
+        filtered = borders.make_border_path(self.BOUNDS, dataset=dataset, target_iso3="GBR")
+        self.assertGreater(all_lines.count("M"), filtered.count("M"))
+        self.assertEqual(1, filtered.count("M"))
+
+    def test_replace_borders_preserves_target_geometry(self):
+        dataset = self._features_dataset([
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "GBR", "ADM0_A3_R": "IRL"},
+                "geometry": {"type": "LineString", "coordinates": [[10.2, 40.4], [10.4, 40.6]]},
+            },
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "AAA", "ADM0_A3_R": "BBB"},
+                "geometry": {"type": "LineString", "coordinates": [[11.2, 41.4], [11.4, 41.6]]},
+            },
+        ])
+        initial = borders.add_borders(self.SVG, self.BOUNDS, dataset=dataset)
+        target = '<path d="M100,100 L200,100 L200,200 Z" fill="url(#land)"/>'
+        replaced = borders.replace_borders(
+            initial,
+            self.BOUNDS,
+            dataset=dataset,
+            target_iso3="GBR",
+        )
+        self.assertIn(target, replaced)
+        self.assertEqual(1, replaced.count('id="context-national-borders"'))
+        self.assertIn("target-adjacent GBR lines omitted", replaced)
+        group = replaced[replaced.index('id="context-national-borders"'):replaced.index("</g>")]
+        self.assertEqual(1, group.count("M"))
 
 
 if __name__ == "__main__":
