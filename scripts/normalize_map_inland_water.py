@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Normalize visible inland-water layers across Country map SVGs.
+"""Normalize material inland-water rendering across canonical Country maps.
 
-The script never alters approved country/coast/border path geometry. It derives
-material inland-water polygons from GSHHS/GSHHG and adds a canonical water
-layer above land. Existing canonical/generated water groups are replaced.
+Approved country/coast/border path geometry is never rewritten. GSHHS/GSHHG
+level-2 inland water is projected onto the existing 1200x760 map frame. A
+reviewed canonical inland-water layer is preserved rather than regenerated.
 """
 from __future__ import annotations
 
@@ -36,12 +36,13 @@ MIN_PIXEL_HEIGHT = 5
 SIMPLIFY = 0.00195
 WATER_SOURCE_NOTE = "Inland water: GSHHS/GSHHG via Basemap resolution=i, WGS84."
 
-CANONICAL_WATER_RE = re.compile(
-    r'<g\b(?=[^>]*\bid="inland-water"|[^>]*\bfill="#e5eceb")'
+WATER_GROUP_RE = re.compile(
+    r'<g\b(?=[^>]*\bid="inland-water"|[^>]*\bfill="#e5eceb"|[^>]*\bfill="#e4eceb")'
     r'[^>]*>.*?</g>\s*',
     re.DOTALL,
 )
 METADATA_RE = re.compile(r"<metadata>(.*?)</metadata>", re.DOTALL)
+DEFS_CLOSE_RE = re.compile(r"</defs\s*>")
 
 
 def bounds_tuple(bounds: dict) -> tuple[float, float, float, float]:
@@ -52,7 +53,7 @@ def rect_tuple(rect: dict) -> tuple[float, float, float, float]:
     return tuple(float(rect[key]) for key in ("x", "y", "width", "height"))
 
 
-def visible_at_product_scale(poly: Polygon, bounds, rect) -> bool:
+def visible_at_product_scale(poly: Polygon, bounds, rect=None) -> bool:
     factor, scale, _, _ = ctx.frame(bounds, rect)
     minx, miny, maxx, maxy = poly.bounds
     width = (maxx - minx) * factor * scale
@@ -62,7 +63,7 @@ def visible_at_product_scale(poly: Polygon, bounds, rect) -> bool:
 
 
 def material_lakes(bounds: tuple[float, float, float, float], rect=None):
-    """Return GSHHS level-2 lake polygons that remain material at 1200x760."""
+    """Return GSHHS level-2 water that remains material at product scale."""
     from mpl_toolkits.basemap import Basemap
 
     west, south, east, north = bounds
@@ -94,43 +95,93 @@ def material_lakes(bounds: tuple[float, float, float, float], rect=None):
     return lakes
 
 
-def lake_markup(config: dict, projection: str) -> tuple[str, int]:
-    regions = (config.get("map") or {}).get("regions")
+def canonical_water_present(root: ET.Element, source: str) -> bool:
+    """Keep already-reviewed shared-style lake geometry byte-for-byte."""
+    for group in root.iter(SVG_NS + "g"):
+        if group.get("id") != "inland-water":
+            continue
+        if (
+            group.get("fill") == LAKE_FILL
+            and group.get("stroke") == LAKE_STROKE
+            and group.get("stroke-width") == LAKE_STROKE_WIDTH
+            and group.get("stroke-opacity") == LAKE_STROKE_OPACITY
+            and "GSHHS/GSHHG" in source
+        ):
+            return True
+    return False
+
+
+def projected_path(bounds, rect=None) -> tuple[str, int]:
+    lakes = material_lakes(bounds, rect)
+    if not lakes:
+        return "", 0
+    geometry = unary_union(lakes)
+    return ctx.make_context_path(geometry, bounds, SIMPLIFY, rect), len(lakes)
+
+
+def lake_markup(config: dict, projection: str) -> tuple[str, str, int]:
+    """Return (defs, water_group, polygon_count)."""
+    regions = (config.get("map") or {}).get("regions") or []
+    clips: list[str] = []
     paths: list[str] = []
     count = 0
-    if regions:
-        if projection != "multi-region-local-equirectangular-fit-v1":
-            return "", 0
+
+    if projection == "multi-region-local-equirectangular-fit-v1":
+        if not regions:
+            return "", "", 0
         for region in regions:
             bounds = bounds_tuple(region["bounds"])
             rect = rect_tuple(region["rect"])
-            lakes = material_lakes(bounds, rect)
-            if not lakes:
+            d, n = projected_path(bounds, rect)
+            if not d:
                 continue
-            geometry = unary_union(lakes)
-            d = ctx.make_context_path(geometry, bounds, SIMPLIFY, rect)
-            if d:
-                paths.append(f'<path data-map-region="{region["id"]}" d="{d}"/>')
-                count += len(lakes)
+            identifier = region["id"]
+            x, y, width, height = rect
+            clip_id = f"inland-water-clip-{identifier}"
+            clips.append(
+                f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
+                f'<rect x="{x:g}" y="{y:g}" width="{width:g}" height="{height:g}"/></clipPath>'
+            )
+            paths.append(
+                f'<path data-map-region="{identifier}" clip-path="url(#{clip_id})" d="{d}"/>'
+            )
+            count += n
+    elif projection == "local-equirectangular-fit-v1":
+        # The national overview remains the primary frame even when JSON also
+        # declares one or more detail insets (Benin/Qatar pattern).
+        main_bounds = bounds_tuple(config["map"]["bounds"])
+        d, n = projected_path(main_bounds)
+        if d:
+            paths.append(f'<path data-map-frame="main" d="{d}"/>')
+            count += n
+        for region in regions:
+            bounds = bounds_tuple(region["bounds"])
+            rect = rect_tuple(region["rect"])
+            d, n = projected_path(bounds, rect)
+            if not d:
+                continue
+            identifier = region["id"]
+            x, y, width, height = rect
+            clip_id = f"inland-water-clip-{identifier}"
+            clips.append(
+                f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
+                f'<rect x="{x:g}" y="{y:g}" width="{width:g}" height="{height:g}"/></clipPath>'
+            )
+            paths.append(
+                f'<path data-map-region="{identifier}" clip-path="url(#{clip_id})" d="{d}"/>'
+            )
+            count += n
     else:
-        if projection != "local-equirectangular-fit-v1":
-            return "", 0
-        bounds = bounds_tuple(config["map"]["bounds"])
-        lakes = material_lakes(bounds)
-        if lakes:
-            geometry = unary_union(lakes)
-            d = ctx.make_context_path(geometry, bounds, SIMPLIFY)
-            if d:
-                paths.append(f'<path d="{d}"/>')
-                count += len(lakes)
+        return "", "", 0
+
     if not paths:
-        return "", 0
+        return "", "", 0
     group = (
         f'<g id="inland-water" fill="{LAKE_FILL}" stroke="{LAKE_STROKE}" '
         f'stroke-opacity="{LAKE_STROKE_OPACITY}" stroke-width="{LAKE_STROKE_WIDTH}" '
         f'fill-rule="evenodd">' + "".join(paths) + "</g>"
     )
-    return group, count
+    return "".join(clips), group, count
 
 
 def add_source_note(svg: str) -> str:
@@ -141,6 +192,35 @@ def add_source_note(svg: str) -> str:
     return svg[: match.start()] + replacement + svg[match.end() :]
 
 
+def insert_water(source: str, defs: str, group: str) -> str:
+    stripped = WATER_GROUP_RE.sub("", source)
+    if defs:
+        close = DEFS_CLOSE_RE.search(stripped)
+        if not close:
+            raise ValueError("SVG defs closing tag missing")
+        stripped = stripped[: close.start()] + defs + stripped[close.start() :]
+    if "</svg>" not in stripped:
+        raise ValueError("SVG closing tag missing")
+
+    # Prefer to place water before reviewed border overlays so international
+    # and disputed lake boundaries remain visible above the water fill.
+    anchors = (
+        r'<path\b[^>]*\bid="target-country-boundary-overlay"',
+        r'<g\b[^>]*\bid="country-boundaries"',
+        r'<g\b[^>]*\bid="context-national-borders"',
+        r'<path\b[^>]*\bid="neighbor-borders"',
+    )
+    positions = []
+    for pattern in anchors:
+        match = re.search(pattern, stripped)
+        if match:
+            positions.append(match.start())
+    if positions:
+        pos = min(positions)
+        return stripped[:pos] + group + "\n" + stripped[pos:]
+    return stripped.replace("</svg>", group + "\n</svg>", 1)
+
+
 def normalize_svg(source: str, config: dict) -> tuple[str, str, int]:
     root = ET.fromstring(source)
     if root.tag != SVG_NS + "svg" or root.get("viewBox") != "0 0 1200 760":
@@ -148,17 +228,15 @@ def normalize_svg(source: str, config: dict) -> tuple[str, str, int]:
     projection = root.get("data-map-projection") or ""
     if projection not in SUPPORTED_PROJECTIONS:
         return source, "unsupported_projection", 0
-    regions = (config.get("map") or {}).get("regions")
-    if regions and projection != "multi-region-local-equirectangular-fit-v1":
-        return source, "unsupported_region_projection", 0
-    group, count = lake_markup(config, projection)
+    if canonical_water_present(root, source):
+        return source, "unchanged", 0
+    defs, group, count = lake_markup(config, projection)
     if not group:
         return source, "no_material_lakes", 0
-    stripped = CANONICAL_WATER_RE.sub("", source)
-    if "</svg>" not in stripped:
-        raise ValueError("SVG closing tag missing")
-    normalized = stripped.replace("</svg>", group + "\n</svg>", 1)
+    normalized = insert_water(source, defs, group)
     normalized = add_source_note(normalized)
+    # Parse the finished SVG before allowing it to leave the normalizer.
+    ET.fromstring(normalized)
     return normalized, ("unchanged" if normalized == source else "changed"), count
 
 
@@ -177,6 +255,7 @@ def main() -> None:
     parser.add_argument("--shard", type=int, default=0)
     parser.add_argument("--shards", type=int, default=1)
     parser.add_argument("--scope", choices=("published", "all"), default="all")
+    parser.add_argument("--check", action="store_true", help="Fail when a supported map still needs normalization")
     args = parser.parse_args()
     if not 0 <= args.shard < args.shards:
         parser.error("invalid shard")
@@ -253,7 +332,7 @@ def main() -> None:
         print("UNSUPPORTED", row["slug"], row["reason"], row["svg"])
     for row in report["errors"]:
         print("ERROR", row["slug"], row["error"])
-    if report["errors"]:
+    if report["errors"] or (args.check and report["changed"]):
         raise SystemExit(1)
 
 
