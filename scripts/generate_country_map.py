@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a JOURNEY ATLAS country-map SVG from high-quality geographic data."""
+"""Generate a JOURNEY ATLAS country-map SVG from verified geographic data."""
 
 from __future__ import annotations
 
@@ -18,44 +18,36 @@ import add_country_border_context as borders
 WIDTH = 1200
 HEIGHT = 760
 STYLE_VERSION = "journey-atlas-map-v3-clean-background"
+LAKE_FILL = "#e5eceb"
+LAKE_STROKE = "#6f8a92"
+LAKE_STROKE_OPACITY = ".35"
+LAKE_STROKE_WIDTH = ".65"
+MIN_LAKE_PIXEL_AREA = 64
+MIN_LAKE_PIXEL_WIDTH = 5
+MIN_LAKE_PIXEL_HEIGHT = 5
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--source",
-        choices=("gshhs", "natural-earth", "geoboundaries"),
-        required=True,
-    )
-    parser.add_argument(
-        "--bounds",
-        nargs=4,
-        type=float,
-        metavar=("WEST", "SOUTH", "EAST", "NORTH"),
-        required=True,
-    )
+    parser.add_argument("--source", choices=("gshhs", "natural-earth", "geoboundaries"), required=True)
+    parser.add_argument("--bounds", nargs=4, type=float, metavar=("WEST", "SOUTH", "EAST", "NORTH"), required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--dataset", help="Natural Earth shapefile/GeoJSON path")
     parser.add_argument("--country-name", help="Country name used to select Natural Earth geometry")
     parser.add_argument("--map-name", help="Accessible country name embedded in the SVG")
     parser.add_argument("--iso", help="ISO3 code for geoBoundaries, e.g. SWE")
     parser.add_argument(
-        "--admin-level",
-        default="ADM0",
-        choices=("ADM0", "ADM1", "ADM2", "ADM3"),
+        "--admin-level", default="ADM0", choices=("ADM0", "ADM1", "ADM2", "ADM3"),
         help="geoBoundaries level. ADM1 may be dissolved when ADM0 coastline detail is insufficient.",
     )
     parser.add_argument("--resolution", default="i", choices=("c", "l", "i", "h", "f"))
     parser.add_argument(
-        "--simplify",
-        type=float,
-        default=0.003,
+        "--simplify", type=float, default=0.003,
         help="Geometry simplification tolerance in degrees. Keep <=0.003 for production unless QA proves otherwise.",
     )
     parser.add_argument(
-        "--include-lakes",
-        action="store_true",
-        help="Compatibility flag. Material inland lakes are rendered automatically.",
+        "--include-lakes", action="store_true",
+        help="Compatibility flag. Material inland water is rendered automatically from GSHHS/GSHHG.",
     )
     parser.add_argument("--max-bytes", type=int, default=0, help="Fail if generated SVG exceeds this size; 0 disables")
     return parser.parse_args()
@@ -74,23 +66,14 @@ def polygons_from_geometry(geometry) -> list[Polygon]:
     return []
 
 
-def load_gshhs(
-    bounds: tuple[float, float, float, float],
-    resolution: str,
-) -> tuple[list[Polygon], list[Polygon], str]:
+def load_gshhs(bounds: tuple[float, float, float, float], resolution: str) -> tuple[list[Polygon], list[Polygon], str]:
     from mpl_toolkits.basemap import Basemap
 
     west, south, east, north = bounds
     m = Basemap(
-        projection="cyl",
-        llcrnrlon=west,
-        llcrnrlat=south,
-        urcrnrlon=east,
-        urcrnrlat=north,
-        resolution=resolution,
-        area_thresh=0.1,
+        projection="cyl", llcrnrlon=west, llcrnrlat=south,
+        urcrnrlon=east, urcrnrlat=north, resolution=resolution, area_thresh=0.1,
     )
-
     land: list[Polygon] = []
     lakes: list[Polygon] = []
     for (xs, ys), polygon_type in zip(m.coastpolygons, m.coastpolygontypes):
@@ -101,10 +84,10 @@ def load_gshhs(
             land.extend(polygons_from_geometry(geom))
         elif polygon_type == 2:
             lakes.extend(polygons_from_geometry(geom))
-    return land, lakes, f"GSHHS/GSHHG via Basemap resolution={resolution}"
+    return land, lakes, f"GSHHS/GSHHG via Basemap resolution={resolution}, WGS84"
 
 
-def load_natural_earth(dataset: str, country_name: str) -> tuple[list[Polygon], list[Polygon], str]:
+def load_natural_earth(dataset: str, country_name: str) -> tuple[list[Polygon], str]:
     import geopandas as gpd
 
     gdf = gpd.read_file(dataset).to_crs(4326)
@@ -118,60 +101,37 @@ def load_natural_earth(dataset: str, country_name: str) -> tuple[list[Polygon], 
                 break
     if match is None or match.empty:
         raise ValueError(f"Country not found in Natural Earth dataset: {country_name}")
-
     geometry = match.geometry.union_all() if hasattr(match.geometry, "union_all") else match.geometry.unary_union
-    land = polygons_from_geometry(geometry)
-    lakes: list[Polygon] = []
-    for polygon in land:
-        lakes.extend(Polygon(ring) for ring in polygon.interiors)
-    return land, lakes, f"Natural Earth 1:10m | {dataset}"
+    return polygons_from_geometry(geometry), f"Natural Earth 1:10m | {dataset}"
 
 
-def load_geoboundaries(iso: str, admin_level: str) -> tuple[list[Polygon], list[Polygon], str]:
+def load_geoboundaries(iso: str, admin_level: str) -> tuple[list[Polygon], str]:
     api_url = f"https://www.geoboundaries.org/api/current/gbOpen/{iso.upper()}/{admin_level}/"
     with urllib.request.urlopen(api_url) as response:
         metadata = json.load(response)
-
     source_url = metadata.get("gjDownloadURL")
     if not source_url:
         raise ValueError(f"geoBoundaries API returned no gjDownloadURL: {api_url}")
-
     with urllib.request.urlopen(source_url) as response:
         geojson = json.load(response)
-
     geometries = [shape(feature["geometry"]) for feature in geojson.get("features", [])]
     if not geometries:
         raise ValueError(f"geoBoundaries dataset contains no features: {source_url}")
-
     geometry = unary_union(geometries)
-    land = polygons_from_geometry(geometry)
-    lakes: list[Polygon] = []
-    for polygon in land:
-        lakes.extend(Polygon(ring) for ring in polygon.interiors)
-
-    source_note = (
+    note = (
         f"geoBoundaries gbOpen {admin_level} dissolved | {source_url} | "
         f"source={metadata.get('boundarySource', 'unknown')} | "
         f"license={metadata.get('boundaryLicense', 'see upstream')}"
     )
-    return land, lakes, source_note
+    return polygons_from_geometry(geometry), note
 
 
-def projection_frame(
-    bounds: tuple[float, float, float, float],
-) -> tuple[float, float, float, float]:
-    """Return local-equirectangular scale and centered offsets for the canvas.
-
-    Longitude degrees become physically shorter toward the poles. Using the
-    country's midpoint latitude as the standard parallel preserves the local
-    geographic aspect ratio while keeping north up and east right.
-    """
+def projection_frame(bounds: tuple[float, float, float, float]) -> tuple[float, float, float, float]:
     west, south, east, north = bounds
     longitude_range = east - west
     latitude_range = north - south
     if longitude_range <= 0 or latitude_range <= 0:
         raise ValueError("Map bounds must have positive longitude and latitude ranges")
-
     midpoint_latitude = (south + north) / 2
     longitude_scale = math.cos(math.radians(midpoint_latitude))
     projected_width = longitude_range * longitude_scale
@@ -179,25 +139,23 @@ def projection_frame(
     canvas_scale = min(WIDTH / projected_width, HEIGHT / projected_height)
     draw_width = projected_width * canvas_scale
     draw_height = projected_height * canvas_scale
-    offset_x = (WIDTH - draw_width) / 2
-    offset_y = (HEIGHT - draw_height) / 2
-    return longitude_scale, canvas_scale, offset_x, offset_y
+    return longitude_scale, canvas_scale, (WIDTH - draw_width) / 2, (HEIGHT - draw_height) / 2
 
 
 def project(lon: float, lat: float, bounds: tuple[float, float, float, float]) -> tuple[float, float]:
     west, south, east, north = bounds
     longitude_scale, canvas_scale, offset_x, offset_y = projection_frame(bounds)
-    x = offset_x + (lon - west) * longitude_scale * canvas_scale
-    y = offset_y + (north - lat) * canvas_scale
-    return x, y
+    return (
+        offset_x + (lon - west) * longitude_scale * canvas_scale,
+        offset_y + (north - lat) * canvas_scale,
+    )
 
 
 def ring_path(coords, bounds: tuple[float, float, float, float]) -> str:
     points: list[tuple[float, float]] = []
     previous = None
     for lon, lat in coords:
-        x, y = project(lon, lat, bounds)
-        point = (round(x, 1), round(y, 1))
+        point = tuple(round(v, 1) for v in project(lon, lat, bounds))
         if point != previous:
             points.append(point)
             previous = point
@@ -206,11 +164,7 @@ def ring_path(coords, bounds: tuple[float, float, float, float]) -> str:
     return "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in points) + " Z"
 
 
-def polygon_path(
-    polygon: Polygon,
-    bounds: tuple[float, float, float, float],
-    simplify: float,
-) -> str:
+def polygon_path(polygon: Polygon, bounds: tuple[float, float, float, float], simplify: float) -> str:
     geom = polygon.simplify(simplify, preserve_topology=True) if simplify > 0 else polygon
     if geom.is_empty:
         return ""
@@ -221,28 +175,35 @@ def polygon_path(
     return " ".join(part for part in parts if part)
 
 
+def material_lakes(lakes: list[Polygon], bounds: tuple[float, float, float, float]) -> list[Polygon]:
+    factor, scale, _, _ = projection_frame(bounds)
+    result = []
+    for geometry in lakes:
+        for poly in polygons_from_geometry(geometry):
+            minx, miny, maxx, maxy = poly.bounds
+            width = (maxx - minx) * factor * scale
+            height = (maxy - miny) * scale
+            area = poly.area * factor * scale * scale
+            if area >= MIN_LAKE_PIXEL_AREA and width >= MIN_LAKE_PIXEL_WIDTH and height >= MIN_LAKE_PIXEL_HEIGHT:
+                result.append(poly)
+    return result
+
+
 def render_svg(
-    land: list[Polygon],
-    lakes: list[Polygon],
-    bounds: tuple[float, float, float, float],
-    simplify: float,
-    include_lakes: bool,
-    map_name: str,
-    source_note: str,
+    land: list[Polygon], lakes: list[Polygon], bounds: tuple[float, float, float, float],
+    simplify: float, map_name: str, source_note: str,
 ) -> str:
     land = sorted(land, key=lambda geometry: geometry.area, reverse=True)
     land_d = " ".join(polygon_path(geometry, bounds, simplify) for geometry in land)
-
-    major_lakes = sorted(
-        (geometry for geometry in lakes if geometry.area > 0.003),
-        key=lambda geometry: geometry.area,
-        reverse=True,
-    )
+    lakes = sorted(material_lakes(lakes, bounds), key=lambda geometry: geometry.area, reverse=True)
     lake_markup = "".join(
-        f'<path d="{polygon_path(geometry, bounds, max(simplify * 0.65, 0.0005))}"/>'
-        for geometry in major_lakes
+        f'<path d="{polygon_path(geometry, bounds, max(simplify * 0.65, 0.0005))}"/>' for geometry in lakes
     )
-
+    water_group = (
+        f'<g id="inland-water" fill="{LAKE_FILL}" stroke="{LAKE_STROKE}" '
+        f'stroke-opacity="{LAKE_STROKE_OPACITY}" stroke-width="{LAKE_STROKE_WIDTH}" fill-rule="evenodd">'
+        f'{lake_markup}</g>' if lake_markup else ""
+    )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}" data-map-projection="local-equirectangular-fit-v1">
 <metadata>{escape(source_note)}</metadata>
 <defs>
@@ -252,7 +213,7 @@ def render_svg(
 </defs>
 <rect width="{WIDTH}" height="{HEIGHT}" fill="url(#sea)"/>
 <path d="{land_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
-{f'<g id="inland-water" fill="#e5eceb" stroke="#6f8a92" stroke-opacity=".35" stroke-width=".65" fill-rule="evenodd">{lake_markup}</g>' if lake_markup else ''}
+{water_group}
 </svg>'''
 
 
@@ -261,39 +222,34 @@ def main() -> None:
     west, south, east, north = args.bounds
     bounds = (west, south, east, north)
 
+    # Administrative land comes from the requested authoritative source. Inland
+    # water is deliberately independent: always derive it from GSHHS/GSHHG so
+    # arbitrary polygon holes cannot become lakes and lakes cannot disappear by
+    # source choice.
     if args.source == "gshhs":
         land, lakes, source_note = load_gshhs(bounds, args.resolution)
     elif args.source == "natural-earth":
         if not args.dataset or not args.country_name:
             raise ValueError("--dataset and --country-name are required for natural-earth")
-        land, lakes, source_note = load_natural_earth(args.dataset, args.country_name)
+        land, source_note = load_natural_earth(args.dataset, args.country_name)
+        _, lakes, water_note = load_gshhs(bounds, args.resolution)
+        source_note += f"; inland water: {water_note}"
     else:
         if not args.iso:
             raise ValueError("--iso is required for geoboundaries")
-        land, lakes, source_note = load_geoboundaries(args.iso, args.admin_level)
+        land, source_note = load_geoboundaries(args.iso, args.admin_level)
+        _, lakes, water_note = load_gshhs(bounds, args.resolution)
+        source_note += f"; inland water: {water_note}"
 
     map_name = args.map_name or args.country_name or args.iso or "Country"
-    svg = render_svg(
-        land,
-        lakes,
-        bounds,
-        args.simplify,
-        args.include_lakes,
-        map_name,
-        source_note,
-    )
-    svg = borders.add_borders(
-        svg,
-        {"west": west, "south": south, "east": east, "north": north},
-        0.6,
-    )
+    svg = render_svg(land, lakes, bounds, args.simplify, map_name, source_note)
+    svg = borders.add_borders(svg, {"west": west, "south": south, "east": east, "north": north}, 0.6)
     byte_size = len(svg.encode("utf-8"))
     if args.max_bytes and byte_size > args.max_bytes:
         raise ValueError(
             f"Generated SVG is {byte_size} bytes, exceeding --max-bytes {args.max_bytes}. "
             "Increase --simplify only after visual QA; do not publish a truncated asset."
         )
-
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(svg, encoding="utf-8")
