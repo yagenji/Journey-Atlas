@@ -9,7 +9,8 @@ Preserve the established Country Map language:
 - common sea/land palette;
 - common typography and marker language;
 - target Country remains visually primary;
-- real surrounding land is shown where geographically relevant.
+- real surrounding land is shown where geographically relevant;
+- materially visible inland water uses the shared inland-water treatment rather than being filled as land.
 
 ## Geography
 
@@ -17,11 +18,16 @@ Required:
 - verified administrative/national geometry;
 - real coastlines/islands/exclaves;
 - real Scene coordinates;
-- no fictional land, coast, border, road or river;
+- no fictional land, coast, border, road, river or lake;
+- major lakes and border lakes that are visibly meaningful at the product scale must remain water consistently across Country maps;
+- tiny inland-water bodies that are not legible at 1200×760 do not need to be forced into the map;
+- administrative borders crossing or adjoining lakes must remain visible above the water layer;
 - map labels may move for collision avoidance, real coordinates may not;
 - multi-region/inset layouts must preserve real region bounds and projection behavior.
 
-Record the actual geometry/coast source and license.
+Use verified inland-water geometry from the shared geographic source/tooling. Do not infer a lake from an administrative polygon hole alone, because holes can also represent enclaves or other non-water geometry.
+
+Record the actual geometry/coast/water source and license when inland-water geometry is introduced or replaced.
 
 ### Inset notes
 
@@ -35,7 +41,8 @@ Do not add directional wording such as “left/right”, or repeat implementatio
 
 Use the shared map tooling where supported:
 - `scripts/generate_country_map_with_context.py`;
-- `scripts/add_country_map_context.py`.
+- `scripts/add_country_map_context.py`;
+- `scripts/normalize_country_map_lakes.py` for verified missing inland-water geometry on existing maps.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
 
@@ -52,6 +59,8 @@ Also inspect the rendered 1200×760 SVG visually for:
 - coastline alignment;
 - islands/exclaves;
 - surrounding land;
+- materially visible inland water, especially major lakes and border lakes;
+- national-border visibility where a border crosses or follows inland water;
 - marker-on-land placement;
 - capital/marker label collisions;
 - canvas-edge clipping.
