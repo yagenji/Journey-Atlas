@@ -30,7 +30,7 @@ jobs:
       - name: Audit canonical published maps and rasterize supported previews
         run: |
           python -m py_compile tests/audit_map_context_inventory.py
-          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}
+          python tests/audit_map_context_inventory.py --scope all --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}
       - name: Preserve report and preview images only
         if: always()
         uses: actions/upload-artifact@v4
