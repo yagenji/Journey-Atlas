@@ -1,0 +1,624 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "tanzania",
+  "nameEn": "TANZANIA",
+  "nameJa": "タンザニア",
+  "region": "EAST AFRICA / 6°S",
+  "seo": {
+    "description": "セレンゲティ、ンゴロンゴロ、キリマンジャロ、タランギレ、ザンジバルのストーンタウン、キルワ、ニエレレ、ルアハ、ゴンベ。大移動から高峰、スワヒリ海岸、大湖の森までをたどるタンザニアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Dodoma",
+    "nameJa": "ドドマ",
+    "coordinates": {
+      "latitude": -6.172214,
+      "longitude": 35.73947
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 10,
+      "y": -4
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "北部の平原では巨大な草食動物の群れが季節を追って移動し、その東にはアフリカ最高峰が立つ。国土を南と西へ広げれば大河とミオンボ林、タンガニーカ湖岸の森へ、東へ向かえばインド洋のスワヒリ都市へ。野生動物だけでは収まらない地形と文化の振幅を旅する。",
+    "image": "assets/images/tanzania/approved/hero-serengeti-plains.webp",
+    "location": "Serengeti National Park",
+    "coordinates": {
+      "latitude": -2.74,
+      "longitude": 34.859
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 0.2,
+      "south": -12.6,
+      "west": 27.4,
+      "east": 42.2
+    },
+    "svg": "assets/images/tanzania/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Tanzania target geometry plus real COD/BDI/RWA/UGA/KEN/ZMB/MWI/MOZ surrounding land context; Zanzibar and other Tanzanian islands remain source geometry. Checked 2026-09-30."
+  },
+  "scenes": [
+    {
+      "id": "ngorongoro-crater",
+      "name": "ンゴロンゴロ保全地域",
+      "nameLocal": "Ngorongoro Conservation Area / Ngorongoro Crater",
+      "mapLabel": "Ngorongoro",
+      "description": "大きなカルデラの底に草原、湿地、森林が集まり、高密度の野生動物を支える北部の景観。保全地域では自然環境とマサイの牧畜生活が同じ空間に重なり、人類史を示す遺跡群も含まれる。",
+      "coordinates": {
+        "latitude": -3.18722,
+        "longitude": 35.54083
+      },
+      "image": "assets/images/tanzania/approved/scene-1-ngorongoro-crater.webp",
+      "mapOffset": {
+        "x": 1.9,
+        "y": -1.8
+      }
+    },
+    {
+      "id": "mount-kilimanjaro",
+      "name": "キリマンジャロ",
+      "nameLocal": "Mount Kilimanjaro / Kilimanjaro National Park",
+      "mapLabel": "Kilimanjaro",
+      "description": "標高5,895mのアフリカ最高峰。低地から山地林、ヒース・ムーアランド、高山砂漠、山頂部へと標高帯が切り替わり、赤道に近い東アフリカで大きな垂直方向の景観変化を見せる。",
+      "coordinates": {
+        "latitude": -3.075833,
+        "longitude": 37.353333
+      },
+      "image": "assets/images/tanzania/approved/scene-2-kilimanjaro-kibo.webp",
+      "mapOffset": {
+        "x": 0.7,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "tarangire-national-park",
+      "name": "タランギレ国立公園",
+      "nameLocal": "Tarangire National Park",
+      "mapLabel": "Tarangire",
+      "description": "バオバブが立つ乾いたサバンナをタランギレ川が横切る北部の国立公園。乾季には水を求めてゾウをはじめ多くの動物が川沿いへ集まり、樹木と川筋がセレンゲティとは異なる野生景観をつくる。",
+      "coordinates": {
+        "latitude": -4,
+        "longitude": 36
+      },
+      "image": "assets/images/tanzania/approved/scene-3-tarangire-baobab-river.webp",
+      "mapOffset": {
+        "x": -0.6,
+        "y": 1.2
+      }
+    },
+    {
+      "id": "stone-town-zanzibar",
+      "name": "ザンジバル・ストーンタウン",
+      "nameLocal": "Stone Town of Zanzibar",
+      "mapLabel": "Stone Town",
+      "description": "ウングジャ島西岸に残るスワヒリ交易都市。サンゴ石と石灰で築かれた建物、細く曲がる路地、海に向く大邸宅が重なり、アフリカ、アラブ、インド、ヨーロッパの交流を都市空間に残す。",
+      "coordinates": {
+        "latitude": -6.16306,
+        "longitude": 39.18917
+      },
+      "image": "assets/images/tanzania/approved/scene-4-stone-town-zanzibar.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "kilwa-kisiwani",
+      "name": "キルワ・キシワニ遺跡",
+      "nameLocal": "Ruins of Kilwa Kisiwani",
+      "mapLabel": "Kilwa",
+      "description": "本土沖の島に残るスワヒリ交易都市の遺跡。サンゴ石と石灰モルタルのモスク、宮殿、住居群が、13〜16世紀を中心にアラビア、インド、中国へつながったインド洋交易の規模を伝える。",
+      "coordinates": {
+        "latitude": -8.95778,
+        "longitude": 39.52278
+      },
+      "image": "assets/images/tanzania/approved/scene-5-kilwa-kisiwani.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "nyerere-rufiji",
+      "name": "ニエレレ国立公園",
+      "nameLocal": "Nyerere National Park / Rufiji sector",
+      "mapLabel": "Nyerere",
+      "description": "ルフィジ川が複数の流路、中州、湖、氾濫原をつくる南東部の大規模な野生地域。川辺の森林とミオンボ林が接し、ボートからカバやワニ、岸辺の大型動物を観察できる水上のサファリ景観が特徴。",
+      "coordinates": {
+        "latitude": -7.75509,
+        "longitude": 38.23221
+      },
+      "image": "assets/images/tanzania/approved/scene-6-nyerere-rufiji.webp",
+      "mapOffset": {
+        "x": 0.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "ruaha-great-ruaha",
+      "name": "ルアハ国立公園",
+      "nameLocal": "Ruaha National Park / Great Ruaha River at Msembe",
+      "mapLabel": "Ruaha",
+      "description": "中央南部の乾いた丘陵とミオンボ林をグレート・ルアハ川が横切る。乾季には流れや淵の周囲へゾウ、アンテロープ、捕食者が集まり、岩地とバオバブを含む荒々しい内陸景観になる。",
+      "coordinates": {
+        "latitude": -7.7129,
+        "longitude": 34.8963
+      },
+      "image": "assets/images/tanzania/approved/scene-7-ruaha-great-ruaha.webp",
+      "mapOffset": {
+        "x": -0.6,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "gombe-tanganyika",
+      "name": "ゴンベ国立公園",
+      "nameLocal": "Gombe National Park / Lake Tanganyika",
+      "mapLabel": "Gombe",
+      "description": "タンガニーカ湖東岸の急斜面に森林とミオンボ林が入り混じる小さな国立公園。チンパンジーの長期研究で知られ、森の尾根から湖岸までが短い距離で落ち込む西部大地溝帯の景観も際立つ。",
+      "coordinates": {
+        "latitude": -4.7,
+        "longitude": 29.616667
+      },
+      "image": "assets/images/tanzania/approved/scene-8-gombe-tanganyika.webp",
+      "mapOffset": {
+        "x": 0.8,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "大移動の群れを遠くまで追う",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "カルデラの縁から大地を見下ろす",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "標高帯を上へたどる",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "バオバブとゾウの川辺を進む",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "スワヒリの路地を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "インド洋交易の遺構をたどる",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "大河をボートで進む",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "湖岸の森で霊長類を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "serengeti-migration",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "セレンゲティの大移動は、国境を越える約1,000kmの循環",
+      "text": "ヌーを中心とする大群は、水と草を追ってセレンゲティとケニア側の生態系を循環する。単一の観光地点ではなく、季節と降雨に応じて群れの位置が変わる巨大な生態現象として見ると、平原の意味が変わる。",
+      "points": [
+        "世界遺産区域は約147万ha",
+        "移動はタンザニアとケニアにまたがる"
+      ],
+      "sourceKey": "serengeti"
+    },
+    {
+      "topicKey": "ngorongoro-crater-human-history",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ンゴロンゴロはカルデラ、生態系、人類史が同じ保全地域に重なる",
+      "text": "保全地域には巨大なカルデラと野生動物の生息地だけでなく、オルドヴァイ峡谷やラエトリなど、人類進化を考えるうえで重要な場所が含まれる。地形、生態、人の時間を一つの地域でたどれる。",
+      "points": [
+        "世界遺産区域は809,440ha",
+        "自然と文化の複合遺産"
+      ],
+      "sourceKey": "ngorongoro"
+    },
+    {
+      "topicKey": "kilimanjaro-altitude",
+      "themeEn": "EARTH",
+      "themeJa": "標高をたどる",
+      "title": "キリマンジャロでは、赤道近くで5,895mまで標高を上げる",
+      "text": "山麓から山頂へ進むにつれ、森林、ヒース・ムーアランド、高山砂漠、氷と岩の山頂景観へ植生と気候が切り替わる。水平移動ではなく垂直方向に東アフリカの環境変化を見る山だ。",
+      "points": [
+        "標高5,895m",
+        "アフリカ大陸最高峰"
+      ],
+      "sourceKey": "kilimanjaro"
+    },
+    {
+      "topicKey": "stone-town-cultural-fusion",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "ストーンタウンの路地には、インド洋を介した文化の混交が残る",
+      "text": "建築や都市構造にはスワヒリを基盤に、アラブ、インド、ヨーロッパの影響が重なる。海に面した邸宅と迷路のような路地を歩くと、島が長く交易の接点だったことが街の形から読み取れる。",
+      "points": [
+        "世界遺産登録は2000年",
+        "主な建材はサンゴ石と石灰、マングローブ材"
+      ],
+      "sourceKey": "stoneTown"
+    },
+    {
+      "topicKey": "kilwa-indian-ocean-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "キルワは、東アフリカ内陸とアラビア・インド・中国を結んだ港だった",
+      "text": "キルワ・キシワニは13〜14世紀に繁栄の頂点を迎え、金や象牙などの交易を通じて広いインド洋世界につながった。現在の島にはモスク、宮殿、住居などのサンゴ石遺構が残る。",
+      "points": [
+        "9〜19世紀にわたり居住",
+        "世界遺産はキルワとソンゴ・ムナラの2遺跡"
+      ],
+      "sourceKey": "kilwa"
+    },
+    {
+      "topicKey": "rufiji-water-landscape",
+      "themeEn": "WILDLIFE",
+      "themeJa": "水と野生を見る",
+      "title": "南部では、ルフィジ川がサファリの景色そのものを組み替える",
+      "text": "ニエレレ国立公園の北部観光域では、ルフィジ川の流路、湖、湿地、河岸林が連続する。乾いた内陸サバンナとは違い、水面から岸辺の動物を見ることで南部の野生景観を立体的に理解できる。",
+      "points": [
+        "大河と氾濫原が景観の軸",
+        "ミオンボ林と河岸環境が近接する"
+      ],
+      "sourceKey": "nyerere"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "union-1964",
+      "categoryEn": "HISTORY",
+      "categoryJa": "国の成り立ち",
+      "title": "現在のタンザニアは1964年の合邦で成立した",
+      "text": "1961年に独立したタンガニーカと、インド洋のザンジバルが1964年に合邦し、タンザニア連合共和国が成立した。大陸部と島嶼部という二つの歴史軸が国名にもつながっている。",
+      "icon": "history",
+      "sourceKey": "mofaTanzania"
+    },
+    {
+      "topicKey": "dodoma-capital",
+      "categoryEn": "CITY",
+      "categoryJa": "首都",
+      "title": "法律上の首都はドドマ、経済の中心はダルエスサラーム",
+      "text": "外務省の基礎データではドドマを法律上の首都・国会所在地とし、ダルエスサラームを経済面の中心としている。旅の玄関口と政治の中心が一致しない国の一つ。",
+      "icon": "city",
+      "sourceKey": "mofaTanzania"
+    },
+    {
+      "topicKey": "swahili-english",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "ことば",
+      "title": "スワヒリ語が国語、英語が公用語",
+      "text": "スワヒリ語は大陸部からザンジバルまで日常の共通語として広く使われる。英語は公用語として行政や観光などでも用いられる。",
+      "icon": "culture",
+      "sourceKey": "mofaTanzania"
+    },
+    {
+      "topicKey": "seven-world-heritage",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産は自然・文化・複合を合わせて7件",
+      "text": "2026年時点で世界遺産は7件。セレンゲティやキリマンジャロだけでなく、ンゴロンゴロ、ストーンタウン、キルワなど、自然とインド洋史の双方に広がる。",
+      "icon": "culture",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "shilling-cents",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "1タンザニア・シリングは100セント",
+      "text": "通貨単位はタンザニア・シリング。タンザニア銀行が紙幣・硬貨の唯一の発行主体で、1シリングは100セントに分かれる。",
+      "icon": "map",
+      "sourceKey": "currency"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF TANZANIA",
+    "title": "タンザニアで食べたいもの",
+    "intro": "トウモロコシの主食、魚、香辛料の米料理、バナナと肉、街角の卵料理まで。大陸部とスワヒリ海岸、日常食と屋台食が重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "ugali-samaki",
+        "name": "ウガリと魚",
+        "nameLocal": "Ugali na Samaki",
+        "text": "トウモロコシ粉を水で練ったウガリに、焼き魚や煮魚と野菜の付け合わせを合わせる。湖岸や沿岸を含め、主食と魚を一緒に食べるタンザニアの日常食を表す一皿。",
+        "image": "assets/images/tanzania/approved/food-1-ugali-samaki.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "pilau",
+        "name": "ピラウ",
+        "nameLocal": "Pilau",
+        "text": "米を肉や香辛料と炊き込む料理。クローブ、カルダモン、シナモンなどの香りが重なり、スワヒリ海岸とインド洋交易の食文化を感じられる。",
+        "image": "assets/images/tanzania/approved/food-2-pilau.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ndizi-nyama",
+        "name": "ンディジ・ニャマ",
+        "nameLocal": "Ndizi Nyama",
+        "text": "調理用バナナを牛肉などと煮込む料理。バナナが主食の役割も担い、肉の旨味を含んだやわらかな煮込みとして北部を含む各地で食べられる。",
+        "image": "assets/images/tanzania/approved/food-3-ndizi-nyama.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "chipsi-mayai",
+        "name": "チプシ・マヤイ",
+        "nameLocal": "Chipsi Mayai",
+        "text": "フライドポテトを卵でまとめて焼く街角の定番料理。厚いオムレツのような形になり、トマトや玉ねぎのサラダ、辛味ソースなどと合わせて食べる。",
+        "image": "assets/images/tanzania/approved/food-4-chipsi-mayai.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "北部サファリ、キリマンジャロ、ザンジバル、南部、西部はそれぞれ大きく離れる。短期は一地域に集中し、長期でも国内線を使って旅程をブロックに分ける。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "北部のサファリ回廊に集中する",
+        "text": "アルーシャを起点にタランギレ、ンゴロンゴロ、セレンゲティをつなぐ。例：アルーシャ → タランギレ → ンゴロンゴロ → セレンゲティ → アルーシャ。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜12日",
+        "title": "北部にザンジバルを加える",
+        "text": "北部サファリの後に国内線でザンジバルへ移り、ストーンタウンと島の海岸を組み合わせる。高峰・サバンナ・インド洋の三つの景観を一旅程で切り替えられる。例：アルーシャ → セレンゲティ → ザンジバル・ストーンタウン。",
+        "icon": "map"
+      },
+      {
+        "duration": "13日以上",
+        "title": "南部か西部を別ブロックで足す",
+        "text": "ニエレレとルアハ、またはキゴマからゴンベを追加する。南部と西部は北部から距離があり、道路だけで連結せず国内線や湖上移動を前提に組む。例：ダルエスサラーム → ニエレレ → ルアハ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "6〜9月",
+      "color": "#c7b889",
+      "text": "全国的に乾きやすい時期。北部サファリや南部の野生動物観察を組みやすく、高地では朝晩が冷える。キリマンジャロでは標高による気温差が大きい。"
+    },
+    {
+      "months": "10〜12月",
+      "color": "#91aa86",
+      "text": "北部、北海岸、ザンジバル、ヴィクトリア湖周辺では短雨の時期。南・中央・西部では11月頃から一続きの雨季に入る地域があり、同じ月でも地域差が大きい。"
+    },
+    {
+      "months": "1〜2月",
+      "color": "#d3a66f",
+      "text": "二雨季型の北部では比較的雨が少ない期間を挟み、セレンゲティ南部では出産期と重なる。一方、南・中央・西部では雨季が続くため全国共通の乾季ではない。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#7f9b82",
+      "text": "北部、北海岸、ザンジバルなどでは長雨の中心。南・中央・西部の一雨季型地域も4〜5月頃まで雨が続く。未舗装路や渡河、国内移動は直前の天候を確認したい。"
+    }
+  ],
+  "transport": {
+    "title": "地域間は国内線、各サファリ地域は道路、ザンジバルと西部では船も組み合わせる",
+    "text": "北部はアルーシャを起点に車で複数の保護区をつなぎやすい。一方、ザンジバル、ニエレレ、ルアハ、キゴマ／ゴンベは距離が大きく、国内線を挟むと現実的。ゴンベはキゴマ側から湖上で入る旅程になるため、天候と現地運航を確認して組む。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "大移動を、生態系のスケールで見たい人",
+      "text": "セレンゲティとンゴロンゴロをつなぎ、群れの移動、捕食者、水と草の季節変化まで含めて野生を見たい。"
+    },
+    {
+      "title": "高峰・カルデラ・大河・大湖を一国でたどりたい人",
+      "text": "キリマンジャロからンゴロンゴロ、ルフィジ川、タンガニーカ湖まで、東アフリカの大地形を大きく切り替えたい。"
+    },
+    {
+      "title": "サファリとインド洋の歴史を同じ旅に入れたい人",
+      "text": "ストーンタウンとキルワを歩き、スワヒリ都市と交易史まで含めてタンザニアを理解したい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ"
+    },
+    {
+      "label": "首都",
+      "value": "ドドマ"
+    },
+    {
+      "label": "人口",
+      "value": "6,856万人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "945,000 km²（日本の約2.5倍）"
+    },
+    {
+      "label": "言語",
+      "value": "スワヒリ語（国語）、英語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教・キリスト教が各約40%、土着宗教約20%"
+    },
+    {
+      "label": "通貨",
+      "value": "タンザニア・シリング（TZS）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "kilimanjaro-height",
+      "label": "アフリカ最高峰",
+      "value": "5,895m",
+      "note": "キリマンジャロの最高点。周囲の平原から約4,877m立ち上がる大規模な火山山塊で、赤道近くに高山環境をつくる。",
+      "icon": "landscape",
+      "interestReason": "タンザニアがサバンナだけでなく、アフリカ大陸最高地点まで含む地形の振幅を一つの数字で示せるため。"
+    },
+    {
+      "topicKey": "serengeti-trek-distance",
+      "label": "大移動の循環",
+      "value": "約1,000km",
+      "note": "UNESCOはセレンゲティのヌーを中心とする大群が、ケニアとタンザニアにまたがって年間約1,000kmの循環移動を行うと説明している。",
+      "icon": "wildlife",
+      "interestReason": "大移動を一地点のイベントではなく、国境を越えて続く巨大な生態現象として理解できるため。"
+    },
+    {
+      "topicKey": "laetoli-footprints-age",
+      "label": "ラエトリの足跡",
+      "value": "約360万年前",
+      "note": "ンゴロンゴロ保全地域のラエトリでは、直立二足歩行の発達を示す初期人類の化石足跡が約360万年前にさかのぼる。",
+      "icon": "history",
+      "interestReason": "野生動物と火山地形で知られる同じ保全地域に、人類進化の時間軸まで重なることを一つの数字で示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "security-current",
+      "title": "国境周辺を含む安全情報は地域単位で確認する",
+      "text": "広い国土では地域ごとに安全状況が異なる。外務省などの最新危険情報を確認し、訪問地と陸路国境ごとに移動可否を判断する。"
+    },
+    {
+      "topicKey": "rainfall-regions",
+      "title": "雨季は全国一律ではない",
+      "text": "北部・北海岸・ザンジバルなどは二雨季型、南・中央・西部は一雨季型が中心。同じ月でも道路条件が異なるため、固定的な乾季・雨季だけで旅程を組まない。"
+    },
+    {
+      "topicKey": "park-logistics",
+      "title": "遠隔地では航空・船・車両条件を先に決める",
+      "text": "ニエレレ、ルアハ、ゴンベなどは北部サファリから離れている。現地の道路、国内線、湖上交通、入園手配を先に確認し、移動日を独立させる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇰🇪",
+      "countryEn": "KENYA",
+      "countryJa": "ケニア",
+      "path": "Arusha → Namanga OSBP → Amboseli / Nairobi",
+      "description": "アルーシャから北へ進み、ナマンガ国境を越えてアンボセリやナイロビへつなぐ代表的な陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "EACはナマンガをOSBPとして運用。入国条件、道路、公共交通は出発直前に確認する。"
+    },
+    {
+      "flag": "🇷🇼",
+      "countryEn": "RWANDA",
+      "countryJa": "ルワンダ",
+      "path": "Northwestern Tanzania → Rusumo OSBP → Kigali",
+      "description": "カゲラ州側からルスモ国境を越え、ルワンダ東部からキガリ方面へつなぐ大湖地域の陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "EACのOSBPネットワークにルスモが含まれる。入国条件と現地運行は直前確認。"
+    },
+    {
+      "flag": "🇺🇬",
+      "countryEn": "UGANDA",
+      "countryJa": "ウガンダ",
+      "path": "Bukoba / Kagera → Mutukula OSBP → Masaka / Kampala",
+      "description": "ヴィクトリア湖西岸のカゲラ州からムトゥクラ国境を越え、マサカ、カンパラ方面へつなぐ陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "EACのOSBPネットワークにムトゥクラが含まれる。入国条件と運行状況は直前確認。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "kenya",
+      "nameEn": "KENYA",
+      "nameJa": "ケニア",
+      "flag": "🇰🇪",
+      "reason": "セレンゲティから続く草原生態系をマサイマラまで追い、高地と大地溝帯の湖へ広げたい人へ。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "uganda",
+      "nameEn": "UGANDA",
+      "nameJa": "ウガンダ",
+      "flag": "🇺🇬",
+      "reason": "大湖地域の湿潤な森林と霊長類、ナイルへ、東アフリカの自然の軸を移したい人へ。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "zambia",
+      "nameEn": "ZAMBIA",
+      "nameJa": "ザンビア",
+      "flag": "🇿🇲",
+      "reason": "タンガニーカ湖の南側から大河、湿地、滝へつなぎ、南部アフリカの水の景観を広げたい人へ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-10-03",
+  "sourcesVerifiedAt": "2026-09-30",
+  "sourceDates": {
+    "population": "2024",
+    "area": "2025-12-03",
+    "languages": "2025-12-03",
+    "religion": "2025-12-03",
+    "currency": "2026-09-30",
+    "worldHeritage": "2026-09-30",
+    "climate": "2024",
+    "travelAdvice": "2026-09-30",
+    "nextRoutes": "2026-09-30",
+    "sceneCoordinates": "2026-09-30",
+    "map": "2026-09-30",
+    "japanArea": "2026-04-01",
+    "laetoli": "2026-09-30"
+  },
+  "sources": {
+    "population": "Ministry of Foreign Affairs of Japan, Tanzania Basic Data, 2025-12-03: population 68.56 million (2024 World Bank). https://www.mofa.go.jp/mofaj/area/tanzania/data.html",
+    "area": "Ministry of Foreign Affairs of Japan, Tanzania Basic Data, 2025-12-03: area 945,000 km², approximately 2.5 times Japan. https://www.mofa.go.jp/mofaj/area/tanzania/data.html",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,974.87 km² as of 2026-04-01; 945,000 / 377,974.87 ≒ 2.50. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "mofaTanzania": "Ministry of Foreign Affairs of Japan, Tanzania Basic Data, 2025-12-03: Dodoma legal capital, Dar es Salaam economic centre; Swahili national language and English official language; religion estimates; Tanganyika-Zanzibar union in 1964. https://www.mofa.go.jp/mofaj/area/tanzania/data.html",
+    "languages": "Ministry of Foreign Affairs of Japan, Tanzania Basic Data: Swahili national language, English official language. https://www.mofa.go.jp/mofaj/area/tanzania/data.html",
+    "religion": "Ministry of Foreign Affairs of Japan, Tanzania Basic Data: Islam approx. 40%, Christianity approx. 40%, indigenous religions approx. 20%. https://www.mofa.go.jp/mofaj/area/tanzania/data.html",
+    "currency": "Bank of Tanzania, Currency: the Shilling is the unit of currency, divided into 100 cents; Bank of Tanzania has sole issue right. https://www.bot.go.tz/Currency?lang=en",
+    "worldHeritage": "UNESCO World Heritage Centre, United Republic of Tanzania State Party: 7 inscribed properties—3 cultural, 3 natural, 1 mixed—checked 2026-09-30. https://whc.unesco.org/en/statesparties/tz/",
+    "serengeti": "UNESCO World Heritage Centre, Serengeti National Park: 1,476,300 ha; annual migration includes over one million wildebeest plus other ungulates on an approximately 1,000 km circular trek across Tanzania and Kenya; official coordinate S2 44 24 E34 51 32.4. https://whc.unesco.org/en/list/156",
+    "ngorongoro": "UNESCO World Heritage Centre, Ngorongoro Conservation Area: 809,440 ha mixed World Heritage property; crater, wildlife, semi-nomadic Maasai pastoralism and major palaeoanthropological sites; official coordinate S3 11 13.992 E35 32 26.988. https://whc.unesco.org/en/list/39",
+    "kilimanjaro": "UNESCO World Heritage Centre, Kilimanjaro National Park: property coordinate approx. -3.067,37.367 and mountain reaches 5,895m; GeoNames peak coordinate -3.075833,37.353333. https://whc.unesco.org/en/list/403/maps/ ; https://www.geonames.org/",
+    "tarangire": "Tanzania National Parks, Tarangire National Park: Tarangire River, dry-season wildlife concentrations, elephant herds and baobab landscapes; GeoNames park coordinate -4.0,36.0. https://www.tanzaniaparks.go.tz/tarangire/about ; https://www.tanzaniaparks.go.tz/tarangire/attractions ; https://www.geonames.org/",
+    "stoneTown": "UNESCO World Heritage Centre, Stone Town of Zanzibar: Swahili trading town with African, Arab, Indian and European cultural fusion; coral ragstone, mangrove timber and narrow winding streets; official coordinate S6 9 47.016 E39 11 21.012. https://whc.unesco.org/en/list/173",
+    "kilwa": "UNESCO World Heritage Centre, Ruins of Kilwa Kisiwani and Ruins of Songo Mnara: Swahili Indian Ocean trading cities; Kilwa official coordinate S8 57 28 E39 31 22. https://whc.unesco.org/en/list/144",
+    "nyerere": "Tanzania National Parks, Nyerere National Park: Rufiji River braided channels, ox-bow lakes, floodplains, miombo woodland, riverine forest and boat-safari wildlife; Mtemere visitor-area marker cross-checked with OpenStreetMap geographic data. https://www.tanzaniaparks.go.tz/nyerere/about ; https://www.tanzaniaparks.go.tz/nyerere/wildlife ; https://www.tanzaniaparks.go.tz/nyerere/contact-location",
+    "ruaha": "Tanzania National Parks, Ruaha National Park: baobab-studded savanna, miombo woodland, Great Ruaha River and dry-season wildlife concentrations. Tanzania Ministry of Water Hydrological Year Book 2010-2019 gives Great Ruaha River at Msembe station 1KA59 coordinate -7.7129,34.8963. https://tanzaniaparks.go.tz/ruaha/about ; https://tanzaniaparks.go.tz/ruaha/wildlife ; https://www.maji.go.tz/uploads/publications/sw1589377248-Hydrological%20Year%20Book%20%202010%20-%202019.pdf",
+    "gombe": "UNESCO World Heritage Centre Tentative List and Tanzania National Parks: Gombe is a mountainous chimpanzee habitat on Lake Tanganyika with long-term Jane Goodall research; TANAPA states access is by boat from Kigoma. GeoNames park marker -4.7,29.616667 is used for the scene. https://whc.unesco.org/en/tentativelists/849 ; https://www.tanzaniaparks.go.tz/uploads/publications/en-1634499887-GO-ENG.pdf ; https://www.geonames.org/",
+    "food": "Tanzanian food selection cross-checked against current Tanzanian reporting: Daily News (2026) identifies ugali, pilau and other staple/traditional foods; The Citizen documents ugali nyama and chips mayai as Tanzanian street foods and reports ugali samaki, pilau and ndizi nyama among Tanzanian dishes. https://dailynews.co.tz/techenhanced-book-celebrates-traditional-dishes/ ; https://www.thecitizen.co.tz/tanzania/magazines/health-/eating-street-food-isn-t-a-bad-idea-2604716 ; https://www.thecitizen.co.tz/tanzania/news/national/kitaa-food-fest-celebrates-tanzanian-cuisine-and-sustainable-cooking-4835814",
+    "climate": "Tanzania Meteorological Authority, Statement on the Status of Tanzania Climate 2024, climatology 1991–2020: northern coast, northeastern highlands, Zanzibar and Lake Victoria areas are mainly bimodal (Masika Mar–May, Vuli Oct–Dec); southern, southwestern, central and western areas are mainly unimodal (Nov–Apr/May); Jun–Sep dry countrywide. https://www.meteo.go.tz/uploads/documents/sw-1758111343-Tanzania%20Climate%20Statement%202024.pdf",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan, Overseas Safety Information for Tanzania, checked 2026-09-30. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_111.html",
+    "nextRoutes": "East African Community sources checked 2026-09-30: the EAC One Stop Border Posts Act designates Namanga (Kenya–Tanzania), Mutukula (Tanzania–Uganda) and Rusumo (Rwanda–Tanzania) as OSBPs; EAC's 20 July 2026 mission also reports current Namanga and Rusumo OSBP operations. https://www.eac.int/documents?controller=download&file=e866fa0b-ac02-4e6e-9739-5f5ab443fb04&name=EAC_One_Stop_Border_Post_Act_2016_1.pdf&task=download.file ; https://www.eac.int/press-releases/142-customs/3566-eac-calls-for-new-generation-border-reforms-to-support-growing-regional-trade",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-30: Serengeti -2.740,34.859 and Ngorongoro -3.18722,35.54083 (UNESCO); Kilimanjaro peak -3.075833,37.353333 and Tarangire -4.0,36.0 (GeoNames, cross-checked with UNESCO/TANAPA); Stone Town -6.16306,39.18917 and Kilwa -8.95778,39.52278 (UNESCO); Nyerere Mtemere/Rufiji visitor sector -7.75509,38.23221 (OSM cross-check plus TANAPA official map/location); Great Ruaha at Msembe -7.7129,34.8963 (Tanzania Ministry of Water); Gombe National Park -4.7,29.616667 (GeoNames, cross-checked with UNESCO/TANAPA); Dodoma -6.172214,35.739470 (GeoNames).",
+    "map": "Natural Earth 1:10m Admin-0 national geometry for Tanzania and eight land-border neighbours, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; target TZA source file geojson/TZA.geojson. Surrounding land retained for Kenya, Uganda, Rwanda, Burundi, Democratic Republic of the Congo, Zambia, Malawi and Mozambique.",
+    "laetoli": "UNESCO World Heritage Centre, Ngorongoro Conservation Area: Laetoli contains hominid footprints dating to about 3.6 million years ago, preserving evidence relevant to upright bipedal locomotion. https://whc.unesco.org/en/list/39"
+  }
+}
