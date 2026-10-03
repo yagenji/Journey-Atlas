@@ -30,7 +30,9 @@ LAKE_FILL = "#e5eceb"
 LAKE_STROKE = "#6f8a92"
 LAKE_STROKE_OPACITY = ".35"
 LAKE_STROKE_WIDTH = ".65"
-MIN_GEODEG_AREA = 0.003
+MIN_PIXEL_AREA = 64
+MIN_PIXEL_WIDTH = 5
+MIN_PIXEL_HEIGHT = 5
 SIMPLIFY = 0.00195
 WATER_SOURCE_NOTE = "Inland water: GSHHS/GSHHG via Basemap resolution=i, WGS84."
 
@@ -50,12 +52,21 @@ def rect_tuple(rect: dict) -> tuple[float, float, float, float]:
     return tuple(float(rect[key]) for key in ("x", "y", "width", "height"))
 
 
-def material_lakes(bounds: tuple[float, float, float, float]):
-    """Return material GSHHS level-2 lake polygons clipped to the map bounds."""
+def visible_at_product_scale(poly: Polygon, bounds, rect) -> bool:
+    factor, scale, _, _ = ctx.frame(bounds, rect)
+    minx, miny, maxx, maxy = poly.bounds
+    width = (maxx - minx) * factor * scale
+    height = (maxy - miny) * scale
+    area = poly.area * factor * scale * scale
+    return area >= MIN_PIXEL_AREA and width >= MIN_PIXEL_WIDTH and height >= MIN_PIXEL_HEIGHT
+
+
+def material_lakes(bounds: tuple[float, float, float, float], rect=None):
+    """Return GSHHS level-2 lake polygons that remain material at 1200x760."""
     from mpl_toolkits.basemap import Basemap
 
     west, south, east, north = bounds
-    if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
+    if not (-360 <= west < east <= 360 and east - west <= 360 and -89 <= south < north <= 89):
         raise ValueError("unsupported bounds for canonical inland-water normalization")
     basemap = Basemap(
         projection="cyl",
@@ -74,11 +85,12 @@ def material_lakes(bounds: tuple[float, float, float, float]):
         poly = Polygon(zip(xs, ys))
         if not poly.is_valid:
             poly = poly.buffer(0)
-        if poly.is_empty or poly.area <= MIN_GEODEG_AREA:
+        if poly.is_empty:
             continue
         clipped = poly.intersection(extent)
-        if not clipped.is_empty:
-            lakes.extend(ctx.mapgen.polygons_from_geometry(clipped))
+        for component in ctx.mapgen.polygons_from_geometry(clipped):
+            if not component.is_empty and visible_at_product_scale(component, bounds, rect):
+                lakes.append(component)
     return lakes
 
 
@@ -88,11 +100,11 @@ def lake_markup(config: dict, projection: str) -> tuple[str, int]:
     count = 0
     if regions:
         if projection != "multi-region-local-equirectangular-fit-v1":
-            raise ValueError("map.regions requires the reviewed multi-region projection")
+            return "", 0
         for region in regions:
             bounds = bounds_tuple(region["bounds"])
             rect = rect_tuple(region["rect"])
-            lakes = material_lakes(bounds)
+            lakes = material_lakes(bounds, rect)
             if not lakes:
                 continue
             geometry = unary_union(lakes)
@@ -102,7 +114,7 @@ def lake_markup(config: dict, projection: str) -> tuple[str, int]:
                 count += len(lakes)
     else:
         if projection != "local-equirectangular-fit-v1":
-            raise ValueError("unsupported single-region projection")
+            return "", 0
         bounds = bounds_tuple(config["map"]["bounds"])
         lakes = material_lakes(bounds)
         if lakes:
@@ -136,6 +148,9 @@ def normalize_svg(source: str, config: dict) -> tuple[str, str, int]:
     projection = root.get("data-map-projection") or ""
     if projection not in SUPPORTED_PROJECTIONS:
         return source, "unsupported_projection", 0
+    regions = (config.get("map") or {}).get("regions")
+    if regions and projection != "multi-region-local-equirectangular-fit-v1":
+        return source, "unsupported_region_projection", 0
     group, count = lake_markup(config, projection)
     if not group:
         return source, "no_material_lakes", 0
