@@ -11,7 +11,7 @@ on:
       - '.github/workflows/map-context-inventory.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   published-map-inventory:
@@ -43,3 +43,33 @@ jobs:
           path: /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/
           if-no-files-found: warn
           retention-days: 3
+
+  apply-normalized-lakes:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/map-lake-consistency'
+    needs: published-map-inventory
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: map-context-inventory-shard-*
+          path: /tmp/atlas-lake-artifacts
+          merge-multiple: true
+      - name: Apply generated normalized SVGs
+        run: |
+          if [ -d /tmp/atlas-lake-artifacts/lakes/normalized/assets/images ]; then
+            cp -r /tmp/atlas-lake-artifacts/lakes/normalized/assets/images/. assets/images/
+          fi
+          git status --short
+          if git diff --quiet -- assets/images; then
+            echo 'No map asset changes to apply.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/images
+          git commit -m 'Normalize remaining Country map lakes'
+          git push origin HEAD:${{ github.head_ref }}
