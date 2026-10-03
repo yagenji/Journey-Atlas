@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a new single-region Country map with the approved sea/land context.
+"""Generate a new single-region Country map with approved context and inland water.
 
 The legacy generator remains unchanged so in-flight Country work is unaffected.
 This wrapper requires a target-country-specific administrative geometry source;
@@ -18,6 +18,8 @@ from xml.etree import ElementTree as ET
 
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
+
+import normalize_country_map_lakes as lake_normalizer
 
 
 _SVG_NS = '{http://www.w3.org/2000/svg}'
@@ -132,6 +134,15 @@ def main() -> None:
         if count:
             args.output.write_text(cleaned, encoding='utf-8')
             print(f'Removed {count} redundant GSHHS island context rings; ADM0 target and neighbors unchanged')
+
+        # Shared inland-water normalization is part of the canonical generator.
+        # It only adds verified, materially visible lakes that are still missing
+        # after the administrative/context geometry has been assembled.
+        current = args.output.read_text(encoding='utf-8')
+        normalized, report = lake_normalizer.normalize(current, country, args.context_resolution)
+        if report.get('changed'):
+            args.output.write_text(normalized, encoding='utf-8')
+            print(f'Added {report.get("missing_lakes", 0)} verified inland-water geometries')
 
 
 if __name__ == '__main__':
