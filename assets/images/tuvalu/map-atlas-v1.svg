@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Tuvalu" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+<metadata>GSHHS intermediate-resolution coastline via Basemap, WGS84, LGPL; island locator symbols use verified WGS84 island coordinates from Open Admin Data and NGA/GeoNames for Niulakita. Because Tuvalu's islands are sub-pixel at national extent, locator symbols are scale-generalized point symbols and do not replace coastline geometry.</metadata>
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
+<linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"/><feOffset in="b" dy="1.5" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .13 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+</defs>
+<rect width="1200" height="760" fill="url(#sea)"/>
+<g id="geographic-context"></g>
+<g id="target-coastline" fill="url(#land)" stroke="#b2aa77" stroke-width="1.2" stroke-linejoin="round" filter="url(#shadow)">
+<path d="M 790.2,299.2 L 790.2,298.9 L 797.9,301.4 L 796.5,303.3 L 790.2,299.2 Z M 910.7,417.5 L 910.7,417.4 L 915.4,415.1 L 911.2,406.9 L 917.1,415.4 L 910.7,417.5 Z M 248.3,174.3 L 248.3,173.9 L 252.4,173.7 L 250.1,175.5 L 248.3,174.3 Z M 202.3,105.5 L 202.3,105.3 L 205.7,106.7 L 205.6,105.1 L 208.8,108.9 L 202.3,105.5 Z M 720.3,365.5 L 720.3,365.5 L 726.4,360.3 L 721.5,366.5 L 720.3,365.5 Z M 439.6,281.7 L 439.6,281.6 L 443.0,280.7 L 442.6,282.1 L 439.6,281.7 Z M 1073.8,508.2 L 1073.8,508.0 L 1077.8,511.1 L 1076.4,513.3 L 1073.8,508.2 Z M 1066.3,503.9 L 1066.3,503.9 L 1069.5,504.2 L 1071.2,507.0 L 1066.3,503.9 Z M 729.4,358.5 L 729.4,358.6 L 727.2,359.4 L 732.3,356.7 L 729.4,358.5 Z" fill-rule="evenodd"/>
+</g>
+<g id="scale-generalized-island-locators" aria-label="Scale-generalized Tuvalu island position symbols" fill="url(#land)" stroke="#8f8a68" stroke-width="1.2" filter="url(#shadow)">
+<circle cx="193.9" cy="105.8" r="5.2" data-island="Nanumea"><title>Nanumea</title></circle>
+<circle cx="245.3" cy="172.6" r="5.2" data-island="Nanumaga"><title>Nanumaga</title></circle>
+<circle cx="482.2" cy="153.2" r="5.2" data-island="Niutao"><title>Niutao</title></circle>
+<circle cx="438.9" cy="276.5" r="5.2" data-island="Nui"><title>Nui</title></circle>
+<circle cx="792.4" cy="301.7" r="5.2" data-island="Vaitupu"><title>Vaitupu</title></circle>
+<circle cx="724.0" cy="363.2" r="5.2" data-island="Nukufetau"><title>Nukufetau</title></circle>
+<circle cx="909.9" cy="411.9" r="5.2" data-island="Funafuti"><title>Funafuti</title></circle>
+<circle cx="1060.6" cy="510.3" r="5.2" data-island="Nukulaelae"><title>Nukulaelae</title></circle>
+<circle cx="976.2" cy="660.8" r="5.2" data-island="Niulakita"><title>Niulakita</title></circle>
+</g></svg>
