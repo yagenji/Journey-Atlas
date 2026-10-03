@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
-"""Add missing material inland-water geometry to an existing JOURNEY ATLAS map.
+"""Add missing major inland-water geometry to existing JOURNEY ATLAS maps.
 
-The tool is deliberately conservative:
-- uses verified GSHHS/GSHHG level-2 inland-water geometry;
-- only considers lakes that visibly intersect the target Country geometry;
-- limits automatic fixes to major water bodies that are clearly legible at 1200x760;
-- raster-checks the existing SVG and leaves already-rendered water alone;
-- never changes coastline, islands, administrative boundaries or marker coordinates;
-- never modifies maps that already contain a reviewed ``inland-water`` layer.
-
-It is shared map tooling, not Country-specific production state.
+Uses verified GSHHS/GSHHG level-2 inland-water geometry. Existing reviewed
+``inland-water`` layers are preserved byte-for-byte. The tool changes no
+coastline, island, administrative-boundary, marker or label coordinates.
 """
 from __future__ import annotations
 
@@ -26,62 +20,44 @@ from shapely.geometry import Polygon, box
 from shapely.ops import unary_union
 
 import add_country_map_context as ctx
+import validate_country_map_v6 as mapcheck
 
 SVG_NS = "{http://www.w3.org/2000/svg}"
-WIDTH = 1200
-HEIGHT = 760
-# Major-lake gate. Smaller water bodies remain a visual-review choice rather
-# than being forced into every map. This keeps the shared rule geographic and
-# legible instead of turning the map into a hydrography layer.
+WIDTH, HEIGHT = 1200, 760
 MIN_LAKE_PIXELS = 1000.0
 MIN_LAKE_WIDTH = 10.0
 MIN_LAKE_HEIGHT = 10.0
-# Borders, shoreline antialiasing and reviewed water strokes can occupy part of
-# a true lake polygon. Seventy percent visible water is enough to treat it as
-# already represented and avoids double-drawing reviewed lakes.
 WATER_PASS = 0.70
 WATER_FILL = "#e5eceb"
 WATER_STROKE = "#6f8a92"
-FLOAT_RE = re.compile(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
-RING_RE = re.compile(r"[Mm]\s*([^Mm]*?)[Zz]", re.S)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--country-json", required=True, type=Path)
-    parser.add_argument("--input", required=True, type=Path)
-    parser.add_argument("--output", required=True, type=Path)
-    parser.add_argument("--resolution", default="i", choices=("c", "l", "i", "h", "f"))
-    parser.add_argument("--report", type=Path)
-    return parser.parse_args()
-
-
-def _numbers(token: str) -> tuple[float, float]:
-    values = [float(value) for value in FLOAT_RE.findall(token)]
-    if len(values) != 2:
-        raise ValueError("Only linear M/L/Z path coordinates are supported")
-    return values[0], values[1]
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--country-json", required=True, type=Path)
+    p.add_argument("--input", required=True, type=Path)
+    p.add_argument("--output", required=True, type=Path)
+    p.add_argument("--resolution", default="i", choices=("c", "l", "i", "h", "f"))
+    p.add_argument("--report", type=Path)
+    return p.parse_args()
 
 
 def _rings_from_d(d: str) -> list[Polygon]:
-    remainder = RING_RE.sub("", d)
-    if remainder.strip():
-        raise ValueError("Only linear M/L/Z target geometry is supported")
-    rings: list[Polygon] = []
-    for match in RING_RE.finditer(d):
-        parts = re.split(r"[Ll]", match.group(1))
-        points = [_numbers(part) for part in parts if part.strip()]
-        if len(points) < 3:
-            continue
+    """Parse the linear M/L/H/V/Z syntax already supported by map QA."""
+    polygons = mapcheck.parse_polygons(d)
+    if not polygons:
+        raise ValueError("No supported linear target-country geometry")
+    result = []
+    for points in polygons:
         poly = Polygon(points)
         if not poly.is_valid:
             poly = poly.buffer(0)
         if not poly.is_empty and poly.area > 0:
-            rings.extend(ctx.mapgen.polygons_from_geometry(poly))
-    return rings
+            result.extend(ctx.mapgen.polygons_from_geometry(poly))
+    return result
 
 
-def _effective_fill(node, parents) -> str | None:
+def _effective_fill(node, parents):
     cursor = node
     while cursor is not None:
         if "fill" in cursor.attrib:
@@ -94,50 +70,57 @@ def _target_geometry(root: ET.Element):
     parents = {child: parent for parent in root.iter() for child in parent}
     targets = []
     for node in root.iter(SVG_NS + "path"):
-        if _effective_fill(node, parents) != "url(#land)":
+        if _effective_fill(node, parents) != "url(#land)" or not node.get("d"):
             continue
-        d = node.get("d", "")
-        if d:
-            targets.extend(_rings_from_d(d))
+        local = mapcheck.parse_transform_matrix(node.get("transform", ""))
+        if local is None:
+            raise ValueError("Unsupported target path transform")
+        ancestor = parents.get(node)
+        chain = []
+        while ancestor is not None:
+            transform = mapcheck.parse_transform_matrix(ancestor.get("transform", ""))
+            if transform is None:
+                raise ValueError("Unsupported target ancestor transform")
+            chain.append(transform)
+            ancestor = parents.get(ancestor)
+        matrix = mapcheck.IDENTITY
+        for transform in reversed(chain):
+            matrix = mapcheck.affine_multiply(matrix, transform)
+        matrix = mapcheck.affine_multiply(matrix, local)
+        for poly in _rings_from_d(node.get("d", "")):
+            points = [mapcheck.apply_affine(matrix, point) for point in poly.exterior.coords]
+            converted = Polygon(points)
+            if not converted.is_valid:
+                converted = converted.buffer(0)
+            if not converted.is_empty:
+                targets.extend(ctx.mapgen.polygons_from_geometry(converted))
     if not targets:
-        raise ValueError("No linear target-country land geometry found")
+        raise ValueError("No supported target-country land geometry found")
     return unary_union(targets)
 
 
 def _frames(config: dict):
     regions = (config.get("map") or {}).get("regions")
     if regions:
-        result = []
-        for region in regions:
-            b = region["bounds"]
-            r = region["rect"]
-            result.append((
-                region["id"],
-                tuple(float(b[key]) for key in ("west", "south", "east", "north")),
-                tuple(float(r[key]) for key in ("x", "y", "width", "height")),
-            ))
-        return result
+        return [(
+            r["id"],
+            tuple(float(r["bounds"][k]) for k in ("west", "south", "east", "north")),
+            tuple(float(r["rect"][k]) for k in ("x", "y", "width", "height")),
+        ) for r in regions]
     b = config["map"]["bounds"]
-    return [("main", tuple(float(b[key]) for key in ("west", "south", "east", "north")), None)]
+    return [("main", tuple(float(b[k]) for k in ("west", "south", "east", "north")), None)]
 
 
 def _gshhs_lakes(bounds, resolution: str):
     from mpl_toolkits.basemap import Basemap
-
     west, south, east, north = bounds
     if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
         raise ValueError("Unsupported map bounds for shared lake normalization")
-    basemap = Basemap(
-        projection="cyl",
-        llcrnrlon=west,
-        llcrnrlat=south,
-        urcrnrlon=east,
-        urcrnrlat=north,
-        resolution=resolution,
-        area_thresh=0.1,
-    )
+    m = Basemap(projection="cyl", llcrnrlon=west, llcrnrlat=south,
+                urcrnrlon=east, urcrnrlat=north,
+                resolution=resolution, area_thresh=0.1)
     lakes = []
-    for (xs, ys), level in zip(basemap.coastpolygons, basemap.coastpolygontypes):
+    for (xs, ys), level in zip(m.coastpolygons, m.coastpolygontypes):
         if level != 2:
             continue
         poly = Polygon(zip(xs, ys))
@@ -148,101 +131,67 @@ def _gshhs_lakes(bounds, resolution: str):
     return lakes
 
 
-def _project_polygon(poly: Polygon, bounds, rect):
-    factor, scale, origin_x, origin_y = ctx.frame(bounds, rect)
+def _project_polygon(poly, bounds, rect):
+    factor, scale, ox, oy = ctx.frame(bounds, rect)
     west, south, east, north = bounds
-
     def ring(coords):
-        return [
-            (origin_x + (lon - west) * factor * scale,
-             origin_y + (north - lat) * scale)
-            for lon, lat in coords
-        ]
-
-    projected = Polygon(ring(poly.exterior.coords), [ring(interior.coords) for interior in poly.interiors])
-    if not projected.is_valid:
-        projected = projected.buffer(0)
-    return projected
+        return [(ox + (lon - west) * factor * scale, oy + (north - lat) * scale)
+                for lon, lat in coords]
+    result = Polygon(ring(poly.exterior.coords), [ring(h.coords) for h in poly.interiors])
+    return result.buffer(0) if not result.is_valid else result
 
 
-def _path_from_polygon(poly: Polygon) -> str:
+def _path(poly):
     def ring(coords):
         pts = []
         for x, y in coords:
             point = (round(float(x), 1), round(float(y), 1))
             if not pts or point != pts[-1]:
                 pts.append(point)
-        if len(pts) < 3:
-            return ""
-        return "M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + " Z"
-
-    parts = [ring(poly.exterior.coords)]
-    parts.extend(ring(interior.coords) for interior in poly.interiors)
-    return " ".join(part for part in parts if part)
+        return ("M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + " Z") if len(pts) >= 3 else ""
+    return " ".join(filter(None, [ring(poly.exterior.coords), *[ring(h.coords) for h in poly.interiors]]))
 
 
 def _mask(poly):
     mask = Image.new("L", (WIDTH, HEIGHT), 0)
     draw = ImageDraw.Draw(mask)
-    exterior = [(round(x), round(y)) for x, y in poly.exterior.coords]
-    if len(exterior) >= 3:
-        draw.polygon(exterior, fill=255)
-    for interior in poly.interiors:
-        points = [(round(x), round(y)) for x, y in interior.coords]
-        if len(points) >= 3:
-            draw.polygon(points, fill=0)
+    draw.polygon([(round(x), round(y)) for x, y in poly.exterior.coords], fill=255)
+    for hole in poly.interiors:
+        draw.polygon([(round(x), round(y)) for x, y in hole.coords], fill=0)
     return mask
 
 
-def _is_water(rgb) -> bool:
+def _is_water(rgb):
     r, g, b = rgb[:3]
-    # Shared sea gradient and approved inland-water fills are pale cool tones;
-    # the warm target/context land palette fails this gate.
     return b >= 212 and g >= 218 and g - r >= 2 and b - r >= 3
 
 
-def _coverage(image: Image.Image, poly) -> float:
+def _coverage(image, poly):
     mask = _mask(poly)
     bbox = mask.getbbox()
     if bbox is None:
         return 0.0
-    px = image.load()
-    mp = mask.load()
+    px, mp = image.load(), mask.load()
     water = total = 0
     for y in range(max(0, bbox[1]), min(HEIGHT, bbox[3])):
         for x in range(max(0, bbox[0]), min(WIDTH, bbox[2])):
-            if not mp[x, y]:
-                continue
-            total += 1
-            if _is_water(px[x, y]):
-                water += 1
+            if mp[x, y]:
+                total += 1
+                water += int(_is_water(px[x, y]))
     return water / total if total else 0.0
 
 
-def _material(poly) -> bool:
+def _material(poly):
     minx, miny, maxx, maxy = poly.bounds
-    return (
-        poly.area >= MIN_LAKE_PIXELS
-        and maxx - minx >= MIN_LAKE_WIDTH
-        and maxy - miny >= MIN_LAKE_HEIGHT
-        and maxx > 0 and maxy > 0 and minx < WIDTH and miny < HEIGHT
-    )
+    return (poly.area >= MIN_LAKE_PIXELS and maxx - minx >= MIN_LAKE_WIDTH
+            and maxy - miny >= MIN_LAKE_HEIGHT and maxx > 0 and maxy > 0
+            and minx < WIDTH and miny < HEIGHT)
 
 
-def _clip_to_canvas(poly):
-    clipped = poly.intersection(box(0, 0, WIDTH, HEIGHT))
-    return [p for p in ctx.mapgen.polygons_from_geometry(clipped) if not p.is_empty and p.area > 0]
-
-
-def _insert_markup(source: str, markup: str) -> str:
-    # Put water above land but below reviewed national/border overlays whenever present.
-    anchors = (
-        '<path id="target-country-boundary-overlay"',
-        '<path id="neighbor-borders"',
-        '<g id="country-boundaries"',
-        '<g id="boundary',
-    )
-    positions = [source.find(anchor) for anchor in anchors if source.find(anchor) >= 0]
+def _insert(source: str, markup: str):
+    anchors = ('<path id="target-country-boundary-overlay"', '<path id="neighbor-borders"',
+               '<g id="country-boundaries"', '<g id="boundary')
+    positions = [source.find(a) for a in anchors if source.find(a) >= 0]
     if positions:
         pos = min(positions)
         return source[:pos] + markup + "\n" + source[pos:]
@@ -252,39 +201,29 @@ def _insert_markup(source: str, markup: str) -> str:
     return source[:close] + markup + "\n" + source[close:]
 
 
-def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
+def normalize(source: str, config: dict, resolution: str):
     root = ET.fromstring(source)
     if root.tag != SVG_NS + "svg" or root.get("viewBox") != "0 0 1200 760":
         raise ValueError("Expected canonical 1200x760 SVG")
-    if root.get("data-map-projection") not in (
-        "local-equirectangular-fit-v1",
-        "multi-region-local-equirectangular-fit-v1",
-    ):
+    if root.get("data-map-projection") not in ("local-equirectangular-fit-v1", "multi-region-local-equirectangular-fit-v1"):
         raise ValueError("Unsupported projection for shared lake normalization")
-
-    # Explicit inland-water geometry means the map has already had Country-level
-    # geographic review. Never stack an automatic layer on top of it.
     if root.find(".//*[@id='inland-water']") is not None:
         return source, {"changed": False, "missing_lakes": 0, "reason": "reviewed_inland_water"}
     if root.find(".//*[@id='inland-water-auto']") is not None:
         return source, {"changed": False, "missing_lakes": 0, "reason": "already_normalized"}
 
     target = _target_geometry(root)
-    raster = cairosvg.svg2png(bytestring=source.encode("utf-8"), output_width=WIDTH, output_height=HEIGHT)
+    raster = cairosvg.svg2png(bytestring=source.encode(), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
-
-    missing = []
-    seen = set()
-    for frame_id, bounds, rect in _frames(config):
-        visible = ctx.canvas_bounds(bounds, rect)
-        for lake in _gshhs_lakes(visible, resolution):
-            projected = _project_polygon(lake, bounds, rect)
-            for part in _clip_to_canvas(projected):
-                if not _material(part):
+    missing, seen = [], set()
+    frame_list = _frames(config)
+    for frame_id, bounds, rect in frame_list:
+        for lake in _gshhs_lakes(ctx.canvas_bounds(bounds, rect), resolution):
+            projected = _project_polygon(lake, bounds, rect).intersection(box(0, 0, WIDTH, HEIGHT))
+            for part in ctx.mapgen.polygons_from_geometry(projected):
+                if part.is_empty or not _material(part):
                     continue
                 overlap = part.intersection(target).area
-                # Require a meaningful overlap with target-country land; nearby
-                # lakes belonging only to surrounding countries are not patched.
                 if overlap < max(40.0, part.area * 0.08):
                     continue
                 rep = part.representative_point()
@@ -292,69 +231,44 @@ def normalize(source: str, config: dict, resolution: str) -> tuple[str, dict]:
                 if key in seen:
                     continue
                 seen.add(key)
-                water_fraction = _coverage(image, part)
-                if water_fraction >= WATER_PASS:
+                coverage = _coverage(image, part)
+                if coverage >= WATER_PASS:
                     continue
-                missing.append({
-                    "frame": frame_id,
-                    "area_pixels": round(part.area, 1),
-                    "target_overlap_pixels": round(overlap, 1),
-                    "water_fraction_before": round(water_fraction, 4),
-                    "geometry": part,
-                })
-
+                missing.append({"frame": frame_id, "area_pixels": round(part.area, 1),
+                                "target_overlap_pixels": round(overlap, 1),
+                                "water_fraction_before": round(coverage, 4), "geometry": part})
     if not missing:
         return source, {"changed": False, "missing_lakes": 0}
 
-    by_frame: dict[str, list] = {}
+    by_frame = {}
     for item in missing:
         by_frame.setdefault(item["frame"], []).append(item)
-
-    clips = []
-    groups = []
-    frame_map = {frame_id: (bounds, rect) for frame_id, bounds, rect in _frames(config)}
+    frame_map = {fid: (bounds, rect) for fid, bounds, rect in frame_list}
+    clips, groups = [], []
     for frame_id, items in by_frame.items():
-        paths = "".join(
-            f'<path data-map-auto-lake="1" d="{_path_from_polygon(item["geometry"])}"/>'
-            for item in items
-        )
+        paths = "".join(f'<path data-map-auto-lake="1" d="{_path(i["geometry"])}"/>' for i in items)
         _bounds, rect = frame_map[frame_id]
         if rect is None:
             groups.append(paths)
         else:
-            x, y, width, height = rect
-            clip_id = f"lake-clip-{re.sub(r'[^A-Za-z0-9_-]', '-', frame_id)}"
-            clips.append(
-                f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse">'
-                f'<rect x="{x:g}" y="{y:g}" width="{width:g}" height="{height:g}"/>'
-                '</clipPath>'
-            )
+            x, y, w, h = rect
+            clip_id = "lake-clip-" + re.sub(r"[^A-Za-z0-9_-]", "-", frame_id)
+            clips.append(f'<clipPath id="{clip_id}" clipPathUnits="userSpaceOnUse"><rect x="{x:g}" y="{y:g}" width="{w:g}" height="{h:g}"/></clipPath>')
             groups.append(f'<g clip-path="url(#{clip_id})">{paths}</g>')
-
     result = source
     if clips:
         if result.count("</defs>") != 1:
             raise ValueError("Expected one defs block for region lake clips")
         result = result.replace("</defs>", "".join(clips) + "</defs>", 1)
-    markup = (
-        f'<g id="inland-water-auto" fill="{WATER_FILL}" stroke="{WATER_STROKE}" '
-        'stroke-opacity=".35" stroke-width=".65" fill-rule="evenodd" '
-        'stroke-linejoin="round" stroke-linecap="round">'
-        + "".join(groups)
-        + "</g>"
-    )
-    result = _insert_markup(result, markup)
-    return result, {
-        "changed": True,
-        "missing_lakes": len(missing),
-        "items": [
-            {key: value for key, value in item.items() if key != "geometry"}
-            for item in missing
-        ],
-    }
+    markup = (f'<g id="inland-water-auto" fill="{WATER_FILL}" stroke="{WATER_STROKE}" '
+              'stroke-opacity=".35" stroke-width=".65" fill-rule="evenodd" '
+              'stroke-linejoin="round" stroke-linecap="round">' + "".join(groups) + "</g>")
+    result = _insert(result, markup)
+    return result, {"changed": True, "missing_lakes": len(missing), "items": [
+        {k: v for k, v in item.items() if k != "geometry"} for item in missing]}
 
 
-def main() -> None:
+def main():
     args = parse_args()
     config = json.loads(args.country_json.read_text(encoding="utf-8"))
     source = args.input.read_text(encoding="utf-8")
