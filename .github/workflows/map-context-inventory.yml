@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'scripts/add_country_map_context.py'
+      - 'scripts/generate_country_map.py'
+      - 'scripts/normalize_map_inland_water.py'
       - 'tests/audit_map_context_inventory.py'
       - '.github/workflows/map-context-inventory.yml'
 
@@ -29,8 +31,9 @@ jobs:
         run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3' 'cairosvg>=2.7,<3' 'pillow>=10,<13'
       - name: Audit canonical published maps and rasterize supported previews
         run: |
-          python -m py_compile tests/audit_map_context_inventory.py
-          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}
+          python -m py_compile tests/audit_map_context_inventory.py scripts/normalize_map_inland_water.py
+          python tests/audit_map_context_inventory.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/inventory
+          python scripts/normalize_map_inland_water.py --scope all --shard ${{ matrix.shard }} --shards 4 --output-dir /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/normalized
       - name: Preserve report and preview images only
         if: always()
         uses: actions/upload-artifact@v4
@@ -39,3 +42,35 @@ jobs:
           path: /tmp/atlas-map-inventory/shard-${{ matrix.shard }}/
           if-no-files-found: warn
           retention-days: 3
+
+  apply-inland-water:
+    if: github.event.pull_request.head.ref == 'fix/map-inland-water-consistency'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install normalization dependencies
+        run: python -m pip install --disable-pip-version-check --quiet 'basemap==2.0.0' 'shapely>=2.0,<3'
+      - name: Merge latest main and apply shared normalization
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+          rm -rf /tmp/lake-normalized
+          python scripts/normalize_map_inland_water.py --scope all --output-dir /tmp/lake-normalized
+          if [ -d /tmp/lake-normalized/assets ]; then cp -R /tmp/lake-normalized/assets/. assets/; fi
+          if [ -d /tmp/lake-normalized/data ]; then cp -R /tmp/lake-normalized/data/. data/; fi
+          git add assets/images data/countries
+          if ! git diff --cached --quiet; then
+            git commit -m 'Normalize Country inland-water rendering'
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi

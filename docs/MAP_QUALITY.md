@@ -19,9 +19,10 @@ Required:
 - real Scene coordinates;
 - no fictional land, coast, border, road or river;
 - map labels may move for collision avoidance, real coordinates may not;
-- multi-region/inset layouts must preserve real region bounds and projection behavior.
+- multi-region/inset layouts must preserve real region bounds and projection behavior;
+- material inland waters that are visible at the 1200×760 product scale must be rendered consistently from a verified water/coast dataset rather than inferred from arbitrary polygon holes or omitted per Country.
 
-Record the actual geometry/coast source and license.
+Record the actual geometry/coast/inland-water source and license.
 
 ### Inset notes
 
@@ -35,7 +36,8 @@ Do not add directional wording such as “left/right”, or repeat implementatio
 
 Use the shared map tooling where supported:
 - `scripts/generate_country_map_with_context.py`;
-- `scripts/add_country_map_context.py`.
+- `scripts/add_country_map_context.py`;
+- `scripts/normalize_map_inland_water.py` for shared inland-water normalization across existing canonical SVGs.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
 
@@ -51,6 +53,7 @@ python3 scripts/validate_country_quality_v5.py data/countries/{slug}.json
 Also inspect the rendered 1200×760 SVG visually for:
 - coastline alignment;
 - islands/exclaves;
+- major lakes and border lakes that are material at the rendered scale;
 - surrounding land;
 - marker-on-land placement;
 - capital/marker label collisions;
