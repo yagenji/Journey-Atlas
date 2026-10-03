@@ -248,6 +248,8 @@ function renderMapBase(fragment, mapData) {
       note.textContent = mapData.insetNote;
       note.style.flexBasis = "100%";
       note.style.textAlign = "left";
+      note.style.whiteSpace = "pre-line";
+      note.style.minWidth = "0";
       legend.append(note);
       legend.setAttribute("aria-label", "地図記号と別枠表示の説明");
     }
