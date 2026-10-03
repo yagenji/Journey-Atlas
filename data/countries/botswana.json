@@ -189,42 +189,42 @@
   ],
   "encounters": [
     {
-      "title": "静かな水路をモコロで進む",
+      "title": "舟で湿地を巡る",
       "category": "MOVEMENT",
       "icon": "road"
     },
     {
-      "title": "河畔でゾウの動きを待つ",
+      "title": "野生動物を観察する",
       "category": "WILDLIFE",
       "icon": "wildlife"
     },
     {
-      "title": "乾いた水場の周囲を観察する",
-      "category": "WILDLIFE",
-      "icon": "wildlife"
+      "title": "水辺の鳥を探す",
+      "category": "NATURE",
+      "icon": "landscape"
     },
     {
-      "title": "塩原の縁で巨木を見上げる",
+      "title": "白い塩原を眺める",
       "category": "LANDSCAPE",
       "icon": "landscape"
     },
     {
-      "title": "花崗岩の丘から白い地平を見る",
-      "category": "LANDSCAPE",
+      "title": "巨木を見上げる",
+      "category": "NATURE",
       "icon": "landscape"
     },
     {
-      "title": "草原の変化を車でたどる",
+      "title": "草原を車で巡る",
       "category": "MOVEMENT",
       "icon": "road"
     },
     {
-      "title": "現地ガイドと岩絵を訪ねる",
+      "title": "岩絵をたどる",
       "category": "CULTURE",
       "icon": "history"
     },
     {
-      "title": "洞窟で石の形成を知る",
+      "title": "洞窟を探検する",
       "category": "NATURE",
       "icon": "landscape"
     }
@@ -486,29 +486,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "delta-protected-extent",
-      "label": "デルタの保護区域",
-      "value": "約202万 ha",
-      "note": "ユネスコに登録されたデルタの区域は2,023,590ha。海へ流れ出ない水が湿地を広げ、乾いた内陸に水と島の景観をつくる。",
+      "topicKey": "kalahari-sand-cover",
+      "label": "国土を覆うカラハリの砂",
+      "value": "84%",
+      "note": "国土の8割以上をカラハリの砂が覆う。その中に川から届く水が湿地をつくる。砂地は草原や低木地も含み、すべてが砂丘というわけではない。",
       "icon": "landscape",
-      "interestReason": "内陸デルタの保護区域の大きさを示し、水路と島の広がりを直感的に伝えられるため。",
-      "exceptionalScale": true
+      "interestReason": "砂に覆われた国土と北部の湿地の対照から、ボツワナの景観の成り立ちを想像できるため。"
+    },
+    {
+      "topicKey": "elephant-survey-2022",
+      "label": "調査で推計されたゾウ",
+      "value": "約13万頭",
+      "note": "2022年のKAZA航空調査では、ボツワナ側の対象区域に約13.2万頭と推計された。オカバンゴやチョベなどの水辺が、多くのゾウを支える。",
+      "icon": "wildlife",
+      "interestReason": "野生動物との出会いが一部の小さな保護区に限られず、広い水系と結びつく国であることを伝えられるため。"
     },
     {
       "topicKey": "rock-art-density",
-      "label": "ツォディロの岩絵",
+      "label": "小さな岩山に残る岩絵",
       "value": "4,500点以上",
-      "note": "約10 km²の範囲に岩絵が集まる。岩山は地域の人々にとって精神的な意味を持つ文化的景観でもある。",
+      "note": "ツォディロの約10 km²に、4,500点以上の岩絵が残る。野生動物を描いた絵もあり、風景の中に人と動物の長い関わりが刻まれている。",
       "icon": "history",
-      "interestReason": "小さな岩山に凝縮された文化の厚みを伝えるため。"
-    },
-    {
-      "topicKey": "ckgr-expanse",
-      "label": "中央カラハリ保護区",
-      "value": "52,800 km²",
-      "note": "開けた草原、砂地、低木地が連なり、雨の後と乾季で景観が大きく変わる。",
-      "icon": "landscape",
-      "interestReason": "広い乾燥地を短い移動で巡れる場所と誤解せず、地形のスケールを理解できるため。"
+      "interestReason": "約10平方キロメートルという小さな範囲に集まる岩絵の密度を示し、自然の旅に文化の奥行きが加わるため。"
     }
   ],
   "tips": [
@@ -587,7 +586,7 @@
     }
   ],
   "updatedAt": "2026-10-03",
-  "sourcesVerifiedAt": "2026-10-02",
+  "sourcesVerifiedAt": "2026-10-03",
   "sourceDates": {
     "population": "2024",
     "area": "2026-06-04",
@@ -597,7 +596,8 @@
     "nextRoutes": "2026-10-02",
     "currency": "2026-10-02",
     "climate": "2026-10-02",
-    "worldHeritage": "2026-10-02"
+    "worldHeritage": "2026-10-02",
+    "elephants": "2022"
   },
   "sources": {
     "profile": "外務省 ボツワナ基礎データ。面積56.7万km²、人口約252万人（2024年世銀）、言語・宗教・独立日。2026-06-04更新。 https://www.mofa.go.jp/mofaj/area/botswana/data.html",
@@ -623,6 +623,8 @@
     "nextRoutes": "Botswana Tourism Organisation ports of entry, Ngoma, Tlokweng and Kazungula road border. https://www.botswanatourism.co.bw/travel-info/ports-entry ; Kazungula bridge opened2021: https://www.sadc.int/latest-news/us259m-kazungula-bridge-and-one-stop-border-post-commissioned-paving-way-enhanced-sadc ; current2026 cooperation: https://gov.bw/botswana-zambia-take-lead-africas-integration-0",
     "sceneCoordinates": "BOGA campsites WGS84 Xakanaxa(-19.24125,23.522267),Chobe CNP3(-17.855,24.885917),Deception Valley campsite1(-21.386283333,23.792783333): https://boga.org.bw/campsites/ ; Savuti https://mapcarta.com/W270890294 ; Baines https://mapcarta.com/N1577780804 ; Kubu https://mapcarta.com/34599440 ; Gcwihaba https://mapcarta.com/N6794100485 ; Tsodilo/Delta UNESCO property coordinates. Capital GeoNames Gaborone(-24.65451,25.90859). Points locate represented places, not exact camera positions.",
     "map": "Natural Earth 1:10m Admin-0 countries and boundary lines, WGS84, public domain, pinned nvkelso/natural-earth-vector commit ca96624a56bd078437bca8184e78163e5039ad19. Surrounding land: GSHHS intermediate via Basemap (LGPL). Shared local-equirectangular-fit-v1 projection, 1200×760. Checked 2026-10-02.",
-    "worldHeritage": "UNESCO Tsodilo, over4,500 paintings in about10km², inscribed2001, San/Hambukushu sacred landscape, S18 45 E21 43 60. https://whc.unesco.org/en/list/1021/ UNESCO World Heritage Centre, Okavango Delta: inland endorheic delta, flood during dry winter, coordinates representative property point S19 16 60 E22 53 60. https://whc.unesco.org/en/list/1432/ Inscribed property area 2,023,590ha."
+    "worldHeritage": "UNESCO Tsodilo, over4,500 paintings in about10km², inscribed2001, San/Hambukushu sacred landscape, S18 45 E21 43 60. https://whc.unesco.org/en/list/1021/ UNESCO World Heritage Centre, Okavango Delta: inland endorheic delta, flood during dry winter, coordinates representative property point S19 16 60 E22 53 60. https://whc.unesco.org/en/list/1432/ Inscribed property area 2,023,590ha.",
+    "kalahariSands": "Botswana Tourism Organisation, At A Glance: Kalahari sands cover 84 percent of surface area. Sand cover does not mean 84 percent dune desert. https://www.botswanatourism.co.bw/index.php/glance",
+    "elephants": "KAZA Elephant Survey 2022 Volume I, Botswana survey-area estimate 131,909. Survey conducted August–October 2022; report 2023. Not a 2026 count or guarantee of sightings. https://kavangozambezi.org/wp-content/uploads/2024/11/1.-KAZA-Elephant-Survey_Volume-I.pdf ; Government DailyNews report 2023-09-04 https://dailynews.gov.bw/news-detail/75021"
   }
 }
