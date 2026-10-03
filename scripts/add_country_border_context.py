@@ -16,6 +16,8 @@ from pathlib import Path
 
 from shapely.geometry import GeometryCollection, LineString, MultiLineString, box, shape
 
+import japan_boundary_standard as japan_standard
+
 WIDTH = 1200
 HEIGHT = 760
 GROUP_ID = "context-national-borders"
@@ -66,8 +68,13 @@ def load_boundaries(dataset: Path | None = None):
             source = json.load(response)
     for feature in source.get("features", []):
         geometry = shape(feature["geometry"])
-        if not geometry.is_empty:
-            yield geometry
+        if geometry.is_empty:
+            continue
+        # JOURNEY ATLAS Japanese boundary standard: the de facto Hokkaido-Kunashiri
+        # line is not a national border (the Northern Territories are Japan).
+        if japan_standard.is_excluded_boundary_line(geometry, feature.get("properties") or {}):
+            continue
+        yield geometry
 
 
 def _line_parts(geometry):
