@@ -358,7 +358,11 @@ function renderCapitalMarker(fragment, capital, mapData) {
   const labelOffsetX = Number(capital?.labelOffset?.x);
   const labelOffsetY = Number(capital?.labelOffset?.y);
   if (label) {
-    if (Number.isFinite(labelOffsetX) && labelOffsetX !== 0) label.style.marginLeft = `${Math.max(-80, Math.min(80, labelOffsetX))}px`;
+    if (Number.isFinite(labelOffsetX) && labelOffsetX !== 0) {
+      const offsetX = Math.max(-80, Math.min(80, labelOffsetX));
+      if (capital.labelPosition === 'left') label.style.marginRight = `${-offsetX}px`;
+      else label.style.marginLeft = `${offsetX}px`;
+    }
     if (Number.isFinite(labelOffsetY) && labelOffsetY !== 0) label.style.marginTop = `${Math.max(-80, Math.min(80, labelOffsetY))}px`;
   }
   markers.append(marker);
