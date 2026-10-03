@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+import base64
 import json
 import re
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -91,6 +93,25 @@ class CountryBorderContextTest(unittest.TestCase):
         self.assertIn("target-adjacent GBR lines omitted", replaced)
         group = replaced[replaced.index('id="context-national-borders"'):replaced.index("</g>")]
         self.assertEqual(1, group.count("M"))
+
+    def test_real_uk_refresh_preserves_target_geometry(self):
+        country = json.loads((ROOT / "data/countries/unitedkingdom.json").read_text(encoding="utf-8"))
+        source = (ROOT / country["map"]["svg"]).read_text(encoding="utf-8")
+        refreshed = borders.replace_borders(
+            source,
+            country["map"]["bounds"],
+            target_iso3="GBR",
+        )
+        ns = "{http://www.w3.org/2000/svg}"
+        target_paths = lambda text: [dict(node.attrib) for node in ET.fromstring(text).iter(ns + "path") if node.get("fill") == "url(#land)"]
+        self.assertEqual(target_paths(source), target_paths(refreshed))
+        self.assertEqual(1, refreshed.count('id="context-national-borders"'))
+        self.assertIn("target-adjacent GBR lines omitted", refreshed)
+        encoded = base64.b64encode(refreshed.encode("utf-8")).decode("ascii")
+        print("UK_REFRESHED_SVG_BASE64_BEGIN")
+        for offset in range(0, len(encoded), 200):
+            print(encoded[offset:offset + 200])
+        print("UK_REFRESHED_SVG_BASE64_END")
 
 
 if __name__ == "__main__":
