@@ -52,7 +52,11 @@ def parse_args() -> argparse.Namespace:
         default=0.003,
         help="Geometry simplification tolerance in degrees. Keep <=0.003 for production unless QA proves otherwise.",
     )
-    parser.add_argument("--include-lakes", action="store_true", help="Render major lakes when they improve readability")
+    parser.add_argument(
+        "--include-lakes",
+        action="store_true",
+        help="Compatibility flag. Material inland lakes are rendered automatically.",
+    )
     parser.add_argument("--max-bytes", type=int, default=0, help="Fail if generated SVG exceeds this size; 0 disables")
     return parser.parse_args()
 
@@ -158,7 +162,7 @@ def projection_frame(
 ) -> tuple[float, float, float, float]:
     """Return local-equirectangular scale and centered offsets for the canvas.
 
-    Longitude degrees become physically shorter toward the poles.  Using the
+    Longitude degrees become physically shorter toward the poles. Using the
     country's midpoint latitude as the standard parallel preserves the local
     geographic aspect ratio while keeping north up and east right.
     """
@@ -229,13 +233,15 @@ def render_svg(
     land = sorted(land, key=lambda geometry: geometry.area, reverse=True)
     land_d = " ".join(polygon_path(geometry, bounds, simplify) for geometry in land)
 
-    lake_markup = ""
-    if include_lakes:
-        major_lakes = sorted((geometry for geometry in lakes if geometry.area > 0.003), key=lambda geometry: geometry.area, reverse=True)
-        lake_markup = "".join(
-            f'<path d="{polygon_path(geometry, bounds, max(simplify * 0.65, 0.0005))}"/>'
-            for geometry in major_lakes
-        )
+    major_lakes = sorted(
+        (geometry for geometry in lakes if geometry.area > 0.003),
+        key=lambda geometry: geometry.area,
+        reverse=True,
+    )
+    lake_markup = "".join(
+        f'<path d="{polygon_path(geometry, bounds, max(simplify * 0.65, 0.0005))}"/>'
+        for geometry in major_lakes
+    )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}" data-map-projection="local-equirectangular-fit-v1">
 <metadata>{escape(source_note)}</metadata>
@@ -246,7 +252,7 @@ def render_svg(
 </defs>
 <rect width="{WIDTH}" height="{HEIGHT}" fill="url(#sea)"/>
 <path d="{land_d}" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadow)"/>
-{f'<g fill="#e5eceb" stroke="#6f8a92" stroke-opacity=".35" stroke-width=".65">{lake_markup}</g>' if lake_markup else ''}
+{f'<g id="inland-water" fill="#e5eceb" stroke="#6f8a92" stroke-opacity=".35" stroke-width=".65" fill-rule="evenodd">{lake_markup}</g>' if lake_markup else ''}
 </svg>'''
 
 
