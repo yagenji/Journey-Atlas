@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import base64
+import gzip
 import json
 import re
 import sys
@@ -107,11 +108,12 @@ class CountryBorderContextTest(unittest.TestCase):
         self.assertEqual(target_paths(source), target_paths(refreshed))
         self.assertEqual(1, refreshed.count('id="context-national-borders"'))
         self.assertIn("target-adjacent GBR lines omitted", refreshed)
-        encoded = base64.b64encode(refreshed.encode("utf-8")).decode("ascii")
-        print("UK_REFRESHED_SVG_BASE64_BEGIN")
-        for offset in range(0, len(encoded), 200):
-            print(encoded[offset:offset + 200])
-        print("UK_REFRESHED_SVG_BASE64_END")
+        for label, text in (("SOURCE", source), ("REFRESHED", refreshed)):
+            encoded = base64.b64encode(gzip.compress(text.encode("utf-8"), compresslevel=9)).decode("ascii")
+            print(f"UK_{label}_SVG_GZIP_BASE64_BEGIN")
+            for offset in range(0, len(encoded), 1000):
+                print(encoded[offset:offset + 1000])
+            print(f"UK_{label}_SVG_GZIP_BASE64_END")
 
 
 if __name__ == "__main__":
