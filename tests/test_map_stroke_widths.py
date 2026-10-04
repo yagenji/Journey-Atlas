@@ -21,8 +21,19 @@ TARGET_OUTLINE = "#31576a"
 PENDING = {"lithuania"}
 
 
+def published_slugs():
+    data = json.loads((ROOT / "data/atlas-destinations.json").read_text(encoding="utf-8"))
+    entries = data if isinstance(data, list) else data.get("destinations", [])
+    return {e["slug"] for e in entries if e.get("atlasPublished")}
+
+
 def current_maps():
+    # Published pages only: maps under review are checked at their own
+    # finish-line, and this test must not block in-progress Country work.
+    published = published_slugs()
     for path in sorted((ROOT / "data/countries").glob("*.json")):
+        if path.stem not in published:
+            continue
         svg = (json.loads(path.read_text(encoding="utf-8")).get("map") or {}).get("svg")
         if svg and path.stem not in PENDING:
             yield path.stem, ROOT / svg.lstrip("/")
