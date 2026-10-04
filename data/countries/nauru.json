@@ -47,6 +47,7 @@
     },
     "svg": "assets/images/nauru/map-atlas-v1.svg",
     "route": null,
+    "sourceCreditPlacement": "footer",
     "source": "OpenStreetMap Nauru coastline (verified against geoBoundaries gbOpen NRU ADM0), ODbL 1.0, retrieved 2026-10-04; Buada Lagoon: OpenStreetMap relation 12267999, ODbL 1.0, retrieved 2026-10-04. WGS84, shared local-equirectangular-fit-v1."
   },
   "scenes": [
@@ -496,13 +497,12 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "tiny-national-area",
-      "label": "一つの島の国土",
-      "value": "21.1 km²",
-      "note": "国全体が一つの島に収まる。海岸から内陸の湖や採掘跡へ短い距離で移れる小ささが、景観の違いを身近にする。",
-      "icon": "map",
-      "interestReason": "国全体を一つの島として巡れる距離感が、旅の組み立て方を具体的に変えるため。",
-      "exceptionalScale": true
+      "topicKey": "island-circumference",
+      "label": "島を一周する長さ",
+      "value": "約19 km",
+      "note": "島の周囲は約19km。海岸道路をたどると、集落、港、空港、岩の海岸が次々に現れる。一つの島を巡りながら、その暮らしと景観の違いを見渡せる距離だ。",
+      "icon": "road",
+      "interestReason": "島一周の距離から、海岸沿いの暮らしと景観をつなぐ旅の具体的なスケールを想像できるため。"
     },
     {
       "topicKey": "twelve-ancestral-tribes",
@@ -572,6 +572,7 @@
     "mofa": "https://www.mofa.go.jp/mofaj/area/nauru/data.html",
     "population": "https://www.mofa.go.jp/mofaj/area/nauru/data.html",
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "islandCircumference": "https://openjicareport.jica.go.jp/pdf/11955440.pdf",
     "government": "https://www.nauru.gov.nr/about-naoero.aspx",
     "flag": "https://www.nauru.gov.nr/about-naoero/dei-naoero%27s-stories/the-naoero-flag.aspx",
     "angam": "https://www.nauru.gov.nr/about-naoero/dei-naoero%27s-stories/angam-day.aspx",
@@ -601,6 +602,7 @@
   },
   "sourceDates": {
     "population": "2024",
+    "islandCircumference": "2009-06",
     "mofa": "2026-09-08",
     "climateReport": "2003",
     "mapGeometry": "2017",

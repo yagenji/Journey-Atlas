@@ -212,15 +212,21 @@ function renderMapBase(fragment, mapData) {
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
   const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
+  const creditInFooter = mapData.sourceCreditPlacement === 'footer';
+  if (creditInFooter) mapArt.dataset.sourceCreditPlacement = 'footer';
     if (/OpenStreetMap|\bODbL\b/i.test(mapSource)) {
-      const legend = fragment.querySelector('.map-legend--below');
-      if (legend) {
+      const creditContainer = creditInFooter
+        ? document.querySelector('.atlas-footer__copyright')
+        : fragment.querySelector('.map-legend--below');
+      if (creditContainer) {
         const credit = document.createElement('a');
         credit.className = 'map-legend__source-credit';
         credit.href = 'https://www.openstreetmap.org/copyright';
         credit.target = '_blank';
         credit.rel = 'noopener noreferrer';
-        credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
+        credit.textContent = creditInFooter
+          ? '© OpenStreetMap contributors · ODbL 1.0'
+          : '地図データ © OpenStreetMap contributors · ODbL 1.0';
         credit.style.flexBasis = '100%';
         credit.style.textAlign = 'left';
         credit.style.color = 'inherit';
@@ -228,7 +234,8 @@ function renderMapBase(fragment, mapData) {
         credit.style.lineHeight = '1.5';
         credit.style.textDecoration = 'underline';
         credit.style.textUnderlineOffset = '2px';
-        legend.append(credit);
+        if (creditInFooter) creditContainer.append(document.createElement('br'));
+        creditContainer.append(credit);
       }
     }
   if (typeof mapData.japanAreaComparison === 'string' && mapData.japanAreaComparison.trim()) {
