@@ -435,13 +435,13 @@ function bindSceneActivation(element, id, scrollOnClick) {
   element.addEventListener('focus', () => setActiveScene(id, false));
   element.addEventListener('click', () => {
     setActiveScene(id, scrollOnClick);
-    history.replaceState(null, '', `#${id}`);
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
   });
   element.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       setActiveScene(id, scrollOnClick);
-      history.replaceState(null, '', `#${id}`);
+      history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
     }
   });
 }
