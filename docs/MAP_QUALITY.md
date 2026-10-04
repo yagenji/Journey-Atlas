@@ -29,6 +29,22 @@ Use verified inland-water geometry from the shared geographic source/tooling. Do
 
 Record the actual geometry/coast/water source and license when inland-water geometry is introduced or replaced.
 
+### Boundary standard (Japanese map conventions)
+
+JOURNEY ATLAS is a Japanese-language atlas. Territorial depiction follows the Government of Japan and Japanese school atlases, applied through `scripts/japan_boundary_standard.py`:
+
+| Area | Depiction |
+| --- | --- |
+| Northern Territories (択捉島・国後島・色丹島・歯舞群島) | Japan; no border line between Hokkaido and Kunashiri |
+| 竹島 | Japan |
+| 尖閣諸島 | Japan |
+| South Sakhalin (south of 50°N) and the Kuril Islands from Urup northward | 帰属未定: neither Japan nor Russia (neutral context land) |
+| Kashmir and the China–India border | de facto control areas, with the disputed / line-of-control / indefinite segments dashed (国境未確定) |
+| Crimea | Ukraine |
+| Taiwan, Hong Kong, Macao, Kosovo | separate destinations (editorial division; see README) |
+
+Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0` to derive the dataset for maps that include these areas, `patch-russia` / `clean-japan-context` / `dash-undetermined` for existing maps, and keep the top-page explorer data (`assets/maps/world-states.svg`) consistent.
+
 ### Inset notes
 
 When a Country map uses a separate inset, explain it consistently on the Country page:
