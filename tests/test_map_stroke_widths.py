@@ -15,10 +15,6 @@ from svgelements import Matrix
 ROOT = Path(__file__).resolve().parents[1]
 NS = "{http://www.w3.org/2000/svg}"
 TARGET_OUTLINE = "#31576a"
-# Normalized map ready but not yet installed: touching the Country JSON would
-# run full editorial QA, where an older signatureFacts entry needs a content
-# decision first. Remove once lithuania's map is replaced.
-PENDING = {"lithuania"}
 
 
 def published_slugs():
@@ -35,7 +31,7 @@ def current_maps():
         if path.stem not in published:
             continue
         svg = (json.loads(path.read_text(encoding="utf-8")).get("map") or {}).get("svg")
-        if svg and path.stem not in PENDING:
+        if svg:
             yield path.stem, ROOT / svg.lstrip("/")
 
 
