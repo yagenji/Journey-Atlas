@@ -21,13 +21,13 @@
     "image": "assets/images/tuvalu/approved/hero-funafuti-runway.webp",
     "location": "Funafuti International Airport",
     "coordinates": {"latitude": -8.5249, "longitude": 179.1962},
-    "mapOffset": {"x": 0, "y": 0}
+    "mapOffset": {"x": -3, "y": 0}
   },
   "map": {
     "bounds": {"west": 175.65, "south": -11.15, "east": 180.05, "north": -5.25},
     "svg": "assets/images/tuvalu/map-atlas-v1.svg",
     "route": null,
-    "source": "GSHHS intermediate-resolution coastline via Basemap, WGS84, LGPL; island positions verified with Open Admin Data (CC BY 4.0) and NGA/GeoNames for Niulakita. At national extent, sub-pixel islands use scale-generalized locator symbols rather than invented coastlines."
+    "source": "georgique/world-geojson Tuvalu coastline geometry (GPL-3.0), WGS84; projected with the shared JOURNEY ATLAS local equirectangular fit. Scale-generalized locator symbols are display aids only."
   },
   "scenes": [
     {"id":"nanumea","name":"ナヌメア","nameLocal":"Nanumea","mapLabel":"ナヌメア","description":"北端の環礁。細い陸地の内側に穏やかなラグーンが広がり、集落とヤシの帯が海とほとんど同じ高さで続く。","coordinates":{"latitude":-5.672,"longitude":176.098},"image":"assets/images/tuvalu/approved/scene-01-nanumea.webp","labelPosition":"right","mapOffset":{"x":3,"y":0}},
@@ -135,7 +135,7 @@
     "villageCoordinates":"https://github.com/open-admin-data/tuvalu-administrative-divisions/blob/master/data/all-village.json",
     "niulakitaCoordinates":"https://geographic.org/geographic_names/name.php?c=tuvalu&fid=6258&uni=-1910826",
     "capitalCoordinates":"https://www.geographic.org/geographic_names/name.php?c=tuvalu&fid=6258&uni=289671",
-    "mapGeometry":"GSHHS intermediate-resolution coastline distributed with Basemap (GSHHG LGPL), WGS84"
+    "mapGeometry":"https://github.com/georgique/world-geojson/blob/develop/countries/tuvalu.json"
   },
-  "sourceDates": {"population":"2024","mofa":"2025-09-18","statsPopulation":"2024-Q1","nap":"2025","tms":"2026-05-19","adbShipping":"2024-07-09","fijiFlights":"2026","sourcesVerifiedAt":"2026-10-04"}
+  "sourceDates": {"population":"2024","mofa":"2025-09-18","statsPopulation":"2024-Q1","nap":"2025","tms":"2026-05-19","adbShipping":"2024-07-09","fijiFlights":"2026"}
 }
