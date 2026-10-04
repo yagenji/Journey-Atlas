@@ -1,1 +1,134 @@
-PLACEHOLDER
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "samoa",
+  "nameEn": "SAMOA",
+  "nameJa": "サモア",
+  "region": "POLYNESIA / 14°S",
+  "seo": {
+    "description": "火山岩の海岸、深い天然プール、噴き上がる潮、溶岩原、熱帯林。ウポル島とサバイイ島を8景と食からたどるサモア。"
+  },
+  "capital": {
+    "nameEn": "Apia",
+    "nameJa": "アピア",
+    "coordinates": {"latitude": -13.8333,"longitude": -171.75},
+    "labelPosition": "right",
+    "labelOffset": {"x": 12,"y": -10},
+    "mapOffset": {"x": 0,"y": 0}
+  },
+  "hero": {
+    "lead": "火山の島に、海と真水と森が近い距離で重なる。ウポルとサバイイを渡ると、溶岩がつくった地形の中に、ファア・サモアの暮らしが続いている。",
+    "image": "assets/images/samoa/approved/hero-to-sua-ocean-trench.webp",
+    "location": "To-Sua Ocean Trench / Upolu",
+    "coordinates": {"latitude": -14.0439,"longitude": -171.56232},
+    "mapOffset": {"x": 0,"y": 0}
+  },
+  "map": {
+    "bounds": {"west": -172.85,"south": -14.15,"east": -171.35,"north": -13.35},
+    "svg": "assets/images/samoa/map-atlas.svg",
+    "route": null,
+    "source": "GSHHS intermediate-resolution shoreline polygons via Basemap 2.0.0, WGS84. Map bounds isolate Samoa's main islands Upolu and Savaiʻi; scene coordinates cross-checked against Samoa Tourism Authority and OpenStreetMap/GeoNames references. 1200×760; reviewed 2026-10-04."
+  },
+  "scenes": [
+    {"id":"coastal-walk","name":"コースタル・ウォーク / ウポル島","nameLocal":"Coastal Walk / O Le Pupu Pu'e National Park","mapLabel":"コースタル・ウォーク","description":"パンダナスの森を抜けると、黒い溶岩の崖と外洋が開く。波が岩棚へ砕ける南岸で、火山島の縁を歩く。","coordinates":{"latitude":-14.04219,"longitude":-171.75089},"image":"assets/images/samoa/approved/scene-01-coastal-walk.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}},
+    {"id":"papaseea-sliding-rocks","name":"パパセア・スライディング・ロックス / ウポル島","nameLocal":"Papase'ea Sliding Rocks / Upolu","mapLabel":"パパセア","description":"森の中を流れる水が黒い火山岩を磨き、天然の滑り台と淵をつくる。海岸から少し内陸へ入った島の水の風景。","coordinates":{"latitude":-13.87008,"longitude":-171.80365},"image":"assets/images/samoa/approved/scene-02-papaseea-sliding-rocks.webp","labelPosition":"left","mapOffset":{"x":0,"y":0}},
+    {"id":"to-sua-ocean-trench","name":"ト・スア・オーシャン・トレンチ / ウポル島","nameLocal":"To-Sua Ocean Trench / Upolu","mapLabel":"ト・スア","description":"庭園の地面が大きく落ち込み、約30m下に青い水面が現れる。長い梯子を降りた天然プールは洞窟を通じて海につながる。","coordinates":{"latitude":-14.0439,"longitude":-171.56232},"image":"assets/images/samoa/approved/scene-03-to-sua-ocean-trench.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}},
+    {"id":"alofaaga-blowholes","name":"アロファアガ・ブローホール / サバイイ島","nameLocal":"Alofaaga Blowholes / Savai'i","mapLabel":"アロファアガ","description":"南西岸の溶岩棚に波が入り、岩の穴から海水が高く噴き上がる。外洋の力と火山岩の地形が同じ瞬間に見える場所。","coordinates":{"latitude":-13.80163,"longitude":-172.51904},"image":"assets/images/samoa/approved/scene-04-alofaaga-blowholes.webp","labelPosition":"left","mapOffset":{"x":0,"y":0}},
+    {"id":"saleaula-lava-fields","name":"サレアウラ溶岩原 / サバイイ島","nameLocal":"Saleaula Lava Fields / Savai'i","mapLabel":"サレアウラ","description":"黒い溶岩の上に、噴火で覆われた教会跡が残る。1905〜1911年のマタバヌ山噴火が村の土地を変えた痕跡を歩く。","coordinates":{"latitude":-13.4591,"longitude":-172.31761},"image":"assets/images/samoa/approved/scene-05-saleaula-lava-fields.webp","labelPosition":"left","mapOffset":{"x":0,"y":0}},
+    {"id":"afu-aau-falls","name":"アフ・アアウ滝 / サバイイ島","nameLocal":"Afu Aau Falls / Savai'i","mapLabel":"アフ・アアウ","description":"熱帯林から流れ落ちる滝が、深い淡水のプールへ落ちる。乾いた溶岩原とは対照的な、南東部の湿った緑の風景。","coordinates":{"latitude":-13.74538,"longitude":-172.31356},"image":"assets/images/samoa/approved/scene-06-afu-aau-falls.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}},
+    {"id":"piula-cave-pool","name":"ピウラ・ケーブ・プール / ウポル島","nameLocal":"Piula (Fatumea) Cave Pool / Upolu","mapLabel":"ピウラ","description":"古い溶岩洞に湧く透明な淡水が、海のすぐそばで青いプールをつくる。水中の通路は隣の洞窟へつながっている。","coordinates":{"latitude":-13.8733,"longitude":-171.597},"image":"assets/images/samoa/approved/scene-07-piula-cave-pool.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}},
+    {"id":"falealupo-canopy-walk","name":"ファレアルポ・キャノピー・ウォーク / サバイイ島","nameLocal":"Falealupo Canopy Walkway / Savai'i","mapLabel":"ファレアルポ","description":"巨大なバニヤンの樹冠近くを吊り橋で渡り、熱帯林を上から見る。海岸線とは違う、サバイイ島西部の森の厚みがわかる。","coordinates":{"latitude":-13.52643,"longitude":-172.74835},"image":"assets/images/samoa/approved/scene-08-falealupo-canopy-walk.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}}
+  ],
+  "encounters": [
+    {"title":"火山岩の海岸を歩く","category":"LANDSCAPE","icon":"sea"},
+    {"title":"真水のプールで泳ぐ","category":"NATURE","icon":"sea"},
+    {"title":"開かれたファレを見る","category":"ARCHITECTURE","icon":"home"},
+    {"title":"島を結ぶフェリーに乗る","category":"MOVEMENT","icon":"map"},
+    {"title":"熱帯林の樹冠を渡る","category":"NATURE","icon":"leaf"},
+    {"title":"村の礼拝堂を眺める","category":"DAILY_LIFE","icon":"history"},
+    {"title":"ココナッツの料理を味わう","category":"FOOD","icon":"food"},
+    {"title":"外洋の波音を聞く","category":"LANDSCAPE","icon":"sea"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"volcanic-island-water","themeEn":"EARTH","themeJa":"地球の風景","title":"火山岩が、海岸と淡水の両方の形をつくる","text":"サモアでは溶岩の崖、洞窟、天然プール、溶岩原が島の各地に現れる。海辺の景観だけでなく、地下へ染み込んだ水や湧水まで火山地形と結びついている。","points":["黒い溶岩海岸","洞窟と湧水","噴火跡の溶岩原"],"sourceKey":"geography"},
+    {"topicKey":"faa-samoa-daily-life","themeEn":"LIFE","themeJa":"暮らしに出会う","title":"ファア・サモアは、観光向けの展示ではなく日常にある","text":"家族、村、マタイ、教会を重んじるファア・サモアは、現在の生活にも深く残る。村を通ると、マラエを囲むファレや礼拝堂が暮らしの空間として見えてくる。","points":["家族と村の共同体","マタイの役割","村のマラエとファレ"],"sourceKey":"culture"},
+    {"topicKey":"open-fale-architecture","themeEn":"ARCHITECTURE","themeJa":"住まいを知る","title":"壁のない家が、風と人を受け入れる","text":"伝統的なファレは柱と大きな屋根を基本とし、恒久的な壁を持たない形式がある。風を通す構造と、集まりの場としての役割が一つになっている。","points":["開放的な柱間","大きな屋根","集まりのための空間"],"sourceKey":"fale"},
+    {"topicKey":"two-main-islands-ferry","themeEn":"MOVEMENT","themeJa":"移動を知る","title":"二つの主島を渡って初めて、旅の輪郭が広がる","text":"ウポル島のムリファヌアとサバイイ島のサレロロガは車両・旅客フェリーで結ばれ、所要は約60〜90分。島を渡る時間そのものが旅程の一部になる。","points":["車ごと乗れるフェリー","所要約60〜90分","主島間を海路で移動"],"sourceKey":"ferry"},
+    {"topicKey":"matavanu-eruption-landscape","themeEn":"HISTORY / EARTH","themeJa":"歴史 / 地形","title":"20世紀の噴火が、今も村の地面に残る","text":"マタバヌ山は1905〜1911年に噴火し、溶岩流がサバイイ島北部の複数の村を覆った。サレアウラでは教会跡などとともに、その土地の変化を現在の景観からたどれる。","points":["1905〜1911年の噴火","村を覆った溶岩流","教会跡と黒い溶岩"],"sourceKey":"lava"},
+    {"topicKey":"umu-coconut-food","themeEn":"FOOD","themeJa":"食を知る","title":"石と葉とココナッツが、サモアの食卓をつくる","text":"熱した石を使うウムでは、タロイモやパンノキ、魚、肉を葉で包んで火を通す。ココナッツクリームはオカやパルサミなど、日常の料理をつなぐ味になる。","points":["地上式の石窯ウム","葉で包む調理","ココナッツクリーム"],"sourceKey":"food"}
+  ],
+  "travelTrivia": [
+    {"topicKey":"ten-islands-four-inhabited","categoryEn":"GEOGRAPHY","categoryJa":"地理","title":"10の島のうち、人が暮らすのは4島","text":"公式観光局はサモアを10島からなる国とし、ウポル、サバイイ、アポリマ、マノノの4島が有人島と案内している。","icon":"map","sourceKey":"islands"},
+    {"topicKey":"sunday-day-of-rest","categoryEn":"CULTURE","categoryJa":"暮らし","title":"日曜は国全体の休息日","text":"日曜はNational Day of Restとして静かに過ごす文化があり、観光地も休業する場所がある。訪問前に営業日を確認したい。","icon":"calendar","sourceKey":"culture"},
+    {"topicKey":"left-side-driving","categoryEn":"MOVEMENT","categoryJa":"移動","title":"車は左側通行","text":"レンタカー利用時は左側通行。海外免許だけでなく、訪問者用の一時運転許可証も必要になる。","icon":"road","sourceKey":"arrival"},
+    {"topicKey":"fale-no-permanent-walls","categoryEn":"ARCHITECTURE","categoryJa":"建築","title":"ファレには恒久的な壁がない形式がある","text":"伝統的なファレは円形・楕円形の屋根を柱で支え、必要に応じて編んだブラインドを下ろす。村の集会所から宿泊用まで用途もさまざま。","icon":"home","sourceKey":"fale"},
+    {"topicKey":"ferry-sixty-ninety","categoryEn":"MOVEMENT","categoryJa":"移動","title":"主島間フェリーは約60〜90分","text":"ムリファヌアとサレロロガを車両・旅客フェリーが結ぶ。時刻は変更されるため、当日の運航情報を確認する。","icon":"map","sourceKey":"ferry"}
+  ],
+  "taste": {"kicker":"TASTE OF SAMOA","title":"サモアで食べたいもの","intro":"生魚とココナッツ、タロイモの葉、春雨、甘いパン。島の食材と外から入った味が、サモアらしい四皿になる。","items":[
+    {"id":"oka-ia","name":"オカ・イア","nameLocal":"Oka i'a","text":"生魚をココナッツクリーム、柑橘、玉ねぎなどで和える冷たい料理。海の魚とココナッツを一緒に味わう。","image":"assets/images/samoa/approved/food-01-oka-ia.webp","imageFraming":"SOURCE_ASPECT"},
+    {"id":"palusami","name":"パルサミ","nameLocal":"Palusami","text":"若いタロイモの葉でココナッツクリームを包み、ウムなどで火を通す濃厚な葉包み料理。","image":"assets/images/samoa/approved/food-02-palusami.webp","imageFraming":"SOURCE_ASPECT"},
+    {"id":"sapasui","name":"サパスイ","nameLocal":"Sapasui","text":"春雨を肉、玉ねぎ、野菜と甘辛い調味で炒め合わせる、サモアで親しまれるチョップスイ。","image":"assets/images/samoa/approved/food-03-sapasui.webp","imageFraming":"SOURCE_ASPECT"},
+    {"id":"panipopo","name":"パニポポ","nameLocal":"Panipopo","text":"柔らかなパンをココナッツソースと一緒に焼く甘い料理。焼き色のついたパンにソースが染み込む。","image":"assets/images/samoa/approved/food-04-panipopo.webp","imageFraming":"SOURCE_ASPECT"}
+  ]},
+  "travelScale": {"kicker":"DURATION","title":"旅の目安日程","intro":"ウポル島だけなら短くまとめられるが、サバイイ島へ渡ると火山地形と森の幅が大きく広がる。","items":[
+    {"duration":"3〜4日","title":"ウポル島の水と海岸を知る","text":"アピアを起点に南岸と東岸へ。例：アピア → パパセア → コースタル・ウォーク → ト・スア → ピウラ。","icon":"sea"},
+    {"duration":"5〜7日","title":"二つの主島を渡る","text":"フェリーでサバイイ島を加え、滝・溶岩原・噴気孔を結ぶ。例：アピア → ウポル南岸 → サレロロガ → アフ・アアウ → サレアウラ。","icon":"map"},
+    {"duration":"8日以上","title":"島の時間に合わせて一周する","text":"サバイイ西部まで足を延ばし、村と森にも余白を残す。例：ウポル → サバイイ南岸 → ファレアルポ → 北岸 → ウポル。","icon":"compass"}
+  ]},
+  "seasons": [
+    {"months":"5〜7月","color":"#c7d7cf","text":"乾季の前半。比較的雨が少なく、島内移動や海岸歩きを組み合わせやすい。"},
+    {"months":"8〜10月","color":"#d8d4b8","text":"乾季後半。風のある日もあり、外洋側の海況は当日の予報を確認する。"},
+    {"months":"11〜1月","color":"#bfcfd0","text":"雨季に入り、短時間の強い雨が増える。内陸の滝や道路状況は天候に合わせる。"},
+    {"months":"2〜4月","color":"#cfd7b9","text":"高温多湿の雨季。熱帯低気圧や大雨の影響が出ることもあり、運航情報を優先する。"}
+  ],
+  "transport": {"title":"島内は車とバス、主島間はフェリー","text":"ウポル島とサバイイ島は道路で周遊でき、レンタカー、タクシー、色鮮やかなローカルバスを使う。二つの主島はムリファヌア〜サレロロガ間の車両・旅客フェリーで結ばれる。"},
+  "personas": [
+    {"title":"火山島の水と地形を追いたい人","text":"溶岩海岸、天然プール、洞窟、噴き上がる潮、溶岩原を近い距離でつなげられる。"},
+    {"title":"島の暮らしを風景と一緒に見たい人","text":"ファレ、村のマラエ、礼拝堂、ローカルバスが観光地の外でも日常の景色として続く。"},
+    {"title":"一つの島だけで終わらせたくない人","text":"フェリーでウポルとサバイイを渡ると、海岸、森、噴火跡の違いを比べながら旅ができる。"}
+  ],
+  "facts": [
+    {"label":"地域","value":"オセアニア / ポリネシア"},{"label":"首都","value":"アピア"},{"label":"人口","value":"約21.8万人（2024年）"},{"label":"面積","value":"2,830 km²（日本の約0.7%）"},{"label":"言語","value":"サモア語、英語（公用語）"},{"label":"主な宗教","value":"キリスト教"},{"label":"通貨","value":"サモア・タラ（WST）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"ten-islands","label":"島の数","value":"10島","note":"公式観光局はサモアを10島からなる国と案内し、有人島は4島。旅の中心はウポル島とサバイイ島になる。","icon":"sea","interestReason":"二つの主島だけでなく、小島を含むポリネシアの島国であることがわかる数字。"},
+    {"topicKey":"mt-silisili-height","label":"最高地点","value":"1,858 m","note":"サバイイ島のマウント・シリシリはサモア諸島の最高地点。海辺の国という印象の内側に、高い火山地形がある。","icon":"landscape","interestReason":"海岸から山地までの高低差が、滝と熱帯林の多い島の地形につながる。"},
+    {"topicKey":"faa-samoa-years","label":"文化の時間","value":"3,000年以上","note":"サモア観光局はファア・サモアにつながる文化と伝統を3,000年以上続くものとして紹介している。","icon":"history","interestReason":"現在の村や家族の暮らしを、長いポリネシア文化の連続として見る入口になる。"}
+  ],
+  "tips": [
+    {"topicKey":"village-permission","title":"村の土地や海辺では、入る前に確認する","text":"海岸やラグーンを含め、村・家族が管理する土地が多い。入口で許可や料金の案内を確認する。"},
+    {"topicKey":"sunday-quiet","title":"日曜は静かな過ごし方を意識する","text":"日曜は休息日。村では静かに移動し、観光地の休業や短縮営業も事前に確認する。"},
+    {"topicKey":"ferry-buffer","title":"フェリー前後の予定を詰めすぎない","text":"主島間フェリーは天候や運航変更の影響を受ける。車両利用時は早めに港へ着き、最新時刻を確認する。"}
+  ],
+  "nextRoutes": [
+    {"flag":"🇫🇯","countryEn":"FIJI","countryJa":"フィジー","path":"Faleolo → Nadi","description":"南太平洋の国際線を利用し、より大きな島国フィジーへ空路で旅をつなぐ。","travelerRoute":true,"status":"OPEN"},
+    {"flag":"🇹🇴","countryEn":"TONGA","countryJa":"トンガ","path":"Faleolo → Nukuʻalofa","description":"ポリネシアの島文化を比較しながら、トンガへ空路で旅を広げる。運航日は最新時刻を確認する。","travelerRoute":true,"status":"OPEN"},
+    {"flag":"🇳🇿","countryEn":"NEW ZEALAND","countryJa":"ニュージーランド","path":"Faleolo → Auckland","description":"アピアの玄関口からオークランドへ空路でつなぎ、南太平洋からニュージーランドへ移る。","travelerRoute":true,"status":"OPEN"}
+  ],
+  "relatedCountries": [
+    {"slug":"tonga","nameEn":"TONGA","nameJa":"トンガ","flag":"🇹🇴","reason":"ポリネシアの王国文化、村の暮らし、海と島の距離感を比較したい人へ。","affinityType":"CULTURE"},
+    {"slug":"fiji","nameEn":"FIJI","nameJa":"フィジー","flag":"🇫🇯","reason":"南太平洋の島旅を、より多様な島群と珊瑚礁、都市のあるスケールへ広げたい人へ。","affinityType":"ISLAND"},
+    {"slug":"vanuatu","nameEn":"VANUATU","nameJa":"バヌアツ","flag":"🇻🇺","reason":"火山地形と島の暮らしを、活火山やメラネシア文化の文脈でも深めたい人へ。","affinityType":"VOLCANIC"}
+  ],
+  "updatedAt":"2026-10-04",
+  "sourcesVerifiedAt":"2026-10-04",
+  "sourceDates":{"population":"2024","countryProfile":"2026-02-18","tourism":"2026-10-04","transport":"2026-10-04","climate":"2026-10-04","sceneCoordinates":"2026-10-04","map":"2026-10-04"},
+  "sources": {
+    "countryProfile":"Ministry of Foreign Affairs of Japan, Samoa basic data, updated 2026-02-18: area 2,830 km², 2024 population 218,020, capital Apia, Samoan/English, Christianity, Samoan Tala. https://www.mofa.go.jp/mofaj/area/samoa/data.html",
+    "population":"Samoa Bureau of Statistics, Population and Housing Census: 2021 census population 205,556/205,557; 2026 census preparation page. https://www.sbs.gov.ws/phc/ ; https://www.sbs.gov.ws/",
+    "islands":"Samoa Tourism Authority, The Islands of Samoa: ten islands, four inhabited; Upolu and Savaiʻi are the two main islands. https://www.samoa.travel/discover/the-islands-of-samoa/",
+    "geography":"Samoa Tourism Authority, places to explore and Coastal Walk: volcanic coast, lava fields, swimming holes and rainforest. https://www.samoa.travel/experience/places-to-explore/ ; https://www.samoa.travel/plan-book/activities/coastal-walk/",
+    "culture":"Samoa Tourism Authority, Samoan Culture and Cultural Protocols: Fa'a Samoa, village life, Sundays and visitor protocols. https://www.samoa.travel/discover/our-culture/ ; https://www.samoa.travel/samoa-travel-advice/cultural-protocols/",
+    "fale":"Samoa Tourism Authority, Guide to Samoan Fales: traditional forms, open walls and village uses. https://www.samoa.travel/samoa-travel-blog/your-guide-to-samoan-fales/",
+    "food":"Samoa Tourism Authority, Samoan Food and Cuisine: oka, palusami, umu, coconut and island staples; Samoan chop suey noted in official dining guide. https://www.samoa.travel/discover/our-food-and-cuisine/samoan-food/ ; https://www.samoa.travel/dirpreview/where-to-eat",
+    "ferry":"Samoa Tourism Authority, Ferry Information: Mulifanua–Salelologa vehicle/passenger ferry, 60–90 minutes. https://www.samoa.travel/plan-book/getting-around-samoa/ferry-information/",
+    "transport":"Samoa Tourism Authority, Getting Around Samoa: ferry, local bus, taxi, vehicle hire and cycling. https://www.samoa.travel/plan-book/getting-around-samoa/",
+    "arrival":"Samoa Tourism Authority, When You Arrive: Faleolo International Airport and temporary visitor driver's licence requirement. https://www.samoa.travel/samoa-travel-advice/when-you-arrive-in-samoa/",
+    "climate":"Samoa Tourism Authority, Climate & Weather: warm humid year-round, dry May–October, wet November–April. https://www.samoa.travel/samoa-travel-advice/climate-weather/",
+    "lava":"Samoa Tourism Authority, family activities / Savaiʻi context: Saleaula Lava Fields and 1905–1911 Mt Matavanu eruption. https://www.samoa.travel/experience/families/family-activities/",
+    "scenes":"Samoa Tourism Authority official attraction pages for Papase'ea Sliding Rocks, To-Sua Ocean Trench, Alofaaga Blowholes, Afu Aau Falls, Piula Cave Pool, Falealupo walking trails and Coastal Walk; checked 2026-10-04.",
+    "sceneCoordinates":"WGS84 feature points checked 2026-10-04 against OpenStreetMap/Mapcarta/Wikidata and official attraction identity: Coastal Walk -14.04219,-171.75089; Papase'ea -13.87008,-171.80365; To-Sua -14.04390,-171.56232; Alofaaga -13.80163,-172.51904; Saleaula Lava Fields -13.45910,-172.31761; Afu Aau -13.74538,-172.31356; Piula -13.87330,-171.59700; Falealupo Canopy Walk -13.52643,-172.74835.",
+    "map":"GSHHS intermediate-resolution shoreline geometry distributed with Basemap 2.0.0, GNU LGPL; WGS84. Map bounds intentionally isolate Samoa main islands. Natural Earth Samoa geometry cross-checked via LonnyGomes/CountryGeoJSONCollection WSM.geojson (public domain).",
+    "nextRoutes":"International onward routes are editorial travel connections from Faleolo International Airport; schedules change and must be checked with carriers. Samoa Tourism Authority airport/getting-here information checked 2026-10-04. https://www.samoa.travel/pagepreview/samoan-airports"
+  }
+}
