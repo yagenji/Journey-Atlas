@@ -22,7 +22,7 @@ from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
 RING = re.compile(r"M\s*([^MZ]*?)\s*Z")
-PATH = re.compile(r'<path([^>]*?)\sd="([^"]*)"([^>]*)/>')
+PATH = re.compile(r'<path([^>]*?)\sd="([^"]*)"([^>]*?)\s*(?:/>|>(?:\s*<title>[^<]*</title>)?\s*</path>)')
 
 
 def path_geometry(d: str):
