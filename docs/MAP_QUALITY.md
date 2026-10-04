@@ -59,6 +59,9 @@ Use the shared map tooling where supported:
 - `scripts/generate_country_map_with_context.py`;
 - `scripts/add_country_map_context.py`;
 - `scripts/normalize_country_map_lakes.py` for verified missing inland-water geometry on existing maps.
+- `scripts/build_coastline_composite.py` when Natural Earth's coastline is visibly coarse at 1200×760 (long straight segments): keeps Natural Earth land borders and takes coast/islands from GSHHS `h`/`f`, then feed it to the generator with `--source natural-earth`;
+- `scripts/generate_multi_region_map.py` for Country maps with `map.regions` (mainland + insets); the primary region continues past its rect so surrounding land never ends at a hard edge;
+- `scripts/drop_domestic_context.py` to remove context rings that duplicate the target's own coast or islets.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
 
