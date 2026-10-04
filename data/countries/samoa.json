@@ -7,8 +7,8 @@
   "region": "POLYNESIA / 14°S",
   "seo": {"description": "火山岩の海岸、深い天然プール、噴き上がる潮、溶岩原、熱帯林。ウポル島とサバイイ島を8景と食からたどるサモア。"},
   "capital": {"nameEn":"Apia","nameJa":"アピア","coordinates":{"latitude":-13.8333,"longitude":-171.75},"labelPosition":"right","labelOffset":{"x":12,"y":-10},"mapOffset":{"x":0,"y":0}},
-  "hero": {"lead":"火山の島に、海と真水と森が近い距離で重なる。ウポルとサバイイを渡ると、溶岩がつくった地形の中に、ファア・サモアの暮らしが続いている。","image":"assets/images/samoa/approved/hero-to-sua-ocean-trench.webp","location":"To-Sua Ocean Trench / Upolu","coordinates":{"latitude":-14.0439,"longitude":-171.56232},"mapOffset":{"x":-3,"y":0}},
-  "map": {"bounds":{"west":-172.8256,"south":-14.2698,"east":-171.3256,"north":-13.2379},"svg":"assets/images/samoa/map-atlas.svg","route":null,"source":"GSHHS intermediate-resolution shoreline polygons via Basemap 2.0.0, WGS84. Bounds are calibrated to the rendered Samoa shoreline while preserving all verified Scene coordinates; 1200×760; reviewed 2026-10-04."},
+  "hero": {"lead":"火山の島に、海と真水と森が近い距離で重なる。ウポルとサバイイを渡ると、溶岩がつくった地形の中に、ファア・サモアの暮らしが続いている。","image":"assets/images/samoa/approved/hero-lalomanu-beach.webp","location":"Lalomanu Beach / Upolu","coordinates":{"latitude":-14.04593,"longitude":-171.45052},"mapOffset":{"x":2,"y":0}},
+  "map": {"bounds":{"west":-172.92,"south":-14.18,"east":-171.25,"north":-13.35},"svg":"assets/images/samoa/map-atlas.svg","route":null,"source":"GSHHS intermediate-resolution shoreline polygons via Basemap 2.0.0, WGS84, with the area threshold disabled to retain additional real coastline geometry. Samoa Tourism Authority identifies Samoa as a 10-island archipelago; islands below the source resolution are shown as cartographic point symbols at verified WGS84 positions rather than invented coastlines. Island set cross-checked against Samoa Tourism Authority and World Bank Samoa mapping; 1200×760; reviewed 2026-10-04."},
   "scenes": [
     {"id":"coastal-walk","name":"コースタル・ウォーク / ウポル島","nameLocal":"Coastal Walk / O Le Pupu Pu'e National Park","mapLabel":"コースタル・ウォーク","description":"パンダナスの森を抜けると、黒い溶岩の崖と外洋が開く。波が岩棚へ砕ける南岸で、火山島の縁を歩く。","coordinates":{"latitude":-14.04219,"longitude":-171.75089},"image":"assets/images/samoa/approved/scene-01-coastal-walk.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}},
     {"id":"papaseea-sliding-rocks","name":"パパセア・スライディング・ロックス / ウポル島","nameLocal":"Papase'ea Sliding Rocks / Upolu","mapLabel":"パパセア","description":"森の中を流れる水が黒い火山岩を磨き、天然の滑り台と淵をつくる。海岸から少し内陸へ入った島の水の風景。","coordinates":{"latitude":-13.87008,"longitude":-171.80365},"image":"assets/images/samoa/approved/scene-02-papaseea-sliding-rocks.webp","labelPosition":"left","mapOffset":{"x":-1,"y":0}},
@@ -20,14 +20,14 @@
     {"id":"falealupo-canopy-walk","name":"ファレアルポ・キャノピー・ウォーク / サバイイ島","nameLocal":"Falealupo Canopy Walkway / Savai'i","mapLabel":"ファレアルポ","description":"巨大なバニヤンの樹冠近くを吊り橋で渡り、熱帯林を上から見る。海岸線とは違う、サバイイ島西部の森の厚みがわかる。","coordinates":{"latitude":-13.52643,"longitude":-172.74835},"image":"assets/images/samoa/approved/scene-08-falealupo-canopy-walk.webp","labelPosition":"right","mapOffset":{"x":0,"y":0}}
   ],
   "encounters": [
-    {"title":"火山岩の海岸を歩く","category":"LANDSCAPE","icon":"sea"},
-    {"title":"真水のプールで泳ぐ","category":"NATURE","icon":"sea"},
-    {"title":"開かれたファレを見る","category":"ARCHITECTURE","icon":"home"},
-    {"title":"島を結ぶフェリーに乗る","category":"MOVEMENT","icon":"map"},
-    {"title":"熱帯林の樹冠を渡る","category":"NATURE","icon":"leaf"},
-    {"title":"村の礼拝堂を眺める","category":"DAILY_LIFE","icon":"history"},
-    {"title":"ココナッツの料理を味わう","category":"FOOD","icon":"food"},
-    {"title":"外洋の波音を聞く","category":"LANDSCAPE","icon":"sea"}
+    {"title":"海岸を歩く","category":"LANDSCAPE","icon":"sea"},
+    {"title":"天然の水場で泳ぐ","category":"NATURE","icon":"sea"},
+    {"title":"開放的な住まいを見る","category":"ARCHITECTURE","icon":"home"},
+    {"title":"船で島を渡る","category":"MOVEMENT","icon":"map"},
+    {"title":"熱帯林を歩く","category":"NATURE","icon":"leaf"},
+    {"title":"集落を歩く","category":"DAILY_LIFE","icon":"history"},
+    {"title":"島の料理を味わう","category":"FOOD","icon":"food"},
+    {"title":"波の音を聞く","category":"LANDSCAPE","icon":"sea"}
   ],
   "atlasExtras": [
     {"topicKey":"volcanic-island-water","themeEn":"EARTH","themeJa":"地球の風景","title":"火山岩が、海岸と淡水の両方の形をつくる","text":"サモアでは溶岩の崖、洞窟、天然プール、溶岩原が島の各地に現れる。海辺の景観だけでなく、地下へ染み込んだ水や湧水まで火山地形と結びついている。","points":["黒い溶岩海岸","洞窟と湧水","噴火跡の溶岩原"],"sourceKey":"geography"},
@@ -94,7 +94,7 @@
   ],
   "updatedAt":"2026-10-04",
   "sourcesVerifiedAt":"2026-10-04",
-  "sourceDates":{"population":"2024","countryProfile":"2026-02-18","tourism":"2026-10-04","transport":"2026-10-04","climate":"2026-10-04","sceneCoordinates":"2026-10-04","map":"2026-10-04","dateline":"2011"},
+  "sourceDates":{"population":"2024","countryProfile":"2026-02-18","tourism":"2026-10-04","transport":"2026-10-04","climate":"2026-10-04","sceneCoordinates":"2026-10-04","heroCoordinates":"2026-10-04","map":"2026-10-04","dateline":"2011"},
   "sources": {
     "countryProfile":"Ministry of Foreign Affairs of Japan, Samoa basic data, updated 2026-02-18: area 2,830 km², 2024 population 218,020, capital Apia, Samoan/English, Christianity, Samoan Tala; independence on 1 January 1962. https://www.mofa.go.jp/mofaj/area/samoa/data.html",
     "population":"Samoa Bureau of Statistics, Population and Housing Census: 2021 census population 205,556/205,557; 2026 census preparation page. https://www.sbs.gov.ws/phc/ ; https://www.sbs.gov.ws/",
@@ -111,7 +111,8 @@
     "lava":"Samoa Tourism Authority, family activities / Savaiʻi context: Saleaula Lava Fields and 1905–1911 Mt Matavanu eruption. https://www.samoa.travel/experience/families/family-activities/",
     "scenes":"Samoa Tourism Authority official attraction pages for Papase'ea Sliding Rocks, To-Sua Ocean Trench, Alofaaga Blowholes, Afu Aau Falls, Piula Cave Pool, Falealupo walking trails and Coastal Walk; checked 2026-10-04.",
     "sceneCoordinates":"WGS84 feature points checked 2026-10-04 against OpenStreetMap/Mapcarta/Wikidata and official attraction identity: Coastal Walk -14.04219,-171.75089; Papase'ea -13.87008,-171.80365; To-Sua -14.04390,-171.56232; Alofaaga -13.80163,-172.51904; Saleaula Lava Fields -13.45910,-172.31761; Afu Aau -13.74538,-172.31356; Piula -13.87330,-171.59700; Falealupo Canopy Walk -13.52643,-172.74835.",
-    "map":"GSHHS intermediate-resolution shoreline geometry distributed with Basemap 2.0.0, GNU LGPL; WGS84. Map bounds calibrated to the rendered shoreline while preserving verified Scene coordinates. Natural Earth Samoa geometry cross-checked via LonnyGomes/CountryGeoJSONCollection WSM.geojson (public domain).",
+    "heroCoordinates":"Lalomanu Beach WGS84 point -14.04593,-171.45052 checked 2026-10-04 against OpenStreetMap-derived Mapcarta feature data and official Samoa Tourism Authority destination identity.",
+    "map":"GSHHS intermediate-resolution shoreline geometry distributed with Basemap 2.0.0, GNU LGPL, WGS84, with area threshold disabled. Samoa Tourism Authority confirms a 10-island archipelago; the World Bank Samoa map and OSM/GeoNames-derived feature points were used to cross-check minor-island positions. Sub-resolution islands are represented as cartographic point symbols rather than fabricated coastlines.",
     "dateline":"Office of the Attorney General, Samoa, International Date Line Act 2011: standard time changed to UTC+13; Act commenced at midnight on 29 December 2011. https://www.ag.gov.ws/wp-content/uploads/2024/02/International-Date-Line-Act-2011.pdf"
   }
 }
