@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Tonga with national overview and enlarged island-group details" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="multi-region-local-equirectangular-fit-v1">
-<metadata>Tonga coastline geometry rendered primarily from GSHHS/GSHHG intermediate-resolution coastline data distributed with Basemap 2.0.0 (WGS84), with Eua, Haapai and Niuas supplemented from the Apache Superset Tonga country-map GeoJSON (WGS84; repository Apache-2.0) and rendered with the JOURNEY ATLAS multi-region local equirectangular projection. National overview preserves actual island-group positions; Tongatapu, Vava'u, Ha'apai and ʻEua are repeated as enlarged detail insets for Scene-marker legibility. Reviewed 2026-10-04.</metadata>
+<metadata>Tonga coastline geometry rendered primarily from GSHHS/GSHHG intermediate-resolution coastline data distributed with Basemap 2.0.0 (WGS84), with Eua, Haapai and Niuas supplemented from the Apache Superset Tonga country-map GeoJSON (WGS84; repository Apache-2.0) and rendered with the JOURNEY ATLAS multi-region local equirectangular projection. National overview preserves actual island-group positions; Tongatapu, Vava'u, Ha'apai and ʻEua are repeated as enlarged detail insets for Scene-marker legibility. Locator boxes and guide lines connect each overview island group to its enlarged inset, following the Qatar enlargement convention. Reviewed 2026-10-04.</metadata>
 <defs><linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient><linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient><filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter></defs>
 <rect width="1200" height="760" fill="url(#sea)"/>
-<rect x="30" y="30" width="320" height="700" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/>
 <rect x="390" y="30" width="380" height="320" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5" data-map-inset-frame="tongatapu"/>
 <rect x="790" y="30" width="380" height="320" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5" data-map-inset-frame="vavau"/>
 <rect x="390" y="390" width="380" height="320" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5" data-map-inset-frame="haapai"/>
@@ -20,4 +19,15 @@
 <path d="M489.52,637.27L513.52,628.70L532.19,611.69L545.17,587.64L552.23,558.84L560.96,560.68L580.35,568.34L587.34,572.94L573.28,606.02L570.90,643.10L561.97,670.98L528.01,675.88L514.46,668.83L503.58,660.56L495.21,650.45L489.52,637.27Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" data-region="haapai"/>
 <path d="M587.41,508.60L618.62,491.14L636.36,466.47L650.92,440.58L673.12,417.61L682.42,445.18L677.09,469.38L666.71,492.21L661.01,515.03L647.89,538.93L619.78,541.69L593.83,529.43L587.41,508.60Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" data-region="haapai"/>
 <path d="M974.91,519.27L977.06,533.07L976.87,538.68L974.91,552.39L975.19,575.64L973.00,579.38L967.61,576.15L965.42,570.50L961.03,565.98L951.11,558.43L951.11,555.89L952.47,555.35L955.83,553.33L953.81,549.31L953.44,544.27L955.21,539.95L962.09,536.93L964.28,534.10L967.61,528.00L968.41,525.70L970.97,520.18L973.64,516.40L974.91,519.27Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" data-region="eua"/>
-</g></svg>
+</g>
+<g id="inset-locators" aria-hidden="true" fill="none" stroke="#6f8997" stroke-linejoin="round" stroke-linecap="round">
+  <rect x="118" y="581" width="40" height="30" rx="2.5" stroke-width="1.35" data-map-locator="tongatapu"/>
+  <path d="M158,596 L365,596 L365,350 L390,350" stroke-width="1.1" opacity=".82" data-map-guide="tongatapu"/>
+  <rect x="239" y="334" width="27" height="27" rx="2.5" stroke-width="1.35" data-map-locator="vavau"/>
+  <path d="M266,347.5 L365,347.5 L365,370 L785,370 L785,350 L790,350" stroke-width="1.1" opacity=".82" data-map-guide="vavau"/>
+  <rect x="211" y="444" width="24" height="28" rx="2.5" stroke-width="1.35" data-map-locator="haapai"/>
+  <path d="M235,458 L390,458" stroke-width="1.1" opacity=".82" data-map-guide="haapai"/>
+  <rect x="156" y="607" width="14" height="22" rx="2.5" stroke-width="1.35" data-map-locator="eua"/>
+  <path d="M170,618 L365,618 L365,730 L1180,730 L1180,690 L1170,690" stroke-width="1.1" opacity=".82" data-map-guide="eua"/>
+</g>
+</svg>
