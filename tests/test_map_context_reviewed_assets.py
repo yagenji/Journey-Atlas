@@ -6,12 +6,19 @@ remain byte-for-byte identical to the approved geometry.
 """
 from __future__ import annotations
 
+import json
+
 import hashlib
 import unittest
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def current_map(slug):
+    """Map SVG currently referenced by the Country JSON (file versions change on renewal)."""
+    return ROOT / json.loads((ROOT / 'data/countries' / f'{slug}.json').read_text(encoding='utf-8'))['map']['svg']
+
 SVG = "{http://www.w3.org/2000/svg}"
 
 # SHA-256 of each approved source SVG's national path d, NOT the new context.
@@ -34,7 +41,7 @@ class ReviewedMapContextAssets(unittest.TestCase):
     def test_approved_land_path_is_unchanged(self):
         for slug, approved_hash in APPROVED_LAND_PATH.items():
             with self.subTest(country=slug):
-                source = (ROOT / "assets/images" / slug / "map-atlas-v1.svg").read_bytes()
+                source = (current_map(slug)).read_bytes()
                 root = ET.fromstring(source)
                 self.assertEqual(root.get("viewBox"), "0 0 1200 760")
                 target = [p for p in root.iter(SVG + "path") if p.get("fill") == "url(#land)"]
@@ -49,7 +56,7 @@ class ReviewedMapContextAssets(unittest.TestCase):
     def test_reconciled_shoreline_context_preserves_all_approved_country_paths(self):
         for slug, (count, approved_hash, source_name) in APPROVED_EXCEPTION_PATHS.items():
             with self.subTest(country=slug):
-                source = (ROOT / "assets/images" / slug / "map-atlas-v1.svg").read_bytes()
+                source = (current_map(slug)).read_bytes()
                 root = ET.fromstring(source)
                 self.assertEqual(root.get("viewBox"), "0 0 1200 760")
                 parents = {child: parent for parent in root.iter() for child in parent}
@@ -72,7 +79,7 @@ class ReviewedMapContextAssets(unittest.TestCase):
                     self.assertIn(color, source)
 
     def test_kuwait_city_inset_has_no_duplicate_national_context(self):
-        root = ET.parse(ROOT / "assets/images/kuwait/map-atlas-v1.svg").getroot()
+        root = ET.parse(ROOT / "assets/images/kuwait/map-atlas-v2.svg").getroot()
         country = [p.get("d", "") for p in root.iter(SVG + "path") if p.get("fill") == "url(#land)"]
         self.assertEqual(len(country), 2)
         self.assertEqual(hashlib.sha256("\n".join(country).encode()).hexdigest(), "564b9be86b6c43bfe4698e3e1db74ab5014087486f21578f41a141d55b71db38")
@@ -80,7 +87,7 @@ class ReviewedMapContextAssets(unittest.TestCase):
         self.assertEqual(context, ["country"])
 
     def test_qatar_doha_inset_has_no_duplicate_national_context(self):
-        root = ET.parse(ROOT / "assets/images/qatar/map-atlas-v1.svg").getroot()
+        root = ET.parse(ROOT / "assets/images/qatar/map-atlas-v2.svg").getroot()
         self.assertEqual(root.get("viewBox"), "0 0 1200 760")
         country = [p.get("d", "") for p in root.iter(SVG + "path") if p.get("fill") == "url(#land)"]
         self.assertEqual(len(country), 2)
@@ -91,7 +98,7 @@ class ReviewedMapContextAssets(unittest.TestCase):
     def test_landlocked_context_covers_full_canvas_without_a_fake_coast(self):
         for slug in ("andorra", "liechtenstein", "sanmarino", "vaticancity"):
             with self.subTest(country=slug):
-                root = ET.parse(ROOT / "assets/images" / slug / "map-atlas-v1.svg").getroot()
+                root = ET.parse(current_map(slug)).getroot()
                 context = next(g for g in root.iter(SVG + "g") if g.get("id") == "geographic-context")
                 paths = list(context.iter(SVG + "path"))
                 self.assertEqual(len(paths), 1)

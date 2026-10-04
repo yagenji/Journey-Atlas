@@ -1,10 +1,16 @@
 """Protect the exact, display-only border exclusion in two reviewed map SVGs."""
+import json
 import hashlib
 import unittest
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def current_map(slug):
+    """Map SVG currently referenced by the Country JSON (file versions change on renewal)."""
+    return ROOT / json.loads((ROOT / 'data/countries' / f'{slug}.json').read_text(encoding='utf-8'))['map']['svg']
+
 SVG = '{http://www.w3.org/2000/svg}'
 EXPECTED = {
     'macau': (1, '44bdca23d43ee30484e9fcf911a2b373c86030c54638edbe0810875d60d35eb1'),
@@ -16,7 +22,7 @@ class ExactForeignLandClip(unittest.TestCase):
     def test_foreign_context_excludes_original_national_paths(self):
         for slug, (count, expected_digest) in EXPECTED.items():
             with self.subTest(slug=slug):
-                root = ET.parse(ROOT / 'assets/images' / slug / 'map-atlas-v1.svg').getroot()
+                root = ET.parse(current_map(slug)).getroot()
                 self.assertEqual(root.get('viewBox'), '0 0 1200 760')
                 parents = {child: parent for parent in root.iter() for child in parent}
                 national = []
