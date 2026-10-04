@@ -37,7 +37,7 @@ jobs:
           python -m unittest discover -s tests -p 'test_generate_country_map_with_context.py' -v
       - name: Render existing Iceland reference without writing approved assets
         run: |
-          source=assets/images/iceland/map-atlas-v2.svg
+          source=assets/images/iceland/map-atlas-v3.svg
           preview=/tmp/new-country-map-context-smoke.svg
           if grep -q 'id="geographic-context"' "$source"; then
             cp "$source" "$preview"
@@ -53,7 +53,7 @@ jobs:
           from xml.etree import ElementTree as ET
           import cairosvg
           from PIL import Image
-          source = Path('assets/images/iceland/map-atlas-v2.svg')
+          source = Path('assets/images/iceland/map-atlas-v3.svg')
           preview = Path('/tmp/new-country-map-context-smoke.svg')
           ns = '{http://www.w3.org/2000/svg}'
 

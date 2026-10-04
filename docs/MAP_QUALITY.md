@@ -49,7 +49,9 @@ Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0`
 
 - target land: `url(#land)` gradient, outline `#31576a` 1.5px, `url(#shadow)` drop shadow (a transformed path gets the shadow on a wrapper group);
 - inland water: `#e5eceb` fill, `#6f8a92` stroke at opacity .35 / width .65;
-- inset and region frames: `fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"`.
+- inset and region frames: `fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"`;
+- surrounding land: one `#e4e0ce` silhouette outlined `#b6bbaf` 1; foreign borders come only from `#context-national-borders` (`#b6bbaf` 1), never from per-country context polygon edges, which would draw each border twice;
+- widths are in viewBox units *after* transforms, because the map is displayed scaled down as an `<img>`: never use `vector-effect="non-scaling-stroke"` (it renders about twice as thick as other maps), and divide the declared width by any scaling transform. `tests/test_map_stroke_widths.py` checks this.
 
 ### Inset notes
 
@@ -68,6 +70,8 @@ Use the shared map tooling where supported:
 - `scripts/build_coastline_composite.py` when Natural Earth's coastline is visibly coarse at 1200×760 (long straight segments): keeps Natural Earth land borders and takes coast/islands from GSHHS `h`/`f`, then feed it to the generator with `--source natural-earth`;
 - `scripts/generate_multi_region_map.py` for Country maps with `map.regions` (mainland + insets); the primary region continues past its rect so surrounding land never ends at a hard edge;
 - `scripts/drop_domestic_context.py` to remove context rings that duplicate the target's own coast or islets.
+- `scripts/normalize_map_stroke_widths.py` to remove `non-scaling-stroke` and compensate widths/shadow under scaling transforms (anisotropic transforms are baked into the path data);
+- `scripts/dissolve_context_land.py` to merge per-country context polygons into one silhouette so foreign borders are not doubled;
 - `scripts/update_stale_lake.py` when GSHHS still carries a lake at its historic extent (e.g. the Aral Sea): replaces it with the current Natural Earth 1:10m lake outline.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
