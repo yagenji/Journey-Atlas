@@ -45,6 +45,12 @@ JOURNEY ATLAS is a Japanese-language atlas. Territorial depiction follows the Go
 
 Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0` to derive the dataset for maps that include these areas, `patch-russia` / `clean-japan-context` / `dash-undetermined` for existing maps, and keep the top-page explorer data (`assets/maps/world-states.svg`) consistent.
 
+### Shared styling
+
+- target land: `url(#land)` gradient, outline `#31576a` 1.5px, `url(#shadow)` drop shadow (a transformed path gets the shadow on a wrapper group);
+- inland water: `#e5eceb` fill, `#6f8a92` stroke at opacity .35 / width .65;
+- inset and region frames: `fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"`.
+
 ### Inset notes
 
 When a Country map uses a separate inset, explain it consistently on the Country page:
@@ -62,6 +68,7 @@ Use the shared map tooling where supported:
 - `scripts/build_coastline_composite.py` when Natural Earth's coastline is visibly coarse at 1200×760 (long straight segments): keeps Natural Earth land borders and takes coast/islands from GSHHS `h`/`f`, then feed it to the generator with `--source natural-earth`;
 - `scripts/generate_multi_region_map.py` for Country maps with `map.regions` (mainland + insets); the primary region continues past its rect so surrounding land never ends at a hard edge;
 - `scripts/drop_domestic_context.py` to remove context rings that duplicate the target's own coast or islets.
+- `scripts/update_stale_lake.py` when GSHHS still carries a lake at its historic extent (e.g. the Aral Sea): replaces it with the current Natural Earth 1:10m lake outline.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
 

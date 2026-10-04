@@ -51,7 +51,7 @@ def reconcile_reviewed_bahrain_hawar(svg: str, resolution: str) -> str:
     if resolution != 'i':
         raise ValueError('Reviewed Hawar geometry requires intermediate GSHHG resolution')
     digest = lambda value: hashlib.sha256(value.encode('utf-8')).hexdigest()
-    qatar = ET.fromstring((ROOT / 'assets/images/qatar/map-atlas-v1.svg').read_text(encoding='utf-8'))
+    qatar = ET.fromstring((ROOT / 'assets/images/qatar/map-atlas-v2.svg').read_text(encoding='utf-8'))
     qatar_land = [p for p in qatar.iter(SVG_NS + 'path') if p.get('fill') == 'url(#land)']
     if (len(qatar_land) != 2 or digest(qatar_land[0].get('d', ''))
             != '4b52e0846f789da8fa8587457b2bb6d566f17f93f81203f032f81d62e47a38bd'):
