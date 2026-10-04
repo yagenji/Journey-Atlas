@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Map of Samoa" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="local-equirectangular-fit-v1">
+<metadata>Target shoreline: GSHHS intermediate-resolution polygons via Basemap 2.0.0, WGS84. Calibrated map bounds preserve the verified Scene coordinates against the rendered Samoa coastline; 1200×760; reviewed 2026-10-04.</metadata>
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
+<linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
+</defs>
+<rect width="1200" height="760" fill="url(#sea)"/>
+<g id="target-country" filter="url(#shadow)">
+<path d="M 66.1,212.3 L 66.1,211.7 L 81.6,195.0 L 105.2,193.2 L 139.7,211.4 L 174.9,201.7 L 194.9,212.6 L 202.7,199.9 L 228.2,202.9 L 309.3,174.4 L 345.0,174.4 L 355.4,159.9 L 401.9,153.8 L 435.9,166.5 L 510.6,252.3 L 519.1,293.5 L 537.3,321.9 L 512.5,346.8 L 516.1,360.7 L 499.1,371.6 L 505.1,399.5 L 493.3,419.7 L 461.8,414.3 L 450.7,387.3 L 433.4,384.0 L 420.7,398.5 L 358.9,396.7 L 268.1,418.5 L 239.9,394.6 L 227.9,361.2 L 188.5,317.6 L 97.4,248.3 L 66.1,212.3 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 823.7,590.2 L 790.1,562.6 L 719.3,559.6 L 693.5,542.9 L 678.1,513.5 L 665.3,525.1 L 650.8,500.2 L 606.6,485.8 L 603.2,464.8 L 635.6,435.5 L 678.7,436.6 L 723.5,413.6 L 780.4,408.8 L 809.5,434.8 L 818.9,435.7 L 817.4,425.1 L 870.0,460.9 L 898.5,458.4 L 931.8,476.6 L 943.3,467.5 L 963.9,474.2 L 960.8,482.6 L 993.3,500.5 L 971.8,519.6 L 1003.2,510.5 L 1016.3,520.5 L 1010.5,524.4 L 1039.0,532.9 L 1040.8,544.4 L 1063.8,546.2 L 1076.2,578.0 L 1069.9,599.5 L 1029.9,592.3 L 958.5,597.7 L 879.1,583.2 L 841.0,594.1 L 823.7,590.2 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+</svg>
