@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "nauru",
+  "nameEn": "NAURU",
+  "nameJa": "ナウル",
+  "region": "MICRONESIA / 0°S",
+  "seo": {
+    "description": "アニバレ湾の海岸から、ブアダ・ラグーン、リン鉱石の採掘跡、戦争遺構、ヤレンの国会と空港へ。海と岩と暮らしが近接するナウルを、8つの風景と4つの味からたどる。"
+  },
+  "capital": {
+    "nameEn": "Yaren",
+    "nameJa": "ヤレン",
+    "coordinates": {
+      "latitude": -0.5508528723,
+      "longitude": 166.9251966476
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 12,
+      "y": 10
+    },
+    "mapOffset": {
+      "x": 0.62,
+      "y": 0.373
+    }
+  },
+  "hero": {
+    "lead": "白い石灰岩が波打ち際に立つ。その奥には、採掘の跡と静かな湖がある、小さな一つの島。",
+    "image": "assets/images/nauru/approved/hero-anibare-bay.webp",
+    "location": "Anibare Bay",
+    "coordinates": {
+      "latitude": -0.525674,
+      "longitude": 166.9548599
+    },
+    "mapOffset": {
+      "x": 0.0,
+      "y": 0.0
+    }
+  },
+  "map": {
+    "bounds": {
+      "west": 166.898,
+      "south": -0.565,
+      "east": 166.972,
+      "north": -0.49
+    },
+    "svg": "assets/images/nauru/map-atlas-v1.svg",
+    "route": null,
+    "source": "OpenStreetMap Nauru coastline (verified against geoBoundaries gbOpen NRU ADM0), ODbL 1.0, retrieved 2026-10-04; Buada Lagoon: OpenStreetMap relation 12267999, ODbL 1.0, retrieved 2026-10-04. WGS84, shared local-equirectangular-fit-v1."
+  },
+  "scenes": [
+    {
+      "id": "buada-lagoon",
+      "name": "ブアダ・ラグーン",
+      "nameLocal": "Buada Lagoon",
+      "mapLabel": "ブアダ湖",
+      "description": "内陸にある静かな湖。ヤシと住宅が水辺を囲み、波が届く海岸とは違う、島の内側の暮らしが見える。",
+      "coordinates": {
+        "latitude": -0.5356769,
+        "longitude": 166.923134
+      },
+      "image": "assets/images/nauru/approved/scene-01-buada-lagoon.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.501,
+        "y": -0.004
+      }
+    },
+    {
+      "id": "command-ridge",
+      "name": "コマンド・リッジ",
+      "nameLocal": "Command Ridge",
+      "mapLabel": "コマンド・リッジ",
+      "description": "第二次大戦中の日本軍の砲が、高台の草木の中に残る。さびた二連装砲と遠くの海が、太平洋戦争の時間を同じ視界に置く。",
+      "coordinates": {
+        "latitude": -0.53029,
+        "longitude": 166.91685
+      },
+      "image": "assets/images/nauru/approved/scene-02-command-ridge.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0.059,
+        "y": -2.235
+      }
+    },
+    {
+      "id": "topside",
+      "name": "トップサイドの採掘跡",
+      "nameLocal": "Topside phosphate pinnacles",
+      "mapLabel": "トップサイド",
+      "description": "リン鉱石を取り出した後、石灰岩の尖塔が地表に残った内陸台地。海岸の柔らかな緑とは対照的な岩の景観が、資源産業の歴史を伝える。",
+      "coordinates": {
+        "latitude": -0.5252770913887673,
+        "longitude": 166.93997982464356
+      },
+      "image": "assets/images/nauru/approved/scene-03-topside.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.0,
+        "y": -0.0
+      }
+    },
+    {
+      "id": "aiwo-cantilever",
+      "name": "アイウォの旧積出設備",
+      "nameLocal": "Aiwo cantilever",
+      "mapLabel": "アイウォ",
+      "description": "西岸の海辺から見える、海へ突き出したリン鉱石の積出設備。鋼材の長い腕とサンゴ礁の青が、島の産業と外の世界を結んできた海岸を形づくる。",
+      "coordinates": {
+        "latitude": -0.5364515,
+        "longitude": 166.9098292
+      },
+      "image": "assets/images/nauru/approved/scene-04-aiwo-cantilever.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -0.229,
+        "y": 0.039
+      }
+    },
+    {
+      "id": "moqua-cave",
+      "name": "モクアの洞窟と水面",
+      "nameLocal": "Moqua Cave and Well",
+      "mapLabel": "モクア",
+      "description": "ヤレン地区の石灰岩の下にある洞窟と地下の水面。明るい地上から岩陰へ入ると、小さな島にも見えない水の空間があることに気づく。",
+      "coordinates": {
+        "latitude": -0.542109,
+        "longitude": 166.91833
+      },
+      "image": "assets/images/nauru/approved/scene-05-moqua-cave.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 1.097,
+        "y": 0.055
+      }
+    },
+    {
+      "id": "japanese-prison",
+      "name": "旧日本軍の監獄跡",
+      "nameLocal": "Japanese WWII Prison",
+      "mapLabel": "旧監獄跡",
+      "description": "ブアダへ続く道の近くに、コンクリートの小部屋が並ぶ戦時中の遺構。草木に覆われた壁は、南の島に残る占領の歴史を静かに伝える。",
+      "coordinates": {
+        "latitude": -0.5362399,
+        "longitude": 166.9180326
+      },
+      "image": "assets/images/nauru/approved/scene-06-japanese-prison.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.191,
+        "y": -0.703
+      }
+    },
+    {
+      "id": "yaren-parliament",
+      "name": "ヤレンの国会建物",
+      "nameLocal": "Parliament House, Yaren",
+      "mapLabel": "国会建物",
+      "description": "ヤシの立つ前庭の奥に、青い屋根の国会建物がある。空港と海岸に近い行政地区で、国の機能と島の日常の距離の短さが見える。",
+      "coordinates": {
+        "latitude": -0.54704,
+        "longitude": 166.91692
+      },
+      "image": "assets/images/nauru/approved/scene-07-yaren-parliament.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -2.361,
+        "y": -0.531
+      }
+    },
+    {
+      "id": "nauru-airport",
+      "name": "国際空港と南西の海岸",
+      "nameLocal": "Nauru International Airport",
+      "mapLabel": "国際空港",
+      "description": "島の南側に、海岸とほぼ平行に延びる一本の滑走路。海、住宅、航空施設、内陸の緑が近接し、島の限られた平地の使い方がよく分かる。",
+      "coordinates": {
+        "latitude": -0.546910732,
+        "longitude": 166.91898602
+      },
+      "image": "assets/images/nauru/approved/scene-08-nauru-airport.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 1.503,
+        "y": 3.005
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石灰岩の海岸",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "島を巡る海岸道路",
+      "category": "MOVEMENT",
+      "icon": "road"
+    },
+    {
+      "title": "水辺の住宅",
+      "category": "DAILY_LIFE",
+      "icon": "city"
+    },
+    {
+      "title": "リン鉱石の積出設備",
+      "category": "WORK",
+      "icon": "history"
+    },
+    {
+      "title": "ヤシとパンノキ",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "戦時中の遺構",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "海からの魚",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "海岸の漁",
+      "category": "WORK",
+      "icon": "sea"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "raised-coral-landform",
+      "themeEn": "LAND / GEOLOGY",
+      "themeJa": "陸 / 地質",
+      "title": "海のサンゴが、島の岩になった",
+      "text": "ナウルは隆起したサンゴの島。海岸の石灰岩と内陸の台地を一緒に見ると、青い海だけでは分からない島の成り立ちが見えてくる。",
+      "points": [
+        "隆起したサンゴの島",
+        "低い海岸帯",
+        "内陸に広がる台地"
+      ],
+      "sourceKey": "nationalReport"
+    },
+    {
+      "topicKey": "phosphate-industrial-legacy",
+      "themeEn": "RESOURCES / ECONOMY",
+      "themeJa": "資源 / 経済",
+      "title": "掘り出された資源が、地表に跡を残した",
+      "text": "1900年にリン鉱石が発見され、1907年に初めてオーストラリアへ出荷された。採掘跡の尖塔と西岸の積出設備は、地下の資源が国の経済と地形の両方を変えた歴史を語る。",
+      "points": [
+        "1900年に発見",
+        "1907年に初出荷",
+        "台地と海岸に産業の跡"
+      ],
+      "sourceKey": "government"
+    },
+    {
+      "topicKey": "occupation-remains-memory",
+      "themeEn": "HISTORY / WAR",
+      "themeJa": "歴史 / 戦争",
+      "title": "日本との関わりは、遺構の中にも残る",
+      "text": "ナウルは第二次大戦中、日本軍の占領下に置かれた。高台の砲とブアダ周辺の監獄跡を訪ねると、今の穏やかな景観の中に戦争の記憶が重なっていることが分かる。",
+      "points": [
+        "高台に残る砲",
+        "草木に覆われた監獄跡",
+        "現地ガイドと遺構をたどる"
+      ],
+      "sourceKey": "warHistory"
+    },
+    {
+      "topicKey": "freshwater-rainfall-resources",
+      "themeEn": "WATER / LIFE",
+      "themeJa": "水 / 暮らし",
+      "title": "海に囲まれていても、水の確保は別の問題",
+      "text": "ブアダの湖や地下の水面がある一方、飲み水の確保には雨水や淡水化などが関わる。雨の量はENSOの影響で年ごとの差が大きく、水は島の暮らしを支える重要な資源になる。",
+      "points": [
+        "内陸の湖と地下水",
+        "雨水と淡水化",
+        "雨量は年ごとに変動"
+      ],
+      "sourceKey": "climateReport"
+    },
+    {
+      "topicKey": "pacific-air-network",
+      "themeEn": "MOBILITY / PACIFIC",
+      "themeJa": "移動 / 太平洋",
+      "title": "一本の滑走路が、海の向こうへ続く",
+      "text": "島への入口は国際空港。ナウル航空が太平洋の複数の島とオーストラリアを結んでおり、小さな島の空港が広い海域の移動に組み込まれている。路線と運航日は旅行前に確認したい。",
+      "points": [
+        "国際空港が玄関口",
+        "島々を結ぶ航空網",
+        "日程は最新の運航表から"
+      ],
+      "sourceKey": "airline"
+    },
+    {
+      "topicKey": "noddy-catching-tradition",
+      "themeEn": "CULTURE / KNOWLEDGE",
+      "themeJa": "文化 / 知恵",
+      "title": "海鳥を捕る知恵にも、島の文化がある",
+      "text": "ナウルにはクロアジサシを捕る伝統があり、鳥を誘う際に音楽を使う方法も紹介されている。海と陸の小ささの中で、身近な生き物と向き合ってきた文化の一面だ。",
+      "points": [
+        "クロアジサシ",
+        "音楽で鳥を誘う方法",
+        "土地と生き物の知識"
+      ],
+      "sourceKey": "tourismReport"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-january-date",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "独立記念日は1月31日",
+      "text": "ナウルは1968年1月31日に独立した。島の国としての歩みを思い出す日として、毎年1月31日が祝われている。",
+      "icon": "history",
+      "sourceKey": "mofa"
+    },
+    {
+      "topicKey": "equator-flag-stripe",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "しるし",
+      "title": "国旗の黄色い線は、赤道を表す",
+      "text": "紺色は島を囲む海、黄色い横線は赤道を表す。国の場所を、地図とは違う方法で読むことのできる国旗だ。",
+      "icon": "map",
+      "sourceKey": "flag"
+    },
+    {
+      "topicKey": "dot-nr-internet",
+      "categoryEn": "DIGITAL",
+      "categoryJa": "デジタル",
+      "title": "インターネット上の国の印は「.nr」",
+      "text": "ナウルの国別トップレベルドメインは .nr。政府機関のウェブサイトにも使われ、画面の上でも島の所在を示している。",
+      "icon": "city",
+      "sourceKey": "iana"
+    },
+    {
+      "topicKey": "aud-shared-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "お金",
+      "title": "使う通貨はオーストラリアドル",
+      "text": "国の通貨はオーストラリアドル。海を隔てたオーストラリアとの関わりが、旅の支払いにも表れている。",
+      "icon": "food",
+      "sourceKey": "mofa"
+    },
+    {
+      "topicKey": "fruit-trees-local",
+      "categoryEn": "PLANTS",
+      "categoryJa": "植物",
+      "title": "パンノキやパンダナスも育つ",
+      "text": "政府の紹介ではココナツ、パンノキ、パンダナス、マンゴーなどが島の果樹として挙げられる。水辺や集落では、海だけでなく身近な樹木にも目を向けたい。",
+      "icon": "leaf",
+      "sourceKey": "misc"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF NAURU",
+    "title": "ナウルで食べたいもの",
+    "intro": "魚とココナツ、パンノキと果物。海からの食材と島で育つ作物を組み合わせた、静かな食卓をたどる。",
+    "items": [
+      {
+        "id": "coconut-fish",
+        "name": "魚のココナツ和え",
+        "nameLocal": "Coconut fish",
+        "text": "生の魚をライムやココナツミルクで和える一皿。やわらかな魚と酸味、まろやかなココナツが重なり、海の近い島の食卓を感じる。",
+        "image": "assets/images/nauru/approved/food-01-coconut-fish.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "coconut-crusted-fish",
+        "name": "ココナツ衣の魚フライ",
+        "nameLocal": "Coconut-crusted fish",
+        "text": "白身魚にココナツを混ぜた衣をつけて揚げる料理。香ばしい衣の中に淡い魚の身があり、ライムの酸味がよく合う。",
+        "image": "assets/images/nauru/approved/food-02-coconut-crusted-fish.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "breadfruit-chips",
+        "name": "パンノキのチップス",
+        "nameLocal": "Breadfruit chips",
+        "text": "パンノキの実を薄く切って揚げた軽食。芋にも似た実が、油を通すと軽い歯ざわりに変わり、島の作物を気軽に味わえる。",
+        "image": "assets/images/nauru/approved/food-03-breadfruit-chips.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "banana-coconut",
+        "name": "バナナのココナツミルク煮",
+        "nameLocal": "Bananas in coconut milk",
+        "text": "バナナをココナツミルクでやさしく煮る甘い一皿。太平洋の島々でも親しまれる組み合わせで、果物とココナツの素朴な甘みを楽しむ。",
+        "image": "assets/images/nauru/approved/food-04-banana-coconut.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "名所の数より、海岸と内陸の違いを見る旅。一つの島を車で巡り、長く滞在するなら同じ場所の光や暮らしの変化を楽しむ。国際便の日程から組み立てたい。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "海岸と内陸を一周する",
+        "text": "車と短い散歩を組み合わせ、海岸、湖、行政地区をつなぐ。観光日数と飛行機の運航日は分けて考える。例：ヤレン → アニバレ湾 → ブアダ・ラグーン → アイウォ。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "台地と歴史を加える",
+        "text": "現地ガイドと採掘跡や戦争遺構を訪ねる時間を加える。昼の暑さを避け、海岸で過ごす時間も残す。例：ヤレン → コマンド・リッジ → 旧監獄跡 → トップサイド → アニバレ湾。",
+        "icon": "map"
+      },
+      {
+        "duration": "6日以上",
+        "title": "島の時間で滞在する",
+        "text": "同じ海岸を朝夕に訪ね、現地手配の釣りや食事、集落の散歩をゆっくり楽しむ。長い滞在は訪問先を増やすより余白を増やす旅に。例：ヤレン滞在 → アニバレ湾 → ブアダ周辺 → 西岸の夕景。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "color": "#86aeb5",
+      "text": "雨の多い時期の前半。急な雨を見込み、屋外の予定は朝の空と当日の予報で調整する。気温は一年を通じて高い。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#9fb8ae",
+      "text": "雨季の後半。蒸し暑さとにわか雨を意識し、日陰と水分を確保する。雨量は年によって大きく変わる。"
+    },
+    {
+      "months": "5〜8月",
+      "color": "#b7b890",
+      "text": "比較的雨の少ない時期。海岸と内陸を巡るにも日差しへの備えが必要で、乾季でも雨や海況の変化はある。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#b6a88c",
+      "text": "雨季へ向かう前の時期。月の区分だけで好天を決めつけず、気象局の予報と海の状態を確認して動く。"
+    }
+  ],
+  "transport": {
+    "title": "海岸道路を車でつなぎ、内陸はガイドと歩く",
+    "text": "国際便はナウル国際空港へ着く。島内は車の手配を軸に、海岸道路から湖や台地へ入る。タクシーやレンタカーなどは宿泊先と相談し、採掘跡や戦争遺構は現地ガイドに道と立入範囲を確認する。空港への往復と帰国便の日程を先に固めると組み立てやすい。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "海と岩の違いを見たい人",
+      "text": "海岸の白い石灰岩、静かな内陸の湖、採掘後の尖塔。それぞれ違う景観が近い距離にある島を知りたい人に。",
+      "icon": "landscape"
+    },
+    {
+      "title": "資源と歴史の跡をたどりたい人",
+      "text": "積出設備や砲、監獄跡を、今の暮らしと結びつけて見たい人に。現地ガイドの話を聞く時間が旅を深める。",
+      "icon": "history"
+    },
+    {
+      "title": "小さな島で余白を持ちたい人",
+      "text": "名所を次々と消化するより、海岸に戻り、光や空の変化を見ながら過ごす滞在が好きな人に。",
+      "icon": "compass"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "ミクロネシア"
+    },
+    {
+      "label": "首都",
+      "value": "ヤレン（政府所在地）"
+    },
+    {
+      "label": "人口",
+      "value": "約11,947人（2024年）"
+    },
+    {
+      "label": "面積",
+      "value": "21.1 km²（日本の約0.006%）"
+    },
+    {
+      "label": "言語",
+      "value": "英語、ナウル語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教"
+    },
+    {
+      "label": "通貨",
+      "value": "オーストラリアドル（AUD）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "tiny-national-area",
+      "label": "一つの島の国土",
+      "value": "21.1 km²",
+      "note": "国全体が一つの島に収まる。海岸から内陸の湖や採掘跡へ短い距離で移れる小ささが、景観の違いを身近にする。",
+      "icon": "map",
+      "interestReason": "国全体を一つの島として巡れる距離感が、旅の組み立て方を具体的に変えるため。",
+      "exceptionalScale": true
+    },
+    {
+      "topicKey": "twelve-ancestral-tribes",
+      "label": "国旗の星が表す部族",
+      "value": "12部族",
+      "note": "白い星の12の先端は、ナウルの12部族を表す。小さな国にも複数の系譜があり、国旗に人々の歴史が刻まれている。",
+      "icon": "culture",
+      "interestReason": "島の小ささから見落としがちな人々の多様な系譜を、国旗の形から知ることができるため。"
+    },
+    {
+      "topicKey": "angam-survival-threshold",
+      "label": "アンガム・デーの目標人口",
+      "value": "1,500人",
+      "note": "1932年10月26日、ナウル人の人口が目標の1,500人に達したことを祝った。今もアンガム・デーは、共同体の存続を喜ぶ大切な記念日だ。",
+      "exceptionalScale": true,
+      "icon": "history",
+      "interestReason": "人口を単なる統計ではなく、共同体が存続する喜びとして記念する島固有の歴史を示すため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "flight-arrangements",
+      "title": "便と宿を先に確認する",
+      "text": "国際便の運航日は限られる。最新のナウル航空の運航表を確認し、入国に必要な手続きと宿泊・送迎の手配を旅行前に照合する。"
+    },
+    {
+      "topicKey": "guide-inland-sites",
+      "title": "内陸の遺構はガイドと訪ねる",
+      "text": "採掘跡や戦争遺構は道が分かりにくい場所もある。現地ガイドにアクセスと立入可能な範囲を確認し、岩場に合う靴を用意する。"
+    },
+    {
+      "topicKey": "shore-access",
+      "title": "海岸の景観と遊泳場所を区別する",
+      "text": "外海に面した海岸では流れと波の状態を現地で確認する。アニバレ湾の景観を見ることと、海へ入れるかどうかは別に判断し、地元の案内に従う。"
+    }
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "slug": "kiribati",
+      "nameEn": "KIRIBATI",
+      "nameJa": "キリバス",
+      "flag": "🇰🇮",
+      "reason": "ナウルに近いバナバ島を含み、低い環礁も広い海に散らばる国。隆起した一島との地形と国土の広がりの違いを比べたいなら。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "marshallislands",
+      "nameEn": "MARSHALL ISLANDS",
+      "nameJa": "マーシャル諸島",
+      "flag": "🇲🇭",
+      "reason": "内陸に台地を持つナウルから、ラグーンを囲む低い環礁の景観へ。太平洋の島でも異なる陸と海の関係を見たいなら。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "slug": "fiji",
+      "nameEn": "FIJI",
+      "nameJa": "フィジー",
+      "flag": "🇫🇯",
+      "reason": "ナウル航空の太平洋路線でつながる、大きな島々を持つ国。小さなサンゴの島と、山や都市のある島々を対照的に知りたいなら。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "updatedAt": "2026-10-04",
+  "sourcesVerifiedAt": "2026-10-04",
+  "sources": {
+    "mofa": "https://www.mofa.go.jp/mofaj/area/nauru/data.html",
+    "population": "https://www.mofa.go.jp/mofaj/area/nauru/data.html",
+    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "government": "https://www.nauru.gov.nr/about-naoero.aspx",
+    "flag": "https://www.nauru.gov.nr/about-naoero/dei-naoero%27s-stories/the-naoero-flag.aspx",
+    "angam": "https://www.nauru.gov.nr/about-naoero/dei-naoero%27s-stories/angam-day.aspx",
+    "misc": "https://www.nauru.gov.nr/about-naoero/miscellaneous.aspx",
+    "airline": "https://www.nauruair.com/travel-info/flight-schedule",
+    "tourism": "https://southpacificislands.travel/exploring-nauru-your-travel-guide-to-one-of-the-least-visited-destinations/",
+    "tourismReport": "https://www.nauruair.com/library/files/naurutourismnumbersriseby94asadventuroustravellersexploresouthwestpacific.pdf",
+    "warHistory": "https://www.nauruair.com/about-us/blog/post/explore-the-war-history-of-nauru",
+    "nationalReport": "https://nauru-data.sprep.org/system/files/nationalreport_combatdesertification.pdf",
+    "climateReport": "https://nauru-data.sprep.org/system/files/nationalreport_combatdesertification.pdf",
+    "weather": "https://www.naurumet.com/climate",
+    "food": "https://travelfoodatlas.com/nauru-food",
+    "pacificFood": "https://www.spc.int/DigitalLibrary/Get/vbnzo",
+    "iana": "https://www.iana.org/domains/root/db/nr.html",
+    "mapGeometry": "https://github.com/wmgeolab/geoBoundaries/blob/main/releaseData/gbOpen/NRU/ADM0/geoBoundaries-NRU-ADM0.geojson",
+    "coastline": "https://www.openstreetmap.org/copyright",
+    "cantileverViewpoint": "https://www.openstreetmap.org/node/8215211936",
+    "lakeGeometry": "https://www.openstreetmap.org/relation/12267999",
+    "sceneCoordinates": "https://www.openstreetmap.org/",
+    "prisonCoordinates": "https://www.openstreetmap.org/node/4898579521",
+    "topsideCoordinates": "https://www.openstreetmap.org/way/357945013",
+    "airportCoordinates": "https://www.openstreetmap.org/way/107982289",
+    "parliamentCoordinates": "https://www.openstreetmap.org/way/1184502539",
+    "gunCoordinates": "https://www.geonames.org/7626422",
+    "moquaCoordinates": "https://www.geonames.org/2110428",
+    "capitalCoordinates": "https://www.geonames.org/search.html?country=NR&q=Nauru"
+  },
+  "sourceDates": {
+    "population": "2024",
+    "mofa": "2026-09-08",
+    "climateReport": "2003",
+    "mapGeometry": "2017",
+    "lakeGeometry": "2026-10-04",
+    "sceneCoordinates": "2026-10-04",
+    "weather": "2026-10-04",
+    "airline": "2026-10-04",
+    "nationalReport": "2003"
+  }
+}
