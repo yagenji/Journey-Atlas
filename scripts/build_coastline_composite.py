@@ -42,8 +42,25 @@ def gshhs_land(bounds: tuple[float, float, float, float], resolution: str):
     return unary_union(land)
 
 
+def nearest_islands(land, target, neighbours, max_distance: float):
+    """GSHHS islands that touch no other country and lie nearest to the target.
+
+    An offshore island missing from Natural Earth's coarse coastline belongs to
+    the country it is closest to; land that touches a neighbour is never taken.
+    """
+    parts = list(getattr(land, "geoms", [land]))
+    picked = []
+    for part in parts:
+        if part.is_empty or part.intersects(neighbours):
+            continue
+        d_target = part.distance(target)
+        if d_target <= max_distance and d_target < part.distance(neighbours):
+            picked.append(part)
+    return unary_union(picked) if picked else Polygon()
+
+
 def build(natural_earth: Path, country_name: str, bounds: dict, resolution: str, coast_buffer: float,
-          merge: tuple[str, ...] = ()) -> dict:
+          merge: tuple[str, ...] = (), island_distance: float = 0.0) -> dict:
     data = json.loads(natural_earth.read_text(encoding="utf-8"))
     features = data["features"]
     target = None
@@ -68,6 +85,10 @@ def build(natural_earth: Path, country_name: str, bounds: dict, resolution: str,
     land = gshhs_land(frame, resolution)
     neighbours = unary_union([g for g in others if g.intersects(view)])
     composite = land.intersection(target.buffer(coast_buffer)).difference(neighbours)
+    note = f"land within {coast_buffer} deg of the Natural Earth country, minus other Natural Earth countries"
+    if island_distance > 0:
+        composite = composite.union(nearest_islands(land, target, neighbours, island_distance))
+        note += f"; plus islands within {island_distance} deg whose nearest country is the target"
     composite = composite.intersection(view)
     return {
         "type": "FeatureCollection",
@@ -76,7 +97,7 @@ def build(natural_earth: Path, country_name: str, bounds: dict, resolution: str,
             "properties": {
                 "ADMIN": country_name,
                 "SOURCE": f"Natural Earth 1:10m Admin-0 land borders + GSHHS/GSHHG resolution={resolution} coastline "
-                          f"(land within {coast_buffer} deg of the Natural Earth country, minus other Natural Earth countries)",
+                          f"({note})",
             },
             "geometry": mapping(composite),
         }],
@@ -90,11 +111,14 @@ def main() -> None:
     parser.add_argument("--country-name", required=True, help="Natural Earth ADMIN name")
     parser.add_argument("--resolution", default="h", choices=("i", "h", "f"))
     parser.add_argument("--coast-buffer", default=0.05, type=float)
+    parser.add_argument("--island-distance", default=0.0, type=float,
+                        help="also take GSHHS islands within this many degrees whose nearest Natural Earth country is the target")
     parser.add_argument("--merge", nargs="*", default=(), help="Natural Earth ADMIN names to treat as part of the target")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     bounds = json.loads(args.country_json.read_text(encoding="utf-8"))["map"]["bounds"]
-    result = build(args.natural_earth, args.country_name, bounds, args.resolution, args.coast_buffer, tuple(args.merge))
+    result = build(args.natural_earth, args.country_name, bounds, args.resolution, args.coast_buffer, tuple(args.merge),
+                   args.island_distance)
     args.output.write_text(json.dumps(result), encoding="utf-8")
     print(f"Wrote {args.output}: {result['features'][0]['properties']['SOURCE']}")
 

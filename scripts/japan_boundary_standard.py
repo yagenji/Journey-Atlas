@@ -48,6 +48,21 @@ UNDETERMINED_ADMIN = "Undetermined (South Sakhalin and Kuril Islands)"
 # Japanese atlases mark Kashmir and the China-India border as 国境未確定.
 UNDETERMINED_BORDER_PARTIES = {"India", "Pakistan", "China", "Siachen Glacier"}
 
+# African boundaries Natural Earth classifies as disputed / indefinite / line of
+# control from Japan's point of view (FCLASS_JP, else FEATURECLA): Western
+# Sahara (27°40'N), Morocco-Algeria, Hala'ib, Abyei and the Sudan-South Sudan
+# line, Ilemi, Ethiopia-South Sudan, Ethiopia-Somalia and Lake Malawi.
+AFRICA_UNDETERMINED_PARTIES = {
+    "Western Sahara", "Morocco", "Algeria", "Egypt", "Sudan", "South Sudan", "Ethiopia",
+    "Kenya", "Somalia", "Malawi", "United Republic of Tanzania",
+}
+UNDETERMINED_PARTY_GROUPS = (UNDETERMINED_BORDER_PARTIES, AFRICA_UNDETERMINED_PARTIES)
+
+# Lines Japan does not recognise as boundaries at all: Natural Earth marks them
+# FCLASS_JP "Unrecognized" (e.g. the Moroccan berm in Western Sahara); Somaliland
+# is not recognised by Japan, so its line with Somalia is not a border either.
+UNRECOGNIZED_PAIRS = ({"Somaliland", "Somalia"},)
+
 DISPUTED_LINE_CLASSES = (
     "Disputed (please verify)",
     "Line of control (please verify)",
@@ -56,12 +71,24 @@ DISPUTED_LINE_CLASSES = (
 )
 
 
+def japan_line_class(properties: dict) -> str | None:
+    """Natural Earth line class from Japan's point of view."""
+    return properties.get("FCLASS_JP") or properties.get("FEATURECLA")
+
+
 def is_excluded_boundary_line(geometry, properties: dict) -> bool:
-    """True for the Natural Earth de facto line between Hokkaido and Kunashiri."""
-    return (
-        properties.get("FEATURECLA") == "Disputed (please verify)"
-        and NORTHERN_TERRITORIES.buffer(0.5).contains(geometry)
-    )
+    """True for lines that are not national borders under the Japanese standard.
+
+    The Natural Earth de facto line between Hokkaido and Kunashiri, lines Natural
+    Earth marks unrecognised from Japan's point of view, and Somaliland-Somalia.
+    """
+    if (properties.get("FEATURECLA") == "Disputed (please verify)"
+            and NORTHERN_TERRITORIES.buffer(0.5).contains(geometry)):
+        return True
+    if properties.get("FCLASS_JP") == "Unrecognized":
+        return True
+    sides = {properties.get("ADM0_LEFT"), properties.get("ADM0_RIGHT")}
+    return any(sides == pair for pair in UNRECOGNIZED_PAIRS)
 
 
 def _polygons(geometry) -> list[Polygon]:
@@ -252,7 +279,8 @@ def _parse_lines(d: str):
     return MultiLineString(out)
 
 
-def dash_undetermined(svg: str, bounds: dict, boundary_lines: Path, tolerance_px: float = 8.0) -> tuple[str, float]:
+def dash_undetermined(svg: str, bounds: dict, boundary_lines: Path, tolerance_px: float = 8.0,
+                      require_target: bool = True) -> tuple[str, float]:
     """Draw 国境未確定 (disputed / line-of-control / indefinite) borders dashed.
 
     The target outline keeps its own geometry: only the parts of it that run
@@ -267,10 +295,10 @@ def dash_undetermined(svg: str, bounds: dict, boundary_lines: Path, tolerance_px
     for f in data["features"]:
         props = f.get("properties") or {}
         geometry = shape(f["geometry"])
-        if props.get("FEATURECLA") not in DISPUTED_LINE_CLASSES or is_excluded_boundary_line(geometry, props):
+        if japan_line_class(props) not in DISPUTED_LINE_CLASSES or is_excluded_boundary_line(geometry, props):
             continue
         sides = {props.get("ADM0_LEFT"), props.get("ADM0_RIGHT")}
-        if not sides <= UNDETERMINED_BORDER_PARTIES:
+        if not any(sides <= group for group in UNDETERMINED_PARTY_GROUPS):
             continue
         for line in _lines(geometry.intersection(view)):
             disputed.append(LineString([project(x, y) for x, y in line.coords]))
@@ -278,18 +306,50 @@ def dash_undetermined(svg: str, bounds: dict, boundary_lines: Path, tolerance_px
         return svg, 0.0
     zone = unary_union(disputed).buffer(tolerance_px)
 
-    m = re.search(r'<path d="([^"]*)" fill="url\(#land\)"([^>]*?) stroke="#31576a" stroke-width="1.5"([^>]*)/>', svg)
-    if not m:
+    targets = [m for m in re.finditer(r"<path\b[^>]*?/>", svg)
+               if 'fill="url(#land)"' in m.group(0) and 'stroke="#31576a"' in m.group(0)]
+    outline_only = False
+    if not targets:
+        # target fill without stroke plus a separate fill="none" outline path
+        targets = [m for m in re.finditer(r"<path\b[^>]*?/>", svg)
+                   if 'fill="none"' in m.group(0) and 'stroke="#31576a"' in m.group(0)]
+        outline_only = bool(targets)
+    if not targets and not require_target:
+        targets = []
+    elif not targets:
         raise ValueError("Target path with the standard outline was not found")
-    edge = _path_to_geometry(m.group(1)).boundary
-    dashed, solid = edge.intersection(zone), edge.difference(zone)
-    target = f'<path d="{m.group(1)}" fill="url(#land)"{m.group(2)} stroke="none"{m.group(3)}/>'
-    outline = (
-        '<g id="target-outline" fill="none" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">'
-        f'<path d="{_lines_to_path(solid)}"/>'
-        f'<path data-boundary="undetermined" stroke-dasharray="5 4" d="{_lines_to_path(dashed)}"/></g>'
-    )
-    svg = svg.replace(m.group(0), target + "\n" + outline, 1)
+    solid_parts, dashed_parts = [Polygon().boundary], [Polygon().boundary]
+    width = "1.5"
+    for m in targets:
+        tag = m.group(0)
+        if "transform=" in tag:
+            raise ValueError("Transformed target paths are not supported")
+        width = (re.search(r'stroke-width="([^"]+)"', tag) or [None, "1.5"])[1]
+        edge = _svg_d_to_geometry(re.search(r'\sd="([^"]*)"', tag).group(1)).boundary
+        dashed_parts.append(edge.intersection(zone))
+        solid_parts.append(edge.difference(zone))
+    dashed, solid = unary_union(dashed_parts), unary_union(solid_parts)
+    if dashed.length == 0:
+        target_dashed = False
+    else:
+        target_dashed = True
+        if outline_only:
+            anchor = targets[-1].start()
+            for m in reversed(targets):
+                svg = svg[:m.start()] + svg[m.end():]
+            anchor_end = anchor
+        else:
+            for m in reversed(targets):
+                stripped = re.sub(r'\sstroke="#31576a"', ' stroke="none"', m.group(0), count=1)
+                svg = svg[:m.start()] + stripped + svg[m.end():]
+            anchor_end = [m for m in re.finditer(r"<path\b[^>]*?/>", svg)
+                          if 'fill="url(#land)"' in m.group(0) and 'stroke="none"' in m.group(0)][-1].end()
+        outline = (
+            f'<g id="target-outline" fill="none" stroke="#31576a" stroke-width="{width}" stroke-linejoin="round" stroke-linecap="round">'
+            f'<path d="{_lines_to_path(solid)}"/>'
+            f'<path data-boundary="undetermined" stroke-dasharray="5 4" d="{_lines_to_path(dashed)}"/></g>'
+        )
+        svg = svg[:anchor_end] + "\n" + outline + svg[anchor_end:]
 
     c = re.search(r'(<g id="context-national-borders"[^>]*>)<path d="([^"]*)"/></g>', svg)
     if c:
@@ -300,12 +360,54 @@ def dash_undetermined(svg: str, bounds: dict, boundary_lines: Path, tolerance_px
             f'<path data-boundary="undetermined" stroke-dasharray="4 3" d="{_lines_to_path(c_dashed)}"/></g>'
         )
         svg = svg.replace(c.group(0), replacement, 1)
-    return svg, dashed.length
+    return svg, dashed.length if target_dashed else 0.0
+
+
+def _svg_d_to_geometry(d: str):
+    """Even-odd polygon from any SVG path data (curves sampled)."""
+    from svgelements import Path as SvgPath, Move, Close, Line
+    geometry = Polygon()
+    ring: list[tuple[float, float]] = []
+
+    def flush():
+        nonlocal geometry, ring
+        if len(ring) >= 3:
+            geometry = geometry.symmetric_difference(Polygon(ring).buffer(0))
+        ring = []
+
+    for seg in SvgPath(d):
+        if isinstance(seg, Move):
+            flush()
+            ring = [(seg.end.x, seg.end.y)]
+        elif isinstance(seg, Close):
+            flush()
+        elif isinstance(seg, Line):
+            ring.append((seg.end.x, seg.end.y))
+        else:
+            ring.extend((pt.x, pt.y) for pt in (seg.point(i / 8) for i in range(1, 9)))
+    flush()
+    return geometry
+
+
+def build_boundary_lines(land_lines: Path, disputed_lines: Path, output: Path) -> int:
+    """Natural Earth land boundary lines plus the disputed-area lines Japan's
+    point of view (FCLASS_JP) shows as disputed, e.g. Western Sahara's
+    northern boundary at 27°40'N, which the de facto dataset omits."""
+    data = json.loads(land_lines.read_text(encoding="utf-8"))
+    extra = [f for f in json.loads(disputed_lines.read_text(encoding="utf-8"))["features"]
+             if (f.get("properties") or {}).get("FCLASS_JP") in DISPUTED_LINE_CLASSES]
+    data["features"] = data["features"] + extra
+    output.write_text(json.dumps(data), encoding="utf-8")
+    return len(extra)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    lines = sub.add_parser("build-boundary-lines", help="Write Japanese-standard boundary lines (land + JP-disputed claim lines)")
+    lines.add_argument("--land-lines", required=True, type=Path, help="ne_10m_admin_0_boundary_lines_land.geojson")
+    lines.add_argument("--disputed-lines", required=True, type=Path, help="ne_10m_admin_0_boundary_lines_disputed_areas.geojson")
+    lines.add_argument("--output", required=True, type=Path)
     build = sub.add_parser("build-admin0", help="Write a Japanese-standard Admin-0 GeoJSON derived from Natural Earth")
     build.add_argument("--input", required=True, type=Path)
     build.add_argument("--output", required=True, type=Path)
@@ -334,6 +436,10 @@ def main() -> None:
         svg, n = drop_context_inside(args.svg.read_text(encoding="utf-8"), bounds, [NORTHERN_TERRITORIES, TAKESHIMA])
         args.svg.write_text(svg, encoding="utf-8")
         print(f"Dropped {n} duplicate context rings")
+        return
+    if args.command == "build-boundary-lines":
+        added = build_boundary_lines(args.land_lines, args.disputed_lines, args.output)
+        print(f"Wrote {args.output}: added {added} Japanese-standard disputed lines")
         return
     if args.command == "build-admin0":
         print(json.dumps(build_admin0(args.input, args.output)))
