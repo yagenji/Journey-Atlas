@@ -9,10 +9,25 @@
     if (!image || !legend) return;
     observer.disconnect();
 
-    // The existing renderer already credits OSM when Country JSON names it.
-    if (legend.querySelector('.map-legend__source-credit')) return;
-    if (image.parentElement?.dataset.sourceCreditPlacement === 'footer'
-        && document.querySelector('.atlas-footer__copyright .map-legend__source-credit')) return;
+    const footer = document.querySelector('.atlas-footer__copyright');
+    const legendCredit = legend.querySelector('.map-legend__source-credit');
+    const footerCredit = footer?.querySelector('.map-legend__source-credit');
+
+    // Keep attribution, but do not insert a technical "地図データ" line beneath the map.
+    // Country JSON may still use the older default placement, so normalize it here.
+    if (legendCredit) {
+      if (footer) {
+        if (footerCredit) {
+          legendCredit.remove();
+        } else {
+          legendCredit.textContent = '© OpenStreetMap contributors · ODbL 1.0';
+          footer.append(legendCredit);
+        }
+      }
+      return;
+    }
+    if (image.parentElement?.dataset.sourceCreditPlacement === 'footer' && footerCredit) return;
+
     const rawUrl = image.getAttribute('src') || '';
     const url = new URL(rawUrl, document.baseURI);
     if (url.origin !== location.origin || !/\.svg$/i.test(url.pathname)) return;
@@ -30,13 +45,16 @@
         const provenance = context?.querySelector('desc')?.textContent || '';
         if (!/OpenStreetMap|\bODbL\b/i.test(provenance)) return;
         if (legend.querySelector('.map-legend__source-credit')) return;
+        if (footer?.querySelector('.map-legend__source-credit')) return;
 
         const credit = document.createElement('a');
         credit.className = 'map-legend__source-credit';
         credit.href = 'https://www.openstreetmap.org/copyright';
         credit.target = '_blank';
         credit.rel = 'noopener noreferrer';
-        credit.textContent = '地図データ © OpenStreetMap contributors · ODbL 1.0';
+        credit.textContent = footer
+          ? '© OpenStreetMap contributors · ODbL 1.0'
+          : '地図データ © OpenStreetMap contributors · ODbL 1.0';
         credit.style.flexBasis = '100%';
         credit.style.textAlign = 'left';
         credit.style.color = 'inherit';
@@ -44,7 +62,7 @@
         credit.style.lineHeight = '1.5';
         credit.style.textDecoration = 'underline';
         credit.style.textUnderlineOffset = '2px';
-        legend.append(credit);
+        (footer || legend).append(credit);
       })
       .catch((error) => {
         console.warn('Map source attribution could not be verified:', error);
