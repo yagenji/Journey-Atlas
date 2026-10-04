@@ -54,7 +54,7 @@ Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0`
 - inland water: `#e5eceb` fill, `#6f8a92` stroke at opacity .35 / width .65;
 - inset and region frames: `fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"`;
 - surrounding land: one `#e4e0ce` silhouette outlined `#b6bbaf` 1; foreign borders come only from `#context-national-borders` (`#b6bbaf` 1), never from per-country context polygon edges, which would draw each border twice;
-- inland water sits above the target fill and below `#context-national-borders` and the target outline, so borders crossing or following lakes stay visible (`normalize_country_map_lakes.raise_borders_above_water`);
+- inland water sits above the target fill and below `#context-national-borders` and the target outline, so borders crossing or following lakes stay visible (`normalize_country_map_lakes.raise_borders_above_water`). The lifted border layer is clipped to everything outside the target (`#map-borders-target-negative`), so lines inside the country (leased areas such as Baikonur, lines slightly off the target edge) stay hidden as they were below the fill. This applies to every single-frame map in all regions;
 - widths are in viewBox units *after* transforms, because the map is displayed scaled down as an `<img>`: never use `vector-effect="non-scaling-stroke"` (it renders about twice as thick as other maps), and divide the declared width by any scaling transform. `tests/test_map_stroke_widths.py` checks this.
 
 ### Inset notes

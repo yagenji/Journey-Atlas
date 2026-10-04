@@ -27,9 +27,12 @@ PATH = re.compile(r'<path([^>]*?)\sd="([^"]*)"([^>]*?)\s*(?:/>|>(?:\s*<title>[^<
 
 def path_geometry(d: str):
     geom = Polygon()
+    if re.search(r"[A-KN-Ya-kn-y]", d):
+        raise ValueError("Only absolute M/L/Z context paths can be dissolved")
     for chunk in RING.finditer(d):
-        pts = [tuple(map(float, xy.replace(" ", ",").split(",")[:2]))
-               for xy in re.split(r"\s*L\s*", chunk.group(1).strip()) if xy.strip()]
+        # absolute M/L/Z; "L" may be omitted between coordinate pairs
+        nums = [float(v) for v in re.findall(r"-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?", chunk.group(1))]
+        pts = list(zip(nums[0::2], nums[1::2]))
         if len(pts) >= 3:
             poly = Polygon(pts)
             geom = geom.symmetric_difference(poly if poly.is_valid else poly.buffer(0))
