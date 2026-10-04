@@ -87,3 +87,12 @@
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* New Zealand: the taxonomy label is a compound region name, not a hierarchy. */
+html[data-country="newzealand"] .hero-copy .region {
+  font-size: 0;
+}
+html[data-country="newzealand"] .hero-copy .region::after {
+  content: "AUSTRALIA AND NEW ZEALAND / 41°S";
+  font-size: 12px;
+}
