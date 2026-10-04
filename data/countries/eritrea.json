@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "eritrea",
+  "nameEn": "ERITREA",
+  "nameJa": "エリトリア",
+  "region": "EAST AFRICA / 15°N",
+  "seo": {
+    "description": "標高2,000mを超える近代都市アスマラから、紅海のマッサワとダフラク諸島、高原の古代遺跡へ。エリトリアの建築、交易史、海と高地をたどる旅。"
+  },
+  "capital": {
+    "nameEn": "Asmara",
+    "nameJa": "アスマラ",
+    "coordinates": {
+      "latitude": 15.335278,
+      "longitude": 38.935833
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "mapOffset": {
+      "x": -3,
+      "y": 2
+    }
+  },
+  "hero": {
+    "lead": "標高2,000mを超える近代都市から紅海の港と島々、アクスム以前の高原遺跡へ。高低差と交易の記憶が、細長い国土に重なる。",
+    "image": "assets/images/eritrea/approved/hero-asmara-cityscape.webp",
+    "location": "Asmara Modernist City / Asmara",
+    "coordinates": {
+      "latitude": 15.335278,
+      "longitude": 38.935833
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 4
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 18.35,
+      "south": 12,
+      "west": 36,
+      "east": 43.65
+    },
+    "svg": "assets/images/eritrea/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; Natural Earth public domain; reviewed 2026-09-29."
+  },
+  "scenes": [
+    {
+      "id": "massawa-old-town",
+      "name": "マッサワ旧市街",
+      "nameLocal": "Massawa",
+      "mapLabel": "マッサワ",
+      "description": "紅海の港町。島上の旧市街に珊瑚石や石造の建物、細い路地が残り、高原のアスマラとは気候も都市の表情も大きく変わる。",
+      "coordinates": {
+        "latitude": 15.609722,
+        "longitude": 39.45
+      },
+      "image": "assets/images/eritrea/approved/scene-1-massawa-old-town.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": -3
+      }
+    },
+    {
+      "id": "dahlak-kebir",
+      "name": "ダフラク・ケビール島",
+      "nameLocal": "Dahlak Kebir",
+      "mapLabel": "ダフラク・ケビール",
+      "description": "ダフラク諸島最大の島。低く乾いた島影、浅い紅海、漁村の暮らしが、エリトリアの海洋国家としての一面を見せる。",
+      "coordinates": {
+        "latitude": 15.65972,
+        "longitude": 40.11417
+      },
+      "image": "assets/images/eritrea/approved/scene-2-dahlak-kebir.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 4,
+        "y": 0
+      }
+    },
+    {
+      "id": "qohaito",
+      "name": "コハイト文化的景観",
+      "nameLocal": "Qoahito / Qohaito",
+      "mapLabel": "コハイト",
+      "description": "標高約2,600〜2,700mの高原に、古代都市の遺構と断崖の景観が広がる。紅海沿岸とアクスムを結ぶ交易路の歴史を高原からたどる。",
+      "coordinates": {
+        "latitude": 14.86813,
+        "longitude": 39.41716
+      },
+      "image": "assets/images/eritrea/approved/scene-3-qohaito.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 3
+      }
+    },
+    {
+      "id": "adulis",
+      "name": "アドゥリス遺跡",
+      "nameLocal": "Adulis",
+      "mapLabel": "アドゥリス",
+      "description": "ズラ湾近くに残る古代港湾都市の遺跡。紅海交易の結節点として栄えた歴史を、発掘された建築遺構から読み取れる。",
+      "coordinates": {
+        "latitude": 15.262725,
+        "longitude": 39.6602053
+      },
+      "image": "assets/images/eritrea/approved/scene-4-adulis.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    {
+      "id": "debre-bizen",
+      "name": "デブレ・ビゼン修道院",
+      "nameLocal": "Debre Bizen Gedam",
+      "mapLabel": "デブレ・ビゼン",
+      "description": "ネファシト近くの山上に築かれた修道院。乾いた山並みと高地の宗教建築が重なり、紅海沿岸へ落ちる東部断崖のスケールを感じられる。",
+      "coordinates": {
+        "latitude": 15.333611,
+        "longitude": 39.083333
+      },
+      "image": "assets/images/eritrea/approved/scene-5-debre-bizen.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1.5,
+        "y": -4
+      }
+    },
+    {
+      "id": "keren",
+      "name": "ケレン",
+      "nameLocal": "Keren",
+      "mapLabel": "ケレン",
+      "description": "岩山に囲まれた北部高地の都市。市場と低層の街並みが山地の地形に溶け込み、アスマラとは異なる地方都市の日常が見える。",
+      "coordinates": {
+        "latitude": 15.7805,
+        "longitude": 38.4536
+      },
+      "image": "assets/images/eritrea/approved/scene-6-keren.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -4,
+        "y": 3
+      }
+    },
+    {
+      "id": "filfil",
+      "name": "フィルフィル",
+      "nameLocal": "Filfil",
+      "mapLabel": "フィルフィル",
+      "description": "北部紅海州の山地にある集落と森林帯。乾燥した国の印象の中に現れる緑と霧、急な山道が、標高による景観の変化を見せる。",
+      "coordinates": {
+        "latitude": 15.61118,
+        "longitude": 38.95872
+      },
+      "image": "assets/images/eritrea/approved/scene-7-filfil.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": -3,
+        "y": -4
+      }
+    },
+    {
+      "id": "assab",
+      "name": "アッサブ",
+      "nameLocal": "Assab",
+      "mapLabel": "アッサブ",
+      "description": "国土南東端の紅海港湾都市。火山性の乾いた低地と青い海が接し、北部のマッサワとは別の南紅海の景観をつくる。",
+      "coordinates": {
+        "latitude": 13.009167,
+        "longitude": 42.739444
+      },
+      "image": "assets/images/eritrea/approved/scene-8-assab.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "近代建築の街を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "city"
+    },
+    {
+      "title": "紅海の港町を歩く",
+      "category": "DAILY_LIFE",
+      "icon": "sea"
+    },
+    {
+      "title": "島の海岸をたどる",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "高原遺跡を歩く",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "古代交易をたどる",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "山上の宗教建築を見る",
+      "category": "CULTURE",
+      "icon": "landmark"
+    },
+    {
+      "title": "高地の市場に出会う",
+      "category": "DAILY_LIFE",
+      "icon": "home"
+    },
+    {
+      "title": "高地から海へ下る",
+      "category": "MOVEMENT",
+      "icon": "map"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "asmara-modernist-city",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "title": "アスマラは、20世紀前半の都市計画が街全体に残る",
+      "text": "アスマラは1893〜1941年の複数の都市計画段階を残し、直交街路と放射状の要素、映画館、商店、宗教建築、住宅などが一体となっている。単体建築ではなく、都市全体の構成を歩いて読める。",
+      "points": [
+        "直交街路と放射状の都市構成が重なる",
+        "映画館、商店、宗教建築、住宅がまとまって残る"
+      ],
+      "sourceKey": "unescoAsmara"
+    },
+    {
+      "topicKey": "highland-coast-contrast",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "高原都市から東部断崖を越えると、紅海岸の空気へ切り替わる",
+      "text": "アスマラから東へ進むと、中央高原から急な東部断崖を下り、マッサワの海岸低地へ移る。乾いた高地の街並みから暑い紅海岸へ、植生と体感が短い移動の中で変わる。",
+      "points": [
+        "中央高原から東部断崖を下って紅海岸へ向かう",
+        "高地と沿岸で植生と体感が大きく変わる"
+      ],
+      "sourceKey": "unescoAsmara"
+    },
+    {
+      "topicKey": "qohaito-highland-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "高原の古代都市は、紅海と内陸をつなぐ交易路にあった",
+      "text": "コハイトは高い台地上に広がる古代都市遺跡で、アクスム以前から発展した。ユネスコ暫定一覧は、古代港アドゥリスからアクスムへ向かう交易路が近くを通ったと説明している。",
+      "points": [
+        "古代港アドゥリスからアクスム方面へ向かう交易路に近い",
+        "台地上に都市遺構が広く分布する"
+      ],
+      "sourceKey": "unescoQohaito"
+    },
+    {
+      "topicKey": "adulis-ancient-port",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "アドゥリスは、海上交易を内陸高原へつないだ古代港",
+      "text": "ズラ湾近くのアドゥリスでは、都市建築や宗教建築の遺構が発掘されている。高原のコハイトやアクスム方面と海上交易を結ぶ地点として、海と内陸の関係を具体的にたどれる。",
+      "points": [
+        "遺跡はズラ湾の内陸側に位置",
+        "複数の公共・宗教建築遺構が確認されている"
+      ],
+      "sourceKey": "adulisResearch"
+    },
+    {
+      "topicKey": "travel-permit-geography",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "旅の行動範囲は、地図上の距離だけでは決まらない",
+      "text": "国外旅行者がゾバ・マエケルの外へ移動する際は旅行許可が必要と案内されている。訪問地を線でつなぐ前に、許可の取得可否と現地交通を確認することが、エリトリアでは旅程そのものを左右する。",
+      "points": [
+        "アスマラ周辺外への移動には旅行許可が必要",
+        "申請には日数を要し、許可されない場合もある"
+      ],
+      "sourceKey": "travelPermits"
+    },
+    {
+      "topicKey": "nine-cultural-groups",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "一つの国土に、複数の言語と宗教文化が重なる",
+      "text": "日本外務省はエリトリアを9民族から成る国とし、ティグリニャ語、アラビア語、諸民族語が使われ、キリスト教とイスラム教などが信仰されると紹介する。地域ごとに暮らしの表情が変わる。",
+      "points": [
+        "9民族",
+        "ティグリニャ語、アラビア語、諸民族語"
+      ],
+      "sourceKey": "mofaProfile"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "independence-1993",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立は1993年",
+      "text": "住民投票を経て1993年5月24日にエチオピアから独立し、同年5月28日に国連へ加盟した。",
+      "icon": "history",
+      "sourceKey": "unData"
+    },
+    {
+      "topicKey": "asmara-wh-2017",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "世界遺産",
+      "title": "世界遺産登録は2017年",
+      "text": "アスマラの近代都市景観は2017年に世界遺産へ登録された。2026年9月時点でエリトリア唯一の世界遺産である。",
+      "icon": "history",
+      "sourceKey": "unescoStateParty"
+    },
+    {
+      "topicKey": "nakfa-currency",
+      "categoryEn": "MONEY",
+      "categoryJa": "通貨",
+      "title": "通貨はナクファ",
+      "text": "国の通貨はナクファ。名称は独立闘争史で知られる北部の町ナクファと同じ名を持つ。",
+      "icon": "map",
+      "sourceKey": "unData"
+    },
+    {
+      "topicKey": "asmara-railway-engineering",
+      "categoryEn": "RAIL",
+      "categoryJa": "鉄道",
+      "title": "高原へ上る鉄道に20本超のトンネル",
+      "text": "ユネスコの世界遺産推薦資料では、ネファシトからアスマラまでの区間に20本を超えるトンネルと65の橋・高架橋が築かれたと記録されている。",
+      "icon": "map",
+      "sourceKey": "unescoRailway"
+    },
+    {
+      "topicKey": "qohaito-altitude",
+      "categoryEn": "LANDSCAPE",
+      "categoryJa": "高原",
+      "title": "コハイトは標高2,600〜2,700m",
+      "text": "コハイトの古代遺跡群は高い台地上にあり、遺跡と断崖景観を同時に見る場所になっている。",
+      "icon": "landscape",
+      "sourceKey": "unescoQohaito"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ERITREA",
+    "title": "エリトリアで食べたいもの",
+    "intro": "発酵した薄焼きパンに煮込みを合わせる食卓から、朝の豆料理、ちぎったパンを和える一皿、穀粉を練る料理まで。地域と時間帯で表情が変わる。",
+    "items": [
+      {
+        "id": "tsebhi-zigni",
+        "name": "ツェブヒ・ズィグニ",
+        "nameLocal": "Tsebhi / Zigni",
+        "text": "肉を香辛料とともに煮込む代表的な料理。発酵した薄焼きパンのタイタと一緒に食べる形が広く見られる。",
+        "image": "assets/images/eritrea/approved/food-1-tsebhi-zigni.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ful",
+        "name": "フル",
+        "nameLocal": "Ful",
+        "text": "そら豆を煮てつぶし、油や香味を合わせる朝食の定番。大使館の文化紹介でも人気の朝食料理として挙げられている。",
+        "image": "assets/images/eritrea/approved/food-2-ful.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "kicha-fitfit",
+        "name": "キチャ・フィトフィト",
+        "nameLocal": "Kicha fitfit",
+        "text": "薄いパンをちぎり、香辛料や油などと和える朝食料理。パンそのものではなく、和えて一皿に仕上げた状態を味わう。",
+        "image": "assets/images/eritrea/approved/food-3-kicha-fitfit.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "gaat",
+        "name": "ガート",
+        "nameLocal": "Gaat",
+        "text": "穀粉を練って中央をくぼませ、味付けしたバターやソースを添える料理。朝食などで食べられる、穀物文化がよく表れる一皿。",
+        "image": "assets/images/eritrea/approved/food-4-gaat.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国外から自由に全土を回れる前提では組めない。アスマラ外への移動には許可が必要で、申請に日数を要することがあるため、日程は訪問許可と現地手配を先に確定してから組む。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "アスマラの都市景観に集中する",
+        "text": "世界遺産地区を徒歩でたどり、フィアット・タリエロ、映画館、宗教建築、街路構成をゆっくり見る。例：アスマラ中心部 → フィアット・タリエロ → 近代建築群。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜7日",
+        "title": "許可を得てマッサワ方面へ広げる",
+        "text": "アスマラから東部断崖を下り、マッサワの旧市街と紅海岸を組み合わせる。移動許可の取得日を旅程に含める。例：アスマラ → ネファシト周辺 → マッサワ → アスマラ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "高原遺跡や島を個別に組み込む",
+        "text": "コハイト、アドゥリス、ダフラク諸島などは許可、道路、船の手配を個別に確認する。固定ルートより現地で成立する訪問先を積み上げる。例：アスマラ → コハイト → アドゥリス → マッサワ → ダフラク諸島。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜2月",
+      "color": "#b8aa86",
+      "text": "高原のアスマラでは比較的涼しく歩きやすい時期。紅海沿岸は高原よりかなり暖かいため、同じ日程でも服装を分ける。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#c5a173",
+      "text": "高原は春の雨が入りやすく、沿岸は暑さが増す。山地と海岸で条件差が大きいため、訪問地ごとに天気を確認する。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#8f9c7b",
+      "text": "中央高地は雨期に当たり、路面や雲の状態が変わりやすい。一方、紅海沿岸では厳しい暑さが続きやすく、地域差が最も大きく出る。"
+    },
+    {
+      "months": "通年",
+      "color": "#9aa4a2",
+      "text": "国外旅行者の行程は季節だけでなく移動許可に左右される。アスマラ外は許可の取得可否と現地交通を先に確認する。"
+    }
+  ],
+  "transport": {
+    "title": "アスマラを拠点に、許可を得た車移動で高地と紅海岸をつなぐ",
+    "text": "国外旅行者はアスマラ周辺のゾバ・マエケル外へ出る際、事前の旅行許可が必要。観光客は担当当局へ申請し、車両情報も求められる。公共交通の利用が認められない例も報告されるため、実際の移動手段は許可と現地手配をセットで確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "20世紀建築を街ごと歩きたい人",
+      "text": "単体の名建築だけでなく、街路、映画館、商店、宗教建築、住宅がまとまって残るアスマラを都市スケールで見たい人。",
+      "icon": "city"
+    },
+    {
+      "title": "紅海と高原を一つの旅で見たい人",
+      "text": "標高2,000m超の高原から港町、島へと景観が急変する地形を、短い直線距離の中で比較したい人。",
+      "icon": "sea"
+    },
+    {
+      "title": "古代交易史を現地の地形からたどりたい人",
+      "text": "アドゥリス、コハイトなどを結び、紅海と内陸高原の交易がどの地形を通っていたかを想像しながら歩きたい人。",
+      "icon": "history"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ / アフリカの角 / 紅海西岸"
+    },
+    {
+      "label": "首都",
+      "value": "アスマラ"
+    },
+    {
+      "label": "人口",
+      "value": "約361万人（2025年・国連推計）"
+    },
+    {
+      "label": "面積",
+      "value": "121,144 km²（日本の約32%）"
+    },
+    {
+      "label": "言語",
+      "value": "ティグリニャ語、アラビア語、諸民族語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教、イスラム教"
+    },
+    {
+      "label": "通貨",
+      "value": "ナクファ（ERN）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "red-sea-coastline",
+      "label": "紅海の海岸線",
+      "value": "約2,234 km",
+      "note": "FAO資料では、本土約1,151kmに島々の海岸線約1,083kmを加えた総海岸線を約2,234kmとする。細長い国土の東側に海の空間が大きく広がる。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "地図では細く見える国が、実際には長い海岸と島々を持つ紅海国家であることを一つの数字で捉え直せる。"
+    },
+    {
+      "topicKey": "red-sea-islands",
+      "label": "紅海の島",
+      "value": "約355島",
+      "note": "FAOの国別レビューは、エリトリアの海域に約355の島があるとする。ダフラク諸島を中心に、小さな島々と浅海域が広がる。",
+      "icon": "sea",
+      "exceptionalScale": true,
+      "interestReason": "本土中心の国土像から、群島を含む海洋景観へ視点を切り替える数字になる。"
+    },
+    {
+      "topicKey": "asmara-altitude",
+      "label": "首都アスマラの標高",
+      "value": "2,000m超",
+      "note": "ユネスコはアスマラを標高2,000mを超える高原都市と説明する。紅海岸の港町へ向かうと短い距離で大きく標高が下がる。",
+      "icon": "landscape",
+      "interestReason": "首都が高地にあり、そのすぐ東に紅海低地があるというエリトリアの地形構造を直感的に示す。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "travel-permit",
+      "title": "アスマラ外への移動許可を先に確認する",
+      "text": "国外旅行者はゾバ・マエケル外への移動に事前許可が必要。申請に数日かかり、認められない場合もあるため、地方訪問を確定日程として先に詰めない。"
+    },
+    {
+      "topicKey": "border-risk",
+      "title": "国境25km圏を通常の旅行ルートにしない",
+      "text": "2026年9月29日時点で、英国政府はエチオピア、ジブチ、スーダンとの全陸上国境から25km以内への渡航中止を勧告している。地雷の危険も案内されている。"
+    },
+    {
+      "topicKey": "temperature-gap",
+      "title": "高原と紅海岸を同じ服装で考えない",
+      "text": "アスマラは高地、マッサワやアッサブは低い紅海岸にある。標高差による体感温度の違いが大きいため、移動日でも高地用と沿岸用を分けて準備する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇸🇩",
+      "countryEn": "SUDAN",
+      "countryJa": "スーダン",
+      "path": "Tesseney → Al Laffa → Kassala",
+      "description": "西部テセネイからスーダン東部カッサラへつながる代表的な陸路軸。国境を直接結ぶ経路として記録するが、現在の通行可否は別途確認が必要。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月時点でFCDOはスーダン–エリトリア陸路国境を閉鎖中と案内し、両側の国境地域への渡航中止を勧告している。"
+    },
+    {
+      "flag": "🇪🇹",
+      "countryEn": "ETHIOPIA",
+      "countryJa": "エチオピア",
+      "path": "Asmara → southern border → Tigray",
+      "description": "中央高地から南へ進み、エチオピア北部へつながる代表的な陸路軸。両国を陸続きで結ぶ経路だが、現在の国境状況と安全情報を確認する必要がある。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月時点で両国の国境周辺には強い渡航警告があり、エチオピア側ティグライ州の情勢も不安定。通常の旅行ルートとして使用しない。"
+    },
+    {
+      "flag": "🇩🇯",
+      "countryEn": "DJIBOUTI",
+      "countryJa": "ジブチ",
+      "path": "Assab → Ras Doumeira → northern Djibouti",
+      "description": "アッサブから南紅海岸をたどりジブチ北部へ向かう代表的な陸路軸。海岸沿いに国境を越える経路だが、現在の国境状況と安全情報を確認する必要がある。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月時点でFCDOはエリトリア–ジブチ国境への渡航中止を勧告し、国境付近の地雷と緊張を案内している。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "ethiopia",
+      "nameEn": "ETHIOPIA",
+      "nameJa": "エチオピア",
+      "flag": "🇪🇹",
+      "reason": "高原文化と古代アクスム世界の歴史が連続し、紅海側と内陸側から同じ地域史を見比べられる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "djibouti",
+      "nameEn": "DJIBOUTI",
+      "nameJa": "ジブチ",
+      "flag": "🇩🇯",
+      "reason": "紅海南部の乾燥海岸と火山性地形を共有し、アフリカの角の海岸景観を南側へつなげて比較できる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "yemen",
+      "nameEn": "YEMEN",
+      "nameJa": "イエメン",
+      "flag": "🇾🇪",
+      "reason": "紅海を隔てた対岸にあり、古い港町、高地都市、海上交易の歴史をアラビア半島側から見比べられる。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "updatedAt": "2026-09-30",
+  "sourcesVerifiedAt": "2026-09-30",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2025",
+    "language": "2021-08-04",
+    "religion": "2021-08-04",
+    "worldHeritage": "2026-09-29",
+    "safety": "2026-09-29",
+    "climate": "2026-09-29",
+    "map": "2026-09-29",
+    "nextRoutes": "2026-09-29",
+    "sceneCoordinates": "2026-09-29",
+    "heroCoordinates": "2026-09-29",
+    "food": "2026-09-29",
+    "coastline": "2026-09-29",
+    "unescoRailway": "2017"
+  },
+  "sources": {
+    "population": "UN Data — Eritrea profile: population 3.607 million (2025 estimate). https://data.un.org/legacy/en/iso/er.html",
+    "area": "UN Data — Eritrea profile: surface area 121,144 km². https://data.un.org/legacy/en/iso/er.html",
+    "japanArea": "Geospatial Information Authority of Japan — national area statistics, used only as the comparison basis for the Country Profile area percentage. https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "language": "Ministry of Foreign Affairs of Japan — Eritrea basic data: Tigrinya, Arabic and ethnic languages. https://www.mofa.go.jp/mofaj/area/eritrea/data.html",
+    "religion": "Ministry of Foreign Affairs of Japan — Eritrea basic data: Christianity, Islam and others. https://www.mofa.go.jp/mofaj/area/eritrea/data.html",
+    "currency": "UN Data — national currency Nakfa (ERN). https://data.un.org/legacy/en/iso/er.html",
+    "unescoAsmara": "UNESCO World Heritage Centre — Asmara: A Modernist African City, inscribed 2017; over 2,000 m elevation; planning phases 1893–1941. https://whc.unesco.org/en/list/1550",
+    "unescoStateParty": "UNESCO World Heritage Centre — Eritrea State Party: one inscribed property (Asmara) and one tentative-list site (Qoahito), checked 2026-09-29. https://whc.unesco.org/en/statesparties/er",
+    "unescoQohaito": "UNESCO World Heritage Centre Tentative List — Qoahito Cultural Landscape: plateau 2,600–2,700 m, about 32 km², ancient trade context. https://whc.unesco.org/en/tentativelists/5600/",
+    "adulisResearch": "Heritage (MDPI), 2025 — Adulis archaeological site location and excavated urban/religious structures; coordinates 15.262725, 39.6602053. https://www.mdpi.com/2571-9408/8/1/1",
+    "food": "Embassy of Eritrea in the United States — Culture: Tsebhi with Taita; Ful, kicha fitfit and gaat listed as popular breakfast foods. https://us.embassyeritrea.org/our-culture/",
+    "faoMarine": "FAO — Review of Eritrea marine capture fisheries: approximately 355 islands and about 2,234 km total coastline, including 1,151 km mainland. https://www.fao.org/4/a0477e/a0477e0j.htm",
+    "safety": "UK FCDO — Eritrea travel advice, current 2026-09-29: against all travel within 25 km of land borders. https://www.gov.uk/foreign-travel-advice/eritrea",
+    "travelPermits": "UK FCDO — Eritrea safety and security: permits required for foreign nationals outside Zoba Maekel; applications may take days and may not be approved. https://www.gov.uk/foreign-travel-advice/eritrea/safety-and-security",
+    "nextRoutes": "UK FCDO regional risks for Eritrea, Ethiopia, Djibouti and Sudan, checked 2026-09-29. Sudan advice states Sudan–Eritrea border currently closed. https://www.gov.uk/foreign-travel-advice/eritrea/regional-risks ; https://www.gov.uk/foreign-travel-advice/sudan/regional-risks ; https://www.gov.uk/foreign-travel-advice/djibouti/regional-risks ; https://www.gov.uk/foreign-travel-advice/ethiopia/regional-risks",
+    "heroCoordinates": "Asmara city coordinate 15.335278, 38.935833, aligned with the Country capital marker and checked against GeoNames on 2026-09-29. https://www.geonames.org/343300/asmara.html",
+    "sceneCoordinates": "WGS84 points checked 2026-09-29: Massawa 15.609722,39.45 and Assab 13.009167,42.739444 from NGA-derived geographic.org; Dahlak Kebir 15.65972,40.11417, Qohaito/Quahaito 14.86813,39.41716, Keren 15.7805,38.4536, Filfil 15.61118,38.95872 from OpenStreetMap/GeoNames-backed Mapcarta; Debre Bizen 15.333611,39.083333 from NGA-derived geographic.org; Adulis 15.262725,39.6602053 from published archaeological research.",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; reviewed 2026-09-29. https://github.com/LonnyGomes/CountryGeoJSONCollection ; https://www.naturalearthdata.com/",
+    "unData": "UN Data — Eritrea profile: population 3.607 million (2025 estimate), surface area 121,144 km², UN membership 28 May 1993, currency Nakfa (ERN). https://data.un.org/legacy/en/iso/er.html",
+    "mofaProfile": "Ministry of Foreign Affairs of Japan — Eritrea basic data: nine ethnic groups; Tigrinya, Arabic and ethnic languages; Christianity, Islam and others. https://www.mofa.go.jp/mofaj/area/eritrea/data.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Eritrea State Party: one inscribed property (Asmara) and one tentative-list site (Qoahito), checked 2026-09-29. https://whc.unesco.org/en/statesparties/er",
+    "coastline": "FAO — Review of Eritrea marine capture fisheries: approximately 355 islands and about 2,234 km total coastline, including 1,151 km mainland. https://www.fao.org/4/a0477e/a0477e0j.htm",
+    "climate": "World Bank Climate Change Knowledge Portal — Eritrea country climate resources and historical climatology, checked 2026-09-29. https://climateknowledgeportal.worldbank.org/country/eritrea/resources",
+    "unescoRailway": "UNESCO World Heritage Centre — Asmara nomination dossier (2017): the railway between Nefasit and Asmara required over twenty tunnels and sixty-five bridges and viaducts. https://whc.unesco.org/document/155767"
+  }
+}

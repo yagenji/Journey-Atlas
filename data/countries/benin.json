@@ -15,15 +15,16 @@
       "latitude": 6.4969,
       "longitude": 2.6283
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 8,
-      "y": -42
+      "x": -8,
+      "y": -30
     },
     "mapOffset": {
-      "x": -1.5,
-      "y": -0.2
-    }
+      "x": 3,
+      "y": -1.5
+    },
+    "mapRegion": "south"
   },
   "hero": {
     "lead": "南のノコエ湖では、水上に家と市場が続くガンヴィエの暮らしが広がる。そこから内陸へ進むと、ダホメ王国の王宮、花崗岩の丘、北西部のバタマリバ文化景観へと、土地と歴史が大きく切り替わる。",
@@ -34,9 +35,10 @@
       "longitude": 2.39
     },
     "mapOffset": {
-      "x": 1.6,
-      "y": -4.4
-    }
+      "x": -0.5,
+      "y": -2
+    },
+    "mapRegion": "south"
   },
   "map": {
     "bounds": {
@@ -46,8 +48,26 @@
       "east": 4.6
     },
     "svg": "assets/images/benin/map-atlas-v1.svg",
+    "insetNote": "※ 南部沿岸は、同じ地域を拡大した別枠表示です。",
     "route": null,
-    "source": "Target Benin and surrounding national geometry: Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (BEN/TGO/BFA/NER/NGA GeoJSON). Shared JOURNEY ATLAS 1200×760 local-equirectangular-fit map-v3 styling; generated and checked 2026-09-27."
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b (BEN/TGO/BFA/NER/NGA). National overview remains the standard JOURNEY ATLAS map-v3 geometry; a compact lower-right inset enlarges the same real southern geometry for dense coastal Scene markers. Updated 2026-09-28.",
+    "regions": [
+      {
+        "id": "south",
+        "bounds": {
+          "north": 6.72,
+          "south": 6.18,
+          "west": 1.72,
+          "east": 2.78
+        },
+        "rect": {
+          "x": 740,
+          "y": 395,
+          "width": 420,
+          "height": 320
+        }
+      }
+    ]
   },
   "scenes": [
     {
@@ -80,9 +100,10 @@
       "image": "assets/images/benin/approved/scene-2-ouidah-door.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -0.4,
-        "y": 4.7
-      }
+        "x": -0.5,
+        "y": 0.5
+      },
+      "mapRegion": "south"
     },
     {
       "id": "grand-mosque-porto-novo",
@@ -95,11 +116,12 @@
         "longitude": 2.626611
       },
       "image": "assets/images/benin/approved/scene-3-porto-novo-mosque.webp",
-      "labelPosition": "right",
+      "labelPosition": "left",
       "mapOffset": {
-        "x": 4.8,
-        "y": -1
-      }
+        "x": -1,
+        "y": 0.5
+      },
+      "mapRegion": "south"
     },
     {
       "id": "dassa-hills",
@@ -131,9 +153,10 @@
       "image": "assets/images/benin/approved/scene-5-bouche-du-roy.webp",
       "labelPosition": "left",
       "mapOffset": {
-        "x": -4.2,
-        "y": 0.9
-      }
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "south"
     },
     {
       "id": "kpasse-sacred-forest",
@@ -148,9 +171,10 @@
       "image": "assets/images/benin/approved/scene-6-kpasse-forest.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": -1.2,
-        "y": -4.1
-      }
+        "x": 4.5,
+        "y": -2
+      },
+      "mapRegion": "south"
     },
     {
       "id": "koutammakou-benin",
@@ -182,9 +206,10 @@
       "image": "assets/images/benin/approved/scene-8-amazon-monument.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 2.7,
-        "y": 4.1
-      }
+        "x": 0,
+        "y": 0
+      },
+      "mapRegion": "south"
     }
   ],
   "encounters": [
@@ -314,13 +339,13 @@
       "sourceKey": "unescoBenin"
     },
     {
-      "topicKey": "dual-capital-functions",
-      "categoryEn": "CITY",
-      "categoryJa": "都市",
-      "title": "首都はポルトノボ、実質的な首都機能はコトヌにある",
-      "text": "日本外務省の基礎データでは首都をポルトノボとしつつ、実質的首都機能はコトヌにあると記載する。二都市を歩くと、政治的首都と経済・行政機能の重なり方が見える。",
-      "icon": "city",
-      "sourceKey": "mofaProfile"
+      "topicKey": "atlantic-coastline-121km",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "大西洋に面する海岸線は約121キロメートル",
+      "text": "ベナンの大西洋岸は約121キロメートル。南北約700キロメートルの国土に対して海岸線は短く、南から北へ細長く伸びる国の形が分かる。",
+      "icon": "sea",
+      "sourceKey": "presidencyGeography"
     },
     {
       "topicKey": "dahomey-renamed-1975",
@@ -470,7 +495,7 @@
     },
     {
       "label": "面積",
-      "value": "112,622平方キロメートル（日本の約3分の1）"
+      "value": "112,622平方キロメートル（日本の約30%）"
     },
     {
       "label": "言語",
@@ -492,15 +517,15 @@
       "value": "約700キロメートル",
       "note": "ベナンは大西洋岸からニジェール国境まで南北に約700キロメートル伸びる。細長い国土が、沿岸部と北部で大きく異なる景観と気候を生む。",
       "icon": "map",
-      "interestReason": "小さく見える国でも、南から北へ進む距離が東京から広島に近い規模で、国土の縦長さを直感的に理解できるため。"
+      "interestReason": "小さく見える国でも南北移動の距離が大きく、旅の景観と気候が大きく変わることを直感的に伝えられるため。"
     },
     {
-      "topicKey": "four-land-neighbours",
-      "label": "陸上の隣国",
-      "value": "4か国",
-      "note": "西のトーゴ、北西のブルキナファソ、北のニジェール、東のナイジェリアと国境を接する。ギニア湾岸からサヘルへ向かう位置関係が見える数字。",
-      "icon": "map",
-      "interestReason": "海岸国でありながら4か国と陸続きで、西アフリカの沿岸部と内陸部をつなぐ位置にあることが分かるため。"
+      "topicKey": "split-capital-functions",
+      "label": "首都機能が分かれる都市",
+      "value": "2都市",
+      "note": "法定首都はポルトノボだが、政府機関や経済機能の多くはコトヌに集まる。国の中心機能が二つの都市に分かれている。",
+      "icon": "city",
+      "interestReason": "首都名だけでは分からないベナン独特の都市構造を、一つの数字で理解できるため。"
     },
     {
       "topicKey": "rainy-season-count-south-north",

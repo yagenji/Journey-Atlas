@@ -56,7 +56,8 @@ CASES = {
         'min_land_fraction': 0.995,
     },
     'kyrgyz': {
-        'source_text': 'Basemap intermediate-resolution political-boundary',
+        # Regenerated 2026-10 so SVG and marker projection share Country JSON bounds.
+        'source_text': 'Natural Earth 1:10m',
         'min_land_fraction': 0.984,
     },
 }

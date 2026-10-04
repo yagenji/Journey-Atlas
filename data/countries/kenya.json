@@ -1,0 +1,623 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "kenya",
+  "nameEn": "KENYA",
+  "nameJa": "ケニア",
+  "region": "EAST AFRICA / 1°S",
+  "seo": {
+    "description": "アンボセリ、マサイマラ、ケニア山、大地溝帯の湖と断崖、乾燥地のサンブル、スワヒリ海岸、サンゴ礁まで。野生動物だけではない地形と文化の幅を8つの景色と地図でたどるケニアの旅アトラス。"
+  },
+  "capital": {
+    "nameEn": "Nairobi",
+    "nameJa": "ナイロビ",
+    "coordinates": {
+      "latitude": -1.286389,
+      "longitude": 36.817223
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 12,
+      "y": 0
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "赤道をまたぐ高峰から大地溝帯の湖、乾いたサバンナ、インド洋のスワヒリ海岸へ。野生動物の国という一枚絵を越え、標高と水と暮らしが大きく切り替わる東アフリカを旅する。",
+    "image": "assets/images/kenya/approved/hero-amboseli.webp",
+    "location": "Amboseli National Park",
+    "coordinates": {
+      "latitude": -2.648,
+      "longitude": 37.26
+    },
+    "mapOffset": {
+      "x": 0.4,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 5.7,
+      "south": -5.5,
+      "west": 32.6,
+      "east": 43
+    },
+    "svg": "assets/images/kenya/map-atlas-v1.svg",
+    "route": null,
+    "source": "Target geometry and surrounding East African land context: Natural Earth 1:10m Admin-0 KEN/UGA/TZA/ETH/SOM/SDS/COD/RWA/BDI, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection. Western sidebands include verified DRC, Rwanda and Burundi land so the full 1200×760 projection does not render real land as sea. Checked 2026-09-29."
+  },
+  "scenes": [
+    {
+      "id": "maasai-mara-savanna",
+      "name": "マサイマラ国立保護区",
+      "nameLocal": "Maasai Mara National Reserve",
+      "mapLabel": "Maasai Mara",
+      "description": "タンザニアのセレンゲティへ続く南西部の草原。広いサバンナとアカシアの疎林に、ヌー、シマウマ、ライオンなど大型動物が暮らす。国境を越えて続く生態系の中で、東アフリカの草原景観を代表する場所だ。",
+      "coordinates": {
+        "latitude": -1.490833,
+        "longitude": 35.143889
+      },
+      "image": "assets/images/kenya/approved/scene-1-maasai-mara.webp",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0.2
+      }
+    },
+    {
+      "id": "mount-kenya-alpine",
+      "name": "ケニア山",
+      "nameLocal": "Mount Kenya National Park / Natural Forest",
+      "mapLabel": "Mount Kenya",
+      "description": "赤道をまたぐ古い火山で、標高5,199mのバティアン峰を最高点とする。森林帯からアフロアルパイン植生、氷河地形へと標高ごとに景観が変わり、サバンナとは異なるケニアの高山世界を見せる。",
+      "coordinates": {
+        "latitude": -0.155,
+        "longitude": 37.315556
+      },
+      "image": "assets/images/kenya/approved/scene-2-mount-kenya.webp",
+      "mapOffset": {
+        "x": 0.4,
+        "y": -0.6
+      }
+    },
+    {
+      "id": "lake-nakuru-rhino",
+      "name": "ナクル湖国立公園",
+      "nameLocal": "Lake Nakuru National Park",
+      "mapLabel": "Lake Nakuru",
+      "description": "大地溝帯の半アルカリ性湖と草原、アカシア林が近接する国立公園。鳥類の重要な生息地であると同時に、クロサイとシロサイを保護するケニア最初の政府管理サイ保護区としても知られる。",
+      "coordinates": {
+        "latitude": -0.366667,
+        "longitude": 36.083333
+      },
+      "image": "assets/images/kenya/approved/scene-3-lake-nakuru.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": -2.7
+      }
+    },
+    {
+      "id": "hells-gate-rift",
+      "name": "ヘルズゲート国立公園",
+      "nameLocal": "Hell's Gate National Park",
+      "mapLabel": "Hell's Gate",
+      "description": "大地溝帯の底に、断崖、峡谷、火山性の岩体、地熱地形が集まる。車窓中心になりやすいサファリ地域の中で、徒歩や自転車で地形そのものを近くに感じられる場所でもある。",
+      "coordinates": {
+        "latitude": -0.9,
+        "longitude": 36.316667
+      },
+      "image": "assets/images/kenya/approved/scene-4-hells-gate.webp",
+      "mapOffset": {
+        "x": -1.8,
+        "y": 2.1
+      }
+    },
+    {
+      "id": "samburu-ewaso-ngiro",
+      "name": "サンブル国立保護区",
+      "nameLocal": "Samburu National Reserve / Ewaso Ng'iro",
+      "mapLabel": "Samburu",
+      "description": "北部の半乾燥地をエワソ・ンギロ川が横切り、川沿いの植生と乾いた丘陵が強い対比をつくる。グレビーシマウマやゲレヌクなど、南部のサバンナとは顔ぶれの異なる野生動物に出会える地域だ。",
+      "coordinates": {
+        "latitude": 0.616667,
+        "longitude": 37.533333
+      },
+      "image": "assets/images/kenya/approved/scene-5-samburu.webp",
+      "mapOffset": {
+        "x": 2.3,
+        "y": -1.9
+      }
+    },
+    {
+      "id": "tsavo-east-galana",
+      "name": "ツァボ・イースト国立公園",
+      "nameLocal": "Tsavo East National Park / Galana River",
+      "mapLabel": "Tsavo East",
+      "description": "南東部に広がる半乾燥の大平原をガラナ川が横切る。赤土をまとったゾウ、アカシア低木、火山地形が連なり、マサイマラとは異なる乾いたスケールのサバンナを見る。",
+      "coordinates": {
+        "latitude": -2.9,
+        "longitude": 38.6
+      },
+      "image": "assets/images/kenya/approved/scene-6-tsavo-east.webp",
+      "mapOffset": {
+        "x": 0.3,
+        "y": 0
+      }
+    },
+    {
+      "id": "gedi-swahili-ruins",
+      "name": "ゲディ歴史都市・考古遺跡",
+      "nameLocal": "The Historic Town and Archaeological Site of Gedi",
+      "mapLabel": "Gedi",
+      "description": "海岸から少し内陸の森林に残るスワヒリ都市遺跡。サンゴ石のモスク、宮殿、住居、道路、水管理施設が残り、10〜17世紀にインド洋を介した交易ネットワークへつながっていた都市の姿を伝える。",
+      "coordinates": {
+        "latitude": -3.310264,
+        "longitude": 40.017264
+      },
+      "image": "assets/images/kenya/approved/scene-7-gedi.webp",
+      "mapOffset": {
+        "x": 0.8,
+        "y": -0.2
+      }
+    },
+    {
+      "id": "shimba-hills-coastal-forest",
+      "name": "シンバ・ヒルズ国立保護区",
+      "nameLocal": "Shimba Hills National Reserve",
+      "mapLabel": "Shimba Hills",
+      "description": "モンバサ南西の丘陵に残る沿岸雨林。なだらかな稜線、森林、草地、滝が重なり、海岸部にもサバンナとは異なる湿潤な生態系が残ることを見せる。",
+      "coordinates": {
+        "latitude": -4.257,
+        "longitude": 39.371
+      },
+      "image": "assets/images/kenya/approved/scene-8-shimba-hills.webp",
+      "mapOffset": {
+        "x": -0.5,
+        "y": 0.2
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "野生動物との出会い",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "高山の植物",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "湖と断崖",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "川辺の風景",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "歴史ある街並み",
+      "category": "ARCHITECTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "海辺の自然",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "炭火料理",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "多言語の暮らし",
+      "category": "LANGUAGE",
+      "icon": "culture"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "equatorial-altitude-zones",
+      "themeEn": "EARTH",
+      "themeJa": "標高をたどる",
+      "title": "赤道直下に5,000m級の高山帯がある",
+      "text": "ケニア山は赤道をまたぐ古い火山で、最高峰バティアンは5,199m。森林から高山植生、氷河地形へ短い水平距離で標高帯が切り替わる。",
+      "points": [
+        "アフリカで2番目に高い峰",
+        "世界遺産の自然地域は山地と北側の低地生態系をつなぐ"
+      ],
+      "sourceKey": "mountKenya"
+    },
+    {
+      "topicKey": "rift-lake-system",
+      "themeEn": "EARTH",
+      "themeJa": "大地溝帯を見る",
+      "title": "三つのアルカリ湖が一つの世界遺産を構成する",
+      "text": "ボゴリア、ナクル、エレメンタイタの三湖は大地溝帯の断崖と火山地形に囲まれる。水位や餌環境に応じて鳥が湖間を移動し、景観と生態系が一体で変化する。",
+      "points": [
+        "世界遺産区域は計32,034ha",
+        "コフラミンゴの世界的に重要な採餌地"
+      ],
+      "sourceKey": "lakeSystem"
+    },
+    {
+      "topicKey": "swahili-trade-network",
+      "themeEn": "HISTORY",
+      "themeJa": "海の交易を知る",
+      "title": "海岸都市はインド洋交易のネットワークにつながっていた",
+      "text": "ゲディやモンバサの遺構は、東アフリカ沿岸が内陸だけでなくアラビア海や南アジアへ向かう交易圏と結ばれていたことを示す。",
+      "points": [
+        "ゲディは2024年に世界遺産登録",
+        "フォート・ジーザスは16世紀末の海岸要塞"
+      ],
+      "sourceKey": "gedi"
+    },
+    {
+      "topicKey": "amboseli-wetlands",
+      "themeEn": "WILDLIFE",
+      "themeJa": "水と野生を見る",
+      "title": "乾いた平原の中で湿地が大型動物を支える",
+      "text": "アンボセリでは開けた草原、アカシア林、沼沢地が近接する。キリマンジャロを背景にした景観で知られるが、野生動物を支える鍵は乾燥地の中に残る水場にある。",
+      "points": [
+        "大型のゾウ群との遭遇で知られる",
+        "草原・低木地・湿地が同じ公園内に並ぶ"
+      ],
+      "sourceKey": "amboseli"
+    },
+    {
+      "topicKey": "hells-gate-geothermal",
+      "themeEn": "EARTH",
+      "themeJa": "地熱を感じる",
+      "title": "断崖と地熱が大地溝帯の活動を目に見える形にする",
+      "text": "ヘルズゲートでは断崖、峡谷、火山岩、地熱現象が狭い範囲に集まり、大地溝帯を地形として実感できる。",
+      "points": [
+        "国立公園は約68km²",
+        "徒歩・自転車・ロッククライミングも特徴"
+      ],
+      "sourceKey": "hellsGate"
+    },
+    {
+      "topicKey": "coastal-rainforest-edge",
+      "themeEn": "NATURE",
+      "themeJa": "海岸の森を見る",
+      "title": "白砂の海岸の背後に沿岸雨林が残る",
+      "text": "シンバ・ヒルズではモンバサ近郊の海岸低地から丘陵へ上がると、沿岸雨林と草地が現れる。ケニアの東端は海だけでなく、湿った森林生態系まで含んでいる。",
+      "points": [
+        "保護区は約192.5km²",
+        "クロセーブルアンテロープの繁殖群で知られる"
+      ],
+      "sourceKey": "shimbaHills"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "two-official-languages",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "ことば",
+      "title": "国語はスワヒリ語、公用語はスワヒリ語と英語",
+      "text": "憲法はスワヒリ語を国語とし、スワヒリ語と英語を公用語に定めている。地域言語も多く、旅では都市と地方で聞こえる言葉の層が変わる。",
+      "icon": "culture",
+      "sourceKey": "languages"
+    },
+    {
+      "topicKey": "eight-world-heritage",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "文化遺産",
+      "title": "世界遺産は自然3件・文化5件の計8件",
+      "text": "2026年時点でケニアの世界遺産は8件。ケニア山や大地溝帯の湖から、ラム、モンバサ、ゲディなど海岸文化まで対象が広い。",
+      "icon": "culture",
+      "sourceKey": "worldHeritage"
+    },
+    {
+      "topicKey": "equator-highlands",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地理",
+      "title": "赤道国でも標高で気候の体感が大きく変わる",
+      "text": "ケニアは赤道をまたぐ一方、ナイロビや中央高地は標高が高い。海岸、低地サバンナ、高地では同じ季節でも気温と雨の感じ方が異なる。",
+      "icon": "map",
+      "sourceKey": "climate"
+    },
+    {
+      "topicKey": "osbp-network",
+      "categoryEn": "ROAD",
+      "categoryJa": "国境",
+      "title": "主要陸路の一部はワンストップ国境になっている",
+      "text": "ナマンガ、マラバ、ブシア、モヤレなどでは両国の手続きを一か所にまとめるOSBPが整備され、東アフリカ域内の移動と物流を支えている。",
+      "icon": "road",
+      "sourceKey": "nextRoutes"
+    },
+    {
+      "topicKey": "rhino-sanctuary",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "保全",
+      "title": "ナクル湖は政府管理のサイ保護区の先駆け",
+      "text": "ナクル湖国立公園は1987年にケニア初の政府管理サイ保護区となった。湖の鳥類だけでなく、クロサイとシロサイの保全も公園の大きな役割になっている。",
+      "icon": "wildlife",
+      "sourceKey": "lakeNakuru"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF KENYA",
+    "title": "ケニアで食べたいもの",
+    "intro": "トウモロコシの主食、豆と穀物、炭火焼き肉、海岸の香辛料料理。内陸の家庭食からスワヒリ海岸まで、食の地理が見える4品を選ぶ。",
+    "items": [
+      {
+        "id": "ugali-sukuma-wiki",
+        "name": "ウガリとスクマウィキ",
+        "nameLocal": "Ugali na Sukuma Wiki",
+        "text": "トウモロコシ粉を練ったウガリに、葉野菜のスクマウィキを添える日常的な組み合わせ。主食と野菜を一皿で食べるケニアの家庭食の入口になる。",
+        "image": "assets/images/kenya/approved/food-1-ugali-sukuma.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "nyama-choma",
+        "name": "ニャマ・チョマ",
+        "nameLocal": "Nyama Choma",
+        "text": "ヤギや牛などの肉を炭火で焼く料理。塩を基本に肉そのものを味わい、ウガリや野菜、カチュンバリを添えて複数人で囲むことも多い。",
+        "image": "assets/images/kenya/approved/food-2-nyama-choma.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "githeri",
+        "name": "ギゼリ",
+        "nameLocal": "Githeri",
+        "text": "トウモロコシと豆を一緒に煮る料理。シンプルな組み合わせを土台に、野菜や香味を加える家庭もあり、中央高地を含む日常食として広く親しまれている。",
+        "image": "assets/images/kenya/approved/food-3-githeri.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "swahili-pilau",
+        "name": "スワヒリ・ピラウ",
+        "nameLocal": "Swahili Pilau",
+        "text": "米を肉や香辛料と炊き込む沿岸部の料理。クローブ、カルダモン、シナモンなどの香りが重なり、インド洋交易と結びついたスワヒリ海岸の食文化を感じられる。",
+        "image": "assets/images/kenya/approved/food-4-swahili-pilau.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "野生動物保護区、高地、大地溝帯、海岸が広く分散する。道路移動だけで詰め込まず、サファリ区間と海岸区間をブロックに分けると景観の変化を追いやすい。",
+    "items": [
+      {
+        "duration": "5〜7日",
+        "title": "南部のサバンナと大地溝帯を軸にする",
+        "text": "ナイロビを入口にアンボセリ、ナイバシャ／ヘルズゲート、マサイマラを組み合わせる。例：ナイロビ → アンボセリ → ナイバシャ → マサイマラ → ナイロビ。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜11日",
+        "title": "高山か海岸を一本足す",
+        "text": "南部サファリにケニア山周辺、またはモンバサ・ゲディ・南海岸を加える。長距離は鉄道や国内線を使い、連日の車移動を避ける。例：ナイロビ → ケニア山周辺 → ナクル湖 → モンバサ → ゲディ。",
+        "icon": "map"
+      },
+      {
+        "duration": "12日以上",
+        "title": "北部の乾燥地まで別ブロックで広げる",
+        "text": "中央高地とサンブルを加え、南部の草原との違いを見る。北部は地域ごとに安全情報が異なるため、移動経路と最新の危険情報を確認して組む。例：ナイロビ → サンブル → ケニア山周辺 → ナイバシャ → マサイマラ → ナイロビ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜2月",
+      "color": "#d1bd79",
+      "text": "多くの地域で比較的乾きやすい時期。サバンナの道路移動や野生動物観察を組みやすいが、海岸と高地では体感が異なる。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#91aa86",
+      "text": "主な「長雨」の時期。中央高地や大地溝帯は緑が濃くなる一方、未舗装区間では移動時間が延びやすい。地域差と年ごとの変動が大きい。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#bcae78",
+      "text": "中央部・南部で比較的乾いた季節を含み、サファリ旅行の人気期。高地では朝晩が冷え、海岸は内陸より湿度が高い。"
+    },
+    {
+      "months": "10〜12月",
+      "color": "#8fa58c",
+      "text": "「短雨」の季節を中心とする。雨は地域差が大きく、近年は変動も大きいため、固定的な雨季像ではなく直前の気象情報を確認したい。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は道路・鉄道・国内線を使い分ける",
+    "text": "ナイロビを軸に主要サファリ地域へは道路移動が基本。ナイロビ〜モンバサ間は旅客鉄道も選択肢になり、海岸や遠隔地へは国内線を組み合わせると移動負荷を下げられる。サファリでは未舗装路と日没を前提に余裕を持つ。"
+  },
+  "personas": [
+    {
+      "title": "野生動物だけでなく、生態系の違いまで見たい人",
+      "text": "アンボセリ、マサイマラ、ナクル、サンブルを比べ、湿地、草原、湖、乾燥地で動物と景観がどう変わるかを見たい。"
+    },
+    {
+      "title": "高山・大地溝帯・インド洋を一国で横断したい人",
+      "text": "ケニア山から地溝帯の湖、海岸のサンゴ礁まで、標高と地形が大きく切り替わる旅を組みたい。"
+    },
+    {
+      "title": "自然とスワヒリ海岸の歴史をつなげたい人",
+      "text": "モンバサやゲディを歩き、サファリとは別のケニアとして、インド洋交易と沿岸都市の文化までたどりたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ"
+    },
+    {
+      "label": "首都",
+      "value": "ナイロビ"
+    },
+    {
+      "label": "人口",
+      "value": "47,564,296人（2019年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "580,367 km²（日本の約1.5倍）"
+    },
+    {
+      "label": "言語",
+      "value": "スワヒリ語・英語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が多数、イスラム教も主要"
+    },
+    {
+      "label": "通貨",
+      "value": "ケニア・シリング（KES）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "mount-kenya-height",
+      "label": "最高峰バティアン",
+      "value": "5,199m",
+      "note": "ケニア山の最高点で、アフリカではキリマンジャロに次ぐ高さ。赤道直下で低地の植生から高山帯へ景観が変わる。",
+      "icon": "landscape",
+      "interestReason": "赤道国に5,000m級の高山があるという地形の振幅を直感的に伝えられるため。"
+    },
+    {
+      "topicKey": "great-migration-wildebeest",
+      "label": "ヌーの大移動",
+      "value": "約130万頭",
+      "note": "セレンゲティからマサイマラへ続くGreat Migrationの中心群。ケニア政府観光局は130万頭を超えるヌーの移動として紹介している。",
+      "icon": "wildlife",
+      "interestReason": "マサイマラを世界的に知られる場所にした、ケニアを象徴する野生動物のスケールを一つの数字で伝えられるため。"
+    },
+    {
+      "topicKey": "rainfall-rhythm",
+      "label": "主な雨季",
+      "value": "年2回",
+      "note": "ケニア気象局は主な雨季を3〜5月の長雨と10〜12月の短雨として扱う。地域差と年ごとの変動は大きい。",
+      "icon": "weather",
+      "interestReason": "赤道付近の旅で季節を考える際、四季ではなく二つの雨季が移動や景観を左右することを示せるため。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "security-regional",
+      "title": "北部・東部・ソマリア国境は地域ごとの危険情報を確認する",
+      "text": "ケニアは地域によって安全状況の差が大きい。ソマリア国境周辺や北部・海岸部の一部には高い危険情報が出ることがあるため、訪問地と道路単位で外務省などの最新情報を確認する。"
+    },
+    {
+      "topicKey": "park-rules",
+      "title": "国立公園では車外行動と野生動物との距離を守る",
+      "text": "KWS管理公園では指定場所以外での車外行動、餌やり、オフロード走行などに制限がある。公園ごとの開閉時間と現地ルールを確認する。"
+    },
+    {
+      "topicKey": "season-road-buffer",
+      "title": "雨季は移動時間に余白を持たせる",
+      "text": "長雨・短雨の時期は未舗装路や河川周辺の状況が変わりやすい。距離だけで所要時間を決めず、サファリ車両と現地情報を前提に余裕を持たせる。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇹🇿",
+      "countryEn": "TANZANIA",
+      "countryJa": "タンザニア",
+      "path": "Nairobi / Amboseli → Namanga OSBP → Arusha",
+      "description": "ナイロビやアンボセリからナマンガ国境を越え、アルーシャとタンザニア北部へつなぐ代表的な陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "KRAはナマンガをワンストップ国境として掲載。入国条件と交通は出発直前に確認する。"
+    },
+    {
+      "flag": "🇺🇬",
+      "countryEn": "UGANDA",
+      "countryJa": "ウガンダ",
+      "path": "Nairobi / western Kenya → Malaba or Busia OSBP → Jinja / Kampala",
+      "description": "西ケニアからマラバまたはブシア国境を越え、ジンジャ、カンパラ方面へつなぐ東アフリカの主要陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "KRAはマラバ・ブシアをワンストップ国境として掲載。入国条件と運行は直前確認。"
+    },
+    {
+      "flag": "🇪🇹",
+      "countryEn": "ETHIOPIA",
+      "countryJa": "エチオピア",
+      "path": "Northern Kenya → Moyale OSBP → southern Ethiopia",
+      "description": "北部を縦断してモヤレ国境を越え、エチオピア南部へつなぐ確立した陸路。ただし北部・国境周辺は安全情報を必ず確認し、現地状況を踏まえて判断する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "KRAはモヤレOSBPを掲載。北部・国境周辺は最新の安全情報を必ず確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "セレンゲティへ続く草原生態系、高峰、インド洋を、国境の先でさらに広げたい人へ。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "slug": "uganda",
+      "nameEn": "UGANDA",
+      "nameJa": "ウガンダ",
+      "flag": "🇺🇬",
+      "reason": "大湖地域の湿潤な森林、ナイル、霊長類へ景観の軸を移したい人へ。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "ethiopia",
+      "nameEn": "ETHIOPIA",
+      "nameJa": "エチオピア",
+      "flag": "🇪🇹",
+      "reason": "東アフリカの高地と大地溝帯を、古代史と独自の高原文化まで含めて比較したい人へ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-29",
+  "sourcesVerifiedAt": "2026-09-29",
+  "sourceDates": {
+    "population": "2019",
+    "area": "2019",
+    "languages": "2026-09-29",
+    "religion": "2019",
+    "currency": "2026-09-29",
+    "worldHeritage": "2026-09-29",
+    "climate": "2026-09-29",
+    "travelAdvice": "2026-09-29",
+    "nextRoutes": "2026-09-29",
+    "sceneCoordinates": "2026-09-29",
+    "map": "2026-09-29",
+    "japanArea": "2026-04-01",
+    "greatMigration": "2026"
+  },
+  "sources": {
+    "population": "Kenya National Bureau of Statistics (KNBS), 2019 Kenya Population and Housing Census: total enumerated population 47,564,296. https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+    "area": "Kenya National Bureau of Statistics: Kenya area 580,367 km². https://www.knbs.or.ke/",
+    "japanArea": "Geospatial Information Authority of Japan, national land area 377,974.87 km² as of 2026-04-01; 580,367 / 377,974.87 ≒ 1.54, displayed as approximately 1.5 times. https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "languages": "Constitution of Kenya, Article 7: Kiswahili is the national language; Kiswahili and English are official languages. Kenya Law. https://new.kenyalaw.org/akn/ke/act/2010/constitution",
+    "religion": "Kenya National Bureau of Statistics, 2019 Census Volume IV: Christian denominations account for 85.5% and Muslims 11.0% of enumerated population. https://www.knbs.or.ke/",
+    "currency": "Central Bank of Kenya, Currency Services: Central Bank is sole issuer of Kenya currency; current notes and coins are Kenya shillings. https://www.centralbank.go.ke/currency-services/",
+    "worldHeritage": "UNESCO World Heritage Centre, Kenya State Party: 8 properties, 5 cultural and 3 natural, checked 2026-09-29. https://whc.unesco.org/en/statesparties/ke",
+    "mountKenya": "UNESCO World Heritage Centre, Mount Kenya National Park/Natural Forest: 5,199m, Africa's second-highest peak, ancient extinct volcano; property straddles the Equator. https://whc.unesco.org/en/list/800",
+    "lakeSystem": "UNESCO World Heritage Centre, Kenya Lake System in the Great Rift Valley: Lake Bogoria, Lake Nakuru and Lake Elementaita; 32,034 ha; about 1.5 million Lesser Flamingos move between the lakes. https://whc.unesco.org/en/list/1060",
+    "amboseli": "Kenya Wildlife Service, Amboseli National Park: open grass plains, acacia woodland, swamps and marshes, large elephant herds and Mount Kilimanjaro backdrop. https://kws.go.ke/park/amboseli-national-park/",
+    "lakeNakuru": "Kenya Wildlife Service, Lake Nakuru National Park: semi-alkaline lake; approximately 450 bird species; first government-managed Rhino Sanctuary, designated 1987. https://kws.go.ke/park/lake-nakuru-national-park/",
+    "hellsGate": "Kenya Wildlife Service, Hell's Gate National Park: approximately 68 km², Great Rift Valley cliffs, gorges and geothermal features. https://kws.go.ke/park/hells-gate-national-park/",
+    "gedi": "UNESCO World Heritage Centre, The Historic Town and Archaeological Site of Gedi: Swahili city, 10th–17th centuries, inscribed 2024; coral-stone architecture and Indian Ocean trade links. https://whc.unesco.org/en/list/1720",
+    "fortJesus": "UNESCO World Heritage Centre, Fort Jesus, Mombasa: built 1593–1596 on coral rock to protect Mombasa port. https://whc.unesco.org/en/list/1295",
+    "kwsParks": "Kenya Wildlife Service, Our Parks: national and marine parks including Kisite Mpunguti; checked 2026-09-29. https://kws.go.ke/parks/",
+    "food": "Kenyan food selection cross-checked against Kenya tourism references and established culinary sources: ugali, nyama choma, githeri and Swahili pilau. Final dish imagery must follow authentic serving conventions.",
+    "climate": "Kenya Meteorological Department: two principal rainy seasons, Long Rains generally March–May and Short Rains October–December, with strong spatial and interannual variability. https://meteo.go.ke/",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan, Kenya safety information checked 2026-09-29. Regional risk levels vary; Somalia-border areas and parts of the north/coast carry higher advisories. https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_100.html",
+    "nextRoutes": "Kenya Revenue Authority, Gazetted Points of Entry and Exit: Namanga, Malaba, Busia and Moyale listed among land borders; seven land borders operate as OSBPs. https://www.kra.go.ke/individual/1891-gazetted-points-of-entry-and-exit-into-the-kenya-border-points",
+    "sceneCoordinates": "WGS84 real-location points checked 2026-09-29 against authoritative property/park pages and geographic references: Maasai Mara -1.490833,35.143889; Mount Kenya -0.155,37.315556; Lake Nakuru -0.366667,36.083333; Hell's Gate -0.9,36.316667; Samburu 0.616667,37.533333; Tsavo East -2.9,38.6; Gedi -3.310264,40.017264; Shimba Hills -4.257,39.371; hero Amboseli -2.648,37.260; Nairobi -1.286389,36.817223.",
+    "map": "Natural Earth 1:10m Admin-0 geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection. Kenya plus UGA/TZA/ETH/SOM/SDS and additional western canvas context COD/RWA/BDI are rendered to preserve real surrounding land across the full projection.",
+    "shimbaHills": "Kenya Wildlife Service, Shimba Hills National Reserve: coastal rainforest and rolling hills southwest of Mombasa; reserve area 192.5 km² and Kenya’s remaining breeding herd of sable antelope. https://kws.go.ke/park/shimba-hills-national-reserve/",
+    "tsavoEast": "Kenya Wildlife Service, Tsavo East National Park: Kenya’s largest national park, approx. 13,747 km²; semi-arid plains, Galana River, Yatta Plateau and red elephants. https://kws.go.ke/park/tsavo-east-national-park/",
+    "greatMigration": "Magical Kenya / Kenya Tourism Board, Maasai Mara - Home of the Great Migration: around 1.3 million wildebeest gather in the Serengeti and move north as part of the annual migration, checked 2026-09-29. https://webmail.magicalkenya.com/default.nsf/features1/BB4BC3735EF6D65F43257457002CC68F?l=1&opendocument="
+  }
+}

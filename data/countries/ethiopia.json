@@ -1,0 +1,642 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "ethiopia",
+  "nameEn": "ETHIOPIA",
+  "nameJa": "エチオピア",
+  "region": "EAST AFRICA / 9°N",
+  "seo": {
+    "description": "岩窟教会、高地の断崖、古代王国の石柱、城塞都市、ダナキル低地、コーヒーの森まで。標高差と歴史の層が大きく切り替わるエチオピアを、8つの景色と食文化からたどる。"
+  },
+  "capital": {
+    "nameEn": "Addis Ababa",
+    "nameJa": "アディスアベバ",
+    "coordinates": {
+      "latitude": 8.9806,
+      "longitude": 38.7578
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": -46,
+      "y": 20
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "岩を掘り下げた聖堂から、断崖、高原、塩の低地へ。地形と信仰の時間が重なる国。",
+    "image": "assets/images/ethiopia/approved/hero-lalibela.webp",
+    "location": "Rock-Hewn Churches, Lalibela",
+    "coordinates": {
+      "latitude": 12.033333,
+      "longitude": 38.816667
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 16.2,
+      "south": 1.8,
+      "west": 31,
+      "east": 49.8
+    },
+    "svg": "assets/images/ethiopia/map-atlas-v4.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, via LonnyGomes/CountryGeoJSONCollection. Target Ethiopia plus all land polygons intersecting the rendered viewport; Somalia and Somaliland source polygons are both included. Flat JOURNEY ATLAS palette: sea #e4eceb, context land #e4e0ce, target #d4cc9b; context outlines #b6bbaf at 1.0."
+  },
+  "scenes": [
+    {
+      "id": "simien-national-park",
+      "name": "シミエン国立公園",
+      "nameLocal": "Simien National Park",
+      "mapLabel": "Simien",
+      "description": "侵食された高原が深い谷へ落ち込み、最大約1,500mの断崖が続く北部の山岳景観。ゲラダやワリアアイベックスなど、高地に適応した固有性の高い動物相でも知られる。",
+      "coordinates": {
+        "latitude": 13.183333,
+        "longitude": 38.066667
+      },
+      "image": "assets/images/ethiopia/approved/scene-01-simien.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": -1.6,
+        "y": -2.6
+      }
+    },
+    {
+      "id": "aksum",
+      "name": "アクスム",
+      "nameLocal": "Aksum",
+      "mapLabel": "Aksum",
+      "description": "巨大な石柱と王墓が残る、古代アクスム王国の中心地。紅海交易と内陸高原を結んだ国家の痕跡が、都市の中に立体的に残る。",
+      "coordinates": {
+        "latitude": 14.13019,
+        "longitude": 38.71861
+      },
+      "image": "assets/images/ethiopia/approved/scene-02-aksum.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 1,
+        "y": 0
+      }
+    },
+    {
+      "id": "fasil-ghebbi",
+      "name": "ファシル・ゲビ",
+      "nameLocal": "Fasil Ghebbi",
+      "mapLabel": "Gondar",
+      "description": "17世紀以降の王都ゴンダールに築かれた城塞群。宮殿、教会、修道院などが一つの囲郭内に集まり、北部高原の王権文化を伝える。",
+      "coordinates": {
+        "latitude": 12.607909,
+        "longitude": 37.4697
+      },
+      "image": "assets/images/ethiopia/approved/scene-03-fasil-ghebbi.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 2.7
+      }
+    },
+    {
+      "id": "harar-jugol",
+      "name": "ハラール・ジュゴル",
+      "nameLocal": "Harar Jugol",
+      "mapLabel": "Harar",
+      "description": "城壁に囲まれた東部の歴史都市。密度の高い路地、モスク、祠、伝統家屋が重なり、アフリカとイスラム文化が交差する都市景観を形づくる。",
+      "coordinates": {
+        "latitude": 9.308889,
+        "longitude": 42.137778
+      },
+      "image": "assets/images/ethiopia/approved/scene-04-harar.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "dallol",
+      "name": "ダロル熱水地帯",
+      "nameLocal": "Dallol Geothermal Area",
+      "mapLabel": "Dallol",
+      "description": "ダナキル低地の塩原に、硫黄や鉱物の沈殿で黄・緑・白の色彩が現れる熱水地帯。海面下まで下がる低地と火山・熱水活動がつくる極端な地形。",
+      "coordinates": {
+        "latitude": 14.239167,
+        "longitude": 40.298611
+      },
+      "image": "assets/images/ethiopia/approved/scene-05-dallol.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0.1,
+        "y": 0
+      }
+    },
+    {
+      "id": "bale-mountains-national-park",
+      "name": "バレ山地国立公園",
+      "nameLocal": "Bale Mountains National Park",
+      "mapLabel": "Bale Mountains",
+      "description": "標高3,000mを超える広いアフロアルパイン環境を抱える南東部の山地。高原、火山地形、草地、森林が標高に沿って切り替わる。",
+      "coordinates": {
+        "latitude": 6.797778,
+        "longitude": 39.748889
+      },
+      "image": "assets/images/ethiopia/approved/scene-06-bale.webp",
+      "labelPosition": "right",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "konso-cultural-landscape",
+      "name": "コンソ文化景観",
+      "nameLocal": "Konso Cultural Landscape",
+      "mapLabel": "Konso",
+      "description": "乾燥した丘陵に石積みの段々畑と防御壁を備えた集落が連なる文化景観。水と土を守りながら耕す土地利用が、世代を超えて地形そのものに刻まれている。",
+      "coordinates": {
+        "latitude": 5.3,
+        "longitude": 37.4
+      },
+      "image": "assets/images/ethiopia/approved/scene-07-konso.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "kafa-biosphere-reserve",
+      "name": "カファ生物圏保存地域",
+      "nameLocal": "Kafa Biosphere Reserve",
+      "mapLabel": "Kafa",
+      "description": "南西部の湿潤な山地林に野生アラビカコーヒーの遺伝的多様性が残る生物圏保存地域。農地と森林、集落が連続する景観の中にコーヒー文化の源流がある。",
+      "coordinates": {
+        "latitude": 7.37,
+        "longitude": 36.056
+      },
+      "image": "assets/images/ethiopia/approved/scene-08-kafa.webp",
+      "labelPosition": "left",
+      "mapOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "岩を掘った聖堂を歩く",
+      "category": "ARCHITECTURE",
+      "icon": "landmark"
+    },
+    {
+      "title": "高原の断崖を見渡す",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "古代王国の石柱を見る",
+      "category": "CULTURE",
+      "icon": "history"
+    },
+    {
+      "title": "城壁内の路地を歩く",
+      "category": "CITY",
+      "icon": "road"
+    },
+    {
+      "title": "塩原と熱水地形を見る",
+      "category": "NATURE",
+      "icon": "culture"
+    },
+    {
+      "title": "高地の野生動物を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "コーヒーを焙煎から味わう",
+      "category": "FOOD",
+      "icon": "food"
+    },
+    {
+      "title": "段々畑と集落を見る",
+      "category": "DAILY_LIFE",
+      "icon": "landscape"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "lalibela-monolithic-churches",
+      "themeEn": "FAITH / ARCHITECTURE",
+      "themeJa": "信仰 / 建築",
+      "title": "岩を「積む」のではなく、地面から掘り下げる",
+      "text": "ラリベラの11の中世教会は、岩盤を掘り下げ、外側と内部を一体で削り出した建築群。13世紀の「新しいエルサレム」として形成され、現在も巡礼と祈りの場所であり続ける。",
+      "points": [
+        "11の中世教会",
+        "岩盤を削り出す一体構造",
+        "現在も続く巡礼地"
+      ],
+      "sourceKey": "unescoLalibela"
+    },
+    {
+      "topicKey": "aksumite-stelae-kingdom",
+      "themeEn": "KINGDOM / TRADE",
+      "themeJa": "王国 / 交易",
+      "title": "石柱の背後に、紅海へ開いた古代王国がある",
+      "text": "アクスムは古代エチオピアを代表する王国の中心地。記念石柱、王墓、碑文などから、内陸高原と紅海交易を結んだ政治・経済圏の広がりを読み取れる。",
+      "points": [
+        "巨大な一枚石の石柱",
+        "王墓と碑文",
+        "紅海交易との接続"
+      ],
+      "sourceKey": "unescoAksum"
+    },
+    {
+      "topicKey": "harar-fortified-sacred-city",
+      "themeEn": "CITY / ISLAMIC CULTURE",
+      "themeJa": "都市 / イスラム文化",
+      "title": "城壁の内側に、礼拝と暮らしの密度がある",
+      "text": "ハラール・ジュゴルは城壁に囲まれた歴史都市。82のモスクと102の祠、細い路地、独特の内部空間を持つ伝統家屋が、東部エチオピアの都市文化を形づくる。",
+      "points": [
+        "城壁内の高密度な街路",
+        "82のモスク",
+        "102の祠"
+      ],
+      "sourceKey": "unescoHarar"
+    },
+    {
+      "topicKey": "simien-afroalpine-endemics",
+      "themeEn": "HIGHLAND / WILDLIFE",
+      "themeJa": "高地 / 野生動物",
+      "title": "断崖だけでなく、高地に閉じ込められた生態系を見る",
+      "text": "シミエンでは急崖と深い谷の上にアフロアルパイン草地が広がる。ワリアアイベックス、エチオピアオオカミ、ゲラダなど、高地環境と結びつく動物が景観の一部になっている。",
+      "points": [
+        "最大約1,500mの断崖",
+        "ワリアアイベックス",
+        "ゲラダ"
+      ],
+      "sourceKey": "unescoSimien"
+    },
+    {
+      "topicKey": "dallol-hydrothermal-field",
+      "themeEn": "EXTREME EARTH / GEOLOGY",
+      "themeJa": "極限地形 / 地質",
+      "title": "海面下の塩原に、熱水が色を置いていく",
+      "text": "ダロルはダナキル低地北部の熱水地帯。塩に覆われた低地で火山性ガスと高塩濃度の熱水が作用し、鉱物沈殿による強い色彩と奇妙な表面地形が生まれる。",
+      "points": [
+        "海面下の低地",
+        "塩原と熱水活動",
+        "鉱物沈殿の色彩"
+      ],
+      "sourceKey": "dallolScience"
+    },
+    {
+      "topicKey": "konso-terrace-settlements",
+      "themeEn": "LAND USE / SETTLEMENT",
+      "themeJa": "土地利用 / 集落",
+      "title": "斜面を守る石積みが、暮らしの輪郭になる",
+      "text": "コンソ文化景観では、石積みの段々畑、防御壁を持つ集落、水と土を守る農業が一体になっている。景色そのものが、長期にわたる環境への適応の記録になっている。",
+      "points": [
+        "石積みの段々畑",
+        "防御壁を持つ集落",
+        "400年以上の土地利用"
+      ],
+      "sourceKey": "unescoKonso"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "timkat-intangible-heritage",
+      "categoryEn": "FAITH",
+      "categoryJa": "信仰",
+      "title": "ティムカットは無形文化遺産",
+      "text": "イエスの洗礼を記念するエチオピア正教の祝祭ティムカットは、2019年にユネスコ無形文化遺産の代表一覧へ登録された。",
+      "icon": "culture",
+      "sourceKey": "unescoTimkat"
+    },
+    {
+      "topicKey": "lucy-awash-hominid",
+      "categoryEn": "ORIGINS",
+      "categoryJa": "人類史",
+      "title": "ルーシーは約320万年前",
+      "text": "アワッシュ川下流域では1974年にアウストラロピテクス・アファレンシスの骨格「ルーシー」が発見され、人類進化研究の重要地点となった。",
+      "icon": "history",
+      "sourceKey": "unescoAwash"
+    },
+    {
+      "topicKey": "african-union-headquarters",
+      "categoryEn": "CONTINENT",
+      "categoryJa": "大陸",
+      "title": "AU本部はアディスアベバ",
+      "text": "アフリカ連合の本部は首都アディスアベバに置かれている。旅先としての首都は、国内だけでなく大陸外交の結節点でもある。",
+      "icon": "landmark",
+      "sourceKey": "africanUnion"
+    },
+    {
+      "topicKey": "orthodox-fasting-food",
+      "categoryEn": "FOOD",
+      "categoryJa": "食",
+      "title": "断食食が野菜料理を豊かにした",
+      "text": "エチオピア正教の断食期間には肉や動物性食品を避ける食習慣があり、豆や野菜の料理をインジェラと組み合わせる食卓が発達している。",
+      "icon": "leaf",
+      "sourceKey": "embassyFood"
+    },
+    {
+      "topicKey": "three-rainfall-seasons",
+      "categoryEn": "CLIMATE",
+      "categoryJa": "気候",
+      "title": "雨季の呼び名は一つではない",
+      "text": "国土の標高差と地域差が大きく、ベガ、ベルグ、キレムトという季節区分が使われる。北・中央・南西・東部で雨の出方は同じではない。",
+      "icon": "weather",
+      "sourceKey": "climate"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ETHIOPIA",
+    "title": "エチオピアで食べたいもの",
+    "intro": "発酵させたインジェラを土台に、辛い煮込み、豆料理、肉料理を分け合う食卓。香辛料と酸味、断食文化が味の幅をつくる。",
+    "items": [
+      {
+        "id": "doro-wat",
+        "name": "ドロ・ワット",
+        "nameLocal": "Doro Wat",
+        "text": "ベルベレを利かせた鶏肉と玉ねぎの濃厚な煮込み。ゆで卵を添え、インジェラと一緒に食べる代表料理。",
+        "image": "assets/images/ethiopia/approved/food-1-doro-wat.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "kitfo",
+        "name": "キトフォ",
+        "nameLocal": "Kitfo",
+        "text": "細かく刻んだ牛肉を香辛料と澄ましバターで和える料理。加熱の程度を選ぶことも多く、肉の風味を前面に出す。",
+        "image": "assets/images/ethiopia/approved/food-2-kitfo.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "shiro-wat",
+        "name": "シロ・ワット",
+        "nameLocal": "Shiro Wat",
+        "text": "ひよこ豆などの粉を香辛料と煮た、とろみのある豆料理。インジェラとの相性がよく、日常の食卓でも親しまれる。",
+        "image": "assets/images/ethiopia/approved/food-3-shiro-wat.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "fasting-beyaynetu",
+        "name": "断食ベヤイネットゥ",
+        "nameLocal": "Fasting Beyaynetu",
+        "text": "豆の煮込みや野菜料理をインジェラの上に少量ずつ盛り合わせる。動物性食品を避ける断食日の食文化を一皿で感じられる。",
+        "image": "assets/images/ethiopia/approved/food-4-fasting-beyaynetu.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土が広く標高差も大きい。以下は地理的な組み立ての目安であり、2026年9月現在は北部・国境地帯などに渡航中止・退避勧告が含まれるため、実際の旅程は最新安全情報を優先する。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "首都と近郊に絞る",
+        "text": "移動範囲をアディスアベバ周辺に限定し、都市文化と高原の入口を見る。例：アディスアベバ → 近郊 → アディスアベバ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "一つの地域圏を深く見る",
+        "text": "安全状況を確認したうえで、東部または南部など一つの方向へ軸を伸ばす。例：アディスアベバ → ディレ・ダワ → ハラール → アディスアベバ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "複数の標高帯を比較する",
+        "text": "航空と陸路を組み合わせ、都市、高原、文化景観など複数の環境を比較する。例：アディスアベバ → ハラール → バレ山地 → コンソ → アディスアベバ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "10〜1月",
+      "color": "#b8aa83",
+      "text": "多くの高地で主雨季後の乾燥期。視界が安定しやすい一方、標高の高い場所は朝晩が冷える。"
+    },
+    {
+      "months": "2〜5月",
+      "color": "#9aa98f",
+      "text": "北部・中央部などで短い雨季ベルグが現れる時期。南部を含め地域差が大きく、道路状況も目的地ごとに確認したい。"
+    },
+    {
+      "months": "6〜9月",
+      "color": "#7f9ca7",
+      "text": "西部・中央・北西部などで主雨季キレムト。緑が濃くなる一方、豪雨や道路状況の変化を見込んで余裕を持つ。"
+    },
+    {
+      "months": "地域差",
+      "color": "#a69478",
+      "text": "南西部の湿潤高地と北東・東部の乾燥低地では季節感が大きく異なる。月だけでなく目的地の標高と地域で判断する。"
+    }
+  ],
+  "transport": {
+    "title": "長距離は航空と道路、東部は鉄道回廊もある",
+    "text": "国土が広く、都市間は航空と幹線道路を組み合わせるのが基本。アディスアベバ—ジブチ間には鉄道回廊がある。2026年9月26日時点でティグライ州内3空港は運航停止とされ、北部情勢は流動的。",
+    "icon": "traveler"
+  },
+  "personas": [
+    {
+      "title": "地形の振幅を見たい人",
+      "text": "海面下のダナキル低地から高原・山地まで、短い距離で環境が大きく切り替わる国を見たい人に。",
+      "icon": "landscape"
+    },
+    {
+      "title": "古代史と宗教建築を歩きたい人",
+      "text": "アクスム、ラリベラ、ゴンダール、ハラールのように、異なる時代と信仰の都市を比較したい人に。",
+      "icon": "landmark"
+    },
+    {
+      "title": "食と暮らしを土地から理解したい人",
+      "text": "インジェラ、断食食、コーヒー、段々畑など、日常の食文化を環境や信仰との関係から見たい人に。",
+      "icon": "food"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ / アフリカの角 / エチオピア高原"
+    },
+    {
+      "label": "首都",
+      "value": "アディスアベバ"
+    },
+    {
+      "label": "人口",
+      "value": "約1億3,547万人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "1,104,300 km²（日本の約2.9倍）"
+    },
+    {
+      "label": "言語",
+      "value": "アムハラ語（連邦政府の作業言語）ほか多数"
+    },
+    {
+      "label": "主な宗教",
+      "value": "エチオピア正教、イスラム教、プロテスタントなど"
+    },
+    {
+      "label": "通貨",
+      "value": "エチオピア・ブル（ETB）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "ethiopian-calendar-thirteen-months",
+      "label": "暦の月数",
+      "value": "13か月",
+      "note": "30日×12か月に、5日または6日の短い第13月を加える独自暦が現在も使われている。",
+      "icon": "calendar",
+      "interestReason": "日付そのものが旅行者の感覚とずれる、エチオピアの日常を端的に想像できる数字だから。"
+    },
+    {
+      "topicKey": "ethiopia-ethnic-groups",
+      "label": "民族",
+      "value": "約80",
+      "note": "エチオピアには約80の民族が暮らし、言語や宗教、食、衣服、住居の地域差が大きい。",
+      "icon": "users",
+      "interestReason": "一つの文化圏として括れない多様性が、都市や地域を移る旅の見え方そのものを変える数字だから。"
+    },
+    {
+      "topicKey": "kafa-wild-coffee-varieties",
+      "label": "野生コーヒー",
+      "value": "約5,000",
+      "note": "カファ生物圏保存地域には、野生アラビカコーヒーが約5,000系統近く確認されるとユネスコが紹介している。",
+      "icon": "food",
+      "interestReason": "コーヒー発祥地という物語を、現在残る遺伝的多様性の大きさとして具体化できる数字だから。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "northern-security-september-2026",
+      "title": "北部は2026年9月に情勢が再び動いた",
+      "text": "9月23日にメケレ空港制圧が報じられ、ティグライ州内3空港の発着便が停止。攻撃がアファール州・アムハラ州にも及ぶとの報道があり、ラリベラ、ゴンダール、シミエン、アクスムなど北部の価値と現在の渡航可否は分けて考える。"
+    },
+    {
+      "topicKey": "altitude-acclimatization-highlands",
+      "title": "高地と低地を同じ装備で考えない",
+      "text": "アディスアベバや山地は高標高で朝晩が冷えやすい一方、ダナキル低地は極端に暑く乾燥する。高度順応、日差し、水分、寒暖差を目的地ごとに準備する。"
+    },
+    {
+      "topicKey": "regional-climate-route-planning",
+      "title": "雨季は全国一律ではない",
+      "text": "キレムト、ベルグ、ベガの影響は地域ごとに異なる。道路移動を含む旅では、月別の一般論より目的地別の気象・道路情報を確認する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇩🇯",
+      "countryEn": "DJIBOUTI",
+      "countryJa": "ジブチ",
+      "path": "Addis Ababa → Dire Dawa → Dewele → Djibouti City",
+      "description": "アディスアベバ高原から東へ下り、ディレ・ダワを経てジブチ港へつながる鉄道・道路回廊。内陸高原と紅海側の乾燥地を連続して見る代表的な東向きルート。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "鉄道・道路の運行、入国条件、国境周辺の安全状況は出発前に最新情報を確認する。"
+    },
+    {
+      "flag": "🇰🇪",
+      "countryEn": "KENYA",
+      "countryJa": "ケニア",
+      "path": "Addis Ababa → Yabelo → Moyale → Nairobi",
+      "description": "南へ高原を下り、モヤレ国境を越えてナイロビ方面へつなぐ東アフリカの主要道路回廊。エチオピア南部からケニア北部へ地形と生活圏が連続する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "モヤレは主要公式国境だが、ケニア国境地帯を含む周辺の危険情報と道路状況を必ず直前確認する。"
+    },
+    {
+      "flag": "🇸🇩",
+      "countryEn": "SUDAN",
+      "countryJa": "スーダン",
+      "path": "Gondar → Metema / Gallabat → Gedaref",
+      "description": "北西部高原からメテマ／ガラバトを経てスーダン東部へ下る歴史的な陸路回廊。ナイル流域とエチオピア高原を結ぶ代表的な西向きルート。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2026年9月現在、スーダン全土は日本外務省の危険レベル4で、エチオピア側のスーダン国境地帯もレベル4。旅行ルートとしては使用しない。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "eritrea",
+      "nameEn": "ERITREA",
+      "nameJa": "エリトリア",
+      "flag": "🇪🇷",
+      "reason": "アクスム世界の歴史、高地文化、紅海への接続を国境の北側から見比べたいなら。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "slug": "djibouti",
+      "nameEn": "DJIBOUTI",
+      "nameJa": "ジブチ",
+      "flag": "🇩🇯",
+      "reason": "アファール三角地帯の火山・塩湖・乾燥地形を、より海に近い側から連続して見たいなら。",
+      "affinityType": "DESERT"
+    },
+    {
+      "slug": "kenya",
+      "nameEn": "KENYA",
+      "nameJa": "ケニア",
+      "flag": "🇰🇪",
+      "reason": "東アフリカ高地と野生動物、南へ続く陸路の景観変化を別の国で比べたいなら。",
+      "affinityType": "WILDLIFE"
+    }
+  ],
+  "updatedAt": "2026-09-28",
+  "sourcesVerifiedAt": "2026-09-28",
+  "sourceDates": {
+    "population": "2025",
+    "area": "2026-07-01",
+    "religion": "2023",
+    "safety": "2026-09-26",
+    "worldHeritage": "2026",
+    "climate": "2026",
+    "map": "2026-09-28",
+    "nextRoutes": "2026-09-28",
+    "sceneCoordinates": "2026-09-28",
+    "heroCoordinates": "2026-09-28",
+    "ethnicGroups": "2026-09-28"
+  },
+  "sources": {
+    "population": "UN Statistics Division, Statistical Yearbook 68 / UNData Ethiopia profile — population 135.47 million (2025 estimate), surface area about 1,104 thousand km², national currency Ethiopian Birr (ETB): https://data.un.org/",
+    "area": "UNData Ethiopia profile / UN Statistical Yearbook — surface area 1,104,300 km²; Japan comparison uses Geospatial Information Authority of Japan 2026-07-01 area 377,973.68 km²: https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "religion": "U.S. Department of State, 2023 Report on International Religious Freedom: Ethiopia — latest national census cited is 2007 (44% EOTC, 34% Sunni Muslim, 19% evangelical/Pentecostal); page wording therefore avoids current percentages: https://2021-2025.state.gov/reports/2023-report-on-international-religious-freedom/ethiopia/",
+    "safety": "Japan Ministry of Foreign Affairs Overseas Safety Website — Ethiopia risk information plus spot information dated 2026-09-26 on northern Ethiopia, Mekelle/Aksum/Shire flight suspension and spillover reports: https://www.anzen.mofa.go.jp/info/pcspotinfo_2026C043.html ; https://www.anzen.mofa.go.jp/info/pcinfectionspothazardinfo_095.html",
+    "worldHeritage": "UNESCO World Heritage Centre — Ethiopia State Party page, 12 properties as of 2026 (10 cultural, 2 natural): https://whc.unesco.org/en/statesparties/et/",
+    "climate": "World Bank Climate Change Knowledge Portal Ethiopia and Ethiopian Meteorological Institute seasonal bulletins — strong regional/altitudinal variation; Kiremt/Belg/Bega seasonal framing: https://climateknowledgeportal.worldbank.org/country/ethiopia/ ; https://www.ethiomet.gov.et/products/seasonal-climate-bulletins/",
+    "map": "Natural Earth 1:10m Admin-0 cultural vectors, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; rendered with Ethiopia and all six land neighbours.",
+    "nextRoutes": "African Development Bank / World Bank corridor references for Addis Ababa–Moyale–Nairobi and 2025 Ethiopia–Kenya Simplified Trade Regime at Moyale; Embassy of Ethiopia railway note for Addis Ababa–Djibouti corridor; Sudan route retained only as historic/established continuation and marked unavailable under current safety levels: https://www.afdb.org/en/news-and-events/ethiopia-kenya-us-326-5-million-for-road-project-4862 ; https://www.worldbank.org/en/news/feature/2026/03/25/smarter-rules-unlock-small-scale-trade-and-better-livelihoods-across-kenya-and-ethiopia ; https://www.ethiopia-emb.or.jp/e-front/e-tourism/e-advice/",
+    "language": "Constitution of the Federal Democratic Republic of Ethiopia, Article 5 — all Ethiopian languages enjoy equal state recognition; Amharic is the working language of the Federal Government; member states may determine their working languages.",
+    "calendar": "Embassy of Ethiopia / Embassy of Ethiopia in Tokyo — 12 months of 30 days plus a short 13th month of 5 or 6 days: https://ethiopianembassy.org/ethiopian-time/ ; https://www.ethiopia-emb.or.jp/e-front/e-tourism/e-culture/",
+    "embassyFood": "Embassy of Ethiopia — injera as a central national food, doro wot, berbere and Orthodox fasting foods: https://ethiopianembassy.org/culture/",
+    "unescoEthiopia": "UNESCO World Heritage Centre — Ethiopia State Party page: https://whc.unesco.org/en/statesparties/et/",
+    "unescoLalibela": "UNESCO World Heritage Centre — Rock-Hewn Churches, Lalibela; 11 medieval monolithic churches and coordinate N12 1 60 E38 49 0: https://whc.unesco.org/en/list/18/ ; https://whc.unesco.org/en/list/18/maps/",
+    "unescoAksum": "UNESCO World Heritage Centre — Aksum and coordinate N14 7 48.684 E38 43 6.996: https://whc.unesco.org/en/list/15/ ; https://whc.unesco.org/en/list/15/maps/",
+    "unescoFasil": "UNESCO World Heritage Centre — Fasil Ghebbi, Gondar Region and coordinate N12 36 28.472 E37 28 10.92: https://whc.unesco.org/en/list/19/ ; https://whc.unesco.org/en/list/19/maps/",
+    "unescoHarar": "UNESCO World Heritage Centre — Harar Jugol, 82 mosques and 102 shrines; coordinate N9 18 32 E42 8 16: https://whc.unesco.org/en/list/1189 ; https://whc.unesco.org/en/list/1189/maps/",
+    "unescoSimien": "UNESCO World Heritage Centre — Simien National Park, cliffs up to about 1,500 m, Walia ibex, Ethiopian wolf and gelada; coordinate N13 10 60 E38 4 0: https://whc.unesco.org/en/list/9 ; https://whc.unesco.org/en/list/9/maps/",
+    "unescoBale": "UNESCO World Heritage Centre — Bale Mountains National Park, 215,000 ha; coordinate N6 47 52 E39 44 56: https://whc.unesco.org/en/list/111/ ; https://whc.unesco.org/en/list/111/maps/",
+    "unescoKonso": "UNESCO World Heritage Centre — Konso Cultural Landscape, dry-stone terraces and fortified settlements, 23,000 ha; coordinate N5 17 60 E37 23 60: https://whc.unesco.org/en/list/1333/ ; https://whc.unesco.org/en/list/1333/maps/",
+    "kafaBiosphere": "UNESCO MAB — Kafa Biosphere Reserve, 7.37,36.056; birthplace and genetic diversity centre of wild Coffea arabica, close to 5,000 wild varieties: https://www.unesco.org/en/mab/kafa",
+    "dallolScience": "Scientific Reports — Dallol geothermal area at 14°14′21″N, 40°17′55″E; Danakil salt plain reaches about 124 m below sea level: https://www.nature.com/articles/s41598-019-44440-8",
+    "unescoAwash": "UNESCO World Heritage Centre — Lower Valley of the Awash; Lucy reconstructed from 52 fragments, dated to about 3.2 million years: https://whc.unesco.org/en/list/10",
+    "africanUnion": "African Union — AU Headquarters, Addis Ababa, Ethiopia: https://au.int/en/visit-au-headquarters",
+    "sceneCoordinates": "UNESCO World Heritage map coordinates used for Lalibela, Simien, Aksum, Fasil Ghebbi, Harar, Bale and Konso; UNESCO MAB coordinate for Kafa; peer-reviewed Scientific Reports coordinate for Dallol.",
+    "heroCoordinates": "UNESCO World Heritage Centre geographic coordinate for the Rock-Hewn Churches, Lalibela property: N12 1 60 E38 49 0.",
+    "unescoTimkat": "UNESCO Intangible Cultural Heritage — Ethiopian epiphany (Timkat), inscribed in 2019 on the Representative List: https://ich.unesco.org/en/RL/ethiopian-epiphany-01491",
+    "ethnicGroups": "Ministry of Foreign Affairs of Japan, Ethiopia basic data — approximately 80 ethnic groups: https://www.mofa.go.jp/mofaj/area/ethiopia/data.html"
+  }
+}

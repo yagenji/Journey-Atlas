@@ -1,0 +1,620 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "burundi",
+  "nameEn": "BURUNDI",
+  "nameJa": "ブルンジ",
+  "region": "EAST AFRICA / 3°S",
+  "seo": {
+    "description": "ギショラの王太鼓、タンガニーカ湖、ルシジ湿地、キビラの山地林、ルウィヒンダ湖、ルブブ国立公園、カレラ滝、ニャカズ断層、ナイル源流ガスモ。小さな国土に大地溝帯と高原文化が凝縮するブルンジを8つの景色と地図でたどる。"
+  },
+  "capital": {
+    "nameEn": "Gitega",
+    "nameJa": "ギテガ",
+    "coordinates": {
+      "latitude": -3.427077,
+      "longitude": 29.924628
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -12,
+      "y": 14
+    },
+    "mapOffset": {
+      "x": -2.8,
+      "y": 1.8
+    }
+  },
+  "hero": {
+    "lead": "千の丘が続く高原の中央で、王国時代から受け継がれた太鼓が鳴る。西へ下ればタンガニーカ湖、北西には山地林、東にはルブブ川のサバンナ。小さな国土に、大地溝帯と水系と文化が密に重なる。",
+    "image": "assets/images/burundi/approved/hero-gishora-royal-drums.webp",
+    "location": "Gishora Royal Drum Sanctuary / Gitega",
+    "coordinates": {
+      "latitude": -3.36288,
+      "longitude": 29.92197
+    },
+    "mapOffset": {
+      "x": 2.8,
+      "y": -1.8
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": -2.1,
+      "south": -4.55,
+      "west": 28.95,
+      "east": 30.95
+    },
+    "svg": "assets/images/burundi/map-atlas-v1.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 BDI/RWA/TZA/COD geometry, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Lake Tanganyika rendered as verified inland-water geometry from GSHHS/GSHHG via Basemap resolution=i, WGS84. Checked 2026-09-30."
+  },
+  "scenes": [
+    {
+      "id": "lake-tanganyika-bujumbura",
+      "name": "タンガニーカ湖",
+      "nameLocal": "Lake Tanganyika / Bujumbura Shore",
+      "mapLabel": "Tanganyika",
+      "description": "ブジュンブラの西に広がる大地溝帯の古い湖。ブルンジ側の湖岸からは水平線のような水面と対岸の山地が見え、国内の高原部から一気に標高を下げたリフト低地の景観を実感できる。",
+      "coordinates": {
+        "latitude": -3.381928,
+        "longitude": 29.36142
+      },
+      "image": "assets/images/burundi/approved/scene-1-lake-tanganyika.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 0.4
+      }
+    },
+    {
+      "id": "rusizi-delta",
+      "name": "ルシジ自然保護区",
+      "nameLocal": "Réserve Naturelle de la Rusizi",
+      "mapLabel": "Rusizi",
+      "description": "ルシジ川がタンガニーカ湖へ注ぐ北端のデルタと氾濫原。ヨシやパピルスの湿地、水路、草地が入り組み、カバや水鳥など淡水湿地の生態系を支える。",
+      "coordinates": {
+        "latitude": -3.2477,
+        "longitude": 29.2307
+      },
+      "image": "assets/images/burundi/approved/scene-2-rusizi.webp",
+      "mapOffset": {
+        "x": -2,
+        "y": -0.5
+      }
+    },
+    {
+      "id": "kibira-national-park",
+      "name": "キビラ国立公園",
+      "nameLocal": "Parc National de la Kibira",
+      "mapLabel": "Kibira",
+      "description": "北西部のコンゴ・ナイル分水嶺に沿う山地林。標高約1,600〜2,666mの尾根に湿潤な森林が続き、霧の多い高地にブルンジでは希少なアフロモンタンの森が残る。",
+      "coordinates": {
+        "latitude": -2.914664,
+        "longitude": 29.43361
+      },
+      "image": "assets/images/burundi/approved/scene-3-kibira.webp",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0
+      }
+    },
+    {
+      "id": "lake-rwihinda",
+      "name": "ルウィヒンダ湖",
+      "nameLocal": "Lac Rwihinda / Lac aux Oiseaux",
+      "mapLabel": "Rwihinda",
+      "description": "北部キルンド近郊、ブゲセラ低地にある浅い淡水湖。湿地と小島を伴う水辺は渡り鳥を含む多様な鳥類の生息地で、丘陵地の多いブルンジにもう一つの静かな水景をつくる。",
+      "coordinates": {
+        "latitude": -2.55,
+        "longitude": 30.0667
+      },
+      "image": "assets/images/burundi/approved/scene-4-lake-rwihinda.webp",
+      "mapOffset": {
+        "x": 0.8,
+        "y": -0.3
+      }
+    },
+    {
+      "id": "ruvubu-national-park",
+      "name": "ルブブ国立公園",
+      "nameLocal": "Parc National de la Ruvubu",
+      "mapLabel": "Ruvubu",
+      "description": "北東部を流れるルブブ川に沿って約62km伸びる、ブルンジ最大の保護区。蛇行する川、湿地、草原、樹木サバンナ、河畔林が細長い回廊をつくり、カバやナイルワニなどを支える。",
+      "coordinates": {
+        "latitude": -3.166667,
+        "longitude": 30.333333
+      },
+      "image": "assets/images/burundi/approved/scene-5-ruvubu.webp",
+      "mapOffset": {
+        "x": 1,
+        "y": 0
+      }
+    },
+    {
+      "id": "karera-waterfalls",
+      "name": "カレラ滝",
+      "nameLocal": "Chutes de la Karera",
+      "mapLabel": "Karera",
+      "description": "南東部の高地で複数の流れが段差を落ちる連瀑。森と岩壁の間を幾段にも分かれて落ち、ブルンジ南東部の湿潤な高原地形を立体的に見せる。",
+      "coordinates": {
+        "latitude": -3.83027,
+        "longitude": 30.07993
+      },
+      "image": "assets/images/burundi/approved/scene-6-karera-falls.webp",
+      "mapOffset": {
+        "x": 2,
+        "y": -0.4
+      }
+    },
+    {
+      "id": "nyakazu-fault",
+      "name": "ニャカズ断層",
+      "nameLocal": "Faille de Nyakazu / Faille des Allemands",
+      "mapLabel": "Nyakazu",
+      "description": "南部高原の縁が大きく落ち込む断層地形。高所からクモソ低地とタンザニア方向を見渡せ、東アフリカ大地溝帯に連なる地殻変動が国土の起伏をつくったことを地形として読める。",
+      "coordinates": {
+        "latitude": -3.8322,
+        "longitude": 29.8898
+      },
+      "image": "assets/images/burundi/approved/scene-7-nyakazu-fault.webp",
+      "mapOffset": {
+        "x": -4,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "gasumo-nile-source",
+      "name": "ガスモの泉",
+      "nameLocal": "Gasumo / Source méridionale du Nil",
+      "mapLabel": "Gasumo",
+      "description": "ルドヴ付近、ギキジ山北側に湧く泉。ここから流れ出す水はルヴィロンザ川へつながり、カゲラ川、ヴィクトリア湖を経てナイル水系へ続く。ブルンジがコンゴ川とナイル川、二つの大流域の分水域にあることを象徴する場所だ。",
+      "coordinates": {
+        "latitude": -3.913056,
+        "longitude": 29.839444
+      },
+      "image": "assets/images/burundi/approved/scene-8-gasumo.webp",
+      "mapOffset": {
+        "x": 3.2,
+        "y": 2.4
+      }
+    }
+  ],
+  "encounters": [
+    {
+      "title": "王太鼓のリズムを聴く",
+      "category": "CULTURE",
+      "icon": "culture"
+    },
+    {
+      "title": "大地溝帯の湖岸に立つ",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "湿地で水鳥を探す",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "霧の山地林を歩く",
+      "category": "NATURE",
+      "icon": "leaf"
+    },
+    {
+      "title": "川沿いのサバンナを見る",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "高原の連瀑をたどる",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "断層崖から低地を見下ろす",
+      "category": "LANDSCAPE",
+      "icon": "landscape"
+    },
+    {
+      "title": "二つの大流域の分水を知る",
+      "category": "NATURE",
+      "icon": "map"
+    }
+  ],
+  "atlasExtras": [
+    {
+      "topicKey": "gishora-royal-drum",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "王太鼓は、舞台芸ではなく王国の記憶を今へ運ぶ文化",
+      "text": "ブルンジの王太鼓の儀礼舞踊は2014年にユネスコ無形文化遺産へ登録された。ギショラでは太鼓の聖所と演奏文化が結びつき、王国時代の権威と祝祭の記憶が現在の実演へ受け継がれている。",
+      "points": [
+        "ユネスコ無形文化遺産への登録は2014年",
+        "ギショラは王太鼓文化の代表的な継承拠点"
+      ],
+      "sourceKey": "royalDrum"
+    },
+    {
+      "topicKey": "tanganyika-rift-lake",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "タンガニーカ湖は、大地溝帯の裂け目そのものに水がたまった古い湖",
+      "text": "湖盆は東アフリカ大地溝帯西部の地殻運動と結びつき、最大水深は1,435m。ブルンジ側の湖面は約2,300km²とされ、国土西縁の低地景観と生態系を大きく形づくる。",
+      "points": [
+        "最大水深は1,435m",
+        "ブルンジ側は湖面全体のおよそ7%"
+      ],
+      "sourceKey": "lakeTanganyika"
+    },
+    {
+      "topicKey": "kibira-congo-nile-divide",
+      "themeEn": "EARTH",
+      "themeJa": "地形を読む",
+      "title": "キビラの尾根は、コンゴ川とナイル川の水を分ける",
+      "text": "キビラ国立公園はコンゴ・ナイル分水嶺の北部に位置する。西へ流れる水と東へ流れる水の境界に山地林が続き、標高と降雨の組み合わせが湿潤な森林を支えている。",
+      "points": [
+        "公園面積は約40,600ha",
+        "標高は約1,600〜2,666m"
+      ],
+      "sourceKey": "kibira"
+    },
+    {
+      "topicKey": "ruvubu-river-corridor",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "最大の保護区は、川に沿って細長く伸びる",
+      "text": "ルブブ国立公園は約50,800haで、ブルンジ最大の保護区。ルブブ川を軸に湿地、草原、樹木サバンナ、河畔林が連続し、乾いた草原だけではない東部の生態系をつくる。",
+      "points": [
+        "公園は主軸方向に約62km",
+        "2013年からラムサール条約湿地"
+      ],
+      "sourceKey": "ruvubu"
+    },
+    {
+      "topicKey": "gasumo-two-basins",
+      "themeEn": "GEOGRAPHY",
+      "themeJa": "水をたどる",
+      "title": "小さな国土に、ナイルとコンゴという二大水系の分水嶺が走る",
+      "text": "南部のガスモはユネスコ暫定一覧で『ナイルの最南端の源流』として紹介される泉。国土西部の水はタンガニーカ湖からコンゴ水系へ、東側の水はカゲラ川を経てナイル水系へ向かう。",
+      "points": [
+        "ガスモはギキジ山北側の泉",
+        "分水嶺が国土の高地を南北に通る"
+      ],
+      "sourceKey": "gasumo"
+    },
+    {
+      "topicKey": "karera-nyakazu-relief",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "南東部では、断層と滝が近い距離に現れる",
+      "text": "ニャカズ断層では高原がクモソ低地へ落ち、近隣のカレラでは高地の水が段差を連続して落ちる。ブルンジ南部の起伏を、断層崖と流水地形の二つから見ることができる。",
+      "points": [
+        "カレラは複数の枝と段差からなる連瀑",
+        "ニャカズからはクモソ低地方向を見渡せる"
+      ],
+      "sourceKey": "kareraNyakazu"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "political-economic-capitals",
+      "categoryEn": "CITY",
+      "categoryJa": "都市",
+      "title": "政治首都はギテガ、経済中心はブジュンブラ",
+      "text": "政府の現行国紹介ではギテガを政治首都、ブジュンブラを経済首都として明記している。旅でも高原のギテガと湖岸のブジュンブラでは景観と役割が大きく異なる。",
+      "icon": "city",
+      "sourceKey": "presidencyProfile"
+    },
+    {
+      "topicKey": "independence-1962",
+      "categoryEn": "HISTORY",
+      "categoryJa": "独立",
+      "title": "独立記念日は1962年7月1日",
+      "text": "ブルンジは1962年7月1日に独立した。現在も7月1日は国家の独立を記念する日として位置づけられている。",
+      "icon": "history",
+      "sourceKey": "presidencyProfile"
+    },
+    {
+      "topicKey": "national-motto",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "国章",
+      "title": "国の標語は「Unity, Work, Progress」",
+      "text": "ブルンジ政府が掲げる国家標語はフランス語で「Unité, Travail, Progrès」。日本語では「統一・労働・進歩」にあたる。",
+      "icon": "culture",
+      "sourceKey": "foreignMinistryProfile"
+    },
+    {
+      "topicKey": "official-languages",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "ことば",
+      "title": "キルンジ語が国語で、フランス語も公用語",
+      "text": "憲法はキルンジ語を国語と定め、政府の現行国紹介は公用語をキルンジ語とフランス語としている。英語とスワヒリ語も広く使われる。",
+      "icon": "culture",
+      "sourceKey": "languages"
+    },
+    {
+      "topicKey": "flag-three-stars",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "国旗",
+      "title": "国旗中央には三つの赤い星が並ぶ",
+      "text": "白い斜十字で赤と緑を分け、中央の白い円に緑で縁取られた三つの赤い六芒星を置くのがブルンジ国旗。政府は白を平和、緑を希望、赤を独立のための犠牲と説明している。",
+      "icon": "map",
+      "sourceKey": "presidencyProfile"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF BURUNDI",
+    "title": "ブルンジで食べたいもの",
+    "intro": "タンガニーカ湖の魚、キャッサバの葉、粉を練る主食、小魚まで、素材も食感も重ならない4品を選ぶ。",
+    "items": [
+      {
+        "id": "mukeke",
+        "name": "ムケケ",
+        "nameLocal": "Mukeke",
+        "text": "タンガニーカ湖でとれる魚を焼いたり揚げたりして食べる、湖岸を代表する一皿。ブジュンブラの食文化と湖の恵みを直接つなぐ存在だ。",
+        "image": "assets/images/burundi/approved/food-1-mukeke.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "isombe",
+        "name": "イソンベ",
+        "nameLocal": "Isombe",
+        "text": "キャッサバの葉を細かくして煮込む青菜料理。米、豆、青バナナ、ウブガリなどと組み合わせて食べる。",
+        "image": "assets/images/burundi/approved/food-2-isombe.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ubugali",
+        "name": "ウブガリ",
+        "nameLocal": "Ubugali",
+        "text": "乾燥キャッサバなどの粉を水で練り、厚いペースト状に仕上げる主食。魚や肉のソース、イソンベなどを添えて食べる。",
+        "image": "assets/images/burundi/approved/food-3-ubugali.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      },
+      {
+        "id": "ndagala",
+        "name": "ンダガラ",
+        "nameLocal": "Ndagala",
+        "text": "タンガニーカ湖でとれる小魚。揚げたり煮たりして食べ、ムケケとは異なる小魚の食感と湖の食文化を味わえる。",
+        "image": "assets/images/burundi/approved/food-4-ndagala.webp",
+        "imageFraming": "SOURCE_ASPECT"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "国土は小さいが、湖岸低地から中央高原、北西の山地林、北東のサバンナまで標高差が大きい。道路移動は距離だけでなく地形と日没時刻を見て組む。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ギテガと湖岸の二つの軸を見る",
+        "text": "ギテガでギショラの王太鼓文化を見て、ブジュンブラへ下りタンガニーカ湖岸を歩く。例：ブジュンブラ → ギテガ → ギショラ → ブジュンブラ → タンガニーカ湖岸。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "山地林と南部の地形を加える",
+        "text": "中央と湖岸にキビラ国立公園、カレラ滝、ニャカズ断層などを加え、標高差のある国土を縦にたどる。例：ブジュンブラ → キビラ → ギテガ → ギショラ → カレラ滝 → ニャカズ → ブジュンブラ。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "北東部と北部の水辺まで広げる",
+        "text": "ルブブ国立公園やルウィヒンダ湖を加え、湿地・サバンナ・湖・森林まで景観の幅をつなぐ。例：ブジュンブラ → キビラ → ギテガ → ルブブ → ルウィヒンダ湖 → ブジュンブラ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "6〜8月",
+      "color": "#c7b889",
+      "text": "主な乾季。降水が少なく道路移動を組みやすい時期だが、高原部は朝晩が涼しい。湖岸低地と高地では体感温度が大きく異なる。"
+    },
+    {
+      "months": "9〜11月",
+      "color": "#9dad83",
+      "text": "短い雨のピークへ向かう時期。丘陵は緑が濃くなり、局地的な強雨で未舗装路や斜面の状態が変わることがある。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#b9b787",
+      "text": "雨季の途中で降水に一時的な弱まりが出ることがある。年ごとの差があるため、固定した『小乾季』として決めつけず直前の天候を確認する。"
+    },
+    {
+      "months": "3〜5月",
+      "color": "#7f9b82",
+      "text": "長い雨のピーク。山地や南部では雨量が増え、道路・登山道・滝周辺の足場に影響が出やすい。緑の濃さと水量は大きくなる。"
+    }
+  ],
+  "transport": {
+    "title": "都市間は道路移動が基本。日中移動を前提に、地方は道路状況と安全情報を確認する",
+    "text": "ブジュンブラとギテガを軸に幹線道路で移動し、国立公園や滝、北部の湖は車両を手配するのが現実的。日本外務省は夜間移動を避け、主要都市間も日中に移動するよう強く勧めている。キビラ周辺や国境地帯には治安上の制約があるため、最新の危険情報と現地運用を確認する。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "大地溝帯の地形を小さな国で濃く見たい人",
+      "text": "湖、断層、滝、高原を短い距離で切り替えて見たい。"
+    },
+    {
+      "title": "王太鼓を生きた文化として体験したい人",
+      "text": "博物館展示だけでなく、今も演じられる音と身体表現に触れたい。"
+    },
+    {
+      "title": "有名サファリとは違う東アフリカを歩きたい人",
+      "text": "山地林、湿地、川沿いのサバンナを静かにたどりたい。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "東アフリカ（大湖地域）"
+    },
+    {
+      "label": "首都",
+      "value": "ギテガ（政治首都）"
+    },
+    {
+      "label": "人口",
+      "value": "14,390,003人（2025年）"
+    },
+    {
+      "label": "面積",
+      "value": "27,834 km²（日本の約7%）"
+    },
+    {
+      "label": "言語",
+      "value": "キルンジ語・フランス語（公用語）"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が多数"
+    },
+    {
+      "label": "通貨",
+      "value": "ブルンジ・フラン（BIF）"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "five-provinces-reform",
+      "label": "現在の州",
+      "value": "5州",
+      "note": "行政区画再編により、現在はブジュンブラ、ギテガ、ブタニェレラ、ブフムザ、ブルンガの5州。",
+      "icon": "map",
+      "interestReason": "古い資料では17〜18州表記が残るため、現在の国土理解に必要な変化を一数字で示せる。"
+    },
+    {
+      "topicKey": "tanganyika-burundi-share",
+      "label": "タンガニーカ湖のブルンジ側",
+      "value": "約7%",
+      "note": "2026年のユネスコ暫定一覧資料は、ブルンジ側の湖面を約2,300km²、湖全体のおよそ7%としている。",
+      "icon": "landscape",
+      "interestReason": "小国ブルンジが世界有数の大湖とどれほど深く結びついているかを国土スケールで理解できる。"
+    },
+    {
+      "topicKey": "ruvubu-park-size",
+      "label": "最大の保護区",
+      "value": "約50,800ha",
+      "note": "ルブブ国立公園はブルンジ最大の保護区で、国土のおよそ1.8%を占める。",
+      "icon": "wildlife",
+      "interestReason": "国土の小ささに対して、川沿いの大きな生態系がまとまって残ることを数字で示せる。"
+    }
+  ],
+  "tips": [
+    {
+      "topicKey": "security-daylight-travel",
+      "title": "地方移動は日中で完結させる",
+      "text": "日本外務省は屋外活動と移動を日中に限り、夜間外出を避けるよう案内している。出発時刻を早め、日没前に目的地へ着く計画にする。"
+    },
+    {
+      "topicKey": "rwanda-border-closed",
+      "title": "ルワンダ国境は閉鎖状況を前提にしない",
+      "text": "2026年5月時点でブルンジ側のルワンダ国境は閉鎖され、陸路往来はできない。再開を想定せず、出発直前に公式情報で状態を確認する。"
+    },
+    {
+      "topicKey": "highland-lakeshore-gear",
+      "title": "湖岸と高原で服装を分ける",
+      "text": "低地のブジュンブラと1,500mを超える中央高原・森林帯では気温差がある。雨具に加え、早朝や高地で羽織れるものを用意する。"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇹🇿",
+      "countryEn": "TANZANIA",
+      "countryJa": "タンザニア",
+      "path": "Muyinga → Kobero/Kabanga border → Ngara",
+      "description": "北東部ムインガからコベロ／カバンガのワンストップ国境を越えてタンザニアのンガラ方面へつなぐ現実的な陸路。国境の営業時間、査証、車両条件は直前確認。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ブルンジ歳入庁の現行案内にKobero/Kabanga国境窓口と営業時間が掲載されている。"
+    },
+    {
+      "flag": "🇷🇼",
+      "countryEn": "RWANDA",
+      "countryJa": "ルワンダ",
+      "path": "Kirundo → Gasenyi/Nemba border → Rwanda",
+      "description": "地理的には北部からルワンダへつながる国境だが、2026年5月時点でブルンジ側が国境を閉鎖しており陸路往来はできない。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "日本外務省の2026年5月時点情報。再開確認前は旅程に組み込まない。"
+    },
+    {
+      "flag": "🇨🇩",
+      "countryEn": "DR CONGO",
+      "countryJa": "コンゴ民主共和国",
+      "path": "Bujumbura → Gatumba/Kavimvira border → Uvira",
+      "description": "ブジュンブラ西方から国境を越えウヴィラへ続く地理的ルート。周辺の治安情勢が不安定で、日本外務省もブルンジ西部国境周辺への注意を強く求めている。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "現状は旅行ルートとして推奨せず、最新の危険情報を優先する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "大地溝帯の湖から広いサバンナへ、東アフリカの地形と野生動物のスケールを広げたい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "uganda",
+      "nameEn": "UGANDA",
+      "nameJa": "ウガンダ",
+      "flag": "🇺🇬",
+      "reason": "大湖地域、ナイル水系、山地林というブルンジの要素を、より大きな国土でつないで見たい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "drcongo",
+      "nameEn": "DR CONGO",
+      "nameJa": "コンゴ民主共和国",
+      "flag": "🇨🇩",
+      "reason": "タンガニーカ湖の対岸とアルバーティーン地溝帯へ、同じ地質帯の風景を続けて理解したい人へ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "updatedAt": "2026-09-30",
+  "sourcesVerifiedAt": "2026-09-30",
+  "sourceDates": {
+    "population": "2025",
+    "administrativeReform": "2026-03-10",
+    "travelAdvice": "2026-06-12",
+    "rwandaBorder": "2026-05",
+    "worldHeritage": "2026-09-30",
+    "map": "2026-09-30",
+    "nextRoutes": "2026-09-30"
+  },
+  "sources": {
+    "population": "World Bank, Burundi Data: population total 14,390,003 (2025). https://data.worldbank.org/country/burundi",
+    "administrativeReform": "Présidence de la République du Burundi, current country profile / administrative reform: 5 provinces; current implementation also documented by Presidency in 2026. https://presidence.gov.bi/le-pays/",
+    "travelAdvice": "Ministry of Foreign Affairs of Japan, Burundi safety information checked 2026-09-30; daytime-only movement guidance and security risks in western/northwestern border areas. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_127.html",
+    "rwandaBorder": "Ministry of Foreign Affairs of Japan, Burundi safety information: as of May 2026 the Burundi side of the Rwanda border remained closed and overland travel was not possible. https://www.anzen.mofa.go.jp/info/pcsafetymeasure_127.html",
+    "worldHeritage": "UNESCO World Heritage Centre, Burundi State Party: 0 inscribed properties and 10 Tentative List properties as checked 2026-09-30. https://whc.unesco.org/en/statesparties/bi",
+    "presidencyProfile": "Présidence de la République du Burundi, Le Pays: Gitega political capital, Bujumbura economic capital, area 27,834 km², current language and national-symbol overview. https://presidence.gov.bi/le-pays/",
+    "foreignMinistryProfile": "Ministry of Foreign Affairs of Burundi, general information: national motto, currency and area. Note: its administrative-division count is stale and is not used for current province count. https://www.mae.gov.bi/informations-generales/",
+    "languages": "Constitution of Burundi (2018), Article 5; and current Presidency country profile. https://www.presidence.gov.bi/wp-content/uploads/2018/07/constitution-promulguee-le-7-juin-2018.pdf ; https://presidence.gov.bi/le-pays/",
+    "currency": "Banque de la République du Burundi: the monetary unit and legal tender is the Burundi franc (BIF). https://archive.brb.bi/fr/content/privil%C3%A8ge-d%C3%A9mission",
+    "religion": "U.S. Department of State, International Religious Freedom Report on Burundi: latest national census religion breakdown remains the 2008 census, with Roman Catholic and Protestant groups forming the clear majority. https://2021-2025.state.gov/reports/2022-report-on-international-religious-freedom/burundi/",
+    "royalDrum": "UNESCO Intangible Cultural Heritage, Ritual dance of the royal drum, inscribed 2014; and UNESCO Burundi heritage material identifying Gishora as a reference centre for transmission. https://ich.unesco.org/en/RL/ritual-dance-of-the-royal-drum-00989",
+    "gishora": "UNESCO World Heritage Centre, La résidence royale de Gishora, Tentative List submission 2026: royal residence and drum sanctuary on Gishora hill, Gitega. Hero coordinate cross-checked with OpenStreetMap/Mapcarta at -3.36288,29.92197. https://whc.unesco.org/en/tentativelists/6930/",
+    "lakeTanganyika": "UNESCO World Heritage Centre, Le lac Tanganyika, Tentative List submission 2026: rift-lake geology, max depth 1,435m, Burundi share about 2,300 km² (~7%), exceptional freshwater biodiversity. https://whc.unesco.org/en/tentativelists/6929/",
+    "rusizi": "UNESCO World Heritage Centre, Réserve Naturelle de la Rusizi, Tentative List; KBA central-coordinate cross-check -3.2190,29.2410 and mapped park coordinate -3.2477,29.2307. https://whc.unesco.org/en/tentativelists/5147/ ; https://www.keybiodiversityareas.org/en/site/factsheet/6036",
+    "kibira": "UNESCO World Heritage Centre, Parc National de la Kibira, Tentative List submission 2026: 40,600ha, Congo-Nile ridge, 1,600–2,666m; coordinate cross-check via Wikidata/GeoNames -2.914664,29.43361. https://whc.unesco.org/en/tentativelists/6933/",
+    "rwihinda": "Burundi biodiversity IBA report / Key Biodiversity Areas: Lake Rwihinda (Lac aux Oiseaux) in northern Burundi; central coordinate approximately -2.55,30.0667. https://www.keybiodiversityareas.org/site/factsheet/6033/site",
+    "ruvubu": "UNESCO World Heritage Centre, Parc National de la Ruvubu, Tentative List 2026; Ramsar Site 2148 central coordinates 03°10′S 30°20′E, area 50,800ha. https://whc.unesco.org/en/tentativelists/6931/ ; https://rsis.ramsar.org/ris/2148",
+    "karera": "UNESCO World Heritage Centre, Chutes de Karera, Tentative List submission 2026; waterfall coordinate cross-checked with GNS/Wikidata at -3.83,30.08. https://whc.unesco.org/en/tentativelists/6932/",
+    "nyakazu": "UNESCO World Heritage Centre, Faille de Nyakazu, Tentative List; geographic feature coordinate cross-checked with GeoNames/OSM at -3.8322,29.8898. https://whc.unesco.org/en/tentativelists/5146/",
+    "gasumo": "UNESCO World Heritage Centre, Gasumo, la source la plus méridionale du Nil: coordinates S3 54 47 E29 50 22; hydrological connection toward the Nile system. https://whc.unesco.org/en/tentativelists/5144/",
+    "food": "Burundi Ministry of Tourism, Gastronomy: Isombe, Ubugali, beans/green bananas and typical Burundian accompaniments; Burundi diplomatic sources also identify Mukeke and Ndagala among local fish foods. https://tourisme.gov.bi/en/gastronomy/ ; https://www.ambabucaire.mae.gov.bi/culture/",
+    "climate": "World Bank Burundi climate outlook: tropical highland climate strongly shaped by topography; main dry season June-August and rainy period September-May with rainfall peaks around March-May and October-November. https://documents1.worldbank.org/curated/en/099930006302237433/pdf/P17682007885e00780b1cc093a09277df1a.pdf",
+    "nextRoutes": "Office Burundais des Recettes current trade-information portal lists Kobero/Kabanga border offices and hours; EAC/AU corridor sources identify Kobero/Kabanga as an operating Burundi-Tanzania OSBP. https://infocommerce.obr.bi/Contacts/25?l=en ; https://map.au-pida.org/projects/show/8900001",
+    "sceneCoordinates": "WGS84 real-place coordinates checked 2026-09-30 against UNESCO, Ramsar, GeoNames, KBA, Wikidata/OSM-linked references: Bujumbura -3.381928,29.36142; Rusizi -3.2477,29.2307; Kibira -2.914664,29.43361; Rwihinda -2.55,30.0667; Ruvubu -3.166667,30.333333; Karera -3.83027,30.07993; Nyakazu -3.8322,29.8898; Gasumo -3.913056,29.839444; Gishora -3.36288,29.92197; Gitega -3.427077,29.924628.",
+    "map": "Target and surrounding national geometry: Natural Earth 1:10m Admin-0 BDI/RWA/TZA/COD, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b. Lake Tanganyika inland-water geometry: GSHHS/GSHHG via Basemap resolution=i, WGS84; shared JOURNEY ATLAS inland-water rendering.",
+    "kareraNyakazu": "UNESCO World Heritage Centre, Chutes de Karera and Faille de Nyakazu Tentative List materials, with coordinates cross-checked against GNS/GeoNames/OSM-linked records. https://whc.unesco.org/en/tentativelists/6932/ ; https://whc.unesco.org/en/tentativelists/5146/"
+  }
+}

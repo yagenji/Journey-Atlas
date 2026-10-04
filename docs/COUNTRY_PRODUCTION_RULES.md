@@ -54,6 +54,19 @@ There are exactly four normal user approval gates:
 3. four-Taste batch;
 4. final canonical Country page.
 
+Internal quality checks do not create additional user approval gates.
+
+Image generation uses a fast four-point gate only:
+1. correct target;
+2. one standalone image — no collage / grid / split panel;
+3. not the same or near-same visual as an earlier current-Country image;
+4. Hero / Scene style is visibly photo 6 : watercolor 4, or Taste follows its separate food language.
+
+PASS → continue immediately to the next deterministic target. During S01→S08 and FOOD01→FOOD04, do not stop to report or request confirmation between passing images.
+FAIL → regenerate only that target with a fresh standalone prompt.
+
+Do not add State, ledger, reservation, provenance, reset workflow, extra PR or extra user approval to perform this check.
+
 If the next action is deterministic, continue without asking the user to say "進めて".
 
 ## 4. PREP + MAP
@@ -81,20 +94,30 @@ Drafting may happen outside GitHub. Do not create commits merely to record inter
 
 ## 5. HERO
 
-Generate one Hero candidate at a time.
+Generate one Hero candidate at a time: **one target, one image call, one output**.
 
 The Hero must:
 - show one real identifiable place;
 - preserve plausible geography, architecture, season and light;
 - be a quiet landscape composition with mobile-safe crop space;
 - use restrained natural color;
+- follow the Hero / Scene visual style and photorealism ceiling in `docs/IMAGE_QUALITY.md`;
 - contain no text, UI, collage or invented landmark.
+
+Before presenting the Hero for user approval, perform the internal style-band check in `docs/IMAGE_QUALITY.md`.
+
+- PASS → present the Hero for approval;
+- BORDERLINE or FAIL → regenerate that Hero before presenting it.
+
+This check does not create a new approval gate.
 
 The Hero has one explicit approval gate. After approval, continue to Scenes.
 
 ## 6. EIGHT SCENES
 
 Generate S01→S08 as eight independent image calls.
+
+For every Scene call, apply the fixed generation contract in `docs/IMAGE_QUALITY.md`: **one generation = one target = one image**. Do not put multiple Scene names/IDs into the same generation instruction and do not reference a previous generated image.
 
 Each Scene brief contains only:
 - place;
@@ -104,11 +127,19 @@ Each Scene brief contains only:
 - composition;
 - forbidden elements.
 
-Do not ask for per-image approval. After all eight candidates are ready, present one batch review. Regenerate only rejected Scenes.
+The shared Hero / Scene generation instruction and style band in `docs/IMAGE_QUALITY.md` apply to every Scene.
+
+Perform internal style QA on each generated Scene before the batch review:
+- PASS → keep the candidate;
+- BORDERLINE or FAIL → regenerate only that Scene.
+
+Do not ask for per-image approval. After all eight PASS candidates are ready, present one batch review. Regenerate only user-rejected Scenes.
 
 ## 7. FOUR TASTE IMAGES
 
 Generate FOOD01→FOOD04 as four independent image calls.
+
+For every Taste call, apply the fixed generation contract in `docs/IMAGE_QUALITY.md`: **one generation = one named dish = one image**. Do not put multiple dishes into the same generation instruction and do not reference a previous generated image.
 
 Each image must show:
 - one authentic recognizable dish;
@@ -118,6 +149,8 @@ Each image must show:
 - soft diffused daylight;
 - no decorative props unless integral to the dish;
 - no text, collage or multi-panel.
+
+Taste uses the separate Spain food-image language defined in `docs/IMAGE_QUALITY.md`; do not mechanically apply the Hero / Scene photorealism ceiling to food images.
 
 Review the four as one batch. Regenerate only rejected dishes.
 
@@ -147,6 +180,7 @@ Run finish-line QA only against the affected Country:
 - Content QA;
 - Country schema/data QA;
 - Image decode/dimensions/duplicate QA;
+- visual Image QA against the Hero / Scene style band and Taste language;
 - Map geometry/coordinate/label QA;
 - Desktop / Tablet / Mobile Browser QA.
 
@@ -195,6 +229,7 @@ Shared-system defects are fixed separately from Country content whenever practic
 A new Country is complete only when:
 - content and sources are final;
 - Hero + 8 Scenes + 4 Taste images are approved;
+- Hero + 8 Scenes pass the shared visual style band;
 - final map is geographically valid;
 - target Content / Image / Map QA passes;
 - actual Desktop / Tablet / Mobile rendering passes;
