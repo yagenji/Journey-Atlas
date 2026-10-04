@@ -11,6 +11,8 @@
 
     // The existing renderer already credits OSM when Country JSON names it.
     if (legend.querySelector('.map-legend__source-credit')) return;
+    if (image.parentElement?.dataset.sourceCreditPlacement === 'footer'
+        && document.querySelector('.atlas-footer__copyright .map-legend__source-credit')) return;
     const rawUrl = image.getAttribute('src') || '';
     const url = new URL(rawUrl, document.baseURI);
     if (url.origin !== location.origin || !/\.svg$/i.test(url.pathname)) return;
