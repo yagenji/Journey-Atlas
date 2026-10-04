@@ -13,6 +13,8 @@ from xml.sax.saxutils import escape
 from shapely.geometry import GeometryCollection, MultiPolygon, Polygon, shape
 from shapely.ops import unary_union
 
+import add_country_border_context as borders
+
 WIDTH = 1200
 HEIGHT = 760
 STYLE_VERSION = "journey-atlas-map-v3-clean-background"
@@ -238,7 +240,7 @@ def render_svg(
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="Map of {escape(map_name)}" data-map-style="{STYLE_VERSION}" data-map-projection="local-equirectangular-fit-v1">
 <metadata>{escape(source_note)}</metadata>
 <defs>
-<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ef"/><stop offset=".55" stop-color="#e4eceb"/><stop offset="1" stop-color="#dce7e7"/></linearGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
 <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
 <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
 </defs>
@@ -273,6 +275,11 @@ def main() -> None:
         args.include_lakes,
         map_name,
         source_note,
+    )
+    svg = borders.add_borders(
+        svg,
+        {"west": west, "south": south, "east": east, "north": north},
+        0.6,
     )
     byte_size = len(svg.encode("utf-8"))
     if args.max_bytes and byte_size > args.max_bytes:

@@ -83,7 +83,7 @@ function renderCountry(data, registry) {
     const titleLength = Array.from(normalizedTitle.replace(/\s+/g, '')).length;
     if (titleLength >= 12) heroTitle.classList.add('hero-title--long');
     if (titleLength >= 18) heroTitle.classList.add('hero-title--very-long');
-    if (!/\s/.test(normalizedTitle) && titleLength >= 10) {
+    if (!/\s/.test(normalizedTitle) && titleLength >= 8) {
       heroTitle.classList.add('hero-title--unbroken-long');
     }
   }
@@ -248,6 +248,8 @@ function renderMapBase(fragment, mapData) {
       note.textContent = mapData.insetNote;
       note.style.flexBasis = "100%";
       note.style.textAlign = "left";
+      note.style.whiteSpace = "pre-line";
+      note.style.minWidth = "0";
       legend.append(note);
       legend.setAttribute("aria-label", "地図記号と別枠表示の説明");
     }
@@ -356,7 +358,11 @@ function renderCapitalMarker(fragment, capital, mapData) {
   const labelOffsetX = Number(capital?.labelOffset?.x);
   const labelOffsetY = Number(capital?.labelOffset?.y);
   if (label) {
-    if (Number.isFinite(labelOffsetX) && labelOffsetX !== 0) label.style.marginLeft = `${Math.max(-80, Math.min(80, labelOffsetX))}px`;
+    if (Number.isFinite(labelOffsetX) && labelOffsetX !== 0) {
+      const offsetX = Math.max(-80, Math.min(80, labelOffsetX));
+      if (capital.labelPosition === 'left') label.style.marginRight = `${-offsetX}px`;
+      else label.style.marginLeft = `${offsetX}px`;
+    }
     if (Number.isFinite(labelOffsetY) && labelOffsetY !== 0) label.style.marginTop = `${Math.max(-80, Math.min(80, labelOffsetY))}px`;
   }
   markers.append(marker);
@@ -429,13 +435,13 @@ function bindSceneActivation(element, id, scrollOnClick) {
   element.addEventListener('focus', () => setActiveScene(id, false));
   element.addEventListener('click', () => {
     setActiveScene(id, scrollOnClick);
-    history.replaceState(null, '', `#${id}`);
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
   });
   element.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       setActiveScene(id, scrollOnClick);
-      history.replaceState(null, '', `#${id}`);
+      history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
     }
   });
 }

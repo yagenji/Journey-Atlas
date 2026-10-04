@@ -41,24 +41,25 @@ def target_paths(svg):
 
 class IsolatedSelfLandTest(unittest.TestCase):
     def test_cyprus_compound_self_island_has_no_fake_neighbor_halo(self):
+        # Since 2026-10 Cyprus is regenerated from Natural Earth borders + GSHHS
+        # high-resolution coast (whole island per the Japanese boundary standard).
+        # No foreign land is in frame, so no context land may be drawn at all:
+        # any context ring would be a duplicate silhouette (halo) of the island.
         data = json.loads((ROOT / 'data/countries/cyprus.json').read_text(encoding='utf-8'))
         self.assertEqual(data['map']['bounds'], {
             'north': 35.836, 'south': 34.422, 'west': 32.07025, 'east': 34.79973,
         })
-        self.assertIn('dtrihinas/cyprus-geojson', data['map']['source'])
+        self.assertIn('scripts/build_coastline_composite.py', data['map']['source'])
 
-        original = preview('cyprus')
-        result, removed = remove_target_land_context(original)
-        self.assertEqual(removed, 4)
-        self.assertEqual(target_paths(original), target_paths(result))
-        self.assertEqual(len(target_paths(result)), 1)
-        original_context = ET.fromstring(original).find('.//*[@id="geographic-context"]')
-        filtered_context = ET.fromstring(result).find('.//*[@id="geographic-context"]')
-        self.assertTrue(original_context[0].get('d'))
-        self.assertEqual(filtered_context[0].get('d'), '')
+        current = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+        root = ET.fromstring(current)
+        self.assertEqual(len(target_paths(current)), 1)
+        for context in root.iter(SVG + 'g'):
+            if (context.get('id') or '').startswith('geographic-context'):
+                self.assertFalse(any((p.get('d') or '').strip() for p in context.iter(SVG + 'path')))
         for color in ('#eaf2f4', '#dcebf0', '#d0e3eb'):
-            self.assertIn(color, result)
-        with Image.open(BytesIO(cairosvg.svg2png(bytestring=result.encode(), output_width=1200, output_height=760))) as png:
+            self.assertIn(color, current)
+        with Image.open(BytesIO(cairosvg.svg2png(bytestring=current.encode(), output_width=1200, output_height=760))) as png:
             png.load()
             self.assertEqual(png.size, (1200, 760))
 

@@ -17,6 +17,11 @@ import cairosvg
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def current_map(slug):
+    """Map SVG currently referenced by the Country JSON (file versions change on renewal)."""
+    return ROOT / json.loads((ROOT / 'data/countries' / f'{slug}.json').read_text(encoding='utf-8'))['map']['svg']
+
 OUT = Path('/tmp/journey-atlas-map-context-real-previews/priority-review')
 SVG = '{http://www.w3.org/2000/svg}'
 APPROVED = {
@@ -51,7 +56,7 @@ class ExistingExceptionCoastQa(unittest.TestCase):
     def test_actual_branch_sources_render_and_preserve_country(self):
         for slug, (count, digest, source_name, context_digest) in APPROVED.items():
             with self.subTest(slug=slug):
-                path = ROOT/'assets/images'/slug/'map-atlas-v1.svg'
+                path = current_map(slug)
                 raw = path.read_bytes()
                 root = ET.fromstring(raw)
                 self.assertEqual(root.get('viewBox'), '0 0 1200 760')

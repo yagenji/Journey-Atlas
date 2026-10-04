@@ -20,7 +20,7 @@ CASES={
     'azerbaijan': 'Caspian coastline: GSHHS intermediate',
     'jamaica': 'Natural Earth 1:10m JAM ADM0',
     'grenada': 'geoBoundaries gbOpen ADM0',
-    'stkittsnevis': 'Natural Earth Admin-0 1:10m Saint Kitts and Nevis',
+    'stkittsnevis': 'scripts/build_coastline_composite.py',
 }
 
 

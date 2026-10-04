@@ -163,7 +163,7 @@ def main():
  mc_land=unary_union(coast_land(mc_osm,mxy,'macau')).intersection(xiangzhou(district,mxy)).intersection(box(0,0,W,H))
  if not sg_land.is_valid or not mc_land.is_valid:raise RuntimeError('Invalid source land')
  print('excluded Singapore islands',excluded,'Malaysia components',malaysia,'foreign land pixels',round(sg_land.area),'Zhuhai land pixels',round(mc_land.area),flush=True)
- emit(root/'assets/images/singapore/map-atlas-v1.svg','singapore',sg_land,'Foreign land: OpenStreetMap coastline ways (2026-09-20), ODbL 1.0. Singapore Land Authority National Map Polygon June 2025 (Singapore Open Data Licence) classifies and excludes Singapore islands; approved original outlines unchanged. https://www.openstreetmap.org/copyright https://data.gov.sg/datasets/d_29f066d67df3eae91df8a42f443863c8/view')
+ emit(root/'assets/images/singapore/map-atlas-v2.svg','singapore',sg_land,'Foreign land: OpenStreetMap coastline ways (2026-09-20), ODbL 1.0. Singapore Land Authority National Map Polygon June 2025 (Singapore Open Data Licence) classifies and excludes Singapore islands; approved original outlines unchanged. https://www.openstreetmap.org/copyright https://data.gov.sg/datasets/d_29f066d67df3eae91df8a42f443863c8/view')
  emit(root/'assets/images/macau/map-atlas-v1.svg','macau',mc_land,'Zhuhai land: OpenStreetMap coastline ways (2026-09-20) intersect Xiangzhou district relation 5405551 (2026-09-21), ODbL 1.0. Approved original Macao SAR outline unchanged. https://www.openstreetmap.org/copyright')
 
 if __name__=='__main__':main()
