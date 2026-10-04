@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
+  "slug": "tuvalu",
+  "nameEn": "TUVALU",
+  "nameJa": "ツバル",
+  "region": "POLYNESIA / 8°S",
+  "seo": {
+    "description": "滑走路が夕方の広場になるフナフティから、ナヌメア、ナヌマンガ、ニウタオ、ヌイ、ヴァイツプ、ヌクフェタウ、ヌクラエラエ、ニウラキタへ。海に散らばる9つの島の国ツバルを8景と食からたどる。"
+  },
+  "capital": {
+    "nameEn": "Funafuti",
+    "nameJa": "フナフティ",
+    "coordinates": {"latitude": -8.516667, "longitude": 179.216667},
+    "labelPosition": "right",
+    "labelOffset": {"x": 12, "y": -10},
+    "mapOffset": {"x": 0, "y": 0}
+  },
+  "hero": {
+    "lead": "飛行機が去った夕方、滑走路は歩く人とボールを追う人が集まる、島でいちばん大きな広場に戻る。",
+    "image": "assets/images/tuvalu/approved/hero-funafuti-runway.webp",
+    "location": "Funafuti International Airport",
+    "coordinates": {"latitude": -8.5249, "longitude": 179.1962},
+    "mapOffset": {"x": -3, "y": 0}
+  },
+  "map": {
+    "bounds": {"west": 175.65, "south": -11.15, "east": 180.05, "north": -5.25},
+    "svg": "assets/images/tuvalu/map-atlas-v1.svg",
+    "route": null,
+    "source": "georgique/world-geojson Tuvalu coastline geometry (GPL-3.0), WGS84; projected with the shared JOURNEY ATLAS local equirectangular fit. Scale-generalized locator symbols are display aids only."
+  },
+  "scenes": [
+    {"id":"nanumea","name":"ナヌメア","nameLocal":"Nanumea","mapLabel":"ナヌメア","description":"北端の環礁。細い陸地の内側に穏やかなラグーンが広がり、集落とヤシの帯が海とほとんど同じ高さで続く。","coordinates":{"latitude":-5.672,"longitude":176.098},"image":"assets/images/tuvalu/approved/scene-01-nanumea.webp","labelPosition":"right","mapOffset":{"x":3,"y":0}},
+    {"id":"nanumaga","name":"ナヌマンガ","nameLocal":"Nanumaga","mapLabel":"ナヌマンガ","description":"島の北部に残る汽水のヴァイアトア・ラグーン。マングローブと小島、その周りの集落が、環礁が陸へ変わってきた時間を見せる。","coordinates":{"latitude":-6.288,"longitude":176.32},"image":"assets/images/tuvalu/approved/scene-02-nanumaga.webp","labelPosition":"right","mapOffset":{"x":3,"y":0}},
+    {"id":"niutao","name":"ニウタオ","nameLocal":"Niutao","mapLabel":"ニウタオ","description":"クリアの集落と島内の閉じたラグーン。海岸だけでなく内側にも水面が残る、かつての環礁の輪郭を歩いて感じられる。","coordinates":{"latitude":-6.107,"longitude":177.335},"image":"assets/images/tuvalu/approved/scene-03-niutao.webp","labelPosition":"right","mapOffset":{"x":3,"y":0}},
+    {"id":"nui","name":"ヌイ","nameLocal":"Nui","mapLabel":"ヌイ","description":"中央のラグーンを低い島々が囲む環礁。フエナ・タプの集落からは、海と陸が細い帯として連なるツバルらしい距離感が見える。","coordinates":{"latitude":-7.246,"longitude":177.155},"image":"assets/images/tuvalu/approved/scene-04-nui.webp","labelPosition":"right","mapOffset":{"x":3,"y":0}},
+    {"id":"vaitupu","name":"ヴァイツプ","nameLocal":"Vaitupu","mapLabel":"ヴァイツプ","description":"ツバルで最も大きな島。集落、学校、植生の間に浅いラグーンが入り込み、限られた陸の中にも土地利用の幅が見える。","coordinates":{"latitude":-7.478,"longitude":178.68},"image":"assets/images/tuvalu/approved/scene-05-vaitupu.webp","labelPosition":"left","mapOffset":{"x":-3,"y":0}},
+    {"id":"nukufetau","name":"ヌクフェタウ","nameLocal":"Nukufetau","mapLabel":"ヌクフェタウ","description":"広いラグーンに多くの小島が散る環礁。人々が暮らすサヴァヴェ周辺では、生活の島と外海へ開く水路が同じ視界に収まる。","coordinates":{"latitude":-8.02757,"longitude":178.31386},"image":"assets/images/tuvalu/approved/scene-06-nukufetau.webp","labelPosition":"left","mapOffset":{"x":-3,"y":0}},
+    {"id":"nukulaelae","name":"ヌクラエラエ","nameLocal":"Nukulaelae","mapLabel":"ヌクラエラエ","description":"細長いファンガウア島に集落が続き、その内側に大きなラグーンが開く。陸幅の細さが、海との近さをそのまま景観にする。","coordinates":{"latitude":-9.401,"longitude":179.837},"image":"assets/images/tuvalu/approved/scene-07-nukulaelae.webp","labelPosition":"left","mapOffset":{"x":-3,"y":0}},
+    {"id":"niulakita","name":"ニウラキタ","nameLocal":"Niulakita","mapLabel":"ニウラキタ","description":"国の最南端にある小さな礁島。集落、ヤシ、内陸の湿地が短い距離に集まり、島そのものの小ささが旅の実感になる。","coordinates":{"latitude":-10.78906,"longitude":179.47308},"image":"assets/images/tuvalu/approved/scene-08-niulakita.webp","labelPosition":"left","mapOffset":{"x":-3,"y":0}}
+  ],
+  "encounters": [
+    {"title":"ラグーン","category":"LANDSCAPE","icon":"sea"},
+    {"title":"細い島の道","category":"MOVEMENT","icon":"road"},
+    {"title":"ヤシのある集落","category":"DAILY_LIFE","icon":"city"},
+    {"title":"漁と海の暮らし","category":"WORK","icon":"sea"},
+    {"title":"マングローブ","category":"NATURE","icon":"leaf"},
+    {"title":"ファレカウプレ","category":"CULTURE","icon":"culture"},
+    {"title":"夕方のスポーツ","category":"DAILY_LIFE","icon":"city"},
+    {"title":"プラカ畑","category":"FOOD","icon":"food"}
+  ],
+  "atlasExtras": [
+    {"topicKey":"nine-islands-dispersed-ocean","themeEn":"GEOGRAPHY / ISLANDS","themeJa":"地理 / 島々","title":"26km²の陸が、広い海に散らばる","text":"ツバルの陸地は約26km²しかない一方、9つの島は南北に長く離れている。地図では点のように見える島同士を船で移動すると、国の大きさは面積ではなく海の距離として現れる。","points":["9つの島・環礁","陸地は約26km²","島間移動は海路が中心"],"sourceKey":"ndc"},
+    {"topicKey":"runway-community-space","themeEn":"DAILY LIFE / INFRASTRUCTURE","themeJa":"暮らし / インフラ","title":"国際空港の滑走路が、夕方の広場になる","text":"フナフティの滑走路は航空インフラであると同時に、飛行機がいない時間には歩行、遊び、スポーツの場所として使われる。土地の少なさが、一つの空間に複数の役割を重ねている。","points":["国際空港の滑走路","夕方の散歩とスポーツ","限られた公共空間"],"sourceKey":"worldBankRunway"},
+    {"topicKey":"atoll-reef-island-landforms","themeEn":"LAND / LAGOON","themeJa":"陸 / ラグーン","title":"同じ国に、環礁と礁島の両方がある","text":"政府資料では、ナヌメア、ヌイ、ヴァイツプ、ヌクフェタウ、フナフティ、ヌクラエラエは環礁、ナヌマンガ、ニウタオ、ニウラキタは礁島として説明される。水面の残り方を見ると島の成り立ちの違いが見えてくる。","points":["6つの環礁","3つの礁島","閉じたラグーンもある"],"sourceKey":"ndc"},
+    {"topicKey":"pulaka-pits-food-land","themeEn":"FOOD / LAND","themeJa":"食 / 土地","title":"土の少ない島で、地面を掘って主食を育てる","text":"プラカは地下水面に近い深い畑で育てる湿地性のタロイモ。サンゴ質で農地が限られる島で、食べ物を育てるための土地の使い方そのものが文化になっている。","points":["湿地性タロイモ","深い栽培穴","ココナツと魚を組み合わせる"],"sourceKey":"agriFood"},
+    {"topicKey":"sea-transport-lifeline","themeEn":"MOBILITY / SEA","themeJa":"移動 / 海","title":"外島へ行く道は、海の上にある","text":"フナフティと外島の間に国内航空路はなく、旅客・貨物の移動は船が担う。時刻表の変更や海況を前提に、外島を訪ねる旅は日数ではなく船の運航に合わせて組み立てる。","points":["国内航空路なし","外島は船で結ぶ","旅程は運航日に合わせる"],"sourceKey":"adbShipping"},
+    {"topicKey":"climate-state-continuity","themeEn":"CLIMATE / STATE","themeJa":"気候 / 国家","title":"海面上昇は、景観だけでなく国の将来に関わる","text":"国土の標高が低いツバルでは、高潮、浸水、塩水化などが暮らしとインフラに直結する。気候変動は遠い環境問題ではなく、土地・食料・移動・国家の継続を同時に考えるテーマになっている。","points":["平均標高の低い島国","高潮と塩水化","適応政策を国家計画で進める"],"sourceKey":"nap"}
+  ],
+  "travelTrivia": [
+    {"topicKey":"tuvalu-name-eight","categoryEn":"NAME","categoryJa":"名前","title":"国名は「8つが共に立つ」に由来する","text":"ツバルという国名は、伝統的に人が住んでいた8つの島を表す言葉として説明される。現在の国はニウラキタを含む9つの島で構成される。","icon":"culture","sourceKey":"mofa"},
+    {"topicKey":"dot-tv-domain","categoryEn":"DIGITAL","categoryJa":"デジタル","title":"国別ドメインは「.tv」","text":"ツバルの国別トップレベルドメインは .tv。短く映像を連想させる文字列のため、国外でも広く利用され、国の収入源の一つとして知られる。","icon":"city","sourceKey":"mofa"},
+    {"topicKey":"independence-october-one","categoryEn":"HISTORY","categoryJa":"歴史","title":"独立記念日は10月1日","text":"ツバルは1978年10月1日に英国から独立した。1975年にはギルバート諸島と分離し、現在の国名へ変わっている。","icon":"history","sourceKey":"mofa"},
+    {"topicKey":"no-domestic-air","categoryEn":"MOVEMENT","categoryJa":"移動","title":"国内の定期航空路はない","text":"国際便はフナフティへ着くが、外島へ続く国内定期便はない。国の中を移動するほど、海上交通の重要さが大きくなる。","icon":"road","sourceKey":"adbShipping"},
+    {"topicKey":"wet-dry-season","categoryEn":"WEATHER","categoryJa":"天気","title":"雨季と乾季はあるが、一年を通して雨が多い","text":"国の適応計画では12〜3月を雨季、4〜11月を乾季としている。フナフティでは年平均降水量が約3,460mmあり、乾季でも雨への備えは必要。","icon":"sea","sourceKey":"nap"}
+  ],
+  "taste": {
+    "kicker":"TASTE OF TUVALU","title":"ツバルで食べたいもの","intro":"魚、ココナツ、プラカ。海から得るたんぱく質と、限られた陸で育てる作物を組み合わせた島の食卓をたどる。",
+    "items":[
+      {"id":"mea-ota-lolo","name":"メア・オタ・ロロ","nameLocal":"Mea ota lolo","text":"生の魚をココナツミルクで和える料理。やわらかな魚にココナツのまろやかさが重なる、海の近さをそのまま感じる一皿。","image":"assets/images/tuvalu/approved/food-01-ota-ika.webp","imageFraming":"SOURCE_ASPECT"},
+      {"id":"grilled-fish","name":"焼き魚","nameLocal":"Grilled fish","text":"礁湖や外海でとれる魚を焼いて食べる、島の基本的な魚料理。香ばしい皮と淡い身を、身近な芋や葉野菜と合わせる。","image":"assets/images/tuvalu/approved/food-02-grilled-fish.webp","imageFraming":"SOURCE_ASPECT"},
+      {"id":"fish-coconut-stew","name":"魚のココナツ煮","nameLocal":"Fish with coconut milk","text":"魚をココナツミルクと野菜でやさしく煮る家庭的な味。魚のうま味を、ココナツの甘みが丸く包む。","image":"assets/images/tuvalu/approved/food-03-fish-coconut-stew.webp","imageFraming":"SOURCE_ASPECT"},
+      {"id":"fekei","name":"フェケイ","nameLocal":"Fekei","text":"加熱したプラカをすりおろし、ココナツクリームと合わせて葉で包み蒸す伝統食。島で育てる主食とココナツが一つになる。","image":"assets/images/tuvalu/approved/food-04-pulaka.webp","imageFraming":"SOURCE_ASPECT"}
+    ]
+  },
+  "travelScale": {
+    "kicker":"DURATION","title":"旅の目安日程","intro":"国際便はフナフティに着き、外島は船でつなぐ。短い旅は首都環礁を深く歩き、日数を増やすなら船の運航日から逆算して外島を組み込む。",
+    "items":[
+      {"duration":"2〜3日","title":"フナフティを歩く","text":"滑走路、集落、海岸、ラグーン側を徒歩や自転車でつなぐ。日中と夕方で同じ場所の使われ方が変わる時間も見る。例：フナフティ空港 → フォンガファレの集落 → ラグーン側 → 夕方の滑走路。","icon":"city"},
+      {"duration":"4〜6日","title":"ラグーンと島の暮らしを見る","text":"フナフティで数日過ごし、船や小舟で環礁内の小島へ出る日を加える。海況と現地手配を優先し、予定を詰め込まない。例：フォンガファレ → フナフティ保全地域周辺 → フォンガファレ。","icon":"map"},
+      {"duration":"7日以上","title":"外島を一つ加える","text":"外島航路の最新運航日を確認し、一つの島を旅程の中心に置く。船の変更に対応できる予備日を持つ。例：フナフティ → ヴァイツプ → フナフティ。","icon":"compass"}
+    ]
+  },
+  "seasons": [
+    {"months":"12〜3月","color":"#86aeb5","text":"雨季。強い雨や雷雨が増え、熱帯低気圧の影響も意識する季節。海と空の状況を見ながら、船や小舟の予定に余裕をもつ。"},
+    {"months":"4〜6月","color":"#9fb8ae","text":"乾季の前半。雨は一年を通じてあるが、雨季より落ち着く。日差しと高温への対策をしながら、島内を歩く時間をつくりやすい。"},
+    {"months":"7〜9月","color":"#b7b890","text":"乾季の中盤。貿易風を感じる日が多く、海況次第で小舟や外島移動の印象が変わる。日陰と水分を確保して動く。"},
+    {"months":"10〜11月","color":"#b6a88c","text":"雨季へ移る時期。蒸し暑さと雨が増え始める。月だけで判断せず、ツバル気象局の最新予報と海況を確認する。"}
+  ],
+  "transport": {"title":"フナフティは徒歩と二輪、外島は船でつなぐ","text":"フナフティの主要な生活圏は細長く、徒歩、自転車、バイクなどで移動しやすい。外島への国内定期航空路はなく、旅客・貨物船が基本になる。船の運航日は変更されるため、政府のフェリー情報と港で最新状況を確認し、帰国便の直前に外島から戻る計画は避ける。","icon":"road"},
+  "personas": [
+    {"title":"島そのものの小ささを体で知りたい人","text":"観光名所を連続して回るより、海と陸の距離、集落の密度、夕方の過ごし方を歩いて感じたい人に。","icon":"landscape"},
+    {"title":"海と暮らしの関係を見たい人","text":"ラグーン、漁、船、ココナツ、プラカなど、海と食と移動がつながる島の日常に興味がある人に。","icon":"culture"},
+    {"title":"予定どおりに進まない旅を楽しめる人","text":"便数の少なさや船の変更を前提に、余白を持って一つの島に滞在する旅が好きな人に。","icon":"compass"}
+  ],
+  "facts": [
+    {"label":"地域","value":"ポリネシア"},{"label":"首都","value":"フナフティ"},{"label":"人口","value":"約9,646人（2024年）"},{"label":"面積","value":"26 km²（日本の約0.007%）"},{"label":"言語","value":"ツバル語、英語"},{"label":"主な宗教","value":"キリスト教"},{"label":"通貨","value":"オーストラリアドル（AUD）"}
+  ],
+  "signatureFacts": [
+    {"topicKey":"tuvalu-land-area","label":"国土の陸地面積","value":"26 km²","note":"9つの島・環礁を合わせても、陸地は東京都品川区ほど。国を理解する第一歩は、この陸の少なさと海の広さの対比にある。","icon":"map","interestReason":"島国の小ささを、都市の一区と比較できる具体的な尺度として捉えられるため。","exceptionalScale":true},
+    {"topicKey":"tuvalu-highest-elevation","label":"国の最高地点","value":"4.6m","note":"2025年の国家適応計画では、ニウラキタ島の最高地点を海抜4.6mとしている。国土全体が海面に近いことを一つの数字で実感できる。","icon":"landscape","interestReason":"国で最も高い場所でも一般的な建物の高さほどしかないという、ツバル固有の低さを直感的に理解できるため。"},
+    {"topicKey":"funafuti-runway-length","label":"フナフティ空港の滑走路","value":"約1,525m","note":"国際便を受け入れる滑走路は、飛行機がいない時間には道路やスポーツ、散歩の場所にもなる。インフラと公共空間が一つに重なる長さ。","icon":"road","interestReason":"土地が限られる国で、一つの空間が複数の役割を持つことを具体的に示す数字だから。"}
+  ],
+  "tips": [
+    {"topicKey":"flight-buffer","title":"国際便の前後に余白を持つ","text":"フナフティへの国際便は便数が限られる。天候や運航変更も想定し、重要な乗継や帰国日の直前に外島日程を置かない。"},
+    {"topicKey":"outer-island-schedule","title":"外島の船は直前に確認する","text":"外島航路は海況や運航計画で変わる。オンライン情報だけで固定せず、Marine Departmentや港で最新の出発日を確認する。"},
+    {"topicKey":"community-respect","title":"集落では暮らしの場所として訪ねる","text":"ファレカウプレや教会、住居周辺は生活の場。人物や儀礼を撮影する前に了解を得て、日曜や地域行事の過ごし方を尊重する。"}
+  ],
+  "nextRoutes": [],
+  "relatedCountries": [
+    {"slug":"fiji","nameEn":"FIJI","nameJa":"フィジー","flag":"🇫🇯","reason":"フナフティへの国際便の主要な玄関口から、より大きな島々と都市を持つ南太平洋の島国へ旅を広げたいなら。","affinityType":"ISLAND"},
+    {"slug":"kiribati","nameEn":"KIRIBATI","nameJa":"キリバス","flag":"🇰🇮","reason":"低い環礁が広い海域に散らばる国のスケールを、さらに大きな東西距離で比べたいなら。","affinityType":"ISLAND"},
+    {"slug":"samoa","nameEn":"SAMOA","nameJa":"サモア","flag":"🇼🇸","reason":"ポリネシアの共同体文化を、火山性の大きな島と豊かな陸上景観の中で対照的に見たいなら。","affinityType":"CULTURE"}
+  ],
+  "updatedAt":"2026-10-04",
+  "sourcesVerifiedAt":"2026-10-04",
+  "sources": {
+    "mofa":"https://www.mofa.go.jp/mofaj/area/tuvalu/data.html",
+    "population":"https://www.mofa.go.jp/mofaj/area/tuvalu/data.html",
+    "statsPopulation":"https://stats.gov.tv/page/2/?page_id=0",
+    "japanArea":"https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "tourism":"https://www.timelesstuvalu.com/",
+    "worldBankRunway":"https://www.worldbank.org/en/news/feature/2025/07/21/runway-to-resilience-how-long-term-commitment-local-leadership-and-engineering-innovation-kept-tuvalu-connected-to-the-w",
+    "ndc":"https://www.tuvaluclimatechange.gov.tv/sites/default/files/2023-04/Tuvalu%27s%20Updated%20NDC%20for%20UNFCCC%20Submission.pdf",
+    "nap":"https://unfccc.int/sites/default/files/resource/NAP_Tuvalu_2025.pdf",
+    "tms":"https://tuvmet.tv/index.php/node/3589",
+    "adbShipping":"https://www.adb.org/news/adb-partners-launch-ship-part-strengthening-domestic-shipping-project-tuvalu",
+    "ferry":"https://ferry.tuvalu.gov.tv/home",
+    "fijiFlights":"https://www.fiji.travel/things-to-know/destination-guide/how-to-get-to-fiji",
+    "unescoLandscape":"https://whc.unesco.org/en/tentativelists/6707/",
+    "agriFood":"https://www.fao.org/fileadmin/templates/ess/ess_test_folder/World_Census_Agriculture/Country_info_2010/Reports/Reports_6/TUV_ENG_REP_2012.pdf",
+    "cookbook":"https://livelearn.org/resources/tapa-aka-tou-alo-recipes-from-the-islands-of-tuvalu/",
+    "tuvaluDictionary":"https://tuvalu.aa-ken.jp/search?category=%E3%82%B3%E3%82%B3%E3%83%A4%E3%82%B7%3A%E6%96%99%E7%90%86&lang=JP",
+    "islandCoordinates":"https://github.com/open-admin-data/tuvalu-administrative-divisions/blob/master/data/all-island.json",
+    "villageCoordinates":"https://github.com/open-admin-data/tuvalu-administrative-divisions/blob/master/data/all-village.json",
+    "niulakitaCoordinates":"https://geographic.org/geographic_names/name.php?c=tuvalu&fid=6258&uni=-1910826",
+    "capitalCoordinates":"https://www.geographic.org/geographic_names/name.php?c=tuvalu&fid=6258&uni=289671",
+    "mapGeometry":"https://github.com/georgique/world-geojson/blob/develop/countries/tuvalu.json"
+  },
+  "sourceDates": {"population":"2024","mofa":"2025-09-18","statsPopulation":"2024-Q1","nap":"2025","tms":"2026-05-19","adbShipping":"2024-07-09","fijiFlights":"2026"}
+}
