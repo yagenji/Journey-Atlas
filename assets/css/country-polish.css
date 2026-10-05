@@ -68,16 +68,9 @@
   font-size:11px!important;
 }
 
-/* Cook Islands: the source map uses enlarged Rarotonga/Aitutaki panels.
-   Keep a non-interactive marker fallback in the same 1200×760 coordinate space
-   and place Avarua at its true projected Rarotonga position. Runtime marker
-   buttons remain above this fallback and preserve Scene interaction. */
-html[data-country="cookislands"] .map-markers{
-  background-image:url("../images/cookislands/map-markers-v1.svg")!important;
-  background-position:center!important;
-  background-repeat:no-repeat!important;
-  background-size:100% 100%!important;
-}
+/* Cook Islands: Rarotonga and Aitutaki use enlarged map panels. Keep the
+   runtime scenery numbers visible and anchor Avarua to its projected position
+   on Rarotonga, with the capital label directly above the pin. */
 html[data-country="cookislands"] .map-marker{
   display:block!important;
   opacity:1!important;
