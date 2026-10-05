@@ -1,77 +1,409 @@
 {
+  "schemaVersion": 2,
+  "contentQaVersion": 6,
   "slug": "antarctica",
   "nameEn": "ANTARCTICA",
   "nameJa": "南極",
-  "region": "ANTARCTIC PENINSULA / 64–65°S",
+  "region": "ANTARCTICA / 65°S",
+  "seo": {
+    "description": "氷河に挟まれた海峡、南極大陸への上陸、ペンギン、クジラ、シャチ、ヒョウアザラシ。南極半島を8景と海の旅からたどる。"
+  },
+  "capital": null,
   "hero": {
-    "lead": "氷、海、岩山、そして野生動物。\n白一色ではない南極の風景を、\n海峡の奥へ進みながら見つけていく。",
-    "image": "assets/images/antarctica/hero-lemaire-illustrated.svg"
+    "lead": "氷河を抱く岩山の間を、静かな海が一本の道のように続く。ペンギン、クジラ、シャチ、アザラシとの出会いまで、南極半島の旅は海の上から始まる。",
+    "image": "assets/images/antarctica/approved/hero-lemaire-channel.webp",
+    "location": "Lemaire Channel / Antarctic Peninsula",
+    "coordinates": {
+      "latitude": -65.08333,
+      "longitude": -63.98333
+    }
   },
   "map": {
-    "bounds": { "north": -63.4, "south": -65.5, "west": -65.2, "east": -60.6 },
-    "svg": "assets/images/antarctica/map-illustrated.svg",
+    "bounds": {
+      "north": -63.65,
+      "south": -65.45,
+      "west": -64.8,
+      "east": -60.7
+    },
+    "svg": "assets/images/antarctica/map-atlas-v1.svg",
     "route": null,
-    "source": "Illustrated route map: JOURNEY ATLAS; place coordinates based on JOURNEY LENS voyage records and Antarctic gazetteer references"
+    "source": "Antarctic Peninsula west-coast shoreline and islands from GSHHS/GSHHG via Basemap 2.0.0, WGS84, intermediate resolution. No territorial-claim boundaries shown; 1200×760; reviewed 2026-10-05."
   },
   "scenes": [
-    { "id": "hydrurga-rocks", "name": "ハイドルルガ・ロックス", "nameBreaks": [6], "nameLocal": "Hydrurga Rocks", "mapLabel": "Hydrurga Rocks", "description": "Drake Passageを越えて最初に雪を踏んだ場所。岩場を行き来するヒゲペンギンが、南極での最初の風景になった。", "coordinates": { "latitude": -64.12, "longitude": -61.33 }, "image": "assets/images/antarctica/hydrurga-rocks.svg" },
-    { "id": "portal-point", "name": "ポータル・ポイント", "nameBreaks": [4], "nameLocal": "Portal Point", "mapLabel": "Portal Point", "description": "南極大陸そのものへ初めて足を置く。丘の先には氷山の浮かぶ湾と、遠くを進むクジラの背が見えた。", "coordinates": { "latitude": -64.5, "longitude": -61.7667 }, "image": "assets/images/antarctica/portal-point.svg" },
-    { "id": "flandres-bay", "name": "フランドル湾", "nameLocal": "Flandres Bay", "mapLabel": "Flandres Bay", "description": "雪と霧の静かな海にザトウクジラが浮かぶ。白く霞む視界の中で、水面だけが大きく動いた。", "coordinates": { "latitude": -65.05, "longitude": -63.09 }, "image": "assets/images/antarctica/flandres-bay.svg" },
-    { "id": "lemaire-channel", "name": "ルメール海峡", "nameLocal": "Lemaire Channel", "mapLabel": "Lemaire Channel", "description": "両側から氷河と岩山が迫る狭い海峡。氷の間を船が進み、南極半島らしい巨大なスケールが立ち上がる。", "coordinates": { "latitude": -65.0667, "longitude": -63.95 }, "image": "assets/images/antarctica/lemaire-channel.svg" },
-    { "id": "orcas", "name": "船に並ぶシャチ", "nameLocal": "Orcas", "mapLabel": "Orcas", "description": "氷で予定が変わった日の海に、シャチの群れが現れた。数頭が船首近くを泳ぎ、黒と白の背が水面を横切った。", "coordinates": { "latitude": -65.0, "longitude": -63.75 }, "image": "assets/images/antarctica/orcas.svg" },
-    { "id": "neumayer-channel", "name": "ノイマイヤー海峡", "nameBreaks": [6], "nameLocal": "Neumayer Channel", "mapLabel": "Neumayer Channel", "description": "夕方に光が戻ると、氷と山の輪郭が一気に鮮明になった。予定通りにいかない一日の最後に現れた景色。", "coordinates": { "latitude": -64.7833, "longitude": -63.45 }, "image": "assets/images/antarctica/neumayer-channel.svg" },
-    { "id": "graham-passage", "name": "グラハム海峡", "nameLocal": "Graham Passage", "mapLabel": "Graham Passage", "description": "大きな氷山の上に、一羽の若いエンペラーペンギン。群れではなく一羽だけ立つ姿が、広い海の中で強く残った。", "coordinates": { "latitude": -64.4, "longitude": -61.5167 }, "image": "assets/images/antarctica/graham-passage.svg" },
-    { "id": "palaver-point", "name": "パラヴァー・ポイント", "nameBreaks": [5], "nameLocal": "Palaver Point", "mapLabel": "Palaver Point", "description": "最後の上陸地。雪の斜面を登るとヒゲペンギンの営巣地が広がり、旅の終わりとともに視界も開けていった。", "coordinates": { "latitude": -64.15, "longitude": -61.7667 }, "image": "assets/images/antarctica/palaver-point.svg" }
+    {
+      "id": "hydrurga-rocks",
+      "name": "ハイドルルガ・ロックス",
+      "nameLocal": "Hydrurga Rocks",
+      "mapLabel": "ハイドルルガ・ロックス",
+      "description": "ツー・ハンモック島東側の小さな岩礁群。ヒョウアザラシの学名にちなむ名を持ち、岩と海氷の境目で南極の海獣を探す。",
+      "coordinates": {
+        "latitude": -64.13333,
+        "longitude": -61.63333
+      },
+      "image": "assets/images/antarctica/approved/scene-01-hydrurga-rocks.webp",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 0
+      }
+    },
+    {
+      "id": "portal-point",
+      "name": "ポータル・ポイント",
+      "nameLocal": "Portal Point",
+      "mapLabel": "ポータル・ポイント",
+      "description": "南極大陸そのものへ上陸できる代表的な地点。雪の丘を上がると、氷山の浮かぶ湾と山稜が大きく開ける。",
+      "coordinates": {
+        "latitude": -64.5,
+        "longitude": -61.76667
+      },
+      "image": "assets/images/antarctica/approved/scene-02-portal-point.webp",
+      "mapOffset": {
+        "x": -1.0,
+        "y": 0
+      }
+    },
+    {
+      "id": "flandres-bay",
+      "name": "フランドル湾",
+      "nameLocal": "Flandres Bay",
+      "mapLabel": "フランドル湾",
+      "description": "ダンコ海岸に深く入り込む広い湾。船やゾディアックで静かな水面を進み、氷河を背に浮上するクジラを待つ。",
+      "coordinates": {
+        "latitude": -65.05,
+        "longitude": -63.36667
+      },
+      "mapSurface": "water",
+      "image": "assets/images/antarctica/approved/scene-03-flandres-bay.webp"
+    },
+    {
+      "id": "neko-harbour",
+      "name": "ネコ・ハーバー",
+      "nameLocal": "Neko Harbour",
+      "mapLabel": "ネコ・ハーバー",
+      "description": "アンドヴォルド湾の奥で南極大陸へ上陸する。背後の氷河は今も崩落し、湾の静けさの中に地形が動く音が響く。",
+      "coordinates": {
+        "latitude": -64.83333,
+        "longitude": -62.51667
+      },
+      "image": "assets/images/antarctica/approved/scene-04-neko-harbour.webp",
+      "mapOffset": {
+        "x": 0.8,
+        "y": 0
+      }
+    },
+    {
+      "id": "cuverville-island",
+      "name": "クーバービル島",
+      "nameLocal": "Cuverville Island",
+      "mapLabel": "クーバービル島",
+      "description": "北岸の浜から斜面へジェンツーペンギンの大きな営巣地が続く。海岸近くではヒョウアザラシやウェッデルアザラシに出会うこともある。",
+      "coordinates": {
+        "latitude": -64.68333,
+        "longitude": -62.63333
+      },
+      "image": "assets/images/antarctica/approved/scene-05-cuverville-island.webp",
+      "mapOffset": {
+        "x": -0.8,
+        "y": 0
+      }
+    },
+    {
+      "id": "neumayer-channel",
+      "name": "ノイマイヤー海峡",
+      "nameLocal": "Neumayer Channel",
+      "mapLabel": "ノイマイヤー海峡",
+      "description": "ウィンケ島とアンヴェール島の間を北東から南西へ抜ける水路。船上から両岸の雪山と氷河を近い距離で見上げる。",
+      "coordinates": {
+        "latitude": -64.78333,
+        "longitude": -63.45
+      },
+      "mapSurface": "water",
+      "image": "assets/images/antarctica/approved/scene-06-neumayer-channel.webp"
+    },
+    {
+      "id": "graham-passage",
+      "name": "グラハム海峡",
+      "nameLocal": "Graham Passage",
+      "mapLabel": "グラハム海峡",
+      "description": "ブラフ島とダンコ海岸を分ける細い水路。船で静かに抜けながら、氷の間に現れるシャチや海鳥へ視線を送る。",
+      "coordinates": {
+        "latitude": -64.4,
+        "longitude": -61.5
+      },
+      "mapSurface": "water",
+      "image": "assets/images/antarctica/approved/scene-07-graham-passage.webp",
+      "mapOffset": {
+        "x": 1.0,
+        "y": 0
+      }
+    },
+    {
+      "id": "palaver-point",
+      "name": "パラヴァー・ポイント",
+      "nameLocal": "Palaver Point",
+      "mapLabel": "パラヴァー・ポイント",
+      "description": "ツー・ハンモック島西岸の岬。ペンギンの営巣地から絶えず聞こえる声が、にぎやかな議論を意味する地名の由来になった。",
+      "coordinates": {
+        "latitude": -64.15,
+        "longitude": -61.76667
+      },
+      "image": "assets/images/antarctica/approved/scene-08-palaver-point.webp",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 0
+      }
+    }
   ],
   "encounters": [
-    { "symbol": "◇", "title": "氷山" },
-    { "symbol": "♢", "title": "氷河" },
-    { "symbol": "♙", "title": "ペンギン" },
-    { "symbol": "⌁", "title": "クジラ" },
-    { "symbol": "◒", "title": "アザラシ" },
-    { "symbol": "◐", "title": "シャチ" },
-    { "symbol": "≈", "title": "海峡" },
-    { "symbol": "▱", "title": "ゾディアック" }
+    {"title": "青く割れた氷山", "category": "NATURE", "icon": "sea"},
+    {"title": "海へ落ちる氷河", "category": "NATURE", "icon": "sea"},
+    {"title": "ペンギンの営巣地", "category": "WILDLIFE", "icon": "wildlife"},
+    {"title": "クジラのブロー", "category": "WILDLIFE", "icon": "wildlife"},
+    {"title": "シャチの背びれ", "category": "WILDLIFE", "icon": "wildlife"},
+    {"title": "岩場で休むアザラシ", "category": "WILDLIFE", "icon": "wildlife"},
+    {"title": "狭い海峡の航行", "category": "MOVEMENT", "icon": "map"},
+    {"title": "風と雪の急変", "category": "SEASON", "icon": "weather"}
   ],
+  "atlasExtras": [
+    {
+      "topicKey": "claims-held-status",
+      "themeEn": "GOVERNANCE / PEACE",
+      "themeJa": "統治 / 平和",
+      "title": "国境を確定せず、条約が現状を保っている",
+      "text": "南極には複数国の領有権主張がある一方、南極条約第4条は既存の立場を損なわず、新たな主張や拡大を認めない。地図も一国の領土として塗り分けない。",
+      "points": ["領有権問題を凍結", "新規・拡大主張を認めない"],
+      "sourceKey": "treaty"
+    },
+    {
+      "topicKey": "winter-sea-spread",
+      "themeEn": "OCEAN / SEASON",
+      "themeJa": "海 / 季節",
+      "title": "冬には海まで凍り、白い領域が大きく広がる",
+      "text": "南極周辺の海氷は季節で大きく変わり、冬の終わりには約2,000万km²近くまで広がる一方、夏の終わりには約400万km²まで縮む。",
+      "points": ["冬は約2,000万km²", "夏は約400万km²"],
+      "sourceKey": "seaIce"
+    },
+    {
+      "topicKey": "science-open-inspection",
+      "themeEn": "SCIENCE / COOPERATION",
+      "themeJa": "科学 / 協力",
+      "title": "南極は、科学のために開かれた大陸でもある",
+      "text": "南極条約は科学研究の自由と成果共有を掲げ、基地や設備を含む地域を査察へ開く仕組みを持つ。観光地の背後には国際的な科学協力が続いている。",
+      "points": ["科学研究の自由", "基地や設備を査察可能"],
+      "sourceKey": "treaty"
+    },
+    {
+      "topicKey": "microflora-coastal-life",
+      "themeEn": "LIFE / COAST",
+      "themeJa": "生命 / 海岸",
+      "title": "白一色に見えても、岩の上には植物が生きる",
+      "text": "西側を含む南極半島の海洋性気候域には地衣類やコケ、藻類が生育し、北部・西部には南極で確認される2種の被子植物も見られる。",
+      "points": ["地衣類とコケ", "2種の被子植物"],
+      "sourceKey": "plants"
+    },
+    {
+      "topicKey": "dynamic-calving-hazard",
+      "themeEn": "GLACIER / SAFETY",
+      "themeJa": "氷河 / 安全",
+      "title": "氷河は景色ではなく、今も動く地形",
+      "text": "ネコ・ハーバーでは周囲の氷河が定期的に崩落し、波が上陸浜へ届くことがある。美しい氷河の近さは、南極で安全判断が旅程を変える理由でもある。",
+      "points": ["氷河の崩落", "波を避けて高所へ移動"],
+      "sourceKey": "nekoGuideline"
+    },
+    {
+      "topicKey": "south-america-gateway",
+      "themeEn": "ACCESS / OCEAN",
+      "themeJa": "アクセス / 海",
+      "title": "南極半島は、南米から数日の船旅で届く",
+      "text": "南極観光の中心は船で、南極半島は南米の港から数日で到達できる。地理的な近さが、この地域に観光航海が集中する理由の一つになっている。",
+      "points": ["船が観光の中心", "南米から数日で到達"],
+      "sourceKey": "tourism"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "polar-bear-absence",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "動物",
+      "title": "南極にホッキョクグマはいない",
+      "text": "ホッキョクグマは北極圏の動物。南極で大型の陸上捕食者を探すのではなく、海と氷の上でペンギン、アザラシ、クジラ類を見る。",
+      "icon": "wildlife",
+      "sourceKey": "animals"
+    },
+    {
+      "topicKey": "place-naming-committees",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "地名",
+      "title": "地名は国際的な委員会が整理している",
+      "text": "南極には先住・常住の地域社会がなく、各国の命名機関が提案した地名をSCARのガゼッティアが横断的にまとめている。",
+      "icon": "map",
+      "sourceKey": "basNames"
+    },
+    {
+      "topicKey": "midsummer-daylight",
+      "categoryEn": "SEASON",
+      "categoryJa": "季節",
+      "title": "夏は夜になっても明るい時間が長い",
+      "text": "高緯度ほど夏の日照は長くなる。南極圏より南では夏至に太陽が沈まない日があり、さらに南へ行くほど白夜の期間が長くなる。",
+      "icon": "weather",
+      "sourceKey": "sunlight"
+    },
+    {
+      "topicKey": "lemaire-charles-origin",
+      "categoryEn": "HISTORY",
+      "categoryJa": "地名",
+      "title": "ルメール海峡はベルギー探検史の名を残す",
+      "text": "1898年にベルギー南極探検隊が初めて航行して概略を測量し、探検を支援したベルギー人探検家シャルル・ルメールにちなみ命名された。",
+      "icon": "history",
+      "sourceKey": "lemaireGazetteer"
+    },
+    {
+      "topicKey": "palaver-rookery-noise",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "地名",
+      "title": "パラヴァーの名はペンギンの声から",
+      "text": "営巣地から絶えず聞こえる鳴き声が、長々としたおしゃべりを表す英語「palaver」を連想させたことが地名の由来。",
+      "icon": "culture",
+      "sourceKey": "palaverGazetteer"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ANTARCTICA",
+    "title": "南極で食べたいもの",
+    "intro": "",
+    "items": [],
+    "omittedReason": "南極には常住する地域社会に根ざした固有の郷土料理文化がないため、Tasteは表示しない。"
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "航海日程は海況と天候で変わる。短期でもドレーク海峡の往復を含み、日数が増えるほど上陸候補と海峡航行に余白を持てる。",
+    "items": [
+      {
+        "duration": "9〜11日",
+        "title": "南極半島の基本航路",
+        "text": "ドレーク海峡往復と半島北部からダンコ海岸の上陸・航行をまとめる。例：ウシュアイア → ドレーク海峡 → 南極半島 → ウシュアイア。",
+        "icon": "city"
+      },
+      {
+        "duration": "12〜14日",
+        "title": "海峡と上陸に余白を持つ",
+        "text": "天候で予定が動く前提で、ルメール海峡や複数の上陸候補を組み込みやすくする。例：ウシュアイア → ポータル・ポイント → ネコ・ハーバー → ルメール海峡 → ウシュアイア。",
+        "icon": "map"
+      },
+      {
+        "duration": "15日以上",
+        "title": "南極圏方面まで広げる",
+        "text": "より長い航程を取り、海氷と条件を見ながら半島の南側へ旅を伸ばす。例：ウシュアイア → 南極半島 → 南極圏方面 → ウシュアイア。",
+        "icon": "compass"
+      }
+    ]
+  },
   "seasons": [
-    { "symbol": "◌", "months": "11〜12月", "color": "#88aeba", "text": "南極半島の夏の始まり。雪と氷がまだ多く、繁殖期のペンギンの姿も見え始める。" },
-    { "symbol": "☼", "months": "1〜2月", "color": "#8fa8a0", "text": "比較的長い日照の中で上陸やゾディアック航行を組みやすい時期。野生動物の活動も多い。" },
-    { "symbol": "≈", "months": "3月", "color": "#748d9a", "text": "夏の終わり。日が短くなり始め、海氷や天候の変化をより強く感じる季節。" },
-    { "symbol": "❄", "months": "4〜10月", "color": "#60798a", "text": "冬季。一般的な観光クルーズは大きく限られ、極夜や海氷の影響が強くなる。" }
+    {"months": "10〜11月", "color": "#91aab4", "text": "観光シーズンの始まり。雪と海氷が多く残り、白い景観が強い。運航や上陸はその日の氷況に左右される。"},
+    {"months": "12〜1月", "color": "#a8b9ae", "text": "日照時間が長く、ペンギンの繁殖活動が活発になる時期。上陸地では営巣地の動線を避けて観察する。"},
+    {"months": "2〜3月", "color": "#8ea4ad", "text": "夏の後半。海面が開きやすくなり、クジラ類を見られる機会も増える。日照は次第に短くなる。"},
+    {"months": "4〜9月", "color": "#6e8290", "text": "冬季は一般的な観光航海が大きく限られる。海氷が広がり、暗い時間が長くなるため、通常の半島クルーズの時期ではない。"}
   ],
   "transport": {
-    "symbol": "▱",
-    "title": "EXPEDITION CRUISE",
-    "distance": "",
-    "text": "南極半島では船が旅の基点。上陸地や航路は、氷・風・波の状況によって日々変わる。"
+    "title": "エクスペディション船が旅の基点",
+    "text": "南極観光は主に船で行われ、南米の港からドレーク海峡を越えて南極半島へ向かう。現地ではゾディアックで上陸や海上観察を行うが、氷・風・波・野生動物の状況で順番や訪問地は変わる。",
+    "icon": "sea"
   },
   "personas": [
-    { "symbol": "◇", "title": "圧倒的な自然を見たい人", "text": "人のスケールを越える氷、海、山の風景に身を置きたい人。" },
-    { "symbol": "♙", "title": "野生動物が好きな人", "text": "ペンギン、クジラ、アザラシ、シャチを自然の風景の中で見たい人。" },
-    { "symbol": "◎", "title": "写真を撮る人", "text": "白だけではない氷の青、岩、海、動物の色を追いかけたい人。" },
-    { "symbol": "≈", "title": "予定外も旅として楽しめる人", "text": "天候や氷で変わる計画そのものを、南極の一部として受け止められる人。" },
-    { "symbol": "◌", "title": "静かな場所が好きな人", "text": "音の少ない海と雪原の中で、長く景色を眺めていたい人。" }
+    {"title": "野生動物を自然の距離で見たい人", "text": "ペンギンだけでなく、クジラ、シャチ、アザラシを海と氷の風景の中で探したい人。"},
+    {"title": "氷と山のスケールを体で感じたい人", "text": "写真では伝わりにくい氷河、海峡、雪山の大きさを、船と上陸の両方から感じたい人。"},
+    {"title": "予定変更も旅の一部として楽しめる人", "text": "天候や海氷で計画が変わっても、その日の条件に合わせて現れる景色を受け入れられる人。"}
   ],
   "facts": [
-    { "symbol": "◎", "label": "地域", "value": "南極大陸／南極半島" },
-    { "symbol": "▥", "label": "首都", "value": "なし" },
-    { "symbol": "♙", "label": "常住人口", "value": "0人（研究者などが季節滞在）" },
-    { "symbol": "◯", "label": "言語", "value": "共通の公用語なし" },
-    { "symbol": "＄", "label": "通貨", "value": "共通通貨なし" }
+    {"label": "地域", "value": "南極大陸 / 南極半島"},
+    {"label": "首都", "value": "なし"},
+    {"label": "人口", "value": "常住人口0人（研究・運用要員が季節滞在）"},
+    {"label": "面積", "value": "約1,366万 km²（日本の約36倍）"},
+    {"label": "言語", "value": "共通の公用語なし"},
+    {"label": "主な宗教", "value": "該当なし（常住人口なし）"},
+    {"label": "通貨", "value": "共通通貨なし"}
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "continental-scale-13661",
+      "label": "大陸面積",
+      "value": "1,366万 km²",
+      "note": "島と氷棚を含む南極の面積は13,661,000km²で、日本の国土面積の約36倍にあたる。",
+      "icon": "map",
+      "interestReason": "半島クルーズで見る一地域の背後に、巨大な大陸全体が広がることを数字で実感できる。",
+      "exceptionalScale": true,
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "mean-depth-216",
+      "label": "平均氷厚",
+      "value": "2.16 km",
+      "note": "南極氷床の平均厚は2.16km。最も厚い既知地点では4,776mに達する。",
+      "icon": "sea",
+      "interestReason": "目に見える氷河だけでなく、大陸全体を覆う氷の厚みそのものが地形のスケールを変えている。",
+      "sourceKey": "iceSheet"
+    },
+    {
+      "topicKey": "tourism-focus-98",
+      "label": "観光航海",
+      "value": "約98%",
+      "note": "南極観光航海のおよそ98%は、10月から4月の南極半島で行われる。",
+      "icon": "compass",
+      "interestReason": "広大な南極の中で、旅行者が実際に体験する地域が南極半島へ強く集中することがわかる。",
+      "sourceKey": "tourism"
+    }
   ],
   "tips": [
-    { "symbol": "≈", "title": "予定は氷と天候で変わる", "text": "上陸地、航路、時間は安全を優先して変更される。予定変更も前提に旅を組み立てる。" },
-    { "symbol": "♙", "title": "野生動物との距離を守る", "text": "動物の進路を塞がず、ガイドや上陸時のルールを優先する。" },
-    { "symbol": "❄", "title": "装備よりレイヤリング", "text": "風、雪、日差しが短時間で変わる。防水と防風を軸に、脱ぎ着できる服装が扱いやすい。" }
+    {"topicKey": "flexible-landing-order", "title": "上陸地と順番は固定しない", "text": "氷、風、波、野生動物、安全条件で航路や上陸地は変更される。特定地点への到達を前提に旅程を組まない。"},
+    {"topicKey": "wildlife-distance-path", "title": "動物の進路と距離を守る", "text": "ペンギンの海への通り道を塞がず、アザラシなどにも近づき過ぎない。上陸時はガイドとVisitor Site Guidelinesを優先する。"},
+    {"topicKey": "layered-windproof-gear", "title": "防風防水をレイヤリングする", "text": "気温だけでなく風と濡れが体感温度を大きく下げる。防水・防風の外層と、脱ぎ着しやすい中間着を組み合わせる。"}
+  ],
+  "nextRoutes": [
+    {
+      "flag": "🇦🇷",
+      "countryEn": "ARGENTINA",
+      "countryJa": "アルゼンチン",
+      "path": "南極半島 → ドレーク海峡 → ウシュアイア",
+      "description": "南極半島クルーズの代表的な帰路。外洋航海を経てフエゴ島へ戻り、パタゴニアの旅へつなげられる。",
+      "travelerRoute": true,
+      "status": "SEASONAL",
+      "statusNote": "観光航海は主に南半球の夏季に運航。船会社の最新日程と海況を確認する。"
+    }
   ],
   "relatedCountries": [
-    { "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "南極への玄関口と、パタゴニアの氷河地形を続けて見たいなら。", "image": "" },
-    { "nameEn": "ARGENTINA", "nameJa": "アルゼンチン", "flag": "🇦🇷", "reason": "ウシュアイアから海を越え、南端の風景とつなげて旅したいなら。", "image": "" },
-    { "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、海、火山地形を、北の島で別の表情として見たいなら。", "image": "" }
+    {"slug": "argentina", "nameEn": "ARGENTINA", "nameJa": "アルゼンチン", "flag": "🇦🇷", "reason": "ウシュアイアとパタゴニアの山岳・氷河景観を、南極航海の前後で連続して体験できる。", "affinityType": "LANDSCAPE"},
+    {"slug": "chile", "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "パタゴニア、フエゴ諸島、太平洋側の氷河地形を、南極半島とは別のスケールで比較できる。", "affinityType": "LANDSCAPE"},
+    {"slug": "iceland", "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、火山、荒涼とした海岸という高緯度景観を、北半球の有人地域として対照的に楽しめる。", "affinityType": "NATURE"}
   ],
-  "updatedAt": "2026-08-22",
+  "updatedAt": "2026-10-05",
+  "sourcesVerifiedAt": "2026-10-05",
+  "sourceDates": {
+    "population": "2026-10-05",
+    "tourism": "2026-10-05",
+    "japanArea": "2026-07-01"
+  },
   "sources": {
-    "journeyLens": "JOURNEY LENS: Hydrurga Rocks / Flandres Bay / Lemaire Channel / Palaver Point stories",
-    "map": "JOURNEY ATLAS illustrated route map based on Antarctic Peninsula voyage coordinates"
+    "population": "British Antarctic Survey, Antarctica — no native population and international scientific presence; checked 2026-10-05. https://www.bas.ac.uk/about/where-we-work/antarctica/",
+    "geography": "Australian Antarctic Program, Antarctic geography and geology — Antarctica covers 13,661,000 km²; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/geography-and-geology/",
+    "japanArea": "Geospatial Information Authority of Japan, Nationwide prefectural/municipal area survey, 2026-07-01: Japan 377,973.68 km². https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "iceSheet": "Australian Antarctic Program, Ice sheets — mean Antarctic ice-sheet thickness 2.16 km, max known 4,776 m; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/ice-and-atmosphere/ice-sheet/",
+    "tourism": "Antarctic Treaty Secretariat, Tourism and Non-Governmental Activities — tourism is primarily vessel-based; about 98% of tourism voyages occur in the Antarctic Peninsula during October–April; checked 2026-10-05. https://www.ats.aq/e/tourism.html",
+    "treaty": "Antarctic Treaty Secretariat, The Antarctic Treaty — 58 Parties; Article IV preserves territorial-claim status quo and prevents new/enlarged claims; checked 2026-10-05. https://www.ats.aq/e/antarctictreaty.html",
+    "seaIce": "Australian Antarctic Program, Sea ice distribution — almost 20 million km² in late winter and about 4 million km² in late summer; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/weather-and-climate/climate-change/sea-ice/sea-ice/",
+    "plants": "Australian Antarctic Program, Plants and microbes — lichens, bryophytes, algae and two flowering plants occur in the northern/western Antarctic Peninsula; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/plants/",
+    "nekoGuideline": "Antarctic Treaty Secretariat Visitor Site Guidelines, Neko Harbour, revision 2025 — continental landing, glacial scenery, regular glacier calving and wave hazard. https://www.ats.aq/devAS/Ats/Guideline/6ccbefc1-85af-495a-bf56-5f9a25253623",
+    "cuvervilleGuideline": "Antarctic Treaty Secretariat Visitor Site Guidelines, Cuverville Island — extensive Gentoo colony; leopard seals hunt near shore; Weddell and Antarctic fur seals regularly haul out. https://www.ats.aq/devAS/Ats/Guideline/0f0b44b5-6b96-42af-b88e-dfdf5944fe7b",
+    "animals": "Australian Antarctic Program, About Antarctica — Antarctica and its waters support penguins, seals, birds, krill and whales; polar bears are Arctic, not Antarctic. https://www.antarctica.gov.au/about-antarctica/",
+    "basNames": "British Antarctic Survey, Antarctica — Antarctic place names are managed by international committees and compiled through SCAR; checked 2026-10-05. https://www.bas.ac.uk/about/where-we-work/antarctica/",
+    "sunlight": "Australian Antarctic Program, Sunlight hours in Antarctica — daylight increases toward the pole in summer; 24-hour daylight occurs south of the Antarctic Circle around midsummer. https://www.antarctica.gov.au/about-antarctica/weather-and-climate/weather/sunlight-hours/",
+    "lemaireGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Lemaire Channel — first navigated and roughly charted by the Belgian Antarctic Expedition in 1898, named after Charles Lemaire. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=109791",
+    "palaverGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Palaver Point — name refers to the ceaseless noise of its penguin rookery. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=129800",
+    "hydrurgaGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Hydrurga Rocks — 64°08′S 61°38′W; named after the leopard seal Hydrurga leptonyx. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=109448",
+    "flandresGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Flandres Bay — Danco Coast bay between Cape Renard and Cape Willems. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=108828",
+    "neumayerGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neumayer Channel — separates Wiencke Island and Anvers Island. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110338",
+    "grahamGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Graham Passage — separates Bluff Island from Danco Coast. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=109088",
+    "nekoGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neko Harbour — 64°50′S 62°31′W. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110314",
+    "map": "GSHHS/GSHHG shoreline geometry via Basemap 2.0.0, WGS84, intermediate resolution; no territorial-claim boundaries; 1200×760; generated and reviewed 2026-10-05."
   }
 }

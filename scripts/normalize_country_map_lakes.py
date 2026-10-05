@@ -18,6 +18,7 @@ import cairosvg
 from PIL import Image, ImageDraw
 from shapely.geometry import Polygon, box
 from shapely.ops import unary_union
+from shapely.strtree import STRtree
 
 import add_country_map_context as ctx
 import validate_country_map_v6 as mapcheck
@@ -137,7 +138,10 @@ def _main_clip(config: dict):
 def _gshhs_lakes(bounds, resolution: str):
     from mpl_toolkits.basemap import Basemap
     west, south, east, north = bounds
-    if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
+    # the canvas of a high-latitude map can reach past 89N; no lakes there
+    south, north = max(south, -89.0), min(north, 89.0)
+    # wider than 180 degrees only for antimeridian-shifted maps (Russia: 13E-197E)
+    if not (-360 <= west < east <= 360 and east - west <= 360 and -89 <= south < north <= 89):
         raise ValueError("Unsupported map bounds for shared lake normalization")
     m = Basemap(projection="cyl", llcrnrlon=west, llcrnrlat=south,
                 urcrnrlon=east, urcrnrlat=north,
@@ -164,6 +168,7 @@ def _gshhs_lake_islands(bounds, resolution: str):
     """GSHHS level 3: land inside lakes (Idjwi, the Ssese Islands, ...)."""
     from mpl_toolkits.basemap import Basemap
     west, south, east, north = bounds
+    south, north = max(south, -89.0), min(north, 89.0)
     m = Basemap(projection="cyl", llcrnrlon=west, llcrnrlat=south,
                 urcrnrlon=east, urcrnrlat=north, resolution=resolution, area_thresh=0.1)
     islands = []
@@ -186,6 +191,9 @@ def restore_lake_islands(source: str, config: dict, resolution: str = "i", min_p
     """
     root = ET.fromstring(source)
     target = _target_geometry(root)
+    # A lake updated to its current extent (update_stale_lake.py) leaves its dried
+    # bed as land: never re-add the historic GSHHS outline there.
+    dried = _dried_lakebeds(source)
     raster = cairosvg.svg2png(bytestring=source.encode(), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
     own, other = [], []
@@ -230,6 +238,125 @@ def _extract_group(svg: str, group_id: str):
     raise ValueError(f"Unbalanced group #{group_id}")
 
 
+def _subpath_rings(d: str):
+    """Split linear/curved SVG path data into closed point rings (curves sampled)."""
+    from svgelements import Path as SvgPath, Move, Close, Line
+    rings, ring, texts, start = [], [], [], 0
+    for seg in SvgPath(d):
+        if isinstance(seg, Move):
+            if len(ring) >= 3:
+                rings.append(ring)
+            ring = [(seg.end.x, seg.end.y)]
+        elif isinstance(seg, Close):
+            if len(ring) >= 3:
+                rings.append(ring)
+            ring = []
+        elif isinstance(seg, Line):
+            ring.append((seg.end.x, seg.end.y))
+        else:
+            ring.extend((pt.x, pt.y) for pt in (seg.point(i / 8) for i in range(1, 9)))
+    if len(ring) >= 3:
+        rings.append(ring)
+    return rings
+
+
+def _water_geometry(waters):
+    polys = []
+    for markup in waters:
+        if 'fill="#e4e0ce"' in markup and "lake-islands" in markup:
+            continue
+        for d in re.findall(r'\sd="([^"]*)"', markup):
+            for ring in _subpath_rings(d):
+                poly = Polygon(ring)
+                polys.append(poly if poly.is_valid else poly.buffer(0))
+    return unary_union(polys) if polys else Polygon()
+
+
+def _drop_water_holes(d: str, water) -> str:
+    """Target outline for drawing above water: holes that are inland water
+    (mostly covered by the lake layers) are left to the lake shoreline;
+    enclave holes (e.g. Lesotho in South Africa) keep the outline."""
+    if water.is_empty:
+        return d
+    raw = _subpath_rings(d)
+    rings = [Polygon(r).buffer(0) for r in raw]
+    keep = []
+    for i, ring in enumerate(rings):
+        is_hole = any(j != i and other.area > ring.area and other.contains(ring.representative_point())
+                      for j, other in enumerate(rings))
+        if is_hole and ring.area > 0 and ring.intersection(water).area / ring.area >= 0.5:
+            continue
+        keep.append(raw[i])
+    if len(keep) == len(raw):
+        return d
+    return " ".join("M " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in r) + " Z" for r in keep)
+
+
+def _group_end(svg: str, open_match) -> int:
+    depth, pos = 1, open_match.end()
+    for tag in re.finditer(r"<(/?)g\b[^>]*?(/?)>", svg[pos:]):
+        if tag.group(2):
+            continue
+        depth += -1 if tag.group(1) else 1
+        if depth == 0:
+            return pos + tag.end()
+    raise ValueError("Unbalanced target group")
+
+
+BORDER_CLIP_ID = "map-borders-target-negative"
+
+
+def _target_area(root: ET.Element):
+    """Target land in canvas pixels, keeping enclave holes (even-odd per path)."""
+    parents = {child: parent for parent in root.iter() for child in parent}
+    parts = []
+    for node in root.iter(SVG_NS + "path"):
+        if _effective_fill(node, parents) != "url(#land)" or not node.get("d"):
+            continue
+        polys = [p for p in (Polygon(r).buffer(0) for r in _subpath_rings(node.get("d"))) if not p.is_empty]
+        # even-odd by nesting depth (rings of one path do not cross)
+        tree = STRtree(polys)
+        layers: dict[int, list] = {}
+        for i, poly in enumerate(polys):
+            point = poly.representative_point()
+            depth = sum(1 for j in tree.query(point) if j != i and polys[j].contains(point)
+                        and polys[j].area > poly.area)
+            layers.setdefault(depth, []).append(poly)
+        geom = Polygon()
+        for depth in sorted(layers):
+            layer = unary_union(layers[depth])
+            geom = geom.union(layer) if depth % 2 == 0 else geom.difference(layer)
+        parts.append(geom)
+    if not parts:
+        raise ValueError("Target fill not found")
+    return unary_union(parts).buffer(0)
+
+
+def _add_target_negative_clip(svg: str, root: ET.Element) -> str:
+    if f'id="{BORDER_CLIP_ID}"' in svg:
+        return svg
+    view = [float(v) for v in (root.get("viewBox") or f"0 0 {WIDTH} {HEIGHT}").replace(",", " ").split()]
+    x, y, w, h = view
+    area = _target_area(root)
+    rings = " ".join(_path(p) for p in getattr(area, "geoms", [area]) if p.geom_type == "Polygon" and not p.is_empty)
+    clip = (f'<clipPath id="{BORDER_CLIP_ID}" clipPathUnits="userSpaceOnUse"><path clip-rule="evenodd" '
+            f'd="M {x:g},{y:g} L {x + w:g},{y:g} L {x + w:g},{y + h:g} L {x:g},{y + h:g} Z {rings}"/></clipPath>')
+    defs = re.search(r"<defs\b[^>]*?(/?)>", svg)
+    if defs and not defs.group(1):
+        return svg[:defs.end()] + clip + svg[defs.end():]
+    if defs:
+        return svg[:defs.start()] + f"<defs>{clip}</defs>" + svg[defs.end():]
+    head = re.search(r"<svg\b[^>]*>", svg)
+    return svg[:head.end()] + f"<defs>{clip}</defs>" + svg[head.end():]
+
+
+def _dried_lakebeds(source: str):
+    """Footprints of drained lakes (data-map-dried-lakebed paths), never re-added as water."""
+    paths = [m.group(0) for m in re.finditer(r'<path\b[^>]*data-map-dried-lakebed="1"[^>]*>', source)]
+    rings = [Polygon(r).buffer(0) for tag in paths for r in _subpath_rings(re.search(r'\sd="([^"]*)"', tag).group(1))]
+    return unary_union(rings) if rings else Polygon()
+
+
 def raise_borders_above_water(svg: str) -> tuple[str, bool]:
     """Keep national borders and the target outline visible across lakes.
 
@@ -240,6 +367,15 @@ def raise_borders_above_water(svg: str) -> tuple[str, bool]:
     water_ids = re.findall(r'<g\b[^>]*\bid="((?:inland-water|lake-islands)[^"]*)"', svg)
     if not water_ids:
         return svg, False
+    root = ET.fromstring(svg)
+    parents = {child: parent for parent in root.iter() for child in parent}
+    for node in root.iter():
+        if node.get("fill") == "url(#land)":
+            walk = node
+            while walk is not None:
+                if walk.get("transform"):
+                    raise ValueError("Target inside a transformed group; layers cannot be reordered safely")
+                walk = parents.get(walk)
     waters = []
     for gid in water_ids:
         svg, markup = _extract_group(svg, gid)
@@ -248,7 +384,11 @@ def raise_borders_above_water(svg: str) -> tuple[str, bool]:
     lifted = []
     svg, borders = _extract_group(svg, "context-national-borders")
     if borders:
-        lifted.append(borders)
+        # Below the target fill, border lines inside the target (leased areas such as
+        # Baikonur, or lines slightly off the target edge) were hidden. Above it they
+        # must stay hidden: clip the lifted layer to everything outside the target.
+        svg = _add_target_negative_clip(svg, root)
+        lifted.append(f'<g clip-path="url(#{BORDER_CLIP_ID})">{borders}</g>')
     svg, outline = _extract_group(svg, "target-outline")
     if outline:
         lifted.append(outline)
@@ -256,18 +396,46 @@ def raise_borders_above_water(svg: str) -> tuple[str, bool]:
         for m in list(re.finditer(r'<path\b[^>]*\bid="(?:target-outline-path|target-country-boundary-overlay)"[^>]*/>', svg))[::-1]:
             lifted.append(m.group(0))
             svg = svg[:m.start()] + svg[m.end():]
+        water_geom = _water_geometry(waters)
         for m in list(re.finditer(r'<path\b[^>]*fill="url\(#land\)"[^>]*stroke="#31576a"[^>]*/>', svg))[::-1]:
             tag = m.group(0)
-            d = re.search(r'\sd="([^"]*)"', tag).group(1)
+            d = _drop_water_holes(re.search(r'\sd="([^"]*)"', tag).group(1), water_geom)
             width = (re.search(r'stroke-width="([^"]+)"', tag) or [None, "1.5"])[1]
             lifted.append(f'<path d="{d}" fill="none" stroke="#31576a" stroke-width="{width}" '
                           'stroke-linejoin="round" stroke-linecap="round"/>')
             svg = svg[:m.start()] + tag.replace('stroke="#31576a"', 'stroke="none"', 1) + svg[m.end():]
+        # target drawn as a <g fill="url(#land)" stroke="#31576a"> group of paths
+        for gm in list(re.finditer(r'<g\b[^>]*fill="url\(#land\)"[^>]*stroke="#31576a"[^>]*>', svg))[::-1]:
+            gid = f"target-fill-group-{gm.start()}"
+            tagged = gm.group(0)[:-1] + f' data-lift-id="{gid}">'
+            svg = svg[:gm.start()] + tagged + svg[gm.end():]
+            open_tag = re.search(r'<g\b[^>]*data-lift-id="%s"[^>]*>' % gid, svg)
+            depth, pos, end = 1, open_tag.end(), None
+            for tag in re.finditer(r"<(/?)g\b[^>]*?(/?)>", svg[pos:]):
+                if tag.group(2):
+                    continue
+                depth += -1 if tag.group(1) else 1
+                if depth == 0:
+                    end = pos + tag.end()
+                    break
+            body = svg[open_tag.end():end]
+            width = (re.search(r'stroke-width="([^"]+)"', open_tag.group(0)) or [None, "1.5"])[1]
+            transform = re.search(r'\stransform="[^"]*"', body)
+            if transform or "transform=" in open_tag.group(0):
+                raise ValueError("Transformed target group is not supported")
+            water_geom = _water_geometry(waters)
+            for d in re.findall(r'\sd="([^"]*)"', body):
+                lifted.append(f'<path d="{_drop_water_holes(d, water_geom)}" fill="none" stroke="#31576a" '
+                              f'stroke-width="{width}" stroke-linejoin="round" stroke-linecap="round"/>')
+            new_open = open_tag.group(0).replace('stroke="#31576a"', 'stroke="none"', 1).replace(f' data-lift-id="{gid}"', "")
+            svg = svg[:open_tag.start()] + new_open + svg[open_tag.end():]
     # water directly above the last target fill, then borders, then the target outline
     fills = list(re.finditer(r'<path\b[^>]*fill="url\(#land\)"[^>]*/>', svg))
-    if not fills:
+    groups = [(m, _group_end(svg, m)) for m in re.finditer(r'<g\b[^>]*fill="url\(#land\)"[^>]*>', svg)]
+    ends = [m.end() for m in fills] + [e for _, e in groups]
+    if not ends:
         raise ValueError("Target fill not found")
-    at = fills[-1].end()
+    at = max(ends)
     svg = svg[:at] + "\n" + "\n".join(waters + lifted) + svg[at:]
     return svg, True
 
@@ -359,6 +527,9 @@ def normalize(source: str, config: dict, resolution: str, include_context: bool 
         group_id, n = f"inland-water-auto-{n}", n + 1
 
     target = _target_geometry(root)
+    # A lake updated to its current extent (update_stale_lake.py) leaves its dried
+    # bed as land: never re-add the historic GSHHS outline there.
+    dried = _dried_lakebeds(source)
     raster = cairosvg.svg2png(bytestring=source.encode(), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
     missing, seen = [], set()
@@ -372,6 +543,13 @@ def normalize(source: str, config: dict, resolution: str, include_context: bool 
                 overlap = part.intersection(target).area
                 if not include_context and overlap < max(40.0, part.area * 0.08):
                     continue
+                if not dried.is_empty and part.intersects(dried):
+                    if part.intersection(dried).area > part.area * 0.3:
+                        continue
+                    # e.g. a reservoir chain whose lowest reservoir has drained
+                    part = part.difference(dried)
+                    if part.is_empty or part.area < 2:
+                        continue
                 rep = part.representative_point()
                 key = (frame_id, round(rep.x, 1), round(rep.y, 1), round(part.area, 1))
                 if key in seen:

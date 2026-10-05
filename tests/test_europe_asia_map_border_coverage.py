@@ -70,7 +70,10 @@ class EuropeAsiaMapBorderCoverageTest(unittest.TestCase):
                 if pos >= 0
             ]
             target_at = min(target_candidates) if target_candidates else -1
-            if target_at < 0 or border_at > target_at:
+            # Above the target only when lifted over inland water and clipped to the
+            # target exterior (normalize_country_map_lakes.raise_borders_above_water).
+            clipped = svg[:border_at].rstrip().endswith('<g clip-path="url(#map-borders-target-negative)"><g')
+            if target_at < 0 or (border_at > target_at and not clipped):
                 wrong_layer_order.append(slug)
 
             end = svg.find("</g>", border_at)
@@ -88,7 +91,7 @@ class EuropeAsiaMapBorderCoverageTest(unittest.TestCase):
 
         self.assertEqual([], missing, f"Missing border layer: {missing}")
         self.assertEqual([], duplicate_groups, f"Duplicate border groups: {duplicate_groups}")
-        self.assertEqual([], wrong_layer_order, f"Border layer must stay below target: {wrong_layer_order}")
+        self.assertEqual([], wrong_layer_order, f"Border layer must stay below target or be clipped outside it: {wrong_layer_order}")
         self.assertEqual([], out_of_canvas, f"Border coordinates outside canvas: {out_of_canvas}")
 
 
