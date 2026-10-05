@@ -88,8 +88,17 @@
   visibility: visible !important;
 }
 
+/* Scene numbering is part of the shared Country information hierarchy and
+   remains visible on desktop, tablet, and mobile. */
+.scene-copy > strong {
+  display: block !important;
+  color: var(--navy) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* Cook Islands review: keep Avarua directly above its capital pin inside the
-   Rarotonga detail frame, and make the 1–8 scenery numbers unambiguous. */
+   Rarotonga detail frame, and make map scenery numbers unambiguous. */
 html[data-country="cookislands"] .map-capital-marker span {
   top: auto !important;
   bottom: 12px !important;
@@ -103,12 +112,6 @@ html[data-country="cookislands"] .map-marker b {
   place-items: center !important;
   background: var(--navy) !important;
   color: #fff !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-html[data-country="cookislands"] .scene-copy > strong {
-  display: block !important;
-  color: var(--navy) !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
