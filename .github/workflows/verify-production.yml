@@ -5,6 +5,8 @@ on:
     branches: ["main"]
     paths:
       - "index.html"
+      - "about/**"
+      - "faq/**"
       - "country.html"
       - "404.html"
       - "_redirects"
@@ -115,10 +117,11 @@ jobs:
               except Exception:
                   pass
 
+          top_only_js = {"assets/js/top.js", "assets/js/map-regions.js"}
           shared = any(
               path == "country.html"
               or path.startswith("assets/css/")
-              or path.startswith("assets/js/")
+              or (path.startswith("assets/js/") and path not in top_only_js)
               or path in {"scripts/build_site.py", "scripts/package_site.py", "scripts/build_cloudflare.py"}
               for path in files
           )
@@ -150,10 +153,38 @@ jobs:
           set -euo pipefail
           curl -fsS --max-time 20 "https://atlas.yagenji.com/?qa=$GITHUB_RUN_ID" -o /tmp/top.html
           curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/top.js?qa=$GITHUB_RUN_ID" -o /tmp/top.js
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/map-regions.js?qa=$GITHUB_RUN_ID" -o /tmp/map-regions.js
           curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" -o /tmp/atlas-destinations.json
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/about/?qa=$GITHUB_RUN_ID" -o /tmp/about.html
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/faq/?qa=$GITHUB_RUN_ID" -o /tmp/faq.html
           test -s /tmp/top.html
           test -s /tmp/app.js
+          test -s /tmp/top.js
+          test -s /tmp/map-regions.js
           test -s /tmp/country.css
+          test -s /tmp/atlas-destinations.json
+          test -s /tmp/about.html
+          test -s /tmp/faq.html
+          grep -Fq 'const ATLAS_TOTAL = 202;' /tmp/top.js
+          grep -Fq 'dest.length || 202' /tmp/map-regions.js
+          grep -Fq '202' /tmp/about.html
+          grep -Fq 'パレスチナ' /tmp/about.html
+          grep -Fq '202' /tmp/faq.html
+          grep -Fq 'パレスチナ' /tmp/faq.html
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/atlas-destinations.json').read_text(encoding='utf-8'))
+          destinations = payload.get('destinations') or []
+          assert payload.get('count') == 202, payload.get('count')
+          assert len(destinations) == 202, len(destinations)
+          palestine = next((row for row in destinations if row.get('slug') == 'palestine'), None)
+          assert palestine is not None, 'palestine missing from production registry'
+          assert palestine.get('atlasPublished') is False, palestine
+          PY
 
       - name: Verify changed Country routes
         if: steps.target.outputs.slugs != ''
