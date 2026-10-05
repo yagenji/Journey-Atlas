@@ -49,12 +49,14 @@ class JapaneseStandardAfricaTest(unittest.TestCase):
 
 
 class BordersAboveWaterTest(unittest.TestCase):
-    def test_borders_drawn_after_lakes(self):
+    """All single-frame maps: borders above lakes, never visible inside the target."""
+
+    def test_borders_drawn_after_lakes_and_clipped_outside_target(self):
         checked = 0
         for path in sorted((ROOT / "data/countries").glob("*.json")):
             data = json.loads(path.read_text(encoding="utf-8"))
             mp = data.get("map") or {}
-            if not mp.get("svg") or mp.get("regions") or "AFRICA" not in str(data.get("region", "")).upper():
+            if not mp.get("svg") or mp.get("regions"):
                 continue
             svg = (ROOT / mp["svg"]).read_text(encoding="utf-8")
             water = [m.start() for m in re.finditer(r'<g\b[^>]*\bid="inland-water-auto', svg)]
@@ -64,7 +66,9 @@ class BordersAboveWaterTest(unittest.TestCase):
             checked += 1
             with self.subTest(slug=path.stem):
                 self.assertGreater(borders, max(water))
-        self.assertGreater(checked, 10)
+                self.assertRegex(svg[:borders], r'<g clip-path="url\(#map-borders-target-negative\)">\s*<g\s*$')
+                self.assertIn('<clipPath id="map-borders-target-negative"', svg)
+        self.assertGreater(checked, 60)
 
 
 if __name__ == "__main__":
