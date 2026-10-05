@@ -70,7 +70,7 @@
 
 /* Cook Islands: Rarotonga and Aitutaki use enlarged map panels. Keep the
    runtime scenery numbers visible and anchor Avarua to its projected position
-   on Rarotonga, with the capital label directly above the pin. */
+   on Rarotonga. Place the capital label upper-right so it clears Scene 1. */
 html[data-country="cookislands"] .map-marker{
   display:block!important;
   opacity:1!important;
@@ -94,12 +94,12 @@ html[data-country="cookislands"] .map-capital-marker i{
 }
 html[data-country="cookislands"] .map-capital-marker span{
   top:auto!important;
-  bottom:4px!important;
-  left:50%!important;
+  bottom:10px!important;
+  left:14px!important;
   right:auto!important;
   z-index:1;
   margin:0!important;
-  transform:translateX(-50%)!important;
+  transform:none!important;
 }
 
 /* Major heading typography: one hierarchy across the page. */
