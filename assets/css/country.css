@@ -97,6 +97,11 @@
   visibility: visible !important;
 }
 
+/* Kiribati: map-source prose is internal provenance, not page copy. */
+html[data-country="kiribati"] .map-legend__source-credit {
+  display: none !important;
+}
+
 /* Cook Islands review: keep Avarua directly above its capital pin inside the
    Rarotonga detail frame, and make map scenery numbers unambiguous. */
 html[data-country="cookislands"] .map-capital-marker span {
