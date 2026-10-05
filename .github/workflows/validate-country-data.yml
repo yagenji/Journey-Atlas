@@ -198,6 +198,8 @@ jobs:
             scripts/audit_published_countries.py
           python3 scripts/test_country_editorial_v2.py
           python3 scripts/test_country_quality_v5.py
+          python3 tests/test_qa_optional_taste.py
+          python3 tests/test_qa_optional_taste_runner.py
 
       - name: Run targeted finish-line QA
         if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
