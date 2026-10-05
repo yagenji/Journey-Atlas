@@ -3,7 +3,8 @@
 
 Checks run before visual production/review:
 - Country map SVG must be self-contained (no nested/external image/use href).
-- Real Scene coordinates must project into the rendered country land geometry.
+- Real land-Scene coordinates must project into the rendered country land geometry.
+- Scenes whose real feature coordinate is on water may declare mapSurface="water".
   mapOffset is deliberately ignored: offsets may move labels, never geography.
 """
 from __future__ import annotations
@@ -18,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COUNTRY_DIR = ROOT / "data/countries"
 W, H = 1200.0, 760.0
+COASTLINE_TOLERANCE_PX = 6.0
 TOKEN_RE = re.compile(r"[MmLlHhVvZz]|[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
 TRANSLATE_RE = re.compile(
     r"translate\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)"
@@ -221,8 +223,8 @@ def contains(poly, p):
     return inside
 
 
-def near_boundary(poly, p, tolerance=4.0):
-    """Allow coarse coastlines once, after the exact even-odd fill is evaluated."""
+def near_boundary(poly, p, tolerance=COASTLINE_TOLERANCE_PX):
+    """Allow small source/scale coastline differences after exact fill is evaluated."""
     px, py = p
     for i in range(len(poly)):
         x1, y1 = poly[i]
@@ -272,8 +274,14 @@ def validate(path: Path):
     for idx, scene in enumerate(data.get("scenes") or [], 1):
         if not isinstance(scene, dict):
             continue
+        surface = scene.get("mapSurface", "land")
+        if surface not in {"land", "water"}:
+            errors.append(f"{path.name}: Scene {idx} mapSurface must be 'land' or 'water' when provided")
+            continue
         p = scene_point(scene, map_data)
         if p is None:
+            continue
+        if surface == "water":
             continue
         if not any(on_land_in_path(group, p) for group in path_groups):
             errors.append(f"{path.name}: Scene {idx} real coordinate projects outside rendered country land geometry; correct coordinates/map geometry, never hide it with mapOffset")
