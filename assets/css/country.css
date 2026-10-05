@@ -88,6 +88,39 @@
   visibility: visible !important;
 }
 
+/* Scene numbering is part of the shared Country information hierarchy and
+   remains visible on desktop, tablet, and mobile. */
+.scene-copy > strong {
+  display: block !important;
+  color: var(--navy) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Kiribati: map-source prose is internal provenance, not page copy. */
+html[data-country="kiribati"] .map-legend__source-credit {
+  display: none !important;
+}
+
+/* Cook Islands review: keep Avarua directly above its capital pin inside the
+   Rarotonga detail frame, and make map scenery numbers unambiguous. */
+html[data-country="cookislands"] .map-capital-marker span {
+  top: auto !important;
+  bottom: 12px !important;
+  left: 50% !important;
+  right: auto !important;
+  margin: 0 !important;
+  transform: translateX(-50%) !important;
+}
+html[data-country="cookislands"] .map-marker b {
+  display: grid !important;
+  place-items: center !important;
+  background: var(--navy) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* New Zealand: the taxonomy label is a compound region name, not a hierarchy. */
 html[data-country="newzealand"] .hero-copy .region {
   font-size: 0;
