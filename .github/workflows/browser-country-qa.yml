@@ -68,10 +68,6 @@ jobs:
               if match:
                   asset_folders.add(match.group(1))
 
-          # Asset folders are not always canonical Country slugs
-          # (e.g. assets/images/united-kingdom vs data/countries/unitedkingdom.json).
-          # Resolve them from actual Country JSON image/map references instead of
-          # treating the directory name as a slug.
           country_dir = Path("data/countries")
           for folder in sorted(asset_folders):
               prefix = f"assets/images/{folder}/"
@@ -99,6 +95,7 @@ jobs:
                   "scripts/build_country_preview_targeted.py",
                   "scripts/build_cloudflare.py",
                   "scripts/qa_published_browser.py",
+                  "scripts/qa_country_browser.py",
               }
               for path in files
           )
@@ -157,7 +154,7 @@ jobs:
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: reviewable
           QA_SLUGS: ${{ steps.target.outputs.slugs }}
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/qa_country_browser.py
 
       - name: Run full published Desktop / Tablet / Mobile QA
         if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
@@ -165,7 +162,7 @@ jobs:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/qa_country_browser.py
 
       - name: Stop local site
         if: always() && steps.target.outputs.run == 'true'
