@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Run the existing full Country browser audit across two local workers.
+"""Run the full Country browser audit across two local workers.
 
-Build and serve the production package once. Each worker runs the unchanged
-Selenium audit for every viewport, with an independent report directory.
+Build and serve the production package once. Each worker runs the shared
+optional-section-aware Selenium audit for every viewport, with an independent
+report directory.
 """
 from __future__ import annotations
 
@@ -54,10 +55,8 @@ def run(scope: str, output_root: Path, workers: int) -> int:
         raise ValueError(f'Full-browser QA scope not supported: {scope}')
     if os.environ.get('QA_SLUGS', '').strip():
         raise ValueError('Full-browser QA must not inherit a restricted QA_SLUGS list')
-    # The same selection function as the existing audit is the only source of
-    # Country membership; do not keep a second list in the workflow.
     os.environ['QA_SCOPE'] = scope
-    import qa_published_browser as qa  # Selenium is installed by the workflow.
+    import qa_published_browser as qa
 
     slugs = [slug for slug, _ in qa.load_countries()]
     buckets = split_slugs(slugs, workers)
@@ -77,7 +76,7 @@ def run(scope: str, output_root: Path, workers: int) -> int:
             env.update(QA_SCOPE=scope, QA_SLUGS=','.join(bucket), QA_OUT_DIR=str(output_dir))
             try:
                 process = subprocess.Popen(
-                    [sys.executable, str(Path(__file__).with_name('qa_published_browser.py'))],
+                    [sys.executable, str(Path(__file__).with_name('qa_country_browser.py'))],
                     env=env, stdout=log, stderr=subprocess.STDOUT,
                 )
             except BaseException:
