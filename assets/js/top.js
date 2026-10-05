@@ -30,7 +30,7 @@ const lensNextButton = document.querySelector('[data-lens-next]');
 const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
-const ATLAS_TOTAL = 201;
+const ATLAS_TOTAL = 202;
 
 function syncScrollHeader() {
   const header = document.querySelector('.top-header');
