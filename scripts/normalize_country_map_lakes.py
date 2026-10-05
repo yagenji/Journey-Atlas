@@ -138,7 +138,10 @@ def _main_clip(config: dict):
 def _gshhs_lakes(bounds, resolution: str):
     from mpl_toolkits.basemap import Basemap
     west, south, east, north = bounds
-    if not (-360 <= west < east <= 360 and east - west <= 180 and -89 <= south < north <= 89):
+    # the canvas of a high-latitude map can reach past 89N; no lakes there
+    south, north = max(south, -89.0), min(north, 89.0)
+    # wider than 180 degrees only for antimeridian-shifted maps (Russia: 13E-197E)
+    if not (-360 <= west < east <= 360 and east - west <= 360 and -89 <= south < north <= 89):
         raise ValueError("Unsupported map bounds for shared lake normalization")
     m = Basemap(projection="cyl", llcrnrlon=west, llcrnrlat=south,
                 urcrnrlon=east, urcrnrlat=north,
@@ -165,6 +168,7 @@ def _gshhs_lake_islands(bounds, resolution: str):
     """GSHHS level 3: land inside lakes (Idjwi, the Ssese Islands, ...)."""
     from mpl_toolkits.basemap import Basemap
     west, south, east, north = bounds
+    south, north = max(south, -89.0), min(north, 89.0)
     m = Basemap(projection="cyl", llcrnrlon=west, llcrnrlat=south,
                 urcrnrlon=east, urcrnrlat=north, resolution=resolution, area_thresh=0.1)
     islands = []
@@ -189,8 +193,7 @@ def restore_lake_islands(source: str, config: dict, resolution: str = "i", min_p
     target = _target_geometry(root)
     # A lake updated to its current extent (update_stale_lake.py) leaves its dried
     # bed as land: never re-add the historic GSHHS outline there.
-    dried = unary_union([Polygon(r).buffer(0) for d in re.findall(r'data-map-dried-lakebed="1" d="([^"]*)"', source)
-                         for r in _subpath_rings(d)]) if 'data-map-dried-lakebed' in source else Polygon()
+    dried = _dried_lakebeds(source)
     raster = cairosvg.svg2png(bytestring=source.encode(), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
     own, other = [], []
@@ -345,6 +348,13 @@ def _add_target_negative_clip(svg: str, root: ET.Element) -> str:
         return svg[:defs.start()] + f"<defs>{clip}</defs>" + svg[defs.end():]
     head = re.search(r"<svg\b[^>]*>", svg)
     return svg[:head.end()] + f"<defs>{clip}</defs>" + svg[head.end():]
+
+
+def _dried_lakebeds(source: str):
+    """Footprints of drained lakes (data-map-dried-lakebed paths), never re-added as water."""
+    paths = [m.group(0) for m in re.finditer(r'<path\b[^>]*data-map-dried-lakebed="1"[^>]*>', source)]
+    rings = [Polygon(r).buffer(0) for tag in paths for r in _subpath_rings(re.search(r'\sd="([^"]*)"', tag).group(1))]
+    return unary_union(rings) if rings else Polygon()
 
 
 def raise_borders_above_water(svg: str) -> tuple[str, bool]:
@@ -519,8 +529,7 @@ def normalize(source: str, config: dict, resolution: str, include_context: bool 
     target = _target_geometry(root)
     # A lake updated to its current extent (update_stale_lake.py) leaves its dried
     # bed as land: never re-add the historic GSHHS outline there.
-    dried = unary_union([Polygon(r).buffer(0) for d in re.findall(r'data-map-dried-lakebed="1" d="([^"]*)"', source)
-                         for r in _subpath_rings(d)]) if 'data-map-dried-lakebed' in source else Polygon()
+    dried = _dried_lakebeds(source)
     raster = cairosvg.svg2png(bytestring=source.encode(), output_width=WIDTH, output_height=HEIGHT)
     image = Image.open(io.BytesIO(raster)).convert("RGB")
     missing, seen = [], set()
@@ -534,8 +543,13 @@ def normalize(source: str, config: dict, resolution: str, include_context: bool 
                 overlap = part.intersection(target).area
                 if not include_context and overlap < max(40.0, part.area * 0.08):
                     continue
-                if not dried.is_empty and part.intersection(dried).area > part.area * 0.3:
-                    continue
+                if not dried.is_empty and part.intersects(dried):
+                    if part.intersection(dried).area > part.area * 0.3:
+                        continue
+                    # e.g. a reservoir chain whose lowest reservoir has drained
+                    part = part.difference(dried)
+                    if part.is_empty or part.area < 2:
+                        continue
                 rep = part.representative_point()
                 key = (frame_id, round(rep.x, 1), round(rep.y, 1), round(part.area, 1))
                 if key in seen:

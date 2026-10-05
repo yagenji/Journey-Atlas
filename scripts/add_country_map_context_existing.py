@@ -134,7 +134,7 @@ def frame_unframed_region_context(svg: str, regions: list[dict] | None) -> str:
             f'<rect data-map-context-frame="{identifier}" '
             f'x="{x:g}" y="{y:g}" width="{w:g}" height="{h:g}" rx="5" '
             'fill="none" stroke="#879b9b" stroke-width="1.5" '
-            'stroke-dasharray="5 5" opacity=".7"/>'
+            'stroke-dasharray="5 5"/>'
         )
     if svg.count("</svg>") != 1:
         raise ValueError("Unexpected SVG closing tag")
