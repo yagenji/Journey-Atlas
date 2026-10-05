@@ -9,6 +9,11 @@ conventions of Japanese school atlases and the Government of Japan:
 * Takeshima is Japan.
 * South Sakhalin (south of 50 deg N) and the Kuril Islands from Urup northward are
   "帰属未定" (sovereignty undetermined): neither Japan nor Russia.
+* Crimea is Ukraine (Japan does not recognise its annexation by Russia); the
+  de facto Crimea line is not drawn as a border.
+* The Golan Heights are Syria (occupied by Israel): the Israel-Syria border is
+  the line Natural Earth shows from Japan's point of view (FCLASS_JP), and the
+  1974 ceasefire line is drawn dashed like other lines of control.
 * Kashmir and the China-India border: de facto control lines are kept, but the
   disputed / line-of-control / indefinite segments among India, Pakistan and
   China are drawn dashed (国境未確定).
@@ -56,7 +61,16 @@ AFRICA_UNDETERMINED_PARTIES = {
     "Western Sahara", "Morocco", "Algeria", "Egypt", "Sudan", "South Sudan", "Ethiopia",
     "Kenya", "Somalia", "Malawi", "United Republic of Tanzania",
 }
-UNDETERMINED_PARTY_GROUPS = (UNDETERMINED_BORDER_PARTIES, AFRICA_UNDETERMINED_PARTIES)
+# Golan Heights: the 1974 ceasefire line (line of control) is dashed.
+LEVANT_UNDETERMINED_PARTIES = {"Israel", "Syria"}
+UNDETERMINED_PARTY_GROUPS = (UNDETERMINED_BORDER_PARTIES, AFRICA_UNDETERMINED_PARTIES, LEVANT_UNDETERMINED_PARTIES)
+
+# Natural Earth disputed areas whose administering country differs from Japan's
+# view: (area NAME, de facto country ADMIN, country under the Japanese standard).
+REASSIGNED_AREAS = (
+    ("Crimea", "Russia", "Ukraine"),
+    ("Golan Heights", "Israel", "Syria"),
+)
 
 # Lines Japan does not recognise as boundaries at all: Natural Earth marks them
 # FCLASS_JP "Unrecognized" (e.g. the Moroccan berm in Western Sahara); Somaliland
@@ -85,7 +99,8 @@ def is_excluded_boundary_line(geometry, properties: dict) -> bool:
     if (properties.get("FEATURECLA") == "Disputed (please verify)"
             and NORTHERN_TERRITORIES.buffer(0.5).contains(geometry)):
         return True
-    if properties.get("FCLASS_JP") == "Unrecognized":
+    if properties.get("FCLASS_JP") in ("Unrecognized", "Claim boundary"):
+        # e.g. the Moroccan berm, Baikonur's lease limit, the de facto Crimea line
         return True
     sides = {properties.get("ADM0_LEFT"), properties.get("ADM0_RIGHT")}
     return any(sides == pair for pair in UNRECOGNIZED_PAIRS)
@@ -126,9 +141,27 @@ def split_korea(korea):
     return korea.difference(takeshima), takeshima
 
 
-def build_admin0(source: Path, output: Path) -> dict:
+def reassign_areas(by_admin: dict, disputed_areas: Path) -> dict:
+    """Move REASSIGNED_AREAS from the de facto country to Japan's view."""
+    areas = {f["properties"].get("NAME"): shape(f["geometry"])
+             for f in json.loads(disputed_areas.read_text(encoding="utf-8"))["features"]}
+    moved = {}
+    for name, source_admin, target_admin in REASSIGNED_AREAS:
+        area = areas[name].buffer(0)
+        source_geom = shape(by_admin[source_admin]["geometry"]).buffer(0)
+        part = source_geom.intersection(area)
+        if part.area < area.area * 0.9:
+            raise ValueError(f"{name} not found in Natural Earth {source_admin}")
+        by_admin[source_admin]["geometry"] = mapping(source_geom.difference(area))
+        by_admin[target_admin]["geometry"] = mapping(unary_union([shape(by_admin[target_admin]["geometry"]).buffer(0), part]))
+        moved[name] = len(_polygons(part))
+    return moved
+
+
+def build_admin0(source: Path, output: Path, disputed_areas: Path | None = None) -> dict:
     data = json.loads(source.read_text(encoding="utf-8"))
     by_admin = {f["properties"]["ADMIN"]: f for f in data["features"]}
+    moved = reassign_areas(by_admin, disputed_areas) if disputed_areas else {}
     russia, japan, korea = (by_admin[n] for n in ("Russia", "Japan", "South Korea"))
     rus_rest, northern, undetermined = split_russia(shape(russia["geometry"]))
     kor_rest, takeshima = split_korea(shape(korea["geometry"]))
@@ -144,6 +177,7 @@ def build_admin0(source: Path, output: Path) -> dict:
         "northern_territories_polygons": len(_polygons(northern)),
         "undetermined_polygons": len(_polygons(undetermined)),
         "takeshima_polygons": len(_polygons(takeshima)),
+        "reassigned": moved,
     }
 
 
@@ -223,7 +257,8 @@ def patch_russia_svg(svg: str, bounds: dict, admin0: Path) -> tuple[str, float]:
     remaining = target.difference(cut)
     removed_area = target.area - remaining.area
     new_d = _geometry_to_path(remaining)
-    svg = svg.replace(target_match.group(1), new_d, 1)
+    # replace at the match: the same path data may also sit in a clipPath earlier in the file
+    svg = svg[:target_match.start(1)] + new_d + svg[target_match.end(1):]
     clip = re.search(r'(<clipPath id="map-context-target-negative"[^>]*><path d=")([^"]*)(")', svg)
     if clip:
         svg = svg.replace(clip.group(0), clip.group(1) + "M 0,0 L 1200,0 L 1200,760 L 0,760 Z " + new_d + clip.group(3), 1)
@@ -394,8 +429,14 @@ def build_boundary_lines(land_lines: Path, disputed_lines: Path, output: Path) -
     point of view (FCLASS_JP) shows as disputed, e.g. Western Sahara's
     northern boundary at 27°40'N, which the de facto dataset omits."""
     data = json.loads(land_lines.read_text(encoding="utf-8"))
-    extra = [f for f in json.loads(disputed_lines.read_text(encoding="utf-8"))["features"]
-             if (f.get("properties") or {}).get("FCLASS_JP") in DISPUTED_LINE_CLASSES]
+    extra = []
+    for f in json.loads(disputed_lines.read_text(encoding="utf-8"))["features"]:
+        jp = (f.get("properties") or {}).get("FCLASS_JP")
+        if jp in DISPUTED_LINE_CLASSES:
+            extra.append(f)
+        elif jp == "International boundary (verify)" and not NORTHERN_TERRITORIES.buffer(1.5).intersects(shape(f["geometry"])):
+            # a border only from Japan's point of view, e.g. Israel-Syria west of the Golan
+            extra.append(f)
     data["features"] = data["features"] + extra
     output.write_text(json.dumps(data), encoding="utf-8")
     return len(extra)
@@ -411,6 +452,7 @@ def main() -> None:
     build = sub.add_parser("build-admin0", help="Write a Japanese-standard Admin-0 GeoJSON derived from Natural Earth")
     build.add_argument("--input", required=True, type=Path)
     build.add_argument("--output", required=True, type=Path)
+    build.add_argument("--disputed-areas", type=Path, help="ne_10m_admin_0_disputed_areas.geojson (Crimea, Golan Heights)")
     patch = sub.add_parser("patch-russia", help="Apply the standard to an existing Russia map SVG")
     patch.add_argument("--country-json", required=True, type=Path)
     patch.add_argument("--admin0", required=True, type=Path, help="Output of build-admin0")
@@ -442,7 +484,7 @@ def main() -> None:
         print(f"Wrote {args.output}: added {added} Japanese-standard disputed lines")
         return
     if args.command == "build-admin0":
-        print(json.dumps(build_admin0(args.input, args.output)))
+        print(json.dumps(build_admin0(args.input, args.output, args.disputed_areas)))
     else:
         bounds = json.loads(args.country_json.read_text(encoding="utf-8"))["map"]["bounds"]
         svg, area = patch_russia_svg(args.input.read_text(encoding="utf-8"), bounds, args.admin0)

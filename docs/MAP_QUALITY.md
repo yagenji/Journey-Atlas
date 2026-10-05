@@ -40,13 +40,14 @@ JOURNEY ATLAS is a Japanese-language atlas. Territorial depiction follows the Go
 | 尖閣諸島 | Japan |
 | South Sakhalin (south of 50°N) and the Kuril Islands from Urup northward | 帰属未定: neither Japan nor Russia (neutral context land) |
 | Kashmir and the China–India border | de facto control areas, with the disputed / line-of-control / indefinite segments dashed (国境未確定) |
-| Crimea | Ukraine |
+| Crimea | Ukraine; the de facto Crimea line is not drawn (Natural Earth `FCLASS_JP` "Claim boundary") |
+| Golan Heights | Syria (occupied by Israel): the Israel–Syria border west of the Golan follows Natural Earth's Japan point of view; the 1974 ceasefire line is dashed |
 | Taiwan, Hong Kong, Macao, Kosovo | separate destinations (editorial division; see README) |
 | Western Sahara | neither Morocco nor independent (Japan recognises neither the annexation nor the SADR): neutral context land; its northern boundary at 27°40'N dashed; the Moroccan berm is not drawn |
 | Somaliland | part of Somalia (not recognised by Japan): no Somaliland-Somalia line |
 | Hala'ib, Abyei, Ilemi, Ethiopia-Somalia, Ethiopia-South Sudan, Lake Malawi, Morocco-Algeria (indefinite segment) | de facto geometry, boundary dashed (国境未確定) where Natural Earth's Japan point of view (`FCLASS_JP`) classes it disputed / indefinite |
 
-Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0` to derive the dataset for maps that include these areas, `patch-russia` / `clean-japan-context` / `dash-undetermined` for existing maps, and keep the top-page explorer data (`assets/maps/world-states.svg`) consistent. Border linework comes from `build-boundary-lines` (Natural Earth land boundary lines plus the disputed-area lines Japan's point of view shows, e.g. 27°40'N); lines Japan does not recognise are excluded by `is_excluded_boundary_line`.
+Natural Earth Admin-0 is de facto: use `japan_boundary_standard.py build-admin0 --disputed-areas ne_10m_admin_0_disputed_areas.geojson` (Crimea and the Golan Heights are reassigned from the de facto country) to derive the dataset for maps that include these areas, `patch-russia` / `clean-japan-context` / `dash-undetermined` for existing maps, and keep the top-page explorer data (`assets/maps/world-states.svg`) consistent. Border linework comes from `build-boundary-lines` (Natural Earth land boundary lines plus the disputed-area lines Japan's point of view shows, e.g. 27°40'N); lines Japan does not recognise are excluded by `is_excluded_boundary_line`.
 
 ### Shared styling
 
@@ -76,7 +77,9 @@ Use the shared map tooling where supported:
 - `scripts/drop_domestic_context.py` to remove context rings that duplicate the target's own coast or islets.
 - `scripts/normalize_map_stroke_widths.py` to remove `non-scaling-stroke` and compensate widths/shadow under scaling transforms (anisotropic transforms are baked into the path data);
 - `scripts/dissolve_context_land.py` to merge per-country context polygons into one silhouette so foreign borders are not doubled;
-- `scripts/update_stale_lake.py` when GSHHS still carries a lake at its historic extent (e.g. the Aral Sea): replaces it with the current Natural Earth 1:10m lake outline.
+- `scripts/update_stale_lake.py` when GSHHS still carries a lake at its historic extent (e.g. the Aral Sea): replaces it with the current Natural Earth 1:10m lake outline;
+- a drained reservoir (the Kakhovka Reservoir since June 2023) is not drawn as water: keep its footprint as an invisible `data-map-dried-lakebed="1"` path so the lake normalizer never re-adds it, including as part of a longer GSHHS reservoir chain;
+- reservoirs that GSHHS lacks (Lac de Buyo, Gatun Lake) come from the Natural Earth 1:10m lakes outline.
 
 Do not create Country-specific geometry shortcuts merely to pass QA.
 

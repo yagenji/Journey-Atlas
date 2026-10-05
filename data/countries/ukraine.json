@@ -37,13 +37,13 @@
   "map": {
     "bounds": {
       "north": 52.72671832265007,
-      "south": 44.855799384350036,
+      "south": 44.03,
       "west": 21.231504638600104,
       "east": 41.0608782554001
     },
-    "svg": "assets/images/ukraine/map-atlas-v2.svg",
+    "svg": "assets/images/ukraine/map-atlas-v3.svg",
     "route": null,
-    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/UKR.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; internationally recognized territory of Ukraine; JOURNEY ATLAS map-v3. Updated 2026-10-04: major inland water (lakes of 500 px or more, including surrounding countries) and lake islands from GSHHS resolution=i; national borders and the target outline drawn above inland water, clipped outside the target."
+    "source": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/UKR.geojson commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; WGS84; internationally recognized territory of Ukraine; JOURNEY ATLAS map-v3. Updated 2026-10-04: major inland water (lakes of 500 px or more, including surrounding countries) and lake islands from GSHHS resolution=i; national borders and the target outline drawn above inland water, clipped outside the target. Updated 2026-10-06: Crimea drawn as Ukraine under the Japanese boundary standard (scripts/japan_boundary_standard.py): regenerated from a Japanese-standard Natural Earth 1:10m Admin-0 (Crimea reassigned from the de facto dataset using ne_10m_admin_0_disputed_areas); bounds extended south to include Crimea; GSHHS i context; national borders from Natural Earth 1:10m boundary lines with the de facto Crimea line not drawn. The former Kakhovka Reservoir (drained after the dam was destroyed in June 2023; now a regrowing forest) is no longer drawn as water; its Natural Earth 1:10m outline is kept as a data-map-dried-lakebed footprint."
   },
   "scenes": [
     {
@@ -149,7 +149,7 @@
       "image": "assets/images/ukraine/approved/chernivtsi-metropolitans-residence.webp",
       "labelPosition": "right",
       "mapOffset": {
-        "x": -1,
+        "x": -0.9,
         "y": 2
       },
       "role": "HISTORY + DISCOVERY"
