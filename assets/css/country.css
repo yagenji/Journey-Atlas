@@ -116,6 +116,20 @@ html[data-country="cookislands"] .map-marker b {
   visibility: visible !important;
 }
 
+/* Kiribati review: make map scenery numbers unambiguous and hide the
+   redundant visible map-data credit sentence below the map. */
+html[data-country="kiribati"] .map-marker b {
+  display: grid !important;
+  place-items: center !important;
+  background: var(--navy) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html[data-country="kiribati"] .map-legend__source-credit {
+  display: none !important;
+}
+
 /* New Zealand: the taxonomy label is a compound region name, not a hierarchy. */
 html[data-country="newzealand"] .hero-copy .region {
   font-size: 0;
