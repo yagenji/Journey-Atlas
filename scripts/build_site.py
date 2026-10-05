@@ -267,7 +267,7 @@ def prepare_top_page() -> None:
     if 'rel="canonical"' not in page:
         page = page.replace(
             '  <title>JOURNEY ATLAS</title>\n',
-            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="201の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/hero-world-collage.svg")}">\n  <meta name="twitter:card" content="summary_large_image">\n',
+            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="202の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/hero-world-collage.svg")}">\n  <meta name="twitter:card" content="summary_large_image">\n',
             1,
         )
 
@@ -394,8 +394,8 @@ def main() -> int:
     prepare_generic_country_page()
     registries = load_registries()
     scope = all_destinations(registries)
-    if len(scope) != 201:
-        raise ValueError(f"Expected 201 destinations, found {len(scope)}")
+    if len(scope) != 202:
+        raise ValueError(f"Expected 202 destinations, found {len(scope)}")
     published = published_destinations(registries)
     published_slugs = {item["slug"] for item in published}
     reviewable = reviewable_destinations(registries)
@@ -409,7 +409,7 @@ def main() -> int:
     print(f"Build version: {BUILD_VERSION}")
     print(
         f"Built CSS bundles, direct top media, {len(reviewable)} reviewable country page(s), "
-        f"and {len(urls)} published country page(s) from 201 destinations."
+        f"and {len(urls)} published country page(s) from 202 destinations."
     )
     return 0
 
