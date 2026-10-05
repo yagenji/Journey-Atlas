@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the canonical JOURNEY ATLAS 201-destination registry and regional scope."""
+"""Validate the canonical JOURNEY ATLAS 202-destination registry and regional scope."""
 
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "atlas-destinations.json"
 REGIONS = ROOT / "data" / "region-taxonomy.json"
-EXPECTED_COUNT = 201
-REQUIRED_SPECIAL_ISO2 = {"TW", "HK", "MO", "AQ"}
+EXPECTED_COUNT = 202
+REQUIRED_SPECIAL_ISO2 = {"TW", "HK", "MO", "AQ", "PS"}
 CANONICAL_SLUG_EXCEPTIONS = {"hong-kong"}
 
 
@@ -41,7 +41,7 @@ def main() -> int:
     if len(set(orders)) != len(orders):
         errors.append("atlas-destinations.json contains duplicate order values")
     if set(orders) != set(range(1, EXPECTED_COUNT + 1)):
-        errors.append("destination order values must be exactly 1..201")
+        errors.append(f"destination order values must be exactly 1..{EXPECTED_COUNT}")
 
     declared_slug_exceptions = {
         item.get("slug")
@@ -63,13 +63,18 @@ def main() -> int:
         if not item:
             continue
         if item.get("atlasPublished") is not True:
-            errors.append(f"{code} must remain atlasPublished:true in the canonical 201 registry")
+            errors.append(f"{code} must remain atlasPublished:true in the canonical 202 registry")
         if not item.get("href") or not item.get("image"):
             errors.append(f"{code} must retain its published href and hero image")
     if by_iso.get("HK", {}).get("slug") != "hong-kong":
         errors.append("Hong Kong must retain canonical published slug hong-kong")
     if by_iso.get("MO", {}).get("slug") != "macau":
         errors.append("Macao destination must retain canonical published slug macau")
+    palestine = by_iso.get("PS", {})
+    if palestine.get("slug") != "palestine":
+        errors.append("Palestine must use canonical slug palestine")
+    if palestine.get("atlasPublished") is not False:
+        errors.append("Palestine must remain atlasPublished:false until its Country page is approved and published")
 
     top_level_codes: list[str] = []
     for region in regions.get("regions", []):
@@ -91,9 +96,9 @@ def main() -> int:
         errors.append("region-taxonomy is missing Asia")
     else:
         asia_codes = asia.get("iso2", [])
-        if len(asia_codes) != 49:
-            errors.append(f"Asia must contain 49 destinations, found {len(asia_codes)}")
-        for code in ("HK", "MO"):
+        if len(asia_codes) != 50:
+            errors.append(f"Asia must contain 50 destinations, found {len(asia_codes)}")
+        for code in ("HK", "MO", "PS"):
             if code not in asia_codes:
                 errors.append(f"Asia must contain {code}")
 
@@ -103,7 +108,7 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print("Canonical destination scope PASS: 201 destinations; Asia 49; Hong Kong and Macao included.")
+    print("Canonical destination scope PASS: 202 destinations; Asia 50; Hong Kong, Macao and Palestine included.")
     return 0
 
 
