@@ -25,7 +25,7 @@ ATLAS_SLUG_EXCEPTIONS = {"hong-kong"}
 VERIFIED_LEGACY_ARTICLE_URLS = {
     "https://journey.yagenji.com/lithuania/": "lithuania",
 }
-CANONICAL_DESTINATION_COUNT = 201
+CANONICAL_DESTINATION_COUNT = 202
 
 
 def load_rss() -> bytes:
