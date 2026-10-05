@@ -45,7 +45,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Detect target Countries
         id: target
@@ -69,6 +69,7 @@ jobs:
 
           if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
             base="$PR_BASE_SHA"
+            git fetch --no-tags --depth=1 origin "$base"
           else
             base="$(git rev-parse HEAD^)"
           fi
@@ -197,6 +198,8 @@ jobs:
             scripts/audit_published_countries.py
           python3 scripts/test_country_editorial_v2.py
           python3 scripts/test_country_quality_v5.py
+          python3 tests/test_qa_optional_taste.py
+          python3 tests/test_qa_optional_taste_runner.py
 
       - name: Run targeted finish-line QA
         if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
