@@ -45,7 +45,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Detect target Countries
         id: target
@@ -69,6 +69,7 @@ jobs:
 
           if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
             base="$PR_BASE_SHA"
+            git fetch --no-tags --depth=1 origin "$base"
           else
             base="$(git rev-parse HEAD^)"
           fi
