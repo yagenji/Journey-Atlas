@@ -90,7 +90,10 @@ jobs:
           shared = any(
               path == "country.html"
               or path.startswith("assets/css/")
-              or path.startswith("assets/js/")
+              or (
+                  path.startswith("assets/js/")
+                  and path not in {"assets/js/top.js", "assets/js/map-regions.js"}
+              )
               or path in {
                   "scripts/build_site.py",
                   "scripts/build_country_preview_targeted.py",
