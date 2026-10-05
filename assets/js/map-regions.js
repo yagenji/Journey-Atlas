@@ -113,7 +113,7 @@
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
     copy.textContent = '地域を選ぶか、− / ＋やホイールで地図を拡大できます。小さな島も、拡大すると実際の形が見えます。';
-    count.textContent = `${dest.length || 201} DESTINATIONS`;
+    count.textContent = `${dest.length || 202} DESTINATIONS`;
     status.textContent = '';
     list.className = 'map-country-preview';
     list.innerHTML = '<div class="map-country-preview__empty"><span class="map-country-preview__marker">⌖</span><div><strong>地域を選択</strong><p>地域を選ぶか、地図を直接拡大してください。</p></div></div>';
