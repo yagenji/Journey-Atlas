@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Detect Browser QA scope
         id: target
@@ -48,6 +48,7 @@ jobs:
           fi
 
           base="$PR_BASE_SHA"
+          git fetch --no-tags --depth=1 origin "$base"
           git diff --name-only "$base"...HEAD > /tmp/browser-changed-files.txt
           python3 - "$GITHUB_OUTPUT" <<'PY'
           import json
