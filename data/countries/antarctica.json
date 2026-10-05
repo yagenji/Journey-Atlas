@@ -10,7 +10,7 @@
   },
   "capital": null,
   "hero": {
-    "lead": "氷河を抱く岩山の間を、静かな海が一本の道のように続く。ペンギン、クジラ、シャチ、アザラシとの出会いまで、南極半島の旅は海の上から始まる。",
+    "lead": "このページでたどるのは、広大な南極大陸のうち、観光航海で訪れることの多い南極半島北西部の一部。氷河を抱く岩山の間を海が道のように続き、ペンギン、クジラ、シャチ、アザラシとの出会いが待つ。",
     "image": "assets/images/antarctica/approved/hero-lemaire-channel.webp",
     "location": "Lemaire Channel / Antarctic Peninsula",
     "coordinates": {
@@ -23,11 +23,12 @@
       "north": -63.65,
       "south": -65.45,
       "west": -64.8,
-      "east": -60.7
+      "east": -58.0
     },
     "svg": "assets/images/antarctica/map-atlas-v1.svg",
     "route": null,
-    "source": "Antarctic Peninsula west-coast shoreline and islands from GSHHS/GSHHG via Basemap 2.0.0, WGS84, intermediate resolution. No territorial-claim boundaries shown; 1200×760; reviewed 2026-10-05."
+    "source": "Northwestern Antarctic Peninsula shoreline and islands from GSHHS/GSHHG via Basemap 2.0.0, WGS84, intermediate resolution. No territorial-claim boundaries shown; east bound expanded so coastline continues to the canvas edge rather than ending inside the map; 1200×760; reviewed 2026-10-06.",
+    "insetNote": "※ この地図は南極大陸全体ではありません。南極半島は大陸の北西へ伸びる一部で、ここでは8景が集中する半島北西部（約64〜65°S）をさらに拡大表示しています。"
   },
   "scenes": [
     {
@@ -155,14 +156,46 @@
     }
   ],
   "encounters": [
-    {"title": "青く割れた氷山", "category": "NATURE", "icon": "sea"},
-    {"title": "海へ落ちる氷河", "category": "NATURE", "icon": "sea"},
-    {"title": "ペンギンの営巣地", "category": "WILDLIFE", "icon": "wildlife"},
-    {"title": "クジラのブロー", "category": "WILDLIFE", "icon": "wildlife"},
-    {"title": "シャチの背びれ", "category": "WILDLIFE", "icon": "wildlife"},
-    {"title": "岩場で休むアザラシ", "category": "WILDLIFE", "icon": "wildlife"},
-    {"title": "狭い海峡の航行", "category": "MOVEMENT", "icon": "map"},
-    {"title": "風と雪の急変", "category": "SEASON", "icon": "weather"}
+    {
+      "title": "青く割れた氷山",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "海へ落ちる氷河",
+      "category": "NATURE",
+      "icon": "sea"
+    },
+    {
+      "title": "ペンギンの営巣地",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "クジラのブロー",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "シャチの背びれ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "岩場で休むアザラシ",
+      "category": "WILDLIFE",
+      "icon": "wildlife"
+    },
+    {
+      "title": "狭い海峡の航行",
+      "category": "MOVEMENT",
+      "icon": "map"
+    },
+    {
+      "title": "風と雪の急変",
+      "category": "SEASON",
+      "icon": "weather"
+    }
   ],
   "atlasExtras": [
     {
@@ -171,7 +204,10 @@
       "themeJa": "統治 / 平和",
       "title": "国境を確定せず、条約が現状を保っている",
       "text": "南極には複数国の領有権主張がある一方、南極条約第4条は既存の立場を損なわず、新たな主張や拡大を認めない。地図も一国の領土として塗り分けない。",
-      "points": ["領有権問題を凍結", "新規・拡大主張を認めない"],
+      "points": [
+        "領有権問題を凍結",
+        "新規・拡大主張を認めない"
+      ],
       "sourceKey": "treaty"
     },
     {
@@ -180,7 +216,10 @@
       "themeJa": "海 / 季節",
       "title": "冬には海まで凍り、白い領域が大きく広がる",
       "text": "南極周辺の海氷は季節で大きく変わり、冬の終わりには約2,000万km²近くまで広がる一方、夏の終わりには約400万km²まで縮む。",
-      "points": ["冬は約2,000万km²", "夏は約400万km²"],
+      "points": [
+        "冬は約2,000万km²",
+        "夏は約400万km²"
+      ],
       "sourceKey": "seaIce"
     },
     {
@@ -189,7 +228,10 @@
       "themeJa": "科学 / 協力",
       "title": "南極は、科学のために開かれた大陸でもある",
       "text": "南極条約は科学研究の自由と成果共有を掲げ、基地や設備を含む地域を査察へ開く仕組みを持つ。観光地の背後には国際的な科学協力が続いている。",
-      "points": ["科学研究の自由", "基地や設備を査察可能"],
+      "points": [
+        "科学研究の自由",
+        "基地や設備を査察可能"
+      ],
       "sourceKey": "treaty"
     },
     {
@@ -198,7 +240,10 @@
       "themeJa": "生命 / 海岸",
       "title": "白一色に見えても、岩の上には植物が生きる",
       "text": "西側を含む南極半島の海洋性気候域には地衣類やコケ、藻類が生育し、北部・西部には南極で確認される2種の被子植物も見られる。",
-      "points": ["地衣類とコケ", "2種の被子植物"],
+      "points": [
+        "地衣類とコケ",
+        "2種の被子植物"
+      ],
       "sourceKey": "plants"
     },
     {
@@ -207,7 +252,10 @@
       "themeJa": "氷河 / 安全",
       "title": "氷河は景色ではなく、今も動く地形",
       "text": "ネコ・ハーバーでは周囲の氷河が定期的に崩落し、波が上陸浜へ届くことがある。美しい氷河の近さは、南極で安全判断が旅程を変える理由でもある。",
-      "points": ["氷河の崩落", "波を避けて高所へ移動"],
+      "points": [
+        "氷河の崩落",
+        "波を避けて高所へ移動"
+      ],
       "sourceKey": "nekoGuideline"
     },
     {
@@ -216,7 +264,10 @@
       "themeJa": "アクセス / 海",
       "title": "南極半島は、南米から数日の船旅で届く",
       "text": "南極観光の中心は船で、南極半島は南米の港から数日で到達できる。地理的な近さが、この地域に観光航海が集中する理由の一つになっている。",
-      "points": ["船が観光の中心", "南米から数日で到達"],
+      "points": [
+        "船が観光の中心",
+        "南米から数日で到達"
+      ],
       "sourceKey": "tourism"
     }
   ],
@@ -300,29 +351,75 @@
     ]
   },
   "seasons": [
-    {"months": "10〜11月", "color": "#91aab4", "text": "観光シーズンの始まり。雪と海氷が多く残り、白い景観が強い。運航や上陸はその日の氷況に左右される。"},
-    {"months": "12〜1月", "color": "#a8b9ae", "text": "日照時間が長く、ペンギンの繁殖活動が活発になる時期。上陸地では営巣地の動線を避けて観察する。"},
-    {"months": "2〜3月", "color": "#8ea4ad", "text": "夏の後半。海面が開きやすくなり、クジラ類を見られる機会も増える。日照は次第に短くなる。"},
-    {"months": "4〜9月", "color": "#6e8290", "text": "冬季は一般的な観光航海が大きく限られる。海氷が広がり、暗い時間が長くなるため、通常の半島クルーズの時期ではない。"}
+    {
+      "months": "10〜11月",
+      "color": "#91aab4",
+      "text": "観光シーズンの始まり。雪と海氷が多く残り、白い景観が強い。運航や上陸はその日の氷況に左右される。"
+    },
+    {
+      "months": "12〜1月",
+      "color": "#a8b9ae",
+      "text": "日照時間が長く、ペンギンの繁殖活動が活発になる時期。上陸地では営巣地の動線を避けて観察する。"
+    },
+    {
+      "months": "2〜3月",
+      "color": "#8ea4ad",
+      "text": "夏の後半。海面が開きやすくなり、クジラ類を見られる機会も増える。日照は次第に短くなる。"
+    },
+    {
+      "months": "4〜9月",
+      "color": "#6e8290",
+      "text": "冬季は一般的な観光航海が大きく限られる。海氷が広がり、暗い時間が長くなるため、通常の半島クルーズの時期ではない。"
+    }
   ],
   "transport": {
-    "title": "エクスペディション船が旅の基点",
-    "text": "南極観光は主に船で行われ、南米の港からドレーク海峡を越えて南極半島へ向かう。現地ではゾディアックで上陸や海上観察を行うが、氷・風・波・野生動物の状況で順番や訪問地は変わる。",
+    "title": "南米南部から、船またはフライ＆クルーズで入る",
+    "text": "一般的な船旅は、南米南部のウシュアイアなどへ入り、エクスペディション船でドレーク海峡を越えて南極半島へ向かう。例：日本 → ブエノスアイレス → ウシュアイア → 南極半島。別ルートとして、チリのプンタ・アレーナスからキングジョージ島へ飛び、現地で船に乗り継ぐフライ＆クルーズもある。到着後の上陸や海上観察はゾディアックを使い、氷・風・波で訪問地が変わる。",
     "icon": "sea"
   },
   "personas": [
-    {"title": "野生動物を自然の距離で見たい人", "text": "ペンギンだけでなく、クジラ、シャチ、アザラシを海と氷の風景の中で探したい人。"},
-    {"title": "氷と山のスケールを体で感じたい人", "text": "写真では伝わりにくい氷河、海峡、雪山の大きさを、船と上陸の両方から感じたい人。"},
-    {"title": "予定変更も旅の一部として楽しめる人", "text": "天候や海氷で計画が変わっても、その日の条件に合わせて現れる景色を受け入れられる人。"}
+    {
+      "title": "野生動物を自然の距離で見たい人",
+      "text": "ペンギンだけでなく、クジラ、シャチ、アザラシを海と氷の風景の中で探したい人。"
+    },
+    {
+      "title": "氷と山のスケールを体で感じたい人",
+      "text": "写真では伝わりにくい氷河、海峡、雪山の大きさを、船と上陸の両方から感じたい人。"
+    },
+    {
+      "title": "予定変更も旅の一部として楽しめる人",
+      "text": "天候や海氷で計画が変わっても、その日の条件に合わせて現れる景色を受け入れられる人。"
+    }
   ],
   "facts": [
-    {"label": "地域", "value": "南極大陸 / 南極半島"},
-    {"label": "首都", "value": "なし"},
-    {"label": "人口", "value": "常住人口0人（研究・運用要員が季節滞在）"},
-    {"label": "面積", "value": "約1,366万 km²（日本の約36倍）"},
-    {"label": "言語", "value": "共通の公用語なし"},
-    {"label": "主な宗教", "value": "該当なし（常住人口なし）"},
-    {"label": "通貨", "value": "共通通貨なし"}
+    {
+      "label": "地域",
+      "value": "南極大陸 / 南極半島"
+    },
+    {
+      "label": "首都",
+      "value": "なし"
+    },
+    {
+      "label": "人口",
+      "value": "常住人口0人（研究・運用要員が季節滞在）"
+    },
+    {
+      "label": "面積",
+      "value": "約1,366万 km²（日本の約36倍）"
+    },
+    {
+      "label": "言語",
+      "value": "共通の公用語なし"
+    },
+    {
+      "label": "主な宗教",
+      "value": "該当なし（常住人口なし）"
+    },
+    {
+      "label": "通貨",
+      "value": "共通通貨なし"
+    }
   ],
   "signatureFacts": [
     {
@@ -355,9 +452,21 @@
     }
   ],
   "tips": [
-    {"topicKey": "flexible-landing-order", "title": "上陸地と順番は固定しない", "text": "氷、風、波、野生動物、安全条件で航路や上陸地は変更される。特定地点への到達を前提に旅程を組まない。"},
-    {"topicKey": "wildlife-distance-path", "title": "動物の進路と距離を守る", "text": "ペンギンの海への通り道を塞がず、アザラシなどにも近づき過ぎない。上陸時はガイドとVisitor Site Guidelinesを優先する。"},
-    {"topicKey": "layered-windproof-gear", "title": "防風防水をレイヤリングする", "text": "気温だけでなく風と濡れが体感温度を大きく下げる。防水・防風の外層と、脱ぎ着しやすい中間着を組み合わせる。"}
+    {
+      "topicKey": "flexible-landing-order",
+      "title": "上陸地と順番は固定しない",
+      "text": "氷、風、波、野生動物、安全条件で航路や上陸地は変更される。特定地点への到達を前提に旅程を組まない。"
+    },
+    {
+      "topicKey": "wildlife-distance-path",
+      "title": "動物の進路と距離を守る",
+      "text": "ペンギンの海への通り道を塞がず、アザラシなどにも近づき過ぎない。上陸時はガイドとVisitor Site Guidelinesを優先する。"
+    },
+    {
+      "topicKey": "layered-windproof-gear",
+      "title": "防風防水をレイヤリングする",
+      "text": "気温だけでなく風と濡れが体感温度を大きく下げる。防水・防風の外層と、脱ぎ着しやすい中間着を組み合わせる。"
+    }
   ],
   "nextRoutes": [
     {
@@ -372,12 +481,33 @@
     }
   ],
   "relatedCountries": [
-    {"slug": "argentina", "nameEn": "ARGENTINA", "nameJa": "アルゼンチン", "flag": "🇦🇷", "reason": "ウシュアイアとパタゴニアの山岳・氷河景観を、南極航海の前後で連続して体験できる。", "affinityType": "LANDSCAPE"},
-    {"slug": "chile", "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "パタゴニア、フエゴ諸島、太平洋側の氷河地形を、南極半島とは別のスケールで比較できる。", "affinityType": "LANDSCAPE"},
-    {"slug": "iceland", "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、火山、荒涼とした海岸という高緯度景観を、北半球の有人地域として対照的に楽しめる。", "affinityType": "NATURE"}
+    {
+      "slug": "argentina",
+      "nameEn": "ARGENTINA",
+      "nameJa": "アルゼンチン",
+      "flag": "🇦🇷",
+      "reason": "ウシュアイアとパタゴニアの山岳・氷河景観を、南極航海の前後で連続して体験できる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "chile",
+      "nameEn": "CHILE",
+      "nameJa": "チリ",
+      "flag": "🇨🇱",
+      "reason": "パタゴニア、フエゴ諸島、太平洋側の氷河地形を、南極半島とは別のスケールで比較できる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "iceland",
+      "nameEn": "ICELAND",
+      "nameJa": "アイスランド",
+      "flag": "🇮🇸",
+      "reason": "氷河、火山、荒涼とした海岸という高緯度景観を、北半球の有人地域として対照的に楽しめる。",
+      "affinityType": "NATURE"
+    }
   ],
-  "updatedAt": "2026-10-05",
-  "sourcesVerifiedAt": "2026-10-05",
+  "updatedAt": "2026-10-06",
+  "sourcesVerifiedAt": "2026-10-06",
   "sourceDates": {
     "population": "2026-10-05",
     "tourism": "2026-10-05",
@@ -404,6 +534,9 @@
     "neumayerGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neumayer Channel — separates Wiencke Island and Anvers Island. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110338",
     "grahamGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Graham Passage — separates Bluff Island from Danco Coast. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=109088",
     "nekoGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neko Harbour — 64°50′S 62°31′W. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110314",
-    "map": "GSHHS/GSHHG shoreline geometry via Basemap 2.0.0, WGS84, intermediate resolution; no territorial-claim boundaries; 1200×760; generated and reviewed 2026-10-05."
+    "map": "GSHHS/GSHHG shoreline geometry via Basemap 2.0.0, WGS84, intermediate resolution; no territorial-claim boundaries; 1200×760; east bound expanded to -58.0° so the target land reaches the canvas edge rather than ending on an interior clipping line; generated and reviewed 2026-10-06.",
+    "access": "IAATO, FAQs — most Antarctic cruises depart from southern South American gateway ports including Ushuaia (Argentina) and Punta Arenas (Chile); checked 2026-10-06. https://iaato.org/faqs",
+    "airCruise": "Antarctica21, Classic Antarctica Air-Cruise — current air-cruise route flies from Punta Arenas to King George Island and transfers by Zodiac to an expedition vessel; checked 2026-10-06. https://www.antarctica21.com/our-expeditions/classic-antarctica-air-cruise",
+    "peninsulaMap": "British Antarctic Survey, Antarctic Peninsula overview, 2025 — overview map of the Antarctic Peninsula region; checked 2026-10-06. https://data.bas.ac.uk/items/3ff89aa4-4b18-498f-b1b2-56dfd6e54152/"
   }
 }
