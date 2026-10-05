@@ -670,8 +670,8 @@ def load_destination_scope() -> tuple[list[dict], list[str]]:
                 continue
             seen.add(slug)
             items.append(item)
-    if len(items) != 201:
-        errors.append(f"destination scope は201件必要ですが {len(items)} 件です")
+    if len(items) != 202:
+        errors.append(f"destination scope は202件必要ですが {len(items)} 件です")
     return items, errors
 
 
@@ -787,7 +787,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Validation passed ({mode}): {len(paths)} country file(s); 201-destination scope is consistent")
+    print(f"Validation passed ({mode}): {len(paths)} country file(s); 202-destination scope is consistent")
     return 0
 
 
