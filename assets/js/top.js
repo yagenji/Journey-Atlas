@@ -30,7 +30,7 @@ const lensNextButton = document.querySelector('[data-lens-next]');
 const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
-const ATLAS_TOTAL = 201;
+const ATLAS_TOTAL = 202;
 
 function syncScrollHeader() {
   const header = document.querySelector('.top-header');
@@ -199,7 +199,6 @@ Promise.all([
     if(lensRail) lensRail.innerHTML='<p class="lens-rail__error">JOURNEY LENSを読み込めませんでした。</p>';
   });
 
-
 function parseLensFeed(xmlText){
   const xml=new DOMParser().parseFromString(xmlText,'application/xml');
   if(xml.querySelector('parsererror')) throw new Error('Invalid JOURNEY LENS RSS XML');
@@ -223,26 +222,22 @@ function parseLensFeed(xmlText){
 function orderLensStories(entries,registryItems){
   const countryOrder=new Map(registryItems.map((item)=>[item.slug,item.order??Number.MAX_SAFE_INTEGER]));
   const groups=new Map();
-
   entries.forEach((entry)=>{
     if(!groups.has(entry.slug))groups.set(entry.slug,[]);
     groups.get(entry.slug).push(entry);
   });
   groups.forEach((items)=>items.sort((a,b)=>a.sequence-b.sequence));
-
   const orderedSlugs=[...groups.keys()].sort((a,b)=>{
     const aOrder=countryOrder.get(a)??Number.MAX_SAFE_INTEGER;
     const bOrder=countryOrder.get(b)??Number.MAX_SAFE_INTEGER;
     if(aOrder!==bOrder)return aOrder-bOrder;
     return a.localeCompare(b,'en');
   });
-
   const output=[];
   orderedSlugs.forEach((slug)=>{
     const first=groups.get(slug)?.shift();
     if(first)output.push(first);
   });
-
   let lastSlug=output.at(-1)?.slug||'';
   while(true){
     const candidates=orderedSlugs
@@ -256,17 +251,14 @@ function orderLensStories(entries,registryItems){
         return a.localeCompare(b,'en');
       });
     if(!candidates.length)break;
-
     let slug=candidates.find((candidate)=>candidate!==lastSlug);
     if(!slug)slug=candidates[0];
-
     const next=groups.get(slug)?.shift();
     if(next){
       output.push(next);
       lastSlug=slug;
     }
   }
-
   return output;
 }
 
@@ -277,7 +269,6 @@ function createLensCard(entry,country){
   card.target='_blank';
   card.rel='noopener noreferrer';
   card.setAttribute('role','listitem');
-
   const art=document.createElement('div');
   art.className='lens-card__art';
   if(entry.image){
@@ -291,7 +282,6 @@ function createLensCard(entry,country){
     art.classList.add('is-image-missing');
     art.setAttribute('aria-hidden','true');
   }
-
   const body=document.createElement('div');
   body.className='lens-card__body';
   if(country){
@@ -320,17 +310,12 @@ function updateLensControls(){
   if(lensPrevButton)lensPrevButton.disabled=lensRail.scrollLeft<=2;
   if(lensNextButton)lensNextButton.disabled=lensRail.scrollLeft>=maxScroll-2;
 }
-
 function scrollLensRail(direction){
   if(!lensRail)return;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const distance=Math.max(220,lensRail.clientWidth*0.82);
-  lensRail.scrollBy({
-    left:direction*distance,
-    behavior:reduced?'auto':'smooth'
-  });
+  lensRail.scrollBy({left:direction*distance,behavior:reduced?'auto':'smooth'});
 }
-
 lensPrevButton?.addEventListener('click',()=>scrollLensRail(-1));
 lensNextButton?.addEventListener('click',()=>scrollLensRail(1));
 lensRail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
@@ -340,25 +325,18 @@ function renderLensRail(registryItems,rssText){
   if(!lensRail)return;
   const registryBySlug=new Map(registryItems.map((item)=>[item.slug,item]));
   const parsedEntries=parseLensFeed(rssText);
-  const entries=orderLensStories(parsedEntries,registryItems).map((entry)=>({
-    ...entry,
-    country:registryBySlug.get(entry.slug)||null
-  }));
-
+  const entries=orderLensStories(parsedEntries,registryItems).map((entry)=>({...entry,country:registryBySlug.get(entry.slug)||null}));
   entries.forEach((entry)=>{
     if(!entry.country)console.warn('[JOURNEY ATLAS] LENS slug not found in atlas-destinations.json:',entry.slug);
   });
-
   if(lensCount){
     const countryCount=new Set(parsedEntries.map((entry)=>entry.slug)).size;
     lensCount.textContent=`${parsedEntries.length} STORIES / ${countryCount} COUNTRIES`;
   }
-
   const track=document.createElement('div');
   track.className='lens-rail__track';
   track.setAttribute('role','list');
   entries.forEach((entry)=>track.append(createLensCard(entry,entry.country)));
-
   lensRail.replaceChildren(track);
   lensRail.scrollLeft=0;
   window.requestAnimationFrame(updateLensControls);
@@ -406,9 +384,7 @@ function themeLabel(theme){
 function getThemeItems(theme=activeTheme){
   if(!theme)return [];
   const slugs=themeSets[theme]||[];
-  return slugs
-    .map((slug)=>destinations.find((country)=>country.slug===slug))
-    .filter((country)=>country?.atlasPublished===true);
+  return slugs.map((slug)=>destinations.find((country)=>country.slug===slug)).filter((country)=>country?.atlasPublished===true);
 }
 function syncThemeSelectionUI(){
   document.querySelectorAll('.theme-icons button[data-theme]').forEach((button)=>{
@@ -426,13 +402,9 @@ function renderThemeResults(){
     syncThemeSelectionUI();
     return;
   }
-
   const baseItems=getThemeItems(activeTheme);
   const query=themeResultsSearch?.value.trim().toLowerCase()||'';
-  const items=query
-    ?baseItems.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query))
-    :baseItems;
-
+  const items=query?baseItems.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query)):baseItems;
   const fragment=document.createDocumentFragment();
   items.forEach((country,index)=>{
     const card=createCard(country,index,true);
@@ -440,28 +412,19 @@ function renderThemeResults(){
     fragment.append(card);
   });
   themeResultsGrid.replaceChildren(fragment);
-
   const label=themeLabel(activeTheme);
   if(themeResultsTitle)themeResultsTitle.textContent=label;
-  if(themeResultsMeta)themeResultsMeta.textContent=query
-    ?`${baseItems.length}件の候補から、${items.length}件を表示しています。`
-    :`${baseItems.length} DESTINATIONS`;
+  if(themeResultsMeta)themeResultsMeta.textContent=query?`${baseItems.length}件の候補から、${items.length}件を表示しています。`:`${baseItems.length} DESTINATIONS`;
   if(themeResultsEmpty)themeResultsEmpty.hidden=items.length!==0;
   themeResults.hidden=false;
   syncThemeSelectionUI();
 }
-function clearThemeResults(){
-  activeTheme=null;
-  renderThemeResults();
-}
+function clearThemeResults(){activeTheme=null;renderThemeResults();}
 function setAllPanel(open,reset=true){
   if(!allPanel||!toggleAll)return;
   allPanel.hidden=!open;toggleAll.setAttribute('aria-expanded',String(open));
   toggleAll.firstChild.textContent=open?'一覧を閉じる ':'すべての国・地域を見る ';
-  if(open&&reset){
-    if(searchInput)searchInput.value='';
-    renderGrid(destinations);
-  }
+  if(open&&reset){if(searchInput)searchInput.value='';renderGrid(destinations);}
   if(open) allPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function focusCountry(slug){
@@ -471,12 +434,7 @@ function focusCountry(slug){
   if(searchInput)searchInput.value=country.nameJa;
   renderGrid([country]);
 }
-function showTheme(theme){
-  activeTheme=theme;
-  if(themeResultsSearch)themeResultsSearch.value='';
-  renderThemeResults();
-}
-
+function showTheme(theme){activeTheme=theme;if(themeResultsSearch)themeResultsSearch.value='';renderThemeResults();}
 function getWishedSlugs(){try{return destinations.filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
