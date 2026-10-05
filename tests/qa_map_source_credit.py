@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check actual OSM/ODbL attribution for the registry-selected staged maps.
+"""Check actual OpenStreetMap attribution for the registry-selected staged maps.
 
 Use the existing disposable preflight's manifest; do not hardcode a Country count,
 alter Country data, change source SVGs or add a new workflow.
@@ -23,7 +23,7 @@ from qa_published_browser import BASE_URL, VIEWPORTS, make_driver, set_viewport,
 MANIFEST = Path('/tmp/journey-atlas-map-context-rollout-stage/manifest.json')
 COPYRIGHT = 'https://www.openstreetmap.org/copyright'
 NS = '{http://www.w3.org/2000/svg}'
-OSM = re.compile(r'OpenStreetMap|\bODbL\b', re.I)
+OSM = re.compile(r'OpenStreetMap', re.I)
 CAPTURE = {'singapore', 'macau', 'bahrain', 'iceland'}
 SCREENSHOTS = ROOT / 'qa-map-context-browser-output' / 'source-credit'
 
@@ -72,10 +72,10 @@ def main() -> None:
     assert attribution['bahrain'][0] and not attribution['iceland'][0], attribution
     osm_slugs = sorted(slug for slug, (osm, _) in attribution.items() if osm)
     mismatch = sorted(slug for slug in osm_slugs if not attribution[slug][1])
-    # A mismatch is valid only when OSM/ODbL provenance is supplied by the SVG
-    # context/metadata rather than Country JSON. Do not hardcode a historical
-    # Country that must exercise this fallback: source metadata may legitimately
-    # be corrected later without changing the rendered attribution requirement.
+    # A mismatch is valid only when explicit OpenStreetMap provenance is supplied
+    # by the SVG context/metadata rather than Country JSON. Do not hardcode a
+    # historical Country that must exercise this fallback: source metadata may
+    # legitimately be corrected later without changing the rendered attribution.
     assert all(attribution[slug] == (True, False) for slug in mismatch), attribution
     print(f'OSM provenance audit: {len(osm_slugs)} of {len(entries)} maps; SVG-only/JSON mismatch: {mismatch}', flush=True)
     samples = osm_slugs + ['iceland']
