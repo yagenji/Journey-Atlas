@@ -97,12 +97,15 @@
 }
 
 .scene-copy>strong{
+  display:block!important;
   grid-area:number;
   margin:0!important;
-  color:var(--navy);
+  color:var(--navy)!important;
   font-size:18px!important;
   line-height:1.35!important;
   align-self:start;
+  opacity:1!important;
+  visibility:visible!important;
 }
 
 .scene-copy h3{
@@ -173,7 +176,10 @@
     aspect-ratio:16 / 10!important;
   }
   .scene-copy>strong{
+    display:block!important;
     font-size:18px!important;
+    opacity:1!important;
+    visibility:visible!important;
   }
   .scene-copy h3{
     font-size:14px!important;
