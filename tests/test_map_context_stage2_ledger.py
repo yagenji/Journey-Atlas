@@ -15,13 +15,24 @@ LEDGER=ROOT/'ops/map-context-stage2-review.json'
 
 
 class Stage2ReviewLedgerTest(unittest.TestCase):
-    def test_hong_kong_use_rendered_target_is_protected(self):
-        source = ROOT / 'assets/images/hong-kong/map-atlas-v1.svg'
-        root = ET.parse(source).getroot()
-        signatures = protected_target_paths(root)
+    def test_use_rendered_target_is_protected(self):
+        # Hong Kong once rendered its land through <use href="#land-shape">; keep
+        # protecting that pattern with a fixture now that the map draws one path.
+        svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">'
+               '<g id="land-shape"><path d="M 0,0 L 10,0 L 10,10 Z"/></g>'
+               '<use href="#land-shape" fill="url(#land)" filter="url(#shadow)"/>'
+               '<use href="#land-shape" fill="url(#land)"/></svg>')
+        signatures = protected_target_paths(ET.fromstring(svg))
         self.assertEqual(len(signatures), 1)
         self.assertTrue(signatures[0].startswith('use:land-shape:'))
         self.assertIn('<ns0:path', signatures[0])
+
+    def test_hong_kong_target_is_one_protected_path(self):
+        config = json.loads((ROOT / 'data/countries/hong-kong.json').read_text(encoding='utf-8'))
+        root = ET.parse(ROOT / config['map']['svg']).getroot()
+        signatures = protected_target_paths(root)
+        self.assertEqual(len(signatures), 1)
+        self.assertTrue(signatures[0].startswith('path:'))
 
     def test_ledger_covers_exact_selected_roster(self):
         ledger=json.loads(LEDGER.read_text(encoding='utf-8'))

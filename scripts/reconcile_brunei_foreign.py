@@ -14,7 +14,8 @@ from shapely.geometry import Polygon, Point
 from shapely.ops import unary_union
 
 N='{http://www.w3.org/2000/svg}'
-ORIGINAL_TARGET_SHA='63b4004c45a49e06ce9fa46c78a7807d88bf4ce8b9b0d06c74dab9bd487a64fd'
+# 2026-10-06: mainland and Temburong from geoBoundaries gbOpen BRN ADM0 (was Natural Earth 1:10m)
+ORIGINAL_TARGET_SHA='d8d63bc34806bc1b0f2f45e41d61d025bcfb1c827071aff79ebd6801eb5459ad'
 PMB_TARGET_SHA='b638398ba246e951a88e590a4cfc2f557a5cc9ad1c85b948fe2c93fb55655fa1'
 GSHHG_SHA='b61c98a983cd8166e156e3f0791c2fb0da467d1f3070a998ea778716f666ef8f'
 PMB_OSM_RAW_SHA='dd1bb1fbab630eb793b2c855f678fbc5a01f5ff21c1bdfdaf1410577669993d3'

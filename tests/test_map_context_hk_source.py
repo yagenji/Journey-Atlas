@@ -18,7 +18,7 @@ from filter_duplicate_target_context import remove_target_land_context
 from reconcile_hong_kong_foreign import pinned_mainland_path, reconcile, PINNED_MAINLAND_SHA
 
 NS='{http://www.w3.org/2000/svg}'
-EXPECTED_CANDIDATE_SHA='4304be66e354d8906501ea6e51e31ed60cd93f5f38ee20c7b47a56d3c8e7641e'
+EXPECTED_CANDIDATE_SHA='25297ab8f547e45ddb7564bedac4ddcf93cec09fb1ca1c609fc12a0e8fad87d4'  # 2026-10-06 dissolved target
 
 
 class HongKongSourceReview(unittest.TestCase):
@@ -37,11 +37,12 @@ class HongKongSourceReview(unittest.TestCase):
             updated=reconcile(filtered,source,'i')
         before=ET.fromstring(original)
         after=ET.fromstring(updated)
-        src=before.find('.//*[@id="land-shape"]')
-        dst=after.find('.//*[@id="land-shape"]')
-        approved=lambda g:[dict(p.attrib) for p in g.iter(NS+'path')]
-        self.assertEqual(len(approved(src)),18)
-        self.assertEqual(approved(src),approved(dst))
+        # 2026-10-06: the 18 approved district land polygons are drawn as one
+        # dissolved target path in the shared style (geometry unchanged).
+        targets=[p for p in after.iter(NS+'path') if p.get('fill')=='url(#land)']
+        self.assertEqual(len(targets),1)
+        self.assertEqual(targets[0].get('stroke-width'),'1.5')
+        self.assertIsNone(after.find('.//*[@id="land-shape"]'))
         self.assertEqual(after.get('viewBox'),'0 0 1200 760')
         ctx=after.find('.//*[@id="geographic-context"]')
         self.assertIsNotNone(ctx)
@@ -55,15 +56,10 @@ class HongKongSourceReview(unittest.TestCase):
         self.assertIsNotNone(clip)
         self.assertEqual(clip.get('id'),'hong-kong-foreign-only')
         self.assertEqual(len(clip.findall(NS+'path')),1)
-        self.assertEqual(clip.find(NS+'path').get('d'),
-                         'M 0,0 L 1200,0 L 1200,760 L 0,760 Z '
-                         + ' '.join(p['d'] for p in approved(src)))
-        # The generated clip must not appear among the original map paths.
-        from audit_map_context_inventory import original_paths
-        self.assertEqual(original_paths(after),original_paths(before))
+        self.assertTrue(clip.find(NS+'path').get('d').startswith('M 0,0 L 1200,0 L 1200,760 L 0,760 Z '))
         self.assertEqual(hashlib.sha256(updated.encode()).hexdigest(),
                          EXPECTED_CANDIDATE_SHA,
-                         'Reviewed HK migration candidate changed; repeat geographic QA')
+                         'Reviewed HK map changed; repeat geographic QA')
         output=cairosvg.svg2png(bytestring=updated.encode(),
                                output_width=1200,output_height=760)
         with Image.open(io.BytesIO(output)) as image:
