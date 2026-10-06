@@ -9,6 +9,7 @@ atlasPublished=true still controls discovery, indexing and sitemap inclusion.
 
 from __future__ import annotations
 
+import base64
 import json
 import re
 import shutil
@@ -41,6 +42,46 @@ def runtime_build_version() -> str:
 BUILD_VERSION = runtime_build_version()
 
 
+def decode_parts_manifest(source: str) -> tuple[bytes, str]:
+    """Reconstruct one approved image source from a generic chunk manifest."""
+    manifest_path = ROOT / source
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    parts = manifest.get("parts") or []
+    if not isinstance(parts, list) or not parts:
+        raise ValueError(f"Image manifest has no parts: {source}")
+    encoded = "".join(
+        "".join((ROOT / str(part)).read_text(encoding="utf-8").split())
+        for part in parts
+    )
+    signature = manifest.get("signature")
+    if signature and not encoded.startswith(str(signature)):
+        raise ValueError(f"Image manifest signature mismatch: {source}")
+    payload = base64.b64decode(encoded, validate=True)
+    output = manifest.get("output")
+    if not isinstance(output, str) or not output.startswith("assets/images/"):
+        raise ValueError(f"Image manifest output is missing/unsafe: {source}")
+    if ".." in Path(output).parts:
+        raise ValueError(f"Image manifest output escapes assets/images: {source}")
+    return payload, output
+
+
+def resolve_source_image_ref(value: str) -> str:
+    if isinstance(value, str) and value.endswith(".parts.json"):
+        _payload, output = decode_parts_manifest(value)
+        return output
+    return value
+
+
+def resolve_runtime_image_refs(value: object) -> object:
+    if isinstance(value, str):
+        return resolve_source_image_ref(value)
+    if isinstance(value, dict):
+        return {key: resolve_runtime_image_refs(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [resolve_runtime_image_refs(item) for item in value]
+    return value
+
+
 def version_runtime_image_refs(value: object) -> object:
     """Version approved Country image URLs in deploy copies only."""
     if isinstance(value, str):
@@ -59,6 +100,7 @@ def version_runtime_image_refs(value: object) -> object:
 
 def write_runtime_json(source: Path, destination: Path) -> None:
     payload = json.loads(source.read_text(encoding="utf-8"))
+    payload = resolve_runtime_image_refs(payload)
     payload = version_runtime_image_refs(payload)
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -120,7 +162,7 @@ def copy_path(source: Path, destination: Path, *, ignore=None) -> None:
 def collect_image_refs(value: object, refs: set[str]) -> None:
     if isinstance(value, str):
         if value.startswith("assets/images/"):
-            refs.add(value)
+            refs.add(resolve_source_image_ref(value))
         return
     if isinstance(value, dict):
         for item in value.values():
@@ -129,6 +171,34 @@ def collect_image_refs(value: object, refs: set[str]) -> None:
     if isinstance(value, list):
         for item in value:
             collect_image_refs(item, refs)
+
+
+def collect_manifest_refs(value: object, refs: set[str]) -> None:
+    if isinstance(value, str):
+        if value.startswith("assets/images/") and value.endswith(".parts.json"):
+            refs.add(value)
+        return
+    if isinstance(value, dict):
+        for item in value.values():
+            collect_manifest_refs(item, refs)
+        return
+    if isinstance(value, list):
+        for item in value:
+            collect_manifest_refs(item, refs)
+
+
+def reconstruct_manifest_assets(slugs: list[str]) -> None:
+    refs: set[str] = set()
+    for registry_path in REGISTRY_PATHS:
+        collect_manifest_refs(json.loads(registry_path.read_text(encoding="utf-8")), refs)
+    for slug in slugs:
+        country_path = COUNTRY_DIR / f"{slug}.json"
+        collect_manifest_refs(json.loads(country_path.read_text(encoding="utf-8")), refs)
+    for source in sorted(refs):
+        payload, output = decode_parts_manifest(source)
+        destination = DIST / output
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(payload)
 
 
 def production_image_paths(slugs: list[str]) -> set[str]:
@@ -287,6 +357,8 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
         assert_versioned_runtime_images(payload, f"data/countries/{slug}.json")
         source_payload = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
         hero = source_payload.get("hero", {}).get("image", "")
+        if isinstance(hero, str):
+            hero = resolve_source_image_ref(hero)
         if isinstance(hero, str) and hero.startswith("assets/images/") and "/approved/" in hero:
             expected = f"{hero}?v={BUILD_VERSION}"
             page = (DIST / "countries" / slug / "index.html").read_text(encoding="utf-8")
@@ -319,6 +391,7 @@ def main() -> int:
         copy_path(source, DIST / relative)
 
     copy_path(ROOT / "assets", DIST / "assets", ignore=ignore_asset_sources)
+    reconstruct_manifest_assets(slugs)
     allowed_images = prune_unreferenced_images(slugs)
     package_data(slugs)
     package_country_pages(slugs)
