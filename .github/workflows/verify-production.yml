@@ -20,6 +20,7 @@ on:
       - "scripts/package_site.py"
       - "scripts/build_cloudflare.py"
       - "scripts/qa_published_browser.py"
+      - "scripts/qa_country_browser.py"
       - ".github/workflows/verify-production.yml"
   workflow_dispatch:
     inputs:
@@ -212,7 +213,7 @@ jobs:
           QA_OUT_DIR: qa-production-browser-output
           QA_SCOPE: reviewable
           QA_SLUGS: ${{ steps.target.outputs.slugs }}
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/qa_country_browser.py
 
       - name: Run full published live QA for shared rendering changes
         if: steps.target.outputs.full == 'true'
