@@ -184,7 +184,8 @@ jobs:
           assert len(destinations) == 202, len(destinations)
           palestine = next((row for row in destinations if row.get('slug') == 'palestine'), None)
           assert palestine is not None, 'palestine missing from production registry'
-          assert palestine.get('atlasPublished') is False, palestine
+          assert palestine.get('atlasPublished') is True, palestine
+          assert palestine.get('href') == 'countries/palestine/', palestine
           PY
 
       - name: Verify changed Country routes
