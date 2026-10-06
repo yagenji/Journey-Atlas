@@ -21,7 +21,6 @@
   const MAP_MIN_X = -80;
   const MAP_MAX_X = 1120;
   const MAP = 'assets/maps/world-states.svg?v=20261003-1';
-  const ANT = 'https://cdn.jsdelivr.net/gh/amcharts/ammap3@master/ammap/maps/svg/worldWithAntarcticaLow.svg';
   const COLORS = {
     asia: '#a9bea4', europe: '#d2b98a', africa: '#d19a75',
     'north-america': '#abc5c9', 'south-america': '#aabb83',
@@ -30,7 +29,8 @@
 
   const REGION_OVERVIEW = {
     europe: { view: [405, 14, 305, 154.698745] },
-    'north-america': { view: [-20, 4, 405, 205.419645] },
+    // Alaska to Panama and the Lesser Antilles (Central America and the Caribbean are in this region)
+    'north-america': { view: [-50, 6, 465, 235.852185] },
     oceania: {
       codes: ['AU', 'NZ', 'PG', 'FJ', 'SB', 'VU'],
       padding: 0.045, min: 195
@@ -40,7 +40,7 @@
     'western-europe': { view: [432, 78, 120, 60.86508] },
     'southern-europe': { padding: 0.035, min: 50 },
     'eastern-europe': { codes: ['BY','BG','CZ','HU','MD','PL','RO','SK','UA'], padding: 0.03, min: 58 },
-    'northern-north-america': { view: [-10, 2, 350, 177.52315] },
+    'northern-north-america': { view: [-30, 0, 425, 215.563825] },
     micronesia: { view: [835, 185, 215, 109.05] }
   };
 
@@ -446,12 +446,41 @@
     };
     svg.onpointerup = end; svg.onpointercancel = end;
   }
+  // A point on the country's main landmass: the bbox centre can fall in the sea
+  // when outlying islands widen the bbox (e.g. Taiwan with Kinmen and Matsu).
+  const anchors = new Map();
+  function anchor(g) {
+    const key = g.dataset.iso + ':' + (g.dataset.dx || 0);
+    if (anchors.has(key)) return anchors.get(key);
+    let result = null;
+    try {
+      const shapes = [...g.querySelectorAll('path,polygon,rect,circle,ellipse')].filter(e => e.isPointInFill);
+      const bb = g.getBBox(), dx = +(g.dataset.dx || 0), n = 24, pts = [];
+      const q = svg.createSVGPoint();
+      for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+        q.x = bb.x + bb.width * (i + .5) / n; q.y = bb.y + bb.height * (j + .5) / n;
+        if (shapes.some(e => e.isPointInFill(q))) pts.push([i, j, q.x, q.y]);
+      }
+      if (pts.length) {
+        const cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2;
+        const centre = pts.find(t => Math.abs(t[2] - cx) <= bb.width / n && Math.abs(t[3] - cy) <= bb.height / n);
+        let best = centre, score = -1;
+        if (!best) for (const t of pts) {
+          const c = pts.filter(u => Math.abs(u[0] - t[0]) <= 3 && Math.abs(u[1] - t[1]) <= 3).length;
+          if (c > score) { score = c; best = t; }
+        }
+        result = { x: best[2] + dx, y: best[3] };
+      }
+    } catch (e) { result = null; }
+    anchors.set(key, result);
+    return result;
+  }
   function placePin() {
     if (!pin || !selected || !svg) { if (pin) pin.hidden = true; return; }
     const g = grp(selected);
     if (!g) { pin.hidden = true; return; }
-    const b = bbox(g), p = svg.createSVGPoint();
-    p.x = b.x + b.width / 2; p.y = b.y + b.height / 2;
+    const b = bbox(g), p = svg.createSVGPoint(), a = anchor(g);
+    p.x = a ? a.x : b.x + b.width / 2; p.y = a ? a.y : b.y + b.height / 2;
     const m = svg.getScreenCTM();
     if (!m) return;
     const s = p.matrixTransform(m), r = wrap.getBoundingClientRect();
@@ -484,7 +513,7 @@
       .country-fallback-pin,.country-focus-pin{display:none!important}`;
     document.head.append(s);
   }
-  function build(mapText, antText) {
+  function build(mapText) {
     const doc = new DOMParser().parseFromString(mapText, 'image/svg+xml');
     const map = S('svg', {
       class: 'atlas-country-map', viewBox: WORLD.join(' '), role: 'img',
@@ -501,22 +530,6 @@
       if (c) groups.set(iso, g);
     });
 
-    if (!groups.has('AQ')) {
-      const ad = new DOMParser().parseFromString(antText, 'image/svg+xml'), ap = ad.querySelector('#AQ');
-      if (ap) {
-        const g = S('g', { class: 'ja-country is-destination' }), p = document.importNode(ap, true);
-        p.removeAttribute('id'); p.removeAttribute('class'); p.removeAttribute('fill'); p.removeAttribute('stroke');
-        g.append(p); g.dataset.iso = 'AQ'; g.dataset.region = 'antarctica';
-        g.style.setProperty('--fill', COLORS.antarctica); land.append(g);
-        const bb = g.getBBox(), tw = 270, th = 75, scale = Math.min(tw / bb.width, th / bb.height);
-        const ww = bb.width * scale, hh = bb.height * scale;
-        const tx = 500 - (bb.x + bb.width / 2) * scale, ty = 463 - (bb.y + bb.height / 2) * scale;
-        g.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
-        g.dataset.bbox = `${500 - ww / 2},${463 - hh / 2},${ww},${hh}`;
-        groups.set('AQ', g); bind(g, byIso.get('AQ'));
-      }
-    }
-
     wrapDateline();
     tip = document.createElement('div'); tip.className = 'map-tooltip'; tip.hidden = true;
     pin = document.createElement('span'); pin.className = 'map-selection-pin'; pin.textContent = '📍'; pin.hidden = true;
@@ -531,14 +544,13 @@
 
   Promise.all([
     fetch(MAP).then(r => r.text()),
-    fetch(ANT).then(r => r.text()),
     fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
     fetch('data/atlas-destinations.json?v=20260825-0128').then(r => r.json())
-  ]).then(([m, a, rd, core]) => {
+  ]).then(([m, rd, core]) => {
     regions = rd.regions || [];
     dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));
-    lookup(); build(m, a); setRegion('world', false);
+    lookup(); build(m); setRegion('world', false);
   }).catch(e => {
     console.error('[JOURNEY ATLAS map]', e);
     copy.textContent = '地図データを読み込めませんでした。';
