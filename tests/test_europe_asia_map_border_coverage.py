@@ -11,13 +11,15 @@ ROOT = Path(__file__).resolve().parents[1]
 # layer: the visible composition contains no foreign-vs-foreign land border.
 # Portugal and Qatar show only the target-vs-neighbour land border, already
 # represented by the dominant target-country outline; Bahrain is island/inset
-# context without an in-frame land boundary.
+# context without an in-frame land boundary. Monaco's only land border (France)
+# is the target outline; Natural Earth's line is a straight segment at that scale.
 NO_SEPARATE_CONTEXT_BORDER = {
     "bahrain",
     "cyprus",
     "iceland",
     "maldives",
     "malta",
+    "monaco",
     "portugal",
     "qatar",
     "srilanka",

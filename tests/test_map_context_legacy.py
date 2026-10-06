@@ -68,17 +68,10 @@ class LegacyMapContextTests(unittest.TestCase):
 
     def test_real_antigua_inset_removes_false_edge_wedge_without_changing_approved_paths(self):
         """Exercise the legacy adapter against the exact pre-migration source, not the promoted output."""
-        promoted = (ROOT / "assets/images/antiguabarbuda/map-atlas-v1.svg").read_text(encoding="utf-8")
-        marker = '<g id="geographic-context"><desc>'
-        self.assertEqual(promoted.count(marker), 1)
-        pre_context = promoted
-        for new, old in (("#eaf2f4", "#eef2ef"), ("#dcebf0", "#e4eceb"), ("#d0e3eb", "#dce7e7")):
-            self.assertEqual(pre_context.count('stop-color="' + new + '"'), 1)
-            pre_context = pre_context.replace('stop-color="' + new + '"', 'stop-color="' + old + '"', 1)
-        begin = pre_context.index('<g id="geographic-context"><desc>')
-        end = pre_context.index('</g>', begin) + len('</g>')
-        pre_context = pre_context[:begin] + pre_context[end + 1:]
-        # Reconstructed fixture must be identical to the source at the approved main baseline.
+        # The approved pre-migration source (main at 9152404) is kept as a fixture;
+        # the published map has since moved on to later versions.
+        pre_context = (ROOT / "tests/fixtures/antiguabarbuda-map-atlas-v1-approved.svg").read_text(encoding="utf-8")
+        # The fixture must be identical to the source at the approved main baseline.
         self.assertEqual(hashlib.sha256(pre_context.encode()).hexdigest(),
                          "6501d8cbe95eb151ba05eee867cf81c69baa032031f4057b51148a7e56ba8939")
         country = ROOT / "data/countries/antiguabarbuda.json"
