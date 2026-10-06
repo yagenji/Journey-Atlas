@@ -111,7 +111,7 @@ Content QA v5では、このラベル衝突が残るCountryはHero生成へ進�
 3. 衝突する場合はScene markerを最初に最小補正する。
 4. Capitalはmarkerを大きく動かす前に `labelPosition` を検討する。
 5. Hero / Capitalを動かす場合も、複数markerへ小さく分散させる。
-6. `mapOffset` のベクトルは5%以内。通常は2.5%以内を目標とする。
+6. `mapOffset` による移動は、1200×760 上でどの方向にも60px以内（横幅の5%）。通常は30px以内を目標とする。
 7. Validation通過後も、首都ラベル・Hero・番号の見え方を1200×760 PNGと実ページで目視確認する。
 
 補正後も「実際の地域を指している」と認識できる範囲を超えてはならない。
