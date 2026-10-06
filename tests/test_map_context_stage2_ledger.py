@@ -47,11 +47,15 @@ class Stage2ReviewLedgerTest(unittest.TestCase):
         self.assertTrue(all(e['status']=='PASS' for e in entries))
         self.assertTrue(all(e['promotionEligible'] is False for e in entries))
 
+        # The ledger records the Stage 2 roster of its reviewedAt date (109 maps on
+        # a 201-destination registry). Countries published later are produced
+        # with context from the start, so the record stays fixed: every reviewed
+        # Country must still be in the current roster, not the other way round.
         roster=derive_roster()
         roster_slugs={item['slug'] for item in roster}
         ledger_slugs={entry['slug'] for entry in entries}
-        self.assertEqual(ledger_slugs,roster_slugs)
-        self.assertEqual(len(roster),ledger['selectedRosterCount'])
+        self.assertLessEqual(ledger_slugs,roster_slugs)
+        self.assertGreaterEqual(len(roster),ledger['selectedRosterCount'])
 
         modes={}
         for entry in entries:

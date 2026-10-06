@@ -244,8 +244,11 @@ def main():
     if (ledger.get("stage") != "2" or ledger.get("stageStatus") != "COMPLETE"
             or ledger.get("promotionEligible") is not False
             or len(ledger_by_slug) != len(ledger_entries)
-            or set(ledger_by_slug) != roster_slugs):
-        raise RuntimeError("Stage 2 review ledger does not match the exact selected roster")
+            or not set(ledger_by_slug) <= roster_slugs):
+        raise RuntimeError("Stage 2 review ledger does not match the selected roster")
+    # The ledger is the fixed Stage 2 record; Countries published after it are
+    # produced with context from the start and are not part of this batch.
+    roster = [item for item in roster if item["slug"] in ledger_by_slug]
     if any(entry.get("status") != "PASS" or entry.get("promotionEligible") is not False
            for entry in ledger_entries):
         raise RuntimeError("Stage 2 review ledger contains a non-PASS or promotable entry")

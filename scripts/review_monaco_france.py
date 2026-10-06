@@ -40,7 +40,7 @@ def main():
     cli.add_argument('--output-dir',type=Path,required=True)
     args=cli.parse_args()
     out=args.output_dir.resolve();out.mkdir(parents=True,exist_ok=True)
-    path=args.repo/'assets/images/monaco/map-atlas-v1.svg'
+    path=args.repo/json.loads((args.repo/'data/countries/monaco.json').read_text(encoding='utf-8'))['map']['svg']
     raw=path.read_bytes();root=ET.fromstring(raw)
     if root.get('viewBox')!='0 0 1200 760':raise RuntimeError('Monaco canvas changed')
     if hashlib.sha256(raw).hexdigest()!=SOURCE_SHA:
