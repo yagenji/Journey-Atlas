@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="Marshall Islands map with enlarged Majuro inset" data-map-style="journey-atlas-map-v3-clean-background" data-map-projection="multi-region-local-equirectangular-fit-v1">
-<metadata>Source: GSHHS/GSHHG coastline data bundled with Basemap 2.0.0 / basemap-data 2.0.0 (LGPL-3.0-or-later), WGS84, intermediate resolution; Marshall Islands membership checked against RMI official geographic descriptions. Majuro Atoll is repeated in a detail inset that enlarges the same geography. Generated 2026-10-06.</metadata>
+<metadata>Source: GSHHS/GSHHG coastline data bundled with Basemap 2.0.0 / basemap-data 2.0.0 (LGPL-3.0-or-later), WGS84, intermediate resolution; Marshall Islands membership checked against RMI official geographic descriptions. Majuro Atoll is marked on the overview by a locator box and repeated below in a detail inset that enlarges the same geography. Generated 2026-10-06.</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset="0.52" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
 <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2dbad"/><stop offset="0.55" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
@@ -35,15 +35,21 @@
 <path d="M 560.77 422.26 L 560.85 422.18 L 561.60 421.47 L 562.03 422.15 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round"/>
 <path d="M 938.41 615.12 L 938.41 614.89 L 938.49 614.10 L 938.90 616.14 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round"/>
 </g>
-<rect x="785.0" y="500.0" width="380.0" height="225.0" fill="url(#sea)" opacity="0.98"/>
+<g id="majuro-source-locator" aria-hidden="true" fill="none" stroke="#6f8997" stroke-linejoin="round" stroke-linecap="round">
+<rect x="883" y="537" width="74" height="31" rx="2.5" stroke-width="1.35"/>
+<path d="M883,568 L805,570" stroke-width="1.1" opacity=".82"/>
+<path d="M957,568 L1145,570" stroke-width="1.1" opacity=".82"/>
+</g>
+<text x="883" y="530" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1.2" fill="#4f6875">MAJURO</text>
+<rect x="785.0" y="570.0" width="380.0" height="155.0" fill="url(#sea)" opacity="0.98"/>
 <g id="majuro-detail" data-map-region="majuro">
 <path d="M 846.87 583.51 L 846.87 582.35 L 853.23 578.27 L 870.17 612.23 L 985.38 654.02 L 1063.95 636.31 L 985.38 657.51 L 874.84 616.87 L 856.11 604.38 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round"/>
 <path d="M 1073.74 633.97 L 1074.61 633.12 L 1088.71 625.85 L 1086.08 635.42 Z" fill="url(#land)" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round"/>
 </g>
 <g data-map-inset-frame="majuro" data-inset-purpose="enlargement">
-<rect x="785.0" y="500.0" width="380.0" height="225.0" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="785.0" y="570.0" width="380.0" height="155.0" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/>
 </g>
 <g aria-hidden="true" font-family="system-ui, sans-serif" font-size="12" letter-spacing=".8" fill="#4f6875">
-<text x="801" y="523">マジュロ環礁 / 拡大</text>
+<text x="801" y="714">マジュロ環礁 / 拡大</text>
 </g>
 </svg>
