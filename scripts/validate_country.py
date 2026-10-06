@@ -29,7 +29,9 @@ COMMON_FACT_LABELS = ["地域", "首都", "人口", "面積", "言語", "主な�
 
 MAP_WIDTH = 1200
 MAP_HEIGHT = 760
-MAX_MARKER_OFFSET_PERCENT = 5.0
+# mapOffset is in % of the canvas width (x) and height (y); the cap is a
+# distance on the 1200x760 canvas so it is the same in every direction.
+MAX_MARKER_OFFSET_PX = 60.0
 MARKER_EDGE_MARGIN = {"scene": 18.0, "hero": 18.0, "capital": 18.0}
 
 
@@ -233,10 +235,10 @@ def marker_offset(errors: list[str], owner: str, value: object) -> tuple[float, 
     if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
         fail(errors, f"{owner}: mapOffset.x / y は数値で指定してください")
         return 0.0, 0.0
-    if math.hypot(float(x), float(y)) > MAX_MARKER_OFFSET_PERCENT:
+    if math.hypot(float(x) / 100 * MAP_WIDTH, float(y) / 100 * MAP_HEIGHT) > MAX_MARKER_OFFSET_PX:
         fail(
             errors,
-            f"{owner}: mapOffset が大きすぎます（最大 {MAX_MARKER_OFFSET_PERCENT:.1f}%）: x={x}, y={y}",
+            f"{owner}: mapOffset が大きすぎます（1200×760 上で最大 {MAX_MARKER_OFFSET_PX:.0f}px）: x={x}, y={y}",
         )
     return float(x), float(y)
 
