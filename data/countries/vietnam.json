@@ -11,15 +11,19 @@
   "capital": {
     "nameEn": "Hanoi",
     "nameJa": "ハノイ",
-    "coordinates": {"latitude": 21.0278, "longitude": 105.8342},
+    "coordinates": {"latitude": 21.0278, "longitude": 105.8342},"labelOffset":{"x":0,"y":16},
     "labelPosition": "left",
-    "mapOffset": {"x": 1.0, "y": -1.5}
+    "mapOffset": {"x": 0, "y": 0}
   },
   "hero": {
     "lead": "北部の石灰岩の湾から、山地の棚田と峠道、中部の洞窟・皇城・港町、乾いた砂丘、南部の大河デルタへ。南北に長い国土を移動するほど、気候、地形、建築、食、暮らしのリズムが切り替わる国。",
     "image": "assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp",
     "location": "Hạ Long Bay / Ti Top Island Viewpoint",
-    "coordinates": {"latitude": 20.859, "longitude": 107.0801}
+    "coordinates": {"latitude": 20.859, "longitude": 107.0801},
+    "mapOffset": {
+      "x": 0,
+      "y": 4.95
+    }
   },
   "map": {
     "bounds": {"north": 23.8, "south": 7.6, "west": 101.6, "east": 110.0},
@@ -28,7 +32,7 @@
     "source": "JOURNEY ATLAS map-v3 clean background; Viet Nam boundary geometry in WGS84 from Natural Earth Admin-0 1:10m. Updated 2026-10-04: major inland water (lakes of 500 px or more, including surrounding countries) and lake islands from GSHHS resolution=i; national borders and the target outline drawn above inland water, clipped outside the target."
   },
   "scenes": [
-    {"id":"hanoi-hoan-kiem-old-quarter","name":"ハノイ / ホアンキエム湖と旧市街","nameLocal":"Hà Nội / Hoàn Kiếm & Old Quarter","mapLabel":"Hanoi","description":"湖の周囲から細い通りへ入ると、商店、低層の家並み、歩道の小さな店、バイクの流れが重なる。首都を記念建築だけでなく、密度の高い日常の街路から見る景観。","coordinates":{"latitude":21.0287,"longitude":105.8521},"image":"assets/images/vietnam/approved/hanoi-hoan-kiem-old-quarter.webp","labelPosition":"left","mapOffset":{"x":-2.5,"y":3.6}},
+    {"id":"hanoi-hoan-kiem-old-quarter","name":"ハノイ / ホアンキエム湖と旧市街","nameLocal":"Hà Nội / Hoàn Kiếm & Old Quarter","mapLabel":"Hanoi","description":"湖の周囲から細い通りへ入ると、商店、低層の家並み、歩道の小さな店、バイクの流れが重なる。首都を記念建築だけでなく、密度の高い日常の街路から見る景観。","coordinates":{"latitude":21.0287,"longitude":105.8521},"image":"assets/images/vietnam/approved/hanoi-hoan-kiem-old-quarter.webp","labelPosition":"left","mapOffset":{"x":4.28,"y":-2.49}},
     {"id":"mu-cang-chai-la-pan-tan-terraces","name":"ムーカンチャイ / ラパンタンの棚田","nameLocal":"Mù Cang Chải / La Pán Tẩn Rice Terraces","mapLabel":"Mù Cang Chải","description":"急斜面に沿って細い水田が幾重にも続く。北西部の山地では、平地の稲作とは異なる形で斜面と水を使い、農業そのものが地形の輪郭をつくっている。","coordinates":{"latitude":21.7885,"longitude":104.1662},"image":"assets/images/vietnam/approved/mu-cang-chai-la-pan-tan-terraces.webp","labelPosition":"left"},
     {"id":"ha-giang-ma-pi-leng-pass","name":"ハザン / マーピーレン峠","nameLocal":"Hà Giang / Mã Pí Lèng Pass","mapLabel":"Mã Pí Lèng","description":"石灰岩の山壁を道路が縫い、深い峡谷の底をニョークエ川が流れる。紅河デルタの低地とは対照的な、北端の高原と険しい移動の地理が一度に見える。","coordinates":{"latitude":23.239,"longitude":105.4},"image":"assets/images/vietnam/approved/ha-giang-ma-pi-leng-pass.webp","labelPosition":"right"},
     {"id":"phong-nha-son-river-karst","name":"フォンニャ / ソン川とカルスト","nameLocal":"Phong Nha / Son River & Karst","mapLabel":"Phong Nha","description":"穏やかな川の先に石灰岩の峰が重なり、その内部には長い洞窟系が広がる。海上のカルストであるハロン湾とは別の形で、中部の地質が地上と地下の景観をつくる。","coordinates":{"latitude":17.5793,"longitude":106.2836},"image":"assets/images/vietnam/approved/phong-nha-son-river-karst.webp","labelPosition":"left"},
