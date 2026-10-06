@@ -42,28 +42,28 @@
   },
   "map": {
     "bounds": {
-      "north": 8.18,
-      "south": 2.8,
-      "west": 130.95,
-      "east": 134.83
+      "north": 8.4,
+      "south": 2.5,
+      "west": 130.7,
+      "east": 135.1
     },
     "svg": "assets/images/palau/map-atlas-v1.svg",
     "route": null,
-    "source": "Palau coastlines and islands rendered from GSHHS/GSHHG intermediate-resolution coastline polygons distributed with Basemap 2.0.0, WGS84, with verified high-resolution OpenStreetMap country-boundary coastline supplements for Ngemelis, Omekang and Kayangel micro-islands from hyperknot/country-levels-export. The northern main island group, Rock Islands/Peleliu/Angaur group, and Southwest Islands are shown in separate geographic frames using real bounds and independent local-equirectangular projection; no coordinates are altered. Reviewed 2026-10-05.",
+    "source": "Palau coastlines and islands rendered from GSHHS/GSHHG intermediate-resolution coastline polygons via Basemap 2.0.0, WGS84, with verified high-resolution OpenStreetMap country-boundary coastline supplements for Ngemelis, Omekang and Kayangel micro-islands from hyperknot/country-levels-export. Existing verified main-island coastline paths reprojected into a single geographic overview. The overview Southwest Islands use all five land polygons from hyperknot/country-levels-export geojson/high/iso1/PW.geojson (OSM relation 571805, ODbL 1.0), including the small islands absent at the previous coastline resolution. Northern and southern main-island areas repeat as enlarged details. Scene coordinates are unchanged.",
     "regions": [
       {
-        "id": "southwest-islands",
+        "id": "overview",
         "bounds": {
-          "north": 5.45,
-          "south": 2.8,
-          "west": 130.95,
-          "east": 132.45
+          "north": 8.4,
+          "south": 2.5,
+          "west": 130.7,
+          "east": 135.1
         },
         "rect": {
-          "x": 35,
-          "y": 65,
-          "width": 240,
-          "height": 630
+          "x": 25,
+          "y": 105,
+          "width": 430,
+          "height": 610
         }
       },
       {
@@ -75,9 +75,9 @@
           "east": 134.8
         },
         "rect": {
-          "x": 310,
+          "x": 510,
           "y": 55,
-          "width": 850,
+          "width": 650,
           "height": 310
         }
       },
@@ -90,14 +90,14 @@
           "east": 134.62
         },
         "rect": {
-          "x": 310,
+          "x": 510,
           "y": 400,
-          "width": 850,
+          "width": 650,
           "height": 310
         }
       }
     ],
-    "insetNote": "※ パラオの各島群は、実際の位置関係・縮尺と異なる別枠表示です。"
+    "insetNote": "※ 北部・南部は、同じ地域を拡大した別枠表示です。全体図のA・B枠に対応します。"
   },
   "scenes": [
     {
