@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 import build_site
+import package_site
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
@@ -60,8 +61,11 @@ def collect_image_refs(value: object, refs: set[str]) -> None:
 def version_runtime_image_refs(value: object) -> object:
     if isinstance(value, str):
         clean = value.split("?", 1)[0]
-        if clean.startswith("assets/images/") and "/approved/" in clean:
-            return build_site.versioned_approved_image(clean)
+        if clean.startswith("assets/images/"):
+            resolved = package_site.resolve_source_image_ref(clean)
+            if "/approved/" in resolved:
+                return build_site.versioned_approved_image(resolved)
+            return resolved
         return value
     if isinstance(value, dict):
         return {key: version_runtime_image_refs(item) for key, item in value.items()}
@@ -160,10 +164,13 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
 
 def package_target_images(refs: set[str]) -> None:
     for relative in sorted(refs):
-        source = ROOT / relative
-        if not source.exists():
-            raise FileNotFoundError(f"Referenced target image missing: {relative}")
-        copy_file(source, DIST / relative)
+        if relative.endswith(".parts.json"):
+            payload, output = package_site.decode_parts_manifest(relative)
+            destination = DIST / output
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(payload)
+            continue
+        copy_file(ROOT / relative, DIST / relative)
 
 
 def write_preview_metadata(slugs: list[str]) -> None:
@@ -193,7 +200,8 @@ def validate_preview(slugs: list[str], refs: set[str]) -> None:
         raise ValueError(
             f"Targeted preview generated unexpected Country pages: expected={sorted(slugs)} found={packaged_pages}"
         )
-    missing = [relative for relative in sorted(refs) if not (DIST / relative).exists()]
+    resolved_refs = {package_site.resolve_source_image_ref(relative) for relative in refs}
+    missing = [relative for relative in sorted(resolved_refs) if not (DIST / relative).exists()]
     if missing:
         raise FileNotFoundError(f"Targeted preview image set incomplete: {missing}")
 

@@ -88,15 +88,38 @@ def country_refs(slug: str, data: dict) -> dict[str, set[str]]:
     return refs
 
 
+def decode_parts_manifest(path: Path) -> bytes | None:
+    if not path.name.endswith(".parts.json"):
+        return None
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        parts = manifest.get("parts") or []
+        if not isinstance(parts, list) or not parts:
+            raise ValueError("manifest parts are empty")
+        encoded = "".join(
+            "".join((ROOT / str(part)).read_text(encoding="utf-8").split())
+            for part in parts
+        )
+        signature = manifest.get("signature")
+        if signature and not encoded.startswith(str(signature)):
+            raise ValueError("manifest signature mismatch")
+        return base64.b64decode(encoded, validate=True)
+    except Exception as exc:
+        raise ValueError(f"manifest decode failed: {exc}") from exc
+
+
 def verify_raster(path: Path) -> tuple[int, int, str]:
     try:
-        with Image.open(path) as image:
+        payload = decode_parts_manifest(path)
+        first = io.BytesIO(payload) if payload is not None else path
+        second = io.BytesIO(payload) if payload is not None else path
+        with Image.open(first) as image:
             image.verify()
-        with Image.open(path) as image:
+        with Image.open(second) as image:
             image.load()
             width, height = image.size
             fmt = image.format or path.suffix.lstrip(".").upper()
-    except (OSError, UnidentifiedImageError) as exc:
+    except (OSError, UnidentifiedImageError, ValueError) as exc:
         raise ValueError(f"decode failed: {exc}") from exc
     if width <= 0 or height <= 0:
         raise ValueError(f"invalid dimensions: {width}x{height}")
@@ -119,7 +142,9 @@ def _hamming(left: tuple[bool, ...], right: tuple[bool, ...]) -> int:
 def visual_fingerprint(path: Path) -> dict[str, object]:
     """Return a conservative fingerprint for exact/near-duplicate detection."""
     try:
-        with Image.open(path) as image:
+        payload_source = decode_parts_manifest(path)
+        source = io.BytesIO(payload_source) if payload_source is not None else path
+        with Image.open(source) as image:
             rgb = image.convert("RGB")
             thumb = rgb.resize(DUPLICATE_THUMB_SIZE, _resample_lanczos())
             gray = thumb.convert("L")
@@ -169,7 +194,7 @@ def validate_duplicate_group(
 
     for owner, asset in members:
         path = ROOT / asset
-        if not path.exists() or path.suffix.lower() not in RASTER_SUFFIXES:
+        if not path.exists() or (path.suffix.lower() not in RASTER_SUFFIXES and not path.name.endswith(".parts.json")):
             continue
         try:
             fingerprints[owner] = visual_fingerprint(path)
@@ -338,6 +363,18 @@ def validate_map_svg(errors: list[str], owner: str, asset: str) -> None:
 
 def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str]) -> None:
     """Ensure renewed production folders contain only currently referenced final assets."""
+    expanded = set(referenced)
+    for asset in list(referenced):
+        if not asset.endswith(".parts.json"):
+            continue
+        manifest_path = ROOT / asset
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            for part in manifest.get("parts") or []:
+                expanded.add(str(part))
+        except Exception:
+            pass
+
     roots: set[Path] = set()
     for asset in referenced:
         parts = Path(asset).parts
@@ -345,7 +382,7 @@ def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str])
             roots.add(ROOT.joinpath(*parts[:3]))
 
         path = Path(asset)
-        if path.suffix.lower() in RASTER_SUFFIXES and "approved" not in path.parts:
+        if (path.suffix.lower() in RASTER_SUFFIXES or path.name.endswith(".parts.json")) and "approved" not in path.parts:
             errors.append(f"{slug}: production raster must live in approved/: {asset}")
 
     for root in sorted(roots):
@@ -355,7 +392,7 @@ def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str])
             if not path.is_file():
                 continue
             relative = path.relative_to(ROOT).as_posix()
-            if relative not in referenced:
+            if relative not in expanded:
                 errors.append(f"{slug}: unreferenced file remains in production asset folder: {relative}")
 
 
@@ -382,7 +419,7 @@ def scan(slugs: list[str]) -> tuple[list[str], int]:
             errors.append(f"{', '.join(sorted(owners))}: referenced asset missing: {asset}")
             continue
         suffix = path.suffix.lower()
-        if suffix in RASTER_SUFFIXES:
+        if suffix in RASTER_SUFFIXES or path.name.endswith(".parts.json"):
             try:
                 width, height, _fmt = verify_raster(path)
             except ValueError as exc:
