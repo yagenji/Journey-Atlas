@@ -23,11 +23,12 @@
       "north": -63.65,
       "south": -65.45,
       "west": -64.8,
-      "east": -60.7
+      "east": -57.5
     },
     "svg": "assets/images/antarctica/map-atlas-v1.svg",
+    "insetNote": "※ この地図は南極大陸全体ではなく、観光航海で訪れる南極半島の一部（今回の8地点周辺）を拡大表示しています。",
     "route": null,
-    "source": "Antarctic Peninsula west-coast shoreline and islands from GSHHS/GSHHG via Basemap 2.0.0, WGS84, intermediate resolution. No territorial-claim boundaries shown; 1200×760; reviewed 2026-10-05."
+    "source": "Antarctic Peninsula west-coast shoreline and islands from GSHHS/GSHHG via Basemap 2.0.0, WGS84, intermediate resolution. Detail view around the eight Scene locations; no territorial-claim boundaries shown; 1200×760; reviewed 2026-10-06."
   },
   "scenes": [
     {
@@ -87,7 +88,7 @@
       },
       "image": "assets/images/antarctica/approved/scene-04-neko-harbour.webp",
       "mapOffset": {
-        "x": 0.8,
+        "x": 1.1,
         "y": 0
       }
     },
@@ -214,10 +215,10 @@
       "topicKey": "south-america-gateway",
       "themeEn": "ACCESS / OCEAN",
       "themeJa": "アクセス / 海",
-      "title": "南極半島は、南米から数日の船旅で届く",
-      "text": "南極観光の中心は船で、南極半島は南米の港から数日で到達できる。地理的な近さが、この地域に観光航海が集中する理由の一つになっている。",
-      "points": ["船が観光の中心", "南米から数日で到達"],
-      "sourceKey": "tourism"
+      "title": "南極半島への入口は、南米南部",
+      "text": "多くのクルーズはウシュアイアなど南米南部のゲートウェイから出航する。プンタ・アレーナスからキングジョージ島へ飛び、船に乗り継ぐフライ＆クルーズもある。",
+      "points": ["南米南部から船で出航", "プンタ・アレーナス発の空路もある"],
+      "sourceKey": "access"
     }
   ],
   "travelTrivia": [
@@ -306,8 +307,8 @@
     {"months": "4〜9月", "color": "#6e8290", "text": "冬季は一般的な観光航海が大きく限られる。海氷が広がり、暗い時間が長くなるため、通常の半島クルーズの時期ではない。"}
   ],
   "transport": {
-    "title": "エクスペディション船が旅の基点",
-    "text": "南極観光は主に船で行われ、南米の港からドレーク海峡を越えて南極半島へ向かう。現地ではゾディアックで上陸や海上観察を行うが、氷・風・波・野生動物の状況で順番や訪問地は変わる。",
+    "title": "南米南部から船で渡るのが基本",
+    "text": "南極半島へは、まず南米南部のゲートウェイへ移動する。多くのクルーズはアルゼンチンのウシュアイアなどから出航し、ドレーク海峡を越えて数日で半島へ入る。別の選択肢として、チリのプンタ・アレーナスからキングジョージ島へ飛び、現地でエクスペディション船に乗るフライ＆クルーズもある。上陸や航路は天候・海氷で変わる。",
     "icon": "sea"
   },
   "personas": [
@@ -376,11 +377,11 @@
     {"slug": "chile", "nameEn": "CHILE", "nameJa": "チリ", "flag": "🇨🇱", "reason": "パタゴニア、フエゴ諸島、太平洋側の氷河地形を、南極半島とは別のスケールで比較できる。", "affinityType": "LANDSCAPE"},
     {"slug": "iceland", "nameEn": "ICELAND", "nameJa": "アイスランド", "flag": "🇮🇸", "reason": "氷河、火山、荒涼とした海岸という高緯度景観を、北半球の有人地域として対照的に楽しめる。", "affinityType": "NATURE"}
   ],
-  "updatedAt": "2026-10-05",
-  "sourcesVerifiedAt": "2026-10-05",
+  "updatedAt": "2026-10-06",
+  "sourcesVerifiedAt": "2026-10-06",
   "sourceDates": {
     "population": "2026-10-05",
-    "tourism": "2026-10-05",
+    "tourism": "2026-10-06",
     "japanArea": "2026-07-01"
   },
   "sources": {
@@ -388,7 +389,8 @@
     "geography": "Australian Antarctic Program, Antarctic geography and geology — Antarctica covers 13,661,000 km²; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/geography-and-geology/",
     "japanArea": "Geospatial Information Authority of Japan, Nationwide prefectural/municipal area survey, 2026-07-01: Japan 377,973.68 km². https://web2.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "iceSheet": "Australian Antarctic Program, Ice sheets — mean Antarctic ice-sheet thickness 2.16 km, max known 4,776 m; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/ice-and-atmosphere/ice-sheet/",
-    "tourism": "Antarctic Treaty Secretariat, Tourism and Non-Governmental Activities — tourism is primarily vessel-based; about 98% of tourism voyages occur in the Antarctic Peninsula during October–April; checked 2026-10-05. https://www.ats.aq/e/tourism.html",
+    "tourism": "Antarctic Treaty Secretariat, Tourism and Non-Governmental Activities — tourism is primarily vessel-based; about 98% of tourism voyages occur in the Antarctic Peninsula during October–April; checked 2026-10-06. https://www.ats.aq/e/tourism.html",
+    "access": "IAATO, FAQs and current operator directory — most cruises use southern South American gateways including Ushuaia and Punta Arenas; IAATO-listed fly-cruise programs operate from Punta Arenas to Antarctica/King George Island; checked 2026-10-06. https://iaato.org/faqs ; https://iaato.org/node/63233 ; https://iaato.org/node/63255",
     "treaty": "Antarctic Treaty Secretariat, The Antarctic Treaty — 58 Parties; Article IV preserves territorial-claim status quo and prevents new/enlarged claims; checked 2026-10-05. https://www.ats.aq/e/antarctictreaty.html",
     "seaIce": "Australian Antarctic Program, Sea ice distribution — almost 20 million km² in late winter and about 4 million km² in late summer; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/weather-and-climate/climate-change/sea-ice/sea-ice/",
     "plants": "Australian Antarctic Program, Plants and microbes — lichens, bryophytes, algae and two flowering plants occur in the northern/western Antarctic Peninsula; checked 2026-10-05. https://www.antarctica.gov.au/about-antarctica/plants/",
@@ -404,6 +406,6 @@
     "neumayerGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neumayer Channel — separates Wiencke Island and Anvers Island. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110338",
     "grahamGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Graham Passage — separates Bluff Island from Danco Coast. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=109088",
     "nekoGazetteer": "Australian Antarctic Data Centre / SCAR Composite Gazetteer, Neko Harbour — 64°50′S 62°31′W. https://data.aad.gov.au/aadc/gaz/display_name.cfm?gaz_id=110314",
-    "map": "GSHHS/GSHHG shoreline geometry via Basemap 2.0.0, WGS84, intermediate resolution; no territorial-claim boundaries; 1200×760; generated and reviewed 2026-10-05."
+    "map": "GSHHS/GSHHG shoreline geometry via Basemap 2.0.0, WGS84, intermediate resolution; no territorial-claim boundaries; 1200×760; generated and reviewed 2026-10-06."
   }
 }
