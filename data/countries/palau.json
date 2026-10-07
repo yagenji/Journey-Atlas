@@ -24,7 +24,7 @@
       "x": 0,
       "y": 0
     },
-    "mapRegion": "north-main"
+    "mapRegion": "main-detail"
   },
   "hero": {
     "lead": "西太平洋の海に、森をまとった石灰岩島が幾重にも浮かぶ。浅い礁湖から外洋の深い青へ、水の色が短い距離で切り替わり、その内側に海洋湖、珊瑚礁、古い集落の痕跡までが重なる。",
@@ -38,7 +38,7 @@
       "x": -3.0,
       "y": 0.5
     },
-    "mapRegion": "south-main"
+    "mapRegion": "main-detail"
   },
   "map": {
     "bounds": {
@@ -49,7 +49,7 @@
     },
     "svg": "assets/images/palau/map-atlas-v1.svg",
     "route": null,
-    "source": "Palau coastlines and islands rendered from GSHHS/GSHHG intermediate-resolution coastline polygons via Basemap 2.0.0, WGS84, with verified high-resolution OpenStreetMap country-boundary coastline supplements for Ngemelis, Omekang and Kayangel micro-islands from hyperknot/country-levels-export. Existing verified main-island coastline paths reprojected into a single geographic overview. The overview Southwest Islands use all five land polygons from hyperknot/country-levels-export geojson/high/iso1/PW.geojson (OSM relation 571805, ODbL 1.0), including the small islands absent at the previous coastline resolution. Northern and southern main-island areas repeat as enlarged details. Scene coordinates are unchanged.",
+    "source": "Palau coastlines and islands rendered from GSHHS/GSHHG intermediate-resolution coastline polygons via Basemap 2.0.0, WGS84, with verified high-resolution OpenStreetMap country-boundary coastline supplements for Ngemelis, Omekang and Kayangel micro-islands from hyperknot/country-levels-export. Existing verified main-island coastline paths reprojected into a single geographic overview. The overview Southwest Islands use all five land polygons from hyperknot/country-levels-export geojson/high/iso1/PW.geojson (OSM relation 571805, ODbL 1.0), including the small islands absent at the previous coastline resolution. The main-island group repeats as one continuous enlarged detail. Scene coordinates are unchanged.",
     "regions": [
       {
         "id": "overview",
@@ -67,37 +67,22 @@
         }
       },
       {
-        "id": "north-main",
+        "id": "main-detail",
         "bounds": {
           "north": 8.18,
-          "south": 7.32,
-          "west": 134.35,
+          "south": 6.8,
+          "west": 134.05,
           "east": 134.8
         },
         "rect": {
           "x": 510,
           "y": 55,
           "width": 650,
-          "height": 310
-        }
-      },
-      {
-        "id": "south-main",
-        "bounds": {
-          "north": 7.38,
-          "south": 6.8,
-          "west": 134.05,
-          "east": 134.62
-        },
-        "rect": {
-          "x": 510,
-          "y": 400,
-          "width": 650,
-          "height": 310
+          "height": 655
         }
       }
     ],
-    "insetNote": "※ 北部・南部は、同じ地域を拡大した別枠表示です。"
+    "insetNote": "※ 主要島群は、同じ地域を拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -113,10 +98,10 @@
       "image": "assets/images/palau/approved/scene-01-jellyfish-lake.avif.parts.json",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 4.9,
-        "y": -0.6
+        "x": 4.8,
+        "y": -2.0
       },
-      "mapRegion": "south-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "blue-corner",
@@ -134,7 +119,7 @@
         "x": -3.5,
         "y": -0.8
       },
-      "mapRegion": "south-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "long-beach",
@@ -149,10 +134,10 @@
       "image": "assets/images/palau/approved/scene-03-long-beach.avif.parts.json",
       "labelPosition": "right",
       "mapOffset": {
-        "x": 2.0,
-        "y": 2.0
+        "x": 2.6,
+        "y": 3.5
       },
-      "mapRegion": "south-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "ngardmau-waterfall",
@@ -170,7 +155,7 @@
         "x": -3.0,
         "y": 0.2
       },
-      "mapRegion": "north-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "badrulchau",
@@ -188,7 +173,7 @@
         "x": 2.8,
         "y": -0.2
       },
-      "mapRegion": "north-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "bai-rengarairrai",
@@ -206,7 +191,7 @@
         "x": 2.4,
         "y": 0.8
       },
-      "mapRegion": "north-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "kayangel-atoll",
@@ -224,7 +209,7 @@
         "x": -2.8,
         "y": 0.3
       },
-      "mapRegion": "north-main"
+      "mapRegion": "main-detail"
     },
     {
       "id": "thousand-man-cave",
@@ -240,9 +225,9 @@
       "labelPosition": "right",
       "mapOffset": {
         "x": -0.5,
-        "y": 0.5
+        "y": 2.0
       },
-      "mapRegion": "south-main"
+      "mapRegion": "main-detail"
     }
   ],
   "encounters": [
