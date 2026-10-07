@@ -87,8 +87,12 @@ class LandFillParityTest(unittest.TestCase):
             '</g></g></svg>'
         )
         groups = collect_path_groups(root)
+        # Composed square: x 110-130, y 56-76.
         self.assertTrue(on_land_in_path(groups[0], (120, 66)))
-        self.assertFalse(on_land_in_path(groups[0], (110, 56)))
+        # Inside the square the shape would occupy if the inner translate were
+        # dropped (x 100-120, y 50-70), and beyond the coastline tolerance of
+        # the composed square.
+        self.assertFalse(on_land_in_path(groups[0], (101, 51)))
 
     def test_matrix_parser_accepts_saint_lucia_affine_form(self):
         matrix = parse_transform_matrix(
