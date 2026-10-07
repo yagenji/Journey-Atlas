@@ -122,7 +122,17 @@ def signature_flags(data: dict, item: dict) -> list[str]:
     heritage = any(term.lower() in haystack for term in HERITAGE_TERMS)
     if heritage:
         count = first_number(value)
-        exceptional_count = item.get("exceptionalHeritageCount") is True and count is not None and count >= 25
+        count_value = bool(re.search(r"(?:件|\bsites?\b)", value, flags=re.IGNORECASE))
+        dimension_value = bool(re.search(
+            r"(?:ha|ヘクタール|km²|平方キロ|\bkm\b|\bm\b|年|\byears?\b)",
+            value,
+            flags=re.IGNORECASE,
+        ))
+        # 25+ World Heritage sites is rare enough to be an exceptional
+        # Signature-Fact candidate. It is still reviewed editorially rather
+        # than becoming an automatic PASS. Areas, dates, component counts,
+        # etc. remain heritage-description review candidates.
+        exceptional_count = count is not None and count >= 25 and count_value and not dimension_value
         if exceptional_count:
             flags.append("HERITAGE_EXCEPTION_REVIEW")
         elif any(term.lower() in haystack for term in HERITAGE_DETAIL_TERMS):
