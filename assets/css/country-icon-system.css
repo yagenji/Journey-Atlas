@@ -264,7 +264,7 @@ html{scroll-padding-top:108px;}
   text-align:left!important;
 }
 
-/* Map marker legend: number = scenery, diamond = hero image location. */
+/* Map marker legend: number = scenery, diamond = hero image location, dot = capital. */
 .map-legend{
   display:flex;
   align-items:center;
@@ -303,6 +303,15 @@ html{scroll-padding-top:108px;}
   background:#fbf8f0;
   transform:rotate(45deg);
   box-shadow:0 1px 2px rgba(9,42,75,.12);
+}
+.map-legend__capital{
+  width:8px;
+  height:8px;
+  display:block;
+  border:2px solid #fbf8f0;
+  border-radius:50%;
+  background:#12365c;
+  box-shadow:0 0 0 1px rgba(18,54,92,.28),0 1px 2px rgba(9,42,75,.12);
 }
 
 /* ---------- MAP CAPITAL ---------- */
