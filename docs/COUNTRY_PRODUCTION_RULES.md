@@ -2,6 +2,10 @@
 
 Status: **single human production authority for new Countries**
 
+The normal flow below applies to new Countries. For the user-authorized
+remediation of existing Country imagery, use section 15 instead of the new-Country
+approval and publication flow. Its scope does not include new Country production.
+
 The production system is deliberately lightweight. GitHub stores final Country assets and runs finish-line QA; it does not track image-generation history or editorial micro-state.
 
 ## 1. Core principle
@@ -236,3 +240,64 @@ A new Country is complete only when:
 - the canonical unpublished page is explicitly approved;
 - publication is merged;
 - production route/SHA smoke verification passes.
+
+## 15. Existing Hero / Scene image remediation
+
+This workflow implements the user's approved 2026-10-07 remediation direction:
+retain existing BORDERLINE imagery and minimize human operations through one
+finished-page batch review, normally covering about five Countries.
+
+### Scope and quality
+
+- Use the completed image-quality audit to select existing FAIL Hero / Scene
+  targets. Confirm latest `main`, current image references and existing work first.
+- Retain existing PASS and BORDERLINE images. Retained BORDERLINE images remain
+  BORDERLINE; this is an explicit retention exception, not a PASS reclassification.
+- Every newly generated replacement must PASS `IMAGE_QUALITY.md`. Regenerate a
+  new BORDERLINE or FAIL candidate internally before presenting the batch.
+- Generate each replacement independently: one target, one image call, one
+  output. Keep the real place accurate and simplify its rendering.
+- Preserve Taste images, maps, editorial content, URLs and publication state.
+  Do not regenerate retained images to complete a nominal eight-Scene batch or
+  thirteen-image handoff.
+
+### Autonomous preparation
+
+Proceed through target preparation, independent generation, internal visual QA,
+replacement-page preparation and relevant target QA without per-Hero, per-Scene
+or per-Country approval. Do not stop to request "continue" between deterministic
+steps. A pilot Country is included in the first finished-page batch review;
+there is no separate pilot approval gate.
+
+Inspect the complete nine-image Hero / Scene set, including retained images,
+for consistency. Do not silently expand the remediation scope to retained
+BORDERLINE images. Raise a concrete inconsistency in the finished batch review
+if it materially affects the page.
+
+Prepare replacements in an isolated working copy or review preview. Before
+review, verify raster decoding, dimensions/aspect ratios, references and
+duplicates, and actual Desktop / Tablet / Mobile rendering of affected pages.
+Keep candidates and previews out of live published assets.
+
+### One approval gate per finished batch
+
+Present the completed replacement pages and a concise changed-target list as
+one review, normally for about five Countries. Clearly identify the retained
+images and newly generated replacements. This single batch approval replaces
+the separate Hero, Scene and final-page gates for this remediation only.
+
+After explicit user approval of the finished batch, commit/PR and apply its
+approved replacements together, run relevant checks and verify production
+routes and deployed SHA. Do not unpublish an existing Country or create a
+second publication approval gate. Fix only specifically rejected targets;
+do not ask to reapprove unchanged, already approved targets.
+
+Continue autonomously into preparing the next batch after approved replacements
+are verified. Each subsequent completed batch still requires explicit approval
+before its live replacements are applied. Report a concrete blocker when tools
+or unresolved factual inputs prevent completion; do not invent geography or
+claim background work will continue after a turn ends.
+
+Use final assets only in the repository. Do not add Production State, approval
+ledgers, generation histories, reservations or image-by-image PRs. Shared policy
+changes are separate from the final image-replacement batch.
