@@ -5,14 +5,16 @@ The same assignments are used by both the top-page theme filter and each country
 
 ## Assignment rule
 
-Each destination should normally have 1–3 primary themes. Use 4 only when the travel motivation is genuinely broad and distinctive.
+Aim for 3 primary themes per destination when all three work as useful travel tags.
+Use only 1 or 2 when a third theme would be weak, repetitive, or artificial.
 
-A theme is not assigned because an element merely exists in a country. It is assigned when that element is a strong reason a traveler would choose the destination.
+A theme is not assigned because an element merely exists in a country. It is assigned when it meaningfully describes why or how someone would travel there.
 
 Examples:
 
-- Iceland: `earth`, `road`
+- Iceland: `earth`, `road`, `wildlife`
 - Norway: `earth`, `sea`, `road`
+- Antarctica: `earth`, `wildlife` — no third theme is forced
 
 ## Top-level themes
 
@@ -36,8 +38,9 @@ Do not duplicate theme labels inside each country JSON.
 
 Before publishing a new country:
 
-1. Choose 1–3 primary themes.
-2. Add the country slug to the corresponding `examples` arrays in `data/theme-taxonomy.json`.
-3. Check that the top-page theme filter returns the country.
-4. Check that the same themes appear on the country page.
-5. If the country feels weak under a theme, remove the assignment rather than expanding the taxonomy.
+1. Start by looking for 3 useful primary themes.
+2. Keep 1 or 2 if a third theme is not genuinely useful.
+3. Add the country slug to the corresponding `examples` arrays in `data/theme-taxonomy.json`.
+4. Check that the top-page theme filter returns the country.
+5. Check that the same themes appear on the country page.
+6. If a theme feels weak or merely technically present, remove it rather than forcing the count to three.
