@@ -120,6 +120,12 @@ Judge every Hero and Scene against the same style band before it reaches a user 
 
 A BORDERLINE Hero / Scene is **not** presented for approval. Regenerate that image with stronger simplification and lower photographic surface detail.
 
+For the user-authorized remediation of existing imagery, section 15 of
+`COUNTRY_PRODUCTION_RULES.md` provides a retention exception for existing audited
+BORDERLINE images. They retain their BORDERLINE classification. The exception
+does not apply to newly generated replacements: every new Hero / Scene must
+PASS before finished-page batch review.
+
 ### FAIL
 
 - reads as a photograph or AI-generated photograph;
@@ -144,6 +150,9 @@ Before requesting Hero approval, perform the internal style-band check. BORDERLI
 
 One explicit user approval is required.
 
+For existing-image remediation only, the finished-page batch approval defined
+in `COUNTRY_PRODUCTION_RULES.md` section 15 replaces this separate Hero gate.
+
 ## 5. Scenes
 
 Eight Scenes must explain the Country's geographic and visual breadth.
@@ -159,6 +168,12 @@ For each Scene define:
 Generate S01→S08 independently: **one target, one image call, one output**. The current Scene prompt must not list the other Scene names/IDs or refer to any previous generated image.
 
 Each Scene must PASS the Hero / Scene style band before the eight-image batch is presented. Do not ask for per-image approval. After all eight passing candidates are ready, present one batch review. Regenerate only rejected Scenes.
+
+For existing-image remediation only, generate just the selected FAIL targets,
+retain the existing PASS / BORDERLINE images, and use the finished-page batch
+approval defined in `COUNTRY_PRODUCTION_RULES.md` section 15. Newly generated
+Scenes still require PASS; retained images need not be regenerated to form an
+eight-image generation batch.
 
 ## 6. Taste
 
