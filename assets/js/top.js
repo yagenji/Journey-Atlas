@@ -48,16 +48,7 @@ let themeMeta = {};
 let heroSources = [];
 let heroIndex = 0;
 let heroTimer;
-let themeSets = {
-  earth:['iceland','antarctica','bolivia','namibia','newzealand','nepal'],
-  city:['japan','italy','morocco','cuba','uzbekistan','mexico'],
-  history:['egypt','peru','italy','cambodia','india','jordan'],
-  life:['india','morocco','vietnam','mexico','ethiopia','mongolia'],
-  wildlife:['kenya','tanzania','botswana','southafrica','australia','costarica'],
-  sea:['maldives','belize','philippines','seychelles','fiji','palau'],
-  food:['japan','italy','mexico','thailand','vietnam','turkiye'],
-  road:['tajikistan','kyrgyz','argentina','chile','lesotho','iceland']
-};
+let themeSets = {};
 
 const heroFiles = [
   'assets/images/top/hero-world-collage.svg',
