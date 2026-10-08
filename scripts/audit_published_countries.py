@@ -5,22 +5,21 @@ This script does not rewrite country content. The legacy renewal registry is
 treated as optional metadata for Countries that were tracked by the old renewal
 process; newly produced Countries are not required to add renewal-state rows.
 
-The audit also prints every Signature Fact so horizontal editorial review can
+The audit prints Signature Facts and Scenes so horizontal editorial review can
 compare all published Countries on the same basis. Heuristic flags are review
 cues only; they do not fail publication by themselves.
 """
 from __future__ import annotations
 import argparse
 import json
+import math
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "data" / "country-renewal-status.json"
 COUNTRY_DIR = ROOT / "data" / "countries"
-REGISTRIES = [
-    ROOT / "data" / "atlas-destinations.json",
-]
+REGISTRIES = [ROOT / "data" / "atlas-destinations.json"]
 THEMES = ROOT / "data" / "theme-taxonomy.json"
 
 HERITAGE_TERMS = ("世界遺産", "unesco", "world heritage")
@@ -32,6 +31,9 @@ PROFILE_TERMS = ("人口密度", "人口", "国土面積", "面積", "population
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
 HERITAGE_EXCEPTION_MIN = 30
 SHORT_NOTE_MIN_CHARS = 32
+SCENE_EXPECTED_COUNT = 8
+SCENE_SHORT_DESCRIPTION_MIN_CHARS = 48
+SCENE_NEAR_COORDINATE_KM = 2.0
 TOPIC_NOISE = {
     "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
     "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
@@ -146,14 +148,8 @@ def signature_flags(data: dict, item: dict) -> list[str]:
         count = first_number(value)
         count_value = bool(re.search(r"(?:件|\bsites?\b)", value, flags=re.IGNORECASE))
         dimension_value = bool(re.search(
-            r"(?:ha|ヘクタール|km²|平方キロ|\bkm\b|\bm\b|年|\byears?\b)",
-            value,
-            flags=re.IGNORECASE,
+            r"(?:ha|ヘクタール|km²|平方キロ|\bkm\b|\bm\b|年|\byears?\b)", value, flags=re.IGNORECASE,
         ))
-        # 30+ World Heritage sites is rare enough to be an exceptional
-        # Signature-Fact candidate. It is still reviewed editorially rather
-        # than becoming an automatic PASS. Areas, dates, component counts,
-        # etc. remain heritage-description review candidates.
         exceptional_count = count is not None and count >= HERITAGE_EXCEPTION_MIN and count_value and not dimension_value
         if exceptional_count:
             flags.append("HERITAGE_EXCEPTION_REVIEW")
@@ -189,9 +185,6 @@ def signature_flags(data: dict, item: dict) -> list[str]:
     if len(note) < SHORT_NOTE_MIN_CHARS:
         flags.append("SHORT_NOTE")
     flags.extend(unfamiliar_unit_flags(value, note))
-
-    # A handful of meaningful absence/relationship facts are intentionally
-    # non-numeric; NO_NUMERIC_VALUE remains a human-review cue, not a failure.
     if not re.search(r"\d", value):
         flags.append("NO_NUMERIC_VALUE")
     return flags
@@ -218,6 +211,118 @@ def signature_rows(slug: str, data: dict) -> list[dict]:
     return rows
 
 
+def scene_coordinates(item: dict) -> tuple[float, float] | None:
+    coords = item.get("coordinates")
+    if not isinstance(coords, dict):
+        return None
+    lat, lon = coords.get("latitude"), coords.get("longitude")
+    if not isinstance(lat, (int, float)) or not isinstance(lon, (int, float)):
+        return None
+    return float(lat), float(lon)
+
+
+def haversine_km(a: tuple[float, float], b: tuple[float, float]) -> float:
+    lat1, lon1 = map(math.radians, a)
+    lat2, lon2 = map(math.radians, b)
+    dlat, dlon = lat2 - lat1, lon2 - lon1
+    h = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    return 6371.0 * 2 * math.asin(min(1.0, math.sqrt(h)))
+
+
+def scene_flags(item: dict, index: int, scenes: list[dict]) -> list[str]:
+    flags: list[str] = []
+    required_text = ("id", "name", "description", "image")
+    for key in required_text:
+        if not clean(item.get(key)):
+            flags.append(f"MISSING_{key.upper()}")
+    if not clean(item.get("mapLabel")):
+        flags.append("MISSING_MAP_LABEL")
+    if not clean(item.get("nameLocal")):
+        flags.append("MISSING_LOCAL_NAME_REVIEW")
+
+    description = clean(item.get("description"))
+    if description and len(description) < SCENE_SHORT_DESCRIPTION_MIN_CHARS:
+        flags.append("SHORT_DESCRIPTION")
+    sentence_marks = description.count("。") + description.count(".")
+    if description and sentence_marks < 2 and len(description) < 90:
+        flags.append("THIN_EXPLANATION")
+
+    coords = scene_coordinates(item)
+    if coords is None:
+        flags.append("MISSING_COORDINATES")
+    else:
+        for other_index, other in enumerate(scenes, 1):
+            if other_index >= index or not isinstance(other, dict):
+                continue
+            other_coords = scene_coordinates(other)
+            if other_coords is None:
+                continue
+            distance = haversine_km(coords, other_coords)
+            if distance < 0.05:
+                flags.append(f"DUPLICATE_COORDINATES:S{other_index:02d}")
+            elif distance < SCENE_NEAR_COORDINATE_KM:
+                flags.append(f"NEAR_COORDINATES_REVIEW:S{other_index:02d}:{distance:.1f}km")
+
+    for key, code in (("id", "ID"), ("name", "NAME"), ("mapLabel", "MAP_LABEL"), ("image", "IMAGE")):
+        value = clean(item.get(key))
+        if not value:
+            continue
+        for other_index, other in enumerate(scenes, 1):
+            if other_index >= index or not isinstance(other, dict):
+                continue
+            if value == clean(other.get(key)):
+                flags.append(f"DUPLICATE_{code}:S{other_index:02d}")
+    return flags
+
+
+def scene_country_flags(data: dict) -> list[str]:
+    scenes = data.get("scenes", [])
+    if not isinstance(scenes, list):
+        return ["SCENES_NOT_LIST"]
+    flags: list[str] = []
+    if len(scenes) != SCENE_EXPECTED_COUNT:
+        flags.append(f"SCENE_COUNT_{len(scenes)}")
+
+    map_data = data.get("map") if isinstance(data.get("map"), dict) else {}
+    bounds = map_data.get("bounds") if isinstance(map_data.get("bounds"), dict) else {}
+    points = [scene_coordinates(item) for item in scenes if isinstance(item, dict)]
+    points = [point for point in points if point is not None]
+    if len(points) >= 4 and all(isinstance(bounds.get(k), (int, float)) for k in ("north", "south", "west", "east")):
+        lat_span = max(p[0] for p in points) - min(p[0] for p in points)
+        lon_span = max(p[1] for p in points) - min(p[1] for p in points)
+        map_lat_span = float(bounds["north"]) - float(bounds["south"])
+        map_lon_span = float(bounds["east"]) - float(bounds["west"])
+        if map_lat_span > 0 and map_lon_span > 0:
+            lat_ratio = lat_span / map_lat_span
+            lon_ratio = lon_span / map_lon_span
+            if lat_ratio < 0.28 and lon_ratio < 0.28:
+                flags.append(f"LOW_GEOGRAPHIC_SPREAD_REVIEW:{lat_ratio:.2f}x{lon_ratio:.2f}")
+    return flags
+
+
+def scene_rows(slug: str, data: dict) -> tuple[list[dict], list[str]]:
+    items = data.get("scenes", [])
+    if not isinstance(items, list):
+        return [], ["SCENES_NOT_LIST"]
+    scenes = [item for item in items if isinstance(item, dict)]
+    rows: list[dict] = []
+    for index, item in enumerate(scenes, 1):
+        coords = scene_coordinates(item)
+        rows.append({
+            "slug": slug,
+            "index": index,
+            "id": clean(item.get("id")),
+            "name": clean(item.get("name")),
+            "nameLocal": clean(item.get("nameLocal")),
+            "mapLabel": clean(item.get("mapLabel")),
+            "description": clean(item.get("description")),
+            "coordinates": coords,
+            "image": clean(item.get("image")),
+            "flags": scene_flags(item, index, scenes),
+        })
+    return rows, scene_country_flags(data)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--json", action="store_true")
@@ -232,8 +337,6 @@ def main() -> int:
     missing = sorted(set(published) - set(status_slugs))
     extra = sorted(set(status_slugs) - set(published))
     duplicates = sorted({slug for slug in status_slugs if status_slugs.count(slug) > 1 and slug})
-    # New Country production no longer writes legacy renewal-state rows.
-    # Missing legacy metadata is informational, not a publication failure.
     if extra:
         errors.append(f"renewal status contains non-published countries: {', '.join(extra)}")
     if duplicates:
@@ -242,6 +345,8 @@ def main() -> int:
     themes = theme_counts()
     rows = []
     signature_audit: list[dict] = []
+    scene_audit: list[dict] = []
+    scene_country_audit: list[dict] = []
     by_status = {row["slug"]: row for row in status_rows if row.get("slug")}
     for slug in published:
         path = COUNTRY_DIR / f"{slug}.json"
@@ -267,6 +372,9 @@ def main() -> int:
         }
         rows.append(row)
         signature_audit.extend(signature_rows(slug, data))
+        scene_items, country_flags = scene_rows(slug, data)
+        scene_audit.extend(scene_items)
+        scene_country_audit.append({"slug": slug, "count": len(scene_items), "flags": country_flags})
 
     if args.json:
         print(json.dumps(
@@ -274,6 +382,8 @@ def main() -> int:
                 "published": len(published),
                 "rows": rows,
                 "signatureFacts": signature_audit,
+                "scenes": scene_audit,
+                "sceneCountries": scene_country_audit,
                 "legacyUntracked": missing,
                 "errors": errors,
             },
@@ -304,6 +414,29 @@ def main() -> int:
         for item in flagged:
             print(
                 f"SIG_REVIEW|{item['slug']}|{item['index']}|{item['label']}|{item['value']}|"
+                f"{','.join(item['flags'])}"
+            )
+
+        print(f"Scenes horizontal audit: {len(scene_audit)} item(s)")
+        for item in scene_audit:
+            flags = ",".join(item["flags"]) if item["flags"] else "-"
+            coords = item["coordinates"]
+            coord_text = "" if coords is None else f"{coords[0]:.6f},{coords[1]:.6f}"
+            description = item["description"].replace("\n", " ")
+            print(
+                f"SCENE|{item['slug']}|{item['index']}|{item['name']}|{item['mapLabel']}|"
+                f"coords={coord_text}|flags={flags}|description={description}"
+            )
+
+        scene_flagged = [item for item in scene_audit if item["flags"]]
+        country_flagged = [item for item in scene_country_audit if item["flags"]]
+        print(f"Scenes heuristic review candidates: {len(scene_flagged)} item(s); country-level: {len(country_flagged)}")
+        for item in scene_country_audit:
+            if item["flags"]:
+                print(f"SCENE_COUNTRY_REVIEW|{item['slug']}|count={item['count']}|{','.join(item['flags'])}")
+        for item in scene_flagged:
+            print(
+                f"SCENE_REVIEW|{item['slug']}|{item['index']}|{item['name']}|"
                 f"{','.join(item['flags'])}"
             )
 
