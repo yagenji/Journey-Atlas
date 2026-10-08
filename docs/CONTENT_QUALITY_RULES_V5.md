@@ -1,6 +1,6 @@
 # JOURNEY ATLAS — Content Quality Rules v5
 
-Updated: 2026-09-14
+Updated: 2026-10-08
 
 Content QA v5 applies to new Country production with `contentQaVersion: 5`.
 It inherits all v4 rules and adds two production gates:
@@ -28,6 +28,10 @@ Weak candidates are generic profile statistics or counts that could be substitut
 
 Every v5 Signature Fact must include an internal `interestReason` explaining why the number deserves one of only three positions. `interestReason` is editorial metadata and is not rendered on the page.
 
+The rendered `label`, `value`, and `note` must also stand on their own for a first-time Japanese reader. Do not rely on specialist terminology, an unexplained proper noun, or a short fragment whose significance is clear only from the source context. Expand the note when necessary so the reader can understand what is being measured and why it matters.
+
+Use units that are immediately legible to the Japanese audience. Prefer km², km, m, °C and other familiar SI forms. Do not leave hectares (`ha`), acres, miles or feet as the only visible unit in a Signature Fact; convert them to a familiar metric unit or add the familiar metric equivalent, with sensible rounding.
+
 Example:
 
 ```json
@@ -45,14 +49,14 @@ Example:
 
 The number of UNESCO World Heritage properties is **not a default Signature Fact**.
 
-Do not use a count merely because the Country has several properties. Counts such as 3, 7, 10, or 15 are usually not strong enough to occupy one of the three numerical slots.
+Do not use a count merely because the Country has several properties. Counts such as 3, 7, 10, 15, 25 or 27 are usually not strong enough to occupy one of the three numerical slots.
 
 A World Heritage count may be used only when both conditions are met:
 
-1. the count is exceptionally high: **25 or more**; and
+1. the count is exceptionally high: **30 or more**; and
 2. `exceptionalHeritageCount: true` is explicit.
 
-Even above 25, it should still be replaced when another number explains the Country more vividly.
+Even at 30 or more, it should still be replaced when another number explains the Country more vividly.
 
 The machine threshold is an exception gate, not an automatic recommendation.
 
@@ -69,6 +73,8 @@ Correct exceptional form:
 ```
 
 A smaller World Heritage count can still appear in Travel Trivia or Beyond the Scenery when the heritage itself is editorially interesting. It simply does not qualify as one of the three Signature Facts.
+
+A heritage-related number below 30 may still qualify when the number describes a genuinely exceptional condition rather than an ordinary property count—for example, when every property in the Country is simultaneously on the List of World Heritage in Danger. In that case the `interestReason` must explain the exceptional country-level condition.
 
 ## 3. Forest share is also exception-only
 
