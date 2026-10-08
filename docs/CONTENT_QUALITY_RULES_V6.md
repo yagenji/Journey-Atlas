@@ -54,10 +54,12 @@ The visible `label`, `value`, and `note` must explain the metric plainly. Intern
 
 Population / area / density may be used only when the scale itself is genuinely exceptional and `exceptionalScale: true` is explicit.
 
-World Heritage remains exception-only at 25 or more with `exceptionalHeritageCount: true`.
+World Heritage remains exception-only at 30 or more with `exceptionalHeritageCount: true`. A distinctive state such as every listed property also being on the List of World Heritage in Danger may still qualify because the point is the unusual relationship, not the ordinary property count.
 Forest / woodland share remains exception-only at 10% or less or 70% or more with `exceptionalShare: true`.
 
 Passing an exception threshold does not automatically make a number a good choice; a more revealing number still takes priority.
+
+The visible note must also give enough Japanese context to understand why the number matters. Prefer units familiar to Japanese readers; convert or supplement hectares, acres, miles, feet, yards, gallons, Fahrenheit, knots and similar source units with `km²`, `km`, `m`, `L`, `℃` or another immediately understandable metric form.
 
 ## 4. Map capital label / Scene number
 
