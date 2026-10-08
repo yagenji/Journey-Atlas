@@ -22,6 +22,22 @@ Required:
 
 Unknown facts remain unfilled until verified. Do not guess.
 
+## Signature Facts
+
+Signature Facts should change how a first-time reader imagines the Country. The three slots are scarce editorial space, so prefer numbers that reveal distinctive geography, history, culture, daily life, wildlife, movement, or scale over numbers that are merely easy to obtain.
+
+Required:
+- explain what the number means in enough Japanese context that a reader can understand it without already knowing the subject;
+- avoid repeating generic Country Profile statistics unless the scale itself is genuinely exceptional;
+- avoid using a World Heritage property merely as a convenient source of an area, component count, registration year, or other number when the number only explains that property;
+- World Heritage site counts are exception-only. A current count of **30 or more** is rare enough to be a Signature Fact candidate, but it is not automatic: use it only when it is stronger than the available Country-specific alternatives;
+- exceptional states can qualify even below 30 when the relationship itself is distinctive, such as all registered World Heritage properties being on the List of World Heritage in Danger;
+- non-numeric values can qualify when the absence itself is a distinctive Country fact, such as no formal colonization by a European colonial power;
+- prefer units familiar to Japanese readers. Convert or supplement hectares, acres, miles, feet, yards, gallons, Fahrenheit, knots, and similar units with `km²`, `km`, `m`, `L`, `℃`, or another immediately understandable metric form;
+- do not repeat the same subject across Signature Facts, Beyond the Scenery, and Travel Trivia unless each section clearly adds a different information value.
+
+Passing an exception threshold does not automatically make a fact a good choice. A more revealing Country-specific fact still takes priority.
+
 ## Country Profile area comparison
 
 For the `面積` fact, include a Japan comparison when a reliable area basis is available.

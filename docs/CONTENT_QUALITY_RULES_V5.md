@@ -45,14 +45,14 @@ Example:
 
 The number of UNESCO World Heritage properties is **not a default Signature Fact**.
 
-Do not use a count merely because the Country has several properties. Counts such as 3, 7, 10, or 15 are usually not strong enough to occupy one of the three numerical slots.
+Do not use a count merely because the Country has several properties. Counts such as 3, 7, 10, 15, 25, or 27 are usually not strong enough to occupy one of the three numerical slots.
 
 A World Heritage count may be used only when both conditions are met:
 
-1. the count is exceptionally high: **25 or more**; and
+1. the count is exceptionally high: **30 or more**; and
 2. `exceptionalHeritageCount: true` is explicit.
 
-Even above 25, it should still be replaced when another number explains the Country more vividly.
+Even at 30 or more, it should still be replaced when another number explains the Country more vividly. A distinctive relationship may be retained below the threshold when the point is not the ordinary count itself—for example, all of a Country's listed properties being on the List of World Heritage in Danger.
 
 The machine threshold is an exception gate, not an automatic recommendation.
 
@@ -68,7 +68,7 @@ Correct exceptional form:
 }
 ```
 
-A smaller World Heritage count can still appear in Travel Trivia or Beyond the Scenery when the heritage itself is editorially interesting. It simply does not qualify as one of the three Signature Facts.
+A smaller World Heritage count can still appear in Travel Trivia or Beyond the Scenery when the heritage itself is editorially interesting. It simply does not qualify as one of the three Signature Facts merely by count.
 
 ## 3. Forest share is also exception-only
 
@@ -84,7 +84,16 @@ A forest share of 35%, 48%, 55%, or 63% is not distinctive enough merely because
 
 As with World Heritage counts, passing the machine threshold does not mean the number should automatically be selected. It must still beat alternative numbers on reader interest.
 
-## 4. Capital-name / Scene-number map collision gate
+## 4. Plain explanation and reader-friendly units
+
+A Signature Fact must be understandable from its visible label, value, and note without specialist knowledge.
+
+- Add enough Japanese context to explain what the number measures and why it matters.
+- Prefer `km²`, `km`, `m`, `L`, `℃` and other units familiar to Japanese readers.
+- Convert or supplement hectares, acres, miles, feet, yards, gallons, Fahrenheit, knots and similar source units rather than exposing them as the only scale.
+- A technically correct number that requires the reader to research the unit or subject is not ready for one of the three Signature Fact slots.
+
+## 5. Capital-name / Scene-number map collision gate
 
 The capital marker and capital name remain part of the map, but the capital **name label may never cover a numbered Scene marker**.
 
@@ -100,7 +109,7 @@ Never change the real latitude / longitude to make the map look cleaner.
 
 `capital.labelOffset` is limited to ±80px per axis. The label must also remain inside the map canvas.
 
-## 5. Required validation
+## 6. Required validation
 
 Before Hero generation, run both validators:
 
