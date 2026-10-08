@@ -2,6 +2,7 @@
 """Regression coverage for Country browser QA optional Taste contract."""
 import importlib.util
 import json
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,23 +24,19 @@ structural_codes = {
     "MISSING_MAP_LABEL", "MISSING_COORDINATES", "DUPLICATE_COORDINATES",
     "DUPLICATE_ID", "DUPLICATE_NAME", "DUPLICATE_MAP_LABEL", "DUPLICATE_IMAGE",
 }
-scene_count = 0
-structural = []
-country_review = []
+counts = Counter()
+review_rows = []
 for slug in audit.published_slugs():
     data = json.loads((ROOT / "data" / "countries" / f"{slug}.json").read_text(encoding="utf-8"))
-    rows, country_flags = audit.scene_rows(slug, data)
-    scene_count += len(rows)
-    if country_flags:
-        country_review.append([slug, country_flags])
+    rows, _ = audit.scene_rows(slug, data)
     for row in rows:
-        flags = [f for f in row["flags"] if f.split(":", 1)[0] in structural_codes]
-        if flags:
-            structural.append([slug, row["index"], row["name"], flags])
+        editorial_flags = [f for f in row["flags"] if f.split(":", 1)[0] not in structural_codes]
+        if editorial_flags:
+            for flag in editorial_flags:
+                counts[flag.split(":", 1)[0]] += 1
+            review_rows.append([slug, row["index"], row["name"], editorial_flags])
 
-raise AssertionError("SCENES_STRUCTURAL_AUDIT=" + json.dumps({
-    "published": len(audit.published_slugs()),
-    "scenes": scene_count,
-    "structural": structural,
-    "countryReview": country_review,
+raise AssertionError("SCENES_EDITORIAL_AUDIT=" + json.dumps({
+    "counts": dict(sorted(counts.items())),
+    "rows": review_rows,
 }, ensure_ascii=False, separators=(",", ":")))
