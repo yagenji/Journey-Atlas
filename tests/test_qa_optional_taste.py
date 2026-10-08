@@ -27,6 +27,8 @@ structural_codes = {
 scene_count = 0
 structural = []
 country_review = []
+heuristic_counts = {}
+heuristic_samples = {}
 for slug in audit.published_slugs():
     data = json.loads((ROOT / "data" / "countries" / f"{slug}.json").read_text(encoding="utf-8"))
     rows, country_flags = audit.scene_rows(slug, data)
@@ -37,10 +39,25 @@ for slug in audit.published_slugs():
         flags = [f for f in row["flags"] if f.split(":", 1)[0] in structural_codes]
         if flags:
             structural.append([slug, row["index"], row["name"], flags])
+        for flag in row["flags"]:
+            code = flag.split(":", 1)[0]
+            if code in structural_codes:
+                continue
+            heuristic_counts[code] = heuristic_counts.get(code, 0) + 1
+            heuristic_samples.setdefault(code, [])
+            if len(heuristic_samples[code]) < 12:
+                heuristic_samples[code].append([slug, row["index"], row["name"], flag])
 
-print("SCENES_STRUCTURAL_AUDIT=" + json.dumps({
+payload = json.dumps({
     "published": len(audit.published_slugs()),
     "scenes": scene_count,
     "structural": structural,
     "countryReview": country_review,
-}, ensure_ascii=False, separators=(",", ":")))
+}, ensure_ascii=False, separators=(",", ":"))
+print("::warning title=Scenes structural audit::" + payload.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))
+
+heuristic_payload = json.dumps({
+    "counts": heuristic_counts,
+    "samples": heuristic_samples,
+}, ensure_ascii=False, separators=(",", ":"))
+print("::warning title=Scenes heuristic audit::" + heuristic_payload.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))
