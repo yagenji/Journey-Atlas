@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+import base64
+import gzip
 import json
 import re
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -19,16 +22,16 @@ class CountryBorderContextTest(unittest.TestCase):
         '<path d="M100,100 L200,100 L200,200 Z" fill="url(#land)"/></svg>'
     )
 
-    def _dataset(self, coordinates):
+    def _dataset(self, coordinates, properties=None):
+        return self._features_dataset([{
+            "type": "Feature",
+            "properties": properties or {},
+            "geometry": {"type": "LineString", "coordinates": coordinates},
+        }])
+
+    def _features_dataset(self, features):
         tmp = tempfile.NamedTemporaryFile("w", suffix=".geojson", delete=False, encoding="utf-8")
-        json.dump({
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {},
-                "geometry": {"type": "LineString", "coordinates": coordinates},
-            }],
-        }, tmp)
+        json.dump({"type": "FeatureCollection", "features": features}, tmp)
         tmp.close()
         self.addCleanup(Path(tmp.name).unlink)
         return Path(tmp.name)
@@ -46,6 +49,71 @@ class CountryBorderContextTest(unittest.TestCase):
     def test_no_visible_land_boundary_leaves_svg_unchanged(self):
         dataset = self._dataset([[30.0, 10.0], [31.0, 11.0]])
         self.assertEqual(self.SVG, borders.add_borders(self.SVG, self.BOUNDS, dataset=dataset))
+
+    def test_target_iso_omits_only_target_adjacent_boundary(self):
+        dataset = self._features_dataset([
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "GBR", "ADM0_A3_R": "IRL"},
+                "geometry": {"type": "LineString", "coordinates": [[10.2, 40.4], [10.4, 40.6]]},
+            },
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "AAA", "ADM0_A3_R": "BBB"},
+                "geometry": {"type": "LineString", "coordinates": [[11.2, 41.4], [11.4, 41.6]]},
+            },
+        ])
+        all_lines = borders.make_border_path(self.BOUNDS, dataset=dataset)
+        filtered = borders.make_border_path(self.BOUNDS, dataset=dataset, target_iso3="GBR")
+        self.assertGreater(all_lines.count("M"), filtered.count("M"))
+        self.assertEqual(1, filtered.count("M"))
+
+    def test_replace_borders_preserves_target_geometry(self):
+        dataset = self._features_dataset([
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "GBR", "ADM0_A3_R": "IRL"},
+                "geometry": {"type": "LineString", "coordinates": [[10.2, 40.4], [10.4, 40.6]]},
+            },
+            {
+                "type": "Feature",
+                "properties": {"ADM0_A3_L": "AAA", "ADM0_A3_R": "BBB"},
+                "geometry": {"type": "LineString", "coordinates": [[11.2, 41.4], [11.4, 41.6]]},
+            },
+        ])
+        initial = borders.add_borders(self.SVG, self.BOUNDS, dataset=dataset)
+        target = '<path d="M100,100 L200,100 L200,200 Z" fill="url(#land)"/>'
+        replaced = borders.replace_borders(
+            initial,
+            self.BOUNDS,
+            dataset=dataset,
+            target_iso3="GBR",
+        )
+        self.assertIn(target, replaced)
+        self.assertEqual(1, replaced.count('id="context-national-borders"'))
+        self.assertIn("target-adjacent GBR lines omitted", replaced)
+        group = replaced[replaced.index('id="context-national-borders"'):replaced.index("</g>")]
+        self.assertEqual(1, group.count("M"))
+
+    def test_real_uk_refresh_preserves_target_geometry(self):
+        country = json.loads((ROOT / "data/countries/unitedkingdom.json").read_text(encoding="utf-8"))
+        source = (ROOT / country["map"]["svg"]).read_text(encoding="utf-8")
+        refreshed = borders.replace_borders(
+            source,
+            country["map"]["bounds"],
+            target_iso3="GBR",
+        )
+        ns = "{http://www.w3.org/2000/svg}"
+        target_paths = lambda text: [dict(node.attrib) for node in ET.fromstring(text).iter(ns + "path") if node.get("fill") == "url(#land)"]
+        self.assertEqual(target_paths(source), target_paths(refreshed))
+        self.assertEqual(1, refreshed.count('id="context-national-borders"'))
+        self.assertIn("target-adjacent GBR lines omitted", refreshed)
+        for label, text in (("SOURCE", source), ("REFRESHED", refreshed)):
+            encoded = base64.b64encode(gzip.compress(text.encode("utf-8"), compresslevel=9)).decode("ascii")
+            print(f"UK_{label}_SVG_GZIP_BASE64_BEGIN")
+            for offset in range(0, len(encoded), 1000):
+                print(encoded[offset:offset + 1000])
+            print(f"UK_{label}_SVG_GZIP_BASE64_END")
 
 
 if __name__ == "__main__":
