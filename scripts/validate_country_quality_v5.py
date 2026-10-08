@@ -38,7 +38,7 @@ SCENE_NUMBER_CLEARANCE_RADIUS = 16.0
 V6_SCENE_NUMBER_CLEARANCE_RADIUS = 20.0
 V6_LABEL_SAFETY_MARGIN = 6.0
 CAPITAL_LABEL_EDGE_MARGIN = 4.0
-HERITAGE_MINIMUM_COUNT = 25
+HERITAGE_MINIMUM_COUNT = 30
 FOREST_LOW_MAX = 10.0
 FOREST_HIGH_MIN = 70.0
 FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
@@ -111,17 +111,19 @@ def validate_signature_interest(errors: list[str], filename: str, data: dict[str
 
         haystack = signature_haystack(item)
         if any(term in haystack for term in HERITAGE_TERMS):
-            count = first_integer(item.get("value"))
-            if item.get("exceptionalHeritageCount") is not True:
-                fail(
-                    errors,
-                    f"{owner}: World Heritage count is not a default Signature Fact. Use another reader-interest number unless exceptionalHeritageCount:true is explicit.",
-                )
-            if count is None or count < HERITAGE_MINIMUM_COUNT:
-                fail(
-                    errors,
-                    f"{owner}: World Heritage count must be exceptionally high (>= {HERITAGE_MINIMUM_COUNT}) to qualify for Signature Facts; got {text(item.get('value'))!r}",
-                )
+            exceptional_condition = item.get("exceptionalHeritageCondition") is True
+            if not exceptional_condition:
+                count = first_integer(item.get("value"))
+                if item.get("exceptionalHeritageCount") is not True:
+                    fail(
+                        errors,
+                        f"{owner}: World Heritage count is not a default Signature Fact. Use another reader-interest number unless exceptionalHeritageCount:true is explicit.",
+                    )
+                if count is None or count < HERITAGE_MINIMUM_COUNT:
+                    fail(
+                        errors,
+                        f"{owner}: World Heritage count must be exceptionally high (>= {HERITAGE_MINIMUM_COUNT}) to qualify for Signature Facts; got {text(item.get('value'))!r}",
+                    )
 
         if any(term.lower() in haystack for term in FOREST_TERMS):
             pcts = percentages(item)
@@ -405,13 +407,8 @@ def validate_next_routes_v6(errors: list[str], filename: str, data: dict[str, An
             continue
         if route.get("travelerRoute") is not True:
             fail(errors, f"{owner}.travelerRoute must be true; include routes because they are established traveler continuations, not because the border is currently open")
-        route_text = " ".join(
-            text(route.get(key)) for key in ("path", "description", "statusNote")
-        ).lower()
-        if (
-            re.search(r"\\b(?:air|flight|flights|airport|airports|airline|airlines)\\b", route_text)
-            or any(term in route_text for term in ("空路", "航空", "飛行機"))
-        ):
+        route_text = " ".join(text(route.get(key)) for key in ("path", "description", "statusNote")).lower()
+        if re.search(r"\b(?:air|flight|flights|airport|airports|airline|airlines)\b", route_text) or any(term in route_text for term in ("空路", "航空", "飛行機")):
             fail(errors, f"{owner} must not use air travel; nextRoutes are established land or sea continuations only")
         status = text(route.get("status"))
         if status not in NEXT_ROUTE_STATUSES:
@@ -478,8 +475,8 @@ def validate_signature_plain_meaning_v6(errors: list[str], filename: str, data: 
         reason = text(item.get("interestReason"))
         if len(label) > 16:
             fail(errors, f"{owner}.label must be short enough for a reader to understand the metric at a glance")
-        if not re.search(r"\d", value):
-            fail(errors, f"{owner}.value must contain an immediately readable number")
+        if not re.search(r"\d", value) and item.get("qualitativeZero") is not True:
+            fail(errors, f"{owner}.value must contain an immediately readable number, unless qualitativeZero:true marks a genuinely distinctive 'none/zero' condition")
         if len(note) < 18:
             fail(errors, f"{owner}.note must explain in plain language what the number means for the Country")
         if len(reason) < 18:
@@ -488,6 +485,11 @@ def validate_signature_plain_meaning_v6(errors: list[str], filename: str, data: 
         if any(term.lower() in haystack for term in GENERIC_PROFILE_TERMS):
             if item.get("exceptionalScale") is not True:
                 fail(errors, f"{owner}: ordinary population/area/density figures are not Signature Facts. Use exceptionalScale:true only when the scale itself is genuinely distinctive.")
+        display = f"{value} {note}".lower()
+        unfamiliar = re.search(r"(?:\bha\b|hectare|hectares|acre|acres|mile|miles|\bft\b|feet)", display)
+        familiar_metric = re.search(r"(?:km²|km2|\bkm\b|\bm\b|メートル|キロメートル|平方キロ)", display)
+        if unfamiliar and not familiar_metric:
+            fail(errors, f"{owner}: unfamiliar unit must not be the only visible unit; add or convert to km²/km/m or another familiar metric equivalent")
 
 
 def validate_capital_label_collision_v6(errors: list[str], filename: str, data: dict[str, Any]) -> None:
@@ -500,12 +502,7 @@ def validate_capital_label_collision_v6(errors: list[str], filename: str, data: 
     if not capital_point:
         return
     left, top, right, bottom = capital_label_rect(capital, capital_point)
-    rect = (
-        left - V6_LABEL_SAFETY_MARGIN,
-        top - V6_LABEL_SAFETY_MARGIN,
-        right + V6_LABEL_SAFETY_MARGIN,
-        bottom + V6_LABEL_SAFETY_MARGIN,
-    )
+    rect = (left - V6_LABEL_SAFETY_MARGIN, top - V6_LABEL_SAFETY_MARGIN, right + V6_LABEL_SAFETY_MARGIN, bottom + V6_LABEL_SAFETY_MARGIN)
     for index, scene in enumerate(scenes, 1):
         if not isinstance(scene, dict):
             continue
