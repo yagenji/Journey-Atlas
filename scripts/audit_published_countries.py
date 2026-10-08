@@ -4,10 +4,15 @@
 This script does not rewrite country content. The legacy renewal registry is
 treated as optional metadata for Countries that were tracked by the old renewal
 process; newly produced Countries are not required to add renewal-state rows.
+
+The audit also prints every Signature Fact so horizontal editorial review can
+compare all published Countries on the same basis. Heuristic flags are review
+cues only; they do not fail publication by themselves.
 """
 from __future__ import annotations
 import argparse
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +22,22 @@ REGISTRIES = [
     ROOT / "data" / "atlas-destinations.json",
 ]
 THEMES = ROOT / "data" / "theme-taxonomy.json"
+
+HERITAGE_TERMS = ("世界遺産", "unesco", "world heritage")
+HERITAGE_DETAIL_TERMS = (
+    "登録", "構成資産", "構成要素", "ha", "ヘクタール", "km²", "平方キロ",
+    "標高", "高さ", "長さ", "面積", "年", "件",
+)
+PROFILE_TERMS = ("人口密度", "人口", "国土面積", "面積", "population density", "population", "area")
+FOREST_TERMS = ("森林", "樹林", "forest", "woodland")
+HERITAGE_EXCEPTION_MIN = 30
+SHORT_NOTE_MIN_CHARS = 32
+TOPIC_NOISE = {
+    "count", "counts", "number", "numbers", "share", "rate", "ratio", "percent",
+    "percentage", "stat", "stats", "fact", "facts", "trivia", "history", "background",
+    "overview", "story", "system", "culture", "context", "figure", "figures", "country",
+    "national", "detail", "details", "today", "current",
+}
 
 
 def published_slugs() -> list[str]:
@@ -39,6 +60,162 @@ def theme_counts() -> dict[str, list[str]]:
         for slug in theme.get("examples", []):
             out.setdefault(slug, []).append(label)
     return out
+
+
+def clean(value: object) -> str:
+    return value.strip() if isinstance(value, str) else ""
+
+
+def first_number(value: object) -> float | None:
+    match = re.search(r"(\d[\d,]*(?:\.\d+)?)", clean(value))
+    if not match:
+        return None
+    try:
+        return float(match.group(1).replace(",", ""))
+    except ValueError:
+        return None
+
+
+def percentages(value: str) -> list[float]:
+    return [float(part) for part in re.findall(r"(\d+(?:\.\d+)?)\s*%", value)]
+
+
+def topic_tokens(value: object) -> set[str]:
+    raw = {part for part in re.split(r"[-_\s]+", clean(value).lower()) if part and part not in TOPIC_NOISE}
+    normalized: set[str] = set()
+    if "world" in raw and "heritage" in raw:
+        normalized.add("worldheritage")
+        raw.discard("world")
+        raw.discard("heritage")
+    aliases = {
+        "unesco": "worldheritage",
+        "woodland": "forest",
+        "forests": "forest",
+        "nomadic": "nomad",
+        "nomads": "nomad",
+    }
+    normalized.update(aliases.get(part, part) for part in raw)
+    return {part for part in normalized if len(part) >= 3}
+
+
+def cross_section_topic_keys(data: dict, section: str) -> list[tuple[str, set[str]]]:
+    out: list[tuple[str, set[str]]] = []
+    items = data.get(section, [])
+    if not isinstance(items, list):
+        return out
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        key = clean(item.get("topicKey"))
+        tokens = topic_tokens(key)
+        if key and tokens:
+            out.append((key, tokens))
+    return out
+
+
+def unfamiliar_unit_flags(value: str, note: str) -> list[str]:
+    haystack = f"{value} {note}"
+    flags: list[str] = []
+    if re.search(r"(?:\bha\b|ヘクタール)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:km²|km2|平方キロ)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_HECTARE")
+    if re.search(r"(?:\bacres?\b|エーカー)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:km²|km2|平方キロ)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_ACRE")
+    if re.search(r"(?:\bmiles?\b|マイル)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:\bkm\b|キロメートル)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_MILE")
+    if re.search(r"(?:\bfeet\b|\bfoot\b|フィート)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:\d[\d,.]*\s*m\b|メートル)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_FEET")
+    if re.search(r"(?:°f\b|華氏)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:℃|°c\b|摂氏)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_FAHRENHEIT")
+    if re.search(r"(?:\bgallons?\b|ガロン)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:\bl\b|リットル)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_GALLON")
+    if re.search(r"(?:\bknots?\b|ノット)", haystack, flags=re.IGNORECASE) and not re.search(r"(?:km/h|キロ毎時|キロメートル毎時)", haystack, flags=re.IGNORECASE):
+        flags.append("UNIT_KNOT")
+    return flags
+
+
+def signature_flags(data: dict, item: dict) -> list[str]:
+    label = clean(item.get("label"))
+    value = clean(item.get("value"))
+    note = clean(item.get("note"))
+    topic = clean(item.get("topicKey"))
+    haystack = " ".join((topic, label, value, note)).lower()
+    flags: list[str] = []
+
+    heritage = any(term.lower() in haystack for term in HERITAGE_TERMS)
+    if heritage:
+        count = first_number(value)
+        count_value = bool(re.search(r"(?:件|\bsites?\b)", value, flags=re.IGNORECASE))
+        dimension_value = bool(re.search(
+            r"(?:ha|ヘクタール|km²|平方キロ|\bkm\b|\bm\b|年|\byears?\b)",
+            value,
+            flags=re.IGNORECASE,
+        ))
+        # 30+ World Heritage sites is rare enough to be an exceptional
+        # Signature-Fact candidate. It is still reviewed editorially rather
+        # than becoming an automatic PASS. Areas, dates, component counts,
+        # etc. remain heritage-description review candidates.
+        exceptional_count = count is not None and count >= HERITAGE_EXCEPTION_MIN and count_value and not dimension_value
+        if exceptional_count:
+            flags.append("HERITAGE_EXCEPTION_REVIEW")
+        elif any(term.lower() in haystack for term in HERITAGE_DETAIL_TERMS):
+            flags.append("HERITAGE_DESCRIPTION")
+        else:
+            flags.append("HERITAGE_RELATED")
+
+    if any(term.lower() in haystack for term in PROFILE_TERMS) and item.get("exceptionalScale") is not True:
+        flags.append("PROFILE_STAT")
+
+    if any(term.lower() in haystack for term in FOREST_TERMS):
+        pcts = percentages(" ".join((value, note)))
+        extreme = bool(pcts) and all(pct <= 10 or pct >= 70 for pct in pcts)
+        if item.get("exceptionalShare") is not True or not extreme:
+            flags.append("FOREST_SHARE")
+
+    sig_tokens = topic_tokens(topic)
+    if sig_tokens:
+        for section in ("atlasExtras", "travelTrivia"):
+            for other_key, other_tokens in cross_section_topic_keys(data, section):
+                shared = sig_tokens & other_tokens
+                if not shared:
+                    continue
+                union = sig_tokens | other_tokens
+                jaccard = len(shared) / max(1, len(union))
+                subset = sig_tokens <= other_tokens or other_tokens <= sig_tokens
+                strong_single = len(shared) == 1 and subset and len(next(iter(shared))) >= 5
+                if len(shared) >= 2 or jaccard >= 0.60 or strong_single:
+                    flags.append(f"TOPIC_OVERLAP:{section}:{other_key}")
+                    break
+
+    if len(note) < SHORT_NOTE_MIN_CHARS:
+        flags.append("SHORT_NOTE")
+    flags.extend(unfamiliar_unit_flags(value, note))
+
+    # A handful of meaningful absence/relationship facts are intentionally
+    # non-numeric; NO_NUMERIC_VALUE remains a human-review cue, not a failure.
+    if not re.search(r"\d", value):
+        flags.append("NO_NUMERIC_VALUE")
+    return flags
+
+
+def signature_rows(slug: str, data: dict) -> list[dict]:
+    rows: list[dict] = []
+    items = data.get("signatureFacts", [])
+    if not isinstance(items, list):
+        return rows
+    for index, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            continue
+        rows.append({
+            "slug": slug,
+            "index": index,
+            "topicKey": clean(item.get("topicKey")),
+            "label": clean(item.get("label")),
+            "value": clean(item.get("value")),
+            "note": clean(item.get("note")),
+            "interestReason": clean(item.get("interestReason")),
+            "flags": signature_flags(data, item),
+        })
+    return rows
 
 
 def main() -> int:
@@ -64,6 +241,7 @@ def main() -> int:
 
     themes = theme_counts()
     rows = []
+    signature_audit: list[dict] = []
     by_status = {row["slug"]: row for row in status_rows if row.get("slug")}
     for slug in published:
         path = COUNTRY_DIR / f"{slug}.json"
@@ -88,10 +266,17 @@ def main() -> int:
             "sourcesVerifiedAt": data.get("sourcesVerifiedAt"),
         }
         rows.append(row)
+        signature_audit.extend(signature_rows(slug, data))
 
     if args.json:
         print(json.dumps(
-            {"published": len(published), "rows": rows, "legacyUntracked": missing, "errors": errors},
+            {
+                "published": len(published),
+                "rows": rows,
+                "signatureFacts": signature_audit,
+                "legacyUntracked": missing,
+                "errors": errors,
+            },
             ensure_ascii=False,
             indent=2,
         ))
@@ -103,6 +288,25 @@ def main() -> int:
                 f"gate={'Y' if row['hardImageGate'] else 'N'} facts={row['visibleFacts']} scenes={row['scenes']} "
                 f"enc={row['encounters']} beyond={row['beyond']} trivia={row['trivia']} themes={row['themes']}"
             )
+
+        print(f"Signature Facts horizontal audit: {len(signature_audit)} item(s)")
+        for item in signature_audit:
+            flags = ",".join(item["flags"]) if item["flags"] else "-"
+            note = item["note"].replace("\n", " ")
+            reason = item["interestReason"].replace("\n", " ")
+            print(
+                f"SIG|{item['slug']}|{item['index']}|{item['label']}|{item['value']}|"
+                f"flags={flags}|note={note}|interestReason={reason}"
+            )
+
+        flagged = [item for item in signature_audit if item["flags"]]
+        print(f"Signature Facts heuristic review candidates: {len(flagged)} item(s)")
+        for item in flagged:
+            print(
+                f"SIG_REVIEW|{item['slug']}|{item['index']}|{item['label']}|{item['value']}|"
+                f"{','.join(item['flags'])}"
+            )
+
         if missing:
             print("Legacy renewal metadata not required for:")
             for slug in missing:
