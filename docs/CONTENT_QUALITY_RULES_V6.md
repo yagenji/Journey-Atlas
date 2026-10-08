@@ -1,6 +1,6 @@
 # JOURNEY ATLAS — Content Quality Rules v6
 
-Updated: 2026-09-15
+Updated: 2026-10-08
 
 Content QA v6 applies to new Country production with `contentQaVersion: 6`.
 It inherits v4 Travel Scale rules and v5 Signature Facts / map-label rules.
@@ -43,6 +43,10 @@ A fact must pass both questions:
 
 The visible `label`, `value`, and `note` must explain the metric plainly. Internal `interestReason` must explain why it deserves one of three slots.
 
+If a short note leaves a first-time reader asking what is being counted, measured or compared, expand it. A fact does not pass merely because its source is authoritative.
+
+Use units familiar to Japanese readers. Prefer km², km, m, °C and familiar SI forms. Hectares (`ha`), acres, miles or feet must not be the only visible unit in a Signature Fact; convert them to, or supplement them with, a familiar metric equivalent using sensible precision.
+
 ### Usually rejected
 
 - ordinary population counts;
@@ -54,7 +58,7 @@ The visible `label`, `value`, and `note` must explain the metric plainly. Intern
 
 Population / area / density may be used only when the scale itself is genuinely exceptional and `exceptionalScale: true` is explicit.
 
-World Heritage remains exception-only at 25 or more with `exceptionalHeritageCount: true`.
+World Heritage remains exception-only at **30 or more** with `exceptionalHeritageCount: true`. A smaller heritage number can still qualify when it expresses a different, genuinely exceptional country-level condition rather than an ordinary property count—for example, all of a Country's properties being simultaneously listed as World Heritage in Danger.
 Forest / woodland share remains exception-only at 10% or less or 70% or more with `exceptionalShare: true`.
 
 Passing an exception threshold does not automatically make a number a good choice; a more revealing number still takes priority.
