@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,11 +22,38 @@ def semantic_key(value: str) -> str:
     value = clean_node(value)
     value = re.sub(r"（.*?）", "", value)
     value = re.sub(r"\([^)]*\)", "", value)
-    value = value.replace("滞在", "").replace("周辺", "").replace("中心部", "")
+    for word in ("滞在", "周辺", "中心部"):
+        value = value.replace(word, "")
     return value.strip()
 
 
-def make_loop(route: str) -> tuple[str, bool]:
+def first_route_node(text: str) -> str:
+    m = re.search(r"例[:：]\s*(.+?)(?:。|$)", text)
+    if not m:
+        return ""
+    route = m.group(1).strip()
+    if re.search(r"[→➡➜]", route):
+        return semantic_key(ARROW_RE.split(route)[0])
+    if "＋" in route:
+        return semantic_key(route.split("＋", 1)[0])
+    return ""
+
+
+def returned_to_base(first: str, later: str) -> bool:
+    key = semantic_key(first)
+    later_key = semantic_key(later)
+    if key and key in later_key:
+        return True
+    # Treat compound gateway labels such as 「香港島・九龍」 as returned when
+    # one concrete component appears later in the route.
+    for part in re.split(r"[・/／]", key):
+        part = part.strip()
+        if len(part) >= 2 and part in later_key:
+            return True
+    return False
+
+
+def make_loop(route: str, bases: set[str]) -> tuple[str, bool]:
     route = route.strip()
     if not route:
         return route, False
@@ -36,32 +64,32 @@ def make_loop(route: str) -> tuple[str, bool]:
             return route, False
         first = nodes[0]
         first_key = semantic_key(first)
-        # Already returns to the same base somewhere after departure, including
-        # alternatives such as "A → B → A、または...".
-        later = " ".join(semantic_key(x) for x in nodes[1:])
-        if first_key and first_key in later:
+        later = " ".join(nodes[1:])
+        if returned_to_base(first, later):
             return route, False
-        # A broad region/block is not a usable return point. Leave these for
-        # explicit editorial review rather than inventing a destination.
-        if any(word in first for word in ("周遊", "地域", "各地", "方面", "本土", "北部", "南部", "東部", "西部", "中央部", "市街地")):
+        # Only auto-close a route when its start is demonstrably a main base:
+        # the Country capital, or the same starting point used in >=2 examples.
+        # Everything else remains for human editorial review.
+        if first_key not in bases:
             return route, False
         return f"{route} → {first}", True
 
-    # Convert simple place lists into an actual route and close the loop.
     if "＋" in route:
         parts = [clean_node(x) for x in route.split("＋") if clean_node(x)]
         if 2 <= len(parts) <= 6 and all(len(x) <= 32 for x in parts):
-            return " → ".join(parts + [parts[0]]), True
+            first_key = semantic_key(parts[0])
+            if first_key in bases:
+                return " → ".join(parts + [parts[0]]), True
 
     return route, False
 
 
-def rewrite_text(text: str) -> tuple[str, bool]:
+def rewrite_text(text: str, bases: set[str]) -> tuple[str, bool]:
     m = re.search(r"(例[:：]\s*)(.+?)(。|$)", text)
     if not m:
         return text, False
     route = m.group(2).strip()
-    new_route, changed = make_loop(route)
+    new_route, changed = make_loop(route, bases)
     if not changed:
         return text, False
     return text[: m.start(2)] + new_route + text[m.end(2) :], True
@@ -87,12 +115,20 @@ def main() -> int:
         path = COUNTRY_DIR / f"{slug}.json"
         data = json.loads(path.read_text(encoding="utf-8"))
         items = ((data.get("travelScale") or {}).get("items") or [])
+
+        first_nodes = [first_route_node(item.get("text", "")) for item in items if isinstance(item, dict)]
+        counts = Counter(node for node in first_nodes if node)
+        bases = {node for node, count in counts.items() if count >= 2}
+        capital = semantic_key(((data.get("capital") or {}).get("nameJa") or ""))
+        if capital:
+            bases.add(capital)
+
         replacements: list[tuple[str, str]] = []
         for index, item in enumerate(items, 1):
             old = item.get("text") if isinstance(item, dict) else None
             if not isinstance(old, str):
                 continue
-            new, changed = rewrite_text(old)
+            new, changed = rewrite_text(old, bases)
             if changed:
                 replacements.append((old, new))
             else:
@@ -100,8 +136,15 @@ def main() -> int:
                 if m:
                     route = m.group(1).strip()
                     first_sentence = route.split("。", 1)[0]
-                    nodes = [clean_node(x) for x in ARROW_RE.split(first_sentence) if clean_node(x)] if re.search(r"[→➡➜]", first_sentence) else []
-                    if not nodes or (len(nodes) >= 2 and semantic_key(nodes[0]) not in " ".join(semantic_key(x) for x in nodes[1:])):
+                    if re.search(r"[→➡➜]", first_sentence):
+                        nodes = [clean_node(x) for x in ARROW_RE.split(first_sentence) if clean_node(x)]
+                        if len(nodes) >= 2 and not returned_to_base(nodes[0], " ".join(nodes[1:])):
+                            skipped.append((slug, index, route))
+                    elif "＋" in first_sentence:
+                        parts = [clean_node(x) for x in first_sentence.split("＋") if clean_node(x)]
+                        if len(parts) >= 2:
+                            skipped.append((slug, index, route))
+                    else:
                         skipped.append((slug, index, route))
 
         if not replacements:
