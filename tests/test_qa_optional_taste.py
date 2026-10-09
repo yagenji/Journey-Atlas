@@ -2,6 +2,7 @@
 """Temporary cross-sectional Taste audit plus existing regression assertions."""
 import hashlib
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -20,6 +21,8 @@ structural = []
 review = []
 rows = []
 hashes = defaultdict(list)
+japanese_re = re.compile(r"[ぁ-んァ-ヶ一-龯々ー]")
+raster_suffixes = {".png", ".jpg", ".jpeg", ".webp"}
 
 for slug in slugs:
     path = ROOT / "data" / "countries" / f"{slug}.json"
@@ -35,8 +38,12 @@ for slug in slugs:
     if not isinstance(items, list):
         structural.append([slug, "ITEMS_MISSING"])
         continue
+    omitted_reason = taste.get("omittedReason")
     if len(items) != 4:
-        structural.append([slug, f"ITEM_COUNT:{len(items)}"])
+        if len(items) == 0 and isinstance(omitted_reason, str) and omitted_reason.strip():
+            review.append([slug, "OMITTED_WITH_REASON", omitted_reason.strip()])
+        else:
+            structural.append([slug, f"ITEM_COUNT:{len(items)}"])
 
     seen = {"id": {}, "name": {}, "nameLocal": {}, "image": {}}
     for i, item in enumerate(items, 1):
@@ -62,6 +69,8 @@ for slug in slugs:
             if not image_path.exists():
                 flags.append("IMAGE_FILE_MISSING")
             elif image_path.is_file():
+                if image_path.suffix.lower() not in raster_suffixes:
+                    review.append([slug, i, item.get("name", ""), f"NON_RASTER_IMAGE:{image_path.suffix.lower()}", image])
                 try:
                     digest = hashlib.sha256(image_path.read_bytes()).hexdigest()
                     hashes[digest].append((slug, i, image))
@@ -70,10 +79,13 @@ for slug in slugs:
         if flags:
             structural.append([slug, i, item.get("name", ""), flags])
 
+        name = item.get("name", "") if isinstance(item.get("name"), str) else ""
+        if name and not japanese_re.search(name):
+            review.append([slug, i, name, "NAME_WITHOUT_JAPANESE_SCRIPT"])
         text = item.get("text", "") if isinstance(item.get("text"), str) else ""
         if text and len(text.strip()) < 20:
-            review.append([slug, i, item.get("name", ""), f"SHORT_TEXT:{len(text.strip())}"])
-        rows.append([slug, i, item.get("name", ""), item.get("nameLocal", ""), text, image or ""])
+            review.append([slug, i, name, f"SHORT_TEXT:{len(text.strip())}"])
+        rows.append([slug, i, name, item.get("nameLocal", ""), text, image or ""])
 
 for digest, refs in hashes.items():
     if len(refs) > 1:
