@@ -122,11 +122,12 @@ jobs:
         if: steps.target.outputs.run == 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
-      - name: Build cross-sectional Country preview
+      - name: Build targeted Country preview
         if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != ''
         env:
+          TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
-        run: python3 scripts/build_cloudflare.py
+        run: python3 scripts/build_country_preview_targeted.py
 
       - name: Build full production package
         if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
@@ -153,9 +154,9 @@ jobs:
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
-          QA_SCOPE: published
-          QA_PARALLEL_WORKERS: "4"
-        run: python3 scripts/qa_published_browser_parallel.py
+          QA_SCOPE: reviewable
+          QA_SLUGS: ${{ steps.target.outputs.slugs }}
+        run: python3 scripts/qa_country_browser.py
 
       - name: Run full published Desktop / Tablet / Mobile QA
         if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
