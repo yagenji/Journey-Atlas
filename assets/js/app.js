@@ -352,7 +352,10 @@ function projectPoint(coordinates, mapDataOrBounds, offset = {}, regionId = '') 
 function renderCapitalMarker(fragment, capital, mapData) {
   const markers = fragment.querySelector('#map-markers');
   const point = projectPoint(capital?.coordinates, mapData, capital?.mapOffset, capital?.mapRegion);
-  if (!markers || !point) return;
+  if (!markers || !point) {
+    fragment.querySelector('.map-legend__capital-item')?.remove();
+    return;
+  }
   const marker = document.createElement('div');
   marker.className = 'map-capital-marker';
   marker.style.left = `${point.x}%`;
