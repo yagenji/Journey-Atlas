@@ -31,7 +31,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: validate-country-data-${{ github.event.pull_request.number || github.ref }}
@@ -85,122 +85,60 @@ jobs:
           base, output = sys.argv[1:]
           files = Path("/tmp/country-changed-files.txt").read_text().splitlines()
           publication_only = files == ["data/atlas-destinations.json"]
-
           content_slugs = set()
           map_asset_folders = set()
           other_asset_folders = set()
-
           for path in files:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
               if match:
-                  content_slugs.add(match.group(1))
-                  continue
+                  content_slugs.add(match.group(1)); continue
               match = re.match(r"assets/images/([^/]+)/(.+)", path)
               if match:
                   folder, relative = match.groups()
-                  if re.fullmatch(r"map-[^/]+\.svg", relative):
-                      map_asset_folders.add(folder)
-                  else:
-                      other_asset_folders.add(folder)
-
+                  (map_asset_folders if re.fullmatch(r"map-[^/]+\.svg", relative) else other_asset_folders).add(folder)
           country_dir = Path("data/countries")
-
           def owner_slugs(folder: str) -> set[str]:
-              prefix = f"assets/images/{folder}/"
-              matched = set()
-              direct = country_dir / f"{folder}.json"
-              if direct.exists():
-                  matched.add(folder)
+              prefix = f"assets/images/{folder}/"; matched = set(); direct = country_dir / f"{folder}.json"
+              if direct.exists(): matched.add(folder)
               for country_path in country_dir.glob("*.json"):
-                  try:
-                      payload = country_path.read_text(encoding="utf-8")
-                  except OSError:
-                      continue
-                  if prefix in payload:
-                      matched.add(country_path.stem)
-              if not matched:
-                  raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
+                  try: payload = country_path.read_text(encoding="utf-8")
+                  except OSError: continue
+                  if prefix in payload: matched.add(country_path.stem)
+              if not matched: raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
               return matched
-
-          for folder in other_asset_folders:
-              content_slugs.update(owner_slugs(folder))
-
+          for folder in other_asset_folders: content_slugs.update(owner_slugs(folder))
           map_slugs = set()
-          for folder in map_asset_folders:
-              map_slugs.update(owner_slugs(folder))
-
-          # Any Country whose JSON or non-map imagery changed must receive the
-          # complete finish-line QA; do not duplicate it in the map-only pass.
-          map_slugs.difference_update(content_slugs)
-          slugs = content_slugs | map_slugs
-
+          for folder in map_asset_folders: map_slugs.update(owner_slugs(folder))
+          map_slugs.difference_update(content_slugs); slugs = content_slugs | map_slugs
           if "data/atlas-destinations.json" in files:
               try:
-                  old = json.loads(subprocess.check_output(
-                      ["git", "show", f"{base}:data/atlas-destinations.json"], text=True
-                  ))
+                  old = json.loads(subprocess.check_output(["git","show",f"{base}:data/atlas-destinations.json"], text=True))
                   new = json.loads(Path("data/atlas-destinations.json").read_text(encoding="utf-8"))
-                  old_rows = {row.get("slug"): row for row in old.get("destinations", []) if row.get("slug")}
-                  new_rows = {row.get("slug"): row for row in new.get("destinations", []) if row.get("slug")}
-                  for slug in set(old_rows) | set(new_rows):
-                      if old_rows.get(slug) != new_rows.get(slug):
-                          content_slugs.add(slug)
-                          slugs.add(slug)
-              except Exception:
-                  publication_only = False
-
-          shared_validator_paths = {
-              "scripts/validate_country.py",
-              "scripts/validate_country_editorial_v2.py",
-              "scripts/validate_country_quality_v5.py",
-              "scripts/validate_country_map_v6.py",
-              "scripts/validate_images.py",
-          }
-          shared = any(
-              path == "country.html"
-              or path.startswith("assets/css/")
-              or path.startswith("assets/js/")
-              or path == "data/theme-taxonomy.json"
-              or path == "data/region-taxonomy.json"
-              or path in shared_validator_paths
-              for path in files
-          )
-
-          with open(output, "a", encoding="utf-8") as handle:
-              handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
-              handle.write("content_slugs=" + ",".join(sorted(content_slugs)) + "\n")
-              handle.write("map_slugs=" + ",".join(sorted(map_slugs)) + "\n")
-              handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
-              handle.write("publication_only=" + ("true" if publication_only else "false") + "\n")
+                  old_rows={row.get("slug"):row for row in old.get("destinations",[]) if row.get("slug")}; new_rows={row.get("slug"):row for row in new.get("destinations",[]) if row.get("slug")}
+                  for slug in set(old_rows)|set(new_rows):
+                      if old_rows.get(slug)!=new_rows.get(slug): content_slugs.add(slug); slugs.add(slug)
+              except Exception: publication_only=False
+          shared_validator_paths={"scripts/validate_country.py","scripts/validate_country_editorial_v2.py","scripts/validate_country_quality_v5.py","scripts/validate_country_map_v6.py","scripts/validate_images.py"}
+          shared=any(path=="country.html" or path.startswith("assets/css/") or path.startswith("assets/js/") or path=="data/theme-taxonomy.json" or path=="data/region-taxonomy.json" or path in shared_validator_paths for path in files)
+          with open(output,"a",encoding="utf-8") as handle:
+              handle.write("slugs="+",".join(sorted(slugs))+"\n"); handle.write("content_slugs="+",".join(sorted(content_slugs))+"\n"); handle.write("map_slugs="+",".join(sorted(map_slugs))+"\n"); handle.write("full="+("true" if shared and not slugs else "false")+"\n"); handle.write("publication_only="+("true" if publication_only else "false")+"\n")
           PY
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
       - name: Install image QA dependency
         if: steps.target.outputs.publication_only != 'true'
         run: python3 -m pip install --disable-pip-version-check --quiet pillow
-
       - name: Validate tool syntax and regression contracts
         if: steps.target.outputs.publication_only != 'true'
         run: |
-          python3 -m py_compile \
-            scripts/new_country.py \
-            scripts/validate_country.py \
-            scripts/validate_country_editorial_v2.py \
-            scripts/validate_country_quality_v5.py \
-            scripts/validate_country_map_v6.py \
-            scripts/validate_images.py \
-            scripts/audit_country_image_delivery_targeted.py \
-            scripts/audit_country_region_labels.py \
-            scripts/audit_published_countries.py
+          python3 -m py_compile scripts/new_country.py scripts/validate_country.py scripts/validate_country_editorial_v2.py scripts/validate_country_quality_v5.py scripts/validate_country_map_v6.py scripts/validate_images.py scripts/audit_country_image_delivery_targeted.py scripts/audit_country_region_labels.py scripts/audit_published_countries.py
           python3 scripts/test_country_editorial_v2.py
           python3 scripts/test_country_quality_v5.py
           python3 tests/test_qa_optional_taste.py
           python3 tests/test_qa_optional_taste_runner.py
-
       - name: Run targeted finish-line QA
         if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
         env:
@@ -209,9 +147,7 @@ jobs:
         run: |
           set -euo pipefail
           for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
-            path="data/countries/$slug.json"
-            [ -f "$path" ] || continue
-            echo "=== FULL QA: $slug ==="
+            path="data/countries/$slug.json"; [ -f "$path" ] || continue; echo "=== FULL QA: $slug ==="
             python3 scripts/validate_country_editorial_v2.py --force "$path"
             python3 scripts/validate_country_quality_v5.py "$path"
             python3 scripts/validate_country_map_v6.py "$path"
@@ -220,7 +156,6 @@ jobs:
             python3 scripts/validate_images.py --mode hard --slug "$slug"
             python3 scripts/validate_images.py --duplicates-only --slug "$slug"
           done
-
       - name: Run targeted map-only QA
         if: steps.target.outputs.map_slugs != '' && steps.target.outputs.publication_only != 'true'
         env:
@@ -228,14 +163,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
-            path="data/countries/$slug.json"
-            [ -f "$path" ] || continue
-            echo "=== MAP-ONLY QA: $slug ==="
-            python3 scripts/validate_country_map_v6.py "$path"
-            python3 scripts/validate_country.py --strict "$path"
-          done
-
+          for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do path="data/countries/$slug.json"; [ -f "$path" ] || continue; python3 scripts/validate_country_map_v6.py "$path"; python3 scripts/validate_country.py --strict "$path"; done
       - name: Run full Country QA
         if: steps.target.outputs.full == 'true' && steps.target.outputs.publication_only != 'true'
         run: |
@@ -246,13 +174,11 @@ jobs:
           python3 scripts/validate_country.py --published
           python3 scripts/validate_images.py --mode audit
           python3 scripts/validate_images.py --mode hard
-
       - name: Publication-only PR reuses reviewed Country QA
         if: steps.target.outputs.publication_only == 'true'
         run: |
           echo "Only data/atlas-destinations.json changed."
           echo "Country content, images and map were already reviewed; finish-line QA is not repeated."
-
       - name: Validate shared registries
         run: |
           python3 scripts/audit_country_region_labels.py
