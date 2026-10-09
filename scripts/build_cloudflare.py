@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import json
 import os
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -42,13 +41,6 @@ def main() -> int:
     run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/package_site.py", env=env)
-
-    # Temporary cross-sectional QA support: include the current Country JSON
-    # sources in the existing Browser QA artifact. Remove before final merge.
-    snapshot_dir = ROOT / "qa-browser-output" / "travel-scale-country-json"
-    snapshot_dir.mkdir(parents=True, exist_ok=True)
-    for country_path in sorted((ROOT / "data" / "countries").glob("*.json")):
-        shutil.copy2(country_path, snapshot_dir / country_path.name)
 
     dist = ROOT / "dist"
     commit_sha = (
