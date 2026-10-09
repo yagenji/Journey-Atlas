@@ -15,7 +15,7 @@ Required:
 - Signature Facts are genuinely distinctive, not generic profile numbers;
 - Encounters describe observable travel experiences;
 - Beyond the Scenery adds deeper context;
-- Travel Trivia stays light and non-duplicative;
+- Travel Trivia gives the reader a small, genuinely surprising discovery rather than repeating profile or guidebook information;
 - Taste items are authentic recognizable dishes;
 - Travel Scale provides a concrete, internally consistent journey shape;
 - next routes and related destinations are editorially meaningful, not filler.
@@ -37,6 +37,25 @@ Required:
 - do not repeat the same subject across Signature Facts, Beyond the Scenery, and Travel Trivia unless each section clearly adds a different information value.
 
 Passing an exception threshold does not automatically make a fact a good choice. A more revealing Country-specific fact still takes priority.
+
+## Travel Trivia
+
+Travel Trivia is not a miniature guidebook or a second Country Profile. Each item should leave a first-time reader with a small **「へぇー」**: an unexpected fact, custom, historical detail, cultural quirk, geographic peculiarity, local invention, unusual practice, or other concise discovery that adds character to the Country.
+
+Required:
+- choose a fact that is interesting even if the reader is not currently planning logistics;
+- prefer Country-specific or locally distinctive material over generic travel advice;
+- keep it light enough to read quickly, while still being factually meaningful;
+- avoid repeating the subject or information value of Country Profile, Signature Facts, Beyond the Scenery, Travel Notes, Transport, or another Trivia item;
+- if an item mainly answers "what do I need to know to travel there?" rather than "what is interesting about this place?", it belongs in another section.
+
+Do **not** use Travel Trivia for:
+- Country Profile-style basics such as official or commonly used languages, currency or money, capital, population, area, religion, or equivalent profile facts;
+- road-side rules or driving guidance such as left-hand / right-hand traffic, road-side conventions, licence requirements, fuel or rental-car advice;
+- operational travel guidance such as tipping, payment methods, SIM/eSIM, plug types, opening hours, border procedures, transport tickets, or similar guidebook information;
+- a Scene, Signature Fact, Beyond item, or Travel Note merely rewritten as a shorter sentence.
+
+A historical or cultural fact that happens to involve language, money, transport, or another practical subject is still unsuitable when its main information value is the practical/basic fact itself. Choose a different topic whose value is discovery, not utility.
 
 ## Country Profile area comparison
 
