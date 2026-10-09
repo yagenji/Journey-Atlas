@@ -1,6 +1,7 @@
 (() => {
   const JAPAN_AREA_KM2 = 377973.68;
   const GSI_AREA_REFERENCE_DATE = '2026-07-01';
+  const POPULATION_ROUNDING_THRESHOLD = 100000;
 
   function currentSlug() {
     return document.documentElement.dataset.country
@@ -15,6 +16,34 @@
     if (value >= 0.001) return value.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
     if (value >= 0.0001) return value.toFixed(5).replace(/0+$/, '').replace(/\.$/, '');
     return value.toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
+  }
+
+  function formatRoundedPopulation(value) {
+    const tenThousands = Math.round(value / 10000);
+    if (tenThousands >= 10000) {
+      const hundredMillions = Math.floor(tenThousands / 10000);
+      const remainder = tenThousands % 10000;
+      if (!remainder) return `${hundredMillions}億人`;
+      return `${hundredMillions}億${remainder.toLocaleString('ja-JP')}万人`;
+    }
+    return `${tenThousands.toLocaleString('ja-JP')}万人`;
+  }
+
+  function enhancePopulationDisplay() {
+    const groups = [...document.querySelectorAll('#facts > div')];
+    if (!groups.length) return false;
+    const populationGroup = groups.find((group) => group.querySelector('dt')?.textContent?.trim() === '人口');
+    if (!populationGroup) return true;
+    const value = populationGroup.querySelector('dd');
+    if (!value) return true;
+    const text = value.textContent?.trim() || '';
+    if (!text || text.startsWith('約')) return true;
+    const match = text.match(/^([0-9][0-9,]*)\s*人?(.*)$/);
+    if (!match) return true;
+    const population = Number(match[1].replaceAll(',', ''));
+    if (!Number.isFinite(population) || population < POPULATION_ROUNDING_THRESHOLD) return true;
+    value.textContent = `約${formatRoundedPopulation(population)}${match[2]}`;
+    return true;
   }
 
   function enhanceAreaComparison() {
@@ -37,12 +66,18 @@
     return true;
   }
 
+  function enhanceCountryProfile() {
+    const populationReady = enhancePopulationDisplay();
+    const areaReady = enhanceAreaComparison();
+    return populationReady && areaReady;
+  }
+
   const app = document.querySelector('#app');
   if (!app) return;
-  if (enhanceAreaComparison()) return;
+  if (enhanceCountryProfile()) return;
 
   const observer = new MutationObserver(() => {
-    if (enhanceAreaComparison()) observer.disconnect();
+    if (enhanceCountryProfile()) observer.disconnect();
   });
   observer.observe(app, { childList: true, subtree: true });
 })();
