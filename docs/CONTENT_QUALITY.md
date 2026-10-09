@@ -46,6 +46,14 @@ For the `面積` fact, include a Japan comparison when a reliable area basis is 
 - Keep the same area basis for the country and Japan where practical, record the source/date, and avoid unnecessary decimal precision.
 - Do not switch a value above 100% into percentage form or a value below 1.0 into multiplier form merely because the arithmetic is equivalent.
 
+## Travel Scale route examples
+
+`travelScale` の `例：` ルートは、**片道の地点列挙ではなく、旅として完結する周遊ルート**にする。
+
+- 原則として、現実的な主要拠点から出発し、その拠点へ戻る形で組む。
+- 地理・交通上、同じ拠点へ戻ることが不自然な場合だけ、別の現実的な出国・帰路拠点で完結させる。
+- 観光地や地方都市で行きっぱなしにせず、帰路まで含めて一つの旅として読めること。
+
 ## Source discipline
 
 Use reliable primary or authoritative secondary sources for:
