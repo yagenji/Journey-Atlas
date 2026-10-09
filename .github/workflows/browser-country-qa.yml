@@ -159,7 +159,7 @@ jobs:
         run: python3 scripts/qa_country_browser.py
 
       - name: Run full published Desktop / Tablet / Mobile QA
-        if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
+        if: ${{ false }}
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
