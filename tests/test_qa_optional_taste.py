@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Regression coverage for Country browser QA optional Taste contract."""
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,3 +13,4 @@ assert 'selector != "#taste-section"' in WRAPPER
 assert 'scene.get("mapSurface", "land")' in MAP_QA
 assert 'surface == "water"' in MAP_QA
 print("Optional Taste / water Scene QA regression PASS")
+subprocess.run([sys.executable, str(ROOT / "scripts" / "audit_transport_cross_section.py")], check=True)
