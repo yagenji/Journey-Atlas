@@ -12,6 +12,7 @@ assert 'selector != "#taste-section"' in WRAPPER
 assert 'scene.get("mapSurface", "land")' in MAP_QA
 assert 'surface == "water"' in MAP_QA
 
+# Cross-sectional audit output is intentionally emitted to CI logs and removed before merge.
 registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
 slugs = [x["slug"] for x in registry.get("destinations", []) if x.get("atlasPublished")]
 issues = []
