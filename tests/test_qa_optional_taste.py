@@ -17,6 +17,12 @@ registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(enco
 slugs = [x["slug"] for x in registry.get("destinations", []) if x.get("atlasPublished")]
 issues = []
 rows = []
+counts = {"loop": 0, "open": 0, "non_arrow": 0, "missing_example": 0}
+
+def clean_node(value: str) -> str:
+    value = re.sub(r"\s+", " ", value.strip())
+    value = re.sub(r"[。．.!！?？、,;；:：]+$", "", value).strip()
+    return value
 
 for slug in slugs:
     path = ROOT / "data" / "countries" / f"{slug}.json"
@@ -43,28 +49,44 @@ for slug in slugs:
             if not isinstance(value, str) or not value.strip():
                 flags.append(f"MISSING_{key.upper()}")
         route = ""
-        nodes = []
+        status = ""
         if isinstance(text, str):
             m = re.search(r"例[:：]\s*(.+)$", text)
             if not m:
                 flags.append("MISSING_ROUTE_EXAMPLE")
+                counts["missing_example"] += 1
+                status = "MISSING"
             else:
                 route = m.group(1).strip()
-                nodes = [re.sub(r"\s+", " ", x.strip()) for x in re.split(r"\s*[→➡➜]\s*", route) if x.strip()]
-                if len(nodes) < 2:
-                    flags.append("ROUTE_TOO_SHORT")
-                elif nodes[0] != nodes[-1]:
-                    flags.append("OPEN_ROUTE")
+                route_expr = route.split("。", 1)[0].strip()
+                if re.search(r"[→➡➜]", route_expr):
+                    nodes = [clean_node(x) for x in re.split(r"\s*[→➡➜]\s*", route_expr) if clean_node(x)]
+                    if len(nodes) < 2:
+                        flags.append("ROUTE_TOO_SHORT")
+                        status = "SHORT"
+                    elif nodes[0] == nodes[-1]:
+                        counts["loop"] += 1
+                        status = "LOOP"
+                    else:
+                        counts["open"] += 1
+                        flags.append("OPEN_ROUTE")
+                        status = "OPEN"
+                else:
+                    counts["non_arrow"] += 1
+                    flags.append("NON_ARROW_ROUTE")
+                    status = "NON_ARROW"
         if flags:
             issues.append([slug, i, flags, duration, title, route])
-        rows.append([slug, i, duration, title, route, "LOOP" if len(nodes) >= 2 and nodes[0] == nodes[-1] else "OPEN"])
+        rows.append([slug, i, duration, title, route, status])
 
 print("TRAVEL_SCALE_AUDIT_SUMMARY=" + json.dumps({
     "published": len(slugs),
     "items": len(rows),
+    "counts": counts,
     "issues": issues,
 }, ensure_ascii=False))
 for row in rows:
-    print("TRAVEL_SCALE|" + "|".join(str(x).replace("\n", " ") for x in row))
+    if row[-1] != "LOOP":
+        print("TRAVEL_SCALE_REVIEW|" + "|".join(str(x).replace("\n", " ") for x in row))
 
 raise AssertionError("TRAVEL_SCALE_CROSS_SECTION_AUDIT_COMPLETE")
