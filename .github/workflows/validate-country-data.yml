@@ -31,7 +31,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: validate-country-data-${{ github.event.pull_request.number || github.ref }}
@@ -129,8 +129,6 @@ jobs:
           for folder in map_asset_folders:
               map_slugs.update(owner_slugs(folder))
 
-          # Any Country whose JSON or non-map imagery changed must receive the
-          # complete finish-line QA; do not duplicate it in the map-only pass.
           map_slugs.difference_update(content_slugs)
           slugs = content_slugs | map_slugs
 
