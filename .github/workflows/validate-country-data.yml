@@ -31,7 +31,7 @@ on:
         type: string
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: validate-country-data-${{ github.event.pull_request.number || github.ref }}
