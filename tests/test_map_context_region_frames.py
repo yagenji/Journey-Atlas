@@ -139,8 +139,11 @@ class FrameUnframedRegionsTest(unittest.TestCase):
 
             frames = [item for item in result.iter(namespace + 'rect')
                       if item.get('data-map-context-frame')]
+            # The mainland context runs to the canvas edge (2026-10-16), so only
+            # the detached island viewports are framed.
             self.assertEqual({frame.get('data-map-context-frame') for frame in frames},
-                             {region['id'] for region in country['map']['regions']})
+                             {region['id'] for region in country['map']['regions']
+                              if region['id'] != 'mainland'})
             for frame in frames:
                 rect = next(region['rect'] for region in country['map']['regions']
                             if region['id'] == frame.get('data-map-context-frame'))

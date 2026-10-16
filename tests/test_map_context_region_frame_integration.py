@@ -46,7 +46,9 @@ class RealRegionalFrameTest(unittest.TestCase):
             after = ET.fromstring(preview)
             self.assertEqual(after.get('viewBox'), '0 0 1200 760')
             self.assertEqual(original_paths(before), original_paths(after))
-            regions = config['map']['regions']
+            # The mainland context runs to the canvas edge (2026-10-16), so only
+            # the detached island viewports keep a frame.
+            regions = [region for region in config['map']['regions'] if region['id'] != 'mainland']
             frames = [el for el in after.iter(NS + 'rect') if el.get('data-map-context-frame')]
             self.assertEqual({el.get('data-map-context-frame') for el in frames},
                              {region['id'] for region in regions})
