@@ -54,9 +54,9 @@ class GeographicSourceRegressions(unittest.TestCase):
         self.assertEqual(len(targets), 15)
         self.assertEqual(targets, original)
         self.assertEqual(final.get('viewBox'), '0 0 1200 760')
-        # 2026-10-06: inset frames in the shared style (no reduced opacity)
+        # 2026-10-16: shared inset labels (AZORES · 別枠 / MADEIRA · 別枠) and rx 7 frames
         self.assertEqual(hashlib.sha256(rendered).hexdigest(),
-                         '10bfa63aac9058edfeebb028e6c1cf1a12ce99abd07c164d901bd4dca615430b')
+                         '52f233775e6f8b05b9c09d5f1247784bbaa0456200240fd0b05a0c3104ee135b')
         context = next(g for g in final.iter(SVG+'g') if g.get('id')=='geographic-context')
         parts = [p for p in context.iter(SVG+'path') if p.get('data-map-context-region')]
         self.assertEqual([(p.get('data-map-context-region'),p.get('d')) for p in parts], [('mainland',pinned)])
