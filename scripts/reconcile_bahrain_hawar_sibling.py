@@ -3,6 +3,10 @@
 Bahrain's approved national map and every other inset region remain untouched.
 The sibling source and output were audited as a 1200x760 source-only candidate;
 this migration helper does not imply overall Bahrain geographic signoff.
+
+The pinned path is the same QAT source and simplification clipped to the
+drawn Hawar inset frame (986,468,208,282), so Qatar reaches the frame edge
+instead of stopping at the smaller region rect.
 """
 from __future__ import annotations
 import base64
@@ -16,8 +20,8 @@ ROOT=Path(__file__).resolve().parents[1]
 SVG='{http://www.w3.org/2000/svg}'
 SOURCE_GIT_BLOB='afe2605d77c92e03124c7a5ff5cab8c639fe3060'
 OLD_CONTEXT_SHA='d06ca98b93ec8285b0bdfff01c8abfa8f0e7c8aa50e3f429a74225de76c8250f'
-PINNED_ASSET_GIT_BLOB='d669e16d210653b3a75b4402f7bfd75d487954a9'
-PINNED_PATH_SHA='29144e8c4b8b3d3501136198c5029acbbe6821d937cc92e7aa919218ff6eb3a3'
+PINNED_ASSET_GIT_BLOB='f8e8e3dd3ce316025a65645df86c9a9f4e061866'
+PINNED_PATH_SHA='0bc5883499873344a86652cd0ce187505669a746e737a1c443d59bcf66eac231'
 SOURCE_GEOJSON_SHA='2a14d3068d2fc131ed411d9db187a1579f6d207d4c577bd453920213b8193ee9'
 SOURCE_URL=('https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/'
             '9469f09592ced973a3448cf66b6100b741b64c0d/releaseData/gbOpen/'

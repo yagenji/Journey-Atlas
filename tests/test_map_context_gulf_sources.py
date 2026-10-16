@@ -70,7 +70,10 @@ class GulfForeignSourceReview(unittest.TestCase):
         path = next(context.iter(NS+'path'))
         self.assertEqual(path.get('data-map-context-region'), 'country')
         rings = [part for part in re.split(r'(?=\bM\s)', path.get('d')) if part.strip()]
-        self.assertEqual(len(rings),2, 'Keep foreign mainland and unassigned sixth ring')
+        # The promoted map draws the same GSHHG source to the canvas edge, so a
+        # third foreign ring (Iranian coast, top right, x>=900) is now in view.
+        self.assertEqual(len(rings),3, 'Keep foreign mainland, unassigned sixth ring and Iranian coast')
+        self.assertTrue(any(re.match(r'M 9\d\d\.\d,|M 1[01]\d\d\.\d,', ring) for ring in rings))
         self.assertIn('map-context-clip-country', updated)
         with self.assertRaisesRegex(ValueError,'source|Source|Unreviewed'):
             reconcile(updated,source,'kuwait','h')
