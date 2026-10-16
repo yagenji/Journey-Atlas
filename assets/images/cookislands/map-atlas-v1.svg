@@ -6,13 +6,13 @@
 <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/><feOffset in="b" dy="3" result="o"/><feColorMatrix in="o" type="matrix" values="0 0 0 0 .12 0 0 0 0 .22 0 0 0 0 .28 0 0 0 .14 0"/><feBlend in="SourceGraphic" mode="normal"/></filter>
 </defs>
 <rect width="1200" height="760" fill="url(#sea)"/>
-<g data-map-inset-frame="north" data-inset-purpose="detached"><rect x="30" y="80" width="320" height="280" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
-<g data-map-inset-frame="rarotonga" data-inset-purpose="enlargement"><rect x="390" y="410" width="320" height="300" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
-<g data-map-inset-frame="aitutaki" data-inset-purpose="enlargement"><rect x="390" y="80" width="320" height="300" rx="7" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
+<g data-map-inset-frame="north" data-inset-purpose="detached"><rect rx="7" x="30" y="80" width="320" height="280" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
+<g data-map-inset-frame="rarotonga" data-inset-purpose="enlargement"><rect rx="7" x="390" y="410" width="320" height="300" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
+<g data-map-inset-frame="aitutaki" data-inset-purpose="enlargement"><rect rx="7" x="390" y="80" width="320" height="300" fill="none" stroke="#879b9b" stroke-width="1.5" stroke-dasharray="5 5"/></g>
 <g aria-hidden="true" font-family="system-ui, sans-serif" font-size="12" letter-spacing=".8" fill="#4f6875">
-<text x="46" y="103">北部諸島 / 別枠</text>
-<text x="406" y="103">アイツタキ / 拡大</text>
-<text x="406" y="433">ラロトンガ / 拡大</text>
+
+
+
 </g>
 <g id="target-country" filter="url(#shadow)">
 <path d="M202.68,205.25L202.68,205.17L202.89,204.03L203.44,204.12L203.29,205.22L202.68,205.25Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round"/>
@@ -49,4 +49,5 @@
 <path d="M594.485,263.084L597.086,259.984L601.941,261.878L597.779,275.655Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" data-geometry-source="surveyed-shoreline"/>
 <path d="M587.896,320.773L590.497,321.117L594.658,322.495L592.231,324.217Z" fill="url(#land)" fill-rule="evenodd" stroke="#31576a" stroke-width="1.5" stroke-linejoin="round" data-geometry-source="surveyed-shoreline"/>
 </g>
+<g data-map-inset-standard="true" aria-hidden="true"><g data-map-inset-labels="true" font-family="sans-serif" fill="#405c65"><rect x="39" y="330" width="198" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="47" y="347" font-size="13" font-weight="600">NORTHERN GROUP · 別枠</text><rect x="399" y="350" width="125" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="407" y="367" font-size="13" font-weight="600">AITUTAKI · 拡大</text><rect x="399" y="680" width="153" height="24" rx="4" fill="#edf1ed" fill-opacity=".94"/><text x="407" y="697" font-size="13" font-weight="600">RAROTONGA · 拡大</text></g></g>
 </svg>

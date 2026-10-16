@@ -45,7 +45,7 @@ class GeographicSourceRegressions(unittest.TestCase):
     def test_portugal_uses_source_matched_spain_and_keeps_all_targets(self):
         pinned = (ROOT/'ops/map-context-sources/portugal/spain-natural-earth-mainland-context.path').read_text(encoding='utf-8').rstrip('\n')
         self.assertEqual(hashlib.sha256(pinned.encode()).hexdigest(),
-                         '2c475f224a4bea0b3c83deacc006edf6a121b8e896badd2b10dcfb91f09e7356')
+                         '3a53fe1639c435ed9dc9ff935cd498dc6537528b0f318c2cb61fbebd7e70f1d9')
         with tempfile.TemporaryDirectory() as temp:
             config, final, rendered = generate('portugal',Path(temp))
         source = ET.parse(ROOT/config['map']['svg']).getroot()
@@ -54,9 +54,9 @@ class GeographicSourceRegressions(unittest.TestCase):
         self.assertEqual(len(targets), 15)
         self.assertEqual(targets, original)
         self.assertEqual(final.get('viewBox'), '0 0 1200 760')
-        # 2026-10-06: inset frames in the shared style (no reduced opacity)
+        # 2026-10-16: shared inset labels, Spain drawn to the canvas edge, no mainland frame
         self.assertEqual(hashlib.sha256(rendered).hexdigest(),
-                         '10bfa63aac9058edfeebb028e6c1cf1a12ce99abd07c164d901bd4dca615430b')
+                         '5dc12de69eab3f2479320b716f9eb436ac3ecf0b49c2de90d12a5d388c350dd6')
         context = next(g for g in final.iter(SVG+'g') if g.get('id')=='geographic-context')
         parts = [p for p in context.iter(SVG+'path') if p.get('data-map-context-region')]
         self.assertEqual([(p.get('data-map-context-region'),p.get('d')) for p in parts], [('mainland',pinned)])
@@ -65,7 +65,8 @@ class GeographicSourceRegressions(unittest.TestCase):
         self.assertIn('ce02dabb0ea17eba11923f78ed1525d8989c9b58',note)
         frames = [r.get('data-map-context-frame') for r in final.iter(SVG+'rect')
                   if r.get('data-map-context-frame')]
-        self.assertEqual(frames, ['mainland', 'azores', 'madeira'])
+        # Spain is drawn to the canvas edge, so only the detached islands are framed.
+        self.assertEqual(frames, ['azores', 'madeira'])
 
     def test_bahrain_main_view_matches_marker_projection(self):
         """The main view is drawn exactly as app.js projects markers (2026-10-06).
