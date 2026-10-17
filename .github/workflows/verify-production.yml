@@ -222,7 +222,7 @@ jobs:
           QA_BASE_URL: https://atlas.yagenji.com
           QA_OUT_DIR: qa-production-browser-output
           QA_SCOPE: published
-        run: python3 scripts/qa_published_browser.py
+        run: python3 scripts/qa_country_browser.py
 
       - name: Upload production Browser QA
         if: always() && (steps.target.outputs.slugs != '' || steps.target.outputs.full == 'true')
