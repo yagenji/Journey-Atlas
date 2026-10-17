@@ -30,10 +30,13 @@ jobs:
           python-version: "3.12"
       - name: Audit Beyond the Scenery across all destinations
         run: python3 scripts/audit_beyond_cross_country.py | tee beyond-audit-output.txt
-      - name: Upload audit output
+      - name: Upload audit evidence
         uses: actions/upload-artifact@v4
         with:
-          name: beyond-audit-output
-          path: beyond-audit-output.txt
+          name: beyond-audit-evidence
+          path: |
+            beyond-audit-output.txt
+            data/atlas-destinations.json
+            data/countries/*.json
           if-no-files-found: error
           retention-days: 1
