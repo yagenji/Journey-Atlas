@@ -15,8 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
+      - name: Checkout audit inputs only
         uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            data/countries
+            data/atlas-destinations.json
+            scripts/audit_beyond_cross_country.py
+          sparse-checkout-cone-mode: false
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
