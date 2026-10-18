@@ -1,5 +1,4 @@
 {
-
   "schemaVersion": 2,
   "contentQaVersion": 1,
   "slug": "indonesia",
@@ -15,7 +14,11 @@
     "coordinates": {
       "latitude": -6.1754,
       "longitude": 106.8272
-    },"labelOffset":{"x":0,"y":-8},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -8
+    },
     "labelPosition": "right"
   },
   "hero": {
@@ -33,9 +36,9 @@
   },
   "map": {
     "bounds": {
-      "north": 7.0,
-      "south": -12.0,
-      "west": 94.0,
+      "north": 7,
+      "south": -12,
+      "west": 94,
       "east": 142.2
     },
     "svg": "assets/images/indonesia/map-atlas-v2.svg",
@@ -169,14 +172,38 @@
     }
   ],
   "encounters": [
-    {"title": "火山", "icon": "landscape"},
-    {"title": "寺院", "icon": "landmark"},
-    {"title": "棚田", "icon": "landscape"},
-    {"title": "伝統家屋", "icon": "landmark"},
-    {"title": "サンゴ礁", "icon": "sea"},
-    {"title": "コモドオオトカゲ", "icon": "wildlife"},
-    {"title": "オランウータン", "icon": "wildlife"},
-    {"title": "木造船", "icon": "sea"}
+    {
+      "title": "火山",
+      "icon": "landscape"
+    },
+    {
+      "title": "寺院",
+      "icon": "landmark"
+    },
+    {
+      "title": "棚田",
+      "icon": "landscape"
+    },
+    {
+      "title": "伝統家屋",
+      "icon": "landmark"
+    },
+    {
+      "title": "サンゴ礁",
+      "icon": "sea"
+    },
+    {
+      "title": "コモドオオトカゲ",
+      "icon": "wildlife"
+    },
+    {
+      "title": "オランウータン",
+      "icon": "wildlife"
+    },
+    {
+      "title": "木造船",
+      "icon": "sea"
+    }
   ],
   "atlasExtras": [
     {
@@ -197,7 +224,11 @@
       "themeJa": "布",
       "title": "バティックは、一つの模様ではなく地域ごとに文様と使われ方が変わる",
       "text": "蝋で防染して染めるバティックは、ジャワを中心に長く受け継がれてきた。文様、色、制作技法、着る場面には地域差があり、「インドネシア柄」という一種類のデザインにまとめない方が面白い。",
-      "points": ["2009年にユネスコ無形文化遺産へ登録", "地域や用途によって文様・色・意味が異なる"]
+      "points": [
+        "2009年にユネスコ無形文化遺産へ登録",
+        "地域や用途によって文様・色・意味が異なる"
+      ],
+      "sourceKey": "batik"
     },
     {
       "topicKey": "gamelan-java-bali",
@@ -205,7 +236,11 @@
       "themeJa": "音",
       "title": "ガムランは、ジャワとバリで同じ名前でも音の密度と演奏の場が違う",
       "text": "ゴングや鍵盤打楽器を中心とするガムランは、ジャワとバリを代表する音楽文化の一つ。編成や奏法、テンポ、儀礼との関わりは地域ごとに異なり、島を移ると同じ「ガムラン」という言葉の中に違いが聞こえる。",
-      "points": ["2021年にユネスコ無形文化遺産へ登録", "宮廷、寺院、儀礼、舞踊など演奏の場も地域で異なる"]
+      "points": [
+        "2021年にユネスコ無形文化遺産へ登録",
+        "宮廷、寺院、儀礼、舞踊など演奏の場も地域で異なる"
+      ],
+      "sourceKey": "gamelan"
     },
     {
       "topicKey": "subak-shared-water-management",
@@ -213,7 +248,11 @@
       "themeJa": "暮らし",
       "title": "バリの棚田は、水を共同で分けるスバックの仕組みと一体になっている",
       "text": "スバックは、水路と堰を通じて水を分ける農民の協同的な水管理の仕組みで、水寺院や宗教実践とも結びつく。棚田の形だけでなく、誰が水をどう分けているかを見ると景観の意味が変わる。",
-      "points": ["ユネスコ世界遺産の文化的景観は5つの構成地域からなる", "バリには約1,200の水利用共同体があるとユネスコは記載"]
+      "points": [
+        "ユネスコ世界遺産の文化的景観は5つの構成地域からなる",
+        "バリには約1,200の水利用共同体があるとユネスコは記載"
+      ],
+      "sourceKey": "subak"
     },
     {
       "topicKey": "maritime-links-ports-ships-trade",
@@ -221,7 +260,11 @@
       "themeJa": "海",
       "title": "海は島を隔てる境界であると同時に、港と船で地域を結ぶ道でもある",
       "text": "インドネシアでは島どうしの移動、物資、人の交流を海上交通が支えてきた。港町やフェリー、木造船を見ると、国土が「島の集合」だけでなく海上のつながりとして成り立っていることが分かる。",
-      "points": ["島間移動では現在も航空と船を組み合わせる地域が多い", "海上交通は生活物流と旅客移動の双方を担う"]
+      "points": [
+        "島間移動では現在も航空と船を組み合わせる地域が多い",
+        "海上交通は生活物流と旅客移動の双方を担う"
+      ],
+      "sourceKey": "maritime"
     },
     {
       "topicKey": "banda-spice-trade-and-colonial-history",
@@ -237,66 +280,249 @@
     }
   ],
   "travelTrivia": [
-    {"topicKey": "three-time-zones", "categoryEn": "TIME", "categoryJa": "時差", "title": "国内に3つの標準時がある", "text": "インドネシアはWIB、WITA、WITの3時間帯に分かれる。ジャカルタはWIB、バリはWITA、ラジャ・アンパットはWITで、同じ国の移動でも時計を1〜2時間進めることがある。", "icon": "map", "sourceKey": "timeZones"},
-    {"topicKey": "indonesian-kris-layered-metal", "categoryEn": "CRAFT / SPIRIT", "categoryJa": "工芸と精神文化", "title": "Krisの刃は、異なる鉄を何十回・何百回と折り重ねて鍛える", "text": "インドネシアのKrisは左右非対称の短剣で、武器であると同時に精神的な意味を持つ。UNESCOは、高品質な刃では異なる鉄鉱石やニッケルを重ね、金属を何十回から何百回も折り返して鍛えると説明している。", "icon": "history", "sourceKey": "kris"},
-    {"topicKey": "wayang-puppet-theatre-ten-centuries", "categoryEn": "PERFORMANCE", "categoryJa": "人形劇", "title": "Wayangは、ジャワで少なくとも10世紀にわたり演じられてきた", "text": "Wayangはジャワで生まれ、宮廷と農村の双方で長く受け継がれた物語芸能。立体的な木製人形と、背後から光を当てる平たい革製の影絵人形という二つの主要な形式がある。", "icon": "culture", "sourceKey": "wayang"},
-    {"topicKey": "saman-kneeling-synchronized-rows", "categoryEn": "DANCE", "categoryJa": "舞踊", "title": "サマン舞踊は、ひざまずいた列が高速で同じ動きを刻む", "text": "アチェ州ガヨ人のサマンでは、少年や若い男性が密な列でひざまずき、歌いながら手拍子、胸や腿を打つ動き、上体のひねりを高速にそろえる。楽器ではなく身体そのものがリズムをつくる。", "icon": "culture", "sourceKey": "saman"},
-    {"topicKey": "pencak-silat-art-spirit-self-defence", "categoryEn": "MARTIAL ART", "categoryJa": "武術", "title": "プンチャック・シラットは、武術だけでなく音楽・芸術・精神性も含む", "text": "プンチャック・シラットは護身技術や競技だけでなく、精神的な修練と芸術表現を含む伝統。地域ごとに動き、演奏、衣装、伝統武器などが異なり、儀礼の娯楽としても演じられる。", "icon": "culture", "sourceKey": "pencakSilat"}
+    {
+      "topicKey": "three-time-zones",
+      "categoryEn": "TIME",
+      "categoryJa": "時差",
+      "title": "国内に3つの標準時がある",
+      "text": "インドネシアはWIB、WITA、WITの3時間帯に分かれる。ジャカルタはWIB、バリはWITA、ラジャ・アンパットはWITで、同じ国の移動でも時計を1〜2時間進めることがある。",
+      "icon": "map",
+      "sourceKey": "timeZones"
+    },
+    {
+      "topicKey": "indonesian-kris-layered-metal",
+      "categoryEn": "CRAFT / SPIRIT",
+      "categoryJa": "工芸と精神文化",
+      "title": "Krisの刃は、異なる鉄を何十回・何百回と折り重ねて鍛える",
+      "text": "インドネシアのKrisは左右非対称の短剣で、武器であると同時に精神的な意味を持つ。UNESCOは、高品質な刃では異なる鉄鉱石やニッケルを重ね、金属を何十回から何百回も折り返して鍛えると説明している。",
+      "icon": "history",
+      "sourceKey": "kris"
+    },
+    {
+      "topicKey": "wayang-puppet-theatre-ten-centuries",
+      "categoryEn": "PERFORMANCE",
+      "categoryJa": "人形劇",
+      "title": "Wayangは、ジャワで少なくとも10世紀にわたり演じられてきた",
+      "text": "Wayangはジャワで生まれ、宮廷と農村の双方で長く受け継がれた物語芸能。立体的な木製人形と、背後から光を当てる平たい革製の影絵人形という二つの主要な形式がある。",
+      "icon": "culture",
+      "sourceKey": "wayang"
+    },
+    {
+      "topicKey": "saman-kneeling-synchronized-rows",
+      "categoryEn": "DANCE",
+      "categoryJa": "舞踊",
+      "title": "サマン舞踊は、ひざまずいた列が高速で同じ動きを刻む",
+      "text": "アチェ州ガヨ人のサマンでは、少年や若い男性が密な列でひざまずき、歌いながら手拍子、胸や腿を打つ動き、上体のひねりを高速にそろえる。楽器ではなく身体そのものがリズムをつくる。",
+      "icon": "culture",
+      "sourceKey": "saman"
+    },
+    {
+      "topicKey": "pencak-silat-art-spirit-self-defence",
+      "categoryEn": "MARTIAL ART",
+      "categoryJa": "武術",
+      "title": "プンチャック・シラットは、武術だけでなく音楽・芸術・精神性も含む",
+      "text": "プンチャック・シラットは護身技術や競技だけでなく、精神的な修練と芸術表現を含む伝統。地域ごとに動き、演奏、衣装、伝統武器などが異なり、儀礼の娯楽としても演じられる。",
+      "icon": "culture",
+      "sourceKey": "pencakSilat"
+    }
   ],
   "taste": {
     "kicker": "TASTE OF INDONESIA",
     "title": "インドネシアで食べたいもの",
     "intro": "炒めるナシゴレン、時間をかけて煮詰めるルンダン、炭火で焼くサテ、野菜と豆腐をピーナッツソースでまとめるガドガド。地域と調理法の幅が見える4品。",
     "items": [
-      {"id": "nasi-goreng", "name": "ナシゴレン", "nameLocal": "Nasi Goreng", "text": "甘い大豆調味料ケチャップ・マニスを使うことの多い炒飯。卵、鶏肉、野菜など具材は地域や店で変わり、広く食べられる一皿の中にも違いがある。", "image": "assets/images/indonesia/approved/food-nasi-goreng.webp", "imageState": "APPROVED"},
-      {"id": "rendang", "name": "ルンダン", "nameLocal": "Rendang", "text": "西スマトラのミナンカバウ文化と深く結びつく牛肉料理。ココナツミルクと香辛料を時間をかけて煮詰め、水分を飛ばしながら濃い味と色へ変えていく。", "image": "assets/images/indonesia/approved/food-rendang.webp", "imageState": "APPROVED"},
-      {"id": "sate-ayam-madura", "name": "サテ・アヤム・マドゥラ", "nameLocal": "Sate Ayam Madura", "text": "鶏肉を小さく切って串に刺し、焼いてピーナッツ系のソースを合わせるマドゥラ由来のサテ。串焼きという形は共通しても、肉やソースは地域で変わる。", "image": "assets/images/indonesia/approved/food-sate-ayam-madura.webp", "imageState": "APPROVED"},
-      {"id": "gado-gado", "name": "ガドガド", "nameLocal": "Gado-Gado", "text": "茹で野菜、豆腐、テンペなどをピーナッツソースでまとめる料理。肉中心の料理とは違う、野菜と大豆食品が一皿に入る日常的な食べ方を知る。", "image": "assets/images/indonesia/approved/food-gado-gado.webp", "imageState": "APPROVED"}
+      {
+        "id": "nasi-goreng",
+        "name": "ナシゴレン",
+        "nameLocal": "Nasi Goreng",
+        "text": "甘い大豆調味料ケチャップ・マニスを使うことの多い炒飯。卵、鶏肉、野菜など具材は地域や店で変わり、広く食べられる一皿の中にも違いがある。",
+        "image": "assets/images/indonesia/approved/food-nasi-goreng.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "rendang",
+        "name": "ルンダン",
+        "nameLocal": "Rendang",
+        "text": "西スマトラのミナンカバウ文化と深く結びつく牛肉料理。ココナツミルクと香辛料を時間をかけて煮詰め、水分を飛ばしながら濃い味と色へ変えていく。",
+        "image": "assets/images/indonesia/approved/food-rendang.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "sate-ayam-madura",
+        "name": "サテ・アヤム・マドゥラ",
+        "nameLocal": "Sate Ayam Madura",
+        "text": "鶏肉を小さく切って串に刺し、焼いてピーナッツ系のソースを合わせるマドゥラ由来のサテ。串焼きという形は共通しても、肉やソースは地域で変わる。",
+        "image": "assets/images/indonesia/approved/food-sate-ayam-madura.webp",
+        "imageState": "APPROVED"
+      },
+      {
+        "id": "gado-gado",
+        "name": "ガドガド",
+        "nameLocal": "Gado-Gado",
+        "text": "茹で野菜、豆腐、テンペなどをピーナッツソースでまとめる料理。肉中心の料理とは違う、野菜と大豆食品が一皿に入る日常的な食べ方を知る。",
+        "image": "assets/images/indonesia/approved/food-gado-gado.webp",
+        "imageState": "APPROVED"
+      }
     ]
   },
   "travelScale": {
-    "kicker": "DURATION", "title": "旅の目安日程", "intro": "",
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
     "items": [
-      {"duration": "5日", "title": "一つの地域に絞って、その土地の層を見る", "text": "バリだけ、または中部ジャワだけに絞り、街・景観・食を同じ地域の中で組み合わせる。短い日程で遠い島まで足すより、移動時間を抑えた方が地域差を見やすい。例：ジョグジャカルタ → ボロブドゥール → プランバナン → ジョグジャカルタ。", "icon": "city"},
-      {"duration": "10日", "title": "近い二地域を、一本の移動でつなぐ", "text": "中部・東部ジャワからバリへ進むなど、地理的に近い二地域を組み合わせる。鉄道や国内線を一度大きな切替点として使い、島ごとの違いに時間を残す。例：ジョグジャカルタ → ブロモ → スラバヤ → バリ → ジョグジャカルタ。", "icon": "map"},
-      {"duration": "14日以上", "title": "遠隔の島を一つ加え、移動日まで旅程に入れる", "text": "ジャワ／バリに加えて、コモド、スラウェシ、ラジャ・アンパットなど遠い地域を一つ選ぶ。国内線や船の接続、天候による変更余地も日程の一部として組み込む。例：ジャワ → バリ → ラブアンバジョ／コモド → ジャカルタ → ジャワ。", "icon": "compass"}
+      {
+        "duration": "5日",
+        "title": "一つの地域に絞って、その土地の層を見る",
+        "text": "バリだけ、または中部ジャワだけに絞り、街・景観・食を同じ地域の中で組み合わせる。短い日程で遠い島まで足すより、移動時間を抑えた方が地域差を見やすい。例：ジョグジャカルタ → ボロブドゥール → プランバナン → ジョグジャカルタ。",
+        "icon": "city"
+      },
+      {
+        "duration": "10日",
+        "title": "近い二地域を、一本の移動でつなぐ",
+        "text": "中部・東部ジャワからバリへ進むなど、地理的に近い二地域を組み合わせる。鉄道や国内線を一度大きな切替点として使い、島ごとの違いに時間を残す。例：ジョグジャカルタ → ブロモ → スラバヤ → バリ → ジョグジャカルタ。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "遠隔の島を一つ加え、移動日まで旅程に入れる",
+        "text": "ジャワ／バリに加えて、コモド、スラウェシ、ラジャ・アンパットなど遠い地域を一つ選ぶ。国内線や船の接続、天候による変更余地も日程の一部として組み込む。例：ジャワ → バリ → ラブアンバジョ／コモド → ジャカルタ → ジャワ。",
+        "icon": "compass"
+      }
     ]
   },
   "seasons": [
-    {"months": "12〜3月", "color": "#7f91a0", "text": "ジャワやバリを含む多くの地域で雨が増える時期。短時間の強い雨や火山周辺の雲が行程に影響しやすい。一方、広い国土では地域差が大きいため、東部まで同じ雨季として扱わない。"},
-    {"months": "4〜6月", "color": "#91a171", "text": "ジャワやバリでは雨の多い季節から乾きやすい季節へ移る時期。棚田の緑や火山景観を組み合わせやすいが、島ごとの降雨パターンは異なるので目的地単位で確認する。"},
-    {"months": "7〜9月", "color": "#b09a67", "text": "ジャワ、バリ、ヌサ・トゥンガラでは比較的乾いた日が多く、ブロモやパダール島の乾いた地形が見えやすい時期。主要観光地は混みやすく、東部・北部では別の季節性もある。"},
-    {"months": "10〜11月", "color": "#87916f", "text": "ジャワやバリでは雨が戻り始める移行期。島間移動や船を含む旅では、出発地の天気だけでなく目的地と海域の予報まで確認し、接続に余裕を持たせたい。"}
+    {
+      "months": "12〜3月",
+      "color": "#7f91a0",
+      "text": "ジャワやバリを含む多くの地域で雨が増える時期。短時間の強い雨や火山周辺の雲が行程に影響しやすい。一方、広い国土では地域差が大きいため、東部まで同じ雨季として扱わない。"
+    },
+    {
+      "months": "4〜6月",
+      "color": "#91a171",
+      "text": "ジャワやバリでは雨の多い季節から乾きやすい季節へ移る時期。棚田の緑や火山景観を組み合わせやすいが、島ごとの降雨パターンは異なるので目的地単位で確認する。"
+    },
+    {
+      "months": "7〜9月",
+      "color": "#b09a67",
+      "text": "ジャワ、バリ、ヌサ・トゥンガラでは比較的乾いた日が多く、ブロモやパダール島の乾いた地形が見えやすい時期。主要観光地は混みやすく、東部・北部では別の季節性もある。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#87916f",
+      "text": "ジャワやバリでは雨が戻り始める移行期。島間移動や船を含む旅では、出発地の天気だけでなく目的地と海域の予報まで確認し、接続に余裕を持たせたい。"
+    }
   ],
-  "transport": {"title": "国内線・鉄道・船・車", "text": "島間の長距離移動は国内線が実用的な軸になり、ジャワでは都市間鉄道も使いやすい。島や国立公園へのアクセスではフェリーや小型船が必要な場所があり、天候や運航状況で予定が変わる。現地移動は車＋ドライバー、タクシー／配車アプリ、バス、スクーターなど地域ごとの差が大きい。", "icon": "road"},
+  "transport": {
+    "title": "国内線・鉄道・船・車",
+    "text": "島間の長距離移動は国内線が実用的な軸になり、ジャワでは都市間鉄道も使いやすい。島や国立公園へのアクセスではフェリーや小型船が必要な場所があり、天候や運航状況で予定が変わる。現地移動は車＋ドライバー、タクシー／配車アプリ、バス、スクーターなど地域ごとの差が大きい。",
+    "icon": "road"
+  },
   "personas": [
-    {"title": "火山、カルデラ湖、乾いた島、石灰岩の多島海、熱帯雨林まで地形の変化を追いたい人", "text": "一つの「南国」の景色にまとめず、島を移るたびに地形と気候が切り替わることを旅の中心にしたい人。"},
-    {"title": "文化を一つの型で見ず、島ごとの建築、宗教、農業、食の違いを知りたい人", "text": "ジャワ、バリ、スマトラ、スラウェシ、カリマンタン、東部の島々を比べながら、同じ国の中の地域差そのものを面白がれる人。"},
-    {"title": "国内線や船の移動まで含めて、旅程を組み立てることを楽しめる人", "text": "距離の大きい国で目的地を詰め込みすぎず、移動日や欠航余地を含めてルートを設計し、その途中も旅の一部として受け入れられる人。"}
+    {
+      "title": "火山、カルデラ湖、乾いた島、石灰岩の多島海、熱帯雨林まで地形の変化を追いたい人",
+      "text": "一つの「南国」の景色にまとめず、島を移るたびに地形と気候が切り替わることを旅の中心にしたい人。"
+    },
+    {
+      "title": "文化を一つの型で見ず、島ごとの建築、宗教、農業、食の違いを知りたい人",
+      "text": "ジャワ、バリ、スマトラ、スラウェシ、カリマンタン、東部の島々を比べながら、同じ国の中の地域差そのものを面白がれる人。"
+    },
+    {
+      "title": "国内線や船の移動まで含めて、旅程を組み立てることを楽しめる人",
+      "text": "距離の大きい国で目的地を詰め込みすぎず、移動日や欠航余地を含めてルートを設計し、その途中も旅の一部として受け入れられる人。"
+    }
   ],
   "facts": [
-    {"label": "地域", "value": "東南アジア"},
-    {"label": "首都", "value": "ジャカルタ（政府機能所在地。ヌサンタラへの移転は未発効）"},
-    {"label": "人口", "value": "約2億8720万人（2026年年央推計）"},
-    {"label": "面積", "value": "約189万 km²（日本の約5.0倍）"},
-    {"label": "言語", "value": "インドネシア語。ジャワ語、スンダ語など地域言語も広く使われる"},
-    {"label": "主な宗教", "value": "イスラム教が多数。キリスト教、ヒンドゥー教、仏教などもみられる"},
-    {"label": "通貨", "value": "ルピア（IDR）"}
+    {
+      "label": "地域",
+      "value": "東南アジア"
+    },
+    {
+      "label": "首都",
+      "value": "ジャカルタ（政府機能所在地。ヌサンタラへの移転は未発効）"
+    },
+    {
+      "label": "人口",
+      "value": "約2億8720万人（2026年年央推計）"
+    },
+    {
+      "label": "面積",
+      "value": "約189万 km²（日本の約5.0倍）"
+    },
+    {
+      "label": "言語",
+      "value": "インドネシア語。ジャワ語、スンダ語など地域言語も広く使われる"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教が多数。キリスト教、ヒンドゥー教、仏教などもみられる"
+    },
+    {
+      "label": "通貨",
+      "value": "ルピア（IDR）"
+    }
   ],
   "signatureFacts": [
-    {"topicKey": "island-count-17380", "label": "島", "value": "17,380", "note": "BIGのPeta NKRI 2025で示された島の数。地形変化や現地確認、地名の標準化によって数は更新されることがあり、固定不変の数字ではない。", "icon": "sea"},
-    {"topicKey": "active-volcanoes-127", "label": "活火山", "value": "127", "note": "インドネシア地質庁が監視対象として示す活火山の数。火山景観だけでなく、監視情報や立入規制を旅の直前に確認する必要がある理由でもある。", "icon": "volcano"},
-    {"topicKey": "java-population-share-55-65", "label": "ジャワ島に住む人口", "value": "55.65%", "note": "BPSのSUPAS 2025では、インドネシア人口の55.65%がジャワ島に居住する。多数の島へ広がる国土と、人口の集中が同時に存在する。", "icon": "users"}
+    {
+      "topicKey": "island-count-17380",
+      "label": "島",
+      "value": "17,380",
+      "note": "BIGのPeta NKRI 2025で示された島の数。地形変化や現地確認、地名の標準化によって数は更新されることがあり、固定不変の数字ではない。",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "active-volcanoes-127",
+      "label": "活火山",
+      "value": "127",
+      "note": "インドネシア地質庁が監視対象として示す活火山の数。火山景観だけでなく、監視情報や立入規制を旅の直前に確認する必要がある理由でもある。",
+      "icon": "volcano"
+    },
+    {
+      "topicKey": "java-population-share-55-65",
+      "label": "ジャワ島に住む人口",
+      "value": "55.65%",
+      "note": "BPSのSUPAS 2025では、インドネシア人口の55.65%がジャワ島に居住する。多数の島へ広がる国土と、人口の集中が同時に存在する。",
+      "icon": "users"
+    }
   ],
   "tips": [
-    {"topicKey": "volcano-status-check", "title": "火山情報と立入規制は、出発直前にも確認する", "text": "ブロモなど火山地域は活動状況によって警戒レベルや立入範囲が変わる。MAGMA Indonesia、国立公園、現地当局の最新情報を旅程確定後にも再確認する。"},
-    {"topicKey": "island-transfer-weather-buffer", "title": "島間移動には、天候と欠航の余白を入れる", "text": "遠隔地の船や小型機を国際線の前日に詰め込まず、海況や天候で動けない可能性を見込む。ラジャ・アンパットや国立公園では地域ごとの運航条件を確認する。"},
-    {"topicKey": "regional-etiquette-varies", "title": "バリと他地域を、同じ服装・宗教マナーで考えない", "text": "寺院、モスク、村落などで求められる服装や立ち振る舞いは地域と場所によって違う。入口の案内や現地の人の説明を確認し、写真撮影も生活や礼拝を妨げない。"}
+    {
+      "topicKey": "volcano-status-check",
+      "title": "火山情報と立入規制は、出発直前にも確認する",
+      "text": "ブロモなど火山地域は活動状況によって警戒レベルや立入範囲が変わる。MAGMA Indonesia、国立公園、現地当局の最新情報を旅程確定後にも再確認する。"
+    },
+    {
+      "topicKey": "island-transfer-weather-buffer",
+      "title": "島間移動には、天候と欠航の余白を入れる",
+      "text": "遠隔地の船や小型機を国際線の前日に詰め込まず、海況や天候で動けない可能性を見込む。ラジャ・アンパットや国立公園では地域ごとの運航条件を確認する。"
+    },
+    {
+      "topicKey": "regional-etiquette-varies",
+      "title": "バリと他地域を、同じ服装・宗教マナーで考えない",
+      "text": "寺院、モスク、村落などで求められる服装や立ち振る舞いは地域と場所によって違う。入口の案内や現地の人の説明を確認し、写真撮影も生活や礼拝を妨げない。"
+    }
   ],
   "relatedCountries": [
-    {"slug": "malaysia", "nameEn": "MALAYSIA", "nameJa": "マレーシア", "flag": "🇲🇾", "reason": "ボルネオ島とマレー世界の海上文化を共有しながら、半島部の都市、多民族社会、熱帯雨林との組み合わせを別の形で見たいなら。"},
-    {"slug": "philippines", "nameEn": "PHILIPPINES", "nameJa": "フィリピン", "flag": "🇵🇭", "reason": "多数の島と海上移動が旅の骨格になる点を比べながら、言語、宗教史、都市と島の関係が異なる東南アジアの群島へ広げたいなら。"},
-    {"slug": "timorleste", "nameEn": "TIMOR-LESTE", "nameJa": "東ティモール", "flag": "🇹🇱", "reason": "ティモール島という地理的なつながりから、ポルトガル統治の歴史と独立後の社会を持つ隣国へ視点を延ばしたいなら。"}
+    {
+      "slug": "malaysia",
+      "nameEn": "MALAYSIA",
+      "nameJa": "マレーシア",
+      "flag": "🇲🇾",
+      "reason": "ボルネオ島とマレー世界の海上文化を共有しながら、半島部の都市、多民族社会、熱帯雨林との組み合わせを別の形で見たいなら。"
+    },
+    {
+      "slug": "philippines",
+      "nameEn": "PHILIPPINES",
+      "nameJa": "フィリピン",
+      "flag": "🇵🇭",
+      "reason": "多数の島と海上移動が旅の骨格になる点を比べながら、言語、宗教史、都市と島の関係が異なる東南アジアの群島へ広げたいなら。"
+    },
+    {
+      "slug": "timorleste",
+      "nameEn": "TIMOR-LESTE",
+      "nameJa": "東ティモール",
+      "flag": "🇹🇱",
+      "reason": "ティモール島という地理的なつながりから、ポルトガル統治の歴史と独立後の社会を持つ隣国へ視点を延ばしたいなら。"
+    }
   ],
   "nextRoutes": [
     {
