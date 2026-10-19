@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": -0.22016,
       "longitude": -78.51233
-    },"labelOffset":{"x":0,"y":-8},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -8
+    },
     "labelPosition": "right",
     "mapRegion": "mainland"
   },
@@ -269,10 +273,10 @@
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
       "title": "クエンカの市場には、高地農業と都市の食卓が交わる",
-      "text": "クエンカの市場には、アンデス高地のトウモロコシを使うモテやホルナード、果物、花などが並ぶ。歴史地区の近くにある市場は、周辺農村の生産と都市の食卓が結びつく場所でもある。",
+      "text": "クエンカの市場には、アンデス高地から届くトウモロコシ、豆、果物、花などが並び、農村の生産と街の食卓がつながっている。歴史地区の近くで、市場を料理の名物紹介としてではなく、周辺地域の仕事や季節が交わる生活の場として見られる。",
       "points": [
-        "モテなどトウモロコシを使う料理に高地農業の歴史が表れる",
-        "市場は周辺農村から届く作物と都市の食生活を結びつける"
+        "高地のトウモロコシや果物など地域の農産物が集まる",
+        "市場は周辺農村の仕事と都市の日常を結びつける"
       ],
       "sourceKey": "food"
     },
@@ -455,41 +459,148 @@
     "text": "キト、バーニョス、クエンカなど本土の主要都市は長距離バスで結べるが、山岳道路は所要時間が地図以上に伸びることがある。ガラパゴスへはキトまたはグアヤキルから航空便で入り、島間は航空便または船を使う。国立公園・保護区内では登録ガイドや指定ルートが必要な場所があるため、現地公式情報を確認する。"
   },
   "personas": [
-    {"title": "火山と高地の地形を歩きたい人","text": "コトパクシ、キロトア、カハスなど、標高と火山活動がつくった風景を移動しながら見比べたい。"},
-    {"title": "野生動物を環境ごと観察したい人","text": "ガラパゴスの固有種だけでなく、雲霧林やアマゾンまで、生態系が切り替わる旅をしたい。"},
-    {"title": "自然と歴史都市を同じ旅に入れたい人","text": "キトやクエンカの建築を歩きつつ、数時間から一日単位で火山、森、海へ景色を切り替えたい。"}
+    {
+      "title": "火山と高地の地形を歩きたい人",
+      "text": "コトパクシ、キロトア、カハスなど、標高と火山活動がつくった風景を移動しながら見比べたい。"
+    },
+    {
+      "title": "野生動物を環境ごと観察したい人",
+      "text": "ガラパゴスの固有種だけでなく、雲霧林やアマゾンまで、生態系が切り替わる旅をしたい。"
+    },
+    {
+      "title": "自然と歴史都市を同じ旅に入れたい人",
+      "text": "キトやクエンカの建築を歩きつつ、数時間から一日単位で火山、森、海へ景色を切り替えたい。"
+    }
   ],
   "facts": [
-    {"label": "地域","value": "南アメリカ / 赤道"},
-    {"label": "首都","value": "キト"},
-    {"label": "人口","value": "16,938,986（2022年国勢調査）"},
-    {"label": "面積","value": "約256,370 km²"},
-    {"label": "言語","value": "スペイン語（公用語）／キチュア・シュアール等"},
-    {"label": "主な宗教","value": "キリスト教（カトリック、福音派・プロテスタント等）"},
-    {"label": "通貨","value": "米ドル（USD）"}
+    {
+      "label": "地域",
+      "value": "南アメリカ / 赤道"
+    },
+    {
+      "label": "首都",
+      "value": "キト"
+    },
+    {
+      "label": "人口",
+      "value": "16,938,986（2022年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "約256,370 km²"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（公用語）／キチュア・シュアール等"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック、福音派・プロテスタント等）"
+    },
+    {
+      "label": "通貨",
+      "value": "米ドル（USD）"
+    }
   ],
   "signatureFacts": [
-    {"topicKey": "equator-zero-latitude","label": "赤道","value": "0°","note": "国名Ecuadorはスペイン語で「赤道」。首都キトの北側を含め、国土を緯度0度線が横切る。","icon": "map","interestReason": "国名そのものと地理的位置が直接結びつき、旅の起点で国の位置を一瞬で理解できるため。"},
-    {"topicKey": "galapagos-reptile-endemism","label": "ガラパゴスの爬虫類固有率","value": "80%超","note": "エクアドル観光省は、ガラパゴスの爬虫類の80%超が固有と案内する。海イグアナ、ゾウガメなど孤立した島々で進化した生き物が象徴的。","icon": "wildlife","interestReason": "ガラパゴスを単なる島景観ではなく、世界的に特異な進化の現場として見る理由になるため。"},
-    {"topicKey": "chimborazo-elevation-6263m","label": "チンボラソ標高","value": "6,263 m","note": "エクアドル中部に立つ国内最高峰級の火山。赤道近くのアンデスが、海岸低地から6,000m級まで急激な標高差を持つことを示す。","icon": "landscape","interestReason": "小さな国土の中で気候と植生が急変する理由を、ひとつの山の高さから理解できるため。"}
+    {
+      "topicKey": "equator-zero-latitude",
+      "label": "赤道",
+      "value": "0°",
+      "note": "国名Ecuadorはスペイン語で「赤道」。首都キトの北側を含め、国土を緯度0度線が横切る。",
+      "icon": "map",
+      "interestReason": "国名そのものと地理的位置が直接結びつき、旅の起点で国の位置を一瞬で理解できるため。"
+    },
+    {
+      "topicKey": "galapagos-reptile-endemism",
+      "label": "ガラパゴスの爬虫類固有率",
+      "value": "80%超",
+      "note": "エクアドル観光省は、ガラパゴスの爬虫類の80%超が固有と案内する。海イグアナ、ゾウガメなど孤立した島々で進化した生き物が象徴的。",
+      "icon": "wildlife",
+      "interestReason": "ガラパゴスを単なる島景観ではなく、世界的に特異な進化の現場として見る理由になるため。"
+    },
+    {
+      "topicKey": "chimborazo-elevation-6263m",
+      "label": "チンボラソ標高",
+      "value": "6,263 m",
+      "note": "エクアドル中部に立つ国内最高峰級の火山。赤道近くのアンデスが、海岸低地から6,000m級まで急激な標高差を持つことを示す。",
+      "icon": "landscape",
+      "interestReason": "小さな国土の中で気候と植生が急変する理由を、ひとつの山の高さから理解できるため。"
+    }
   ],
   "tips": [
-    {"topicKey": "high-altitude-acclimatization","title": "キト到着日は標高に慣れる時間を取る","text": "キトは標高約2,850m。到着直後にさらに高い火山へ急がず、水分と休息を取りながら高地へ上がる日程にすると負担を抑えやすい。"},
-    {"topicKey": "galapagos-biosecurity-entry","title": "ガラパゴスは本土旅行と別の入域手順で考える","text": "航空移動に加え、通過管理カードや検疫・バイオセキュリティの手続きがある。料金や必要手続きは変更され得るため、出発前にGalápagos公式案内を確認する。"},
-    {"topicKey": "regional-rain-road-water-levels","title": "雨量と水位で移動条件が変わる","text": "アンデスの山道、アマゾンの水路、太平洋岸では同じ月でも条件が異なる。長距離移動や保護区訪問は、前日に道路・天候・運航情報を確認する。"}
+    {
+      "topicKey": "high-altitude-acclimatization",
+      "title": "キト到着日は標高に慣れる時間を取る",
+      "text": "キトは標高約2,850m。到着直後にさらに高い火山へ急がず、水分と休息を取りながら高地へ上がる日程にすると負担を抑えやすい。"
+    },
+    {
+      "topicKey": "galapagos-biosecurity-entry",
+      "title": "ガラパゴスは本土旅行と別の入域手順で考える",
+      "text": "航空移動に加え、通過管理カードや検疫・バイオセキュリティの手続きがある。料金や必要手続きは変更され得るため、出発前にGalápagos公式案内を確認する。"
+    },
+    {
+      "topicKey": "regional-rain-road-water-levels",
+      "title": "雨量と水位で移動条件が変わる",
+      "text": "アンデスの山道、アマゾンの水路、太平洋岸では同じ月でも条件が異なる。長距離移動や保護区訪問は、前日に道路・天候・運航情報を確認する。"
+    }
   ],
   "nextRoutes": [
-    {"flag": "🇨🇴","countryEn": "COLOMBIA","countryJa": "コロンビア","path": "Quito → Tulcán → Rumichaca → Ipiales","description": "北アンデスをそのまま陸路でコロンビアへつなぐ代表的な経路。国境施設の運用、入国条件、安全情報は渡航直前の公式案内で確認する。","travelerRoute": true,"status": "CHECK_CURRENT_CONDITIONS","statusNote": "国境施設の運用時間・入国条件・安全情報を渡航直前に確認する。"},
-    {"flag": "🇵🇪","countryEn": "PERU","countryJa": "ペルー","path": "Cuenca / Guayaquil → Huaquillas → Tumbes","description": "エクアドル南部・海岸側からペルー北部へ続ける代表的な陸路。夜間移動を含め、利用する国境施設と交通会社の最新運行を事前確認する。","travelerRoute": true,"status": "CHECK_CURRENT_CONDITIONS","statusNote": "国境施設・バス運行・安全情報を渡航直前に確認する。"}
+    {
+      "flag": "🇨🇴",
+      "countryEn": "COLOMBIA",
+      "countryJa": "コロンビア",
+      "path": "Quito → Tulcán → Rumichaca → Ipiales",
+      "description": "北アンデスをそのまま陸路でコロンビアへつなぐ代表的な経路。国境施設の運用、入国条件、安全情報は渡航直前の公式案内で確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間・入国条件・安全情報を渡航直前に確認する。"
+    },
+    {
+      "flag": "🇵🇪",
+      "countryEn": "PERU",
+      "countryJa": "ペルー",
+      "path": "Cuenca / Guayaquil → Huaquillas → Tumbes",
+      "description": "エクアドル南部・海岸側からペルー北部へ続ける代表的な陸路。夜間移動を含め、利用する国境施設と交通会社の最新運行を事前確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設・バス運行・安全情報を渡航直前に確認する。"
+    }
   ],
   "relatedCountries": [
-    {"slug": "peru","nameEn": "PERU","nameJa": "ペルー","flag": "🇵🇪","reason": "アンデス高地、太平洋岸、アマゾンという地理の連続性を保ちながら、より大きな国土で古代文明と高山景観を深くたどれる。","affinityType": "LANDSCAPE"},
-    {"slug": "colombia","nameEn": "COLOMBIA","nameJa": "コロンビア","flag": "🇨🇴","reason": "北アンデスと太平洋・アマゾンを共有しつつ、植民都市、コーヒー地帯、カリブ海まで景観と文化の幅を北へ広げられる。","affinityType": "CULTURE"},
-    {"slug": "costarica","nameEn": "COSTA RICA","nameJa": "コスタリカ","flag": "🇨🇷","reason": "火山、雲霧林、熱帯の野生動物を観察する旅が強く、ガラパゴスとは異なる中米の保全地域で生態系を主役に旅できる。","affinityType": "WILDLIFE"}
+    {
+      "slug": "peru",
+      "nameEn": "PERU",
+      "nameJa": "ペルー",
+      "flag": "🇵🇪",
+      "reason": "アンデス高地、太平洋岸、アマゾンという地理の連続性を保ちながら、より大きな国土で古代文明と高山景観を深くたどれる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "colombia",
+      "nameEn": "COLOMBIA",
+      "nameJa": "コロンビア",
+      "flag": "🇨🇴",
+      "reason": "北アンデスと太平洋・アマゾンを共有しつつ、植民都市、コーヒー地帯、カリブ海まで景観と文化の幅を北へ広げられる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "slug": "costarica",
+      "nameEn": "COSTA RICA",
+      "nameJa": "コスタリカ",
+      "flag": "🇨🇷",
+      "reason": "火山、雲霧林、熱帯の野生動物を観察する旅が強く、ガラパゴスとは異なる中米の保全地域で生態系を主役に旅できる。",
+      "affinityType": "WILDLIFE"
+    }
   ],
   "updatedAt": "2026-09-25",
   "sourcesVerifiedAt": "2026-09-25",
-  "sourceDates": {"population": "2022","religion": "2023","currency": "2000","worldHeritage": "2026"},
+  "sourceDates": {
+    "population": "2022",
+    "religion": "2023",
+    "currency": "2000",
+    "worldHeritage": "2026"
+  },
   "sources": {
     "population": "Instituto Nacional de Estadística y Censos (INEC), Censo Ecuador 2022: población residente 16,938,986.",
     "area": "INEC, ESPAC 2016 materials: territorio nacional 256,370 km².",
