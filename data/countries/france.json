@@ -67,9 +67,9 @@
     {"slug": "spain","nameEn": "SPAIN","nameJa": "スペイン","flag": "🇪🇸","reason": "大西洋と地中海、山地、都市文化の多様さに惹かれたなら。"},
     {"slug": "switzerland","nameEn": "SWITZERLAND","nameJa": "スイス","flag": "🇨🇭","reason": "アルプスと鉄道旅行を、より凝縮された国土で楽しみたいなら。"}
   ],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-10-08",
-  "sourceDates": {"population": "2026-01-01","worldHeritage": "2026-10-08","nextRoutes": "2026-09-07"},
+  "sourceDates": {"population": "2026-01-01","worldHeritage": "2026-10-08","nextRoutes": "2026-10-23"},
   "sources": {
     "map": "Natural Earth 1:10m Cultural Vectors, country boundary extracted via CountryGeoJSONCollection; public-domain source data; WGS84; metropolitan France and Corsica only; illustrated treatment: JOURNEY ATLAS",
     "population": "INSEE, Population au 1er janvier 2026: France métropolitaine approximately 66.793 million (provisional)",
@@ -108,7 +108,7 @@
     "quicheLorraine": "France.fr / Lorraine gastronomy guidance: Quiche Lorraine is a Lorraine savoury tart based on pastry, eggs, cream and smoked pork/lardons.",
     "tgvReservation": "SNCF Connect: TGV INOUI and certain INTERCITÉS services use reservation-based ticketing and sales windows; book fixed long-distance segments before local connections.",
     "worldHeritage": "UNESCO World Heritage Centre — France, 56 properties: https://whc.unesco.org/en/statesparties/fr",
-    "nextRoutes": "Eurostar and SNCF/Renfe international timetable information for London, Brussels/Amsterdam and Barcelona, checked 2026-09-07."
+    "nextRoutes": "Eurostar and SNCF/Renfe international timetable information for London, Brussels/Amsterdam and Barcelona, checked 2026-09-07. / 2026-10-23 nextRoutes audit: Belgium route no longer ends in the Netherlands."
   },
   "taste": {
     "kicker": "TASTE OF FRANCE","title": "フランスで食べたいもの","intro": "パン屋、港町、地方の粉もの、家庭料理まで、土地ごとに違う食文化を4皿からたどる。",
@@ -125,8 +125,26 @@
     {"duration": "12日以上","title": "複数地域をまたいで国土の幅を見る","text": "北東部、南部、大西洋側やコルシカなどを選んでつなぐと、気候・街並み・食文化の切り替わりまで見えてくる。例：パリ → ストラスブール → リヨン → アヴィニョン → マルセイユ → コルシカ → パリ。","icon": "compass"}
   ]},
   "nextRoutes": [
-    {"flag": "🇬🇧","countryEn": "UNITED KINGDOM","countryJa": "イギリス","path": "Paris → London","description": "パリとロンドンを結ぶ西ヨーロッパの代表ルート。大陸の街路と石造建築から、テムズ川沿いの英国の大都市景観へ短時間で切り替わる。"},
-    {"flag": "🇧🇪","countryEn": "BELGIUM","countryJa": "ベルギー","path": "Paris → Brussels → Amsterdam","description": "パリから低地諸国へ進む定番の都市周遊。フランスの大都市からブリュッセルの広場、アムステルダムの運河へ街の密度と水辺の表情が変わる。"},
-    {"flag": "🇪🇸","countryEn": "SPAIN","countryJa": "スペイン","path": "Paris → Barcelona","description": "フランスからイベリア半島へ入る代表的な高速鉄道ルート。北側の都市景観から地中海性の明るい街並みへ、気候と建築の変化が分かりやすい。"}
+    {
+      "flag": "🇬🇧",
+      "countryEn": "UNITED KINGDOM",
+      "countryJa": "イギリス",
+      "path": "Paris → London",
+      "description": "パリとロンドンを結ぶ西ヨーロッパの代表ルート。大陸の街路と石造建築から、テムズ川沿いの英国の大都市景観へ短時間で切り替わる。"
+    },
+    {
+      "flag": "🇧🇪",
+      "countryEn": "BELGIUM",
+      "countryJa": "ベルギー",
+      "path": "Paris → Brussels",
+      "description": "パリから北へ進み、ブリュッセルへつなぐ低地諸国への定番周遊。フランスの大都市から、ギルドハウスに囲まれた大広場と石造の街並みへ、街の密度と表情が変わる。"
+    },
+    {
+      "flag": "🇪🇸",
+      "countryEn": "SPAIN",
+      "countryJa": "スペイン",
+      "path": "Paris → Barcelona",
+      "description": "フランスからイベリア半島へ入る代表的な高速鉄道ルート。北側の都市景観から地中海性の明るい街並みへ、気候と建築の変化が分かりやすい。"
+    }
   ]
 }

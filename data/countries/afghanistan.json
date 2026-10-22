@@ -103,14 +103,42 @@
     {"slug":"pakistan","nameEn":"PAKISTAN","nameJa":"パキスタン","flag":"🇵🇰","reason":"ヒンドゥークシュと国境山地が連続し、アフガニスタン東部・南部の地理を広域で捉える手がかりになる。"}
   ],
   "nextRoutes": [
-    {"flag":"🇹🇯","countryEn":"TAJIKISTAN","countryJa":"タジキスタン","path":"Wakhan → Pamir Highlands","description":"ワハンの北側でパミール高原の地形が続く。高地の谷と山岳文化を比較する隣国としてつながりが見えやすい。現時点の越境ルートを示すものではない。"},
-    {"flag":"🇮🇷","countryEn":"IRAN","countryJa":"イラン","path":"Herat → Khorasan","description":"ヘラートから西を見ると、言語、詩、建築、交易の歴史がイラン高原へ連続する。国境線より広いペルシア語文化圏としてたどる組み合わせ。"},
-    {"flag":"🇵🇰","countryEn":"PAKISTAN","countryJa":"パキスタン","path":"Hindu Kush → Northwest Pakistan","description":"ヒンドゥークシュと国境山地の向こうにパキスタン北西部が続き、山岳地形と交易史を南アジア側から見直せる。現時点の越境ルートを示すものではない。"}
+    {
+      "flag": "🇵🇰",
+      "countryEn": "PAKISTAN",
+      "countryJa": "パキスタン",
+      "path": "Kabul → Jalalabad → Torkham → Peshawar",
+      "description": "カブールから東へジャララバードを経てカイバル峠のトルハム国境を越え、ペシャワールへ下る。ヒンドゥークシュの高地からインダス平原の縁へ、古くからの交易路をそのままたどる陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "トルハム国境は両国間の衝突や政治判断で長期閉鎖されることがある。治安・査証・国境運用を直前に確認する。"
+    },
+    {
+      "flag": "🇮🇷",
+      "countryEn": "IRAN",
+      "countryJa": "イラン",
+      "path": "Herat → Islam Qala / Dogharoun → Mashhad",
+      "description": "ヘラートから西へイスラム・カラ国境を越え、イラン側ドガルーンを経てマシュハドへ。ペルシア語文化圏の建築と詩の伝統が国境の両側で連続していることを見られる陸路。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用、査証、両国の最新の安全情報を出発直前に確認する。"
+    },
+    {
+      "flag": "🇹🇯",
+      "countryEn": "TAJIKISTAN",
+      "countryJa": "タジキスタン",
+      "path": "Ishkashim → Panj River bridge → Ishkashim → Khorog",
+      "description": "ワハン回廊入口のイシュカシムからパンジ川の橋を渡り、対岸のタジキスタン側イシュカシムを経てホログへ。同じ名の町が川を挟んで向かい合い、パミールの谷の暮らしが国境の両側に続く。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境の開閉、ゴルノ・バダフシャン自治州の入域許可、治安を出発直前に確認する。"
+    }
   ],
-  "updatedAt": "2026-09-12",
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-09-12",
   "sourceDates": {
-    "population":"2025","surfaceArea":"2023","worldHeritage":"2026","travelAdvisory":"2026-09-12","currency":"2026-09-12"
+    "population":"2025","surfaceArea":"2023","worldHeritage":"2026","travelAdvisory":"2026-09-12","currency":"2026-09-12",
+    "nextRoutes": "2026-10-23"
   },
   "sources": {
     "population":"World Bank — World Development Indicators, Afghanistan population 2025: https://databank.worldbank.org/reports.aspx?country=AFG&source=2",
@@ -135,6 +163,6 @@
     "noshaq":"ITU — Roadmap for the transition from analogue to digital terrestrial television broadcasting in Afghanistan (Noshaq 7,492m): https://www.itu.int/net4/ITU-D/CDS/projects/document_open.asp?doc=959&prj=9RAS13044",
     "foodways":"Library of Congress — Afghan Food and Women’s Empowerment / Qabuli Pulao and Bolani: https://blogs.loc.gov/folklife/2022/11/afcs-homegrown-foodways-film-premiere-afghan-food-and-womens-empowerment-with-nasrin-rafiq/",
     "afghanaidRecipes":"Afghanaid — Afghan Recipe Book (Qabuli Pulao, Firni, Borani Banjan): https://www.afghanaid.org.uk/Pages/Category/recipe-book",
-    "nextRoutes":"Geographic and cultural continuity with Tajikistan, Iran and Pakistan; route copy is conceptual only and does not describe an operable border crossing under the current travel advisory."
+    "nextRoutes":"Geographic and cultural continuity with Tajikistan, Iran and Pakistan; route copy is conceptual only and does not describe an operable border crossing under the current travel advisory. / 2026-10-23 nextRoutes audit: Concept axes replaced with the Torkham, Islam Qala–Dogharoun and Ishkashim crossings (Saiga Tours 2026 Afghanistan land-border guide; eurasia.travel Tajikistan border crossings)."
   }
 }
