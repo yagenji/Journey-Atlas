@@ -237,6 +237,9 @@ Do not inflate a small country to fill the template, and do not compress a large
 - Do not create a route when flying is effectively the only mainstream continuation.
 - Island countries may still qualify when a regular ferry route is itself a major travel pattern.
 - Each item uses `flag / countryEn / countryJa / path / description`.
+- `path` is a sequence of real places joined by ` → `: Latin-script place names only (no Japanese), alternatives as `A / B` with spaces, no parentheses or `↔`.
+- Every `path` segment is a specific city, town or named crossing point. Write a crossing by its name (`Kazungula`, `Namanga`), not with `border` / `OSBP` / `Border Post`; a bridge or causeway whose proper name is the crossing may keep it (`King Fahd Causeway`). Paired border towns are written `Side A / Side B`.
+- Do not put transport modes (`ferry`, `train`, `bus`, operator or vessel names) or regions/countries/directions (`western Kenya`, `Tibet`, `Bolivia`) in `path`; those belong in `description`. City-states may appear as themselves.
 - Keep descriptions editorial: explain what landscapes, cities or cultural settings change along the route.
 - Do not store fares, frequencies, exact journey times or service numbers.
 - Route connectivity is time-sensitive: record `sources.nextRoutes` and `sourceDates.nextRoutes`.
