@@ -46,9 +46,9 @@
   ],
   "tips": [{"topicKey": "later-meal-times","title": "昼食と夕食は、少し遅めに考える","text": "レストランの昼食は13:00〜16:00、夕食は20:00〜23:30ごろが一般的。観光や移動の予定も食事時間を少し後ろに置いて考えると、現地の生活リズムに合わせやすい。"},{"topicKey": "summer-midday-pace","title": "夏の内陸部は、昼の予定を詰めすぎない","text": "中央・南部の内陸は夏の日中に高温になりやすい。長い街歩きや屋外遺跡は朝夕へ寄せ、昼は屋内や移動へ回すと無理なく旅を続けられる。"},{"topicKey": "island-logistics-separate","title": "島を入れるなら、本土とは移動日を分けて考える","text": "カナリア諸島は本土の延長として車や鉄道でつなげられない。テイデなど島の景観を旅程へ入れる場合は、航空移動と島内移動を独立した区間として確保する。"}],
   "relatedCountries": [{"slug": "portugal","nameEn": "PORTUGAL","nameJa": "ポルトガル","flag": "🇵🇹","reason": "イベリアの歴史都市と大西洋景観を、より静かなスケールで楽しみたいなら。"},{"slug": "france","nameEn": "FRANCE","nameJa": "フランス","flag": "🇫🇷","reason": "山地、都市、ワイン産地など多様な地域文化が好きなら。"},{"slug": "morocco","nameEn": "MOROCCO","nameJa": "モロッコ","flag": "🇲🇦","reason": "イスラム建築、旧市街、乾いた大地と市場文化に惹かれたなら。"}],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-10-08",
-  "sourceDates": {"population": "2026-07-01","religion": "2026-04","oliveArea": "2025","autonomousCommunities": "2026","worldHeritage": "2026-10-08","japanArea": "2026-04-01","nextRoutes": "2026-09-07"},
+  "sourceDates": {"population": "2026-07-01","religion": "2026-04","oliveArea": "2025","autonomousCommunities": "2026","worldHeritage": "2026-10-08","japanArea": "2026-04-01","nextRoutes": "2026-10-23"},
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection ESP.geojson; WGS84",
     "population": "Instituto Nacional de Estadística (INE), Estadística Continua de Población, 1 July 2026: 49,801,559 residents (provisional), published 6 Aug 2026",
@@ -86,7 +86,7 @@
     "outdoorLife": "Spain.info, Culture of Spain: customs for happiness: street life, walking, terraces and outdoor evening activity are common, especially in the south and in warmer months.",
     "tomatina": "Spain.info, La Tomatina tomato festival: held in Buñol on the last Wednesday in August; participants throw tomatoes in a mass street battle.",
     "tortilla": "Spain.info, Tortilla de patata / tortilla española: a widely known Spanish dish made principally with potatoes and eggs, commonly served as a tapa or portion.",
-    "nextRoutes": "Renfe international Spain–France services, Andbus Barcelona–Andorra service and current Spain–Portugal coach corridors, checked 2026-09-07."
+    "nextRoutes": "Renfe international Spain–France services, Andbus Barcelona–Andorra service and current Spain–Portugal coach corridors, checked 2026-09-07. / 2026-10-23 nextRoutes audit: Andorra replaced with the Strait of Gibraltar ferry, matching the Morocco page."
   },
   "taste": {"kicker": "TASTE OF SPAIN","title": "スペインで食べたいもの","intro": "地方ごとに素材と料理の個性が大きく変わるスペインから、旅先で出会いたい4品。","items": [
     {"id": "paella","name": "パエリア","nameLocal": "Paella","text": "米に肉や魚介、野菜の旨味を吸わせて炊く料理。地域や店で具材は変わるが、香ばしく炊けた米の食感まで含めて味わいたい。","image": "assets/images/spain/approved/food-paella.webp","imageState": "APPROVED"},
@@ -100,8 +100,26 @@
     {"duration": "12日以上","title": "地方都市と景観まで広くたどる","text": "主要都市だけでなく、在来線やバスを使う地方の町、北部や南部の景観まで加えるとスペインの幅が見えてくる。例：バルセロナ → マドリード → コルドバ → セビリア → ロンダ → グラナダ → バルセロナ。","icon": "compass"}
   ]},
   "nextRoutes": [
-    {"flag": "🇫🇷","countryEn": "FRANCE","countryJa": "フランス","path": "Barcelona → Paris","description": "スペインからフランスへ向かう代表的な高速鉄道周遊。地中海のバルセロナから北へ進み、気候と建築が変わりながらパリの大都市景観へつながる。"},
-    {"flag": "🇵🇹","countryEn": "PORTUGAL","countryJa": "ポルトガル","path": "Madrid → Lisbon","description": "イベリア半島の二つの首都を結ぶ代表的な陸路。内陸高原のマドリードから大西洋側のリスボンへ、街の色と地形が大きく変わる。"},
-    {"flag": "🇦🇩","countryEn": "ANDORRA","countryJa": "アンドラ","path": "Barcelona → Andorra la Vella","description": "バルセロナからピレネーへ上がる定番周遊。地中海沿岸の大都市から短い距離で高山の谷へ入り、アンドラの山岳景観へ切り替わる。"}
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "Barcelona → Paris",
+      "description": "スペインからフランスへ向かう代表的な高速鉄道周遊。地中海のバルセロナから北へ進み、気候と建築が変わりながらパリの大都市景観へつながる。"
+    },
+    {
+      "flag": "🇵🇹",
+      "countryEn": "PORTUGAL",
+      "countryJa": "ポルトガル",
+      "path": "Madrid → Lisbon",
+      "description": "イベリア半島の二つの首都を結ぶ代表的な陸路。内陸高原のマドリードから大西洋側のリスボンへ、街の色と地形が大きく変わる。"
+    },
+    {
+      "flag": "🇲🇦",
+      "countryEn": "MOROCCO",
+      "countryJa": "モロッコ",
+      "path": "Algeciras / Tarifa → ferry → Tangier",
+      "description": "アンダルシア南端からジブラルタル海峡を定期フェリーで渡り、タンジェへ。短い航路でヨーロッパからアフリカへ、白い街並みからメディナの迷路へ景観が切り替わる。"
+    }
   ]
 }
