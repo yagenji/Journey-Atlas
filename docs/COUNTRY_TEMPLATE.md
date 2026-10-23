@@ -250,7 +250,8 @@ Do not inflate a small country to fill the template, and do not compress a large
 
 - Adjacency is not required.
 - Select by landscape, geography, urban character, culture or travel style.
-- Overlap with `nextRoutes` is allowed because the two sections answer different questions.
+- One of the three is the expected pick (may be a neighbour or a `nextRoutes` destination). Neighbours and `nextRoutes` destinations together are limited to that one item.
+- At least one pick comes from another region: a surprising match with a concrete shared trait (landscape, architecture, food, festival, history).
 - The reason must explain the affinity, not merely describe crossing a border or continuing in a direction.
 
 ### Beyond the Scenery
