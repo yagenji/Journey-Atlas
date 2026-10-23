@@ -509,13 +509,6 @@
   ],
   "relatedCountries": [
     {
-      "slug": "finland",
-      "nameEn": "FINLAND",
-      "nameJa": "フィンランド",
-      "flag": "🇫🇮",
-      "reason": "北方の湖と森、バルト海に開く都市と水辺の関係を、よりコンパクトな国土と北欧の都市文化の中で比べたいなら。"
-    },
-    {
       "slug": "mongolia",
       "nameEn": "MONGOLIA",
       "nameJa": "モンゴル",
@@ -523,22 +516,63 @@
       "reason": "大陸規模の距離、開けた草原、長距離移動のリズムを、シベリアとは異なる遊牧文化と地形の中で追いたいなら。"
     },
     {
-      "slug": "kazakhstan",
-      "nameEn": "KAZAKHSTAN",
-      "nameJa": "カザフスタン",
-      "flag": "🇰🇿",
-      "reason": "ユーラシアの広いステップ、巨大都市と広大な土地の落差、旧ソ連圏の歴史的連続を別の角度から見たいなら。"
+      "slug": "canada",
+      "nameEn": "CANADA",
+      "nameJa": "カナダ",
+      "flag": "🇨🇦",
+      "reason": "シベリア鉄道で大陸を横断する長い列車旅に惹かれたなら、カナダ横断鉄道「カナディアン」で、森と湖と山を何日もかけて越える旅ができる。",
+      "affinityType": "TRAVEL_STYLE"
+    },
+    {
+      "slug": "austria",
+      "nameEn": "AUSTRIA",
+      "nameJa": "オーストリア",
+      "flag": "🇦🇹",
+      "reason": "サンクトペテルブルクの宮殿とバレエ、オペラの文化に惹かれたなら、ウィーンの宮殿と劇場、カフェで、帝都の芸術文化を味わえる。",
+      "affinityType": "CITY"
     }
   ],
-  "nextRoutes": [],
-  "updatedAt": "2026-10-08",
+  "nextRoutes": [
+    {
+      "flag": "🇲🇳",
+      "countryEn": "MONGOLIA",
+      "countryJa": "モンゴル",
+      "path": "Irkutsk → Ulan-Ude → Naushki / Sükhbaatar → Ulaanbaatar",
+      "description": "バイカル湖に近いイルクーツクから東へ進み、ウラン・ウデを経てナウシキ国境を越え、ウランバートルへ。シベリアのタイガから草原へ、モンゴル縦貫鉄道で景観が移り変わる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国際旅客列車の運行日と、日本外務省の最新の危険情報を出発前に確認する。"
+    },
+    {
+      "flag": "🇬🇪",
+      "countryEn": "GEORGIA",
+      "countryJa": "ジョージア",
+      "path": "Vladikavkaz → Verkhny Lars / Stepantsminda → Tbilisi",
+      "description": "北オセチアのウラジカフカスからダリアル峡谷で大コーカサス山脈を越え、カズベギ山麓のステパンツミンダを経てトビリシへ。ジョージア軍用道路をたどる山岳の国境越え。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "冬季は積雪で一時閉鎖されることがあり、国境は混雑しやすい。運用状況と入国条件を確認する。"
+    },
+    {
+      "flag": "🇪🇪",
+      "countryEn": "ESTONIA",
+      "countryJa": "エストニア",
+      "path": "Saint Petersburg → Ivangorod / Narva → Tallinn",
+      "description": "サンクトペテルブルクから西へ進み、イヴァンゴロドとナルヴァの二つの要塞が向かい合うナルヴァ川を渡ってタリンへ。帝都の街並みからバルトの中世都市へ景観が変わる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ナルヴァ国境は徒歩のみの通行で、改修工事などによる時間短縮や一時閉鎖がある。運用状況と入国条件を確認する。"
+    }
+  ],
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-10-08",
   "sourceDates": {
     "population": "2025",
     "safety": "2026-09-10",
     "timeZones": "2026",
     "internationalAccess": "2026-09-10",
-    "worldHeritage": "2026-10-08"
+    "worldHeritage": "2026-10-08",
+    "nextRoutes": "2026-10-23"
   },
   "sources": {
     "map": "Natural Earth 1:10m country boundary via LonnyGomes/CountryGeoJSONCollection geojson/RUS.geojson (blob 373edae59f6417340c9383b7f852bbe85975f650), WGS84; antimeridian normalized by shifting negative longitudes +360.",
