@@ -429,11 +429,12 @@
       "reason": "水辺の都市、群島、北欧の暮らしをより広い自然の中で楽しみたいなら。"
     },
     {
-      "slug": "norway",
-      "nameEn": "NORWAY",
-      "nameJa": "ノルウェー",
-      "flag": "🇳🇴",
-      "reason": "北欧の海と港町が好きで、さらに山岳地形を求めるなら。"
+      "slug": "japan",
+      "nameEn": "JAPAN",
+      "nameJa": "日本",
+      "flag": "🇯🇵",
+      "reason": "簡素で機能的なデンマーク・デザインと暮らしの心地よさに惹かれたなら、日本の木造建築と民藝で、素材を生かした静かなデザインに出会える。",
+      "affinityType": "ARCHITECTURE"
     },
     {
       "slug": "netherlands",
@@ -472,6 +473,9 @@
     "harbourSwimming": "VisitCopenhagen / VisitDenmark, Islands Brygge Harbour Bath: open-air swimming in central Copenhagen; swimming in Copenhagen harbour is permitted only within harbour baths and established bathing zones. https://www.visitdenmark.com/denmark/plan-your-trip/islands-brygge-harbour-bath-gdk482346",
     "pleaseLanguage": "VisitDenmark: Fun facts about Denmark — Danish has no direct word equivalent to English 'please'.",
     "dannebrog": "VisitDenmark: Fun facts about Denmark — Dannebrog is described as the oldest state flag still in use by an independent nation.",
+    "andersen": "VisitDenmark: Hans Christian Andersen's Denmark / Odense — Andersen was born in Odense in 1805; his childhood home and H.C. Andersen's House can be visited.",
+    "legoHouse": "VisitDenmark: Explore Billund — LEGO House is a major hands-on attraction in Billund.",
+    "tivoli": "VisitDenmark: Tivoli Gardens — founded in 1843 and located next to Copenhagen Central Station.",
     "newYearJump": "VisitDenmark: Danish traditions — Danes traditionally stand on chairs before midnight and jump into the new year as the clock strikes 12.",
     "tivoliChristmas": "VisitDenmark / VisitCopenhagen: Tivoli Gardens runs a dedicated Christmas season with lights, decorations, food stalls and seasonal attractions.",
     "monarchy": "Official website of Denmark (Ministry of Foreign Affairs): Danish monarchy is one of the world's oldest and traces the current royal line more than 1,000 years to Viking-age kings. https://denmark.dk/people-and-culture/monarchy/",
@@ -484,10 +488,7 @@
     "aeroFerry": "VisitDenmark / Ærøfærgerne: year-round ferries connect Ærø with Svendborg, Faaborg and Als, up to 20 daily sailings across the listed routes. https://www.visitdenmark.com/denmark/plan-your-trip/aerofaergerne-gdk612093",
     "mandoTide": "VisitDenmark / Destination Vadehavskysten: all traffic between Mandø and the mainland is cut off twice every 24 hours by the tide; tractor-bus departures vary with tides. https://www.visitdenmark.com/denmark/plan-your-trip/travelling-to-mando-gdk1077057",
     "nextRoutes": "DSB/SJ international rail timetables for Copenhagen–Sweden and Copenhagen–Hamburg, checked 2026-09-07. / 2026-10-23 nextRoutes audit: Copenhagen–Oslo overnight ferry (DFDS) added.",
-    "danishEnergyWindHistory": "Danish Energy Agency, Historical milestones for offshore wind in Denmark: 1991 Vindeby first offshore wind farm (5 MW), 11 turbines. https://ens.dk/media/6497/download ; Danish Energy Agency, Danish Experiences from Offshore Wind: Vindeby 1991–2017, 11 turbines. https://ens.dk/sites/default/files/media/documents/2024-11/offshore_wind_development_0.pdf",
-    "andersen": "VisitDenmark: Hans Christian Andersen's Denmark / Odense — Andersen was born in Odense in 1805; his childhood home and H.C. Andersen's House can be visited.",
-    "legoHouse": "VisitDenmark: Explore Billund — LEGO House is a major hands-on attraction in Billund.",
-    "tivoli": "VisitDenmark: Tivoli Gardens — founded in 1843 and located next to Copenhagen Central Station."
+    "danishEnergyWindHistory": "Danish Energy Agency, Historical milestones for offshore wind in Denmark: 1991 Vindeby first offshore wind farm (5 MW), 11 turbines. https://ens.dk/media/6497/download ; Danish Energy Agency, Danish Experiences from Offshore Wind: Vindeby 1991–2017, 11 turbines. https://ens.dk/sites/default/files/media/documents/2024-11/offshore_wind_development_0.pdf"
   },
   "contentQaVersion": 1,
   "taste": {
@@ -560,21 +561,27 @@
       "countryEn": "SWEDEN",
       "countryJa": "スウェーデン",
       "path": "Copenhagen → Malmö → Stockholm",
-      "description": "オーレスン海峡を越えてスウェーデンへ入る北欧の代表ルート。コペンハーゲンの港町からマルメを経て、群島に広がるストックホルムへ水辺の都市景観が続く。"
+      "description": "オーレスン海峡を越えてスウェーデンへ入る北欧の代表ルート。コペンハーゲンの港町からマルメを経て、群島に広がるストックホルムへ水辺の都市景観が続く。",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "flag": "🇩🇪",
       "countryEn": "GERMANY",
       "countryJa": "ドイツ",
       "path": "Copenhagen → Hamburg",
-      "description": "ユトランド側からドイツへ向かう主要ルート。デンマークの低く開けた景観から、北ドイツの港湾都市と煉瓦建築へ旅がつながる。"
+      "description": "ユトランド側からドイツへ向かう主要ルート。デンマークの低く開けた景観から、北ドイツの港湾都市と煉瓦建築へ旅がつながる。",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "flag": "🇳🇴",
       "countryEn": "NORWAY",
       "countryJa": "ノルウェー",
-      "path": "Copenhagen → overnight ferry → Oslo",
-      "description": "コペンハーゲンから夜行フェリーでカテガット海峡を北上し、朝のオスロフィヨルドを奥へ進んでオスロへ。平坦な海峡の都市から、森と岩に囲まれたフィヨルドの首都へ船上で景観が変わる。"
+      "path": "Copenhagen → Oslo",
+      "description": "コペンハーゲンから夜行フェリーでカテガット海峡を北上し、朝のオスロフィヨルドを奥へ進んでオスロへ。平坦な海峡の都市から、森と岩に囲まれたフィヨルドの首都へ船上で景観が変わる。",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ]
 }
