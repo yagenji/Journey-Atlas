@@ -237,6 +237,9 @@ Do not inflate a small country to fill the template, and do not compress a large
 - Do not create a route when flying is effectively the only mainstream continuation.
 - Island countries may still qualify when a regular ferry route is itself a major travel pattern.
 - Each item uses `flag / countryEn / countryJa / path / description`.
+- `path` is a sequence of real places joined by ` → `: Latin-script place names only (no Japanese), alternatives as `A / B` with spaces, no parentheses or `↔`.
+- Every `path` segment is a specific city, town or named crossing point. Write a crossing by its name (`Kazungula`, `Namanga`), not with `border` / `OSBP` / `Border Post`; a bridge or causeway whose proper name is the crossing may keep it (`King Fahd Causeway`). Paired border towns are written `Side A / Side B`.
+- Do not put transport modes (`ferry`, `train`, `bus`, operator or vessel names) or regions/countries/directions (`western Kenya`, `Tibet`, `Bolivia`) in `path`; those belong in `description`. City-states may appear as themselves.
 - Keep descriptions editorial: explain what landscapes, cities or cultural settings change along the route.
 - Do not store fares, frequencies, exact journey times or service numbers.
 - Route connectivity is time-sensitive: record `sources.nextRoutes` and `sourceDates.nextRoutes`.
@@ -247,7 +250,8 @@ Do not inflate a small country to fill the template, and do not compress a large
 
 - Adjacency is not required.
 - Select by landscape, geography, urban character, culture or travel style.
-- Overlap with `nextRoutes` is allowed because the two sections answer different questions.
+- One of the three is the expected pick (may be a neighbour or a `nextRoutes` destination). Neighbours and `nextRoutes` destinations together are limited to that one item.
+- At least one pick comes from another region: a surprising match with a concrete shared trait (landscape, architecture, food, festival, history).
 - The reason must explain the affinity, not merely describe crossing a border or continuing in a direction.
 
 ### Beyond the Scenery
