@@ -319,7 +319,7 @@
     if (!c) return;
     g.tabIndex = 0;
     g.setAttribute('role', 'button');
-    g.setAttribute('aria-label', `${c.nameJa}を選ぶ`);
+    g.setAttribute('aria-label', c.href ? `${c.nameJa}のページを開く` : `${c.nameJa}を選ぶ`);
     g.onpointerenter = e => {
       hover(c.iso2, 1);
       tip.innerHTML = `<strong>${c.nameJa}</strong><span>${c.nameEn}</span>`;
@@ -327,10 +327,20 @@
     };
     g.onpointermove = moveTip;
     g.onpointerleave = () => { hover(c.iso2, 0); tip.hidden = true; };
-    g.onclick = e => { e.stopPropagation(); select(c.iso2); };
+    // Clicking a country on the map opens its page directly (no second step via the side panel).
+    g.onclick = e => { e.stopPropagation(); open(c, e); };
+    g.onauxclick = e => { if (e.button === 1) { e.preventDefault(); open(c, e); } };
     g.onkeydown = e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(c.iso2); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(c, e); }
     };
+  }
+  function open(c, e) {
+    if (!(c.atlasPublished && c.href)) { select(c.iso2); return; }
+    if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) {
+      window.open(c.href, '_blank', 'noopener');
+      return;
+    }
+    location.href = c.href;
   }
   function moveTip(e) {
     const r = wrap.getBoundingClientRect();
@@ -533,7 +543,7 @@
     wrapDateline();
     tip = document.createElement('div'); tip.className = 'map-tooltip'; tip.hidden = true;
     pin = document.createElement('span'); pin.className = 'map-selection-pin'; pin.textContent = '📍'; pin.hidden = true;
-    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = '− / ＋ で拡大縮小 ・ ホイールでズーム ・ ドラッグで移動';
+    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
     wrap.append(tip, pin, h);
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }
