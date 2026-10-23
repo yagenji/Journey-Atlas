@@ -101,6 +101,7 @@
 .map-country-nav__guide span{color:#8a969d;font:500 7.8px/1.2 var(--jp);white-space:nowrap}
 .map-country-nav__list{max-height:260px;overflow:auto;padding:2px 3px 2px 0;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--map-accent) 24%,#dbe2de) transparent}
 .map-country-nav__item{position:relative;width:100%;display:grid;grid-template-columns:25px minmax(0,1fr);gap:8px;align-items:center;margin:0;padding:7px 8px;border:0;border-bottom:1px solid rgba(38,68,84,.065);border-radius:7px;background:transparent;text-align:left;cursor:pointer;transition:background .14s ease,transform .14s ease,box-shadow .14s ease}
+a.map-country-nav__item{color:inherit;text-decoration:none}
 .map-country-nav__item::before{content:'';position:absolute;left:0;top:7px;bottom:7px;width:2px;border-radius:2px;background:transparent}
 .map-country-nav__item:hover,.map-country-nav__item:focus,.map-country-nav__item.is-hovered{outline:none;background:color-mix(in srgb,var(--map-accent) 8%,white);transform:translateX(2px)}
 .map-country-nav__item:hover::before,.map-country-nav__item:focus::before,.map-country-nav__item.is-hovered::before{background:var(--map-accent)}
