@@ -45,7 +45,7 @@
   ],
   "tips": [{"topicKey": "planned-rail-engineering-works","title": "鉄道は工事予定を先に確認する","text": "英国の鉄道では週末や夜間を含めて計画工事が行われ、代行バスや経路変更が入ることがある。National Railは概ね12週間先までの予定工事を案内しているため、長距離移動日は先に確認しておきたい。"},{"topicKey": "mountain-weather-separate-forecast","title": "山地は都市とは別に天気を見る","text": "ハイランド、エリリ、モーン山地などでは、都市の天気予報だけでは判断しにくい。Met Officeは主要山岳地域向けの専用予報を出しているため、歩く日は風、視界、低雲なども確認する。"},{"topicKey": "scotland-midge-season","title": "夏のハイランドではミッジ対策を用意する","text": "スコットランドのミッジは概ね5〜10月に見られ、真夏に活動が強まりやすい。特に西ハイランドや島部、湿った農村部では、虫よけや長袖を用意しておくと歩きやすい。"}],
   "relatedCountries": [{"slug": "ireland","nameEn": "IRELAND","nameJa": "アイルランド","flag": "🇮🇪","reason": "大西洋岸、石造遺産、緑の農村景観が好きなら。"},{"slug": "france","nameEn": "FRANCE","nameJa": "フランス","flag": "🇫🇷","reason": "城塞、歴史都市、王権の歴史と食文化に惹かれたなら。"},{"slug": "norway","nameEn": "NORWAY","nameJa": "ノルウェー","flag": "🇳🇴","reason": "北大西洋の海岸と山地を、さらに大きな地形スケールで見たいなら。"}],
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-10-08",
   "sourceDates": {"population": "2025-06-30","area": "2025","railway": "1825-09-27","banknotes": "2026-09-03","languages": "2025-11-30","religion": "2022","travelScale": "2026-09-03","railEngineering": "2026-09-03","mountainWeather": "2026-09-03","midge": "2026-09-03","footballAssociations": "2026-09-03","worldHeritage": "2026-10-08","nextRoutes": "2026-09-07"},
   "sources": {
@@ -97,8 +97,32 @@
     {"duration": "14日以上","title": "複数の構成国をまたいで旅する","text": "鉄道に国内線やフェリーを組み合わせ、イングランド、スコットランド、ウェールズ、北アイルランドから複数地域を選ぶと、国全体の地理と文化の幅を急がず見られる。例：ロンドン → ヨーク → エディンバラ → ベルファスト → 北ウェールズ → ロンドン。","icon": "compass"}
   ]},
   "nextRoutes": [
-    {"flag": "🇫🇷","countryEn": "FRANCE","countryJa": "フランス","path": "London → Paris","description": "ロンドンからパリへ英仏海峡を越えるヨーロッパの代表ルート。英国の大都市から大陸側の街路とカフェ文化へ、短い鉄道旅で雰囲気が大きく変わる。"},
-    {"flag": "🇳🇱","countryEn": "NETHERLANDS","countryJa": "オランダ","path": "London → Brussels → Amsterdam","description": "英国から低地諸国へ進む定番の都市周遊。ロンドンからブリュッセルを経て、最後はアムステルダムの運河都市へ水辺の景観が変化する。"},
-    {"flag": "🇮🇪","countryEn": "IRELAND","countryJa": "アイルランド","path": "London → Holyhead → Dublin","description": "英国本土からアイルランドへ海を渡る代表的な周遊。鉄道でウェールズを横断し、フェリーでダブリンへ入るため島の地形そのものを感じられる。"}
+    {
+      "flag": "🇫🇷",
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "London → Paris",
+      "description": "ロンドンからパリへ英仏海峡を越えるヨーロッパの代表ルート。英国の大都市から大陸側の街路とカフェ文化へ、短い鉄道旅で雰囲気が大きく変わる。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇳🇱",
+      "countryEn": "NETHERLANDS",
+      "countryJa": "オランダ",
+      "path": "London → Brussels → Amsterdam",
+      "description": "英国から低地諸国へ進む定番の都市周遊。ロンドンからブリュッセルを経て、最後はアムステルダムの運河都市へ水辺の景観が変化する。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇮🇪",
+      "countryEn": "IRELAND",
+      "countryJa": "アイルランド",
+      "path": "London → Holyhead → Dublin",
+      "description": "英国本土からアイルランドへ海を渡る代表的な周遊。鉄道でウェールズを横断し、フェリーでダブリンへ入るため島の地形そのものを感じられる。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
   ]
 }

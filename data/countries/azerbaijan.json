@@ -80,11 +80,38 @@
     {"slug":"iran","nameEn":"IRAN","nameJa":"イラン","flag":"🇮🇷","reason":"カスピ海沿岸のヒルカン森林、建築・工芸・食文化の歴史的な連続性を、国境の南側から見比べられる。"}
   ],
   "nextRoutes": [
-    {"flag":"🇬🇪","countryEn":"GEORGIA","countryJa":"ジョージア","path":"Baku → Sheki → Tbilisi","description":"カスピ海沿岸の首都から西へ進み、シェキの交易都市景観を経てジョージアへ。南コーカサスの山地と都市文化を国境の両側で比べる軸。"},
-    {"flag":"🇹🇷","countryEn":"TÜRKİYE","countryJa":"トルコ","path":"Nakhchivan → Iğdır → Kars","description":"ナヒチェヴァンからアナトリア東部へつなぐ地理軸。乾いた高地、火山地形、石造建築をたどりながら、テュルク系文化の共通点と地域差を見比べられる。"},
-    {"flag":"🇮🇷","countryEn":"IRAN","countryJa":"イラン","path":"Lankaran → Astara → Rasht","description":"南部のランカランからアスタラを経てカスピ海南岸へ。ヒルカン森林帯が国境を越えて続き、湿潤な森と沿岸の暮らしを一つの地理として追える。"}
+    {
+      "flag": "🇬🇪",
+      "countryEn": "GEORGIA",
+      "countryJa": "ジョージア",
+      "path": "Baku → Sheki → Tbilisi",
+      "description": "カスピ海沿岸の首都から西へ進み、シェキの交易都市景観を経てジョージアへ。南コーカサスの山地と都市文化を国境の両側で比べる軸。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "アゼルバイジャンは2020年から陸路国境を閉鎖しており、2026年5月にジョージアとの旅客鉄道のみ再開した。道路国境の再開状況を確認する。"
+    },
+    {
+      "flag": "🇹🇷",
+      "countryEn": "TÜRKİYE",
+      "countryJa": "トルコ",
+      "path": "Nakhchivan → Iğdır → Kars",
+      "description": "ナヒチェヴァンからアナトリア東部へつなぐ地理軸。乾いた高地、火山地形、石造建築をたどりながら、テュルク系文化の共通点と地域差を見比べられる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "ナヒチェヴァンはアゼルバイジャン本土と陸続きでない。トルコ側国境の運用と入国条件を確認する。"
+    },
+    {
+      "flag": "🇮🇷",
+      "countryEn": "IRAN",
+      "countryJa": "イラン",
+      "path": "Lankaran → Astara → Rasht",
+      "description": "南部のランカランからアスタラを経てカスピ海南岸へ。ヒルカン森林帯が国境を越えて続き、湿潤な森と沿岸の暮らしを一つの地理として追える。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "アゼルバイジャンは2020年から陸路国境を閉鎖している（2026年5月に再開したのはジョージアとの旅客鉄道のみ）。再開状況を確認する。"
+    }
   ],
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-09-13",
   "sourceDates": {"population":"2026-07-01","geography":"2026-09-13","religion":"2026-09-13","worldHeritage":"2026-09-13","intangibleHeritage":"2026-09-13","tourism":"2026-09-13","borderAccess":"2026-09-15"},
   "sources": {

@@ -89,16 +89,41 @@
     {"topicKey":"long-distance-transfer-buffer","title":"南北移動には到着日の余白を残す","text":"国土が南北に長く、夜行列車・長距離バス・国内線の乗り継ぎで半日以上を使うことがある。離島や山地へ続く日は接続を詰めすぎない。"}
   ],
   "nextRoutes":[
-    {"flag":"🇱🇦","countryEn":"LAOS","countryJa":"ラオス","path":"Bangkok → Nong Khai → Vientiane","description":"バンコクから東北部を縦断し、メコンを越えてビエンチャンへ。2024年に直通旅客列車が始まり、中央平原からイサーン、ラオスへ地続きの変化を追える。"},
-    {"flag":"🇲🇾","countryEn":"MALAYSIA","countryJa":"マレーシア","path":"Bangkok → Hat Yai → Padang Besar","description":"南部の細長い半島を鉄道で下り、国境駅パダン・ブサールからマレー半島をさらに南へつなぐ。タイ南部からマレーシア北部へ景観と食文化が連続する周遊方向。"},
-    {"flag":"🇰🇭","countryEn":"CAMBODIA","countryJa":"カンボジア","path":"Bangkok → Aranyaprathet → Siem Reap","description":"バンコクから東へ進み、アンコールへつなぐ代表的な周遊軸。ただし2026年9月12日現在、タイ—カンボジア間の陸路国境・国境検問所は停止中で、国境周辺には渡航勧告も出ている。再開までは陸路では利用できないため、最新情報の確認が必要。"}
+    {
+      "flag": "🇱🇦",
+      "countryEn": "LAOS",
+      "countryJa": "ラオス",
+      "path": "Bangkok → Nong Khai → Vientiane",
+      "description": "バンコクから東北部を縦断し、メコンを越えてビエンチャンへ。2024年に直通旅客列車が始まり、中央平原からイサーン、ラオスへ地続きの変化を追える。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇲🇾",
+      "countryEn": "MALAYSIA",
+      "countryJa": "マレーシア",
+      "path": "Bangkok → Hat Yai → Padang Besar",
+      "description": "南部の細長い半島を鉄道で下り、国境駅パダン・ブサールからマレー半島をさらに南へつなぐ。タイ南部からマレーシア北部へ景観と食文化が連続する周遊方向。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇰🇭",
+      "countryEn": "CAMBODIA",
+      "countryJa": "カンボジア",
+      "path": "Bangkok → Aranyaprathet / Poipet → Siem Reap",
+      "description": "バンコクから東へ進み、アランヤプラテート／ポイペト国境を越えてシェムリアップへ。中央平原の大都市からアンコールの遺跡群へつなぐ代表的な周遊軸。",
+      "travelerRoute": true,
+      "status": "TEMPORARILY_RESTRICTED",
+      "statusNote": "2025年の国境紛争以降、タイ–カンボジアの陸路国境は閉鎖が続き、国境周辺には渡航警告が出ている。再開状況を確認する。"
+    }
   ],
   "relatedCountries":[
     {"slug":"laos","nameEn":"LAOS","nameJa":"ラオス","flag":"🇱🇦","reason":"メコン川、上座部仏教、山地の暮らしを、タイ東北部からさらに静かな密度でたどれる。"},
     {"slug":"cambodia","nameEn":"CAMBODIA","nameJa":"カンボジア","flag":"🇰🇭","reason":"クメール建築とメコン地域の歴史を、タイ東北部の遺跡からアンコールへ広げて比較できる。"},
     {"slug":"malaysia","nameEn":"MALAYSIA","nameJa":"マレーシア","flag":"🇲🇾","reason":"同じマレー半島で、熱帯の海・都市・食・宗教の組み合わせが南へ移るほど変わる。"}
   ],
-  "updatedAt":"2026-10-11","sourcesVerifiedAt":"2026-10-11",
+  "updatedAt":"2026-10-23","sourcesVerifiedAt":"2026-10-11",
   "sourceDates":{"population":"2026","area":"2024","temples":"2024","colonialHistory":"2021","buddhistCalendar":"2026-10-11","nextRoutes":"2026-09-12","seasons":"2026-09-11","waiIdentity":"2026-10-11","nuadThai":"2026-10-11","nora":"2026-10-11","tomyumKung":"2026-10-11"},
   "sources":{
     "population":"Thailand National Statistical Office, Statistical Yearbook Thailand 2025, Table 1.8: 2026 population projection 67,143.3 thousand persons (1 July).",
