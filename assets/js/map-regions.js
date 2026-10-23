@@ -98,7 +98,14 @@
       </div>` : '';
 
     list.className = 'map-country-nav';
-    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c => `<button type="button" data-n="${c.iso2}" class="map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></button>`).join('')}</div></div>`;
+    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c => {
+      const cls = `map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}`;
+      const inner = `<span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span>`;
+      // Published countries are plain links: one click opens the page (new tab via Ctrl/Cmd/middle-click works natively).
+      return c.atlasPublished && c.href
+        ? `<a href="${c.href}" data-n="${c.iso2}" class="${cls}">${inner}</a>`
+        : `<button type="button" data-n="${c.iso2}" class="${cls}">${inner}</button>`;
+    }).join('')}</div></div>`;
     list.querySelector('[data-clear-selection]')?.addEventListener('click', deselect);
     list.querySelectorAll('[data-n]').forEach(b => {
       nav.set(b.dataset.n, b);
@@ -106,7 +113,7 @@
       b.onmouseleave = () => hover(b.dataset.n, 0);
       b.onfocus = () => hover(b.dataset.n, 1);
       b.onblur = () => hover(b.dataset.n, 0);
-      b.onclick = () => select(b.dataset.n);
+      if (b.tagName === 'BUTTON') b.onclick = () => select(b.dataset.n);
     });
   }
   function worldPanel() {
@@ -319,7 +326,7 @@
     if (!c) return;
     g.tabIndex = 0;
     g.setAttribute('role', 'button');
-    g.setAttribute('aria-label', `${c.nameJa}を選ぶ`);
+    g.setAttribute('aria-label', c.href ? `${c.nameJa}のページを開く` : `${c.nameJa}を選ぶ`);
     g.onpointerenter = e => {
       hover(c.iso2, 1);
       tip.innerHTML = `<strong>${c.nameJa}</strong><span>${c.nameEn}</span>`;
@@ -327,10 +334,20 @@
     };
     g.onpointermove = moveTip;
     g.onpointerleave = () => { hover(c.iso2, 0); tip.hidden = true; };
-    g.onclick = e => { e.stopPropagation(); select(c.iso2); };
+    // Clicking a country on the map opens its page directly (no second step via the side panel).
+    g.onclick = e => { e.stopPropagation(); open(c, e); };
+    g.onauxclick = e => { if (e.button === 1) { e.preventDefault(); open(c, e); } };
     g.onkeydown = e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(c.iso2); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(c, e); }
     };
+  }
+  function open(c, e) {
+    if (!(c.atlasPublished && c.href)) { select(c.iso2); return; }
+    if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) {
+      window.open(c.href, '_blank', 'noopener');
+      return;
+    }
+    location.href = c.href;
   }
   function moveTip(e) {
     const r = wrap.getBoundingClientRect();
@@ -533,7 +550,7 @@
     wrapDateline();
     tip = document.createElement('div'); tip.className = 'map-tooltip'; tip.hidden = true;
     pin = document.createElement('span'); pin.className = 'map-selection-pin'; pin.textContent = '📍'; pin.hidden = true;
-    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = '− / ＋ で拡大縮小 ・ ホイールでズーム ・ ドラッグで移動';
+    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
     wrap.append(tip, pin, h);
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }

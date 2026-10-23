@@ -466,6 +466,12 @@ function showTheme(theme){
   activeTheme=theme;
   if(themeResultsSearch)themeResultsSearch.value='';
   renderThemeResults();
+  // On narrow screens the results render far below the eight theme buttons, so a tap looked
+  // like nothing happened. Bring the selected theme's results into view.
+  if(themeResults&&!themeResults.hidden){
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    themeResults.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
 }
 
 function getWishedSlugs(){try{return destinations.filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
