@@ -6,6 +6,7 @@ const next = document.querySelector('[data-country-scroll="next"]');
 const toggleAll = document.querySelector('#all-countries-toggle');
 const allPanel = document.querySelector('#all-countries-panel');
 const searchInput = document.querySelector('#country-search');
+const allTitle = document.querySelector('#all-countries-title');
 const themeResults = document.querySelector('#theme-results');
 const themeResultsGrid = document.querySelector('#theme-results-grid');
 const themeResultsTitle = document.querySelector('#theme-results-title');
@@ -450,7 +451,7 @@ function setAllPanel(open,reset=true){
   allPanel.hidden=!open;toggleAll.setAttribute('aria-expanded',String(open));
   toggleAll.firstChild.textContent=open?'一覧を閉じる ':'すべての国・地域を見る ';
   if(open&&reset){
-    if(searchInput)searchInput.value='';
+    if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';
     renderGrid(destinations);
   }
   if(open) allPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -480,13 +481,42 @@ function showToast(message){if(!toast)return;toast.textContent=message;toast.hid
 
 prev?.addEventListener('click',()=>scrollRail(-1));next?.addEventListener('click',()=>scrollRail(1));rail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateDots),{passive:true});
 toggleAll?.addEventListener('click',()=>setAllPanel(Boolean(allPanel?.hidden)));
+// Search box in the 国から探す header: English or Japanese (hiragana/katakana/full-width all match).
+function normalizeSearch(value){
+  return String(value||'').normalize('NFKC').toLowerCase()
+    .replace(/[\u3041-\u3096]/g,(ch)=>String.fromCharCode(ch.charCodeAt(0)+0x60))
+    .replace(/[\s・&'’.\-]/g,'');
+}
+function searchCountries(){
+  const query=normalizeSearch(searchInput?.value);
+  if(!query)return destinations;
+  const starts=(country)=>[country.nameJa,country.nameEn].some((name)=>normalizeSearch(name).startsWith(query));
+  return destinations
+    .filter((country)=>normalizeSearch(`${country.nameEn} ${country.nameJa} ${country.slug}`).includes(query))
+    .sort((a,b)=>Number(starts(b))-Number(starts(a)));
+}
 searchInput?.addEventListener('input',()=>{
-  const query=searchInput.value.trim().toLowerCase();
-  renderGrid(query?destinations.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query)):destinations);
+  const wasHidden=Boolean(allPanel?.hidden);
+  if(allPanel&&wasHidden&&searchInput.value.trim()){
+    allPanel.hidden=false;toggleAll?.setAttribute('aria-expanded','true');
+    if(toggleAll)toggleAll.firstChild.textContent='一覧を閉じる ';
+  }
+  alphabetButtons().forEach((item)=>item.classList.toggle('is-active',item.dataset.letter==='all'));
+  document.querySelector('#countries')?.classList.toggle('is-searching',Boolean(searchInput.value.trim()));
+  const items=searchCountries();
+  renderGrid(items);
+  if(allTitle)allTitle.textContent=searchInput.value.trim()?`「${searchInput.value.trim()}」の検索結果 ${items.length}件`:'すべての国・地域';
+});
+searchInput?.addEventListener('keydown',(event)=>{
+  if(event.key!=='Enter'||event.isComposing)return;
+  event.preventDefault();
+  const items=searchCountries();
+  if(items.length===1&&items[0].href){location.href=items[0].href;return;}
+  allPanel?.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
 themeResultsSearch?.addEventListener('input',renderThemeResults);
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
+wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
@@ -496,6 +526,6 @@ document.addEventListener('click',(event)=>{
   const letter=button.dataset.letter;
   const filtered=letter==='all'?destinations:letter==='#'?destinations.filter((country)=>!/[A-Z]/.test(country.nameEn[0])):destinations.filter((country)=>country.nameEn.startsWith(letter));
   setAllPanel(true,false);
-  if(searchInput)searchInput.value='';
+  if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';
   renderGrid(filtered);
 });
