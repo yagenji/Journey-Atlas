@@ -98,7 +98,14 @@
       </div>` : '';
 
     list.className = 'map-country-nav';
-    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c => `<button type="button" data-n="${c.iso2}" class="map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></button>`).join('')}</div></div>`;
+    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c => {
+      const cls = `map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}`;
+      const inner = `<span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span>`;
+      // Published countries are plain links: one click opens the page (new tab via Ctrl/Cmd/middle-click works natively).
+      return c.atlasPublished && c.href
+        ? `<a href="${c.href}" data-n="${c.iso2}" class="${cls}">${inner}</a>`
+        : `<button type="button" data-n="${c.iso2}" class="${cls}">${inner}</button>`;
+    }).join('')}</div></div>`;
     list.querySelector('[data-clear-selection]')?.addEventListener('click', deselect);
     list.querySelectorAll('[data-n]').forEach(b => {
       nav.set(b.dataset.n, b);
@@ -106,7 +113,7 @@
       b.onmouseleave = () => hover(b.dataset.n, 0);
       b.onfocus = () => hover(b.dataset.n, 1);
       b.onblur = () => hover(b.dataset.n, 0);
-      b.onclick = () => select(b.dataset.n);
+      if (b.tagName === 'BUTTON') b.onclick = () => select(b.dataset.n);
     });
   }
   function worldPanel() {
