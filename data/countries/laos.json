@@ -116,16 +116,42 @@
     {"topicKey":"monsoon-routing","title":"雨季は距離より道路状況を見る","text":"幹線鉄道以外の山地・地方道路は降雨の影響を受けやすい。南部や洞窟、遠隔地を組み込む日は、移動時間に余白を持たせる。"}
   ],
   "nextRoutes":[
-    {"flag":"🇹🇭","countryEn":"THAILAND","countryJa":"タイ","path":"Vientiane → Nong Khai → Bangkok","description":"メコンを越えると、ラオスの首都圏からタイ東北部とバンコクへ陸路・鉄道の旅をつなげられる。"},
-    {"flag":"🇨🇳","countryEn":"CHINA","countryJa":"中国","path":"Boten → Xishuangbanna → Kunming","description":"北へ中老鉄道をたどると、ラオス北部の山地から雲南の熱帯域と高原都市へ景観が連続する。"},
-    {"flag":"🇰🇭","countryEn":"CAMBODIA","countryJa":"カンボジア","path":"Si Phan Don → Stung Treng","description":"南端からメコン沿いに進むと、シーパンドンの川景からカンボジア北東部へそのまま大河の旅を延ばせる。"}
+    {
+      "flag": "🇹🇭",
+      "countryEn": "THAILAND",
+      "countryJa": "タイ",
+      "path": "Vientiane → Nong Khai → Bangkok",
+      "description": "メコンを越えると、ラオスの首都圏からタイ東北部とバンコクへ陸路・鉄道の旅をつなげられる。",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "flag": "🇨🇳",
+      "countryEn": "CHINA",
+      "countryJa": "中国",
+      "path": "Boten → Xishuangbanna → Kunming",
+      "description": "北へ中老鉄道をたどると、ラオス北部の山地から雲南の熱帯域と高原都市へ景観が連続する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "中国の査証・入境条件と国際列車・バスの運行を出発前に確認する。"
+    },
+    {
+      "flag": "🇰🇭",
+      "countryEn": "CAMBODIA",
+      "countryJa": "カンボジア",
+      "path": "Si Phan Don → Stung Treng",
+      "description": "南端からメコン沿いに進むと、シーパンドンの川景からカンボジア北東部へそのまま大河の旅を延ばせる。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境運用と入国条件を出発前に確認する。"
+    }
   ],
   "relatedCountries":[
     {"slug":"thailand","nameEn":"THAILAND","nameJa":"タイ","flag":"🇹🇭","reason":"メコン、上座部仏教、食文化を共有しながら、都市規模と平野の広がりを比べたい人へ。"},
     {"slug":"vietnam","nameEn":"VIETNAM","nameJa":"ベトナム","flag":"🇻🇳","reason":"アンナン山脈を挟む隣国で、カルスト地形、植民地期の歴史、都市と農村の違いを続けて見たい人へ。"},
     {"slug":"cambodia","nameEn":"CAMBODIA","nameJa":"カンボジア","flag":"🇰🇭","reason":"メコン下流とクメール文化圏をつなぎ、ワット・プーからアンコールへ歴史の連続性を広げたい人へ。"}
   ],
-  "updatedAt":"2026-10-11",
+  "updatedAt":"2026-10-23",
   "sourcesVerifiedAt":"2026-10-11",
   "sourceDates":{"population":"2026-09-12","countryProfile":"2026-09-12","unesco":"2026-09-12","luangPrabang":"2026-09-12","plainOfJars":"2026-09-12","hinNamNo":"2026-09-12","vatPhou":"2026-09-12","waterfalls":"2026-09-12","bolaven":"2026-09-12","culture":"2026-09-12","ethnicGroups":"2026-09-12","food":"2026-09-12","railway":"2026-09-12","climate":"2026-09-12","geometry":"2026-09-12","nextRoutes":"2026-09-12"},
   "sources":{"population":"Lao Statistics Bureau, Population 2025: total 7,745 thousand persons; Administration 2025: 18 provinces, 148 districts, 8,413 villages.","countryProfile":"Lao PDR Investment Promotion and Management Committee / Lao Statistics Bureau: area 236,800 km²; capital Vientiane; language Lao; religion Buddhism; currency Kip.","unesco":"UNESCO World Heritage Centre, Lao PDR State Party page: 4 inscribed properties after the 2025 extension adding Hin Nam No to the transboundary natural property.","luangPrabang":"UNESCO World Heritage Centre, Town of Luang Prabang: inscribed 1995; traditional Lao urban structures blended with European colonial architecture.","plainOfJars":"UNESCO World Heritage Centre, Megalithic Jar Sites in Xiengkhuang – Plain of Jars: more than 2,100 megalithic stone jars; 15 component sites; inscribed 2019.","hinNamNo":"UNESCO World Heritage Centre, Phong Nha-Ke Bang National Park and Hin Nam No National Park: Hin Nam No component 94,121 ha; approved transboundary extension in 2025.","vatPhou":"UNESCO World Heritage Centre, Vat Phou and Associated Ancient Settlements within the Champasak Cultural Landscape: inscribed cultural landscape and official coordinates.","waterfalls":"Lao Tourism, Waterfalls / Champasak: Kuang Si multi-level falls; Khone Phapheng on the Mekong; southern waterfall landscape.","bolaven":"Lao Tourism, Lao Coffee / Champasak: Bolaven Plateau highland coffee landscape, volcanic soils and cooler climate; national coffee production concentrated on the plateau.","culture":"Lao Tourism, Authentic Culture / Ethnic Diversity: Lao language; Theravada Buddhist and animist practices; baci/soukhwan and belief in 32 spirits; raised traditional homes.","ethnicGroups":"UNFPA Lao PDR, UNFPA in Lao: Lao PDR is a diverse country with 50 officially recognized ethnic groups.","food":"Lao Tourism, Food & Flavours and Kualao feature: sticky rice staple; larb; tam mak hoong; grilled chicken; or lam as a northern/Luang Prabang specialty.","railway":"National Development and Reform Commission of China, 2021: Lao section of China-Laos Railway 422 km, Boten–Vientiane, maximum operating speed 160 km/h; opened December 2021.","climate":"World Bank Climate Change Knowledge Portal, Lao PDR: rainy season May to mid-October; dry season mid-October to April; cooler northern and highland conditions.","geometry":"Basemap intermediate-resolution geopolitical country-boundary dataset (WGS84 lon/lat), assembled for Lao PDR and checked against Natural Earth LAO country extents.","nextRoutes":"Geographic continuity with Thailand, China and Cambodia; route copy intentionally avoids timetable, fare and border-entry claims.","unescoKhaen":"UNESCO Intangible Cultural Heritage — Khaen music of the Lao people, inscribed 2017: bamboo tubes of varying lengths with metal reeds, played by blowing through an air chamber; listeners commonly join songs and dances. https://ich.unesco.org/en/RL/khene-music-of-the-lao-people-01296","unescoNagaWeaving":"UNESCO Intangible Cultural Heritage — Traditional craft of Naga motif weaving in Lao communities, inscribed 2023: Naga motifs are formed during hand weaving, not embroidered or printed afterwards, and appear on textiles used throughout life. https://ich.unesco.org/en/RL/traditional-craft-of-naga-motif-weaving-in-lao-communities-01973","unescoLamvong":"UNESCO Intangible Cultural Heritage — Fonelamvonglao (lamvonglao), inscribed 2024: men dance in an inner circle, women in an outer circle, counterclockwise, repeating cycles of eight movements. https://ich.unesco.org/en/RL/fonelamvonglao-lamvonglao-02099","viengXai":"Lao Tourism — Vieng Xay caves: more than 100 limestone caves; during 1961–1975 a hidden headquarters and 'Hidden City' sheltered around 20,000 people, with ministries, hospital, schools, markets, radio station, theatre and military facilities. https://www.tourismlaos.org/caves/","pimaiLao":"Lao Tourism — Events & Festivals: Pimai Lao runs 14–16 April; 14 April is the last day of the old year, 15 April is the 'day of no day' belonging to neither old nor new year, and 16 April begins the new year. https://www.tourismlaos.org/welcome/buddhism-and-belief/festivals/"}
