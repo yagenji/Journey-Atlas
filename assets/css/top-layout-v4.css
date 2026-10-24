@@ -807,3 +807,21 @@
 /* While a search query is typed, show results directly under the search box. */
 .countries.is-searching .rail-wrap,.countries.is-searching .rail-meta,.countries.is-searching .alphabet{display:none}
 @media (max-width:760px){.countries .section-head{flex-wrap:wrap}.countries .section-head>div:first-child{flex:1 1 100%}}
+/* Theme results: region filter chips (same look as the map's region tabs). */
+.theme-region-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.theme-region-tabs[hidden]{display:none}
+.theme-region-tabs button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(25,62,87,.13);border-radius:999px;background:#fffdfa;color:#405466;box-shadow:0 1px 4px rgba(28,58,74,.035);font:600 10.5px/1.2 var(--jp);cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease}
+.theme-region-tabs button span{font:600 9px/1 "Hanken Grotesk",sans-serif;color:#8a96a0}
+.theme-region-tabs button:hover{border-color:rgba(25,62,87,.28)}
+.theme-region-tabs button:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.theme-region-tabs button.is-active{border-color:#234866;background:#234866;color:#fff}
+.theme-region-tabs button.is-active span{color:rgba(255,255,255,.8)}
+.theme-region-tabs button[data-theme-region='asia'].is-active{background:#718f7a;border-color:#718f7a}
+.theme-region-tabs button[data-theme-region='europe'].is-active{background:#b99060;border-color:#b99060}
+.theme-region-tabs button[data-theme-region='africa'].is-active{background:#b47b54;border-color:#b47b54}
+.theme-region-tabs button[data-theme-region='north-america'].is-active{background:#6f8da0;border-color:#6f8da0}
+.theme-region-tabs button[data-theme-region='south-america'].is-active{background:#829765;border-color:#829765}
+.theme-region-tabs button[data-theme-region='oceania'].is-active{background:#5d9a9a;border-color:#5d9a9a}
+.theme-region-tabs button[data-theme-region='antarctica'].is-active{background:#7899aa;border-color:#7899aa}
+@media (prefers-reduced-motion:reduce){.theme-region-tabs button{transition:none}}
+@media (max-width:760px){.theme-region-tabs{gap:7px}.theme-region-tabs button{padding:9px 12px;font-size:12px}}

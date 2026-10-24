@@ -14,6 +14,19 @@ const themeResultsMeta = document.querySelector('#theme-results-meta');
 const themeResultsSearch = document.querySelector('#theme-country-search');
 const themeResultsClear = document.querySelector('#theme-results-clear');
 const themeResultsEmpty = document.querySelector('#theme-results-empty');
+const themeRegionTabs = document.querySelector('#theme-region-tabs');
+// Region filter for theme results (same regions and order as the map).
+let themeRegions = [];
+let themeRegionByIso = new Map();
+let activeThemeRegion = 'all';
+fetch('data/region-taxonomy.json')
+  .then((response)=>{if(!response.ok)throw new Error('Region taxonomy not found');return response.json();})
+  .then(({regions=[]})=>{
+    themeRegions=regions.map(({id,label})=>({id,label}));
+    regions.forEach((region)=>(region.iso2||[]).forEach((iso)=>themeRegionByIso.set(iso,region.id)));
+    if(activeTheme)renderThemeResults();
+  })
+  .catch((error)=>console.warn('[JOURNEY ATLAS] Theme region filter unavailable.',error));
 const empty = document.querySelector('#country-empty');
 const wishButton = document.querySelector('#wish-link');
 const toast = document.querySelector('#top-toast');
@@ -419,7 +432,17 @@ function renderThemeResults(){
     return;
   }
 
-  const baseItems=getThemeItems(activeTheme);
+  const themeItems=getThemeItems(activeTheme);
+  const regionCounts=new Map();
+  themeItems.forEach((country)=>{
+    const region=themeRegionByIso.get(country.iso2);
+    if(region)regionCounts.set(region,(regionCounts.get(region)||0)+1);
+  });
+  if(activeThemeRegion!=='all'&&!regionCounts.has(activeThemeRegion))activeThemeRegion='all';
+  renderThemeRegionTabs(themeItems.length,regionCounts);
+  const baseItems=activeThemeRegion==='all'
+    ?themeItems
+    :themeItems.filter((country)=>themeRegionByIso.get(country.iso2)===activeThemeRegion);
   const query=themeResultsSearch?.value.trim().toLowerCase()||'';
   const items=query
     ?baseItems.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query))
@@ -435,14 +458,40 @@ function renderThemeResults(){
 
   const label=themeLabel(activeTheme);
   if(themeResultsTitle)themeResultsTitle.textContent=label;
+  const regionLabel=themeRegions.find((region)=>region.id===activeThemeRegion)?.label;
   if(themeResultsMeta)themeResultsMeta.textContent=query
     ?`${baseItems.length}件の候補から、${items.length}件を表示しています。`
-    :`${baseItems.length} DESTINATIONS`;
+    :regionLabel
+      ?`${regionLabel}　${baseItems.length} / ${themeItems.length} DESTINATIONS`
+      :`${baseItems.length} DESTINATIONS`;
   if(themeResultsEmpty)themeResultsEmpty.hidden=items.length!==0;
   themeResults.hidden=false;
   syncThemeSelectionUI();
 }
+function renderThemeRegionTabs(total,regionCounts){
+  if(!themeRegionTabs)return;
+  if(!themeRegions.length||regionCounts.size<2){themeRegionTabs.hidden=true;themeRegionTabs.replaceChildren();return;}
+  themeRegionTabs.hidden=false;
+  const options=[{id:'all',label:'すべて',count:total},...themeRegions.filter((region)=>regionCounts.has(region.id)).map((region)=>({...region,count:regionCounts.get(region.id)}))];
+  themeRegionTabs.replaceChildren(...options.map(({id,label,count})=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.themeRegion=id;
+    const on=id===activeThemeRegion;
+    button.classList.toggle('is-active',on);
+    button.setAttribute('aria-pressed',String(on));
+    button.innerHTML=`${label}<span>${count}</span>`;
+    return button;
+  }));
+}
+themeRegionTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-theme-region]');
+  if(!button)return;
+  activeThemeRegion=button.dataset.themeRegion;
+  renderThemeResults();
+});
 function clearThemeResults(){
+  activeThemeRegion='all';
   activeTheme=null;
   renderThemeResults();
 }
