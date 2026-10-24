@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": 43.8563,
       "longitude": 18.4131
-    },"labelOffset":{"x":0,"y":-36},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -36
+    },
     "labelPosition": "right"
   },
   "hero": {
@@ -191,15 +195,16 @@
   ],
   "atlasExtras": [
     {
-      "topicKey": "two-entities-brcko-district",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "title": "一つの国の中に、二つのEntityとBrčko Districtがある",
-      "text": "現在の国家構造は、ボスニア・ヘルツェゴビナ連邦とスルプスカ共和国の二つのEntityを基本に、Brčko Districtが特別な地位を持つ。道路標識や行政名を見ると、1995年以降の制度が現在の地図と暮らしに重なっていることが分かる。",
+      "topicKey": "vjetrenica-subterranean-ecosystems",
+      "themeEn": "WILDLIFE",
+      "themeJa": "野生に会う",
+      "title": "ヴェトレニツァ洞窟では、光の届かない水に固有の生き物が暮らす",
+      "text": "ヘルツェゴビナ南部のヴェトレニツァ洞窟は、石灰岩の中を流れる地下水が多様な生物を支える場所。地表からは見えない環境に、洞窟の水中で暮らす生物や、この地域に固有の種が残っている。2024年に世界自然遺産に登録され、峡谷や山の景観だけでは分からない、ディナル山地のもう一つの自然が注目された。",
       "points": [
-        "二つのEntityはボスニア・ヘルツェゴビナ連邦とスルプスカ共和国",
-        "Brčko Districtは国家主権の下にある独自の地方自治単位"
-      ]
+        "洞窟には地下水性の生物を含む180の動物分類群が記録されている",
+        "地球上で唯一の地下生息性の棲管性環形動物 Marifugia cavatica が生息する"
+      ],
+      "sourceKey": "vjetrenicaBiodiversityUnesco"
     },
     {
       "topicKey": "sarajevo-religious-city",
@@ -210,7 +215,8 @@
       "points": [
         "オスマン期とハプスブルク期の都市層が近接する",
         "礼拝施設の多様性が街路の中で見える"
-      ]
+      ],
+      "sourceKey": "sarajevoReligions"
     },
     {
       "topicKey": "sevdalinka-living-song",
@@ -221,7 +227,8 @@
       "points": [
         "伝統的な都市民謡として世代を越えて継承",
         "2024年にユネスコ無形文化遺産へ登録"
-      ]
+      ],
+      "sourceKey": "sevdalinka"
     },
     {
       "topicKey": "konjic-woodcarving",
@@ -232,7 +239,8 @@
       "points": [
         "家具や室内装飾へ手彫りの文様を施す",
         "2017年にユネスコ無形文化遺産へ登録"
-      ]
+      ],
+      "sourceKey": "konjicWoodcarving"
     },
     {
       "topicKey": "stecci-medieval-tombstones",
@@ -243,7 +251,8 @@
       "points": [
         "世界遺産は4か国28か所で構成される",
         "登録資産には約4,000基の墓碑が含まれる"
-      ]
+      ],
+      "sourceKey": "stecci"
     },
     {
       "topicKey": "ottoman-austrohungarian-layers",
@@ -254,7 +263,8 @@
       "points": [
         "オスマン期の都市構造が旧市街の基層に残る",
         "19世紀末以降の中欧的建築がその周囲へ重なる"
-      ]
+      ],
+      "sourceKey": "urbanLayers"
     }
   ],
   "travelTrivia": [
@@ -486,7 +496,7 @@
     "language": "Agency for Statistics of Bosnia and Herzegovina country facts: Bosnian, Croatian and Serbian; Latin and Cyrillic alphabets are used.",
     "religion": "Agency for Statistics of Bosnia and Herzegovina, 2013 Census religious affiliation tables: Islam, Orthodox Christianity and Catholicism are the three largest affiliations. The UI does not present current percentage shares.",
     "currency": "Central Bank of Bosnia and Herzegovina: convertible mark (BAM/KM), currency board arrangement; fixed exchange rate 1 EUR = 1.95583 BAM.",
-    "stateStructure": "Constitution of Bosnia and Herzegovina / Ministry of Foreign Affairs: Federation of Bosnia and Herzegovina and Republika Srpska are the two Entities; Brčko District has special self-government status under Bosnia and Herzegovina sovereignty.",
+    "stateStructure": "Office of the High Representative, Dayton General Framework Agreement, Annex 4 (Constitution), Article I(3) establishes Federation and Republika Srpska as two Entities; OHR Brčko District Statute, Article 1 establishes self-government under Bosnia and Herzegovina sovereignty. https://www.ohr.int/the-general-framework-agreement-annex-4-3/ ; https://www.ohr.int/?ohr_archive=statute-of-the-brcko-district-of-bosnia-and-herzegovina",
     "coastline": "Agency for Statistics of Bosnia and Herzegovina: Adriatic coastline 21.2 km.",
     "maglic": "Agency for Statistics of Bosnia and Herzegovina: Maglić, 2,386 m, is the highest mountain peak in Bosnia and Herzegovina.",
     "mostar": "UNESCO World Heritage Centre: Old Bridge Area of the Old City of Mostar; Ottoman urban development, later Austro-Hungarian influence, destruction and reconstruction of Stari Most.",
@@ -498,13 +508,13 @@
     "lukomir": "Visit Bosnia and Herzegovina: Lukomir is a highland village at roughly 1,500 m beside the Rakitnica canyon, known for traditional stone houses and pastoral landscape.",
     "livno": "Livno tourism information: the Kruzi plateau below Cincar is a karst grazing landscape associated with free-ranging horses.",
     "neum": "Agency for Statistics of Bosnia and Herzegovina: the country reaches the Adriatic at its short coastline around Neum.",
-    "sevdalinka": "UNESCO Intangible Cultural Heritage: Sevdalinka, traditional urban folk song, inscribed on the Representative List in 2024.",
-    "konjicWoodcarving": "UNESCO Intangible Cultural Heritage: Konjic woodcarving, inscribed on the Representative List in 2017.",
+    "sevdalinka": "UNESCO Intangible Cultural Heritage, Sevdalinka, traditional urban folk song; Bosnia and Herzegovina, inscribed 2024. https://ich.unesco.org/en/RL/sevdalinka-traditional-urban-folk-song-01872",
+    "konjicWoodcarving": "UNESCO Intangible Cultural Heritage, Konjic woodcarving: furniture and interior motifs, 2017 inscription. https://ich.unesco.org/en/RL/konjic-woodcarving-01288",
     "zmijanjeEmbroidery": "UNESCO Intangible Cultural Heritage, Zmijanje embroidery: specific embroidery technique practised by women of Zmijanje villages and used on costumes and household textiles; inscribed on the Representative List in 2014. https://ich.unesco.org/en/RL/zmijanje-embroidery-00990",
     "kupresMowing": "UNESCO Intangible Cultural Heritage, Grass mowing competition custom in Kupres: annual July competition at Strljanica using hand scythes; inscribed on the Representative List in 2020. https://ich.unesco.org/en/RL/grass-mowing-competition-custom-in-kupres-01512",
-    "stecci": "UNESCO World Heritage Centre: Stećci Medieval Tombstone Graveyards, a serial property of 28 sites across Bosnia and Herzegovina, Croatia, Montenegro and Serbia.",
-    "sarajevoReligions": "Sarajevo tourism heritage information: mosques, Orthodox and Catholic churches and a synagogue are found within the historic central city.",
-    "urbanLayers": "UNESCO Mostar and Sarajevo heritage sources: Ottoman-era urban fabric and later Austro-Hungarian architecture remain visible in the cities.",
+    "stecci": "UNESCO World Heritage Centre, Stećci Medieval Tombstone Graveyards, 28 component cemeteries shared among Bosnia and Herzegovina, Croatia, Montenegro, Serbia. https://whc.unesco.org/en/list/1504",
+    "sarajevoReligions": "Visit Sarajevo, Top Attractions — European Jerusalem: mosque, synagogue, Catholic and Orthodox churches within Sarajevo historic center. https://www.visitsarajevo.ba/top-attractions/",
+    "urbanLayers": "UNESCO World Heritage Centre, Old Bridge Area of the Old City of Mostar: urban fabric shaped by Ottoman, Mediterranean and Austro-Hungarian influences; 19th–20th-century layers. https://whc.unesco.org/en/list/946 ; Visit Sarajevo for historic Sarajevo's multi-faith urban heritage. https://www.visitsarajevo.ba/top-attractions/",
     "bosnianCoffee": "Visit Bosnia and Herzegovina cultural/food guidance: Bosnian coffee is prepared and served with a džezva and fildžan and is associated with a slower social ritual.",
     "bascarsijaCrafts": "Sarajevo tourism heritage information: Baščaršija developed through craft and trade streets whose names and workshops reflect historic guild specializations.",
     "alphabets": "Agency for Statistics of Bosnia and Herzegovina country facts: Latin and Cyrillic alphabets are used.",
@@ -519,7 +529,8 @@
     "mineSafety": "Bosnia and Herzegovina Mine Action Centre and UK FCDO travel advice: mine/UXO contamination remains in some rural and less-travelled areas; use roads and clearly marked/verified routes.",
     "seasons": "Bosnia and Herzegovina climate and tourism guidance used to summarize seasonal mountain, urban and Herzegovina travel conditions.",
     "travelScale": "Current rail, road and destination-access guidance used to construct realistic route examples.",
-    "nextRoutes": "Bosnia and Herzegovina Ministry of Communications and Transport international regular road transport schedules: Sarajevo/Mostar–Dubrovnik corridor (53-HR-5), Istočno Sarajevo–Belgrade (122-SRB-2), and Nevesinje–Trebinje–Nikšić–Podgorica corridor (49-MNE-2), checked 2026-09-11."
+    "nextRoutes": "Bosnia and Herzegovina Ministry of Communications and Transport international regular road transport schedules: Sarajevo/Mostar–Dubrovnik corridor (53-HR-5), Istočno Sarajevo–Belgrade (122-SRB-2), and Nevesinje–Trebinje–Nikšić–Podgorica corridor (49-MNE-2), checked 2026-09-11.",
+    "vjetrenicaBiodiversityUnesco": "UNESCO World Heritage Centre, Vjetrenica Cave, Ravno (Bosnia and Herzegovina), inscribed 2024 under criterion (x): Dinaric karst cave, exceptional groundwater biodiversity including 180 animal taxa and the world's only subterranean tubeworm (Marifugia cavatica). https://whc.unesco.org/en/list/1673/"
   },
   "taste": {
     "kicker": "TASTE OF BOSNIA & HERZEGOVINA",

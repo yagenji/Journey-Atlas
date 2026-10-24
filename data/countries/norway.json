@@ -202,14 +202,15 @@
   "atlasExtras": [
     {
       "themeEn": "CITY",
-      "themeJa": "街を歩く",
-      "title": "オスロ",
-      "text": "フィヨルドの奥に広がる首都。港湾地区の再開発、現代建築、美術館の一方で、森や島へ公共交通でつながる距離感がこの街らしい。",
+      "themeJa": "港と公共空間",
+      "title": "オスロの旧コンテナ港は、市民が歩ける水辺へ変わった",
+      "text": "ビョルヴィカ地区はかつてコンテナ港と幹線道路の交差点だったが、高速道路を地下へ移し、歌劇場、図書館、住宅、歩行空間を整えて海辺を市民へ開いた。港を物流だけの場所から、文化と暮らしの公共空間へ変えた都市計画の成果が見える。",
       "points": [
-        "オペラハウスから海沿いを歩く",
-        "ムンク美術館や国立美術館で北欧の表現に触れる"
+        "旧コンテナ埠頭と道路用地が公共の水辺と住宅地に転換された",
+        "港の再開発はオペラハウスや歩行者の港湾プロムナードにつながる"
       ],
-      "topicKey": "oslo-city-and-nature"
+      "topicKey": "oslo-bjorvika-public-waterfront",
+      "sourceKey": "osloPortHistory"
     },
     {
       "themeEn": "HISTORY",
@@ -225,26 +226,28 @@
     },
     {
       "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "title": "フリルフツリフ",
-      "text": "森、山、海で過ごす時間を日常に取り込む「フリルフツリフ」。休日のハイキングや山小屋文化に、自然との距離の近さが表れる。",
+      "themeJa": "自然と暮らす制度",
+      "title": "フリルフツリフを支えるのは、自然へ入る権利と責任",
+      "text": "ノルウェーのフリルフツリフは森や海辺で過ごす暮らしの文化だが、その背後には所有者に関係なく開けた自然に入る慣習がある。1957年の野外活動法は『自然を歩く権利』の原則を法に組み込み、採集や移動を認めると同時に、動植物や土地への配慮を求めている。",
       "points": [
-        "都市からも森や水辺へ出やすい",
-        "山小屋をつないで歩く旅も身近な選択肢"
+        "1957年の野外活動法が自然に立ち入る権利の基本原則を定める",
+        "公共・私有の区別を越えて開けた自然を利用し、環境を守る責任を伴う"
       ],
-      "topicKey": "friluftsliv-outdoor-life"
+      "topicKey": "friluftsliv-right-to-roam",
+      "sourceKey": "norwayOutdoorRecreationAct"
     },
     {
       "themeEn": "CULTURE",
-      "themeJa": "文化に触れる",
-      "title": "サーミの現在",
+      "themeJa": "先住民の現在",
+      "title": "サーミの文化は、選挙で選ばれる議会によっても守られている",
       "icon": "culture",
-      "text": "ノルウェー北部には、先住民族サーミの言語や暮らしが息づく。カラショークとカウトケイノでは、トナカイ牧畜やドゥオジ（工芸）だけでなく、議会、劇場、現代アートなど現在進行形の文化に触れられる。",
+      "text": "北部のサーミ社会では、伝統的な牧畜や工芸に加え、言語・教育・文化を自ら発展させる政治の仕組みがある。1989年にカラショークで開設されたサーミ議会は、先住民の人々が選ぶ代表機関であり、文化を展示するだけでなく未来の制度を考える現在の場所でもある。",
       "points": [
-        "カラショークには1989年に開設されたサーミ議会がある",
-        "カウトケイノでは工芸や現代アート、サーミ国立劇場に触れられる"
+        "サーミ議会は1989年にカラショークで開会した",
+        "39人の代表が選挙で選ばれ、言語・文化・教育などを扱う"
       ],
-      "topicKey": "sami-contemporary-culture"
+      "topicKey": "sami-parliament-indigenous-governance",
+      "sourceKey": "samiParliament"
     },
     {
       "topicKey": "constitution-day-may-17",
@@ -255,7 +258,8 @@
       "points": [
         "1814年5月17日にノルウェー憲法が制定された",
         "現在は各地の子どものパレードが祝賀の中心になっている"
-      ]
+      ],
+      "sourceKey": "constitutionDay"
     },
     {
       "topicKey": "bokmal-nynorsk-two-written-standards",
@@ -266,7 +270,8 @@
       "points": [
         "ブークモールとニーノシュクは法的に対等なノルウェー語の書き言葉",
         "地理的な隔たりと方言の多様さが、二つの書記体系の背景にある"
-      ]
+      ],
+      "sourceKey": "writtenNorwegian"
     }
   ],
   "travelTrivia": [
@@ -494,11 +499,11 @@
     "tapWater": "Visit Norway: tap water is drinkable throughout Norway",
     "easterCrime": "Visit Norway: reading crime fiction and watching mysteries during Easter, Påskekrim, is a distinct Norwegian tradition",
     "norwegianSanta": "Visit Norway: Drøbak hosts Santa's Post Office; Norwegian Christmas tradition also includes Fjøsnissen and nissegrøt.",
-    "trolls": "Visit Norway: The mythical Norwegian trolls / troll locations — troll folklore is tied to landscapes and names such as Trollstigen, Trolltunga and Trollheimen.",
+    "svalbardSeedVault": "Norwegian Ministry of Agriculture and Food (17 June 2026), Svalbard Global Seed Vault Crosses Major Milestone: opened 2008 as duplicate safeguard for genebanks; total 1,401,285 seed samples after June deposit, in cold mountain vault in Svalbard. https://www.regjeringen.no/en/whats-new/svalbard-global-seed-vault-crosses-major-milestone-1.4-million-seed-samples-secured/id3166080/",
     "midnightSunAurora": "Visit Norway: Northern Norway has the midnight sun in summer; northern lights are typically visible from late August through late March.",
     "laerdalTunnel": "Statens vegvesen: E16 Lærdal Tunnel is 24.5 km (24,509 m), opened in 2000, and is the world's longest road tunnel; current project information checked 2026-09-03",
-    "constitutionDay": "Norwegian Embassy in Japan / Visit Norway: Norway's Constitution Day is 17 May, commemorating the 1814 Constitution; children's parades and bunad are central parts of the celebration",
-    "writtenNorwegian": "Government of Norway, Language Act: Bokmål and Nynorsk are equal languages and are equal written languages in public bodies",
+    "constitutionDay": "Royal Norwegian Embassy in Japan, Norwegian Constitution Day on May 17 (2025): national day marks the 1814 constitution and is known as the children's day, with school parades, flag waving, brass bands and bunad. https://www.norway.no/ja/japan/norway-japan/news-events/-norwegian-constitution-day-on-may-17/ ; Oslo Municipality, 17th of May official programme 2026: children's parade is a central civic event. https://www.oslo.kommune.no/english/17th-of-may/",
+    "writtenNorwegian": "Språkrådet (Language Council of Norway), Norsk er både bokmål og nynorsk: two legally equal written forms Bokmål and Nynorsk, protected by the Language Act with public-body usage duties. https://sprakradet.no/spraklova/norsk-sprak/norsk-er-bade-bokmal-og-nynorsk/ ; Språkrådet, Language decisions 2026: municipalities choose official written form or neutral usage, with geographically differing patterns. https://sprakradet.no/spraklova/norsk-sprak/sprakvedtak/",
     "dugnad": "Visit Norway: Dugnad is voluntary, unpaid collective work for a shared purpose and supports trails, cabins, local activities and public spaces",
     "stockfishCuisine": "Visit Norway: Tørrfisk/stockfish is unsalted cod dried by wind and sun, strongly associated with Lofoten and Northern Norway's fishing and export history",
     "farikal": "Visit Norway: Fårikål is a traditional lamb-and-cabbage stew described as Norway's national dish and associated with the autumn lamb season",
@@ -506,12 +511,16 @@
     "rommegrot": "Visit Norway: Rømmegrøt (sour-cream porridge) is served in rural and summer-pasture farm settings and forms part of Norwegian farm food traditions",
     "mountainHiking": "Visit Norway: Trolltunga is a long, demanding high-mountain hike; hikers should plan for the full walking time, weather changes, fitness and proper equipment",
     "travelScale": "Visit Norway: Bergen Railway links Oslo and Bergen; Myrdal connects with the Flåm Railway, and Nærøyfjord journeys combine rail, bus and fjord cruise. Lofoten access commonly combines domestic flights, ferries/express boats and road transport.",
-    "staveChurches": "UNESCO World Heritage Centre: Urnes Stave Church was built in the 12th–13th centuries and combines Viking traditions with Romanesque spatial structures; Visit Norway: 28 historical stave churches remain in Norway and Borgund Stave Church was built around 1180.",
+    "staveChurches": "Visit Norway (Norwegian destination authority), Stave churches in Norway: 28 historic churches survive, Borgund is one of the best-preserved and Urnes among the oldest, Viking-era carving and Christian architecture coexisting. https://www.visitnorway.com/typically-norwegian/stave-churches/ ; UNESCO World Heritage Centre — Urnes Stave Church, 12th-century medieval wooden architecture and Urnes animal ornamentation. https://whc.unesco.org/en/list/58/",
     "encounterFishingVillages": "Visit Norway: fishing villages and traditional rorbuer reflect Norway's long relationship with the sea and seasonal fisheries.",
     "encounterWaffles": "Visit Norway: waffles are widely eaten in homes, cafés, trains, sports events and mountain lodges.",
     "encounterFolkMusic": "Visit Norway: Norwegian folk music traditions include instruments such as the Hardanger fiddle.",
     "encounterSummerFarm": "Visit Norway: summer mountain farms and farm stays preserve rural food and mountain-farming traditions.",
-    "nextRoutes": "Current Oslo–Stockholm rail connections and Fjord Line 2026 Bergen–Hirtshals ferry timetable; Norway–Finland E8 crossing at Helligskogen/Kilpisjärvi is open 24/7 per Norwegian Customs (updated 22 July 2026), and Best Arctic lists seasonal Tromsø–Rovaniemi cross-border bus services. Checked 2026-09-25. https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/helligskogen ; https://bestarctic.com/the-arctic-route/"
+    "nextRoutes": "Current Oslo–Stockholm rail connections and Fjord Line 2026 Bergen–Hirtshals ferry timetable; Norway–Finland E8 crossing at Helligskogen/Kilpisjärvi is open 24/7 per Norwegian Customs (updated 22 July 2026), and Best Arctic lists seasonal Tromsø–Rovaniemi cross-border bus services. Checked 2026-09-25. https://www.toll.no/no/om-oss/kontakt-oss/ekspedisjonssteder/helligskogen ; https://bestarctic.com/the-arctic-route/",
+    "osloPortHistory": "Port of Oslo, Fjordbyen city harbour redevelopment: relocation of freight harbour to Sydhavna, Bjørvika urban and public waterfront redevelopment, planned from 2000. Checked 2026-10-18. https://www.oslohavn.no/en/menu/fjordbyen/byhavna/",
+    "norwayOutdoorRecreationAct": "Norwegian Environment Agency, About the right to roam: traditional freedom to access open countryside, berries and mushrooms, legally enshrined in the Outdoor Recreation Act of 1957. Checked 2026-10-18. https://www.environmentagency.no/areas-of-activity/right-to-roam/about-right-to-roam",
+    "samiParliament": "Sámi Parliament, About the Sámi Parliament: opened 9 October 1989 at Karasjok, 39 elected members and responsibilities for language, culture, education. Checked 2026-10-18. https://sametinget.no/about-the-sami-parliament/?sprak=1",
+    "trolls": "Visit Norway: The mythical Norwegian trolls / troll locations — troll folklore is tied to landscapes and names such as Trollstigen, Trolltunga and Trollheimen."
   },
   "contentQaVersion": 1,
   "taste": {

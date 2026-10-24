@@ -4,46 +4,434 @@
   "nameEn": "UNITED KINGDOM",
   "nameJa": "イギリス",
   "region": "NORTHERN EUROPE / 55°N",
-  "seo": {"description": "テムズ川沿いの大都市から、白亜の崖、ハイランド、ウェールズの山と城、北アイルランドの玄武岩海岸へ。イギリスの8つの景色と地図から、4つの構成国の違いをたどる。"},
-  "capital": {"nameEn": "London","nameJa": "ロンドン","coordinates": {"latitude": 51.5074,"longitude": -0.1278},"labelOffset":{"x":0,"y":-8},"labelPosition": "right","mapOffset": {"x": 0,"y": 0}},
-  "hero": {"lead": "テムズ川沿いの大都市から、白亜の崖、ハイランド、ウェールズの山と城、北アイルランドの玄武岩海岸へ。4つの国が、ひとつの連合王国の中で景色を切り替えていく。","image": "assets/images/united-kingdom/approved/hero-westminster-thames.webp","location": "Palace of Westminster / River Thames, London","coordinates": {"latitude": 51.4995,"longitude": -0.1248},"mapOffset": {"x": -2.29,"y": -1.14}},
-  "map": {"bounds": {"north": 61.2,"south": 49.7,"west": -8.8,"east": 2.2},"svg": "assets/images/united-kingdom/map-atlas-v2.svg","route": null,"source": "Natural Earth 1:10m Admin-0 target geometry (nvkelso/natural-earth-vector ca96624a56bd078437bca8184e78163e5039ad19, public domain); GSHHS intermediate context; Natural Earth 1:10m boundary lines; WGS84; local-equirectangular-fit-v1 over Country JSON bounds; regenerated 2026-10-03."},
+  "seo": {
+    "description": "テムズ川沿いの大都市から、白亜の崖、ハイランド、ウェールズの山と城、北アイルランドの玄武岩海岸へ。イギリスの8つの景色と地図から、4つの構成国の違いをたどる。"
+  },
+  "capital": {
+    "nameEn": "London",
+    "nameJa": "ロンドン",
+    "coordinates": {
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -8
+    },
+    "labelPosition": "right",
+    "mapOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "hero": {
+    "lead": "テムズ川沿いの大都市から、白亜の崖、ハイランド、ウェールズの山と城、北アイルランドの玄武岩海岸へ。4つの国が、ひとつの連合王国の中で景色を切り替えていく。",
+    "image": "assets/images/united-kingdom/approved/hero-westminster-thames.webp",
+    "location": "Palace of Westminster / River Thames, London",
+    "coordinates": {
+      "latitude": 51.4995,
+      "longitude": -0.1248
+    },
+    "mapOffset": {
+      "x": -2.29,
+      "y": -1.14
+    }
+  },
+  "map": {
+    "bounds": {
+      "north": 61.2,
+      "south": 49.7,
+      "west": -8.8,
+      "east": 2.2
+    },
+    "svg": "assets/images/united-kingdom/map-atlas-v2.svg",
+    "route": null,
+    "source": "Natural Earth 1:10m Admin-0 target geometry (nvkelso/natural-earth-vector ca96624a56bd078437bca8184e78163e5039ad19, public domain); GSHHS intermediate context; Natural Earth 1:10m boundary lines; WGS84; local-equirectangular-fit-v1 over Country JSON bounds; regenerated 2026-10-03."
+  },
   "scenes": [
-    {"id": "seven-sisters","name": "セブン・シスターズ","nameLocal": "Seven Sisters / Cuckmere Haven","mapLabel": "Seven Sisters","description": "白いチョークの崖が海岸線に連続する南イングランドの地形。カックミア川の河口と草地を一緒に見ると、海・河川・丘陵が短い距離でつながることが分かる。","coordinates": {"latitude": 50.7589,"longitude": 0.1419},"mapOffset": {"x": 0.09,"y": 0.66},"image": "assets/images/united-kingdom/approved/seven-sisters-cuckmere-haven.webp"},
-    {"id": "hadrians-wall","name": "ハドリアヌスの長城","nameLocal": "Hadrian’s Wall / Steel Rigg and Crag Lough","mapLabel": "Hadrian’s Wall","description": "ローマ帝国の北西辺境を示した城壁が、岩の稜線を上下しながら続く。遺構だけでなく、壁が地形を選びながら延びていること自体が、この場所の面白さになる。","coordinates": {"latitude": 55.0032,"longitude": -2.386},"image": "assets/images/united-kingdom/approved/hadrians-wall-crag-lough.webp","mapOffset": {"x": 0,"y": 1}},
-    {"id": "edinburgh","name": "エディンバラ","nameLocal": "Edinburgh / Calton Hill to Old Town","mapLabel": "Edinburgh","description": "火山と氷河がつくった丘と谷の上に、旧市街と新市街が重なるスコットランドの首都。高低差のある街並みそのものが、自然地形と都市史のつながりを見せる。","coordinates": {"latitude": 55.955,"longitude": -3.1827},"image": "assets/images/united-kingdom/approved/edinburgh-calton-hill.webp"},
-    {"id": "glen-coe","name": "グレン・コー","nameLocal": "Glen Coe / Three Sisters","mapLabel": "Glen Coe","description": "古い火山活動の地形を氷河が削り、深い谷と急斜面を残したハイランドの代表的な景観。緑、岩、低い雲が近い距離で重なる。","coordinates": {"latitude": 56.6683,"longitude": -5.0371},"image": "assets/images/united-kingdom/approved/glen-coe-three-sisters.webp"},
-    {"id": "eryri-llyn-llydaw","name": "エリリ / スリン・リダウ","nameLocal": "Eryri / Llyn Llydaw","mapLabel": "Eryri","description": "氷河が削った谷に湖が入り込み、ウェールズ最高峰の山塊へ道が続く。高い山だけでなく、湖と歩くルートが一体になった景色にエリリらしさがある。","coordinates": {"latitude": 53.0735,"longitude": -4.0449},"image": "assets/images/united-kingdom/approved/eryri-llyn-llydaw.webp","mapOffset": {"x": 4.01,"y": 2}},
-    {"id": "caernarfon-castle","name": "カーナーヴォン城","nameLocal": "Caernarfon Castle / River Seiont","mapLabel": "Caernarfon","description": "13〜14世紀の城塞と町の壁が海と川の接点に残る。中世軍事建築の形だけでなく、ウェールズ支配の歴史を現在の街の中で読み取れる場所。","coordinates": {"latitude": 53.13925,"longitude": -4.27706},"image": "assets/images/united-kingdom/approved/caernarfon-castle.webp","mapOffset": {"x": -1.01,"y": 0}},
-    {"id": "giants-causeway","name": "ジャイアンツ・コーズウェー","nameLocal": "Giant’s Causeway / Grand Causeway","mapLabel": "Giant’s Causeway","description": "約6000万年前の火山活動に由来する玄武岩が、規則的な柱状節理として海岸に現れる。人の手で敷いたような形が、地質そのものを旅の主題にする。","coordinates": {"latitude": 55.2408,"longitude": -6.5116},"image": "assets/images/united-kingdom/approved/giants-causeway.webp"},
-    {"id": "silent-valley","name": "サイレント・バレー","nameLocal": "Silent Valley / Mourne Mountains","mapLabel": "Silent Valley","description": "花崗岩の山々に囲まれた集水地に、20世紀の貯水池が細長く延びる。自然の山岳景観と、ベルファスト圏の暮らしを支える水インフラが同じ谷に重なる。","coordinates": {"latitude": 54.141,"longitude": -6.083},"image": "assets/images/united-kingdom/approved/silent-valley-mourne-mountains.webp"}
+    {
+      "id": "seven-sisters",
+      "name": "セブン・シスターズ",
+      "nameLocal": "Seven Sisters / Cuckmere Haven",
+      "mapLabel": "Seven Sisters",
+      "description": "白いチョークの崖が海岸線に連続する南イングランドの地形。カックミア川の河口と草地を一緒に見ると、海・河川・丘陵が短い距離でつながることが分かる。",
+      "coordinates": {
+        "latitude": 50.7589,
+        "longitude": 0.1419
+      },
+      "mapOffset": {
+        "x": 0.09,
+        "y": 0.66
+      },
+      "image": "assets/images/united-kingdom/approved/seven-sisters-cuckmere-haven.webp"
+    },
+    {
+      "id": "hadrians-wall",
+      "name": "ハドリアヌスの長城",
+      "nameLocal": "Hadrian’s Wall / Steel Rigg and Crag Lough",
+      "mapLabel": "Hadrian’s Wall",
+      "description": "ローマ帝国の北西辺境を示した城壁が、岩の稜線を上下しながら続く。遺構だけでなく、壁が地形を選びながら延びていること自体が、この場所の面白さになる。",
+      "coordinates": {
+        "latitude": 55.0032,
+        "longitude": -2.386
+      },
+      "image": "assets/images/united-kingdom/approved/hadrians-wall-crag-lough.webp",
+      "mapOffset": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    {
+      "id": "edinburgh",
+      "name": "エディンバラ",
+      "nameLocal": "Edinburgh / Calton Hill to Old Town",
+      "mapLabel": "Edinburgh",
+      "description": "火山と氷河がつくった丘と谷の上に、旧市街と新市街が重なるスコットランドの首都。高低差のある街並みそのものが、自然地形と都市史のつながりを見せる。",
+      "coordinates": {
+        "latitude": 55.955,
+        "longitude": -3.1827
+      },
+      "image": "assets/images/united-kingdom/approved/edinburgh-calton-hill.webp"
+    },
+    {
+      "id": "glen-coe",
+      "name": "グレン・コー",
+      "nameLocal": "Glen Coe / Three Sisters",
+      "mapLabel": "Glen Coe",
+      "description": "古い火山活動の地形を氷河が削り、深い谷と急斜面を残したハイランドの代表的な景観。緑、岩、低い雲が近い距離で重なる。",
+      "coordinates": {
+        "latitude": 56.6683,
+        "longitude": -5.0371
+      },
+      "image": "assets/images/united-kingdom/approved/glen-coe-three-sisters.webp"
+    },
+    {
+      "id": "eryri-llyn-llydaw",
+      "name": "エリリ / スリン・リダウ",
+      "nameLocal": "Eryri / Llyn Llydaw",
+      "mapLabel": "Eryri",
+      "description": "氷河が削った谷に湖が入り込み、ウェールズ最高峰の山塊へ道が続く。高い山だけでなく、湖と歩くルートが一体になった景色にエリリらしさがある。",
+      "coordinates": {
+        "latitude": 53.0735,
+        "longitude": -4.0449
+      },
+      "image": "assets/images/united-kingdom/approved/eryri-llyn-llydaw.webp",
+      "mapOffset": {
+        "x": 4.01,
+        "y": 2
+      }
+    },
+    {
+      "id": "caernarfon-castle",
+      "name": "カーナーヴォン城",
+      "nameLocal": "Caernarfon Castle / River Seiont",
+      "mapLabel": "Caernarfon",
+      "description": "13〜14世紀の城塞と町の壁が海と川の接点に残る。中世軍事建築の形だけでなく、ウェールズ支配の歴史を現在の街の中で読み取れる場所。",
+      "coordinates": {
+        "latitude": 53.13925,
+        "longitude": -4.27706
+      },
+      "image": "assets/images/united-kingdom/approved/caernarfon-castle.webp",
+      "mapOffset": {
+        "x": -1.01,
+        "y": 0
+      }
+    },
+    {
+      "id": "giants-causeway",
+      "name": "ジャイアンツ・コーズウェー",
+      "nameLocal": "Giant’s Causeway / Grand Causeway",
+      "mapLabel": "Giant’s Causeway",
+      "description": "約6000万年前の火山活動に由来する玄武岩が、規則的な柱状節理として海岸に現れる。人の手で敷いたような形が、地質そのものを旅の主題にする。",
+      "coordinates": {
+        "latitude": 55.2408,
+        "longitude": -6.5116
+      },
+      "image": "assets/images/united-kingdom/approved/giants-causeway.webp"
+    },
+    {
+      "id": "silent-valley",
+      "name": "サイレント・バレー",
+      "nameLocal": "Silent Valley / Mourne Mountains",
+      "mapLabel": "Silent Valley",
+      "description": "花崗岩の山々に囲まれた集水地に、20世紀の貯水池が細長く延びる。自然の山岳景観と、ベルファスト圏の暮らしを支える水インフラが同じ谷に重なる。",
+      "coordinates": {
+        "latitude": 54.141,
+        "longitude": -6.083
+      },
+      "image": "assets/images/united-kingdom/approved/silent-valley-mourne-mountains.webp"
+    }
   ],
-  "encounters": [{"title": "赤い二階建てバス","icon": "road"},{"title": "パブ","icon": "culture"},{"title": "鉄道駅と列車","icon": "road"},{"title": "英語と地域語の標識","icon": "language"},{"title": "石造の町","icon": "city"},{"title": "城","icon": "landmark"},{"title": "高地の山並み","icon": "landscape"},{"title": "海辺の断崖","icon": "shore"}],
+  "encounters": [
+    {
+      "title": "赤い二階建てバス",
+      "icon": "road"
+    },
+    {
+      "title": "パブ",
+      "icon": "culture"
+    },
+    {
+      "title": "鉄道駅と列車",
+      "icon": "road"
+    },
+    {
+      "title": "英語と地域語の標識",
+      "icon": "language"
+    },
+    {
+      "title": "石造の町",
+      "icon": "city"
+    },
+    {
+      "title": "城",
+      "icon": "landmark"
+    },
+    {
+      "title": "高地の山並み",
+      "icon": "landscape"
+    },
+    {
+      "title": "海辺の断崖",
+      "icon": "shore"
+    }
+  ],
   "atlasExtras": [
-    {"topicKey": "regional-cities-beyond-london","themeEn": "CITY","themeJa": "街を歩く","title": "ロンドンだけではない都市の輪郭","text": "英国の都市は、首都だけで一つの物語にはならない。エディンバラ、グラスゴー、マンチェスター、リヴァプール、カーディフ、ベルファストなどには、港、産業、音楽、建築、スポーツの異なる歴史が重なる。","points": ["産業都市、港湾都市、首都で街の成り立ちが異なる","都市を変えると建築や文化の重心も大きく変わる"]},
-    {"topicKey": "layered-histories-four-nations","themeEn": "HISTORY","themeJa": "時をたどる","title": "ひとつではない歴史をたどる","text": "先史時代、ローマ支配、中世王国、宗教改革、産業革命、帝国と脱植民地化まで、英国史は地域ごとの経験が重なる。城や城壁を見るときも、誰が誰に対して築いたのかを見ると理解が深まる。","points": ["ハドリアヌスの長城はローマ帝国の辺境を地形とともに示す","カーナーヴォンの城塞はイングランドによるウェールズ支配の歴史も伝える"]},
-    {"topicKey": "pub-social-space","themeEn": "LIFE","themeJa": "暮らしに出会う","title": "パブが日常の居場所になる","text": "パブは飲酒の場所だけではなく、会話、スポーツ観戦、パブクイズ、地域の集まりが重なる生活空間でもある。観光地の中心部だけでなく、住宅地や小都市の一軒に入ると街の日常が見えやすい。","points": ["スポーツ中継やパブクイズが地域の集まりになることもある","店ごとに客層や地域との距離感が大きく違う"]},
-    {"topicKey": "regional-languages-public-space","themeEn": "CULTURE","themeJa": "文化に触れる","title": "標識から見える複数言語","text": "英語が広く使われる一方、ウェールズ語、スコットランド・ゲール語、スコッツ語、アイルランド語、アルスター・スコッツ語などが地域の制度や文化と結びつく。駅名や道路標識を見るだけでも土地の違いが現れる。","points": ["ウェールズ語はウェールズで公的な位置づけを持つ","スコットランドでは2025年法によりゲール語とスコッツ語が公式の地位を得た"]},
-    {"topicKey": "devolution-four-nations","themeEn": "LIFE","themeJa": "暮らしに出会う","title": "4つの国で制度が違う","text": "スコットランド、ウェールズ、北アイルランドには権限移譲された議会・政府があり、教育、交通、文化など旅先で触れる制度にも違いがある。同じ英国でも、地域を越えるとルールや公共サービスの見え方が変わる。","points": ["権限移譲はスコットランド、ウェールズ、北アイルランドで制度化されている","交通や文化政策など、旅行中に接する分野にも地域差がある"]},
-    {"topicKey": "four-football-national-teams","themeEn": "CULTURE","themeJa": "文化に触れる","title": "サッカーでは、4つの代表に分かれる","text": "英国を構成するイングランド、スコットランド、ウェールズ、北アイルランドは、サッカーではそれぞれ別の協会と代表チームを持ち、UEFAの大会にも別々に参加する。ひとつの連合王国の中に4つの代表があることが、地域のアイデンティティを身近に感じる入口になる。","points": ["UEFAでは4地域がそれぞれ独立した加盟協会として扱われる","代表戦では旗、色、応援文化にも地域ごとの違いが表れる"]}
+    {
+      "topicKey": "liverpool-manchester-industrial-railway",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "港と工場を結ぶ鉄道が、人と物の移動を変えた",
+      "text": "1830年に開業したリヴァプール・マンチェスター鉄道は、港町と綿工業都市を結ぶ蒸気機関車による都市間鉄道だった。原綿を港から工場へ運び、製品を輸出港へ戻す需要が建設を後押しした。現在のマンチェスターの旧リヴァプール・ロード駅には、鉄道が産業と都市の距離感を変えていった時代の記憶が残る。",
+      "points": [
+        "1830年9月15日にリヴァプールとマンチェスターを結ぶ鉄道が開業",
+        "蒸気機関車による定期的な旅客・貨物輸送が世界の鉄道の手本となった"
+      ],
+      "sourceKey": "liverpoolManchesterRailway"
+    },
+    {
+      "topicKey": "layered-histories-four-nations",
+      "themeEn": "HISTORY",
+      "themeJa": "時をたどる",
+      "title": "ローマの長城とウェールズの城塞には、異なる支配の歴史が残る",
+      "text": "ハドリアヌスの長城は、ローマ帝国がブリテン北部を管理した境界の跡。一方、カーナーヴォン城は13世紀末にエドワード1世がウェールズ支配を進めた際に築かれた。城壁を単なる古い建築として見るのではなく、誰が誰を統治するために築いたのかを知ると、島の歴史の重なりが見えてくる。",
+      "points": [
+        "ハドリアヌスの長城はローマ帝国の辺境を地形とともに示す",
+        "カーナーヴォンの城塞はイングランドによるウェールズ支配の歴史も伝える"
+      ],
+      "sourceKey": "ukWallsDifferentEmpires"
+    },
+    {
+      "topicKey": "pub-social-space",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "パブが日常の居場所になる",
+      "text": "パブは飲酒の場所だけではなく、会話、スポーツ観戦、パブクイズ、地域の集まりが重なる生活空間でもある。観光地の中心部だけでなく、住宅地や小都市の一軒に入ると街の日常が見えやすい。",
+      "points": [
+        "スポーツ中継やパブクイズが地域の集まりになることもある",
+        "店ごとに客層や地域との距離感が大きく違う"
+      ],
+      "sourceKey": "pub"
+    },
+    {
+      "topicKey": "regional-languages-public-space",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "道路標識に、島を構成する地域の言葉が現れる",
+      "text": "ウェールズの道路標識ではウェールズ語と英語が並び、スコットランドでもゲール語が使われる地域の幹線道路で二言語表記を導入している。2026年には北アイルランドのベルファスト西部でも、アイルランド語と英語を使う交通標識が設置された。標識は単なる行き先案内ではなく、それぞれの地域の言葉が公共空間でどう扱われているかを伝える。",
+      "points": [
+        "ウェールズ政府は、新設・更新する標識でウェールズ語と英語を併記し、ウェールズ語が先に読まれる表示を求める",
+        "スコットランド交通当局はゲール語を話す地域の幹線道路で英語との二言語標識を導入する方針を示している",
+        "2026年7月、ベルファスト西部のGaeltacht Quarterでアイルランド語・英語併記の交通標識が設置された"
+      ],
+      "sourceKey": "ukBilingualRoadSigns"
+    },
+    {
+      "topicKey": "devolution-four-nations",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "教育や交通の制度は、連合王国の中でも一様ではない",
+      "text": "スコットランド、ウェールズ、北アイルランドには権限移譲された議会・政府があり、教育、交通、文化など旅先で触れる制度にも違いがある。同じ英国でも、地域を越えるとルールや公共サービスの見え方が変わる。",
+      "points": [
+        "権限移譲はスコットランド、ウェールズ、北アイルランドで制度化されている",
+        "交通や文化政策など、旅行中に接する分野にも地域差がある"
+      ],
+      "sourceKey": "devolution"
+    },
+    {
+      "topicKey": "belfast-murals-peace-walls",
+      "themeEn": "CITY / MEMORY",
+      "themeJa": "街 / 記憶",
+      "title": "ベルファストの壁画には、対立と和解の記憶が残る",
+      "text": "北アイルランドのベルファストでは、「トラブルズ」と呼ばれる長年の紛争に関わる壁画や記念碑が街路に残る。フォールズ・ロードとシャンキル・ロード周辺では、異なる共同体の歴史が壁面に描かれてきた。一部の住宅地を隔てる「ピースウォール」も残り、和平後の都市にも対立の記憶と和解の課題が刻まれている。",
+      "points": [
+        "フォールズ・ロードやシャンキル・ロード周辺には、地域の政治・社会史を伝える壁画がある",
+        "ピースウォールは共同体間の衝突を防ぐために造られ、一部は現在も街の中に残る",
+        "アルスター博物館では、紛争と分断を題材にした作品を通じて街の記憶が紹介されている"
+      ],
+      "sourceKey": "belfastPeaceWalls"
+    }
   ],
   "travelTrivia": [
-    {"categoryEn": "HARRY POTTER","categoryJa": "物語","title": "ハリー・ポッターの世界を実際の場所で歩く","text": "キングス・クロスの9と3/4番線、オックスフォード、アニック城、グレンフィナンなど、映画で使われた場所が英国各地に残る。ワーナー・ブラザース・スタジオツアーではセットや小道具も見られる。","icon": "culture","sourceKey": "harryPotter","topicKey": "harry-potter-filming-locations"},
-    {"categoryEn": "BEATLES","categoryJa": "音楽","title": "リヴァプールでビートルズをたどる","text": "ビートルズの4人はリヴァプールで育った。キャヴァーン・クラブ、ビートルズ・ストーリー、ジョン・レノンとポール・マッカートニーの旧宅などを巡り、曲の背景になった街を歩ける。","icon": "culture","sourceKey": "beatles","topicKey": "beatles-liverpool"},
-    {"categoryEn": "WALES","categoryJa": "工芸","title": "ウェールズではラブスプーンを探す","text": "ウェールズのラブスプーンは17世紀から続く木彫りの愛のしるし。現在も贈り物や土産として作られ、工房では職人の制作を見たり、自分で彫る体験もできる。","icon": "culture","sourceKey": "welshLovespoon","topicKey": "welsh-lovespoon-craft"},
-    {"topicKey": "up-helly-aa-burning-galley","categoryEn": "SHETLAND","categoryJa": "火祭り","title": "シェトランドでは、松明行列の最後にガレー船を燃やす","text": "ラーウィックのUp Helly Aaでは、1月最後の火曜日に仮装した参加者が松明を掲げて行進し、最後にヴァイキング船を模したガレー船へ火を放つ。冬を通じて地域のボランティアが準備する共同体の祭りだ。","icon": "culture","sourceKey": "upHellyAa"},
-    {"topicKey": "tower-ravens-ravenmaster","categoryEn": "LONDON","categoryJa": "伝承","title": "ロンドン塔には、王国を守るカラスとRavenmasterがいる","text": "ロンドン塔では、カラスが去れば塔と王国が滅びるという伝承が語り継がれている。現在も塔のカラスは、Ravenmasterと呼ばれる専任のヨーマン・ウォーダーを中心とするチームが世話している。","icon": "culture","sourceKey": "towerRavens"}
+    {
+      "categoryEn": "HARRY POTTER",
+      "categoryJa": "物語",
+      "title": "ハリー・ポッターの世界を実際の場所で歩く",
+      "text": "キングス・クロスの9と3/4番線、オックスフォード、アニック城、グレンフィナンなど、映画で使われた場所が英国各地に残る。ワーナー・ブラザース・スタジオツアーではセットや小道具も見られる。",
+      "icon": "culture",
+      "sourceKey": "harryPotter",
+      "topicKey": "harry-potter-filming-locations"
+    },
+    {
+      "categoryEn": "BEATLES",
+      "categoryJa": "音楽",
+      "title": "リヴァプールでビートルズをたどる",
+      "text": "ビートルズの4人はリヴァプールで育った。キャヴァーン・クラブ、ビートルズ・ストーリー、ジョン・レノンとポール・マッカートニーの旧宅などを巡り、曲の背景になった街を歩ける。",
+      "icon": "culture",
+      "sourceKey": "beatles",
+      "topicKey": "beatles-liverpool"
+    },
+    {
+      "categoryEn": "WALES",
+      "categoryJa": "工芸",
+      "title": "ウェールズではラブスプーンを探す",
+      "text": "ウェールズのラブスプーンは17世紀から続く木彫りの愛のしるし。現在も贈り物や土産として作られ、工房では職人の制作を見たり、自分で彫る体験もできる。",
+      "icon": "culture",
+      "sourceKey": "welshLovespoon",
+      "topicKey": "welsh-lovespoon-craft"
+    },
+    {
+      "topicKey": "up-helly-aa-burning-galley",
+      "categoryEn": "SHETLAND",
+      "categoryJa": "火祭り",
+      "title": "シェトランドでは、松明行列の最後にガレー船を燃やす",
+      "text": "ラーウィックのUp Helly Aaでは、1月最後の火曜日に仮装した参加者が松明を掲げて行進し、最後にヴァイキング船を模したガレー船へ火を放つ。冬を通じて地域のボランティアが準備する共同体の祭りだ。",
+      "icon": "culture",
+      "sourceKey": "upHellyAa"
+    },
+    {
+      "topicKey": "tower-ravens-ravenmaster",
+      "categoryEn": "LONDON",
+      "categoryJa": "伝承",
+      "title": "ロンドン塔には、王国を守るカラスとRavenmasterがいる",
+      "text": "ロンドン塔では、カラスが去れば塔と王国が滅びるという伝承が語り継がれている。現在も塔のカラスは、Ravenmasterと呼ばれる専任のヨーマン・ウォーダーを中心とするチームが世話している。",
+      "icon": "culture",
+      "sourceKey": "towerRavens"
+    }
   ],
-  "seasons": [{"months": "5〜9月","color": "#92a253","text": "日が長く、海岸歩き、山歩き、島旅に向く。スコットランドではハイランド・ゲームズが各地で開かれ、競技、バグパイプ、ダンスを旅の目的にできる。"},{"months": "10〜11月","color": "#b77a49","text": "山地や公園が秋色へ移り、都市とハイキングを組み合わせやすい。北へ行くほど日が短くなる変化も大きい。"},{"months": "12〜2月","color": "#6b90a5","text": "日照時間が短く、山地は冬季条件になる。ロンドンやエディンバラなど都市では、博物館、劇場、パブ文化を中心に歩く旅へ切り替えやすい。"},{"months": "3〜4月","color": "#73966f","text": "春の移行期。天候は変わりやすいが、庭園や田園が動き始め、真夏より静かに都市と地方を組み合わせられる。"}],
-  "transport": {"title": "鉄道・車・フェリー","text": "ロンドンと主要都市は鉄道が移動の骨格になる。ハイランド、エリリ、モーン山地など地方の山地や海岸へ入ると車・地域バスの比重が増え、島部ではフェリーも旅の一部になる。","icon": "road"},
-  "personas": [{"title": "都市と歴史を歩きたい人","text": "建築、博物館、城、産業遺産を街の中でつなぎたい人。"},{"title": "海岸と山を歩きたい人","text": "白亜の崖、ハイランド、エリリ、モーン山地を自分の足で見たい人。"},{"title": "地域差を見比べたい人","text": "言語、制度、建築、食の違いを4つの構成国で確かめたい人。"}],
-  "facts": [{"label": "地域","value": "北ヨーロッパ"},{"label": "首都","value": "ロンドン"},{"label": "人口","value": "約6,950万人（2025年・暫定）"},{"label": "面積","value": "約243,610 km²"},{"label": "言語","value": "英語を中心に、ウェールズ語・スコットランド・ゲール語・スコッツ語・アイルランド語など"},{"label": "主な宗教","value": "キリスト教系諸宗派／無宗教も大きな割合"},{"label": "通貨","value": "ポンド・スターリング（GBP）"}],
+  "seasons": [
+    {
+      "months": "5〜9月",
+      "color": "#92a253",
+      "text": "日が長く、海岸歩き、山歩き、島旅に向く。スコットランドではハイランド・ゲームズが各地で開かれ、競技、バグパイプ、ダンスを旅の目的にできる。"
+    },
+    {
+      "months": "10〜11月",
+      "color": "#b77a49",
+      "text": "山地や公園が秋色へ移り、都市とハイキングを組み合わせやすい。北へ行くほど日が短くなる変化も大きい。"
+    },
+    {
+      "months": "12〜2月",
+      "color": "#6b90a5",
+      "text": "日照時間が短く、山地は冬季条件になる。ロンドンやエディンバラなど都市では、博物館、劇場、パブ文化を中心に歩く旅へ切り替えやすい。"
+    },
+    {
+      "months": "3〜4月",
+      "color": "#73966f",
+      "text": "春の移行期。天候は変わりやすいが、庭園や田園が動き始め、真夏より静かに都市と地方を組み合わせられる。"
+    }
+  ],
+  "transport": {
+    "title": "鉄道・車・フェリー",
+    "text": "ロンドンと主要都市は鉄道が移動の骨格になる。ハイランド、エリリ、モーン山地など地方の山地や海岸へ入ると車・地域バスの比重が増え、島部ではフェリーも旅の一部になる。",
+    "icon": "road"
+  },
+  "personas": [
+    {
+      "title": "都市と歴史を歩きたい人",
+      "text": "建築、博物館、城、産業遺産を街の中でつなぎたい人。"
+    },
+    {
+      "title": "海岸と山を歩きたい人",
+      "text": "白亜の崖、ハイランド、エリリ、モーン山地を自分の足で見たい人。"
+    },
+    {
+      "title": "地域差を見比べたい人",
+      "text": "言語、制度、建築、食の違いを4つの構成国で確かめたい人。"
+    }
+  ],
+  "facts": [
+    {
+      "label": "地域",
+      "value": "北ヨーロッパ"
+    },
+    {
+      "label": "首都",
+      "value": "ロンドン"
+    },
+    {
+      "label": "人口",
+      "value": "約6,950万人（2025年・暫定）"
+    },
+    {
+      "label": "面積",
+      "value": "約243,610 km²"
+    },
+    {
+      "label": "言語",
+      "value": "英語を中心に、ウェールズ語・スコットランド・ゲール語・スコッツ語・アイルランド語など"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教系諸宗派／無宗教も大きな割合"
+    },
+    {
+      "label": "通貨",
+      "value": "ポンド・スターリング（GBP）"
+    }
+  ],
   "signatureFacts": [
-    {"topicKey": "four-constituent-countries","label": "構成国","value": "4","note": "イングランド、スコットランド、ウェールズ、北アイルランドの4つで構成される。同じ国家の中に異なる制度・文化・代表チームを持つ地域が並ぶことが、英国を理解する基本になる。","icon": "map"},
-    {"topicKey": "stockton-darlington-railway-1825","label": "近代鉄道の始まり","value": "1825年","note": "ストックトン＝ダーリントン鉄道は1825年に開業し、蒸気機関車を使う世界初の公共鉄道として近代鉄道の出発点になった。","icon": "road"},
-    {"topicKey": "uk-world-heritage-count","label": "世界遺産","value": "35件","note": "UNESCOの世界遺産リストには2026年時点で35件が登録される。先史遺跡、城郭、産業遺産、都市景観、海岸・島嶼まで、4つの構成国にまたがる歴史と地理の幅を示す。","icon": "history","exceptionalHeritageCount": true,"interestReason": "世界でも突出した35件という件数が、4つの構成国に分散する歴史・産業・自然の層の厚さを示すため。"}
+    {
+      "topicKey": "four-constituent-countries",
+      "label": "構成国",
+      "value": "4",
+      "note": "イングランド、スコットランド、ウェールズ、北アイルランドの4つで構成される。同じ国家の中に異なる制度・文化・代表チームを持つ地域が並ぶことが、英国を理解する基本になる。",
+      "icon": "map"
+    },
+    {
+      "topicKey": "stockton-darlington-railway-1825",
+      "label": "近代鉄道の始まり",
+      "value": "1825年",
+      "note": "ストックトン＝ダーリントン鉄道は1825年に開業し、蒸気機関車を使う世界初の公共鉄道として近代鉄道の出発点になった。",
+      "icon": "road"
+    },
+    {
+      "topicKey": "uk-world-heritage-count",
+      "label": "世界遺産",
+      "value": "35件",
+      "note": "UNESCOの世界遺産リストには2026年時点で35件が登録される。先史遺跡、城郭、産業遺産、都市景観、海岸・島嶼まで、4つの構成国にまたがる歴史と地理の幅を示す。",
+      "icon": "history",
+      "exceptionalHeritageCount": true,
+      "interestReason": "世界でも突出した35件という件数が、4つの構成国に分散する歴史・産業・自然の層の厚さを示すため。"
+    }
   ],
-  "tips": [{"topicKey": "planned-rail-engineering-works","title": "鉄道は工事予定を先に確認する","text": "英国の鉄道では週末や夜間を含めて計画工事が行われ、代行バスや経路変更が入ることがある。National Railは概ね12週間先までの予定工事を案内しているため、長距離移動日は先に確認しておきたい。"},{"topicKey": "mountain-weather-separate-forecast","title": "山地は都市とは別に天気を見る","text": "ハイランド、エリリ、モーン山地などでは、都市の天気予報だけでは判断しにくい。Met Officeは主要山岳地域向けの専用予報を出しているため、歩く日は風、視界、低雲なども確認する。"},{"topicKey": "scotland-midge-season","title": "夏のハイランドではミッジ対策を用意する","text": "スコットランドのミッジは概ね5〜10月に見られ、真夏に活動が強まりやすい。特に西ハイランドや島部、湿った農村部では、虫よけや長袖を用意しておくと歩きやすい。"}],
+  "tips": [
+    {
+      "topicKey": "planned-rail-engineering-works",
+      "title": "鉄道は工事予定を先に確認する",
+      "text": "英国の鉄道では週末や夜間を含めて計画工事が行われ、代行バスや経路変更が入ることがある。National Railは概ね12週間先までの予定工事を案内しているため、長距離移動日は先に確認しておきたい。"
+    },
+    {
+      "topicKey": "mountain-weather-separate-forecast",
+      "title": "山地は都市とは別に天気を見る",
+      "text": "ハイランド、エリリ、モーン山地などでは、都市の天気予報だけでは判断しにくい。Met Officeは主要山岳地域向けの専用予報を出しているため、歩く日は風、視界、低雲なども確認する。"
+    },
+    {
+      "topicKey": "scotland-midge-season",
+      "title": "夏のハイランドではミッジ対策を用意する",
+      "text": "スコットランドのミッジは概ね5〜10月に見られ、真夏に活動が強まりやすい。特に西ハイランドや島部、湿った農村部では、虫よけや長袖を用意しておくと歩きやすい。"
+    }
+  ],
   "relatedCountries": [
     {
       "slug": "ireland",
@@ -70,7 +458,21 @@
   ],
   "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-10-08",
-  "sourceDates": {"population": "2025-06-30","area": "2025","railway": "1825-09-27","banknotes": "2026-09-03","languages": "2025-11-30","religion": "2022","travelScale": "2026-09-03","railEngineering": "2026-09-03","mountainWeather": "2026-09-03","midge": "2026-09-03","footballAssociations": "2026-09-03","worldHeritage": "2026-10-08","nextRoutes": "2026-09-07"},
+  "sourceDates": {
+    "population": "2025-06-30",
+    "area": "2025",
+    "railway": "1825-09-27",
+    "banknotes": "2026-09-03",
+    "languages": "2025-11-30",
+    "religion": "2022",
+    "travelScale": "2026-09-03",
+    "railEngineering": "2026-09-03",
+    "mountainWeather": "2026-09-03",
+    "midge": "2026-09-03",
+    "footballAssociations": "2026-09-03",
+    "worldHeritage": "2026-10-08",
+    "nextRoutes": "2026-09-07"
+  },
   "sources": {
     "map": "Natural Earth admin-0 public-domain extraction via eFrane/admin0; WGS84; illustrated treatment: JOURNEY ATLAS",
     "population": "Office for National Statistics, Provisional population estimate for the UK: mid-2025 — 69,487,000 on 30 June 2025: https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/provisionalpopulationestimatefortheuk/latest",
@@ -83,11 +485,9 @@
     "freeMuseums": "UK Parliament / DCMS policy: free admission to the core collections of national museums and galleries introduced broadly from December 2001; major institutions continue free general collection access",
     "upHellyAa": "Lerwick Up Helly Aa Committee official site: the festival takes place on the last Tuesday in January and culminates in a torch-lit procession and the burning of a galley; preparations rely on extensive community volunteer work. https://www.uphellyaa.org/",
     "towerRavens": "Historic Royal Palaces, Tower of London: legend says the Tower and kingdom will fall if the resident ravens leave; the birds are cared for by a dedicated Yeoman Warder known as the Ravenmaster. https://www.hrp.org.uk/tower-of-london/whats-on/the-ravens/",
-    "pub": "VisitBritain: British pubs are a long-standing local institution; pub customs such as rounds and tipping vary by venue and service style.",
+    "pub": "VisitBritain — Where Britain comes together: a guide to pub culture, describing pubs as local gathering spaces for conversation, football, pub quizzes, music and community life across England, Scotland and Wales. https://www.visitbritain.org/news-and-media/destination-news-and-inspiration/where-britain-comes-together-guide-pub-culture",
     "daylight": "Met Office 1991–2020 Scotland climate averages show much lower winter sunshine totals than late spring and summer, consistent with the strong seasonal daylight contrast at UK latitudes.",
     "payments": "VisitBritain: Useful information — credit, debit and contactless cards and digital wallets are widely used across Britain, while some small shops, markets and cafes may not accept them.",
-    "harryPotter": "VisitBritain: Harry Potter filming locations — locations across Britain include King's Cross, Oxford, Alnwick Castle, Glenfinnan and others; the Warner Bros. Studio Tour displays original sets, props and costumes.",
-    "beatles": "VisitBritain: Discover the Beatles and beyond in Liverpool — Liverpool is the birthplace of the Beatles and offers the Cavern Club, The Beatles Story and preserved childhood homes.",
     "welshLovespoon": "Visit Wales: Traditional Welsh craft activities — lovespoons have been carved as tokens of devotion since the 17th century and can still be bought or made at workshops.",
     "finnMcCool": "VisitBritain / National Trust: Giant's Causeway legend — folklore says the giant Finn McCool built the causeway across the sea to face the Scottish giant Benandonner.",
     "highlandGames": "VisitBritain: Highland Games are held across Scotland from May through September, with traditional sports, piping and Highland dancing.",
@@ -103,22 +503,85 @@
     "sundayRoast": "VisitBritain, British food / gastropubs and Sunday roasts — traditional Sunday roast dinners are a staple of pub dining: https://www.visitbritain.com/en/things-to-do/autumn-britain-activities-and-best-places-visit",
     "haggis": "VisitScotland, Haggis — classic serving with neeps (turnips) and tatties (potatoes): https://www.visitscotland.com/things-to-do/food-drink/haggis",
     "welshRarebit": "Visit Wales, Welsh rarebit with laverbread and ale — 18th-century Welsh dish based on cheese-topped toast: https://www.visitwales.com/things-do/food-and-drink/welsh-food-and-recipes/welsh-rarebit-laverbread-and-ale",
-    "footballAssociations": "UEFA National Associations: England, Scotland, Wales and Northern Ireland are each listed as separate UEFA member national associations; UEFA EURO 2028 regulations likewise treat their national teams separately: https://www.uefa.com/nationalassociations/ ; https://documents.uefa.com/r/Regulations-of-the-UEFA-European-Football-Championship-2026-28/Article-13-Group-formation-qualifying-group-stage-Online",
     "worldHeritage": "UNESCO World Heritage Centre — United Kingdom, 35 properties: https://whc.unesco.org/en/statesparties/gb",
-    "nextRoutes": "Eurostar current London routes to Paris/Brussels/Amsterdam and Irish Ferries Holyhead–Dublin service, checked 2026-09-07."
+    "nextRoutes": "Eurostar current London routes to Paris/Brussels/Amsterdam and Irish Ferries Holyhead–Dublin service, checked 2026-09-07.",
+    "liverpoolManchesterRailway": "University of Liverpool, Liverpool and Manchester Railway (2020): opened 15 September 1830; the first intercity passenger/freight railway; textiles and port trade. https://www.liverpool.ac.uk/victoria-gallery-and-museum/blog/2020/liverpool-and-manchester-railway/ ; Science Museum Group Collection, Liverpool & Manchester Railway Co, opened 1830. https://collection.sciencemuseumgroup.org.uk/people/ap48/liverpool-manchester-railway-co",
+    "ukWallsDifferentEmpires": "UNESCO World Heritage Centre, Frontiers of the Roman Empire (Hadrian's Wall); Castles and Town Walls of King Edward in Gwynedd: Caernarfon and other royal castles as elements of conquest, colonisation and defence. https://whc.unesco.org/en/list/430/ ; https://whc.unesco.org/en/list/374/",
+    "belfastPeaceWalls": "Visit Belfast (official), 'Walking Tours' — 'Discover Political Murals & Peace Walls': specifically identifies Falls Road and Shankill Road, murals interpreting the Troubles, and peace walls dividing communities. https://visitbelfast.com/see-do/tours/walking/ ; Visit Belfast, 'Shankill': murals depicting the area's social and political history and the Peace Wall. https://visitbelfast.com/explore/city-areas/shankill/ ; Ulster Museum, 'Troubles Art': artistic responses to the conflict and the continuing legacy of division. https://www.ulstermuseum.org/stories/troubles-art",
+    "harryPotter": "VisitBritain: Harry Potter filming locations — locations across Britain include King's Cross, Oxford, Alnwick Castle, Glenfinnan and others; the Warner Bros. Studio Tour displays original sets, props and costumes.",
+    "beatles": "VisitBritain: Discover the Beatles and beyond in Liverpool — Liverpool is the birthplace of the Beatles and offers the Cavern Club, The Beatles Story and preserved childhood homes.",
+    "ukBilingualRoadSigns": "Welsh Government, Welsh Language Standards — signage: new and replacement signs display Welsh and English with Welsh likely read first. https://www.gov.wales/welsh-language-standards-communication-and-marketing-guidelines ; Transport Scotland, Traffic signs and road markings: policy for Gaelic-English signs on trunk roads serving Gaelic-speaking communities. https://www.transport.gov.scot/our-approach/industry-guidance/traffic-signs-and-road-markings/ ; Northern Ireland Department for Infrastructure (21 July 2026), bilingual traffic signs installed in Belfast's Gaeltacht Quarter. https://www.infrastructure-ni.gov.uk/news/bi-lingual-traffic-signs-and-road-markings-installed-belfasts-gaeltacht-quarter",
+    "footballAssociations": "UEFA National Associations: England, Scotland, Wales and Northern Ireland are each listed as separate UEFA member national associations; UEFA EURO 2028 regulations likewise treat their national teams separately: https://www.uefa.com/nationalassociations/ ; https://documents.uefa.com/r/Regulations-of-the-UEFA-European-Football-Championship-2026-28/Article-13-Group-formation-qualifying-group-stage-Online"
   },
   "contentQaVersion": 1,
-  "taste": {"kicker": "TASTE OF UNITED KINGDOM","title": "イギリスで食べたいもの","intro": "イングランド、スコットランド、ウェールズで食卓の個性が変わるイギリスから、旅先で出会いたい4品。","items": [
-    {"id": "fish-and-chips","name": "フィッシュ＆チップス","nameLocal": "Fish and chips","text": "白身魚を衣で揚げ、厚切りのチップスと合わせる定番。海辺の町から都市の専門店まで広く出会え、持ち帰って食べる日常のスタイルも英国らしい。","image": "assets/images/united-kingdom/approved/food-fish-and-chips.webp","imageState": "APPROVED","sourceKey": "fishAndChips"},
-    {"id": "sunday-roast","name": "サンデーロースト","nameLocal": "Sunday roast","text": "ローストした肉にポテト、野菜、グレイビーなどを合わせる日曜の食卓。家庭だけでなくパブでも定番で、料理と一緒に週末の過ごし方が見えてくる。","image": "assets/images/united-kingdom/approved/food-sunday-roast.webp","imageState": "APPROVED","sourceKey": "sundayRoast"},
-    {"id": "haggis-neeps-tatties","name": "ハギス、ニープス＆タティーズ","nameLocal": "Haggis, neeps and tatties","text": "肉、オーツ、玉ねぎ、香辛料を使うハギスに、カブとジャガイモのマッシュを添えるスコットランドの定番。パブやレストランでも見つけやすい。","image": "assets/images/united-kingdom/approved/food-haggis-neeps-tatties.webp","imageState": "APPROVED","sourceKey": "haggis"},
-    {"id": "welsh-rarebit","name": "ウェルシュ・レアビット","nameLocal": "Welsh rarebit","text": "トーストしたパンにチーズを中心とした濃厚なソースをのせ、焼き色をつけるウェールズ料理。18世紀から知られ、チーズやエールを使う土地の食文化につながる。","image": "assets/images/united-kingdom/approved/food-welsh-rarebit.webp","imageState": "APPROVED","sourceKey": "welshRarebit"}
-  ]},
-  "travelScale": {"kicker": "DURATION","title": "旅の目安日程","intro": "","items": [
-    {"duration": "3〜4日","title": "ロンドンを拠点に近郊へ","text": "ロンドンを一つの拠点に街を歩き、鉄道で日帰りの歴史都市を加えるくらいが現実的。例：ロンドン → オックスフォード → ロンドン。","icon": "city"},
-    {"duration": "7〜10日","title": "イングランドにもう一つの構成国を加える","text": "ロンドンを起点にウェールズやスコットランドへ移ると、都市景観から城・山地・地方都市まで旅の表情が変わる。例：ロンドン → ヨーク → エディンバラ → ロンドン。","icon": "map"},
-    {"duration": "14日以上","title": "複数の構成国をまたいで旅する","text": "鉄道に国内線やフェリーを組み合わせ、イングランド、スコットランド、ウェールズ、北アイルランドから複数地域を選ぶと、国全体の地理と文化の幅を急がず見られる。例：ロンドン → ヨーク → エディンバラ → ベルファスト → 北ウェールズ → ロンドン。","icon": "compass"}
-  ]},
+  "taste": {
+    "kicker": "TASTE OF UNITED KINGDOM",
+    "title": "イギリスで食べたいもの",
+    "intro": "イングランド、スコットランド、ウェールズで食卓の個性が変わるイギリスから、旅先で出会いたい4品。",
+    "items": [
+      {
+        "id": "fish-and-chips",
+        "name": "フィッシュ＆チップス",
+        "nameLocal": "Fish and chips",
+        "text": "白身魚を衣で揚げ、厚切りのチップスと合わせる定番。海辺の町から都市の専門店まで広く出会え、持ち帰って食べる日常のスタイルも英国らしい。",
+        "image": "assets/images/united-kingdom/approved/food-fish-and-chips.webp",
+        "imageState": "APPROVED",
+        "sourceKey": "fishAndChips"
+      },
+      {
+        "id": "sunday-roast",
+        "name": "サンデーロースト",
+        "nameLocal": "Sunday roast",
+        "text": "ローストした肉にポテト、野菜、グレイビーなどを合わせる日曜の食卓。家庭だけでなくパブでも定番で、料理と一緒に週末の過ごし方が見えてくる。",
+        "image": "assets/images/united-kingdom/approved/food-sunday-roast.webp",
+        "imageState": "APPROVED",
+        "sourceKey": "sundayRoast"
+      },
+      {
+        "id": "haggis-neeps-tatties",
+        "name": "ハギス、ニープス＆タティーズ",
+        "nameLocal": "Haggis, neeps and tatties",
+        "text": "肉、オーツ、玉ねぎ、香辛料を使うハギスに、カブとジャガイモのマッシュを添えるスコットランドの定番。パブやレストランでも見つけやすい。",
+        "image": "assets/images/united-kingdom/approved/food-haggis-neeps-tatties.webp",
+        "imageState": "APPROVED",
+        "sourceKey": "haggis"
+      },
+      {
+        "id": "welsh-rarebit",
+        "name": "ウェルシュ・レアビット",
+        "nameLocal": "Welsh rarebit",
+        "text": "トーストしたパンにチーズを中心とした濃厚なソースをのせ、焼き色をつけるウェールズ料理。18世紀から知られ、チーズやエールを使う土地の食文化につながる。",
+        "image": "assets/images/united-kingdom/approved/food-welsh-rarebit.webp",
+        "imageState": "APPROVED",
+        "sourceKey": "welshRarebit"
+      }
+    ]
+  },
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ロンドンを拠点に近郊へ",
+        "text": "ロンドンを一つの拠点に街を歩き、鉄道で日帰りの歴史都市を加えるくらいが現実的。例：ロンドン → オックスフォード → ロンドン。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜10日",
+        "title": "イングランドにもう一つの構成国を加える",
+        "text": "ロンドンを起点にウェールズやスコットランドへ移ると、都市景観から城・山地・地方都市まで旅の表情が変わる。例：ロンドン → ヨーク → エディンバラ → ロンドン。",
+        "icon": "map"
+      },
+      {
+        "duration": "14日以上",
+        "title": "複数の構成国をまたいで旅する",
+        "text": "鉄道に国内線やフェリーを組み合わせ、イングランド、スコットランド、ウェールズ、北アイルランドから複数地域を選ぶと、国全体の地理と文化の幅を急がず見られる。例：ロンドン → ヨーク → エディンバラ → ベルファスト → 北ウェールズ → ロンドン。",
+        "icon": "compass"
+      }
+    ]
+  },
   "nextRoutes": [
     {
       "flag": "🇫🇷",

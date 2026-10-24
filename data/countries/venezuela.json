@@ -231,7 +231,8 @@
       "points": [
         "カナイマ国立公園は約300万ha",
         "UNESCOは公園面積のおよそ65%をテプイ地形が占めると説明する"
-      ]
+      ],
+      "sourceKey": "canaima"
     },
     {
       "topicKey": "llanos-seasonal-floodplain",
@@ -242,7 +243,8 @@
       "points": [
         "雨季と乾季で水面と草地の範囲が大きく変わる",
         "乾季には残った水辺へ動物が集まりやすい"
-      ]
+      ],
+      "sourceKey": "llanosEcology"
     },
     {
       "topicKey": "casiquiare-river-connection",
@@ -253,7 +255,8 @@
       "points": [
         "オリノコ上流から分岐してリオ・ネグロへ向かう",
         "水系の接続は地図上の国境とは別の地理を見せる"
-      ]
+      ],
+      "sourceKey": "casiquiare"
     },
     {
       "topicKey": "coro-earthen-architecture",
@@ -264,7 +267,8 @@
       "points": [
         "Coro and its Port は1993年に世界遺産登録",
         "土を主体とする伝統建築が価値の一部をなす"
-      ]
+      ],
+      "sourceKey": "coro"
     },
     {
       "topicKey": "ciudad-universitaria-caracas-modernism",
@@ -275,18 +279,20 @@
       "points": [
         "2000年にUNESCO世界遺産へ登録",
         "建築と芸術作品を統合した都市キャンパス"
-      ]
+      ],
+      "sourceKey": "caracasUniversity"
     },
     {
-      "topicKey": "los-roques-coral-archipelago",
-      "themeEn": "SEA",
-      "themeJa": "海の世界へ",
-      "title": "ロス・ロケスでは、浅い海とサンゴ礁が群島の色をつくる",
-      "text": "カリブ海のロス・ロケスは、低い島、白砂、浅いラグーン、サンゴ礁が連なる群島。海の深さと底質が変わるたびに水面の青が変化し、陸のテプイとはまったく異なる国土の広がりを見せる。",
+      "topicKey": "venezuela-el-sistema-community-music-education",
+      "themeEn": "CULTURE",
+      "themeJa": "文化に触れる",
+      "title": "子どもたちのオーケストラは、音楽を地域の学びの場に変えてきた",
+      "text": "1975年、音楽家ホセ・アントニオ・アブレウが始めた「エル・システマ」は、子どもや若者がオーケストラと合唱に参加する学びの仕組みとして広がった。演奏技術だけでなく、集団で音を合わせ、互いの声を聴く経験を重視する。カラカスから地方都市へ続く音楽教育の網は、建築や自然景観だけでは捉えられないベネズエラの現代文化を伝える。",
       "points": [
-        "低平な小島と砂州が多数点在する",
-        "島間移動は小型航空機やボートが中心"
-      ]
+        "1975年に設立され、子どもと若者のオーケストラ・合唱活動を育ててきた",
+        "音楽を協働、社会参加、学びにつなぐ取り組みとして国際的にも知られる"
+      ],
+      "sourceKey": "venezuelaElSistema"
     }
   ],
   "travelTrivia": [
@@ -541,6 +547,14 @@
   ],
   "relatedCountries": [
     {
+      "slug": "brazil",
+      "nameEn": "BRAZIL",
+      "nameJa": "ブラジル",
+      "flag": "🇧🇷",
+      "reason": "ギアナ高地からアマゾン、巨大河川まで、ベネズエラ南部と連続する大陸規模の自然景観をさらに広げて見たい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
       "slug": "colombia",
       "nameEn": "COLOMBIA",
       "nameJa": "コロンビア",
@@ -549,23 +563,15 @@
       "affinityType": "CULTURE"
     },
     {
-      "slug": "southafrica",
-      "nameEn": "SOUTH AFRICA",
-      "nameJa": "南アフリカ",
-      "flag": "🇿🇦",
-      "reason": "テーブル状の山テプイに惹かれたなら、ケープタウンのテーブル・マウンテンで、平らな頂から海と街を見下ろす景色を味わえる。",
+      "slug": "guyana",
+      "nameEn": "GUYANA",
+      "nameJa": "ガイアナ",
+      "flag": "🇬🇾",
+      "reason": "テプイとギアナ高地、熱帯林という自然地理を共有し、英語圏側から同じ高地・森林帯を違う旅の文脈で見られる。",
       "affinityType": "LANDSCAPE"
-    },
-    {
-      "slug": "bahamas",
-      "nameEn": "BAHAMAS",
-      "nameJa": "バハマ",
-      "flag": "🇧🇸",
-      "reason": "ロス・ロケスの浅い海と白砂の小島に惹かれたなら、エグズーマ諸島の浅瀬と砂州で、島をめぐる船旅を楽しめる。",
-      "affinityType": "ISLAND"
     }
   ],
-  "updatedAt": "2026-10-23",
+  "updatedAt": "2026-09-26",
   "sourcesVerifiedAt": "2026-09-26",
   "sourceDates": {
     "population": "2024",
@@ -593,7 +599,7 @@
     "coro": "UNESCO World Heritage Centre, Coro and its Port: inscribed 1993; earthen architecture and Caribbean/European influences. https://whc.unesco.org/en/list/658",
     "caracasUniversity": "UNESCO World Heritage Centre, Ciudad Universitaria de Caracas: inscribed 2000; Carlos Raúl Villanueva, synthesis of architecture and art. https://whc.unesco.org/en/list/986",
     "catatumbo": "NASA, Earth's New Lightning Capital Revealed (2016): 16 years of Lightning Imaging Sensor observations found Lake Maracaibo averaging about 233 flashes per square kilometre per year. https://www.nasa.gov/missions/trmm/earths-new-lightning-capital-revealed/",
-    "casiquiare": "Authoritative geographic references describe the Casiquiare as a natural distributary connecting the upper Orinoco with the Rio Negro/Amazon basin.",
+    "casiquiare": "U.S. Geological Survey / Journal of Biogeography (Winemiller et al., 2008) — Fish assemblages of the Casiquiare River, a corridor and zoogeographical filter for dispersal between the Orinoco and Amazon basins: the Casiquiare branches from the Upper Orinoco and reaches the Upper Río Negro, linking the Amazon basin. https://pubs.usgs.gov/publication/70000186",
     "roraima": "Geographic/topographic references: Mount Roraima massif lies at the Venezuela–Brazil–Guyana border region; scene point is on the Venezuelan approach side of Gran Sabana.",
     "losRoques": "Venezuela protected-area and geographic references: Los Roques is a Caribbean archipelago characterized by low cays, lagoons, coral reefs and white-sand shallows.",
     "food": "Venezuelan culinary references consistently identify arepas, pabellón criollo, cachapas with fresh cheese and hallacas as established national/regional dishes. Images depict one recognizable serving of each.",
@@ -607,6 +613,8 @@
     "elCallaoCarnival": "UNESCO Intangible Cultural Heritage, Carnival of El Callao: parades include madamas, medio-pintos who smudge charcoal on people who do not give a donation, miners and masked diablos, alongside calypso music and dancing. https://ich.unesco.org/en/RL/carnival-of-el-callao-a-festive-representation-of-a-memory-and-cultural-identity-01198",
     "curagua": "UNESCO Intangible Cultural Heritage, Traditional knowledge and technologies relating to the growing and processing of the curagua: men traditionally extract/process the strong fibre while women weave thread and manufacture goods such as hammocks. https://ich.unesco.org/en/RL/traditional-knowledge-and-technologies-relating-to-the-growing-and-processing-of-the-curagua-01094",
     "mapoyoOralTradition": "UNESCO Intangible Cultural Heritage, Mapoyo oral tradition and its symbolic reference points within their ancestral territory: narratives forming collective memory are permanently linked to places along the Orinoco and recounted during daily activities. https://ich.unesco.org/en/USL/mapoyo-oral-tradition-and-its-symbolic-reference-points-within-their-ancestral-territory-00983",
-    "saintJohnCycle": "UNESCO Intangible Cultural Heritage, Festive cycle around the devotion and worship towards Saint John the Baptist: on 24 June many communities baptize the saint's image in a local river and devotees also enter the river to receive a blessing. https://ich.unesco.org/en/RL/festive-cycle-around-the-devotion-and-worship-towards-saint-john-the-baptist-01682"
+    "saintJohnCycle": "UNESCO Intangible Cultural Heritage, Festive cycle around the devotion and worship towards Saint John the Baptist: on 24 June many communities baptize the saint's image in a local river and devotees also enter the river to receive a blessing. https://ich.unesco.org/en/RL/festive-cycle-around-the-devotion-and-worship-towards-saint-john-the-baptist-01682",
+    "venezuelaElSistema": "UNESCO, When creativity transforms learning: Cultural and arts education experiences for lasting peace in the Caribbean (2026-06-08): Venezuela's El Sistema founded in 1975, collective music education and inclusion. https://www.unesco.org/en/articles/when-creativity-transforms-learning-cultural-and-arts-education-experiences-lasting-peace-caribbean ; El Sistema official history, founding by José Antonio Abreu in 1975. https://elsistema.org.ve/historia/",
+    "llanosEcology": "One Earth, Llanos Ecoregion, Jan Schipper (2020): Venezuela-Colombia savanna, seasonal flooding, capybara and waterbirds. https://stage.oneearth.org/ecoregions/llanos/"
   }
 }

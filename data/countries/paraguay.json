@@ -231,7 +231,8 @@
       "points": [
         "UNESCOによると30伝道所のうち7か所が現在のパラグアイ領にあった",
         "先住民文化の要素とキリスト教の建築・象徴が融合している"
-      ]
+      ],
+      "sourceKey": "heritage"
     },
     {
       "topicKey": "japanese-immigration-90-years",
@@ -242,7 +243,8 @@
       "points": [
         "在パラグアイ日本国大使館は、ラ・コルメナを日本人移住の発祥地として紹介している",
         "2018年の大使館資料では、パラグアイの日系人口は約1万人とされる"
-      ]
+      ],
+      "sourceKey": "japaneseMigration"
     },
     {
       "topicKey": "paraguay-river-two-regions",
@@ -253,7 +255,8 @@
       "points": [
         "主要河川はパラグアイ川とパラナ川",
         "内陸国でも河川網がラ・プラタ水系へつながる"
-      ]
+      ],
+      "sourceKey": "countryProfile"
     },
     {
       "topicKey": "bahia-negra-pantanal-wetlands",
@@ -264,18 +267,20 @@
       "points": [
         "SENATURはバイア・ネグラをパラグアイ・パンタナルの入口として位置づける",
         "リオ・ネグロ国立公園はパンタナル生態系の一部を保全する"
-      ]
+      ],
+      "sourceKey": "pantanal"
     },
     {
       "topicKey": "itaipu-binational-hydropower",
       "themeEn": "WORK",
       "themeJa": "しくみを知る",
-      "title": "イタイプーでは、国境の川そのものが共同運営のインフラになる",
-      "text": "パラナ川のイタイプーはパラグアイとブラジルが共同運営する水力発電施設。展望ルートではダム本体、放水路、発電設備を連続して見られ、地形と水量が国家規模のエネルギーシステムへ組み込まれる様子が分かる。",
+      "title": "国境を流れるパラナ川を、二国で管理する制度へ変えた",
+      "text": "1973年のイタイプー条約により、パラグアイとブラジルはパラナ川の水力を共同利用する事業体をつくった。発電設備だけでなく、発電に使う水力への対価を両国に等しく支払う仕組みが、国境河川を共同運営する制度を支えている。",
       "points": [
-        "観光見学は建設中の1970年代から続いている",
-        "パラグアイ側ではエルナンダリアスを中心に見学ルートが整備されている"
-      ]
+        "1973年4月26日にイタイプー条約が締結された",
+        "水力利用に対するロイヤルティは両国へ同額配分される"
+      ],
+      "sourceKey": "itaipuRoyalties"
     },
     {
       "topicKey": "nanduti-itaugua-lace",
@@ -286,7 +291,8 @@
       "points": [
         "名称はグアラニー語で『蜘蛛の巣』を意味する",
         "パラグアイの文化機関が伝統技法の保存と継承を進めている"
-      ]
+      ],
+      "sourceKey": "nanduti"
     }
   ],
   "travelTrivia": [
@@ -543,7 +549,7 @@
       "flag": "🇧🇴",
       "countryEn": "BOLIVIA",
       "countryJa": "ボリビア",
-      "path": "Mariscal Estigarribia → Infante Rivarola / Cañada Oruro → Villamontes",
+      "path": "Mariscal Estigarribia → Mayor Infante Rivarola → Bolivia",
       "description": "チャコを西へ横断し、マジョール・インファンテ・リバロラからボリビア側へ抜ける長距離陸路。バイオセアニック回廊につながる国境地点として旅客通過も増えている。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
@@ -552,28 +558,28 @@
   ],
   "relatedCountries": [
     {
+      "slug": "argentina",
+      "nameEn": "ARGENTINA",
+      "nameJa": "アルゼンチン",
+      "flag": "🇦🇷",
+      "reason": "マテ文化、パラナ・パラグアイ水系、リオプラテンセ圏の暮らしを共有しながら、より大きな都市と南部の大地へ広げたい人へ。",
+      "affinityType": "CULTURE"
+    },
+    {
       "slug": "brazil",
       "nameEn": "BRAZIL",
       "nameJa": "ブラジル",
       "flag": "🇧🇷",
-      "reason": "イタイプーやイグアスの水の風景に惹かれたなら、ブラジルのパンタナールとイグアスの滝で、さらに大きな水と森の自然を味わえる。",
+      "reason": "イタイプーとパンタナルという国境を越える自然・インフラを反対側から見直し、より多様な森林と都市へつなげたい人へ。",
       "affinityType": "NATURE"
     },
     {
-      "slug": "philippines",
-      "nameEn": "PHILIPPINES",
-      "nameJa": "フィリピン",
-      "flag": "🇵🇭",
-      "reason": "森に残るイエズス会のミッション遺跡に惹かれたなら、フィリピンのバロック様式の教会群で、スペイン時代の布教が残した建築を見られる。",
-      "affinityType": "HISTORY"
-    },
-    {
-      "slug": "uruguay",
-      "nameEn": "URUGUAY",
-      "nameJa": "ウルグアイ",
-      "flag": "🇺🇾",
-      "reason": "テレレを回し飲む日常とゆったりした時間に惹かれたなら、マテの文化が暮らしに根づくウルグアイで、穏やかな町と海辺の時間を味わえる。",
-      "affinityType": "CULTURE"
+      "slug": "bolivia",
+      "nameEn": "BOLIVIA",
+      "nameJa": "ボリビア",
+      "flag": "🇧🇴",
+      "reason": "チャコを越える長距離陸路の先で、低地からアンデス高地へ風景と標高が劇的に切り替わる旅を続けたい人へ。",
+      "affinityType": "TRAVEL_STYLE"
     }
   ],
   "updatedAt": "2026-10-23",
@@ -626,6 +632,8 @@
     "culturalExperiences": "SENATUR and UNESCO sources checked 2026-09-26 for observable cultural experiences: Mercado 4 Paseo de los Yuyos and tereré/pohã ñana; Luque filigree circuit; Yguazú Guaraní experiential circuit; Guarania and Tereré UNESCO listings; Japanese immigration heritage; and the Mennonite museum/cooperative route in Filadelfia. https://senatur.gov.py/noticias/trabajo-interinstitucional-busca-impulsar-el-paseo-de-los-yuyos-como-destino-turistico/ ; https://senatur.gov.py/noticias/circuito-de-la-filigrana-una-experiencia-turistica-unica-en-luque/ ; https://senatur.gov.py/noticias/centro-vivencial-del-mundo-guarani-una-valiosa-opcion-de-turismo-cultural-y-de-naturaleza-en-alto-parana/ ; https://ich.unesco.org/en/state/paraguay-PY ; https://senatur.gov.py/noticias/paraguay-y-japon-avanzan-en-la-agenda-de-festejos-del-90-aniversario-de-la-inmigracion-japonesa/ ; https://senatur.gov.py/noticias/el-chaco-paraguayo-vibrara-con-la-sinfonia-de-la-paz-senatur-y-osn-unen-fuerzas-para-una-conmemoracion-historica/",
     "homeLanguage": "Instituto Nacional de Estadística (Paraguay), EPHC 2022 language use at home: among people age 5+, 33.4% mainly speak Guaraní at home and 34.4% speak Castellano and Guaraní, totaling 67.8% with Guaraní in the reported home-language categories. https://www.ine.gov.py/noticias/1484/21-de-febrero-dia-internacional-de-la-lengua-materna",
     "indigenousPeoples": "Instituto Nacional de Estadística (Paraguay), IV Censo Nacional de Población y Viviendas para Pueblos Indígenas 2022: 19 Indigenous peoples grouped into five linguistic families. https://www.ine.gov.py/resumen/237/primeros-resultados-finales-del-iv-censo-nacional-de-poblacion-y-viviendas-para-pueblos-indigenas-2022",
-    "landlockedNavy": "United Nations records describe Paraguay as an inland land-locked country without a coastline; Paraguay Presidency reports confirm the Armada Paraguaya and Prefectura General Naval operate to protect national rivers and fluvial borders, including new river-patrol capacity inaugurated in 2026. https://digitallibrary.un.org/record/749697/files/A_PV-2125-EN.pdf ; https://www.presidencia.gov.py/noticias/presidente-pena-inauguro-nuevos-espacios-para-fortalecer-las-capacidades-estrategicas-de-la-armada-paraguaya/ ; https://www.presidencia.gov.py/noticias/paraguay-fortalece-vinculos-con-singapur-y-proyecta-inversiones-por-mas-de-usd-1-000-millones-en-sostenibilidad/"
+    "landlockedNavy": "United Nations records describe Paraguay as an inland land-locked country without a coastline; Paraguay Presidency reports confirm the Armada Paraguaya and Prefectura General Naval operate to protect national rivers and fluvial borders, including new river-patrol capacity inaugurated in 2026. https://digitallibrary.un.org/record/749697/files/A_PV-2125-EN.pdf ; https://www.presidencia.gov.py/noticias/presidente-pena-inauguro-nuevos-espacios-para-fortalecer-las-capacidades-estrategicas-de-la-armada-paraguaya/ ; https://www.presidencia.gov.py/noticias/paraguay-fortalece-vinculos-con-singapur-y-proyecta-inversiones-por-mas-de-usd-1-000-millones-en-sostenibilidad/",
+    "itaipuRoyalties": "ITAIPU Binacional, Royalties: equal payments to Paraguay and Brazil under Annex C of the 1973 treaty. https://www.itaipu.gov.py/institucional/transparencia/royalties",
+    "nanduti": "Secretaría Nacional de Cultura (Paraguay), official designation of the traditional Ñandutí technique of Itauguá as national intangible cultural heritage (2019), including lace production and cultural transmission. https://cultura.gov.py/2019/07/snc-entrega-a-intendente-de-itaugua-declaracion-de-patrimonio-nacional-cultural-inmaterial-del-nanduti/ ; SENATUR, tourism publication on Ñandutí and spiderweb motifs. https://senatur.gov.py/wp-content/uploads/2022/06/promocion_especial.pdf"
   }
 }

@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": 37.9838,
       "longitude": 23.7275
-    },"labelOffset":{"x":0,"y":8},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": 8
+    },
     "labelPosition": "left",
     "mapOffset": {
       "x": 0,
@@ -203,7 +207,8 @@
       "points": [
         "6つの構成資産はクレタ島各地に分布する",
         "都市計画、初期の文字体系、海上ネットワークの痕跡が残る"
-      ]
+      ],
+      "sourceKey": "minoanPalatial"
     },
     {
       "topicKey": "delos-sanctuary-trading-port",
@@ -214,7 +219,8 @@
       "points": [
         "紀元前9世紀頃からアポロンの聖域が発展した",
         "紀元前2〜1世紀には倉庫や商社、居住区を備える交易港として栄えた"
-      ]
+      ],
+      "sourceKey": "delos"
     },
     {
       "topicKey": "thessaloniki-byzantine-city-layers",
@@ -225,7 +231,8 @@
       "points": [
         "都市は紀元前315年に創建され、港として発展した",
         "4〜15世紀の建築群がビザンツ世界の変化を時系列で伝える"
-      ]
+      ],
+      "sourceKey": "thessaloniki"
     },
     {
       "topicKey": "rebetiko-urban-music",
@@ -236,7 +243,8 @@
       "points": [
         "2017年にユネスコ無形文化遺産の代表一覧へ登録",
         "歌詞には当時の暮らし、習慣、社会の記憶が残る"
-      ]
+      ],
+      "sourceKey": "rebetiko"
     },
     {
       "topicKey": "chios-mastic-cultivation",
@@ -247,18 +255,20 @@
       "points": [
         "栽培の知識は2014年にユネスコ無形文化遺産へ登録",
         "作業は冬の手入れから夏の採取まで一年を通して続く"
-      ]
+      ],
+      "sourceKey": "chiosMastic"
     },
     {
       "topicKey": "athens-open-air-cinema-summer",
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
       "title": "アテネでは、夏の夜に街の中で映画を見る",
-      "text": "アテネでは夏になると、屋外映画館や広場、庭園などで上映を楽しむ文化が街に現れる。2026年のAthens Open Air Film Festivalも市内各所で開かれ、映画を見ること自体が夏の都市体験になっている。",
+      "text": "アテネでは夏になると、屋外映画館や広場、庭園などで上映を楽しむ文化が街に現れる。屋外上映は劇場の内部から公共空間へ映画文化を広げ、都市の夏の社交の場として受け継がれている。",
       "points": [
-        "2026年のAthens Open Air Film Festivalは5月18日〜8月26日に開催",
+        "屋外映画館や公共空間が季節的な上映文化の舞台になる",
         "公園、広場、中庭、屋外映画館など街の異なる場所が上映会場になる"
-      ]
+      ],
+      "sourceKey": "openAirCinema"
     }
   ],
   "travelTrivia": [
@@ -474,11 +484,11 @@
     "balos": "Greek National Tourism Organisation (Visit Greece), Gramvoussa–Balos: shallow blue-green waters, white sand and Gramvousa peninsula landscape.",
     "delphi": "UNESCO World Heritage Centre, Archaeological Site of Delphi: sanctuary of Apollo between the Phaidriades rocks on Mount Parnassus.",
     "rhodes": "UNESCO World Heritage Centre, Medieval City of Rhodes: living historical settlement and World Heritage coordinates.",
-    "minoanPalatial": "UNESCO World Heritage Centre, Minoan Palatial Centres: six Cretan sites inscribed in 2025; major prehistoric Mediterranean culture and maritime networks.",
-    "delos": "UNESCO World Heritage Centre, Delos: Pan-Hellenic sanctuary and cosmopolitan Mediterranean trading port.",
-    "thessaloniki": "UNESCO World Heritage Centre, Paleochristian and Byzantine Monuments of Thessalonika: 4th–15th century monuments in a major port and Byzantine cultural centre.",
-    "rebetiko": "UNESCO Intangible Cultural Heritage, Rebetiko: inscribed 2017; urban song-and-dance tradition with roots in early 20th-century working-class populations.",
-    "chiosMastic": "UNESCO Intangible Cultural Heritage, Know-how of cultivating mastic on Chios: family occupation, year-round care and community networks; inscribed 2014.",
+    "minoanPalatial": "UNESCO World Heritage Centre, Minoan Palatial Centres: six Cretan sites inscribed in 2025; major prehistoric Mediterranean culture and maritime networks. https://whc.unesco.org/en/list/1733/",
+    "delos": "UNESCO World Heritage Centre, Delos: Pan-Hellenic sanctuary and cosmopolitan Mediterranean trading port. https://whc.unesco.org/en/list/530/",
+    "thessaloniki": "UNESCO World Heritage Centre, Paleochristian and Byzantine Monuments of Thessalonika: 4th–15th century monuments in a major port and Byzantine cultural centre. https://whc.unesco.org/en/list/456/",
+    "rebetiko": "UNESCO Intangible Cultural Heritage, Rebetiko: inscribed 2017; urban song-and-dance tradition with roots in early 20th-century working-class populations. https://ich.unesco.org/en/RL/rebetiko-01291",
+    "chiosMastic": "UNESCO Intangible Cultural Heritage, Know-how of cultivating mastic on Chios: family occupation, year-round care and community networks; inscribed 2014. https://ich.unesco.org/en/RL/know-how-of-cultivating-mastic-on-the-island-of-chios-00993",
     "regionalCuisine": "Greek National Tourism Organisation (Visit Greece), Traditional Cuisine / Cycladic Cuisine: regional identities reflect mainland, island morphology and microclimates.",
     "greekCoffee": "Greek National Tourism Organisation (Visit Greece), Coffee Pleasure, The Greek Way: Greek coffee prepared in a briki and served with cold water; coffee as a social habit.",
     "easterLivadia": "Greek National Tourism Organisation (Visit Greece), Easter: The Authentic Roumeli: Livadia's communal 'lakki' pits and Easter lamb-roasting custom.",
@@ -493,7 +503,7 @@
     "railStatus": "Hellenic Train, Athens–Thessaloniki route and Traffic Status / Important Updates, checked 2026-09-05: daily Athens–Thessaloniki service remains in operation; live service changes and delays are published.",
     "tasteMoussakaSouvlakiLoukoumades": "Greek National Tourism Organisation (Visit Greece), The Athenian Odyssey: History, Culture and Cuisine: moussaka, souvlaki and loukoumades descriptions.",
     "tasteHoriatiki": "Greek National Tourism Organisation (Visit Greece), A Veggie Adventure Through Greece: Choriatiki ingredients include tomatoes, cucumbers, onions, feta, olives, olive oil and oregano.",
-    "openAirCinema": "Greek National Tourism Organisation (Visit Greece), 16th Athens Open Air Film Festival 2026 / Starry Cinema: open-air screenings are a recurring part of Athens and Greece's summer cultural experience.",
+    "openAirCinema": "Greek National Tourism Organisation (Visit Greece), 16th Athens Open Air Film Festival 2026 / Starry Cinema: open-air screenings are a recurring part of Athens and Greece's summer cultural experience. https://aoaff.gr/news_aoaff_en/arthro/aoaff16_program-15557374/",
     "taste": "Greek National Tourism Organisation (Visit Greece): The Athenian Odyssey: History, Culture and Cuisine (moussaka, souvlaki, loukoumades) and A Veggie Adventure Through Greece (Choriatiki ingredients). Checked 2026-09-05.",
     "nextRoutes": "Superfast Ferries Greece–Italy routes and current international coach corridors from Thessaloniki toward Sofia and Skopje, checked 2026-09-07. / 2026-10-23 nextRoutes audit: North Macedonia replaced with the Aegean island–Türkiye ferries."
   },

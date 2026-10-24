@@ -259,16 +259,16 @@
       "sourceKey": "sourceNile"
     },
     {
-      "topicKey": "kazinga-rift-lakes",
-      "themeEn": "EARTH",
-      "themeJa": "大地溝帯を見る",
-      "title": "西部では大地溝帯の湖とサバンナが接している",
-      "text": "クイーン・エリザベス国立公園では、エドワード湖とジョージ湖をカジンガ水路が結ぶ。草原と水辺が近接するため、陸上動物と水鳥、カバなどを同じ景観の中で観察できる。",
+      "topicKey": "uganda-coffee-smallholder-livelihood",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "title": "コーヒーは、高地だけでなく地域の家計と手仕事をつなぐ",
+      "text": "ウガンダではコーヒー栽培が中央、北部、東部、西部、南西部の農家へ広がり、ロブスタとアラビカが気候条件に応じて育てられている。苗木の育成、収穫、乾燥、選別から輸出まで、多くの仕事と家庭の収入に関わる。広大な野生動物保護区だけでは見えない農村の社会経済を、一杯のコーヒーの生産過程から考えられる。",
       "points": [
-        "ムウェヤ半島は水路とエドワード湖の接点にある",
-        "火口湖や断層地形も西部景観の一部"
+        "公的なコーヒー産業支援は複数地域の農家を対象にしている",
+        "苗木、栽培、加工、品質管理、輸出まで地域の仕事がつながる"
       ],
-      "sourceKey": "queenElizabeth"
+      "sourceKey": "ugandaCoffeeAuthority"
     },
     {
       "topicKey": "kidepo-seasonal-rivers",
@@ -524,7 +524,7 @@
       "flag": "🇰🇪",
       "countryEn": "KENYA",
       "countryJa": "ケニア",
-      "path": "Jinja → Busia / Malaba → Kisumu",
+      "path": "Jinja / Mbale → Busia or Malaba OSBP → western Kenya",
       "description": "東部からブシアまたはマラバのワンストップ国境を越え、西ケニアへつなぐ代表的な陸路。ケニア側の交通・入国条件は出発直前に確認する。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
@@ -534,7 +534,7 @@
       "flag": "🇷🇼",
       "countryEn": "RWANDA",
       "countryJa": "ルワンダ",
-      "path": "Kabale → Katuna / Gatuna → Kigali",
+      "path": "Kabale → Katuna/Gatuna OSBP → Kigali",
       "description": "南西部カバレからカトゥナ／ガトゥナ国境を越え、キガリへ向かう地域間陸路。ブウィンディやブニョニ湖から次の国へつなぎやすい。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
@@ -544,7 +544,7 @@
       "flag": "🇹🇿",
       "countryEn": "TANZANIA",
       "countryJa": "タンザニア",
-      "path": "Masaka → Mutukula → Bukoba",
+      "path": "Masaka → Mutukula OSBP → Bukoba / northwestern Tanzania",
       "description": "中央南部からムトゥクラ国境を越え、タンザニア北西部へつなぐ陸路。ヴィクトリア湖西岸側を旅する際の地域間ルートになる。",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
@@ -552,6 +552,14 @@
     }
   ],
   "relatedCountries": [
+    {
+      "slug": "kenya",
+      "nameEn": "KENYA",
+      "nameJa": "ケニア",
+      "flag": "🇰🇪",
+      "reason": "東アフリカのサバンナと高地を、より広い乾燥草原や大規模な移動景観と比較したい人へ。",
+      "affinityType": "WILDLIFE"
+    },
     {
       "slug": "rwanda",
       "nameEn": "RWANDA",
@@ -561,23 +569,15 @@
       "affinityType": "NATURE"
     },
     {
-      "slug": "egypt",
-      "nameEn": "EGYPT",
-      "nameJa": "エジプト",
-      "flag": "🇪🇬",
-      "reason": "ジンジャで見たナイルの源流に惹かれたなら、その川が砂漠を流れ下るエジプトで、ルクソールやアスワンの神殿とナイルの船旅を楽しめる。",
-      "affinityType": "HISTORY"
-    },
-    {
-      "slug": "ecuador",
-      "nameEn": "ECUADOR",
-      "nameJa": "エクアドル",
-      "flag": "🇪🇨",
-      "reason": "赤道直下に氷河を抱くルウェンゾリ山地に惹かれたなら、赤道の火山コトパクシやチンボラソで、熱帯の雪山を見られる。",
-      "affinityType": "MOUNTAIN"
+      "slug": "tanzania",
+      "nameEn": "TANZANIA",
+      "nameJa": "タンザニア",
+      "flag": "🇹🇿",
+      "reason": "大湖地域とサバンナに加え、火山・高峰・インド洋まで地形の幅をさらに広げたい人へ。",
+      "affinityType": "LANDSCAPE"
     }
   ],
-  "updatedAt": "2026-10-23",
+  "updatedAt": "2026-09-28",
   "sourcesVerifiedAt": "2026-09-28",
   "sourceDates": {
     "population": "2024",
@@ -621,6 +621,7 @@
     "sceneCoordinates": "WGS84 real-location points checked 2026-09-28: Bwindi -1.047,29.692 (UNESCO); Lake Bujuku/Rwenzori 0.366667,29.900 (published geographic reference within UNESCO property); Mweya -0.194444,29.899167; Apoka/Narus 3.73551,33.72847 (OSM/GNS area); Sipi Falls 1.33778,34.37944 (Wikidata/OSM); Lake Bunyonyi viewpoint -1.25881,29.94337 (OSM); Source of the Nile 0.416638,33.195075 (Wikidata/OSM); Nyero 1.4718,33.8461 (Wikidata/OSM); hero Murchison Falls 2.283333,31.683333 (GNS); Kampala 0.31361,32.58111.",
     "map": "Natural Earth 1:10m Admin-0 national geometry for Uganda and five land-border neighbours, WGS84, public domain, via LonnyGomes/CountryGeoJSONCollection commit 5120290da88f3f205f74aa55f3c8fa1f19d1bc8b; UGA source file geojson/UGA.geojson. Map checked against all five neighbouring states: Kenya, Tanzania, Rwanda, Democratic Republic of the Congo and South Sudan.",
     "bwindiWildlife": "Uganda Wildlife Authority, Mountain Gorilla and 2026 Bwindi chimpanzee census: Bwindi is a principal mountain-gorilla habitat; the 2025 census estimated 426 chimpanzees and recorded mountain gorillas, forest elephants and other primates. https://ugandawildlife.org/animals/mountain-gorilla/ ; https://ugandawildlife.org/news/census-confirms-426-chimpanzees-in-bwindi-impenetrable-national-park/",
-    "languages": "Constitution of the Republic of Uganda, consolidated 31 Dec 2023, Arts. 5–6: Kampala is capital; English is official language; Swahili is second official language. https://ulii.org/en/akn/ug/act/statute/1995/constitution/eng%402023-12-31"
+    "languages": "Constitution of the Republic of Uganda, consolidated 31 Dec 2023, Arts. 5–6: Kampala is capital; English is official language; Swahili is second official language. https://ulii.org/en/akn/ug/act/statute/1995/constitution/eng%402023-12-31",
+    "ugandaCoffeeAuthority": "Uganda Coffee Development Authority, Fact Sheet: farm households across five Ugandan regions, seedlings, quality assurance, processing, trade and training. https://new.ugandacoffee.go.ug/resource-center/fact-sheet"
   }
 }

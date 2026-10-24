@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": -0.22016,
       "longitude": -78.51233
-    },"labelOffset":{"x":0,"y":-8},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -8
+    },
     "labelPosition": "right",
     "mapRegion": "mainland"
   },
@@ -256,11 +260,11 @@
       "topicKey": "amazon-waterway-community-travel",
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
-      "title": "アマゾンでは、水路が旅の道になる",
-      "text": "クヤベノのような低地では、河川とラグーンをボートで移動する。Siona、Kichwa、Cofán、Secoya、Shuarなどのコミュニティが暮らし、森は観察対象だけでなく生活の場でもある。",
+      "title": "アマゾン低地では、河川が集落を結ぶ生活の道になる",
+      "text": "クヤベノのような低地では、河川やラグーンが集落間の移動や資源利用を支える。Siona、Kichwa、Cofán、Secoya、Shuarなどのコミュニティが暮らし、森は観察対象だけでなく生活の場でもある。",
       "points": [
-        "Laguna GrandeへはCuyabeno川をボートで進む",
-        "観光は保護区と地域コミュニティの管理の中で行われる"
+        "河川やラグーンは低地の集落間をつなぐ交通路でもある",
+        "先住民コミュニティの生活圏と保護区が同じ水系に重なる"
       ],
       "sourceKey": "cuyabeno"
     },
@@ -268,11 +272,11 @@
       "topicKey": "azuay-market-craft-routines",
       "themeEn": "LIFE",
       "themeJa": "暮らしに出会う",
-      "title": "クエンカの市場で、高地の日常に触れる",
-      "text": "クエンカでは歴史地区だけでなく、市場に入るとモテ、ホルナード、果物、花などが並ぶ。観光建築と日常の食卓が近い距離にあることが、この都市の歩きやすさにつながる。",
+      "title": "クエンカの市場には、高地農業と都市の食卓が交わる",
+      "text": "クエンカの市場には、アンデス高地から届くトウモロコシ、豆、果物、花などが並び、農村の生産と街の食卓がつながっている。歴史地区の近くで、市場を料理の名物紹介としてではなく、周辺地域の仕事や季節が交わる生活の場として見られる。",
       "points": [
-        "Mercado 10 de Agostoは郷土料理を知る入口になる",
-        "赤瓦の歴史地区から生活市場まで徒歩圏でつなぎやすい"
+        "高地のトウモロコシや果物など地域の農産物が集まる",
+        "市場は周辺農村の仕事と都市の日常を結びつける"
       ],
       "sourceKey": "food"
     },
@@ -295,22 +299,22 @@
       "title": "アンデス西斜面で、雲霧林の密度が一気に増す",
       "text": "キトから西へ標高を下げると、ミンド周辺では湿った雲霧林へ景観が切り替わる。短い距離で高地都市から鳥類の多い森林へ移れることが、エクアドルの標高差を実感させる。",
       "points": [
-        "公式観光案内もMindoをバードウォッチングの代表地として紹介",
-        "双眼鏡を持ち、朝の森で静かに観察する旅と相性がよい"
+        "ミンド周辺の湿潤な森林には多様な鳥類の生息環境がある",
+        "アンデス西斜面の標高と湿度の変化が森林の生息環境を分ける"
       ],
       "sourceKey": "mindo"
     },
     {
-      "topicKey": "dollarization-everyday-economy",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "title": "買い物では、米ドルがそのまま日常通貨になる",
-      "text": "エクアドルは2000年に米ドルを法定通貨として採用した。旅行者にとっては価格表示が米ドルで統一される一方、国内では米ドル硬貨と同額面のエクアドル独自の分数硬貨も流通する。",
+      "topicKey": "ecuador-dollarization-crisis-2000",
+      "themeEn": "HISTORY",
+      "themeJa": "金融と社会",
+      "title": "2000年のドル化には、銀行危機と通貨不信の歴史がある",
+      "text": "エクアドルでは1998〜99年の金融危機と銀行休業・預金凍結を経て、自国通貨スクレへの信頼が失われた。2000年1月9日に政府は米ドルを用いるドル化を発表し、中央銀行は独自紙幣の発行をやめた。現在の米ドル経済は、単なる支払い上の便利さではなく、危機を受けた制度転換の結果である。",
       "points": [
-        "2000年1月9日に米ドルを法定通貨として採用",
-        "中央銀行は国内の分数硬貨を鋳造できる"
+        "1999年の銀行休業・預金凍結と通貨不信が背景にあった",
+        "2000年1月9日にドル化を発表し、国内では分数硬貨の鋳造を続けた"
       ],
-      "sourceKey": "currency"
+      "sourceKey": "bceDollarizationHistory"
     }
   ],
   "travelTrivia": [
@@ -455,32 +459,113 @@
     "text": "キト、バーニョス、クエンカなど本土の主要都市は長距離バスで結べるが、山岳道路は所要時間が地図以上に伸びることがある。ガラパゴスへはキトまたはグアヤキルから航空便で入り、島間は航空便または船を使う。国立公園・保護区内では登録ガイドや指定ルートが必要な場所があるため、現地公式情報を確認する。"
   },
   "personas": [
-    {"title": "火山と高地の地形を歩きたい人","text": "コトパクシ、キロトア、カハスなど、標高と火山活動がつくった風景を移動しながら見比べたい。"},
-    {"title": "野生動物を環境ごと観察したい人","text": "ガラパゴスの固有種だけでなく、雲霧林やアマゾンまで、生態系が切り替わる旅をしたい。"},
-    {"title": "自然と歴史都市を同じ旅に入れたい人","text": "キトやクエンカの建築を歩きつつ、数時間から一日単位で火山、森、海へ景色を切り替えたい。"}
+    {
+      "title": "火山と高地の地形を歩きたい人",
+      "text": "コトパクシ、キロトア、カハスなど、標高と火山活動がつくった風景を移動しながら見比べたい。"
+    },
+    {
+      "title": "野生動物を環境ごと観察したい人",
+      "text": "ガラパゴスの固有種だけでなく、雲霧林やアマゾンまで、生態系が切り替わる旅をしたい。"
+    },
+    {
+      "title": "自然と歴史都市を同じ旅に入れたい人",
+      "text": "キトやクエンカの建築を歩きつつ、数時間から一日単位で火山、森、海へ景色を切り替えたい。"
+    }
   ],
   "facts": [
-    {"label": "地域","value": "南アメリカ / 赤道"},
-    {"label": "首都","value": "キト"},
-    {"label": "人口","value": "16,938,986（2022年国勢調査）"},
-    {"label": "面積","value": "約256,370 km²"},
-    {"label": "言語","value": "スペイン語（公用語）／キチュア・シュアール等"},
-    {"label": "主な宗教","value": "キリスト教（カトリック、福音派・プロテスタント等）"},
-    {"label": "通貨","value": "米ドル（USD）"}
+    {
+      "label": "地域",
+      "value": "南アメリカ / 赤道"
+    },
+    {
+      "label": "首都",
+      "value": "キト"
+    },
+    {
+      "label": "人口",
+      "value": "16,938,986（2022年国勢調査）"
+    },
+    {
+      "label": "面積",
+      "value": "約256,370 km²"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語（公用語）／キチュア・シュアール等"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック、福音派・プロテスタント等）"
+    },
+    {
+      "label": "通貨",
+      "value": "米ドル（USD）"
+    }
   ],
   "signatureFacts": [
-    {"topicKey": "equator-zero-latitude","label": "赤道","value": "0°","note": "国名Ecuadorはスペイン語で「赤道」。首都キトの北側を含め、国土を緯度0度線が横切る。","icon": "map","interestReason": "国名そのものと地理的位置が直接結びつき、旅の起点で国の位置を一瞬で理解できるため。"},
-    {"topicKey": "galapagos-reptile-endemism","label": "ガラパゴスの爬虫類固有率","value": "80%超","note": "エクアドル観光省は、ガラパゴスの爬虫類の80%超が固有と案内する。海イグアナ、ゾウガメなど孤立した島々で進化した生き物が象徴的。","icon": "wildlife","interestReason": "ガラパゴスを単なる島景観ではなく、世界的に特異な進化の現場として見る理由になるため。"},
-    {"topicKey": "chimborazo-elevation-6263m","label": "チンボラソ標高","value": "6,263 m","note": "エクアドル中部に立つ国内最高峰級の火山。赤道近くのアンデスが、海岸低地から6,000m級まで急激な標高差を持つことを示す。","icon": "landscape","interestReason": "小さな国土の中で気候と植生が急変する理由を、ひとつの山の高さから理解できるため。"}
+    {
+      "topicKey": "equator-zero-latitude",
+      "label": "赤道",
+      "value": "0°",
+      "note": "国名Ecuadorはスペイン語で「赤道」。首都キトの北側を含め、国土を緯度0度線が横切る。",
+      "icon": "map",
+      "interestReason": "国名そのものと地理的位置が直接結びつき、旅の起点で国の位置を一瞬で理解できるため。"
+    },
+    {
+      "topicKey": "galapagos-reptile-endemism",
+      "label": "ガラパゴスの爬虫類固有率",
+      "value": "80%超",
+      "note": "エクアドル観光省は、ガラパゴスの爬虫類の80%超が固有と案内する。海イグアナ、ゾウガメなど孤立した島々で進化した生き物が象徴的。",
+      "icon": "wildlife",
+      "interestReason": "ガラパゴスを単なる島景観ではなく、世界的に特異な進化の現場として見る理由になるため。"
+    },
+    {
+      "topicKey": "chimborazo-elevation-6263m",
+      "label": "チンボラソ標高",
+      "value": "6,263 m",
+      "note": "エクアドル中部に立つ国内最高峰級の火山。赤道近くのアンデスが、海岸低地から6,000m級まで急激な標高差を持つことを示す。",
+      "icon": "landscape",
+      "interestReason": "小さな国土の中で気候と植生が急変する理由を、ひとつの山の高さから理解できるため。"
+    }
   ],
   "tips": [
-    {"topicKey": "high-altitude-acclimatization","title": "キト到着日は標高に慣れる時間を取る","text": "キトは標高約2,850m。到着直後にさらに高い火山へ急がず、水分と休息を取りながら高地へ上がる日程にすると負担を抑えやすい。"},
-    {"topicKey": "galapagos-biosecurity-entry","title": "ガラパゴスは本土旅行と別の入域手順で考える","text": "航空移動に加え、通過管理カードや検疫・バイオセキュリティの手続きがある。料金や必要手続きは変更され得るため、出発前にGalápagos公式案内を確認する。"},
-    {"topicKey": "regional-rain-road-water-levels","title": "雨量と水位で移動条件が変わる","text": "アンデスの山道、アマゾンの水路、太平洋岸では同じ月でも条件が異なる。長距離移動や保護区訪問は、前日に道路・天候・運航情報を確認する。"}
+    {
+      "topicKey": "high-altitude-acclimatization",
+      "title": "キト到着日は標高に慣れる時間を取る",
+      "text": "キトは標高約2,850m。到着直後にさらに高い火山へ急がず、水分と休息を取りながら高地へ上がる日程にすると負担を抑えやすい。"
+    },
+    {
+      "topicKey": "galapagos-biosecurity-entry",
+      "title": "ガラパゴスは本土旅行と別の入域手順で考える",
+      "text": "航空移動に加え、通過管理カードや検疫・バイオセキュリティの手続きがある。料金や必要手続きは変更され得るため、出発前にGalápagos公式案内を確認する。"
+    },
+    {
+      "topicKey": "regional-rain-road-water-levels",
+      "title": "雨量と水位で移動条件が変わる",
+      "text": "アンデスの山道、アマゾンの水路、太平洋岸では同じ月でも条件が異なる。長距離移動や保護区訪問は、前日に道路・天候・運航情報を確認する。"
+    }
   ],
   "nextRoutes": [
-    {"flag": "🇨🇴","countryEn": "COLOMBIA","countryJa": "コロンビア","path": "Quito → Tulcán → Rumichaca → Ipiales","description": "北アンデスをそのまま陸路でコロンビアへつなぐ代表的な経路。国境施設の運用、入国条件、安全情報は渡航直前の公式案内で確認する。","travelerRoute": true,"status": "CHECK_CURRENT_CONDITIONS","statusNote": "国境施設の運用時間・入国条件・安全情報を渡航直前に確認する。"},
-    {"flag": "🇵🇪","countryEn": "PERU","countryJa": "ペルー","path": "Cuenca / Guayaquil → Huaquillas → Tumbes","description": "エクアドル南部・海岸側からペルー北部へ続ける代表的な陸路。夜間移動を含め、利用する国境施設と交通会社の最新運行を事前確認する。","travelerRoute": true,"status": "CHECK_CURRENT_CONDITIONS","statusNote": "国境施設・バス運行・安全情報を渡航直前に確認する。"}
+    {
+      "flag": "🇨🇴",
+      "countryEn": "COLOMBIA",
+      "countryJa": "コロンビア",
+      "path": "Quito → Tulcán → Rumichaca → Ipiales",
+      "description": "北アンデスをそのまま陸路でコロンビアへつなぐ代表的な経路。国境施設の運用、入国条件、安全情報は渡航直前の公式案内で確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設の運用時間・入国条件・安全情報を渡航直前に確認する。"
+    },
+    {
+      "flag": "🇵🇪",
+      "countryEn": "PERU",
+      "countryJa": "ペルー",
+      "path": "Cuenca / Guayaquil → Huaquillas → Tumbes",
+      "description": "エクアドル南部・海岸側からペルー北部へ続ける代表的な陸路。夜間移動を含め、利用する国境施設と交通会社の最新運行を事前確認する。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "国境施設・バス運行・安全情報を渡航直前に確認する。"
+    }
   ],
   "relatedCountries": [
     {
@@ -510,7 +595,12 @@
   ],
   "updatedAt": "2026-10-23",
   "sourcesVerifiedAt": "2026-09-25",
-  "sourceDates": {"population": "2022","religion": "2023","currency": "2000","worldHeritage": "2026"},
+  "sourceDates": {
+    "population": "2022",
+    "religion": "2023",
+    "currency": "2000",
+    "worldHeritage": "2026"
+  },
   "sources": {
     "population": "Instituto Nacional de Estadística y Censos (INEC), Censo Ecuador 2022: población residente 16,938,986.",
     "area": "INEC, ESPAC 2016 materials: territorio nacional 256,370 km².",
@@ -521,11 +611,11 @@
     "unesco": "UNESCO World Heritage Centre: City of Quito and Galápagos Islands, inscriptions in 1978; Ecuador State Party list.",
     "galapagosEndemism": "Ecuador Travel / Ministerio de Turismo: Galápagos page, endemic-species shares; checked 2026-09-25.",
     "chimborazo": "Instituto Geofísico, Escuela Politécnica Nacional (IG-EPN): Chimborazo volcano profile; elevation 6,263 m.",
-    "andes": "Ecuador Travel / Ministerio de Turismo, Andes: highlands, volcanoes and June–September dry season guidance.",
-    "cuyabeno": "Ministerio del Ambiente / Cuyabeno official visitor material and GeoNames/OpenStreetMap cross-check for Laguna Grande.",
-    "food": "Ecuador Travel / Ministerio de Turismo food guides; GAD Municipal de Cuenca, Mercado 10 de Agosto gastronomy references.",
-    "marimba": "UNESCO Intangible Cultural Heritage: Marimba music, traditional chants and dances from the Colombia South Pacific region and Esmeraldas Province of Ecuador; Representative List, 2015.",
-    "mindo": "Ecuador Travel / Ministerio de Turismo, Qué hacer: Mindo cloud-forest birdwatching.",
+    "andes": "Ecuador Ministry of Tourism official Ecuador Travel — Andes: the north–south Avenida de los Volcanes runs through Andean highlands with volcanic peaks, páramo and Andean towns; Chimborazo and Cotopaxi landmarks. https://ecuador.travel/andes/ ; https://onlyin.ecuador.travel/es/andes/",
+    "cuyabeno": "Gobierno Autónomo Descentralizado Municipal del Cantón Cuyabeno — Historia: the canton contains ancestral territories of Secoya, Kichwa, Siona, Shuar and Cofán nationalities. https://cuyabeno.gob.ec/?page_id=807 ; Ecuador Ministry of Tourism — Amazonía: river and canoe-based travel through Amazonian forest. https://ecuador.travel/aventura/",
+    "food": "GAD Municipal de Cuenca, Mercado 10 de Agosto (4 Aug 2026): the historic municipal market brings together fresh produce, traditional cooking and the city's everyday meeting place. https://www.cuenca.gob.ec/index.php/content/el-mercado-10-de-agosto-celebra-72-anos-de-historia-tradicion-y-gastronomia ; GAD Municipal de Cuenca (12 Aug 2025): the market includes dedicated produce and fruit sections. https://www.cuenca.gob.ec/content/con-firma-de-contrato-conmemoran-los-71-anos-de-creacion-del-mercado-10-de-agosto ; Universidad del Azuay, Tarqui agricultural economy (2024): regional maize, beans and produce grown in Azuay parish are sold in Cuenca's Mercado 10 de Agosto. https://dspace.uazuay.edu.ec/bitstream/datos/14408/1/19927.pdf",
+    "marimba": "UNESCO Intangible Cultural Heritage — Marimba music, traditional chants and dances from the Colombian South Pacific region and Esmeraldas Province of Ecuador, Representative List 2015: shared Afro-descendant community tradition. https://ich.unesco.org/en/RL/marimba-music-traditional-chants-and-dances-from-the-colombian-south-pacific-region-01099",
+    "mindo": "Ecuador Ministry of Tourism, Mindo, un tesoro natural (5 Sep 2023): Mindo at 1,250m and Mindo-Nambillo cloud forests are a major bird habitat and birdwatching destination. https://ecuador.travel/mindo-un-tesoro-natural/ ; Ministry of Tourism Ecuador Travel — What to do: Mindo cloud forest birdwatching. https://ecuador.travel/what-to-do/",
     "strawHat": "UNESCO Intangible Cultural Heritage: Traditional weaving of the Ecuadorian toquilla straw hat; Representative List, 2012.",
     "cacao": "Ecuador government / tourism references on cacao Nacional and fine-aroma cacao.",
     "railway": "Ecuador railway historical references for Nariz del Diablo; operating status should be checked before travel.",
@@ -536,6 +626,7 @@
     "heroCoordinates": "OSM/GeoNames: Laguna de Limpiopungo approximately -0.6150,-78.4747.",
     "galapagosWildlife": "Ecuador Travel / Ministerio de Turismo: Punta Espinosa, Fernandina—black lava and hundreds of marine iguanas; Galápagos National Park marine-iguana information.",
     "seasonsTransport": "Ecuador Travel / Ministerio de Turismo regional guides; Galápagos National Park visitor guidance. Regional conditions vary and current transport/entry rules require pre-trip verification.",
-    "nextRoutes": "Established Ecuador–Colombia Rumichaca and Ecuador–Peru Huaquillas overland corridors; operational and safety conditions marked CHECK_CURRENT_CONDITIONS."
+    "nextRoutes": "Established Ecuador–Colombia Rumichaca and Ecuador–Peru Huaquillas overland corridors; operational and safety conditions marked CHECK_CURRENT_CONDITIONS.",
+    "bceDollarizationHistory": "Banco Central del Ecuador, History: 1998–99 banking crisis and freeze; USD dollarization announced 9 January 2000; BCE ceases to issue banknotes except fractional coins. Checked 2026-10-18. https://www.bce.fin.ec/en/central-bank-of-ecuador/history/"
   }
 }

@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": 42.4413,
       "longitude": 19.2633
-    },"labelOffset":{"x":0,"y":16},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": 16
+    },
     "labelPosition": "right"
   },
   "hero": {
@@ -211,7 +215,8 @@
       "points": [
         "ツェティニェはOld Royal Capitalとして位置づけられる",
         "ペトロヴィッチ朝の宮殿や国立博物館群が残る"
-      ]
+      ],
+      "sourceKey": "cetinje"
     },
     {
       "topicKey": "boka-navy-maritime-memory",
@@ -222,7 +227,8 @@
       "points": [
         "Boka Navyは809年創設とされる",
         "2021年にユネスコ無形文化遺産の代表一覧へ登録"
-      ]
+      ],
+      "sourceKey": "bokaNavy"
     },
     {
       "topicKey": "montenegrin-two-scripts",
@@ -231,9 +237,10 @@
       "title": "モンテネグロ語では、ラテン文字とキリル文字がともに使われる",
       "text": "憲法はモンテネグロ語を公用語とし、ラテン文字とキリル文字を同等に扱う。さらにセルビア語、ボスニア語、アルバニア語、クロアチア語も公的使用の対象で、看板や表記からバルカンの言語空間が見える。",
       "points": [
-        "モンテネグロ語が公用語",
+        "モンテネグロ語は公用語であり、ラテン文字とキリル文字の両方が公的に使われる",
         "セルビア語・ボスニア語・アルバニア語・クロアチア語も公的使用"
-      ]
+      ],
+      "sourceKey": "language"
     },
     {
       "topicKey": "katun-seasonal-pastoral-life",
@@ -244,7 +251,8 @@
       "points": [
         "Bjelasicaなど各地の山にカトゥンが残る",
         "高地の牧畜と季節移動の歴史につながる"
-      ]
+      ],
+      "sourceKey": "katun"
     },
     {
       "topicKey": "independence-restored-2006",
@@ -255,18 +263,20 @@
       "points": [
         "独立を問う住民投票は2006年5月21日",
         "独立宣言は2006年6月3日"
-      ]
+      ],
+      "sourceKey": "independence"
     },
     {
-      "topicKey": "multi-religious-multi-ethnic-montenegro",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "title": "正教会が多数派でも、国の文化は一つの宗教だけでは読めない",
-      "text": "2023年国勢調査では正教会系が約71%で最大だが、イスラム教、カトリックも暮らしの中に存在する。湾岸、南部、北部を移動すると、教会や修道院、モスクが異なる歴史層を伝える。",
+      "topicKey": "durmitor-glacial-karst-mountain-ecosystem",
+      "themeEn": "EARTH",
+      "themeJa": "地球の風景",
+      "title": "ドゥルミトルには、氷河の跡と石灰岩の地下水系が重なる",
+      "text": "ディナル・アルプス北部のドゥルミトル山地では、氷河が削った谷や湖と、石灰岩を水が溶かしてつくるカルスト地形が同じ山域に重なる。高山草原の下には鍾乳洞や地下河川があり、老齢のクロマツ林や固有植物を含む多様な生息環境を支えている。峡谷の深さだけでは見えない、山の内部と地表のつながりが残る。",
       "points": [
-        "2023年国勢調査で正教会系71.10%",
-        "政府観光局もモンテネグロをmulti-religious / multi-ethnic countryとして紹介"
-      ]
+        "氷河湖や地下河川、鍾乳洞などの地形が世界自然遺産として評価されている",
+        "クロマツの老齢林や高山草原など、標高差に応じた生態系が共存する"
+      ],
+      "sourceKey": "unescoDurmitor"
     }
   ],
   "travelTrivia": [
@@ -532,7 +542,7 @@
     "religion": "MONSTAT, 2023 Census religion structure: Orthodox 443,394 / 71.10%, Islam 19.99%, Catholic 3.27%",
     "area": "National Tourism Organisation of Montenegro, Facts about Montenegro: 13,812 km²",
     "japanArea": "Geospatial Information Authority of Japan, national land area as of 1 April 2026; used for Montenegro ≈ 3.7% of Japan",
-    "language": "Government of Montenegro, Constitution Article 13: Montenegrin is the official language; Serbian, Bosnian, Albanian and Croatian are in official use; Cyrillic and Latin scripts are equal",
+    "language": "Government of Montenegro (Ministry of Public Administration), clarification of Article 13 of the Constitution: Montenegrin official language, Cyrillic and Latin scripts equal; Serbian, Bosnian, Albanian and Croatian also in official use. https://www.gov.me/clanak/180123--odgovor-ministarke-javne-uprave-suzane-pribilovic-na-poslanicko-pitanje",
     "currency": "European Commission, The euro outside the euro area: Montenegro uses the euro as a de facto domestic currency without an EU monetary agreement",
     "euro": "Government of Montenegro: the euro has been legal tender since January 2002; European Commission: Montenegro uses the euro as a de facto domestic currency without an EU monetary agreement, rechecked 2026-10-08",
     "kotor": "UNESCO World Heritage Centre, Natural and Culturo-Historical Region of Kotor",
@@ -542,10 +552,10 @@
     "prokletije": "National Tourism Organisation of Montenegro, Prokletije National Park: southern Dinaric Alps and high mountain landscape",
     "ostrog": "National Tourism Organisation of Montenegro, Sacred sites: Ostrog Monastery, 17th-century cave churches and pilgrim route",
     "lovcen": "National Tourism Organisation of Montenegro, Lovćen National Park / Old Royal Capital Cetinje",
-    "cetinje": "National Tourism Organisation of Montenegro, The Old Royal Capital of Cetinje: Njegoš Mausoleum and 461 steps",
-    "bokaNavy": "UNESCO Intangible Cultural Heritage / National Tourism Organisation of Montenegro, Boka Navy Kotor, founded in 809 and inscribed in 2021",
-    "katun": "National Tourism Organisation of Montenegro, Life in katuns: mountain pastoral migration and rural traditions",
-    "independence": "Government of Montenegro, referendum 21 May 2006 and Declaration of Independence 3 June 2006",
+    "cetinje": "National Tourism Organisation of Montenegro — The Old Royal Capital of Cetinje: historic seat of Petrović rulers and preserved Biljarda Palace, King Nikola Palace, Cetinje Monastery and national museums. https://www.montenegro.travel/en/unique-montenegro/cities-of-montenegro/the-old-royal-capital-of-cetinje",
+    "bokaNavy": "UNESCO Intangible Cultural Heritage — Cultural Heritage of Boka Navy Kotor, festive representation of memory and cultural identity, inscribed 2021: maritime organization founded in Kotor in 809, still celebrated through maritime rites, music and traditional dance. https://ich.unesco.org/en/RL/cultural-heritage-of-boka-navy-kotor-a-festive-representation-of-a-memory-and-cultural-identity-01727",
+    "katun": "National Tourism Organisation of Montenegro — Life in Katuns: mountain cattle herders’ seasonal settlements and livestock migration, preserving shepherding traditions, dairy production and rural customs. https://www.montenegro.travel/en/explore-montenegro/countryside-life/life-in-katuns",
+    "independence": "Government of Montenegro — official report submitted to international partners: independence restored after referendum on 21 May 2006 and parliamentary declaration on 3 June 2006. https://wapi.gov.me/download/45174d67-1ac4-41eb-b63f-7198ad92e0ca?version=1.0 ; Government of Montenegro — 2006 EU statement acknowledging referendum. https://www.gov.me/en/article/33919--13490",
     "ecologicalState": "National Tourism Organisation of Montenegro, 20 September 1991 ecological-state declaration in Žabljak",
     "tara": "National Tourism Organisation of Montenegro, Facts about Montenegro: Tara Canyon depth 1,333 m",
     "montenegroFacts": "National Tourism Organisation of Montenegro, Facts about Montenegro: area, coastline, old olive tree, Tara canyon, ecological-state declaration",
@@ -555,7 +565,8 @@
     "tasteGeneral": "National Tourism Organisation of Montenegro, Food & Wine / Eat like a local: kačamak, pršut, lake fish and lamb under sač",
     "nextRoutes": "Current cross-border coach corridors toward Dubrovnik and Tirana, plus Srbija Voz/ŽPCG Bar–Belgrade international rail service, checked 2026-09-07.",
     "kalimera": "Government of Montenegro, Ministry of Agriculture, Forestry and Water Management — Kalimera is a fishing net with a raising/lowering mechanism; official coastal regulations describe its wooden demountable structure and preserve its use on the Bojana River as traditional fishing. https://www.gov.me/clanak/ribolovni-alati ; https://wapi.gov.me/download/d50725e8-61dd-44ea-a5af-aedf44f17aeb?version=1.0",
-    "intangibleHeritage": "Government of Montenegro, Administration for the Protection of Cultural Properties — national intangible cultural heritage list includes both Izrada gusala (making gusle) and Guslanje - sviranje i pjevanje uz gusle (playing and singing with gusle), among other living traditions. Published 2025-03-28. https://www.gov.me/clanak/nematerijalna-kulturna-dobara-crne-gore"
+    "intangibleHeritage": "Government of Montenegro, Administration for the Protection of Cultural Properties — national intangible cultural heritage list includes both Izrada gusala (making gusle) and Guslanje - sviranje i pjevanje uz gusle (playing and singing with gusle), among other living traditions. Published 2025-03-28. https://www.gov.me/clanak/nematerijalna-kulturna-dobara-crne-gore",
+    "unescoDurmitor": "UNESCO World Heritage Centre, Durmitor National Park: Dinaric limestone massif, glacial lakes, karst caves, underground streams and old-growth European black pine. https://whc.unesco.org/en/list/100/"
   },
   "nextRoutes": [
     {

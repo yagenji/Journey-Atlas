@@ -14,7 +14,11 @@
     "coordinates": {
       "latitude": -15.79389,
       "longitude": -47.88278
-    },"labelOffset":{"x":0,"y":-16},
+    },
+    "labelOffset": {
+      "x": 0,
+      "y": -16
+    },
     "labelPosition": "left",
     "mapOffset": {
       "x": 0,
@@ -226,9 +230,10 @@
       "title": "リオでは、都市と自然を分けて見ることができない",
       "text": "リオデジャネイロの世界遺産は建物単体ではなく、チジュカの山々からコルコバード、グアナバラ湾、コパカバーナへ続く「山と海の間の文化的景観」として登録されている。都市の輪郭そのものが地形に規定されている。",
       "points": [
-        "コルコバードとコルコバードのキリスト像も世界遺産の構成景観に含まれる",
+        "コルコバードのキリスト像も世界遺産の文化的景観に含まれる",
         "海岸線、森林の山、密集した市街地が短い距離で接する"
-      ]
+      ],
+      "sourceKey": "rio"
     },
     {
       "topicKey": "amazon-meeting-waters",
@@ -238,9 +243,10 @@
       "title": "アマゾンでは、川の色が地理の違いを見せる",
       "text": "マナウス近郊では黒水のネグロ川と土砂を含むソリモンエス川が合流する。水温、流速、密度などが異なるため、二つの水は数kmにわたり境界を保ちながら流れ、巨大河川の性質の違いを目で確認できる。",
       "points": [
-        "ネグロ川は暗色、ソリモンエス川は黄褐色",
-        "船上から二色の境界を横切れる"
-      ]
+        "黒水のネグロ川と土砂を含むソリモンエス川がマナウス近くで合流する",
+        "水温や密度、流速の差が合流地点での水の混ざり方を変える"
+      ],
+      "sourceKey": "encontro"
     },
     {
       "topicKey": "salvador-atlantic-history",
@@ -252,7 +258,8 @@
       "points": [
         "歴史地区は1985年にユネスコ世界遺産登録",
         "ペロウリーニョ周辺には17〜19世紀の都市景観が残る"
-      ]
+      ],
+      "sourceKey": "salvador"
     },
     {
       "topicKey": "brasilia-planned-capital",
@@ -264,19 +271,21 @@
       "points": [
         "1987年にユネスコ世界遺産登録",
         "プラノ・ピロットの軸線と公共建築群が都市の骨格"
-      ]
+      ],
+      "sourceKey": "brasilia"
     },
     {
       "topicKey": "pantanal-flood-pulse",
       "themeEn": "WILDLIFE",
       "themeJa": "野生に会う",
       "icon": "wildlife",
-      "title": "パンタナールでは、水位が旅の景色をつくり替える",
-      "text": "パンタナールは雨季に広く冠水し、乾季には水域が縮む。洪水を受け止めてゆっくり排水する自然のリズムが生態系を支え、季節によってボート中心の景色と、動物が水辺へ集まる景色が入れ替わる。",
+      "title": "パンタナールの生きものは、毎年繰り返す洪水とともに動く",
+      "text": "パンタナールでは雨季の増水が栄養分を運び、魚の繁殖や水鳥の餌場を支える。水が引くと一時的な湖や湿地が生まれ、哺乳類や鳥が水の残る場所へ集まる。水位の上下は眺めの違いではなく、生きものの移動・成長を生む生態系の仕組みになっている。",
       "points": [
-        "ユネスコのパンタナール保全地域は2000年登録",
-        "乾季は一般に野生動物観察を組みやすい"
-      ]
+        "氾濫した水は栄養分を運び、魚と水鳥の生息環境を支える",
+        "増水・減水による湿地の変化が水生生物と陸上動物の移動を左右する"
+      ],
+      "sourceKey": "unescoPantanalFlood"
     },
     {
       "topicKey": "japanese-immigration-brazil",
@@ -288,7 +297,8 @@
       "points": [
         "笠戸丸がサントス港に到着した1908年6月18日は「海外移住の日」の由来になった",
         "サンパウロのリベルダーデ地区では、現在も日系文化とブラジル文化の重なりを街で感じられる"
-      ]
+      ],
+      "sourceKey": "japaneseImmigration"
     }
   ],
   "travelTrivia": [
@@ -604,13 +614,13 @@
     "religion": "IBGE Censo Demográfico 2022, Religiões: preliminary sample results for population age 10+: Roman Catholic 56.7%, Evangelical 26.9%, no religion 9.3%.",
     "currency": "Banco Central do Brasil, Cédulas e moedas: the Brazilian monetary standard is the Real (R$).",
     "worldHeritage": "UNESCO World Heritage Centre, Brazil State Party page, checked 2026-09-26: 26 properties (16 cultural, 9 natural, 1 mixed), including Amazonia Theaters inscribed in 2026.",
-    "rio": "UNESCO World Heritage Centre, Rio de Janeiro: Carioca Landscapes between the Mountain and the Sea; includes Corcovado and Christ the Redeemer in the mountain-to-sea cultural landscape.",
+    "rio": "UNESCO World Heritage Centre, Rio de Janeiro: Carioca Landscapes between the Mountain and the Sea (No. 1100), mountain/urban/sea cultural landscape including Corcovado. https://whc.unesco.org/en/list/1100/",
     "iguacu": "ICMBio Parque Nacional do Iguaçu management and visitor information; UNESCO Iguaçu National Park; Brazilian-side Garganta do Diabo viewpoint coordinate cross-check with OpenStreetMap/GeoNames.",
-    "encontro": "Prefeitura de Manaus tourism information and Wikidata/OpenStreetMap cross-check: Encontro das Águas is the confluence of the Negro and Solimões, with contrasting waters running side by side before mixing.",
+    "encontro": "Prefeitura Municipal de Manaus (city government), Conheça Manaus: the Rio Negro's dark water and Solimões' muddy water meet at the Encontro das Águas and flow alongside each other before mixing. https://www.manaus.am.gov.br/noticia/manaus/serie-conheca-manaus-da-dicas-de-roteiros-naturais-da-cidade/",
     "lencois": "ICMBio Parque Nacional dos Lençóis Maranhenses visitor guidance and official attraction map, checked 2026-09-26, confirming Lagoa Bonita as an official visitor attraction; Lagoa Bonita visitor viewpoint coordinate cross-check with OpenStreetMap-derived mapping (-2.68328,-42.93804).",
-    "salvador": "UNESCO World Heritage Centre, Historic Centre of Salvador de Bahia, inscribed 1985; Pelourinho coordinate cross-check with Wikidata.",
+    "salvador": "UNESCO World Heritage Centre, Historic Centre of Salvador de Bahia (No. 309), inscribed 1985; a port city central to Portuguese colonial administration and Atlantic slavery, with Pelourinho historic streets. https://whc.unesco.org/en/list/309/",
     "pantanal": "UNESCO World Heritage Centre, Pantanal Conservation Area; Brazil Ministry of Tourism seasonal guidance; Porto Jofre coordinate cross-check with OpenStreetMap/GeoNames.",
-    "brasilia": "UNESCO World Heritage Centre, Brasilia; Congresso Nacional coordinate cross-check with OpenStreetMap/GeoNames.",
+    "brasilia": "UNESCO World Heritage Centre, Brasilia (No. 445), urban design by Lucio Costa and architecture by Oscar Niemeyer; inscription 1987. https://whc.unesco.org/en/list/445/",
     "cachoeiraFumaca": "Serviço Geológico do Brasil (SGB) GeoSGB/Geossit, Cachoeira da Fumaça, Palmeiras-BA; coordinate record checked 2026-09-26.",
     "noronha": "ICMBio Fernando de Noronha management plan and visitor information; Morro Dois Irmãos coordinate cross-check with OpenStreetMap.",
     "noronhaTpa": "Administração de Fernando de Noronha official Taxa de Preservação Ambiental page, 2026 rates and rules.",
@@ -621,10 +631,11 @@
     "nextRoutes": "Receita Federal / Polícia Federal Brazil border-control pages; Argentina official Paso Iguazú–Foz de Iguazú page updated 2026; Uruguay Ministerio de Defensa Chuy border page; ANTT 2026 Brazil–Bolivia international passenger route decisions.",
     "sceneCoordinates": "Wikidata/OpenStreetMap/GeoNames/SGB cross-checks: Cristo Redentor -22.95192,-43.21046; Garganta do Diabo -25.69555,-54.43739; Encontro das Águas -3.13667,-59.90472; Lagoa Bonita visitor viewpoint -2.68328,-42.93804; Pelourinho -12.97149,-38.50837; Porto Jofre -17.36444,-56.77347; Congresso Nacional -15.79969,-47.86415; Cachoeira da Fumaça -12.60004,-41.45506; Morro Dois Irmãos -3.8488,-32.4423.",
     "geometry": "Natural Earth Admin-0 WGS84 public-domain Brazil geometry via LonnyGomes/CountryGeoJSONCollection; South America context via sutcliffemax/sutcliffemax.github.io Natural Earth-derived southamerica.geojson commit 9d9d83dce024553e417a98eaacae496ed7a22214.",
-    "japaneseImmigration": "Ministry of Foreign Affairs of Japan, Japan-Brazil relations/basic data (checked 2026-09-26): Japanese migration to Brazil began with the Kasato Maru in 1908; Brazil has the world's largest Nikkei community, estimated at about 2.7 million. MOFA Diplomatic Archives: Kasato Maru carried 781 migrants and arrived at Santos on 18 June 1908. JICA migration-history materials: about 260,000 Japanese migrated to Brazil across the prewar and postwar periods; Liberdade remains a major Japanese-Brazilian cultural district.",
+    "japaneseImmigration": "Ministry of Foreign Affairs of Japan, Diplomatic Archives, Kasato Maru and early migrants: 781 migrants arrived at Santos on 18 June 1908. https://www.mofa.go.jp/mofaj/ms/da/page25_000152.html ; MOFA, Brazil basic data: estimated Nikkei population approximately 2.7 million. https://www.mofa.go.jp/mofaj/area/BRAZIL/data.html ; Consulate-General of Japan in São Paulo, migration history. https://www.sp.br.emb-japan.go.jp/jp/history_jp.htm",
     "capoeira": "UNESCO Intangible Cultural Heritage, Capoeira circle: two players engage in the centre while the surrounding circle sings, claps and plays percussion; the master usually plays a single-string instrument, starts chants and leads timing and rhythm. https://ich.unesco.org/en/RL/roda-of-capoeira-00892",
     "frevo": "UNESCO Intangible Cultural Heritage, Frevo, performing arts of the Carnival of Recife: the Passo dance stems from the skill and agility of capoeira fighters, with improvised leaps to fast urban carnival music. https://ich.unesco.org/en/RL/frevo-performing-arts-of-the-carnival-of-recife-00603",
     "cirio": "UNESCO Intangible Cultural Heritage, Círio de Nazaré in Belém: celebrations begin in August; the main procession occurs on the second Sunday of October and festivities continue for fifteen days afterward. https://ich.unesco.org/en/RL/cirio-de-nazare-the-taper-of-our-lady-of-nazareth-in-the-city-of-belem-00602",
-    "bumbaMeuBoi": "UNESCO Intangible Cultural Heritage, Cultural Complex of Bumba-meu-boi from Maranhão: ritualistic complex combining musical, choreographic, performing and ludic expression, with the ox mediating practitioners' relationship with the sacred. https://ich.unesco.org/en/RL/cultural-complex-of-bumba-meu-boi-from-maranho-01510"
+    "bumbaMeuBoi": "UNESCO Intangible Cultural Heritage, Cultural Complex of Bumba-meu-boi from Maranhão: ritualistic complex combining musical, choreographic, performing and ludic expression, with the ox mediating practitioners' relationship with the sacred. https://ich.unesco.org/en/RL/cultural-complex-of-bumba-meu-boi-from-maranho-01510",
+    "unescoPantanalFlood": "UNESCO World Heritage Centre, Pantanal Conservation Area: seasonal flooding deposits nutrients, supports fish stocks, temporary lakes, fauna movement and critical ecosystems. Checked 2026-10-18. https://whc.unesco.org/en/list/999/"
   }
 }
