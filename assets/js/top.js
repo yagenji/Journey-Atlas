@@ -352,10 +352,26 @@ lensNextButton?.addEventListener('click',()=>scrollLensRail(1));
 lensRail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
 window.addEventListener('resize',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
 
+// LENS mark: the live JOURNEY LENS feed is the source of truth (the registry flag is only the
+// fallback while the feed loads or if it is unreachable), so new LENS countries appear automatically.
+const LENS_MARK='<span class="country-card__lens" title="JOURNEY LENSに旅の記事があります">LENS</span>';
+let lensSlugs=null;
+function hasLens(country){return lensSlugs?lensSlugs.has(country.slug):Boolean(country.journeyLensPublished);}
+function refreshLensMarks(){
+  document.querySelectorAll('.country-card[data-slug]').forEach((card)=>{
+    const country=destinations.find((item)=>item.slug===card.dataset.slug);
+    const body=card.querySelector('.country-card__body');
+    if(!country||!body)return;
+    const mark=body.querySelector('.country-card__lens');
+    if(hasLens(country)&&!mark)body.querySelector('p')?.insertAdjacentHTML('afterend',LENS_MARK);
+    if(!hasLens(country)&&mark)mark.remove();
+  });
+}
 function renderLensRail(registryItems,rssText){
   if(!lensRail)return;
   const registryBySlug=new Map(registryItems.map((item)=>[item.slug,item]));
   const parsedEntries=parseLensFeed(rssText);
+  if(parsedEntries.length){lensSlugs=new Set(parsedEntries.map((entry)=>entry.slug));refreshLensMarks();}
   const entries=orderLensStories(parsedEntries,registryItems).map((entry)=>({
     ...entry,
     country:registryBySlug.get(entry.slug)||null
@@ -403,8 +419,8 @@ function createCard(country,index,compact=false){
   }else if(country.image){art.style.backgroundImage=`url("${country.image}")`;art.classList.add('has-image');}
   art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
   const body=document.createElement('div');body.className='country-card__body';
-  body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${country.journeyLensPublished?'<span class="country-card__lens" title="JOURNEY LENSに旅の記事があります">LENS</span>':''}${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
-  if(country.journeyLensPublished&&card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${country.nameJa}のJOURNEY ATLASを見る（JOURNEY LENSの記事あり）`);
+  body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${hasLens(country)?LENS_MARK:''}${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
+  if(hasLens(country)&&card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${country.nameJa}のJOURNEY ATLASを見る（JOURNEY LENSの記事あり）`);
   card.append(art,body);return card;
 }
 function renderRail(items){if(!rail)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>fragment.append(createCard(country,index)));rail.replaceChildren(fragment);updateDots();}
