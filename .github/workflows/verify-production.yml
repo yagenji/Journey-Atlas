@@ -80,7 +80,7 @@ jobs:
               if match:
                   slugs.add(match.group(1))
               match = re.match(r"assets/images/([^/]+)/", path)
-              if match:
+              if match and match.group(1) != "top":  # assets/images/top/ holds top-page art, not a Country
                   asset_folders.add(match.group(1))
 
           # Asset directory names are not guaranteed to equal canonical Country
