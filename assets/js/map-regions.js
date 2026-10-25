@@ -119,11 +119,20 @@
   function worldPanel() {
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
-    copy.textContent = '地域を選ぶか、− / ＋やホイールで地図を拡大できます。小さな島も、拡大すると実際の形が見えます。';
+    copy.textContent = '地域を選ぶと、その地域の国・地域が一覧で表示されます。地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
     count.textContent = `${dest.length || 202} DESTINATIONS`;
     status.textContent = '';
-    list.className = 'map-country-preview';
-    list.innerHTML = '<div class="map-country-preview__empty"><span class="map-country-preview__marker">⌖</span><div><strong>地域を選択</strong><p>地域を選ぶか、地図を直接拡大してください。</p></div></div>';
+    // World view: the panel lists the regions themselves so it is never an empty dead end.
+    list.className = 'map-country-nav map-world-regions';
+    list.innerHTML = `<div class="map-country-nav__wrap"><div class="map-country-nav__guide"><strong>地域</strong><span>選ぶと地図が寄ります</span></div><div class="map-country-nav__list map-world-regions__list">${regions.map(r => `<button type="button" data-world-region="${r.id}" class="map-country-nav__item map-world-regions__item"><span class="map-country-nav__names"><strong>${r.label}</strong><small>${r.labelEn}</small></span><span class="map-world-regions__count">${countries(r.iso2).length}</span></button>`).join('')}</div></div>`;
+    list.querySelectorAll('[data-world-region]').forEach(b => {
+      const r = region(b.dataset.worldRegion);
+      const on = () => { if (activeR === 'world') focus(r?.iso2); };
+      const off = () => { if (activeR === 'world') focus(); };
+      b.onmouseenter = on; b.onfocus = on;
+      b.onmouseleave = off; b.onblur = off;
+      b.onclick = () => setRegion(b.dataset.worldRegion);
+    });
     renderSub(null);
   }
   function panel(r, s = null, p = null) {
