@@ -116,7 +116,18 @@ fetch('data/theme-taxonomy.json')
   .catch(()=>{});
 
 heroSources=heroFiles;
-heroButtons.forEach((button,index)=>{button.hidden=index>=heroSources.length;});
+{
+  const controls=document.querySelector('.hero-controls');
+  if(controls){
+    controls.replaceChildren(...heroSources.map((_,i)=>{
+      const button=document.createElement('button');
+      button.type='button';button.dataset.hero=String(i);button.setAttribute('aria-label',`ビジュアル${i+1}`);
+      if(i===0)button.classList.add('is-active');
+      return button;
+    }));
+    heroButtons.splice(0,heroButtons.length,...controls.querySelectorAll('[data-hero]'));
+  }
+}
 setHero(0,false);
 applyHeroDerivedArt();
 if(destinations.length){renderRail(destinations);renderGrid(destinations);}
@@ -201,7 +212,8 @@ Promise.all([
   .then(([core,rssText])=>renderLensRail(core.destinations||[],rssText))
   .catch((error)=>{
     console.warn('[JOURNEY ATLAS] JOURNEY LENS rail could not be loaded.',error);
-    if(lensRail) lensRail.innerHTML='<p class="lens-rail__error">JOURNEY LENSを読み込めませんでした。</p>';
+    document.querySelector('#lens-world')?.classList.add('is-unavailable');
+    if(lensRail) lensRail.hidden=true;
   });
 
 
@@ -578,3 +590,20 @@ document.addEventListener('click',(event)=>{
   if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';
   renderGrid(filtered);
 });
+
+// Mobile header menu (the nav links are collapsed behind a button on narrow screens).
+(()=>{
+  const toggle=document.querySelector('.top-menu-toggle');
+  const nav=document.querySelector('#top-nav');
+  const header=document.querySelector('.top-header');
+  if(!toggle||!nav||!header)return;
+  const setOpen=(open)=>{
+    header.classList.toggle('is-menu-open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+  };
+  toggle.addEventListener('click',()=>setOpen(toggle.getAttribute('aria-expanded')!=='true'));
+  nav.addEventListener('click',(event)=>{if(event.target.closest('a'))setOpen(false);});
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&header.classList.contains('is-menu-open')){setOpen(false);toggle.focus();}});
+  document.addEventListener('click',(event)=>{if(!header.contains(event.target))setOpen(false);});
+  window.matchMedia('(min-width:761px)').addEventListener?.('change',(e)=>{if(e.matches)setOpen(false);});
+})();
