@@ -72,7 +72,6 @@ const heroFiles = [
   'assets/images/top/hero-set-4.webp',
   'assets/images/top/hero-set-5.webp'
 ];
-const featuredOrder = ['iceland','antarctica','turkiye','italy','maldives','peru','kenya'];
 const featuredArt = {
   antarctica:{x:'0%',y:'0%'},
   turkiye:{x:'50%',y:'0%'},
@@ -381,14 +380,9 @@ function renderLensRail(registryItems,rssText){
   window.requestAnimationFrame(updateLensControls);
 }
 
+// 国から探す: plain A–Z by English name (accents folded, e.g. TÜRKIYE sorts as TURKIYE).
 function sortForDisplay(items){
-  const rank=new Map(featuredOrder.map((slug,index)=>[slug,index]));
-  return [...items].sort((a,b)=>{
-    const ar=rank.has(a.slug)?rank.get(a.slug):999;
-    const br=rank.has(b.slug)?rank.get(b.slug):999;
-    if(ar!==br) return ar-br;
-    return a.nameEn.localeCompare(b.nameEn,'en');
-  });
+  return [...items].sort((a,b)=>a.nameEn.localeCompare(b.nameEn,'en',{sensitivity:'base'}));
 }
 function hueFor(country,index){
   const code=[...country.nameEn].reduce((sum,char)=>sum+char.charCodeAt(0),0);
@@ -423,9 +417,9 @@ function themeLabel(theme){
 function getThemeItems(theme=activeTheme){
   if(!theme)return [];
   const slugs=themeSets[theme]||[];
-  return slugs
+  return sortForDisplay(slugs
     .map((slug)=>destinations.find((country)=>country.slug===slug))
-    .filter((country)=>country?.atlasPublished===true);
+    .filter((country)=>country?.atlasPublished===true));
 }
 function syncThemeSelectionUI(){
   document.querySelectorAll('.theme-icons button[data-theme]').forEach((button)=>{
