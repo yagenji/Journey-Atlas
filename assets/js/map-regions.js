@@ -14,6 +14,9 @@
   const status = q('#map-country-status');
   const head = q('.map-heading p');
 
+  // Touch screens: no hover/wheel, and one-finger drag scrolls the page, so describe the controls that actually work.
+  const TOUCH = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
+  const HOW = TOUCH ? '地図は ＋ / − で拡大縮小できます。' : '地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
   const NS = 'http://www.w3.org/2000/svg';
   const WORLD = [0, 0, 1000, 507.209];
   const RATIO = WORLD[3] / WORLD[2];
@@ -119,7 +122,7 @@
   function worldPanel() {
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
-    copy.textContent = '地域を選ぶと、その地域の国・地域が一覧で表示されます。地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
+    copy.textContent = `地域を選ぶと、その地域の国・地域が一覧で表示されます。${HOW}`;
     count.textContent = `${dest.length || 202} DESTINATIONS`;
     status.textContent = '';
     // World view: the panel lists the regions themselves so it is never an empty dead end.
@@ -139,7 +142,7 @@
     const codes = s ? s.iso2 : r.iso2;
     kicker.textContent = s ? `${r.labelEn} / ${s.labelEn}` : r.labelEn;
     title.textContent = s ? s.label : r.label;
-    copy.textContent = '地図は − / ＋・ホイール・ドラッグで自由に操作できます。小さな国や島は、さらに拡大すると国土そのものが見えます。';
+    copy.textContent = `${HOW}小さな国や島は、さらに拡大すると国土そのものが見えます。`;
     count.textContent = `${countries(codes).length} DESTINATIONS`;
     status.textContent = p ? `${p.nameJa}を選択中` : '';
     right(codes, p);
@@ -559,7 +562,7 @@
     wrapDateline();
     tip = document.createElement('div'); tip.className = 'map-tooltip'; tip.hidden = true;
     pin = document.createElement('span'); pin.className = 'map-selection-pin'; pin.textContent = '📍'; pin.hidden = true;
-    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
+    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = TOUCH ? '国をタップでページへ ・ ＋ / − で拡大縮小' : '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
     wrap.append(tip, pin, h);
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }

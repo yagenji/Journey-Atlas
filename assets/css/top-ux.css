@@ -1,0 +1,174 @@
+/* =========================================================================
+   Top page UI/UX pass (2026-10-25)
+   Loaded last on index.html only. Fixes: mobile overflow, mobile menu,
+   readable type floor, tap targets, compact entry cards, theme cards,
+   hero arrows/dots, LENS fallback.
+   ========================================================================= */
+
+/* ---------- 1. Mobile horizontal overflow ----------
+   Grid items default to min-width:auto, so the map's nowrap tab row pushed
+   #map / #themes wider than the screen. */
+.explore-detail>*{min-width:0}
+
+/* Base rules point at two deleted placeholder SVGs (404); the real art is set by top.js. */
+.explore-card--country .explore-card__art,
+.explore-card--theme .explore-card__art{background-image:none}
+
+/* ---------- 2. Mobile header menu ---------- */
+.top-menu-toggle{display:none}
+@media(max-width:760px){
+  .top-header.shell{position:fixed}
+  .top-menu-toggle{
+    display:inline-flex;align-items:center;gap:8px;
+    min-height:44px;padding:0 14px;margin-left:auto;
+    border:1px solid rgba(23,59,93,.16);border-radius:999px;
+    background:#fffdf8;color:#173b5d;
+    font:700 13px/1 var(--ja-ui,sans-serif);letter-spacing:.04em;white-space:nowrap;flex:0 0 auto;cursor:pointer;
+  }
+  .top-menu-toggle__icon,
+  .top-menu-toggle__icon::before,
+  .top-menu-toggle__icon::after{display:block;width:16px;height:1.6px;border-radius:2px;background:currentColor;transition:transform .18s ease,opacity .18s ease}
+  .top-menu-toggle__icon{position:relative}
+  .top-menu-toggle__icon::before,.top-menu-toggle__icon::after{content:'';position:absolute;left:0}
+  .top-menu-toggle__icon::before{top:-5px}
+  .top-menu-toggle__icon::after{top:5px}
+  .top-header.is-menu-open .top-menu-toggle__icon{background:transparent}
+  .top-header.is-menu-open .top-menu-toggle__icon::before{transform:translateY(5px) rotate(45deg)}
+  .top-header.is-menu-open .top-menu-toggle__icon::after{transform:translateY(-5px) rotate(-45deg)}
+  .top-menu-toggle:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+  @media(max-width:420px){
+    /* Keep the wordmark intact on small phones: icon-only button, label kept for screen readers. */
+    .top-menu-toggle{width:44px;padding:0;justify-content:center}
+    .top-menu-toggle__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  }
+
+  .top-header.shell #top-nav{display:none!important}
+  .top-header.shell.is-menu-open #top-nav{
+    display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;
+    position:absolute!important;top:calc(100% - 4px)!important;left:12px!important;right:12px!important;
+    padding:6px!important;border:1px solid rgba(23,59,93,.12)!important;border-radius:14px!important;
+    background:#fffdf8!important;box-shadow:0 14px 34px rgba(23,59,93,.14)!important;
+  }
+  .top-header.shell.is-menu-open #top-nav a{
+    display:block!important;padding:15px 14px!important;border-radius:9px;
+    font-size:15px!important;letter-spacing:.03em!important;color:#173b5d;
+  }
+  .top-header.shell.is-menu-open #top-nav a+a{border-top:1px solid rgba(23,59,93,.07)}
+  .top-header.shell.is-menu-open #top-nav a:active{background:rgba(23,59,93,.06)}
+}
+@media(prefers-reduced-motion:reduce){
+  .top-menu-toggle__icon,.top-menu-toggle__icon::before,.top-menu-toggle__icon::after{transition:none}
+}
+
+/* ---------- 3. Readable type floor ----------
+   Small English caps labels ≥10.5px, secondary text ≥11.5px,
+   descriptions ≥13px, list names ≥12.5px. */
+.top-header .brand-block small{font-size:11px!important}
+.section-kicker,
+.explore-card__kicker,
+.map-region-kicker,
+.map-explorer .map-heading::before{font-size:10.5px!important;letter-spacing:.16em}
+.countries .section-head p,
+.detail-heading p,
+.lens-world .section-head p,
+.explore-card__copy p{font-size:13px!important;line-height:1.7}
+.about-note__content p:not(.about-note__lead){font-size:14px!important;line-height:1.9}
+.about-note__link,
+.lens-world .section-link,
+.all-countries-toggle,
+.atlas-footer__nav a,
+.atlas-footer__copyright{font-size:12.5px!important}
+.country-card__body p{font-size:12px}
+#country-count,
+.map-region-count,
+.theme-region-tabs button span,
+.map-world-regions__count{font-size:11px!important}
+#theme-results-meta{font-size:11.5px}
+#theme-results-clear{font-size:12px}
+.map-region-panel>p{font-size:12.5px;line-height:1.7}
+.map-hint{font-size:11.5px!important}
+.map-country-nav__guide strong{font-size:12.5px}
+.map-country-nav__guide span{font-size:11px}
+.map-country-nav__names strong{font-size:13px}
+.map-country-nav__names small{font-size:10px;letter-spacing:.06em}
+.map-region-tabs button{font-size:12.5px}
+.map-subregion-tabs button{font-size:12px}
+.map-subregion-tabs__guide{font-size:11px}
+.theme-region-tabs button{font-size:12.5px}
+
+/* ---------- 4. Tap targets ---------- */
+/* Hero dots: 8px dot, 28px hit area */
+.hero-controls{gap:0!important}
+.hero-controls button{
+  width:28px!important;height:28px!important;padding:0!important;border:0!important;
+  background:radial-gradient(circle,#c9ccd1 0 4px,transparent 4.5px)!important;border-radius:50%;cursor:pointer;
+}
+.hero-controls button.is-active{background:radial-gradient(circle,#173b5d 0 4.5px,transparent 5px)!important}
+.hero-controls button:focus-visible{outline:2px solid #173b5d;outline-offset:-4px}
+/* A–Z (now inside the "all countries" panel) */
+.all-countries-panel .alphabet{justify-content:flex-start;gap:4px;padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid rgba(23,59,93,.08)}
+.all-countries-panel .alphabet #alphabet-buttons{display:contents}
+.all-countries-panel .alphabet button{
+  min-width:34px;min-height:34px;padding:0 6px;border-radius:8px;
+  font-size:13px;font-weight:600;color:#25415f;cursor:pointer;
+}
+.all-countries-panel .alphabet button:hover{background:rgba(23,59,93,.06)}
+.all-countries-panel .alphabet button.is-active{background:#234866;color:#fff;text-decoration:none}
+.all-countries-panel .alphabet button:focus-visible{outline:2px solid #173b5d;outline-offset:1px}
+@media(max-width:760px){
+  .all-countries-panel .alphabet button{min-width:40px;min-height:40px}
+}
+
+/* ---------- 5. Compact entry cards ---------- */
+.explore{gap:14px}
+.explore-card__art{height:84px!important}
+.explore-card__copy{min-height:0!important;padding:12px 16px!important}
+.explore-card__copy h2{font-size:16px}
+@media(max-width:760px){
+  .explore{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:6px 0 22px!important}
+  .explore-card{display:block!important;border-radius:12px!important}
+  .explore-card__art{height:58px!important;min-height:0!important}
+  .explore-card__copy{display:block!important;padding:9px 8px 10px!important;text-align:center}
+  .explore-card__kicker,.explore-card__copy p,.explore-card__copy>b{display:none!important}
+  .explore-card__copy h2{margin:0;font-size:13px!important;line-height:1.35;white-space:nowrap}
+}
+
+/* ---------- 6. Theme cards ---------- */
+.theme-icons button{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.theme-icons small{max-width:none;font-size:11.5px;line-height:1.55;text-wrap:balance;word-break:auto-phrase}
+.theme-icons b{font-size:13.5px}
+@media(max-width:1180px) and (min-width:761px){
+  .theme-icons small{font-size:11px}
+}
+@media(max-width:760px){
+  /* One compact row per theme: art, then title and one-line description. */
+  .theme-panel .theme-icons{grid-template-columns:1fr;gap:8px}
+  .theme-icons button{
+    display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;
+    column-gap:14px;row-gap:3px;align-items:center;
+    min-height:0!important;padding:10px 14px!important;text-align:left;border-radius:12px;
+  }
+  .theme-art{grid-row:1 / span 2;width:52px!important;height:56px!important;margin:0!important}
+  .theme-icons b{margin:0;font-size:14px;align-self:end}
+  .theme-icons small{margin:0;font-size:12px;line-height:1.45;align-self:start;text-wrap:wrap;word-break:normal}
+}
+
+/* ---------- 7. Hero arrows sit on the image, not in the gutter ---------- */
+.hero-arrow--prev{left:14px!important}
+.hero-arrow--next{right:14px!important}
+.hero-arrow{opacity:.9}
+.hero-arrow:hover{opacity:1}
+
+/* ---------- 8. LENS unavailable: keep the heading and link, drop the empty rail ---------- */
+.lens-world.is-unavailable .lens-rail-tools,
+.lens-world.is-unavailable .lens-rail{display:none!important}
+
+/* ---------- 9. Tablet (761–1050px) ----------
+   Header links stay on one line; the hero stacks so the visual is not squeezed to a thumbnail. */
+@media(max-width:1050px) and (min-width:761px){
+  .top-header nav,.top-header #top-nav{gap:18px!important}
+  .top-header nav a{white-space:nowrap}
+  .top-hero{display:block!important;min-height:0!important;padding:18px 0 10px!important}
+  .top-hero .hero-copy{padding:10px 0 22px}
+  .top-hero .hero-visual{width:100%}
+}
