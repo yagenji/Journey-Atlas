@@ -96,7 +96,7 @@ jobs:
                   content_slugs.add(match.group(1))
                   continue
               match = re.match(r"assets/images/([^/]+)/(.+)", path)
-              if match:
+              if match and match.group(1) != "top":  # assets/images/top/ holds top-page art, not a Country
                   folder, relative = match.groups()
                   if re.fullmatch(r"map-[^/]+\.svg", relative):
                       map_asset_folders.add(folder)

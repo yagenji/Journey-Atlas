@@ -34,7 +34,8 @@ def main() -> int:
     # domain is connected, set JOURNEY_ATLAS_SITE_URL=https://atlas.yagenji.com/.
     env.setdefault("JOURNEY_ATLAS_SITE_URL", default_site_url())
 
-    run(sys.executable, "scripts/validate_lens_slugs.py", env=env)
+    # Shipped registry follows the live JOURNEY LENS feed (journeyLensPublished is synced, not hand-kept).
+    run(sys.executable, "scripts/validate_lens_slugs.py", "--sync-flags", env=env)
     run(sys.executable, "scripts/validate_country.py", "--reviewable", env=env)
     run(sys.executable, "scripts/validate_country.py", "--published", env=env)
     run(sys.executable, "scripts/build_site.py", env=env)

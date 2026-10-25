@@ -19,7 +19,7 @@ const themeRegionTabs = document.querySelector('#theme-region-tabs');
 let themeRegions = [];
 let themeRegionByIso = new Map();
 let activeThemeRegion = 'all';
-fetch('data/region-taxonomy.json')
+const themeRegionPromise=fetch('data/region-taxonomy.json')
   .then((response)=>{if(!response.ok)throw new Error('Region taxonomy not found');return response.json();})
   .then(({regions=[]})=>{
     themeRegions=regions.map(({id,label})=>({id,label}));
@@ -89,7 +89,7 @@ const featuredArt = {
   });
 }
 
-fetch('data/theme-taxonomy.json')
+const themeTaxonomyPromise=fetch('data/theme-taxonomy.json')
   .then((response)=>{if(!response.ok) throw new Error('Theme taxonomy not found');return response.json();})
   .then(({themes=[]})=>{
     if(themes.length){
@@ -352,10 +352,26 @@ lensNextButton?.addEventListener('click',()=>scrollLensRail(1));
 lensRail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
 window.addEventListener('resize',()=>window.requestAnimationFrame(updateLensControls),{passive:true});
 
+// LENS mark: the live JOURNEY LENS feed is the source of truth (the registry flag is only the
+// fallback while the feed loads or if it is unreachable), so new LENS countries appear automatically.
+const LENS_MARK='<span class="country-card__lens" title="JOURNEY LENSに旅の記事があります">LENS</span>';
+let lensSlugs=null;
+function hasLens(country){return lensSlugs?lensSlugs.has(country.slug):Boolean(country.journeyLensPublished);}
+function refreshLensMarks(){
+  document.querySelectorAll('.country-card[data-slug]').forEach((card)=>{
+    const country=destinations.find((item)=>item.slug===card.dataset.slug);
+    const body=card.querySelector('.country-card__body');
+    if(!country||!body)return;
+    const mark=body.querySelector('.country-card__lens');
+    if(hasLens(country)&&!mark)body.querySelector('p')?.insertAdjacentHTML('afterend',LENS_MARK);
+    if(!hasLens(country)&&mark)mark.remove();
+  });
+}
 function renderLensRail(registryItems,rssText){
   if(!lensRail)return;
   const registryBySlug=new Map(registryItems.map((item)=>[item.slug,item]));
   const parsedEntries=parseLensFeed(rssText);
+  if(parsedEntries.length){lensSlugs=new Set(parsedEntries.map((entry)=>entry.slug));refreshLensMarks();}
   const entries=orderLensStories(parsedEntries,registryItems).map((entry)=>({
     ...entry,
     country:registryBySlug.get(entry.slug)||null
@@ -403,11 +419,12 @@ function createCard(country,index,compact=false){
   }else if(country.image){art.style.backgroundImage=`url("${country.image}")`;art.classList.add('has-image');}
   art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
   const body=document.createElement('div');body.className='country-card__body';
-  body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
+  body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${hasLens(country)?LENS_MARK:''}${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
+  if(hasLens(country)&&card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${country.nameJa}のJOURNEY ATLASを見る（JOURNEY LENSの記事あり）`);
   card.append(art,body);return card;
 }
 function renderRail(items){if(!rail)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>fragment.append(createCard(country,index)));rail.replaceChildren(fragment);updateDots();}
-function renderGrid(items){if(!grid)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>fragment.append(createCard(country,index,true)));grid.replaceChildren(fragment);if(empty)empty.hidden=items.length!==0;}
+function renderGrid(items,captions=null){if(!grid)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>{const card=createCard(country,index,true);const note=captions?.get(country.slug);if(note){const small=document.createElement('small');small.className='country-card__match';small.textContent=note;card.querySelector('.country-card__body')?.append(small);}fragment.append(card);});grid.replaceChildren(fragment);if(empty)empty.hidden=items.length!==0;}
 function scrollRail(direction){if(!rail)return;rail.scrollBy({left:Math.max(460,rail.clientWidth*.82)*direction,behavior:'smooth'});}
 function updateDots(){if(!rail||dots.length===0)return;const max=rail.scrollWidth-rail.clientWidth;const ratio=max>0?rail.scrollLeft/max:0;const index=Math.min(dots.length-1,Math.round(ratio*(dots.length-1)));dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===index));}
 function themeLabel(theme){
@@ -455,12 +472,15 @@ function renderThemeResults(){
     :baseItems;
 
   const fragment=document.createDocumentFragment();
-  items.forEach((country,index)=>{
+  const shown=items.slice(0,themeLimit);
+  shown.forEach((country,index)=>{
     const card=createCard(country,index,true);
     card.setAttribute('role','listitem');
     fragment.append(card);
   });
   themeResultsGrid.replaceChildren(fragment);
+  renderThemeMore(items.length-shown.length);
+  saveTopState();
 
   const label=themeLabel(activeTheme);
   if(themeResultsTitle)themeResultsTitle.textContent=label;
@@ -494,9 +514,32 @@ themeRegionTabs?.addEventListener('click',(event)=>{
   const button=event.target.closest('[data-theme-region]');
   if(!button)return;
   activeThemeRegion=button.dataset.themeRegion;
+  themeLimit=THEME_PAGE;
   renderThemeResults();
 });
+// Long theme lists (up to ~140) start with one screenful; the rest is one tap away.
+const THEME_PAGE=24;
+let themeLimit=THEME_PAGE;
+let themeMore=null;
+function renderThemeMore(remaining){
+  if(!themeResultsGrid)return;
+  if(!themeMore){
+    themeMore=document.createElement('button');
+    themeMore.type='button';
+    themeMore.className='theme-results__more';
+    themeMore.addEventListener('click',()=>{
+      const before=themeResultsGrid.children.length;
+      themeLimit+=THEME_PAGE*2;
+      renderThemeResults();
+      themeResultsGrid.children[before]?.focus({preventScroll:true});
+    });
+    themeResultsGrid.after(themeMore);
+  }
+  themeMore.hidden=remaining<=0;
+  themeMore.textContent=`もっと見る（残り${remaining}件）`;
+}
 function clearThemeResults(){
+  themeLimit=THEME_PAGE;
   activeThemeRegion='all';
   activeTheme=null;
   renderThemeResults();
@@ -518,13 +561,14 @@ function focusCountry(slug){
   if(searchInput)searchInput.value=country.nameJa;
   renderGrid([country]);
 }
-function showTheme(theme){
+function showTheme(theme,{scroll=true}={}){
   activeTheme=theme;
+  themeLimit=THEME_PAGE;
   if(themeResultsSearch)themeResultsSearch.value='';
   renderThemeResults();
   // On narrow screens the results render far below the eight theme buttons, so a tap looked
   // like nothing happened. Bring the selected theme's results into view.
-  if(themeResults&&!themeResults.hidden){
+  if(scroll&&themeResults&&!themeResults.hidden){
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     themeResults.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   }
@@ -542,13 +586,50 @@ function normalizeSearch(value){
     .replace(/[\u3041-\u3096]/g,(ch)=>String.fromCharCode(ch.charCodeAt(0)+0x60))
     .replace(/[\s・&'’.\-]/g,'');
 }
+// Keyword search: country names first, then the names of the eight scenes, then scene
+// descriptions and season notes (e.g. 「オーロラ」「フィヨルド」「紅葉」). The scene index is
+// generated from the Country data at build time and loaded on first use.
+let sceneIndex=null,sceneIndexPromise=null;
+function loadSceneIndex(){
+  if(!sceneIndexPromise){
+    sceneIndexPromise=fetch('data/top-search-index.json')
+      .then((response)=>{if(!response.ok)throw new Error('Search index not found');return response.json();})
+      .then(({countries={}})=>{
+        sceneIndex=new Map(Object.entries(countries).map(([slug,row])=>[slug,{
+          scenes:(row.s||[]).map(([name,local,text])=>({name,key:normalizeSearch(`${name} ${local}`),text:normalizeSearch(text)})),
+          seasons:(row.m||[]).map(([months,text])=>({months,text,key:normalizeSearch(text)}))
+        }]));
+        if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
+      })
+      .catch((error)=>{console.warn('[JOURNEY ATLAS] Scene search unavailable.',error);});
+  }
+  return sceneIndexPromise;
+}
+searchInput?.addEventListener('focus',loadSceneIndex,{once:true});
+let searchCaptions=new Map();
 function searchCountries(){
   const query=normalizeSearch(searchInput?.value);
+  searchCaptions=new Map();
   if(!query)return destinations;
-  const starts=(country)=>[country.nameJa,country.nameEn].some((name)=>normalizeSearch(name).startsWith(query));
-  return destinations
-    .filter((country)=>normalizeSearch(`${country.nameEn} ${country.nameJa} ${country.slug}`).includes(query))
-    .sort((a,b)=>Number(starts(b))-Number(starts(a)));
+  const scored=[];
+  destinations.forEach((country)=>{
+    const names=[country.nameJa,country.nameEn].map(normalizeSearch);
+    if(names.some((name)=>name.startsWith(query))){scored.push([0,country]);return;}
+    if(normalizeSearch(`${country.nameEn} ${country.nameJa} ${country.slug}`).includes(query)){scored.push([1,country]);return;}
+    const row=query.length>=2&&sceneIndex?.get(country.slug);
+    if(!row)return;
+    const byName=row.scenes.find((scene)=>scene.key.includes(query));
+    if(byName){scored.push([2,country]);searchCaptions.set(country.slug,`景色：${byName.name}`);return;}
+    const byText=row.scenes.find((scene)=>scene.text.includes(query));
+    if(byText){scored.push([3,country]);searchCaptions.set(country.slug,`景色：${byText.name}`);return;}
+    const bySeason=row.seasons.find((season)=>season.key.includes(query));
+    if(bySeason){scored.push([4,country]);searchCaptions.set(country.slug,`季節：${bySeason.months}`);}
+  });
+  // A country-name hit (タイ → Thailand) wins outright; scene/season matches are for words
+  // that are not country names (オーロラ, フィヨルド, 紅葉), so they would only add noise here.
+  const named=scored.filter(([rank])=>rank<=1);
+  if(named.length){searchCaptions=new Map();return named.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);}
+  return scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);
 }
 searchInput?.addEventListener('input',()=>{
   const wasHidden=Boolean(allPanel?.hidden);
@@ -558,8 +639,9 @@ searchInput?.addEventListener('input',()=>{
   }
   alphabetButtons().forEach((item)=>item.classList.toggle('is-active',item.dataset.letter==='all'));
   document.querySelector('#countries')?.classList.toggle('is-searching',Boolean(searchInput.value.trim()));
+  if(searchInput.value.trim())loadSceneIndex();
   const items=searchCountries();
-  renderGrid(items);
+  renderGrid(items,searchCaptions);
   if(allTitle)allTitle.textContent=searchInput.value.trim()?`「${searchInput.value.trim()}」の検索結果 ${items.length}件`:'すべての国・地域';
 });
 searchInput?.addEventListener('keydown',(event)=>{
@@ -569,7 +651,7 @@ searchInput?.addEventListener('keydown',(event)=>{
   if(items.length===1&&items[0].href){location.href=items[0].href;return;}
   allPanel?.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
-themeResultsSearch?.addEventListener('input',renderThemeResults);
+themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
 wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
@@ -601,3 +683,56 @@ document.addEventListener('click',(event)=>{
   document.addEventListener('click',(event)=>{if(!header.contains(event.target))setOpen(false);});
   window.matchMedia('(min-width:761px)').addEventListener?.('change',(e)=>{if(e.matches)setOpen(false);});
 })();
+
+
+// ---------------------------------------------------------------------------
+// Remember the selection in the URL (?theme=sea&tregion=asia&q=タイ) so that
+// coming back from a Country page — or opening a shared link — shows the same list.
+// The fragment (#map, #themes …) is left untouched.
+// ---------------------------------------------------------------------------
+let restoringTopState=true;
+const SCROLL_KEY='journey-atlas:top-scroll';
+function saveTopState(){
+  if(restoringTopState)return;
+  const url=new URL(location.href);
+  const set=(key,value)=>value?url.searchParams.set(key,value):url.searchParams.delete(key);
+  set('theme',activeTheme||'');
+  set('tregion',activeTheme&&activeThemeRegion!=='all'?activeThemeRegion:'');
+  set('q',searchInput?.value.trim()||'');
+  if(url.href!==location.href)history.replaceState(history.state,'',url);
+}
+searchInput?.addEventListener('input',saveTopState);
+try{history.scrollRestoration='manual';}catch{}
+window.addEventListener('pagehide',()=>{
+  try{sessionStorage.setItem(SCROLL_KEY,JSON.stringify({url:location.pathname+location.search,y:window.scrollY,limit:themeLimit}));}catch{}
+});
+Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionPromise]).then(()=>{
+  const params=new URLSearchParams(location.search);
+  const nav=performance.getEntriesByType?.('navigation')?.[0]?.type;
+  let saved=null;
+  try{saved=JSON.parse(sessionStorage.getItem(SCROLL_KEY)||'null');}catch{}
+  const returning=(nav==='back_forward'||nav==='reload')&&saved&&saved.url===location.pathname+location.search;
+  const theme=params.get('theme');
+  if(theme&&themeSets[theme]){
+    activeTheme=theme;
+    activeThemeRegion=params.get('tregion')||'all';
+    themeLimit=returning&&saved.limit?saved.limit:THEME_PAGE;
+    renderThemeResults();
+  }
+  const q=params.get('q');
+  if(q&&searchInput){searchInput.value=q;searchInput.dispatchEvent(new Event('input'));}
+  restoringTopState=false;
+  if(returning)requestAnimationFrame(()=>window.scrollTo(0,saved.y));
+  else if(!location.hash&&(theme||q))(theme?themeResults:document.querySelector('#countries'))?.scrollIntoView({block:'start'});
+});
+
+
+// "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.
+document.querySelector('#random-country')?.addEventListener('click',()=>{
+  const visited=(slug)=>{try{return localStorage.getItem(`journey-atlas:visited:${slug}`)==='true';}catch{return false;}};
+  const open=destinations.filter((country)=>country.atlasPublished&&country.href);
+  const pool=open.filter((country)=>!visited(country.slug));
+  const list=pool.length?pool:open;
+  if(!list.length)return;
+  location.href=list[Math.floor(Math.random()*list.length)].href;
+});
