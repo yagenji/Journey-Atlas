@@ -16,7 +16,7 @@
 
   // Touch screens: no hover/wheel, and one-finger drag scrolls the page, so describe the controls that actually work.
   const TOUCH = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
-  const HOW = TOUCH ? '地図は ＋ / − で拡大縮小できます。' : '地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
+  const HOW = TOUCH ? '地図は2本指で移動・拡大できます（＋ / − でも拡大縮小）。' : '地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
   const NS = 'http://www.w3.org/2000/svg';
   const WORLD = [0, 0, 1000, 507.209];
   const RATIO = WORLD[3] / WORLD[2];
@@ -52,6 +52,7 @@
   let groups = new Map(), wrapGroups = new Map(), nav = new Map();
   let svg, tip, pin, subbar;
   let activeR = 'world', activeS = null, selected = null, anim = null, drag = null;
+  let restoring = true;
 
   function S(t, a = {}) {
     const n = document.createElementNS(NS, t);
@@ -275,13 +276,23 @@
     panel(r, s, null);
     animate(currentOverview(), 280);
   }
+  // Keep the map selection in the URL (?map=asia&sub=…) so Back from a Country page returns here.
+  function remember() {
+    if (restoring) return;
+    const url = new URL(location.href);
+    const set = (k, v) => v ? url.searchParams.set(k, v) : url.searchParams.delete(k);
+    set('map', mine ? 'mine' : (activeR === 'world' ? '' : activeR));
+    set('sub', mine ? '' : (activeS || ''));
+    if (url.href !== location.href) history.replaceState(history.state, '', url);
+  }
   function setRegion(id, motion = true) {
+    if (mine) leaveMine();
     activeR = id; activeS = null;
     root.dataset.activeRegion = id;
     delete root.dataset.activeSubregion;
     clear(); setTabs(id);
     if (id === 'world') {
-      focus(); motion ? animate(WORLD) : apply(WORLD); worldPanel(); return;
+      focus(); motion ? animate(WORLD) : apply(WORLD); worldPanel(); remember(); return;
     }
     const r = region(id);
     if (!r) return;
@@ -289,6 +300,7 @@
     const v = regionOverview(id);
     motion ? animate(v) : apply(v);
     panel(r);
+    remember();
   }
   function setSub(id) {
     const s = subs.get(id);
@@ -299,6 +311,74 @@
     clear(); setTabs(activeR); focus(s.iso2);
     panel(region(activeR), s);
     animate(subOverview(id), 420);
+    remember();
+  }
+
+  // ---------- わたしの地図: visited / wished countries, stored in this browser only ----------
+  let mine = false, mineBtn = null;
+  const VKEY = slug => `journey-atlas:visited:${slug}`;
+  const WKEY = slug => `journey-atlas:wish:${slug}`;
+  const flag = key => { try { return localStorage.getItem(key) === 'true'; } catch { return false; } };
+  const isVisited = c => flag(VKEY(c.slug));
+  const isWished = c => flag(WKEY(c.slug));
+  function paintMine() {
+    groups.forEach((g, iso) => {
+      const c = byIso.get(iso);
+      const v = mine && c && isVisited(c), w = mine && c && !v && isWished(c);
+      g.classList.toggle('is-visited', !!v); g.classList.toggle('is-wished', !!w);
+      if (c) g.setAttribute('aria-label', mine ? `${c.nameJa}：${v ? '行った国（選ぶと外す）' : '行った国にする'}` : (c.href ? `${c.nameJa}のページを開く` : `${c.nameJa}を選ぶ`));
+      wrapGroups.get(iso)?.classList.toggle('is-visited', !!v);
+      wrapGroups.get(iso)?.classList.toggle('is-wished', !!w);
+    });
+  }
+  function toggleVisited(c) {
+    const on = !isVisited(c);
+    try { on ? localStorage.setItem(VKEY(c.slug), 'true') : localStorage.removeItem(VKEY(c.slug)); } catch {}
+    paintMine(); minePanel();
+    status.textContent = on ? `${c.nameJa}を「行った国」にしました` : `${c.nameJa}の印を外しました`;
+  }
+  function minePanel() {
+    const visited = dest.filter(isVisited).sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
+    const wished = dest.filter(c => !isVisited(c) && isWished(c)).sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
+    kicker.textContent = 'MY ATLAS';
+    title.textContent = 'わたしの地図';
+    copy.textContent = `${TOUCH ? 'タップ' : 'クリック'}した国が「行った国」になります。もう一度で外せます。記録はこのブラウザにだけ保存されます。`;
+    count.textContent = `${visited.length} / ${dest.length} VISITED`;
+    const item = c => `<a class="map-country-nav__item" href="${c.href || '#'}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></a>`;
+    const block = (label, note, rows, empty) => `<div class="map-country-nav__guide"><strong>${label}</strong><span>${note}</span></div>${rows.length ? `<div class="map-country-nav__list">${rows.map(item).join('')}</div>` : `<p class="map-mine__empty">${empty}</p>`}`;
+    list.className = 'map-country-nav map-mine';
+    list.innerHTML = `<div class="map-country-nav__wrap">${block('行った国', `${visited.length}か国`, visited, '地図の国を選ぶと、ここに並びます。')}${block('行ってみたい国', `${wished.length}か国`, wished, '国ページの「行ってみたい」で追加できます。')}<button type="button" class="map-mine__exit">地図に戻る</button></div>`;
+    list.querySelector('.map-mine__exit').onclick = () => setRegion('world');
+    renderSub(null);
+  }
+  const HINT_MINE = TOUCH ? '国をタップで「行った国」に印 ・ 2本指で移動・拡大' : '国をクリックで「行った国」に印 ・ ホイールで拡大縮小 ・ ドラッグで移動';
+  let hintDefault = '';
+  function setHint(on) {
+    const h = wrap.querySelector('.map-hint');
+    if (!h) return;
+    if (!hintDefault) hintDefault = h.textContent;
+    h.textContent = on ? HINT_MINE : hintDefault;
+  }
+  function enterMine() {
+    mine = true; root.classList.add('is-mine'); setHint(true);
+    mineBtn?.setAttribute('aria-pressed', 'true');
+    activeR = 'world'; activeS = null; root.dataset.activeRegion = 'world'; delete root.dataset.activeSubregion;
+    clear(); setTabs(''); focus(); animate(WORLD, 300);
+    paintMine(); minePanel(); remember();
+  }
+  function leaveMine() {
+    mine = false; root.classList.remove('is-mine'); setHint(false);
+    mineBtn?.setAttribute('aria-pressed', 'false');
+    paintMine();
+  }
+  function mineControl() {
+    mineBtn = document.createElement('button');
+    mineBtn.type = 'button';
+    mineBtn.className = 'map-mine-toggle';
+    mineBtn.setAttribute('aria-pressed', 'false');
+    mineBtn.textContent = 'わたしの地図';
+    mineBtn.onclick = () => mine ? setRegion('world') : enterMine();
+    bar.append(mineBtn);
   }
   function select(iso) {
     const c = byIso.get(iso);
@@ -354,6 +434,7 @@
     };
   }
   function open(c, e) {
+    if (mine) { toggleVisited(c); return; }
     if (!(c.atlasPublished && c.href)) { select(c.iso2); return; }
     if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) {
       window.open(c.href, '_blank', 'noopener');
@@ -474,6 +555,34 @@
       if (drag && drag.id === e.pointerId) { drag = null; svg.classList.remove('is-dragging'); }
     };
     svg.onpointerup = end; svg.onpointercancel = end;
+
+    // Touch: one finger keeps scrolling the page; two fingers pan and pinch the map.
+    svg.style.touchAction = 'pan-x pan-y';
+    let pinch = null;
+    const mid = t => ({ x: (t[0].clientX + t[1].clientX) / 2, y: (t[0].clientY + t[1].clientY) / 2 });
+    const dist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY) || 1;
+    svg.addEventListener('touchstart', e => {
+      if (e.touches.length !== 2) { pinch = null; return; }
+      e.preventDefault();
+      if (anim) cancelAnimationFrame(anim);
+      const m = mid(e.touches);
+      pinch = { v: view(), d: dist(e.touches), p: point(m.x, m.y) };
+    }, { passive: false });
+    svg.addEventListener('touchmove', e => {
+      if (!pinch || e.touches.length !== 2) return;
+      e.preventDefault();
+      const m = mid(e.touches);
+      const w = Math.max(MINW, Math.min(1000, pinch.v[2] * pinch.d / dist(e.touches))), h = w * RATIO;
+      apply([pinch.v[0], pinch.v[1], w, h]);
+      const q = point(m.x, m.y);
+      if (q && pinch.p) {
+        const v = view();
+        apply([v[0] + pinch.p.x - q.x, v[1] + pinch.p.y - q.y, v[2], v[3]]);
+      }
+    }, { passive: false });
+    const stop = e => { if (e.touches.length < 2) pinch = null; };
+    svg.addEventListener('touchend', stop);
+    svg.addEventListener('touchcancel', stop);
   }
   // A point on the country's main landmass: the bbox centre can fall in the sea
   // when outlying islands widen the bbox (e.g. Taiwan with Kinmen and Matsu).
@@ -562,7 +671,7 @@
     wrapDateline();
     tip = document.createElement('div'); tip.className = 'map-tooltip'; tip.hidden = true;
     pin = document.createElement('span'); pin.className = 'map-selection-pin'; pin.textContent = '📍'; pin.hidden = true;
-    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = TOUCH ? '国をタップでページへ ・ ＋ / − で拡大縮小' : '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
+    const h = document.createElement('p'); h.className = 'map-hint'; h.textContent = TOUCH ? '国をタップでページへ ・ 2本指で移動・拡大' : '国をクリックでページへ ・ − / ＋・ホイールで拡大縮小 ・ ドラッグで移動';
     wrap.append(tip, pin, h);
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }
@@ -579,7 +688,14 @@
     regions = rd.regions || [];
     dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));
-    lookup(); build(m); setRegion('world', false);
+    lookup(); build(m); mineControl();
+    const params = new URLSearchParams(location.search);
+    const want = params.get('map'), sub = params.get('sub');
+    if (want === 'mine') enterMine();
+    else if (sub && subs.has(sub)) { setRegion(subs.get(sub).regionId, false); setSub(sub); }
+    else if (want && region(want)) setRegion(want, false);
+    else setRegion('world', false);
+    restoring = false;
   }).catch(e => {
     console.error('[JOURNEY ATLAS map]', e);
     copy.textContent = '地図データを読み込めませんでした。';

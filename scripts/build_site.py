@@ -278,7 +278,7 @@ def prepare_top_page() -> None:
     if 'rel="canonical"' not in page:
         page = page.replace(
             '  <title>JOURNEY ATLAS</title>\n',
-            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="202の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/hero-world-collage.svg")}">\n  <meta name="twitter:card" content="summary_large_image">\n',
+            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="202の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/og-default.jpg")}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta name="twitter:card" content="summary_large_image">\n',
             1,
         )
 
@@ -395,8 +395,37 @@ def clean_generated_country_pages() -> None:
         shutil.rmtree(output)
 
 
+def build_top_search_index() -> None:
+    """Scene names / descriptions and season notes per Country, for the top-page keyword search.
+
+    Generated from data/countries/*.json on every build so it can never drift from the Country data.
+    """
+    countries: dict[str, dict] = {}
+    for path in sorted((ROOT / "data/countries").glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        slug = data.get("slug")
+        if not slug:
+            continue
+        scenes = [
+            [str(scene.get("name", "")).strip(), str(scene.get("nameLocal", "")).strip(), str(scene.get("description", "")).strip()]
+            for scene in data.get("scenes", [])
+            if scene.get("name")
+        ]
+        seasons = [
+            [str(season.get("months", "")).strip(), str(season.get("text", "")).strip()]
+            for season in data.get("seasons", [])
+            if season.get("text")
+        ]
+        countries[slug] = {"s": scenes, "m": seasons}
+    payload = {"version": 1, "countries": countries}
+    (ROOT / "data/top-search-index.json").write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
+    )
+
+
 def main() -> int:
     clean_generated_country_pages()
+    build_top_search_index()
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
     prepare_top_assets_and_js()
