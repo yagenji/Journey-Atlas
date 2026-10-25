@@ -417,9 +417,9 @@ function themeLabel(theme){
 function getThemeItems(theme=activeTheme){
   if(!theme)return [];
   const slugs=themeSets[theme]||[];
-  return slugs
+  return sortForDisplay(slugs
     .map((slug)=>destinations.find((country)=>country.slug===slug))
-    .filter((country)=>country?.atlasPublished===true);
+    .filter((country)=>country?.atlasPublished===true));
 }
 function syncThemeSelectionUI(){
   document.querySelectorAll('.theme-icons button[data-theme]').forEach((button)=>{
