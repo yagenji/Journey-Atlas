@@ -120,6 +120,30 @@ def main() -> int:
     if unknown:
         fail(errors, "LENS RSS slug(s) missing from atlas-destinations.json: " + ", ".join(unknown))
 
+    if "--sync-flags" in sys.argv and not errors:
+        # Make journeyLensPublished follow the live LENS feed instead of hand edits.
+        # The registry keeps one destination per line, so only the flag value is rewritten.
+        text = REGISTRY.read_text(encoding="utf-8")
+        changed: list[str] = []
+
+        def sync_line(match: re.Match) -> str:
+            line = match.group(0)
+            slug_match = re.search(r'"slug":"([^"]+)"', line)
+            if not slug_match:
+                return line
+            slug = slug_match.group(1)
+            want = "true" if slug in rss_slugs else "false"
+            new_line = re.sub(r'"journeyLensPublished":(true|false)', f'"journeyLensPublished":{want}', line)
+            if new_line != line:
+                changed.append(f"{slug}={want}")
+            return new_line
+
+        text = re.sub(r'^\s*\{"order":.*$', sync_line, text, flags=re.M)
+        if changed:
+            REGISTRY.write_text(text, encoding="utf-8")
+            print("Synced journeyLensPublished from LENS RSS: " + ", ".join(sorted(changed)))
+        destinations = json.loads(text).get("destinations", [])
+
     declared_published = {
         item["slug"]
         for item in destinations
