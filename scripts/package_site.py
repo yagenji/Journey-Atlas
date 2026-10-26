@@ -28,6 +28,8 @@ RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
     "region-taxonomy.json",
     "theme-taxonomy.json",
+    "top-search-index.json",
+    "top-season-index.json",
 ]
 
 

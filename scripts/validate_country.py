@@ -609,6 +609,27 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
         if len(seasons) != 4:
             fail(errors, f"{path.name}: seasons はレイアウト仕様上4件必要です")
 
+        # Optional best season: 1–3 windows, each with months 1–12, a short label and a
+        # scenery-led reason; it must be sourced like any other factual claim.
+        if "bestSeason" in data:
+            best = data.get("bestSeason") if isinstance(data.get("bestSeason"), dict) else {}
+            windows = best.get("windows") if isinstance(best.get("windows"), list) else []
+            if not 1 <= len(windows) <= 3:
+                fail(errors, f"{path.name}: bestSeason.windows は1〜3件にしてください")
+            for index, window in enumerate(windows, start=1):
+                months = window.get("months") if isinstance(window, dict) else None
+                if not (isinstance(months, list) and months and all(isinstance(m, int) and 1 <= m <= 12 for m in months)
+                        and len(set(months)) == len(months)):
+                    fail(errors, f"{path.name}: bestSeason window {index} の months は1〜12の重複しない整数で指定してください")
+                for key in ("label", "reason"):
+                    if not (isinstance(window, dict) and isinstance(window.get(key), str) and window[key].strip()):
+                        fail(errors, f"{path.name}: bestSeason window {index} に {key} がありません")
+            if not str(sources.get("bestSeason", "")).strip():
+                fail(errors, f"{path.name}: bestSeason の出典（sources.bestSeason）がありません")
+            source_dates = data.get("sourceDates") if isinstance(data.get("sourceDates"), dict) else {}
+            if not str(source_dates.get("bestSeason", "")).strip():
+                fail(errors, f"{path.name}: sourceDates.bestSeason がありません")
+
         personas = data.get("personas") if isinstance(data.get("personas"), list) else []
         if len(personas) != 3:
             fail(errors, f"{path.name}: personas はレイアウト仕様上3件必要です")

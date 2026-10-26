@@ -103,7 +103,7 @@ function renderCountry(data, registry) {
   renderAtlasExtras(fragment, data.atlasExtras);
   renderTaste(fragment, data.taste);
   renderTravelTrivia(fragment, data.travelTrivia);
-  renderSeasons(fragment, data.seasons);
+  renderSeasons(fragment, data.seasons, data.bestSeason);
   renderTransport(fragment, data.transport);
   renderPersonas(fragment, data.personas);
   renderFacts(fragment, data.facts);
@@ -605,13 +605,47 @@ function renderTravelTrivia(fragment, items = []) {
   section.hidden = false;
 }
 
-function renderSeasons(fragment, items = []) {
+// "11〜2月" / "3–5月" / "10月" → [11,12,1,2] etc. (wraps across the new year)
+function seasonMonths(label = '') {
+  const range = String(label).match(/(\d{1,2})\s*[〜~～–—-]\s*(\d{1,2})\s*月/);
+  if (range) {
+    const out = [];
+    let month = Number(range[1]);
+    const end = Number(range[2]);
+    for (let guard = 0; guard < 12; guard += 1) {
+      out.push(month);
+      if (month === end) break;
+      month = month % 12 + 1;
+    }
+    return out;
+  }
+  const single = String(label).match(/(\d{1,2})\s*月/);
+  return single ? [Number(single[1])] : [];
+}
+
+function renderSeasons(fragment, items = [], best = null) {
   const container = fragment.querySelector('#seasons');
   const defaults = ['sun', 'aurora', 'snow', 'leaf'];
+  const windows = Array.isArray(best?.windows) ? best.windows.filter((window) => Array.isArray(window?.months) && window.label) : [];
+  const bestMonths = new Set(windows.flatMap((window) => window.months));
+  if (windows.length) {
+    // Recommended season (data key: bestSeason): one quiet line above the season bands, scenery first.
+    const summary = document.createElement('div');
+    summary.className = 'season-best';
+    summary.innerHTML = `<span class="season-best__tag">おすすめの時期</span><dl>${windows
+      .map((window) => `<div><dt>${escapeHtml(window.label)}</dt><dd>${escapeHtml(window.reason || '')}</dd></div>`)
+      .join('')}</dl>`;
+    container.before(summary);
+  }
   items.forEach((item, index) => {
     const article = document.createElement('article');
     article.style.setProperty('--season-color', item.color || '#75824e');
-    article.innerHTML = `${iconSvg(item.icon || defaults[index] || 'calendar')}<div><b>${escapeHtml(item.months)}</b><p>${escapeHtml(item.text)}</p></div>`;
+    // Mark a band only when most of its months fall in the recommended season (a band that merely
+    // touches it — e.g. a hot "3〜4月" next to a "2〜3月" window — is not marked).
+    const bandMonths = seasonMonths(item.months);
+    const isBest = bandMonths.length > 0 && bandMonths.filter((month) => bestMonths.has(month)).length * 2 > bandMonths.length;
+    if (isBest) article.classList.add('is-best');
+    article.innerHTML = `${iconSvg(item.icon || defaults[index] || 'calendar')}<div><b>${escapeHtml(item.months)}${isBest ? '<span class="season-best-mark">おすすめ</span>' : ''}</b><p>${escapeHtml(item.text)}</p></div>`;
     container.append(article);
   });
 }

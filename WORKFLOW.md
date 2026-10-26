@@ -57,7 +57,7 @@ Keep the illustrated eight-theme language and motifs; do not replace them with a
 
 ## Approved map discovery baseline
 
-Preserve the current map interaction and framing: **World → Region → optional Subregion → Country**. Country geometry is the primary spatial target; the right-side country list may support hover, selection and accessibility but must not replace the map as the core discovery experience. Do not create a second framing script; map framing belongs in `assets/js/map-regions.js` only. Clicking (or Enter on) a Country on the map opens that Country page directly — no second step through the side panel (user request 2026-10-23).
+Preserve the current map interaction and framing: **World → Region → optional Subregion → Country**. Country geometry is the primary spatial target; the right-side country list may support hover, selection and accessibility but must not replace the map as the core discovery experience. Do not create a second framing script; map framing belongs in `assets/js/map-regions.js` only. Clicking (or Enter on) a Country on the map opens that Country page directly — no second step through the side panel (user request 2026-10-23). The World view lists the regions in the side panel; region UI chrome uses one navy accent (no per-region colours). 「わたしの地図」 is a separate opt-in mode where a click marks a Country as visited (browser-only storage); touch screens pan/zoom the map with two fingers.
 
 ## Country and image production — pointer only
 

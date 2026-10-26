@@ -39,7 +39,7 @@ concurrency:
 jobs:
   verify-production:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
               if match:
                   slugs.add(match.group(1))
               match = re.match(r"assets/images/([^/]+)/", path)
-              if match:
+              if match and match.group(1) != "top":  # assets/images/top/ holds top-page art, not a Country
                   asset_folders.add(match.group(1))
 
           # Asset directory names are not guaranteed to equal canonical Country
@@ -118,10 +118,20 @@ jobs:
               except Exception:
                   pass
 
+          # Files loaded only by the top page (index.html). Country pages never load them,
+          # so changing them must not trigger the full 200-Country live QA (which hits the job timeout).
           top_only_js = {"assets/js/top.js", "assets/js/map-regions.js"}
+          top_only_css = {
+              "assets/css/top.css",
+              "assets/css/top-layout-v3.css",
+              "assets/css/top-layout-v4.css",
+              "assets/css/top-scope.css",
+              "assets/css/top-ux.css",
+              "assets/css/map-regions.css",
+          }
           shared = any(
               path == "country.html"
-              or path.startswith("assets/css/")
+              or (path.startswith("assets/css/") and path not in top_only_css)
               or (path.startswith("assets/js/") and path not in top_only_js)
               or path in {"scripts/build_site.py", "scripts/package_site.py", "scripts/build_cloudflare.py"}
               for path in files
@@ -158,6 +168,9 @@ jobs:
           curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/map-regions.js?qa=$GITHUB_RUN_ID" -o /tmp/map-regions.js
           curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
           curl -fsS --max-time 20 "https://atlas.yagenji.com/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" -o /tmp/atlas-destinations.json
+          curl -fsS --max-time 20 "https://atlas.yagenji.com/data/top-season-index.json?qa=$GITHUB_RUN_ID" -o /tmp/top-season-index.json
+          python3 -c "import json,sys; c=json.load(open('/tmp/top-season-index.json'))['countries']; sys.exit(0 if len(c)==202 else 'top-season-index.json: expected 202 Countries, got %d' % len(c))"
+          grep -Fq 'id="season-months"' /tmp/top.html
           curl -fsS --max-time 20 "https://atlas.yagenji.com/about/?qa=$GITHUB_RUN_ID" -o /tmp/about.html
           curl -fsS --max-time 20 "https://atlas.yagenji.com/faq/?qa=$GITHUB_RUN_ID" -o /tmp/faq.html
           test -s /tmp/top.html
