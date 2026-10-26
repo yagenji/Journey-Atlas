@@ -303,3 +303,43 @@
   .theme-month-tabs__label{flex:0 0 auto}
 }
 .country-card__season-period{white-space:nowrap}
+
+/* ---------- 17. 景色から探す (Scene gallery) ---------- */
+#scenery .gallery-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.gallery-shuffle{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;
+  border:1px solid rgba(23,59,93,.18);border-radius:999px;background:#fffdf8;color:#173b5d;
+  font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer;white-space:nowrap;
+}
+.gallery-shuffle:hover{border-color:rgba(23,59,93,.34);background:#fff}
+.gallery-shuffle:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.gallery-panel .theme-region-tabs{margin:20px 0 14px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.gallery-panel .theme-region-tabs+.gallery-grid{margin-top:0}
+.gallery-tile{
+  position:relative;display:block;overflow:hidden;border-radius:12px;background:#e8ece9;
+  aspect-ratio:3/2;color:#fff;text-decoration:none;box-shadow:0 1px 4px rgba(28,58,74,.06);
+}
+.gallery-tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.gallery-tile:hover img{transform:scale(1.03)}
+.gallery-tile:focus-visible{outline:2px solid #173b5d;outline-offset:3px}
+.gallery-tile__caption{
+  position:absolute;left:0;right:0;bottom:0;display:block;padding:26px 12px 10px;
+  background:linear-gradient(to top,rgba(10,24,38,.72),rgba(10,24,38,0));
+}
+.gallery-tile__caption b{display:block;overflow:hidden;font:600 13px/1.4 var(--jp,sans-serif);text-overflow:ellipsis;white-space:nowrap}
+.gallery-tile__caption small{display:block;margin-top:2px;font-size:11.5px;line-height:1.3;opacity:.9}
+@media (prefers-reduced-motion:reduce){.gallery-tile img{transition:none}.gallery-tile:hover img{transform:none}}
+@media(max-width:1050px){.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){
+  #scenery .gallery-heading{display:block}
+  .gallery-shuffle{margin-top:14px}
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .gallery-tile{border-radius:10px}
+  .gallery-tile__caption{padding:22px 9px 8px}
+  .gallery-tile__caption b{font-size:12px}
+  .gallery-tile__caption small{font-size:11px}
+}
+.gallery-panel .gallery-heading>div{flex:1 1 auto;min-width:0}
+.gallery-shuffle{width:auto!important;align-self:flex-end}
+#scenery{scroll-margin-top:calc(var(--ja-header-height,72px) + 16px)}

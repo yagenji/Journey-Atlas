@@ -446,10 +446,44 @@ def build_top_season_index() -> None:
     )
 
 
+def build_top_scene_index() -> None:
+    """Scenes for the top-page 景色から探す gallery: slug -> [[scene id, name], ...].
+
+    Only Scenes whose thumbnail exists (scripts/build_scene_thumbs.py) are listed, so a missing
+    thumbnail hides one tile instead of showing a broken image.
+    """
+    thumbs = ROOT / "assets/images/top/scenes"
+    countries: dict[str, list] = {}
+    missing = 0
+    for path in sorted((ROOT / "data/countries").glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        slug = data.get("slug")
+        if not slug:
+            continue
+        rows = []
+        for scene in data.get("scenes", []):
+            scene_id = scene.get("id")
+            if not scene_id:
+                continue
+            if not (thumbs / slug / f"{scene_id}.webp").exists():
+                missing += 1
+                continue
+            rows.append([scene_id, str(scene.get("name", "")).strip()])
+        if rows:
+            countries[slug] = rows
+    if missing:
+        print(f"WARNING: {missing} Scene thumbnail(s) missing; run scripts/build_scene_thumbs.py")
+    payload = {"version": 1, "countries": countries}
+    (ROOT / "data/top-scene-index.json").write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
+    )
+
+
 def main() -> int:
     clean_generated_country_pages()
     build_top_search_index()
     build_top_season_index()
+    build_top_scene_index()
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
     prepare_top_assets_and_js()
