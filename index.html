@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20260908-home-balance-v1">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261027-scenes-2">
-  <script src="assets/js/top.js?v=20261027-scenes-2" defer></script>
+  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261027-gclose-1">
+  <script src="assets/js/top.js?v=20261027-gclose-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261025-feat-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
@@ -191,11 +191,15 @@
       <article class="detail-panel season-panel gallery-panel" id="scenery">
         <div class="detail-heading season-heading gallery-heading">
           <div><span class="section-kicker">EXPLORE BY SCENERY</span><h2>景色から探す</h2><p id="gallery-lead">気になる景色から、旅先を見つけよう。開くたびに、ちがう景色が並びます。</p></div>
-          <button type="button" class="gallery-shuffle" id="gallery-shuffle">ほかの景色を見る <span aria-hidden="true">↻</span></button>
+          <div class="gallery-actions">
+            <button type="button" class="gallery-shuffle" id="gallery-shuffle">ほかの景色を見る <span aria-hidden="true">↻</span></button>
+            <button type="button" class="results-close-head" id="gallery-clear" hidden>地域の選択を解除 ×</button>
+          </div>
         </div>
         <div class="theme-region-tabs" id="gallery-region-tabs" role="group" aria-label="地域で絞り込む" hidden></div>
         <div class="gallery-grid" id="gallery-grid" role="list"></div>
         <button type="button" class="theme-results__more" id="gallery-more" hidden></button>
+        <button type="button" class="results-close" id="gallery-close" hidden>一覧を閉じる</button>
       </article>
     </section>
 
