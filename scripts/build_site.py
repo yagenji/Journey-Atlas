@@ -423,9 +423,33 @@ def build_top_search_index() -> None:
     )
 
 
+def build_top_season_index() -> None:
+    """Recommended-season windows per Country (bestSeason), for the top-page 季節から探す.
+
+    Generated from data/countries/*.json on every build so it can never drift from the Country data.
+    Row format: slug -> [[months, label, reason], ...].
+    """
+    countries: dict[str, list] = {}
+    for path in sorted((ROOT / "data/countries").glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        slug = data.get("slug")
+        windows = (data.get("bestSeason") or {}).get("windows") or []
+        if not slug or not windows:
+            continue
+        countries[slug] = [
+            [list(window.get("months", [])), str(window.get("label", "")).strip(), str(window.get("reason", "")).strip()]
+            for window in windows
+        ]
+    payload = {"version": 1, "countries": countries}
+    (ROOT / "data/top-season-index.json").write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
+    )
+
+
 def main() -> int:
     clean_generated_country_pages()
     build_top_search_index()
+    build_top_season_index()
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
     prepare_top_assets_and_js()
