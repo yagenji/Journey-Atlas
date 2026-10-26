@@ -236,8 +236,10 @@ function parseLensFeed(xmlText){
   });
 }
 
+// Same order as the rest of the top page: A–Z by the Country's English name (国から探す).
+// One story per Country first, then the remaining stories, again A–Z.
 function orderLensStories(entries,registryItems){
-  const countryOrder=new Map(registryItems.map((item)=>[item.slug,item.order??Number.MAX_SAFE_INTEGER]));
+  const countryOrder=new Map(sortForDisplay(registryItems).map((item,index)=>[item.slug,index]));
   const groups=new Map();
 
   entries.forEach((entry)=>{
@@ -253,34 +255,13 @@ function orderLensStories(entries,registryItems){
     return a.localeCompare(b,'en');
   });
 
+  // Round by round, A–Z: the first story of every Country, then each Country's second, and so on.
   const output=[];
-  orderedSlugs.forEach((slug)=>{
-    const first=groups.get(slug)?.shift();
-    if(first)output.push(first);
-  });
-
-  let lastSlug=output.at(-1)?.slug||'';
-  while(true){
-    const candidates=orderedSlugs
-      .filter((slug)=>(groups.get(slug)?.length||0)>0)
-      .sort((a,b)=>{
-        const countDiff=(groups.get(b)?.length||0)-(groups.get(a)?.length||0);
-        if(countDiff!==0)return countDiff;
-        const aOrder=countryOrder.get(a)??Number.MAX_SAFE_INTEGER;
-        const bOrder=countryOrder.get(b)??Number.MAX_SAFE_INTEGER;
-        if(aOrder!==bOrder)return aOrder-bOrder;
-        return a.localeCompare(b,'en');
-      });
-    if(!candidates.length)break;
-
-    let slug=candidates.find((candidate)=>candidate!==lastSlug);
-    if(!slug)slug=candidates[0];
-
-    const next=groups.get(slug)?.shift();
-    if(next){
-      output.push(next);
-      lastSlug=slug;
-    }
+  while(orderedSlugs.some((slug)=>(groups.get(slug)?.length||0)>0)){
+    orderedSlugs.forEach((slug)=>{
+      const next=groups.get(slug)?.shift();
+      if(next)output.push(next);
+    });
   }
 
   return output;
