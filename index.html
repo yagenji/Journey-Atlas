@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20260908-home-balance-v1">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261026-season-1">
-  <script src="assets/js/top.js?v=20261026-season-4" defer></script>
+  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261026-close-1">
+  <script src="assets/js/top.js?v=20261026-close-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261025-feat-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
@@ -63,6 +63,7 @@
       <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>202の国・地域から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
     </section>
 
     <section class="countries shell" id="countries">
@@ -82,9 +83,10 @@
       </div>
       <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">202 DESTINATIONS</span></div>
       <div class="all-countries-panel" id="all-countries-panel" hidden>
-        <div class="all-countries-panel__head"><div><strong id="all-countries-title">すべての国・地域</strong></div></div>
+        <div class="all-countries-panel__head"><div><strong id="all-countries-title">すべての国・地域</strong></div><button type="button" class="results-close-head" id="all-countries-close">一覧を閉じる ×</button></div>
         <div class="alphabet" aria-label="英語名の頭文字で絞り込む"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
         <div class="country-grid" id="country-grid"></div><p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
+        <button type="button" class="results-close" data-results-close="countries">一覧を閉じる</button>
       </div>
     </section>
 
@@ -158,6 +160,7 @@
           <div class="theme-region-tabs" id="theme-region-tabs" role="group" aria-label="地域で絞り込む"></div>
           <div class="country-grid theme-results__grid" id="theme-results-grid" role="list"></div>
           <p class="country-empty" id="theme-results-empty" hidden>該当する国・地域がありません。</p>
+          <button type="button" class="results-close" data-results-close="themes">一覧を閉じる</button>
         </div>
       </article>
       <article class="detail-panel season-panel" id="seasons">
@@ -172,11 +175,15 @@
               <h3 id="season-results-title"></h3>
               <p id="season-results-meta"></p>
             </div>
+            <div class="theme-results__actions">
+              <button type="button" id="season-results-clear">月の選択を解除 ×</button>
+            </div>
           </div>
           <div class="theme-region-tabs" id="season-region-tabs" role="group" aria-label="地域で絞り込む" hidden></div>
           <div class="country-grid theme-results__grid" id="season-results-grid" role="list"></div>
           <button type="button" class="theme-results__more" id="season-results-more" hidden></button>
           <p class="country-empty" id="season-results-empty" hidden>該当する国・地域がありません。</p>
+          <button type="button" class="results-close" data-results-close="seasons">一覧を閉じる</button>
         </div>
       </article>
     </section>

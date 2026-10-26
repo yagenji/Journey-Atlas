@@ -543,6 +543,7 @@ function clearThemeResults(){
   activeThemeRegion='all';
   activeTheme=null;
   renderThemeResults();
+  saveTopState();
 }
 function setAllPanel(open,reset=true){
   if(!allPanel||!toggleAll)return;
@@ -951,6 +952,41 @@ function startSeason(){
     ['pointerdown','focusin'].forEach((type)=>panel.addEventListener(type,()=>{loadSeasonIndex();},{once:true,passive:true}));
   }
 }
+
+// ---------------------------------------------------------------------------
+// Closing lists: 「月の選択を解除 ×」, 「一覧を閉じる ×」 in the country list head, and an
+// 「一覧を閉じる」 at the end of every long list (country / theme / season). Closing from the
+// bottom brings the section heading back into view, so the visitor is not left mid-page.
+// ---------------------------------------------------------------------------
+function clearSeasonResults(){
+  seasonMonth=null;
+  seasonChosen=false;
+  seasonRegion='all';
+  seasonLimit=SEASON_PAGE;
+  renderSeasonResults();
+  saveTopState();
+}
+document.querySelector('#season-results-clear')?.addEventListener('click',()=>{
+  clearSeasonResults();
+  seasonMonthsHost?.querySelector('button')?.focus({preventScroll:true});
+});
+document.querySelector('#all-countries-close')?.addEventListener('click',()=>{
+  setAllPanel(false);
+  toggleAll?.focus({preventScroll:true});
+});
+document.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-results-close]');
+  if(!button)return;
+  const target=button.dataset.resultsClose;
+  if(target==='countries'){setAllPanel(false);}
+  else if(target==='themes'){clearThemeResults();}
+  else if(target==='seasons'){clearSeasonResults();}
+  const section=document.querySelector(`#${target}`);
+  if(section){
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    section.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+});
 
 // "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.
 document.querySelector('#random-country')?.addEventListener('click',()=>{
