@@ -72,14 +72,6 @@ const heroFiles = [
   'assets/images/top/hero-set-4.webp',
   'assets/images/top/hero-set-5.webp'
 ];
-const featuredArt = {
-  antarctica:{x:'0%',y:'0%'},
-  turkiye:{x:'50%',y:'0%'},
-  italy:{x:'100%',y:'0%'},
-  maldives:{x:'0%',y:'100%'},
-  peru:{x:'50%',y:'100%'},
-  kenya:{x:'100%',y:'100%'}
-};
 
 {
   const image='url("assets/images/top/theme-approved-sprite.webp")';
@@ -391,13 +383,9 @@ function createCard(country,index,compact=false){
   card.dataset.slug=country.slug;card.dataset.name=`${country.nameEn} ${country.nameJa}`.toLowerCase();
   if(country.atlasPublished&&country.href){card.href=country.href;card.setAttribute('aria-label',`${country.nameJa}のJOURNEY ATLASを見る`);}
   const art=document.createElement('div');art.className='country-card__art';art.style.setProperty('--hue',String(hueFor(country,index)));
-  const featured=featuredArt[country.slug];
-  if(featured&&heroSources[0]){
-    art.style.backgroundImage=`url("${heroSources[0]}")`;
-    art.style.backgroundPosition=`${featured.x} ${featured.y}`;
-    art.style.backgroundSize='205% 205%';
-    art.classList.add('has-image');
-  }else if(country.image){art.style.backgroundImage=`url("${country.image}")`;art.classList.add('has-image');}
+  // Every card uses the Country's own approved hero image. (Six cards used to crop a shared
+  // six-panel collage; the hero art has since changed, which left them blank or mis-cropped.)
+  if(country.image){art.style.backgroundImage=`url("${country.image}")`;art.classList.add('has-image');}
   art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
   const body=document.createElement('div');body.className='country-card__body';
   body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${hasLens(country)?LENS_MARK:''}${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
