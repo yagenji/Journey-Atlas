@@ -65,13 +65,15 @@ let heroIndex = 0;
 let heroTimer;
 let themeSets = {};
 
+// Provisional hero slides: approved Country hero art, until the top-page illustrations are
+// redrawn. (The earlier hero-set-1〜4 files were truncated and showed as broken images on iPhone.)
 const heroFiles = [
-  'assets/images/top/hero-world-collage.svg',
-  'assets/images/top/hero-set-1.webp',
-  'assets/images/top/hero-set-2.webp',
-  'assets/images/top/hero-set-3.webp',
-  'assets/images/top/hero-set-4.webp',
-  'assets/images/top/hero-set-5.webp'
+  {src:'assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp',alt:'日本・河口湖と富士山'},
+  {src:'assets/images/italy/approved/hero-venice-grand-canal-salute.webp',alt:'イタリア・ヴェネツィアの大運河とサルーテ聖堂'},
+  {src:'assets/images/peru/approved/hero-machu-picchu.webp',alt:'ペルー・マチュ・ピチュ'},
+  {src:'assets/images/kenya/approved/hero-amboseli.webp',alt:'ケニア・アンボセリ国立公園'},
+  {src:'assets/images/iceland/approved/hero-seljalandsfoss.webp',alt:'アイスランド・セリャラントスフォス'},
+  {src:'assets/images/maldives/approved/hero-dhigurah-sandbank.webp',alt:'モルディブ・ディグラ島の砂州'}
 ];
 
 {
@@ -130,7 +132,8 @@ function setHero(index,animate=true){
   heroIndex=(index+heroSources.length)%heroSources.length;
   if(animate) heroVisual?.classList.add('is-changing');
   window.setTimeout(()=>{
-    heroImage.src=heroSources[heroIndex];
+    heroImage.src=heroSources[heroIndex].src;
+    heroImage.alt=heroSources[heroIndex].alt;
     heroButtons.forEach((button,i)=>button.classList.toggle('is-active',i===heroIndex));
     heroImage.onload=()=>heroVisual?.classList.remove('is-changing');
   },animate?130:0);
