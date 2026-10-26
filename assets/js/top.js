@@ -760,9 +760,25 @@ function loadSeasonIndex(){
     seasonIndexPromise=fetch('data/top-season-index.json')
       .then((response)=>{if(!response.ok)throw new Error('Season index not found');return response.json();})
       .then(({countries={}})=>{seasonIndex=new Map(Object.entries(countries));})
-      .catch((error)=>{console.warn('[JOURNEY ATLAS] Season search unavailable.',error);});
+      .catch((error)=>{
+        console.warn('[JOURNEY ATLAS] Season search unavailable.',error);
+        seasonIndexPromise=null;   // allow a retry on the next tap
+        showSeasonStatus('おすすめの時期を読み込めませんでした。少し待ってから、もう一度月を選んでください。');
+      });
   }
   return seasonIndexPromise;
+}
+// Shown in the results area while the index loads, or if it cannot be loaded, so a tap
+// on a month always gives visible feedback.
+function showSeasonStatus(message){
+  if(!seasonResults||!seasonGrid)return;
+  seasonResults.hidden=false;
+  if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
+  if(seasonMeta)seasonMeta.textContent='';
+  if(seasonTabs){seasonTabs.hidden=true;seasonTabs.replaceChildren();}
+  if(seasonMore)seasonMore.hidden=true;
+  seasonGrid.replaceChildren();
+  if(seasonEmpty){seasonEmpty.textContent=message;seasonEmpty.hidden=false;}
 }
 function seasonWindowFor(slug,month){
   return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
@@ -837,7 +853,7 @@ function renderSeasonResults(){
   const regionLabel=themeRegions.find((region)=>region.id===seasonRegion)?.label;
   if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
   if(seasonMeta)seasonMeta.textContent=regionLabel?`${regionLabel}　${items.length} / ${all.length} DESTINATIONS`:`${items.length} DESTINATIONS`;
-  if(seasonEmpty)seasonEmpty.hidden=items.length!==0;
+  if(seasonEmpty){seasonEmpty.textContent='該当する国・地域がありません。';seasonEmpty.hidden=items.length!==0;}
   seasonResults.hidden=false;
   saveTopState();
 }
@@ -847,7 +863,12 @@ seasonMonthsHost?.addEventListener('click',(event)=>{
   seasonMonth=Number(button.dataset.seasonMonth);
   seasonChosen=true;
   seasonLimit=SEASON_PAGE;
-  renderSeasonResults();
+  if(seasonIndex&&destinations.length){renderSeasonResults();return;}
+  // Data not ready yet (slow network, or the panel was reached without scrolling past it):
+  // say so, then load and show the list.
+  renderSeasonMonths();
+  showSeasonStatus('読み込んでいます…');
+  startSeason();
 });
 seasonTabs?.addEventListener('click',(event)=>{
   const button=event.target.closest('[data-season-region]');
@@ -863,8 +884,15 @@ seasonMore?.addEventListener('click',()=>{
   seasonGrid?.children[before]?.focus({preventScroll:true});
 });
 renderSeasonMonths();
+function startSeason(){
+  return Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise.catch(()=>{})]).then(()=>{
+    if(!seasonIndex)return;
+    renderSeasonResults();
+  });
+}
 {
-  const start=()=>Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise]).then(()=>{
+  const start=()=>Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise.catch(()=>{})]).then(()=>{
+    if(!seasonIndex)return;
     try{const saved=JSON.parse(sessionStorage.getItem(SCROLL_KEY)||'null');if(seasonChosen&&saved?.url===location.pathname+location.search&&saved.seasonLimit)seasonLimit=saved.seasonLimit;}catch{}
     renderSeasonResults();
     // A shared ?month= link (not a back/reload, which restores its own scroll) opens at the panel.
@@ -885,6 +913,8 @@ renderSeasonMonths();
       if(entries.some((entry)=>entry.isIntersecting)){observer.disconnect();start();}
     },{rootMargin:'600px 0px'});
     observer.observe(panel);
+    // Also start on any interaction with the panel (e.g. jumping here from the header menu).
+    ['pointerdown','focusin'].forEach((type)=>panel.addEventListener(type,()=>{loadSeasonIndex();},{once:true,passive:true}));
   }
 }
 
