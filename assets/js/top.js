@@ -58,6 +58,7 @@ syncScrollHeader();
 
 let destinations = [];
 let activeTheme = null;
+let activeThemeMonth = null;   // テーマ×季節: 1–12, or null for every month
 let themeMeta = {};
 let heroSources = [];
 let heroIndex = 0;
@@ -424,7 +425,15 @@ function renderThemeResults(){
     return;
   }
 
-  const themeItems=getThemeItems(activeTheme);
+  const allThemeItems=getThemeItems(activeTheme);
+  // テーマ×季節: narrow to Countries whose おすすめの時期 includes the chosen month.
+  // The season index is shared with 季節から探す and loaded on demand.
+  const monthReady=Boolean(seasonIndex);
+  if(!monthReady)loadSeasonIndex()?.then(()=>{if(activeTheme&&seasonIndex)renderThemeResults();});
+  renderThemeMonthTabs(allThemeItems,monthReady);
+  const themeItems=activeThemeMonth&&monthReady
+    ?allThemeItems.filter((country)=>seasonWindowFor(country.slug,activeThemeMonth))
+    :allThemeItems;
   const regionCounts=new Map();
   themeItems.forEach((country)=>{
     const region=themeRegionByIso.get(country.iso2);
@@ -445,6 +454,14 @@ function renderThemeResults(){
   shown.forEach((country,index)=>{
     const card=createCard(country,index,true);
     card.setAttribute('role','listitem');
+    const window_=activeThemeMonth&&monthReady?seasonWindowFor(country.slug,activeThemeMonth):null;
+    if(window_){
+      const note=document.createElement('small');
+      note.className='country-card__match country-card__season';
+      seasonNote(note,window_[1]);
+      note.title=window_[2];
+      card.querySelector('.country-card__body')?.append(note);
+    }
     fragment.append(card);
   });
   themeResultsGrid.replaceChildren(fragment);
@@ -452,7 +469,7 @@ function renderThemeResults(){
   saveTopState();
 
   const label=themeLabel(activeTheme);
-  if(themeResultsTitle)themeResultsTitle.textContent=label;
+  if(themeResultsTitle)themeResultsTitle.textContent=activeThemeMonth?`${label}　${activeThemeMonth}月におすすめ`:label;
   const regionLabel=themeRegions.find((region)=>region.id===activeThemeRegion)?.label;
   if(themeResultsMeta)themeResultsMeta.textContent=query
     ?`${baseItems.length}件の候補から、${items.length}件を表示しています。`
@@ -463,6 +480,35 @@ function renderThemeResults(){
   themeResults.hidden=false;
   syncThemeSelectionUI();
 }
+const themeMonthTabs=document.querySelector('#theme-month-tabs');
+function renderThemeMonthTabs(items,ready){
+  if(!themeMonthTabs)return;
+  themeMonthTabs.hidden=false;
+  const count=(month)=>ready?items.filter((country)=>seasonWindowFor(country.slug,month)).length:null;
+  const options=[{month:null,label:'すべての月'},...Array.from({length:12},(_,i)=>({month:i+1,label:`${i+1}月`}))];
+  const head=document.createElement('span');
+  head.className='theme-month-tabs__label';
+  head.textContent='旅に出る月';
+  themeMonthTabs.replaceChildren(head,...options.map(({month,label})=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.themeMonth=month===null?'':String(month);
+    const on=month===activeThemeMonth;
+    button.classList.toggle('is-active',on);
+    button.setAttribute('aria-pressed',String(on));
+    const n=month===null?null:count(month);
+    button.innerHTML=n===null?label:`${label}<span>${n}</span>`;
+    return button;
+  }));
+}
+themeMonthTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-theme-month]');
+  if(!button)return;
+  activeThemeMonth=button.dataset.themeMonth?Number(button.dataset.themeMonth):null;
+  themeLimit=THEME_PAGE;
+  if(activeThemeMonth&&!seasonIndex){loadSeasonIndex()?.then(()=>renderThemeResults());}
+  renderThemeResults();
+});
 function renderThemeRegionTabs(total,regionCounts){
   if(!themeRegionTabs)return;
   if(!themeRegions.length||regionCounts.size<2){themeRegionTabs.hidden=true;themeRegionTabs.replaceChildren();return;}
@@ -509,6 +555,7 @@ function renderThemeMore(remaining){
 }
 function clearThemeResults(){
   themeLimit=THEME_PAGE;
+  activeThemeMonth=null;
   activeThemeRegion='all';
   activeTheme=null;
   renderThemeResults();
@@ -668,6 +715,7 @@ function saveTopState(){
   const set=(key,value)=>value?url.searchParams.set(key,value):url.searchParams.delete(key);
   set('theme',activeTheme||'');
   set('tregion',activeTheme&&activeThemeRegion!=='all'?activeThemeRegion:'');
+  set('tmonth',activeTheme&&activeThemeMonth?String(activeThemeMonth):'');
   set('q',searchInput?.value.trim()||'');
   set('month',seasonChosen?String(seasonMonth):'');
   set('sregion',seasonChosen&&seasonRegion!=='all'?seasonRegion:'');
@@ -688,6 +736,7 @@ Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionP
   if(theme&&themeSets[theme]){
     activeTheme=theme;
     activeThemeRegion=params.get('tregion')||'all';
+    {const m=Number(params.get('tmonth'));activeThemeMonth=m>=1&&m<=12?m:null;}
     themeLimit=returning&&saved.limit?saved.limit:THEME_PAGE;
     renderThemeResults();
   }
@@ -761,6 +810,13 @@ function showSeasonStatus(message){
   seasonGrid.replaceChildren();
   if(seasonEmpty){seasonEmpty.textContent=message;seasonEmpty.hidden=false;}
 }
+// 「おすすめ 12〜4月」: keep the period on one line so it never splits as 「12〜 / 4月」.
+function seasonNote(note,label){
+  const period=document.createElement('span');
+  period.className='country-card__season-period';
+  period.textContent=label;
+  note.replaceChildren('おすすめ ',period);
+}
 function seasonWindowFor(slug,month){
   return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
 }
@@ -819,7 +875,7 @@ function renderSeasonResults(){
     if(window_){
       const note=document.createElement('small');
       note.className='country-card__match country-card__season';
-      note.textContent=`おすすめ ${window_[1]}`;
+      seasonNote(note,window_[1]);
       note.title=window_[2];
       card.querySelector('.country-card__body')?.append(note);
       if(card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${card.getAttribute('aria-label')}（おすすめの時期 ${window_[1]}）`);
