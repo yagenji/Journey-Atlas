@@ -1117,7 +1117,26 @@ function renderScenes(){
     sceneMore.hidden=remaining<=0;
     sceneMore.textContent='もっと見る';
   }
+  // Like the other lists: a 解除 button while a region is chosen, and 「一覧を閉じる」 at the end
+  // once the gallery has been opened out (もっと見る) or narrowed to a region.
+  const clear=document.querySelector('#gallery-clear');
+  if(clear)clear.hidden=sceneRegion==='all';
+  const close=document.querySelector('#gallery-close');
+  if(close)close.hidden=sceneRegion==='all'&&sceneLimit<=SCENE_PAGE;
 }
+function resetScenes({scroll=false}={}){
+  sceneRegion='all';
+  shuffleScenes();
+  if(scroll){
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    document.querySelector('#scenery')?.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+}
+document.querySelector('#gallery-clear')?.addEventListener('click',()=>{
+  resetScenes();
+  document.querySelector('#gallery-shuffle')?.focus({preventScroll:true});
+});
+document.querySelector('#gallery-close')?.addEventListener('click',()=>resetScenes({scroll:true}));
 sceneTabs?.addEventListener('click',(event)=>{
   const button=event.target.closest('[data-scene-region]');
   if(!button)return;

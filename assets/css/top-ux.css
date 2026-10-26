@@ -343,3 +343,5 @@
 .gallery-panel .gallery-heading>div{flex:1 1 auto;min-width:0}
 .gallery-shuffle{width:auto!important;align-self:flex-end}
 #scenery{scroll-margin-top:calc(var(--ja-header-height,72px) + 16px)}
+.gallery-actions{display:flex;flex:0 0 auto;align-items:center;gap:8px;align-self:flex-end}
+@media(max-width:760px){.gallery-actions{margin-top:14px;flex-wrap:wrap}.gallery-actions .gallery-shuffle{margin-top:0}}
