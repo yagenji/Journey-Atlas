@@ -212,3 +212,32 @@
   color:#234866;font:700 10.5px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.12em;
 }
 .random-country-toggle{color:#234866}
+
+/* ---------- 13. 季節から探す ---------- */
+.season-panel{min-height:0;display:block;padding:28px 28px 30px}
+.season-panel .season-heading p{max-width:660px}
+.season-months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px;margin:22px 0 0}
+.season-months button{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:62px;padding:8px 4px;
+  border:1px solid rgba(25,62,87,.13);border-radius:12px;background:#fffdfa;color:#234866;cursor:pointer;
+  box-shadow:0 1px 4px rgba(28,58,74,.035);transition:background .16s ease,border-color .16s ease,color .16s ease;
+}
+.season-months button b{font:600 19px/1 "Hanken Grotesk",sans-serif;letter-spacing:.01em}
+.season-months button b small{margin-left:1px;font:600 11px/1 var(--jp,sans-serif)}
+.season-months button span{font:600 10.5px/1 "Hanken Grotesk",sans-serif;color:#8a96a0}
+.season-months button:hover{border-color:rgba(25,62,87,.3)}
+.season-months button:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.season-months button.is-active{border-color:#234866;background:#234866;color:#fff}
+.season-months button.is-active span{color:rgba(255,255,255,.8)}
+.season-results{margin-top:24px;padding-top:22px;border-top:1px solid rgba(23,59,93,.12)}
+.season-results[hidden]{display:none!important}
+.country-card__season{color:#234866;padding-right:16px;white-space:normal;overflow:visible}
+#seasons{scroll-margin-top:calc(var(--ja-header-height,72px) + 16px)}
+@media (prefers-reduced-motion:reduce){.season-months button{transition:none}}
+@media(max-width:1050px){.season-months{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:760px){
+  .season-panel{padding:20px 16px}
+  .season-months{margin-top:18px;gap:7px}
+  .season-months button{min-height:54px}
+  .season-results{margin-top:18px;padding-top:18px}
+}

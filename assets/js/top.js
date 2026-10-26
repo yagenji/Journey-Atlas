@@ -699,12 +699,14 @@ function saveTopState(){
   set('theme',activeTheme||'');
   set('tregion',activeTheme&&activeThemeRegion!=='all'?activeThemeRegion:'');
   set('q',searchInput?.value.trim()||'');
+  set('month',seasonChosen?String(seasonMonth):'');
+  set('sregion',seasonChosen&&seasonRegion!=='all'?seasonRegion:'');
   if(url.href!==location.href)history.replaceState(history.state,'',url);
 }
 searchInput?.addEventListener('input',saveTopState);
 try{history.scrollRestoration='manual';}catch{}
 window.addEventListener('pagehide',()=>{
-  try{sessionStorage.setItem(SCROLL_KEY,JSON.stringify({url:location.pathname+location.search,y:window.scrollY,limit:themeLimit}));}catch{}
+  try{sessionStorage.setItem(SCROLL_KEY,JSON.stringify({url:location.pathname+location.search,y:window.scrollY,limit:themeLimit,seasonLimit}));}catch{}
 });
 Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionPromise]).then(()=>{
   const params=new URLSearchParams(location.search);
@@ -722,10 +724,169 @@ Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionP
   const q=params.get('q');
   if(q&&searchInput){searchInput.value=q;searchInput.dispatchEvent(new Event('input'));}
   restoringTopState=false;
-  if(returning)requestAnimationFrame(()=>window.scrollTo(0,saved.y));
+  // Season results load their own index; wait for them so the saved scroll position exists.
+  if(returning)Promise.resolve(seasonChosen?seasonReady:null).then(()=>requestAnimationFrame(()=>window.scrollTo(0,saved.y)));
   else if(!location.hash&&(theme||q))(theme?themeResults:document.querySelector('#countries'))?.scrollIntoView({block:'start'});
 });
 
+
+// ---------------------------------------------------------------------------
+// 季節から探す: pick a month, list the Countries whose おすすめの時期 (bestSeason) includes it.
+// data/top-season-index.json is generated from the Country data at build time and loaded
+// when the panel comes near the viewport (or at once when the URL carries ?month=).
+// ---------------------------------------------------------------------------
+const seasonMonthsHost=document.querySelector('#season-months');
+const seasonResults=document.querySelector('#season-results');
+const seasonGrid=document.querySelector('#season-results-grid');
+const seasonTitle=document.querySelector('#season-results-title');
+const seasonMeta=document.querySelector('#season-results-meta');
+const seasonTabs=document.querySelector('#season-region-tabs');
+const seasonMore=document.querySelector('#season-results-more');
+const seasonEmpty=document.querySelector('#season-results-empty');
+const SEASON_PAGE=24;
+let seasonIndex=null,seasonIndexPromise=null;
+let seasonMonth=new Date().getMonth()+1;
+let seasonChosen=false;   // true once the visitor picks a month (or arrives with ?month=)
+let seasonRegion='all';
+let seasonLimit=SEASON_PAGE;
+let seasonReady=null;
+{
+  const params=new URLSearchParams(location.search);
+  const month=Number(params.get('month'));
+  if(month>=1&&month<=12){seasonMonth=month;seasonChosen=true;seasonRegion=params.get('sregion')||'all';}
+}
+function loadSeasonIndex(){
+  if(!seasonIndexPromise){
+    seasonIndexPromise=fetch('data/top-season-index.json')
+      .then((response)=>{if(!response.ok)throw new Error('Season index not found');return response.json();})
+      .then(({countries={}})=>{seasonIndex=new Map(Object.entries(countries));})
+      .catch((error)=>{console.warn('[JOURNEY ATLAS] Season search unavailable.',error);});
+  }
+  return seasonIndexPromise;
+}
+function seasonWindowFor(slug,month){
+  return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
+}
+function seasonItems(month){
+  return destinations.filter((country)=>country.atlasPublished&&seasonWindowFor(country.slug,month));
+}
+function renderSeasonMonths(){
+  if(!seasonMonthsHost)return;
+  const ready=Boolean(seasonIndex&&destinations.length);
+  seasonMonthsHost.replaceChildren(...Array.from({length:12},(_,i)=>{
+    const month=i+1;
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.seasonMonth=String(month);
+    const on=month===seasonMonth;
+    button.classList.toggle('is-active',on);
+    button.setAttribute('aria-pressed',String(on));
+    const total=ready?seasonItems(month).length:null;
+    button.innerHTML=`<b>${month}<small>月</small></b>${total===null?'':`<span>${total}</span>`}`;
+    button.setAttribute('aria-label',total===null?`${month}月`:`${month}月（${total}件）`);
+    return button;
+  }));
+}
+function renderSeasonResults(){
+  renderSeasonMonths();
+  if(!seasonResults||!seasonGrid||!seasonIndex||!destinations.length)return;
+  const all=seasonItems(seasonMonth);
+  const counts=new Map();
+  all.forEach((country)=>{const region=themeRegionByIso.get(country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
+  if(seasonRegion!=='all'&&!counts.has(seasonRegion))seasonRegion='all';
+  if(seasonTabs){
+    if(!themeRegions.length||counts.size<2){seasonTabs.hidden=true;seasonTabs.replaceChildren();}
+    else{
+      seasonTabs.hidden=false;
+      const options=[{id:'all',label:'すべて',count:all.length},...themeRegions.filter((region)=>counts.has(region.id)).map((region)=>({...region,count:counts.get(region.id)}))];
+      seasonTabs.replaceChildren(...options.map(({id,label,count})=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.dataset.seasonRegion=id;
+        const on=id===seasonRegion;
+        button.classList.toggle('is-active',on);
+        button.setAttribute('aria-pressed',String(on));
+        button.innerHTML=`${label}<span>${count}</span>`;
+        return button;
+      }));
+    }
+  }
+  const items=seasonRegion==='all'?all:all.filter((country)=>themeRegionByIso.get(country.iso2)===seasonRegion);
+  const shown=items.slice(0,seasonLimit);
+  const fragment=document.createDocumentFragment();
+  shown.forEach((country,index)=>{
+    const card=createCard(country,index,true);
+    card.setAttribute('role','listitem');
+    const window_=seasonWindowFor(country.slug,seasonMonth);
+    if(window_){
+      const note=document.createElement('small');
+      note.className='country-card__match country-card__season';
+      note.textContent=`おすすめ ${window_[1]}`;
+      note.title=window_[2];
+      card.querySelector('.country-card__body')?.append(note);
+      if(card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${card.getAttribute('aria-label')}（おすすめの時期 ${window_[1]}）`);
+    }
+    fragment.append(card);
+  });
+  seasonGrid.replaceChildren(fragment);
+  if(seasonMore){
+    const remaining=items.length-shown.length;
+    seasonMore.hidden=remaining<=0;
+    seasonMore.textContent=`もっと見る（残り${remaining}件）`;
+  }
+  const regionLabel=themeRegions.find((region)=>region.id===seasonRegion)?.label;
+  if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
+  if(seasonMeta)seasonMeta.textContent=regionLabel?`${regionLabel}　${items.length} / ${all.length} DESTINATIONS`:`${items.length} DESTINATIONS`;
+  if(seasonEmpty)seasonEmpty.hidden=items.length!==0;
+  seasonResults.hidden=false;
+  saveTopState();
+}
+seasonMonthsHost?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-season-month]');
+  if(!button)return;
+  seasonMonth=Number(button.dataset.seasonMonth);
+  seasonChosen=true;
+  seasonLimit=SEASON_PAGE;
+  renderSeasonResults();
+});
+seasonTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-season-region]');
+  if(!button)return;
+  seasonRegion=button.dataset.seasonRegion;
+  seasonLimit=SEASON_PAGE;
+  renderSeasonResults();
+});
+seasonMore?.addEventListener('click',()=>{
+  const before=seasonGrid?.children.length||0;
+  seasonLimit+=SEASON_PAGE*2;
+  renderSeasonResults();
+  seasonGrid?.children[before]?.focus({preventScroll:true});
+});
+renderSeasonMonths();
+{
+  const start=()=>Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise]).then(()=>{
+    try{const saved=JSON.parse(sessionStorage.getItem(SCROLL_KEY)||'null');if(seasonChosen&&saved?.url===location.pathname+location.search&&saved.seasonLimit)seasonLimit=saved.seasonLimit;}catch{}
+    renderSeasonResults();
+    // A shared ?month= link (not a back/reload, which restores its own scroll) opens at the panel.
+    const nav=performance.getEntriesByType?.('navigation')?.[0]?.type;
+    const params=new URLSearchParams(location.search);
+    if(seasonChosen&&!location.hash&&nav!=='back_forward'&&nav!=='reload'&&!params.get('theme')&&!params.get('q'))
+    {
+      // Images above the panel can still change its position, so settle again once the page has loaded.
+      const go=()=>requestAnimationFrame(()=>document.querySelector('#seasons')?.scrollIntoView({block:'start'}));
+      go();
+      if(document.readyState!=='complete')window.addEventListener('load',go,{once:true});
+    }
+  });
+  const panel=document.querySelector('#seasons');
+  if(seasonChosen||location.hash==='#seasons'||!panel||!('IntersectionObserver' in window))seasonReady=start();
+  else{
+    const observer=new IntersectionObserver((entries)=>{
+      if(entries.some((entry)=>entry.isIntersecting)){observer.disconnect();start();}
+    },{rootMargin:'600px 0px'});
+    observer.observe(panel);
+  }
+}
 
 // "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.
 document.querySelector('#random-country')?.addEventListener('click',()=>{
