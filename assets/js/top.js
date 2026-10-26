@@ -745,7 +745,7 @@ const seasonMore=document.querySelector('#season-results-more');
 const seasonEmpty=document.querySelector('#season-results-empty');
 const SEASON_PAGE=24;
 let seasonIndex=null,seasonIndexPromise=null;
-let seasonMonth=new Date().getMonth()+1;
+let seasonMonth=null;     // nothing selected until the visitor picks a month (or ?month=)
 let seasonChosen=false;   // true once the visitor picks a month (or arrives with ?month=)
 let seasonRegion='all';
 let seasonLimit=SEASON_PAGE;
@@ -782,7 +782,7 @@ function loadSeasonIndex(){
 // Shown in the results area while the index loads, or if it cannot be loaded, so a tap
 // on a month always gives visible feedback.
 function showSeasonStatus(message){
-  if(!seasonResults||!seasonGrid)return;
+  if(!seasonResults||!seasonGrid||!seasonMonth)return;
   seasonResults.hidden=false;
   if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
   if(seasonMeta)seasonMeta.textContent='';
@@ -816,6 +816,7 @@ function renderSeasonMonths(){
 }
 function renderSeasonResults(){
   renderSeasonMonths();
+  if(!seasonMonth){if(seasonResults)seasonResults.hidden=true;return;}
   if(!seasonResults||!seasonGrid||!seasonIndex||!destinations.length)return;
   const all=seasonItems(seasonMonth);
   const counts=new Map();
@@ -922,7 +923,7 @@ function startSeason(){
   const start=()=>Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise.catch(()=>{})]).then(()=>{
     if(!seasonIndex)return;
     try{const saved=JSON.parse(sessionStorage.getItem(SCROLL_KEY)||'null');if(seasonChosen&&saved?.url===location.pathname+location.search&&saved.seasonLimit)seasonLimit=saved.seasonLimit;}catch{}
-    try{renderSeasonResults();}
+    try{seasonChosen?renderSeasonResults():renderSeasonMonths();}
     catch(error){
       console.error('[JOURNEY ATLAS] Season results failed.',error);
       showSeasonStatus(`一覧を表示できませんでした。（${error?.name||'Error'}: ${error?.message||''}）`);
