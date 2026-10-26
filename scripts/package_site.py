@@ -30,6 +30,7 @@ RUNTIME_DATA_FILES = [
     "theme-taxonomy.json",
     "top-search-index.json",
     "top-season-index.json",
+    "top-scene-index.json",
 ]
 
 
