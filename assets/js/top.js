@@ -745,7 +745,7 @@ const seasonMore=document.querySelector('#season-results-more');
 const seasonEmpty=document.querySelector('#season-results-empty');
 const SEASON_PAGE=24;
 let seasonIndex=null,seasonIndexPromise=null;
-let seasonMonth=new Date().getMonth()+1;
+let seasonMonth=null;     // nothing selected until the visitor picks a month (or ?month=)
 let seasonChosen=false;   // true once the visitor picks a month (or arrives with ?month=)
 let seasonRegion='all';
 let seasonLimit=SEASON_PAGE;
@@ -755,15 +755,26 @@ let seasonReady=null;
   const month=Number(params.get('month'));
   if(month>=1&&month<=12){seasonMonth=month;seasonChosen=true;seasonRegion=params.get('sregion')||'all';}
 }
+let seasonStage='idle';   // where loading is, shown if it stalls (helps diagnose one browser)
 function loadSeasonIndex(){
   if(!seasonIndexPromise){
+    seasonStage='fetch';
     seasonIndexPromise=fetch('data/top-season-index.json')
-      .then((response)=>{if(!response.ok)throw new Error('Season index not found');return response.json();})
-      .then(({countries={}})=>{seasonIndex=new Map(Object.entries(countries));})
+      .then((response)=>{
+        seasonStage=`response ${response.status} ${response.headers.get('content-type')||''}`.trim();
+        if(!response.ok)throw new Error(`HTTP ${response.status}`);
+        return response.text();
+      })
+      .then((text)=>{
+        seasonStage=`parse ${text.length}`;
+        const {countries={}}=JSON.parse(text);
+        seasonIndex=new Map(Object.entries(countries));
+        seasonStage='ready';
+      })
       .catch((error)=>{
         console.warn('[JOURNEY ATLAS] Season search unavailable.',error);
         seasonIndexPromise=null;   // allow a retry on the next tap
-        showSeasonStatus('おすすめの時期を読み込めませんでした。少し待ってから、もう一度月を選んでください。');
+        showSeasonStatus(`おすすめの時期を読み込めませんでした。少し待ってから、もう一度月を選んでください。（${error?.name||'Error'}: ${error?.message||''} / ${seasonStage}）`);
       });
   }
   return seasonIndexPromise;
@@ -771,7 +782,7 @@ function loadSeasonIndex(){
 // Shown in the results area while the index loads, or if it cannot be loaded, so a tap
 // on a month always gives visible feedback.
 function showSeasonStatus(message){
-  if(!seasonResults||!seasonGrid)return;
+  if(!seasonResults||!seasonGrid||!seasonMonth)return;
   seasonResults.hidden=false;
   if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
   if(seasonMeta)seasonMeta.textContent='';
@@ -805,6 +816,7 @@ function renderSeasonMonths(){
 }
 function renderSeasonResults(){
   renderSeasonMonths();
+  if(!seasonMonth){if(seasonResults)seasonResults.hidden=true;return;}
   if(!seasonResults||!seasonGrid||!seasonIndex||!destinations.length)return;
   const all=seasonItems(seasonMonth);
   const counts=new Map();
@@ -863,7 +875,14 @@ seasonMonthsHost?.addEventListener('click',(event)=>{
   seasonMonth=Number(button.dataset.seasonMonth);
   seasonChosen=true;
   seasonLimit=SEASON_PAGE;
-  if(seasonIndex&&destinations.length){renderSeasonResults();return;}
+  if(seasonIndex&&destinations.length){
+    try{renderSeasonResults();}
+    catch(error){
+      console.error('[JOURNEY ATLAS] Season results failed.',error);
+      showSeasonStatus(`一覧を表示できませんでした。（${error?.name||'Error'}: ${error?.message||''}）`);
+    }
+    return;
+  }
   // Data not ready yet (slow network, or the panel was reached without scrolling past it):
   // say so, then load and show the list.
   renderSeasonMonths();
@@ -885,16 +904,31 @@ seasonMore?.addEventListener('click',()=>{
 });
 renderSeasonMonths();
 function startSeason(){
+  // If loading stalls, say where it stopped instead of leaving 「読み込んでいます…」 forever.
+  const timer=window.setTimeout(()=>{
+    if(!seasonIndex)showSeasonStatus(`読み込みに時間がかかっています。もう一度月を選んでください。（${seasonStage}）`);
+  },10000);
   return Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise.catch(()=>{})]).then(()=>{
+    window.clearTimeout(timer);
     if(!seasonIndex)return;
-    renderSeasonResults();
+    if(!destinations.length){showSeasonStatus('国の一覧を読み込めませんでした。ページを再読み込みしてください。');return;}
+    try{renderSeasonResults();}
+    catch(error){
+      console.error('[JOURNEY ATLAS] Season results failed.',error);
+      showSeasonStatus(`一覧を表示できませんでした。（${error?.name||'Error'}: ${error?.message||''}）`);
+    }
   });
 }
 {
   const start=()=>Promise.all([loadSeasonIndex(),coreRegistryPromise.catch(()=>{}),themeRegionPromise.catch(()=>{})]).then(()=>{
     if(!seasonIndex)return;
     try{const saved=JSON.parse(sessionStorage.getItem(SCROLL_KEY)||'null');if(seasonChosen&&saved?.url===location.pathname+location.search&&saved.seasonLimit)seasonLimit=saved.seasonLimit;}catch{}
-    renderSeasonResults();
+    try{seasonChosen?renderSeasonResults():renderSeasonMonths();}
+    catch(error){
+      console.error('[JOURNEY ATLAS] Season results failed.',error);
+      showSeasonStatus(`一覧を表示できませんでした。（${error?.name||'Error'}: ${error?.message||''}）`);
+      return;
+    }
     // A shared ?month= link (not a back/reload, which restores its own scroll) opens at the panel.
     const nav=performance.getEntriesByType?.('navigation')?.[0]?.type;
     const params=new URLSearchParams(location.search);
