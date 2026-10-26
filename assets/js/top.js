@@ -684,6 +684,20 @@ document.addEventListener('click',(event)=>{
   renderGrid(filtered);
 });
 
+// Header 「旅先を探す」: the five ways to search open as a small menu on wider screens.
+// (In the mobile menu they are always listed, so the toggle does nothing there.)
+(()=>{
+  const wrap=document.querySelector('.nav-explore');
+  const toggle=document.querySelector('#nav-explore-toggle');
+  if(!wrap||!toggle)return;
+  const setOpen=(open)=>{wrap.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));};
+  toggle.addEventListener('click',(event)=>{event.stopPropagation();setOpen(!wrap.classList.contains('is-open'));});
+  wrap.addEventListener('click',(event)=>{if(event.target.closest('a'))setOpen(false);});
+  document.addEventListener('click',(event)=>{if(!wrap.contains(event.target))setOpen(false);});
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&wrap.classList.contains('is-open')){setOpen(false);toggle.focus();}});
+  wrap.addEventListener('focusout',(event)=>{if(!wrap.contains(event.relatedTarget))setOpen(false);});
+})();
+
 // Mobile header menu (the nav links are collapsed behind a button on narrow screens).
 (()=>{
   const toggle=document.querySelector('.top-menu-toggle');
