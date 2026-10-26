@@ -280,3 +280,26 @@
 @media(max-width:760px){
   .all-countries-panel__head{flex-direction:row!important;align-items:center!important}
 }
+
+/* ---------- 16. テーマ×季節 (month filter inside theme results) ---------- */
+.theme-month-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px}
+.theme-month-tabs[hidden]{display:none}
+.theme-month-tabs__label{margin-right:4px;color:#7a858e;font:600 11.5px/1.2 var(--jp,sans-serif);letter-spacing:.04em}
+.theme-month-tabs button{
+  display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:6px 11px;
+  border:1px solid rgba(25,62,87,.13);border-radius:999px;background:#fffdfa;color:#405466;
+  font:600 11.5px/1.2 var(--jp,sans-serif);cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease;
+}
+.theme-month-tabs button span{font:600 9.5px/1 "Hanken Grotesk",sans-serif;color:#8a96a0}
+.theme-month-tabs button:hover{border-color:rgba(25,62,87,.28)}
+.theme-month-tabs button:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.theme-month-tabs button.is-active{border-color:#234866;background:#234866;color:#fff}
+.theme-month-tabs button.is-active span{color:rgba(255,255,255,.8)}
+@media (prefers-reduced-motion:reduce){.theme-month-tabs button{transition:none}}
+@media(max-width:760px){
+  .theme-month-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .theme-month-tabs::-webkit-scrollbar{display:none}
+  .theme-month-tabs button{flex:0 0 auto;min-height:38px;font-size:12px}
+  .theme-month-tabs__label{flex:0 0 auto}
+}
+.country-card__season-period{white-space:nowrap}
