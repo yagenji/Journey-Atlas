@@ -90,9 +90,9 @@ class MapCreditsTest(unittest.TestCase):
             with self.subTest(slug=country["slug"]):
                 self.assertNotIn("GADM", provenance(country))
 
-    def test_sources_page_is_current(self):
+    def test_about_page_credits_are_current(self):
         result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "build_map_sources_page.py"), "--check"],
+            [sys.executable, str(ROOT / "scripts" / "build_about_map_credits.py"), "--check"],
             cwd=ROOT, capture_output=True, text=True,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

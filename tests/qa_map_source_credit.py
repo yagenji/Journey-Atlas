@@ -79,19 +79,18 @@ def main() -> None:
                 wait_for_country(driver)
                 driver.execute_script("document.querySelector('#country-map-art').scrollIntoView({block:'center'})")
                 WebDriverWait(driver, 35).until(lambda d: d.execute_script("const i=document.querySelector('#country-map-art .map-base');return !!i&&i.complete&&i.naturalWidth>0"))
-                WebDriverWait(driver, 35).until(lambda d: len(d.find_elements(By.CSS_SELECTOR, '.map-legend--below .map-legend__credits .map-legend__source-credit')) > 0)
-                line = driver.find_element(By.CSS_SELECTOR, '.map-legend--below .map-legend__credits')
-                assert line.is_displayed() and line.text.startswith('地図データ'), f'{slug}/{name}: credits line hidden'
-                credits = driver.find_elements(By.CSS_SELECTOR, '.map-legend--below .map-legend__source-credit[data-map-source="osm"]')
+                if expected:
+                    WebDriverWait(driver, 35).until(lambda d: len(d.find_elements(By.CSS_SELECTOR, '#country-map-art .map-osm-credit')) == 1)
+                credits = driver.find_elements(By.CSS_SELECTOR, '#country-map-art .map-osm-credit')
                 assert len(credits) == int(expected), f'{slug}/{name}: osm credits={len(credits)} expected={expected}'
                 if credits:
                     credit = credits[0]
-                    assert credit.is_displayed(), f'{slug}/{name}: OSM source link hidden'
+                    assert credit.is_displayed(), f'{slug}/{name}: OSM credit hidden'
                     assert credit.get_attribute('href') == COPYRIGHT, f'{slug}/{name}: wrong credit URL'
-                    assert 'OpenStreetMap contributors' in credit.text
-                    assert 'ODbL 1.0' in line.text
-                    assert driver.execute_script('const e=arguments[0],r=e.getBoundingClientRect();return r.width>60&&r.height>0&&getComputedStyle(e).visibility==="visible"', credit)
-                    assert credit.get_attribute('tabindex') is None, f'{slug}/{name}: source link focus order changed'
+                    assert credit.text == '© OpenStreetMap contributors'
+                    # Inside the map frame, in its bottom-right corner.
+                    assert driver.execute_script("""const c=arguments[0].getBoundingClientRect(),m=document.querySelector('#country-map-art').getBoundingClientRect();
+                      return c.width>60&&c.right<=m.right+0.5&&c.bottom<=m.bottom+0.5&&c.left>m.left+m.width/2&&c.top>m.top+m.height/2""", credit), f'{slug}/{name}: credit outside map corner'
                 print(f'SOURCE CREDIT PASS {slug}/{name}: expected={expected}', flush=True)
                 if slug in CAPTURE:
                     capture_supplementary_screenshot(driver, slug, name)

@@ -191,48 +191,25 @@ function resolveImageSource(source) {
 const MAP_SOURCES_URL = `data/map-data-sources.json?v=${DATA_VERSION}`;
 let mapSourcesRequest = null;
 
-// Credit every geographic dataset the map is drawn from. The per-Country
-// dataset ids and their labels/licences live in data/map-data-sources.json.
-// Licences such as ODbL and CC BY require this attribution next to the map.
+// OpenStreetMap (ODbL) must be credited on or next to the map itself, so maps
+// drawn from OSM data get a small credit in the map's bottom-right corner.
+// Every other dataset is credited on the About page (data/map-data-sources.json).
 function renderMapCredits(fragment, slug) {
-  const legend = fragment.querySelector('.map-legend--below');
-  if (!slug || !legend) return;
-  const line = document.createElement('span');
-  line.className = 'map-legend__credits';
-  legend.append(line);
+  const mapArt = fragment.querySelector('#country-map-art');
+  if (!slug || !mapArt) return;
   mapSourcesRequest = mapSourcesRequest || fetch(MAP_SOURCES_URL, { cache: 'no-store' })
     .then((response) => (response.ok ? response.json() : Promise.reject(new Error('Map sources unavailable'))));
   mapSourcesRequest.then((registry) => {
-    const sources = registry?.sources || {};
-    const ids = Array.isArray(registry?.countries?.[slug]) ? registry.countries[slug] : [];
-    const known = ids.filter((id) => typeof id === 'string' && sources[id]?.label);
-    if (!known.length) { line.remove(); return; }
-    line.append('地図データ（加工して作成）：');
-    known.forEach((id, index) => {
-      const source = sources[id];
-      if (index) line.append('・');
-      const link = document.createElement('a');
-      link.className = 'map-legend__source-credit';
-      link.href = source.url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.dataset.mapSource = id;
-      link.textContent = source.label;
-      line.append(link);
-      if (source.license) {
-        const license = document.createElement('span');
-        license.className = 'map-legend__credits-license';
-        license.textContent = `（${source.license}）`;
-        line.append(license);
-      }
-    });
-    line.append(' ');
-    const all = document.createElement('a');
-    all.className = 'map-legend__credits-all';
-    all.href = 'map-sources/';
-    all.textContent = '出典一覧';
-    line.append(all);
-  }).catch(() => line.remove());
+    const ids = registry?.countries?.[slug];
+    if (!Array.isArray(ids) || !ids.includes('osm')) return;
+    const credit = document.createElement('a');
+    credit.className = 'map-osm-credit';
+    credit.href = 'https://www.openstreetmap.org/copyright';
+    credit.target = '_blank';
+    credit.rel = 'noopener noreferrer';
+    credit.textContent = '© OpenStreetMap contributors';
+    mapArt.append(credit);
+  }).catch(() => {});
 }
 
 function renderMapBase(fragment, mapData, slug) {

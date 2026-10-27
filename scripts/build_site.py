@@ -381,7 +381,6 @@ def generate_sitemap(country_urls: list[str]) -> None:
         urljoin(SITE_URL, "about/"),
         urljoin(SITE_URL, "faq/"),
         urljoin(SITE_URL, "privacy/"),
-        urljoin(SITE_URL, "map-sources/"),
         *country_urls,
     ]
     body = "\n".join(f"  <url><loc>{html.escape(url)}</loc></url>" for url in urls)

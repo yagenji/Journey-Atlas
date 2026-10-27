@@ -28,7 +28,7 @@ RUNTIME_DATA_FILES = [
     "theme-taxonomy.json",
     "map-data-sources.json",
 ]
-STATIC_PAGE_DIRS = ["about", "faq", "privacy", "map-sources"]
+STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
 
 
 def parse_slugs(raw: str) -> list[str]:

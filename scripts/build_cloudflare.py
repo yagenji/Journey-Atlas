@@ -71,7 +71,6 @@ def main() -> int:
         dist / "about" / "index.html",
         dist / "faq" / "index.html",
         dist / "privacy" / "index.html",
-        dist / "map-sources" / "index.html",
         dist / "_headers",
         dist / "build-meta.json",
         dist / "assets" / "css" / "country.css",
