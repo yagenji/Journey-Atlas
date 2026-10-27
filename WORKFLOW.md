@@ -82,3 +82,10 @@ Do **not** recreate State machines, per-image Git commits, provenance ledgers, o
 Already-published Country Pages use `docs/PUBLISHED_COUNTRY_RENEWAL.md`; status lives in `data/country-renewal-status.json`. Run the current renewal audit and image hard gate appropriate to that Country. A legacy published page does not meet the current production standard merely because it is live.
 
 Iceland / Norway remain the visual-series references; Spain supplies the approved Taste-series reference and current shared page-structure comparison where applicable. `docs/IMAGE_QUALITY.md`, not legacy low-resolution assets, defines current production image quality.
+
+## Top-page Scene gallery (景色から探す)
+
+The gallery uses 480×320 thumbnails in `assets/images/top/scenes/{slug}/{scene-id}.webp`.
+When a Scene image is added or replaced, run `python3 scripts/build_scene_thumbs.py` and commit
+the changed thumbnails and `manifest.json`. CI runs `--check` and fails if any are missing or stale;
+`data/top-scene-index.json` is generated on every build and lists only Scenes that have a thumbnail.

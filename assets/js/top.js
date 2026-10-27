@@ -58,19 +58,22 @@ syncScrollHeader();
 
 let destinations = [];
 let activeTheme = null;
+let activeThemeMonth = null;   // テーマ×季節: 1–12, or null for every month
 let themeMeta = {};
 let heroSources = [];
 let heroIndex = 0;
 let heroTimer;
 let themeSets = {};
 
+// Provisional hero slides: approved Country hero art, until the top-page illustrations are
+// redrawn. (The earlier hero-set-1〜4 files were truncated and showed as broken images on iPhone.)
 const heroFiles = [
-  'assets/images/top/hero-world-collage.svg',
-  'assets/images/top/hero-set-1.webp',
-  'assets/images/top/hero-set-2.webp',
-  'assets/images/top/hero-set-3.webp',
-  'assets/images/top/hero-set-4.webp',
-  'assets/images/top/hero-set-5.webp'
+  {src:'assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp',alt:'日本・河口湖と富士山'},
+  {src:'assets/images/italy/approved/hero-venice-grand-canal-salute.webp',alt:'イタリア・ヴェネツィアの大運河とサルーテ聖堂'},
+  {src:'assets/images/peru/approved/hero-machu-picchu.webp',alt:'ペルー・マチュ・ピチュ'},
+  {src:'assets/images/kenya/approved/hero-amboseli.webp',alt:'ケニア・アンボセリ国立公園'},
+  {src:'assets/images/iceland/approved/hero-seljalandsfoss.webp',alt:'アイスランド・セリャラントスフォス'},
+  {src:'assets/images/maldives/approved/hero-dhigurah-sandbank.webp',alt:'モルディブ・ディグラ島の砂州'}
 ];
 
 {
@@ -129,7 +132,8 @@ function setHero(index,animate=true){
   heroIndex=(index+heroSources.length)%heroSources.length;
   if(animate) heroVisual?.classList.add('is-changing');
   window.setTimeout(()=>{
-    heroImage.src=heroSources[heroIndex];
+    heroImage.src=heroSources[heroIndex].src;
+    heroImage.alt=heroSources[heroIndex].alt;
     heroButtons.forEach((button,i)=>button.classList.toggle('is-active',i===heroIndex));
     heroImage.onload=()=>heroVisual?.classList.remove('is-changing');
   },animate?130:0);
@@ -424,7 +428,15 @@ function renderThemeResults(){
     return;
   }
 
-  const themeItems=getThemeItems(activeTheme);
+  const allThemeItems=getThemeItems(activeTheme);
+  // テーマ×季節: narrow to Countries whose おすすめの時期 includes the chosen month.
+  // The season index is shared with 季節から探す and loaded on demand.
+  const monthReady=Boolean(seasonIndex);
+  if(!monthReady)loadSeasonIndex()?.then(()=>{if(activeTheme&&seasonIndex)renderThemeResults();});
+  renderThemeMonthTabs(allThemeItems,monthReady);
+  const themeItems=activeThemeMonth&&monthReady
+    ?allThemeItems.filter((country)=>seasonWindowFor(country.slug,activeThemeMonth))
+    :allThemeItems;
   const regionCounts=new Map();
   themeItems.forEach((country)=>{
     const region=themeRegionByIso.get(country.iso2);
@@ -445,6 +457,14 @@ function renderThemeResults(){
   shown.forEach((country,index)=>{
     const card=createCard(country,index,true);
     card.setAttribute('role','listitem');
+    const window_=activeThemeMonth&&monthReady?seasonWindowFor(country.slug,activeThemeMonth):null;
+    if(window_){
+      const note=document.createElement('small');
+      note.className='country-card__match country-card__season';
+      seasonNote(note,window_[1]);
+      note.title=window_[2];
+      card.querySelector('.country-card__body')?.append(note);
+    }
     fragment.append(card);
   });
   themeResultsGrid.replaceChildren(fragment);
@@ -452,7 +472,7 @@ function renderThemeResults(){
   saveTopState();
 
   const label=themeLabel(activeTheme);
-  if(themeResultsTitle)themeResultsTitle.textContent=label;
+  if(themeResultsTitle)themeResultsTitle.textContent=activeThemeMonth?`${label}　${activeThemeMonth}月におすすめ`:label;
   const regionLabel=themeRegions.find((region)=>region.id===activeThemeRegion)?.label;
   if(themeResultsMeta)themeResultsMeta.textContent=query
     ?`${baseItems.length}件の候補から、${items.length}件を表示しています。`
@@ -463,6 +483,35 @@ function renderThemeResults(){
   themeResults.hidden=false;
   syncThemeSelectionUI();
 }
+const themeMonthTabs=document.querySelector('#theme-month-tabs');
+function renderThemeMonthTabs(items,ready){
+  if(!themeMonthTabs)return;
+  themeMonthTabs.hidden=false;
+  const count=(month)=>ready?items.filter((country)=>seasonWindowFor(country.slug,month)).length:null;
+  const options=[{month:null,label:'すべての月'},...Array.from({length:12},(_,i)=>({month:i+1,label:`${i+1}月`}))];
+  const head=document.createElement('span');
+  head.className='theme-month-tabs__label';
+  head.textContent='旅に出る月';
+  themeMonthTabs.replaceChildren(head,...options.map(({month,label})=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.themeMonth=month===null?'':String(month);
+    const on=month===activeThemeMonth;
+    button.classList.toggle('is-active',on);
+    button.setAttribute('aria-pressed',String(on));
+    const n=month===null?null:count(month);
+    button.innerHTML=n===null?label:`${label}<span>${n}</span>`;
+    return button;
+  }));
+}
+themeMonthTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-theme-month]');
+  if(!button)return;
+  activeThemeMonth=button.dataset.themeMonth?Number(button.dataset.themeMonth):null;
+  themeLimit=THEME_PAGE;
+  if(activeThemeMonth&&!seasonIndex){loadSeasonIndex()?.then(()=>renderThemeResults());}
+  renderThemeResults();
+});
 function renderThemeRegionTabs(total,regionCounts){
   if(!themeRegionTabs)return;
   if(!themeRegions.length||regionCounts.size<2){themeRegionTabs.hidden=true;themeRegionTabs.replaceChildren();return;}
@@ -509,6 +558,7 @@ function renderThemeMore(remaining){
 }
 function clearThemeResults(){
   themeLimit=THEME_PAGE;
+  activeThemeMonth=null;
   activeThemeRegion='all';
   activeTheme=null;
   renderThemeResults();
@@ -637,6 +687,20 @@ document.addEventListener('click',(event)=>{
   renderGrid(filtered);
 });
 
+// Header 「旅先を探す」: the five ways to search open as a small menu on wider screens.
+// (In the mobile menu they are always listed, so the toggle does nothing there.)
+(()=>{
+  const wrap=document.querySelector('.nav-explore');
+  const toggle=document.querySelector('#nav-explore-toggle');
+  if(!wrap||!toggle)return;
+  const setOpen=(open)=>{wrap.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));};
+  toggle.addEventListener('click',(event)=>{event.stopPropagation();setOpen(!wrap.classList.contains('is-open'));});
+  wrap.addEventListener('click',(event)=>{if(event.target.closest('a'))setOpen(false);});
+  document.addEventListener('click',(event)=>{if(!wrap.contains(event.target))setOpen(false);});
+  document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&wrap.classList.contains('is-open')){setOpen(false);toggle.focus();}});
+  wrap.addEventListener('focusout',(event)=>{if(!wrap.contains(event.relatedTarget))setOpen(false);});
+})();
+
 // Mobile header menu (the nav links are collapsed behind a button on narrow screens).
 (()=>{
   const toggle=document.querySelector('.top-menu-toggle');
@@ -668,6 +732,7 @@ function saveTopState(){
   const set=(key,value)=>value?url.searchParams.set(key,value):url.searchParams.delete(key);
   set('theme',activeTheme||'');
   set('tregion',activeTheme&&activeThemeRegion!=='all'?activeThemeRegion:'');
+  set('tmonth',activeTheme&&activeThemeMonth?String(activeThemeMonth):'');
   set('q',searchInput?.value.trim()||'');
   set('month',seasonChosen?String(seasonMonth):'');
   set('sregion',seasonChosen&&seasonRegion!=='all'?seasonRegion:'');
@@ -688,6 +753,7 @@ Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionP
   if(theme&&themeSets[theme]){
     activeTheme=theme;
     activeThemeRegion=params.get('tregion')||'all';
+    {const m=Number(params.get('tmonth'));activeThemeMonth=m>=1&&m<=12?m:null;}
     themeLimit=returning&&saved.limit?saved.limit:THEME_PAGE;
     renderThemeResults();
   }
@@ -761,6 +827,13 @@ function showSeasonStatus(message){
   seasonGrid.replaceChildren();
   if(seasonEmpty){seasonEmpty.textContent=message;seasonEmpty.hidden=false;}
 }
+// 「おすすめ 12〜4月」: keep the period on one line so it never splits as 「12〜 / 4月」.
+function seasonNote(note,label){
+  const period=document.createElement('span');
+  period.className='country-card__season-period';
+  period.textContent=label;
+  note.replaceChildren('おすすめ ',period);
+}
 function seasonWindowFor(slug,month){
   return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
 }
@@ -819,7 +892,7 @@ function renderSeasonResults(){
     if(window_){
       const note=document.createElement('small');
       note.className='country-card__match country-card__season';
-      note.textContent=`おすすめ ${window_[1]}`;
+      seasonNote(note,window_[1]);
       note.title=window_[2];
       card.querySelector('.country-card__body')?.append(note);
       if(card.hasAttribute('aria-label'))card.setAttribute('aria-label',`${card.getAttribute('aria-label')}（おすすめの時期 ${window_[1]}）`);
@@ -956,6 +1029,155 @@ document.addEventListener('click',(event)=>{
     section.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   }
 });
+
+// ---------------------------------------------------------------------------
+// 景色から探す: a gallery of Scene illustrations (small thumbnails generated by
+// scripts/build_scene_thumbs.py). Order is shuffled on every visit: one Scene per Country
+// first (so no Country repeats early), then more. A tile opens the Country page at that Scene.
+// ---------------------------------------------------------------------------
+const sceneGrid=document.querySelector('#gallery-grid');
+const sceneTabs=document.querySelector('#gallery-region-tabs');
+const sceneMore=document.querySelector('#gallery-more');
+const sceneShuffle=document.querySelector('#gallery-shuffle');
+const sceneLead=document.querySelector('#gallery-lead');
+const SCENE_PAGE=12;
+let sceneRows=null,scenePromise=null,sceneOrder=[],sceneRegion='all',sceneLimit=SCENE_PAGE;
+function shuffled(items){
+  const list=[...items];
+  for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
+  return list;
+}
+function loadScenes(){
+  if(!scenePromise){
+    scenePromise=Promise.all([
+      fetch('data/top-scene-index.json').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      coreRegistryPromise.catch(()=>null),
+      themeRegionPromise.catch(()=>null)
+    ]).then(([{countries={}}])=>{
+      const bySlug=new Map(destinations.map((country)=>[country.slug,country]));
+      sceneRows=Object.entries(countries).flatMap(([slug,rows])=>{
+        const country=bySlug.get(slug);
+        if(!country?.atlasPublished||!country.href)return [];
+        return rows.map(([id,name])=>({slug,id,name,country}));
+      });
+      if(sceneLead){
+        const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
+        sceneLead.textContent=`気になる景色から、旅先を見つけよう。${countryCount}の国・地域の${sceneRows.length.toLocaleString('ja-JP')}の景色から、開くたびにちがう組み合わせで並びます。`;
+      }
+      shuffleScenes();
+    }).catch((error)=>{
+      console.warn('[JOURNEY ATLAS] Scene gallery unavailable.',error);
+      scenePromise=null;
+      if(sceneGrid)sceneGrid.innerHTML='<p class="country-empty">景色を読み込めませんでした。ページを再読み込みしてください。</p>';
+    });
+  }
+  return scenePromise;
+}
+function shuffleScenes(){
+  if(!sceneRows)return;
+  const rows=sceneRegion==='all'?sceneRows:sceneRows.filter((row)=>themeRegionByIso.get(row.country.iso2)===sceneRegion);
+  const groups=new Map();
+  shuffled(rows).forEach((row)=>{if(!groups.has(row.slug))groups.set(row.slug,[]);groups.get(row.slug).push(row);});
+  const slugs=shuffled([...groups.keys()]);
+  sceneOrder=[];
+  while(sceneOrder.length<rows.length){
+    slugs.forEach((slug)=>{const next=groups.get(slug).shift();if(next)sceneOrder.push(next);});
+  }
+  sceneLimit=SCENE_PAGE;
+  renderScenes();
+}
+function renderScenes(){
+  if(!sceneGrid||!sceneRows)return;
+  if(sceneTabs){
+    const counts=new Map();
+    sceneRows.forEach((row)=>{const region=themeRegionByIso.get(row.country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
+    if(themeRegions.length&&counts.size>1){
+      sceneTabs.hidden=false;
+      const options=[{id:'all',label:'すべて'},...themeRegions.filter((region)=>counts.has(region.id))];
+      sceneTabs.replaceChildren(...options.map(({id,label})=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.dataset.sceneRegion=id;
+        const on=id===sceneRegion;
+        button.classList.toggle('is-active',on);
+        button.setAttribute('aria-pressed',String(on));
+        button.textContent=label;
+        return button;
+      }));
+    }
+  }
+  const fragment=document.createDocumentFragment();
+  sceneOrder.slice(0,sceneLimit).forEach((row)=>{
+    const tile=document.createElement('a');
+    tile.className='gallery-tile';
+    tile.href=`${row.country.href}#${encodeURIComponent(row.id)}`;
+    tile.setAttribute('role','listitem');
+    tile.setAttribute('aria-label',`${row.name}（${row.country.nameJa}）のページを見る`);
+    const img=document.createElement('img');
+    img.src=`assets/images/top/scenes/${row.slug}/${row.id}.webp`;
+    img.alt='';
+    img.width=480;img.height=320;
+    img.loading='lazy';img.decoding='async';
+    const caption=document.createElement('span');
+    caption.className='gallery-tile__caption';
+    const name=document.createElement('b');
+    name.textContent=row.name;
+    const country=document.createElement('small');
+    country.textContent=`${row.country.flag||''} ${row.country.nameJa}`.trim();
+    caption.append(name,country);
+    tile.append(img,caption);
+    fragment.append(tile);
+  });
+  sceneGrid.replaceChildren(fragment);
+  if(sceneMore){
+    const remaining=sceneOrder.length-Math.min(sceneLimit,sceneOrder.length);
+    sceneMore.hidden=remaining<=0;
+    sceneMore.textContent='もっと見る';
+  }
+  // Like the other lists: a 解除 button while a region is chosen, and 「一覧を閉じる」 at the end
+  // once the gallery has been opened out (もっと見る) or narrowed to a region.
+  const clear=document.querySelector('#gallery-clear');
+  if(clear)clear.hidden=sceneRegion==='all';
+  const close=document.querySelector('#gallery-close');
+  if(close)close.hidden=sceneRegion==='all'&&sceneLimit<=SCENE_PAGE;
+}
+function resetScenes({scroll=false}={}){
+  sceneRegion='all';
+  shuffleScenes();
+  if(scroll){
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    document.querySelector('#scenery')?.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+}
+document.querySelector('#gallery-clear')?.addEventListener('click',()=>{
+  resetScenes();
+  document.querySelector('#gallery-shuffle')?.focus({preventScroll:true});
+});
+document.querySelector('#gallery-close')?.addEventListener('click',()=>resetScenes({scroll:true}));
+sceneTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-scene-region]');
+  if(!button)return;
+  sceneRegion=button.dataset.sceneRegion;
+  shuffleScenes();
+});
+sceneShuffle?.addEventListener('click',()=>{loadScenes().then(shuffleScenes);});
+sceneMore?.addEventListener('click',()=>{
+  const before=sceneGrid?.children.length||0;
+  sceneLimit+=SCENE_PAGE;
+  renderScenes();
+  sceneGrid?.children[before]?.focus({preventScroll:true});
+});
+{
+  const panel=document.querySelector('#scenery');
+  if(location.hash==='#scenery'||!panel||!('IntersectionObserver' in window))loadScenes();
+  else{
+    const observer=new IntersectionObserver((entries)=>{
+      if(entries.some((entry)=>entry.isIntersecting)){observer.disconnect();loadScenes();}
+    },{rootMargin:'800px 0px'});
+    observer.observe(panel);
+    ['pointerdown','focusin'].forEach((type)=>panel.addEventListener(type,()=>{loadScenes();},{once:true,passive:true}));
+  }
+}
 
 // "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.
 document.querySelector('#random-country')?.addEventListener('click',()=>{
