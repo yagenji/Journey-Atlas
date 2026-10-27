@@ -376,4 +376,24 @@
   }
   .top-header.shell.is-menu-open #top-nav .nav-explore__menu a{padding:13px 14px 13px 24px!important}
   .top-header.shell.is-menu-open #top-nav .nav-explore+a{border-top:1px solid rgba(23,59,93,.07)}
+
+/* ---------- 19. Five entry cards (国・地図・テーマ・季節・景色) ---------- */
+.explore{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.explore-card--scenery .explore-card__art{
+  background-color:#eef3f0;background-image:url("../images/top/explore-scenery.webp")!important;
+  background-repeat:no-repeat!important;background-position:center!important;background-size:cover!important;
+}
+@media(max-width:1050px) and (min-width:761px){
+  .explore{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important}
+  .explore-card__copy p,.explore-card__kicker{display:none!important}
+  .explore-card__copy h2{font-size:14px!important;white-space:nowrap}
+}
+@media(max-width:760px){
+  /* Phones: five equal rows (small picture + name), so no card stands out. */
+  .explore{grid-template-columns:1fr!important;gap:8px!important}
+  .explore-card{display:grid!important;grid-template-columns:104px 1fr;align-items:stretch}
+  .explore-card__art{height:auto!important;min-height:58px!important}
+  .explore-card__copy{display:flex!important;align-items:center;justify-content:space-between;padding:0 14px!important;text-align:left}
+  .explore-card__copy h2{font-size:14.5px!important}
+  .explore-card__copy>b{display:block!important;font-size:20px}
 }
