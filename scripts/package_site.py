@@ -23,7 +23,7 @@ REGISTRY_PATHS = [
     DATA_DIR / "atlas-destinations.json",
 ]
 ROOT_FILES = ["index.html", "404.html", "_redirects", "sitemap.xml", "robots.txt"]
-STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
+STATIC_PAGE_DIRS = ["about", "faq", "privacy", "map-sources"]
 RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
     "region-taxonomy.json",
@@ -31,6 +31,7 @@ RUNTIME_DATA_FILES = [
     "top-search-index.json",
     "top-season-index.json",
     "top-scene-index.json",
+    "map-data-sources.json",
 ]
 
 

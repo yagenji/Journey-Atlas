@@ -94,7 +94,7 @@ function renderCountry(data, registry) {
     heroArt.setAttribute('aria-label', `代表風景: ${heroLabel}`);
   }
   setBackground(heroArt, data.hero?.image);
-  renderMapBase(fragment, data.map);
+  renderMapBase(fragment, data.map, data.slug);
   renderCapitalMarker(fragment, data.capital, data.map);
   renderScenes(fragment, data.scenes, data.map);
   renderHeroMarker(fragment, data.hero, data.map);
@@ -188,7 +188,54 @@ function resolveImageSource(source) {
     });
 }
 
-function renderMapBase(fragment, mapData) {
+const MAP_SOURCES_URL = `data/map-data-sources.json?v=${DATA_VERSION}`;
+let mapSourcesRequest = null;
+
+// Credit every geographic dataset the map is drawn from. The per-Country
+// dataset ids and their labels/licences live in data/map-data-sources.json.
+// Licences such as ODbL and CC BY require this attribution next to the map.
+function renderMapCredits(fragment, slug) {
+  const legend = fragment.querySelector('.map-legend--below');
+  if (!slug || !legend) return;
+  const line = document.createElement('span');
+  line.className = 'map-legend__credits';
+  legend.append(line);
+  mapSourcesRequest = mapSourcesRequest || fetch(MAP_SOURCES_URL, { cache: 'no-store' })
+    .then((response) => (response.ok ? response.json() : Promise.reject(new Error('Map sources unavailable'))));
+  mapSourcesRequest.then((registry) => {
+    const sources = registry?.sources || {};
+    const ids = Array.isArray(registry?.countries?.[slug]) ? registry.countries[slug] : [];
+    const known = ids.filter((id) => typeof id === 'string' && sources[id]?.label);
+    if (!known.length) { line.remove(); return; }
+    line.append('地図データ（加工して作成）：');
+    known.forEach((id, index) => {
+      const source = sources[id];
+      if (index) line.append('・');
+      const link = document.createElement('a');
+      link.className = 'map-legend__source-credit';
+      link.href = source.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.dataset.mapSource = id;
+      link.textContent = source.label;
+      line.append(link);
+      if (source.license) {
+        const license = document.createElement('span');
+        license.className = 'map-legend__credits-license';
+        license.textContent = `（${source.license}）`;
+        line.append(license);
+      }
+    });
+    line.append(' ');
+    const all = document.createElement('a');
+    all.className = 'map-legend__credits-all';
+    all.href = 'map-sources/';
+    all.textContent = '出典一覧';
+    line.append(all);
+  }).catch(() => line.remove());
+}
+
+function renderMapBase(fragment, mapData, slug) {
   if (!mapData?.svg) return;
   const mapArt = fragment.querySelector('#country-map-art');
   const placeholder = mapArt.querySelector('.map-placeholder');
@@ -211,33 +258,6 @@ function renderMapBase(fragment, mapData) {
   });
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
-  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
-  const creditInFooter = mapData.sourceCreditPlacement === 'footer';
-  if (creditInFooter) mapArt.dataset.sourceCreditPlacement = 'footer';
-    if (/OpenStreetMap|\bODbL\b/i.test(mapSource)) {
-      const creditContainer = creditInFooter
-        ? document.querySelector('.atlas-footer__copyright')
-        : fragment.querySelector('.map-legend--below');
-      if (creditContainer) {
-        const credit = document.createElement('a');
-        credit.className = 'map-legend__source-credit';
-        credit.href = 'https://www.openstreetmap.org/copyright';
-        credit.target = '_blank';
-        credit.rel = 'noopener noreferrer';
-        credit.textContent = creditInFooter
-          ? '© OpenStreetMap contributors · ODbL 1.0'
-          : '地図データ © OpenStreetMap contributors · ODbL 1.0';
-        credit.style.flexBasis = '100%';
-        credit.style.textAlign = 'left';
-        credit.style.color = 'inherit';
-        credit.style.fontSize = '11px';
-        credit.style.lineHeight = '1.5';
-        credit.style.textDecoration = 'underline';
-        credit.style.textUnderlineOffset = '2px';
-        if (creditInFooter) creditContainer.append(document.createElement('br'));
-        creditContainer.append(credit);
-      }
-    }
   if (typeof mapData.japanAreaComparison === 'string' && mapData.japanAreaComparison.trim()) {
     const legend = fragment.querySelector('.map-legend--below');
     if (legend) {
@@ -261,6 +281,7 @@ function renderMapBase(fragment, mapData) {
       legend.setAttribute("aria-label", "地図記号と別枠表示の説明");
     }
   }
+  renderMapCredits(fragment, slug);
 }
 
 function applyBackground(element, image) {

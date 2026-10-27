@@ -26,8 +26,9 @@ RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
     "region-taxonomy.json",
     "theme-taxonomy.json",
+    "map-data-sources.json",
 ]
-STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
+STATIC_PAGE_DIRS = ["about", "faq", "privacy", "map-sources"]
 
 
 def parse_slugs(raw: str) -> list[str]:

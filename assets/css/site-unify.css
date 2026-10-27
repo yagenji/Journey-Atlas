@@ -486,3 +486,31 @@ html{scroll-padding-top:96px!important;}
   font-weight: 600;
   line-height: 1.5;
 }
+
+/* Map data credits: every dataset the map is drawn from, under the legend. */
+.map-legend--below .map-legend__credits {
+  display: block;
+  flex: 0 0 100%;
+  min-width: 0;
+  color: #66717a;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.map-legend--below .map-legend__credits-license {
+  white-space: nowrap;
+}
+.map-legend--below .map-legend__credits a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(102, 113, 122, .45);
+  text-underline-offset: 2px;
+}
+.map-legend--below .map-legend__credits a:hover,
+.map-legend--below .map-legend__credits a:focus-visible {
+  color: #31576a;
+  text-decoration-color: currentColor;
+}
