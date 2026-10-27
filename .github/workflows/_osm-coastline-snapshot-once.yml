@@ -1,0 +1,71 @@
+name: One-time OSM coastline snapshot (Hong Kong, Tuvalu)
+
+on:
+  push:
+    branches: ["fix/map-licence-redraw"]
+    paths: [".github/workflows/_osm-coastline-snapshot-once.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/map-licence-redraw
+      - name: Fetch OSM natural=coastline ways (ODbL) from Overpass
+        run: |
+          python3 - <<'PY'
+          import gzip, hashlib, json, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+          ENDPOINTS = ('https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter')
+          JOBS = {
+              'hong-kong': (22.02, 113.65, 22.72, 114.76),
+              'tuvalu': (-11.40, 175.40, -5.00, 180.00),
+          }
+          for slug, (s, w, n, e) in JOBS.items():
+              query = f'[out:json][timeout:170];way["natural"="coastline"]({s},{w},{n},{e});out geom;'
+              data = urllib.parse.urlencode({'data': query}).encode()
+              raw = None; used = None; errors = []
+              for endpoint in ENDPOINTS:
+                  try:
+                      req = urllib.request.Request(endpoint, data=data, headers={'User-Agent': 'Journey-Atlas-map-licence-redraw/1.0'})
+                      with urllib.request.urlopen(req, timeout=200) as r:
+                          raw = r.read()
+                      parsed = json.loads(raw)
+                      if len(parsed.get('elements', [])) < 5:
+                          raise ValueError('too few coastline ways')
+                      used = endpoint
+                      break
+                  except Exception as exc:
+                      errors.append(f'{endpoint}: {exc!r}')
+                      raw = None
+              if raw is None:
+                  raise SystemExit(f'{slug}: ' + '; '.join(errors))
+              out = Path('ops/map-context-sources') / slug
+              out.mkdir(parents=True, exist_ok=True)
+              (out / 'osm-coastline-snapshot.json.gz').write_bytes(gzip.compress(raw, mtime=0))
+              meta = {
+                  'source': 'OpenStreetMap natural=coastline ways via Overpass API',
+                  'license': 'ODbL 1.0, © OpenStreetMap contributors',
+                  'query': query,
+                  'endpoint': used,
+                  'retrievedAt': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+                  'osmBase': json.loads(raw).get('osm3s', {}).get('timestamp_osm_base'),
+                  'ways': len(json.loads(raw)['elements']),
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+              }
+              (out / 'osm-coastline-snapshot.meta.json').write_text(json.dumps(meta, indent=2) + '\n')
+              print(slug, meta)
+          PY
+      - name: Commit snapshot to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/map-context-sources/hong-kong ops/map-context-sources/tuvalu
+          git commit -m "OSM coastline snapshot for Hong Kong and Tuvalu (ODbL)"
+          git push origin HEAD:fix/map-licence-redraw
