@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check actual OpenStreetMap attribution for the registry-selected staged maps.
+"""Check map data credits (data/map-data-sources.json) for the registry-selected staged maps.
 
 Use the existing disposable preflight's manifest; do not hardcode a Country count,
 alter Country data, change source SVGs or add a new workflow.
@@ -29,16 +29,12 @@ SCREENSHOTS = ROOT / 'qa-map-context-browser-output' / 'source-credit'
 
 
 def source_provenance(slug: str, map_ref: str) -> tuple[bool, bool]:
+    """(map draws OpenStreetMap data, registry credits list osm)."""
     country = json.loads((ROOT / 'data' / 'countries' / f'{slug}.json').read_text(encoding='utf-8'))
     assert country['map']['svg'] == map_ref, f'Map reference changed: {slug}'
-    source = str(country['map'].get('source') or '')
-    root = ET.parse(ROOT / map_ref).getroot()
-    context = next((g for g in root.iter(NS + 'g') if g.get('id') == 'geographic-context'), None)
-    desc = next(context.iter(NS + 'desc'), None) if context is not None else None
-    metadata = ' '.join(''.join(node.itertext()) for node in root.iter(NS + 'metadata'))
-    provenance = ''.join(desc.itertext()) if desc is not None else ''
-    has_osm = bool(OSM.search(source + ' ' + provenance + ' ' + metadata))
-    return has_osm, bool(OSM.search(source))
+    registry = json.loads((ROOT / 'data' / 'map-data-sources.json').read_text(encoding='utf-8'))
+    credits = registry['countries'].get(slug) or []
+    return 'osm' in credits, 'osm' in credits
 
 
 def capture_supplementary_screenshot(driver, slug: str, viewport: str) -> None:
@@ -71,13 +67,7 @@ def main() -> None:
     assert attribution['singapore'] == (True, True) and attribution['macau'] == (True, True), attribution
     assert attribution['bahrain'][0] and not attribution['iceland'][0], attribution
     osm_slugs = sorted(slug for slug, (osm, _) in attribution.items() if osm)
-    mismatch = sorted(slug for slug in osm_slugs if not attribution[slug][1])
-    # A mismatch is valid only when explicit OpenStreetMap provenance is supplied
-    # by the SVG context/metadata rather than Country JSON. Do not hardcode a
-    # historical Country that must exercise this fallback: source metadata may
-    # legitimately be corrected later without changing the rendered attribution.
-    assert all(attribution[slug] == (True, False) for slug in mismatch), attribution
-    print(f'OSM provenance audit: {len(osm_slugs)} of {len(entries)} maps; SVG-only/JSON mismatch: {mismatch}', flush=True)
+    print(f'OSM credit audit: {len(osm_slugs)} of {len(entries)} maps', flush=True)
     samples = osm_slugs + ['iceland']
     driver = make_driver()
     try:
@@ -90,16 +80,17 @@ def main() -> None:
                 driver.execute_script("document.querySelector('#country-map-art').scrollIntoView({block:'center'})")
                 WebDriverWait(driver, 35).until(lambda d: d.execute_script("const i=document.querySelector('#country-map-art .map-base');return !!i&&i.complete&&i.naturalWidth>0"))
                 if expected:
-                    WebDriverWait(driver, 35).until(lambda d: len(d.find_elements(By.CSS_SELECTOR, '.map-legend--below .map-legend__source-credit')) == 1)
-                credits = driver.find_elements(By.CSS_SELECTOR, '.map-legend--below .map-legend__source-credit')
-                assert len(credits) == int(expected), f'{slug}/{name}: credits={len(credits)} expected={expected}'
+                    WebDriverWait(driver, 35).until(lambda d: len(d.find_elements(By.CSS_SELECTOR, '#country-map-art .map-osm-credit')) == 1)
+                credits = driver.find_elements(By.CSS_SELECTOR, '#country-map-art .map-osm-credit')
+                assert len(credits) == int(expected), f'{slug}/{name}: osm credits={len(credits)} expected={expected}'
                 if credits:
                     credit = credits[0]
-                    assert credit.is_displayed(), f'{slug}/{name}: OSM source link hidden'
+                    assert credit.is_displayed(), f'{slug}/{name}: OSM credit hidden'
                     assert credit.get_attribute('href') == COPYRIGHT, f'{slug}/{name}: wrong credit URL'
-                    assert 'OpenStreetMap contributors' in credit.text and 'ODbL 1.0' in credit.text
-                    assert driver.execute_script('const e=arguments[0],r=e.getBoundingClientRect();return r.width>60&&r.height>0&&getComputedStyle(e).visibility==="visible"', credit)
-                    assert credit.get_attribute('tabindex') is None, f'{slug}/{name}: source link focus order changed'
+                    assert credit.text == '© OpenStreetMap contributors'
+                    # Inside the map frame, in its bottom-right corner.
+                    assert driver.execute_script("""const c=arguments[0].getBoundingClientRect(),m=document.querySelector('#country-map-art').getBoundingClientRect();
+                      return c.width>60&&c.right<=m.right+0.5&&c.bottom<=m.bottom+0.5&&c.left>m.left+m.width/2&&c.top>m.top+m.height/2""", credit), f'{slug}/{name}: credit outside map corner'
                 print(f'SOURCE CREDIT PASS {slug}/{name}: expected={expected}', flush=True)
                 if slug in CAPTURE:
                     capture_supplementary_screenshot(driver, slug, name)

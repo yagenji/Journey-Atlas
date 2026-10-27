@@ -9,6 +9,7 @@ on:
       - "data/atlas-destinations.json"
       - "data/theme-taxonomy.json"
       - "data/region-taxonomy.json"
+      - "data/map-data-sources.json"
       - "assets/images/**"
       - "country.html"
       - "assets/css/**"
@@ -201,6 +202,7 @@ jobs:
           python3 scripts/test_country_quality_v5.py
           python3 tests/test_qa_optional_taste.py
           python3 tests/test_qa_optional_taste_runner.py
+          python3 tests/test_map_credits.py
 
       - name: Run targeted finish-line QA
         if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
