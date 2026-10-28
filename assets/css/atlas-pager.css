@@ -18,7 +18,8 @@
 .atlas-pager__art img{display:block;width:100%;height:100%;object-fit:cover}
 .atlas-pager__body{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:14px 18px;min-width:0}
 .atlas-pager__kicker{color:#8a7656;font:600 11.5px/1.3 var(--ja-ui,"Zen Kaku Gothic New",sans-serif);letter-spacing:.06em}
-.atlas-pager__name{font:700 16px/1.25 "Hanken Grotesk",sans-serif;letter-spacing:.14em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Long names (BOSNIA & HERZEGOVINA, ST. VINCENT & GRENADINES) wrap instead of being cut off. */
+.atlas-pager__name{font:700 16px/1.25 "Hanken Grotesk",sans-serif;letter-spacing:.12em;white-space:normal;overflow-wrap:anywhere}
 .atlas-pager__ja{color:#4b5e70;font:500 12.5px/1.4 var(--ja-ui,"Zen Kaku Gothic New",sans-serif)}
 @media(max-width:760px){
   .atlas-pager{width:calc(100% - 32px);margin-bottom:32px;padding-top:20px!important}
@@ -28,7 +29,7 @@
   .atlas-pager__card--next .atlas-pager__body{text-align:left}
   .atlas-pager__card--next{order:-1}  /* on phones, 次の国 comes first */
   .atlas-pager__body{padding:10px 14px}
-  .atlas-pager__name{font-size:14.5px}
+  .atlas-pager__name{font-size:14.5px;letter-spacing:.08em}
 }
 
 /* Edge tabs: slim page-turn tabs on wide screens only. */
