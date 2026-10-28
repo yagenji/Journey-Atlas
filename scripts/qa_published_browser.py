@@ -28,6 +28,20 @@ BASE_URL = os.environ.get("QA_BASE_URL", "https://atlas.yagenji.com").rstrip("/"
 QA_SCOPE = os.environ.get("QA_SCOPE", "published").strip().lower()
 OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output"))
 OUT.mkdir(parents=True, exist_ok=True)
+# Live production QA: a page whose audit fails is re-checked once in a fresh
+# browser session before it counts as a failure, so a slow CDN response does
+# not fail the run. A real defect fails both attempts.
+RETRY_AUDIT = os.environ.get("QA_RETRY_AUDIT", "").strip() == "1"
+
+
+def annotate(level: str, title: str, message: str) -> None:
+    """GitHub Actions annotation: readable through the check-run API even when
+    the job log itself cannot be downloaded."""
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        return
+    clean = " ".join(str(message).split())[:900]
+    clean = clean.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    print(f"::{level} title={title}::{clean}", flush=True)
 
 def load_registry_rows() -> dict[str, dict]:
     rows: dict[str, dict] = {}
@@ -633,6 +647,12 @@ def main() -> int:
                         if not planning_top < footer_top:
                             errors.append("section order mismatch: travel planning must precede NEXT DESTINATIONS")
 
+                    if errors and attempt == 1 and RETRY_AUDIT:
+                        print(f"RETRY {slug} {vp_name}: audit failed; re-checking in a fresh session: "
+                              + " | ".join(errors), flush=True)
+                        annotate("warning", f"QA retry {slug} {vp_name}", " | ".join(errors))
+                        continue
+
                     row = {
                         "slug": slug,
                         "nameJa": name_ja,
@@ -663,6 +683,7 @@ def main() -> int:
                             f"starting a fresh session ({err.splitlines()[0]})",
                             flush=True,
                         )
+                        annotate("warning", f"QA retry {slug} {vp_name}", err.splitlines()[0])
                         continue
                     try:
                         screenshot = OUT / f"{slug}-{vp_name}-exception.png"
@@ -722,6 +743,10 @@ def main() -> int:
                         "errors": [err],
                     }
                 )
+
+    for failure in failures:
+        annotate("error", f"QA failure {failure['slug']} {failure['viewport']}",
+                 " | ".join(str(e).splitlines()[0] for e in failure["errors"]))
 
     report = {
         "baseUrl": BASE_URL,
