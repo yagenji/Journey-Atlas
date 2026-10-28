@@ -90,6 +90,14 @@ class MapCreditsTest(unittest.TestCase):
             with self.subTest(slug=country["slug"]):
                 self.assertNotIn("GADM", provenance(country))
 
+    def test_no_restricted_licences(self):
+        # GPL (copyleft on the derived map) and amCharts geodata (licensed for
+        # use inside amCharts software only) were replaced on 2026-10-28.
+        for source_id, source in REGISTRY.items():
+            with self.subTest(source=source_id):
+                self.assertFalse(source.get("license", "").startswith("GPL"))
+                self.assertNotIn("amcharts", source["url"].lower())
+
     def test_about_page_credits_are_current(self):
         result = subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "build_about_map_credits.py"), "--check"],

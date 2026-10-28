@@ -18,7 +18,9 @@ from filter_duplicate_target_context import remove_target_land_context
 from reconcile_hong_kong_foreign import pinned_mainland_path, reconcile, PINNED_MAINLAND_SHA
 
 NS='{http://www.w3.org/2000/svg}'
-EXPECTED_CANDIDATE_SHA='25297ab8f547e45ddb7564bedac4ddcf93cec09fb1ca1c609fc12a0e8fad87d4'  # 2026-10-06 dissolved target
+# 2026-10-28: target redrawn from OpenStreetMap (country-levels-export iso1/HK)
+# instead of amCharts geodata, whose licence covers use inside amCharts only.
+EXPECTED_CANDIDATE_SHA='836cef25557aae8b8938793d8eb7763cdf3a145669028f162e16b4f9b4aae06e'
 
 
 class HongKongSourceReview(unittest.TestCase):

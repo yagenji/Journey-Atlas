@@ -82,7 +82,9 @@ class ReviewedMapContextAssets(unittest.TestCase):
         root = ET.parse(ROOT / "assets/images/kuwait/map-atlas-v2.svg").getroot()
         country = [p.get("d", "") for p in root.iter(SVG + "path") if p.get("fill") == "url(#land)"]
         self.assertEqual(len(country), 2)
-        self.assertEqual(hashlib.sha256("\n".join(country).encode()).hexdigest(), "564b9be86b6c43bfe4698e3e1db74ab5014087486f21578f41a141d55b71db38")
+        # 2026-10-28: Kuwait City inset redrawn from OpenStreetMap (country-levels-export
+        # iso1/KW) instead of amCharts geodata; the national path is unchanged.
+        self.assertEqual(hashlib.sha256("\n".join(country).encode()).hexdigest(), "097b67ab8d4919298a964161d1ca92f31df8590afcc6e88680ad6bd36a98962c")
         context = [p.get("data-map-context-region") for p in root.iter(SVG + "path") if p.get("data-map-context-region")]
         self.assertEqual(context, ["country"])
 
