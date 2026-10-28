@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site-nav.css?v=20261028-1">
   <link rel="stylesheet" href="assets/css/country.css?v=20260907-next-routes-v1">
 </head>
 <body>
@@ -31,9 +32,20 @@
         <span class="country-brand__wordmark">JOURNEY ATLAS</span>
         <small>行きたい場所と出会う、旅の図鑑。</small>
       </a>
-      <nav class="utility-nav" aria-label="サイトメニュー">
-        <a href="./#countries">国から探す</a>
-        <a href="./#map">地図から探す</a>
+      <nav class="utility-nav" aria-label="サイトメニュー" data-site-nav>
+        <div class="site-explore">
+          <button type="button" class="site-explore__toggle" aria-expanded="false">旅先を探す<span class="site-explore__caret" aria-hidden="true"></span></button>
+          <div class="site-explore__menu">
+            <a href="./#countries">国から探す</a>
+            <a href="./#map">地図から探す</a>
+            <a href="./#themes">テーマから探す</a>
+            <a href="./#seasons">季節から探す</a>
+            <a href="./#scenery">景色から探す</a>
+            <div class="site-explore__extra"><a href="about/">About</a><a href="./#lens-world">JOURNEY LENS</a></div>
+          </div>
+        </div>
+        <a class="site-nav__side" href="about/">About</a>
+        <a class="site-nav__side" href="./#lens-world">JOURNEY LENS</a>
       </nav>
     </header>
 
@@ -239,6 +251,7 @@
   <script src="assets/js/app.js?v=20260907-next-routes-v1" defer></script>
   <script src="assets/js/country-profile.js?v=20261007-area-comparison-v1" defer></script>
   <script src="assets/js/country-themes.js?v=20260916-lens-thumb-fix-v1" defer></script>
+  <script src="assets/js/site-nav.js?v=20261028-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2345" defer></script>
 </body>
 </html>
