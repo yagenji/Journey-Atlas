@@ -98,6 +98,22 @@ class MapCreditsTest(unittest.TestCase):
                 self.assertFalse(source.get("license", "").startswith("GPL"))
                 self.assertNotIn("amcharts", source["url"].lower())
 
+    def test_no_restricted_geometry_in_map_source_records(self):
+        """Non-commercial (GADM, Eurostat GISCO/EuroGeographics) and attribution-
+        or copyleft-bound datasets (amCharts, GPL world-geojson, Apache Superset,
+        MIT laravel-countries) are not drawn. Sentences recording a replacement
+        are allowed."""
+        restricted = re.compile(r"GADM|GISCO|Eurostat|EuroGeographics|amCharts|world-geojson|Superset|laravel-countries|greece-prefectures")
+        for country in countries():
+            texts = [provenance(country)] + [
+                str(value) for key, value in (country.get("sources") or {}).items()
+                if re.search(r"map|geometry|boundar|coast", key, re.I)
+            ]
+            for sentence in re.split(r"(?<=[.;|])\s+", " ".join(texts)):
+                if restricted.search(sentence) and not re.search(r"replac|in place of", sentence, re.I):
+                    with self.subTest(slug=country["slug"]):
+                        self.fail(sentence[:200])
+
     def test_about_page_credits_are_current(self):
         result = subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "build_about_map_credits.py"), "--check"],
