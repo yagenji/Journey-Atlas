@@ -162,43 +162,68 @@ jobs:
       - name: Verify runtime baseline
         run: |
           set -euo pipefail
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/?qa=$GITHUB_RUN_ID" -o /tmp/top.html
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/app.js?qa=$GITHUB_RUN_ID" -o /tmp/app.js
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/top.js?qa=$GITHUB_RUN_ID" -o /tmp/top.js
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/js/map-regions.js?qa=$GITHUB_RUN_ID" -o /tmp/map-regions.js
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/assets/css/country.css?qa=$GITHUB_RUN_ID" -o /tmp/country.css
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/data/atlas-destinations.json?qa=$GITHUB_RUN_ID" -o /tmp/atlas-destinations.json
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/data/top-season-index.json?qa=$GITHUB_RUN_ID" -o /tmp/top-season-index.json
-          python3 -c "import json,sys; c=json.load(open('/tmp/top-season-index.json'))['countries']; sys.exit(0 if len(c)==202 else 'top-season-index.json: expected 202 Countries, got %d' % len(c))"
-          grep -Fq 'id="season-months"' /tmp/top.html
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/about/?qa=$GITHUB_RUN_ID" -o /tmp/about.html
-          curl -fsS --max-time 20 "https://atlas.yagenji.com/faq/?qa=$GITHUB_RUN_ID" -o /tmp/faq.html
-          test -s /tmp/top.html
-          test -s /tmp/app.js
-          test -s /tmp/top.js
-          test -s /tmp/map-regions.js
-          test -s /tmp/country.css
-          test -s /tmp/atlas-destinations.json
-          test -s /tmp/about.html
-          test -s /tmp/faq.html
-          grep -Fq 'const ATLAS_TOTAL = 202;' /tmp/top.js
-          grep -Fq 'dest.length || 202' /tmp/map-regions.js
-          grep -Fq '202' /tmp/about.html
-          grep -Fq 'パレスチナ' /tmp/about.html
-          grep -Fq '202' /tmp/faq.html
-          grep -Fq 'パレスチナ' /tmp/faq.html
+          # Each fetch is retried so one slow edge response does not fail the run;
+          # every retry and failure is written as an annotation (readable through
+          # the check-run API even when the job log cannot be downloaded).
+          fetch() {
+            local url="$1" out="$2" attempt
+            for attempt in 1 2 3 4; do
+              if curl -fsS --max-time 20 "$url?qa=$GITHUB_RUN_ID-$attempt" -o "$out"; then
+                return 0
+              fi
+              echo "::warning title=Fetch retry::$url (attempt $attempt)"
+              sleep 5
+            done
+            echo "::error title=Fetch failed::$url"
+            return 1
+          }
+          contains() {
+            if ! grep -Fq "$1" "$2"; then
+              echo "::error title=Baseline content missing::$2 does not contain: $1"
+              return 1
+            fi
+          }
+          site=https://atlas.yagenji.com
+          fetch "$site/" /tmp/top.html
+          fetch "$site/assets/js/app.js" /tmp/app.js
+          fetch "$site/assets/js/top.js" /tmp/top.js
+          fetch "$site/assets/js/map-regions.js" /tmp/map-regions.js
+          fetch "$site/assets/css/country.css" /tmp/country.css
+          fetch "$site/data/atlas-destinations.json" /tmp/atlas-destinations.json
+          fetch "$site/data/top-season-index.json" /tmp/top-season-index.json
+          fetch "$site/about/" /tmp/about.html
+          fetch "$site/faq/" /tmp/faq.html
+          for f in top.html app.js top.js map-regions.js country.css atlas-destinations.json about.html faq.html; do
+            test -s "/tmp/$f" || { echo "::error title=Baseline file empty::/tmp/$f"; exit 1; }
+          done
+          python3 -c "import json,sys; c=json.load(open('/tmp/top-season-index.json'))['countries']; sys.exit(0 if len(c)==202 else '::error title=Season index::top-season-index.json: expected 202 Countries, got %d' % len(c))"
+          contains 'id="season-months"' /tmp/top.html
+          contains 'const ATLAS_TOTAL = 202;' /tmp/top.js
+          contains 'dest.length || 202' /tmp/map-regions.js
+          contains '202' /tmp/about.html
+          contains 'パレスチナ' /tmp/about.html
+          contains '202' /tmp/faq.html
+          contains 'パレスチナ' /tmp/faq.html
           python3 - <<'PY'
           import json
+          import sys
           from pathlib import Path
 
           payload = json.loads(Path('/tmp/atlas-destinations.json').read_text(encoding='utf-8'))
           destinations = payload.get('destinations') or []
-          assert payload.get('count') == 202, payload.get('count')
-          assert len(destinations) == 202, len(destinations)
           palestine = next((row for row in destinations if row.get('slug') == 'palestine'), None)
-          assert palestine is not None, 'palestine missing from production registry'
-          assert palestine.get('atlasPublished') is True, palestine
-          assert palestine.get('href') == 'countries/palestine/', palestine
+          problems = []
+          if payload.get('count') != 202:
+              problems.append(f"count={payload.get('count')}")
+          if len(destinations) != 202:
+              problems.append(f"destinations={len(destinations)}")
+          if palestine is None:
+              problems.append('palestine missing from production registry')
+          elif palestine.get('atlasPublished') is not True or palestine.get('href') != 'countries/palestine/':
+              problems.append(f'palestine row: {palestine}')
+          if problems:
+              print('::error title=Production registry::' + '; '.join(problems))
+              sys.exit(1)
           PY
 
       - name: Verify changed Country routes
@@ -207,13 +232,25 @@ jobs:
           TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
         run: |
           set -euo pipefail
+          fetch() {
+            local url="$1" out="$2" attempt
+            for attempt in 1 2 3 4; do
+              if curl -fsS --max-time 20 "$url?qa=$GITHUB_RUN_ID-$attempt" -o "$out"; then
+                return 0
+              fi
+              echo "::warning title=Fetch retry::$url (attempt $attempt)"
+              sleep 5
+            done
+            echo "::error title=Fetch failed::$url"
+            return 1
+          }
           for slug in $(printf '%s' "$TARGET_SLUGS" | tr ',' ' '); do
             [ -f "data/countries/$slug.json" ] || continue
-            curl -fsS --max-time 20 "https://atlas.yagenji.com/countries/$slug/?qa=$GITHUB_RUN_ID" -o "/tmp/$slug.html"
-            curl -fsS --max-time 20 "https://atlas.yagenji.com/data/countries/$slug.json?qa=$GITHUB_RUN_ID" -o "/tmp/$slug.json"
-            test -s "/tmp/$slug.html"
-            test -s "/tmp/$slug.json"
-            grep -q "data-country=\"$slug\"" "/tmp/$slug.html"
+            fetch "https://atlas.yagenji.com/countries/$slug/" "/tmp/$slug.html"
+            fetch "https://atlas.yagenji.com/data/countries/$slug.json" "/tmp/$slug.json"
+            test -s "/tmp/$slug.html" || { echo "::error title=Country route empty::$slug page"; exit 1; }
+            test -s "/tmp/$slug.json" || { echo "::error title=Country route empty::$slug JSON"; exit 1; }
+            grep -q "data-country=\"$slug\"" "/tmp/$slug.html" || { echo "::error title=Country route content::$slug page lacks data-country"; exit 1; }
           done
 
       - name: Install Browser QA dependency
@@ -227,6 +264,7 @@ jobs:
           QA_OUT_DIR: qa-production-browser-output
           QA_SCOPE: reviewable
           QA_SLUGS: ${{ steps.target.outputs.slugs }}
+          QA_RETRY_AUDIT: "1"
         run: python3 scripts/qa_country_browser.py
 
       - name: Run full published live QA for shared rendering changes
@@ -235,6 +273,7 @@ jobs:
           QA_BASE_URL: https://atlas.yagenji.com
           QA_OUT_DIR: qa-production-browser-output
           QA_SCOPE: published
+          QA_RETRY_AUDIT: "1"
         run: python3 scripts/qa_published_browser.py
 
       - name: Upload production Browser QA

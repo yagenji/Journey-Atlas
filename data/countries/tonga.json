@@ -50,7 +50,7 @@
     "svg": "assets/images/tonga/map-atlas-v1.svg",
     "route": null,
     "sourceCreditPlacement": "footer",
-    "source": "Tonga national overview uses the existing GSHHS/GSHHG intermediate-resolution coastline composition (WGS84), with ʻEua, Haʻapai and Niuas supplemental geometry from the Apache Superset Tonga country-map GeoJSON (WGS84; Apache-2.0 repository). Enlarged Tongatapu, Vavaʻu, Haʻapai and ʻEua detail insets use OpenStreetMap-derived ISO 3166-2 geometry from hyperknot/country-levels-export (© OpenStreetMap contributors; ODbL 1.0). National overview position, inset bounds and real Scene coordinates are unchanged. Reviewed 2026-10-05.",
+    "source": "Tonga national overview: GSHHS/GSHHG full-resolution shorelines via Basemap 2.0.0 (LGPL-3.0), WGS84, at the exact projection of map.bounds (redrawn 2026-10-28; replaces an offset composition with Apache Superset supplements; inset locator boxes re-centred on the true island positions). Enlarged Tongatapu, Vavaʻu, Haʻapai and ʻEua detail insets use OpenStreetMap-derived ISO 3166-2 geometry from hyperknot/country-levels-export (© OpenStreetMap contributors; ODbL 1.0). Inset bounds and real Scene coordinates are unchanged. Reviewed 2026-10-05.",
     "regions": [
       {
         "id": "tongatapu",
@@ -654,7 +654,6 @@
   "updatedAt": "2026-10-27",
   "sourcesVerifiedAt": "2026-10-27",
   "sources": {
-    "religion": "Tonga Statistics Department, Population and Housing Census 2021 final tables, Religion, October 2022 release; Free Wesleyan Church, Church of Jesus Christ of Latter-day Saints and Roman Catholic Church are the largest denominations. https://tongastats.gov.to/census-2/population-census-3/census-tables/",
     "lapitaTongaUnesco": "UNESCO World Heritage Centre, Lapita Pottery Archaeological Sites, Tonga (Tentative List): more than 30 sites across island groups, initial settlement ca. 2,800 years ago, near-coastal deposits. Checked 2026-10-18. https://whc.unesco.org/en/tentativelists/5168/",
     "mofa": "https://www.mofa.go.jp/mofaj/area/tonga/data.html",
     "population": "World Bank, World Development Indicators, SP.POP.TOTL (Population, total), 2024: 104,175; modelled mid-year population estimate, not an enumerated national census. Original WDI API release last updated 8 October 2026; the displayed rounding and reference year are retained. https://api.worldbank.org/v2/country/TO/indicator/SP.POP.TOTL?date=2024&format=json ; https://www.mofa.go.jp/mofaj/area/tonga/data.html",
@@ -673,11 +672,12 @@
     "emancipation": "https://www.tongatourism.travel/",
     "climate": "https://met.gov.to/",
     "sceneCoordinates": "https://www.openstreetmap.org/",
-    "mapGeometry": "GSHHS/GSHHG + Apache Superset Tonga GeoJSON + OpenStreetMap-derived ISO 3166-2 geometry via hyperknot/country-levels-export (ODbL 1.0), checked 2026-10-05",
+    "mapGeometry": "GSHHS/GSHHG full resolution (overview) + OpenStreetMap-derived ISO 3166-2 geometry via hyperknot/country-levels-export (insets, ODbL 1.0); overview redrawn 2026-10-28",
     "airNewZealand": "https://www.airnewzealand.com/",
     "iana": "https://www.iana.org/domains/root/db/.to.html",
     "constitutionFlag": "Legislative Assembly of Tonga, Constitution of Tonga, Clause 47 (National flag): the Flag of Tonga shall never be altered. https://parliament.gov.to/en/component/phocadownload/file/369-constitution-of-tonga",
     "bestSeason": "Responsible Travel, \"Best time to visit the South Pacific Islands\": Tonga humpback whale swimming July–October; rains reach Tonga in November; cyclone season December–April. https://www.responsibletravel.com/holidays/south-pacific-islands/travel-guide/best-time-to-visit",
+    "religion": "Tonga Statistics Department, Population and Housing Census 2021 final tables, Religion, October 2022 release; Free Wesleyan Church, Church of Jesus Christ of Latter-day Saints and Roman Catholic Church are the largest denominations. https://tongastats.gov.to/census-2/population-census-3/census-tables/",
     "area": "World Bank, World Development Indicators AG.LND.TOTL.K2, FAO land-area series: 720 km² in 2023. This is land area, excluding inland water; label the display accordingly rather than silently calling it total surface area. https://api.worldbank.org/v2/country/TO/indicator/AG.LND.TOTL.K2?date=2023&format=json"
   },
   "sourceDates": {

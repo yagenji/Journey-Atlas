@@ -94,7 +94,7 @@ function renderCountry(data, registry) {
     heroArt.setAttribute('aria-label', `代表風景: ${heroLabel}`);
   }
   setBackground(heroArt, data.hero?.image);
-  renderMapBase(fragment, data.map);
+  renderMapBase(fragment, data.map, data.slug);
   renderCapitalMarker(fragment, data.capital, data.map);
   renderScenes(fragment, data.scenes, data.map);
   renderHeroMarker(fragment, data.hero, data.map);
@@ -188,7 +188,31 @@ function resolveImageSource(source) {
     });
 }
 
-function renderMapBase(fragment, mapData) {
+const MAP_SOURCES_URL = `data/map-data-sources.json?v=${DATA_VERSION}`;
+let mapSourcesRequest = null;
+
+// OpenStreetMap (ODbL) must be credited on or next to the map itself, so maps
+// drawn from OSM data get a small credit in the map's bottom-right corner.
+// Every other dataset is credited on the About page (data/map-data-sources.json).
+function renderMapCredits(fragment, slug) {
+  const mapArt = fragment.querySelector('#country-map-art');
+  if (!slug || !mapArt) return;
+  mapSourcesRequest = mapSourcesRequest || fetch(MAP_SOURCES_URL, { cache: 'no-store' })
+    .then((response) => (response.ok ? response.json() : Promise.reject(new Error('Map sources unavailable'))));
+  mapSourcesRequest.then((registry) => {
+    const ids = registry?.countries?.[slug];
+    if (!Array.isArray(ids) || !ids.includes('osm')) return;
+    const credit = document.createElement('a');
+    credit.className = 'map-osm-credit';
+    credit.href = 'https://www.openstreetmap.org/copyright';
+    credit.target = '_blank';
+    credit.rel = 'noopener noreferrer';
+    credit.textContent = '© OpenStreetMap contributors';
+    mapArt.append(credit);
+  }).catch(() => {});
+}
+
+function renderMapBase(fragment, mapData, slug) {
   if (!mapData?.svg) return;
   const mapArt = fragment.querySelector('#country-map-art');
   const placeholder = mapArt.querySelector('.map-placeholder');
@@ -211,33 +235,6 @@ function renderMapBase(fragment, mapData) {
   });
   resolveImageSource(mapData.svg).then((resolvedSource) => { image.src = resolvedSource; }).catch(() => image.dispatchEvent(new Event('error')));
   mapArt.prepend(image);
-  const mapSource = typeof mapData.source === 'string' ? mapData.source : '';
-  const creditInFooter = mapData.sourceCreditPlacement === 'footer';
-  if (creditInFooter) mapArt.dataset.sourceCreditPlacement = 'footer';
-    if (/OpenStreetMap|\bODbL\b/i.test(mapSource)) {
-      const creditContainer = creditInFooter
-        ? document.querySelector('.atlas-footer__copyright')
-        : fragment.querySelector('.map-legend--below');
-      if (creditContainer) {
-        const credit = document.createElement('a');
-        credit.className = 'map-legend__source-credit';
-        credit.href = 'https://www.openstreetmap.org/copyright';
-        credit.target = '_blank';
-        credit.rel = 'noopener noreferrer';
-        credit.textContent = creditInFooter
-          ? '© OpenStreetMap contributors · ODbL 1.0'
-          : '地図データ © OpenStreetMap contributors · ODbL 1.0';
-        credit.style.flexBasis = '100%';
-        credit.style.textAlign = 'left';
-        credit.style.color = 'inherit';
-        credit.style.fontSize = '11px';
-        credit.style.lineHeight = '1.5';
-        credit.style.textDecoration = 'underline';
-        credit.style.textUnderlineOffset = '2px';
-        if (creditInFooter) creditContainer.append(document.createElement('br'));
-        creditContainer.append(credit);
-      }
-    }
   if (typeof mapData.japanAreaComparison === 'string' && mapData.japanAreaComparison.trim()) {
     const legend = fragment.querySelector('.map-legend--below');
     if (legend) {
@@ -261,6 +258,7 @@ function renderMapBase(fragment, mapData) {
       legend.setAttribute("aria-label", "地図記号と別枠表示の説明");
     }
   }
+  renderMapCredits(fragment, slug);
 }
 
 function applyBackground(element, image) {

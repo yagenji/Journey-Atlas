@@ -31,6 +31,7 @@ RUNTIME_DATA_FILES = [
     "top-search-index.json",
     "top-season-index.json",
     "top-scene-index.json",
+    "map-data-sources.json",
 ]
 
 

@@ -50,7 +50,7 @@
     "svg": "assets/images/fiji/map-atlas-v1.svg",
     "route": null,
     "sourceCreditPlacement": "footer",
-    "source": "Fiji coastlines from GSHHS/GSHHG intermediate-resolution WGS84 coastline data distributed with Basemap. Taveuni is shown in a detail inset across the antimeridian; Rotuma is shown as a separate inset using a Fiji ADM1 polygon cross-checked against open geographic data. Shared multi-region local-equirectangular-fit-v1 layout, 1200×760. Checked 2026-10-05.",
+    "source": "Fiji coastlines from GSHHS/GSHHG via Basemap 2.0.0 (LGPL-3.0), WGS84: main region intermediate resolution across the antimeridian; Taveuni (detail inset, bounds from 179.87°E) and Rotuma (separate inset) at full resolution. Redrawn 2026-10-28, replacing Apache Superset Fiji ADM1 supplements. Shared multi-region local-equirectangular-fit-v1 layout, 1200×760.",
     "regions": [
       {
         "id": "main",
@@ -72,7 +72,7 @@
         "bounds": {
           "north": -16.55,
           "south": -17.05,
-          "west": -180,
+          "west": -180.13,
           "east": -179.72
         },
         "rect": {
@@ -412,13 +412,13 @@
   "taste": {
     "kicker": "TASTE OF FIJI",
     "title": "フィジーで食べたいもの",
-    "intro": "魚、ココナッツ、タロイモの葉、スパイス。太平洋の島の食材とインド系文化の味が一つの食卓に並ぶ。",
+    "intro": "魚、ココナツ、タロイモの葉、スパイス。太平洋の島の食材とインド系文化の味が一つの食卓に並ぶ。",
     "items": [
       {
         "id": "kokoda",
         "name": "ココダ",
         "nameLocal": "Kokoda",
-        "text": "白身魚をライムやレモンで締め、ココナッツミルク、玉ねぎ、トマト、唐辛子などを合わせる冷たい魚料理。",
+        "text": "白身魚をライムやレモンで締め、ココナツミルク、玉ねぎ、トマト、唐辛子などを合わせる冷たい魚料理。",
         "image": "assets/images/fiji/approved/food-01-kokoda.webp",
         "imageFraming": "SOURCE_ASPECT"
       },
@@ -426,7 +426,7 @@
         "id": "rourou",
         "name": "ロウロウ",
         "nameLocal": "Rourou",
-        "text": "タロイモの葉を丁寧に下処理して煮込み、ココナッツミルクなどで仕上げる。根菜文化を葉の部分まで使う日常的な料理。",
+        "text": "タロイモの葉を丁寧に下処理して煮込み、ココナツミルクなどで仕上げる。根菜文化を葉の部分まで使う日常的な料理。",
         "image": "assets/images/fiji/approved/food-02-rourou.webp",
         "imageFraming": "SOURCE_ASPECT"
       },
@@ -434,7 +434,7 @@
         "id": "kuita-vakalolo",
         "name": "クイタ・ヴァカロロ",
         "nameLocal": "Kuita Vakalolo",
-        "text": "柔らかくしたタコをココナッツクリームで煮る料理。海の食材と濃厚なココナッツを組み合わせるフィジーらしい一皿。",
+        "text": "柔らかくしたタコをココナツクリームで煮る料理。海の食材と濃厚なココナツを組み合わせるフィジーらしい一皿。",
         "image": "assets/images/fiji/approved/food-03-kuita-vakalolo.webp",
         "imageFraming": "SOURCE_ASPECT"
       },
@@ -665,7 +665,7 @@
     "land": "https://www.fiji.travel/things-to-know/getting-around/land-airport-transfers",
     "regions": "https://www.fiji.travel/things-to-know/destination-guide/discover-fiji",
     "mapGeometry": "GSHHS/GSHHG intermediate-resolution coastline distributed with Basemap; WGS84",
-    "rotumaGeometry": "https://fossies.org/linux/apache-superset/superset-frontend/plugins/legacy-plugin-chart-country-map/src/countries/fiji.geojson",
+    "rotumaGeometry": "GSHHS/GSHHG full-resolution shoreline via Basemap 2.0.0 (LGPL-3.0); replaced the Apache Superset Fiji ADM1 outline on 2026-10-28",
     "sceneCoordinates": "OpenStreetMap/GeoNames/UNESCO coordinates checked individually on 2026-10-05; Levuka UNESCO S17 41 0.16 E178 50 4.32; Tavoro -16.82357,-179.88378; Sawa-i-Lau -16.85035,177.46673; Great Astrolabe Reef -18.80233,178.58616; Navala -17.65945,177.8128; Colo-i-Suva -18.05887,178.46457; Sigatoka Sand Dunes -18.1693,177.48825; Monuriki -17.60977,177.03412.",
     "firewalking": "https://www.fiji.travel/things-to-do/arts/fiji-s-fearless-firewalkers",
     "masi": "https://www.fiji.travel/things-to-do/shopping/buying-souvenirs-in-fiji-guide",
