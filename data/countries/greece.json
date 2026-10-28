@@ -43,7 +43,7 @@
     },
     "svg": "assets/images/greece/map-atlas-v1.svg",
     "route": null,
-    "source": "Greece regional boundaries: peterdsp/greece-prefectures-and-units (MIT License; source data filtered from Eurostat); dissolved visual treatment: JOURNEY ATLAS"
+    "source": "Natural Earth 1:10m Admin-0 land borders (nvkelso/natural-earth-vector ca96624a56bd078437bca8184e78163e5039ad19 ne_10m_admin_0_countries, public domain) with GSHHS/GSHHG resolution=h coastline and islands (scripts/build_coastline_composite.py); context: GSHHS + Natural Earth 1:10m boundary lines; WGS84; local-equirectangular-fit-v1. Replaced Eurostat-derived regional geometry on 2026-10-28."
   },
   "scenes": [
     {
@@ -487,7 +487,7 @@
     "bestSeason": "2026-10-26"
   },
   "sources": {
-    "map": "peterdsp/greece-prefectures-and-units, greecePrefectures.geojson (MIT License; source data filtered from Eurostat). 13 regional MultiPolygons visually dissolved to national outline; extent includes Kastellorizo.",
+    "map": "Natural Earth 1:10m Admin-0 land borders (nvkelso/natural-earth-vector ca96624a56bd078437bca8184e78163e5039ad19 ne_10m_admin_0_countries, public domain) + GSHHS/GSHHG resolution=h coastline and islands (incl. Kastellorizo) via scripts/build_coastline_composite.py; replaced peterdsp/greece-prefectures-and-units (Eurostat-derived, under the non-commercial EuroGeographics licence) on 2026-10-28.",
     "population": "Hellenic Statistical Authority (ELSTAT), Data on Estimated Population (1.1.2025): resident population 10,372,335.",
     "area": "European Union country profile for Greece / Eurostat 2025: geographical size 131,694 km².",
     "language": "European Union country profile for Greece: Greek is the official EU language of Greece.",
