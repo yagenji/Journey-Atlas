@@ -1,0 +1,52 @@
+/* 図鑑のページ送り (atlas-pager.js) — quiet, navy only. */
+.atlas-pager{box-sizing:border-box;width:min(100% - 56px,1384px);margin:8px auto 44px;padding:26px 0 0!important;border-top:1px solid rgba(18,54,92,.12)}
+.atlas-pager__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}
+.atlas-pager__chapter{color:#8a7656;font:600 11.5px/1.4 var(--ja-ui,"Zen Kaku Gothic New",sans-serif);letter-spacing:.12em}
+.atlas-pager__folio{color:#12365c;font:600 13px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em}
+.atlas-pager__row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.atlas-pager__card{
+  display:grid;grid-template-columns:150px 1fr;align-items:stretch;overflow:hidden;min-height:104px;
+  border:1px solid rgba(18,54,92,.12);border-radius:14px;background:#fffdf8;color:#12365c;text-decoration:none;
+  box-shadow:0 2px 10px rgba(9,42,75,.05);transition:border-color .16s ease,box-shadow .16s ease;
+}
+.atlas-pager__card--next{grid-template-columns:1fr 150px}
+.atlas-pager__card--next .atlas-pager__art{order:2}
+.atlas-pager__card--next .atlas-pager__body{text-align:right}
+.atlas-pager__card:hover{border-color:rgba(18,54,92,.3);box-shadow:0 6px 18px rgba(9,42,75,.09)}
+.atlas-pager__card:focus-visible{outline:2px solid #173b5d;outline-offset:3px}
+.atlas-pager__art{display:block;background:#e8ece9}
+.atlas-pager__art img{display:block;width:100%;height:100%;object-fit:cover}
+.atlas-pager__body{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:14px 18px;min-width:0}
+.atlas-pager__kicker{color:#8a7656;font:600 11.5px/1.3 var(--ja-ui,"Zen Kaku Gothic New",sans-serif);letter-spacing:.06em}
+/* Long names (BOSNIA & HERZEGOVINA, ST. VINCENT & GRENADINES) wrap instead of being cut off. */
+.atlas-pager__name{font:700 16px/1.25 "Hanken Grotesk",sans-serif;letter-spacing:.12em;white-space:normal;overflow-wrap:anywhere}
+.atlas-pager__ja{color:#4b5e70;font:500 12.5px/1.4 var(--ja-ui,"Zen Kaku Gothic New",sans-serif)}
+@media(max-width:760px){
+  .atlas-pager{width:calc(100% - 32px);margin-bottom:32px;padding-top:20px!important}
+  .atlas-pager__row{grid-template-columns:1fr;gap:10px}
+  .atlas-pager__card,.atlas-pager__card--next{grid-template-columns:96px 1fr;min-height:84px}
+  .atlas-pager__card--next .atlas-pager__art{order:0}
+  .atlas-pager__card--next .atlas-pager__body{text-align:left}
+  .atlas-pager__card--next{order:-1}  /* on phones, 次の国 comes first */
+  .atlas-pager__body{padding:10px 14px}
+  .atlas-pager__name{font-size:14.5px;letter-spacing:.08em}
+}
+
+/* Edge tabs: slim page-turn tabs on wide screens only. */
+.atlas-pager-tab{display:none}
+@media(min-width:1180px) and (hover:hover){
+  .atlas-pager-tab{
+    position:fixed;top:50%;z-index:40;display:flex;flex-direction:column;align-items:center;gap:10px;
+    width:22px;padding:12px 0;transform:translateY(-50%);
+    border:1px solid rgba(18,54,92,.12);background:rgba(255,253,248,.88);color:#12365c;text-decoration:none;
+    box-shadow:0 3px 14px rgba(9,42,75,.07);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    opacity:.5;transition:opacity .18s ease,width .18s ease;
+  }
+  .atlas-pager-tab--prev{left:0;border-left:0;border-radius:0 10px 10px 0}
+  .atlas-pager-tab--next{right:0;border-right:0;border-radius:10px 0 0 10px}
+  .atlas-pager-tab:hover,.atlas-pager-tab:focus-visible{opacity:1;width:34px;outline:none}
+  .atlas-pager-tab:focus-visible{box-shadow:0 0 0 2px #173b5d}
+  .atlas-pager-tab__arrow{font:400 17px/1 "Hanken Grotesk",sans-serif}
+  .atlas-pager-tab__name{writing-mode:vertical-rl;font:700 10px/1 "Hanken Grotesk",sans-serif;letter-spacing:.16em;white-space:nowrap}
+}
+@media (prefers-reduced-motion:reduce){.atlas-pager__card,.atlas-pager-tab{transition:none}}

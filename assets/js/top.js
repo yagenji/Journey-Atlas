@@ -45,6 +45,7 @@ const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 const ATLAS_TOTAL = 202;
+const INDEX_TITLE = '索引　すべての国・地域（A–Z）';
 
 function syncScrollHeader() {
   const header = document.querySelector('.top-header');
@@ -397,7 +398,7 @@ function createCard(country,index,compact=false){
   card.append(art,body);return card;
 }
 function renderRail(items){if(!rail)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>fragment.append(createCard(country,index)));rail.replaceChildren(fragment);updateDots();}
-function renderGrid(items,captions=null){if(!grid)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>{const card=createCard(country,index,true);const note=captions?.get(country.slug);if(note){const small=document.createElement('small');small.className='country-card__match';small.textContent=note;card.querySelector('.country-card__body')?.append(small);}fragment.append(card);});grid.replaceChildren(fragment);if(empty)empty.hidden=items.length!==0;}
+function renderGrid(items,captions=null){if(!grid)return;const fragment=document.createDocumentFragment();items.forEach((country,index)=>{const card=createCard(country,index,true);const note=captions?.get(country.slug);if(note){const small=document.createElement('small');small.className='country-card__match';small.textContent=note;card.querySelector('.country-card__body')?.append(small);}fragment.append(card);});grid.replaceChildren(fragment);addFolios();if(empty)empty.hidden=items.length!==0;}
 function scrollRail(direction){if(!rail)return;rail.scrollBy({left:Math.max(460,rail.clientWidth*.82)*direction,behavior:'smooth'});}
 function updateDots(){if(!rail||dots.length===0)return;const max=rail.scrollWidth-rail.clientWidth;const ratio=max>0?rail.scrollLeft/max:0;const index=Math.min(dots.length-1,Math.round(ratio*(dots.length-1)));dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===index));}
 function themeLabel(theme){
@@ -567,9 +568,9 @@ function clearThemeResults(){
 function setAllPanel(open,reset=true){
   if(!allPanel||!toggleAll)return;
   allPanel.hidden=!open;toggleAll.setAttribute('aria-expanded',String(open));
-  toggleAll.firstChild.textContent=open?'一覧を閉じる ':'すべての国・地域を見る ';
+  toggleAll.firstChild.textContent=open?'一覧を閉じる ':'索引（A–Z）を見る ';
   if(open&&reset){
-    if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';
+    if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;
     renderGrid(destinations);
   }
   if(open) allPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -662,7 +663,7 @@ searchInput?.addEventListener('input',()=>{
   if(searchInput.value.trim())loadSceneIndex();
   const items=searchCountries();
   renderGrid(items,searchCaptions);
-  if(allTitle)allTitle.textContent=searchInput.value.trim()?`「${searchInput.value.trim()}」の検索結果 ${items.length}件`:'すべての国・地域';
+  if(allTitle)allTitle.textContent=searchInput.value.trim()?`「${searchInput.value.trim()}」の検索結果 ${items.length}件`:INDEX_TITLE;
 });
 searchInput?.addEventListener('keydown',(event)=>{
   if(event.key!=='Enter'||event.isComposing)return;
@@ -673,7 +674,7 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
+wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
@@ -683,7 +684,7 @@ document.addEventListener('click',(event)=>{
   const letter=button.dataset.letter;
   const filtered=letter==='all'?destinations:letter==='#'?destinations.filter((country)=>!/[A-Z]/.test(country.nameEn[0])):destinations.filter((country)=>country.nameEn.startsWith(letter));
   setAllPanel(true,false);
-  if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent='すべての国・地域';
+  if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;
   renderGrid(filtered);
 });
 
@@ -1178,6 +1179,29 @@ sceneMore?.addEventListener('click',()=>{
     ['pointerdown','focusin'].forEach((type)=>panel.addEventListener(type,()=>{loadScenes();},{once:true,passive:true}));
   }
 }
+
+// ---------------------------------------------------------------------------
+// 索引: page numbers beside the names in the A–Z list. Page order comes from atlas-order.js and is
+// the order Country pages turn in (the map's country list is grouped by the same chapters).
+// ---------------------------------------------------------------------------
+var atlasBook=null;   // var: renderGrid → addFolios may run before this line on a fast load
+function bookEl(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
+function addFolios(){
+  if(!atlasBook||!grid)return;
+  grid.querySelectorAll('.country-card[data-slug]').forEach((card)=>{
+    const page=atlasBook.bySlug.get(card.dataset.slug);
+    const body=card.querySelector('.country-card__body');
+    if(!page||!body||body.querySelector('.country-card__folio'))return;
+    const folio=bookEl('span','country-card__folio',`p.${page.folio}`);
+    folio.setAttribute('aria-label',`${page.folio}ページ`);
+    body.querySelector('h3')?.after(folio);
+  });
+}
+(window.JourneyAtlasOrder?window.JourneyAtlasOrder.load():Promise.reject(new Error('atlas-order.js missing')))
+  .then((book)=>{atlasBook=book;addFolios();})
+  .catch((error)=>{
+    console.warn('[JOURNEY ATLAS] Book order unavailable.',error);
+  });
 
 // "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.
 document.querySelector('#random-country')?.addEventListener('click',()=>{
