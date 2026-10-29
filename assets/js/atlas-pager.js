@@ -9,8 +9,6 @@
     const at=pages.findIndex((page)=>page.slug===slug);
     if(at<0||pages.length<2)return;
     const here=pages[at];
-    // 栞: remember the page last opened, for 「前回の続きから」 on the top page.
-    try{localStorage.setItem(window.JourneyAtlasOrder.BOOKMARK_KEY,JSON.stringify({slug,at:Date.now()}));}catch{}
     const prev=pages[(at-1+pages.length)%pages.length];
     const next=pages[(at+1)%pages.length];
     renderSpread(here,prev,next,at,pages.length);

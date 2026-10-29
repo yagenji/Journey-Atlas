@@ -1,4 +1,4 @@
-// The atlas as a book: page order shared by the top page (目次・索引・栞) and Country pages (ページ送り).
+// The atlas as a book: page order shared by the top page (索引・地図の章立て) and Country pages (ページ送り).
 // Chapters = regions → subregions in data/region-taxonomy.json; A–Z by English name inside a chapter.
 window.JourneyAtlasOrder={
   build(taxonomy,registry){
@@ -27,6 +27,5 @@ window.JourneyAtlasOrder={
   load(){
     const json=(url)=>fetch(url).then((response)=>{if(!response.ok)throw new Error(url);return response.json();});
     return Promise.all([json('data/region-taxonomy.json'),json('data/atlas-destinations.json')]).then(([taxonomy,registry])=>this.build(taxonomy,registry));
-  },
-  BOOKMARK_KEY:'journey-atlas:bookmark'
+  }
 };
