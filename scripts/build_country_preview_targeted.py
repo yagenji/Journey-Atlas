@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import shutil
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -57,6 +58,41 @@ def collect_image_refs(value: object, refs: set[str]) -> None:
     if isinstance(value, list):
         for item in value:
             collect_image_refs(item, refs)
+
+
+def include_pager_neighbors(slugs: list[str]) -> list[str]:
+    """Package the adjacent pages and Heroes rendered/prefetched by atlas-pager.js.
+
+    Keep the requested QA targets separate from these runtime dependencies. Order
+    follows atlas-order.js: taxonomy chapters, then English names within each.
+    """
+    registry = json.loads((ROOT / "data/atlas-destinations.json").read_text(encoding="utf-8"))
+    taxonomy = json.loads((ROOT / "data/region-taxonomy.json").read_text(encoding="utf-8"))
+    by_iso = {
+        item["iso2"]: item for item in registry.get("destinations", [])
+        if item.get("atlasPublished") and item.get("href")
+    }
+    pages: list[str] = []
+    used: set[str] = set()
+    for region in taxonomy.get("regions", []):
+        for group in region.get("subregions") or [region]:
+            items = [by_iso[iso] for iso in group.get("iso2", [])
+                     if iso in by_iso and by_iso[iso]["slug"] not in used]
+            items.sort(key=lambda item: "".join(
+                char for char in unicodedata.normalize("NFKD", item["nameEn"]).casefold()
+                if not unicodedata.combining(char)
+            ))
+            for item in items:
+                pages.append(item["slug"])
+                used.add(item["slug"])
+    expanded = list(slugs)
+    for slug in slugs:
+        if slug in pages and len(pages) > 1:
+            at = pages.index(slug)
+            for neighbor in (pages[(at - 1) % len(pages)], pages[(at + 1) % len(pages)]):
+                if neighbor not in expanded:
+                    expanded.append(neighbor)
+    return expanded
 
 
 def version_runtime_image_refs(value: object) -> object:
@@ -227,16 +263,17 @@ def main() -> int:
     )
     args = parser.parse_args()
     slugs = parse_slugs(args.slugs)
+    packaged_slugs = include_pager_neighbors(slugs)
 
     if DIST.exists():
         shutil.rmtree(DIST)
-    build_target_pages(slugs)
+    build_target_pages(packaged_slugs)
     DIST.mkdir(parents=True, exist_ok=True)
     package_shared_runtime()
-    refs = package_runtime_data(slugs)
+    refs = package_runtime_data(packaged_slugs)
     package_target_images(refs)
     write_preview_metadata(slugs)
-    validate_preview(slugs, refs)
+    validate_preview(packaged_slugs, refs)
 
     file_count = sum(1 for path in DIST.rglob("*") if path.is_file())
     size_bytes = sum(path.stat().st_size for path in DIST.rglob("*") if path.is_file())
