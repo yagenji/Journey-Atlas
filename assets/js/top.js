@@ -1181,9 +1181,8 @@ sceneMore?.addEventListener('click',()=>{
 }
 
 // ---------------------------------------------------------------------------
-// The top page as the front of a book: 表紙 (ページを開く), 目次 (chapters), 索引 (page numbers
-// in the A–Z list) and 栞 (前回の続きから). Page order comes from atlas-order.js and is the same
-// order Country pages turn in.
+// 索引: page numbers beside the names in the A–Z list. Page order comes from atlas-order.js and is
+// the order Country pages turn in (the map's country list is grouped by the same chapters).
 // ---------------------------------------------------------------------------
 var atlasBook=null;   // var: renderGrid → addFolios may run before this line on a fast load
 function bookEl(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
@@ -1198,68 +1197,10 @@ function addFolios(){
     body.querySelector('h3')?.after(folio);
   });
 }
-function renderContents(){
-  const host=document.querySelector('#contents-grid');
-  if(!host||!atlasBook)return;
-  const lead=document.querySelector('#contents-lead');
-  const regions=[];
-  atlasBook.chapters.forEach((chapter)=>{
-    let region=regions.find((item)=>item.id===chapter.regionId);
-    if(!region){region={id:chapter.regionId,label:chapter.region,chapters:[]};regions.push(region);}
-    region.chapters.push(chapter);
-  });
-  if(lead)lead.textContent=`${atlasBook.pages.length}の国・地域を、${regions.length}つの地域・${atlasBook.chapters.length}の章に分けて収めています。国のページは、この順にめくれます。`;
-  host.replaceChildren(...regions.map((region)=>{
-    const box=bookEl('section','contents-region');
-    const first=region.chapters[0].first,last=region.chapters.at(-1).last;
-    const head=bookEl('h3','contents-region__title');
-    head.append(bookEl('span','',region.label),bookEl('span','contents-region__pages',first===last?`${first}`:`${first}–${last}`));
-    box.append(head);
-    region.chapters.forEach((chapter)=>{
-      const details=bookEl('details','contents-chapter');
-      const summary=bookEl('summary','contents-chapter__summary');
-      summary.append(
-        bookEl('span','contents-chapter__name',chapter.label),
-        bookEl('span','contents-chapter__leader'),
-        bookEl('span','contents-chapter__pages',chapter.first===chapter.last?`${chapter.first}`:`${chapter.first}–${chapter.last}`)
-      );
-      const list=bookEl('ol','contents-chapter__list');
-      chapter.pages.forEach((page)=>{
-        const li=bookEl('li');
-        const a=bookEl('a','contents-page');
-        a.href=page.href;
-        a.append(bookEl('span','contents-page__no',String(page.folio)),bookEl('span','contents-page__flag',page.flag||''),bookEl('span','contents-page__en',page.nameEn),bookEl('span','contents-page__ja',page.nameJa));
-        li.append(a);list.append(li);
-      });
-      const start=bookEl('a','contents-chapter__start',`この章を${chapter.first}ページから読む ›`);
-      start.href=chapter.pages[0].href;
-      details.append(summary,list,start);
-      box.append(details);
-    });
-    return box;
-  }));
-}
-function renderBookCover(){
-  if(!atlasBook)return;
-  const open=document.querySelector('#hero-book-open');
-  const volume=document.querySelector('#hero-book-volume');
-  if(open)open.href=atlasBook.pages[0].href;
-  if(volume)volume.textContent=`全${atlasBook.pages.length}ページ・${atlasBook.chapters.length}の章`;
-  const mark=document.querySelector('#hero-book-bookmark');
-  let saved=null;
-  try{saved=JSON.parse(localStorage.getItem(window.JourneyAtlasOrder.BOOKMARK_KEY)||'null');}catch{}
-  const page=saved&&atlasBook.bySlug.get(saved.slug);
-  if(mark&&page){
-    mark.href=page.href;
-    mark.replaceChildren(bookEl('span','hero-book__bookmark-label','前回の続きから'),bookEl('span','hero-book__bookmark-page',`p.${page.folio}　${page.nameEn}`),bookEl('span','hero-book__bookmark-ja',`${page.nameJa} ›`));
-    mark.hidden=false;
-  }
-}
 (window.JourneyAtlasOrder?window.JourneyAtlasOrder.load():Promise.reject(new Error('atlas-order.js missing')))
-  .then((book)=>{atlasBook=book;renderBookCover();renderContents();addFolios();})
+  .then((book)=>{atlasBook=book;addFolios();})
   .catch((error)=>{
     console.warn('[JOURNEY ATLAS] Book order unavailable.',error);
-    document.querySelector('#contents')?.setAttribute('hidden','');
   });
 
 // "ランダムに旅先を選ぶ": open one published Country at random, skipping ones already marked as visited.

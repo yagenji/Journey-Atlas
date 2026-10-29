@@ -60,6 +60,30 @@
     return n;
   }
   function region(id) { return regions.find(r => r.id === id); }
+  // Atlas page order (atlas-order.js): chapters = subregions, A–Z inside, as on Country pages.
+  let book = null;
+  function atlasBook() {
+    if (!book && window.JourneyAtlasOrder && regions.length && dest.length) book = window.JourneyAtlasOrder.build({ regions }, { destinations: dest });
+    return book;
+  }
+  function bookPage(c) { return atlasBook()?.bySlug.get(c.slug) || null; }
+  function chapterGroups(items) {
+    const b = atlasBook();
+    if (!b) return null;
+    const groups = new Map();
+    items.forEach(c => {
+      const page = b.bySlug.get(c.slug);
+      if (!page) return;
+      if (!groups.has(page.chapter)) groups.set(page.chapter, []);
+      groups.get(page.chapter).push(page);
+    });
+    if (!groups.size) return null;
+    const pagesOnly = [...groups.entries()].sort((x, y) => x[0].first - y[0].first)
+      .map(([chapter, pages]) => ({ chapter, items: pages.sort((x, y) => x.folio - y.folio).map(p => items.find(c => c.slug === p.slug)) }));
+    const missing = items.filter(c => !b.bySlug.get(c.slug));
+    if (missing.length) pagesOnly.push({ chapter: { label: 'その他', first: '', last: '' }, items: missing });
+    return pagesOnly;
+  }
   function countries(codes = []) {
     const s = new Set(codes);
     return dest.filter(c => s.has(c.iso2)).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'));
@@ -102,14 +126,23 @@
       </div>` : '';
 
     list.className = 'map-country-nav';
-    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${a.map(c => {
+    const item = c => {
       const cls = `map-country-nav__item ${picked?.iso2 === c.iso2 ? 'is-selected' : ''}`;
-      const inner = `<span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span>`;
+      const page = bookPage(c);
+      const folio = page ? `<span class="map-country-nav__folio" aria-label="${page.folio}ページ">p.${page.folio}</span>` : '';
+      const inner = `<span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span>${folio}`;
       // Published countries are plain links: one click opens the page (new tab via Ctrl/Cmd/middle-click works natively).
       return c.atlasPublished && c.href
         ? `<a href="${c.href}" data-n="${c.iso2}" class="${cls}">${inner}</a>`
         : `<button type="button" data-n="${c.iso2}" class="${cls}">${inner}</button>`;
-    }).join('')}</div></div>`;
+    };
+    // The list doubles as the atlas's table of contents: countries in page order, under the same
+    // chapter headings (東アジア, 東南アジア …) that Country pages turn through.
+    const groups = chapterGroups(a);
+    const rows = groups
+      ? groups.map(g => `<div class="map-country-nav__chapter"><span>${g.chapter.label}</span><small>${g.chapter.first === g.chapter.last ? g.chapter.first : `${g.chapter.first}–${g.chapter.last}`}</small></div>${g.items.map(item).join('')}`).join('')
+      : a.map(item).join('');
+    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${rows}</div></div>`;
     list.querySelector('[data-clear-selection]')?.addEventListener('click', deselect);
     list.querySelectorAll('[data-n]').forEach(b => {
       nav.set(b.dataset.n, b);
