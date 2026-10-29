@@ -398,3 +398,59 @@
   .explore-card__copy h2{font-size:14.5px!important}
   .explore-card__copy>b{display:block!important;font-size:20px}
 }
+
+/* ---------- 20. The top page as a book: 表紙・目次・索引・栞 ---------- */
+/* 表紙 */
+.hero-book{margin-top:22px}
+.hero-book__volume{margin:0 0 10px;color:#8a7656;font:600 11.5px/1.4 "Hanken Grotesk","Zen Kaku Gothic New",sans-serif;letter-spacing:.14em}
+.hero-book__actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.hero-book__open{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 22px;border-radius:999px;
+  background:#234866;color:#fff;font:700 13.5px/1 var(--jp,"Zen Kaku Gothic New",sans-serif);letter-spacing:.06em;text-decoration:none;
+}
+.hero-book__open:hover{background:#173b5d}
+.hero-book__open:focus-visible,.hero-book__contents:focus-visible,.hero-book__bookmark:focus-visible{outline:2px solid #173b5d;outline-offset:3px}
+.hero-book__contents{color:#234866;font:700 13px/1.4 var(--jp,"Zen Kaku Gothic New",sans-serif);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(35,72,102,.3)}
+/* 栞 */
+.hero-book__bookmark{
+  display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:16px;padding:10px 14px 10px 16px;
+  border-left:3px solid #234866;background:rgba(255,253,248,.85);color:#12365c;text-decoration:none;border-radius:0 8px 8px 0;
+}
+.hero-book__bookmark[hidden]{display:none}
+.hero-book__bookmark-label{color:#8a7656;font:600 11.5px/1.3 var(--jp,sans-serif);letter-spacing:.06em}
+.hero-book__bookmark-page{font:700 13px/1.3 "Hanken Grotesk",sans-serif;letter-spacing:.1em}
+.hero-book__bookmark-ja{color:#4b5e70;font:500 12.5px/1.3 var(--jp,sans-serif)}
+
+/* 目次 */
+.book-contents{margin-top:4px}
+#contents{scroll-margin-top:calc(var(--ja-header-height,72px) + 16px)}
+.contents-grid{column-count:3;column-gap:34px;margin-top:6px}
+.contents-region{break-inside:avoid;margin:0 0 22px}
+.contents-region__title{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid rgba(23,59,93,.16);color:#173b5d;font:700 15px/1.4 var(--jp,sans-serif)}
+.contents-region__pages{color:#8a96a0;font:600 11.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.08em}
+.contents-chapter__summary{display:flex;align-items:baseline;gap:8px;padding:9px 2px;cursor:pointer;list-style:none;color:#25415f;font:600 13px/1.4 var(--jp,sans-serif)}
+.contents-chapter__summary::-webkit-details-marker{display:none}
+.contents-chapter__summary::before{content:'';flex:0 0 auto;width:6px;height:6px;margin-right:2px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(-45deg);transition:transform .16s ease}
+.contents-chapter[open]>.contents-chapter__summary::before{transform:translateY(-3px) rotate(45deg)}
+.contents-chapter__summary:hover{color:#0b2c57}
+.contents-chapter__summary:focus-visible{outline:2px solid #173b5d;outline-offset:2px;border-radius:4px}
+.contents-chapter__leader{flex:1 1 auto;min-width:16px;border-bottom:1px dotted rgba(23,59,93,.35);transform:translateY(-4px)}
+.contents-chapter__pages{flex:0 0 auto;color:#5b6b78;font:600 12px/1 "Hanken Grotesk",sans-serif;letter-spacing:.06em}
+.contents-chapter__list{margin:2px 0 8px;padding:0 0 0 14px;list-style:none}
+.contents-page{display:grid;grid-template-columns:30px 20px minmax(0,1fr);column-gap:6px;align-items:baseline;padding:5px 4px;border-radius:6px;color:#12365c;text-decoration:none}
+.contents-page:hover{background:rgba(23,59,93,.05)}
+.contents-page:focus-visible{outline:2px solid #173b5d;outline-offset:1px}
+.contents-page__no{color:#8a96a0;font:600 11px/1 "Hanken Grotesk",sans-serif;text-align:right}
+.contents-page__en{font:700 11.5px/1.3 "Hanken Grotesk",sans-serif;letter-spacing:.08em}
+.contents-page__ja{grid-column:3;color:#5b6b78;font:500 11.5px/1.3 var(--jp,sans-serif)}
+.contents-chapter__start{display:inline-block;margin:0 0 10px 14px;color:#234866;font:700 12px/1.4 var(--jp,sans-serif);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(35,72,102,.3)}
+@media (prefers-reduced-motion:reduce){.contents-chapter__summary::before{transition:none}}
+@media(max-width:1050px){.contents-grid{column-count:2}}
+@media(max-width:760px){
+  .contents-grid{column-count:1}
+  .contents-chapter__summary{padding:11px 2px;font-size:14px}
+  .hero-book{margin-top:16px}
+}
+
+/* 索引: page numbers beside the names in the A–Z list */
+.country-card__folio{display:block;margin-top:1px;color:#8a96a0;font:600 10.5px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.08em}

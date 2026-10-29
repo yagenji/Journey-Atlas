@@ -1,30 +1,16 @@
 // 図鑑のページ送り: Country pages turn like the pages of an atlas.
-// Order = chapters (regions → subregions, as in data/region-taxonomy.json), A–Z by English name
-// inside each chapter. Adds (1) a 「前の国 / 次の国」 spread with a folio (e.g. 12 / 202) above the
+// Order comes from atlas-order.js (chapters by region → subregion, A–Z inside a chapter). Adds (1) a 「前の国 / 次の国」 spread with a folio (e.g. 12 / 202) above the
 // site footer, (2) slim edge tabs on wide screens and (3) ← / → keys. The next page is prefetched.
 (()=>{
   const slug=document.documentElement.dataset.country||new URLSearchParams(location.search).get('country');
   if(!slug||!/^[a-z0-9-]+$/.test(slug))return;
-  const json=(url)=>fetch(url).then((response)=>{if(!response.ok)throw new Error(url);return response.json();});
-  Promise.all([json('data/region-taxonomy.json'),json('data/atlas-destinations.json')]).then(([taxonomy,registry])=>{
-    const byIso=new Map((registry.destinations||[]).filter((item)=>item.atlasPublished&&item.href).map((item)=>[item.iso2,item]));
-    const used=new Set();
-    const pages=[];
-    const chapters=[];
-    (taxonomy.regions||[]).forEach((region)=>{
-      const groups=region.subregions?.length?region.subregions:[{label:region.label,iso2:region.iso2}];
-      groups.forEach((group)=>{
-        const items=(group.iso2||[]).map((iso)=>byIso.get(iso)).filter((item)=>item&&!used.has(item.slug))
-          .sort((a,b)=>a.nameEn.localeCompare(b.nameEn,'en',{sensitivity:'base'}));
-        if(!items.length)return;
-        const chapter={label:group.label===region.label?region.label:group.label,region:region.label,size:items.length};
-        chapters.push(chapter);
-        items.forEach((item,index)=>{used.add(item.slug);pages.push({...item,chapter,chapterIndex:index+1,folio:pages.length+1});});
-      });
-    });
+  if(!window.JourneyAtlasOrder)return;
+  window.JourneyAtlasOrder.load().then(({pages})=>{
     const at=pages.findIndex((page)=>page.slug===slug);
     if(at<0||pages.length<2)return;
     const here=pages[at];
+    // 栞: remember the page last opened, for 「前回の続きから」 on the top page.
+    try{localStorage.setItem(window.JourneyAtlasOrder.BOOKMARK_KEY,JSON.stringify({slug,at:Date.now()}));}catch{}
     const prev=pages[(at-1+pages.length)%pages.length];
     const next=pages[(at+1)%pages.length];
     renderSpread(here,prev,next,at,pages.length);
