@@ -1,0 +1,52 @@
+/* Hero caption: the cover scene is described like a figure caption under the artwork,
+   in the same name / local name / description order as the Scene cards. */
+.country-page .hero:has(+ .hero-caption:not([hidden])){margin-bottom:0!important;}
+.hero-caption{background:transparent;}
+.hero-caption[hidden]{display:none!important;}
+.hero-caption__inner{
+  display:grid;
+  grid-template-columns:auto minmax(0,600px);
+  justify-content:end;
+  column-gap:22px;
+  padding-top:12px;
+  padding-bottom:6px;
+}
+.hero-caption p{margin:0;}
+.hero-caption__label{
+  padding-top:3px;
+  color:var(--muted);
+  font-family:var(--meta);
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.hero-caption__name{
+  color:var(--navy-deep);
+  font:500 15px/1.55 var(--body);
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+.hero-caption__local{
+  margin-top:1px!important;
+  color:var(--muted);
+  font-family:var(--meta);
+  font-size:11px;
+  line-height:1.5;
+}
+.hero-caption__text{
+  margin-top:7px!important;
+  color:var(--navy-deep);
+  font-size:13px;
+  line-height:1.8;
+}
+
+@media(max-width:760px){
+  .hero-caption__inner{
+    display:block;
+    padding-top:12px;
+    padding-bottom:6px;
+  }
+  .hero-caption__label{padding-top:0;margin-bottom:3px!important;}
+}
