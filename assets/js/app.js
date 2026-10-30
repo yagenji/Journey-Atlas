@@ -94,6 +94,7 @@ function renderCountry(data, registry) {
     heroArt.setAttribute('aria-label', `代表風景: ${heroLabel}`);
   }
   setBackground(heroArt, data.hero?.image);
+  renderHeroCaption(fragment, data.hero);
   renderMapBase(fragment, data.map, data.slug);
   renderCapitalMarker(fragment, data.capital, data.map);
   renderScenes(fragment, data.scenes, data.map);
@@ -422,6 +423,18 @@ function renderScenes(fragment, scenes = [], mapData) {
     bindSceneActivation(card, scene.id, false);
     cards.append(card);
   });
+}
+
+function renderHeroCaption(fragment, hero) {
+  const caption = fragment.querySelector('#hero-caption');
+  if (!caption || !hero?.name || !hero?.description) return;
+  caption.querySelector('.hero-caption__name').textContent = hero.name;
+  caption.querySelector('.hero-caption__local').textContent = hero.location || '';
+  caption.querySelector('.hero-caption__text').textContent = hero.description;
+  caption.hidden = false;
+  fragment.querySelector('.hero-location')?.remove();
+  const heroArt = fragment.querySelector('[data-image-field="hero.image"]');
+  if (heroArt) heroArt.setAttribute('aria-label', `表紙の景色: ${hero.name}（${hero.location || ''}）`);
 }
 
 function renderHeroMarker(fragment, hero, mapData) {

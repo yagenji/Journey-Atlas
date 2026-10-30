@@ -94,6 +94,7 @@ COUNTRY_CSS_SOURCES = [
     "assets/css/photo-credits.css",
     "assets/css/site-unify.css",
     "assets/css/site-footer.css",
+    "assets/css/hero-caption.css",
 ]
 
 TOP_CSS_SOURCES = [
