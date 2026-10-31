@@ -64,27 +64,6 @@ def main() -> int:
             todo.append((slug, scene_id, source, digest))
 
     stale = sorted(set(manifest) - set(wanted))
-    # One-off export for recovering the missing approved Scene gallery thumbnails.
-    # This temporary branch-only code is removed when the actual thumbs are committed.
-    if args.check and todo:
-        import base64
-        import io
-        from PIL import Image, ImageOps
-        print("JA_THUMB_DUMP_START|" + str(len(todo)), flush=True)
-        for slug, scene_id, source, digest in todo:
-            if source.suffix != ".webp":
-                raise ValueError(f"Unsupported temporary export source: {source}")
-            with Image.open(source) as original:
-                target = ImageOps.fit(original.convert("RGB"), SIZE, Image.LANCZOS)
-                output = io.BytesIO()
-                target.save(output, "WEBP", quality=QUALITY, method=6)
-            encoded = base64.b64encode(output.getvalue()).decode("ascii")
-            key = f"{slug}/{scene_id}"
-            print(f"JA_THUMB_BEGIN|{key}|{digest}|{len(encoded)}", flush=True)
-            for offset in range(0, len(encoded), 2000):
-                print(f"JA_THUMB_CHUNK|{key}|{offset // 2000}|{encoded[offset:offset+2000]}", flush=True)
-            print(f"JA_THUMB_END|{key}", flush=True)
-        print("JA_THUMB_DUMP_DONE", flush=True)
     if args.check:
         if todo or stale:
             print(f"Scene thumbnails out of date: {len(todo)} to build, {len(stale)} to remove. "
