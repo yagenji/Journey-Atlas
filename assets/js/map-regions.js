@@ -751,7 +751,17 @@
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }
 
-  tabs.forEach(b => b.onclick = () => setRegion(b.dataset.mapTab));
+  // A region tap can happen while the deferred SVG is still downloading.
+  // Replay that choice after the map has been constructed instead of dropping it.
+  let pendingRegion = null;
+  tabs.forEach(b => b.onclick = () => {
+    if (!svg) {
+      pendingRegion = b.dataset.mapTab;
+      loadWorldMap();
+      return;
+    }
+    setRegion(b.dataset.mapTab);
+  });
   if (head) head.textContent = '世界から地域へ寄りながら、地図を自由に拡大・移動して次の旅先を見つけよう。';
   window.addEventListener('resize', () => requestAnimationFrame(placePin));
 
@@ -779,6 +789,11 @@
     else if (want && region(want)) setRegion(want, false);
     else setRegion('world', false);
     restoring = false;
+    if (pendingRegion) {
+      const choice = pendingRegion;
+      pendingRegion = null;
+      setRegion(choice);
+    }
     }).catch(e => {
       console.error('[JOURNEY ATLAS map]', e);
       copy.textContent = '地図データを読み込めませんでした。';
