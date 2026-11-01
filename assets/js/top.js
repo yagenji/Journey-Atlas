@@ -126,7 +126,7 @@ heroSources=heroFiles;
   }
 }
 setHero(0,false);
-if(destinations.length){renderRail(destinations);renderGrid(destinations);}
+if(destinations.length)renderRail(destinations);
 startHeroRotation();
 
 function setHero(index,animate=true){
@@ -189,11 +189,13 @@ if(alphabetHost){
 
 const coreRegistryPromise=fetch('data/atlas-destinations.json')
   .then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();});
-coreRegistryPromise
-  .then((core)=>{
+window.JourneyAtlasRegistryPromise=coreRegistryPromise;
+coreRegistryPromise((core)=>{
     destinations=sortForDisplay(core.destinations||[]);
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
-    renderRail(destinations);renderGrid(destinations);
+    renderRail(destinations);
+    // The A–Z panel starts hidden; build its cards only after the visitor opens it.
+    if(allPanel&&!allPanel.hidden)renderGrid(destinations);
     if(activeTheme)renderThemeResults();
   })
   .catch(()=>{if(rail) rail.innerHTML='<p class="country-load-error">国一覧を読み込めませんでした。</p>';});
@@ -363,6 +365,27 @@ function hueFor(country,index){
   const code=[...country.nameEn].reduce((sum,char)=>sum+char.charCodeAt(0),0);
   return (code*7+index*19)%360;
 }
+// Country heroes are hundreds of individual images. Defer off-screen cards,
+// including cards clipped by the horizontal rail and cards in hidden result panels.
+const countryArtObserver='IntersectionObserver' in window
+  ? new IntersectionObserver((entries,observer)=>{
+      entries.forEach((entry)=>{
+        if(!entry.isIntersecting)return;
+        observer.unobserve(entry.target);
+        const image=entry.target.dataset.countryImage;
+        delete entry.target.dataset.countryImage;
+        if(image)entry.target.style.backgroundImage=`url("${image}")`;
+      });
+    },{rootMargin:'250px 350px'})
+  : null;
+function setCountryArtImage(art,image){
+  if(!image)return;
+  art.classList.add('has-image');
+  if(countryArtObserver){
+    art.dataset.countryImage=image;
+    countryArtObserver.observe(art);
+  }else art.style.backgroundImage=`url("${image}")`;
+}
 function createCard(country,index,compact=false){
   const card=document.createElement(country.atlasPublished&&country.href?'a':'article');
   card.className=`country-card${country.atlasPublished?' is-open':' is-closed'}`;
@@ -371,7 +394,7 @@ function createCard(country,index,compact=false){
   const art=document.createElement('div');art.className='country-card__art';art.style.setProperty('--hue',String(hueFor(country,index)));
   // Every card uses the Country's own approved hero image. (Six cards used to crop a shared
   // six-panel collage; the hero art has since changed, which left them blank or mis-cropped.)
-  if(country.image){art.style.backgroundImage=`url("${country.image}")`;art.classList.add('has-image');}
+  setCountryArtImage(art,country.image);
   art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
   const body=document.createElement('div');body.className='country-card__body';
   body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
