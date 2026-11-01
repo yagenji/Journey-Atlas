@@ -15,11 +15,11 @@
   <link rel="stylesheet" href="assets/css/top-preview.css">
   <link rel="stylesheet" href="assets/css/top-layout-v3.css">
   <link rel="stylesheet" href="assets/css/top-layout-v4.css?v=20261025-1">
-  <link rel="stylesheet" href="assets/css/map-regions.css?v=20261025-1">
+  <link rel="stylesheet" href="assets/css/map-regions.css?v=20261101-map-fit-1">
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20260908-home-balance-v1">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261101-country-cards-1">
+  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261101-simple-explore-1">
   <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-montages-1">
   <style>
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
@@ -52,55 +52,6 @@
     }#themes .theme-icons [data-theme="road"] .theme-art{
       background-image:url("assets/images/norway/approved/atlantic-road.webp")!important;
     }
-    /* Explore entry imagery: equal-height editorial strips in all five cards.
-       No invented geography: the Map card uses the same geopolitical world SVG
-       as the interactive map; other cards reuse approved Country photos. */
-    .explore .explore-card__art--unified{
-      position:relative;
-      display:block;
-      overflow:hidden;
-      height:84px!important;
-      min-height:0;
-      background-color:#dfe9e9!important;
-      background-image:none!important;
-      background-size:auto!important;
-      filter:none!important;
-    }
-    .explore .explore-card__art--unified img{
-      position:absolute;
-      top:0;
-      display:block;
-      width:33.333333%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      filter:saturate(.85) contrast(.98);
-    }
-    .explore .explore-card__art--unified img:nth-child(1){left:0}
-    .explore .explore-card__art--unified img:nth-child(2){left:33.333333%}
-    .explore .explore-card__art--unified img:nth-child(3){left:66.666666%}
-    .explore .explore-card--season .explore-card__art--unified img{width:25%}
-    .explore .explore-card--season .explore-card__art--unified img:nth-child(2){left:25%}
-    .explore .explore-card--season .explore-card__art--unified img:nth-child(3){left:50%}
-    .explore .explore-card--season .explore-card__art--unified img:nth-child(4){left:75%}
-    /* One accurate world map, fitted in full without stretching or cropping. */
-    .explore .explore-card--map .explore-card__art--unified{
-      background-color:#f1f5f3!important;
-    }
-    .explore .explore-card--map .explore-card__art--unified img{
-      left:0!important;
-      width:100%!important;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-      filter:saturate(.8) contrast(1.04);
-    }
-    @media(max-width:760px){
-      .explore .explore-card__art--unified{
-        height:100%!important;
-        min-height:58px!important;
-      }
-    }
     @media(max-width:760px){
       #themes .theme-art{
         width:52px!important;
@@ -111,7 +62,7 @@
     
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261101-country-cards-1" defer></script>
+  <script src="assets/js/top.js?v=20261101-simple-explore-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261029-book-2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
@@ -165,11 +116,11 @@
     </section>
 
     <section class="explore shell" id="explore" aria-label="世界の探し方">
-      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--unified" aria-hidden="true"><img src="assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/italy/approved/hero-venice-grand-canal-salute.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/kenya/approved/hero-amboseli.webp" alt="" loading="lazy" decoding="async"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>202の国・地域から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art explore-card__art--unified" aria-hidden="true"><img src="assets/maps/world-states.svg" alt="" loading="lazy" decoding="async"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art explore-card__art--unified" aria-hidden="true"><img src="assets/images/iceland/approved/hero-seljalandsfoss.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/costarica/approved/la-selva-red-eyed-tree-frog.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/italy/approved/food-pizza-napoletana.webp" alt="" loading="lazy" decoding="async"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--unified" aria-hidden="true"><img src="assets/images/netherlands/approved/lisse-tulip-fields.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/france/approved/senanque-abbey-lavender.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/southkorea/approved/seoraksan-ulsanbawi-autumn.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/japan/approved/shirakawa-go-ogimachi-winter.webp" alt="" loading="lazy" decoding="async"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--scenery" href="#scenery"><div class="explore-card__art explore-card__art--unified" aria-hidden="true"><img src="assets/images/norway/approved/hero-geirangerfjord.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/namibia/approved/hero-deadvlei.webp" alt="" loading="lazy" decoding="async"><img src="assets/images/palau/approved/hero-rock-islands-southern-lagoon.webp" alt="" loading="lazy" decoding="async"></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SCENERY</span><h2>景色から探す</h2><p>心に残る景色から、行き先に出会う</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>202の国・地域から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m9 15 15-5 16 6 15-5v38l-15 5-16-6-15 5zM24 10v38M40 16v38"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><path d="m42 22-6 14-14 6 6-14z"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><rect x="11" y="14" width="42" height="40" rx="5"/><path d="M21 9v10M43 9v10M11 26h42M22 36h1M32 36h1M42 36h1M22 45h1M32 45h1"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--scenery" href="#scenery"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m7 52 20-33 12 19 7-11 12 25zM21 29l6 5 6-5"/><circle cx="45" cy="14" r="5"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SCENERY</span><h2>景色から探す</h2><p>心に残る景色から、行き先に出会う</p></div><b>›</b></div></a>
     </section>
 
     <section class="countries shell" id="countries">
