@@ -10,18 +10,25 @@ const SITE_ORIGIN = 'https://atlas.yagenji.com/';
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 
-const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-store' })
+const countryRequest = fetch(`data/countries/${safeSlug}.json?v=${DATA_VERSION}`, { cache: 'no-cache' })
   .then((response) => {
     if (!response.ok) throw new Error('Country data not found');
     return response.json();
   });
 
-const registryRequest = fetch(`data/atlas-destinations.json?v=${DATA_VERSION}`, { cache: 'no-store' })
+const registryRequest = fetch(`data/atlas-destinations.json?v=${DATA_VERSION}`, { cache: 'no-cache' })
   .then((response) => response.ok ? response.json() : { destinations: [] })
   .catch(() => ({ destinations: [] }));
 
-Promise.all([countryRequest, registryRequest])
-  .then(([data, registry]) => renderCountry(data, registry.destinations || []))
+// Country content and Hero should not wait for the shared destination registry.
+// The related-country links below the fold are populated when that registry arrives.
+countryRequest
+  .then((data) => {
+    renderCountry(data, []);
+    registryRequest.then((registry) => {
+      renderRelated(document, data.relatedCountries || [], registry.destinations || []);
+    });
+  })
   .catch(() => {
     app.innerHTML = '<div class="error"><p>PAGE NOT FOUND</p><h1>旅のページを見つけられませんでした。</h1><a href="./">トップへ戻る</a></div>';
   });
@@ -111,7 +118,7 @@ function renderCountry(data, registry) {
   renderTips(fragment, data.tips);
   renderTravelScale(fragment, data.travelScale);
   renderNextRoutes(fragment, data.nextRoutes);
-  renderRelated(fragment, data.relatedCountries, registry);
+  if (registry?.length) renderRelated(fragment, data.relatedCountries, registry);
   renderPhotoCredits(fragment, data.photoCredits);
 
   app.replaceChildren(fragment);
