@@ -143,17 +143,24 @@
       </div>
 
       <div class="hero-visual" id="hero-visual">
-        <div class="hero-collage" id="hero-collage" role="img" aria-label="アジアの風景">
-          <img class="hero-collage__fallback" src="assets/images/india/approved/hero-taj-mahal-yamuna.webp" alt="">
+        <div class="hero-collage is-ready" id="hero-collage" role="img" data-region="asia" aria-label="アジア：インド・タージ・マハル、日本・富士山、ベトナム・ハロン湾、ウズベキスタン・サマルカンド、ヨルダン・ワディ・ラム">
+          <div class="hero-collage__tile hero-collage__tile--center"><img src="assets/images/india/approved/hero-taj-mahal-yamuna.webp" alt="" fetchpriority="high" decoding="async"></div>
+          <div class="hero-collage__tile hero-collage__tile--top-left"><img src="assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp" alt="" decoding="async"></div>
+          <div class="hero-collage__tile hero-collage__tile--top-right"><img src="assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp" alt="" decoding="async"></div>
+          <div class="hero-collage__tile hero-collage__tile--bottom-left"><img src="assets/images/uzbekistan/approved/hero-registan-samarkand.webp" alt="" decoding="async"></div>
+          <div class="hero-collage__tile hero-collage__tile--bottom-right"><img src="assets/images/jordan/approved/wadi-rum-jebel-khazali.webp" alt="" decoding="async"></div>
+          <span class="hero-collage__region" aria-hidden="true">ASIA</span>
         </div>
         <button class="hero-arrow hero-arrow--prev" type="button" data-hero-step="-1" aria-label="前のビジュアル">‹</button>
         <button class="hero-arrow hero-arrow--next" type="button" data-hero-step="1" aria-label="次のビジュアル">›</button>
         <div class="hero-controls" aria-label="メインビジュアルを切り替える">
-          <button type="button" data-hero="0" class="is-active" aria-label="ビジュアル1"></button>
-          <button type="button" data-hero="1" aria-label="ビジュアル2"></button>
-          <button type="button" data-hero="2" aria-label="ビジュアル3"></button>
-          <button type="button" data-hero="3" aria-label="ビジュアル4"></button>
-          <button type="button" data-hero="4" aria-label="ビジュアル5"></button>
+          <button type="button" data-hero="0" class="is-active" aria-label="アジアのビジュアル" aria-pressed="true"></button>
+          <button type="button" data-hero="1" aria-label="ヨーロッパのビジュアル" aria-pressed="false"></button>
+          <button type="button" data-hero="2" aria-label="アフリカのビジュアル" aria-pressed="false"></button>
+          <button type="button" data-hero="3" aria-label="北米のビジュアル" aria-pressed="false"></button>
+          <button type="button" data-hero="4" aria-label="南米のビジュアル" aria-pressed="false"></button>
+          <button type="button" data-hero="5" aria-label="オセアニアのビジュアル" aria-pressed="false"></button>
+          <button type="button" data-hero="6" aria-label="南極のビジュアル" aria-pressed="false"></button>
         </div>
       </div>
     </section>
