@@ -159,8 +159,8 @@ jobs:
           }
           shared = any(
               path == "country.html"
-              or path.startswith("assets/css/")
-              or path.startswith("assets/js/")
+              or (path.startswith("assets/css/") and not (path == "assets/css/top.css" or path.startswith("assets/css/top-") or path == "assets/css/map-regions.css"))
+              or (path.startswith("assets/js/") and path not in {"assets/js/top.js", "assets/js/map-regions.js"})
               or path == "data/theme-taxonomy.json"
               or path == "data/region-taxonomy.json"
               or path in shared_validator_paths
