@@ -81,9 +81,22 @@ const heroFiles = [
 
 {
   const image='url("assets/images/top/theme-approved-sprite.webp")';
+  const themeArtObserver='IntersectionObserver' in window
+    ? new IntersectionObserver((entries,observer)=>{
+        entries.forEach((entry)=>{
+          if(!entry.isIntersecting)return;
+          observer.unobserve(entry.target);
+          entry.target.removeAttribute('data-lazy-theme');
+        });
+      },{rootMargin:'350px 0px'})
+    : null;
   themeArtElements.forEach((art,index)=>{
     art.style.backgroundImage=image;
     art.style.backgroundPosition=`${index*(100/7)}% 50%`;
+    if(themeArtObserver){
+      art.dataset.lazyTheme='1';
+      themeArtObserver.observe(art);
+    }
   });
 }
 
