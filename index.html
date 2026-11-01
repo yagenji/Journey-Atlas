@@ -21,7 +21,11 @@
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
      * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
      * without changing the Country taxonomy, filters or navigation behaviour. */
+    /* Scenic themes: readable 4:3 photographs instead of portrait ovals. */
     #themes .theme-art{
+      width:96px;
+      height:72px;
+      border-radius:10px;
       background-size:cover!important;
       background-position:center!important;
       background-repeat:no-repeat!important;
@@ -67,6 +71,13 @@
     .explore-card--theme .explore-card__art--theme-montage img:nth-child(1){left:0}
     .explore-card--theme .explore-card__art--theme-montage img:nth-child(2){left:33.33333%}
     .explore-card--theme .explore-card__art--theme-montage img:nth-child(3){left:66.66666%}
+    @media(max-width:760px){
+      #themes .theme-art{
+        width:52px!important;
+        height:52px!important;
+        border-radius:8px;
+      }
+    }
     
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
