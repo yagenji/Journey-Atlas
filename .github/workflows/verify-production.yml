@@ -131,7 +131,7 @@ jobs:
           }
           shared = any(
               path == "country.html"
-              or (path.startswith("assets/css/") and path not in top_only_css)
+              or (path.startswith("assets/css/") and path not in top_only_css and not path.startswith("assets/css/top-"))
               or (path.startswith("assets/js/") and path not in top_only_js)
               or path in {"scripts/build_site.py", "scripts/package_site.py", "scripts/build_cloudflare.py"}
               for path in files
