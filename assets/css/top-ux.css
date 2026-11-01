@@ -203,6 +203,21 @@
 .map-mine__empty{margin:6px 0 4px;color:#71808a;font-size:12px;line-height:1.6}
 .map-mine__exit{margin-top:14px;min-height:40px;padding:0 16px;border:1px solid rgba(23,59,93,.18);border-radius:999px;background:#fff;color:#173b5d;font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer}
 .map-mine a.map-country-nav__item{color:inherit;text-decoration:none}
+.map-mine__search{display:grid;gap:8px;margin-top:16px;color:#29465e;font:600 12.5px/1.5 var(--jp,sans-serif)}
+.map-mine__search input{width:100%;min-width:0;min-height:44px;padding:9px 10px;border:1px solid rgba(23,59,93,.2);border-radius:8px;background:#fff;color:#173b5d;font:400 13px/1.5 var(--jp,sans-serif)}
+.map-mine__filter{display:flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;color:#405466;font:500 12px/1.5 var(--jp,sans-serif);cursor:pointer}
+.map-mine input[type="checkbox"]{flex:0 0 auto;width:18px;height:18px;margin:0;accent-color:#234866;cursor:pointer}
+.map-mine__result-count{margin:2px 0 8px;color:#667787;font:500 11px/1.5 var(--jp,sans-serif)}
+.map-mine__countries{max-height:280px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.map-mine__item{display:flex;align-items:center;border-bottom:1px solid rgba(38,68,84,.08);border-radius:7px}
+.map-mine__item:has(input:checked){background:#edf2f5}
+.map-mine__choice{display:flex;flex:1;align-items:center;gap:9px;min-width:0;min-height:48px;padding:7px 6px;cursor:pointer}
+.map-mine__choice .map-country-nav__names{flex:1}
+.map-mine__choice .map-country-nav__names strong,.map-mine__choice .map-country-nav__names small{white-space:normal;overflow-wrap:anywhere}
+.map-mine__country-link{display:grid;flex:0 0 36px;place-items:center;min-height:44px;border-radius:7px;color:#234866;text-decoration:none}
+.map-mine__country-link:hover{background:rgba(23,59,93,.08)}
+.map-mine input:focus-visible,.map-mine__country-link:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.map-mine__no-results[hidden]{display:none}
 
 /* ---------- 12. Search captions, country names, random button ---------- */
 .country-card__match{display:block;margin-top:3px;color:#7b6a52;font-size:11px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
