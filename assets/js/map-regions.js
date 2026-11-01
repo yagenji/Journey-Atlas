@@ -793,7 +793,7 @@
       if (!entries.some(entry => entry.isIntersecting)) return;
       mapObserver.disconnect();
       loadWorldMap();
-    }, { rootMargin: '700px 0px' });
+    }, { rootMargin: '300px 0px' });
     mapObserver.observe(root);
     // Keyboard and touch users can request the map before the observer fires.
     ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, loadWorldMap, { once: true, passive: true }));
