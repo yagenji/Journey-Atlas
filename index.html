@@ -17,7 +17,58 @@
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
   <link rel="stylesheet" href="assets/css/top-ux.css?v=20261029-book-2">
-  <link rel="stylesheet" href="assets/css/top-theme-photos.css?v=20261101-1">
+  <style>
+    /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
+     * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
+     * without changing the Country taxonomy, filters or navigation behaviour. */
+    #themes .theme-art{
+      background-size:cover!important;
+      background-position:center!important;
+      background-repeat:no-repeat!important;
+      background-color:#e7eef0;
+    }
+    #themes .theme-icons [data-theme="earth"] .theme-art{
+      background-image:url("assets/images/iceland/approved/hero-seljalandsfoss.webp")!important;
+    }#themes .theme-icons [data-theme="city"] .theme-art{
+      background-image:url("assets/images/morocco/approved/scene-1-chefchaouen-medina.webp")!important;
+    }#themes .theme-icons [data-theme="history"] .theme-art{
+      background-image:url("assets/images/greece/approved/acropolis-athens.webp")!important;
+    }#themes .theme-icons [data-theme="life"] .theme-art{
+      background-image:url("assets/images/vietnam/approved/cai-rang-floating-market.webp")!important;
+    }#themes .theme-icons [data-theme="wildlife"] .theme-art{
+      background-image:url("assets/images/costarica/approved/la-selva-red-eyed-tree-frog.webp")!important;
+    }#themes .theme-icons [data-theme="sea"] .theme-art{
+      background-image:url("assets/images/palau/approved/scene-02-blue-corner.webp")!important;
+    }#themes .theme-icons [data-theme="food"] .theme-art{
+      background-image:url("assets/images/italy/approved/food-pizza-napoletana.webp")!important;
+    }#themes .theme-icons [data-theme="road"] .theme-art{
+      background-image:url("assets/images/norway/approved/atlantic-road.webp")!important;
+    }
+    /* The Explore by Theme entry card now shows nature, wildlife and food instead of
+     * the unrelated third crop of the Explore entry sprite. */
+    .explore-card--theme .explore-card__art--theme-montage{
+      position:relative;
+      display:block;
+      overflow:hidden;
+      background-image:none!important;
+      background-color:#e8eef0;
+      filter:none!important;
+    }
+    .explore-card--theme .explore-card__art--theme-montage img{
+      position:absolute;
+      inset-block:0;
+      display:block;
+      width:33.33334%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      border:0;
+    }
+    .explore-card--theme .explore-card__art--theme-montage img:nth-child(1){left:0}
+    .explore-card--theme .explore-card__art--theme-montage img:nth-child(2){left:33.33333%}
+    .explore-card--theme .explore-card__art--theme-montage img:nth-child(3){left:66.66666%}
+    
+  </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
   <script src="assets/js/top.js?v=20261029-book-2" defer></script>
   <script src="assets/js/map-regions.js?v=20261029-book-2" defer></script>
