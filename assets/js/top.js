@@ -190,7 +190,8 @@ if(alphabetHost){
 const coreRegistryPromise=fetch('data/atlas-destinations.json')
   .then((response)=>{if(!response.ok) throw new Error('Core destination registry not found');return response.json();});
 window.JourneyAtlasRegistryPromise=coreRegistryPromise;
-coreRegistryPromise((core)=>{
+coreRegistryPromise
+  .then((core)=>{
     destinations=sortForDisplay(core.destinations||[]);
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
