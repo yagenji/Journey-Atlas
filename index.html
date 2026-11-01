@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
   <link rel="stylesheet" href="assets/css/top-ux.css?v=20261029-book-2">
+  <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-2">
   <style>
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
      * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
@@ -107,7 +108,7 @@
     
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261029-book-2" defer></script>
+  <script src="assets/js/top.js?v=20261101-region-hero-2" defer></script>
   <script src="assets/js/map-regions.js?v=20261029-book-2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
@@ -142,7 +143,9 @@
       </div>
 
       <div class="hero-visual" id="hero-visual">
-        <img id="hero-image" src="assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp" alt="日本・河口湖と富士山">
+        <div class="hero-collage" id="hero-collage" role="img" aria-label="アジアの風景">
+          <img class="hero-collage__fallback" src="assets/images/india/approved/hero-taj-mahal-yamuna.webp" alt="">
+        </div>
         <button class="hero-arrow hero-arrow--prev" type="button" data-hero-step="-1" aria-label="前のビジュアル">‹</button>
         <button class="hero-arrow hero-arrow--next" type="button" data-hero-step="1" aria-label="次のビジュアル">›</button>
         <div class="hero-controls" aria-label="メインビジュアルを切り替える">
