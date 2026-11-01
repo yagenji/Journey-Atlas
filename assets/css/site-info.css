@@ -179,13 +179,16 @@ a{color:inherit}
   border-radius:50%;
   background:var(--info-accent);
 }
-.info-section a{
+.info-section a,
+.faq-answer a{
   text-decoration:underline;
   text-decoration-color:rgba(11,44,87,.28);
   text-underline-offset:3px;
 }
 .info-section a:hover,
-.info-section a:focus-visible{
+.info-section a:focus-visible,
+.faq-answer a:hover,
+.faq-answer a:focus-visible{
   text-decoration-color:currentColor;
 }
 .faq-list{
