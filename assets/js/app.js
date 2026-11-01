@@ -546,7 +546,7 @@ function renderTaste(fragment, data = {}) {
   items.forEach((item) => {
     const article = document.createElement('article');
     article.className = 'taste-card';
-    article.innerHTML = `<div class="taste-card__image media-slot"><img class="taste-card__img" alt="${escapeHtml(item.name || '')}" decoding="async"></div><div class="taste-card__copy"><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p></div>`;
+    article.innerHTML = `<div class="taste-card__image media-slot"><img class="taste-card__img" alt="${escapeHtml(item.name || '')}" loading="lazy" decoding="async" fetchpriority="low"></div><div class="taste-card__copy"><h3>${escapeHtml(item.name || '')}</h3><small>${escapeHtml(item.nameLocal || '')}</small><p>${escapeHtml(item.text || '')}</p></div>`;
     const image = article.querySelector('.taste-card__img');
     image.addEventListener('load', () => {
       // New Country assets opt in; unchanged legacy Country images keep the
