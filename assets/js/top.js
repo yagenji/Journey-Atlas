@@ -31,7 +31,7 @@ const empty = document.querySelector('#country-empty');
 const wishButton = document.querySelector('#wish-link');
 const toast = document.querySelector('#top-toast');
 const dots = [...document.querySelectorAll('.rail-dots i')];
-const heroImage = document.querySelector('#hero-image');
+const heroCollage = document.querySelector('#hero-collage');
 const heroVisual = document.querySelector('#hero-visual');
 const heroButtons = [...document.querySelectorAll('[data-hero]')];
 const heroStepButtons = [...document.querySelectorAll('[data-hero-step]')];
@@ -64,17 +64,82 @@ let themeMeta = {};
 let heroSources = [];
 let heroIndex = 0;
 let heroTimer;
+let heroTransitionId=0;
 let themeSets = {};
 
-// Provisional hero slides: approved Country hero art, until the top-page illustrations are
-// redrawn. (The earlier hero-set-1〜4 files were truncated and showed as broken images on iPhone.)
+// Homepage-only regional montages built from existing approved Country images.
+// First entry is the dominant center; the following four appear around it.
 const heroFiles = [
-  {src:'assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp',alt:'日本・河口湖と富士山'},
-  {src:'assets/images/italy/approved/hero-venice-grand-canal-salute.webp',alt:'イタリア・ヴェネツィアの大運河とサルーテ聖堂'},
-  {src:'assets/images/peru/approved/hero-machu-picchu.webp',alt:'ペルー・マチュ・ピチュ'},
-  {src:'assets/images/kenya/approved/hero-amboseli.webp',alt:'ケニア・アンボセリ国立公園'},
-  {src:'assets/images/iceland/approved/hero-seljalandsfoss.webp',alt:'アイスランド・セリャラントスフォス'},
-  {src:'assets/images/maldives/approved/hero-dhigurah-sandbank.webp',alt:'モルディブ・ディグラ島の砂州'}
+  {
+    id: 'asia', labelJa: 'アジア', labelEn: 'ASIA',
+    images: [
+      {src: 'assets/images/india/approved/hero-taj-mahal-yamuna.webp', alt: 'インド・タージ・マハル'},
+      {src: 'assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp', alt: '日本・富士山'},
+      {src: 'assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp', alt: 'ベトナム・ハロン湾'},
+      {src: 'assets/images/uzbekistan/approved/hero-registan-samarkand.webp', alt: 'ウズベキスタン・サマルカンド'},
+      {src: 'assets/images/jordan/approved/wadi-rum-jebel-khazali.webp', alt: 'ヨルダン・ワディ・ラム'}
+    ]
+  },
+  {
+    id: 'europe', labelJa: 'ヨーロッパ', labelEn: 'EUROPE',
+    images: [
+      {src: 'assets/images/italy/approved/hero-venice-grand-canal-salute.webp', alt: 'イタリア・ヴェネツィア'},
+      {src: 'assets/images/norway/approved/hero-geirangerfjord.webp', alt: 'ノルウェー・ガイランゲルフィヨルド'},
+      {src: 'assets/images/greece/approved/hero-santorini-oia.webp', alt: 'ギリシャ・サントリーニ島'},
+      {src: 'assets/images/czechia/approved/hero-prague-charles-bridge.webp', alt: 'チェコ・プラハ'},
+      {src: 'assets/images/france/approved/senanque-abbey-lavender.webp', alt: 'フランス・プロヴァンスのラベンダー'}
+    ]
+  },
+  {
+    id: 'africa', labelJa: 'アフリカ', labelEn: 'AFRICA',
+    images: [
+      {src: 'assets/images/kenya/approved/hero-amboseli.webp', alt: 'ケニア・アンボセリのサバンナ'},
+      {src: 'assets/images/egypt/approved/hero.webp', alt: 'エジプトの風景'},
+      {src: 'assets/images/senegal/approved/scene-5-saloum-delta.webp', alt: 'セネガル・サルームデルタ'},
+      {src: 'assets/images/namibia/approved/hero-deadvlei.webp', alt: 'ナミビア・デッドフレイ'},
+      {src: 'assets/images/madagascar/approved/hero-avenue-baobabs.webp', alt: 'マダガスカル・バオバブ並木'}
+    ]
+  },
+  {
+    id: 'north-america', labelJa: '北米', labelEn: 'NORTH AMERICA',
+    images: [
+      {src: 'assets/images/unitedstates/approved/grand-canyon-mather-point.webp', alt: 'アメリカ・グランドキャニオン'},
+      {src: 'assets/images/canada/approved/hero-moraine-lake-rockpile.webp', alt: 'カナダ・モレーン湖'},
+      {src: 'assets/images/mexico/approved/guanajuato-pipila-viewpoint.webp', alt: 'メキシコ・グアナフアト'},
+      {src: 'assets/images/costarica/approved/arenal-volcano.webp', alt: 'コスタリカ・アレナル火山'},
+      {src: 'assets/images/bahamas/approved/scene-2.webp', alt: 'バハマ・ピンクサンズビーチ'}
+    ]
+  },
+  {
+    id: 'south-america', labelJa: '南米', labelEn: 'SOUTH AMERICA',
+    images: [
+      {src: 'assets/images/peru/approved/hero-machu-picchu.webp', alt: 'ペルー・マチュピチュ'},
+      {src: 'assets/images/brazil/approved/hero-rio-corcovado.webp', alt: 'ブラジル・リオデジャネイロ'},
+      {src: 'assets/images/argentina/approved/scene-2-iguazu-garganta-del-diablo.webp', alt: 'アルゼンチン・イグアスの滝'},
+      {src: 'assets/images/bolivia/approved/hero.webp', alt: 'ボリビアの風景'},
+      {src: 'assets/images/chile/approved/hero-lago-pehoe-cuernos-del-paine.webp', alt: 'チリ・パタゴニア'}
+    ]
+  },
+  {
+    id: 'oceania', labelJa: 'オセアニア', labelEn: 'OCEANIA',
+    images: [
+      {src: 'assets/images/australia/approved/scene-01-sydney-harbour.webp', alt: 'オーストラリア・シドニー湾'},
+      {src: 'assets/images/newzealand/approved/hero-milford-sound.webp', alt: 'ニュージーランド・ミルフォードサウンド'},
+      {src: 'assets/images/palau/approved/hero-rock-islands-southern-lagoon.webp', alt: 'パラオ・ロックアイランド'},
+      {src: 'assets/images/australia/approved/hero-uluru.webp', alt: 'オーストラリア・ウルル'},
+      {src: 'assets/images/fiji/approved/hero-monuriki.webp', alt: 'フィジー・モヌリキ島'}
+    ]
+  },
+  {
+    id: 'antarctica', labelJa: '南極', labelEn: 'ANTARCTICA',
+    images: [
+      {src: 'assets/images/antarctica/approved/hero-lemaire-channel.webp', alt: '南極・ルメール海峡'},
+      {src: 'assets/images/antarctica/approved/scene-02-portal-point.webp', alt: '南極・ポータルポイント'},
+      {src: 'assets/images/antarctica/approved/scene-05-cuverville-island.webp', alt: '南極・クーバービル島'},
+      {src: 'assets/images/antarctica/approved/scene-03-flandres-bay.webp', alt: '南極・フランドル湾'},
+      {src: 'assets/images/antarctica/approved/scene-04-neko-harbour.webp', alt: '南極・ネコハーバー'}
+    ]
+  }
 ];
 
 {
@@ -116,7 +181,7 @@ heroSources=heroFiles;
   if(controls){
     controls.replaceChildren(...heroSources.map((_,i)=>{
       const button=document.createElement('button');
-      button.type='button';button.dataset.hero=String(i);button.setAttribute('aria-label',`ビジュアル${i+1}`);
+      button.type='button';button.dataset.hero=String(i);button.setAttribute('aria-label',`${heroSources[i].labelJa}のビジュアル`);button.setAttribute('aria-pressed',String(i===0));
       if(i===0)button.classList.add('is-active');
       return button;
     }));
@@ -129,14 +194,39 @@ if(destinations.length){renderRail(destinations);renderGrid(destinations);}
 startHeroRotation();
 
 function setHero(index,animate=true){
-  if(!heroImage || heroSources.length===0) return;
+  if(!heroCollage || heroSources.length===0) return;
   heroIndex=(index+heroSources.length)%heroSources.length;
+  const transition=++heroTransitionId;
   if(animate) heroVisual?.classList.add('is-changing');
   window.setTimeout(()=>{
-    heroImage.src=heroSources[heroIndex].src;
-    heroImage.alt=heroSources[heroIndex].alt;
-    heroButtons.forEach((button,i)=>button.classList.toggle('is-active',i===heroIndex));
-    heroImage.onload=()=>heroVisual?.classList.remove('is-changing');
+    if(transition!==heroTransitionId) return;
+    const region=heroSources[heroIndex];
+    const positions=['center','top-left','top-right','bottom-left','bottom-right'];
+    const tiles=region.images.map((entry,i)=>{
+      const tile=document.createElement('div');
+      tile.className=`hero-collage__tile hero-collage__tile--${positions[i]}`;
+      const image=document.createElement('img');
+      image.src=entry.src;
+      image.alt='';
+      image.decoding='async';
+      if(i===0) image.fetchPriority='high';
+      tile.append(image);
+      return tile;
+    });
+    const label=document.createElement('span');
+    label.className='hero-collage__region';
+    label.setAttribute('aria-hidden','true');
+    label.textContent=region.labelEn;
+    heroCollage.replaceChildren(...tiles,label);
+    heroCollage.classList.add('is-ready');
+    heroCollage.dataset.region=region.id;
+    heroCollage.setAttribute('aria-label',`${region.labelJa}：${region.images.map(image=>image.alt).join('、')}`);
+    heroButtons.forEach((button,i)=>{
+      const selected=i===heroIndex;
+      button.classList.toggle('is-active',selected);
+      button.setAttribute('aria-pressed',String(selected));
+    });
+    heroVisual?.classList.remove('is-changing');
   },animate?130:0);
 }
 function startHeroRotation(){
