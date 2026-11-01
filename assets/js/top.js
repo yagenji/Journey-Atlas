@@ -70,13 +70,13 @@ let themeSets = {};
 // Homepage-only regional montages built from existing approved Country images.
 // First entry is the dominant center; the following four appear around it.
 const heroFiles = [
-  { id: 'asia', labelJa: 'アジア', labelEn: 'ASIA', description: 'インド、東南アジア、日本などの名所', image: 'assets/images/top/regions/top-asia.webp' },
-  { id: 'europe', labelJa: 'ヨーロッパ', labelEn: 'EUROPE', description: 'ヴェネツィア、サントリーニなどの街並み', image: 'assets/images/top/regions/top-europe.webp' },
-  { id: 'africa', labelJa: 'アフリカ', labelEn: 'AFRICA', description: 'サバンナ、キリマンジャロ、砂漠の景色', image: 'assets/images/top/regions/top-africa.webp' },
-  { id: 'north-america', labelJa: '北米', labelEn: 'NORTH AMERICA', description: 'グランドキャニオン、山岳と都市景観', image: 'assets/images/top/regions/top-north-america.webp' },
-  { id: 'south-america', labelJa: '南米', labelEn: 'SOUTH AMERICA', description: 'マチュピチュ、滝、熱帯の自然', image: 'assets/images/top/regions/top-south-america.webp' },
-  { id: 'oceania', labelJa: 'オセアニア', labelEn: 'OCEANIA', description: 'シドニー、南太平洋の島々と珊瑚礁', image: 'assets/images/top/regions/top-oceania.webp' },
-  { id: 'antarctica', labelJa: '南極', labelEn: 'ANTARCTICA', description: '氷河、雪山、ペンギンの生息地', image: 'assets/images/top/regions/top-antarctica.webp' }
+  { id: 'asia', labelJa: 'アジア', labelEn: 'ASIA', description: '日本・富士山、インド・タージ・マハル、ベトナム・ハロン湾、ヨルダン・ペトラ', image: 'assets/images/top/regions/top-asia.webp?v=20261101-four-scenes-1' },
+  { id: 'europe', labelJa: 'ヨーロッパ', labelEn: 'EUROPE', description: 'ギリシャ・サントリーニ、イタリア・ヴェネツィア、スイス・アルプス、フランス・パリ', image: 'assets/images/top/regions/top-europe.webp?v=20261101-four-scenes-1' },
+  { id: 'africa', labelJa: 'アフリカ', labelEn: 'AFRICA', description: 'アフリカのサバンナ、ビクトリアの滝、ナミビアの砂丘、マダガスカルのバオバブ', image: 'assets/images/top/regions/top-africa.webp?v=20261101-four-scenes-1' },
+  { id: 'north-america', labelJa: '北米', labelEn: 'NORTH AMERICA', description: 'アメリカ・グランドキャニオン、ニューヨーク、カナダ・ロッキー山脈、ナイアガラの滝', image: 'assets/images/top/regions/top-north-america.webp?v=20261101-four-scenes-1' },
+  { id: 'south-america', labelJa: '南米', labelEn: 'SOUTH AMERICA', description: 'ペルー・マチュピチュ、イグアスの滝、ボリビア・ウユニ塩湖、ブラジル・リオデジャネイロ', image: 'assets/images/top/regions/top-south-america.webp?v=20261101-four-scenes-1' },
+  { id: 'oceania', labelJa: 'オセアニア', labelEn: 'OCEANIA', description: 'オーストラリア・シドニー湾、ニュージーランド・フィヨルド、南太平洋の島々、ウルル', image: 'assets/images/top/regions/top-oceania.webp?v=20261101-four-scenes-1' },
+  { id: 'antarctica', labelJa: '南極', labelEn: 'ANTARCTICA', description: '南極のペンギン、氷河、氷山、雪山', image: 'assets/images/top/regions/top-antarctica.webp?v=20261101-four-scenes-1' }
 ];
 
 {
