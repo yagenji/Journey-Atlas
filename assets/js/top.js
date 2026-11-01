@@ -70,76 +70,13 @@ let themeSets = {};
 // Homepage-only regional montages built from existing approved Country images.
 // First entry is the dominant center; the following four appear around it.
 const heroFiles = [
-  {
-    id: 'asia', labelJa: 'アジア', labelEn: 'ASIA',
-    images: [
-      {src: 'assets/images/india/approved/hero-taj-mahal-yamuna.webp', alt: 'インド・タージ・マハル'},
-      {src: 'assets/images/japan/approved/hero-fuji-lake-kawaguchi-oishi.webp', alt: '日本・富士山'},
-      {src: 'assets/images/vietnam/approved/hero-ha-long-bay-ti-top-viewpoint.webp', alt: 'ベトナム・ハロン湾'},
-      {src: 'assets/images/uzbekistan/approved/hero-registan-samarkand.webp', alt: 'ウズベキスタン・サマルカンド'},
-      {src: 'assets/images/jordan/approved/wadi-rum-jebel-khazali.webp', alt: 'ヨルダン・ワディ・ラム'}
-    ]
-  },
-  {
-    id: 'europe', labelJa: 'ヨーロッパ', labelEn: 'EUROPE',
-    images: [
-      {src: 'assets/images/italy/approved/hero-venice-grand-canal-salute.webp', alt: 'イタリア・ヴェネツィア'},
-      {src: 'assets/images/norway/approved/hero-geirangerfjord.webp', alt: 'ノルウェー・ガイランゲルフィヨルド'},
-      {src: 'assets/images/greece/approved/hero-santorini-oia.webp', alt: 'ギリシャ・サントリーニ島'},
-      {src: 'assets/images/czechia/approved/hero-prague-charles-bridge.webp', alt: 'チェコ・プラハ'},
-      {src: 'assets/images/france/approved/senanque-abbey-lavender.webp', alt: 'フランス・プロヴァンスのラベンダー'}
-    ]
-  },
-  {
-    id: 'africa', labelJa: 'アフリカ', labelEn: 'AFRICA',
-    images: [
-      {src: 'assets/images/kenya/approved/hero-amboseli.webp', alt: 'ケニア・アンボセリのサバンナ'},
-      {src: 'assets/images/egypt/approved/hero.webp', alt: 'エジプトの風景'},
-      {src: 'assets/images/senegal/approved/scene-5-saloum-delta.webp', alt: 'セネガル・サルームデルタ'},
-      {src: 'assets/images/namibia/approved/hero-deadvlei.webp', alt: 'ナミビア・デッドフレイ'},
-      {src: 'assets/images/madagascar/approved/hero-avenue-baobabs.webp', alt: 'マダガスカル・バオバブ並木'}
-    ]
-  },
-  {
-    id: 'north-america', labelJa: '北米', labelEn: 'NORTH AMERICA',
-    images: [
-      {src: 'assets/images/unitedstates/approved/grand-canyon-mather-point.webp', alt: 'アメリカ・グランドキャニオン'},
-      {src: 'assets/images/canada/approved/hero-moraine-lake-rockpile.webp', alt: 'カナダ・モレーン湖'},
-      {src: 'assets/images/mexico/approved/guanajuato-pipila-viewpoint.webp', alt: 'メキシコ・グアナフアト'},
-      {src: 'assets/images/costarica/approved/arenal-volcano.webp', alt: 'コスタリカ・アレナル火山'},
-      {src: 'assets/images/bahamas/approved/scene-2.webp', alt: 'バハマ・ピンクサンズビーチ'}
-    ]
-  },
-  {
-    id: 'south-america', labelJa: '南米', labelEn: 'SOUTH AMERICA',
-    images: [
-      {src: 'assets/images/peru/approved/hero-machu-picchu.webp', alt: 'ペルー・マチュピチュ'},
-      {src: 'assets/images/brazil/approved/hero-rio-corcovado.webp', alt: 'ブラジル・リオデジャネイロ'},
-      {src: 'assets/images/argentina/approved/scene-2-iguazu-garganta-del-diablo.webp', alt: 'アルゼンチン・イグアスの滝'},
-      {src: 'assets/images/bolivia/approved/hero.webp', alt: 'ボリビアの風景'},
-      {src: 'assets/images/chile/approved/hero-lago-pehoe-cuernos-del-paine.webp', alt: 'チリ・パタゴニア'}
-    ]
-  },
-  {
-    id: 'oceania', labelJa: 'オセアニア', labelEn: 'OCEANIA',
-    images: [
-      {src: 'assets/images/australia/approved/scene-01-sydney-harbour.webp', alt: 'オーストラリア・シドニー湾'},
-      {src: 'assets/images/newzealand/approved/hero-milford-sound.webp', alt: 'ニュージーランド・ミルフォードサウンド'},
-      {src: 'assets/images/palau/approved/hero-rock-islands-southern-lagoon.webp', alt: 'パラオ・ロックアイランド'},
-      {src: 'assets/images/australia/approved/hero-uluru.webp', alt: 'オーストラリア・ウルル'},
-      {src: 'assets/images/fiji/approved/hero-monuriki.webp', alt: 'フィジー・モヌリキ島'}
-    ]
-  },
-  {
-    id: 'antarctica', labelJa: '南極', labelEn: 'ANTARCTICA',
-    images: [
-      {src: 'assets/images/antarctica/approved/hero-lemaire-channel.webp', alt: '南極・ルメール海峡'},
-      {src: 'assets/images/antarctica/approved/scene-02-portal-point.webp', alt: '南極・ポータルポイント'},
-      {src: 'assets/images/antarctica/approved/scene-05-cuverville-island.webp', alt: '南極・クーバービル島'},
-      {src: 'assets/images/antarctica/approved/scene-03-flandres-bay.webp', alt: '南極・フランドル湾'},
-      {src: 'assets/images/antarctica/approved/scene-04-neko-harbour.webp', alt: '南極・ネコハーバー'}
-    ]
-  }
+  { id: 'asia', labelJa: 'アジア', labelEn: 'ASIA', description: 'インド、東南アジア、日本などの名所', image: 'assets/images/top/regions/top-asia.webp' },
+  { id: 'europe', labelJa: 'ヨーロッパ', labelEn: 'EUROPE', description: 'ヴェネツィア、サントリーニなどの街並み', image: 'assets/images/top/regions/top-europe.webp' },
+  { id: 'africa', labelJa: 'アフリカ', labelEn: 'AFRICA', description: 'サバンナ、キリマンジャロ、砂漠の景色', image: 'assets/images/top/regions/top-africa.webp' },
+  { id: 'north-america', labelJa: '北米', labelEn: 'NORTH AMERICA', description: 'グランドキャニオン、山岳と都市景観', image: 'assets/images/top/regions/top-north-america.webp' },
+  { id: 'south-america', labelJa: '南米', labelEn: 'SOUTH AMERICA', description: 'マチュピチュ、滝、熱帯の自然', image: 'assets/images/top/regions/top-south-america.webp' },
+  { id: 'oceania', labelJa: 'オセアニア', labelEn: 'OCEANIA', description: 'シドニー、南太平洋の島々と珊瑚礁', image: 'assets/images/top/regions/top-oceania.webp' },
+  { id: 'antarctica', labelJa: '南極', labelEn: 'ANTARCTICA', description: '氷河、雪山、ペンギンの生息地', image: 'assets/images/top/regions/top-antarctica.webp' }
 ];
 
 {
@@ -195,39 +132,42 @@ startHeroRotation();
 
 function setHero(index,animate=true){
   if(!heroCollage || heroSources.length===0) return;
-  heroIndex=(index+heroSources.length)%heroSources.length;
-  const transition=++heroTransitionId;
-  if(animate) heroVisual?.classList.add('is-changing');
-  window.setTimeout(()=>{
-    if(transition!==heroTransitionId) return;
-    const region=heroSources[heroIndex];
-    const positions=['center','top-left','top-right','bottom-left','bottom-right'];
-    const tiles=region.images.map((entry,i)=>{
-      const tile=document.createElement('div');
-      tile.className=`hero-collage__tile hero-collage__tile--${positions[i]}`;
-      const image=document.createElement('img');
-      image.src=entry.src;
-      image.alt='';
-      image.decoding='async';
-      if(i===0) image.fetchPriority='high';
-      tile.append(image);
-      return tile;
-    });
-    const label=document.createElement('span');
-    label.className='hero-collage__region';
-    label.setAttribute('aria-hidden','true');
-    label.textContent=region.labelEn;
-    heroCollage.replaceChildren(...tiles,label);
-    heroCollage.classList.add('is-ready');
+  const nextIndex=(index+heroSources.length)%heroSources.length;
+  const region=heroSources[nextIndex];
+  const token=++heroTransitionId;
+  const render=()=>{
+    if(token!==heroTransitionId) return;
+    const picture=heroCollage.querySelector('.hero-collage__image');
+    const label=heroCollage.querySelector('.hero-collage__region');
+    if(picture && picture.getAttribute('src')!==region.image) picture.src=region.image;
+    if(label) label.textContent=region.labelEn;
+    heroIndex=nextIndex;
     heroCollage.dataset.region=region.id;
-    heroCollage.setAttribute('aria-label',`${region.labelJa}：${region.images.map(image=>image.alt).join('、')}`);
+    heroCollage.setAttribute('aria-label',region.labelJa+'の旅の風景をめぐる水彩コラージュ：'+region.description);
     heroButtons.forEach((button,i)=>{
       const selected=i===heroIndex;
       button.classList.toggle('is-active',selected);
       button.setAttribute('aria-pressed',String(selected));
     });
     heroVisual?.classList.remove('is-changing');
-  },animate?130:0);
+  };
+  if(!animate || region.id===heroCollage.dataset.region){render();return;}
+  const preload=new Image();
+  preload.decoding='async';
+  preload.src=region.image;
+  const ready=preload.decode?preload.decode():new Promise((resolve,reject)=>{
+    if(preload.complete){preload.naturalWidth?resolve():reject(new Error('Image unavailable'));return;}
+    preload.onload=resolve;preload.onerror=reject;
+  });
+  ready.then(()=>{
+    if(token!==heroTransitionId)return;
+    heroVisual?.classList.add('is-changing');
+    window.setTimeout(render,140);
+  }).catch((error)=>{
+    if(token!==heroTransitionId)return;
+    heroVisual?.classList.remove('is-changing');
+    console.warn('[JOURNEY ATLAS] Regional Hero image unavailable:',region.image,error);
+  });
 }
 function startHeroRotation(){
   window.clearInterval(heroTimer);
