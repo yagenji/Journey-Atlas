@@ -381,23 +381,30 @@ function hueFor(country,index){
 }
 // Country heroes are hundreds of individual images. Defer off-screen cards,
 // including cards clipped by the horizontal rail and cards in hidden result panels.
+function revealCountryArt(entries,observer){
+  entries.forEach((entry)=>{
+    if(!entry.isIntersecting)return;
+    observer.unobserve(entry.target);
+    const image=entry.target.dataset.countryImage;
+    delete entry.target.dataset.countryImage;
+    if(image)entry.target.style.backgroundImage=`url("${image}")`;
+  });
+}
 const countryArtObserver='IntersectionObserver' in window
-  ? new IntersectionObserver((entries,observer)=>{
-      entries.forEach((entry)=>{
-        if(!entry.isIntersecting)return;
-        observer.unobserve(entry.target);
-        const image=entry.target.dataset.countryImage;
-        delete entry.target.dataset.countryImage;
-        if(image)entry.target.style.backgroundImage=`url("${image}")`;
-      });
-    },{rootMargin:'250px 350px'})
+  ? new IntersectionObserver(revealCountryArt,{rootMargin:'250px 350px'})
   : null;
-function setCountryArtImage(art,image){
+// The horizontal country rail needs its own expanded intersection root, so
+// the next card's photo is fetched before a visitor swipes to it.
+const railArtObserver=countryArtObserver&&rail
+  ? new IntersectionObserver(revealCountryArt,{root:rail,rootMargin:'0px 350px'})
+  : null;
+function setCountryArtImage(art,image,inRail=false){
   if(!image)return;
   art.classList.add('has-image');
-  if(countryArtObserver){
+  const observer=inRail&&railArtObserver?railArtObserver:countryArtObserver;
+  if(observer){
     art.dataset.countryImage=image;
-    countryArtObserver.observe(art);
+    observer.observe(art);
   }else art.style.backgroundImage=`url("${image}")`;
 }
 function createCard(country,index,compact=false){
@@ -408,7 +415,7 @@ function createCard(country,index,compact=false){
   const art=document.createElement('div');art.className='country-card__art';art.style.setProperty('--hue',String(hueFor(country,index)));
   // Every card uses the Country's own approved hero image. (Six cards used to crop a shared
   // six-panel collage; the hero art has since changed, which left them blank or mis-cropped.)
-  setCountryArtImage(art,country.image);
+  setCountryArtImage(art,country.image,!compact);
   art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
   const body=document.createElement('div');body.className='country-card__body';
   body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
