@@ -63,3 +63,18 @@
 .scene-card .ja-scene-save,
 .scene-card .ja-scene-origin { grid-column:1/-1!important; grid-area:auto!important; justify-self:start; min-width:0; }
 .scene-card .ja-scene-origin { width:100%; }
+
+/* The Country Scene grid uses display:contents for .scene-copy. Keep added
+   controls in explicit grid rows on desktop, tablet and mobile. */
+.scene-card {
+  grid-template-areas:
+    "number name"
+    "number local"
+    "image image"
+    "description description"
+    "save save"
+    "origin origin" !important;
+}
+.scene-card .ja-scene-save { grid-area:save; justify-self:start; align-self:start; }
+.scene-card .ja-scene-origin { grid-area:origin; min-width:0; width:100%; }
+.scene-card .ja-scene-origin[open] { padding-bottom:6px; }
