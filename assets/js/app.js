@@ -125,6 +125,9 @@ function renderCountry(data, registry) {
   updatePageMetadata(data);
   initWishButton(data.slug);
   initCountryLensBridge(data);
+  // Personal atlas enhancements read the same final Country data after rendering.
+  window.journeyAtlasCurrentCountry = data;
+  window.dispatchEvent(new CustomEvent('journeyatlas:countryready', { detail: data }));
 
   const scenes = data.scenes || [];
   const requestedScene = getSceneFromHash(scenes) || scenes[0]?.id;
@@ -403,6 +406,8 @@ function renderScenes(fragment, scenes = [], mapData) {
     card.dataset.scene = scene.id;
     card.id = `scene-${scene.id}`;
     card.tabIndex = 0;
+    // Retain the established Scene keyboard/pressed-state contract while the
+    // independent favorite and explanation controls stop activation propagation.
     card.setAttribute('role', 'button');
     card.setAttribute('aria-pressed', 'false');
     card.setAttribute('aria-label', `${number} ${scene.name}を選択`);

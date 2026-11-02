@@ -1,0 +1,80 @@
+/* Shared personal-atlas extensions, designed to sit inside the existing editorial layout. */
+#atlas-personal-home { margin-top:clamp(24px,4vw,56px); }
+.ja-panel { scroll-margin-top:90px; margin:0 auto clamp(24px,4vw,48px); background:#f8f7f2; border:1px solid #e2e2db; border-radius:18px; padding:clamp(18px,3vw,36px); color:#183a55; }
+.ja-panel-head { margin-bottom:24px; }
+.ja-kicker { display:block; font:600 11px/1.4 "Hanken Grotesk",sans-serif; letter-spacing:.14em; color:#79766d; margin-bottom:8px; }
+.ja-panel h2 { margin:0 0 10px; font:500 clamp(24px,3vw,34px)/1.45 "Shippori Mincho",serif; }
+.ja-panel-head p { font-size:14px; line-height:1.9; color:#595f60; margin:0; }
+.ja-compare-pickers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.ja-picker { display:flex; flex-direction:column; gap:6px; font-size:12px; color:#5b656a; }
+.ja-picker select { font:inherit; font-size:14px; padding:12px 28px 12px 12px; min-height:45px; width:100%; border:1px solid #c3cace; border-radius:9px; color:#173a56; background:#fff; }
+.ja-subtitle { font-size:12px; color:#626967; line-height:1.6; min-height:18px; }
+.ja-compare-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.ja-compare-card { background:#fff; border:1px solid #e3e5e3; border-radius:12px; padding:20px 18px; min-width:0; }
+.ja-compare-card h3 { margin:0 0 12px; font-size:18px; line-height:1.5; }
+.ja-compare-card h3 small { display:block; font-size:11px; letter-spacing:.08em; font-weight:400; color:#77807e; }
+.ja-compare-card > a { display:inline-block; color:#204a69; margin-top:10px; font-size:13px; font-weight:600; }
+.ja-compare-facts { margin:0; }
+.ja-compare-facts dt { font-weight:600; font-size:12px; border-top:1px solid #e4e7e4; padding-top:10px; }
+.ja-compare-facts dd { font-size:13px; line-height:1.75; margin:4px 0 12px; overflow-wrap:anywhere; }
+.ja-mine-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.ja-summary-item { display:flex; flex-direction:column; gap:5px; border:1px solid #e1e4e1; border-radius:11px; background:#fff; padding:16px; }
+.ja-summary-item span { font:600 10px/1.4 "Hanken Grotesk",sans-serif; letter-spacing:.12em; color:#75817d; }
+.ja-summary-item strong { font-size:23px; font-weight:600; }
+.ja-summary-item small { font-size:12px; color:#646d68; }
+.ja-mine-groups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:26px 0; }
+.ja-mine-group { min-width:0; }
+.ja-mine-group h3,.ja-favorite-scenes h3 { font-size:17px; font-weight:600; margin:0 0 12px; }
+.ja-mine-links { display:flex; flex-wrap:wrap; gap:8px; max-height:230px; overflow:auto; }
+.ja-mine-links a { font-size:13px; line-height:1.5; text-decoration:none; border:1px solid #d6dedb; border-radius:99px; background:#fff; padding:8px 12px; color:#244764; }
+.ja-empty { font-size:13px; color:#66706f; line-height:1.8; }
+.ja-scene-gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.ja-favorite-card { display:flex; flex-direction:column; background:#fff; border:1px solid #e0e5e0; border-radius:11px; overflow:hidden; }
+.ja-favorite-link { display:block; text-decoration:none; color:#173a56; flex:1; }
+.ja-favorite-link img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+.ja-favorite-link span { display:flex; flex-direction:column; gap:5px; padding:12px; }
+.ja-favorite-link strong { font-size:13px; line-height:1.6; }
+.ja-favorite-link small { font-size:12px; color:#606866; }
+.ja-remove { cursor:pointer; text-align:left; border:0; background:transparent; padding:0 12px 12px; color:#526879; font-size:12px; }
+.ja-backup-tools { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; }
+.ja-tool-button,.ja-country-compare { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:8px 16px; border:1px solid #96a9ac; border-radius:99px; background:#fff; color:#173a56; font-weight:600; font-size:13px; line-height:1.4; cursor:pointer; text-decoration:none; }
+.ja-import-label { position:relative; cursor:pointer; }
+.ja-import-label input { position:absolute; inset:0; opacity:0; width:100%; cursor:pointer; }
+.ja-import-label:focus-within { outline:2px solid #244764; outline-offset:2px; }
+.ja-storage-note { width:100%; font-size:12px; line-height:1.8; color:#626b68; margin:0; }
+.ja-link { display:inline-flex; text-decoration:none; }
+.scene-card .ja-scene-save { margin-top:12px; padding:6px 12px; border:1px solid #afbdc2; border-radius:30px; background:#fff; color:#34566d; font:500 12px/1.5 "Zen Kaku Gothic New",sans-serif; cursor:pointer; }
+.scene-card .ja-scene-save.is-saved { color:#9c4a46; border-color:#c9a8a3; background:#fcf7f5; }
+.ja-scene-status { font-size:12px; color:#486276; min-height:15px; margin:8px 0; }
+.ja-country-compare { margin-top:10px; font-size:12px; }
+.scene-card .ja-scene-origin { margin-top:14px; font-size:12px; color:#394a57; }
+.ja-scene-origin summary { cursor:pointer; font-size:12px; font-weight:600; color:#204b68; }
+.ja-scene-origin p { font-size:13px; line-height:1.9; margin:9px 0 6px; }
+.ja-origin-source { font-size:11px; color:#566f7d; text-decoration:underline; }
+.ja-tool-button:hover,.ja-country-compare:hover,.ja-mine-links a:hover,.ja-scene-save:hover { background:#edf3f2; }
+.ja-panel :focus-visible,.ja-scene-save:focus-visible,.ja-scene-origin summary:focus-visible,.ja-country-compare:focus-visible { outline:2px solid #315c79; outline-offset:3px; }
+@media (max-width:760px) { .ja-compare-pickers { grid-template-columns:1fr; } .ja-compare-grid { grid-template-columns:1fr; } .ja-mine-groups { grid-template-columns:1fr; } .ja-scene-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } .ja-mine-summary { gap:6px; } .ja-summary-item { padding:12px 8px; } .ja-summary-item strong { font-size:17px; } }
+@media (max-width:420px) { .ja-panel { border-radius:12px; } .ja-summary-item span { font-size:9px; } .ja-summary-item small { font-size:11px; } }
+
+.ja-region-counts { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.ja-region-counts span { padding:6px 10px; font-size:12px; line-height:1.4; color:#365366; background:#eaf1ef; border-radius:99px; }
+
+/* Country Scene cards use a named CSS grid with display:contents descendants. */
+.scene-card .ja-scene-save,
+.scene-card .ja-scene-origin { grid-column:1/-1!important; grid-area:auto!important; justify-self:start; min-width:0; }
+.scene-card .ja-scene-origin { width:100%; }
+
+/* The Country Scene grid uses display:contents for .scene-copy. Keep added
+   controls in explicit grid rows on desktop, tablet and mobile. */
+.scene-card {
+  grid-template-areas:
+    "number name"
+    "number local"
+    "image image"
+    "description description"
+    "save save"
+    "origin origin" !important;
+}
+.scene-card .ja-scene-save { grid-area:save!important; justify-self:start; align-self:start; }
+.scene-card .ja-scene-origin { grid-area:origin!important; min-width:0; width:100%; }
+.scene-card .ja-scene-origin[open] { padding-bottom:6px; }
