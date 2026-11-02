@@ -94,7 +94,7 @@
         const current = savedCompare().filter(slug => slug !== country.slug);
         current.push(country.slug);
         putStored(COMPARE_KEY, JSON.stringify(current.slice(-3)));
-        window.location.href = './#compare';
+        window.location.href = new URL('./#compare', document.baseURI).href;
       });
       wishWrap.append(button);
     }
@@ -174,6 +174,7 @@
   };
   let renderCount = 0;
   async function renderComparison() {
+    const requestNo = ++renderCount;
     renderPickers();
     compareGrid.replaceChildren();
     const choices = latestChoices.filter(slug => registry.some(c => c.slug === slug && c.atlasPublished));
@@ -182,7 +183,6 @@
       return;
     }
     compareStatus.textContent = '国の情報を読み込んでいます…';
-    const requestNo = ++renderCount;
     const results = await Promise.all(choices.map(loadedCountry));
     if (requestNo !== renderCount) return;
     compareStatus.textContent = results.every(Boolean) ? choices.length + 'か国を比較しています。' : '一部の国の情報を読み込めませんでした。';
@@ -213,9 +213,11 @@
   const groups = make('div', 'ja-mine-groups');
   const savedScenes = make('div', 'ja-favorite-scenes');
   const tools = make('div', 'ja-backup-tools');
+  const regionCounts = make('div', 'ja-region-counts');
+  let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  mine.append(summary, groups, savedScenes, tools, feedback);
+  mine.append(summary, regionCounts, groups, savedScenes, tools, feedback);
   const visited = country => getStored(VISITED_PREFIX + country.slug) === 'true';
   const wished = country => getStored(WISH_PREFIX + country.slug) === 'true';
   function sectionFor(title, items, empty) {
@@ -239,6 +241,11 @@
       item.append(make('span', '', tag), make('strong', '', count + (tag === 'SCENERY' ? ' 景色' : ' / ' + all.length)), make('small', '', name));
       summary.append(item);
     });
+    regionCounts.replaceChildren();
+    regionNames.forEach(region => {
+      const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
+      if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
+    });
     groups.replaceChildren(sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。'));
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
     const gallery = make('div', 'ja-scene-gallery');
@@ -246,7 +253,7 @@
       const item = make('div', 'ja-favorite-card');
       const link = linkTo(sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
       const img = make('img');
-      if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)$/.test(favorite.image)) {
+      if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
         img.loading = 'lazy';
         img.decoding = 'async';
         img.src = favorite.image;
@@ -307,6 +314,11 @@
       payload.favorites.filter(f => f && allowed.has(f.slug) && validId(f.id) && typeof f.name === 'string' && typeof f.countryName === 'string' && typeof f.image === 'string').slice(0, 3000).forEach(f => {
         if (!putStored(sceneKey(f.slug, f.id), JSON.stringify({slug: f.slug, id: f.id, name: f.name.slice(0, 150), countryName: f.countryName.slice(0, 100), image: f.image.slice(0, 240)}))) throw Error('Storage unavailable');
       });
+      if (Array.isArray(payload.compare)) {
+        latestChoices = [...new Set(payload.compare.filter(slug => allowed.has(slug)))].slice(0, 3);
+        putStored(COMPARE_KEY, JSON.stringify(latestChoices));
+        renderComparison();
+      }
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
       renderMine();
     } catch { feedback.textContent = '保存データを読み込めませんでした。書き出したJSONファイルを選んでください。'; }
@@ -320,6 +332,10 @@
     latestChoices = [...new Set((fromQuery.length ? fromQuery : savedCompare().length ? savedCompare() : wishes).filter(slug => registry.some(c => c.slug === slug && c.atlasPublished)))].slice(0, 3);
     renderComparison();
     renderMine();
+    fetchJSON('data/region-taxonomy.json').then(data => {
+      regionNames = (data.regions || []).filter(region => Array.isArray(region.iso2));
+      renderMine();
+    }).catch(() => {});
   }).catch(() => {
     compareStatus.textContent = '国の一覧を読み込めませんでした。';
     feedback.textContent = 'アトラスの一覧を読み込めませんでした。';
