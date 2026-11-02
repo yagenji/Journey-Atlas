@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
   <link rel="stylesheet" href="assets/css/top-ux.css?v=20261101-visited-list-1">
   <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-montages-1">
+  <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261102-1">
   <style>
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
      * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
@@ -69,6 +70,7 @@
   <script src="assets/js/top.js?v=20261102-lazy-images-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261102-deferred-map-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261102-1" defer></script>
 </head>
 <body>
   <header class="top-header shell">
@@ -96,6 +98,7 @@
   <main>
     <section class="top-hero shell" aria-label="JOURNEY ATLASのメインビジュアル">
       <div class="hero-copy">
+        <p class="hero-opening"><span>世界には、まだ見ぬ景色がある。</span><span>見に行くほどに、世界は広くなる。</span></p>
         <h1 class="hero-title"><span>次に行きたい世界を、</span><span>見つける。</span></h1>
         <p class="lead">まだ知らない景色、心に残る出会い。<br>文化や人々の暮らし。<br>202の国・地域を、イラストとともに<br>めぐる世界図鑑です。</p>
       </div>
@@ -134,6 +137,8 @@
           <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国名や景色で検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
           <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに旅先を選ぶ <span>›</span></button>
           <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
+          <a class="all-countries-toggle ja-link" href="#compare">国を比較する <span>›</span></a>
+          <a class="all-countries-toggle ja-link" href="#my-atlas">マイアトラス <span>›</span></a>
           <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
         </div>
       </div>
@@ -150,6 +155,8 @@
         <button type="button" class="results-close" data-results-close="countries">一覧を閉じる</button>
       </div>
     </section>
+
+    <div id="atlas-personal-home" class="shell"></div>
 
     <section class="explore-detail shell" aria-label="地図とテーマから世界を探す">
       <article class="detail-panel map-panel map-explorer" id="map">
