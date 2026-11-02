@@ -84,7 +84,7 @@
         status.textContent = ok ? (existing ? '景色の保存を解除しました。' : 'お気に入りの景色に保存しました。') : 'このブラウザには保存できませんでした。';
       });
       button.addEventListener('keydown', event => event.stopPropagation());
-      card.querySelector('.scene-copy')?.append(button);
+      card.querySelector('.scene-copy > div')?.append(button);
     });
     const wishWrap = document.querySelector('.wish-wrap');
     if (wishWrap) {
@@ -115,7 +115,7 @@
         details.append(summary, paragraph, cite);
         details.addEventListener('click', event => event.stopPropagation());
         details.addEventListener('keydown', event => event.stopPropagation());
-        card.querySelector('.scene-copy')?.append(details);
+        card.querySelector('.scene-copy > div')?.append(details);
       });
     }).catch(() => { /* Only sourced landscape explanations are shown. */ });
   }
