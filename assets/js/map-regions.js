@@ -751,15 +751,33 @@
     style(); controls(); gestures(); root.classList.add('has-country-map');
   }
 
-  tabs.forEach(b => b.onclick = () => setRegion(b.dataset.mapTab));
+  // A region tap can happen while the deferred SVG is still downloading.
+  // Replay that choice after the map has been constructed instead of dropping it.
+  let pendingRegion = null;
+  tabs.forEach(b => b.onclick = () => {
+    if (!svg) {
+      pendingRegion = b.dataset.mapTab;
+      loadWorldMap();
+      return;
+    }
+    setRegion(b.dataset.mapTab);
+  });
   if (head) head.textContent = '世界から地域へ寄りながら、地図を自由に拡大・移動して次の旅先を見つけよう。';
   window.addEventListener('resize', () => requestAnimationFrame(placePin));
 
-  Promise.all([
-    fetch(MAP).then(r => r.text()),
-    fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
-    fetch('data/atlas-destinations.json?v=20260825-0128').then(r => r.json())
-  ]).then(([m, rd, core]) => {
+  // World geometry is 1.3 MB: load it near the map, not during the top Hero.
+  // Reuse the destination registry already fetched by top.js to avoid a second parse.
+  let mapLoadStarted = false;
+  function loadWorldMap() {
+    if (mapLoadStarted) return;
+    mapLoadStarted = true;
+    const registry = window.JourneyAtlasRegistryPromise ||
+      fetch('data/atlas-destinations.json').then(r => r.json());
+    Promise.all([
+      fetch(MAP).then(r => { if (!r.ok) throw new Error('World map unavailable'); return r.text(); }),
+      fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
+      registry
+    ]).then(([m, rd, core]) => {
     regions = rd.regions || [];
     dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));
@@ -771,8 +789,31 @@
     else if (want && region(want)) setRegion(want, false);
     else setRegion('world', false);
     restoring = false;
-  }).catch(e => {
-    console.error('[JOURNEY ATLAS map]', e);
-    copy.textContent = '地図データを読み込めませんでした。';
-  });
+    if (pendingRegion) {
+      const choice = pendingRegion;
+      pendingRegion = null;
+      setRegion(choice);
+    }
+    }).catch(e => {
+      console.error('[JOURNEY ATLAS map]', e);
+      copy.textContent = '地図データを読み込めませんでした。';
+    });
+  }
+
+  const mapParams = new URLSearchParams(location.search);
+  const mapDirect = location.hash === '#map' || mapParams.has('map') || mapParams.has('sub');
+  if (!('IntersectionObserver' in window) || mapDirect) loadWorldMap();
+  else {
+    const mapObserver = new IntersectionObserver((entries) => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      mapObserver.disconnect();
+      loadWorldMap();
+    }, { rootMargin: '300px 0px' });
+    mapObserver.observe(root);
+    // Keyboard and touch users can request the map before the observer fires.
+    ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, loadWorldMap, { once: true, passive: true }));
+    window.addEventListener('hashchange', () => {
+      if (location.hash === '#map') loadWorldMap();
+    });
+  }
 })();

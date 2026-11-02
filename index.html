@@ -52,6 +52,10 @@
     }#themes .theme-icons [data-theme="road"] .theme-art{
       background-image:url("assets/images/norway/approved/atlantic-road.webp")!important;
     }
+    /* CSS backgrounds fetch eagerly even when below the fold. The marker is
+       added by JS only when IntersectionObserver is supported, so no-JS users
+       keep the original imagery. */
+    #themes .theme-icons .theme-art[data-lazy-theme]{background-image:none!important}
     @media(max-width:760px){
       #themes .theme-art{
         width:52px!important;
@@ -62,8 +66,8 @@
     
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261101-simple-explore-1" defer></script>
-  <script src="assets/js/map-regions.js?v=20261101-visited-list-1" defer></script>
+  <script src="assets/js/top.js?v=20261102-lazy-images-1" defer></script>
+  <script src="assets/js/map-regions.js?v=20261102-deferred-map-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
 </head>
 <body>
