@@ -45,6 +45,13 @@
   min-width:0;
   padding:18px 0 26px 10px;
 }
+.hero-copy .hero-opening{
+  margin:0 0 16px;
+  font:500 clamp(15px,1.35vw,18px)/1.7 var(--jp);
+  letter-spacing:.025em;
+  color:var(--ink);
+}
+.hero-opening span{display:block}
 .hero-copy h1{
   margin:0;
   font-size:clamp(38px,3vw,48px);
@@ -438,6 +445,7 @@
 
   .top-hero{display:block;min-height:0;padding:14px 0 14px}
   .hero-copy{padding:10px 0 20px}
+  .hero-copy .hero-opening{font-size:14px;line-height:1.8;margin-bottom:14px}
   .hero-copy h1{font-size:clamp(29px,8.1vw,38px);line-height:1.25}
   .hero-title span{white-space:nowrap}
   .hero-copy .lead{font-size:13.5px;line-height:1.85;margin-top:17px}
