@@ -112,7 +112,13 @@
         const cite = linkTo(fact.source, '出典：' + fact.publisher + '（確認 ' + data.verifiedAt + '）', 'ja-origin-source');
         cite.target = '_blank';
         cite.rel = 'noopener noreferrer';
-        details.append(summary, paragraph, cite);
+        // Links in a closed <details> are not keyboard focusable; keep the
+        // citation out of the DOM until the explanation is actually expanded.
+        details.append(summary, paragraph);
+        details.addEventListener('toggle', () => {
+          if (details.open) details.append(cite);
+          else cite.remove();
+        });
         details.addEventListener('click', event => event.stopPropagation());
         details.addEventListener('keydown', event => event.stopPropagation());
         card.querySelector('.scene-copy > div')?.append(details);
