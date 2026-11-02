@@ -1087,7 +1087,7 @@ function loadScenes(){
       });
       if(sceneLead){
         const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
-        sceneLead.textContent=`気になる景色から、旅先を見つけよう。${countryCount}の国・地域の${sceneRows.length.toLocaleString('ja-JP')}の景色から、開くたびにちがう組み合わせで並びます。`;
+        sceneLead.textContent=`気になる景色から、旅先を見つけよう。${countryCount}の国・地域の${sceneRows.length.toLocaleString('ja-JP')}の景色から、開くたびにちがう組み合わせで並びます。画像は現地撮影の写真ではなく、景観イメージです。`;
       }
       shuffleScenes();
     }).catch((error)=>{
