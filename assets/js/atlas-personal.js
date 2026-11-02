@@ -329,7 +329,7 @@
     registry = Array.isArray(data.destinations) ? data.destinations : [];
     const fromQuery = search.get('compare')?.split(',').filter(validId) || [];
     const wishes = registry.filter(wished).map(c => c.slug);
-    latestChoices = [...new Set((fromQuery.length ? fromQuery : savedCompare().length ? savedCompare() : wishes).filter(slug => registry.some(c => c.slug === slug && c.atlasPublished)))].slice(0, 3);
+    latestChoices = [...new Set((fromQuery.length ? fromQuery : getStored(COMPARE_KEY) !== null ? savedCompare() : wishes).filter(slug => registry.some(c => c.slug === slug && c.atlasPublished)))].slice(0, 3);
     renderComparison();
     renderMine();
     fetchJSON('data/region-taxonomy.json').then(data => {
