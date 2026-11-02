@@ -406,8 +406,10 @@ function renderScenes(fragment, scenes = [], mapData) {
     card.dataset.scene = scene.id;
     card.id = `scene-${scene.id}`;
     card.tabIndex = 0;
-    // Scene selection remains keyboard-operable; child save buttons are independent controls.
-    card.setAttribute('role', 'group');
+    // Retain the established Scene keyboard/pressed-state contract while the
+    // independent favorite and explanation controls stop activation propagation.
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-pressed', 'false');
     card.setAttribute('aria-label', `${number} ${scene.name}を選択`);
     card.innerHTML = `<div class="scene-image media-slot"><span class="scene-placeholder">SCENE ${number}<small>実景イラスト差し替え領域</small></span><b>${number}</b></div><div class="scene-copy"><strong>${number}</strong><div><h3></h3><small>${escapeHtml(scene.nameLocal)}</small><p>${escapeHtml(scene.description)}</p></div></div>`;
     renderSceneName(card.querySelector('h3'), scene.name, scene.nameBreaks);
