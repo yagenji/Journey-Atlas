@@ -45,9 +45,6 @@
   min-width:0;
   padding:18px 0 26px 10px;
 }
-.hero-copy .lead-statement,
-.hero-copy .lead-description{display:block}
-.hero-copy .lead-description{margin-top:12px}
 .hero-copy h1{
   margin:0;
   font-size:clamp(38px,3vw,48px);
@@ -66,6 +63,7 @@
   letter-spacing:.01em;
   color:#304354;
 }
+.hero-copy .lead.lead-description{margin-top:12px}
 .hero-visual{padding:2px 0 26px}
 .hero-controls{bottom:5px}
 
@@ -441,7 +439,7 @@
 
   .top-hero{display:block;min-height:0;padding:14px 0 14px}
   .hero-copy{padding:10px 0 20px}
-  .hero-copy .lead-description{margin-top:10px}
+  .hero-copy .lead.lead-description{margin-top:10px}
   .hero-copy h1{font-size:clamp(29px,8.1vw,38px);line-height:1.25}
   .hero-title span{white-space:nowrap}
   .hero-copy .lead{font-size:13.5px;line-height:1.85;margin-top:17px}
