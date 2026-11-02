@@ -58,3 +58,8 @@
 
 .ja-region-counts { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
 .ja-region-counts span { padding:6px 10px; font-size:12px; line-height:1.4; color:#365366; background:#eaf1ef; border-radius:99px; }
+
+/* Country Scene cards use a named CSS grid with display:contents descendants. */
+.scene-card .ja-scene-save,
+.scene-card .ja-scene-origin { grid-column:1/-1!important; grid-area:auto!important; justify-self:start; min-width:0; }
+.scene-card .ja-scene-origin { width:100%; }
