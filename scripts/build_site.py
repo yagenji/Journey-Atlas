@@ -448,19 +448,24 @@ def build_top_season_index() -> None:
 
 
 def build_top_scene_index() -> None:
-    """Scenes for the top-page 景色から探す gallery: slug -> [[scene id, name], ...].
+    """Source-led labels for the top-page gallery: Scenes and Country Hero locations.
 
-    Only Scenes whose thumbnail exists (scripts/build_scene_thumbs.py) are listed, so a missing
-    thumbnail hides one tile instead of showing a broken image.
+    Scene entries are published only when their thumbnail exists. Hero names come from the
+    corresponding Country JSON, not from a generic country-name placeholder.
     """
     thumbs = ROOT / "assets/images/top/scenes"
     countries: dict[str, list] = {}
+    heroes: dict[str, str] = {}
     missing = 0
     for path in sorted((ROOT / "data/countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         slug = data.get("slug")
         if not slug:
             continue
+        hero = data.get("hero") or {}
+        hero_name = str(hero.get("name") or hero.get("location") or "").strip()
+        if hero.get("image") and hero_name:
+            heroes[slug] = hero_name
         rows = []
         for scene in data.get("scenes", []):
             scene_id = scene.get("id")
@@ -474,7 +479,7 @@ def build_top_scene_index() -> None:
             countries[slug] = rows
     if missing:
         print(f"WARNING: {missing} Scene thumbnail(s) missing; run scripts/build_scene_thumbs.py")
-    payload = {"version": 1, "countries": countries}
+    payload = {"version": 2, "countries": countries, "heroes": heroes}
     (ROOT / "data/top-scene-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
     )
