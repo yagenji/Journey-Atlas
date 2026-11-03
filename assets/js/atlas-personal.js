@@ -1,12 +1,10 @@
-/* JOURNEY ATLAS — personal atlas and comparison enhancements.
+/* JOURNEY ATLAS — private travel record and scenery favorites.
    Uses existing Country JSON and browser-local preferences; no external account. */
 (() => {
   'use strict';
   const SCENE_PREFIX = 'journey-atlas:scene:';
   const VISITED_PREFIX = 'journey-atlas:visited:';
   const WISH_PREFIX = 'journey-atlas:wish:';
-  const COMPARE_KEY = 'journey-atlas:compare';
-  const COUNTRY_PATH = 'data/countries/';
   const REGISTRY_PATH = 'data/atlas-destinations.json';
   const ORIGINS_PATH = 'data/scene-origins.json';
   const validId = value => typeof value === 'string' && /^[a-z0-9-]+$/.test(value);
@@ -45,16 +43,13 @@
         return item;
       } catch { return null; }
     }).filter(Boolean);
-  const savedCompare = () => {
-    try {
-      const list = JSON.parse(getStored(COMPARE_KEY) || '[]');
-      return Array.isArray(list) ? [...new Set(list.filter(validId))].slice(0, 3) : [];
-    } catch { return []; }
-  };
-  const updateSceneSaveButton = (button, stored) => {
+  const updateSceneSaveButton = (button, stored, name) => {
     button.classList.toggle('is-saved', stored);
     button.setAttribute('aria-pressed', String(stored));
-    button.textContent = stored ? '♥ 景色を保存済み' : '♡ この景色を保存';
+    button.textContent = stored ? '♥' : '♡';
+    const label = stored ? name + 'をお気に入りから外す' : name + 'をお気に入りに保存する';
+    button.setAttribute('aria-label', label);
+    button.title = label;
   };
   function mountCountry(country) {
     if (!country || !validId(country.slug) || document.querySelector('[data-ja-scene-save]')) return;
@@ -71,7 +66,7 @@
       button.type = 'button';
       button.dataset.jaSceneSave = scene.id;
       const saved = () => getStored(key) !== null;
-      updateSceneSaveButton(button, saved());
+      updateSceneSaveButton(button, saved(), scene.name);
       button.addEventListener('click', event => {
         event.stopPropagation();
         const existing = saved();
@@ -80,24 +75,12 @@
           countryName: country.nameJa, image: scene.image
         });
         const ok = existing ? removeStored(key) : putStored(key, value);
-        if (ok) updateSceneSaveButton(button, !existing);
+        if (ok) updateSceneSaveButton(button, !existing, scene.name);
         status.textContent = ok ? (existing ? '景色の保存を解除しました。' : 'お気に入りの景色に保存しました。') : 'このブラウザには保存できませんでした。';
       });
       button.addEventListener('keydown', event => event.stopPropagation());
-      card.querySelector('.scene-copy > div')?.append(button);
+      card.append(button);
     });
-    const wishWrap = document.querySelector('.wish-wrap');
-    if (wishWrap) {
-      const button = make('button', 'ja-country-compare', 'この国を比較に追加する →');
-      button.type = 'button';
-      button.addEventListener('click', () => {
-        const current = savedCompare().filter(slug => slug !== country.slug);
-        current.push(country.slug);
-        putStored(COMPARE_KEY, JSON.stringify(current.slice(-3)));
-        window.location.href = new URL('./#compare', document.baseURI).href;
-      });
-      wishWrap.append(button);
-    }
     fetchJSON(ORIGINS_PATH).then(data => {
       const entries = data.countries?.[country.slug];
       if (!entries) return;
@@ -130,90 +113,21 @@
 
   const host = document.querySelector('#atlas-personal-home');
   if (!host) return;
-  const comparison = make('section', 'ja-panel ja-comparison');
-  comparison.id = 'compare';
+  const disclosure = document.querySelector('#my-atlas');
+  const openAtlas = () => { if (disclosure) disclosure.open = true; };
+  if (window.location.hash === '#my-atlas') openAtlas();
+  document.querySelectorAll('a[href="#my-atlas"]').forEach(link => link.addEventListener('click', openAtlas));
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#my-atlas') openAtlas();
+  });
   const mine = make('section', 'ja-panel ja-mine');
-  mine.id = 'my-atlas';
-  host.append(comparison, mine);
+  host.append(mine);
   let registry = [];
-  let latestChoices = [];
-  const countryCache = new Map();
-  const sortedPublished = () => registry.filter(item => item.atlasPublished && validId(item.slug)).sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', {sensitivity: 'base'}));
   const header = (parent, kicker, title, intro) => {
     const head = make('div', 'ja-panel-head');
     head.append(make('span', 'ja-kicker', kicker), make('h2', '', title), make('p', '', intro));
     parent.append(head);
   };
-  header(comparison, 'COMPARE COUNTRIES', '気になる国を比べる', '2〜3か国を選ぶと、おすすめの時期や旅の日数、移動方法を並べて比較できます。');
-  const choiceHost = make('div', 'ja-compare-pickers');
-  const compareStatus = make('p', 'ja-subtitle');
-  compareStatus.setAttribute('role', 'status');
-  const compareGrid = make('div', 'ja-compare-grid');
-  comparison.append(choiceHost, compareStatus, compareGrid);
-  function saveCompare(choices) {
-    latestChoices = choices;
-    putStored(COMPARE_KEY, JSON.stringify(choices));
-    renderComparison();
-  }
-  function renderPickers() {
-    choiceHost.replaceChildren();
-    const active = sortedPublished();
-    for (let index = 0; index < 3; index++) {
-      const label = make('label', 'ja-picker');
-      label.append(make('span', '', '比較 ' + (index + 1)));
-      const select = make('select');
-      select.setAttribute('aria-label', '比較する国 ' + (index + 1));
-      select.append(new Option('国・地域を選択', ''));
-      active.forEach(country => select.append(new Option(country.nameJa + ' / ' + country.nameEn, country.slug)));
-      select.value = latestChoices[index] || '';
-      select.addEventListener('change', () => {
-        const choices = [...choiceHost.querySelectorAll('select')].map(el => el.value).filter(Boolean);
-        saveCompare([...new Set(choices)]);
-      });
-      label.append(select);
-      choiceHost.append(label);
-    }
-  }
-  const loadedCountry = slug => {
-    if (!countryCache.has(slug)) countryCache.set(slug, fetchJSON(COUNTRY_PATH + slug + '.json').catch(() => null));
-    return countryCache.get(slug);
-  };
-  let renderCount = 0;
-  async function renderComparison() {
-    const requestNo = ++renderCount;
-    renderPickers();
-    compareGrid.replaceChildren();
-    const choices = latestChoices.filter(slug => registry.some(c => c.slug === slug && c.atlasPublished));
-    if (choices.length < 2) {
-      compareStatus.textContent = '比較する国を2か国以上選んでください。';
-      return;
-    }
-    compareStatus.textContent = '国の情報を読み込んでいます…';
-    const results = await Promise.all(choices.map(loadedCountry));
-    if (requestNo !== renderCount) return;
-    compareStatus.textContent = results.every(Boolean) ? choices.length + 'か国を比較しています。' : '一部の国の情報を読み込めませんでした。';
-    results.forEach((data, index) => {
-      const entry = registry.find(c => c.slug === choices[index]);
-      if (!data || !entry) return;
-      const card = make('article', 'ja-compare-card');
-      const title = make('h3');
-      title.append(make('span', '', entry.flag + ' ' + data.nameJa), make('small', '', data.nameEn));
-      const countryLink = linkTo(countryHref(data.slug), '国ページを見る →');
-      const facts = make('dl', 'ja-compare-facts');
-      const add = (label, value) => {
-        const dt = make('dt', '', label), dd = make('dd', '', value || '情報なし');
-        facts.append(dt, dd);
-      };
-      add('おすすめの時期', (data.bestSeason?.windows || []).map(x => x.label).join(' / '));
-      add('旅の日数', (data.travelScale?.items || []).map(x => x.duration + '：' + x.title).join(' / '));
-      add('移動', data.transport?.title);
-      add('移動のヒント', data.transport?.text);
-      add('こんな人に', (data.personas || []).slice(0, 2).map(x => x.title).join(' / '));
-      card.append(title, facts, countryLink);
-      compareGrid.append(card);
-    });
-  }
-
   header(mine, 'MY ATLAS', 'わたしのアトラス', '行った国・行きたい国・お気に入りの景色を、一つの場所で振り返る。');
   const summary = make('div', 'ja-mine-summary');
   const groups = make('div', 'ja-mine-groups');
@@ -276,7 +190,7 @@
       item.append(link, remove);
       gallery.append(item);
     });
-    if (!favorites.length) gallery.append(make('p', 'ja-empty', '国ページの景色から「♡ この景色を保存」を選ぶと、ここに並びます。'));
+    if (!favorites.length) gallery.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
     savedScenes.append(gallery);
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');
@@ -287,8 +201,7 @@
       version: 1,
       visited: countries.filter(visited).map(c => c.slug),
       wished: countries.filter(wished).map(c => c.slug),
-      favorites: getFavorites(),
-      compare: latestChoices
+      favorites: getFavorites()
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -320,35 +233,22 @@
       payload.favorites.filter(f => f && allowed.has(f.slug) && validId(f.id) && typeof f.name === 'string' && typeof f.countryName === 'string' && typeof f.image === 'string').slice(0, 3000).forEach(f => {
         if (!putStored(sceneKey(f.slug, f.id), JSON.stringify({slug: f.slug, id: f.id, name: f.name.slice(0, 150), countryName: f.countryName.slice(0, 100), image: f.image.slice(0, 240)}))) throw Error('Storage unavailable');
       });
-      if (Array.isArray(payload.compare)) {
-        latestChoices = [...new Set(payload.compare.filter(slug => allowed.has(slug)))].slice(0, 3);
-        putStored(COMPARE_KEY, JSON.stringify(latestChoices));
-        renderComparison();
-      }
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
       renderMine();
     } catch { feedback.textContent = '保存データを読み込めませんでした。書き出したJSONファイルを選んでください。'; }
   });
   tools.append(exportButton, importLabel, make('p', 'ja-storage-note', 'アカウント不要。記録はこのブラウザに保存されます。端末を変える際はファイルで引き継げます。'));
-  const search = new URLSearchParams(window.location.search);
   fetchJSON(REGISTRY_PATH).then(data => {
     registry = Array.isArray(data.destinations) ? data.destinations : [];
-    const fromQuery = search.get('compare')?.split(',').filter(validId) || [];
-    const wishes = registry.filter(wished).map(c => c.slug);
-    latestChoices = [...new Set((fromQuery.length ? fromQuery : getStored(COMPARE_KEY) !== null ? savedCompare() : wishes).filter(slug => registry.some(c => c.slug === slug && c.atlasPublished)))].slice(0, 3);
-    renderComparison();
     renderMine();
     fetchJSON('data/region-taxonomy.json').then(data => {
       regionNames = (data.regions || []).filter(region => Array.isArray(region.iso2));
       renderMine();
     }).catch(() => {});
   }).catch(() => {
-    compareStatus.textContent = '国の一覧を読み込めませんでした。';
     feedback.textContent = 'アトラスの一覧を読み込めませんでした。';
   });
   window.addEventListener('storage', () => {
-    latestChoices = savedCompare();
-    renderComparison();
     renderMine();
   });
 })();
