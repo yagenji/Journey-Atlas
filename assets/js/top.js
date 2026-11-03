@@ -1203,9 +1203,9 @@ function renderScenes(){
     sceneSavedToggle.textContent=sceneFavoritesOnly?'♥ 保存した景色':'♡ 保存した景色';
   }
 }
-function resetScenes({scroll=false}={}){
+function resetScenes({scroll=false,keepFavorites=false}={}){
   sceneRegion='all';
-  sceneFavoritesOnly=false;
+  if(!keepFavorites)sceneFavoritesOnly=false;
   shuffleScenes();
   if(scroll){
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -1213,7 +1213,7 @@ function resetScenes({scroll=false}={}){
   }
 }
 document.querySelector('#gallery-clear')?.addEventListener('click',()=>{
-  resetScenes();
+  resetScenes({keepFavorites:true});
   document.querySelector('#gallery-shuffle')?.focus({preventScroll:true});
 });
 document.querySelector('#gallery-close')?.addEventListener('click',()=>resetScenes({scroll:true}));
