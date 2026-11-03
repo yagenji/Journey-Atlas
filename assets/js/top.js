@@ -1080,22 +1080,25 @@ function shuffled(items){
 function loadScenes(){
   if(!scenePromise){
     scenePromise=Promise.all([
-      fetch('data/top-scene-index.json').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      fetch('data/top-scene-index.json?v=20261103-hero-places-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
       themeRegionPromise.catch(()=>null)
-    ]).then(([{countries={}}])=>{
+    ]).then(([{countries={},heroes={}}])=>{
       const bySlug=new Map(destinations.map((country)=>[country.slug,country]));
       const scenes=Object.entries(countries).flatMap(([slug,rows])=>{
         const country=bySlug.get(slug);
         if(!country?.atlasPublished||!country.href)return [];
         return rows.map(([id,name])=>({slug,id,name,country,isHero:false}));
       });
-      const heroes=destinations.filter(country=>country.atlasPublished&&country.href&&country.image)
+      // Hero titles come from the Country's verified location in its JSON.
+      // Never substitute a generic 「代表風景」 label for a real place name.
+      const heroRows=destinations
+        .filter(country=>country.atlasPublished&&country.href&&country.image&&typeof heroes[country.slug]==='string'&&heroes[country.slug].trim())
         .map(country=>({
-          slug:country.slug,id:'hero',name:country.nameJa+'の代表風景',
+          slug:country.slug,id:'hero',name:heroes[country.slug].trim(),
           country,image:country.image,isHero:true
         }));
-      sceneRows=[...scenes,...heroes];
+      sceneRows=[...scenes,...heroRows];
       if(sceneLead){
         const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
         sceneLead.textContent=`気になる景色から、旅先を見つけよう。${countryCount}の国・地域の${sceneRows.length.toLocaleString('ja-JP')}の景色から、開くたびにちがう組み合わせで並びます。画像は現地撮影の写真ではなく、景観イメージです。`;
