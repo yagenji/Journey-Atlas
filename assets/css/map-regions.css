@@ -107,8 +107,9 @@ a.map-country-nav__item{color:inherit;text-decoration:none}
 @media(max-width:760px){
   .map-panel.map-explorer{padding:21px 16px 22px}
   .map-explorer .map-heading::before{margin-bottom:6px}
-  .map-region-tabs{flex-wrap:nowrap;overflow-x:auto;margin:17px -2px 8px;padding:0 2px 5px}
-  .map-region-tabs button{flex:0 0 auto}
+  /* Match scenery filters: show every region immediately, wrapping on small screens. */
+  .map-region-tabs{flex-wrap:wrap;overflow-x:visible;margin:17px 0 12px;padding:0;gap:7px;align-items:center}
+  .map-region-tabs button{flex:0 0 auto;padding:9px 12px;white-space:nowrap}
   .map-subregion-tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -2px 13px;padding:8px 9px}
   .map-subregion-tabs>*{flex:0 0 auto}
   .map-explorer-grid{grid-template-columns:1fr;gap:13px}
