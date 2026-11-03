@@ -1,13 +1,63 @@
-/* Quiet My Atlas: optional personal record, below the main journey content. */
-.ja-atlas-disclosure { margin:clamp(22px,3.5vw,40px) auto 0; border-top:1px solid #dce2e1; scroll-margin-top:calc(var(--ja-header-height,72px) + 16px); }
-.ja-atlas-disclosure > summary { list-style:none; display:flex; align-items:baseline; gap:16px; padding:16px 0; cursor:pointer; color:#36556b; font:500 14px/1.6 "Zen Kaku Gothic New",sans-serif; }
-.ja-atlas-disclosure > summary::-webkit-details-marker { display:none; }
-.ja-atlas-disclosure > summary::after { content:"＋"; margin-left:auto; color:#7b898d; font-size:17px; line-height:1; }
-.ja-atlas-disclosure[open] > summary::after { content:"−"; }
-.ja-atlas-disclosure > summary span { font-size:12px; color:#7d8989; font-weight:400; }
-.ja-atlas-disclosure > summary:focus-visible { outline:2px solid #315c79; outline-offset:3px; }
-#atlas-personal-home { margin:0 0 24px; }
-.ja-panel { margin:0; background:#f8f7f2; border:1px solid #e2e2db; border-radius:14px; padding:clamp(16px,2.5vw,28px); color:#183a55; }
+/* My Atlas follows the shared homepage section language and remains folded by default. */
+.ja-atlas-disclosure {
+  margin:0 auto clamp(22px,3vw,36px);
+  padding:clamp(20px,2.5vw,28px);
+  border:1px solid #e0dfd7;
+  border-radius:16px;
+  background:#faf9f4;
+  scroll-margin-top:calc(var(--ja-header-height,72px) + 16px);
+}
+.ja-atlas-toggle {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:4px 20px;
+  list-style:none;
+  cursor:pointer;
+  color:#173b5d;
+}
+.ja-atlas-toggle::-webkit-details-marker { display:none; }
+.ja-atlas-toggle .section-kicker {
+  grid-column:1;
+  grid-row:1;
+  font-size:11px;
+  letter-spacing:.12em;
+  color:#866e5f;
+}
+.ja-atlas-title {
+  grid-column:1;
+  grid-row:2;
+  font-size:var(--top-section-title,26px);
+  line-height:1.35;
+  font-weight:700;
+}
+.ja-atlas-intro {
+  grid-column:1;
+  grid-row:3;
+  font-size:var(--top-body,13px);
+  line-height:1.7;
+  color:#526274;
+}
+.ja-atlas-toggle::after {
+  grid-column:2;
+  grid-row:2;
+  content:"＋";
+  place-self:center end;
+  color:#526274;
+  font-size:22px;
+  font-weight:400;
+}
+.ja-atlas-disclosure[open] .ja-atlas-toggle::after { content:"−"; }
+.ja-atlas-toggle:focus-visible { outline:2px solid #315c79; outline-offset:5px; }
+#atlas-personal-home { margin:20px 0 0; }
+.ja-panel {
+  margin:0;
+  padding:22px 0 0;
+  border:0;
+  border-top:1px solid #e1e3e0;
+  border-radius:0;
+  background:transparent;
+  color:#183a55;
+}
 .ja-panel-head { margin-bottom:22px; }
 .ja-kicker { display:block; font:600 11px/1.4 "Hanken Grotesk",sans-serif; letter-spacing:.14em; color:#79766d; margin-bottom:8px; }
 .ja-panel h2 { margin:0 0 10px; font:500 clamp(21px,2.8vw,29px)/1.45 "Shippori Mincho",serif; }
@@ -94,9 +144,48 @@
   .ja-summary-item strong { font-size:17px; }
 }
 @media(max-width:420px) {
-  .ja-atlas-disclosure > summary { gap:8px; }
-  .ja-atlas-disclosure > summary span { font-size:11px; }
+  .ja-atlas-disclosure { padding:18px 16px; }
+  .ja-atlas-title { font-size:19px; }
+  .ja-atlas-intro { font-size:11px; }
   .ja-panel { border-radius:12px; }
   .ja-summary-item span { font-size:9px; }
   .ja-summary-item small { font-size:11px; }
+}
+
+/* Country Hero favorite belongs to the textual caption, not the artwork. */
+.ja-hero-favorite-row { display:flex; align-items:center; gap:10px; min-width:0; }
+.ja-hero-favorite-row .hero-caption__name { flex:0 1 auto; min-width:0; }
+.ja-hero-save {
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  padding:0;
+  border:1px solid #b3c0c2;
+  border-radius:50%;
+  background:#fffdf8;
+  color:#36566b;
+  font:500 23px/1 "Zen Kaku Gothic New",sans-serif;
+  cursor:pointer;
+}
+.ja-hero-save.is-saved { color:#9c4a46; border-color:#c9a8a3; background:#fff7f5; }
+.ja-hero-save:hover { background:#edf3f2; }
+.ja-hero-save:focus-visible { outline:2px solid #315c79; outline-offset:3px; }
+
+/* Keep the Country Scene introduction inside its panel on every viewport.
+   The legacy shared stylesheet forced a two-column heading and no wrapping. */
+.scenes-column .scenes-heading { display:block!important; min-width:0!important; }
+.scenes-column .scenes-title-wrap { min-width:0!important; }
+.scenes-column .scenes-intro {
+  display:block;
+  width:auto!important;
+  max-width:100%!important;
+  padding-top:8px!important;
+  margin:0!important;
+  justify-self:start!important;
+  text-align:left!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere;
+  line-height:1.7!important;
 }

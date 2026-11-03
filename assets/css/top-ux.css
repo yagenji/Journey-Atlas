@@ -364,6 +364,28 @@
 .gallery-actions{display:flex;flex:0 0 auto;align-items:center;gap:8px;align-self:flex-end}
 @media(max-width:760px){.gallery-actions{margin-top:14px;flex-wrap:wrap}.gallery-actions .gallery-shuffle{margin-top:0}}
 
+/* Saved scenery switch shares the quiet gallery action treatment. */
+.gallery-saved-toggle {
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:40px;padding:0 16px;border:1px solid rgba(23,59,93,.18);
+  border-radius:999px;background:#fffdf8;color:#173b5d;
+  font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer;white-space:nowrap;
+}
+.gallery-saved-toggle:hover { border-color:rgba(23,59,93,.34);background:#fff; }
+.gallery-saved-toggle.is-active { background:#173b5d;border-color:#173b5d;color:#fff; }
+.gallery-saved-toggle.is-active:hover { background:#214c70; }
+.gallery-saved-toggle:focus-visible { outline:2px solid #173b5d;outline-offset:2px; }
+.gallery-empty { grid-column:1/-1; padding:22px 12px; color:#526274;font-size:13px;line-height:1.85; }
+.gallery-tile__hero-tag {
+  position:absolute;left:9px;top:9px;padding:4px 7px;
+  border-radius:4px;background:rgba(12,36,55,.7);color:#fff;
+  font:600 10px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.08em;
+}
+@media(max-width:760px) {
+  .gallery-actions { align-items:center;gap:8px; }
+  .gallery-saved-toggle,.gallery-shuffle { min-height:38px;padding:0 12px;font-size:11.5px; }
+}
+
 /* ---------- 18. Header: the five ways to search under one 「旅先を探す」 item ---------- */
 .nav-explore{position:relative;display:inline-flex;align-items:center}
 .nav-explore__toggle{

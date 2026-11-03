@@ -30,7 +30,7 @@
   };
   const sceneKey = (slug, id) => SCENE_PREFIX + slug + ':' + id;
   const countryHref = slug => 'countries/' + encodeURIComponent(slug) + '/';
-  const sceneHref = (slug, id) => countryHref(slug) + '#'+encodeURIComponent(id);
+  const sceneHref = (slug, id) => countryHref(slug) + (id === 'hero' ? '#hero-caption' : '#'+encodeURIComponent(id));
   const fetchJSON = url => fetch(url).then(response => {
     if (!response.ok) throw Error('HTTP ' + response.status);
     return response.json();
@@ -81,6 +81,35 @@
       button.addEventListener('keydown', event => event.stopPropagation());
       card.append(button);
     });
+
+    // The Hero belongs to the same saved-scenery collection, but its heart lives
+    // next to the caption text rather than on top of the artwork.
+    const heroName = country.hero?.name || country.hero?.location || country.nameJa + 'の代表風景';
+    const heroTitle = document.querySelector('.hero-caption__name');
+    if (heroTitle && typeof country.hero?.image === 'string') {
+      const key = sceneKey(country.slug, 'hero');
+      const button = make('button', 'ja-hero-save');
+      button.type = 'button';
+      button.dataset.jaHeroSave = 'hero';
+      const saved = () => getStored(key) !== null;
+      updateSceneSaveButton(button, saved(), heroName);
+      const row = make('div', 'ja-hero-favorite-row');
+      heroTitle.replaceWith(row);
+      row.append(heroTitle, button);
+      button.addEventListener('click', () => {
+        const existing = saved();
+        const value = JSON.stringify({
+          slug: country.slug, id: 'hero', name: heroName,
+          countryName: country.nameJa, image: country.hero.image
+        });
+        const ok = existing ? removeStored(key) : putStored(key, value);
+        if (ok) updateSceneSaveButton(button, !existing, heroName);
+        status.textContent = ok
+          ? (existing ? '表紙の景色の保存を解除しました。' : '表紙の景色をお気に入りに保存しました。')
+          : 'このブラウザには保存できませんでした。';
+      });
+    }
+
     fetchJSON(ORIGINS_PATH).then(data => {
       const entries = data.countries?.[country.slug];
       if (!entries) return;
@@ -123,12 +152,6 @@
   const mine = make('section', 'ja-panel ja-mine');
   host.append(mine);
   let registry = [];
-  const header = (parent, kicker, title, intro) => {
-    const head = make('div', 'ja-panel-head');
-    head.append(make('span', 'ja-kicker', kicker), make('h2', '', title), make('p', '', intro));
-    parent.append(head);
-  };
-  header(mine, 'MY ATLAS', 'わたしのアトラス', '行った国・行きたい国・お気に入りの景色を、一つの場所で振り返る。');
   const summary = make('div', 'ja-mine-summary');
   const groups = make('div', 'ja-mine-groups');
   const savedScenes = make('div', 'ja-favorite-scenes');
