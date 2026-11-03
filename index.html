@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
   <link rel="stylesheet" href="assets/css/top-ux.css?v=20261101-visited-list-1">
   <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-montages-1">
-  <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261102-1">
+  <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261103-quiet-1">
   <style>
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
      * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
@@ -70,7 +70,7 @@
   <script src="assets/js/top.js?v=20261103-soft-boundaries-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261102-deferred-map-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
-  <script src="assets/js/atlas-personal.js?v=20261102-1" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261103-quiet-1" defer></script>
 </head>
 <body>
   <header class="top-header shell">
@@ -137,8 +137,6 @@
           <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国名や景色で検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
           <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに旅先を選ぶ <span>›</span></button>
           <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
-          <a class="all-countries-toggle ja-link" href="#compare">国を比較する <span>›</span></a>
-          <a class="all-countries-toggle ja-link" href="#my-atlas">マイアトラス <span>›</span></a>
           <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
         </div>
       </div>
@@ -155,8 +153,6 @@
         <button type="button" class="results-close" data-results-close="countries">一覧を閉じる</button>
       </div>
     </section>
-
-    <div id="atlas-personal-home" class="shell"></div>
 
     <section class="explore-detail shell" aria-label="地図とテーマから世界を探す">
       <article class="detail-panel map-panel map-explorer" id="map">
@@ -295,6 +291,10 @@
         <div class="lens-rail__track"></div>
       </div>
     </section>
+    <details id="my-atlas" class="ja-atlas-disclosure shell">
+      <summary>マイアトラス <span>旅の記録とお気に入りの景色</span></summary>
+      <div id="atlas-personal-home"></div>
+    </details>
   </main>
 
   <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
@@ -304,6 +304,7 @@
       <nav class="atlas-footer__nav" aria-label="フッターメニュー">
         <a href="about/">このサイトについて</a>
         <a href="faq/">よくある質問</a>
+        <a href="#my-atlas">マイアトラス</a>
         <a href="privacy/">プライバシーポリシー</a>
         <a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">お問い合わせ</a>
       </nav>
