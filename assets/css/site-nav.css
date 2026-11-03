@@ -23,16 +23,17 @@
 .site-explore .site-explore__menu a:hover,
 .site-explore .site-explore__menu a:focus-visible{background:rgba(23,59,93,.06)!important;outline:none}
 .site-explore__extra{display:none}
-.site-explore__extra-atlas{display:none!important}
+.site-explore .site-explore__menu .site-explore__extra-atlas{display:none!important}
 @media (prefers-reduced-motion:reduce){.site-explore__caret{transition:none}}
 /* Tablet and mobile: keep My Atlas accessible without crowding the site header. */
 @media(max-width:760px){
   [data-site-nav]>a.site-nav__side:not(.site-nav__atlas){display:none!important}
+  [data-site-nav]>a.site-nav__atlas{display:inline-flex!important}
   .site-explore__extra{display:block;margin-top:4px;padding-top:4px;border-top:1px solid rgba(23,59,93,.08)}
 }
 /* On narrow phones even My Atlas moves into the search dropdown. */
 @media(max-width:480px){
   .site-explore__toggle{font-size:11px}
   [data-site-nav]>a.site-nav__side{display:none!important}
-  .site-explore__extra-atlas{display:block!important}
+  .site-explore .site-explore__menu .site-explore__extra-atlas{display:block!important}
 }
