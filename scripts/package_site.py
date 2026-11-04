@@ -292,6 +292,9 @@ def write_cloudflare_headers() -> None:
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/countries/unitedkingdom/scotland/
+  Cache-Control: no-store
+
 /data/*
   Cache-Control: public, max-age=0, must-revalidate
 
@@ -377,6 +380,10 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
             if expected not in page:
                 raise ValueError(f"Country Hero preload is not version-aligned for {slug}: {expected}")
 
+    # The canonical Region page must reference the content-hashed CSS and JS.
+    from build_region_pages import REGION_RUNTIME_ASSETS, region_asset_version
+    region_version = region_asset_version()
+
     # Region pages are direct-URL reviews until their publication flag is true.
     for region_path in sorted((DATA_DIR / "regions").glob("*/*.json")):
         region = json.loads(region_path.read_text(encoding="utf-8"))
@@ -385,6 +392,9 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
         if not page_path.is_file():
             raise FileNotFoundError(f"Reviewable Region page missing: {page_path}")
         html_text = page_path.read_text(encoding="utf-8")
+        for asset in REGION_RUNTIME_ASSETS:
+            if f'{asset}?v={region_version}' not in html_text:
+                raise ValueError(f'Region stale asset URL: {parent}/{region_slug} {asset}')
         expected_robots = "index,follow" if region.get("regionPublished") is True else "noindex,follow"
         if f'<meta name="robots" content="{expected_robots}">' not in html_text:
             raise ValueError(f"Region robots status mismatch: {parent}/{region_slug}")
