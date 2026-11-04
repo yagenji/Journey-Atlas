@@ -68,6 +68,11 @@ jobs:
               region_match = re.fullmatch(r"data/regions/([^/]+)/[^/]+\.json", path)
               if region_match:
                   slugs.add(region_match.group(1))
+              # Shared Region-only rendering changes exercise existing Region pages,
+              # not the unrelated 202 Country routes.
+              if path in {"region.html", "scripts/build_region_pages.py", "assets/css/region.css"}:
+                  for region_path in Path("data/regions").glob("*/*.json"):
+                      slugs.add(region_path.parent.name)
               match = re.match(r"assets/images/([^/]+)/", path)
               if match and match.group(1) != "top":  # assets/images/top/ holds top-page art, not a Country
                   asset_folders.add(match.group(1))
