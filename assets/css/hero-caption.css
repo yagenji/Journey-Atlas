@@ -11,6 +11,8 @@
   padding-top:12px;
   padding-bottom:6px;
 }
+/* Country pages omit the eyebrow label, retaining the caption's right alignment. */
+.country-page .hero-caption__inner{grid-template-columns:minmax(0,600px);}
 .hero-caption p{margin:0;}
 .hero-caption__label{
   padding-top:3px;
