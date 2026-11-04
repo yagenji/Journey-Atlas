@@ -54,6 +54,22 @@ def main() -> int:
                         return {
                             hasMain: !!main,
                             title: document.querySelector('h1')?.innerText.trim(),
+                            sectionCounts: {
+                                profile: document.querySelectorAll('.country-facts-strip .fact-list > div').length,
+                                signature: document.querySelectorAll('.signature-facts__grid article').length,
+                                encounters: document.querySelectorAll('.encounter-list article').length,
+                                culture: document.querySelectorAll('.atlas-extras__grid article').length,
+                                trivia: document.querySelectorAll('.travel-trivia__grid article').length,
+                                duration: document.querySelectorAll('.travel-scale__item').length,
+                                seasons: document.querySelectorAll('.season-list article').length,
+                                transport: document.querySelectorAll('.travel-planning__block--transport').length,
+                                personas: document.querySelectorAll('.persona-list article').length,
+                                notes: document.querySelectorAll('.tip-list article').length,
+                                nextRoutes: document.querySelectorAll('.next-route-card').length,
+                            },
+                            sharedCountryLayout: !!document.querySelector('.region-country-page .hero')
+                                && !!document.querySelector('.region-country-page .atlas-panel .map-column')
+                                && !!document.querySelector('.region-country-page .atlas-panel .scenes-column'),
                             scenes: document.querySelectorAll('.region-scene').length,
                             tastes: document.querySelectorAll('.region-taste').length,
                             imageCount: main ? main.querySelectorAll('img').length : 0,
@@ -73,6 +89,26 @@ def main() -> int:
                     problems = []
                     if audit["title"] != region["nameEn"]: problems.append("incorrect h1")
                     if audit["scenes"] != 8 or audit["tastes"] != 4: problems.append("incomplete editorial image cards")
+                    if not audit["sharedCountryLayout"]:
+                        problems.append("shared Country layout missing")
+                    expected_sections = {
+                        "profile": len(region.get("profile") or []),
+                        "signature": len(region.get("signatureFacts") or []),
+                        "encounters": len(region.get("encounters") or []),
+                        "culture": len(region.get("culture") or []),
+                        "trivia": len(region.get("travelTrivia") or []),
+                        "duration": len((region.get("travelScale") or {}).get("items") or []),
+                        "seasons": len(region.get("seasons") or []),
+                        "transport": 1 if region.get("transport") else 0,
+                        "personas": len(region.get("forWhom") or []),
+                        "notes": len(region.get("notes") or []),
+                        "nextRoutes": len(region.get("nextRoutes") or []),
+                    }
+                    for section, expected_count in expected_sections.items():
+                        actual_count = audit["sectionCounts"][section]
+                        if actual_count != expected_count:
+                            problems.append(f"{section} count mismatch: {actual_count}/{expected_count}")
+
                     if audit["imageCount"] != 14 or audit["broken"]: problems.append(f"broken/missing images: {audit['broken']}")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
