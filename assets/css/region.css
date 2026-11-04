@@ -41,16 +41,18 @@
 .region-country-page .map-art{background:#eaf2f4}
 .region-map-hero{z-index:5}
 .region-country-page .atlas-extra ul{display:block}
-.region-return{margin:24px 0 30px}
-.region-return__link{display:flex;align-items:center;gap:18px;padding:21px 24px;border:1px solid var(--line);border-radius:13px;background:rgba(251,248,240,.82);color:var(--navy);text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
+.region-return{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 30px}
+.region-return__link{display:flex;align-items:center;gap:15px;min-width:0;padding:19px 20px;border:1px solid var(--line);border-radius:13px;background:rgba(251,248,240,.82);color:var(--navy);text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
 .region-return__arrow{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:1px solid rgba(18,54,92,.22);border-radius:50%;font:600 22px/1 var(--body)}
 .region-return__copy{display:flex;flex-direction:column;gap:3px;min-width:0}
 .region-return__copy small{color:#8a6b55;font:500 10px/1.5 var(--meta);letter-spacing:.12em}
 .region-return__copy strong{font:600 17px/1.5 var(--body)}
 .region-return__copy>span{color:var(--muted);font:400 12px/1.6 var(--body)}
-.region-return__cta{margin-left:auto;color:var(--navy);font:500 12px/1.5 var(--body);white-space:nowrap}
-.region-return__link:is(:hover,:focus-visible){border-color:#a86545;box-shadow:0 5px 16px rgba(70,66,52,.08)}
+.region-return__link:is(a):is(:hover,:focus-visible){border-color:#a86545;box-shadow:0 5px 16px rgba(70,66,52,.08)}
 .region-return__link:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.region-return__link--next{justify-content:space-between}
+.region-return__link--pending{background:rgba(251,248,240,.45);border-style:dashed}
+.region-return__pending{margin-left:auto;flex:0 0 auto;color:#8a6b55;font:500 9px/1.5 var(--meta);letter-spacing:.09em}
 @media(max-width:900px){.region-journey-footer{grid-template-columns:1fr}}
-@media(max-width:760px){.region-return__link{padding:17px 15px;gap:12px}.region-return__cta{display:none}.region-return__arrow{flex-basis:32px;width:32px;height:32px}}
+@media(max-width:760px){.region-return{grid-template-columns:1fr}.region-return__link{padding:17px 15px;gap:12px}.region-return__arrow{flex-basis:32px;width:32px;height:32px}}
 @media(prefers-reduced-motion:reduce){.region-return__link{transition:none}}
