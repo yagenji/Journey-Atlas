@@ -317,9 +317,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             href = item.get('href', '')
             if not re.fullmatch(r'countries/[a-z0-9-]+/', href):
                 raise ValueError(f'Unsafe related Country URL: {href}')
-            result.append(f'<a class="region-related-card" href="{esc(href)}">'
-                f'<strong>{esc(item["nameEn"])}</strong>'
-                f'<span>{esc(item["nameJa"])}</span></a>')
+            result.append(f'<a class="related-card is-open" href="{esc(href)}" '
+                f'aria-label="{esc(item["nameJa"])}のJOURNEY ATLASを見る">'
+                '<div class="related-country">'
+                f'<span class="related-flag" aria-hidden="true">{esc(item.get("flag","◌"))}</span>'
+                '<div class="related-copy">'
+                f'<h3>{esc(item["nameEn"])}</h3><b>{esc(item["nameJa"])}</b>'
+                f'<p>{esc(item.get("reason","国ページを見る"))}</p>'
+                '<small class="related-status">EXPLORE →</small></div></div></a>')
         result.append('</div></section>')
 
     result.append('<div class="journey-footer region-journey-footer">'
