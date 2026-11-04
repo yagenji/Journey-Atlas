@@ -434,9 +434,6 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
                 '</div>'
             )
     result.append('</nav>')
-    result.append('<details class="region-sources"><summary>DATA SOURCES / 参考資料</summary><ul>'
-        + ''.join(f'<li><a href="{esc(url)}" rel="noopener noreferrer" target="_blank">{esc(key)}</a></li>'
-                  for key, url in data['sources'].items()) + '</ul></details>')
     result.append('</div></article>')
 
     page = TEMPLATE.read_text(encoding='utf-8')
