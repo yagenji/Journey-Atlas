@@ -167,6 +167,19 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
     result.append('</div></section>')
 
+    result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
+        '<div class="taste-section__head"><div><span class="section-kicker-en">TASTE OF SCOTLAND</span>'
+        f'<h2 id="region-taste-title">{esc(data["taste"]["title"])}</h2></div></div>'
+        '<div class="taste-grid">')
+    for item in data['taste']['items']:
+        result.append('<article class="taste-card region-taste"><div class="taste-card__image media-slot">'
+            + render_image(item['image'], f'{item["name"]}の料理イメージ', version)
+            .replace('<img ', '<img class="taste-card__img" ', 1)
+            + '</div><div class="taste-card__copy">'
+            f'<h3>{esc(item["name"])}</h3><small>{esc(item["nameLocal"])}</small>'
+            f'<p>{esc(item["text"])}</p></div></article>')
+    result.append('</div></section>')
+
     trivia = data.get('travelTrivia', [])
     if trivia:
         result.append('<section class="travel-trivia" aria-labelledby="region-trivia-title">'
@@ -181,19 +194,6 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
                 + f'<span>{esc(item["categoryEn"])} / {esc(item["categoryJa"])}</span></div>'
                 f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
         result.append('</div></section>')
-
-    result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
-        '<div class="taste-section__head"><div><span class="section-kicker-en">TASTE OF SCOTLAND</span>'
-        f'<h2 id="region-taste-title">{esc(data["taste"]["title"])}</h2></div></div>'
-        '<div class="taste-grid">')
-    for item in data['taste']['items']:
-        result.append('<article class="taste-card region-taste"><div class="taste-card__image media-slot">'
-            + render_image(item['image'], f'{item["name"]}の料理イメージ', version)
-            .replace('<img ', '<img class="taste-card__img" ', 1)
-            + '</div><div class="taste-card__copy">'
-            f'<h3>{esc(item["name"])}</h3><small>{esc(item["nameLocal"])}</small>'
-            f'<p>{esc(item["text"])}</p></div></article>')
-    result.append('</div></section>')
 
     result.append('<section class="travel-guidance" aria-label="旅のヒント">'
         '<section class="travel-guidance__block" aria-labelledby="region-for-whom-title">'
