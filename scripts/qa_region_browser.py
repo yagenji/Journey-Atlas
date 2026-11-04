@@ -122,8 +122,12 @@ def main() -> int:
                             && hits[1].getAttribute('aria-pressed') === 'true';
                         cards[2]?.dispatchEvent(new KeyboardEvent('keydown',
                             {key:'Enter', bubbles:true, cancelable:true}));
-                        const keyboardSelect = cards[2]?.getAttribute('aria-pressed') === 'true'
+                        let keyboardSelect = cards[2]?.getAttribute('aria-pressed') === 'true'
                             && hits[2]?.getAttribute('aria-pressed') === 'true';
+                        cards[3]?.dispatchEvent(new KeyboardEvent('keydown',
+                            {key:' ', bubbles:true, cancelable:true}));
+                        keyboardSelect = keyboardSelect && cards[3]?.getAttribute('aria-pressed') === 'true'
+                            && hits[3]?.getAttribute('aria-pressed') === 'true';
                         const sceneHeart = target?.querySelector('[data-ja-scene-save]');
                         const heroHeart = document.querySelector('[data-ja-hero-save]');
                         const sceneKey = 'journey-atlas:scene:' + arguments[0].slug + ':' + testId;
