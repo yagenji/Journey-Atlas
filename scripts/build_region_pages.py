@@ -44,6 +44,17 @@ def region_asset_version() -> str:
 
 
 
+
+def region_theme_labels(parent_slug: str) -> list[str]:
+    """Use the existing Country taxonomy as the source of Hero travel themes."""
+    payload = json.loads((ROOT / 'data/theme-taxonomy.json').read_text(encoding='utf-8'))
+    return [
+        str(theme['label'])
+        for theme in payload.get('themes', [])
+        if parent_slug in (theme.get('examples') or []) and theme.get('label')
+    ]
+
+
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
@@ -137,10 +148,16 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         f'aria-label="表紙の景色：{esc(hero["name"])}">'
         + render_image(hero['image'], f'{hero["name"]}を描いた景観イメージ', version, eager=True)
         + '</div><div class="hero-copy page-shell">'
-        '<p class="region">EUROPE / UNITED KINGDOM</p>'
+        f'<p class="region">{esc(data["region"])}</p>'
         f'<h1 id="region-title">{esc(data["nameEn"])}</h1>'
         f'<p class="country-ja">{esc(data["nameJa"])}</p>'
-        f'<p class="hero-lead">{esc(hero["lead"])}</p></div></section>')
+        f'<p class="hero-lead">{esc(hero["lead"])}</p>'
+        '<div class="country-theme-context" id="country-theme-context">'
+        '<span class="country-theme-context__label">TRAVEL THEMES</span>'
+        '<div class="country-theme-context__list" id="country-theme-list">'
+        + ''.join(f'<span class="country-theme-chip">{esc(label)}</span>'
+                  for label in region_theme_labels(parent))
+        + '</div></div></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
         '<div class="hero-caption__body">'
@@ -373,15 +390,50 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<p class="wish-status" id="region-wish-status" role="status"></p>'
         '</div></section>')
 
-    # A quiet return card instead of repeating the breadcrumb or a second primary CTA.
-    result.append('<nav class="region-return" aria-label="イギリス全体のページへ">'
+    # Two quiet paths: parent Country and next constituent Region.
+    # An unpublished/missing Region is explicitly unavailable, never a dead link.
+    result.append('<nav class="region-return" aria-label="イギリスの地域ナビゲーション">'
         f'<a href="countries/{esc(parent)}/" class="region-return__link">'
         '<span class="region-return__arrow" aria-hidden="true">←</span>'
         '<span class="region-return__copy"><small>BACK TO UNITED KINGDOM</small>'
-        '<strong>イギリス全体の旅へ</strong>'
+        '<strong>イギリスに戻る</strong>'
         '<span>4つの構成国と8つの景色を見る</span></span>'
-        '<span class="region-return__cta" aria-hidden="true">国ページを見る →</span>'
-        '</a></nav>')
+        '</a>')
+    next_region = data.get('nextRegion')
+    if next_region:
+        next_slug = next_region.get('slug', '')
+        if not re.fullmatch(r'[a-z0-9-]+', next_slug) or next_slug == slug:
+            raise ValueError('Invalid next Region slug')
+        next_path = DATA_ROOT / parent / f'{next_slug}.json'
+        next_published = False
+        if next_path.is_file():
+            next_data = json.loads(next_path.read_text(encoding='utf-8'))
+            next_published = (
+                next_data.get('regionPublished') is True
+                and next_data.get('parentSlug') == parent
+                and next_data.get('slug') == next_slug
+            )
+        next_name = esc(next_region['nameJa'])
+        if next_published:
+            result.append(
+                f'<a class="region-return__link region-return__link--next" '
+                f'href="countries/{esc(parent)}/{esc(next_slug)}/">'
+                '<span class="region-return__copy"><small>NEXT REGION</small>'
+                f'<strong>{next_name}へ</strong>'
+                '<span>次の地域の景色を見る</span></span>'
+                '<span class="region-return__arrow" aria-hidden="true">→</span></a>'
+            )
+        else:
+            result.append(
+                '<div class="region-return__link region-return__link--pending" '
+                f'aria-label="次の地域：{next_name}。詳細ページは準備中">'
+                '<span class="region-return__copy"><small>NEXT REGION</small>'
+                f'<strong>{next_name}</strong>'
+                '<span>詳細ページは準備中</span></span>'
+                '<span class="region-return__pending" aria-hidden="true">COMING SOON</span>'
+                '</div>'
+            )
+    result.append('</nav>')
     result.append('<details class="region-sources"><summary>DATA SOURCES / 参考資料</summary><ul>'
         + ''.join(f'<li><a href="{esc(url)}" rel="noopener noreferrer" target="_blank">{esc(key)}</a></li>'
                   for key, url in data['sources'].items()) + '</ul></details>')

@@ -54,6 +54,13 @@ def main() -> int:
                         return {
                             hasMain: !!main,
                             title: document.querySelector('h1')?.innerText.trim(),
+                            regionLabel: document.querySelector('.hero-copy .region')?.innerText.trim(),
+                            themes: [...document.querySelectorAll('.hero-copy .country-theme-chip')].map(e => e.textContent.trim()),
+                            parentNav: document.querySelector('.region-return a[href="countries/unitedkingdom/"]')?.textContent.trim(),
+                            nextRegionName: document.querySelector('.region-return__link--pending strong, .region-return__link--next strong')?.textContent.trim(),
+                            nextRegionUnavailable: !!document.querySelector('.region-return__link--pending:not(a)'),
+                            nextRegionBadLink: !!document.querySelector('.region-return__link--pending a'),
+
                             sectionCounts: {
                                 profile: document.querySelectorAll('.country-facts-strip .fact-list > div').length,
                                 signature: document.querySelectorAll('.signature-facts__grid article').length,
@@ -88,6 +95,22 @@ def main() -> int:
                     """)
                     problems = []
                     if audit["title"] != region["nameEn"]: problems.append("incorrect h1")
+                    if audit["regionLabel"] != region.get("region"):
+                        problems.append("incorrect Northern Europe Hero region")
+                    if audit["themes"] != ["地球の風景", "街を歩く", "時をたどる"]:
+                        problems.append("Country travel theme chips missing or out of order")
+                    if not audit["parentNav"]:
+                        problems.append("return to United Kingdom missing")
+                    if region.get("nextRegion"):
+                        expected_name = region["nextRegion"]["nameJa"]
+                        if audit["nextRegionName"] != expected_name:
+                            problems.append("next Region label incorrect")
+                        if audit["nextRegionBadLink"]:
+                            problems.append("unavailable next Region has dead link")
+                        next_path = REGIONS / region["parentSlug"] / f'{region["nextRegion"]["slug"]}.json'
+                        if not next_path.exists() and not audit["nextRegionUnavailable"]:
+                            problems.append("missing next Region must be unavailable")
+
                     if audit["scenes"] != 8 or audit["tastes"] != 4: problems.append("incomplete editorial image cards")
                     if not audit["sharedCountryLayout"]:
                         problems.append("shared Country layout missing")
