@@ -350,7 +350,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     if related:
         result.append('<div class="related-wrap region-related">'
             '<span class="section-kicker-en">NEXT DESTINATIONS</span>'
-            f'<h2 id="region-related-title">{esc(data["nameJa"])}が気になったなら</h2>'
+            f'<h2 id="region-related-title">{esc(data["nameJa"])}が気になったら</h2>'
             '<div class="related-grid">')
         for item in related:
             href = item.get('href', '')
