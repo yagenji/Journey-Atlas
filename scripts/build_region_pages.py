@@ -326,6 +326,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             f'<h4>{esc(transport["title"])}</h4><p>{esc(transport["text"])}</p></div></div></section>')
     result.append('</div></section>')
 
+
     if data.get('nextRoutes'):
         result.append('<section class="next-routes-section" aria-labelledby="region-routes-title">'
             '<div class="next-routes__head"><div>'
@@ -334,21 +335,21 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<p>ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。</p>'
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
-            result.append('<article class="next-route-card"><div class="next-route-card__country"><div>'
+            result.append('<article class="next-route-card"><div class="next-route-card__country">'
+                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
                 f'<p class="next-route-card__description">{esc(route["description"])}</p></article>')
         result.append('</div></section>')
 
-
-    # Region pages retain the established three related destinations without
-    # adding a new entry to the 202-destination registry.
+    # Match the shared Country journey footer: recommendations and wish side by side.
     related = data.get('relatedCountries') or []
+    result.append('<section class="journey-footer region-journey-footer" aria-labelledby="region-related-title">')
     if related:
-        result.append('<section class="region-related related-wrap" aria-labelledby="region-related-title">'
-            '<span class="section-kicker-en">RELATED DESTINATIONS</span>'
-            '<h2 id="region-related-title">関連する国・地域</h2>'
+        result.append('<div class="related-wrap region-related">'
+            '<span class="section-kicker-en">NEXT DESTINATIONS</span>'
+            f'<h2 id="region-related-title">{esc(data["nameJa"])}が気になったなら</h2>'
             '<div class="related-grid">')
         for item in related:
             href = item.get('href', '')
@@ -362,20 +363,24 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
                 f'<h3>{esc(item["nameEn"])}</h3><b>{esc(item["nameJa"])}</b>'
                 f'<p>{esc(item.get("reason","国ページを見る"))}</p>'
                 '<small class="related-status">EXPLORE →</small></div></div></a>')
-        result.append('</div></section>')
-
-    result.append('<div class="journey-footer region-journey-footer">'
-        '<div class="wish-wrap region-wish-wrap">'
+        result.append('</div></div>')
+    result.append('<div class="wish-wrap region-wish-wrap">'
         '<button class="wish-button" id="region-wish-button" type="button" aria-pressed="false">'
         '<span class="wish-icon" aria-hidden="true">♡</span>'
         '<strong>この地域に行きたい</strong>'
         '<small>このブラウザに保存します</small></button>'
         '<p class="wish-status" id="region-wish-status" role="status"></p>'
-        '</div></div>')
+        '</div></section>')
 
-    result.append('<div class="region-back"><div><p class="region-back__label">BACK TO COUNTRY</p>'
-        '<p>イギリス全体の8景や地図も見てみる</p></div>'
-        f'<a href="countries/{esc(parent)}/">UNITED KINGDOM に戻る</a></div>')
+    # A quiet return card instead of repeating the breadcrumb or a second primary CTA.
+    result.append('<nav class="region-return" aria-label="イギリス全体のページへ">'
+        f'<a href="countries/{esc(parent)}/" class="region-return__link">'
+        '<span class="region-return__arrow" aria-hidden="true">←</span>'
+        '<span class="region-return__copy"><small>BACK TO UNITED KINGDOM</small>'
+        '<strong>イギリス全体の旅へ</strong>'
+        '<span>4つの構成国と8つの景色を見る</span></span>'
+        '<span class="region-return__cta" aria-hidden="true">国ページを見る →</span>'
+        '</a></nav>')
     result.append('<details class="region-sources"><summary>DATA SOURCES / 参考資料</summary><ul>'
         + ''.join(f'<li><a href="{esc(url)}" rel="noopener noreferrer" target="_blank">{esc(key)}</a></li>'
                   for key, url in data['sources'].items()) + '</ul></details>')
