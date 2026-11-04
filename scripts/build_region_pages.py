@@ -132,20 +132,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         f'<p class="hero-lead">{esc(hero["lead"])}</p></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
-        '<p class="hero-caption__label">表紙の景観イメージ</p>'
         '<div class="hero-caption__body">'
         f'<p class="hero-caption__name">{esc(hero["name"])}</p>'
         f'<p class="hero-caption__local">{esc(hero["location"])}</p>'
-        '<p class="hero-caption__text">実在する場所を題材に制作したイラストであり、現地写真ではありません。</p>'
+        f'<p class="hero-caption__text">{esc(hero["description"])}</p>'
         '</div></div></aside>')
-    result.append('<div class="atlas-body page-shell">'
-        '<nav class="region-breadcrumb" aria-label="パンくずリスト">'
-        '<a href="./">JOURNEY ATLAS</a><span aria-hidden="true">/</span>'
-        f'<a href="countries/{esc(parent)}/">{esc(data["parentNameJa"])}</a>'
-        '<span aria-hidden="true">/</span>'
-        f'<span aria-current="page">{esc(data["nameJa"])}</span></nav>')
+    result.append('<div class="atlas-body page-shell">')
 
-    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin', 'landscape']
+    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin']
     facts = ''.join('<div>' + icon(facts_icons[i] if i < len(facts_icons) else 'info')
         + f'<dt>{esc(item["label"])}</dt><dd>{esc(item["value"])}</dd></div>'
         for i, item in enumerate(data['profile']))
@@ -191,7 +185,6 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
-        '<p class="region-map-note">GSHHSの実海岸線に基づく地図。構成国境界は推測して描画していません。</p>'
         '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
@@ -221,13 +214,15 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="atlas-extras__head"><div>'
         '<p class="atlas-extras__kicker">BEYOND THE SCENERY</p>'
         '<h2 id="region-culture-title">景色の向こうへ</h2></div>'
-        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の歴史や文化をたどる。</p></div>'
+        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。</p></div>'
         '<div class="atlas-extras__grid">')
     for item in data['culture']:
         result.append('<article class="atlas-extra"><span class="atlas-extra__theme">'
             + icon(item.get('icon', 'culture'))
             + f'{esc(item.get("themeEn", "CULTURE"))} / {esc(item.get("themeJa", "文化"))}</span>'
-            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
+            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p>'
+            + ('<ul>' + ''.join(f'<li>{esc(point)}</li>' for point in item.get('points', [])) + '</ul>'
+               if item.get('points') else '') + '</article>')
     result.append('</div></section>')
 
     result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
@@ -249,7 +244,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<div class="travel-trivia__head"><div>'
             '<span class="travel-trivia__kicker">TRAVEL TRIVIA</span>'
             '<h2 id="region-trivia-title">知っていると旅が少し楽しくなること</h2></div>'
-            '<p class="travel-trivia__intro">風景の背景にある、意外な歴史や小さな発見。</p></div>'
+            '<p class="travel-trivia__intro">現地で見つけたり、試したり、人に話したくなる小さな知識を集めた。</p></div>'
             '<div class="travel-trivia__grid">')
         for item in trivia:
             result.append('<article class="travel-trivia__item"><div class="travel-trivia__meta">'
@@ -320,10 +315,11 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<div class="next-routes__head"><div>'
             '<span class="section-kicker-en">NEXT ROUTES</span>'
             '<h2 id="region-routes-title">隣の地域へ旅をつなぐ</h2></div>'
-            '<p>ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。</p>'
+            '<p>この地域から旅を続けやすい、代表的な周遊ルート。</p>'
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
-            result.append('<article class="next-route-card"><div class="next-route-card__country"><div>'
+            result.append('<article class="next-route-card"><div class="next-route-card__country">'
+                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
@@ -331,13 +327,13 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         result.append('</div></section>')
 
 
-    # Region pages retain the established three related destinations without
-    # adding a new entry to the 202-destination registry.
+    # Shared Country footer: next destinations and wishlist in one section.
     related = data.get('relatedCountries') or []
+    result.append('<section class="journey-footer region-journey-footer" aria-labelledby="region-next-title">')
     if related:
-        result.append('<section class="region-related related-wrap" aria-labelledby="region-related-title">'
-            '<span class="section-kicker-en">RELATED DESTINATIONS</span>'
-            '<h2 id="region-related-title">関連する国・地域</h2>'
+        result.append('<div class="related-wrap region-related">'
+            '<span class="section-kicker-en">NEXT DESTINATIONS</span>'
+            f'<h2 id="region-next-title">{esc(data["nameJa"])}が気になったなら</h2>'
             '<div class="related-grid">')
         for item in related:
             href = item.get('href', '')
@@ -351,20 +347,20 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
                 f'<h3>{esc(item["nameEn"])}</h3><b>{esc(item["nameJa"])}</b>'
                 f'<p>{esc(item.get("reason","国ページを見る"))}</p>'
                 '<small class="related-status">EXPLORE →</small></div></div></a>')
-        result.append('</div></section>')
-
-    result.append('<div class="journey-footer region-journey-footer">'
-        '<div class="wish-wrap region-wish-wrap">'
+        result.append('</div></div>')
+    result.append('<div class="wish-wrap region-wish-wrap">'
         '<button class="wish-button" id="region-wish-button" type="button" aria-pressed="false">'
         '<span class="wish-icon" aria-hidden="true">♡</span>'
         '<strong>この地域に行きたい</strong>'
         '<small>このブラウザに保存します</small></button>'
         '<p class="wish-status" id="region-wish-status" role="status"></p>'
-        '</div></div>')
+        '</div></section>')
 
-    result.append('<div class="region-back"><div><p class="region-back__label">BACK TO COUNTRY</p>'
-        '<p>イギリス全体の8景や地図も見てみる</p></div>'
-        f'<a href="countries/{esc(parent)}/">UNITED KINGDOM に戻る</a></div>')
+    result.append('<nav class="region-back" aria-label="イギリス全体のページへ戻る">'
+        '<div class="region-back__copy">'
+        '<span class="region-back__label">EXPLORE UNITED KINGDOM</span>'
+        '<p>イギリス全体の景色と地図も見る</p></div>'
+        f'<a href="countries/{esc(parent)}/"><span aria-hidden="true">←</span> イギリスへ戻る</a></nav>')
     result.append('<details class="region-sources"><summary>DATA SOURCES / 参考資料</summary><ul>'
         + ''.join(f'<li><a href="{esc(url)}" rel="noopener noreferrer" target="_blank">{esc(key)}</a></li>'
                   for key, url in data['sources'].items()) + '</ul></details>')
