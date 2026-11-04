@@ -28,6 +28,7 @@ RUNTIME_DATA_FILES = [
     "region-taxonomy.json",
     "theme-taxonomy.json",
     "map-data-sources.json",
+    "scene-origins.json",
 ]
 STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
 

@@ -88,6 +88,26 @@ def country_refs(slug: str, data: dict) -> dict[str, set[str]]:
     return refs
 
 
+def region_refs(parent_slug: str) -> dict[str, set[str]]:
+    """Include final assets referenced by reviewable UK Region pages in parent image QA."""
+    refs: dict[str, set[str]] = {}
+    directory = ROOT / "data" / "regions" / parent_slug
+    for region_path in sorted(directory.glob("*.json")):
+        region = json.loads(region_path.read_text(encoding="utf-8"))
+        region_slug = region.get("slug", region_path.stem)
+        owner = f"{parent_slug}:region:{region_slug}"
+        hero = region.get("hero") or {}
+        add_ref(refs, f"{owner}:hero", hero.get("image"))
+        add_ref(refs, f"{owner}:map", (region.get("map") or {}).get("svg"))
+        for index, scene in enumerate(region.get("scenes") or [], 1):
+            if isinstance(scene, dict):
+                add_ref(refs, f"{owner}:scene:{index}", scene.get("image"))
+        for index, taste in enumerate((region.get("taste") or {}).get("items") or [], 1):
+            if isinstance(taste, dict):
+                add_ref(refs, f"{owner}:taste:{index}", taste.get("image"))
+    return refs
+
+
 def decode_parts_manifest(path: Path) -> bytes | None:
     if not path.name.endswith(".parts.json"):
         return None
@@ -409,6 +429,8 @@ def scan(slugs: list[str]) -> tuple[list[str], int]:
             continue
         data = json.loads(path.read_text(encoding="utf-8"))
         refs = country_refs(slug, data)
+        for asset, owners in region_refs(slug).items():
+            refs.setdefault(asset, set()).update(owners)
         per_country[slug] = set(refs)
         for asset, owners in refs.items():
             all_refs.setdefault(asset, set()).update(owners)
