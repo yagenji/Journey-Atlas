@@ -7,6 +7,7 @@ registry. Region pages remain noindex and undiscoverable until published.
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import math
 import re
@@ -16,6 +17,31 @@ from urllib.parse import urljoin
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / 'data' / 'regions'
 TEMPLATE = ROOT / 'region.html'
+
+
+# Any Region CSS/JS edit must produce a new URL, even when the Country
+# data version stays unchanged. This prevents a 24-hour stale visual/UI cache.
+REGION_RUNTIME_ASSETS = (
+    'assets/css/site-nav.css',
+    'assets/css/country.css',
+    'assets/css/region.css',
+    'assets/css/atlas-personal.css',
+    'assets/js/site-nav.js',
+    'assets/js/header-scroll.js',
+    'assets/js/atlas-personal.js',
+    'assets/js/region-interactions.js',
+)
+
+
+def region_asset_version() -> str:
+    digest = hashlib.sha256()
+    for relative in REGION_RUNTIME_ASSETS:
+        digest.update(relative.encode('utf-8'))
+        digest.update(b'\0')
+        digest.update((ROOT / relative).read_bytes())
+        digest.update(b'\0')
+    return digest.hexdigest()[:16]
+
 
 
 def esc(value: object) -> str:
@@ -351,7 +377,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '{{CANONICAL}}': esc(canonical),
         '{{TITLE}}': esc(title),
         '{{OG_IMAGE}}': esc(urljoin(site_url, f'{hero["image"]}?v={version}')),
-        '{{BUILD_VERSION}}': esc(version),
+        '{{ASSET_VERSION}}': esc(region_asset_version()),
         '{{CONTENT}}': '\n'.join(result),
     }
     for token, value in replacements.items():
