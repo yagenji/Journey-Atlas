@@ -1,54 +1,1 @@
-/* Region pages inherit JOURNEY ATLAS header, typography and footer from country.css. */
-.region-page{color:#263d46;background:#f7f5ef;line-height:1.8;font-family:'Zen Kaku Gothic New',sans-serif}
-.region-page *{box-sizing:border-box}
-.region-page h1,.region-page h2,.region-page h3,.region-page p{margin-top:0}
-.region-page a{color:inherit}
-.region-wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
-.region-crumb{display:flex;gap:8px;align-items:center;padding:20px 0 22px;font:500 12px/1.5 'Hanken Grotesk',sans-serif;color:#597078}
-.region-crumb a{text-underline-offset:3px}
-.region-cover{position:relative}
-.region-cover img{display:block;width:100%;height:min(58vw,570px);min-height:275px;object-fit:cover;object-position:center 47%}
-.region-cover__caption{padding:12px 0 0;font-size:12px;color:#657b80}
-.region-intro{padding:44px 0 42px;max-width:780px}
-.region-kicker{display:block;margin-bottom:10px;font:600 11px/1.5 'Hanken Grotesk',sans-serif;letter-spacing:.18em;color:#78919a;text-transform:uppercase}
-.region-intro h1{font:500 clamp(38px,7vw,74px)/1.1 'Newsreader',serif;letter-spacing:.02em;margin-bottom:9px;color:#213b47}
-.region-intro__ja{font-size:22px;font-weight:600;letter-spacing:.08em;margin:0 0 24px}
-.region-intro__lead{font-family:'Shippori Mincho',serif;font-size:15px;line-height:2.25;letter-spacing:.015em;margin-bottom:0}
-.region-facts{border-block:1px solid #d8dfdb;padding:23px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.region-facts div{min-width:0}.region-facts dt{font-size:11px;color:#6a8286;margin-bottom:6px}.region-facts dd{margin:0;font-size:13px;line-height:1.65}
-.region-section{padding:74px 0 8px}
-.region-section__head{margin-bottom:28px}
-.region-section__head h2{font-size:22px;font-weight:600;line-height:1.45;margin:0}
-.region-section__intro{color:#687d82;font-size:13px;line-height:1.95;margin:12px 0 0}
-.region-scenery-grid{display:grid;grid-template-columns:minmax(300px,1fr) minmax(0,1.25fr);gap:36px;align-items:start}
-.region-map{border:1px solid #e1e5df;background:#e5eceb;border-radius:2px;overflow:hidden}
-.region-map img{width:100%;height:auto;display:block}
-.region-map-note{font-size:11px;color:#718589;line-height:1.9;margin:10px 0}
-.region-scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 18px}
-.region-scene{min-width:0}
-.region-scene__figure{margin:0;position:relative;overflow:hidden;background:#e1e3da}
-.region-scene__figure img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
-.region-scene__index{position:absolute;top:10px;left:10px;background:#f8f6f0e8;color:#31576a;font:600 12px/1 'Hanken Grotesk',sans-serif;padding:8px 10px;border-radius:2px}
-.region-scene h3{font-size:16px;line-height:1.5;font-weight:600;margin:12px 0 3px}
-.region-scene__local{font:500 12px/1.5 'Hanken Grotesk',sans-serif;color:#7b9091;margin:0 0 9px}
-.region-scene p:last-child{font-size:12px;line-height:1.9;color:#52686f;margin:0}
-.region-depth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.region-depth-card{padding:22px 22px 18px;background:#efeee8;border-top:2px solid #a3aaa1}
-.region-depth-card h3{font-size:15px;margin:0 0 10px;font-weight:600}.region-depth-card p{font-size:12px;line-height:2;margin:0}
-.region-taste-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.region-taste img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:#efece4}
-.region-taste h3{font-size:15px;line-height:1.55;margin:12px 0 2px;font-weight:600}
-.region-taste__local{font:500 12px/1.6 'Hanken Grotesk',sans-serif;color:#7b9091;margin:0 0 8px}
-.region-taste p:last-child{font-size:12px;line-height:1.9;margin:0;color:#52686f}
-.region-info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:42px}
-.region-info-grid section{border-top:1px solid #bdc9c5;padding-top:17px}
-.region-info-grid h3{font-size:15px;font-weight:600;margin-bottom:12px}.region-info-grid p{font-size:12px;line-height:2;margin-bottom:18px}
-.region-back{margin:76px 0 90px;padding:30px;border-block:1px solid #bdc9c5;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.region-back__label{font-size:11px;color:#718589;letter-spacing:.1em}.region-back a{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid #50717a;padding-bottom:3px}
-.region-page a:focus-visible{outline:3px solid #396f8c;outline-offset:4px}
-.region-discovery{border-block:1px solid #bdc9c5;padding:28px 0 36px;margin-top:42px}
-.region-discovery h2{font-size:21px;margin:0 0 12px}
-.region-discovery__list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.region-discovery__list a{text-decoration:none;border:1px solid #d8dfdb;padding:14px 12px;background:#f7f5ef;font:600 13px/1.5 'Hanken Grotesk',sans-serif}
-@media(max-width:920px){.region-scenery-grid{grid-template-columns:1fr;gap:24px}.region-map{max-width:800px}.region-taste-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.region-info-grid{gap:22px}.region-facts{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.region-wrap{width:calc(100% - 30px)}.region-crumb{padding:14px 0}.region-cover img{height:260px;min-height:0}.region-intro{padding:30px 0}.region-intro__ja{font-size:19px}.region-intro__lead{font-size:14px}.region-facts{gap:16px}.region-section{padding-top:48px}.region-scenes{gap:26px 12px}.region-scene h3{font-size:14px}.region-scene__local{font-size:11px}.region-scene p:last-child{font-size:11px}.region-depth-grid,.region-info-grid{grid-template-columns:1fr;gap:14px}.region-taste-grid{gap:22px 12px}.region-taste h3{font-size:13px}.region-taste p:last-child{font-size:11px}.region-back{margin:52px 0 64px;padding:20px 0}.region-discovery__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ı Š‰éj¬­ë¬zØ^²«yĞ¨º{kÉÊ&¦‰ŞÛ×^²('³+-zc§—+azw¬µç\¢éí¯'b}÷«zw±ªŞ²—œ‰øv«{úŞ‚*'¥¨š)ğ‰ÛaÒ· Š‰Ü¢éí¯*Zè^®†«¶) v+)•¬›–‡$Â'm‡]4…è †İtÒ†ãyË_Š×(½êèn7œ¶š,ŠØ¨Ÿxî· Š‰Ü¢éí¯*Zè^®†«µ§ízºhŠ{^­ëŞÛ'¢w«z¨ºŞi×+ºfİŠÊek'å{¥Š	âµé¬qéíz·å{+jœ+j˜§Úq™ªàŠ}4×ªq¥§]Šx4Úœ\¢Z+½ªæº×~‰íçM5Úœ×¡ÚG§º-zÉ,j{,z¸Ÿ­è"¢vëy§\®é›j×±µ×œ¢¶­Š‰î×«–)Şµìmuç(­«b¢{a‰É'zË5§^ÆÛ§uêåŠw¨}û·zq­è"¢vëy§\®é›j¸šrêëz{
