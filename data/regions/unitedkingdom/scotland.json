@@ -2,22 +2,22 @@
   "schemaVersion": 1,
   "parentSlug": "unitedkingdom",
   "slug": "scotland",
+  "regionPublished": false,
   "nameEn": "SCOTLAND",
   "nameJa": "スコットランド",
   "parentNameJa": "イギリス",
-  "regionPublished": false,
   "seo": {
-    "description": "Scotland"
+    "description": "エディンバラの城からハイランドの谷、ヘブリディーズの白砂、オークニーの先史遺跡へ。スコットランドの8景と地図から旅の輪郭をたどる。"
   },
   "hero": {
     "name": "エディンバラ城",
-    "location": "Edinburgh Castle",
+    "location": "Edinburgh Castle / Princes Street Gardens, Edinburgh",
     "image": "assets/images/united-kingdom/scotland/approved/hero-edinburgh-castle.webp",
     "coordinates": {
-      "latitude": 56,
-      "longitude": -3
+      "latitude": 55.9486,
+      "longitude": -3.2008
     },
-    "lead": "スコットランドの景色を巡る。"
+    "lead": "火山岩の上にそびえるエディンバラ城を見上げる。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。"
   },
   "profile": [
     {
@@ -53,123 +53,142 @@
     }
   ],
   "map": {
-    "svg": "assets/images/united-kingdom/scotland/map-scotland.svg"
+    "svg": "assets/images/united-kingdom/scotland/map-scotland.svg",
+    "bounds": {
+      "north": 61.3,
+      "south": 54.4,
+      "west": -9.6,
+      "east": 2
+    },
+    "source": "GSHHS intermediate coastline via Basemap data; WGS84 / Mercator; 国境・構成国境界は推測して描画しない。"
   },
   "scenes": [
     {
-      "id": "s1",
-      "name": "景色1",
-      "nameLocal": "Scene 1",
-      "description": "景色の紹介",
+      "id": "quiraing",
+      "name": "クイラング",
+      "nameLocal": "The Quiraing / Isle of Skye",
+      "description": "スカイ島北部の地すべり地形。切り立った岩峰と段丘状の稜線が、海へ向かって重なる。",
       "coordinates": {
-        "latitude": 56.1,
-        "longitude": -3
+        "latitude": 57.64083,
+        "longitude": -6.27389
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-quiraing.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-quiraing.webp",
+      "sourceKey": "quiraingCoordinates"
     },
     {
-      "id": "s2",
-      "name": "景色2",
-      "nameLocal": "Scene 2",
-      "description": "景色の紹介",
+      "id": "glen-coe",
+      "name": "グレン・コー",
+      "nameLocal": "Glen Coe / Three Sisters",
+      "description": "氷河が刻んだ谷に、険しい山肌と草の斜面が続く。稜線の重なりがハイランドのスケールを伝える。",
       "coordinates": {
-        "latitude": 56.2,
-        "longitude": -3
+        "latitude": 56.66121,
+        "longitude": -4.99586
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-glen-coe.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-glen-coe.webp",
+      "sourceKey": "glenCoeCoordinates"
     },
     {
-      "id": "s3",
-      "name": "景色3",
-      "nameLocal": "Scene 3",
-      "description": "景色の紹介",
+      "id": "eilean-donan",
+      "name": "アイリーン・ドナン城",
+      "nameLocal": "Eilean Donan Castle / Loch Duich",
+      "description": "複数の海湖が出会う場所に立つ石の城。橋で結ばれた小島と山並みが、スコットランド西部の風景をつくる。",
       "coordinates": {
-        "latitude": 56.3,
-        "longitude": -3
+        "latitude": 57.27397,
+        "longitude": -5.51611
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-eilean-donan-castle.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-eilean-donan-castle.webp",
+      "sourceKey": "eileanDonanCoordinates"
     },
     {
-      "id": "s4",
-      "name": "景色4",
-      "nameLocal": "Scene 4",
-      "description": "景色の紹介",
+      "id": "glenfinnan",
+      "name": "グレンフィナン高架橋",
+      "nameLocal": "Glenfinnan Viaduct / Lochaber",
+      "description": "山あいを横切る曲線状の鉄道高架橋。21のアーチが、交通と山の地形をつなぐ。",
       "coordinates": {
-        "latitude": 56.4,
-        "longitude": -3
+        "latitude": 56.87625,
+        "longitude": -5.43155
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-glenfinnan-viaduct.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-glenfinnan-viaduct.webp",
+      "sourceKey": "glenfinnanCoordinates"
     },
     {
-      "id": "s5",
-      "name": "景色5",
-      "nameLocal": "Scene 5",
-      "description": "景色の紹介",
+      "id": "luskentyre",
+      "name": "ルスケンタイア・ビーチ",
+      "nameLocal": "Luskentyre Beach / Isle of Harris",
+      "description": "アウター・ヘブリディーズの白い砂浜。浅瀬に広がる青緑色の海と、ハリス島の丘陵が対照をなす。",
       "coordinates": {
-        "latitude": 56.5,
-        "longitude": -3
+        "latitude": 57.89145,
+        "longitude": -6.95157
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-luskentyre-beach.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-luskentyre-beach.webp",
+      "sourceKey": "luskentyreCoordinates"
     },
     {
-      "id": "s6",
-      "name": "景色6",
-      "nameLocal": "Scene 6",
-      "description": "景色の紹介",
+      "id": "skara-brae",
+      "name": "スカラ・ブレイ",
+      "nameLocal": "Skara Brae / Orkney",
+      "description": "オークニー諸島の海岸に残る新石器時代の集落。石造住居の内部には、石の家具も残っている。",
       "coordinates": {
-        "latitude": 56.6,
-        "longitude": -3
+        "latitude": 59.04834,
+        "longitude": -3.34214
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-skara-brae.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-skara-brae.webp",
+      "sourceKey": "skaraBraeCoordinates"
     },
     {
-      "id": "s7",
-      "name": "景色7",
-      "nameLocal": "Scene 7",
-      "description": "景色の紹介",
+      "id": "dunnottar",
+      "name": "ダノター城",
+      "nameLocal": "Dunnottar Castle / Aberdeenshire",
+      "description": "北海へ突き出す岩の岬に残る城跡。陸側の細い道と切り立つ断崖が、防御の地形を物語る。",
       "coordinates": {
-        "latitude": 56.7,
-        "longitude": -3
+        "latitude": 56.94598,
+        "longitude": -2.1971
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-dunnottar-castle.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-dunnottar-castle.webp",
+      "sourceKey": "dunnottarCoordinates"
     },
     {
-      "id": "s8",
-      "name": "景色8",
-      "nameLocal": "Scene 8",
-      "description": "景色の紹介",
+      "id": "loch-an-eilein",
+      "name": "ロッホ・アン・アイリーン",
+      "nameLocal": "Loch an Eilein / Cairngorms",
+      "description": "カレドニア松林に囲まれた静かな湖。小島に残る城跡が、森と水辺に歴史の輪郭を加える。",
       "coordinates": {
-        "latitude": 56.8,
-        "longitude": -3
+        "latitude": 57.149,
+        "longitude": -3.822
       },
-      "image": "assets/images/united-kingdom/scotland/approved/scene-loch-an-eilein.webp"
+      "image": "assets/images/united-kingdom/scotland/approved/scene-loch-an-eilein.webp",
+      "sourceKey": "lochAnEileinCoordinates"
     }
   ],
   "taste": {
     "title": "スコットランドで食べたいもの",
     "items": [
       {
-        "name": "料理",
-        "nameLocal": "Food",
-        "text": "おいしい",
+        "id": "haggis",
+        "name": "ハギス、ニープス＆タティーズ",
+        "nameLocal": "Haggis, neeps & tatties",
+        "text": "香辛料をきかせたハギスに、カブとジャガイモのマッシュを添える。",
         "image": "assets/images/united-kingdom/scotland/approved/food-haggis-neeps-tatties.webp"
       },
       {
-        "name": "料理",
-        "nameLocal": "Food",
-        "text": "おいしい",
+        "id": "cullen-skink",
+        "name": "カレン・スキンク",
+        "nameLocal": "Cullen skink",
+        "text": "燻製ハドック、ジャガイモ、玉ねぎを使う、北東部発祥の濃厚なスープ。",
         "image": "assets/images/united-kingdom/scotland/approved/food-cullen-skink.webp"
       },
       {
-        "name": "料理",
-        "nameLocal": "Food",
-        "text": "おいしい",
+        "id": "cranachan",
+        "name": "クラナカン",
+        "nameLocal": "Cranachan",
+        "text": "ラズベリー、クリーム、炒ったオーツを重ねる素朴なデザート。",
         "image": "assets/images/united-kingdom/scotland/approved/food-cranachan.webp"
       },
       {
-        "name": "料理",
-        "nameLocal": "Food",
-        "text": "おいしい",
+        "id": "stovies",
+        "name": "ストーヴィーズ",
+        "nameLocal": "Stovies",
+        "text": "ジャガイモと玉ねぎをゆっくり煮込み、肉を加えることもある家庭料理。",
         "image": "assets/images/united-kingdom/scotland/approved/food-stovies.webp"
       }
     ]
@@ -288,8 +307,23 @@
       "icon": "snow"
     }
   ],
+  "sourcesVerifiedAt": "2026-11-04",
   "sources": {
-    "local": "https://example.org",
+    "edinburghCastle": "https://www.historicenvironment.scot/visit/all/edinburgh-castle/history-and-stories/",
+    "quiraingCoordinates": "https://www.mindat.org/loc-2960.html",
+    "glenCoeCoordinates": "https://mapcarta.com/N289112936",
+    "eileanDonanCoordinates": "https://hillforts.arch.ox.ac.uk/records/SC2744.html",
+    "glenfinnanCoordinates": "https://www.trove.scot/place/23340",
+    "luskentyreCoordinates": "https://rps.org/media/tpsfiy0q/isles-of-harris-and-lewis-website.pdf",
+    "skaraBraeCoordinates": "https://www.trove.scot/place/1664",
+    "dunnottarCoordinates": "https://www.trove.scot/designation/SM986",
+    "lochAnEileinCoordinates": "https://ancientmonuments.uk/124924-loch-an-eilein-castle-badenoch-and-strathspey-ward/map",
+    "skaraBrae": "https://www.historicenvironment.scot/visit/all/skara-brae/",
+    "glenfinnan": "https://www.nts.org.uk/visit/places/glenfinnan-monument/highlights/viaduct",
+    "culture": "https://www.visitscotland.com/things-to-do/culture-history",
+    "visit": "https://www.visitscotland.com/planning/travel-information/scotland-faqs",
+    "castle": "https://www.eileandonancastle.com/",
+    "map": "https://www.soest.hawaii.edu/pwessel/gshhg/",
     "population2025": "https://nrscotland.gov.uk/publications/mid-2025-population-estimates/",
     "landArea": "https://www.gov.scot/publications/supporting-scotlands-transition-land-use-agriculture-technical-supporting-document/pages/3/",
     "islands": "https://www.gov.scot/publications/supporting-scotlands-transition-land-use-agriculture-technical-supporting-document/pages/3/",
@@ -502,8 +536,7 @@
   ],
   "sourceDates": {
     "population": "2025-06-30",
-    "landArea": "2025-01",
+    "landArea": "政府資料に基づく概数（2025年）",
     "islands": "2025年時点資料（定義上の島数）"
-  },
-  "sourcesVerifiedAt": "2026-11-04"
+  }
 }
