@@ -78,7 +78,7 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple
     source Scene coordinates. The overlay adds interaction, not geography.
     """
     point = re.search(
-        rf'<g id="text_{marker_index}">\s*<!--\s*{marker_index}\s*-->\s*<g[^>]*?'
+        rf'<g id="text_{marker_index}"[^>]*>\s*<!--\s*{marker_index}\s*-->\s*<g[^>]*?'
         rf'transform="translate\(([0-9.]+) ([0-9.]+)\)',
         svg,
     )
@@ -91,6 +91,16 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple
     if abs(px - float(point.group(1))) > 1 or abs(py - float(point.group(2))) > 1:
         raise ValueError(f'Scene {marker_index}: approved SVG and real coordinates disagree')
     return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
+
+
+def region_hero_map_position(coords: dict) -> tuple[float, float]:
+    """Project the real Hero point using the same calibrated Scotland map transform."""
+    latitude, longitude = coords['latitude'], coords['longitude']
+    mercator_y = math.log(math.tan(math.pi / 4 + math.radians(latitude) / 2))
+    px = 42.04571769282578 * longitude + 588.6427115953087
+    py = -2409.042178193165 * mercator_y + 3286.625337833689
+    return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
+
 
 
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
@@ -132,20 +142,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         f'<p class="hero-lead">{esc(hero["lead"])}</p></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
-        '<p class="hero-caption__label">表紙の景観イメージ</p>'
         '<div class="hero-caption__body">'
         f'<p class="hero-caption__name">{esc(hero["name"])}</p>'
         f'<p class="hero-caption__local">{esc(hero["location"])}</p>'
-        '<p class="hero-caption__text">実在する場所を題材に制作したイラストであり、現地写真ではありません。</p>'
+        f'<p class="hero-caption__text">{esc(hero["description"])}</p>'
         '</div></div></aside>')
-    result.append('<div class="atlas-body page-shell">'
-        '<nav class="region-breadcrumb" aria-label="パンくずリスト">'
-        '<a href="./">JOURNEY ATLAS</a><span aria-hidden="true">/</span>'
-        f'<a href="countries/{esc(parent)}/">{esc(data["parentNameJa"])}</a>'
-        '<span aria-hidden="true">/</span>'
-        f'<span aria-current="page">{esc(data["nameJa"])}</span></nav>')
+    result.append('<div class="atlas-body page-shell">')
 
-    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin', 'landscape']
+    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin']
     facts = ''.join('<div>' + icon(facts_icons[i] if i < len(facts_icons) else 'info')
         + f'<dt>{esc(item["label"])}</dt><dd>{esc(item["value"])}</dd></div>'
         for i, item in enumerate(data['profile']))
@@ -221,13 +225,16 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="atlas-extras__head"><div>'
         '<p class="atlas-extras__kicker">BEYOND THE SCENERY</p>'
         '<h2 id="region-culture-title">景色の向こうへ</h2></div>'
-        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の歴史や文化をたどる。</p></div>'
+        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。</p></div>'
         '<div class="atlas-extras__grid">')
     for item in data['culture']:
         result.append('<article class="atlas-extra"><span class="atlas-extra__theme">'
             + icon(item.get('icon', 'culture'))
             + f'{esc(item.get("themeEn", "CULTURE"))} / {esc(item.get("themeJa", "文化"))}</span>'
-            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
+            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p>'
+            + ('<ul>' + ''.join(f'<li>{esc(point)}</li>' for point in item.get('points', [])) + '</ul>'
+               if item.get('points') else '')
+            + '</article>')
     result.append('</div></section>')
 
     result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
@@ -249,7 +256,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<div class="travel-trivia__head"><div>'
             '<span class="travel-trivia__kicker">TRAVEL TRIVIA</span>'
             '<h2 id="region-trivia-title">知っていると旅が少し楽しくなること</h2></div>'
-            '<p class="travel-trivia__intro">風景の背景にある、意外な歴史や小さな発見。</p></div>'
+            '<p class="travel-trivia__intro">現地で見つけたり、試したり、人に話したくなる小さな知識を集めた。</p></div>'
             '<div class="travel-trivia__grid">')
         for item in trivia:
             result.append('<article class="travel-trivia__item"><div class="travel-trivia__meta">'
