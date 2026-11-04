@@ -12,6 +12,8 @@ import subprocess
 from pathlib import Path
 from urllib.parse import urljoin
 
+from build_region_pages import generate_region_pages
+
 ROOT = Path(__file__).resolve().parents[1]
 SITE_CONFIG_PATH = ROOT / "data/site.json"
 CORE_REGISTRY_PATH = ROOT / "data/atlas-destinations.json"
@@ -509,6 +511,9 @@ def main() -> int:
         if item["slug"] in published_slugs:
             urls.append(canonical)
     rewrite_published_hrefs(registries)
+    # Reviewable UK Region pages remain noindex and out of normal discovery.
+    # Only explicitly published Regions enter the sitemap.
+    urls.extend(generate_region_pages(site_url=SITE_URL, version=BUILD_VERSION))
     generate_sitemap(urls)
     print(f"Build version: {BUILD_VERSION}")
     print(

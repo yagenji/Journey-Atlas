@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../../../">
+  <meta name="robots" content="{{ROBOTS}}">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="JOURNEY ATLAS">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <title>{{TITLE}}</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site-nav.css">
+  <link rel="stylesheet" href="assets/css/country.css">
+  <link rel="stylesheet" href="assets/css/region.css?v={{BUILD_VERSION}}">
+  <link rel="preload" as="image" href="{{OG_IMAGE}}" fetchpriority="high" type="image/webp">
+</head>
+<body>
+  <header class="site-header page-shell">
+    <a class="brand country-brand" href="./" aria-label="JOURNEY ATLAS ホーム">
+      <span class="country-brand__wordmark">JOURNEY ATLAS</span>
+      <small>行きたい場所と出会う、旅の図鑑。</small>
+    </a>
+    <nav class="utility-nav" aria-label="サイトメニュー" data-site-nav>
+      <div class="site-explore">
+        <button type="button" class="site-explore__toggle" aria-expanded="false">旅先を探す<span class="site-explore__caret" aria-hidden="true"></span></button>
+        <div class="site-explore__menu">
+          <a href="./#countries">国から探す</a><a href="./#map">地図から探す</a>
+          <a href="./#themes">テーマから探す</a><a href="./#seasons">季節から探す</a>
+          <a href="./#scenery">景色から探す</a>
+          <div class="site-explore__extra"><a href="./#my-atlas">マイアトラス</a><a href="about/">ABOUT</a><a href="./#lens-world">JOURNEY LENS</a></div>
+        </div>
+      </div>
+      <a class="site-nav__side site-nav__atlas" href="./#my-atlas">マイアトラス</a>
+      <a class="site-nav__side" href="about/">ABOUT</a>
+      <a class="site-nav__side" href="./#lens-world">JOURNEY LENS</a>
+    </nav>
+  </header>
+  <main class="region-page">
+    {{CONTENT}}
+  </main>
+  <footer class="atlas-footer" aria-label="サイトフッター">
+    <div class="atlas-footer__inner">
+      <nav class="atlas-footer__nav" aria-label="フッターメニュー">
+        <a href="about/">このサイトについて</a><a href="faq/">よくある質問</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">お問い合わせ</a>
+      </nav>
+      <small class="atlas-footer__copyright">© JOURNEY ATLAS</small>
+    </div>
+  </footer>
+  <script src="assets/js/site-nav.js" defer></script>
+  <script src="assets/js/header-scroll.js" defer></script>
+</body>
+</html>

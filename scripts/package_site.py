@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 DATA_DIR = ROOT / "data"
 COUNTRY_DIR = DATA_DIR / "countries"
+REGION_DIR = DATA_DIR / "regions"
 REGISTRY_PATHS = [
     DATA_DIR / "atlas-destinations.json",
 ]
@@ -225,6 +226,11 @@ def production_image_paths(slugs: list[str]) -> set[str]:
         country_path = COUNTRY_DIR / f"{slug}.json"
         collect_image_refs(json.loads(country_path.read_text(encoding="utf-8")), refs)
 
+    # Region pages are standalone editorial extensions, not extra destinations.
+    # Their approved images and map must survive the production image prune.
+    for region_path in sorted(REGION_DIR.glob("*/*.json")):
+        collect_image_refs(json.loads(region_path.read_text(encoding="utf-8")), refs)
+
     return refs
 
 
@@ -277,6 +283,29 @@ def package_country_pages(slugs: list[str]) -> None:
         if not (source / "index.html").exists():
             raise FileNotFoundError(f"Reviewable static country page missing: {source / 'index.html'}")
         shutil.copytree(source, DIST / "countries" / slug)
+
+
+def package_region_pages() -> None:
+    """Ship canonical Region review pages without adding to the 202-country registry."""
+    sitemap = (DIST / "sitemap.xml").read_text(encoding="utf-8")
+    for data_path in sorted(REGION_DIR.glob("*/*.json")):
+        region = json.loads(data_path.read_text(encoding="utf-8"))
+        parent, slug = region["parentSlug"], region["slug"]
+        relative = Path("countries") / parent / slug / "index.html"
+        source = ROOT / relative
+        if not source.is_file():
+            raise FileNotFoundError(f"Region review page was not built: {source}")
+        page = source.read_text(encoding="utf-8")
+        published = region.get("regionPublished") is True
+        robots = "index,follow" if published else "noindex,follow"
+        if f'<meta name="robots" content="{robots}">' not in page:
+            raise ValueError(f"Wrong Region robots policy: {relative}")
+        canonical = f"countries/{parent}/{slug}/"
+        if (canonical in sitemap) != published:
+            raise ValueError(f"Wrong Region sitemap visibility: {relative}")
+        destination = DIST / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
 
 
 def write_cloudflare_headers() -> None:
@@ -400,6 +429,7 @@ def main() -> int:
     allowed_images = prune_unreferenced_images(slugs)
     package_data(slugs)
     package_country_pages(slugs)
+    package_region_pages()
     write_cloudflare_headers()
     validate_package(slugs, allowed_images)
 
