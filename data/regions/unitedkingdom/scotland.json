@@ -22,19 +22,34 @@
   "profile": [
     {
       "label": "構成国",
-      "value": "イギリス（英国）の4構成国のひとつ"
+      "value": "イギリス（英国）の4構成国の一つ"
     },
     {
-      "label": "中心都市",
+      "label": "首府",
       "value": "エディンバラ"
     },
     {
-      "label": "言葉",
-      "value": "英語、スコッツ語、スコットランド・ゲール語など"
+      "label": "人口",
+      "value": "約555万人（2025年6月推計）",
+      "sourceKey": "population2025"
+    },
+    {
+      "label": "面積",
+      "value": "陸地約7.8万km²（日本の約21%）",
+      "sourceKey": "landArea"
+    },
+    {
+      "label": "主な言語",
+      "value": "英語、スコッツ語、スコットランド・ゲール語など",
+      "sourceKey": "languages"
     },
     {
       "label": "通貨",
       "value": "英ポンド（GBP）"
+    },
+    {
+      "label": "地理",
+      "value": "ハイランドの山地と大西洋・北海の島々"
     }
   ],
   "map": {
@@ -43,7 +58,7 @@
       "north": 61.3,
       "south": 54.4,
       "west": -9.6,
-      "east": 2.0
+      "east": 2
     },
     "source": "GSHHS intermediate coastline via Basemap data; WGS84 / Mercator; 国境・構成国境界は推測して描画しない。"
   },
@@ -180,53 +195,116 @@
   },
   "culture": [
     {
-      "title": "石の城と古い街",
-      "text": "火山岩の上に建つエディンバラ城は、王の居城から軍事拠点へと姿を変えながら、街の輪郭をつくってきた。",
+      "topicKey": "castle-rock-city",
+      "themeEn": "CITY",
+      "themeJa": "街を知る",
+      "icon": "city",
+      "title": "火山岩の上に街の歴史が積み重なる",
+      "text": "エディンバラ城は古い火山岩の上に建ち、王の居城から軍事拠点へと役割を変えてきた。旧市街の通りを歩くと、城の地形が街の骨格そのものを形づくったことがわかる。",
       "sourceKey": "edinburghCastle"
     },
     {
-      "title": "島々に残る時間",
-      "text": "オークニーのスカラ・ブレイには、約5000年前の住居と石の家具が残る。現在の海辺と先史時代の暮らしがひとつの景色に重なる。",
-      "sourceKey": "skaraBrae"
+      "topicKey": "gaelic-island",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "icon": "home",
+      "title": "島々ではゲール語が暮らしのなかに息づく",
+      "text": "アウター・ヘブリディーズではスコットランド・ゲール語が地名や音楽、語りの文化と結びついている。海辺の風景の背景に、言葉を受け継ぐ共同体がある。",
+      "sourceKey": "gaelic"
     },
     {
-      "title": "言葉が変わる風景",
-      "text": "英語のほか、スコッツ語やゲール語が文化を形づくる。地名や道路標識にも、地域ごとの言葉の重なりが現れる。",
-      "sourceKey": "culture"
+      "topicKey": "glacial-landscape",
+      "themeEn": "EARTH",
+      "themeJa": "大地を知る",
+      "icon": "landscape",
+      "title": "ハイランドの谷に、氷河の痕跡を読む",
+      "text": "グレン・コーの山並みと谷は、火山活動の後に氷河が土地を削り直して生まれた。絶景としての山だけでなく、長い時間をかけた地形の変化を意識して歩いてみたい。",
+      "sourceKey": "glencoeGeology"
+    },
+    {
+      "topicKey": "living-music",
+      "themeEn": "LIFE",
+      "themeJa": "音を知る",
+      "icon": "culture",
+      "title": "バグパイプだけでない、今も演奏される伝統音楽",
+      "text": "フィドルやアコーディオン、バグパイプの音色は、町のパブで開かれるセッションやダンスの場にも残る。昔話としてではなく、いま聴ける文化として旅に取り入れたい。",
+      "sourceKey": "traditionalMusic"
+    },
+    {
+      "topicKey": "whisky-regions",
+      "themeEn": "FOOD",
+      "themeJa": "味を知る",
+      "icon": "food",
+      "title": "ウイスキーには土地の名前と個性がある",
+      "text": "スコッチ・ウイスキーにはハイランド、ローランド、スペイサイド、アイラ、キャンベルタウンという5つの伝統的な地域区分がある。原料だけでなく、土地と製法の違いを知る入口になる。",
+      "sourceKey": "whiskyRegions"
+    },
+    {
+      "topicKey": "island-seafood",
+      "themeEn": "SEA",
+      "themeJa": "海を知る",
+      "icon": "sea",
+      "title": "港で見える、海と島の日々のつながり",
+      "text": "スカイ島のポートリーでは、色とりどりの建物の前の港に漁船が行き交う。島を単なる景勝地として見るのではなく、海の仕事と食がつながる暮らしを眺めることができる。",
+      "sourceKey": "skyeIsland"
     }
   ],
   "forWhom": [
     {
-      "title": "街と歴史を歩きたい",
-      "text": "エディンバラの石造建築、城跡、オークニーの先史遺跡に惹かれる人へ。"
+      "title": "城と石の街を歩きたい",
+      "text": "エディンバラの旧市街や石の城、町に残る歴史をじっくり見たい人へ。"
     },
     {
-      "title": "山と海岸を歩きたい",
-      "text": "ハイランドの谷、スカイ島の稜線、ヘブリディーズの海岸を見たい人へ。"
+      "title": "山と地形に惹かれる",
+      "text": "グレン・コーの谷、スカイ島の岩峰、森林の湖を自分の目で確かめたい人へ。"
+    },
+    {
+      "title": "島の暮らしと海を知りたい",
+      "text": "ヘブリディーズの白砂やオークニーの遺跡、港とフェリーのある暮らしを味わいたい人へ。"
     }
   ],
   "notes": [
     {
-      "title": "山の天候は街とは別に確認する",
-      "text": "西ハイランドや島々では風雨が変わりやすい。徒歩ルートは現地の山岳予報とアクセス情報を出発前に確認したい。"
+      "title": "山の天気は街と分けて考える",
+      "text": "ハイランドと海岸では風雨や雲の状況が大きく変わる。歩く前には現地予報とアクセス情報を確認したい。"
     },
     {
-      "title": "島への移動はフェリー・航空便を確認する",
-      "text": "オークニーやヘブリディーズを含める旅は、天候と運航条件を考慮して日程に余裕を持たせたい。"
+      "title": "島への移動は時刻表を先に確かめる",
+      "text": "ヘブリディーズやオークニーへはフェリー・航空便を使う。運休や満席に備えて日程に余裕を持たせたい。"
+    },
+    {
+      "title": "移動が長い区間は拠点を絞る",
+      "text": "8景は本土・ハリス島・オークニーに点在する。短期旅行で全地点を巡ろうとせず、都市・ハイランド・島から優先順位を決めたい。"
     }
   ],
   "seasons": [
     {
-      "label": "春〜夏",
-      "text": "日が長くなり、海岸や山を歩く旅を組み立てやすい季節。"
+      "months": "3〜5月",
+      "label": "春",
+      "text": "日が長くなり始め、都市散策や低地の森歩きに向く。山地は天候の急変や残雪に注意。",
+      "color": "#73966f",
+      "icon": "sun"
     },
     {
+      "months": "6〜8月",
+      "label": "夏",
+      "text": "日照時間が長く、山地や島の景色を巡りやすい。ただし雨風は通年あり、交通や宿泊の予約が重要。",
+      "color": "#92a253",
+      "icon": "sun"
+    },
+    {
+      "months": "9〜11月",
       "label": "秋",
-      "text": "山地や森林が色づき、都市と自然を落ち着いて組み合わせやすい。"
+      "text": "森林や谷が色づき、街歩きと自然を組み合わせられる。日暮れが早まり、島の運航は天候次第。",
+      "color": "#b77a49",
+      "icon": "leaf"
     },
     {
+      "months": "12〜2月",
       "label": "冬",
-      "text": "日照時間が短く、山地の条件が厳しくなる。街の博物館や歴史文化を中心に旅を組む選択肢もある。"
+      "text": "日照時間は短く、ハイランドの山岳条件は厳しい。歴史都市や博物館、冬の文化行事を中心に。",
+      "color": "#6b90a5",
+      "icon": "snow"
     }
   ],
   "sourcesVerifiedAt": "2026-11-04",
@@ -245,6 +323,220 @@
     "culture": "https://www.visitscotland.com/things-to-do/culture-history",
     "visit": "https://www.visitscotland.com/planning/travel-information/scotland-faqs",
     "castle": "https://www.eileandonancastle.com/",
-    "map": "https://www.soest.hawaii.edu/pwessel/gshhg/"
+    "map": "https://www.soest.hawaii.edu/pwessel/gshhg/",
+    "population2025": "https://nrscotland.gov.uk/publications/mid-2025-population-estimates/",
+    "landArea": "https://www.gov.scot/publications/supporting-scotlands-transition-land-use-agriculture-technical-supporting-document/pages/3/",
+    "islands": "https://www.gov.scot/publications/supporting-scotlands-transition-land-use-agriculture-technical-supporting-document/pages/3/",
+    "languages": "https://www.visitscotland.com/things-to-do/culture-history",
+    "gaelic": "https://www.visitscotland.com/things-to-do/culture-history/gaelic",
+    "glencoeGeology": "https://www.visitscotland.com/places-to-go/places/glencoe",
+    "traditionalMusic": "https://www.visitscotland.com/things-to-do/events/music-festivals",
+    "whiskyRegions": "https://www.scotch-whisky.org.uk/discover-scotch/enjoying-scotch/scotch-whisky-regions/",
+    "skyeIsland": "https://www.visitscotland.com/places-to-go/islands/isle-skye",
+    "unicorn": "https://www.scotland.org/inspiration/what-is-the-national-animal-of-scotland",
+    "maeshowe": "https://www.historicenvironment.scot/visit/all/maeshowe-chambered-cairn/history-and-stories/",
+    "oneOClockGun": "https://www.historicenvironment.scot/visit/all/edinburgh-castle/",
+    "inventions": "https://www.visitscotland.com/things-to-do/culture-history/scottish-inventions",
+    "travelTransport": "https://www.visitscotland.com/planning/travel-in-scotland",
+    "weather": "https://www.visitscotland.com/planning/travel-information/weather",
+    "nationalParks": "https://www.gov.scot/policies/landscape-and-outdoor-access/national-parks/"
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "island-count",
+      "label": "海に点在する島々",
+      "value": "790島",
+      "note": "スコットランド政府の資料では790の島が数えられ、そのうち93島に人が暮らす。都市から少し離れるだけで、旅の舞台は海へと広がる。",
+      "icon": "sea",
+      "sourceKey": "islands"
+    },
+    {
+      "topicKey": "glenfinnan-arches",
+      "label": "谷を渡る高架橋",
+      "value": "21アーチ",
+      "note": "グレンフィナン高架橋には21のコンクリート製アーチが続く。19世紀末に造られた曲線が、西ハイランドの谷に鉄道を通した。",
+      "icon": "road",
+      "sourceKey": "glenfinnan"
+    },
+    {
+      "topicKey": "orkney-neolithic",
+      "label": "海辺に残る暮らし",
+      "value": "約5,000年前",
+      "note": "オークニーのスカラ・ブレイは約5,000年前の集落。住居の中には石製の寝台や家具が残り、先史時代の暮らしを間近に感じられる。",
+      "icon": "history",
+      "sourceKey": "skaraBrae"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "城のある石の街",
+      "icon": "city"
+    },
+    {
+      "title": "氷河が刻んだ谷",
+      "icon": "landscape"
+    },
+    {
+      "title": "島の岩峰と稜線",
+      "icon": "hike"
+    },
+    {
+      "title": "谷を渡る鉄道",
+      "icon": "road"
+    },
+    {
+      "title": "白砂と青緑の海",
+      "icon": "sea"
+    },
+    {
+      "title": "先史時代の住まい",
+      "icon": "history"
+    },
+    {
+      "title": "断崖の城跡",
+      "icon": "history"
+    },
+    {
+      "title": "松林と湖の静けさ",
+      "icon": "quiet"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "unicorn-national-animal",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "紋章",
+      "icon": "spark",
+      "title": "国を象徴する動物は、実在しないユニコーン",
+      "text": "スコットランドの伝統的な国の動物はユニコーン。古くから王家の紋章に登場し、街角の歴史建築にも姿を残す。",
+      "sourceKey": "unicorn"
+    },
+    {
+      "topicKey": "maeshowe-solstice",
+      "categoryEn": "ANCIENT",
+      "categoryJa": "先史",
+      "icon": "history",
+      "title": "冬至の夕日が石室の奥を照らす",
+      "text": "オークニーのメイズハウの墓室は、冬至の前後に沈む太陽の光が通路を抜けて奥まで届くように造られている。",
+      "sourceKey": "maeshowe"
+    },
+    {
+      "topicKey": "castle-one-oclock-gun",
+      "categoryEn": "CITY",
+      "categoryJa": "習慣",
+      "icon": "city",
+      "title": "エディンバラでは午後1時に大砲が鳴る",
+      "text": "エディンバラ城の「ワン・オクロック・ガン」は、日曜日とクリスマスを除く日中の伝統行事。時を告げる音が街に響く。",
+      "sourceKey": "oneOClockGun"
+    },
+    {
+      "topicKey": "maxwell-colour-photo",
+      "categoryEn": "INVENTION",
+      "categoryJa": "発明",
+      "icon": "camera",
+      "title": "初期のカラー写真の主役はタータンのリボン",
+      "text": "物理学者ジェームズ・クラーク・マクスウェルは1861年に色の三原色を使ったカラー写真の実演を行い、題材にタータンのリボンを使った。",
+      "sourceKey": "inventions"
+    },
+    {
+      "topicKey": "dolly-sheep",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "科学",
+      "icon": "spark",
+      "title": "クローン羊ドリーはエディンバラ近郊で生まれた",
+      "text": "成体の細胞からクローン化された最初の哺乳類ドリーは1996年にロスリン研究所で誕生。現在はエディンバラの博物館で標本を見ることができる。",
+      "sourceKey": "inventions"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "島や山地まで広げるほど、移動日に余裕が必要。以下は出発地へ戻る周遊の例。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "エディンバラと近郊の歴史を歩く",
+        "text": "城と旧市街を中心に、鉄道でスターリングなど近郊を訪れる。例：エディンバラ → スターリング → エディンバラ。",
+        "icon": "city"
+      },
+      {
+        "duration": "7〜9日",
+        "title": "ハイランドとスカイ島へ",
+        "text": "谷と高架橋の景色をたどり、島の岩峰まで進む。道路移動に余白を残す。例：エディンバラ → グレン・コー → グレンフィナン → スカイ島 → エディンバラ。",
+        "icon": "landscape"
+      },
+      {
+        "duration": "14日以上",
+        "title": "ヘブリディーズの島旅を加える",
+        "text": "島間フェリーの日程に余裕を持たせ、スカイ島からハリス島へ渡る。オークニーまで行くならさらに滞在を延ばす。例：エディンバラ → スカイ島 → ハリス島 → インヴァネス → エディンバラ。",
+        "icon": "sea"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "label": "5〜9月",
+        "reason": "長い日照を生かし、島やハイランドを巡りやすい時期。風雨と運航状況は別途確認。"
+      }
+    ]
+  },
+  "transport": {
+    "icon": "road",
+    "title": "鉄道・車・フェリー",
+    "text": "エディンバラやグラスゴーの都市間は鉄道や長距離バス。ハイランドの地方部は車・地域バス、ヘブリディーズやオークニーの島旅はフェリーと航空便を組み合わせる。",
+    "sourceKey": "travelTransport"
+  },
+  "nextRoutes": [
+    {
+      "countryEn": "ENGLAND",
+      "countryJa": "イングランド",
+      "path": "エディンバラ → ヨーク → ロンドン",
+      "description": "城と石の街から南へ。鉄道沿いに大聖堂の街とロンドンへ旅をつなぐ。",
+      "href": "countries/unitedkingdom/"
+    },
+    {
+      "countryEn": "WALES",
+      "countryJa": "ウェールズ",
+      "path": "エディンバラ → チェスター → 北ウェールズ",
+      "description": "英国の山岳と城塞の文化を続けて見る。途中で滞在日を設ける周遊向き。",
+      "href": "countries/unitedkingdom/"
+    },
+    {
+      "countryEn": "NORTHERN IRELAND",
+      "countryJa": "北アイルランド",
+      "path": "グラスゴー → ケアンライアン → ベルファスト",
+      "description": "鉄道・バスと海峡のフェリーを組み合わせ、海の向こうの英国へ。",
+      "href": "countries/unitedkingdom/"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/"
+    },
+    {
+      "nameJa": "アイルランド",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/"
+    },
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/"
+    }
+  ],
+  "sourceDates": {
+    "population": "2025-06-30",
+    "landArea": "政府資料に基づく概数（2025年）",
+    "islands": "2025年時点資料（定義上の島数）"
   }
 }

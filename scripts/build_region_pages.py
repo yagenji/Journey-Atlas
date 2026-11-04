@@ -94,7 +94,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span aria-hidden="true">/</span>'
         f'<span aria-current="page">{esc(data["nameJa"])}</span></nav>')
 
-    facts_icons = ['globe', 'landmark', 'language', 'coin']
+    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin', 'landscape']
     facts = ''.join('<div>' + icon(facts_icons[i] if i < len(facts_icons) else 'info')
         + f'<dt>{esc(item["label"])}</dt><dd>{esc(item["value"])}</dd></div>'
         for i, item in enumerate(data['profile']))
@@ -102,6 +102,20 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="country-facts-strip__head"><span class="section-kicker-en">REGION PROFILE</span>'
         '<h2 id="region-facts-title">基本情報</h2></div>'
         f'<dl class="fact-list">{facts}</dl></section>')
+
+    # Distinctive numbers use the existing shared Signature Facts band.
+    signature = data.get('signatureFacts', [])
+    if signature:
+        result.append('<section class="signature-facts" aria-labelledby="region-signature-title">'
+            '<div class="signature-facts__head"><span class="section-kicker-en">SIGNATURE FACTS</span>'
+            '<h2 id="region-signature-title">この地域を知る数字</h2></div>'
+            '<div class="signature-facts__grid">')
+        for item in signature:
+            result.append('<article><div class="signature-fact__label">'
+                + icon(item.get('icon', 'spark'))
+                + f'<span>{esc(item["label"])}</span></div>'
+                f'<strong>{esc(item["value"])}</strong><p>{esc(item["note"])}</p></article>')
+        result.append('</div></section>')
 
     # Standard Country map-left / eight-Scene-right panel and card formatting.
     result.append('<section class="atlas-panel" aria-labelledby="region-scenery-title">'
@@ -117,6 +131,11 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
         '<p class="region-map-note">GSHHSの実海岸線に基づく地図。構成国境界は推測して描画していません。</p>'
+        '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
+        f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
+        + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
+                  for item in data.get('encounters', []))
+        + '</div></div>'
         '</div><div class="scenes-column">'
         '<div class="scenes-heading"><div class="scenes-title-wrap">'
         '<span class="section-kicker-en">SCENERY</span>'
@@ -142,7 +161,9 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<p class="atlas-extras__intro">景色だけでは見えない、この地域の歴史や文化をたどる。</p></div>'
         '<div class="atlas-extras__grid">')
     for item in data['culture']:
-        result.append('<article class="atlas-extra"><span class="atlas-extra__theme">CULTURE / 文化</span>'
+        result.append('<article class="atlas-extra"><span class="atlas-extra__theme">'
+            + icon(item.get('icon', 'culture'))
+            + f'{esc(item.get("themeEn", "CULTURE"))} / {esc(item.get("themeJa", "文化"))}</span>'
             f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
     result.append('</div></section>')
 
@@ -158,6 +179,21 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             f'<h3>{esc(item["name"])}</h3><small>{esc(item["nameLocal"])}</small>'
             f'<p>{esc(item["text"])}</p></div></article>')
     result.append('</div></section>')
+
+    trivia = data.get('travelTrivia', [])
+    if trivia:
+        result.append('<section class="travel-trivia" aria-labelledby="region-trivia-title">'
+            '<div class="travel-trivia__head"><div>'
+            '<span class="travel-trivia__kicker">TRAVEL TRIVIA</span>'
+            '<h2 id="region-trivia-title">知っていると旅が少し楽しくなること</h2></div>'
+            '<p class="travel-trivia__intro">風景の背景にある、意外な歴史や小さな発見。</p></div>'
+            '<div class="travel-trivia__grid">')
+        for item in trivia:
+            result.append('<article class="travel-trivia__item"><div class="travel-trivia__meta">'
+                + icon(item.get('icon', 'spark'))
+                + f'<span>{esc(item["categoryEn"])} / {esc(item["categoryJa"])}</span></div>'
+                f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
+        result.append('</div></section>')
 
     result.append('<section class="travel-guidance" aria-label="旅のヒント">'
         '<section class="travel-guidance__block" aria-labelledby="region-for-whom-title">'
@@ -178,13 +214,58 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     result.append('<section class="travel-planning" aria-labelledby="region-when-title">'
         '<div class="travel-planning__head"><span class="section-kicker-en">WHEN TO GO</span>'
         '<h2 id="region-when-title">旅するなら</h2></div>'
-        '<div class="travel-planning__content"><section class="travel-planning__block travel-planning__block--season" '
+        '<div class="travel-planning__content">')
+    travel_scale = data.get('travelScale', {})
+    if travel_scale.get('items'):
+        result.append('<section class="travel-scale travel-planning__block travel-planning__block--days" '
+            'aria-labelledby="region-days-title"><div class="travel-scale__head"><span class="travel-planning__label">DURATION</span>'
+            f'<h3 id="region-days-title">{esc(travel_scale.get("title", "旅の目安日程"))}</h3>'
+            f'<p>{esc(travel_scale.get("intro", ""))}</p></div><div class="travel-scale__grid">')
+        for item in travel_scale['items']:
+            result.append('<article class="travel-scale__item"><span class="travel-scale__icon">'
+                + icon(item.get('icon', 'calendar')) + '</span><div>'
+                f'<strong>{esc(item["duration"])}</strong><h4>{esc(item["title"])}</h4>'
+                f'<p>{esc(item["text"])}</p></div></article>')
+        result.append('</div></section>')
+    result.append('<section class="travel-planning__block travel-planning__block--season" '
         'aria-labelledby="region-season-title"><span class="travel-planning__label">SEASON</span>'
-        '<h3 id="region-season-title">季節</h3><div class="season-list">')
-    for i, item in enumerate(data['seasons']):
-        result.append(f'<article>{icon(["sun", "leaf", "snow"][i % 3])}'
-            f'<div><b>{esc(item["label"])}</b><p>{esc(item["text"])}</p></div></article>')
-    result.append('</div></section></div></section>')
+        '<h3 id="region-season-title">季節</h3>')
+    windows = data.get('bestSeason', {}).get('windows', [])
+    if windows:
+        result.append('<div class="season-best"><span class="season-best__tag">おすすめの時期</span>'
+            '<dl>' + ''.join(f'<div><dt>{esc(w["label"])}</dt><dd>{esc(w["reason"])}</dd></div>'
+                             for w in windows) + '</dl></div>')
+    result.append('<div class="season-list">')
+    for item in data['seasons']:
+        result.append('<article style="--season-color:' + esc(item.get('color', '#73966f')) + '">'
+            + icon(item.get('icon', 'calendar'))
+            + f'<div><b>{esc(item["months"])}</b><p>{esc(item["text"])}</p></div></article>')
+    result.append('</div></section>')
+    transport = data.get('transport') or {}
+    if transport:
+        result.append('<section class="travel-planning__block travel-planning__block--transport" '
+            'aria-labelledby="region-transport-title">'
+            '<span class="travel-planning__label">TRANSPORT</span>'
+            '<h3 id="region-transport-title">移動</h3><div class="transport">'
+            '<span class="transport-icon">' + icon(transport.get('icon', 'road')) + '</span>'
+            '<div><small>移動</small>'
+            f'<h4>{esc(transport["title"])}</h4><p>{esc(transport["text"])}</p></div></div></section>')
+    result.append('</div></section>')
+
+    if data.get('nextRoutes'):
+        result.append('<section class="next-routes-section" aria-labelledby="region-routes-title">'
+            '<div class="next-routes__head"><div>'
+            '<span class="section-kicker-en">NEXT ROUTES</span>'
+            '<h2 id="region-routes-title">隣の地域へ旅をつなぐ</h2></div>'
+            '<p>ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。</p>'
+            '</div><div class="next-routes__grid">')
+        for route in data['nextRoutes']:
+            result.append('<article class="next-route-card"><div class="next-route-card__country"><div>'
+                f'<strong>{esc(route["countryEn"])}</strong>'
+                f'<small>{esc(route["countryJa"])}</small></div></div>'
+                f'<p class="next-route-card__path">{esc(route["path"])}</p>'
+                f'<p class="next-route-card__description">{esc(route["description"])}</p></article>')
+        result.append('</div></section>')
 
     result.append('<div class="region-back"><div><p class="region-back__label">BACK TO COUNTRY</p>'
         '<p>イギリス全体の8景や地図も見てみる</p></div>'
