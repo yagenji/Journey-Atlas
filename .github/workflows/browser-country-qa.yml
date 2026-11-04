@@ -65,6 +65,9 @@ jobs:
               match = re.fullmatch(r"data/countries/([^/]+)\.json", path)
               if match:
                   slugs.add(match.group(1))
+              region_match = re.fullmatch(r"data/regions/([^/]+)/[^/]+\.json", path)
+              if region_match:
+                  slugs.add(region_match.group(1))
               match = re.match(r"assets/images/([^/]+)/", path)
               if match and match.group(1) != "top":  # assets/images/top/ holds top-page art, not a Country
                   asset_folders.add(match.group(1))
@@ -89,6 +92,9 @@ jobs:
 
           shared = any(
               path == "country.html"
+              or path == "region.html"
+              or path == "scripts/build_region_pages.py"
+              or path == "scripts/qa_region_browser.py"
               or (path.startswith("assets/css/") and not (path == "assets/css/top.css" or path.startswith("assets/css/top-") or path == "assets/css/map-regions.css"))
               or (path.startswith("assets/js/") and path not in {"assets/js/top.js", "assets/js/map-regions.js"})
               or path in {
@@ -162,6 +168,14 @@ jobs:
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
         run: python3 scripts/qa_country_browser.py
+
+      - name: Run Region Desktop / Tablet / Mobile QA
+        if: steps.target.outputs.run == 'true'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-browser-output
+          QA_PARENT_SLUGS: ${{ steps.target.outputs.slugs }}
+        run: python3 scripts/qa_region_browser.py
 
       - name: Stop local site
         if: always() && steps.target.outputs.run == 'true'

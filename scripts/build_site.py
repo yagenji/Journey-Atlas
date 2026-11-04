@@ -95,6 +95,7 @@ COUNTRY_CSS_SOURCES = [
     "assets/css/site-unify.css",
     "assets/css/site-footer.css",
     "assets/css/hero-caption.css",
+    "assets/css/region.css",
 ]
 
 TOP_CSS_SOURCES = [
@@ -322,6 +323,35 @@ def prepare_generic_country_page() -> None:
     path.write_text(page, encoding="utf-8")
 
 
+
+def inject_published_region_nav(page: str, slug: str) -> str:
+    """Render subregions only after publication; unpublished reviews are direct-URL only."""
+    directory = ROOT / "data" / "regions" / slug
+    if not directory.is_dir():
+        return page
+    links: list[str] = []
+    for path in sorted(directory.glob("*.json")):
+        region = json.loads(path.read_text(encoding="utf-8"))
+        region_slug = region.get("slug", "")
+        if region.get("regionPublished") is not True or not re.fullmatch(r"[a-z0-9-]+", region_slug):
+            continue
+        href = f"countries/{slug}/{region_slug}/"
+        links.append(f'<a href="{html.escape(href, quote=True)}">{html.escape(region.get("nameJa", region_slug))}</a>')
+    if not links:
+        return page
+    markup = (
+        '      <section class="region-discovery page-shell" aria-labelledby="region-discovery-title">\n'
+        '        <span class="section-kicker-en">EXPLORE REGIONS</span>\n'
+        '        <h2 id="region-discovery-title">地域から旅先を探す</h2>\n'
+        f'        <div class="region-discovery__list">{"".join(links)}</div>\n'
+        '      </section>\n'
+    )
+    marker = '      <div class="atlas-body page-shell">'
+    if marker not in page:
+        raise ValueError("Country body marker missing for Region navigation")
+    return page.replace(marker, markup + marker, 1)
+
+
 def generate_country_page(destination: dict, *, published: bool) -> str:
     slug = destination["slug"]
     data_path = ROOT / f"data/countries/{slug}.json"
@@ -361,6 +391,8 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     page = set_tag(page, 'content="https://yagenji.github.io/Journey-Atlas/assets/icons/favicon.svg"', f'content="{html.escape(og_image, quote=True)}"')
     if published:
         page = page.replace('<meta name="robots" content="noindex,follow">', '<meta name="robots" content="index,follow">', 1)
+
+    page = inject_published_region_nav(page, slug)
 
     output = ROOT / "countries" / slug / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -508,6 +540,8 @@ def main() -> int:
         canonical = generate_country_page(item, published=item["slug"] in published_slugs)
         if item["slug"] in published_slugs:
             urls.append(canonical)
+    from build_region_pages import generate_region_pages
+    urls.extend(generate_region_pages(site_url=SITE_URL, version=BUILD_VERSION))
     rewrite_published_hrefs(registries)
     generate_sitemap(urls)
     print(f"Build version: {BUILD_VERSION}")

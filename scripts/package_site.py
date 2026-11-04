@@ -225,6 +225,10 @@ def production_image_paths(slugs: list[str]) -> set[str]:
         country_path = COUNTRY_DIR / f"{slug}.json"
         collect_image_refs(json.loads(country_path.read_text(encoding="utf-8")), refs)
 
+    # Reviewable Region pages need their approved images and geographic maps.
+    for path in sorted((DATA_DIR / "regions").glob("*/*.json")):
+        collect_image_refs(json.loads(path.read_text(encoding="utf-8")), refs)
+
     return refs
 
 
@@ -302,6 +306,9 @@ def write_cloudflare_headers() -> None:
 
 /assets/images/:country/approved/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/:country/:region/approved/*
+  Cache-Control: public, max-age=31536000, immutable
 """
     (DIST / "_headers").write_text(headers, encoding="utf-8")
 
@@ -369,6 +376,21 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
             page = (DIST / "countries" / slug / "index.html").read_text(encoding="utf-8")
             if expected not in page:
                 raise ValueError(f"Country Hero preload is not version-aligned for {slug}: {expected}")
+
+    # Region pages are direct-URL reviews until their publication flag is true.
+    for region_path in sorted((DATA_DIR / "regions").glob("*/*.json")):
+        region = json.loads(region_path.read_text(encoding="utf-8"))
+        parent, region_slug = region["parentSlug"], region["slug"]
+        page_path = DIST / "countries" / parent / region_slug / "index.html"
+        if not page_path.is_file():
+            raise FileNotFoundError(f"Reviewable Region page missing: {page_path}")
+        html_text = page_path.read_text(encoding="utf-8")
+        expected_robots = "index,follow" if region.get("regionPublished") is True else "noindex,follow"
+        if f'<meta name="robots" content="{expected_robots}">' not in html_text:
+            raise ValueError(f"Region robots status mismatch: {parent}/{region_slug}")
+        in_sitemap = f"/countries/{parent}/{region_slug}/" in (DIST / "sitemap.xml").read_text(encoding="utf-8")
+        if in_sitemap != (region.get("regionPublished") is True):
+            raise ValueError(f"Region sitemap publication mismatch: {parent}/{region_slug}")
 
     headers = (DIST / "_headers").read_text(encoding="utf-8")
     cache_rule = "/assets/images/:country/approved/*\n  Cache-Control: public, max-age=31536000, immutable"
