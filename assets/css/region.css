@@ -16,7 +16,7 @@
 .region-page a:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 @media(max-width:1200px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 @media(max-width:900px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:760px){.region-country-page .hero-art>img{object-position:center 48%}
+@media(max-width:760px){.region-country-page .hero-art>img{object-position:center 48%}}
 /* Region facts and encounter sections inherit the same Country visual language. */
 .region-country-page .encounter-list article>.ui-icon{display:block;flex:0 0 16px;width:16px;height:16px;margin:0;color:#8a6b55}
 .region-country-page .encounter-list article{display:flex;align-items:center;justify-content:flex-start;text-align:left}
@@ -24,9 +24,8 @@
 .region-country-page .atlas-extra__theme{display:flex;align-items:center;gap:6px}
 .region-country-page .atlas-extra__theme .ui-icon{width:14px;height:14px;flex-basis:14px}
 .region-country-page .next-routes-section{margin-top:18px}
-/* The map's printed numbered markers are retained as approved artwork.
-   Invisible hit targets are centered on those real coordinates and visibly
-   marked on focus, hover or selection; no additional geographic markers. */
+/* Real-coordinate HTML map markers use the shared Country visual design.
+   Markers printed into the legacy SVG are hidden, not moved or invented. */
 .region-map-hits{position:absolute;inset:0;z-index:8;pointer-events:none}
 .region-map-hit{display:grid;place-items:center;position:absolute;pointer-events:auto;padding:0;transform:translate(-50%,-50%);border:0;background:transparent;cursor:pointer;touch-action:manipulation}
 .region-map-hit b{display:grid;place-items:center;width:27px;height:27px;border:2px solid var(--paper-soft);border-radius:50%;background:var(--navy);color:#fff;box-shadow:0 2px 5px rgba(9,42,75,.25);font:600 11px/1 var(--meta)}
