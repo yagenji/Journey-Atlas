@@ -164,7 +164,7 @@ def main() -> int:
                         return {hits:hits.length, mapPositions, mapSelect, keyboardSelect,
                             sceneHeart:!!sceneHeart,heroHeart:!!heroHeart,
                             favoriteSave,favoriteRestore,wishSave,wishRestore,
-                            related:document.querySelectorAll('.region-related-card[href]').length};
+                            related:document.querySelectorAll('.region-related .related-card[href]').length};
                     """, {"slug": slug, "parentSlug": parent})
                     if interactions["hits"] != 8 or any(not p["x"] or not p["y"] for p in interactions["mapPositions"]):
                         problems.append("incomplete map hit targets")
