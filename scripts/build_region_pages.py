@@ -123,6 +123,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         raise FileNotFoundError(data['map']['svg'])
 
     map_svg_text = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+    map_version = hashlib.sha256(map_svg_text.encode('utf-8')).hexdigest()[:16]
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
     canonical = urljoin(site_url, f'countries/{parent}/{slug}/')
     published = data.get('regionPublished') is True
@@ -179,7 +180,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<h2 class="panel-title">旅の地図</h2></div></div>'
         '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
         'role="group" aria-label="スコットランドの景色の地図">'
-        f'<img class="map-base" src="{esc(data["map"]["svg"])}" '
+        f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
         'alt="スコットランドの実海岸線と島々を描いた地図" '
         'loading="lazy" decoding="async">'
         '<div class="region-map-hits" id="region-map-hits">'
