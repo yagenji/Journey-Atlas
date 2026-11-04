@@ -226,6 +226,51 @@ jobs:
               sys.exit(1)
           PY
 
+      - name: Verify live canonical Region review content
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import time
+          import urllib.request
+          from pathlib import Path
+
+          site = 'https://atlas.yagenji.com'
+          regions = sorted(Path('data/regions').glob('*/*.json'))
+          for path in regions:
+              data = json.loads(path.read_text(encoding='utf-8'))
+              route = f"/countries/{data['parentSlug']}/{data['slug']}/"
+              url = site + route + '?qa=' + os.environ.get('GITHUB_RUN_ID', 'region')
+              for attempt in range(1, 5):
+                  try:
+                      request = urllib.request.Request(url, headers={'Cache-Control':'no-cache'})
+                      with urllib.request.urlopen(request, timeout=25) as response:
+                          html = response.read().decode('utf-8')
+                          cache = response.headers.get('Cache-Control', '').lower()
+                      break
+                  except Exception as error:
+                      if attempt == 4:
+                          raise RuntimeError(f'{route}: cannot retrieve canonical Region page') from error
+                      time.sleep(5)
+              expected_robots = 'index,follow' if data.get('regionPublished') is True else 'noindex,follow'
+              required = [
+                  f'<meta name="robots" content="{expected_robots}">',
+                  f'<h1 id="region-title">{data["nameEn"]}</h1>',
+                  data['hero']['image'],
+                  *[scene['image'] for scene in data['scenes']],
+                  *[food['image'] for food in data['taste']['items']],
+              ]
+              missing = [item for item in required if item not in html]
+              if missing or len(re.findall(r'class="scene-card region-scene"', html)) != 8 or len(re.findall(r'class="taste-card region-taste"', html)) != 4:
+                  raise RuntimeError(f'{route}: live Region page is incomplete/stale: {missing}')
+              if data.get('regionPublished') is not True and 'no-store' not in cache:
+                  raise RuntimeError(f'{route}: live unpublished review HTML remains cacheable: {cache}')
+              if not re.search(r'region-interactions\\.js\\?v=[0-9a-f]{16}', html):
+                  raise RuntimeError(f'{route}: no content-hashed Region interaction asset')
+              print(f'PASS {route} — 1 Hero, 8 Scenes, 4 Taste, robots={expected_robots}, cache={cache}')
+          PY
+
       - name: Verify changed Country routes
         if: steps.target.outputs.slugs != ''
         env:
