@@ -266,7 +266,7 @@ jobs:
                   raise RuntimeError(f'{route}: live Region page is incomplete/stale: {missing}')
               if data.get('regionPublished') is not True and 'no-store' not in cache:
                   raise RuntimeError(f'{route}: live unpublished review HTML remains cacheable: {cache}')
-              if not re.search(r'region-interactions\\.js\\?v=[0-9a-f]{16}', html):
+              if not re.search(r'region-interactions\.js\?v=[0-9a-f]{16}', html):
                   raise RuntimeError(f'{route}: no content-hashed Region interaction asset')
               print(f'PASS {route} — 1 Hero, 8 Scenes, 4 Taste, robots={expected_robots}, cache={cache}')
           PY
