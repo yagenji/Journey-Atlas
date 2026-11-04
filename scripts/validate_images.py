@@ -18,6 +18,7 @@ import json
 import math
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 from xml.etree import ElementTree
 
@@ -361,6 +362,29 @@ def validate_map_svg(errors: list[str], owner: str, asset: str) -> None:
         errors.append(f"{owner}: map SVG canvas must be 1200x760: {asset} ({width:g}x{height:g})")
 
 
+@lru_cache(maxsize=1)
+def region_image_refs() -> set[str]:
+    """Assets explicitly referenced by reviewable Region pages under a Country folder.
+
+    Country asset hygiene must not mistake legitimate nested Region assets
+    for unreferenced Country imagery. A Region's own asset integrity is
+    checked by the Region page build, independent of publication state.
+    """
+    refs: set[str] = set()
+    for path in sorted((ROOT / "data" / "regions").glob("*/*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        items = [data.get("hero") or {}, *(data.get("scenes") or []),
+                 *((data.get("taste") or {}).get("items") or [])]
+        for item in items:
+            image = item.get("image") if isinstance(item, dict) else None
+            if isinstance(image, str) and image.startswith("assets/images/"):
+                refs.add(image)
+        map_svg = (data.get("map") or {}).get("svg")
+        if isinstance(map_svg, str) and map_svg.startswith("assets/images/"):
+            refs.add(map_svg)
+    return refs
+
+
 def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str]) -> None:
     """Ensure renewed production folders contain only currently referenced final assets."""
     expanded = set(referenced)
@@ -392,7 +416,7 @@ def production_asset_hygiene(errors: list[str], slug: str, referenced: set[str])
             if not path.is_file():
                 continue
             relative = path.relative_to(ROOT).as_posix()
-            if relative not in expanded:
+            if relative not in expanded and relative not in region_image_refs():
                 errors.append(f"{slug}: unreferenced file remains in production asset folder: {relative}")
 
 
