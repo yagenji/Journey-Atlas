@@ -109,6 +109,67 @@ def main() -> int:
                         if actual_count != expected_count:
                             problems.append(f"{section} count mismatch: {actual_count}/{expected_count}")
 
+                    # Interactions are part of Country parity: a screenshot PASS
+                    # alone cannot prove map/card selection or personal saves.
+                    interactions = driver.execute_script("""
+                        const hits = [...document.querySelectorAll('.region-map-hit')];
+                        const cards = [...document.querySelectorAll('.region-scene')];
+                        const testId = hits[1]?.dataset.scene;
+                        const target = cards.find(c => c.dataset.scene === testId);
+                        const mapPositions = hits.map(h => ({x:h.style.left, y:h.style.top}));
+                        hits[1]?.click();
+                        const mapSelect = !!target && target.getAttribute('aria-pressed') === 'true'
+                            && hits[1].getAttribute('aria-pressed') === 'true';
+                        cards[2]?.dispatchEvent(new KeyboardEvent('keydown',
+                            {key:'Enter', bubbles:true, cancelable:true}));
+                        const keyboardSelect = cards[2]?.getAttribute('aria-pressed') === 'true'
+                            && hits[2]?.getAttribute('aria-pressed') === 'true';
+                        const sceneHeart = target?.querySelector('[data-ja-scene-save]');
+                        const heroHeart = document.querySelector('[data-ja-hero-save]');
+                        const sceneKey = 'journey-atlas:scene:' + arguments[0].slug + ':' + testId;
+                        let oldSave = null, favoriteSave = false, favoriteRestore = false;
+                        if (sceneHeart) {
+                            oldSave = localStorage.getItem(sceneKey);
+                            if (oldSave !== null) { sceneHeart.click(); }
+                            sceneHeart.click();
+                            const stored = JSON.parse(localStorage.getItem(sceneKey) || 'null');
+                            favoriteSave = stored?.kind === 'region'
+                                && stored?.parentSlug === arguments[0].parentSlug
+                                && stored?.href === 'countries/' + arguments[0].parentSlug
+                                    + '/' + arguments[0].slug + '/#scene-' + testId;
+                            sceneHeart.click();
+                            favoriteRestore = localStorage.getItem(sceneKey) === null;
+                            if (oldSave !== null) localStorage.setItem(sceneKey,oldSave);
+                        }
+                        const wish = document.querySelector('#region-wish-button');
+                        const wishKey = 'journey-atlas:region-wish:' + arguments[0].parentSlug
+                            + ':' + arguments[0].slug;
+                        let wishSave = false, wishRestore = false, oldWish = null;
+                        if (wish) {
+                            oldWish = localStorage.getItem(wishKey);
+                            if (oldWish !== null) wish.click();
+                            wish.click();
+                            const value = JSON.parse(localStorage.getItem(wishKey) || 'null');
+                            wishSave = value?.slug === arguments[0].slug
+                                && value?.href === 'countries/' + arguments[0].parentSlug
+                                    + '/' + arguments[0].slug + '/';
+                            wish.click();
+                            wishRestore = localStorage.getItem(wishKey) === null;
+                            if (oldWish !== null) localStorage.setItem(wishKey, oldWish);
+                        }
+                        return {hits:hits.length, mapPositions, mapSelect, keyboardSelect,
+                            sceneHeart:!!sceneHeart,heroHeart:!!heroHeart,
+                            favoriteSave,favoriteRestore,wishSave,wishRestore,
+                            related:document.querySelectorAll('.region-related-card[href]').length};
+                    """, {"slug": slug, "parentSlug": parent})
+                    if interactions["hits"] != 8 or any(not p["x"] or not p["y"] for p in interactions["mapPositions"]):
+                        problems.append("incomplete map hit targets")
+                    for check in ("mapSelect", "keyboardSelect", "sceneHeart", "heroHeart",
+                                  "favoriteSave", "favoriteRestore", "wishSave", "wishRestore"):
+                        if not interactions[check]:
+                            problems.append(f"Region interaction failed: {check}")
+                    if interactions["related"] != len(region.get("relatedCountries") or []):
+                        problems.append("Region related destination links mismatch")
                     if audit["imageCount"] != 14 or audit["broken"]: problems.append(f"broken/missing images: {audit['broken']}")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
