@@ -137,10 +137,12 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     return page, canonical, published
 
 
-def generate_region_pages(*, site_url: str, version: str) -> list[str]:
+def generate_region_pages(*, site_url: str, version: str, parents: set[str] | None = None) -> list[str]:
     published_urls=[]
     for path in sorted(DATA_ROOT.glob('*/*.json')):
         data=json.loads(path.read_text(encoding='utf-8'))
+        if parents is not None and data['parentSlug'] not in parents:
+            continue
         page,canonical,published=render_region(data,site_url=site_url,version=version)
         output=ROOT/'countries'/data['parentSlug']/data['slug']/'index.html'
         output.parent.mkdir(parents=True,exist_ok=True)

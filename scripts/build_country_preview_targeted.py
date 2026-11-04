@@ -19,6 +19,7 @@ from typing import Any
 
 import build_site
 import package_site
+from build_region_pages import generate_region_pages
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
@@ -162,6 +163,7 @@ def build_target_pages(slugs: list[str]) -> None:
         canonical = build_site.generate_country_page(item, published=item["slug"] in published)
         if item["slug"] in published:
             urls.append(canonical)
+    urls.extend(generate_region_pages(site_url=build_site.SITE_URL, version=build_site.BUILD_VERSION, parents=set(slugs)))
     build_site.generate_sitemap(urls)
 
 
@@ -197,6 +199,9 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
         collect_image_refs(payload, refs)
         write_json(version_runtime_image_refs(payload), DIST / "data" / "countries" / source.name)
         copy_tree(ROOT / "countries" / slug, DIST / "countries" / slug)
+        # Region imagery is a separate editorial layer, not part of Country JSON.
+        for region_path in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
+            collect_image_refs(json.loads(region_path.read_text(encoding="utf-8")), refs)
     return refs
 
 
@@ -244,6 +249,12 @@ def validate_preview(slugs: list[str], refs: set[str]) -> None:
         raise FileNotFoundError(f"Targeted preview image set incomplete: {missing}")
 
     for slug in slugs:
+        # All requested Region reviews must be present and carry their referenced assets.
+        for region_path in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
+            region = json.loads(region_path.read_text(encoding="utf-8"))
+            region_page = DIST / "countries" / slug / region["slug"] / "index.html"
+            if not region_page.is_file():
+                raise FileNotFoundError(f"Target Region preview page missing: {region_page}")
         page = DIST / "countries" / slug / "index.html"
         if not page.exists():
             raise FileNotFoundError(f"Target Country preview page missing: {slug}")
