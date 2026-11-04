@@ -3,6 +3,7 @@
 (() => {
   'use strict';
   const SCENE_PREFIX = 'journey-atlas:scene:';
+  const REGION_WISH_PREFIX = 'journey-atlas:region-wish:';
   const VISITED_PREFIX = 'journey-atlas:visited:';
   const WISH_PREFIX = 'journey-atlas:wish:';
   const REGISTRY_PATH = 'data/atlas-destinations.json';
@@ -30,6 +31,19 @@
   };
   const sceneKey = (slug, id) => SCENE_PREFIX + slug + ':' + id;
   const countryHref = slug => 'countries/' + encodeURIComponent(slug) + '/';
+  const regionCountryHref = (parent, slug) => `countries/${parent}/${slug}/`;
+  const regionSceneHref = (parent, slug, id) => regionCountryHref(parent, slug) + (id === 'hero' ? '#hero-caption' : '#scene-' + id);
+  const isRegionFavorite = f => f?.kind === 'region' && validId(f.slug) && validId(f.parentSlug)
+    && validId(f.id) && f.href === regionSceneHref(f.parentSlug, f.slug, f.id);
+  const getRegionWishes = () => allStoredKeys().filter(key => key.startsWith(REGION_WISH_PREFIX)).map(key => {
+    try {
+      const item = JSON.parse(getStored(key));
+      return item && validId(item.parentSlug) && validId(item.slug)
+        && typeof item.nameJa === 'string'
+        && key === REGION_WISH_PREFIX + item.parentSlug + ':' + item.slug
+        && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
+    } catch { return null; }
+  }).filter(Boolean);
   const sceneHref = (slug, id) => countryHref(slug) + (id === 'hero' ? '#hero-caption' : '#'+encodeURIComponent(id));
   const fetchJSON = url => fetch(url).then(response => {
     if (!response.ok) throw Error('HTTP ' + response.status);
@@ -72,7 +86,11 @@
         const existing = saved();
         const value = JSON.stringify({
           slug: country.slug, id: scene.id, name: scene.name,
-          countryName: country.nameJa, image: scene.image
+          countryName: country.nameJa, image: scene.image,
+          ...(validId(country.regionParent) ? {
+            kind: 'region', parentSlug: country.regionParent,
+            href: regionSceneHref(country.regionParent, country.slug, scene.id)
+          } : {})
         });
         const ok = existing ? removeStored(key) : putStored(key, value);
         if (ok) updateSceneSaveButton(button, !existing, scene.name);
@@ -100,7 +118,11 @@
         const existing = saved();
         const value = JSON.stringify({
           slug: country.slug, id: 'hero', name: heroName,
-          countryName: country.nameJa, image: country.hero.image
+          countryName: country.nameJa, image: country.hero.image,
+          ...(validId(country.regionParent) ? {
+            kind: 'region', parentSlug: country.regionParent,
+            href: regionSceneHref(country.regionParent, country.slug, 'hero')
+          } : {})
         });
         const ok = existing ? removeStored(key) : putStored(key, value);
         if (ok) updateSceneSaveButton(button, !existing, heroName);
@@ -177,7 +199,9 @@
     if (!registry.length) return;
     const all = registry.filter(c => validId(c.slug));
     const seen = all.filter(visited), want = all.filter(wished);
-    const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug));
+    const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
+      (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
+    const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
     summary.replaceChildren();
     [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
@@ -189,12 +213,14 @@
       const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
       if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
     });
-    groups.replaceChildren(sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。'));
+    const personalGroups = [sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
+    if (regionWishes.length) personalGroups.push(sectionFor('行きたい地域', regionWishes.map(w => ({...w, flag: ''})), '地域ページから登録できます。'));
+    groups.replaceChildren(...personalGroups);
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
     const gallery = make('div', 'ja-scene-gallery');
     favorites.forEach(favorite => {
       const item = make('div', 'ja-favorite-card');
-      const link = linkTo(sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
+      const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
       const img = make('img');
       if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
         img.loading = 'lazy';
@@ -224,7 +250,8 @@
       version: 1,
       visited: countries.filter(visited).map(c => c.slug),
       wished: countries.filter(wished).map(c => c.slug),
-      favorites: getFavorites()
+      favorites: getFavorites(),
+      regionWishes: getRegionWishes()
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -253,8 +280,15 @@
       const allowed = new Set(registry.map(c => c.slug));
       payload.visited.filter(slug => allowed.has(slug)).forEach(slug => { if (!putStored(VISITED_PREFIX + slug, 'true')) throw Error('Storage unavailable'); });
       payload.wished.filter(slug => allowed.has(slug)).forEach(slug => { if (!putStored(WISH_PREFIX + slug, 'true')) throw Error('Storage unavailable'); });
-      payload.favorites.filter(f => f && allowed.has(f.slug) && validId(f.id) && typeof f.name === 'string' && typeof f.countryName === 'string' && typeof f.image === 'string').slice(0, 3000).forEach(f => {
-        if (!putStored(sceneKey(f.slug, f.id), JSON.stringify({slug: f.slug, id: f.id, name: f.name.slice(0, 150), countryName: f.countryName.slice(0, 100), image: f.image.slice(0, 240)}))) throw Error('Storage unavailable');
+      payload.favorites.filter(f => f && (allowed.has(f.slug) || (isRegionFavorite(f) && allowed.has(f.parentSlug))) && validId(f.id) && typeof f.name === 'string' && typeof f.countryName === 'string' && typeof f.image === 'string').slice(0, 3000).forEach(f => {
+        const metadata = isRegionFavorite(f) ? {kind:'region',parentSlug:f.parentSlug,href:f.href} : {};
+        if (!putStored(sceneKey(f.slug, f.id), JSON.stringify({slug: f.slug, id: f.id, name: f.name.slice(0, 150), countryName: f.countryName.slice(0, 100), image: f.image.slice(0, 240), ...metadata}))) throw Error('Storage unavailable');
+      });
+      if (Array.isArray(payload.regionWishes)) payload.regionWishes.filter(w => w && validId(w.parentSlug) && validId(w.slug)
+        && allowed.has(w.parentSlug) && typeof w.nameJa === 'string'
+        && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
+        if (!putStored(REGION_WISH_PREFIX + w.parentSlug + ':' + w.slug,
+          JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
       });
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
       renderMine();
