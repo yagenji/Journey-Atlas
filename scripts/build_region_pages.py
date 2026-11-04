@@ -37,9 +37,9 @@ def region_asset_version() -> str:
     digest = hashlib.sha256()
     for relative in REGION_RUNTIME_ASSETS:
         digest.update(relative.encode('utf-8'))
-        digest.update(b'\\0')
+        digest.update(b'\0')
         digest.update((ROOT / relative).read_bytes())
-        digest.update(b'\\0')
+        digest.update(b'\0')
     return digest.hexdigest()[:16]
 
 
