@@ -78,7 +78,7 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple
     source Scene coordinates. The overlay adds interaction, not geography.
     """
     point = re.search(
-        rf'<g id="text_{marker_index}">\s*<!--\s*{marker_index}\s*-->\s*<g[^>]*?'
+        rf'<g id="text_{marker_index}"[^>]*>\s*<!--\s*{marker_index}\s*-->\s*<g[^>]*?'
         rf'transform="translate\(([0-9.]+) ([0-9.]+)\)',
         svg,
     )
@@ -91,6 +91,16 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple
     if abs(px - float(point.group(1))) > 1 or abs(py - float(point.group(2))) > 1:
         raise ValueError(f'Scene {marker_index}: approved SVG and real coordinates disagree')
     return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
+
+
+def region_hero_map_position(coords: dict) -> tuple[float, float]:
+    """Project the real Hero point using the same calibrated Scotland map transform."""
+    latitude, longitude = coords['latitude'], coords['longitude']
+    mercator_y = math.log(math.tan(math.pi / 4 + math.radians(latitude) / 2))
+    px = 42.04571769282578 * longitude + 588.6427115953087
+    py = -2409.042178193165 * mercator_y + 3286.625337833689
+    return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
+
 
 
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
@@ -113,6 +123,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         raise FileNotFoundError(data['map']['svg'])
 
     map_svg_text = (ROOT / data['map']['svg']).read_text(encoding='utf-8')
+    map_version = hashlib.sha256(map_svg_text.encode('utf-8')).hexdigest()[:16]
     title = f"{data['nameJa']} | {data['nameEn']} — JOURNEY ATLAS"
     canonical = urljoin(site_url, f'countries/{parent}/{slug}/')
     published = data.get('regionPublished') is True
@@ -132,20 +143,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         f'<p class="hero-lead">{esc(hero["lead"])}</p></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
-        '<p class="hero-caption__label">表紙の景観イメージ</p>'
         '<div class="hero-caption__body">'
         f'<p class="hero-caption__name">{esc(hero["name"])}</p>'
         f'<p class="hero-caption__local">{esc(hero["location"])}</p>'
-        '<p class="hero-caption__text">実在する場所を題材に制作したイラストであり、現地写真ではありません。</p>'
+        f'<p class="hero-caption__text">{esc(hero["description"])}</p>'
         '</div></div></aside>')
-    result.append('<div class="atlas-body page-shell">'
-        '<nav class="region-breadcrumb" aria-label="パンくずリスト">'
-        '<a href="./">JOURNEY ATLAS</a><span aria-hidden="true">/</span>'
-        f'<a href="countries/{esc(parent)}/">{esc(data["parentNameJa"])}</a>'
-        '<span aria-hidden="true">/</span>'
-        f'<span aria-current="page">{esc(data["nameJa"])}</span></nav>')
+    result.append('<div class="atlas-body page-shell">')
 
-    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin', 'landscape']
+    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin']
     facts = ''.join('<div>' + icon(facts_icons[i] if i < len(facts_icons) else 'info')
         + f'<dt>{esc(item["label"])}</dt><dd>{esc(item["value"])}</dd></div>'
         for i, item in enumerate(data['profile']))
@@ -175,23 +180,27 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<h2 class="panel-title">旅の地図</h2></div></div>'
         '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
         'role="group" aria-label="スコットランドの景色の地図">'
-        f'<img class="map-base" src="{esc(data["map"]["svg"])}" '
-        'alt="実在する海岸線と景色8地点、Hero地点を示すスコットランドの地図" '
+        f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
+        'alt="スコットランドの実海岸線と島々を描いた地図" '
         'loading="lazy" decoding="async">'
         '<div class="region-map-hits" id="region-map-hits">'
         + ''.join(
-            '<button type="button" class="region-map-hit" '
+            '<button type="button" class="region-map-hit map-marker" '
             f'data-scene="{esc(scene["id"])}" '
             f'style="left:{interactive_map_position(scene["coordinates"], index, map_svg_text)[0]:.5f}%;'
             f'top:{interactive_map_position(scene["coordinates"], index, map_svg_text)[1]:.5f}%" '
-            f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false"></button>'
+            f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
+            f'<b aria-hidden="true">{index}</b></button>'
             for index, scene in enumerate(data['scenes'], 1)
         )
-        + '</div></div></div>'
+        + '</div>'
+        + f'<div class="map-hero-marker region-map-hero" aria-hidden="true" '
+          f'style="left:{region_hero_map_position(hero["coordinates"])[0]:.5f}%;'
+          f'top:{region_hero_map_position(hero["coordinates"])[1]:.5f}%"><span></span></div>'
+        + '</div></div>'
         '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
-        '<p class="region-map-note">GSHHSの実海岸線に基づく地図。構成国境界は推測して描画していません。</p>'
         '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
@@ -221,13 +230,16 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="atlas-extras__head"><div>'
         '<p class="atlas-extras__kicker">BEYOND THE SCENERY</p>'
         '<h2 id="region-culture-title">景色の向こうへ</h2></div>'
-        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の歴史や文化をたどる。</p></div>'
+        '<p class="atlas-extras__intro">景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。</p></div>'
         '<div class="atlas-extras__grid">')
     for item in data['culture']:
         result.append('<article class="atlas-extra"><span class="atlas-extra__theme">'
             + icon(item.get('icon', 'culture'))
             + f'{esc(item.get("themeEn", "CULTURE"))} / {esc(item.get("themeJa", "文化"))}</span>'
-            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
+            f'<h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p>'
+            + ('<ul>' + ''.join(f'<li>{esc(point)}</li>' for point in item.get('points', [])) + '</ul>'
+               if item.get('points') else '')
+            + '</article>')
     result.append('</div></section>')
 
     result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
@@ -249,7 +261,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<div class="travel-trivia__head"><div>'
             '<span class="travel-trivia__kicker">TRAVEL TRIVIA</span>'
             '<h2 id="region-trivia-title">知っていると旅が少し楽しくなること</h2></div>'
-            '<p class="travel-trivia__intro">風景の背景にある、意外な歴史や小さな発見。</p></div>'
+            '<p class="travel-trivia__intro">現地で見つけたり、試したり、人に話したくなる小さな知識を集めた。</p></div>'
             '<div class="travel-trivia__grid">')
         for item in trivia:
             result.append('<article class="travel-trivia__item"><div class="travel-trivia__meta">'
@@ -315,6 +327,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             f'<h4>{esc(transport["title"])}</h4><p>{esc(transport["text"])}</p></div></div></section>')
     result.append('</div></section>')
 
+
     if data.get('nextRoutes'):
         result.append('<section class="next-routes-section" aria-labelledby="region-routes-title">'
             '<div class="next-routes__head"><div>'
@@ -323,21 +336,21 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<p>ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。</p>'
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
-            result.append('<article class="next-route-card"><div class="next-route-card__country"><div>'
+            result.append('<article class="next-route-card"><div class="next-route-card__country">'
+                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
                 f'<p class="next-route-card__description">{esc(route["description"])}</p></article>')
         result.append('</div></section>')
 
-
-    # Region pages retain the established three related destinations without
-    # adding a new entry to the 202-destination registry.
+    # Match the shared Country journey footer: recommendations and wish side by side.
     related = data.get('relatedCountries') or []
+    result.append('<section class="journey-footer region-journey-footer" aria-labelledby="region-related-title">')
     if related:
-        result.append('<section class="region-related related-wrap" aria-labelledby="region-related-title">'
-            '<span class="section-kicker-en">RELATED DESTINATIONS</span>'
-            '<h2 id="region-related-title">関連する国・地域</h2>'
+        result.append('<div class="related-wrap region-related">'
+            '<span class="section-kicker-en">NEXT DESTINATIONS</span>'
+            f'<h2 id="region-related-title">{esc(data["nameJa"])}が気になったら</h2>'
             '<div class="related-grid">')
         for item in related:
             href = item.get('href', '')
@@ -351,20 +364,24 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
                 f'<h3>{esc(item["nameEn"])}</h3><b>{esc(item["nameJa"])}</b>'
                 f'<p>{esc(item.get("reason","国ページを見る"))}</p>'
                 '<small class="related-status">EXPLORE →</small></div></div></a>')
-        result.append('</div></section>')
-
-    result.append('<div class="journey-footer region-journey-footer">'
-        '<div class="wish-wrap region-wish-wrap">'
+        result.append('</div></div>')
+    result.append('<div class="wish-wrap region-wish-wrap">'
         '<button class="wish-button" id="region-wish-button" type="button" aria-pressed="false">'
         '<span class="wish-icon" aria-hidden="true">♡</span>'
         '<strong>この地域に行きたい</strong>'
         '<small>このブラウザに保存します</small></button>'
         '<p class="wish-status" id="region-wish-status" role="status"></p>'
-        '</div></div>')
+        '</div></section>')
 
-    result.append('<div class="region-back"><div><p class="region-back__label">BACK TO COUNTRY</p>'
-        '<p>イギリス全体の8景や地図も見てみる</p></div>'
-        f'<a href="countries/{esc(parent)}/">UNITED KINGDOM に戻る</a></div>')
+    # A quiet return card instead of repeating the breadcrumb or a second primary CTA.
+    result.append('<nav class="region-return" aria-label="イギリス全体のページへ">'
+        f'<a href="countries/{esc(parent)}/" class="region-return__link">'
+        '<span class="region-return__arrow" aria-hidden="true">←</span>'
+        '<span class="region-return__copy"><small>BACK TO UNITED KINGDOM</small>'
+        '<strong>イギリス全体の旅へ</strong>'
+        '<span>4つの構成国と8つの景色を見る</span></span>'
+        '<span class="region-return__cta" aria-hidden="true">国ページを見る →</span>'
+        '</a></nav>')
     result.append('<details class="region-sources"><summary>DATA SOURCES / 参考資料</summary><ul>'
         + ''.join(f'<li><a href="{esc(url)}" rel="noopener noreferrer" target="_blank">{esc(key)}</a></li>'
                   for key, url in data['sources'].items()) + '</ul></details>')

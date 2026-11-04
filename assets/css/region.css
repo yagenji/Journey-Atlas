@@ -3,42 +3,54 @@
 .region-page{min-width:0}
 .region-country-page .hero-art>img{display:block;width:100%;height:100%;object-fit:cover;object-position:55% 47%}
 .region-country-page .hero-art::after{pointer-events:none}
-.region-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:0 0 16px;padding:0 2px;color:var(--muted);font:500 12px/1.6 'Hanken Grotesk',sans-serif}
-.region-breadcrumb a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-.region-breadcrumb [aria-current="page"]{color:var(--navy)}
-.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(7,minmax(0,1fr))!important}
+.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(6,minmax(0,1fr))!important}
 .region-country-page .scene-card{cursor:pointer}
 .region-country-page .scene-card:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
 .region-country-page .scene-card.is-preview,
 .region-country-page .scene-card.is-active{border-color:#a86545;box-shadow:0 7px 20px rgba(70,66,52,.11)}
 .region-country-page .scene-image>img{display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .region-country-page .map-base{width:100%;height:100%;object-fit:contain}
-.region-map-note{margin:12px 0 0;color:var(--muted);font-size:11px;line-height:1.8}
 .region-country-page .travel-planning__block--season{max-width:none}
-.region-back{margin:24px 0 30px;padding:23px 26px;border:1px solid var(--line);border-radius:14px;background:var(--paper-soft);display:flex;justify-content:space-between;align-items:center;gap:24px}
-.region-back p{margin:0}.region-back__label{color:#8a6b55;font:500 10px/1.5 var(--meta);letter-spacing:.14em}.region-back a{color:var(--navy);font-weight:600;text-underline-offset:4px}
 .region-sources{margin:0 0 40px;padding:12px 0;color:var(--muted);font-size:12px}
 .region-sources summary{cursor:pointer}.region-sources ul{padding-left:20px;overflow-wrap:anywhere}.region-sources a{color:var(--navy)}
 .region-page a:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 @media(max-width:1200px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 @media(max-width:900px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:760px){.region-country-page .hero-art>img{object-position:center 48%}.region-back{align-items:flex-start;flex-direction:column;padding:18px;gap:10px}.region-breadcrumb{margin-bottom:14px}}
-
+@media(max-width:760px){.region-country-page .hero-art>img{object-position:center 48%}}
 /* Region facts and encounter sections inherit the same Country visual language. */
-.region-country-page .encounter-list article>.ui-icon{display:block;margin-inline:auto;width:20px;height:20px}
+.region-country-page .encounter-list article>.ui-icon{display:block;flex:0 0 16px;width:16px;height:16px;margin:0;color:#8a6b55}
+.region-country-page .encounter-list article{display:flex;align-items:center;justify-content:flex-start;text-align:left}
+.region-country-page .encounter-list article>b{text-align:left;min-width:0}
 .region-country-page .atlas-extra__theme{display:flex;align-items:center;gap:6px}
 .region-country-page .atlas-extra__theme .ui-icon{width:14px;height:14px;flex-basis:14px}
 .region-country-page .next-routes-section{margin-top:18px}
-/* The map's printed numbered markers are retained as approved artwork.
-   Invisible hit targets are centered on those real coordinates and visibly
-   marked on focus, hover or selection; no additional geographic markers. */
+/* Real-coordinate HTML map markers use the shared Country visual design.
+   Markers printed into the legacy SVG are hidden, not moved or invented. */
 .region-map-hits{position:absolute;inset:0;z-index:8;pointer-events:none}
-.region-map-hit{display:block;position:absolute;pointer-events:auto;width:clamp(24px,2.6vw,34px);height:clamp(24px,2.6vw,34px);padding:0;transform:translate(-50%,-50%);border:2px solid transparent;border-radius:50%;background:transparent;cursor:pointer;touch-action:manipulation}
-.region-map-hit:is(:hover,:focus-visible,.is-preview,.is-active){border-color:#a86545;box-shadow:0 0 0 2px rgba(251,248,240,.95)}
+.region-map-hit{display:grid;place-items:center;position:absolute;pointer-events:auto;padding:0;transform:translate(-50%,-50%);border:0;background:transparent;cursor:pointer;touch-action:manipulation}
+.region-map-hit b{display:grid;place-items:center;width:27px;height:27px;border:2px solid var(--paper-soft);border-radius:50%;background:var(--navy);color:#fff;box-shadow:0 2px 5px rgba(9,42,75,.25);font:600 11px/1 var(--meta)}
+.region-map-hit:is(:hover,:focus-visible,.is-preview,.is-active) b{background:#a86545;box-shadow:0 0 0 2px rgba(251,248,240,.98),0 2px 7px rgba(9,42,75,.24)}
 .region-map-hit:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-.region-map-hit.is-active{border-color:#a86545}
-.region-related{margin-top:18px}
+.region-related{margin:0;min-width:0}
 .region-related .related-grid{margin-top:14px}
-.region-journey-footer{grid-template-columns:1fr;max-width:420px}
+.region-journey-footer{grid-template-columns:minmax(0,3fr) minmax(210px,1fr)}
 .region-wish-wrap{min-height:150px}
 @media(prefers-reduced-motion:reduce){.region-map-hit,.region-country-page .scene-card{transition:none!important}}
+
+/* Region uses the shared Country map palette and live numbered marker design. */
+.region-country-page .map-art{background:#eaf2f4}
+.region-map-hero{z-index:5}
+.region-country-page .atlas-extra ul{display:block}
+.region-return{margin:24px 0 30px}
+.region-return__link{display:flex;align-items:center;gap:18px;padding:21px 24px;border:1px solid var(--line);border-radius:13px;background:rgba(251,248,240,.82);color:var(--navy);text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
+.region-return__arrow{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:1px solid rgba(18,54,92,.22);border-radius:50%;font:600 22px/1 var(--body)}
+.region-return__copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.region-return__copy small{color:#8a6b55;font:500 10px/1.5 var(--meta);letter-spacing:.12em}
+.region-return__copy strong{font:600 17px/1.5 var(--body)}
+.region-return__copy>span{color:var(--muted);font:400 12px/1.6 var(--body)}
+.region-return__cta{margin-left:auto;color:var(--navy);font:500 12px/1.5 var(--body);white-space:nowrap}
+.region-return__link:is(:hover,:focus-visible){border-color:#a86545;box-shadow:0 5px 16px rgba(70,66,52,.08)}
+.region-return__link:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+@media(max-width:900px){.region-journey-footer{grid-template-columns:1fr}}
+@media(max-width:760px){.region-return__link{padding:17px 15px;gap:12px}.region-return__cta{display:none}.region-return__arrow{flex-basis:32px;width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){.region-return__link{transition:none}}

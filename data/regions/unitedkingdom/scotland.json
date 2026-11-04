@@ -17,7 +17,8 @@
       "latitude": 55.9486,
       "longitude": -3.2008
     },
-    "lead": "火山岩の上にそびえるエディンバラ城を見上げる。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。"
+    "lead": "火山岩の上にそびえるエディンバラ城を見上げる。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。",
+    "description": "エディンバラの旧市街を見下ろす火山岩の高台に建つ城。プリンセス・ストリート・ガーデンズ側から、その姿を望む。"
   },
   "profile": [
     {
@@ -46,10 +47,6 @@
     {
       "label": "通貨",
       "value": "英ポンド（GBP）"
-    },
-    {
-      "label": "地理",
-      "value": "ハイランドの山地と大西洋・北海の島々"
     }
   ],
   "map": {
@@ -201,7 +198,11 @@
       "icon": "city",
       "title": "火山岩の上に街の歴史が積み重なる",
       "text": "エディンバラ城は古い火山岩の上に建ち、王の居城から軍事拠点へと役割を変えてきた。旧市街の通りを歩くと、城の地形が街の骨格そのものを形づくったことがわかる。",
-      "sourceKey": "edinburghCastle"
+      "sourceKey": "edinburghCastle",
+      "points": [
+        "エディンバラ城は古い火山岩の上に建つ",
+        "城と周囲の地形が旧市街の骨格を形づくってきた"
+      ]
     },
     {
       "topicKey": "gaelic-island",
@@ -210,7 +211,11 @@
       "icon": "home",
       "title": "島々ではゲール語が暮らしのなかに息づく",
       "text": "アウター・ヘブリディーズではスコットランド・ゲール語が地名や音楽、語りの文化と結びついている。海辺の風景の背景に、言葉を受け継ぐ共同体がある。",
-      "sourceKey": "gaelic"
+      "sourceKey": "gaelic",
+      "points": [
+        "アウター・ヘブリディーズではゲール語が地名や音楽と結びつく",
+        "島の景色の背景に、言葉を受け継ぐ暮らしがある"
+      ]
     },
     {
       "topicKey": "glacial-landscape",
@@ -219,7 +224,11 @@
       "icon": "landscape",
       "title": "ハイランドの谷に、氷河の痕跡を読む",
       "text": "グレン・コーの山並みと谷は、火山活動の後に氷河が土地を削り直して生まれた。絶景としての山だけでなく、長い時間をかけた地形の変化を意識して歩いてみたい。",
-      "sourceKey": "glencoeGeology"
+      "sourceKey": "glencoeGeology",
+      "points": [
+        "グレン・コーの地形には火山活動と氷河の痕跡が残る",
+        "山並みだけでなく、谷が生まれた時間にも目を向けたい"
+      ]
     },
     {
       "topicKey": "living-music",
@@ -228,7 +237,11 @@
       "icon": "culture",
       "title": "バグパイプだけでない、今も演奏される伝統音楽",
       "text": "フィドルやアコーディオン、バグパイプの音色は、町のパブで開かれるセッションやダンスの場にも残る。昔話としてではなく、いま聴ける文化として旅に取り入れたい。",
-      "sourceKey": "traditionalMusic"
+      "sourceKey": "traditionalMusic",
+      "points": [
+        "フィドル、アコーディオン、バグパイプなどが奏でられる",
+        "パブの演奏やダンスを通して、今も続く文化に出会える"
+      ]
     },
     {
       "topicKey": "whisky-regions",
@@ -237,7 +250,11 @@
       "icon": "food",
       "title": "ウイスキーには土地の名前と個性がある",
       "text": "スコッチ・ウイスキーにはハイランド、ローランド、スペイサイド、アイラ、キャンベルタウンという5つの伝統的な地域区分がある。原料だけでなく、土地と製法の違いを知る入口になる。",
-      "sourceKey": "whiskyRegions"
+      "sourceKey": "whiskyRegions",
+      "points": [
+        "スコッチには5つの伝統的な生産地域区分がある",
+        "土地や製法の違いがウイスキーを知る入口になる"
+      ]
     },
     {
       "topicKey": "island-seafood",
@@ -246,7 +263,11 @@
       "icon": "sea",
       "title": "港で見える、海と島の日々のつながり",
       "text": "スカイ島のポートリーでは、色とりどりの建物の前の港に漁船が行き交う。島を単なる景勝地として見るのではなく、海の仕事と食がつながる暮らしを眺めることができる。",
-      "sourceKey": "skyeIsland"
+      "sourceKey": "skyeIsland",
+      "points": [
+        "ポートリーの港では漁船と色彩豊かな建物が見られる",
+        "島の暮らしは海の仕事や食とつながっている"
+      ]
     }
   ],
   "forWhom": [
@@ -501,21 +522,24 @@
       "countryJa": "イングランド",
       "path": "エディンバラ → ヨーク → ロンドン",
       "description": "城と石の街から南へ。鉄道沿いに大聖堂の街とロンドンへ旅をつなぐ。",
-      "href": "countries/unitedkingdom/"
+      "href": "countries/unitedkingdom/",
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
     {
       "countryEn": "WALES",
       "countryJa": "ウェールズ",
       "path": "エディンバラ → チェスター → 北ウェールズ",
       "description": "英国の山岳と城塞の文化を続けて見る。途中で滞在日を設ける周遊向き。",
-      "href": "countries/unitedkingdom/"
+      "href": "countries/unitedkingdom/",
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
     },
     {
       "countryEn": "NORTHERN IRELAND",
       "countryJa": "北アイルランド",
       "path": "グラスゴー → ケアンライアン → ベルファスト",
       "description": "鉄道・バスと海峡のフェリーを組み合わせ、海の向こうの英国へ。",
-      "href": "countries/unitedkingdom/"
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧"
     }
   ],
   "relatedCountries": [
