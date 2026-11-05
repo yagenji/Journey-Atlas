@@ -198,34 +198,46 @@ def main() -> int:
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
                     if slug == "northern-ireland":
-                        zoom = driver.execute_script("""
-                            const button = document.querySelector('#region-map-zoom-toggle');
+                        detail = (region.get("map") or {}).get("regions") or []
+                        inset = driver.execute_script("""
+                            const img = document.querySelector('#country-map-art .map-base');
+                            const art = document.querySelector('#country-map-art');
+                            const hits = [...art.querySelectorAll('.region-map-hit')];
+                            const note = document.querySelector('.map-inset-note');
+                            const zoomButton = document.querySelector('#region-map-zoom-toggle');
                             const frame = document.querySelector('.map-frame');
-                            if (!button || !frame) return {ok:false, reason:'missing toggle'};
-                            button.click();
-                            const hits = [...frame.querySelectorAll('.region-map-hit')];
-                            const pts = hits.map(h => {
+                            const data = arguments[0], detail = data[0];
+                            const minX = 100*detail.rect.x/1200;
+                            const maxX = 100*(detail.rect.x+detail.rect.width)/1200;
+                            const minY = 100*detail.rect.y/760;
+                            const maxY = 100*(detail.rect.y+detail.rect.height)/760;
+                            const insetHits = hits.filter(h => {
+                                const x = Number.parseFloat(h.style.left), y = Number.parseFloat(h.style.top);
+                                return x >= minX && x <= maxX && y >= minY && y <= maxY;
+                            });
+                            const expected = new Set(detail.sceneIds);
+                            const pts = insetHits.map(h => {
                                 const r = h.getBoundingClientRect();
                                 return {x:r.x+r.width/2, y:r.y+r.height/2};
                             });
                             let minGap = Infinity;
                             for (let i=0;i<pts.length;i++) for (let k=i+1;k<pts.length;k++)
                                 minGap = Math.min(minGap, Math.hypot(pts[i].x-pts[k].x,pts[i].y-pts[k].y));
-                            const state = {ok:frame.classList.contains('is-zoomed'),
-                                expanded:button.getAttribute('aria-expanded'),
-                                mapWidth:frame.querySelector('.map-art').getBoundingClientRect().width,
-                                scrollWidth:frame.scrollWidth,
-                                minGap, scrollLeft:frame.scrollLeft};
-                            button.click();
-                            state.restored = !frame.classList.contains('is-zoomed')
-                                && button.getAttribute('aria-expanded') === 'false';
-                            return state;
-                        """)
-                        if not (zoom.get("ok") and zoom.get("expanded") == "true"
-                                and zoom.get("mapWidth", 0) >= 1199
-                                and zoom.get("minGap", 0) >= 27
-                                and zoom.get("restored")):
-                            problems.append(f"Northern Ireland zoom map QA failed: {zoom}")
+                            const scale = art.getBoundingClientRect().width / 1200;
+                            return {hasNote: !!note && note.textContent.includes('別枠表示'),
+                                noZoomButton: !zoomButton && !frame.classList.contains('is-zoomed'),
+                                insetCount:insetHits.length,
+                                insetIds:insetHits.map(h=>h.dataset.scene),
+                                expected:[...expected],
+                                gapSvgPx:minGap/scale,
+                                mapImageLoaded:img?.naturalWidth > 0};
+                        """, detail)
+                        if not (len(detail) == 1 and inset.get("hasNote")
+                                and inset.get("noZoomButton")
+                                and inset.get("mapImageLoaded")
+                                and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
+                                and inset.get("gapSvgPx", 0) >= 27):
+                            problems.append(f"Northern Ireland fixed inset map QA failed: {inset}")
                     if audit["imageCount"] != 14 or audit["broken"]: problems.append(f"broken/missing images: {audit['broken']}")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
