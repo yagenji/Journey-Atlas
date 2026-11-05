@@ -198,6 +198,21 @@ def main() -> int:
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
                     if slug == "northern-ireland":
+                        journey_picks = driver.execute_script("""
+                            return {
+                                routes:[...document.querySelectorAll('.next-route-card__country strong')]
+                                    .map(n=>n.textContent.trim()),
+                                related:[...document.querySelectorAll('.region-related .related-card strong')]
+                                    .map(n=>n.textContent.trim()),
+                                relatedCount:document.querySelectorAll('.region-related .related-card').length
+                            };
+                        """)
+                        expected_routes = [item["countryEn"] for item in region["nextRoutes"]]
+                        if (journey_picks["routes"] != expected_routes or len(expected_routes) != 3
+                                or journey_picks["relatedCount"] != 3
+                                or len(region["relatedCountries"]) != 3):
+                            problems.append(f"Northern Ireland journey cards mismatch: {journey_picks}")
+                    if slug == "northern-ireland":
                         legend_audit = driver.execute_script("""
                             const legend = document.querySelector('.map-legend--below');
                             const capital = document.querySelector('#country-map-art .region-map-capital');
