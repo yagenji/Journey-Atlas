@@ -54,3 +54,7 @@
 @media(max-width:900px){.region-journey-footer{grid-template-columns:1fr}}
 @media(max-width:760px){.region-return{grid-template-columns:1fr}.region-return__link{padding:17px 15px;gap:12px}.region-return__arrow{flex-basis:32px;width:32px;height:32px}}
 @media(prefers-reduced-motion:reduce){.region-return__link{transition:none}}
+/* Keep long Region names inside the mobile editorial column. */
+@media(max-width:760px){
+  .region-country-page .hero h1.hero-title--long{font-size:clamp(40px,12vw,56px)!important}
+}

@@ -13,6 +13,7 @@ import math
 import re
 from pathlib import Path
 from urllib.parse import urljoin
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / 'data' / 'regions'
@@ -82,12 +83,56 @@ def icon(name: str) -> str:
 
 
 
-def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple[float, float]:
+def recorded_map_position(coords: dict, marker_id: str, svg: str,
+                          bounds: dict | None) -> tuple[float, float] | None:
+    """Validate geographic anchors and use their visible SVG callout positions.
+
+    New maps record real coordinates independently from label offsets. Retain
+    the calibrated legacy Scotland projection for its existing approved map.
+    """
+    if 'data-map-projection="local-equirectangular-fit-v1"' not in svg:
+        return None
+    if not bounds:
+        raise ValueError('Projected Region map requires geographic bounds')
+    root = ET.fromstring(svg)
+    if root.get('viewBox') != '0 0 1200 760':
+        raise ValueError('Region map must use the shared 1200 by 760 canvas')
+    node = root.find(f'.//*[@id="{marker_id}"]')
+    if node is None:
+        raise ValueError(f'Region map is missing {marker_id}')
+    lat, lon = coords['latitude'], coords['longitude']
+    if any(abs(float(node.get(key, 'nan')) - value) > 0.000001
+           or not math.isfinite(float(node.get(key, 'nan')))
+           for key, value in [('data-latitude', lat), ('data-longitude', lon)]):
+        raise ValueError(f'{marker_id}: SVG and Region coordinates disagree')
+    west, south, east, north = (bounds[key] for key in ('west', 'south', 'east', 'north'))
+    if not (-180 <= west < east <= 180 and -90 < south < north < 90):
+        raise ValueError('Invalid Region map bounds')
+    cosine = math.cos(math.radians((south + north) / 2))
+    scale = min(1200 / ((east - west) * cosine), 760 / (north - south))
+    px = (1200 - (east - west) * cosine * scale) / 2 + (lon - west) * cosine * scale
+    py = (760 - (north - south) * scale) / 2 + (north - lat) * scale
+    for key, expected in [('data-x', px), ('data-y', py)]:
+        recorded = float(node.get(key, 'nan'))
+        if not math.isfinite(recorded) or abs(recorded - expected) > 0.01:
+            raise ValueError(f'{marker_id}: SVG projection and real coordinates disagree')
+    x = float(node.get('data-label-x', px))
+    y = float(node.get('data-label-y', py))
+    if not (math.isfinite(x) and math.isfinite(y) and 0 <= x <= 1200 and 0 <= y <= 760):
+        raise ValueError(f'{marker_id}: map label is outside the canvas')
+    return 100 * x / 1200, 100 * y / 760
+
+
+def interactive_map_position(coords: dict, marker_index: int, svg: str,
+                             bounds: dict | None = None) -> tuple[float, float]:
     """Calibrated placement over the approved map's numbered points.
 
     Check that each number embedded in the approved SVG still matches its
     source Scene coordinates. The overlay adds interaction, not geography.
     """
+    recorded = recorded_map_position(coords, f'scene-marker-{marker_index}', svg, bounds)
+    if recorded is not None:
+        return recorded
     point = re.search(
         rf'<g id="text_{marker_index}"[^>]*>\s*<!--\s*{marker_index}\s*-->\s*<g[^>]*?'
         rf'transform="translate\(([0-9.]+) ([0-9.]+)\)',
@@ -104,8 +149,12 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str) -> tuple
     return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
 
 
-def region_hero_map_position(coords: dict) -> tuple[float, float]:
+def region_hero_map_position(coords: dict, svg: str = '',
+                             bounds: dict | None = None) -> tuple[float, float]:
     """Project the real Hero point using the same calibrated Scotland map transform."""
+    recorded = recorded_map_position(coords, 'hero-marker', svg, bounds)
+    if recorded is not None:
+        return recorded
     latitude, longitude = coords['latitude'], coords['longitude']
     mercator_y = math.log(math.tan(math.pi / 4 + math.radians(latitude) / 2))
     px = 42.04571769282578 * longitude + 588.6427115953087
@@ -139,6 +188,11 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     canonical = urljoin(site_url, f'countries/{parent}/{slug}/')
     published = data.get('regionPublished') is True
     hero = data['hero']
+    # Use the existing Country title sizing, including its tablet breakpoint.
+    title_length = len(re.sub(r'\s+', '', data['nameEn'].strip()))
+    title_classes = 'hero-title--long' if title_length >= 12 else ''
+    if title_length >= 18:
+        title_classes += ' hero-title--very-long'
     result: list[str] = []
 
     # Hero uses the exact shared Country section hierarchy and typography.
@@ -149,7 +203,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + render_image(hero['image'], f'{hero["name"]}を描いた景観イメージ', version, eager=True)
         + '</div><div class="hero-copy page-shell">'
         f'<p class="region">{esc(data["region"])}</p>'
-        f'<h1 id="region-title">{esc(data["nameEn"])}</h1>'
+        f'<h1 id="region-title" class="{title_classes}">{esc(data["nameEn"])}</h1>'
         f'<p class="country-ja">{esc(data["nameJa"])}</p>'
         f'<p class="hero-lead">{esc(hero["lead"])}</p>'
         '<div class="country-theme-context" id="country-theme-context">'
@@ -196,24 +250,24 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="section-kicker-en">TRAVEL MAP</span>'
         '<h2 class="panel-title">旅の地図</h2></div></div>'
         '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
-        'role="group" aria-label="スコットランドの景色の地図">'
+        f'role="group" aria-label="{esc(data["nameJa"])}の景色の地図">'
         f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
-        'alt="スコットランドの実海岸線と島々を描いた地図" '
+        f'alt="{esc(data["nameJa"])}の実海岸線と島々を描いた地図" '
         'loading="lazy" decoding="async">'
         '<div class="region-map-hits" id="region-map-hits">'
         + ''.join(
             '<button type="button" class="region-map-hit map-marker" '
             f'data-scene="{esc(scene["id"])}" '
-            f'style="left:{interactive_map_position(scene["coordinates"], index, map_svg_text)[0]:.5f}%;'
-            f'top:{interactive_map_position(scene["coordinates"], index, map_svg_text)[1]:.5f}%" '
+            f'style="left:{interactive_map_position(scene["coordinates"], index, map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
+            f'top:{interactive_map_position(scene["coordinates"], index, map_svg_text, data["map"]["bounds"])[1]:.5f}%" '
             f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
             f'<b aria-hidden="true">{index}</b></button>'
             for index, scene in enumerate(data['scenes'], 1)
         )
         + '</div>'
         + f'<div class="map-hero-marker region-map-hero" aria-hidden="true" '
-          f'style="left:{region_hero_map_position(hero["coordinates"])[0]:.5f}%;'
-          f'top:{region_hero_map_position(hero["coordinates"])[1]:.5f}%"><span></span></div>'
+          f'style="left:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
+          f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + '</div></div>'
         '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
@@ -260,7 +314,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     result.append('</div></section>')
 
     result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
-        '<div class="taste-section__head"><div><span class="section-kicker-en">TASTE OF SCOTLAND</span>'
+        f'<div class="taste-section__head"><div><span class="section-kicker-en">TASTE OF {esc(data["nameEn"])}</span>'
         f'<h2 id="region-taste-title">{esc(data["taste"]["title"])}</h2></div></div>'
         '<div class="taste-grid">')
     for item in data['taste']['items']:
@@ -350,7 +404,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '<div class="next-routes__head"><div>'
             '<span class="section-kicker-en">NEXT ROUTES</span>'
             '<h2 id="region-routes-title">隣の地域へ旅をつなぐ</h2></div>'
-            '<p>ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。</p>'
+            f'<p>{esc(data.get("nextRoutesIntro", "ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。"))}</p>'
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
