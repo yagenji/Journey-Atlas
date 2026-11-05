@@ -160,7 +160,12 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
             raise ValueError('Region inset metadata exists without inset artwork')
         source, rect = detail['sourceRect'], detail['rect']
         # SVG uses a uniform fitted scale; the padding is symmetric in both axes.
-        scale = min(rect['width'] / source['width'], rect['height'] / source['height'])
+        node = ET.fromstring(svg).find('.//*[@id="ni-north-coast-detail"]')
+        if node is None:
+            raise ValueError('Inset artwork missing')
+        scale = float(node.get('data-scale', 'nan'))
+        if not (math.isfinite(scale) and 1 < scale <= 5):
+            raise ValueError('Invalid inset magnification')
         sx = 1200 * pos[0] / 100
         sy = 760 * pos[1] / 100
         x = rect['x'] + (rect['width'] - source['width'] * scale) / 2 + (sx - source['x']) * scale
