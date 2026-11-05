@@ -214,6 +214,14 @@ def main() -> int:
                                 or len(region["relatedCountries"]) != 3):
                             problems.append(f"Northern Ireland journey cards mismatch: {journey_picks}")
                     if slug == "northern-ireland":
+                        signature_values = driver.execute_script("""
+                            return [...document.querySelectorAll('.signature-facts__grid article strong')]
+                                .map(node=>node.textContent.trim());
+                        """)
+                        expected_values = [item["value"] for item in region["signatureFacts"]]
+                        if (signature_values != expected_values or len(expected_values) != 3):
+                            problems.append(f"Northern Ireland signature facts mismatch: {signature_values}")
+                    if slug == "northern-ireland":
                         legend_audit = driver.execute_script("""
                             const legend = document.querySelector('.map-legend--below');
                             const capital = document.querySelector('#country-map-art .region-map-capital');
