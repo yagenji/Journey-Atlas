@@ -62,3 +62,21 @@
 
 /* Qatar-style fixed geographic detail map; no scroll or zoom controls. */
 .region-country-page .map-inset-note{margin:8px 0 0;font:400 11px/1.6 var(--body);color:var(--muted)}
+
+/* On narrow screens show a second, full-width view of the SAME inset artwork.
+   The full-country map stays visible above, with its cramped inset dots hidden. */
+.region-map-detail-mobile{display:none}
+@media(max-width:760px){
+  .region-country-page .region-map-detail-mobile{
+    display:block;position:relative;overflow:hidden;isolation:isolate;
+    width:100%;aspect-ratio:350/256;border:1px solid #879b9b;background:#eaf2f4;
+    margin:9px 0 0
+  }
+  .region-country-page .region-map-detail-base{
+    position:absolute;left:0;top:0;display:block;
+    width:342.85714286%;height:auto;max-width:none;
+    transform:translate(-68.75%,-59.868421%);pointer-events:none
+  }
+  .region-country-page .region-map-detail-mobile .region-map-hit{z-index:8}
+  .region-country-page #region-map-hits .region-map-hit[data-map-inset="true"]{display:none}
+}

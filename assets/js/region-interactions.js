@@ -7,7 +7,7 @@
   const [, parentSlug, slug] = match;
   const cards = Array.from(document.querySelectorAll('.region-scene[data-scene]'));
   const mapHits = Array.from(document.querySelectorAll('.region-map-hit[data-scene]'));
-  if (cards.length !== 8 || mapHits.length !== cards.length) return;
+  if (cards.length !== 8 || new Set(mapHits.map(hit => hit.dataset.scene)).size !== cards.length) return;
   const cardById = new Map(cards.map(card => [card.dataset.scene, card]));
   const mapById = new Map(mapHits.map(hit => [hit.dataset.scene, hit]));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,8 +21,8 @@
       card.classList.toggle('is-active', selected);
       card.setAttribute('aria-pressed', String(selected));
     }
-    for (const [sceneId, hit] of mapById) {
-      const selected = sceneId === id;
+    for (const hit of mapHits) {
+      const selected = hit.dataset.scene === id;
       hit.classList.toggle('is-active', selected);
       hit.setAttribute('aria-pressed', String(selected));
     }
