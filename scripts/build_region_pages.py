@@ -82,6 +82,17 @@ def icon(name: str) -> str:
             f'<use href="assets/icons/atlas-icons.svg#{name}"></use></svg>')
 
 
+def region_route_flag(route: dict) -> str:
+    """Use platform-independent SVG flags for UK constituent countries."""
+    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
+        str(route.get('countryEn', '')).upper()
+    )
+    if slug:
+        return (f'<img src="assets/icons/region-flags/{slug}.svg" alt="" '
+                'width="28" height="21" decoding="async" '
+                'style="width:28px;height:21px;object-fit:contain;vertical-align:middle">')
+    return esc(route.get('flag', ''))
+
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
                           bounds: dict | None) -> tuple[float, float] | None:
@@ -255,21 +266,6 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
         )
     pieces.append('</div>')
     return ''.join(pieces)
-
-
-def region_flag_markup(country_en: str, fallback: str) -> str:
-    """Use real, local SVG regional flags; Unicode tag flags display as black on some devices."""
-    region_flags = {
-        'ENGLAND': 'england',
-        'SCOTLAND': 'scotland',
-        'WALES': 'wales',
-    }
-    slug = region_flags.get(str(country_en).upper())
-    if slug:
-        return (f'<img src="assets/icons/region-flags/{slug}.svg" alt="" '
-                'width="28" height="21" decoding="async" '
-                'style="width:28px;height:21px;object-fit:contain;vertical-align:middle">')
-    return esc(fallback)
 
 
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
@@ -530,7 +526,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
-                f'<span class="next-route-card__flag" aria-hidden="true">{region_flag_markup(route["countryEn"], route.get("flag", ""))}</span><div>'
+                f'<span class="next-route-card__flag" aria-hidden="true">{region_route_flag(route)}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'

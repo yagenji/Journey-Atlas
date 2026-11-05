@@ -197,6 +197,24 @@ def main() -> int:
                             problems.append(f"Region interaction failed: {check}")
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
+                    england_routes = [r for r in region.get('nextRoutes', []) if r['countryEn'] == 'ENGLAND']
+                    if england_routes:
+                        england_flags = driver.execute_script("""
+                            return [...document.querySelectorAll('.next-route-card')]
+                                .filter(card => card.querySelector('.next-route-card__country strong')?.textContent.trim() === 'ENGLAND')
+                                .map(card => {
+                                    const svg = card.querySelector('svg.region-st-george');
+                                    return {present: !!svg,
+                                        white: !!svg?.querySelector('rect[fill="#fff"][width="50"][height="30"]'),
+                                        horizontal: !!svg?.querySelector('rect[fill="#ce1124"][width="50"][height="6"]'),
+                                        vertical: !!svg?.querySelector('rect[fill="#ce1124"][width="6"][height="30"]'),
+                                        width: svg?.getBoundingClientRect().width || 0};
+                                });
+                        """)
+                        if (len(england_flags) != len(england_routes)
+                                or not all(f['present'] and f['white'] and f['horizontal']
+                                           and f['vertical'] and f['width'] >= 20 for f in england_flags)):
+                            problems.append(f"England St George flag mismatch: {england_flags}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
                             return {
@@ -316,13 +334,11 @@ def main() -> int:
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Region fixed inset map QA failed: {inset}")
-                    # Region flags are now real local SVG images rather than Unicode
-                    # tag-flag glyphs. Count them while still checking every <img> loads.
-                    regional_flag_images = sum(
+                    svg_flag_count = sum(
                         str(route.get("countryEn", "")).upper() in {"ENGLAND", "WALES", "SCOTLAND"}
                         for route in region.get("nextRoutes", [])
                     )
-                    expected_images = 14 + bool((region.get("map") or {}).get("regions")) + regional_flag_images
+                    expected_images = 14 + bool((region.get("map") or {}).get("regions")) + svg_flag_count
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
