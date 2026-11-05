@@ -83,27 +83,15 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Render England's St George's Cross without OS-dependent flag glyphs."""
-    if route.get('countryEn') == 'ENGLAND':
-        return (
-            '<svg class="region-st-george" xmlns="http://www.w3.org/2000/svg" '
-            'width="30" height="18" viewBox="0 0 50 30" '
-            'role="presentation" focusable="false" style="display:block">'
-            '<rect width="50" height="30" fill="#fff"/>'
-            '<rect x="0" y="12" width="50" height="6" fill="#ce1124"/>'
-            '<rect x="22" y="0" width="6" height="30" fill="#ce1124"/>'
-            '</svg>'
-        )
-    if route.get('countryEn') == 'SCOTLAND':
-        return (
-            '<svg class="region-saltire" xmlns="http://www.w3.org/2000/svg" '
-            'width="30" height="20" viewBox="0 0 30 20" role="presentation" focusable="false">'
-            '<rect width="30" height="20" fill="#0065bd"/>'
-            '<path d="M-2 -1L32 21M32 -1L-2 21" stroke="#fff" stroke-width="5"/>'
-            '</svg>'
-        )
+    """Use platform-independent SVG flags for UK constituent countries."""
+    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
+        str(route.get('countryEn', '')).upper()
+    )
+    if slug:
+        return (f'<img src="assets/icons/region-flags/{slug}.svg" alt="" '
+                'width="28" height="21" decoding="async" '
+                'style="width:28px;height:21px;object-fit:contain;vertical-align:middle">')
     return esc(route.get('flag', ''))
-
 
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
