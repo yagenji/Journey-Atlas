@@ -197,6 +197,35 @@ def main() -> int:
                             problems.append(f"Region interaction failed: {check}")
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
+                    if slug == "northern-ireland":
+                        zoom = driver.execute_script("""
+                            const button = document.querySelector('#region-map-zoom-toggle');
+                            const frame = document.querySelector('.map-frame');
+                            if (!button || !frame) return {ok:false, reason:'missing toggle'};
+                            button.click();
+                            const hits = [...frame.querySelectorAll('.region-map-hit')];
+                            const pts = hits.map(h => {
+                                const r = h.getBoundingClientRect();
+                                return {x:r.x+r.width/2, y:r.y+r.height/2};
+                            });
+                            let minGap = Infinity;
+                            for (let i=0;i<pts.length;i++) for (let k=i+1;k<pts.length;k++)
+                                minGap = Math.min(minGap, Math.hypot(pts[i].x-pts[k].x,pts[i].y-pts[k].y));
+                            const state = {ok:frame.classList.contains('is-zoomed'),
+                                expanded:button.getAttribute('aria-expanded'),
+                                mapWidth:frame.querySelector('.map-art').getBoundingClientRect().width,
+                                scrollWidth:frame.scrollWidth,
+                                minGap, scrollLeft:frame.scrollLeft};
+                            button.click();
+                            state.restored = !frame.classList.contains('is-zoomed')
+                                && button.getAttribute('aria-expanded') === 'false';
+                            return state;
+                        """)
+                        if not (zoom.get("ok") and zoom.get("expanded") == "true"
+                                and zoom.get("mapWidth", 0) >= 1199
+                                and zoom.get("minGap", 0) >= 27
+                                and zoom.get("restored")):
+                            problems.append(f"Northern Ireland zoom map QA failed: {zoom}")
                     if audit["imageCount"] != 14 or audit["broken"]: problems.append(f"broken/missing images: {audit['broken']}")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")

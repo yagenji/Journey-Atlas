@@ -273,7 +273,11 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
-        '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
+        + ('<button type="button" id="region-map-zoom-toggle" class="region-map-zoom-toggle" '
+           'aria-expanded="false" aria-controls="country-map-art">地図を拡大して地点を確認</button>'
+           '<p class="region-map-zoom-help" hidden>地図を左右にスクロールして地点を確認できます。</p>'
+           if slug == 'northern-ireland' else '')
+        + '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
                   for item in data.get('encounters', []))
