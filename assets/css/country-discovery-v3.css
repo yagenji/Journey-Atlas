@@ -611,6 +611,15 @@
   gap:8px;
 }
 .next-route-card__flag{font-size:18px;line-height:1;}
+/* Shared waving flag artwork: same scale in Country and Region journey cards. */
+.next-route-card__flag .destination-flag-art,
+.related-flag .destination-flag-art{
+  display:block;
+  width:24px;
+  height:18px;
+  object-fit:contain;
+}
+
 .next-route-card__country strong,
 .next-route-card__country small{display:block;}
 .next-route-card__country strong{
