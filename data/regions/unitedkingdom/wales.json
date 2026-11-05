@@ -63,31 +63,7 @@
       "west": -5.55,
       "east": -2.55
     },
-    "source": "Wales target: 22 ONS/Ordnance Survey 2016 local authority geometries (UK-GeoJSON, OGL v3), dissolved and generalised at 4.5 map pixels. Context: Natural Earth 1:10m map subunits (public domain), dissolved and clipped to the full canvas. WGS84 local-equirectangular-fit-v1; northwest inset reuses identical geometry and real anchors.",
-    "regions": [
-      {
-        "id": "northwest-detail",
-        "svgId": "wales-northwest-detail",
-        "label": "北西部",
-        "sceneIds": [
-          "portmeirion",
-          "harlech-castle"
-        ],
-        "sourceRect": {
-          "x": 560,
-          "y": 194,
-          "width": 60,
-          "height": 60
-        },
-        "rect": {
-          "x": 20,
-          "y": 20,
-          "width": 350,
-          "height": 256
-        }
-      }
-    ],
-    "insetNote": "※ 北西部は、同じ地域を拡大した別枠表示です。"
+    "source": "Wales target: 22 ONS/Ordnance Survey 2016 local authority geometries (UK-GeoJSON, OGL v3), dissolved and generalised at 4.5 map pixels. Context: Natural Earth 1:10m map subunits (public domain), dissolved and clipped to the full canvas. WGS84 local-equirectangular-fit-v1; label callouts retain verified real anchors."
   },
   "scenes": [
     {
@@ -101,7 +77,11 @@
       },
       "image": "assets/images/united-kingdom/wales/approved/scene-tryfan.webp",
       "sourceKey": "ogwen",
-      "coordinateSourceKey": "tryfanCoordinates"
+      "coordinateSourceKey": "tryfanCoordinates",
+      "mapOffset": {
+        "x": -3.317814675,
+        "y": -1.969356725
+      }
     },
     {
       "id": "pen-y-fan",
@@ -153,7 +133,11 @@
       },
       "image": "assets/images/united-kingdom/wales/approved/scene-portmeirion.webp",
       "sourceKey": "portmeirion",
-      "coordinateSourceKey": "portmeirionCoordinates"
+      "coordinateSourceKey": "portmeirionCoordinates",
+      "mapOffset": {
+        "x": 4.764604031,
+        "y": 0.395321637
+      }
     },
     {
       "id": "harlech-castle",
@@ -166,7 +150,11 @@
       },
       "image": "assets/images/united-kingdom/wales/approved/scene-harlech-castle.webp",
       "sourceKey": "harlech",
-      "coordinateSourceKey": "harlech"
+      "coordinateSourceKey": "harlech",
+      "mapOffset": {
+        "x": -4.395537238,
+        "y": 3.302923977
+      }
     },
     {
       "id": "south-stack",
@@ -531,7 +519,7 @@
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
       "path": "コンウィ → チェスター → マンチェスター",
-      "description": "北ウェールズの港町から東へ。チェスターの城壁とマンチェスターの街を、鉄道でつなぐ。",
+      "description": "城と港町を巡る北ウェールズから、チェスターの城壁とマンチェスターの街並みへ。鉄道沿いに旅を続ける。",
       "href": "countries/unitedkingdom/",
       "flag": "🇬🇧"
     },
@@ -539,7 +527,7 @@
       "countryEn": "IRELAND",
       "countryJa": "アイルランド共和国",
       "path": "コンウィ → ホリーヘッド → ダブリン",
-      "description": "北岸を西へ進み、ホリーヘッドからフェリーでアイリッシュ海を渡る。乗船手続きと到着港からの移動も含めて計画する。",
+      "description": "ホリーヘッドから船でアイリッシュ海を渡り、ダブリンへ。港と城の旅に、アイルランドの街歩きを加える。",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
       "sourceKey": "holyheadDublin"
@@ -551,13 +539,6 @@
     "nameJa": "北アイルランド"
   },
   "relatedCountries": [
-    {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "英国全体の地図から、4つの構成国の山・城・街を見比べる。"
-    },
     {
       "nameJa": "アイルランド共和国",
       "nameEn": "IRELAND",
@@ -571,6 +552,14 @@
       "href": "countries/norway/",
       "flag": "🇳🇴",
       "reason": "氷河が刻んだ山と海の関係を、フィヨルドの風景へ広げる。"
+    },
+    {
+      "nameJa": "ニュージーランド",
+      "nameEn": "NEW ZEALAND",
+      "href": "countries/newzealand/",
+      "flag": "🇳🇿",
+      "reason": "羊のいる丘陵と、氷河が刻んだ山や湖を巡る。",
+      "sourceKey": "newZealandLandscape"
     }
   ],
   "sourcesVerifiedAt": "2026-11-05",
@@ -618,14 +607,15 @@
     "castleLandscape": "https://www.visitwales.com/things-do/attractions/castles-and-heritage/wales-castle-capital-europe",
     "coastPath": "https://www.walescoastpath.gov.uk/working-with-us/about-the-path/?lang=en",
     "sheep2025": "https://www.gov.wales/survey-agriculture-and-horticulture-june-2025-html",
-    "holyheadDublin": "https://www.irishferries.com/uk-en/routes-and-times/dublin-holyhead/"
+    "holyheadDublin": "https://www.irishferries.com/uk-en/routes-and-times/dublin-holyhead/",
+    "newZealandLandscape": "https://www.newzealand.com/nz/scenic-highlights/"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "陸続きのイングランドへ、海峡の向こうのアイルランドへ。鉄道とフェリーで旅をつなぐ2つの方向。",
+  "nextRoutesIntro": "北ウェールズから東へ進めば、城壁の街チェスターへ。西へ向かえば、ホリーヘッドから海を渡ってダブリンへ旅が続く。",
   "capital": {
     "nameJa": "カーディフ",
     "coordinates": {

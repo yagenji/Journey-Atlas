@@ -151,7 +151,7 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str,
 
 
 def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict) -> tuple[float, float]:
-    """Overlay one numbered Scene in its verified inset, or at the true main position."""
+    """Keep real anchors, applying verified insets or bounded label-only offsets."""
     pos = interactive_map_position(scene['coordinates'], index, svg, map_data['bounds'])
     for detail in map_data.get('regions') or []:
         if scene['id'] not in detail.get('sceneIds', []):
@@ -175,7 +175,28 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
                 and rect['y'] <= y <= rect['y'] + rect['height']):
             raise ValueError(f"Scene {index} is outside inset {detail['id']}")
         return 100 * x / 1200, 100 * y / 760
-    return pos
+    offset = scene.get('mapOffset')
+    if offset is None:
+        return pos
+    if not isinstance(offset, dict):
+        raise ValueError('Region mapOffset must be an object')
+    dx, dy = offset.get('x', 0), offset.get('y', 0)
+    if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in (dx, dy)):
+        raise ValueError('Region mapOffset must contain finite numbers')
+    # Same percentage units and 60px maximum as the shared Country markers.
+    if math.hypot(12 * dx, 7.6 * dy) > 60:
+        raise ValueError('Region mapOffset exceeds 60 canvas pixels')
+    x, y = pos[0] + dx, pos[1] + dy
+    if not (0 <= x <= 100 and 0 <= y <= 100):
+        raise ValueError('Region map label is outside the canvas')
+    node = ET.fromstring(svg).find(f'.//*[@id="scene-marker-{index}"]')
+    if node is None or any(
+        not math.isfinite(float(node.get(key, 'nan')))
+        or abs(float(node.get(key, 'nan')) - expected) > .01
+        for key, expected in [('data-label-x', 12 * x), ('data-label-y', 7.6 * y)]
+    ):
+        raise ValueError('Region map callout and label coordinates disagree')
+    return x, y
 
 
 def region_hero_map_position(coords: dict, svg: str = '',

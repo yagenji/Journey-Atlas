@@ -44,26 +44,43 @@ class WalesRegion(unittest.TestCase):
         self.assertEqual(len(self.data['culture']), 6)
         self.assertEqual(len(self.data['travelTrivia']), 5)
         self.assertTrue(all(len(item.get('points', [])) == 2 for item in self.data['culture']))
-        self.assertIn('北西部の別枠拡大図', page)
+        self.assertNotIn('region-map-detail-mobile', page)
+        self.assertNotIn('map-inset-note', page)
 
-    def test_inset_keeps_real_anchors_and_separates_nearby_places(self):
+    def test_callouts_keep_real_anchors_without_an_inset(self):
         root = ET.fromstring(self.svg)
-        self.assertIsNotNone(root.find('.//*[@id="wales-northwest-detail"]'))
+        self.assertIsNone(root.find('.//*[@id="wales-northwest-detail"]'))
+        self.assertNotIn('data-map-inset-standard', root.attrib)
         projected = []
         for i, scene in enumerate(self.data['scenes'], 1):
             actual = region.interactive_map_position(scene['coordinates'], i, self.svg, self.data['map']['bounds'])
             displayed = region.region_scene_map_position(scene, i, self.svg, self.data['map'])
-            if scene['id'] in self.data['map']['regions'][0]['sceneIds']:
+            if scene.get('mapOffset'):
                 self.assertNotEqual(actual, displayed)
-                projected.append(displayed)
+                node = root.find(f'.//*[@id="scene-marker-{i}"]')
+                self.assertIsNotNone(node.find('{http://www.w3.org/2000/svg}path'))
+                self.assertIsNotNone(node.find('{http://www.w3.org/2000/svg}circle'))
             else:
                 self.assertEqual(actual, displayed)
-        (x, y), (xx, yy) = projected
-        self.assertGreater(((12*(x-xx))**2 + (7.6*(y-yy))**2)**.5, 27)
+            projected.append(displayed)
+        # A 290px-wide map covers a narrow phone after the shared page padding.
+        for i, (x, y) in enumerate(projected):
+            for xx, yy in projected[i+1:]:
+                gap = ((12*(x-xx))**2 + (7.6*(y-yy))**2)**.5
+                self.assertGreater(gap * 290 / 1200, 27)
         altered = copy.deepcopy(self.data['scenes'][4])
         altered['coordinates']['latitude'] += .01
         with self.assertRaisesRegex(ValueError, 'coordinates disagree'):
             region.region_scene_map_position(altered, 5, self.svg, self.data['map'])
+
+    def test_callout_drift_and_excessive_offsets_are_rejected(self):
+        scene = copy.deepcopy(self.data['scenes'][4])
+        scene['mapOffset'] = {'x': 6, 'y': 0}
+        with self.assertRaisesRegex(ValueError, 'exceeds 60'):
+            region.region_scene_map_position(scene, 5, self.svg, self.data['map'])
+        scene['mapOffset'] = {'x': 0, 'y': 0}
+        with self.assertRaisesRegex(ValueError, 'label coordinates disagree'):
+            region.region_scene_map_position(scene, 5, self.svg, self.data['map'])
 
     def test_all_source_keys_resolve(self):
         def visit(value):
