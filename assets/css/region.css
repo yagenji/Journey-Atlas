@@ -97,16 +97,17 @@
   box-shadow:0 1px 4px rgba(9,42,75,.22)
 }
 
-/* Waved Region flags share one visible scale, independent of SVG artwork. */
+/* Match regular Country next-route flags (18px), including waved Region SVGs. */
 .region-country-page .next-route-card__flag{
   display:inline-flex;
-  width:30px;
-  height:30px;
-  flex:0 0 30px;
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
   align-items:center;
   justify-content:center;
+  font-size:18px;
   line-height:1;
 }
 .region-country-page .next-route-card__flag .region-route-flag{
-  display:block;width:30px;height:30px;max-width:none;object-fit:contain;flex:none
+  display:block;width:18px;height:18px;max-width:none;object-fit:contain;flex:none
 }
