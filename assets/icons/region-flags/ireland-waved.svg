@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <path id="ireland-wave-shape" d="M8 195.25 C178.83 110.03 349.03 140.83 521.26 167.28 C676.47 191.12 833.42 211.85 992 132.75 L992 804.75 C821.17 889.97 650.97 859.17 478.74 832.72 C323.53 808.88 166.58 788.15 8 867.25 Z"/>
+    <clipPath id="ireland-wave-clip"><use href="#ireland-wave-shape"/></clipPath>
+    <linearGradient id="ireland-fold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity=".16"/>
+      <stop offset=".22" stop-color="#fff" stop-opacity=".08"/>
+      <stop offset=".47" stop-color="#000" stop-opacity=".13"/>
+      <stop offset=".74" stop-color="#fff" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".15"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#ireland-wave-clip)">
+    <path fill="#169B62" d="M0 0H333.333V1000H0Z"/>
+    <path fill="#FFF" d="M333.333 0H666.667V1000H333.333Z"/>
+    <path fill="#FF883E" d="M666.667 0H1000V1000H666.667Z"/>
+    <path fill="url(#ireland-fold)" d="M0 0H1000V1000H0Z"/>
+  </g>
+</svg>
