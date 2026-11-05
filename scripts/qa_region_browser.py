@@ -202,7 +202,7 @@ def main() -> int:
                             return {
                                 routes:[...document.querySelectorAll('.next-route-card__country strong')]
                                     .map(n=>n.textContent.trim()),
-                                related:[...document.querySelectorAll('.region-related .related-card strong')]
+                                related:[...document.querySelectorAll('.region-related .related-card h3')]
                                     .map(n=>n.textContent.trim()),
                                 relatedCount:document.querySelectorAll('.region-related .related-card').length
                             };
@@ -210,6 +210,7 @@ def main() -> int:
                         expected_routes = [item["countryEn"] for item in region["nextRoutes"]]
                         if (journey_picks["routes"] != expected_routes or len(expected_routes) != 3
                                 or journey_picks["relatedCount"] != 3
+                                or journey_picks["related"] != [item["nameEn"] for item in region["relatedCountries"]]
                                 or len(region["relatedCountries"]) != 3):
                             problems.append(f"Northern Ireland journey cards mismatch: {journey_picks}")
                     if slug == "northern-ireland":
