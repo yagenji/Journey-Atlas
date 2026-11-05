@@ -188,6 +188,11 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     canonical = urljoin(site_url, f'countries/{parent}/{slug}/')
     published = data.get('regionPublished') is True
     hero = data['hero']
+    # Use the existing Country title sizing, including its tablet breakpoint.
+    title_length = len(re.sub(r'\s+', '', data['nameEn'].strip()))
+    title_classes = 'hero-title--long' if title_length >= 12 else ''
+    if title_length >= 18:
+        title_classes += ' hero-title--very-long'
     result: list[str] = []
 
     # Hero uses the exact shared Country section hierarchy and typography.
@@ -198,7 +203,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + render_image(hero['image'], f'{hero["name"]}を描いた景観イメージ', version, eager=True)
         + '</div><div class="hero-copy page-shell">'
         f'<p class="region">{esc(data["region"])}</p>'
-        f'<h1 id="region-title">{esc(data["nameEn"])}</h1>'
+        f'<h1 id="region-title" class="{title_classes}">{esc(data["nameEn"])}</h1>'
         f'<p class="country-ja">{esc(data["nameJa"])}</p>'
         f'<p class="hero-lead">{esc(hero["lead"])}</p>'
         '<div class="country-theme-context" id="country-theme-context">'
