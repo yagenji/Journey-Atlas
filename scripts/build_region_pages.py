@@ -236,6 +236,22 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     return ''.join(pieces)
 
 
+
+def region_flag_svg(country_en: str, fallback: str = '') -> str:
+    """Render UK constituent-country flags reliably across browsers.
+
+    Assets from lipis/flag-icons (MIT); Unicode subdivision tags are not reliable.
+    """
+    flags = {'SCOTLAND': 'gb-sct', 'WALES': 'gb-wls', 'ENGLAND': 'gb-eng'}
+    asset = flags.get(country_en.strip().upper())
+    if asset:
+        # Inline SVG keeps flags accessible without altering the page's photo count.
+        svg_path = ROOT / 'assets' / 'flags' / f'{asset}.svg'
+        return svg_path.read_text(encoding='utf-8').replace(
+            '<svg ', '<svg class="region-flag-svg" aria-hidden="true" focusable="false" ', 1
+        )
+    return esc(fallback)
+
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
@@ -494,7 +510,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
-                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
+                f'<span class="next-route-card__flag" aria-hidden="true">{region_flag_svg(route["countryEn"], route.get("flag", ""))}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
@@ -516,7 +532,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             result.append(f'<a class="related-card is-open" href="{esc(href)}" '
                 f'aria-label="{esc(item["nameJa"])}のJOURNEY ATLASを見る">'
                 '<div class="related-country">'
-                f'<span class="related-flag" aria-hidden="true">{esc(item.get("flag","◌"))}</span>'
+                f'<span class="related-flag" aria-hidden="true">{region_flag_svg(item["nameEn"], item.get("flag","◌"))}</span>'
                 '<div class="related-copy">'
                 f'<h3>{esc(item["nameEn"])}</h3><b>{esc(item["nameJa"])}</b>'
                 f'<p>{esc(item.get("reason","国ページを見る"))}</p>'

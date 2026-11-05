@@ -63,7 +63,7 @@
       "west": -6.6,
       "east": 2.45
     },
-    "source": "England boundary: jhellingsdata/map-data gbr/CTRY_GB-ENG.json (MIT, UK country subunit E92000001). Coast/islands and inland water: GSHHS intermediate via Basemap (LGPL). WGS84; local-equirectangular-fit-v1; scene and Hero anchors are real coordinates."
+    "source": "UK constituent-country boundaries (England E92000001, Wales W92000004, Scotland S92000003) from jhellingsdata/map-data CTRY_GB-ENG/WLS/SCT (MIT). WGS84 local-equirectangular-fit-v1, true Hero/Scene anchors. No inferred coastlines or borders."
   },
   "scenes": [
     {
@@ -239,7 +239,11 @@
       "themeEn": "NATURE",
       "themeJa": "自然を知る",
       "icon": "landscape",
-      "sourceKey": "lakeLandscape"
+      "sourceKey": "lakeLandscape",
+      "points": [
+        "氷河が削った谷と湖に、牧草地や石垣が重なる",
+        "湖岸を歩くと、自然の地形と土地の利用が一つの景色になっている"
+      ]
     },
     {
       "title": "石の村を、羊毛の仕事から眺める",
@@ -248,7 +252,11 @@
       "themeEn": "HISTORY",
       "themeJa": "歴史を知る",
       "icon": "history",
-      "sourceKey": "arlingtonRow"
+      "sourceKey": "arlingtonRow",
+      "points": [
+        "アーリントン・ロウは羊毛の保管施設から織工の住まいへ変わった",
+        "石の家並みには、農村の仕事と交易の記憶が残っている"
+      ]
     },
     {
       "title": "バースは、湯と社交から街が育った",
@@ -257,7 +265,11 @@
       "themeEn": "CITY",
       "themeJa": "街を歩く",
       "icon": "city",
-      "sourceKey": "bath"
+      "sourceKey": "bath",
+      "points": [
+        "ローマ時代の浴場から18世紀の社交都市へ歴史がつながる",
+        "ロイヤル・クレセントの弧と緑地には、街を一体に設計した思想が見える"
+      ]
     },
     {
       "title": "コーンウォールの土地には、別の言葉がある",
@@ -266,7 +278,11 @@
       "themeEn": "CULTURE",
       "themeJa": "文化を知る",
       "icon": "culture",
-      "sourceKey": "cornish"
+      "sourceKey": "cornish",
+      "points": [
+        "コーンウォール語は地名や地域文化を通じて受け継がれている",
+        "イングランドの内部にも異なる言語の歴史と帰属意識がある"
+      ]
     },
     {
       "title": "リヴァプールでは、音楽を過去形にしない",
@@ -275,7 +291,11 @@
       "themeEn": "CULTURE",
       "themeJa": "文化を知る",
       "icon": "culture",
-      "sourceKey": "liverpoolMusic"
+      "sourceKey": "liverpoolMusic",
+      "points": [
+        "リヴァプールはビートルズの故郷として知られる",
+        "ユネスコ音楽都市として、現在のライブ文化にも耳を向けたい"
+      ]
     },
     {
       "title": "田園をつなぐ歩道が、旅の速度を変える",
@@ -284,7 +304,11 @@
       "themeEn": "WALK",
       "themeJa": "歩く旅",
       "icon": "hike",
-      "sourceKey": "footpaths"
+      "sourceKey": "footpaths",
+      "points": [
+        "イングランドには公共の通行権を持つフットパスが広がる",
+        "車道から離れると、畑や村の縁を歩く土地の読み方が生まれる"
+      ]
     }
   ],
   "taste": {
@@ -360,6 +384,15 @@
       "categoryJa": "風習",
       "icon": "food",
       "sourceKey": "cheeseRolling"
+    },
+    {
+      "title": "ヨークの建物には、猫がひそんでいる",
+      "text": "ヨークの街では、建物の壁や屋根に据えられた猫の彫刻を探せる。目線を少し上げるだけで、古い街歩きが小さな発見の旅に変わる。",
+      "topicKey": "york-cats",
+      "categoryEn": "CITY",
+      "categoryJa": "街の発見",
+      "icon": "city",
+      "sourceKey": "yorkCats"
     }
   ],
   "forWhom": [
