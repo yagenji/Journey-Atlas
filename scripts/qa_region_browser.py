@@ -135,7 +135,7 @@ def main() -> int:
                     # Interactions are part of Country parity: a screenshot PASS
                     # alone cannot prove map/card selection or personal saves.
                     interactions = driver.execute_script("""
-                        const hits = [...document.querySelectorAll('.region-map-hit')];
+                        const hits = [...document.querySelectorAll('#region-map-hits .region-map-hit')];
                         const cards = [...document.querySelectorAll('.region-scene')];
                         const testId = hits[1]?.dataset.scene;
                         const target = cards.find(c => c.dataset.scene === testId);
@@ -232,13 +232,46 @@ def main() -> int:
                                 gapSvgPx:minGap/scale,
                                 mapImageLoaded:img?.naturalWidth > 0};
                         """, detail)
+                        mobile_inset = driver.execute_script("""
+                            const root=document.querySelector('.region-map-detail-mobile');
+                            const img=root?.querySelector('img');
+                            const mapRoot=document.querySelector('#region-map-hits');
+                            if(!root || !mapRoot) return {found:false};
+                            const visible=getComputedStyle(root).display!=='none';
+                            const buttons=[...root.querySelectorAll('.region-map-hit')];
+                            const mainInset=[...mapRoot.querySelectorAll('[data-map-inset="true"]')];
+                            const pts=buttons.map(h=>{
+                                const r=h.getBoundingClientRect();
+                                return {x:r.x+r.width/2,y:r.y+r.height/2};
+                            });
+                            let minGap=Infinity;
+                            for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++)
+                                minGap=Math.min(minGap,Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y));
+                            const widths=root.getBoundingClientRect();
+                            return {found:true,visible,count:buttons.length,
+                                ids:buttons.map(b=>b.dataset.scene),
+                                hiddenMain:mainInset.every(b=>getComputedStyle(b).display==='none'),
+                                loaded:!!img && img.naturalWidth>0,
+                                gap:minGap, width:widths.width};
+                        """)
+                        small = label == "mobile"
+                        if not (mobile_inset.get("found") and mobile_inset.get("count") == 5
+                                and set(mobile_inset.get("ids", [])) == set(detail[0]["sceneIds"])
+                                and mobile_inset.get("visible") == small
+                                and (not small or (mobile_inset.get("hiddenMain")
+                                    and mobile_inset.get("gap", 0) >= 27
+                                    and mobile_inset.get("width", 0) >= 250))
+                                and mobile_inset.get("loaded")):
+                            problems.append(f"Northern Ireland mobile detail failed: {mobile_inset}")
                         if not (len(detail) == 1 and inset.get("hasNote")
                                 and inset.get("noZoomButton")
                                 and inset.get("mapImageLoaded")
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and inset.get("gapSvgPx", 0) >= 27):
                             problems.append(f"Northern Ireland fixed inset map QA failed: {inset}")
-                    if audit["imageCount"] != 14 or audit["broken"]: problems.append(f"broken/missing images: {audit['broken']}")
+                    expected_images = 15 if slug == "northern-ireland" else 14
+                    if audit["imageCount"] != expected_images or audit["broken"]:
+                        problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
                     if audit["canonical"] != canonical: problems.append("canonical mismatch")
