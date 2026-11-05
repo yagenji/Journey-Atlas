@@ -63,7 +63,7 @@
       "west": -6.6,
       "east": 2.45
     },
-    "source": "England boundary: jhellingsdata/map-data gbr/CTRY_GB-ENG.json (MIT, UK country subunit E92000001). Coast/islands and inland water: GSHHS intermediate via Basemap (LGPL). WGS84; local-equirectangular-fit-v1; scene and Hero anchors are real coordinates."
+    "source": "England / Wales / Scotland constituent-country outlines: UK ONS/Ordnance Survey country TopoJSON via jhellingsdata/map-data (MIT). WGS84 local-equirectangular-fit-v1, consistent projection for geography and scene anchors; no inferred coastline or borders."
   },
   "scenes": [
     {
@@ -234,7 +234,7 @@
   "culture": [
     {
       "title": "湖水地方の景色には、牧畜の手が入っている",
-      "text": "氷河が刻んだ谷を、牧草地と石垣が区切る。山と湖だけでなく、人が使い続けた土地の形を見る。",
+      "text": "氷河が削った谷に、牧草地や石垣、農家の建物が折り重なる。湖水地方の文化的景観は、自然だけでなく、何世代にもわたる牧畜と土地利用によって形づくられてきた。山と湖を眺めたら、牧場を区切る石垣の線にも目を向けたい。",
       "topicKey": "lakes",
       "themeEn": "NATURE",
       "themeJa": "自然を知る",
@@ -243,7 +243,7 @@
     },
     {
       "title": "石の村を、羊毛の仕事から眺める",
-      "text": "バイブリーのアーリントン・ロウは羊毛倉庫が起源。織工の住まいへ変わった建物に、村と産業のつながりが残る。",
+      "text": "バイブリーのアーリントン・ロウは、もともと羊毛を保管する建物としてつくられ、のちに織工の住まいとなった。水辺に並ぶ家々の景色には、コッツウォルズを支えた羊毛産業の記憶が残る。石造りの美しさの奥に、この土地の仕事の歴史が見えてくる。",
       "topicKey": "wool",
       "themeEn": "HISTORY",
       "themeJa": "歴史を知る",
@@ -252,7 +252,7 @@
     },
     {
       "title": "バースは、湯と社交から街が育った",
-      "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
+      "text": "ローマ時代の浴場から、18世紀に発展した保養都市まで、バースでは湯が街の形を変えてきた。ロイヤル・クレセントの弧を描く住宅群も、広場や緑地とともに構想された都市の一部だ。建物一つだけでなく、歩く人の視線や空間の広がりまで眺めたい。",
       "topicKey": "bath",
       "themeEn": "CITY",
       "themeJa": "街を歩く",
@@ -261,7 +261,7 @@
     },
     {
       "title": "コーンウォールの土地には、別の言葉がある",
-      "text": "コーンウォール語は、地域の歴史と文化を伝える言葉。英語だけでは捉えきれない、南西部の地域性を知る入口になる。",
+      "text": "イングランド南西端のコーンウォールには、英語とは異なるケルト系のコーンウォール語が受け継がれている。地名や看板にその綴りを見つけると、同じイギリスの中にも異なる言葉の歴史があると気づく。海岸の風景の背後にある地域の個性を知る入口になる。",
       "topicKey": "cornish",
       "themeEn": "CULTURE",
       "themeJa": "文化を知る",
@@ -270,7 +270,7 @@
     },
     {
       "title": "リヴァプールでは、音楽を過去形にしない",
-      "text": "ビートルズの故郷は、現在も多様な音楽が響く街。記念の場所を訪ねるだけでなく、小さなライブの場にも目を向けたい。",
+      "text": "リヴァプールはビートルズを生んだ街として知られるが、音楽の営みは過去の記念物に閉じていない。多彩なジャンルの演奏が、現在もホールや小さな会場で続いている。港と移動の歴史を持つ都市の空気を、街の音からも感じてみたい。",
       "topicKey": "liverpool",
       "themeEn": "CULTURE",
       "themeJa": "文化を知る",
@@ -279,7 +279,7 @@
     },
     {
       "title": "田園をつなぐ歩道が、旅の速度を変える",
-      "text": "公的な通行権のあるフットパスが、田園を歩く道になる。村の通りから畑の縁へ、車では通り過ぎる景色に近づける。",
+      "text": "イングランドの田園には、土地を横切って歩くための公共の通行権（フットパス）が広がっている。車では見えない畑の境や小川沿いの道をたどると、村と農地の距離がぐっと近くなる。標識に従い、畑や家畜のいる場所では現地のルールを守って歩きたい。",
       "topicKey": "footpath",
       "themeEn": "WALK",
       "themeJa": "歩く旅",
@@ -360,6 +360,15 @@
       "categoryJa": "風習",
       "icon": "food",
       "sourceKey": "cheeseRolling"
+    },
+    {
+      "title": "ヨークの街角には、猫の像が隠れている",
+      "text": "ヨークの古い建物を見上げると、壁や屋根のあちこちに猫の像が見つかる。街に猫像が置かれる歴史は20世紀初頭にさかのぼり、いまは猫を探しながら街歩きを楽しむ専用ルートもある。",
+      "topicKey": "york-cats",
+      "categoryEn": "CITY",
+      "categoryJa": "街の発見",
+      "icon": "city",
+      "sourceKey": "yorkCats"
     }
   ],
   "forWhom": [
@@ -505,7 +514,7 @@
       "reason": "海峡の向こうへ、別の島の歴史と海岸をたどる。"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-04",
+  "sourcesVerifiedAt": "2026-11-05",
   "sourceDates": {
     "population": "2025-06-30（ONS 2025 mid-year estimate; 再確認待ち）",
     "landArea": "イングランド約130,000km²の概数、日本約378,000km²との比較",
@@ -556,12 +565,23 @@
     "windsorCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1117776",
     "windsorView": "https://historicengland.org.uk/listing/the-list/list-entry/1001434",
     "geometry": "https://www.soest.hawaii.edu/pwessel/gshhg/",
-    "englandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-ENG.json"
+    "englandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-ENG.json",
+    "londonCoordinates": "https://iris.londoncouncils.gov.uk/en/where-is-london-uk-located.html",
+    "walesBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-WLS.json",
+    "scotlandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-SCT.json"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。"
+  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。",
+  "capital": {
+    "nameJa": "ロンドン",
+    "coordinates": {
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    "sourceKey": "londonCoordinates"
+  }
 }

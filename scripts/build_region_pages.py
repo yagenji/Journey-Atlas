@@ -257,6 +257,21 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     return ''.join(pieces)
 
 
+def region_flag_markup(country_en: str, fallback: str) -> str:
+    """Use real, local SVG regional flags; Unicode tag flags display as black on some devices."""
+    region_flags = {
+        'ENGLAND': 'england',
+        'SCOTLAND': 'scotland',
+        'WALES': 'wales',
+    }
+    slug = region_flags.get(str(country_en).upper())
+    if slug:
+        return (f'<img src="assets/icons/region-flags/{slug}.svg" alt="" '
+                'width="28" height="21" decoding="async" '
+                'style="width:28px;height:21px;object-fit:contain;vertical-align:middle">')
+    return esc(fallback)
+
+
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
@@ -515,7 +530,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
-                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
+                f'<span class="next-route-card__flag" aria-hidden="true">{region_flag_markup(route["countryEn"], route.get("flag", ""))}</span><div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
