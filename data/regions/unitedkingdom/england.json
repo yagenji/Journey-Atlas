@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "unitedkingdom",
+  "slug": "england",
+  "regionPublished": false,
+  "nameEn": "ENGLAND",
+  "region": "NORTHERN EUROPE / 52°N",
+  "nameJa": "イングランド",
+  "parentNameJa": "イギリス",
+  "seo": {
+    "description": "ウィンザー城の並木道から湖水地方、バンバラ城、ヨーク、バイブリー、バース、巨石遺跡、南西部の海岸へ。イングランドの8景と地図から旅を描く。"
+  },
+  "hero": {
+    "name": "ウィンザー城",
+    "location": "Windsor Castle / Long Walk, Windsor",
+    "coordinates": {
+      "latitude": 51.48394,
+      "longitude": -0.60443
+    },
+    "image": "assets/images/united-kingdom/england/approved/hero-windsor-castle.webp",
+    "lead": "並木道の先に、ウィンザー城の石の塔が見える。ロンドンの街を歩き、北へ向かえば湖と大聖堂の街、西へ進めば石の村と巨石の遺跡、潮が道を隠す島へ。イングランドは、都市と田園、長い時間を行き来する旅になる。",
+    "description": "ウィンザー・グレート・パークのロング・ウォーク。並木道から北へ、ジョージ4世門の方角にウィンザー城を望む。",
+    "sourceKey": "profile",
+    "coordinateSourceKey": "profile"
+  },
+  "profile": [
+    {
+      "label": "構成国",
+      "value": "イギリス（英国）の4構成国の一つ",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "中心都市",
+      "value": "ロンドン（英国の首都）",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "人口",
+      "value": "約5,883万人（2025年6月推計）",
+      "sourceKey": "population2025"
+    },
+    {
+      "label": "面積",
+      "value": "約13万km²（日本の約34%）",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "主な言語",
+      "value": "英語、コーンウォール語など",
+      "sourceKey": "cornish"
+    },
+    {
+      "label": "通貨",
+      "value": "英ポンド（GBP）",
+      "sourceKey": "profile"
+    }
+  ],
+  "map": {
+    "svg": "assets/images/united-kingdom/england/map-england.svg",
+    "bounds": {
+      "north": 56.25,
+      "south": 49.75,
+      "west": -6.6,
+      "east": 2.45
+    },
+    "source": "England boundary: jhellingsdata/map-data gbr/CTRY_GB-ENG.json (MIT, UK country subunit E92000001). Coast/islands and inland water: GSHHS intermediate via Basemap (LGPL). WGS84; local-equirectangular-fit-v1; scene and Hero anchors are real coordinates."
+  },
+  "scenes": [
+    {
+      "id": "derwentwater",
+      "name": "湖水地方／ダーウェントウォーター",
+      "nameLocal": "Derwentwater / Friar’s Crag",
+      "description": "ケズウィック近くの湖岸から、ボローデールの山並みを望む。水面と森、丸みを帯びた山腹が重なり、北西部の湖と山の風景をつくる。",
+      "coordinates": {
+        "latitude": 54.5903,
+        "longitude": -3.14091
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-derwentwater.webp",
+      "sourceKey": "derwentwater",
+      "coordinateSourceKey": "derwentwaterCoordinates"
+    },
+    {
+      "id": "bamburgh-castle",
+      "name": "バンバラ城",
+      "nameLocal": "Bamburgh Castle / Northumberland",
+      "description": "北海に向かう砂浜の背後に、岩の高台を占める城が立つ。長い城壁と砂丘の対比に、北東部の海岸と歴史が重なる。",
+      "coordinates": {
+        "latitude": 55.60929,
+        "longitude": -1.71077
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-bamburgh-castle.webp",
+      "sourceKey": "bamburgh",
+      "coordinateSourceKey": "bamburghCoordinates"
+    },
+    {
+      "id": "york-minster",
+      "name": "ヨーク・ミンスター",
+      "nameLocal": "York Minster / Duncombe Place",
+      "description": "石造の旧市街を歩くと、ゴシック様式の大聖堂が現れる。西正面の二つの塔と大きな窓が、ヨークの街の輪郭を定める。",
+      "coordinates": {
+        "latitude": 53.96219,
+        "longitude": -1.08207
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-york-minster.webp",
+      "sourceKey": "yorkMinster",
+      "coordinateSourceKey": "yorkMinsterCoordinates"
+    },
+    {
+      "id": "arlington-row",
+      "name": "コッツウォルズ／バイブリー",
+      "nameLocal": "Arlington Row / Bibury",
+      "description": "小川沿いに石の家々が並ぶアーリントン・ロウ。羊毛倉庫から織工の住まいへと姿を変えた建物が、田園と仕事の歴史を残している。",
+      "coordinates": {
+        "latitude": 51.75849,
+        "longitude": -1.8348
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-arlington-row.webp",
+      "sourceKey": "arlingtonRow",
+      "coordinateSourceKey": "arlingtonRowCoordinates"
+    },
+    {
+      "id": "royal-crescent",
+      "name": "バース／ロイヤル・クレセント",
+      "nameLocal": "Royal Crescent / Bath",
+      "description": "淡い石灰岩の住宅が大きな弧を描き、前面に緑の芝生が広がる。18世紀の保養都市が、建築と風景を一体に考えた姿が見えてくる。",
+      "coordinates": {
+        "latitude": 51.38748,
+        "longitude": -2.36809
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-royal-crescent.webp",
+      "sourceKey": "royalCrescent",
+      "coordinateSourceKey": "royalCrescent"
+    },
+    {
+      "id": "stonehenge",
+      "name": "ストーンヘンジ",
+      "nameLocal": "Stonehenge / Wiltshire",
+      "description": "草原に立つ巨石の輪。直立する石と水平に渡された石が、先史時代の人々の技術と、いまも解き明かされ続ける営みを伝える。",
+      "coordinates": {
+        "latitude": 51.17891,
+        "longitude": -1.82685
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-stonehenge.webp",
+      "sourceKey": "stonehenge",
+      "coordinateSourceKey": "stonehengeCoordinates"
+    },
+    {
+      "id": "durdle-door",
+      "name": "ジュラシック・コースト／ダードル・ドア",
+      "nameLocal": "Durdle Door / Dorset",
+      "description": "波が石灰岩をくり抜いて生んだ海食アーチ。砂利浜と海へ続く岩の線を眺めると、海岸が変わり続ける場所であることがわかる。",
+      "coordinates": {
+        "latitude": 50.62207,
+        "longitude": -2.27702
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-durdle-door.webp",
+      "sourceKey": "durdleDoor",
+      "coordinateSourceKey": "durdleDoor"
+    },
+    {
+      "id": "st-michaels-mount",
+      "name": "コーンウォール／セント・マイケルズ・マウント",
+      "nameLocal": "St Michael’s Mount / Cornwall",
+      "description": "湾に浮かぶ小島の頂に城が立つ。干潮時に現れる石畳の道と港が、潮の満ち引きで陸とのつながりが変わる島の暮らしを見せる。",
+      "coordinates": {
+        "latitude": 50.11651,
+        "longitude": -5.47837
+      },
+      "image": "assets/images/united-kingdom/england/approved/scene-st-michaels-mount.webp",
+      "sourceKey": "stMichaelsMount",
+      "coordinateSourceKey": "stMichaelsMountCoordinates"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "jurassic",
+      "label": "海岸に現れる地球の時間",
+      "value": "約1億8,500万年",
+      "note": "南部のジュラシック・コーストには、三畳紀・ジュラ紀・白亜紀にまたがる地層が現れる。海辺の散歩が、恐竜のいた時代より前から続く環境の変化をたどる旅になる。",
+      "icon": "landscape",
+      "sourceKey": "jurassicHistory"
+    },
+    {
+      "topicKey": "railway",
+      "label": "公共鉄道を蒸気機関車が走る",
+      "value": "1825年",
+      "note": "北東部のストックトン＆ダーリントン鉄道で、蒸気機関車が公共鉄道を走り始めた。近代の移動と産業の姿が変わる起点の一つだった。",
+      "icon": "road",
+      "sourceKey": "railway1825"
+    },
+    {
+      "topicKey": "fruit",
+      "label": "果樹園で受け継ぐ品種",
+      "value": "約3,500品種",
+      "note": "ケント州ブロッグデールの国立果樹コレクションには、リンゴ、ナシ、プラム、サクランボなど約3,500の栽培品種が集まる。身近な果物にも、多様な味と栽培の歴史が詰まっている。",
+      "icon": "food",
+      "sourceKey": "apples"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "並木道の先の王城",
+      "icon": "history"
+    },
+    {
+      "title": "水と山の重なる湖畔",
+      "icon": "landscape"
+    },
+    {
+      "title": "砂丘の上の城壁",
+      "icon": "history"
+    },
+    {
+      "title": "石の街と大聖堂",
+      "icon": "city"
+    },
+    {
+      "title": "小川に並ぶ石の家々",
+      "icon": "quiet"
+    },
+    {
+      "title": "弧を描くジョージアン建築",
+      "icon": "city"
+    },
+    {
+      "title": "草原に立つ巨石",
+      "icon": "history"
+    },
+    {
+      "title": "波が刻んだ岩のアーチ",
+      "icon": "sea"
+    }
+  ],
+  "culture": [
+    {
+      "title": "湖水地方の景色には、牧畜の手が入っている",
+      "text": "氷河が刻んだ谷を、牧草地と石垣が区切る。山と湖だけでなく、人が使い続けた土地の形を見る。",
+      "topicKey": "lakes",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "icon": "landscape",
+      "sourceKey": "lakeLandscape"
+    },
+    {
+      "title": "石の村を、羊毛の仕事から眺める",
+      "text": "バイブリーのアーリントン・ロウは羊毛倉庫が起源。織工の住まいへ変わった建物に、村と産業のつながりが残る。",
+      "topicKey": "wool",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "history",
+      "sourceKey": "arlingtonRow"
+    },
+    {
+      "title": "バースは、湯と社交から街が育った",
+      "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
+      "topicKey": "bath",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "icon": "city",
+      "sourceKey": "bath"
+    },
+    {
+      "title": "コーンウォールの土地には、別の言葉がある",
+      "text": "コーンウォール語は、地域の歴史と文化を伝える言葉。英語だけでは捉えきれない、南西部の地域性を知る入口になる。",
+      "topicKey": "cornish",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "icon": "culture",
+      "sourceKey": "cornish"
+    },
+    {
+      "title": "リヴァプールでは、音楽を過去形にしない",
+      "text": "ビートルズの故郷は、現在も多様な音楽が響く街。記念の場所を訪ねるだけでなく、小さなライブの場にも目を向けたい。",
+      "topicKey": "liverpool",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "icon": "culture",
+      "sourceKey": "liverpoolMusic"
+    },
+    {
+      "title": "田園をつなぐ歩道が、旅の速度を変える",
+      "text": "公的な通行権のあるフットパスが、田園を歩く道になる。村の通りから畑の縁へ、車では通り過ぎる景色に近づける。",
+      "topicKey": "footpath",
+      "themeEn": "WALK",
+      "themeJa": "歩く旅",
+      "icon": "hike",
+      "sourceKey": "footpaths"
+    }
+  ],
+  "taste": {
+    "title": "TASTE OF ENGLAND",
+    "items": [
+      {
+        "id": "full-english-breakfast",
+        "name": "フル・イングリッシュ・ブレックファスト",
+        "nameLocal": "Full English Breakfast",
+        "text": "卵、ベーコン、ソーセージ、豆、トマトなどを一皿に。具材の組み合わせには店ごとの違いがあり、宿やカフェで迎える朝の定番だ。",
+        "image": "assets/images/united-kingdom/england/approved/food-full-english-breakfast.webp",
+        "sourceKey": "fullEnglish"
+      },
+      {
+        "id": "cornish-pasty",
+        "name": "コーニッシュ・パスティ",
+        "nameLocal": "Cornish Pasty",
+        "text": "牛肉、ジャガイモ、スウェード、玉ねぎを包む、コーンウォールの半月形のパイ。縁を折り込んだ厚い生地の内側に、肉と野菜のうまみが詰まる。",
+        "image": "assets/images/united-kingdom/england/approved/food-cornish-pasty.webp",
+        "sourceKey": "cornishPasty"
+      },
+      {
+        "id": "lancashire-hotpot",
+        "name": "ランカシャー・ホットポット",
+        "nameLocal": "Lancashire Hotpot",
+        "text": "羊肉と玉ねぎなどを煮込み、薄切りのジャガイモを並べて焼く北西部の料理。表面の焼き色と、その下の柔らかな煮込みを一緒に味わう。",
+        "image": "assets/images/united-kingdom/england/approved/food-lancashire-hotpot.webp",
+        "sourceKey": "hotpot"
+      },
+      {
+        "id": "bakewell-pudding",
+        "name": "ベイクウェル・プディング",
+        "nameLocal": "Bakewell Pudding",
+        "text": "ダービーシャーの町ベイクウェルに伝わる菓子。パフペイストリーにジャムと卵・アーモンドのフィリングを重ねて焼き、ベイクウェル・タルトとは異なる食感を楽しむ。",
+        "image": "assets/images/united-kingdom/england/approved/food-bakewell-pudding.webp",
+        "sourceKey": "bakewell"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "title": "開き始めた橋を、二階建てバスが跳んだ",
+      "text": "1952年、タワーブリッジを走行中のバスの下で橋が開き始めた。運転手は加速して橋の隙間を越えたという、橋の公式記録に残る出来事だ。",
+      "topicKey": "bus",
+      "categoryEn": "EVENT",
+      "categoryJa": "出来事",
+      "icon": "road",
+      "sourceKey": "busJump"
+    },
+    {
+      "title": "オックスフォードには、101回鳴る夜の鐘がある",
+      "text": "クライスト・チャーチの大鐘グレート・トムは、毎晩101回鳴る。創設期の学生たちの門限を知らせた名残で、いまも街の音として続いている。",
+      "topicKey": "tom",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "風習",
+      "icon": "history",
+      "sourceKey": "tomBell"
+    },
+    {
+      "title": "井戸のそばに、花びらの絵を飾る",
+      "text": "ダービーシャーなどに残るウェル・ドレッシングでは、湿った粘土に花びらや葉を敷き詰めて絵をつくる。井戸や湧き水を囲む場所が、村人の手で彩られる。",
+      "topicKey": "wells",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "風習",
+      "icon": "culture",
+      "sourceKey": "wellDressing"
+    },
+    {
+      "title": "急な丘を転がるチーズを追いかける",
+      "text": "グロスター近郊のクーパーズ・ヒルでは、坂を転がるチーズを追う競技が知られる。穏やかな田園の印象とは違う、土地に残る型破りな習慣だ。",
+      "topicKey": "cheese",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "風習",
+      "icon": "food",
+      "sourceKey": "cheeseRolling"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "ロンドンから地方へ旅を広げたい",
+      "text": "首都の街歩きに、北部の大聖堂や湖畔、南西部の田園を組み合わせたい人へ。"
+    },
+    {
+      "title": "建物と土地の関係を眺めたい",
+      "text": "砂丘の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
+    },
+    {
+      "title": "歩く速度で景色に触れたい",
+      "text": "村の小川沿いや湖岸、海岸の道で、土地の表情が変わるのをゆっくり見たい人へ。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "8景を一度の旅で詰め込まない",
+      "text": "北東部のバンバラから南西端のコーンウォールまで広く点在する。短い旅では北部か南西部を選び、滞在拠点を絞りたい。"
+    },
+    {
+      "title": "島と海岸では潮・風・足元を確認",
+      "text": "セント・マイケルズ・マウントは潮で渡り方が変わる。訪問日の公式案内を確認し、海岸や湖水地方の散策では現地の天候と歩道の状況も確かめたい。"
+    },
+    {
+      "title": "都市間と地方部で交通を組み替える",
+      "text": "都市間は鉄道を軸に、村や海岸の区間は地域バスや車を組み合わせる。曜日や季節による便数を確認し、帰りの移動を先に決めておきたい。"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "8景の全踏破ではなく、行きたい地方を決めるための目安。以下はいずれも出発拠点へ戻る周遊例。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "ロンドンと一つの歴史都市",
+        "text": "首都の街歩きを中心に、バースで1泊して建築を眺める。例：ロンドン → バース → ロンドン。",
+        "icon": "city"
+      },
+      {
+        "duration": "8〜10日",
+        "title": "田園と南西部の歴史をたどる",
+        "text": "バースを拠点に村々を訪ね、ソールズベリーから巨石遺跡へ。例：ロンドン → バース（バイブリー）→ ソールズベリー（ストーンヘンジ）→ ロンドン。",
+        "icon": "history"
+      },
+      {
+        "duration": "12〜14日",
+        "title": "北部の街と湖水地方へ",
+        "text": "ヨークから北東部の海岸へ進み、西側の湖に滞在。地方部の移動日を確保する。例：ロンドン → ヨーク → アルンウィック（バンバラ）→ ケズウィック → ロンドン。",
+        "icon": "landscape"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "label": "5〜9月",
+        "reason": "日照時間が比較的長く、都市や田園、湖畔、海岸を組み合わせやすい。雨や強風は季節を問わず備える。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "label": "春",
+      "text": "木々の芽吹きや庭園の花を楽しみ、街と田園を歩く。山地や海岸は冷たい風雨に備える。",
+      "color": "#73966f",
+      "icon": "sun"
+    },
+    {
+      "months": "6〜8月",
+      "label": "夏",
+      "text": "日が長く、湖畔や海岸にも時間を使いやすい。休暇期の宿や交通を早めに確保し、雨具も用意。",
+      "color": "#92a253",
+      "icon": "sun"
+    },
+    {
+      "months": "9〜11月",
+      "label": "秋",
+      "text": "湖水地方の林や街の公園が色づく季節。秋が深まるほど日が短くなり、屋外の予定は余裕を持たせる。",
+      "color": "#b77a49",
+      "icon": "leaf"
+    },
+    {
+      "months": "12〜2月",
+      "label": "冬",
+      "text": "日照時間が短く、湖水地方では積雪や凍結に注意。歴史都市と博物館を軸に、施設の開館日を確認。",
+      "color": "#6b90a5",
+      "icon": "snow"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "鉄道・バス・車",
+    "text": "都市間は鉄道が主軸。バイブリーなど村や遠隔の海岸を結ぶには路線バスまたは車を組み合わせる。利用日前に運行状況と帰路の最終便を確かめる。",
+    "sourceKey": "transport"
+  },
+  "nextRoutes": [
+    {
+      "countryEn": "WALES",
+      "countryJa": "ウェールズ",
+      "path": "バース → ブリストル → カーディフ",
+      "description": "西へ海峡を越えて、城と山地の多い地域へ。",
+      "href": "countries/unitedkingdom/",
+      "flag": "🏴"
+    },
+    {
+      "countryEn": "SCOTLAND",
+      "countryJa": "スコットランド",
+      "path": "ヨーク → エディンバラ",
+      "description": "鉄道を北へ進み、古都とハイランドの景観につなぐ。",
+      "href": "countries/unitedkingdom/",
+      "flag": "🏴"
+    }
+  ],
+  "nextRegion": {
+    "slug": "wales",
+    "nameEn": "WALES",
+    "nameJa": "ウェールズ"
+  },
+  "relatedCountries": [
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧",
+      "reason": "英国全体の8景と、4地域への旅の方向を見る。"
+    },
+    {
+      "nameJa": "アイルランド共和国",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "reason": "海峡の向こうへ、別の島の歴史と海岸をたどる。"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-04",
+  "sourceDates": {
+    "population": "2025-06-30（ONS 2025 mid-year estimate; 再確認待ち）",
+    "landArea": "イングランド約130,000km²の概数、日本約378,000km²との比較",
+    "weather": "Met Office long-term climatic averages; 季節推奨は編集判断"
+  },
+  "sources": {
+    "population2025": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025",
+    "profile": "https://www.gov.uk/government/publications/toponymic-guidelines/toponymic-guidelines-for-map-and-other-editors-united-kingdom-of-great-britain-and-northern-ireland--2",
+    "derwentwater": "https://www.nationaltrust.org.uk/visit/lake-district/borrowdale-and-derwent-water/things-to-see-at-derwent-water-and-keswick",
+    "derwentwaterCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1327119",
+    "bamburgh": "https://www.visitnorthumberland.com/explore/destinations/towns-villages/bamburgh",
+    "bamburghCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1280155",
+    "yorkMinster": "https://yorkminster.org/latest/new-digital-stained-glass-resource-launched/",
+    "yorkMinsterCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1257222",
+    "arlingtonRow": "https://www.nationaltrust.org.uk/visit/gloucestershire-cotswolds/bibury/things-to-do-in-bibury",
+    "arlingtonRowCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1155677",
+    "royalCrescent": "https://historicengland.org.uk/listing/the-list/list-entry/1394736",
+    "stonehenge": "https://whc.unesco.org/en/list/373/",
+    "stonehengeCoordinates": "https://historicengland.org.uk/research/results/reports/7994/RestoringStonehenge1881-1939",
+    "durdleDoor": "https://www.geolsoc.org.uk/science-and-policy/100-great-geosites/coastal/lulworth/",
+    "stMichaelsMount": "https://stmichaelsmount.co.uk/plan-your-visit/",
+    "stMichaelsMountCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1143795",
+    "jurassicHistory": "https://unesco.org.uk/our-network/world-heritage-sites/dorset-and-east-devon-coast-the-jurassic-coast",
+    "railway1825": "https://heritage.stockton.gov.uk/articles/stories/stockton-where-passenger-railways-began/",
+    "apples": "https://www.nationalfruitcollection.org.uk/",
+    "lakeLandscape": "https://whc.unesco.org/en/list/422/",
+    "bath": "https://whc.unesco.org/en/list/428/",
+    "cornish": "https://www.cornwall.gov.uk/parks-leisure-and-culture/the-cornish-language/cornish-language-programme/",
+    "liverpoolMusic": "https://unesco.org.uk/our-network/creative-cities/liverpool",
+    "footpaths": "https://www.gov.uk/right-of-way-open-access-land",
+    "fullEnglish": "https://www.visitlondon.com/things-to-do/food-and-drink/top-10-breakfast-venues",
+    "cornishPasty": "https://www.visitbritain.com/en/things-to-do/eat-local-foodie-map-britain",
+    "hotpot": "https://www.visitengland.com/trip-ideas/places-visit-foodie-break-lancashire",
+    "bakewell": "https://www.bakewellpuddingshop.co.uk/bakewell-pudding-and-tart-differenc",
+    "busJump": "https://www.towerbridge.org.uk/stories/bus-jump",
+    "tomBell": "https://www.chch.ox.ac.uk/visit/things-to-see",
+    "wellDressing": "https://visitpeakdistrict.com/events/category/well-dressings",
+    "cheeseRolling": "https://www.visitbritain.com/en/things-to-do/find-britains-quirkiest-traditions-and-events",
+    "yorkCats": "https://visityork.org/business-directory/york-cat-trail",
+    "weather": "https://www.metoffice.gov.uk/research/climate/maps-and-data/location-specific-long-term-averages/gcpn7mhjm",
+    "transport": "https://www.nationalrail.co.uk/",
+    "map": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/",
+    "mapLicense": "https://matplotlib.org/basemap/stable/users/intro.html",
+    "japanArea": "https://www.mofa.go.jp/mofaj/territory/page1w_000011.html",
+    "belfastFerry": "https://www.stenaline.co.uk/routes/liverpool-belfast",
+    "gshhg": "https://www.soest.hawaii.edu/pwessel/gshhg/",
+    "windsorLongWalk": "https://www.windsorgreatpark.co.uk/explore/the-park/the-long-walk-deer-park/",
+    "windsorCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1117776",
+    "windsorView": "https://historicengland.org.uk/listing/the-list/list-entry/1001434",
+    "geometry": "https://www.soest.hawaii.edu/pwessel/gshhg/",
+    "englandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-ENG.json"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "街を歩く",
+    "時をたどる"
+  ],
+  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。"
+}
