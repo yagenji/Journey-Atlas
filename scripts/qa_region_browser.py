@@ -197,6 +197,21 @@ def main() -> int:
                             problems.append(f"Region interaction failed: {check}")
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
+                    route_flag_sizes = driver.execute_script("""
+                        return [...document.querySelectorAll('.next-route-card__flag')].map(flag => {
+                            const box = flag.getBoundingClientRect();
+                            const svg = flag.querySelector('svg');
+                            const image = svg?.getBoundingClientRect();
+                            const expected = parseFloat(getComputedStyle(flag).fontSize);
+                            return {width:box.width, height:box.height, expected,
+                                vectorFits:!svg || (Math.abs(image.width - box.width) < 1
+                                    && image.height <= box.height + 1)};
+                        });
+                    """)
+                    if not all(abs(f['width'] - f['expected'] * 1.25) < 1
+                               and abs(f['height'] - f['expected']) < 1
+                               and f['vectorFits'] for f in route_flag_sizes):
+                        problems.append(f"Region route flag sizes mismatch: {route_flag_sizes}")
                     england_routes = [r for r in region.get('nextRoutes', []) if r['countryEn'] == 'ENGLAND']
                     if england_routes:
                         england_flags = driver.execute_script("""
