@@ -198,6 +198,18 @@ def main() -> int:
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
                     if slug == "northern-ireland":
+                        scotland_flag = driver.execute_script("""
+                            const card=[...document.querySelectorAll('.next-route-card')].find(
+                                el=>el.querySelector('.next-route-card__country strong')?.textContent.trim()==='SCOTLAND');
+                            const svg=card?.querySelector('.next-route-card__flag svg.region-saltire');
+                            return {present:!!svg, blue:!!svg?.querySelector('rect[fill="#0065bd"]'),
+                                cross:!!svg?.querySelector('path[stroke="#fff"]'),
+                                width:svg?.getBoundingClientRect().width || 0};
+                        """)
+                        if not (scotland_flag["present"] and scotland_flag["blue"]
+                                and scotland_flag["cross"] and scotland_flag["width"] >= 20):
+                            problems.append(f"Northern Ireland Scotland flag mismatch: {scotland_flag}")
+                    if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
                             return {
                                 routes:[...document.querySelectorAll('.next-route-card__country strong')]
