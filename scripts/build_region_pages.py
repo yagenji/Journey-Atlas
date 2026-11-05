@@ -85,7 +85,7 @@ def icon(name: str) -> str:
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
                           bounds: dict | None) -> tuple[float, float] | None:
-    """Validate geographic anchors and use their visible SVG callout positions.
+    """Validate geographic anchors and place the interactive dots on real points.
 
     New maps record real coordinates independently from label offsets. Retain
     the calibrated legacy Scotland projection for its existing approved map.
@@ -116,8 +116,9 @@ def recorded_map_position(coords: dict, marker_id: str, svg: str,
         recorded = float(node.get(key, 'nan'))
         if not math.isfinite(recorded) or abs(recorded - expected) > 0.01:
             raise ValueError(f'{marker_id}: SVG projection and real coordinates disagree')
-    x = float(node.get('data-label-x', px))
-    y = float(node.get('data-label-y', py))
+    # Use the verified geographic point, never an old callout label offset.
+    # The map no longer draws leader lines connecting those old offsets.
+    x, y = px, py
     if not (math.isfinite(x) and math.isfinite(y) and 0 <= x <= 1200 and 0 <= y <= 760):
         raise ValueError(f'{marker_id}: map label is outside the canvas')
     return 100 * x / 1200, 100 * y / 760
