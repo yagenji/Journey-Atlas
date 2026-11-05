@@ -150,6 +150,28 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str,
     return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
 
 
+def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict) -> tuple[float, float]:
+    """Overlay one numbered Scene in its verified inset, or at the true main position."""
+    pos = interactive_map_position(scene['coordinates'], index, svg, map_data['bounds'])
+    for detail in map_data.get('regions') or []:
+        if scene['id'] not in detail.get('sceneIds', []):
+            continue
+        if 'data-map-inset-standard="true"' not in svg:
+            raise ValueError('Region inset metadata exists without inset artwork')
+        source, rect = detail['sourceRect'], detail['rect']
+        # SVG uses a uniform fitted scale; the padding is symmetric in both axes.
+        scale = min(rect['width'] / source['width'], rect['height'] / source['height'])
+        sx = 1200 * pos[0] / 100
+        sy = 760 * pos[1] / 100
+        x = rect['x'] + (rect['width'] - source['width'] * scale) / 2 + (sx - source['x']) * scale
+        y = rect['y'] + (rect['height'] - source['height'] * scale) / 2 + (sy - source['y']) * scale
+        if not (rect['x'] <= x <= rect['x'] + rect['width']
+                and rect['y'] <= y <= rect['y'] + rect['height']):
+            raise ValueError(f"Scene {index} is outside inset {detail['id']}")
+        return 100 * x / 1200, 100 * y / 760
+    return pos
+
+
 def region_hero_map_position(coords: dict, svg: str = '',
                              bounds: dict | None = None) -> tuple[float, float]:
     """Project the real Hero point using the same calibrated Scotland map transform."""
@@ -259,8 +281,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + ''.join(
             '<button type="button" class="region-map-hit map-marker" '
             f'data-scene="{esc(scene["id"])}" '
-            f'style="left:{interactive_map_position(scene["coordinates"], index, map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
-            f'top:{interactive_map_position(scene["coordinates"], index, map_svg_text, data["map"]["bounds"])[1]:.5f}%" '
+            f'style="left:{region_scene_map_position(scene, index, map_svg_text, data["map"])[0]:.5f}%;'
+            f'top:{region_scene_map_position(scene, index, map_svg_text, data["map"])[1]:.5f}%" '
             f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
             f'<b aria-hidden="true">{index}</b></button>'
             for index, scene in enumerate(data['scenes'], 1)
@@ -273,10 +295,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
-        + ('<button type="button" id="region-map-zoom-toggle" class="region-map-zoom-toggle" '
-           'aria-expanded="false" aria-controls="country-map-art">地図を拡大して地点を確認</button>'
-           '<p class="region-map-zoom-help" hidden>地図を左右にスクロールして地点を確認できます。</p>'
-           if slug == 'northern-ireland' else '')
+        + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
+           if data["map"].get("insetNote") else '')
         + '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
