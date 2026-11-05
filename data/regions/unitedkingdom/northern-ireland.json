@@ -204,28 +204,28 @@
   ],
   "signatureFacts": [
     {
+      "topicKey": "giants-causeway-columns",
+      "label": "海へ続く玄武岩の石柱",
+      "value": "約4万本",
+      "note": "ジャイアンツ・コーズウェーの海岸には、火山活動によって生まれた多角形の玄武岩柱が密集する。北アイルランドを象徴する地質の風景。",
+      "icon": "landscape",
+      "sourceKey": "causewayColumns"
+    },
+    {
       "topicKey": "lough-neagh",
       "label": "英国最大の淡水湖",
       "value": "383km²",
-      "note": "北アイルランドの中央に広がるネイ湖。東西の旅で内陸へ入ると、海とは別の大きな水辺が現れる。",
+      "note": "北アイルランドの中央に広がるネイ湖。英国・アイルランド諸島最大の淡水湖で、内陸に大きな水辺の景観をつくる。",
       "icon": "sea",
-      "sourceKey": "loughNeagh"
+      "sourceKey": "loughNeaghArea"
     },
     {
       "topicKey": "mourne-wall",
-      "label": "山を越えて続く石の壁",
-      "value": "約35km",
-      "note": "モーン・ウォールはベルファストへの水供給に関わる集水域を囲むために築かれた。山の稜線に続く石積みは、都市と山が水で結ばれた歴史を伝える。",
+      "label": "稜線を越える石の壁",
+      "value": "15山頂",
+      "note": "全長約35kmのモーン・ウォールは、貯水池の集水域を守るために築かれ、15の山頂を越えて続く。水と山の関係が石積みに刻まれている。",
       "icon": "landscape",
-      "sourceKey": "mourneWall"
-    },
-    {
-      "topicKey": "derry-walls",
-      "label": "一周できる城壁都市",
-      "value": "約1.5km",
-      "note": "デリー／ロンドンデリーには17世紀初頭の城壁が一周を保つ形で残る。城門と街路をたどり、移住や都市形成の歴史に触れられる。",
-      "icon": "city",
-      "sourceKey": "derryWalls"
+      "sourceKey": "mourneWallSummits"
     }
   ],
   "encounters": [
@@ -535,7 +535,7 @@
       "countryEn": "IRELAND",
       "countryJa": "アイルランド共和国",
       "path": "ベルファスト → ダブリン",
-      "description": "島の北東部から南へ。別の国としての通貨や訪問条件を確認し、都市文化を見比べる。",
+      "description": "鉄道でアイルランド島を南下し、ダブリンへ。国境を越え、街並みと文化の違いを感じる旅。",
       "href": "countries/ireland/",
       "flag": "🇮🇪"
     },
@@ -543,7 +543,7 @@
       "countryEn": "SCOTLAND",
       "countryJa": "スコットランド",
       "path": "ベルファスト → ケアンライアン → グラスゴー",
-      "description": "海峡のフェリーで北岸の歴史につながる土地へ。港から先の陸上移動も含めて日程を組む。",
+      "description": "フェリーでケアンライアンへ渡り、そこから陸路でグラスゴーへ。海峡を挟む2つの地域のつながりをたどる。",
       "href": "countries/unitedkingdom/",
       "flag": "🇬🇧"
     },
@@ -551,7 +551,7 @@
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
       "path": "ベルファスト → リバプール",
-      "description": "アイリッシュ海を直行フェリーで渡り、港町リバプールへ。日中・夜間の便があり、出発前に運航と乗船条件を確認する。",
+      "description": "アイリッシュ海を直行フェリーで渡り、リバプールへ。造船の街から、港と音楽の街へ旅をつなぐ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     }
@@ -563,25 +563,25 @@
   },
   "relatedCountries": [
     {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "英国全体の地図から、ほかの地域や旅のテーマへ広げる。"
-    },
-    {
       "nameJa": "アイルランド共和国",
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "同じ島の南や西へ。海岸と街の文化を続けて見る。"
+      "reason": "同じ島の南西へ。海辺の村や石造遺産をたどり、島の異なる表情に出会う。"
+    },
+    {
+      "nameJa": "アイスランド",
+      "nameEn": "ICELAND",
+      "href": "countries/iceland/",
+      "flag": "🇮🇸",
+      "reason": "ジャイアンツ・コーズウェーの石柱に惹かれたなら、火山が形づくる溶岩の大地へ。"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "北大西洋の険しい海岸と島々に心が動いたなら、フィヨルドと北海沿岸の地形を見比べる。"
+      "reason": "北大西洋の険しい海岸が好きなら、フィヨルドと島々が続く風景へ。"
     }
   ],
   "sourcesVerifiedAt": "2026-11-05",
@@ -589,7 +589,8 @@
     "population": "2025-06-30（2026-09-24公表）",
     "landArea": "NISRA 2014を出典とする自治体資料の陸地面積13,843km²。日本約37.8万km²との概算比較。",
     "flag": "2024-07-30英国議会書面回答。2026-11-04確認。地域専用の公式旗は仮定せず、旗が必要な表示には英国旗を使用。",
-    "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。"
+    "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。",
+    "signatureFacts": "Giants Causeway 地形数はUNESCO記載の概数、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。"
   },
   "sources": {
     "profile": "https://www.nidirect.gov.uk/articles/about-northern-ireland",
@@ -637,14 +638,18 @@
     "mussendenLibrary": "https://www.nationaltrust.org.uk/visit/northern-ireland/mussenden-temple-and-downhill-demesne/things-to-do-at-mussenden-temple-and-downhill-demesne",
     "japanArea": "https://www.stat.go.jp/data/nihon/01.html",
     "belfastCityHallCoordinates": "https://gazetteer.org.uk/place/Belfast_City_Hall,_Antrim_332616",
-    "belfastLiverpoolFerry": "Stena Line, Ferry to Liverpool and Belfast (2026-11-05確認): https://www.stenaline.co.uk/routes/liverpool-belfast"
+    "belfastLiverpoolFerry": "Stena Line, Ferry to Liverpool and Belfast (2026-11-05確認): https://www.stenaline.co.uk/routes/liverpool-belfast",
+    "causewayColumns": "UNESCO World Heritage Centre, Giant's Causeway and Causeway Coast: https://whc.unesco.org/en/list/369/",
+    "loughNeaghArea": "Northern Ireland DAERA, Lough Neagh Catchment Map (2024-05-30): https://www.daera-ni.gov.uk/publications/lough-neagh-catchment-map",
+    "mourneWallSummits": "Visit Mourne, The Mourne Wall Challenge (22 miles/35 km, 15 summits): https://www.visitmourne.com/itineraries/wall-challenge",
+    "enterpriseBelfastDublin": "Translink, Enterprise train service Belfast to Dublin: https://www.translink.co.uk/using-translink/cross-border-travel/enterprise-train-service"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "隣の国や海峡の向こうへ続く旅の方向。移動手段と運航状況は出発前に確認を。",
+  "nextRoutesIntro": "鉄道で島の南へ、フェリーで海峡の向こうへ。ベルファストから旅を広げる3つの方向。",
   "capital": {
     "nameJa": "ベルファスト",
     "coordinates": {
