@@ -316,7 +316,13 @@ def main() -> int:
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Region fixed inset map QA failed: {inset}")
-                    expected_images = 14 + bool((region.get("map") or {}).get("regions"))
+                    # Region flags are now real local SVG images rather than Unicode
+                    # tag-flag glyphs. Count them while still checking every <img> loads.
+                    regional_flag_images = sum(
+                        str(route.get("countryEn", "")).upper() in {"ENGLAND", "WALES", "SCOTLAND"}
+                        for route in region.get("nextRoutes", [])
+                    )
+                    expected_images = 14 + bool((region.get("map") or {}).get("regions")) + regional_flag_images
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
