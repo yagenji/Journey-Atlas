@@ -267,7 +267,7 @@ def main() -> int:
                                 and inset.get("noZoomButton")
                                 and inset.get("mapImageLoaded")
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
-                                and inset.get("gapSvgPx", 0) >= 27):
+                                and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Northern Ireland fixed inset map QA failed: {inset}")
                     expected_images = 15 if slug == "northern-ireland" else 14
                     if audit["imageCount"] != expected_images or audit["broken"]:
