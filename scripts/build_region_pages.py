@@ -191,6 +191,19 @@ def region_hero_map_position(coords: dict, svg: str = '',
 
 
 
+def region_capital_map_position(coords: dict, bounds: dict) -> tuple[float, float]:
+    """Project the verified capital coordinates onto the main regional map."""
+    west, south, east, north = (bounds[key] for key in ('west', 'south', 'east', 'north'))
+    lat, lon = coords['latitude'], coords['longitude']
+    if not (west <= lon <= east and south <= lat <= north):
+        raise ValueError('Region capital coordinates are outside map bounds')
+    cosine = math.cos(math.radians((south + north) / 2))
+    scale = min(1200 / ((east - west) * cosine), 760 / (north - south))
+    x = (1200 - (east - west) * cosine * scale) / 2 + (lon - west) * cosine * scale
+    y = (760 - (north - south) * scale) / 2 + (north - lat) * scale
+    return 100 * x / 1200, 100 * y / 760
+
+
 def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     """Readable fixed inset on narrow screens; reuses the original verified SVG."""
     details = data.get('map', {}).get('regions') or []
@@ -328,11 +341,20 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + f'<div class="map-hero-marker region-map-hero" aria-hidden="true" '
           f'style="left:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
           f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
+        + (f'<div class="map-capital-marker region-map-capital" role="img" '
+           f'aria-label="首府：{esc(data["capital"]["nameJa"])}" '
+           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[0]:.5f}%;'
+           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[1]:.5f}%">'
+           '<i aria-hidden="true"></i></div>'
+           if data.get('capital') else '')
         + '</div></div>'
         + mobile_region_detail(data, map_svg_text, map_version)
         + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
-        '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
+        '<span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>'
+        + ('<span class="map-legend__capital-item"><i class="map-legend__capital" aria-hidden="true"></i>首都</span>'
+           if data.get('capital') else '')
+        + '</div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
            if data["map"].get("insetNote") else '')
         + '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
