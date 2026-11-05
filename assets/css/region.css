@@ -58,3 +58,11 @@
 @media(max-width:760px){
   .region-country-page .hero h1.hero-title--long{font-size:clamp(40px,12vw,56px)!important}
 }
+
+/* Dense Northern Ireland coast: full-size optional map, never moved pins. */
+.region-map-zoom-toggle{display:block;margin:9px 0 0;padding:7px 12px;border:1px solid rgba(18,54,92,.35);border-radius:7px;background:transparent;color:var(--navy);font:500 12px/1.5 var(--body);cursor:pointer;text-align:left}
+.region-map-zoom-toggle:is(:hover,:focus-visible){background:rgba(18,54,92,.06)}
+.region-map-zoom-toggle:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.region-map-zoom-help{margin:4px 0 0;color:var(--muted);font:400 12px/1.5 var(--body)}
+.region-country-page .map-frame.is-zoomed{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.region-country-page .map-frame.is-zoomed .map-art{width:1200px;min-width:1200px;aspect-ratio:1200/760}
