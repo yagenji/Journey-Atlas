@@ -88,6 +88,7 @@ def region_route_flag(route: dict) -> str:
         'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland',
         # Northern Ireland has no separate official flag: retain the UK flag.
         'NORTHERN IRELAND': 'united-kingdom',
+        'IRELAND': 'ireland',
     }.get(str(route.get('countryEn', '')).upper())
     if slug:
         return (f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
