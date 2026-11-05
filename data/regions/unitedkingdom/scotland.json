@@ -53,12 +53,13 @@
   "map": {
     "svg": "assets/images/united-kingdom/scotland/map-scotland.svg",
     "bounds": {
-      "north": 61.3,
-      "south": 54.4,
-      "west": -9.6,
-      "east": 2
+      "north": 61.24,
+      "south": 53.5,
+      "west": -10.5,
+      "east": 3
     },
-    "source": "GSHHS intermediate coastline via Basemap data; WGS84 / Mercator; 国境・構成国境界は推測して描画しない。"
+    "source": "Office for National Statistics / ONSvisual `geogUKregion.json` (UK regional boundary, ONS Open Geography Portal; Open Government Licence v3.0); Natural Earth 1:50m Admin-0 Ireland context and 1:10m lake polygons (public domain); Rockall coordinates: Marine Regions MRGID 5485; Island of Rockall Act 1972.",
+    "insetNote": "※ ロッコール島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
     {
@@ -362,7 +363,11 @@
     "travelTransport": "https://www.visitscotland.com/planning/travel-in-scotland",
     "weather": "https://www.visitscotland.com/planning/travel-information/weather",
     "nationalParks": "https://www.gov.scot/policies/landscape-and-outdoor-access/national-parks/",
-    "forthBridge": "https://www.historicenvironment.scot/protect-and-care/protected-historic-places/world-heritage-sites/the-forth-bridge/"
+    "forthBridge": "https://www.historicenvironment.scot/protect-and-care/protected-historic-places/world-heritage-sites/the-forth-bridge/",
+    "scotlandMapBoundary": "https://github.com/ONSvisual/topojson_boundaries/blob/master/geogUKregion.json",
+    "scotlandMapLakes": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_lakes.geojson",
+    "rockallLocation": "https://marineregions.org/gazetteer.php?p=details&id=5485",
+    "rockallLaw": "https://www.legislation.gov.uk/ukpga/1972/2/section/1"
   },
   "signatureFacts": [
     {
