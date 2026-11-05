@@ -197,28 +197,28 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "conwy-walls",
-      "label": "城壁に囲まれた町",
-      "value": "約1.3km",
-      "note": "コンウィの町を取り囲む中世の壁。城から町並みへと散策をつなぐ。",
+      "topicKey": "recorded-castles",
+      "label": "歴史に記録された城",
+      "value": "600超",
+      "note": "各時代の勢力が築いた城が、小さな地域に重なる。記録上の総数であり、すべてが現存するわけではない。",
       "icon": "history",
-      "sourceKey": "conwy"
+      "sourceKey": "castleLandscape"
     },
     {
-      "topicKey": "south-stack-stairs",
-      "label": "断崖を下る灯台への道",
-      "value": "約400段",
-      "note": "アングルシー島の西端。灯台の小島へは階段を下って向かう。",
+      "topicKey": "coastal-footpath",
+      "label": "海岸を歩いてつなぐ道",
+      "value": "約1,400km",
+      "note": "ウェールズ・コースト・パスは、北から南へ海岸沿いをつなぐ歩道。砂浜も断崖も、歩く旅の一部になる。",
       "icon": "sea",
-      "sourceKey": "southStack"
+      "sourceKey": "coastPath"
     },
     {
-      "topicKey": "devils-bridge",
-      "label": "橋が重なる渓谷",
-      "value": "3つの橋",
-      "note": "異なる時代につくられた橋が、ミナハ川の上で重なる。",
+      "topicKey": "sheep-and-people",
+      "label": "人口に対する羊の数",
+      "value": "約2.8倍",
+      "note": "羊・子羊は約881万頭、人口は約318万人（いずれも2025年）。山地の草地に、羊を育てる暮らしが広がる。",
       "icon": "landscape",
-      "sourceKey": "devilsBridge"
+      "sourceKey": "sheep2025"
     }
   ],
   "encounters": [
@@ -531,9 +531,18 @@
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
       "path": "コンウィ → チェスター → マンチェスター",
-      "description": "北部の城と英国の街を続けて歩く。",
+      "description": "北ウェールズの港町から東へ。チェスターの城壁とマンチェスターの街を、鉄道でつなぐ。",
       "href": "countries/unitedkingdom/",
       "flag": "🇬🇧"
+    },
+    {
+      "countryEn": "IRELAND",
+      "countryJa": "アイルランド共和国",
+      "path": "コンウィ → ホリーヘッド → ダブリン",
+      "description": "北岸を西へ進み、ホリーヘッドからフェリーでアイリッシュ海を渡る。乗船手続きと到着港からの移動も含めて計画する。",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "sourceKey": "holyheadDublin"
     }
   ],
   "nextRegion": {
@@ -547,14 +556,21 @@
       "nameEn": "UNITED KINGDOM",
       "href": "countries/unitedkingdom/",
       "flag": "🇬🇧",
-      "reason": "英国全体の地図から、次の地域へ旅をつなげる。"
+      "reason": "英国全体の地図から、4つの構成国の山・城・街を見比べる。"
     },
     {
       "nameJa": "アイルランド共和国",
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "海峡の向こうの島に残る歴史と海岸を見比べる。"
+      "reason": "海峡の向こうで、緑の丘と大西洋の断崖、港町の暮らしをたどる。"
+    },
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "氷河が刻んだ山と海の関係を、フィヨルドの風景へ広げる。"
     }
   ],
   "sourcesVerifiedAt": "2026-11-05",
@@ -562,7 +578,10 @@
     "travelSeason": "気候・日程の推奨は2026-11-05時点の編集判断。具体的な営業・運行は各公式サイトで再確認。",
     "population": "2025-06-30（2026-07-29公表）",
     "area": "Visit Wales掲載の20,800km²。日本約37.8万km²との概算比較。",
-    "weather": "Met Office地域気候資料。季節・日程の推奨は編集判断。"
+    "weather": "Met Office地域気候資料。季節・日程の推奨は編集判断。",
+    "sheep2025": "2025-06-02",
+    "sheepPopulationRatio": "2025年6月の羊・子羊881万頭 ÷ 2025年6月人口3,175,200人 = 約2.77倍。表示は約2.8倍。",
+    "castleLandscape": "歴史上記録された城の総数。現在残る城・廃墟のみの件数とは区別。2026-11-05確認。"
   },
   "sources": {
     "conwy": "https://cadw.gov.wales/visit/places-to-visit/castell-conwy",
@@ -595,14 +614,18 @@
     "geometry": "https://github.com/martinjc/UK-GeoJSON/blob/master/json/administrative/wal/lad.json",
     "contextGeometry": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_admin_0_map_subunits.geojson",
     "cardiffCoordinates": "https://mapcarta.com/Cardiff",
-    "baraBrith": "https://www.wales.com/visit/food-and-drink/welsh-recipes/bara-brith"
+    "baraBrith": "https://www.wales.com/visit/food-and-drink/welsh-recipes/bara-brith",
+    "castleLandscape": "https://www.visitwales.com/things-do/attractions/castles-and-heritage/wales-castle-capital-europe",
+    "coastPath": "https://www.walescoastpath.gov.uk/working-with-us/about-the-path/?lang=en",
+    "sheep2025": "https://www.gov.wales/survey-agriculture-and-horticulture-june-2025-html",
+    "holyheadDublin": "https://www.irishferries.com/uk-en/routes-and-times/dublin-holyhead/"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "隣の地域へ続く旅の方向。移動方法と運行状況を確かめて旅をつなぐ。",
+  "nextRoutesIntro": "陸続きのイングランドへ、海峡の向こうのアイルランドへ。鉄道とフェリーで旅をつなぐ2つの方向。",
   "capital": {
     "nameJa": "カーディフ",
     "coordinates": {
