@@ -341,7 +341,13 @@ def main() -> int:
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Region fixed inset map QA failed: {inset}")
-                    expected_images = 14 + bool((region.get("map") or {}).get("regions"))
+                    waving_flag_names = {'SCOTLAND', 'ENGLAND'}
+                    expected_flag_art = sum(r.get('countryEn') in waving_flag_names
+                                            for r in region.get('nextRoutes', []))
+                    expected_flag_art += sum(r.get('nameEn') in waving_flag_names
+                                             for r in region.get('relatedCountries', []))
+                    expected_images = (14 + bool((region.get("map") or {}).get("regions"))
+                                       + expected_flag_art)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
