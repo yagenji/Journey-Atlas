@@ -1,0 +1,615 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "unitedkingdom",
+  "slug": "wales",
+  "regionPublished": false,
+  "nameEn": "WALES",
+  "region": "NORTHERN EUROPE / 52°N",
+  "nameJa": "ウェールズ",
+  "parentNameJa": "イギリス",
+  "seo": {
+    "description": "コンウィ城の石壁からエリリの岩峰、ガワー半島の砂浜、ペンブルックシャーの海食アーチへ。ウェールズの8景と地図から旅を描く。"
+  },
+  "hero": {
+    "name": "コンウィ城",
+    "location": "Conwy Castle / Conwy",
+    "coordinates": {
+      "latitude": 53.27997,
+      "longitude": -3.82556
+    },
+    "image": "assets/images/united-kingdom/wales/approved/hero-conwy-castle.webp",
+    "lead": "海辺の城壁に立つと、その向こうに北ウェールズの山並みが見える。岩峰の谷、波が削った海岸、遠い灯台へ。ウェールズ語が息づく町をたどり、石と海と山の国を旅する。",
+    "description": "コンウィ川河口の城と町並み。13世紀末に築かれた八つの塔と石壁は、港と山並みを背景に残る。",
+    "sourceKey": "conwy",
+    "coordinateSourceKey": "conwyCoordinates"
+  },
+  "profile": [
+    {
+      "label": "構成国",
+      "value": "イギリス（英国）の4構成国の一つ。グレートブリテン島の西部",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "首府",
+      "value": "カーディフ",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "人口",
+      "value": "約318万人（2025年6月推計）",
+      "sourceKey": "population2025"
+    },
+    {
+      "label": "面積",
+      "value": "約2.08万km²（日本の約5.5%）",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "主な言語",
+      "value": "ウェールズ語・英語",
+      "sourceKey": "profile"
+    },
+    {
+      "label": "通貨",
+      "value": "英ポンド（GBP）",
+      "sourceKey": "profile"
+    }
+  ],
+  "map": {
+    "svg": "assets/images/united-kingdom/wales/map-wales.svg",
+    "bounds": {
+      "north": 53.55,
+      "south": 51.3,
+      "west": -5.55,
+      "east": -2.55
+    },
+    "source": "Wales target: 22 ONS/Ordnance Survey 2016 local authority geometries (UK-GeoJSON, OGL v3), dissolved and generalised at 4.5 map pixels. Context: Natural Earth 1:10m map subunits (public domain), dissolved and clipped to the full canvas. WGS84 local-equirectangular-fit-v1; northwest inset reuses identical geometry and real anchors.",
+    "regions": [
+      {
+        "id": "northwest-detail",
+        "svgId": "wales-northwest-detail",
+        "label": "北西部",
+        "sceneIds": [
+          "portmeirion",
+          "harlech-castle"
+        ],
+        "sourceRect": {
+          "x": 560,
+          "y": 194,
+          "width": 60,
+          "height": 60
+        },
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 350,
+          "height": 256
+        }
+      }
+    ],
+    "insetNote": "※ 北西部は、同じ地域を拡大した別枠表示です。"
+  },
+  "scenes": [
+    {
+      "id": "tryfan",
+      "name": "トリヴァン山",
+      "nameLocal": "Tryfan / Ogwen Valley",
+      "description": "オグウェン渓谷を見下ろす、鋭い岩峰と氷河が刻んだ谷。岩場の山容と草地の対比に、ウェールズ北部の険しい地形が表れる。",
+      "coordinates": {
+        "latitude": 53.1149,
+        "longitude": -3.9975
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-tryfan.webp",
+      "sourceKey": "ogwen",
+      "coordinateSourceKey": "tryfanCoordinates"
+    },
+    {
+      "id": "pen-y-fan",
+      "name": "ペン・イ・ヴァン",
+      "nameLocal": "Pen y Fan / Bannau Brycheiniog",
+      "description": "なだらかな草の斜面をたどると、山頂付近は切り立った崖へ変わる。南ウェールズの高地に続く稜線を望む。",
+      "coordinates": {
+        "latitude": 51.88403,
+        "longitude": -3.43677
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-pen-y-fan.webp",
+      "sourceKey": "penyfanGeology",
+      "coordinateSourceKey": "penyfanCoordinates"
+    },
+    {
+      "id": "green-bridge-of-wales",
+      "name": "グリーン・ブリッジ・オブ・ウェールズ",
+      "nameLocal": "Green Bridge of Wales / Pembrokeshire",
+      "description": "石灰岩の海食アーチと独立した岩柱が、ペンブルックシャー南岸の波に向き合う。沿岸の軍演習場を通るため通行規制の確認が必要。",
+      "coordinates": {
+        "latitude": 51.6069,
+        "longitude": -4.9853
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-green-bridge-of-wales.webp",
+      "sourceKey": "greenBridge",
+      "coordinateSourceKey": "greenBridgeCoordinates"
+    },
+    {
+      "id": "rhossili-bay",
+      "name": "ロシリ湾",
+      "nameLocal": "Rhossili Bay / Gower",
+      "description": "長い砂浜の背後に緑の丘が続き、大西洋の波が緩やかな弧を描く。岬上の道から湾全体の形を見渡せる。",
+      "coordinates": {
+        "latitude": 51.57,
+        "longitude": -4.29351
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-rhossili-bay.webp",
+      "sourceKey": "rhossili",
+      "coordinateSourceKey": "rhossili"
+    },
+    {
+      "id": "portmeirion",
+      "name": "ポートメイリオン",
+      "nameLocal": "Portmeirion / Gwynedd",
+      "description": "入り江を望む斜面に、色彩豊かな建物と庭園が重なる。北ウェールズの自然の中につくられた独特の村の景観。",
+      "coordinates": {
+        "latitude": 52.9135,
+        "longitude": -4.0994
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-portmeirion.webp",
+      "sourceKey": "portmeirion",
+      "coordinateSourceKey": "portmeirionCoordinates"
+    },
+    {
+      "id": "harlech-castle",
+      "name": "ハーレフ城",
+      "nameLocal": "Harlech Castle / Gwynedd",
+      "description": "岩の高台に立つ城の石壁の先に、砂丘と広い湾、その向こうにエリリの山並みが重なる。地形を利用した中世の要塞を望む。",
+      "coordinates": {
+        "latitude": 52.8605,
+        "longitude": -4.10949
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-harlech-castle.webp",
+      "sourceKey": "harlech",
+      "coordinateSourceKey": "harlech"
+    },
+    {
+      "id": "south-stack",
+      "name": "サウス・スタック灯台",
+      "nameLocal": "South Stack Lighthouse / Anglesey",
+      "description": "アングルシー島北西端の断崖を下り、小島に立つ白い灯台へ。海鳥と潮風が感じられる岩壁の景色。",
+      "coordinates": {
+        "latitude": 53.30473,
+        "longitude": -4.68334
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-south-stack.webp",
+      "sourceKey": "southStack",
+      "coordinateSourceKey": "southStack"
+    },
+    {
+      "id": "devils-bridge",
+      "name": "デビルズ・ブリッジ",
+      "nameLocal": "Devil’s Bridge / Ceredigion",
+      "description": "深い樹林の峡谷に三つの時代の橋が重なる。橋の下には水が岩を削った谷と滝が続く。",
+      "coordinates": {
+        "latitude": 52.37701,
+        "longitude": -3.84976
+      },
+      "image": "assets/images/united-kingdom/wales/approved/scene-devils-bridge.webp",
+      "sourceKey": "devilsBridge",
+      "coordinateSourceKey": "devilsBridge"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "conwy-walls",
+      "label": "城壁に囲まれた町",
+      "value": "約1.3km",
+      "note": "コンウィの町を取り囲む中世の壁。城から町並みへと散策をつなぐ。",
+      "icon": "history",
+      "sourceKey": "conwy"
+    },
+    {
+      "topicKey": "south-stack-stairs",
+      "label": "断崖を下る灯台への道",
+      "value": "約400段",
+      "note": "アングルシー島の西端。灯台の小島へは階段を下って向かう。",
+      "icon": "sea",
+      "sourceKey": "southStack"
+    },
+    {
+      "topicKey": "devils-bridge",
+      "label": "橋が重なる渓谷",
+      "value": "3つの橋",
+      "note": "異なる時代につくられた橋が、ミナハ川の上で重なる。",
+      "icon": "landscape",
+      "sourceKey": "devilsBridge"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "石の城壁と港の町",
+      "icon": "history"
+    },
+    {
+      "title": "氷河が刻んだ谷と岩峰",
+      "icon": "landscape"
+    },
+    {
+      "title": "風の通る草の稜線",
+      "icon": "landscape"
+    },
+    {
+      "title": "石灰岩の海食アーチ",
+      "icon": "sea"
+    },
+    {
+      "title": "湾を縁取る長い砂浜",
+      "icon": "sea"
+    },
+    {
+      "title": "彩りのある庭園の村",
+      "icon": "city"
+    },
+    {
+      "title": "海鳥が舞う灯台の断崖",
+      "icon": "sea"
+    },
+    {
+      "title": "滝音が響く緑の峡谷",
+      "icon": "landscape"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "welsh-language",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "icon": "culture",
+      "title": "ウェールズ語が、土地の見え方を変える",
+      "text": "英語と並んで目に入るウェールズ語は、この土地の文化を支える生きた言葉だ。標識のCymruはウェールズを指し、町の名前や店先の挨拶にも出会える。音や綴りに目を向けると、同じ英国の中でも異なる言葉の歴史が続いていることに気づく。",
+      "sourceKey": "symbols",
+      "points": [
+        "標識や地名に、ウェールズ語と英語が重なっている",
+        "Cymruという呼び名から、土地の言葉に目を向ける"
+      ]
+    },
+    {
+      "topicKey": "castles",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "history",
+      "title": "城の眺めには、支配の歴史が刻まれている",
+      "text": "海と山を望むコンウィやハーレフの城は、景色を楽しむためだけにつくられたものではない。エドワード1世がウェールズ支配を固める過程で築いた要塞だ。城壁の高さや港との距離を見ると、美しい眺めの背後にある軍事と権力の関係が読み取れる。",
+      "sourceKey": "conwy",
+      "points": [
+        "コンウィ城はエドワード1世のもとで13世紀末に築かれた",
+        "港や高台と城の位置関係から、軍事拠点の役割を見る"
+      ]
+    },
+    {
+      "topicKey": "eryri",
+      "themeEn": "MOUNTAIN",
+      "themeJa": "山を知る",
+      "icon": "landscape",
+      "title": "岩峰の足元に、氷河が刻んだ谷が残る",
+      "text": "トリヴァンを望むオグウェン渓谷の近くには、氷河地形で知られるクム・イドワルがある。鋭い岩峰を見上げるだけでなく、谷と湖の広がりを一緒に眺めたい。岩と水の配置をたどると、山を削り続けた氷の時間が景色の奥に見えてくる。",
+      "sourceKey": "ogwen",
+      "points": [
+        "オグウェンはカルネザイとグリデライ山群を訪ねる拠点",
+        "近くのクム・イドワルには、氷河がつくった谷が残る"
+      ]
+    },
+    {
+      "topicKey": "coast",
+      "themeEn": "SEA",
+      "themeJa": "海を知る",
+      "icon": "sea",
+      "title": "同じ海でも、岩石が岸の形を変える",
+      "text": "ロシリ湾の広い砂浜からペンブルックシャー南岸へ移ると、海岸の表情が変わる。グリーン・ブリッジでは石灰岩に波が働き、アーチと岩柱が残された。海の色だけでなく、岩の層や崖の形を見比べると、長い侵食の過程を感じられる。",
+      "sourceKey": "greenBridge",
+      "points": [
+        "ロシリ湾では、丘の下に長い砂浜が広がる",
+        "グリーン・ブリッジでは、石灰岩がアーチや岩柱の形を残す"
+      ]
+    },
+    {
+      "topicKey": "village",
+      "themeEn": "ARCHITECTURE",
+      "themeJa": "建築を知る",
+      "icon": "city",
+      "title": "村全体が、自然と建築の関係を問いかける",
+      "text": "ポートメイリオンは、建築家クラフ・ウィリアムズ＝エリスが構想した村だ。自然の美しさを損なわずに開発できることを示そうと、建物や庭園を一つの景観にまとめた。色彩だけでなく、路地の先に現れる入り江や緑への視線にも、その意図が表れる。",
+      "sourceKey": "portmeirionDesign",
+      "points": [
+        "建築家クラフ・ウィリアムズ＝エリスが村を構想した",
+        "自然と建築を一体として見ると、路地や庭園の配置にも意味が見える"
+      ]
+    },
+    {
+      "topicKey": "song-and-poetry",
+      "themeEn": "LIFE",
+      "themeJa": "歌を知る",
+      "icon": "culture",
+      "title": "歌は、土地の言葉を人前へつなぐ",
+      "text": "ウェールズの文化を知る入口には、男声合唱やアイステズヴォッドという芸術の祭典がある。詩や音楽、舞台表現を通じて、土地の言葉が受け継がれてきた。山や城を巡る旅に公演を加えると、風景だけではわからない声の文化にも触れられる。",
+      "sourceKey": "symbols",
+      "points": [
+        "男声合唱は、ウェールズを象徴する文化の一つ",
+        "アイステズヴォッドでは言葉・文学・音楽などが表現される"
+      ]
+    }
+  ],
+  "taste": {
+    "title": "ウェールズで食べたいもの",
+    "items": [
+      {
+        "id": "cawl",
+        "name": "カウル",
+        "nameLocal": "Cawl",
+        "text": "肉と根菜を煮込む、ウェールズの家庭的なスープ。",
+        "image": "assets/images/united-kingdom/wales/approved/food-cawl.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "laverbread",
+        "name": "ラヴァーブレッド",
+        "nameLocal": "Laverbread",
+        "text": "海藻を柔らかく煮てつくる伝統食。パンではなく、海の恵みを使った一品。",
+        "image": "assets/images/united-kingdom/wales/approved/food-laverbread.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "welsh-cakes",
+        "name": "ウェルシュ・ケーキ",
+        "nameLocal": "Welsh cakes",
+        "text": "平たい円形の生地を鉄板で焼き上げる素朴な菓子。",
+        "image": "assets/images/united-kingdom/wales/approved/food-welsh-cakes.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "bara-brith",
+        "name": "バラ・ブリス",
+        "nameLocal": "Bara brith",
+        "text": "紅茶に浸したドライフルーツを使う、香り豊かなスライスケーキ。",
+        "image": "assets/images/united-kingdom/wales/approved/food-bara-brith.webp",
+        "sourceKey": "baraBrith"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "lovespoons",
+      "categoryEn": "CRAFT",
+      "categoryJa": "工芸",
+      "icon": "culture",
+      "title": "愛情を伝える贈り物は、木のスプーン",
+      "text": "ウェールズには、模様を彫った木のスプーンを愛情のしるしとして贈る伝統がある。セント・ファガンズの博物館には1667年の作例が残る。食器の形に、相手を思う気持ちを託してきた。",
+      "sourceKey": "lovespoon"
+    },
+    {
+      "topicKey": "red-dragon",
+      "categoryEn": "LEGEND",
+      "categoryJa": "伝承",
+      "icon": "culture",
+      "title": "旗の赤い竜には、白い竜との物語がある",
+      "text": "ウェールズの赤い竜は、白い竜と争い、最後には勝つという伝説につながる。街で見かける竜の姿には、土地の誇りと物語が重なっている。",
+      "sourceKey": "symbols"
+    },
+    {
+      "topicKey": "prisoner",
+      "categoryEn": "FILM",
+      "categoryJa": "映像文化",
+      "icon": "culture",
+      "title": "色彩豊かな村が、不思議なドラマの舞台になった",
+      "text": "ポートメイリオンは、1960年代のテレビシリーズ『プリズナー』の舞台として使われた。現実の建物が作品世界に取り込まれ、今も作品を愛する人が訪れる場所になっている。",
+      "sourceKey": "prisoner"
+    },
+    {
+      "topicKey": "helvetia",
+      "categoryEn": "HISTORY",
+      "categoryJa": "海の記憶",
+      "icon": "sea",
+      "title": "砂浜から顔を出す木材は、船の骨組み",
+      "text": "ロシリ湾で干潮時に見える木の残骸は、1887年に難破したヘルヴェティア号のもの。ノルウェーからスウォンジーへ木材を運ぶ途中だった船の記憶が、砂の中に残っている。",
+      "sourceKey": "helvetia"
+    },
+    {
+      "topicKey": "devils-pact",
+      "categoryEn": "FOLKLORE",
+      "categoryJa": "民話",
+      "icon": "culture",
+      "title": "悪魔が求めたのは、最初に橋を渡る魂",
+      "text": "デビルズ・ブリッジには、橋をつくる代わりに最初に渡る者の魂を求めた悪魔の民話がある。橋と川を前に物語を知ると、地名が単なる呼び名から、語り継がれる風景に変わる。",
+      "sourceKey": "bridgeLegend"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "山と岩の地形を歩きたい",
+      "text": "エリリの渓谷や南部の草の稜線に向き合いたい人へ。"
+    },
+    {
+      "title": "城と町の歴史を旅したい",
+      "text": "海辺の城壁と港町から、中世の景観を読み解きたい人へ。"
+    },
+    {
+      "title": "海岸の表情を見比べたい",
+      "text": "砂浜の湾、石灰岩の断崖、灯台の小島を巡りたい人へ。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "山は歩道と天候を確かめて",
+      "text": "トリヴァン山頂部は岩場のスクランブリングを含む。登山経験と装備に合わせて行程を選ぶ。",
+      "sourceKey": "tryfanSafety"
+    },
+    {
+      "title": "南西の海岸は立入情報を確認",
+      "text": "グリーン・ブリッジ周辺の道路は軍演習場の利用により閉鎖される日がある。",
+      "sourceKey": "greenBridge"
+    },
+    {
+      "title": "灯台と渓谷は足元に注意",
+      "text": "サウス・スタックの階段やデビルズ・ブリッジの峡谷道には急な段差がある。城・灯台・渓谷の公開範囲と営業状況も、訪問前に公式案内で確かめる。",
+      "sourceKey": "southStack"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "日数は車での移動と散策を含む編集上の目安。北部と南部は離れているため、地域を絞るか移動日を確保し、天候の予備日を残したい。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "北ウェールズの城と山",
+        "text": "例：コンウィ → オグウェン渓谷 → ハーレフ → コンウィ。城と山並みを中心に短く巡る。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜7日",
+        "title": "北部から中部へつなぐ",
+        "text": "例：コンウィ → アングルシー → ポートメイリオン → デビルズ・ブリッジ → コンウィ。",
+        "icon": "map"
+      },
+      {
+        "duration": "10日以上",
+        "title": "海岸と山地を横断する",
+        "text": "例：カーディフ → ペン・イ・ヴァン → ロシリ湾 → ペンブルックシャー → 中部 → 北ウェールズ → カーディフ。移動日を含める。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "label": "5〜9月",
+        "reason": "日照時間が長く、山と海岸を組み合わせやすい。天候の変化には通年注意。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "label": "春",
+      "text": "新緑が広がり、山麓や港町を歩きやすくなる。山は冷たい風に注意。",
+      "color": "#73966f",
+      "icon": "sun"
+    },
+    {
+      "months": "6〜8月",
+      "label": "夏",
+      "text": "日が長く海岸と山の旅を組み合わせやすい。人の多い場所では早めの計画を。",
+      "color": "#c7a25a",
+      "icon": "sun"
+    },
+    {
+      "months": "9〜11月",
+      "label": "秋",
+      "text": "草地と森の色が変わる。日没が早まり、風雨への備えが必要。",
+      "color": "#ba846c",
+      "icon": "leaf"
+    },
+    {
+      "months": "12〜2月",
+      "label": "冬",
+      "text": "城や町を中心に巡る季節。山の歩行には冬季装備と慎重な判断が必要。",
+      "color": "#7697ac",
+      "icon": "snow"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "鉄道・バス・車",
+    "text": "鉄道はカーディフなどの南部、北部の海岸線、内陸の主要拠点を結ぶ。山地や海岸の複数地点を巡る旅は、最寄り駅からのバスや車も含めて計画し、復路の便まで確かめたい。",
+    "sourceKey": "transport"
+  },
+  "nextRoutes": [
+    {
+      "countryEn": "ENGLAND",
+      "countryJa": "イングランド",
+      "path": "コンウィ → チェスター → マンチェスター",
+      "description": "北部の城と英国の街を続けて歩く。",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧"
+    }
+  ],
+  "nextRegion": {
+    "slug": "northern-ireland",
+    "nameEn": "NORTHERN IRELAND",
+    "nameJa": "北アイルランド"
+  },
+  "relatedCountries": [
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧",
+      "reason": "英国全体の地図から、次の地域へ旅をつなげる。"
+    },
+    {
+      "nameJa": "アイルランド共和国",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "reason": "海峡の向こうの島に残る歴史と海岸を見比べる。"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-05",
+  "sourceDates": {
+    "travelSeason": "気候・日程の推奨は2026-11-05時点の編集判断。具体的な営業・運行は各公式サイトで再確認。",
+    "population": "2025-06-30（2026-07-29公表）",
+    "area": "Visit Wales掲載の20,800km²。日本約37.8万km²との概算比較。",
+    "weather": "Met Office地域気候資料。季節・日程の推奨は編集判断。"
+  },
+  "sources": {
+    "conwy": "https://cadw.gov.wales/visit/places-to-visit/castell-conwy",
+    "conwyCoordinates": "https://www.visitwales.com/attraction/castle/conwy-castle-533161",
+    "ogwen": "https://eryri.gov.wales/visit/ogwen/",
+    "tryfanCoordinates": "https://walkmates.com/hills/tryfan",
+    "penyfanCoordinates": "https://www.haroldstreet.org.uk/waypoints/download/?hillnumber=2226",
+    "greenBridge": "https://www.visitpembrokeshire.com/cy-gb/attraction-listing/stack-rocks-the-green-bridge-of-wales",
+    "greenBridgeCoordinates": "https://pembrokeshireguide.co.uk/place/green-bridge-of-wales",
+    "rhossili": "https://www.visitwales.com/attraction/beach/rhossili-bay-beach-557651",
+    "portmeirion": "https://portmeirion.wales/visit",
+    "portmeirionCoordinates": "https://mapcarta.com/Portmeirion",
+    "harlech": "https://www.visitwales.com/attraction/castle/harlech-castle-543731",
+    "southStack": "https://www.visitwales.com/attraction/museum/ynys-lawd-south-stack-573491",
+    "devilsBridge": "https://www.visitwales.com/attraction/nature-or-wildlife/devils-bridge-falls-537211",
+    "food": "https://www.wales.com/visit/food-and-drink/essential-welsh-eats",
+    "profile": "https://www.visitwales.com/info/introduction-wales",
+    "population2025": "https://www.gov.wales/mid-year-estimates-population-2025-html",
+    "japanArea": "https://www.stat.go.jp/data/nihon/01.html",
+    "symbols": "https://www.wales.com/about/welcome-wales/national-symbols-wales",
+    "lovespoon": "https://museum.wales/collections/online/object/4b2562af-49e1-3362-bb0a-5eea864c245f/Lovespoon/",
+    "portmeirionDesign": "https://portmeirion.wales/about",
+    "prisoner": "https://portmeirion.wales/about/the-prisoner",
+    "helvetia": "https://www.nationaltrust.org.uk/visit/wales/rhosili-and-south-gower-coast/history-of-rhosili-and-south-gower-coast",
+    "bridgeLegend": "https://www.ceredigion.gov.uk/resident/coast-countryside/exploring-ceredigion/devils-bridge-trails/",
+    "penyfanGeology": "https://www.bgs.ac.uk/discovering-geology/maps-and-resources/office-geology/pen-y-fan-south-wales/",
+    "tryfanSafety": "https://www.thebmc.co.uk/en/sut-i-sgrialu-crib-ogleddol-tryfan",
+    "transport": "https://tfw.wales/places/our-network-map",
+    "weather": "https://www.metoffice.gov.uk/api/assets/file/wales_-climate-met-officepdf?prefix=assets",
+    "geometry": "https://github.com/martinjc/UK-GeoJSON/blob/master/json/administrative/wal/lad.json",
+    "contextGeometry": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_admin_0_map_subunits.geojson",
+    "cardiffCoordinates": "https://mapcarta.com/Cardiff",
+    "baraBrith": "https://www.wales.com/visit/food-and-drink/welsh-recipes/bara-brith"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "街を歩く",
+    "時をたどる"
+  ],
+  "nextRoutesIntro": "隣の地域へ続く旅の方向。移動方法と運行状況を確かめて旅をつなぐ。",
+  "capital": {
+    "nameJa": "カーディフ",
+    "coordinates": {
+      "latitude": 51.4817,
+      "longitude": -3.1792
+    },
+    "sourceKey": "profile",
+    "coordinateSourceKey": "cardiffCoordinates"
+  }
+}

@@ -217,7 +217,7 @@ def main() -> int:
                                 or len(legend_audit["coordinates"]) != 2
                                 or not all(0 <= n <= 100 for n in legend_audit["coordinates"])):
                             problems.append(f"Northern Ireland map legend/capital failed: {legend_audit}")
-                    if slug == "northern-ireland":
+                    if (region.get("map") or {}).get("regions"):
                         detail = (region.get("map") or {}).get("regions") or []
                         inset = driver.execute_script("""
                             const img = document.querySelector('#country-map-art .map-base');
@@ -275,14 +275,14 @@ def main() -> int:
                                 gap:minGap, width:widths.width};
                         """)
                         small = label == "mobile"
-                        if not (mobile_inset.get("found") and mobile_inset.get("count") == 5
+                        if not (mobile_inset.get("found") and mobile_inset.get("count") == len(detail[0]["sceneIds"])
                                 and set(mobile_inset.get("ids", [])) == set(detail[0]["sceneIds"])
                                 and mobile_inset.get("visible") == small
                                 and (not small or (mobile_inset.get("hiddenMain")
                                     and mobile_inset.get("gap", 0) >= 27
                                     and mobile_inset.get("width", 0) >= 250))
                                 and mobile_inset.get("loaded")):
-                            problems.append(f"Northern Ireland mobile detail failed: {mobile_inset}")
+                            problems.append(f"Region mobile detail failed: {mobile_inset}")
                         if not (len(detail) == 1
                                 and detail[0]["rect"]["x"] == 20 and detail[0]["rect"]["y"] == 20
                                 and detail[0]["rect"]["x"] + detail[0]["rect"]["width"] < 440
@@ -291,8 +291,8 @@ def main() -> int:
                                 and inset.get("mapImageLoaded")
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
-                            problems.append(f"Northern Ireland fixed inset map QA failed: {inset}")
-                    expected_images = 15 if slug == "northern-ireland" else 14
+                            problems.append(f"Region fixed inset map QA failed: {inset}")
+                    expected_images = 14 + bool((region.get("map") or {}).get("regions"))
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
@@ -306,7 +306,7 @@ def main() -> int:
                         failures.append(f"{safe}: {'; '.join(problems)}")
                         print("FAIL", safe, problems)
                     else:
-                        print("PASS", safe, f"14 images, overflow={audit['overflow']}")
+                        print("PASS", safe, f"{expected_images} images, overflow={audit['overflow']}")
                 except Exception as exc:
                     failures.append(f"{parent}/{slug} {label}: {exc}")
                     print("FAIL", parent, slug, label, repr(exc))
