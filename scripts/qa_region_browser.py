@@ -208,7 +208,8 @@ def main() -> int:
                             return [...document.querySelectorAll('.next-route-card')]
                                 .filter(card => card.querySelector('.next-route-card__country strong')?.textContent.trim() === name)
                                 .map(card => {
-                                    const img = card.querySelector('img[src*="region-flags/" + slug + ".svg"]');
+                                    const img = [...card.querySelectorAll('img')].find(el =>
+                                        el.getAttribute('src')?.includes('region-flags/' + slug + '.svg'));
                                     return {present: !!img, loaded: !!img?.complete && img?.naturalWidth > 0,
                                             width: img?.getBoundingClientRect().width || 0};
                                 });
