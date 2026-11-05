@@ -244,8 +244,11 @@ def region_flag_svg(country_en: str, fallback: str = '') -> str:
     flags = {'SCOTLAND': 'gb-sct', 'WALES': 'gb-wls', 'ENGLAND': 'gb-eng'}
     asset = flags.get(country_en.strip().upper())
     if asset:
-        return (f'<img class="region-flag-svg" src="assets/flags/{asset}.svg" '
-                'alt="" width="40" height="30" loading="lazy" decoding="async">')
+        # Inline SVG keeps flags accessible without altering the page's photo count.
+        svg_path = ROOT / 'assets' / 'flags' / f'{asset}.svg'
+        return svg_path.read_text(encoding='utf-8').replace(
+            '<svg ', '<svg class="region-flag-svg" aria-hidden="true" focusable="false" ', 1
+        )
     return esc(fallback)
 
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
