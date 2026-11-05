@@ -83,16 +83,25 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Render England's St George's Cross without OS-dependent flag glyphs."""
+    """Render regional flags consistently across platforms."""
     if route.get('countryEn') == 'ENGLAND':
+        # The flowing outline and curved cross mimic the waving flag emoji.
+        # Keep the same 50:30 canvas so all Region flag slots align.
         return (
             '<svg class="region-st-george" xmlns="http://www.w3.org/2000/svg" '
             'width="30" height="18" viewBox="0 0 50 30" '
-            'role="presentation" focusable="false" style="display:block">'
-            '<rect width="50" height="30" fill="#fff"/>'
-            '<rect x="0" y="12" width="50" height="6" fill="#ce1124"/>'
-            '<rect x="22" y="0" width="6" height="30" fill="#ce1124"/>'
-            '</svg>'
+            'role="presentation" focusable="false">'
+            '<defs><clipPath id="region-england-flag-wave">'
+            '<path d="M1 3 Q12 -1 24 3 T49 3 L49 27 '
+            'Q37 31 25 27 T1 27 Z"/>'
+            '</clipPath></defs>'
+            '<g clip-path="url(#region-england-flag-wave)">'
+            '<path d="M0 0 H50 V30 H0 Z" fill="#fff"/>'
+            '<path d="M0 12 Q12 8 25 12 T50 12 V18 '
+            'Q37 22 25 18 T0 18 Z" fill="#ce1124"/>'
+            '<path d="M22 0 Q25 2 28 0 V30 '
+            'Q25 28 22 30 Z" fill="#ce1124"/>'
+            '</g></svg>'
         )
     if route.get('countryEn') == 'SCOTLAND':
         return (
