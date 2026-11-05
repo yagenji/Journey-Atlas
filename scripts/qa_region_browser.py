@@ -222,6 +222,26 @@ def main() -> int:
                                            and abs(f['width'] - 24) <= 1
                                            and abs(f['height'] - 18) <= 1 for f in flags)):
                             problems.append(f"{flag_name} shared waving flag mismatch: {flags}")
+                    for flag_name, asset in (
+                        ('SCOTLAND', 'flag-scotland-waving.svg'),
+                        ('ENGLAND', 'flag-england-waving.svg'),
+                    ):
+                        related_matches = [r for r in region.get('relatedCountries', [])
+                                           if r['nameEn'] == flag_name]
+                        if related_matches:
+                            related_art = driver.execute_script("""
+                                const name=arguments[0], asset=arguments[1];
+                                return [...document.querySelectorAll('.region-related .related-card')]
+                                    .filter(card => card.querySelector('.related-copy h3')?.textContent.trim() === name)
+                                    .map(card => {
+                                        const img=card.querySelector('.related-flag img.destination-flag-art');
+                                        return {loaded:!!img?.complete && img.naturalWidth>0,
+                                            correctAsset:!!img?.getAttribute('src')?.endsWith(asset)};
+                                    });
+                            """, flag_name, asset)
+                            if (len(related_art) != len(related_matches)
+                                    or not all(x['loaded'] and x['correctAsset'] for x in related_art)):
+                                problems.append(f"{flag_name} related waving flag mismatch: {related_art}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
                             return {
