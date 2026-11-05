@@ -515,7 +515,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
-                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
+                + ('<span class="next-route-card__flag" aria-hidden="true">'
+                   '<svg class="region-saltire" xmlns="http://www.w3.org/2000/svg" '
+                   'width="30" height="20" viewBox="0 0 30 20" role="presentation" focusable="false">'
+                   '<rect width="30" height="20" fill="#0065bd"/>'
+                   '<path d="M-2 -1L32 21M32 -1L-2 21" stroke="#fff" stroke-width="5"/>'
+                   '</svg></span>' if route["countryEn"] == "SCOTLAND"
+                   else f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span>')
+                + '<div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
