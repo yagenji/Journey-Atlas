@@ -160,7 +160,8 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
             raise ValueError('Region inset metadata exists without inset artwork')
         source, rect = detail['sourceRect'], detail['rect']
         # SVG uses a uniform fitted scale; the padding is symmetric in both axes.
-        node = ET.fromstring(svg).find('.//*[@id="ni-north-coast-detail"]')
+        svg_id = detail.get('svgId', 'ni-north-coast-detail')
+        node = ET.fromstring(svg).find(f'.//*[@id="{svg_id}"]')
         if node is None:
             raise ValueError('Inset artwork missing')
         scale = float(node.get('data-scale', 'nan'))
@@ -214,7 +215,7 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     scene_ids = set(detail['sceneIds'])
     pieces = [
         '<div class="region-map-detail-mobile" role="group" '
-        'aria-label="北岸の別枠拡大図：景色の地点番号">',
+        f'aria-label="{esc(detail.get("label", "北岸"))}の別枠拡大図：景色の地点番号">',
         f'<img class="region-map-detail-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
         'alt="" aria-hidden="true" loading="eager" decoding="async">'
     ]

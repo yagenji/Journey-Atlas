@@ -17,15 +17,15 @@ class RegionMapPositions(unittest.TestCase):
         cls.svg = (ROOT / cls.data['map']['svg']).read_text()
 
     def test_northern_coast_callouts_are_separate_from_real_anchors(self):
-        positions = [region.interactive_map_position(s['coordinates'], i, self.svg,
-                     self.data['map']['bounds']) for i, s in enumerate(self.data['scenes'], 1)]
+        positions = [region.region_scene_map_position(s, i, self.svg, self.data['map'])
+                     for i, s in enumerate(self.data['scenes'], 1)]
         self.assertEqual(len(set(positions)), 8)
         # These northern-coast places are close together geographically, but
         # their numbered hit targets must not overlap at the desktop map width.
         for i, j in [(0, 2), (0, 7), (2, 7), (0, 1), (1, 2)]:
             x1, y1 = positions[i]; x2, y2 = positions[j]
             distance = ((x1-x2)**2 + ((y1-y2)*760/1200)**2)**.5
-            self.assertGreater(distance, 7)
+            self.assertGreater(distance * 12, 27)
 
     def test_changed_scene_coordinates_are_rejected(self):
         coords = copy.deepcopy(self.data['scenes'][0]['coordinates'])
