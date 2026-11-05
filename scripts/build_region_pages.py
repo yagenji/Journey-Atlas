@@ -203,7 +203,7 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
         '<div class="region-map-detail-mobile" role="group" '
         'aria-label="北岸の別枠拡大図：景色の地点番号">',
         f'<img class="region-map-detail-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
-        'alt="" aria-hidden="true" loading="lazy" decoding="async">'
+        'alt="" aria-hidden="true" loading="eager" decoding="async">'
     ]
     for index, scene in enumerate(data['scenes'], 1):
         if scene['id'] not in scene_ids:
