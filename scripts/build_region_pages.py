@@ -94,6 +94,14 @@ def region_route_flag(route: dict) -> str:
             '<rect x="22" y="0" width="6" height="30" fill="#ce1124"/>'
             '</svg>'
         )
+    if route.get('countryEn') == 'SCOTLAND':
+        return (
+            '<svg class="region-saltire" xmlns="http://www.w3.org/2000/svg" '
+            'width="30" height="20" viewBox="0 0 30 20" role="presentation" focusable="false">'
+            '<rect width="30" height="20" fill="#0065bd"/>'
+            '<path d="M-2 -1L32 21M32 -1L-2 21" stroke="#fff" stroke-width="5"/>'
+            '</svg>'
+        )
     return esc(route.get('flag', ''))
 
 
