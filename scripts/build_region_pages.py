@@ -116,9 +116,13 @@ def recorded_map_position(coords: dict, marker_id: str, svg: str,
         recorded = float(node.get(key, 'nan'))
         if not math.isfinite(recorded) or abs(recorded - expected) > 0.01:
             raise ValueError(f'{marker_id}: SVG projection and real coordinates disagree')
-    # Use the verified geographic point, never an old callout label offset.
-    # The map no longer draws leader lines connecting those old offsets.
+    # Existing maps use the verified geographic point. A map that explicitly
+    # draws callout leader lines can put its hit target on the visible number;
+    # the real anchor above is still independently validated.
     x, y = px, py
+    if root.get('data-map-callouts') == 'true':
+        x = float(node.get('data-label-x', px))
+        y = float(node.get('data-label-y', py))
     if not (math.isfinite(x) and math.isfinite(y) and 0 <= x <= 1200 and 0 <= y <= 760):
         raise ValueError(f'{marker_id}: map label is outside the canvas')
     return 100 * x / 1200, 100 * y / 760
