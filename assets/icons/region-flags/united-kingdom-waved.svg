@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <path id="uk-wave-shape" d="M8 195.25 C178.83 110.03 349.03 140.83 521.26 167.28 C676.47 191.12 833.42 211.85 992 132.75 L992 804.75 C821.17 889.97 650.97 859.17 478.74 832.72 C323.53 808.88 166.58 788.15 8 867.25 Z"/>
+    <clipPath id="uk-wave-clip"><use href="#uk-wave-shape"/></clipPath>
+    <linearGradient id="uk-fold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity=".16"/>
+      <stop offset=".22" stop-color="#fff" stop-opacity=".08"/>
+      <stop offset=".47" stop-color="#000" stop-opacity=".13"/>
+      <stop offset=".74" stop-color="#fff" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".15"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#uk-wave-clip)">
+    <path fill="#012169" d="M0 0H1000V1000H0Z"/>
+    <!-- Union Jack white diagonal saltires -->
+    <path d="M-60 30L1060 970M1060 30L-60 970" stroke="#fff" stroke-width="156"/>
+    <!-- Offset red diagonals, following the Union Jack's asymmetric saltires -->
+    <path d="M-60 10L1060 950" stroke="#C8102E" stroke-width="65"/>
+    <path d="M1060 50L-60 990" stroke="#C8102E" stroke-width="65"/>
+    <!-- White cross and narrower red cross -->
+    <path fill="#fff" d="M414 0H586V1000H414Z"/>
+    <path fill="#fff" d="M0 414H1000V586H0Z"/>
+    <path fill="#C8102E" d="M451 0H549V1000H451Z"/>
+    <path fill="#C8102E" d="M0 451H1000V549H0Z"/>
+    <path fill="url(#uk-fold)" d="M0 0H1000V1000H0Z"/>
+  </g>
+</svg>
