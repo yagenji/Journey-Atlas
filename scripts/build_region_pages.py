@@ -83,25 +83,13 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Render England's St George's Cross without OS-dependent flag glyphs."""
-    if route.get('countryEn') == 'ENGLAND':
-        return (
-            '<svg class="region-st-george" xmlns="http://www.w3.org/2000/svg" '
-            'width="30" height="18" viewBox="0 0 50 30" '
-            'role="presentation" focusable="false" style="display:block">'
-            '<rect width="50" height="30" fill="#fff"/>'
-            '<rect x="0" y="12" width="50" height="6" fill="#ce1124"/>'
-            '<rect x="22" y="0" width="6" height="30" fill="#ce1124"/>'
-            '</svg>'
-        )
-    if route.get('countryEn') == 'SCOTLAND':
-        return (
-            '<svg class="region-saltire" xmlns="http://www.w3.org/2000/svg" '
-            'width="30" height="20" viewBox="0 0 30 20" role="presentation" focusable="false">'
-            '<rect width="30" height="20" fill="#0065bd"/>'
-            '<path d="M-2 -1L32 21M32 -1L-2 21" stroke="#fff" stroke-width="5"/>'
-            '</svg>'
-        )
+    """Use waved regional flags consistently, independent of OS emoji support."""
+    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
+        str(route.get('countryEn', '')).upper()
+    )
+    if slug:
+        return (f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
+                'alt="" width="24" height="24" decoding="async">')
     return esc(route.get('flag', ''))
 
 
