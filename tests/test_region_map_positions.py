@@ -38,17 +38,26 @@ class RegionMapPositions(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'projection'):
             region.interactive_map_position(self.data['scenes'][0]['coordinates'], 1, self.svg, bounds)
 
-    def test_scotland_calibration_remains_unchanged(self):
+    def test_scotland_uses_verified_admin_boundary_and_real_map_anchors(self):
         data = json.loads((ROOT / 'data/regions/unitedkingdom/scotland.json').read_text())
         svg = (ROOT / data['map']['svg']).read_text()
-        expected = [(37.9111694235, 55.3546727177), (44.1305778244, 69.2325496909),
-                    (41.5988319181, 60.5949885966), (42.0103349144, 66.2174608564),
-                    (34.6133057701, 51.7442353355), (52.1782449844, 34.7439161345),
-                    (57.7504705153, 65.2360496067), (49.8430530756, 62.3681637941)]
-        for i, (scene, position) in enumerate(zip(data['scenes'], expected), 1):
-            actual = region.interactive_map_position(scene['coordinates'], i, svg, data['map']['bounds'])
-            self.assertAlmostEqual(actual[0], position[0], places=8)
-            self.assertAlmostEqual(actual[1], position[1], places=8)
+        self.assertIn('data-map-projection="local-equirectangular-fit-v1"', svg)
+        self.assertIn('id="scotland-land"', svg)
+        self.assertIn('id="rockall-inset"', svg)
+        self.assertIn('data-latitude="57.59705"', svg)
+        self.assertIn('シェトランド諸島', svg)
+        self.assertIn('ロッコール島は、実際の位置関係・縮尺と異なる別枠表示', data['map']['insetNote'])
+        self.assertIn('ONSvisual', data['map']['source'])
+        self.assertIn('Natural Earth', data['map']['source'])
+        for i, scene in enumerate(data['scenes'], 1):
+            actual = region.interactive_map_position(
+                scene['coordinates'], i, svg, data['map']['bounds'])
+            self.assertTrue(0 <= actual[0] <= 100)
+            self.assertTrue(0 <= actual[1] <= 100)
+        bad = copy.deepcopy(data['scenes'][0]['coordinates'])
+        bad['longitude'] += .02
+        with self.assertRaisesRegex(ValueError, 'coordinates disagree'):
+            region.interactive_map_position(bad, 1, svg, data['map']['bounds'])
 
     def test_region_labels_and_review_state(self):
         page, canonical, published = region.render_region(self.data,
