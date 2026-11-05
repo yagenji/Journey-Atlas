@@ -191,6 +191,37 @@ def region_hero_map_position(coords: dict, svg: str = '',
 
 
 
+def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
+    """Readable fixed inset on narrow screens; reuses the original verified SVG."""
+    details = data.get('map', {}).get('regions') or []
+    if not details:
+        return ''
+    detail = details[0]
+    rect = detail['rect']
+    scene_ids = set(detail['sceneIds'])
+    pieces = [
+        '<div class="region-map-detail-mobile" role="group" '
+        'aria-label="北岸の別枠拡大図：景色の地点番号">',
+        f'<img class="region-map-detail-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
+        'alt="" aria-hidden="true" loading="lazy" decoding="async">'
+    ]
+    for index, scene in enumerate(data['scenes'], 1):
+        if scene['id'] not in scene_ids:
+            continue
+        x, y = region_scene_map_position(scene, index, svg, data['map'])
+        left = 100 * (12 * x - rect['x']) / rect['width']
+        top = 100 * (7.6 * y - rect['y']) / rect['height']
+        pieces.append(
+            '<button type="button" class="region-map-hit map-marker" '
+            f'data-scene="{esc(scene["id"])}" '
+            f'style="left:{left:.5f}%;top:{top:.5f}%" '
+            f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
+            f'<b aria-hidden="true">{index}</b></button>'
+        )
+    pieces.append('</div>')
+    return ''.join(pieces)
+
+
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
@@ -286,6 +317,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + ''.join(
             '<button type="button" class="region-map-hit map-marker" '
             f'data-scene="{esc(scene["id"])}" '
+            f'data-map-inset="{str(any(scene["id"] in inset.get("sceneIds", []) for inset in data["map"].get("regions", []))).lower()}" '
             f'style="left:{region_scene_map_position(scene, index, map_svg_text, data["map"])[0]:.5f}%;'
             f'top:{region_scene_map_position(scene, index, map_svg_text, data["map"])[1]:.5f}%" '
             f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
@@ -297,7 +329,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
           f'style="left:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
           f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + '</div></div>'
-        '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
+        + mobile_region_detail(data, map_svg_text, map_version)
+        + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>Heroの場所</span></div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
