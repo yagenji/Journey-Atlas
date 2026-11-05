@@ -197,6 +197,17 @@ def main() -> int:
                             problems.append(f"Region interaction failed: {check}")
                     if interactions["related"] != len(region.get("relatedCountries") or []):
                         problems.append("Region related destination links mismatch")
+                    if any(route.get("countryEn") == "SCOTLAND" for route in region.get("nextRoutes", [])):
+                        saltire = driver.execute_script("""
+                            const card = [...document.querySelectorAll('.next-route-card')].find(
+                                c => c.querySelector('.next-route-card__country strong')?.textContent.trim() === 'SCOTLAND');
+                            const flag = card?.querySelector('.next-route-card__flag svg.region-saltire');
+                            return {present:!!flag, blue:!!flag?.querySelector('rect[fill="#0065bd"]'),
+                                white:!!flag?.querySelector('path[stroke="#fff"]'),
+                                visible:flag ? flag.getBoundingClientRect().width >= 20 : false};
+                        """)
+                        if not all(saltire.values()):
+                            problems.append(f"Scottish Saltire QA failed: {saltire}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
                             return {
