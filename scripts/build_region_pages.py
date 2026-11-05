@@ -83,6 +83,18 @@ def icon(name: str) -> str:
 
 
 
+def region_route_flag(route: dict) -> str:
+    """Render Scotland's Saltire consistently, even without emoji flag support."""
+    if route.get('countryEn') == 'SCOTLAND':
+        return ('<span class="next-route-card__flag" aria-hidden="true">'
+                '<svg class="region-saltire" xmlns="http://www.w3.org/2000/svg" '
+                'viewBox="0 0 30 20" role="presentation" focusable="false">'
+                '<rect width="30" height="20" fill="#0065bd"/>'
+                '<path d="M-2 -1L32 21M32 -1L-2 21" stroke="#fff" '
+                'stroke-width="5"/></svg></span>')
+    return f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span>'
+
+
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
                           bounds: dict | None) -> tuple[float, float] | None:
     """Validate geographic anchors and place the interactive dots on real points.
@@ -494,7 +506,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
-                f'<span class="next-route-card__flag" aria-hidden="true">{esc(route.get("flag", ""))}</span><div>'
+                + region_route_flag(route) + '<div>'
                 f'<strong>{esc(route["countryEn"])}</strong>'
                 f'<small>{esc(route["countryJa"])}</small></div></div>'
                 f'<p class="next-route-card__path">{esc(route["path"])}</p>'
