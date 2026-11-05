@@ -263,7 +263,10 @@ def main() -> int:
                                     and mobile_inset.get("width", 0) >= 250))
                                 and mobile_inset.get("loaded")):
                             problems.append(f"Northern Ireland mobile detail failed: {mobile_inset}")
-                        if not (len(detail) == 1 and inset.get("hasNote")
+                        if not (len(detail) == 1
+                                and detail[0]["rect"]["x"] == 20 and detail[0]["rect"]["y"] == 20
+                                and detail[0]["rect"]["x"] + detail[0]["rect"]["width"] < 440
+                                and inset.get("hasNote")
                                 and inset.get("noZoomButton")
                                 and inset.get("mapImageLoaded")
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
