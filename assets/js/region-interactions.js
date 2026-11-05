@@ -10,24 +10,6 @@
   if (cards.length !== 8 || mapHits.length !== cards.length) return;
   const cardById = new Map(cards.map(card => [card.dataset.scene, card]));
   const mapById = new Map(mapHits.map(hit => [hit.dataset.scene, hit]));
-  const zoomButton = document.querySelector('#region-map-zoom-toggle');
-  const mapFrame = document.querySelector('.map-frame');
-  const zoomHelp = document.querySelector('.region-map-zoom-help');
-  if (zoomButton && mapFrame) {
-    zoomButton.addEventListener('click', () => {
-      const expanded = !mapFrame.classList.contains('is-zoomed');
-      mapFrame.classList.toggle('is-zoomed', expanded);
-      zoomButton.setAttribute('aria-expanded', String(expanded));
-      zoomButton.textContent = expanded ? '地図を全体表示に戻す' : '地図を拡大して地点を確認';
-      if (zoomHelp) zoomHelp.hidden = !expanded;
-      if (expanded) {
-        // Center the verified northern coastal positions (around x=650/1200).
-        mapFrame.scrollLeft = Math.max(0, 650 - mapFrame.clientWidth / 2);
-      } else {
-        mapFrame.scrollLeft = 0;
-      }
-    });
-  }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let selectedId = '';
 
