@@ -6,6 +6,16 @@ const slug = embeddedSlug || querySlug || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
 const DATA_VERSION = '20260828-estonia-review';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
+const WAVING_DESTINATION_FLAGS = Object.freeze({
+  SCOTLAND: 'assets/icons/flag-scotland-waving.svg',
+  ENGLAND: 'assets/icons/flag-england-waving.svg',
+});
+function destinationFlagHtml(name, fallback = '') {
+  const artwork = WAVING_DESTINATION_FLAGS[String(name || '').toUpperCase()];
+  if (artwork) return `<img class="destination-flag-art" src="${artwork}" width="24" height="18" alt="" decoding="async">`;
+  return escapeHtml(fallback);
+}
+
 const SITE_ORIGIN = 'https://atlas.yagenji.com/';
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
@@ -695,7 +705,7 @@ function renderNextRoutes(fragment, routes = []) {
     article.className = 'next-route-card';
     article.innerHTML = `
       <div class="next-route-card__country">
-        <span class="next-route-card__flag" aria-hidden="true">${escapeHtml(route.flag || '')}</span>
+        <span class="next-route-card__flag" aria-hidden="true">${destinationFlagHtml(route.countryEn, route.flag)}</span>
         <div>
           <strong>${escapeHtml(route.countryEn || '')}</strong>
           <small>${escapeHtml(route.countryJa || '')}</small>
@@ -719,7 +729,7 @@ function renderRelated(fragment, countries = [], registry = []) {
       article.href = destination.href;
       article.setAttribute('aria-label', `${country.nameJa}のJOURNEY ATLASを見る`);
     }
-    article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${country.flag || '◌'}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
+    article.innerHTML = `<div class="related-country"><span class="related-flag" aria-hidden="true">${destinationFlagHtml(country.nameEn, country.flag || '◌')}</span><div class="related-copy"><h3>${escapeHtml(country.nameEn)}</h3><b>${escapeHtml(country.nameJa)}</b><p>${escapeHtml(country.reason)}</p><small class="related-status">${destination ? 'EXPLORE →' : 'COMING SOON'}</small></div></div>`;
     container.append(article);
   });
 }
