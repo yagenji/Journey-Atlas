@@ -50,14 +50,14 @@ jobs:
           base="$PR_BASE_SHA"
           git fetch --no-tags origin "$base"
           git diff --name-only "$base"...HEAD > /tmp/browser-changed-files.txt
-          python3 - "$GITHUB_OUTPUT" <<'PY'
+          python3 - "$GITHUB_OUTPUT" "$base" <<'PY'
           import json
           import re
           import subprocess
           import sys
           from pathlib import Path
 
-          output = sys.argv[1]
+          output, base = sys.argv[1:]
           files = Path("/tmp/browser-changed-files.txt").read_text().splitlines()
           slugs = set()
           asset_folders = set()
