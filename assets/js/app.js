@@ -163,9 +163,9 @@ function harmonizeChinaRegionLayout(fragment, data) {
   const extrasIntro = fragment.querySelector('.atlas-extras__intro');
   if (extrasIntro) extrasIntro.textContent = '景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。';
   const routesTitle = fragment.querySelector('#next-routes-title');
-  if (routesTitle) routesTitle.textContent = '隣の地域へ旅をつなぐ';
+  if (routesTitle) routesTitle.textContent = '隣国・隣の地域へ旅をつなぐ';
   const routesIntro = fragment.querySelector('#next-routes-section .next-routes__head > p');
-  if (routesIntro) routesIntro.textContent = '周辺の地域へ続く代表的な周遊の方向。移動手段や出入境条件は出発前に確認を。';
+  if (routesIntro) routesIntro.textContent = '隣国や近隣地域へ続く旅の方向。移動手段や出入境条件は出発前に確認を。';
   const relatedTitle = fragment.querySelector('#next-title');
   if (relatedTitle?.lastChild?.nodeType === Node.TEXT_NODE) {
     relatedTitle.lastChild.nodeValue = 'が気になったら';

@@ -110,7 +110,7 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
             "profile": "REGION PROFILE",
             "signature": "この地域を知る数字",
             "scenery": "この地域で見たい景色 8選",
-            "routes": "隣の地域へ旅をつなぐ",
+            "routes": "隣国・隣の地域へ旅をつなぐ",
             "parent": True,
             "sibling": True,
         }
