@@ -429,6 +429,18 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
     if published:
         page = page.replace('<meta name="robots" content="noindex,follow">', '<meta name="robots" content="index,follow">', 1)
 
+    # China detail pages retain their established URLs and Country JSON renderer,
+    # but use the same responsive Region-specific presentation as the UK Regions.
+    if data.get("parentSlug") == "china" and slug in {"hong-kong", "macau"}:
+        marker = '  <link rel="stylesheet" href="assets/css/atlas-personal.css'
+        if marker not in page:
+            raise ValueError("Country personal stylesheet marker missing")
+        page = page.replace(
+            marker,
+            f'  <link rel="stylesheet" href="assets/css/region.css?v={BUILD_VERSION}">\n' + marker,
+            1,
+        )
+
     page = inject_published_region_nav(page, slug)
 
     output = ROOT / "countries" / slug / "index.html"

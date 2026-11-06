@@ -67,6 +67,27 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
     )
     path = urlparse(driver.current_url).path
     audit["atlasFolioSlug"] = path.split("/countries/", 1)[-1].split("/", 1)[0]
+    # China detail destinations must use the same Region layout language as
+    # the United Kingdom's four sub-Country pages on every viewport.
+    if audit["atlasFolioSlug"] in {"hong-kong", "macau"}:
+        audit["chinaRegionLayout"] = driver.execute_script("""
+            const region = document.querySelector('.region-country-page');
+            const nav = document.querySelector('nav.region-return');
+            const sibling = location.pathname.includes('/hong-kong/') ? 'macau' : 'hong-kong';
+            return {
+                regionClass: !!region && document.querySelector('#app')?.classList.contains('region-page'),
+                regionCSS: [...document.styleSheets].some(sheet => sheet.href?.includes('/region.css')),
+                profile: document.querySelector('.country-facts-strip__head .section-kicker-en')?.textContent.trim(),
+                signature: document.querySelector('#signature-facts-title')?.textContent.trim(),
+                scenery: document.querySelector('.scenes-heading h2')?.textContent.trim(),
+                routes: document.querySelector('#next-routes-title')?.textContent.trim(),
+                wish: document.querySelector('#wish-button strong')?.textContent.trim(),
+                parent: !!nav?.querySelector('a[href="countries/china/"]'),
+                sibling: !!nav?.querySelector('a[href="countries/' + sibling + '/"]'),
+                navGrid: nav ? getComputedStyle(nav).gridTemplateColumns : '',
+                overflow: document.documentElement.scrollWidth - window.innerWidth
+            };
+        """)
     if taste_count == 0:
         audit["hiddenRequired"] = [
             selector for selector in audit.get("hiddenRequired", [])
@@ -82,6 +103,24 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
     if slug in {"hong-kong", "macau"}:
         if folio is not None:
             errors.append(f"China detail region {slug} must not be numbered as a Country Page: {folio}")
+        layout = audit.get("chinaRegionLayout") or {}
+        expected = {
+            "regionClass": True,
+            "regionCSS": True,
+            "profile": "REGION PROFILE",
+            "signature": "この地域を知る数字",
+            "scenery": "この地域で見たい景色 8選",
+            "routes": "隣の地域へ旅をつなぐ",
+            "parent": True,
+            "sibling": True,
+        }
+        for key, value in expected.items():
+            if layout.get(key) != value:
+                errors.append(f"{slug} Region layout {key}: expected {value!r}, got {layout.get(key)!r}")
+        if layout.get("wish") not in {"この地域に行きたい", "行きたい地域に保存しました"}:
+            errors.append(f"{slug} Region wish-button label differs: {layout.get('wish')!r}")
+        if layout.get("overflow", 0) > 2:
+            errors.append(f"{slug} Region layout horizontal overflow: {layout['overflow']}px")
     elif not isinstance(folio, str) or not folio.endswith(" / 200"):
         errors.append(f"Country Page folio must use canonical 200 denominator: {slug} {folio!r}")
     return errors
