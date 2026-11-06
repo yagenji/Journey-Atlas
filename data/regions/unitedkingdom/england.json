@@ -20,8 +20,8 @@
     "image": "assets/images/united-kingdom/england/approved/hero-windsor-castle.webp",
     "lead": "並木道の先に、ウィンザー城の石の塔が見える。ロンドンの街を歩き、北へ向かえば湖と大聖堂の街、西へ進めば石の村と巨石の遺跡、潮が道を隠す島へ。イングランドは、都市と田園、長い時間を行き来する旅になる。",
     "description": "ウィンザー・グレート・パークのロング・ウォーク。並木道から北へ、ジョージ4世門の方角にウィンザー城を望む。",
-    "sourceKey": "profile",
-    "coordinateSourceKey": "profile"
+    "sourceKey": "windsorLongWalk",
+    "coordinateSourceKey": "windsorCoordinates"
   },
   "profile": [
     {
@@ -207,7 +207,7 @@
       "icon": "landscape"
     },
     {
-      "title": "砂丘の上の城壁",
+      "title": "砂浜を見下ろす城壁",
       "icon": "history"
     },
     {
@@ -263,7 +263,7 @@
       "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
       "topicKey": "bath",
       "themeEn": "CITY",
-      "themeJa": "街を歩く",
+      "themeJa": "街を知る",
       "icon": "city",
       "sourceKey": "bath",
       "points": [
@@ -302,7 +302,7 @@
       "text": "公的な通行権のあるフットパスが、田園を歩く道になる。村の通りから畑の縁へ、車では通り過ぎる景色に近づける。",
       "topicKey": "footpath",
       "themeEn": "WALK",
-      "themeJa": "歩く旅",
+      "themeJa": "道を知る",
       "icon": "hike",
       "sourceKey": "footpaths",
       "points": [
@@ -312,7 +312,7 @@
     }
   ],
   "taste": {
-    "title": "TASTE OF ENGLAND",
+    "title": "イングランドで食べたいもの",
     "items": [
       {
         "id": "full-english-breakfast",
@@ -402,7 +402,7 @@
     },
     {
       "title": "建物と土地の関係を眺めたい",
-      "text": "砂丘の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
+      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
     },
     {
       "title": "歩く速度で景色に触れたい",
@@ -419,8 +419,9 @@
       "text": "セント・マイケルズ・マウントは潮で渡り方が変わる。訪問日の公式案内を確認し、海岸や湖水地方の散策では現地の天候と歩道の状況も確かめたい。"
     },
     {
-      "title": "都市間と地方部で交通を組み替える",
-      "text": "都市間は鉄道を軸に、村や海岸の区間は地域バスや車を組み合わせる。曜日や季節による便数を確認し、帰りの移動を先に決めておきたい。"
+      "title": "ストーンヘンジは時間指定で予約",
+      "text": "入場は日時指定の事前予約が基本。通常の見学は石の輪の外側の周回路からで、内側には入れない。ソールズベリーからのバスも帰りの時刻まで決めておきたい。",
+      "sourceKey": "stonehengeVisit"
     }
   ],
   "travelScale": {
@@ -503,18 +504,18 @@
     {
       "countryEn": "WALES",
       "countryJa": "ウェールズ",
-      "path": "バース → ブリストル → カーディフ",
+      "path": "Bath → Bristol → Cardiff",
       "description": "西へ海峡を越えて、城と山地の多い地域へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴"
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
     },
     {
       "countryEn": "SCOTLAND",
       "countryJa": "スコットランド",
-      "path": "ヨーク → エディンバラ",
+      "path": "York → Edinburgh",
       "description": "鉄道を北へ進み、古都とハイランドの景観につなぐ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴"
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
     }
   ],
   "nextRegion": {
@@ -538,11 +539,11 @@
       "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。"
     },
     {
-      "nameJa": "オランダ",
-      "nameEn": "NETHERLANDS",
-      "href": "countries/netherlands/",
-      "flag": "🇳🇱",
-      "reason": "北海の向こうへ。運河の街と水とともに暮らす土地の風景に出会う。"
+      "nameJa": "日本",
+      "nameEn": "JAPAN",
+      "href": "countries/japan/",
+      "flag": "🇯🇵",
+      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -598,12 +599,23 @@
     "geometry": "https://www.soest.hawaii.edu/pwessel/gshhg/",
     "englandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-ENG.json",
     "towerRavens": "https://www.hrp.org.uk/tower-of-london/whats-on/the-ravens/",
-    "bluePlaques": "https://www.english-heritage.org.uk/visit/blue-plaques/about-blue-plaques/history-of-blue-plaques/"
+    "bluePlaques": "https://www.english-heritage.org.uk/visit/blue-plaques/about-blue-plaques/history-of-blue-plaques/",
+    "stonehengeVisit": "https://www.english-heritage.org.uk/visit/places/stonehenge/",
+    "londonCoordinates": "https://en.wikipedia.org/wiki/London"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。"
+  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。",
+  "capital": {
+    "nameJa": "ロンドン",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    "sourceKey": "londonCoordinates"
+  }
 }
