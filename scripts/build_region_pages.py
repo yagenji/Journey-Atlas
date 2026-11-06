@@ -100,6 +100,37 @@ def region_route_flag(route: dict) -> str:
                 'alt="" width="21" height="21" decoding="async"></span>')
     return esc(route.get('flag', ''))
 
+def polar_map_position(coords: dict, svg: str) -> tuple[float, float]:
+    """Project WGS84 anchors onto a north-polar stereographic Region SVG.
+
+    Parameters are stored on the SVG so each Region has its own calibrated
+    geometry without an implicit UK map transform.
+    """
+    root = ET.fromstring(svg)
+    if root.get('data-map-projection') != 'north-polar-stereographic-v1':
+        raise ValueError('Not a polar Region map')
+    if root.get('viewBox') != '0 0 1200 760':
+        raise ValueError('Unexpected polar Region map canvas')
+    lat = float(coords['latitude'])
+    lon = float(coords['longitude'])
+    if not (-90 < lat <= 90 and -180 <= lon <= 180):
+        raise ValueError('Invalid polar map coordinates')
+    center = float(root.attrib['data-central-longitude'])
+    true_lat = float(root.attrib['data-true-scale-latitude'])
+    radius = 6378137.0
+    k = (1 + math.sin(math.radians(true_lat))) / 2
+    rho = 2 * radius * k * math.tan(math.pi / 4 - math.radians(lat) / 2)
+    dx = math.radians(lon - center)
+    projected_x = rho * math.sin(dx)
+    projected_y = -rho * math.cos(dx)
+    scale = float(root.attrib['data-polar-scale'])
+    x = float(root.attrib['data-polar-margin-x']) + (projected_x - float(root.attrib['data-polar-min-x'])) * scale
+    y = float(root.attrib['data-polar-margin-y']) + (float(root.attrib['data-polar-max-y']) - projected_y) * scale
+    if not (math.isfinite(x) and math.isfinite(y) and 0 <= x <= 1200 and 0 <= y <= 760):
+        raise ValueError('Polar Region coordinates are outside the canvas')
+    return x, y
+
+
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
                           bounds: dict | None) -> tuple[float, float] | None:
     """Validate geographic anchors and place the interactive dots on real points.
@@ -107,6 +138,20 @@ def recorded_map_position(coords: dict, marker_id: str, svg: str,
     New maps record real coordinates independently from label offsets. Retain
     the calibrated legacy Scotland projection for its existing approved map.
     """
+    if 'data-map-projection="north-polar-stereographic-v1"' in svg:
+        root = ET.fromstring(svg)
+        node = root.find(f'.//*[@id="{marker_id}"]')
+        if node is None:
+            raise ValueError(f'Polar Region map is missing {marker_id}')
+        lat, lon = coords['latitude'], coords['longitude']
+        if any(abs(float(node.get(key, 'nan')) - value) > .000001
+               for key, value in [('data-latitude', lat), ('data-longitude', lon)]):
+            raise ValueError(f'{marker_id}: polar SVG and source coordinates disagree')
+        x, y = polar_map_position(coords, svg)
+        if any(abs(float(node.get(key, 'nan')) - value) > .02
+               for key, value in [('data-x', x), ('data-y', y)]):
+            raise ValueError(f'{marker_id}: projected marker position differs from source coordinates')
+        return 100 * x / 1200, 100 * y / 760
     if 'data-map-projection="local-equirectangular-fit-v1"' not in svg:
         return None
     if not bounds:
@@ -230,8 +275,11 @@ def region_hero_map_position(coords: dict, svg: str = '',
 
 
 
-def region_capital_map_position(coords: dict, bounds: dict) -> tuple[float, float]:
+def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tuple[float, float]:
     """Project the verified capital coordinates onto the main regional map."""
+    if 'data-map-projection="north-polar-stereographic-v1"' in svg:
+        x, y = polar_map_position(coords, svg)
+        return 100 * x / 1200, 100 * y / 760
     west, south, east, north = (bounds[key] for key in ('west', 'south', 'east', 'north'))
     lat, lon = coords['latitude'], coords['longitude']
     if not (west <= lon <= east and south <= lat <= north):
@@ -382,8 +430,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
           f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + (f'<div class="map-capital-marker region-map-capital" role="img" '
            f'aria-label="{esc(data["capital"].get("labelJa", "首府"))}：{esc(data["capital"]["nameJa"])}" '
-           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[0]:.5f}%;'
-           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[1]:.5f}%">'
+           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[0]:.5f}%;'
+           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[1]:.5f}%">'
            '<i aria-hidden="true"></i></div>'
            if data.get('capital') else '')
         + '</div></div>'
