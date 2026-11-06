@@ -4,7 +4,7 @@ const embeddedSlug = document.documentElement.dataset.country;
 const querySlug = new URLSearchParams(window.location.search).get('country');
 const slug = embeddedSlug || querySlug || 'iceland';
 const safeSlug = /^[a-z0-9-]+$/.test(slug) ? slug : 'iceland';
-const DATA_VERSION = '20260828-estonia-review';
+const DATA_VERSION = '8a86d05d0e29c597';
 const ICON_SPRITE = 'assets/icons/atlas-icons.svg';
 const SITE_ORIGIN = 'https://atlas.yagenji.com/';
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
@@ -151,7 +151,7 @@ function renderRegionHistory(fragment, history) {
   const section = document.createElement('section');
   section.className = 'region-history';
   section.setAttribute('aria-labelledby', 'region-history-title');
-  section.innerHTML = `<div class="region-history__head"><span class="section-kicker-en">HISTORY</span><h2 id="region-history-title">歴史・成り立ち</h2></div><p>${escapeHtml(history.text)}</p>`;
+  section.innerHTML = `<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">HISTORY</span><h2 id="region-history-title">歴史・成り立ち</h2></div><p>${escapeHtml(history.text)}</p>`;
   fragment.querySelector('.country-facts-strip')?.after(section);
 }
 
