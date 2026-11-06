@@ -27,6 +27,26 @@ class GreenlandRegion(unittest.TestCase):
         self.assertEqual(page.count('class="scene-card region-scene"'), 8)
         self.assertEqual(page.count('class="taste-card region-taste"'), 4)
 
+    def test_season_icons_exist_and_air_routes_are_absent(self):
+        for season in self.data['seasons']:
+            self.assertIn(season['icon'], region.ICON_IDS)
+        with self.assertRaisesRegex(ValueError, 'Unknown atlas icon'):
+            region.icon('snowflake')
+        page, _, _ = region.render_region(self.data,
+            site_url='https://atlas.yagenji.com/', version='test')
+        self.assertNotIn('id="region-routes-title"', page)
+        self.assertEqual(self.data['nextRoutes'], [])
+
+    def test_region_culture_receives_cross_section_content_qa(self):
+        import validate_country_editorial_v2 as editorial
+        import validate_country_quality_v5 as quality
+        self.assertEqual(editorial.validate_data(self.data, 'greenland.json', force=True), [])
+        self.assertEqual(quality.validate_data(self.data, 'greenland.json', force=True), [])
+        duplicate = copy.deepcopy(self.data)
+        duplicate['culture'][0]['topicKey'] = duplicate['signatureFacts'][0]['topicKey']
+        self.assertTrue(editorial.validate_data(duplicate, 'greenland.json', force=True))
+        self.assertTrue(quality.validate_data(duplicate, 'greenland.json', force=True))
+
     def test_source_coordinates_and_callouts_are_distinct(self):
         positions = []
         for i, scene in enumerate(self.data['scenes'], 1):

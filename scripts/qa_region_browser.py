@@ -83,6 +83,8 @@ def main() -> int:
                             broken: main ? [...main.querySelectorAll('img')]
                                 .filter(im => !im.complete || im.naturalWidth < 1 || !im.hasAttribute('alt'))
                                 .map(im => im.currentSrc || im.src) : [],
+                            seasonIcons: [...document.querySelectorAll('.season-list article > .ui-icon')]
+                                .map(svg => {const b=svg.getBBox(); return {width:b.width,height:b.height};}),
                             visitWishParity: (() => {
                                 const wish = document.querySelector('#region-wish-button');
                                 const visit = document.querySelector('#region-visited-button');
@@ -105,6 +107,9 @@ def main() -> int:
                         };
                     """)
                     problems = []
+                    if (len(audit['seasonIcons']) != len(region.get('seasons', []))
+                            or any(icon['width'] <= 0 or icon['height'] <= 0 for icon in audit['seasonIcons'])):
+                        problems.append('Season icon artwork missing')
                     parity = audit.get("visitWishParity")
                     if not parity:
                         problems.append("Region wish/visited pair missing")
