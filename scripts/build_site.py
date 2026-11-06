@@ -437,7 +437,7 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
             raise ValueError("Country personal stylesheet marker missing")
         page = page.replace(
             marker,
-            f'  <link rel="stylesheet" href="assets/css/region.css?v={BUILD_VERSION}">\\n' + marker,
+            f'  <link rel="stylesheet" href="assets/css/region.css?v={BUILD_VERSION}">\n' + marker,
             1,
         )
 
