@@ -62,7 +62,18 @@ def check(driver, viewport):
         "return [document.documentElement.scrollWidth, document.documentElement.clientWidth]"
     )
     if sizes[0] > sizes[1] + 3:
-        errors.append("Horizontal overflow: " + str(sizes))
+        offenders = driver.execute_script("""
+          return Array.from(document.querySelectorAll('body *')).filter(e => {
+            const rect = e.getBoundingClientRect();
+            const style = getComputedStyle(e);
+            return style.display !== 'none' && rect.width && rect.right > innerWidth + 3;
+          }).slice(0, 25).map(e => ({
+            tag:e.tagName.toLowerCase(), cls:String(e.className).slice(0,100),
+            id:e.id, right:Math.round(e.getBoundingClientRect().right),
+            width:Math.round(e.getBoundingClientRect().width)
+          }));
+        """)
+        errors.append("Horizontal overflow: " + str(sizes) + " offenders=" + repr(offenders))
 
     console = driver.get_log("browser")
     severe = [entry["message"] for entry in console
