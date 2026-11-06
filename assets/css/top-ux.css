@@ -202,6 +202,8 @@
 .map-mine .map-country-nav__list{max-height:190px}
 .map-mine__empty{margin:6px 0 4px;color:#71808a;font-size:12px;line-height:1.6}
 .map-mine__exit{margin-top:14px;min-height:40px;padding:0 16px;border:1px solid rgba(23,59,93,.18);border-radius:999px;background:#fff;color:#173b5d;font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer}
+.map-mine__share{display:block;width:100%;margin-top:14px;min-height:44px;padding:0 16px;border:1px solid #234866;border-radius:999px;background:#234866;color:#fff;font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer}
+.map-mine__share:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
 .map-mine a.map-country-nav__item{color:inherit;text-decoration:none}
 .map-mine__search{display:grid;gap:8px;margin-top:16px;color:#29465e;font:600 12.5px/1.5 var(--jp,sans-serif)}
 .map-mine__search input{width:100%;min-width:0;min-height:44px;padding:9px 10px;border:1px solid rgba(23,59,93,.2);border-radius:8px;background:#fff;color:#173b5d;font:400 13px/1.5 var(--jp,sans-serif)}
@@ -470,3 +472,18 @@
   #scenery .gallery-heading { display:block; }
   #scenery .gallery-actions { margin-top:14px;justify-content:flex-start;flex-wrap:wrap;align-self:auto; }
 }
+
+/* わたしの地図 image dialog. */
+.ja-share { width:min(860px,calc(100vw - 32px)); max-height:calc(100dvh - 32px); padding:22px; border:1px solid #e0dfd7; border-radius:14px; background:#faf9f4; color:#173b5d; }
+.ja-share::backdrop { background:rgba(9,42,75,.45); }
+.ja-share__head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.ja-share__head h2 { margin:0; min-width:0; font:500 clamp(16px,4.4vw,19px)/1.5 "Shippori Mincho",serif; }
+.ja-share__close { flex:0 0 auto; min-height:40px; white-space:nowrap; padding:0 14px; border:1px solid #96a9ac; border-radius:99px; background:#fff; color:#173a56; font-size:13px; font-weight:600; cursor:pointer; }
+.ja-share__preview { display:block; width:100%; height:auto; border:1px solid #e0dfd7; border-radius:8px; }
+.ja-share__preview[hidden],.ja-share__option[hidden],.ja-share .ja-tool-button[hidden] { display:none; }
+.ja-share__option { display:flex; align-items:center; gap:8px; min-height:44px; margin-top:8px; font-size:13px; cursor:pointer; }
+.ja-share__option input { width:18px; height:18px; margin:0; accent-color:#234866; }
+.ja-share__actions { margin-top:12px; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:10px; }
+.ja-share .ja-tool-button:disabled { opacity:.55; cursor:default; }
+.ja-share__note { min-height:20px; margin:12px 0 0; font-size:12px; line-height:1.7; color:#626b68; }
+.ja-share :focus-visible { outline:2px solid #315c79; outline-offset:3px; }

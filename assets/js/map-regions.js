@@ -422,7 +422,7 @@
     const block = (label, note, rows, empty) => `<div class="map-country-nav__guide"><strong>${label}</strong><span>${note}</span></div>${rows.length ? `<div class="map-country-nav__list">${rows.map(item).join('')}</div>` : `<p class="map-mine__empty">${empty}</p>`}`;
     if (!list.querySelector('.map-mine__countries')) {
       list.className = 'map-country-nav map-mine';
-      list.innerHTML = `<div class="map-country-nav__wrap"><label class="map-mine__search"><span>行った国・地域を選ぶ</span><input type="search" aria-label="行った国・地域を検索" placeholder="国・地域名で検索（例：マカオ）" autocomplete="off"></label><label class="map-mine__filter"><input type="checkbox" data-mine-filter>行った国・地域だけ表示</label><p class="map-mine__result-count" aria-live="polite"></p><div class="map-mine__countries" role="group" aria-label="行った国・地域の選択"></div><p class="map-mine__no-results map-mine__empty" hidden></p><div class="map-mine__wishes"></div><button type="button" class="map-mine__exit">地図に戻る</button></div>`;
+      list.innerHTML = `<div class="map-country-nav__wrap"><label class="map-mine__search"><span>行った国・地域を選ぶ</span><input type="search" aria-label="行った国・地域を検索" placeholder="国・地域名で検索（例：マカオ）" autocomplete="off"></label><label class="map-mine__filter"><input type="checkbox" data-mine-filter>行った国・地域だけ表示</label><p class="map-mine__result-count" aria-live="polite"></p><div class="map-mine__countries" role="group" aria-label="行った国・地域の選択"></div><p class="map-mine__no-results map-mine__empty" hidden></p><div class="map-mine__wishes"></div><button type="button" class="map-mine__share">地図を画像にして共有</button><button type="button" class="map-mine__exit">地図に戻る</button></div>`;
       const search = list.querySelector('input[type="search"]');
       search.value = mineQuery;
       search.oninput = () => { mineQuery = search.value; list.querySelector('.map-mine__countries').scrollTop = 0; renderMineCountries(); };
@@ -433,6 +433,7 @@
         const c = dest.find(c => c.slug === event.target.dataset.visitedSlug);
         if (c) toggleVisited(c);
       };
+      list.querySelector('.map-mine__share').onclick = () => window.JourneyAtlasMapShare?.open();
       list.querySelector('.map-mine__exit').onclick = () => setRegion('world');
     }
     renderMineCountries();
@@ -776,7 +777,7 @@
   tabs.forEach(b => b.onclick = () => {
     if (!svg) {
       pendingRegion = b.dataset.mapTab;
-      loadWorldMap();
+      loadWorldMap().catch(() => {});
       return;
     }
     setRegion(b.dataset.mapTab);
@@ -786,13 +787,12 @@
 
   // World geometry is 1.3 MB: load it near the map, not during the top Hero.
   // Reuse the destination registry already fetched by top.js to avoid a second parse.
-  let mapLoadStarted = false;
+  let mapLoad = null;
   function loadWorldMap() {
-    if (mapLoadStarted) return;
-    mapLoadStarted = true;
+    if (mapLoad) return mapLoad;
     const registry = window.JourneyAtlasRegistryPromise ||
       fetch('data/atlas-destinations.json').then(r => r.json());
-    Promise.all([
+    mapLoad = Promise.all([
       fetch(MAP).then(r => { if (!r.ok) throw new Error('World map unavailable'); return r.text(); }),
       fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
       registry
@@ -816,23 +816,33 @@
     }).catch(e => {
       console.error('[JOURNEY ATLAS map]', e);
       copy.textContent = '地図データを読み込めませんでした。';
+      throw e;
     });
+    return mapLoad;
   }
+  // わたしの地図の画像化 reuses this geometry instead of parsing the world map twice.
+  window.JourneyAtlasWorldMap = {
+    load: () => loadWorldMap().then(() => ({
+      land: svg.querySelector('.country-map-layer'),
+      countries: dest, byIso, regions,
+      isDetail: country => CHILD_SLUGS.has(country.slug)
+    }))
+  };
 
   const mapParams = new URLSearchParams(location.search);
   const mapDirect = location.hash === '#map' || mapParams.has('map') || mapParams.has('sub');
-  if (!('IntersectionObserver' in window) || mapDirect) loadWorldMap();
+  if (!('IntersectionObserver' in window) || mapDirect) loadWorldMap().catch(() => {});
   else {
     const mapObserver = new IntersectionObserver((entries) => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       mapObserver.disconnect();
-      loadWorldMap();
+      loadWorldMap().catch(() => {});
     }, { rootMargin: '300px 0px' });
     mapObserver.observe(root);
     // Keyboard and touch users can request the map before the observer fires.
-    ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, loadWorldMap, { once: true, passive: true }));
+    ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, () => loadWorldMap().catch(() => {}), { once: true, passive: true }));
     window.addEventListener('hashchange', () => {
-      if (location.hash === '#map') loadWorldMap();
+      if (location.hash === '#map') loadWorldMap().catch(() => {});
     });
   }
 })();

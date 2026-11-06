@@ -69,6 +69,11 @@ def render_section() -> str:
           "OpenStreetMapのデータを使った地図には、地図の右下にも出典を表示しています。</p>\n"
         + "      <p>表示地図は出典の地理データに対して投影・単純化・一部データの結合、配色・表示範囲の調整などを施したものです。出典・ライセンスの記載は、データ提供者による本サイトの承認、推奨または内容の保証を意味しません。</p>\n"
         + "      <p>国境の扱いは日本政府の立場に準拠しており、元データの表示と異なる場合があります。</p>\n"
+        + "      <p>トップページの世界地図と、そこから作る「わたしの地図」の画像は、"
+        + link("https://commons.wikimedia.org/wiki/File:BlankMap-World.svg", "Wikimedia Commons")
+        + "の白地図（CC BY-SA）を"
+        + link("https://github.com/raphaellepuschitz/SVG-World-Map", "SVG-World-Map")
+        + "（MIT）経由で取得し、JOURNEY ATLASが編集・彩色したものです。編集後の地図にも同じCC BY-SAライセンスが適用されます。</p>\n"
         + "      <ul>\n"
         + "".join(items)
         + "      </ul>\n"
