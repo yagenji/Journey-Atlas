@@ -137,6 +137,11 @@ button { border-radius: 0; }
 .wish-button strong { display: block; margin-top: 4px; font: 500 19px/1.6 var(--mincho); }
 .wish-button small { display: block; margin-top: 5px; font-size: 12px; }
 .wish-button:hover, .wish-button:focus-visible, .wish-button.is-saved { outline: 2px solid var(--navy); outline-offset: -5px; background: #647242; }
+.wish-wrap .visited-button { border-top: 1px solid rgba(255,255,255,.32); background: rgba(18,42,37,.16); }
+.wish-wrap .visited-button .wish-icon { font-size: 30px; }
+.wish-wrap .visited-button strong { font-size: 17px; }
+.wish-wrap .visited-button.is-saved { background: rgba(13,52,42,.35); }
+.wish-wrap .wish-button:focus-visible { outline: 3px solid #fff; outline-offset: -5px; }
 .wish-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 .site-footer { min-height: 150px; margin-top: 42px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); }
