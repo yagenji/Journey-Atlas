@@ -77,8 +77,8 @@ def check(driver, viewport):
     )
     driver.refresh()
     wait.until(lambda d: "行きたい 1" in d.find_element(
-        By.CSS_SELECTOR, ".ja-detail-summary").text)
-    summary_text = driver.find_element(By.CSS_SELECTOR, ".ja-mine-summary").text
+        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    summary_text = driver.find_element(By.CSS_SELECTOR, ".ja-mine-summary").get_attribute("textContent")
     if "0 / 200" not in summary_text:
         errors.append("Detail wishlist affected parent 200-count total")
     driver.execute_script(
