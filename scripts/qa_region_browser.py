@@ -204,8 +204,7 @@ def main() -> int:
                         problems.append("Region related destination links mismatch")
                     # Regional flags are packaged SVG images instead of OS-dependent
                     # Unicode tags or inline St George shapes. Verify the actual asset.
-                    route_flags = {"ENGLAND": "england", "WALES": "wales", "SCOTLAND": "scotland",
-                                   "IRELAND": "ireland", "NORTHERN IRELAND": "unitedkingdom"}
+                    route_flags = {"ENGLAND": "england", "WALES": "wales", "SCOTLAND": "scotland"}
                     for country, flag_slug in route_flags.items():
                         expected = sum(r.get("countryEn") == country for r in region.get("nextRoutes", []))
                         if not expected:
@@ -219,11 +218,27 @@ def main() -> int:
                                         el.getAttribute('src')?.includes('region-flags/' + slug + '-waved.svg'));
                                     return {present: !!img, loaded: !!img?.complete && img?.naturalWidth > 0,
                                             width: img?.getBoundingClientRect().width || 0,
-                                            height: img?.getBoundingClientRect().height || 0};
+                                            height: img?.getBoundingClientRect().height || 0,
+                                            referenceWidth: card.querySelector(".region-route-flag__reference")?.getBoundingClientRect().width || 0};
                                 });
                         """, country, flag_slug)
-                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 21) < 1 and abs(x["height"] - 21) < 1 for x in check):
+                        if len(check) != expected or not all(x["present"] and x["loaded"] and x["referenceWidth"] > 0 and abs(x["width"] - x["referenceWidth"] * .94) < .6 and abs(x["height"] - x["width"]) < .6 for x in check):
                             problems.append(f"{country} regional SVG flag mismatch: {check}")
+                    # Common flags must use exactly the Country native-emoji markup.
+                    native = driver.execute_script("""
+                        return [...document.querySelectorAll('.next-route-card')].map(card => {
+                            const flag = card.querySelector('.next-route-card__flag');
+                            return {country: card.querySelector('strong')?.textContent.trim(),
+                                    text: flag.textContent, images: flag.querySelectorAll('img').length,
+                                    fontSize: getComputedStyle(flag).fontSize};
+                        });
+                    """)
+                    for route in region.get("nextRoutes", []):
+                        if route["countryEn"] in route_flags:
+                            continue
+                        matches = [x for x in native if x["country"] == route["countryEn"]]
+                        if len(matches) != 1 or matches[0]["text"] != route.get("flag", "") or matches[0]["images"] or matches[0]["fontSize"] != "18px":
+                            problems.append(f"Country native flag rendering mismatch: {matches}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
                             return {
