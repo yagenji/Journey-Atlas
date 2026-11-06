@@ -643,7 +643,15 @@ function showTheme(theme,{scroll=true}={}){
   }
 }
 
-function getWishedSlugs(){try{return [...destinations,...detailDestinations].filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
+function getWishedSlugs(){
+  try {
+    return [...destinations,...detailDestinations].filter(country =>
+      localStorage.getItem(`journey-atlas:wish:${country.slug}`) === 'true' ||
+      (country.parentSlug === 'unitedkingdom' &&
+        localStorage.getItem(`journey-atlas:region-wish:unitedkingdom:${country.slug}`) !== null)
+    ).map(country=>country.slug);
+  } catch { return []; }
+}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
 
