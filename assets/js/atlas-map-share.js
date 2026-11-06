@@ -1,0 +1,273 @@
+/* JOURNEY ATLAS — turns わたしの地図 into one PNG, entirely in this browser.
+   Geometry comes from the map already built by map-regions.js; nothing is uploaded. */
+(() => {
+  'use strict';
+  const WIDTH = 1600, HEIGHT = 1000, MAP_X = 40, MAP_Y = 118, MAP_SCALE = 1.52;
+  const MAP_HEIGHT = 507.209 * MAP_SCALE;
+  const SMALL = 4.5, DOT = 3.1; // World units: markers keep tiny Countries visible.
+  const INK = {
+    paper: '#faf9f4', ocean: '#edf6f3', navy: '#173b5d', muted: '#5f6f7b', line: '#d9dcd6',
+    land: '#dde3e3', outside: '#e6ebe7', visited: '#234866', wished: '#a9bccb', border: '#fffaf1'
+  };
+  const FONT = {
+    title: '600 44px "Shippori Mincho","Yu Mincho",serif',
+    count: '600 52px "Hanken Grotesk",sans-serif',
+    label: '500 19px "Zen Kaku Gothic New",sans-serif',
+    labelStrong: '700 21px "Zen Kaku Gothic New",sans-serif',
+    brand: '600 20px "Hanken Grotesk",sans-serif',
+    credit: '500 15px "Hanken Grotesk",sans-serif'
+  };
+  const make = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  };
+  const flag = key => { try { return localStorage.getItem(key) === 'true'; } catch { return false; } };
+
+  function shapePath(element) {
+    const path = new Path2D();
+    const tag = element.tagName.toLowerCase();
+    if (tag === 'path') path.addPath(new Path2D(element.getAttribute('d') || ''));
+    else if (tag === 'circle') {
+      const r = +element.getAttribute('r') || 0;
+      path.arc(+element.getAttribute('cx') || 0, +element.getAttribute('cy') || 0, r, 0, Math.PI * 2);
+    } else return null;
+    return path;
+  }
+  function drawCountry(ctx, group, fill, opacity = 1) {
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle = fill;
+    group.querySelectorAll('path,circle').forEach(element => {
+      const path = shapePath(element);
+      if (!path) return;
+      ctx.fill(path);
+      ctx.stroke(path);
+    });
+    ctx.globalAlpha = 1;
+  }
+  function drawMarker(ctx, group, fill) {
+    let box;
+    try { box = group.getBBox(); } catch { return; }
+    if (Math.max(box.width, box.height) >= SMALL) return;
+    ctx.beginPath();
+    ctx.arc(box.x + box.width / 2, box.y + box.height / 2, DOT, 0, Math.PI * 2);
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.lineWidth = .9;
+    ctx.strokeStyle = INK.paper;
+    ctx.stroke();
+  }
+  function legendItem(ctx, x, y, fill, text) {
+    ctx.fillStyle = fill;
+    ctx.beginPath();
+    ctx.roundRect(x, y - 15, 24, 18, 3);
+    ctx.fill();
+    ctx.fillStyle = INK.muted;
+    ctx.font = FONT.label;
+    ctx.fillText(text, x + 33, y);
+    return x + 33 + ctx.measureText(text).width + 30;
+  }
+  function render(data, withWishes) {
+    const canvas = document.createElement('canvas');
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = INK.paper;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.textBaseline = 'alphabetic';
+
+    ctx.fillStyle = INK.navy;
+    ctx.font = FONT.title;
+    ctx.fillText('わたしの地図', 48, 80);
+    const visited = data.countries.filter(data.isVisited);
+    const parents = data.countries.filter(country => !data.isDetail(country));
+    const visitedCount = visited.filter(country => !data.isDetail(country)).length;
+    const total = ' / ' + parents.length;
+    ctx.textAlign = 'right';
+    ctx.font = FONT.count;
+    ctx.fillStyle = INK.navy;
+    ctx.fillText(visitedCount + total, WIDTH - 48, 82);
+    const countWidth = ctx.measureText(visitedCount + total).width;
+    ctx.font = FONT.label;
+    ctx.fillStyle = INK.muted;
+    ctx.fillText('行った国・地域', WIDTH - 48 - countWidth - 24, 80);
+    ctx.textAlign = 'left';
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(MAP_X, MAP_Y, WIDTH - MAP_X * 2, MAP_HEIGHT, 10);
+    ctx.clip();
+    ctx.fillStyle = INK.ocean;
+    ctx.fillRect(MAP_X, MAP_Y, WIDTH - MAP_X * 2, MAP_HEIGHT);
+    ctx.translate(MAP_X, MAP_Y);
+    ctx.scale(MAP_SCALE, MAP_SCALE);
+    ctx.lineWidth = .4;
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = INK.border;
+    const markers = [];
+    data.land.querySelectorAll('.ja-country').forEach(group => {
+      const country = data.byIso.get(group.dataset.iso);
+      if (!country) { drawCountry(ctx, group, INK.outside); return; }
+      const fill = data.isVisited(country) ? INK.visited
+        : withWishes && data.isWished(country) ? INK.wished : INK.land;
+      drawCountry(ctx, group, fill);
+      if (fill !== INK.land) markers.push([group, fill]);
+    });
+    markers.forEach(([group, fill]) => drawMarker(ctx, group, fill));
+    ctx.restore();
+
+    const footerY = MAP_Y + MAP_HEIGHT;
+    let x = 48;
+    x = legendItem(ctx, x, footerY + 42, INK.visited, '行った');
+    if (withWishes && data.countries.some(country => !data.isVisited(country) && data.isWished(country))) legendItem(ctx, x, footerY + 42, INK.wished, '行きたい');
+    ctx.textAlign = 'right';
+    ctx.fillStyle = INK.navy;
+    ctx.font = FONT.brand;
+    ctx.fillText('JOURNEY ATLAS', WIDTH - 48, footerY + 42);
+    const brandWidth = ctx.measureText('JOURNEY ATLAS').width;
+    ctx.fillStyle = INK.muted;
+    ctx.font = FONT.credit;
+    ctx.fillText('Map: Wikimedia Commons, CC BY-SA', WIDTH - 48 - brandWidth - 24, footerY + 42);
+    ctx.textAlign = 'left';
+
+    const columns = data.regions;
+    const columnWidth = (WIDTH - 96) / columns.length;
+    columns.forEach((region, index) => {
+      const left = 48 + columnWidth * index;
+      const inRegion = parents.filter(country => region.iso2.includes(country.iso2));
+      ctx.fillStyle = INK.muted;
+      ctx.font = FONT.label;
+      ctx.fillText(region.label, left, footerY + 82);
+      ctx.fillStyle = INK.navy;
+      const label = ctx.measureText(region.label).width;
+      ctx.font = FONT.labelStrong;
+      ctx.fillText(inRegion.filter(data.isVisited).length + ' / ' + inRegion.length, left + label + 10, footerY + 82);
+    });
+    return canvas;
+  }
+  const loadFonts = () => {
+    if (!document.fonts?.load) return Promise.resolve();
+    const fonts = [
+      document.fonts.load(FONT.title, 'わたしの地図'),
+      document.fonts.load(FONT.count, '0123456789 /'),
+      document.fonts.load(FONT.brand, 'JOURNEY ATLAS'),
+      document.fonts.load(FONT.label, '行った国・地域行きたいアジアヨーロッパフリカ北米南オセニ極'),
+      document.fonts.load(FONT.labelStrong, '0123456789 /')
+    ];
+    return Promise.race([Promise.allSettled(fonts), new Promise(done => setTimeout(done, 2500))]);
+  };
+
+  let dialog, preview, note, wishes, saveButton, shareButton, data, file, objectUrl;
+  const toFile = canvas => new Promise((resolve, reject) => canvas.toBlob(blob => {
+    if (blob) resolve(new File([blob], 'journey-atlas-my-map.png', {type: 'image/png'}));
+    else reject(Error('PNG unavailable'));
+  }, 'image/png'));
+  const canShareFile = candidate => {
+    try { return !!navigator.canShare?.({files: [candidate]}) && !!navigator.share; }
+    catch { return false; }
+  };
+  function setBusy(busy) { saveButton.disabled = busy; shareButton.disabled = busy; }
+  async function refresh() {
+    setBusy(true);
+    const visitedCount = data.countries.filter(data.isVisited).length;
+    const wishCount = data.countries.filter(country => !data.isVisited(country) && data.isWished(country)).length;
+    wishes.closest('label').hidden = !wishCount;
+    if (!visitedCount && !wishCount) {
+      preview.hidden = true;
+      saveButton.hidden = shareButton.hidden = true;
+      note.textContent = '行った国・地域を登録すると、塗られた世界地図を画像にできます。';
+      return;
+    }
+    saveButton.hidden = false;
+    note.textContent = '画像はこのブラウザの中で作られ、送信されません。';
+    try {
+      file = await toFile(render(data, wishes.checked));
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = URL.createObjectURL(file);
+      preview.src = objectUrl;
+      preview.alt = '行った国・地域を塗った世界地図の画像。国・地域数は' + visitedCount + '件。';
+      preview.hidden = false;
+      shareButton.hidden = !canShareFile(file);
+      setBusy(false);
+    } catch { note.textContent = '画像を作成できませんでした。'; }
+  }
+  function save() {
+    const link = document.createElement('a');
+    link.href = objectUrl;
+    link.download = file.name;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    note.textContent = '画像を保存しました。';
+  }
+  async function share() {
+    const count = data.countries.filter(country => !data.isDetail(country) && data.isVisited(country)).length;
+    const total = data.countries.filter(country => !data.isDetail(country)).length;
+    try {
+      await navigator.share({
+        files: [file],
+        text: `行った国・地域は ${count} / ${total}。JOURNEY ATLASのわたしの地図より https://atlas.yagenji.com/`
+      });
+    } catch (error) {
+      if (error?.name !== 'AbortError') note.textContent = '共有できませんでした。画像を保存してお使いください。';
+    }
+  }
+  function ensureDialog() {
+    if (dialog) return;
+    dialog = make('dialog', 'ja-share');
+    dialog.setAttribute('aria-labelledby', 'ja-share-title');
+    const head = make('div', 'ja-share__head');
+    const title = make('h2', '', 'わたしの地図を画像にする');
+    title.id = 'ja-share-title';
+    const close = make('button', 'ja-share__close', '閉じる');
+    close.type = 'button';
+    close.addEventListener('click', () => dialog.close());
+    head.append(title, close);
+    preview = make('img', 'ja-share__preview');
+    preview.hidden = true;
+    const option = make('label', 'ja-share__option');
+    wishes = make('input');
+    wishes.type = 'checkbox';
+    wishes.checked = true;
+    wishes.addEventListener('change', refresh);
+    option.append(wishes, document.createTextNode('行きたい国も塗る'));
+    const actions = make('div', 'ja-share__actions');
+    saveButton = make('button', 'ja-tool-button', '画像を保存');
+    saveButton.type = 'button';
+    saveButton.addEventListener('click', save);
+    shareButton = make('button', 'ja-tool-button', '共有する');
+    shareButton.type = 'button';
+    shareButton.addEventListener('click', share);
+    actions.append(saveButton, shareButton);
+    note = make('p', 'ja-share__note');
+    note.setAttribute('role', 'status');
+    dialog.append(head, preview, option, actions, note);
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    document.body.append(dialog);
+  }
+  async function open() {
+    ensureDialog();
+    if (!dialog.open) dialog.showModal();
+    preview.hidden = true;
+    saveButton.hidden = shareButton.hidden = true;
+    note.textContent = '画像を作成しています…';
+    try {
+      const [map] = await Promise.all([window.JourneyAtlasWorldMap.load(), loadFonts()]);
+      data = {
+        ...map,
+        isVisited: country => flag('journey-atlas:visited:' + country.slug),
+        isWished: country => flag('journey-atlas:wish:' + country.slug)
+      };
+      await refresh();
+    } catch { note.textContent = '地図を読み込めませんでした。時間をおいてお試しください。'; }
+  }
+  window.JourneyAtlasMapShare = {open};
+  const tools = document.querySelector('.ja-backup-tools');
+  if (tools) {
+    const button = make('button', 'ja-tool-button', '地図を画像にして共有');
+    button.type = 'button';
+    button.addEventListener('click', open);
+    tools.prepend(button);
+  }
+})();
