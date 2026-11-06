@@ -1,5 +1,5 @@
 // 図鑑のページ送り: Country pages turn like the pages of an atlas.
-// Order comes from atlas-order.js (chapters by region → subregion, A–Z inside a chapter). Adds (1) a 「前の国 / 次の国」 spread with a folio (e.g. 12 / 202) above the
+// Order comes from atlas-order.js (chapters by region → subregion, A–Z inside a chapter). Adds (1) a 「前の国 / 次の国」 spread with a folio (e.g. 12 / 200) above the
 // site footer, (2) slim edge tabs on wide screens and (3) ← / → keys. The next page is prefetched.
 (()=>{
   const slug=document.documentElement.dataset.country||new URLSearchParams(location.search).get('country');
