@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build canonical sub-Country pages with the shared JOURNEY ATLAS Country layout.
 
-Region data and approved image assets stay independent of the 202-destination
+Region data and approved image assets stay independent of the 200-Country-Page
 registry. Region pages remain noindex and undiscoverable until published.
 """
 from __future__ import annotations
