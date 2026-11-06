@@ -69,9 +69,13 @@
 .ja-summary-item strong { font-size:23px; font-weight:600; }
 .ja-summary-item small { font-size:12px; color:#646d68; }
 .ja-mine-groups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:26px 0; }
+.ja-mine-column { display:flex; flex-direction:column; gap:24px; min-width:0; }
 .ja-mine-group { min-width:0; }
 .ja-mine-group h3,.ja-favorite-scenes h3 { font-size:17px; font-weight:600; margin:0 0 12px; }
+.ja-mine-region + .ja-mine-region { margin-top:16px; }
+.ja-mine-region-title { font-size:13px; font-weight:600; line-height:1.5; color:#667371; margin:0 0 8px; }
 .ja-mine-links { display:flex; flex-wrap:wrap; gap:8px; max-height:230px; overflow:auto; }
+.ja-mine-region .ja-mine-links { max-height:none; overflow:visible; }
 .ja-mine-links a { font-size:13px; line-height:1.5; text-decoration:none; border:1px solid #d6dedb; border-radius:99px; background:#fff; padding:8px 12px; color:#244764; }
 .ja-empty { font-size:13px; color:#66706f; line-height:1.8; }
 .ja-scene-gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
