@@ -2,7 +2,12 @@
 // Chapters = regions → subregions in data/region-taxonomy.json; A–Z by English name inside a chapter.
 window.JourneyAtlasOrder={
   build(taxonomy,registry){
-    const byIso=new Map((registry.destinations||[]).filter((item)=>item.atlasPublished&&item.href).map((item)=>[item.iso2,item]));
+    // Country book folios count 200 canonical countries, not separate detail pages.
+    // Hong Kong and Macau retain their existing routes and saved records.
+    const details=new Set(registry.detailRegionSlugs||['hong-kong','macau']);
+    const byIso=new Map((registry.destinations||[]).filter((item)=>
+      item.atlasPublished&&item.href&&!details.has(item.slug)
+    ).map((item)=>[item.iso2,item]));
     const used=new Set();
     const pages=[];
     const chapters=[];
