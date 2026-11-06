@@ -18,6 +18,9 @@ from xml.etree import ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / 'data' / 'regions'
 TEMPLATE = ROOT / 'region.html'
+ICON_IDS = frozenset(node.get('id') for node in
+                     ET.parse(ROOT / 'assets/icons/atlas-icons.svg').iter()
+                     if node.tag.endswith('}symbol'))
 
 
 # Any Region CSS/JS edit must produce a new URL, even when the Country
@@ -78,21 +81,59 @@ def render_image(path: str, alt: str, version: str, *, eager: bool = False) -> s
 def icon(name: str) -> str:
     if not re.fullmatch(r'[a-z0-9-]+', name):
         raise ValueError(f'Unsafe icon name: {name}')
+    if name not in ICON_IDS:
+        raise ValueError(f'Unknown atlas icon: {name}')
     return (f'<svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24">'
             f'<use href="assets/icons/atlas-icons.svg#{name}"></use></svg>')
 
 
 def region_route_flag(route: dict) -> str:
-    """Keep Country emoji rendering; use an emoji-sized fallback for UK regions."""
-    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
-        str(route.get('countryEn', '')).upper()
-    )
-    if slug:
+    """Render a declared regional flag or the route's ordinary flag glyph.
+
+    Regional SVGs must be explicitly supplied by data, never inferred from
+    a country name. This is shared by all parent Countries.
+    """
+    asset = route.get('flagAsset')
+    if asset:
+        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\.svg', asset):
+            raise ValueError('Invalid region flag asset')
+        if not (ROOT / asset).is_file():
+            raise FileNotFoundError(asset)
         return ('<span class="region-route-flag-wrap">'
                 '<span class="region-route-flag__reference">🇮🇪</span>'
-                f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
+                f'<img class="region-route-flag" src="{esc(asset)}" '
                 'alt="" width="21" height="21" decoding="async"></span>')
     return esc(route.get('flag', ''))
+
+def polar_map_position(coords: dict, svg: str) -> tuple[float, float]:
+    """Project WGS84 anchors onto a north-polar stereographic Region SVG.
+
+    Parameters are stored on the SVG so each Region has its own calibrated
+    geometry without an implicit UK map transform.
+    """
+    root = ET.fromstring(svg)
+    if root.get('data-map-projection') != 'north-polar-stereographic-v1':
+        raise ValueError('Not a polar Region map')
+    if root.get('viewBox') != '0 0 1200 760':
+        raise ValueError('Unexpected polar Region map canvas')
+    lat = float(coords['latitude'])
+    lon = float(coords['longitude'])
+    if not (-90 < lat <= 90 and -180 <= lon <= 180):
+        raise ValueError('Invalid polar map coordinates')
+    center = float(root.attrib['data-central-longitude'])
+    true_lat = float(root.attrib['data-true-scale-latitude'])
+    radius = 6378137.0
+    k = (1 + math.sin(math.radians(true_lat))) / 2
+    rho = 2 * radius * k * math.tan(math.pi / 4 - math.radians(lat) / 2)
+    dx = math.radians(lon - center)
+    projected_x = rho * math.sin(dx)
+    projected_y = -rho * math.cos(dx)
+    scale = float(root.attrib['data-polar-scale'])
+    x = float(root.attrib['data-polar-margin-x']) + (projected_x - float(root.attrib['data-polar-min-x'])) * scale
+    y = float(root.attrib['data-polar-margin-y']) + (float(root.attrib['data-polar-max-y']) - projected_y) * scale
+    if not (math.isfinite(x) and math.isfinite(y) and 0 <= x <= 1200 and 0 <= y <= 760):
+        raise ValueError('Polar Region coordinates are outside the canvas')
+    return x, y
 
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
@@ -102,6 +143,22 @@ def recorded_map_position(coords: dict, marker_id: str, svg: str,
     New maps record real coordinates independently from label offsets. Retain
     the calibrated legacy Scotland projection for its existing approved map.
     """
+    if 'data-map-projection="north-polar-stereographic-v1"' in svg:
+        root = ET.fromstring(svg)
+        node = root.find(f'.//*[@id="{marker_id}"]')
+        if node is None:
+            raise ValueError(f'Polar Region map is missing {marker_id}')
+        lat, lon = coords['latitude'], coords['longitude']
+        if any(not math.isfinite(float(node.get(key, 'nan')))
+               or abs(float(node.get(key, 'nan')) - value) > .000001
+               for key, value in [('data-latitude', lat), ('data-longitude', lon)]):
+            raise ValueError(f'{marker_id}: polar SVG and source coordinates disagree')
+        x, y = polar_map_position(coords, svg)
+        if any(not math.isfinite(float(node.get(key, 'nan')))
+               or abs(float(node.get(key, 'nan')) - value) > .02
+               for key, value in [('data-x', x), ('data-y', y)]):
+            raise ValueError(f'{marker_id}: projected marker position differs from source coordinates')
+        return 100 * x / 1200, 100 * y / 760
     if 'data-map-projection="local-equirectangular-fit-v1"' not in svg:
         return None
     if not bounds:
@@ -225,8 +282,11 @@ def region_hero_map_position(coords: dict, svg: str = '',
 
 
 
-def region_capital_map_position(coords: dict, bounds: dict) -> tuple[float, float]:
+def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tuple[float, float]:
     """Project the verified capital coordinates onto the main regional map."""
+    if 'data-map-projection="north-polar-stereographic-v1"' in svg:
+        x, y = polar_map_position(coords, svg)
+        return 100 * x / 1200, 100 * y / 760
     west, south, east, north = (bounds[key] for key in ('west', 'south', 'east', 'north'))
     lat, lon = coords['latitude'], coords['longitude']
     if not (west <= lon <= east and south <= lat <= north):
@@ -273,8 +333,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
         raise ValueError('Unsafe region/parent slug')
-    if parent != 'unitedkingdom':
-        raise ValueError('The current Region pilot must stay under the United Kingdom')
+    if not (ROOT / 'data' / 'countries' / f'{parent}.json').is_file():
+        raise ValueError(f'Region parent Country is missing: {parent}')
     if data['schemaVersion'] != 1 or len(data['scenes']) != 8 or len(data['taste']['items']) != 4:
         raise ValueError('Region requires schemaVersion=1, exactly 8 Scenes and 4 Taste')
     if len({s['id'] for s in data['scenes']}) != 8:
@@ -316,7 +376,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="country-theme-context__label">TRAVEL THEMES</span>'
         '<div class="country-theme-context__list" id="country-theme-list">'
         + ''.join(f'<span class="country-theme-chip">{esc(label)}</span>'
-                  for label in region_theme_labels(parent))
+                  for label in (data.get('travelThemes') or region_theme_labels(parent)))
         + '</div></div></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
@@ -377,8 +437,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
           f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + (f'<div class="map-capital-marker region-map-capital" role="img" '
            f'aria-label="{esc(data["capital"].get("labelJa", "首都"))}：{esc(data["capital"]["nameJa"])}" '
-           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[0]:.5f}%;'
-           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[1]:.5f}%">'
+           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[0]:.5f}%;'
+           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[1]:.5f}%">'
            '<i aria-hidden="true"></i></div>'
            if data.get('capital') else '')
         + '</div></div>'
@@ -572,12 +632,15 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
 
     # Two quiet paths: parent Country and next constituent Region.
     # An unpublished/missing Region is explicitly unavailable, never a dead link.
-    result.append('<nav class="region-return" aria-label="イギリスの地域ナビゲーション">'
+    parent_ja = data['parentNameJa']
+    parent_en = data.get('parentNameEn', parent.replace('-', ' ').upper())
+    parent_return_description = data.get('parentReturnDescription', '国ページの景色を見る')
+    result.append(f'<nav class="region-return" aria-label="{esc(parent_ja)}の地域ナビゲーション">'
         f'<a href="countries/{esc(parent)}/" class="region-return__link">'
         '<span class="region-return__arrow" aria-hidden="true">←</span>'
-        '<span class="region-return__copy"><small>BACK TO UNITED KINGDOM</small>'
-        '<strong>イギリスに戻る</strong>'
-        '<span>4つの構成国と8つの景色を見る</span></span>'
+        f'<span class="region-return__copy"><small>BACK TO {esc(parent_en)}</small>'
+        f'<strong>{esc(parent_ja)}に戻る</strong>'
+        f'<span>{esc(parent_return_description)}</span></span>'
         '</a>')
     next_region = data.get('nextRegion')
     if next_region:
