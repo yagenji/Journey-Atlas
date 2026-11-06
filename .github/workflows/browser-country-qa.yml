@@ -50,13 +50,14 @@ jobs:
           base="$PR_BASE_SHA"
           git fetch --no-tags origin "$base"
           git diff --name-only "$base"...HEAD > /tmp/browser-changed-files.txt
-          python3 - "$GITHUB_OUTPUT" <<'PY'
+          python3 - "$GITHUB_OUTPUT" "$base" <<'PY'
           import json
           import re
+          import subprocess
           import sys
           from pathlib import Path
 
-          output = sys.argv[1]
+          output, base = sys.argv[1:]
           files = Path("/tmp/browser-changed-files.txt").read_text().splitlines()
           slugs = set()
           asset_folders = set()
@@ -95,24 +96,58 @@ jobs:
                   raise SystemExit(f"Changed asset folder has no owning Country JSON: {folder}")
               slugs.update(matched)
 
+          # Detect pure TOP-index builder changes rather than treating every edit
+          # to the build entrypoint as a Country renderer change.
+          def strip_top_scene_index(source):
+              return re.sub(
+                  r"(?ms)^def build_top_scene_index\(\) -> None:\n.*?(?=^def \w|\Z)",
+                  "", source,
+              )
+
+          top_only_builder = False
+          if "scripts/build_site.py" in files:
+              before = subprocess.check_output(
+                  ["git", "show", f"{base}:scripts/build_site.py"], text=True
+              )
+              after = Path("scripts/build_site.py").read_text()
+              top_only_builder = strip_top_scene_index(before) == strip_top_scene_index(after)
+
+          top_only_personal = False
+          if "assets/js/atlas-personal.js" in files:
+              before = subprocess.check_output(
+                  ["git", "show", f"{base}:assets/js/atlas-personal.js"], text=True
+              )
+              after = Path("assets/js/atlas-personal.js").read_text()
+              sentinel = "  const host = document.querySelector('#atlas-personal-home');"
+              top_only_personal = sentinel in before and sentinel in after and (
+                  before.split(sentinel, 1)[0] == after.split(sentinel, 1)[0]
+              )
+
+          top_only_files = {
+              "index.html", "assets/js/top.js", "assets/js/map-regions.js",
+              "assets/css/top.css", "assets/css/map-regions.css",
+          }
+          top_changed = bool(set(files) & top_only_files) or top_only_builder or top_only_personal
           shared = any(
               path == "country.html"
               or path == "region.html"
               or path == "scripts/build_region_pages.py"
               or path == "scripts/qa_region_browser.py"
               or (path.startswith("assets/css/") and not (path == "assets/css/top.css" or path.startswith("assets/css/top-") or path == "assets/css/map-regions.css"))
-              or (path.startswith("assets/js/") and path not in {"assets/js/top.js", "assets/js/map-regions.js"})
+              or (path.startswith("assets/js/") and path not in {"assets/js/top.js", "assets/js/map-regions.js"} and not (path == "assets/js/atlas-personal.js" and top_only_personal))
               or path in {
-                  "scripts/build_site.py",
+                  *([] if top_only_builder else ["scripts/build_site.py"]),
                   "scripts/build_country_preview_targeted.py",
                   "scripts/build_cloudflare.py",
               }
               for path in files
           )
-          run = bool(slugs or shared)
+          top_only = top_changed and not shared and not slugs
+          run = bool(slugs or shared or top_only)
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
               handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
+              handle.write("top=" + ("true" if top_only else "false") + "\n")
               handle.write("run=" + ("true" if run else "false") + "\n")
           PY
 
@@ -138,7 +173,7 @@ jobs:
         run: python3 scripts/build_country_preview_targeted.py
 
       - name: Build full production package
-        if: steps.target.outputs.run == 'true' && steps.target.outputs.full == 'true'
+        if: steps.target.outputs.run == 'true' &&  (steps.target.outputs.full == 'true' || steps.target.outputs.top == 'true')
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
@@ -174,8 +209,15 @@ jobs:
           QA_SCOPE: published
         run: python3 scripts/qa_country_browser.py
 
+      - name: Run TOP Desktop / Tablet / Mobile QA
+        if: steps.target.outputs.top == 'true'
+        env:
+          QA_BASE_URL: http://127.0.0.1:4173
+          QA_OUT_DIR: qa-browser-output
+        run: python3 scripts/qa_top_browser.py
+
       - name: Run Region Desktop / Tablet / Mobile QA
-        if: steps.target.outputs.run == 'true'
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.top != 'true'
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output

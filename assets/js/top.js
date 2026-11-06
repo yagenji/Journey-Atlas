@@ -44,7 +44,7 @@ const lensNextButton = document.querySelector('[data-lens-next]');
 const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
-const ATLAS_TOTAL = 202;
+const ATLAS_TOTAL = 200;
 const INDEX_TITLE = '索引　すべての国・地域（A–Z）';
 
 function syncScrollHeader() {
@@ -57,7 +57,41 @@ window.addEventListener('scroll', syncScrollHeader, { passive: true });
 window.addEventListener('resize', syncScrollHeader);
 syncScrollHeader();
 
-let destinations = [];
+let destinations = []; // 200 parent destinations
+let fullDestinations = []; // the 202-item canonical catalog
+let detailDestinations = []; // directly discoverable subordinate places
+const CHILD_SLUGS = new Set(['hong-kong','macau']);
+const UK_REGION_SLUGS = ['england','scotland','wales','northern-ireland'];
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261106-region-heroes-1')
+  .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
+  .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
+    slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:'GB',
+    image:data.image,heroName:data.heroName,flag:'',
+    atlasPublished:true,href:data.href,parentSlug:'unitedkingdom'
+  })).filter(data=>UK_REGION_SLUGS.includes(data.slug)))
+  .catch(()=>[]);
+function renderTopDetailRegions(){
+  const host=document.querySelector('#country-detail-regions');
+  if(!host)return;
+  const fragment=document.createDocumentFragment();
+  for(const [title,slugs] of [
+    ['イギリスの地域',UK_REGION_SLUGS],
+    ['中国の特別行政区',['hong-kong','macau']]
+  ]){
+    const items=slugs.map(slug=>detailDestinations.find(item=>item.slug===slug)).filter(Boolean);
+    if(!items.length)continue;
+    const group=document.createElement('div');
+    group.className='top-subregions__group';
+    const label=document.createElement('span');label.className='top-subregions__label';label.textContent=title;
+    group.append(label);
+    for(const item of items){
+      const link=document.createElement('a');link.href=item.href;link.textContent=item.nameJa;
+      group.append(link);
+    }
+    fragment.append(group);
+  }
+  host.replaceChildren(fragment);
+}
 let activeTheme = null;
 let activeThemeMonth = null;   // テーマ×季節: 1–12, or null for every month
 let themeMeta = {};
@@ -205,7 +239,15 @@ const coreRegistryPromise=fetch('data/atlas-destinations.json')
 window.JourneyAtlasRegistryPromise=coreRegistryPromise;
 coreRegistryPromise
   .then((core)=>{
-    destinations=sortForDisplay(core.destinations||[]);
+    fullDestinations=sortForDisplay(core.destinations||[]);
+    destinations=fullDestinations.filter(country=>!CHILD_SLUGS.has(country.slug));
+    detailDestinations=fullDestinations.filter(country=>CHILD_SLUGS.has(country.slug)).map(country=>({...country,parentSlug:'china'}));
+    renderTopDetailRegions();
+    regionDetailPromise.then(regions=>{
+      detailDestinations.push(...regions);
+      renderTopDetailRegions();
+      if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
+    });
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
     // The A–Z panel starts hidden; build its cards only after the visitor opens it.
@@ -619,7 +661,7 @@ function showTheme(theme,{scroll=true}={}){
   }
 }
 
-function getWishedSlugs(){try{return destinations.filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
+function getWishedSlugs(){try{return [...destinations,...detailDestinations].filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
 
@@ -672,8 +714,14 @@ function searchCountries(){
   });
   // A country-name hit (タイ → Thailand) wins outright; scene/season matches are for words
   // that are not country names (オーロラ, フィヨルド, 紅葉), so they would only add noise here.
+  const detailMatches=detailDestinations.filter(country=>normalizeSearch(
+    country.nameEn+' '+country.nameJa+' '+country.slug
+  ).includes(query));
   const named=scored.filter(([rank])=>rank<=1);
-  if(named.length){searchCaptions=new Map();return named.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);}
+  if(named.length||detailMatches.length){
+    searchCaptions=new Map();
+    return [...named.sort((a,b)=>a[0]-b[0]).map(([,country])=>country),...detailMatches];
+  }
   return scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);
 }
 searchInput?.addEventListener('input',()=>{
@@ -698,7 +746,7 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
+wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid([...destinations,...detailDestinations].filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国・地域を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
@@ -1082,9 +1130,10 @@ function loadScenes(){
     scenePromise=Promise.all([
       fetch('data/top-scene-index.json?v=20261103-hero-places-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
-      themeRegionPromise.catch(()=>null)
-    ]).then(([{countries={},heroes={}}])=>{
-      const bySlug=new Map(destinations.map((country)=>[country.slug,country]));
+      themeRegionPromise.catch(()=>null),
+      regionDetailPromise
+    ]).then(([{countries={},heroes={}},,,regions])=>{
+      const bySlug=new Map([...fullDestinations,...regions].map((country)=>[country.slug,country]));
       const scenes=Object.entries(countries).flatMap(([slug,rows])=>{
         const country=bySlug.get(slug);
         if(!country?.atlasPublished||!country.href)return [];
@@ -1092,16 +1141,16 @@ function loadScenes(){
       });
       // Hero titles come from the Country's verified location in its JSON.
       // Never substitute a generic 「代表風景」 label for a real place name.
-      const heroRows=destinations
-        .filter(country=>country.atlasPublished&&country.href&&country.image&&typeof heroes[country.slug]==='string'&&heroes[country.slug].trim())
+      const heroRows=[...fullDestinations,...regions]
+        .filter(country=>country.atlasPublished&&country.href&&country.image)
         .map(country=>({
-          slug:country.slug,id:'hero',name:heroes[country.slug].trim(),
+          slug:country.slug,id:'hero',name:country.heroName||heroes[country.slug]||'',
           country,image:country.image,isHero:true
-        }));
+        })).filter(row=>row.name.trim());
       sceneRows=[...scenes,...heroRows];
       if(sceneLead){
         const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
-        sceneLead.textContent=`気になる景色から、旅先を見つけよう。${countryCount}の国・地域の${sceneRows.length.toLocaleString('ja-JP')}の景色から、開くたびにちがう組み合わせで並びます。画像は現地撮影の写真ではなく、景観イメージです。`;
+        sceneLead.textContent=`気になる景色から、旅先を見つけよう。200の旅先と詳細地域を含む${countryCount}ページの${sceneRows.length.toLocaleString('ja-JP')}の景色を紹介します。画像は現地撮影の写真ではなく、景観イメージです。`;
       }
       shuffleScenes();
     }).catch((error)=>{
