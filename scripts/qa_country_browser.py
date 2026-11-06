@@ -88,6 +88,27 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
                 overflow: document.documentElement.scrollWidth - window.innerWidth
             };
         """)
+    audit["visitedToggle"] = driver.execute_script("""
+        const slug = location.pathname.split('/countries/')[1]?.split('/')[0];
+        const button = document.querySelector('#visited-button');
+        if (!slug || !button) return {exists: !!button, saved: false, cleared: false};
+        const key = 'journey-atlas:visited:' + slug;
+        const previous = localStorage.getItem(key);
+        try {
+            if (previous === 'true') button.click();
+            button.click();
+            const saved = localStorage.getItem(key) === 'true'
+              && button.getAttribute('aria-pressed') === 'true';
+            button.click();
+            const cleared = localStorage.getItem(key) === null
+              && button.getAttribute('aria-pressed') === 'false';
+            return {exists: true, saved, cleared};
+        } finally {
+            if (previous === null) localStorage.removeItem(key);
+            else localStorage.setItem(key, previous);
+            window.dispatchEvent(new Event('pageshow'));
+        }
+    """)
     if taste_count == 0:
         audit["hiddenRequired"] = [
             selector for selector in audit.get("hiddenRequired", [])
@@ -98,6 +119,10 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
 
 def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict]) -> list[str]:
     errors = _ORIGINAL_ASSERT_AUDIT(audit, bg_checks, browser_errors)
+    visit = audit.get("visitedToggle") or {}
+    for check in ("exists", "saved", "cleared"):
+        if not visit.get(check):
+            errors.append(f"Country visited toggle {check} failed: {visit}")
     folio = audit.get("atlasFolio")
     slug = audit.get("atlasFolioSlug")
     if slug in {"hong-kong", "macau"}:

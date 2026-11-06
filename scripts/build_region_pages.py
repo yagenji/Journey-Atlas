@@ -561,6 +561,10 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="wish-icon" aria-hidden="true">♡</span>'
         '<strong>この地域に行きたい</strong>'
         '<small>このブラウザに保存します</small></button>'
+        '<button class="wish-button visited-button" id="region-visited-button" type="button" aria-pressed="false">'
+        '<span class="wish-icon" aria-hidden="true">○</span>'
+        '<strong>この地域に行った</strong>'
+        '<small>訪問の記録を残す</small></button>'
         '<p class="wish-status" id="region-wish-status" role="status"></p>'
         '</div></section>')
 

@@ -4,6 +4,7 @@
   'use strict';
   const SCENE_PREFIX = 'journey-atlas:scene:';
   const REGION_WISH_PREFIX = 'journey-atlas:region-wish:';
+  const REGION_VISITED_PREFIX = 'journey-atlas:region-visited:';
   const VISITED_PREFIX = 'journey-atlas:visited:';
   const WISH_PREFIX = 'journey-atlas:wish:';
   const REGISTRY_PATH = 'data/atlas-destinations.json';
@@ -41,6 +42,16 @@
       return item && validId(item.parentSlug) && validId(item.slug)
         && typeof item.nameJa === 'string'
         && key === REGION_WISH_PREFIX + item.parentSlug + ':' + item.slug
+        && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
+    } catch { return null; }
+  }).filter(Boolean);
+  // UK constituent Regions share the same personal-atlas detail-area contract.
+  const getRegionVisits = () => allStoredKeys().filter(key => key.startsWith(REGION_VISITED_PREFIX)).map(key => {
+    try {
+      const item = JSON.parse(getStored(key));
+      return item && validId(item.parentSlug) && validId(item.slug)
+        && typeof item.nameJa === 'string'
+        && key === REGION_VISITED_PREFIX + item.parentSlug + ':' + item.slug
         && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
     } catch { return null; }
   }).filter(Boolean);
@@ -206,10 +217,11 @@
     const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
       (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
+    const regionVisits = getRegionVisits().filter(w => all.some(c => c.slug === w.parentSlug));
     // Parent Countries define the 200 denominator. Detail regions keep
     // independent wishes and visits; no automatic parent selection.
     const detailWishCount = detailWant.length + regionWishes.length;
-    const detailVisitCount = detailSeen.length;
+    const detailVisitCount = detailSeen.length + regionVisits.length;
     summary.replaceChildren();
     [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
@@ -227,8 +239,10 @@
       const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
       if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
     });
-    const personalGroups = [sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
-    if (detailSeen.length) personalGroups.push(sectionFor('行った詳細地域', detailSeen, ''));
+    const personalGroups = [sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
+    if (detailSeen.length || regionVisits.length) personalGroups.push(
+      sectionFor('行った詳細地域', [...detailSeen,...regionVisits.map(w => ({...w,flag:''}))], '')
+    );
     if (detailWant.length || regionWishes.length) personalGroups.push(
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,flag:''}))], '')
     );
@@ -268,7 +282,8 @@
       visited: countries.filter(visited).map(c => c.slug),
       wished: countries.filter(wished).map(c => c.slug),
       favorites: getFavorites(),
-      regionWishes: getRegionWishes()
+      regionWishes: getRegionWishes(),
+      regionVisits: getRegionVisits()
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -305,6 +320,12 @@
         && allowed.has(w.parentSlug) && typeof w.nameJa === 'string'
         && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
         if (!putStored(REGION_WISH_PREFIX + w.parentSlug + ':' + w.slug,
+          JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
+      });
+      if (Array.isArray(payload.regionVisits)) payload.regionVisits.filter(w => w && validId(w.parentSlug) && validId(w.slug)
+        && allowed.has(w.parentSlug) && typeof w.nameJa === 'string'
+        && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
+        if (!putStored(REGION_VISITED_PREFIX + w.parentSlug + ':' + w.slug,
           JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
       });
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
