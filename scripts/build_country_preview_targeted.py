@@ -199,6 +199,18 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
         collect_image_refs(payload, refs)
         write_json(version_runtime_image_refs(payload), DIST / "data" / "countries" / source.name)
         copy_tree(ROOT / "countries" / slug, DIST / "countries" / slug)
+        # Country-style regional links reference a sibling Country's approved Hero.
+        # Include only that image, not the sibling's entire page or image set.
+        for region in payload.get("regionDiscoveries", []):
+            if region.get("kind") != "country":
+                continue
+            child_slug = region.get("slug", "")
+            if not isinstance(child_slug, str) or not child_slug.replace("-", "").isalnum():
+                continue
+            child_path = COUNTRY_DIR / f"{child_slug}.json"
+            if child_path.exists():
+                child_data = json.loads(child_path.read_text(encoding="utf-8"))
+                collect_image_refs(child_data.get("hero", {}), refs)
         # Region imagery is a separate editorial layer, not part of Country JSON.
         for region_path in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
             collect_image_refs(json.loads(region_path.read_text(encoding="utf-8")), refs)
