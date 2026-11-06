@@ -103,7 +103,10 @@ def main() -> int:
                         problems.append("return to United Kingdom missing")
                     if region.get("nextRegion"):
                         expected_name = region["nextRegion"]["nameJa"]
-                        if audit["nextRegionName"] != expected_name:
+                        # A published next-region link includes the Japanese travel suffix 「へ」.
+                        expected_display = (expected_name if audit["nextRegionUnavailable"]
+                                            else expected_name + "へ")
+                        if audit["nextRegionName"] != expected_display:
                             problems.append("next Region label incorrect")
                         if audit["nextRegionBadLink"]:
                             problems.append("unavailable next Region has dead link")
