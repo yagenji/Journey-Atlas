@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the canonical JOURNEY ATLAS 202-destination registry and regional scope."""
+"""Validate 200 canonical Country Pages and two China detail-region entries."""
 
 from __future__ import annotations
 
@@ -11,7 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "atlas-destinations.json"
 REGIONS = ROOT / "data" / "region-taxonomy.json"
-EXPECTED_COUNT = 202
+EXPECTED_COUNT = 202  # Registry records, including two detail regions
+COUNTRY_COUNT = 200
+DETAIL_SLUGS = {"hong-kong", "macau"}
 REQUIRED_SPECIAL_ISO2 = {"TW", "HK", "MO", "AQ", "PS"}
 CANONICAL_SLUG_EXCEPTIONS = {"hong-kong"}
 
@@ -26,6 +28,14 @@ def main() -> int:
     regions = load(REGIONS)
 
     destinations = registry.get("destinations", [])
+    primary = [item for item in destinations if item.get("slug") not in DETAIL_SLUGS]
+    details = [item for item in destinations if item.get("slug") in DETAIL_SLUGS]
+    if registry.get("countryPageCount") != COUNTRY_COUNT or len(primary) != COUNTRY_COUNT:
+        errors.append(f"canonical Country Page count must be {COUNTRY_COUNT}; found {len(primary)}")
+    if registry.get("detailRegionPageCount") != 2 or len(details) != 2:
+        errors.append("China detail-region entries must be exactly Hong Kong and Macau")
+    if set(registry.get("detailRegionSlugs", [])) != DETAIL_SLUGS:
+        errors.append("detailRegionSlugs must be exactly hong-kong and macau")
     iso2 = [item.get("iso2") for item in destinations]
     slugs = [item.get("slug") for item in destinations]
     orders = [item.get("order") for item in destinations]
@@ -63,7 +73,7 @@ def main() -> int:
         if not item:
             continue
         if item.get("atlasPublished") is not True:
-            errors.append(f"{code} must remain atlasPublished:true in the canonical 202 registry")
+            errors.append(f"{code} must remain published as a China detail-region entry")
         if not item.get("href") or not item.get("image"):
             errors.append(f"{code} must retain its published href and hero image")
     if by_iso.get("HK", {}).get("slug") != "hong-kong":
@@ -105,7 +115,7 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print("Canonical destination scope PASS: 202 destinations; Asia 50; Palestine, Hong Kong and Macao included.")
+    print("Canonical scope PASS: 200 Country Pages + two China detail regions; 202 registry records; Asia 50.")
     return 0
 
 
