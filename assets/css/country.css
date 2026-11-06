@@ -116,3 +116,18 @@ html[data-country="cookislands"] .map-marker b {
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* Parent Country navigation for Hong Kong and Macau destination pages. */
+.country-parent-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .55em;
+  flex-wrap: wrap;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  margin-bottom: .65rem;
+  color: inherit;
+}
+.country-parent-breadcrumb a { color: inherit; text-underline-offset: .2em; }
+.country-parent-breadcrumb a:hover { text-decoration: underline; }
+.country-parent-breadcrumb [aria-current="page"] { font-weight: 600; }
