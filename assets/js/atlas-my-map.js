@@ -28,6 +28,9 @@
   section.setAttribute('aria-labelledby', 'ja-mymap-title');
   const title = make('h3', 'ja-mymap__title', 'わたしの地図');
   title.id = 'ja-mymap-title';
+  const modes = make('div', 'ja-mymap__modes');
+  modes.setAttribute('role', 'radiogroup');
+  modes.setAttribute('aria-label', '地図の表示');
   const stage = make('div', 'ja-mymap__stage');
   const hint = make('p', 'ja-mymap__hint', TOUCH
     ? '国をタップで「行った国」に印 ・ 2本指で移動・拡大'
@@ -36,14 +39,25 @@
   status.setAttribute('role', 'status');
   const share = make('button', 'ja-tool-button ja-mymap__share', '地図を画像にして共有');
   share.type = 'button';
-  share.addEventListener('click', () => window.JourneyAtlasMapShare?.open());
+  share.addEventListener('click', () => window.JourneyAtlasMapShare?.open(mode));
   const mapColumn = make('div', 'ja-mymap__column');
-  mapColumn.append(stage, hint, status, share);
+  mapColumn.append(modes, stage, hint, status, share);
   const picker = make('div', 'map-mine ja-mymap__picker');
   section.append(title, mapColumn, picker);
   home.prepend(section);
 
-  let map, svg, view = [...WORLD], query = '', visitedOnly = false, loading = false;
+  let map, svg, view = [...WORLD], query = '', visitedOnly = false, loading = false, mode = 'both';
+  [['both', '行った国と行きたい国'], ['visited', '行った国だけ'], ['wished', '行きたい国だけ']].forEach(([id, label]) => {
+    const choice = make('label', 'ja-mymap__mode');
+    const radio = make('input');
+    radio.type = 'radio';
+    radio.name = 'ja-mymap-mode';
+    radio.value = id;
+    radio.checked = id === mode;
+    radio.addEventListener('change', () => { mode = id; if (svg) paint(); });
+    choice.append(radio, make('span', '', label));
+    modes.append(choice);
+  });
   const applyView = next => {
     const width = Math.max(MIN_WIDTH, Math.min(WORLD[2], next[2]));
     const height = width * RATIO;
@@ -66,9 +80,10 @@
   function paint() {
     svg.querySelectorAll('.ja-country.is-destination').forEach(group => {
       const country = map.byIso.get(group.dataset.iso);
-      const visited = !!country && isVisited(country);
+      const visited = !!country && mode !== 'wished' && isVisited(country);
+      const wished = !!country && mode !== 'visited' && !visited && isWished(country);
       group.classList.toggle('is-visited', visited);
-      group.classList.toggle('is-wished', !!country && !visited && isWished(country));
+      group.classList.toggle('is-wished', wished);
     });
   }
   function renderCountries() {
@@ -277,7 +292,14 @@
     disclosure.scrollIntoView();
   }
   disclosure.addEventListener('toggle', () => { if (disclosure.open) load(); });
-  if (disclosure.open) load();
+  // Sections above finish laying out after the browser's own jump to #my-atlas.
+  if (disclosure.open) {
+    let userMoved = false;
+    ['wheel', 'touchstart', 'keydown'].forEach(type => window.addEventListener(type, () => { userMoved = true; }, {once: true, passive: true}));
+    const settle = () => { if (!userMoved) disclosure.scrollIntoView({behavior: 'instant'}); };
+    load().then(settle);
+    [600, 1500].forEach(delay => setTimeout(settle, delay));
+  }
   window.addEventListener('storage', event => {
     if (svg && (event.key === null || event.key.startsWith('journey-atlas:visited:') || event.key.startsWith('journey-atlas:wish:'))) {
       paint();

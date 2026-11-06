@@ -23,7 +23,7 @@
   const MINW = 4.5;
   const MAP_MIN_X = -80;
   const MAP_MAX_X = 1120;
-  const MAP = 'assets/maps/world-states.svg?v=20261003-1';
+  const MAP = 'assets/maps/world-states.svg?v=20261107-natural-earth-1';
   const COLORS = {
     asia: '#a9bea4', europe: '#d2b98a', africa: '#d19a75',
     'north-america': '#abc5c9', 'south-america': '#aabb83',

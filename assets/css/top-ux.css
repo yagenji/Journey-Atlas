@@ -457,6 +457,13 @@
 .ja-mymap { display:grid; grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr); gap:12px 20px; margin-bottom:24px; }
 .ja-mymap__title { grid-column:1/-1; margin:0; font-size:17px; font-weight:600; }
 .ja-mymap__column { min-width:0; }
+.ja-mymap__modes { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.ja-mymap__mode { position:relative; cursor:pointer; }
+.ja-mymap__mode input { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
+.ja-mymap__mode span { display:inline-flex; align-items:center; min-height:38px; padding:0 13px; border:1px solid rgba(25,62,87,.22); border-radius:999px; background:#fffdfa; color:#234866; font-size:12.5px; font-weight:600; line-height:1.2; }
+.ja-mymap__mode input:checked+span { border-color:#234866; background:#234866; color:#fff; }
+.ja-mymap__mode input:checked+span::before { content:'✓'; margin-right:5px; }
+.ja-mymap__mode input:focus-visible+span { outline:2px solid #173b5d; outline-offset:2px; }
 .ja-mymap__stage { position:relative; overflow:hidden; border:1px solid #e0dfd7; border-radius:12px; background:#edf6f3; }
 .ja-mymap__stage:empty { aspect-ratio:1000/507; }
 .ja-mymap__map { display:block; width:100%; height:auto; aspect-ratio:1000/507.209; cursor:grab; }
@@ -484,9 +491,7 @@
 .ja-share__head h2 { margin:0; min-width:0; font:500 clamp(16px,4.4vw,19px)/1.5 "Shippori Mincho",serif; }
 .ja-share__close { flex:0 0 auto; min-height:40px; white-space:nowrap; padding:0 14px; border:1px solid #96a9ac; border-radius:99px; background:#fff; color:#173a56; font-size:13px; font-weight:600; cursor:pointer; }
 .ja-share__preview { display:block; width:100%; height:auto; border:1px solid #e0dfd7; border-radius:8px; }
-.ja-share__preview[hidden],.ja-share__option[hidden],.ja-share .ja-tool-button[hidden] { display:none; }
-.ja-share__option { display:flex; align-items:center; gap:8px; min-height:44px; margin-top:8px; font-size:13px; cursor:pointer; }
-.ja-share__option input { width:18px; height:18px; margin:0; accent-color:#234866; }
+.ja-share__preview[hidden],.ja-share .ja-tool-button[hidden] { display:none; }
 .ja-share__actions { margin-top:12px; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:10px; }
 .ja-share .ja-tool-button:disabled { opacity:.55; cursor:default; }
 .ja-share__note { min-height:20px; margin:12px 0 0; font-size:12px; line-height:1.7; color:#626b68; }
