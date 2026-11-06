@@ -25,23 +25,23 @@
   },
   "profile": [
     {
-      "label": "構成国",
-      "value": "イギリス（英国）の4構成国の一つ。グレートブリテン島の西部",
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの構成国）",
       "sourceKey": "profile"
     },
     {
-      "label": "首府",
+      "label": "首都",
       "value": "カーディフ",
       "sourceKey": "profile"
     },
     {
       "label": "人口",
-      "value": "約318万人（2025年6月推計）",
+      "value": "約318万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "約2.08万km²（日本の約5.5%）",
+      "value": "約20,800 km²（日本の約5.5%）",
       "sourceKey": "profile"
     },
     {
@@ -56,7 +56,7 @@
     },
     {
       "label": "通貨",
-      "value": "英ポンド（GBP）",
+      "value": "ポンド・スターリング（GBP）",
       "sourceKey": "profile"
     }
   ],
@@ -195,7 +195,8 @@
       "value": "600超",
       "note": "各時代の勢力が築いた城が、小さな地域に重なる。記録上の総数であり、すべてが現存するわけではない。",
       "icon": "history",
-      "sourceKey": "castleLandscape"
+      "sourceKey": "castleLandscape",
+      "interestReason": "面積の小さい土地に城が集中する、ウェールズの歴史の密度を直感できるから。"
     },
     {
       "topicKey": "coastal-footpath",
@@ -203,7 +204,8 @@
       "value": "約1,400km",
       "note": "ウェールズ・コースト・パスは、北から南へ海岸沿いをつなぐ歩道。砂浜も断崖も、歩く旅の一部になる。",
       "icon": "sea",
-      "sourceKey": "coastPath"
+      "sourceKey": "coastPath",
+      "interestReason": "海岸線の全周を歩いてたどれる、ウェールズならではの旅の形を伝えられるから。"
     },
     {
       "topicKey": "sheep-and-people",
@@ -211,41 +213,51 @@
       "value": "約2.8倍",
       "note": "羊・子羊は約881万頭、人口は約318万人（いずれも2025年）。山地の草地に、羊を育てる暮らしが広がる。",
       "icon": "landscape",
-      "sourceKey": "sheep2025"
+      "sourceKey": "sheep2025",
+      "interestReason": "人より羊が多いという、山地の暮らしの風景を一つの比で想像できるから。",
+      "exceptionalScale": true
     }
   ],
   "encounters": [
     {
       "title": "ウェールズ語の挨拶",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "LANGUAGE"
     },
     {
       "title": "丘に点々といる羊",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "LANDSCAPE"
     },
     {
       "title": "男声合唱",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "古書店の町ヘイ・オン・ワイ",
-      "icon": "city"
+      "icon": "city",
+      "category": "CITY"
     },
     {
       "title": "蒸気機関車の保存鉄道",
-      "icon": "road"
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
       "title": "スレート採石場の跡",
-      "icon": "history"
+      "icon": "history",
+      "category": "LANDSCAPE"
     },
     {
       "title": "海岸線をたどる歩道",
-      "icon": "hike"
+      "icon": "hike",
+      "category": "LANDSCAPE"
     },
     {
       "title": "ラグビーの国際試合",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     }
   ],
   "culture": [
@@ -373,7 +385,7 @@
       "categoryJa": "地名",
       "icon": "culture",
       "title": "村の正式名は、ウェールズ語で58文字",
-      "text": "アングルシー島の小さな村の長い名は、1869年ごろ、観光の呼び物として考案されたとされる。駅に掲げられた名前が、今も旅人の足を止める。",
+      "text": "アングルシー島の小さな村の長い名は、1860年代に観光と鉄道駅の話題づくりのために広められたという。短く「スランヴァイルPG」とも呼ばれる。",
       "sourceKey": "longestName"
     },
     {
@@ -391,7 +403,7 @@
       "categoryJa": "競技",
       "icon": "hike",
       "title": "人と馬が、山道で速さを競う",
-      "text": "中部の町スランルトゥド・ウェルズでは1980年から、人と馬が約34kmの山道を競うレースが開かれる。パブの議論から生まれ、人が初めて勝ったのは2004年だった。",
+      "text": "中部の町スランルトゥド・ウェルズでは1980年から、人と馬が山道を競うレースが開かれる。ホテルのバーでの議論から生まれ、人が初めて全ての馬に勝ったのは2004年だった。",
       "sourceKey": "manVHorse"
     },
     {
@@ -456,13 +468,13 @@
         "icon": "city"
       },
       {
-        "duration": "6〜7日",
+        "duration": "5〜7日",
         "title": "北部から中部へつなぐ",
         "text": "例：コンウィ → アングルシー → ポートメイリオン → デビルズ・ブリッジ → コンウィ。",
         "icon": "map"
       },
       {
-        "duration": "10日以上",
+        "duration": "8日以上",
         "title": "海岸と山地を横断する",
         "text": "例：カーディフ → ペン・イ・ヴァン → ロシリ湾 → ペンブルックシャー → 中部 → 北ウェールズ → カーディフ。移動日を含める。",
         "icon": "compass"
@@ -533,7 +545,9 @@
       "path": "Conwy → Chester → Manchester",
       "description": "城と港町を巡る北ウェールズから、チェスターの城壁とマンチェスターの街並みへ。鉄道沿いに旅を続ける。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "IRELAND",
@@ -542,7 +556,9 @@
       "description": "ホリーヘッドから船でアイリッシュ海を渡り、ダブリンへ。港と城の旅に、アイルランドの街歩きを加える。",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "sourceKey": "holyheadDublin"
+      "sourceKey": "holyheadDublin",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -556,14 +572,16 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "海峡の向こうで、緑の丘と大西洋の断崖、港町の暮らしをたどる。"
+      "reason": "海峡の向こうで、緑の丘と大西洋の断崖、港町の暮らしをたどる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "氷河が刻んだ山と海の関係を、フィヨルドの風景へ広げる。"
+      "reason": "氷河が刻んだ山と海の関係を、フィヨルドの風景へ広げる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "ニュージーランド",
@@ -571,7 +589,8 @@
       "href": "countries/newzealand/",
       "flag": "🇳🇿",
       "reason": "羊のいる丘陵と、氷河が刻んだ山や湖を巡る。",
-      "sourceKey": "newZealandLandscape"
+      "sourceKey": "newZealandLandscape",
+      "affinityType": "LANDSCAPE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -624,14 +643,15 @@
     "helvetiaRecord": "https://coflein.gov.uk/en/site/273914",
     "heather": "https://wildtrailswales.com/wildtrailsguides/wild-trails-wales-guide-7-heather-walks-wales",
     "southStackSeabirds": "https://www.countryfile.com/go-outdoors/days-out/south-stack-cliffs-anglesey",
-    "longestName": "https://www.historyhit.com/locations/llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch/",
+    "longestName": "https://science.nasa.gov/earth/earth-observatory/a-little-town-with-a-long-name",
     "castlemartinFiring": "https://www.gov.uk/government/publications/castlemartin-firing-notice--2",
     "southStackVisit": "https://www.trinityhouse.co.uk/lighthouse-visitor-centres/south-stack-lighthouse-visitor-centre",
     "religion": "https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021",
     "blaenavon": "https://www.visitwales.com/things-do/attractions/castles-and-heritage/blaenavons-industrial-landscape",
     "slate": "https://www.visitwales.com/destinations/north-wales/eryri-snowdonia-mountains-and-coast/six-areas-unesco-awarded-slate",
     "patagonia": "https://www.wales.com/history-welsh-people-patagonia",
-    "manVHorse": "https://en.wikipedia.org/wiki/Man_versus_Horse_Marathon"
+    "manVHorse": "https://www.green-events.co.uk/man-v-horse",
+    "manVHorseOrigin": "https://www.visitmidwales.co.uk/whats-on/man-v-horse-marathon-green-events-p1743231"
   },
   "travelThemes": [
     "地球の風景",
@@ -647,5 +667,6 @@
     },
     "sourceKey": "profile",
     "coordinateSourceKey": "cardiffCoordinates"
-  }
+  },
+  "contentQaVersion": 6
 }

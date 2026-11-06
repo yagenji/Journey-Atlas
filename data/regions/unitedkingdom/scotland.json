@@ -24,21 +24,21 @@
   },
   "profile": [
     {
-      "label": "構成国",
-      "value": "イギリス（英国）の4構成国の一つ"
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの構成国）"
     },
     {
-      "label": "首府",
+      "label": "首都",
       "value": "エディンバラ"
     },
     {
       "label": "人口",
-      "value": "約555万人（2025年6月推計）",
+      "value": "約555万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "陸地約7.8万km²（日本の約21%）",
+      "value": "約78,000 km²（陸地・日本の約21%）",
       "sourceKey": "landArea"
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "label": "通貨",
-      "value": "英ポンド（GBP）"
+      "value": "ポンド・スターリング（GBP）"
     }
   ],
   "map": {
@@ -172,7 +172,7 @@
         "id": "scotch-pie",
         "name": "スコッチパイ",
         "nameLocal": "Scotch pie",
-        "text": "コショウをきかせたひき肉を、硬めの生地で包んだ小ぶりのパイ。サッカー場でも売られる軽食。",
+        "text": "香辛料をきかせたひき肉を、硬い皮で包んだ小ぶりのパイ。「フットボール・パイ」の別名もある。",
         "image": "assets/images/united-kingdom/scotland/approved/food-scotch-pie.webp",
         "sourceKey": "scotchPie"
       },
@@ -382,17 +382,16 @@
     "novaScotiaGaelic": "https://museum.novascotia.ca/stories/gaelic-nova-scotia",
     "edinburghCoordinates": "https://en.wikipedia.org/wiki/Edinburgh",
     "heather": "https://must-see-scotland.com/where-see-heather",
-    "conicHill": "https://en.wikipedia.org/wiki/Conic_Hill",
-    "scotchPie": "https://en.wikipedia.org/wiki/Scotch_pie",
+    "conicHill": "https://www.lochlomond-trossachs.org/things-to-do/walking/hillwalking/conic-hill/",
+    "scotchPie": "https://www.bakeryandsnacks.com/Article/2023/12/12/the-pie-makers-singled-out-for-making-the-world-s-best-scotch-pies",
     "uigFerry": "https://www.calmac.co.uk/ports/uig-port/",
     "jacobite": "https://westcoastrailways.co.uk/jacobite",
     "religion": "https://www.scotlandscensus.gov.uk/2022-reports/scotland-s-census-2022-ethnic-group-national-identity-language-and-religion/",
     "munros": "https://www.walkhighlands.co.uk/munros/",
-    "daylightSummer": "https://timeanddate.com/sun/uk/edinburgh?month=6",
-    "daylightWinter": "https://edinburghguide.com/events/wintersolstice",
     "oldNewTown": "https://whc.unesco.org/en/list/728",
     "clearances": "https://www.britannica.com/event/Highland-Clearances",
-    "harrisTweed": "https://www.harristweed.org/"
+    "harrisTweed": "https://www.harristweed.org/",
+    "swaFacts": "https://scotch-whisky.org.uk/insights/facts-figures"
   },
   "signatureFacts": [
     {
@@ -401,15 +400,17 @@
       "value": "790島超",
       "note": "スコットランドには790を超える沖合の島々があり、政府の調査資料ではそのうち93島に人が暮らす。ハイランドとは異なる、海と島の世界が広がる。",
       "icon": "sea",
-      "sourceKey": "islands"
+      "sourceKey": "islands",
+      "interestReason": "本土とは別の海と島の世界が広がることを、島の数で実感できるから。"
     },
     {
-      "topicKey": "edinburgh-daylight",
-      "label": "エディンバラの昼の長さ",
-      "value": "約17.6時間／約7時間",
-      "note": "夏至は17時間36分、冬至は7時間弱。同じ街で昼の長さが季節によって約2.5倍変わるため、旅の組み立ても変わる。",
-      "icon": "sun",
-      "sourceKey": "daylightSummer"
+      "topicKey": "scotch-exports",
+      "label": "スコッチ・ウイスキーの輸出",
+      "value": "毎秒43本",
+      "note": "2023年の輸出は年間約13.5億本で、1秒あたり43本にあたる。蒸留所は151か所が稼働し、スコットランドの小さな産地の味が世界の食卓へ届いている。",
+      "icon": "food",
+      "sourceKey": "swaFacts",
+      "interestReason": "世界で飲まれるスコッチの規模を、1秒ごとの本数で身近に感じられるから。"
     },
     {
       "topicKey": "munros",
@@ -417,41 +418,50 @@
       "value": "282座",
       "note": "標高3,000フィート（約914m）を超えるスコットランドの山。1891年にヒュー・マンローが一覧にまとめ、今も全山登頂を目指す登山文化が続く。",
       "icon": "hike",
-      "sourceKey": "munros"
+      "sourceKey": "munros",
+      "interestReason": "登山文化の厚みと、スコットランドの高地の広がりを同時に伝えられるから。"
     }
   ],
   "encounters": [
     {
       "title": "ハイランド牛",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "WILDLIFE"
     },
     {
       "title": "ウイスキー蒸留所",
-      "icon": "food"
+      "icon": "food",
+      "category": "FOOD"
     },
     {
       "title": "バグパイプの音",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "タータンの布地",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "ケイリーの踊り",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "島へ渡るカーフェリー",
-      "icon": "sea"
+      "icon": "sea",
+      "category": "MOVEMENT"
     },
     {
       "title": "待避所のある一車線道路",
-      "icon": "road"
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
       "title": "ヒースの丘",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "LANDSCAPE"
     }
   ],
   "travelTrivia": [
@@ -513,16 +523,16 @@
         "icon": "city"
       },
       {
-        "duration": "7〜9日",
+        "duration": "5〜9日",
         "title": "ハイランドとスカイ島へ",
         "text": "谷と高架橋の景色をたどり、島の岩峰まで進む。道路移動に余白を残す。例：エディンバラ → グレン・コー → グレンフィナン → スカイ島 → エディンバラ。",
-        "icon": "landscape"
+        "icon": "map"
       },
       {
-        "duration": "14日以上",
+        "duration": "10日以上",
         "title": "ヘブリディーズの島旅を加える",
         "text": "島間フェリーの日程に余裕を持たせ、スカイ島からハリス島へ渡る。オークニーまで行くならさらに滞在を延ばす。例：エディンバラ → スカイ島 → ハリス島 → インヴァネス → エディンバラ。",
-        "icon": "sea"
+        "icon": "compass"
       }
     ]
   },
@@ -559,7 +569,9 @@
       "path": "Edinburgh → York → London",
       "description": "城と石の街から南へ。鉄道沿いに大聖堂の街とロンドンへ旅をつなぐ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "WALES",
@@ -567,7 +579,9 @@
       "path": "Edinburgh → Chester → North Wales",
       "description": "英国の山岳と城塞の文化を続けて見る。途中で滞在日を設ける周遊向き。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "NORTHERN IRELAND",
@@ -575,7 +589,9 @@
       "path": "Glasgow → Cairnryan → Belfast",
       "description": "鉄道・バスと海峡のフェリーを組み合わせ、海の向こうの英国へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧"
+      "flag": "🇬🇧",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -589,14 +605,16 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "北大西洋の島々に残る、海岸と石の街の文化を見比べる。"
+      "reason": "北大西洋の島々に残る、海岸と石の街の文化を見比べる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "北海の向こうで、山地と海がつくる異なる景観に出会う。"
+      "reason": "北海の向こうで、山地と海がつくる異なる景観に出会う。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "カナダ",
@@ -604,7 +622,8 @@
       "href": "countries/canada/",
       "flag": "🇨🇦",
       "reason": "「新しいスコットランド」を意味するノバスコシア州で、移民が伝えたゲール語や音楽の名残に出会う。",
-      "sourceKey": "novaScotiaGaelic"
+      "sourceKey": "novaScotiaGaelic",
+      "affinityType": "CULTURE"
     }
   ],
   "sourceDates": {
@@ -613,7 +632,7 @@
     "islands": "2022年9月公表のスコットランド政府調査資料",
     "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
     "notes": "知っておきたいことの運用情報は2026-11-06確認。",
-    "daylight": "エディンバラの2026年の夏至・冬至の昼の長さ。2026-11-06確認。"
+    "scotchExports": "2023年（蒸留所数は2024年5月時点）"
   },
   "capital": {
     "nameJa": "エディンバラ",
@@ -628,5 +647,6 @@
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "南へ向かう鉄道や海峡のフェリーで、英国のほかの地域へ旅を続ける。"
+  "nextRoutesIntro": "南へ向かう鉄道や海峡のフェリーで、英国のほかの地域へ旅を続ける。",
+  "contentQaVersion": 6
 }

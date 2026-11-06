@@ -376,7 +376,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
           f'style="left:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
           f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + (f'<div class="map-capital-marker region-map-capital" role="img" '
-           f'aria-label="{esc(data["capital"].get("labelJa", "首府"))}：{esc(data["capital"]["nameJa"])}" '
+           f'aria-label="{esc(data["capital"].get("labelJa", "首都"))}：{esc(data["capital"]["nameJa"])}" '
            f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[0]:.5f}%;'
            f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"])[1]:.5f}%">'
            '<i aria-hidden="true"></i></div>'
@@ -387,7 +387,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>'
         + ('<span class="map-legend__capital-item"><i class="map-legend__capital" aria-hidden="true"></i>'
-           f'{esc(data["capital"].get("labelJa", "首府"))}</span>'
+           f'{esc(data["capital"].get("labelJa", "首都"))}</span>'
            if data.get('capital') else '')
         + '</div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'

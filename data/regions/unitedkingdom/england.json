@@ -25,23 +25,23 @@
   },
   "profile": [
     {
-      "label": "構成国",
-      "value": "イギリス（英国）の4構成国の一つ",
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの構成国）",
       "sourceKey": "profile"
     },
     {
-      "label": "中心都市",
-      "value": "ロンドン（英国の首都）",
+      "label": "首都",
+      "value": "ロンドン",
       "sourceKey": "profile"
     },
     {
       "label": "人口",
-      "value": "約5,883万人（2025年6月推計）",
+      "value": "約5,883万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "約13万km²（日本の約34%）",
+      "value": "約130,000 km²（日本の約34%）",
       "sourceKey": "profile"
     },
     {
@@ -56,7 +56,7 @@
     },
     {
       "label": "通貨",
-      "value": "英ポンド（GBP）",
+      "value": "ポンド・スターリング（GBP）",
       "sourceKey": "profile"
     }
   ],
@@ -183,7 +183,8 @@
       "value": "約1億8,500万年",
       "note": "南部のジュラシック・コーストには、三畳紀・ジュラ紀・白亜紀にまたがる地層が現れる。海辺の散歩が、恐竜のいた時代より前から続く環境の変化をたどる旅になる。",
       "icon": "landscape",
-      "sourceKey": "jurassicHistory"
+      "sourceKey": "jurassicHistory",
+      "interestReason": "海岸を歩くだけで恐竜時代の前後まで地球の時間をたどれると、数字で直感できるから。"
     },
     {
       "topicKey": "blue-plaques",
@@ -191,7 +192,8 @@
       "value": "1,000枚超",
       "note": "1866年に始まったブルー・プラークは、著名人ゆかりの建物を示す。ナポレオン3世の銘板は1867年から残る現存最古のもので、街歩きの途中で歴史上の人物に出会える。",
       "icon": "history",
-      "sourceKey": "bluePlaques"
+      "sourceKey": "bluePlaques",
+      "interestReason": "普通の街歩きの中で歴史上の人物に出会えるロンドンらしさを、枚数で伝えられるから。"
     },
     {
       "topicKey": "fruit",
@@ -199,41 +201,50 @@
       "value": "約3,500品種",
       "note": "ケント州ブロッグデールの国立果樹コレクションには、リンゴ、ナシ、プラム、サクランボなど約3,500の栽培品種が集まる。身近な果物にも、多様な味と栽培の歴史が詰まっている。",
       "icon": "food",
-      "sourceKey": "apples"
+      "sourceKey": "apples",
+      "interestReason": "身近な果物に数千の品種があるという、英国の園芸文化の厚みが一目で分かるから。"
     }
   ],
   "encounters": [
     {
       "title": "午後のクリームティー",
-      "icon": "food"
+      "icon": "food",
+      "category": "FOOD"
     },
     {
       "title": "運河のナローボート",
-      "icon": "road"
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
       "title": "村の緑地のクリケット",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "DAILY_LIFE"
     },
     {
       "title": "茅葺き屋根の家",
-      "icon": "quiet"
+      "icon": "quiet",
+      "category": "ARCHITECTURE"
     },
     {
       "title": "海辺の桟橋",
-      "icon": "sea"
+      "icon": "sea",
+      "category": "LANDSCAPE"
     },
     {
       "title": "大学町のカレッジ",
-      "icon": "city"
+      "icon": "city",
+      "category": "CITY"
     },
     {
       "title": "生け垣の続く小道",
-      "icon": "hike"
+      "icon": "hike",
+      "category": "LANDSCAPE"
     },
     {
       "title": "ロンドンの劇場街",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     }
   ],
   "culture": [
@@ -264,16 +275,16 @@
       ]
     },
     {
-      "title": "湯に浸かれる温泉は、英国でバースだけ",
-      "text": "バースは英国で天然の温泉に入浴できる唯一の場所。約45℃の湯が1日約100万L湧き、ローマ人もこの湯に浴場を築いた。今は屋上の湯から街を眺められる。",
+      "title": "英国の温泉は、バースにだけある",
+      "text": "バースは英国で唯一の温泉地。ローマ人が浴場を築いた湯は今も湧き続け、現在は屋上の湯につかりながら街を見渡すこともできる。",
       "topicKey": "bath",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "sourceKey": "thermaeBath",
+      "sourceKey": "bathSprings",
       "points": [
-        "バースは英国で天然の温泉に入浴できる唯一の場所",
-        "約45℃の湯にローマ人が浴場を築き、今も入浴できる"
+        "バースの温泉は英国で唯一",
+        "ローマ時代に浴場が築かれた湯に、今も入浴できる"
       ]
     },
     {
@@ -444,16 +455,16 @@
         "icon": "city"
       },
       {
-        "duration": "8〜10日",
+        "duration": "6〜10日",
         "title": "田園と南西部の歴史をたどる",
         "text": "バースを拠点に村々を訪ね、ソールズベリーから巨石遺跡へ。例：ロンドン → バース（バイブリー）→ ソールズベリー（ストーンヘンジ）→ ロンドン。",
-        "icon": "history"
+        "icon": "map"
       },
       {
-        "duration": "12〜14日",
+        "duration": "11日以上",
         "title": "北部の街と湖水地方へ",
         "text": "ヨークから北東部の海岸へ進み、西側の湖に滞在。地方部の移動日を確保する。例：ロンドン → ヨーク → アルンウィック（バンバラ）→ ケズウィック → ロンドン。",
-        "icon": "landscape"
+        "icon": "compass"
       }
     ]
   },
@@ -519,7 +530,9 @@
       "path": "Bath → Bristol → Cardiff",
       "description": "セヴァーン川の河口を越えて、城と山地の多い地域へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "SCOTLAND",
@@ -527,16 +540,20 @@
       "path": "York → Edinburgh",
       "description": "鉄道を北へ進み、古都とハイランドの景観につなぐ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "FRANCE",
       "countryJa": "フランス",
       "path": "London → Paris",
-      "description": "ユーロスターで英仏海峡トンネルを抜け、約2時間20分でパリへ。",
+      "description": "ユーロスターで英仏海峡トンネルを抜け、約2時間16分でパリへ。",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "sourceKey": "eurostarParis"
+      "sourceKey": "eurostarParis",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -550,21 +567,24 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "アイリッシュ海の向こうで、古い街並みと大西洋の海岸をたどる。"
+      "reason": "アイリッシュ海の向こうで、古い街並みと大西洋の海岸をたどる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "フランス",
       "nameEn": "FRANCE",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。"
+      "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "日本",
       "nameEn": "JAPAN",
       "href": "countries/japan/",
       "flag": "🇯🇵",
-      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。"
+      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。",
+      "affinityType": "TRAVEL_STYLE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -625,10 +645,10 @@
     "ironbridge": "https://unesco.org.uk/our-sites/world-heritage-sites/ironbridge-gorge",
     "arlingtonVisit": "https://www.nationaltrust.org.uk/bibury/features/the-historic-arlington-row-cottages",
     "mountWalking": "https://stmichaelsmount.co.uk/getting-here/walking",
-    "eurostarParis": "https://b-europe.com/EN/Routes/London-Paris",
+    "eurostarParis": "https://www.eurostar.com/uk-en/train/london-to-paris",
     "religion": "https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021",
     "canals": "https://canalrivertrust.org.uk/things-to-do/canal-history",
-    "thermaeBath": "https://www.bristol247.com/news-and-features/features/15-things-you-didnt-know-about-thermae-bath-spa"
+    "bathSprings": "https://www.visitengland.com/trip-ideas/places-to-visit-bath"
   },
   "travelThemes": [
     "地球の風景",
@@ -638,11 +658,11 @@
   "nextRoutesIntro": "隣接するウェールズやスコットランド、海峡の向こうのフランスへ。地域を越えて続く旅の方向を紹介する。",
   "capital": {
     "nameJa": "ロンドン",
-    "labelJa": "中心都市",
     "coordinates": {
       "latitude": 51.5074,
       "longitude": -0.1278
     },
     "sourceKey": "londonCoordinates"
-  }
+  },
+  "contentQaVersion": 6
 }

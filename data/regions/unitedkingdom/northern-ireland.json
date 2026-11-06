@@ -25,23 +25,23 @@
   },
   "profile": [
     {
-      "label": "位置づけ",
-      "value": "イギリス（英国）を構成する地域。アイルランド島の北東部",
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの一部・アイルランド島北東部）",
       "sourceKey": "profile"
     },
     {
-      "label": "首府",
+      "label": "首都",
       "value": "ベルファスト",
       "sourceKey": "profile"
     },
     {
       "label": "人口",
-      "value": "約193万人（2025年6月推計）",
+      "value": "約193万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "陸地約1.38万km²（日本の約4%）",
+      "value": "約13,800 km²（陸地・日本の約3.7%）",
       "sourceKey": "area"
     },
     {
@@ -51,12 +51,12 @@
     },
     {
       "label": "主な宗教",
-      "value": "カトリック約42%／長老派、アイルランド教会などのキリスト教系／無宗教など約19%（2021年）",
+      "value": "カトリック約42%、長老派約17%、アイルランド教会約12%／無宗教約17%（2021年）",
       "sourceKey": "religion"
     },
     {
       "label": "通貨",
-      "value": "英ポンド（GBP）",
+      "value": "ポンド・スターリング（GBP）",
       "sourceKey": "profile"
     }
   ],
@@ -164,7 +164,11 @@
       },
       "image": "assets/images/united-kingdom/northern-ireland/approved/scene-titanic-quarter.webp",
       "sourceKey": "titanic",
-      "coordinateSourceKey": "titanicCoordinates"
+      "coordinateSourceKey": "titanicCoordinates",
+      "mapOffset": {
+        "x": 3.2,
+        "y": -1.4
+      }
     },
     {
       "id": "mussenden-temple",
@@ -211,9 +215,10 @@
       "topicKey": "samson-crane",
       "label": "造船所のクレーン、サムソン",
       "value": "高さ106 m",
-      "note": "ベルファストの造船所に立つ黄色い2基のクレーンの一つ。サムソンは1974年、ゴリアテは1969年に建造され、史跡に指定されて造船の街の記憶を伝える。",
+      "note": "ベルファストの造船所に立つ黄色い2基のクレーンの一つ。ゴリアテは1969年に稼働し、サムソンはその5年後に建造された。2003年に保存が決まり、造船の街の記憶を伝える。",
       "icon": "history",
-      "sourceKey": "cranes"
+      "sourceKey": "cranes",
+      "interestReason": "ベルファストの造船の歴史が、今も街の景色に立っていることを高さで想像できるから。"
     },
     {
       "topicKey": "lough-neagh",
@@ -221,7 +226,9 @@
       "value": "383km²",
       "note": "北アイルランドの中央に広がるネイ湖。英国・アイルランド諸島最大の淡水湖で、内陸に大きな水辺の景観をつくる。",
       "icon": "sea",
-      "sourceKey": "loughNeaghArea"
+      "sourceKey": "loughNeaghArea",
+      "interestReason": "英国とアイルランドで最大の淡水湖が内陸にあるという、地形の意外さを伝えられるから。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "mourne-wall",
@@ -229,41 +236,50 @@
       "value": "15山頂",
       "note": "全長約35kmのモーン・ウォールは、貯水池の集水域を守るために築かれ、15の山頂を越えて続く。水と山の関係が石積みに刻まれている。",
       "icon": "landscape",
-      "sourceKey": "mourneWallSummits"
+      "sourceKey": "mourneWallSummits",
+      "interestReason": "水を守る壁が山頂を次々と越える、モーン山地特有の風景を想像できるから。"
     }
   ],
   "encounters": [
     {
       "title": "セント・ジョージズ・マーケット",
-      "icon": "city"
+      "icon": "city",
+      "category": "CITY"
     },
     {
       "title": "ブッシュミルズの蒸留所",
-      "icon": "food"
+      "icon": "food",
+      "category": "FOOD"
     },
     {
       "title": "音楽が流れるパブ",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "海沿いのゴルフコース",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "LANDSCAPE"
     },
     {
       "title": "ゲーリック・スポーツの試合",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "海岸を走る観光道路",
-      "icon": "road"
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
       "title": "街に立つ黄色いクレーン",
-      "icon": "city"
+      "icon": "city",
+      "category": "CITY"
     },
     {
       "title": "ラスリン島へのフェリー",
-      "icon": "sea"
+      "icon": "sea",
+      "category": "MOVEMENT"
     }
   ],
   "culture": [
@@ -338,11 +354,11 @@
       "themeJa": "街を知る",
       "icon": "city",
       "title": "川の両岸を、一本の橋が結ぶ",
-      "text": "デリー／ロンドンデリーのピース・ブリッジは2011年に開通した長さ235mの橋。フォイル川を挟むシティサイドとウォーターサイドを結び、両岸の人々が寄り添う姿を象徴している。",
+      "text": "デリー／ロンドンデリーのピース・ブリッジは2011年に開通した長さ235mの橋。フォイル川の両岸をつなぐ、平和の象徴として親しまれている。",
       "sourceKey": "peaceBridge",
       "points": [
         "ピース・ブリッジは2011年に開通した長さ235mの橋",
-        "フォイル川の両岸を結び、人々の往来を支える"
+        "フォイル川の両岸をつなぐ平和の象徴"
       ]
     }
   ],
@@ -473,16 +489,16 @@
         "icon": "city"
       },
       {
-        "duration": "6〜7日",
+        "duration": "5〜7日",
         "title": "北岸と島をゆっくり巡る",
         "text": "ラスリン島に一日を取り、城壁都市にも泊まる。例：ベルファスト → バリーキャッスル ⇄ ラスリン島 → 北岸 → デリー／ロンドンデリー → ベルファスト。",
-        "icon": "sea"
+        "icon": "map"
       },
       {
-        "duration": "9〜10日以上",
+        "duration": "8日以上",
         "title": "山と西部の地下世界を加える",
         "text": "車を使う周遊に、登山日と天候の予備日を加える。例：ベルファスト → モーン山地 → エニスキレン／洞窟 → デリー／ロンドンデリー → 北岸／ラスリン島 → ベルファスト。",
-        "icon": "landscape"
+        "icon": "compass"
       }
     ]
   },
@@ -542,7 +558,9 @@
       "path": "Belfast → Dublin",
       "description": "ベルファストから鉄道でダブリンへ。同じ島にありながら異なる歴史を歩んだ二つの都市を訪ねる。",
       "href": "countries/ireland/",
-      "flag": "🇮🇪"
+      "flag": "🇮🇪",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "SCOTLAND",
@@ -550,7 +568,9 @@
       "path": "Belfast → Cairnryan → Glasgow",
       "description": "ベルファストからフェリーでケアンライアンへ。海峡を越え、陸路でグラスゴーの街並みへ向かう。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "ENGLAND",
@@ -559,7 +579,9 @@
       "description": "アイリッシュ海をフェリーで渡り、マージー川対岸のバーケンヘッドからリヴァプールへ。造船の街から、港と音楽の文化が息づく街へ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "sourceKey": "belfastLiverpoolFerry"
+      "sourceKey": "belfastLiverpoolFerry",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -573,21 +595,24 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "同じ島の南西へ。海辺の村や石造遺産をたどり、島の異なる表情に出会う。"
+      "reason": "同じ島の南西へ。海辺の村や石造遺産をたどり、島の異なる表情に出会う。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "アイスランド",
       "nameEn": "ICELAND",
       "href": "countries/iceland/",
       "flag": "🇮🇸",
-      "reason": "アントリム海岸の玄武岩に惹かれたなら、火山が形づくる溶岩の大地へ。"
+      "reason": "アントリム海岸の玄武岩に惹かれたなら、火山が形づくる溶岩の大地へ。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "北大西洋の険しい海岸が好きなら、フィヨルドと島々が続く風景へ。"
+      "reason": "北大西洋の険しい海岸が好きなら、フィヨルドと島々が続く風景へ。",
+      "affinityType": "LANDSCAPE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -596,7 +621,7 @@
     "landArea": "NISRA 2014を出典とする自治体資料の陸地面積13,843km²。日本約37.8万km²との概算比較。",
     "flag": "2024-07-30英国議会書面回答。2026-11-04確認。地域専用の公式旗は仮定せず、旗が必要な表示には英国旗を使用。",
     "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。",
-    "signatureFacts": "クレーンの高さと史跡指定はWikipedia、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
+    "signatureFacts": "クレーンはVisit Belfast、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
     "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
   },
   "sources": {
@@ -627,14 +652,14 @@
     "rathlinCoordinates": "https://www.irishlights.ie/safety-navigation/our-lighthouses/rathlin-west.aspx",
     "loughNeagh": "https://www.daera-ni.gov.uk/protected-areas/lough-neagh-and-lough-beg-ramsar-daera",
     "mourneWall": "https://www.niwater.com/media/qdkjjxuv/2425624.pdf",
-    "derryWalls": "https://en.wikipedia.org/wiki/Walls_of_Derry",
+    "derryWalls": "https://www.communities-ni.gov.uk/articles/derry-walls",
     "music": "https://www.belfastcity.gov.uk/things-to-do/tourism-and-culture/culture/belfast-music",
     "food": "https://discovernorthernireland.com/blog/post/unique-northern-ireland-foods/",
     "champ": "https://discovernorthernireland.com/blog/post/unique-northern-ireland-foods/",
     "wheaten": "https://discovernorthernireland.com/blog/post/how-to-make-traditional-irish-wheaten-bread/",
-    "lewis": "https://virtualbelfast.co.uk/locations/cs-lewis-square/",
+    "lewis": "https://www.ireland.com/en/things-to-do/attractions/cs-lewis-square/",
     "ferguson": "https://www.ulstertransportmuseum.org/news/ferguson-black-tractor",
-    "lammas": "https://digitalfilmarchive.net/media/lammas-fair-1832",
+    "lammas": "https://causewaycoastandglens.gov.uk/news/ould-lammas-fair-returns-to-ballycastle-for-four-days-of-tradition-entertainment-and-family-fun",
     "transport": "https://www.translink.co.uk/",
     "rathlinFerry": "https://www.rathlin-ferry.com/",
     "scotlandFerry": "https://www.stenaline.co.uk/routes/cairnryan-belfast",
@@ -649,13 +674,13 @@
     "mourneWallSummits": "Visit Mourne, The Mourne Wall Challenge (22 miles/35 km, 15 summits): https://www.visitmourne.com/itineraries/wall-challenge",
     "enterpriseBelfastDublin": "Translink, Enterprise train service Belfast to Dublin: https://www.translink.co.uk/using-translink/cross-border-travel/enterprise-train-service",
     "eta": "https://discovernorthernireland.com/plan-your-trip/travel-information/electronic-travel-authorisation/",
-    "darkHedgesRoad": "https://en.wikipedia.org/wiki/Dark_Hedges",
+    "darkHedgesRoad": "https://www.infrastructure-ni.gov.uk/node/65794",
     "rathlinSeabirds": "https://biodiversityni.com/kebble-nature-reserve-rathlin-island",
     "derryWallsCoordinates": "https://www.hmdb.org/m.asp?m=71053",
-    "religion": "https://factcheckni.org/articles/does-northern-ireland-have-a-majority-catholic-population/",
-    "cranes": "https://en.wikipedia.org/wiki/Samson_and_Goliath_(cranes)",
+    "religion": "https://www.nisra.gov.uk/system/files/statistics/census-2021-main-statistics-for-northern-ireland-phase-1-statistical-bulletin-religion.pdf",
+    "cranes": "https://visitbelfast.com/partners/samson-goliath-cranes",
     "linen": "https://www.open.edu/openlearn/history-the-arts/history/heritage/the-belfast-linen-industry",
-    "peaceBridge": "https://en.wikipedia.org/wiki/Peace_Bridge_(Foyle)"
+    "peaceBridge": "https://www.ireland.com/en-gb/myireland/attraction/2911f438826a473c90d1c5a260cc1cc5/peace-bridge"
   },
   "travelThemes": [
     "地球の風景",
@@ -669,6 +694,8 @@
       "latitude": 54.59661,
       "longitude": -5.930168
     },
-    "sourceKey": "belfastCityHallCoordinates"
-  }
+    "sourceKey": "belfastCityHallCoordinates",
+    "labelPosition": "left"
+  },
+  "contentQaVersion": 6
 }

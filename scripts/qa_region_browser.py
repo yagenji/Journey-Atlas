@@ -301,11 +301,11 @@ def main() -> int:
                                 coordinates: capital ? [Number.parseFloat(capital.style.left),
                                     Number.parseFloat(capital.style.top)] : []};
                         """)
-                        expected_legend = ['1景色の番号', '上部の代表画像（Hero）の場所', '首府']
+                        expected_legend = ['1景色の番号', '上部の代表画像（Hero）の場所', '首都']
                         if (legend_audit["labels"] != expected_legend
                                 or not legend_audit["capital"]
                                 or not legend_audit["capitalDot"]
-                                or legend_audit["capitalLabel"] != '首府：ベルファスト'
+                                or legend_audit["capitalLabel"] != '首都：ベルファスト'
                                 or len(legend_audit["coordinates"]) != 2
                                 or not all(0 <= n <= 100 for n in legend_audit["coordinates"])):
                             problems.append(f"Northern Ireland map legend/capital failed: {legend_audit}")
