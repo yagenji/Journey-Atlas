@@ -189,3 +189,22 @@
   overflow-wrap:anywhere;
   line-height:1.7!important;
 }
+
+/* The existing journey-footer wish card also offers a visited toggle.
+   Keep the two independent choices in the same quiet, responsive card. */
+.wish-wrap:has(.ja-visited-button) { grid-template-rows: auto auto; }
+.wish-wrap .ja-visited-button {
+  border-top: 1px solid rgba(255,255,255,.42);
+  min-height: 108px;
+}
+.wish-wrap .ja-visited-button .ja-visited-icon {
+  display: block;
+  font: 600 31px/1.2 var(--body);
+}
+.wish-wrap .ja-visited-button.is-saved {
+  background: rgba(12,43,42,.22);
+}
+.wish-wrap .ja-visited-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -5px;
+}

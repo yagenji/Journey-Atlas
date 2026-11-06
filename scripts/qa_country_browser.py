@@ -67,6 +67,25 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
     )
     path = urlparse(driver.current_url).path
     audit["atlasFolioSlug"] = path.split("/countries/", 1)[-1].split("/", 1)[0]
+    # Check the visit toggle itself, including the exact key My Atlas/map reads.
+    audit["visitToggle"] = driver.execute_script("""
+        const slug = arguments[0];
+        const button = document.querySelector('[data-ja-visited]');
+        if (!button) return {mounted:false};
+        const key = 'journey-atlas:visited:' + slug;
+        const previous = localStorage.getItem(key);
+        const before = button.getAttribute('aria-pressed');
+        button.click();
+        const after = button.getAttribute('aria-pressed');
+        const stored = localStorage.getItem(key);
+        button.click();
+        const restored = button.getAttribute('aria-pressed');
+        return {mounted:true,slug:button.dataset.jaVisited,
+            before,after,restored,
+            storedCorrect:before === 'true' ? stored === null : stored === 'true',
+            persisted:localStorage.getItem(key) === previous};
+    """, audit["atlasFolioSlug"])
+
     # China detail destinations must use the same Region layout language as
     # the United Kingdom's four sub-Country pages on every viewport.
     if audit["atlasFolioSlug"] in {"hong-kong", "macau"}:
@@ -100,6 +119,12 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
     errors = _ORIGINAL_ASSERT_AUDIT(audit, bg_checks, browser_errors)
     folio = audit.get("atlasFolio")
     slug = audit.get("atlasFolioSlug")
+    visit = audit.get("visitToggle") or {}
+    if (not visit.get("mounted") or visit.get("slug") != slug
+            or visit.get("after") == visit.get("before")
+            or visit.get("restored") != visit.get("before")
+            or not visit.get("storedCorrect") or not visit.get("persisted")):
+        errors.append(f"Country visit toggle/storage mismatch: {slug} {visit}")
     if slug in {"hong-kong", "macau"}:
         if folio is not None:
             errors.append(f"China detail region {slug} must not be numbered as a Country Page: {folio}")
