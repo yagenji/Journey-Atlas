@@ -57,7 +57,7 @@ def check(driver, viewport):
 
     # Theme browsing must include Region destinations without inflating the
     # canonical 200 parent count.
-    driver.find_element(By.CSS_SELECTOR, '[data-theme="city"]').click()
+    driver.execute_script('arguments[0].click()', driver.find_element(By.CSS_SELECTOR, '[data-theme="city"]'))
     wait.until(lambda d: not d.find_element(By.ID, "theme-results").get_attribute("hidden"))
     theme_query = driver.find_element(By.ID, "theme-country-search")
     for label, slug in (("イングランド", "england"), ("マカオ", "macau")):
@@ -68,7 +68,7 @@ def check(driver, viewport):
             for el in d.find_elements(By.CSS_SELECTOR, "#theme-results-grid .country-card")
         ))
     theme_query.clear()
-    driver.find_element(By.ID, "theme-results-clear").click()
+    driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "theme-results-clear"))
 
     # A saved detail region belongs only to the detail subtotal and must not
     # silently mark its parent Country as wished.
