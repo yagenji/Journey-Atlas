@@ -206,12 +206,22 @@
     const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
       (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
+    // Parent Countries define the 200 denominator. Detail regions keep
+    // independent wishes and visits; no automatic parent selection.
+    const detailWishCount = detailWant.length + regionWishes.length;
+    const detailVisitCount = detailSeen.length;
     summary.replaceChildren();
     [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
       item.append(make('span', '', tag), make('strong', '', count + (tag === 'SCENERY' ? ' 景色' : ' / ' + parents.length)), make('small', '', name));
       summary.append(item);
     });
+    let detailSummary = mine.querySelector('.ja-detail-summary');
+    if (!detailSummary) {
+      detailSummary = make('p', 'ja-detail-summary');
+      summary.after(detailSummary);
+    }
+    detailSummary.textContent = '詳細地域　行った ' + detailVisitCount + '　／　行きたい ' + detailWishCount;
     regionCounts.replaceChildren();
     regionNames.forEach(region => {
       const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
