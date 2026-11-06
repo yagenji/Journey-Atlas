@@ -280,7 +280,7 @@ def prepare_top_page() -> None:
     if 'rel="canonical"' not in page:
         page = page.replace(
             '  <title>JOURNEY ATLAS</title>\n',
-            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="202の国・地域をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/og-default.jpg")}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta name="twitter:card" content="summary_large_image">\n',
+            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="200の旅先をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/og-default.jpg")}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta name="twitter:card" content="summary_large_image">\n',
             1,
         )
 
@@ -601,7 +601,7 @@ def main() -> int:
     print(f"Build version: {BUILD_VERSION}")
     print(
         f"Built CSS bundles, direct top media, {len(reviewable)} reviewable country page(s), "
-        f"and {len(urls)} published country page(s) from 202 destinations."
+        f"and {len(urls)} published country page(s) from 200 Country Pages (202 registry entries including Hong Kong and Macau)."
     )
     return 0
 
