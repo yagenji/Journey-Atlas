@@ -90,7 +90,7 @@ def region_route_flag(route: dict) -> str:
     )
     if slug:
         return (f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
-                'alt="" width="30" height="30" decoding="async">')
+                'alt="" width="21" height="21" decoding="async">')
     return esc(route.get('flag', ''))
 
 

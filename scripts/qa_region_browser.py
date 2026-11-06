@@ -222,7 +222,7 @@ def main() -> int:
                                             height: img?.getBoundingClientRect().height || 0};
                                 });
                         """, country, flag_slug)
-                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 18) < 1 and abs(x["height"] - 18) < 1 for x in check):
+                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 21) < 1 and abs(x["height"] - 21) < 1 for x in check):
                             problems.append(f"{country} regional SVG flag mismatch: {check}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
