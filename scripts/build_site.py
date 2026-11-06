@@ -325,30 +325,64 @@ def prepare_generic_country_page() -> None:
 
 
 def inject_published_region_nav(page: str, slug: str) -> str:
-    """Render subregions only after publication; unpublished reviews are direct-URL only."""
-    directory = ROOT / "data" / "regions" / slug
-    if not directory.is_dir():
+    """Image-led region links are declared by each parent Country, never inferred."""
+    parent_path = ROOT / "data" / "countries" / f"{slug}.json"
+    parent = json.loads(parent_path.read_text(encoding="utf-8"))
+    regions = parent.get("regionDiscoveries", [])
+    if not regions:
         return page
-    links: list[str] = []
-    for path in sorted(directory.glob("*.json")):
-        region = json.loads(path.read_text(encoding="utf-8"))
-        region_slug = region.get("slug", "")
-        if region.get("regionPublished") is not True or not re.fullmatch(r"[a-z0-9-]+", region_slug):
+    published_countries = {
+        item["slug"] for item in json.loads(CORE_REGISTRY_PATH.read_text(encoding="utf-8")).get("destinations", [])
+        if item.get("atlasPublished") is True
+    }
+    cards: list[str] = []
+    for item in regions:
+        kind = item.get("kind")
+        region_slug = item.get("slug", "")
+        if not re.fullmatch(r"[a-z0-9-]+", region_slug):
             continue
-        href = f"countries/{slug}/{region_slug}/"
-        links.append(f'<a href="{html.escape(href, quote=True)}">{html.escape(region.get("nameJa", region_slug))}</a>')
-    if not links:
+        if kind == "region":
+            path = ROOT / "data" / "regions" / slug / f"{region_slug}.json"
+            if not path.exists():
+                continue
+            region = json.loads(path.read_text(encoding="utf-8"))
+            if region.get("regionPublished") is not True:
+                continue
+            href = f"countries/{slug}/{region_slug}/"
+        elif kind == "country":
+            if region_slug not in published_countries:
+                continue
+            path = ROOT / "data" / "countries" / f"{region_slug}.json"
+            if not path.exists():
+                continue
+            region = json.loads(path.read_text(encoding="utf-8"))
+            href = f"countries/{region_slug}/"
+        else:
+            continue
+        name = html.escape(region.get("nameJa", region_slug))
+        name_en = html.escape(region.get("nameEn", region_slug.upper()))
+        image = html.escape(region.get("hero", {}).get("image", ""), quote=True)
+        cards.append(
+            f'<a class="region-discovery__card" href="{html.escape(href, quote=True)}">'
+            f'<img src="{image}" alt="" loading="lazy" decoding="async">'
+            f'<span class="region-discovery__name">{name}<small>{name_en}</small></span></a>'
+        )
+    if not cards:
         return page
+    intro = html.escape(parent.get("regionDiscoveryIntro", "さらに詳しい地域の風景へ。"))
     markup = (
-        '      <section class="region-discovery page-shell" aria-labelledby="region-discovery-title">\n'
-        '        <span class="section-kicker-en">EXPLORE REGIONS</span>\n'
-        '        <h2 id="region-discovery-title">地域から旅先を探す</h2>\n'
-        f'        <div class="region-discovery__list">{"".join(links)}</div>\n'
+        '      <section class="region-discovery" aria-labelledby="region-discovery-title">\n'
+        '        <div class="region-discovery__head">'
+        '          <span class="section-kicker-en">EXPLORE REGIONS</span>'
+        '          <h2 id="region-discovery-title">地域から旅を探す</h2>'
+        f'          <p>{intro}</p>'
+        '        </div>\n'
+        f'        <div class="region-discovery__grid">{"".join(cards)}</div>\n'
         '      </section>\n'
     )
-    marker = '      <div class="atlas-body page-shell">'
+    marker = '        <section class="atlas-extras"'
     if marker not in page:
-        raise ValueError("Country body marker missing for Region navigation")
+        raise ValueError("Country extras marker missing for Region navigation")
     return page.replace(marker, markup + marker, 1)
 
 

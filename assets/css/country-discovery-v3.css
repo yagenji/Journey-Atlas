@@ -699,3 +699,19 @@
   vertical-align:1px;
 }
 .travel-planning__block--season .season-list article.is-best>b{color:#12365c}
+
+/* Parent Country: concise image-led journeys into independently edited regions. */
+.region-discovery{padding-top:clamp(30px,5vw,64px);padding-bottom:clamp(26px,4vw,52px)}
+.region-discovery__head{margin-bottom:22px}
+.region-discovery__head .section-kicker-en{display:block;margin-bottom:7px}
+.region-discovery__head h2{margin:0;font-family:"Shippori Mincho",serif;font-size:clamp(22px,2.6vw,32px);font-weight:500}
+.region-discovery__head p{margin:9px 0 0;color:#626b70;line-height:1.8;font-size:14px}
+.region-discovery__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.region-discovery__card{display:block;overflow:hidden;text-decoration:none;color:inherit;background:#faf9f5;border:1px solid rgba(35,58,76,.13);border-radius:10px;transition:transform .2s ease,border-color .2s ease}
+.region-discovery__card:hover{transform:translateY(-3px);border-color:rgba(35,58,76,.4)}
+.region-discovery__card:focus-visible{outline:3px solid #245e83;outline-offset:3px}
+.region-discovery__card img{display:block;width:100%;aspect-ratio:5/3;object-fit:cover;background:#e7ebed}
+.region-discovery__name{display:block;padding:13px 14px 15px;font-size:15px;font-weight:600}
+.region-discovery__name small{display:block;margin-top:5px;color:#647079;font-size:10px;letter-spacing:.1em;font-weight:500}
+@media(max-width:760px){.region-discovery__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.region-discovery__name{padding:11px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){.region-discovery__card{transition:none}.region-discovery__card:hover{transform:none}}
