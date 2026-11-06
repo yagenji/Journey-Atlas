@@ -85,6 +85,26 @@ def check(driver, viewport):
         "localStorage.removeItem('journey-atlas:wish:hong-kong')"
     )
 
+    driver.execute_script("""
+      localStorage.setItem(
+        'journey-atlas:region-wish:unitedkingdom:england',
+        JSON.stringify({parentSlug:'unitedkingdom',slug:'england',nameJa:'イングランド',
+          href:'countries/unitedkingdom/england/'})
+      );
+    """)
+    driver.refresh()
+    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"))
+    wait.until(lambda d: "行きたい 1" in d.find_element(
+        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "wish-link"))
+    wait.until(lambda d: any(
+        el.get_attribute("data-slug") == "england"
+        for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")
+    ))
+    driver.execute_script(
+        "localStorage.removeItem('journey-atlas:region-wish:unitedkingdom:england')"
+    )
+
     # One horizontal-page-scroll test per viewport, allowing minor pixel rounding.
     sizes = driver.execute_script(
         "return [document.documentElement.scrollWidth, document.documentElement.clientWidth]"
