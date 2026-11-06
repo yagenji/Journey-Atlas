@@ -105,8 +105,23 @@ function renderCountry(data, registry) {
       breadcrumb.append(parent, separator, current);
       heroCopy.insertBefore(breadcrumb, regionLabel);
     }
+    // These pages are China subregions, not independent countries.
     const numbersTitle = fragment.querySelector('#signature-facts-title');
     if (numbersTitle) numbersTitle.textContent = 'この地域を知る数字';
+    const profileLabel = fragment.querySelector('.country-facts-strip .section-kicker-en');
+    if (profileLabel) profileLabel.textContent = 'REGION PROFILE';
+    const scenesHeading = fragment.querySelector('.scenes-title-wrap h2');
+    if (scenesHeading) {
+      const count = scenesHeading.querySelector('[data-field="sceneCount"]');
+      scenesHeading.textContent = 'この地域で見たい景色 ';
+      if (count) scenesHeading.append(count, document.createTextNode('選'));
+    }
+    const extrasIntro = fragment.querySelector('.atlas-extras__intro');
+    if (extrasIntro) extrasIntro.textContent = '景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。';
+    const routesHeading = fragment.querySelector('#next-routes-title');
+    if (routesHeading) routesHeading.textContent = '隣の地域へ旅をつなぐ';
+    const routesIntro = fragment.querySelector('.next-routes__head > p');
+    if (routesIntro) routesIntro.textContent = 'この地域から旅を続けやすい、代表的な周遊ルート。';
   }
 
   const heroTitle = fragment.querySelector('.hero h1');
@@ -838,7 +853,10 @@ function initWishButton(countrySlug) {
   const update = () => {
     button.classList.toggle('is-saved', wished);
     button.querySelector('.wish-icon').textContent = wished ? '♥' : '♡';
-    button.querySelector('strong').textContent = wished ? '行きたい国に保存しました' : 'この国に行きたい';
+    const isChinaRegion = ['hong-kong', 'macau'].includes(countrySlug);
+    button.querySelector('strong').textContent = isChinaRegion
+      ? (wished ? '行きたい地域に保存しました' : 'この地域に行きたい')
+      : (wished ? '行きたい国に保存しました' : 'この国に行きたい');
     button.setAttribute('aria-pressed', String(wished));
   };
   update();
