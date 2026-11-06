@@ -561,6 +561,7 @@ def build_top_scene_index() -> None:
             "nameJa": region["nameJa"],
             "nameEn": region["nameEn"],
             "heroName": hero.get("name") or hero.get("location") or region["nameJa"],
+            "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
             "href": f"countries/unitedkingdom/{region['slug']}/",
         })
