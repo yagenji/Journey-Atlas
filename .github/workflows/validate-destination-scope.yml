@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate canonical 201 destinations
+      - name: Validate 200 Country Pages and 2 China detail regions
         run: python3 scripts/validate_destination_scope.py
       - name: Compile related validator
         run: python3 -m py_compile scripts/validate_destination_scope.py scripts/validate_lens_slugs.py
