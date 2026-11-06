@@ -45,9 +45,14 @@
       "sourceKey": "profile"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "英語、コーンウォール語など",
       "sourceKey": "cornish"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教が最大（約46%、2021年）／無宗教も多い",
+      "sourceKey": "religion"
     },
     {
       "label": "通貨",
@@ -174,7 +179,7 @@
   "signatureFacts": [
     {
       "topicKey": "jurassic",
-      "label": "海岸に現れる地球の時間",
+      "label": "ジュラシック・コーストの地層",
       "value": "約1億8,500万年",
       "note": "南部のジュラシック・コーストには、三畳紀・ジュラ紀・白亜紀にまたがる地層が現れる。海辺の散歩が、恐竜のいた時代より前から続く環境の変化をたどる旅になる。",
       "icon": "landscape",
@@ -182,7 +187,7 @@
     },
     {
       "topicKey": "blue-plaques",
-      "label": "ロンドンの壁に残る青い銘板",
+      "label": "ロンドンのブルー・プラーク",
       "value": "1,000枚超",
       "note": "1866年に始まったブルー・プラークは、著名人ゆかりの建物を示す。ナポレオン3世の銘板は1867年から残る現存最古のもので、街歩きの途中で歴史上の人物に出会える。",
       "icon": "history",
@@ -190,7 +195,7 @@
     },
     {
       "topicKey": "fruit",
-      "label": "果樹園で受け継ぐ品種",
+      "label": "国立果樹コレクション",
       "value": "約3,500品種",
       "note": "ケント州ブロッグデールの国立果樹コレクションには、リンゴ、ナシ、プラム、サクランボなど約3,500の栽培品種が集まる。身近な果物にも、多様な味と栽培の歴史が詰まっている。",
       "icon": "food",
@@ -199,36 +204,36 @@
   ],
   "encounters": [
     {
-      "title": "並木道の先の王城",
-      "icon": "history"
+      "title": "午後のクリームティー",
+      "icon": "food"
     },
     {
-      "title": "水と山の重なる湖畔",
-      "icon": "landscape"
+      "title": "運河のナローボート",
+      "icon": "road"
     },
     {
-      "title": "砂浜を見下ろす城壁",
-      "icon": "history"
+      "title": "村の緑地のクリケット",
+      "icon": "culture"
     },
     {
-      "title": "石の街と大聖堂",
-      "icon": "city"
-    },
-    {
-      "title": "小川に並ぶ石の家々",
+      "title": "茅葺き屋根の家",
       "icon": "quiet"
     },
     {
-      "title": "弧を描くジョージアン建築",
+      "title": "海辺の桟橋",
+      "icon": "sea"
+    },
+    {
+      "title": "大学町のカレッジ",
       "icon": "city"
     },
     {
-      "title": "草原に立つ巨石",
-      "icon": "history"
+      "title": "生け垣の続く小道",
+      "icon": "hike"
     },
     {
-      "title": "波が刻んだ岩のアーチ",
-      "icon": "sea"
+      "title": "ロンドンの劇場街",
+      "icon": "culture"
     }
   ],
   "culture": [
@@ -246,29 +251,29 @@
       ]
     },
     {
-      "title": "石の村を、羊毛の仕事から眺める",
-      "text": "バイブリーのアーリントン・ロウは羊毛倉庫が起源。織工の住まいへ変わった建物に、村と産業のつながりが残る。",
-      "topicKey": "wool",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
-      "icon": "history",
-      "sourceKey": "arlingtonRow",
+      "title": "運河は、鉄道より先に産業を運んだ",
+      "text": "18世紀に始まった運河は、産業革命の物資を運ぶ道だった。今は約3,200kmの運河と川が保全団体に守られ、細長いナローボートで水路を進む旅もできる。",
+      "topicKey": "canals",
+      "themeEn": "WATERWAY",
+      "themeJa": "水路を知る",
+      "icon": "road",
+      "sourceKey": "canals",
       "points": [
-        "アーリントン・ロウは羊毛を保管する建物から生まれた",
-        "石造りの住まいには、織物産業が支えた村の歴史が残る"
+        "運河は18世紀に始まり、産業革命の輸送を支えた",
+        "今は保全された水路を、ナローボートで旅できる"
       ]
     },
     {
-      "title": "バースは、湯と社交から街が育った",
-      "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
+      "title": "湯に浸かれる温泉は、英国でバースだけ",
+      "text": "バースは英国で天然の温泉に入浴できる唯一の場所。約45℃の湯が1日約100万L湧き、ローマ人もこの湯に浴場を築いた。今は屋上の湯から街を眺められる。",
       "topicKey": "bath",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "sourceKey": "bath",
+      "sourceKey": "thermaeBath",
       "points": [
-        "古代ローマの浴場と18世紀の保養都市が重なっている",
-        "ロイヤル・クレセントは、街と緑地を一体に設計した景観"
+        "バースは英国で天然の温泉に入浴できる唯一の場所",
+        "約45℃の湯にローマ人が浴場を築き、今も入浴できる"
       ]
     },
     {
@@ -346,7 +351,8 @@
         "image": "assets/images/united-kingdom/england/approved/food-bakewell-pudding.webp",
         "sourceKey": "bakewell"
       }
-    ]
+    ],
+    "intro": "宿の朝食から港町の軽食、北部の煮込み、町の菓子まで、土地ごとの味を4皿からたどる。"
   },
   "travelTrivia": [
     {
@@ -397,16 +403,16 @@
   ],
   "forWhom": [
     {
-      "title": "ロンドンから地方へ旅を広げたい",
-      "text": "首都の街歩きに、北部の大聖堂や湖畔、南西部の田園を組み合わせたい人へ。"
+      "title": "ロンドンから地方へ旅を広げたい人",
+      "text": "首都の街歩きに、北部の大聖堂や湖畔、南西部の田園を組み合わせたい人。"
     },
     {
-      "title": "建物と土地の関係を眺めたい",
-      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
+      "title": "建物と土地の関係を眺めたい人",
+      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人。"
     },
     {
-      "title": "歩く速度で景色に触れたい",
-      "text": "村の小川沿いや湖岸、海岸の道で、土地の表情が変わるのをゆっくり見たい人へ。"
+      "title": "歩く速度で景色に触れたい人",
+      "text": "村の小川沿いや湖岸、海岸の道で、土地の表情が変わるのをゆっくり見たい人。"
     }
   ],
   "notes": [
@@ -619,7 +625,10 @@
     "ironbridge": "https://unesco.org.uk/our-sites/world-heritage-sites/ironbridge-gorge",
     "arlingtonVisit": "https://www.nationaltrust.org.uk/bibury/features/the-historic-arlington-row-cottages",
     "mountWalking": "https://stmichaelsmount.co.uk/getting-here/walking",
-    "eurostarParis": "https://b-europe.com/EN/Routes/London-Paris"
+    "eurostarParis": "https://b-europe.com/EN/Routes/London-Paris",
+    "religion": "https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021",
+    "canals": "https://canalrivertrust.org.uk/things-to-do/canal-history",
+    "thermaeBath": "https://www.bristol247.com/news-and-features/features/15-things-you-didnt-know-about-thermae-bath-spa"
   },
   "travelThemes": [
     "地球の風景",

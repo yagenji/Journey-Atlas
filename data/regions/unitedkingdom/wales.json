@@ -45,9 +45,14 @@
       "sourceKey": "profile"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "ウェールズ語・英語",
       "sourceKey": "profile"
+    },
+    {
+      "label": "主な宗教",
+      "value": "無宗教が約47%、キリスト教が約44%（2021年）",
+      "sourceKey": "religion"
     },
     {
       "label": "通貨",
@@ -100,7 +105,7 @@
       "id": "green-bridge-of-wales",
       "name": "グリーン・ブリッジ・オブ・ウェールズ",
       "nameLocal": "Green Bridge of Wales / Pembrokeshire",
-      "description": "石灰岩の海食アーチと独立した岩柱が、ペンブルックシャー南岸の波に向き合う。沿岸の軍演習場を通るため通行規制の確認が必要。",
+      "description": "石灰岩の海食アーチと独立した岩柱が、ペンブルックシャー南岸の波に向き合う。断崖の上から、波が岩を削った形を見下ろす。",
       "coordinates": {
         "latitude": 51.6069,
         "longitude": -4.9853
@@ -186,7 +191,7 @@
   "signatureFacts": [
     {
       "topicKey": "recorded-castles",
-      "label": "歴史に記録された城",
+      "label": "記録に残る城",
       "value": "600超",
       "note": "各時代の勢力が築いた城が、小さな地域に重なる。記録上の総数であり、すべてが現存するわけではない。",
       "icon": "history",
@@ -194,7 +199,7 @@
     },
     {
       "topicKey": "coastal-footpath",
-      "label": "海岸を歩いてつなぐ道",
+      "label": "ウェールズ・コースト・パス",
       "value": "約1,400km",
       "note": "ウェールズ・コースト・パスは、北から南へ海岸沿いをつなぐ歩道。砂浜も断崖も、歩く旅の一部になる。",
       "icon": "sea",
@@ -211,36 +216,36 @@
   ],
   "encounters": [
     {
-      "title": "石の城壁と港の町",
-      "icon": "history"
+      "title": "ウェールズ語の挨拶",
+      "icon": "culture"
     },
     {
-      "title": "氷河が刻んだ谷と岩峰",
+      "title": "丘に点々といる羊",
       "icon": "landscape"
     },
     {
-      "title": "風の通る草の稜線",
-      "icon": "landscape"
+      "title": "男声合唱",
+      "icon": "culture"
     },
     {
-      "title": "石灰岩の海食アーチ",
-      "icon": "sea"
-    },
-    {
-      "title": "湾を縁取る長い砂浜",
-      "icon": "sea"
-    },
-    {
-      "title": "彩りのある庭園の村",
+      "title": "古書店の町ヘイ・オン・ワイ",
       "icon": "city"
     },
     {
-      "title": "海鳥が舞う灯台の断崖",
-      "icon": "sea"
+      "title": "蒸気機関車の保存鉄道",
+      "icon": "road"
     },
     {
-      "title": "滝音が響く緑の峡谷",
-      "icon": "landscape"
+      "title": "スレート採石場の跡",
+      "icon": "history"
+    },
+    {
+      "title": "海岸線をたどる歩道",
+      "icon": "hike"
+    },
+    {
+      "title": "ラグビーの国際試合",
+      "icon": "culture"
     }
   ],
   "culture": [
@@ -258,42 +263,42 @@
       ]
     },
     {
-      "topicKey": "castles",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
+      "topicKey": "blaenavon",
+      "themeEn": "INDUSTRY",
+      "themeJa": "産業を知る",
       "icon": "history",
-      "title": "城の眺めには、支配の歴史が刻まれている",
-      "text": "海と山を望むコンウィやハーレフの城は、景色を楽しむためだけにつくられたものではない。エドワード1世がウェールズ支配を固める過程で築いた要塞だ。城壁の高さや港との距離を見ると、美しい眺めの背後にある軍事と権力の関係が読み取れる。",
-      "sourceKey": "conwy",
+      "title": "緑の谷の地下に、石炭の時代が残る",
+      "text": "南東部のブレナヴォンは、製鉄と炭鉱が築いた産業景観として世界遺産に登録された。ビッグ・ピット国立石炭博物館では、90mの立坑を降りて坑道に入れる。",
+      "sourceKey": "blaenavon",
       "points": [
-        "コンウィ城はエドワード1世のもとで13世紀末に築かれた",
-        "港や高台と城の位置関係から、軍事拠点の役割を見る"
+        "ブレナヴォンの製鉄と炭鉱の景観は世界遺産",
+        "ビッグ・ピットでは立坑を降りて坑道を見学できる"
       ]
     },
     {
-      "topicKey": "eryri",
-      "themeEn": "MOUNTAIN",
-      "themeJa": "山を知る",
+      "topicKey": "slate",
+      "themeEn": "INDUSTRY",
+      "themeJa": "産業を知る",
       "icon": "landscape",
-      "title": "岩峰の足元に、氷河が刻んだ谷が残る",
-      "text": "トリヴァンを望むオグウェン渓谷の近くには、氷河地形で知られるクム・イドワルがある。鋭い岩峰を見上げるだけでなく、谷と湖の広がりを一緒に眺めたい。岩と水の配置をたどると、山を削り続けた氷の時間が景色の奥に見えてくる。",
-      "sourceKey": "ogwen",
+      "title": "世界の屋根を葺いた、北西部のスレート",
+      "text": "ウェールズ北西部のスレート産業の景観は2021年に世界遺産となった。ブレナイ・フェスティニオグはかつて「世界の屋根を葺いた町」と呼ばれ、山肌には今も採石場の跡が残る。",
+      "sourceKey": "slate",
       "points": [
-        "オグウェンはカルネザイとグリデライ山群を訪ねる拠点",
-        "近くのクム・イドワルには、氷河がつくった谷が残る"
+        "北西部のスレート景観は2021年に世界遺産となった",
+        "山肌に残る採石場から、屋根材の産業が見えてくる"
       ]
     },
     {
-      "topicKey": "coast",
-      "themeEn": "SEA",
-      "themeJa": "海を知る",
-      "icon": "sea",
-      "title": "同じ海でも、岩石が岸の形を変える",
-      "text": "ロシリ湾の広い砂浜からペンブルックシャー南岸へ移ると、海岸の表情が変わる。グリーン・ブリッジでは石灰岩に波が働き、アーチと岩柱が残された。海の色だけでなく、岩の層や崖の形を見比べると、長い侵食の過程を感じられる。",
-      "sourceKey": "greenBridge",
+      "topicKey": "patagonia",
+      "themeEn": "MIGRATION",
+      "themeJa": "移住を知る",
+      "icon": "culture",
+      "title": "遠いパタゴニアへ渡ったウェールズの人々",
+      "text": "1865年、約150人がミモザ号でリヴァプールを発ち、アルゼンチンのパタゴニアへ渡った。入植地はウェールズ語でイ・ウラドヴァと呼ばれ、現地の学校では今もウェールズ語が教えられている。",
+      "sourceKey": "patagonia",
       "points": [
-        "ロシリ湾では、丘の下に長い砂浜が広がる",
-        "グリーン・ブリッジでは、石灰岩がアーチや岩柱の形を残す"
+        "1865年、約150人がパタゴニアへ移住した",
+        "現地の学校では今もウェールズ語が教えられている"
       ]
     },
     {
@@ -358,7 +363,8 @@
         "image": "assets/images/united-kingdom/wales/approved/food-bara-brith.webp",
         "sourceKey": "baraBrith"
       }
-    ]
+    ],
+    "intro": "家庭のスープ、海藻の伝統食、鉄板で焼く菓子まで、土地の暮らしに近い味を4皿からたどる。"
   },
   "travelTrivia": [
     {
@@ -380,13 +386,13 @@
       "sourceKey": "symbols"
     },
     {
-      "topicKey": "prisoner",
-      "categoryEn": "FILM",
-      "categoryJa": "映像文化",
-      "icon": "culture",
-      "title": "色彩豊かな村が、不思議なドラマの舞台になった",
-      "text": "ポートメイリオンは、1960年代のテレビシリーズ『プリズナー』の舞台として使われた。現実の建物が作品世界に取り込まれ、今も作品を愛する人が訪れる場所になっている。",
-      "sourceKey": "prisoner"
+      "topicKey": "man-v-horse",
+      "categoryEn": "RACE",
+      "categoryJa": "競技",
+      "icon": "hike",
+      "title": "人と馬が、山道で速さを競う",
+      "text": "中部の町スランルトゥド・ウェルズでは1980年から、人と馬が約34kmの山道を競うレースが開かれる。パブの議論から生まれ、人が初めて勝ったのは2004年だった。",
+      "sourceKey": "manVHorse"
     },
     {
       "topicKey": "helvetia",
@@ -409,16 +415,16 @@
   ],
   "forWhom": [
     {
-      "title": "山と岩の地形を歩きたい",
-      "text": "エリリの渓谷や南部の草の稜線に向き合いたい人へ。"
+      "title": "山と岩の地形を歩きたい人",
+      "text": "エリリの渓谷や南部の草の稜線に向き合いたい人。"
     },
     {
-      "title": "城と町の歴史を旅したい",
-      "text": "海辺の城壁と港町から、中世の景観を読み解きたい人へ。"
+      "title": "城と町の歴史を旅したい人",
+      "text": "海辺の城壁と港町から、中世の景観を読み解きたい人。"
     },
     {
-      "title": "海岸の表情を見比べたい",
-      "text": "砂浜の湾、石灰岩の断崖、灯台の小島を巡りたい人へ。"
+      "title": "海岸の表情を見比べたい人",
+      "text": "砂浜の湾、石灰岩の断崖、灯台の小島を巡りたい人。"
     }
   ],
   "notes": [
@@ -496,21 +502,21 @@
       "months": "6〜8月",
       "label": "夏",
       "text": "日が長く海岸と山の旅を組み合わせやすい。人の多い場所では早めの計画を。",
-      "color": "#c7a25a",
+      "color": "#92a253",
       "icon": "sun"
     },
     {
       "months": "9〜11月",
       "label": "秋",
       "text": "草地と森の色が変わる。日没が早まり、風雨への備えが必要。",
-      "color": "#ba846c",
+      "color": "#b77a49",
       "icon": "leaf"
     },
     {
       "months": "12〜2月",
       "label": "冬",
       "text": "城や町を中心に巡る季節。山の歩行には冬季装備と慎重な判断が必要。",
-      "color": "#7697ac",
+      "color": "#6b90a5",
       "icon": "snow"
     }
   ],
@@ -620,7 +626,12 @@
     "southStackSeabirds": "https://www.countryfile.com/go-outdoors/days-out/south-stack-cliffs-anglesey",
     "longestName": "https://www.historyhit.com/locations/llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch/",
     "castlemartinFiring": "https://www.gov.uk/government/publications/castlemartin-firing-notice--2",
-    "southStackVisit": "https://www.trinityhouse.co.uk/lighthouse-visitor-centres/south-stack-lighthouse-visitor-centre"
+    "southStackVisit": "https://www.trinityhouse.co.uk/lighthouse-visitor-centres/south-stack-lighthouse-visitor-centre",
+    "religion": "https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021",
+    "blaenavon": "https://www.visitwales.com/things-do/attractions/castles-and-heritage/blaenavons-industrial-landscape",
+    "slate": "https://www.visitwales.com/destinations/north-wales/eryri-snowdonia-mountains-and-coast/six-areas-unesco-awarded-slate",
+    "patagonia": "https://www.wales.com/history-welsh-people-patagonia",
+    "manVHorse": "https://en.wikipedia.org/wiki/Man_versus_Horse_Marathon"
   },
   "travelThemes": [
     "地球の風景",
