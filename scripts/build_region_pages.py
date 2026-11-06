@@ -523,8 +523,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         result.append('<section class="next-routes-section" aria-labelledby="region-routes-title">'
             '<div class="next-routes__head"><div>'
             '<span class="section-kicker-en">NEXT ROUTES</span>'
-            '<h2 id="region-routes-title">隣の地域へ旅をつなぐ</h2></div>'
-            f'<p>{esc(data.get("nextRoutesIntro", "ほかの構成国へ続く代表的な周遊の方向。移動手段と運航状況は出発前に確認を。"))}</p>'
+            '<h2 id="region-routes-title">隣国・隣の地域へ旅をつなぐ</h2></div>'
+            f'<p>{esc(data.get("nextRoutesIntro", "隣国や近隣地域へ続く旅の方向。移動手段や出入境条件は出発前に確認を。"))}</p>'
             '</div><div class="next-routes__grid">')
         for route in data['nextRoutes']:
             result.append('<article class="next-route-card"><div class="next-route-card__country">'
