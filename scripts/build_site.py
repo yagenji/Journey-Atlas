@@ -376,9 +376,12 @@ def inject_published_region_nav(page: str, slug: str) -> str:
         f'        <div class="region-discovery__grid">{"".join(cards)}</div>\n'
         '      </section>\n'
     )
-    marker = '      <div class="atlas-body page-shell">'
+    # The Country's eight scenes and travel map lead; regional exploration follows them.
+    # Keep the region block within the existing page shell and before extras.
+    markup = markup.replace('region-discovery page-shell', 'region-discovery', 1)
+    marker = '        <section class="atlas-extras"'
     if marker not in page:
-        raise ValueError("Country body marker missing for Region navigation")
+        raise ValueError("Country extras marker missing for Region navigation")
     return page.replace(marker, markup + marker, 1)
 
 
