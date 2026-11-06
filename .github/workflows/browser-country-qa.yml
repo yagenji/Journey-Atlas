@@ -142,12 +142,11 @@ jobs:
               }
               for path in files
           )
-          top_only = top_changed and not shared and not slugs
-          run = bool(slugs or shared or top_only)
+          run = bool(slugs or shared or top_changed)
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
               handle.write("full=" + ("true" if shared and not slugs else "false") + "\n")
-              handle.write("top=" + ("true" if top_only else "false") + "\n")
+              handle.write("top=" + ("true" if top_changed else "false") + "\n")
               handle.write("run=" + ("true" if run else "false") + "\n")
           PY
 
@@ -166,7 +165,7 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check --quiet selenium
 
       - name: Build targeted Country preview
-        if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != ''
+        if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != '' && steps.target.outputs.top != 'true'
         env:
           TARGET_SLUGS: ${{ steps.target.outputs.slugs }}
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
@@ -217,7 +216,7 @@ jobs:
         run: python3 scripts/qa_top_browser.py
 
       - name: Run Region Desktop / Tablet / Mobile QA
-        if: steps.target.outputs.run == 'true' && steps.target.outputs.top != 'true'
+        if: steps.target.outputs.run == 'true' && (steps.target.outputs.slugs != '' || steps.target.outputs.full == 'true')
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
