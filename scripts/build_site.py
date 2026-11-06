@@ -380,9 +380,12 @@ def inject_published_region_nav(page: str, slug: str) -> str:
         f'        <div class="region-discovery__grid">{"".join(cards)}</div>\n'
         '      </section>\n'
     )
-    marker = '        <section class="atlas-extras"'
+    # Keep the eight Scenes directly connected to Beyond the Scenery.
+    # Place optional regional exploration after the core Country editorial and
+    # practical planning, alongside onward-travel navigation.
+    marker = '        <section class="next-routes-section"'
     if marker not in page:
-        raise ValueError("Country extras marker missing for Region navigation")
+        raise ValueError("Country onward routes marker missing for Region navigation")
     return page.replace(marker, markup + marker, 1)
 
 
