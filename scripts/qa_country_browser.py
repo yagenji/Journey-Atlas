@@ -88,6 +88,17 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
                 overflow: document.documentElement.scrollWidth - window.innerWidth
             };
         """)
+    audit["visitWishParity"] = driver.execute_script("""
+        const wish = document.querySelector('#wish-button');
+        const visit = document.querySelector('#visited-button');
+        if (!wish || !visit) return {present: false};
+        const styles = button => ({
+            height: button.getBoundingClientRect().height,
+            title: getComputedStyle(button.querySelector('strong')).fontSize,
+            icon: getComputedStyle(button.querySelector('.wish-icon')).fontSize
+        });
+        return {present: true, wish: styles(wish), visit: styles(visit)};
+    """)
     audit["visitedToggle"] = driver.execute_script("""
         const slug = location.pathname.split('/countries/')[1]?.split('/')[0];
         const button = document.querySelector('#visited-button');
@@ -119,6 +130,18 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
 
 def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict]) -> list[str]:
     errors = _ORIGINAL_ASSERT_AUDIT(audit, bg_checks, browser_errors)
+    parity = audit.get("visitWishParity") or {}
+    if not parity.get("present"):
+        errors.append("Country wish/visited button pair missing")
+    else:
+        for measure in ("height", "title", "icon"):
+            first = parity["wish"][measure]
+            second = parity["visit"][measure]
+            if measure == "height":
+                if abs(first - second) > 1:
+                    errors.append(f"Country wish/visited button height mismatch: {first}/{second}")
+            elif first != second:
+                errors.append(f"Country wish/visited button {measure} mismatch: {first}/{second}")
     visit = audit.get("visitedToggle") or {}
     for check in ("exists", "saved", "cleared"):
         if not visit.get(check):

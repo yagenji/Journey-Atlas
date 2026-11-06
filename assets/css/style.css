@@ -131,15 +131,13 @@ button { border-radius: 0; }
 .related-image h3 { margin: 0; font: 600 16px/1.4 var(--display); letter-spacing: .07em; }
 .related-image b { font-size: 14px; font-weight: 500; }
 .related-image p { margin: 4px 0 0; font-size: 13px; }
-.wish-wrap { display: grid; place-items: stretch; padding: 0; background: #647242; color: white; }
+.wish-wrap { display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); place-items: stretch; padding: 0; background: #647242; color: white; }
 .wish-button { width: 100%; padding: 18px; border: 0; background: transparent; color: white; cursor: pointer; }
 .wish-icon { display: block; font-size: 38px; line-height: 1; }
 .wish-button strong { display: block; margin-top: 4px; font: 500 19px/1.6 var(--mincho); }
 .wish-button small { display: block; margin-top: 5px; font-size: 12px; }
 .wish-button:hover, .wish-button:focus-visible, .wish-button.is-saved { outline: 2px solid var(--navy); outline-offset: -5px; background: #647242; }
 .wish-wrap .visited-button { border-top: 1px solid rgba(255,255,255,.32); background: rgba(18,42,37,.16); }
-.wish-wrap .visited-button .wish-icon { font-size: 30px; }
-.wish-wrap .visited-button strong { font-size: 17px; }
 .wish-wrap .visited-button.is-saved { background: rgba(13,52,42,.35); }
 .wish-wrap .wish-button:focus-visible { outline: 3px solid #fff; outline-offset: -5px; }
 .wish-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
