@@ -93,7 +93,31 @@ def main() -> int:
                                 .filter(id => id && !document.getElementById(id)),
                         };
                     """)
+                    # Visiting a UK Region is stored separately from its parent
+                    # Country; toggle twice to restore the original browser state.
+                    visit = driver.execute_script("""
+                        const parent=arguments[0], slug=arguments[1];
+                        const button=document.querySelector('[data-ja-visited]');
+                        if(!button) return {mounted:false};
+                        const key='journey-atlas:region-visited:'+parent+':'+slug;
+                        const old=localStorage.getItem(key);
+                        const before=button.getAttribute('aria-pressed');
+                        button.click();
+                        const after=button.getAttribute('aria-pressed');
+                        const stored=localStorage.getItem(key);
+                        button.click();
+                        return {mounted:true,slug:button.dataset.jaVisited,before,after,
+                            restored:button.getAttribute('aria-pressed'),
+                            storedCorrect:before==='true' ? stored===null :
+                                !!stored && JSON.parse(stored).slug===slug && JSON.parse(stored).parentSlug===parent,
+                            persisted:localStorage.getItem(key)===old};
+                    """, parent, slug)
                     problems = []
+                    if (not visit.get("mounted") or visit.get("slug") != slug
+                            or visit.get("before") == visit.get("after")
+                            or visit.get("restored") != visit.get("before")
+                            or not visit.get("storedCorrect") or not visit.get("persisted")):
+                        problems.append(f"Region visited control/storage mismatch: {visit}")
                     if audit["title"] != region["nameEn"]: problems.append("incorrect h1")
                     if audit["regionLabel"] != region.get("region"):
                         problems.append("incorrect Northern Europe Hero region")
