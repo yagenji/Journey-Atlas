@@ -663,7 +663,7 @@ function showTheme(theme,{scroll=true}={}){
   }
 }
 
-function getWishedSlugs(){try{return destinations.filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
+function getWishedSlugs(){try{return [...destinations,...detailDestinations].filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
 
@@ -748,7 +748,7 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid(destinations.filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国を表示しています。`);});
+wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid([...destinations,...detailDestinations].filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国・地域を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
