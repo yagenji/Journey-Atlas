@@ -20,8 +20,8 @@
     "image": "assets/images/united-kingdom/england/approved/hero-windsor-castle.webp",
     "lead": "並木道の先に、ウィンザー城の石の塔が見える。ロンドンの街を歩き、北へ向かえば湖と大聖堂の街、西へ進めば石の村と巨石の遺跡、潮が道を隠す島へ。イングランドは、都市と田園、長い時間を行き来する旅になる。",
     "description": "ウィンザー・グレート・パークのロング・ウォーク。並木道から北へ、ジョージ4世門の方角にウィンザー城を望む。",
-    "sourceKey": "profile",
-    "coordinateSourceKey": "profile"
+    "sourceKey": "windsorLongWalk",
+    "coordinateSourceKey": "windsorCoordinates"
   },
   "profile": [
     {
@@ -181,12 +181,12 @@
       "sourceKey": "jurassicHistory"
     },
     {
-      "topicKey": "railway",
-      "label": "公共鉄道を蒸気機関車が走る",
-      "value": "1825年",
-      "note": "北東部のストックトン＆ダーリントン鉄道で、蒸気機関車が公共鉄道を走り始めた。近代の移動と産業の姿が変わる起点の一つだった。",
-      "icon": "road",
-      "sourceKey": "railway1825"
+      "topicKey": "blue-plaques",
+      "label": "ロンドンの壁に残る青い銘板",
+      "value": "1,000枚超",
+      "note": "1866年に始まったブルー・プラークは、著名人ゆかりの建物を示す。ナポレオン3世の銘板は1867年から残る現存最古のもので、街歩きの途中で歴史上の人物に出会える。",
+      "icon": "history",
+      "sourceKey": "bluePlaques"
     },
     {
       "topicKey": "fruit",
@@ -207,7 +207,7 @@
       "icon": "landscape"
     },
     {
-      "title": "砂丘の上の城壁",
+      "title": "砂浜を見下ろす城壁",
       "icon": "history"
     },
     {
@@ -263,7 +263,7 @@
       "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
       "topicKey": "bath",
       "themeEn": "CITY",
-      "themeJa": "街を歩く",
+      "themeJa": "街を知る",
       "icon": "city",
       "sourceKey": "bath",
       "points": [
@@ -285,16 +285,16 @@
       ]
     },
     {
-      "title": "リヴァプールでは、音楽を過去形にしない",
-      "text": "ビートルズの故郷は、現在も多様な音楽が響く街。記念の場所を訪ねるだけでなく、小さなライブの場にも目を向けたい。",
-      "topicKey": "liverpool",
-      "themeEn": "CULTURE",
-      "themeJa": "文化を知る",
-      "icon": "culture",
-      "sourceKey": "liverpoolMusic",
+      "title": "世界初の鉄橋が、谷の産業を物語る",
+      "text": "セヴァーン川に架かるアイアンブリッジは1779年に完成した世界初の鉄の橋。緑の谷に見えるこの地は、18世紀末に産業革命の先端を走った場所だった。",
+      "topicKey": "ironbridge",
+      "themeEn": "INDUSTRY",
+      "themeJa": "産業を知る",
+      "icon": "history",
+      "sourceKey": "ironbridge",
       "points": [
-        "ビートルズの故郷として音楽史に名を残す",
-        "現在もライブの場があり、音楽文化は続いている"
+        "1779年に架けられたアイアンブリッジは世界初の鉄の橋",
+        "アイアンブリッジ峡谷は産業革命の発祥地として世界遺産に登録"
       ]
     },
     {
@@ -302,7 +302,7 @@
       "text": "公的な通行権のあるフットパスが、田園を歩く道になる。村の通りから畑の縁へ、車では通り過ぎる景色に近づける。",
       "topicKey": "footpath",
       "themeEn": "WALK",
-      "themeJa": "歩く旅",
+      "themeJa": "道を知る",
       "icon": "hike",
       "sourceKey": "footpaths",
       "points": [
@@ -312,7 +312,7 @@
     }
   ],
   "taste": {
-    "title": "TASTE OF ENGLAND",
+    "title": "イングランドで食べたいもの",
     "items": [
       {
         "id": "full-english-breakfast",
@@ -386,13 +386,13 @@
       "sourceKey": "cheeseRolling"
     },
     {
-      "topicKey": "tower-ravens",
-      "categoryEn": "LEGEND",
-      "categoryJa": "伝承",
-      "icon": "history",
-      "title": "ロンドン塔をカラスが去ると、王国が滅びる？",
-      "text": "ロンドン塔には、ワタリガラスがいなくなると王国が滅びるという伝説がある。現在も専任の飼育担当者が世話をしており、鳥たちは城塞の住人として親しまれている。",
-      "sourceKey": "towerRavens"
+      "topicKey": "york-cats",
+      "categoryEn": "CITY",
+      "categoryJa": "街角",
+      "icon": "city",
+      "title": "ヨークの建物には、猫が隠れている",
+      "text": "1920年、ロウ・ウーズゲートの建物に置かれた猫の像がヨークの猫の始まりとされる。1979年に建築家トム・アダムズが習慣を復活させ、今は像を探して歩くトレイルがある。",
+      "sourceKey": "yorkCats"
     }
   ],
   "forWhom": [
@@ -402,7 +402,7 @@
     },
     {
       "title": "建物と土地の関係を眺めたい",
-      "text": "砂丘の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
+      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
     },
     {
       "title": "歩く速度で景色に触れたい",
@@ -419,8 +419,9 @@
       "text": "セント・マイケルズ・マウントは潮で渡り方が変わる。訪問日の公式案内を確認し、海岸や湖水地方の散策では現地の天候と歩道の状況も確かめたい。"
     },
     {
-      "title": "都市間と地方部で交通を組み替える",
-      "text": "都市間は鉄道を軸に、村や海岸の区間は地域バスや車を組み合わせる。曜日や季節による便数を確認し、帰りの移動を先に決めておきたい。"
+      "title": "ストーンヘンジは時間指定で予約",
+      "text": "入場は日時指定の事前予約が基本。通常の見学は石の輪の外側の周回路からで、内側には入れない。ソールズベリーからのバスも帰りの時刻まで決めておきたい。",
+      "sourceKey": "stonehengeVisit"
     }
   ],
   "travelScale": {
@@ -453,13 +454,17 @@
       {
         "months": [
           5,
-          6,
-          7,
-          8,
+          6
+        ],
+        "label": "5〜6月",
+        "reason": "日が長い初夏。湖水地方の湖畔やバイブリーの小川沿いを、木々の緑とともに歩きやすい。"
+      },
+      {
+        "months": [
           9
         ],
-        "label": "5〜9月",
-        "reason": "日照時間が比較的長く、都市や田園、湖畔、海岸を組み合わせやすい。雨や強風は季節を問わず備える。"
+        "label": "9月",
+        "reason": "夏休みの人出が引く初秋。ダードル・ドアやセント・マイケルズ・マウントの海岸を落ち着いて歩ける。"
       }
     ]
   },
@@ -503,18 +508,18 @@
     {
       "countryEn": "WALES",
       "countryJa": "ウェールズ",
-      "path": "バース → ブリストル → カーディフ",
+      "path": "Bath → Bristol → Cardiff",
       "description": "西へ海峡を越えて、城と山地の多い地域へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴"
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
     },
     {
       "countryEn": "SCOTLAND",
       "countryJa": "スコットランド",
-      "path": "ヨーク → エディンバラ",
+      "path": "York → Edinburgh",
       "description": "鉄道を北へ進み、古都とハイランドの景観につなぐ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴"
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
     }
   ],
   "nextRegion": {
@@ -538,18 +543,19 @@
       "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。"
     },
     {
-      "nameJa": "オランダ",
-      "nameEn": "NETHERLANDS",
-      "href": "countries/netherlands/",
-      "flag": "🇳🇱",
-      "reason": "北海の向こうへ。運河の街と水とともに暮らす土地の風景に出会う。"
+      "nameJa": "日本",
+      "nameEn": "JAPAN",
+      "href": "countries/japan/",
+      "flag": "🇯🇵",
+      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
   "sourceDates": {
     "population": "2025-06-30（ONS 2025年中位人口推計、2026-10-01公表）",
     "landArea": "イングランド約130,000km²の概数、日本約378,000km²との比較",
-    "weather": "Met Office long-term climatic averages; 季節推奨は編集判断"
+    "weather": "Met Office long-term climatic averages; 季節推奨は編集判断",
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
   },
   "sources": {
     "population2025": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025",
@@ -569,12 +575,10 @@
     "stMichaelsMount": "https://stmichaelsmount.co.uk/plan-your-visit/",
     "stMichaelsMountCoordinates": "https://historicengland.org.uk/listing/the-list/list-entry/1143795",
     "jurassicHistory": "https://unesco.org.uk/our-network/world-heritage-sites/dorset-and-east-devon-coast-the-jurassic-coast",
-    "railway1825": "https://heritage.stockton.gov.uk/articles/stories/stockton-where-passenger-railways-began/",
     "apples": "https://www.nationalfruitcollection.org.uk/",
     "lakeLandscape": "https://whc.unesco.org/en/list/422/",
     "bath": "https://whc.unesco.org/en/list/428/",
     "cornish": "https://www.cornwall.gov.uk/parks-leisure-and-culture/the-cornish-language/cornish-language-programme/",
-    "liverpoolMusic": "https://unesco.org.uk/our-network/creative-cities/liverpool",
     "footpaths": "https://www.gov.uk/right-of-way-open-access-land",
     "fullEnglish": "https://www.visitlondon.com/things-to-do/food-and-drink/top-10-breakfast-venues",
     "cornishPasty": "https://www.visitbritain.com/en/things-to-do/eat-local-foodie-map-britain",
@@ -584,7 +588,7 @@
     "tomBell": "https://www.chch.ox.ac.uk/visit/things-to-see",
     "wellDressing": "https://visitpeakdistrict.com/events/category/well-dressings",
     "cheeseRolling": "https://www.visitbritain.com/en/things-to-do/find-britains-quirkiest-traditions-and-events",
-    "yorkCats": "https://www.catsinyork.com/",
+    "yorkCats": "https://www.visityork.org/explore/york-cat-trail-p801381",
     "weather": "https://www.metoffice.gov.uk/research/climate/maps-and-data/location-specific-long-term-averages/gcpn7mhjm",
     "transport": "https://www.nationalrail.co.uk/",
     "map": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/",
@@ -597,13 +601,24 @@
     "windsorView": "https://historicengland.org.uk/listing/the-list/list-entry/1001434",
     "geometry": "https://www.soest.hawaii.edu/pwessel/gshhg/",
     "englandBoundary": "https://github.com/jhellingsdata/map-data/blob/main/gbr/CTRY_GB-ENG.json",
-    "towerRavens": "https://www.hrp.org.uk/tower-of-london/whats-on/the-ravens/",
-    "bluePlaques": "https://www.english-heritage.org.uk/visit/blue-plaques/about-blue-plaques/history-of-blue-plaques/"
+    "bluePlaques": "https://www.english-heritage.org.uk/visit/blue-plaques/about-blue-plaques/top-ten-blue-plaque-facts/",
+    "stonehengeVisit": "https://www.english-heritage.org.uk/visit/places/stonehenge/",
+    "londonCoordinates": "https://en.wikipedia.org/wiki/London",
+    "ironbridge": "https://unesco.org.uk/our-sites/world-heritage-sites/ironbridge-gorge"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。"
+  "nextRoutesIntro": "英国の隣の地域へ。地方部のアクセスと所要時間は旅行前に確認を。",
+  "capital": {
+    "nameJa": "ロンドン",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    "sourceKey": "londonCoordinates"
+  }
 }

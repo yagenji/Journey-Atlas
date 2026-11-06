@@ -63,7 +63,7 @@
       "west": -5.55,
       "east": -2.55
     },
-    "source": "Wales target: 22 ONS/Ordnance Survey 2016 local authority geometries (UK-GeoJSON, OGL v3), dissolved and generalised at 4.5 map pixels. Context: Natural Earth 1:10m map subunits (public domain), dissolved and clipped to the full canvas. WGS84 local-equirectangular-fit-v1; label callouts retain verified real anchors."
+    "source": "Wales target: 22 ONS/Ordnance Survey 2016 local authority geometries (UK-GeoJSON, OGL v3), dissolved and simplified at 0.6 map pixels, keeping Anglesey and Holy Island as separate islands. Context: Natural Earth 1:10m map subunits (public domain), dissolved and clipped to the full canvas. WGS84 local-equirectangular-fit-v1; label callouts retain verified real anchors."
   },
   "scenes": [
     {
@@ -160,7 +160,7 @@
       "id": "south-stack",
       "name": "サウス・スタック灯台",
       "nameLocal": "South Stack Lighthouse / Anglesey",
-      "description": "アングルシー島北西端の断崖を下り、小島に立つ白い灯台へ。海鳥と潮風が感じられる岩壁の景色。",
+      "description": "アングルシー島の西に連なるホリー島の断崖を下り、小島に立つ白い灯台へ。海鳥と潮風が感じられる岩壁の景色。",
       "coordinates": {
         "latitude": 53.30473,
         "longitude": -4.68334
@@ -394,8 +394,8 @@
       "categoryJa": "海の記憶",
       "icon": "sea",
       "title": "砂浜から顔を出す木材は、船の骨組み",
-      "text": "ロシリ湾で干潮時に見える木の残骸は、1887年に難破したヘルヴェティア号のもの。ノルウェーからスウォンジーへ木材を運ぶ途中だった船の記憶が、砂の中に残っている。",
-      "sourceKey": "helvetia"
+      "text": "ロシリ湾で干潮時に見える木の残骸は、1887年に難破したヘルヴェティア号のもの。カナダからスウォンジーへ木材を運ぶ途中だったノルウェー船の記憶が、砂の中に残っている。",
+      "sourceKey": "helvetiaRecord"
     },
     {
       "topicKey": "devils-pact",
@@ -469,12 +469,18 @@
         "months": [
           5,
           6,
-          7,
+          7
+        ],
+        "label": "5〜7月",
+        "reason": "日が長く、サウス・スタックの断崖で海鳥が営巣する季節。エリリや海岸の道も歩きやすい。"
+      },
+      {
+        "months": [
           8,
           9
         ],
-        "label": "5〜9月",
-        "reason": "日照時間が長く、山と海岸を組み合わせやすい。天候の変化には通年注意。"
+        "label": "8〜9月",
+        "reason": "8月上旬から9月中旬はヒースの見頃。山地や海岸の丘が紫に色づく。"
       }
     ]
   },
@@ -518,15 +524,15 @@
     {
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
-      "path": "コンウィ → チェスター → マンチェスター",
+      "path": "Conwy → Chester → Manchester",
       "description": "城と港町を巡る北ウェールズから、チェスターの城壁とマンチェスターの街並みへ。鉄道沿いに旅を続ける。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
     },
     {
       "countryEn": "IRELAND",
-      "countryJa": "アイルランド共和国",
-      "path": "コンウィ → ホリーヘッド → ダブリン",
+      "countryJa": "アイルランド",
+      "path": "Conwy → Holyhead → Dublin",
       "description": "ホリーヘッドから船でアイリッシュ海を渡り、ダブリンへ。港と城の旅に、アイルランドの街歩きを加える。",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
@@ -540,7 +546,7 @@
   },
   "relatedCountries": [
     {
-      "nameJa": "アイルランド共和国",
+      "nameJa": "アイルランド",
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
@@ -562,9 +568,9 @@
       "sourceKey": "newZealandLandscape"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-05",
+  "sourcesVerifiedAt": "2026-11-06",
   "sourceDates": {
-    "travelSeason": "気候・日程の推奨は2026-11-05時点の編集判断。具体的な営業・運行は各公式サイトで再確認。",
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
     "population": "2025-06-30（2026-07-29公表）",
     "area": "Visit Wales掲載の20,800km²。日本約37.8万km²との概算比較。",
     "weather": "Met Office地域気候資料。季節・日程の推奨は編集判断。",
@@ -608,7 +614,10 @@
     "coastPath": "https://www.walescoastpath.gov.uk/working-with-us/about-the-path/?lang=en",
     "sheep2025": "https://www.gov.wales/survey-agriculture-and-horticulture-june-2025-html",
     "holyheadDublin": "https://www.irishferries.com/uk-en/routes-and-times/dublin-holyhead/",
-    "newZealandLandscape": "https://www.newzealand.com/nz/scenic-highlights/"
+    "newZealandLandscape": "https://www.newzealand.com/nz/scenic-highlights/",
+    "helvetiaRecord": "https://coflein.gov.uk/en/site/273914",
+    "heather": "https://wildtrailswales.com/wildtrailsguides/wild-trails-wales-guide-7-heather-walks-wales",
+    "southStackSeabirds": "https://www.countryfile.com/go-outdoors/days-out/south-stack-cliffs-anglesey"
   },
   "travelThemes": [
     "地球の風景",

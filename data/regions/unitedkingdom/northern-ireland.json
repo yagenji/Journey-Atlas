@@ -442,12 +442,14 @@
   ],
   "notes": [
     {
-      "title": "崖と山では、天候に合わせて予定を変える",
-      "text": "海岸の強風や濡れた岩、山の霧に注意。スリーヴ・ビニアンの山頂は登山として準備し、現地の歩道案内と予報を確かめたい。"
+      "title": "アイルランドから陸路で入るときもETAを",
+      "text": "国境に検査はないが、日本国籍者が北アイルランドへ入るにはETA（電子渡航認証）が必要。ダブリンから鉄道やバスで北上する行程でも、出発前に取得しておく。",
+      "sourceKey": "eta"
     },
     {
-      "title": "吊り橋・洞窟・島は、訪問条件を先に確認",
-      "text": "吊り橋の横断は事前予約が必要。洞窟は水位によって見学内容が変わり、島への船も海況の影響を受ける。予定に予備日を残したい。"
+      "title": "吊り橋・洞窟・島・並木道は、条件を先に確認",
+      "text": "吊り橋の横断は事前予約が必要。洞窟は水位によって見学内容が変わり、島への船も海況の影響を受ける。ダーク・ヘッジズの並木道は車両通行止めで、離れた場所に停めて歩く。",
+      "sourceKey": "darkHedgesRoad"
     },
     {
       "title": "地域の呼び名と記憶に配慮する",
@@ -485,12 +487,10 @@
         "months": [
           5,
           6,
-          7,
-          8,
-          9
+          7
         ],
-        "label": "5〜9月",
-        "reason": "日が長く、海岸や山を巡る日程を組みやすい。雨風は通年あり、海鳥の見頃や施設の営業期間は別途確認。"
+        "label": "5〜7月",
+        "reason": "ラスリン島の断崖に海鳥が集まる繁殖期。5月上旬から7月中旬が盛りで、北岸の歩きも日が長い。"
       }
     ]
   },
@@ -533,8 +533,8 @@
   "nextRoutes": [
     {
       "countryEn": "IRELAND",
-      "countryJa": "アイルランド共和国",
-      "path": "ベルファスト → ダブリン",
+      "countryJa": "アイルランド",
+      "path": "Belfast → Dublin",
       "description": "ベルファストから鉄道でダブリンへ。同じ島にありながら異なる歴史を歩んだ二つの都市を訪ねる。",
       "href": "countries/ireland/",
       "flag": "🇮🇪"
@@ -542,7 +542,7 @@
     {
       "countryEn": "SCOTLAND",
       "countryJa": "スコットランド",
-      "path": "ベルファスト → ケアンライアン → グラスゴー",
+      "path": "Belfast → Cairnryan → Glasgow",
       "description": "ベルファストからフェリーでケアンライアンへ。海峡を越え、陸路でグラスゴーの街並みへ向かう。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
@@ -550,10 +550,11 @@
     {
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
-      "path": "ベルファスト → リバプール",
-      "description": "アイリッシュ海をフェリーで渡り、リバプールへ。造船の街から、港と音楽の文化が息づく街へ。",
+      "path": "Belfast → Birkenhead → Liverpool",
+      "description": "アイリッシュ海をフェリーで渡り、マージー川対岸のバーケンヘッドからリヴァプールへ。造船の街から、港と音楽の文化が息づく街へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "sourceKey": "belfastLiverpoolFerry"
     }
   ],
   "nextRegion": {
@@ -563,7 +564,7 @@
   },
   "relatedCountries": [
     {
-      "nameJa": "アイルランド共和国",
+      "nameJa": "アイルランド",
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
@@ -584,13 +585,14 @@
       "reason": "北大西洋の険しい海岸が好きなら、フィヨルドと島々が続く風景へ。"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-05",
+  "sourcesVerifiedAt": "2026-11-06",
   "sourceDates": {
     "population": "2025-06-30（2026-09-24公表）",
     "landArea": "NISRA 2014を出典とする自治体資料の陸地面積13,843km²。日本約37.8万km²との概算比較。",
     "flag": "2024-07-30英国議会書面回答。2026-11-04確認。地域専用の公式旗は仮定せず、旗が必要な表示には英国旗を使用。",
     "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。",
-    "signatureFacts": "Giants Causeway 地形数はUNESCO記載の概数、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。"
+    "signatureFacts": "Giants Causeway 地形数はUNESCO記載の概数、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
   },
   "sources": {
     "profile": "https://www.nidirect.gov.uk/articles/about-northern-ireland",
@@ -642,7 +644,10 @@
     "causewayColumns": "UNESCO World Heritage Centre, Giant's Causeway and Causeway Coast: https://whc.unesco.org/en/list/369/",
     "loughNeaghArea": "Northern Ireland DAERA, Lough Neagh Catchment Map (2024-05-30): https://www.daera-ni.gov.uk/publications/lough-neagh-catchment-map",
     "mourneWallSummits": "Visit Mourne, The Mourne Wall Challenge (22 miles/35 km, 15 summits): https://www.visitmourne.com/itineraries/wall-challenge",
-    "enterpriseBelfastDublin": "Translink, Enterprise train service Belfast to Dublin: https://www.translink.co.uk/using-translink/cross-border-travel/enterprise-train-service"
+    "enterpriseBelfastDublin": "Translink, Enterprise train service Belfast to Dublin: https://www.translink.co.uk/using-translink/cross-border-travel/enterprise-train-service",
+    "eta": "https://discovernorthernireland.com/plan-your-trip/travel-information/electronic-travel-authorisation/",
+    "darkHedgesRoad": "https://en.wikipedia.org/wiki/Dark_Hedges",
+    "rathlinSeabirds": "https://biodiversityni.com/kebble-nature-reserve-rathlin-island"
   },
   "travelThemes": [
     "地球の風景",

@@ -288,8 +288,9 @@
   ],
   "notes": [
     {
-      "title": "山の天気は街と分けて考える",
-      "text": "ハイランドと海岸では風雨や雲の状況が大きく変わる。歩く前には現地予報とアクセス情報を確認したい。"
+      "title": "一車線道路は待避所で譲り合う",
+      "text": "ハイランドや島には一車線の道路が多い。対向車とは待避所ですれ違い、後続車にも道を譲る。ナビの所要時間より長めに見て、日没前に着く計画を。",
+      "sourceKey": "singleTrack"
     },
     {
       "title": "島への移動は時刻表を先に確かめる",
@@ -297,7 +298,7 @@
     },
     {
       "title": "移動が長い区間は拠点を絞る",
-      "text": "8景は本土・ハリス島・オークニーに点在する。短期旅行で全地点を巡ろうとせず、都市・ハイランド・島から優先順位を決めたい。"
+      "text": "8景は本土・スカイ島・ハリス島・オークニーに点在する。短期旅行で全地点を巡ろうとせず、都市・ハイランド・島から優先順位を決めたい。"
     }
   ],
   "seasons": [
@@ -330,7 +331,7 @@
       "icon": "snow"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-04",
+  "sourcesVerifiedAt": "2026-11-06",
   "sources": {
     "edinburghCastle": "https://www.historicenvironment.scot/visit/all/edinburgh-castle/history-and-stories/",
     "quiraingCoordinates": "https://www.mindat.org/loc-2960.html",
@@ -358,7 +359,7 @@
     "skyeIsland": "https://www.visitscotland.com/places-to-go/islands/isle-skye",
     "unicorn": "https://www.scotland.org/inspiration/what-is-the-national-animal-of-scotland",
     "maeshowe": "https://www.historicenvironment.scot/visit/all/maeshowe-chambered-cairn/history-and-stories/",
-    "oneOClockGun": "https://www.historicenvironment.scot/visit/all/edinburgh-castle/",
+    "oneOClockGun": "https://www.edinburghcastle.scot/discover/highlights/one-oclock-gun",
     "inventions": "https://www.visitscotland.com/things-to-do/culture-history/scottish-inventions",
     "travelTransport": "https://www.visitscotland.com/planning/travel-in-scotland",
     "weather": "https://www.visitscotland.com/planning/travel-information/weather",
@@ -367,7 +368,11 @@
     "scotlandMapBoundary": "https://github.com/ONSvisual/topojson_boundaries/blob/master/geogUKregion.json",
     "scotlandMapLakes": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_lakes.geojson",
     "rockallLocation": "https://marineregions.org/gazetteer.php?p=details&id=5485",
-    "rockallLaw": "https://www.legislation.gov.uk/ukpga/1972/2/section/1"
+    "rockallLaw": "https://www.legislation.gov.uk/ukpga/1972/2/section/1",
+    "singleTrack": "https://www.gov.uk/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158",
+    "novaScotiaGaelic": "https://museum.novascotia.ca/stories/gaelic-nova-scotia",
+    "edinburghCoordinates": "https://en.wikipedia.org/wiki/Edinburgh",
+    "heather": "https://must-see-scotland.com/where-see-heather"
   },
   "signatureFacts": [
     {
@@ -454,7 +459,7 @@
       "categoryJa": "習慣",
       "icon": "city",
       "title": "エディンバラでは午後1時に大砲が鳴る",
-      "text": "エディンバラ城の「ワン・オクロック・ガン」は、日曜日とクリスマスを除く日中の伝統行事。時を告げる音が街に響く。",
+      "text": "エディンバラ城の「ワン・オクロック・ガン」は、日曜日、聖金曜日、クリスマスを除く毎日、午後1時に発射される。時を告げる音が街に響く。",
       "sourceKey": "oneOClockGun"
     },
     {
@@ -506,13 +511,18 @@
       {
         "months": [
           5,
-          6,
-          7,
+          6
+        ],
+        "label": "5〜6月",
+        "reason": "日が長く、ミッジが強まる真夏の前。スカイ島やハリス島の海岸を巡りやすい。"
+      },
+      {
+        "months": [
           8,
           9
         ],
-        "label": "5〜9月",
-        "reason": "長い日照を生かし、島やハイランドを巡りやすい時期。風雨と運航状況は別途確認。"
+        "label": "8〜9月",
+        "reason": "ヒースの季節。8月を盛りにグレン・コーやグレンフィナンの斜面が紫に色づく。"
       }
     ]
   },
@@ -526,7 +536,7 @@
     {
       "countryEn": "ENGLAND",
       "countryJa": "イングランド",
-      "path": "エディンバラ → ヨーク → ロンドン",
+      "path": "Edinburgh → York → London",
       "description": "城と石の街から南へ。鉄道沿いに大聖堂の街とロンドンへ旅をつなぐ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
@@ -534,7 +544,7 @@
     {
       "countryEn": "WALES",
       "countryJa": "ウェールズ",
-      "path": "エディンバラ → チェスター → 北ウェールズ",
+      "path": "Edinburgh → Chester → North Wales",
       "description": "英国の山岳と城塞の文化を続けて見る。途中で滞在日を設ける周遊向き。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
@@ -542,7 +552,7 @@
     {
       "countryEn": "NORTHERN IRELAND",
       "countryJa": "北アイルランド",
-      "path": "グラスゴー → ケアンライアン → ベルファスト",
+      "path": "Glasgow → Cairnryan → Belfast",
       "description": "鉄道・バスと海峡のフェリーを組み合わせ、海の向こうの英国へ。",
       "href": "countries/unitedkingdom/",
       "flag": "🇬🇧"
@@ -554,13 +564,6 @@
     "nameJa": "イングランド"
   },
   "relatedCountries": [
-    {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "英国全体の地図や8景から、ほかの構成国へ旅を広げる。"
-    },
     {
       "nameJa": "アイルランド",
       "nameEn": "IRELAND",
@@ -574,11 +577,28 @@
       "href": "countries/norway/",
       "flag": "🇳🇴",
       "reason": "北海の向こうで、山地と海がつくる異なる景観に出会う。"
+    },
+    {
+      "nameJa": "カナダ",
+      "nameEn": "CANADA",
+      "href": "countries/canada/",
+      "flag": "🇨🇦",
+      "reason": "「新しいスコットランド」を意味するノバスコシア州で、移民が伝えたゲール語や音楽の名残に出会う。",
+      "sourceKey": "novaScotiaGaelic"
     }
   ],
   "sourceDates": {
     "population": "2025-06-30",
     "landArea": "政府資料に基づく概数（2025年）",
-    "islands": "2022年9月公表のスコットランド政府調査資料"
+    "islands": "2022年9月公表のスコットランド政府調査資料",
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
+  },
+  "capital": {
+    "nameJa": "エディンバラ",
+    "coordinates": {
+      "latitude": 55.9533,
+      "longitude": -3.1883
+    },
+    "sourceKey": "edinburghCoordinates"
   }
 }

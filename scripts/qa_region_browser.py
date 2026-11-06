@@ -275,7 +275,7 @@ def main() -> int:
                                 coordinates: capital ? [Number.parseFloat(capital.style.left),
                                     Number.parseFloat(capital.style.top)] : []};
                         """)
-                        expected_legend = ['1景色の番号', '上部の代表画像（Hero）の場所', '首都']
+                        expected_legend = ['1景色の番号', '上部の代表画像（Hero）の場所', '首府']
                         if (legend_audit["labels"] != expected_legend
                                 or not legend_audit["capital"]
                                 or not legend_audit["capitalDot"]
