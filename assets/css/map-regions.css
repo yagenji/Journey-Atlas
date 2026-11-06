@@ -137,3 +137,39 @@ a.map-country-nav__item{color:inherit;text-decoration:none}
   }
   .map-explorer .atlas-country-map{inset:0;width:100%;height:100%}
 }
+
+/* Subordinate destinations use the same two-line Japanese/English type hierarchy
+   as the parent country rows; indentation communicates the parent relationship. */
+.map-country-nav__children{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:2px 8px;
+  padding:3px 8px 12px 41px;
+}
+.map-country-nav__child,
+.map-country-nav__child:link,
+.map-country-nav__child:visited{
+  display:block;
+  min-width:0;
+  padding:7px 8px;
+  border:0;
+  border-radius:7px;
+  color:inherit;
+  text-decoration:none;
+  background:transparent;
+  transition:background .14s ease;
+}
+.map-country-nav__child:hover,
+.map-country-nav__child:focus-visible{
+  background:color-mix(in srgb,var(--map-accent) 8%,white);
+  outline-offset:2px;
+  text-decoration:none;
+}
+.map-country-nav__child .map-country-nav__names strong,
+.map-country-nav__child .map-country-nav__names small{
+  text-decoration:none;
+}
+@media(max-width:550px){
+  .map-country-nav__children{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 5px;padding-left:34px}
+  .map-country-nav__child{padding:7px 4px}
+}
