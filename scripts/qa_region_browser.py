@@ -83,6 +83,17 @@ def main() -> int:
                             broken: main ? [...main.querySelectorAll('img')]
                                 .filter(im => !im.complete || im.naturalWidth < 1 || !im.hasAttribute('alt'))
                                 .map(im => im.currentSrc || im.src) : [],
+                            visitWishParity: (() => {
+                                const wish = document.querySelector('#region-wish-button');
+                                const visit = document.querySelector('#region-visited-button');
+                                if (!wish || !visit) return null;
+                                const sizes = button => ({
+                                    height: button.getBoundingClientRect().height,
+                                    title: getComputedStyle(button.querySelector('strong')).fontSize,
+                                    icon: getComputedStyle(button.querySelector('.wish-icon')).fontSize
+                                });
+                                return {wish:sizes(wish), visit:sizes(visit)};
+                            })(),
                             overflow: document.documentElement.scrollWidth - window.innerWidth,
                             robots: document.querySelector('meta[name="robots"]')?.content,
                             canonical: document.querySelector('link[rel="canonical"]')?.href,
@@ -94,6 +105,17 @@ def main() -> int:
                         };
                     """)
                     problems = []
+                    parity = audit.get("visitWishParity")
+                    if not parity:
+                        problems.append("Region wish/visited pair missing")
+                    else:
+                        for measure in ("height", "title", "icon"):
+                            first, second = parity["wish"][measure], parity["visit"][measure]
+                            if measure == "height" and abs(first - second) > 1:
+                                problems.append(f"Region wish/visited height mismatch: {first}/{second}")
+                            elif measure != "height" and first != second:
+                                problems.append(f"Region wish/visited {measure} mismatch: {first}/{second}")
+
                     if audit["title"] != region["nameEn"]: problems.append("incorrect h1")
                     if audit["regionLabel"] != region.get("region"):
                         problems.append("incorrect Northern Europe Hero region")
