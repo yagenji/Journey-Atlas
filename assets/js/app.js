@@ -84,6 +84,31 @@ function renderCountry(data, registry) {
     element.textContent = value ?? '';
   });
 
+  // Country-layout destinations that are subordinate to a parent Country.
+  // Keep their canonical URLs and personal-atlas destination IDs unchanged.
+  if (data.parentSlug === 'china' && ['hong-kong', 'macau'].includes(data.slug)) {
+    const heroCopy = fragment.querySelector('.hero-copy');
+    const regionLabel = heroCopy?.querySelector('.region');
+    if (heroCopy && regionLabel) {
+      const breadcrumb = document.createElement('nav');
+      breadcrumb.className = 'country-parent-breadcrumb';
+      breadcrumb.setAttribute('aria-label', '地域の階層');
+      const parent = document.createElement('a');
+      parent.href = 'countries/china/';
+      parent.textContent = data.parentNameJa || '中国';
+      const separator = document.createElement('span');
+      separator.textContent = ' / ';
+      separator.setAttribute('aria-hidden', 'true');
+      const current = document.createElement('span');
+      current.textContent = data.nameJa;
+      current.setAttribute('aria-current', 'page');
+      breadcrumb.append(parent, separator, current);
+      heroCopy.insertBefore(breadcrumb, regionLabel);
+    }
+    const numbersTitle = fragment.querySelector('#signature-facts-title');
+    if (numbersTitle) numbersTitle.textContent = 'この地域を知る数字';
+  }
+
   const heroTitle = fragment.querySelector('.hero h1');
   if (heroTitle) {
     const normalizedTitle = (data.nameEn || '').trim();
