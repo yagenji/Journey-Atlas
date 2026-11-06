@@ -65,18 +65,12 @@
       }
     }
     
-    .top-subregions{display:flex;gap:10px 28px;flex-wrap:wrap;margin:16px 0 23px;padding:14px 0;border-top:1px solid rgba(18,54,92,.12);border-bottom:1px solid rgba(18,54,92,.12)}
-    .top-subregions:empty{display:none}
-    .top-subregions__group{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px}
-    .top-subregions__label{font-size:12px;color:#647179;font-weight:600;margin-right:2px}
-    .top-subregions__group a{font-size:12px;color:#173a5d;text-decoration:none;border-bottom:1px solid rgba(23,58,93,.26);padding-bottom:2px}
-    .top-subregions__group a:hover,.top-subregions__group a:focus-visible{border-bottom-color:#173a5d}
     .map-country-nav__children{display:flex;flex-wrap:wrap;gap:4px 12px;padding:4px 12px 11px 39px}
     .map-country-nav__child{font-size:11px;text-decoration:none;color:#173a5d;border-bottom:1px solid rgba(23,58,93,.22)}
     .map-country-nav__child:hover,.map-country-nav__child:focus-visible{border-bottom-color:#173a5d}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261106-parent-200-1" defer></script>
+  <script src="assets/js/top.js?v=20261106-no-region-strip-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261106-parent-200-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
   <script src="assets/js/atlas-personal.js?v=20261106-parent-200-1" defer></script>
@@ -156,7 +150,6 @@
         <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
       </div>
       <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 DESTINATIONS</span></div>
-      <nav class="top-subregions" id="country-detail-regions" aria-label="イギリスと中国の詳細地域"></nav>
       <div class="all-countries-panel" id="all-countries-panel" hidden>
         <div class="all-countries-panel__head"><div><strong id="all-countries-title">索引　すべての国・地域（A–Z）</strong></div><button type="button" class="results-close-head" id="all-countries-close">一覧を閉じる ×</button></div>
         <div class="alphabet" aria-label="英語名の頭文字で絞り込む"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
