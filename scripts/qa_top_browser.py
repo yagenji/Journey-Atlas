@@ -31,17 +31,15 @@ def check(driver, viewport):
     driver.get(BASE + "/?qa=top-200")
     wait = WebDriverWait(driver, 40)
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")) == 200)
-    wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#country-detail-regions a")) == 6)
 
     cards = driver.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")
     slugs = [card.get_attribute("data-slug") for card in cards]
     if any(slug in ("hong-kong", "macau") for slug in slugs):
         errors.append("Hong Kong and Macau appeared among the 200 parent cards")
 
-    links = driver.find_elements(By.CSS_SELECTOR, "#country-detail-regions a")
-    for slug, href in EXPECTED.items():
-        if not any(link.get_attribute("href").endswith("/" + href) for link in links):
-            errors.append("Missing detail link: " + slug)
+    # Detail regions remain searchable; the visual link strip is intentionally absent.
+    if driver.find_elements(By.CSS_SELECTOR, "#country-detail-regions, .top-subregions"):
+        errors.append("Obsolete regional link strip remains on TOP")
 
     if driver.find_element(By.ID, "country-count").text.strip() != "200 DESTINATIONS":
         errors.append("TOP parent count is not 200")
