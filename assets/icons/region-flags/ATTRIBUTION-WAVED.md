@@ -1,4 +1,4 @@
-Waved England, Scotland and Wales flags
+Waved England, Scotland, Wales, Ireland and United Kingdom flags
 
 Source: Google Noto Emoji, third_party/region-flags/waved-svg
 https://github.com/googlefonts/noto-emoji/tree/main/third_party/region-flags/waved-svg

@@ -97,25 +97,17 @@
   box-shadow:0 1px 4px rgba(9,42,75,.22)
 }
 
-/* Equal-sized flag slots in Region onward-route cards, for SVG and emoji alike. */
+/* Match regular Country next-route flags (18px), including waved Region SVGs. */
 .region-country-page .next-route-card__flag{
   display:inline-flex;
-  width:24px;
+  width:18px;
   height:18px;
-  flex:0 0 24px;
+  flex:0 0 18px;
   align-items:center;
   justify-content:center;
   font-size:18px;
   line-height:1;
 }
-.region-country-page .next-route-card__flag svg{
-  display:block;
-  width:24px;
-  height:16px;
-  flex:none;
-}
-
-/* Waved SVGs have square canvases, matching the emoji glyph canvas. */
 .region-country-page .next-route-card__flag .region-route-flag{
-  display:block;width:24px;height:24px;max-width:none;object-fit:contain;flex:none
+  display:block;width:18px;height:18px;max-width:none;object-fit:contain;flex:none
 }

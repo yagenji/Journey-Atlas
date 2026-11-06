@@ -199,22 +199,25 @@ def main() -> int:
                         problems.append("Region related destination links mismatch")
                     # Regional flags are packaged SVG images instead of OS-dependent
                     # Unicode tags or inline St George shapes. Verify the actual asset.
-                    for country in ("ENGLAND", "WALES", "SCOTLAND"):
+                    route_flags = {"ENGLAND": "england", "WALES": "wales", "SCOTLAND": "scotland",
+                                   "IRELAND": "ireland", "NORTHERN IRELAND": "unitedkingdom"}
+                    for country, flag_slug in route_flags.items():
                         expected = sum(r.get("countryEn") == country for r in region.get("nextRoutes", []))
                         if not expected:
                             continue
                         check = driver.execute_script("""
-                            const name = arguments[0], slug = name.toLowerCase();
+                            const name = arguments[0], slug = arguments[1];
                             return [...document.querySelectorAll('.next-route-card')]
                                 .filter(card => card.querySelector('.next-route-card__country strong')?.textContent.trim() === name)
                                 .map(card => {
                                     const img = [...card.querySelectorAll('img')].find(el =>
                                         el.getAttribute('src')?.includes('region-flags/' + slug + '-waved.svg'));
                                     return {present: !!img, loaded: !!img?.complete && img?.naturalWidth > 0,
-                                            width: img?.getBoundingClientRect().width || 0};
+                                            width: img?.getBoundingClientRect().width || 0,
+                                            height: img?.getBoundingClientRect().height || 0};
                                 });
-                        """, country)
-                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 24) < 1 for x in check):
+                        """, country, flag_slug)
+                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 18) < 1 and abs(x["height"] - 18) < 1 for x in check):
                             problems.append(f"{country} regional SVG flag mismatch: {check}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
@@ -336,7 +339,7 @@ def main() -> int:
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Region fixed inset map QA failed: {inset}")
                     svg_flag_count = sum(
-                        str(route.get("countryEn", "")).upper() in {"ENGLAND", "WALES", "SCOTLAND"}
+                        str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
                     expected_images = 14 + bool((region.get("map") or {}).get("regions")) + svg_flag_count

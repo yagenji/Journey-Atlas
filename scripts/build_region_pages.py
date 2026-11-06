@@ -83,13 +83,14 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Use waved regional flags consistently, independent of OS emoji support."""
-    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
+    """Use one waved SVG family for every flag, independent of OS emoji sizing."""
+    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland',
+            'IRELAND': 'ireland', 'NORTHERN IRELAND': 'unitedkingdom'}.get(
         str(route.get('countryEn', '')).upper()
     )
     if slug:
         return (f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
-                'alt="" width="24" height="24" decoding="async">')
+                'alt="" width="30" height="30" decoding="async">')
     return esc(route.get('flag', ''))
 
 
