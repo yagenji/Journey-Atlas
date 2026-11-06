@@ -369,7 +369,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="country-theme-context__label">TRAVEL THEMES</span>'
         '<div class="country-theme-context__list" id="country-theme-list">'
         + ''.join(f'<span class="country-theme-chip">{esc(label)}</span>'
-                  for label in region_theme_labels(parent))
+                  for label in (data.get('travelThemes') or region_theme_labels(parent)))
         + '</div></div></div></section>')
     result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
         '<div class="hero-caption__inner page-shell">'
