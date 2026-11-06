@@ -4,6 +4,7 @@
   'use strict';
   const SCENE_PREFIX = 'journey-atlas:scene:';
   const REGION_WISH_PREFIX = 'journey-atlas:region-wish:';
+  const REGION_VISITED_PREFIX = 'journey-atlas:region-visited:';
   const VISITED_PREFIX = 'journey-atlas:visited:';
   const WISH_PREFIX = 'journey-atlas:wish:';
   const REGISTRY_PATH = 'data/atlas-destinations.json';
@@ -41,6 +42,15 @@
       return item && validId(item.parentSlug) && validId(item.slug)
         && typeof item.nameJa === 'string'
         && key === REGION_WISH_PREFIX + item.parentSlug + ':' + item.slug
+        && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
+    } catch { return null; }
+  }).filter(Boolean);
+  const getRegionVisits = () => allStoredKeys().filter(key => key.startsWith(REGION_VISITED_PREFIX)).map(key => {
+    try {
+      const item = JSON.parse(getStored(key));
+      return item && validId(item.parentSlug) && validId(item.slug)
+        && typeof item.nameJa === 'string'
+        && key === REGION_VISITED_PREFIX + item.parentSlug + ':' + item.slug
         && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
     } catch { return null; }
   }).filter(Boolean);
@@ -159,8 +169,59 @@
       });
     }).catch(() => { /* Only sourced landscape explanations are shown. */ });
   }
-  window.addEventListener('journeyatlas:countryready', event => mountCountry(event.detail));
-  if (window.journeyAtlasCurrentCountry) mountCountry(window.journeyAtlasCurrentCountry);
+  // Country pages and the four UK Region pages use one visited-control contract.
+  // The pre-existing map and My Atlas read exactly the same Country visited key.
+  function mountVisitedButton(country) {
+    if (!country || !validId(country.slug) || document.querySelector('[data-ja-visited]')) return;
+    const isUkRegion = validId(country.regionParent);
+    const isChinaDetail = country.parentSlug === 'china' && ['hong-kong','macau'].includes(country.slug);
+    const isRegion = isUkRegion || isChinaDetail;
+    const parent = isUkRegion ? country.regionParent : '';
+    const wrap = document.querySelector(isRegion ? '.region-wish-wrap' : '.wish-wrap');
+    if (!wrap) return;
+    const key = isUkRegion
+      ? REGION_VISITED_PREFIX + parent + ':' + country.slug
+      : VISITED_PREFIX + country.slug;
+    const button = make('button', 'wish-button ja-visited-button');
+    button.type = 'button';
+    button.dataset.jaVisited = country.slug;
+    const icon = make('span', 'ja-visited-icon', '✓');
+    icon.setAttribute('aria-hidden', 'true');
+    const title = make('strong');
+    const note = make('small', 'このブラウザに保存します');
+    button.append(icon, title, note);
+    const status = make('p', 'wish-status ja-visited-status');
+    status.setAttribute('role', 'status');
+    const read = () => getStored(key) !== null && (isUkRegion || getStored(key) === 'true');
+    const draw = () => {
+      const saved = read();
+      button.classList.toggle('is-saved', saved);
+      button.setAttribute('aria-pressed', String(saved));
+      title.textContent = saved
+        ? (isRegion ? '行った地域に登録しました' : '行った国に登録しました')
+        : (isRegion ? 'この地域に行った' : 'この国に行った');
+    };
+    // Keep wishlist and visit records independent, as on the My Atlas map.
+    wrap.append(button, status);
+    draw();
+    button.addEventListener('click', () => {
+      const had = read();
+      const value = isUkRegion
+        ? JSON.stringify({parentSlug: parent, slug: country.slug, nameJa: country.nameJa,
+            href: regionCountryHref(parent, country.slug)})
+        : 'true';
+      const ok = had ? removeStored(key) : putStored(key, value);
+      if (!ok) {
+        status.textContent = 'このブラウザには保存できませんでした。';
+        return;
+      }
+      draw();
+      status.textContent = had ? '行った記録を解除しました。' : '行った記録に保存しました。';
+    });
+    window.addEventListener('storage', draw);
+  }
+  window.addEventListener('journeyatlas:countryready', event => { mountCountry(event.detail); mountVisitedButton(event.detail); });
+  if (window.journeyAtlasCurrentCountry) { mountCountry(window.journeyAtlasCurrentCountry); mountVisitedButton(window.journeyAtlasCurrentCountry); }
 
   const host = document.querySelector('#atlas-personal-home');
   if (!host) return;
@@ -206,10 +267,11 @@
     const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
       (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
+    const regionVisits = getRegionVisits().filter(w => all.some(c => c.slug === w.parentSlug));
     // Parent Countries define the 200 denominator. Detail regions keep
     // independent wishes and visits; no automatic parent selection.
     const detailWishCount = detailWant.length + regionWishes.length;
-    const detailVisitCount = detailSeen.length;
+    const detailVisitCount = detailSeen.length + regionVisits.length;
     summary.replaceChildren();
     [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
@@ -227,8 +289,10 @@
       const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
       if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
     });
-    const personalGroups = [sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
-    if (detailSeen.length) personalGroups.push(sectionFor('行った詳細地域', detailSeen, ''));
+    const personalGroups = [sectionFor('行った国・地域', seen, '国・地域ページの「この国・地域に行った」または地図から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
+    if (detailSeen.length || regionVisits.length) personalGroups.push(
+      sectionFor('行った詳細地域', [...detailSeen, ...regionVisits.map(w => ({...w,flag:''}))], '')
+    );
     if (detailWant.length || regionWishes.length) personalGroups.push(
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,flag:''}))], '')
     );
@@ -268,7 +332,8 @@
       visited: countries.filter(visited).map(c => c.slug),
       wished: countries.filter(wished).map(c => c.slug),
       favorites: getFavorites(),
-      regionWishes: getRegionWishes()
+      regionWishes: getRegionWishes(),
+      regionVisits: getRegionVisits()
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -305,6 +370,12 @@
         && allowed.has(w.parentSlug) && typeof w.nameJa === 'string'
         && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
         if (!putStored(REGION_WISH_PREFIX + w.parentSlug + ':' + w.slug,
+          JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
+      });
+      if (Array.isArray(payload.regionVisits)) payload.regionVisits.filter(w => w && validId(w.parentSlug) && validId(w.slug)
+        && allowed.has(w.parentSlug) && typeof w.nameJa === 'string'
+        && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
+        if (!putStored(REGION_VISITED_PREFIX + w.parentSlug + ':' + w.slug,
           JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
       });
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
