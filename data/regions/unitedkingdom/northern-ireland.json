@@ -25,11 +25,6 @@
   },
   "profile": [
     {
-      "label": "地域",
-      "value": "北ヨーロッパ（イギリスの一部・アイルランド島北東部）",
-      "sourceKey": "profile"
-    },
-    {
       "label": "首都",
       "value": "ベルファスト",
       "sourceKey": "profile"
@@ -284,16 +279,16 @@
   ],
   "culture": [
     {
-      "title": "島の北東部に、重なり合う帰属意識がある",
-      "text": "北アイルランドは英国の一部で、隣接するアイルランド共和国とは異なる。1998年のベルファスト合意は、住民が英国人、アイルランド人、またはその両方として自己認識する権利を尊重する。街の歴史に触れるときは、一つの立場だけで土地を語らず、複数の経験に耳を傾けたい。",
+      "title": "一つの土地に、重なり合う帰属意識がある",
+      "text": "北アイルランドでは、英国人、アイルランド人、またはその両方という自己認識が尊重される。土地の呼び名や街に描かれた壁画にも、異なる経験や記憶が表れる。ひとつの立場で地域全体を語らず、複数の声に耳を傾けたい。",
       "topicKey": "identities",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
+      "themeEn": "IDENTITY",
+      "themeJa": "暮らしを知る",
       "icon": "history",
       "sourceKey": "agreement",
       "points": [
-        "1998年のベルファスト合意は、英国人・アイルランド人・両方としての自己認識を尊重する",
-        "一つの呼称や立場に決めつけず、複数の歴史的経験に耳を傾ける"
+        "英国人・アイルランド人・両方という自己認識が尊重される",
+        "一つの呼称や立場に決めつけず、複数の経験に耳を傾ける"
       ]
     },
     {
@@ -398,7 +393,8 @@
         "sourceKey": "food"
       }
     ],
-    "intro": "朝の一皿から、ジャガイモの料理、茶色いパン、家庭の菓子まで、日々の味を4皿からたどる。"
+    "intro": "朝の一皿から、ジャガイモの料理、茶色いパン、家庭の菓子まで、日々の味を4皿からたどる。",
+    "kicker": "TASTE OF NORTHERN IRELAND"
   },
   "travelTrivia": [
     {
@@ -624,7 +620,9 @@
     "flag": "2024-07-30英国議会書面回答。2026-11-04確認。地域専用の公式旗は仮定せず、旗が必要な表示には英国旗を使用。",
     "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。",
     "signatureFacts": "クレーンはVisit Belfast、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
-    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
+    "historyPartition": "2026-11-06",
+    "agreement": "2026-11-06"
   },
   "sources": {
     "profile": "https://www.nidirect.gov.uk/articles/about-northern-ireland",
@@ -682,7 +680,8 @@
     "religion": "https://www.nisra.gov.uk/system/files/statistics/census-2021-main-statistics-for-northern-ireland-phase-1-statistical-bulletin-religion.pdf",
     "cranes": "https://visitbelfast.com/partners/samson-goliath-cranes",
     "linen": "https://www.open.edu/openlearn/history-the-arts/history/heritage/the-belfast-linen-industry",
-    "peaceBridge": "https://www.ireland.com/en-gb/myireland/attraction/2911f438826a473c90d1c5a260cc1cc5/peace-bridge"
+    "peaceBridge": "https://www.ireland.com/en-gb/myireland/attraction/2911f438826a473c90d1c5a260cc1cc5/peace-bridge",
+    "historyPartition": "https://commonslibrary.parliament.uk/research-briefings/cbp-12131/"
   },
   "travelThemes": [
     "地球の風景",
@@ -701,5 +700,12 @@
   },
   "contentQaVersion": 6,
   "parentNameEn": "UNITED KINGDOM",
-  "parentReturnDescription": "4つの構成国と8つの景色を見る"
+  "parentReturnDescription": "4つの構成国と8つの景色を見る",
+  "historyContext": {
+    "text": "北アイルランドは、1921年のアイルランド島の分割によって成立した、イギリスの一部。隣接するアイルランド共和国とは異なる。長年の紛争を経て、1998年のベルファスト合意が和平と権力分担の枠組みを定め、現在の議会・自治制度の基礎となっている。",
+    "sourceKeys": [
+      "historyPartition",
+      "agreement"
+    ]
+  }
 }

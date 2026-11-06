@@ -25,11 +25,6 @@
   },
   "profile": [
     {
-      "label": "地域",
-      "value": "北ヨーロッパ（イギリスの構成国）",
-      "sourceKey": "profile"
-    },
-    {
       "label": "首都",
       "value": "カーディフ",
       "sourceKey": "profile"
@@ -376,7 +371,8 @@
         "sourceKey": "baraBrith"
       }
     ],
-    "intro": "家庭のスープ、海藻の伝統食、鉄板で焼く菓子まで、土地の暮らしに近い味を4皿からたどる。"
+    "intro": "家庭のスープ、海藻の伝統食、鉄板で焼く菓子まで、土地の暮らしに近い味を4皿からたどる。",
+    "kicker": "TASTE OF WALES"
   },
   "travelTrivia": [
     {
@@ -603,7 +599,9 @@
     "sheep2025": "2025-06-02",
     "sheepPopulationRatio": "2025年6月の羊・子羊881万頭 ÷ 2025年6月人口3,175,200人 = 約2.77倍。表示は約2.8倍。",
     "castleLandscape": "歴史上記録された城の総数。現在残る城・廃墟のみの件数とは区別。2026-11-05確認。",
-    "notes": "知っておきたいことの運用情報は2026-11-06確認。"
+    "notes": "知っておきたいことの運用情報は2026-11-06確認。",
+    "historyUnion": "2026-11-06",
+    "historyDevolution": "2026-11-06"
   },
   "sources": {
     "conwy": "https://cadw.gov.wales/visit/places-to-visit/castell-conwy",
@@ -652,7 +650,9 @@
     "slate": "https://www.visitwales.com/destinations/north-wales/eryri-snowdonia-mountains-and-coast/six-areas-unesco-awarded-slate",
     "patagonia": "https://www.wales.com/history-welsh-people-patagonia",
     "manVHorse": "https://www.green-events.co.uk/man-v-horse",
-    "manVHorseOrigin": "https://www.visitmidwales.co.uk/whats-on/man-v-horse-marathon-green-events-p1743231"
+    "manVHorseOrigin": "https://www.visitmidwales.co.uk/whats-on/man-v-horse-marathon-green-events-p1743231",
+    "historyUnion": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/originsofparliament/birthofparliament/overview/knights/",
+    "historyDevolution": "https://research.senedd.wales/research-articles/devolution-20-from-assembly-to-senedd/"
   },
   "travelThemes": [
     "地球の風景",
@@ -671,5 +671,12 @@
   },
   "contentQaVersion": 6,
   "parentNameEn": "UNITED KINGDOM",
-  "parentReturnDescription": "4つの構成国と8つの景色を見る"
+  "parentReturnDescription": "4つの構成国と8つの景色を見る",
+  "historyContext": {
+    "text": "ウェールズは16世紀の法律によってイングランドの統治・法制度に組み込まれた。1999年にウェールズ議会の前身となる国民議会が発足し、その後、立法権限が拡大した。現在はイギリスを構成する4つの地域の一つで、独自の議会セネッズを持つ。",
+    "sourceKeys": [
+      "historyUnion",
+      "historyDevolution"
+    ]
+  }
 }

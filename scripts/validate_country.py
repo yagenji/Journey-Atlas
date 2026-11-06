@@ -530,8 +530,15 @@ def validate_country(path: Path, strict: bool = False) -> list[str]:
     if strict:
         facts = data.get("facts") if isinstance(data.get("facts"), list) else []
         labels = [item.get("label") for item in facts if isinstance(item, dict)]
-        if labels != COMMON_FACT_LABELS:
-            fail(errors, f"{path.name}: 基本情報は {', '.join(COMMON_FACT_LABELS)} の順で7項目必要です")
+        is_region_detail = data.get("parentSlug") == "china" and data.get("slug") in {"hong-kong", "macau"}
+        expected_labels = COMMON_FACT_LABELS[1:] if is_region_detail else COMMON_FACT_LABELS
+        if labels != expected_labels:
+            fail(errors, f"{path.name}: 基本情報は {', '.join(expected_labels)} の順で{len(expected_labels)}項目必要です")
+        if is_region_detail:
+            history = data.get("historyContext") or {}
+            keys = history.get("sourceKeys") or []
+            if not history.get("text") or not keys or any(key not in data.get("sources", {}) for key in keys):
+                fail(errors, f"{path.name}: historyContext に本文と検証済みの sourceKeys が必要です")
         population = next((item.get("value", "") for item in facts if item.get("label") == "人口"), "")
         if re.search(r"\d+\.\d+", str(population)):
             fail(errors, f"{path.name}: 人口表示に小数精度を使わないでください: {population}")
