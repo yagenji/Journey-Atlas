@@ -1,5 +1,5 @@
 /* Region page interactions: reuse the established Country scene and favorite semantics.
- * Region pages are not additional entries in the 202-destination registry. */
+ * Region pages do not increase the canonical 200 Country Page count. */
 (() => {
   'use strict';
   const match = window.location.pathname.match(/\/countries\/([a-z0-9-]+)\/([a-z0-9-]+)\/?/);

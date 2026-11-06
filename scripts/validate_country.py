@@ -693,8 +693,12 @@ def load_destination_scope() -> tuple[list[dict], list[str]]:
                 continue
             seen.add(slug)
             items.append(item)
-    if len(items) != 202:
-        errors.append(f"destination scope は202件必要ですが {len(items)} 件です")
+    country_count = sum(item.get("slug") not in {"hong-kong", "macau"} for item in items)
+    if len(items) != 202 or country_count != 200:
+        errors.append(
+            f"Country Pageは200件、詳細地域は2件必要ですが、"
+            f"Country {country_count}件／登録総数 {len(items)} 件です"
+        )
     return items, errors
 
 
@@ -810,7 +814,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Validation passed ({mode}): {len(paths)} country file(s); 202-destination scope is consistent")
+    print(f"Validation passed ({mode}): {len(paths)} country file(s); 200 Country Pages + 2 detail-region records are consistent")
     return 0
 
 

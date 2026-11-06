@@ -57,7 +57,7 @@ def render_section() -> str:
         if source.get("detail"):
             text += "：%s" % e(source["detail"])
         if source_id in SUMMARISED:
-            text += "全%dのうち%dの国・地域の地図で使用。" % (len(names), len(users))
+            text += "国・地域の地図%d件で使用。" % len(users)
         elif len(users) > 1:
             text += "使用：%s。" % e("、".join(names[slug] for slug in users))
         items.append("        <li>%s</li>\n" % text)

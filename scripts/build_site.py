@@ -584,8 +584,13 @@ def main() -> int:
     prepare_generic_country_page()
     registries = load_registries()
     scope = all_destinations(registries)
-    if len(scope) != 202:
-        raise ValueError(f"Expected 202 destinations, found {len(scope)}")
+    detail_slugs = {"hong-kong", "macau"}
+    country_scope = [item for item in scope if item.get("slug") not in detail_slugs]
+    if len(country_scope) != 200 or len(scope) != 202:
+        raise ValueError(
+            f"Expected 200 Country Pages plus 2 China detail regions; "
+            f"found {len(country_scope)} and {len(scope) - len(country_scope)}"
+        )
     published = published_destinations(registries)
     published_slugs = {item["slug"] for item in published}
     reviewable = reviewable_destinations(registries)
@@ -601,7 +606,7 @@ def main() -> int:
     print(f"Build version: {BUILD_VERSION}")
     print(
         f"Built CSS bundles, direct top media, {len(reviewable)} reviewable country page(s), "
-        f"and {len(urls)} published country page(s) from 202 destinations."
+        f"and {len(urls)} published Country/detail-region routes (200 Country Pages + 2 China details)."
     )
     return 0
 
