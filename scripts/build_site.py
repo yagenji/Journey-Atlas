@@ -325,49 +325,53 @@ def prepare_generic_country_page() -> None:
 
 
 def inject_published_region_nav(page: str, slug: str) -> str:
-    """Country-to-region discovery; public pages link only to published regional routes."""
+    """Image-led region links are declared by each parent Country, never inferred."""
+    parent_path = ROOT / "data" / "countries" / f"{slug}.json"
+    parent = json.loads(parent_path.read_text(encoding="utf-8"))
+    regions = parent.get("regionDiscoveries", [])
+    if not regions:
+        return page
+    published_countries = {
+        item["slug"] for item in json.loads(CORE_REGISTRY_PATH.read_text(encoding="utf-8")).get("destinations", [])
+        if item.get("atlasPublished") is True
+    }
     cards: list[str] = []
-    if slug == "unitedkingdom":
-        directory = ROOT / "data" / "regions" / slug
-        for region_slug in ("england", "scotland", "wales", "northern-ireland"):
-            path = directory / f"{region_slug}.json"
+    for item in regions:
+        kind = item.get("kind")
+        region_slug = item.get("slug", "")
+        if not re.fullmatch(r"[a-z0-9-]+", region_slug):
+            continue
+        if kind == "region":
+            path = ROOT / "data" / "regions" / slug / f"{region_slug}.json"
             if not path.exists():
                 continue
             region = json.loads(path.read_text(encoding="utf-8"))
             if region.get("regionPublished") is not True:
                 continue
-            name = html.escape(region.get("nameJa", region_slug))
-            name_en = html.escape(region.get("nameEn", region_slug.upper()))
-            image = html.escape(region.get("hero", {}).get("image", ""), quote=True)
-            href = html.escape(f"countries/{slug}/{region_slug}/", quote=True)
-            cards.append(
-                f'<a class="region-discovery__card" href="{href}">'
-                f'<img src="{image}" alt="" loading="lazy" decoding="async">'
-                f'<span class="region-discovery__name">{name}<small>{name_en}</small></span></a>'
-            )
-        intro = "4つの地域、それぞれに異なる風景と文化がある。"
-    elif slug == "china":
-        for region_slug in ("hong-kong", "macau"):
+            href = f"countries/{slug}/{region_slug}/"
+        elif kind == "country":
+            if region_slug not in published_countries:
+                continue
             path = ROOT / "data" / "countries" / f"{region_slug}.json"
             if not path.exists():
                 continue
             region = json.loads(path.read_text(encoding="utf-8"))
-            name = html.escape(region.get("nameJa", region_slug))
-            name_en = html.escape(region.get("nameEn", region_slug.upper()))
-            image = html.escape(region.get("hero", {}).get("image", ""), quote=True)
-            href = html.escape(f"countries/{region_slug}/", quote=True)
-            cards.append(
-                f'<a class="region-discovery__card" href="{href}">'
-                f'<img src="{image}" alt="" loading="lazy" decoding="async">'
-                f'<span class="region-discovery__name">{name}<small>{name_en}</small></span></a>'
-            )
-        intro = "中国本土とは異なる表情を持つ、2つの特別行政区。"
-    else:
-        return page
+            href = f"countries/{region_slug}/"
+        else:
+            continue
+        name = html.escape(region.get("nameJa", region_slug))
+        name_en = html.escape(region.get("nameEn", region_slug.upper()))
+        image = html.escape(region.get("hero", {}).get("image", ""), quote=True)
+        cards.append(
+            f'<a class="region-discovery__card" href="{html.escape(href, quote=True)}">'
+            f'<img src="{image}" alt="" loading="lazy" decoding="async">'
+            f'<span class="region-discovery__name">{name}<small>{name_en}</small></span></a>'
+        )
     if not cards:
         return page
+    intro = html.escape(parent.get("regionDiscoveryIntro", "さらに詳しい地域の風景へ。"))
     markup = (
-        '      <section class="region-discovery page-shell" aria-labelledby="region-discovery-title">\n'
+        '      <section class="region-discovery" aria-labelledby="region-discovery-title">\n'
         '        <div class="region-discovery__head">'
         '          <span class="section-kicker-en">EXPLORE REGIONS</span>'
         '          <h2 id="region-discovery-title">地域から旅を探す</h2>'
@@ -376,9 +380,6 @@ def inject_published_region_nav(page: str, slug: str) -> str:
         f'        <div class="region-discovery__grid">{"".join(cards)}</div>\n'
         '      </section>\n'
     )
-    # The Country's eight scenes and travel map lead; regional exploration follows them.
-    # Keep the region block within the existing page shell and before extras.
-    markup = markup.replace('region-discovery page-shell', 'region-discovery', 1)
     marker = '        <section class="atlas-extras"'
     if marker not in page:
         raise ValueError("Country extras marker missing for Region navigation")
