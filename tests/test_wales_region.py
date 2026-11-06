@@ -1,4 +1,4 @@
-"""Finished Wales handoff: image integrity, review status and close map anchors."""
+"""Finished Wales handoff: image integrity, publication status and close map anchors."""
 import copy
 import hashlib
 import json
@@ -33,12 +33,12 @@ class WalesRegion(unittest.TestCase):
                 self.assertEqual(image.format, 'WEBP')
         self.assertEqual(len(hashes), 13)
 
-    def test_unpublished_shared_page(self):
+    def test_published_shared_page(self):
         page, canonical, published = region.render_region(self.data,
             site_url='https://atlas.yagenji.com/', version='test')
-        self.assertFalse(published)
+        self.assertTrue(published)
         self.assertEqual(canonical, 'https://atlas.yagenji.com/countries/unitedkingdom/wales/')
-        self.assertIn('noindex,follow', page)
+        self.assertIn('content="index,follow"', page)
         self.assertEqual(page.count('class="scene-card region-scene"'), 8)
         self.assertEqual(page.count('class="taste-card region-taste"'), 4)
         self.assertEqual(len(self.data['culture']), 6)
