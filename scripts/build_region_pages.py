@@ -435,7 +435,9 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
 
     result.append('<section class="taste-section" aria-labelledby="region-taste-title">'
         f'<div class="taste-section__head"><div><span class="section-kicker-en">TASTE OF {esc(data["nameEn"])}</span>'
-        f'<h2 id="region-taste-title">{esc(data["taste"]["title"])}</h2></div></div>'
+        f'<h2 id="region-taste-title">{esc(data["taste"]["title"])}</h2>'
+        + (f'<p>{esc(data["taste"]["intro"])}</p>' if data['taste'].get('intro') else '')
+        + '</div></div>'
         '<div class="taste-grid">')
     for item in data['taste']['items']:
         result.append('<article class="taste-card region-taste"><div class="taste-card__image media-slot">'

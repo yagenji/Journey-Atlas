@@ -42,9 +42,14 @@
       "sourceKey": "landArea"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "英語、スコッツ語、スコットランド・ゲール語など",
       "sourceKey": "languages"
+    },
+    {
+      "label": "主な宗教",
+      "value": "無宗教が約51%／最大宗派はスコットランド教会（約20%、2022年）",
+      "sourceKey": "religion"
     },
     {
       "label": "通貨",
@@ -192,20 +197,21 @@
         "text": "ジャガイモと玉ねぎをゆっくり煮込み、肉を加えることもある家庭料理。",
         "image": "assets/images/united-kingdom/scotland/approved/food-stovies.webp"
       }
-    ]
+    ],
+    "intro": "港町のスープ、祝いの席のデザート、家庭の煮込み、街の軽食まで、4皿からたどる。"
   },
   "culture": [
     {
-      "topicKey": "castle-rock-city",
+      "topicKey": "old-new-town",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "title": "火山岩の上に街の歴史が積み重なる",
-      "text": "エディンバラ城は古い火山岩の上に建ち、王の居城から軍事拠点へと役割を変えてきた。旧市街の通りを歩くと、城の地形が街の骨格そのものを形づくったことがわかる。",
-      "sourceKey": "edinburghCastle",
+      "title": "谷を挟んで、中世の街と計画都市が向き合う",
+      "text": "エディンバラでは、細い路地が枝分かれする中世の旧市街と、18〜19世紀に計画された新市街が谷を挟んで並ぶ。二つの対比が、一つの世界遺産として評価されている。",
+      "sourceKey": "oldNewTown",
       "points": [
-        "エディンバラ城は古い火山岩の上に建つ",
-        "城と周囲の地形が旧市街の骨格を形づくってきた"
+        "路地の続く旧市街と、計画された新市街が谷を挟んで並ぶ",
+        "二つの街の対比が、世界遺産として評価されている"
       ]
     },
     {
@@ -222,16 +228,16 @@
       ]
     },
     {
-      "topicKey": "glacial-landscape",
-      "themeEn": "EARTH",
-      "themeJa": "大地を知る",
-      "icon": "landscape",
-      "title": "ハイランドの入口に、断層が境目を引く",
-      "text": "ローモンド湖畔のコニック・ヒルは、ハイランド境界断層の上に立つ。この断層を境に、北の山地と南の低地で土地の姿が変わる。湖を見渡す丘の上で、地形の境目そのものを歩いてみたい。",
-      "sourceKey": "conicHill",
+      "topicKey": "clearances",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "history",
+      "title": "静かな谷に、追われた人々の暮らしがあった",
+      "text": "18世紀半ばから19世紀半ばにかけて、ハイランドと西部の島々では、羊を放牧するために住民が土地を追われた。人の少ない谷の静けさには、この「クリアランス」の歴史も重なっている。",
+      "sourceKey": "clearances",
       "points": [
-        "コニック・ヒルはハイランド境界断層の上に立つ",
-        "断層を境に、北の山地と南の低地で景色が変わる"
+        "羊の放牧のために、住民が土地を追われた時代があった",
+        "人の少ない谷の背景に、クリアランスの歴史がある"
       ]
     },
     {
@@ -261,31 +267,31 @@
       ]
     },
     {
-      "topicKey": "island-seafood",
-      "themeEn": "SEA",
-      "themeJa": "海を知る",
-      "icon": "sea",
-      "title": "港で見える、海と島の日々のつながり",
-      "text": "スカイ島のポートリーでは、色とりどりの建物の前の港に漁船が行き交う。島を単なる景勝地として見るのではなく、海の仕事と食がつながる暮らしを眺めることができる。",
-      "sourceKey": "skyeIsland",
+      "topicKey": "harris-tweed",
+      "themeEn": "CRAFT",
+      "themeJa": "手仕事を知る",
+      "icon": "culture",
+      "title": "ハリス・ツイードは、法律が産地を定めた布",
+      "text": "ハリス・ツイードは法律によりアウター・ヘブリディーズで生産することが定められ、織り手の自宅で手織りされる。オーブのマークが、その正規の品である証になる。",
+      "sourceKey": "harrisTweed",
       "points": [
-        "ポートリーの港では漁船と色彩豊かな建物が見られる",
-        "島の暮らしは海の仕事や食とつながっている"
+        "法律によりアウター・ヘブリディーズでの生産が定められている",
+        "織り手の自宅で手織りされ、オーブのマークが証になる"
       ]
     }
   ],
   "forWhom": [
     {
-      "title": "城と石の街を歩きたい",
-      "text": "エディンバラの旧市街や石の城、町に残る歴史をじっくり見たい人へ。"
+      "title": "城と石の街を歩きたい人",
+      "text": "エディンバラの旧市街や石の城、町に残る歴史をじっくり見たい人。"
     },
     {
-      "title": "山と地形に惹かれる",
-      "text": "ローモンド湖の島々、スカイ島の岩峰、森林の湖を自分の目で確かめたい人へ。"
+      "title": "山と地形に惹かれる人",
+      "text": "ローモンド湖の島々、スカイ島の岩峰、森林の湖を自分の目で確かめたい人。"
     },
     {
-      "title": "島の暮らしと海を知りたい",
-      "text": "ヘブリディーズの白砂やオークニーの遺跡、港とフェリーのある暮らしを味わいたい人へ。"
+      "title": "島の暮らしと海を知りたい人",
+      "text": "ヘブリディーズの白砂やオークニーの遺跡、港とフェリーのある暮らしを味わいたい人。"
     }
   ],
   "notes": [
@@ -379,66 +385,73 @@
     "conicHill": "https://en.wikipedia.org/wiki/Conic_Hill",
     "scotchPie": "https://en.wikipedia.org/wiki/Scotch_pie",
     "uigFerry": "https://www.calmac.co.uk/ports/uig-port/",
-    "jacobite": "https://westcoastrailways.co.uk/jacobite"
+    "jacobite": "https://westcoastrailways.co.uk/jacobite",
+    "religion": "https://www.scotlandscensus.gov.uk/2022-reports/scotland-s-census-2022-ethnic-group-national-identity-language-and-religion/",
+    "munros": "https://www.walkhighlands.co.uk/munros/",
+    "daylightSummer": "https://timeanddate.com/sun/uk/edinburgh?month=6",
+    "daylightWinter": "https://edinburghguide.com/events/wintersolstice",
+    "oldNewTown": "https://whc.unesco.org/en/list/728",
+    "clearances": "https://www.britannica.com/event/Highland-Clearances",
+    "harrisTweed": "https://www.harristweed.org/"
   },
   "signatureFacts": [
     {
       "topicKey": "islands",
-      "label": "島々と人の暮らし",
+      "label": "沖合の島",
       "value": "790島超",
       "note": "スコットランドには790を超える沖合の島々があり、政府の調査資料ではそのうち93島に人が暮らす。ハイランドとは異なる、海と島の世界が広がる。",
       "icon": "sea",
       "sourceKey": "islands"
     },
     {
-      "topicKey": "forth-bridge-1890",
-      "label": "赤い鉄道橋の開通",
-      "value": "1890年",
-      "note": "フォース湾に架かるフォース橋は1890年に開通。鋼鉄の巨大なカンチレバー橋で、現在も列車を通し続ける世界遺産だ。",
-      "icon": "road",
-      "sourceKey": "forthBridge"
+      "topicKey": "edinburgh-daylight",
+      "label": "エディンバラの昼の長さ",
+      "value": "約17.6時間／約7時間",
+      "note": "夏至は17時間36分、冬至は7時間弱。同じ街で昼の長さが季節によって約2.5倍変わるため、旅の組み立ても変わる。",
+      "icon": "sun",
+      "sourceKey": "daylightSummer"
     },
     {
-      "topicKey": "national-parks",
-      "label": "湖と山を守る国立公園",
-      "value": "2公園",
-      "note": "ローモンド湖・トロサックス国立公園とケアンゴームズ国立公園。湖岸と山地の景観を、自然保護と地域の暮らしを重ねて訪ねられる。",
-      "icon": "landscape",
-      "sourceKey": "nationalParks"
+      "topicKey": "munros",
+      "label": "マンロー",
+      "value": "282座",
+      "note": "標高3,000フィート（約914m）を超えるスコットランドの山。1891年にヒュー・マンローが一覧にまとめ、今も全山登頂を目指す登山文化が続く。",
+      "icon": "hike",
+      "sourceKey": "munros"
     }
   ],
   "encounters": [
     {
-      "title": "城のある石の街",
-      "icon": "city"
-    },
-    {
-      "title": "島の浮かぶ湖",
+      "title": "ハイランド牛",
       "icon": "landscape"
     },
     {
-      "title": "島の岩峰と稜線",
-      "icon": "hike"
+      "title": "ウイスキー蒸留所",
+      "icon": "food"
     },
     {
-      "title": "谷を渡る鉄道",
-      "icon": "road"
+      "title": "バグパイプの音",
+      "icon": "culture"
     },
     {
-      "title": "白砂と青緑の海",
+      "title": "タータンの布地",
+      "icon": "culture"
+    },
+    {
+      "title": "ケイリーの踊り",
+      "icon": "culture"
+    },
+    {
+      "title": "島へ渡るカーフェリー",
       "icon": "sea"
     },
     {
-      "title": "先史時代の住まい",
-      "icon": "history"
+      "title": "待避所のある一車線道路",
+      "icon": "road"
     },
     {
-      "title": "断崖の城跡",
-      "icon": "history"
-    },
-    {
-      "title": "松林と湖の静けさ",
-      "icon": "quiet"
+      "title": "ヒースの丘",
+      "icon": "landscape"
     }
   ],
   "travelTrivia": [
@@ -599,7 +612,8 @@
     "landArea": "政府資料に基づく概数（2025年）",
     "islands": "2022年9月公表のスコットランド政府調査資料",
     "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
-    "notes": "知っておきたいことの運用情報は2026-11-06確認。"
+    "notes": "知っておきたいことの運用情報は2026-11-06確認。",
+    "daylight": "エディンバラの2026年の夏至・冬至の昼の長さ。2026-11-06確認。"
   },
   "capital": {
     "nameJa": "エディンバラ",

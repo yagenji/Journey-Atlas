@@ -45,9 +45,14 @@
       "sourceKey": "area"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "英語、アイルランド語、アルスター・スコッツ語など",
       "sourceKey": "profile"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック約42%／長老派、アイルランド教会などのキリスト教系／無宗教など約19%（2021年）",
+      "sourceKey": "religion"
     },
     {
       "label": "通貨",
@@ -191,7 +196,7 @@
       "id": "rathlin-island",
       "name": "ラスリン島",
       "nameLocal": "Rathlin West Light / Rathlin Island",
-      "description": "島の西端には、断崖の途中に組み込まれた角塔の灯台がある。上に建物、下に灯室という配置が、海鳥の集まる岩棚と重なる。",
+      "description": "島の西端、断崖の途中に白い灯台が組み込まれている。海鳥の集まる岩棚のすぐそばで、北大西洋の風と波を受ける。",
       "coordinates": {
         "latitude": 55.3008667,
         "longitude": -6.28025
@@ -203,16 +208,16 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "causeway-coastal-route",
-      "label": "海岸をつなぐ観光道路",
-      "value": "約190km",
-      "note": "コーズウェー沿岸道路は、ベルファストからデリー／ロンドンデリーまで北東の海岸を結ぶ。途中の9つの周遊路で、谷や港町へ寄り道できる。",
-      "icon": "landscape",
-      "sourceKey": "causewayCoastalRoute"
+      "topicKey": "samson-crane",
+      "label": "造船所のクレーン、サムソン",
+      "value": "高さ106 m",
+      "note": "ベルファストの造船所に立つ黄色い2基のクレーンの一つ。サムソンは1974年、ゴリアテは1969年に建造され、史跡に指定されて造船の街の記憶を伝える。",
+      "icon": "history",
+      "sourceKey": "cranes"
     },
     {
       "topicKey": "lough-neagh",
-      "label": "英国最大の淡水湖",
+      "label": "ネイ湖の面積",
       "value": "383km²",
       "note": "北アイルランドの中央に広がるネイ湖。英国・アイルランド諸島最大の淡水湖で、内陸に大きな水辺の景観をつくる。",
       "icon": "sea",
@@ -220,7 +225,7 @@
     },
     {
       "topicKey": "mourne-wall",
-      "label": "稜線を越える石の壁",
+      "label": "モーン・ウォールが越える山頂",
       "value": "15山頂",
       "note": "全長約35kmのモーン・ウォールは、貯水池の集水域を守るために築かれ、15の山頂を越えて続く。水と山の関係が石積みに刻まれている。",
       "icon": "landscape",
@@ -229,35 +234,35 @@
   ],
   "encounters": [
     {
-      "title": "海に落ちる城の岩壁",
-      "icon": "history"
-    },
-    {
-      "title": "大砲の並ぶ城壁の街",
-      "icon": "history"
-    },
-    {
-      "title": "ブナの枝が重なる道",
-      "icon": "quiet"
-    },
-    {
-      "title": "漁の記憶を残す吊り橋",
-      "icon": "road"
-    },
-    {
-      "title": "花崗岩の山頂と石積み",
-      "icon": "hike"
-    },
-    {
-      "title": "船を生んだ都市の記憶",
+      "title": "セント・ジョージズ・マーケット",
       "icon": "city"
     },
     {
-      "title": "地下を流れる川",
-      "icon": "sea"
+      "title": "ブッシュミルズの蒸留所",
+      "icon": "food"
     },
     {
-      "title": "島の灯台と海鳥",
+      "title": "音楽が流れるパブ",
+      "icon": "culture"
+    },
+    {
+      "title": "海沿いのゴルフコース",
+      "icon": "landscape"
+    },
+    {
+      "title": "ゲーリック・スポーツの試合",
+      "icon": "culture"
+    },
+    {
+      "title": "海岸を走る観光道路",
+      "icon": "road"
+    },
+    {
+      "title": "街に立つ黄色いクレーン",
+      "icon": "city"
+    },
+    {
+      "title": "ラスリン島へのフェリー",
       "icon": "sea"
     }
   ],
@@ -289,16 +294,16 @@
       ]
     },
     {
-      "title": "造船所から、都市の記憶をたどる",
-      "text": "タイタニック・ベルファストは、実際に船が設計・建造・進水した場所に立つ。航海の物語だけでなく、労働と技術を積み重ねた都市の姿にも目を向けたい。",
-      "topicKey": "shipbuilding",
+      "topicKey": "linen",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "sourceKey": "titanic",
+      "title": "造船と並んで、リネンが街を育てた",
+      "text": "19世紀のベルファストはリネン産業で急成長し、世紀末には世界のリネンの中心地と呼ばれた。1871年には地域の工場で4万3,000人が働いていた。",
+      "sourceKey": "linen",
       "points": [
-        "タイタニック・ベルファストは船が設計・建造・進水した場所に立つ",
-        "航海だけでなく、造船を支えた技術と労働にも目を向ける"
+        "ベルファストは19世紀末に世界のリネンの中心地と呼ばれた",
+        "1871年には地域の工場で4万3,000人が働いていた"
       ]
     },
     {
@@ -328,16 +333,16 @@
       ]
     },
     {
-      "topicKey": "derry-walled-city",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
-      "icon": "history",
-      "title": "城壁の上から、街の重なる歴史を見る",
-      "text": "デリー／ロンドンデリーには、1613〜1618年に築かれた城壁が一周できる形で残る。約1.5kmの歩道から城門と街路を見渡すと、都市が形づくられた時代と、その後も続く街の暮らしが重なって見える。",
-      "sourceKey": "derryWalls",
+      "topicKey": "peace-bridge",
+      "themeEn": "CITY",
+      "themeJa": "街を知る",
+      "icon": "city",
+      "title": "川の両岸を、一本の橋が結ぶ",
+      "text": "デリー／ロンドンデリーのピース・ブリッジは2011年に開通した長さ235mの橋。フォイル川を挟むシティサイドとウォーターサイドを結び、両岸の人々が寄り添う姿を象徴している。",
+      "sourceKey": "peaceBridge",
       "points": [
-        "17世紀初頭に築かれた城壁が、約1.5kmにわたり街を囲む",
-        "城壁を歩き、城門と街路の配置から都市の歴史をたどる"
+        "ピース・ブリッジは2011年に開通した長さ235mの橋",
+        "フォイル川の両岸を結び、人々の往来を支える"
       ]
     }
   ],
@@ -376,7 +381,8 @@
         "image": "assets/images/united-kingdom/northern-ireland/approved/food-fifteens.webp",
         "sourceKey": "food"
       }
-    ]
+    ],
+    "intro": "朝の一皿から、ジャガイモの料理、茶色いパン、家庭の菓子まで、日々の味を4皿からたどる。"
   },
   "travelTrivia": [
     {
@@ -427,16 +433,16 @@
   ],
   "forWhom": [
     {
-      "title": "海岸の地形を見比べたい",
-      "text": "城の岩壁、吊り橋の断崖、島の海鳥の崖。短い海岸線の区間でも異なる表情をじっくり見たい人へ。"
+      "title": "海岸の地形を見比べたい人",
+      "text": "城の岩壁、吊り橋の断崖、島の海鳥の崖。短い海岸線の区間でも異なる表情をじっくり見たい人。"
     },
     {
-      "title": "都市と自然を一つの旅にしたい",
-      "text": "ベルファストの産業史や音楽から、モーンの岩峰やファーマナの洞窟へ足を延ばしたい人へ。"
+      "title": "都市と自然を一つの旅にしたい人",
+      "text": "ベルファストの産業史や音楽から、モーンの岩峰やファーマナの洞窟へ足を延ばしたい人。"
     },
     {
-      "title": "風景の背景まで知りたい",
-      "text": "英国、アイルランド、スコットランドとのつながりを、単純に分けず現地の歴史から読みたい人へ。"
+      "title": "風景の背景まで知りたい人",
+      "text": "英国、アイルランド、スコットランドとのつながりを、単純に分けず現地の歴史から読みたい人。"
     }
   ],
   "notes": [
@@ -590,7 +596,7 @@
     "landArea": "NISRA 2014を出典とする自治体資料の陸地面積13,843km²。日本約37.8万km²との概算比較。",
     "flag": "2024-07-30英国議会書面回答。2026-11-04確認。地域専用の公式旗は仮定せず、旗が必要な表示には英国旗を使用。",
     "weather": "Met Office Northern Ireland regional climate summary。季節・日数の推奨は編集判断。",
-    "signatureFacts": "コーズウェー沿岸道路の距離は公式サイト、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
+    "signatureFacts": "クレーンの高さと史跡指定はWikipedia、ネイ湖面積はDAERA 2024-05-30、モーン・ウォールの山頂数はVisit Mourne。2026-11-05確認。",
     "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
   },
   "sources": {
@@ -645,8 +651,11 @@
     "eta": "https://discovernorthernireland.com/plan-your-trip/travel-information/electronic-travel-authorisation/",
     "darkHedgesRoad": "https://en.wikipedia.org/wiki/Dark_Hedges",
     "rathlinSeabirds": "https://biodiversityni.com/kebble-nature-reserve-rathlin-island",
-    "causewayCoastalRoute": "https://causewaycoastalroute.com/about",
-    "derryWallsCoordinates": "https://www.hmdb.org/m.asp?m=71053"
+    "derryWallsCoordinates": "https://www.hmdb.org/m.asp?m=71053",
+    "religion": "https://factcheckni.org/articles/does-northern-ireland-have-a-majority-catholic-population/",
+    "cranes": "https://en.wikipedia.org/wiki/Samson_and_Goliath_(cranes)",
+    "linen": "https://www.open.edu/openlearn/history-the-arts/history/heritage/the-belfast-linen-industry",
+    "peaceBridge": "https://en.wikipedia.org/wiki/Peace_Bridge_(Foyle)"
   },
   "travelThemes": [
     "地球の風景",
