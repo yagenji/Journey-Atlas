@@ -62,16 +62,14 @@ let fullDestinations = []; // the 202-item canonical catalog
 let detailDestinations = []; // directly discoverable subordinate places
 const CHILD_SLUGS = new Set(['hong-kong','macau']);
 const UK_REGION_SLUGS = ['england','scotland','wales','northern-ireland'];
-const regionDetailPromise = Promise.all(UK_REGION_SLUGS.map(slug =>
-  fetch('data/regions/unitedkingdom/'+slug+'.json')
-    .then(r=>{if(!r.ok)throw Error('Region unavailable');return r.json();})
-    .then(data=>data.regionPublished?{
-      slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:'GB',
-      image:data.hero?.image,heroName:data.hero?.name,flag:'',
-      atlasPublished:true,href:'countries/unitedkingdom/'+data.slug+'/',
-      parentSlug:'unitedkingdom'
-    }:null).catch(()=>null)
-)).then(items=>items.filter(Boolean));
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261106-region-heroes-1')
+  .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
+  .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
+    slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:'GB',
+    image:data.image,heroName:data.heroName,flag:'',
+    atlasPublished:true,href:data.href,parentSlug:'unitedkingdom'
+  })).filter(data=>UK_REGION_SLUGS.includes(data.slug)))
+  .catch(()=>[]);
 function renderTopDetailRegions(){
   const host=document.querySelector('#country-detail-regions');
   if(!host)return;
