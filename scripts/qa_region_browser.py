@@ -103,6 +103,11 @@ def main() -> int:
                         problems.append("return to United Kingdom missing")
                     if region.get("nextRegion"):
                         expected_name = region["nextRegion"]["nameJa"]
+                        next_path = REGIONS / region["parentSlug"] / f'{region["nextRegion"]["slug"]}.json'
+                        if next_path.is_file():
+                            next_data = json.loads(next_path.read_text(encoding="utf-8"))
+                            if next_data.get("regionPublished") is True:
+                                expected_name += "へ"
                         if audit["nextRegionName"] != expected_name:
                             problems.append("next Region label incorrect")
                         if audit["nextRegionBadLink"]:
