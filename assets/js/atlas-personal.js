@@ -189,11 +189,10 @@
   const groups = make('div', 'ja-mine-groups');
   const savedScenes = make('div', 'ja-favorite-scenes');
   const tools = make('div', 'ja-backup-tools');
-  const regionCounts = make('div', 'ja-region-counts');
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  mine.append(summary, regionCounts, groups, savedScenes, tools, feedback);
+  mine.append(summary, groups, savedScenes, tools, feedback);
   const visited = country => getStored(VISITED_PREFIX + country.slug) === 'true';
   const wished = country => getStored(WISH_PREFIX + country.slug) === 'true';
   function sectionFor(title, items, empty, groupByRegion = false) {
@@ -212,14 +211,14 @@
           if (!matches.length) return;
           matches.forEach(country => assigned.add(country.slug));
           const block = make('div', 'ja-mine-region');
-          block.append(make('h4', 'ja-mine-region-title', region.label));
+          block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' / ' + region.iso2.length));
           appendLinks(block, matches);
           section.append(block);
         });
         const unmatched = items.filter(country => !assigned.has(country.slug));
         if (unmatched.length) {
           const block = make('div', 'ja-mine-region');
-          block.append(make('h4', 'ja-mine-region-title', 'その他'));
+          block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length));
           appendLinks(block, unmatched);
           section.append(block);
         }
@@ -255,11 +254,6 @@
       summary.after(detailSummary);
     }
     detailSummary.textContent = '詳細地域　行った ' + detailVisitCount + '　／　行きたい ' + detailWishCount;
-    regionCounts.replaceChildren();
-    regionNames.forEach(region => {
-      const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
-      if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
-    });
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
@@ -272,30 +266,63 @@
     );
     groups.replaceChildren(seenColumn, wantColumn);
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
-    const gallery = make('div', 'ja-scene-gallery');
-    favorites.forEach(favorite => {
-      const item = make('div', 'ja-favorite-card');
-      const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
-      const img = make('img');
-      if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.src = favorite.image;
-        img.alt = '';
-        link.append(img);
+    const bySlug = new Map(all.map(country => [country.slug, country]));
+    const regionForFavorite = favorite => {
+      const country = bySlug.get(favorite.parentSlug || favorite.slug) || bySlug.get(favorite.slug);
+      return regionNames.find(region => country?.iso2 && region.iso2.includes(country.iso2));
+    };
+    const appendFavoriteCards = (gallery, entries) => {
+      entries.forEach(favorite => {
+        const item = make('div', 'ja-favorite-card');
+        const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
+        const img = make('img');
+        if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.src = favorite.image;
+          img.alt = '';
+          link.append(img);
+        }
+        const names = make('span');
+        names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
+        link.append(names);
+        const remove = make('button', 'ja-remove', '保存を解除');
+        remove.type = 'button';
+        remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
+        remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
+        item.append(link, remove);
+        gallery.append(item);
+      });
+    };
+    if (!favorites.length) {
+      savedScenes.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
+    } else if (regionNames.length) {
+      const assigned = new Set();
+      regionNames.forEach(region => {
+        const matches = favorites.filter(favorite => regionForFavorite(favorite)?.id === region.id);
+        if (!matches.length) return;
+        matches.forEach(favorite => assigned.add(favorite));
+        const block = make('section', 'ja-favorite-region');
+        block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' 景色'));
+        const gallery = make('div', 'ja-scene-gallery');
+        appendFavoriteCards(gallery, matches);
+        block.append(gallery);
+        savedScenes.append(block);
+      });
+      const unmatched = favorites.filter(favorite => !assigned.has(favorite));
+      if (unmatched.length) {
+        const block = make('section', 'ja-favorite-region');
+        block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length + ' 景色'));
+        const gallery = make('div', 'ja-scene-gallery');
+        appendFavoriteCards(gallery, unmatched);
+        block.append(gallery);
+        savedScenes.append(block);
       }
-      const names = make('span');
-      names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
-      link.append(names);
-      const remove = make('button', 'ja-remove', '保存を解除');
-      remove.type = 'button';
-      remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
-      remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
-      item.append(link, remove);
-      gallery.append(item);
-    });
-    if (!favorites.length) gallery.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
-    savedScenes.append(gallery);
+    } else {
+      const gallery = make('div', 'ja-scene-gallery');
+      appendFavoriteCards(gallery, favorites);
+      savedScenes.append(gallery);
+    }
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');
   exportButton.type = 'button';
