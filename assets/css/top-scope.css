@@ -208,3 +208,9 @@ body{
     min-height:64px;
   }
 }
+
+/* My Atlas lists: top-page-only regional grouping and mobile stacking. */
+.ja-mine-column{display:flex;flex-direction:column;gap:24px;min-width:0}
+.ja-mine-region + .ja-mine-region{margin-top:16px}
+.ja-mine-region-title{font-size:13px;font-weight:600;line-height:1.5;color:#667371;margin:0 0 8px}
+.ja-mine-region .ja-mine-links{max-height:none;overflow:visible}
