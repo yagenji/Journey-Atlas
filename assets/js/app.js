@@ -84,30 +84,8 @@ function renderCountry(data, registry) {
     element.textContent = value ?? '';
   });
 
-  // Country-layout destinations that are subordinate to a parent Country.
-  // Keep their canonical URLs and personal-atlas destination IDs unchanged.
-  if (data.parentSlug === 'china' && ['hong-kong', 'macau'].includes(data.slug)) {
-    const heroCopy = fragment.querySelector('.hero-copy');
-    const regionLabel = heroCopy?.querySelector('.region');
-    if (heroCopy && regionLabel) {
-      const breadcrumb = document.createElement('nav');
-      breadcrumb.className = 'country-parent-breadcrumb';
-      breadcrumb.setAttribute('aria-label', '地域の階層');
-      const parent = document.createElement('a');
-      parent.href = 'countries/china/';
-      parent.textContent = data.parentNameJa || '中国';
-      const separator = document.createElement('span');
-      separator.textContent = ' / ';
-      separator.setAttribute('aria-hidden', 'true');
-      const current = document.createElement('span');
-      current.textContent = data.nameJa;
-      current.setAttribute('aria-current', 'page');
-      breadcrumb.append(parent, separator, current);
-      heroCopy.insertBefore(breadcrumb, regionLabel);
-    }
-    const numbersTitle = fragment.querySelector('#signature-facts-title');
-    if (numbersTitle) numbersTitle.textContent = 'この地域を知る数字';
-  }
+  // Hong Kong and Macau retain their canonical Country URLs and saved destination IDs.
+  const isChinaRegion = data.parentSlug === 'china' && ['hong-kong', 'macau'].includes(data.slug);
 
   const heroTitle = fragment.querySelector('.hero h1');
   if (heroTitle) {
@@ -144,11 +122,13 @@ function renderCountry(data, registry) {
   renderTravelScale(fragment, data.travelScale);
   renderNextRoutes(fragment, data.nextRoutes);
   if (registry?.length) renderRelated(fragment, data.relatedCountries, registry);
+  if (isChinaRegion) harmonizeChinaRegionLayout(fragment, data);
   renderPhotoCredits(fragment, data.photoCredits);
 
+  app.classList.toggle('region-page', isChinaRegion);
   app.replaceChildren(fragment);
   updatePageMetadata(data);
-  initWishButton(data.slug);
+  initWishButton(data.slug, isChinaRegion);
   initCountryLensBridge(data);
   // Personal atlas enhancements read the same final Country data after rendering.
   window.journeyAtlasCurrentCountry = data;
@@ -162,6 +142,63 @@ function renderCountry(data, registry) {
     const sceneId = getSceneFromHash(scenes);
     if (sceneId) setActiveScene(sceneId, true);
   });
+}
+
+// Reuse the United Kingdom Region layout language without changing the
+// existing China detail routes, authored content, map coordinates or save keys.
+function harmonizeChinaRegionLayout(fragment, data) {
+  const article = fragment.querySelector('.country-page');
+  article?.classList.add('region-country-page');
+  fragment.querySelector('.journey-footer')?.classList.add('region-journey-footer');
+  fragment.querySelector('.wish-wrap')?.classList.add('region-wish-wrap');
+
+  const profileKicker = fragment.querySelector('.country-facts-strip__head .section-kicker-en');
+  if (profileKicker) profileKicker.textContent = 'REGION PROFILE';
+  const signatureTitle = fragment.querySelector('#signature-facts-title');
+  if (signatureTitle) signatureTitle.textContent = 'この地域を知る数字';
+  const sceneryTitle = fragment.querySelector('.scenes-heading h2');
+  if (sceneryTitle?.firstChild?.nodeType === Node.TEXT_NODE) {
+    sceneryTitle.firstChild.nodeValue = 'この地域で見たい景色 ';
+  }
+  const extrasIntro = fragment.querySelector('.atlas-extras__intro');
+  if (extrasIntro) extrasIntro.textContent = '景色だけでは見えない、この地域の暮らしや文化、歴史の輪郭をたどる。';
+  const routesTitle = fragment.querySelector('#next-routes-title');
+  if (routesTitle) routesTitle.textContent = '隣の地域へ旅をつなぐ';
+  const routesIntro = fragment.querySelector('#next-routes-section .next-routes__head > p');
+  if (routesIntro) routesIntro.textContent = '周辺の地域へ続く代表的な周遊の方向。移動手段や出入境条件は出発前に確認を。';
+  const relatedTitle = fragment.querySelector('#next-title');
+  if (relatedTitle?.lastChild?.nodeType === Node.TEXT_NODE) {
+    relatedTitle.lastChild.nodeValue = 'が気になったら';
+  }
+  const wishLabel = fragment.querySelector('#wish-button strong');
+  if (wishLabel) wishLabel.textContent = 'この地域に行きたい';
+
+  // Same two-card, responsive parent/next navigation used on UK Region pages.
+  // Sibling pages intentionally retain their original /countries/{slug}/ URLs.
+  const sibling = data.slug === 'hong-kong'
+    ? {slug: 'macau', name: 'マカオ'}
+    : {slug: 'hong-kong', name: '香港'};
+  const nav = document.createElement('nav');
+  nav.className = 'region-return';
+  nav.setAttribute('aria-label', '中国の地域ナビゲーション');
+  nav.innerHTML = `
+    <a href="countries/china/" class="region-return__link">
+      <span class="region-return__arrow" aria-hidden="true">←</span>
+      <span class="region-return__copy">
+        <small>BACK TO CHINA</small>
+        <strong>中国に戻る</strong>
+        <span>中国の8つの景色を見る</span>
+      </span>
+    </a>
+    <a href="countries/${sibling.slug}/" class="region-return__link region-return__link--next">
+      <span class="region-return__copy">
+        <small>NEXT REGION</small>
+        <strong>${sibling.name}へ</strong>
+        <span>次の地域の景色を見る</span>
+      </span>
+      <span class="region-return__arrow" aria-hidden="true">→</span>
+    </a>`;
+  fragment.querySelector('.journey-footer')?.after(nav);
 }
 
 function setMeta(selector, value, attribute = 'content') {
@@ -828,7 +865,7 @@ function renderPhotoCredits(fragment, items = []) {
   section.hidden = false;
 }
 
-function initWishButton(countrySlug) {
+function initWishButton(countrySlug, isRegion = false) {
   const button = document.querySelector('#wish-button');
   const status = document.querySelector('#wish-status');
   if (!button) return;
@@ -838,7 +875,9 @@ function initWishButton(countrySlug) {
   const update = () => {
     button.classList.toggle('is-saved', wished);
     button.querySelector('.wish-icon').textContent = wished ? '♥' : '♡';
-    button.querySelector('strong').textContent = wished ? '行きたい国に保存しました' : 'この国に行きたい';
+    button.querySelector('strong').textContent = wished
+      ? (isRegion ? '行きたい地域に保存しました' : '行きたい国に保存しました')
+      : (isRegion ? 'この地域に行きたい' : 'この国に行きたい');
     button.setAttribute('aria-pressed', String(wished));
   };
   update();
