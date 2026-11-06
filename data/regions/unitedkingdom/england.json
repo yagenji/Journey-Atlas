@@ -25,33 +25,38 @@
   },
   "profile": [
     {
-      "label": "構成国",
-      "value": "イギリス（英国）の4構成国の一つ",
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの構成国）",
       "sourceKey": "profile"
     },
     {
-      "label": "中心都市",
-      "value": "ロンドン（英国の首都）",
+      "label": "首都",
+      "value": "ロンドン",
       "sourceKey": "profile"
     },
     {
       "label": "人口",
-      "value": "約5,883万人（2025年6月推計）",
+      "value": "約5,883万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "約13万km²（日本の約34%）",
+      "value": "約130,000 km²（日本の約34%）",
       "sourceKey": "profile"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "英語、コーンウォール語など",
       "sourceKey": "cornish"
     },
     {
+      "label": "主な宗教",
+      "value": "キリスト教が最大（約46%、2021年）／無宗教も多い",
+      "sourceKey": "religion"
+    },
+    {
       "label": "通貨",
-      "value": "英ポンド（GBP）",
+      "value": "ポンド・スターリング（GBP）",
       "sourceKey": "profile"
     }
   ],
@@ -129,7 +134,11 @@
       },
       "image": "assets/images/united-kingdom/england/approved/scene-royal-crescent.webp",
       "sourceKey": "royalCrescent",
-      "coordinateSourceKey": "royalCrescent"
+      "coordinateSourceKey": "royalCrescent",
+      "mapOffset": {
+        "x": -0.55,
+        "y": -0.4605
+      }
     },
     {
       "id": "stonehenge",
@@ -142,7 +151,11 @@
       },
       "image": "assets/images/united-kingdom/england/approved/scene-stonehenge.webp",
       "sourceKey": "stonehenge",
-      "coordinateSourceKey": "stonehengeCoordinates"
+      "coordinateSourceKey": "stonehengeCoordinates",
+      "mapOffset": {
+        "x": 0.5167,
+        "y": 0.5
+      }
     },
     {
       "id": "durdle-door",
@@ -174,61 +187,72 @@
   "signatureFacts": [
     {
       "topicKey": "jurassic",
-      "label": "海岸に現れる地球の時間",
+      "label": "ジュラシック・コーストの地層",
       "value": "約1億8,500万年",
       "note": "南部のジュラシック・コーストには、三畳紀・ジュラ紀・白亜紀にまたがる地層が現れる。海辺の散歩が、恐竜のいた時代より前から続く環境の変化をたどる旅になる。",
       "icon": "landscape",
-      "sourceKey": "jurassicHistory"
+      "sourceKey": "jurassicHistory",
+      "interestReason": "海岸を歩くだけで恐竜時代の前後まで地球の時間をたどれると、数字で直感できるから。"
     },
     {
       "topicKey": "blue-plaques",
-      "label": "ロンドンの壁に残る青い銘板",
+      "label": "ロンドンのブルー・プラーク",
       "value": "1,000枚超",
       "note": "1866年に始まったブルー・プラークは、著名人ゆかりの建物を示す。ナポレオン3世の銘板は1867年から残る現存最古のもので、街歩きの途中で歴史上の人物に出会える。",
       "icon": "history",
-      "sourceKey": "bluePlaques"
+      "sourceKey": "bluePlaques",
+      "interestReason": "普通の街歩きの中で歴史上の人物に出会えるロンドンらしさを、枚数で伝えられるから。"
     },
     {
       "topicKey": "fruit",
-      "label": "果樹園で受け継ぐ品種",
+      "label": "国立果樹コレクション",
       "value": "約3,500品種",
       "note": "ケント州ブロッグデールの国立果樹コレクションには、リンゴ、ナシ、プラム、サクランボなど約3,500の栽培品種が集まる。身近な果物にも、多様な味と栽培の歴史が詰まっている。",
       "icon": "food",
-      "sourceKey": "apples"
+      "sourceKey": "apples",
+      "interestReason": "身近な果物に数千の品種があるという、英国の園芸文化の厚みが一目で分かるから。"
     }
   ],
   "encounters": [
     {
-      "title": "並木道の先の王城",
-      "icon": "history"
+      "title": "午後のクリームティー",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "水と山の重なる湖畔",
-      "icon": "landscape"
+      "title": "運河のナローボート",
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
-      "title": "砂浜を見下ろす城壁",
-      "icon": "history"
+      "title": "村の緑地のクリケット",
+      "icon": "culture",
+      "category": "DAILY_LIFE"
     },
     {
-      "title": "石の街と大聖堂",
-      "icon": "city"
+      "title": "茅葺き屋根の家",
+      "icon": "quiet",
+      "category": "ARCHITECTURE"
     },
     {
-      "title": "小川に並ぶ石の家々",
-      "icon": "quiet"
+      "title": "海辺の桟橋",
+      "icon": "sea",
+      "category": "LANDSCAPE"
     },
     {
-      "title": "弧を描くジョージアン建築",
-      "icon": "city"
+      "title": "大学町のカレッジ",
+      "icon": "city",
+      "category": "CITY"
     },
     {
-      "title": "草原に立つ巨石",
-      "icon": "history"
+      "title": "生け垣の続く小道",
+      "icon": "hike",
+      "category": "LANDSCAPE"
     },
     {
-      "title": "波が刻んだ岩のアーチ",
-      "icon": "sea"
+      "title": "ロンドンの劇場街",
+      "icon": "culture",
+      "category": "CULTURE"
     }
   ],
   "culture": [
@@ -246,29 +270,29 @@
       ]
     },
     {
-      "title": "石の村を、羊毛の仕事から眺める",
-      "text": "バイブリーのアーリントン・ロウは羊毛倉庫が起源。織工の住まいへ変わった建物に、村と産業のつながりが残る。",
-      "topicKey": "wool",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
-      "icon": "history",
-      "sourceKey": "arlingtonRow",
+      "title": "運河は、鉄道より先に産業を運んだ",
+      "text": "18世紀に始まった運河は、産業革命の物資を運ぶ道だった。今は約3,200kmの運河と川が保全団体に守られ、細長いナローボートで水路を進む旅もできる。",
+      "topicKey": "canals",
+      "themeEn": "WATERWAY",
+      "themeJa": "水路を知る",
+      "icon": "road",
+      "sourceKey": "canals",
       "points": [
-        "アーリントン・ロウは羊毛を保管する建物から生まれた",
-        "石造りの住まいには、織物産業が支えた村の歴史が残る"
+        "運河は18世紀に始まり、産業革命の輸送を支えた",
+        "今は保全された水路を、ナローボートで旅できる"
       ]
     },
     {
-      "title": "バースは、湯と社交から街が育った",
-      "text": "ローマ時代の浴場と、18世紀の保養都市が重なる。住宅だけでなく、広場と緑地までつながる都市空間に目を向けたい。",
+      "title": "英国の温泉は、バースにだけある",
+      "text": "バースは英国で唯一の温泉地。ローマ人が浴場を築いた湯は今も湧き続け、現在は屋上の湯につかりながら街を見渡すこともできる。",
       "topicKey": "bath",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "sourceKey": "bath",
+      "sourceKey": "bathSprings",
       "points": [
-        "古代ローマの浴場と18世紀の保養都市が重なっている",
-        "ロイヤル・クレセントは、街と緑地を一体に設計した景観"
+        "バースの温泉は英国で唯一",
+        "ローマ時代に浴場が築かれた湯に、今も入浴できる"
       ]
     },
     {
@@ -346,12 +370,13 @@
         "image": "assets/images/united-kingdom/england/approved/food-bakewell-pudding.webp",
         "sourceKey": "bakewell"
       }
-    ]
+    ],
+    "intro": "宿の朝食から港町の軽食、北部の煮込み、町の菓子まで、土地ごとの味を4皿からたどる。"
   },
   "travelTrivia": [
     {
       "title": "開き始めた橋を、二階建てバスが跳んだ",
-      "text": "1952年、タワーブリッジを走行中のバスの下で橋が開き始めた。運転手は加速して橋の隙間を越えたという、橋の公式記録に残る出来事だ。",
+      "text": "1952年12月、タワーブリッジを走行中のバスの前で橋が開き始めた。運転手は加速して約1メートルの隙間を跳び越えたという。橋の公式サイトでも語られる出来事だ。",
       "topicKey": "bus",
       "categoryEn": "EVENT",
       "categoryJa": "出来事",
@@ -397,26 +422,28 @@
   ],
   "forWhom": [
     {
-      "title": "ロンドンから地方へ旅を広げたい",
-      "text": "首都の街歩きに、北部の大聖堂や湖畔、南西部の田園を組み合わせたい人へ。"
+      "title": "ロンドンから地方へ旅を広げたい人",
+      "text": "首都の街歩きに、北部の大聖堂や湖畔、南西部の田園を組み合わせたい人。"
     },
     {
-      "title": "建物と土地の関係を眺めたい",
-      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人へ。"
+      "title": "建物と土地の関係を眺めたい人",
+      "text": "岩の高台の城、弧を描く住宅、潮の島を訪ね、なぜそこに建つのかを考えたい人。"
     },
     {
-      "title": "歩く速度で景色に触れたい",
-      "text": "村の小川沿いや湖岸、海岸の道で、土地の表情が変わるのをゆっくり見たい人へ。"
+      "title": "歩く速度で景色に触れたい人",
+      "text": "村の小川沿いや湖岸、海岸の道で、土地の表情が変わるのをゆっくり見たい人。"
     }
   ],
   "notes": [
     {
-      "title": "8景を一度の旅で詰め込まない",
-      "text": "北東部のバンバラから南西端のコーンウォールまで広く点在する。短い旅では北部か南西部を選び、滞在拠点を絞りたい。"
+      "title": "アーリントン・ロウは人が暮らす家並み",
+      "text": "バイブリーの石の家は今も賃貸住宅で、外から眺めて歩道を歩く場所。村の駐車場は無料だが混み合う。公共交通ならケンブル駅（約22km）とバス855番を確かめておきたい。",
+      "sourceKey": "arlingtonVisit"
     },
     {
-      "title": "島と海岸では潮・風・足元を確認",
-      "text": "セント・マイケルズ・マウントは潮で渡り方が変わる。訪問日の公式案内を確認し、海岸や湖水地方の散策では現地の天候と歩道の状況も確かめたい。"
+      "title": "セント・マイケルズ・マウントへ歩ける時間は日ごとに違う",
+      "text": "土手道は干潮時だけ現れ、冬は1日およそ4時間が目安で片道約15分。日付ごとの時間は公式のアクセスカレンダーで確かめ、時間外には渡らない。",
+      "sourceKey": "mountWalking"
     },
     {
       "title": "ストーンヘンジは時間指定で予約",
@@ -436,16 +463,16 @@
         "icon": "city"
       },
       {
-        "duration": "8〜10日",
+        "duration": "6〜10日",
         "title": "田園と南西部の歴史をたどる",
         "text": "バースを拠点に村々を訪ね、ソールズベリーから巨石遺跡へ。例：ロンドン → バース（バイブリー）→ ソールズベリー（ストーンヘンジ）→ ロンドン。",
-        "icon": "history"
+        "icon": "map"
       },
       {
-        "duration": "12〜14日",
+        "duration": "11日以上",
         "title": "北部の街と湖水地方へ",
         "text": "ヨークから北東部の海岸へ進み、西側の湖に滞在。地方部の移動日を確保する。例：ロンドン → ヨーク → アルンウィック（バンバラ）→ ケズウィック → ロンドン。",
-        "icon": "landscape"
+        "icon": "compass"
       }
     ]
   },
@@ -509,9 +536,11 @@
       "countryEn": "WALES",
       "countryJa": "ウェールズ",
       "path": "Bath → Bristol → Cardiff",
-      "description": "西へ海峡を越えて、城と山地の多い地域へ。",
+      "description": "セヴァーン川の河口を越えて、城と山地の多い地域へ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "travelerRoute": true,
+      "status": "OPEN",
       "flagAsset": "assets/icons/region-flags/wales-waved.svg"
     },
     {
@@ -521,7 +550,20 @@
       "description": "鉄道を北へ進み、古都とハイランドの景観につなぐ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "travelerRoute": true,
+      "status": "OPEN",
       "flagAsset": "assets/icons/region-flags/scotland-waved.svg"
+    },
+    {
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "path": "London → Paris",
+      "description": "ユーロスターで英仏海峡トンネルを抜け、約2時間16分でパリへ。",
+      "href": "countries/france/",
+      "flag": "🇫🇷",
+      "sourceKey": "eurostarParis",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -535,21 +577,24 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "アイリッシュ海の向こうで、古い街並みと大西洋の海岸をたどる。"
+      "reason": "アイリッシュ海の向こうで、古い街並みと大西洋の海岸をたどる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "フランス",
       "nameEn": "FRANCE",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。"
+      "reason": "英仏海峡を越えて、歴史ある街と石造建築、田園の風景を見比べる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "日本",
       "nameEn": "JAPAN",
       "href": "countries/japan/",
       "flag": "🇯🇵",
-      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。"
+      "reason": "同じ島国で、鉄道で結ばれた古都と、手入れの行き届いた庭園を巡る。",
+      "affinityType": "TRAVEL_STYLE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -557,7 +602,8 @@
     "population": "2025-06-30（ONS 2025年中位人口推計、2026-10-01公表）",
     "landArea": "イングランド約130,000km²の概数、日本約378,000km²との比較",
     "weather": "Met Office long-term climatic averages; 季節推奨は編集判断",
-    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
+    "notes": "知っておきたいことの運用情報は2026-11-06確認。"
   },
   "sources": {
     "population2025": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025",
@@ -606,23 +652,29 @@
     "bluePlaques": "https://www.english-heritage.org.uk/visit/blue-plaques/about-blue-plaques/top-ten-blue-plaque-facts/",
     "stonehengeVisit": "https://www.english-heritage.org.uk/visit/places/stonehenge/",
     "londonCoordinates": "https://en.wikipedia.org/wiki/London",
-    "ironbridge": "https://unesco.org.uk/our-sites/world-heritage-sites/ironbridge-gorge"
+    "ironbridge": "https://unesco.org.uk/our-sites/world-heritage-sites/ironbridge-gorge",
+    "arlingtonVisit": "https://www.nationaltrust.org.uk/bibury/features/the-historic-arlington-row-cottages",
+    "mountWalking": "https://stmichaelsmount.co.uk/getting-here/walking",
+    "eurostarParis": "https://www.eurostar.com/uk-en/train/london-to-paris",
+    "religion": "https://www.ons.gov.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021",
+    "canals": "https://canalrivertrust.org.uk/things-to-do/canal-history",
+    "bathSprings": "https://www.visitengland.com/trip-ideas/places-to-visit-bath"
   },
   "travelThemes": [
     "地球の風景",
     "街を歩く",
     "時をたどる"
   ],
-  "nextRoutesIntro": "隣接するウェールズやスコットランドへ。地域を越えて続く旅の方向を紹介する。",
+  "nextRoutesIntro": "隣接するウェールズやスコットランド、海峡の向こうのフランスへ。地域を越えて続く旅の方向を紹介する。",
   "capital": {
     "nameJa": "ロンドン",
-    "labelJa": "中心都市",
     "coordinates": {
       "latitude": 51.5074,
       "longitude": -0.1278
     },
     "sourceKey": "londonCoordinates"
   },
+  "contentQaVersion": 6,
   "parentNameEn": "UNITED KINGDOM",
   "parentReturnDescription": "4つの構成国と8つの景色を見る"
 }

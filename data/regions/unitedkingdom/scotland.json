@@ -19,35 +19,41 @@
       "longitude": -3.2008
     },
     "lead": "火山岩の上にそびえるエディンバラ城を見上げる。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。",
-    "description": "エディンバラの旧市街を見下ろす火山岩の高台に建つ城。プリンセス・ストリート・ガーデンズ側から、その姿を望む。"
+    "description": "エディンバラの旧市街を見下ろす火山岩の高台に建つ城。プリンセス・ストリート・ガーデンズ側から、その姿を望む。",
+    "sourceKey": "edinburghCastle"
   },
   "profile": [
     {
-      "label": "構成国",
-      "value": "イギリス（英国）の4構成国の一つ"
+      "label": "地域",
+      "value": "北ヨーロッパ（イギリスの構成国）"
     },
     {
-      "label": "首府",
+      "label": "首都",
       "value": "エディンバラ"
     },
     {
       "label": "人口",
-      "value": "約555万人（2025年6月推計）",
+      "value": "約555万人（2025年）",
       "sourceKey": "population2025"
     },
     {
       "label": "面積",
-      "value": "陸地約7.8万km²（日本の約21%）",
+      "value": "約78,000 km²（陸地・日本の約21%）",
       "sourceKey": "landArea"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "英語、スコッツ語、スコットランド・ゲール語など",
       "sourceKey": "languages"
     },
     {
+      "label": "主な宗教",
+      "value": "無宗教が約51%／最大宗派はスコットランド教会（約20%、2022年）",
+      "sourceKey": "religion"
+    },
+    {
       "label": "通貨",
-      "value": "英ポンド（GBP）"
+      "value": "ポンド・スターリング（GBP）"
     }
   ],
   "map": {
@@ -72,7 +78,11 @@
         "longitude": -6.27389
       },
       "image": "assets/images/united-kingdom/scotland/approved/scene-quiraing.webp",
-      "sourceKey": "quiraingCoordinates"
+      "sourceKey": "quiraingCoordinates",
+      "mapOffset": {
+        "x": -0.0083,
+        "y": 0.4474
+      }
     },
     {
       "id": "loch-lomond",
@@ -96,7 +106,11 @@
         "longitude": -5.51611
       },
       "image": "assets/images/united-kingdom/scotland/approved/scene-eilean-donan-castle.webp",
-      "sourceKey": "eileanDonanCoordinates"
+      "sourceKey": "eileanDonanCoordinates",
+      "mapOffset": {
+        "x": 1.1583,
+        "y": -0.9342
+      }
     },
     {
       "id": "glenfinnan",
@@ -108,7 +122,11 @@
         "longitude": -5.43155
       },
       "image": "assets/images/united-kingdom/scotland/approved/scene-glenfinnan-viaduct.webp",
-      "sourceKey": "glenfinnanCoordinates"
+      "sourceKey": "glenfinnanCoordinates",
+      "mapOffset": {
+        "x": -0.2083,
+        "y": 1.6447
+      }
     },
     {
       "id": "luskentyre",
@@ -120,7 +138,11 @@
         "longitude": -6.95157
       },
       "image": "assets/images/united-kingdom/scotland/approved/scene-luskentyre-beach.webp",
-      "sourceKey": "luskentyreCoordinates"
+      "sourceKey": "luskentyreCoordinates",
+      "mapOffset": {
+        "x": -0.9417,
+        "y": -1.1579
+      }
     },
     {
       "id": "skara-brae",
@@ -166,8 +188,9 @@
         "id": "scotch-pie",
         "name": "スコッチパイ",
         "nameLocal": "Scotch pie",
-        "text": "コショウをきかせたひき肉を、硬めの生地で包んだ小ぶりのパイ。サッカー場でも売られる軽食。",
-        "image": "assets/images/united-kingdom/scotland/approved/food-scotch-pie.webp"
+        "text": "香辛料をきかせたひき肉を、硬い皮で包んだ小ぶりのパイ。「フットボール・パイ」の別名もある。",
+        "image": "assets/images/united-kingdom/scotland/approved/food-scotch-pie.webp",
+        "sourceKey": "scotchPie"
       },
       {
         "id": "cullen-skink",
@@ -190,20 +213,21 @@
         "text": "ジャガイモと玉ねぎをゆっくり煮込み、肉を加えることもある家庭料理。",
         "image": "assets/images/united-kingdom/scotland/approved/food-stovies.webp"
       }
-    ]
+    ],
+    "intro": "港町のスープ、祝いの席のデザート、家庭の煮込み、街の軽食まで、4皿からたどる。"
   },
   "culture": [
     {
-      "topicKey": "castle-rock-city",
+      "topicKey": "old-new-town",
       "themeEn": "CITY",
       "themeJa": "街を知る",
       "icon": "city",
-      "title": "火山岩の上に街の歴史が積み重なる",
-      "text": "エディンバラ城は古い火山岩の上に建ち、王の居城から軍事拠点へと役割を変えてきた。旧市街の通りを歩くと、城の地形が街の骨格そのものを形づくったことがわかる。",
-      "sourceKey": "edinburghCastle",
+      "title": "谷を挟んで、中世の街と計画都市が向き合う",
+      "text": "エディンバラでは、細い路地が枝分かれする中世の旧市街と、18〜19世紀に計画された新市街が谷を挟んで並ぶ。二つの対比が、一つの世界遺産として評価されている。",
+      "sourceKey": "oldNewTown",
       "points": [
-        "エディンバラ城は古い火山岩の上に建つ",
-        "城と周囲の地形が旧市街の骨格を形づくってきた"
+        "路地の続く旧市街と、計画された新市街が谷を挟んで並ぶ",
+        "二つの街の対比が、世界遺産として評価されている"
       ]
     },
     {
@@ -220,16 +244,16 @@
       ]
     },
     {
-      "topicKey": "glacial-landscape",
-      "themeEn": "EARTH",
-      "themeJa": "大地を知る",
-      "icon": "landscape",
-      "title": "ハイランドの谷に、氷河の痕跡を読む",
-      "text": "グレン・コーの山並みと谷は、火山活動の後に氷河が土地を削り直して生まれた。絶景としての山だけでなく、長い時間をかけた地形の変化を意識して歩いてみたい。",
-      "sourceKey": "glencoeGeology",
+      "topicKey": "clearances",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "history",
+      "title": "静かな谷に、追われた人々の暮らしがあった",
+      "text": "18世紀半ばから19世紀半ばにかけて、ハイランドと西部の島々では、羊を放牧するために住民が土地を追われた。人の少ない谷の静けさには、この「クリアランス」の歴史も重なっている。",
+      "sourceKey": "clearances",
       "points": [
-        "グレン・コーの地形には火山活動と氷河の痕跡が残る",
-        "山並みだけでなく、谷が生まれた時間にも目を向けたい"
+        "羊の放牧のために、住民が土地を追われた時代があった",
+        "人の少ない谷の背景に、クリアランスの歴史がある"
       ]
     },
     {
@@ -259,31 +283,31 @@
       ]
     },
     {
-      "topicKey": "island-seafood",
-      "themeEn": "SEA",
-      "themeJa": "海を知る",
-      "icon": "sea",
-      "title": "港で見える、海と島の日々のつながり",
-      "text": "スカイ島のポートリーでは、色とりどりの建物の前の港に漁船が行き交う。島を単なる景勝地として見るのではなく、海の仕事と食がつながる暮らしを眺めることができる。",
-      "sourceKey": "skyeIsland",
+      "topicKey": "harris-tweed",
+      "themeEn": "CRAFT",
+      "themeJa": "手仕事を知る",
+      "icon": "culture",
+      "title": "ハリス・ツイードは、法律が産地を定めた布",
+      "text": "ハリス・ツイードは法律によりアウター・ヘブリディーズで生産することが定められ、織り手の自宅で手織りされる。オーブのマークが、その正規の品である証になる。",
+      "sourceKey": "harrisTweed",
       "points": [
-        "ポートリーの港では漁船と色彩豊かな建物が見られる",
-        "島の暮らしは海の仕事や食とつながっている"
+        "法律によりアウター・ヘブリディーズでの生産が定められている",
+        "織り手の自宅で手織りされ、オーブのマークが証になる"
       ]
     }
   ],
   "forWhom": [
     {
-      "title": "城と石の街を歩きたい",
-      "text": "エディンバラの旧市街や石の城、町に残る歴史をじっくり見たい人へ。"
+      "title": "城と石の街を歩きたい人",
+      "text": "エディンバラの旧市街や石の城、町に残る歴史をじっくり見たい人。"
     },
     {
-      "title": "山と地形に惹かれる",
-      "text": "ローモンド湖の島々、スカイ島の岩峰、森林の湖を自分の目で確かめたい人へ。"
+      "title": "山と地形に惹かれる人",
+      "text": "ローモンド湖の島々、スカイ島の岩峰、森林の湖を自分の目で確かめたい人。"
     },
     {
-      "title": "島の暮らしと海を知りたい",
-      "text": "ヘブリディーズの白砂やオークニーの遺跡、港とフェリーのある暮らしを味わいたい人へ。"
+      "title": "島の暮らしと海を知りたい人",
+      "text": "ヘブリディーズの白砂やオークニーの遺跡、港とフェリーのある暮らしを味わいたい人。"
     }
   ],
   "notes": [
@@ -293,12 +317,14 @@
       "sourceKey": "singleTrack"
     },
     {
-      "title": "島への移動は時刻表を先に確かめる",
-      "text": "ヘブリディーズやオークニーへはフェリー・航空便を使う。運休や満席に備えて日程に余裕を持たせたい。"
+      "title": "ハリス島へ車で渡るならフェリーは先に予約",
+      "text": "スカイ島ウイグからタルバートへは1日1〜2往復、約1時間40分。車は事前予約が強く勧められ、夏は早めの手配が安心。出発の45分前までに港でチェックインする。",
+      "sourceKey": "uigFerry"
     },
     {
-      "title": "移動が長い区間は拠点を絞る",
-      "text": "8景は本土・スカイ島・ハリス島・オークニーに点在する。短期旅行で全地点を巡ろうとせず、都市・ハイランド・島から優先順位を決めたい。"
+      "title": "高架橋を渡る蒸気機関車は時刻を確かめて",
+      "text": "ジャコバイト号は季節運行で、グレンフィナン高架橋を渡る本数は限られる。橋を渡る姿を見るなら、運行日と時刻を公式サイトで確かめてから向かいたい。",
+      "sourceKey": "jacobite"
     }
   ],
   "seasons": [
@@ -372,67 +398,86 @@
     "novaScotiaGaelic": "https://museum.novascotia.ca/stories/gaelic-nova-scotia",
     "edinburghCoordinates": "https://en.wikipedia.org/wiki/Edinburgh",
     "heather": "https://must-see-scotland.com/where-see-heather",
-    "conicHill": "https://en.wikipedia.org/wiki/Conic_Hill",
-    "scotchPie": "https://en.wikipedia.org/wiki/Scotch_pie"
+    "conicHill": "https://www.lochlomond-trossachs.org/things-to-do/walking/hillwalking/conic-hill/",
+    "scotchPie": "https://www.bakeryandsnacks.com/Article/2023/12/12/the-pie-makers-singled-out-for-making-the-world-s-best-scotch-pies",
+    "uigFerry": "https://www.calmac.co.uk/ports/uig-port/",
+    "jacobite": "https://westcoastrailways.co.uk/jacobite",
+    "religion": "https://www.scotlandscensus.gov.uk/2022-reports/scotland-s-census-2022-ethnic-group-national-identity-language-and-religion/",
+    "munros": "https://www.walkhighlands.co.uk/munros/",
+    "oldNewTown": "https://whc.unesco.org/en/list/728",
+    "clearances": "https://www.britannica.com/event/Highland-Clearances",
+    "harrisTweed": "https://www.harristweed.org/",
+    "swaFacts": "https://scotch-whisky.org.uk/insights/facts-figures"
   },
   "signatureFacts": [
     {
       "topicKey": "islands",
-      "label": "島々と人の暮らし",
+      "label": "沖合の島",
       "value": "790島超",
       "note": "スコットランドには790を超える沖合の島々があり、政府の調査資料ではそのうち93島に人が暮らす。ハイランドとは異なる、海と島の世界が広がる。",
       "icon": "sea",
-      "sourceKey": "islands"
+      "sourceKey": "islands",
+      "interestReason": "本土とは別の海と島の世界が広がることを、島の数で実感できるから。"
     },
     {
-      "topicKey": "forth-bridge-1890",
-      "label": "赤い鉄道橋の開通",
-      "value": "1890年",
-      "note": "フォース湾に架かるフォース橋は1890年に開通。鋼鉄の巨大なカンチレバー橋で、現在も列車を通し続ける世界遺産だ。",
-      "icon": "road",
-      "sourceKey": "forthBridge"
+      "topicKey": "scotch-exports",
+      "label": "スコッチ・ウイスキーの輸出",
+      "value": "毎秒43本",
+      "note": "2023年の輸出は年間約13.5億本で、1秒あたり43本にあたる。蒸留所は151か所が稼働し、スコットランドの小さな産地の味が世界の食卓へ届いている。",
+      "icon": "food",
+      "sourceKey": "swaFacts",
+      "interestReason": "世界で飲まれるスコッチの規模を、1秒ごとの本数で身近に感じられるから。"
     },
     {
-      "topicKey": "national-parks",
-      "label": "2つの国立公園",
-      "value": "2公園",
-      "note": "ローモンド湖・トロサックス国立公園とケアンゴームズ国立公園。湖岸と山地の景観を、自然保護と地域の暮らしを重ねて訪ねられる。",
-      "icon": "landscape",
-      "sourceKey": "nationalParks"
+      "topicKey": "munros",
+      "label": "マンロー",
+      "value": "282座",
+      "note": "標高3,000フィート（約914m）を超えるスコットランドの山。1891年にヒュー・マンローが一覧にまとめ、今も全山登頂を目指す登山文化が続く。",
+      "icon": "hike",
+      "sourceKey": "munros",
+      "interestReason": "登山文化の厚みと、スコットランドの高地の広がりを同時に伝えられるから。"
     }
   ],
   "encounters": [
     {
-      "title": "城のある石の街",
-      "icon": "city"
+      "title": "ハイランド牛",
+      "icon": "landscape",
+      "category": "WILDLIFE"
     },
     {
-      "title": "氷河が刻んだ谷",
-      "icon": "landscape"
+      "title": "ウイスキー蒸留所",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "島の岩峰と稜線",
-      "icon": "hike"
+      "title": "バグパイプの音",
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
-      "title": "谷を渡る鉄道",
-      "icon": "road"
+      "title": "タータンの布地",
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
-      "title": "白砂と青緑の海",
-      "icon": "sea"
+      "title": "ケイリーの踊り",
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
-      "title": "先史時代の住まい",
-      "icon": "history"
+      "title": "島へ渡るカーフェリー",
+      "icon": "sea",
+      "category": "MOVEMENT"
     },
     {
-      "title": "断崖の城跡",
-      "icon": "history"
+      "title": "待避所のある一車線道路",
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
-      "title": "松林と湖の静けさ",
-      "icon": "quiet"
+      "title": "ヒースの丘",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
     }
   ],
   "travelTrivia": [
@@ -494,16 +539,16 @@
         "icon": "city"
       },
       {
-        "duration": "7〜9日",
+        "duration": "5〜9日",
         "title": "ハイランドとスカイ島へ",
         "text": "谷と高架橋の景色をたどり、島の岩峰まで進む。道路移動に余白を残す。例：エディンバラ → グレン・コー → グレンフィナン → スカイ島 → エディンバラ。",
-        "icon": "landscape"
+        "icon": "map"
       },
       {
-        "duration": "14日以上",
+        "duration": "10日以上",
         "title": "ヘブリディーズの島旅を加える",
         "text": "島間フェリーの日程に余裕を持たせ、スカイ島からハリス島へ渡る。オークニーまで行くならさらに滞在を延ばす。例：エディンバラ → スカイ島 → ハリス島 → インヴァネス → エディンバラ。",
-        "icon": "sea"
+        "icon": "compass"
       }
     ]
   },
@@ -541,6 +586,8 @@
       "description": "城と石の街から南へ。鉄道沿いに大聖堂の街とロンドンへ旅をつなぐ。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "travelerRoute": true,
+      "status": "OPEN",
       "flagAsset": "assets/icons/region-flags/england-waved.svg"
     },
     {
@@ -550,6 +597,8 @@
       "description": "英国の山岳と城塞の文化を続けて見る。途中で滞在日を設ける周遊向き。",
       "href": "countries/unitedkingdom/",
       "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "travelerRoute": true,
+      "status": "OPEN",
       "flagAsset": "assets/icons/region-flags/wales-waved.svg"
     },
     {
@@ -558,7 +607,9 @@
       "path": "Glasgow → Cairnryan → Belfast",
       "description": "鉄道・バスと海峡のフェリーを組み合わせ、海の向こうの英国へ。",
       "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧"
+      "flag": "🇬🇧",
+      "travelerRoute": true,
+      "status": "OPEN"
     }
   ],
   "nextRegion": {
@@ -572,14 +623,16 @@
       "nameEn": "IRELAND",
       "href": "countries/ireland/",
       "flag": "🇮🇪",
-      "reason": "北大西洋の島々に残る、海岸と石の街の文化を見比べる。"
+      "reason": "北大西洋の島々に残る、海岸と石の街の文化を見比べる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "北海の向こうで、山地と海がつくる異なる景観に出会う。"
+      "reason": "北海の向こうで、山地と海がつくる異なる景観に出会う。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "カナダ",
@@ -587,14 +640,17 @@
       "href": "countries/canada/",
       "flag": "🇨🇦",
       "reason": "「新しいスコットランド」を意味するノバスコシア州で、移民が伝えたゲール語や音楽の名残に出会う。",
-      "sourceKey": "novaScotiaGaelic"
+      "sourceKey": "novaScotiaGaelic",
+      "affinityType": "CULTURE"
     }
   ],
   "sourceDates": {
     "population": "2025-06-30",
     "landArea": "政府資料に基づく概数（2025年）",
     "islands": "2022年9月公表のスコットランド政府調査資料",
-    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。"
+    "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
+    "notes": "知っておきたいことの運用情報は2026-11-06確認。",
+    "scotchExports": "2023年（蒸留所数は2024年5月時点）"
   },
   "capital": {
     "nameJa": "エディンバラ",
@@ -609,6 +665,8 @@
     "街を歩く",
     "時をたどる"
   ],
+  "nextRoutesIntro": "南へ向かう鉄道や海峡のフェリーで、英国のほかの地域へ旅を続ける。",
+  "contentQaVersion": 6,
   "parentNameEn": "UNITED KINGDOM",
   "parentReturnDescription": "4つの構成国と8つの景色を見る"
 }

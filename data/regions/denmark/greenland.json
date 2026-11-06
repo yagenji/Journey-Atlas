@@ -40,7 +40,7 @@
     },
     {
       "label": "面積",
-      "value": "約216.6万km²",
+      "value": "約216.6万km²（日本の約5.7倍）",
       "sourceKey": "area"
     },
     {
@@ -73,7 +73,11 @@
         "latitude": 69.205687,
         "longitude": -51.139212
       },
-      "image": "assets/images/denmark/greenland/approved/scene-ilulissat-icefjord.webp"
+      "image": "assets/images/denmark/greenland/approved/scene-ilulissat-icefjord.webp",
+      "mapOffset": {
+        "x": 3.5,
+        "y": -1.5
+      }
     },
     {
       "id": "russell-glacier",
@@ -95,7 +99,11 @@
         "latitude": 69.23,
         "longitude": -53.53
       },
-      "image": "assets/images/denmark/greenland/approved/scene-kuannit.webp"
+      "image": "assets/images/denmark/greenland/approved/scene-kuannit.webp",
+      "mapOffset": {
+        "x": -3.5,
+        "y": -1.5
+      }
     },
     {
       "id": "nuuk-harbour",
@@ -106,7 +114,11 @@
         "latitude": 64.17,
         "longitude": -51.73
       },
-      "image": "assets/images/denmark/greenland/approved/scene-nuuk-harbour.webp"
+      "image": "assets/images/denmark/greenland/approved/scene-nuuk-harbour.webp",
+      "mapOffset": {
+        "x": -3.5,
+        "y": 0
+      }
     },
     {
       "id": "qassiarsuk",
@@ -117,7 +129,11 @@
         "latitude": 61.164444,
         "longitude": -45.598056
       },
-      "image": "assets/images/denmark/greenland/approved/scene-qassiarsuk.webp"
+      "image": "assets/images/denmark/greenland/approved/scene-qassiarsuk.webp",
+      "mapOffset": {
+        "x": -4,
+        "y": -2
+      }
     },
     {
       "id": "tasermiut",
@@ -128,7 +144,11 @@
         "latitude": 60.29182,
         "longitude": -44.76976
       },
-      "image": "assets/images/denmark/greenland/approved/scene-tasermiut.webp"
+      "image": "assets/images/denmark/greenland/approved/scene-tasermiut.webp",
+      "mapOffset": {
+        "x": 4,
+        "y": 2
+      }
     },
     {
       "id": "tasiilaq",
@@ -193,7 +213,9 @@
       "value": "216.6万km²",
       "note": "グリーンランドは世界最大の島。大部分は氷床に覆われ、人々は主に沿岸の町や集落で暮らす。",
       "icon": "globe",
-      "sourceKey": "area"
+      "sourceKey": "area",
+      "interestReason": "世界最大の島という例外的な広さが、拠点を分けて旅する地理を伝える。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "ice-cover",
@@ -201,15 +223,18 @@
       "value": "約81%",
       "note": "海岸に近い限られた場所に緑や岩場が現れ、内陸には広大な氷の世界が広がる。",
       "icon": "landscape",
-      "sourceKey": "iceCover"
+      "sourceKey": "iceCover",
+      "interestReason": "陸の大部分を氷が覆う比率から、人々が沿岸に暮らす理由を想像できる。"
     },
     {
-      "topicKey": "self-government",
-      "label": "自治の節目",
-      "value": "2009年",
-      "note": "自治法が施行され、グリーンランドの自治制度が拡充された。王国内にありながら独自の政治と文化を育む。",
-      "icon": "landmark",
-      "sourceKey": "selfGovernment"
+      "topicKey": "national-park",
+      "label": "北東部の国立公園",
+      "value": "約97.2万km²",
+      "note": "北東グリーンランド国立公園は世界最大の国立公園。町のある西海岸とは別の、集落のない広大な自然が広がる。",
+      "icon": "landscape",
+      "sourceKey": "nationalPark",
+      "interestReason": "一つの国立公園だけで日本の約2.6倍という広さが、極北の自然のスケールを伝える。",
+      "exceptionalScale": true
     }
   ],
   "encounters": [
@@ -334,7 +359,7 @@
       "title": "戻ってきた太陽を迎える日",
       "text": "冬の長い暗闇が終わる頃、北部の町では久しぶりに戻る太陽を迎える習慣がある。イルリサットでは1月中旬が節目になる。",
       "icon": "sun",
-      "sourceKey": "sun"
+      "sourceKey": "sunReturn"
     },
     {
       "topicKey": "hans-island",
@@ -346,22 +371,31 @@
       "sourceKey": "hans"
     },
     {
-      "topicKey": "farms",
-      "categoryEn": "FARM",
-      "categoryJa": "歴史",
-      "title": "北極圏でも羊が草を食む",
-      "text": "南グリーンランドの谷には、氷の島とは思えない草地と羊の牧場がある。カシアルスクでは北欧人の遺跡にも出会える。",
-      "icon": "landscape",
-      "sourceKey": "kujataa"
+      "topicKey": "kaffemik",
+      "categoryEn": "GATHERING",
+      "categoryJa": "習慣",
+      "title": "祝いの日は、自宅がカフェのようになる",
+      "text": "誕生日や入学などの節目には、家に人を招くカフェミック。コーヒーや手作りの菓子を囲み、家族や友人が一日を通して出入りする。",
+      "icon": "culture",
+      "sourceKey": "kaffemik"
     },
     {
-      "topicKey": "sun-midnight",
-      "categoryEn": "LIGHT",
-      "categoryJa": "自然",
-      "title": "夏は真夜中にも日が沈まない",
-      "text": "北極圏内では白夜が続く時期がある。緯度によって期間は変わり、夜中のフィヨルドも明るい。",
-      "icon": "sun",
-      "sourceKey": "sun"
+      "topicKey": "qajaq",
+      "categoryEn": "CRAFT",
+      "categoryJa": "道具",
+      "title": "カヤックは、乗り手の体に合わせて作られた",
+      "text": "伝統的なカヤックは規格品ではなく、猟師の体形に合わせて骨組みを作った。流木の枠にアザラシの皮を張る技術が、北極の海での猟を支えていた。",
+      "icon": "sea",
+      "sourceKey": "qajaq"
+    },
+    {
+      "topicKey": "drum-song",
+      "categoryEn": "MUSIC",
+      "categoryJa": "芸能",
+      "title": "太鼓の歌で、物語や記憶を受け渡す",
+      "text": "イヌイットの太鼓踊りと歌は、グリーンランドに伝わる表現。太鼓の一定の拍子に物語をのせ、人々の記憶や地域のつながりを伝えてきた。",
+      "icon": "culture",
+      "sourceKey": "drumSong"
     }
   ],
   "forWhom": [
@@ -400,22 +434,23 @@
       {
         "duration": "4〜5日",
         "title": "イルリサット周辺で氷の世界に出会う",
-        "text": "イルリサットを拠点に氷河フィヨルドと町を歩く。現地の安全条件に従って展望地点を訪ねる。",
-        "icon": "landscape"
+        "text": "イルリサットを拠点に氷河フィヨルドと町を歩く。例：イルリサット → セルメルミウト → イルリサット。到着・出発日は便に合わせ、天候予備日を設ける。",
+        "icon": "city"
       },
       {
         "duration": "7〜10日",
         "title": "西海岸の2拠点を旅する",
-        "text": "ヌークとイルリサットを空路で組み合わせる。便の変更に備えて余裕を持つ。",
-        "icon": "city"
+        "text": "西海岸の2拠点を空路で組み合わせる。例：ヌーク → イルリサット → ヌーク。最終日はヌークに戻り、国際線への接続に余裕を残す。",
+        "icon": "map"
       },
       {
         "duration": "14日以上",
-        "title": "南部または東海岸へ足を延ばす",
-        "text": "南グリーンランドの遺跡・フィヨルド、または東部の集落を追加する。接続便と季節運行を確認する。",
-        "icon": "sea"
+        "title": "東海岸へ足を延ばす",
+        "text": "東海岸の集落を加える夏の旅。例：ヌーク → イルリサット → ヌーク → クルスク → タシーラク → クルスク → ヌーク。航空便・ヘリコプターや船の運航を確認し、移動予備日を確保する。",
+        "icon": "compass"
       }
-    ]
+    ],
+    "kicker": "DURATION"
   },
   "bestSeason": {
     "windows": [
@@ -508,7 +543,7 @@
   ],
   "sourcesVerifiedAt": "2026-11-06",
   "sources": {
-    "population2026": "https://bank.stat.gl/pxweb/en/Greenland/Greenland__BE__BE01__BE0120/BEXSTA.px/table/tableViewLayout1/",
+    "population2026": "https://stat.gl/publ/EN/BE/202601/contents/Population%20estimates.htm",
     "selfGovernment": "https://english.stm.dk/the-prime-ministers-office/the-unity-of-the-realm/greenland/",
     "area": "https://www.norden.org/en/information/facts-about-greenland",
     "iceCover": "https://kina.um.dk/en/about-denmark/the-realm/greenland",
@@ -520,7 +555,12 @@
     "sun": "https://visitgreenland.com/activities/midnight-sun/",
     "hans": "https://www.canada.ca/en/global-affairs/news/2022/06/boundary-dispute.html",
     "season": "https://visitgreenland.com/plan-your-trip/best-time-to-visit/",
-    "airRoutes": "https://www.airgreenland.com/routemap/"
+    "airRoutes": "https://www.airgreenland.com/routemap/",
+    "nationalPark": "https://visitgreenland.com/destinations/the-national-park/",
+    "kaffemik": "https://visitgreenland.com/activities/kaffemik/",
+    "qajaq": "https://visitgreenland.com/activities/kayaking/",
+    "drumSong": "https://ich.unesco.org/en/RL/inuit-drum-dancing-and-singing-01696",
+    "sunReturn": "https://isfjordscentret.gl/en/education/teaching-material/teaching-material-for-the-podcast/the-light-returns/"
   },
   "sourceDates": {
     "population": "2026-01-01",
@@ -535,6 +575,11 @@
     "coordinates": {
       "latitude": 64.1814,
       "longitude": -51.6941
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": 40
     }
   },
   "travelThemes": [

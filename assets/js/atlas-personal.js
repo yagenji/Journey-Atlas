@@ -189,20 +189,40 @@
   const groups = make('div', 'ja-mine-groups');
   const savedScenes = make('div', 'ja-favorite-scenes');
   const tools = make('div', 'ja-backup-tools');
-  const regionCounts = make('div', 'ja-region-counts');
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  mine.append(summary, regionCounts, groups, savedScenes, tools, feedback);
+  mine.append(summary, groups, savedScenes, tools, feedback);
   const visited = country => getStored(VISITED_PREFIX + country.slug) === 'true';
   const wished = country => getStored(WISH_PREFIX + country.slug) === 'true';
-  function sectionFor(title, items, empty) {
-    const section = make('div', 'ja-mine-group');
+  function sectionFor(title, items, empty, groupByRegion = false) {
+    const section = make('section', 'ja-mine-group');
     section.append(make('h3', '', title));
     if (items.length) {
-      const list = make('div', 'ja-mine-links');
-      items.forEach(country => list.append(linkTo(country.href || countryHref(country.slug), country.flag + ' ' + country.nameJa)));
-      section.append(list);
+      const appendLinks = (container, countries) => {
+        const list = make('div', 'ja-mine-links');
+        countries.forEach(country => list.append(linkTo(country.href || countryHref(country.slug), [country.flag, country.nameJa].filter(Boolean).join(' '))));
+        container.append(list);
+      };
+      if (groupByRegion && regionNames.length) {
+        const assigned = new Set();
+        regionNames.forEach(region => {
+          const matches = items.filter(country => region.iso2.includes(country.iso2));
+          if (!matches.length) return;
+          matches.forEach(country => assigned.add(country.slug));
+          const block = make('div', 'ja-mine-region');
+          block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' / ' + region.iso2.length));
+          appendLinks(block, matches);
+          section.append(block);
+        });
+        const unmatched = items.filter(country => !assigned.has(country.slug));
+        if (unmatched.length) {
+          const block = make('div', 'ja-mine-region');
+          block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length));
+          appendLinks(block, unmatched);
+          section.append(block);
+        }
+      } else appendLinks(section, items);
     } else section.append(make('p', 'ja-empty', empty));
     return section;
   }
@@ -234,44 +254,75 @@
       summary.after(detailSummary);
     }
     detailSummary.textContent = '詳細地域　行った ' + detailVisitCount + '　／　行きたい ' + detailWishCount;
-    regionCounts.replaceChildren();
-    regionNames.forEach(region => {
-      const count = seen.filter(country => region.iso2.includes(country.iso2)).length;
-      if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
-    });
-    const personalGroups = [sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
-    if (detailSeen.length || regionVisits.length) personalGroups.push(
+    const seenColumn = make('div', 'ja-mine-column');
+    const wantColumn = make('div', 'ja-mine-column');
+    seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
+    if (detailSeen.length || regionVisits.length) seenColumn.append(
       sectionFor('行った詳細地域', [...detailSeen,...regionVisits.map(w => ({...w,flag:''}))], '')
     );
-    if (detailWant.length || regionWishes.length) personalGroups.push(
+    wantColumn.append(sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。', true));
+    if (detailWant.length || regionWishes.length) wantColumn.append(
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,flag:''}))], '')
     );
-    groups.replaceChildren(...personalGroups);
+    groups.replaceChildren(seenColumn, wantColumn);
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
-    const gallery = make('div', 'ja-scene-gallery');
-    favorites.forEach(favorite => {
-      const item = make('div', 'ja-favorite-card');
-      const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
-      const img = make('img');
-      if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.src = favorite.image;
-        img.alt = '';
-        link.append(img);
+    const bySlug = new Map(all.map(country => [country.slug, country]));
+    const regionForFavorite = favorite => {
+      const country = bySlug.get(favorite.parentSlug || favorite.slug) || bySlug.get(favorite.slug);
+      return regionNames.find(region => country?.iso2 && region.iso2.includes(country.iso2));
+    };
+    const appendFavoriteCards = (gallery, entries) => {
+      entries.forEach(favorite => {
+        const item = make('div', 'ja-favorite-card');
+        const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
+        const img = make('img');
+        if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.src = favorite.image;
+          img.alt = '';
+          link.append(img);
+        }
+        const names = make('span');
+        names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
+        link.append(names);
+        const remove = make('button', 'ja-remove', '保存を解除');
+        remove.type = 'button';
+        remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
+        remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
+        item.append(link, remove);
+        gallery.append(item);
+      });
+    };
+    if (!favorites.length) {
+      savedScenes.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
+    } else if (regionNames.length) {
+      const assigned = new Set();
+      regionNames.forEach(region => {
+        const matches = favorites.filter(favorite => regionForFavorite(favorite)?.id === region.id);
+        if (!matches.length) return;
+        matches.forEach(favorite => assigned.add(favorite));
+        const block = make('section', 'ja-favorite-region');
+        block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' 景色'));
+        const gallery = make('div', 'ja-scene-gallery');
+        appendFavoriteCards(gallery, matches);
+        block.append(gallery);
+        savedScenes.append(block);
+      });
+      const unmatched = favorites.filter(favorite => !assigned.has(favorite));
+      if (unmatched.length) {
+        const block = make('section', 'ja-favorite-region');
+        block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length + ' 景色'));
+        const gallery = make('div', 'ja-scene-gallery');
+        appendFavoriteCards(gallery, unmatched);
+        block.append(gallery);
+        savedScenes.append(block);
       }
-      const names = make('span');
-      names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
-      link.append(names);
-      const remove = make('button', 'ja-remove', '保存を解除');
-      remove.type = 'button';
-      remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
-      remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
-      item.append(link, remove);
-      gallery.append(item);
-    });
-    if (!favorites.length) gallery.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
-    savedScenes.append(gallery);
+    } else {
+      const gallery = make('div', 'ja-scene-gallery');
+      appendFavoriteCards(gallery, favorites);
+      savedScenes.append(gallery);
+    }
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');
   exportButton.type = 'button';
