@@ -83,7 +83,15 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Keep Country emoji rendering; use an emoji-sized fallback for UK regions."""
+    """Use a declared region flag asset, preserving legacy UK region flags."""
+    flag_asset = route.get('flagAsset')
+    if flag_asset:
+        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\.svg', flag_asset):
+            raise ValueError('Invalid region route flag asset')
+        return ('<span class="region-route-flag-wrap">'
+                '<span class="region-route-flag__reference">🇮🇪</span>'
+                f'<img class="region-route-flag" src="{esc(flag_asset)}" '
+                'alt="" width="21" height="21" decoding="async"></span>')
     slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
         str(route.get('countryEn', '')).upper()
     )
@@ -273,8 +281,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
         raise ValueError('Unsafe region/parent slug')
-    if parent != 'unitedkingdom':
-        raise ValueError('The current Region pilot must stay under the United Kingdom')
+    if not (ROOT / 'data' / 'countries' / f'{parent}.json').is_file():
+        raise ValueError(f'Region parent Country is missing: {parent}')
     if data['schemaVersion'] != 1 or len(data['scenes']) != 8 or len(data['taste']['items']) != 4:
         raise ValueError('Region requires schemaVersion=1, exactly 8 Scenes and 4 Taste')
     if len({s['id'] for s in data['scenes']}) != 8:
@@ -570,12 +578,15 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
 
     # Two quiet paths: parent Country and next constituent Region.
     # An unpublished/missing Region is explicitly unavailable, never a dead link.
-    result.append('<nav class="region-return" aria-label="イギリスの地域ナビゲーション">'
+    parent_ja = data['parentNameJa']
+    parent_en = data.get('parentNameEn', parent.replace('-', ' ').upper())
+    parent_return_description = data.get('parentReturnDescription', '国ページの景色を見る')
+    result.append(f'<nav class="region-return" aria-label="{esc(parent_ja)}の地域ナビゲーション">'
         f'<a href="countries/{esc(parent)}/" class="region-return__link">'
         '<span class="region-return__arrow" aria-hidden="true">←</span>'
-        '<span class="region-return__copy"><small>BACK TO UNITED KINGDOM</small>'
-        '<strong>イギリスに戻る</strong>'
-        '<span>4つの構成国と8つの景色を見る</span></span>'
+        f'<span class="region-return__copy"><small>BACK TO {esc(parent_en)}</small>'
+        f'<strong>{esc(parent_ja)}に戻る</strong>'
+        f'<span>{esc(parent_return_description)}</span></span>'
         '</a>')
     next_region = data.get('nextRegion')
     if next_region:
