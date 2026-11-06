@@ -4,7 +4,7 @@
 
 ## Source of truth
 
-- Destination scope / registry / publication state: `data/atlas-destinations.json` — canonical 201-entry registry including Taiwan, Hong Kong, Macao and Antarctica
+- Destination scope / registry / publication state: `data/atlas-destinations.json` — registry of 202 records: 200 canonical Country Pages plus Hong Kong and Macau detail regions
 - Country content: `data/countries/{slug}.json`
 - Published-country renewal status: `data/country-renewal-status.json`
 - Travel themes: `data/theme-taxonomy.json`
@@ -12,7 +12,7 @@
 - Shared Country template: `country.html`
 - Country map generator: `scripts/generate_country_map.py`
 
-台湾・香港・マカオ・南極を独立destinationとして扱うのは、旅行先として独立して探せるようにするためのJOURNEY ATLAS独自の編集上の区分であり、国家承認に関する立場を示すものではありません。201 destinationsの定義と一覧は `data/atlas-destinations.json` に一本化します。
+JOURNEY ATLASの基本単位は200のCountry Pageです。香港・マカオは中国の下位地域ページとし、英国の4地域もイギリスの下位地域ページとして扱い、200には加算しません。掲載単位は編集上の旅先区分であり、国家承認や政治的立場を示しません。登録簿の202レコード（200 Country Page＋香港・マカオ）の定義は `data/atlas-destinations.json` を正とします。
 
 Country固有情報はCountry JSONへ置き、共通UIはCountry Templateで共有します。公開済みCountryの改修は `docs/PUBLISHED_COUNTRY_RENEWAL.md` に従います。Reference v3は、Iceland / Norwayをビジュアル言語、Spainを現行構造・情報密度・UIの実装基準として役割分担します。Norwayの旧低解像度Sceneは現行画像解像度の基準ではありません。
 
@@ -37,7 +37,7 @@ Production packageにはブラウザ実行に必要なruntime dataとreviewable 
 
 ## Validation
 
-Country JSON、canonical 201-destination registry、Map、Theme、production packageを検証します。
+Country JSON、200-Country-Page / 202-record registry、Map、Theme、production packageを検証します。
 
 ```bash
 python3 scripts/validate_destination_scope.py
