@@ -51,12 +51,15 @@
   const CHILD_SLUGS = new Set(['hong-kong', 'macau']);
   const parentDestinations = () => dest.filter(country => !CHILD_SLUGS.has(country.slug));
   const childLinks = {
-    china: [['香港','countries/hong-kong/'],['マカオ','countries/macau/']],
+    china: [
+      { ja: '香港', en: 'HONG KONG', href: 'countries/hong-kong/' },
+      { ja: 'マカオ', en: 'MACAU', href: 'countries/macau/' }
+    ],
     unitedkingdom: [
-      ['イングランド','countries/unitedkingdom/england/'],
-      ['スコットランド','countries/unitedkingdom/scotland/'],
-      ['ウェールズ','countries/unitedkingdom/wales/'],
-      ['北アイルランド','countries/unitedkingdom/northern-ireland/']
+      { ja: 'イングランド', en: 'ENGLAND', href: 'countries/unitedkingdom/england/' },
+      { ja: 'スコットランド', en: 'SCOTLAND', href: 'countries/unitedkingdom/scotland/' },
+      { ja: 'ウェールズ', en: 'WALES', href: 'countries/unitedkingdom/wales/' },
+      { ja: '北アイルランド', en: 'NORTHERN IRELAND', href: 'countries/unitedkingdom/northern-ireland/' }
     ]
   };
   let byIso = new Map(), regIso = new Map(), subIso = new Map(), subs = new Map();
@@ -148,8 +151,8 @@
         : `<button type="button" data-n="${c.iso2}" class="${cls}">${inner}</button>`;
       const children = childLinks[c.slug] || [];
       return main + (children.length
-        ? '<span class="map-country-nav__children">' + children.map(([name,href]) =>
-          `<a href="${href}" class="map-country-nav__child">${name}</a>`).join('') + '</span>'
+        ? '<div class="map-country-nav__children">' + children.map(({ja,en,href}) =>
+          `<a href="${href}" class="map-country-nav__child"><span class="map-country-nav__names"><strong>${ja}</strong><small>${en}</small></span></a>`).join('') + '</div>'
         : '');
     };
     // The list doubles as the atlas's table of contents: countries in page order, under the same
