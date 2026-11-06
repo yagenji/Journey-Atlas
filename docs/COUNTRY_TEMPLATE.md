@@ -122,6 +122,9 @@ Keep a stable shared set so countries remain comparable:
 
 The common facts are not replaced by country-specific information.
 
+Region detail pages (including Hong Kong and Macau) use the six facts from Capital through Currency. Keep geographic metadata in the hero; do not add a Region or constitutional-status fact. Immediately after basic facts, render the shared **HISTORY / 歴史・成り立ち** section from `historyContext: {text, sourceKeys}`. Use one concise paragraph covering historical formation, key transitions and present status. Record primary official references in `sources` and their verification dates in `sourceDates`. Keep each region's specific history; do not reuse a generic parent-country paragraph. All Region renderers must share the same markup and responsive styling. Publication state and canonical routes remain independent of this content.
+
+
 #### Population display rule
 
 Population is a visual-atlas comparison value, not a statistical dashboard.

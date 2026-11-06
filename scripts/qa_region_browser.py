@@ -61,6 +61,8 @@ def main() -> int:
                             nextRegionUnavailable: !!document.querySelector('.region-return__link--pending:not(a)'),
                             nextRegionBadLink: !!document.querySelector('.region-return__link--pending a'),
 
+                            historyText: document.querySelector('.region-history > p')?.textContent.trim(),
+                            historyAfterFacts: document.querySelector('.country-facts-strip')?.nextElementSibling?.classList.contains('region-history'),
                             sectionCounts: {
                                 profile: document.querySelectorAll('.country-facts-strip .fact-list > div').length,
                                 signature: document.querySelectorAll('.signature-facts__grid article').length,
@@ -148,6 +150,8 @@ def main() -> int:
                     if audit["scenes"] != 8 or audit["tastes"] != 4: problems.append("incomplete editorial image cards")
                     if not audit["sharedCountryLayout"]:
                         problems.append("shared Country layout missing")
+                    if audit.get("historyText") != region.get("historyContext", {}).get("text") or not audit.get("historyAfterFacts"):
+                        problems.append("shared Region history missing, incorrect or misplaced")
                     expected_sections = {
                         "profile": len(region.get("profile") or []),
                         "signature": len(region.get("signatureFacts") or []),

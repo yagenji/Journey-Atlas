@@ -22,6 +22,10 @@ Required:
 
 Unknown facts remain unfilled until verified. Do not guess.
 
+## Region history and formation
+
+For Greenland, Hong Kong, Macau and the UK's four Region pages, historical formation and present constitutional status belong in the dedicated `historyContext` paragraph immediately after basic facts. Verify milestones and status using primary government, parliament or archive sources. Basic facts retain religion and omit Region/status rows. Beyond the Scenery may explain local culture, industrial history or lived identities, but must not repeat this formation chronology. Signature Facts and Trivia must also contribute different information. Move existing status material rather than reproducing it; do not invent filler to retain six Beyond cards on a Region page.
+
 ## Signature Facts
 
 Signature Facts should change how a first-time reader imagines the Country. The three slots are scarce editorial space, so prefer numbers that reveal distinctive geography, history, culture, daily life, wildlife, movement, or scale over numbers that are merely easy to obtain.

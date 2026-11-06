@@ -440,12 +440,8 @@
   ],
   "facts": [
     {
-      "label": "地域",
-      "value": "東アジア／珠江河口"
-    },
-    {
       "label": "首都",
-      "value": "該当なし（中華人民共和国香港特別行政区）"
+      "value": "該当なし"
     },
     {
       "label": "人口",
@@ -561,7 +557,9 @@
     "transport": "2026-09",
     "climate": "2026-09",
     "ich": "2024-12",
-    "bestSeason": "2026-10-26"
+    "bestSeason": "2026-10-26",
+    "historyHandover": "2026-11-06",
+    "historyBasicLaw": "2026-11-06"
   },
   "sources": {
     "map": "Hong Kong Home Affairs Department via DATA.GOV.HK: Administrative District Boundary of Hong Kong, WGS84 GeoJSON, 18 district features; JOURNEY ATLAS map-v3 clean background.",
@@ -593,9 +591,18 @@
     "nextRoutes": "Editorial route pair based on Hong Kong's direct geographic links to Shenzhen and Macau; current immigration, rail, bridge and ferry conditions must be checked for the travel date.",
     "travelScale": "Editorial duration ranges based on Hong Kong Island, Kowloon, New Territories, Lantau and outlying-island geography; not fixed itineraries.",
     "hkhaResettlement": "Hong Kong Housing Authority, Public Housing Development: Shek Kip Mei fire on Christmas night 1953, over 50,000 homeless and first multi-storey resettlement estate in 1954. https://www.hkha.gov.hk/en/about-us/public-housing-heritage/public-housing-development/index.html",
-    "bestSeason": "AskExplorer, \"Hong Kong climate\": autumn (October–December) the most pleasant season with clear days and lower humidity; spring often cloudy, foggy and humid; summer hot and very wet; typhoons April–November. https://www.askexplorer.com/hong-kong/residents/about/environment/climate"
+    "bestSeason": "AskExplorer, \"Hong Kong climate\": autumn (October–December) the most pleasant season with clear days and lower humidity; spring often cloudy, foggy and humid; summer hot and very wet; typhoons April–November. https://www.askexplorer.com/hong-kong/residents/about/environment/climate",
+    "historyHandover": "https://www.legco.gov.hk/general/english/procedur/companion/chapter_1/chapter_1.html",
+    "historyBasicLaw": "https://www.hketosf.gov.hk/facts-and-figures.html"
   },
   "parentSlug": "china",
   "parentNameJa": "中国",
-  "parentRelationship": "special-administrative-region"
+  "parentRelationship": "special-administrative-region",
+  "historyContext": {
+    "text": "19世紀から英国の統治下にあった香港は、1997年7月1日に中国へ返還された。現在は中華人民共和国の香港特別行政区で、基本法と「一国二制度」の枠組みのもと、中国本土とは異なる法制度や通貨を持つ。",
+    "sourceKeys": [
+      "historyHandover",
+      "historyBasicLaw"
+    ]
+  }
 }
