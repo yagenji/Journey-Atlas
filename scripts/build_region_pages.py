@@ -387,10 +387,14 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '</div></div></aside>')
     result.append('<div class="atlas-body page-shell">')
 
-    facts_icons = ['globe', 'landmark', 'users', 'map', 'language', 'coin']
-    facts = ''.join('<div>' + icon(facts_icons[i] if i < len(facts_icons) else 'info')
+    facts_icons = {
+        '地域': 'globe', '位置づけ': 'globe', '首都': 'landmark', '首府': 'landmark',
+        '人口': 'users', '面積': 'map', '言語': 'language', '公用語': 'language',
+        '主な宗教': 'culture', '宗教': 'culture', '通貨': 'coin',
+    }
+    facts = ''.join('<div>' + icon(facts_icons.get(item['label'], 'info'))
         + f'<dt>{esc(item["label"])}</dt><dd>{esc(item["value"])}</dd></div>'
-        for i, item in enumerate(data['profile']))
+        for item in data['profile'])
     result.append('<section class="country-facts-strip" aria-labelledby="region-facts-title">'
         '<div class="country-facts-strip__head"><span class="section-kicker-en">REGION PROFILE</span>'
         '<h2 id="region-facts-title">基本情報</h2></div>'
