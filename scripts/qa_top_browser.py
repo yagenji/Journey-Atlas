@@ -106,7 +106,8 @@ def check(driver, viewport):
     )
 
     # My-map country selector must render grouped region headings, not one flat list.
-    driver.get(BASE + "/?map=mine#map")
+    driver.get(BASE + "/?map=mine")
+    wait.until(lambda d: d.execute_script("return document.querySelector('#my-atlas').open && location.hash === '#my-atlas'"))
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, ".map-mine__item")) >= 200)
     region_headings = driver.find_elements(By.CSS_SELECTOR, ".map-mine__region-heading")
     region_names = [heading.text for heading in region_headings]
