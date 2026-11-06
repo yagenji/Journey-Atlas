@@ -66,7 +66,7 @@ const regionDetailPromise = fetch('data/top-scene-index.json?v=20261106-region-h
   .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
   .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
     slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:'GB',
-    image:data.image,heroName:data.heroName,flag:'',
+    image:data.image,heroName:data.heroName,travelThemes:data.travelThemes||[],flag:'',
     atlasPublished:true,href:data.href,parentSlug:'unitedkingdom'
   })).filter(data=>UK_REGION_SLUGS.includes(data.slug)))
   .catch(()=>[]);
@@ -133,7 +133,7 @@ const themeTaxonomyPromise=fetch('data/theme-taxonomy.json')
     const entryCopy=document.querySelector('.explore-card--theme p');
     if(entryCopy)entryCopy.textContent='行きたい理由から、世界を選ぶ';
     const detailCopy=document.querySelector('.theme-panel .detail-heading p');
-    if(detailCopy)detailCopy.textContent=`あなたが惹かれるのは、どんな旅？ ${ATLAS_TOTAL}の国・地域を、8つのテーマから見つけてみよう。`;
+    if(detailCopy)detailCopy.textContent='あなたが惹かれるのは、どんな旅？ 8つのテーマから、国とさらに詳しい地域を探してみよう。';
   })
   .catch(()=>{});
 
@@ -222,7 +222,8 @@ coreRegistryPromise
     detailDestinations=fullDestinations.filter(country=>CHILD_SLUGS.has(country.slug)).map(country=>({...country,parentSlug:'china'}));
     regionDetailPromise.then(regions=>{
       detailDestinations.push(...regions);
-        if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
+      if(activeTheme)renderThemeResults();
+      if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
@@ -449,10 +450,15 @@ function themeLabel(theme){
 }
 function getThemeItems(theme=activeTheme){
   if(!theme)return [];
-  const slugs=themeSets[theme]||[];
-  return sortForDisplay(slugs
-    .map((slug)=>destinations.find((country)=>country.slug===slug))
-    .filter((country)=>country?.atlasPublished===true));
+  const slugs=new Set(themeSets[theme]||[]);
+  const label=themeMeta[theme]?.label;
+  // Published Country taxonomy plus authored UK Region travel themes.
+  return sortForDisplay([...destinations,...detailDestinations].filter(country=>
+    country.atlasPublished===true && (
+      slugs.has(country.slug) ||
+      (country.parentSlug==='unitedkingdom' && label && country.travelThemes?.includes(label))
+    )
+  ));
 }
 function syncThemeSelectionUI(){
   document.querySelectorAll('.theme-icons button[data-theme]').forEach((button)=>{
@@ -637,7 +643,15 @@ function showTheme(theme,{scroll=true}={}){
   }
 }
 
-function getWishedSlugs(){try{return [...destinations,...detailDestinations].filter((country)=>localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true').map((country)=>country.slug);}catch{return[];}}
+function getWishedSlugs(){
+  try {
+    return [...destinations,...detailDestinations].filter(country =>
+      localStorage.getItem(`journey-atlas:wish:${country.slug}`) === 'true' ||
+      (country.parentSlug === 'unitedkingdom' &&
+        localStorage.getItem(`journey-atlas:region-wish:unitedkingdom:${country.slug}`) !== null)
+    ).map(country=>country.slug);
+  } catch { return []; }
+}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
 
@@ -722,7 +736,7 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい国はまだ保存されていません。国ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid([...destinations,...detailDestinations].filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国・地域を表示しています。`);});
+wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい旅先はまだ保存されていません。国・地域ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid([...destinations,...detailDestinations].filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国・地域を表示しています。`);});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
@@ -1126,7 +1140,7 @@ function loadScenes(){
       sceneRows=[...scenes,...heroRows];
       if(sceneLead){
         const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
-        sceneLead.textContent=`気になる景色から、旅先を見つけよう。200の旅先と詳細地域を含む${countryCount}ページの${sceneRows.length.toLocaleString('ja-JP')}の景色を紹介します。画像は現地撮影の写真ではなく、景観イメージです。`;
+        sceneLead.textContent='気になる景色から、旅先を見つけよう。国や詳しい地域に広がる景色を、開くたびに異なる組み合わせで紹介します。画像は現地撮影の写真ではなく、景観イメージです。';
       }
       shuffleScenes();
     }).catch((error)=>{
