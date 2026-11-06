@@ -120,7 +120,7 @@ jobs:
 
           # Files loaded only by the top page (index.html). Country pages never load them,
           # so changing them must not trigger the full 200-Country live QA (which hits the job timeout).
-          top_only_js = {"assets/js/top.js", "assets/js/map-regions.js", "assets/js/atlas-map-share.js"}
+          top_only_js = {"assets/js/top.js", "assets/js/map-regions.js", "assets/js/atlas-map-share.js", "assets/js/atlas-my-map.js"}
           top_only_css = {
               "assets/css/top.css",
               "assets/css/top-layout-v3.css",

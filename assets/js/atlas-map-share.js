@@ -2,20 +2,16 @@
    Geometry comes from the map already built by map-regions.js; nothing is uploaded. */
 (() => {
   'use strict';
-  const WIDTH = 1600, HEIGHT = 1000, MAP_X = 40, MAP_Y = 118, MAP_SCALE = 1.52;
+  const WIDTH = 1600, HEIGHT = 924, MAP_X = 40, MAP_Y = 40, MAP_SCALE = 1.52;
   const MAP_HEIGHT = 507.209 * MAP_SCALE;
   const SMALL = 4.5, DOT = 3.1; // World units: markers keep tiny Countries visible.
   const INK = {
     paper: '#faf9f4', ocean: '#edf6f3', navy: '#173b5d', muted: '#5f6f7b', line: '#d9dcd6',
-    land: '#dde3e3', outside: '#e6ebe7', visited: '#234866', wished: '#a9bccb', border: '#fffaf1'
+    land: '#dde3e3', outside: '#e6ebe7', visited: '#234866', wished: '#c9824f', border: '#fffaf1'
   };
   const FONT = {
-    title: '600 44px "Shippori Mincho","Yu Mincho",serif',
-    count: '600 52px "Hanken Grotesk",sans-serif',
     label: '500 19px "Zen Kaku Gothic New",sans-serif',
-    labelStrong: '700 21px "Zen Kaku Gothic New",sans-serif',
-    brand: '600 20px "Hanken Grotesk",sans-serif',
-    credit: '500 15px "Hanken Grotesk",sans-serif'
+    labelStrong: '700 21px "Zen Kaku Gothic New",sans-serif'
   };
   const make = (tag, className, text) => {
     const element = document.createElement(tag);
@@ -77,22 +73,7 @@
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
     ctx.textBaseline = 'alphabetic';
 
-    ctx.fillStyle = INK.navy;
-    ctx.font = FONT.title;
-    ctx.fillText('わたしの地図', 48, 80);
-    const visited = data.countries.filter(data.isVisited);
     const parents = data.countries.filter(country => !data.isDetail(country));
-    const visitedCount = visited.filter(country => !data.isDetail(country)).length;
-    const total = ' / ' + parents.length;
-    ctx.textAlign = 'right';
-    ctx.font = FONT.count;
-    ctx.fillStyle = INK.navy;
-    ctx.fillText(visitedCount + total, WIDTH - 48, 82);
-    const countWidth = ctx.measureText(visitedCount + total).width;
-    ctx.font = FONT.label;
-    ctx.fillStyle = INK.muted;
-    ctx.fillText('行った国・地域', WIDTH - 48 - countWidth - 24, 80);
-    ctx.textAlign = 'left';
 
     ctx.save();
     ctx.beginPath();
@@ -121,38 +102,35 @@
     let x = 48;
     x = legendItem(ctx, x, footerY + 42, INK.visited, '行った');
     if (withWishes && data.countries.some(country => !data.isVisited(country) && data.isWished(country))) legendItem(ctx, x, footerY + 42, INK.wished, '行きたい');
-    ctx.textAlign = 'right';
-    ctx.fillStyle = INK.navy;
-    ctx.font = FONT.brand;
-    ctx.fillText('JOURNEY ATLAS', WIDTH - 48, footerY + 42);
-    const brandWidth = ctx.measureText('JOURNEY ATLAS').width;
-    ctx.fillStyle = INK.muted;
-    ctx.font = FONT.credit;
-    ctx.fillText('Map: Wikimedia Commons, CC BY-SA', WIDTH - 48 - brandWidth - 24, footerY + 42);
-    ctx.textAlign = 'left';
 
-    const columns = data.regions;
-    const columnWidth = (WIDTH - 96) / columns.length;
-    columns.forEach((region, index) => {
-      const left = 48 + columnWidth * index;
-      const inRegion = parents.filter(country => region.iso2.includes(country.iso2));
+    // The world total and each region share one evenly spaced row.
+    const stats = [{label: '世界', items: parents}, ...data.regions.map(region => ({
+      label: region.label,
+      items: parents.filter(country => region.iso2.includes(country.iso2))
+    }))].map(({label, items}) => {
+      const value = items.filter(data.isVisited).length + ' / ' + items.length;
+      ctx.font = FONT.label;
+      const labelWidth = ctx.measureText(label).width;
+      ctx.font = FONT.labelStrong;
+      return {label, value, labelWidth, width: labelWidth + 10 + ctx.measureText(value).width};
+    });
+    const gap = (WIDTH - 96 - stats.reduce((sum, stat) => sum + stat.width, 0)) / (stats.length - 1);
+    let left = 48;
+    stats.forEach(stat => {
       ctx.fillStyle = INK.muted;
       ctx.font = FONT.label;
-      ctx.fillText(region.label, left, footerY + 82);
+      ctx.fillText(stat.label, left, footerY + 82);
       ctx.fillStyle = INK.navy;
-      const label = ctx.measureText(region.label).width;
       ctx.font = FONT.labelStrong;
-      ctx.fillText(inRegion.filter(data.isVisited).length + ' / ' + inRegion.length, left + label + 10, footerY + 82);
+      ctx.fillText(stat.value, left + stat.labelWidth + 10, footerY + 82);
+      left += stat.width + gap;
     });
     return canvas;
   }
   const loadFonts = () => {
     if (!document.fonts?.load) return Promise.resolve();
     const fonts = [
-      document.fonts.load(FONT.title, 'わたしの地図'),
-      document.fonts.load(FONT.count, '0123456789 /'),
-      document.fonts.load(FONT.brand, 'JOURNEY ATLAS'),
-      document.fonts.load(FONT.label, '行った国・地域行きたいアジアヨーロッパフリカ北米南オセニ極'),
+      document.fonts.load(FONT.label, '行った行きたい世界アジアヨーロッパフリカ北米南オセニ極'),
       document.fonts.load(FONT.labelStrong, '0123456789 /')
     ];
     return Promise.race([Promise.allSettled(fonts), new Promise(done => setTimeout(done, 2500))]);
@@ -263,11 +241,4 @@
     } catch { note.textContent = '地図を読み込めませんでした。時間をおいてお試しください。'; }
   }
   window.JourneyAtlasMapShare = {open};
-  const tools = document.querySelector('.ja-backup-tools');
-  if (tools) {
-    const button = make('button', 'ja-tool-button', '地図を画像にして共有');
-    button.type = 'button';
-    button.addEventListener('click', open);
-    tools.prepend(button);
-  }
 })();
