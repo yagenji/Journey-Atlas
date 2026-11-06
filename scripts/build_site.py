@@ -548,7 +548,23 @@ def build_top_scene_index() -> None:
             countries[slug] = rows
     if missing:
         print(f"WARNING: {missing} Scene thumbnail(s) missing; run scripts/build_scene_thumbs.py")
-    payload = {"version": 2, "countries": countries, "heroes": heroes}
+    # Published Region Heroes share the existing top-page runtime index; authoring
+    # Region JSON files are intentionally not shipped by the production packager.
+    region_heroes: list[dict] = []
+    for path in sorted((ROOT / "data/regions/unitedkingdom").glob("*.json")):
+        region = json.loads(path.read_text(encoding="utf-8"))
+        hero = region.get("hero") or {}
+        if region.get("regionPublished") is not True or not hero.get("image"):
+            continue
+        region_heroes.append({
+            "slug": region["slug"],
+            "nameJa": region["nameJa"],
+            "nameEn": region["nameEn"],
+            "heroName": hero.get("name") or hero.get("location") or region["nameJa"],
+            "image": hero["image"],
+            "href": f"countries/unitedkingdom/{region['slug']}/",
+        })
+    payload = {"version": 3, "countries": countries, "heroes": heroes, "regionHeroes": region_heroes}
     (ROOT / "data/top-scene-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
     )

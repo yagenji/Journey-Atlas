@@ -48,6 +48,17 @@
   };
 
   let regions = [], dest = [];
+  const CHILD_SLUGS = new Set(['hong-kong', 'macau']);
+  const parentDestinations = () => dest.filter(country => !CHILD_SLUGS.has(country.slug));
+  const childLinks = {
+    china: [['香港','countries/hong-kong/'],['マカオ','countries/macau/']],
+    unitedkingdom: [
+      ['イングランド','countries/unitedkingdom/england/'],
+      ['スコットランド','countries/unitedkingdom/scotland/'],
+      ['ウェールズ','countries/unitedkingdom/wales/'],
+      ['北アイルランド','countries/unitedkingdom/northern-ireland/']
+    ]
+  };
   let byIso = new Map(), regIso = new Map(), subIso = new Map(), subs = new Map();
   let groups = new Map(), wrapGroups = new Map(), nav = new Map();
   let svg, tip, pin, subbar;
@@ -86,7 +97,7 @@
   }
   function countries(codes = []) {
     const s = new Set(codes);
-    return dest.filter(c => s.has(c.iso2)).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'));
+    return parentDestinations().filter(c => s.has(c.iso2)).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'));
   }
   function lookup() {
     regions.forEach(r => {
@@ -132,9 +143,14 @@
       const folio = page ? `<span class="map-country-nav__folio" aria-label="${page.folio}ページ">p.${page.folio}</span>` : '';
       const inner = `<span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span>${folio}`;
       // Published countries are plain links: one click opens the page (new tab via Ctrl/Cmd/middle-click works natively).
-      return c.atlasPublished && c.href
+      const main = c.atlasPublished && c.href
         ? `<a href="${c.href}" data-n="${c.iso2}" class="${cls}">${inner}</a>`
         : `<button type="button" data-n="${c.iso2}" class="${cls}">${inner}</button>`;
+      const children = childLinks[c.slug] || [];
+      return main + (children.length
+        ? '<span class="map-country-nav__children">' + children.map(([name,href]) =>
+          `<a href="${href}" class="map-country-nav__child">${name}</a>`).join('') + '</span>'
+        : '');
     };
     // The list doubles as the atlas's table of contents: countries in page order, under the same
     // chapter headings (東アジア, 東南アジア …) that Country pages turn through.
@@ -157,7 +173,7 @@
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
     copy.textContent = `地域を選ぶと、その地域の国・地域が一覧で表示されます。${HOW}`;
-    count.textContent = `${dest.length || 202} DESTINATIONS`;
+    count.textContent = `${parentDestinations().length || 200} DESTINATIONS`;
     status.textContent = '';
     // World view: the panel lists the regions themselves so it is never an empty dead end.
     list.className = 'map-country-nav map-world-regions';
@@ -385,7 +401,7 @@
     const countries = dest.filter(c => (!mineVisitedOnly || isVisited(c)) && mineSearchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(query))
       .sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
     rows.innerHTML = countries.map(c => `<div class="map-mine__item"><label class="map-mine__choice"><input type="checkbox" data-visited-slug="${c.slug}" aria-label="${c.nameJa}を行った国・地域にする"${isVisited(c) ? ' checked' : ''}><span class="map-country-nav__flag" aria-hidden="true">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></label>${c.href ? `<a class="map-mine__country-link" href="${c.href}" aria-label="${c.nameJa}のページを開く">↗</a>` : ''}</div>`).join('');
-    list.querySelector('.map-mine__result-count').textContent = `${countries.length}件の国・地域`;
+    list.querySelector('.map-mine__result-count').textContent = `${countries.length}件（詳細地域を含む）`;
     const empty = list.querySelector('.map-mine__no-results');
     empty.hidden = countries.length > 0;
     empty.textContent = mineVisitedOnly && !query ? '行った国・地域はまだありません。「行った国・地域だけ表示」を外して追加できます。' : '該当する国・地域がありません。';
@@ -398,7 +414,7 @@
     kicker.textContent = 'MY ATLAS';
     title.textContent = 'わたしの地図';
     copy.textContent = '国名で検索し、一覧にチェックして「行った国・地域」を記録できます。地図からも選べます。記録はこのブラウザにだけ保存されます。';
-    count.textContent = `${visited.length} / ${dest.length} VISITED`;
+    count.textContent = `${visited.filter(c=>!CHILD_SLUGS.has(c.slug)).length} / ${parentDestinations().length} VISITED`;
     const item = c => `<a class="map-country-nav__item" href="${c.href || '#'}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></a>`;
     const block = (label, note, rows, empty) => `<div class="map-country-nav__guide"><strong>${label}</strong><span>${note}</span></div>${rows.length ? `<div class="map-country-nav__list">${rows.map(item).join('')}</div>` : `<p class="map-mine__empty">${empty}</p>`}`;
     if (!list.querySelector('.map-mine__countries')) {

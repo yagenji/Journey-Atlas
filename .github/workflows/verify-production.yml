@@ -198,8 +198,8 @@ jobs:
           done
           python3 -c "import json,sys; c=json.load(open('/tmp/top-season-index.json'))['countries']; sys.exit(0 if len(c)==202 else '::error title=Season index::top-season-index.json: expected 202 Countries, got %d' % len(c))"
           contains 'id="season-months"' /tmp/top.html
-          contains 'const ATLAS_TOTAL = 202;' /tmp/top.js
-          contains 'dest.length || 202' /tmp/map-regions.js
+          contains 'const ATLAS_TOTAL = 200;' /tmp/top.js
+          contains 'parentDestinations().length || 200' /tmp/map-regions.js
           contains '202' /tmp/about.html
           contains 'パレスチナ' /tmp/about.html
           contains '202' /tmp/faq.html
