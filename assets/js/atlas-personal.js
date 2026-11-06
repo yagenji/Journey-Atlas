@@ -198,14 +198,18 @@
   function renderMine() {
     if (!registry.length) return;
     const all = registry.filter(c => validId(c.slug));
-    const seen = all.filter(visited), want = all.filter(wished);
+    const detailSlugs = new Set(['hong-kong','macau']);
+    const parents = all.filter(c => !detailSlugs.has(c.slug));
+    const seen = parents.filter(visited), want = parents.filter(wished);
+    const detailSeen = all.filter(c => detailSlugs.has(c.slug) && visited(c));
+    const detailWant = all.filter(c => detailSlugs.has(c.slug) && wished(c));
     const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
       (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
     summary.replaceChildren();
     [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
-      item.append(make('span', '', tag), make('strong', '', count + (tag === 'SCENERY' ? ' 景色' : ' / ' + all.length)), make('small', '', name));
+      item.append(make('span', '', tag), make('strong', '', count + (tag === 'SCENERY' ? ' 景色' : ' / ' + parents.length)), make('small', '', name));
       summary.append(item);
     });
     regionCounts.replaceChildren();
@@ -214,7 +218,10 @@
       if (count) regionCounts.append(make('span', '', region.label + ' ' + count + ' / ' + region.iso2.length));
     });
     const personalGroups = [sectionFor('行った国・地域', seen, '地図の「わたしの地図」から登録できます。'), sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。')];
-    if (regionWishes.length) personalGroups.push(sectionFor('行きたい地域', regionWishes.map(w => ({...w, flag: ''})), '地域ページから登録できます。'));
+    if (detailSeen.length) personalGroups.push(sectionFor('行った詳細地域', detailSeen, ''));
+    if (detailWant.length || regionWishes.length) personalGroups.push(
+      sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,flag:''}))], '')
+    );
     groups.replaceChildren(...personalGroups);
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
     const gallery = make('div', 'ja-scene-gallery');
