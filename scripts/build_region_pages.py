@@ -83,25 +83,22 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Use a declared region flag asset, preserving legacy UK region flags."""
-    flag_asset = route.get('flagAsset')
-    if flag_asset:
-        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\.svg', flag_asset):
-            raise ValueError('Invalid region route flag asset')
+    """Render a declared regional flag or the route's ordinary flag glyph.
+
+    Regional SVGs must be explicitly supplied by data, never inferred from
+    a country name. This is shared by all parent Countries.
+    """
+    asset = route.get('flagAsset')
+    if asset:
+        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\\.svg', asset):
+            raise ValueError('Invalid region flag asset')
+        if not (ROOT / asset).is_file():
+            raise FileNotFoundError(asset)
         return ('<span class="region-route-flag-wrap">'
                 '<span class="region-route-flag__reference">🇮🇪</span>'
-                f'<img class="region-route-flag" src="{esc(flag_asset)}" '
-                'alt="" width="21" height="21" decoding="async"></span>')
-    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
-        str(route.get('countryEn', '')).upper()
-    )
-    if slug:
-        return ('<span class="region-route-flag-wrap">'
-                '<span class="region-route-flag__reference">🇮🇪</span>'
-                f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
+                f'<img class="region-route-flag" src="{esc(asset)}" '
                 'alt="" width="21" height="21" decoding="async"></span>')
     return esc(route.get('flag', ''))
-
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
                           bounds: dict | None) -> tuple[float, float] | None:
