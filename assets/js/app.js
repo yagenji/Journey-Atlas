@@ -145,11 +145,20 @@ function renderCountry(data, registry) {
   });
 }
 
-// Reuse the United Kingdom Region layout language without changing the
-// existing China detail routes, authored content, map coordinates or save keys.
+// Shared history component for the existing China detail routes.
+function renderRegionHistory(fragment, history) {
+  if (!history?.text) return;
+  const section = document.createElement('section');
+  section.className = 'region-history';
+  section.setAttribute('aria-labelledby', 'region-history-title');
+  section.innerHTML = `<div class="region-history__head"><span class="section-kicker-en">HISTORY</span><h2 id="region-history-title">歴史・成り立ち</h2></div><p>${escapeHtml(history.text)}</p>`;
+  fragment.querySelector('.country-facts-strip')?.after(section);
+}
+
 function harmonizeChinaRegionLayout(fragment, data) {
   const article = fragment.querySelector('.country-page');
   article?.classList.add('region-country-page');
+  renderRegionHistory(fragment, data.historyContext);
   fragment.querySelector('.journey-footer')?.classList.add('region-journey-footer');
   fragment.querySelector('.wish-wrap')?.classList.add('region-wish-wrap');
 

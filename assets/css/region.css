@@ -106,3 +106,10 @@
   width:94%;height:auto;max-width:none;
   transform:translate(-50%,-50%);
 }
+
+/* Shared historical formation/status paragraph for all Region detail routes. */
+.region-history{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;padding:22px 0;margin:0 0 20px;border-bottom:1px solid var(--line)}
+.region-history__head .section-kicker-en{display:block;margin-bottom:5px}
+.region-history h2{margin:0;color:var(--navy);font:600 22px/1.5 var(--body)}
+.region-history>p{max-width:76ch;margin:0;color:var(--navy);font:400 14px/1.95 var(--body);overflow-wrap:anywhere}
+@media(max-width:760px){.region-history{grid-template-columns:1fr;gap:12px;padding:20px 0}.region-history h2{font-size:20px}}
