@@ -103,6 +103,11 @@ def main() -> int:
                         problems.append("return to United Kingdom missing")
                     if region.get("nextRegion"):
                         expected_name = region["nextRegion"]["nameJa"]
+                        next_path = REGIONS / region["parentSlug"] / f'{region["nextRegion"]["slug"]}.json'
+                        if next_path.is_file():
+                            next_data = json.loads(next_path.read_text(encoding="utf-8"))
+                            if next_data.get("regionPublished") is True:
+                                expected_name += "へ"
                         if audit["nextRegionName"] != expected_name:
                             problems.append("next Region label incorrect")
                         if audit["nextRegionBadLink"]:
@@ -217,7 +222,7 @@ def main() -> int:
                                             height: img?.getBoundingClientRect().height || 0};
                                 });
                         """, country, flag_slug)
-                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 18) < 1 and abs(x["height"] - 18) < 1 for x in check):
+                        if len(check) != expected or not all(x["present"] and x["loaded"] and abs(x["width"] - 21) < 1 and abs(x["height"] - 21) < 1 for x in check):
                             problems.append(f"{country} regional SVG flag mismatch: {check}")
                     if slug == "northern-ireland":
                         journey_picks = driver.execute_script("""
