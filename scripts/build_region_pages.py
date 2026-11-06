@@ -83,16 +83,16 @@ def icon(name: str) -> str:
 
 
 def region_route_flag(route: dict) -> str:
-    """Use one waved SVG family for every flag, independent of OS emoji sizing."""
-    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland',
-            'IRELAND': 'ireland', 'NORTHERN IRELAND': 'unitedkingdom'}.get(
+    """Keep Country emoji rendering; use an emoji-sized fallback for UK regions."""
+    slug = {'ENGLAND': 'england', 'WALES': 'wales', 'SCOTLAND': 'scotland'}.get(
         str(route.get('countryEn', '')).upper()
     )
     if slug:
-        return (f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
-                'alt="" width="21" height="21" decoding="async">')
+        return ('<span class="region-route-flag-wrap">'
+                '<span class="region-route-flag__reference">🇮🇪</span>'
+                f'<img class="region-route-flag" src="assets/icons/region-flags/{slug}-waved.svg" '
+                'alt="" width="21" height="21" decoding="async"></span>')
     return esc(route.get('flag', ''))
-
 
 
 def recorded_map_position(coords: dict, marker_id: str, svg: str,
