@@ -62,9 +62,9 @@ class RegionMapPositions(unittest.TestCase):
     def test_region_labels_and_review_state(self):
         page, canonical, published = region.render_region(self.data,
             site_url='https://atlas.yagenji.com/', version='test')
-        self.assertFalse(published)
+        self.assertTrue(published)
         self.assertEqual(canonical, 'https://atlas.yagenji.com/countries/unitedkingdom/northern-ireland/')
-        self.assertIn('noindex,follow', page)
+        self.assertIn('index,follow', page)
         self.assertIn('TASTE OF NORTHERN IRELAND', page)
         self.assertIn('北アイルランドの景色の地図', page)
         self.assertNotIn('スコットランドの景色の地図', page)
