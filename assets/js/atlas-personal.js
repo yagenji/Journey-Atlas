@@ -273,24 +273,24 @@
     };
     const appendFavoriteCards = (gallery, entries) => {
       entries.forEach(favorite => {
-      const item = make('div', 'ja-favorite-card');
-      const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
-      const img = make('img');
-      if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.src = favorite.image;
-        img.alt = '';
-        link.append(img);
-      }
-      const names = make('span');
-      names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
-      link.append(names);
-      const remove = make('button', 'ja-remove', '保存を解除');
-      remove.type = 'button';
-      remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
-      remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
-      item.append(link, remove);
+        const item = make('div', 'ja-favorite-card');
+        const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
+        const img = make('img');
+        if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.src = favorite.image;
+          img.alt = '';
+          link.append(img);
+        }
+        const names = make('span');
+        names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
+        link.append(names);
+        const remove = make('button', 'ja-remove', '保存を解除');
+        remove.type = 'button';
+        remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
+        remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
+        item.append(link, remove);
         gallery.append(item);
       });
     };
