@@ -18,6 +18,9 @@ from xml.etree import ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / 'data' / 'regions'
 TEMPLATE = ROOT / 'region.html'
+ICON_IDS = frozenset(node.get('id') for node in
+                     ET.parse(ROOT / 'assets/icons/atlas-icons.svg').iter()
+                     if node.tag.endswith('}symbol'))
 
 
 # Any Region CSS/JS edit must produce a new URL, even when the Country
@@ -78,6 +81,8 @@ def render_image(path: str, alt: str, version: str, *, eager: bool = False) -> s
 def icon(name: str) -> str:
     if not re.fullmatch(r'[a-z0-9-]+', name):
         raise ValueError(f'Unsafe icon name: {name}')
+    if name not in ICON_IDS:
+        raise ValueError(f'Unknown atlas icon: {name}')
     return (f'<svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24">'
             f'<use href="assets/icons/atlas-icons.svg#{name}"></use></svg>')
 

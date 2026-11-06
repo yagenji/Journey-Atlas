@@ -527,6 +527,9 @@ def validate_v6_additions(errors: list[str], filename: str, data: dict[str, Any]
 
 
 def validate_data(data: dict[str, Any], filename: str, *, force: bool = False) -> list[str]:
+    # Region uses culture for the shared Beyond the Scenery editorial section.
+    if data.get("parentSlug") and isinstance(data.get("culture"), list):
+        data = dict(data, atlasExtras=data["culture"])
     version = qa_version(data)
     if not force and version < CONTENT_QA_V5:
         return []

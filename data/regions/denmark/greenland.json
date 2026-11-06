@@ -204,14 +204,15 @@
         "text": "トナカイ肉を焼く・煮込むなどして味わう。海産物だけでないグリーンランドの食文化を知る一品。",
         "image": "assets/images/denmark/greenland/approved/food-reindeer.webp"
       }
-    ]
+    ],
+    "kicker": "TASTE OF GREENLAND"
   },
   "signatureFacts": [
     {
       "topicKey": "world-largest-island",
       "label": "世界最大の島",
       "value": "216.6万km²",
-      "note": "グリーンランドは世界最大の島。大部分は氷床に覆われ、人々は主に沿岸の町や集落で暮らす。",
+      "note": "北米の北東側、北大西洋と北極海の間に位置する世界最大の島。面積は日本の約5.7倍に相当する。",
       "icon": "globe",
       "sourceKey": "area",
       "interestReason": "世界最大の島という例外的な広さが、拠点を分けて旅する地理を伝える。",
@@ -219,9 +220,9 @@
     },
     {
       "topicKey": "ice-cover",
-      "label": "氷床が覆う陸地",
+      "label": "氷床・氷河が覆う割合",
       "value": "約81%",
-      "note": "海岸に近い限られた場所に緑や岩場が現れ、内陸には広大な氷の世界が広がる。",
+      "note": "内陸に広がる氷床と氷河を合わせた割合。氷に覆われない土地は、島全体の約2割に限られる。",
       "icon": "landscape",
       "sourceKey": "iceCover",
       "interestReason": "陸の大部分を氷が覆う比率から、人々が沿岸に暮らす理由を想像できる。"
@@ -240,50 +241,58 @@
   "encounters": [
     {
       "title": "氷山と氷河",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "LANDSCAPE"
     },
     {
       "title": "フィヨルド",
-      "icon": "sea"
+      "icon": "sea",
+      "category": "LANDSCAPE"
     },
     {
       "title": "玄武岩の海岸",
-      "icon": "shore"
+      "icon": "shore",
+      "category": "NATURE"
     },
     {
       "title": "色彩豊かな町",
-      "icon": "city"
+      "icon": "city",
+      "category": "CITY"
     },
     {
       "title": "イヌイット文化",
-      "icon": "culture"
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "ツンドラの夏",
-      "icon": "landscape"
+      "icon": "landscape",
+      "category": "SEASON"
     },
     {
       "title": "北欧人の遺構",
-      "icon": "landmark"
+      "icon": "landmark",
+      "category": "ARCHITECTURE"
     },
     {
       "title": "海と漁の暮らし",
-      "icon": "sea"
+      "icon": "sea",
+      "category": "WORK"
     }
   ],
   "culture": [
     {
-      "topicKey": "icefjord",
-      "themeEn": "EARTH",
-      "themeJa": "大地を知る",
-      "icon": "landscape",
-      "title": "氷床は止まっているようで、動き続けている",
-      "text": "イルリサットの氷河フィヨルドには、内陸氷床から運ばれる氷が集まる。景色を眺めると、氷床と海が今もつながっていることを実感できる。",
+      "topicKey": "dress-beadwork",
+      "themeEn": "CULTURE",
+      "themeJa": "装いを知る",
+      "icon": "culture",
+      "title": "民族衣装には、外の世界との交流が縫い込まれている",
+      "text": "動物の皮を使う衣服に、ヨーロッパとの交易で届いた布やガラスビーズが取り入れられた。色鮮やかな民族衣装は、伝統を守るだけでなく、新しい素材を自分たちの装いへ変えてきた歴史も伝える。",
       "points": [
-        "氷山は内陸氷床につながる氷河から海へ運ばれる",
-        "フィヨルドの氷は季節や天候で絶えず変わる"
+        "防寒のための皮革加工と縫製の技術が土台",
+        "交易で入った素材が、晴れ着の表現を豊かにした"
       ],
-      "sourceKey": "ilulissat"
+      "sourceKey": "traditionalClothing"
     },
     {
       "topicKey": "inuit-language",
@@ -312,43 +321,43 @@
       "sourceKey": "selfGovernment"
     },
     {
-      "topicKey": "south-farming",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史を知る",
-      "icon": "landscape",
-      "title": "南部の緑の谷に、農耕の時間が残る",
-      "text": "カシアルスク周辺には中世の北欧人入植と、後のイヌイットの農耕文化が重なる。氷の島の南端にある緑の土地が、もう一つの暮らしを支えてきた。",
+      "topicKey": "tupilak-sculpture",
+      "themeEn": "ART",
+      "themeJa": "表現を知る",
+      "icon": "culture",
+      "title": "トゥピラックは、語られた存在から彫刻へ姿を変えた",
+      "text": "今日、美術館で見られるトゥピラックには、骨や歯、木などを彫った作品がある。もとは霊的な存在にまつわる信仰と物語に関わり、外から訪れた人々の関心と作り手の想像力が、目に見える彫刻の表現へつながった。",
       "points": [
-        "クヤータは2017年に世界文化遺産に登録",
-        "北欧人の入植と近代の農耕の景観が共存"
+        "現代の彫刻と、もとの信仰上の存在は区別して見る",
+        "素材や顔つきに、作り手ごとの表現が現れる"
       ],
-      "sourceKey": "kujataa"
+      "sourceKey": "tupilakArt"
     },
     {
-      "topicKey": "sea-food",
-      "themeEn": "FOOD",
-      "themeJa": "味を知る",
-      "icon": "food",
-      "title": "海が、食卓と暮らしの基盤になる",
-      "text": "魚、海獣、陸の動物など、地域で得られる食材が伝統食に結びついてきた。食べるものの選び方からも、気候と自然への適応が見えてくる。",
+      "topicKey": "katuaq-architecture",
+      "themeEn": "CITY",
+      "themeJa": "建築を知る",
+      "icon": "city",
+      "title": "オーロラの揺らぎを、文化施設の外壁に写す",
+      "text": "ヌークの文化施設カトゥアクは、波打つ木とガラスの外壁が特徴。オーロラや雪と氷に反射する光を建築へ取り込み、映画、音楽、集まりの場として街の文化を支えている。",
       "points": [
-        "スアーサートは肉を使う伝統的なスープ",
-        "マッタクは海と食のつながりを示す食材"
+        "自然の形や光が、現代建築の発想につながる",
+        "ホールとカフェを備え、人々が集まる街の施設"
       ],
-      "sourceKey": "foodGuide"
+      "sourceKey": "katuaq"
     },
     {
-      "topicKey": "transport-no-roads",
+      "topicKey": "sled-dog-teams",
       "themeEn": "LIFE",
       "themeJa": "暮らしを知る",
-      "icon": "road",
-      "title": "街の外へ出ると、道は空と海になる",
-      "text": "町と町を車で移動する道路網はない。飛行機、ヘリコプター、船が生活や旅をつなぎ、天候がその日の移動を左右する。",
+      "icon": "wildlife",
+      "title": "犬ぞりは、猟や漁の仕事を支える文化でもある",
+      "text": "犬ぞりの文化が続くのは、西海岸の北極圏以北と東グリーンランド。犬を扱い、雪や地形を読む技術は、猟師や漁師の仕事と結びついてきた。犬ぞりの競技会にも、働く人々や家族が集まる。",
       "points": [
-        "町同士を結ぶ道路網はない",
-        "空路と海路が移動の大きな役割を担う"
+        "犬を御する技術と土地を読む経験が受け継がれる",
+        "競技会は、仕事と地域の交流をつなぐ場にもなる"
       ],
-      "sourceKey": "transport"
+      "sourceKey": "sledDogs"
     }
   ],
   "travelTrivia": [
@@ -432,13 +441,13 @@
     "intro": "景色の場所は広い地域に分かれる。すべての8景を短い旅行で回る前提にせず、拠点を絞って天候予備日を設けたい。",
     "items": [
       {
-        "duration": "4〜5日",
+        "duration": "4〜6日",
         "title": "イルリサット周辺で氷の世界に出会う",
         "text": "イルリサットを拠点に氷河フィヨルドと町を歩く。例：イルリサット → セルメルミウト → イルリサット。到着・出発日は便に合わせ、天候予備日を設ける。",
         "icon": "city"
       },
       {
-        "duration": "7〜10日",
+        "duration": "7〜13日",
         "title": "西海岸の2拠点を旅する",
         "text": "西海岸の2拠点を空路で組み合わせる。例：ヌーク → イルリサット → ヌーク。最終日はヌークに戻り、国際線への接続に余裕を残す。",
         "icon": "map"
@@ -463,7 +472,7 @@
   "seasons": [
     {
       "months": "3〜5月",
-      "icon": "snowflake",
+      "icon": "snow",
       "color": "#8199ad",
       "text": "寒さが残り、雪と氷の体験が中心。地域により冬のアクティビティが続く。"
     },
@@ -475,13 +484,13 @@
     },
     {
       "months": "9〜10月",
-      "icon": "cloud",
+      "icon": "leaf",
       "color": "#b17f55",
       "text": "短い秋から冬へ移行。夜が戻り、オーロラを見る機会が増える。"
     },
     {
       "months": "11〜2月",
-      "icon": "snowflake",
+      "icon": "snow",
       "color": "#718eac",
       "text": "日照が短く、地域によって極夜となる。寒さと運航条件を前提に計画する。"
     }
@@ -491,54 +500,31 @@
     "title": "飛行機・ヘリコプター・船",
     "text": "町同士を結ぶ道路網がなく、遠距離移動は空路や海路に依存する。気象による欠航・遅延があり、接続便を含めて日程に余裕が必要。"
   },
-  "nextRoutesIntro": "海を越える移動は国際航空路が基本。運航時期・乗継ぎ・入出境条件は出発前に確認を。",
-  "nextRoutes": [
-    {
-      "countryEn": "ICELAND",
-      "countryJa": "アイスランド",
-      "flag": "🇮🇸",
-      "path": "Nuuk → Keflavík → Reykjavík",
-      "description": "氷河と火山、北大西洋の文化を見比べる。ヌーク発の国際線を利用する。",
-      "href": "countries/iceland/"
-    },
-    {
-      "countryEn": "DENMARK",
-      "countryJa": "デンマーク",
-      "flag": "🇩🇰",
-      "path": "Nuuk → Copenhagen",
-      "description": "王国内の異なる地理と暮らしを行き来する。ヌークとコペンハーゲンは航空路でつながる。",
-      "href": "countries/denmark/"
-    },
-    {
-      "countryEn": "CANADA",
-      "countryJa": "カナダ",
-      "flag": "🇨🇦",
-      "path": "Nuuk → Iqaluit（運航季節を確認）",
-      "description": "対岸のカナダ北極圏へ。運航期間が限定されるため日程を事前確認する。",
-      "href": "countries/canada/"
-    }
-  ],
+  "nextRoutes": [],
   "relatedCountries": [
     {
       "nameJa": "アイスランド",
       "nameEn": "ICELAND",
       "href": "countries/iceland/",
       "flag": "🇮🇸",
-      "reason": "氷河だけでなく火山と温泉がつくる北大西洋の島を比べる。"
+      "reason": "氷河だけでなく火山と温泉がつくる北大西洋の島を比べる。",
+      "affinityType": "LANDSCAPE"
     },
     {
       "nameJa": "カナダ",
       "nameEn": "CANADA",
       "href": "countries/canada/",
       "flag": "🇨🇦",
-      "reason": "ヌナブトを含む北極圏の自然とイヌイット文化に触れる。"
+      "reason": "ヌナブトを含む北極圏の自然とイヌイット文化に触れる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "ノルウェー",
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "北方のフィヨルドと沿岸の暮らしを別の形で旅する。"
+      "reason": "北方のフィヨルドと沿岸の暮らしを別の形で旅する。",
+      "affinityType": "LANDSCAPE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-06",
@@ -561,7 +547,12 @@
     "qajaq": "https://visitgreenland.com/activities/kayaking/",
     "drumSong": "https://ich.unesco.org/en/RL/inuit-drum-dancing-and-singing-01696",
     "sunReturn": "https://isfjordscentret.gl/en/education/teaching-material/teaching-material-for-the-podcast/the-light-returns/",
-    "japanArea": "https://www.cas.go.jp/jp/ryodo_eg/torikumi/giaj.html"
+    "japanArea": "https://www.cas.go.jp/jp/ryodo_eg/torikumi/giaj.html",
+    "nextRoutes": "https://visitgreenland.com/plan-your-trip/how-to-get-to-greenland/",
+    "traditionalClothing": "https://visitgreenland.com/activities/traditional-clothing/",
+    "tupilakArt": "https://www.nuukkunstmuseum.com/en/behind-the-art/tupilak-the-language-of-the-tongue/",
+    "katuaq": "https://katuaq.gl/en/about-katuaq/architecture",
+    "sledDogs": "https://visitgreenland.com/activities/dog-sledding/"
   },
   "sourceDates": {
     "population": "2026-01-01",
@@ -569,7 +560,8 @@
     "selfGovernment": "2009-06-21",
     "heritage": "2004 Ilulissat / 2017 Kujataa",
     "travelSeason": "2026-11-06 official travel guidance",
-    "japanAreaComparison": "Japan 377973.68 km² as of 2026-07-01; 2166086 / 377973.68, rounded to 5.7x"
+    "japanAreaComparison": "Japan 377973.68 km² as of 2026-07-01; 2166086 / 377973.68, rounded to 5.7x",
+    "nextRoutes": "2026-11-06: Visit Greenland confirms no ferry connections with Iceland, Denmark or Canada; no mainstream land/sea continuation listed."
   },
   "capital": {
     "nameJa": "ヌーク",
@@ -588,5 +580,6 @@
     "地球の風景",
     "暮らしに出会う",
     "時をたどる"
-  ]
+  ],
+  "contentQaVersion": 6
 }
