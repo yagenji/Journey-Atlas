@@ -88,6 +88,44 @@
   window.journeyAtlasCurrentCountry = country;
   window.dispatchEvent(new CustomEvent('journeyatlas:countryready', {detail: country}));
 
+  // Visits are independent of wishes and never increment the 200-Country total.
+  const visitedButton = document.querySelector('#region-visited-button');
+  const visitedKey = `journey-atlas:region-visited:${parentSlug}:${slug}`;
+  const readVisited = () => {
+    try { return localStorage.getItem(visitedKey) !== null; }
+    catch { return false; }
+  };
+  const paintVisited = () => {
+    if (!visitedButton) return;
+    const done = readVisited();
+    visitedButton.classList.toggle('is-saved', done);
+    visitedButton.setAttribute('aria-pressed', String(done));
+    visitedButton.querySelector('.wish-icon').textContent = done ? '✓' : '○';
+    visitedButton.querySelector('strong').textContent = done ? 'この地域に行きました' : 'この地域に行った';
+  };
+  paintVisited();
+  visitedButton?.addEventListener('click', () => {
+    try {
+      if (readVisited()) localStorage.removeItem(visitedKey);
+      else localStorage.setItem(visitedKey, JSON.stringify({
+        parentSlug, slug, nameJa: country.nameJa,
+        href: `countries/${parentSlug}/${slug}/`
+      }));
+      paintVisited();
+      const message = document.querySelector('#region-wish-status');
+      if (message) message.textContent = readVisited()
+        ? '訪問の記録を保存しました。' : '訪問の記録を解除しました。';
+    } catch {
+      const message = document.querySelector('#region-wish-status');
+      if (message) message.textContent = 'このブラウザには保存できませんでした。';
+    }
+  });
+  window.addEventListener('pageshow', paintVisited);
+  window.addEventListener('focus', paintVisited);
+  window.addEventListener('storage', event => {
+    if (event.key === visitedKey || event.key === null) paintVisited();
+  });
+
   const button = document.querySelector('#region-wish-button');
   const status = document.querySelector('#region-wish-status');
   if (!button) return;
