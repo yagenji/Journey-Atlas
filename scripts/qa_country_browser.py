@@ -18,6 +18,7 @@ import qa_published_browser as qa
 _BASE_EXPECTED_COUNTS = dict(qa.EXPECTED_COUNTS)
 _BASE_CRITICAL_VISIBLE = list(qa.CRITICAL_VISIBLE)
 _ORIGINAL_COLLECT_DOM_AUDIT = qa.collect_dom_audit
+_ORIGINAL_ASSERT_AUDIT = qa.assert_audit
 
 
 def expected_taste_count(driver) -> int:
@@ -61,6 +62,11 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
         qa.CRITICAL_VISIBLE[:] = [selector for selector in qa.CRITICAL_VISIBLE if selector != "#taste-section"]
 
     audit = _ORIGINAL_COLLECT_DOM_AUDIT(driver, viewport)
+    audit["atlasFolio"] = driver.execute_script(
+        "return document.querySelector('.atlas-pager__folio')?.textContent?.trim() || null"
+    )
+    path = urlparse(driver.current_url).path
+    audit["atlasFolioSlug"] = path.split("/countries/", 1)[-1].split("/", 1)[0]
     if taste_count == 0:
         audit["hiddenRequired"] = [
             selector for selector in audit.get("hiddenRequired", [])
@@ -69,8 +75,21 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
     return audit
 
 
+def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict]) -> list[str]:
+    errors = _ORIGINAL_ASSERT_AUDIT(audit, bg_checks, browser_errors)
+    folio = audit.get("atlasFolio")
+    slug = audit.get("atlasFolioSlug")
+    if slug in {"hong-kong", "macau"}:
+        if folio is not None:
+            errors.append(f"China detail region {slug} must not be numbered as a Country Page: {folio}")
+    elif not isinstance(folio, str) or not folio.endswith(" / 200"):
+        errors.append(f"Country Page folio must use canonical 200 denominator: {slug} {folio!r}")
+    return errors
+
+
 qa.wait_for_country = wait_for_country
 qa.collect_dom_audit = collect_dom_audit
+qa.assert_audit = assert_audit
 
 
 if __name__ == "__main__":
