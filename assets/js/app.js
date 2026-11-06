@@ -129,6 +129,7 @@ function renderCountry(data, registry) {
   app.replaceChildren(fragment);
   updatePageMetadata(data);
   initWishButton(data.slug, isChinaRegion);
+  initVisitedButton(data.slug, isChinaRegion);
   initCountryLensBridge(data);
   // Personal atlas enhancements read the same final Country data after rendering.
   window.journeyAtlasCurrentCountry = data;
@@ -863,6 +864,43 @@ function renderPhotoCredits(fragment, items = []) {
     list.append(li);
   });
   section.hidden = false;
+}
+
+function initVisitedButton(countrySlug, isRegion = false) {
+  const button = document.querySelector('#visited-button');
+  const status = document.querySelector('#wish-status');
+  if (!button) return;
+  // Same key and true/absent semantics as the TOP "わたしの地図" controls.
+  const storageKey = `journey-atlas:visited:${countrySlug}`;
+  const read = () => {
+    try { return localStorage.getItem(storageKey) === 'true'; }
+    catch { return false; }
+  };
+  const render = () => {
+    const done = read();
+    button.classList.toggle('is-saved', done);
+    button.setAttribute('aria-pressed', String(done));
+    button.querySelector('strong').textContent = done
+      ? (isRegion ? 'この地域に行きました' : 'この国に行きました')
+      : (isRegion ? 'この地域に行った' : 'この国に行った');
+    button.querySelector('.wish-icon').textContent = done ? '✓' : '○';
+  };
+  render();
+  button.addEventListener('click', () => {
+    try {
+      if (read()) localStorage.removeItem(storageKey);
+      else localStorage.setItem(storageKey, 'true');
+      render();
+      if (status) status.textContent = read() ? '訪問の記録を保存しました。' : '訪問の記録を解除しました。';
+    } catch {
+      if (status) status.textContent = 'このブラウザには保存できませんでした。';
+    }
+  });
+  window.addEventListener('pageshow', render);
+  window.addEventListener('focus', render);
+  window.addEventListener('storage', event => {
+    if (event.key === storageKey || event.key === null) render();
+  });
 }
 
 function initWishButton(countrySlug, isRegion = false) {
