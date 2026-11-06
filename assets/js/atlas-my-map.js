@@ -47,7 +47,7 @@
   home.prepend(section);
 
   let map, svg, view = [...WORLD], query = '', visitedOnly = false, loading = false, mode = 'both';
-  [['both', '行った国と行きたい国'], ['visited', '行った国だけ'], ['wished', '行きたい国だけ']].forEach(([id, label]) => {
+  [['both', 'すべて'], ['visited', '行った'], ['wished', '行きたい']].forEach(([id, label]) => {
     const choice = make('label', 'ja-mymap__mode');
     const radio = make('input');
     radio.type = 'radio';
@@ -86,6 +86,7 @@
       group.classList.toggle('is-wished', wished);
     });
   }
+  const parents = countries => countries.filter(country => !map.isDetail(country));
   function renderCountries() {
     const rows = picker.querySelector('.map-mine__countries');
     const activeSlug = rows.contains(document.activeElement) ? document.activeElement.dataset.visitedSlug : null;
@@ -106,7 +107,8 @@
       group.setAttribute('aria-label', block.label);
       const heading = make('h4', 'map-mine__region-heading');
       heading.append(make('span', '', block.label),
-        make('span', 'map-mine__region-count', block.items.filter(isVisited).length + ' / ' + block.items.length));
+        make('span', 'map-mine__region-count', parents(block.items).length
+          ? parents(block.items).filter(isVisited).length + ' / ' + parents(block.items).length : ''));
       group.append(heading);
       block.items.forEach(country => {
         const item = make('div', 'map-mine__item');
@@ -132,7 +134,11 @@
       });
       return group;
     }));
-    picker.querySelector('.map-mine__result-count').textContent = countries.length + '件（詳細地域を含む）';
+    // 200 is the site's destination count; detail regions are listed but not counted in it.
+    const counted = parents(countries).length;
+    picker.querySelector('.map-mine__result-count').textContent = counted || !countries.length
+      ? counted + '件'
+      : '詳細地域 ' + countries.length + '件';
     const empty = picker.querySelector('.map-mine__no-results');
     empty.hidden = countries.length > 0;
     empty.textContent = visitedOnly && !needle
