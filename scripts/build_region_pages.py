@@ -90,7 +90,7 @@ def region_route_flag(route: dict) -> str:
     """
     asset = route.get('flagAsset')
     if asset:
-        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\\.svg', asset):
+        if not re.fullmatch(r'assets/icons/region-flags/[a-z0-9-]+\.svg', asset):
             raise ValueError('Invalid region flag asset')
         if not (ROOT / asset).is_file():
             raise FileNotFoundError(asset)
