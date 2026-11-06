@@ -403,7 +403,16 @@
     const query = mineSearchText(mineQuery).trim();
     const countries = dest.filter(c => (!mineVisitedOnly || isVisited(c)) && mineSearchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(query))
       .sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
-    rows.innerHTML = countries.map(c => `<div class="map-mine__item"><label class="map-mine__choice"><input type="checkbox" data-visited-slug="${c.slug}" aria-label="${c.nameJa}を行った国・地域にする"${isVisited(c) ? ' checked' : ''}><span class="map-country-nav__flag" aria-hidden="true">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></label>${c.href ? `<a class="map-mine__country-link" href="${c.href}" aria-label="${c.nameJa}のページを開く">↗</a>` : ''}</div>`).join('');
+    const grouped = new Map(regions.map(r => [r.id, []]));
+    grouped.set('other', []);
+    countries.forEach(c => {
+      const id = regIso.get(c.iso2) || (['hong-kong', 'macau'].includes(c.slug) ? 'asia' : 'other');
+      (grouped.get(id) || grouped.get('other')).push(c);
+    });
+    const item = c => `<div class="map-mine__item"><label class="map-mine__choice"><input type="checkbox" data-visited-slug="${c.slug}" aria-label="${c.nameJa}を行った国・地域にする"${isVisited(c) ? ' checked' : ''}><span class="map-country-nav__flag" aria-hidden="true">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></label>${c.href ? `<a class="map-mine__country-link" href="${c.href}" aria-label="${c.nameJa}のページを開く">↗</a>` : ''}</div>`;
+    rows.innerHTML = [...regions.map(r => ({ id: r.id, label: r.label, items: grouped.get(r.id) })), { id: 'other', label: 'その他', items: grouped.get('other') }]
+      .filter(group => group.items.length)
+      .map(group => `<section class="map-mine__region" aria-label="${group.label}"><h3 class="map-mine__region-heading"><span>${group.label}</span><span class="map-mine__region-count">${group.items.filter(isVisited).length} / ${group.items.length}</span></h3>${group.items.map(item).join('')}</section>`).join('');
     list.querySelector('.map-mine__result-count').textContent = `${countries.length}件（詳細地域を含む）`;
     const empty = list.querySelector('.map-mine__no-results');
     empty.hidden = countries.length > 0;

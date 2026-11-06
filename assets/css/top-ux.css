@@ -487,3 +487,8 @@
 .ja-share .ja-tool-button:disabled { opacity:.55; cursor:default; }
 .ja-share__note { min-height:20px; margin:12px 0 0; font-size:12px; line-height:1.7; color:#626b68; }
 .ja-share :focus-visible { outline:2px solid #315c79; outline-offset:3px; }
+
+/* My map: keep the selectable countries together by atlas region. */
+.map-mine__region+.map-mine__region{margin-top:12px}
+.map-mine__region-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;padding:9px 7px 7px;border-bottom:1px solid rgba(38,68,84,.16);color:#234866;font:700 12px/1.4 var(--jp,sans-serif)}
+.map-mine__region-count{color:#667787;font:500 11px/1.4 var(--sans,sans-serif);font-variant-numeric:tabular-nums}
