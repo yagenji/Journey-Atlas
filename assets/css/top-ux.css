@@ -470,3 +470,8 @@
   #scenery .gallery-heading { display:block; }
   #scenery .gallery-actions { margin-top:14px;justify-content:flex-start;flex-wrap:wrap;align-self:auto; }
 }
+
+/* My map: keep the selectable countries together by atlas region. */
+.map-mine__region+.map-mine__region{margin-top:12px}
+.map-mine__region-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;padding:9px 7px 7px;border-bottom:1px solid rgba(38,68,84,.16);color:#234866;font:700 12px/1.4 var(--jp,sans-serif)}
+.map-mine__region-count{color:#667787;font:500 11px/1.4 var(--sans,sans-serif);font-variant-numeric:tabular-nums}
