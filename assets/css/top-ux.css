@@ -464,3 +464,9 @@
   .explore .explore-card__art--symbol{height:100%!important;min-height:58px!important}
   .explore-card__art--symbol svg{width:38px;height:38px}
 }
+
+/* Tablet: avoid forcing the gallery introduction and three actions into one row. */
+@media (min-width:761px) and (max-width:980px) {
+  #scenery .gallery-heading { display:block; }
+  #scenery .gallery-actions { margin-top:14px;justify-content:flex-start;flex-wrap:wrap;align-self:auto; }
+}
