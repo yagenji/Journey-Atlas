@@ -105,6 +105,22 @@ def check(driver, viewport):
         "localStorage.removeItem('journey-atlas:region-wish:unitedkingdom:england')"
     )
 
+    # My-map country selector must render grouped region headings, not one flat list.
+    driver.get(BASE + "/?map=mine#map")
+    wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, ".map-mine__item")) >= 200)
+    region_headings = driver.find_elements(By.CSS_SELECTOR, ".map-mine__region-heading")
+    region_names = [heading.text for heading in region_headings]
+    if not any("アジア" in name for name in region_names) or not any("ヨーロッパ" in name for name in region_names):
+        errors.append("My-map country selector is not grouped by atlas region: " + repr(region_names))
+    if not all(heading.find_elements(By.CSS_SELECTOR, ".map-mine__region-count") for heading in region_headings):
+        errors.append("My-map region visit counts are missing")
+    country_check = driver.find_element(By.CSS_SELECTOR, '.map-mine__countries input[data-visited-slug="japan"]')
+    if not country_check.is_selected():
+        driver.execute_script("arguments[0].click()", country_check)
+        wait.until(lambda d: d.find_element(By.CSS_SELECTOR, '.map-mine__countries input[data-visited-slug="japan"]').is_selected())
+        driver.execute_script("arguments[0].click()", driver.find_element(By.CSS_SELECTOR, '.map-mine__countries input[data-visited-slug="japan"]'))
+    driver.execute_script("localStorage.removeItem('journey-atlas:visited:japan')")
+
     # One horizontal-page-scroll test per viewport, allowing minor pixel rounding.
     sizes = driver.execute_script(
         "return [document.documentElement.scrollWidth, document.documentElement.clientWidth]"
