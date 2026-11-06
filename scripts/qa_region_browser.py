@@ -189,15 +189,41 @@ def main() -> int:
                             wishRestore = localStorage.getItem(wishKey) === null;
                             if (oldWish !== null) localStorage.setItem(wishKey, oldWish);
                         }
+                        const visit = document.querySelector('#region-visited-button');
+                        const visitKey = 'journey-atlas:region-visited:' + arguments[0].parentSlug
+                            + ':' + arguments[0].slug;
+                        let visitSave = false, visitRestore = false;
+                        if (visit) {
+                            const oldVisit = localStorage.getItem(visitKey);
+                            try {
+                                if (oldVisit !== null) visit.click();
+                                visit.click();
+                                const stored = JSON.parse(localStorage.getItem(visitKey) || 'null');
+                                visitSave = stored?.slug === arguments[0].slug
+                                    && stored?.parentSlug === arguments[0].parentSlug
+                                    && stored?.href === 'countries/' + arguments[0].parentSlug
+                                        + '/' + arguments[0].slug + '/'
+                                    && visit.getAttribute('aria-pressed') === 'true';
+                                visit.click();
+                                visitRestore = localStorage.getItem(visitKey) === null
+                                    && visit.getAttribute('aria-pressed') === 'false';
+                            } finally {
+                                if (oldVisit === null) localStorage.removeItem(visitKey);
+                                else localStorage.setItem(visitKey, oldVisit);
+                                window.dispatchEvent(new Event('pageshow'));
+                            }
+                        }
                         return {hits:hits.length, mapPositions, mapSelect, keyboardSelect,
                             sceneHeart:!!sceneHeart,heroHeart:!!heroHeart,
                             favoriteSave,favoriteRestore,wishSave,wishRestore,
+                            visitButton:!!visit,visitSave,visitRestore,
                             related:document.querySelectorAll('.region-related .related-card[href]').length};
                     """, {"slug": slug, "parentSlug": parent})
                     if interactions["hits"] != 8 or any(not p["x"] or not p["y"] for p in interactions["mapPositions"]):
                         problems.append("incomplete map hit targets")
                     for check in ("mapSelect", "keyboardSelect", "sceneHeart", "heroHeart",
-                                  "favoriteSave", "favoriteRestore", "wishSave", "wishRestore"):
+                                  "favoriteSave", "favoriteRestore", "wishSave", "wishRestore",
+                                  "visitButton", "visitSave", "visitRestore"):
                         if not interactions[check]:
                             problems.append(f"Region interaction failed: {check}")
                     if interactions["related"] != len(region.get("relatedCountries") or []):
