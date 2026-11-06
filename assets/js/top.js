@@ -70,28 +70,6 @@ const regionDetailPromise = fetch('data/top-scene-index.json?v=20261106-region-h
     atlasPublished:true,href:data.href,parentSlug:'unitedkingdom'
   })).filter(data=>UK_REGION_SLUGS.includes(data.slug)))
   .catch(()=>[]);
-function renderTopDetailRegions(){
-  const host=document.querySelector('#country-detail-regions');
-  if(!host)return;
-  const fragment=document.createDocumentFragment();
-  for(const [title,slugs] of [
-    ['イギリスの地域',UK_REGION_SLUGS],
-    ['中国の特別行政区',['hong-kong','macau']]
-  ]){
-    const items=slugs.map(slug=>detailDestinations.find(item=>item.slug===slug)).filter(Boolean);
-    if(!items.length)continue;
-    const group=document.createElement('div');
-    group.className='top-subregions__group';
-    const label=document.createElement('span');label.className='top-subregions__label';label.textContent=title;
-    group.append(label);
-    for(const item of items){
-      const link=document.createElement('a');link.href=item.href;link.textContent=item.nameJa;
-      group.append(link);
-    }
-    fragment.append(group);
-  }
-  host.replaceChildren(fragment);
-}
 let activeTheme = null;
 let activeThemeMonth = null;   // テーマ×季節: 1–12, or null for every month
 let themeMeta = {};
@@ -242,11 +220,9 @@ coreRegistryPromise
     fullDestinations=sortForDisplay(core.destinations||[]);
     destinations=fullDestinations.filter(country=>!CHILD_SLUGS.has(country.slug));
     detailDestinations=fullDestinations.filter(country=>CHILD_SLUGS.has(country.slug)).map(country=>({...country,parentSlug:'china'}));
-    renderTopDetailRegions();
     regionDetailPromise.then(regions=>{
       detailDestinations.push(...regions);
-      renderTopDetailRegions();
-      if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
+        if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
