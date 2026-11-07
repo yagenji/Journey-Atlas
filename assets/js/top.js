@@ -271,7 +271,16 @@ function parseLensFeed(xmlText){
     const title=(item.querySelector('title')?.textContent||'').trim();
     const titleParts=title.split('｜');
     const subtitle=titleParts.length>1?titleParts.slice(1).join('｜').trim():'';
-    const image=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
+    const rawImage=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
+    // LENS RSS can return relative photo URLs. Resolve against the LENS feed
+    // rather than this ATLAS page, otherwise /assets/images/... returns 404 here.
+    let image='';
+    if(rawImage){
+      try{
+        const resolved=new URL(rawImage,LENS_RSS_URL);
+        if(resolved.protocol==='https:')image=resolved.href;
+      }catch{}
+    }
     return [{slug,sequence,link,subtitle,image}];
   });
 }
@@ -944,7 +953,9 @@ function seasonWindowFor(slug,month){
   return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
 }
 function seasonItems(month){
-  return [...destinations,...detailDestinations].filter((country)=>country.atlasPublished&&seasonWindowFor(country.slug,month));
+  return sortForDisplay([...destinations,...detailDestinations].filter(
+    country=>country.atlasPublished&&seasonWindowFor(country.slug,month)
+  ));
 }
 function renderSeasonMonths(){
   if(!seasonMonthsHost)return;
