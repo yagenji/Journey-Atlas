@@ -368,21 +368,26 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
 
 
 def render_region_detail_gallery(data: dict, version: str) -> str:
-    """Optional island-group detail maps; use existing Region card/map layout."""
+    """Show one Region map at a time: geographic overview or a selected island group."""
     details = (data.get('map') or {}).get('detailMaps') or []
     if not details:
         return ''
     if not isinstance(details, list) or len(details) > 5:
-        raise ValueError('Region map detailMaps must contain at most five panels')
-    parent = data['parentSlug']
-    slug = data['slug']
+        raise ValueError('Region map detailMaps must contain at most five options')
+    parent, slug = data['parentSlug'], data['slug']
     prefix = f'assets/images/{parent}/{slug}/'
     scene_names = {scene['id']: scene['name'] for scene in data['scenes']}
     output = [
-        '<section class="region-detail-gallery" aria-label="島嶼群別の拡大地図">',
-        '<div class="region-detail-gallery__grid">',
+        '<div class="region-map-switcher" role="group" aria-label="地図の表示範囲">',
+        '<button class="region-map-switcher__button is-active" type="button" '
+        'data-region-map-view="overview" aria-pressed="true">全域</button>',
     ]
-    for detail in details:
+    captions = [
+        '<div class="region-map-switcher__captions" aria-live="polite">',
+        '<p data-region-map-caption="overview">各島嶼群の位置関係は実際の緯度・経度に基づきます。'
+        '拡大図は別縮尺で表示します。</p>',
+    ]
+    for index, detail in enumerate(details, 1):
         if not isinstance(detail, dict):
             raise ValueError('Invalid Region detail map')
         asset = detail.get('svg', '')
@@ -395,22 +400,21 @@ def render_region_detail_gallery(data: dict, version: str) -> str:
                 not isinstance(sid, str) or sid not in scene_names for sid in scene_ids):
             raise ValueError('Region detail map Scene IDs must refer to existing Scenes')
         label = esc(detail['label'])
+        view = f'group-{index}'
         output.append(
-            f'<figure class="region-detail-gallery__card"><img src="{esc(asset)}?v={esc(version)}" '
-            f'alt="{label}の拡大地図" loading="lazy" decoding="async">'
-            f'<figcaption><strong>{label}</strong><span>'
-            + ' / '.join(
-                f'<a href="#scene-{esc(sid)}">{esc(scene_names[sid])}</a>'
-                for sid in scene_ids
-            )
-            + '</span></figcaption></figure>'
+            f'<button class="region-map-switcher__button" type="button" '
+            f'data-region-map-view="{view}" data-region-map-src="{esc(asset)}?v={esc(version)}" '
+            f'data-region-map-label="{label}" aria-pressed="false">{label}</button>'
         )
-    output.append(
-        '</div><p class="region-detail-gallery__note">'
-        '※ 各拡大図は島嶼群ごとに縮尺が異なります。小さな島は実座標の地点記号で示します。'
-        '</p></section>'
-    )
-    return ''.join(output)
+        captions.append(
+            f'<p data-region-map-caption="{view}" hidden><strong>{label}</strong>を拡大表示中。'
+            '全域図とは縮尺が異なります。景色：'
+            + ' / '.join(f'<a href="#scene-{esc(sid)}">{esc(scene_names[sid])}</a>'
+                         for sid in scene_ids)
+            + '</p>'
+        )
+    return ''.join(output + ['</div>'] + captions + ['</div>'])
+
 
 
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
@@ -510,7 +514,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<div class="map-column"><div class="panel-title-wrap"><div class="panel-title-copy">'
         '<span class="section-kicker-en">TRAVEL MAP</span>'
         '<h2 class="panel-title">旅の地図</h2></div></div>'
-        '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
+        + render_region_detail_gallery(data, map_version)
+        + '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
         f'role="group" aria-label="{esc(data["nameJa"])}の景色の地図">'
         f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
         f'alt="{esc(data["nameJa"])}の実海岸線と島々を描いた地図" '
@@ -547,7 +552,6 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + '</div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
            if data["map"].get("insetNote") else '')
-        + render_region_detail_gallery(data, map_version)
         + '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
