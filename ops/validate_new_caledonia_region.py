@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Focused pre-merge quality gate for New Caledonia Region (no publication)."""
+"""Focused quality gate for the published New Caledonia Region."""
 from __future__ import annotations
 
 import hashlib
@@ -160,14 +160,14 @@ def main() -> None:
     sys.modules[spec.name] = builder
     spec.loader.exec_module(builder)
     page, canonical, published = builder.render_region(
-        data, site_url="https://atlas.yagenji.com/", version="new-caledonia-draft"
+        data, site_url="https://atlas.yagenji.com/", version="new-caledonia-publication-qa"
     )
     assert published
     assert 'name="robots" content="index,follow"' in page
     assert canonical.endswith("/countries/france/new-caledonia/")
     assert "NEW CALEDONIA" in page and "ニューカレドニア" in page
     assert "src=" in page
-    print("PASS: shared Region renderer, noindex, correct canonical URL")
+    print("PASS: shared Region renderer, index, correct canonical URL")
     print("All focused checks passed. Region is published.")
 
 
