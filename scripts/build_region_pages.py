@@ -403,7 +403,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     history = data.get('historyContext') or {}
     if history.get('text'):
         result.append('<section class="region-history" aria-labelledby="region-history-title">'
-            '<div class="region-history__head"><span class="section-kicker-en">HISTORY</span>'
+            '<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">HISTORY</span>'
             '<h2 id="region-history-title">歴史・成り立ち</h2></div>'
             f'<p>{esc(history["text"])}</p></section>')
 

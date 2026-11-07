@@ -100,8 +100,9 @@ html{scroll-padding-top:108px;}
 }
 
 /* ---------- PROFILE BANDS — SINGLE SOURCE OF TRUTH ----------
-   This layer owns Country Profile and Signature Facts geometry. */
+   Profile, Region history and Signature Facts share the same geometry. */
 .country-facts-strip,
+.region-history,
 .signature-facts{
   display:grid!important;
   grid-template-columns:220px minmax(0,1fr)!important;
@@ -406,6 +407,7 @@ html{scroll-padding-top:108px;}
 
 @media(max-width:1180px){
   .country-facts-strip,
+  .region-history,
   .signature-facts{grid-template-columns:200px minmax(0,1fr)!important;}
 }
 @media(min-width:761px) and (max-width:1180px){
@@ -425,6 +427,7 @@ html{scroll-padding-top:108px;}
   .utility-nav a{min-width:48px;padding:5px 5px 6px;}
   .utility-nav small{font-size:9px!important;}
   .country-facts-strip,
+  .region-history,
   .signature-facts{
     display:block!important;
     padding:14px 0!important;
