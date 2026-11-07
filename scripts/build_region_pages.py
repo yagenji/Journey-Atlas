@@ -282,6 +282,34 @@ def region_hero_map_position(coords: dict, svg: str = '',
 
 
 
+MAP_SOURCES = ROOT / 'data' / 'map-data-sources.json'
+
+
+def region_map_credits(data: dict) -> list[str]:
+    """Dataset ids the Region map is drawn from (data/map-data-sources.json regions)."""
+    registry = json.loads(MAP_SOURCES.read_text(encoding='utf-8'))
+    return registry.get('regions', {}).get(f'{data["parentSlug"]}/{data["slug"]}', [])
+
+
+def region_osm_credit() -> str:
+    """OpenStreetMap (ODbL) is credited inside the map, as on Country pages."""
+    return ('<a class="map-osm-credit" href="https://www.openstreetmap.org/copyright" '
+            'target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>')
+
+
+def region_capital_label_style(capital: dict) -> str:
+    """Mirror app.js renderCapitalMarker label offsets (clamped to ±80px)."""
+    offset = capital.get('labelOffset') or {}
+    rules = []
+    x, y = offset.get('x'), offset.get('y')
+    if isinstance(x, (int, float)) and x:
+        x = max(-80, min(80, x))
+        rules.append(f'margin-right:{-x}px' if capital.get('labelPosition') == 'left' else f'margin-left:{x}px')
+    if isinstance(y, (int, float)) and y:
+        rules.append(f'margin-top:{max(-80, min(80, y))}px')
+    return f' style="{";".join(rules)}"' if rules else ''
+
+
 def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tuple[float, float]:
     """Project the verified capital coordinates onto the main regional map."""
     if 'data-map-projection="north-polar-stereographic-v1"' in svg:
@@ -538,9 +566,12 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + (f'<div class="map-capital-marker region-map-capital" role="img" '
            f'aria-label="{esc(data["capital"].get("labelJa", "首都"))}：{esc(data["capital"]["nameJa"])}" '
            f'style="left:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
-           f'top:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[1]:.5f}%">'
-           '<i aria-hidden="true"></i></div>'
+           f'top:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[1]:.5f}%" '
+           f'data-label-position="{esc(data["capital"].get("labelPosition", "right"))}">'
+           '<i aria-hidden="true"></i>'
+           f'<span{region_capital_label_style(data["capital"])}>{esc(data["capital"]["nameJa"])}</span></div>'
            if data.get('capital') else '')
+        + (region_osm_credit() if 'osm' in region_map_credits(data) else '')
         + '</div></div>'
         + mobile_region_detail(data, map_svg_text, map_version)
         + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'

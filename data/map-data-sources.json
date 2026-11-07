@@ -1,5 +1,5 @@
 {
-  "description": "Geographic datasets used to draw the Country maps. countries maps each Country slug to the dataset ids its map is actually drawn from (cross-check-only sources are not listed); the map legend and the map-sources page are generated from this file.",
+  "description": "Geographic datasets used to draw the Country maps. countries maps each Country slug to the dataset ids its map is actually drawn from (cross-check-only sources are not listed); the map legend and the map-sources page are generated from this file. regions maps each detail-region page (parent/slug) the same way.",
   "sources": {
     "naturalearth": {
       "label": "Natural Earth",
@@ -85,210 +85,895 @@
       "licenseUrl": "https://data.gov.sg/open-data-licence",
       "url": "https://www.sla.gov.sg/",
       "detail": "シンガポールのセントーサ島・ジュロン島・ウビン島・テコン島の形（National Map Polygon, 2025年6月）。"
+    },
+    "ons-ogl": {
+      "label": "Office for National Statistics / Ordnance Survey",
+      "license": "Open Government Licence v3.0",
+      "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "url": "https://geoportal.statistics.gov.uk/",
+      "detail": "スコットランド・ウェールズの領域（ONS Open Geography Portal の行政境界。Contains OS data © Crown copyright and database right）。"
+    },
+    "jhellingsdata": {
+      "label": "jhellingsdata/map-data",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/jhellingsdata/map-data",
+      "url": "https://github.com/jhellingsdata/map-data",
+      "detail": "イングランドの領域（UK country subunit E92000001）。"
+    },
+    "geoboundaries-fro": {
+      "label": "geoBoundaries（Copernicus Sentinel-2 データを加工）",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.geoboundaries.org/",
+      "detail": "フェロー諸島の島の形（gbOpen FRO ADM0）。"
+    },
+    "geoboundaries-cuw": {
+      "label": "geoBoundaries",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.geoboundaries.org/",
+      "detail": "キュラソーの島の形（gbOpen CUW ADM0）。"
+    },
+    "geo-pf": {
+      "label": "Polynésie française, Direction des affaires foncières（GEO PF）",
+      "license": "CC BY",
+      "url": "https://www.data.gouv.fr/datasets/geographie-administrative-de-la-polynesie-francaise/",
+      "detail": "フランス領ポリネシアの島・環礁の形（2022年）。"
+    },
+    "nl-treaty-2023": {
+      "label": "Tractatenblad 2023, 66（オランダ・フランス国境条約 附属書A）",
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2023-66.html",
+      "detail": "シント・マールテンとサン・マルタンの陸上境界。"
     }
   },
   "countries": {
-    "afghanistan": ["naturalearth", "gshhg"],
-    "albania": ["naturalearth", "gshhg"],
-    "algeria": ["naturalearth", "gshhg"],
-    "andorra": ["naturalearth", "gshhg", "geoboundaries"],
-    "angola": ["naturalearth", "gshhg"],
-    "antarctica": ["gshhg"],
-    "antiguabarbuda": ["naturalearth", "gshhg"],
-    "argentina": ["naturalearth"],
-    "armenia": ["naturalearth", "gshhg"],
-    "australia": ["naturalearth", "gshhg"],
-    "austria": ["naturalearth", "gshhg"],
-    "azerbaijan": ["naturalearth", "gshhg"],
-    "bahamas": ["naturalearth", "gshhg"],
-    "bahrain": ["gshhg", "geoboundaries", "osm"],
-    "bangladesh": ["naturalearth", "gshhg"],
-    "barbados": ["geoboundaries-brb", "osm"],
-    "belarus": ["naturalearth", "gshhg"],
-    "belgium": ["naturalearth", "gshhg"],
-    "belize": ["naturalearth", "gshhg"],
-    "benin": ["naturalearth", "gshhg"],
-    "bhutan": ["naturalearth", "gshhg"],
-    "bolivia": ["naturalearth", "gshhg"],
-    "bosniaherzegovina": ["naturalearth", "gshhg"],
-    "botswana": ["naturalearth", "gshhg"],
-    "brazil": ["naturalearth", "gshhg"],
-    "brunei": ["naturalearth", "gshhg", "geoboundaries", "osm"],
-    "bulgaria": ["naturalearth", "gshhg"],
-    "burkinafaso": ["naturalearth", "gshhg"],
-    "burundi": ["naturalearth", "gshhg"],
-    "cambodia": ["naturalearth", "gshhg"],
-    "cameroon": ["naturalearth", "gshhg"],
-    "canada": ["naturalearth", "gshhg"],
-    "capeverde": ["naturalearth"],
-    "centralafricanrepublic": ["naturalearth", "gshhg"],
-    "chad": ["naturalearth"],
-    "chile": ["naturalearth"],
-    "china": ["naturalearth", "gshhg"],
-    "colombia": ["naturalearth", "gshhg"],
-    "comoros": ["gshhg"],
-    "congo": ["naturalearth", "gshhg"],
-    "cookislands": ["gshhg", "geoboundaries-cok"],
-    "costarica": ["gshhg"],
-    "cotedivoire": ["naturalearth", "gshhg"],
-    "croatia": ["naturalearth", "gshhg"],
-    "cuba": ["naturalearth", "gshhg"],
-    "cyprus": ["naturalearth", "gshhg"],
-    "czechia": ["naturalearth", "gshhg"],
-    "denmark": ["naturalearth", "gshhg"],
-    "djibouti": ["naturalearth", "gshhg"],
-    "dominica": ["naturalearth", "gshhg"],
-    "dominicanrepublic": ["naturalearth", "gshhg"],
-    "drcongo": ["naturalearth", "gshhg"],
-    "ecuador": ["naturalearth", "gshhg"],
-    "egypt": ["naturalearth", "gshhg"],
-    "elsalvador": ["naturalearth", "gshhg"],
-    "equatorialguinea": ["naturalearth", "gshhg", "wri-gnq"],
-    "eritrea": ["naturalearth", "gshhg"],
-    "estonia": ["naturalearth", "gshhg", "geoboundaries", "osm"],
-    "eswatini": ["naturalearth", "gshhg"],
-    "ethiopia": ["naturalearth", "gshhg"],
-    "fiji": ["gshhg"],
-    "finland": ["naturalearth", "gshhg", "geoboundaries", "osm"],
-    "france": ["naturalearth", "gshhg"],
-    "gabon": ["naturalearth", "gshhg"],
-    "gambia": ["naturalearth", "gshhg"],
-    "georgia": ["naturalearth", "gshhg"],
-    "germany": ["naturalearth", "gshhg"],
-    "ghana": ["naturalearth", "gshhg"],
-    "greece": ["naturalearth", "gshhg"],
-    "grenada": ["gshhg", "geoboundaries", "osm"],
-    "guatemala": ["naturalearth", "gshhg"],
-    "guinea": ["naturalearth"],
-    "guineabissau": ["naturalearth", "gshhg"],
-    "guyana": ["naturalearth", "gshhg"],
-    "haiti": ["naturalearth", "gshhg"],
-    "honduras": ["naturalearth", "gshhg", "osm"],
-    "hong-kong": ["naturalearth", "osm"],
-    "hungary": ["naturalearth", "gshhg"],
-    "iceland": ["gshhg"],
-    "india": ["naturalearth", "gshhg"],
-    "indonesia": ["naturalearth", "gshhg"],
-    "iran": ["naturalearth", "gshhg"],
-    "iraq": ["naturalearth", "gshhg"],
-    "ireland": ["naturalearth", "gshhg"],
-    "israel": ["naturalearth", "gshhg"],
-    "italy": ["naturalearth", "gshhg"],
-    "jamaica": ["naturalearth", "gshhg"],
-    "japan": ["naturalearth", "gshhg"],
-    "jordan": ["naturalearth", "gshhg", "geoboundaries-jor"],
-    "kazakhstan": ["naturalearth", "gshhg"],
-    "kenya": ["naturalearth", "gshhg"],
-    "kiribati": ["gshhg", "geoboundaries", "osm"],
-    "kosovo": ["naturalearth", "gshhg"],
-    "kuwait": ["naturalearth", "gshhg", "osm"],
-    "kyrgyz": ["naturalearth", "gshhg"],
-    "laos": ["naturalearth", "gshhg"],
-    "latvia": ["naturalearth", "gshhg"],
-    "lebanon": ["naturalearth", "gshhg"],
-    "lesotho": ["naturalearth", "gshhg", "geoboundaries", "osm"],
-    "liberia": ["naturalearth", "gshhg"],
-    "libya": ["naturalearth", "gshhg"],
-    "liechtenstein": ["naturalearth", "gshhg", "geoboundaries", "osm"],
-    "lithuania": ["naturalearth", "gshhg"],
-    "luxembourg": ["naturalearth", "gshhg"],
-    "macau": ["naturalearth", "osm"],
-    "madagascar": ["naturalearth", "gshhg"],
-    "malawi": ["naturalearth", "gshhg"],
-    "malaysia": ["naturalearth", "gshhg"],
-    "maldives": ["gshhg"],
-    "mali": ["naturalearth", "gshhg"],
-    "malta": ["naturalearth", "gshhg"],
-    "marshallislands": ["gshhg", "osm"],
-    "mauritania": ["naturalearth", "gshhg"],
-    "mauritius": ["naturalearth"],
-    "mexico": ["naturalearth", "gshhg"],
-    "micronesia": ["gshhg", "usgs", "nasa"],
-    "moldova": ["naturalearth", "gshhg"],
-    "monaco": ["osm"],
-    "mongolia": ["naturalearth", "gshhg"],
-    "montenegro": ["naturalearth", "gshhg"],
-    "morocco": ["naturalearth"],
-    "mozambique": ["naturalearth", "gshhg"],
-    "myanmarburma": ["naturalearth", "gshhg"],
-    "namibia": ["naturalearth", "gshhg"],
-    "nauru": ["osm"],
-    "nepal": ["naturalearth", "gshhg"],
-    "netherlands": ["naturalearth", "gshhg"],
-    "newzealand": ["gshhg"],
-    "nicaragua": ["naturalearth", "gshhg"],
-    "niger": ["naturalearth", "gshhg"],
-    "nigeria": ["naturalearth", "gshhg"],
-    "niue": ["osm"],
-    "northkorea": ["naturalearth", "gshhg"],
-    "northmacedonia": ["naturalearth", "gshhg"],
-    "norway": ["naturalearth", "gshhg"],
-    "oman": ["naturalearth", "gshhg"],
-    "pakistan": ["naturalearth", "gshhg"],
-    "palau": ["gshhg", "osm"],
-    "palestine": ["naturalearth", "gshhg"],
-    "panama": ["naturalearth", "gshhg", "geoboundaries"],
-    "papuanewguinea": ["naturalearth", "gshhg"],
-    "paraguay": ["naturalearth", "gshhg"],
-    "peru": ["naturalearth", "gshhg"],
-    "philippines": ["naturalearth", "gshhg"],
-    "poland": ["naturalearth", "gshhg"],
-    "portugal": ["naturalearth", "gshhg"],
-    "qatar": ["gshhg"],
-    "romania": ["naturalearth", "gshhg"],
-    "russia": ["naturalearth", "gshhg"],
-    "rwanda": ["naturalearth", "gshhg"],
-    "samoa": ["gshhg"],
-    "sanmarino": ["naturalearth", "gshhg", "osm"],
-    "saotomeprincipe": ["osm"],
-    "saudiarabia": ["naturalearth", "gshhg"],
-    "senegal": ["naturalearth", "gshhg"],
-    "serbia": ["naturalearth", "gshhg"],
-    "seychelles": ["naturalearth", "gshhg"],
-    "sierraleone": ["naturalearth"],
-    "singapore": ["naturalearth", "gshhg", "osm", "sla-sg"],
-    "slovakia": ["naturalearth", "gshhg"],
-    "slovenia": ["naturalearth", "gshhg"],
-    "solomonislands": ["naturalearth", "gshhg"],
-    "somalia": ["naturalearth", "gshhg"],
-    "southafrica": ["naturalearth", "gshhg"],
-    "southkorea": ["naturalearth", "gshhg"],
-    "southsudan": ["naturalearth", "gshhg"],
-    "spain": ["naturalearth", "gshhg"],
-    "srilanka": ["gshhg"],
-    "stkittsnevis": ["naturalearth", "gshhg"],
-    "stlucia": ["geoboundaries"],
-    "stvincentgrenadines": ["gshhg", "geoboundaries", "osm"],
-    "sudan": ["naturalearth", "gshhg"],
-    "suriname": ["naturalearth", "gshhg"],
-    "sweden": ["naturalearth", "gshhg", "geoboundaries-swe"],
-    "switzerland": ["naturalearth", "gshhg"],
-    "syria": ["naturalearth", "gshhg"],
-    "taiwan": ["naturalearth", "gshhg"],
-    "tajikistan": ["naturalearth", "gshhg"],
-    "tanzania": ["naturalearth", "gshhg"],
-    "thailand": ["naturalearth", "gshhg"],
-    "timorleste": ["naturalearth", "gshhg"],
-    "togo": ["naturalearth", "gshhg"],
-    "tonga": ["gshhg", "osm"],
-    "trinidadtobago": ["gshhg"],
-    "tunisia": ["naturalearth", "gshhg"],
-    "turkiye": ["naturalearth", "gshhg"],
-    "turkmenistan": ["naturalearth", "gshhg"],
-    "tuvalu": ["gshhg"],
-    "uganda": ["naturalearth", "gshhg"],
-    "ukraine": ["naturalearth", "gshhg"],
-    "unitedarabemirates": ["naturalearth", "gshhg"],
-    "unitedkingdom": ["naturalearth", "gshhg"],
-    "unitedstates": ["gshhg", "noaa"],
-    "uruguay": ["naturalearth", "gshhg"],
-    "uzbekistan": ["naturalearth", "gshhg"],
-    "vanuatu": ["gshhg"],
-    "vaticancity": ["gshhg", "osm"],
-    "venezuela": ["naturalearth", "gshhg"],
-    "vietnam": ["naturalearth", "gshhg"],
-    "yemen": ["naturalearth", "gshhg"],
-    "zambia": ["naturalearth", "gshhg"],
-    "zimbabwe": ["naturalearth", "gshhg"]
+    "afghanistan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "albania": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "algeria": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "andorra": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries"
+    ],
+    "angola": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "antarctica": [
+      "gshhg"
+    ],
+    "antiguabarbuda": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "argentina": [
+      "naturalearth"
+    ],
+    "armenia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "australia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "austria": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "azerbaijan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "bahamas": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "bahrain": [
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "bangladesh": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "barbados": [
+      "geoboundaries-brb",
+      "osm"
+    ],
+    "belarus": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "belgium": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "belize": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "benin": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "bhutan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "bolivia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "bosniaherzegovina": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "botswana": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "brazil": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "brunei": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "bulgaria": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "burkinafaso": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "burundi": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "cambodia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "cameroon": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "canada": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "capeverde": [
+      "naturalearth"
+    ],
+    "centralafricanrepublic": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "chad": [
+      "naturalearth"
+    ],
+    "chile": [
+      "naturalearth"
+    ],
+    "china": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "colombia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "comoros": [
+      "gshhg"
+    ],
+    "congo": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "cookislands": [
+      "gshhg",
+      "geoboundaries-cok"
+    ],
+    "costarica": [
+      "gshhg"
+    ],
+    "cotedivoire": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "croatia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "cuba": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "cyprus": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "czechia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "denmark": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "djibouti": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "dominica": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "dominicanrepublic": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "drcongo": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "ecuador": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "egypt": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "elsalvador": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "equatorialguinea": [
+      "naturalearth",
+      "gshhg",
+      "wri-gnq"
+    ],
+    "eritrea": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "estonia": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "eswatini": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "ethiopia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "fiji": [
+      "gshhg"
+    ],
+    "finland": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "france": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "gabon": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "gambia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "georgia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "germany": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "ghana": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "greece": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "grenada": [
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "guatemala": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "guinea": [
+      "naturalearth"
+    ],
+    "guineabissau": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "guyana": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "haiti": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "honduras": [
+      "naturalearth",
+      "gshhg",
+      "osm"
+    ],
+    "hong-kong": [
+      "naturalearth",
+      "osm"
+    ],
+    "hungary": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "iceland": [
+      "gshhg"
+    ],
+    "india": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "indonesia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "iran": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "iraq": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "ireland": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "israel": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "italy": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "jamaica": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "japan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "jordan": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries-jor"
+    ],
+    "kazakhstan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "kenya": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "kiribati": [
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "kosovo": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "kuwait": [
+      "naturalearth",
+      "gshhg",
+      "osm"
+    ],
+    "kyrgyz": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "laos": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "latvia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "lebanon": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "lesotho": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "liberia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "libya": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "liechtenstein": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "lithuania": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "luxembourg": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "macau": [
+      "naturalearth",
+      "osm"
+    ],
+    "madagascar": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "malawi": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "malaysia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "maldives": [
+      "gshhg"
+    ],
+    "mali": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "malta": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "marshallislands": [
+      "gshhg",
+      "osm"
+    ],
+    "mauritania": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "mauritius": [
+      "naturalearth"
+    ],
+    "mexico": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "micronesia": [
+      "gshhg",
+      "usgs",
+      "nasa"
+    ],
+    "moldova": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "monaco": [
+      "osm"
+    ],
+    "mongolia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "montenegro": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "morocco": [
+      "naturalearth"
+    ],
+    "mozambique": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "myanmarburma": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "namibia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "nauru": [
+      "osm"
+    ],
+    "nepal": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "netherlands": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "newzealand": [
+      "gshhg"
+    ],
+    "nicaragua": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "niger": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "nigeria": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "niue": [
+      "osm"
+    ],
+    "northkorea": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "northmacedonia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "norway": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "oman": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "pakistan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "palau": [
+      "gshhg",
+      "osm"
+    ],
+    "palestine": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "panama": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries"
+    ],
+    "papuanewguinea": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "paraguay": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "peru": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "philippines": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "poland": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "portugal": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "qatar": [
+      "gshhg"
+    ],
+    "romania": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "russia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "rwanda": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "samoa": [
+      "gshhg"
+    ],
+    "sanmarino": [
+      "naturalearth",
+      "gshhg",
+      "osm"
+    ],
+    "saotomeprincipe": [
+      "osm"
+    ],
+    "saudiarabia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "senegal": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "serbia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "seychelles": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "sierraleone": [
+      "naturalearth"
+    ],
+    "singapore": [
+      "naturalearth",
+      "gshhg",
+      "osm",
+      "sla-sg"
+    ],
+    "slovakia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "slovenia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "solomonislands": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "somalia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "southafrica": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "southkorea": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "southsudan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "spain": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "srilanka": [
+      "gshhg"
+    ],
+    "stkittsnevis": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "stlucia": [
+      "geoboundaries"
+    ],
+    "stvincentgrenadines": [
+      "gshhg",
+      "geoboundaries",
+      "osm"
+    ],
+    "sudan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "suriname": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "sweden": [
+      "naturalearth",
+      "gshhg",
+      "geoboundaries-swe"
+    ],
+    "switzerland": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "syria": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "taiwan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "tajikistan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "tanzania": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "thailand": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "timorleste": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "togo": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "tonga": [
+      "gshhg",
+      "osm"
+    ],
+    "trinidadtobago": [
+      "gshhg"
+    ],
+    "tunisia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "turkiye": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "turkmenistan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "tuvalu": [
+      "gshhg"
+    ],
+    "uganda": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "ukraine": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "unitedarabemirates": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "unitedkingdom": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "unitedstates": [
+      "gshhg",
+      "noaa"
+    ],
+    "uruguay": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "uzbekistan": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "vanuatu": [
+      "gshhg"
+    ],
+    "vaticancity": [
+      "gshhg",
+      "osm"
+    ],
+    "venezuela": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "vietnam": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "yemen": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "zambia": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "zimbabwe": [
+      "naturalearth",
+      "gshhg"
+    ]
+  },
+  "regions": {
+    "unitedkingdom/england": [
+      "jhellingsdata",
+      "gshhg"
+    ],
+    "unitedkingdom/northern-ireland": [
+      "naturalearth",
+      "gshhg"
+    ],
+    "unitedkingdom/scotland": [
+      "ons-ogl",
+      "naturalearth"
+    ],
+    "unitedkingdom/wales": [
+      "ons-ogl",
+      "naturalearth"
+    ],
+    "denmark/faroe-islands": [
+      "geoboundaries-fro",
+      "osm"
+    ],
+    "denmark/greenland": [
+      "gshhg"
+    ],
+    "france/french-polynesia": [
+      "geo-pf"
+    ],
+    "france/new-caledonia": [
+      "naturalearth"
+    ],
+    "netherlands/aruba": [
+      "gshhg"
+    ],
+    "netherlands/curacao": [
+      "geoboundaries-cuw"
+    ],
+    "netherlands/sint-maarten": [
+      "osm",
+      "nl-treaty-2023"
+    ]
   }
 }
