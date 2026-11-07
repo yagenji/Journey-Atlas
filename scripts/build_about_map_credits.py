@@ -32,6 +32,9 @@ def country_names() -> dict[str, str]:
     for path in sorted((ROOT / "data" / "countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         names[data["slug"]] = data.get("nameJa") or data["slug"]
+    for path in sorted((ROOT / "data" / "regions").glob("*/*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        names[f'{data["parentSlug"]}/{data["slug"]}'] = data.get("nameJa") or data["slug"]
     return names
 
 
@@ -42,7 +45,7 @@ def link(url: str, text: str) -> str:
 
 def render_section() -> str:
     payload = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    sources, credits = payload["sources"], payload["countries"]
+    sources, credits = payload["sources"], {**payload["countries"], **payload.get("regions", {})}
     names = country_names()
     e = html.escape
     items = []

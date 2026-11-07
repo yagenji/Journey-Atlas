@@ -54,9 +54,27 @@ class MapCreditsTest(unittest.TestCase):
                 for source_id in credits:
                     self.assertIn(source_id, REGISTRY)
                 used.update(credits)
+        for ids in PAYLOAD.get("regions", {}).values():
+            used.update(ids)
         self.assertEqual(set(REGISTRY) - used, set(), "registry entries no map uses")
         slugs = {country["slug"] for country in countries()}
         self.assertEqual(set(CREDITS), slugs, "credits must cover exactly the Country files")
+
+    def test_every_region_map_lists_known_sources(self):
+        regions = PAYLOAD.get("regions", {})
+        paths = sorted((ROOT / "data" / "regions").glob("*/*.json"))
+        keys = {f"{p.parent.name}/{p.stem}" for p in paths}
+        self.assertEqual(set(regions), keys, "credits must cover exactly the Region files")
+        for path in paths:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            key = f"{data['parentSlug']}/{data['slug']}"
+            with self.subTest(region=key):
+                self.assertTrue(regions[key])
+                for source_id in regions[key]:
+                    self.assertIn(source_id, REGISTRY)
+                text = str(data["map"].get("source") or "")
+                if re.search(r"OpenStreetMap|ODbL", text):
+                    self.assertIn("osm", regions[key])
 
     def test_registry_entries_are_complete(self):
         for source_id, source in REGISTRY.items():
