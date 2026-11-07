@@ -98,7 +98,7 @@ def check(driver, viewport):
             errors.append("TOP UK Region flag SVG missing: " + slug + " " + repr(row))
 
     query = driver.find_element(By.ID, "country-search")
-    for label, slug in [("イングランド", "england"), ("マカオ", "macau")] + [
+    for label, slug in [("イングランド", "england"), ("スコットランド", "scotland"), ("ウェールズ", "wales"), ("北アイルランド", "northern-ireland"), ("マカオ", "macau")] + [
         (row[1], slug) for slug, row in REGION_EXPECTED.items()
     ]:
         query.clear()
