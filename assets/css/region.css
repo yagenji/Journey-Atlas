@@ -111,3 +111,33 @@
    Its body uses the same content divider and inset as Signature Facts. */
 .region-history>p{min-width:0;margin:0;padding:2px 16px 3px;border-left:1px solid rgba(18,54,92,.13);color:var(--navy-deep);font:400 var(--country-body,13px)/1.7 var(--body);overflow-wrap:anywhere}
 @media(max-width:760px){.region-history>p{padding:0;border-left:0}}
+
+/* Curaçao: Hero and the capital share the Willemstad waterfront and sit
+   beneath Scene 01/02 pins at this map scale. Their real-coordinate anchors
+   remain unchanged; short leader lines expose both locations on every screen. */
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::before,
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::before{
+  content:"";position:absolute;left:50%;top:50%;height:1.5px;
+  transform-origin:0 50%;pointer-events:none
+}
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::before{
+  width:52px;background:#a86545;transform:rotate(210deg)
+}
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::before{
+  width:48px;background:#12365c;transform:rotate(27deg)
+}
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::after,
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::after{
+  display:block;position:absolute;top:auto;bottom:auto;width:max-content;max-width:none;
+  padding:4px 7px;border:1px solid #b5aaa0;border-radius:4px;
+  background:rgba(255,253,249,.97);box-shadow:0 2px 5px rgba(9,42,75,.12);
+  font:600 9px/1.35 var(--body);white-space:pre;text-align:center;
+  visibility:visible;opacity:1;transform:translate(-50%,-50%);
+  pointer-events:none
+}
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::after{
+  content:"◆ HERO";left:-68px;top:-36px;color:#9a533c;border-color:#b87860
+}
+.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::after{
+  content:"首都\A ウィレムスタット";left:64px;top:33px;color:#12365c
+}
