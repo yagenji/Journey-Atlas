@@ -13,6 +13,37 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let selectedId = '';
 
+  // Show only one geographic map at a time; keep the overview at its real scale.
+  const switchButtons = Array.from(document.querySelectorAll('.region-map-switcher__button'));
+  if (switchButtons.length) {
+    const mapArt = document.querySelector('#country-map-art');
+    const mapImage = mapArt?.querySelector('.map-base');
+    const mapColumn = mapArt?.closest('.map-column');
+    const captions = Array.from(document.querySelectorAll('[data-region-map-caption]'));
+    const overviewSrc = mapImage?.getAttribute('src') || '';
+    const overviewAlt = mapImage?.getAttribute('alt') || '';
+    const setMapView = button => {
+      if (!mapImage || !mapArt || !mapColumn) return;
+      const isOverview = button.dataset.regionMapView === 'overview';
+      const nextSrc = isOverview ? overviewSrc : button.dataset.regionMapSrc;
+      if (!nextSrc) return;
+      mapImage.setAttribute('src', nextSrc);
+      mapImage.setAttribute('alt', isOverview ? overviewAlt : button.dataset.regionMapLabel + 'の拡大地図（別縮尺）');
+      mapArt.classList.toggle('is-region-detail', !isOverview);
+      mapColumn.classList.toggle('is-region-detail', !isOverview);
+      switchButtons.forEach(control => {
+        const active = control === button;
+        control.classList.toggle('is-active', active);
+        control.setAttribute('aria-pressed', String(active));
+      });
+      captions.forEach(caption => {
+        caption.hidden = caption.dataset.regionMapCaption !== button.dataset.regionMapView;
+      });
+    };
+    switchButtons.forEach(button => button.addEventListener('click', () => setMapView(button)));
+  }
+
+
   const select = (id, scrollToCard = false) => {
     if (!cardById.has(id) || !mapById.has(id)) return;
     selectedId = id;
