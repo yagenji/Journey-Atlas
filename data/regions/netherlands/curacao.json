@@ -25,7 +25,11 @@
     "sourceKeys": [
       "unescoWillemstad",
       "osmHandelskade"
-    ]
+    ],
+    "mapOffset": {
+      "x": 0,
+      "y": -7.3
+    }
   },
   "profile": [
     {
@@ -71,10 +75,36 @@
     "bounds": {
       "north": 12.47,
       "south": 11.94,
-      "west": -69.29,
+      "west": -69.48,
       "east": -68.61
     },
-    "source": "geoBoundaries CUW ADM0 (2021, CC BY 4.0), via born-in-plays-for/mundial/geo/curacao.geojson, GitHub blob cf7f4aaa0b11fee5ee24cf3a84be9ce910181fde. Full source geometry: 424 vertices in 7 polygon rings including offshore islets and one interior hole; WGS84, local-equirectangular-fit-v1. Checked 2026-11-07; not for navigation."
+    "source": "Coastline/territory: geoBoundaries CUW ADM0 (2021, CC BY 4.0), via born-in-plays-for/mundial/geo/curacao.geojson, GitHub blob cf7f4aaa0b11fee5ee24cf3a84be9ce910181fde. 424 verified WGS84 source vertices in 7 rings; geographic inset is the same geometry at a uniform 2.226x scale, with scene label-only offsets recorded separately from actual coordinates. Checked 2026-11-07; not for navigation.",
+    "regions": [
+      {
+        "id": "west-detail",
+        "label": "西部の景色",
+        "svgId": "curacao-west-detail",
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 350,
+          "height": 256
+        },
+        "sourceRect": {
+          "x": 425,
+          "y": 130,
+          "width": 130,
+          "height": 115
+        },
+        "sceneIds": [
+          "boka-pistol",
+          "christoffelberg",
+          "grote-knip",
+          "playa-lagun"
+        ]
+      }
+    ],
+    "insetNote": "※ 西部は、同じ地域を拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -89,8 +119,8 @@
       "image": "assets/images/netherlands/curacao/approved/scene-01-queen-emma-bridge.webp",
       "sourceKey": "osmQueenEmma",
       "mapOffset": {
-        "x": -2.4,
-        "y": 1.9
+        "x": -3,
+        "y": 2.4
       }
     },
     {
@@ -105,8 +135,8 @@
       "image": "assets/images/netherlands/curacao/approved/scene-02-otrobanda-waterfront.webp",
       "sourceKey": "osmOtrobanda",
       "mapOffset": {
-        "x": 2.4,
-        "y": -1.9
+        "x": 3,
+        "y": -2.4
       }
     },
     {
@@ -554,6 +584,10 @@
     "labelOffset": {
       "x": -25,
       "y": -25
+    },
+    "mapOffset": {
+      "x": 0,
+      "y": 7.3
     }
   },
   "sourcesVerifiedAt": "2026-11-07",
