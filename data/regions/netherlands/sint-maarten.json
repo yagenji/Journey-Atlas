@@ -41,7 +41,7 @@
       "sourceKey": "worldstats"
     },
     {
-      "label": "公用語",
+      "label": "言語",
       "value": "オランダ語・英語",
       "sourceKey": "constitution"
     },
@@ -231,67 +231,68 @@
         "image": "assets/images/netherlands/sint-maarten/approved/food-callaloo-soup.webp",
         "sourceKey": "food"
       }
-    ]
+    ],
+    "intro": "巻き貝の煮込み、塩漬け魚と揚げパン、鶏の炊き込みご飯、葉野菜のスープ。カリブ海の島々と共通する味が、島の食卓に並ぶ。"
   },
   "signatureFacts": [
     {
-      "topicKey": "two-cruise-piers",
-      "label": "港の主なクルーズ桟橋",
-      "value": "2本",
-      "note": "フィリップスブルフ近郊の港には、大型客船を迎える2本の主桟橋がある。海から旅人が集まる島の玄関口。",
-      "icon": "shore",
-      "sourceKey": "port",
-      "interestReason": "白い船と小さな島のスケール差を想像できる。"
+      "topicKey": "smallest-shared-island",
+      "label": "二つの国が分け合う島",
+      "value": "87km²",
+      "note": "ギネス世界記録は、この島を二国で分け合う最小の有人島とする。北がフランス、南がオランダ王国のシント・マールテン。",
+      "icon": "globe",
+      "sourceKey": "sharedIsland",
+      "interestReason": "一つの小さな島に国境が通るという、旅の前提そのものを変える事実。"
     },
     {
-      "topicKey": "national-flag-submissions",
-      "label": "島の旗のデザイン応募",
-      "value": "115点",
-      "note": "1983年に開かれた島の旗の公募には115作品が集まり、当時17歳の少女が考案した旗が選ばれた。",
-      "icon": "culture",
-      "sourceKey": "museum",
-      "interestReason": "島の象徴が住民の手から生まれた経緯を数字から感じる。"
+      "topicKey": "treaty-1648",
+      "label": "島を分けた条約",
+      "value": "1648年",
+      "note": "1648年3月23日、フランスとオランダの代表が島の丘で協定を結び、島を南北に分けた。現在の二つの領域の出発点になった。",
+      "icon": "history",
+      "sourceKey": "touristBureauHistory",
+      "interestReason": "380年近く続く分割の歴史が、街並みや祭りの違いの背景を伝える。"
     },
     {
-      "topicKey": "currency-transition",
-      "label": "新しい通貨の導入",
-      "value": "2025年",
-      "note": "3月31日にカリブ・ギルダーの流通が始まった。キュラソーと共通の通貨が、島の日常を支えている。",
-      "icon": "landmark",
-      "sourceKey": "currency",
-      "interestReason": "海の景色の奥に、オランダ王国内の経済制度の変化がある。"
+      "topicKey": "name-day",
+      "label": "島の名の由来となった日",
+      "value": "11月11日",
+      "note": "島名は、コロンブスの航海中に迎えた1493年11月11日、聖マルティヌスの祝日にちなむと紹介される。この日は今もシント・マールテン・デーとして祝われる。",
+      "icon": "calendar",
+      "sourceKey": "touristBureauHistory",
+      "interestReason": "島の名と祝日が一つの日付で結ばれていることがわかる。"
     }
   ],
   "encounters": [
     {
-      "title": "空港に隣り合う浜",
-      "icon": "shore",
-      "category": "LANDSCAPE"
+      "title": "島を南北に分ける国境",
+      "icon": "map",
+      "category": "MOVEMENT"
     },
     {
-      "title": "船のあるラグーン",
+      "title": "隣の島へ向かう高速船",
       "icon": "sea",
-      "category": "SEA"
+      "category": "MOVEMENT"
     },
     {
-      "title": "港町の商店街",
-      "icon": "city",
-      "category": "CITY"
+      "title": "米ドル表示の値札",
+      "icon": "coin",
+      "category": "DAILY_LIFE"
     },
     {
-      "title": "歴史の砲台跡",
-      "icon": "landmark",
-      "category": "HISTORY"
+      "title": "カッショクペリカンの急降下",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
     },
     {
-      "title": "岩壁の入り江",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
+      "title": "英語とオランダ語の看板",
+      "icon": "language",
+      "category": "LANGUAGE"
     },
     {
-      "title": "大西洋の波",
-      "icon": "sea",
-      "category": "NATURE"
+      "title": "グアバベリーの試飲",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
       "title": "カーニバルの音楽",
@@ -299,9 +300,9 @@
       "category": "CULTURE"
     },
     {
-      "title": "島の家庭料理",
-      "icon": "food",
-      "category": "FOOD"
+      "title": "ラグーンを渡る跳ね橋",
+      "icon": "road",
+      "category": "CITY"
     }
   ],
   "culture": [
@@ -311,12 +312,16 @@
       "themeJa": "交易を知る",
       "icon": "landmark",
       "title": "白い塩が、港町の産業を支えていた",
-      "text": "フィリップスブルフの背後に広がるグレート・ソルト・ポンドは、かつて塩を採る場所だった。天然の港と塩の輸出が結びつき、海辺の町の発展を支えた。",
+      "text": "島の古い名「ソウアリガ」は「塩の土地」の意味とされる。1620年代にはオランダ人が塩を求めて島を探り、のちにスペインは塩田を守るための防備を築いた。フィリップスブルフ背後のグレート・ソルト・ポンドに、その歴史が残る。",
       "points": [
         "塩田と港の位置関係から、町の成り立ちを考える",
         "水辺は風景であると同時に仕事の場だった"
       ],
-      "sourceKey": "saltPond"
+      "sourceKey": "saltPond",
+      "sourceKeys": [
+        "saltPond",
+        "touristBureauHistory"
+      ]
     },
     {
       "topicKey": "two-carnivals",
@@ -324,64 +329,68 @@
       "themeJa": "祭りを知る",
       "icon": "culture",
       "title": "一つの島に、別々のカーニバルがある",
-      "text": "オランダ側とフランス側では、カーニバルの時期が異なる。国境を越えた近さがありながら、祭りの日程や表現にそれぞれの文化が現れる。",
+      "text": "オランダ側のカーニバルは4月、フランス側は四旬節前の時期に開かれる。国境を越えた近さがありながら、祭りの日程や表現にそれぞれの文化が現れる。",
       "points": [
-        "オランダ側は春、フランス側は冬にカーニバル",
+        "オランダ側は4月、フランス側は冬から春先にカーニバル",
         "島内で異なる地域の音楽や踊りに出会う"
       ],
-      "sourceKey": "culture"
+      "sourceKey": "culture",
+      "sourceKeys": [
+        "touristBureauHistory",
+        "culture"
+      ]
     },
     {
-      "topicKey": "maritime-life",
-      "themeEn": "SEA",
-      "themeJa": "海の暮らし",
-      "icon": "sea",
-      "title": "穏やかなラグーンは、船の居場所になる",
-      "text": "大西洋に波が立つ一方、シンプソン・ベイ・ラグーンには静かな水面が広がる。桟橋の船を眺めると、海の使われ方が浜ごとに変わることに気づく。",
+      "topicKey": "pond-birds",
+      "themeEn": "NATURE",
+      "themeJa": "水辺の鳥",
+      "icon": "wildlife",
+      "title": "街のそばの池が、鳥たちの重要な居場所",
+      "text": "島には国際的な基準で選ばれた重要野鳥生息地が五つある。リトル・ベイ・ポンドやフレッシュ・ポンドでは準絶滅危惧のカリブオオバンが巣をつくり、グレート・ソルト・ポンドには繁殖期前に約5,800羽のワライカモメが集まる。",
       "points": [
-        "入り組んだ海岸線が波を和らげる場所をつくる",
-        "港と船の往来が暮らしの一部になっている"
+        "住宅地や道路のすぐ脇の水辺で、水鳥を観察できる",
+        "小アンティル諸島に限られる鳥にも出会える"
       ],
-      "sourceKey": "marina"
+      "sourceKey": "birdAreas"
     },
     {
-      "topicKey": "heritage-fort",
+      "topicKey": "plantation-memory",
       "themeEn": "HISTORY",
-      "themeJa": "遺構を読む",
-      "icon": "landmark",
-      "title": "要塞に残るのは、大きな城より低い石壁",
-      "text": "アムステルダム要塞跡は、海へ向けて置かれた大砲と石造りの遺構が印象的。丘から湾を見ると、かつて人々が何を守ろうとしたかが想像できる。",
+      "themeJa": "記憶をたどる",
+      "icon": "history",
+      "title": "農園の母屋が、奴隷制の記憶を伝える博物館に",
+      "text": "エミリオ・ウィルソン博物館は、かつての農園の母屋を2017年に博物館としたもの。この農園で働かされた奴隷の孫にあたるエミリオ・ウィルソンが暮らした家で、奴隷制と農園の栽培の歴史を展示している。",
       "points": [
-        "低い石垣が岬の地形に沿って残る",
-        "湾と港を見渡せる位置に要塞が築かれた"
+        "1995年のハリケーンで損傷した家が、記憶の場に生まれ変わった",
+        "浜と港の景色の背後にある労働の歴史を知る"
       ],
-      "sourceKey": "fortAmsterdam"
+      "sourceKey": "emilioWilson"
     },
     {
-      "topicKey": "airport-and-beach",
-      "themeEn": "MODERN LIFE",
-      "themeJa": "島の交通",
-      "icon": "map",
-      "title": "滑走路と砂浜が、驚くほど近い",
-      "text": "空港の滑走路端とマホ・ビーチの距離の近さは、限られた平地に都市機能が集まる島ならでは。青い海へ向けて進入する飛行機が景色になる。",
-      "points": [
-        "空港が海岸の隣にあるため低空の着陸機が見える",
-        "安全標識に従い、離陸時の噴流を避ける"
-      ],
-      "sourceKey": "maho"
-    },
-    {
-      "topicKey": "food-culture",
+      "topicKey": "guavaberry-liqueur",
       "themeEn": "FOOD",
-      "themeJa": "食を知る",
+      "themeJa": "味を知る",
       "icon": "food",
-      "title": "島の料理には、海と移動の歴史が混じる",
-      "text": "巻き貝、塩漬け魚、揚げパン、米料理。カリブ海の広い地域とつながる料理が、この島でも家庭や店の食卓に並ぶ。",
+      "title": "島の「国のリキュール」は、グアバベリーの実から",
+      "text": "グアバベリーの実で作るリキュールは、シント・マールテン／サン・マルタンの国民的なリキュールとされる。フロント・ストリートの販売所は、古いシナゴーグの跡地に建つ国の歴史的建造物でもある。",
       "points": [
-        "島固有と決めつけず、周辺地域との共通性も味わう",
-        "海の食材と保存の知恵が日常の料理になる"
+        "試飲できる店で、香りと甘さを比べる",
+        "商店街の建物そのものにも歴史がある"
       ],
-      "sourceKey": "food"
+      "sourceKey": "guavaberry"
+    },
+    {
+      "topicKey": "ferry-hub",
+      "themeEn": "SEA",
+      "themeJa": "海でつながる",
+      "icon": "sea",
+      "title": "小さな港町が、近くの島々への起点になる",
+      "text": "フィリップスブルフのボビーズ・マリーナからは、サン・バルテルミー島のグスタビアへ約45分、シント・ユースタティウス島へ約1時間45分の船がある。オランダ領・フランス領の島々を、海路で行き来できる。",
+      "points": [
+        "島ごとに旅券や運航条件が異なるため事前に確認する",
+        "海況によって運航が変わる"
+      ],
+      "sourceKey": "ferries"
     }
   ],
   "travelTrivia": [
@@ -452,12 +461,9 @@
       "sourceKey": "airportSafety"
     },
     {
-      "title": "海辺の波と足元を確認する",
-      "text": "大西洋側の浜では強い波に、岩場の海岸では足元の段差や滑りやすさに注意する。",
-      "sourceKeys": [
-        "guana",
-        "cupecoy"
-      ]
+      "title": "クルーズ船の寄港日は、街歩きの時間をずらす",
+      "text": "大型船が着く日はフロント・ストリートやグレート・ベイが混み合う。港の寄港予定を確認し、朝夕に街を歩くか、別の浜へ回りたい。",
+      "sourceKey": "port"
     },
     {
       "title": "島の境界と移動条件は事前に確認する",
@@ -502,25 +508,25 @@
     {
       "months": "12〜2月",
       "icon": "sun",
-      "color": "#899d6b",
+      "color": "#73966f",
       "text": "乾期に入り、海岸や街歩きを組み合わせやすい。朝夕の風も心地よい。"
     },
     {
       "months": "3〜5月",
       "icon": "sun",
-      "color": "#b0a06d",
+      "color": "#92a253",
       "text": "比較的雨が少ない時期。日差しの強い場所では休憩を。"
     },
     {
       "months": "6〜8月",
       "icon": "weather",
-      "color": "#7894a7",
+      "color": "#b77a49",
       "text": "雨季の始まり。短時間の雨と高い湿度を見込む。"
     },
     {
       "months": "9〜11月",
       "icon": "weather",
-      "color": "#7894a7",
+      "color": "#6b90a5",
       "text": "雨の多い時期。ハリケーンシーズンのため最新の気象情報を確認する。"
     }
   ],
@@ -543,23 +549,31 @@
       "path": "Philipsburg → Marigot",
       "description": "島内の道路を北へ。国境を越えて、フランス側の港町と市場を歩く。",
       "flag": "🇫🇷",
-      "sourceKey": "border"
+      "sourceKey": "border",
+      "travelerRoute": true,
+      "status": "OPEN"
     },
     {
       "countryEn": "ANGUILLA (UNITED KINGDOM)",
       "countryJa": "アンギラ（英国海外領土）",
       "path": "Philipsburg → Marigot → Blowing Point",
-      "description": "マリゴからフェリーで海峡を渡り、白砂の島へ。パスポートと船便を事前に確認する。",
+      "description": "マリゴの港からフェリーで約20分。海峡を渡って白砂の島アンギラへ。",
       "flag": "🇬🇧",
-      "sourceKey": "ferries"
+      "sourceKey": "ferries",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "便数・運航日は季節や海況で変わる。運航会社の最新時刻表を確認。"
     },
     {
       "countryEn": "SABA (NETHERLANDS)",
       "countryJa": "サバ島（オランダ領）",
-      "path": "Philipsburg → Saba",
-      "description": "フィリップスブルフの港から船で南西の火山島へ。海況によって予定が変わるため運航を確認する。",
+      "path": "Philipsburg (Bobby’s Marina) → Saba",
+      "description": "フィリップスブルフのボビーズ・マリーナから船で約1時間半。南西の火山島サバへ渡る。",
       "flag": "🇳🇱",
-      "sourceKey": "ferries"
+      "sourceKey": "ferries",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "便数・運航日は季節や海況で変わる。運航会社の最新時刻表を確認。"
     }
   ],
   "relatedCountries": [
@@ -574,7 +588,7 @@
     {
       "nameJa": "セントクリストファー・ネービス",
       "nameEn": "SAINT KITTS AND NEVIS",
-      "href": "countries/saintkittsandnevis/",
+      "href": "countries/stkittsnevis/",
       "flag": "🇰🇳",
       "reason": "小さな火山島と港の風景を、カリブ海でたどる。",
       "affinityType": "ISLAND"
@@ -582,7 +596,7 @@
     {
       "nameJa": "アンティグア・バーブーダ",
       "nameEn": "ANTIGUA AND BARBUDA",
-      "href": "countries/antiguaandbarbuda/",
+      "href": "countries/antiguabarbuda/",
       "flag": "🇦🇬",
       "reason": "砂浜と港町の異なる島の表情に出会う。",
       "affinityType": "COAST"
@@ -595,10 +609,10 @@
       "latitude": 18.0232,
       "longitude": -63.044
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 0,
-      "y": -20
+      "x": -10,
+      "y": -30
     }
   },
   "sourcesVerifiedAt": "2026-11-07",
@@ -611,7 +625,8 @@
     "history": "Constituent country since 2010-10-10",
     "mapCoordinates": "WGS84 candidate markers from prior image handoff, pending exact site-point and camera bearing QA",
     "nationalFlag": "115 entries in 1983; museum primary cultural documentation, checked 2026-11-07",
-    "courthouse": "Built 1793; tourism authority, checked 2026-11-07"
+    "courthouse": "Built 1793; tourism authority, checked 2026-11-07",
+    "kingdom": "2026-11-07"
   },
   "sources": {
     "kingdom": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
@@ -623,7 +638,7 @@
     "climate": "https://www.meteosxm.com/climate/",
     "travelInfo": "https://www.visitstmaarten.com/travel-info/",
     "maho": "https://www.visitstmaarten.com/beaches/maho-beach/",
-    "frontStreet": "https://commons.wikimedia.org/wiki/File:St_Maarten_Philipsburg_Front_Street.jpg",
+    "frontStreet": "https://www.visitstmaarten.com/?p=21166",
     "greatBay": "https://www.visitstmaarten.com/beaches/great-bay-beach/",
     "marina": "https://www.igymarinas.com/marinas/simpson-bay-marina/",
     "fortAmsterdam": "https://www.visitstmaarten.com/monuments/fort-amsterdam/",
@@ -643,7 +658,12 @@
     "courthouse": "https://www.visitstmaarten.com/monuments/the-courthouse-frontstreet-48/",
     "birdArea": "https://www.visitstmaarten.com/nature-hiking/important-bird-areas-st-maarten/",
     "ferries": "https://www.visitstmaarten.com/st-maarten-ferries/",
-    "caribbeanNetherlandsTravel": "https://english.rijksdienstcn.com/justice--security/royal-netherlands-marechaussee/travelling-in-the-dutch-caribbean"
+    "caribbeanNetherlandsTravel": "https://english.rijksdienstcn.com/justice--security/royal-netherlands-marechaussee/travelling-in-the-dutch-caribbean",
+    "sharedIsland": "https://www.guinnessworldrecords.com/world-records/683161-smallest-shared-island-inhabited",
+    "touristBureauHistory": "https://www.vacationstmaarten.com/our-island/culture-and-history/",
+    "guavaberry": "https://www.visitstmaarten.com/?p=603",
+    "emilioWilson": "https://www.visitstmaarten.com/?p=13165",
+    "birdAreas": "https://visitstmaarten.com/?p=10283"
   },
   "sourceNotes": {
     "map": "Detailed OSM coastline plus the 2023 Netherlands–France Treaty Annex A representative border geometry are displayed in the main map. The Philipsburg inset reuses those same geometry paths at uniform 2.3x zoom, never alters scene coordinates, and requires rendered map QA before final publication.",

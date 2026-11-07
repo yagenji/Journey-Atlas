@@ -253,73 +253,76 @@
   },
   "signatureFacts": [
     {
-      "topicKey": "highest-peak",
-      "label": "島の最高地点",
-      "value": "372m",
-      "note": "クリストッフェル山が島の最高峰。短い距離で海辺から乾いた山地へ景色が変わる。",
-      "icon": "landscape",
-      "sourceKey": "cbsFacts",
-      "interestReason": "青い海だけではない島の起伏を具体的に想像できる。"
+      "topicKey": "oldest-synagogue",
+      "label": "米州で最古の現役シナゴーグ",
+      "value": "1732年",
+      "note": "ウィレムスタットのミクヴェ・イスラエル＝エマヌエル・シナゴーグは1732年に献堂され、南北アメリカで使われ続けている最古のシナゴーグとされる。",
+      "icon": "landmark",
+      "sourceKey": "synagogue",
+      "interestReason": "色鮮やかな港町の背後に、大西洋を越えて移り住んだユダヤ系共同体の長い歴史があることを示す。"
     },
     {
-      "topicKey": "heritage-districts",
-      "label": "世界遺産の歴史地区",
-      "value": "4地区",
-      "note": "ウィレムスタットにはプンダ、オトロバンダ、ピーテルマイ、スカルローの歴史地区が残る。",
-      "icon": "city",
-      "sourceKey": "unescoWillemstad",
-      "interestReason": "一列のカラフルな建物から街全体へ見方を広げる。"
+      "topicKey": "annual-rainfall",
+      "label": "年間降水量",
+      "value": "約570mm",
+      "note": "ハト空港の1991〜2020年平均。東京（約1,600mm）の約3分の1で、雨は10〜12月に集中する。サボテンが育つ乾いた大地の理由がわかる。",
+      "icon": "weather",
+      "sourceKeys": [
+        "climateNormals",
+        "tokyoNormals"
+      ],
+      "interestReason": "青い海の印象に、雨の少ない乾燥地という島の素顔を重ねられる。"
     },
     {
-      "topicKey": "rugged-coast",
-      "label": "北西岸の荒々しい海岸",
-      "value": "約10km",
-      "note": "シェテ・ボカ国立公園の海岸では、岩壁と入り江が波に削られている。",
-      "icon": "shore",
-      "sourceKey": "tourismHighlights",
-      "interestReason": "穏やかな浜と対照的な島の海岸線を示せる。"
+      "topicKey": "temperature-range",
+      "label": "一年の月平均気温の差",
+      "value": "約2.6℃",
+      "note": "最も涼しい1月が26.7℃、最も暑い9月が29.3℃（1991〜2020年平均）。季節で気温がほとんど変わらない。",
+      "icon": "sun",
+      "sourceKey": "climateNormals",
+      "interestReason": "季節を寒暖ではなく雨の量で感じる、熱帯の島の時間を数字で伝える。"
     }
   ],
   "encounters": [
     {
-      "title": "水辺に並ぶ色彩の建築",
+      "title": "パピアメント語のあいさつ",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "サボテンの垣根",
+      "icon": "leaf",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "日なたのイグアナ",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "湾を出入りする大型船",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "路地の壁画",
       "icon": "city",
       "category": "CULTURE"
     },
     {
-      "title": "横へ動く歩行者橋",
-      "icon": "landmark",
-      "category": "CITY"
+      "title": "地元食堂の煮込み",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "岩壁に砕ける波",
-      "icon": "sea",
-      "category": "NATURE"
+      "title": "ラハラの香るリキュール",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "乾いた山地の道",
-      "icon": "landscape",
-      "category": "NATURE"
-    },
-    {
-      "title": "青の濃淡がある入り江",
-      "icon": "shore",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "サンゴ礁に近い海",
-      "icon": "sea",
-      "category": "NATURE"
-    },
-    {
-      "title": "石灰岩の地下空間",
-      "icon": "landscape",
-      "category": "NATURE"
-    },
-    {
-      "title": "塩湖のフラミンゴ",
-      "icon": "wildlife",
-      "category": "WILDLIFE"
+      "title": "港町の切妻屋根",
+      "icon": "home",
+      "category": "ARCHITECTURE"
     }
   ],
   "culture": [
@@ -360,7 +363,7 @@
         "1795年の抵抗運動と1863年の奴隷制廃止を知る",
         "都市の美しさと植民地支配の歴史を同時に考える"
       ],
-      "sourceKey": "cbsFacts"
+      "sourceKey": "tulaSpeech"
     },
     {
       "topicKey": "salt-plantation",
@@ -376,30 +379,30 @@
       "sourceKey": "tourismJanKok"
     },
     {
-      "topicKey": "reef-sea",
-      "themeEn": "NATURE",
-      "themeJa": "海を知る",
-      "icon": "sea",
-      "title": "海の透明さの下にある生態系",
-      "text": "島の風下側に広がる穏やかな入り江は、シュノーケリングやダイビングの入口でもある。サンゴや生き物に触れず、水中の景色を見守る。",
-      "points": [
-        "西側の湾は穏やかなことが多いが海況は日々変わる",
-        "水中の生き物とサンゴを傷めない距離を保つ"
-      ],
-      "sourceKey": "tourismWest"
-    },
-    {
       "topicKey": "dry-land",
       "themeEn": "NATURE",
       "themeJa": "大地を歩く",
       "icon": "leaf",
-      "title": "青い海と、乾いた大地の対照",
-      "text": "島の内陸には低木やサボテンが生える乾燥地がある。クリストッフェル公園の丘を歩くと、海辺からは見えにくい自然の広がりが現れる。",
+      "title": "乾いた丘に、島の自然の大半がある",
+      "text": "島の西部のクリストッフェル公園では、低木林とサボテンの斜面が最高峰まで続く。海辺の明るさとは異なり、乾燥に適応した植物や生き物を探しながら歩く場所だ。",
       "points": [
         "乾いた土地に適応した動植物に出会う",
-        "暑い時間帯の登山を避ける"
+        "登山は涼しい朝のうちに"
       ],
       "sourceKey": "tourismChristoffel"
+    },
+    {
+      "topicKey": "laraha-liqueur",
+      "themeEn": "FOOD",
+      "themeJa": "味を知る",
+      "icon": "food",
+      "title": "苦くなったオレンジが、島の名のリキュールになった",
+      "text": "スペイン人が植えたバレンシアオレンジは、乾いた気候で苦い実に変わった。地元でラハラと呼ばれるこの実の皮から精油がとられ、島の名を冠したリキュールが生まれた。正式なキュラソー・リキュールにはラハラの皮が使われる。",
+      "points": [
+        "乾いた土地の条件が、香りの個性をつくった",
+        "島の名が、世界のカクテルの名前にもなった"
+      ],
+      "sourceKey": "laraha"
     }
   ],
   "travelTrivia": [
@@ -422,22 +425,22 @@
       "sourceKey": "unescoWillemstad"
     },
     {
-      "topicKey": "lagun-fishing",
-      "categoryEn": "EVERYDAY",
-      "categoryJa": "暮らし",
-      "title": "小さな湾に漁船とダイバーが並ぶ",
-      "text": "プラヤ・ラグンは漁村の入り江でもある。海に入る人と生活の舟が、同じ狭い湾を使う。",
-      "icon": "sea",
-      "sourceKey": "tourismLagun"
+      "topicKey": "hato-rock-art",
+      "categoryEn": "HISTORY",
+      "categoryJa": "記憶",
+      "icon": "landscape",
+      "title": "鍾乳洞の壁に、1,500年以上前の岩絵がある",
+      "text": "ハト洞窟には、先住のアラワクの人々が残した少なくとも1,500年前と推定される岩絵がある。のちには逃れた奴隷が何か月も身を隠した場所でもあった。",
+      "sourceKey": "hatoOperator"
     },
     {
-      "topicKey": "hato-limestone",
-      "categoryEn": "GEOLOGY",
-      "categoryJa": "地形",
-      "title": "洞窟は、かつて海だった場所に生まれた",
-      "text": "ハト洞窟の石灰岩は長い時間をかけて形成された。今は陸地にある空間に、島の地形変化が刻まれている。",
-      "icon": "landscape",
-      "sourceKey": "tourismHato"
+      "topicKey": "blue-color-later",
+      "categoryEn": "COLOR",
+      "categoryJa": "色",
+      "title": "「ブルー」は、あとから加わった色",
+      "text": "青いキュラソーの色は、香りではなく見た目のための着色。白、オレンジ、緑などの色付きが文献に現れるのは1920年代からだという。",
+      "icon": "spark",
+      "sourceKey": "laraha"
     },
     {
       "topicKey": "kok-memory",
@@ -517,25 +520,25 @@
     {
       "months": "1〜3月",
       "icon": "sun",
-      "color": "#899d6b",
+      "color": "#73966f",
       "text": "年明けから乾燥した季節へ。街歩きと自然観察を組み合わせやすい。"
     },
     {
       "months": "4〜6月",
       "icon": "sun",
-      "color": "#b0a06d",
+      "color": "#92a253",
       "text": "比較的雨の少ない時期。山歩きは暑さを避けて早朝に。"
     },
     {
       "months": "7〜9月",
       "icon": "sun",
-      "color": "#bd9467",
+      "color": "#b77a49",
       "text": "暑さが続く。日陰の少ない場所では水分補給を意識したい。"
     },
     {
       "months": "10〜12月",
       "icon": "weather",
-      "color": "#7894a7",
+      "color": "#6b90a5",
       "text": "降水が比較的多い時期。短いにわか雨を見込んで予定に余白を。"
     }
   ],
@@ -600,7 +603,9 @@
     "religion": "CBS Census 2023, Roman Catholic 72.8%, qualitative label only.",
     "status": "2010-10-10; Dutch Kingdom constitutional status checked 2026-11-07",
     "climate": "Tourism Authority qualitative seasons checked 2026-11-07",
-    "coordinates": "WGS84 site markers from Mapcarta / OSM published points, rounded to 5 decimals, checked 2026-11-07"
+    "coordinates": "WGS84 site markers from Mapcarta / OSM published points, rounded to 5 decimals, checked 2026-11-07",
+    "nationalArchive": "2026-11-07",
+    "kingdom": "2026-11-07"
   },
   "sources": {
     "cbsPopulation": "https://www.cbs.cw/population",
@@ -635,7 +640,13 @@
     "osmHandelskade": "https://mapcarta.com/N447895902",
     "gshhg": "https://www.soest.hawaii.edu/wessel/gshhg/",
     "osmCopyright": "https://www.openstreetmap.org/copyright",
-    "coastGeometry": "https://github.com/born-in-plays-for/mundial/blob/main/geo/curacao.geojson"
+    "coastGeometry": "https://github.com/born-in-plays-for/mundial/blob/main/geo/curacao.geojson",
+    "climateNormals": "https://mail.meteo.cw/Data_www/pdf/reports/Official_30_yr_avg_2020_1991.pdf",
+    "tokyoNormals": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=44&block_no=47662",
+    "synagogue": "https://www.curacao.com/de/event/mikve-israel-emanuel-synagogue",
+    "laraha": "https://www.curacao.com/es/article/what-is-the-origin-of-blue-curacao",
+    "hatoOperator": "https://curacaohatocaves.com/?p=47",
+    "tulaSpeech": "https://www.rijksoverheid.nl/documenten/2022/12/19/toespraak-staatssecretaris-van-huffelen-koninkrijksrelaties-en-digitalisering-op-curacao"
   },
   "sourceNotes": {
     "mapGeneralization": "Full 424-source-vertex geoBoundaries CUW ADM0 geometry retained, path rounded to 0.1 SVG unit (below visual precision), not simplified. Seven rings include the main island, islets and an interior hole. Cross-check GSHHG high-resolution still recommended at site integration QA.",
@@ -646,5 +657,5 @@
     "海の世界へ",
     "地球の風景"
   ],
-  "contentQaVersion": 2
+  "contentQaVersion": 6
 }

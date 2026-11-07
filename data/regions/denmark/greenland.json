@@ -21,12 +21,14 @@
       "longitude": -51.139212
     },
     "lead": "氷山が海を埋めるイルリサットから、内陸氷床の縁、南部の緑の農耕地、東海岸の小さな集落へ。グリーンランドの風景には、氷だけでなく人が暮らし続けてきた時間がある。",
-    "description": "セルメルミウト付近のツンドラから、巨大な氷山が集まるフィヨルドを望む。2004年登録の世界遺産。"
+    "description": "セルメルミウト付近のツンドラから、巨大な氷山が集まるフィヨルドを望む。2004年登録の世界遺産。",
+    "sourceKey": "ilulissat"
   },
   "profile": [
     {
       "label": "首都",
-      "value": "ヌーク（Nuuk）"
+      "value": "ヌーク（Nuuk）",
+      "sourceKey": "selfGovernment"
     },
     {
       "label": "人口",
@@ -39,7 +41,7 @@
       "sourceKey": "area"
     },
     {
-      "label": "公用語",
+      "label": "言語",
       "value": "グリーンランド語（カラアリスット語）",
       "sourceKey": "selfGovernment"
     },
@@ -77,7 +79,8 @@
       "mapOffset": {
         "x": 3.5,
         "y": -1.5
-      }
+      },
+      "sourceKey": "ilulissat"
     },
     {
       "id": "russell-glacier",
@@ -133,7 +136,8 @@
       "mapOffset": {
         "x": -4,
         "y": -2
-      }
+      },
+      "sourceKey": "kujataa"
     },
     {
       "id": "tasermiut",
@@ -181,31 +185,36 @@
         "name": "スアーサート",
         "nameLocal": "Suaasat",
         "text": "アザラシやトナカイなどの肉を、玉ねぎや米と煮込む伝統的なスープ。土地で手に入る素材を生かしてきた家庭の味。",
-        "image": "assets/images/denmark/greenland/approved/food-suaasat.webp"
+        "image": "assets/images/denmark/greenland/approved/food-suaasat.webp",
+        "sourceKey": "foodGuide"
       },
       {
         "id": "mattak",
         "name": "マッタク",
         "nameLocal": "Mattak",
         "text": "主にイッカクやシロイルカの皮と脂の部分を食べる伝統食。海の恵みとイヌイット文化のつながりがわかる。",
-        "image": "assets/images/denmark/greenland/approved/food-mattak.webp"
+        "image": "assets/images/denmark/greenland/approved/food-mattak.webp",
+        "sourceKey": "foodGuide"
       },
       {
         "id": "arctic-char",
         "name": "アークティックチャー",
         "nameLocal": "Arctic char",
         "text": "北極圏に生息するサケ科の魚。焼く、燻すなどの食べ方があり、身の風味をシンプルに楽しむ。",
-        "image": "assets/images/denmark/greenland/approved/food-arctic-char.webp"
+        "image": "assets/images/denmark/greenland/approved/food-arctic-char.webp",
+        "sourceKey": "foodGuide"
       },
       {
         "id": "reindeer",
         "name": "トナカイ料理",
         "nameLocal": "Reindeer",
         "text": "トナカイ肉を焼く・煮込むなどして味わう。海産物だけでないグリーンランドの食文化を知る一品。",
-        "image": "assets/images/denmark/greenland/approved/food-reindeer.webp"
+        "image": "assets/images/denmark/greenland/approved/food-reindeer.webp",
+        "sourceKey": "foodGuide"
       }
     ],
-    "kicker": "TASTE OF GREENLAND"
+    "kicker": "TASTE OF GREENLAND",
+    "intro": "アザラシやクジラ、北極の魚、トナカイ。氷の海と短い夏の陸から得る素材が、極北の食卓をつくってきた。"
   },
   "signatureFacts": [
     {
@@ -240,44 +249,44 @@
   ],
   "encounters": [
     {
-      "title": "氷山と氷河",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
+      "title": "氷山の間を進む小舟",
+      "icon": "ice",
+      "category": "MOVEMENT"
     },
     {
-      "title": "フィヨルド",
-      "icon": "sea",
-      "category": "LANDSCAPE"
+      "title": "町を結ぶプロペラ機",
+      "icon": "map",
+      "category": "MOVEMENT"
     },
     {
-      "title": "玄武岩の海岸",
-      "icon": "shore",
-      "category": "NATURE"
+      "title": "クジラの潮吹き",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
     },
     {
-      "title": "色彩豊かな町",
-      "icon": "city",
-      "category": "CITY"
+      "title": "そり犬の遠吠え",
+      "icon": "wildlife",
+      "category": "DAILY_LIFE"
     },
     {
-      "title": "イヌイット文化",
-      "icon": "culture",
-      "category": "CULTURE"
-    },
-    {
-      "title": "ツンドラの夏",
-      "icon": "landscape",
+      "title": "沈まない真夜中の太陽",
+      "icon": "sun",
       "category": "SEASON"
     },
     {
-      "title": "北欧人の遺構",
-      "icon": "landmark",
-      "category": "ARCHITECTURE"
+      "title": "港の魚と海獣の市場",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "海と漁の暮らし",
-      "icon": "sea",
-      "category": "WORK"
+      "title": "グリーンランド語の看板",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "流氷がきしむ音",
+      "icon": "ice",
+      "category": "LANDSCAPE"
     }
   ],
   "culture": [
@@ -370,9 +379,9 @@
       "categoryEn": "SUN",
       "categoryJa": "季節",
       "title": "戻ってきた太陽を迎える日",
-      "text": "冬の長い暗闇が終わる頃、北部の町では久しぶりに戻る太陽を迎える習慣がある。イルリサットでは1月中旬が節目になる。",
+      "text": "冬の暗闇が明けたイルリサットに太陽が戻るのは1月13日。町の人の約3分の1が「太陽を迎えに行く場所」セキニアルフィクの丘に集まり、一緒に歌う。",
       "icon": "sun",
-      "sourceKey": "sunReturn"
+      "sourceKey": "returnOfSun"
     },
     {
       "topicKey": "hans-island",
@@ -432,12 +441,14 @@
       "sourceKey": "transport"
     },
     {
-      "title": "氷河と氷山には安全な距離を",
-      "text": "氷の崩落や海での急な波が起こり得る。危険区域へ立ち入らず、現地ガイドと当日の安全情報に従う。"
+      "title": "氷山の間近へ寄る船は選ばない",
+      "text": "Visit Greenlandは、イルリサット氷河フィヨルドの氷山から少なくとも900m離れるよう船の運航者に警告し、小型ボートで氷へ近づけないよう勧めている。ツアー選びの目安にしたい。",
+      "sourceKey": "icebergDistance"
     },
     {
-      "title": "地域ごとに気候が大きく異なる",
-      "text": "西海岸・南部・東海岸では気温や航路の条件が違う。防寒・防風・防水を基本に、訪問地ごとの最新予報を確認する。"
+      "title": "東海岸へは、アイスランド経由が近道",
+      "text": "タシーラク近くのクルスクへはアイスランドのケプラヴィークから、イトコルトルミット近くのネルレリット・イナートへはアクレイリから定期便がある。ヌーク経由と比べて組み立てたい。",
+      "sourceKey": "nextRoutes"
     }
   ],
   "travelScale": {
@@ -477,32 +488,36 @@
     {
       "months": "3〜5月",
       "icon": "snow",
-      "color": "#8199ad",
+      "color": "#73966f",
       "text": "寒さが残り、雪と氷の体験が中心。地域により冬のアクティビティが続く。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#8a9e62",
+      "color": "#92a253",
       "text": "白夜の地域もあり、沿岸やツンドラを歩く旅に向く。ただし低温・強風はあり得る。"
     },
     {
       "months": "9〜10月",
       "icon": "leaf",
-      "color": "#b17f55",
+      "color": "#b77a49",
       "text": "短い秋から冬へ移行。夜が戻り、オーロラを見る機会が増える。"
     },
     {
       "months": "11〜2月",
       "icon": "snow",
-      "color": "#718eac",
+      "color": "#6b90a5",
       "text": "日照が短く、地域によって極夜となる。寒さと運航条件を前提に計画する。"
     }
   ],
   "transport": {
     "icon": "sea",
     "title": "飛行機・ヘリコプター・船",
-    "text": "町同士を結ぶ道路網がなく、遠距離移動は空路や海路に依存する。気象による欠航・遅延があり、接続便を含めて日程に余裕が必要。"
+    "text": "町同士を結ぶ道路網がなく、遠距離移動は空路や海路に依存する。気象による欠航・遅延があり、接続便を含めて日程に余裕が必要。",
+    "sourceKeys": [
+      "transport",
+      "airRoutes"
+    ]
   },
   "nextRegion": {
     "slug": "faroe-islands",
@@ -536,7 +551,7 @@
       "affinityType": "LANDSCAPE"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-06",
+  "sourcesVerifiedAt": "2026-11-07",
   "sources": {
     "population2026": "https://stat.gl/publ/EN/BE/202601/contents/Population%20estimates.htm",
     "selfGovernment": "https://english.stm.dk/the-prime-ministers-office/the-unity-of-the-realm/greenland/",
@@ -563,10 +578,12 @@
     "katuaq": "https://katuaq.gl/en/about-katuaq/architecture",
     "sledDogs": "https://visitgreenland.com/activities/dog-sledding/",
     "religion": "https://japan.um.dk/ja/info-about-denmark/greenland_site/history_and_culture",
-    "historyColonial": "https://japan.um.dk/ja/info-about-denmark/greenland_site/history_and_culture",
+    "historyColonial": "https://japan.um.dk/en/about-denmark/greenland/history-and-culture",
     "historyAutonomy": "https://english.stm.dk/the-prime-ministers-office/the-unity-of-the-realm/greenland/",
     "flora": "https://visitgreenland.com/activities/greenlands-flora/",
-    "berryPicking": "https://visitgreenland.com/articles/8-summer-activities-you-can-do-yourself-in-greenland/"
+    "berryPicking": "https://visitgreenland.com/articles/8-summer-activities-you-can-do-yourself-in-greenland/",
+    "icebergDistance": "https://calllist.visitgreenland.com/?p=55536",
+    "returnOfSun": "https://visitgreenland.com/articles/return-of-the-sun/"
   },
   "sourceDates": {
     "population": "2026-01-01",
@@ -577,7 +594,7 @@
     "japanAreaComparison": "Japan 377973.68 km² as of 2026-07-01; 2166086 / 377973.68, rounded to 5.7x",
     "nextRoutes": "2026-11-06: Visit Greenland confirms no ferry connections with Iceland, Denmark or Canada; no mainstream land/sea continuation listed.",
     "religion": "在日デンマーク大使館「歴史と文化」の定性的記述。2026-11-06確認（比率は掲載しない）",
-    "historyColonial": "2026-11-06",
+    "historyColonial": "2026-11-07",
     "historyAutonomy": "2026-11-06",
     "flora": "2026-11-06",
     "berryPicking": "2026-11-06"
@@ -602,7 +619,7 @@
   ],
   "contentQaVersion": 6,
   "historyContext": {
-    "text": "グリーンランドは、デンマーク王国内の自治地域。1979年に自治が始まり、2009年の自治法で自治権が拡充された。",
+    "text": "グリーンランドは、デンマーク王国内で独自の議会と政府を持つ自治地域。1721年に宣教師ハンス・エーゲデが現在のヌークに到来し、同じ年からデンマークの植民地となった。1953年の憲法改正で植民地の地位を離れて本国の一県となり、1979年に自治が始まった。2009年の自治法により、王国内の自治政府として権限がさらに広がっている。",
     "sourceKeys": [
       "historyColonial",
       "historyAutonomy"

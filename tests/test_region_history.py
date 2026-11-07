@@ -13,7 +13,7 @@ class RegionHistory(unittest.TestCase):
     def test_seven_region_records_have_sourced_history_and_six_facts(self):
         paths = [*sorted((ROOT / 'data/regions').glob('*/*.json')),
                  ROOT / 'data/countries/hong-kong.json', ROOT / 'data/countries/macau.json']
-        self.assertEqual(len(paths), 7)
+        self.assertEqual(len(paths), 13)
         for path in paths:
             with self.subTest(region=path.stem):
                 data = json.loads(path.read_text())

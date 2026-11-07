@@ -35,7 +35,8 @@
   "profile": [
     {
       "label": "首都",
-      "value": "パペーテ（Papeete）"
+      "value": "パペーテ（Papeete）",
+      "sourceKey": "overview"
     },
     {
       "label": "人口",
@@ -48,13 +49,14 @@
       "sourceKey": "overview"
     },
     {
-      "label": "公用語",
+      "label": "言語",
       "value": "フランス語（タヒチ語などのポリネシア諸語も使用）",
       "sourceKey": "overview"
     },
     {
       "label": "主な宗教",
-      "value": "キリスト教（カトリック、プロテスタントなど）"
+      "value": "キリスト教（カトリック、プロテスタントなど）",
+      "sourceKey": "dfat"
     },
     {
       "label": "通貨",
@@ -111,13 +113,14 @@
       "mapOffset": {
         "x": -1.3,
         "y": 1.2
-      }
+      },
+      "sourceKey": "moorea"
     },
     {
       "id": "tahiti-pointe-venus",
       "name": "ヴィーナス岬と黒砂海岸",
       "nameLocal": "Pointe Vénus / Mahina, Tahiti",
-      "description": "マヒナの海岸に、火山性の黒砂と歴史ある灯台が並ぶ。南太平洋を訪れた航海と観測の記憶を留める場所。",
+      "description": "マヒナの海岸に、火山性の黒砂と1867年建造の灯台が並ぶ。南太平洋を訪れた航海の記憶を留める岬。",
       "coordinates": {
         "latitude": -17.49509,
         "longitude": -149.49428
@@ -126,7 +129,8 @@
       "mapOffset": {
         "x": 1.3,
         "y": -1.2
-      }
+      },
+      "sourceKey": "pointeVenus"
     },
     {
       "id": "raiatea-taputapuatea",
@@ -137,7 +141,8 @@
         "latitude": -16.83615,
         "longitude": -151.35925
       },
-      "image": "assets/images/france/french-polynesia/approved/scene-03-raiatea-taputapuatea.webp"
+      "image": "assets/images/france/french-polynesia/approved/scene-03-raiatea-taputapuatea.webp",
+      "sourceKey": "unescoTaputapuatea"
     },
     {
       "id": "rangiroa-tiputa",
@@ -158,7 +163,7 @@
       "id": "fakarava-tetamanu",
       "name": "テタマヌの教会",
       "nameLocal": "Notre-Dame-de-Paix / Tetamanu, Fakarava",
-      "description": "サンゴ石を使い1874年に建てられた教会。小さな集落に残る宗教建築が、環礁に暮らす人々の時間を伝える。",
+      "description": "サンゴ石を積んだ小さな教会が、環礁の南端の集落に残る。宗教建築が、環礁に暮らす人々の時間を伝える。",
       "coordinates": {
         "latitude": -16.51492,
         "longitude": -145.46145
@@ -167,7 +172,8 @@
       "mapOffset": {
         "x": 0,
         "y": 0
-      }
+      },
+      "sourceKey": "tetamanu"
     },
     {
       "id": "nuku-hiva-hatiheu",
@@ -182,7 +188,8 @@
       "mapOffset": {
         "x": 0,
         "y": 0
-      }
+      },
+      "sourceKey": "marquesasHeritage"
     },
     {
       "id": "rurutu-ana-aeo",
@@ -197,7 +204,8 @@
       "mapOffset": {
         "x": 0,
         "y": 0
-      }
+      },
+      "sourceKey": "rurutu"
     },
     {
       "id": "mangareva-rikitea",
@@ -212,7 +220,8 @@
       "mapOffset": {
         "x": 0,
         "y": 0
-      }
+      },
+      "sourceKey": "mangareva"
     }
   ],
   "taste": {
@@ -281,60 +290,47 @@
   ],
   "encounters": [
     {
-      "title": "火山峰とラグーン",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "環礁の水道",
+      "title": "アウトリガーカヌーの練習",
       "icon": "sea",
-      "category": "NATURE"
+      "category": "MOVEMENT"
     },
     {
-      "title": "黒砂海岸",
-      "icon": "shore",
-      "category": "NATURE"
+      "title": "島を結ぶプロペラ機",
+      "icon": "map",
+      "category": "MOVEMENT"
     },
     {
-      "title": "古代の祭祀場",
-      "icon": "landmark",
-      "category": "HISTORY"
-    },
-    {
-      "title": "海辺の教会",
-      "icon": "landmark",
-      "category": "ARCHITECTURE"
-    },
-    {
-      "title": "マルキーズの岩峰",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "石灰岩の洞窟",
-      "icon": "landscape",
-      "category": "NATURE"
-    },
-    {
-      "title": "島々の食卓",
+      "title": "パペーテの市場",
       "icon": "food",
       "category": "FOOD"
+    },
+    {
+      "title": "夜の屋台ルロット",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "ティアレの花飾り",
+      "icon": "leaf",
+      "category": "CULTURE"
+    },
+    {
+      "title": "タヒチ語のあいさつ",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "ラグーンのエイ",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "真珠養殖のブイ",
+      "icon": "sea",
+      "category": "WORK"
     }
   ],
   "culture": [
-    {
-      "topicKey": "navigation",
-      "themeEn": "HISTORY",
-      "themeJa": "航海を知る",
-      "icon": "sea",
-      "title": "島と島を結んだ航海の知識",
-      "text": "外洋のうねり、星、風、鳥の動きを読み、船で遠く離れた島々を往来してきた。島の文化は海に隔てられながらも交流で結ばれている。",
-      "points": [
-        "海流や星を読む技術が世代を越えて伝えられた",
-        "祭祀場のつながりにも航海による交流が映る"
-      ],
-      "sourceKey": "unescoTaputapuatea"
-    },
     {
       "topicKey": "heiva",
       "themeEn": "CULTURE",
@@ -354,7 +350,7 @@
       "themeJa": "歴史を知る",
       "icon": "landmark",
       "title": "石の祭祀場に残るポリネシアのつながり",
-      "text": "タプタプアテアのマラエは島単体の遺跡ではなく、広くポリネシアへ及んだ宗教的・政治的交流の一端を示す場所。石敷きの空間は航海の歴史と結びついている。",
+      "text": "タプタプアテアのマラエは、星や風、うねりを読む航海で結ばれた島々の宗教的・政治的交流の中心だった。石敷きの空間は、島単体の遺跡ではなく、広くポリネシアへ及んだ海の道の結節点として見たい。",
       "points": [
         "2017年にユネスコ世界遺産登録",
         "儀礼の場と海路との関係を考える"
@@ -375,35 +371,51 @@
       "sourceKey": "tahitiTourism"
     },
     {
-      "topicKey": "marquesas",
+      "topicKey": "te-henua-enata",
       "themeEn": "ART",
       "themeJa": "表現を知る",
       "icon": "culture",
-      "title": "マルキーズの彫刻と文様",
-      "text": "マルキーズの島々には石・木の彫刻や身体の文様に表れる独自の表現が受け継がれている。ソシエテ諸島と同じ名前で括れない地域性に出会う。",
+      "title": "岩峰の島々が、自然と文化の世界遺産になった",
+      "text": "マルキーズ諸島は2024年、「テ・ヘヌア・エナタ」としてユネスコ世界遺産に登録された。12の高い島のうち有人は6島。首長国ごとの土地の区分、石の彫刻や巨石の建築、多様な海鳥と海の生き物が、一つの遺産として評価されている。",
       "points": [
-        "古い儀礼空間や彫刻に歴史が刻まれる",
-        "作品の意味は現地の解説とともに確かめたい"
+        "自然と文化をあわせて評価された遺産",
+        "石の彫刻や祭祀空間を、現地の解説とともに見る"
       ],
-      "sourceKey": "dfat"
+      "sourceKey": "marquesasHeritage"
     },
     {
-      "topicKey": "atoll-life",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしを知る",
-      "icon": "shore",
-      "title": "土の少ない環礁で暮らす工夫",
-      "text": "標高が低く淡水の確保も難しい環礁では、海況、物資、天候と折り合いながら暮らしが続く。火山島と同じ感覚では語れない環境がある。",
+      "topicKey": "artists-hiva-oa",
+      "themeEn": "ART",
+      "themeJa": "人物をたどる",
+      "icon": "culture",
+      "title": "画家と歌手が、マルキーズの村に眠る",
+      "text": "ヒバオア島のアトゥオナには、画家ポール・ゴーギャンと歌手ジャック・ブレルの墓がある。村の高台の墓地を訪ねる人は多く、ブレルの小型機を展示する文化施設や、ゴーギャンの文化センターもある。",
       "points": [
-        "集落の移動と生活は船や天候に左右される",
-        "淡水や廃棄物の扱いが大切になる"
+        "遠い島に、晩年を過ごした芸術家の足跡が残る",
+        "墓地は村を見下ろす高台にある"
       ],
-      "sourceKey": "overview"
+      "sourceKey": "hivaOa"
+    },
+    {
+      "topicKey": "missionary-landing",
+      "themeEn": "FAITH",
+      "themeJa": "信仰を知る",
+      "icon": "landmark",
+      "title": "黒砂の岬から、島々の教会の歴史が始まった",
+      "text": "1797年、ロンドン伝道協会の最初のプロテスタント宣教師がヴィーナス岬の湾に到着した。のちにカトリックの宣教も広がり、環礁やガンビエ諸島にはサンゴ石で築いた教会や大聖堂が残る。",
+      "points": [
+        "日曜の礼拝や聖歌に、島の暮らしと信仰の結びつきが見える",
+        "教会建築の素材に、島の環境が表れる"
+      ],
+      "sourceKeys": [
+        "pointeVenusHistory",
+        "mangareva"
+      ]
     }
   ],
   "travelTrivia": [
     {
-      "topicKey": "marquesas-clock",
+      "topicKey": "half-hour-offset",
       "categoryEn": "TIME",
       "categoryJa": "時刻",
       "title": "同じ地域の中に30分の時差がある",
@@ -412,22 +424,22 @@
       "sourceKey": "quickFacts"
     },
     {
-      "topicKey": "black-sand",
-      "categoryEn": "GEOLOGY",
-      "categoryJa": "地質",
-      "title": "タヒチの黒砂は火山がつくった",
-      "text": "ヴィーナス岬の暗い砂は火山岩に由来する。白砂のラグーンとは異なる、火山島の海岸の表情。",
-      "icon": "shore",
-      "sourceKey": "tahitiTourism"
+      "topicKey": "transit-of-venus",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "観測",
+      "title": "「ヴィーナス岬」の名は、金星の観測から",
+      "text": "1769年6月、ジェームズ・クックがこの岬に観測所を置き、金星の太陽面通過を観測した。その出来事が岬の名の由来になった。",
+      "icon": "sun",
+      "sourceKey": "pointeVenusHistory"
     },
     {
-      "topicKey": "typhoon-name",
-      "categoryEn": "GEOGRAPHY",
-      "categoryJa": "地理",
-      "title": "環礁の輪は、海面上に見えるサンゴ礁の縁",
-      "text": "トゥアモトゥの環礁では、広い内側のラグーンを細長い礁縁が囲む。火山島の岩山とは全く異なる地形だ。",
-      "icon": "shore",
-      "sourceKey": "overview"
+      "topicKey": "bounty-matavai",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "あのバウンティ号も、同じ湾に錨を下ろした",
+      "text": "映画でも知られる反乱の船バウンティ号の遠征隊は、1788年にマタヴァイ湾へ到着した。マヒナにはその記念碑がある。",
+      "icon": "sea",
+      "sourceKey": "pointeVenusHistory"
     },
     {
       "topicKey": "fakarava-church",
@@ -439,13 +451,13 @@
       "sourceKey": "tetamanu"
     },
     {
-      "topicKey": "two-seasons",
-      "categoryEn": "SEASON",
-      "categoryJa": "季節",
-      "title": "島々の季節は「暑い・寒い」では分かれない",
-      "text": "南太平洋では気温差よりも雨や湿度の違いが季節の表情を変える。同じ時期でも島嶼群ごとに気象条件は異なる。",
-      "icon": "sun",
-      "sourceKey": "seasons"
+      "topicKey": "tallest-tiki",
+      "categoryEn": "ART",
+      "categoryJa": "彫刻",
+      "title": "最も背の高いティキは、2.57m",
+      "text": "ヒバオア島プアマウ谷のリポナ遺跡は、石の神像ティキで知られる。最も高い像は2.57mあり、マルキーズの石の文化の大きさを伝える。",
+      "icon": "culture",
+      "sourceKey": "hivaOa"
     }
   ],
   "forWhom": [
@@ -470,11 +482,13 @@
     },
     {
       "title": "礁縁や水道では海流に注意",
-      "text": "ティプタ水道などは潮流が強くなる。入水は経験に応じて現地ガイドの指示に従い、無理に近づかない。"
+      "text": "ティプタ水道などは潮流が強くなる。入水は経験に応じて現地ガイドの指示に従い、無理に近づかない。",
+      "sourceKey": "tahitiTourism"
     },
     {
       "title": "祭祀場と教会では敬意を",
-      "text": "マラエや教会は生活文化の一部。立ち入りや撮影のルールを守り、歴史的な石組みに登らない。"
+      "text": "マラエや教会は生活文化の一部。立ち入りや撮影のルールを守り、歴史的な石組みに登らない。",
+      "sourceKey": "unescoTaputapuatea"
     }
   ],
   "travelScale": {
@@ -485,7 +499,7 @@
       {
         "duration": "5〜7日",
         "title": "ソシエテ諸島の火山島を知る",
-        "text": "例：パペーテ → モーレア → タヒチ → パペーテ。島間フェリーと街歩きで、山と湾の形を確かめる。",
+        "text": "ソシエテ諸島の火山島を、タヒチとモーレアで知る。例：パペーテ → ヴィーナス岬 → パペーテ →（フェリー）モーレア（オプノフ展望台）→ パペーテ。",
         "icon": "city"
       },
       {
@@ -495,7 +509,7 @@
         "icon": "map"
       },
       {
-        "duration": "14日以上",
+        "duration": "13日以上",
         "title": "離れた島嶼群へ足を延ばす",
         "text": "例：パペーテ → ヌクヒバ → パペーテ → ファカラバ → パペーテ。遠距離の便を優先して日程を組む。",
         "icon": "compass"
@@ -514,25 +528,25 @@
     {
       "months": "3〜5月",
       "icon": "sun",
-      "color": "#94a5a0",
+      "color": "#73966f",
       "text": "湿度の高い季節から比較的乾燥した時期へ。海況を確認しながら滞在計画を。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#c6ad79",
+      "color": "#92a253",
       "text": "比較的涼しく乾燥。ヘイヴァの催しや島歩きを組み合わせやすい。"
     },
     {
       "months": "9〜10月",
       "icon": "leaf",
-      "color": "#a9ae7f",
+      "color": "#b77a49",
       "text": "比較的乾いた季節の終盤。島ごとに風と雨の条件は異なる。"
     },
     {
       "months": "11〜2月",
       "icon": "weather",
-      "color": "#7fabbc",
+      "color": "#6b90a5",
       "text": "雨が増えやすい時期。短時間の強い雨や便の変動に備える。"
     }
   ],
@@ -594,7 +608,10 @@
     "moorea": "https://www.tahititourisme.com/natural-heritage/belvedere-dopunohu/",
     "pointeVenus": "https://tahititourisme.pf/en-pf/activities/points-of-interest/point-venus-and-mahina-lighthouse-mahina-en-en-pf-3325754/",
     "mangareva": "https://www.tahititourisme.com/cultural-heritage/cathedrale-de-saint-michel/",
-    "rurutu": "https://www.tahititourisme.nz/exploring-the-caves-in-rurutu/"
+    "rurutu": "https://www.tahititourisme.nz/exploring-the-caves-in-rurutu/",
+    "marquesasHeritage": "https://www.ecologie.gouv.fr/actualites/te-henua-enata-iles-marquises-inscrites-patrimoine-mondial-lunesco",
+    "pointeVenusHistory": "https://www.service-public.pf/sdt/st-pointevenus/",
+    "hivaOa": "https://www.tahititourisme.com/islands/hiva-oa/"
   },
   "sourceDates": {
     "population": "2022 census / INSEE 2023-01-23",
@@ -602,6 +619,8 @@
     "islands": "118 islands, 76 inhabited, ADE 2025",
     "eez": "approx 5.5 million km², ADE 2025",
     "seasons": "Tahiti Tourisme 2026",
-    "transport": "Tahiti Tourisme checked 2026-11-07"
+    "transport": "Tahiti Tourisme checked 2026-11-07",
+    "dfat": "2026-11-07",
+    "overview": "2026-11-07"
   }
 }
