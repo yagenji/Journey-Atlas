@@ -389,7 +389,123 @@ def inject_published_region_nav(page: str, slug: str) -> str:
     return page.replace(marker, markup + marker, 1)
 
 
-def generate_country_page(destination: dict, *, published: bool) -> str:
+
+def render_country_seo_fallback(data: dict, published_slugs: set[str]) -> str:
+    """Useful, crawlable HTML until the interactive Country renderer is ready.
+
+    Only Country JSON supplies editorial facts. The JS app replaces this
+    snapshot with the identical Country's interactive layout after data loads.
+    """
+    def esc(value: object) -> str:
+        return html.escape(str(value or ""), quote=True)
+
+    name_ja = esc(data.get("nameJa"))
+    name_en = esc(data.get("nameEn"))
+    hero = data.get("hero") or {}
+    sections = [
+        '<article class="country-seo-entry">',
+        '<nav class="country-seo-entry__nav" aria-label="パンくずリスト">'
+        '<a href="./">JOURNEY ATLAS</a><span aria-hidden="true"> / </span>'
+        f'<span>{name_ja}</span></nav>',
+        f'<h1>{name_en}</h1>',
+        f'<p class="country-seo-entry__ja">{name_ja}</p>',
+    ]
+    if hero.get("lead"):
+        sections.append(f'<p class="country-seo-entry__lead">{esc(hero["lead"])}</p>')
+    if hero.get("location"):
+        sections.append(f'<p class="country-seo-entry__location">代表風景：{esc(hero["location"])}</p>')
+
+    scenes = [scene for scene in (data.get("scenes") or []) if isinstance(scene, dict)]
+    if scenes:
+        sections.append(f'<section><h2>{name_ja}で見たい景色</h2><ol>')
+        for scene in scenes:
+            scene_name = esc(scene.get("name"))
+            local = esc(scene.get("nameLocal"))
+            title = f'{scene_name}（{local}）' if local and local != scene_name else scene_name
+            sections.append(f'<li><h3>{title}</h3><p>{esc(scene.get("description"))}</p></li>')
+        sections.append('</ol></section>')
+
+    facts = [fact for fact in (data.get("facts") or []) if isinstance(fact, dict)]
+    if facts:
+        sections.append('<section><h2>基本情報</h2><dl>')
+        for fact in facts:
+            sections.append(f'<dt>{esc(fact.get("label"))}</dt><dd>{esc(fact.get("value"))}</dd>')
+        sections.append('</dl></section>')
+
+    taste = data.get("taste") or {}
+    foods = taste.get("items") or []
+    if foods and all(isinstance(food, dict) and food.get("image") for food in foods):
+        sections.append(f'<section><h2>{esc(taste.get("title") or "現地の料理")}</h2>')
+        if taste.get("intro"):
+            sections.append(f'<p>{esc(taste["intro"])}</p>')
+        sections.append('<ul>')
+        for food in foods:
+            sections.append(f'<li><strong>{esc(food.get("name"))}</strong> — {esc(food.get("text"))}</li>')
+        sections.append('</ul></section>')
+
+    extras = [item for item in (data.get("atlasExtras") or []) if isinstance(item, dict)]
+    if extras:
+        sections.append('<section><h2>風景の向こうにある文化と暮らし</h2>')
+        for item in extras:
+            sections.append(f'<h3>{esc(item.get("title"))}</h3><p>{esc(item.get("text"))}</p>')
+        sections.append('</section>')
+
+    seasons = [item for item in (data.get("seasons") or []) if isinstance(item, dict)]
+    if seasons:
+        sections.append('<section><h2>旅の季節</h2><ul>')
+        for season in seasons:
+            sections.append(f'<li><strong>{esc(season.get("months"))}</strong>：{esc(season.get("text"))}</li>')
+        sections.append('</ul></section>')
+
+    related = [
+        item for item in (data.get("relatedCountries") or [])
+        if isinstance(item, dict) and item.get("slug") in published_slugs
+        and re.fullmatch(r"[a-z0-9-]+", item.get("slug", ""))
+    ]
+    if related:
+        sections.append('<nav aria-label="関連する旅先"><h2>あわせてめぐりたい国</h2><ul>')
+        for item in related:
+            slug = item["slug"]
+            sections.append(
+                f'<li><a href="countries/{slug}/">{esc(item.get("nameJa") or item.get("nameEn") or slug)}</a></li>'
+            )
+        sections.append('</ul></nav>')
+    sections.append('</article>')
+    return "\n".join(sections)
+
+
+def country_structured_data(data: dict, *, canonical: str, title: str, description: str,
+                            og_image: str) -> str:
+    """The page and breadcrumb graph uses only published page content."""
+    graph = [
+        {
+            "@type": "WebPage",
+            "@id": canonical,
+            "url": canonical,
+            "name": title,
+            "description": description,
+            "inLanguage": "ja",
+            "isPartOf": {"@id": SITE_URL},
+            "primaryImageOfPage": og_image,
+            "breadcrumb": {"@id": canonical + "#breadcrumb"},
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": canonical + "#breadcrumb",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "JOURNEY ATLAS", "item": SITE_URL},
+                {"@type": "ListItem", "position": 2,
+                 "name": data.get("nameJa") or data.get("nameEn") or "",
+                 "item": canonical},
+            ],
+        },
+    ]
+    # Escape '<' so a future editorial string cannot close the script element.
+    return json.dumps({"@context": "https://schema.org", "@graph": graph},
+                      ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+
+
+def generate_country_page(destination: dict, *, published: bool, published_slugs: set[str]) -> str:
     slug = destination["slug"]
     data_path = ROOT / f"data/countries/{slug}.json"
     if not data_path.exists():
@@ -440,6 +556,16 @@ def generate_country_page(destination: dict, *, published: bool) -> str:
             f'  <link rel="stylesheet" href="assets/css/region.css?v={BUILD_VERSION}">\n' + marker,
             1,
         )
+
+    # Embed meaningful text in the HTTP response, not only in JS-generated DOM.
+    fallback = render_country_seo_fallback(data, published_slugs)
+    page = set_tag(page, '    <div class="loading">旅のページをひらいています…</div>', fallback)
+
+    structured = country_structured_data(data, canonical=canonical, title=title,
+                                         description=description, og_image=og_image)
+    page = set_tag(page, '  <meta name="twitter:card" content="summary_large_image">',
+                   '  <meta name="twitter:card" content="summary_large_image">\n'
+                   '  <script type="application/ld+json">' + structured + '</script>')
 
     page = inject_published_region_nav(page, slug)
 
@@ -697,7 +823,8 @@ def main() -> int:
     reviewable = reviewable_destinations(registries)
     urls: list[str] = []
     for item in reviewable:
-        canonical = generate_country_page(item, published=item["slug"] in published_slugs)
+        canonical = generate_country_page(item, published=item["slug"] in published_slugs,
+                                          published_slugs=published_slugs)
         if item["slug"] in published_slugs:
             urls.append(canonical)
     from build_region_pages import generate_region_pages
