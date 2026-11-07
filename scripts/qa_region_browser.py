@@ -419,12 +419,40 @@ def main() -> int:
                                 and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
                                 and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
                             problems.append(f"Region fixed inset map QA failed: {inset}")
+                    # Optional island-group selector must keep only ONE visual map frame.
+                    # It must restore the true-geography overview after every switch.
+                    if (region.get("map") or {}).get("detailMaps"):
+                        switch_audit = driver.execute_script("""
+                            const buttons = [...document.querySelectorAll('.region-map-switcher__button')];
+                            const main = document.querySelector('#country-map-art .map-base');
+                            const art = document.querySelector('#country-map-art');
+                            const allMaps = document.querySelectorAll('.map-column .map-base');
+                            if (!main || !art || buttons.length !== arguments[0] + 1) {
+                                return {valid: false, reason: 'selector or map count'};
+                            }
+                            const original = main.getAttribute('src');
+                            const initial = buttons[0].getAttribute('aria-pressed') === 'true';
+                            buttons[1].click();
+                            const switched = main.getAttribute('src') === buttons[1].dataset.regionMapSrc;
+                            const detail = art.classList.contains('is-region-detail');
+                            const hitsHidden = [...art.querySelectorAll('.region-map-hit')].every(
+                                hit => getComputedStyle(hit.closest('.region-map-hits')).display === 'none');
+                            buttons[0].click();
+                            const restored = main.getAttribute('src') === original
+                                && !art.classList.contains('is-region-detail')
+                                && buttons[0].getAttribute('aria-pressed') === 'true';
+                            return {valid: initial && switched && detail && hitsHidden && restored
+                                           && allMaps.length === 1,
+                                    buttons: buttons.length, initial, switched, detail,
+                                    hitsHidden, restored, visualMaps: allMaps.length};
+                        """, len(region["map"]["detailMaps"]))
+                        if not switch_audit.get("valid"):
+                            problems.append(f"Region single-map switcher QA failed: {switch_audit}")
                     svg_flag_count = sum(
                         str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
                     expected_images = (14 + bool((region.get("map") or {}).get("regions"))
-                                       + len((region.get("map") or {}).get("detailMaps") or [])
                                        + svg_flag_count)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
