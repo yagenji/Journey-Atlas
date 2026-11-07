@@ -612,6 +612,22 @@ def build_top_scene_index() -> None:
     # parent metadata for map / theme / scenery discovery. They do not count as Countries.
     registry = json.loads(CORE_REGISTRY_PATH.read_text(encoding="utf-8"))
     parent_iso = {item["slug"]: item["iso2"] for item in registry["destinations"]}
+    # Region flags are distinct from the parent Country flag. Reuse the
+    # published UK flag artwork: Unicode subdivision flag tags do not render
+    # consistently across browsers. Northern Ireland uses the UK flag.
+    region_flags: dict[str, tuple[str, str | None]] = {
+        "greenland": ("🇬🇱", None),
+        "faroe-islands": ("🇫🇴", None),
+        "aruba": ("🇦🇼", None),
+        "curacao": ("🇨🇼", None),
+        "sint-maarten": ("🇸🇽", None),
+        "new-caledonia": ("🇳🇨", None),
+        "french-polynesia": ("🇵🇫", None),
+        "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
+        "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
+        "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
+        "northern-ireland": ("🇬🇧", "assets/icons/region-flags/unitedkingdom-waved.svg"),
+    }
     region_heroes: list[dict] = []
     for path in sorted((ROOT / "data/regions").glob("*/*.json")):
         region = json.loads(path.read_text(encoding="utf-8"))
@@ -621,6 +637,12 @@ def build_top_scene_index() -> None:
         parent = region["parentSlug"]
         if parent not in parent_iso:
             raise ValueError(f"Published Region missing Country parent: {parent}")
+        flag_data = region_flags.get(region["slug"])
+        if flag_data is None:
+            raise ValueError(f"Published Region needs a TOP flag: {parent}/{region['slug']}")
+        region_flag, region_flag_asset = flag_data
+        if region_flag_asset and not (ROOT / region_flag_asset).is_file():
+            raise FileNotFoundError(region_flag_asset)
         geo = str(region.get("region", "")).upper()
         if "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
             region_id = "north-america"
@@ -638,6 +660,8 @@ def build_top_scene_index() -> None:
             "nameJa": region["nameJa"],
             "nameEn": region["nameEn"],
             "heroName": hero.get("name") or hero.get("location") or region["nameJa"],
+            "flag": region_flag,
+            "flagAsset": region_flag_asset,
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
             "href": f"countries/{parent}/{region['slug']}/",
