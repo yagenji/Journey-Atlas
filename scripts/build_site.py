@@ -499,6 +499,26 @@ def build_top_search_index() -> None:
             if season.get("text")
         ]
         countries[slug] = {"s": scenes, "m": seasons}
+    # Published Region names, Scenes and seasonal notes are searchable from TOP
+    # without adding them to the 200-Country list.
+    for path in sorted((ROOT / "data/regions").glob("*/*.json")):
+        region = json.loads(path.read_text(encoding="utf-8"))
+        if region.get("regionPublished") is not True:
+            continue
+        slug = region["slug"]
+        if slug in countries:
+            raise ValueError(f"Region search slug collides with Country: {slug}")
+        countries[slug] = {
+            "s": [
+                [str(scene.get("name", "")).strip(), str(scene.get("nameLocal", "")).strip(),
+                 str(scene.get("description", "")).strip()]
+                for scene in region.get("scenes", []) if scene.get("name")
+            ],
+            "m": [
+                [str(season.get("months", "")).strip(), str(season.get("text", "")).strip()]
+                for season in region.get("seasons", []) if season.get("text")
+            ],
+        }
     payload = {"version": 1, "countries": countries}
     (ROOT / "data/top-search-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
@@ -522,6 +542,34 @@ def build_top_season_index() -> None:
             [list(window.get("months", [])), str(window.get("label", "")).strip(), str(window.get("reason", "")).strip()]
             for window in windows
         ]
+    # Include published Regions in season discovery. Some Region windows store
+    # only a short authored label (e.g. "12〜5月"); expand that to month numbers.
+    for path in sorted((ROOT / "data/regions").glob("*/*.json")):
+        region = json.loads(path.read_text(encoding="utf-8"))
+        if region.get("regionPublished") is not True:
+            continue
+        windows = (region.get("bestSeason") or {}).get("windows") or []
+        rows = []
+        for window in windows:
+            label = str(window.get("label", "")).strip()
+            months = window.get("months")
+            if not months:
+                period = re.fullmatch(r"(\d{1,2})[〜～~–-](\d{1,2})月", label)
+                if not period:
+                    raise ValueError(f"Unparseable published Region bestSeason: {region['slug']} {label}")
+                start, end = (int(v) for v in period.groups())
+                if not 1 <= start <= 12 or not 1 <= end <= 12:
+                    raise ValueError(f"Invalid published Region season months: {region['slug']}")
+                months = list(range(start, end + 1)) if start <= end else (
+                    list(range(start, 13)) + list(range(1, end + 1))
+                )
+            if any(not isinstance(m, int) or not 1 <= m <= 12 for m in months):
+                raise ValueError(f"Invalid Region bestSeason: {region['slug']}")
+            rows.append([list(months), label, str(window.get("reason", "")).strip()])
+        if rows:
+            if region["slug"] in countries:
+                raise ValueError(f"Region season slug collides with Country: {region['slug']}")
+            countries[region["slug"]] = rows
     payload = {"version": 1, "countries": countries}
     (ROOT / "data/top-season-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
@@ -560,24 +608,41 @@ def build_top_scene_index() -> None:
             countries[slug] = rows
     if missing:
         print(f"WARNING: {missing} Scene thumbnail(s) missing; run scripts/build_scene_thumbs.py")
-    # Published Region Heroes share the existing top-page runtime index; authoring
-    # Region JSON files are intentionally not shipped by the production packager.
+    # Published Region Heroes share the existing TOP runtime index, including
+    # parent metadata for map / theme / scenery discovery. They do not count as Countries.
+    registry = json.loads(CORE_REGISTRY_PATH.read_text(encoding="utf-8"))
+    parent_iso = {item["slug"]: item["iso2"] for item in registry["destinations"]}
     region_heroes: list[dict] = []
-    for path in sorted((ROOT / "data/regions/unitedkingdom").glob("*.json")):
+    for path in sorted((ROOT / "data/regions").glob("*/*.json")):
         region = json.loads(path.read_text(encoding="utf-8"))
         hero = region.get("hero") or {}
         if region.get("regionPublished") is not True or not hero.get("image"):
             continue
+        parent = region["parentSlug"]
+        if parent not in parent_iso:
+            raise ValueError(f"Published Region missing Country parent: {parent}")
+        geo = str(region.get("region", "")).upper()
+        if "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
+            region_id = "north-america"
+        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA")):
+            region_id = "oceania"
+        elif "EUROPE" in geo or "NORTH ATLANTIC" in geo:
+            region_id = "europe"
+        else:
+            raise ValueError(f"Published Region needs an explicit TOP geography: {parent}/{region['slug']}")
         region_heroes.append({
             "slug": region["slug"],
+            "parentSlug": parent,
+            "iso2": parent_iso[parent],
+            "regionId": region_id,
             "nameJa": region["nameJa"],
             "nameEn": region["nameEn"],
             "heroName": hero.get("name") or hero.get("location") or region["nameJa"],
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
-            "href": f"countries/unitedkingdom/{region['slug']}/",
+            "href": f"countries/{parent}/{region['slug']}/",
         })
-    payload = {"version": 3, "countries": countries, "heroes": heroes, "regionHeroes": region_heroes}
+    payload = {"version": 4, "countries": countries, "heroes": heroes, "regionHeroes": region_heroes}
     (ROOT / "data/top-scene-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
     )

@@ -684,8 +684,20 @@
     mapLoad = Promise.all([
       fetch(MAP).then(r => { if (!r.ok) throw new Error('World map unavailable'); return r.text(); }),
       fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
-      registry
-    ]).then(([m, rd, core]) => {
+      registry,
+      window.JourneyAtlasRegionsPromise || Promise.resolve([])
+    ]).then(([m, rd, core, detailRegions]) => {
+    // Country geography stays with the canonical 200; published child Regions
+    // appear beneath their parent (China detail routes retain their own links).
+    const groupedRegions = new Map();
+    detailRegions.forEach(region => {
+      if (!region.parentSlug || !region.href) return;
+      if (!groupedRegions.has(region.parentSlug)) groupedRegions.set(region.parentSlug, []);
+      groupedRegions.get(region.parentSlug).push({
+        ja: region.nameJa, en: region.nameEn, href: region.href
+      });
+    });
+    groupedRegions.forEach((links, parent) => { childLinks[parent] = links; });
     regions = rd.regions || [];
     dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));

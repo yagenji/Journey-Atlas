@@ -62,15 +62,21 @@ let destinations = []; // 200 parent destinations
 let fullDestinations = []; // the 202-item canonical catalog
 let detailDestinations = []; // directly discoverable subordinate places
 const CHILD_SLUGS = new Set(['hong-kong','macau']);
-const UK_REGION_SLUGS = ['england','scotland','wales','northern-ireland'];
-const regionDetailPromise = fetch('data/top-scene-index.json?v=20261106-region-heroes-1')
+// Region destinations come from the published Region JSON index, not a UK-only list.
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261107-all-regions-1')
   .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
   .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
-    slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:'GB',
-    image:data.image,heroName:data.heroName,travelThemes:data.travelThemes||[],flag:'',
-    atlasPublished:true,href:data.href,parentSlug:'unitedkingdom'
-  })).filter(data=>UK_REGION_SLUGS.includes(data.slug)))
+    slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:data.iso2,
+    regionId:data.regionId,image:data.image,heroName:data.heroName,
+    travelThemes:data.travelThemes||[],flag:'',
+    atlasPublished:true,href:data.href,parentSlug:data.parentSlug
+  })))
   .catch(()=>[]);
+window.JourneyAtlasRegionsPromise=regionDetailPromise;
+// Geography filter uses where a Region physically sits, never its parent's ISO country.
+function discoveryRegionId(country){
+  return country.regionId||themeRegionByIso.get(country.iso2);
+}
 let activeTheme = null;
 let activeThemeMonth = null;   // テーマ×季節: 1–12, or null for every month
 let themeMeta = {};
@@ -224,6 +230,10 @@ coreRegistryPromise
     regionDetailPromise.then(regions=>{
       detailDestinations.push(...regions);
       if(activeTheme)renderThemeResults();
+      if(seasonIndex){
+        if(seasonMonth)renderSeasonResults();
+        else renderSeasonMonths();
+      }
       if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
     if(count) count.textContent=`${destinations.length} DESTINATIONS`;
@@ -261,7 +271,16 @@ function parseLensFeed(xmlText){
     const title=(item.querySelector('title')?.textContent||'').trim();
     const titleParts=title.split('｜');
     const subtitle=titleParts.length>1?titleParts.slice(1).join('｜').trim():'';
-    const image=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
+    const rawImage=(item.querySelector('enclosure')?.getAttribute('url')||'').trim();
+    // LENS RSS can return relative photo URLs. Resolve against the LENS feed
+    // rather than this ATLAS page, otherwise /assets/images/... returns 404 here.
+    let image='';
+    if(rawImage){
+      try{
+        const resolved=new URL(rawImage,LENS_RSS_URL);
+        if(resolved.protocol==='https:')image=resolved.href;
+      }catch{}
+    }
     return [{slug,sequence,link,subtitle,image}];
   });
 }
@@ -453,11 +472,11 @@ function getThemeItems(theme=activeTheme){
   if(!theme)return [];
   const slugs=new Set(themeSets[theme]||[]);
   const label=themeMeta[theme]?.label;
-  // Published Country taxonomy plus authored UK Region travel themes.
+  // Published Country taxonomy plus all published Region travel themes.
   return sortForDisplay([...destinations,...detailDestinations].filter(country=>
     country.atlasPublished===true && (
       slugs.has(country.slug) ||
-      (country.parentSlug==='unitedkingdom' && label && country.travelThemes?.includes(label))
+      (country.parentSlug && label && country.travelThemes?.includes(label))
     )
   ));
 }
@@ -487,18 +506,18 @@ function renderThemeResults(){
   const themeItems=activeThemeMonth&&monthReady
     ?allThemeItems.filter((country)=>seasonWindowFor(country.slug,activeThemeMonth))
     :allThemeItems;
-  const availableRegions=new Set(themeItems.map((country)=>themeRegionByIso.get(country.iso2)).filter(Boolean));
+  const availableRegions=new Set(themeItems.map((country)=>discoveryRegionId(country)).filter(Boolean));
   if(activeThemeRegion!=='all'&&!availableRegions.has(activeThemeRegion))activeThemeRegion='all';
   const wishedThemeItems=themeWishesOnly?themeItems.filter(isWishedDestination):themeItems;
   const regionCounts=new Map();
   wishedThemeItems.forEach((country)=>{
-    const region=themeRegionByIso.get(country.iso2);
+    const region=discoveryRegionId(country);
     if(region)regionCounts.set(region,(regionCounts.get(region)||0)+1);
   });
   renderThemeRegionTabs(wishedThemeItems.length,regionCounts,availableRegions);
   const baseItems=activeThemeRegion==='all'
     ?wishedThemeItems
-    :wishedThemeItems.filter((country)=>themeRegionByIso.get(country.iso2)===activeThemeRegion);
+    :wishedThemeItems.filter((country)=>discoveryRegionId(country)===activeThemeRegion);
   const query=themeResultsSearch?.value.trim().toLowerCase()||'';
   const items=query
     ?baseItems.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query))
@@ -688,7 +707,7 @@ function normalizeSearch(value){
 let sceneIndex=null,sceneIndexPromise=null;
 function loadSceneIndex(){
   if(!sceneIndexPromise){
-    sceneIndexPromise=fetch('data/top-search-index.json')
+    sceneIndexPromise=fetch('data/top-search-index.json?v=20261107-all-regions-1')
       .then((response)=>{if(!response.ok)throw new Error('Search index not found');return response.json();})
       .then(({countries={}})=>{
         sceneIndex=new Map(Object.entries(countries).map(([slug,row])=>[slug,{
@@ -731,7 +750,16 @@ function searchCountries(){
     searchCaptions=new Map();
     return [...named.sort((a,b)=>a[0]-b[0]).map(([,country])=>country),...detailMatches];
   }
-  return scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);
+  // Searching a Region Scene should open the Region, not wrongly promote its
+  // parent Country or omit the scenic location from the TOP index.
+  const regionSceneMatches=query.length>=2?detailDestinations.filter(country=>{
+    const row=sceneIndex?.get(country.slug);
+    if(!row)return false;
+    const match=row.scenes.find(scene=>scene.key.includes(query)||scene.text.includes(query));
+    if(match)searchCaptions.set(country.slug,`景色：${match.name}`);
+    return Boolean(match);
+  }):[];
+  return [...scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country),...regionSceneMatches];
 }
 searchInput?.addEventListener('input',()=>{
   const wasHidden=Boolean(allPanel?.hidden);
@@ -882,7 +910,7 @@ let seasonStage='idle';   // where loading is, shown if it stalls (helps diagnos
 function loadSeasonIndex(){
   if(!seasonIndexPromise){
     seasonStage='fetch';
-    seasonIndexPromise=fetch('data/top-season-index.json')
+    seasonIndexPromise=fetch('data/top-season-index.json?v=20261107-all-regions-1')
       .then((response)=>{
         seasonStage=`response ${response.status} ${response.headers.get('content-type')||''}`.trim();
         if(!response.ok)throw new Error(`HTTP ${response.status}`);
@@ -925,7 +953,9 @@ function seasonWindowFor(slug,month){
   return (seasonIndex?.get(slug)||[]).find(([months])=>months.includes(month))||null;
 }
 function seasonItems(month){
-  return destinations.filter((country)=>country.atlasPublished&&seasonWindowFor(country.slug,month));
+  return sortForDisplay([...destinations,...detailDestinations].filter(
+    country=>country.atlasPublished&&seasonWindowFor(country.slug,month)
+  ));
 }
 function renderSeasonMonths(){
   if(!seasonMonthsHost)return;
@@ -949,11 +979,11 @@ function renderSeasonResults(){
   if(!seasonMonth){if(seasonResults)seasonResults.hidden=true;return;}
   if(!seasonResults||!seasonGrid||!seasonIndex||!destinations.length)return;
   const all=seasonItems(seasonMonth);
-  const availableRegions=new Set(all.map((country)=>themeRegionByIso.get(country.iso2)).filter(Boolean));
+  const availableRegions=new Set(all.map((country)=>discoveryRegionId(country)).filter(Boolean));
   if(seasonRegion!=='all'&&!availableRegions.has(seasonRegion))seasonRegion='all';
   const wished=seasonWishesOnly?all.filter(isWishedDestination):all;
   const counts=new Map();
-  wished.forEach((country)=>{const region=themeRegionByIso.get(country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
+  wished.forEach((country)=>{const region=discoveryRegionId(country);if(region)counts.set(region,(counts.get(region)||0)+1);});
   if(seasonTabs){
     seasonTabs.hidden=false;
     const options=themeRegions.length&&availableRegions.size>1
@@ -970,7 +1000,7 @@ function renderSeasonResults(){
       return button;
     }),makeWishlistFilterButton('season',seasonWishesOnly));
   }
-  const items=seasonRegion==='all'?wished:wished.filter((country)=>themeRegionByIso.get(country.iso2)===seasonRegion);
+  const items=seasonRegion==='all'?wished:wished.filter((country)=>discoveryRegionId(country)===seasonRegion);
   const shown=items.slice(0,seasonLimit);
   const fragment=document.createDocumentFragment();
   shown.forEach((country,index)=>{
@@ -1147,7 +1177,7 @@ function shuffled(items){
 function loadScenes(){
   if(!scenePromise){
     scenePromise=Promise.all([
-      fetch('data/top-scene-index.json?v=20261103-hero-places-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      fetch('data/top-scene-index.json?v=20261107-all-regions-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
       themeRegionPromise.catch(()=>null),
       regionDetailPromise
@@ -1184,7 +1214,7 @@ function shuffleScenes(){
   if(!sceneRows)return;
   const favorites=sceneFavoritesOnly?sceneRows.filter(isSavedScenery):sceneRows;
   const wished=sceneWishesOnly?favorites.filter((row)=>isWishedDestination(row.country)):favorites;
-  const rows=sceneRegion==='all'?wished:wished.filter((row)=>themeRegionByIso.get(row.country.iso2)===sceneRegion);
+  const rows=sceneRegion==='all'?wished:wished.filter((row)=>discoveryRegionId(row.country)===sceneRegion);
   const groups=new Map();
   shuffled(rows).forEach((row)=>{if(!groups.has(row.slug))groups.set(row.slug,[]);groups.get(row.slug).push(row);});
   const slugs=shuffled([...groups.keys()]);
@@ -1200,7 +1230,7 @@ function renderScenes(){
   if(!sceneGrid||!sceneRows)return;
   if(sceneTabs){
     const tabRows=sceneFavoritesOnly?sceneRows.filter(isSavedScenery):sceneRows;
-    const availableRegions=new Set(tabRows.map((row)=>themeRegionByIso.get(row.country.iso2)).filter(Boolean));
+    const availableRegions=new Set(tabRows.map((row)=>discoveryRegionId(row.country)).filter(Boolean));
     const options=themeRegions.length&&availableRegions.size>1
       ?[{id:'all',label:'すべて'},...themeRegions.filter((region)=>availableRegions.has(region.id))]
       :[];
