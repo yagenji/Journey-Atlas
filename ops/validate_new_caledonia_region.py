@@ -130,6 +130,7 @@ def main() -> None:
     tx, ty, factor = (float(v) for v in transform.groups())
     frame = next((child for child in inset if child.tag.endswith("}rect")), None)
     assert frame is not None
+    assert frame.get("fill") == "none", "Overview inset must not have an opaque/white background"
     pad = 20  # SVG pixels; keep visible sea between inset and island coastline.
     left = tx + factor * float(frame.get("x")) - pad
     top = ty + factor * float(frame.get("y")) - pad
