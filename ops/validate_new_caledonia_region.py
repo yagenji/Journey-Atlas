@@ -123,7 +123,7 @@ def main() -> None:
 
     # Guard against the inset covering any real islands (regression 2026-11-07).
     transform = re.fullmatch(
-        r"translate\\((-?[\\d.]+) (-?[\\d.]+)\\) scale\\(([\\d.]+)\\)",
+        r"translate\((-?[\d.]+) (-?[\d.]+)\) scale\(([\d.]+)\)",
         inset.get("transform", ""),
     )
     assert transform is not None, "Unexpected overview inset transform"
@@ -140,7 +140,7 @@ def main() -> None:
     assert land is not None
     shore_vertices = [
         (float(x), float(y))
-        for x, y in re.findall(r"[ML](-?[\\d.]+),(-?[\\d.]+)", land.get("d", ""))
+        for x, y in re.findall(r"[ML](-?[\d.]+),(-?[\d.]+)", land.get("d", ""))
     ]
     assert len(shore_vertices) > 100, "Map coastline has too few points"
     assert not any(
