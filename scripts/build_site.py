@@ -284,6 +284,25 @@ def prepare_top_page() -> None:
             1,
         )
 
+    # The homepage title should describe the atlas for non-brand searches.
+    home_title = "世界200の旅先を景色と地図から探す旅の図鑑 | JOURNEY ATLAS"
+    page = page.replace("<title>JOURNEY ATLAS</title>",
+                        f"<title>{home_title}</title>", 1)
+    page = page.replace('<meta property="og:title" content="JOURNEY ATLAS">',
+                        f'<meta property="og:title" content="{home_title}">', 1)
+    if 'id="atlas-home-schema"' not in page:
+        marker = '  <meta name="twitter:card" content="summary_large_image">'
+        home_schema = json.dumps({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "JOURNEY ATLAS",
+            "url": SITE_URL,
+            "inLanguage": "ja",
+        }, ensure_ascii=False, separators=(",", ":"))
+        page = set_tag(page, marker,
+                       marker + '\n  <script id="atlas-home-schema" '
+                       'type="application/ld+json">' + home_schema + '</script>')
+
     page = page.replace('<img id="hero-image" ', '<img id="hero-image" fetchpriority="high" ', 1)
     page = page.replace('<div class="lens-card__art"><img ', '<div class="lens-card__art"><img loading="lazy" decoding="async" ')
     path.write_text(page, encoding="utf-8")
