@@ -15,7 +15,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/regions/france/new-caledonia.json"
-CHECKSUMS = ROOT / "assets/images/france/new-caledonia/approved/SHA256SUMS"
+CHECKSUMS = ROOT / "docs/region-images/new-caledonia-manifest.json"
 
 
 def die(message: str) -> None:
@@ -39,14 +39,13 @@ def collect_sources(value: object) -> list[str]:
 
 
 def expected_hashes() -> dict[str, str]:
+    manifest = json.loads(CHECKSUMS.read_text(encoding="utf-8"))
     result: dict[str, str] = {}
-    for line in CHECKSUMS.read_text(encoding="utf-8").splitlines():
-        if not line or line.startswith("#"):
-            continue
-        digest, filename = line.split(maxsplit=1)
-        filename = filename.strip().lstrip("*")
+    for item in manifest["items"]:
+        filename = item["name"]
+        digest = item["sha256"]
         if filename in result or not re.fullmatch(r"[a-f0-9]{64}", digest):
-            die("Invalid SHA256SUMS entry")
+            die("Invalid image checksum in approved manifest")
         result[filename] = digest
     return result
 
