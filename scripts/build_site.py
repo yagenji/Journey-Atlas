@@ -277,13 +277,10 @@ def prepare_top_page() -> None:
         page = page.replace(marker, marker + '  <link rel="stylesheet" href="assets/css/top.css?v=20260825-1027">\n', 1)
 
     canonical = SITE_URL
-    # Use the published top-page Hero artwork for link previews. Keep a new URL
-    # when changing the image so messaging apps can refresh their cached card.
-    social_hero = urljoin(SITE_URL, "assets/images/top/regions/top-asia.webp") + "?v=20261107-og-top-asia-1"
     if 'rel="canonical"' not in page:
         page = page.replace(
             '  <title>JOURNEY ATLAS</title>\n',
-            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="200の旅先をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{social_hero}">\n  <meta property="og:image:type" content="image/webp">\n  <meta property="og:image:width" content="1672">\n  <meta property="og:image:height" content="941">\n  <meta property="og:image:alt" content="アジアの景色を描いたJOURNEY ATLASのメインビジュアル">\n  <meta name="twitter:card" content="summary_large_image">\n  <meta name="twitter:image" content="{social_hero}">\n',
+            f'  <title>JOURNEY ATLAS</title>\n  <link rel="canonical" href="{canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:site_name" content="JOURNEY ATLAS">\n  <meta property="og:title" content="JOURNEY ATLAS">\n  <meta property="og:description" content="200の旅先をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">\n  <meta property="og:url" content="{canonical}">\n  <meta property="og:image" content="{urljoin(SITE_URL, "assets/images/top/og-default.jpg")}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta name="twitter:card" content="summary_large_image">\n',
             1,
         )
 
