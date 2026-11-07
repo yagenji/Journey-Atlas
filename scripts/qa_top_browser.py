@@ -25,6 +25,24 @@ REGION_EXPECTED = {
     "french-polynesia": ("france", "フランス領ポリネシア", "oceania"),
 }
 
+# Each new Region must carry its own territory flag in TOP cards.
+REGION_FLAGS = {
+    "greenland": "🇬🇱",
+    "faroe-islands": "🇫🇴",
+    "aruba": "🇦🇼",
+    "curacao": "🇨🇼",
+    "sint-maarten": "🇸🇽",
+    "new-caledonia": "🇳🇨",
+    "french-polynesia": "🇵🇫",
+}
+# Existing verified SVG assets avoid black-flag fallback on some devices.
+UK_REGION_FLAG_ASSETS = {
+    "england": "england-waved.svg",
+    "scotland": "scotland-waved.svg",
+    "wales": "wales-waved.svg",
+    "northern-ireland": "unitedkingdom-waved.svg",
+}
+
 EXPECTED = {
     "england": "countries/unitedkingdom/england/",
     "scotland": "countries/unitedkingdom/scotland/",
@@ -59,8 +77,8 @@ def check(driver, viewport):
     runtime_regions = driver.execute_async_script("""
       const done = arguments[0];
       (window.JourneyAtlasRegionsPromise || Promise.resolve([])).then(
-        items => done(items.map(({slug,href,parentSlug,regionId}) =>
-          ({slug,href,parentSlug,regionId}))), () => done([]));
+        items => done(items.map(({slug,href,parentSlug,regionId,flag,flagAsset}) =>
+          ({slug,href,parentSlug,regionId,flag,flagAsset}))), () => done([]));
     """)
     indexed = {row["slug"]: row for row in runtime_regions}
     for slug, (parent, _name, region_id) in REGION_EXPECTED.items():
@@ -69,8 +87,18 @@ def check(driver, viewport):
         if not row or row["href"] != expected or row["parentSlug"] != parent or row["regionId"] != region_id:
             errors.append("TOP Region index mismatch: " + slug + " " + repr(row))
 
+    for slug, flag in REGION_FLAGS.items():
+        if indexed.get(slug, {}).get("flag") != flag:
+            errors.append("TOP Region emoji flag missing: " + slug)
+        if indexed.get(slug, {}).get("flagAsset"):
+            errors.append("TOP Region emoji unexpectedly has SVG asset: " + slug)
+    for slug, name in UK_REGION_FLAG_ASSETS.items():
+        row = indexed.get(slug, {})
+        if not row.get("flag") or not row.get("flagAsset", "").endswith("/" + name):
+            errors.append("TOP UK Region flag SVG missing: " + slug + " " + repr(row))
+
     query = driver.find_element(By.ID, "country-search")
-    for label, slug in [("イングランド", "england"), ("マカオ", "macau")] + [
+    for label, slug in [("イングランド", "england"), ("スコットランド", "scotland"), ("ウェールズ", "wales"), ("北アイルランド", "northern-ireland"), ("マカオ", "macau")] + [
         (row[1], slug) for slug, row in REGION_EXPECTED.items()
     ]:
         query.clear()
@@ -79,6 +107,18 @@ def check(driver, viewport):
             el.get_attribute("data-slug") == slug
             for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")
         ))
+        if slug in REGION_FLAGS or slug in UK_REGION_FLAG_ASSETS:
+            card = driver.find_element(By.CSS_SELECTOR, f'#country-grid .country-card[data-slug="{slug}"]')
+            if slug in REGION_FLAGS:
+                flag_text = card.find_element(By.CSS_SELECTOR, ".country-card__flag").get_attribute("textContent")
+                if flag_text != REGION_FLAGS[slug]:
+                    errors.append("Region card missing territory flag: " + slug + " " + repr(flag_text))
+            else:
+                image = card.find_element(By.CSS_SELECTOR, ".country-card__flag-image")
+                if not image.get_attribute("src").endswith("/" + UK_REGION_FLAG_ASSETS[slug]):
+                    errors.append("Region card wrong flag artwork: " + slug)
+                if not driver.execute_script("return arguments[0].complete && arguments[0].naturalWidth > 0", image):
+                    errors.append("Region card flag SVG failed loading: " + slug)
     query.clear()
     query.send_keys(Keys.ESCAPE)
 
@@ -103,6 +143,12 @@ def check(driver, viewport):
             el.get_attribute("data-slug") == slug
             for el in d.find_elements(By.CSS_SELECTOR, "#theme-results-grid .country-card")
         ))
+        if slug == "curacao":
+            flag_text = driver.find_element(
+                By.CSS_SELECTOR, '#theme-results-grid [data-slug="curacao"] .country-card__flag'
+            ).get_attribute("textContent")
+            if flag_text != "🇨🇼":
+                errors.append("Curaçao theme card flag missing: " + repr(flag_text))
     theme_query.clear()
     driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "theme-results-clear"))
 
@@ -199,6 +245,12 @@ def check(driver, viewport):
     if not any(el.get_attribute("data-slug") == "aruba" for el in driver.find_elements(
         By.CSS_SELECTOR, "#season-results-grid .country-card")):
         errors.append("Published Aruba Region missing from January season discovery")
+    else:
+        aruba_flag = driver.find_element(
+            By.CSS_SELECTOR, '#season-results-grid [data-slug="aruba"] .country-card__flag'
+        ).get_attribute("textContent")
+        if aruba_flag != "🇦🇼":
+            errors.append("Aruba season flag missing: " + repr(aruba_flag))
     season_slug = driver.find_element(
         By.CSS_SELECTOR, "#season-results-grid .country-card").get_attribute("data-slug")
     driver.execute_script(
