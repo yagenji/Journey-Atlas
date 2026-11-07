@@ -117,9 +117,36 @@ def main() -> None:
         assert abs(float(node.get("data-y", "NaN")) - expected_y) < 0.02, marker_id
         assert abs(float(node.get("data-latitude", "NaN")) - lat) < 1e-6
         assert abs(float(node.get("data-longitude", "NaN")) - lon) < 1e-6
-    assert svg.find(".//*[@id='new-caledonia-overview-inset']") is not None
+    inset = svg.find(".//*[@id='new-caledonia-overview-inset']")
+    assert inset is not None
     assert len(svg.findall(".//*[@id='remote-island-location-points']/*")) == 8
-    print("PASS: all 9 geographic anchors and remote-islands inset")
+
+    # Guard against the inset covering any real islands (regression 2026-11-07).
+    transform = re.fullmatch(
+        r"translate\((-?[\d.]+) (-?[\d.]+)\) scale\(([\d.]+)\)",
+        inset.get("transform", ""),
+    )
+    assert transform is not None, "Unexpected overview inset transform"
+    tx, ty, factor = (float(v) for v in transform.groups())
+    frame = next((child for child in inset if child.tag.endswith("}rect")), None)
+    assert frame is not None
+    pad = 20  # SVG pixels; keep visible sea between inset and island coastline.
+    left = tx + factor * float(frame.get("x")) - pad
+    top = ty + factor * float(frame.get("y")) - pad
+    right = tx + factor * (float(frame.get("x")) + float(frame.get("width"))) + pad
+    bottom = ty + factor * (float(frame.get("y")) + float(frame.get("height"))) + pad
+    assert 0 <= left < right <= 1200 and 0 <= top < bottom <= 760
+    land = svg.find(".//*[@id='new-caledonia-land']")
+    assert land is not None
+    shore_vertices = [
+        (float(x), float(y))
+        for x, y in re.findall(r"[ML](-?[\d.]+),(-?[\d.]+)", land.get("d", ""))
+    ]
+    assert len(shore_vertices) > 100, "Map coastline has too few points"
+    assert not any(
+        left <= x <= right and top <= y <= bottom for x, y in shore_vertices
+    ), "Overview inset overlaps real coastline"
+    print("PASS: all 9 geographic anchors, island-free overview inset, and margins")
 
     # Test the actual shared Region builder; this intentionally demands assets.
     import importlib.util
