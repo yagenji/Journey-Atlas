@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""Focused pre-merge quality gate for New Caledonia Region (no publication)."""
+from __future__ import annotations
+
+import hashlib
+import io
+import json
+import math
+import re
+from itertools import combinations
+from pathlib import Path
+from xml.etree import ElementTree as ET
+
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / "data/regions/france/new-caledonia.json"
+CHECKSUMS = ROOT / "assets/images/france/new-caledonia/approved/SHA256SUMS"
+
+
+def die(message: str) -> None:
+    raise AssertionError(message)
+
+
+def collect_sources(value: object) -> list[str]:
+    keys: list[str] = []
+    if isinstance(value, list):
+        for v in value:
+            keys += collect_sources(v)
+    elif isinstance(value, dict):
+        for k, v in value.items():
+            if k in ("sourceKey", "coordinateSourceKey") and v:
+                keys.append(str(v))
+            elif k == "sourceKeys":
+                keys += [str(item) for item in v]
+            else:
+                keys += collect_sources(v)
+    return keys
+
+
+def expected_hashes() -> dict[str, str]:
+    result: dict[str, str] = {}
+    for line in CHECKSUMS.read_text(encoding="utf-8").splitlines():
+        if not line or line.startswith("#"):
+            continue
+        digest, filename = line.split(maxsplit=1)
+        filename = filename.strip().lstrip("*")
+        if filename in result or not re.fullmatch(r"[a-f0-9]{64}", digest):
+            die("Invalid SHA256SUMS entry")
+        result[filename] = digest
+    return result
+
+
+def main() -> None:
+    data = json.loads(DATA.read_text(encoding="utf-8"))
+    assert (data["parentSlug"], data["slug"], data["regionPublished"]) == (
+        "france", "new-caledonia", False
+    )
+    assert data["schemaVersion"] == 1
+    scenes, taste = data["scenes"], data["taste"]["items"]
+    assert len(scenes) == 8 and len(taste) == 4
+    assert len({scene["id"] for scene in scenes}) == 8
+    assert len({food["id"] for food in taste}) == 4
+    keys = set(collect_sources(data))
+    assert not (keys - set(data["sources"])), f"Unknown source keys: {keys - set(data['sources'])}"
+
+    paths = [data["hero"]["image"]] + [s["image"] for s in scenes] + [
+        f["image"] for f in taste
+    ]
+    assert len(paths) == len(set(paths)) == 13
+    hashes = expected_hashes()
+    assert len(hashes) == 13
+    assert {Path(p).name for p in paths} == set(hashes)
+    thumbnails: dict[str, list[int]] = {}
+    for i, relative in enumerate(paths):
+        path = ROOT / relative
+        if not path.is_file():
+            die(f"Approved image is missing: {relative}")
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != hashes[path.name]:
+            die(f"Image bytes differ from the approved file: {relative}")
+        with Image.open(io.BytesIO(raw)) as img:
+            img.load()
+            assert img.format == "WEBP", relative
+            width, height = img.size
+            minimum = (1200, 760) if i == 0 else (1200, 800)
+            assert width >= minimum[0] and height >= minimum[1], (relative, img.size)
+            # The already-approved hero is 1672×941 (16:9). Do NOT silently crop.
+            if i:
+                assert abs(width / height - 1.5) <= 0.015, (relative, img.size)
+            thumbs = img.convert("L").resize((32, 32))
+            thumbnails[relative] = list(thumbs.getdata())
+    for (an, aa), (bn, bb) in combinations(thumbnails.items(), 2):
+        average_difference = sum(abs(a - b) for a, b in zip(aa, bb)) / len(aa)
+        if average_difference < 5.0:
+            die(f"Potentially duplicated image content: {an}, {bn}")
+    print("PASS: 13 approved WebPs, exact SHA-256, dimensions, uniqueness")
+
+    svg = ET.parse(ROOT / data["map"]["svg"]).getroot()
+    assert svg.attrib.get("viewBox") == "0 0 1200 760"
+    assert svg.attrib.get("data-map-projection") == "local-equirectangular-fit-v1"
+    bounds = data["map"]["bounds"]
+    w, s, e, n = (bounds[k] for k in ("west", "south", "east", "north"))
+    cosine = math.cos(math.radians((s + n) / 2))
+    scale = min(1200 / ((e - w) * cosine), 760 / (n - s))
+    x0 = (1200 - (e - w) * cosine * scale) / 2
+    y0 = (760 - (n - s) * scale) / 2
+    for marker_id, item in [("hero-marker", data["hero"])] + [
+        (f"scene-marker-{i}", scene) for i, scene in enumerate(scenes, 1)
+    ]:
+        coords = item["coordinates"]
+        lon, lat = coords["longitude"], coords["latitude"]
+        expected_x, expected_y = x0 + (lon - w) * cosine * scale, y0 + (n - lat) * scale
+        node = svg.find(f".//*[@id='{marker_id}']")
+        if node is None:
+            die(f"Missing georeferenced map point: {marker_id}")
+        assert abs(float(node.get("data-x", "NaN")) - expected_x) < 0.02, marker_id
+        assert abs(float(node.get("data-y", "NaN")) - expected_y) < 0.02, marker_id
+        assert abs(float(node.get("data-latitude", "NaN")) - lat) < 1e-6
+        assert abs(float(node.get("data-longitude", "NaN")) - lon) < 1e-6
+    assert svg.find(".//*[@id='new-caledonia-overview-inset']") is not None
+    assert len(svg.findall(".//*[@id='remote-island-location-points']/*")) == 8
+    print("PASS: all 9 geographic anchors and remote-islands inset")
+
+    # Test the actual shared Region builder; this intentionally demands assets.
+    import importlib.util
+    import sys
+
+    builder_path = ROOT / "scripts/build_region_pages.py"
+    spec = importlib.util.spec_from_file_location("build_region_pages", builder_path)
+    assert spec and spec.loader
+    builder = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = builder
+    spec.loader.exec_module(builder)
+    page, canonical, published = builder.render_region(
+        data, site_url="https://atlas.yagenji.com/", version="new-caledonia-draft"
+    )
+    assert not published
+    assert "noindex,follow" in page
+    assert canonical.endswith("/countries/france/new-caledonia/")
+    assert "NEW CALEDONIA" in page and "ニューカレドニア" in page
+    assert "src=" in page
+    print("PASS: shared Region renderer, noindex, correct canonical URL")
+    print("All focused checks passed. Draft remains unpublished.")
+
+
+if __name__ == "__main__":
+    main()
