@@ -37,7 +37,7 @@
     },
     {
       "label": "面積",
-      "value": "約18,576km²（日本の約4.9%）",
+      "value": "約18,575km²（日本の約4.9%）",
       "sourceKey": "area"
     },
     {
@@ -71,7 +71,8 @@
       "west": 163.2,
       "east": 168.5
     },
-    "source": "Natural Earth v3.1 admin0 public-domain GeoJSON via eFrane/admin0, https://github.com/eFrane/admin0/blob/master/oceania/NC.geojson ; LICENSE/provenance https://github.com/eFrane/admin0/blob/master/readme.md . WGS84; local equirectangular fit, principal islands including Grande Terre, Île des Pins, Loyalty Islands and Belep. Distant Walpole omitted by fixed main-islands bounds; not for navigation."
+    "source": "Natural Earth v3.1 public-domain GeoJSON via eFrane/admin0, https://github.com/eFrane/admin0/blob/master/oceania/NC.geojson ; license https://github.com/eFrane/admin0/blob/master/readme.md . WGS84; main map local-equirectangular-fit-v1 (163.2–168.5E, 22.95–19.2S), all-area overview inset 157.5–172.5E, 23.0–17.65S. Locations of remote islands/reefs are georeferenced POINTS, not claimed island shapes: Chesterfield, Bellona, Huon, Surprise, Astrolabe, Walpole, Matthew, Hunter. French territorial-law Article 1: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000393606/2026-07-02 ; Vanuatu's September 2026 sovereignty dispute https://pmo.gov.vu/en/public-information/press-release/1168-vanuatu-takes-france-to-the-icj-over-sovereignty-of-umaenupne-matthew-and-umaeneg-leka-hunter-islands-and-maritime-boundary-delimitation.html . Not for navigation.",
+    "insetNote": "※ 左上の全域図は遠隔の島・礁の位置関係を示します。小さな点は位置のみを表し、島の形・面積は表しません。マシュー島・ハンター島の帰属はフランスとバヌアツの間で争われています。"
   },
   "scenes": [
     {
@@ -565,7 +566,7 @@
   "sourcesVerifiedAt": "2026-11-07",
   "sourceDates": {
     "population": "2025 census, 264596 (INSEE published 2025-10-17)",
-    "area": "ISEE 18,576km²",
+    "area": "18,575km² per UN 2026 report A/AC.109/2026/11",
     "japanAreaComparison": "18,576 / 377,973.68 × 100 ≈ 4.91%",
     "governmentHistory": "1998 Nouméa Accord; 2018, 2020, 2021 consultations; 2026 reforms",
     "bridge": "New Mouli bridge opened 2023; 180m (tourism authority)",
@@ -584,7 +585,7 @@
     "blueRiver": "https://www.newcaledonia.travel/destination/great-south/blue-river-provincial-park/",
     "ferns": "https://www.newcaledonia.travel/inspiration/itineraries-road-trips/adventurers/",
     "population": "https://www.insee.fr/fr/statistiques/8658537",
-    "area": "https://www.isee.nc/phocadownload/non_theme/publications/toutes_publications/Depliant/Depliant/NCenBref2010.pdf",
+    "area": "https://digitallibrary.un.org/record/4111245/files/A_AC.109_2026_11-EN.pdf",
     "government": "https://www.vie-publique.fr/questions-reponses/303309-nouvelle-caledonie-le-degel-du-corps-electoral-en-4-questions",
     "governmentUpdate": "https://www.vie-publique.fr/discours/301816-naima-moutchou-22012026-signature-accord-elysee-oudinot-et-outre-mer",
     "languageCurrency": "https://www.newcaledonia.travel/travel-guide/plan-your-trip-from-a-to-z/",
@@ -598,10 +599,12 @@
     "transport": "https://www.newcaledonia.travel/travel-guide/plan-your-trip-from-a-to-z/",
     "geom": "https://github.com/eFrane/admin0/blob/master/oceania/NC.geojson",
     "geomLicense": "https://github.com/eFrane/admin0/blob/master/readme.md",
-    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm"
+    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "frenchTerritorialLaw": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000393606/2026-07-02",
+    "vanuatuPosition": "https://pmo.gov.vu/en/public-information/press-release/1168-vanuatu-takes-france-to-the-icj-over-sovereignty-of-umaenupne-matthew-and-umaeneg-leka-hunter-islands-and-maritime-boundary-delimitation.html"
   },
   "sourceNotes": {
-    "mapGeneralization": "Natural Earth 3.1 public-domain geometry omits small skerries and remote Walpole from fixed main-islands view; verify for detail accuracy before approval.",
+    "mapGeneralization": "Core islands drawn as low-detail Natural Earth land outlines; left-top overview includes remote island/reef LOCATION markers, not full coastlines. A high-resolution cartographic map of all outlying islands remains a potential future refinement. Matthew/Hunter territory contested; map is non-sovereignty-asserting.",
     "imageTransfer": "The six earlier approved Hero/Scene image files were not accessible in this conversation; their final paths are reserved, not fabricated."
   }
 }
