@@ -151,7 +151,7 @@ function renderRegionHistory(fragment, history) {
   const section = document.createElement('section');
   section.className = 'region-history';
   section.setAttribute('aria-labelledby', 'region-history-title');
-  section.innerHTML = `<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">HISTORY</span><h2 id="region-history-title">歴史・成り立ち</h2></div><p>${escapeHtml(history.text)}</p>`;
+  section.innerHTML = `<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">REGION &amp; COUNTRY</span><h2 id="region-history-title">この地域の位置づけ</h2></div><p>${escapeHtml(history.text)}</p>`;
   fragment.querySelector('.country-facts-strip')?.after(section);
 }
 

@@ -159,7 +159,7 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
             "regionClass": True,
             "regionCSS": True,
             "profile": "REGION PROFILE",
-            "history": "歴史・成り立ち",
+            "history": "この地域の位置づけ",
             "historyAfterFacts": True,
             "profileCount": 6,
             "signature": "この地域を知る数字",
