@@ -367,6 +367,52 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     return ''.join(pieces)
 
 
+def render_region_detail_gallery(data: dict, version: str) -> str:
+    """Optional island-group detail maps; use existing Region card/map layout."""
+    details = (data.get('map') or {}).get('detailMaps') or []
+    if not details:
+        return ''
+    if not isinstance(details, list) or len(details) > 5:
+        raise ValueError('Region map detailMaps must contain at most five panels')
+    parent = data['parentSlug']
+    slug = data['slug']
+    prefix = f'assets/images/{parent}/{slug}/'
+    scene_names = {scene['id']: scene['name'] for scene in data['scenes']}
+    output = [
+        '<section class="region-detail-gallery" aria-label="島嶼群別の拡大地図">',
+        '<div class="region-detail-gallery__grid">',
+    ]
+    for detail in details:
+        if not isinstance(detail, dict):
+            raise ValueError('Invalid Region detail map')
+        asset = detail.get('svg', '')
+        if not (isinstance(asset, str) and asset.startswith(prefix)
+                and re.fullmatch(r'assets/images/[a-z0-9-]+/[a-z0-9-]+/map-[a-z0-9-]+-detail\.svg', asset)
+                and (ROOT / asset).is_file()):
+            raise ValueError(f'Unsafe or missing Region detail map: {asset}')
+        scene_ids = detail.get('sceneIds') or []
+        if not isinstance(scene_ids, list) or not scene_ids or any(
+                not isinstance(sid, str) or sid not in scene_names for sid in scene_ids):
+            raise ValueError('Region detail map Scene IDs must refer to existing Scenes')
+        label = esc(detail['label'])
+        output.append(
+            f'<figure class="region-detail-gallery__card"><img src="{esc(asset)}?v={esc(version)}" '
+            f'alt="{label}の拡大地図" loading="lazy" decoding="async">'
+            f'<figcaption><strong>{label}</strong><span>'
+            + ' / '.join(
+                f'<a href="#scene-{esc(sid)}">{esc(scene_names[sid])}</a>'
+                for sid in scene_ids
+            )
+            + '</span></figcaption></figure>'
+        )
+    output.append(
+        '</div><p class="region-detail-gallery__note">'
+        '※ 各拡大図は島嶼群ごとに縮尺が異なります。小さな島は実座標の地点記号で示します。'
+        '</p></section>'
+    )
+    return ''.join(output)
+
+
 def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str, bool]:
     parent, slug = data['parentSlug'], data['slug']
     if not all(re.fullmatch(r'[a-z0-9-]+', value) for value in (parent, slug)):
@@ -501,6 +547,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + '</div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
            if data["map"].get("insetNote") else '')
+        + render_region_detail_gallery(data, map_version)
         + '<div class="encounter-strip"><span class="section-kicker-en">ENCOUNTERS</span>'
         f'<h3>{esc(data["nameJa"])}で出会えるもの</h3><div class="encounter-list">'
         + ''.join('<article>' + icon(item.get('icon', 'compass')) + f'<b>{esc(item["title"])}</b></article>'
