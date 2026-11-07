@@ -698,7 +698,7 @@ function normalizeSearch(value){
 let sceneIndex=null,sceneIndexPromise=null;
 function loadSceneIndex(){
   if(!sceneIndexPromise){
-    sceneIndexPromise=fetch('data/top-search-index.json')
+    sceneIndexPromise=fetch('data/top-search-index.json?v=20261107-all-regions-1')
       .then((response)=>{if(!response.ok)throw new Error('Search index not found');return response.json();})
       .then(({countries={}})=>{
         sceneIndex=new Map(Object.entries(countries).map(([slug,row])=>[slug,{
@@ -901,7 +901,7 @@ let seasonStage='idle';   // where loading is, shown if it stalls (helps diagnos
 function loadSeasonIndex(){
   if(!seasonIndexPromise){
     seasonStage='fetch';
-    seasonIndexPromise=fetch('data/top-season-index.json')
+    seasonIndexPromise=fetch('data/top-season-index.json?v=20261107-all-regions-1')
       .then((response)=>{
         seasonStage=`response ${response.status} ${response.headers.get('content-type')||''}`.trim();
         if(!response.ok)throw new Error(`HTTP ${response.status}`);
