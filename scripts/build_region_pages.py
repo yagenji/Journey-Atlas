@@ -307,9 +307,10 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     rect = detail['rect']
     scene_ids = set(detail['sceneIds'])
     pieces = [
-        '<div class="region-map-detail-mobile" role="group" '
+        f'<div class="region-map-detail-mobile" role="group" style="aspect-ratio:{rect["width"]}/{rect["height"]}" '
         f'aria-label="{esc(detail.get("label", "北岸"))}の別枠拡大図：景色の地点番号">',
         f'<img class="region-map-detail-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
+        f'style="width:{120000 / rect["width"]:.8f}%;transform:translate(-{rect["x"] / 12:.8f}%,-{rect["y"] / 7.6:.8f}%)" '
         'alt="" aria-hidden="true" loading="eager" decoding="async">'
     ]
     for index, scene in enumerate(data['scenes'], 1):
