@@ -19,6 +19,7 @@ const themeRegionTabs = document.querySelector('#theme-region-tabs');
 let themeRegions = [];
 let themeRegionByIso = new Map();
 let activeThemeRegion = 'all';
+let themeWishesOnly = false;
 const themeRegionPromise=fetch('data/region-taxonomy.json')
   .then((response)=>{if(!response.ok)throw new Error('Region taxonomy not found');return response.json();})
   .then(({regions=[]})=>{
@@ -486,16 +487,18 @@ function renderThemeResults(){
   const themeItems=activeThemeMonth&&monthReady
     ?allThemeItems.filter((country)=>seasonWindowFor(country.slug,activeThemeMonth))
     :allThemeItems;
+  const availableRegions=new Set(themeItems.map((country)=>themeRegionByIso.get(country.iso2)).filter(Boolean));
+  if(activeThemeRegion!=='all'&&!availableRegions.has(activeThemeRegion))activeThemeRegion='all';
+  const wishedThemeItems=themeWishesOnly?themeItems.filter(isWishedDestination):themeItems;
   const regionCounts=new Map();
-  themeItems.forEach((country)=>{
+  wishedThemeItems.forEach((country)=>{
     const region=themeRegionByIso.get(country.iso2);
     if(region)regionCounts.set(region,(regionCounts.get(region)||0)+1);
   });
-  if(activeThemeRegion!=='all'&&!regionCounts.has(activeThemeRegion))activeThemeRegion='all';
-  renderThemeRegionTabs(themeItems.length,regionCounts);
+  renderThemeRegionTabs(wishedThemeItems.length,regionCounts,availableRegions);
   const baseItems=activeThemeRegion==='all'
-    ?themeItems
-    :themeItems.filter((country)=>themeRegionByIso.get(country.iso2)===activeThemeRegion);
+    ?wishedThemeItems
+    :wishedThemeItems.filter((country)=>themeRegionByIso.get(country.iso2)===activeThemeRegion);
   const query=themeResultsSearch?.value.trim().toLowerCase()||'';
   const items=query
     ?baseItems.filter((country)=>`${country.nameEn} ${country.nameJa}`.toLowerCase().includes(query))
@@ -526,7 +529,7 @@ function renderThemeResults(){
   if(themeResultsMeta)themeResultsMeta.textContent=query
     ?`${baseItems.length}件の候補から、${items.length}件を表示しています。`
     :regionLabel
-      ?`${regionLabel}　${baseItems.length} / ${themeItems.length} DESTINATIONS`
+      ?`${regionLabel}　${baseItems.length} / ${wishedThemeItems.length} DESTINATIONS`
       :`${baseItems.length} DESTINATIONS`;
   if(themeResultsEmpty)themeResultsEmpty.hidden=items.length!==0;
   themeResults.hidden=false;
@@ -561,11 +564,12 @@ themeMonthTabs?.addEventListener('click',(event)=>{
   if(activeThemeMonth&&!seasonIndex){loadSeasonIndex()?.then(()=>renderThemeResults());}
   renderThemeResults();
 });
-function renderThemeRegionTabs(total,regionCounts){
+function renderThemeRegionTabs(total,regionCounts,availableRegions){
   if(!themeRegionTabs)return;
-  if(!themeRegions.length||regionCounts.size<2){themeRegionTabs.hidden=true;themeRegionTabs.replaceChildren();return;}
   themeRegionTabs.hidden=false;
-  const options=[{id:'all',label:'すべて',count:total},...themeRegions.filter((region)=>regionCounts.has(region.id)).map((region)=>({...region,count:regionCounts.get(region.id)}))];
+  const options=themeRegions.length&&availableRegions.size>1
+    ?[{id:'all',label:'すべて',count:total},...themeRegions.filter((region)=>availableRegions.has(region.id)).map((region)=>({...region,count:regionCounts.get(region.id)||0}))]
+    :[];
   themeRegionTabs.replaceChildren(...options.map(({id,label,count})=>{
     const button=document.createElement('button');
     button.type='button';
@@ -575,9 +579,11 @@ function renderThemeRegionTabs(total,regionCounts){
     button.setAttribute('aria-pressed',String(on));
     button.innerHTML=`${label}<span>${count}</span>`;
     return button;
-  }));
+  }),makeWishlistFilterButton('theme',themeWishesOnly));
 }
 themeRegionTabs?.addEventListener('click',(event)=>{
+  const wishButton=event.target.closest('[data-wish-filter="theme"]');
+  if(wishButton){themeWishesOnly=!themeWishesOnly;themeLimit=THEME_PAGE;renderThemeResults();return;}
   const button=event.target.closest('[data-theme-region]');
   if(!button)return;
   activeThemeRegion=button.dataset.themeRegion;
@@ -609,6 +615,7 @@ function clearThemeResults(){
   themeLimit=THEME_PAGE;
   activeThemeMonth=null;
   activeThemeRegion='all';
+  themeWishesOnly=false;
   activeTheme=null;
   renderThemeResults();
   saveTopState();
@@ -643,14 +650,26 @@ function showTheme(theme,{scroll=true}={}){
   }
 }
 
+// Both the 200 parent Countries and saved detail Regions use the existing My Atlas keys.
+function isWishedDestination(country){
+  try{
+    return localStorage.getItem(`journey-atlas:wish:${country.slug}`)==='true' ||
+      Boolean(country.parentSlug && localStorage.getItem(`journey-atlas:region-wish:${country.parentSlug}:${country.slug}`)!==null);
+  }catch{return false;}
+}
+function makeWishlistFilterButton(section,selected){
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='wishlist-filter';
+  button.dataset.wishFilter=section;
+  button.classList.toggle('is-active',selected);
+  button.setAttribute('aria-pressed',String(selected));
+  button.setAttribute('aria-label','Wishリストに保存した国・地域だけを表示');
+  button.textContent=(selected?'♥':'♡')+' Wishリスト';
+  return button;
+}
 function getWishedSlugs(){
-  try {
-    return [...destinations,...detailDestinations].filter(country =>
-      localStorage.getItem(`journey-atlas:wish:${country.slug}`) === 'true' ||
-      (country.parentSlug === 'unitedkingdom' &&
-        localStorage.getItem(`journey-atlas:region-wish:unitedkingdom:${country.slug}`) !== null)
-    ).map(country=>country.slug);
-  } catch { return []; }
+  return [...destinations,...detailDestinations].filter(isWishedDestination).map(country=>country.slug);
 }
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
@@ -796,9 +815,12 @@ function saveTopState(){
   set('theme',activeTheme||'');
   set('tregion',activeTheme&&activeThemeRegion!=='all'?activeThemeRegion:'');
   set('tmonth',activeTheme&&activeThemeMonth?String(activeThemeMonth):'');
+  set('twish',activeTheme&&themeWishesOnly?'1':'');
   set('q',searchInput?.value.trim()||'');
   set('month',seasonChosen?String(seasonMonth):'');
   set('sregion',seasonChosen&&seasonRegion!=='all'?seasonRegion:'');
+  set('swish',seasonChosen&&seasonWishesOnly?'1':'');
+  set('gwish',sceneWishesOnly?'1':'');
   if(url.href!==location.href)history.replaceState(history.state,'',url);
 }
 searchInput?.addEventListener('input',saveTopState);
@@ -816,6 +838,7 @@ Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionP
   if(theme&&themeSets[theme]){
     activeTheme=theme;
     activeThemeRegion=params.get('tregion')||'all';
+    themeWishesOnly=params.get('twish')==='1';
     {const m=Number(params.get('tmonth'));activeThemeMonth=m>=1&&m<=12?m:null;}
     themeLimit=returning&&saved.limit?saved.limit:THEME_PAGE;
     renderThemeResults();
@@ -847,12 +870,13 @@ let seasonIndex=null,seasonIndexPromise=null;
 let seasonMonth=null;     // nothing selected until the visitor picks a month (or ?month=)
 let seasonChosen=false;   // true once the visitor picks a month (or arrives with ?month=)
 let seasonRegion='all';
+let seasonWishesOnly=false;
 let seasonLimit=SEASON_PAGE;
 let seasonReady=null;
 {
   const params=new URLSearchParams(location.search);
   const month=Number(params.get('month'));
-  if(month>=1&&month<=12){seasonMonth=month;seasonChosen=true;seasonRegion=params.get('sregion')||'all';}
+  if(month>=1&&month<=12){seasonMonth=month;seasonChosen=true;seasonRegion=params.get('sregion')||'all';seasonWishesOnly=params.get('swish')==='1';}
 }
 let seasonStage='idle';   // where loading is, shown if it stalls (helps diagnose one browser)
 function loadSeasonIndex(){
@@ -925,27 +949,28 @@ function renderSeasonResults(){
   if(!seasonMonth){if(seasonResults)seasonResults.hidden=true;return;}
   if(!seasonResults||!seasonGrid||!seasonIndex||!destinations.length)return;
   const all=seasonItems(seasonMonth);
+  const availableRegions=new Set(all.map((country)=>themeRegionByIso.get(country.iso2)).filter(Boolean));
+  if(seasonRegion!=='all'&&!availableRegions.has(seasonRegion))seasonRegion='all';
+  const wished=seasonWishesOnly?all.filter(isWishedDestination):all;
   const counts=new Map();
-  all.forEach((country)=>{const region=themeRegionByIso.get(country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
-  if(seasonRegion!=='all'&&!counts.has(seasonRegion))seasonRegion='all';
+  wished.forEach((country)=>{const region=themeRegionByIso.get(country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
   if(seasonTabs){
-    if(!themeRegions.length||counts.size<2){seasonTabs.hidden=true;seasonTabs.replaceChildren();}
-    else{
-      seasonTabs.hidden=false;
-      const options=[{id:'all',label:'すべて',count:all.length},...themeRegions.filter((region)=>counts.has(region.id)).map((region)=>({...region,count:counts.get(region.id)}))];
-      seasonTabs.replaceChildren(...options.map(({id,label,count})=>{
-        const button=document.createElement('button');
-        button.type='button';
-        button.dataset.seasonRegion=id;
-        const on=id===seasonRegion;
-        button.classList.toggle('is-active',on);
-        button.setAttribute('aria-pressed',String(on));
-        button.innerHTML=`${label}<span>${count}</span>`;
-        return button;
-      }));
-    }
+    seasonTabs.hidden=false;
+    const options=themeRegions.length&&availableRegions.size>1
+      ?[{id:'all',label:'すべて',count:wished.length},...themeRegions.filter((region)=>availableRegions.has(region.id)).map((region)=>({...region,count:counts.get(region.id)||0}))]
+      :[];
+    seasonTabs.replaceChildren(...options.map(({id,label,count})=>{
+      const button=document.createElement('button');
+      button.type='button';
+      button.dataset.seasonRegion=id;
+      const on=id===seasonRegion;
+      button.classList.toggle('is-active',on);
+      button.setAttribute('aria-pressed',String(on));
+      button.innerHTML=`${label}<span>${count}</span>`;
+      return button;
+    }),makeWishlistFilterButton('season',seasonWishesOnly));
   }
-  const items=seasonRegion==='all'?all:all.filter((country)=>themeRegionByIso.get(country.iso2)===seasonRegion);
+  const items=seasonRegion==='all'?wished:wished.filter((country)=>themeRegionByIso.get(country.iso2)===seasonRegion);
   const shown=items.slice(0,seasonLimit);
   const fragment=document.createDocumentFragment();
   shown.forEach((country,index)=>{
@@ -970,8 +995,8 @@ function renderSeasonResults(){
   }
   const regionLabel=themeRegions.find((region)=>region.id===seasonRegion)?.label;
   if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
-  if(seasonMeta)seasonMeta.textContent=regionLabel?`${regionLabel}　${items.length} / ${all.length} DESTINATIONS`:`${items.length} DESTINATIONS`;
-  if(seasonEmpty){seasonEmpty.textContent='該当する国・地域がありません。';seasonEmpty.hidden=items.length!==0;}
+  if(seasonMeta)seasonMeta.textContent=regionLabel?`${regionLabel}　${items.length} / ${wished.length} DESTINATIONS`:`${items.length} DESTINATIONS`;
+  if(seasonEmpty){seasonEmpty.textContent=seasonWishesOnly?'この条件に合うWishリストの国・地域はありません。':'該当する国・地域がありません。';seasonEmpty.hidden=items.length!==0;}
   seasonResults.hidden=false;
   saveTopState();
 }
@@ -996,6 +1021,8 @@ seasonMonthsHost?.addEventListener('click',(event)=>{
   startSeason();
 });
 seasonTabs?.addEventListener('click',(event)=>{
+  const wishButton=event.target.closest('[data-wish-filter="season"]');
+  if(wishButton){seasonWishesOnly=!seasonWishesOnly;seasonLimit=SEASON_PAGE;renderSeasonResults();return;}
   const button=event.target.closest('[data-season-region]');
   if(!button)return;
   seasonRegion=button.dataset.seasonRegion;
@@ -1067,6 +1094,7 @@ function clearSeasonResults(){
   seasonMonth=null;
   seasonChosen=false;
   seasonRegion='all';
+  seasonWishesOnly=false;
   seasonLimit=SEASON_PAGE;
   renderSeasonResults();
   saveTopState();
@@ -1106,6 +1134,7 @@ const sceneSavedToggle=document.querySelector('#gallery-saved-toggle');
 const sceneLead=document.querySelector('#gallery-lead');
 const SCENE_PAGE=12;
 let sceneRows=null,scenePromise=null,sceneOrder=[],sceneRegion='all',sceneLimit=SCENE_PAGE,sceneFavoritesOnly=false;
+let sceneWishesOnly=new URLSearchParams(location.search).get('gwish')==='1';
 function isSavedScenery(row){
   try{return localStorage.getItem('journey-atlas:scene:'+row.slug+':'+row.id)!==null;}
   catch{return false;}
@@ -1154,7 +1183,8 @@ function loadScenes(){
 function shuffleScenes(){
   if(!sceneRows)return;
   const favorites=sceneFavoritesOnly?sceneRows.filter(isSavedScenery):sceneRows;
-  const rows=sceneRegion==='all'?favorites:favorites.filter((row)=>themeRegionByIso.get(row.country.iso2)===sceneRegion);
+  const wished=sceneWishesOnly?favorites.filter((row)=>isWishedDestination(row.country)):favorites;
+  const rows=sceneRegion==='all'?wished:wished.filter((row)=>themeRegionByIso.get(row.country.iso2)===sceneRegion);
   const groups=new Map();
   shuffled(rows).forEach((row)=>{if(!groups.has(row.slug))groups.set(row.slug,[]);groups.get(row.slug).push(row);});
   const slugs=shuffled([...groups.keys()]);
@@ -1164,30 +1194,27 @@ function shuffleScenes(){
   }
   sceneLimit=SCENE_PAGE;
   renderScenes();
+  saveTopState();
 }
 function renderScenes(){
   if(!sceneGrid||!sceneRows)return;
   if(sceneTabs){
-    const counts=new Map();
     const tabRows=sceneFavoritesOnly?sceneRows.filter(isSavedScenery):sceneRows;
-    tabRows.forEach((row)=>{const region=themeRegionByIso.get(row.country.iso2);if(region)counts.set(region,(counts.get(region)||0)+1);});
-    if(themeRegions.length&&counts.size>1){
-      sceneTabs.hidden=false;
-      const options=[{id:'all',label:'すべて'},...themeRegions.filter((region)=>counts.has(region.id))];
-      sceneTabs.replaceChildren(...options.map(({id,label})=>{
-        const button=document.createElement('button');
-        button.type='button';
-        button.dataset.sceneRegion=id;
-        const on=id===sceneRegion;
-        button.classList.toggle('is-active',on);
-        button.setAttribute('aria-pressed',String(on));
-        button.textContent=label;
-        return button;
-      }));
-    }else{
-      sceneTabs.hidden=true;
-      sceneTabs.replaceChildren();
-    }
+    const availableRegions=new Set(tabRows.map((row)=>themeRegionByIso.get(row.country.iso2)).filter(Boolean));
+    const options=themeRegions.length&&availableRegions.size>1
+      ?[{id:'all',label:'すべて'},...themeRegions.filter((region)=>availableRegions.has(region.id))]
+      :[];
+    sceneTabs.hidden=false;
+    sceneTabs.replaceChildren(...options.map(({id,label})=>{
+      const button=document.createElement('button');
+      button.type='button';
+      button.dataset.sceneRegion=id;
+      const on=id===sceneRegion;
+      button.classList.toggle('is-active',on);
+      button.setAttribute('aria-pressed',String(on));
+      button.textContent=label;
+      return button;
+    }),makeWishlistFilterButton('scenery',sceneWishesOnly));
   }
   const fragment=document.createDocumentFragment();
   sceneOrder.slice(0,sceneLimit).forEach((row)=>{
@@ -1222,9 +1249,11 @@ function renderScenes(){
     const empty=document.createElement('p');
     empty.className='gallery-empty';
     empty.setAttribute('role','listitem');
-    empty.textContent=sceneFavoritesOnly
-      ? '保存した景色はまだありません。国ページのハートを押すと、ここで見ることができます。'
-      : 'この条件に該当する景色はありません。';
+    empty.textContent=sceneWishesOnly
+      ? 'この条件に合うWishリストの景色はありません。'
+      : sceneFavoritesOnly
+        ? '保存した景色はまだありません。国ページのハートを押すと、ここで見ることができます。'
+        : 'この条件に該当する景色はありません。';
     fragment.append(empty);
   }
   sceneGrid.replaceChildren(fragment);
@@ -1238,7 +1267,7 @@ function renderScenes(){
   const clear=document.querySelector('#gallery-clear');
   if(clear)clear.hidden=sceneRegion==='all';
   const close=document.querySelector('#gallery-close');
-  if(close)close.hidden=sceneRegion==='all'&&!sceneFavoritesOnly&&sceneLimit<=SCENE_PAGE;
+  if(close)close.hidden=sceneRegion==='all'&&!sceneFavoritesOnly&&!sceneWishesOnly&&sceneLimit<=SCENE_PAGE;
   if(sceneSavedToggle){
     sceneSavedToggle.classList.toggle('is-active',sceneFavoritesOnly);
     sceneSavedToggle.setAttribute('aria-pressed',String(sceneFavoritesOnly));
@@ -1247,7 +1276,7 @@ function renderScenes(){
 }
 function resetScenes({scroll=false,keepFavorites=false}={}){
   sceneRegion='all';
-  if(!keepFavorites)sceneFavoritesOnly=false;
+  if(!keepFavorites){sceneFavoritesOnly=false;sceneWishesOnly=false;}
   shuffleScenes();
   if(scroll){
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -1260,6 +1289,8 @@ document.querySelector('#gallery-clear')?.addEventListener('click',()=>{
 });
 document.querySelector('#gallery-close')?.addEventListener('click',()=>resetScenes({scroll:true}));
 sceneTabs?.addEventListener('click',(event)=>{
+  const wishButton=event.target.closest('[data-wish-filter="scenery"]');
+  if(wishButton){sceneWishesOnly=!sceneWishesOnly;shuffleScenes();return;}
   const button=event.target.closest('[data-scene-region]');
   if(!button)return;
   sceneRegion=button.dataset.sceneRegion;
@@ -1272,10 +1303,19 @@ sceneSavedToggle?.addEventListener('click',()=>{
   loadScenes().then(shuffleScenes);
 });
 window.addEventListener('storage',(event)=>{
-  if(sceneFavoritesOnly&&sceneRows&&(!event.key||event.key.startsWith('journey-atlas:scene:')))shuffleScenes();
+  const wishChanged=!event.key||event.key.startsWith('journey-atlas:wish:')||event.key.startsWith('journey-atlas:region-wish:');
+  if(wishChanged){
+    if(themeWishesOnly&&activeTheme)renderThemeResults();
+    if(seasonWishesOnly&&seasonMonth)renderSeasonResults();
+  }
+  if(sceneRows&&((sceneFavoritesOnly&&(!event.key||event.key.startsWith('journey-atlas:scene:')))||
+    (sceneWishesOnly&&wishChanged)))shuffleScenes();
 });
 window.addEventListener('pageshow',(event)=>{
-  if(event.persisted&&sceneFavoritesOnly&&sceneRows)shuffleScenes();
+  if(!event.persisted)return;
+  if(themeWishesOnly&&activeTheme)renderThemeResults();
+  if(seasonWishesOnly&&seasonMonth)renderSeasonResults();
+  if((sceneFavoritesOnly||sceneWishesOnly)&&sceneRows)shuffleScenes();
 });
 sceneMore?.addEventListener('click',()=>{
   const before=sceneGrid?.children.length||0;
