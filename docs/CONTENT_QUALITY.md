@@ -22,9 +22,9 @@ Required:
 
 Unknown facts remain unfilled until verified. Do not guess.
 
-## Region history and formation
+## Region affiliation and context
 
-For Greenland, Hong Kong, Macau and the UK's four Region pages, historical formation and present constitutional status belong in the dedicated `historyContext` paragraph immediately after basic facts. Verify milestones and status using primary government, parliament or archive sources. Basic facts retain religion and omit Region/status rows. Beyond the Scenery may explain local culture, industrial history or lived identities, but must not repeat this formation chronology. Signature Facts and Trivia must also contribute different information. Move existing status material rather than reproducing it; do not invent filler to retain six Beyond cards on a Region page.
+For Greenland, Hong Kong, Macau and the UK's four Region pages, the dedicated `historyContext` paragraph immediately after basic facts is headed 「この地域の位置づけ」. Open with the present relationship to the parent country and the type of Region, then briefly explain the historical background that helps readers understand that relationship. Verify milestones and status using primary government, parliament or archive sources. Basic facts retain religion and omit Region/status rows. Beyond the Scenery may explain local culture, industrial history or lived identities, but must not repeat this formation chronology. Signature Facts and Trivia must also contribute different information. Move existing status material rather than reproducing it; do not invent filler to retain six Beyond cards on a Region page.
 
 ## Signature Facts
 

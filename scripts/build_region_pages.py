@@ -403,8 +403,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     history = data.get('historyContext') or {}
     if history.get('text'):
         result.append('<section class="region-history" aria-labelledby="region-history-title">'
-            '<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">HISTORY</span>'
-            '<h2 id="region-history-title">歴史・成り立ち</h2></div>'
+            '<div class="country-facts-strip__head region-history__head"><span class="section-kicker-en">REGION &amp; COUNTRY</span>'
+            '<h2 id="region-history-title">この地域の位置づけ</h2></div>'
             f'<p>{esc(history["text"])}</p></section>')
 
     # Distinctive numbers use the existing shared Signature Facts band.
