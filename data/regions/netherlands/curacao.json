@@ -1,0 +1,615 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "netherlands",
+  "slug": "curacao",
+  "regionPublished": false,
+  "nameEn": "CURAÇAO",
+  "nameJa": "キュラソー",
+  "region": "SOUTHERN CARIBBEAN / ABC ISLANDS / 12°N",
+  "parentNameJa": "オランダ",
+  "parentNameEn": "NETHERLANDS",
+  "parentReturnDescription": "オランダの8つの景色を見る",
+  "seo": {
+    "description": "色彩豊かな港町ウィレムスタット、波が砕ける北岸、乾いた丘と小さな入り江。キュラソー8つの景色を通してカリブ海の島の歴史と自然を歩く。"
+  },
+  "hero": {
+    "name": "ハンデルスカーデの街並み",
+    "location": "Handelskade, Punda, Willemstad",
+    "image": "assets/images/netherlands/curacao/approved/hero-handelskade.webp",
+    "coordinates": {
+      "latitude": 12.10597,
+      "longitude": -68.93428
+    },
+    "lead": "水辺に並ぶ色鮮やかな建物の背後には、港を行き交った人々の歴史がある。橋を渡り、乾いた山を歩き、荒い波に向き合うと、キュラソーの景色は一つの色に収まらない。",
+    "description": "ウィレムスタットのプンダ地区。シント・アナ湾沿いに連なるカラフルな商館の街並みは、海と交易が結んできた島の歴史を映している。",
+    "sourceKeys": [
+      "unescoWillemstad",
+      "osmHandelskade"
+    ]
+  },
+  "profile": [
+    {
+      "label": "首都",
+      "value": "ウィレムスタット（Willemstad）",
+      "sourceKey": "cbsFacts"
+    },
+    {
+      "label": "人口",
+      "value": "159,824人（2026年6月30日）",
+      "sourceKey": "cbsPopulationAnnouncement"
+    },
+    {
+      "label": "面積",
+      "value": "444km²（日本の約0.12%）",
+      "sourceKey": "cbsFacts"
+    },
+    {
+      "label": "言語",
+      "value": "パピアメント語、オランダ語、英語",
+      "sourceKey": "cbsFacts"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックなど）",
+      "sourceKey": "cbsReligion"
+    },
+    {
+      "label": "通貨",
+      "value": "カリブ・ギルダー（XCG）",
+      "sourceKey": "currency"
+    }
+  ],
+  "historyContext": {
+    "text": "キュラソーはオランダ王国を構成する4つの「国」の一つ。独立した主権国家ではなく、独自の政府と議会を持つ自治国である。かつてのオランダ領アンティルが解体された2010年10月10日、キュラソーは王国内の自治国になった。",
+    "sourceKeys": [
+      "nationalArchive",
+      "kingdom"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/netherlands/curacao/map-curacao.svg",
+    "bounds": {
+      "north": 12.47,
+      "south": 11.94,
+      "west": -69.29,
+      "east": -68.61
+    },
+    "source": "geoBoundaries CUW ADM0 (2021, CC BY 4.0), via born-in-plays-for/mundial/geo/curacao.geojson, GitHub blob cf7f4aaa0b11fee5ee24cf3a84be9ce910181fde. Full source geometry: 424 vertices in 7 polygon rings including offshore islets and one interior hole; WGS84, local-equirectangular-fit-v1. Checked 2026-11-07; not for navigation."
+  },
+  "scenes": [
+    {
+      "id": "queen-emma-bridge",
+      "name": "クイーン・エマ橋",
+      "nameLocal": "Queen Emma Bridge, Sint Annabaai, Willemstad",
+      "description": "運河に浮かぶ歩行者用の橋。船の通航時には横へ回転し、プンダとオトロバンダを結ぶ道が一時的に開く。",
+      "coordinates": {
+        "latitude": 12.1061,
+        "longitude": -68.93538
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-01-queen-emma-bridge.webp",
+      "sourceKey": "osmQueenEmma",
+      "mapOffset": {
+        "x": -2.4,
+        "y": 1.9
+      }
+    },
+    {
+      "id": "otrobanda-waterfront",
+      "name": "オトロバンダの水辺",
+      "nameLocal": "Otrobanda waterfront, Willemstad",
+      "description": "シント・アナ湾の西岸から、色彩豊かな対岸の建物を眺める。運河を挟んで街が二つの表情を見せる。",
+      "coordinates": {
+        "latitude": 12.1076,
+        "longitude": -68.93482
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-02-otrobanda-waterfront.webp",
+      "sourceKey": "osmOtrobanda",
+      "mapOffset": {
+        "x": 2.4,
+        "y": -1.9
+      }
+    },
+    {
+      "id": "boka-pistol",
+      "name": "ボカ・ピストル",
+      "nameLocal": "Boka Pistol, Shete Boka National Park",
+      "description": "荒い波が石灰岩の岸壁の裂け目に押し寄せ、水しぶきを噴き上げる。穏やかな南西岸とは対照的な北岸。",
+      "coordinates": {
+        "latitude": 12.36535,
+        "longitude": -69.1084
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-03-boka-pistol.webp",
+      "sourceKey": "osmBokaPistol"
+    },
+    {
+      "id": "christoffelberg",
+      "name": "クリストッフェル山",
+      "nameLocal": "Christoffelberg / Mount St. Christoffel",
+      "description": "島の最高峰へ向かう乾いた山道。山頂付近からは低い丘、海岸線、カリブ海の広がりが見渡せる。",
+      "coordinates": {
+        "latitude": 12.33661,
+        "longitude": -69.12314
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-04-christoffelberg.webp",
+      "sourceKey": "osmChristoffel"
+    },
+    {
+      "id": "grote-knip",
+      "name": "グローテ・クニップ",
+      "nameLocal": "Grote Knip / Kenepa Grandi",
+      "description": "丘の上から見下ろす白砂の湾。青の濃淡が岸から沖へ続き、乾燥した斜面が浜を取り囲む。",
+      "coordinates": {
+        "latitude": 12.35189,
+        "longitude": -69.15141
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-05-grote-knip.webp",
+      "sourceKey": "osmGroteKnip"
+    },
+    {
+      "id": "playa-lagun",
+      "name": "プラヤ・ラグン",
+      "nameLocal": "Playa Lagun, Lagún",
+      "description": "両側の岩壁に守られた細長い入り江。波が比較的穏やかな水辺で、漁の営みと海に潜る人が交わる。",
+      "coordinates": {
+        "latitude": 12.31826,
+        "longitude": -69.15048
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-06-playa-lagun.webp",
+      "sourceKey": "osmLagun"
+    },
+    {
+      "id": "hato-caves",
+      "name": "ハト洞窟",
+      "nameLocal": "Hato Caves, Willemstad",
+      "description": "石灰岩の地下空間に、鍾乳石と石筍が育つ。外の強い日差しとは異なる静かな時間を感じる。",
+      "coordinates": {
+        "latitude": 12.17929,
+        "longitude": -68.94824
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-07-hato-caves.webp",
+      "sourceKey": "osmHato"
+    },
+    {
+      "id": "salina-jan-kok",
+      "name": "ジャン・コック塩湖",
+      "nameLocal": "Saliña Jan Kok / Rif Sint Marie",
+      "description": "かつて塩を生み出した湿地に、フラミンゴが集まる。干潟の水面と乾いた土地が一つの風景になる。",
+      "coordinates": {
+        "latitude": 12.21178,
+        "longitude": -69.05575
+      },
+      "image": "assets/images/netherlands/curacao/approved/scene-08-salina-jan-kok.webp",
+      "sourceKey": "osmJanKok"
+    }
+  ],
+  "taste": {
+    "title": "キュラソーで食べたいもの",
+    "kicker": "TASTE OF CURAÇAO",
+    "intro": "島の食卓には、オランダやカリブ海、アフリカなどの食文化が重なる。煮込み、揚げ菓子、魚料理には、日々の暮らしと港町の交流が映る。",
+    "items": [
+      {
+        "id": "keshi-yena",
+        "name": "ケシ・イェナ",
+        "nameLocal": "Keshi Yená",
+        "text": "チーズを器のように使い、鶏肉などの具を詰めて焼き上げる料理。甘みと塩気が重なる。",
+        "image": "assets/images/netherlands/curacao/approved/food-01-keshi-yena.webp",
+        "sourceKey": "tourismLocalFood"
+      },
+      {
+        "id": "stoba-di-kabritu",
+        "name": "ストバ・ディ・カブリトゥ",
+        "nameLocal": "Stobá di Kabritu",
+        "text": "ヤギ肉を香味野菜や香辛料とともに煮込む伝統的なシチュー。ふだんの食卓に根づいた味。",
+        "image": "assets/images/netherlands/curacao/approved/food-02-stoba-di-kabritu.webp",
+        "sourceKey": "tourismLocalFood"
+      },
+      {
+        "id": "pastechi",
+        "name": "パステチ",
+        "nameLocal": "Pastechi",
+        "text": "チーズや肉を包んで揚げた半月形の軽食。朝食や軽い食事として親しまれる。",
+        "image": "assets/images/netherlands/curacao/approved/food-03-pastechi.webp",
+        "sourceKey": "tourismLocalFood"
+      },
+      {
+        "id": "piska-hasa",
+        "name": "ピスカ・ハサ",
+        "nameLocal": "Piska Hasá",
+        "text": "魚を香ばしく揚げた島の定番料理。付け合わせとともに魚そのものの味を楽しむ。",
+        "image": "assets/images/netherlands/curacao/approved/food-04-piska-hasa.webp",
+        "sourceKey": "tourismLocalFood"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "highest-peak",
+      "label": "島の最高地点",
+      "value": "372m",
+      "note": "クリストッフェル山が島の最高峰。短い距離で海辺から乾いた山地へ景色が変わる。",
+      "icon": "landscape",
+      "sourceKey": "cbsFacts",
+      "interestReason": "青い海だけではない島の起伏を具体的に想像できる。"
+    },
+    {
+      "topicKey": "heritage-districts",
+      "label": "世界遺産の歴史地区",
+      "value": "4地区",
+      "note": "ウィレムスタットにはプンダ、オトロバンダ、ピーテルマイ、スカルローの歴史地区が残る。",
+      "icon": "city",
+      "sourceKey": "unescoWillemstad",
+      "interestReason": "一列のカラフルな建物から街全体へ見方を広げる。"
+    },
+    {
+      "topicKey": "rugged-coast",
+      "label": "北西岸の荒々しい海岸",
+      "value": "約10km",
+      "note": "シェテ・ボカ国立公園の海岸では、岩壁と入り江が波に削られている。",
+      "icon": "shore",
+      "sourceKey": "tourismHighlights",
+      "interestReason": "穏やかな浜と対照的な島の海岸線を示せる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "水辺に並ぶ色彩の建築",
+      "icon": "city",
+      "category": "CULTURE"
+    },
+    {
+      "title": "横へ動く歩行者橋",
+      "icon": "landmark",
+      "category": "CITY"
+    },
+    {
+      "title": "岩壁に砕ける波",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "乾いた山地の道",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "青の濃淡がある入り江",
+      "icon": "shore",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "サンゴ礁に近い海",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "石灰岩の地下空間",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "塩湖のフラミンゴ",
+      "icon": "bird",
+      "category": "WILDLIFE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "merchant-city",
+      "themeEn": "CITY",
+      "themeJa": "街を読む",
+      "icon": "city",
+      "title": "港がひらいた、四つの歴史地区",
+      "text": "ウィレムスタットには交易の港から育った街並みが残る。プンダの細い街路、オトロバンダの敷地の広い建物など、地区ごとに都市の成り立ちが異なる。",
+      "points": [
+        "シント・アナ湾を挟む街区の違いを歩いて比べる",
+        "世界遺産の登録対象は建物一棟ではなく歴史的な市街地"
+      ],
+      "sourceKey": "unescoWillemstad"
+    },
+    {
+      "topicKey": "papiamentu",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉に触れる",
+      "icon": "language",
+      "title": "街に響くパピアメント語",
+      "text": "パピアメント語にはポルトガル語、スペイン語、オランダ語、アフリカ諸語などの影響が重なる。港を通じた交流の歴史が、暮らしの言葉に息づく。",
+      "points": [
+        "パピアメント語は島の公用語の一つ",
+        "店や日常会話に耳を傾けると島の文化が近くなる"
+      ],
+      "sourceKey": "tourismPapiamentu"
+    },
+    {
+      "topicKey": "enslaved-history",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "landmark",
+      "title": "美しい街の背後にある、抵抗の歴史",
+      "text": "港町の発展は植民地交易と奴隷制度の歴史とも切り離せない。1795年にはトゥーラが率いる奴隷反乱が起き、島の記憶として受け継がれている。",
+      "points": [
+        "1795年の抵抗運動と1863年の奴隷制廃止を知る",
+        "都市の美しさと植民地支配の歴史を同時に考える"
+      ],
+      "sourceKey": "cbsFacts"
+    },
+    {
+      "topicKey": "salt-plantation",
+      "themeEn": "WORK",
+      "themeJa": "産業を読む",
+      "icon": "shore",
+      "title": "塩を採る土地が、鳥の居場所になった",
+      "text": "ジャン・コック周辺には、かつての製塩に使われた塩田が残る。湿地に集まるフラミンゴを眺める時、土地の労働の歴史にも目を向けたい。",
+      "points": [
+        "製塩はかつて島の産業の一つだった",
+        "湿地は現在、鳥を観察する場所にもなっている"
+      ],
+      "sourceKey": "tourismJanKok"
+    },
+    {
+      "topicKey": "reef-sea",
+      "themeEn": "NATURE",
+      "themeJa": "海を知る",
+      "icon": "sea",
+      "title": "海の透明さの下にある生態系",
+      "text": "島の風下側に広がる穏やかな入り江は、シュノーケリングやダイビングの入口でもある。サンゴや生き物に触れず、水中の景色を見守る。",
+      "points": [
+        "西側の湾は穏やかなことが多いが海況は日々変わる",
+        "水中の生き物とサンゴを傷めない距離を保つ"
+      ],
+      "sourceKey": "tourismWest"
+    },
+    {
+      "topicKey": "dry-land",
+      "themeEn": "NATURE",
+      "themeJa": "大地を歩く",
+      "icon": "leaf",
+      "title": "青い海と、乾いた大地の対照",
+      "text": "島の内陸には低木やサボテンが生える乾燥地がある。クリストッフェル公園の丘を歩くと、海辺からは見えにくい自然の広がりが現れる。",
+      "points": [
+        "乾いた土地に適応した動植物に出会う",
+        "暑い時間帯の登山を避ける"
+      ],
+      "sourceKey": "tourismChristoffel"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "seven-bokas",
+      "categoryEn": "NAME",
+      "categoryJa": "名前",
+      "title": "「七つの入り江」なのに、七つだけではない",
+      "text": "シェテ・ボカは「七つの入り江」という意味。観光局によれば実際には10以上の入り江がある。",
+      "icon": "shore",
+      "sourceKey": "tourismBoka"
+    },
+    {
+      "topicKey": "willemstad-colors",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "カラフルな壁には、かつて白色が避けられた逸話がある",
+      "text": "ユネスコは、1817年に白い外壁が禁じられたとの説を紹介する。理由として日差しの反射が挙げられるが、確定した史実とは言い切れない。",
+      "icon": "city",
+      "sourceKey": "unescoWillemstad"
+    },
+    {
+      "topicKey": "lagun-fishing",
+      "categoryEn": "EVERYDAY",
+      "categoryJa": "暮らし",
+      "title": "小さな湾に漁船とダイバーが並ぶ",
+      "text": "プラヤ・ラグンは漁村の入り江でもある。海に入る人と生活の舟が、同じ狭い湾を使う。",
+      "icon": "sea",
+      "sourceKey": "tourismLagun"
+    },
+    {
+      "topicKey": "hato-limestone",
+      "categoryEn": "GEOLOGY",
+      "categoryJa": "地形",
+      "title": "洞窟は、かつて海だった場所に生まれた",
+      "text": "ハト洞窟の石灰岩は長い時間をかけて形成された。今は陸地にある空間に、島の地形変化が刻まれている。",
+      "icon": "landscape",
+      "sourceKey": "tourismHato"
+    },
+    {
+      "topicKey": "kok-memory",
+      "categoryEn": "MEMORY",
+      "categoryJa": "伝承",
+      "title": "旧プランテーションの館には、不穏な言い伝えが残る",
+      "text": "ジャン・コックの館には、かつての農園主にまつわる幽霊の伝承がある。事実ではなく、土地に残る語りとして紹介されている。",
+      "icon": "culture",
+      "sourceKey": "tourismJanKok"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "街の建築と港の歴史を歩きたい人",
+      "text": "世界遺産ウィレムスタットの複数の地区を、自分の足で比べてみたい人。"
+    },
+    {
+      "title": "海辺と乾いた山地を一度の旅で感じたい人",
+      "text": "白砂の湾だけでなく、波の荒い北岸や内陸の丘にも足を延ばしたい人。"
+    },
+    {
+      "title": "小さな自然の変化を見つけるのが好きな人",
+      "text": "塩湖の鳥や石灰岩の洞窟、入り江の海を、ゆっくり観察したい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "北岸の岩場は、波と距離をとる",
+      "text": "ボカ・ピストルなどでは予測しにくい大波が岩場に打ち寄せる。指定された観察場所を守り、崖の縁や濡れた岩に近づかない。",
+      "sourceKey": "tourismBoka"
+    },
+    {
+      "title": "クリストッフェル山は早朝に計画する",
+      "text": "山頂への登山は暑さのため開始時刻などに制限がある。最新の公園情報を確認し、十分な飲料水を用意する。",
+      "sourceKey": "tourismHighlights"
+    },
+    {
+      "title": "西部の浜へは移動手段を確保する",
+      "text": "ウィレムスタットを離れる景色は公共交通だけでは回りづらい。車か現地ツアーを使い、浜ごとのアクセス条件を確認する。",
+      "sourceKey": "tourismTransport"
+    }
+  ],
+  "travelScale": {
+    "title": "旅の目安日程",
+    "kicker": "DURATION",
+    "intro": "ウィレムスタットを拠点に、街、北岸、内陸、風下側の小さな湾を日ごとに分けると、同じ島の異なる表情がよく見える。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "港町と近郊を歩く",
+        "text": "色彩の街と運河を行き来する。例：ウィレムスタット → ハンデルスカーデ → クイーン・エマ橋 → オトロバンダ → ウィレムスタット。",
+        "icon": "city"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "山地と荒波の海岸へ",
+        "text": "西側の自然を一日ずつ訪ねる。例：ウィレムスタット → クリストッフェル公園 → シェテ・ボカ → ウィレムスタット。",
+        "icon": "map"
+      },
+      {
+        "duration": "6日以上",
+        "title": "小さな湾と塩湖にも時間を使う",
+        "text": "ビーチと鳥のいる湿地を組み合わせる。例：ウィレムスタット → ジャン・コック塩湖 → プラヤ・ラグン → グローテ・クニップ → ウィレムスタット。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "2〜6月",
+        "reason": "比較的雨が少なく、街歩きや海辺の予定を組みやすい。暑さへの備えは通年必要。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜3月",
+      "icon": "sun",
+      "color": "#899d6b",
+      "text": "年明けから乾燥した季節へ。街歩きと自然観察を組み合わせやすい。"
+    },
+    {
+      "months": "4〜6月",
+      "icon": "sun",
+      "color": "#b0a06d",
+      "text": "比較的雨の少ない時期。山歩きは暑さを避けて早朝に。"
+    },
+    {
+      "months": "7〜9月",
+      "icon": "sun",
+      "color": "#bd9467",
+      "text": "暑さが続く。日陰の少ない場所では水分補給を意識したい。"
+    },
+    {
+      "months": "10〜12月",
+      "icon": "cloud-sun",
+      "color": "#7894a7",
+      "text": "降水が比較的多い時期。短いにわか雨を見込んで予定に余白を。"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "車・路線バス・現地ツアー",
+    "text": "ウィレムスタットでは徒歩と公共交通を利用できる一方、遠い入り江や国立公園はレンタカーや現地ツアーが便利。出発前に運行条件と道路状況を確かめる。",
+    "sourceKey": "tourismTransport"
+  },
+  "nextRoutesIntro": "島を離れて次へ向かう旅は航空便を中心に考える。島間航路は運航が変わるため、現地の最新情報を確認する。",
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "ベネズエラ",
+      "nameEn": "VENEZUELA",
+      "href": "countries/venezuela/",
+      "flag": "🇻🇪",
+      "reason": "カリブ海の南岸へ。島と大陸で異なる海辺の暮らしをたどる。",
+      "affinityType": "COAST"
+    },
+    {
+      "nameJa": "コロンビア",
+      "nameEn": "COLOMBIA",
+      "href": "countries/colombia/",
+      "flag": "🇨🇴",
+      "reason": "港町の歴史とカリブ海沿岸の都市文化を比べてみる。",
+      "affinityType": "CITY"
+    },
+    {
+      "nameJa": "バルバドス",
+      "nameEn": "BARBADOS",
+      "href": "countries/barbados/",
+      "flag": "🇧🇧",
+      "reason": "別のカリブ海の島で、港と食、海の風景を味わう。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "capital": {
+    "nameJa": "ウィレムスタット",
+    "labelJa": "首都",
+    "coordinates": {
+      "latitude": 12.106,
+      "longitude": -68.932
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -25,
+      "y": -25
+    }
+  },
+  "sourcesVerifiedAt": "2026-11-07",
+  "sourceDates": {
+    "population": "2026-06-30, CBS announcement 2026-11-05; 159824",
+    "area": "CBS 444km², checked 2026-11-07",
+    "japanAreaComparison": "Japan 377973.68km² (2026-07-01); 444/377973.68*100=0.1175% rounded to 0.12%.",
+    "currency": "Caribbean guilder (XCG) legal tender since 2025-03-31; older Netherlands Antillean guilder not current.",
+    "religion": "CBS Census 2023, Roman Catholic 72.8%, qualitative label only.",
+    "status": "2010-10-10; Dutch Kingdom constitutional status checked 2026-11-07",
+    "climate": "Tourism Authority qualitative seasons checked 2026-11-07",
+    "coordinates": "WGS84 site markers from Mapcarta / OSM published points, rounded to 5 decimals, checked 2026-11-07"
+  },
+  "sources": {
+    "cbsPopulation": "https://www.cbs.cw/population",
+    "cbsPopulationAnnouncement": "https://www.cbs.cw/bevolking-van-curacao-groeit-naar-159824-inwoners-per-30-juni-2026",
+    "cbsFacts": "https://www.cbs.cw/general-facts-of-curacao",
+    "cbsReligion": "https://www.cbs.cw/general-indicators-of-curacao",
+    "kingdom": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
+    "nationalArchive": "https://nationaalarchief.cw/pap/exposities/staatkundige-geschiedenis-periode-5/",
+    "currency": "https://www.caribbean-guilder.com/faq",
+    "unescoWillemstad": "https://whc.unesco.org/en/list/819",
+    "tourismPapiamentu": "https://www.curacao.com/en/questions/culture/what-is-the-native-language-spoken-in-curacao",
+    "tourismBoka": "https://www.curacao.com/en/activity/shete-boka-national-park",
+    "tourismChristoffel": "https://www.curacao.com/en/activity/christoffel-park",
+    "tourismHighlights": "https://www.curacao.com/en/article/what-is-curacao-known-for",
+    "tourismWest": "https://www.curacao.com/en/article/5-reasons-why-curacao-should-be-your-next-sunny-destination",
+    "tourismLagun": "https://www.curacao.com/nl/article/explore-5-breathtaking-beaches--bays-on-the-west-side-of-curacao-in-one-day",
+    "tourismHato": "https://www.curacao.com/en/activity/hato-caves",
+    "tourismJanKok": "https://www.curacao.com/en/activity/landhuis-jan-kok",
+    "tourismWeather": "https://www.curacao.com/en/questions/weather/when-is-the-rainy-season",
+    "tourismWeatherGuide": "https://www.curacao.com/en/article/weather-in-curacao-what-to-expect-year-round",
+    "tourismTransport": "https://www.curacao.com/en/article/planning-your-trip-to-curacao-without-a-car",
+    "tourismLocalFood": "https://www.curacao.com/en/article/guide-to-curacao-local-food-and-drinks",
+    "tourismItinerary": "https://www.curacao.com/en/article/curacao-in-5-days",
+    "osmQueenEmma": "https://mapcarta.com/W894738774",
+    "osmOtrobanda": "https://mapcarta.com/N7032972183",
+    "osmBokaPistol": "https://mapcarta.com/N2395670844",
+    "osmChristoffel": "https://mapcarta.com/19372144",
+    "osmGroteKnip": "https://mapcarta.com/33097196",
+    "osmLagun": "https://mapcarta.com/19372772",
+    "osmHato": "https://mapcarta.com/N1262204131",
+    "osmJanKok": "https://mapcarta.com/W938235803",
+    "osmHandelskade": "https://mapcarta.com/N447895902",
+    "gshhg": "https://www.soest.hawaii.edu/wessel/gshhg/",
+    "osmCopyright": "https://www.openstreetmap.org/copyright",
+    "coastGeometry": "https://github.com/born-in-plays-for/mundial/blob/main/geo/curacao.geojson"
+  },
+  "sourceNotes": {
+    "mapGeneralization": "Full 424-source-vertex geoBoundaries CUW ADM0 geometry retained, path rounded to 0.1 SVG unit (below visual precision), not simplified. Seven rings include the main island, islets and an interior hole. Cross-check GSHHG high-resolution still recommended at site integration QA.",
+    "foodSources": "Tourism guide (2026-10-03) for piska hasá, stoba di kabritu, and pastechi; tourism FAQ for keshi yená. https://www.curacao.com/en/questions/dining/what-are-some-signature-dishes-i-should-try"
+  },
+  "travelThemes": [
+    "街を歩く",
+    "海の世界へ",
+    "地球の風景"
+  ],
+  "contentQaVersion": 2
+}
