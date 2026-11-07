@@ -191,12 +191,14 @@ jobs:
           fetch "$site/assets/css/country.css" /tmp/country.css
           fetch "$site/data/atlas-destinations.json" /tmp/atlas-destinations.json
           fetch "$site/data/top-season-index.json" /tmp/top-season-index.json
+          fetch "$site/data/top-scene-index.json" /tmp/top-scene-index.json
           fetch "$site/about/" /tmp/about.html
           fetch "$site/faq/" /tmp/faq.html
-          for f in top.html app.js top.js map-regions.js country.css atlas-destinations.json about.html faq.html; do
+          for f in top.html app.js top.js map-regions.js country.css atlas-destinations.json top-season-index.json top-scene-index.json about.html faq.html; do
             test -s "/tmp/$f" || { echo "::error title=Baseline file empty::/tmp/$f"; exit 1; }
           done
-          python3 -c "import json,sys; c=json.load(open('/tmp/top-season-index.json'))['countries']; sys.exit(0 if len(c)==202 else '::error title=Season index::top-season-index.json: expected 202 Countries, got %d' % len(c))"
+          # Season search intentionally includes published Regions beyond the 202
+          # canonical destination records; compare slugs rather than a fixed count.
           contains 'id="season-months"' /tmp/top.html
           contains 'const ATLAS_TOTAL = 200;' /tmp/top.js
           contains 'parentDestinations().length || 200' /tmp/map-regions.js
@@ -211,8 +213,24 @@ jobs:
 
           payload = json.loads(Path('/tmp/atlas-destinations.json').read_text(encoding='utf-8'))
           destinations = payload.get('destinations') or []
+          season_index = json.loads(Path('/tmp/top-season-index.json').read_text(encoding='utf-8'))
+          scene_index = json.loads(Path('/tmp/top-scene-index.json').read_text(encoding='utf-8'))
+          country_slugs = {item['slug'] for item in destinations}
+          region_slugs = {item['slug'] for item in scene_index.get('regionHeroes', [])}
+          expected_seasons = country_slugs | region_slugs
+          actual_seasons = set(season_index.get('countries', {}))
           palestine = next((row for row in destinations if row.get('slug') == 'palestine'), None)
           problems = []
+          if actual_seasons != expected_seasons:
+              problems.append(
+                  'season index missing=' + repr(sorted(expected_seasons - actual_seasons))
+                  + ' unexpected=' + repr(sorted(actual_seasons - expected_seasons))
+              )
+          required_regions = {'greenland', 'faroe-islands', 'aruba', 'curacao',
+                              'sint-maarten', 'new-caledonia', 'french-polynesia'}
+          if not required_regions.issubset(region_slugs):
+              problems.append('published Region hero index missing: '
+                              + repr(sorted(required_regions - region_slugs)))
           if payload.get('count') != 202:
               problems.append(f"count={payload.get('count')}")
           if len(destinations) != 202:
