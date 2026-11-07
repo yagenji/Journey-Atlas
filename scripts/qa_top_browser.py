@@ -15,6 +15,16 @@ from qa_published_browser import VIEWPORTS, make_driver, set_viewport
 
 BASE = os.environ.get("QA_BASE_URL", "https://atlas.yagenji.com").rstrip("/")
 OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output")) / "top"
+REGION_EXPECTED = {
+    "greenland": ("denmark", "グリーンランド", "north-america"),
+    "faroe-islands": ("denmark", "フェロー諸島", "europe"),
+    "aruba": ("netherlands", "アルバ", "north-america"),
+    "curacao": ("netherlands", "キュラソー", "north-america"),
+    "sint-maarten": ("netherlands", "シント・マールテン", "north-america"),
+    "new-caledonia": ("france", "ニューカレドニア", "oceania"),
+    "french-polynesia": ("france", "フランス領ポリネシア", "oceania"),
+}
+
 EXPECTED = {
     "england": "countries/unitedkingdom/england/",
     "scotland": "countries/unitedkingdom/scotland/",
@@ -44,8 +54,25 @@ def check(driver, viewport):
     if driver.find_element(By.ID, "country-count").text.strip() != "200 DESTINATIONS":
         errors.append("TOP parent count is not 200")
 
+    # TOP's shared Region runtime index must include all newly published
+    # Regions while keeping the canonical 200 parent count intact.
+    runtime_regions = driver.execute_async_script("""
+      const done = arguments[0];
+      (window.JourneyAtlasRegionsPromise || Promise.resolve([])).then(
+        items => done(items.map(({slug,href,parentSlug,regionId}) =>
+          ({slug,href,parentSlug,regionId}))), () => done([]));
+    """)
+    indexed = {row["slug"]: row for row in runtime_regions}
+    for slug, (parent, _name, region_id) in REGION_EXPECTED.items():
+        expected = "countries/" + parent + "/" + slug + "/"
+        row = indexed.get(slug)
+        if not row or row["href"] != expected or row["parentSlug"] != parent or row["regionId"] != region_id:
+            errors.append("TOP Region index mismatch: " + slug + " " + repr(row))
+
     query = driver.find_element(By.ID, "country-search")
-    for label, slug in (("イングランド", "england"), ("マカオ", "macau")):
+    for label, slug in [("イングランド", "england"), ("マカオ", "macau")] + [
+        (row[1], slug) for slug, row in REGION_EXPECTED.items()
+    ]:
         query.clear()
         query.send_keys(label)
         wait.until(lambda d: any(
@@ -55,12 +82,21 @@ def check(driver, viewport):
     query.clear()
     query.send_keys(Keys.ESCAPE)
 
+    # Map navigation places every published child Region under the parent Country.
+    driver.execute_script("document.querySelector('[data-map-tab=\"europe\"]').click()")
+    wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#map .map-country-nav__child")) >= 9)
+    map_links = {el.get_attribute("href").split("/countries/")[-1]
+                 for el in driver.find_elements(By.CSS_SELECTOR, "#map .map-country-nav__child")}
+    for slug, (parent, _name, _region_id) in REGION_EXPECTED.items():
+        if parent + "/" + slug + "/" not in map_links:
+            errors.append("TOP map child Region link missing: " + parent + "/" + slug)
+
     # Theme browsing must include Region destinations without inflating the
     # canonical 200 parent count.
     driver.execute_script('arguments[0].click()', driver.find_element(By.CSS_SELECTOR, '[data-theme="city"]'))
     wait.until(lambda d: not d.find_element(By.ID, "theme-results").get_attribute("hidden"))
     theme_query = driver.find_element(By.ID, "theme-country-search")
-    for label, slug in (("イングランド", "england"), ("マカオ", "macau")):
+    for label, slug in (("イングランド", "england"), ("マカオ", "macau"), ("キュラソー", "curacao")):
         theme_query.clear()
         theme_query.send_keys(label)
         wait.until(lambda d: any(
@@ -160,6 +196,9 @@ def check(driver, viewport):
         By.CSS_SELECTOR, '#season-months [data-season-month="1"]'))
     wait.until(lambda d: len(d.find_elements(
         By.CSS_SELECTOR, "#season-results-grid .country-card")) > 0)
+    if not any(el.get_attribute("data-slug") == "aruba" for el in driver.find_elements(
+        By.CSS_SELECTOR, "#season-results-grid .country-card")):
+        errors.append("Published Aruba Region missing from January season discovery")
     season_slug = driver.find_element(
         By.CSS_SELECTOR, "#season-results-grid .country-card").get_attribute("data-slug")
     driver.execute_script(
