@@ -53,7 +53,7 @@ def expected_hashes() -> dict[str, str]:
 def main() -> None:
     data = json.loads(DATA.read_text(encoding="utf-8"))
     assert (data["parentSlug"], data["slug"], data["regionPublished"]) == (
-        "france", "new-caledonia", False
+        "france", "new-caledonia", True
     )
     assert data["schemaVersion"] == 1
     scenes, taste = data["scenes"], data["taste"]["items"]
@@ -162,13 +162,13 @@ def main() -> None:
     page, canonical, published = builder.render_region(
         data, site_url="https://atlas.yagenji.com/", version="new-caledonia-draft"
     )
-    assert not published
-    assert "noindex,follow" in page
+    assert published
+    assert 'name="robots" content="index,follow"' in page
     assert canonical.endswith("/countries/france/new-caledonia/")
     assert "NEW CALEDONIA" in page and "ニューカレドニア" in page
     assert "src=" in page
     print("PASS: shared Region renderer, noindex, correct canonical URL")
-    print("All focused checks passed. Draft remains unpublished.")
+    print("All focused checks passed. Region is published.")
 
 
 if __name__ == "__main__":
