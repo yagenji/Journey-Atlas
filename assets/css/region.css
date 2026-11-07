@@ -111,3 +111,18 @@
    Its body uses the same content divider and inset as Signature Facts. */
 .region-history>p{min-width:0;margin:0;padding:2px 16px 3px;border-left:1px solid rgba(18,54,92,.13);color:var(--navy-deep);font:400 var(--country-body,13px)/1.7 var(--body);overflow-wrap:anywhere}
 @media(max-width:760px){.region-history>p{padding:0;border-left:0}}
+
+
+/* Optional, source-anchored island-group maps for widely dispersed Regions.
+   Existing Region pages are unchanged unless detailMaps is explicitly set. */
+.region-detail-gallery{margin:14px 0 20px}
+.region-detail-gallery__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.region-detail-gallery__card{margin:0;min-width:0;border:1px solid rgba(49,87,106,.17);border-radius:8px;overflow:hidden;background:#f7f6f1}
+.region-detail-gallery__card img{display:block;width:100%;height:auto;aspect-ratio:760/440;object-fit:contain;background:#eaf2f4}
+.region-detail-gallery__card figcaption{padding:8px 10px 10px;color:var(--navy);font:400 11px/1.6 var(--body)}
+.region-detail-gallery__card figcaption strong{display:block;font-weight:600;font-size:12px}
+.region-detail-gallery__card figcaption span{display:block;margin-top:3px;color:var(--muted)}
+.region-detail-gallery__card a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+.region-detail-gallery__card a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.region-detail-gallery__note{margin:8px 0 0;color:var(--muted);font:400 11px/1.6 var(--body)}
+@media(max-width:450px){.region-detail-gallery__grid{grid-template-columns:1fr}}
