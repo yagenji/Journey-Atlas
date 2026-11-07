@@ -147,6 +147,30 @@ def main() -> None:
     assert not any(
         left <= x <= right and top <= y <= bottom for x, y in shore_vertices
     ), "Overview inset overlaps real coastline"
+    # Hero Kanumera and S01 Upi Bay are only 17 canvas pixels apart in reality.
+    # Their independent display markers must be visible even on narrow screens;
+    # the geographic anchors remain unchanged and callout lines identify them.
+    labels = []
+    for marker_id, item, line_id in (
+        ("hero-marker", data["hero"], "hero-callout-line"),
+        ("scene-marker-1", scenes[0], "scene-1-callout-line"),
+    ):
+        node = svg.find(f".//*[@id='{marker_id}']")
+        line = svg.find(f".//*[@id='{line_id}']")
+        assert node is not None and line is not None, marker_id
+        offset = item.get("mapOffset")
+        assert isinstance(offset, dict), f"{marker_id} needs label-only mapOffset"
+        dx, dy = offset["x"], offset["y"]
+        assert math.hypot(12 * dx, 7.6 * dy) <= 60, marker_id
+        x, y = float(node.get("data-x")), float(node.get("data-y"))
+        lx, ly = x + 12 * dx, y + 7.6 * dy
+        assert abs(float(node.get("data-label-x", "NaN")) - lx) < .02
+        assert abs(float(node.get("data-label-y", "NaN")) - ly) < .02
+        assert 0 < lx < 1200 and 0 < ly < 760
+        labels.append((lx, ly))
+    # 110/1200 of map width is >32px on a 350px mobile map.
+    assert math.dist(*labels) > 110, "Hero/S01 labels overlap on small screens"
+    print("PASS: Hero and S01 separated with two georeferenced callouts")
     print("PASS: all 9 geographic anchors, island-free overview inset, and margins")
 
     # Test the actual shared Region builder; this intentionally demands assets.
