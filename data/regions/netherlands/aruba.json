@@ -41,7 +41,7 @@
       "sourceKey": "area"
     },
     {
-      "label": "公用語",
+      "label": "言語",
       "value": "オランダ語・パピアメント語",
       "sourceKey": "language"
     },
@@ -220,7 +220,8 @@
         "image": "assets/images/netherlands/aruba/approved/food-pastechi.webp",
         "sourceKey": "food"
       }
-    ]
+    ],
+    "intro": "チーズに詰めて焼く料理、甘い平焼きパン、揚げた魚、手軽な揚げ菓子。港を通じて入った食材が、島の家庭の味になった。"
   },
   "signatureFacts": [
     {
@@ -233,54 +234,53 @@
       "interestReason": "海辺のリゾートの印象を、島の大きな割合を占める乾燥地の自然へ広げる。"
     },
     {
-      "topicKey": "summit-height",
-      "label": "島の最高地点",
-      "value": "188m",
-      "note": "最高地点はジャマノタ。高山のない島でも、低い丘に上がるだけで海と内陸のつながりが見えてくる。",
-      "icon": "landscape",
-      "sourceKey": "jamanota",
-      "interestReason": "最高地点の低さから、海と丘を近い距離で行き来できる島の地形を想像できる。"
+      "topicKey": "venezuela-distance",
+      "label": "南米の半島まで",
+      "value": "約24〜29km",
+      "note": "アルバはベネズエラのパラグアナ半島の北、約15〜18マイル（約24〜29km）にある。カリブの島でありながら、南米大陸がすぐそばにある。",
+      "icon": "map",
+      "sourceKey": "location",
+      "interestReason": "カリブ海の島という印象を、南米に近い地理へ置き直せる。"
     },
     {
-      "topicKey": "nationality-diversity",
-      "label": "島に暮らす人々の国籍",
-      "value": "約100",
-      "note": "観光局によると、島では100近い国籍の人々が暮らす。小さな島の日常は、さまざまな背景を持つ人たちがつくっている。",
-      "icon": "users",
-      "sourceKey": "islandFacts",
-      "interestReason": "島の小ささからは想像しにくい人々の背景の多様さを、暮らしへの関心につなげる。"
+      "topicKey": "annual-rainfall",
+      "label": "年間降水量",
+      "value": "約409mm",
+      "note": "ベアトリクス空港の1971〜2000年の平年値で、東京の約4分の1。観光局によると島はハリケーン帯のすぐ南にあり、ハリケーンは非常にまれ。サボテンの丘が広がる理由がわかる。",
+      "icon": "weather",
+      "sourceKeys": [
+        "climateAruba",
+        "location",
+        "tokyoNormals"
+      ],
+      "interestReason": "白砂の浜の印象に、雨の少ない半乾燥の島という素顔を重ねられる。"
     }
   ],
   "encounters": [
     {
-      "title": "白砂のビーチ",
-      "icon": "shore",
+      "title": "吹き続ける貿易風",
+      "icon": "weather",
       "category": "LANDSCAPE"
     },
     {
-      "title": "波が砕ける岩場",
-      "icon": "sea",
-      "category": "NATURE"
+      "title": "西の海に沈む夕日",
+      "icon": "sun",
+      "category": "SEASON"
     },
     {
-      "title": "サボテンの丘",
-      "icon": "leaf",
-      "category": "NATURE"
+      "title": "パピアメント語のあいさつ",
+      "icon": "language",
+      "category": "LANGUAGE"
     },
     {
-      "title": "港町の建築",
-      "icon": "city",
-      "category": "CITY"
+      "title": "島を走る路線バス",
+      "icon": "road",
+      "category": "MOVEMENT"
     },
     {
-      "title": "小さな礼拝堂",
-      "icon": "landmark",
-      "category": "FAITH"
-    },
-    {
-      "title": "島の魚料理",
-      "icon": "food",
-      "category": "FOOD"
+      "title": "丘で出会うヤギ",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
     },
     {
       "title": "街角の壁画",
@@ -288,9 +288,14 @@
       "category": "CULTURE"
     },
     {
-      "title": "海辺の夕暮れ",
-      "icon": "sun",
-      "category": "SEASON"
+      "title": "地元食堂の昼ごはん",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "パステルカラーの家並み",
+      "icon": "home",
+      "category": "ARCHITECTURE"
     }
   ],
   "culture": [
@@ -402,7 +407,7 @@
       "title": "街の時計塔は、灯台でもあった",
       "text": "ゾウトマン要塞に隣接するウィレム3世塔は、時計塔と灯台を兼ねていた。1868年から1963年まで、海へ向けても光を送っていた。",
       "icon": "landmark",
-      "sourceKey": "fortZoutman"
+      "sourceKey": "oranjestadHistory"
     },
     {
       "topicKey": "four-point-star",
@@ -494,25 +499,25 @@
     {
       "months": "1〜3月",
       "icon": "sun",
-      "color": "#899d6b",
+      "color": "#73966f",
       "text": "乾いた時期の海辺を楽しみやすい。カーニバルの主な催しもこの時期に集まるが、開催日は年ごとに確認する。"
     },
     {
       "months": "4〜6月",
       "icon": "sun",
-      "color": "#b0a06d",
+      "color": "#92a253",
       "text": "暖かさが続き、5月頃から貿易風が強まりやすい。丘や海岸歩きは朝の涼しい時間を選びたい。"
     },
     {
       "months": "7〜9月",
       "icon": "sun",
-      "color": "#bd9467",
+      "color": "#b77a49",
       "text": "暑さの強い時期。日差しと風の両方を意識し、水分補給と休憩を挟んで回る。"
     },
     {
       "months": "10〜12月",
       "icon": "weather",
-      "color": "#7d9fa5",
+      "color": "#6b90a5",
       "text": "島では比較的雨の多い季節。短いにわか雨があり、国立公園や海辺の予定は当日の状況に合わせる。"
     }
   ],
@@ -572,7 +577,8 @@
   },
   "travelThemes": [
     "海の世界へ",
-    "地球の風景"
+    "地球の風景",
+    "暮らしに出会う"
   ],
   "contentQaVersion": 6,
   "sourcesVerifiedAt": "2026-11-07",
@@ -613,7 +619,11 @@
     "season": "https://www.aruba.com/us/our-island/island-facts/weather-and-climate",
     "transport": "https://www.aruba.com/us/plan-your-visit/getting-around-aruba",
     "capitalCoordinates": "https://www.geonames.org/3577154/oranjestad.html",
-    "nextRoutes": "https://www.curacao.com/en/questions/getting-around/are-there-boats-or-ferries-available-to-nearby-islands-like-aruba-or-to"
+    "nextRoutes": "https://www.curacao.com/en/questions/getting-around/are-there-boats-or-ferries-available-to-nearby-islands-like-aruba-or-to",
+    "location": "https://aruba.com/us/our-island/island-facts/where-is-aruba",
+    "oranjestadHistory": "https://www.aruba.com/us/blog/200-years-in-stone-a-journey-through-oranjestads-historic-buildings---part-2",
+    "climateAruba": "https://mail.meteo.cw/Data_www/Climate/documents/CLIM_SUM_Aua.pdf",
+    "tokyoNormals": "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=44&block_no=47662"
   },
   "sourceDates": {
     "population": "2025-12-31; CBS male 52,359 + female 58,266 = total 110,625. Source page checked 2026-11-07.",
@@ -626,6 +636,7 @@
     "status1986": "1986-01-01; current Kingdom structure checked 2026-11-07",
     "coordinates": "WGS84; Conchi, California Lighthouse, Eagle Beach, Fort Zoutman and Alto Vista and Casibari use ATA embedded latitude/longitude rounded to 6 decimals. Jamanota checked against GeoNames; Casibari uses its dedicated ATA page because the generic rock-formations page pin is Ayo. Palm Beach and Boca Prins are coastal representative points, not survey-grade camera locations.",
     "nextRoutes": "2026-11-07: no land borders or regular inter-island ferry continuation; nextRoutes intentionally empty. Air connections are outside NEXT ROUTES contract.",
-    "travelSeason": "Aruba Tourism Authority qualitative seasonal guidance checked 2026-11-07"
+    "travelSeason": "Aruba Tourism Authority qualitative seasonal guidance checked 2026-11-07",
+    "kingdom": "2026-11-07"
   }
 }
