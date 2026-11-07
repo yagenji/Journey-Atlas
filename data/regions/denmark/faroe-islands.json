@@ -1,0 +1,726 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "denmark",
+  "slug": "faroe-islands",
+  "regionPublished": false,
+  "nameEn": "FAROE ISLANDS",
+  "nameJa": "フェロー諸島",
+  "region": "NORTHERN EUROPE / NORTH ATLANTIC / 62°N",
+  "parentNameJa": "デンマーク",
+  "parentNameEn": "DENMARK",
+  "parentReturnDescription": "デンマークの8つの景色を見る",
+  "seo": {
+    "description": "海へ落ちる滝、草屋根の村、断崖の灯台と海鳥。フェロー諸島8つの景色から、北大西洋の島々と海のそばの暮らしを旅する。"
+  },
+  "hero": {
+    "name": "ガーサダール村とムーラフォスル滝",
+    "location": "Gásadalur / Múlafossur, Vágar",
+    "image": "assets/images/denmark/faroe-islands/approved/hero-gasadalur-mulafossur.webp",
+    "coordinates": {
+      "latitude": 62.10751,
+      "longitude": -7.43578
+    },
+    "lead": "草の大地の端から、滝が北大西洋へ落ちていく。断崖に立つ灯台、入江の小さな村、海鳥が戻る斜面をたどると、フェロー諸島の景色が海とともに営まれる暮らしにつながる。",
+    "description": "ヴォーアル島西部のガーサダール。山に抱かれた集落の下で、ムーラフォスル滝が断崖から海へ流れ落ちる。",
+    "sourceKeys": [
+      "tourismMulafossur",
+      "mapMulafossur"
+    ]
+  },
+  "profile": [
+    {
+      "label": "首都",
+      "value": "トルスハウン（Tórshavn）",
+      "sourceKey": "islandFacts"
+    },
+    {
+      "label": "人口",
+      "value": "55,640人（2026年9月1日）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約1,399km²（日本の約0.4%）",
+      "sourceKey": "islandFacts"
+    },
+    {
+      "label": "言語",
+      "value": "フェロー語、デンマーク語",
+      "sourceKey": "language"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（福音ルーテル派など）",
+      "sourceKey": "religion"
+    },
+    {
+      "label": "通貨",
+      "value": "デンマーク・クローネ（DKK）",
+      "sourceKey": "money"
+    }
+  ],
+  "historyContext": {
+    "text": "フェロー諸島は、デンマーク王国内で独自の議会と政府を持つ自治地域。1948年の自治法で自治制度が確立し、2005年の権限移管法によって自治側が引き受けられる分野が拡大した。漁業、教育、文化、税制などを自ら担う一方、憲法・国籍・国防・通貨などは自治側への移管対象から除かれている。",
+    "sourceKeys": [
+      "governmentHistory"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/denmark/faroe-islands/map-faroe-islands.svg",
+    "bounds": {
+      "north": 62.5,
+      "south": 61.3,
+      "west": -7.85,
+      "east": -6.15
+    },
+    "regions": [
+      {
+        "id": "northern-islands",
+        "label": "北部の景色",
+        "svgId": "faroe-northern-detail",
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 350,
+          "height": 256
+        },
+        "sourceRect": {
+          "x": 520,
+          "y": 65,
+          "width": 160,
+          "height": 120
+        },
+        "sceneIds": [
+          "saksun",
+          "kallur-lighthouse",
+          "gjogv",
+          "funningur",
+          "tjornuvik"
+        ]
+      }
+    ],
+    "insetNote": "※ 北部は、同じ地域を拡大した別枠表示です。",
+    "source": "Coastline/territory: geoBoundaries gbOpen FRO ADM0, commit 9469f09, Sentinel-2 10m land cover (image year 2021), raster2polygon excluding water, processed by IMB; CC BY 4.0; https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FRO/ADM0/geoBoundaries-FRO-ADM0.geojson . Principal-island footprints cross-checked against GSHHG high-resolution shoreline, broad scope against Natural Earth Admin-0, and Visit Faroe Islands 18-island maps. Inland lake Sørvágsvatn: © OpenStreetMap contributors, way 45676892, ODbL 1.0, https://www.openstreetmap.org/copyright; retrieved 2026-11-07. WGS84; shared local equirectangular projection. 18 principal islands including Suðuroy plus coastal skerries retained. Inland raster holes filled as land; only verified lake geometry shown. Not for navigation."
+  },
+  "scenes": [
+    {
+      "id": "saksun",
+      "name": "サクスン",
+      "nameLocal": "Saksun Church / Pollurin, Streymoy",
+      "description": "草屋根の白い教会が、潮の満ち引きする入り江に向き合う。急な山肌に囲まれた谷の底に、牧草地と砂地、水面が広がる。",
+      "coordinates": {
+        "latitude": 62.24633,
+        "longitude": -7.17972
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-01-saksun.webp",
+      "sourceKeys": [
+        "osmSaksun",
+        "tourismSaksun"
+      ]
+    },
+    {
+      "id": "tinganes",
+      "name": "トルスハウン旧市街／ティンガネス",
+      "nameLocal": "Tinganes, Tórshavn",
+      "description": "水際の岩場に、赤い木造家屋と草屋根が連なるティンガネス。首都トルスハウンの歴史ある一角に、港町の表情が重なる。",
+      "coordinates": {
+        "latitude": 62.00801,
+        "longitude": -6.76929
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-02-tinganes.webp",
+      "sourceKeys": [
+        "tourismTinganes",
+        "osmTinganes"
+      ],
+      "mapOffset": {
+        "x": 4,
+        "y": 0
+      }
+    },
+    {
+      "id": "kallur-lighthouse",
+      "name": "カラル灯台",
+      "nameLocal": "Kallur Lighthouse / Kalsoy",
+      "description": "カルソイ島の北端で、小さな白い灯台が草の稜線に立つ。背後の大きな山壁と両側の海が、岬の細さと高さを際立たせる。",
+      "coordinates": {
+        "latitude": 62.37022,
+        "longitude": -6.81159
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-03-kallur-lighthouse.webp",
+      "sourceKeys": [
+        "osmKallur",
+        "kallurPhotoGuide"
+      ]
+    },
+    {
+      "id": "mykines",
+      "name": "ミキネス島",
+      "nameLocal": "Mykines village and nearby accessible puffin habitat",
+      "description": "北大西洋に向いた草の斜面に、夏のパフィンが姿を見せる。島の景色を代表する海鳥だが、観察できる範囲は保護計画と当日の案内に従う。",
+      "coordinates": {
+        "latitude": 62.10425,
+        "longitude": -7.64765
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-04-mykines.webp",
+      "sourceKeys": [
+        "mykinesProtection",
+        "mykinesBirds",
+        "osmMykines"
+      ],
+      "coordinateNote": "ミキネス集落の代表座標。画像の海鳥観察地点・撮影位置を示す座標ではない。"
+    },
+    {
+      "id": "gjogv",
+      "name": "ギョグヴ",
+      "nameLocal": "Gjógv sea gorge / Eysturoy",
+      "description": "集落の脇を深く切り込む、海水の入り江。天然の港となった岩の裂け目と、その上に並ぶ家々を一緒に眺める。",
+      "coordinates": {
+        "latitude": 62.32294,
+        "longitude": -6.93579
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-05-gjogv.webp",
+      "sourceKeys": [
+        "tourismGjogv",
+        "geonamesGjogv"
+      ]
+    },
+    {
+      "id": "traelanipa",
+      "name": "トレーラニーパ／ソルヴァグスヴァテン湖",
+      "nameLocal": "Trælanípa / Lake Leitisvatn, Vágar",
+      "description": "断崖の上の湖と、その下に広がる海。同じ画面に二つの水面が重なり、ソルヴァグスヴァテン湖が海に浮かぶような遠近感を生む。",
+      "coordinates": {
+        "latitude": 62.0209,
+        "longitude": -7.2301
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-06-traelanipa.webp",
+      "sourceKeys": [
+        "tourismTraelanipa",
+        "osmTraelanipa"
+      ]
+    },
+    {
+      "id": "funningur",
+      "name": "フニングル",
+      "nameLocal": "Funningur Church / Funningsfjørður, Eysturoy",
+      "description": "草屋根の黒い木造教会が、水辺に立つフニングル。小さな川の向こうにフィヨルドと緑の斜面が続き、山と海の間に村が収まる。",
+      "coordinates": {
+        "latitude": 62.28682,
+        "longitude": -6.96641
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-07-funningur.webp",
+      "sourceKeys": [
+        "tourismFunningurChurch",
+        "osmFunningurChurch"
+      ]
+    },
+    {
+      "id": "tjornuvik",
+      "name": "チョルヌヴィーク",
+      "nameLocal": "Tjørnuvík Beach / Risin and Kellingin",
+      "description": "暗い砂浜に波が寄せ、湾の先に二つの海食柱リシンとケリンギンが見える。山に囲まれた家並みと浜が、一つの小さな集落をつくる。",
+      "coordinates": {
+        "latitude": 62.28951,
+        "longitude": -7.14917
+      },
+      "image": "assets/images/denmark/faroe-islands/approved/scene-08-tjornuvik.webp",
+      "sourceKeys": [
+        "osmTjornuvik",
+        "tourismSaksunTjornuvik"
+      ]
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF FAROE ISLANDS",
+    "title": "フェロー諸島で食べたいもの",
+    "intro": "羊肉や魚を風にさらして保存する知恵と、海の魚、庭で育つルバーブ。島の食は、身近な素材を生かす工夫から生まれてきた。",
+    "items": [
+      {
+        "id": "skerpikjot",
+        "name": "スケルピショット",
+        "nameLocal": "Skerpikjøt",
+        "text": "風にさらして乾燥・発酵させる羊肉。島の保存食を代表する味で、薄く切り、パンや付け合わせとともに味わう。",
+        "image": "assets/images/denmark/faroe-islands/approved/food-01-skerpikjot.webp",
+        "sourceKey": "municipalFaroeseFood"
+      },
+      {
+        "id": "raestur-fiskur",
+        "name": "レストゥル・フィスクル",
+        "nameLocal": "Ræstur fiskur",
+        "text": "タラなどの魚を乾燥・発酵させた伝統食。独特の香りがあり、ゆでたジャガイモなどと組み合わせる。",
+        "image": "assets/images/denmark/faroe-islands/approved/food-02-raestur-fiskur.webp",
+        "sourceKey": "municipalFaroeseFood"
+      },
+      {
+        "id": "fiskasuppa",
+        "name": "フィスカスッパ",
+        "nameLocal": "Fiskasuppa",
+        "text": "魚の身とジャガイモ、ニンジンなどを煮込むスープ。クリームや牛乳を使う、やさしい味わいの一品。",
+        "image": "assets/images/denmark/faroe-islands/approved/food-03-fiskasuppa.webp",
+        "sourceKey": "municipalFaroeseFood"
+      },
+      {
+        "id": "rhubarb-cake",
+        "name": "ルバーブケーキ",
+        "nameLocal": "Rhubarb cake",
+        "text": "島で育つルバーブを焼き込むケーキ。甘い生地にほのかな酸味が重なり、家庭的な菓子の表情がある。",
+        "image": "assets/images/denmark/faroe-islands/approved/food-04-rhubarb-cake.webp",
+        "sourceKey": "municipalFaroeseFood"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "volcanic-archipelago",
+      "label": "山が連なる島々",
+      "value": "18島",
+      "note": "北大西洋に浮かぶ18の主要な島。細い海峡とフィヨルドが島々を隔て、陸と海が入り組む景色をつくる。",
+      "icon": "globe",
+      "sourceKey": "islandGeography",
+      "interestReason": "一つの大きな島ではなく、海を挟む群島であることが旅の組み方を変える。"
+    },
+    {
+      "topicKey": "indented-coastline",
+      "label": "海岸線の長さ",
+      "value": "約1,100km",
+      "note": "南北約113kmの群島に、長い海岸線が折り重なる。断崖、入り江、浜が、島ごとに異なる海との境界を描く。",
+      "icon": "shore",
+      "sourceKey": "islandGeography",
+      "interestReason": "群島の南北の長さに比べた海岸線の長さが、入り組んだ地形を具体的に伝える。"
+    },
+    {
+      "topicKey": "ocean-proximity",
+      "label": "どこにいても海まで",
+      "value": "5km以内",
+      "note": "諸島のどの地点も海から5km以内にある。山の内側を歩いていても、海がすぐそばにある地理を実感できる。",
+      "icon": "sea",
+      "sourceKey": "islandGeography",
+      "interestReason": "内陸でも海を遠く感じない距離が、この土地ならではの空間の感覚を伝える。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "海へ落ちる滝",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "草屋根の村",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "断崖と灯台",
+      "icon": "landmark",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "title": "夏の海鳥",
+      "icon": "wildlife",
+      "category": "NATURE"
+    },
+    {
+      "title": "フィヨルドの奥行き",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "潮風が育てる食",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "港と漁の暮らし",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "長い夏の夕べ",
+      "icon": "sun",
+      "category": "SEASON"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "harbour-economy",
+      "themeEn": "WORK",
+      "themeJa": "海と働く",
+      "icon": "sea",
+      "title": "港の先に、世界の食卓がつながる",
+      "text": "漁業と養殖業は、フェロー諸島の暮らしと経済を支える重要な仕事。港の船やフィヨルドの養殖施設は、美しい海が働く場所でもあることを伝える。魚介は加工され、島の外の市場へ送り出されている。",
+      "points": [
+        "沖合での漁と、沿岸の養殖がともに営まれる",
+        "港を眺めると、島の日常と外の世界とのつながりが見える"
+      ],
+      "sourceKey": "fishing"
+    },
+    {
+      "topicKey": "hjallur-fermentation",
+      "themeEn": "FOOD",
+      "themeJa": "風を生かす",
+      "icon": "culture",
+      "title": "潮風の通る小屋が、食材を熟成させる",
+      "text": "板の間に隙間のある保存小屋ヒャルルでは、風を通しながら肉や魚を乾かす。冷蔵設備に頼る以前の保存の知恵が、今もレストと呼ばれる発酵の風味を育てる。古い方法が、現代の料理にも引き継がれている。",
+      "points": [
+        "温度や湿度、風が仕上がりを左右する",
+        "保存の技術が、島ならではの味の個性になった"
+      ],
+      "sourceKey": "tourismFood"
+    },
+    {
+      "topicKey": "faroese-written-words",
+      "themeEn": "LANGUAGE",
+      "themeJa": "ことばを知る",
+      "icon": "culture",
+      "title": "小さな言語を、日常で使い続ける",
+      "text": "フェロー語は、古ノルド語に由来する北ゲルマン系の言語。長く話し言葉として受け継がれた後、19世紀に書き言葉の標準が整えられた。店先や地名、放送の中で使われる言葉に、島の文化の継続が見える。",
+      "points": [
+        "1846年にハマスハイムが表記の標準を整えた",
+        "日常に根づくことばが、文化を次の世代へ渡す"
+      ],
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "chain-dance-ballads",
+      "themeEn": "MUSIC",
+      "themeJa": "声をつなぐ",
+      "icon": "culture",
+      "title": "手をつなぎ、歌いながら物語を渡す",
+      "text": "フェローのチェーンダンスでは、人々が手を取り、輪や列をつくって歌う。楽器を使わず、先導する歌い手とともに英雄や王の物語をたどる。踊りは娯楽であるとともに、長い物語を記憶する場でもあった。",
+      "points": [
+        "声と足取りが、集まりのリズムをつくる",
+        "口承のバラッドが、踊りとともに受け継がれてきた"
+      ],
+      "sourceKey": "music"
+    },
+    {
+      "topicKey": "wool-festive-clothing",
+      "themeEn": "CRAFT",
+      "themeJa": "装いを知る",
+      "icon": "culture",
+      "title": "羊毛の仕事が、祝いの日の装いになる",
+      "text": "羊毛は島の衣服を支えてきた素材。編み物や手仕事を生かした民族衣装は、祝いの日に着用される。日々の防寒のための技術と、晴れの場の繊細な仕立てを見比べると、衣服が生活と誇りをつなぐことがわかる。",
+      "points": [
+        "身近な素材を加工する技術が装いの土台",
+        "婚礼や卒業などの節目に、民族衣装が登場する"
+      ],
+      "sourceKey": "dress"
+    },
+    {
+      "topicKey": "nordic-house-materials",
+      "themeEn": "ART",
+      "themeJa": "建築を知る",
+      "icon": "city",
+      "title": "北欧の素材が、一つの文化施設に集まる",
+      "text": "トルスハウンのノルディック・ハウスは、音楽や美術が集まる文化施設。ノルウェーの石、スウェーデンの木、デンマークの鋼とガラスなどが、フェローの草を載せた建物に組み合わされている。北欧との交流が、建物そのものにも表れる。",
+      "points": [
+        "家具や建材にも北欧各地との関係が見える",
+        "草屋根の下で、現代の芸術や催しが開かれる"
+      ],
+      "sourceKey": "nordicHouse"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "sheep-camera-campaign",
+      "categoryEn": "IDEA",
+      "categoryJa": "発想",
+      "icon": "wildlife",
+      "title": "地図づくりを、羊に手伝ってもらった",
+      "text": "観光局は羊の背にカメラを付ける「Sheep View 360」を実施した。車が入れない草地からの眺めを通じて、島を世界へ紹介するという発想だった。",
+      "sourceKey": "sheepView"
+    },
+    {
+      "topicKey": "subsea-art-roundabout",
+      "categoryEn": "DESIGN",
+      "categoryJa": "意匠",
+      "icon": "landmark",
+      "title": "海底の交差点に、光るアートがある",
+      "text": "エストゥロイ島へ向かう海底トンネルには、環状交差点がある。内部の照明と造形は、通り抜けるための土木空間を、印象に残る表現の場に変えている。",
+      "sourceKey": "roundabout"
+    },
+    {
+      "topicKey": "oystercatcher-return",
+      "categoryEn": "BIRD",
+      "categoryJa": "季節",
+      "icon": "wildlife",
+      "title": "春を知らせるのは、赤いくちばしの鳥",
+      "text": "パフィンだけが島の象徴ではない。国鳥ミヤコドリの帰来に重ね、3月12日のグレーカリスメッサには春の訪れを祝う。実際の渡来日は天候などで前後する。",
+      "sourceKey": "nationalBird"
+    },
+    {
+      "topicKey": "finsen-light-research",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "人物",
+      "icon": "sun",
+      "title": "光の研究で知られる受賞者は、この町で生まれた",
+      "text": "1903年のノーベル生理学・医学賞を受けたニールス・フィンセンは、トルスハウン生まれ。光を用いた皮膚疾患の治療研究によって評価された。",
+      "sourceKey": "finsen"
+    },
+    {
+      "topicKey": "kapprour-village-races",
+      "categoryEn": "SPORT",
+      "categoryJa": "競技",
+      "icon": "sea",
+      "title": "夏祭りの熱気は、オールの先にもある",
+      "text": "カップロウルと呼ばれるボート競技は、伝統的なフェローの舟を使う。村の祭りを舞台にレースが行われ、7月末のオーラヴスーカがシーズンの締めくくりになる。",
+      "sourceKey": "rowing"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "海と崖がつくる景色を歩きたい人",
+      "text": "草の稜線や海辺の道で、刻々と変わる雲と光を待ちたい人。"
+    },
+    {
+      "title": "小さな村の暮らしを知りたい人",
+      "text": "木造の家、港、羊のいる斜面から、島の日常に近づきたい人。"
+    },
+    {
+      "title": "予定に余白を持てる人",
+      "text": "天候や船の運航に合わせて行程を入れ替え、滞在をゆっくり楽しめる人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "ミキネス島は、立入範囲を確かめて",
+      "text": "灯台へ続く道は地滑りのため閉鎖中。夏季の村外散策はガイド同行・ハイキング料が必要で、船も事前予約する。灯台への到達を前提にせず、最新の保護計画と運航情報を確認したい。",
+      "sourceKeys": [
+        "mykinesProtection",
+        "hikingFees",
+        "mykinesTransport"
+      ]
+    },
+    {
+      "title": "人気の散策路にも利用条件がある",
+      "text": "トレーラニーパは有料の散策路で、ガイド付き・個人歩行の選択肢がある。カラル灯台の道にも利用料が必要。料金・開放範囲を公式案内で確認し、私有地の柵や表示に従う。",
+      "sourceKey": "hikingFees"
+    },
+    {
+      "title": "晴れ間の先に、霧と強風が来る",
+      "text": "防水・防風の上着と歩きやすい靴を用意し、予報と現地の状況で判断する。崖の縁や鳥の巣穴に近づかず、悪天候の離島移動は無理をしない。",
+      "sourceKeys": [
+        "weather",
+        "mykinesProtection"
+      ]
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ヴォーアル空港を出入り口に、トルスハウンを滞在拠点にする。8景すべてを詰め込まず、船やハイキングを含む日は天候予備日を残したい。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "空港の島と首都、北の村へ",
+        "text": "ヴォーアル島とストレイモイ島を車で巡る。例：ヴォーアル空港 → ガーサダール → トルスハウン → サクスン → チョルヌヴィーク → トルスハウン → ヴォーアル空港。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "エストゥロイ島とカラル灯台を加える",
+        "text": "北部の村々と、フェリー・島内バスで訪れるカルソイ島を組み合わせる。例：ヴォーアル空港 → トレーラニーパ → トルスハウン → フニングル → ギョグヴ → クラクスヴィーク → カルソイ島 → クラクスヴィーク → トルスハウン → ヴォーアル空港。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "離島で過ごす時間と予備日を確保",
+        "text": "ミキネス島は出発港に戻る往復で訪れ、運航に応じて入れ替える。例：ヴォーアル空港 → ガーサダール → ソルヴォーグル → ミキネス島 → ソルヴォーグル → トルスハウン → サクスン → チョルヌヴィーク → ギョグヴ → カルソイ島 → トルスハウン → ヴォーアル空港。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜8月",
+        "months": [
+          6,
+          7,
+          8
+        ],
+        "reason": "日が長く、村歩きやハイキングを組み合わせやすい。夏でも涼しく、霧・雨・風への備えが必要。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#899b70",
+      "text": "日が長くなり、鳥が戻る季節。冷え込みや風が残り、離島航路の運航日は限られる時期もある。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#8a9e62",
+      "text": "日照時間が長く、歩く旅の中心となる季節。夏の平均的な気温は10〜13℃ほどで、山では霧にも注意したい。"
+    },
+    {
+      "months": "9〜10月",
+      "icon": "leaf",
+      "color": "#b17f55",
+      "text": "草地の色が変わり、日が短くなる。ミキネス島の船など夏季と運航条件が変わるため、島ごとに確認する。"
+    },
+    {
+      "months": "11〜2月",
+      "icon": "snow",
+      "color": "#718eac",
+      "text": "日照が短く、強風や荒れた海で移動に影響が出やすい。散策を詰め込まず、町で過ごす時間も組み込みたい。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "飛行機・フェリー・道路と海底トンネル",
+    "text": "空の玄関口はヴォーアル空港。主要島は橋や海底トンネルで結ばれ、車・路線バスで移動できる。カルソイ島やミキネス島などへは船を組み合わせる。トンネルの通行料と船の予約、運休情報を確認したい。",
+    "sourceKeys": [
+      "internationalAir",
+      "publicTransport",
+      "ferryBooking",
+      "tunnels"
+    ]
+  },
+  "nextRoutesIntro": "北大西洋の航路で、次の土地へ。運航時期と日程を確かめて組み合わせたい。",
+  "nextRoutes": [
+    {
+      "countryEn": "ICELAND",
+      "countryJa": "アイスランド",
+      "href": "countries/iceland/",
+      "flag": "🇮🇸",
+      "path": "Tórshavn → Seyðisfjörður",
+      "description": "トルスハウンからノローナ号で東部のセイジスフィヨルズルへ。北大西洋を渡り、火山と氷河の島へ旅をつなぐ。",
+      "travelerRoute": true,
+      "status": "SEASONAL",
+      "statusNote": "季節・天候により運航日が異なる。Smyril Lineの現行時刻表を確認。",
+      "sourceKey": "internationalFerry"
+    },
+    {
+      "countryEn": "DENMARK",
+      "countryJa": "デンマーク",
+      "href": "countries/denmark/",
+      "flag": "🇩🇰",
+      "path": "Tórshavn → Hirtshals",
+      "description": "トルスハウンからノローナ号でユトランド半島北端のヒアツハルスへ。フェロー諸島からデンマーク本土へ、海路で旅を続ける。",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "季節・天候により運航日が異なる。Smyril Lineの現行時刻表を確認。",
+      "sourceKey": "internationalSea"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "入り江と山、沿岸に続く暮らしを、より大きな地形の中でたどる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧",
+      "reason": "スコットランドの島々を含め、大西洋沿いの断崖や草地の風景をたどる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "アイルランド",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "reason": "大西洋沿いの断崖と小さな町で、海とともにある暮らしに触れる。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "capital": {
+    "nameJa": "トルスハウン",
+    "labelJa": "首都",
+    "coordinates": {
+      "latitude": 62.0079,
+      "longitude": -6.7717
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 40
+    },
+    "sourceKey": "islandFacts",
+    "coordinateSourceKey": "osmTinganes"
+  },
+  "sourcesVerifiedAt": "2026-11-07",
+  "sourceDates": {
+    "population": "2026-09-01",
+    "governmentHistory": "2005-06-24"
+  },
+  "sourceNotes": {
+    "population": "Statistics Faroe Islands, 55,640 residents on 2026-09-01",
+    "area": "1,399 km²; government facts page has no reference year; checked 2026-11-07",
+    "japanAreaComparison": "Japan approximately 378,000 km² (Statistics Bureau); 1399 / 378000 * 100 = 0.3701%, rounded 0.4%",
+    "geography": "18 principal islands; coastline approx. 1,100 km; no point more than 5 km from sea; undated official reference checked 2026-11-07",
+    "history": "1948-03-23 Home Rule Act; 2005-06-24 Assumption Act; current constitutional summary checked 2026-11-07",
+    "religion": "Undated qualitative government description, checked 2026-11-07; no percentage used",
+    "travelConditions": "2026-11-07 official Mykines protection plan, hiking fees and ferry pages; conditions may change",
+    "weather": "Official seasonal climate guidance checked 2026-11-07; not a weather forecast",
+    "nextRoutes": "2026-11-07; ferry operator specifies Iceland season April to mid-November; check current timetable"
+  },
+  "sources": {
+    "tourismMulafossur": "https://visitvagar.fo/en/see-do0/culture-attractions/viewpoints/mulafossur",
+    "mapMulafossur": "https://mapcarta.com/N5376090599",
+    "osmSaksun": "https://mapcarta.com/35989066",
+    "tourismSaksun": "https://visitfaroeislands.com/en/whatson/hiking/hikeplain/saksun-tjornuvik",
+    "tourismTinganes": "https://visitfaroeislands.com/en/whatson/places/place/tinganes",
+    "osmTinganes": "https://mapcarta.com/28708846",
+    "osmKallur": "https://mapcarta.com/35567720",
+    "kallurPhotoGuide": "https://aerialmedia.com/resources/faroe-islands-photography-guide-fjords-sea-cliffs/",
+    "osmMykines": "https://mapcarta.com/17578974",
+    "mykinesProtection": "https://visitvagar.fo/en/visit-mykines/plan-your-stay6/mykines-protection-plan",
+    "mykinesBirds": "https://visitvagar.fo/en/visit-mykines/see-do8/puffins-and-birdwatching",
+    "tourismGjogv": "https://visitfaroeislands.com/en/whatson/places/place/gjogv0?lang=en",
+    "geonamesGjogv": "https://www.geonames.org/2621415",
+    "tourismTraelanipa": "https://visitfaroeislands.com/en/whatson/places/place/tralanipan1?lang=en",
+    "osmTraelanipa": "https://mapcarta.com/N302101403",
+    "tourismFunningurChurch": "https://visitrunavik.fo/en/see-do/culture-and-attractions/churches/church-of-funningur",
+    "osmFunningurChurch": "https://mapcarta.com/W44700698",
+    "osmTjornuvik": "https://mapcarta.com/17568906",
+    "tourismSaksunTjornuvik": "https://visitfaroeislands.com/en/whatson/hiking/hikeplain/saksun-tjornuvik",
+    "tourismFood": "https://visitfaroeislands.com/en/about-vfi/people-society/faroese-food",
+    "municipalFaroeseFood": "https://tvk.fo/en/living/language-culture/faroese-food/",
+    "population": "https://hagstova.fo/en/population/population/population",
+    "governmentHistory": "https://www.government.fo/en/foreign-relations/constitutional-status/",
+    "weather": "https://visitfaroeislands.com/en/about-vfi/nature/weather0",
+    "religion": "https://www.faroeislands.fo/people-society/religion/",
+    "islandFacts": "https://www.faroeislands.fo/the-big-picture/facts-and-figures/",
+    "islandGeography": "https://visitfaroeislands.com/en/press-professionals/about3/the-faroe-islands/quick-facts0",
+    "language": "https://visitfaroeislands.com/en/about-vfi/people-society/faroese-language",
+    "money": "https://visitfaroeislands.com/en/plan-your-stay/get-ready-for-your-trip/general-facts/money",
+    "music": "https://visitfaroeislands.com/en/see-do/cultural-experiences/art-and-architecture/music",
+    "fishing": "https://www.faroeislands.fo/economy-business/a-fishing-nation-with-proud-traditions/",
+    "dress": "https://www.faroeislands.fo/the-big-picture/national-symbols/national-dress/",
+    "nordicHouse": "https://www.nlh.fo/en/rooms/the-lobby",
+    "sheepView": "https://visitfaroeislands.com/en/about-vfi/marketing-development-campaigns/sheepview360",
+    "roundabout": "https://visitfaroeislands.com/en/plan-your-stay/getting-around/world-first-under-sea-roundabout",
+    "nationalBird": "https://www.faroeislands.fo/the-big-picture/national-symbols/national-bird/",
+    "finsen": "https://www.nobelprize.org/prizes/medicine/1903/finsen/facts/",
+    "rowing": "https://visitfaroeislands.com/en/about-vfi/history-governance-and-economy/quick-facts/national-symbols",
+    "hikingFees": "https://visitfaroeislands.com/en/see-do/activities/hiking/hiking-fees",
+    "mykinesTransport": "https://visitvagar.fo/en/visit-mykines/plan-your-stay6/transport-to-mykines",
+    "publicTransport": "https://www.ssl.fo/en/timetable/travel-map",
+    "ferryBooking": "https://www.ssl.fo/en/book-ticket/booking-system",
+    "internationalFerry": "https://www.smyrilline.com/iceland/",
+    "internationalSea": "https://visitfaroeislands.com/en/plan-your-stay/getting-here/by-sea",
+    "internationalAir": "https://www.atlanticairways.com/en/",
+    "tunnels": "https://www.tunnil.fo/english",
+    "japanArea": "https://www.stat.go.jp/data/nihon/01.html",
+    "coastGeometry": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FRO/ADM0/geoBoundaries-FRO-ADM0.geojson",
+    "lakeGeometry": "https://www.openstreetmap.org/way/45676892",
+    "osmCopyright": "https://www.openstreetmap.org/copyright",
+    "officialIslandMaps": "https://visitfaroeislands.com/en/plan-your-stay/get-ready-for-your-trip/maps-of-the-faroe-islands"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "野生に会う",
+    "暮らしに出会う"
+  ],
+  "contentQaVersion": 6
+}
