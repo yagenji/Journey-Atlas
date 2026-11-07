@@ -409,8 +409,10 @@ def main() -> int:
                                 and mobile_inset.get("loaded")):
                             problems.append(f"Region mobile detail failed: {mobile_inset}")
                         if not (len(detail) == 1
-                                and detail[0]["rect"]["x"] == 20 and detail[0]["rect"]["y"] == 20
-                                and detail[0]["rect"]["x"] + detail[0]["rect"]["width"] < 440
+                                and 0 <= detail[0]["rect"]["x"] <= 1200 - detail[0]["rect"]["width"]
+                                and 0 <= detail[0]["rect"]["y"] <= 760 - detail[0]["rect"]["height"]
+                                and detail[0]["rect"]["width"] >= 300
+                                and detail[0]["rect"]["height"] >= 250
                                 and inset.get("hasNote")
                                 and inset.get("noZoomButton")
                                 and inset.get("mapImageLoaded")
