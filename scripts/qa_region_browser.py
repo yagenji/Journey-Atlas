@@ -423,7 +423,9 @@ def main() -> int:
                         str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
-                    expected_images = 14 + bool((region.get("map") or {}).get("regions")) + svg_flag_count
+                    expected_images = (14 + bool((region.get("map") or {}).get("regions"))
+                                       + len((region.get("map") or {}).get("detailMaps") or [])
+                                       + svg_flag_count)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
