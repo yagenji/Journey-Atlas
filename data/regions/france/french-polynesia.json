@@ -96,8 +96,32 @@
       "east": -132.5,
       "north": -7.3
     },
-    "source": "Section Cadastre-Topographie, Direction des affaires foncières, Polynésie française, GEO PF island/atoll extents (2022), Creative Commons Attribution; https://www.data.gouv.fr/datasets/geographie-administrative-de-la-polynesie-francaise/ . WGS84 geometry simplified for display. All 5 island groups on one geographic canvas; no invented coastlines. Not for navigation. Reviewed 2026-11-07.",
-    "insetNote": "5つの島嶼群の位置関係を実座標で表示。小さな島は位置記号で示しています。"
+    "source": "Section Cadastre-Topographie, Direction des affaires foncières, Polynésie française, GEO PF island/atoll extents (2022), Creative Commons Attribution; https://www.data.gouv.fr/datasets/geographie-administrative-de-la-polynesie-francaise/ . WGS84 geometry simplified for display. All 5 island groups on one geographic canvas; no invented coastlines. Not for navigation. Reviewed 2026-11-07. Society Islands inset: the same GEO PF geometry reused at a uniform 2.6027x zoom; no new vertices. 2026-11-07.",
+    "insetNote": "※ 左上はソシエテ諸島（タヒチ・モーレア・ライアテア・ボラボラ）を、同じ地図データで拡大した別枠表示です。小さな島は位置記号で示しています。",
+    "regions": [
+      {
+        "id": "society-islands",
+        "label": "ソシエテ諸島",
+        "svgId": "fp-society-detail",
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 380,
+          "height": 250
+        },
+        "sourceRect": {
+          "x": 228,
+          "y": 372,
+          "width": 146,
+          "height": 96
+        },
+        "sceneIds": [
+          "moorea-opunohu",
+          "tahiti-pointe-venus",
+          "raiatea-taputapuatea"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -110,10 +134,6 @@
         "longitude": -149.82682
       },
       "image": "assets/images/france/french-polynesia/approved/scene-01-moorea-opunohu.webp",
-      "mapOffset": {
-        "x": -1.3,
-        "y": 1.2
-      },
       "sourceKey": "moorea"
     },
     {
@@ -126,10 +146,6 @@
         "longitude": -149.49428
       },
       "image": "assets/images/france/french-polynesia/approved/scene-02-tahiti-pointe-venus.webp",
-      "mapOffset": {
-        "x": 1.3,
-        "y": -1.2
-      },
       "sourceKey": "pointeVenus"
     },
     {
