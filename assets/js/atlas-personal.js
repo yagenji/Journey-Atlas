@@ -193,6 +193,15 @@
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
   mine.append(summary, groups, savedScenes, tools, feedback);
+  // Flags for UK Regions follow each Region page; Northern Ireland has no official
+  // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
+  const REGION_FLAGS = {
+    'unitedkingdom:england': {flagAsset: 'assets/icons/region-flags/england-waved.svg'},
+    'unitedkingdom:scotland': {flagAsset: 'assets/icons/region-flags/scotland-waved.svg'},
+    'unitedkingdom:wales': {flagAsset: 'assets/icons/region-flags/wales-waved.svg'},
+    'unitedkingdom:northern-ireland': {flag: '🇬🇧'}
+  };
+  const regionFlag = item => ({flag: '', ...REGION_FLAGS[item.parentSlug + ':' + item.slug]});
   const visited = country => getStored(VISITED_PREFIX + country.slug) === 'true';
   const wished = country => getStored(WISH_PREFIX + country.slug) === 'true';
   function sectionFor(title, items, empty, groupByRegion = false) {
@@ -201,7 +210,20 @@
     if (items.length) {
       const appendLinks = (container, countries) => {
         const list = make('div', 'ja-mine-links');
-        countries.forEach(country => list.append(linkTo(country.href || countryHref(country.slug), [country.flag, country.nameJa].filter(Boolean).join(' '))));
+        countries.forEach(country => {
+          const link = linkTo(country.href || countryHref(country.slug), [country.flag, country.nameJa].filter(Boolean).join(' '));
+          if (country.flagAsset) {
+            // Subdivision flag emoji do not render everywhere; use the same images as the Region pages.
+            const flag = make('img', 'ja-flag-img');
+            flag.src = country.flagAsset;
+            flag.alt = '';
+            flag.width = 18;
+            flag.height = 18;
+            flag.decoding = 'async';
+            link.prepend(flag, ' ');
+          }
+          list.append(link);
+        });
         container.append(list);
       };
       if (groupByRegion && regionNames.length) {
@@ -258,11 +280,11 @@
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
     if (detailSeen.length || regionVisits.length) seenColumn.append(
-      sectionFor('行った詳細地域', [...detailSeen,...regionVisits.map(w => ({...w,flag:''}))], '')
+      sectionFor('行った詳細地域', [...detailSeen,...regionVisits.map(w => ({...w,...regionFlag(w)}))], '')
     );
     wantColumn.append(sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。', true));
     if (detailWant.length || regionWishes.length) wantColumn.append(
-      sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,flag:''}))], '')
+      sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,...regionFlag(w)}))], '')
     );
     groups.replaceChildren(seenColumn, wantColumn);
     savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
