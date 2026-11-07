@@ -23,7 +23,7 @@
   const MINW = 4.5;
   const MAP_MIN_X = -80;
   const MAP_MAX_X = 1120;
-  const MAP = 'assets/maps/world-states.svg?v=20261003-1';
+  const MAP = 'assets/maps/world-states.svg?v=20261107-natural-earth-1';
   const COLORS = {
     asia: '#a9bea4', europe: '#d2b98a', africa: '#d19a75',
     'north-america': '#abc5c9', 'south-america': '#aabb83',
@@ -333,12 +333,11 @@
     if (restoring) return;
     const url = new URL(location.href);
     const set = (k, v) => v ? url.searchParams.set(k, v) : url.searchParams.delete(k);
-    set('map', mine ? 'mine' : (activeR === 'world' ? '' : activeR));
-    set('sub', mine ? '' : (activeS || ''));
+    set('map', activeR === 'world' ? '' : activeR);
+    set('sub', activeS || '');
     if (url.href !== location.href) history.replaceState(history.state, '', url);
   }
   function setRegion(id, motion = true) {
-    if (mine) leaveMine();
     activeR = id; activeS = null;
     root.dataset.activeRegion = id;
     delete root.dataset.activeSubregion;
@@ -366,123 +365,6 @@
     remember();
   }
 
-  // ---------- わたしの地図: visited / wished countries, stored in this browser only ----------
-  let mine = false, mineBtn = null, mineQuery = '', mineVisitedOnly = false;
-  const VKEY = slug => `journey-atlas:visited:${slug}`;
-  const WKEY = slug => `journey-atlas:wish:${slug}`;
-  const flag = key => { try { return localStorage.getItem(key) === 'true'; } catch { return false; } };
-  const isVisited = c => flag(VKEY(c.slug));
-  const isWished = c => flag(WKEY(c.slug));
-  function paintMine() {
-    groups.forEach((g, iso) => {
-      const c = byIso.get(iso);
-      const v = mine && c && isVisited(c), w = mine && c && !v && isWished(c);
-      g.classList.toggle('is-visited', !!v); g.classList.toggle('is-wished', !!w);
-      if (c) g.setAttribute('aria-label', mine ? `${c.nameJa}：${v ? '行った国（選ぶと外す）' : '行った国にする'}` : (c.href ? `${c.nameJa}のページを開く` : `${c.nameJa}を選ぶ`));
-      wrapGroups.get(iso)?.classList.toggle('is-visited', !!v);
-      wrapGroups.get(iso)?.classList.toggle('is-wished', !!w);
-    });
-  }
-  function toggleVisited(c) {
-    const on = !isVisited(c);
-    try { on ? localStorage.setItem(VKEY(c.slug), 'true') : localStorage.removeItem(VKEY(c.slug)); }
-    catch {
-      minePanel();
-      status.textContent = '記録を保存できませんでした。ブラウザの保存設定をご確認ください。';
-      return;
-    }
-    paintMine(); minePanel();
-    status.textContent = on ? `${c.nameJa}を「行った国」にしました` : `${c.nameJa}の印を外しました`;
-  }
-  const mineSearchText = value => String(value || '').normalize('NFKC').toLowerCase().replace(/macao/g, 'macau');
-  function renderMineCountries() {
-    const rows = list.querySelector('.map-mine__countries');
-    if (!rows) return;
-    const activeSlug = rows.contains(document.activeElement) ? document.activeElement.dataset.visitedSlug : null;
-    const scrollTop = rows.scrollTop;
-    const query = mineSearchText(mineQuery).trim();
-    const countries = dest.filter(c => (!mineVisitedOnly || isVisited(c)) && mineSearchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(query))
-      .sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
-    const grouped = new Map(regions.map(r => [r.id, []]));
-    grouped.set('other', []);
-    countries.forEach(c => {
-      const id = regIso.get(c.iso2) || (['hong-kong', 'macau'].includes(c.slug) ? 'asia' : 'other');
-      (grouped.get(id) || grouped.get('other')).push(c);
-    });
-    const item = c => `<div class="map-mine__item"><label class="map-mine__choice"><input type="checkbox" data-visited-slug="${c.slug}" aria-label="${c.nameJa}を行った国・地域にする"${isVisited(c) ? ' checked' : ''}><span class="map-country-nav__flag" aria-hidden="true">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></label>${c.href ? `<a class="map-mine__country-link" href="${c.href}" aria-label="${c.nameJa}のページを開く">↗</a>` : ''}</div>`;
-    rows.innerHTML = [...regions.map(r => ({ id: r.id, label: r.label, items: grouped.get(r.id) })), { id: 'other', label: 'その他', items: grouped.get('other') }]
-      .filter(group => group.items.length)
-      .map(group => `<section class="map-mine__region" aria-label="${group.label}"><h3 class="map-mine__region-heading"><span>${group.label}</span><span class="map-mine__region-count">${group.items.filter(isVisited).length} / ${group.items.length}</span></h3>${group.items.map(item).join('')}</section>`).join('');
-    list.querySelector('.map-mine__result-count').textContent = `${countries.length}件（詳細地域を含む）`;
-    const empty = list.querySelector('.map-mine__no-results');
-    empty.hidden = countries.length > 0;
-    empty.textContent = mineVisitedOnly && !query ? '行った国・地域はまだありません。「行った国・地域だけ表示」を外して追加できます。' : '該当する国・地域がありません。';
-    rows.scrollTop = scrollTop;
-    if (activeSlug) (rows.querySelector(`[data-visited-slug="${activeSlug}"]`) || list.querySelector('[data-mine-filter]')).focus({ preventScroll: true });
-  }
-  function minePanel() {
-    const visited = dest.filter(isVisited).sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
-    const wished = dest.filter(c => !isVisited(c) && isWished(c)).sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', { sensitivity: 'base' }));
-    kicker.textContent = 'MY ATLAS';
-    title.textContent = 'わたしの地図';
-    copy.textContent = '国名で検索し、一覧にチェックして「行った国・地域」を記録できます。地図からも選べます。記録はこのブラウザにだけ保存されます。';
-    count.textContent = `${visited.filter(c=>!CHILD_SLUGS.has(c.slug)).length} / ${parentDestinations().length} VISITED`;
-    const item = c => `<a class="map-country-nav__item" href="${c.href || '#'}"><span class="map-country-nav__flag">${c.flag}</span><span class="map-country-nav__names"><strong>${c.nameJa}</strong><small>${c.nameEn}</small></span></a>`;
-    const block = (label, note, rows, empty) => `<div class="map-country-nav__guide"><strong>${label}</strong><span>${note}</span></div>${rows.length ? `<div class="map-country-nav__list">${rows.map(item).join('')}</div>` : `<p class="map-mine__empty">${empty}</p>`}`;
-    if (!list.querySelector('.map-mine__countries')) {
-      list.className = 'map-country-nav map-mine';
-      list.innerHTML = `<div class="map-country-nav__wrap"><label class="map-mine__search"><span>行った国・地域を選ぶ</span><input type="search" aria-label="行った国・地域を検索" placeholder="国・地域名で検索（例：マカオ）" autocomplete="off"></label><label class="map-mine__filter"><input type="checkbox" data-mine-filter>行った国・地域だけ表示</label><p class="map-mine__result-count" aria-live="polite"></p><div class="map-mine__countries" role="group" aria-label="行った国・地域の選択"></div><p class="map-mine__no-results map-mine__empty" hidden></p><div class="map-mine__wishes"></div><button type="button" class="map-mine__exit">地図に戻る</button></div>`;
-      const search = list.querySelector('input[type="search"]');
-      search.value = mineQuery;
-      search.oninput = () => { mineQuery = search.value; list.querySelector('.map-mine__countries').scrollTop = 0; renderMineCountries(); };
-      const filter = list.querySelector('[data-mine-filter]');
-      filter.checked = mineVisitedOnly;
-      filter.onchange = () => { mineVisitedOnly = filter.checked; list.querySelector('.map-mine__countries').scrollTop = 0; renderMineCountries(); };
-      list.querySelector('.map-mine__countries').onchange = event => {
-        const c = dest.find(c => c.slug === event.target.dataset.visitedSlug);
-        if (c) toggleVisited(c);
-      };
-      list.querySelector('.map-mine__exit').onclick = () => setRegion('world');
-    }
-    renderMineCountries();
-    list.querySelector('.map-mine__wishes').innerHTML = block('行ってみたい国', `${wished.length}か国`, wished, '国ページの「行ってみたい」で追加できます。');
-    renderSub(null);
-  }
-  const HINT_MINE = TOUCH ? '国をタップで「行った国」に印 ・ 2本指で移動・拡大' : '国をクリックで「行った国」に印 ・ ホイールで拡大縮小 ・ ドラッグで移動';
-  let hintDefault = '';
-  function setHint(on) {
-    const h = wrap.querySelector('.map-hint');
-    if (!h) return;
-    if (!hintDefault) hintDefault = h.textContent;
-    h.textContent = on ? HINT_MINE : hintDefault;
-  }
-  function enterMine() {
-    mine = true; root.classList.add('is-mine'); setHint(true);
-    mineBtn?.setAttribute('aria-pressed', 'true');
-    activeR = 'world'; activeS = null; root.dataset.activeRegion = 'world'; delete root.dataset.activeSubregion;
-    clear(); setTabs(''); focus(); animate(WORLD, 300);
-    paintMine(); minePanel(); remember();
-  }
-  function leaveMine() {
-    mine = false; root.classList.remove('is-mine'); setHint(false);
-    mineBtn?.setAttribute('aria-pressed', 'false');
-    paintMine();
-  }
-  function mineControl() {
-    mineBtn = document.createElement('button');
-    mineBtn.type = 'button';
-    mineBtn.className = 'map-mine-toggle';
-    mineBtn.setAttribute('aria-pressed', 'false');
-    mineBtn.textContent = 'わたしの地図';
-    mineBtn.onclick = () => mine ? setRegion('world') : enterMine();
-    bar.append(mineBtn);
-    status.setAttribute('role', 'status');
-  }
-  window.addEventListener('storage', event => {
-    if (mine && (event.key === null || event.key.startsWith('journey-atlas:visited:') || event.key.startsWith('journey-atlas:wish:'))) {
-      paintMine(); minePanel();
-    }
-  });
   function select(iso) {
     const c = byIso.get(iso);
     if (!c) return;
@@ -537,7 +419,6 @@
     };
   }
   function open(c, e) {
-    if (mine) { toggleVisited(c); return; }
     if (!(c.atlasPublished && c.href)) { select(c.iso2); return; }
     if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) {
       window.open(c.href, '_blank', 'noopener');
@@ -785,7 +666,7 @@
   tabs.forEach(b => b.onclick = () => {
     if (!svg) {
       pendingRegion = b.dataset.mapTab;
-      loadWorldMap();
+      loadWorldMap().catch(() => {});
       return;
     }
     setRegion(b.dataset.mapTab);
@@ -795,13 +676,12 @@
 
   // World geometry is 1.3 MB: load it near the map, not during the top Hero.
   // Reuse the destination registry already fetched by top.js to avoid a second parse.
-  let mapLoadStarted = false;
+  let mapLoad = null;
   function loadWorldMap() {
-    if (mapLoadStarted) return;
-    mapLoadStarted = true;
+    if (mapLoad) return mapLoad;
     const registry = window.JourneyAtlasRegistryPromise ||
       fetch('data/atlas-destinations.json').then(r => r.json());
-    Promise.all([
+    mapLoad = Promise.all([
       fetch(MAP).then(r => { if (!r.ok) throw new Error('World map unavailable'); return r.text(); }),
       fetch('data/region-taxonomy.json?v=20260823-0030').then(r => r.json()),
       registry
@@ -809,11 +689,10 @@
     regions = rd.regions || [];
     dest = core.destinations || [];
     byIso = new Map(dest.map(c => [c.iso2, c]));
-    lookup(); build(m); mineControl();
+    lookup(); build(m); status.setAttribute('role', 'status');
     const params = new URLSearchParams(location.search);
     const want = params.get('map'), sub = params.get('sub');
-    if (want === 'mine') enterMine();
-    else if (sub && subs.has(sub)) { setRegion(subs.get(sub).regionId, false); setSub(sub); }
+    if (sub && subs.has(sub)) { setRegion(subs.get(sub).regionId, false); setSub(sub); }
     else if (want && region(want)) setRegion(want, false);
     else setRegion('world', false);
     restoring = false;
@@ -825,23 +704,33 @@
     }).catch(e => {
       console.error('[JOURNEY ATLAS map]', e);
       copy.textContent = '地図データを読み込めませんでした。';
+      throw e;
     });
+    return mapLoad;
   }
+  // わたしの地図 reuses this geometry instead of parsing the world map twice.
+  window.JourneyAtlasWorldMap = {
+    load: () => loadWorldMap().then(() => ({
+      land: svg.querySelector('.country-map-layer'),
+      countries: dest, byIso, regions,
+      isDetail: country => CHILD_SLUGS.has(country.slug)
+    }))
+  };
 
   const mapParams = new URLSearchParams(location.search);
   const mapDirect = location.hash === '#map' || mapParams.has('map') || mapParams.has('sub');
-  if (!('IntersectionObserver' in window) || mapDirect) loadWorldMap();
+  if (!('IntersectionObserver' in window) || mapDirect) loadWorldMap().catch(() => {});
   else {
     const mapObserver = new IntersectionObserver((entries) => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       mapObserver.disconnect();
-      loadWorldMap();
+      loadWorldMap().catch(() => {});
     }, { rootMargin: '300px 0px' });
     mapObserver.observe(root);
     // Keyboard and touch users can request the map before the observer fires.
-    ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, loadWorldMap, { once: true, passive: true }));
+    ['pointerdown', 'focusin'].forEach(type => root.addEventListener(type, () => loadWorldMap().catch(() => {}), { once: true, passive: true }));
     window.addEventListener('hashchange', () => {
-      if (location.hash === '#map') loadWorldMap();
+      if (location.hash === '#map') loadWorldMap().catch(() => {});
     });
   }
 })();

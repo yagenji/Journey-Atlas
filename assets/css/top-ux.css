@@ -184,26 +184,8 @@
 .theme-results__more[hidden]{display:none}
 
 /* ---------- 11. わたしの地図 ---------- */
-.map-mine-toggle{
-  margin-left:auto;padding:8px 14px;border:1px solid rgba(25,62,87,.22);border-radius:999px;
-  background:#fffdfa;color:#234866;font:600 12.5px/1.2 var(--jp,sans-serif);cursor:pointer;white-space:nowrap;
-}
-.map-mine-toggle::before{content:'✓';display:inline-block;margin-right:6px;font-weight:700}
-.map-mine-toggle[aria-pressed="true"]{background:#234866;border-color:#234866;color:#fff}
-.map-mine-toggle:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
-@media(max-width:760px){.map-mine-toggle{flex:0 0 auto;margin-left:0}}
-/* In my-map mode the land is neutral; visited = navy, wished = pale navy. */
-#map.is-mine .ja-country.is-destination path,#map.is-mine .ja-country.is-destination polygon,#map.is-mine .ja-country.is-destination polyline,#map.is-mine .ja-country.is-destination circle,#map.is-mine .ja-country.is-destination ellipse,#map.is-mine .ja-country.is-destination rect{fill:#dde3e3!important}
-#map.is-mine .ja-country.is-wished path,#map.is-mine .ja-country.is-wished polygon,#map.is-mine .ja-country.is-wished polyline,#map.is-mine .ja-country.is-wished circle,#map.is-mine .ja-country.is-wished ellipse,#map.is-mine .ja-country.is-wished rect{fill:#a9bccb!important}
-#map.is-mine .ja-country.is-visited path,#map.is-mine .ja-country.is-visited polygon,#map.is-mine .ja-country.is-visited polyline,#map.is-mine .ja-country.is-visited circle,#map.is-mine .ja-country.is-visited ellipse,#map.is-mine .ja-country.is-visited rect{fill:#234866!important}
-#map.is-mine .ja-country.is-destination:hover path,#map.is-mine .ja-country.is-hovered path,#map.is-mine .ja-country:focus path{fill:#e7c585!important}
-.map-mine .map-country-nav__guide{margin-top:14px}
-.map-mine .map-country-nav__guide:first-child{margin-top:0}
-.map-mine .map-country-nav__list{max-height:190px}
 .map-mine__empty{margin:6px 0 4px;color:#71808a;font-size:12px;line-height:1.6}
-.map-mine__exit{margin-top:14px;min-height:40px;padding:0 16px;border:1px solid rgba(23,59,93,.18);border-radius:999px;background:#fff;color:#173b5d;font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer}
-.map-mine a.map-country-nav__item{color:inherit;text-decoration:none}
-.map-mine__search{display:grid;gap:8px;margin-top:16px;color:#29465e;font:600 12.5px/1.5 var(--jp,sans-serif)}
+.map-mine__search{display:grid;gap:8px;color:#29465e;font:600 12.5px/1.5 var(--jp,sans-serif)}
 .map-mine__search input{width:100%;min-width:0;min-height:44px;padding:9px 10px;border:1px solid rgba(23,59,93,.2);border-radius:8px;background:#fff;color:#173b5d;font:400 13px/1.5 var(--jp,sans-serif)}
 .map-mine__filter{display:flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;color:#405466;font:500 12px/1.5 var(--jp,sans-serif);cursor:pointer}
 .map-mine input[type="checkbox"]{flex:0 0 auto;width:18px;height:18px;margin:0;accent-color:#234866;cursor:pointer}
@@ -470,6 +452,50 @@
   #scenery .gallery-heading { display:block; }
   #scenery .gallery-actions { margin-top:14px;justify-content:flex-start;flex-wrap:wrap;align-self:auto; }
 }
+
+/* わたしの地図 inside マイアトラス. */
+.ja-mymap { display:grid; grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr); gap:12px 20px; margin-bottom:24px; }
+.ja-mymap__title { grid-column:1/-1; margin:0; font-size:17px; font-weight:600; }
+.ja-mymap__column { min-width:0; }
+.ja-mymap__modes { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.ja-mymap__mode { position:relative; cursor:pointer; }
+.ja-mymap__mode input { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
+.ja-mymap__mode span { display:inline-flex; align-items:center; min-height:38px; padding:0 13px; border:1px solid rgba(25,62,87,.22); border-radius:999px; background:#fffdfa; color:#234866; font-size:12.5px; font-weight:600; line-height:1.2; }
+.ja-mymap__mode input:checked+span { border-color:#234866; background:#234866; color:#fff; }
+.ja-mymap__mode input:checked+span::before { content:'✓'; margin-right:5px; }
+.ja-mymap__mode input:focus-visible+span { outline:2px solid #173b5d; outline-offset:2px; }
+.ja-mymap__stage { position:relative; overflow:hidden; border:1px solid #e0dfd7; border-radius:12px; background:#edf6f3; }
+.ja-mymap__stage:empty { aspect-ratio:1000/507; }
+.ja-mymap__map { display:block; width:100%; height:auto; aspect-ratio:1000/507.209; cursor:grab; }
+.ja-mymap__ocean { fill:#edf6f3; }
+.ja-mymap__map .ja-country path,.ja-mymap__map .ja-country circle { fill:#dde3e3; stroke:#fffaf1; stroke-width:.5; vector-effect:non-scaling-stroke; }
+.ja-mymap__map .ja-country.is-outside path,.ja-mymap__map .ja-country.is-outside circle { fill:#e6ebe7; }
+.ja-mymap__map .ja-country.is-wished path,.ja-mymap__map .ja-country.is-wished circle { fill:#c9824f; }
+.ja-mymap__map .ja-country.is-visited path,.ja-mymap__map .ja-country.is-visited circle { fill:#234866; }
+.ja-mymap__map .is-destination { cursor:pointer; }
+.ja-mymap__map .is-destination:hover path,.ja-mymap__map .is-destination:hover circle { fill:#e7c585; }
+.ja-mymap__zoom { position:absolute; left:8px; bottom:8px; display:flex; overflow:hidden; border:1px solid rgba(34,66,82,.18); border-radius:10px; background:#fffdf8; }
+.ja-mymap__zoom button { width:36px; height:34px; padding:0; border:0; border-right:1px solid #29465e1c; background:transparent; color:#29465e; font:600 15px/1 sans-serif; cursor:pointer; }
+.ja-mymap__zoom button:last-child { border-right:0; }
+.ja-mymap__hint { margin:8px 0 0; font-size:12px; line-height:1.6; color:#626b68; }
+.ja-mymap__status { min-height:20px; margin:2px 0 6px; font-size:12px; line-height:1.6; color:#234866; }
+.ja-mymap__picker { min-width:0; }
+.ja-mymap__picker .map-mine__countries { max-height:300px; }
+.ja-mymap :focus-visible { outline:2px solid #315c79; outline-offset:2px; }
+@media(max-width:760px) { .ja-mymap { grid-template-columns:minmax(0,1fr); } .ja-mymap__share { width:100%; } .ja-mymap__zoom button { width:32px; height:30px; } }
+
+/* わたしの地図 image dialog. */
+.ja-share { width:min(860px,calc(100vw - 32px)); max-height:calc(100dvh - 32px); padding:22px; border:1px solid #e0dfd7; border-radius:14px; background:#faf9f4; color:#173b5d; }
+.ja-share::backdrop { background:rgba(9,42,75,.45); }
+.ja-share__head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.ja-share__head h2 { margin:0; min-width:0; font:500 clamp(16px,4.4vw,19px)/1.5 "Shippori Mincho",serif; }
+.ja-share__close { flex:0 0 auto; min-height:40px; white-space:nowrap; padding:0 14px; border:1px solid #96a9ac; border-radius:99px; background:#fff; color:#173a56; font-size:13px; font-weight:600; cursor:pointer; }
+.ja-share__preview { display:block; width:100%; height:auto; border:1px solid #e0dfd7; border-radius:8px; }
+.ja-share__preview[hidden],.ja-share .ja-tool-button[hidden] { display:none; }
+.ja-share__actions { margin-top:12px; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:10px; }
+.ja-share .ja-tool-button:disabled { opacity:.55; cursor:default; }
+.ja-share__note { min-height:20px; margin:12px 0 0; font-size:12px; line-height:1.7; color:#626b68; }
+.ja-share :focus-visible { outline:2px solid #315c79; outline-offset:3px; }
 
 /* My map: keep the selectable countries together by atlas region. */
 .map-mine__region+.map-mine__region{margin-top:12px}
