@@ -63,12 +63,12 @@ let fullDestinations = []; // the 202-item canonical catalog
 let detailDestinations = []; // directly discoverable subordinate places
 const CHILD_SLUGS = new Set(['hong-kong','macau']);
 // Region destinations come from the published Region JSON index, not a UK-only list.
-const regionDetailPromise = fetch('data/top-scene-index.json?v=20261107-all-regions-1')
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261107-regional-flags-1')
   .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
   .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
     slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:data.iso2,
     regionId:data.regionId,image:data.image,heroName:data.heroName,
-    travelThemes:data.travelThemes||[],flag:'',
+    travelThemes:data.travelThemes||[],flag:data.flag||'',flagAsset:data.flagAsset||'',
     atlasPublished:true,href:data.href,parentSlug:data.parentSlug
   })))
   .catch(()=>[]);
@@ -455,7 +455,18 @@ function createCard(country,index,compact=false){
   // Every card uses the Country's own approved hero image. (Six cards used to crop a shared
   // six-panel collage; the hero art has since changed, which left them blank or mis-cropped.)
   setCountryArtImage(art,country.image,!compact);
-  art.innerHTML=`<span class="country-card__flag" aria-hidden="true">${country.flag}</span>`;
+  const flag=document.createElement('span');
+  flag.className='country-card__flag';flag.setAttribute('aria-hidden','true');
+  if(country.flagAsset){
+    const image=document.createElement('img');
+    image.className='country-card__flag-image';
+    image.src=country.flagAsset;image.alt='';
+    image.width=25;image.height=25;image.loading='lazy';
+    flag.append(image);
+  }else{
+    flag.textContent=country.flag||'';
+  }
+  art.append(flag);
   const body=document.createElement('div');body.className='country-card__body';
   body.innerHTML=`<h3>${country.nameEn}</h3><p>${country.nameJa}</p>${country.atlasPublished?'<span class="country-card__open" aria-hidden="true">›</span>':''}`;
   card.append(art,body);return card;
@@ -1177,7 +1188,7 @@ function shuffled(items){
 function loadScenes(){
   if(!scenePromise){
     scenePromise=Promise.all([
-      fetch('data/top-scene-index.json?v=20261107-all-regions-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      fetch('data/top-scene-index.json?v=20261107-regional-flags-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
       themeRegionPromise.catch(()=>null),
       regionDetailPromise
@@ -1264,7 +1275,15 @@ function renderScenes(){
     const name=document.createElement('b');
     name.textContent=row.name;
     const country=document.createElement('small');
-    country.textContent=`${row.country.flag||''} ${row.country.nameJa}`.trim();
+    if(row.country.flagAsset){
+      const image=document.createElement('img');
+      image.className='gallery-tile__flag';
+      image.src=row.country.flagAsset;image.alt='';
+      image.width=17;image.height=17;image.loading='lazy';
+      country.append(image,document.createTextNode(' '+row.country.nameJa));
+    }else{
+      country.textContent=`${row.country.flag||''} ${row.country.nameJa}`.trim();
+    }
     caption.append(name,country);
     tile.append(img,caption);
     if(row.isHero){
