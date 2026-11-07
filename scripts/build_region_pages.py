@@ -387,7 +387,7 @@ def render_region_detail_gallery(data: dict, version: str) -> str:
             raise ValueError('Invalid Region detail map')
         asset = detail.get('svg', '')
         if not (isinstance(asset, str) and asset.startswith(prefix)
-                and re.fullmatch(r'assets/images/[a-z0-9-]+/[a-z0-9-]+/map-[a-z0-9-]+-detail\\.svg', asset)
+                and re.fullmatch(r'assets/images/[a-z0-9-]+/[a-z0-9-]+/map-[a-z0-9-]+-detail\.svg', asset)
                 and (ROOT / asset).is_file()):
             raise ValueError(f'Unsafe or missing Region detail map: {asset}')
         scene_ids = detail.get('sceneIds') or []
