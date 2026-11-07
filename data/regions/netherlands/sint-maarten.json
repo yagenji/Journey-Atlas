@@ -70,7 +70,32 @@
       "west": -63.176,
       "east": -62.976
     },
-    "source": "OSM verified coastline: (c) OpenStreetMap contributors ODbL 1.0, source https://github.com/danieltyukov/marine-debris-ml-model/blob/main/assets/islands/sint_maarten/island.geojson (15m simplification, 2026-10-04 base). Netherlands/France 2023 official treaty Annex A with sampled verified coordinates, https://zoek.officielebekendmakingen.nl/trb-2023-66.html . WGS84 local equirectangular projection; no invented coastline/border vertices. Checked 2026-11-07; not for navigation."
+    "source": "OSM verified coastline: (c) OpenStreetMap contributors ODbL 1.0, source https://github.com/danieltyukov/marine-debris-ml-model/blob/main/assets/islands/sint_maarten/island.geojson (15m simplification, 2026-10-04 base). Netherlands/France 2023 official treaty Annex A with sampled verified coordinates, https://zoek.officielebekendmakingen.nl/trb-2023-66.html . WGS84 local equirectangular projection; no invented coastline/border vertices. Checked 2026-11-07; not for navigation. Inset: original SVG coastal and treaty-border layers reused at the same projection, 2.3x uniform zoom, without any new geographic vertices. Checked 2026-11-07.",
+    "regions": [
+      {
+        "id": "philipsburg-detail",
+        "label": "フィリップスブルフ周辺",
+        "svgId": "sxm-philipsburg-detail",
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 358,
+          "height": 274
+        },
+        "sourceRect": {
+          "x": 700,
+          "y": 571,
+          "width": 155,
+          "height": 119
+        },
+        "sceneIds": [
+          "front-street",
+          "great-bay-beach",
+          "ac-wathey-pier"
+        ]
+      }
+    ],
+    "insetNote": "※ フィリップスブルフ周辺は、同じ地域を拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -505,8 +530,33 @@
     "text": "フィリップスブルフの中心部は徒歩で巡れる。離れた浜や丘へはタクシー、レンタカー、現地ツアーを組み合わせる。",
     "sourceKey": "travelInfo"
   },
-  "nextRoutesIntro": "島の北側を経て、カリブの別の島へ旅をつなぐ。",
-  "nextRoutes": [],
+  "nextRoutesIntro": "陸続きのフランス側から、海を隔てた近隣の島へ。島間船便の運航日や出入境条件は出発前に確認する。",
+  "nextRoutes": [
+    {
+      "countryEn": "SAINT-MARTIN (FRANCE)",
+      "countryJa": "フランス領サン・マルタン",
+      "path": "Philipsburg → Marigot",
+      "description": "島内の道路を北へ。国境を越えて、フランス側の港町と市場を歩く。",
+      "flag": "🇫🇷",
+      "sourceKey": "border"
+    },
+    {
+      "countryEn": "ANGUILLA (UNITED KINGDOM)",
+      "countryJa": "アンギラ（英国海外領土）",
+      "path": "Philipsburg → Marigot → Blowing Point",
+      "description": "マリゴからフェリーで海峡を渡り、白砂の島へ。パスポートと船便を事前に確認する。",
+      "flag": "🇬🇧",
+      "sourceKey": "ferries"
+    },
+    {
+      "countryEn": "SABA (NETHERLANDS)",
+      "countryJa": "サバ島（オランダ領）",
+      "path": "Philipsburg → Saba",
+      "description": "フィリップスブルフの港から船で南西の火山島へ。海況によって予定が変わるため運航を確認する。",
+      "flag": "🇳🇱",
+      "sourceKey": "ferries"
+    }
+  ],
   "relatedCountries": [
     {
       "nameJa": "フランス",
@@ -586,11 +636,14 @@
     "gshhs": "https://www.soest.hawaii.edu/wessel/gshhg/",
     "museum": "https://www.sintmaartenmuseum.org/national-symbols",
     "courthouse": "https://www.visitstmaarten.com/monuments/the-courthouse-frontstreet-48/",
-    "birdArea": "https://www.visitstmaarten.com/nature-hiking/important-bird-areas-st-maarten/"
+    "birdArea": "https://www.visitstmaarten.com/nature-hiking/important-bird-areas-st-maarten/",
+    "ferries": "https://www.visitstmaarten.com/st-maarten-ferries/",
+    "caribbeanNetherlandsTravel": "https://english.rijksdienstcn.com/justice--security/royal-netherlands-marechaussee/travelling-in-the-dutch-caribbean"
   },
   "sourceNotes": {
-    "map": "Dutch–French border is not shown in this review draft because authoritative vector coordinates cannot yet be extracted from the official government service. The map intentionally shows the full island outline and geographic point markers only, and is not final map QA.",
-    "scenes": "Site point coordinates are candidates; photo bearing and exact map marker accuracy require source-by-source verification before canonical review."
+    "map": "Detailed OSM coastline plus the 2023 Netherlands–France Treaty Annex A representative border geometry are displayed in the main map. The Philipsburg inset reuses those same geometry paths at uniform 2.3x zoom, never alters scene coordinates, and requires rendered map QA before final publication.",
+    "scenes": "Site point coordinates are candidates; photo bearing and exact map marker accuracy require source-by-source verification before canonical review.",
+    "nearbyRoutes": "French Saint-Martin is a land-adjoining French collectivity; Anguilla is a UK overseas territory; Saba is a Caribbean Netherlands island. Ferry itineraries are examples, not guaranteed schedules. Checked 2026-11-07."
   },
   "travelThemes": [
     "海の世界へ",
