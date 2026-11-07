@@ -313,6 +313,9 @@
 }
 .gallery-shuffle:hover{border-color:rgba(23,59,93,.34);background:#fff}
 .gallery-shuffle:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+/* The Wish filter is part of the same chip row as the region categories. */
+.theme-region-tabs button.wishlist-filter{margin-left:8px;white-space:nowrap}
+@media(max-width:760px){.theme-region-tabs button.wishlist-filter{margin-left:0}}
 .gallery-panel .theme-region-tabs{margin:20px 0 14px}
 .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
 .gallery-panel .theme-region-tabs+.gallery-grid{margin-top:0}

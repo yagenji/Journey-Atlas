@@ -105,6 +105,126 @@ def check(driver, viewport):
         "localStorage.removeItem('journey-atlas:region-wish:unitedkingdom:england')"
     )
 
+    # Wish-list chips share the region-filter row in all three discovery sections.
+    # Exercise live storage reads, facet intersections and URL restoration.
+    driver.execute_script("""
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key.startsWith('journey-atlas:wish:') ||
+            key.startsWith('journey-atlas:region-wish:')) localStorage.removeItem(key);
+      }
+    """)
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.CSS_SELECTOR, '[data-theme="city"]'))
+    wait.until(lambda d: len(d.find_elements(
+        By.CSS_SELECTOR, "#theme-results-grid .country-card")) > 0)
+    theme_slugs = [el.get_attribute("data-slug") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#theme-results-grid .country-card")]
+    theme_slug = next((slug for slug in theme_slugs if slug not in EXPECTED), theme_slugs[0])
+    driver.execute_script(
+        "localStorage.setItem('journey-atlas:wish:' + arguments[0], 'true')", theme_slug)
+    theme_wish = driver.find_element(
+        By.CSS_SELECTOR, '#theme-region-tabs [data-wish-filter="theme"]')
+    driver.execute_script("arguments[0].click()", theme_wish)
+    wait.until(lambda d: d.find_element(
+        By.CSS_SELECTOR, '#theme-region-tabs [data-wish-filter="theme"]'
+    ).get_attribute("aria-pressed") == "true")
+    filtered = [el.get_attribute("data-slug") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#theme-results-grid .country-card")]
+    if filtered != [theme_slug]:
+        errors.append("Theme Wish filter did not intersect the current theme: " + repr(filtered))
+    if "twish=1" not in driver.current_url:
+        errors.append("Theme Wish selection not persisted in URL")
+    other_theme_region = next((el for el in driver.find_elements(
+        By.CSS_SELECTOR, "#theme-region-tabs [data-theme-region]"
+    ) if el.get_attribute("data-theme-region") != "all" and
+        el.find_element(By.TAG_NAME, "span").text == "0"), None)
+    if other_theme_region is not None:
+        driver.execute_script("arguments[0].click()", other_theme_region)
+        if driver.find_elements(By.CSS_SELECTOR, "#theme-results-grid .country-card"):
+            errors.append("Theme region and Wish filters were not intersected")
+        driver.execute_script("arguments[0].click()", driver.find_element(
+            By.CSS_SELECTOR, '#theme-region-tabs [data-theme-region="all"]'))
+    driver.refresh()
+    wait.until(lambda d: d.find_elements(
+        By.CSS_SELECTOR, '#theme-region-tabs [data-wish-filter="theme"][aria-pressed="true"]'))
+    if [el.get_attribute("data-slug") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#theme-results-grid .country-card")] != [theme_slug]:
+        errors.append("Theme Wish filter was lost on page reload")
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "theme-results-clear"))
+    driver.execute_script(
+        "localStorage.removeItem('journey-atlas:wish:' + arguments[0])", theme_slug)
+
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.CSS_SELECTOR, '#season-months [data-season-month="1"]'))
+    wait.until(lambda d: len(d.find_elements(
+        By.CSS_SELECTOR, "#season-results-grid .country-card")) > 0)
+    season_slug = driver.find_element(
+        By.CSS_SELECTOR, "#season-results-grid .country-card").get_attribute("data-slug")
+    driver.execute_script(
+        "localStorage.setItem('journey-atlas:wish:' + arguments[0], 'true')", season_slug)
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.CSS_SELECTOR, '#season-region-tabs [data-wish-filter="season"]'))
+    filtered = [el.get_attribute("data-slug") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#season-results-grid .country-card")]
+    if filtered != [season_slug]:
+        errors.append("Season Wish filter did not intersect the selected month: " + repr(filtered))
+    if "swish=1" not in driver.current_url:
+        errors.append("Season Wish selection not persisted in URL")
+    other_season_region = next((el for el in driver.find_elements(
+        By.CSS_SELECTOR, "#season-region-tabs [data-season-region]"
+    ) if el.get_attribute("data-season-region") != "all" and
+        el.find_element(By.TAG_NAME, "span").text == "0"), None)
+    if other_season_region is not None:
+        driver.execute_script("arguments[0].click()", other_season_region)
+        if driver.find_elements(By.CSS_SELECTOR, "#season-results-grid .country-card"):
+            errors.append("Season region and Wish filters were not intersected")
+        driver.execute_script("arguments[0].click()", driver.find_element(
+            By.CSS_SELECTOR, '#season-region-tabs [data-season-region="all"]'))
+    driver.refresh()
+    wait.until(lambda d: d.find_elements(
+        By.CSS_SELECTOR, '#season-region-tabs [data-wish-filter="season"][aria-pressed="true"]'))
+    if [el.get_attribute("data-slug") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#season-results-grid .country-card")] != [season_slug]:
+        errors.append("Season Wish filter was lost on page reload")
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "season-results-clear"))
+    driver.execute_script(
+        "localStorage.removeItem('journey-atlas:wish:' + arguments[0])", season_slug)
+
+    driver.execute_script("document.getElementById('scenery').scrollIntoView()")
+    wait.until(lambda d: len(d.find_elements(
+        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")) > 0)
+    driver.execute_script("localStorage.setItem('journey-atlas:wish:japan', 'true')")
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.CSS_SELECTOR, '#gallery-region-tabs [data-wish-filter="scenery"]'))
+    wait.until(lambda d: len(d.find_elements(
+        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")) > 0)
+    gallery_links = [el.get_attribute("href") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")]
+    if any("/countries/japan/" not in href for href in gallery_links):
+        errors.append("Scenery Wish filter displayed a non-wished destination")
+    if "gwish=1" not in driver.current_url:
+        errors.append("Scenery Wish selection not persisted in URL")
+    driver.execute_script(
+        "localStorage.setItem('journey-atlas:scene:japan:hero', 'qa-wish-filter')")
+    driver.execute_script(
+        "localStorage.setItem('journey-atlas:scene:france:hero', 'qa-wish-filter')")
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "gallery-saved-toggle"))
+    gallery_links = [el.get_attribute("href") for el in driver.find_elements(
+        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")]
+    if not gallery_links or any("/countries/japan/" not in href for href in gallery_links):
+        errors.append("Saved scenery and Wish-list filters were not intersected")
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "gallery-close"))
+    if "gwish=1" in driver.current_url:
+        errors.append("Scenery Wish filter not cleared on closing results")
+    for key in ("journey-atlas:wish:japan", "journey-atlas:scene:japan:hero",
+                "journey-atlas:scene:france:hero"):
+        driver.execute_script("localStorage.removeItem(arguments[0])", key)
+
     # My-map country selector must render grouped region headings, not one flat list.
     driver.get(BASE + "/?map=mine")
     wait.until(lambda d: d.execute_script("return document.querySelector('#my-atlas').open && location.hash === '#my-atlas'"))
