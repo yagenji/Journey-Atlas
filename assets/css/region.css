@@ -112,32 +112,17 @@
 .region-history>p{min-width:0;margin:0;padding:2px 16px 3px;border-left:1px solid rgba(18,54,92,.13);color:var(--navy-deep);font:400 var(--country-body,13px)/1.7 var(--body);overflow-wrap:anywhere}
 @media(max-width:760px){.region-history>p{padding:0;border-left:0}}
 
-/* Curaçao: Hero and the capital share the Willemstad waterfront and sit
-   beneath Scene 01/02 pins at this map scale. Their real-coordinate anchors
-   remain unchanged; short leader lines expose both locations on every screen. */
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::before,
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::before{
-  content:"";position:absolute;left:50%;top:50%;height:1.5px;
-  transform-origin:0 50%;pointer-events:none
-}
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::before{
-  width:52px;background:#a86545;transform:rotate(210deg)
-}
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::before{
-  width:48px;background:#12365c;transform:rotate(27deg)
-}
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::after,
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::after{
-  display:block;position:absolute;top:auto;bottom:auto;width:max-content;max-width:none;
-  padding:4px 7px;border:1px solid #b5aaa0;border-radius:4px;
-  background:rgba(255,253,249,.97);box-shadow:0 2px 5px rgba(9,42,75,.12);
-  font:600 11px/1.35 var(--body);white-space:pre;text-align:center;
-  visibility:visible;opacity:1;transform:translate(-50%,-50%);
-  pointer-events:none
-}
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-hero::after{
-  content:"◆ HERO";left:-68px;top:-36px;color:#9a533c;border-color:#b87860
-}
-.region-country-page .map-art[aria-label="キュラソーの景色の地図"] .region-map-capital::after{
-  content:"首都\A ウィレムスタット";left:74px;top:25px;color:#12365c
-}
+
+/* Optional, source-anchored island-group maps for widely dispersed Regions.
+   Existing Region pages are unchanged unless detailMaps is explicitly set. */
+.region-detail-gallery{margin:14px 0 20px}
+.region-detail-gallery__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.region-detail-gallery__card{margin:0;min-width:0;border:1px solid rgba(49,87,106,.17);border-radius:8px;overflow:hidden;background:#f7f6f1}
+.region-detail-gallery__card img{display:block;width:100%;height:auto;aspect-ratio:760/440;object-fit:contain;background:#eaf2f4}
+.region-detail-gallery__card figcaption{padding:8px 10px 10px;color:var(--navy);font:400 11px/1.6 var(--body)}
+.region-detail-gallery__card figcaption strong{display:block;font-weight:600;font-size:12px}
+.region-detail-gallery__card figcaption span{display:block;margin-top:3px;color:var(--muted)}
+.region-detail-gallery__card a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+.region-detail-gallery__card a:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.region-detail-gallery__note{margin:8px 0 0;color:var(--muted);font:400 11px/1.6 var(--body)}
+@media(max-width:450px){.region-detail-gallery__grid{grid-template-columns:1fr}}

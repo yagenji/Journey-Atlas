@@ -16,12 +16,12 @@ class GreenlandRegion(unittest.TestCase):
         cls.data = json.loads((ROOT / 'data/regions/denmark/greenland.json').read_text())
         cls.svg = (ROOT / cls.data['map']['svg']).read_text()
 
-    def test_unpublished_canonical_parent_and_content(self):
+    def test_published_canonical_parent_and_content(self):
         page, canonical, published = region.render_region(self.data,
             site_url='https://atlas.yagenji.com/', version='test')
-        self.assertFalse(published)
+        self.assertTrue(published)
         self.assertEqual(canonical, 'https://atlas.yagenji.com/countries/denmark/greenland/')
-        self.assertIn('noindex,follow', page)
+        self.assertIn('<meta name="robots" content="index,follow">', page)
         self.assertIn('デンマークに戻る', page)
         self.assertNotIn('BACK TO UNITED KINGDOM', page)
         self.assertEqual(page.count('class="scene-card region-scene"'), 8)

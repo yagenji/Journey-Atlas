@@ -99,6 +99,10 @@ def region_refs(parent_slug: str) -> dict[str, set[str]]:
         hero = region.get("hero") or {}
         add_ref(refs, f"{owner}:hero", hero.get("image"))
         add_ref(refs, f"{owner}:map", (region.get("map") or {}).get("svg"))
+        # Optional geographic detail panels are legitimate, referenced map assets.
+        for index, detail in enumerate((region.get("map") or {}).get("detailMaps") or [], 1):
+            if isinstance(detail, dict):
+                add_ref(refs, f"{owner}:detailmap:{index}", detail.get("svg"))
         for index, scene in enumerate(region.get("scenes") or [], 1):
             if isinstance(scene, dict):
                 add_ref(refs, f"{owner}:scene:{index}", scene.get("image"))
