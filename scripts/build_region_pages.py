@@ -298,6 +298,43 @@ def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tu
     return 100 * x / 1200, 100 * y / 760
 
 
+def region_display_marker_position(item: dict, marker_type: str, svg: str,
+                                   bounds: dict) -> tuple[float, float]:
+    """Separate a geographic anchor from an optional visual-only map label offset.
+
+    Offsets use the existing shared Country percent units, limited to 60 canvas
+    pixels, with the verified real anchor retained in the Region SVG metadata.
+    """
+    coords = item['coordinates']
+    if marker_type == 'hero':
+        position = region_hero_map_position(coords, svg, bounds)
+    elif marker_type == 'capital':
+        position = region_capital_map_position(coords, bounds, svg)
+    else:
+        raise ValueError('Unsupported Region marker type')
+    offset = item.get('mapOffset')
+    if offset is None:
+        return position
+    if not isinstance(offset, dict):
+        raise ValueError('Region marker mapOffset must be an object')
+    dx, dy = offset.get('x', 0), offset.get('y', 0)
+    if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in (dx, dy)):
+        raise ValueError('Region marker mapOffset must contain finite numbers')
+    if math.hypot(12 * dx, 7.6 * dy) > 60:
+        raise ValueError('Region marker mapOffset exceeds 60 canvas pixels')
+    x, y = position[0] + dx, position[1] + dy
+    if not (0 <= x <= 100 and 0 <= y <= 100):
+        raise ValueError('Region marker label is outside the canvas')
+    node = ET.fromstring(svg).find(f'.//*[@id="{marker_type}-marker"]')
+    if node is None or any(
+        not math.isfinite(float(node.get(key, 'nan')))
+        or abs(float(node.get(key, 'nan')) - expected) > .015
+        for key, expected in [('data-label-x', 12 * x), ('data-label-y', 7.6 * y)]
+    ):
+        raise ValueError('Region marker offset and SVG label coordinates disagree')
+    return x, y
+
+
 def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
     """Readable fixed inset on narrow screens; reuses the original verified SVG."""
     details = data.get('map', {}).get('regions') or []
@@ -445,12 +482,12 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         )
         + '</div>'
         + f'<div class="map-hero-marker region-map-hero" aria-hidden="true" '
-          f'style="left:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
-          f'top:{region_hero_map_position(hero["coordinates"], map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
+          f'style="left:{region_display_marker_position(hero, "hero", map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
+          f'top:{region_display_marker_position(hero, "hero", map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
         + (f'<div class="map-capital-marker region-map-capital" role="img" '
            f'aria-label="{esc(data["capital"].get("labelJa", "首都"))}：{esc(data["capital"]["nameJa"])}" '
-           f'style="left:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[0]:.5f}%;'
-           f'top:{region_capital_map_position(data["capital"]["coordinates"], data["map"]["bounds"], map_svg_text)[1]:.5f}%">'
+           f'style="left:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
+           f'top:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[1]:.5f}%">'
            '<i aria-hidden="true"></i></div>'
            if data.get('capital') else '')
         + '</div></div>'
