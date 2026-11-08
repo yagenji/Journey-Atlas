@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "portugal",
+  "slug": "madeira",
+  "regionPublished": false,
+  "nameEn": "MADEIRA",
+  "nameJa": "マデイラ諸島",
+  "region": "SOUTHERN EUROPE / 32°N",
+  "parentNameJa": "ポルトガル",
+  "parentNameEn": "PORTUGAL",
+  "parentReturnDescription": "ポルトガルの8つの景色を見る",
+  "seo": {
+    "description": "雲海に浮かぶ山稜、霧の照葉樹林、溶岩海岸、サンタナの家、ポルト・サントの金色の浜。マデイラ諸島の8つの景色をめぐる。"
+  },
+  "hero": {
+    "name": "ピコ・ド・アリエイロの山稜",
+    "location": "Pico do Areeiro / Ninho da Manta, Madeira",
+    "image": "assets/images/portugal/madeira/approved/hero-pico-do-areeiro.webp",
+    "coordinates": {
+      "latitude": 32.73952,
+      "longitude": -16.93381
+    },
+    "lead": "大西洋から急に立ち上がる山々、霧の中の古い森、火山が残した海岸。マデイラ諸島では、短い距離のうちに景色の質感が大きく変わる。",
+    "description": "標高約1,800mのピコ・ド・アリエイロ周辺から、谷と峰が連なる中央山地を望む。",
+    "sourceKey": "picoAreeiro",
+    "sceneTypes": [
+      "peak"
+    ],
+    "mapOffset": {
+      "x": -4.8,
+      "y": 0.4
+    }
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "フンシャル（Funchal）"
+    },
+    {
+      "label": "人口",
+      "value": "266,130人（2025年末推計）",
+      "sourceKey": "population2025"
+    },
+    {
+      "label": "面積",
+      "value": "801.10km²",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語"
+    },
+    {
+      "label": "主な宗教",
+      "value": "カトリック（2021年国勢調査で78%）",
+      "sourceKey": "religion2021"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "historyContext": {
+    "text": "マデイラ諸島はポルトガルの自治地域で、独自の地域議会と自治政府を持つ。15世紀初頭からポルトガル人の入植が進み、サトウキビやワインの交易を通じて大西洋世界と結びついた。1976年の新憲法の下で現在の自治制度が成立した。",
+    "sourceKeys": [
+      "autonomy",
+      "history"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/portugal/madeira/map-madeira.svg",
+    "bounds": {
+      "north": 33.23,
+      "south": 32.39,
+      "west": -17.45,
+      "east": -16.25
+    },
+    "source": "Madeira, Porto Santo and Desertas real coastlines and surrounding islets: CAOP-derived MadeiraIlhas.geojson from nmota/caop_GeoJSON Git blob dee5716205349ac397ecebd0a7cf03446f559009, official DGT Portuguese administrative boundaries (CC BY 4.0; https://github.com/nmota/caop_GeoJSON/blob/master/geograficas/Madeira/MadeiraIlhas.geojson). WGS84 and Douglas–Peucker simplification: 0.001° for large Madeira island, 0.0005° for other named islands. Tiny non-readable islands omitted at atlas scale. Selvagens are WGS84 point locators only in a separate inset with accurate geographic positions; no reconstructed shorelines. Checked 2026-11-08. Simplified polygon corrected to a valid topology where a coincident segment arose from 0.001° Douglas–Peucker simplification; surface area unchanged.",
+    "insetNote": "※ セルヴァージェンシュ諸島は、実際の位置関係・縮尺と異なる別枠表示です。点は島の位置だけを示し、海岸線の形や面積は表しません。"
+  },
+  "scenes": [
+    {
+      "id": "fanal-forest",
+      "name": "ファナルの森",
+      "nameLocal": "Fanal Forest",
+      "description": "世界遺産の照葉樹林が残る高原。古いティルのねじれた枝が、霧の草原に浮かび上がる。",
+      "coordinates": {
+        "latitude": 32.8125,
+        "longitude": -17.1425
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-fanal-forest.webp",
+      "sourceKey": "fanal",
+      "sceneTypes": [
+        "forest"
+      ]
+    },
+    {
+      "id": "ponta-de-sao-lourenco",
+      "name": "サン・ロウレンソ半島",
+      "nameLocal": "Ponta de São Lourenço / Ponta do Rosto",
+      "description": "乾いた東端の火山性半島。赤褐色の断崖が、木の少ない尾根と青い海を分ける。",
+      "coordinates": {
+        "latitude": 32.75138,
+        "longitude": -16.7086
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-ponta-de-sao-lourenco.webp",
+      "sourceKey": "saoLourenco",
+      "sceneTypes": [
+        "rock",
+        "cliff"
+      ]
+    },
+    {
+      "id": "cabo-girao",
+      "name": "カボ・ジランの断崖",
+      "nameLocal": "Cabo Girão / Skywalk",
+      "description": "高い海食崖の上から、大西洋と崖下に残る小さな耕作地を見下ろす。ガラス床の展望台でも知られる。",
+      "coordinates": {
+        "latitude": 32.65648,
+        "longitude": -17.00445
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-cabo-girao.webp",
+      "sourceKey": "caboGirao",
+      "sceneTypes": [
+        "cliff"
+      ]
+    },
+    {
+      "id": "porto-moniz",
+      "name": "ポルト・モニスの天然プール",
+      "nameLocal": "Porto Moniz Natural Swimming Pools",
+      "description": "黒い溶岩の岩礁に囲まれた海水プール。外海の波と、岩間で静まる透明な水が対照的。",
+      "coordinates": {
+        "latitude": 32.86842,
+        "longitude": -17.17073
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-porto-moniz.webp",
+      "sourceKey": "portoMoniz",
+      "sceneTypes": [
+        "rock",
+        "bay"
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": -3
+      }
+    },
+    {
+      "id": "santana",
+      "name": "サンタナの伝統家屋",
+      "nameLocal": "Núcleo de Casas Típicas de Santana",
+      "description": "麦わらを葺いた鋭い三角屋根と、白い壁を縁取る赤と青。島の農村建築を今に伝える。",
+      "coordinates": {
+        "latitude": 32.8054,
+        "longitude": -16.8826
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-santana.webp",
+      "sourceKey": "santana",
+      "sceneTypes": [
+        "village"
+      ],
+      "mapOffset": {
+        "x": 1.5,
+        "y": -3
+      }
+    },
+    {
+      "id": "funchal-old-town",
+      "name": "フンシャル旧市街",
+      "nameLocal": "Rua de Santa Maria / Zona Velha",
+      "description": "石畳の細い通り、古い家の扉に描かれた絵、路地の小さな店。港町の歴史が日常に残る。",
+      "coordinates": {
+        "latitude": 32.64834,
+        "longitude": -16.90414
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-funchal-old-town.webp",
+      "sourceKey": "funchal",
+      "sceneTypes": [
+        "oldtown"
+      ]
+    },
+    {
+      "id": "caldeirao-verde",
+      "name": "カルデイラン・ヴェルデのレヴァダ",
+      "nameLocal": "PR9 Levada do Caldeirão Verde",
+      "description": "照葉樹林の崖沿いに細い水路が延び、奥の岩壁から滝が落ちる。島の水と農業をつないだ道。",
+      "coordinates": {
+        "latitude": 32.77424,
+        "longitude": -16.93636
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-caldeirao-verde.webp",
+      "sourceKey": "caldeirao",
+      "sceneTypes": [
+        "waterfall",
+        "forest"
+      ]
+    },
+    {
+      "id": "porto-santo",
+      "name": "ポルト・サントの砂浜",
+      "nameLocal": "Praia do Porto Santo / Ponta da Calheta",
+      "description": "乾いた低山の足元に長い金色の砂浜が続く。マデイラ島とは異なる、穏やかで開けた海辺。",
+      "coordinates": {
+        "latitude": 33.02452,
+        "longitude": -16.38121
+      },
+      "image": "assets/images/portugal/madeira/approved/scene-porto-santo.webp",
+      "sourceKey": "portoSanto",
+      "sceneTypes": [
+        "beach",
+        "island"
+      ]
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF MADEIRA",
+    "title": "マデイラ諸島で食べたいもの",
+    "intro": "炭火の牛肉、熱いパン、海の魚と貝。険しい山と大西洋の間で生まれた島の食卓。",
+    "items": [
+      {
+        "id": "espetada",
+        "name": "エシュペターダ",
+        "nameLocal": "Espetada madeirense",
+        "text": "大ぶりの牛肉を串に刺し、塩・にんにくなどで味付けして焼く。炭火の香りが食欲を誘う。",
+        "image": "assets/images/portugal/madeira/approved/food-espetada.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "bolo-do-caco",
+        "name": "ボーロ・ド・カコ",
+        "nameLocal": "Bolo do caco",
+        "text": "平たい円形のパンを温め、にんにくとパセリを混ぜたバターを塗って食べる。",
+        "image": "assets/images/portugal/madeira/approved/food-bolo-do-caco.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "peixe-espada-banana",
+        "name": "黒タチウオとバナナ",
+        "nameLocal": "Peixe-espada preto com banana",
+        "text": "黒タチウオの白身を焼き揚げ、焼いたバナナと合わせる。海と島の果実が出会う名物料理。",
+        "image": "assets/images/portugal/madeira/approved/food-peixe-espada-banana.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "lapas-grelhadas",
+        "name": "カサガイのグリル",
+        "nameLocal": "Lapas grelhadas",
+        "text": "殻付きのカサガイを熱い金属鍋で焼き、ガーリックバターとレモンで味わう。",
+        "image": "assets/images/portugal/madeira/approved/food-lapas-grelhadas.webp",
+        "sourceKey": "food"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "pico-ruivo",
+      "label": "群島の最高峰",
+      "value": "1,862m",
+      "note": "ピコ・ルイヴォの標高。海に囲まれた小さな島の中央に、急峻な山地がそびえる。",
+      "icon": "landscape",
+      "sourceKey": "area",
+      "interestReason": "海から短い距離で高山に達する島の地形を伝える。"
+    },
+    {
+      "topicKey": "cabo-girao-height",
+      "label": "海を見下ろす断崖",
+      "value": "580m",
+      "note": "カボ・ジランの断崖の高さ。崖下には、海に面した小さな耕作地が残る。",
+      "icon": "landscape",
+      "sourceKey": "caboGirao",
+      "interestReason": "海辺から一気に立ち上がる断崖と、その足元に営まれる農業の高低差が伝わる。"
+    },
+    {
+      "topicKey": "porto-santo-beach",
+      "label": "ポルト・サントの砂浜",
+      "value": "約9km",
+      "note": "マデイラ島とは対照的な、離島の長く明るい砂浜。",
+      "icon": "shore",
+      "sourceKey": "portoSanto",
+      "interestReason": "急峻な本島とは異なる離島の景色を、長さで実感できる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "雲海が山稜を流れる朝",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "霧の森に立つ古い月桂樹",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "溶岩の隙間を満たす潮",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "細い水路を流れる水音",
+      "icon": "waterfall",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "港町の石畳を歩く足音",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "色鮮やかな三角屋根の家",
+      "icon": "home",
+      "category": "CULTURE"
+    },
+    {
+      "title": "島の漁の魚が並ぶ市場",
+      "icon": "food",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "長い金色の浜と白い波",
+      "icon": "shore",
+      "category": "SEASON"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "levada-water",
+      "themeEn": "LIFE",
+      "themeJa": "水と暮らす",
+      "icon": "waterfall",
+      "title": "北の雨を、南の畑へ運ぶ",
+      "text": "島の険しい斜面を横切るレヴァダは、雨の多い北側の水を南側の農地へ送るために造られてきた。今日の散策路としての姿だけでなく、水を分け合う技術として見ると、島の暮らしが違って見える。",
+      "points": [
+        "農地を潤すための水路が観光の散策路にもなった",
+        "森の湿り気と南斜面の乾きが水路の背景にある"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "sugar-island",
+      "themeEn": "HISTORY",
+      "themeJa": "産業を知る",
+      "icon": "history",
+      "title": "サトウキビが国際交易の島をつくった",
+      "text": "ポルトガル人による入植後、島ではサトウキビの栽培が広がった。砂糖が「白い金」と呼ばれた時代の交易は、後に広がるブドウ栽培とワイン産業へと連なる。",
+      "points": [
+        "肥沃な火山性の土壌が農業を支えた",
+        "砂糖の輸出からワインの国際流通へ産業が変化した"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "wine-terraces",
+      "themeEn": "FOOD",
+      "themeJa": "ワインを知る",
+      "icon": "food",
+      "title": "石積みの小さな段々畑にワインの原点がある",
+      "text": "海の近くから山腹まで、急斜面に石垣で支えられた小さな畑が並ぶ。マデイラワインは、海の交易路と島の地形の両方から生まれた味である。",
+      "points": [
+        "手作業で維持される段々畑にブドウが育つ",
+        "セラーで熟成の歴史と品種の違いを知る"
+      ],
+      "sourceKey": "wine"
+    },
+    {
+      "topicKey": "painted-doors",
+      "themeEn": "ART",
+      "themeJa": "街を読む",
+      "icon": "city",
+      "title": "古い扉が一枚ずつ違う絵になる",
+      "text": "フンシャル旧市街の「Portas Pintadas」は、古い家の扉や壁面に作家が絵を描いたプロジェクト。港町の歴史ある路地を、現代の屋外ギャラリーへと変えている。",
+      "points": [
+        "Rua de Santa Mariaの扉は一枚ずつ異なる",
+        "旧市街に残る工房や小商店も歩いて確かめたい"
+      ],
+      "sourceKey": "funchal"
+    },
+    {
+      "topicKey": "thatched-houses",
+      "themeEn": "CULTURE",
+      "themeJa": "家を知る",
+      "icon": "home",
+      "title": "茅葺きの急勾配は雨を流すため",
+      "text": "サンタナの三角屋根の家は、木材と小麦・ライ麦の藁を使った建築。鋭い傾斜には雨を流しやすくする意味がある。鮮やかな外壁の奥に、島の気候と身近な材料を使う知恵がある。",
+      "points": [
+        "屋根の急勾配は雨への適応",
+        "屋根裏は農作物の保管にも使われた"
+      ],
+      "sourceKey": "santana"
+    },
+    {
+      "topicKey": "remote-reserves",
+      "themeEn": "NATURE",
+      "themeJa": "島を守る",
+      "icon": "wildlife",
+      "title": "無人島は、観光地である前に保護区",
+      "text": "デザルタス諸島は地中海モンクアザラシの生息域で、セルヴァージェンシュ諸島は海鳥の重要な繁殖地。保護のためアクセスが制限される場所もあり、海に浮かぶ島々の見方を広げてくれる。",
+      "points": [
+        "デザルタスは3つの主要島からなる保護区",
+        "セルヴァージェンシュへの立入りには事前の許可が必要"
+      ],
+      "sourceKey": "selvagens"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "wine-independence",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "アメリカ独立の乾杯にも、マデイラワイン",
+      "text": "1776年7月4日、アメリカ独立を祝う席でマデイラワインが選ばれたと観光局は紹介する。島の酒が大西洋の交易を越えて広がった証し。",
+      "icon": "history",
+      "sourceKey": "wine"
+    },
+    {
+      "topicKey": "cathedral-ceiling",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "大聖堂の天井に、イスラム美術の影響",
+      "text": "フンシャル大聖堂の天井は地元のスギ材によるムデハル様式。港町の教会で、異なる文化が交わる意匠に出会える。",
+      "icon": "landmark",
+      "sourceKey": "cathedral"
+    },
+    {
+      "topicKey": "desertas-tarantula",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "生き物",
+      "title": "無人島に固有の大きなクモが暮らす",
+      "text": "デザルタ・グランデ島には、この島に固有のデザルタス・タランチュラが生息する。訪問可能な海岸から見えない自然にも価値がある。",
+      "icon": "wildlife",
+      "sourceKey": "desertas"
+    },
+    {
+      "topicKey": "fennel-name",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "地名",
+      "title": "フンシャルの名の由来は、野生のハーブ",
+      "text": "フンシャルという地名は、入植当時に多く生えていたフェンネルに由来する。ポルトガル語で「フンショ」と呼ばれる香草が、港町の名に残っている。",
+      "icon": "leaf",
+      "sourceKey": "fennelName"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "山と海を一度に歩きたい人",
+      "text": "朝の雲海、赤い岩の半島、溶岩の自然プールを同じ旅で見たい人。"
+    },
+    {
+      "title": "森や水路の風景に惹かれる人",
+      "text": "古い月桂樹の森やレヴァダを、自然と生活の歴史の両方から味わいたい人。"
+    },
+    {
+      "title": "都市と離島を静かに組み合わせたい人",
+      "text": "フンシャルの路地を楽しみ、時間があればポルト・サントの長い砂浜へ渡りたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "山岳部の天候は海岸と違う",
+      "text": "海沿いが晴れていても、山の稜線は雲・風・雨に包まれることがある。山歩きは現地予報と通行状況を確認する。",
+      "sourceKey": "hikingRules2026"
+    },
+    {
+      "title": "公式トレイルは事前予約と状況確認",
+      "text": "2026年からPR番号の付いた公式ルートは時間枠予約が必要。通行止めや運用が変わるため、当日はIFCN・観光局の最新情報を確認する。",
+      "sourceKey": "hikingRules2026"
+    },
+    {
+      "title": "離島への移動は運航日に合わせる",
+      "text": "ポルト・サント往復はフェリー・航空便のスケジュールを先に確認し、主島の移動日と無理なく組み合わせる。",
+      "sourceKey": "transport"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "フンシャルを拠点に、山と海岸の移動を組み合わせる。離島を加える場合は運航日に合わせて余裕を持ちたい。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "山とフンシャルを知る",
+        "text": "フンシャルに滞在し、街歩きと中央山地・南岸の景色を巡る。例：フンシャル → ピコ・ド・アリエイロ → カボ・ジラン → フンシャル。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜8日",
+        "title": "マデイラ島を一周する",
+        "text": "西部の溶岩海岸・ファナルの森、北東のサンタナと東端の半島を追加。例：フンシャル → ポルト・モニス → サンタナ → サン・ロウレンソ → フンシャル。",
+        "icon": "map"
+      },
+      {
+        "duration": "9日以上",
+        "title": "ポルト・サントにも渡る",
+        "text": "本島を周遊した後、ポルト・サントへの往復を加える。例：フンシャル → 島内周遊 → フンシャル → ポルト・サント → フンシャル。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "4〜6月",
+        "reason": "海岸部は穏やかで緑が映える季節。高地は天候変化があるため歩行計画に余裕を。"
+      },
+      {
+        "label": "9〜10月",
+        "reason": "暑さが和らぐ時期に街歩きと海岸を組み合わせやすい。山岳と海の状況は当日確認。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "新緑と花の季節。海岸部は比較的温暖でも、山地は霧や雨に包まれやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "海水浴や明るい海岸風景を楽しむ夏。高地は夏でも風が強い日がある。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "leaf",
+      "color": "#b77a49",
+      "text": "初秋は海と街を組み合わせやすい。秋後半は天気の変化を考慮して柔軟に動きたい。"
+    },
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "海岸部は冬も比較的温暖。高い山と北岸では雨・風・雲に注意が必要。"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "レンタカー・路線バス・フェリー",
+    "text": "フンシャル周辺と主要な町を路線バスが結ぶが、複数の展望台や山道を巡るなら車・ツアーが便利。ポルト・サントへはフェリーまたは空路を使う。",
+    "sourceKey": "transport"
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "ポルトガル",
+      "nameEn": "PORTUGAL",
+      "href": "countries/portugal/",
+      "flag": "🇵🇹",
+      "reason": "本土の港町とブドウ畑を巡り、大西洋の交易をたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "カーボベルデ",
+      "nameEn": "CAPE VERDE",
+      "href": "countries/capeverde/",
+      "flag": "🇨🇻",
+      "reason": "大西洋の火山島で、乾いた山と海岸の別の表情に出会う。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "スペイン",
+      "nameEn": "SPAIN",
+      "href": "countries/spain/",
+      "flag": "🇪🇸",
+      "reason": "カナリア諸島を含む火山島の風景を比べてみる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "capital": {
+    "nameJa": "フンシャル",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 32.6497,
+      "longitude": -16.9083
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -12,
+      "y": 32
+    },
+    "mapOffset": {
+      "x": 3.5,
+      "y": 5.5
+    }
+  },
+  "travelThemes": [
+    "地球の風景",
+    "海の世界へ",
+    "道の先へ"
+  ],
+  "contentQaVersion": 6,
+  "sourcesVerifiedAt": "2026-11-08",
+  "sources": {
+    "area": "DREM/INE, Statistical Yearbook of the Autonomous Region of Madeira 2024 (2025-12-30), territory 801.10 km² and Pico Ruivo 1862m. Official regional statistics: https://estatistica.madeira.gov.pt/en/download-now-3/multitematicas-gb/mutitematicas-anuario-gb/multitematicas-anuario-in-focus-gb/send/468-anuario-em-foco/19546-em-foco-2024.html",
+    "population2025": "DREM, 2025 Resident Population Estimates, published 22 June 2026: 266130 as of 2025-12-31. https://estatistica.madeira.gov.pt/en/download-now/economica/turismo-pt/turismo-noticias-pt/198-press-release/demography-press-release/5828-22-06-2026-in-2025-the-resident-population-of-the-autonomous-region-of-madeira-exceeded-266-thousand-reaching-the-highest-figure-in-the-last-fourteen-years.html",
+    "religion2021": "DREM/INE, 2021 Census as cited in Demografia em Números 2026: Roman Catholic 78% of residents. https://estatistica.madeira.gov.pt/en/download-now-3/social-gb/popcondsoc-gb/demografia-gb/demografia-publicacoes-gb/send/36-demografia-publicacoes/18920-demografia-em-numeros-dia-do-pai-2026.html",
+    "autonomy": "Portuguese Diário da República, Decreto Regional 2/76, 11 Nov 1976: constitutional regional autonomy and self-governing bodies. https://diariodarepublica.pt/dr/detalhe/decreto-regional/2-1976-407125",
+    "tourismGeography": "Visit Madeira, About Us and Where We Are: two inhabited islands, Desertas and Selvagens reserves. https://www.visitmadeira.com/en/travel-info/about-us-and-where-we-are/",
+    "picoAreeiro": "Madeira Tourism Board, Pico do Areeiro (1818m), Ninho da Manta and central massif. https://visitmadeira.com/en/where-to-go/madeira/madeira-peaks/pico-do-areeiro/",
+    "fanal": "Madeira Tourism Board, Fanal ancient Ocotea foetens, laurel forest. https://visitmadeira.com/en/where-to-go/madeira/north-coast/porto-moniz/fanal",
+    "saoLourenco": "Madeira Tourism Board, Ponta do Rosto / eastern volcanic peninsula. https://visitmadeira.com/en/where-to-go/madeira/east-coast/machico/ponta-do-rosto-viewpoint/",
+    "caboGirao": "Madeira Tourism Board, Cabo Girão (580m), Skywalk and cliff-foot cultivated fajãs. https://visitmadeira.com/en/where-to-go/madeira/south-coast/camara-de-lobos/cabo-girao/",
+    "portoMoniz": "Madeira Tourism Board, Natural Pools of Porto Moniz, volcanic lava seawater pools. https://visitmadeira.com/en/where-to-go/madeira/north-coast/porto-moniz/natural-pools-of-porto-moniz/",
+    "santana": "Madeira Tourism Board, Casas de Santana triangular houses, thatched roofs. https://www.visitmadeira.com/en/where-to-go/madeira/north-coast/santana/casas-de-santana/",
+    "funchal": "Madeira Tourism Board, Funchal Downtown / Rua de Santa Maria, Painted Doors. https://visitmadeira.com/en/what-to-do/experiencing-the-city-of-funchal/exploring-the-city/funchal-streets/funchal-downtown/",
+    "caldeirao": "Madeira Tourism Board, PR9 Levada do Caldeirão Verde 8.7km one way, 17.4km return, levada and waterfall; trail status variable. https://visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/pr-9-levada-do-caldeirao-verde/",
+    "portoSanto": "Madeira Tourism Board, Porto Santo Beach: ~9 km golden sand. https://www.visitmadeira.com/en/where-to-go/porto-santo/porto-santo-beach/",
+    "laurisilva": "UNESCO World Heritage Centre, Laurisilva of Madeira, inscribed 1999, property 15000 ha. https://whc.unesco.org/en/list/934",
+    "history": "Madeira Tourism Board, History: 15th c. settlement, sugar cane, levadas, wine, 19th c. tourism. https://visitmadeira.com/en/what-to-do/culture-passionates/history/",
+    "wine": "Madeira Tourism Board, Madeira Wine: terraces, traditional methods and international trade. https://www.visitmadeira.com/en/what-to-do/food-and-wine-enthusiasts/madeira-wine/",
+    "desertas": "Madeira Tourism Board, Desertas Islands Nature Reserve: Ilhéu Chão, Deserta Grande, Bugio, monk seal. https://visitmadeira.com/en/what-to-do/nature-seekers/protected-areas/nature-reserves/desertas-islands-nature-reserve/",
+    "selvagens": "Madeira Tourism Board, Selvagens Nature Reserve: ~250km south, two groups, restricted access; 1971 designation. https://visitmadeira.com/en/what-to-do/nature-seekers/protected-areas/nature-reserves/selvagens-islands-nature-reserve/",
+    "hikingRules2026": "Madeira Tourism Board, Official hiking index: from 2026-01-01 PR trails require time-slotted booking, latest closures and prices subject to change. https://visitmadeira.com/en/what-to-do/nature-seekers/activities/hiking/",
+    "food": "Madeira Tourism Board, regional gastronomy: espetada, bolo do caco, black scabbardfish, grilled limpets. https://visitmadeira.com/en/what-to-do/food-and-wine-enthusiasts/traditional-madeira-food/",
+    "transport": "Madeira Tourism Board, Getting around / region overview, air links and inter-island ferry subject to timetables. https://visitmadeira.com/en/travel-info/",
+    "cathedral": "Madeira Tourism Board, Funchal Cathedral: local-cedar Mudéjar ceiling, Gothic/Manueline building. https://visitmadeira.com/en/what-to-do/culture-passionates/heritage/monuments-and-architecture/funchal-cathedral/",
+    "ilhaChaoBugio": "GeoNames, island centers: Ilhéu Chão 32.58515/-16.54472 and Bugio 32.42489/-16.48438; cross-check IFCN Desertas island span. https://www.geonames.org/advanced-search.html?continentCode=&country=PT&featureClass=&q=island ; https://ifcn.madeira.gov.pt/en/areas-protegidas/ilhas-desertas/localizacao.html",
+    "selvagensCoord": "Madeira IFCN location bounds and permit controls for Selvagens. https://ifcn.madeira.gov.pt/pt/areas-protegidas/ilhas-selvagens?format=html",
+    "portoSantoBiosphere": "Madeira Tourism Board, protected areas: Porto Santo designated UNESCO Biosphere Reserve in 2020. https://visitmadeira.com/en/what-to-do/nature-seekers/protected-areas/",
+    "caopPortoSanto": "Direção-Geral do Território, CAOP administrative coastline (CC BY 4.0) as redistributed at https://github.com/nmota/caop_GeoJSON/blob/master/geograficas/Madeira/MadeiraIlhas.geojson . Source blob dee5716205349ac397ecebd0a7cf03446f559009, checked 2026-11-08.",
+    "fennelName": "Madeira Tourism Board, Funchal: city name derives from wild fennel (Foeniculum vulgare), abundant when the settlement was created. Checked 2026-11-08. https://www.visitmadeira.com/en/where-to-go/madeira/south-coast/funchal/"
+  },
+  "sourceDates": {
+    "population": "2025-12-31 (2026-06-22 release; latest estimate at 2026-11-08)",
+    "landArea": "DREM Statistical Yearbook 2024; published December 2025",
+    "religion": "2021 Census; DREM 2026 publication",
+    "autonomy": "1976 constitution / 1976 regional decree",
+    "heritage": "1999 UNESCO registration; checked 2026-11-08",
+    "hiking": "2026-11-08 changing status; confirm on day of hike",
+    "transport": "2026-11-08 operator schedules are changeable"
+  }
+}
