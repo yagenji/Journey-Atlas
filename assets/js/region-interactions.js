@@ -99,7 +99,7 @@
   });
 
   const assetPath = img => img?.getAttribute('src')?.split('?', 1)[0] || '';
-  const sceneTypes = value => (value || '').trim().split(/\\s+/).filter(Boolean);
+  const sceneTypes = value => (value || '').trim().split(/\s+/).filter(Boolean);
   const hero = document.querySelector('.hero-caption');
   const country = {
     slug,
