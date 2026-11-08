@@ -21,6 +21,7 @@ REGION_EXPECTED = {
     "aruba": ("netherlands", "アルバ", "north-america"),
     "curacao": ("netherlands", "キュラソー", "north-america"),
     "sint-maarten": ("netherlands", "シント・マールテン", "north-america"),
+    "puerto-rico": ("unitedstates", "プエルトリコ", "north-america"),
     "new-caledonia": ("france", "ニューカレドニア", "oceania"),
     "french-polynesia": ("france", "フランス領ポリネシア", "oceania"),
 }
@@ -32,6 +33,7 @@ REGION_FLAGS = {
     "aruba": "🇦🇼",
     "curacao": "🇨🇼",
     "sint-maarten": "🇸🇽",
+    "puerto-rico": "🇵🇷",
     "new-caledonia": "🇳🇨",
     "french-polynesia": "🇵🇫",
 }
@@ -122,14 +124,28 @@ def check(driver, viewport):
     query.clear()
     query.send_keys(Keys.ESCAPE)
 
-    # Map navigation places every published child Region under the parent Country.
-    driver.execute_script("document.querySelector('[data-map-tab=\"europe\"]').click()")
-    wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#map .map-country-nav__child")) >= 9)
-    map_links = {el.get_attribute("href").split("/countries/")[-1]
-                 for el in driver.find_elements(By.CSS_SELECTOR, "#map .map-country-nav__child")}
+    # Check child Region links in the parent's map area: older Regions have
+    # European parents, while Puerto Rico belongs under the United States.
+    def map_child_links(region_id):
+        driver.execute_script(
+            "document.querySelector('[data-map-tab=\"' + arguments[0] + '\"]').click()",
+            region_id,
+        )
+        wait.until(lambda d: bool(d.find_elements(By.CSS_SELECTOR, "#map .map-country-nav__child")))
+        return set(driver.execute_script("""
+            return [...document.querySelectorAll('#map .map-country-nav__child')]
+                .map(el => el.getAttribute('href').split('countries/').pop());
+        """))
+
+    europe_links = map_child_links("europe")
     for slug, (parent, _name, _region_id) in REGION_EXPECTED.items():
-        if parent + "/" + slug + "/" not in map_links:
+        if parent == "unitedstates":
+            continue
+        if parent + "/" + slug + "/" not in europe_links:
             errors.append("TOP map child Region link missing: " + parent + "/" + slug)
+    north_america_links = map_child_links("north-america")
+    if "unitedstates/puerto-rico/" not in north_america_links:
+        errors.append("TOP map child Region link missing: unitedstates/puerto-rico")
 
     # Theme browsing must include Region destinations without inflating the
     # canonical 200 parent count.
