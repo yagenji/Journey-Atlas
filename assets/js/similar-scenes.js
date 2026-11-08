@@ -90,8 +90,10 @@
   }
 
   function render(picks, labels) {
+    // Close the page with the other ways onward: after the neighbouring routes, before the closing links.
+    const closing = document.querySelector('.journey-footer');
     const grid = document.querySelector('#scene-cards, .scene-grid');
-    const anchor = grid?.closest('section');
+    const anchor = closing || grid?.closest('section');
     if (!anchor || document.querySelector('.similar-scenes')) return;
     const section = make('section', 'similar-scenes');
     section.setAttribute('aria-labelledby', 'similar-scenes-title');
@@ -100,7 +102,7 @@
     const title = make('h2', '', 'この景色が好きなら');
     title.id = 'similar-scenes-title';
     titleWrap.append(make('span', 'section-kicker-en', 'IF YOU LIKE THIS SCENERY'), title);
-    head.append(titleWrap, make('p', 'similar-scenes__intro', 'この国の景色と同じ種類の景色を、ほかの国から選びました。'));
+    head.append(titleWrap, make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と同じ種類の景色を、ほかの国から選びました。`));
     const list = make('div', 'similar-scenes__grid');
     list.setAttribute('role', 'list');
     picks.forEach(pick => {
@@ -134,7 +136,7 @@
     const more = make('a', 'similar-scenes__more', '景色の種類から探す →');
     more.href = './#scenery';
     section.append(head, list, more);
-    anchor.after(section);
+    if (closing) closing.before(section); else anchor.after(section);
   }
 
   async function mount(data) {
