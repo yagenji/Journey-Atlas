@@ -1,0 +1,642 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "portugal",
+  "slug": "azores",
+  "regionPublished": false,
+  "nameEn": "AZORES",
+  "nameJa": "アゾレス諸島",
+  "region": "SOUTHERN EUROPE / 38°N",
+  "parentNameJa": "ポルトガル",
+  "parentNameEn": "PORTUGAL",
+  "parentReturnDescription": "ポルトガルの8つの景色を見る",
+  "seo": {
+    "description": "火口湖、地熱の谷、ピコ山の葡萄畑、海に迫る断崖と歴史港町。アゾレス諸島の9島を、8つの景色から旅する。"
+  },
+  "hero": {
+    "name": "セッテ・シダーデスの二つの火口湖",
+    "location": "Miradouro da Vista do Rei / Sete Cidades / São Miguel",
+    "image": "assets/images/portugal/azores/approved/hero-sete-cidades.webp",
+    "coordinates": {
+      "latitude": 37.8391444,
+      "longitude": -25.79495
+    },
+    "lead": "大西洋の真ん中で、青と緑の火口湖が静かに並ぶ。蒸気の上がる谷、溶岩の石垣に囲まれた葡萄畑、断崖の小さな集落、航海の歴史を伝える港。9つの島には、それぞれ違う火山の時間が流れている。",
+    "description": "サン・ミゲル島西部、ヴィスタ・ド・レイ展望台から青いラゴア・アズールと緑のラゴア・ヴェルデを望む。",
+    "sourceKeys": [
+      "azoresVisit",
+      "islandsAndArea"
+    ],
+    "sceneTypes": [
+      "lake",
+      "volcano"
+    ]
+  },
+  "profile": [
+    {
+      "label": "自治地域の拠点",
+      "value": "ポンタ・デルガダ／オルタ／アングラ・ド・エロイズモ",
+      "sourceKey": "autonomy"
+    },
+    {
+      "label": "人口",
+      "value": "245,328人（2025年末推計）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約2,334km²（9島の合計）",
+      "sourceKey": "islandsAndArea"
+    },
+    {
+      "label": "言語",
+      "value": "ポルトガル語",
+      "sourceKey": "autonomy"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックの伝統）",
+      "sourceKey": "holySpirit"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "map": {
+    "svg": "assets/images/portugal/azores/map-azores.svg",
+    "bounds": {
+      "north": 40,
+      "south": 36.7,
+      "west": -31.5,
+      "east": -24.4
+    },
+    "source": "Natural Earth 1:10m Admin-0 Portugal geometry (public domain), via approved Portugal map-atlas-v2.svg, PRT.geojson Git blob ce02dabb0ea17eba11923f78ed1525d8989c9b58; original nine real island coastlines preserved under exact local-equirectangular-fit projection; WGS84; checked 2026-11-08."
+  },
+  "scenes": [
+    {
+      "id": "lagoa-do-fogo",
+      "name": "ラゴア・ド・フォゴ",
+      "nameLocal": "Lagoa do Fogo / São Miguel",
+      "description": "サン・ミゲル島中部の火口壁から、緑の斜面に抱かれた青い湖と湖岸の白い砂地を見下ろす。保護された高地の湖は、天気によって色も輪郭も変わる。",
+      "coordinates": {
+        "latitude": 37.76938,
+        "longitude": -25.48843
+      },
+      "image": "assets/images/portugal/azores/approved/scene-lagoa-do-fogo.webp",
+      "sourceKey": "fogoLake",
+      "sceneTypes": [
+        "lake",
+        "volcano"
+      ]
+    },
+    {
+      "id": "furnas-geothermal",
+      "name": "フルナスの噴気孔",
+      "nameLocal": "Caldeiras das Furnas / São Miguel",
+      "description": "地面の割れ目から蒸気が立ち、鉄分を含む土が色づく。硫黄の香りと湧き出る熱が、いまも続く火山活動を知らせる。",
+      "coordinates": {
+        "latitude": 37.76858,
+        "longitude": -25.33152
+      },
+      "image": "assets/images/portugal/azores/approved/scene-furnas.webp",
+      "sourceKey": "furnas",
+      "sceneTypes": [
+        "geothermal",
+        "volcano"
+      ]
+    },
+    {
+      "id": "pico-vineyards",
+      "name": "ピコ山と溶岩の葡萄畑",
+      "nameLocal": "Vineyards of Criação Velha / Pico",
+      "description": "黒い玄武岩の石垣に囲まれた小さな畑が連なる。海風から葡萄を守る細い石の区画の向こうに、円錐形のピコ山がそびえる。",
+      "coordinates": {
+        "latitude": 38.51446,
+        "longitude": -28.53707
+      },
+      "image": "assets/images/portugal/azores/approved/scene-pico-vineyards.webp",
+      "sourceKey": "picoHeritage",
+      "sceneTypes": [
+        "vineyard",
+        "peak"
+      ]
+    },
+    {
+      "id": "capelinhos-volcano",
+      "name": "カペリニョス火山と灯台",
+      "nameLocal": "Capelinhos Volcano / Faial",
+      "description": "1957〜58年の噴火で広がった灰色の火山荒原。火山灰に埋もれた灯台と黒い断崖に、比較的新しい大地の輪郭が残る。",
+      "coordinates": {
+        "latitude": 38.59684,
+        "longitude": -28.82608
+      },
+      "image": "assets/images/portugal/azores/approved/scene-capelinhos.webp",
+      "sourceKey": "capelinhos",
+      "sceneTypes": [
+        "volcano",
+        "lighthouse"
+      ]
+    },
+    {
+      "id": "angra-heroismo",
+      "name": "アングラ・ド・エロイズモ",
+      "nameLocal": "Angra do Heroísmo / Terceira",
+      "description": "赤瓦の旧市街と教会の塔、その先の湾を眺める。大西洋を渡る船の寄港地として繁栄した都市の街路と港が、今もまとまって残る。",
+      "coordinates": {
+        "latitude": 38.65878,
+        "longitude": -27.2184
+      },
+      "image": "assets/images/portugal/azores/approved/scene-angra-do-heroismo.webp",
+      "sourceKey": "angraHeritage",
+      "sceneTypes": [
+        "oldtown",
+        "harbor"
+      ]
+    },
+    {
+      "id": "faja-santo-cristo",
+      "name": "ファジャン・ダ・カルデイラ・デ・サント・クリスト",
+      "nameLocal": "Fajã da Caldeira de Santo Cristo / São Jorge",
+      "description": "急崖の足元に細長い平地と小さな集落が広がり、湾曲した砂礫州が潟湖と大西洋を隔てる。海と陸の境界がつくる景観。",
+      "coordinates": {
+        "latitude": 38.62407,
+        "longitude": -27.93007
+      },
+      "image": "assets/images/portugal/azores/approved/scene-faja-santo-cristo.webp",
+      "sourceKey": "saoJorgeFaja",
+      "sceneTypes": [
+        "lagoon",
+        "cliff"
+      ]
+    },
+    {
+      "id": "ribeira-ferreiro",
+      "name": "ポソ・ダ・リベイラ・ド・フェレイロ",
+      "nameLocal": "Poço da Ribeira do Ferreiro / Flores",
+      "description": "湿った緑の岩壁を、幾筋もの細い滝が流れ落ちる。苔むした斜面と静かな池が、フローレス島の豊かな雨を感じさせる。",
+      "coordinates": {
+        "latitude": 39.43692,
+        "longitude": -31.23879
+      },
+      "image": "assets/images/portugal/azores/approved/scene-ribeira-do-ferreiro.webp",
+      "sourceKey": "azoresVisit",
+      "sceneTypes": [
+        "waterfall",
+        "forest"
+      ]
+    },
+    {
+      "id": "corvo-caldeirao",
+      "name": "コルヴォ島のカルデイラン",
+      "nameLocal": "Caldeirão / Corvo",
+      "description": "島の大部分を占める火山の頂部に、大きな緑のカルデラが口を開く。複数の池と小さな丘が火口の底に散らばる。",
+      "coordinates": {
+        "latitude": 39.70875,
+        "longitude": -31.09723
+      },
+      "image": "assets/images/portugal/azores/approved/scene-corvo-caldeirao.webp",
+      "sourceKey": "corvoCrater",
+      "sceneTypes": [
+        "volcano",
+        "lake"
+      ]
+    }
+  ],
+  "taste": {
+    "title": "アゾレス諸島で食べたいもの",
+    "kicker": "TASTE",
+    "intro": "火山の地熱、島の牧畜、そして大西洋の小さな貝。9島の暮らしがそのまま食卓に現れる。",
+    "items": [
+      {
+        "id": "cozido-furnas",
+        "name": "コジード・ダス・フルナス",
+        "nameLocal": "Cozido das Furnas",
+        "text": "牛・豚・鶏の肉、キャベツ、芋、チョリソなどを鍋に重ね、フルナスの地熱でゆっくり蒸し煮にする。",
+        "image": "assets/images/portugal/azores/approved/food-cozido-das-furnas.webp",
+        "sourceKey": "cozido"
+      },
+      {
+        "id": "alcatra-terceira",
+        "name": "アルカトラ・ア・モーダ・ダ・テルセイラ",
+        "nameLocal": "Alcatra à moda da Terceira",
+        "text": "牛肉と玉ねぎを赤ワインや香辛料とともに陶製鍋で長時間煮込むテルセイラ島の料理。",
+        "image": "assets/images/portugal/azores/approved/food-alcatra-terceira.webp",
+        "sourceKey": "alcatra"
+      },
+      {
+        "id": "lapas-grelhadas",
+        "name": "ラパス・グレリャーダス",
+        "nameLocal": "Lapas grelhadas",
+        "text": "大西洋の岩場で採れるカサガイを殻ごと焼き、にんにくやバターで味わう島の海の料理。",
+        "image": "assets/images/portugal/azores/approved/food-lapas-grelhadas.webp",
+        "sourceKey": "localFood"
+      },
+      {
+        "id": "queijadas-vila",
+        "name": "ケイジャーダス・ダ・ヴィラ",
+        "nameLocal": "Queijadas da Vila",
+        "text": "ヴィラ・フランカ・ド・カンポの伝統菓子。薄い生地で乳製品の餡を包み、粉砂糖をかけて食べる。",
+        "image": "assets/images/portugal/azores/approved/food-queijadas-da-vila.webp",
+        "sourceKey": "azoresVisit"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "nine-islands",
+      "label": "3島群に分かれる9島",
+      "value": "9島",
+      "note": "東部のサン・ミゲルとサンタ・マリア、中部の5島、西部のフローレスとコルヴォ。島々は大西洋上に約630kmにわたって並ぶ。",
+      "icon": "globe",
+      "sourceKey": "islandsAndArea",
+      "interestReason": "隣の島へ渡ること自体が旅の一部になる地理を伝える。"
+    },
+    {
+      "topicKey": "highest-portugal",
+      "label": "ポルトガル最高峰",
+      "value": "2,351m",
+      "note": "ピコ島のピコ山はポルトガル全土で最も高い地点。海辺の葡萄畑の上に大きな火山が立つ。",
+      "icon": "landscape",
+      "sourceKey": "picoElevation",
+      "interestReason": "小島の山が本土の高峰より高いという意外性がある。",
+      "exceptionalScale": true
+    },
+    {
+      "topicKey": "unesco-two",
+      "label": "世界遺産の文化景観",
+      "value": "2件",
+      "note": "アングラ・ド・エロイズモの歴史地区（1983年登録）とピコ島の葡萄畑文化景観（2004年登録）。",
+      "icon": "culture",
+      "sourceKey": "picoHeritage",
+      "interestReason": "自然の島という印象の奥に、航海と農業の長い歴史がある。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火口湖の上を流れる雲",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "地面から立ち上がる温泉の蒸気",
+      "icon": "sun",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "玄武岩の葡萄畑を歩く道",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "港に並ぶヨットと漁船",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "聖霊祭で分かち合う食卓",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "波に洗われる溶岩の岩場",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "雨上がりの細い滝",
+      "icon": "waterfall",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "島から島へ渡る小さな飛行機",
+      "icon": "map",
+      "category": "MOVEMENT"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "angra-ocean-crossroads",
+      "themeEn": "HISTORY",
+      "themeJa": "航海の歴史",
+      "icon": "sea",
+      "title": "船が往来する大西洋の中継港",
+      "text": "アングラ・ド・エロイズモは、15世紀以降の大西洋航路で重要な寄港地になった。城塞と港、教会が同じ街に残るのは、航海と防衛と信仰が結びついたためだ。",
+      "points": [
+        "旧市街と港の配置は世界遺産として保護される",
+        "1980年の地震後にも歴史的な街路を受け継いだ"
+      ],
+      "sourceKey": "angraHeritage"
+    },
+    {
+      "topicKey": "pico-lava-vineyards",
+      "themeEn": "WORK",
+      "themeJa": "土地を耕す",
+      "icon": "culture",
+      "title": "溶岩を葡萄畑に変えた石垣",
+      "text": "ピコ島では黒い玄武岩を積んだ石垣で小区画をつくり、潮風から葡萄を守ってきた。石垣の網目は海沿いに広がる、人が築いた風景でもある。",
+      "points": [
+        "石垣の小区画はクライス（currais）と呼ばれる",
+        "15世紀以来の栽培法が文化景観に刻まれている"
+      ],
+      "sourceKey": "picoHeritage"
+    },
+    {
+      "topicKey": "holy-spirit-festivals",
+      "themeEn": "FAITH",
+      "themeJa": "祈りと分かち合い",
+      "icon": "culture",
+      "title": "聖霊祭は食事を分け合う祭り",
+      "text": "島々に点在する小さな聖霊礼拝堂「インペリオ」では、祭礼の時期に冠や旗を飾り、スープや甘いパンを地域の人々へ振る舞う。宗教儀礼が共同体の食卓につながる。",
+      "points": [
+        "小さな礼拝堂が集落の目印になる",
+        "地域によって祝祭と振る舞いの形が少しずつ異なる"
+      ],
+      "sourceKey": "holySpirit"
+    },
+    {
+      "topicKey": "whaling-memory",
+      "themeEn": "LIFE",
+      "themeJa": "海と生きる",
+      "icon": "sea",
+      "title": "捕鯨船の小屋が博物館になった",
+      "text": "ピコ島では19世紀から1980年代まで続いた捕鯨の歴史を、かつての船小屋を使った博物館が伝えている。現在の海の見方を考える上で、過去の産業を知る場所となっている。",
+      "points": [
+        "捕鯨船の道具や技術の記録が残る",
+        "今日の海洋観光と過去の産業を比べて考えられる"
+      ],
+      "sourceKey": "whaling"
+    },
+    {
+      "topicKey": "sao-jorge-cheese",
+      "themeEn": "FOOD",
+      "themeJa": "乳製品の島",
+      "icon": "culture",
+      "title": "サン・ジョルジェでは牧草地がチーズを育てる",
+      "text": "海から立ち上がる高原の牧草地で飼われた牛の乳は、伝統的なサン・ジョルジェ・チーズへ。生産者組合の取り組みが、島の食品づくりを支えてきた。",
+      "points": [
+        "生乳を使う熟成チーズが島の名物",
+        "牧畜の景色と食文化を一続きに見られる"
+      ],
+      "sourceKey": "cheese"
+    },
+    {
+      "topicKey": "furnas-earth-oven",
+      "themeEn": "FOOD",
+      "themeJa": "地熱の食卓",
+      "icon": "geothermal",
+      "title": "地中の蒸気が、鍋の火になる",
+      "text": "フルナスでは鍋を地熱のある場所に埋め、複数の肉と野菜を長時間蒸し煮にする。火山は眺めるだけの自然ではなく、台所の熱源でもある。",
+      "points": [
+        "鍋は約6時間かけてゆっくり加熱する",
+        "食材から出る水分を生かした蒸し煮"
+      ],
+      "sourceKey": "cozido"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "fogo-protection",
+      "categoryEn": "NATURE",
+      "categoryJa": "自然保護",
+      "title": "ラゴア・ド・フォゴは1974年から自然保護区",
+      "text": "火口湖の周囲は1974年に自然保護区となり、観光時には季節によってシャトルの利用が案内される。",
+      "icon": "landscape",
+      "sourceKey": "fogoLake"
+    },
+    {
+      "topicKey": "capelinhos-new-land",
+      "categoryEn": "VOLCANO",
+      "categoryJa": "火山",
+      "title": "火山灰で灯台の役目が終わった",
+      "text": "1957年に始まったカペリニョスの噴火で灯台は使われなくなった。現在は火山の歴史を学ぶ見学の入口になっている。",
+      "icon": "landscape",
+      "sourceKey": "capelinhosLight"
+    },
+    {
+      "topicKey": "faja-saltwater",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "海岸地形",
+      "title": "海とつながる潟湖は、サン・ジョルジェの特別な場所",
+      "text": "サント・クリストの潟湖は砂礫州の内側にでき、人が海との水路を開いた状態に保ってきた。",
+      "icon": "sea",
+      "sourceKey": "saoJorgeFaja"
+    },
+    {
+      "topicKey": "tea-sao-miguel",
+      "categoryEn": "AGRICULTURE",
+      "categoryJa": "農業",
+      "title": "サン・ミゲル島には茶畑がある",
+      "text": "19世紀に持ち込まれた茶の栽培が続き、島の工場では緑茶・紅茶をつくっている。",
+      "icon": "culture",
+      "sourceKey": "localFood"
+    },
+    {
+      "topicKey": "corvo-migratory",
+      "categoryEn": "BIRDS",
+      "categoryJa": "渡り鳥",
+      "title": "秋のコルヴォは渡り鳥を探す島",
+      "text": "アメリカ大陸から迷い込む鳥などの観察で知られ、10〜11月にはバードウォッチャーが訪れる。",
+      "icon": "wildlife",
+      "sourceKey": "corvoBirds"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "火山と湖の地形を歩いて感じたい人",
+      "text": "火口湖の展望台だけでなく、蒸気が上がる谷や噴火の跡を、自分の歩幅で見て回りたい人。"
+    },
+    {
+      "title": "自然と島の暮らしを一緒に知りたい人",
+      "text": "葡萄畑の石垣、チーズづくり、聖霊祭など、風景の背景にある人の工夫に興味がある人。"
+    },
+    {
+      "title": "一つの旅先で複数の島を巡りたい人",
+      "text": "飛行機・船の移動も旅として楽しみ、島ごとに異なる地形と文化を比べたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "島間の移動は運航日から組み立てる",
+      "text": "島間航空便と船便は路線や季節によって頻度が違う。宿より先に移動可能日を確認し、欠航に備えて予備日を置く。",
+      "sourceKey": "air"
+    },
+    {
+      "title": "サント・クリストへは歩くアクセスが基本",
+      "text": "急崖の下にあるファジャンは徒歩ルートが基本。公式トレイルの情報と雨・足元の状況を確認する。",
+      "sourceKey": "saoJorgeFaja"
+    },
+    {
+      "title": "高所の天気と視界を優先する",
+      "text": "火口湖やピコ山は雲と風で見え方が変わる。見晴らしを目当てにする日は日程を入れ替えられるようにしておく。",
+      "sourceKey": "picoElevation"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "9島すべてを一度に回る必要はない。拠点を分け、飛行機やフェリーの運航に合わせてゆとりを持って巡りたい。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "サン・ミゲル島の火山湖と地熱",
+        "text": "ポンタ・デルガダを拠点にセッテ・シダーデス、ラゴア・ド・フォゴ、フルナスを日程と天気に合わせて巡る。",
+        "icon": "landscape"
+      },
+      {
+        "duration": "8〜11日",
+        "title": "中央島群の3島とサン・ミゲル島",
+        "text": "サン・ミゲル島にピコ・ファイアル・サン・ジョルジェを加える。島間の船と飛行機を確認して移動日を確保する。",
+        "icon": "map"
+      },
+      {
+        "duration": "12〜16日",
+        "title": "西部のフローレスとコルヴォへ",
+        "text": "サン・ミゲル島・中央島群の旅に西部の滝とカルデラを追加。欠航や強風に備えて少なくとも数日の調整余地を残す。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜9月",
+        "reason": "長い日照と穏やかな気候を期待しやすく、島間移動や高地の散策を組み合わせやすい。"
+      },
+      {
+        "label": "4〜5月・10月",
+        "reason": "観光の混雑を避けやすい時期。ただし雲・雨・風の変化に備えて日程の融通を持たせる。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "新緑と花が増え、山の斜面も鮮やかになる。春先は風と雨への備えが必要。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#d4b56c",
+      "text": "日が長く、景色と海を組み合わせやすい季節。夏でも高所や海辺は雲と風が変わる。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "sea",
+      "color": "#9ca0aa",
+      "text": "秋は海が荒れる日もある。コルヴォでは渡り鳥の季節が重なる。"
+    },
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#91a8b8",
+      "text": "温暖だが雨風で移動に影響が出やすい。訪問する島を絞り、日程に余裕を持ちたい。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "島間は飛行機とフェリー",
+    "text": "サン・ミゲル島などへの国際・本土便と、SATA Air Açoresの島間航空便を組み合わせる。中央島群を中心にAtlânticolineの船便もあるが、運航区間と時刻は季節・天候で変わるため、必ず公式時刻表を確認する。",
+    "sourceKeys": [
+      "air",
+      "sea"
+    ]
+  },
+  "relatedCountries": [
+    {
+      "nameJa": "ポルトガル",
+      "nameEn": "PORTUGAL",
+      "href": "countries/portugal/",
+      "flag": "🇵🇹",
+      "reason": "大西洋へ航路を広げた本土の街と、島の海洋文化をつなぐ。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "スペイン",
+      "nameEn": "SPAIN",
+      "href": "countries/spain/",
+      "flag": "🇪🇸",
+      "reason": "カナリア諸島を含む別の大西洋の火山の島と見比べる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "アイスランド",
+      "nameEn": "ICELAND",
+      "href": "countries/iceland/",
+      "flag": "🇮🇸",
+      "reason": "北大西洋の火山・地熱という共通点を、異なる緯度で比べる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "nextRoutes": [],
+  "sourcesVerifiedAt": "2026-11-08",
+  "sources": {
+    "autonomy": "https://portal.azores.gov.pt/documents/36626/9672879/02%2BEstatuto%2Bda%2BRegi%C3%A3o%2C%2BLei%2B39_80%2B-%2Bvers%C3%A3o%2Bconsolidada%2Bem%2B2023.03.pdf/a14485dd-92af-07c7-06a9-0ddf785434bf?t=1679582993919",
+    "autonomyHistory": "https://ccarquivos.azores.gov.pt/index.php/presid-ncia-do-governo-regional-dos-ores-2%3Bisad?sf_culture=pt",
+    "population": "https://srea.azores.gov.pt/2026/06/22/estimativas-da-populacao-residente-2025/",
+    "islandsAndArea": "https://sustainable.azores.gov.pt/wp-content/uploads/2025/10/Plano-de-Acao-20252026-Acores-DMO.pdf",
+    "picoElevation": "https://montanhapico.azores.gov.pt/Subir.aspx?lang=en",
+    "picoHeritage": "https://whc.unesco.org/en/list/1117/",
+    "angraHeritage": "https://whc.unesco.org/en/list/206/",
+    "fogoLake": "https://www.visitazores.com/en/explore/fogo-lake",
+    "furnas": "https://www.visitazores.com/en/explore/furnas-valley",
+    "capelinhos": "https://www.visitazores.com/en/explore/capelinhos-volcano-interpretation-centre",
+    "capelinhosLight": "https://www.visitazores.com/en/explore/ponta-dos-capelinhos-lighthouse",
+    "saoJorgeFaja": "https://www.visitazores.com/en/explore/fajas-dos-cubres-and-faja-da-caldeira-do-sto-cristo",
+    "corvoCrater": "https://www.visitazores.com/en/explore/caldeirao-lookout",
+    "corvoBirds": "https://trails.visitazores.com/en/islands/corvo",
+    "localFood": "https://taste.visitazores.com/en/cuisine/products",
+    "cozido": "https://taste.visitazores.com/en/recipe/cozido-furnas",
+    "alcatra": "https://taste.visitazores.com/en/recipe/alcatra",
+    "holySpirit": "https://www.visitazores.com/en/explore/imperio-do-divino-espirito-santo-2",
+    "cheese": "https://www.visitazores.com/en/explore/uniqueijo",
+    "whaling": "https://www.visitazores.com/en/explore/museu-dos-baleeiros",
+    "air": "https://www.azoresairlines.pt/en/sata-summer-operation-2026?language=en",
+    "sea": "https://www.atlanticoline.pt/en/timetable/",
+    "azoresVisit": "https://www.visitazores.com/en/"
+  },
+  "sourceDates": {
+    "population": "2025-12-31（2026-06-22発表）",
+    "area": "2025年地域資料・2026-11-08確認",
+    "autonomy": "1976年制定・2023年統合法・2026-11-08確認",
+    "UNESCO": "Angra 1983 / Pico 2004・2026-11-08確認",
+    "travel": "2026-11-08公式運航情報確認（利用時は再確認）",
+    "geography": "2026-11-08",
+    "autonomyHistory": "2026-11-08（公式資料確認）",
+    "islandsAndArea": "2026-11-08（公式資料確認）",
+    "picoElevation": "2026-11-08（公式資料確認）",
+    "picoHeritage": "2026-11-08（公式資料確認）",
+    "angraHeritage": "2026-11-08（公式資料確認）",
+    "fogoLake": "2026-11-08（公式資料確認）",
+    "furnas": "2026-11-08（公式資料確認）",
+    "capelinhos": "2026-11-08（公式資料確認）",
+    "capelinhosLight": "2026-11-08（公式資料確認）",
+    "saoJorgeFaja": "2026-11-08（公式資料確認）",
+    "corvoCrater": "2026-11-08（公式資料確認）",
+    "corvoBirds": "2026-11-08（公式資料確認）",
+    "localFood": "2026-11-08（公式資料確認）",
+    "cozido": "2026-11-08（公式資料確認）",
+    "alcatra": "2026-11-08（公式資料確認）",
+    "holySpirit": "2026-11-08（公式資料確認）",
+    "cheese": "2026-11-08（公式資料確認）",
+    "whaling": "2026-11-08（公式資料確認）",
+    "air": "2026-11-08（公式資料確認）",
+    "sea": "2026-11-08（公式資料確認）",
+    "azoresVisit": "2026-11-08（公式資料確認）"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "暮らしに出会う"
+  ],
+  "contentQaVersion": 6,
+  "historyContext": {
+    "text": "アゾレス諸島は15世紀からポルトガルの航海と植民の歴史に組み込まれ、アングラの港はヨーロッパと大西洋・インド洋を行き来する船の中継地となった。1976年のポルトガル憲法はアゾレスを自治地域と定め、独自の議会と政府を持つ体制が始まった。今日も9島の共同体には聖霊祭の伝統が息づく。",
+    "sourceKeys": [
+      "angraHeritage",
+      "autonomyHistory",
+      "holySpirit"
+    ]
+  }
+}
