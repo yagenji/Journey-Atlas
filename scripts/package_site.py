@@ -381,7 +381,7 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
                 raise ValueError(f"Country Hero preload is not version-aligned for {slug}: {expected}")
 
     # The canonical Region page must reference the content-hashed CSS and JS.
-    from build_region_pages import REGION_RUNTIME_ASSETS, region_asset_version
+    from build_region_pages import region_asset_version, region_runtime_assets
     region_version = region_asset_version()
 
     # Region pages are direct-URL reviews until their publication flag is true.
@@ -392,7 +392,7 @@ def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
         if not page_path.is_file():
             raise FileNotFoundError(f"Reviewable Region page missing: {page_path}")
         html_text = page_path.read_text(encoding="utf-8")
-        for asset in REGION_RUNTIME_ASSETS:
+        for asset in region_runtime_assets():
             if f'{asset}?v={region_version}' not in html_text:
                 raise ValueError(f'Region stale asset URL: {parent}/{region_slug} {asset}')
         expected_robots = "index,follow" if region.get("regionPublished") is True else "noindex,follow"
