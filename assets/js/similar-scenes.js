@@ -144,6 +144,15 @@
     head.append(titleWrap, more);
     section.append(head, list);
     anchor.after(section);
+    // On phones the row scrolls sideways, so lazy loading would leave the hidden photos blank; load all six once the row is near.
+    if ('IntersectionObserver' in window) {
+      const watch = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        list.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+        watch.disconnect();
+      }, {rootMargin: '400px 0px'});
+      watch.observe(list);
+    }
   }
 
   async function mount(data) {
