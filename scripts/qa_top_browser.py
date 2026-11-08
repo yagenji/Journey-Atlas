@@ -21,6 +21,7 @@ REGION_EXPECTED = {
     "aruba": ("netherlands", "アルバ", "north-america"),
     "curacao": ("netherlands", "キュラソー", "north-america"),
     "sint-maarten": ("netherlands", "シント・マールテン", "north-america"),
+    "puerto-rico": ("unitedstates", "プエルトリコ", "north-america"),
     "new-caledonia": ("france", "ニューカレドニア", "oceania"),
     "french-polynesia": ("france", "フランス領ポリネシア", "oceania"),
 }
@@ -32,6 +33,7 @@ REGION_FLAGS = {
     "aruba": "🇦🇼",
     "curacao": "🇨🇼",
     "sint-maarten": "🇸🇽",
+    "puerto-rico": "🇵🇷",
     "new-caledonia": "🇳🇨",
     "french-polynesia": "🇵🇫",
 }
