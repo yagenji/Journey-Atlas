@@ -626,6 +626,7 @@ def build_top_scene_index() -> None:
         "aruba": ("🇦🇼", None),
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
+        "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
