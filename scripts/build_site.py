@@ -621,6 +621,7 @@ def build_top_scene_index() -> None:
     # published UK flag artwork: Unicode subdivision flag tags do not render
     # consistently across browsers. Northern Ireland uses the UK flag.
     region_flags: dict[str, tuple[str, str | None]] = {
+        "madeira": ("🇵🇹", "assets/icons/region-flags/madeira.svg"),
         "greenland": ("🇬🇱", None),
         "faroe-islands": ("🇫🇴", None),
         "aruba": ("🇦🇼", None),
