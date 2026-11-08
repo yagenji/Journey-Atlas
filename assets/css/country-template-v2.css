@@ -187,3 +187,33 @@
     display:flex!important;
   }
 }
+
+/* Crawlable Country summary: shown only until the interactive Country page loads. */
+#app > .country-seo-entry {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 80px) 24px 96px;
+  color: #20384b;
+  line-height: 1.8;
+}
+.country-seo-entry h1 {
+  margin: 24px 0 0;
+  font-size: clamp(36px, 6vw, 68px);
+  line-height: 1.15;
+  letter-spacing: .02em;
+}
+.country-seo-entry__ja { margin: 0 0 28px; font-size: 18px; }
+.country-seo-entry__lead { font-size: clamp(16px, 2.2vw, 20px); }
+.country-seo-entry__location { color: #6e706c; font-size: 13px; }
+.country-seo-entry__nav { font-size: 13px; }
+.country-seo-entry a { color: #234968; text-decoration: underline; text-underline-offset: 3px; }
+.country-seo-entry section,
+.country-seo-entry nav[aria-label="関連する旅先"] { margin-top: 44px; }
+.country-seo-entry h2 { margin: 0 0 14px; font-size: 24px; }
+.country-seo-entry h3 { font-size: 17px; margin: 16px 0 4px; }
+.country-seo-entry ol,
+.country-seo-entry ul { padding-left: 24px; }
+.country-seo-entry li { margin: 0 0 12px; }
+.country-seo-entry p { margin-top: 6px; }
+.country-seo-entry dt { font-weight: 700; margin-top: 12px; }
+.country-seo-entry dd { margin-left: 0; }

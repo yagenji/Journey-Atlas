@@ -204,6 +204,7 @@ jobs:
           python3 tests/test_qa_optional_taste.py
           python3 tests/test_qa_optional_taste_runner.py
           python3 tests/test_map_credits.py
+          python3 -m unittest discover -s tests -p 'test_country_seo.py'
 
       - name: Run targeted finish-line QA
         if: steps.target.outputs.content_slugs != '' && steps.target.outputs.publication_only != 'true'
