@@ -4,7 +4,7 @@
 (() => {
   'use strict';
   const INDEX = 'data/top-scene-index.json?v=20261108-scene-types-1';
-  const PICKS = 3;
+  const PICKS = 6;
   // Detail areas count as part of their parent for "another country".
   const FAMILY = {'hong-kong': 'china', macau: 'china'};
   const json = url => fetch(url).then(response => {
@@ -74,23 +74,29 @@
     const picks = [];
     const families = new Set([family]);
     const regions = [homeRegion];
-    for (const type of order) {
-      if (picks.length === PICKS) break;
-      const open = pool.filter(item => item.types.includes(type) && !families.has(item.family));
-      if (!open.length) continue;
-      // Prefer the same main subject, then a part of the world not yet shown.
-      const score = item => (item.types[0] === type ? 2 : 0) + (regions.includes(item.region) ? 0 : 1);
-      const best = Math.max(...open.map(score));
-      const pick = shuffle(open.filter(item => score(item) === best))[0];
-      picks.push({...pick, reason: type});
-      families.add(pick.family);
-      regions.push(pick.region);
+    // Go round the page's types until six are found, so a page with few types still fills the row.
+    let added = true;
+    while (picks.length < PICKS && added) {
+      added = false;
+      for (const type of order) {
+        if (picks.length === PICKS) break;
+        const open = pool.filter(item => item.types.includes(type) && !families.has(item.family));
+        if (!open.length) continue;
+        // Prefer the same main subject, then a part of the world not yet shown.
+        const score = item => (item.types[0] === type ? 2 : 0) + (regions.includes(item.region) ? 0 : 1);
+        const best = Math.max(...open.map(score));
+        const pick = shuffle(open.filter(item => score(item) === best))[0];
+        picks.push({...pick, reason: type});
+        families.add(pick.family);
+        regions.push(pick.region);
+        added = true;
+      }
     }
     return picks;
   }
 
-  function render(picks, labels) {
-    // Close the page with the other ways onward: after the neighbouring routes, before the closing links.
+  function render(picks) {
+    // A small extra after the page has closed: below the closing links, not before them.
     const closing = document.querySelector('.journey-footer');
     const grid = document.querySelector('#scene-cards, .scene-grid');
     const anchor = closing || grid?.closest('section');
@@ -101,8 +107,8 @@
     const titleWrap = make('div');
     const title = make('h2', '', 'この景色が好きなら');
     title.id = 'similar-scenes-title';
-    titleWrap.append(make('span', 'section-kicker-en', 'IF YOU LIKE THIS SCENERY'), title);
-    head.append(titleWrap, make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と同じ種類の景色を、ほかの国から選びました。`));
+    titleWrap.append(make('span', 'section-kicker-en', 'IF YOU LIKE THIS SCENERY'), title,
+      make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と同じ種類の景色を、ほかの国から。`));
     const list = make('div', 'similar-scenes__grid');
     list.setAttribute('role', 'list');
     picks.forEach(pick => {
@@ -113,8 +119,8 @@
       const image = make('img');
       image.src = pick.image;
       image.alt = '';
-      image.width = 480;
-      image.height = 320;
+      image.width = 240;
+      image.height = 160;
       image.loading = 'lazy';
       image.decoding = 'async';
       const copy = make('span', 'similar-scene__copy');
@@ -129,14 +135,24 @@
       } else {
         country.textContent = `${pick.place.flag || ''} ${pick.place.nameJa}`.trim();
       }
-      copy.append(make('span', 'similar-scene__type', labels.get(pick.reason) || ''), make('b', '', pick.name), country);
+      copy.append(make('b', '', pick.name), country);
       card.append(image, copy);
       list.append(card);
     });
     const more = make('a', 'similar-scenes__more', '景色の種類から探す →');
     more.href = './#scenery';
-    section.append(head, list, more);
-    if (closing) closing.before(section); else anchor.after(section);
+    head.append(titleWrap, more);
+    section.append(head, list);
+    anchor.after(section);
+    // On phones the row scrolls sideways, so lazy loading would leave the hidden photos blank; load all six once the row is near.
+    if ('IntersectionObserver' in window) {
+      const watch = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        list.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+        watch.disconnect();
+      }, {rootMargin: '400px 0px'});
+      watch.observe(list);
+    }
   }
 
   async function mount(data) {
@@ -154,8 +170,7 @@
       const family = data.regionParent || FAMILY[data.slug] || data.slug;
       const picks = choose(order, buildPool(index, places, regionByIso), family, regionByIso.get(self?.iso2));
       if (!picks.length) return;
-      const labels = new Map((index.sceneTypes || []).flatMap(group => group.types.map(type => [type.id, type.label])));
-      render(picks, labels);
+      render(picks);
     } catch (error) {
       console.warn('[JOURNEY ATLAS] Similar scenes unavailable.', error);
     }
