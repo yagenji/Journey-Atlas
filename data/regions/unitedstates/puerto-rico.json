@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "unitedstates",
+  "slug": "puerto-rico",
+  "regionPublished": false,
+  "nameEn": "PUERTO RICO",
+  "nameJa": "プエルトリコ",
+  "region": "CARIBBEAN / 18°N",
+  "parentNameJa": "アメリカ合衆国",
+  "parentNameEn": "UNITED STATES",
+  "parentReturnDescription": "アメリカ合衆国の8つの景色を見る",
+  "seo": {
+    "description": "エル・モロの城塞から、サンフアンの街路、エル・ユンケの雨林、洞窟、クレブラ島の白砂、ビエケス島の黒砂、カボ・ロホの断崖へ。プエルトリコの8景を地図でたどる。"
+  },
+  "hero": {
+    "name": "サン・フェリペ・デル・モロ要塞",
+    "location": "Castillo San Felipe del Morro / Old San Juan",
+    "image": "assets/images/unitedstates/puerto-rico/approved/hero-el-morro.webp",
+    "coordinates": {
+      "latitude": 18.47038,
+      "longitude": -66.12363
+    },
+    "lead": "大西洋に面した石の要塞から、青灰色の石畳の町へ。東には熱帯雨林、内陸には深い谷、西には石灰岩の断崖。海を渡れば白砂のクレブラ島と黒砂のビエケス島がある。プエルトリコは、ひとつの島の名前では収まらない。",
+    "description": "サンフアン湾の入口を守る16世紀から築かれた要塞。段をなす城壁、海へ突き出た稜堡、背後の草地が港の歴史を伝える。",
+    "sourceKey": "elMorro",
+    "sceneTypes": [
+      "castle",
+      "cliff"
+    ],
+    "mapOffset": {
+      "x": -3,
+      "y": -4
+    }
+  },
+  "profile": [
+    {
+      "label": "首府",
+      "value": "サンフアン（San Juan）",
+      "sourceKey": "constitutionText"
+    },
+    {
+      "label": "人口",
+      "value": "約318万人（2025年7月推計）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "陸地約8,870km²（日本の約2.3%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "スペイン語、英語（公用語）",
+      "sourceKey": "languages"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリック、プロテスタントなど）",
+      "sourceKey": "religion"
+    },
+    {
+      "label": "通貨",
+      "value": "米ドル（USD）",
+      "sourceKey": "constitution"
+    }
+  ],
+  "historyContext": {
+    "text": "プエルトリコは、アメリカ合衆国に属する非編入領土で、独自の憲法と自治政府を持つ。先住民タイノの歴史を経てスペインの統治下に置かれ、1898年に米国の統治へ移った。1952年には現在の自治憲法が発効した。米国の州でも独立国家でもない。",
+    "sourceKeys": [
+      "territory",
+      "constitution",
+      "constitutionText"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/unitedstates/puerto-rico/map-puerto-rico.svg",
+    "bounds": {
+      "west": -68.35,
+      "east": -65.1,
+      "south": 17.48,
+      "north": 19.0
+    },
+    "source": "Basemap 2.x bundled UScounties WGS84-coordinates, county geometries derived from NOAA Coastal Geospatial Data Project; Puerto Rico municipality polygons dissolved into 13 land/island components without drawn internal boundaries; copyright/public-domain dataset. Local equirectangular projection with cos(latitude) fit. Includes main island, Vieques, Culebra, Mona, Desecheo and other small Puerto Rican islands; source geometry generalized by dataset. No invented coastlines. Not for navigation.",
+    "insetNote": "※ カヨ・カラコレスなど、海岸線データで形を十分に表せない小島は、実際の座標のみを表示し、島の形を推測して描いていません。"
+  },
+  "scenes": [
+    {
+      "id": "calle-del-cristo",
+      "name": "カジェ・デル・クリスト",
+      "nameLocal": "Calle del Cristo / Old San Juan",
+      "description": "旧サンフアンの石畳の通り。青灰色の敷石をたどる先に、小さなサント・クリスト礼拝堂の門が見える。",
+      "coordinates": {
+        "latitude": 18.46583,
+        "longitude": -66.11817
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene01-calle-del-cristo.webp",
+      "sourceKey": "chapelNHL",
+      "sceneTypes": [
+        "oldtown",
+        "square"
+      ],
+      "mapOffset": {
+        "x": 3,
+        "y": -4
+      }
+    },
+    {
+      "id": "yokahu-tower",
+      "name": "ヨカフ塔",
+      "nameLocal": "Yokahú Tower / El Yunque National Forest",
+      "description": "熱帯雨林の斜面に建つ円筒形の展望塔。石造の塔からルキージョ山地と東海岸の方向を見渡せる。",
+      "coordinates": {
+        "latitude": 18.31273,
+        "longitude": -65.77044
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene02-yokahu-tower.webp",
+      "sourceKey": "yokahu",
+      "sceneTypes": [
+        "rainforest",
+        "monument"
+      ]
+    },
+    {
+      "id": "cueva-ventana",
+      "name": "クエバ・ベンタナ",
+      "nameLocal": "Cueva Ventana / Arecibo",
+      "description": "石灰岩洞窟の大きな開口から、アレシボ川の谷を望む。暗い洞内と緑の盆地が一つの窓に収まる。",
+      "coordinates": {
+        "latitude": 18.37122,
+        "longitude": -66.69156
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene03-cueva-ventana.webp",
+      "sourceKey": "cueva",
+      "sceneTypes": [
+        "cave",
+        "canyon"
+      ]
+    },
+    {
+      "id": "flamenco-beach",
+      "name": "フラメンコ・ビーチ",
+      "nameLocal": "Flamenco Beach / Culebra",
+      "description": "クレブラ島北部に弧を描く白砂の湾。浅い水が淡い青緑から沖の青へと変わり、緑の岬が湾を囲む。",
+      "coordinates": {
+        "latitude": 18.33174,
+        "longitude": -65.31824
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene04-flamenco-beach.webp",
+      "sourceKey": "flamenco",
+      "sceneTypes": [
+        "beach",
+        "bay"
+      ]
+    },
+    {
+      "id": "playa-negra",
+      "name": "プラヤ・ネグラ",
+      "nameLocal": "Playa Negra / Vieques",
+      "description": "ビエケス島南岸の黒砂の海岸。黄褐色の崖、低い木々、白い波が鉱物を含む暗い砂と対照をなす。",
+      "coordinates": {
+        "latitude": 18.096,
+        "longitude": -65.49097
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene05-playa-negra.webp",
+      "sourceKey": "playaNegra",
+      "sceneTypes": [
+        "beach",
+        "cliff"
+      ]
+    },
+    {
+      "id": "faro-los-morrillos",
+      "name": "ロス・モリージョス灯台",
+      "nameLocal": "Faro Los Morrillos / Cabo Rojo",
+      "description": "乾いた岬の先端に建つ灯台。石灰岩の高い崖がカリブ海へ切り落ち、西部の海岸地形を際立たせる。",
+      "coordinates": {
+        "latitude": 17.93367,
+        "longitude": -67.19219
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene06-faro-los-morrillos.webp",
+      "sourceKey": "caboRojo",
+      "sceneTypes": [
+        "lighthouse",
+        "cliff"
+      ]
+    },
+    {
+      "id": "cayo-caracoles",
+      "name": "カヨ・カラコレス",
+      "nameLocal": "Cayo Caracoles / La Parguera",
+      "description": "ラ・パルゲラ自然保護区の浅い海に、小さなマングローブの島が浮かぶ。砂地と水路が海の色を変える。",
+      "coordinates": {
+        "latitude": 17.96279,
+        "longitude": -67.03563
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene07-cayo-caracoles.webp",
+      "sourceKey": "caracoles",
+      "sceneTypes": [
+        "wetland",
+        "lagoon"
+      ]
+    },
+    {
+      "id": "toro-negro",
+      "name": "トロ・ネグロ州有林",
+      "nameLocal": "Bosque Estatal Toro Negro / Cerro Doña Juana",
+      "description": "中央山脈の緑の尾根を見渡す高地。森に抱かれた低い石造展望塔と、谷にかかる霧が山地の空気を伝える。",
+      "coordinates": {
+        "latitude": 18.17181,
+        "longitude": -66.48094
+      },
+      "image": "assets/images/unitedstates/puerto-rico/approved/scene08-toro-negro.webp",
+      "sourceKey": "toroNegro",
+      "sceneTypes": [
+        "highland",
+        "forest"
+      ]
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF PUERTO RICO",
+    "title": "プエルトリコで食べたいもの",
+    "intro": "青いプランテンの香り、米と豆、祝いの席の豚肉、ココナッツの甘味。タイノ、アフリカ、スペインにルーツを持つ食文化を、4つの皿から感じる。",
+    "items": [
+      {
+        "id": "mofongo",
+        "name": "モフォンゴ",
+        "nameLocal": "Mofongo",
+        "text": "揚げた青プランテンをニンニクや豚の皮と一緒に潰し、円筒形に整える料理。",
+        "image": "assets/images/unitedstates/puerto-rico/approved/food01-mofongo.webp",
+        "sourceKey": "cuisine"
+      },
+      {
+        "id": "arroz-con-gandules",
+        "name": "アロス・コン・ガンドゥレス",
+        "nameLocal": "Arroz con gandules",
+        "text": "キマメと米をソフリートなどで炊く、祝祭の食卓にも並ぶ家庭料理。",
+        "image": "assets/images/unitedstates/puerto-rico/approved/food02-arroz-con-gandules.webp",
+        "sourceKey": "cuisine"
+      },
+      {
+        "id": "lechon-asado",
+        "name": "レチョン・アサード",
+        "nameLocal": "Lechón asado",
+        "text": "豚肉を時間をかけて焼き上げるごちそう。やわらかな肉と香ばしい皮を味わう。",
+        "image": "assets/images/unitedstates/puerto-rico/approved/food03-lechon-asado.webp",
+        "sourceKey": "cuisine"
+      },
+      {
+        "id": "tembleque",
+        "name": "テンブレケ",
+        "nameLocal": "Tembleque",
+        "text": "ココナッツミルクで作る白い柔らかなプリン。型を抜き、シナモンを振って供する。",
+        "image": "assets/images/unitedstates/puerto-rico/approved/food04-tembleque.webp",
+        "sourceKey": "cuisine"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "bioluminescent-bays",
+      "label": "生物発光する湾",
+      "value": "3か所",
+      "note": "ビエケス島のモスキート湾、ファハルドのラグナ・グランデ、ラ・パルゲラ。微生物が水の動きに反応して光る海が、ひとつの地域に三つある。",
+      "icon": "sea",
+      "sourceKey": "bays",
+      "interestReason": "夜の海そのものが光る、稀な自然環境が三地点に集まっている。"
+    },
+    {
+      "topicKey": "tropical-national-forest",
+      "label": "米国国有林の熱帯林",
+      "value": "唯一",
+      "note": "エル・ユンケは米国のNational Forest Systemで唯一の熱帯雨林の国有林。湿った山地に固有の植物群落が重なる。",
+      "icon": "leaf",
+      "sourceKey": "yunque",
+      "interestReason": "米国の森林保護体系の中でも異例の熱帯林であることを示す。"
+    },
+    {
+      "topicKey": "el-morro-levels",
+      "label": "エル・モロの防衛層",
+      "value": "6層",
+      "note": "海上からの攻撃を防ぐため、サンフアン湾口の断崖に城壁と砲台が6層に重ねられた。海から見るとその規模が分かる。",
+      "icon": "history",
+      "sourceKey": "elMorro",
+      "interestReason": "景観の大きさだけでなく、港を防衛した建築の仕組みを数で伝える。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "青灰色のアドキン石畳",
+      "icon": "city",
+      "category": "CITY"
+    },
+    {
+      "title": "生物発光湾の夜間カヤック",
+      "icon": "sea",
+      "category": "SEA"
+    },
+    {
+      "title": "ボンバの太鼓と踊り",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "コキーの鳴き声",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "カリブ海のマングローブ",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "離島へ向かうフェリー",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "山地のコーヒー農園",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "黒砂に触れる海岸歩き",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "bomba",
+      "themeEn": "MUSIC",
+      "themeJa": "音を聴く",
+      "icon": "culture",
+      "title": "太鼓が踊り手の動きを追う",
+      "text": "アフリカ系の伝統を受け継ぐボンバでは、踊り手が即興で身振りを示し、太鼓の奏者がその動きを音で受ける。演奏する側と踊る側が一緒にリズムをつくる。",
+      "points": [
+        "ロイサやサンフアンで伝承される",
+        "ただ鑑賞するのではなく、音と動きのやりとりに注目したい"
+      ],
+      "sourceKey": "music"
+    },
+    {
+      "topicKey": "plena",
+      "themeEn": "HISTORY",
+      "themeJa": "歌に残る暮らし",
+      "icon": "culture",
+      "title": "プレナは町の「歌う新聞」だった",
+      "text": "20世紀初頭に育ったプレナは、街の出来事や暮らしを歌にして伝えた。太鼓の小さな円形楽器パンドレータと歌声には、街の人びとの会話が重なっている。",
+      "points": [
+        "出来事を歌詞に取り込む",
+        "音楽を通して社会の表情を知る"
+      ],
+      "sourceKey": "plena"
+    },
+    {
+      "topicKey": "rainforest",
+      "themeEn": "NATURE",
+      "themeJa": "森を知る",
+      "icon": "leaf",
+      "title": "小さな島の中で森が何層も変わる",
+      "text": "エル・ユンケでは標高と水分条件によって森林の姿が変わる。低所の高木、山腹のヤシ、雲に包まれる低木林をたどると、同じ山の中に複数の緑があることに気づく。",
+      "points": [
+        "雨の日も多く、小道の状況は変化する",
+        "山地にはタイノの石刻の痕跡も残る"
+      ],
+      "sourceKey": "taino"
+    },
+    {
+      "topicKey": "caguana-taino",
+      "themeEn": "HERITAGE",
+      "themeJa": "タイノの記憶",
+      "icon": "history",
+      "title": "中央山地のふもとに残るタイノの儀礼広場",
+      "text": "ウトゥアドのカグアナ先住民儀礼遺跡には、タイノの人びとが儀礼や球技に使った石で囲まれた広場と、石に刻まれた図像が残る。海辺の城塞より前から続いていた島の歴史を、内陸でたどることができる。",
+      "points": [
+        "石列で縁取られた複数の広場が残る",
+        "岩刻画を含む遺構を保護するため現地案内に従う"
+      ],
+      "sourceKey": "caguana"
+    },
+    {
+      "topicKey": "bio-bay-ecosystem",
+      "themeEn": "ECOLOGY",
+      "themeJa": "海を守る",
+      "icon": "sea",
+      "title": "光る海を支える、静かな水と微生物",
+      "text": "生物発光は、水の中の微生物が刺激に反応して光を放つ現象。マングローブ、湾の地形、夜の暗さが観察体験の質に関わるため、光や水への負荷を抑えることが大切になる。",
+      "points": [
+        "モスキート湾とラグナ・グランデでは遊泳禁止",
+        "光の見え方は月齢や天候で変わる"
+      ],
+      "sourceKey": "baysProtect"
+    },
+    {
+      "topicKey": "island-routes",
+      "themeEn": "ISLAND",
+      "themeJa": "島へ渡る",
+      "icon": "map",
+      "title": "本島の沖に、別の暮らしの時間がある",
+      "text": "本島東部のセイバから、ビエケス島とクレブラ島への船が出る。短い海峡でも便や天候に合わせて旅を組み立てる必要があり、離島は日帰り以上の余白が似合う。",
+      "points": [
+        "セイバからビエケス島へは運航目安約1時間",
+        "クレブラ島へは運航目安約1時間30分"
+      ],
+      "sourceKey": "ferryCulebra"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "chapel-legend",
+      "categoryEn": "HISTORY",
+      "categoryJa": "街の伝説",
+      "icon": "history",
+      "title": "礼拝堂には、落馬をめぐる二つの結末がある",
+      "text": "カジェ・デル・クリスト南端の礼拝堂には、馬が城壁から落ちた際の「奇跡」の言い伝えがある。一方、歴史家による調査では異なる結末も語られている。",
+      "sourceKey": "calleCristo"
+    },
+    {
+      "topicKey": "flamenco-tank",
+      "categoryEn": "ISLAND",
+      "categoryJa": "島の記憶",
+      "icon": "history",
+      "title": "白砂の浜辺に、錆びた軍用戦車が残る",
+      "text": "クレブラ島のフラメンコ・ビーチには、かつての軍事演習の記憶をとどめる放置された戦車があり、海の景色とは意外な対照をなす。",
+      "sourceKey": "flamencoTank"
+    },
+    {
+      "topicKey": "three-kings-horses",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "年中行事",
+      "icon": "culture",
+      "title": "三賢王には、靴箱の草を用意する",
+      "text": "1月6日の三賢王の日の前夜、子どもたちが靴箱に草を入れて置く家庭がある。島の伝統では三賢王の馬の餌とされ、朝には贈り物が届く。",
+      "sourceKey": "threeKings"
+    },
+    {
+      "topicKey": "yunque-name",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "地名",
+      "icon": "language",
+      "title": "「エル・ユンケ」の名にもタイノの言葉が残る",
+      "text": "米国森林局は山名が先住民タイノの言葉「Yuké」に由来すると紹介する。現在の地名からも島の古い記憶をたどれる。",
+      "sourceKey": "taino"
+    },
+    {
+      "topicKey": "octavitas",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "祝祭",
+      "icon": "spark",
+      "title": "1月6日を過ぎても、まだ祝祭が続く",
+      "text": "三賢王の日が終わってからの8日間は「オクタビータス」と呼ばれ、島の長い年末年始の祝いが続いていく。",
+      "sourceKey": "holiday"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "石畳の街と城塞を歩きたい人",
+      "text": "旧サンフアンの街路や海上防衛の遺構から、島の歴史を読んでみたい人。"
+    },
+    {
+      "title": "雨林と洞窟の地形が好きな人",
+      "text": "エル・ユンケの密林やアレシボの石灰岩地形、中央山地の尾根をたどりたい人。"
+    },
+    {
+      "title": "島ごとに違う海を見たい人",
+      "text": "白砂、黒砂、マングローブ、生物発光湾を、フェリー移動を含めてゆっくり巡りたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "離島便はセイバ発着。往復を先に確認",
+      "text": "ビエケス島は片道約1時間、クレブラ島は約1時間30分が目安。出発1時間前までの到着案内があり、運航や天候による変更を公式サイトで確認したい。",
+      "sourceKey": "ferryVieques"
+    },
+    {
+      "title": "大西洋のハリケーン期は6〜11月",
+      "text": "公式シーズンは6月1日〜11月30日。旅行日の天気予報だけでなく、船・航空便の運休や雨林の遊歩道規制も確認する。",
+      "sourceKey": "hurricane"
+    },
+    {
+      "title": "保護区と洞窟は当日の条件に従う",
+      "text": "Cueva Ventanaはガイド付きの訪問が基本。保護区・滝・洞窟・海水浴の現地規則は最新案内に従い、黒砂海岸は遊泳ではなく散策を中心に考える。",
+      "sourceKey": "cueva"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "サンフアンを拠点に本島を巡り、離島の往復には別の日を取る。以下は戻りまで含めた周遊の例。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "サンフアンと東部の森",
+        "text": "旧市街とエル・ユンケを中心に巡る。例：サンフアン → 旧市街 → エル・ユンケ → サンフアン。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "本島の海岸と洞窟を一周",
+        "text": "北岸の洞窟、西南部の断崖と浅瀬、中央山地をつなぐ。例：サンフアン → アレシボ → カボ・ロホ → トロ・ネグロ → サンフアン。",
+        "icon": "map"
+      },
+      {
+        "duration": "8〜10日以上",
+        "title": "ビエケスとクレブラを加える",
+        "text": "島ごとの滞在時間を確保して海を渡る。例：サンフアン → セイバ → ビエケス → セイバ → クレブラ → セイバ → サンフアン。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "months": [
+          1,
+          2,
+          3
+        ],
+        "label": "1〜3月",
+        "reason": "比較的雨が少ない時期。旧市街の散策や海辺の滞在に向くが、人気期のため島の移動を早めに組み立てたい。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜3月",
+      "icon": "sun",
+      "color": "#73966f",
+      "text": "比較的乾燥した季節。旧市街とビーチを組み合わせやすく、年末年始は旅人も多い。"
+    },
+    {
+      "months": "4〜5月",
+      "icon": "leaf",
+      "color": "#92a253",
+      "text": "雨が増え始める移行期。海岸と雨林では天気が違うため、森歩きには余裕を見込む。"
+    },
+    {
+      "months": "6〜9月",
+      "icon": "weather",
+      "color": "#b77a49",
+      "text": "暑さと雨が強まり、ハリケーン期に入る。海と離島の運航変更に注意。"
+    },
+    {
+      "months": "10〜11月",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "雨や強風の影響が残ることがある。季節終盤も最新の気象・交通情報を確認する。"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "車・フェリー・航空便",
+    "text": "本島の主要都市間は車やバスで移動し、森・洞窟・西南部へは車が実用的。ビエケス島とクレブラ島へはセイバ発のフェリーまたは短距離航空便を利用する。",
+    "sourceKey": "ferryCulebra"
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "ドミニカ共和国",
+      "nameEn": "DOMINICAN REPUBLIC",
+      "href": "countries/dominicanrepublic/",
+      "flag": "🇩🇴",
+      "reason": "海峡の西側にあるイスパニョーラ島で、異なるスペイン語圏の島の歴史と海岸を比べる。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "nameJa": "キューバ",
+      "nameEn": "CUBA",
+      "href": "countries/cuba/",
+      "flag": "🇨🇺",
+      "reason": "スペイン植民地期の港町とカリブ海の音楽文化を、さらに西の島でたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "アメリカ合衆国",
+      "nameEn": "UNITED STATES",
+      "href": "countries/unitedstates/",
+      "flag": "🇺🇸",
+      "reason": "法制度上の結びつきを確かめながら、北米大陸の多様な景観へ旅を広げる。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "capital": {
+    "nameJa": "サンフアン",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 18.4655,
+      "longitude": -66.1057
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 10,
+      "y": 28
+    },
+    "sourceKey": "constitutionText",
+    "mapOffset": {
+      "x": 4,
+      "y": 4
+    }
+  },
+  "travelThemes": [
+    "海の世界へ",
+    "地球の風景",
+    "街を歩く"
+  ],
+  "sourcesVerifiedAt": "2026-11-08",
+  "sourceDates": {
+    "population": "2025-07-01 (U.S. Census Vintage 2025)",
+    "area": "2020 Census: land 3,424.32 square miles; converted to km² using 2.589988110336",
+    "government": "2026-11-08",
+    "ferry": "2026-11-08; published schedules may change",
+    "seasons": "2026-11-08 general climatology; not a forecast",
+    "religion": "2014 Pew Research survey: broad denominations only; current share unknown"
+  },
+  "sources": {
+    "territory": "https://www.statedepartment.pr.gov/information-foreigners",
+    "constitution": "https://www.pr.gov/gobierno-2/gobierno",
+    "constitutionText": "https://www.oig.pr.gov/biblioteca-virtual/1-constitucion-del-estado-libre-asociado-de-puerto-rico-pdf",
+    "population": "https://www.census.gov/quickfacts/PR",
+    "area": "https://www.census.gov/quickfacts/fact/table/PR/HSD310222",
+    "elMorro": "https://www.nps.gov/saju/learn/historyculture/el-morro.htm",
+    "yokahu": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5338946.pdf",
+    "yunque": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/elyunque/20160912FinalForestPlanElYunqueMaster.pdf",
+    "cueva": "https://www.discoverpuertorico.com/profile/cueva-ventana/9898",
+    "flamenco": "https://www.discoverpuertorico.com/regions/culebra-vieques/culebra",
+    "playaNegra": "https://www.discoverpuertorico.com/article/best-beaches-vieques",
+    "caboRojo": "https://www.discoverpuertorico.com/article/things-to-do-cabo-rojo",
+    "caracoles": "https://www.discoverpuertorico.com/profile/cayo-caracoles/8897",
+    "toroNegro": "https://www.discoverpuertorico.com/profile/bosque-estatal-toro-negro/9514",
+    "toroTrails": "https://www.discoverpuertorico.com/article/unforgettable-hikes-puerto-rico",
+    "ferryVieques": "https://www.puertoricoferry.com/en/routes-schedules/ceiba-vieques/",
+    "ferryCulebra": "https://www.puertoricoferry.com/en/routes-schedules/ceiba-culebra/",
+    "cuisine": "https://www.discoverpuertorico.com/article/guide-to-traditional-puerto-rican-food",
+    "bays": "https://www.discoverpuertorico.com/article/guide-to-exploring-puerto-ricos-bioluminescent-bays",
+    "baysProtect": "https://www.discoverpuertorico.com/protecting-puerto-ricos-bioluminescent-bays",
+    "music": "https://www.discoverpuertorico.com/article/guide-to-music-puerto-rico",
+    "plena": "https://www.discoverpuertorico.com/article/guide-to-plena",
+    "taino": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5338937.pdf",
+    "hurricane": "https://www.nhc.noaa.gov/aboutgloss.shtml",
+    "GSHHG": "https://www.soest.hawaii.edu/wessel/gshhg/",
+    "calleCristo": "https://www.loc.gov/item/pr0003/",
+    "chapelNHL": "https://npshistory.com/publications/nr-forms/pr/old-san-juan.pdf",
+    "languages": "https://bvirtualogp.pr.gov/ogp/Bvirtual/leyesreferencia/PDF/2-ingles/1-1993.pdf",
+    "religion": "https://www.pewresearch.org/religion/2014/11/13/religion-in-latin-america/",
+    "threeKings": "https://www.discoverpuertorico.com/article/timeless-puerto-rican-tradition-three-kings-day",
+    "flamencoTank": "https://www.discoverpuertorico.com/article/virtual-tour-through-puerto-ricos-off-beaten-path",
+    "holiday": "https://www.discoverpuertorico.com/holidays",
+    "caguana": "https://www.discoverpuertorico.com/profile/centro-ceremonial-indigena-de-caguana/7962"
+  },
+  "sourceNotes": {
+    "mapGeometry": "Puerto Rico municipality polygons dissolved; includes all detached polygons in the UScounties PR dataset. No fabricated islands/coastlines. NOAA dataset resolution is not survey-grade. Cayo Caracoles is geolocated as a real point; its sub-kilometer island outline is unresolved in the NOAA-derived county coastline at this scale and is deliberately not fabricated.",
+    "imageTransfer": "Exactly 13 final approved WebPs under one final asset folder; rejected candidate images excluded.",
+    "publication": "regionPublished:false: canonical Region review must remain noindex and outside normal discovery until explicit final approval."
+  }
+}
