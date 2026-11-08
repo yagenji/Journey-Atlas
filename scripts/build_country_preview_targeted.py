@@ -193,6 +193,18 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
         payload = json.loads(source.read_text(encoding="utf-8"))
         write_json(version_runtime_image_refs(payload), DIST / "data" / name)
 
+    # The similar-scenes block reads the shared scene index. A targeted preview only
+    # packages the target pages' images, so keep just the target families in it.
+    scene_index = json.loads((ROOT / "data" / "top-scene-index.json").read_text(encoding="utf-8"))
+    for key in ("countries", "heroes", "heroTypes"):
+        scene_index[key] = {slug: value for slug, value in scene_index.get(key, {}).items() if slug in slugs}
+    scene_index["regionHeroes"] = [row for row in scene_index.get("regionHeroes", []) if row.get("parentSlug") in slugs]
+    write_json(scene_index, DIST / "data" / "top-scene-index.json")
+    for slug in scene_index["countries"]:
+        scene_dir = ROOT / "assets" / "images" / "top" / "scenes" / slug
+        if scene_dir.is_dir():
+            copy_tree(scene_dir, DIST / "assets" / "images" / "top" / "scenes" / slug)
+
     for slug in slugs:
         source = COUNTRY_DIR / f"{slug}.json"
         payload = json.loads(source.read_text(encoding="utf-8"))

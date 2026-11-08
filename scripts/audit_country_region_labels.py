@@ -105,6 +105,31 @@ def main() -> int:
                     f"({south}..{north})"
                 )
 
+    label_by_id = {}
+    for region in taxonomy.get("regions", []):
+        label_by_id[region["id"]] = region.get("labelEn")
+        for subregion in region.get("subregions") or []:
+            label_by_id[subregion["id"]] = subregion.get("labelEn")
+    detail_map = taxonomy.get("detailRegions", {})
+    region_files = sorted((ROOT / "data" / "regions").glob("*/*.json"))
+    for path in region_files:
+        data = load_json(path)
+        key = f"{data.get('parentSlug')}/{data.get('slug')}"
+        name = f"regions/{key}"
+        expected = label_by_id.get(detail_map.get(key, ""))
+        if not expected:
+            errors.append(f"{name}: no detailRegions taxonomy assignment")
+            continue
+        match = REGION_RE.fullmatch(str(data.get("region", "")).strip())
+        if not match:
+            errors.append(f"{name}: region {data.get('region')!r} does not match '<taxonomy label> / <integer>°N|S'")
+            continue
+        label = match.group(1)
+        labels[label] = labels.get(label, 0) + 1
+        if label != expected:
+            errors.append(f"{name}: region label '{label}' must be '{expected}'")
+    print(f"Checked detail-region files: {len(region_files)}")
+
     print(f"Checked schemaVersion 2 Country files: {checked}")
     print("Region labels in use:")
     for label, count in sorted(labels.items()):
