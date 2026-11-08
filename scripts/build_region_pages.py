@@ -25,21 +25,15 @@ ICON_IDS = frozenset(node.get('id') for node in
 
 # Any Region CSS/JS edit must produce a new URL, even when the Country
 # data version stays unchanged. This prevents a 24-hour stale visual/UI cache.
-REGION_RUNTIME_ASSETS = (
-    'assets/css/site-nav.css',
-    'assets/css/country.css',
-    'assets/css/region.css',
-    'assets/css/atlas-personal.css',
-    'assets/js/site-nav.js',
-    'assets/js/header-scroll.js',
-    'assets/js/atlas-personal.js',
-    'assets/js/region-interactions.js',
-)
+def region_runtime_assets() -> tuple[str, ...]:
+    """Every asset region.html versions with {{ASSET_VERSION}}, so a new one is never left out."""
+    template = (ROOT / 'region.html').read_text(encoding='utf-8')
+    return tuple(dict.fromkeys(re.findall(r'(assets/[^"?\s]+)\?v=\{\{ASSET_VERSION\}\}', template)))
 
 
 def region_asset_version() -> str:
     digest = hashlib.sha256()
-    for relative in REGION_RUNTIME_ASSETS:
+    for relative in region_runtime_assets():
         digest.update(relative.encode('utf-8'))
         digest.update(b'\0')
         digest.update((ROOT / relative).read_bytes())
