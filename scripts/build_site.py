@@ -670,6 +670,8 @@ def build_top_scene_index() -> None:
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
             "sceneTypes": hero.get("sceneTypes", []),
+            # Hero + Scene types for this Region page's similar-scene suggestions.
+            "pageTypes": [item.get("sceneTypes", []) for item in [hero, *region.get("scenes", [])]],
             "href": f"countries/{parent}/{region['slug']}/",
         })
     # Scene types drive the top-page scene index (see data/scene-taxonomy.json).

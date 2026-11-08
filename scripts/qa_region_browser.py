@@ -81,7 +81,8 @@ def main() -> int:
                                 && !!document.querySelector('.region-country-page .atlas-panel .scenes-column'),
                             scenes: document.querySelectorAll('.region-scene').length,
                             tastes: document.querySelectorAll('.region-taste').length,
-                            imageCount: main ? main.querySelectorAll('img').length : 0,
+                            imageCount: main ? [...main.querySelectorAll('img')].filter(im => !im.closest('.similar-scenes')).length : 0,
+                            similarImages: main ? main.querySelectorAll('.similar-scenes img').length : 0,
                             broken: main ? [...main.querySelectorAll('img')]
                                 .filter(im => !im.complete || im.naturalWidth < 1 || !im.hasAttribute('alt'))
                                 .map(im => im.currentSrc || im.src) : [],
