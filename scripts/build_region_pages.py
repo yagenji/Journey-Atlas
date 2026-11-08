@@ -473,8 +473,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
 
     # Hero uses the exact shared Country section hierarchy and typography.
     result.append('<article class="country-page region-country-page">')
-    result.append('<section class="hero" aria-labelledby="region-title" '
-        f'data-scene-types="{esc(" ".join(hero.get("sceneTypes") or []))}">'
+    result.append('<section class="hero" aria-labelledby="region-title">'
         '<div class="hero-art media-slot has-image" role="img" '
         f'aria-label="表紙の景色：{esc(hero["name"])}">'
         + render_image(hero['image'], f'{hero["name"]}を描いた景観イメージ', version, eager=True)
@@ -592,7 +591,6 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     for i, scene in enumerate(data['scenes'], 1):
         number = str(i)
         result.append(f'<article class="scene-card region-scene" data-scene="{esc(scene["id"])}" '
-            f'data-scene-types="{esc(" ".join(scene.get("sceneTypes") or []))}" '
             f'id="scene-{esc(scene["id"])}" role="button" tabindex="0" aria-pressed="false" '
             f'aria-label="{number} {esc(scene["name"])}を選択">'
             '<div class="scene-image media-slot" role="img" '

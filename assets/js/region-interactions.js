@@ -99,7 +99,6 @@
   });
 
   const assetPath = img => img?.getAttribute('src')?.split('?', 1)[0] || '';
-  const sceneTypes = value => (value || '').trim().split(/\s+/).filter(Boolean);
   const hero = document.querySelector('.hero-caption');
   const country = {
     slug,
@@ -108,14 +107,12 @@
     hero: {
       name: hero?.querySelector('.hero-caption__name')?.textContent?.trim() || '',
       image: assetPath(document.querySelector('.hero-art img')),
-      location: hero?.querySelector('.hero-caption__local')?.textContent?.trim() || '',
-      sceneTypes: sceneTypes(document.querySelector('.hero')?.dataset.sceneTypes)
+      location: hero?.querySelector('.hero-caption__local')?.textContent?.trim() || ''
     },
     scenes: cards.map(card => ({
       id: card.dataset.scene,
       name: card.querySelector('.scene-copy h3')?.textContent?.trim() || '',
-      image: assetPath(card.querySelector('.scene-image img')),
-      sceneTypes: sceneTypes(card.dataset.sceneTypes)
+      image: assetPath(card.querySelector('.scene-image img'))
     }))
   };
   // atlas-personal.js provides the same Hero/Scene hearts as the Country pages.

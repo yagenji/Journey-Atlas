@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "tanzania",
+  "slug": "zanzibar",
+  "regionPublished": false,
+  "nameEn": "ZANZIBAR",
+  "nameJa": "ザンジバル",
+  "region": "EAST AFRICA / 6°S",
+  "parentNameJa": "タンザニア",
+  "parentNameEn": "TANZANIA",
+  "parentReturnDescription": "タンザニアの8つの景色を見る",
+  "seo": {
+    "description": "ストーンタウンの交易都市、ジョザニの森林、海藻養殖、ペンバ島の港と森。ザンジバル8つの景色と食文化から、インド洋に育まれた島々の暮らしを知る。"
+  },
+  "hero": {
+    "name": "ストーンタウンの歴史的な海辺",
+    "location": "Stone Town Waterfront / Unguja, Zanzibar",
+    "image": "assets/images/tanzania/zanzibar/approved/hero-stone-town-waterfront.webp",
+    "coordinates": {
+      "latitude": -6.164693,
+      "longitude": 39.186675
+    },
+    "lead": "海を渡る交易が育てた石造りの街から、浅瀬の海藻畑、ペンバ島の港と森へ。ザンジバルは、白砂の浜だけでは語りきれない、島々の時間と暮らしが重なる場所。",
+    "description": "ウングジャ島西岸の世界遺産ストーンタウン。珊瑚質の石と石灰で築いた街並みを、インド洋の水面越しに望む。",
+    "sourceKey": "unescoStoneTown",
+    "sceneTypes": [
+      "harbor",
+      "oldtown"
+    ]
+  },
+  "profile": [
+    {
+      "label": "首府",
+      "value": "ザンジバル・シティ（Zanzibar City）",
+      "sourceKey": "zanzibarGov"
+    },
+    {
+      "label": "人口",
+      "value": "1,889,773人（2022年国勢調査）",
+      "sourceKey": "ocgs2022"
+    },
+    {
+      "label": "面積",
+      "value": "約2,654km²（日本の約0.7%）",
+      "sourceKey": "ocgsFigures2021"
+    },
+    {
+      "label": "主な言語",
+      "value": "スワヒリ語（英語も利用される）",
+      "sourceKey": "zanzibarGov"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教",
+      "sourceKey": "zanzibarGov"
+    },
+    {
+      "label": "通貨",
+      "value": "タンザニア・シリング（TZS）",
+      "sourceKey": "zanzibarGov"
+    }
+  ],
+  "historyContext": {
+    "text": "ザンジバルは、タンザニア連合共和国の一部でありながら、独自の政府と議会を持つ半自治地域。主な島はウングジャ島とペンバ島で、周辺の小島も含む。19世紀にオマーン系のスルタン国として交易で栄え、英国保護領期を経て1963年に独立した。1964年の革命後、4月26日にタンガニーカと連合した。外交・国防などは連合政府が担う。",
+    "sourceKeys": [
+      "zanzibarGov",
+      "unionHistory",
+      "unescoStoneTown"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/tanzania/zanzibar/map-zanzibar.svg",
+    "bounds": {
+      "north": -4.7,
+      "south": -6.72,
+      "west": 38.85,
+      "east": 40.18
+    },
+    "source": "GSHHS/GSHHG intermediate-resolution shoreline from Basemap (Paul Wessel & Walter H. F. Smith, LGPL-3.0-or-later); WGS84 local-equirectangular-fit-v1. Unguja and Pemba target; mainland contextual only; tiny Changuu shown by verified anchor without inventing its coastline. Checked 2026-11-08.",
+    "insetNote": "※ チャングー島などの小島は、縮尺上、島の輪郭が見えない場合があります。数字は位置の目安を示します。"
+  },
+  "scenes": [
+    {
+      "id": "stone-town-lanes",
+      "name": "ストーンタウンの路地",
+      "nameLocal": "Stone Town Historic Lanes",
+      "description": "ジャウズ・コーナー付近。サンゴ石を用いた家々の間に細い道が続き、彫刻扉や壁際で人が集う風景から、交易都市の暮らしが見えてくる。",
+      "coordinates": {
+        "latitude": -6.1633,
+        "longitude": 39.18981
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-01-stone-town-lanes.webp",
+      "sourceKey": "scene01",
+      "sceneTypes": [
+        "oldtown",
+        "square"
+      ],
+      "mapOffset": {
+        "x": 2.9,
+        "y": -1.9
+      }
+    },
+    {
+      "id": "old-fort",
+      "name": "オールド・フォート",
+      "nameLocal": "Old Fort / Ngome Kongwe",
+      "description": "ストーンタウン中心部に残る古い要塞。石造の胸壁と中庭に、海を守った時代と、いま人々が集う場所としての姿が重なる。",
+      "coordinates": {
+        "latitude": -6.16139,
+        "longitude": 39.18917
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-02-old-fort.webp",
+      "sourceKey": "scene02",
+      "sceneTypes": [
+        "castle"
+      ],
+      "mapOffset": {
+        "x": 3.5,
+        "y": 3.5
+      }
+    },
+    {
+      "id": "jozani-forest",
+      "name": "ジョザニの森",
+      "nameLocal": "Jozani Forest",
+      "description": "ウングジャ島東南部の森林に、固有種のザンジバルアカコロブスが暮らす。樹上で動く白い毛と赤褐色の背が、緑の奥で目を引く。",
+      "coordinates": {
+        "latitude": -6.26246,
+        "longitude": 39.41466
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-03-jozani-forest.webp",
+      "sourceKey": "scene03",
+      "sceneTypes": [
+        "rainforest",
+        "wildlife"
+      ]
+    },
+    {
+      "id": "nungwi-fishing-shore",
+      "name": "ヌングウィの漁村海岸",
+      "nameLocal": "Nungwi Fishing Shore",
+      "description": "島の北端に近い浜辺。木製ダウ船を造り、修理する職人の仕事と漁の準備が、海辺の生活を伝える。",
+      "coordinates": {
+        "latitude": -5.72371,
+        "longitude": 39.29828
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-04-nungwi-fishing-shore.webp",
+      "sourceKey": "scene04",
+      "sceneTypes": [
+        "village",
+        "beach"
+      ],
+      "mapOffset": {
+        "x": 0.5,
+        "y": 2
+      }
+    },
+    {
+      "id": "paje-seaweed-farm",
+      "name": "パジェの海藻養殖場",
+      "nameLocal": "Paje Seaweed Farm",
+      "description": "東海岸の干潮の浅瀬には、短い杭とロープで育てる海藻の列が延びる。海と潮の時間に合わせて営まれる仕事の風景。",
+      "coordinates": {
+        "latitude": -6.25967,
+        "longitude": 39.53396
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-05-paje-seaweed-farm.webp",
+      "sourceKey": "scene05",
+      "sceneTypes": [
+        "beach",
+        "farmland"
+      ]
+    },
+    {
+      "id": "changuu-island",
+      "name": "チャングー島",
+      "nameLocal": "Changuu / Prison Island",
+      "description": "ストーンタウン沖の小島。木製桟橋の先に白砂の海岸と樹木が広がり、内陸側には旧隔離施設などの歴史が残る。",
+      "coordinates": {
+        "latitude": -6.1192,
+        "longitude": 39.1667
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-06-changuu-island.webp",
+      "sourceKey": "scene06",
+      "sceneTypes": [
+        "island",
+        "beach"
+      ],
+      "mapOffset": {
+        "x": -0.8,
+        "y": -2.6
+      }
+    },
+    {
+      "id": "wete-port",
+      "name": "ウェテ港",
+      "nameLocal": "Wete Port / Pemba",
+      "description": "ペンバ島西岸の港。小型船や貨物を扱う桟橋と緑の多い町が、島を結ぶ海上交通の暮らしを映す。",
+      "coordinates": {
+        "latitude": -5.06333,
+        "longitude": 39.71719
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-07-wete-port.webp",
+      "sourceKey": "scene07",
+      "sceneTypes": [
+        "harbor"
+      ]
+    },
+    {
+      "id": "ngezi-forest",
+      "name": "ンゲジの森",
+      "nameLocal": "Ngezi Forest / Pemba",
+      "description": "ペンバ島北部に残る湿潤な天然林。板根を広げる大木と落葉の小径が、島の内陸に別の景色があることを教える。",
+      "coordinates": {
+        "latitude": -4.93333,
+        "longitude": 39.7
+      },
+      "image": "assets/images/tanzania/zanzibar/approved/scene-08-ngezi-forest.webp",
+      "sourceKey": "scene08",
+      "sceneTypes": [
+        "rainforest"
+      ]
+    }
+  ],
+  "taste": {
+    "title": "ザンジバルで食べたいもの",
+    "kicker": "TASTE OF ZANZIBAR",
+    "intro": "スワヒリの食卓には、インド洋の交易を通して広がった香辛料と米、海から得るタコ、街角の軽食が息づいている。",
+    "items": [
+      {
+        "id": "urojo",
+        "name": "ウロジョ",
+        "nameLocal": "Urojo / Zanzibar Mix",
+        "text": "酸味のある黄色いスープにジャガイモ、揚げ物やカリカリした具を合わせる屋台の味。具材やソースは店によって異なる。",
+        "image": "assets/images/tanzania/zanzibar/approved/food-01-urojo.webp",
+        "sourceKey": "foodUrojo"
+      },
+      {
+        "id": "pweza-wa-nazi",
+        "name": "タコのココナッツ煮",
+        "nameLocal": "Pweza wa Nazi",
+        "text": "タコをココナッツミルクと玉ねぎ、香辛料などで煮込む料理。やわらかなソースに島の海の恵みが重なる。",
+        "image": "assets/images/tanzania/zanzibar/approved/food-02-pweza-wa-nazi.webp",
+        "sourceKey": "foodGuide"
+      },
+      {
+        "id": "zanzibar-biryani",
+        "name": "ザンジバル・ビリヤニ",
+        "nameLocal": "Zanzibar Biryani",
+        "text": "香辛料を使った長粒米と肉のマサラ、香ばしい炒め玉ねぎを合わせる米料理。インド洋の交流が生んだ食文化の一品。",
+        "image": "assets/images/tanzania/zanzibar/approved/food-03-zanzibar-biryani.webp",
+        "sourceKey": "foodGuide"
+      },
+      {
+        "id": "zanzibar-pizza",
+        "name": "ザンジバル・ピザ",
+        "nameLocal": "Zanzibar Pizza",
+        "text": "薄い生地に卵、ひき肉、野菜などを包み、鉄板で四角く焼く街角の軽食。丸いイタリア式のピザとは違う。",
+        "image": "assets/images/tanzania/zanzibar/approved/food-04-zanzibar-pizza.webp",
+        "sourceKey": "foodPizza"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "archipelago-two-islands",
+      "label": "二つの主要島",
+      "value": "ウングジャとペンバ",
+      "note": "南にウングジャ、北にペンバが離れて位置し、間にはインド洋が広がる。ストーンタウンの一島だけでなく、港や森が残るペンバも同じ自治地域の一部。",
+      "icon": "map",
+      "sourceKey": "zanzibarStats",
+      "interestReason": "島を二つの主役として捉えることで、海辺の都市と森林・港湾の旅をひとつの地域として想像できる。"
+    },
+    {
+      "topicKey": "swahili-trading-continuity",
+      "label": "海上交易が育てた都市文化",
+      "value": "1,000年以上",
+      "note": "東アフリカ、アラブ、インド、ヨーロッパの交流が長く重なり、ストーンタウンの建築や街路に今もその歴史が残る。",
+      "icon": "history",
+      "sourceKey": "unescoStoneTown",
+      "interestReason": "ビーチの背後に、千年単位で続いた人と物の往来があることを伝える。"
+    },
+    {
+      "topicKey": "historic-short-war",
+      "label": "1896年の英・ザンジバル戦争",
+      "value": "約45分",
+      "note": "1896年8月27日の英・ザンジバル戦争は、ギネス世界記録が「史上最短の戦争」とする45分間の衝突。時間は史料によって約38〜45分と幅がある。",
+      "icon": "history",
+      "sourceKey": "shortestWar",
+      "interestReason": "帝国主義時代の不均衡な関係と、この島の歴史を考える入口となる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "朝の細い路地に響く足音",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "ダウ船の木材を削る音",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "干潮の海藻畑を歩く人々",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "森を渡るアカコロブス",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "市場に漂うクローブの香り",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "日暮れに聞こえる礼拝の呼びかけ",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "港に入る小さな木造船",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "石壁に刻まれた木製扉の彫刻",
+      "icon": "culture",
+      "category": "ARCHITECTURE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "stone-town-doors",
+      "themeEn": "ARCHITECTURE",
+      "themeJa": "建築を知る",
+      "icon": "landmark",
+      "title": "木の扉に、交易都市の職人技が残る",
+      "text": "ストーンタウンの彫刻扉は、珊瑚石と石灰の外壁とともに街の顔になっている。扉の模様や構造には複数の建築文化の影響が表れ、建物の内外に個性を与えてきた。",
+      "points": [
+        "珊瑚石と石灰を使う建築に重厚な木製扉を組み合わせる",
+        "扉だけでなく、路地や建物全体の構造と一緒に見る"
+      ],
+      "sourceKey": "unescoStoneTown"
+    },
+    {
+      "topicKey": "baraza-street",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "icon": "culture",
+      "title": "路地の低い石の腰掛けは、街の小さな交流の場",
+      "text": "家の入口に設けるバラザは、腰掛けや日常の会話、商いの場所にもなる。狭い路地で個人の住まいと公共の生活が接する、スワヒリの街の空間。",
+      "points": [
+        "玄関の階段と石のベンチがひとつながりになる",
+        "路地を歩くときは住民の場所であることを尊重する"
+      ],
+      "sourceKey": "unescoUrbanAtlas"
+    },
+    {
+      "topicKey": "clove-spice-trees",
+      "themeEn": "WORK",
+      "themeJa": "仕事を知る",
+      "icon": "leaf",
+      "title": "香りの源は、乾燥させた小さな花のつぼみ",
+      "text": "クローブは開花前のつぼみを摘み、乾かして使う香辛料。ザンジバルの香辛料交易と島の農業を象徴し、特にペンバ島では栽培風景に出会う。",
+      "points": [
+        "クローブは実ではなく乾かした花のつぼみ",
+        "港の交易と農園の仕事が、島々の暮らしをつなぐ"
+      ],
+      "sourceKeys": [
+        "cloves",
+        "unescoStoneTown"
+      ]
+    },
+    {
+      "topicKey": "seaweed-women",
+      "themeEn": "WORK",
+      "themeJa": "生業を知る",
+      "icon": "sea",
+      "title": "潮が引く時間に合わせて、海に畑が現れる",
+      "text": "パジェなどの浅瀬では、杭とロープに海藻を育てる。養殖は女性の生計を支える仕事でもあり、海の環境や市場の変化と向き合いながら続いている。",
+      "points": [
+        "潮位に応じて海に入り、海藻を育てて収穫する",
+        "海藻養殖は暮らしと収入に結びつく産業"
+      ],
+      "sourceKey": "unSeaweed"
+    },
+    {
+      "topicKey": "dhow-building",
+      "themeEn": "CRAFT",
+      "themeJa": "船の技を知る",
+      "icon": "sea",
+      "title": "木製ダウ船の形は、浜辺の職人の手で生まれる",
+      "text": "島の漁や交易で使われてきたダウ船。ヌングウィの浜辺では、木材を切り、船体を組み立てる工程に島の海洋文化が見える。",
+      "points": [
+        "木の骨組みから船の形をつくり、修理も行う",
+        "完成した船だけでなく浜辺の作業に目を向ける"
+      ],
+      "sourceKey": "nungwiBoats"
+    },
+    {
+      "topicKey": "taarab-living-music",
+      "themeEn": "ART",
+      "themeJa": "音楽を知る",
+      "icon": "culture",
+      "title": "タアラブの歌は、交易の街で物語を運ぶ",
+      "text": "詩をのせた歌と楽器の響きが重なるタアラブ音楽は、ザンジバルの祝い事や暮らしを彩る伝統。アラブ、インド、スワヒリの交流を背景に育まれ、2026年にはUNESCOと地域の担い手が継承のための記録を進めた。",
+      "points": [
+        "歌詞には物語や社会への視点が込められる",
+        "演奏と継承の活動が島々で続いている"
+      ],
+      "sourceKeys": [
+        "unescoTaarab",
+        "unescoTaarab2026"
+      ]
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "oman-sultans-capital",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "オマーンの支配者が、海を渡って都を移した",
+      "text": "19世紀にオマーンの支配者サイード・ビン・スルタンはザンジバルを政治と交易の中心に据えた。インド洋の東西を結ぶ港の重要さがうかがえる。",
+      "icon": "history",
+      "sourceKey": "unescoStoneTown"
+    },
+    {
+      "topicKey": "freddie-mercury-born",
+      "categoryEn": "MUSIC",
+      "categoryJa": "音楽",
+      "title": "世界的なロックスターの原点は、石の街にある",
+      "text": "クイーンのボーカル、フレディ・マーキュリーは1946年にザンジバルで生まれた。のちの世界的な音楽家につながる幼年期が、この島の歴史と交差する。",
+      "icon": "culture",
+      "sourceKey": "freddieNationalArchives"
+    },
+    {
+      "topicKey": "colobus-red-fur",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "生き物",
+      "title": "白い毛と赤褐色の背が、木の上で動く",
+      "text": "ザンジバルアカコロブスはウングジャ島の森林に暮らす霊長類。よく目立つ毛色は、葉の多い樹冠の間で見ると印象が変わる。",
+      "icon": "wildlife",
+      "sourceKey": "jozani"
+    },
+    {
+      "topicKey": "stone-town-duka",
+      "categoryEn": "CITY",
+      "categoryJa": "街",
+      "title": "古い商店の造りに、インド洋の行き来が見える",
+      "text": "ストーンタウンには通りへ開く細長い店先「ドゥカ」がある。住居と商いの場を近づけた店構えは、インド系交易商人との交流を伝える。",
+      "icon": "city",
+      "sourceKey": "unescoUrbanAtlas"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "海辺だけでなく街の歴史にも触れたい人",
+      "text": "ストーンタウンの路地、要塞、スワヒリの暮らしを海辺の滞在と組み合わせたい人。"
+    },
+    {
+      "title": "インド洋の生業と文化を見たい人",
+      "text": "海藻養殖や造船、港の働く風景を通して、島の仕事を知りたい人。"
+    },
+    {
+      "title": "二つの島をゆっくり訪ねたい人",
+      "text": "ウングジャからさらにペンバへ渡り、森林と小さな港にも時間を使いたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "礼拝と暮らしの場を尊重する",
+      "text": "イスラム教徒が多く、街の路地や宗教施設は日常の生活空間でもある。服装、撮影許可、ラマダン期の振る舞いは現地の慣習に合わせる。",
+      "sourceKey": "zanzibarGov"
+    },
+    {
+      "title": "東岸の海は潮汐を確かめて歩く",
+      "text": "パジェの浅瀬は潮位によって景色と歩ける範囲が大きく変わる。養殖用のロープや生業の妨げにならないように訪れる。",
+      "sourceKey": "unSeaweed"
+    },
+    {
+      "title": "ペンバへの移動には予備日を残す",
+      "text": "ウングジャとペンバは別の島。航空便や船便の運行日・接続・海況は旅程に合わせて確認し、移動の前後に余裕を持つ。",
+      "sourceKey": "zpc"
+    }
+  ],
+  "travelScale": {
+    "title": "旅の目安日程",
+    "kicker": "DURATION",
+    "intro": "ウングジャ島だけでも街と森と東西の海で表情が変わる。ペンバ島を含めるなら移動日を独立して考えたい。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ストーンタウンと島の海岸を知る",
+        "text": "ザンジバル・シティを拠点に歴史地区を歩き、近郊の森か海辺を訪ねる。例：ザンジバル・シティ → ストーンタウン → ジョザニ → ザンジバル・シティ。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜6日",
+        "title": "ウングジャの北と東へ広げる",
+        "text": "歴史的な街に加え、ヌングウィとパジェの営みを分けて訪ねる。例：ザンジバル・シティ → ヌングウィ → パジェ → ジョザニ → ザンジバル・シティ。",
+        "icon": "map"
+      },
+      {
+        "duration": "7〜10日以上",
+        "title": "ペンバの港と森林まで含める",
+        "text": "ウングジャから空路または船でペンバに渡り、ウェテとンゲジの森を組み合わせる。例：ザンジバル・シティ → パジェ → ザンジバル・シティ → ペンバ（ウェテ・ンゲジ）→ ザンジバル・シティ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜10月",
+        "reason": "比較的雨が少ない時期。都市歩きと海岸滞在を組み合わせやすいが、海況・潮汐は日ごとに確認する。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜2月",
+      "icon": "sun",
+      "color": "#b7a060",
+      "text": "比較的乾いた暑い季節。街歩きは朝夕が快適で、海岸は日差しと潮汐を考慮する。"
+    },
+    {
+      "months": "3〜5月",
+      "icon": "weather",
+      "color": "#6c9a91",
+      "text": "長雨の時期。天候によって移動や屋外の予定が変わるため、旅程には余裕を取る。"
+    },
+    {
+      "months": "6〜10月",
+      "icon": "sun",
+      "color": "#7d9b77",
+      "text": "比較的雨が少なく、風を感じる時期。森林、歴史地区、海岸で過ごす旅を組み立てやすい。"
+    },
+    {
+      "months": "11〜12月",
+      "icon": "weather",
+      "color": "#7298aa",
+      "text": "短い雨の季節。にわか雨と晴れ間が入れ替わり、島内の道路状況に気を配りたい。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "飛行機・船・島内の車移動",
+    "text": "ウングジャ島へは空路またはダルエスサラームからの船を利用できる。ペンバ島への移動は空路・海路の運航を事前に確認し、島内は車や現地ツアーを組み合わせる。",
+    "sourceKeys": [
+      "zpc",
+      "airTransport"
+    ]
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "タンザニア",
+      "nameEn": "TANZANIA",
+      "href": "countries/tanzania/",
+      "flag": "🇹🇿",
+      "reason": "大陸側のサファリや高原と、島嶼部の海洋文化を比べる。",
+      "affinityType": "GEOGRAPHY"
+    },
+    {
+      "nameJa": "ケニア",
+      "nameEn": "KENYA",
+      "href": "countries/kenya/",
+      "flag": "🇰🇪",
+      "reason": "同じ東アフリカ沿岸に広がるスワヒリの港町文化をたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "オマーン",
+      "nameEn": "OMAN",
+      "href": "countries/oman/",
+      "flag": "🇴🇲",
+      "reason": "海を越えてザンジバルと結びついたインド洋交易の歴史を追う。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-08",
+  "sources": {
+    "ocgs2022": "https://www.ocgs.go.tz/ReportOCGS/ZANZIBAR%20STATISTICAL%20ABSTRACT%20%2C2022.pdf",
+    "zanzibarStats": "https://www.ocgs.go.tz/ReportOCGS/ZANZIBAR%20STATISTICAL%20ABSTRACT%20%2C2022.pdf",
+    "zanzibarGov": "https://www.cgizanzibar.gov.in/pdf/Zanzibar%20Fact%20Sheet-2025.pdf",
+    "unionHistory": "https://www.un.org/en/node/122916",
+    "unescoStoneTown": "https://whc.unesco.org/en/list/173/",
+    "unescoUrbanAtlas": "https://whc.unesco.org/en/urban-heritage-atlas/stone-town/",
+    "shortestWar": "https://www.guinnessworldrecords.com/world-records/65353-shortest-war",
+    "jozani": "https://whc.unesco.org/en/tentativelists/850/",
+    "ngezi": "https://maliasilismz.go.tz/ngeziForest.php",
+    "cloves": "https://www.britannica.com/plant/clove",
+    "unSeaweed": "https://tanzania.un.org/en/309114-seaweed-farming-pathway-resilient-livelihoods-zanzibar",
+    "nungwiBoats": "https://mapcarta.com/N7976140585",
+    "zpc": "https://zpc.go.tz/wete_port",
+    "airTransport": "https://www.zanzibartourism.go.tz/",
+    "foodGuide": "https://www.thetanzanianguide.com/food-guide/zanzibar-food-guide/",
+    "foodUrojo": "https://www.tastelab.food/encyclopedia/canon/zanzibar-mix-urojo-accompaniments",
+    "foodPizza": "https://www.tasteatlas.com/zanzibar-pizza",
+    "scene01": "https://mapcarta.com/W355519347",
+    "scene02": "https://whc.unesco.org/en/urban-heritage-atlas/stone-town",
+    "scene03": "https://whc.unesco.org/en/tentativelists/850/",
+    "scene04": "https://mapcarta.com/N7976140585",
+    "scene05": "https://mapcarta.com/N5793673554",
+    "scene06": "https://africacompass.com/landmarks/prison-island-zanzibar/",
+    "scene07": "https://zpc.go.tz/wete_port",
+    "scene08": "https://maliasilismz.go.tz/ngeziForest.php",
+    "ocgsFigures2021": "https://www.ocgs.go.tz/ReportOCGS/1665577844.pdf",
+    "unescoTaarab": "https://ich.unesco.org/en/projects/safeguarding-the-songs-of-the-moon-traditional-swahili-music-from-tanzania-unguja-and-pemba-and-the-comoros-00101",
+    "unescoTaarab2026": "https://www.unesco.org/en/articles/unesco-and-tui-care-foundation-support-safeguarding-taarab-music-tanzania",
+    "freddieNationalArchives": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/freddie-mercurys-naturalisation-certificate/"
+  },
+  "sourceDates": {
+    "population": "2022 Population and Housing Census",
+    "area": "OCGS Zanzibar in Figures 2021, land area 2654 square km",
+    "politicalUnion": "1964-04-26",
+    "unescoStoneTown": "2000 inscription",
+    "shortestWar": "1896-08-27; Guinness 45 minutes, other sources differ",
+    "season": "2026-11-08 qualitative, Tanzania climate reference",
+    "taarab2026": "UNESCO community inventory 2026-10-12 to 2026-10-19"
+  },
+  "capital": {
+    "nameJa": "ザンジバル・シティ",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": -6.1659,
+      "longitude": 39.2026
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 12,
+      "y": 10
+    }
+  },
+  "travelThemes": [
+    "時をたどる",
+    "暮らしに出会う",
+    "地球の風景"
+  ],
+  "contentQaVersion": 6
+}
