@@ -363,11 +363,6 @@
 .gallery-saved-toggle.is-active:hover { background:#214c70; }
 .gallery-saved-toggle:focus-visible { outline:2px solid #173b5d;outline-offset:2px; }
 .gallery-empty { grid-column:1/-1; padding:22px 12px; color:#526274;font-size:13px;line-height:1.85; }
-.gallery-tile__hero-tag {
-  position:absolute;left:9px;top:9px;padding:4px 7px;
-  border-radius:4px;background:rgba(12,36,55,.7);color:#fff;
-  font:600 10px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.08em;
-}
 @media(max-width:760px) {
   .gallery-actions { align-items:center;gap:8px; }
   .gallery-saved-toggle,.gallery-shuffle { min-height:38px;padding:0 12px;font-size:11.5px; }
@@ -513,3 +508,23 @@
 .gallery-types__label{margin:0;font:600 10.5px/1.2 "Hanken Grotesk","Zen Kaku Gothic New",sans-serif;letter-spacing:.12em;color:#5d6b73}
 .gallery-types .theme-region-tabs{margin:0}
 .gallery-types__subtypes{padding:10px 0 0;border-top:1px solid rgba(25,62,87,.1)}
+
+/* 景色から探す: photos first. Region, Wish and scenery type sit behind one 「絞り込む」 button. */
+.gallery-filter-toggle{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;
+  border:1px solid rgba(23,59,93,.18);border-radius:999px;background:#fffdf8;color:#173b5d;
+  font:600 12.5px/1 var(--jp,sans-serif);cursor:pointer;white-space:nowrap;
+}
+.gallery-filter-toggle::after{content:"";width:6px;height:6px;margin-top:-3px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .2s ease}
+.gallery-filter-toggle.is-open::after{margin-top:3px;transform:rotate(-135deg)}
+.gallery-filter-toggle:hover{border-color:rgba(23,59,93,.34);background:#fff}
+.gallery-filter-toggle.has-filters{border-color:#173b5d}
+.gallery-filter-toggle:focus-visible{outline:2px solid #173b5d;outline-offset:2px}
+.gallery-filters{display:grid;gap:12px;margin:18px 0 0;padding:14px 0 2px;border-top:1px solid rgba(25,62,87,.1)}
+.gallery-filters[hidden]{display:none}
+.gallery-filters__row{display:grid;gap:8px}
+.gallery-panel .gallery-filters .theme-region-tabs{margin:0}
+.gallery-filters .gallery-types{margin:0}
+.gallery-note{margin:14px 0 0;font-size:11px;line-height:1.7;color:#7a8389}
+@media(prefers-reduced-motion:reduce){.gallery-filter-toggle::after{transition:none}}
+@media(max-width:760px){.gallery-filter-toggle{min-height:38px;padding:0 12px;font-size:11.5px}}
