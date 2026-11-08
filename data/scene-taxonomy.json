@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-08",
+  "principle": "景色ごとに、写っている主題を最大2つの種類で表す。1つ目が主な種類。読み手が見て区別できない細分はしない。",
+  "groups": [
+    {
+      "id": "mountain-ice",
+      "label": "山と氷",
+      "types": [
+        {
+          "id": "glacier",
+          "label": "氷河・雪原"
+        },
+        {
+          "id": "volcano",
+          "label": "火山"
+        },
+        {
+          "id": "geothermal",
+          "label": "地熱・温泉"
+        },
+        {
+          "id": "peak",
+          "label": "山・高峰"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "label": "水辺",
+      "types": [
+        {
+          "id": "waterfall",
+          "label": "滝"
+        },
+        {
+          "id": "canyon",
+          "label": "渓谷・峡谷"
+        },
+        {
+          "id": "river",
+          "label": "川・泉"
+        },
+        {
+          "id": "lake",
+          "label": "湖"
+        },
+        {
+          "id": "wetland",
+          "label": "湿地・マングローブ"
+        },
+        {
+          "id": "fjord",
+          "label": "フィヨルド・海峡"
+        }
+      ]
+    },
+    {
+      "id": "sea-island",
+      "label": "海と島",
+      "types": [
+        {
+          "id": "cliff",
+          "label": "断崖・海岸"
+        },
+        {
+          "id": "bay",
+          "label": "湾・入り江"
+        },
+        {
+          "id": "beach",
+          "label": "砂浜"
+        },
+        {
+          "id": "lagoon",
+          "label": "ラグーン・環礁"
+        },
+        {
+          "id": "reef",
+          "label": "サンゴ礁・海の中"
+        },
+        {
+          "id": "island",
+          "label": "島"
+        },
+        {
+          "id": "lighthouse",
+          "label": "灯台"
+        }
+      ]
+    },
+    {
+      "id": "dryland",
+      "label": "乾いた大地",
+      "types": [
+        {
+          "id": "dune",
+          "label": "砂丘・砂漠"
+        },
+        {
+          "id": "salt",
+          "label": "塩湖・塩原"
+        },
+        {
+          "id": "oasis",
+          "label": "オアシス"
+        },
+        {
+          "id": "rock",
+          "label": "奇岩・岩山"
+        },
+        {
+          "id": "cave",
+          "label": "洞窟"
+        }
+      ]
+    },
+    {
+      "id": "green",
+      "label": "緑の大地",
+      "types": [
+        {
+          "id": "rainforest",
+          "label": "熱帯雨林・ジャングル"
+        },
+        {
+          "id": "forest",
+          "label": "森"
+        },
+        {
+          "id": "grassland",
+          "label": "草原・サバンナ"
+        },
+        {
+          "id": "highland",
+          "label": "高原・台地"
+        },
+        {
+          "id": "flower",
+          "label": "花畑・花"
+        }
+      ]
+    },
+    {
+      "id": "cultivated",
+      "label": "人がつくった風景",
+      "types": [
+        {
+          "id": "terrace",
+          "label": "棚田・段々畑"
+        },
+        {
+          "id": "vineyard",
+          "label": "ブドウ畑"
+        },
+        {
+          "id": "tea",
+          "label": "茶・コーヒー・カカオ農園"
+        },
+        {
+          "id": "farmland",
+          "label": "田園"
+        },
+        {
+          "id": "garden",
+          "label": "庭園"
+        }
+      ]
+    },
+    {
+      "id": "faith",
+      "label": "祈りの場",
+      "types": [
+        {
+          "id": "church",
+          "label": "大聖堂・教会"
+        },
+        {
+          "id": "monastery",
+          "label": "修道院"
+        },
+        {
+          "id": "mosque",
+          "label": "モスク"
+        },
+        {
+          "id": "temple",
+          "label": "寺院・仏塔"
+        },
+        {
+          "id": "holy",
+          "label": "聖地・巡礼"
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "歴史の跡",
+      "types": [
+        {
+          "id": "ruins",
+          "label": "古代遺跡"
+        },
+        {
+          "id": "tomb",
+          "label": "墓・霊廟"
+        },
+        {
+          "id": "rockart",
+          "label": "岩絵・岩刻画"
+        },
+        {
+          "id": "castle",
+          "label": "城・要塞"
+        },
+        {
+          "id": "palace",
+          "label": "宮殿・邸宅"
+        },
+        {
+          "id": "walled",
+          "label": "城壁の街"
+        },
+        {
+          "id": "monument",
+          "label": "記念碑・建築"
+        }
+      ]
+    },
+    {
+      "id": "town",
+      "label": "街",
+      "types": [
+        {
+          "id": "oldtown",
+          "label": "旧市街"
+        },
+        {
+          "id": "harbor",
+          "label": "港町"
+        },
+        {
+          "id": "canal",
+          "label": "運河の街"
+        },
+        {
+          "id": "colorful",
+          "label": "色の街並み"
+        },
+        {
+          "id": "skyline",
+          "label": "摩天楼・都市"
+        },
+        {
+          "id": "square",
+          "label": "広場・通り"
+        }
+      ]
+    },
+    {
+      "id": "life",
+      "label": "暮らし",
+      "types": [
+        {
+          "id": "market",
+          "label": "市場・バザール"
+        },
+        {
+          "id": "village",
+          "label": "伝統の村"
+        },
+        {
+          "id": "stilt",
+          "label": "水上集落"
+        }
+      ]
+    },
+    {
+      "id": "wildlife-life",
+      "label": "生きもの",
+      "types": [
+        {
+          "id": "wildlife",
+          "label": "大型動物"
+        },
+        {
+          "id": "birds",
+          "label": "鳥"
+        },
+        {
+          "id": "marine",
+          "label": "海の生きもの"
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "label": "道と乗りもの",
+      "types": [
+        {
+          "id": "railway",
+          "label": "鉄道"
+        },
+        {
+          "id": "road",
+          "label": "絶景の道"
+        },
+        {
+          "id": "bridge",
+          "label": "橋"
+        }
+      ]
+    }
+  ]
+}

@@ -45,6 +45,7 @@ def blank_scene(index: int, slug: str) -> dict:
         "description": "",
         "coordinates": {"latitude": None, "longitude": None},
         "image": f"assets/images/{slug}/approved/scene-{index}.webp",
+        "sceneTypes": [],
     }
 
 
@@ -114,6 +115,7 @@ def scaffold(destination: dict, region_label: str) -> dict:
             "image": f"assets/images/{slug}/approved/hero.webp",
             "location": "",
             "coordinates": {"latitude": None, "longitude": None},
+            "sceneTypes": [],
         },
         "map": {
             "bounds": {"north": None, "south": None, "west": None, "east": None},
