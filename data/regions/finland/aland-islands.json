@@ -1,0 +1,630 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "finland",
+  "slug": "aland-islands",
+  "regionPublished": false,
+  "nameEn": "ÅLAND ISLANDS",
+  "nameJa": "オーランド諸島",
+  "region": "NORTHERN EUROPE / 60°N",
+  "parentNameJa": "フィンランド",
+  "parentNameEn": "FINLAND",
+  "parentReturnDescription": "フィンランドの8つの景色を見る",
+  "seo": {
+    "description": "スウェーデン語の自治地域オーランド諸島。帆船ポンメルン、城と要塞、花崗岩の海岸、島の村と灯台をめぐる8景。"
+  },
+  "hero": {
+    "name": "カステルホルム城",
+    "location": "Kastelholm Castle, Sund, Åland Islands",
+    "coordinates": {
+      "latitude": 60.23286,
+      "longitude": 20.08063
+    },
+    "image": "assets/images/finland/aland-islands/approved/hero-kastelholm.webp",
+    "lead": "バルト海に浮かぶ赤い岩と無数の島。石の城、木造船の工房、海に開かれた村をたどると、フィンランドの中でスウェーデン語を守り続ける自治地域の姿が見えてくる。",
+    "description": "スロッツスンデットの入り江近く、緑に囲まれた中世の石造城郭。オーランドの歴史の拠点。",
+    "sourceKey": "kastelholm",
+    "sceneTypes": [
+      "castle",
+      "bay"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "マリエハムン（Mariehamn）"
+    },
+    {
+      "label": "人口",
+      "value": "30,836人（2025年末確定）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "陸地1,555.6km²（2025年、日本の約0.41%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "スウェーデン語（唯一の公用語）",
+      "sourceKey": "government"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（福音ルター派を中心）",
+      "sourceKey": "religion"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "historyContext": {
+    "text": "オーランド諸島はフィンランドに属しながら、独自の議会と自治政府を持つ自治地域。1809年にスウェーデン領からロシア帝国の支配下へ移り、フィンランド独立後の帰属問題を経て、1921年に国際連盟がフィンランドの主権と住民のスウェーデン語・自治の保障を認めた。1856年からの非武装化は1921年に再確認され、中立化の国際的な枠組みも加わった。現在も独自の旗と自治制度を有する。",
+    "sourceKeys": [
+      "government",
+      "autonomy",
+      "demilitarization"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/finland/aland-islands/map-aland-islands.svg",
+    "bounds": {
+      "north": 60.55,
+      "south": 59.65,
+      "west": 18.8,
+      "east": 21.6
+    },
+    "source": "GSHHS/GSHHG intermediate-resolution coastline (Paul Wessel & Walter H. F. Smith), supplied with Basemap; LGPL-3.0-or-later, https://www.soest.hawaii.edu/wessel/gshhg/ . Verified WGS84 Scene anchors in local equirectangular-fit projection. Small rocks below this cartographic scale, including Märket, are indicated by verified location markers rather than invented coastlines. Checked 2026-11-08."
+  },
+  "scenes": [
+    {
+      "id": "maritime-quarter",
+      "name": "マリエハムン海事地区",
+      "nameLocal": "Sjökvarteret / Mariehamn",
+      "description": "東港に残る赤い船大工小屋と木造船。造船の手仕事が今も息づく海辺を歩く。",
+      "coordinates": {
+        "latitude": 60.10497,
+        "longitude": 19.94517
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-01-maritime-quarter.webp",
+      "sourceKey": "maritimeQuarter",
+      "sceneTypes": [
+        "harbor",
+        "village"
+      ],
+      "mapOffset": {
+        "x": 3.5,
+        "y": -2.8947368421052633
+      }
+    },
+    {
+      "id": "pommern",
+      "name": "帆船ポンメルン",
+      "nameLocal": "Museum Ship Pommern / Mariehamn",
+      "description": "西港に係留される四本マストの大型帆船。かつての外洋航海を伝える、マリエハムンの象徴。",
+      "coordinates": {
+        "latitude": 60.09734,
+        "longitude": 19.92504
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-02-pommern.webp",
+      "sourceKey": "pommern",
+      "sceneTypes": [
+        "harbor",
+        "monument"
+      ],
+      "mapOffset": {
+        "x": -2.9166666666666665,
+        "y": 2.8947368421052633
+      }
+    },
+    {
+      "id": "bomarsund",
+      "name": "ボマルスンド要塞跡",
+      "nameLocal": "Bomarsund Fortress Ruins / Sund",
+      "description": "19世紀にロシア帝国が築いた要塞の跡。赤褐色の石壁が草地に残り、1854年の戦いの歴史を語る。",
+      "coordinates": {
+        "latitude": 60.21245,
+        "longitude": 20.23811
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-03-bomarsund.webp",
+      "sourceKey": "bomarsund",
+      "sceneTypes": [
+        "castle"
+      ]
+    },
+    {
+      "id": "getabergen",
+      "name": "ゲタベルゲン",
+      "nameLocal": "Getabergen / Grottstigen",
+      "description": "花崗岩の露頭と風に曲がった松。森の向こうにバルト海と小島が重なる北部の高台。",
+      "coordinates": {
+        "latitude": 60.38588,
+        "longitude": 19.84437
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-04-getabergen.webp",
+      "sourceKey": "geta",
+      "sceneTypes": [
+        "rock",
+        "island"
+      ]
+    },
+    {
+      "id": "eckero-post",
+      "name": "エッケロー郵便税関舎",
+      "nameLocal": "Eckerö Post and Customs House / Storby",
+      "description": "1828年完成の帝政様式建築。かつてスウェーデンとの間を行き交った郵便・税関の歴史を伝える。",
+      "coordinates": {
+        "latitude": 60.22016,
+        "longitude": 19.54365
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-05-eckero-post.webp",
+      "sourceKey": "eckero",
+      "sceneTypes": [
+        "monument"
+      ]
+    },
+    {
+      "id": "st-anna",
+      "name": "コーカル島の聖アンナ教会",
+      "nameLocal": "St. Anna Church / Hamnö, Kökar",
+      "description": "海辺の石造教会と独立した木造鐘楼。島の信仰と長い海上交通の記憶を残す。",
+      "coordinates": {
+        "latitude": 59.94785,
+        "longitude": 20.87783
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-06-st-anna.webp",
+      "sourceKey": "kokar",
+      "sceneTypes": [
+        "church",
+        "island"
+      ]
+    },
+    {
+      "id": "degerby",
+      "name": "フェーグロー島のデゲルビー",
+      "nameLocal": "Degerby / Föglö",
+      "description": "赤い木造家屋と小さな船着き場が並ぶ集落。フェリーを介して続く島の暮らしに出会う。",
+      "coordinates": {
+        "latitude": 60.03011,
+        "longitude": 20.39187
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-07-degerby.webp",
+      "sourceKey": "fogo",
+      "sceneTypes": [
+        "village",
+        "harbor"
+      ]
+    },
+    {
+      "id": "market-lighthouse",
+      "name": "メルケット灯台",
+      "nameLocal": "Märket Lighthouse / Åland Sea",
+      "description": "フィンランドとスウェーデンの国境が通る低い岩礁に建つ1885年の灯台。赤白の塔と住宅が一体となる。",
+      "coordinates": {
+        "latitude": 60.30101,
+        "longitude": 19.13146
+      },
+      "image": "assets/images/finland/aland-islands/approved/scene-08-market-lighthouse.webp",
+      "sourceKey": "market",
+      "sceneTypes": [
+        "lighthouse",
+        "island"
+      ]
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF ÅLAND",
+    "title": "オーランド諸島で食べたいもの",
+    "intro": "厚いパンケーキ、長く保存できる黒パン、海の魚、島のカフェ菓子。船と農の暮らしから生まれた食卓。",
+    "items": [
+      {
+        "id": "alandspannkaka",
+        "name": "オーランド・パンケーキ",
+        "nameLocal": "Ålandspannkaka",
+        "text": "セモリナまたは米の粥を使い、カルダモンを香らせて厚く焼く。プルーンのソースとホイップクリームを添える。",
+        "image": "assets/images/finland/aland-islands/approved/food-01-alandspannkaka.webp",
+        "sourceKey": "pancake"
+      },
+      {
+        "id": "svartbrod",
+        "name": "オーランドの黒パン",
+        "nameLocal": "Åländskt svartbröd",
+        "text": "甘みのある黒いライ麦パン。長く保存できるため船乗りや漁師の食にもなり、地元のバターと相性がよい。",
+        "image": "assets/images/finland/aland-islands/approved/food-02-svartbrod.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "smorstekt-abborre",
+        "name": "パーチのバター焼き",
+        "nameLocal": "Smörstekt abborre",
+        "text": "湖・海の魚パーチをバターで焼く夏の定番。新ジャガイモやディルを添え、素材の味を楽しむ。",
+        "image": "assets/images/finland/aland-islands/approved/food-03-smorstekt-abborre.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "cream-bun",
+        "name": "オーランドのクリームパン",
+        "nameLocal": "Åländsk gräddbulle",
+        "text": "細長いパンを横に開き、生クリームをたっぷり挟む、地元のカフェで親しまれる菓子。",
+        "image": "assets/images/finland/aland-islands/approved/food-04-cream-bun.webp",
+        "sourceKey": "creamBun"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "islands",
+      "label": "島と岩礁",
+      "value": "6,757島",
+      "note": "面積0.25ヘクタール以上の島だけで6,757。さらに約2万の小島と岩礁が点在し、島ごとに暮らしがある。",
+      "icon": "sea",
+      "sourceKey": "islands",
+      "interestReason": "点在する島々の規模が、島内移動と海上交通の輪郭を伝える。"
+    },
+    {
+      "topicKey": "shipping",
+      "label": "経済を支える海運",
+      "value": "GDPの18%",
+      "note": "2023年に海運が地域GDPに占めた割合。海は景色だけでなく、現在も暮らしと経済の基盤だ。",
+      "icon": "sea",
+      "sourceKey": "shipping",
+      "interestReason": "船の歴史が現代の産業に続くことを示す。"
+    },
+    {
+      "topicKey": "apples",
+      "label": "フィンランドのリンゴ産地",
+      "value": "70%超",
+      "note": "北欧の産業紹介記事によれば、フィンランド国内のリンゴ生産の7割超を島内農家が担う。海運に加え、農業も地域を支える。",
+      "icon": "leaf",
+      "sourceKey": "apple",
+      "interestReason": "海と島のイメージに農業の一面を加える。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "入り江を見下ろす中世の石の城",
+      "icon": "landmark",
+      "category": "CULTURE"
+    },
+    {
+      "title": "木造船をつくる工房の手仕事",
+      "icon": "sea",
+      "category": "CULTURE"
+    },
+    {
+      "title": "四本マストに張られた帆索",
+      "icon": "sea",
+      "category": "CULTURE"
+    },
+    {
+      "title": "赤い花崗岩と海からの風",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "黄色い郵便税関舎の長い窓列",
+      "icon": "landmark",
+      "category": "CULTURE"
+    },
+    {
+      "title": "教会の赤い鐘楼と静かな墓地",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "フェリーで渡る木造家屋の村",
+      "icon": "home",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "低い岩礁に立つ赤白の灯台",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "shipbuilding",
+      "themeEn": "LIFE",
+      "themeJa": "海の手仕事",
+      "icon": "sea",
+      "title": "船をつくり、直し、次の海へ送り出す",
+      "text": "海事地区には船大工の工房があり、木造船の製作と修繕が現在も続く。博物館の展示とは別に、使われ続ける技術が港の風景をつくっている。",
+      "points": [
+        "赤い船小屋の中で伝統的な造船技術が受け継がれる",
+        "港が展示だけでなく働く場所でもある"
+      ],
+      "sourceKey": "maritimeQuarter"
+    },
+    {
+      "topicKey": "granite",
+      "themeEn": "NATURE",
+      "themeJa": "岩を知る",
+      "icon": "landscape",
+      "title": "赤みを帯びた岩盤が島々の輪郭をつくる",
+      "text": "岩盤は氷河によって削られ、海辺にはなめらかな花崗岩の露頭が広がる。森が薄くなる場所では、岩と海の近さを感じられる。",
+      "points": [
+        "風や波にさらされた平たい岩盤",
+        "同じ海でも森と岩の比率で景色が変わる"
+      ],
+      "sourceKey": "geta"
+    },
+    {
+      "topicKey": "mail",
+      "themeEn": "HISTORY",
+      "themeJa": "郵便の道",
+      "icon": "landmark",
+      "title": "小舟で郵便を運んだ海の道",
+      "text": "西のエッケローは、スウェーデンとロシア帝国をつないだ旧郵便路の要所。海が荒れる時代にも、島民の労働によって手紙が渡されていた。",
+      "points": [
+        "建物は交易と国家境界の記憶を刻む",
+        "かつては郵便の運搬自体が危険を伴った"
+      ],
+      "sourceKey": "eckero"
+    },
+    {
+      "topicKey": "faith",
+      "themeEn": "CULTURE",
+      "themeJa": "島の信仰",
+      "icon": "culture",
+      "title": "海の暮らしの傍らに小さな教会が残る",
+      "text": "コーカルの聖アンナ教会など、島の石造教会は長く地域の祈りの場所であり続けた。華美な装飾よりも、海辺の簡素な建築と共同体の営みに目を向けたい。",
+      "points": [
+        "赤い屋根と白い壁の実直な建築",
+        "教会と墓地が島の世代を結ぶ"
+      ],
+      "sourceKey": "kokar"
+    },
+    {
+      "topicKey": "villages",
+      "themeEn": "LIFE",
+      "themeJa": "島で暮らす",
+      "icon": "home",
+      "title": "海路が村と村をつなぐ日常",
+      "text": "離島の集落ではフェリーが買い物・通学・医療などのアクセスを支える。旅で渡る船は、住民にとっては日常の交通でもある。",
+      "points": [
+        "定期船の運航に合わせる暮らし",
+        "小さな港と赤い家がつくる村の輪郭"
+      ],
+      "sourceKey": "ferries"
+    },
+    {
+      "topicKey": "maritimeMemory",
+      "themeEn": "CULTURE",
+      "themeJa": "航海の記憶",
+      "icon": "sea",
+      "title": "遠い海へ向かった船が港に帰る",
+      "text": "船が担った交易は島の経済と人の移動を支えた。今もマリエハムンのポンメルンから、外洋航海の過酷さと船乗りの生活を実感できる。",
+      "points": [
+        "四本マストの大型帆船が港に係留される",
+        "海事博物館が航海の技術を伝える"
+      ],
+      "sourceKey": "pommern"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "maypole-boats",
+      "categoryEn": "FESTIVAL",
+      "categoryJa": "祭り",
+      "icon": "culture",
+      "title": "夏至祭の柱に、小さな船が浮かぶ",
+      "text": "島の夏至祭で立てる飾り柱には、海運を象徴する小舟の飾りを付ける村もある。風を受けて小さな船が回る。",
+      "sourceKey": "midsummer"
+    },
+    {
+      "topicKey": "postal-stamps",
+      "categoryEn": "POST",
+      "categoryJa": "切手",
+      "icon": "culture",
+      "title": "郵便に使う切手も独自",
+      "text": "オーランドから出す郵便には、オーランド発行の切手が使われる。小さな島々に独自の郵便文化がある。",
+      "sourceKey": "postalStamps"
+    },
+    {
+      "topicKey": "pirate-flag",
+      "categoryEn": "MUSEUM",
+      "categoryJa": "博物館",
+      "icon": "landmark",
+      "title": "海事博物館には、本物の海賊旗",
+      "text": "マリエハムンの海事博物館には、世界でも珍しい実物の海賊旗の一つが所蔵されている。物語ではなく海の歴史の遺物だ。",
+      "sourceKey": "museum"
+    },
+    {
+      "topicKey": "signilskar",
+      "categoryEn": "HISTORY",
+      "categoryJa": "航路",
+      "icon": "sea",
+      "title": "かつて海を渡る郵便船が休んだ島",
+      "text": "西端のシグニルスシェール島は、中世から船乗りの中継地。郵便を漕いで運ぶ農民も、海況が落ち着くのをここで待った。",
+      "sourceKey": "postRoute"
+    },
+    {
+      "topicKey": "midsummer-song",
+      "categoryEn": "FESTIVAL",
+      "categoryJa": "暮らし",
+      "icon": "culture",
+      "title": "柱が立つと、島の歌を歌う",
+      "text": "村の夏至祭では、飾り柱を手作業で立てた後に「Ålänningens sång」を歌う習慣がある。共同作業が祭りの中心だ。",
+      "sourceKey": "midsummer"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "静かな海と岩礁の風景を歩きたい人",
+      "text": "赤い花崗岩、島々を望む森の高台、小さな灯台のある海をじっくり眺めたい人。"
+    },
+    {
+      "title": "城と船の歴史に触れたい人",
+      "text": "中世の城、ロシア帝国期の要塞、外洋帆船や郵便の歴史をたどりたい人。"
+    },
+    {
+      "title": "フェリーと村の暮らしを知りたい人",
+      "text": "観光地だけでなく、島を結ぶ定期船や木造家屋の集落を体験したい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "離島の船は事前に時刻・予約を確認",
+      "text": "FöglöやKökarへ渡る地域フェリーは路線と時刻が異なる。車の持込み条件を含め、運航会社の最新案内で確認する。",
+      "sourceKey": "ferries"
+    },
+    {
+      "title": "メルケット灯台への上陸は天候次第",
+      "text": "Märketには港がなく、波や風が強い日は上陸できない。通常の定期船では行けないため、催行会社の条件を確認する。",
+      "sourceKey": "marketAccess"
+    },
+    {
+      "title": "文化施設の公開は季節で変わる",
+      "text": "小さな博物館や見学施設には夏期中心の場所がある。ポンメルンや郵便税関舎などは訪問日の公式営業案内を確認する。",
+      "sourceKey": "eckero"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "マリエハムンを起点に本島を巡り、島間フェリーを加えるほど滞在を延ばすと無理がない。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "本島の城と港をめぐる",
+        "text": "マリエハムンで帆船と海事地区を歩き、城と要塞を訪ねる。例：マリエハムン → カステルホルム → ボマルスンド → マリエハムン。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "西と東の小島へ渡る",
+        "text": "本島の歴史巡りの後、Föglöへ日帰りまたは宿泊で渡る。例：マリエハムン → エッケロー → マリエハムン → スヴィノ → デゲルビー → スヴィノ → マリエハムン。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "コーカル島まで島の旅を延ばす",
+        "text": "フェリー運航日に合わせてKökarを訪れる。例：マリエハムン → ラングネース → コーカル → ラングネース → マリエハムン。メルケットへの船は別途天候条件を確認する。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜8月",
+        "reason": "海と島の景観が明るく、季節営業の施設や島間の体験が比較的利用しやすい。夏至の行事も楽しめる。"
+      },
+      {
+        "label": "5月・9月",
+        "reason": "真夏の混雑を避けて本島を巡りやすい。離島フェリーや施設の営業は日ごとに確認する。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "春に森が芽吹き、海辺の散策が少しずつ快適になる。施設の公開は季節によって異なる。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "白夜に近い長い日照と海の旅の季節。夏至祭の飾り柱と島の行事が特色。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "leaf",
+      "color": "#b77a49",
+      "text": "初秋の島は静かになり、森と岩盤の色が落ち着く。船の運航と日照時間に注意。"
+    },
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "海風が強い冬季。営業施設が限られるため、港町を中心に計画するとよい。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "フェリー・バス・車・自転車",
+    "text": "スウェーデン・フィンランド本土から定期船で到着し、主要島では車やバス・自転車で移動する。FöglöやKökarへは島間フェリーが必要で、便数と乗継ぎを確認したい。",
+    "sourceKey": "ferries"
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "フィンランド",
+      "nameEn": "FINLAND",
+      "href": "countries/finland/",
+      "flag": "🇫🇮",
+      "reason": "本土の森と湖、海を挟んだ群島文化を比較する。",
+      "affinityType": "GEOGRAPHY"
+    },
+    {
+      "nameJa": "スウェーデン",
+      "nameEn": "SWEDEN",
+      "href": "countries/sweden/",
+      "flag": "🇸🇪",
+      "reason": "言語・海運・歴史のつながりをたどり、ストックホルムの群島へ。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "capital": {
+    "nameJa": "マリエハムン",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 60.0972,
+      "longitude": 19.9348
+    },
+    "sourceKey": "government",
+    "labelPosition": "top"
+  },
+  "travelThemes": [
+    "地球の風景"
+  ],
+  "contentQaVersion": 6,
+  "sourcesVerifiedAt": "2026-11-08",
+  "sources": {
+    "government": "https://um.fi/the-special-status-of-the-aland-islands",
+    "autonomy": "https://valtioneuvosto.fi/en/-/10184/centenary-celebrations-of-the-autonomy-of-the-aland-islands-set-to-begin",
+    "demilitarization": "https://www.lagtinget.ax/sjalvstyrelsen/allmant-om-demilitariseringen-och-neutraliseringen",
+    "population": "https://www.asub.ax/sv/statistik/invanarantalet-31122025",
+    "islands": "https://www.asub.ax/en/facts-about-aland",
+    "area": "https://www.asub.ax/sites/default/files/media/document/Statistisk%20%C3%A5rsbok%20f%C3%B6r%20%C3%85land%202025_1.pdf",
+    "maritimeQuarter": "https://book.visitaland.com/en/maritime-quarter-mariehamn",
+    "pommern": "https://visitaland.com/en/experience/history/aland-history/a-town-built-around-shipping/",
+    "bomarsund": "https://book.visitaland.com/en/fortress-bomarsund",
+    "geta": "https://www.geta.ax/turistinformation/upplevelser",
+    "eckero": "https://book.visitaland.com/en/eckero-mail-customs-house",
+    "kokar": "https://www.kokar.ax/st-annas-kyrka?lang=en",
+    "fogo": "https://www.aland.travel/foglo",
+    "market": "https://www.ibiblio.org/lighthouse/ala.htm",
+    "marketAccess": "https://visitaland.com/upplev/sevardheter-utflykter/ut-pa-havet/",
+    "kastelholm": "https://visitaland.com/en/experience/sights-excursions/10-must-see-places/",
+    "food": "https://visitaland.com/en/experience/culinary-aland/local-foods/",
+    "pancake": "https://visitaland.com/en/experience/culinary-aland/aland-pancake/",
+    "creamBun": "https://visitaland.com/en/experience/culinary-aland/popular-cafes-in-aland/",
+    "ferries": "https://www.alandstrafiken.ax/sites/www.alandstrafiken.ax/files/karta.pdf",
+    "seasons": "https://visitaland.com/en/experience/sights-excursions/",
+    "midsummer": "https://visitaland.com/en/experience/midsummer-in-aland/",
+    "postalStamps": "https://visitaland.com/en/practical-info/bank-and-post-offices/",
+    "museum": "https://visitaland.com/en/experience/sights-excursions/10-must-see-places/",
+    "postRoute": "https://visitaland.com/en/experience/sights-excursions/excursion-islands/",
+    "religion": "https://data.un.org/Data.aspx?d=POP&f=tableCode%3A28",
+    "apple": "https://www.arbeidslivinorden.org/lilla-aland-forser-finland-med-applen/",
+    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "geodata": "https://www.soest.hawaii.edu/wessel/gshhg/",
+    "areaNordic": "https://www.norden.org/en/information/about-aland",
+    "shipping": "https://www.asub.ax/en/facts-about-aland",
+    "landAreaNotes": "https://www.asub.ax/sv/statistik/invanarantalet-31122025"
+  },
+  "sourceDates": {
+    "population": "2025-12-31 confirmed; published 2026-04-01",
+    "landArea": "2025-01-01; ÅSUB Statistical Yearbook 2025, land 1,555.6 km² (excluding inland water)",
+    "japanAreaComparison": "2025-01-01 Åland official land area 1555.6 km² / Japan GSI approx. 377,974 km² = 0.4116%, displayed 0.41%",
+    "islands": "6,757 islands >=0.25 ha, ÅSUB checked 2026-11-08",
+    "shipping": "2023 gross domestic product share 18%, ÅSUB",
+    "apple": "2025 Nordic labour feature: over 70% of Finnish domestic apple production; source not an annually updated official series",
+    "history": "1809, 1856, 1920, 1921, 1922, 1993; Ministry for Foreign Affairs",
+    "ferry": "Ferry network route PDF 2024; seasonal 2026 timetable requires confirmation"
+  }
+}
