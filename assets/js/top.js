@@ -1234,7 +1234,7 @@ function loadScenes(){
       sceneRows=[...scenes,...heroRows];
       if(sceneLead){
         const countryCount=new Set(sceneRows.map((row)=>row.slug)).size;
-        sceneLead.textContent='気になる景色から、旅先を見つけよう。国や詳しい地域に広がる景色を、開くたびに異なる組み合わせで紹介します。画像は現地撮影の写真ではなく、景観イメージです。';
+        sceneLead.textContent='気になる景色から、旅先を見つける。';
       }
       shuffleScenes();
     }).catch((error)=>{
@@ -1312,12 +1312,6 @@ function renderScenes(){
     }
     caption.append(name,country);
     tile.append(img,caption);
-    if(row.isHero){
-      const heroTag=document.createElement('span');
-      heroTag.className='gallery-tile__hero-tag';
-      heroTag.textContent='HERO';
-      tile.append(heroTag);
-    }
     fragment.append(tile);
   });
   if(!sceneOrder.length){
@@ -1339,8 +1333,14 @@ function renderScenes(){
   }
   // Like the other lists: a 解除 button while a region is chosen, and 「一覧を閉じる」 at the end
   // once the gallery has been opened out (もっと見る) or narrowed to a region.
+  // The filters stay folded; what is chosen shows as one chip that clears them all.
   const clear=document.querySelector('#gallery-clear');
-  if(clear)clear.hidden=sceneRegion==='all'&&!sceneGroup;
+  if(clear){
+    const chosen=sceneFilterLabels();
+    clear.hidden=!chosen.length;
+    clear.textContent=`${chosen.join('・')} ×`;
+  }
+  sceneFilterToggle?.classList.toggle('has-filters',sceneFilterLabels().length>0);
   const close=document.querySelector('#gallery-close');
   if(close)close.hidden=sceneRegion==='all'&&!sceneGroup&&!sceneFavoritesOnly&&!sceneWishesOnly&&sceneLimit<=SCENE_PAGE;
   if(sceneSavedToggle){
@@ -1349,6 +1349,26 @@ function renderScenes(){
     sceneSavedToggle.textContent=sceneFavoritesOnly?'♥ 保存した景色':'♡ 保存した景色';
   }
 }
+const sceneFilterToggle=document.querySelector('#gallery-filter-toggle');
+const sceneFilters=document.querySelector('#gallery-filters');
+function sceneFilterLabels(){
+  const labels=[];
+  if(sceneRegion!=='all')labels.push(themeRegions.find((region)=>region.id===sceneRegion)?.label||sceneRegion);
+  if(sceneWishesOnly)labels.push('Wishリスト');
+  const group=sceneTypeGroups.find((item)=>item.id===sceneGroup);
+  if(group)labels.push(group.types.find((type)=>type.id===sceneType)?.label||group.label);
+  return labels;
+}
+function setSceneFiltersOpen(open){
+  if(!sceneFilters||!sceneFilterToggle)return;
+  sceneFilters.hidden=!open;
+  sceneFilterToggle.setAttribute('aria-expanded',String(open));
+  sceneFilterToggle.classList.toggle('is-open',open);
+}
+sceneFilterToggle?.addEventListener('click',()=>{
+  setSceneFiltersOpen(sceneFilters?.hidden);
+  loadScenes();
+});
 function renderSceneTypeTabs(){
   if(!sceneTypeBox||!sceneGroupTabs||!sceneTypeGroups.length)return;
   sceneTypeBox.hidden=false;
@@ -1392,10 +1412,11 @@ function resetScenes({scroll=false,keepFavorites=false}={}){
   }
 }
 document.querySelector('#gallery-clear')?.addEventListener('click',()=>{
+  sceneWishesOnly=false;
   resetScenes({keepFavorites:true});
   document.querySelector('#gallery-shuffle')?.focus({preventScroll:true});
 });
-document.querySelector('#gallery-close')?.addEventListener('click',()=>resetScenes({scroll:true}));
+document.querySelector('#gallery-close')?.addEventListener('click',()=>{setSceneFiltersOpen(false);resetScenes({scroll:true});});
 sceneTabs?.addEventListener('click',(event)=>{
   const wishButton=event.target.closest('[data-wish-filter="scenery"]');
   if(wishButton){sceneWishesOnly=!sceneWishesOnly;shuffleScenes();return;}
