@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20261106-my-atlas-regions-3">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261107-wish-filters-1">
+  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261108-scene-types-1">
   <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-montages-1">
   <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261107-region-flags-2">
   <style>
@@ -81,7 +81,7 @@
     .ja-detail-summary{margin:8px 0 18px;font-size:12px;letter-spacing:.02em;color:#68747d}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261107-region-flags-1" defer></script>
+  <script src="assets/js/top.js?v=20261108-scene-types-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261107-all-regions-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
   <script src="assets/js/atlas-personal.js?v=20261107-region-flags-1" defer></script>
@@ -274,10 +274,15 @@
           <div class="gallery-actions">
             <button type="button" class="gallery-saved-toggle" id="gallery-saved-toggle" aria-pressed="false">♡ 保存した景色</button>
             <button type="button" class="gallery-shuffle" id="gallery-shuffle">ほかの景色を見る <span aria-hidden="true">↻</span></button>
-            <button type="button" class="results-close-head" id="gallery-clear" hidden>地域の選択を解除 ×</button>
+            <button type="button" class="results-close-head" id="gallery-clear" hidden>選択を解除 ×</button>
           </div>
         </div>
         <div class="theme-region-tabs" id="gallery-region-tabs" role="group" aria-label="地域とWishリストで絞り込む" hidden></div>
+        <div class="gallery-types" id="gallery-types" hidden>
+          <p class="gallery-types__label" id="gallery-types-label">景色の種類</p>
+          <div class="theme-region-tabs gallery-types__groups" id="gallery-type-groups" role="group" aria-labelledby="gallery-types-label"></div>
+          <div class="theme-region-tabs gallery-types__subtypes" id="gallery-type-subtypes" role="group" hidden></div>
+        </div>
         <div class="gallery-grid" id="gallery-grid" role="list"></div>
         <button type="button" class="theme-results__more" id="gallery-more" hidden></button>
         <button type="button" class="results-close" id="gallery-close" hidden>一覧を閉じる</button>

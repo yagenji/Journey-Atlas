@@ -78,6 +78,7 @@ If the next action is deterministic, continue without asking the user to say "é€
 Before image production, prepare the finished editorial plan and map:
 - Hero place;
 - eight Scene places and real coordinates;
+- 1â€“2 `sceneTypes` for the Hero and each Scene, chosen from `data/scene-taxonomy.json` (the first is the main subject). The top-page scene index and similar-scene suggestions are built from them; `scripts/validate_scene_types.py` fails a named Hero or Scene without them;
 - four Taste dishes;
 - Country Profile;
 - Signature Facts;

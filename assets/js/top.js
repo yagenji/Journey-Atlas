@@ -63,12 +63,13 @@ let fullDestinations = []; // the 202-item canonical catalog
 let detailDestinations = []; // directly discoverable subordinate places
 const CHILD_SLUGS = new Set(['hong-kong','macau']);
 // Region destinations come from the published Region JSON index, not a UK-only list.
-const regionDetailPromise = fetch('data/top-scene-index.json?v=20261107-regional-flags-1')
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261108-scene-types-1')
   .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
   .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
     slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:data.iso2,
     regionId:data.regionId,image:data.image,heroName:data.heroName,
     travelThemes:data.travelThemes||[],flag:data.flag||'',flagAsset:data.flagAsset||'',
+    sceneTypes:data.sceneTypes||[],
     atlasPublished:true,href:data.href,parentSlug:data.parentSlug
   })))
   .catch(()=>[]);
@@ -860,6 +861,7 @@ function saveTopState(){
   set('sregion',seasonChosen&&seasonRegion!=='all'?seasonRegion:'');
   set('swish',seasonChosen&&seasonWishesOnly?'1':'');
   set('gwish',sceneWishesOnly?'1':'');
+  set('gtype',sceneType||sceneGroup||'');
   if(url.href!==location.href)history.replaceState(history.state,'',url);
 }
 searchInput?.addEventListener('input',saveTopState);
@@ -1176,6 +1178,25 @@ const sceneLead=document.querySelector('#gallery-lead');
 const SCENE_PAGE=12;
 let sceneRows=null,scenePromise=null,sceneOrder=[],sceneRegion='all',sceneLimit=SCENE_PAGE,sceneFavoritesOnly=false;
 let sceneWishesOnly=new URLSearchParams(location.search).get('gwish')==='1';
+// Scene index: a group (e.g. 水辺) or one type inside it (e.g. 滝), from data/scene-taxonomy.json.
+let sceneTypeGroups=[],sceneGroup='',sceneType='';
+const sceneTypeParam=new URLSearchParams(location.search).get('gtype')||'';
+const sceneTypeBox=document.querySelector('#gallery-types');
+const sceneGroupTabs=document.querySelector('#gallery-type-groups');
+const sceneSubtypeTabs=document.querySelector('#gallery-type-subtypes');
+function sceneTypeMatch(row){
+  if(sceneType)return row.types.includes(sceneType);
+  if(!sceneGroup)return true;
+  const group=sceneTypeGroups.find((item)=>item.id===sceneGroup);
+  return !!group&&group.types.some((type)=>row.types.includes(type.id));
+}
+function applySceneTypeParam(value){
+  sceneGroup='';sceneType='';
+  const group=sceneTypeGroups.find((item)=>item.id===value||item.types.some((type)=>type.id===value));
+  if(!group)return;
+  sceneGroup=group.id;
+  if(group.id!==value)sceneType=value;
+}
 function isSavedScenery(row){
   try{return localStorage.getItem('journey-atlas:scene:'+row.slug+':'+row.id)!==null;}
   catch{return false;}
@@ -1188,16 +1209,18 @@ function shuffled(items){
 function loadScenes(){
   if(!scenePromise){
     scenePromise=Promise.all([
-      fetch('data/top-scene-index.json?v=20261107-regional-flags-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      fetch('data/top-scene-index.json?v=20261108-scene-types-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
       themeRegionPromise.catch(()=>null),
       regionDetailPromise
-    ]).then(([{countries={},heroes={}},,,regions])=>{
+    ]).then(([{countries={},heroes={},heroTypes={},sceneTypes=[]},,,regions])=>{
+      sceneTypeGroups=sceneTypes;
+      applySceneTypeParam(sceneType||sceneGroup||sceneTypeParam);
       const bySlug=new Map([...fullDestinations,...regions].map((country)=>[country.slug,country]));
       const scenes=Object.entries(countries).flatMap(([slug,rows])=>{
         const country=bySlug.get(slug);
         if(!country?.atlasPublished||!country.href)return [];
-        return rows.map(([id,name])=>({slug,id,name,country,isHero:false}));
+        return rows.map(([id,name,types=[]])=>({slug,id,name,country,types,isHero:false}));
       });
       // Hero titles come from the Country's verified location in its JSON.
       // Never substitute a generic 「代表風景」 label for a real place name.
@@ -1205,7 +1228,8 @@ function loadScenes(){
         .filter(country=>country.atlasPublished&&country.href&&country.image)
         .map(country=>({
           slug:country.slug,id:'hero',name:country.heroName||heroes[country.slug]||'',
-          country,image:country.image,isHero:true
+          country,image:country.image,isHero:true,
+          types:country.sceneTypes||heroTypes[country.slug]||[]
         })).filter(row=>row.name.trim());
       sceneRows=[...scenes,...heroRows];
       if(sceneLead){
@@ -1225,7 +1249,8 @@ function shuffleScenes(){
   if(!sceneRows)return;
   const favorites=sceneFavoritesOnly?sceneRows.filter(isSavedScenery):sceneRows;
   const wished=sceneWishesOnly?favorites.filter((row)=>isWishedDestination(row.country)):favorites;
-  const rows=sceneRegion==='all'?wished:wished.filter((row)=>discoveryRegionId(row.country)===sceneRegion);
+  const regional=sceneRegion==='all'?wished:wished.filter((row)=>discoveryRegionId(row.country)===sceneRegion);
+  const rows=regional.filter(sceneTypeMatch);
   const groups=new Map();
   shuffled(rows).forEach((row)=>{if(!groups.has(row.slug))groups.set(row.slug,[]);groups.get(row.slug).push(row);});
   const slugs=shuffled([...groups.keys()]);
@@ -1257,6 +1282,7 @@ function renderScenes(){
       return button;
     }),makeWishlistFilterButton('scenery',sceneWishesOnly));
   }
+  renderSceneTypeTabs();
   const fragment=document.createDocumentFragment();
   sceneOrder.slice(0,sceneLimit).forEach((row)=>{
     const tile=document.createElement('a');
@@ -1314,17 +1340,50 @@ function renderScenes(){
   // Like the other lists: a 解除 button while a region is chosen, and 「一覧を閉じる」 at the end
   // once the gallery has been opened out (もっと見る) or narrowed to a region.
   const clear=document.querySelector('#gallery-clear');
-  if(clear)clear.hidden=sceneRegion==='all';
+  if(clear)clear.hidden=sceneRegion==='all'&&!sceneGroup;
   const close=document.querySelector('#gallery-close');
-  if(close)close.hidden=sceneRegion==='all'&&!sceneFavoritesOnly&&!sceneWishesOnly&&sceneLimit<=SCENE_PAGE;
+  if(close)close.hidden=sceneRegion==='all'&&!sceneGroup&&!sceneFavoritesOnly&&!sceneWishesOnly&&sceneLimit<=SCENE_PAGE;
   if(sceneSavedToggle){
     sceneSavedToggle.classList.toggle('is-active',sceneFavoritesOnly);
     sceneSavedToggle.setAttribute('aria-pressed',String(sceneFavoritesOnly));
     sceneSavedToggle.textContent=sceneFavoritesOnly?'♥ 保存した景色':'♡ 保存した景色';
   }
 }
+function renderSceneTypeTabs(){
+  if(!sceneTypeBox||!sceneGroupTabs||!sceneTypeGroups.length)return;
+  sceneTypeBox.hidden=false;
+  const tab=(dataset,value,label,on)=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset[dataset]=value;
+    button.classList.toggle('is-active',on);
+    button.setAttribute('aria-pressed',String(on));
+    button.textContent=label;
+    return button;
+  };
+  sceneGroupTabs.replaceChildren(tab('sceneGroup','','すべて',!sceneGroup),
+    ...sceneTypeGroups.map((group)=>tab('sceneGroup',group.id,group.label,group.id===sceneGroup)));
+  const group=sceneTypeGroups.find((item)=>item.id===sceneGroup);
+  if(!sceneSubtypeTabs)return;
+  sceneSubtypeTabs.hidden=!group;
+  sceneSubtypeTabs.replaceChildren(...(group?[tab('sceneType','',`${group.label}すべて`,!sceneType),
+    ...group.types.map((type)=>tab('sceneType',type.id,type.label,type.id===sceneType))]:[]));
+  if(group)sceneSubtypeTabs.setAttribute('aria-label',`${group.label}の種類`);
+}
+sceneGroupTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-scene-group]');
+  if(!button)return;
+  sceneGroup=button.dataset.sceneGroup;sceneType='';
+  shuffleScenes();
+});
+sceneSubtypeTabs?.addEventListener('click',(event)=>{
+  const button=event.target.closest('[data-scene-type]');
+  if(!button)return;
+  sceneType=button.dataset.sceneType;
+  shuffleScenes();
+});
 function resetScenes({scroll=false,keepFavorites=false}={}){
-  sceneRegion='all';
+  sceneRegion='all';sceneGroup='';sceneType='';
   if(!keepFavorites){sceneFavoritesOnly=false;sceneWishesOnly=false;}
   shuffleScenes();
   if(scroll){

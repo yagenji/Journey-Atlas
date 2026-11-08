@@ -579,12 +579,15 @@ def build_top_season_index() -> None:
 def build_top_scene_index() -> None:
     """Source-led labels for the top-page gallery: Scenes and Country Hero locations.
 
+    Each Scene row is [id, name, sceneTypes]; Hero types are keyed by slug in heroTypes.
+
     Scene entries are published only when their thumbnail exists. Hero names come from the
     corresponding Country JSON, not from a generic country-name placeholder.
     """
     thumbs = ROOT / "assets/images/top/scenes"
     countries: dict[str, list] = {}
     heroes: dict[str, str] = {}
+    hero_types: dict[str, list] = {}
     missing = 0
     for path in sorted((ROOT / "data/countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -595,6 +598,8 @@ def build_top_scene_index() -> None:
         hero_name = str(hero.get("name") or hero.get("location") or "").strip()
         if hero.get("image") and hero_name:
             heroes[slug] = hero_name
+            if hero.get("sceneTypes"):
+                hero_types[slug] = hero["sceneTypes"]
         rows = []
         for scene in data.get("scenes", []):
             scene_id = scene.get("id")
@@ -603,7 +608,7 @@ def build_top_scene_index() -> None:
             if not (thumbs / slug / f"{scene_id}.webp").exists():
                 missing += 1
                 continue
-            rows.append([scene_id, str(scene.get("name", "")).strip()])
+            rows.append([scene_id, str(scene.get("name", "")).strip(), scene.get("sceneTypes", [])])
         if rows:
             countries[slug] = rows
     if missing:
@@ -664,9 +669,15 @@ def build_top_scene_index() -> None:
             "flagAsset": region_flag_asset,
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
+            "sceneTypes": hero.get("sceneTypes", []),
             "href": f"countries/{parent}/{region['slug']}/",
         })
-    payload = {"version": 4, "countries": countries, "heroes": heroes, "regionHeroes": region_heroes}
+    # Scene types drive the top-page scene index (see data/scene-taxonomy.json).
+    taxonomy = json.loads((ROOT / "data/scene-taxonomy.json").read_text(encoding="utf-8"))
+    payload = {
+        "version": 5, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "regionHeroes": region_heroes, "sceneTypes": taxonomy["groups"],
+    }
     (ROOT / "data/top-scene-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
     )
