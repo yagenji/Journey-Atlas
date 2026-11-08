@@ -112,7 +112,8 @@
     scenes: cards.map(card => ({
       id: card.dataset.scene,
       name: card.querySelector('.scene-copy h3')?.textContent?.trim() || '',
-      image: assetPath(card.querySelector('.scene-image img'))
+      image: assetPath(card.querySelector('.scene-image img')),
+      sceneTypes: (card.dataset.sceneTypes || '').split(',').filter(Boolean)
     }))
   };
   // atlas-personal.js provides the same Hero/Scene hearts as the Country pages.

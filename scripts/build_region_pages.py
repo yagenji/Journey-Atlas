@@ -591,6 +591,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     for i, scene in enumerate(data['scenes'], 1):
         number = str(i)
         result.append(f'<article class="scene-card region-scene" data-scene="{esc(scene["id"])}" '
+            f'data-scene-types="{esc(",".join(scene.get("sceneTypes", [])))}" '
             f'id="scene-{esc(scene["id"])}" role="button" tabindex="0" aria-pressed="false" '
             f'aria-label="{number} {esc(scene["name"])}を選択">'
             '<div class="scene-image media-slot" role="img" '
