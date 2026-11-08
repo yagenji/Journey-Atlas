@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="zanzibar-map-title zanzibar-map-desc" data-map-projection="local-equirectangular-fit-v1" data-map-style="journey-atlas-region-map">
-<title id="zanzibar-map-title">ザンジバルのウングジャ島・ペンバ島と周辺の島々の地図</title>
-<desc id="zanzibar-map-desc">GSHHSの実海岸線によるタンザニア本土とザンジバルのウングジャ島・ペンバ島の地図。番号は重なりを防ぐため表示位置のみ調整しています。</desc>
-<metadata>GSHHS / GSHHG intermediate-resolution shoreline WGS84, LGPL-3.0; mainland context and Zanzibar island polygons from Basemap. Geographic view north=-4.7 south=-6.72 west=37.5 east=40.705378064. Marker source coordinates unchanged. No invented shoreline or island. Number labels are visual-only offsets.</metadata>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="zanzibar-map-title zanzibar-map-desc" data-map-inset-standard="true" data-map-projection="local-equirectangular-fit-v1" data-map-style="journey-atlas-region-map">
+<title id="zanzibar-map-title">ザンジバル全域とウングジャ島の拡大図</title>
+<desc id="zanzibar-map-desc">左にタンザニア本土とウングジャ島・ペンバ島の実際の位置関係、右にウングジャ島の同一海岸線を拡大表示した別枠図。</desc>
+<metadata>GSHHS / GSHHG intermediate-resolution WGS84 shoreline from Basemap, LGPL-3.0-or-later. The same authentic polygons are reused in overview and 1.85x inset, not invented. Geographic anchors WGS84 with local-equirectangular-fit-v1 bounds {"north":-4.7,"south":-6.72,"west":37.900672258026866,"east":41.106050322241806}; 150px cartographic shift. Source crop {"x":465,"y":355,"width":185,"height":345}, zoom 1.85, translation -66.375 -595.875; scene label-only offsets up to 60px.</metadata>
 <defs>
 <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf2f4"/><stop offset=".55" stop-color="#dcebf0"/><stop offset="1" stop-color="#d0e3eb"/></linearGradient>
 <linearGradient id="land" x1=".12" y1=".08" x2=".88" y2=".92"><stop offset="0" stop-color="#e2dbad"/><stop offset=".52" stop-color="#d4cc9b"/><stop offset="1" stop-color="#c8bf8a"/></linearGradient>
 <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#466776" flood-opacity=".12"/></filter>
-</defs>
-<rect width="1200" height="760" fill="url(#sea)"/>
+<clipPath id="za-overview-clip"><rect width="744" height="760"/></clipPath>
+<clipPath id="za-detail-clip"><rect x="750" y="50" width="430" height="660"/></clipPath>
+<g id="za-verified-geography" transform="translate(-150 0)">
 <g id="context-land" fill="#e4e0ce" stroke="#b6bbaf" stroke-width="1"><path d="M641.28,0.00 L641.54,22.58 L634.36,27.30 L631.40,11.15 L630.61,22.26 L622.51,30.41 L634.81,38.10 L641.85,35.74 L638.42,49.56 L641.83,57.07 L626.72,90.45 L619.69,80.90 L626.10,57.53 L615.96,66.48 L611.73,83.25 L601.29,81.83 L613.15,92.81 L614.09,103.16 L607.55,108.48 L621.76,113.04 L623.17,119.78 L618.96,114.29 L609.60,124.01 L598.36,122.44 L593.51,136.08 L599.30,138.74 L608.19,133.58 L613.80,158.01 L600.70,163.36 L602.89,178.72 L585.41,194.39 L584.94,198.94 L588.38,194.87 L594.79,199.73 L569.20,266.20 L558.74,267.30 L554.68,274.49 L540.48,267.77 L542.53,273.26 L561.40,281.24 L560.14,292.23 L536.74,344.58 L529.10,354.15 L520.53,354.60 L521.30,358.85 L526.14,356.19 L522.72,380.00 L494.62,431.11 L494.00,463.40 L478.11,494.75 L476.53,508.87 L489.65,538.03 L492.92,536.00 L505.55,552.45 L501.96,554.48 L508.65,555.59 L499.32,608.88 L508.36,630.21 L504.30,637.11 L510.70,634.75 L522.39,643.05 L527.85,658.27 L544.41,661.73 L552.81,669.56 L568.42,674.57 L576.37,670.34 L567.41,666.00 L552.19,661.08 L577.77,667.04 L602.56,699.19 L616.76,705.93 L625.67,722.40 L641.59,735.88 L649.16,760.00 L0.00,760.00 L0.00,0.00 L641.28,0.00Z"/></g>
 <g id="target-land" fill="url(#land)" stroke="#31576a" stroke-width="1.5" filter="url(#shadow)">
 <path d="M703.65,489.42 L703.65,489.75 L713.64,509.49 L722.38,514.52 L719.89,540.54 L724.87,554.32 L713.96,563.73 L726.89,557.63 L731.58,566.39 L738.15,554.16 L740.95,563.26 L746.55,559.52 L750.92,564.83 L749.50,551.49 L742.65,545.23 L745.63,535.98 L751.71,538.03 L761.38,560.28 L761.69,596.65 L777.90,636.46 L769.79,657.17 L752.78,669.56 L744.38,668.91 L734.86,658.74 L714.57,610.13 L717.23,603.10 L711.93,608.73 L704.60,605.13 L717.08,622.36 L713.48,637.25 L704.91,627.06 L702.73,609.19 L701.01,615.00 L676.69,578.96 L670.91,579.10 L674.49,591.79 L664.98,586.63 L672.44,610.77 L659.98,605.44 L654.06,592.91 L640.00,583.19 L638.15,562.18 L629.71,550.88 L637.84,547.41 L641.27,524.22 L629.71,488.49 L629.40,456.20 L635.96,452.44 L638.61,467.33 L643.45,449.30 L664.04,438.64 L671.52,412.62 L671.68,385.81 L694.30,414.18 L694.62,459.95 L703.65,489.42Z"/>
 <path d="M815.03,113.82 L815.03,112.87 L813.91,106.74 L826.22,105.64 L815.47,93.24 L816.71,98.28 L811.56,95.30 L815.78,61.91 L822.01,78.20 L835.43,76.95 L847.92,87.31 L854.43,86.38 L866.94,107.99 L864.26,86.21 L872.54,90.13 L875.36,78.85 L876.59,96.39 L884.86,71.79 L887.11,115.70 L884.75,122.44 L878.06,119.48 L877.90,125.57 L873.99,120.41 L875.56,143.30 L869.30,163.65 L879.15,164.47 L877.45,153.32 L884.91,154.88 L879.62,178.40 L883.35,180.30 L882.42,201.31 L874.29,210.07 L876.50,215.10 L867.12,217.28 L877.12,216.66 L870.55,234.85 L866.36,239.38 L863.40,235.47 L862.46,242.05 L868.07,246.12 L858.40,257.42 L862.00,254.76 L862.46,261.50 L836.57,286.28 L836.70,291.74 L833.76,282.20 L838.75,279.98 L833.91,276.05 L827.82,276.55 L832.19,282.50 L827.04,284.86 L819.24,276.38 L803.02,277.33 L799.74,266.20 L807.07,236.56 L809.27,241.60 L821.26,241.43 L807.53,223.55 L828.12,220.74 L820.96,217.59 L819.08,209.45 L830.17,212.11 L834.54,204.27 L845.44,210.86 L843.27,206.78 L851.22,207.24 L819.25,190.47 L830.79,193.62 L832.98,188.60 L838.28,191.75 L835.93,184.05 L843.74,180.61 L837.19,179.34 L838.60,168.84 L828.29,178.56 L830.94,167.45 L827.66,169.78 L817.23,160.54 L823.46,156.78 L817.84,151.77 L821.28,143.30 L830.95,137.96 L812.84,130.11 L821.26,124.49 L815.03,113.82Z"/>
 </g>
+</g>
+</defs>
+<rect width="1200" height="760" fill="url(#sea)"/>
+<g id="za-overview" clip-path="url(#za-overview-clip)"><use href="#za-verified-geography" xlink:href="#za-verified-geography"/></g>
+<path d="M744 36 V724" stroke="#95aab0" stroke-width="1.2" opacity=".8"/>
+<text x="20" y="36" fill="#31576a" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1.2">ZANZIBAR · OVERVIEW</text>
+<text x="22" y="727" fill="#536b73" font-family="sans-serif" font-size="15">TANZANIA MAINLAND · UNGUJA · PEMBA</text>
+<g id="za-unguja-detail" data-scale="1.85" data-source-x="465" data-source-y="355" data-offset-x="-66.375000" data-offset-y="-595.875000">
+<rect x="750" y="50" width="430" height="660" fill="url(#sea)"/>
+<g clip-path="url(#za-detail-clip)"><g transform="translate(-66.375000 -595.875000) scale(1.85)"><use href="#za-verified-geography" xlink:href="#za-verified-geography"/></g></g>
+</g>
+<rect x="750" y="50" width="430" height="660" fill="none" stroke="#839aa2" stroke-width="1.5" rx="3"/>
+<text x="767" y="77" fill="#31576a" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="1.3">UNGUJA · DETAIL</text>
+<text x="767" y="97" fill="#536b73" font-family="sans-serif" font-size="13">SAME SHORELINE · ×1.85</text>
 <g id="geographic-anchors" data-source="WGS84" opacity="0">
-<g id="hero-marker" data-latitude="-6.164693" data-longitude="39.186675" aria-hidden="true" opacity="0" data-x="631.442" data-y="551.073"/>
-<g id="scene-marker-1" data-latitude="-6.163300" data-longitude="39.189810" aria-hidden="true" opacity="0" data-x="632.616" data-y="550.549" data-label-x="687.960" data-label-y="527.840"/>
-<g id="scene-marker-2" data-latitude="-6.161390" data-longitude="39.189170" aria-hidden="true" opacity="0" data-x="632.376" data-y="549.830" data-label-x="603.710" data-label-y="602.320"/>
-<g id="scene-marker-3" data-latitude="-6.262460" data-longitude="39.414660" aria-hidden="true" opacity="0" data-x="716.793" data-y="587.856" data-label-x="710.540" data-label-y="638.380"/>
-<g id="scene-marker-4" data-latitude="-5.723710" data-longitude="39.298280" aria-hidden="true" opacity="0" data-x="673.224" data-y="385.158" data-label-x="679.230" data-label-y="400.360"/>
-<g id="scene-marker-5" data-latitude="-6.259670" data-longitude="39.533960" aria-hidden="true" opacity="0" data-x="761.455" data-y="586.807" data-label-x="797.350" data-label-y="566.910"/>
-<g id="scene-marker-6" data-latitude="-6.119200" data-longitude="39.166700" aria-hidden="true" opacity="0" data-x="623.964" data-y="533.956" data-label-x="581.380" data-label-y="491.990"/>
-<g id="scene-marker-7" data-latitude="-5.063330" data-longitude="39.717190" aria-hidden="true" opacity="0" data-x="830.051" data-y="136.698" data-label-x="826.000" data-label-y="185.000"/>
-<g id="scene-marker-8" data-latitude="-4.933330" data-longitude="39.700000" aria-hidden="true" opacity="0" data-x="823.616" data-y="87.788" data-label-x="829.000" data-label-y="65.000"/>
+<g id="hero-marker" data-latitude="-6.164693" data-longitude="39.186675" data-x="481.442" data-y="551.073" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-1" data-latitude="-6.163300" data-longitude="39.189810" data-x="482.616" data-y="550.549" data-label-x="835.000" data-label-y="368.000" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-2" data-latitude="-6.161390" data-longitude="39.189170" data-x="482.376" data-y="549.830" data-label-x="870.000" data-label-y="460.000" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-3" data-latitude="-6.262460" data-longitude="39.414660" data-x="566.793" data-y="587.856" data-label-x="967.000" data-label-y="509.000" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-4" data-latitude="-5.723710" data-longitude="39.298280" data-x="523.224" data-y="385.158" data-label-x="901.589" data-label-y="116.668" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-5" data-latitude="-6.259670" data-longitude="39.533960" data-x="611.455" data-y="586.807" data-label-x="1079.000" data-label-y="472.000" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-6" data-latitude="-6.119200" data-longitude="39.166700" data-x="473.964" data-y="533.956" data-label-x="766.000" data-label-y="427.000" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-7" data-latitude="-5.063330" data-longitude="39.717190" data-x="680.051" data-y="136.698" data-label-x="680.051" data-label-y="136.698" aria-hidden="true" opacity="0"/>
+<g id="scene-marker-8" data-latitude="-4.933330" data-longitude="39.700000" data-x="673.616" data-y="87.788" data-label-x="673.616" data-label-y="87.788" aria-hidden="true" opacity="0"/>
 </g>
 </svg>

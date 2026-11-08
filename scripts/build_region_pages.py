@@ -237,7 +237,8 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
         if not (rect['x'] <= x <= rect['x'] + rect['width']
                 and rect['y'] <= y <= rect['y'] + rect['height']):
             raise ValueError(f"Scene {index} is outside inset {detail['id']}")
-        return 100 * x / 1200, 100 * y / 760
+        pos = (100 * x / 1200, 100 * y / 760)
+        break
     offset = scene.get('mapOffset')
     if offset is None:
         return pos
