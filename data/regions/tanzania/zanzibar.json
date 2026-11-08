@@ -73,11 +73,44 @@
     "bounds": {
       "north": -4.7,
       "south": -6.72,
-      "west": 37.5,
-      "east": 40.70537806421494
+      "west": 37.900672258026866,
+      "east": 41.106050322241806
     },
-    "source": "GSHHS/GSHHG intermediate-resolution shoreline from Basemap (Paul Wessel & Walter H. F. Smith, LGPL-3.0-or-later); WGS84 local-equirectangular-fit-v1. Unguja and Pemba target; complete GSHHS mainland context extends to the western map edge; tiny Changuu shown by verified anchor without inventing its coastline. Checked 2026-11-08.",
-    "insetNote": "※ 景色番号は重なりを避けるため、実地点から表示位置だけを調整しています。地点の緯度・経度は変更していません。小島の輪郭は縮尺上、省略される場合があります。"
+    "source": "GSHHS/GSHHG intermediate-resolution shoreline from Basemap (Paul Wessel & Walter H. F. Smith, LGPL-3.0-or-later); WGS84 local-equirectangular-fit-v1. Unguja and Pemba target; complete GSHHS mainland context extends to the western map edge; tiny Changuu shown by verified anchor without inventing its coastline. Checked 2026-11-08. Unguja inset is a 1.85× affine magnification of the same source coastline (no invented geometry).",
+    "insetNote": "※ 左はタンザニア本土・ウングジャ島・ペンバ島の全域図、右はウングジャ島を同じ実海岸線データで拡大した別枠表示です。スマートフォンでは下に大きな拡大図を表示します。実座標は変更していません。",
+    "regions": [
+      {
+        "id": "unguja-island",
+        "label": "ウングジャ島",
+        "svgId": "za-unguja-detail",
+        "bounds": {
+          "north": -5.643552631578947,
+          "south": -6.560526315789474,
+          "west": 39.14275625791016,
+          "east": 39.636918709476625
+        },
+        "rect": {
+          "x": 750,
+          "y": 50,
+          "width": 430,
+          "height": 660
+        },
+        "sourceRect": {
+          "x": 465,
+          "y": 355,
+          "width": 185,
+          "height": 345
+        },
+        "sceneIds": [
+          "stone-town-lanes",
+          "old-fort",
+          "jozani-forest",
+          "nungwi-fishing-shore",
+          "paje-seaweed-farm",
+          "changuu-island"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -96,8 +129,8 @@
         "square"
       ],
       "mapOffset": {
-        "x": 4.612038,
-        "y": -2.987962
+        "x": 0.711353,
+        "y": -7.1894411
       }
     },
     {
@@ -115,8 +148,8 @@
         "castle"
       ],
       "mapOffset": {
-        "x": -2.388829,
-        "y": 6.906592
+        "x": 3.6649576,
+        "y": 5.0907478
       }
     },
     {
@@ -135,8 +168,8 @@
         "wildlife"
       ],
       "mapOffset": {
-        "x": -0.521069,
-        "y": 6.647863
+        "x": -1.2659773,
+        "y": 2.2817053
       }
     },
     {
@@ -153,11 +186,7 @@
       "sceneTypes": [
         "village",
         "beach"
-      ],
-      "mapOffset": {
-        "x": 0.500537,
-        "y": 2.000234
-      }
+      ]
     },
     {
       "id": "paje-seaweed-farm",
@@ -175,8 +204,8 @@
         "farmland"
       ],
       "mapOffset": {
-        "x": 2.991228,
-        "y": -2.617965
+        "x": 1.1818968,
+        "y": -2.3311959
       }
     },
     {
@@ -195,8 +224,8 @@
         "beach"
       ],
       "mapOffset": {
-        "x": -3.548653,
-        "y": -5.521899
+        "x": -3.7048417,
+        "y": 4.6125782
       }
     },
     {
