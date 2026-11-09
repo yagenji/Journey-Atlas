@@ -1,0 +1,641 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "france",
+  "slug": "french-guiana",
+  "regionPublished": false,
+  "nameEn": "FRENCH GUIANA",
+  "nameJa": "フランス領ギアナ",
+  "region": "SOUTH AMERICA / 5°N",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "サリュ諸島の旧港から、クールーの宇宙基地、カウ湿原、マロニ川へ。南米大陸にあるフランスの海外地域を8つの景色で旅する。"
+  },
+  "hero": {
+    "name": "ロワイヤル島の旧港",
+    "location": "Port de l’Île Royale / Îles du Salut",
+    "image": "assets/images/france/french-guiana/approved/hero-ile-royale-port.webp",
+    "coordinates": {
+      "latitude": 5.28715,
+      "longitude": -52.58864
+    },
+    "lead": "南米の大西洋岸に、フランスの歴史とアマゾンの森が同居する。流刑地の島、宇宙基地、湿地と川、さまざまな言葉が響く市場。フランス領ギアナの風景は、一つの色では語れない。",
+    "description": "サリュ諸島のロワイヤル島。古い港湾建築の白いアーチ、石積みの岸壁、熱帯の樹林を海から望む。",
+    "sourceKey": "government",
+    "sceneTypes": [
+      "harbor",
+      "island"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "カイエンヌ（Cayenne）",
+      "sourceKey": "government"
+    },
+    {
+      "label": "人口",
+      "value": "298,554人（2026年1月1日暫定推計）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約83,800km²（日本の約22%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）、ギアナ・クレオール語、先住民言語など",
+      "sourceKey": "government"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教など（宗教構成比は未掲載）",
+      "sourceKey": "religion"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）",
+      "sourceKey": "government"
+    }
+  ],
+  "historyContext": {
+    "text": "フランス領ギアナは南米大陸北東部にあり、スリナムとブラジルに接するフランス共和国の海外地域。かつての植民地・流刑地を経て1946年に海外県となり、2015年からは県と地域圏の権限を併せ持つ単一地方公共団体となった。独立国ではなく、200のCountry Pageとは別のRegionとして紹介する。",
+    "sourceKeys": [
+      "government"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/french-guiana/map-french-guiana.svg",
+    "bounds": {
+      "west": -55.5,
+      "east": -50.8,
+      "south": 1.8,
+      "north": 6.2
+    },
+    "source": "GSHHG/GSHHS intermediate-resolution coastlines and administrative boundary segments distributed with Basemap (WGS84; source https://www.ngdc.noaa.gov/mgg/shorelines/); no manually invented coastline, island or territorial border. Local equirectangular fit, 1200×760. Île Royale marked by actual coordinates, not an unsourced shape. Not for navigation."
+  },
+  "scenes": [
+    {
+      "id": "place-des-palmistes",
+      "name": "パルミスト広場",
+      "nameLocal": "Place des Palmistes / Cayenne",
+      "description": "王ヤシが高く並ぶカイエンヌ中心部の広場。共和国記念柱を囲む芝生と歩道は、熱帯のフランス領都市の日常の余白をつくる。",
+      "coordinates": {
+        "latitude": 4.93963,
+        "longitude": -52.33383
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-01-place-des-palmistes.webp",
+      "sourceKey": "cayenne",
+      "sceneTypes": [
+        "square",
+        "monument"
+      ]
+    },
+    {
+      "id": "kourou-ela4",
+      "name": "クールー宇宙センター",
+      "nameLocal": "Centre spatial guyanais / ELA4, Kourou",
+      "description": "赤道に近い平坦な地上に、アリアン6の発射施設と移動式整備塔が立つ。周囲の森と巨大な工業施設の対比が、この地域ならではの風景。",
+      "coordinates": {
+        "latitude": 5.256319,
+        "longitude": -52.786838
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-02-kourou-ela4.webp",
+      "sourceKey": "esa",
+      "sceneTypes": [
+        "monument"
+      ]
+    },
+    {
+      "id": "camp-de-la-transportation",
+      "name": "流刑地の中庭",
+      "nameLocal": "Camp de la Transportation / Saint-Laurent-du-Maroni",
+      "description": "古い煉瓦の窓枠と長い回廊が中庭を囲む。フランスの流刑制度の記憶を残す建築は、今の街の文化活動にもつながっている。",
+      "coordinates": {
+        "latitude": 5.50373,
+        "longitude": -54.03175
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-03-camp-de-la-transportation.webp",
+      "sourceKey": "penal",
+      "sceneTypes": [
+        "monument"
+      ]
+    },
+    {
+      "id": "marais-de-kaw",
+      "name": "カウ湿原",
+      "nameLocal": "Marais de Kaw-Roura",
+      "description": "草本湿地と開いた水面が低い地平線まで続く。水鳥や水生植物に出会えるこの保護区では、熱帯の森とは異なる水辺の広がりが見えてくる。",
+      "coordinates": {
+        "latitude": 4.64326,
+        "longitude": -52.10808
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-04-marais-de-kaw.webp",
+      "sourceKey": "kaw",
+      "sceneTypes": [
+        "wetland",
+        "birds"
+      ]
+    },
+    {
+      "id": "saul-monts-la-fumee",
+      "name": "サウルの雨林展望",
+      "nameLocal": "Point de vue Monts La Fumée / Saül",
+      "description": "森林の尾根が幾重にも連なる内陸部。道から少し開けた展望地点で、樹冠がどこまでも続くアマゾンの森の広さを知る。",
+      "coordinates": {
+        "latitude": 3.64238,
+        "longitude": -53.20038
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-05-saul-monts-la-fumee.webp",
+      "sourceKey": "saul",
+      "sceneTypes": [
+        "rainforest",
+        "highland"
+      ]
+    },
+    {
+      "id": "apatou-fleuve-maroni",
+      "name": "アパトゥのマロニ川",
+      "nameLocal": "Fleuve Maroni / Apatou",
+      "description": "黄褐色の大河を、細長いピローグが行き交う。スリナムとフランス領ギアナを隔てるだけでなく、両岸の人々の往来を支える川だ。",
+      "coordinates": {
+        "latitude": 5.15772,
+        "longitude": -54.3447
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-06-apatou-fleuve-maroni.webp",
+      "sourceKey": "maroni",
+      "sceneTypes": [
+        "river"
+      ]
+    },
+    {
+      "id": "plage-des-hattes",
+      "name": "レ・ザットの海岸",
+      "nameLocal": "Plage des Hattes / Awala-Yalimapo",
+      "description": "広い砂浜と大西洋の濁りを帯びた波。アワラ＝ヤリマポ周辺の海岸は、オサガメなどが産卵のために訪れる重要な場所でもある。",
+      "coordinates": {
+        "latitude": 5.74645,
+        "longitude": -53.94572
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-07-plage-des-hattes.webp",
+      "sourceKey": "turtles",
+      "sceneTypes": [
+        "beach",
+        "marine"
+      ]
+    },
+    {
+      "id": "cacao-marche-hmong",
+      "name": "カカオの日曜市場",
+      "nameLocal": "Marché de Cacao",
+      "description": "屋根の下に農産物を並べるモン族の売り手たち。青菜、香草、根菜、果物が集まり、南米の土地と東南アジアにルーツを持つ暮らしが重なる。",
+      "coordinates": {
+        "latitude": 4.57173,
+        "longitude": -52.4703
+      },
+      "image": "assets/images/france/french-guiana/approved/scene-08-cacao-marche-hmong.webp",
+      "sourceKey": "cacao",
+      "sceneTypes": [
+        "market"
+      ]
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF FRENCH GUIANA",
+    "title": "フランス領ギアナで食べたいもの",
+    "intro": "アワラ椰子の濃い煮込み、香草の効いた魚、スパイス料理、燻製の香り。多様な出自の人々が一つの食卓をつくる。",
+    "items": [
+      {
+        "id": "bouillon-dawara",
+        "name": "アワラ煮込み",
+        "nameLocal": "Bouillon d’awara",
+        "text": "アワラ椰子の果肉から作る濃厚な煮込み。肉や魚、野菜を時間をかけて煮込み、復活祭の食卓にも登場する。",
+        "image": "assets/images/france/french-guiana/approved/food-01-bouillon-dawara.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "blaff-de-poisson",
+        "name": "魚のブラフ",
+        "nameLocal": "Blaff de poisson",
+        "text": "ライムや香草、玉ねぎで風味をつけて魚を煮る、軽やかな汁料理。澄んだ煮汁と白身魚の姿が印象的。",
+        "image": "assets/images/france/french-guiana/approved/food-02-blaff-de-poisson.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "colombo-guyanais",
+        "name": "鶏肉のコロンボ",
+        "nameLocal": "Colombo guyanais",
+        "text": "鶏肉と野菜を香辛料で煮る、黄色系のソースが特徴の料理。ご飯やキャッサバなどとともに味わう。",
+        "image": "assets/images/france/french-guiana/approved/food-03-colombo-guyanais.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "poulet-boucane",
+        "name": "プーレ・ブカネ",
+        "nameLocal": "Poulet boucané",
+        "text": "煙で香りをつけて調理した鶏肉。皮の焼き色と香ばしさが主役で、米や野菜と合わせて食べられる。",
+        "image": "assets/images/france/french-guiana/approved/food-04-poulet-boucane.webp",
+        "sourceKey": "food"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "equatorial-spaceport",
+      "label": "欧州宇宙港の緯度",
+      "value": "北緯約5°",
+      "note": "赤道から約500km北に位置し、地球の自転を利用した東向きの打上げに適した立地。",
+      "icon": "spark",
+      "sourceKey": "esa",
+      "interestReason": "熱帯林とロケットが共存する理由を示す。"
+    },
+    {
+      "topicKey": "kaw-wetlands",
+      "label": "カウ湿原の広がり",
+      "value": "約137,000ha",
+      "note": "カウ湿地全域の面積。草本湿原、マングローブ、浸水林が連続する。保護区の面積とは区別する。",
+      "icon": "sea",
+      "sourceKey": "kaw",
+      "interestReason": "熱帯雨林に限らない自然のスケールを示す。"
+    },
+    {
+      "topicKey": "rainforest-coverage",
+      "label": "熱帯林の覆う割合",
+      "value": "約90%",
+      "note": "ESAが示す熱帯林の広がりの目安。沿岸の都市から南に向かうと、広い森林景観が続く。",
+      "icon": "leaf",
+      "sourceKey": "esa",
+      "interestReason": "沿岸の都市と内陸の森林の対照を数字で捉える。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "マロニ川のピローグ",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "日曜のカカオ市場",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "カイエンヌの朝の広場",
+      "icon": "landmark",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "ロワイヤル島の旧港",
+      "icon": "sea",
+      "category": "CULTURE"
+    },
+    {
+      "title": "湿地に立つサギ",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "内陸の雨林を歩く",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "海岸の産卵跡",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "宇宙港の遠景",
+      "icon": "spark",
+      "category": "LANDSCAPE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "spaceport-near-equator",
+      "themeEn": "SPACE",
+      "themeJa": "宇宙を知る",
+      "icon": "spark",
+      "title": "森の中にあるヨーロッパの宇宙港",
+      "text": "クールーの発射基地は1960年代に整備され、アリアン6などのロケットがここから打ち上がる。赤道に近いため、東向きの打上げでは地球の自転による速度を利用できる。",
+      "points": [
+        "見学の可否は現地運営機関の案内を確認する",
+        "打上げ時には周辺の立入規制がある"
+      ],
+      "sourceKey": "esa"
+    },
+    {
+      "topicKey": "maroni-river-travel",
+      "themeEn": "RIVER",
+      "themeJa": "川の暮らし",
+      "icon": "sea",
+      "title": "国境であり、生活の道でもあるマロニ川",
+      "text": "スリナムとフランス領ギアナの間を流れるマロニ川では、細長いピローグが人や物を運ぶ。陸路が通じない地域ほど、水路は暮らしの中心になる。",
+      "points": [
+        "乗船時は救命具や運航条件を確認したい",
+        "国境の通過には正式な出入境手続が必要"
+      ],
+      "sourceKey": "surinameBorder"
+    },
+    {
+      "topicKey": "cacao-hmong",
+      "themeEn": "CULTURE",
+      "themeJa": "暮らしに触れる",
+      "icon": "culture",
+      "title": "ラオスから来たモン族の農村",
+      "text": "1970年代にラオスから移り住んだモン族の人々が、内陸のカカオで農業を営むようになった。日曜市に並ぶ野菜や料理は、南米と東南アジアの交差点を感じさせる。",
+      "points": [
+        "農産物や食材から村の暮らしを知る",
+        "人を撮影するときは許可を得る"
+      ],
+      "sourceKey": "cacao"
+    },
+    {
+      "topicKey": "coastal-turtles",
+      "themeEn": "NATURE",
+      "themeJa": "海辺の生態系",
+      "icon": "wildlife",
+      "title": "暗い砂浜に上陸するウミガメ",
+      "text": "アワラ＝ヤリマポの海岸には、オサガメなどが産卵のために上陸する。観察できる季節や保護ルールを事前に確認し、光や接近で妨げないことが大切。",
+      "points": [
+        "夜間の強いライトを避ける",
+        "自然保護団体や現地案内に従う"
+      ],
+      "sourceKey": "turtles"
+    },
+    {
+      "topicKey": "kaw-marsh-water",
+      "themeEn": "NATURE",
+      "themeJa": "湿地を知る",
+      "icon": "leaf",
+      "title": "ジャングルの先に広がる草本湿原",
+      "text": "カウの湿地では、草本群落、マングローブ、浸水林が連続している。川と海の水が行き来する土地は、内陸の密林とは違う風景を生む。",
+      "points": [
+        "鳥と水面を遠くから眺める",
+        "水位や雨量で通行条件が変わる"
+      ],
+      "sourceKey": "kaw"
+    },
+    {
+      "topicKey": "cayenne-streets",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "icon": "landmark",
+      "title": "ヤシ並木の向こうにある多言語の街",
+      "text": "カイエンヌでは、共和国の制度や建築に熱帯の植生が重なる。フランス語に加え、クレオール語など多様な言葉が聞こえる街の日常を、広場や市場から感じ取れる。",
+      "points": [
+        "歴史的建築は敷地の公開状況を確認する",
+        "街の暮らしを妨げない距離で歩く"
+      ],
+      "sourceKey": "government"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "euro-south-america",
+      "categoryEn": "CURRENCY",
+      "categoryJa": "通貨",
+      "icon": "landmark",
+      "title": "南米大陸でも、支払いはユーロ",
+      "text": "フランスの海外地域であるため、通貨はユーロ。近隣のスリナムやブラジルとは制度も通貨も異なる。",
+      "sourceKey": "government"
+    },
+    {
+      "topicKey": "equator-launch",
+      "categoryEn": "SPACE",
+      "categoryJa": "宇宙",
+      "icon": "spark",
+      "title": "宇宙基地の立地には緯度が効く",
+      "text": "クールーは赤道の北約500km。東向きに打ち上げる機体は地球の自転速度を利用できる。",
+      "sourceKey": "esa"
+    },
+    {
+      "topicKey": "huge-kaw",
+      "categoryEn": "WETLAND",
+      "categoryJa": "湿地",
+      "icon": "leaf",
+      "title": "フランス最大級の湿地は南米にある",
+      "text": "カウ湿地は広大な草本湿原とマングローブを含み、フランス国内でも特に大きな湿地帯に数えられる。",
+      "sourceKey": "kaw"
+    },
+    {
+      "topicKey": "saul-no-road",
+      "categoryEn": "FOREST",
+      "categoryJa": "森",
+      "icon": "leaf",
+      "title": "森の奥のサウルへは空から",
+      "text": "内陸のサウルは道路で沿岸部と直結しておらず、小型航空機などが主要なアクセス手段になる。",
+      "sourceKey": "parks"
+    },
+    {
+      "topicKey": "three-islands",
+      "categoryEn": "ISLAND",
+      "categoryJa": "島",
+      "icon": "sea",
+      "title": "サリュ諸島は3つの島からなる",
+      "text": "ロワイヤル島、サン＝ジョゼフ島、ディアブル島は、フランスの流刑史を伝える小さな島々として知られる。",
+      "sourceKey": "government"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "都市と大自然を一度に見たい人",
+      "text": "カイエンヌとクールーから、湿原、森、川へと異なる景観を組み合わせたい人。"
+    },
+    {
+      "title": "歴史の記憶を旅から考えたい人",
+      "text": "サリュ諸島とサン＝ローランの流刑史を、場所を歩きながら知りたい人。"
+    },
+    {
+      "title": "移動に余白をつくれる人",
+      "text": "航空便・川舟・海況の影響を受ける行程を、無理なく柔軟に組める人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "内陸のサウルは飛行機を先に確保",
+      "text": "サウルへは道路で直行できず、航空便が主要なアクセスとなる。便数や荷物条件、天候の影響を事前に確認したい。",
+      "sourceKey": "parks"
+    },
+    {
+      "title": "宇宙センター見学は事前情報を確認",
+      "text": "施設の見学や発射時の規制は時期と安全運用で変わる。現地の公式案内を見て予定を組む。",
+      "sourceKey": "esa"
+    },
+    {
+      "title": "海岸のウミガメを妨げない",
+      "text": "産卵やふ化の季節には照明、距離、立入条件に配慮し、保護団体の指示に従いたい。",
+      "sourceKey": "turtles"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "カイエンヌから沿岸の文化と湿地を訪れ、時間があれば川や内陸の森林へ。移動は道路以外に航空便・船が必要になる。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "カイエンヌとクールー",
+        "text": "カイエンヌ → カカオ → クールー → サリュ諸島（運航時） → カイエンヌ。",
+        "icon": "city"
+      },
+      {
+        "duration": "6〜9日",
+        "title": "湿原と歴史の港を加える",
+        "text": "カイエンヌ → カウ湿原 → クールー → サリュ諸島 → サン＝ローラン＝デュ＝マロニ → カイエンヌ。",
+        "icon": "map"
+      },
+      {
+        "duration": "10日以上",
+        "title": "内陸の森と川まで",
+        "text": "沿岸の旅にサウルの森林滞在、またはアパトゥのマロニ川を加える。航空便や船の運航日に合わせて余白を残す。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "8〜11月",
+        "months": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "reason": "概ね雨の少ない季節で、沿岸と内陸を組み合わせる計画を立てやすい。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#8a9ba5",
+      "text": "雨が増える季節。道路や川、湿地の状態が変わり、予定の調整が必要になることがある。"
+    },
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#93a88c",
+      "text": "湿潤な季節が続く。海岸の生態系や湿地に出会える一方、移動時は雨量を考慮したい。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#caa77b",
+      "text": "乾季への移行期。沿岸から内陸へ動く旅が組みやすくなるが、降雨日は残る。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "sun",
+      "color": "#7a9c9e",
+      "text": "比較的乾いた季節。カイエンヌ、クールー、マロニ川などの広域移動に向く。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "車・小型航空機・河川舟・船",
+    "text": "沿岸部の都市間は道路が中心。サリュ諸島はクールーからの船、サウルへは航空便、マロニ川沿いはピローグなどを組み合わせる。天候と運航状況を確認する。",
+    "sourceKey": "parks"
+  },
+  "nextRoutes": [
+    {
+      "countryEn": "SURINAME",
+      "countryJa": "スリナム",
+      "flag": "🇸🇷",
+      "path": "Saint-Laurent-du-Maroni → Albina",
+      "description": "マロニ川を渡り、スリナム東岸へ。国境の正式な船着場と出入境条件を事前に確認する。"
+    },
+    {
+      "countryEn": "BRAZIL",
+      "countryJa": "ブラジル",
+      "flag": "🇧🇷",
+      "path": "Saint-Georges-de-l’Oyapock → Oiapoque",
+      "description": "東のオヤポック川を越えてブラジル側へ。国際橋を含む交通と手続の条件を確認したい。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "スリナム",
+      "nameEn": "SURINAME",
+      "href": "countries/suriname/",
+      "flag": "🇸🇷",
+      "reason": "マロニ川の向こう側へ。異なる歴史を持つ隣国の都市と河川文化を訪ねる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "ブラジル",
+      "nameEn": "BRAZIL",
+      "href": "countries/brazil/",
+      "flag": "🇧🇷",
+      "reason": "南と東に広がる大国へ。アマゾン流域の森と川のスケールをさらに知る。",
+      "affinityType": "NATURE"
+    },
+    {
+      "nameJa": "ガイアナ",
+      "nameEn": "GUYANA",
+      "href": "countries/guyana/",
+      "flag": "🇬🇾",
+      "reason": "ギアナ地方の別の国へ。熱帯林と河川、植民地時代から続く文化の違いを比べる。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "capital": {
+    "nameJa": "カイエンヌ",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 4.9224,
+      "longitude": -52.3135
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 16
+    },
+    "sourceKey": "government"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "歴史をたどる",
+    "暮らしに出会う"
+  ],
+  "sourcesVerifiedAt": "2026-11-09",
+  "sourceDates": {
+    "population": "INSEE 2026-01-01 provisional estimate, 298,554",
+    "area": "INSEE table, inspected 2026-11-09",
+    "government": "official territory overview, 2022 + source review 2026-11-09",
+    "spaceport": "ESA 2026 current",
+    "wetland": "Marais de Kaw regional environmental overview, source reviewed 2026-11-09",
+    "cacao": "source reviewed 2026-11-09",
+    "climate": "source reviewed 2026-11-09"
+  },
+  "sources": {
+    "government": "https://www.outre-mer.gouv.fr/territoires/guyane",
+    "population": "https://www.insee.fr/fr/statistiques/2012713",
+    "area": "https://www.insee.fr/fr/statistiques/1292080",
+    "esa": "https://www.esa.int/establishment/about-us/directorates/space-transportation/europe-s-spaceport/europe-s-spaceport",
+    "kaw": "https://www.pole-tropical.org/zones-humides-doutre-mer/atlas-regional/guyane/marais-de-kaw/",
+    "kawCoord": "https://mapcarta.com/fr/W70234279",
+    "saul": "https://mapcarta.com/N1089227537",
+    "cayenne": "https://fr.wikipedia.org/wiki/Place_des_Palmistes",
+    "penal": "https://pop.culture.gouv.fr/notice/merimee/PA00105911",
+    "maroni": "https://www.guyane-amazonie.fr/",
+    "turtles": "https://www.wwf.fr/champs-daction/ocean/especes-marines/tortue-luth",
+    "cacao": "https://www.southamerica.travel/guianas/travel-info/food-drink/",
+    "food": "https://www.southamerica.travel/guianas/travel-info/food-drink/",
+    "climate": "https://meteofrance.gf/fr/climat",
+    "parks": "https://www.parc-amazonien-guyane.fr/fr/node/2387/printable/print",
+    "geo10m": "https://www.ngdc.noaa.gov/mgg/shorelines/",
+    "border": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000044930813/",
+    "surinameBorder": "https://www.guyane.gouv.fr/Actualites/Postes-frontiere-en-Guyane/Frontiere-avec-le-Suriname",
+    "religion": "https://documentation.outre-mer.gouv.fr/Record.htm?idlist=1&record=19136370124919545529"
+  },
+  "sourceNotes": {
+    "mapGeneralization": "Georeferenced location of Île Royale shown as a point; the island coastline is not fabricated. All land outlines originate in the named geographic database.",
+    "imageTransfer": "13 approved and QC-checked local WebP assets included separately in the delivery; no images regenerated after approval."
+  }
+}
