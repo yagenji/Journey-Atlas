@@ -629,6 +629,7 @@ def build_top_scene_index() -> None:
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
         "puerto-rico": ("🇵🇷", None),
+        "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
@@ -659,6 +660,8 @@ def build_top_scene_index() -> None:
             region_id = "oceania"
         elif "EUROPE" in geo or "NORTH ATLANTIC" in geo:
             region_id = "europe"
+        elif "AFRICA" in geo:
+            region_id = "africa"
         else:
             raise ValueError(f"Published Region needs an explicit TOP geography: {parent}/{region['slug']}")
         region_heroes.append({
