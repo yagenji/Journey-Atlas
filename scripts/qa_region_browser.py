@@ -22,6 +22,40 @@ BASE_URL = os.environ.get("QA_BASE_URL", "https://atlas.yagenji.com").rstrip("/"
 OUT = Path(os.environ.get("QA_OUT_DIR", "qa-browser-output")) / "regions"
 
 
+def expected_similar_card_count(region: dict) -> int:
+    """Match the packaged scene pool, including narrowed target QA previews.
+
+    Production builds contain the full scene index and must still yield six.
+    Targeted CI builds deliberately include only selected Country families, so
+    a six-card assertion there would falsely fail valid pages.
+    """
+    index_file = ROOT / "dist" / "data" / "top-scene-index.json"
+    if not index_file.is_file():
+        index_file = ROOT / "data" / "top-scene-index.json"
+    index = json.loads(index_file.read_text(encoding="utf-8"))
+    registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
+    published = {p["slug"] for p in registry["destinations"]
+                 if p.get("atlasPublished") and p.get("href")}
+    wanted = {type_id for item in [region["hero"], *region["scenes"]]
+              for type_id in item.get("sceneTypes", [])}
+    if not wanted:
+        return 0
+    family_aliases = {"hong-kong": "china", "macau": "china"}
+    families = set()
+    for slug, rows in index.get("countries", {}).items():
+        if slug in published and any(wanted.intersection(row[2] if len(row) > 2 else [])
+                                     for row in rows):
+            families.add(family_aliases.get(slug, slug))
+    for slug, types in index.get("heroTypes", {}).items():
+        if slug in published and wanted.intersection(types):
+            families.add(family_aliases.get(slug, slug))
+    for item in index.get("regionHeroes", []):
+        if wanted.intersection(item.get("sceneTypes", [])):
+            families.add(item["parentSlug"])
+    families.discard(region["parentSlug"])
+    return min(6, len(families))
+
+
 def main() -> int:
     parents = {slug.strip() for slug in os.environ.get("QA_PARENT_SLUGS", "").split(",") if slug.strip()}
     regions = []
@@ -458,8 +492,12 @@ def main() -> int:
                                        + svg_flag_count)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
-                    if all(scene.get("sceneTypes") for scene in region["scenes"]) and audit["similarCards"] != 6:
-                        problems.append(f"similar-scenes recommendations missing: {audit['similarCards']}/6")
+                    if all(scene.get("sceneTypes") for scene in region["scenes"]):
+                        expected_similar = expected_similar_card_count(region)
+                        if audit["similarCards"] != expected_similar:
+                            problems.append(
+                                f"similar-scenes recommendations mismatch: {audit['similarCards']}/{expected_similar}"
+                            )
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
                     if audit["canonical"] != canonical: problems.append("canonical mismatch")
