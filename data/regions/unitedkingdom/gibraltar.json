@@ -40,7 +40,7 @@
   },
   "profile": [
     {
-      "label": "中心都市",
+      "label": "首都",
       "value": "ジブラルタル（Gibraltar）",
       "sourceKey": "general"
     },
@@ -74,11 +74,12 @@
     }
   ],
   "historyContext": {
-    "text": "ジブラルタルは、イベリア半島南端でスペインと陸続きの英国海外領土。英国を構成する4地域とは異なり、独自の憲法と議会を持つ。1704年に英蘭連合軍が占領し、1713年のユトレヒト条約でスペインから英国へ割譲された。現在もスペインが領有権を主張している。内政は現地政府が担い、外交・防衛などは英国の責任となる。",
+    "text": "ジブラルタルは、イベリア半島南端でスペインと陸続きの英国海外領土。英国を構成する4地域とは異なり、独自の憲法と議会を持つ。1704年に英蘭連合軍が占領し、1713年のユトレヒト条約でスペインから英国へ割譲された。現在もスペインが領有権を主張している。内政は現地政府が担い、外交・防衛などは英国の責任となる。2026年7月15日にはEUと英国の協定にもとづき、スペインとの陸の国境での出入国審査がなくなり、審査は空港と港で行われるようになった。",
     "sourceKeys": [
       "status",
       "constitution",
-      "history"
+      "history",
+      "fenceRemoved"
     ]
   },
   "map": {
@@ -259,10 +260,10 @@
     {
       "topicKey": "underground-network",
       "label": "岩山の中のトンネル網",
-      "value": "約52km",
-      "note": "岩山の内部には、大包囲戦や第二次世界大戦の時期に掘られた地下道が延びる。地上の街とは別の、要塞の広がりが隠れている。",
+      "value": "約55km",
+      "note": "岩山の内部には、大包囲戦の時代から第二次世界大戦期にかけて掘られた地下道が延び、総延長は約55kmに及ぶ。地上の街とは別の、要塞の広がりが隠れている。",
       "icon": "history",
-      "sourceKey": "tunnels",
+      "sourceKey": "wwiiTunnels",
       "interestReason": "地上では見えない巨大な地下空間が旅の想像を広げる。"
     },
     {
@@ -277,13 +278,13 @@
   ],
   "encounters": [
     {
-      "title": "石灰岩の崖をかすめて飛ぶ海鳥",
+      "title": "海峡を越えていく猛禽とコウノトリの群れ",
       "icon": "leaf",
       "category": "WILDLIFE"
     },
     {
-      "title": "湾を横切る貨物船と小さなヨット",
-      "icon": "sea",
+      "title": "歩いて渡る空港の滑走路",
+      "icon": "map",
       "category": "MOVEMENT"
     },
     {
@@ -297,9 +298,9 @@
       "category": "DAILY_LIFE"
     },
     {
-      "title": "岸辺に寄せる東海岸の波音",
-      "icon": "sea",
-      "category": "LANDSCAPE"
+      "title": "赤と白に染まる9月10日の街",
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "野生のマカクが暮らす保護区",
@@ -407,7 +408,7 @@
         "nameLocal": "Calentita",
         "text": "ひよこ豆の粉、水、オリーブ油を使う素朴な焼き物。表面をこんがり焼き、やわらかな中身を切り分けて味わう。",
         "image": "assets/images/unitedkingdom/gibraltar/approved/food-01-calentita.webp",
-        "sourceKey": "calentita"
+        "sourceKey": "calentitaFestival"
       },
       {
         "id": "rosto",
@@ -421,17 +422,17 @@
         "id": "torta-de-acelga",
         "name": "トルタ・デ・アセルガ",
         "nameLocal": "Torta de acelga",
-        "text": "青菜、卵、チーズを詰めて焼く塩味のパイ。ほうれん草などの緑の具と、薄く重なる生地の食感を楽しむ。",
+        "text": "青菜、卵、チーズを詰めて焼く塩味のパイ。復活祭の時期によくつくられ、緑の具と薄く重なる生地の食感を楽しむ。",
         "image": "assets/images/unitedkingdom/gibraltar/approved/food-03-torta-de-acelga.webp",
-        "sourceKey": "torta"
+        "sourceKey": "calentitaFestival"
       },
       {
         "id": "japonesa",
         "name": "ハポネサ",
         "nameLocal": "Japonesa",
-        "text": "カスタードを詰め、砂糖やシロップをまとわせた揚げ菓子。ジブラルタルの菓子店でも親しまれる、隣接するスペイン側とも縁のある味。",
+        "text": "カスタードのようなクリームを詰めた甘い揚げ菓子。午後のお茶の時間や軽いおやつとして親しまれる。",
         "image": "assets/images/unitedkingdom/gibraltar/approved/food-04-japonesa.webp",
-        "sourceKey": "japonesa"
+        "sourceKey": "cuisine"
       }
     ],
     "kicker": "TASTE OF GIBRALTAR"
@@ -499,9 +500,9 @@
   ],
   "notes": [
     {
-      "title": "入域条件は、スペインと別に確認",
-      "text": "出発前に旅券・査証などの最新条件を確認する。英国、ジブラルタル、スペインの条件を一括りにせず、自分の国籍と出入域経路に合う案内を見る。",
-      "sourceKey": "access"
+      "title": "陸の国境の審査は廃止、空港と港で審査",
+      "text": "2026年7月15日から、スペインとの陸の国境での出入国審査はなくなり、シェンゲン協定の審査は空港と港で行われる。短期滞在の査証制度もシェンゲンに合わせられ、日本は査証免除の対象。英国から空路で入る場合は、空港でシェンゲン圏への入域審査を受ける。",
+      "sourceKey": "treaty"
     },
     {
       "title": "岩山への交通は、運行状況を確かめる",
@@ -543,7 +544,7 @@
     "windows": [
       {
         "label": "3〜5月",
-        "reason": "岩場に花が増える春。急な歩道も含めて、歩く旅を組み立てやすい。"
+        "reason": "岩場に花が増え、海峡を渡る鳥の群れも見られる春。急な歩道も含めて、歩く旅を組み立てやすい。"
       },
       {
         "label": "9〜10月",
@@ -556,19 +557,19 @@
       "months": "3〜5月",
       "icon": "leaf",
       "color": "#73966f",
-      "text": "春の岩場に花が見られる。天気を確かめながら、街歩きと保護区の散策を組み合わせたい。"
+      "text": "岩場に花が咲き、3〜5月は猛禽やコウノトリがアフリカから海峡を渡ってくる渡りの季節。街歩きと保護区の散策を組み合わせたい。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
       "color": "#92a253",
-      "text": "暑く乾燥する季節。日差しを受ける登り道は、気温と日陰を考えて行動する。"
+      "text": "暑く乾燥する季節。夏には地元料理が並ぶカレンティータ食の祭りが開かれる。日差しを受ける登り道は、気温と日陰を考えて行動する。"
     },
     {
       "months": "9〜11月",
       "icon": "sea",
       "color": "#b77a49",
-      "text": "暑さが和らぐ一方、秋が深まると雨の可能性も増す。湾と海岸を歩く日は風も確かめたい。"
+      "text": "9月10日のナショナル・デーには街が赤と白に染まる。8月下旬〜9月上旬は猛禽の渡りのピーク。秋が深まると雨の可能性も増す。"
     },
     {
       "months": "12〜2月",
@@ -580,9 +581,10 @@
   "transport": {
     "icon": "map",
     "title": "英国から空路、スペインから陸路",
-    "text": "英国からの直行便、またはスペイン南部からラ・リネア経由で入る。市街地と岬・東岸は徒歩やバスなどを組み合わせ、岩山は別に移動を計画する。国際移動の条件、交通機関と保護区の運行は出発前に公式案内で確認する。",
+    "text": "英国からの直行便、またはスペイン南部からラ・リネア経由で入る。2026年7月15日からスペインとの陸の国境に審査はなく、空港では入域審査がある。市街地と岬・東岸は徒歩やバスなどを組み合わせ、岩山は別に移動を計画する。",
     "sourceKeys": [
       "access",
+      "treatyAirport",
       "localTransport"
     ]
   },
@@ -593,11 +595,10 @@
       "countryEn": "SPAIN",
       "flag": "🇪🇸",
       "path": "ジブラルタル → ラ・リネア → カディス／マラガ",
-      "description": "陸続きのアンダルシアへ。港町と旧市街を巡る旅をつなぐ。",
+      "description": "陸続きのアンダルシアへ。2026年7月から陸の国境に審査はなく、歩いてラ・リネアへ渡り、港町と旧市街を巡る旅をつなぐ。",
       "travelerRoute": true,
-      "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "国籍と経路ごとの最新の出入域条件を確認する。",
-      "sourceKey": "access"
+      "status": "OPEN",
+      "sourceKey": "treaty"
     }
   ],
   "relatedCountries": [
@@ -610,11 +611,11 @@
       "affinityType": "HISTORY"
     },
     {
-      "nameJa": "スペイン",
-      "nameEn": "SPAIN",
-      "href": "countries/spain/",
-      "flag": "🇪🇸",
-      "reason": "アンダルシアへ戻り、街の建築や食に残る地中海のつながりをたどる。",
+      "nameJa": "イタリア",
+      "nameEn": "ITALY",
+      "href": "countries/italy/",
+      "flag": "🇮🇹",
+      "reason": "カタラン・ベイの漁師たちの故郷ジェノヴァへ。リグリア海の港町で、ひよこ豆の粉の料理や漁村の暮らしの原点を探す。",
       "affinityType": "CULTURE"
     },
     {
@@ -626,14 +627,26 @@
       "affinityType": "CITY"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-09",
+  "sourcesVerifiedAt": "2026-11-10",
   "updatedAt": "2026-11-09",
   "sourceDates": {
     "population": "2022-11-14 census; 37,936 usually resident; final UN census table / Gibraltar Statistics Office August 2026 indicators",
     "area": "Gibraltar Statistics Office August 2026 indicators: 6.8 km²",
     "japanArea": "GSI national land area circa 378,000 km²; comparison rounded to 0.002%",
     "cableCar": "Closure confirmed on official Nature Reserve page 2026-11-09; reopening date not guaranteed",
-    "travelScale": "Editorial itinerary estimates, 2026-11-09"
+    "travelScale": "Editorial itinerary estimates, 2026-11-09",
+    "status": "GOV.UK Gibraltar, checked 2026-11-10",
+    "constitution": "Gibraltar Constitution Order 2006",
+    "history": "Gibraltar National Museum brief history, checked 2026-11-10",
+    "treaty": "HM Government of Gibraltar Technical Notice 558/2026 (2026-07-15): Schengen-aligned short-stay visa policy; Japan visa-exempt; no immigration controls with Schengen Area",
+    "treatyAirport": "Technical Notice 562/2026: Schengen external border checks at Gibraltar Airport",
+    "fenceRemoved": "Euronews 2026-07-15: fence removed; checks moved to airport and port",
+    "wwiiTunnels": "Gibraltar Nature Reserve: tunnel network approximately 34 miles / 55 km",
+    "birdMigration": "Visit Gibraltar: peaks March-May and August-October; 315 species recorded",
+    "runwayCrossing": "HM Government of Gibraltar 2023-03-27 MoU: pedestrians and cyclists continue to cross the runway after the tunnel opens",
+    "nationalDay": "MercoPress 2025-09-10",
+    "calentitaFestival": "HM Government of Gibraltar 2024-07 press release",
+    "cuisine": "Wikipedia Gibraltarian cuisine, checked 2026-11-10"
   },
   "sources": {
     "indicators": "https://www.gibraltar.gov.gi/statistics/key-indicators",
@@ -658,8 +671,6 @@
     "macaques": "https://www.visitgibraltar.gi/barbarymacaques",
     "calentita": "https://mamalotties.com/calentita/",
     "rosto": "https://mamalotties.com/rosto/",
-    "torta": "https://mamalotties.com/mama-lotties-torta-de-acelga/",
-    "japonesa": "https://www.lapatisserie.gi/blog/oil-on-seeded-toasted-bread-2/",
     "cemetery": "https://www.visitgibraltar.gi/see-and-do/trafalgar-cemetery",
     "keys": "https://www.visitgibraltar.gi/see-and-do/re-enactment-society",
     "cityStatus": "https://www.gov.uk/government/news/government-re-affirms-city-status-of-gibraltar",
@@ -680,6 +691,15 @@
     "garrisonChronicle": "https://www.ggl.gi/gibraltar-chronicle/",
     "llanitoCulturalBackground": "https://www.visitgibraltar.gi/index.php/did-you-know",
     "macaqueHabitat": "https://www.visitgibraltar.gi/index.php/see-and-do/apes-den",
-    "evacuationMemorial": "https://www.visitgibraltar.gi/see-and-do/evacuation-memorial"
+    "evacuationMemorial": "https://www.visitgibraltar.gi/see-and-do/evacuation-memorial",
+    "treaty": "https://www.gibraltar.gov.gi/press-releases/technical-notice-reminder-concerning-visa-arrangements-5582026-12201",
+    "treatyAirport": "https://www.gibraltar.gov.gi/press-releases/technical-notice-reminder-concerning-immigration-arrangements-at-gibraltar-airport-and-the-crossing-of-schengen-external-borders-5622026-12205",
+    "fenceRemoved": "https://www.euronews.com/2026/07/15/gibraltar-enters-schengen-as-border-fence-comes-down-under-eu-uk-treaty",
+    "wwiiTunnels": "https://naturereserve.gi/?p=406",
+    "birdMigration": "https://visitgibraltar.gi/see-and-do/birdwatching",
+    "runwayCrossing": "https://www.gibraltar.gov.gi/press-releases/government-and-mod-sign-memorandum-of-understanding-to-allow-continued-pedestrian-access-across-the-runway-1752023-8728",
+    "nationalDay": "https://en.mercopress.com/2025/09/10/gibraltar-national-day-2025",
+    "calentitaFestival": "https://www.gibraltar.gov.gi/press-releases/calentita-food-festival-5022024-10075",
+    "cuisine": "https://en.wikipedia.org/wiki/Gibraltarian_cuisine"
   }
 }
