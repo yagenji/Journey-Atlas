@@ -193,17 +193,53 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
         payload = json.loads(source.read_text(encoding="utf-8"))
         write_json(version_runtime_image_refs(payload), DIST / "data" / name)
 
-    # The similar-scenes block reads the shared scene index. A targeted preview only
-    # packages the target pages' images, so keep just the target families in it.
+    # A targeted preview needs real, matching recommendations from at least six
+    # other Country families. Keeping only the target Countries in this index
+    # leaves Region pages with too few cards (and gives misleading browser QA).
+    # Include a small, image-complete subset of published matching Scenes instead
+    # of copying the entire global index and its >1,000 thumbnails.
     scene_index = json.loads((ROOT / "data" / "top-scene-index.json").read_text(encoding="utf-8"))
-    for key in ("countries", "heroes", "heroTypes"):
+    registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
+    published = {item["slug"] for item in registry["destinations"]
+                 if item.get("atlasPublished") and item.get("href")}
+    target_types: set[str] = set()
+    for slug in slugs:
+        country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        for scene in [country.get("hero", {}), *country.get("scenes", [])]:
+            target_types.update(scene.get("sceneTypes", []))
+        for region_file in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
+            region = json.loads(region_file.read_text(encoding="utf-8"))
+            for scene in [region.get("hero", {}), *region.get("scenes", [])]:
+                target_types.update(scene.get("sceneTypes", []))
+    support: dict[str, list] = {}
+    for slug, rows in scene_index.get("countries", {}).items():
+        if slug in slugs or slug not in published:
+            continue
+        match = next((row for row in rows
+                      if len(row) > 2 and target_types.intersection(row[2])), None)
+        if match:
+            support[slug] = [match]
+            if len(support) >= 12:
+                break
+    scene_index["countries"] = {
+        **{slug: rows for slug, rows in scene_index.get("countries", {}).items() if slug in slugs},
+        **support,
+    }
+    for key in ("heroes", "heroTypes"):
         scene_index[key] = {slug: value for slug, value in scene_index.get(key, {}).items() if slug in slugs}
     scene_index["regionHeroes"] = [row for row in scene_index.get("regionHeroes", []) if row.get("parentSlug") in slugs]
     write_json(scene_index, DIST / "data" / "top-scene-index.json")
-    for slug in scene_index["countries"]:
-        scene_dir = ROOT / "assets" / "images" / "top" / "scenes" / slug
-        if scene_dir.is_dir():
-            copy_tree(scene_dir, DIST / "assets" / "images" / "top" / "scenes" / slug)
+    for slug, rows in scene_index["countries"].items():
+        if slug in support:
+            for scene_id, *_ in rows:
+                copy_file(
+                    ROOT / "assets" / "images" / "top" / "scenes" / slug / f"{scene_id}.webp",
+                    DIST / "assets" / "images" / "top" / "scenes" / slug / f"{scene_id}.webp",
+                )
+        else:
+            scene_dir = ROOT / "assets" / "images" / "top" / "scenes" / slug
+            if scene_dir.is_dir():
+                copy_tree(scene_dir, DIST / "assets" / "images" / "top" / "scenes" / slug)
 
     for slug in slugs:
         source = COUNTRY_DIR / f"{slug}.json"
