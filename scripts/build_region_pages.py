@@ -538,7 +538,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="section-kicker-en">TRAVEL MAP</span>'
         '<h2 class="panel-title">旅の地図</h2></div></div>'
         + render_region_detail_gallery(data, map_version)
-        + '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
+        + ('<div class="map-frame" data-single-map-mobile="true">' if data['map'].get('singleMapMobile') else '<div class="map-frame">')
+        + '<div class="map-art has-map" id="country-map-art" '
         f'role="group" aria-label="{esc(data["nameJa"])}の景色の地図">'
         f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
         f'alt="{esc(data["nameJa"])}の実海岸線と島々を描いた地図" '
@@ -568,7 +569,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
            if data.get('capital') else '')
         + (region_osm_credit() if 'osm' in region_map_credits(data) else '')
         + '</div>'
-        + mobile_region_detail(data, map_svg_text, map_version)
+        + ('' if data['map'].get('singleMapMobile') else mobile_region_detail(data, map_svg_text, map_version))
         + '</div>'
         + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'

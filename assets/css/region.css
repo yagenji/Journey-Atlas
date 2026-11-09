@@ -82,7 +82,10 @@
     transform:translate(-1.66666667%,-2.63157895%);pointer-events:none
   }
   .region-country-page .region-map-detail-mobile .region-map-hit{z-index:8}
-  .region-country-page #region-map-hits .region-map-hit[data-map-inset="true"]{display:none}
+  .region-country-page .map-frame:not([data-single-map-mobile="true"]) #region-map-hits .region-map-hit[data-map-inset="true"]{display:none}
+  .region-country-page .map-frame[data-single-map-mobile="true"] .region-map-hit b{
+    width:20px;height:20px;border-width:1.5px;font:600 10px/1 var(--meta)
+  }
 }
 
 /* Capital swatch/marker: match the Country map legend's visual vocabulary. */
