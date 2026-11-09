@@ -258,17 +258,22 @@ def check(driver, viewport):
         By.CSS_SELECTOR, '#season-months [data-season-month="1"]'))
     wait.until(lambda d: len(d.find_elements(
         By.CSS_SELECTOR, "#season-results-grid .country-card")) > 0)
-    if not any(el.get_attribute("data-slug") == "aruba" for el in driver.find_elements(
-        By.CSS_SELECTOR, "#season-results-grid .country-card")):
+    # Read dynamic result cards in one DOM snapshot; the season grid rerenders
+    # when its index and images settle, invalidating retained Selenium elements.
+    season_snapshot = driver.execute_script("""
+      const cards = [...document.querySelectorAll('#season-results-grid .country-card')];
+      return {
+        slugs: cards.map(el => el.dataset.slug),
+        arubaFlag: document.querySelector(
+          '#season-results-grid [data-slug="aruba"] .country-card__flag'
+        )?.textContent || null
+      };
+    """)
+    if "aruba" not in season_snapshot["slugs"]:
         errors.append("Published Aruba Region missing from January season discovery")
-    else:
-        aruba_flag = driver.find_element(
-            By.CSS_SELECTOR, '#season-results-grid [data-slug="aruba"] .country-card__flag'
-        ).get_attribute("textContent")
-        if aruba_flag != "🇦🇼":
-            errors.append("Aruba season flag missing: " + repr(aruba_flag))
-    season_slug = driver.find_element(
-        By.CSS_SELECTOR, "#season-results-grid .country-card").get_attribute("data-slug")
+    elif season_snapshot["arubaFlag"] != "🇦🇼":
+        errors.append("Aruba season flag missing: " + repr(season_snapshot["arubaFlag"]))
+    season_slug = season_snapshot["slugs"][0]
     driver.execute_script(
         "localStorage.setItem('journey-atlas:wish:' + arguments[0], 'true')", season_slug)
     driver.execute_script("arguments[0].click()", driver.find_element(
