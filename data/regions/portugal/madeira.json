@@ -27,14 +27,15 @@
       "peak"
     ],
     "mapOffset": {
-      "x": -4.8,
-      "y": 0.4
+      "x": 0,
+      "y": 2
     }
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "フンシャル（Funchal）"
+      "label": "首都",
+      "value": "フンシャル（Funchal）",
+      "sourceKey": "autonomy"
     },
     {
       "label": "人口",
@@ -48,7 +49,8 @@
     },
     {
       "label": "言語",
-      "value": "ポルトガル語"
+      "value": "ポルトガル語",
+      "sourceKey": "autonomy"
     },
     {
       "label": "主な宗教",
@@ -57,7 +59,8 @@
     },
     {
       "label": "通貨",
-      "value": "ユーロ（EUR）"
+      "value": "ユーロ（EUR）",
+      "sourceKey": "autonomy"
     }
   ],
   "historyContext": {
@@ -177,7 +180,11 @@
       "sourceKey": "funchal",
       "sceneTypes": [
         "oldtown"
-      ]
+      ],
+      "mapOffset": {
+        "x": 2.5,
+        "y": 4
+      }
     },
     {
       "id": "caldeirao-verde",
@@ -271,13 +278,14 @@
       "interestReason": "海辺から一気に立ち上がる断崖と、その足元に営まれる農業の高低差が伝わる。"
     },
     {
-      "topicKey": "porto-santo-beach",
-      "label": "ポルト・サントの砂浜",
-      "value": "約9km",
-      "note": "マデイラ島とは対照的な、離島の長く明るい砂浜。",
-      "icon": "shore",
-      "sourceKey": "portoSanto",
-      "interestReason": "急峻な本島とは異なる離島の景色を、長さで実感できる。"
+      "topicKey": "laurel-primary",
+      "label": "原生のまま残る照葉樹林",
+      "value": "約90%",
+      "icon": "leaf",
+      "sourceKey": "laurisilvaUnesco",
+      "exceptionalShare": true,
+      "note": "島に残るローレル林（ラウリシルバ）約15,000haのうち約90%が原生林とされる。かつて南欧に広がった森の、現存する最大の姿。",
+      "interestReason": "霧の森が太古の植生をほぼそのまま残す、まれな場所であることを示す。"
     }
   ],
   "encounters": [
@@ -307,8 +315,8 @@
       "category": "DAILY_LIFE"
     },
     {
-      "title": "色鮮やかな三角屋根の家",
-      "icon": "home",
+      "title": "刺繍工房の細やかな針目",
+      "icon": "culture",
       "category": "CULTURE"
     },
     {
@@ -317,8 +325,8 @@
       "category": "DAILY_LIFE"
     },
     {
-      "title": "長い金色の浜と白い波",
-      "icon": "shore",
+      "title": "春の街路を埋める花の絨毯",
+      "icon": "leaf",
       "category": "SEASON"
     }
   ],
@@ -363,30 +371,30 @@
       "sourceKey": "wine"
     },
     {
-      "topicKey": "painted-doors",
-      "themeEn": "ART",
-      "themeJa": "街を読む",
-      "icon": "city",
-      "title": "古い扉が一枚ずつ違う絵になる",
-      "text": "フンシャル旧市街の「Portas Pintadas」は、古い家の扉や壁面に作家が絵を描いたプロジェクト。港町の歴史ある路地を、現代の屋外ギャラリーへと変えている。",
+      "topicKey": "madeira-embroidery",
+      "themeEn": "CRAFT",
+      "themeJa": "手仕事",
+      "icon": "culture",
+      "title": "一枚に数か月をかける刺繍",
+      "text": "マデイラ刺繍は15世紀の入植期にさかのぼり、19世紀後半には英国の商人を通じて輸出品になった。麻や絹、オーガンジーに島の草花を手で縫い取り、今も約1,000人の刺繍職人が日々針を動かす。",
       "points": [
-        "Rua de Santa Mariaの扉は一枚ずつ異なる",
-        "旧市街に残る工房や小商店も歩いて確かめたい"
+        "正規品には島の公的機関による保証ラベルが付く",
+        "大きな作品は完成まで数か月かかる"
       ],
-      "sourceKey": "funchal"
+      "sourceKey": "embroidery"
     },
     {
-      "topicKey": "thatched-houses",
-      "themeEn": "CULTURE",
-      "themeJa": "家を知る",
-      "icon": "home",
-      "title": "茅葺きの急勾配は雨を流すため",
-      "text": "サンタナの三角屋根の家は、木材と小麦・ライ麦の藁を使った建築。鋭い傾斜には雨を流しやすくする意味がある。鮮やかな外壁の奥に、島の気候と身近な材料を使う知恵がある。",
+      "topicKey": "wall-of-hope",
+      "themeEn": "FESTIVAL",
+      "themeJa": "花の祭り",
+      "icon": "leaf",
+      "title": "子どもたちが花で「希望の壁」をつくる",
+      "text": "春のフンシャルを彩る花祭りの初日、子どもたちが一人ずつ花を差し込み、緑の壁を花で埋めていく「希望の壁」の式典が開かれる。翌日の日曜には、1979年から続く花の山車のパレードが海沿いの大通りを進む。",
       "points": [
-        "屋根の急勾配は雨への適応",
-        "屋根裏は農作物の保管にも使われた"
+        "街の歩道には花びらで描いた絨毯も現れる",
+        "花の島の誇りを、子どもの手から始める祭り"
       ],
-      "sourceKey": "santana"
+      "sourceKey": "flowerFestival"
     },
     {
       "topicKey": "remote-reserves",
@@ -465,9 +473,9 @@
   ],
   "notes": [
     {
-      "title": "山岳部の天候は海岸と違う",
-      "text": "海沿いが晴れていても、山の稜線は雲・風・雨に包まれることがある。山歩きは現地予報と通行状況を確認する。",
-      "sourceKey": "hikingRules2026"
+      "title": "帰国前日は予定を詰めない",
+      "text": "マデイラ空港は強い風で着陸できず、ポルト・サントなどへの代替着陸や欠航が起こることがある。帰国便の前日に離島や長い山歩きを入れず、1日分の余裕を残しておく。",
+      "sourceKey": "airportWind"
     },
     {
       "title": "公式トレイルは事前予約と状況確認",
@@ -522,7 +530,7 @@
       "months": "3〜5月",
       "icon": "leaf",
       "color": "#73966f",
-      "text": "新緑と花の季節。海岸部は比較的温暖でも、山地は霧や雨に包まれやすい。"
+      "text": "新緑と花の季節。春にはフンシャルで花祭りが開かれ、街が花で飾られる。山地は霧や雨に包まれやすい。"
     },
     {
       "months": "6〜8月",
@@ -540,7 +548,7 @@
       "months": "12〜2月",
       "icon": "weather",
       "color": "#6b90a5",
-      "text": "海岸部は冬も比較的温暖。高い山と北岸では雨・風・雲に注意が必要。"
+      "text": "海岸部は冬も比較的温暖。大晦日はフンシャル湾を囲む花火を目当てに港町が混み合う。高い山と北岸では雨・風・雲に注意。"
     }
   ],
   "transport": {
@@ -552,14 +560,6 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "nameJa": "カーボベルデ",
-      "nameEn": "CAPE VERDE",
-      "href": "countries/capeverde/",
-      "flag": "🇨🇻",
-      "reason": "大西洋の火山島で、乾いた山と海岸の別の表情に出会う。",
-      "affinityType": "LANDSCAPE"
-    },
-    {
       "nameJa": "スペイン",
       "nameEn": "SPAIN",
       "href": "countries/spain/",
@@ -568,29 +568,33 @@
       "affinityType": "LANDSCAPE"
     },
     {
-      "nameJa": "モロッコ",
-      "nameEn": "MOROCCO",
-      "href": "countries/morocco/",
-      "flag": "🇲🇦",
-      "reason": "大西洋の対岸に目を向け、沿岸都市とアトラス山脈の景観を味わう。",
-      "affinityType": "GEOGRAPHY"
+      "nameJa": "ペルー",
+      "nameEn": "PERU",
+      "href": "countries/peru/",
+      "flag": "🇵🇪",
+      "reason": "アンデスの段々畑と古い水路へ。急斜面を石垣で耕し、水を引いて暮らす知恵を見比べる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "ブラジル",
+      "nameEn": "BRAZIL",
+      "href": "countries/brazil/",
+      "flag": "🇧🇷",
+      "reason": "マデイラで広がったサトウキビ栽培は、大西洋を渡ってブラジルへ。北東部の古都で砂糖の歴史の続きをたどる。",
+      "affinityType": "HISTORY"
     }
   ],
   "capital": {
     "nameJa": "フンシャル",
-    "labelJa": "中心都市",
+    "labelJa": "首都",
     "coordinates": {
       "latitude": 32.6497,
       "longitude": -16.9083
     },
-    "labelPosition": "left",
+    "labelPosition": "right",
     "labelOffset": {
-      "x": -12,
-      "y": 32
-    },
-    "mapOffset": {
-      "x": 3.5,
-      "y": 5.5
+      "x": 0,
+      "y": -4
     }
   },
   "travelThemes": [
@@ -599,7 +603,7 @@
     "道の先へ"
   ],
   "contentQaVersion": 6,
-  "sourcesVerifiedAt": "2026-11-08",
+  "sourcesVerifiedAt": "2026-11-09",
   "sources": {
     "area": "DREM/INE, Statistical Yearbook of the Autonomous Region of Madeira 2024 (2025-12-30), territory 801.10 km² and Pico Ruivo 1862m. Official regional statistics: https://estatistica.madeira.gov.pt/en/download-now-3/multitematicas-gb/mutitematicas-anuario-gb/multitematicas-anuario-in-focus-gb/send/468-anuario-em-foco/19546-em-foco-2024.html",
     "population2025": "DREM, 2025 Resident Population Estimates, published 22 June 2026: 266130 as of 2025-12-31. https://estatistica.madeira.gov.pt/en/download-now/economica/turismo-pt/turismo-noticias-pt/198-press-release/demography-press-release/5828-22-06-2026-in-2025-the-resident-population-of-the-autonomous-region-of-madeira-exceeded-266-thousand-reaching-the-highest-figure-in-the-last-fourteen-years.html",
@@ -630,7 +634,11 @@
     "caopPortoSanto": "Direção-Geral do Território, CAOP administrative coastline (CC BY 4.0) as redistributed at https://github.com/nmota/caop_GeoJSON/blob/master/geograficas/Madeira/MadeiraIlhas.geojson . Source blob dee5716205349ac397ecebd0a7cf03446f559009, checked 2026-11-08.",
     "fennelName": "Madeira Tourism Board, Funchal: city name derives from wild fennel (Foeniculum vulgare), abundant when the settlement was created. Checked 2026-11-08. https://www.visitmadeira.com/en/where-to-go/madeira/south-coast/funchal/",
     "japanArea": "国土地理院「全国都道府県市区町村別面積調」2026年7月1日時点、全国377,973.68km²。2026年9月25日公表、2026年11月8日確認。 https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
-    "monteSledges": "Madeira Tourism Board, Monte Sledges: handmade wicker/wood sledges; two carreiros in white clothing and straw hats use thick rubber-soled boots as brakes. Checked 2026-11-08. https://visitmadeira.com/en/what-to-do/experiencing-the-city-of-funchal/touring-the-city/monte-sledges/"
+    "monteSledges": "Madeira Tourism Board, Monte Sledges: handmade wicker/wood sledges; two carreiros in white clothing and straw hats use thick rubber-soled boots as brakes. Checked 2026-11-08. https://visitmadeira.com/en/what-to-do/experiencing-the-city-of-funchal/touring-the-city/monte-sledges/",
+    "laurisilvaUnesco": "https://whc.unesco.org/en/list/934",
+    "embroidery": "https://visitmadeira.com/en/what-to-do/culture-passionates/madeira-embroidery/",
+    "flowerFestival": "https://visitmadeira.com/en/blog/visit-madeira/the-flower-festival/",
+    "airportWind": "https://www.theportugalnews.com/news/2026-06-08/weather-disrupts-operations-at-madeira-airport/1036667"
   },
   "sourceDates": {
     "population": "2025-12-31 (2026-06-22 release; latest estimate at 2026-11-08)",
@@ -640,6 +648,11 @@
     "heritage": "1999 UNESCO registration; checked 2026-11-08",
     "hiking": "2026-11-08 changing status; confirm on day of hike",
     "transport": "2026-11-08 operator schedules are changeable",
-    "japanArea": "2026-07-01（2026-09-25公表）"
+    "japanArea": "2026-07-01（2026-09-25公表）",
+    "history": "Settlement from the early 15th century; autonomy from 1976; checked 2026-11-09",
+    "laurisilvaUnesco": "UNESCO WHC 934: about 15,000 ha, largest surviving laurel forest, about 90% primary",
+    "embroidery": "Visit Madeira, checked 2026-11-09: about a dozen companies and about 1,000 embroiderers",
+    "flowerFestival": "Visit Madeira blog 2024-04-04: Wall of Hope, parade since 1979",
+    "airportWind": "The Portugal News 2026-06-08: diversions to Porto Santo and cancellations"
   }
 }

@@ -30,7 +30,7 @@
   },
   "profile": [
     {
-      "label": "首府",
+      "label": "首都",
       "value": "ザンジバル・シティ（Zanzibar City）",
       "sourceKey": "zanzibarGov"
     },
@@ -45,7 +45,7 @@
       "sourceKey": "ocgsFigures2021"
     },
     {
-      "label": "主な言語",
+      "label": "言語",
       "value": "スワヒリ語（英語も利用される）",
       "sourceKey": "zanzibarGov"
     },
@@ -309,13 +309,13 @@
   },
   "signatureFacts": [
     {
-      "topicKey": "archipelago-two-islands",
-      "label": "二つの主要島",
-      "value": "ウングジャとペンバ",
-      "note": "南にウングジャ、北にペンバが離れて位置し、間にはインド洋が広がる。ストーンタウンの一島だけでなく、港や森が残るペンバも同じ自治地域の一部。",
+      "topicKey": "swahili-clock",
+      "label": "スワヒリ時間の午前7時",
+      "value": "1時",
       "icon": "map",
-      "sourceKey": "zanzibarStats",
-      "interestReason": "島を二つの主役として捉えることで、海辺の都市と森林・港湾の旅をひとつの地域として想像できる。"
+      "sourceKey": "swahiliTime",
+      "note": "スワヒリ語の時刻は日の出（午前6時ごろ）から数え始める。午前7時は「saa moja（1時）」、午後2時は「saa nane（8時）」で、時計と6時間ずれる。",
+      "interestReason": "待ち合わせの「2時」が午前8時を指すこともある、暮らしの時間感覚の違いを数で伝える。"
     },
     {
       "topicKey": "swahili-trading-continuity",
@@ -484,22 +484,31 @@
       "sourceKey": "freddieNationalArchives"
     },
     {
-      "topicKey": "colobus-red-fur",
-      "categoryEn": "WILDLIFE",
-      "categoryJa": "生き物",
-      "title": "白い毛と赤褐色の背が、木の上で動く",
-      "text": "ザンジバルアカコロブスはウングジャ島の森林に暮らす霊長類。よく目立つ毛色は、葉の多い樹冠の間で見ると印象が変わる。",
+      "topicKey": "colobus-charcoal",
+      "categoryEn": "NATURE",
+      "categoryJa": "森の生きもの",
       "icon": "wildlife",
-      "sourceKey": "jozani"
+      "title": "アカコロブスは、炭を食べる",
+      "text": "ザンジバルアカコロブスは、炭焼きの窯の跡などで炭をかじる。主食のインドアーモンドやマンゴーの葉に含まれる有害な成分を、炭が吸着して和らげると研究者は報告している。",
+      "sourceKey": "colobusCharcoal"
     },
     {
-      "topicKey": "stone-town-duka",
-      "categoryEn": "CITY",
-      "categoryJa": "街",
-      "title": "古い商店の造りに、インド洋の行き来が見える",
-      "text": "ストーンタウンには通りへ開く細長い店先「ドゥカ」がある。住居と商いの場を近づけた店構えは、インド系交易商人との交流を伝える。",
-      "icon": "city",
-      "sourceKey": "unescoUrbanAtlas"
+      "topicKey": "changuu-tortoises",
+      "categoryEn": "NATURE",
+      "categoryJa": "小島の住人",
+      "icon": "wildlife",
+      "title": "沖の小島に、推定192歳のゾウガメ",
+      "text": "ストーンタウン沖のチャングー島では、世界最大級のリクガメの一つ、アルダブラゾウガメが暮らす。最年長の個体は推定192歳と地元紙が伝えている。",
+      "sourceKey": "tortoises"
+    },
+    {
+      "topicKey": "union-flag-blue",
+      "categoryEn": "HISTORY",
+      "categoryJa": "国のかたち",
+      "icon": "history",
+      "title": "タンザニア国旗の青は、ザンジバルから",
+      "text": "1964年の連合で、タンガニーカの緑・黒・黄の旗にザンジバルを表す青が加わった。同年10月29日、国名はタンザニア連合共和国となった。",
+      "sourceKey": "unionFlag"
     }
   ],
   "forWhom": [
@@ -528,9 +537,9 @@
       "sourceKey": "unSeaweed"
     },
     {
-      "title": "ペンバへの移動には予備日を残す",
-      "text": "ウングジャとペンバは別の島。航空便や船便の運行日・接続・海況は旅程に合わせて確認し、移動の前後に余裕を持つ。",
-      "sourceKey": "zpc"
+      "title": "入域保険US$44を事前に手配",
+      "text": "2024年10月から、ザンジバルを訪れる外国人旅行者には島の公的な入域保険（US$44、最長92日）の加入が義務づけられた。公式サイト visitzanzibar.go.tz で事前に手続きし、ペンバへ渡る日程にも予備日を残す。",
+      "sourceKey": "insurance"
     }
   ],
   "travelScale": {
@@ -551,7 +560,7 @@
         "icon": "map"
       },
       {
-        "duration": "7〜10日以上",
+        "duration": "7日以上",
         "title": "ペンバの港と森林まで含める",
         "text": "ウングジャから空路または船でペンバに渡り、ウェテとンゲジの森を組み合わせる。例：ザンジバル・シティ → パジェ → ザンジバル・シティ → ペンバ（ウェテ・ンゲジ）→ ザンジバル・シティ。",
         "icon": "compass"
@@ -570,25 +579,25 @@
     {
       "months": "1〜2月",
       "icon": "sun",
-      "color": "#b7a060",
+      "color": "#73966f",
       "text": "比較的乾いた暑い季節。街歩きは朝夕が快適で、海岸は日差しと潮汐を考慮する。"
     },
     {
       "months": "3〜5月",
       "icon": "weather",
-      "color": "#6c9a91",
+      "color": "#92a253",
       "text": "長雨の時期。天候によって移動や屋外の予定が変わるため、旅程には余裕を取る。"
     },
     {
       "months": "6〜10月",
       "icon": "sun",
-      "color": "#7d9b77",
+      "color": "#b77a49",
       "text": "比較的雨が少なく、風を感じる時期。森林、歴史地区、海岸で過ごす旅を組み立てやすい。"
     },
     {
       "months": "11〜12月",
       "icon": "weather",
-      "color": "#7298aa",
+      "color": "#6b90a5",
       "text": "短い雨の季節。にわか雨と晴れ間が入れ替わり、島内の道路状況に気を配りたい。"
     }
   ],
@@ -628,7 +637,7 @@
       "affinityType": "HISTORY"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-08",
+  "sourcesVerifiedAt": "2026-11-09",
   "sources": {
     "ocgs2022": "https://www.ocgs.go.tz/ReportOCGS/ZANZIBAR%20STATISTICAL%20ABSTRACT%20%2C2022.pdf",
     "zanzibarStats": "https://www.ocgs.go.tz/ReportOCGS/ZANZIBAR%20STATISTICAL%20ABSTRACT%20%2C2022.pdf",
@@ -658,7 +667,12 @@
     "ocgsFigures2021": "https://www.ocgs.go.tz/ReportOCGS/1665577844.pdf",
     "unescoTaarab": "https://ich.unesco.org/en/projects/safeguarding-the-songs-of-the-moon-traditional-swahili-music-from-tanzania-unguja-and-pemba-and-the-comoros-00101",
     "unescoTaarab2026": "https://www.unesco.org/en/articles/unesco-and-tui-care-foundation-support-safeguarding-taarab-music-tanzania",
-    "freddieNationalArchives": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/freddie-mercurys-naturalisation-certificate/"
+    "freddieNationalArchives": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/freddie-mercurys-naturalisation-certificate/",
+    "swahiliTime": "https://openbooks.library.baylor.edu/elementaryswahili1/?p=376",
+    "colobusCharcoal": "https://www.sciencedaily.com/releases/1997/09/970901072246.htm",
+    "tortoises": "https://www.thecitizen.co.tz/tanzania/magazines/sound-living/visiting-the-giant-tortoises-on-prison-island-2546090",
+    "unionFlag": "https://www.ebsco.com/research-starters/history/zanzibar-and-tanganyika-unite-form-tanzania",
+    "insurance": "https://www.jp.tzembassy.go.tz/resources/view/mandatory-inbound-travel-insurance-to-enter-zanzibar"
   },
   "sourceDates": {
     "population": "2022 Population and Housing Census",
@@ -667,19 +681,26 @@
     "unescoStoneTown": "2000 inscription",
     "shortestWar": "1896-08-27; Guinness 45 minutes, other sources differ",
     "season": "2026-11-08 qualitative, Tanzania climate reference",
-    "taarab2026": "UNESCO community inventory 2026-10-12 to 2026-10-19"
+    "taarab2026": "UNESCO community inventory 2026-10-12 to 2026-10-19",
+    "zanzibarGov": "Zanzibar Fact Sheet 2025, checked 2026-11-09",
+    "unionHistory": "1964-04-26 union",
+    "swahiliTime": "Baylor University Elementary Swahili, checked 2026-11-09",
+    "colobusCharcoal": "Duke University / University of Wyoming study reported 1997-09",
+    "tortoises": "The Citizen; oldest Aldabra tortoise estimated 192 years at publication",
+    "unionFlag": "EBSCO Research Starters: renamed 1964-10-29; blue band added for Zanzibar",
+    "insurance": "Embassy of Tanzania in Japan: mandatory from 2024-10-01, US$44, up to 92 days"
   },
   "capital": {
     "nameJa": "ザンジバル・シティ",
-    "labelJa": "中心都市",
+    "labelJa": "首都",
     "coordinates": {
       "latitude": -6.1659,
       "longitude": 39.2026
     },
     "labelPosition": "right",
     "labelOffset": {
-      "x": 12,
-      "y": 10
+      "x": 0,
+      "y": 0
     }
   },
   "travelThemes": [
