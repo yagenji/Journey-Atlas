@@ -131,6 +131,20 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
       "url": "https://www.dgterritorio.gov.pt/atividades/cartografia/cartografia-tematica/caop",
       "detail": "マデイラ諸島の海岸線（CAOPのWFSデータをnmota/caop_GeoJSON経由で使用し、投影・単純化）。Informação geográfica cedida pela Direção-Geral do Território."
+    },
+    "geoboundaries-gib": {
+      "label": "geoBoundaries / Sentinel-2 land cover",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://www.geoboundaries.org/",
+      "detail": "ジブラルタルの海岸線（gbOpen GIB ADM0、2021年の10m土地被覆由来）。"
+    },
+    "world-geojson": {
+      "label": "world-geojson / Georgiy Golub",
+      "license": "GPL-3.0",
+      "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "url": "https://github.com/georgique/world-geojson",
+      "detail": "ジブラルタル北部の行政輪郭とスペインの周辺陸地。"
     }
   },
   "countries": {
@@ -999,6 +1013,10 @@
     ],
     "finland/aland-islands": [
       "gshhg"
+    ],
+    "unitedkingdom/gibraltar": [
+      "geoboundaries-gib",
+      "world-geojson"
     ]
   }
 }
