@@ -305,6 +305,31 @@ def region_capital_label_style(capital: dict) -> str:
     return f' style="{";".join(rules)}"' if rules else ''
 
 
+def region_map_seats(data: dict) -> list[dict]:
+    """Places with an official role shown on the map: the capital, or the
+    seats of the regional institutions when a Region has no single capital."""
+    if data.get('capital'):
+        return [data['capital']]
+    return list(data.get('officialSeats') or [])
+
+
+def region_seat_legend(data: dict) -> str:
+    if data.get('capital'):
+        return data['capital'].get('labelJa', '首都')
+    return data.get('officialSeatsLegendJa', '政府・議会などの所在地')
+
+
+def region_seat_marker(seat: dict, data: dict, svg: str) -> str:
+    x, y = region_display_marker_position(seat, 'capital', svg, data['map']['bounds'])
+    role = seat.get('roleJa') or seat.get('labelJa') or '首都'
+    return ('<div class="map-capital-marker region-map-capital" role="img" '
+            f'aria-label="{esc(role)}：{esc(seat["nameJa"])}" '
+            f'style="left:{x:.5f}%;top:{y:.5f}%" '
+            f'data-label-position="{esc(seat.get("labelPosition", "right"))}">'
+            '<i aria-hidden="true"></i>'
+            f'<span{region_capital_label_style(seat)}>{esc(seat["nameJa"])}</span></div>')
+
+
 def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tuple[float, float]:
     """Project the verified capital coordinates onto the main regional map."""
     if 'data-map-projection="north-polar-stereographic-v1"' in svg:
@@ -559,14 +584,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + f'<div class="map-hero-marker region-map-hero" aria-hidden="true" '
           f'style="left:{region_display_marker_position(hero, "hero", map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
           f'top:{region_display_marker_position(hero, "hero", map_svg_text, data["map"]["bounds"])[1]:.5f}%"><span></span></div>'
-        + (f'<div class="map-capital-marker region-map-capital" role="img" '
-           f'aria-label="{esc(data["capital"].get("labelJa", "首都"))}：{esc(data["capital"]["nameJa"])}" '
-           f'style="left:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[0]:.5f}%;'
-           f'top:{region_display_marker_position(data["capital"], "capital", map_svg_text, data["map"]["bounds"])[1]:.5f}%" '
-           f'data-label-position="{esc(data["capital"].get("labelPosition", "right"))}">'
-           '<i aria-hidden="true"></i>'
-           f'<span{region_capital_label_style(data["capital"])}>{esc(data["capital"]["nameJa"])}</span></div>'
-           if data.get('capital') else '')
+        + ''.join(region_seat_marker(seat, data, map_svg_text) for seat in region_map_seats(data))
         + (region_osm_credit() if 'osm' in region_map_credits(data) else '')
         + '</div>'
         + ('' if data['map'].get('singleMapMobile') else mobile_region_detail(data, map_svg_text, map_version))
@@ -575,8 +593,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>'
         + ('<span class="map-legend__capital-item"><i class="map-legend__capital" aria-hidden="true"></i>'
-           f'{esc(data["capital"].get("labelJa", "首都"))}</span>'
-           if data.get('capital') else '')
+           f'{esc(region_seat_legend(data))}</span>'
+           if region_map_seats(data) else '')
         + '</div>'
         + (f'<p class="map-inset-note">{esc(data["map"]["insetNote"])}</p>'
            if data["map"].get("insetNote") else '')

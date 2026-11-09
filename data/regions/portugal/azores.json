@@ -33,9 +33,9 @@
   },
   "profile": [
     {
-      "label": "自治地域の拠点",
-      "value": "ポンタ・デルガダ／オルタ／アングラ・ド・エロイズモ",
-      "sourceKey": "autonomy"
+      "label": "首府",
+      "value": "単一の首府なし（地域政府はポンタ・デルガダ、地域議会はオルタ、司法とカトリック教区の中心はアングラ・ド・エロイズモ）",
+      "sourceKey": "seats"
     },
     {
       "label": "人口",
@@ -144,7 +144,11 @@
       "sceneTypes": [
         "vineyard",
         "peak"
-      ]
+      ],
+      "mapOffset": {
+        "x": 0,
+        "y": 4
+      }
     },
     {
       "id": "capelinhos-volcano",
@@ -160,7 +164,11 @@
       "sceneTypes": [
         "volcano",
         "lighthouse"
-      ]
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": 0
+      }
     },
     {
       "id": "angra-heroismo",
@@ -176,7 +184,11 @@
       "sceneTypes": [
         "oldtown",
         "harbor"
-      ]
+      ],
+      "mapOffset": {
+        "x": 0,
+        "y": 5
+      }
     },
     {
       "id": "faja-santo-cristo",
@@ -631,7 +643,8 @@
     "romeiros": "https://www.acorianooriental.pt/noticia/from-mixed-and-all-year-round-pilgrimages-to-lenten-pilgrimages-344131",
     "vigia": "https://www.visitazores.com/en/explore/vigia-da-baleia",
     "hortaMarina": "https://marines.visitazores.com/marinas/horta/?lang=en",
-    "timeZone": "https://www.ipma.pt/pt/educativa/hora/index.html"
+    "timeZone": "https://www.ipma.pt/pt/educativa/hora/index.html",
+    "seats": "https://en.wikipedia.org/wiki/Ponta_Delgada"
   },
   "sourceDates": {
     "population": "2025-12-31（2026-06-22発表）",
@@ -668,7 +681,8 @@
     "romeiros": "Açoriano Oriental, checked 2026-11-09",
     "vigia": "Visit Azores; last operational vigia used until 1980s, restored 2014-2015",
     "hortaMarina": "Visit Azores marinas, checked 2026-11-09",
-    "timeZone": "IPMA legal time: Azores one hour behind mainland Portugal"
+    "timeZone": "IPMA legal time: Azores one hour behind mainland Portugal",
+    "seats": "Wikipedia Ponta Delgada (checked 2026-11-10): Regional Presidency in Ponta Delgada, Legislative Assembly in Horta, judiciary and Catholic See in Angra do Heroísmo"
   },
   "travelThemes": [
     "地球の風景",
@@ -683,5 +697,50 @@
       "autonomyHistory",
       "holySpirit"
     ]
-  }
+  },
+  "officialSeatsLegendJa": "政府・議会・司法の所在地",
+  "officialSeats": [
+    {
+      "nameJa": "ポンタ・デルガダ",
+      "nameEn": "Ponta Delgada",
+      "roleJa": "地域政府",
+      "coordinates": {
+        "latitude": 37.7412,
+        "longitude": -25.6756
+      },
+      "labelPosition": "below",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "nameJa": "オルタ",
+      "nameEn": "Horta",
+      "roleJa": "地域議会",
+      "coordinates": {
+        "latitude": 38.5363,
+        "longitude": -28.6315
+      },
+      "labelPosition": "above",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "nameJa": "アングラ・ド・エロイズモ",
+      "nameEn": "Angra do Heroísmo",
+      "roleJa": "司法・カトリック教区",
+      "coordinates": {
+        "latitude": 38.6553,
+        "longitude": -27.2167
+      },
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
 }
