@@ -104,7 +104,7 @@
       }
     ],
     "insetNote": "※ 北部は、同じ地域を拡大した別枠表示です。",
-    "source": "Coastline/territory: geoBoundaries gbOpen FRO ADM0, commit 9469f09, Sentinel-2 10m land cover (image year 2021), raster2polygon excluding water, processed by IMB; CC BY 4.0; https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FRO/ADM0/geoBoundaries-FRO-ADM0.geojson . Principal-island footprints cross-checked against GSHHG high-resolution shoreline, broad scope against Natural Earth Admin-0, and Visit Faroe Islands 18-island maps. Inland lake Sørvágsvatn: © OpenStreetMap contributors, way 45676892, ODbL 1.0, https://www.openstreetmap.org/copyright; retrieved 2026-11-07. WGS84; shared local equirectangular projection. 18 principal islands including Suðuroy plus coastal skerries retained. Inland raster holes filled as land; only verified lake geometry shown. Not for navigation."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit FRO (Faroe Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Northern inset: same geometry at uniform scale."
   },
   "scenes": [
     {
@@ -747,7 +747,6 @@
     "internationalAir": "https://www.atlanticairways.com/en/",
     "tunnels": "https://www.tunnil.fo/english",
     "japanArea": "https://www.stat.go.jp/data/nihon/01.html",
-    "coastGeometry": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/FRO/ADM0/geoBoundaries-FRO-ADM0.geojson",
     "lakeGeometry": "https://www.openstreetmap.org/way/45676892",
     "osmCopyright": "https://www.openstreetmap.org/copyright",
     "officialIslandMaps": "https://visitfaroeislands.com/en/plan-your-stay/get-ready-for-your-trip/maps-of-the-faroe-islands",

@@ -47,8 +47,9 @@ class RegionMapPositions(unittest.TestCase):
         self.assertIn('data-latitude="57.59705"', svg)
         self.assertIn('シェトランド諸島', svg)
         self.assertIn('ロッコール島は、実際の位置関係・縮尺と異なる別枠表示', data['map']['insetNote'])
-        self.assertIn('ONSvisual', data['map']['source'])
         self.assertIn('Natural Earth', data['map']['source'])
+        self.assertIn('GSHHG', data['map']['source'])
+        self.assertIn('ROCKALL · 別枠', svg)
         for i, scene in enumerate(data['scenes'], 1):
             actual = region.interactive_map_position(
                 scene['coordinates'], i, svg, data['map']['bounds'])
