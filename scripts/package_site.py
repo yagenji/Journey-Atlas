@@ -292,7 +292,7 @@ def write_cloudflare_headers() -> None:
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
-/countries/unitedkingdom/scotland/
+/countries/:parent/:region/
   Cache-Control: no-store
 
 /data/*
