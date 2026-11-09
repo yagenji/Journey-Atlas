@@ -202,25 +202,48 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
     registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
     published = {item["slug"] for item in registry["destinations"]
                  if item.get("atlasPublished") and item.get("href")}
-    target_types: set[str] = set()
+    # Select supporting Scenes separately for every previewed Country/Region page.
+    # A single 12-Country union can leave a Region with only four matching
+    # recommendation families even when the global index has ample matches.
+    page_type_sets: list[set[str]] = []
     for slug in slugs:
         country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
-        for scene in [country.get("hero", {}), *country.get("scenes", [])]:
-            target_types.update(scene.get("sceneTypes", []))
+        page_type_sets.append({
+            item for scene in [country.get("hero", {}), *country.get("scenes", [])]
+            for item in scene.get("sceneTypes", [])
+        })
         for region_file in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
             region = json.loads(region_file.read_text(encoding="utf-8"))
-            for scene in [region.get("hero", {}), *region.get("scenes", [])]:
-                target_types.update(scene.get("sceneTypes", []))
+            page_type_sets.append({
+                item for scene in [region.get("hero", {}), *region.get("scenes", [])]
+                for item in scene.get("sceneTypes", [])
+            })
     support: dict[str, list] = {}
-    for slug, rows in scene_index.get("countries", {}).items():
-        if slug in slugs or slug not in published:
+    families = {"hong-kong": "china", "macau": "china"}
+    for page_types in page_type_sets:
+        if not page_types:
             continue
-        match = next((row for row in rows
-                      if len(row) > 2 and target_types.intersection(row[2])), None)
-        if match:
-            support[slug] = [match]
-            if len(support) >= 12:
+        matched = {
+            families.get(slug, slug) for slug, rows in support.items()
+            if any(len(row) > 2 and page_types.intersection(row[2]) for row in rows)
+        }
+        for slug, rows in scene_index.get("countries", {}).items():
+            if len(matched) >= 6:
                 break
+            family = families.get(slug, slug)
+            if slug in slugs or slug not in published or family in matched:
+                continue
+            match = next((row for row in rows
+                          if len(row) > 2 and page_types.intersection(row[2])), None)
+            if not match:
+                continue
+            if slug not in support:
+                support[slug] = [match]
+            elif not any(row[0] == match[0] for row in support[slug]):
+                support[slug].append(match)
+            matched.add(family)
+        if len(matched) < 6:
+            raise ValueError("Not enough published matching Scenes for targeted preview")
     scene_index["countries"] = {
         **{slug: rows for slug, rows in scene_index.get("countries", {}).items() if slug in slugs},
         **support,
