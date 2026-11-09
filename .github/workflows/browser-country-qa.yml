@@ -71,7 +71,7 @@ jobs:
                   slugs.add(region_match.group(1))
               # Shared Region-only rendering changes exercise existing Region pages,
               # not the unrelated 202 Country routes.
-              if path in {"region.html", "scripts/build_region_pages.py", "assets/css/region.css"}:
+              if path in {"region.html", "scripts/build_region_pages.py", "assets/css/region.css", "scripts/build_country_preview_targeted.py"}:
                   for region_path in Path("data/regions").glob("*/*.json"):
                       slugs.add(region_path.parent.name)
               match = re.match(r"assets/images/([^/]+)/", path)
@@ -137,7 +137,6 @@ jobs:
               or (path.startswith("assets/js/") and path not in {"assets/js/top.js", "assets/js/map-regions.js"} and not (path == "assets/js/atlas-personal.js" and top_only_personal))
               or path in {
                   *([] if top_only_builder else ["scripts/build_site.py"]),
-                  "scripts/build_country_preview_targeted.py",
                   "scripts/build_cloudflare.py",
               }
               for path in files
