@@ -63,25 +63,17 @@
 .ja-panel h2 { margin:0 0 10px; font:500 clamp(21px,2.8vw,29px)/1.45 "Shippori Mincho",serif; }
 .ja-panel-head p { font-size:13px; line-height:1.9; color:#595f60; margin:0; }
 .ja-subtitle { font-size:12px; color:#626967; line-height:1.6; min-height:18px; }
-.ja-mine-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.ja-mine-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
 .ja-summary-item { display:flex; flex-direction:column; gap:5px; border:1px solid #e1e4e1; border-radius:11px; background:#fff; padding:16px; }
 .ja-summary-item span { font:600 10px/1.4 "Hanken Grotesk",sans-serif; letter-spacing:.12em; color:#75817d; }
 .ja-summary-item strong { font-size:23px; font-weight:600; }
 .ja-summary-item small { font-size:12px; color:#646d68; }
 .ja-mine-groups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:26px 0; }
 .ja-mine-group { min-width:0; }
-.ja-mine-group h3,.ja-favorite-scenes h3 { font-size:17px; font-weight:600; margin:0 0 12px; }
+.ja-mine-group h3 { font-size:17px; font-weight:600; margin:0 0 12px; }
 .ja-mine-links { display:flex; flex-wrap:wrap; gap:8px; max-height:230px; overflow:auto; }
 .ja-mine-links a { font-size:13px; line-height:1.5; text-decoration:none; border:1px solid #d6dedb; border-radius:99px; background:#fff; padding:8px 12px; color:#244764; }
 .ja-empty { font-size:13px; color:#66706f; line-height:1.8; }
-.ja-scene-gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
-.ja-favorite-card { display:flex; flex-direction:column; background:#fff; border:1px solid #e0e5e0; border-radius:11px; overflow:hidden; }
-.ja-favorite-link { display:block; text-decoration:none; color:#173a56; flex:1; }
-.ja-favorite-link img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
-.ja-favorite-link span { display:flex; flex-direction:column; gap:5px; padding:12px; }
-.ja-favorite-link strong { font-size:13px; line-height:1.6; }
-.ja-favorite-link small { font-size:12px; color:#606866; }
-.ja-remove { cursor:pointer; text-align:left; border:0; background:transparent; padding:0 12px 12px; color:#526879; font-size:12px; }
 .ja-backup-tools { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; }
 .ja-tool-button { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:8px 16px; border:1px solid #96a9ac; border-radius:99px; background:#fff; color:#173a56; font-weight:600; font-size:13px; line-height:1.4; cursor:pointer; text-decoration:none; }
 .ja-import-label { position:relative; cursor:pointer; }
@@ -138,7 +130,6 @@
 
 @media(max-width:760px) {
   .ja-mine-groups { grid-template-columns:1fr; }
-  .ja-scene-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .ja-mine-summary { gap:6px; }
   .ja-summary-item { padding:12px 8px; }
   .ja-summary-item strong { font-size:17px; }
