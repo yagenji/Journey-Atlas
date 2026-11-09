@@ -633,6 +633,7 @@ def build_top_scene_index() -> None:
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
+        "french-guiana": ("🇬🇫", None),
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
@@ -662,6 +663,8 @@ def build_top_scene_index() -> None:
             region_id = "europe"
         elif "AFRICA" in geo:
             region_id = "africa"
+        elif "SOUTH AMERICA" in geo:
+            region_id = "south-america"
         else:
             raise ValueError(f"Published Region needs an explicit TOP geography: {parent}/{region['slug']}")
         region_heroes.append({
