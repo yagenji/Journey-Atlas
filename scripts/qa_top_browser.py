@@ -313,8 +313,8 @@ def check(driver, viewport):
         By.CSS_SELECTOR, '#gallery-region-tabs [data-wish-filter="scenery"]'))
     wait.until(lambda d: len(d.find_elements(
         By.CSS_SELECTOR, "#gallery-grid .gallery-tile")) > 0)
-    gallery_links = [el.get_attribute("href") for el in driver.find_elements(
-        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")]
+    # Read the tiles in one script call: the gallery re-renders asynchronously.
+    gallery_links = driver.execute_script("return [...document.querySelectorAll('#gallery-grid .gallery-tile')].map((tile) => tile.href)")
     if any("/countries/japan/" not in href for href in gallery_links):
         errors.append("Scenery Wish filter displayed a non-wished destination")
     if "gwish=1" not in driver.current_url:
@@ -325,8 +325,9 @@ def check(driver, viewport):
         "localStorage.setItem('journey-atlas:scene:france:hero', 'qa-wish-filter')")
     driver.execute_script("arguments[0].click()", driver.find_element(
         By.ID, "gallery-saved-toggle"))
-    gallery_links = [el.get_attribute("href") for el in driver.find_elements(
-        By.CSS_SELECTOR, "#gallery-grid .gallery-tile")]
+    wait.until(lambda d: d.find_elements(
+        By.CSS_SELECTOR, '#gallery-saved-toggle[aria-pressed="true"]'))
+    gallery_links = driver.execute_script("return [...document.querySelectorAll('#gallery-grid .gallery-tile')].map((tile) => tile.href)")
     if not gallery_links or any("/countries/japan/" not in href for href in gallery_links):
         errors.append("Saved scenery and Wish-list filters were not intersected")
     driver.execute_script("arguments[0].click()", driver.find_element(

@@ -63,7 +63,7 @@ let fullDestinations = []; // the 202-item canonical catalog
 let detailDestinations = []; // directly discoverable subordinate places
 const CHILD_SLUGS = new Set(['hong-kong','macau']);
 // Region destinations come from the published Region JSON index, not a UK-only list.
-const regionDetailPromise = fetch('data/top-scene-index.json?v=20261108-scene-types-1')
+const regionDetailPromise = fetch('data/top-scene-index.json?v=20261109-scene-view-1')
   .then(response=>{if(!response.ok)throw Error('Region index unavailable');return response.json();})
   .then(({regionHeroes=[]})=>regionHeroes.map(data=>({
     slug:data.slug,nameJa:data.nameJa,nameEn:data.nameEn,iso2:data.iso2,
@@ -1209,7 +1209,7 @@ function shuffled(items){
 function loadScenes(){
   if(!scenePromise){
     scenePromise=Promise.all([
-      fetch('data/top-scene-index.json?v=20261108-scene-types-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
+      fetch('data/top-scene-index.json?v=20261109-scene-view-1').then((response)=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}),
       coreRegistryPromise.catch(()=>null),
       themeRegionPromise.catch(()=>null),
       regionDetailPromise
@@ -1220,7 +1220,8 @@ function loadScenes(){
       const scenes=Object.entries(countries).flatMap(([slug,rows])=>{
         const country=bySlug.get(slug);
         if(!country?.atlasPublished||!country.href)return [];
-        return rows.map(([id,name,types=[]])=>({slug,id,name,country,types,isHero:false}));
+        return rows.map(([id,name,types=[],image=''])=>({slug,id,name,country,types,isHero:false,
+          full:image?(image.includes('/')?image:`assets/images/${slug}/approved/${image}`):''}));
       });
       // Hero titles come from the Country's verified location in its JSON.
       // Never substitute a generic 「代表風景」 label for a real place name.
@@ -1228,7 +1229,7 @@ function loadScenes(){
         .filter(country=>country.atlasPublished&&country.href&&country.image)
         .map(country=>({
           slug:country.slug,id:'hero',name:country.heroName||heroes[country.slug]||'',
-          country,image:country.image,isHero:true,
+          country,image:country.image,full:country.image,isHero:true,
           types:country.sceneTypes||heroTypes[country.slug]||[]
         })).filter(row=>row.name.trim());
       sceneRows=[...scenes,...heroRows];
@@ -1326,6 +1327,7 @@ function renderScenes(){
     fragment.append(empty);
   }
   sceneGrid.replaceChildren(fragment);
+  updateSceneViewButton();
   if(sceneMore){
     const remaining=sceneOrder.length-Math.min(sceneLimit,sceneOrder.length);
     sceneMore.hidden=remaining<=0;
@@ -1426,6 +1428,15 @@ sceneTabs?.addEventListener('click',(event)=>{
   shuffleScenes();
 });
 sceneShuffle?.addEventListener('click',()=>{loadScenes().then(shuffleScenes);});
+// 「景色を流す」 (scene-view.js) plays the gallery's current order, filters included.
+window.journeyAtlasSceneView={
+  load:()=>loadScenes(),
+  rows:()=>sceneOrder.filter((row)=>row.full),
+};
+function updateSceneViewButton(){
+  const play=document.querySelector('#gallery-view');
+  if(play)play.disabled=!sceneOrder.some((row)=>row.full);
+}
 sceneSavedToggle?.addEventListener('click',()=>{
   sceneFavoritesOnly=!sceneFavoritesOnly;
   sceneRegion='all';

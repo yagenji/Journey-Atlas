@@ -579,7 +579,7 @@ def build_top_season_index() -> None:
 def build_top_scene_index() -> None:
     """Source-led labels for the top-page gallery: Scenes and Country Hero locations.
 
-    Each Scene row is [id, name, sceneTypes]; Hero types are keyed by slug in heroTypes.
+    Each Scene row is [id, name, sceneTypes, image]; Hero types are keyed by slug in heroTypes.
 
     Scene entries are published only when their thumbnail exists. Hero names come from the
     corresponding Country JSON, not from a generic country-name placeholder.
@@ -608,7 +608,14 @@ def build_top_scene_index() -> None:
             if not (thumbs / slug / f"{scene_id}.webp").exists():
                 missing += 1
                 continue
-            rows.append([scene_id, str(scene.get("name", "")).strip(), scene.get("sceneTypes", [])])
+            # The 4th field is the full-size image for 「景色を流す」: just the file name when it sits in
+            # the Country's own approved folder, otherwise the whole path.
+            image = str(scene.get("image") or "")
+            own = f"assets/images/{slug}/approved/"
+            if image and not (ROOT / image).is_file():
+                raise FileNotFoundError(f"{slug}/{scene_id}: {image}")
+            rows.append([scene_id, str(scene.get("name", "")).strip(), scene.get("sceneTypes", []),
+                         image[len(own):] if image.startswith(own) else image])
         if rows:
             countries[slug] = rows
     if missing:
@@ -688,7 +695,7 @@ def build_top_scene_index() -> None:
     # Scene types drive the top-page scene index (see data/scene-taxonomy.json).
     taxonomy = json.loads((ROOT / "data/scene-taxonomy.json").read_text(encoding="utf-8"))
     payload = {
-        "version": 5, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "version": 6, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
         "regionHeroes": region_heroes, "sceneTypes": taxonomy["groups"],
     }
     (ROOT / "data/top-scene-index.json").write_text(
